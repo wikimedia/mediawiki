@@ -603,6 +603,9 @@ $preloadedMessages = array(
 	'vector-view-edit',
 	'vector-view-history',
 	'vector-view-view',
+	'apex-view-edit',
+	'apex-view-history',
+	'apex-view-view',
 	'viewcount',
 	'views',
 	'whatlinkshere',
@@ -809,6 +812,20 @@ XHTML id names.
 'actions'                        => 'Actions',
 'namespaces'                     => 'Namespaces',
 'variants'                       => 'Variants',
+
+# Apex skin
+'apex-action-addsection'       => 'Add topic',
+'apex-action-delete'           => 'Delete',
+'apex-action-move'             => 'Move',
+'apex-action-protect'          => 'Protect',
+'apex-action-undelete'         => 'Undelete',
+'apex-action-unprotect'        => 'Change protection',
+'apex-simplesearch-preference' => 'Enable enhanced search suggestions (Vector skin only)',
+'apex-view-create'             => 'Create',
+'apex-view-edit'               => 'Edit',
+'apex-view-history'            => 'View history',
+'apex-view-view'               => 'Read',
+'apex-view-viewsource'         => 'View source',
 
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Return to $1.',
@@ -3684,6 +3701,7 @@ You can view its source',
 'simple.css'              => '/* CSS placed here will affect users of the Simple skin */', # only translate this message to other languages if you have to change it
 'modern.css'              => '/* CSS placed here will affect users of the Modern skin */', # only translate this message to other languages if you have to change it
 'vector.css'              => '/* CSS placed here will affect users of the Vector skin */', # only translate this message to other languages if you have to change it
+'apex.css'              => '/* CSS placed here will affect users of the Apex skin */', # only translate this message to other languages if you have to change it
 'print.css'               => '/* CSS placed here will affect the print output */', # only translate this message to other languages if you have to change it
 'handheld.css'            => '/* CSS placed here will affect handheld devices based on the skin configured in $wgHandheldStyle */', # only translate this message to other languages if you have to change it
 'noscript.css'            => '/* CSS placed here will affect users with JavaScript disabled */', # only translate this message to other languages if you have to change it
@@ -3703,6 +3721,7 @@ You can view its source',
 'simple.js'              => '/* Any JavaScript here will be loaded for users using the Simple skin */', # only translate this message to other languages if you have to change it
 'modern.js'              => '/* Any JavaScript here will be loaded for users using the Modern skin */', # only translate this message to other languages if you have to change it
 'vector.js'              => '/* Any JavaScript here will be loaded for users using the Vector skin */', # only translate this message to other languages if you have to change it
+'apex.js'              => '/* Any JavaScript here will be loaded for users using the Apex skin */', # only translate this message to other languages if you have to change it
 'group-autoconfirmed.js' => '/* Any JavaScript here will be loaded for autoconfirmed users only */', # only translate this message to other languages if you have to change it
 'group-bot.js'           => '/* Any JavaScript here will be loaded for bots only */', # only translate this message to other languages if you have to change it
 'group-sysop.js'         => '/* Any JavaScript here will be loaded for sysops only */', # only translate this message to other languages if you have to change it
@@ -3775,6 +3794,7 @@ This is probably caused by a link to a blacklisted external site.',
 'skinname-simple'      => 'Simple', # only translate this message to other languages if you have to change it
 'skinname-modern'      => 'Modern', # only translate this message to other languages if you have to change it
 'skinname-vector'      => 'Vector', # only translate this message to other languages if you have to change it
+'skinname-apex'      => 'Apex', # only translate this message to other languages if you have to change it
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Mark as patrolled',
