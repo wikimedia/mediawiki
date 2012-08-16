@@ -1,0 +1,17 @@
+#p-cactions {
+	margin-left: -0.75em;
+}
+#p-cactions h5 span {
+	display: inline-block;
+	width: 0;
+	overflow: hidden;
+}
+#pt-userpage a {
+	width: 0;
+	display: inline-block;
+	overflow: hidden;
+	background-position: right center;
+}
+#searchInput {
+	width: 10em;
+}
