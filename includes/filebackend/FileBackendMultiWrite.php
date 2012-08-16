@@ -167,7 +167,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of files are consistent across all internal backends
 	 *
-	 * @param $paths Array
+	 * @param $paths Array List of storage paths
 	 * @return Status
 	 */
 	public function consistencyCheck( array $paths ) {
@@ -183,7 +183,7 @@ class FileBackendMultiWrite extends FileBackend {
 			// Stat the file on the 'master' backend
 			$mStat = $mBackend->getFileStat( $mParams );
 			if ( $this->syncChecks & self::CHECK_SHA1 ) {
-				$mSha1 = $mBackend->getFileSha1( $mParams );
+				$mSha1 = $mBackend->getFileSha1Base36( $mParams );
 			} else {
 				$mSha1 = false;
 			}
@@ -215,7 +215,7 @@ class FileBackendMultiWrite extends FileBackend {
 						}
 					}
 					if ( $this->syncChecks & self::CHECK_SHA1 ) {
-						if ( $cBackend->getFileSha1( $cParams ) !== $mSha1 ) { // wrong SHA1
+						if ( $cBackend->getFileSha1Base36( $cParams ) !== $mSha1 ) { // wrong SHA1
 							$status->fatal( 'backend-fail-synced', $path );
 							continue;
 						}
@@ -227,6 +227,44 @@ class FileBackendMultiWrite extends FileBackend {
 				}
 				if ( $mUsable !== $cBackend->isPathUsableInternal( $cParams['src'] ) ) {
 					$status->fatal( 'backend-fail-synced', $path );
+				}
+			}
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Check that a set of files are consistent across all internal backends
+	 * and re-synchronize those files againt the "multi master" if needed.
+	 *
+	 * @param $paths Array List of storage paths
+	 * @return Status
+	 */
+	public function resyncFiles( array $paths ) {
+		$status = Status::newGood();
+
+		$mBackend = $this->backends[$this->masterIndex];
+		foreach ( $paths as $path ) {
+			$mPath  = $this->substPaths( $path, $mBackend );
+			$mSha1  = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
+			$mExist = $mBackend->fileExists( array( 'src' => $mPath ) );
+			// Check of all clone backends agree with the master...
+			foreach ( $this->backends as $index => $cBackend ) {
+				if ( $index === $this->masterIndex ) {
+					continue; // master
+				}
+				$cPath = $this->substPaths( $path, $cBackend );
+				$cSha1 = $cBackend->getFileSha1Base36( array( 'src' => $cPath ) );
+				if ( $mSha1 === $cSha1 ) {
+					// already synced; nothing to do
+				} elseif ( $mSha1 ) { // file is in master
+					$fsFile = $mBackend->getLocalReference( array( 'src' => $mPath ) );
+					$status->merge( $cBackend->quickStore(
+						array( 'src' => $fsFile->getPath(), 'dst' => $cPath )
+					) );
+				} elseif ( $mExist === false ) { // file is not in master
+					$status->merge( $cBackend->quickDelete( array( 'src' => $cPath ) ) );
 				}
 			}
 		}
