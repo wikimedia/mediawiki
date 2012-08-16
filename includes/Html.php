@@ -306,7 +306,6 @@ class Html {
 			'input' => array(
 				'formaction' => 'GET',
 				'type' => 'text',
-				'value' => '',
 			),
 			'keygen' => array( 'keytype' => 'rsa' ),
 			'link' => array( 'media' => 'all' ),
@@ -342,6 +341,27 @@ class Html {
 		if ( $element === 'link' && isset( $attribs['type'] )
 		&& strval( $attribs['type'] ) == 'text/css' ) {
 			unset( $attribs['type'] );
+		}
+		if ( $element === 'input' ) {
+			$type = $attribs['type'];
+			$value = $attribs['value'];
+			if ( $type === 'checkbox' || $type === 'radio' ) {
+				// The default value for checkboxes and radio buttons is 'on' not ''
+				// By stripping value="" we break radio boxes that want empty values.
+				if ( $value === 'on' ) {
+					unset( $attribs['value'] );
+				}
+			} elseif ( $type === 'submit' ) {
+				// The default value for submit appears to be "Submit" but let's not
+				// bother stripping out localized text that matches that.
+			} else {
+				// The default value for nearly every other field type is ''
+				// range and color use different defaults but stripping a value=""
+				// does not hurt them.
+				if ( $value === '' ) {
+					unset( $attribs['value'] );
+				}
+			}
 		}
 		if ( $element === 'select' && isset( $attribs['size'] ) ) {
 			if ( in_array( 'multiple', $attribs )
