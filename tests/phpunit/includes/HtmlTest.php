@@ -403,4 +403,50 @@ class HtmlTest extends MediaWikiTestCase {
 		}
 		return $cases;
 	}
+
+	/**
+	 * Test out Html::element drops default value
+	 * @cover Html::dropDefaults
+	 * @dataProvider provideElementsWithAttributesHavingDefaultValues
+	 */
+	function testDropDefaults( $expected, $element, $message = '' ) {
+		$this->enableHTML5();
+		$this->assertEquals( $expected, $element, $message );
+	}
+
+	function provideElementsWithAttributesHavingDefaultValues() {
+		# Use cases in a concise format:
+		# <expected>, <element name>, <array of attributes> [, <message>]
+		# Will be mapped to Html::element()
+		$cases = array();
+		$cases[] = array( '<input type="checkbox" />',
+			'input', array( 'type' => 'checkbox', 'value' => 'on' ),
+			'Default value "on" is stripped of checkboxes',
+		);
+		$cases[] = array( '<input type="radio" />',
+			'input', array( 'type' => 'radio', 'value' => 'on' ),
+			'Default value "on" is stripped of radio buttons',
+		);
+		$cases[] = array( '<input type="submit" value="Submit" />',
+			'input', array( 'type' => 'submit', 'value' => 'Submit' ),
+			'Default value "Submit" is kept on submit buttons (for possible l10n issues)',
+		);
+		$cases[] = array( '<input type="color" />',
+			'input', array( 'type' => 'color', 'value' => '' ),
+		);
+		$cases[] = array( '<input type="range" />',
+			'input', array( 'type' => 'range', 'value' => '' ),
+		);
+
+		# Craft the Html elements
+		$ret = array();
+		foreach( $cases as $case ) {
+			$ret[] = array(
+				$case[0],
+				Html::element( $case[1], $case[2] )
+			);
+		}
+		return $ret;
+	}
+
 }
