@@ -551,9 +551,9 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
-The message takes three parameters; 
-*$1 {{msg-mw|newmessageslinkplural}}, 
-*$2 {{msg-mw|newmessagesdifflinkplural}}, and 
+The message takes three parameters;
+*$1 {{msg-mw|newmessageslinkplural}},
+*$2 {{msg-mw|newmessagesdifflinkplural}}, and
 *$3 the number of authors who have edited the talk page since the owning user last viewed it.',
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to{{msg-mw|youhavenewmessages}}. Parameters:
 * $1 is {{msg-mw|newmessageslinkplural}},
@@ -4332,6 +4332,12 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 *$7 is a time',
 'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail' => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
+
+# Scary transclusion
+'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
+'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.',
+'scarytranscludefailed-httpstatus' => 'Identical to scarytranscludefailed, but shows the HTTP error which was received.',
+'scarytranscludetoolong' => 'The URL was too long.',
 
 'unit-pixel' => '{{optional}}',
 
