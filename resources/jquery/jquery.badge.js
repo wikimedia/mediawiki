@@ -1,7 +1,9 @@
-// Badger v1.0 by Daniel Raftery
-// http://thrivingkings.com/badger
-// http://twitter.com/ThrivingKings
-// Modified by Ryan Kaldari <rkaldari@wikimedia.org>
+// jQuery Badge plugin
+// Based on Badger plugin by Daniel Raftery (http://thrivingkings.com/badger)
+// Modified by:
+//     Ryan Kaldari <rkaldari@wikimedia.org>
+//     Andrew Garrett <agarrett@wikimedia.org>
+//     Marius Hoch <hoo@online.de>
 
 /**
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -17,61 +19,87 @@
  * This program is distributed WITHOUT ANY WARRANTY.
  */
 
-(function( $ ) {
-	$.fn.badge = function( badge, options ) {
-		var existingBadge = this.find( '.mw-badge' );
-		options = $.extend( {}, options );
+(function ( $ ) {
 
-		badge = String(badge);
-		if ( badge.charAt(0) === '+' ) {
-			if ( existingBadge.length > 0 ) {
-				oldBadge = existingBadge.text();
-				badge = Math.round( Number( oldBadge ) + Number( badge.substr(1) ) );
-			} else {
-				badge = badge.substr(1);
-			}
-		} else if ( badge.charAt(0) === '-' ) {
-			if ( existingBadge.length > 0 ) {
-				oldBadge = existingBadge.text();
-				badge = Math.round( Number( oldBadge ) - Number( badge.substr(1) ) );
-			} else {
-				badge = 0;
+	/**
+	 * Allows you to put a numeric "badge" on an item on the page
+	 * See https://www.mediawiki.org/wiki/ResourceLoader/Default_modules#jQuery.badge
+	 * @param {String}|{Number} badgeCount An explicit number, or "+n"/ "-n" to modify the existing value
+	 * @param {Object} options Optional parameters specified below
+	 *   type: 'inline' or 'overlay' (default)
+	 *   callback: will be called with the number now shown on the badge as a parameter
+	 */
+	$.fn.badge = function( badgeCount, options ) {
+		var existingBadge = this.find( '.mw-badge' );
+		var newBadgeCount = 0;
+		var oldBadgeCount = 0;
+		var $badge;
+		options = $.extend( { type : 'overlay' }, options );
+
+		// if badgeCount is a number, use that as the new badge
+		if ( typeof badgeCount === 'number' ) {
+			newBadgeCount = badgeCount;
+		} else if ( typeof badgeCount === 'string' ) {
+			// if badgeCount is "+x", add x to the old badge
+			if ( badgeCount.charAt(0) === '+' ) {
+				if ( existingBadge.length > 0 ) {
+					oldBadgeCount = existingBadge.text();
+					newBadgeCount = Number( oldBadgeCount ) + Number( badgeCount.substr(1) );
+				} else {
+					newBadgeCount = Number( badgeCount.substr(1) );
+				}
+			// if badgeCount is "-x", subtract x from the old badge
+			} else if ( badgeCount.charAt(0) === '-' ) {
+				if ( existingBadge.length > 0 ) {
+					oldBadgeCount = existingBadge.text();
+					newBadgeCount = Number( oldBadgeCount ) - Number( badgeCount.substr(1) );
+				}
+			// if badgeCount can be converted into a number, convert it
+			} else if ( !isNaN( badgeCount ) ) {
+				newBadgeCount = Number( badgeCount );
 			}
 		}
 
-		if ( Number(badge) <= 0 ) {
+		if ( isNaN( newBadgeCount ) ) {
+			newBadgeCount = 0;
+		} else {
+			// Badge count must be a whole number
+			newBadgeCount = Math.round( newBadgeCount );
+		}
+
+		if ( newBadgeCount <= 0 ) {
 			// Clear any existing badge
 			existingBadge.remove();
 		} else {
 			// Don't add duplicates
-			var $badge = existingBadge;
 			if ( existingBadge.length > 0 ) {
-				this.find( '.mw-badge-content' ).text( badge );
+				$badge = existingBadge;
+				// Insert the new count into the badge
+				this.find( '.mw-badge-content' ).text( newBadgeCount );
 			} else {
-				$badge = $('<div/>')
-					.addClass('mw-badge')
-					.addClass('mw-badge-overlay')
+				// Contruct a new badge with the count
+				$badge = $( '<div>' )
+					.addClass( 'mw-badge' )
 					.append(
-						$('<span/>')
-							.addClass('mw-badge-content')
-							.text(badge)
+						$( '<span>' )
+							.addClass( 'mw-badge-content' )
+							.text( newBadgeCount )
 					);
-				this.append($badge);
+				this.append( $badge );
 			}
 
-			if ( options.type ) {
-				if ( options.type == 'inline' ) {
-					$badge.removeClass('mw-badge-overlay')
-						.addClass('mw-badge-inline');
-				} else if ( options.type == 'overlay' ) {
-					$badge.removeClass('mw-badge-inline')
-						.addClass('mw-badge-overlay');
-				}
+			if ( options.type === 'overlay' ) {
+				$badge.removeClass( 'mw-badge-inline' )
+					.addClass( 'mw-badge-overlay' );
+
+			} else if ( options.type === 'inline' ) {
+				$badge.removeClass( 'mw-badge-overlay' )
+					.addClass( 'mw-badge-inline' );
 			}
 
-			// If a callback was specified, call it with the badge number
-			if ( options.callback ) {
-				options.callback( badge );
+			// If a callback was specified, call it with the badge count
+			if ( typeof options.callback === 'function' ) {
+				options.callback( newBadgeCount );
 			}
 		}
 	};
