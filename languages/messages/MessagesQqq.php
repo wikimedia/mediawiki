@@ -4826,6 +4826,12 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
+# Scary transclusion
+'scarytranscludedisabled'          => 'Shown when scary transclusion is disabled.',
+'scarytranscludefailed'            => 'Shown when the HTTP request for the template failed.',
+'scarytranscludefailed-httpstatus' => 'Identical to scarytranscludefailed, but shows the HTTP error which was received.',
+'scarytranscludetoolong'           => 'The URL was too long.',
+
 # Unknown messages
 'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
 'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
