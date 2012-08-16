@@ -4191,6 +4191,15 @@ class Language {
 	}
 
 	/**
+	 * Get the compiled plural rules for the language
+	 * @since 1.20
+	 * @return array Associative array with plural form, and plural rule as key-value pairs
+	 */
+	public function getCompiledPluralRules() {
+		return self::$dataCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
+	}
+
+	/**
 	 * Get the plural rules for the language
 	 * @since 1.20
 	 * @return array Associative array with plural form, and plural rule as key-value pairs
@@ -4205,8 +4214,8 @@ class Language {
 	 * @return int The index of the plural form
 	 */
 	private function getPluralForm( $number ) {
-		$pluralRules = $this->getPluralRules();
-		$form = CLDRPluralRuleEvaluator::evaluate( $number, $pluralRules );
+		$pluralRules = $this->getCompiledPluralRules();
+		$form = CLDRPluralRuleEvaluator::evaluateCompiled( $number, $pluralRules );
 		return $form;
 	}
 
