@@ -72,9 +72,12 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		$namesUsed = array();
+		$this->syncChecks = isset( $config['syncChecks'] )
+			? $config['syncChecks']
+			: self::CHECK_SIZE;
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
+		$namesUsed = array();
 		foreach ( $config['backends'] as $index => $config ) {
 			if ( isset( $config['template'] ) ) {
 				// Config is just a modified version of a registered backend's.
@@ -108,9 +111,6 @@ class FileBackendMultiWrite extends FileBackend {
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new MWException( 'No master backend defined.' );
 		}
-		$this->syncChecks = isset( $config['syncChecks'] )
-			? $config['syncChecks']
-			: self::CHECK_SIZE;
 	}
 
 	/**
