@@ -2399,6 +2399,7 @@ $wgMessageStructure = array(
 		'import-interwiki-templates',
 		'import-interwiki-submit',
 		'import-interwiki-namespace',
+		'import-interwiki-rootpage',
 		'import-upload-filename',
 		'import-comment',
 		'importtext',
@@ -2430,6 +2431,9 @@ $wgMessageStructure = array(
 		'import-error-interwiki',
 		'import-error-special',
 		'import-error-invalid',
+		'import-options-wrong',
+		'import-rootpage-invalid',
+		'import-rootpage-nosubpage',
 	),
 	'importlog' => array(
 		'importlogpage',
