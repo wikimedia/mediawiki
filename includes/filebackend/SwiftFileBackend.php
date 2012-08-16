@@ -47,8 +47,14 @@ class SwiftFileBackend extends FileBackendStore {
 
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
-	protected $connStarted = 0; // integer UNIX timestamp
-	protected $connException; // CloudFiles exception
+	protected $sessionStarted = 0; // integer UNIX timestamp
+
+	/** @var CloudFilesException */
+	protected $connException;
+	protected $connErrorTime = 0; // UNIX timestamp
+
+	/** @var BagOStuff */
+	protected $srvCache;
 
 	/** @var ProcessCacheLRU */
 	protected $connContainerCache; // container object cache
@@ -75,6 +81,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                             - levels : the number of hash levels (and digits)
 	 *                             - repeat : hash subdirectories are prefixed with all the
 	 *                                        parent hash directory names (e.g. "a/ab/abc")
+	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC/XCache.
+	 *                          This is probably insecure in shared hosting environments.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -107,10 +115,17 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
 			? $config['swiftCDNPurgable']
 			: true;
-		// Cache container info to mask latency
+		// Cache container information to mask latency
 		$this->memCache = wfGetMainCache();
 		// Process cache for container info
 		$this->connContainerCache = new ProcessCacheLRU( 300 );
+		// Cache auth token information to avoid RTTs
+		if ( !empty( $config['cacheAuthInfo'] ) ) {
+			try { // look for APC, XCache, WinCache, ect...
+				$this->srvCache = ObjectCache::newAccelerator( array() );
+			} catch ( Exception $e ) {}
+		}
+		$this->srvCache = $this->srvCache ? $this->srvCache : new EmptyBagOStuff();
 	}
 
 	/**
@@ -1122,34 +1137,57 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Get a connection to the Swift proxy
+	 * Get an authenticated connection handle to the Swift proxy
 	 *
 	 * @return CF_Connection|bool False on failure
 	 * @throws CloudFilesException
 	 */
 	protected function getConnection() {
-		if ( $this->connException instanceof Exception ) {
-			throw $this->connException; // failed last attempt
-		}
-		// Session keys expire after a while, so we renew them periodically
-		if ( $this->conn && ( time() - $this->connStarted ) > $this->authTTL ) {
-			$this->conn->close(); // close active cURL connections
-			$this->conn = null;
-		}
-		// Authenticate with proxy and get a session key...
-		if ( !$this->conn ) {
-			$this->connStarted = 0;
-			$this->connContainerCache->clear();
-			try {
-				$this->auth->authenticate();
-				$this->conn = new CF_Connection( $this->auth );
-				$this->connStarted = time();
-			} catch ( CloudFilesException $e ) {
-				$this->connException = $e; // don't keep re-trying
-				throw $e; // throw it back
+		if ( $this->connException instanceof CloudFilesException ) {
+			if ( ( time() - $this->connErrorTime ) < 60 ) {
+				throw $this->connException; // failed last attempt; don't bother
+			} else { // actually retry this time
+				$this->connException = null;
+				$this->connErrorTime = 0;
 			}
 		}
+		// Session keys expire after a while, so we renew them periodically
+		$reAuth = ( ( time() - $this->sessionStarted ) > $this->authTTL );
+		// Authenticate with proxy and get a session key...
+		if ( !$this->conn || $reAuth ) {
+			$this->sessionStarted = 0;
+			$this->connContainerCache->clear();
+			$cacheKey = $this->getCredsCacheKey( $this->auth->username );
+			$creds = $this->srvCache->get( $cacheKey ); // crendentials
+			if ( is_array( $creds ) ) { // cache hit
+				$this->auth->load_cached_credentials(
+					$creds['auth_token'], $creds['storage_url'], $creds['cdnm_url'] );
+				$this->sessionStarted = time() - ceil( $this->authTTL/2 ); // skew for worst case
+			} else { // cache miss
+				try {
+					$this->auth->authenticate();
+					$creds = $this->auth->export_credentials();
+					$this->srvCache->add( $cacheKey, $creds, ceil( $this->authTTL/2 ) ); // cache
+					$this->sessionStarted = time();
+				} catch ( CloudFilesException $e ) {
+					$this->connException = $e; // don't keep re-trying
+					$this->connErrorTime = time();
+					throw $e; // throw it back
+				}
+			}
+			$this->conn = new CF_Connection( $this->auth );
+		}
 		return $this->conn;
+	}
+
+	/**
+	 * Get the cache key for a container
+	 *
+	 * @param $username string
+	 * @return string
+	 */
+	private function getCredsCacheKey( $username ) {
+		return wfMemcKey( 'backend', $this->getName(), 'usercreds', $username );
 	}
 
 	/**
