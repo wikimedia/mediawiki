@@ -1003,7 +1003,7 @@ Tista' tmur lura u tagħmel modifiki ta' paġni eżistenti, inkella [[Special:Us
 
 Aċċerta ruħek jekk huwiex opportun li tkompli timmodifika din il-paġna.
 Ir-reġistru tat-tħassir u tal-mixi huwa pprovdut għal aktar konvenjenza:",
-'moveddeleted-notice' => 'Din il-paġna ġiet imħassra. Ir-reġistri tat-tħassir u tal-mixi għal din il-paġna huma provduti hawn taħt għal referenza.',
+'moveddeleted-notice' => 'Din il-paġna ġiet imħassra. Ir-reġistri tat-tħassir u tal-mixi għal din il-paġna huma provduti hawn taħt bħala referenza.',
 'log-fulllog' => 'Uri r-reġistru sħiħ',
 'edit-hook-aborted' => "Il-modifika ġiet abbandunata mill-''hook''.
 Ma ngħatat l-ebda spjegazzjoni.",
@@ -1965,7 +1965,7 @@ Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn 
 
 # Miscellaneous special pages
 'nbytes' => '{{PLURAL:$1|byte|$1  bytes}}',
-'ncategories' => '{{PLURAL:$1|kategorija|$1  kategoriji}}',
+'ncategories' => '{{PLURAL:$1|kategorija|$1 kategoriji}}',
 'nlinks' => '{{PLURAL:$1|link|$1 links}}',
 'nmembers' => '$1 {{PLURAL:$1|membru|membri}}',
 'nrevisions' => '{{PLURAL:$1|reviżjoni|$1 reviżjonijiet}}',

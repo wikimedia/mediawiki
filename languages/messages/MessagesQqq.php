@@ -104,6 +104,7 @@
  * @author Seb35
  * @author Sherbrooke
  * @author Shirayuki
+ * @author Shisir 1945
  * @author Shushruth
  * @author Siddhartha Ghai
  * @author Siebrand
@@ -2809,11 +2810,9 @@ This message was something like "unlock move protection" in the past.',
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
 'protect-edit-reasonlist' => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
-'protect-expiry-options' => "* Description: Options for the duration of the page protection.
-* <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.
-* Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.
+'protect-expiry-options' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
 
-{{Identical|Infinite}}",
+Options for the duration of the page protection. Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.",
 'restriction-type' => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
 'restriction-level' => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
 'minimum-size' => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with {{msg-mw|Maximum-size}}. There is an input box to specify the minimum bites of the projected pages listed.',
@@ -2997,11 +2996,9 @@ Example line:
 'ipbenableautoblock' => '{{Identical|Automatically block ...}}',
 'ipbsubmit' => '{{Identical|Block this user}}',
 'ipbother' => '{{Identical|Other time}}',
-'ipboptions' => "* Description: Options for the duration of the block.
-* <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.
-* Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.
+'ipboptions' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
 
-{{Identical|Infinite}}",
+Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.",
 'ipbotheroption' => '{{Identical|Other}}',
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
@@ -3232,6 +3229,7 @@ Tooltip shown when hovering over a little sign of a thumb image, to go to the im
 'import' => 'The title of the special page [[Special:Import]];',
 'import-interwiki-history' => 'This is an option on [[Special:Import]]. Usually, when unchecked, only the first version of a page is imported. When you check the option, all versions are imported. This is important often to check for licensing reasons.',
 'import-interwiki-submit' => '{{Identical|Import}}',
+'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
 'import-upload-filename' => 'Used on [[Special:Import]] as label for upload of an XML file containing the pages to import.',
 'xml-error-string' => ':$1: Some kind of message, perhaps name of the error?
 :$2: line number
@@ -3252,6 +3250,9 @@ See also:
 * $1 is a page name.
 See also:
 * {{msg-mw|import-error-edit}}',
+'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
+'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
+'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages.',
 
 # Import log
 'importlogpage' => '{{doc-logpage}}',
@@ -4556,8 +4557,7 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
-'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
-See also {{msg-mw|Version-entrypoints}}',
+'version-entrypoints-header-entrypoint' => 'ପ୍ରବେଶ ବିନ୍ଦୁ',
 'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
@@ -4826,9 +4826,4 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
-# Unknown messages
-'import-interwiki-rootpage' => 'Used on [[Special:Import]] as label',
-'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
-'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
-'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages.',
 );

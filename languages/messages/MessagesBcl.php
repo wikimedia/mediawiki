@@ -1496,6 +1496,7 @@ Kaipuhan mong aramon an historiya kan pagpura bago ka man magpadagos sa pagkarga
 'uploaddisabledtext' => 'An pagkarga kan mga sagunson pinagpondo tabi.',
 'uploadscripted' => "Ining ''file'' igwang HTML o kodang eskritura na pwede ser na salang mainterpretar kan ''browser''.",
 'uploadvirus' => "May virus an ''file''! Mga detalye: $1",
+'upload-source' => 'Gikanang sagunson',
 'sourcefilename' => 'Ginikanan kan pangaran nin sagunson:',
 'sourceurl' => 'Ginikanan kan kilyawan:',
 'destfilename' => 'Destinasyon kan pangaran nin sagunson:',
@@ -1595,6 +1596,7 @@ Kun an problema yaon pa, pakikontak tabi nin sarong [[Special:ListUsers/sysop|ad
 'nolinkstoimage' => 'Mayong mga pahinang nakatakod sa dokumentong ini.',
 'sharedupload' => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.",
 'uploadnewversion-linktext' => 'Magkarga nin bàgong bersyon kaining file',
+'shared-repo' => 'sarong pinagheras na repositoryo',
 
 # File reversion
 'filerevert' => 'Ibalik an $1',
@@ -1609,14 +1611,22 @@ Kun an problema yaon pa, pakikontak tabi nin sarong [[Special:ListUsers/sysop|ad
 # File deletion
 'filedelete' => 'Parâon an $1',
 'filedelete-legend' => 'Parâon an dokumento',
-'filedelete-intro' => "Pigpaparâ mo an '''[[Media:$1|$1]]'''.",
+'filedelete-intro' => "Saimong pagpupuraon an sagunson '''[[Media:$1|$1]]''' kaiba an gabos kaining historiya.",
 'filedelete-intro-old' => "Pigpaparâ mo an bersyon kan '''[[Media:$1|$1]]''' sa ngonyan [$4 $3, $2].",
 'filedelete-comment' => 'Rason:',
 'filedelete-submit' => 'Parâon',
 'filedelete-success' => "An '''$1''' pinarâ na.",
-'filedelete-success-old' => '<span class="plainlinks">An bersyón kan \'\'\'[[Media:$1|$1]]\'\'\' na ngonyan na $3, pigparâ na an $2.</span>',
-'filedelete-nofile' => "Mayo man an '''$1''' sa ining sitio.",
+'filedelete-success-old' => "An bersyon kan '''[[Media:$1|$1]]''' magpoon kan $3, $2 pinagpura na tabi.",
+'filedelete-nofile' => "'''$1''' bakong eksistido.",
 'filedelete-nofile-old' => "Mayong bersyón na nakaarchibo kan '''$1''' na igwang kan mga piniling ''character''.",
+'filedelete-otherreason' => 'An iba pa/kadugangang rason:',
+'filedelete-reason-otherlist' => 'Ibang dahilan',
+'filedelete-reason-dropdown' => '*Kumon na mga rason nin pagpura
+** Copyright na paglapas
+** Duplikadong sagunson',
+'filedelete-edit-reasonlist' => 'Liwaton an mga rason nin pagpura',
+'filedelete-maintenance' => 'Pagpupura asin restorasyon nin mga sagunson temporaryong pinagpupundo sa panahon nin pagpapakarhay.',
+'filedelete-maintenance-title' => 'Dae makapagpura nin sagunson',
 
 # MIME search
 'mimesearch' => 'Paghanap kan MIME',
@@ -1632,20 +1642,28 @@ Kun an problema yaon pa, pakikontak tabi nin sarong [[Special:ListUsers/sysop|ad
 
 # Unused templates
 'unusedtemplates' => 'Mga templatong dai ginamit',
-'unusedtemplatestext' => 'Piglilista kaining páhina an gabos na mga páhina sa templatong ngaran-espacio na dai nakakaag sa ibang páhina. Giromdomon tabî na sosogon an ibang mga takod sa mga templato bâgo parâon iyan.',
+'unusedtemplatestext' => 'Ining pahina minalista kan gabos na mga pahina sa {{ns:template}} ngarang-espasyo na bakong kabali sa ibang pahina.
+Giromdoma baya na mag-tsek para sa iba pang kasugpon sa mga templato bago mo pagpuraon sinda.',
 'unusedtemplateswlh' => 'ibang mga takod',
 
 # Random page
 'randompage' => 'Arín man na pahina',
-'randompage-nopages' => 'Mayong páhina an ngaran-espacio.',
+'randompage-nopages' => 'Dae tabi nin mga pahina sa minasunod na {{PLURAL:$2|espasyong-ngaran|mga espasyong-ngaran}}: $1.',
 
 # Random redirect
 'randomredirect' => 'Random na pagredirekta',
-'randomredirect-nopages' => 'Mayong paglikay (redirects) didgi sa ngaran-espacio.',
+'randomredirect-nopages' => 'Mayo nin panukdo-liwat sa espasyong-ngaran na "$1".',
 
 # Statistics
 'statistics' => 'Mga Estadistiko',
+'statistics-header-pages' => 'Estadistikong pahina',
+'statistics-header-edits' => 'Estadistiko nin pagliwat',
+'statistics-header-views' => 'Estadistiko nin pagmansay',
 'statistics-header-users' => 'Mga estadistiko nin parágamit',
+'statistics-header-hooks' => 'Iba pang estadistiko',
+'statistics-articles' => 'Laman na mga pahina',
+'statistics-pages' => 'Mga Pahina',
+'statistics-pages-desc' => 'Gabos na mga pahina sa laog kan wiki, kabali an pahina nin orolay, mga panukdo-liwat, ibp.',
 'statistics-files' => 'Pinagkargang mga sagunson',
 'statistics-edits' => 'Mga pagliwat sa pahina magpoon pa na an {{SITENAME}} pinagmukna.',
 'statistics-edits-average' => 'Katahaw kan mga pagliliwat sa kada pahina',
@@ -1654,19 +1672,26 @@ Kun an problema yaon pa, pakikontak tabi nin sarong [[Special:ListUsers/sysop|ad
 'statistics-views-peredit' => 'Mga kamansayan kada pagliwat',
 'statistics-users' => 'Rehistrado [[Special:ListUsers|users]]',
 'statistics-users-active' => 'Mga Aktibong Paragamit',
+'statistics-users-active-desc' => 'Mga paragamit na may ginibong aksyon sa nakaaging {{PLURAL:$1|aldaw|$1 mga aldaw}}',
 'statistics-mostpopular' => 'mga pinaka pighiling na pahina',
 
-'disambiguations' => 'Mga pahinang klaripikasyon',
+'disambiguations' => 'Mga pahinang minatulay pasiring sa pampalinaw na mga pahina',
 'disambiguationspage' => 'Template:clarip',
-'disambiguations-text' => "An mga nasunod na páhina nakatakod sa sarong '''páhina nin klaripikasyon'''.
-Imbis, kaipuhan na nakatakod sinda sa maninigong tema.<br />
-An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin templatong nakatakod sa [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "An mga minasunod na mga pahina igwang laog nin kisera sarong tulay pasiring sa '''pampalinaw na pahina'''.
+Sinda mapuwedeng makipagsugpon pasiring sa sarong mas manigong pahina nanggad.<br />
+An sarong pahina tratado bilang pampalinaw na pahina kun ini minagamit nin sarong templato na nakasugpon gikan sa [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dobleng mga redirekta',
-'doubleredirectstext' => 'Piglilista kaining pahina an mga pahinang minalikay sa ibang pahinang paralikay. Kada raya may mga takod sa primero asin segundang likay, buda an destino kan segundong likay, na puro-pirme sarong "tunay " na pahinang destino, na dapat duman nakaturo an primerong likay.',
+'doubleredirectstext' => 'Ining pahina minalista nin mga pahina na minatukdo liwat pasiring sa pinagtukdong-liwat na mga pahina.
+Kada palunpon igwang laog na minasugpon pasiring sa enot asin ikaduwang pagtukdo-liwat, siring man sa target kan ikaduwang pagtukdo-liwat, na pirme nanggad an "tunay" na pahinang target, na an enot na pagtukdong-liwat dapat na iyo an pagtutukdoon.
+<del>Pinagpura</del> na mga entrada naresolberan na.',
+'double-redirect-fixed-move' => '[[$1]] pinagbalyo tabi.
+Ini ngunyan minatukdo-liwat pasiring sa [[$2]].',
+'double-redirect-fixed-maintenance' => 'Pinapakarhay na dobleng panukdo-liwat magpoon sa [[$1]] pasiring sa [[$2]].',
+'double-redirect-fixer' => 'Parapakarhay kan panukdo-liwat',
 
 'brokenredirects' => 'Putol na mga paglikay',
-'brokenredirectstext' => 'An nagsusunod naglilikay kan takod sa mga pahinang mayo man:',
+'brokenredirectstext' => 'An mga minasunod na panukdo-liwat nakasugpon pasiring sa busyaw na mga pahina:',
 'brokenredirects-edit' => 'hirahón',
 'brokenredirects-delete' => 'parâon',
 

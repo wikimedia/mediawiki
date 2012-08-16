@@ -812,8 +812,8 @@ Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password origi
 'passwordreset-emailelement' => 'Nome utente: $1
 Password temporanea: $2',
 'passwordreset-emailsent' => 'È stata inviata una e-mail di promemoria.',
-'passwordreset-emailsent-capture' => "E' stato inviato un e-mail promemoria, il contenuto è riportato di seguito.",
-'passwordreset-emailerror-capture' => "E' stata generata l'e-mail promemoria riportata di seguito. L'invio all'utente non è riuscito: $1",
+'passwordreset-emailsent-capture' => 'È stata inviata una e-mail di promemoria, il contenuto è riportato di seguito.',
+'passwordreset-emailerror-capture' => "È stata generata l'e-mail di promemoria riportata di seguito. L'invio all'utente non è riuscito: $1",
 
 # Special:ChangeEmail
 'changeemail' => "Modifica l'indirizzo e-mail",
@@ -858,7 +858,7 @@ Password temporanea: $2',
 'showdiff' => 'Mostra cambiamenti',
 'anoneditwarning' => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
 'anonpreviewwarning' => "''Non hai eseguito il login. Salvando il tuo indirizzo IP sarà registrato nella cronologia di questa voce.''",
-'missingsummary' => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo '''Salva la pagina''' la modifica verrà salvata con l'oggetto vuoto.",
+'missingsummary' => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata con l'oggetto vuoto.",
 'missingcommenttext' => 'Inserire un commento qui sotto.',
 'missingcommentheader' => "'''Attenzione:''' non è stata specificato l'oggetto/l'intestazione di questo commento. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata senza intestazione.",
 'summary-preview' => "Anteprima dell'oggetto:",
@@ -935,7 +935,7 @@ L'ultimo elemento del registro dei blocchi è riportato di seguito per informazi
 'sitejspreview' => "Questa è solo un'anteprima per provare il JavaScript; le modifiche non sono ancora state salvate!'''",
 'userinvalidcssjstitle' => "'''Attenzione:'''  Non esiste alcuna skin con nome \"\$1\". Si noti che le pagine per i .css e .js personalizzati hanno l'iniziale del titolo minuscola, ad esempio {{ns:user}}:Esempio/vector.css e non {{ns:user}}:Esempio/Vector.css.",
 'updated' => '(Aggiornato)',
-'note' => "'''NOTA:'''",
+'note' => "'''Nota:'''",
 'previewnote' => "'''Ricorda che questa è solo un'anteprima.'''
 Le tue modifiche NON sono ancora state salvate!",
 'continue-editing' => 'Continua a modificare',
@@ -949,7 +949,7 @@ Se il problema persiste, si può tentare di [[Special:UserLogout|scollegarsi]] e
 
 '''Se questo è un legittimo tentativo di modifica, riprovare. Se il problema persiste, si può provare a [[Special:UserLogout|scollegarsi]] ed effettuare un nuovo accesso.'''",
 'token_suffix_mismatch' => "'''La modifica non è stata salvata perché il client ha mostrato di gestire in modo errato i caratteri di punteggiatura nel token associato alla stessa. Per evitare una possibile corruzione del testo della pagina, è stata rifiutata l'intera modifica. Questa situazione può verificarsi, talvolta, quando vengono usati alcuni servizi di proxy anonimi via web che presentano dei bug.'''",
-'edit_form_incomplete' => "' ' Alcune parti del modulo di modifica non hanno raggiunto il server; controllare che le modifiche siano intatte e riprovare. ' '",
+'edit_form_incomplete' => "'''Alcune parti del modulo di modifica non hanno raggiunto il server; controllare che le modifiche siano intatte e riprovare.'''",
 'editing' => 'Modifica di $1',
 'creating' => 'Stai creando $1',
 'editingsection' => 'Modifica di $1 (sezione)',
@@ -976,15 +976,16 @@ Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scri
 '''Non inviare materiale protetto da copyright senza autorizzazione!'''",
 'longpageerror' => "'''Errore: il testo inviato è lungo {{PLURAL:$1|1|$1}} kilobyte, che è maggiore della dimensione massima consentita ({{PLURAL:$2|1|$2}} kilobyte).'''
 Il testo non può essere salvato.",
-'readonlywarning' => "'''ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.'''
+'readonlywarning' => "'''Attenzione: il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento.'''
+Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.
 
 L'amministratore che ha bloccato il database ha fornito questa spiegazione: $1",
-'protectedpagewarning' => "'''ATTENZIONE: Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.'''
+'protectedpagewarning' => "'''Attenzione: questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla.'''
 L'ultimo elemento del registro è riportato di seguito per informazione:",
 'semiprotectedpagewarning' => "'''Nota:''' Questa pagina è stata bloccata in modo che solo gli utenti registrati possano modificarla.
 L'ultimo elemento del registro è riportato di seguito per informazione:",
 'cascadeprotectedwarning' => "'''Attenzione:''' Questa pagina è stata bloccata in modo che solo gli utenti con privilegi di amministratore possano modificarla. Ciò avviene perché la pagina è inclusa {{PLURAL:\$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione \"ricorsiva\":",
-'titleprotectedwarning' => "'''ATTENZIONE:  Questa pagina è stata bloccata in modo che siano necessari [[Special:ListGroupRights|diritti specifici]] per crearla.'''
+'titleprotectedwarning' => "'''Attenzione: questa pagina è stata bloccata in modo che siano necessari [[Special:ListGroupRights|diritti specifici]] per crearla.'''
 L'ultimo elemento del registro è riportato di seguito per informazione:",
 'templatesused' => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa pagina:',
 'templatesusedpreview' => '{{PLURAL:$1|Template utilizzato|Template utilizzati}} in questa anteprima:',
@@ -1165,7 +1166,8 @@ $1",
 'revdelete-only-restricted' => "Errore nel nascondere l'oggetto datato $1, $2: non è possibile nascondere gli oggetti alla vista degli amministratori senza selezionare almeno un'altra delle opzioni di rimozione.",
 'revdelete-reason-dropdown' => '*Motivazioni più comuni per la cancellazione
 ** Violazione di copyright
-** Informazioni personali inappropriate',
+** Informazioni personali inappropriate
+** Informazione potenzialmente diffamatoria',
 'revdelete-otherreason' => 'Altra motivazione o motivazione aggiuntiva:',
 'revdelete-reasonotherlist' => 'Altra motivazione',
 'revdelete-edit-reasonlist' => 'Modifica le motivazioni per la cancellazione',
@@ -1306,7 +1308,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'datedefault' => 'Nessuna preferenza',
 'prefs-beta' => 'Funzionalità beta',
 'prefs-datetime' => 'Data e ora',
-'prefs-labs' => 'Funzionalità dei laboratori',
+'prefs-labs' => 'Funzionalità sperimentali',
 'prefs-user-pages' => 'Pagine utente',
 'prefs-personal' => 'Profilo utente',
 'prefs-rc' => 'Ultime modifiche',
@@ -2798,6 +2800,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-interwiki-templates' => 'Includi tutti i template',
 'import-interwiki-submit' => 'Importa',
 'import-interwiki-namespace' => 'Namespace di destinazione:',
+'import-interwiki-rootpage' => 'Pagina principale di destinazione (opzionale):',
 'import-upload-filename' => 'Nome file:',
 'import-comment' => 'Oggetto:',
 'importtext' => 'Si prega di esportare il file dal sito wiki di origine con la [[Special:Export|funzione di esportazione]], salvarlo sul proprio disco e poi caricarlo qui.',
@@ -2829,6 +2832,9 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-error-interwiki' => 'La pagina "$1" non viene importata perché il suo nome è riservato per il collegamento esterno (interwiki).',
 'import-error-special' => 'La pagina "$1" non viene importata perché appartiene a un namespace speciale che non permette pagine.',
 'import-error-invalid' => 'La pagina "$1" non viene importata perché il suo nome non è valido.',
+'import-options-wrong' => '{{PLURAL:$2|Opzione sbagliata|Opzioni sbagliate}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La pagina principale fornita non è un titolo valido.',
+'import-rootpage-nosubpage' => 'Il namespace "$1" della pagina principale non permette di avere sottopagine.',
 
 # Import log
 'importlogpage' => 'Importazioni',

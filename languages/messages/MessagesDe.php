@@ -2969,6 +2969,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-interwiki-templates' => 'Alle Vorlagen einschließen',
 'import-interwiki-submit' => 'Import',
 'import-interwiki-namespace' => 'Zielnamensraum:',
+'import-interwiki-rootpage' => 'Zielstammseite (optional):',
 'import-upload-filename' => 'Dateiname:',
 'import-comment' => 'Grund:',
 'importtext' => 'Bitte die Datei über die Spezialseite [[Special:Export|Exportfunktion]] aus dem Quellwiki exportieren.
@@ -3001,6 +3002,9 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-error-interwiki' => 'Die Seite „$1“ wurde nicht importiert, da deren Name für externe Links (Interwiki) reserviert ist.',
 'import-error-special' => 'Die Seite „$1“ wurde nicht importiert, da sie zu einem besonderen Namensraum gehört, in dem keine Seiten möglich sind.',
 'import-error-invalid' => 'Seite „$1“ wurde nicht importiert, da deren Name ungültig ist.',
+'import-options-wrong' => 'Falsche {{PLURAL:$2|Option|Optionen}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Der angegebene Stammseitenname ist ungültig.',
+'import-rootpage-nosubpage' => 'Im Namensraum „$1“ der Stammseite sind keine Unterseiten erlaubt.',
 
 # Import log
 'importlogpage' => 'Import-Logbuch',
@@ -4083,6 +4087,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'import-options-wrong' => 'Falsche {{PLURAL:$2|Option|Optionen}}: <nowiki>$1</nowiki>',
 );

@@ -1460,7 +1460,8 @@ $1',
 ** İstifadəsiz fayl
 ** Qeyri-ensiklopedik şəxs
 ** Lisenziyasız fayl
-** Azad şəkillə əvəz olundu',
+** Azad şəkillə əvəz olundu
+** Müəllif istəyi',
 'filedelete-edit-reasonlist' => 'Silmə səbəblərini redaktə et',
 
 # MIME search

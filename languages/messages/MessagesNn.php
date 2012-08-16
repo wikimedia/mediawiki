@@ -2778,7 +2778,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-watchlistedit-raw-submit' => 'Oppdater overvakingslista',
 'tooltip-recreate' => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
 'tooltip-upload' => 'Start opplastinga',
-'tooltip-rollback' => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
+'tooltip-rollback' => '«Rulla attende»-knappen rullar med eitt klikk attende endringa(ne) på sida gjorde av den siste bidragsytaren',
 'tooltip-undo' => '«Gjer om» attenderullar endringar og opnar endringsvindauga med førehandsvising. Gjer at ein kan leggje til ei årsak samandragsboksen.',
 'tooltip-preferences-save' => 'Lagra innstillingar',
 'tooltip-summary' => 'Skriv inn eit kort samandrag',

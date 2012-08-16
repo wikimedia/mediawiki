@@ -969,6 +969,9 @@ $2
 'parser-template-loop-warning' => 'Үрнәкләрдә йомык сылтама табылды: [[$1]]',
 'parser-template-recursion-depth-warning' => '($1) үрнәген рекурсия итеп куллану чиге рөхсәт ителгәннән артып киткән',
 'language-converter-depth-warning' => 'Телләрне үзгәртүләре артык югарыга киткән ($1)',
+'node-count-exceeded-warning' => 'Биттә бәйләү өлешләре артып киткән',
+'expansion-depth-exceeded-category' => 'Ачыклык тирәнлеге зур булган битләр',
+'expansion-depth-exceeded-warning' => 'Биттә кертем чиге артып киткән',
 
 # "Undo" feature
 'undo-success' => 'Үзгәртүдән баш тартып була.

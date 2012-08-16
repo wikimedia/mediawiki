@@ -2960,6 +2960,7 @@ Toutes les actions d’importation inter-wiki sont consignées dans l’[[Specia
 'import-interwiki-templates' => 'Inclure tous les modèles',
 'import-interwiki-submit' => 'Importer',
 'import-interwiki-namespace' => 'Espace de noms de destination :',
+'import-interwiki-rootpage' => 'Page racine de destination (optionnelle):',
 'import-upload-filename' => 'Nom du fichier :',
 'import-comment' => 'Commentaire :',
 'importtext' => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant son [[Special:Export|outil d’exportation]].
@@ -2995,6 +2996,9 @@ Un dossier temporaire est manquant.",
 'import-error-interwiki' => "La page « $1 » n'est pas importée parce que son nom est réservé pour un lien externe (interwiki).",
 'import-error-special' => 'La page " $1 " n\'est pas importée parce qu\'elle appartient à un espace de noms special qui n’en autorise aucune.',
 'import-error-invalid' => 'Page « $1 » n’est pas importée parce que son nom n’est pas valide.',
+'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La page racine fournie est un titre non valide.',
+'import-rootpage-nosubpage' => 'L\'espace de noms "$1" de la page racine n\'autorise pas les sous-pages.',
 
 # Import log
 'importlogpage' => 'Journal des importations',

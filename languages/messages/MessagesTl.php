@@ -2783,6 +2783,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'import-interwiki-templates' => 'Isama ang lahat ng mga suleras',
 'import-interwiki-submit' => 'Mag-angkat',
 'import-interwiki-namespace' => 'Kapupuntahang espasyo ng pangalan:',
+'import-interwiki-rootpage' => 'Ugat na pahina ng kapupuntahan (maaaring wala ito):',
 'import-upload-filename' => 'Pangalan ng talaksan:',
 'import-comment' => 'Komento:',
 'importtext' => 'Pakiluwas ang talaksan magmula sa pinagmulang wiki na ginagamit ang [[Special:Export|kasangkapang pangluwas]].  
@@ -2815,6 +2816,9 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'import-error-interwiki' => 'Hindi naangkat ang pahinang "$1" dahil ang pangalan nito ay nakalaan para sa pagkakawing na panlabas (interwiki).',
 'import-error-special' => 'Hindi naangkat ang pahinang "$1" dahil pag-aari ito ng isang natatanging puwang na pampangalan na hindi nagpapahintulot ng mga pahina.',
 'import-error-invalid' => 'Hindi naangkat ang pahinang "$1" dahil hindi katanggap-tanggap ang pangalan nito.',
+'import-options-wrong' => 'Maling {{PLURAL:$2|pili|mga mapipili}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Ang ibinigay na ugat na pahina ay isang hindi katanggap-tanggap na pamagat.',
+'import-rootpage-nosubpage' => 'Ang puwang ng pangalan na "$1" ng ugat na pahina ay hindi nagpapahintulot ng kabahaging mga pahina.',
 
 # Import log
 'importlogpage' => 'Talaan ng pagaangkat',

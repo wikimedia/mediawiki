@@ -20,6 +20,7 @@
  * @author Urhixidur
  * @author Xabier Armendaritz
  * @author לערי ריינהארט
+ * @author පසිඳු කාවින්ද
  */
 
 $namespaceNames = array(
@@ -3162,6 +3163,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-software' => 'Instalatutako softwarea',
 'version-software-product' => 'Produktua',
 'version-software-version' => 'Bertsioa',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Fitxategi bidea',

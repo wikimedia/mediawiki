@@ -3059,6 +3059,7 @@ Een tijdelijke map is niet aanwezig.',
 'import-error-interwiki' => 'De pagina "$1" is niet geïmporteerd omdat deze naam is gereserveerd voor externe verwijzingen (interwiki).',
 'import-error-special' => 'Pagina "$1" is niet geïmporteerd omdat deze is geplaatst in een speciale naamruimte waar geen pagina\'s in geplaatst kunnen worden.',
 'import-error-invalid' => 'De pagina" "$1" is niet geïmporteerd omdat de naam ongeldig is.',
+'import-options-wrong' => 'Verkeerde {{PLURAL:$2|optie|opties}}: <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => 'Importlogboek',
