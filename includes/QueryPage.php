@@ -526,7 +526,8 @@ abstract class QueryPage extends SpecialPage {
 			$out->addHTML( $this->getPageHeader() );
 			if ( $this->numRows > 0 ) {
 				$out->addHTML( $this->msg( 'showingresults' )->numParams(
-					$this->numRows, $this->offset + 1 )->parseAsBlock() );
+					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
+					$this->offset + 1 )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
 				$paging = $this->getLanguage()->viewPrevNext( $this->getTitle( $par ), $this->offset,
 					$this->limit, $this->linkParameters(), ( $this->numRows <= $this->limit ) );
@@ -557,7 +558,7 @@ abstract class QueryPage extends SpecialPage {
 
 		$out->addHTML( Xml::closeElement( 'div' ) );
 
-		return $this->numRows;
+		return min( $this->numRows, $this->limit ); # do not return the one extra row, if exist
 	}
 
 	/**
