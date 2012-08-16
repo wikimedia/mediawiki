@@ -27,7 +27,6 @@
  * @ingroup Cache
  */
 class SqlBagOStuff extends BagOStuff {
-
 	/**
 	 * @var LoadBalancer
 	 */
@@ -42,6 +41,9 @@ class SqlBagOStuff extends BagOStuff {
 	var $purgePeriod = 100;
 	var $shards = 1;
 	var $tableName = 'objectcache';
+
+	protected $connFailureTime = 0; // UNIX timestamp
+	protected $connFailureError; // exception
 
 	/**
 	 * Constructor. Parameters are:
@@ -88,6 +90,12 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	protected function getDB() {
 		global $wgDebugDBTransactions;
+
+		# Don't keep timing out trying to connect for each call if the DB is down
+		if ( $this->connFailureError && ( time() - $this->connFailureTime ) < 60 ) {
+			throw $this->connFailureError;
+		}
+
 		if ( !isset( $this->db ) ) {
 			# If server connection info was given, use that
 			if ( $this->serverInfo ) {
@@ -107,7 +115,7 @@ class SqlBagOStuff extends BagOStuff {
 				if ( wfGetDB( DB_MASTER )->getType() == 'mysql' ) {
 					$this->lb = wfGetLBFactory()->newMainLB();
 					$this->db = $this->lb->getConnection( DB_MASTER );
-					$this->db->clearFlag( DBO_TRX );
+					$this->db->clearFlag( DBO_TRX ); // auto-commit mode
 				} else {
 					$this->db = wfGetDB( DB_MASTER );
 				}
@@ -165,55 +173,59 @@ class SqlBagOStuff extends BagOStuff {
 	public function getMulti( array $keys ) {
 		$values = array(); // array of (key => value)
 
-		$keysByTableName = array();
-		foreach ( $keys as $key ) {
-			$tableName = $this->getTableByKey( $key );
-			if ( !isset( $keysByTableName[$tableName] ) ) {
-				$keysByTableName[$tableName] = array();
-			}
-			$keysByTableName[$tableName][] = $key;
-		}
-
-		$db = $this->getDB();
-		$this->garbageCollect(); // expire old entries if any
-
-		$dataRows = array();
-		foreach ( $keysByTableName as $tableName => $tableKeys ) {
-			$res = $db->select( $tableName,
-				array( 'keyname', 'value', 'exptime' ),
-				array( 'keyname' => $tableKeys ),
-				__METHOD__ );
-			foreach ( $res as $row ) {
-				$dataRows[$row->keyname] = $row;
-			}
-		}
-
-		foreach ( $keys as $key ) {
-			if ( isset( $dataRows[$key] ) ) { // HIT?
-				$row = $dataRows[$key];
-				$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
-				if ( $this->isExpired( $row->exptime ) ) { // MISS
-					$this->debug( "get: key has expired, deleting" );
-					try {
-						$db->begin( __METHOD__ );
-						# Put the expiry time in the WHERE condition to avoid deleting a
-						# newly-inserted value
-						$db->delete( $this->getTableByKey( $key ),
-							array( 'keyname' => $key, 'exptime' => $row->exptime ),
-							__METHOD__ );
-						$db->commit( __METHOD__ );
-					} catch ( DBQueryError $e ) {
-						$this->handleWriteError( $e );
-					}
-					$values[$key] = false;
-				} else { // HIT
-					$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
+		try {
+			$db = $this->getDB();
+			$keysByTableName = array();
+			foreach ( $keys as $key ) {
+				$tableName = $this->getTableByKey( $key );
+				if ( !isset( $keysByTableName[$tableName] ) ) {
+					$keysByTableName[$tableName] = array();
 				}
-			} else { // MISS
-				$values[$key] = false;
-				$this->debug( 'get: no matching rows' );
+				$keysByTableName[$tableName][] = $key;
 			}
-		}
+
+			$this->garbageCollect(); // expire old entries if any
+
+			$dataRows = array();
+			foreach ( $keysByTableName as $tableName => $tableKeys ) {
+				$res = $db->select( $tableName,
+					array( 'keyname', 'value', 'exptime' ),
+					array( 'keyname' => $tableKeys ),
+					__METHOD__ );
+				foreach ( $res as $row ) {
+					$dataRows[$row->keyname] = $row;
+				}
+			}
+
+			foreach ( $keys as $key ) {
+				if ( isset( $dataRows[$key] ) ) { // HIT?
+					$row = $dataRows[$key];
+					$this->debug( "get: retrieved data; expiry time is " . $row->exptime );
+					if ( $this->isExpired( $row->exptime ) ) { // MISS
+						$this->debug( "get: key has expired, deleting" );
+						try {
+							$db->begin( __METHOD__ );
+							# Put the expiry time in the WHERE condition to avoid deleting a
+							# newly-inserted value
+							$db->delete( $this->getTableByKey( $key ),
+								array( 'keyname' => $key, 'exptime' => $row->exptime ),
+								__METHOD__ );
+							$db->commit( __METHOD__ );
+						} catch ( DBQueryError $e ) {
+							$this->handleWriteError( $e );
+						}
+						$values[$key] = false;
+					} else { // HIT
+						$values[$key] = $this->unserialize( $db->decodeBlob( $row->value ) );
+					}
+				} else { // MISS
+					$values[$key] = false;
+					$this->debug( 'get: no matching rows' );
+				}
+			}
+		} catch ( DBError $e ) {
+			$this->handleReadError( $e );
+		};
 
 		return $values;
 	}
@@ -225,23 +237,23 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
-		$db = $this->getDB();
-		$exptime = intval( $exptime );
+		try {
+			$db = $this->getDB();
+			$exptime = intval( $exptime );
 
-		if ( $exptime < 0 ) {
-			$exptime = 0;
-		}
-
-		if ( $exptime == 0 ) {
-			$encExpiry = $this->getMaxDateTime();
-		} else {
-			if ( $exptime < 3.16e8 ) { # ~10 years
-				$exptime += time();
+			if ( $exptime < 0 ) {
+				$exptime = 0;
 			}
 
-			$encExpiry = $db->timestamp( $exptime );
-		}
-		try {
+			if ( $exptime == 0 ) {
+				$encExpiry = $this->getMaxDateTime();
+			} else {
+				if ( $exptime < 3.16e8 ) { # ~10 years
+					$exptime += time();
+				}
+
+				$encExpiry = $db->timestamp( $exptime );
+			}
 			$db->begin( __METHOD__ );
 			// (bug 24425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
@@ -254,9 +266,8 @@ class SqlBagOStuff extends BagOStuff {
 					'exptime' => $encExpiry
 				), __METHOD__ );
 			$db->commit( __METHOD__ );
-		} catch ( DBQueryError $e ) {
+		} catch ( DBError $e ) {
 			$this->handleWriteError( $e );
-
 			return false;
 		}
 
@@ -269,18 +280,16 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function delete( $key, $time = 0 ) {
-		$db = $this->getDB();
-
 		try {
+			$db = $this->getDB();
 			$db->begin( __METHOD__ );
 			$db->delete(
 				$this->getTableByKey( $key ),
 				array( 'keyname' => $key ),
 				__METHOD__ );
 			$db->commit( __METHOD__ );
-		} catch ( DBQueryError $e ) {
+		} catch ( DBError $e ) {
 			$this->handleWriteError( $e );
-
 			return false;
 		}
 
@@ -293,11 +302,10 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return int|null
 	 */
 	public function incr( $key, $step = 1 ) {
-		$db = $this->getDB();
-		$tableName = $this->getTableByKey( $key );
-		$step = intval( $step );
-
 		try {
+			$db = $this->getDB();
+			$tableName = $this->getTableByKey( $key );
+			$step = intval( $step );
 			$db->begin( __METHOD__ );
 			$row = $db->selectRow(
 				$tableName,
@@ -333,9 +341,8 @@ class SqlBagOStuff extends BagOStuff {
 				$newValue = null;
 			}
 			$db->commit( __METHOD__ );
-		} catch ( DBQueryError $e ) {
+		} catch ( DBError $e ) {
 			$this->handleWriteError( $e );
-
 			return null;
 		}
 
@@ -346,15 +353,19 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return Array
 	 */
 	public function keys() {
-		$db = $this->getDB();
 		$result = array();
 
-		for ( $i = 0; $i < $this->shards; $i++ ) {
-			$res = $db->select( $this->getTableByShard( $i ),
-				array( 'keyname' ), false, __METHOD__ );
-			foreach ( $res as $row ) {
-				$result[] = $row->keyname;
+		try {
+			$db = $this->getDB();
+			for ( $i = 0; $i < $this->shards; $i++ ) {
+				$res = $db->select( $this->getTableByShard( $i ),
+					array( 'keyname' ), false, __METHOD__ );
+				foreach ( $res as $row ) {
+					$result[] = $row->keyname;
+				}
 			}
+		} catch ( DBError $e ) {
+			$this->handleReadError( $e );
 		}
 
 		return $result;
@@ -407,12 +418,11 @@ class SqlBagOStuff extends BagOStuff {
 	 * @return bool
 	 */
 	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
-		$db = $this->getDB();
-		$dbTimestamp = $db->timestamp( $timestamp );
-		$totalSeconds = false;
-		$baseConds = array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) );
-
 		try {
+			$db = $this->getDB();
+			$dbTimestamp = $db->timestamp( $timestamp );
+			$totalSeconds = false;
+			$baseConds = array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) );
 			for ( $i = 0; $i < $this->shards; $i++ ) {
 				$maxExpTime = false;
 				while ( true ) {
@@ -468,24 +478,28 @@ class SqlBagOStuff extends BagOStuff {
 					}
 				}
 			}
-		} catch ( DBQueryError $e ) {
+		} catch ( DBError $e ) {
 			$this->handleWriteError( $e );
+			return false;
 		}
+
 		return true;
 	}
 
 	public function deleteAll() {
-		$db = $this->getDB();
-
 		try {
+			$db = $this->getDB();
 			for ( $i = 0; $i < $this->shards; $i++ ) {
 				$db->begin( __METHOD__ );
 				$db->delete( $this->getTableByShard( $i ), '*', __METHOD__ );
 				$db->commit( __METHOD__ );
 			}
-		} catch ( DBQueryError $e ) {
+		} catch ( DBError $e ) {
 			$this->handleWriteError( $e );
+			return false;
 		}
+
+		return true;
 	}
 
 	/**
@@ -528,23 +542,40 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Handle a DBQueryError which occurred during a write operation.
-	 * Ignore errors which are due to a read-only database, rethrow others.
+	 * Handle a DBError which occurred during a read operation.
 	 */
-	protected function handleWriteError( $exception ) {
-		$db = $this->getDB();
-
-		if ( !$db->wasReadOnlyError() ) {
-			throw $exception;
+	protected function handleReadError( DBError $exception ) {
+		if ( $exception instanceof DBConnectionError ) {
+			$this->connFailureTime  = time();
+			$this->connFailureError = $exception;
 		}
-
-		try {
-			$db->rollback( __METHOD__ );
-		} catch ( DBQueryError $e ) {
+		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
+		if ( $this->db ) {
+			wfDebug( __METHOD__ . ": ignoring query error\n" );
+		} else {
+			wfDebug( __METHOD__ . ": ignoring connection error\n" );
 		}
+	}
 
-		wfDebug( __METHOD__ . ": ignoring query error\n" );
-		$db->ignoreErrors( false );
+	/**
+	 * Handle a DBQueryError which occurred during a write operation.
+	 */
+	protected function handleWriteError( DBError $exception ) {
+		if ( $exception instanceof DBConnectionError ) {
+			$this->connFailureTime  = time();
+			$this->connFailureError = $exception;
+		}
+		if ( $this->db && $this->db->wasReadOnlyError() ) {
+			try {
+				$this->db->rollback( __METHOD__ );
+			} catch ( DBError $e ) {}
+		}
+		wfDebugLog( 'SQLBagOStuff', "DBError: {$exception->getMessage()}" );
+		if ( $this->db ) {
+			wfDebug( __METHOD__ . ": ignoring query error\n" );
+		} else {
+			wfDebug( __METHOD__ . ": ignoring connection error\n" );
+		}
 	}
 
 	/**
