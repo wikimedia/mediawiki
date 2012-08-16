@@ -2645,6 +2645,7 @@ Tute j'amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/im
 'import-interwiki-templates' => 'Anserì tùit jë stamp',
 'import-interwiki-submit' => 'Amporté',
 'import-interwiki-namespace' => 'Spassi nominal ëd destinassion:',
+'import-interwiki-rootpage' => 'Pagina prinsipal ëd destinassion (opsional):',
 'import-upload-filename' => "Nòm ëd l'archivi:",
 'import-comment' => 'Oget:',
 'importtext' => "Për piasì, che as espòrta l'archivi da 'nt la sorgiss wiki ën dovrand l'[[Special:Export|utiss d'esportassion]]. 
@@ -2678,6 +2679,9 @@ Për piasì, ch'a preuva torna.",
 'import-error-interwiki' => "La pàgina «$1» a l'é pa amportà përchè sò nòm a l'é arzervà për na liura esterna (antërwiki).",
 'import-error-special' => "La pàgina «$1» a l'é pa amportà përchè a ponta a në spassi nominal ch'a përmët pa dle pàgine.",
 'import-error-invalid' => "La pàgina «$1» a l'é pa amportà përchè sò nòm a l'é pa bon.",
+'import-options-wrong' => '{{PLURAL:$2|Opsion|Opsion}} sbalià: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => "La pagina prinsipal dàita a l'é un tìtol pa bon.",
+'import-rootpage-nosubpage' => 'Lë spassi nominal "$1" ëd la pagina prinsipal a përmëtt pa dle sotpagine.',
 
 # Import log
 'importlogpage' => "Registr dj'amportassion",

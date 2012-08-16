@@ -667,6 +667,7 @@ Dh'fhaoidte nach urrainn dhut am feart \"Cuir post-d dhan chleachdaiche seo\" a 
 'S e \$3 an seòladh IP làithreach agus agus 's e #\$5 ID a' bhacaidh.
 Thoir iomradh air a' mhion-fhiosrachadh gu h-àrd ma chuireas tu ceist sam bith mu dhèidhinn.",
 'blockednoreason' => 'cha deach adhbhar a shònrachadh',
+'whitelistedittext' => 'Feumaidh tu $1 mus urrainn dhut duilleagan a dheasachadh.',
 'loginreqlink' => 'log a-steach',
 'accmailtitle' => 'Facal-faire air a chur.',
 'accmailtext' => "Chaidh facal-faire a chruthachadh air thuaiream airson [[User talk:$1|$1]] 's a chur gu $2.

@@ -2131,7 +2131,7 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'watchmethod-list' => 'Wobkedźbowanki za aktualnymi změnami přepruwować',
 'watchlistcontains' => 'Maš $1 {{PLURAL:$1|stronu|stronje|strony|stronow}} w swojich wobkedźbowankach.',
 'iteminvalidname' => 'Problem ze zapiskom „$1“, njepłaćiwe mjeno.',
-'wlnote' => "Deleka {{PLURAL:$1|je '''1''' změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} za {{PLURAL:$2|poslednju hodźinu|poslednje '''$2''' hodźinje|poslednje '''$2''' hodźiny|poslednje '''$2''' hodźin}}, staw : $3, $4.",
+'wlnote' => "Deleka {{PLURAL:$1|je poslednja změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} za {{PLURAL:$2|poslednju hodźinu|poslednje '''$2''' hodźinje|poslednje '''$2''' hodźiny|poslednje '''$2''' hodźin}}, staw : $3, $4.",
 'wlshowlast' => 'Poslednje $1 hodź. - $2 dnjow - $3 pokazać',
 'watchlist-options' => 'Opcije wobkedźbowankow',
 
@@ -2683,6 +2683,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-interwiki-templates' => 'Wšě předłohi zapřijeć',
 'import-interwiki-submit' => 'Importować',
 'import-interwiki-namespace' => 'Cilowy mjenowy rum:',
+'import-interwiki-rootpage' => 'Cilowa korjenjowa strona (opcionalna):',
 'import-upload-filename' => 'Datajowe mjeno:',
 'import-comment' => 'Přičina:',
 'importtext' => 'Prošu eksportuj dataju ze žórłoweho wikija z pomocu funkcije [[Special:Export|Strony eksportować]]. Składuj ju na swojim ličaku a nahraj ju tu.',
@@ -2714,6 +2715,9 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-error-interwiki' => 'Strona "$1" so njeimportuje, dokelž jeje mjeno je za eksterne wotkazowanje (interwiki) wuměnjene.',
 'import-error-special' => 'Strona "$1" so njeimportuje, dokelž k wosebitemu mjenowemu rumej słuša, kotryž strony njedowola.',
 'import-error-invalid' => 'Strona "$1" so njeimportuje, dokelž jeje mjeno je njepłaćiwe.',
+'import-options-wrong' => '{{PLURAL:$2|Wopačna opcija|Wopačnej opciji|Wopačne opcije|Wopačne opcije}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Podata korjenjowa strona je njepłaćiwa.',
+'import-rootpage-nosubpage' => 'Mjenowy rum "$1" korjenjoweje strony njedowola podstrony.',
 
 # Import log
 'importlogpage' => 'Protokol importow',

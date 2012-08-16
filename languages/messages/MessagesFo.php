@@ -864,6 +864,8 @@ Tann seinasti posturin í loggfíluni er vístur niðanfyri fyri kelduávísing:
 'template-semiprotected' => '(lutvíst vardar)',
 'hiddencategories' => 'Henda síðan er í {{PLURAL:$1|1 fjaldum bólki|$1 fjaldum bólkum}}:',
 'nocreatetitle' => 'Upprættan av síðu er avmarkað',
+'nocreatetext' => '{{SITENAME}} hevur noktað fyri møguleikanum at upprætta nýggjar síður.
+Tú kanst fara aftur og rætta eina síðu sum longu er til, ella [[Special:UserLogin|rita teg inn ella få tær eina konto]].',
 'nocreate-loggedin' => 'Tú hevur ikki loyvi til at upprætta nýggjar síður.',
 'sectioneditnotsupported-title' => 'Tað ber ikki til at rætta brot',
 'sectioneditnotsupported-text' => 'Tað ber ikki til at rætta brot á hesi síðu.',
@@ -877,6 +879,8 @@ Strikingar og flytingar loggurin (søgan) fyri hesa síðuna eru at finna her fy
 'moveddeleted-notice' => 'Henda síðan er blivin strikað.
 Strikingar og flytingar loggurin (søgan) fyri hesa síðuna eru at finna her niðanfyri.',
 'log-fulllog' => 'Vís allan gerðalistan (loggin)',
+'edit-hook-aborted' => 'Rættingin bleiv avbrotin av einum programmfeili. 
+Ongin frágreiðing finst.',
 'edit-gone-missing' => 'Tað var ikki møguligt at dagføra síðuna.
 Tað sær út til at hon er blivin strikað.',
 'edit-conflict' => 'Rættingar trupulleiki (konflikt).',
@@ -1271,6 +1275,7 @@ Tín t-post adressa verður ikki avdúkað, tá aðrir brúkarir seta seg í sam
 'right-browsearchive' => 'Leita í strikaðum síðum',
 'right-undelete' => 'Endurstovnað eina síðu',
 'right-block' => 'Nokta øðrum brúkarum at rætta (blokka)',
+'right-blockemail' => 'Nokta einum brúkara at senda teldupost',
 'right-hideuser' => 'Sperra eitt brúkaranavn og goyma tað burtur fyri almenninginum',
 'right-unblockself' => 'Taka burtur sperring av sær sjálvum',
 'right-protect' => 'Broyt verjustøður og rætta vardar síður',
@@ -1373,6 +1378,16 @@ Síður á [[Special:Watchlist|tínum eftiransingarlista]] eru skrivaðar við '
 'uploadnologin' => 'Ikki ritað inn',
 'uploadnologintext' => 'Tú mást hava [[Special:UserLogin|ritað inn]]
 fyri at leggja fílur upp.',
+'upload-recreate-warning' => "'''Ávaring: Ein fíla við hasum navninum er blivin strikað ella flutt.'''
+
+Strikingar og flytingar loggurin (søgan) fyri ta síðuna verður vístur her niðanfyri fyri at gera tað lættari hjá tær:",
+'uploadtext' => "Brúka formularin her niðanfyri tá tú skalt leggja fílur út.
+Fyri at síggja ella leita eftir fílur sum longu eru lagdar út, kanst tú fara til [[Special:FileList|lista við upploadaðum fílum]], (endur)uploads eru eisini goymd í [[Special:Log/upload|upload logginum]], strikingar í [[Special:Log/delete|strikingarlogginum]].
+
+Fyri at taka eina fílu við á eina síðu, brúka so eina leinkju í ein av hesum formunum:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' fyri at brúka fulla versjón av fíluni
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' fyri at brúka eina 200 pixel breiða endurgeving í vinstra bredda við 'alt text' sum frágreiðing
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' fyri at leinkja beinleiðis til fíluna uttan at vísa fíluna",
 'upload-permitted' => 'Loyvd fílu sløg: $1.',
 'upload-preferred' => 'Best umtóktu fílu sløg: $1.',
 'upload-prohibited' => 'Ikki loyvd fílu sløg: $1.',

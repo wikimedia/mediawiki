@@ -2686,6 +2686,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-interwiki-templates' => 'Wše pśedłogi zapśěgnuś',
 'import-interwiki-submit' => 'Importěrowaś',
 'import-interwiki-namespace' => 'Celowy mjenjowy rum:',
+'import-interwiki-rootpage' => 'Celowy kórjenjowy bok (opcionalny):',
 'import-upload-filename' => 'Datajowe mě:',
 'import-comment' => 'Komentar:',
 'importtext' => 'Eksportěruj pšosym dataju ze žredlowego wikija z pomocu [[Special:Export|eksporteje funkcije]]. Składuj ju na swójom licadle a nagraj ju sem.',
@@ -2717,6 +2718,9 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-error-interwiki' => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo za eksterne wótkazowanje (interwiki) wuměnjone.',
 'import-error-special' => 'Bok "$1" se njeimportěrujo, dokulaž słuša k wósebnemu mjenjowemu rumoju, kótaryž njedowólujo boki.',
 'import-error-invalid' => 'Bok "$1" se njeimportěrujo, dokulaž jogo mě jo njepłaśiwe.',
+'import-options-wrong' => '{{PLURAL:$2|Wopacna opcija|Wopacnej opciji|Wopacne opcije|Wopacne opcije}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Pódany kórjenjowy bok jo njepłaśiwy.',
+'import-rootpage-nosubpage' => 'Mjenjowy rum "$1" kórjenjowego boka njedowólujo pódboki.',
 
 # Import log
 'importlogpage' => 'Log-lisćinu importěrowaś',

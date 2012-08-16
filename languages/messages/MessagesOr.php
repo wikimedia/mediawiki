@@ -16,6 +16,7 @@
  * @author Psubhashish
  * @author Sambiwiki
  * @author Shijualex
+ * @author Shisir 1945
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
@@ -3687,6 +3688,7 @@ MediaWiki ଉପଯୋଗୀ ହେବା ଲକ୍ଷରେ ବଣ୍ଟାଯ�
 'version-software' => 'ଇନଷ୍ଟଲ ହୋଇଥିବା ସଫ୍ଟୱାର',
 'version-software-product' => 'ଉତ୍ପାଦ',
 'version-software-version' => 'ସଂସ୍କରଣ',
+'version-entrypoints-header-entrypoint' => 'ପ୍ରବେଶ ବିନ୍ଦୁ',
 'version-entrypoints-header-url' => 'ଇଉଆରଏଲ',
 
 # Special:FilePath

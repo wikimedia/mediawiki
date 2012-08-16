@@ -2075,6 +2075,12 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 'allpagesprefix' => 'Stranice čiji naslov počinje s:',
 'allpagesbadtitle' => 'Zadana stranica nije valjana, ili je imala međuwiki predmetak. Možda sadrži jedan ili više znakova koji ne mogu biti uporabljeni u nazivu stranice.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor "$1".',
+'allpages-hide-redirects' => 'Sakrij preusmjeravanja',
+
+# SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Gledate inačicu ove stranice iz privremene memorije, koja može biti stara i do $1.',
+'cachedspecial-viewing-cached-ts' => 'Gledate inačicu ove stranice iz privremene memorije, koja možda nije potpuno aktualna.',
+'cachedspecial-refresh-now' => 'Pogledaj najnoviju.',
 
 # Special:Categories
 'categories' => 'Kategorije',
@@ -2286,6 +2292,8 @@ Sva vremena su prema poslužiteljevom vremenu.',
 'rollback' => 'Ukloni posljednju promjenu',
 'rollback_short' => 'Ukloni',
 'rollbacklink' => 'ukloni',
+'rollbacklinkcount' => 'ukloni $1 {{PLURAL:$1|uređivanje|uređivanja}}',
+'rollbacklinkcount-morethan' => 'ukloni više od $1 {{PLURAL:$1|uređivanje|uređivanja}}',
 'rollbackfailed' => 'Uklanjanje neuspješno',
 'cantrollback' => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
 'alreadyrolled' => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio  [[User:$2|$2]] ([[User talk:$2|Razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); netko je već promijenio stranicu ili uklonio promjenu.

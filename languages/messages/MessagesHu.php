@@ -2372,6 +2372,8 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'rollback' => 'Szerkesztések visszaállítása',
 'rollback_short' => 'Visszaállítás',
 'rollbacklink' => 'visszaállítás',
+'rollbacklinkcount' => '$1 szerkesztés visszaállítása',
+'rollbacklinkcount-morethan' => 'több mint $1 szerkesztés visszaállítása',
 'rollbackfailed' => 'A visszaállítás nem sikerült',
 'cantrollback' => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
 'alreadyrolled' => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:

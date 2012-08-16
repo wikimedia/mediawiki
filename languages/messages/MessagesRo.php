@@ -2916,6 +2916,7 @@ Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Locali
 'import-interwiki-templates' => 'Includeți toate formatele',
 'import-interwiki-submit' => 'Importă',
 'import-interwiki-namespace' => 'Transferă către spațiul de nume:',
+'import-interwiki-rootpage' => 'Pagina rădăcină de destinație (opțional):',
 'import-upload-filename' => 'Nume fișier:',
 'import-comment' => 'Comentariu:',
 'importtext' => 'Vă rugăm să exportați fișierul din wikiul sursă folosind [[Special:Export|utilitarul de exportare]].
@@ -2951,6 +2952,9 @@ Un dosar temporar lipsește.',
 'import-error-interwiki' => 'Pagina „$1” nu poate fi importată deoarece numele acesteia este rezervat pentru legături externe (interwiki).',
 'import-error-special' => 'Pagina „$1” nu poate fi importată deoarece aparține unui spațiu de nume special care nu admite pagini.',
 'import-error-invalid' => 'Pagina „$1” nu poate fi importată deoarece numele acesteia este invalid.',
+'import-options-wrong' => '{{PLURAL:$2|Opțiune eronată|Opțiuni eronate}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Pagina rădăcină furnizată este un titlu nevalid.',
+'import-rootpage-nosubpage' => 'Spațiul de nume „$1” al paginii rădăcină nu permite subpagini.',
 
 # Import log
 'importlogpage' => 'Log import',

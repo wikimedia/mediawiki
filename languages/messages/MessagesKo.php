@@ -927,7 +927,7 @@ $2
 'link_sample' => '링크 제목',
 'link_tip' => '내부 링크',
 'extlink_sample' => 'http://www.example.com 사이트 이름',
-'extlink_tip' => '외부 사이트 링크 (주소 앞에 http://가 있어야 합니다.)',
+'extlink_tip' => '바깥 링크 (주소 앞에 http://가 있어야 합니다.)',
 'headline_sample' => '제목',
 'headline_tip' => '2단계 문단 제목',
 'nowiki_sample' => '여기에 위키 문법을 사용하지 않을 글을 적어 주세요',
@@ -935,7 +935,7 @@ $2
 'image_tip' => '파일 넣기',
 'media_tip' => '파일 링크하기',
 'sig_tip' => '내 서명과 현재 시각',
-'hr_tip' => '가로줄(되도록 사용하지 말아 주세요)',
+'hr_tip' => '가로 줄 (되도록 사용하지 말아 주세요)',
 
 # Edit pages
 'summary' => '편집 요약:',
@@ -1350,7 +1350,7 @@ $1",
 'searchresults' => '찾기 결과',
 'searchresults-title' => '"$1"에 대한 찾기 결과',
 'searchresulttext' => '{{SITENAME}}의 찾기 기능에 대한 자세한 정보는 [[{{MediaWiki:Helppage}}|{{int:help}}]] 문서를 참고해주세요.',
-'searchsubtitle' => "'''[[:$1]]''' 문서를 찾고 있습니다. ([[Special:Prefixindex/$1|이름이 ‘$1’ 접두어로 시작하는 문서 목록]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|‘$1’ 문서를 가리키는 문서 목록]])",
+'searchsubtitle' => '\'\'\'[[:$1]]\'\'\' 문서를 찾고 있습니다. ([[Special:Prefixindex/$1|이름이 "$1" 접두어로 시작하는 문서 목록]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" 문서를 가리키는 문서 목록]])',
 'searchsubtitleinvalid' => "찾은 단어 '''$1'''",
 'toomanymatches' => '일치하는 결과가 너무 많습니다. 다른 검색어를 입력해주세요.',
 'titlematches' => '문서 제목 일치',
@@ -2292,7 +2292,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'sp-deletedcontributions-contribs' => '기여',
 
 # Special:LinkSearch
-'linksearch' => '외부 링크 찾기',
+'linksearch' => '바깥 링크 찾기',
 'linksearch-pat' => '검색 패턴:',
 'linksearch-ns' => '이름공간:',
 'linksearch-ok' => '찾기',
@@ -2402,7 +2402,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchmethod-recent' => '주시된 문서를 확인하고자 최근 편집을 확인',
 'watchmethod-list' => '최근 편집을 확인하고자 주시된 문서 확인',
 'watchlistcontains' => '문서 $1개를 주시하고 있습니다.',
-'iteminvalidname' => '"$1" 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...',
+'iteminvalidname' => "'$1' 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...",
 'wlnote' => "다음은 최근 '''$2'''시간 동안 바뀐 문서 '''$1'''개 입니다. ($3 $4 기준)",
 'wlshowlast' => '최근 $1시간 $2일 또는 $3 동안에 바뀐 문서',
 'watchlist-options' => '주시문서 목록 설정',
@@ -3000,6 +3000,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'import-interwiki-templates' => '모든 틀을 포함하기',
 'import-interwiki-submit' => '가져오기',
 'import-interwiki-namespace' => '새 이름공간:',
+'import-interwiki-rootpage' => '대상 루트 문서 (선택 사항):',
 'import-upload-filename' => '파일 이름:',
 'import-comment' => '이유:',
 'importtext' => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받으세요.
@@ -3033,9 +3034,12 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'import-invalid-interwiki' => '해당 위키에서 문서를 가져올 수 없습니다.',
 'import-error-edit' => '현재 문서를 편집할 권한이 없기 때문에 "$1" 문서를 불러올 수 없습니다.',
 'import-error-create' => '현재 문서를 만들 권한이 없기 때문에 "$1" 문서를 불러올 수 없습니다.',
-'import-error-interwiki' => '문서 "$1"은 제목이 바깥 고리(인터위키)용으로 할당되어 있기 때문에 가져오지 않습니다.',
-'import-error-special' => '문서 "$1"은 특수 문서에 속해 있기 때문에 가져오지 않습니다.',
-'import-error-invalid' => '문서 "$1"은 제목이 잘못되었기 때문에 가져오지 않습니다.',
+'import-error-interwiki' => '"$1" 문서는 제목이 바깥 링크(인터위키)용으로 할당되어 있기 때문에 가져오지 않습니다.',
+'import-error-special' => '"$1" 문서는 특수 문서에 속해 있기 때문에 가져오지 않습니다.',
+'import-error-invalid' => '"$1" 문서는 제목이 잘못되었기 때문에 가져오지 않습니다.',
+'import-options-wrong' => '잘못된 {{PLURAL:$2|선택 사항}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => '주어진 루트 문서는 잘못된 제목입니다.',
+'import-rootpage-nosubpage' => '루트 문서의 "$1" 이름공간은 하위 문서를 허용하지 않습니다.',
 
 # Import log
 'importlogpage' => '가져오기 기록',
@@ -3179,7 +3183,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # Spam protection
 'spamprotectiontitle' => '스팸 방지 필터',
 'spamprotectiontext' => '스팸 필터가 문서 저장을 막았습니다.
-외부 사이트로 연결하는 링크 중에 블랙리스트에 포함된 사이트가 있을 것입니다.',
+바깥 사이트로 연결하는 링크 중에 블랙리스트에 포함된 사이트가 있을 것입니다.',
 'spamprotectionmatch' => '문제가 되는 부분은 다음과 같습니다: $1',
 'spambot_username' => 'MediaWiki 스팸 제거',
 'spam_reverting' => '$1을 포함하지 않는 최신 버전으로 되돌림',
@@ -3857,17 +3861,17 @@ $5
 'watchlistedit-noitems' => '주시문서 목록이 비어 있습니다.',
 'watchlistedit-normal-title' => '주시문서 목록 편집하기',
 'watchlistedit-normal-legend' => '주시문서 목록에서 문서 제거하기',
-'watchlistedit-normal-explain' => "주시문서 목록에 있는 문서의 제목이 아래에 나열되어 있습니다.
-주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선택한 다음 '{{int:Watchlistedit-normal-submit}}'를 클릭해주세요.
-또는 [[Special:EditWatchlist/raw|목록을 직접 편집]]할 수도 있습니다.",
+'watchlistedit-normal-explain' => '주시문서 목록에 있는 문서의 제목이 아래에 나열되어 있습니다.
+주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선택한 다음 "{{int:Watchlistedit-normal-submit}}"를 클릭해주세요.
+또는 [[Special:EditWatchlist/raw|목록을 직접 편집]]할 수도 있습니다.',
 'watchlistedit-normal-submit' => '항목 삭제',
 'watchlistedit-normal-done' => '주시문서 목록에서 다음 {{PLURAL:$1|항목}}을 주시하지 않습니다:',
 'watchlistedit-raw-title' => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-legend' => '주시문서 목록 직접 편집하기',
-'watchlistedit-raw-explain' => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다.
+'watchlistedit-raw-explain' => '주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다.
 각 줄마다 하나의 제목을 입력하세요.
-수정을 마쳤다면 '{{int:Watchlistedit-raw-submit}}'을 누르면 됩니다.
-또는 [[Special:EditWatchlist|일반적인 편집기]]를 쓸 수도 있습니다.",
+수정을 마쳤다면 "{{int:Watchlistedit-raw-submit}}"을 누르면 됩니다.
+또는 [[Special:EditWatchlist|일반적인 편집기]]를 쓸 수도 있습니다.',
 'watchlistedit-raw-titles' => '목록:',
 'watchlistedit-raw-submit' => '주시문서 목록 새로 고침',
 'watchlistedit-raw-done' => '주시문서 목록을 새로 고쳤습니다.',
