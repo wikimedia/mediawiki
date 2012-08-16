@@ -4429,9 +4429,10 @@ This confirmation code will expire at $4.',
 'invalidateemail'           => 'Cancel e-mail confirmation',
 
 # Scary transclusion
-'scarytranscludedisabled' => '[Interwiki transcluding is disabled]',
-'scarytranscludefailed'   => '[Template fetch failed for $1]',
-'scarytranscludetoolong'  => '[URL is too long]',
+'scarytranscludedisabled'          => '[Interwiki transcluding is disabled]',
+'scarytranscludefailed'            => '[Template fetch failed for $1]',
+'scarytranscludefailed-httpstatus' => '[Template fetch failed for $1: HTTP $2]',
+'scarytranscludetoolong'           => '[URL is too long]',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Warning''': This page was deleted after you started editing!",

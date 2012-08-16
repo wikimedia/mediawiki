@@ -3685,9 +3685,14 @@ class Parser {
 			return $obj->tc_contents;
 		}
 
-		$text = Http::get( $url );
-		if ( !$text ) {
-			return wfMsgForContent( 'scarytranscludefailed', $url );
+		$req = MWHttpRequest::factory( $url );
+		$status = $req->execute(); // Status object
+		if ( $status->isOK() ) {
+			$text = $req->getContent();
+		} elseif ( $req->getStatus() != 200 ) { // Though we failed to fetch the content, this status is useless.
+			return wfMessage( 'scarytranscludefailed-httpstatus', $url, $req->getStatus() /* HTTP status */ )->inContentLanguage()->text();
+		} else {
+			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
