@@ -155,9 +155,10 @@ class LocalisationCache {
 	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames' );
 
 	/*
-	 * Associative array containing plural rules.
+	 * Associative array of cached plural rules. The key is the language code,
+	 * the value is an array of compiled plural rules for that language.
 	 */
-	var $pluralRules = array();
+	var $pluralRules = null;
 
 	var $mergeableKeys = null;
 
@@ -207,7 +208,6 @@ class LocalisationCache {
 				$this->$var = $conf[$var];
 			}
 		}
-		$this->readPluralRules();
 	}
 
 	/**
@@ -491,36 +491,53 @@ class LocalisationCache {
 		}
 		return $data;
 	}
+
 	/**
-	 * Read the plural rule xml files.
-	 * First the CLDR xml will be read and it will be extended with
-	 * mediawiki specific tailoring.
+	 * Get the compiled plural rules for a given language from the XML files.
+	 * Cached.
 	 * @since 1.20
 	 */
-	protected function readPluralRules() {
-		$CLDRPlural = __DIR__ . "/../languages/data/plurals.xml";
-		$MWPlural = __DIR__ . "/../languages/data/plurals-mediawiki.xml";
-		# Load CLDR plural rules
-		$this->parsePluralXML( $CLDRPlural );
-		if ( file_exists( $MWPlural ) ) {
-			// override or extend.
-			$this->parsePluralXML( $MWPlural );
+	public function getPluralRules( $code ) {
+		if ( $this->pluralRules === null ) {
+			$cldrPlural = __DIR__ . "/../languages/data/plurals.xml";
+			$mwPlural = __DIR__ . "/../languages/data/plurals-mediawiki.xml";
+			// Load CLDR plural rules
+			$this->loadPluralFile( $cldrPlural );
+			if ( file_exists( $mwPlural ) ) {
+				// Override or extend
+				$this->loadPluralFile( $mwPlural );
+			}
+		}
+		if ( !isset( $this->pluralRules[$code] ) ) {
+			return array();
+		} else {
+			return $this->pluralRules[$code];
 		}
 	}
 
-	private function parsePluralXML( $xmlFile ) {
-		$pluraldoc = new DOMDocument();
-		$pluraldoc->load( $xmlFile );
-		$rulesets = $pluraldoc->getElementsByTagName( "pluralRules" );
+	/**
+	 * Load a plural XML file with the given filename, compile the relevant
+	 * rules, and save the compiled rules in a process-local cache.
+	 */
+	private function loadPluralFile( $fileName ) {
+		$doc = new DOMDocument;
+		$doc->load( $fileName );
+		$rulesets = $doc->getElementsByTagName( "pluralRules" );
 		foreach ( $rulesets as $ruleset ) {
 			$codes = $ruleset->getAttribute( 'locales' );
-			$parsedRules = array();
-			$rules = $ruleset->getElementsByTagName( "pluralRule" );
-			foreach ( $rules as $rule ) {
-				$parsedRules[$rule->getAttribute( 'count' )] = $rule->nodeValue;
+			$rules = array();
+			$ruleElements = $ruleset->getElementsByTagName( "pluralRule" );
+			foreach ( $ruleElements as $elt ) {
+				$rules[] = $elt->nodeValue;
+			}
+			try {
+				$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
+			} catch( CLDRPluralRuleError $e ) {
+				wfDebugLog( 'l10n', $e->getMessage() . "\n" );
+				return;
 			}
 			foreach ( explode( ' ', $codes ) as $code ) {
-				$this->pluralRules[$code] = $parsedRules;
+				$this->pluralRules[$code] = $compiledRules;
 			}
 		}
 	}
@@ -729,9 +746,7 @@ class LocalisationCache {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
 		# Load CLDR plural rules
-		if ( isset( $this->pluralRules[$code] ) ) {
-			$allData['pluralRules'] = $this->pluralRules[$code];
-		}
+		$allData['pluralRules'] = $this->getPluralRules( $code );
 		# Run hooks
 		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
 

@@ -4206,7 +4206,7 @@ class Language {
 	 */
 	private function getPluralForm( $number ) {
 		$pluralRules = $this->getPluralRules();
-		$form = CLDRPluralRuleEvaluator::evaluate( $number, $pluralRules );
+		$form = CLDRPluralRuleEvaluator::evaluateCompiled( $number, $pluralRules );
 		return $form;
 	}
 
