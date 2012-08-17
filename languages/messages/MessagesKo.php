@@ -2374,7 +2374,6 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # User Messenger
 'usermessage-summary' => '시스템 메시지 남기기',
 'usermessage-editor' => '시스템 메신저',
-'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist' => '주시문서 목록',
@@ -2667,7 +2666,6 @@ $1',
 'sp-contributions-username' => 'IP 주소 또는 사용자 이름:',
 'sp-contributions-toponly' => '최신판만 보기',
 'sp-contributions-submit' => '찾기',
-'sp-contributions-explain' => '',
 
 # What links here
 'whatlinkshere' => '여기를 가리키는 문서',
