@@ -235,10 +235,15 @@ class Linker {
 			$query = array();
 		}
 
-		# Note: we want the href attribute first, for prettiness.
-		$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
-		if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
-			$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
+		if( !isset( $customAttribs['rawhref'] ) ) {
+			# Note: we want the href attribute first, for prettiness.
+			$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
+			if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
+				$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
+			}
+		} else {
+			$attribs['href'] = $customAttribs['rawhref']; # self::linkAttribs strips this out,
+			unset( $customAttribs['rawhref'] );
 		}
 
 		$attribs = array_merge(
@@ -959,12 +964,13 @@ class Linker {
 			$url = self::getUploadUrl( $title );
 			$class = 'new';
 		}
-		$alt = htmlspecialchars( $title->getText(), ENT_QUOTES );
+		$alt = $title->getText();
 		if ( $html == '' ) {
 			$html = $alt;
 		}
-		$u = htmlspecialchars( $url );
-		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$html}</a>";
+
+		$attr = array( 'rawhref' => $url, 'class' => $class, 'title' => $alt );
+		return self::link( $title, $html, $attr );
 	}
 
 	/**
