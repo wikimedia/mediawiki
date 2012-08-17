@@ -1388,18 +1388,14 @@ class FileRepo {
 	}
 
 	/**
-	 * Get the sha1 of a file with a given virtual URL/storage path
+	 * Get the sha1 (base 36) of a file with a given virtual URL/storage path
 	 *
 	 * @param $virtualUrl string
 	 * @return string|bool
 	 */
 	public function getFileSha1( $virtualUrl ) {
 		$path = $this->resolveToStoragePath( $virtualUrl );
-		$tmpFile = $this->backend->getLocalReference( array( 'src' => $path ) );
-		if ( !$tmpFile ) {
-			return false;
-		}
-		return $tmpFile->getSha1Base36();
+		return $this->backend->getFileSha1Base36( array( 'src' => $path ) );
 	}
 
 	/**
