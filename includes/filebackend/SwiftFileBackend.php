@@ -45,13 +45,13 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $swiftCDNExpiry; // integer; how long to cache things in the CDN
 	protected $swiftCDNPurgable; // boolean; whether object CDN purging is enabled
 
-	protected $maxContCacheSize = 300; // integer; max containers with entries
-
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
 	protected $connStarted = 0; // integer UNIX timestamp
-	protected $connContainers = array(); // container object cache
 	protected $connException; // CloudFiles exception
+
+	/** @var ProcessCacheLRU */
+	protected $connContainerCache; // container object cache
 
 	/**
 	 * @see FileBackendStore::__construct()
@@ -109,6 +109,8 @@ class SwiftFileBackend extends FileBackendStore {
 			: true;
 		// Cache container info to mask latency
 		$this->memCache = wfGetMainCache();
+		// Process cache for container info
+		$this->connContainerCache = new ProcessCacheLRU( 300 );
 	}
 
 	/**
@@ -1137,7 +1139,7 @@ class SwiftFileBackend extends FileBackendStore {
 		// Authenticate with proxy and get a session key...
 		if ( !$this->conn ) {
 			$this->connStarted = 0;
-			$this->connContainers = array();
+			$this->connContainerCache->clear();
 			try {
 				$this->auth->authenticate();
 				$this->conn = new CF_Connection( $this->auth );
@@ -1154,7 +1156,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @see FileBackendStore::doClearCache()
 	 */
 	protected function doClearCache( array $paths = null ) {
-		$this->connContainers = array(); // clear container object cache
+		$this->connContainerCache->clear(); // clear container object cache
 	}
 
 	/**
@@ -1169,25 +1171,21 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function getContainer( $container, $bypassCache = false ) {
 		$conn = $this->getConnection(); // Swift proxy connection
 		if ( $bypassCache ) { // purge cache
-			unset( $this->connContainers[$container] );
-		} elseif ( !isset( $this->connContainers[$container] ) ) {
+			$this->connContainerCache->clear( $container );
+		} elseif ( !$this->connContainerCache->has( $container, 'obj' ) ) {
 			$this->primeContainerCache( array( $container ) ); // check persistent cache
 		}
-		if ( !isset( $this->connContainers[$container] ) ) {
+		if ( !$this->connContainerCache->has( $container, 'obj' ) ) {
 			$contObj = $conn->get_container( $container );
 			// NoSuchContainerException not thrown: container must exist
-			if ( count( $this->connContainers ) >= $this->maxContCacheSize ) { // trim cache?
-				reset( $this->connContainers );
-				unset( $this->connContainers[key( $this->connContainers )] );
-			}
-			$this->connContainers[$container] = $contObj; // cache it
+			$this->connContainerCache->set( $container, 'obj', $contObj ); // cache it
 			if ( !$bypassCache ) {
 				$this->setContainerCache( $container, // update persistent cache
 					array( 'bytes' => $contObj->bytes_used, 'count' => $contObj->object_count )
 				);
 			}
 		}
-		return $this->connContainers[$container];
+		return $this->connContainerCache->get( $container, 'obj' );
 	}
 
 	/**
@@ -1200,7 +1198,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function createContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
 		$contObj = $conn->create_container( $container );
-		$this->connContainers[$container] = $contObj; // cache it
+		$this->connContainerCache->set( $container, 'obj', $contObj ); // cache
 		return $contObj;
 	}
 
@@ -1213,7 +1211,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function deleteContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
-		unset( $this->connContainers[$container] ); // purge cache
+		$this->connContainerCache->clear( $container ); // purge
 		$conn->delete_container( $container );
 	}
 
@@ -1225,13 +1223,9 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$conn = $this->getConnection(); // Swift proxy connection
 			foreach ( $containerInfo as $container => $info ) {
-				$this->connContainers[$container] = new CF_Container(
-					$conn->cfs_auth,
-					$conn->cfs_http,
-					$container,
-					$info['count'],
-					$info['bytes']
-				);
+				$contObj = new CF_Container( $conn->cfs_auth, $conn->cfs_http,
+					$container, $info['count'], $info['bytes'] );
+				$this->connContainerCache->set( $container, 'obj', $contObj );
 			}
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, null, __METHOD__, array() );
