@@ -135,6 +135,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   in the metadata box.
 
 === Bug fixes in 1.20 ===
+* (bug 39466) Fix Media: links so that hooks like LinkBegin and LinkEnd are called.
 * (bug 30245) Use the correct way to construct a log page title.
 * (bug 34237) Regenerate an empty user_token and save to the database
   when we try to set the user's cookies for login.
