@@ -729,6 +729,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( isset( $obj->metadata['Sha1base36'] ) ) {
 			return true; // nothing to do
 		}
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
@@ -739,11 +740,13 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( $hash !== false ) {
 					$obj->metadata['Sha1base36'] = $hash;
 					$obj->sync_metadata(); // save to Swift
+					wfProfileOut( __METHOD__ );
 					return true; // success
 				}
 			}
 		}
 		$obj->metadata['Sha1base36'] = false;
+		wfProfileOut( __METHOD__ );
 		return false; // failed
 	}
 
