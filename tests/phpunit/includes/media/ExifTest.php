@@ -25,7 +25,7 @@ class ExifTest extends MediaWikiTestCase {
 		$expected = array(
 			'GPSLatitude' => 88.5180555556,
 			'GPSLongitude' => -21.12357,
-			'GPSAltitude' => -200,
+			'GPSAltitude' => -3.141592653,
 			'GPSDOP' => '5/1',
 			'GPSVersionID' => '2.2.0.0',
 		);

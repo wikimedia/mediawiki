@@ -220,6 +220,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 30390) Suggested file name on Special:Upload should not contain
   illegal characters.
 * (bug 27111) Cascading foreign file repos now fetch shared descriptions properly
+* EXIF below sea level GPS altitude data is now shown correctly
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
