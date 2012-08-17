@@ -213,10 +213,16 @@ class XMPReader {
 		unset( $data['xmp-special'] );
 
 		// Convert GPSAltitude to negative if below sea level.
-		if ( isset( $data['xmp-exif']['GPSAltitudeRef'] ) ) {
-			if ( $data['xmp-exif']['GPSAltitudeRef'] == '1'
-				&& isset( $data['xmp-exif']['GPSAltitude'] )
-			) {
+		if ( isset( $data['xmp-exif']['GPSAltitudeRef'] )
+			&& isset( $data['xmp-exif']['GPSAltitude'] )
+		) {
+
+			// Must convert to a real before multiplying by -1
+			// XMPValidate guarantees there will always be a '/' in this value.
+			list( $nom, $denom ) = explode( '/', $data['xmp-exif']['GPSAltitude'] );
+			$data['xmp-exif']['GPSAltitude'] = $nom / $denom;
+
+			if ( $data['xmp-exif']['GPSAltitudeRef'] == '1' ) {
 				$data['xmp-exif']['GPSAltitude'] *= -1;
 			}
 			unset( $data['xmp-exif']['GPSAltitudeRef'] );
