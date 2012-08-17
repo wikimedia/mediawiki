@@ -204,6 +204,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.spinner.js',
 		'styles' => 'resources/jquery/jquery.spinner.css',
 	),
+	'jquery.jStorage' => array(
+		'scripts' => 'resources/jquery/jquery.jStorage.js',
+		'dependencies' => 'jquery.json',
+	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',
