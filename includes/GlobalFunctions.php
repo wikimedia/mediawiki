@@ -476,7 +476,7 @@ function wfCgiToArray( $query ) {
  * Append a query string to an existing URL, which may or may not already
  * have query string parameters already. If so, they will be combined.
  *
- * @deprecated
+ * @deprecated in 1.20. Use Uri class.
  * @param $url String
  * @param $query Mixed: string or associative array
  * @return string
