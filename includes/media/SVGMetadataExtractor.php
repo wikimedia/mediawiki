@@ -139,6 +139,11 @@ class SVGReader {
 				$this->readField( $tag, 'description' );
 			} elseif ( $isSVG && $tag == 'metadata' && $type == XmlReader::ELEMENT ) {
 				$this->readXml( $tag, 'metadata' );
+			} elseif ( $isSVG && $tag == 'script' ) {
+				// We normally do not allow scripted svgs.
+				// However its possible to configure MW to let them
+				// in, and such files should be considered animated.
+				$this->metadata['animated'] = true;
 			} elseif ( $tag !== '#text' ) {
 				$this->debug( "Unhandled top-level XML tag $tag" );
 
@@ -219,6 +224,11 @@ class SVGReader {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
 				switch( $this->reader->localName ) {
+					case 'script':
+						// Normally we disallow files with
+						// <script>, but its possible
+						// to configure MW to disable
+						// such checks.
 					case 'animate':
 					case 'set':
 					case 'animateMotion':
