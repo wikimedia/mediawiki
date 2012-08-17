@@ -219,6 +219,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   PCRE is compiled without support for unicode properties.
 * (bug 30390) Suggested file name on Special:Upload should not contain
   illegal characters.
+* EXIF below sea level GPS altitude data is now shown correctly
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

@@ -22,7 +22,7 @@ class XMPTest extends MediaWikiTestCase {
 		}
 		$reader = new XMPReader;
 		$reader->parse( $xmp );
-		$this->assertEquals( $expected, $reader->getResults(), $info );
+		$this->assertEquals( $expected, $reader->getResults(), $info, 0.0000000001 );
 	}
 
 	public function dataXMPParse() {
@@ -52,6 +52,7 @@ class XMPTest extends MediaWikiTestCase {
 			array( 'utf32BE', 'UTF-32BE encoding' ),
 			array( 'utf32LE', 'UTF-32LE encoding' ),
 			array( 'xmpExt', 'Extended XMP missing second part' ),
+			array( 'gps', 'Handling of exif GPS parameters in XMP' ),
 		 );
 		foreach( $xmpFiles as $file ) {
 			$xmp = file_get_contents( $xmpPath . $file[0] . '.xmp' );
