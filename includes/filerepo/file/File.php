@@ -894,7 +894,9 @@ abstract class File {
 			$tmpThumbPath = $tmpFile->getPath(); // path of 0-byte temp file
 
 			// Actually render the thumbnail...
+			wfProfileIn( __METHOD__ . '-doTransform' );
 			$thumb = $this->handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
+			wfProfileOut( __METHOD__ . '-doTransform' );
 			$tmpFile->bind( $thumb ); // keep alive with $thumb
 
 			if ( !$thumb ) { // bad params?
