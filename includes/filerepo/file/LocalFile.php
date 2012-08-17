@@ -1043,7 +1043,7 @@ class LocalFile extends File {
 		if ( !$props ) {
 			wfProfileIn( __METHOD__ . '-getProps' );
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
-			wfProfileOut( __METHOD__ . -'getProps' );
+			wfProfileOut( __METHOD__ . '-getProps' );
 		}
 
 		if ( $timestamp === false ) {
