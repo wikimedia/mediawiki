@@ -235,10 +235,15 @@ class Linker {
 			$query = array();
 		}
 
-		# Note: we want the href attribute first, for prettiness.
-		$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
-		if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
-			$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
+		if( !isset( $customAttribs['rawhref'] ) ) {
+			# Note: we want the href attribute first, for prettiness.
+			$attribs = array( 'href' => self::linkUrl( $target, $query, $options ) );
+			if ( in_array( 'forcearticlepath', $options ) && $oldquery ) {
+				$attribs['href'] = wfAppendQuery( $attribs['href'], wfArrayToCgi( $oldquery ) );
+			}
+		} else {
+			$attribs['href'] = $customAttribs['rawhref']; # self::linkAttribs strips this out,
+			unset( $customAttribs['rawhref'] );
 		}
 
 		$attribs = array_merge(
@@ -959,12 +964,13 @@ class Linker {
 			$url = self::getUploadUrl( $title );
 			$class = 'new';
 		}
-		$alt = htmlspecialchars( $title->getText(), ENT_QUOTES );
+		$alt = $title->getText();
 		if ( $html == '' ) {
-			$html = $alt;
+			$html = htmlspecialchars( $alt );
 		}
-		$u = htmlspecialchars( $url );
-		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$html}</a>";
+
+		$attr = array( 'rawhref' => $url, 'class' => $class, 'title' => $alt );
+		return self::link( $title, $html, $attr );
 	}
 
 	/**
@@ -1712,7 +1718,7 @@ class Linker {
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
-		
+
 		// To config which pages are effected by miser mode
 		$disableRollbackEditCountSpecialPage = array( 'Recentchanges', 'Watchlist' );
 
@@ -2069,7 +2075,7 @@ class Linker {
 	 */
 	static function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
 		wfDeprecated( __METHOD__, '1.16' );
-		
+
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return self::makeBrokenLinkObj( $nt, $text, $query, $trail );
@@ -2098,7 +2104,7 @@ class Linker {
 	 */
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		# wfDeprecated( __METHOD__, '1.16' ); // See r105985 and it's revert. Somewhere still used.
-		
+
 		wfProfileIn( __METHOD__ );
 		$query = wfCgiToArray( $query );
 		list( $inside, $trail ) = self::splitTrail( $trail );
@@ -2132,7 +2138,7 @@ class Linker {
 		$title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = ''
 	) {
 		# wfDeprecated( __METHOD__, '1.16' ); // See r105985 and it's revert. Somewhere still used.
-		
+
 		wfProfileIn( __METHOD__ );
 
 		if ( $text == '' ) {
@@ -2168,7 +2174,7 @@ class Linker {
 	 */
 	static function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfDeprecated( __METHOD__, '1.16' );
-		
+
 		wfProfileIn( __METHOD__ );
 
 		list( $inside, $trail ) = self::splitTrail( $trail );
@@ -2200,7 +2206,7 @@ class Linker {
 	 */
 	static function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		wfDeprecated( __METHOD__, '1.16' );
-		
+
 		if ( $colour != '' ) {
 			$style = self::getInternalLinkAttributesObj( $nt, $text, $colour );
 		} else {
