@@ -628,6 +628,8 @@ $1',
 'youhavenewmessages' => '$1があります（$2）。',
 'newmessageslink' => '新着メッセージ',
 'newmessagesdifflink' => '最終更新の差分',
+'newmessageslinkplural' => '{{PLURAL:$1|新着メッセージ}}',
+'newmessagesdifflinkplural' => '最終更新の{{PLURAL:$1|差分}}',
 'youhavenewmessagesmulti' => '$1に新着メッセージがあります',
 'editsection' => '編集',
 'editold' => '編集',
@@ -1721,7 +1723,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'action-sendemail' => 'メールを送信',
 
 # Recent changes
-'nchanges' => '$1{{PLURAL:$1|回の変更}}',
+'nchanges' => '$1 {{PLURAL:$1|回の変更}}',
 'recentchanges' => '最近の更新',
 'recentchanges-legend' => '最近の更新のオプション',
 'recentchanges-summary' => 'このページでは、このウィキでの最近の更新を確認できます。',
@@ -2194,7 +2196,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 # Miscellaneous special pages
 'nbytes' => '$1バイト',
 'ncategories' => '$1カテゴリ',
-'nlinks' => '$1個のリンク',
+'nlinks' => '$1 {{PLURAL:$1|個のリンク}}',
 'nmembers' => '$1項目',
 'nrevisions' => '$1版',
 'nviews' => '$1回の閲覧',
@@ -2240,7 +2242,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'listusers' => '利用者一覧',
 'listusers-editsonly' => '投稿記録のある利用者のみを表示',
 'listusers-creationsort' => '作成日順に並べ替え',
-'usereditcount' => '$1{{PLURAL:$1|回の編集}}',
+'usereditcount' => '$1 {{PLURAL:$1|回の編集}}',
 'usercreated' => '$1 $2 に{{GENDER:$3|作成}}',
 'newpages' => '新しいページ',
 'newpages-username' => '利用者名：',
@@ -2513,8 +2515,8 @@ $UNWATCHURL
 'rollback' => '編集を巻き戻し',
 'rollback_short' => '巻き戻し',
 'rollbacklink' => '巻き戻し',
-'rollbacklinkcount' => '$1版の{{PLURAL:$1|編集|編集}}を巻き戻し',
-'rollbacklinkcount-morethan' => '$1版以上の{{PLURAL:$1|編集|編集}}を巻き戻し',
+'rollbacklinkcount' => '$1版の{{PLURAL:$1|編集}}を巻き戻し',
+'rollbacklinkcount-morethan' => '$1版以上の{{PLURAL:$1|編集}}を巻き戻し',
 'rollbackfailed' => '巻き戻しに失敗しました',
 'cantrollback' => '編集を差し戻せません。
 最後の投稿者が、このページの唯一の作者です。',
@@ -3807,10 +3809,10 @@ Variants for Chinese language
 'confirmemail_loggedin' => 'メールアドレスは確認されました。',
 'confirmemail_error' => '確認情報を保存する際にエラーが発生しました。',
 'confirmemail_subject' => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body' => 'だれかが、IPアドレス$1から、
+'confirmemail_body' => '誰か（おそらくあなた）が、IPアドレス$1から、
 このメールアドレスで{{SITENAME}}のアカウント「$2」を登録しました。
 
-このアカウントが本当に自分のものであるか確認して、
+このアカウントが本当に自分のものか確認して、
 {{SITENAME}}のメール機能を有効にするには、以下のURLをブラウザーで開いてください：
 
 $3

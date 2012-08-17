@@ -2971,6 +2971,7 @@ $1',
 'import-interwiki-templates' => 'ייבוא גם של כל התבניות המוכללות בדף',
 'import-interwiki-submit' => 'ייבוא',
 'import-interwiki-namespace' => 'העתקה למרחב השם:',
+'import-interwiki-rootpage' => 'דף הבסיס של היעד (לא חובה):',
 'import-upload-filename' => 'שם הקובץ:',
 'import-comment' => 'הערה:',
 'importtext' => 'נא לייצא את הקובץ מאתר המקור באמצעות ב[[Special:Export|כלי הייצוא]].
@@ -3004,6 +3005,9 @@ $1',
 'import-error-interwiki' => 'לא ניתן לייבא את הדף "$1" כיוון ששמו שמור לקישור חיצוני (בין־ויקי).',
 'import-error-special' => 'לא ניתן לייבא את הדף "$1" כיוון שהוא שייך למרחב שם מיוחד שלא יכול להכיל דפים.',
 'import-error-invalid' => 'לא ניתן לייבא את הדף "$1" כיוון ששמו אינו תקין.',
+'import-options-wrong' => '{{PLURAL:$2|אפשרות שגויה|אפשרויות שגויות}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'לדף הבסיס שניתן יש כותרת לא תקינה.',
+'import-rootpage-nosubpage' => 'מרחב השם "$1" של דף הבסיס אינו מאפשר דפי־משנה.',
 
 # Import log
 'importlogpage' => 'יומן ייבוא',

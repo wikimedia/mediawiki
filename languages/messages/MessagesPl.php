@@ -2911,6 +2911,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-templates' => 'Załącz wszystkie szablony',
 'import-interwiki-submit' => 'Importuj',
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
+'import-interwiki-rootpage' => 'Docelowa strona główna (opcjonalna):',
 'import-upload-filename' => 'Nazwa pliku',
 'import-comment' => 'Komentarz:',
 'importtext' => 'Korzystając na źródłowej wiki z narzędzia [[Special:Export|eksportu]] wyeksportuj plik.
@@ -2944,6 +2945,9 @@ Brak katalogu dla plików tymczasowych.',
 'import-error-interwiki' => 'Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest zarezerwowana do linków zewnętrznych (interwiki).',
 'import-error-special' => 'Strona „$1” nie została zaimportowana, ponieważ należy do specjalnej przestrzeni nazw, która nie zezwala na strony.',
 'import-error-invalid' => 'Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest nieprawidłowa.',
+'import-options-wrong' => '{{PLURAL:$2|Niepoprawna opcja|Niepoprawne opcje}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Wskazana strona główna jest niepoprawna.',
+'import-rootpage-nosubpage' => 'Przestrzeń nazw "$1" strony głównej nie dopuszcza stron podrzędnych.',
 
 # Import log
 'importlogpage' => 'Rejestr importu',

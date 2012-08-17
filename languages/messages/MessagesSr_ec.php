@@ -3069,6 +3069,7 @@ $1',
 'import-interwiki-templates' => 'Укључи све шаблоне',
 'import-interwiki-submit' => 'Увези',
 'import-interwiki-namespace' => 'Одредишни именски простор:',
+'import-interwiki-rootpage' => 'Одредишна основна страница (необавезно):',
 'import-upload-filename' => 'Назив датотеке:',
 'import-comment' => 'Коментар:',
 'importtext' => 'Извезите датотеку с изворног викија користећи [[Special:Export|извоз]].
@@ -3105,6 +3106,9 @@ $1',
 'import-error-interwiki' => 'Не могу да увезем страницу „$1“ јер је њен назив резервисан за спољно повезивање (међувики).',
 'import-error-special' => 'Не могу да увезем страницу „$1“ јер она припада посебном именском простору које не прихвата странице.',
 'import-error-invalid' => 'Не могу да увезем страницу „$1“ јер је њен назив неисправан.',
+'import-options-wrong' => '{{PLURAL:$2|Погрешна опција|Погрешне опције}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Наведена основна страница има неисправан наслов.',
+'import-rootpage-nosubpage' => 'Именски простор „$1“ основне странице не дозвољава подстранице.',
 
 # Import log
 'importlogpage' => 'Дневник увоза',

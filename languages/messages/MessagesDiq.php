@@ -2868,6 +2868,7 @@ karê zerredayişê benateyê wikiyani[[Special:Log/import|zerreyê rocaneyê k�
 'import-interwiki-templates' => 'Şablonê hemî dehil bike',
 'import-interwiki-submit' => 'Azare de',
 'import-interwiki-namespace' => 'Destinasyonê canameyî:',
+'import-interwiki-rootpage' => 'Hedef pelaya reçi (opsiyonel):',
 'import-upload-filename' => 'Nameyê dosyayi:',
 'import-comment' => 'Vatış:',
 'importtext' => 'Kerem ke dosyay, çımeyê wiki ra pê [[Special:Export|kırıştışê teberdayişi]] bıdê teber, Komputerê xo de qeyd kerê u bar kerê tiya.',
@@ -2902,6 +2903,9 @@ dosyaya emaneti vindbiyo',
 'import-error-interwiki' => 'Pela " $1 " qandê name dayışi aya nêgêrêna çıkı namey cı (interwiki) sero cırê ca abıryayo.',
 'import-error-special' => 'Pela " $1 " qandê vıraştışi aya nêgêrêna çıkı namay cı nameyo do xısusiyo u na pela rê no name nêgêrêno.',
 'import-error-invalid' => 'Pela "$1" nêdebyê de çıkı namey cı çınyo.',
+'import-options-wrong' => '{{PLURAL:$2|Weçenego|Weçenego}} xerpiyaye: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Sernuştey ena pela reçey cı raverde niyo.',
+'import-rootpage-nosubpage' => 'Qan de bınnaman reçe de "$1" re mısade nedano.',
 
 # Import log
 'importlogpage' => 'Logê împortî',

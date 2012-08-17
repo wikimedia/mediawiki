@@ -2978,6 +2978,7 @@ Sve radnje pri uvozu s drugih vikija su zabeležene u [[Special:Log/import|dnevn
 'import-interwiki-templates' => 'Uključi sve šablone',
 'import-interwiki-submit' => 'Uvezi',
 'import-interwiki-namespace' => 'Odredišni imenski prostor:',
+'import-interwiki-rootpage' => 'Odredišna osnovna stranica (neobavezno):',
 'import-upload-filename' => 'Naziv datoteke:',
 'import-comment' => 'Komentar:',
 'importtext' => 'Izvezite datoteku s izvornog vikija koristeći [[Special:Export|izvoz]].
@@ -3014,6 +3015,9 @@ Pokušajte ponovo.',
 'import-error-interwiki' => 'Ne mogu da uvezem stranicu „$1“ jer je njen naziv rezervisan za spoljno povezivanje (međuviki).',
 'import-error-special' => 'Ne mogu da uvezem stranicu „$1“ jer ona pripada posebnom imenskom prostoru koje ne prihvata stranice.',
 'import-error-invalid' => 'Ne mogu da uvezem stranicu „$1“ jer je njen naziv neispravan.',
+'import-options-wrong' => '{{PLURAL:$2|Pogrešna opcija|Pogrešne opcije}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Navedena osnovna stranica ima neispravan naslov.',
+'import-rootpage-nosubpage' => 'Imenski prostor „$1“ osnovne stranice ne dozvoljava podstranice.',
 
 # Import log
 'importlogpage' => 'Dnevnik uvoza',

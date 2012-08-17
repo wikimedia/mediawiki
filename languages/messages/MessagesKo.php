@@ -905,8 +905,8 @@ $2
 'passwordreset-emailelement' => '사용자 이름: $1
 임시 비밀번호: $2',
 'passwordreset-emailsent' => '비밀번호 찾기 이메일을 보냈습니다.',
-'passwordreset-emailsent-capture' => '비밀번호 찾기 이메일이 발송되었으며, 아래에 표시되어 있습니다.',
-'passwordreset-emailerror-capture' => '비밀번호 찾기 이메일이 만들어져 아래에 표시되었지만 발송하는 데에는 실패했습니다: $1',
+'passwordreset-emailsent-capture' => '비밀번호 찾기 이메일이 발송되었으며, 아래에 나타나 있습니다.',
+'passwordreset-emailerror-capture' => '비밀번호 찾기 이메일이 만들어져 아래에 나타났지만 발송하는 데에는 실패했습니다: $1',
 
 # Special:ChangeEmail
 'changeemail' => '이메일 주소 바꾸기',
@@ -1009,11 +1009,11 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 IP 주소는 여러 사용자가 공유할 수 있습니다.
 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 나중에 다른 익명 사용자에게 줄 혼란을 줄일 수 있습니다.',
 'noarticletext' => '이 문서가 존재하지 않습니다.
-이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나,
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,
 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
 'noarticletext-nopermission' => '이 문서가 존재하지 않습니다.
-이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|검색]]하거나,
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
 'missing-revision' => '"{{PAGENAME}}"이라는 문서의 #$1판이 존재하지 않습니다.
 
@@ -1196,7 +1196,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'history-feed-item-nocomment' => '$2에 대한 $1의 편집',
 'history-feed-empty' => '요청한 문서가 존재하지 않습니다.
 해당 문서가 삭제되었거나, 문서 이름이 바뀌었을 수 있습니다.
-[[Special:Search|검색 기능]]을 사용해 관련 문서를 찾아보세요.',
+[[Special:Search|찾기]]를 사용해 관련 문서를 찾아보세요.',
 
 # Revision deletion
 'rev-deleted-comment' => '(편집 요약 삭제됨)',
@@ -1458,11 +1458,11 @@ $1",
 'columns' => '열 수:',
 'searchresultshead' => '찾기',
 'resultsperpage' => '쪽마다 보이는 결과 수:',
-'stub-threshold' => '링크를 <a href="#" class="stub">토막글</a> 형식으로 표시할 문서 크기 (바이트 수):',
+'stub-threshold' => '링크를 <a href="#" class="stub">토막글</a> 형식으로 보여줄 문서 크기 (바이트 수):',
 'stub-threshold-disabled' => '비활성화됨',
-'recentchangesdays' => '최근 바뀜에 표시할 날짜 수:',
+'recentchangesdays' => '최근 바뀜에 보여줄 날짜 수:',
 'recentchangesdays-max' => '최대 $1일',
-'recentchangescount' => '기본으로 표시할 편집 수:',
+'recentchangescount' => '기본으로 보여줄 편집 수:',
 'prefs-help-recentchangescount' => '이 설정은 최근 바뀜, 문서 역사와 기록에 적용됩니다.',
 'prefs-help-watchlist-token' => '아래에 비밀 값을 넣으면 주시문서 목록에 대한 RSS 피드가 만들어집니다.
 비밀 값을 알고 있는 사람이라면 누구나 피드를 읽을 수 있으므로 안전한 값을 입력해주세요.
@@ -1506,7 +1506,7 @@ $1",
 'yourrealname' => '실명:',
 'yourlanguage' => '언어:',
 'yourvariant' => '언어 변종:',
-'prefs-help-variant' => '위키 내용을 표시할 때 사용할 언어 변종이나 철자 체계를 선택해주세요.',
+'prefs-help-variant' => '위키 내용을 볼 때 사용할 언어 변종이나 철자 체계를 선택해주세요.',
 'yournick' => '새 서명:',
 'prefs-help-signature' => '토론 문서에 글을 쓴 후에는 마지막에 서명을 해야 합니다.  “<nowiki>~~~~</nowiki>” 기호를 추가하면 서명과 글 작성 시각이 자동으로 입력됩니다.',
 'badsig' => '서명이 잘못되었습니다.
@@ -1538,7 +1538,7 @@ HTML 태그를 확인하세요.',
 'prefs-advancedwatchlist' => '고급 설정',
 'prefs-displayrc' => '보이기 설정',
 'prefs-displaysearchoptions' => '보이기 설정',
-'prefs-displaywatchlist' => '표시 설정',
+'prefs-displaywatchlist' => '보이기 설정',
 'prefs-diffs' => '차이',
 
 # User preference: e-mail validation using jQuery
@@ -1679,7 +1679,7 @@ HTML 태그를 확인하세요.',
 'action-delete' => '이 문서 삭제하기',
 'action-deleterevision' => '이 판을 삭제',
 'action-deletedhistory' => '이 문서의 삭제된 기여의 역사 보기',
-'action-browsearchive' => '삭제된 문서 검색',
+'action-browsearchive' => '삭제된 문서 찾기',
 'action-undelete' => '이 문서를 복구하기',
 'action-suppressrevision' => '이 숨겨진 판을 검토하고 복구할',
 'action-suppressionlog' => '비공개 기록 보기',
@@ -2248,9 +2248,9 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'log' => '기록 목록',
 'all-logs-page' => '모든 공개 기록',
 'alllogstext' => '{{SITENAME}}에서의 기록이 모두 나와 있습니다.
-기록 종류, 사용자 이름 (대소문자 구분), 문서 이름을 선택해서 볼 수 있습니다. 검색시에는 대소문자를 구별합니다.',
+기록 종류, 사용자 이름, 문서 이름을 선택해서 볼 수 있습니다. (대소문자를 구별합니다.)',
 'logempty' => '일치하는 항목이 없습니다.',
-'log-title-wildcard' => '다음 글로 시작하는 제목 검색',
+'log-title-wildcard' => '다음 글로 시작하는 제목 찾기',
 'showhideselectedlogentries' => '선택한 기록 항목 보이기/숨기기',
 
 # Special:AllPages
@@ -2293,12 +2293,12 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:LinkSearch
 'linksearch' => '바깥 링크 찾기',
-'linksearch-pat' => '검색 패턴:',
+'linksearch-pat' => '찾기 패턴:',
 'linksearch-ns' => '이름공간:',
 'linksearch-ok' => '찾기',
 'linksearch-text' => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.
 적어도 "*.org"와 같이 최상위 도메인을 입력해야 합니다.<br />
-지원하는 프로토콜 목록: <tt>$1</tt> (검색할 때 이것을 추가하지 마세요)',
+지원하는 프로토콜 목록: <tt>$1</tt> (찾을 때 이것을 추가하지 마세요)',
 'linksearch-line' => '$2에서 $1 을 링크하고 있습니다.',
 'linksearch-error' => '와일드카드는 주소의 처음 부분에만 사용될 수 있습니다.',
 
@@ -2514,10 +2514,10 @@ $UNWATCHURL
 'protectlogpage' => '문서 보호 기록',
 'protectlogtext' => '아래의 목록은 문서 보호에 관한 바뀜 사항에 대한 기록입니다.
 현재 보호된 문서의 목록에 대해서는 [[Special:ProtectedPages|보호된 문서 목록]]을 참고하세요.',
-'protectedarticle' => '"[[$1]]" 문서를 보호함',
-'modifiedarticleprotection' => '"[[$1]]" 문서의 보호 설정을 바꿈',
-'unprotectedarticle' => '"[[$1]]" 문서를 보호 해제함',
-'movedarticleprotection' => '문서의 보호 설정을 "[[$2]]"에서 "[[$1]]"으로 옮김',
+'protectedarticle' => '사용자가 "[[$1]]" 문서를 보호함',
+'modifiedarticleprotection' => '사용자가 "[[$1]]" 문서의 보호 설정을 바꿈',
+'unprotectedarticle' => '사용자가 "[[$1]]" 문서를 보호 해제함',
+'movedarticleprotection' => '사용자가 문서의 보호 설정을 "[[$2]]"에서 "[[$1]]"으로 옮김',
 'protect-title' => '"$1" 보호하기',
 'protect-title-notallowed' => '"$1" 문서의 보호 수준 보기',
 'prot_1movedto2' => '[[$1]] 문서를 [[$2]] 문서로 이동함',
@@ -3487,7 +3487,7 @@ Variants for Chinese language
 'exif-licenseurl' => '저작권 라이선스의 URL',
 'exif-morepermissionsurl' => '다른 라이선스 정보',
 'exif-attributionurl' => '이 저작물을 이용할 때 링크할 주소',
-'exif-preferredattributionname' => '이 저작물을 이용할 때 표시할 저작자 이름',
+'exif-preferredattributionname' => '이 저작물을 이용할 때 보일 저작자 이름',
 'exif-pngfilecomment' => 'PNG 파일 주석',
 'exif-disclaimer' => '면책 조항',
 'exif-contentwarning' => '콘텐츠 경고',
@@ -3854,7 +3854,7 @@ $5
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '최근 $1초 안에 바뀐 문서는 이 목록에서 빠졌을 수 있습니다.',
-'lag-warn-high' => '데이터베이스 서버의 과도한 부하 때문에 최근 $1초 안에 바뀐 문서 목록은 표시되지 않을 수 있습니다.',
+'lag-warn-high' => '데이터베이스 서버의 과도한 부하 때문에 최근 $1초 안에 바뀐 문서 목록은 보여지지 않을 수 있습니다.',
 
 # Watchlist editor
 'watchlistedit-numitems' => '토론 문서를 제외하고 문서 $1개를 주시하고 있습니다.',
@@ -4022,21 +4022,21 @@ $5
 'htmlform-selectorother-other' => '기타',
 
 # SQLite database support
-'sqlite-has-fts' => '$1 (본문 전체 검색)',
-'sqlite-no-fts' => '$1 (본문은 검색에서 제외)',
+'sqlite-has-fts' => '$1 (본문 전체 찾기)',
+'sqlite-no-fts' => '$1 (본문은 찾기에서 제외)',
 
 # New logging system
 'logentry-delete-delete' => '$1 사용자가 $3 문서를 삭제하였습니다.',
 'logentry-delete-restore' => '$1 사용자가 $3 문서를 복구하였습니다.',
-'logentry-delete-event' => '$1 사용자가 $3의 기록 $5개에 대해 표시 설정을 바꾸었습니다: $4',
+'logentry-delete-event' => '$1 사용자가 $3의 기록 $5개에 대해 보이기 설정을 바꾸었습니다: $4',
 'logentry-delete-revision' => '$1 사용자가 $3 문서의 {{PLURAL:$5|$5개 편집}}의 설정을 바꾸었습니다: $4',
-'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 표시 설정을 바꾸었습니다.',
-'logentry-delete-revision-legacy' => '$1 사용자가 $3 문서 편집의 표시 설정을 바꾸었습니다.',
+'logentry-delete-event-legacy' => '$1 사용자가 $3 문서 기록의 보이기 설정을 바꾸었습니다.',
+'logentry-delete-revision-legacy' => '$1 사용자가 $3 문서 편집의 보이기 설정을 바꾸었습니다.',
 'logentry-suppress-delete' => '$1 사용자가 $3 문서를 숨겼습니다.',
-'logentry-suppress-event' => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|기록 $5개}}에 대해 표시 설정을 바꾸었습니다: $4',
-'logentry-suppress-revision' => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|판 $5개}}에 대해 표시 설정을 바꾸었습니다: $4',
-'logentry-suppress-event-legacy' => '$1 사용자가 비공개적으로 $3의 항목에 대한 표시 설정을 바꾸었습니다.',
-'logentry-suppress-revision-legacy' => '$1 사용자가 비공개적으로 $3 문서의 특정 판에 대한 표시 설정을 바꾸었습니다.',
+'logentry-suppress-event' => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|기록 $5개}}에 대해 보이기 설정을 바꾸었습니다: $4',
+'logentry-suppress-revision' => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|판 $5개}}에 대해 보이기 설정을 바꾸었습니다: $4',
+'logentry-suppress-event-legacy' => '$1 사용자가 비공개적으로 $3의 항목에 대한 보이기 설정을 바꾸었습니다.',
+'logentry-suppress-revision-legacy' => '$1 사용자가 비공개적으로 $3 문서의 특정 판에 대한 보이기 설정을 바꾸었습니다.',
 'revdelete-content-hid' => '내용 숨겨짐',
 'revdelete-summary-hid' => '편집 요약 숨겨짐',
 'revdelete-uname-hid' => '사용자 이름 숨겨짐',
@@ -4054,7 +4054,7 @@ $5
 'logentry-newusers-newusers' => '$1 사용자가 계정을 만들었습니다.',
 'logentry-newusers-create' => '$1 사용자가 계정을 만들었습니다.',
 'logentry-newusers-create2' => '$1 사용자가 $3 계정을 만들었습니다.',
-'logentry-newusers-autocreate' => '$1 계정을 자동적으로 만들었습니다.',
+'logentry-newusers-autocreate' => '$1 사용자 계정을 자동적으로 만들었습니다.',
 'newuserlog-byemail' => '이메일로 보낸 비밀번호',
 
 # Feedback

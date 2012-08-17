@@ -1501,10 +1501,10 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 # Rights
 'right-read' => 'Lugeda lehekülgi',
 'right-edit' => 'Redigeerida lehekülje sisu',
-'right-createpage' => 'Luua lehekülgi (mis pole arutelu leheküljed)',
+'right-createpage' => 'Luua lehekülgi (mis pole aruteluleheküljed)',
 'right-createtalk' => 'Luua arutelulehekülgi',
 'right-createaccount' => 'Luua uusi kasutajakontosid',
-'right-minoredit' => 'Märkida muudatusi pisimuudatustena',
+'right-minoredit' => 'Märkida muudatusi pisimuudatusteks',
 'right-move' => 'Teisaldada lehekülgi',
 'right-move-subpages' => 'Teisaldada lehekülgi koos nende alamlehtedega',
 'right-move-rootuserpages' => 'Teisaldada kasutajalehekülgi',
@@ -2563,12 +2563,13 @@ Täida ka põhjuse väli, näiteks viidates lehekülgedele, mis rikuti.',
 'ipbreason' => 'Põhjus:',
 'ipbreasonotherlist' => 'Muul põhjusel',
 'ipbreason-dropdown' => '*Tavalised blokeerimise põhjused
-** Lehtedelt sisu kustutamine
+** Valeandmete lisamine
+** Lehekülgedelt sisu kustutamine
+** Välislinkide rämpspostitus
 ** Sodimine
-** Taunitav käitumine, isiklikud rünnakud
-** Mittesobiv kasutajanimi
-** Spämmi levitamine
-** Vale info levitamine',
+** Hirmutav käitumine/ahistamine
+** Mitme konto väärkasutus
+** Lubamatu kasutajanimi',
 'ipb-hardblock' => 'Keela sellelt IP-aadressilt sisseloginud kasutajatel redigeerida',
 'ipbcreateaccount' => 'Takista konto loomist',
 'ipbemailban' => 'Takista kasutajal e-kirjade saatmine',
@@ -2592,7 +2593,7 @@ Kehtivaid blokeeringuid vaata [[Special:BlockList|blokeerimisnimekirjast]].',
 'ipb-edit-dropdown' => 'Muuda blokeeringu põhjuseid',
 'ipb-unblock-addr' => 'Kustuta $1 blokeering',
 'ipb-unblock' => 'Kasutaja või IP-aadressi vabastamine blokeerimisest',
-'ipb-blocklist' => 'Vaata kehtivaid keelde',
+'ipb-blocklist' => 'Vaata kehtivaid blokeeringuid',
 'ipb-blocklist-contribs' => 'Kasutaja $1 kaastöö',
 'unblockip' => 'Blokeerimise eemaldamine',
 'unblockiptext' => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
@@ -2790,13 +2791,14 @@ Palun kasuta mõnda teist nime.',
 
 # Export
 'export' => 'Lehekülgede eksport',
-'exporttext' => 'Sa saad siin eksportida kindla lehekülje või nende kogumi, tekstid, koos kogu nende muudatuste ajalooga, XML kujule viiduna. Seda saad sa vajadusel kasutada teksti ülekandmiseks teise vikisse, kasutades selleks MediaWiki [[Special:Import|impordi lehekülge]].
+'exporttext' => 'Saad eksportida kindla leheküljel või lehekülgede kogumi teksti ja redigeerimisloo XML-kujule viiduna.
+Seda saab teise vikisse importida, kasutades selleks MediaWiki [[Special:Import|impordi lehekülge]].
 
-Et eksportida lehekülgi, sisesta nende pealkirjad all olevasse teksti kasti, iga pealkiri ise reale, ning vali kas sa soovid saada leheküljest kõiki selle vanemaid versioone (muudatusi) või soovid sa saada leheküljest vaid hetke versiooni.
+Et eksportida lehekülgi, sisesta nende pealkirjad allolevasse tekstikasti, iga pealkiri ise reale ja vali, kas soovid viimast redaktsiooni ja kõiki vanemaid redaktsioone ühes redigeerimislooga või viimast redaktsiooni ühes andmetega viimase redigeerimise kohta.
 
-Viimasel juhul võid sa näiteks "[[{{MediaWiki:Mainpage}}]]" lehekülje, jaoks kasutada samuti linki kujul:  [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
+Viimasel juhul saab kasutada ka linki, näiteks lehekülje "[[{{MediaWiki:Mainpage}}]]" jaoks [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
 'exportall' => 'Ekspordi kõik leheküljed',
-'exportcuronly' => 'Lisa vaid viimane versioon lehest, ning mitte kogu ajalugu',
+'exportcuronly' => 'Lisa vaid viimane redaktsioon, mitte kogu ajalugu',
 'exportnohistory' => "----
 '''Märkus:''' Lehekülgede täieliku ajaloo eksportimine on siin leheküljel jõudluse tagamiseks blokeeritud.",
 'exportlistauthors' => 'Lisa kõigile lehekülgedele kogu kaastööliste nimekiri',
@@ -3160,7 +3162,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-stripbytecounts' => 'Baitide hulk kokkusurutud riba kohta',
 'exif-jpeginterchangeformat' => 'Kaugus JPEG SOI-ni',
 'exif-jpeginterchangeformatlength' => 'JPEG-andmete suurus baitides',
-'exif-whitepoint' => 'Valge punkti heledus',
+'exif-whitepoint' => 'Valgepunkti värvsus',
 'exif-primarychromaticities' => 'Põhivärvide värvsus',
 'exif-ycbcrcoefficients' => 'Värviruumi ümberkujundamise maatriksi koefitsiendid',
 'exif-referenceblackwhite' => 'Musta ja valge kontrollväärtused',
@@ -3218,7 +3220,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-sharpness' => 'Teravus',
 'exif-devicesettingdescription' => 'Seadme seadistuste kirjeldus',
 'exif-imageuniqueid' => 'Üksiku pildi ID',
-'exif-gpsversionid' => 'GPS tähise versioon',
+'exif-gpsversionid' => 'GPS-tähise versioon',
 'exif-gpslatituderef' => 'Põhja- või lõunalaius',
 'exif-gpslatitude' => 'Laius',
 'exif-gpslongituderef' => 'Ida- või läänepikkus',
@@ -3353,14 +3355,14 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-lightsource-9' => 'Hea ilm',
 'exif-lightsource-10' => 'Pilvine ilm',
 'exif-lightsource-11' => 'Varjus',
-'exif-lightsource-12' => 'Luminofoor päevavalgus (D 5700 - 7100K)',
-'exif-lightsource-13' => 'Luminofoor päevavalgus (N 4600 - 5400K)',
-'exif-lightsource-14' => 'Luminofoor külm valgus (W 3900 - 4500K)',
+'exif-lightsource-12' => 'Päevane fluorestsentsvalgus (D 5700 – 7100K)',
+'exif-lightsource-13' => 'Päevavalge fluorestsentsvalgus (N 4600 – 5400K)',
+'exif-lightsource-14' => 'Külmvalge fluorestsentsvalgus (W 3900 – 4500K)',
 'exif-lightsource-15' => 'Valge fluorestsentsvalgus (WW 3200 – 3700K)',
 'exif-lightsource-17' => 'Standardne valgus A',
 'exif-lightsource-18' => 'Standardne valgus B',
 'exif-lightsource-19' => 'Standardne valgus C',
-'exif-lightsource-24' => 'stuudio hõõglambid (ISO)',
+'exif-lightsource-24' => 'Stuudio hõõglamp (ISO)',
 'exif-lightsource-255' => 'Muu valgusallikas',
 
 # Flash modes
