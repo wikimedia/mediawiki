@@ -5694,7 +5694,7 @@ Media link
 !! input
 [[Media:Foobar.jpg]]
 !! result
-<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Media:Foobar.jpg</a>
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" class="internal">Media:Foobar.jpg</a>
 </p>
 !! end
 
@@ -5703,7 +5703,7 @@ Media link with text
 !! input
 [[Media:Foobar.jpg|A neat file to look at]]
 !! result
-<p><a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">A neat file to look at</a>
+<p><a href="http://example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" class="internal">A neat file to look at</a>
 </p>
 !! end
 
@@ -5714,7 +5714,7 @@ fixme: doBlockLevels won't wrap this in a paragraph because it contains a div
 !! input
 [[Media:Foobar.jpg|Safe Link<div style=display:none>" onmouseover="alert(document.cookie)" onfoo="</div>]]
 !! result
-<a href="http://example.com/images/3/3a/Foobar.jpg" class="internal" title="Foobar.jpg">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
+<a href="http://example.com/images/3/3a/Foobar.jpg" title="Foobar.jpg" class="internal">Safe Link&lt;div style="display:none"&gt;" onmouseover="alert(document.cookie)" onfoo="&lt;/div&gt;</a>
 
 !! end
 
@@ -10328,6 +10328,23 @@ abc
 </p>
 !! end
 
+!! test
+Media: link escaping test
+!! input
+[[Media:f"oobar.jpg]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=F%22oobar.jpg" class="new" title="F&quot;oobar.jpg">Media:f"oobar.jpg</a>
+</p>
+!! end
+
+!! test
+Media: link escaping single quote
+!! input
+[[Media:f'oobar.jpg]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=F%27oobar.jpg" class="new" title="F'oobar.jpg">Media:f'oobar.jpg</a>
+</p>
+!! end
 
 TODO:
 more images
