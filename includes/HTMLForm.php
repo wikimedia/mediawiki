@@ -1527,18 +1527,15 @@ class HTMLTextField extends HTMLFormField {
 			$attribs['class'] = $this->mClass;
 		}
 
-		if ( isset( $this->mParams['maxlength'] ) ) {
-			$attribs['maxlength'] = $this->mParams['maxlength'];
-		}
-
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attribs['disabled'] = 'disabled';
 		}
 
 		# TODO: Enforce pattern, step, required, readonly on the server side as
 		# well
-		foreach ( array( 'min', 'max', 'pattern', 'title', 'step',
-		'placeholder' ) as $param ) {
+		$allowedParams = array( 'min', 'max', 'pattern', 'title', 'step',
+			'placeholder', 'list', 'maxlength' );
+		foreach ( $allowedParams as $param ) {
 			if ( isset( $this->mParams[$param] ) ) {
 				$attribs[$param] = $this->mParams[$param];
 			}
