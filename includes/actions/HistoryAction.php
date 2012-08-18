@@ -308,7 +308,7 @@ class HistoryAction extends FormlessAction {
 				$rev->getUserText(),
 				$wgContLang->timeanddate( $rev->getTimestamp() ),
 				$wgContLang->date( $rev->getTimestamp() ),
-				$wgContLang->time( $rev->getTimestamp() )->inContentLanguage()->text()
+				$wgContLang->time( $rev->getTimestamp() ) )->inContentLanguage()->text()
 			);
 		} else {
 			$title = $rev->getUserText() .
