@@ -1384,6 +1384,8 @@ function wfMessageFallback( /*...*/ ) {
  * - As an array in the second parameter
  * These are not shown in the function definition.
  *
+ * @deprecated since 1.18
+ *
  * @return String
  */
 function wfMsg( $key ) {
