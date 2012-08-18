@@ -2040,11 +2040,14 @@ Your e-mail address is not revealed when other users contact you.',
 'right-passwordreset'         => 'View password reset e-mails',
 
 # User rights log
-'rightslog'                  => 'User rights log',
-'rightslogtext'              => 'This is a log of changes to user rights.',
-'rightslogentry'             => 'changed group membership for $1 from $2 to $3',
-'rightslogentry-autopromote' => 'was automatically promoted from $2 to $3',
-'rightsnone'                 => '(none)',
+'rightslog'                     => 'User rights log',
+'rightslogtext'                 => 'This is a log of changes to user rights.',
+'rightslogentry'                => 'changed group membership for $1 from $2 to $3',
+'rightslogentry-autopromote'    => 'was automatically promoted from $2 to $3',
+'logentry-rights-rights'        => '$1 changed group membership for $3 from $4 to $5',
+'logentry-rights-rights-legacy' => '$1 changed group membership for $3',
+'logentry-rights-autopromote'   => '$1 was automatically promoted from $4 to $5',
+'rightsnone'                    => '(none)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'read this page',
