@@ -217,6 +217,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39297) Show warning if thumbnail of animated image will not be animated.
 * (bug 38249) Parser will throw an exception instead of outputting gibberish if
   PCRE is compiled without support for unicode properties.
+* (bug 30390) Suggested file name on Special:Upload should not contain
+  illegal characters.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
