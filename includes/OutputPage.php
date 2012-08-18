@@ -2031,14 +2031,19 @@ class OutputPage extends ContextSource {
 	 *                   optional, if not passed the "<title>" attribute will be
 	 *                   based on $pageTitle
 	 */
-	public function prepareErrorPage( $pageTitle, $htmlTitle = false ) {
+	public function prepareErrorPage( $pageTitle ) {
+		$htmlTitle = $this->msg( 'errorpagetitle' );
 		if ( $this->getTitle() ) {
 			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
 		}
 
 		$this->setPageTitle( $pageTitle );
 		if ( $htmlTitle !== false ) {
-			$this->setHTMLTitle( $htmlTitle );
+			//Combines the error page title with the title so that we have
+                       //a better page title i.e. Error: No such special page
+                       //rather than just Error
+                       $this->setHTMLTitle( $htmlTitle.": ". $pageTitle );
+
 		}
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
@@ -2064,7 +2069,7 @@ class OutputPage extends ContextSource {
 			$title = $this->msg( $title );
 		}
 
-		$this->prepareErrorPage( $title, $this->msg( 'errorpagetitle' ) );
+		$this->prepareErrorPage( $this->msg( $title ) );
 
 		if ( $msg instanceof Message ){
 			$this->addHTML( $msg->parse() );
