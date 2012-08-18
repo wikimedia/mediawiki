@@ -2032,6 +2032,7 @@ class OutputPage extends ContextSource {
 	 *                   based on $pageTitle
 	 */
 	public function prepareErrorPage( $pageTitle, $htmlTitle = false ) {
+		$htmlTitle = $this->msg( 'errorpagetitle' );
 		if ( $this->getTitle() ) {
 			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
 		}
@@ -2064,7 +2065,7 @@ class OutputPage extends ContextSource {
 			$title = $this->msg( $title );
 		}
 
-		$this->prepareErrorPage( $title, $this->msg( 'errorpagetitle' ) );
+		$this->prepareErrorPage( $title );
 
 		if ( $msg instanceof Message ){
 			$this->addHTML( $msg->parse() );
