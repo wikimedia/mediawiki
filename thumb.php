@@ -71,7 +71,8 @@ function wfThumbHandle404() {
 	}
 	# Just get the URI path (REDIRECT_URL/REQUEST_URI is either a full URL or a path)
 	if ( substr( $uriPath, 0, 1 ) !== '/' ) {
-		$bits = wfParseUrl( $uriPath );
+		$uri = new Uri( $uriPath );
+		$bits = $uri->getComponents();
 		if ( $bits && isset( $bits['path'] ) ) {
 			$uriPath = $bits['path'];
 		} else {
