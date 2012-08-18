@@ -57,10 +57,11 @@ class MakeLanguageSpec extends Maintenance {
 			foreach ( self::$keyToTestArgs as $key => $testArgs ) {
 				foreach ($testArgs as $args) {
 					// get the raw template, without any transformations
-					$template = wfMsgGetKey( $key, /* useDb */ true, $languageCode, /* transform */ false );
+					$template = wfMessage( $key )->inLanguage( $languageCode )->plain();
 
 					// get the magic-parsed version with args
 					$wfMsgExtArgs = array_merge( array( $key, $wfMsgExtOptions ), $args );
+					// @todo FIXME: Use Message class.
 					$result = call_user_func_array( 'wfMsgExt', $wfMsgExtArgs ); 
 
 					// record the template, args, language, and expected result

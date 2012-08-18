@@ -17,14 +17,14 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 
 		$wgLang = Language::factory( 'fr' );
 		$status = $page->doEdit( '{{:{{int:history}}}}', 'Test code for bug 14404', 0, false, $user );
-		$templates1 = $page->getUsedTemplates();
+		$templates1 = $title->getTemplateLinksFrom();
 
 		$wgLang = Language::factory( 'de' );
 		$page->mPreparedEdit = false; // In order to force the rerendering of the same wikitext
 
 		// We need an edit, a purge is not enough to regenerate the tables
 		$status = $page->doEdit( '{{:{{int:history}}}}', 'Test code for bug 14404', EDIT_UPDATE, false, $user );
-		$templates2 = $page->getUsedTemplates();
+		$templates2 = $title->getTemplateLinksFrom();
 
 		$this->assertEquals( $templates1, $templates2 );
 		$this->assertEquals( $templates1[0]->getFullText(), 'Historial' );
