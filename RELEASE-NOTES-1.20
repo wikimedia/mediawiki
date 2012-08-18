@@ -209,6 +209,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   are returned, like in previous versions.
 * (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
   are now remembered between successive clicks.
+* (bug 26069) Page title is no longer "Error" for all error pages
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

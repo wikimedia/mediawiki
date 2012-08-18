@@ -2064,7 +2064,7 @@ class OutputPage extends ContextSource {
 			$title = $this->msg( $title );
 		}
 
-		$this->prepareErrorPage( $title, $this->msg( 'errorpagetitle' ) );
+		$this->prepareErrorPage( $title );
 
 		if ( $msg instanceof Message ){
 			$this->addHTML( $msg->parse() );
