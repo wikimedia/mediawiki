@@ -220,7 +220,7 @@ class LogPage {
 	}
 
 	/**
-	 * Generate text for a log entry. 
+	 * Generate text for a log entry.
 	 * Only LogFormatter should call this function.
 	 *
 	 * @param $type String: log type
@@ -252,29 +252,6 @@ class LogPage {
 				$rv = wfMessage( $wgLogActions[$key] )->inLanguage( $langObj )->escaped();
 			} else {
 				$titleLink = self::getTitleLink( $type, $langObjOrNull, $title, $params );
-
-				if( preg_match( '/^rights\/(rights|autopromote)/', $key ) ) {
-					$rightsnone = wfMessage( 'rightsnone' )->inLanguage( $langObj )->text();
-
-					if( $skin ) {
-						$username = $title->getText();
-						foreach ( $params as &$param ) {
-							$groupArray = array_map( 'trim', explode( ',', $param ) );
-							foreach( $groupArray as &$group ) {
-								$group = User::getGroupMember( $group, $username );
-							}
-							$param = $wgLang->listToText( $groupArray );
-						}
-					}
-
-					if( !isset( $params[0] ) || trim( $params[0] ) == '' ) {
-						$params[0] = $rightsnone;
-					}
-
-					if( !isset( $params[1] ) || trim( $params[1] ) == '' ) {
-						$params[1] = $rightsnone;
-					}
-				}
 
 				if( count( $params ) == 0 ) {
 					$rv = wfMessage( $wgLogActions[$key] )->rawParams( $titleLink )->inLanguage( $langObj )->escaped();
@@ -350,8 +327,6 @@ class LogPage {
 	 * @return String
 	 */
 	protected static function getTitleLink( $type, $lang, $title, &$params ) {
-		global $wgContLang, $wgUserrightsInterwikiDelimiter;
-
 		if( !$lang ) {
 			return $title->getPrefixedText();
 		}
@@ -387,20 +362,6 @@ class LogPage {
 					$titleLink = Linker::userLink( $id, $title->getText() )
 						. Linker::userToolLinks( $id, $title->getText(), false, Linker::TOOL_LINKS_NOBLOCK );
 				}
-				break;
-			case 'rights':
-				$text = $wgContLang->ucfirst( $title->getText() );
-				$parts = explode( $wgUserrightsInterwikiDelimiter, $text, 2 );
-
-				if ( count( $parts ) == 2 ) {
-					$titleLink = WikiMap::foreignUserLink( $parts[1], $parts[0],
-						htmlspecialchars( $title->getPrefixedText() ) );
-
-					if ( $titleLink !== false ) {
-						break;
-					}
-				}
-				$titleLink = Linker::link( Title::makeTitle( NS_USER, $text ) );
 				break;
 			case 'merge':
 				$titleLink = Linker::link(

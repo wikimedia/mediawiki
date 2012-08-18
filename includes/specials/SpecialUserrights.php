@@ -244,16 +244,16 @@ class UserrightsPage extends SpecialPage {
 	 * Add a rights log entry for an action.
 	 */
 	function addLogEntry( $user, $oldGroups, $newGroups, $reason ) {
-		$log = new LogPage( 'rights' );
-
-		$log->addEntry( 'rights',
-			$user->getUserPage(),
-			$reason,
-			array(
-				$this->makeGroupNameListForLog( $oldGroups ),
-				$this->makeGroupNameListForLog( $newGroups )
-			)
-		);
+		$logEntry = new ManualLogEntry( 'rights', 'rights' );
+		$logEntry->setPerformer( $this->getUser() );
+		$logEntry->setTarget( $user->getUserPage() );
+		$logEntry->setComment( $reason );
+		$logEntry->setParameters( array(
+			'4::oldgroups' => $oldGroups,
+			'5::newgroups' => $newGroups,
+		) );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
 	}
 
 	/**
@@ -354,7 +354,16 @@ class UserrightsPage extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Make a list of group names to be stored as parameter for log entries
+	 *
+	 * @deprecated in 1.20; use LogFormatter instead.
+	 * @param $ids array
+	 * @return string
+	 */
 	function makeGroupNameListForLog( $ids ) {
+		wfDeprecated( __METHOD__, '1.20' );
+
 		if( empty( $ids ) ) {
 			return '';
 		} else {

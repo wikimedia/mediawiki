@@ -5540,8 +5540,6 @@ $wgLogActions = array(
 	'protect/modify'     => 'modifiedarticleprotection',
 	'protect/unprotect'  => 'unprotectedarticle',
 	'protect/move_prot'  => 'movedarticleprotection',
-	'rights/rights'      => 'rightslogentry',
-	'rights/autopromote' => 'rightslogentry-autopromote',
 	'upload/upload'      => 'uploadedimage',
 	'upload/overwrite'   => 'overwroteimage',
 	'upload/revert'      => 'uploadedimage',
@@ -5559,16 +5557,18 @@ $wgLogActions = array(
  * @see LogFormatter
  */
 $wgLogActionsHandlers = array(
-	'move/move'         => 'MoveLogFormatter',
-	'move/move_redir'  => 'MoveLogFormatter',
-	'delete/delete'     => 'DeleteLogFormatter',
-	'delete/restore'    => 'DeleteLogFormatter',
-	'delete/revision'   => 'DeleteLogFormatter',
-	'delete/event'      => 'DeleteLogFormatter',
-	'suppress/revision' => 'DeleteLogFormatter',
-	'suppress/event'    => 'DeleteLogFormatter',
-	'suppress/delete'   => 'DeleteLogFormatter',
-	'patrol/patrol'     => 'PatrolLogFormatter',
+	'move/move'          => 'MoveLogFormatter',
+	'move/move_redir'    => 'MoveLogFormatter',
+	'delete/delete'      => 'DeleteLogFormatter',
+	'delete/restore'     => 'DeleteLogFormatter',
+	'delete/revision'    => 'DeleteLogFormatter',
+	'delete/event'       => 'DeleteLogFormatter',
+	'suppress/revision'  => 'DeleteLogFormatter',
+	'suppress/event'     => 'DeleteLogFormatter',
+	'suppress/delete'    => 'DeleteLogFormatter',
+	'patrol/patrol'      => 'PatrolLogFormatter',
+	'rights/rights'      => 'RightsLogFormatter',
+	'rights/autopromote' => 'RightsLogFormatter',
 );
 
 /**

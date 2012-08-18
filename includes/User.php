@@ -1182,13 +1182,17 @@ class User {
 				}
 				$newGroups = array_merge( $oldGroups, $toPromote ); // all groups
 
-				$log = new LogPage( 'rights', $wgAutopromoteOnceLogInRC /* in RC? */ );
-				$log->addEntry( 'autopromote',
-					$this->getUserPage(),
-					'', // no comment
-					// These group names are "list to texted"-ed in class LogPage.
-					array( implode( ', ', $oldGroups ), implode( ', ', $newGroups ) )
-				);
+				$logEntry = new ManualLogEntry( 'rights', 'autopromote' );
+				$logEntry->setPerformer( $this );
+				$logEntry->setTarget( $this->getUserPage() );
+				$logEntry->setParameters( array(
+					'4::oldgroups' => $oldGroups,
+					'5::newgroups' => $newGroups,
+				) );
+				$logid = $logEntry->insert();
+				if ( $wgAutopromoteOnceLogInRC ) {
+					$logEntry->publish( $logid );
+				}
 			}
 		}
 		return $toPromote;

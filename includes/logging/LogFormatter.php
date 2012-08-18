@@ -293,6 +293,28 @@ class LogFormatter {
 				}
 				break;
 
+			case 'rights':
+				if ( count( $parameters['4::oldgroups'] ) ) {
+					$oldgroups = implode( ', ', $parameters['4::oldgroups'] );
+				} else {
+					$oldgroups = wfMessage( 'rightsnone' )->inContentLanguage()->escaped();
+				}
+				if ( count( $parameters['5::newgroups'] ) ) {
+					$newgroups = implode( ', ', $parameters['5::newgroups'] );
+				} else {
+					$newgroups = wfMessage( 'rightsnone' )->inContentLanguage()->escaped();
+				}
+				switch( $entry->getSubtype() ) {
+					case 'rights':
+						$text = wfMessage( 'rightslogentry' )
+							->rawParams( $target, $oldgroups, $newgroups )->inContentLanguage()->escaped();
+						break;
+					case 'autopromote':
+						$text = wfMessage( 'rightslogentry-autopromote' )
+							->rawParams( $target, $oldgroups, $newgroups )->inContentLanguage()->escaped();
+						break;
+				}
+				break;
 
 			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
 			// default:
@@ -1006,5 +1028,90 @@ class NewUsersLogFormatter extends LogFormatter {
 			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
 		}
 		return array();
+	}
+}
+
+/**
+ * This class formats rights log entries.
+ * @since 1.20
+ */
+class RightsLogFormatter extends LogFormatter {
+	protected function makePageLink( Title $title = null, $parameters = array() ) {
+		global $wgContLang, $wgUserrightsInterwikiDelimiter;
+
+		if ( !$this->plaintext ) {
+			$text = $wgContLang->ucfirst( $title->getText() );
+			$parts = explode( $wgUserrightsInterwikiDelimiter, $text, 2 );
+
+			if ( count( $parts ) == 2 ) {
+				$titleLink = WikiMap::foreignUserLink( $parts[1], $parts[0],
+					htmlspecialchars( $title->getPrefixedText() ) );
+
+				if ( $titleLink !== false ) {
+					return $titleLink;
+				}
+			}
+		}
+
+		return parent::makePageLink( $title, $parameters );
+	}
+
+	protected function getMessageKey() {
+		$key = parent::getMessageKey();
+		$params = $this->getMessageParameters();
+		if ( !isset( $params[3] ) && !isset( $params[4] ) ) {
+			$key .= '-legacy';
+		}
+		return $key;
+	}
+
+	protected function getMessageParameters() {
+		$params = parent::getMessageParameters();
+
+		// Really old entries
+		if ( !isset( $params[3] ) && !isset( $params[4] ) ) {
+			return $params;
+		}
+
+		$oldGroups = $params[3];
+		$newGroups = $params[4];
+
+		// Less old entries
+		if ( $oldGroups === '' ) {
+			$oldGroups = array();
+		} elseif ( is_string( $oldGroups ) ) {
+			$oldGroups = array_map( 'trim', explode( ',', $oldGroups ) );
+		}
+		if ( $newGroups === '' ) {
+			$newGroups = array();
+		} elseif ( is_string( $newGroups ) ) {
+			$newGroups = array_map( 'trim', explode( ',', $newGroups ) );
+		}
+
+		$userName = $this->entry->getTarget()->getText();
+		if ( !$this->plaintext && count( $oldGroups ) ) {
+			foreach ( $oldGroups as &$group ) {
+				$group = User::getGroupMember( $group, $userName );
+			}
+		}
+		if ( !$this->plaintext && count( $newGroups ) ) {
+			foreach ( $newGroups as &$group ) {
+				$group = User::getGroupMember( $group, $userName );
+			}
+		}
+
+		$lang = $this->context->getLanguage();
+		if ( count( $oldGroups ) ) {
+			$params[3] = $lang->listToText( $oldGroups );
+		} else {
+			$params[3] = $this->msg( 'rightsnone' )->text();
+		}
+		if ( count( $newGroups ) ) {
+			$params[4] = $lang->listToText( $newGroups );
+		} else {
+			$params[4] = $this->msg( 'rightsnone' )->text();
+		}
+
+		return $params;
 	}
 }
