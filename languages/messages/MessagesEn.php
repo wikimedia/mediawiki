@@ -2204,21 +2204,21 @@ this file is $2.',
 This might be due to a typo in the filename.
 Please check whether you really want to upload this file.',
 'windows-nonascii-filename'   => 'This wiki does not support filenames with special characters.',
-'fileexists'                  => "A file with this name exists already, please check '''<strong>[[:$1]]</strong>''' if you are not sure if you want to change it.
+'fileexists'                  => "A file with this name exists already, please check <strong>[[:$1]]</strong> if you are not sure if you want to change it.
 [[$1|thumb]]",
-'filepageexists'              => "The description page for this file has already been created at '''<strong>[[:$1]]</strong>''', but no file with this name currently exists.
+'filepageexists'              => "The description page for this file has already been created at <strong>[[:$1]]</strong>, but no file with this name currently exists.
 The summary you enter will not appear on the description page.
 To make your summary appear there, you will need to manually edit it.
 [[$1|thumb]]",
 'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
-* Name of the uploading file: '''<strong>[[:$1]]</strong>'''
-* Name of the existing file: '''<strong>[[:$2]]</strong>'''
+* Name of the uploading file: <strong>[[:$1]]</strong>
+* Name of the existing file: <strong>[[:$2]]</strong>
 Please choose a different name.",
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 [[$1|thumb]]
-Please check the file '''<strong>[[:$1]]</strong>'''.
+Please check the file <strong>[[:$1]]</strong>.
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
-'file-thumbnail-no'           => "The filename begins with '''<strong>$1</strong>'''.
+'file-thumbnail-no'           => "The filename begins with <strong>$1</strong>.
 It seems to be an image of reduced size ''(thumbnail)''.
 If you have this image in full resolution upload this one, otherwise change the filename please.",
 'fileexists-forbidden'        => 'A file with this name already exists, and cannot be overwritten.
