@@ -1190,6 +1190,9 @@ $wgMessageStructure = array(
 		'rightslogtext',
 		'rightslogentry',
 		'rightslogentry-autopromote',
+		'logentry-rights-rights',
+		'logentry-rights-rights-legacy',
+		'logentry-rights-autopromote',
 		'rightsnone',
 	),
 	'action' => array(
