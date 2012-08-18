@@ -243,7 +243,16 @@ window.fillDestFilename = function(id) {
 	// Output result
 	var destFile = document.getElementById('wpDestFile');
 	if (destFile) {
-		destFile.value = fname;
+		//Calls decodeURIComponent function to remove any possible URL encoding in the file name
+		//This can occur specifically with upload URL
+		//Where an exception occurs as a result of invalid utf-8 we use the filename without url encoding removed
+		try
+		{
+			destFile.value = decodeURIComponent(fname);
+		} catch(e)
+		{
+			destFile.value = fname;
+	}
 		wgUploadWarningObj.checkNow(fname) ;
 	}
 };
