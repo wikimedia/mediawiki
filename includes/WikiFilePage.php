@@ -135,6 +135,7 @@ class WikiFilePage extends WikiPage {
 	 * @return array|null
 	 */
 	public function getDuplicates() {
+		global $wgListSameNameFileDuplicate;
 		$this->loadFile();
 		if ( !is_null( $this->mDupes ) ) {
 			return $this->mDupes;
@@ -158,6 +159,11 @@ class WikiFilePage extends WikiPage {
 			}
 			if ( $file->getSize() != $size ) {
 				unset( $dupes[$index] );
+			}
+			if ( !$wgListSameNameFileDuplicate ) {
+				if ( $file->getName() === $this->mFile->getName() ) {
+					unset( $dupes[$index] );
+				}
 			}
 		}
 		$this->mDupes = $dupes;

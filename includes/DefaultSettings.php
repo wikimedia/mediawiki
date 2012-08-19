@@ -474,6 +474,17 @@ $wgShowEXIF = function_exists( 'exif_read_data' );
 $wgUpdateCompatibleMetadata = false;
 
 /**
+ * If there is a duplicate file on two separate repositories, that both have the
+ * same name, should it be reported as a duplicate.
+ *
+ * Most of the time you would want this (To be advised if a local file is
+ * a duplicate of a commons file for example). However if you have the
+ * same repository loaded twice, which can easily happen when cascading
+ * repositories, you may end up with a large number of false positives.
+ */
+$wgListSameNameFileDuplicate = true;
+
+/**
  * If you operate multiple wikis, you can define a shared upload path here.
  * Uploads to this wiki will NOT be put there - they will be put into
  * $wgUploadDirectory.
