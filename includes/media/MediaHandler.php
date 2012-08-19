@@ -372,7 +372,7 @@ abstract class MediaHandler {
 	 */
 	function visibleMetadataFields() {
 		$fields = array();
-		$lines = explode( "\n", wfMsgForContent( 'metadata-fields' ) );
+		$lines = explode( "\n", wfMessage( 'metadata-fields' )->inContentLanguage()->text() );
 		foreach( $lines as $line ) {
 			$matches = array();
 			if( preg_match( '/^\\*\s*(.*?)\s*$/', $line, $matches ) ) {

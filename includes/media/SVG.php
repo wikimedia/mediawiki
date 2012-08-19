@@ -115,7 +115,7 @@ class SvgHandler extends ImageHandler {
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight,
-				wfMsg( 'thumbnail_dest_directory' ) );
+				wfMessage( 'thumbnail_dest_directory' )->text() );
 		}
 
 		$srcPath = $image->getLocalRefPath();
@@ -219,10 +219,8 @@ class SvgHandler extends ImageHandler {
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgExt( 'svg-long-desc', 'parseinline',
-			$wgLang->formatNum( $file->getWidth() ),
-			$wgLang->formatNum( $file->getHeight() ),
-			$wgLang->formatSize( $file->getSize() ) );
+		return wfMessage( 'svg-long-desc' )->numParams(	$file->getWidth(), $file->getHeight() )
+			->params( $wgLang->formatSize( $file->getSize() ) )->parse();
 	}
 
 	function getMetadata( $file, $filename ) {
