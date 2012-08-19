@@ -3451,17 +3451,43 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 * $1 is a spammed domain name.',
 
 # Info page
-'pageinfo-title' => 'Page title for action=info.
-
+'pageinfo-title' => 'Page title for action=info. Parameters:
 * $1 is the page name',
-'pageinfo-header-edits' => 'Table section header in action=info.
-{{Identical|Edit}}',
-'pageinfo-header-watchlist' => 'Table section header in action=info.',
-'pageinfo-header-views' => 'Table section header in action=info.
-{{Identical|View}}',
-'pageinfo-subjectpage' => 'Table header in action=info.
-{{Identical|Page}}',
-'pageinfo-talkpage' => 'Table header in action=info.',
+'pageinfo-header-basic' => 'Table section header in action=info.',
+'pageinfo-header-edits' => 'Table section header in action=info.',
+'pageinfo-header-restrictions' => 'Table section header in action=info.',
+'pageinfo-header-properties' => 'Table section header in action=info.',
+'pageinfo-display-title' => 'The title that is displayed when the page is viewed.',
+'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
+'pageinfo-length' => 'The length of the page, in bytes.',
+'pageinfo-article-id' => 'The numeric identifier of the page.',
+'pageinfo-robot-policy' => 'The search engine status of the page.',
+'pageinfo-views' => 'The number of times the page has been viewed.',
+'pageinfo-watchers' => 'The number of users watching the page.',
+'pageinfo-redirects-name' => 'The number of redirects to the page.',
+'pageinfo-redirects-value' => 'Parameters:
+* $1 is the number of redirects to the page.',
+'pageinfo-subpages-name' => 'The number of subpages of the page.',
+'pageinfo-subpages-value' => 'Parameters:
+* $1 is the number of subpages of the page.
+* $2 is the number of subpages of the page that are redirects.
+* $3 is the number of subpages of the page that are not redirects.',
+'pageinfo-firstuser' => 'The user who created the page.',
+'pageinfo-firsttime' => 'The date and time the page was created.',
+'pageinfo-lastuser' => 'The last user who edited the page.',
+'pageinfo-lasttime' => 'The date and time the page was last edited.',
+'pageinfo-edits' => 'The total number of times the page has been edited.',
+'pageinfo-authors' => 'The total number of users who have edited the page.',
+'pageinfo-recent-edits' => 'The number of times the page has been edited recently.',
+'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
+'pageinfo-restriction' => 'Parameters:
+* $1 is the type of page protection.',
+'pageinfo-magic-words' => 'The list of magic words on the page. Parameters:
+* $1 is the number of magic words on the page.',
+'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
+* $1 is the number of hidden categories on the page.',
+'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
+* $1 is the number of templates transcluded within the page.',
 
 # Skin names
 'skinname-standard' => '{{optional}}
