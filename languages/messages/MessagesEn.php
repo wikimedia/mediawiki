@@ -3825,6 +3825,8 @@ By executing it, your system may be compromised.",
 'file-info-png-looped'   => 'looped',
 'file-info-png-repeat'   => 'played $1 {{PLURAL:$1|time|times}}',
 'file-info-png-frames'   => '$1 {{PLURAL:$1|frame|frames}}',
+'file-no-thumb-animation'=> '\'\'\'Note: Due to technical limitations, thumbnails of this file will not be animated.\'\'\'',
+'file-no-thumb-animation-gif' => '\'\'\'Note: Due to technical limitations, thumbnails of high resolution GIF images such as this one will not be animated.\'\'\'',
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',

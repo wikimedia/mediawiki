@@ -465,6 +465,39 @@ abstract class File {
 	}
 
 	/**
+	 * Will the thumbnail be animated if one would expect it to be.
+	 *
+	 * Currently used to add a warning to the image description page
+	 *
+	 * @return bool false if the main image is both animated
+	 *   and the thumbnail is not. In all other cases must return
+	 *   true. If image is not renderable whatsoever, should
+	 *   return true.
+	 */
+	public function canAnimateThumbIfAppropriate() {
+		$handler = $this->getHandler();
+		if ( !$handler ) {
+			// We cannot handle image whatsoever, thus
+			// one would not expect it to be animated
+			// so true.
+			return true;
+		} else {
+			if ( $this->allowInlineDisplay()
+				&& $handler->isAnimatedImage( $this )
+				&& !$handler->canAnimateThumbnail( $this )
+			) {
+				// Image is animated, but thumbnail isn't.
+				// This is unexpected to the user.
+				return false;
+			} else {
+				// Image is not animated, so one would
+				// not expect thumb to be
+				return true;
+			}
+		}
+	}
+
+	/**
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
