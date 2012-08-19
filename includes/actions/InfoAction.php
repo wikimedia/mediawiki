@@ -58,14 +58,13 @@ class InfoAction extends FormlessAction {
 	public function onView() {
 		global $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
 
+		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
-
-		$article = new Article( $title );
 		$id = $title->getArticleID();
 
 		// Get page information that would be too "expensive" to retrieve by normal means
-		$userCanViewUnwatchedPages = $this->getUser()->isAllowed( 'unwatchedpages' );
+		$userCanViewUnwatchedPages = $user->isAllowed( 'unwatchedpages' );
 		$pageInfo = self::pageCountInfo( $title, $userCanViewUnwatchedPages, $wgDisableCounters );
 
 		// Get page properties
@@ -121,7 +120,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Use robot policy logic
-		$policy = $article->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
 		// @todo FIXME: Hard coded English text.
 		$table = $this->addRow( $table,
 			$this->msg( 'pageinfo-robot-policy' )->escaped(), "Marked as '" . $policy['index'] . "'"
@@ -203,7 +202,7 @@ class InfoAction extends FormlessAction {
 
 		// Date of page creation
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firsttime' )->escaped(), $lang->timeanddate( $pageInfo['firsttime'] )
+			$this->msg( 'pageinfo-firsttime' )->escaped(), $lang->userTimeAndDate( $pageInfo['firsttime'], $user )
 		);
 
 		// Latest editor
@@ -213,7 +212,7 @@ class InfoAction extends FormlessAction {
 
 		// Date of latest edit
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lasttime' )->escaped(), $lang->timeanddate( $pageInfo['lasttime'] )
+			$this->msg( 'pageinfo-lasttime' )->escaped(), $lang->userTimeAndDate( $pageInfo['lasttime'], $user )
 		);
 
 		// Total number of edits
@@ -258,7 +257,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$localizedList = Html::rawElement( 'ul', array(), implode( '', $listItems ) );
-		$hiddenCategories = $article->getHiddenCategories();
+		$hiddenCategories = $this->page->getHiddenCategories();
 		$transcludedTemplates = $title->getTemplateLinksFrom();
 
 		if ( count( $listItems ) > 0
