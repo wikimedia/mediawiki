@@ -163,8 +163,8 @@ class ChangesList extends ContextSource {
 				'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ),
 			);
 			foreach( $messages as &$value ) {
-				$value[0] = wfMsgExt( $value[0], 'escapenoentities' );
-				$value[1] = wfMsgExt( $value[1], 'escapenoentities' );
+				$value[0] = wfMessage( $value[0] )->escaped();
+				$value[1] = wfMessage( $value[1] )->escaped();
 			}
 		}
 
