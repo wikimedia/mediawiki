@@ -9,6 +9,7 @@
  *
  * @author Als-Chlämens
  * @author Als-Holder
+ * @author Geitost
  * @author Hendergassler
  * @author J. 'mach' wust
  * @author Kaganer
@@ -1471,7 +1472,7 @@ Weli Dateie uffeglade sin, sihsch im [[Special:Log/upload|Logbuech vu dr uffegla
 Zum e Datei oder e Bild in ere Syte yyzböue, schryybsch eifach:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>''' fir di voll Version vu dr Datei
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|al text]]</nowiki>''' fir e 200 Pixel grossi Version im e Chaschte mit 'alt text' as Bschrybig
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' fir e diräkt Link zuer dr Datei ohni ass si aazeigt wird",
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' fir e diräkt Link zuer dr Datei ohni ass si aazeigt wird",
 'upload-permitted'            => 'Dateitype, wu erlaubt sin: $1.',
 'upload-preferred'            => 'Dateitype, wu bevorzugt sin: $1.',
 'upload-prohibited'           => 'Dateitype, wu nit erlaubt sin: $1.',
@@ -1514,22 +1515,22 @@ Lueg au d [[Special:NewFiles|Galerii vu neije Dateie]] fir e visuälle Iberblick
 'largefileserver'             => 'Die Datei isch gresser wie die vum Server yygstellti Maximalgressi.',
 'emptyfile'                   => 'Di uffeglade Datei isch schyyns läär. Dr Grund cha ne Tippfähler im Dateiname syy. Bitte iberprief, eb du die Datei wirkli wit uffelade.',
 'windows-nonascii-filename'   => 'Des Wiki unterstitzt kei Dateinäme mit Sonderzeiche.',
-'fileexists'                  => "S git scho ne Datei mit däm Name.
-Wänn Du uf \"Datei spichere\" drucksch, no wird die Datei iberschribe.
-Bitte prief '''<tt>[[:\$1]]</tt>''', wänn Der nit sicher bisch.
-[[\$1|thumb]]",
-'filepageexists'              => "E Bschryybigssyte isch scho as '''<tt>[[:$1]]</tt>''' aagleit wore, s git aber kei Datei mit däm Name.
+'fileexists'                  => 'S git scho ne Datei mit däm Name.
+Wänn Du uf "Datei spichere" drucksch, no wird die Datei iberschribe.
+Bitte prief <strong>[[:$1]]</strong>, wänn Der nit sicher bisch.
+[[$1|thumb]]',
+'filepageexists'              => 'E Bschryybigssyte isch scho as <strong>[[:$1]]</strong> aagleit wore, s git aber kei Datei mit däm Name.
 Die Zämmefassig, wu Du yygee hesch, wird nit uf d Bschryybigssyte ibernuh.
 Du muesch d Bschryybigssyte noch em Uffelade vu dr Datei no manuäll bearbeite.
-[[$1|thumb]]",
-'fileexists-extension'        => "S git scho ne Datei mit eme ähnlige Name: [[$2|thumb]]
-* Name vu Datei, wu soll uffeglade were: '''<tt>[[:$1]]</tt>'''
-* Name vu dr Datei, wu s scho git: '''<tt>[[:$2]]</tt>'''
-Bitte wehl e andre Name.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'S git scho ne Datei mit eme ähnlige Name: [[$2|thumb]]
+* Name vu Datei, wu soll uffeglade were: <strong>[[:$1]]</strong>
+* Name vu dr Datei, wu s scho git: <strong>[[:$2]]</strong>
+Bitte wehl e andre Name.',
 'fileexists-thumbnail-yes'    => "Die Datei isch schyyns e Bild mit ere verringerte Gressi ''(thumbnail)''. [[$1|thumb]]
-Bitte prief d Datei '''<tt>[[:$1]]</tt>'''.
+Bitte prief d Datei <strong>[[:$1]]</strong>.
 Wänn s Bild in dr Originalgressi isch, no isch s nit netig, ass e extra Vorschaubild uffeglade wird.",
-'file-thumbnail-no'           => "Dr Dateiname fangt mit '''<tt>$1</tt>''' aa. Des wyyst uf e Bild mit ere verringerte Gressi ''(thumbnail)'' hi.
+'file-thumbnail-no'           => "Dr Dateiname fangt mit <strong>$1</strong> aa. Des wyyst uf e Bild mit ere verringerte Gressi ''(thumbnail)'' hi.
 Bitte prief, eb D s Bild in voller Uflesig vorlige hesch un lad derno des unter em Originalname uffe.",
 'fileexists-forbidden'        => 'S git scho ne Datei mit däm Name. Si cha nit iberschribe wäre. Bitte gang zruck un lad die Datei unter eme andere Name uffe. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'S git scho ne Datei mit däm Name im Zentrale Mediearchiv.
@@ -1759,7 +1760,7 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 
 # MIME search
 'mimesearch'         => 'MIME-Suechi',
-'mimesearch-summary' => 'Uf däre Spezialsyte chenne d Dateie noch em MIME-Typ gfilteret wäre. In dr Yygob muess es alliwyl dr Medie- un Subtyp din haa: <tt>image/jpeg</tt> (lueg Bildbschryybigssyte).',
+'mimesearch-summary' => 'Uf däre Spezialsyte chenne d Dateie noch em MIME-Typ gfilteret wäre. In dr Yygob muess es alliwyl dr Medie- un Subtyp din haa: <code>image/jpeg</code> (lueg Bildbschryybigssyte).',
 'mimetype'           => 'MIME-Typ:',
 'download'           => 'Abelade',
 
@@ -1949,7 +1950,7 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'linksearch-pat'   => 'Suechmuschter:',
 'linksearch-ns'    => 'Namensruum:',
 'linksearch-ok'    => 'Sueche',
-'linksearch-text'  => 'Die Spezialsyte macht d Suechi no Syte megli, wu s bstimmti Weblink din het. Doderby chenne Platzhalter wie zem Byschpel <tt>*.byschpel.de</tt> brucht wäre. S mueß zmindecht ei Top-Level-Domain, z. B. „*.org“. aagee wäre. <br />Unterstitzti Protokoll: <tt>$1</tt> (Die bitte nit bi dr Suechaafrog aagee.)',
+'linksearch-text'  => 'Die Spezialsyte macht d Suechi no Syte megli, wu s bstimmti Weblink din het. Doderby chenne Platzhalter wie zem Byschpel <code>*.byschpel.de</code> brucht wäre. S mueß zmindecht ei Top-Level-Domain, z. B. „*.org“. aagee wäre. <br />Unterstitzti Protokoll: <code>$1</code> (Die bitte nit bi dr Suechaafrog aagee.)',
 'linksearch-line'  => '$1 isch vo $2 verknüpft',
 'linksearch-error' => 'Platzhalter chönne numme am Aafang verwändet werre.',
 

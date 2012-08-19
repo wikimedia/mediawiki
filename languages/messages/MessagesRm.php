@@ -1342,9 +1342,9 @@ Il log da stizzar e spustar vegn mussà sutvart:",
 Per contemplar u tschertgar datotecas gia chargiada si, visita la pagina [[Special:FileList|glista da datotecas chargiadas si]]. Tut las datotecas che vegnan chargiadas si èn era notads en il [[Special:Log/upload|log da chargiar si]], quellas ch'èn vegnidas stizzadas en il [[Special:Log/delete|log dal stizzar]].
 
 Per integrar ina datoteca en in artitgel pos ti per exempel duvrar in dals suandants cumonds:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' per utilisar la versiun cumplaina da la datoteca
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' per utilisar in maletg da la ladezza da 200 pixels en in champ da la vart sanestra cun la descripziun 'alt text'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' per directamain far ina colliaziun a la datoteca senza integrar la datoteca",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' per utilisar la versiun cumplaina da la datoteca
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' per utilisar in maletg da la ladezza da 200 pixels en in champ da la vart sanestra cun la descripziun 'alt text'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' per directamain far ina colliaziun a la datoteca senza integrar la datoteca",
 'upload-permitted'            => 'Tips da datotecas lubids: $1.',
 'upload-preferred'            => 'Tips da datotecas preferids: $1.',
 'upload-prohibited'           => 'Tips da datotecas betg lubids: $1.',
@@ -1388,21 +1388,21 @@ questa datoteca è $2 gronda.",
 'emptyfile'                   => "La datoteca che ti has chargià si para dad esser vida.
 Quai po esser pervia d'in sbagl da tippar en il num da datoteca.
 Controllescha sche ti vuls propi chargiar si questa datoteca.",
-'fileexists'                  => "Ina datoteca cun quest num exista gia. Controllescha '''<tt>[[:$1]]</tt>''' sche ti n'es betg segir sche ti vuls midar ella.
+'fileexists'                  => "Ina datoteca cun quest num exista gia. Controllescha <strong>[[:$1]]</strong> sche ti n'es betg segir sche ti vuls midar ella.
 [[$1|thumb]]",
-'filepageexists'              => "La pagina da descripziun per questa datoteca è vegnida creada ils '''<tt>[[:$1]]</tt>''' ma i n'exista anc nagina datoteca cun quest num. 
+'filepageexists'              => "La pagina da descripziun per questa datoteca è vegnida creada ils <strong>[[:$1]]</strong> ma i n'exista anc nagina datoteca cun quest num. 
 La resumaziun che ti endatescha na vegn betg a cumparair sin la pagina da descripziun.
 Per che tia resumaziun cumpara là, stos ti modifitar manualmain la pagina da descripziun.
 [[$1|thumb]]",
 'fileexists-extension'        => "I exista gia ina datoteca cun in num sumegliant: [[$2|thumb]]
-* Num da la datoteca che duai vegnir chargiada si: '''<tt>[[:$1]]</tt>'''
-* Num da la datoteca ch'exista gia: '''<tt>[[:$2]]</tt>'''
+* Num da la datoteca che duai vegnir chargiada si: <strong>[[:$1]]</strong>
+* Num da la datoteca ch'exista gia: <strong>[[:$2]]</strong>
 Tscherna per plaschair in auter num.",
 'fileexists-thumbnail-yes'    => "Quest maletg para dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
 [[$1|thumb]]
-Controllescha per plaschair la datoteca ''<tt>[[:$1]]</tt>'''.
+Controllescha per plaschair la datoteca ''<strong>[[:$1]]</strong>.
 Sche la datoteca menziunada survart è il medem maletg en grondezza originala n'èsi betg necessari da chargiar si in maletg da pervista.",
-'file-thumbnail-no'           => "Il num da la datoteca cumenza cun '''<tt>$1</tt>''', perquai para quai dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
+'file-thumbnail-no'           => "Il num da la datoteca cumenza cun <strong>$1</strong>, perquai para quai dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
 Controllescha sche ti has era il maletg en grondezza originala e chargia si quel sut il num original.",
 'fileexists-forbidden'        => 'I exista gia ina datoteca cun quest num che na po betg vegnir recuvrida. 
 Sche ti vuls anc adina chargiar si tia datoteca, turna per plaschair anavos e tscherna in auter nu. 
@@ -1581,7 +1581,7 @@ La descripziun da sia [$2 pagina da descripziun da datotecas] vegn mussada sutva
 # MIME search
 'mimesearch'         => 'tschertgar tenor tip da MIME',
 'mimesearch-summary' => 'Questa pagina permetta da filtrar datotecas tenor lur tip MIME.
-Endatar il term da tschertgar en la furma tip/suttip, p.ex. <tt>image/jpeg</tt>.',
+Endatar il term da tschertgar en la furma tip/suttip, p.ex. <code>image/jpeg</code>.',
 'mimetype'           => 'Tip MIME:',
 'download'           => 'telechargiar',
 
@@ -1743,7 +1743,7 @@ I renviescha uss a [[$2]].',
 'linksearch-ok'    => 'Tschertgar',
 'linksearch-text'  => 'Sin questa pagina pos ti tschertgar paginas che cuntegnan colliaziuns a tschertas websites. 
 Uschenumnadas wildcards sco p.ex. "*.wikipedia.org" pon vegnir utilisadas.<br />
-Protocols sustegnids: <tt>$1</tt>',
+Protocols sustegnids: <code>$1</code>',
 'linksearch-line'  => '$1 è collià davent da la pagina $2',
 'linksearch-error' => "Wildcards pon esser be a l'entschatta dal num da host.",
 

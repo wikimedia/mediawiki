@@ -58,17 +58,17 @@ dj'artìcoj ancó pa scrit",
 'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima<br />  al tìtol col tast drit dël rat (a-i va Javascript)',
 'tog-showtoc'                 => "Buta le tàole dij contnù<br />(për j'artìcoj che l'han pì che 3 session)",
 'tog-rememberpassword'        => "Visesse ëd mia ciav ansima a 's navigador (për al pi $1 {{PLURAL:$1|di|di}})",
-'tog-watchcreations'          => 'Gionta le pàgine che i creo mi a la lista ëd lòn che im ten-o sot euj',
+'tog-watchcreations'          => "Gionta le pàgine che i creo mi e j'archivi che i cario mi a la lista ëd lòn che im ten-o sot euj",
 'tog-watchdefault'            => "Gionta le pàgine che i modìfico mi a la lista dle ròbe ch'i ten-o sot-euj",
-'tog-watchmoves'              => 'Gionta le pàgine che i tramudo a lòn che im ten-o sot euj',
-'tog-watchdeletion'           => 'Gionta le pàgine che i scancelo via a la lista ëd lòn che im ten-o sot euj',
+'tog-watchmoves'              => "Gionta le pàgine e j'archivi che i tramudo a lòn che im ten-o sot euj",
+'tog-watchdeletion'           => "Gionta le pàgine e j'archivi che i scancelo via a la lista ëd lòn che im ten-o sot euj",
 'tog-minordefault'            => 'Marca tute le modìfice coma cite<br />(mach coma predefinission dla casela)',
 'tog-previewontop'            => 'Smon-e la preuva dzora al quàder ëd modìfica dël test e nen sota',
 'tog-previewonfirst'          => 'Smon na preuva la prima vira che as fa na modìfica',
 'tog-nocache'                 => 'Disabilité la memòria local ëd le pàgine dël navigador',
-'tog-enotifwatchlistpages'    => "Mand-me un messagi an pòsta eletrònica quand a-i son dle modìfiche a le pàgine ch'im ten-o sot euj",
+'tog-enotifwatchlistpages'    => "Mandeme un mëssagi an pòsta eletrònica quand a-i son dle modìfiche a le pàgine ch'im ten-o sot euj",
 'tog-enotifusertalkpages'     => 'Mand-me un messagi ëd pòsta eletrònica quand a-i son dle modìfiche a mia pàgina dle ciaciarade',
-'tog-enotifminoredits'        => 'Mand-me un messagi an pòsta eletrònica bele che për le modìfiche cite',
+'tog-enotifminoredits'        => "Mandeme un mëssagi an pòsta eletrònica bele che për le modìfiche cite dle pàgine o dj'archivi",
 'tog-enotifrevealaddr'        => 'Lassa che a së s-ciàira mia adrëssa ëd pòsta eletrònica ant ij messagi ëd notìfica',
 'tog-shownumberswatching'     => "Smon ël nùmer d'utent che as ten-o la pàgina sot euj",
 'tog-oldsig'                  => 'Firma esistenta:',
@@ -617,7 +617,7 @@ Ciav a temp: $2',
 # Edit pages
 'summary'                          => 'Resumé:',
 'subject'                          => 'Sogèt:',
-'minoredit'                        => "Costa-sì a l'é na modìfica cita",
+'minoredit'                        => "Costa a l'é na modìfica cita",
 'watchthis'                        => "Ten sot euj st'artìcol-sì",
 'savearticle'                      => 'Salva sta pàgina',
 'preview'                          => 'Preuva',
@@ -1397,9 +1397,9 @@ Le pàgine dzora a [[Special:Watchlist|la lista ëd lòn ch'as ten sot-euj]] a r
 Për vardé ò sërché dle figure già carià, ch'a vada an sla [[Special:FileList|lista dle figure]], ij (ri)càrich a son ëdcò registrà ant ël [[Special:Log/upload|registr dij càrich]], jë scancelament ant ël [[Special:Log/delete|registr djë scancelament]].
 
 Për buté na figura ant n'artìcol, dovré n'anliura ant un-a dle forme sì sota:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' për dovré la version pien-a dla figura
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' për dovré na dimension ëd 200 pontin ant un quàder a la bordura snistra con 'alt text' com descrission
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' për coleghé diretament la figura sensa fé vëdde l'archivi",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' për dovré la version pien-a dla figura
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' për dovré na dimension ëd 200 pontin ant un quàder a la bordura snistra con 'alt text' com descrission
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' për coleghé diretament la figura sensa fé vëdde l'archivi",
 'upload-permitted'            => "Sòrt d'archivi consentìe: $1.",
 'upload-preferred'            => "Sòrt d'archivi preferìe: $1.",
 'upload-prohibited'           => "Sòrt d'archivi proibìe: $1.",
@@ -1445,20 +1445,20 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
 'windows-nonascii-filename'   => "Sta wiki-sì a manten pa ij nòm d'archivi con caràter speciaj.",
-'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë vorèj cangelo.
+'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla <strong>[[:$1]]</strong> se a l'é pa sigur dë vorèj cangelo.
 [[$1|thumb]]",
-'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é gnun archivi ch'as ciama parèj.
+'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an <strong>[[:$1]]</strong>, mach ch'a-i é gnun archivi ch'as ciama parèj.
 Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission.
 Për podèj buté sò somari a l'ha da modifichesse la pàgina a man.
 [[$1|thumb]]",
 'fileexists-extension'        => "N'archivi con ës nòm-sì a-i é già: [[$2|thumb]]
-* Nòm dl'archivi ch'as carìa: '''<tt>[[:$1]]</tt>'''
-* Nòm dl'archivi ch'a-i é già: '''<tt>[[:$2]]</tt>'''
+* Nòm dl'archivi ch'as carìa: <strong>[[:$1]]</strong>
+* Nòm dl'archivi ch'a-i é già: <strong>[[:$2]]</strong>
 Për piasì, ch'a serna un nòm diferent.",
 'fileexists-thumbnail-yes'    => "L'archivi a jë smija a na ''figurin-a''. [[$1|thumb]]
-Për piasì, ch'a contròla l'archivi '''<tt>[[:$1]]</tt>'''.
+Për piasì, ch'a contròla l'archivi <strong>[[:$1]]</strong>.
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
-'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Ël nòm dl'archivi as anandia con <strong>$1</strong>.
 A jë smija a na ''figurin-a''.
 Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'a-j cangia nòm a l'archivi, për piasì.",
 'fileexists-forbidden'        => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse.
@@ -1708,7 +1708,7 @@ La descrission an soa [$2 pàgina ëd dëscrission ëd l'archivi] a l'é smonùa
 
 # MIME search
 'mimesearch'         => 'Arserca për sòrt MIME',
-'mimesearch-summary' => "Sta pàgina-sì a lassa filtré j'archivi për sòrt MIME. Buté: sòrt/sotasòrt, pr'es. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Sta pàgina-sì a lassa filtré j'archivi për sòrt MIME. Buté: sòrt/sotasòrt, pr'es. <code>image/jpeg</code>.",
 'mimetype'           => 'Sòrt MIME:',
 'download'           => 'dëscarié',
 
@@ -1755,8 +1755,9 @@ Ch'as visa ëd controlé che në stamp a-j serva nen a dj'àutri stamp anans che
 
 'disambiguations'      => "Pàgine ch'a men-o vers dle pàgine d'omonimìe",
 'disambiguationspage'  => "Template:Gestion dj'omonimìe",
-'disambiguations-text' => "Ste pàgine-sì a men-o a na '''pàgina ëd gestion dj'omònim''', mach che a dovrìo ëmné bele drit a n'artìcol.<br />
-Na pàgina as trata coma \"pàgina ëd gestion dj'omònim\" se a deuvra në stamp dont l'anliura as treuva ant ël [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Ste pàgine-sì a men-o a na '''pàgina ëd gestion dj'omònim'''.
+Mach che a dovrìo ëmné bele drit a n'artìcol.<br />
+Na pàgina as trata coma pàgina ëd gestion dj'omònim se a deuvra në stamp dont l'anliura as treuva ant ël [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'                   => 'Ridiression dobie',
 'doubleredirectstext'               => "Sta pàgina-sì a a lista dle pàgine ch'a armando a d'àutre pàgine ëd ridiression.
@@ -1902,7 +1903,7 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-ok'    => 'Sërché',
 'linksearch-text'  => 'As peulo dovresse dij ciapatut com "*.wikipedia.org".
 A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
-Protocòj ch\'as peulo dovresse: <tt>$1</tt> (ch\'a gionta gnun ëd costi an soa arserca).',
+Protocòj ch\'as peulo dovresse: <code>$1</code> (ch\'a gionta gnun ëd costi an soa arserca).',
 'linksearch-line'  => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
 'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël sërvent.',
 
@@ -2627,36 +2628,36 @@ Për piasì, ch'a preuva torna.",
 # Import log
 'importlogpage'                    => "Registr dj'amportassion",
 'importlogpagetext'                => "Amportassion aministrative ëd pàgine e ëd soa stòria da dj'àutre wiki.",
-'import-logentry-upload'           => "amportà [[$1]] con un càrich d'archivi",
+'import-logentry-upload'           => "a l'ha amportà [[$1]] con un càrich d'archivi",
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revision|revision}}',
 'import-logentry-interwiki'        => "Amportà da n'àutra wiki $1",
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revision|revision}} da $2',
 
 # JavaScriptTest
 'javascripttest'                           => 'Preuva ëd JavaScript',
-'javascripttest-disabled'                  => "Sta funsion-sì a l'é pa stàita abilità dzora sta wiki-sì.",
+'javascripttest-disabled'                  => "Sta funsion-sì a l'é pa stàita abilità ansima a costa wiki.",
 'javascripttest-title'                     => 'Fé dle preuve $1',
 'javascripttest-pagetext-noframework'      => "Costa pàgina a l'é arservà për fé dle preuve JavaScript.",
-'javascripttest-pagetext-unknownframework' => 'Utiss ëd preuva pa conossù "$1".',
-'javascripttest-pagetext-frameworks'       => "Për piasì, ch'a serna un-a dle struture ëd test sì-dapress: $1",
+'javascripttest-pagetext-unknownframework' => 'Strutura ëd preuva pa conossùa «$1».',
+'javascripttest-pagetext-frameworks'       => "Për piasì, ch'a serna un-a dle struture ëd preuva sì-dapress: $1",
 'javascripttest-pagetext-skins'            => "Ch'a serna na pel për fé le preuve:",
-'javascripttest-qunit-intro'               => 'Varda [$1 la documentassion dle preuve] dzora a mediawiki.org.',
+'javascripttest-qunit-intro'               => 'Vëdde [$1 la documentassion dle preuve] dzora a mediawiki.org.',
 'javascripttest-qunit-heading'             => 'Sequensa ëd preuve QUnit ëd JavaScript su MediaWiki',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'                 => 'Toa pàgina utent',
-'tooltip-pt-anonuserpage'             => 'Pàgina Utent për l',
-'tooltip-pt-mytalk'                   => 'Toa pàgina ëd discussion e ciaciarade.',
-'tooltip-pt-anontalk'                 => 'Pàgina ëd ciaciarade për l',
+'tooltip-pt-userpage'                 => 'Soa pàgina utent',
+'tooltip-pt-anonuserpage'             => "La pàgina utent për l'IP con ël qual chiel a contribuiss",
+'tooltip-pt-mytalk'                   => 'Soa pàgina ëd discussion e ciaciarade',
+'tooltip-pt-anontalk'                 => 'La pàgina ëd ciaciarade an sle contribussion da costa adrëssa IP',
 'tooltip-pt-preferences'              => 'Coma che i veuj mia {{SITENAME}}.',
 'tooltip-pt-watchlist'                => 'Lista dle pàgine che chiel as ten sot euj.',
-'tooltip-pt-mycontris'                => 'Lista ëd toe contribussion',
-'tooltip-pt-login'                    => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l",
-'tooltip-pt-anonlogin'                => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l",
+'tooltip-pt-mycontris'                => 'Lista ëd soe contribussion',
+'tooltip-pt-login'                    => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l'é mej",
+'tooltip-pt-anonlogin'                => "Un a l'é nen obligà a rintré ant al sistema, ma se a lo fa a l'é mej",
 'tooltip-pt-logout'                   => 'Seurte da',
 'tooltip-ca-talk'                     => 'Discussion ansima a sta pàgina ëd contnù.',
-'tooltip-ca-edit'                     => 'Modifiché sta pàgina-sì. Për piasì, che as fasa na preuva anans che salvé .',
-'tooltip-ca-addsection'               => 'Ancamin-a na neuva session',
+'tooltip-ca-edit'                     => 'A peul modifiché sa pàgina-sì. Për piasì, che as fasa na preuva anans che salvé.',
+'tooltip-ca-addsection'               => 'Ancaminé na neuva session',
 'tooltip-ca-viewsource'               => 'Sta pàgina-sì a l',
 'tooltip-ca-history'                  => 'Veje version dla pàgina.',
 'tooltip-ca-protect'                  => 'Për protege sta pàgina-sì.',
@@ -3076,7 +3077,7 @@ J'àutri a saran stërmà coma stàndard.
 
 'exif-subjectdistance-value' => '$1 méter',
 
-'exif-meteringmode-0'   => 'as sa nen coma',
+'exif-meteringmode-0'   => 'Pa conossù',
 'exif-meteringmode-1'   => 'Media',
 'exif-meteringmode-2'   => 'Media centrà',
 'exif-meteringmode-3'   => 'Quadrèt (Spot)',
@@ -3085,7 +3086,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-meteringmode-6'   => 'Parsial',
 'exif-meteringmode-255' => "n'àutr",
 
-'exif-lightsource-0'   => 'Nen marcà',
+'exif-lightsource-0'   => 'Pa conossù',
 'exif-lightsource-1'   => 'Lus dël dì',
 'exif-lightsource-2'   => 'Fluoressenta',
 'exif-lightsource-3'   => 'Lus al tungsten (a incandessensa)',
@@ -3166,7 +3167,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-sharpness-1' => 'dossa',
 'exif-sharpness-2' => 'contrastà',
 
-'exif-subjectdistancerange-0' => 'Nen specificà',
+'exif-subjectdistancerange-0' => 'Pa conossù',
 'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Prim pian',
 'exif-subjectdistancerange-3' => 'Anquadratura a soget lontan',
@@ -3499,7 +3500,7 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 * <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local (a peulo esse veje).</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',
 'specialpages-group-other'       => 'Àutre pàgine speciaj',
-'specialpages-group-login'       => 'Login / registrassion',
+'specialpages-group-login'       => 'Intra / crea un cont',
 'specialpages-group-changes'     => 'Ùltime modìfiche e registr',
 'specialpages-group-media'       => 'Rapòrt dij file multimediaj e dle carie',
 'specialpages-group-users'       => 'Utent e drit',

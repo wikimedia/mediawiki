@@ -894,7 +894,7 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'illegalfilename'             => 'The filename "$1" haes characters that isna alloud in page teitles. Please rename the file an gie uplaidin it anither shot.',
 'badfilename'                 => 'Eimage name haes been chynged tae "$1".',
 'largefileserver'             => 'This file is bigger nor the server is confeigurt tae allou.',
-'fileexists'                  => "A file wi this name exists aareadies, please check '''<tt>[[:$1]]</tt>''' gin ye'r no siccar that ye want tae chynge it.
+'fileexists'                  => "A file wi this name exists aareadies, please check <strong>[[:$1]]</strong> gin ye'r no siccar that ye want tae chynge it.
 [[$1|thumb]]",
 'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[File:$1|thumb|center|$1]]',

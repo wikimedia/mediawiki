@@ -8,6 +8,7 @@
  * @file
  *
  * @author ILVI
+ * @author Jewbask
  * @author Remember the dot
  * @author Runningfridgesrule
  * @author Taichi
@@ -473,6 +474,7 @@ Si puede ser mete un [[Special:ListUsers/sysop|administrador]] en corriente y ta
 'missingarticle-rev'  => '(nº. de revisión: $1)',
 'missingarticle-diff' => '(Dif.: $1, $2)',
 'filecopyerror'       => 'No se pudo copiar el arxiv "$1" a "$2".',
+'badtitle'            => 'Titolo malo',
 'badtitletext'        => 'El título de la hoja demandada está vazío, no es valible, o es un link interlingua o interwiki incorrecto.
 Puede ser que contiene uno o más caracteres que no se pueden usar en los títulos.',
 'viewsource'          => 'Ver su manadero',
@@ -480,9 +482,11 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 # Login and logout pages
 'yourname'                => 'Su nombre de usuario',
 'yourpassword'            => 'Parola',
+'yourpasswordagain'       => 'Entra de muevo la parola',
 'remembermypassword'      => 'Acórdate de mi entrada de usador en este bilgisayar/orddênador (por un maksimum de {{PLURAL:$1|día|días}})',
 'login'                   => 'Entrar',
 'nav-login-createaccount' => 'Entrar / Crîar un cuento',
+'loginprompt'             => 'Kale tener "cookies" aktivadas enel navegador para enrejistrarse en {{SITENAME}}',
 'userlogin'               => 'Entrar / Registrarse',
 'logout'                  => 'Salir',
 'userlogout'              => 'Salir',
@@ -491,6 +495,7 @@ Puede ser que contiene uno o más caracteres que no se pueden usar en los títul
 'createaccount'           => 'Crea un nuevo cuento',
 'gotaccount'              => "¿Ya tienes un cuento? '''$1'''.",
 'gotaccountlink'          => 'Entrar',
+'userlogin-resetlink'     => 'Olvidates tus detalyos de akseso?',
 'createaccountmail'       => 'por una letra electrónica',
 'userexists'              => 'El nombre que entrates ya se usa.
 Si puede ser, escoge un otro nombre.',
@@ -567,7 +572,8 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar este títůlo de hoja]] en otras hoj
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los rejistros relasyonados]</span>.',
 'userpage-userdoesnotexist-view'   => 'El cuento del usador $1 no está enrejistrado.',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'¡Acórdate que esto es sólo una previsualización y daínda no se registró!'''",
+'previewnote'                      => "¡Akórdate ke esto es sólo una previsualizasion i aínda no se enrejistró!'''
+Los tus trokamientos no se tienen guadrados!",
 'editing'                          => 'Trocando $1',
 'editingsection'                   => 'Trocando $1 (sección)',
 'editingcomment'                   => 'Trocando $1 (kapítůlo)',
@@ -581,17 +587,26 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'hiddencategories'                 => 'Esta hoja es un miembro de {{PLURAL:$1|1 kateggoría escondida|$1 kateggorías escondidas}}:',
 'nocreate-loggedin'                => 'No tienes el permisso de creas hojas nuevas.',
 'permissionserrorstext-withaction' => 'No tienes el permiso para $2, por las {{PLURAL:$1|razón|razones}} venideras:',
+'recreate-moveddeleted-warn'       => "'''Aviso: Estas kriando una oja la kuala fue efassada antes.'''
+Kale ke penses si es menesterozo editar esta oja.
+El enrejistro de efassado i taxireado para esta oja puede ser meldado aki:",
+'moveddeleted-notice'              => "Esta ója fue efassada.
+El ''log'' de efassado i taxireado de la ója es amostrado abasho para dar referensia.",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => "'''Avizo:''' La contenencia de xablon está muy grande.
 Algunos xablones no van á ser comprendidos.",
 'post-expand-template-inclusion-category' => 'Hojas ande la contenencia de xablones está sovrepassada',
+'post-expand-template-argument-warning'   => "'''Aviso:''' Esta oja tiene kuanto menos un kampo enel xablon muy lungo.
+Este o estos kampos no van ser amostrados",
+'post-expand-template-argument-category'  => 'Ojas ke tienen xablones kon parametros no uzados',
 
 # History pages
 'viewpagelogs'           => 'Ver los registros de esta hoja',
 'currentrev'             => "Enderechamiento d'al cavo",
 'currentrev-asof'        => 'Enderechamiento de alcavo á las $1',
 'revisionasof'           => 'Enderechamiento á las $1',
+'revision-info'          => 'Revision en data $1 por $2',
 'previousrevision'       => '← Enderechamiento de antes',
 'nextrevision'           => 'Rêvisión venidera →',
 'currentrevisionlink'    => 'Revisión actual',
@@ -611,7 +626,8 @@ Leyenda: (act) = diferencias con la versión actual,
 'historyempty'           => '(vazío)',
 
 # Revision feed
-'history-feed-title' => 'Îstoria de nderechamientos',
+'history-feed-title'          => 'Îstoria de nderechamientos',
+'history-feed-item-nocomment' => '$1 en $2',
 
 # Revision deletion
 'rev-delundel'               => 'mostra/esconde',
@@ -634,11 +650,12 @@ Leyenda: (act) = diferencias con la versión actual,
 'revertmerge' => 'Apartar',
 
 # Diffs
-'history-title'           => 'Istoria de revisiones para «$1»',
+'history-title'           => 'Istorya de trokamientos para «$1»',
 'difference'              => '(Diferencias entre rêvisiones)',
 'lineno'                  => 'Shurá $1:',
 'compareselectedversions' => 'Comparar versiones escogidas',
 'editundo'                => 'deshaze',
+'diff-multi'              => '(No {{PLURAL:$1|es amostrado un trokamiento intermedio echo|son amostrados $1 trokamientos intermedios echos}} por {{PLURAL:$2|un usador|$2 usadores}})',
 
 # Search results
 'searchresults'                    => 'Resultados de la búsqueda',
@@ -654,6 +671,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'nextn-title'                      => '$1 {{PLURAL:$1|resultado|resultados}} venideros',
 'shown-title'                      => 'Àmostrar $1 {{PLURAL:$1|resultado|resultados}} por hoja',
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-exists'                => 'Egziste una oja yamada "[[:$1]]" en esta viki',
 'searchmenu-new'                   => "'''Crîar la hoja «[[:$1]]» en esta viki!'''",
 'searchhelp-url'                   => 'Help:Ayudo',
 'searchprofile-articles'           => 'Hojas de contènido',
@@ -667,6 +685,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'searchprofile-everything-tooltip' => 'Buscar en todo el contènido (y también hojas de diskusyón)',
 'searchprofile-advanced-tooltip'   => 'Buscar en espacios de nombres particůlares',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 biervo|$2 biervos}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 miembro|$1 miembros}} ({{PLURAL:$2|1 basho-kateggoria|$2 basho-kateggoria}}, {{PLURAL:$3|1 dossia|$3 dossias}})',
 'search-redirect'                  => '(direksión desde $1)',
 'search-section'                   => '(capítůlo $1)',
 'search-suggest'                   => 'Quisites dezir: $1',
@@ -675,6 +694,7 @@ Leyenda: (act) = diferencias con la versión actual,
 'search-interwiki-more'            => '(más)',
 'search-mwsuggest-enabled'         => 'con consejos',
 'search-mwsuggest-disabled'        => 'no ay consejos',
+'searchrelated'                    => 'lisionado',
 'searchall'                        => 'todos',
 'showingresultsheader'             => "{{PLURAL:$5|Resultado '''$1''' de '''$3'''|Resultados '''$1-$2''' de '''$3'''}} para '''$4'''",
 'nonefound'                        => "'''Nota''': Por defecto sólo se busca en algunos espacios de nombre.
@@ -716,6 +736,8 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'yourlanguage'              => 'Lingua:',
 'yournick'                  => 'Firma mueva:',
 'email'                     => 'Letral',
+'prefs-help-email'          => 'El adreso de e-posta es menester para alimpiar la tu parola, si la olvidates',
+'prefs-help-email-others'   => 'Endemas puedes eskojer si keres dar pueder a otros usadores de azer kontakto kon ti por modre de e-posta, a  traverso de un atamiento en tus ojas de usador i de diskusyon.',
 'prefs-signature'           => 'Firma',
 
 # Groups
@@ -740,45 +762,54 @@ Las búsquedas producen más o munco a buscar biervos comunes como «la» o «de
 'action-delete'     => 'efassar esta hoja',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|trocamiento|trocamientos}}',
-'recentchanges'                  => 'Trocamientos freskos',
-'recentchanges-legend'           => 'Opciones encima de los trocamientos frescos',
-'recentchangestext'              => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
-'recentchanges-feed-description' => 'Perseguir los trocamientos más nuevos en el viki en este feed.',
-'recentchanges-label-minor'      => 'Esta es un trocamiento chiquitico',
-'rcnote'                         => "Debaxo {{PLURAL:$1|ay '''1''' trocamiento realizado|están los dal cabo '''$1''' trocamientos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",
-'rclistfrom'                     => 'Mostra los trocamientos nuevos empeçando desde $1',
-'rcshowhideminor'                => '$1 trocamientos chiquiticos',
-'rcshowhidebots'                 => '$1 bots',
-'rcshowhideliu'                  => '$1 empleadores enrējjistrados',
-'rcshowhideanons'                => '$1 empleadores anonimes',
-'rcshowhidemine'                 => '$1 mis ediciones',
-'rclinks'                        => 'Ver los dal cabo $1 trocamientos en los dal cabo $2 días.<br />$3',
-'diff'                           => 'dif',
-'hist'                           => 'îst',
-'hide'                           => 'Esconder',
-'show'                           => 'Àmostrar',
-'minoreditletter'                => 'ch',
-'newpageletter'                  => 'N',
-'boteditletter'                  => 'b',
-'rc-enhanced-expand'             => 'Mostra los detalyos (cale JavaScript)',
-'rc-enhanced-hide'               => 'Guarda los detalyos',
+'nchanges'                        => '$1 {{PLURAL:$1|trocamiento|trocamientos}}',
+'recentchanges'                   => 'Trocamientos freskos',
+'recentchanges-legend'            => 'Opciones encima de los trocamientos frescos',
+'recentchangestext'               => 'Perseguid en esta hoja, los trocamientos de alcabo realizados en la Viki.',
+'recentchanges-feed-description'  => 'Perseguir los trocamientos más nuevos en el viki en este feed.',
+'recentchanges-label-newpage'     => 'Este trokamiento krio una mueva ója',
+'recentchanges-label-minor'       => 'Esta es un trocamiento chiquitico',
+'recentchanges-label-bot'         => 'Este trokamiento fue echo por un bot',
+'recentchanges-label-unpatrolled' => 'Estre trokamiento no esta akavidado',
+'rcnote'                          => "Debaxo {{PLURAL:$1|ay '''1''' trocamiento realizado|están los dal cabo '''$1''' trocamientos realizados}} en  {{PLURAL:$2|el dal cabo día|los dal cabo '''$2''' días}}, hasta el $4, $5.",
+'rcnotefrom'                      => "Debasho se amostran los trokamientos desde '''$2''' (amostrados fina <b>$1</b>)",
+'rclistfrom'                      => 'Mostra los trocamientos nuevos empeçando desde $1',
+'rcshowhideminor'                 => '$1 trocamientos chiquiticos',
+'rcshowhidebots'                  => '$1 bots',
+'rcshowhideliu'                   => '$1 empleadores enrējjistrados',
+'rcshowhideanons'                 => '$1 empleadores anonimes',
+'rcshowhidepatr'                  => '$1 trokamientos akavidados',
+'rcshowhidemine'                  => '$1 mis ediciones',
+'rclinks'                         => 'Ver los dal cabo $1 trocamientos en los dal cabo $2 días.<br />$3',
+'diff'                            => 'dif',
+'hist'                            => 'îst',
+'hide'                            => 'Esconder',
+'show'                            => 'Àmostrar',
+'minoreditletter'                 => 'ch',
+'newpageletter'                   => 'N',
+'boteditletter'                   => 'b',
+'rc-enhanced-expand'              => 'Mostra los detalyos (cale JavaScript)',
+'rc-enhanced-hide'                => 'Guarda los detalyos',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Trocamientos conectados',
-'recentchangeslinked-feed'    => 'Trocamientos conectados',
-'recentchangeslinked-toolbox' => 'Trocamientos relatados',
-'recentchangeslinked-title'   => 'Los trocamientos relacionados con "$1"',
-'recentchangeslinked-summary' => "Esto es la lista de los trocamientos de alcavo de las hojas que relatan á una hoja spēcifik (ou de los miembros de la katēggoría spēcifikada).
+'recentchangeslinked'          => 'Trocamientos conectados',
+'recentchangeslinked-feed'     => 'Trocamientos conectados',
+'recentchangeslinked-toolbox'  => 'Trocamientos relatados',
+'recentchangeslinked-title'    => 'Los trocamientos relacionados con "$1"',
+'recentchangeslinked-noresult' => 'Sin trokamientos en las ójas atadas en la data demandada',
+'recentchangeslinked-summary'  => "Esto es la lista de los trocamientos de alcavo de las hojas que relatan á una hoja spēcifik (ou de los miembros de la katēggoría spēcifikada).
 Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con letras grexas'''.",
-'recentchangeslinked-page'    => 'Nombre de la hoja',
-'recentchangeslinked-to'      => 'Mostra los trocamientos freskos en lugar de la hoja indicada',
+'recentchangeslinked-page'     => 'Nombre de la hoja',
+'recentchangeslinked-to'       => 'Mostra los trocamientos freskos en lugar de la hoja indicada',
 
 # Upload
 'upload'        => 'Suvir una dosya',
 'uploadlogpage' => 'Subidas de arxivos',
 'filedesc'      => 'Somario',
 'uploadedimage' => 'subió «[[$1]]»',
+
+'license'        => 'Lesensia:',
+'license-header' => 'Lesensiamyénto',
 
 # Special:ListFiles
 'listfiles_name' => 'Nombre',
@@ -789,6 +820,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'file-anchor-link'          => 'Archivo',
 'filehist'                  => 'La storia del dosya',
 'filehist-help'             => 'Klika encima de una data/ora para vel el arxivo de esta data.',
+'filehist-revert'           => 'aboltar',
 'filehist-current'          => 'actual',
 'filehist-datetime'         => 'Data/Ora',
 'filehist-thumb'            => 'Minyatura',
@@ -799,6 +831,7 @@ Las hojas en tu [[Special:Watchlist|lista de akavidamiento]] son escritas '''con
 'filehist-comment'          => 'Comentario',
 'imagelinks'                => 'El uso del dosya',
 'linkstoimage'              => '{{PLURAL:$1|La hoja venidera da link|Las hojas venideras dan link}} a este arxivo:',
+'nolinkstoimage'            => 'Dinguna ója tiene atamientos a esta imej',
 'sharedupload'              => 'Este arxivo es de $1 i puede ser usado por otros proyectos.',
 'sharedupload-desc-here'    => 'Esta hoja es de $1 y puede ser usado por otros projetos.
 La descripción en su [$2 hoja de descripción del arxivo] está amostrada debaxo.',
@@ -810,10 +843,13 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Statistics
 'statistics' => 'Estatísticas',
 
+'disambiguationspage' => 'Template:Aklarasion',
+
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|bayt|baytes}}',
 'nmembers'      => '$1 {{PLURAL:$1|miembro|miembros}}',
 'prefixindex'   => 'Todas las hojas con prefixo',
+'usercreated'   => '{{GENDER:$3|Enrejistrado|Enrejistrada}} el $1 a las $2',
 'newpages'      => 'Hojas muevas',
 'ancientpages'  => 'Artikolos mas viejos',
 'move'          => 'taxirea',
@@ -846,7 +882,8 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'special-categories-sort-abc'   => 'ordenar alefbeticamente',
 
 # Special:LinkSearch
-'linksearch' => 'Linkes eksternos',
+'linksearch'      => 'Linkes eksternos',
+'linksearch-line' => 'Atamiento para $1 en la ója $2',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Registro de creación de usuarios',
@@ -860,6 +897,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 # Watchlist
 'watchlist'         => 'Mi lista de escogidas',
 'mywatchlist'       => 'Mi lista de akavidamientos',
+'watchlistfor2'     => 'Para $1 $2',
 'addedwatchtext'    => "La hoja «[[:$1]]» fue ajustada a tu [[Special:Watchlist|lista de escogidas]]. Los trocamientos venideros en esta hoja i en tu hoja de diskussión associada se van indicar aí, i la hoja va aparecer '''gordo''' en la hoja de [[Special:RecentChanges|trocamientos freskos]] para hazerla más kolay de detektar.
 
 Cuando queres eliminar la hoja de tu lista de escogidas, piza «Dexar de cudiar» en el menú.",
@@ -882,6 +920,7 @@ en forma turable, ansí como todo su istoria.
 Si puede ser, confirma que de verdad queres hazer esto, que estás entendiendo las
 resultados, i que lo estás haziendo de acorddo con las [[{{MediaWiki:Policy-url}}|Políticas]].',
 'actioncomplete'        => 'Aksion kompleta',
+'actionfailed'          => 'Aksiyon sin reushitá',
 'deletedtext'           => '"$1" fue efassado.
 Mira $2 para un registro de los efassados nuevos.',
 'dellogpage'            => 'Registro de efassados',
@@ -940,9 +979,12 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 
 'sp-contributions-newbies'  => 'Mostrar solo las ajustamientos de los usuarios nuevos',
 'sp-contributions-blocklog' => 'registro de bloqueos',
-'sp-contributions-talk'     => 'Diścutir',
+'sp-contributions-uploads'  => 'suvidas',
+'sp-contributions-logs'     => 'enrejistros',
+'sp-contributions-talk'     => 'Diskusyón',
 'sp-contributions-search'   => 'Buscar ajustamientos',
 'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
+'sp-contributions-toponly'  => "Amostrar solo revisiones d'alkavo",
 'sp-contributions-submit'   => 'Buscar',
 
 # What links here
@@ -950,15 +992,17 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 'whatlinkshere-title'      => 'Hojas que dan link a "$1"',
 'whatlinkshere-page'       => 'Hoja:',
 'linkshere'                => "Las hojas venideras dan link a '''[[:$1]]''':",
+'nolinkshere'              => "Dinguna ója tiene atamientos kon '''[[:$1]]'''",
 'isredirect'               => 'Hoja redirigida',
 'istemplate'               => 'inclusión',
-'isimage'                  => 'Link del image',
+'isimage'                  => 'Atamiento de la dossia',
 'whatlinkshere-prev'       => '{{PLURAL:$1|de antes|de antes $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|venidera|venideras $1}}',
 'whatlinkshere-links'      => '← linkes',
 'whatlinkshere-hideredirs' => '$1 redirecciones',
 'whatlinkshere-hidetrans'  => '$1 inclusiones',
 'whatlinkshere-hidelinks'  => '$1 linkes',
+'whatlinkshere-hideimages' => '$1 atamientos a imejes',
 'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
@@ -1018,7 +1062,8 @@ Si puede ser, escoge otro nombre.',
 'allmessagescurrent' => 'Teksto aktual',
 
 # Thumbnails
-'thumbnail-more' => 'Engrandece',
+'thumbnail-more'  => 'Engrandece',
+'thumbnail_error' => 'Yerro kriando la imej chika: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tu hoja de usador',
@@ -1188,6 +1233,9 @@ Los otros campos se van a guardar por defecto.
 'watchlisttools-edit' => 'Ver i trocar tu lista de escogidas',
 'watchlisttools-raw'  => 'Troca tu lista de escogidas en crudo',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Aviso:\'\'\' la klave primaria para ordenamiento "$2" anula la primera "$1"',
+
 # Special:Version
 'version'                  => 'Versión',
 'version-specialpages'     => 'Pajinas espesiales',
@@ -1206,6 +1254,16 @@ Los otros campos se van a guardar por defecto.
 # Special:SpecialPages
 'specialpages'             => 'Hojas especiales',
 'specialpages-group-users' => 'Usadores y derechos',
+
+# External image whitelist
+'external_image_whitelist' => ' #Desha esta linea ansina komo esta<pre>
+#Mete partes de frasas (solo la parte ke va entre los //) enbasho
+#Eyas van ser komparadas kon las URLs de las dossias ekternas (hotlinked)
+#Akeyos iguales van ser amostrados komo una imej; si no, solo el su atamientoque 
+#Las lineas ke empiezan kor «#» son konsideradas komentarios
+#Esta no aze diferente el senso se la letra
+
+#Mete todas las partes de frasas regex enriva de esta linea. Desha esta ansina komo se topa</pre>',
 
 # Special:Tags
 'tag-filter'        => 'Filtro de [[Special:Tags|etiquetas]]:',

@@ -91,7 +91,7 @@ $messages = array(
 'tog-editsection'             => 'Hər bir bölmə üçün [redaktə]ni mümkün et',
 'tog-editsectiononrightclick' => 'Bölmələrin redaktəsini başlıqların üzərində sağ klik etməklə mümkün et (JavaScript)',
 'tog-showtoc'                 => 'Mündəricat siyahısını göstər (3 başlıqdan artıq olan səhifələrdə)',
-'tog-rememberpassword'        => 'Məni bu kompüterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
+'tog-rememberpassword'        => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'tog-watchcreations'          => 'Yaratdığım səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchdefault'            => 'Redaktə etdiyim səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchmoves'              => 'Adlarını dəyişdiyim səhifələri izlədiyim səhifələrə əlavə et',
@@ -207,7 +207,7 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about'         => 'İzah',
+'about'         => 'Haqqında',
 'article'       => 'Mündəricat',
 'newwindow'     => '(yeni pəncərədə açılır)',
 'cancel'        => 'Ləğv et',
@@ -481,7 +481,7 @@ Hesabınız yaradıldı.
 'yourname'                   => 'İstifadəçi adı',
 'yourpassword'               => 'Parol:',
 'yourpasswordagain'          => 'Parolu təkrar yazın:',
-'remembermypassword'         => 'Məni bu kompüterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
+'remembermypassword'         => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'securelogin-stick-https'    => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname'             => 'Sizin domain',
 'externaldberror'            => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
@@ -766,8 +766,11 @@ $3 tərəfindən verilən səbəb ''$2''",
 'last'                   => 'son',
 'page_first'             => 'birinci',
 'page_last'              => 'sonuncu',
-'histlegend'             => "Fərqə bax: müqayisə etmək istədiyiniz versiyaların yanındakı dairələri işarələyin və \"Enter\"ə və ya \"müqayisə et\" düyməsinə basın.<br />
-Açıqlama: '''(hh)''' — hal-hazırkı versiya ilə aradakı fərq, '''(son)''' — əvvəlki versiya ilə aradakı fərq, '''k''' — kiçik redaktə.",
+'histlegend'             => "<div id=\"histlegend\"><span style=\"white-space:nowrap;\">Aşağıda sadalanan hər hansı bir versiyası görmək üçün, tarixinin üzərinə tıklayın.</span> <span style=\"white-space:nowrap;\">Daha çox kömək üçün, [[Kömək:Səhifə keçmişi|səhifə keçmişi]] səhifəsinə baxın.</span><br /><span style=\"white-space:nowrap;\">Xarici vasitələr: <!-- [http://toolserver.org/~tparis/articleinfo/index.php?article={{FULLPAGENAMEE}}&lang=tr&wiki=wikipedia Təftiş keçmişinin statistikası] '''·'''</span> <span style=\"white-space:nowrap;\"> -->[http://wikipedia.ramselehof.de/wikiblame.php?lang=tr&article={{FULLPAGENAMEE}} Təftiş keçmişini axtarmaq] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=tr&wikifam=.wikipedia.org&grouped=on&page={{FULLPAGENAMEE}} Töhfəsi olanlar] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=trwiki_p&titles={{FULLPAGENAMEE}} İzləyənlərin sayı] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/tr/latest/{{FULLPAGENAMEE}} Səhifəyə baxılma statistikası]</span></div>
+----
+Fərqləri seçmə və göstərmə: müqayisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə (enter+a) və ya \"müqayisə et\" düyməsinə vurun.
+
+Açıqlama: '''(hh)''' = hal-hazırkı versiya ilə olan fərqlər, '''(son)''' = əvvəlki versiya ilə olan fərqlər, '''k''' = kiçik redaktələr.</span>",
 'history-fieldset-title' => 'Tarixçəni nəzərdən keçir',
 'history-show-deleted'   => 'Yalnız silinənlər',
 'histfirst'              => 'Ən əvvəlki',
@@ -1273,9 +1276,9 @@ Bu səhifənin silinmə və addəyişmə jurnalı aşağıda göstərilmişdir:"
 Əvvəllər yüklənmiş fayllara baxmaq üçün [[Special:FileList|yüklənmiş fayllar siyahısına]] keçin, həmçinin (təkrar) yüklənmiş fayllara [[Special:Log/upload|yükləmə jurnalında]], silinmiş fayllara [[Special:Log/delete|silinmə jurnalında]] baxa bilərsiniz.
 
 Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifadə edin:
-* Faylın tam versiyasını yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''';
-* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></tt>''';
-* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
+* Faylın tam versiyasını yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''';
+* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></code>''';
+* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''.",
 'upload-permitted'           => 'İcazə verilən fayl tipləri: $1.',
 'upload-preferred'           => 'İcazə verilən fayl tipləri: $1.',
 'upload-prohibited'          => 'İcazə verilməyən fayl tipləri: $1.',
@@ -1309,9 +1312,9 @@ Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifad
 'tmp-write-error'            => 'Müvəqqəti fayl yazılarkən xəta.',
 'largefileserver'            => 'Faylın ölçüsü yol verilən həddi aşır.',
 'emptyfile'                  => 'Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.',
-'fileexists'                 => "Yükləmək istədiyiniz adda fayl mövcuddur.
-Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
-[[$1|thumb]]",
+'fileexists'                 => 'Yükləmək istədiyiniz adda fayl mövcuddur.
+Lütfən <strong>[[:$1]]</strong> keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
+[[$1|thumb]]',
 'uploadwarning'              => 'Yükləmə xəbərdarlığı',
 'savefile'                   => 'Faylı qeyd et',
 'uploadedimage'              => 'yükləndi "[[$1]]"',
@@ -1453,7 +1456,13 @@ $1',
 'filedelete-reason-otherlist' => 'Başqa səbəb',
 'filedelete-reason-dropdown'  => '*Əsas silmə səbəbi
 ** Müəllif hüququ pozuntusu
-** Dublikat fayl',
+** Dublikat fayl
+** Keyfiyyətsiz şəkil
+** İstifadəsiz fayl
+** Qeyri-ensiklopedik şəxs
+** Lisenziyasız fayl
+** Azad şəkillə əvəz olundu
+** Müəllif istəyi',
 'filedelete-edit-reasonlist'  => 'Silmə səbəblərini redaktə et',
 
 # MIME search
@@ -1654,8 +1663,8 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-rights'               => 'Hüquqlar',
 'listgrouprights-helppage'             => 'Help:Qrup hüquqları',
 'listgrouprights-members'              => '(üzvləri)',
-'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup'             => '{{PLURAL:$2|Qrupu}} əlavə et: $1',
 'listgrouprights-removegroup'          => '{{PLURAL:$2|Qrupu}} sil: $1',
 'listgrouprights-addgroup-all'         => 'Bütün qrupları əlavə et',

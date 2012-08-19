@@ -1683,9 +1683,9 @@ Log penghapusan dan pemindahan laman ini adalah sebagai berikut:",
 Untuk menampilkan atau mencari berkas yang sebelumnya dimuat, gunakan [[Special:FileList|daftar berkas]]. Pengunggahan (ulang) juga tercatat dalam [[Special:Log/upload|log pengunggahan]], sementara penghapusan tercatat dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menampilkan atau menyertakan berkas di dalam suatu halaman, gunakan pranala dengan salah satu format di bawah ini:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' untuk menampilkan berkas dalam ukuran aslinya
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menampilkan berkas dengan lebar 200px dalam sebuah kotak di kiri halaman dengan 'teks alternatif' sebagai keterangan gambar
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' sebagai pranala langsung ke berkas yang dimaksud tanpa menampilkan berkas tersebut melalui wiki",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></code>''' untuk menampilkan berkas dalam ukuran aslinya
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|teks alternatif]]</nowiki></code>''' untuk menampilkan berkas dengan lebar 200px dalam sebuah kotak di kiri halaman dengan 'teks alternatif' sebagai keterangan gambar
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></code>''' sebagai pranala langsung ke berkas yang dimaksud tanpa menampilkan berkas tersebut melalui wiki",
 'upload-permitted'            => 'Jenis berkas yang diperbolehkan: $1.',
 'upload-preferred'            => 'Jenis berkas yang disarankan: $1.',
 'upload-prohibited'           => 'Jenis berkas yang dilarang: $1.',
@@ -1729,18 +1729,18 @@ Lihat [[Special:NewFiles|galeri berkas baru]] untuk tampilan visual.',
 'largefileserver'             => 'Berkas ini lebih besar dari pada yang diizinkan server.',
 'emptyfile'                   => 'Berkas yang Anda muatkan kelihatannya kosong. Hal ini mungkin disebabkan karena adanya kesalahan ketik pada nama berkas. Silakan pastikan apakah Anda benar-benar ingin memuatkan berkas ini.',
 'windows-nonascii-filename'   => 'Wiki ini tidak mendukung nama berkas dengan karakter istimewa.',
-'fileexists'                  => "Suatu berkas dengan nama tersebut telah ada, harap periksa '''<tt>[[:$1]]</tt>''' jika Anda tidak yakin untuk mengubahnya.
-[[$1|thumb]]",
-'filepageexists'              => "Halaman deskripsi untuk berkas ini telah dibuat di '''<tt>[[:$1]]</tt>''', tapi saat ini tak ditemukan berkas dengan nama tersebut. Ringkasan yang Anda masukkan tidak akan tampil pada halaman deskripsi. Untuk memunculkannya, Anda perlu untuk menyuntingnya secara manual.
-[[$1|thumb]]",
-'fileexists-extension'        => "Berkas dengan nama serupa telah ada: [[$2|thumb]]
-* Nama berkas yang akan dimuat: '''<tt>[[:$1]]</tt>'''
-* Nama berkas yang telah ada: '''<tt>[[:$2]]</tt>'''
-Mohon gunakan nama yang berbeda.",
+'fileexists'                  => 'Suatu berkas dengan nama tersebut telah ada, harap periksa <strong>[[:$1]]</strong> jika Anda tidak yakin untuk mengubahnya.
+[[$1|thumb]]',
+'filepageexists'              => 'Halaman deskripsi untuk berkas ini telah dibuat di <strong>[[:$1]]</strong>, tapi saat ini tak ditemukan berkas dengan nama tersebut. Ringkasan yang Anda masukkan tidak akan tampil pada halaman deskripsi. Untuk memunculkannya, Anda perlu untuk menyuntingnya secara manual.
+[[$1|thumb]]',
+'fileexists-extension'        => 'Berkas dengan nama serupa telah ada: [[$2|thumb]]
+* Nama berkas yang akan dimuat: <strong>[[:$1]]</strong>
+* Nama berkas yang telah ada: <strong>[[:$2]]</strong>
+Mohon gunakan nama yang berbeda.',
 'fileexists-thumbnail-yes'    => "Berkas ini tampaknya merupakan gambar yang ukurannya diperkecil ''(miniatur)''. [[$1|thumb]]
-Harap periksa berkas '''<tt>[[:$1]]</tt>''' tersebut.
+Harap periksa berkas <strong>[[:$1]]</strong> tersebut.
 Jika berkas tersebut memang merupakan gambar dalam ukuran aslinya, Anda tidak perlu untuk memuat kembali miniatur lainnya.",
-'file-thumbnail-no'           => "Nama berkas dimulai dengan '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Nama berkas dimulai dengan <strong>$1</strong>.
 Tampaknya berkas ini merupakan gambar dengan ukuran diperkecil ''(miniatur)''.
 Jika Anda memiliki versi resolusi penuh dari gambar ini, harap muatkan berkas tersebut. Jika tidak, harap ubah nama berkas ini.",
 'fileexists-forbidden'        => 'Suatu berkas dengan nama ini telah ada dan tak dapat ditimpa.
@@ -1972,7 +1972,7 @@ Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 
 # MIME search
 'mimesearch'         => 'Pencarian MIME',
-'mimesearch-summary' => 'Halaman ini menyediakan fasilitas menyaring berkas berdasarkan tipe MIME nya. Masukkan: contenttype/subtype, misalnya <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Halaman ini menyediakan fasilitas menyaring berkas berdasarkan tipe MIME nya. Masukkan: contenttype/subtype, misalnya <code>image/jpeg</code>.',
 'mimetype'           => 'Tipe MIME:',
 'download'           => 'unduh',
 
@@ -2166,7 +2166,7 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-ok'    => 'Cari',
 'linksearch-text'  => 'Kartu liar seperti "*.wikipedia.org" dapat digunakan.
 Membutuhkan sedikitnya satu ranah tingkat atas, misalnya "*.org".<br />
-Protokol yang didukung: <tt>$1</tt> (jangan tambahkan dalam pencarian Anda)',
+Protokol yang didukung: <code>$1</code> (jangan tambahkan dalam pencarian Anda)',
 'linksearch-line'  => '$1 memiliki pranala dari $2',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 

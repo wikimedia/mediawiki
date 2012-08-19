@@ -12,6 +12,7 @@
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
+ * @author Amahoney
  * @author Amire80
  * @author AnakngAraw
  * @author Ans
@@ -94,6 +95,7 @@
  * @author Rancher
  * @author Raymond
  * @author Robby
+ * @author Rotemliss
  * @author Ryan Schmidt
  * @author SPQRobin
  * @author Sanbec
@@ -496,7 +498,7 @@ For explanation of 'lock' see [http://en.wikipedia.org/wiki/Lock_%28computer_sci
 {{Identical|Copyright}}',
 'currentevents'        => 'Standard link in the sidebar, for news. See also {{msg|currentevents-url}} for the link url.',
 'currentevents-url'    => "Target page of ''{{Mediawiki:currentevents}}'' in the sidebar. See also {{msg|currentevents}}.
-{{doc-important|Do not translate <tt>Project:</tt> part.}}",
+{{doc-important|Do not translate the \"<tt>Project:</tt>\" part.}}",
 'disclaimers'          => 'Used as display name for the link to [[{{MediaWiki:Disclaimerpage}}]] shown at the bottom of every page on the wiki. Example [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].',
 'disclaimerpage'       => 'Used as page for that contains the site disclaimer. Used at the bottom of every page on the wiki. Example: [[{{MediaWiki:Disclaimerpage}}|{{MediaWiki:Disclaimers}}]].
 {{doc-important|Do not change the "<tt>Project:</tt>" part.}}',
@@ -731,6 +733,7 @@ It is also used on the top of the page for logged out users, where it appears ne
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
+'userlogin-resetlink'        => 'Used on the login page.',
 'createaccountmail'          => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason'        => '{{Identical|Reason}}',
 'createaccounterror'         => 'Parameters:
@@ -822,7 +825,8 @@ Used on [[Special:ResetPass]]',
 {{Identical|Reset password}}',
 'passwordreset-text'               => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend'             => '{{Identical|Reset password}}',
-'passwordreset-pretext'            => 'Parameters:
+'passwordreset-pretext'            => 'These instructions are shown on the password reset dialogue, which can, in principle, take the user\'s email address as well as, or instead of, their username. This text displays above one or more fields, at least one of which needs to be completed, and the message does not know which routes are available, so it needs to refer to some vague noun rather than specifically "username".
+"One of the pieces of data" means "an info"/"a datum" (probably to be translatea with a singular noun in your language if available). Parameters:
 * $1 is the number of password reset routes. This is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username'           => '{{Identical|Username}}',
 'passwordreset-domain'             => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
@@ -843,9 +847,9 @@ Parameters:
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
-'passwordreset-emailelement'       => "This is a body of a reminder email to allow them into the system with a new password.
-$1 will be the user's login name.
-$2 will be the temporary password given by the system.",
+'passwordreset-emailelement'       => "This is a body of a reminder email to allow them into the system with a new password. Parameters:
+* $1 will be the user's login name. This parameter can be used for GENDER.
+* $2 will be the temporary password given by the system.",
 'passwordreset-emailerror-capture' => 'Error message displayed when sending an e-mail fails. Parameters:
 * $1 is the name of a user who was supposed to get the e-mail.',
 
@@ -1003,7 +1007,7 @@ This text will be shown below upload forms. It will default to the contents of e
 'sectioneditnotsupported-title'    => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text'     => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
-* $2 is one of the action-* messages (for example {{msg|action-edit}}).
+* $2 is one of the action-* messages (for example {{msg|action-edit}}) or other such messages tagged with {{tl|doc-action}} in their documentation.
 
 Please report at [[Support]] if you are unable to properly translate this message. Also see [[bugzilla:14246]]',
 'recreate-moveddeleted-warn'       => 'Warning shown when creating a page which has already been deleted. See for example [[Test]].',
@@ -1088,6 +1092,8 @@ Used in History and [[Special:Contributions]].',
 * '''$4''' - time.",
 
 # Revision deletion
+'rev-deleted-comment'         => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
+*{{msg-mw|revdelete-hide-comment}}',
 'rev-deleted-user-contribs'   => 'Part of revision deletion.',
 'rev-deleted-text-unhide'     => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
 * $1 is a HTML link to the diff',
@@ -1201,7 +1207,9 @@ Parameters:
 [[File:RevDelete Special-RevisionDelete (r60428).png|frame|center|Screenshot of the interface]]',
 
 # Suppression log
-'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
+'suppressionlog'     => '{{doc-logpage}}
+
+Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
 'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # History merging
@@ -1218,7 +1226,8 @@ Parameters:
 'mergehistory-reason'           => '{{Identical|Reason}}',
 
 # Merge log
-'mergelog'           => 'This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
+'mergelog'           => '{{doc-logpage}}
+This is the name of a log of merge actions done on [[Special:MergeHistory]]. This special page and this log is not enabled by default.',
 'pagemerge-logentry' => "This log message is used in a merge log entry.
 
 *Parameter $1 is the page name of the source of the content to be merged.
@@ -1251,7 +1260,9 @@ This message has sometimes a tooltip {{msg-mw|tooltip-undo}}',
 * $2 is the number of users that were found, which was limited at 100.",
 
 # Search results
-'searchresults'                  => '{{Identical|Search results}}',
+'searchresults'                  => 'This is the title of the page that contains the results of a search.
+
+{{Identical|Search results}}',
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
 'notitlematches'                 => 'Header of results page after a search for a title for which no page exists',
 'textmatches'                    => 'When displaying search results',
@@ -1618,7 +1629,8 @@ It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
-* {{msg|right-suppressrevision|pl=yes}}',
+* {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}',
 'right-deletedhistory'        => '{{doc-right|deletedhistory}}',
 'right-deletedtext'           => '{{doc-right|deletedtext}}',
 'right-browsearchive'         => '{{doc-right|browsearchive}}',
@@ -1630,6 +1642,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-suppressionlog'        => '{{doc-right|suppressionlog}}
 This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
@@ -1638,6 +1651,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-block'                 => '{{doc-right|block}}',
 'right-blockemail'            => '{{doc-right|blockemail}}',
@@ -1648,6 +1662,7 @@ It can be given to the group {{msg|group-suppress|pl=yes}}, although that group 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
+* {{msg|right-deletelogentry|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
 'right-ipblock-exempt'        => '{{doc-right|ipblock-exempt}}
 This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
@@ -1680,7 +1695,8 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-passwordreset'         => '{{doc-right|passwordreset}}',
 
 # User rights log
-'rightslog'                  => 'In [[Special:Log]]',
+'rightslog'                  => '{{doc-logpage}}
+In [[Special:Log]]',
 'rightslogtext'              => 'Text in [[Special:Log/rights]].',
 'rightslogentry'             => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a bureaucrat changes the user groups for a user.
 
@@ -1763,10 +1779,10 @@ Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
  Example: "\'\'{{int:rcnote/en|50|7||24 January 2008|14:48}}\'\'"',
 'rcnotefrom'                      => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time. The corrosponding message is {{msg-mw|Rclistfrom}} (without split of date and time, [[bugzilla:19104|Bug 19104]]).
 
-Parameter $1 is the maximum number of changes that are displayed.
-Parameter $2 is a date and time.
-Parameter $3 is a date.
-Parameter $4 is a time.',
+* Parameter $1 is the maximum number of changes that are displayed.
+* Parameter $2 is a date and time. (alternative to $3 and $4)
+* Parameter $3 is a date. (alternative to $1)
+* Parameter $4 is a time. (alternative to $1)',
 'rclistfrom'                      => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description (without split of date and time, [[bugzilla:19104|Bug 19104]]). The corrosponding message is {{msg-mw|Rcnotefrom}}.',
 'rcshowhideminor'                 => "Option text in [[Special:RecentChanges]]. Parameters:
 * $1 is the 'show/hide' command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}.",
@@ -1829,7 +1845,8 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted'            => 'Used in [[Special:Upload]].',
 'upload-preferred'            => 'Used in [[Special:Upload]].',
 'upload-prohibited'           => 'Used in [[Special:Upload]].',
-'uploadlogpage'               => 'Page title of [[Special:Log/upload]].',
+'uploadlogpage'               => '{{doc-logpage}}
+Page title of [[Special:Log/upload]].',
 'filename'                    => '{{Identical|Filename}}',
 'filedesc'                    => '{{Identical|Summary}}',
 'fileuploadsummary'           => '{{Identical|Summary}}',
@@ -1996,7 +2013,7 @@ Used on [[Special:UploadWizard]].',
 'http-invalid-scheme' => 'The message appears in the Mediawiki code as follows:
 
  if ( $this->parsedUrl[\'scheme\'] != \'http\' ) {
-    $this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
+	$this->status->fatal( \'http-invalid-scheme\', $this->parsedUrl[\'scheme\'] );
  }
 
 Siebrand think this has to do with allowing MediaWiki to fetch remote URLs, and in that not allowing anything but "http://" request. So if this for example is "irc://" or "https://", $1 would be "irc" or "https" respectively.
@@ -2218,7 +2235,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 
 * '''Note:''' Do not change the link [[MediaWiki:Disambiguationspage]], even because it is listed as problematic. Be sure the \"D\" is in uppercase, so not \"d\".
 
-* '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as diambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of diambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
+* '''Background information:''' Beyond telling about links going to disambiguation pages, that they are generally bad, it should explain which pages in the article namespace are seen as disambiguations: [[MediaWiki:Disambiguationspage]] usually holds a list of disambiguation templates of the local wiki. Pages linking to one of them (by transclusion) will count as disambiguation pages. Pages linking to these disambiguation pages, instead to the disambiguated article itself, are listed on [[:Special:Disambiguations]].",
 
 'doubleredirects'                   => 'Name of [[Special:DoubleRedirects]] displayed in [[Special:SpecialPages]]',
 'doubleredirectstext'               => 'Shown on top of [[Special:Doubleredirects]]',
@@ -2330,7 +2347,8 @@ The title is {{msg-mw|nopagetitle}}.',
 'specialloguserlabel'  => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions \'\'performed\'\' by the specified user.  "Carried out" and "done" are possible alternatives for "performed".',
 'speciallogtitlelabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.',
 'log'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
-'all-logs-page'        => 'Title of [[Special:Log]].',
+'all-logs-page'        => '{{doc-logpage}}
+Title of [[Special:Log]].',
 'alllogstext'          => 'Header of [[Special:Log]]',
 'log-title-wildcard'   => '* Appears in: [[Special:Log]]
 * Description: A check box to enable prefix search option',
@@ -2425,7 +2443,9 @@ You can apparently use 'URL' instead of 'hostname'.",
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
 # Special:Log/newusers
-'newuserlogpage'     => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].',
+'newuserlogpage'     => '{{doc-logpage}}
+
+Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in [[Special:RecentChanges]].',
 'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 
 # Special:ListGroupRights
@@ -2585,7 +2605,8 @@ $1 is the <b>approximate</b> number of revisions that the page has, the message 
 'deletedtext'            => 'Parameters:
 * $1 is a page that was deleted
 * $2 is {{msg-mw|deletionlog}}',
-'dellogpage'             => 'The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
+'dellogpage'             => '{{doc-logpage}}
+The name of the deletion log. Used as heading on [[Special:Log/delete]] and in the drop down menu for selecting logs on [[Special:Log]].
 
 {{Identical|Deletion log}}',
 'dellogpagetext'         => 'Text in [[Special:Log/delete]].',
@@ -2632,7 +2653,8 @@ In other cases the message {{msg-mw|revertpage}} is used.',
 {{Identical|Rollback}}',
 
 # Protect
-'protectlogpage'              => 'Title of [[Special:Log/protect]].',
+'protectlogpage'              => '{{doc-logpage}}
+Title of [[Special:Log/protect]].',
 'protectlogtext'              => 'Text in [[Special:Log/protect]].',
 'protectedarticle'            => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
 'modifiedarticleprotection'   => 'Text describing an action on [[Special:Log]]. $1 is a page title.',
@@ -2680,11 +2702,9 @@ This message was something like "unlock move protection" in the past.',
 <tt><nowiki>* Groupname</nowiki></tt> - defines a new group<br />
 <tt><nowiki>** Reason</nowiki></tt> - defines a reason in this group',
 'protect-edit-reasonlist'     => 'Shown beneath the page protection form on the right side. It is a link to [[MediaWiki:Protect-dropdown]]. See also {{msg|Delete-edit-reasonlist}} and {{msg|Ipb-edit-dropdown}}.',
-'protect-expiry-options'      => "* Description: Options for the duration of the page protection.
-* <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.
-* Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.
+'protect-expiry-options'      => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
 
-{{Identical|Infinite}}",
+Options for the duration of the page protection. Example: See e.g. [[MediaWiki:Protect-expiry-options/nl]] if you still don't know how to do it.",
 'restriction-type'            => 'Used on [[Special:ProtectedPages]]. The text next to a drop-down box. See [[mw:Manual:Administrators|MediaWiki Manual]] for more information on protection.',
 'restriction-level'           => 'Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. The text next to a drop-down box. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.',
 'minimum-size'                => 'Used in [[Special:Protectedpages]] as a pair of radio buttons, with {{msg-mw|Maximum-size}}. There is an input box to specify the minimum bites of the projected pages listed.',
@@ -2860,15 +2880,14 @@ Example line:
 'ipbenableautoblock'          => '{{Identical|Automatically block ...}}',
 'ipbsubmit'                   => '{{Identical|Block this user}}',
 'ipbother'                    => '{{Identical|Other time}}',
-'ipboptions'                  => "* Description: Options for the duration of the block.
-* <font color=\"red\">Be careful:</font> '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.
-* Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.
+'ipboptions'                  => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
 
-{{Identical|Infinite}}",
+Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.",
 'ipbotheroption'              => '{{Identical|Other}}',
 'ipbotherreason'              => '{{Identical|Other/additional reason}}',
 'ipbhidename'                 => 'This is the label for a checkbox in the user block form on [[Special:Block]].',
 'ipbwatchuser'                => 'This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user',
+'ipb-disableusertalk'         => '{{doc-singularthey}}',
 'ipb-change-block'            => 'Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg|ipb-needreblock}}.',
 'badipaddress'                => 'An error message shown when one entered an invalid IP address in blocking page.',
 'blockipsuccesstext'          => '<nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is supported.',
@@ -2923,7 +2942,9 @@ Usage:
 'emaillink'                   => 'Used as display name for a link to send an e-mail to a user in the user tool links. Example: "(Talk | contribs | block | send e-mail)".
 
 {{Identical|E-mail}}',
-'blocklogpage'                => "The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[Special:Log]] pages and in the action links of Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
+'blocklogpage'                => "{{doc-logpage}}
+
+The page name of [[Special:Log/block]]. Also appears in the drop down menu of [[Special:Log]] pages and in the action links of Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").
 
 {{Identical|Block log}}",
 'blocklog-showlog'            => 'Parameters:
@@ -2951,6 +2972,7 @@ See also {{msg-mw|Blocklistline}}.',
 'ipb_already_blocked'         => '{{Identical|$1 is already blocked}}',
 'ipb-otherblocks-header'      => '[[File:Special.Block with other blocks from GlobalBlocking and TorBlocks.png|thumb|Example]]
 Used on [[Special:Block]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks',
+'unblock-hideuser'            => '{{doc-singularthey}}',
 'blockme'                     => 'The page title of [[Special:Blockme]], a feature which is disabled by default.',
 'proxyblocksuccess'           => '{{Identical|Done}}',
 'sorbs'                       => '{{optional}}',
@@ -3010,7 +3032,8 @@ See also {{msg-mw|Movepagetext-noredirectfixer|notext=1}}',
 'move-subpages'                => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
 'move-talk-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any talk subpages will be moved with the talk page to a new title.',
 'movepage-max-pages'           => 'PROBABLY (A GUESS): when moving a page, you can select an option of moving its subpages, but there is a maximum that can be moved automatically.',
-'movelogpage'                  => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
+'movelogpage'                  => '{{doc-logpage}}
+Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
 'movelogpagetext'              => "Text on the special page 'Move log'.",
 'movesubpage'                  => "This is a section header on [[Special:MovePage]], below is a list of subpages.
 Parameters:
@@ -3112,7 +3135,7 @@ See also:
 * {{msg-mw|import-error-edit}}',
 
 # Import log
-'importlogpage'          => '',
+'importlogpage'          => '{{doc-logpage}}',
 'importlogpagetext'      => 'This text appears at the top of the [//translatewiki.net/w/i.php?title=Special:Log&type=import import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
@@ -3326,7 +3349,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'markedaspatrolledtext' => '{{Identical|Markedaspatrolled}}',
 
 # Patrol log
-'patrol-log-page'      => 'Name of log.',
+'patrol-log-page'      => '{{doc-logpage}}',
 'patrol-log-header'    => 'Text that appears above the log entries on the [[Special:log|patrol log]].',
 'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
 

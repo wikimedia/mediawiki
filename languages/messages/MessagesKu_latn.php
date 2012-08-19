@@ -1087,16 +1087,16 @@ Format {{PLURAL:$3|yê tê|yên tên}} xwestin {{PLURAL:$3|ev e|ev in}}: $2.',
 'unknown-error'           => 'Çewtiyeke nenas pêk hat.',
 'large-file'              => 'Mezinbûna pelê bila ji $1 ne mezintir be; ev pel $2 e.',
 'emptyfile'               => "Data'ya barkirî vala ye. Sedemê valabûnê belkî şaşnivîsek di navê data'yê da ye. Xêra xwe seke, ku tu rast dixazê vê data'yê barbikê.",
-'fileexists'              => "Datayek bi vê navê berê heye.
+'fileexists'              => 'Datayek bi vê navê berê heye.
 Eger tu niha li „Tomarbike“ xê, ew wêneyê kevin ê here û wêneyê te ê were barkirin di bin wê navê.
-Di bin '''<tt>[[:$1]]</tt>''' du dikarî sekê, ku di dixwazê wê wêneyê biguherînê.
+Di bin <strong>[[:$1]]</strong> du dikarî sekê, ku di dixwazê wê wêneyê biguherînê.
 Eger tu naxazê, xêra xwe li „Betal“ xe.
-[[$1|thumb]]",
-'fileexists-extension'    => "Datayek wek vê navê berê heye: [[$2|thumb]]
-* Navî datayê yê tê barkirin: '''<tt>[[:$1]]</tt>'''
-* Navî datayê yê berê heyê: '''<tt>[[:$2]]</tt>'''
-Xêra xwe navekî din bibîne.",
-'file-thumbnail-no'       => "Navî vê datayê bi '''<tt>$1</tt>''' destpêdike. Ev dibêje ku ev wêneyekî çûçik e ''(thumbnail)''. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.",
+[[$1|thumb]]',
+'fileexists-extension'    => 'Datayek wek vê navê berê heye: [[$2|thumb]]
+* Navî datayê yê tê barkirin: <strong>[[:$1]]</strong>
+* Navî datayê yê berê heyê: <strong>[[:$2]]</strong>
+Xêra xwe navekî din bibîne.',
+'file-thumbnail-no'       => "Navî vê datayê bi <strong>$1</strong> destpêdike. Ev dibêje ku ev wêneyekî çûçik e ''(thumbnail)''. Xêra xwe seke, ku belkî versyonekî mezin yê vê wêneyê li cem te heye û wê wêneyê mezintir di bin navî orîjînal da barbike.",
 'fileexists-forbidden'    => 'Medyayek bi vê navî heye; xêra xwe şonda here û vê medyayê bi navekî din barbike.
 [[File:$1|thumb|center|$1]]',
 'uploadwarning'           => 'Hişyariya barkirinê',
@@ -1339,7 +1339,7 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'activeusers-noresult'   => 'Tu bikarhêner nehate dîtin.',
 
 # Special:Log/newusers
-'newuserlogpage' => 'Çêkirina hesabê nû',
+'newuserlogpage' => 'çêkirina hesabê nû',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Mafên koma bikarhêner',
@@ -1643,7 +1643,7 @@ Sedemekê binivîse!',
 'blocklist-tempblocks'        => 'Astengkirinên demkî veşêre',
 'blocklist-rangeblocks'       => 'Astengkirinên cur bi cur veşêre',
 'blocklist-by'                => 'Astengkirina rêveber',
-'blocklist-params'            => 'Parametreyan asteng bike',
+'blocklist-params'            => 'Parametreyên astengkirinê',
 'blocklist-reason'            => 'Sedem',
 'ipblocklist-submit'          => 'Lêgerîn',
 'ipblocklist-localblock'      => 'Astengkirina herêmî',

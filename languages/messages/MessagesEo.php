@@ -318,7 +318,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-newpageshidepatrolled'   => 'Kaŝi patrolitajn paĝojn de listo de novaj paĝoj',
 'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn ŝanĝojn, ne nur la plej lastajn',
-'tog-usenewrc'                => 'Uzi progresan "Lastaj ŝanĝoj" (bezonas JavaSkripton)',
+'tog-usenewrc'                => 'Grupigi ŝanĝoj laŭ paĝo en "Lastaj ŝanĝoj" kaj "Atentaro" (bezonas Ĝavaskripton)',
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar'             => 'Montri eldonilaron',
 'tog-editondblclick'          => 'Redakti per duobla alklako (JavaScript)',
@@ -326,7 +326,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri enhavliston (por paĝoj kun pli ol 3 sekcioj)',
 'tog-rememberpassword'        => 'Memori mian ensalutadon ĉe ĉi tiu retumilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
-'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
+'tog-watchcreations'          => 'Aldoni miajn kreatajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Aldoni al mia atentaro paĝojn redaktitajn de mi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
 'tog-watchdeletion'           => 'Aldoni paĝojn, kiujn mi forigas, al mia atentaro',
@@ -334,9 +334,9 @@ $messages = array(
 'tog-previewontop'            => 'Montri antaŭrigardon antaŭ redaktilo',
 'tog-previewonfirst'          => 'Montri antaŭrigardon je unua redakto',
 'tog-nocache'                 => 'Malŝalti retumilan kaŝmemoron de paĝoj',
-'tog-enotifwatchlistpages'    => 'Sendi al mi retmesaĝon kiam tiu paĝo estas ŝanĝita',
+'tog-enotifwatchlistpages'    => 'Sendi al mi retmesaĝon kiam tiu paĝo en mia atentaro estas ŝanĝita',
 'tog-enotifusertalkpages'     => 'Sendi al mi retmesaĝon kiam mia diskutpaĝo estas ŝanĝita',
-'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
+'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn pro malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig'                  => 'Ekzistanta subskribo:',
@@ -385,30 +385,30 @@ $messages = array(
 'thu'           => 'Ĵaŭ',
 'fri'           => 'Ven',
 'sat'           => 'Sab',
-'january'       => 'Januaro',
-'february'      => 'Februaro',
-'march'         => 'Marto',
-'april'         => 'Aprilo',
-'may_long'      => 'Majo',
-'june'          => 'Junio',
-'july'          => 'Julio',
-'august'        => 'Aŭgusto',
-'september'     => 'Septembro',
-'october'       => 'Oktobro',
-'november'      => 'Novembro',
-'december'      => 'Decembro',
+'january'       => 'januaro',
+'february'      => 'februaro',
+'march'         => 'marto',
+'april'         => 'aprilo',
+'may_long'      => 'majo',
+'june'          => 'junio',
+'july'          => 'julio',
+'august'        => 'aŭgusto',
+'september'     => 'septembro',
+'october'       => 'oktobro',
+'november'      => 'novembro',
+'december'      => 'decembro',
 'january-gen'   => 'januaro',
 'february-gen'  => 'februaro',
 'march-gen'     => 'marto',
-'april-gen'     => 'Aprilo',
-'may-gen'       => 'Majo',
-'june-gen'      => 'Junio',
-'july-gen'      => 'Julio',
-'august-gen'    => 'Aŭgusto',
-'september-gen' => 'Septembro',
+'april-gen'     => 'aprilo',
+'may-gen'       => 'majo',
+'june-gen'      => 'junio',
+'july-gen'      => 'julio',
+'august-gen'    => 'aŭgusto',
+'september-gen' => 'septembro',
 'october-gen'   => 'oktobro',
-'november-gen'  => 'Novembro',
-'december-gen'  => 'Decembro',
+'november-gen'  => 'novembro',
+'december-gen'  => 'decembro',
 'jan'           => 'Jan',
 'feb'           => 'Feb',
 'mar'           => 'Mar',
@@ -1727,21 +1727,21 @@ tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile'                   => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
 'windows-nonascii-filename'   => 'Ĉi tiu vikio ne subtenas dosiernomoj kun specialaj signoj.',
-'fileexists'                  => "Dosiero kun tia ĉi nomo jam ekzistas.
-Bonvolu kontroli '''<tt>[[:$1]]</tt>''' krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
-[[$1|thumb]]",
-'filepageexists'              => "La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe '''<tt>[[:$1]]</tt>''', sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
+'fileexists'                  => 'Dosiero kun tia ĉi nomo jam ekzistas.
+Bonvolu kontroli <strong>[[:$1]]</strong> krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
+[[$1|thumb]]',
+'filepageexists'              => 'La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe <strong>[[:$1]]</strong>, sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
 La resumo kiun vi entajpos ne aperos en la priskribo-paĝo.
 Por aperigi vian resumon, vi devos permane redakti ĝin.
-[[$1|thumb]]",
-'fileexists-extension'        => "Dosiero kun simila nomo ekzistas: [[$2|thumb]]
-* Nomo de la alŝuta dosiero: '''<tt>[[:$1]]</tt>'''
-* Nomo de la ekzistanta dosiero: '''<tt>[[:$2]]</tt>'''
-Bonvolu elekti malsaman nomon.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Dosiero kun simila nomo ekzistas: [[$2|thumb]]
+* Nomo de la alŝuta dosiero: <strong>[[:$1]]</strong>
+* Nomo de la ekzistanta dosiero: <strong>[[:$2]]</strong>
+Bonvolu elekti malsaman nomon.',
 'fileexists-thumbnail-yes'    => "Ĉi tiu dosiero ŝajnas kiel bildo de malkreskigita grandeco ''(bildeto)''. [[$1|thumb]]
-Bonvolu kontroli la dosieron '''<tt>[[:$1]]</tt>'''.
+Bonvolu kontroli la dosieron <strong>[[:$1]]</strong>.
 Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne nepras alŝuti plian bideton.",
-'file-thumbnail-no'           => "La dosiernomo komencas kun '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "La dosiernomo komencas kun <strong>$1</strong>.
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco ''(thumbnail)''.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.",
 'fileexists-forbidden'        => 'Dosiero kun ĉi tiu nomo jam ekzistas kaj ne povas anstataŭigi ĝin.
@@ -1813,6 +1813,12 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-closetemp'     => 'Ne povis fermi provizoran dosieron.',
 'backend-fail-read'          => 'Ne povas legi dosieron "$1".',
 'backend-fail-create'        => 'Ne povas skribi dosieron $1.',
+'backend-fail-readonly'      => 'La interna konservujo "$1" nune estas nurlega. La indikata kialo estas: "\'\'$2\'\'"',
+'backend-fail-synced'        => 'La dosiero "$1" estas en nekohera stato kun la internaj konservujoj',
+'backend-fail-connect'       => 'Ne eblis konekti la internan konservujon "$1".',
+'backend-fail-internal'      => 'Nekonata eraro okazis en interna konservujo "$1".',
+'backend-fail-contenttype'   => 'Ne eblis determini la enhavo-tipo de la dosiero por konservi ĉe "$1".',
+'backend-fail-batchsize'     => 'Interna konservujo estis donita komandaron de $1 {{PLURAL:$1|dosiera operacio|dosieraj operacioj}}; la limo estas $2 {{PLURAL:$2|operacio|operacioj}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Ne povis malŝlosi "$1"; ĝi ne estas ŝlosita.',
@@ -1968,7 +1974,7 @@ Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 
 # MIME search
 'mimesearch'         => 'MIME-serĉilo',
-'mimesearch-summary' => 'Ĉi tiu paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ĉi tiu paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <code>image/jpeg</code>.',
 'mimetype'           => 'MIME-tipo:',
 'download'           => 'elŝuti',
 
@@ -2062,6 +2068,8 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'wantedpages'             => 'Dezirataj paĝoj',
 'wantedpages-badtitle'    => 'Malvalida titolo en rezulta aro: $1',
 'wantedfiles'             => 'Dezirataj dosieroj',
+'wantedfiletext-cat'      => 'La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj konservujoj eble estos listigita malgraŭ ne ekzistante. Tia malprave pozitivaj rezultoj estos <del>forstrekita</del>. Ankaŭ, paĝoj kiuj enmetas dosierojn kiuj ne ekzistas estas listigita en [[:$1]].',
+'wantedfiletext-nocat'    => 'La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj dosierujoj eble estas listigitaj malgraŭ eksistado. Tia malprave pozitiva rezulto estos <del>forstrekita</del>.',
 'wantedtemplates'         => 'Dezirataj ŝablonoj',
 'mostlinked'              => 'Plej ligitaj paĝoj',
 'mostlinkedcategories'    => 'Plej ligitaj kategorioj',
@@ -2162,7 +2170,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'linksearch-ns'    => 'Nomspaco:',
 'linksearch-ok'    => 'Serĉi',
 'linksearch-text'  => 'Regulesprimoj kiel "*.wikipedia.org" povas esti uzataj. Nepre havi almenaŭ plej altan domajnon, ekz-e "*.org".<br />
-Subtenataj protokoloj: <tt>$1</tt> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
+Subtenataj protokoloj: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
 'linksearch-line'  => '$1 ligita de $2',
 'linksearch-error' => 'Regulesprimoj povas aperi nur ĉe la komenco de la retnoda nomo.',
 
@@ -2871,6 +2879,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-invalid-interwiki'   => 'Ne povas importi de la specifita vikio.',
 'import-error-edit'          => 'Paĝo "$1" ne estas importita ĉar vi ne rajtas radakti ĝin.',
 'import-error-create'        => 'Paĝo "$1" ne estas importita ĉar vi ne rajtas krei ĝin.',
+'import-error-interwiki'     => 'Paĝo "$1" ne estis importita pro sia nomo estas deklarita por ekstera ligado (intervikia).',
 'import-error-special'       => 'Paĝo "$1" ne estas importata, ĉar ĝi apartenas al speciala nomspaco, kiu ne permesas paĝojn.',
 'import-error-invalid'       => 'Paĝo "$1" ne estas importata, ĉar ĝia nomo estas malvalida.',
 
@@ -2883,12 +2892,15 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|versio|versioj}} de $2',
 
 # JavaScriptTest
-'javascripttest'                => 'Ĝavoskripta testado',
-'javascripttest-disabled'       => 'Ĉi tiu funkcio estas malŝaltita en ĉi tiu vikio.',
-'javascripttest-title'          => 'Irigante $1 testoj',
-'javascripttest-pagetext-skins' => 'Elektu kun kio etoso irigi la testojn:',
-'javascripttest-qunit-intro'    => 'Vidu [$1 testa dokumentaro] en mediawiki.org.',
-'javascripttest-qunit-heading'  => 'Testaro QUnit por JavaScript de MediaWiki',
+'javascripttest'                           => 'Ĝavoskripta testado',
+'javascripttest-disabled'                  => 'Ĉi tiu funkcio estas malŝaltita en ĉi tiu vikio.',
+'javascripttest-title'                     => 'Irigante $1 testoj',
+'javascripttest-pagetext-noframework'      => 'Ĉi tiu paĝo estas konservita por funkciigi testojn de JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Nekonta test-framo "$1".',
+'javascripttest-pagetext-frameworks'       => 'Bonvolu elekti unu el la jenaj test-framoj: $1',
+'javascripttest-pagetext-skins'            => 'Elektu kun kio etoso irigi la testojn:',
+'javascripttest-qunit-intro'               => 'Vidu [$1 testa dokumentaro] en mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Testaro QUnit por JavaScript de MediaWiki',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Via uzantopaĝo',
@@ -3749,7 +3761,7 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 * <span class="mw-specialpagecached">Memorkaŝitaj specialaj paĝoj (eble malaktualaj).</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
-'specialpages-group-login'       => 'Ensaluti / Krei novan konton',
+'specialpages-group-login'       => 'Ensaluti /  registriĝi',
 'specialpages-group-changes'     => 'Lastaj ŝanĝoj kaj protokoloj',
 'specialpages-group-media'       => 'Raportoj pri dosieroj kaj alŝutoj',
 'specialpages-group-users'       => 'Uzantoj kaj rajtoj',

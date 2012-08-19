@@ -74,17 +74,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Activar la edición de seiciones calcando col botón drechu nos títulos de seición (necesita JavaScript)',
 'tog-showtoc'                 => 'Amosar índiz (pa páxines con más de 3 encabezaos)',
 'tog-rememberpassword'        => 'Recordar la mio identificación nesti ordenador (hasta un máximu de $1 {{PLURAL:$1|día|díes}})',
-'tog-watchcreations'          => 'Amestar les páxines que creo a la mio llista de vixilancia',
-'tog-watchdefault'            => "Amestar les páxines qu'edito a la mio llista de vixilancia",
-'tog-watchmoves'              => 'Amestar les páxines que muevo a la mio llista de vixilancia',
-'tog-watchdeletion'           => 'Amestar les páxines que desanicio a la mio llista de vixilancia',
+'tog-watchcreations'          => 'Amestar les páxines que creo y los ficheros que cargo a la mio llista de vixilancia',
+'tog-watchdefault'            => "Amestar les páxines y ficheros qu'edito a la mio llista de vixilancia",
+'tog-watchmoves'              => 'Amestar les páxines y ficheros que muevo a la mio llista de vixilancia',
+'tog-watchdeletion'           => 'Amestar les páxines y ficheros que desanicio a la mio llista de vixilancia',
 'tog-minordefault'            => 'Marcar toles ediciones como menores por defeutu',
 'tog-previewontop'            => "Amosar previsualización enantes de la caxa d'edición",
 'tog-previewonfirst'          => 'Amosar previsualización na primer edición',
 'tog-nocache'                 => 'Desactivar la caché de páxines del restolador',
-'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando camude una páxina de la mio llista de vixilancia',
+'tog-enotifwatchlistpages'    => 'Mandame un corréu cuando camude una páxina o ficheru de la mio llista de vixilancia',
 'tog-enotifusertalkpages'     => "Mandame un corréu cuando camude la mio páxina d'alderique",
-'tog-enotifminoredits'        => 'Mandame tamién un corréu cuando heba ediciones menores de les páxines',
+'tog-enotifminoredits'        => 'Mandame tamién un corréu cuando heba ediciones menores de les páxines y ficheros',
 'tog-enotifrevealaddr'        => 'Amosar la mio direición de corréu nos correos de notificación',
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que tán vixilando la páxina",
 'tog-oldsig'                  => 'Firma esistente:',
@@ -376,11 +376,11 @@ Pues atopar una llista de les páxines especiales válides en [[Special:SpecialP
 'error'                => 'Fallu',
 'databaseerror'        => 'Fallu na base de datos',
 'dberrortext'          => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
-Esti fallu puede ser por un problema del software.
+Esti fallu pue ser por un problema del software.
 La postrer consulta a la base de datos que s'intentó foi:
-<blockquote><tt>$1</tt></blockquote>
-dende la función «<tt>$2</tt>».
-La base datos dio'l fallu «<tt>$3: $4</tt>».",
+<blockquote><code>$1</code></blockquote>
+dende la función «<code>$2</code>».
+La base datos dio'l fallu «<samp>$3: $4</samp>».",
 'dberrortextcl'        => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
 La postrer consulta de la base de datos que s'intentó foi:
 «$1»
@@ -745,7 +745,6 @@ La postrer entrada del rexistru de bloqueos úfrese darréu pa referencia:',
 *'''Firefox / Safari:''' Caltén ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' nun Mac)
 * '''Google Chrome:''' Calca ''Ctrl-Mayús-R'' (''⌘-Mayús-R'' nun Mac)
 * '''Internet Explorer:''' Caltén ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
-* '''Konqueror:''' Calca en ''Recargar'', o calca ''F5''
 * '''Opera:''' llimpia la caché en ''Ferramientes → Preferencies''",
 'usercssyoucanpreview'             => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to CSS nuevu enantes de guardalu.",
 'userjsyoucanpreview'              => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to JavaScript nuevu enantes de guardalu.",
@@ -1448,9 +1447,9 @@ Equí s'ufre'l rexistru de desaniciu y treslláu d'esta páxina por comodidá:",
 Pa ver o buscar archivos xubíos previamente, vete a la [[Special:FileList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></tt>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></tt>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></code>''' pa usar la versión completa del archivu
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></code>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></code>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
 'upload-permitted'            => "Menes d'archivu permitíes: $1.",
 'upload-preferred'            => "Menes d'archivu preferíes: $1.",
 'upload-prohibited'           => "Menes d'archivu prohibíes: $1.",
@@ -1497,21 +1496,21 @@ esti ficheru tien $2.',
 Esto podría ser pola mor d'un enquivocu nel nome del ficheru.
 Por favor, camienta si daveres quies xubir esti archivu.",
 'windows-nonascii-filename'   => 'Esta wiki nun permite nomes de ficheru con caráuteres especiales.',
-'fileexists'                  => "Yá esiste un ficheru con esti nome, por favor comprueba '''<tt>[[:$1]]</tt>''' si nun tas seguru de querer camudalu.
-[[$1|thumb]]",
-'filepageexists'              => "La páxina de descripción d'esti ficheru yá se creó en '''<tt>[[:$1]]</tt>''', pero anguaño nun esiste nengún ficheru con esti nome.
+'fileexists'                  => 'Yá esiste un ficheru con esti nome, por favor comprueba <strong>[[:$1]]</strong> si nun tas seguru de querer camudalu.
+[[$1|thumb]]',
+'filepageexists'              => "La páxina de descripción d'esti ficheru yá se creó en <strong>[[:$1]]</strong>, pero anguaño nun esiste nengún ficheru con esti nome.
 El resume que pongas nun va apaecer na páxina de descripción.
 Pa facer que'l to resume apaeza, vas tener que lu editar manualmente.
 [[$1|thumb]]",
-'fileexists-extension'        => "Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
-* Nome del ficheru que se quier xubir: '''<tt>[[:$1]]</tt>'''
-* Nome del ficheru esistente: '''<tt>[[:$2]]</tt>'''
-Por favor escueyi un nome diferente.",
+'fileexists-extension'        => 'Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
+* Nome del ficheru que se quier xubir: <strong>[[:$1]]</strong>
+* Nome del ficheru esistente: <strong>[[:$2]]</strong>
+Por favor escueyi un nome diferente.',
 'fileexists-thumbnail-yes'    => "El ficheru paez ser una imaxe de tamañu menguáu ''(miniatura)''.
  [[$1|thumb]]
-Por favor comprueba el ficheru '''<tt>[[:$1]]</tt>'''.
+Por favor comprueba el ficheru <strong>[[:$1]]</strong>.
 Si'l ficheru comprobáu tien el mesmu tamañu que la imaxe orixinal, nun ye necesario xubir una miniatura estra.",
-'file-thumbnail-no'           => "El ficheru entama con '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "El ficheru entama con <strong>$1</strong>.
 Paez ser una imaxe de tamañu menguáu ''(miniatura)''.
 Si tienes esta imaxe a resolución completa xúbila; si non, por favor camuda'l nome del ficheru.",
 'fileexists-forbidden'        => 'Yá esiste un ficheru con esti nome, y nun se pue renomar.
@@ -1766,7 +1765,7 @@ La descripción de la [$2 páxina de descripción del ficheru] s'amuesa darréu.
 
 # MIME search
 'mimesearch'         => 'Busca MIME',
-'mimesearch-summary' => "Esta páxina activa'l filtráu d'archivos en función de la so triba MIME. Entrada: contenttype/subtype, p.ex. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Esta páxina activa'l filtráu d'archivos en función de la so triba MIME. Entrada: contenttype/subtype, p.ex. <code>image/jpeg</code>.",
 'mimetype'           => 'Triba MIME:',
 'download'           => 'descargar',
 
@@ -1813,7 +1812,8 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 
 'disambiguations'      => "Páxines qu'enllacen con páxines de dixebra",
 'disambiguationspage'  => 'Template:dixebra',
-'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Les siguientes páxines contienen polo menos un enllaz a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar a una páxina más apropiada.<br />
+Una páxina tratase como una páxina de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'                   => 'Redireiciones dobles',
 'doubleredirectstext'               => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición.
@@ -1958,7 +1958,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-ok'    => 'Guetar',
 'linksearch-text'  => 'Se puen usar comodinos como "*.wikipedia.org".
 Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
-Protocolos almitíos: <tt>$1</tt> (nun amiestes dengún d\'estos na to gueta).',
+Protocolos almitíos: <code>$1</code> (nun amiestes dengún d\'estos na to gueta).',
 'linksearch-line'  => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 
@@ -3567,7 +3567,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 * <span class="mw-specialpagecached">Páxines especiales en caché (seique nun tean actualizaes).</span>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other'       => 'Otres páxines especiales',
-'specialpages-group-login'       => 'Entrar / Crear cuenta',
+'specialpages-group-login'       => 'Identificase / crear cuenta',
 'specialpages-group-changes'     => 'Cambeos recientes y rexistros',
 'specialpages-group-media'       => 'Informes multimedia y xubíes',
 'specialpages-group-users'       => 'Usuarios y drechos',

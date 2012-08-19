@@ -201,18 +201,18 @@ $messages = array(
 'tog-editsection'             => 'Redigér afsnit ved hjælp af [redigér]-henvisninger',
 'tog-editsectiononrightclick' => 'Redigér afsnit ved at højreklikke på deres titler (JavaScript)',
 'tog-showtoc'                 => 'Vis indholdsfortegnelse (på sider med mere end tre afsnit)',
-'tog-rememberpassword'        => 'Husk mit login på denne computer (højst $1 {{PLURAL:$1|dag|dage}})',
-'tog-watchcreations'          => 'Tilføj sider jeg opretter til min overvågningsliste',
-'tog-watchdefault'            => 'Tilføj sider jeg redigerer til min overvågningsliste',
-'tog-watchmoves'              => 'Tilføj sider jeg flytter til min overvågningsliste',
-'tog-watchdeletion'           => 'Tilføj sider jeg sletter til min overvågningsliste',
-'tog-minordefault'            => 'Markér som standard alle redigering som mindre',
+'tog-rememberpassword'        => 'Husk mit login i denne browser (højst $1 {{PLURAL:$1|dag|dage}})',
+'tog-watchcreations'          => 'Tilføj sider, jeg opretter, og filer, jeg lægger op, til min overvågningsliste',
+'tog-watchdefault'            => 'Tilføj sider og filer, jeg redigerer, til min overvågningsliste',
+'tog-watchmoves'              => 'Tilføj sider og filer, jeg flytter, til min overvågningsliste',
+'tog-watchdeletion'           => 'Tilføj sider og filer, jeg sletter, til min overvågningsliste',
+'tog-minordefault'            => 'Markér som standard alle redigeringer som mindre redigeringer',
 'tog-previewontop'            => 'Vis forhåndsvisning over redigeringsboksen',
 'tog-previewonfirst'          => 'Vis forhåndsvisning når du starter med at redigere',
 'tog-nocache'                 => 'Slå browsercaching af sider fra',
-'tog-enotifwatchlistpages'    => 'Send mig en e-mail ved sideændringer',
+'tog-enotifwatchlistpages'    => 'Send mig en e-mail ved ændringer til en side eller fil på min overvågningsliste',
 'tog-enotifusertalkpages'     => 'Send mig en e-mail når min brugerdiskussionsside ændres',
-'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
+'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af sider og filer på min overvågningsliste',
 'tog-enotifrevealaddr'        => 'Vis min e-mail-adresse i mails med besked om ændringer',
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
 'tog-oldsig'                  => 'Nuværende signatur:',
@@ -312,7 +312,7 @@ $messages = array(
 'category-article-count-limited' => 'Kategorien indeholder {{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}}.',
 'category-file-count'            => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående fil.|{{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}} af i alt $2.}}',
 'category-file-count-limited'    => 'Kategorien indeholder {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}.',
-'listingcontinuesabbrev'         => ' forts.',
+'listingcontinuesabbrev'         => 'forts.',
 'index-category'                 => 'Indekserede sider',
 'noindex-category'               => 'Ikke-indekserede sider',
 'broken-file-category'           => 'Sider med brudte filhenvisninger',
@@ -350,7 +350,7 @@ $messages = array(
 'vector-view-create'             => 'Opret',
 'vector-view-edit'               => 'Redigér',
 'vector-view-history'            => 'Se historik',
-'vector-view-view'               => 'Vis',
+'vector-view-view'               => 'Læs',
 'vector-view-viewsource'         => 'Se kilden',
 'actions'                        => 'Handlinger',
 'namespaces'                     => 'Navnerum',
@@ -372,12 +372,12 @@ $messages = array(
 'print'             => 'Udskriv',
 'view'              => 'Vis',
 'edit'              => 'Redigér',
-'create'            => 'opret',
+'create'            => 'Opret',
 'editthispage'      => 'Redigér side',
-'create-this-page'  => 'opret ny side',
+'create-this-page'  => 'Opret denne side',
 'delete'            => 'Slet',
 'deletethispage'    => 'Slet side',
-'undelete_short'    => 'Fortryd sletning af {{PLURAL:$1|$1 version|$1 versioner}}',
+'undelete_short'    => 'Fortryd sletning af {{PLURAL:$1|én version|$1 versioner}}',
 'viewdeleted_short' => 'Vis {{PLURAL:$1|en slettet redigering|$1 slettede redigeringer}}',
 'protect'           => 'Beskyt',
 'protect_change'    => 'ændr',
@@ -405,15 +405,15 @@ $messages = array(
 'otherlanguages'    => 'Andre sprog',
 'redirectedfrom'    => '(Omdirigeret fra $1)',
 'redirectpagesub'   => 'Omdirigering',
-'lastmodifiedat'    => 'Denne side blev senest ændret $1 $2.',
-'viewcount'         => 'Siden er vist i alt $1 {{PLURAL:$1|gang|gange}}.',
+'lastmodifiedat'    => 'Denne side blev senest ændret $1 kl. $2.',
+'viewcount'         => 'Siden er vist i {{PLURAL:$1|en gang|$1 gange}}.',
 'protectedpage'     => 'Beskyttet side',
 'jumpto'            => 'Skift til:',
 'jumptonavigation'  => 'Navigation',
 'jumptosearch'      => 'Søgning',
 'view-pool-error'   => 'Beklager, men serverne er i øjeblikket overbelastede.
-For mange brugere prøver at vise denne side.
-Vent et øjeblik, før du prøver at vise denne side ige.
+For mange brugere prøver at se denne side.
+Vent et øjeblik, før du prøver at besøge denne side igen.
 
 $1',
 'pool-timeout'      => 'Timeout mens man venter på låsningen',
@@ -505,15 +505,15 @@ En liste over gyldige specialsider findes på [[Special:SpecialPages|{{int:speci
 'dberrortext'          => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
 Det kan tyde på en fejl i softwaren.
 Den sidst forsøgte databaseforespørgsel var:
-<blockquote><tt>$1</tt></blockquote>
-fra funktionen "<tt>$2</tt>".
-Databasen returnerede fejlen "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+fra funktionen "<code>$2</code>".
+Databasen returnerede fejlen "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel.
 Den seneste forsøgte databaseforespørgsel var:
 "$1"
 fra funktionen "$2".
 Databasen returnerede fejlen "$3: $4"',
-'laggedslavemode'      => 'Bemærk: Den viste side indeholder muligvis ikke de nyeste ændringer.',
+'laggedslavemode'      => "'''Bemærk:''' Den viste side indeholder muligvis ikke de nyeste ændringer.",
 'readonly'             => 'Databasen er skrivebeskyttet',
 'enterlockreason'      => 'Skriv en begrundelse for skrivebeskyttelsen, med samt en vurdering af, hvornår skrivebeskyttelsen ophæves igen',
 'readonlytext'         => 'Databasen er midlertidigt skrivebeskyttet. Forsøg venligst senere.
@@ -545,10 +545,11 @@ Gør venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på det, o
 Den kan være blevet slettet af en anden.',
 'cannotdelete-title'   => 'Kan ikke slette siden "$1"',
 'badtitle'             => 'Forkert titel',
-'badtitletext'         => 'Den ønskede sides titel var ikke tilladt, tom eller siden er forkert henvist fra en {{SITENAME}} på et andet sprog.',
+'badtitletext'         => 'Den ønskede sides titel var ikke tilladt, tom eller siden er forkert henvist fra en {{SITENAME}} på et andet sprog.
+Den kan indeholde et eller flere tegn, som ikke kan anvendes i titler.',
 'perfcached'           => 'Følgende data er gemt i cachen, der muligvis ikke er helt opdateret. Der gemmes højst {{PLURAL:$1|ét resultat|$1 resultater}} i cachen.',
 'perfcachedts'         => 'Disse data stammer fra cachen, som senest blev opdateret $1. Der gemmes højst {{PLURAL:$4|ét resultat|$4 resultater}} i cachen.',
-'querypage-no-updates' => "'''Aktualiseringsfunktionen for denne side er pt. deaktiveret. Dataene bliver indtil videre ikke fornyet.'''",
+'querypage-no-updates' => "'''Opdateringer til denne side er deaktiveret for øjeblikket. Dataene bliver indtil videre ikke fornyet.'''",
 'wrong_wfQuery_params' => 'Ugyldig parameter til wfQuery()<br />
 Funktion: $1<br />
 Forespørgsel: $2',
@@ -595,7 +596,7 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'nav-login-createaccount'    => 'Opret en konto eller log på',
 'loginprompt'                => 'Du skal have cookies slået til for at kunne logge på {{SITENAME}}.',
 'userlogin'                  => 'Opret en konto eller log på',
-'userloginnocreate'          => 'Log ind',
+'userloginnocreate'          => 'Log på',
 'logout'                     => 'Log af',
 'userlogout'                 => 'Log af',
 'notloggedin'                => 'Ikke logget på',
@@ -760,7 +761,7 @@ Midlertidig adgangskode: $2',
 'summary'                          => 'Beskrivelse:',
 'subject'                          => 'Emne/overskrift:',
 'minoredit'                        => 'Dette er en mindre ændring.',
-'watchthis'                        => 'Overvåg denne artikel',
+'watchthis'                        => 'Overvåg denne side',
 'savearticle'                      => 'Gem side',
 'preview'                          => 'Forhåndsvisning',
 'showpreview'                      => 'Forhåndsvisning',
@@ -1533,9 +1534,9 @@ Sletnings- og flytnings-loggen for denne side leveres her for nemheds skyld:",
 Gå til [[Special:FileList|listen over filer]] for at se eller søge i eksisterende filer. (Gen-)oplægnigner logges i [[Special:Log/upload|oplægningsloggen]], sletninger i [[Special:Log/delete|sletteloggen]].
 
 Brug en henvisning af en de følgende typer for at bruge en fil på en side:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for at bruge den fulde version af et bilede
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></tt>''' for at bruge billedet med en bredde på 200&nbsp;pixel i en ramme til venstre med \"Alternativ tekst\" som beskrivelse
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for at henvise direkte til filen uden at vise den",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></code>''' for at bruge den fulde version af et bilede
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></code>''' for at bruge billedet med en bredde på 200&nbsp;pixel i en ramme til venstre med \"Alternativ tekst\" som beskrivelse
+*'''<code><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></code>''' for at henvise direkte til filen uden at vise den",
 'upload-permitted'            => 'Tilladte filtyper: $1.',
 'upload-preferred'            => 'Foretrukne filtyper: $1.',
 'upload-prohibited'           => 'Uønskede filtyper: $1.',
@@ -1578,18 +1579,18 @@ Brug en henvisning af en de følgende typer for at bruge en fil på en side:
 'windows-nonascii-filename'   => 'Denne wiki understøtter ikke filnavne, der indeholder specialtegn.',
 'fileexists'                  => 'En fil med det navn findes allerede, tjek venligst [[:$1]] om du er sikker på du vil ændre den.
 [[$1|thumb]]',
-'filepageexists'              => "Siden med beskrivelse af denne fil er allerede oprettet på '''<tt>[[:$1]]</tt>''', men der eksisterer ikke en fil med dette navn.
+'filepageexists'              => 'Siden med beskrivelse af denne fil er allerede oprettet på <strong>[[:$1]]</strong>, men der eksisterer ikke en fil med dette navn.
 Den beskrivelse du kan angive nedenfor vil derfor ikke blive brugt.
 For at få din beskrivelse vist, skal du selv redigere beskrivelsessiden.
-[[$1|thumb]]",
-'fileexists-extension'        => "En fil med lignende navn findes allerede: [[$2|thumb]]
-* Navnet på den valgte fil: '''<tt>[[:$1]]</tt>'''
-* Navnet på den eksisterende fil: '''<tt>[[:$2]]</tt>'''
-Vælg venligst et andet navn.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'En fil med lignende navn findes allerede: [[$2|thumb]]
+* Navnet på den valgte fil: <strong>[[:$1]]</strong>
+* Navnet på den eksisterende fil: <strong>[[:$2]]</strong>
+Vælg venligst et andet navn.',
 'fileexists-thumbnail-yes'    => "Det ser ud som om filen indeholder et billede i reduceret størrelse ''(thumbnail)''. [[$1|thumb]]
-Kontroller filen '''<tt>[[:$1]]</tt>'''.
+Kontroller filen <strong>[[:$1]]</strong>.
 Hvis det er billedet i original størrelse, er det ikke nødvendigt at uploade et separat forhåndsvisningsbillede.",
-'file-thumbnail-no'           => "Filnavnet begynder med '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Filnavnet begynder med <strong>$1</strong>.
 Det tyder på et billede i reduceret format ''(thumbnail)''.
 Hvis du har billedet i fuld størrelse, så brug det i stedet. Ellers bedes du venligst ændre filnavnet.",
 'fileexists-forbidden'        => 'En fil med dette navn findes allerede, og den kan ikke overskrives.
@@ -1823,7 +1824,7 @@ Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
 
 # MIME search
 'mimesearch'         => 'Søge efter MIME-type',
-'mimesearch-summary' => 'På denne specialside kan filerne filtreres efter MIME-typen. Indtastningen skal altid indeholde medie- og undertypen: <tt>image/jpeg</tt> (se billedbeskrivelsessiden).',
+'mimesearch-summary' => 'På denne specialside kan filerne filtreres efter MIME-typen. Indtastningen skal altid indeholde medie- og undertypen: <code>image/jpeg</code> (se billedbeskrivelsessiden).',
 'mimetype'           => 'MIME-type:',
 'download'           => 'DownloadHerunterladen',
 
@@ -1870,7 +1871,9 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 
 'disambiguations'      => 'Sider, der henviser til flertydige titler',
 'disambiguationspage'  => 'Template:Flertydig',
-'disambiguations-text' => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
+'disambiguations-text' => "De følgende sider henviser til mindst en side med en '''flertydig titel'''.
+De bør henvise direkte til et mere passende emne i stedet.<br />
+En side behandles som en side med en flertydig titel hvis den bruger en skabelon som der er henvist til fra [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Dobbelte omdirigeringer',
 'doubleredirectstext'               => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
@@ -2015,7 +2018,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-ok'    => 'Søg',
 'linksearch-text'  => 'Wildcards som "*.wikipedia.org" kan benyttes.
 Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
-Understøttede protokoller: <tt>$1</tt> (tilføj ikke protokollerne til din søgning).',
+Understøttede protokoller: <code>$1</code> (tilføj ikke protokollerne til din søgning).',
 'linksearch-line'  => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 
@@ -2196,7 +2199,7 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 ** Overtrædelse af ophavsret
 ** Hærværk',
 'delete-edit-reasonlist' => 'Rediger sletningsårsager',
-'delete-toobig'          => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset blevet for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
+'delete-toobig'          => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}}. Sletning af sådanne sider er begrænset, for at forhindre utilsigtet forstyrrelse af {{SITENAME}}.',
 'delete-warning-toobig'  => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
 
 # Rollback
@@ -3558,7 +3561,7 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 * <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other'       => 'Andre specialsider',
-'specialpages-group-login'       => 'Opret bruger / logon',
+'specialpages-group-login'       => 'Log på / opret bruger',
 'specialpages-group-changes'     => 'Seneste ændringer og loglister',
 'specialpages-group-media'       => 'Mediafiler og oplægning',
 'specialpages-group-users'       => 'Brugere og rettigheder',

@@ -12,6 +12,7 @@
  * @author Hanzaw
  * @author Hintha
  * @author Lagoonaing
+ * @author Liangent
  * @author Lionslayer
  * @author Minnyoonthit
  * @author Myanmars
@@ -391,8 +392,8 @@ $1',
 'loginprompt'              => '{{SITENAME}} သို့ လော့အင်ဝင်ရန် ကွတ်ကီးသုံးနိုင်ရန် ပြုလုပ်ပေးထားရမည်။',
 'userlogin'                => 'Log in ဝင်ရန်/ အကောင့် လုပ်ရန်',
 'userloginnocreate'        => 'Log in ဝင်ရန်',
-'logout'                   => 'Log out ထွက်ရန်',
-'userlogout'               => 'Log out ထွက်ရန်',
+'logout'                   => 'ထွက်ရန်',
+'userlogout'               => 'ထွက်ရန်',
 'notloggedin'              => 'logged in ဝင်မထားပါ',
 'nologin'                  => 'အကောင့်မရှိဘဲ ဖြစ်နေပါသလား။ $1။',
 'nologinlink'              => 'အကောင့်လုပ်ရန်',

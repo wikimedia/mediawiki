@@ -1342,8 +1342,8 @@ teisės",
 'group-suppress'      => 'Peržiūrėtojai',
 'group-all'           => '(visi)',
 
-'group-user-member'          => 'Naudotojas',
-'group-autoconfirmed-member' => 'Automatiškai patvirtintas naudotojas',
+'group-user-member'          => '{{GENDER:$1|naudotojas|naudotoja}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatiškai patvirtintas naudotojas|automatiškai patvirtinta naudotoja}}',
 'group-bot-member'           => 'Botas',
 'group-sysop-member'         => 'Administratorius',
 'group-bureaucrat-member'    => 'Biurokratas',
@@ -1525,9 +1525,9 @@ Jūsų patogumui pateiktas įrašas apie šio puslapio trynimą ar pervadinimą:
 Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų sąraše]], trynimai — [[Special:Log/delete|trynimų sąraše]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>''' norėdami naudoti pilną failo versiją
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></tt>''' norėdami naudoti 200 pikselių pločio paveikslėlį rėmelyje puslapio kairėje; „alternatyvus tekstas“ bus naudojamas paveikslėlio aprašymui.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></code>''' norėdami naudoti pilną failo versiją
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></code>''' norėdami naudoti 200 pikselių pločio paveikslėlį rėmelyje puslapio kairėje; „alternatyvus tekstas“ bus naudojamas paveikslėlio aprašymui.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></code>''' tiesioginei nuorodai į failą.",
 'upload-permitted'            => 'Leidžiami failų tipai: $1.',
 'upload-preferred'            => 'Pageidautini failų tipai: $1.',
 'upload-prohibited'           => 'Uždrausti failų tipai: $1.',
@@ -1570,20 +1570,20 @@ Taip pat galite peržvelgti [[Special:NewFiles|naujausių failų galeriją]].',
 'largefileserver'             => 'Šis failas yra didesnis nei serveris yra sukonfigūruotas leisti.',
 'emptyfile'                   => 'Panašu, kad failas, kurį įkėlėte yra tuščias. Tai gali būti dėl klaidos failo pavadinime. Pasitikrinkite ar tikrai norite įkelti šitą failą.',
 'windows-nonascii-filename'   => 'Ši viki neleidžia naudoti failų vardų su specialiais simboliais.',
-'fileexists'                  => "Failas tuo pačiu vardu jau egzistuoja, prašome pažiūrėti '''<tt>[[:$1]]</tt>''', jei nesate tikras, ar norite perrašyti šį failą.
-[[$1|thumb]]",
-'filepageexists'              => "Šio failo aprašymo puslapis jau buvo sukurtas '''<tt>[[:$1]]</tt>''', bet šiuo metu nėra jokio failo šiuo pavadinimu.
+'fileexists'                  => 'Failas tuo pačiu vardu jau egzistuoja, prašome pažiūrėti <strong>[[:$1]]</strong>, jei nesate tikras, ar norite perrašyti šį failą.
+[[$1|thumb]]',
+'filepageexists'              => 'Šio failo aprašymo puslapis jau buvo sukurtas <strong>[[:$1]]</strong>, bet šiuo metu nėra jokio failo šiuo pavadinimu.
 Jūsų įvestas komentaras neatsiras aprašymo puslapyje.
 Jei norite, kad jūsų komentaras ten atsirastų, jums reikia jį pakeisti pačiam.
-[[$1|thumb]]",
-'fileexists-extension'        => "Failas su panašiu pavadinimu jau yra: [[$2|thumb]]
-* Įkeliamo failo pavadinimas: '''<tt>[[:$1]]</tt>'''
-* Jau esančio failo pavadinimas: '''<tt>[[:$2]]</tt>'''
-Prašome pasirinkti kitą vardą.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Failas su panašiu pavadinimu jau yra: [[$2|thumb]]
+* Įkeliamo failo pavadinimas: <strong>[[:$1]]</strong>
+* Jau esančio failo pavadinimas: <strong>[[:$2]]</strong>
+Prašome pasirinkti kitą vardą.',
 'fileexists-thumbnail-yes'    => "Failas turbūt yra sumažinto dydžio failas ''(miniatiūra)''. [[$1|thumb]]
-Prašome peržiūrėti failą '''<tt>[[:$1]]</tt>'''.
+Prašome peržiūrėti failą <strong>[[:$1]]</strong>.
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.",
-'file-thumbnail-no'           => "Failo pavadinimas prasideda  '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Failo pavadinimas prasideda  <strong>$1</strong>.
 Atrodo, kad yra sumažinto dydžio paveikslėlis ''(miniatiūra)''.
 Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu atveju prašome pakeisti failo pavadinimą.",
 'fileexists-forbidden'        => 'Failas tokiu pačiu vardu jau egzistuoja ir negali būti perrašytas;
@@ -1809,7 +1809,7 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 
 # MIME search
 'mimesearch'         => 'MIME paieška',
-'mimesearch-summary' => 'Šis puslapis leidžia rodyti failus pagal jų MIME tipą. Įveskite: turiniotipas/potipis, pvz. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Šis puslapis leidžia rodyti failus pagal jų MIME tipą. Įveskite: turiniotipas/potipis, pvz. <code>image/jpeg</code>.',
 'mimetype'           => 'MIME tipas:',
 'download'           => 'parsisiųsti',
 
@@ -2002,7 +2002,7 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'linksearch-ok'    => 'Ieškoti',
 'linksearch-text'  => 'Galima naudoti žvaigždutes, pvz., „*.wikipedia.org“.<br />
 Yra būtinas bent jau aukščiausio lygio domenas, pvz., „*.org“.<br />
-Palaikomi protokolai: <tt>$1</tt> (nei vieno iš jų nenurodykite paieškoje).',
+Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje).',
 'linksearch-line'  => '$1 yra susietas iš $2',
 'linksearch-error' => 'Žvaigždutės gali būti tik adreso pradžioje.',
 
@@ -2199,7 +2199,7 @@ kažkas jau pakeitė puslapį arba suspėjo pirmas atmesti keitimą.
 
 Paskutimas keitimas darytas naudotojo [[User:$3|$3]] ([[User talk:$3|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "Redagavimo komentaras: „''$1''“.",
-'revertpage'        => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta naudotojo [[User:$1|$1]] versija',
+'revertpage'        => 'Atmestas [[Special:Contributions/$2|$2]] ([[User talk:$2|Aptarimas]]) pakeitimas; sugrąžinta [[User:$1|$1]] versija',
 'revertpage-nouser' => 'Atmesti (naudotojo vardas pašalintas) pakeitimai, grąžinta prieš tai buvusi [[User:$1|$1]] versija',
 'rollback-success'  => 'Atmesti $1 pakeitimai;
 grąžinta prieš tai buvusi $2 versija.',
@@ -2335,8 +2335,8 @@ $1',
 'blanknamespace'                => '(Pagrindinė)',
 
 # Contributions
-'contributions'       => 'Naudotojo įnašas',
-'contributions-title' => 'Naudotojo $1 indėlis',
+'contributions'       => 'Naudotojo indėlis',
+'contributions-title' => '{{GENDER:$1|Naudotojo|Naudotojos}} $1 indėlis',
 'mycontris'           => 'Mano įnašas',
 'contribsub2'         => 'Naudotojo $1 ($2)',
 'nocontribs'          => 'Jokie keitimai neatitiko šių kriterijų.',
@@ -2750,6 +2750,7 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'javascripttest-pagetext-frameworks'       => 'Prašome pasirinkti vieną iš išvardintų testavimo struktūrų: $1',
 'javascripttest-pagetext-skins'            => 'Pasirinkite naudotojo sąsajos išvaizdą, kuriai atliksite testavimą:',
 'javascripttest-qunit-intro'               => 'Peržiūrėkite [$1 testavimo dokumentaciją]',
+'javascripttest-qunit-heading'             => 'MediaWiki JavaScript QUnit bandymų komplektas',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Jūsų naudotojo puslapis',
@@ -2815,7 +2816,7 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 'tooltip-watchlistedit-raw-submit'    => 'Atnaujinti stebimųjų sąrašą',
 'tooltip-recreate'                    => 'Atkurti puslapį nepaisant to, kad jis buvo ištrintas',
 'tooltip-upload'                      => 'Pradėti įkėlimą',
-'tooltip-rollback'                    => 'Atšaukti atmestus šio puslapio pakeitimus į paskutinę versiją vienu spustelėjimu',
+'tooltip-rollback'                    => 'Vienu spustelėjimu grąžinama prieš tai redagavusio naudotojo versija',
 'tooltip-undo'                        => '„Anuliuoti“ atmeta šį keitimą ir atveria ankstesnės versijos redagavimo formą.
 Leidžia pridėti atmetimo priežastį komentaruose',
 'tooltip-preferences-save'            => 'Išsaugoti nustatymus',
@@ -2834,7 +2835,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} {{PLURAL:$1|anoniminis naudotojas|anoniminiai naudotojai}}',
-'siteuser'         => '{{SITENAME}} naudotojas $1',
+'siteuser'         => '{{SITENAME}} {{GENDER:$2|naudotojas|naudotoja}} $1',
 'anonuser'         => '{{SITENAME}} anoniminis naudotojas $1',
 'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.',
 'othercontribs'    => 'Paremta $1 darbu.',
@@ -3448,10 +3449,10 @@ $5
 
 # Delete conflict
 'deletedwhileediting'      => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',
-'confirmrecreate'          => "Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
+'confirmrecreate'          => "{{GENDER:$1|Naudotojas&nbsp;|Naudotoja&nbsp;|}}[[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai pradėjote jį redaguoti. Trynimo priežastis:
 : ''$2''
 Prašome patvirtinti, kad tikrai norite iš naujo sukurti puslapį.",
-'confirmrecreate-noreason' => 'Naudotojas [[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai jūs pradėjote redaguoti. Prašome patvirtinti, jog jūs tikrai norite atkurti šį puslapį.',
+'confirmrecreate-noreason' => '{{GENDER:$1|Naudotojas&nbsp;|Naudotoja&nbsp;|}}[[User:$1|$1]] ([[User talk:$1|aptarimas]]) ištrynė šį puslapį po to, kai jūs pradėjote redaguoti. Prašome patvirtinti, jog jūs tikrai norite atkurti šį puslapį.',
 'recreate'                 => 'Atkurti',
 
 # action=purge
@@ -3671,6 +3672,15 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 # New logging system
 'logentry-delete-delete'              => '$1 ištrynė puslapį $3',
 'logentry-delete-restore'             => '$1 atkūrė puslapį $3',
+'logentry-delete-event'               => '$1 pakeistas  matomumas {{PLURAL:$5|žurnalo įvykio|$5 žurnalo įvykių}} tarp $3: $4',
+'logentry-delete-revision'            => '$1 pakeitė puslapio „$3“ {{PLURAL:$5|versijos|$5 versijų}} matomumą: $4',
+'logentry-delete-event-legacy'        => '$1 pakeistas matomumą žurnalo renginiams tarp $3',
+'logentry-delete-revision-legacy'     => '$1 pakeistas matomumas pažiūrų puslapio $3',
+'logentry-suppress-delete'            => '$1 nuslopino puslapį $3',
+'logentry-suppress-event'             => '$1 slaptai pakeistas matomumas {{PLURAL:$5|žurnalo įvykio|$5 žurnalo įvykiu}} tarp $3: $4',
+'logentry-suppress-revision'          => '$1 slaptai pakeistas matomumas {{PLURAL:$5|peržiūros|$5 peržiūrų}} puslapyje $3: $4',
+'logentry-suppress-event-legacy'      => '$1 slaptai pakeistas matomumas žurnalo įvykių tarp $3',
+'logentry-suppress-revision-legacy'   => '$1 slaptai pakeistas matomumas peržiūrų puslapyje $3',
 'revdelete-content-hid'               => 'turinys paslėptas',
 'revdelete-summary-hid'               => 'paslėptas keitimo komentaras',
 'revdelete-uname-hid'                 => 'paslėptas naudotojo vardas',
@@ -3683,6 +3693,8 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'logentry-move-move-noredirect'       => '$1 pervadino puslapį $3 į $4, nepalikdamas nukreipimo',
 'logentry-move-move_redir'            => '$1 pervadino puslapį iš $3 į $4, vietoje buvusio nukreipimo',
 'logentry-move-move_redir-noredirect' => '$1 pervadino puslapį iš $3 į $4, vietoje buvusio nukreipimo, bet nesukurdamas naujo',
+'logentry-patrol-patrol'              => '$1 pažymėjo peržiūrą $4 puslapio $3 patruliuojama',
+'logentry-patrol-patrol-auto'         => '$1 automatiškai pažymėjo peržiūrą $4 puslapio $3 patruliuojama',
 'logentry-newusers-newusers'          => '$1 sukūrė naudotojo paskyrą',
 'logentry-newusers-create'            => '$1 sukūrė naudotojo paskyrą',
 'logentry-newusers-create2'           => '$1 sukūrė naudotojo paskyrą $3',
@@ -3706,34 +3718,41 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'feedback-bugnew'    => 'Patikrinau. Pranešti apie naują klaidą',
 
 # API errors
-'api-error-badaccess-groups'      => 'Jums neleidžiama įkelti failus į šią wiki.',
-'api-error-copyuploaddisabled'    => 'Siuntimas pagal URL yra išjungtas šiame serveryje.',
-'api-error-duplicate-popup-title' => 'Dubliuoti  {{PLURAL:$1|failą|failus}}',
-'api-error-empty-file'            => 'Pateikta failas buvo tuščias.',
-'api-error-emptypage'             => 'Kurti naujus, tuščius puslapius neleidžiama.',
-'api-error-fetchfileerror'        => 'Vidinė klaida: Kažkas nutiko gaunant failą.',
-'api-error-file-too-large'        => 'Failą, kurį pateikėte buvo per didelis.',
-'api-error-filename-tooshort'     => 'Failo vardas yra per trumpas.',
-'api-error-filetype-banned'       => 'Šis failų tipas yra uždraustas.',
-'api-error-filetype-missing'      => 'Failas neturi galūnės.',
-'api-error-hookaborted'           => 'Pakeitimą, kurį bandėte atlikti, nutraukė priedas.',
-'api-error-http'                  => 'Vidinė klaida: nepavyko prisijungti prie serverio.',
-'api-error-illegal-filename'      => 'Failo vardas neleidžiamas.',
-'api-error-invalid-file-key'      => 'Vidinė klaida: failas nerastas saugykloje.',
-'api-error-missingresult'         => 'Vidinė klaida: nepavyko nustatyti, ar pavyko nukopijuoti.',
-'api-error-mustbeloggedin'        => 'Jūs turite būti prisijungęs kad galėtumėte įkelti failus.',
-'api-error-mustbeposted'          => 'Vidinė klaida: prašymas reikalauja HTTP POST.',
-'api-error-noimageinfo'           => 'Įkelti pavyko, bet serveris nepateikė mums jokios informacijos apie failą.',
-'api-error-ok-but-empty'          => 'Vidinė klaida: nėra atsakymo iš serverio.',
-'api-error-overwrite'             => 'Perrašymas esamą failą neleidžiamas.',
-'api-error-stashfailed'           => 'Vidinė klaida: serveriui nepavyko išsaugoti laikinąjį failą.',
-'api-error-timeout'               => 'Serveris neatsakė per numatytą laiką.',
-'api-error-unclassified'          => 'Įvyko nežinoma klaida',
-'api-error-unknown-code'          => 'Nežinoma klaida: " $1 "',
-'api-error-unknown-error'         => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
-'api-error-unknown-warning'       => 'Nežinomas įspėjimas: $1',
-'api-error-unknownerror'          => 'Nežinoma klaida: "$1"',
-'api-error-uploaddisabled'        => 'Įkėlimas išjungtas šioje wiki.',
-'api-error-verification-error'    => 'Šis failas gali būti sugadintas arba turi neteisingą papildinį.',
+'api-error-badaccess-groups'              => 'Jums neleidžiama įkelti failus į šią wiki.',
+'api-error-badtoken'                      => 'Vidinė klaida: blogai atpažinimo ženklas.',
+'api-error-copyuploaddisabled'            => 'Siuntimas pagal URL yra išjungtas šiame serveryje.',
+'api-error-duplicate'                     => 'Jau {{PLURAL:$1|yra [$2 kitas failas]|yra [$2 kiti failai]}} puslapyje su tuo pačiu turiniu..',
+'api-error-duplicate-archive'             => 'Jau {{PLURAL:$1|buvo [$2 kitas failas]|buvo [$2 kitų failų]}} puslapyje su tuo pačiu turiniu, bet {{PLURAL:$1|buvo|buvo}} ištrinti.',
+'api-error-duplicate-archive-popup-title' => 'Dubliuoti {{PLURAL:$1|failą kuris buvo|failus kurie buvo}} jau buvo ištrinti.',
+'api-error-duplicate-popup-title'         => 'Dubliuoti  {{PLURAL:$1|failą|failus}}',
+'api-error-empty-file'                    => 'Pateikta failas buvo tuščias.',
+'api-error-emptypage'                     => 'Kurti naujus, tuščius puslapius neleidžiama.',
+'api-error-fetchfileerror'                => 'Vidinė klaida: Kažkas nutiko gaunant failą.',
+'api-error-file-too-large'                => 'Failą, kurį pateikėte buvo per didelis.',
+'api-error-filename-tooshort'             => 'Failo vardas yra per trumpas.',
+'api-error-filetype-banned'               => 'Šis failų tipas yra uždraustas.',
+'api-error-filetype-missing'              => 'Failas neturi galūnės.',
+'api-error-hookaborted'                   => 'Pakeitimą, kurį bandėte atlikti, nutraukė priedas.',
+'api-error-http'                          => 'Vidinė klaida: nepavyko prisijungti prie serverio.',
+'api-error-illegal-filename'              => 'Failo vardas neleidžiamas.',
+'api-error-internal-error'                => 'Vidinė klaida: Kažkas ne taip su jūsų įkėlimo apdorojimu wiki.',
+'api-error-invalid-file-key'              => 'Vidinė klaida: failas nerastas saugykloje.',
+'api-error-missingparam'                  => 'Vidinė klaida: Trūksta reikalingų parametrų.',
+'api-error-missingresult'                 => 'Vidinė klaida: nepavyko nustatyti, ar pavyko nukopijuoti.',
+'api-error-mustbeloggedin'                => 'Jūs turite būti prisijungęs kad galėtumėte įkelti failus.',
+'api-error-mustbeposted'                  => 'Vidinė klaida: prašymas reikalauja HTTP POST.',
+'api-error-noimageinfo'                   => 'Įkelti pavyko, bet serveris nepateikė mums jokios informacijos apie failą.',
+'api-error-nomodule'                      => 'Vidinė klaida: nėra nustatytas įkėlimų modulis.',
+'api-error-ok-but-empty'                  => 'Vidinė klaida: nėra atsakymo iš serverio.',
+'api-error-overwrite'                     => 'Perrašymas esamą failą neleidžiamas.',
+'api-error-stashfailed'                   => 'Vidinė klaida: serveriui nepavyko išsaugoti laikinąjį failą.',
+'api-error-timeout'                       => 'Serveris neatsakė per numatytą laiką.',
+'api-error-unclassified'                  => 'Įvyko nežinoma klaida',
+'api-error-unknown-code'                  => 'Nežinoma klaida: " $1 "',
+'api-error-unknown-error'                 => 'Vidinė klaida: kažkas nutiko bandant įkelti failą.',
+'api-error-unknown-warning'               => 'Nežinomas įspėjimas: $1',
+'api-error-unknownerror'                  => 'Nežinoma klaida: "$1"',
+'api-error-uploaddisabled'                => 'Įkėlimas išjungtas šioje wiki.',
+'api-error-verification-error'            => 'Šis failas gali būti sugadintas arba turi neteisingą papildinį.',
 
 );

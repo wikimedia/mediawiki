@@ -46,6 +46,7 @@
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Sir Lestaty de Lioncourt
+ * @author Teles
  * @author TheGabrielZaum
  * @author Urhixidur
  * @author Vuln
@@ -309,7 +310,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sublinhar links:',
+'tog-underline'               => 'Sublinhar ligação:',
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Ocultar edições menores nas mudanças recentes',
@@ -320,7 +321,7 @@ $messages = array(
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
-'tog-editsection'             => 'Habilitar edição de seção via links [editar]',
+'tog-editsection'             => 'Habilitar edição de seção via ligações [editar]',
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Recordar os meus dados neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
@@ -338,10 +339,10 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários que estão vigiando',
 'tog-oldsig'                  => 'Assinatura existente:',
-'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem link automático)',
+'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
 'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff'            => 'Utilizar comparador de versões externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
-'tog-showjumplinks'           => 'Ativar links de acessibilidade "ir para"',
+'tog-showjumplinks'           => 'Ativar ligações de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
 'tog-watchlisthideown'        => 'Ocultar as minhas edições da lista de páginas vigiadas',
@@ -437,7 +438,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
-'broken-file-category'           => 'Páginas com links quebrados para arquivos',
+'broken-file-category'           => 'Páginas com ligações quebradas para arquivos',
 
 'about'         => 'Sobre',
 'article'       => 'Página de conteúdo',
@@ -490,7 +491,7 @@ $messages = array(
 'history_short'     => 'Histórico',
 'updatedmarker'     => 'atualizado desde a minha última visita',
 'printableversion'  => 'Versão para impressão',
-'permalink'         => 'Link permanente',
+'permalink'         => 'Ligação permanente',
 'print'             => 'Imprimir',
 'view'              => 'Ver',
 'edit'              => 'Editar',
@@ -616,8 +617,8 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 # Main script and global functions
 'nosuchaction'      => 'Ação inexistente',
 'nosuchactiontext'  => 'A ação especificada pela URL é inválida.
-Você deve ter se enganado ao digitar a URL, ou seguiu um link incorreto.
-Isto também pode indicar um erro no software usado no sítio {{SITENAME}}.',
+Você deve ter se enganado ao digitar a URL, ou seguiu uma ligação incorreta.
+Isso também pode indicar um erro no software usado no sítio {{SITENAME}}.',
 'nosuchspecialpage' => 'Esta página especial não existe',
 'nospecialpagetext' => '<strong>Você requisitou uma página especial inválida.</strong>
 
@@ -645,7 +646,7 @@ O banco de dados retornou o erro "$3: $4".',
 Quem fez o bloqueio oferece a seguinte explicação: $1',
 'missing-article'      => 'O banco de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
 
-Isso normalmente é causado ao acessar um link de diferença (diff) desatualizado ou para o histórico de uma página que foi apagada.
+Isso normalmente é causado ao acessar uma ligação de diferença (diff) desatualizada ou para o histórico de uma página que foi apagada.
 
 Se não for este o caso, você pode ter encontrado um defeito (bug) no software.
 Anote o URL e reporte o ocorrido a um [[Special:ListUsers/sysop|administrador]].',
@@ -824,7 +825,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'passwordreset'                    => 'Redefinir senha',
 'passwordreset-text'               => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
 'passwordreset-legend'             => 'Reiniciar a senha',
-'passwordreset-disabled'           => 'Redefinições de senha foram desabilitadas neste wiki.',
+'passwordreset-disabled'           => 'Redefinições de senha foram desabilitadas nesta wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username'           => 'Nome de usuário:',
 'passwordreset-domain'             => 'Domínio:',
@@ -832,12 +833,12 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'passwordreset-capture-help'       => 'Se marcar esta caixa, o e-mail (com a senha temporária) será-lhe mostrado, além de ser enviado para o usuário.',
 'passwordreset-email'              => 'Endereço de e-mail:',
 'passwordreset-emailtitle'         => 'Detalhes da conta em {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). O seguinte usuário {{PLURAL:$3|conta|são contas}} associado com este endereço de e-mail:
+'passwordreset-emailtext-ip'       => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
 
 $2
 
 {{PLURAL:$3|Esta senha temporária |Essas senhas temporárias}} vão expirar em {{PLURAL:$5|um dia|$5 dias}}.
-Você deve efetuar login e escolher uma nova senha agora. Se você conseguir lembrar da senha, ignore este e-mail e continue usando sua senha anterior, do contrário, prossiga com as instruções clicando no link.',
+Você deve efetuar login e escolher uma nova senha agora. Se você conseguir lembrar da senha, ignore este e-mail e continue usando sua senha anterior, do contrário, prossiga com as instruções clicando na ligação.',
 'passwordreset-emailtext-user'     => 'O usuário $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
 
 $2
@@ -865,10 +866,10 @@ Senha temporária: $2',
 'bold_tip'        => 'Texto em negrito',
 'italic_sample'   => 'Texto em itálico',
 'italic_tip'      => 'Texto em itálico',
-'link_sample'     => 'Título do link',
-'link_tip'        => 'Link interno',
-'extlink_sample'  => 'http://www.example.com título do link',
-'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
+'link_sample'     => 'Título da ligação',
+'link_tip'        => 'Ligação interna',
+'extlink_sample'  => 'http://www.example.com título da ligação',
+'extlink_tip'     => 'Ligação externa (lembre-se do prefixo http://)',
 'headline_sample' => 'Conteúdo do cabeçalho',
 'headline_tip'    => 'Seção de nível 2',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
@@ -876,7 +877,7 @@ Senha temporária: $2',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Arquivo embutido',
 'media_sample'    => 'Exemplo.ogg',
-'media_tip'       => 'Link para o arquivo',
+'media_tip'       => 'Ligação para o arquivo',
 'sig_tip'         => 'Sua assinatura, com hora e data',
 'hr_tip'          => 'Linha horizontal (use de forma moderada)',
 
@@ -925,7 +926,7 @@ O motivo apresentado foi:
 
 Você pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
-Note que não poderá utilizar a funcionalidade "Contatar usuário" se não possuir uma conta neste wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
+Note que não poderá utilizar a funcionalidade "Contatar usuário" se não possuir uma conta nesta wiki ({{SITENAME}}) com um endereço de \'\'e-mail\'\' válido indicado nas suas [[Special:Preferences|preferências de usuário]] ou se tiver sido bloqueado de utilizar tal recurso.
 
 Seu endereço de IP no momento é $3 e sua ID de bloqueio é #$5.
 Por favor, inclua tais dados em qualquer tentativa de esclarecimentos que for realizar.',
@@ -944,7 +945,7 @@ Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 
 A senha para esta nova conta pode ser alterada na página ''[[Special:ChangePassword|de troca de senha]]'', após a autenticação.",
 'newarticle'                       => '(Nova)',
-'newarticletext'                   => "Você seguiu um link para uma página que ainda não existe.
+'newarticletext'                   => "Você seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, comece escrevendo na caixa abaixo (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext'                 => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Tal endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha que comentários irrelevantes foram direcionados a você, por gentileza, [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
@@ -1139,15 +1140,15 @@ Você pode visualizá-la; podem existir mais detalhes no [{{fullurl:{{#Special:L
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].
 Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-suppressed-unhide-diff'  => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
-Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
+Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressões].
 Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-deleted-diff-view'       => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
-Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+Você pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].",
 'rev-suppressed-diff-view'    => "Uma das revisões desta comparação foi '''suprimida''''.
-Você pode ver esta comparação; detalhes podem ser encontradas no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressão].",
+Você pode ver esta comparação; detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supressão].",
 'rev-delundel'                => 'exibir/ocultar',
 'rev-showdeleted'             => 'exibir',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1164,7 +1165,7 @@ Você pode ver esta comparação; detalhes podem ser encontradas no [{{fullurl:{
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
 'revdelete-text'              => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
 Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.",
-'revdelete-confirm'           => 'Por favor confirme que pretende executar esta acção, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
+'revdelete-confirm'           => 'Por favor confirme que pretende executar esta ação, que compreende as suas consequências e que o faz em concordância com as [[{{MediaWiki:Policy-url}}|políticas e recomendações]].',
 'revdelete-suppress-text'     => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
 * Informação pessoal inapropriada
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
@@ -1202,7 +1203,7 @@ Você não tem acesso a ele.',
 'revdelete-modify-missing'    => 'Erro ao modificar o item ID $1: está faltando na base de dados!',
 'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização requeridas.",
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
-Por favor, verifique os registos.',
+Por favor, verifique os registros.',
 'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2 às $1: você não pode impedir que itens sejam visualizados por administradores sem também selecionar uma das outras opções de visibilidade.',
 'revdelete-reason-dropdown'   => '*Motivos comuns para eliminação
 ** Violação de direitos autorais
@@ -1276,8 +1277,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'shown-title'                      => 'Mostrar $1 {{PLURAL:$1|resultado|resultados}} por página',
 'viewprevnext'                     => 'Ver ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
-'searchmenu-exists'                => "'''Há uma página com o nome \"[[:\$1]]\" neste wiki'''",
-'searchmenu-new'                   => "'''Criar a página \"[[:\$1|\$1]]\" neste wiki!'''",
+'searchmenu-exists'                => "'''Há uma página com o nome \"[[:\$1]]\" nesta wiki'''",
+'searchmenu-new'                   => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",
 'searchhelp-url'                   => 'Help:Conteúdos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue pelas páginas com este prefixo]]',
 'searchprofile-articles'           => 'Páginas de conteúdo',
@@ -1375,7 +1376,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'recentchangesdays'             => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a serem exibidas por padrão:',
-'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
+'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registros.',
 'prefs-help-watchlist-token'    => "O preenchimento deste campo com uma senha secreta irá gerar um ''feed'' RSS para a sua lista de páginas vigiadas.
 Qualquer um que conheça a senha deste campo será capaz de ler sua lista de páginas vigiadas, então escolha um valor seguro.
 Eis um valor gerado aleatoriamente que você pode usar: $1",
@@ -1669,9 +1670,9 @@ Para sua conveniência, segue o registro de eliminação e de movimentação:",
 Para ver ou pesquisar arquivos já enviados, consulte a [[Special:FileList|lista de arquivos enviados]]. Re-envios também são registrados no [[Special:Log/upload|registro de uploads]]; eliminações no [[Special:Log/delete|registro de eliminações]]
 
 Para incluir o arquivo em uma página, use um link em um dos seguintes formatos:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.jpg]]</nowiki></tt>''' para utilizar a versão completa do arquivo;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.png|200px|thumb|left|texto]]</nowiki></tt>''' para utilizar uma renderização de 200 pixels dentro de uma caixa posicionada à margem esquerda, contendo 'texto' como descrição;
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Arquivo.ogg]]</nowiki></tt>''' para um link direto ao arquivo sem que ele seja exibido.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.jpg]]</nowiki></code>''' para utilizar a versão completa do arquivo;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Arquivo.png|200px|thumb|left|texto]]</nowiki></code>''' para utilizar uma renderização de 200 pixels dentro de uma caixa posicionada à margem esquerda, contendo 'texto' como descrição;
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Arquivo.ogg]]</nowiki></code>''' para um link direto ao arquivo sem que ele seja exibido.",
 'upload-permitted'            => 'Tipos de arquivos permitidos: $1.',
 'upload-preferred'            => 'Tipos de arquivos preferidos: $1.',
 'upload-prohibited'           => 'Tipos de arquivo proibidos: $1.',
@@ -1719,22 +1720,22 @@ este possui $2.',
 Isso pode ocorrer devido a um erro de digitação no nome do arquivo.
 Verifique se você realmente deseja enviar este arquivo.',
 'windows-nonascii-filename'   => 'O wiki não aceita nomes de arquivos com caracteres especiais.',
-'fileexists'                  => "Já existe um arquivo com este nome.
-Verifique '''<tt>[[:$1]]</tt>''' caso não tenha certeza se deseja alterar o arquivo atual.
-[[$1|thumb]]",
-'filepageexists'              => "A página de descrição deste arquivo já foi criada em '''<tt>[[:$1]]</tt>''', mas atualmente não existe nenhum arquivo com este nome.
+'fileexists'                  => 'Já existe um arquivo com este nome.
+Verifique <strong>[[:$1]]</strong> caso não tenha certeza se deseja alterar o arquivo atual.
+[[$1|thumb]]',
+'filepageexists'              => 'A página de descrição deste arquivo já foi criada em <strong>[[:$1]]</strong>, mas atualmente não existe nenhum arquivo com este nome.
 O sumário que você inseriu não aparecerá na página de descrição.
 Para que ele apareça, será necessário editá-lo manualmente.
-[[$1|thumb]]",
-'fileexists-extension'        => "Já existe um arquivo com nome similar: [[$2|thumb]]
-* Nome do arquivo que está sendo enviado: '''<tt>[[:$1]]</tt>'''
-* Nome do arquivo existente: '''<tt>[[:$2]]</tt>'''
-Escolha um nome diferente.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Já existe um arquivo com nome similar: [[$2|thumb]]
+* Nome do arquivo que está sendo enviado: <strong>[[:$1]]</strong>
+* Nome do arquivo existente: <strong>[[:$2]]</strong>
+Escolha um nome diferente.',
 'fileexists-thumbnail-yes'    => "O arquivo parece ser uma imagem de tamanho reduzido (''miniatura'', ou ''thumbnail'').
 [[$1|thumb]]
-Verifique o arquivo '''<tt>[[:$1]]</tt>'''.
+Verifique o arquivo <strong>[[:$1]]</strong>.
 Se o arquivo enviado é o mesmo do de tamanho original, não é necessário enviar uma versão adicional em miniatura.",
-'file-thumbnail-no'           => "O nome do arquivo começa com '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "O nome do arquivo começa com <strong>$1</strong>.
 Isso faz parecer se tratar de uma imagem de tamanho reduzido (''miniatura'', ou ''thumbnail'').
 Se você tem esta imagem em sua resolução completa, envie-a no lugar desta. Caso contrário, altere o nome de arquivo.",
 'fileexists-forbidden'        => 'Já existe um arquivo com este nome e ele não pode ser sobrescrito.
@@ -1988,7 +1989,7 @@ Sua [$2 página de descrição de arquivo] é reproduzida abaixo.',
 
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
-'mimesearch-summary' => 'Esta página possibilita que os arquivos sejam filtrados a partir de seu tipo MIME. Sintaxe de busca: tipo/subtipo (por exemplo, <tt>image/jpeg</tt>).',
+'mimesearch-summary' => 'Esta página possibilita que os arquivos sejam filtrados a partir de seu tipo MIME. Sintaxe de busca: tipo/subtipo (por exemplo, <code>image/jpeg</code>).',
 'mimetype'           => 'tipo MIME:',
 'download'           => 'download',
 
@@ -2180,9 +2181,9 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'linksearch-ok'    => 'Pesquisar',
 'linksearch-text'  => 'É possível usar caracteres curinga, como "*.wikipedia.org".
 É necessário, pelo menos, um domínio de nível superior, por exemplo "*.org".<br />
-Protocolos suportados: <tt>$1</tt> (não adicionado nenhum desses em sua pesquisa).',
+Protocolos suportados: <code>$1</code> (não adicionado nenhum desses em sua pesquisa).',
 'linksearch-line'  => '$2 possui links para $1',
-'linksearch-error' => "\"Caracteres mágicos\" (''wildcards'') só podem ser suados no início do endereço.",
+'linksearch-error' => "\"Caracteres mágicos\" (''wildcards'') só podem ser usados no início do endereço.",
 
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar usuários começando em:',

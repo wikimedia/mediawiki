@@ -242,7 +242,7 @@ $messages = array(
 'viewtalkpage'      => 'Zajta godki',
 'otherlanguages'    => 'We inkszych godkach',
 'redirectedfrom'    => '(Punkńyńto s $1)',
-'redirectpagesub'   => 'Zajta překerowujůnco',
+'redirectpagesub'   => 'Zajta przekerowujůnco',
 'lastmodifiedat'    => 'Ta zajta bůła uostatńo sprowjano $2, $1.',
 'viewcount'         => 'W ta zajta filowano {{PLURAL:$1|tylko roz|$1 rozůw}}.',
 'protectedpage'     => 'Zajta zawarto',
@@ -738,7 +738,7 @@ Powinno być myńi jak $2 {{PLURAL:$2|wywouańy|wywouańo|wywouań}}, a terozki 
 'undo-success' => 'Sprowjyńy zostouo wycůfane. Proša pomjarkować ukozane půnižyj dyferencyje mjyndzy wersyjami, coby zweryfikować jejich poprawność, potym zaś naškryflać pomjyńańo coby zakońčyć uoperacyjo.',
 'undo-failure' => 'Sprowjyńo ńy idźe wycofać skuli kůnflikta ze wersyjůma postřednimi.',
 'undo-norev'   => 'Sprowjyńo ńy idźe cofnůńć skuli tego, co ńy istńije abo zostouo wyćepane.',
-'undo-summary' => 'Wycůfańy wersyji $1 naškryflanej bez [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]])',
+'undo-summary' => 'Wycůfańy wersyji $1 naszkryflanej bez [[Special:Contributions/$2|$2]] ([[User talk:$2|godka]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ńy idźe utwořić kůnta',
@@ -761,8 +761,8 @@ Skuli: ''$2''",
 'last'                   => 'poprz.',
 'page_first'             => 'počůnek',
 'page_last'              => 'kůńec',
-'histlegend'             => 'Wybůr růžńic do porůwnańo: postow kropki we boksach a naćiś enter abo knefel na dole.<br />
-Legynda: (bjež.) - růžńice s wersyjům bježůncům, (popř.) - růžńice s wersyjům popředzajůncům, d - drobne zmjany',
+'histlegend'             => 'Wybůr růżńic do porůwnańo: postow kropki we boksach a naćiś enter abo knefel na dole.<br />
+Legynda: (akt.) - růżńice s wersyjům bjeżůncům, (poprz.) - růżńice s wersyjům poprzedzajůncům, d - drobne zmjany',
 'history-fieldset-title' => 'Přeglůndej historyjo',
 'history-show-deleted'   => 'Jyno wyćepane',
 'histfirst'              => 'uod počůnku',
@@ -1094,7 +1094,7 @@ $1',
 'right-createaccount'        => 'Utwořůne nowe kůnta užytkowńikůw',
 'right-minoredit'            => 'Uoznoč půmjyńańo kej drobne',
 'right-move'                 => 'Přećepane zajty',
-'right-move-subpages'        => 'Přećep zajty wroz s jejich podzajtůma',
+'right-move-subpages'        => 'Przećep zajty wroz s jejich podzajtůma',
 'right-move-rootuserpages'   => 'Překludzańy zajtůw uod užytkowńikůw',
 'right-movefile'             => 'Przećepańe plikůw',
 'right-suppressredirect'     => 'Ńy twůrz przekerowańo ze starygo mjana jak przećepujesz zajta',
@@ -1273,17 +1273,17 @@ Přelyź na zajta [[Special:NewFiles|galeryje nowych plikůw]], coby uobejzdře�
 'large-file'                  => 'Zaleco śe coby rozmjar plika ńy bůu wjynkšy jak $1 bajtůw. Tyn plik mo rozmjar $2 bajtůw.',
 'largefileserver'             => 'Plik je wjynkšy ńiž maksymalny dozwolůny rozmjar.',
 'emptyfile'                   => 'Wćepywany plik cheba je pusty. Može to być bez tůž, co žeś wklepou zuo buchštaba w jygo mjańe. Sprowdź, čy mjano kere žeś wklepou je poprawne.',
-'fileexists'                  => "Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano ('''<tt>[[:$1]]</tt>''')! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.
-[[$1|thumb]]",
-'filepageexists'              => "Je juž sam zajta uopisu tygo plika utwořůno '''<tt>[[:$1]]</tt>''', ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.",
-'fileexists-extension'        => "Plik uo podobnym mjańe juž sam je: [[$2|thumb]]
-* Mjano wćepywanygo plika: '''<tt>[[:$1]]</tt>'''
-* Mjano plika kery juž sam je: '''<tt>[[:$2]]</tt>'''
-Wybjer proša inkše mjano.",
+'fileexists'                  => 'Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano (<strong>[[:$1]]</strong>)! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.
+[[$1|thumb]]',
+'filepageexists'              => 'Je juž sam zajta uopisu tygo plika utwořůno <strong>[[:$1]]</strong>, ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.',
+'fileexists-extension'        => 'Plik uo podobnym mjańe juž sam je: [[$2|thumb]]
+* Mjano wćepywanygo plika: <strong>[[:$1]]</strong>
+* Mjano plika kery juž sam je: <strong>[[:$2]]</strong>
+Wybjer proša inkše mjano.',
 'fileexists-thumbnail-yes'    => "Zdowo śe co tyn plik je půmńijšůnům wersyjom grafiki ''(mińjaturkom)''. [[$1|thumb]]
-Uobejřij plik: '''<tt>[[:$1]]</tt>'''.
+Uobejřij plik: <strong>[[:$1]]</strong>.
 Jak to je ta sama grafika, ino wjelgo, ńy muśiš juž jei sam zaś wćepywać.",
-'file-thumbnail-no'           => "Mjano plika začyno śe uod '''<tt>$1</tt>'''. Zdowo śe, co to je půmńijšůna grafika ''(mińaturka)''.
+'file-thumbnail-no'           => "Mjano plika začyno śe uod <strong>$1</strong>. Zdowo śe, co to je půmńijšůna grafika ''(mińaturka)''.
 Jak moš ta grafika we peunym rozmjaře - wćepej ja sam.
 Jak chceš wćepać ta, bydźeš muśou zmjyńić mjano wćepywanygo terozki plika.",
 'fileexists-forbidden'        => 'Plik uo takym mjańy juž sům můmy! Idź nazod i wćepej tyn plik pod inkšym mjanym. [[File:$1|thumb|center|$1]]',
@@ -1398,7 +1398,7 @@ Niżyj sům informacyje ze [$2 zajty popisu] tygo pliku.',
 
 # MIME search
 'mimesearch'         => 'Sznupej MIME',
-'mimesearch-summary' => 'Ta zajta ůmožliwjo šnupańe za plikůma wedle jeich typu MIME. Užyće: typtreśći/podtyp, np. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ta zajta ůmožliwjo šnupańe za plikůma wedle jeich typu MIME. Užyće: typtreśći/podtyp, np. <code>image/jpeg</code>.',
 'mimetype'           => 'Typ MIME:',
 'download'           => 'pobier',
 
@@ -1574,7 +1574,7 @@ Kukńij tyż [[Special:WantedCategories|ńyistńyjůnce kategoryje]].',
 'linksearch-ns'    => 'Przestrzyń mjan',
 'linksearch-ok'    => 'Šnupej',
 'linksearch-text'  => 'Idźe użyć symbola wjeloznacznygo „*”. Lů bajszpila „*.wikipedia.org” spowoduje sznupańy za wszyjstkimi linkůma kere prowadzům ku důmyńy „wikipedia.org” a jeij poddůmyn.<br />
-Uobsůgiwane protokoły: <tt>$1</tt>',
+Uobsůgiwane protokoły: <code>$1</code>',
 'linksearch-line'  => '$1 link na zajće $2',
 'linksearch-error' => 'Symbola wjeloznacznygo idźe użyć yno na anfangu mjana hosta.',
 
@@ -2034,18 +2034,18 @@ Zawjerańy i uodmykańy bazy danych wymogo coby plik můgu być naškreflany bez
 # Move page
 'move-page'                    => 'Przećep $1',
 'move-page-legend'             => 'Přećiś artikel',
-'movepagetext'                 => "Při půmocy formulařa půńižej možeš půmjyńyć nazwa zajty i přećepnůńć jei historja. Pod downym titlym uostańe zajta překerowujůnca. Zajty adresowane na stary titel uostanům jak bůuy.
+'movepagetext'                 => "Przi půmocy formularza půńiżej możesz půmjyńyć mjano zajty i przećepnůńć jej gyszichta. Pod downym mjanym uostańe śa zajta przekerowujůnca. Zajty adresowane na stare mjano uostanům jak bůły.
 
-Jak śe na to decyduješ, sprowdź, eli ńy je to [[Special:DoubleRedirects|podwůjne]] abo [[Special:BrokenRedirects|zuomane překerowańy]].
-Uodpowjadoš za to, coby linki wjoduy ku prawiduowym artiklům!
+Jak śe na to decydujesz, sprowdź, eli ńy je to [[Special:DoubleRedirects|podwůjne]] abo [[Special:BrokenRedirects|złomane przekerowańy]].
+Uodpowjadosz za to, coby linki wjodły ku prawym artiklům!
 
-Zajta '''ńy''' bydźe přećepano, jak:
-*je pusto i ńy bůua sprowjano
-*je zajtům překerowujůncą
-*zajta uo takym titlu juž sam jest
+Zajta '''ńy''' bydźe przećepano, jak:
+*je pusto i ńy bůła sprowjano
+*je zajtům przekerowujůncą
+*zajta uo takym mjane już sam je
 
 '''DEJ POZŮR!'''
-To može być drastyčno abo i ńypřewidywalno zmjano, jak přećepńyš jako popularno zajta. Bydź pewny, aže wješ co robiyš, ńim klikńyš knefel \"přećep\"!",
+To może być drastyczno abo ńyprzewidywalno zmjano, jak przećepńysz jako popularno zajta. Bydź pewny, aże wjesz co robiysz, ńim klikńysz knefel \"przećep\"!",
 'movepagetalktext'             => 'Uodpowiednio zajta godki, jeśli jest, bydzie přećepano automatyčńe, pod warůnkiem, že:
 *ńy přećepuješ zajty do inkšy přestřeńy mjan
 *ńy ma sam zajty godki o takiym mjańe

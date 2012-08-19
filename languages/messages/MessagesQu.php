@@ -1591,9 +1591,9 @@ Kay qatiqpiqa kay p'anqapaq qulluy, astay hallch'akunatam rikunki:",
 Churkusqaña rikchakunatataq qhawanaykipaq icha maskanaykipaqqa [[Special:FileList|rikchakuna p'anqaman]] riy. Churkusqakunata [[Special:Log/upload|churkuy hallch'apim]], qullusqakunatataq [[Special:Log/delete|qulluy hallch'apim]] rikunki.
 
 Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'achiy:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.jpg]]</nowiki></tt>''', willañiqip hunt'a musuqchasqan llamk'achinapaq
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.png|huk qillqa]]</nowiki></tt>''', lluq'i manyapi kaq kahapi 200 iñu suni rikch'achisqata llamk'achinapaq
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Willañiqi.ogg]]</nowiki></tt>''', willañiqiman chiqalla t'inkinapaq, willañiqita mana rikuchispa",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.jpg]]</nowiki></code>''', willañiqip hunt'a musuqchasqan llamk'achinapaq
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Willañiqi.png|huk qillqa]]</nowiki></code>''', lluq'i manyapi kaq kahapi 200 iñu suni rikch'achisqata llamk'achinapaq
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Willañiqi.ogg]]</nowiki></code>''', willañiqiman chiqalla t'inkinapaq, willañiqita mana rikuchispa",
 'upload-permitted'            => 'Saqillasqa willañiqi layakuna: $1.',
 'upload-preferred'            => 'Astawan munasqa willañiqi layakuna: $1.',
 'upload-prohibited'           => 'Mana saqillasqa willañiqi layakuna: $1.',
@@ -1634,19 +1634,19 @@ Rikchata huk p'anqaman ch'aqtanaykipaqqa kay hunt'ana p'anqapi t'inkita llamk'ac
 'largefileserver'             => 'Kay willañiqiqa sirwiqpi allinkachisqakama saqillasqa chhikanmanta aswan hatunmi.',
 'emptyfile'                   => "Churkusqayki willañiqiqa ch'usaqmi rikch'akun. Pantasqa sutinchá. Ama hina kaspa, llanchiy, churkuyman munasqayki willañiqichu.",
 'windows-nonascii-filename'   => "Kay wikiqa sapaq sananchayuq willañiqi sutikunata manam q'iminchu.",
-'fileexists'                  => "Kachkanñam kay sutiyuq willañiqi.
-Ama hina kaspa, '''<tt>[[:$1]]</tt>''' nisqata llanchiy, huknachanaykimanta mana allin yachaspaykiqa.
+'fileexists'                  => 'Kachkanñam kay sutiyuq willañiqi.
+Ama hina kaspa, <strong>[[:$1]]</strong> nisqata llanchiy, huknachanaykimanta mana allin yachaspaykiqa.
+[[$1|thumb]]',
+'filepageexists'              => "Kay willañiqipaq sut'ichana p'anqaqa kamarisqañam <strong>[[:$1]]</strong> nisqapi, ichataq kay sutiyuq willañiqi manaraqmi kanchu. Willanayki pisichayqa manam rikch'akunqachu sut'ichana p'anqapi. Rikch'akunanpaqqa, kikiykip makiykiwanmi llamk'apunayki tiyan.
 [[$1|thumb]]",
-'filepageexists'              => "Kay willañiqipaq sut'ichana p'anqaqa kamarisqañam '''<tt>[[:$1]]</tt>''' nisqapi, ichataq kay sutiyuq willañiqi manaraqmi kanchu. Willanayki pisichayqa manam rikch'akunqachu sut'ichana p'anqapi. Rikch'akunanpaqqa, kikiykip makiykiwanmi llamk'apunayki tiyan.
-[[$1|thumb]]",
-'fileexists-extension'        => "Kay willañiqip sutinman yaqa kaqlla sutiyuq willañiqim kachkanña: [[$2|thumb]]
-* Churkunayasqayki willañiqip sutin: '''<tt>[[:$1]]</tt>'''
-* Kachkaqña willañiqip sutin: '''<tt>[[:$2]]</tt>'''
-Ama hina kaspa, huk sutita akllay.",
+'fileexists-extension'        => 'Kay willañiqip sutinman yaqa kaqlla sutiyuq willañiqim kachkanña: [[$2|thumb]]
+* Churkunayasqayki willañiqip sutin: <strong>[[:$1]]</strong>
+* Kachkaqña willañiqip sutin: <strong>[[:$2]]</strong>
+Ama hina kaspa, huk sutita akllay.',
 'fileexists-thumbnail-yes'    => "Willañiqiqa ancha uchuylla rikchamanmi rikch'akun ''(thumbnail)''. [[$1|thumb]]
-Ama hina kaspa, '''<tt>[[:$1]]</tt>''' nisqa willañiqita llanchiy.
+Ama hina kaspa, <strong>[[:$1]]</strong> nisqa willañiqita llanchiy.
 Llanchisqa willañiqi qallariy chhikan kikin rikchaman kaqlla kaptinqa, huk rikchachata churkunaykiqa manam tiyanchu.",
-'file-thumbnail-no'           => "Willañiqip sutinqa '''<tt>$1</tt>''' nisqawanmi qallarin. Ancha uchuylla rikchamanmi rikch'akun ''(thumbnail)''.
+'file-thumbnail-no'           => "Willañiqip sutinqa <strong>$1</strong> nisqawanmi qallarin. Ancha uchuylla rikchamanmi rikch'akun ''(thumbnail)''.
 Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy, manataq hinaptinqa willañiqip sutinta hukchay.",
 'fileexists-forbidden'        => 'Kay sutiyuq willañiqiqa kachkanñam, manam huknachanallachu. Willañiqiykita kunanraq churkuyta munaspaykiqa, ama hina kaspa, willañiqip sutinta hukchaspa musuqmanta churkuy. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Kay sutiyuq willañiqiqa kachkañam rakinakusqa willañiqi qullqapi. Ama hina kaspa, churkuyta munaspaykiraq, ñawpaq p'anqaman kutispa willañiqiykita huk sutiwan churkuy. [[File:$1|thumb|center|$1]]",
@@ -1873,7 +1873,7 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 
 # MIME search
 'mimesearch'         => 'MIME maskay',
-'mimesearch-summary' => "Kay p'anqawanqa willañiqikunata MIME layankamam ch'illchiyta atinki. Qunapaq: contenttype/subtype, ahinataq <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Kay p'anqawanqa willañiqikunata MIME layankamam ch'illchiyta atinki. Qunapaq: contenttype/subtype, ahinataq <code>image/jpeg</code>.",
 'mimetype'           => 'MIME laya:',
 'download'           => 'chaqnamuy',
 
@@ -2063,7 +2063,7 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'linksearch-ok'    => 'Maskay',
 'linksearch-text'  => 'Ima rantipas sananchawanpas maskayta saqillasunkim, ahinataq "*.wikipedia.org".
 Hawa kaq duminyullapas kanam, ahinataq "*.org".<br />
-Q\'imichisqa tantari qillqa: <tt>$1</tt> (maskaspaykiqa kaykunamanta ama mayqintapas yapaychu).',
+Q\'imichisqa tantari qillqa: <code>$1</code> (maskaspaykiqa kaykunamanta ama mayqintapas yapaychu).',
 'linksearch-line'  => "$1-man $2-manta t'inkimusqa",
 'linksearch-error' => 'Ima rantipas sananchaqa (* ?) tiyaypa qallariyninpim kanman chaylla.',
 

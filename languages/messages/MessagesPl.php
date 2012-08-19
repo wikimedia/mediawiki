@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ankry
  * @author Bartek50003
  * @author BdgwksxD
  * @author Beau
@@ -19,6 +20,7 @@
  * @author Holek
  * @author Jwitos
  * @author Kaganer
+ * @author Karol007
  * @author Lajsikonik
  * @author Lampak
  * @author Lazowik
@@ -33,6 +35,7 @@
  * @author Odder
  * @author Olgak85
  * @author Przemub
+ * @author Reedy
  * @author Remedios44
  * @author Remember the dot
  * @author Rzuwig
@@ -306,17 +309,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję (JavaScript)',
 'tog-showtoc'                 => 'Pokazuj spis treści (na stronach z więcej niż 3 nagłówkami)',
 'tog-rememberpassword'        => 'Zapamiętaj moje hasło w przeglądarce (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
-'tog-watchcreations'          => 'Dodaj do obserwowanych strony tworzone przeze mnie',
-'tog-watchdefault'            => 'Dodaj do obserwowanych strony, które edytuję',
-'tog-watchmoves'              => 'Dodaj do obserwowanych strony, które przenoszę',
-'tog-watchdeletion'           => 'Dodaj do obserwowanych strony, które usuwam',
+'tog-watchcreations'          => 'Dodawaj do obserwowanych tworzone przeze mnie strony oraz wgrywane przeze mnie pliki',
+'tog-watchdefault'            => 'Dodawaj do obserwowanych strony i pliki, które edytuję',
+'tog-watchmoves'              => 'Dodawaj do obserwowanych strony i pliki, które przenoszę',
+'tog-watchdeletion'           => 'Dodawaj do obserwowanych strony i pliki, które usuwam',
 'tog-minordefault'            => 'Wszystkie edycje domyślnie oznaczaj jako drobne',
 'tog-previewontop'            => 'Pokazuj podgląd powyżej obszaru edycji',
 'tog-previewonfirst'          => 'Pokazuj podgląd strony podczas pierwszej edycji',
 'tog-nocache'                 => 'Wyłącz pamięć podręczną przeglądarki',
-'tog-enotifwatchlistpages'    => 'Wyślij do mnie e‐mail kiedy strona z mojej listy obserwowanych zostanie zmodyfikowana',
+'tog-enotifwatchlistpages'    => 'Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane',
 'tog-enotifusertalkpages'     => 'Wyślij do mnie e‐mail kiedy moja strona dyskusji zostanie zmodyfikowana',
-'tog-enotifminoredits'        => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
+'tog-enotifminoredits'        => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach lub w plikach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę użytkowników obserwujących stronę',
 'tog-oldsig'                  => 'Twój obecny podpis',
@@ -1661,9 +1664,9 @@ Poniżej znajduje się rejestr usunięć i zmian nazwy tej strony:",
 Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:FileList|listy plików]]. Każde przesłanie zostaje odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></tt>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></tt>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></code>''' pokaże plik w pełnej postaci
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></code>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></code>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
 'upload-permitted'            => 'Dopuszczalne formaty plików: $1.',
 'upload-preferred'            => 'Zalecane formaty plików: $1.',
 'upload-prohibited'           => 'Zabronione formaty plików: $1.',
@@ -1709,21 +1712,21 @@ Plik ma rozmiar {{PLURAL:$2|1 bajt|$2 bajty|$2 bajtów}}.',
 'emptyfile'                   => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku.
 Sprawdź, czy nazwa jest prawidłowa.',
 'windows-nonascii-filename'   => 'Na tej wiki nie można używać znaków specjalnych w nazwach plików.',
-'fileexists'                  => "Plik o takiej nazwie już istnieje.
-Sprawdź '''<tt>[[:$1]]</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.
-[[$1|thumb]]",
-'filepageexists'              => "Istnieje już strona opisu tego pliku, została utworzona '''<tt>[[:$1]]</tt>''', ale brak jest pliku o tej nazwie.
+'fileexists'                  => 'Plik o takiej nazwie już istnieje.
+Sprawdź <strong>[[:$1]]</strong>, jeśli nie jesteś pewien czy chcesz go zastąpić.
+[[$1|thumb]]',
+'filepageexists'              => 'Istnieje już strona opisu tego pliku, została utworzona <strong>[[:$1]]</strong>, ale brak jest pliku o tej nazwie.
 Informacje, które wprowadzasz o przesyłanym pliku, nie pojawią się na jego stronie opisu.
 Jeśli chcesz, by się tam pojawiły, musisz później, ręcznie przeredagować stronę opisu.
-[[$1|thumb]]",
-'fileexists-extension'        => "Plik o podobnej nazwie już istnieje: [[$2|thumb]]
-* Nazwa przesyłanego pliku: '''<tt>[[:$1]]</tt>'''
-* Nazwa istniejącego pliku: '''<tt>[[:$2]]</tt>'''
-Wybierz inną nazwę.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Plik o podobnej nazwie już istnieje: [[$2|thumb]]
+* Nazwa przesyłanego pliku: <strong>[[:$1]]</strong>
+* Nazwa istniejącego pliku: <strong>[[:$2]]</strong>
+Wybierz inną nazwę.',
 'fileexists-thumbnail-yes'    => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''. [[$1|thumb]]
-Sprawdź plik '''<tt>[[:$1]]</tt>'''.
+Sprawdź plik <strong>[[:$1]]</strong>.
 Jeśli wybrany plik jest tą samą grafiką co ta w rozmiarze pierwotnym, nie musisz przesyłać dodatkowej miniaturki.",
-'file-thumbnail-no'           => "Nazwa pliku zaczyna się od '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Nazwa pliku zaczyna się od <strong>$1</strong>.
 Wydaje się, że jest to pomniejszona grafika ''(miniaturka)''.
 Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.",
 'fileexists-forbidden'        => 'Plik o tej nazwie już istnieje i nie może zostać nadpisany.
@@ -1817,7 +1820,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-connect'       => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
 'backend-fail-internal'      => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype'   => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
-'backend-fail-batchsize'     => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
+'backend-fail-batchsize'     => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit to $2 {{PLURAL:$2|operacja|operacje|operacji}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nie można odblokować "$1", ponieważ nie jest on zablokowany.',
@@ -1931,10 +1934,10 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'morelinkstoimage'          => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
 'linkstoimage-redirect'     => '$1 (przekierowanie do pliku) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Następujący plik jest kopią|Następujące pliki są kopiami}} pliku ([[Special:FileDuplicateSearch/$2|więcej informacji]]):',
-'sharedupload'              => 'Ten plik znajduje się na $1 i może być używany w innych projektach.',
-'sharedupload-desc-there'   => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
+'sharedupload'              => 'Ten plik znajduje się w $1 i może być używany w innych projektach.',
+'sharedupload-desc-there'   => 'Ten plik znajduje się w $1 i może być używany w innych projektach.
 Więcej informacji odnajdziesz na [$2 stronie opisu pliku].',
-'sharedupload-desc-here'    => 'Ten plik znajduje się na $1 i może być używany w innych projektach.
+'sharedupload-desc-here'    => 'Ten plik znajduje się w $1 i może być używany w innych projektach.
 Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 'filepage-nofile'           => 'Plik o tej nazwie nie istnieje.',
 'filepage-nofile-link'      => 'Plik o tej nazwie nie istnieje, ale możesz go [$1 przesłać].',
@@ -1975,7 +1978,7 @@ Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 # MIME search
 'mimesearch'         => 'Wyszukiwanie MIME',
 'mimesearch-summary' => 'Ta strona umożliwia wyszukiwanie plików ze względu na ich typ MIME.
-Użycie: typ_treści/podtyp, np. <tt>image/jpeg</tt>.',
+Użycie: typ_treści/podtyp, np. <code>image/jpeg</code>.',
 'mimetype'           => 'Typ MIME',
 'download'           => 'pobierz',
 
@@ -2169,7 +2172,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok'    => 'Szukaj',
 'linksearch-text'  => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <tt>$1</tt> (nie podawaj ich podczas wyszukiwania).',
+Obsługiwane protokoły: <code>$1</code> (nie podawaj ich podczas wyszukiwania).',
 'linksearch-line'  => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 
@@ -2328,7 +2331,7 @@ Pomoc
 'exblank'                => 'Strona była pusta',
 'delete-confirm'         => 'Usuwanie „$1”',
 'delete-legend'          => 'Usuń',
-'historywarning'         => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
+'historywarning'         => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|jedną starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
 'confirmdeletetext'      => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete'         => 'Operacja wykonana',
@@ -2443,7 +2446,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'undeletepage'                 => 'Odtwarzanie usuniętych stron',
 'undeletepagetitle'            => "'''Poniżej znajdują się usunięte wersje strony [[:$1]]'''.",
 'viewdeletedpage'              => 'Zobacz usunięte wersje',
-'undeletepagetext'             => '{{PLURAL:$1|Następująca strona została usunięta, ale jej|Następujące $1 strony zostały usunięte, ale ich}} kopia wciąż znajduje się w archiwum.
+'undeletepagetext'             => '{{PLURAL:$1|Następująca strona została usunięta, ale jej kopia wciąż znajduje|Następujące $1 strony zostały usunięte, ale ich kopie wciąż znajdują|Następujące $1 stron zostało usuniętych, ale ich kopie wciąż znajdują}} się w archiwum.
 Archiwum co jakiś czas może być oczyszczane.',
 'undelete-fieldset-title'      => 'Odtwarzanie wersji',
 'undeleteextrahelp'            => "Jeśli chcesz odtworzyć całą historię edycji strony, pozostaw wszystkie pola niezaznaczone i kliknij '''''{{int:undeletebtn}}'''''.
@@ -3819,12 +3822,12 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 
 # Special:SpecialPages
 'specialpages'                   => 'Strony specjalne',
-'specialpages-note'              => '* Typowe strony specjalne.
-* <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>
-* <span class="mw-specialpagecached">Buforowane strony specjalne (mogą być nieaktualne).</span>',
+'specialpages-note'              => '----
+* Normalne strony specjalne.
+* <span class="mw-specialpagerestricted">Zastrzeżone strony specjalne.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
-'specialpages-group-login'       => 'Logowanie i rejestracja',
+'specialpages-group-login'       => 'Zaloguj się / utwórz konto',
 'specialpages-group-changes'     => 'Ostatnie zmiany i rejestry',
 'specialpages-group-media'       => 'Pliki',
 'specialpages-group-users'       => 'Użytkownicy i uprawnienia',
@@ -3954,7 +3957,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-duplicate'                     => '{{PLURAL:$1|Jest już [$2 inny plik]|Są już [$2 inne pliki]}} o tej samej zawartości',
 'api-error-duplicate-archive'             => '{{PLURAL:$1|Był już [$2 inny plik]|Były już [$2 inne pliki]}} o takiej samej zawartości, ale {{PLURAL:$1|został usunięty|zostały usunięte}}.',
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Zdublowany plik, który został już usunięty|Zdublowane pliki, które zostały już usunięte}}',
-'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Zdublowany plik|Zdublowane plik}}',
+'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Zdublowany plik|Zdublowane pliki}}',
 'api-error-empty-file'                    => 'Przesłany przez Ciebie plik jest pusty.',
 'api-error-emptypage'                     => 'Tworzenie nowych, pustych stron jest niedozwolone.',
 'api-error-fetchfileerror'                => 'Błąd wewnętrzny – wystąpił błąd w trakcie pobierania pliku.',

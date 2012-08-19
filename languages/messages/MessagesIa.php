@@ -462,9 +462,9 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 'dberrortext'          => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Isto pote indicar le presentia de un defecto in le software.
 Le ultime consulta que esseva tentate es:
-<blockquote><tt>$1</tt></blockquote>
-effectuate per le function "<tt>$2</tt>".
-Le base de datos retornava le error "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+effectuate per le function "<code>$2</code>".
+Le base de datos retornava le error "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Le ultime consulta que esseva tentate es:
 "$1"
@@ -1538,9 +1538,9 @@ Le registro de deletiones e renominationes pro iste pagina es fornite hic pro ma
 Pro vider o cercar files ja incargate, visita le [[Special:FileList|lista de files incargate]]. In ultra, le (re)incargamentos es registrate in le [[Special:Log/upload|registro de incargamentos]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
 
 Pro includer un file in un pagina, usa un ligamine in un del sequente formas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></tt>''' pro usar un rendition a latitude de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro facer un ligamine directe al file sin monstrar le file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' pro usar le version complete del file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></code>''' pro usar un rendition a latitude de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' pro facer un ligamine directe al file sin monstrar le file",
 'upload-permitted'            => 'Typos de file permittite: $1.',
 'upload-preferred'            => 'Typos de file preferite: $1.',
 'upload-prohibited'           => 'Typos de file prohibite: $1.',
@@ -1588,21 +1588,21 @@ iste file occupa $2.',
 Isto pote esser debite a un error in le nomine del file.
 Per favor verifica que tu realmente vole incargar iste file.',
 'windows-nonascii-filename'   => 'Iste wiki non supporta nomines de file con characteres special.',
-'fileexists'                  => "Un file con iste nomine existe ja.
-Per favor verifica '''<tt>[[:$1]]</tt>''' si tu non es secur de voler cambiar lo.
-[[$1|thumb]]",
-'filepageexists'              => "Le pagina de description correspondente a iste file ha ja essite create a '''<tt>[[:$1]]</tt>''', ma nulle file con iste nomine existe al momento.
+'fileexists'                  => 'Un file con iste nomine existe ja.
+Per favor verifica <strong>[[:$1]]</strong> si tu non es secur de voler cambiar lo.
+[[$1|thumb]]',
+'filepageexists'              => 'Le pagina de description correspondente a iste file ha ja essite create a <strong>[[:$1]]</strong>, ma nulle file con iste nomine existe al momento.
 Le summario que tu entra non apparera in le pagina de description.
 Si tu vole que illo appare, tu debe inserer lo manualmente.
-[[$1|thumb]]",
-'fileexists-extension'        => "Un file con un nomine similar existe ja: [[$2|thumb]]
-* Nomine del file a incargar: '''<tt>[[:$1]]</tt>'''
-* Nomine del file existente: '''<tt>[[:$2]]</tt>'''
-Per favor selige un altere nomine.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Un file con un nomine similar existe ja: [[$2|thumb]]
+* Nomine del file a incargar: <strong>[[:$1]]</strong>
+* Nomine del file existente: <strong>[[:$2]]</strong>
+Per favor selige un altere nomine.',
 'fileexists-thumbnail-yes'    => "Iste file pare esser un imagine a grandor reducite ''(miniatura)''. [[$1|thumb]]
-Per favor verifica le file '''<tt>[[:$1]]</tt>'''.
+Per favor verifica le file <strong>[[:$1]]</strong>.
 Si le file verificate es le mesme imagine a grandor original, non es necessari incargar un miniatura additional.",
-'file-thumbnail-no'           => "Le nomine del file comencia con '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Le nomine del file comencia con <strong>$1</strong>.
 Illo pare esser un imagine a grandor reducite ''(miniatura)''.
 Si tu possede iste imagine in plen resolution, incarga lo, alteremente cambia le nomine del file per favor.",
 'fileexists-forbidden'        => 'Un file con iste nomine existe ja, e non pote esser superscribite.
@@ -1855,7 +1855,7 @@ Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 # MIME search
 'mimesearch'         => 'Recerca de typo MIME',
 'mimesearch-summary' => 'Iste pagina permitte filtrar le files a base de lor typos MIME.
-Syntaxe: typo/subtypo, p.ex. <tt>image/jpeg</tt>.',
+Syntaxe: typo/subtypo, p.ex. <code>image/jpeg</code>.',
 'mimetype'           => 'Typo MIME:',
 'download'           => 'discargar',
 
@@ -1902,9 +1902,9 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 
 'disambiguations'      => 'Paginas con ligamines a paginas de disambiguation',
 'disambiguationspage'  => 'Template:Disambiguation',
-'disambiguations-text' => "Le sequente paginas ha ligamines a un '''pagina de disambiguation'''.
-Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
-Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
+'disambiguations-text' => "Le sequente paginas contine al minus un ligamine a un '''pagina de disambiguation'''.
+Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
+Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Redirectiones duple',
 'doubleredirectstext'               => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
@@ -2051,7 +2051,7 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-ok'    => 'Cercar',
 'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".
 Necessita al minus un dominio de nivello superior, per exemplo "*.org".<br />
-Protocollos supportate: <tt>$1</tt> (non include alcun de istes in tu recerca).',
+Protocollos supportate: <code>$1</code> (non include alcun de istes in tu recerca).',
 'linksearch-line'  => '$1 ligate ab $2',
 'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 
@@ -2656,7 +2656,7 @@ Per favor selige un altere nomine.',
 'talkexists'                   => "'''Le pagina mesme ha essite renominate con successo, ma su pagina de discussion non poteva esser renominate proque il ja existe un con le nove titulo.
 Per favor fusiona los manualmente.'''",
 'movedto'                      => 'renominate a',
-'movetalk'                     => 'Renominar etiam su pagina de discussion',
+'movetalk'                     => 'Renominar le pagina de discussion associate',
 'move-subpages'                => 'Renominar le subpaginas (usque a $1)',
 'move-talk-subpages'           => 'Renominar le subpaginas del pagina de discussion (usque a $1)',
 'movepage-page-exists'         => 'Le pagina $1 existe ja e non pote esser automaticamente superscribite.',
@@ -2787,8 +2787,8 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'import-upload'              => 'Incargar datos XML',
 'import-token-mismatch'      => 'Perdita del datos del session. Per favor reprova.',
 'import-invalid-interwiki'   => 'Non pote importar ab le wiki specificate.',
-'import-error-edit'          => 'Le pagina "$1" non es importate proque tu non ha le permission de modificar lo.',
-'import-error-create'        => 'Le pagina "$1" non es importate proque tu non ha le permission de crear lo.',
+'import-error-edit'          => 'Le pagina "$1" non es importate perque tu non ha le permission de modificar lo.',
+'import-error-create'        => 'Le pagina "$1" non es importate perque tu non ha le permission de crear lo.',
 'import-error-interwiki'     => 'Le pagina "$1" non es importate perque su nomine es reservate pro ligation externe (interwiki).',
 'import-error-special'       => 'Le pagina "$1" non es importate perque illo pertine a un spatio de nomines special que non permitte paginas.',
 'import-error-invalid'       => 'Le pagina "$1" non es importate perque su nomine es invalide.',

@@ -10,6 +10,7 @@
  * @author Chris H
  * @author Istabani
  * @author Meno25
+ * @author Muhammad Shuaib
  * @author O.bangash
  * @author Rachitrali
  * @author Reedy
@@ -53,7 +54,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'حالیہ تبدیلیوں میں گشتی ترمیمات چُھپاؤ',
 'tog-newpageshidepatrolled'   => 'جدید صفحاتی فہرست میں گشتی صفحات چُھپاؤ',
 'tog-extendwatchlist'         => 'زیرِنظرفہرست کو پھیلاؤ تاکہ اِس میں تمام ترمیمات نظر آئیں، نہ کہ صرف حالیہ ترین',
-'tog-usenewrc'                => 'افزودہ حالیہ تبدیلیاں استعمال کرو (JavaScript چاہئے ہوگا)',
+'tog-usenewrc'                => 'افزودہ حالیہ تبدیلیاں استعمال کریں (JavaScript درکار ہوگا)',
 'tog-numberheadings'          => 'سرخیوں کو خود نمبر دو',
 'tog-showtoolbar'             => 'تدوینی اوزاردان دکھاؤ ( JavaScript چاہئے)',
 'tog-editondblclick'          => 'طقین پر صفحات کی ترمیم (JavaScript چاہئے)',
@@ -166,6 +167,7 @@ $messages = array(
 'category-subcat-count'         => '{{PLURAL:$2|اِس زمرہ میں صرف درج ذیل ذیلی زمرہ ہے.|اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ|$1 ذیلی زمرہ جات}}, کل $2 میں سے.}}',
 'category-subcat-count-limited' => 'اِس زمرہ میں درج ذیل {{PLURAL:$1|ذیلی زمرہ ہے|$1 ذیلی زمرہ جات ہیں}}.',
 'listingcontinuesabbrev'        => '۔جاری',
+'noindex-category'              => 'غیر مندرج صفحات',
 
 'about'         => 'تعارف',
 'article'       => 'صفحۂ مشمول',
@@ -930,38 +932,43 @@ HTML tags جانچئے.',
 'action-edit' => 'اس صفحہ میں ترمیم کریں',
 
 # Recent changes
-'nchanges'                       => '$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}}',
-'recentchanges'                  => 'حالیہ تبدیلیاں',
-'recentchanges-legend'           => 'اِختیاراتِ حالیہ تبدیلیاں',
-'recentchangestext'              => 'اس صفحے پر ویکی میں ہونے والی تازہ تریں تبدیلیوں کا مشاہدہ کیجیۓ۔',
-'recentchanges-feed-description' => 'اس خورد میں ویکی پر ہونے والی تازہ تریں تبدیلیوں کا مشاہدہ کیجیۓ۔',
-'recentchanges-label-newpage'    => 'اِس ترمیم نے نیا صفحہ تخلیق کردیا',
-'recentchanges-label-minor'      => 'یہ ایک معمولی ترمیم ہے',
-'recentchanges-label-bot'        => 'یہ ایک روبالہ سے سرانجام شدہ ترمیم ہے',
-'rcnote'                         => "درج ذیل گزشتہ {{PLURAL:$2|دِن|'''$2''' ایام}} میں ہونے والی {{PLURAL:$1|'''ایک''' تبدیلی ہے|آخری '''$1''' تبدیلیاں ہیں}}، $5، $4.",
-'rcnotefrom'                     => "ذیل میں '''$2''' سے کی گئی تبدیلیاں ہیں ('''$1''' تبدیلیاں دکھائی جارہی ہیں)۔",
-'rclistfrom'                     => '$1 سےنئی تبدیلیاں دکھانا شروع کریں',
-'rcshowhideminor'                => 'معمولی ترامیم $1',
-'rcshowhidebots'                 => 'خودکار صارف $1',
-'rcshowhideliu'                  => 'داخل شدہ صارف $1',
-'rcshowhideanons'                => 'گمنام صارف $1',
-'rcshowhidemine'                 => 'ذاتی ترامیم $1',
-'rclinks'                        => 'آخری $2 روز میں ہونے والی $1 تبدیلیوں کا مشاہدہ کریں<br />$3',
-'diff'                           => 'فرق',
-'hist'                           => 'تاریخچہ',
-'hide'                           => 'چھـپائیں',
-'show'                           => 'دکھاؤ',
-'minoreditletter'                => 'م',
-'newpageletter'                  => 'نیا ..',
-'boteditletter'                  => ' خودکار',
-'rc-enhanced-expand'             => 'تفصیلات دِکھاؤ (JavaScript چاہئے)',
-'rc-enhanced-hide'               => 'تفصیلات چھپائیے',
+'nchanges'                        => '$1 {{PLURAL:$1|تبدیلی|تبدیلیاں}}',
+'recentchanges'                   => 'حالیہ تبدیلیاں',
+'recentchanges-legend'            => 'اِختیاراتِ حالیہ تبدیلیاں',
+'recentchangestext'               => 'اس صفحے پر ویکی میں ہونے والی تازہ تریں تبدیلیوں کا مشاہدہ کیجیۓ۔',
+'recentchanges-feed-description'  => 'اس خورد میں ویکی پر ہونے والی تازہ تریں تبدیلیوں کا مشاہدہ کیجیۓ۔',
+'recentchanges-label-newpage'     => 'اِس ترمیم نے نیا صفحہ تخلیق کردیا',
+'recentchanges-label-minor'       => 'یہ ایک معمولی ترمیم ہے',
+'recentchanges-label-bot'         => 'یہ ایک روبالہ سے سرانجام شدہ ترمیم ہے',
+'recentchanges-label-unpatrolled' => 'اس ترمیم کی اب تک مراجعت نہیں کی گئی',
+'rcnote'                          => "درج ذیل گزشتہ {{PLURAL:$2|دِن|'''$2''' ایام}} میں ہونے والی {{PLURAL:$1|'''ایک''' تبدیلی ہے|آخری '''$1''' تبدیلیاں ہیں}}، $5، $4.",
+'rcnotefrom'                      => "ذیل میں '''$2''' سے کی گئی تبدیلیاں ہیں ('''$1''' تبدیلیاں دکھائی جارہی ہیں)۔",
+'rclistfrom'                      => '$1 سےنئی تبدیلیاں دکھانا شروع کریں',
+'rcshowhideminor'                 => 'معمولی ترامیم $1',
+'rcshowhidebots'                  => 'خودکار صارف $1',
+'rcshowhideliu'                   => 'داخل شدہ صارف $1',
+'rcshowhideanons'                 => 'گمنام صارف $1',
+'rcshowhidepatr'                  => '$1 مراجعت شدہ ترامیم',
+'rcshowhidemine'                  => 'ذاتی ترامیم $1',
+'rclinks'                         => 'آخری $2 روز میں ہونے والی $1 تبدیلیوں کا مشاہدہ کریں<br />$3',
+'diff'                            => 'فرق',
+'hist'                            => 'تاریخچہ',
+'hide'                            => 'چھـپائیں',
+'show'                            => 'دکھاؤ',
+'minoreditletter'                 => 'م',
+'newpageletter'                   => 'نیا ..',
+'boteditletter'                   => ' خودکار',
+'rc-enhanced-expand'              => 'تفصیلات دِکھاؤ (JavaScript چاہئے)',
+'rc-enhanced-hide'                => 'تفصیلات چھپائیے',
 
 # Recent changes linked
 'recentchangeslinked'         => 'متعلقہ تبدیلیاں',
 'recentchangeslinked-feed'    => 'متعلقہ تبدیلیاں',
 'recentchangeslinked-toolbox' => 'متعلقہ تبدیلیاں',
 'recentchangeslinked-title'   => '"$1" سے متعلقہ تبدیلیاں',
+'recentchangeslinked-summary' => 'یہ ان تبدیلیوں کی فہرست ہے جو حال ہی میں کسی مخصوص صفحہ سے مربوط صفحات (یا مخصوص زمرہ کے اراکین) میں کی گئی ہیںـ 
+
+[[SpecialWatchlist | آپ کی زیر نظر فہرست]] میں یہ صفحات متجل (bold) نظر آئیں گےـ',
 'recentchangeslinked-page'    => 'صفحۂ منصوبہ دیکھئے',
 
 # Upload
@@ -991,7 +998,7 @@ HTML tags جانچئے.',
 * مندرجہ بالا رموز آپ  انگریزی میں بھی درج کرسکتے ہیں، یعنی
 <nowiki>[[Image:File name|Alt.text]]</nowiki>
 * ملف کے ساتھ براہ راست رابطہ کیلیے
-کی طرز میں ربط استعمال کیجیۓ۔ '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''
+کی طرز میں ربط استعمال کیجیۓ۔ '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''
 * ملف کا نام ؛ حرف ابجد کے لیۓ حساس ہے لہذا اگر زبراثقال کرتے وقت ملف کا نام -- name:JPG  ہے اور آپ رابطہ رکھتے وقت name:jpg یــا Name:jpg رکھتے ہیں تو ربط کام نہیں کرے گا",
 'uploadlog'         => 'نوشتۂ زبراثقال (اپ لوڈ لاگ)',
 'uploadlogpage'     => 'نوشتۂ زبراثقال (اپ لوڈ لاگ)',
@@ -1002,7 +1009,7 @@ HTML tags جانچئے.',
 'ignorewarning'     => 'انتباہ نظرانداز کرتے ہوۓ بہرصورت ملف (فائل) کو محفوظ کرلیا جاۓ۔',
 'ignorewarnings'    => 'ہر انتباہ نظرانداز کردیا جاۓ۔',
 'badfilename'       => 'ملف (فائل) کا نام "$1" ، تبدیل کردیا گیا۔',
-'fileexists'        => "اس نام سے ایک ملف (فائل) پہلے ہی موجود ہے، اگر آپ کو یقین نہ ہو کہ اسے حذف کردیا جانا چاہیۓ تو براہ کرم  '''<tt>[[:$1]]</tt>''' کو ایک نظر دیکھ لیجیۓ۔ [[$1|thumb]]",
+'fileexists'        => 'اس نام سے ایک ملف (فائل) پہلے ہی موجود ہے، اگر آپ کو یقین نہ ہو کہ اسے حذف کردیا جانا چاہیۓ تو براہ کرم  <strong>[[:$1]]</strong> کو ایک نظر دیکھ لیجیۓ۔ [[$1|thumb]]',
 'uploadwarning'     => 'انتباہ بہ سلسلۂ زبراثقال',
 'savefile'          => 'فائل محفوظ کریں',
 'uploadedimage'     => 'زبراثقال (اپ لوڈ) براۓ "[[$1]]"',
@@ -1047,7 +1054,8 @@ HTML tags جانچئے.',
 'statistics'              => 'اعداد و شمار',
 'statistics-header-users' => 'ارکان کے اعداد و شمار',
 
-'disambiguations' => 'ضد ابہام صفحات',
+'disambiguations'     => 'ضد ابہام صفحات',
+'disambiguationspage' => 'سانچہ:ضدابہام',
 
 'doubleredirects' => 'دوہرے متبادل ربط',
 
@@ -1226,6 +1234,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'nolinkshere'              => "'''[[:$1]]''' سے کوئی روابط نہیں۔",
 'isredirect'               => 'لوٹایا گیا صفحہ',
 'isimage'                  => 'ربطِ ملف',
+'whatlinkshere-links'      => 'روابط',
 'whatlinkshere-hideredirs' => 'رجوع مکررات $1',
 'whatlinkshere-hidelinks'  => 'روابط $1',
 'whatlinkshere-hideimages' => 'روابطِ تصویر $1',
@@ -1342,6 +1351,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'tooltip-diff'                    => 'دیکھئے کہ اپنے متن میں کیا تبدیلیاں کیں',
 'tooltip-compareselectedversions' => 'اِس صفحہ کی دو منتخب نظرثانیوں میں فرق دیکھئے',
 'tooltip-watch'                   => 'اِس صفحہ کو اپنی زیرِنظرفہرست میں شامل کریں',
+'tooltip-undo'                    => "''استرجع'' اس ترمیم کو پچھلی ترمیم کے جانب واپس کردیگا اور نمائشی انداز میں خانہ ترمیم کھول دے گا۔ آپ مختصراً سبب بیان کرنے کے بھی مجاز ہونگے۔",
 'tooltip-summary'                 => 'مختصر خلاصہ درج کریں',
 
 # Attribution
@@ -1354,6 +1364,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Browsing diffs
 'previousdiff' => '← پُرانی تدوین',
 'nextdiff'     => 'صفحہ کا نام:',
+
+# Media information
+'file-nohires'   => 'اس سے بڑی تصمیم دستیاب نہیں۔',
+'show-big-image' => 'مکمل تصمیم',
 
 # Special:NewFiles
 'newimages'    => 'نئی فائلوں کی گیلری',

@@ -781,9 +781,9 @@ Págines in [[Special:Watchlist|tui liste de págines vigilat]] es '''nigri'''."
 Por vider o serchar files cargat anteriorimen ear por li [[Special:FileList|liste de files cargat]], (re)cargamentes es anc registrat in li [[Special:Log/upload|diarium de cargament]], deletiones in li [[Special:Log/delete|diarium de deletion]].
 
 Por includer un file in un págine, usa un catenun in un de sequent formes:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' por usar li version complet de li file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' por usar un rendition larg de 200 pixel in un buxe in li márgine levul che 'alt text' quam descrition
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' por ligar inmediatmen por li file sin monstrar li file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' por usar li version complet de li file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' por usar un rendition larg de 200 pixel in un buxe in li márgine levul che 'alt text' quam descrition
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' por ligar inmediatmen por li file sin monstrar li file",
 'upload-permitted'     => 'Tipes de file permisset: $1.',
 'upload-preferred'     => 'Tipes de file preferet: $1.',
 'upload-prohibited'    => 'Tipes de file prohibit: $1.',

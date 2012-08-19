@@ -1451,9 +1451,9 @@ T'a suya conveniencia s'su conveniencia se muestra aquí el registro de supresio
 Ta veyer u mirar fichers cargatas denantes vaiga t'a [[Special:FileList|lista de fichers cargatos]]. As cargas y recargas tamién se rechistran en o [[Special:Log/upload|rechistro de cargas]], y os borraus en o [[Special:Log/delete|rechistro de borraus]].
 
 Ta incluyir un fichero en una pachina, emplegue un vinclo d'una d'istas trazas
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichero.jpg]]</nowiki></tt>''' ta fer servir a version completa d'o fichero,
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichero.png|200px|thumb|left|texto alternativo]]</nowiki></tt>''' ta fer serivr una versión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'texto alternativo' como descripción
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichero.ogg]]</nowiki></tt>''' ta fer un vinclo dreitament ta o fichero sin amostrar-lo.",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichero.jpg]]</nowiki></code>''' ta fer servir a version completa d'o fichero,
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fichero.png|200px|thumb|left|texto alternativo]]</nowiki></code>''' ta fer serivr una versión de 200 píxels d'amplaria en una caixa a la marguin cucha con 'texto alternativo' como descripción
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fichero.ogg]]</nowiki></code>''' ta fer un vinclo dreitament ta o fichero sin amostrar-lo.",
 'upload-permitted'            => 'Tipos de fichero premititos: $1.',
 'upload-preferred'            => 'Tipos de fichero preferitos: $1.',
 'upload-prohibited'           => 'Tipos de fichero vedatos: $1.',
@@ -1494,20 +1494,20 @@ Ta incluyir un fichero en una pachina, emplegue un vinclo d'una d'istas trazas
 'largefileserver'             => "A grandaria d'iste fichero ye mayor d'a que a confeguración d'iste servidor premite.",
 'emptyfile'                   => 'Parixe que o fichero que se miraba de cargar ye buedo; por favor, comprebe que ixe ye reyalment o fichero que quereba cargar.',
 'windows-nonascii-filename'   => 'Iste wiki no admite nombres de fichero con caracters especials.',
-'fileexists'                  => "Ya bi ha un fichero con ixe nombre.
-Por favor, Por favor mire-se o fichero existent '''<tt>[[:$1]]</tt>''' si no ye seguro de querer sustituyir-lo.
-[[$1|thumb]]",
-'filepageexists'              => "A pachina de descripción d'iste fichero ya s'ha creyau en '''<tt>[[:$1]]</tt>''', pero no i hai garra fichero con iste nombre. O resumen que escriba no amaneixerá en a pachina de descripción.
+'fileexists'                  => 'Ya bi ha un fichero con ixe nombre.
+Por favor, Por favor mire-se o fichero existent <strong>[[:$1]]</strong> si no ye seguro de querer sustituyir-lo.
+[[$1|thumb]]',
+'filepageexists'              => "A pachina de descripción d'iste fichero ya s'ha creyau en <strong>[[:$1]]</strong>, pero no i hai garra fichero con iste nombre. O resumen que escriba no amaneixerá en a pachina de descripción.
 Si quiere que o suyo resumen amaneixca aquí, habrá d'editar-lo manualment.
 [[$1|thumb]]",
 'fileexists-extension'        => "Ya bi ha un fichero con un nombre pareixiu: [[$2|thumb]]
-* Nombre d'o fichero que ye cargando: '''<tt>[[:$1]]</tt>'''
-* Nombre d'o fichero ya existent: '''<tt>[[:$2]]</tt>'''
+* Nombre d'o fichero que ye cargando: <strong>[[:$1]]</strong>
+* Nombre d'o fichero ya existent: <strong>[[:$2]]</strong>
 Por favor, trigue un nombre diferent.",
 'fileexists-thumbnail-yes'    => "Pareix que o fichero ye una imachen chicota ''(miniatura)''. [[$1|thumb]]
-Comprebe por favor o fichero '''<tt>[[:$1]]</tt>'''.
+Comprebe por favor o fichero <strong>[[:$1]]</strong>.
 Si o fichero comprebato ye a mesma imachen en tamanyo orichinal no cal cargar una nueva miniatura.",
-'file-thumbnail-no'           => "O nombre d'o fichero prencipia con '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "O nombre d'o fichero prencipia con <strong>$1</strong>.
 Pareix que estase una imachen achiquida ''(thumbnail)''.
 Si tiene ista imachen a toda resolución, cargue-la, si no, por favor, cambee o nombre d'o fichero.",
 'fileexists-forbidden'        => 'Ya bi ha un fichero con iste nombre, y no se puet sobrescribir.
@@ -1751,7 +1751,7 @@ Debaixo s'amuestra a descripción d'a suya [$2 pachina de descripción].",
 
 # MIME search
 'mimesearch'         => 'Mirar por tipo MIME',
-'mimesearch-summary' => 'Ista pachina premite filtrar fichers seguntes o suyo tipo MIME. Escribir: tipodeconteniu/subtipo, por exemplo <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ista pachina premite filtrar fichers seguntes o suyo tipo MIME. Escribir: tipodeconteniu/subtipo, por exemplo <code>image/jpeg</code>.',
 'mimetype'           => 'Tipo MIME:',
 'download'           => 'descargar',
 
@@ -1943,7 +1943,7 @@ Se veigan tamién as [[Special:WantedCategories|categorías requiestas]].",
 'linksearch-ok'    => 'Mirar',
 'linksearch-text'  => 'Pueden usar-se carácters comodín como "*.wikipedia.org".
 A lo menos aprecisa un dominio de maximo libel, como "*.org".<br />
-Protocolos suportados: <tt>$1</tt> (no los adhiba en a suya busca).',
+Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'linksearch-line'  => '$1 tiene un vinclo dende $2',
 'linksearch-error' => "Os carácters comodín nomás pueden apareixer en o prencipio d'o nombre d'o sitio.",
 

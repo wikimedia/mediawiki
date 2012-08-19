@@ -1261,9 +1261,9 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 Wat oanbean en wat wiske wurdt, wurdt delskreaun yn it [[Special:Log/upload|lochboek]].
 
 Om de triem yn in side op te nimmen, meitsje jo dêr sa'n keppeling:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:jo_foto.jpg]]</nowiki></tt>''', foar grutte ferzje,
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki></tt>''' foar 200 in piksel ferzje, mei 'alternative tekst' as beskriuwing, of
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki></tt>''', foar direkt keppeling nei de triem (sûnder byld).",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:jo_foto.jpg]]</nowiki></code>''', foar grutte ferzje,
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:jo_logo.png|omskriuwing]]</nowiki></code>''' foar 200 in piksel ferzje, mei 'alternative tekst' as beskriuwing, of
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:jo_lûd.ogg]]</nowiki></code>''', foar direkt keppeling nei de triem (sûnder byld).",
 'upload-permitted'            => 'Talitten triemtypen: $1.',
 'upload-preferred'            => 'Oanwiisde triemtypen: $1.',
 'upload-prohibited'           => 'Ferbeane triemtypen: $1.',
@@ -1295,20 +1295,20 @@ Jou de triem in oare namme en besykje him dan op\'e nij heech te laden.',
 'emptyfile'                   => "De triem dy jo heechladen hawwe liket leech te wêzen.
 Dat soe komme kinne fan in typflater yn 'e triemnamme.
 Gean nei oft jo dizze triem wier bedoelden heech te laden.",
-'fileexists'                  => "Der bestiet al in triem mei dizze namme.
-Kontrolearje '''<tt>[[:$1]]</tt>''' as jo net wis binne oft jo de besteande triem oerskriuwe wolle.
-[[$1|thumb]]",
-'filepageexists'              => "De beskriuwingsside foar dizze triem bestiet al op '''<tt>[[:$1]]</tt>''', mar der bestiet gjin triem mei dizze namme.
+'fileexists'                  => 'Der bestiet al in triem mei dizze namme.
+Kontrolearje <strong>[[:$1]]</strong> as jo net wis binne oft jo de besteande triem oerskriuwe wolle.
+[[$1|thumb]]',
+'filepageexists'              => "De beskriuwingsside foar dizze triem bestiet al op <strong>[[:$1]]</strong>, mar der bestiet gjin triem mei dizze namme.
 De gearfetting dy't jo opjûn hawwe sil net op 'e beskriuwingsside ferskine.
 Bewurkje de side mei de hân om de beskriuwing dêr wer te jaan.",
 'fileexists-extension'        => "In triem mei deselde namme bestiet al: [[$2|thumb]]
-* Namme fan 'e heechladene triem: '''<tt>[[:$1]]</tt>'''
-* Namme fan 'e besteande triem: '''<tt>[[:$2]]</tt>'''
+* Namme fan 'e heechladene triem: <strong>[[:$1]]</strong>
+* Namme fan 'e besteande triem: <strong>[[:$2]]</strong>
 Kies in oare namme.",
 'fileexists-thumbnail-yes'    => "De triem liket in ferlytse ferzje te wêzen ''(miniatuerôfbylding)''. [[$1|thumb]]
-Kontrolearje de triem '''<tt>[[:$1]]</tt>'''.
+Kontrolearje de triem <strong>[[:$1]]</strong>.
 As de kontrolearre triem deselde ôfbylding fan deselde grutte is, dan hoecht net in ekstra miniatuerôfbylding oanbean te wurden.",
-'file-thumbnail-no'           => "De triemnamme begjint mei '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "De triemnamme begjint mei <strong>$1</strong>.
 It liket in ferlytse ôfbylding te wêzen ''(miniatuerôfbylding)''.
 As jo dy ôfbylding yn folsleine resolúsje hawwe, bied him dan oan.
 Feroarje oars de triemnamme.",
@@ -1457,7 +1457,7 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 # MIME search
 'mimesearch'         => 'Sykje op MIME-type',
 'mimesearch-summary' => 'Dizze side makket it filterjen mûglik fan triemmen foar it MIME-type.
-Ynfier: contenttype/subtype, bygelyks <tt>image/jpeg</tt>.',
+Ynfier: contenttype/subtype, bygelyks <code>image/jpeg</code>.',
 'mimetype'           => 'MIME-type:',
 'download'           => 'oanbiede',
 
@@ -1638,7 +1638,7 @@ Sjuch ek [[Special:WantedCategories|net-besteande kategoryen mei ferwizings]].',
 'linksearch-ns'    => 'Nammerûmte:',
 'linksearch-ok'    => 'Sykje',
 'linksearch-text'  => 'Wildcards lykas "*.wikipedia.org" of "*.org" binne tastien.<br />
-Stipe protokollen: <tt>$1</tt>',
+Stipe protokollen: <code>$1</code>',
 'linksearch-line'  => '$1 hat in ferwizing yn $2',
 'linksearch-error' => 'Wildcards binne allinne tastien oan it begjin fan in hostnamme.',
 

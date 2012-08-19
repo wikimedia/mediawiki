@@ -539,11 +539,11 @@ Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPage
 'error'                => 'Erro',
 'databaseerror'        => 'Erro na base de datos',
 'dberrortext'          => 'Ocorreu un erro de sintaxe na consulta á base de datos.
-Isto pódese deber a un erro no programa.
+Isto pódese deber a un erro no software.
 A última consulta á base de datos foi:
-<blockquote><tt>$1</tt></blockquote>
-desde a función "<tt>$2</tt>".
-A base de datos devolveu o erro "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+desde a función "<code>$2</code>".
+A base de datos devolveu o erro "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Ocorreu un erro de sintaxe na consulta.
 A última consulta á base de datos foi:
 "$1"
@@ -895,7 +895,6 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 * '''Firefox / Safari:''' Prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' nos Mac)
 * '''Google Chrome:''' Prema en ''Ctrl-Shift-R'' (''⌘-Shift-R'' nos Mac)
 * '''Internet Explorer:''' Prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
-* '''Konqueror:''' Prema en ''Recargar'' ou prema en ''F5''
 * '''Opera:''' Limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview'             => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview'              => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
@@ -1603,9 +1602,9 @@ Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por 
 Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de cargas]] e as eliminacións no [[Special:Log/delete|rexistro de borrados]].
 
 Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar a versión completa do ficheiro
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternativo]]</nowiki></tt>''' para usar unha resolución de 200 píxeles de ancho nunha caixa na marxe esquerda cunha descrición (\"texto alternativo\")
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para ligar directamente co ficheiro sen que este saia na páxina",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para usar a versión completa do ficheiro
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternativo]]</nowiki></code>''' para usar unha resolución de 200 píxeles de ancho nunha caixa na marxe esquerda cunha descrición (\"texto alternativo\")
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para ligar directamente co ficheiro sen que este saia na páxina",
 'upload-permitted'            => 'Tipos de ficheiro permitidos: $1.',
 'upload-preferred'            => 'Tipos de arquivos preferidos: $1.',
 'upload-prohibited'           => 'Tipos de arquivos prohibidos: $1.',
@@ -1652,23 +1651,23 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
 'windows-nonascii-filename'   => 'Este wiki non soporta os nomes de ficheiros con caracteres especiais.',
-'fileexists'                  => "Xa existe un ficheiro con ese nome. Por favor, comprobe '''<tt>[[:$1]]</tt>''' se non está seguro de querer cambialo.
-[[$1|thumb]]",
-'filepageexists'              => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>[[:$1]]</tt>''', pero polo de agora non existe ningún ficheiro con este nome.
+'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, comprobe <strong>[[:$1]]</strong> se non está seguro de querer cambialo.
+[[$1|thumb]]',
+'filepageexists'              => 'A páxina de descrición deste ficheiro xa foi creada en <strong>[[:$1]]</strong>, pero polo de agora non existe ningún ficheiro con este nome.
 O resumo que escribiu non aparecerá na páxina de descrición.
 Para facer que o resumo apareza alí, necesitará editar a páxina manualmente.
-[[$1|miniatura]]",
-'fileexists-extension'        => "Xa existe un ficheiro cun nome semellante: [[$2|thumb]]
-* Nome do ficheiro que intenta cargar: '''<tt>[[:$1]]</tt>'''
-* Nome de ficheiro existente: '''<tt>[[:$2]]</tt>'''
-Por favor, escolla un nome diferente.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Xa existe un ficheiro cun nome semellante: [[$2|thumb]]
+* Nome do ficheiro que intenta cargar: <strong>[[:$1]]</strong>
+* Nome de ficheiro existente: <strong>[[:$2]]</strong>
+Por favor, escolla un nome diferente.',
 'fileexists-thumbnail-yes'    => "Semella que o ficheiro é unha imaxe de tamaño reducido ''(miniatura)''.
 [[$1|thumb]]
-Por favor, comprobe o ficheiro '''<tt>[[:$1]]</tt>'''.
+Por favor, comprobe o ficheiro <strong>[[:$1]]</strong>.
 Se o ficheiro seleccionado é a mesma imaxe en tamaño orixinal non é preciso enviar unha miniatura adicional.",
-'file-thumbnail-no'           => "O nome do ficheiro comeza por '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "O nome do ficheiro comeza por <strong>$1</strong>.
 Parece tratarse dunha imaxe de tamaño reducido ''(miniatura)''.
-Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.",
+Se dispón dunha versión desta imaxe de maior resolución cárguea; se non, múdelle o nome ao ficheiro.",
 'fileexists-forbidden'        => 'Xa existe un ficheiro co mesmo nome e este non pode ser sobrescrito.
 Se aínda quere cargar o seu ficheiro, por favor, retroceda e use un novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no repositorio de ficheiros compartidos.
@@ -1920,7 +1919,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 # MIME search
 'mimesearch'         => 'Busca MIME',
 'mimesearch-summary' => 'Esta páxina permite filtrar os ficheiros segundo o seu tipo MIME.
-Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
+Entrada: tipodecontido/subtipo, por exemplo <code>image/jpeg</code>.',
 'mimetype'           => 'Tipo MIME:',
 'download'           => 'descargar',
 
@@ -1967,7 +1966,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 
 'disambiguations'      => 'Páxinas que ligan con páxinas de homónimos',
 'disambiguationspage'  => 'Template:Homónimos',
-'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
+'disambiguations-text' => "As seguintes páxinas conteñen, polo menos, unha ligazón cara a unha '''páxina de homónimos'''.
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde [[MediaWiki:Disambiguationspage]].",
 
@@ -1989,7 +1988,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'withoutinterwiki-legend'  => 'Prefixo',
 'withoutinterwiki-submit'  => 'Mostrar',
 
-'fewestrevisions' => 'Artigos con menos revisións',
+'fewestrevisions' => 'Páxinas con menos revisións',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|byte|bytes}}',
@@ -2020,9 +2019,9 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'mostlinked'              => 'Páxinas máis ligadas',
 'mostlinkedcategories'    => 'Categorías máis ligadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
-'mostcategories'          => 'Artigos con máis categorías',
+'mostcategories'          => 'Páxinas con máis categorías',
 'mostimages'              => 'Ficheiros máis usados',
-'mostrevisions'           => 'Artigos con máis revisións',
+'mostrevisions'           => 'Páxinas con máis revisións',
 'prefixindex'             => 'Todas as páxinas coas iniciais',
 'prefixindex-namespace'   => 'Todas as páxinas con prefixo (espazo de nomes $1)',
 'shortpages'              => 'Páxinas curtas',
@@ -2044,7 +2043,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'usercreated'             => '{{GENDER:$3|Creado|Creada}} o $1 ás $2',
 'newpages'                => 'Páxinas novas',
 'newpages-username'       => 'Nome de usuario:',
-'ancientpages'            => 'Artigos máis antigos',
+'ancientpages'            => 'Páxinas máis antigas',
 'move'                    => 'Mover',
 'movethispage'            => 'Mover esta páxina',
 'unusedimagestext'        => 'Os seguintes ficheiros existen pero aínda non se incluíron en ningunha páxina.
@@ -2114,7 +2113,7 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ok'    => 'Procurar',
 'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".
 Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
-Protocolos soportados: <tt>$1</tt> (non engada ningún destes na súa procura).',
+Protocolos soportados: <code>$1</code> (non engada ningún destes na súa procura).',
 'linksearch-line'  => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
@@ -2212,7 +2211,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'notvisiblerev'        => 'A revisión foi borrada',
 'watchnochange'        => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo indicado.',
 'watchlist-details'    => 'Hai {{PLURAL:$1|unha páxina|$1 páxinas}} na súa lista de vixilancia, sen contar as de conversa.',
-'wlheader-enotif'      => '* Está dispoñible a notificación por correo electrónico.',
+'wlheader-enotif'      => '* A notificación por correo electrónico está activada.',
 'wlheader-showupdated' => "* As páxinas que cambiaron desde a súa última visita móstranse en '''negra'''",
 'watchmethod-recent'   => 'comprobando as edicións recentes na procura de páxinas vixiadas',
 'watchmethod-list'     => 'comprobando as páxinas vixiadas na procura de edicións recentes',

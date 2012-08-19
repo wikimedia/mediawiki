@@ -949,9 +949,9 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 Nuoriedamė parveizietė ar ėiškuotė unkstiau ikeltū abruozdieliu, ēkėt i [[Special:FileList|ikeltū failu saraša]], ikielėmā ėr ėštrīnėmā īr ožregėstroujamė [[Special:Log/upload|ikielėmu istuorėjuo]], trīnėmā - [[Special:Log/delete|trīnėmu istuorėjuo]].
 
 Nuoriedamė panauduotė ikelta faila poslapī, nauduokėt tuokės nūoruodas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' aba
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' tėisiuogėnē nūruodā i faila.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' aba
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' tėisiuogėnē nūruodā i faila.",
 'upload-permitted'           => 'Laistėnė failu tėpā: $1.',
 'upload-preferred'           => 'Pageidajamė failu tėpā: $1.',
 'upload-prohibited'          => 'Oždraustė failu tėpā: $1.',
@@ -969,12 +969,12 @@ Nuoriedamė panauduotė ikelta faila poslapī, nauduokėt tuokės nūoruodas:
 'badfilename'                => 'Faila pavadinėms pakeists i „$1“.',
 'filetype-missing'           => 'Fails netor galūnės (kāp pavīzdīs „.jpg“).',
 'emptyfile'                  => 'Panašu, ka fails, katra ikieliet īr toščias. Tas gal būtė diel klaiduos faila pavadėnėmė. Pasėtėkrinkėt a tėkrā nuorėt ikeltė šėta faila.',
-'fileexists'                 => "Fails so tuokiu vardu jau īr, prašuom paveizėtė '''<tt>[[:$1]]</tt>''', jēgo nesat ožtėkrėnts, a nuorit ana parrašītė.
-[[$1|thumb]]",
-'fileexists-extension'       => "Fails so pavėdiu pavadinėmu jau īr: [[$2|thumb]]
-* Ikeliama faila pavadinėms: '''<tt>[[:$1]]</tt>'''
-* Jau esontė faila pavadinėms: '''<tt>[[:$2]]</tt>'''
-Prašuom ėšsėrėnktė kėta varda.",
+'fileexists'                 => 'Fails so tuokiu vardu jau īr, prašuom paveizėtė <strong>[[:$1]]</strong>, jēgo nesat ožtėkrėnts, a nuorit ana parrašītė.
+[[$1|thumb]]',
+'fileexists-extension'       => 'Fails so pavėdiu pavadinėmu jau īr: [[$2|thumb]]
+* Ikeliama faila pavadinėms: <strong>[[:$1]]</strong>
+* Jau esontė faila pavadinėms: <strong>[[:$2]]</strong>
+Prašuom ėšsėrėnktė kėta varda.',
 'file-exists-duplicate'      => 'Tas fails īr {{PLURAL:$1|šėta faila|šėtū failu}} doblėkats:',
 'uploadwarning'              => 'Diemesė',
 'savefile'                   => 'Ėšsauguotė faila',
@@ -1068,7 +1068,7 @@ Infuormacėjė ėš [$2 faila aprašīma poslapė] īr pateikta žemiau.',
 
 # MIME search
 'mimesearch'         => 'MIME paėiška',
-'mimesearch-summary' => 'Šėts poslapis laid ruodīti failus vagol anū MIME tipa. Iveskėt: torėnėtips/potipis, pvz. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Šėts poslapis laid ruodīti failus vagol anū MIME tipa. Iveskėt: torėnėtips/potipis, pvz. <code>image/jpeg</code>.',
 'mimetype'           => 'MIME tips:',
 'download'           => 'parsėsiūstė',
 

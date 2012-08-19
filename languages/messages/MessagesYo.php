@@ -1425,9 +1425,9 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 Láti wò tàbí wá àwọn fáìlì àrùsókè tẹ́lẹ̀ ẹ lọ sí [[Special:FileList|àtòjọ àwọn fáìlì àrùsókè]], àwọn à(tùn)rùsókè náà jẹ́ kíkọọ́lẹ̀ nínú [[Special:Log/upload|àkọọ́lẹ̀ ìrùsókè]], àwọn ìparẹ́ nínú [[Special:Log/delete|àkọọ́lẹ̀ ìparẹ́]].
 
 Láti fí fáìlì pọ̀mọ́ sínú ojúewé kan, ẹ lo àjápọ̀ bíi ìkan nínù àwọn ti ìsàlẹ̀ yìí:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fáìlì.jpg]]</nowiki></tt>''' láti lo àtẹ̀jáde kíkún fáiø ọ̀hún
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fáìlì.png|200px|thumb|left|ìkọ̀rọ̀]]</nowiki></tt>''' láti lo ìgbéhàn fífẹ̀ tó 200 pixel nínú àpótí ní apá ọwọ́ òsì pẹ̀lú 'ìkọ̀rọ̀' bíi ìjúwe
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fáìlì.ogg]]</nowiki></tt>''' láti ṣèjápọ̀ tààrà sí fáìlì náà láì sàgbéhàn fáìlì ọ̀hún",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fáìlì.jpg]]</nowiki></code>''' láti lo àtẹ̀jáde kíkún fáiø ọ̀hún
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fáìlì.png|200px|thumb|left|ìkọ̀rọ̀]]</nowiki></code>''' láti lo ìgbéhàn fífẹ̀ tó 200 pixel nínú àpótí ní apá ọwọ́ òsì pẹ̀lú 'ìkọ̀rọ̀' bíi ìjúwe
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fáìlì.ogg]]</nowiki></code>''' láti ṣèjápọ̀ tààrà sí fáìlì náà láì sàgbéhàn fáìlì ọ̀hún",
 'upload-permitted'            => 'Àwọn irú fáìlì yíyọ̀nda: $1',
 'upload-preferred'            => 'Àwọn irú fáìlì fífẹ́ràn: $1',
 'upload-prohibited'           => 'Àwọn irú fáìlì dídènà: $1',
@@ -1474,21 +1474,21 @@ fáìlì yìí jẹ́ $2.',
 Ó ṣe é ṣe pé ẹ si orúkọ rẹ̀ kọ.
 Ẹ jọ̀wọ́ ẹ yẹ fáìlì náà wò bóyá òhun lẹ fẹ́ rùsókè.',
 'windows-nonascii-filename'   => 'Wiki yìí kò ní àtìlẹ́yìn fún àwọn orúkọ fáìlì pẹ̀lú àwọn àmììkọ̀rọ̀ àkànṣe.',
-'fileexists'                  => "Fáìlì kan tilẹ̀ wà pẹ̀lú orúkọ yìí, ẹ jọ̀wọ́ ẹ yẹ '''<tt>[[:$1]]</tt>''' wò tí kò bá dá yín lójú pé ẹ fẹ́ yipadà.
-[[$1|thumb]]",
-'filepageexists'              => "Ojúewé ìjúwe fún fáìlì yìí tilẹ̀ ti wà ní '''<tt>[[:$1]]</tt>''', sùgbọ́n fáìlì kankan kò sí pẹ̀lú orúkọ yìí rárá. 
+'fileexists'                  => 'Fáìlì kan tilẹ̀ wà pẹ̀lú orúkọ yìí, ẹ jọ̀wọ́ ẹ yẹ <strong>[[:$1]]</strong> wò tí kò bá dá yín lójú pé ẹ fẹ́ yipadà.
+[[$1|thumb]]',
+'filepageexists'              => 'Ojúewé ìjúwe fún fáìlì yìí tilẹ̀ ti wà ní <strong>[[:$1]]</strong>, sùgbọ́n fáìlì kankan kò sí pẹ̀lú orúkọ yìí rárá. 
 Àkótán tí ẹ kọ kò ní hàn lórí ojúewé ìjúwe náà.
 Tí ẹ bá fẹ́ kí àkótán yín ó hàn níbẹ̀, ẹ gbọ́dọ̀ kọ ọ́ síbẹ̀ fún raara yín.
-[[$1|thumb]]",
-'fileexists-extension'        => "Fáìlì kan wà pẹ̀lú orúkọ tó jọra: [[$2|thumb]]
-* Orúkọ fáìlì ìrùsókè: '''<tt>[[:$1]]</tt>'''
-* Orúkọ fáìlì tó wà: '''<tt>[[:$2]]</tt>'''
-Ẹ jọ̀wọ́ ẹ mú orúkọ tó yàtọ̀.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Fáìlì kan wà pẹ̀lú orúkọ tó jọra: [[$2|thumb]]
+* Orúkọ fáìlì ìrùsókè: <strong>[[:$1]]</strong>
+* Orúkọ fáìlì tó wà: <strong>[[:$2]]</strong>
+Ẹ jọ̀wọ́ ẹ mú orúkọ tó yàtọ̀.',
 'fileexists-thumbnail-yes'    => "Fáìlì náà dàbí pé ó jẹ́ àwòrán ìtóbi onírẹ̀sílẹ̀ ''(thumbnail)''.
 [[$1|thumb]]
-Ẹ jọ̀wọ́ ẹ yẹ fáìlì '''<tt>[[:$1]]</tt>''' wò.
+Ẹ jọ̀wọ́ ẹ yẹ fáìlì <strong>[[:$1]]</strong> wò.
 Tí fáìlì náà bá jẹ́ àwòrán kannáà kò pọndandan láti ṣe ìrùsókè thumbnail míràn.",
-'file-thumbnail-no'           => "Orúkọ fáìlì náà bẹ̀rẹ̀ pẹ̀lú '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Orúkọ fáìlì náà bẹ̀rẹ̀ pẹ̀lú <strong>$1</strong>.
 Ó dàbí pé ó jẹ́ àwòrán ìtóbi onírẹ̀sílẹ̀ ''(thumbnail)''.
 Tí ẹ bá ní àwòrán yìí ní ìgbéhàn kúnkún ẹ ṣe ìrùsókè èyí, bíbẹ́ẹ̀kọ́ ẹ jọ̀wọ́ ẹ yí orúkọ fáìlì náà padà sí òmíràn.",
 'fileexists-forbidden'        => 'Fáìlì kan wà tó ní orúkọ yìí, bẹ́ẹ̀sìni kò ṣe é kọ lélórí.
@@ -1721,7 +1721,7 @@ Tó bá jẹ́ jíjọ̀ gẹ́gẹ́bí oníṣe, àwọn fáìlì tí oníṣe
 # MIME search
 'mimesearch'         => 'àwáàrí pẹ́lú MIME',
 'mimesearch-summary' => 'Ojúewé yìí únṣe ìgbàláàyè ajọ̀ àwọn fáìlì fún irú MIME wọn.
-Ìtìbọnú: contenttype/subtype, f.a. <tt>image/jpeg</tt>.',
+Ìtìbọnú: contenttype/subtype, f.a. <code>image/jpeg</code>.',
 'mimetype'           => 'irú MIME:',
 'download'           => 'ìrùsílẹ̀',
 

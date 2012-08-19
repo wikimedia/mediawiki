@@ -1065,18 +1065,18 @@ Vai al [[Special:NewFiles|correol de nuevus archivus]] pa echali una guipaina de
 'large-file'                  => 'Es recomendabri que los archivus nu seyan mayoris de $1; esti archivu ocupa $2.',
 'largefileserver'             => 'Esti archivu es mas grandi que lo premitiu pol el sirviol.',
 'emptyfile'                   => "El archivu qu'as ententau empuntal paci estal vaciu; pol favol, compreba que realmenti se trata el archivu que querias empuntal.",
-'fileexists'                  => "Ya desisti un archivu con esi nombri.
-Pol favol, compreba que realmenti quieis chambal el archivu '''<tt>[[:$1]]</tt>'''.
-[[$1|thumb]]",
-'filepageexists'              => "Ya desisti un artículu con esi nombri, pol favol, compreba '''<tt>[[:$1]]</tt>''' si nu estás siguru e querel chambalu.",
-'fileexists-extension'        => "Ya desisti un archivu con un nombri paiciu: [[$2|thumb]]
-* Nombri el archivu empuntau: '''<tt>[[:$1]]</tt>'''
-* Nombri el archivu ya desistenti: '''<tt>[[:$2]]</tt>'''
-Pol favol, lihi un nombri deferenti.",
+'fileexists'                  => 'Ya desisti un archivu con esi nombri.
+Pol favol, compreba que realmenti quieis chambal el archivu <strong>[[:$1]]</strong>.
+[[$1|thumb]]',
+'filepageexists'              => 'Ya desisti un artículu con esi nombri, pol favol, compreba <strong>[[:$1]]</strong> si nu estás siguru e querel chambalu.',
+'fileexists-extension'        => 'Ya desisti un archivu con un nombri paiciu: [[$2|thumb]]
+* Nombri el archivu empuntau: <strong>[[:$1]]</strong>
+* Nombri el archivu ya desistenti: <strong>[[:$2]]</strong>
+Pol favol, lihi un nombri deferenti.',
 'fileexists-thumbnail-yes'    => "El archivu paci sel una imahin chiquenina ''(cuairu)''. [[$1|thumb]]
-Pol favol, compreba qu'el archivu '''<tt>[[:$1]]</tt>''' nu es la mesma imahin.
+Pol favol, compreba qu'el archivu <strong>[[:$1]]</strong> nu es la mesma imahin.
 Nel chascu en que huera la mesm imahin (inque seya en grandi) nu es mestel qu'empuntis el tu archivu.",
-'file-thumbnail-no'           => "El nombri el archivu esmiença pol '''<tt>$1</tt>'''. Paci sel una imahin pequeña ''(cuairu)''.
+'file-thumbnail-no'           => "El nombri el archivu esmiença pol <strong>$1</strong>. Paci sel una imahin pequeña ''(cuairu)''.
 Si tiinis la imahin cola resolución orihinal, empúntala, si nu, pol favol, chamba el nombri del archivu.",
 'fileexists-forbidden'        => 'Ya dessisti un archivu con esti nombri, i nu es possibri sobriescribilu.
 Si entovia quieris empuntal el archivu, pol favol, güervi atrás i empuntalu con otru nombri. [[File:$1|thumb|center|$1]]',
@@ -1192,7 +1192,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 
 # MIME search
 'mimesearch'         => 'Landeu MIME',
-'mimesearch-summary' => "Esta páhina ativa el filtrau d'archivus en hunción la su crasi MIME. Entrá: contenttype/subtype, p.sab. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Esta páhina ativa el filtrau d'archivus en hunción la su crasi MIME. Entrá: contenttype/subtype, p.sab. <code>image/jpeg</code>.",
 'mimetype'           => 'Tipu MIME:',
 'download'           => 'descargal',
 

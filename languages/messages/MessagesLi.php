@@ -10,6 +10,7 @@
  * @author Aelske
  * @author Benopat
  * @author Cicero
+ * @author Geitost
  * @author Kaganer
  * @author Matthias
  * @author Ooswesthoesbes
@@ -164,7 +165,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Gemarkeerde wieziginge verberge in recente wieziginge',
 'tog-newpageshidepatrolled'   => "Gemarkeerde pagina's verberge in de lies mit nuuj pagina's",
 'tog-extendwatchlist'         => 'Oetgebreide volglies gebroeke óm alle verangeringe te zeen en neet allein de lèste',
-'tog-usenewrc'                => 'Oetgebreide recènte verangeringe (Javascript nudig)',
+'tog-usenewrc'                => 'Tuun verangeringe per pagina in recènte verangeringe en volglies (Javascript nudig)',
 'tog-numberheadings'          => 'Köpkes automatisch nummere',
 'tog-showtoolbar'             => 'Laot edit toolbar zeen',
 'tog-editondblclick'          => "Bewirk pagina's bie 'ne dobbelklik (JavaScript)",
@@ -172,17 +173,17 @@ $messages = array(
 'tog-editsectiononrightclick' => "Secties bewirke mit 'ne rechtermoesklik op sectietitels (JavaScript nudig)",
 'tog-showtoc'                 => "Inhaudsopgaaf veur pagina's mit mie es 3 köpkes",
 'tog-rememberpassword'        => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
-'tog-watchcreations'          => "Pagina's die ich aanmaak automatisch volge",
-'tog-watchdefault'            => "Voog pagina's die se bewirks toe aan dien volglies",
-'tog-watchmoves'              => "Pagina's die ich verplaats automatisch volge",
-'tog-watchdeletion'           => "Pagina's die ich ewegsjaf automatisch volge",
+'tog-watchcreations'          => "Volg autematis pagina's die ich aanmaak en bestenj die ich upload",
+'tog-watchdefault'            => "Voog pagina's em bestenj die se bewirks toe aan dien volglies",
+'tog-watchmoves'              => "Volg autematis pagina's en bestenj die ich verplaats",
+'tog-watchdeletion'           => "Volg autematis pagina's en bestenj die ich ewegsjaf",
 'tog-minordefault'            => 'Markeer sjtanderd alle bewirkinge es klein',
 'tog-previewontop'            => 'Veurvertuin baove bewèrkingsveld tuine',
 'tog-previewonfirst'          => 'Preview laote zien bie de ierste bewirking',
 'tog-nocache'                 => 'Zèt de browserpaginacaching oet',
-'tog-enotifwatchlistpages'    => "'ne E-mail nao mich versjikke bie bewirkinge van pagina's op mien volglies",
+'tog-enotifwatchlistpages'    => "Versjik 'ne e-mail nao mich bie bewirkinge van pagina's en bestenj op mien volglies",
 'tog-enotifusertalkpages'     => "'ne E-mail nao mich versjikke es emes mien euverlèkpagina verangert",
-'tog-enotifminoredits'        => "'ne E-mail nao mich versjikke bie klein bewirkinge op pagina's op mien volglies",
+'tog-enotifminoredits'        => "Versjik  mich 'ne e-mail bie klein bewirkinge op pagina's en bestenj op mien volglies",
 'tog-enotifrevealaddr'        => 'Mien e-mailadres tuine in e-mailberichte',
 'tog-shownumberswatching'     => "'t Aantal gebroekers tuine die dees pagina volg",
 'tog-oldsig'                  => 'Bestaonde ongerteikening:',
@@ -1548,18 +1549,18 @@ Aangeweze {{PLURAL:\$3|bestandjstype|bestandjstypes}}zeen \$2.",
 'largefileserver'             => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile'                   => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
 'windows-nonascii-filename'   => 'Deze wiki ongersteunt gein bestandjsname mit speciaal teikes.',
-'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek '''<tt>[[:$1]]</tt>''' of se dat besjtand mesjien wils vervange.
+'fileexists'                  => "D'r is al e besjtand mit dees naam, bekiek <strong>[[:$1]]</strong> of se dat besjtand mesjien wils vervange.
 [[$1|thumb]]",
-'filepageexists'              => "De besjrievingspagina veur dit besjtand besjteit al op '''<tt>[[:$1]]</tt>''', meh d'r besjteit gein besjtand mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspagina versjiene. Bewirk de pagina handjmaotig óm dien besjrieving dao te tuine.
+'filepageexists'              => "De besjrievingspagina veur dit besjtand besjteit al op <strong>[[:$1]]</strong>, meh d'r besjteit gein besjtand mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspagina versjiene. Bewirk de pagina handjmaotig óm dien besjrieving dao te tuine.
 [[$1|thumb]]",
 'fileexists-extension'        => "'n bestand met dezelfde naam bestuit al: [[$2|thumb]]
-* Naam van 't geüploade bestand: '''<tt>[[:$1]]</tt>'''
-* Naam van 't bestaonde bestand: '''<tt>[[:$2]]</tt>'''
+* Naam van 't geüploade bestand: <strong>[[:$1]]</strong>
+* Naam van 't bestaonde bestand: <strong>[[:$2]]</strong>
 Lèver 'ne angere naam te keze.",
 'fileexists-thumbnail-yes'    => "'t Liek 'n afbeilding van 'n verkleinde grootte te zeen ''(thumbnail)''. [[$1|thumb]]
-Lèver 't bestand '''<tt>[[:$1]]</tt>''' te controlere.
+Lèver 't bestand <strong>[[:$1]]</strong> te controlere.
 Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, is 't neet noodzakelik 'ne extra thumbnail te uploade.",
-'file-thumbnail-no'           => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "De bestandsnaam begint met <strong>$1</strong>.
 't Liek 'n verkleinde afbeelding te zeen ''(thumbnail)''.
 Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding den. Wiezig anges estebleef de bestandsnaam.",
 'fileexists-forbidden'        => "d'r Besteit al 'n bestand met deze naam det neet kin waere euevergesjreve. Upload dien bestand onger 'ne angere naam.
@@ -1791,7 +1792,7 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 
 # MIME search
 'mimesearch'         => 'Zeuk op MIME-type',
-'mimesearch-summary' => "Deze pagina maak het filtere van bestenj veur 't MIME-type meugelik. Inveur: contenttype/subtype, bv <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Deze pagina maak het filtere van bestenj veur 't MIME-type meugelik. Inveur: contenttype/subtype, bv <code>image/jpeg</code>.",
 'mimetype'           => 'MIME-type:',
 'download'           => 'Downloade',
 
@@ -1986,7 +1987,7 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'linksearch-ok'    => 'Zeuk',
 'linksearch-text'  => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.
 Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
-Óngerstäönendje protocolle: <tt>$1</tt> (veug dees neet tou in dien zeukópdrach).',
+Óngerstäönendje protocolle: <code>$1</code> (veug dees neet tou in dien zeukópdrach).',
 'linksearch-line'  => '$1 gelink vanaaf $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 

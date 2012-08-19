@@ -748,46 +748,49 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'diff-multi'              => '({{PLURAL:$1|1 a pamagbayung miyalilan na |$1 pamagbayung miyalilan na}} a e makalto.)',
 
 # Search results
-'searchresults'             => 'Ding linual (resulta) king pamanintun',
-'searchresults-title'       => 'Resulta ning pamanintun king "$1"',
-'searchresulttext'          => 'Nung bisa kang karagdagang impormasiun tungkul king pamanintun king {{SITENAME}}, lon me ing [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'            => 'Penintun me ing \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|deng anggang bulung a magumpisa king "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|Deng anggang bulung a makasuglung king "$1"]])',
-'searchsubtitleinvalid'     => "Penintunan me ing '''$1'''",
-'toomanymatches'            => 'Masiadu lang dakal deng tinud (matches); subukan meng alilan ing kekang kutang (query)',
-'titlematches'              => 'Deng tinud/mipareu kareng bansag bulung (page title matches)',
-'notitlematches'            => 'Ala yang kapareu kareng bansag da ring bulung (page title)',
-'textmatches'               => 'Deng kapareu na king kasulatan (text) da reng bulung',
-'notextmatches'             => 'Alang tinud/pareu kareng bansag bulung (no page title matches)',
-'prevn'                     => 'minunang {{PLURAL:$1|$1}}',
-'nextn'                     => 'tutuking {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'Lon ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-exists'         => "'''Atin bulung a mikilagiung \"[[:\$1]]\" keng wiking ini.'''",
-'searchhelp-url'            => 'Help:Kalamnan',
-'searchprofile-everything'  => 'Eganagana',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 a kataya|$2 kataya}})',
-'search-result-score'       => 'Kaugnayan (relevance): $1%',
-'search-redirect'           => '(pamanalis direksiun $1)',
-'search-section'            => '(seksion $1)',
-'search-suggest'            => 'Ing buri mung sabian: $1',
-'search-interwiki-caption'  => 'Kapatad a proyektu',
-'search-interwiki-default'  => '$1 linual/resulta:',
-'search-interwiki-more'     => '(dakal pa)',
-'search-mwsuggest-enabled'  => 'maki munikala',
-'search-mwsuggest-disabled' => 'alang munikala',
-'search-relatedarticle'     => 'Kamaganak',
-'mwsuggest-disable'         => 'Patdan la reng munikalang AJAX',
-'searchrelated'             => 'kaugne',
-'searchall'                 => 'eganagana',
-'showingresults'            => "Ing/ding {{PLURAL:$1|'''1''' a resulta|'''$1''' resulta}} manibatan king #'''$2'''.",
-'showingresultsnum'         => "Ing/ding {{PLURAL:$3|'''1''' a resulta|'''$3''' resulta}} manibatan king #'''$2'''.",
-'nonefound'                 => "'''Kapabaluan''': Den mung aliwang pirinan lagiu (namespace) ing tambing a masisiasat o masusuri. Subukan meng umpisan king  ''eganagana:'' (''all:'') ing kekang kutang ba kang makapanintun king sablang laman (kayabe no reng pamisabi-sabi o talk pages, modelu o template, atlwp.), o gamitan me ing pirinan lagiung buri mu antimong mumunang paniapi (prefix) o mumunang/magumpisang lagiu.",
-'powersearch'               => 'Espesial a pamanintun',
-'powersearch-legend'        => 'Espesial a pamanintun',
-'powersearch-ns'            => 'Maintun ka kareng namespace:',
-'powersearch-redir'         => 'Ilista la reng redirect (pamanaliling direccion).',
-'powersearch-field'         => 'Paintunan ya ing',
-'search-external'           => 'Pamanintun king kilual',
-'searchdisabled'            => 'Makapatda/e gagana ing pamanintun king {{SITENAME}}.
+'searchresults'                    => 'Ding linual (resulta) king pamanintun',
+'searchresults-title'              => 'Resulta ning pamanintun king "$1"',
+'searchresulttext'                 => 'Nung bisa kang karagdagang impormasiun tungkul king pamanintun king {{SITENAME}}, lon me ing [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'                   => 'Penintun me ing \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|deng anggang bulung a magumpisa king "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|Deng anggang bulung a makasuglung king "$1"]])',
+'searchsubtitleinvalid'            => "Penintunan me ing '''$1'''",
+'toomanymatches'                   => 'Masiadu lang dakal deng tinud (matches); subukan meng alilan ing kekang kutang (query)',
+'titlematches'                     => 'Deng tinud/mipareu kareng bansag bulung (page title matches)',
+'notitlematches'                   => 'Ala yang kapareu kareng bansag da ring bulung (page title)',
+'textmatches'                      => 'Deng kapareu na king kasulatan (text) da reng bulung',
+'notextmatches'                    => 'Alang tinud/pareu kareng bansag bulung (no page title matches)',
+'prevn'                            => 'minunang {{PLURAL:$1|$1}}',
+'nextn'                            => 'tutuking {{PLURAL:$1|$1}}',
+'viewprevnext'                     => 'Lon ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists'                => "'''Atin bulung a mikilagiung \"[[:\$1]]\" keng wiking ini.'''",
+'searchhelp-url'                   => 'Help:Kalamnan',
+'searchprofile-everything'         => 'Eganagana',
+'searchprofile-articles-tooltip'   => 'Paintunan king$1',
+'searchprofile-images-tooltip'     => 'Manintun makasimpan',
+'searchprofile-everything-tooltip' => 'Manintun karing eganaganang laman (kayabe no reng bulung pamisabi-sabi)',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 a kataya|$2 kataya}})',
+'search-result-score'              => 'Kaugnayan (relevance): $1%',
+'search-redirect'                  => '(pamanalis direksiun $1)',
+'search-section'                   => '(seksion $1)',
+'search-suggest'                   => 'Ing buri mung sabian: $1',
+'search-interwiki-caption'         => 'Kapatad a proyektu',
+'search-interwiki-default'         => '$1 linual/resulta:',
+'search-interwiki-more'            => '(dakal pa)',
+'search-mwsuggest-enabled'         => 'maki munikala',
+'search-mwsuggest-disabled'        => 'alang munikala',
+'search-relatedarticle'            => 'Kamaganak',
+'mwsuggest-disable'                => 'Patdan la reng munikalang AJAX',
+'searchrelated'                    => 'kaugne',
+'searchall'                        => 'eganagana',
+'showingresults'                   => "Ing/ding {{PLURAL:$1|'''1''' a resulta|'''$1''' resulta}} manibatan king #'''$2'''.",
+'showingresultsnum'                => "Ing/ding {{PLURAL:$3|'''1''' a resulta|'''$3''' resulta}} manibatan king #'''$2'''.",
+'nonefound'                        => "'''Kapabaluan''': Den mung aliwang pirinan lagiu (namespace) ing tambing a masisiasat o masusuri. Subukan meng umpisan king  ''eganagana:'' (''all:'') ing kekang kutang ba kang makapanintun king sablang laman (kayabe no reng pamisabi-sabi o talk pages, modelu o template, atlwp.), o gamitan me ing pirinan lagiung buri mu antimong mumunang paniapi (prefix) o mumunang/magumpisang lagiu.",
+'powersearch'                      => 'Espesial a pamanintun',
+'powersearch-legend'               => 'Espesial a pamanintun',
+'powersearch-ns'                   => 'Maintun ka kareng namespace:',
+'powersearch-redir'                => 'Ilista la reng redirect (pamanaliling direccion).',
+'powersearch-field'                => 'Paintunan ya ing',
+'search-external'                  => 'Pamanintun king kilual',
+'searchdisabled'                   => 'Makapatda/e gagana ing pamanintun king {{SITENAME}}.
 Samantala, maliari kang maintun kapamilatan ning Google.
 Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ning {{SITENAME}}.',
 
@@ -1035,19 +1038,19 @@ Ba yang iyabe ing simpan king metung a bulung gamitan me ing suglung (link) king
 Ing simpan a ini $2 ya.',
 'largefileserver'             => 'Mas maragul ya ing simpan (file) a ini kesa ketang makapaintulut (configured) king server.',
 'emptyfile'                   => 'Balamu ala yang laman ing simpan (file) a linulan mu. Mapaliaring ing sangkan, pamagkamali (typo) ya king lagyung simpan (file name). Pakaisipan mu nung taganang buri meng ilulan ining simpan.',
-'fileexists'                  => "Atin nang simpan (file) a maki lagyung anti kaniti; pakilawe mu '''<tt>[[:$1]]</tt>''' nung e ka siguradu nung buri meng alilan.
-[[$1|thumb]]",
-'filepageexists'              => "Melalang na ing bulung pamilarawan (description page) para king simpan (file) a ini king '''<tt>[[:$1]]</tt>''', oneng king salukuyan, ala pang simpan a maki lagyung anti kaniti.
+'fileexists'                  => 'Atin nang simpan (file) a maki lagyung anti kaniti; pakilawe mu <strong>[[:$1]]</strong> nung e ka siguradu nung buri meng alilan.
+[[$1|thumb]]',
+'filepageexists'              => 'Melalang na ing bulung pamilarawan (description page) para king simpan (file) a ini king <strong>[[:$1]]</strong>, oneng king salukuyan, ala pang simpan a maki lagyung anti kaniti.
 E ya tambing lunto king bulung pamilarawan ing sampulung (summary) a isulat mu.
-Ba yang lunto karin ing kekang sampulung, kailangan me pamung i-edit",
-'fileexists-extension'        => "Maki simpan (file) a makayawig lagyu kaniti: [[$2|thumb]]
-* Lagyu ning simpan a milululan: '''<tt>[[:$1]]</tt>'''
-* Lagyu ning salukuyan a simpan: '''<tt>[[:$2]]</tt>'''
-Mamili kang aliwang lagyu.",
+Ba yang lunto karin ing kekang sampulung, kailangan me pamung i-edit',
+'fileexists-extension'        => 'Maki simpan (file) a makayawig lagyu kaniti: [[$2|thumb]]
+* Lagyu ning simpan a milululan: <strong>[[:$1]]</strong>
+* Lagyu ning salukuyan a simpan: <strong>[[:$2]]</strong>
+Mamili kang aliwang lagyu.',
 'fileexists-thumbnail-yes'    => "Lupa yang larawan a pepalati ing simpan ''(thumbnail)''. [[$1|thumb]]
-Pakilawe me ing simpan '''<tt>[[:$1]]</tt>'''.
+Pakilawe me ing simpan <strong>[[:$1]]</strong>.
 Nung ya naman ketang minunang maki orihinal a dagul ing simpan a maka-check, e na kailangang maglulan karagdagan a thumbnail.",
-'file-thumbnail-no'           => "Magumpisa ya ing lagyungsimpan (filename) king '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Magumpisa ya ing lagyungsimpan (filename) king <strong>$1</strong>.
 Lupa yang larawan a pepalati ''(thumbnail)''.
 Nung atyu keka ining larawan king bersion a pekamalino (full resolution), ilulan me ini; nung ali naman, pakiyalilan me ing lagyung simpan.",
 'fileexists-forbidden'        => 'Atin nang simpan a maki lagyung anti kaniti;
@@ -1162,7 +1165,7 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 # MIME search
 'mimesearch'         => 'pamanintun MIME',
 'mimesearch-summary' => 'Papaliari ning bulung a ini ing pamanialak (filtering) kareng simpan (file) para king kayang MIME-type.
-Isulat (input): contenttype/subtype, alimbawa <tt>image/jpeg</tt>.',
+Isulat (input): contenttype/subtype, alimbawa <code>image/jpeg</code>.',
 'download'           => 'ikuldas (download)',
 
 # Unwatched pages

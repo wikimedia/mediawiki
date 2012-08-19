@@ -15,6 +15,7 @@
  * @author Eagleal
  * @author Ergon
  * @author Euriditi
+ * @author FatosMorina
  * @author Kaganer
  * @author Marinari
  * @author Mdupont
@@ -1102,7 +1103,7 @@ Ju lutemi kontrolloni regjistrat.',
 
 # Suppression log
 'suppressionlog'     => 'Regjistri i ndalimeve',
-'suppressionlogtext' => 'Më poshtë është një listë e grisjeve dhe bllokimeve duke përfshirë përmnajtjen e fshehur nga administratorët.
+'suppressionlogtext' => 'Më poshtë është një listë e grisjeve dhe bllokimeve duke përfshirë përmbajtjen e fshehur nga administratorët.
 Shiko [[Special:BlockList|listën e bllokimeve IP]] për listën e përjashtimeve operacionale dhe bllokimeve aktuale.',
 
 # History merging
@@ -1521,9 +1522,11 @@ Kjo informatë është publike.',
 'number_of_watching_users_pageview' => '[$1 duke u mbikqyrur nga {{PLURAL:$1|përdorues|përdorues}}]',
 'rc_categories'                     => 'Kufizimi i kategorive (të ndara me "|")',
 'rc_categories_any'                 => 'Të gjitha',
+'rc-change-size-new'                => '$1 {{PLURAL:$1|bajt|bajtë}} pas ndryshimit',
 'newsectionsummary'                 => '/* $1 */ seksion i ri',
 'rc-enhanced-expand'                => 'Trego detajet (kërkon JavaScript)',
 'rc-enhanced-hide'                  => 'Fshih detajet',
+'rc-old-title'                      => 'fillimisht i krijuar si "$1"',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ndryshime të ndërvarura',
@@ -1554,9 +1557,9 @@ Për të parë ose kërkuar skeda të ngarkuara më parë, shkoni tek [[Special:
 (ri)ngarkimet janë gjithashtu të regjistruara tek [[Special:Log/upload|regjistri i ngarkimeve]], grisjet tek [[Special:Log/delete|regjistri i grisjeve]].
 
 Për të përfshirë një skedë në një faqe, përdorni një nga format e mëposhtme:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.jpg]]</nowiki></tt>''' për të përdorur versionin e plotë të skedës
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.png|200px|thumb|left|alt text]]</nowiki></tt>''' për të përdorur nje interpretim prej 200 piksel në të majtë me 'alt tekst' si përshkrim
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skeda.ogg]]</nowiki></tt>''' për të lidhur skedën direkt, pa e shfaqur atë",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.jpg]]</nowiki></code>''' për të përdorur versionin e plotë të skedës
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.png|200px|thumb|left|alt text]]</nowiki></code>''' për të përdorur nje interpretim prej 200 piksel në të majtë me 'alt tekst' si përshkrim
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skeda.ogg]]</nowiki></code>''' për të lidhur skedën direkt, pa e shfaqur atë",
 'upload-permitted'            => 'Llojet e lejuara të skedave: $1.',
 'upload-preferred'            => 'Llojet e parapëlqyera të skedave: $1.',
 'upload-prohibited'           => 'Llojet e ndaluara të skedave: $1.',
@@ -1601,20 +1604,20 @@ kjo skedë është $2.',
 'largefileserver'             => 'Skeda është më e madhe se sa serveri e lejon këtë.',
 'emptyfile'                   => 'Skeda që keni dhënë është bosh ose mbi madhësinë e lejushme. Kjo gjë mund të ndodhi nëse shtypni emrin gabim, prandaj kontrolloni nëse dëshironi të jepni skedën me këtë emër.',
 'windows-nonascii-filename'   => 'Ky wiki nuk e mbështet emrin e dokumentit me karaktere të veçanta.',
-'fileexists'                  => "Ekziston një skedë me atë emër, ju lutem kontrolloni '''<tt>[[:$1]]</tt>''' në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.
-[[$1|thumb]]",
-'filepageexists'              => "Përshkrimi i faqes për këtë skedë është krijuar tek '''<tt>[[:$1]]</tt>''', por asnjë skedë me këtë emër nuk ekziston.
+'fileexists'                  => 'Ekziston një skedë me atë emër, ju lutem kontrolloni <strong>[[:$1]]</strong> në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.
+[[$1|thumb]]',
+'filepageexists'              => 'Përshkrimi i faqes për këtë skedë është krijuar tek <strong>[[:$1]]</strong>, por asnjë skedë me këtë emër nuk ekziston.
 Përmbledhja që shkruat nuk do të shfaqet në përshkrimin e faqes.
 Për ta bërë përmbledhjen tuaj të dukshme atje, ju duhet ta redaktoni automatikisht.
-[[$1|thumb]]",
-'fileexists-extension'        => "Ekziston një skedë me emër të ngjashëm: [[$2|thumb]]
-* Emri i skedës në ngarkim: '''<tt>[[:$1]]</tt>'''
-* Emri i skedës ekzistuese: '''<tt>[[:$2]]</tt>'''
-Ju lutem zgjidhni një emër tjetër.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Ekziston një skedë me emër të ngjashëm: [[$2|thumb]]
+* Emri i skedës në ngarkim: <strong>[[:$1]]</strong>
+* Emri i skedës ekzistuese: <strong>[[:$2]]</strong>
+Ju lutem zgjidhni një emër tjetër.',
 'fileexists-thumbnail-yes'    => "Kjo skedë duket se është një figurë me madhësi të zvogëluar ''(figurë përmbledhëse)''. [[$1|thumb]]
-Ju lutem kontrolloni skedën '''<tt>[[:$1]]</tt>'''.
+Ju lutem kontrolloni skedën <strong>[[:$1]]</strong>.
 Nëse skeda e kontrolluar është e së njëjtës madhësi me origjinalen atëherë nuk ka nevojë të ngarkoni një figurë përmbledhëse.",
-'file-thumbnail-no'           => "Emri i skedës fillon me '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Emri i skedës fillon me <strong>$1</strong>.
 Duket se është një figurë me madhësi të zvogëluar ''(thumbnail)''.
 Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, përndryshe ju lutem të ndryshoni emrin e skedës.",
 'fileexists-forbidden'        => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsht dhe ngarkoni këtë skedë me një emër të ri. 
@@ -1689,6 +1692,11 @@ Nëse problemi vazhdon atëherë kontaktoni një [[Special:ListUsers/sysop|admin
 'backend-fail-closetemp'     => 'Nuk mund të mbyllë skedën e përkohshme.',
 'backend-fail-read'          => 'Nuk mund të lexojë skedën $1.',
 'backend-fail-create'        => 'Nuk mund të krijojë skedën $1.',
+'backend-fail-readonly'      => 'Shërbimi i depos "$1" është për momentin vetëm-për-lexim. Arsyeja e dhënë është: "\'\'$2\'\'"',
+'backend-fail-synced'        => 'Skedari "$1" është në një gjendje të parregullt brenda proceseve të depos së brendshme',
+'backend-fail-connect'       => 'Nuk u arrit lidhja me shërbimin e depos "$1".',
+'backend-fail-internal'      => 'Një problem i panjohur ndodhi në shërbimin e depos "$1".',
+'backend-fail-contenttype'   => 'Nuk mundi të përcaktojë llojin e përmbajtjes së skedarit për ta ruajtur në "$1".',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Nuk mund të zhbllokojë "$1"; nuk është e bllokuar.',
@@ -1849,7 +1857,7 @@ Përshkrimi në [$2 faqen përshkruese të skedës] është treguar më poshtë.
 
 # MIME search
 'mimesearch'         => 'Kërkime MIME',
-'mimesearch-summary' => 'Kjo faqe lejon kërkimin e skedave sipas llojit MIME. Kërkimi duhet të jetë i llojit: contenttype/subtype, p.sh. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Kjo faqe lejon kërkimin e skedave sipas llojit MIME. Kërkimi duhet të jetë i llojit: contenttype/subtype, p.sh. <code>image/jpeg</code>.',
 'mimetype'           => 'Lloji MIME:',
 'download'           => 'shkarkim',
 
@@ -1943,6 +1951,8 @@ Secili rresht përmban lidhjet tek përcjellimi i parë dhe përcjellimi i dytë
 'wantedpages'             => 'Artikuj më të dëshiruar',
 'wantedpages-badtitle'    => 'Titull i pavlefshëm në vendosjen e rezultateve: $1',
 'wantedfiles'             => 'Skedat e dëshiruara',
+'wantedfiletext-cat'      => 'Skedarët vijues janë përdorur por nuk ekzistojnë. Skedarët nga depot e panjohura mund të listohen megjithëse nuk ekzistojnë. Ndonjë gjë pozitive e pavërtetë e tillë do të <del>largohet</del>. Për më tepër, faqet që vendosin skedarë që nuk ekzistojnë janë listuar në [[:$1]].',
+'wantedfiletext-nocat'    => 'Skedarët vijues janë përdorur por nuk ekzistojnë. Skedarët nga depot e panjohura mund të listohen megjithëse nuk ekzistojnë. Ndonjë gjë pozitive e pavërtetë e tillë do të <del>largohet</del>.',
 'wantedtemplates'         => 'Stampat e dëshiruara',
 'mostlinked'              => 'Artikuj më të lidhur',
 'mostlinkedcategories'    => 'Kategori më të lidhura',
@@ -2042,7 +2052,7 @@ Shikoni edhe [[Special:WantedCategories|kategoritë e dëshiruara]].',
 'linksearch-ok'    => 'Kërko',
 'linksearch-text'  => 'Ylli zëvëndësues mund të përdoret si p.sh. "*.wikipedia.org".
 Duhet një domen top-nivel, si p.sh. "*.org.<br />
-Protokolle të mbështetura: <tt>$1<tt> (mos shtoni ndonjërin nga këta në kërkimin tuaj).',
+Protokolle të mbështetura: <code>$1<code> (mos shtoni ndonjërin nga këta në kërkimin tuaj).',
 'linksearch-line'  => '$1 lidhur nga $2',
 'linksearch-error' => 'Ylli mund të përdoret vetëm në fillim të emrit',
 
@@ -2689,6 +2699,7 @@ Ju lutemi zgjidhni në emët tjetër.',
 'exporttext'        => 'Mund të eksportoni tekstin dhe historinë e redaktimit e një faqeje ose disa faqesh të mbështjesha në XML; kjo mund të importohet në një wiki tjetër që përdor softuerin MediaWiki (tani për tani, ky opsion nuk është përfshirë tek {{SITENAME}}).
 
 Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijoni lidhje të tipit [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] si [[{{MediaWiki:Mainpage}}]].',
+'exportall'         => 'Eksportoni të gjitha faqet',
 'exportcuronly'     => 'Përfshi vetëm versionin e fundit, jo të gjithë historinë',
 'exportnohistory'   => "'''Shënim:''' Eksportimi i historisë së faqes për shkaqe të rendimentit nuk është e mundshme.",
 'exportlistauthors' => 'Përfshij një listë të plotë të kontribuesve për secilën faqe',
@@ -2775,6 +2786,9 @@ Ju lutemi provoni përsëri.',
 'import-invalid-interwiki'   => 'Nuk mund të importohet nga wiki i specifikuar.',
 'import-error-edit'          => 'Faqja "$1" nuk është importuar sepse ju nuk lejoheni ta redaktoni atë.',
 'import-error-create'        => 'Faqja "$1" nuk është importuar sepse ju nuk lejoheni ta krijoni atë.',
+'import-error-interwiki'     => 'Faqja "$1" nuk është importuar sepse emri i saj është rezervuar për lidhje të jashtme (interwiki)',
+'import-error-special'       => 'Faqja "$1" nuk është importuar sepse ajo i përket një hapësire të veçantë që nuk i lejon faqet.',
+'import-error-invalid'       => 'Faqja "$1" nuk është importuar sepse emri i saj është i palejueshëm.',
 
 # Import log
 'importlogpage'                    => 'Regjistri i importeve',
@@ -2785,7 +2799,15 @@ Ju lutemi provoni përsëri.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$!1|version|versione}} nga $2',
 
 # JavaScriptTest
-'javascripttest-qunit-intro' => 'Shiko [$1 dokumentacionin e testimit] në mediawiki.org.',
+'javascripttest'                           => 'Duke testuar JavaScript',
+'javascripttest-disabled'                  => 'Ky funksion nuk është mundësuar në këtë wiki.',
+'javascripttest-title'                     => 'Duke kryer testet $1',
+'javascripttest-pagetext-noframework'      => 'Kjo faqe është rezervuar për kryerjen e testimeve JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Kornizë pune e panjohur testuese "$1".',
+'javascripttest-pagetext-frameworks'       => 'Ju lutemi zgjidhni njërën nga kornizat vijuese punuese të testimit: $1',
+'javascripttest-pagetext-skins'            => "Zgjidhni një mostër për t'i kryer testimet:",
+'javascripttest-qunit-intro'               => 'Shiko [$1 dokumentacionin e testimit] në mediawiki.org.',
+'javascripttest-qunit-heading'             => 'Platforma testuese JavaScript QUnit',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'                 => 'Faqja juaj e përdoruesit',

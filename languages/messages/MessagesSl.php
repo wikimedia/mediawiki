@@ -1564,9 +1564,9 @@ Dnevnik brisanja in prestavitev za to stran sta navedena tukaj:",
 Za ogled ali iskanje že naloženih pojdite na [[Special:FileList|seznam naloženih datotek]]; ponovna nalaganja so zabeležena tudi v [[Special:Log/upload|dnevniku nalaganja]], izbrisi pa v [[Special:Log/delete|dnevniku brisanja]].
 
 Datoteko lahko na želeno stran vključite na naslednje načine:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' (polna velikost)
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg|200px|thumb|left|opisno besedilo]]</nowiki></tt>''' (slika pomanjšana na 200 slikovnih pik širine, uokvirjena, z levo poravnavo in opisom »opisno besedilo«)
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' (neposredna povezava z datoteko)",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></code>''' (polna velikost)
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg|200px|thumb|left|opisno besedilo]]</nowiki></code>''' (slika pomanjšana na 200 slikovnih pik širine, uokvirjena, z levo poravnavo in opisom »opisno besedilo«)
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></code>''' (neposredna povezava z datoteko)",
 'upload-permitted'            => 'Dovoljene vrste datotek: $1.',
 'upload-preferred'            => 'Priporočene vrste datotek: $1.',
 'upload-prohibited'           => 'Prepovedane vrste datotek: $1.',
@@ -1612,20 +1612,20 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 Do tega bi lahko prišlo zaradi tipkarske napake v imenu.
 Ali datoteko resnično želite naložiti?',
 'windows-nonascii-filename'   => 'Ta wiki ne podpira imen datotek s posebnimi znaki.',
-'fileexists'                  => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
-[[$1|thumb]]",
-'filepageexists'              => "Opisna stran za to datoteko je bila že ustvarjena na '''<tt>[[:$1]]</tt>''', vendar datoteka s tem imenom trenutno ne obstaja.
+'fileexists'                  => 'Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran <strong>[[:$1]]</strong>.
+[[$1|thumb]]',
+'filepageexists'              => 'Opisna stran za to datoteko je bila že ustvarjena na <strong>[[:$1]]</strong>, vendar datoteka s tem imenom trenutno ne obstaja.
 Povzetek, ki ste ga vnesli, se ne bo prikazal na opisni strani.
 Da tam prikažete povzetek, morate stran urediti ročno.
-[[$1|thumb]]",
-'fileexists-extension'        => "Datoteka s podobnim imenom že obstaja: [[$2|thumb]]
-* Ime naložene datoteke: '''<tt>[[:$1]]</tt>'''
-* Ime obstoječe datoteke: '''<tt>[[:$2]]</tt>'''
-Prosimo, izberite drugo ime.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Datoteka s podobnim imenom že obstaja: [[$2|thumb]]
+* Ime naložene datoteke: <strong>[[:$1]]</strong>
+* Ime obstoječe datoteke: <strong>[[:$2]]</strong>
+Prosimo, izberite drugo ime.',
 'fileexists-thumbnail-yes'    => "Kot izgleda, je ta slika pomanjšana ''(thumbnail)''. [[$1|thumb]]
-Prosimo, preverite datoteko '''<tt>[[:$1]]</tt>'''.
+Prosimo, preverite datoteko <strong>[[:$1]]</strong>.
 Če je preverjena datoteka enaka kot ta, ki jo nalage, ni potrebno nalagati še dodatne sličice.",
-'file-thumbnail-no'           => "Ime datoteke se začne z '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Ime datoteke se začne z <strong>$1</strong>.
 Izgleda, da je to pomanjšana slika ''(thumbnail)''.
 Če imate sliko polne resolucije, jo naložite, drugače spremenite ime datoteke.",
 'fileexists-forbidden'        => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati.
@@ -1883,7 +1883,7 @@ Povzetek na njeni [$2 opisni strani datoteke] je prikazan spodaj.',
 # MIME search
 'mimesearch'         => 'Iskanje po vrsti MIME',
 'mimesearch-summary' => 'Ta stran omogoča filtriranje datotek po njihovi vrsti MIME.
-Vnesite: vrstavsebine/podvrsta, npr. <tt>image/jpeg</tt>.',
+Vnesite: vrstavsebine/podvrsta, npr. <code>image/jpeg</code>.',
 'mimetype'           => 'Vrsta MIME:',
 'download'           => 'prenesi',
 
@@ -1930,9 +1930,9 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 
 'disambiguations'      => 'Strani s povezavami na razločitvene strani',
 'disambiguationspage'  => 'Template:Razločitev',
-'disambiguations-text' => "Naslednje strani se povezujejo na '''razločitvene strani'''.
-Namesto tega bi se naj povezovale na primerno temo.<br />
-Stran se obravnava kot razločitvena, če uporablja predloge povezane iz [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Naslednje strani vsebujejo vsaj eno povezavo na '''razločitvene strani'''.
+Namesto tega bi morda bilo bolje, da se povezujejo na primernejše strani.<br />
+Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Dvojne preusmeritve',
 'doubleredirectstext'               => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.
@@ -2078,7 +2078,7 @@ Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'linksearch-ok'    => 'Išči',
 'linksearch-text'  => 'Nadomestne znake, kot je »*.wikipedia.org«, lahko uporabljate.
 Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
-Podprti protokoli: <tt>$1</tt> (teh ne dodajte v svoje iskanje).',
+Podprti protokoli: <code>$1</code> (teh ne dodajte v svoje iskanje).',
 'linksearch-line'  => '$1 povezano iz $2',
 'linksearch-error' => 'Jokerji se lahko pojavijo le na začetku gostiteljskega imena.',
 
@@ -3660,7 +3660,7 @@ Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
 * <span class="mw-specialpagecached">Predpomnjene posebne strani (morda so zastarele).</span>',
 'specialpages-group-maintenance' => 'Vzdrževalna poročila',
 'specialpages-group-other'       => 'Ostale posebne strani',
-'specialpages-group-login'       => 'Prijavite se / registrirajte se',
+'specialpages-group-login'       => 'Prijavite se / ustvarite račun',
 'specialpages-group-changes'     => 'Zadnje spremembe in dnevniki',
 'specialpages-group-media'       => 'Poročila o datotekah in nalaganja',
 'specialpages-group-users'       => 'Uporabniki in pravice',

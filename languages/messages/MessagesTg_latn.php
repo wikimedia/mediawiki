@@ -976,15 +976,15 @@ Sahifahoi dar [[Special:Watchlist|fehristi nazaroti şumo]] buda  '''purrang''' 
 'large-file'                 => 'Tavsija şudaast, ki parvandaho buzurgtar az $1 naboşand; in parvanda $2 ast.',
 'largefileserver'            => 'In parvanda az andozai içozat şudai andozahoi parvanda dar xidmatgor burzurgtar ast.',
 'emptyfile'                  => "Parvandai borşuda xolī ba nazar merasad. In mas'ala mumkin ast xatoi navişt dar nomi parvanda rux doda boşad. Lutfan ta'jid kuned, ki ojo şumo dar haqiqat mexohed in parvandaro bo hamin şaroit bor kuned.",
-'fileexists'                 => "Dar holi hozir parvandae bo hamin nom mavçud ast.
-Agar bovarī nadored, ki mexohed on parvandaro taƣjir dihed, lutfan '''<tt>[[:$1]]</tt>'''-ro barrasī kuned.
-[[$1|thumb]]",
-'fileexists-extension'       => "Parvandae bo nomi muşobeh vuçud dorad: [[$2|thumb]]
-* Nomi parvandai borguzorişuda istoda: '''<tt>[[:$1]]</tt>'''
-* Nomi parvandai vuçud doşta: '''<tt>[[:$2]]</tt>'''
-Lutfan jak nomi digarero intixob kuned.",
+'fileexists'                 => 'Dar holi hozir parvandae bo hamin nom mavçud ast.
+Agar bovarī nadored, ki mexohed on parvandaro taƣjir dihed, lutfan <strong>[[:$1]]</strong>-ro barrasī kuned.
+[[$1|thumb]]',
+'fileexists-extension'       => 'Parvandae bo nomi muşobeh vuçud dorad: [[$2|thumb]]
+* Nomi parvandai borguzorişuda istoda: <strong>[[:$1]]</strong>
+* Nomi parvandai vuçud doşta: <strong>[[:$2]]</strong>
+Lutfan jak nomi digarero intixob kuned.',
 'fileexists-thumbnail-yes'   => "Az aks ba nazar merasad, ki aksi andozaaş xurd ''(anguştdona)''. [[$1|thumb]]
-Lutan parvandaro '''<tt>[[:$1]]</tt>''' barrasī kuned.
+Lutan parvandaro <strong>[[:$1]]</strong> barrasī kuned.
 Agar parvandai barrasişuda aksi xurd karda şudai on parvandai aslī ast, nijoze ba borguzoriji aksi xurd nest.",
 'uploadwarning'              => 'Ogohiji firistodan',
 'savefile'                   => 'Zaxirai parvanda',
@@ -1079,7 +1079,7 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 
 # MIME search
 'mimesearch'         => 'Çustuçū bo standarti MIME',
-'mimesearch-summary' => "Bo kūmaki in sahifa şumo metavoned parvandahoe, ki jak nav' ba xusus MIME pajdo kuned. Vorid: contenttype/subtype, namuna. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Bo kūmaki in sahifa şumo metavoned parvandahoe, ki jak nav' ba xusus MIME pajdo kuned. Vorid: contenttype/subtype, namuna. <code>image/jpeg</code>.",
 'mimetype'           => "MIME nav':",
 'download'           => 'borgirī',
 
@@ -1228,7 +1228,7 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'linksearch-pat'   => 'Çustuçūi naqş:',
 'linksearch-ns'    => 'Fazoinom:',
 'linksearch-ok'    => 'Çustuçū',
-'linksearch-text'  => 'Nişonahoi monandi "*.wikipedia.org"-ro metavon istifoda kard.<br />Protokolhoi puştibonişuda: <tt>$1</tt>',
+'linksearch-text'  => 'Nişonahoi monandi "*.wikipedia.org"-ro metavon istifoda kard.<br />Protokolhoi puştibonişuda: <code>$1</code>',
 'linksearch-line'  => '$1 doroi pajvand az $2 ast',
 'linksearch-error' => 'Nişonaho faqat dar ibtidoi nomi mizboni internetī metavonand istifoda şavand.',
 

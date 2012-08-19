@@ -13,6 +13,7 @@
  * @author Kguirnela
  * @author Oxyzen
  * @author Tagimata
+ * @author Taylortheturtle
  */
 
 $messages = array(
@@ -1532,6 +1533,7 @@ Pwede mo matan-aw ang iya ginhalinan',
 'tooltip-rollback'                => '"Panumbalik" ginabalik ang (mga) na-islan sa sini nga pahina sa pinaka ulihi nga kontributor sa isa lang ka klik',
 'tooltip-undo'                    => '"Indi pag-obrahon" ginabalik ang gin-islan kag gabukas sa isaln form sa may prebyu mode.
 Gapasugot sa pagdugang sang rason sa kabilugan.',
+'tooltip-summary'                 => 'Maghatag sing diutay nga eksplikasyon',
 
 # Browsing diffs
 'previousdiff' => '← Mas daan nga na-islan',

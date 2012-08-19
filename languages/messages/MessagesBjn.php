@@ -1416,9 +1416,9 @@ Log pahapusan wan pamindahan hagan tungkarran ngini adalah sawagai barikut:",
 Gasan manampaiakan atawa manggagai barakas nang sabalumnya dimuat, puruk [[Special:FileList|daptar barakas]]. Pahunggahan (lagi) jua tacatat dalam [[Special:Log/upload|log pahunggahan]], samantara pahapusan tacatat dalam [[Special:Log/delete|log pahapusan]].
 
 Gasan manampaiakn atawa maumpatakan barakas di dalam suatu tungkaran, puruk tautan lawan salah asa purmat di bawah ngini:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Barakas.jpg]]</nowiki></tt>''' hagan manampaiakan barakas dalam takaran aslinya
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Barakas.png|200px|thumb|left|naskah alternatip]]</nowiki></tt>''' hagan manampaiakan barakas lawan libar 200px dalam sabuah kutak di kiwa tungkaran lawan 'naskah alternatip' sawagai katarangan gambar
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Barakas.ogg]]</nowiki></tt>''' sawagai tautan langsung ka barakas nang dimaksud kada batampaiakan barakas ngitu lung wiki",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Barakas.jpg]]</nowiki></code>''' hagan manampaiakan barakas dalam takaran aslinya
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Barakas.png|200px|thumb|left|naskah alternatip]]</nowiki></code>''' hagan manampaiakan barakas lawan libar 200px dalam sabuah kutak di kiwa tungkaran lawan 'naskah alternatip' sawagai katarangan gambar
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Barakas.ogg]]</nowiki></code>''' sawagai tautan langsung ka barakas nang dimaksud kada batampaiakan barakas ngitu lung wiki",
 'upload-permitted'            => 'Macam barakas nang diijinakan: $1.',
 'upload-preferred'            => 'Macam barakas nang dikatujui: $1.',
 'upload-prohibited'           => 'Macam barakas nang ditangati: $1.',
@@ -1466,21 +1466,21 @@ barakas ngini $2.',
 Ngini pinanya ada salah katik ngaran barakas.
 Muhun pariksa apa bubujuran Pian handak mahunggah barakas ngini.',
 'windows-nonascii-filename'   => 'Wiki ngini kada manyukung ngaranbarakas awan karaktir isitimiwa.',
-'fileexists'                  => "Sabuah barakas bangaran ngin sudah ada, muhun pariksa '''<tt>[[:$1]]</tt>''' amun Pian kada musti amun Pian handak mangganti ngini.
-[[$1|thumb]]",
-'filepageexists'              => "Tungkaran diskripsi gasan barakas ngini suda diulah di '''<tt>[[:$1]]</tt>''', tagal kadada barakas bangaran ngini tasadia.
+'fileexists'                  => 'Sabuah barakas bangaran ngin sudah ada, muhun pariksa <strong>[[:$1]]</strong> amun Pian kada musti amun Pian handak mangganti ngini.
+[[$1|thumb]]',
+'filepageexists'              => 'Tungkaran diskripsi gasan barakas ngini suda diulah di <strong>[[:$1]]</strong>, tagal kadada barakas bangaran ngini tasadia.
 Kasimpulan nang Pian masukakan kada ham cungul pada tungkran diskripsi.
 Hagan maulah kasimpulan Pian cungul di sana, Pian musti mambabaknya manual.
-[[$1|thumb]]",
-'fileexists-extension'        => "Sabuah barakas bangaran sama sudah tasadia: [[$2|thumb]]
-*Ngaran barakas hunggahan: '''<tt>[[:$1]]</tt>'''
-* Ngaran barakas sudah tasadia: '''<tt>[[:$2]]</tt>'''
-Muhun pilihi sabuah ngaran babida.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Sabuah barakas bangaran sama sudah tasadia: [[$2|thumb]]
+*Ngaran barakas hunggahan: <strong>[[:$1]]</strong>
+* Ngaran barakas sudah tasadia: <strong>[[:$2]]</strong>
+Muhun pilihi sabuah ngaran babida.',
 'fileexists-thumbnail-yes'    => "Barakas ngini kajanakannya sabuah pancitraan nang dihalusi takarannya ''(thumbnail)''.
 [[$1|thumb]]
-Muhun pariksa barakas '''<tt>[[:$1]]</tt>'''.
+Muhun pariksa barakas <strong>[[:$1]]</strong>.
 Amun barakas dipariksa sama awan pancitraan takaran aslinya kada parlu mahunggah sabuah tambahan thumbnail.",
-'file-thumbnail-no'           => "Ngaran barakas bamula awan '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Ngaran barakas bamula awan <strong>$1</strong>.
 Ngini kajanakannya sabuah pancitraan nang dihalusi takaran ''(thumbnail)''.
 Amun Pian baisi pancitraan ngini barisulusi hibak hunggah nang ngini, amun kada muhun ubah ngaran barakas.",
 'fileexists-forbidden'        => 'Sabuah barakas bangaran sama sudah tasadia, wan kada kawa ditindihtulis.
@@ -1718,7 +1718,7 @@ Diskripsi ngini [$2 tungkaran diskripsi barakas] ditampaiakan di bawah.',
 # MIME search
 'mimesearch'         => 'Panggagaian MIME',
 'mimesearch-summary' => 'Tungkaran ngini kawa manyaring babarakas bamacam MIME.
-Buati: contenttype/subtype, misal <tt>image/jpeg</tt>.',
+Buati: contenttype/subtype, misal <code>image/jpeg</code>.',
 'mimetype'           => 'Macam MIME',
 'download'           => 'hunduh',
 
@@ -1914,7 +1914,7 @@ Janaki jua [[Special:WantedCategories|tutumbung nang dihandaki]].',
 'linksearch-ok'    => 'Gagai',
 'linksearch-text'  => 'Kartu liar nangkaya "*.wikipedia.org" hingkat diguna\'akan.
 Mamarlukan sadikitnya asa ranah tingkat atas, misalnya "*.org".<br />
-Protokol nang didukung: <tt>$1</tt> (jangan tambahakan dalam panggagaian Pian)',
+Protokol nang didukung: <code>$1</code> (jangan tambahakan dalam panggagaian Pian)',
 'linksearch-line'  => '$1 ditautakan matan $2',
 'linksearch-error' => 'Kartu-liar mancungul pintang awalan matan ngaranhost.',
 

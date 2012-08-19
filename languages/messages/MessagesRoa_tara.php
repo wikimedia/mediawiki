@@ -1429,9 +1429,9 @@ L'archivije de de scangellaminde e de le spustaminde pe sta pàgene le puè acch
 Pe vedè o cercà le file carecate precedendemende veje a 'a [[Special:FileList|liste de le file carecate]], le carecaminde sonde pure reggistrate jndr'à l'[[Special:Log/upload|archivije de le carecaminde]], le scangellazziune jndr'à l'[[Special:Log/delete|archivije de le scangellaminde]].
 
 Pe ingludere 'nu file jndr'à 'na pàgene, ause 'u collegamende jndr'à une de le forme seguende:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pe ausà 'a versiona comblete d'u file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' pe ausà 'nu file cu 'a dimenziona massime de 200 pixel jndr'à 'na scatele ca se iacchie sus a 'u margine sinistre cu 'u teste 'alt text' cumme didascalìe.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pe appundà direttamende a 'u file senze ca face vedè 'u file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' pe ausà 'a versiona comblete d'u file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' pe ausà 'nu file cu 'a dimenziona massime de 200 pixel jndr'à 'na scatele ca se iacchie sus a 'u margine sinistre cu 'u teste 'alt text' cumme didascalìe.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' pe appundà direttamende a 'u file senze ca face vedè 'u file",
 'upload-permitted'            => 'Tipe de file permesse: $1.',
 'upload-preferred'            => 'Tipe de file preferite: $1.',
 'upload-prohibited'           => 'Tipe de file proibbite: $1.',
@@ -1479,20 +1479,20 @@ Stu file jè $2.",
 Pò essere ca è scritte male 'u nome d'u file e n'à carecate 'n'otre.
 Pe piacere condrolle ce tu avveramende vuè cu careche stu file.",
 'windows-nonascii-filename'   => 'Sta Uicchi non ge supporte le nome de le file cu le carattere speciale.',
-'fileexists'                  => "'Nu file cu stu nome esiste già, pe piacere verifiche '''<tt>[[:$1]]</tt>''' ce tu non ge sì secure no 'u sce cangianne.
+'fileexists'                  => "'Nu file cu stu nome esiste già, pe piacere verifiche <strong>[[:$1]]</strong> ce tu non ge sì secure no 'u sce cangianne.
 [[$1|thumb]]",
-'filepageexists'              => "'A pàgene de descrizione pe stu file ha state già ccreiate 'u '''<tt>[[:$1]]</tt>''', ma nisciune file cu stu nome osce a die esiste.
+'filepageexists'              => "'A pàgene de descrizione pe stu file ha state già ccreiate 'u <strong>[[:$1]]</strong>, ma nisciune file cu stu nome osce a die esiste.
 'U riepileghe ca tu è mise non ge iesse sus 'a pàgene de descrizione.
 Pe fà assè 'u riepileghe tu tìne abbesogne de cangiarle a mane.
 [[$1|thumb]]",
 'fileexists-extension'        => "'Nu file cu 'nu nome simile esiste già: [[$2|thumb]]
-* Nome d'u file ca vuè cu careche: '''<tt>[[:$1]]</tt>'''
-* Nome d'u file ca già esiste: '''<tt>[[:$2]]</tt>'''
+* Nome d'u file ca vuè cu careche: <strong>[[:$1]]</strong>
+* Nome d'u file ca già esiste: <strong>[[:$2]]</strong>
 Pe piacere vide ce scacchie 'nu nome differende.",
 'fileexists-thumbnail-yes'    => "'U file pare ca jè 'n'immaggine de dimenzione ridotte ''(miniature)''. [[$1|thumb]]
-Pe piacere condrolle 'u file '''<tt>[[:$1]]</tt>'''.
+Pe piacere condrolle 'u file <strong>[[:$1]]</strong>.
 Ce 'u file condrollete jè d'a stesse dimenzione de quedda originale allore non ge stè abbesogne de carecà 'na miniatura de cchiù.",
-'file-thumbnail-no'           => "'U nome d'u file accumenze pe '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "'U nome d'u file accumenze pe <strong>$1</strong>.
 Pare ca jè 'n'immaggine piccenne ''(miniature)''.
 Ce tu tìne sulamende st'immaggine da carecà apposte, ce nò vide ce cange 'u file.",
 'fileexists-forbidden'        => "'U file cu stu nome già esiste e non ge pò essere sovrascritte.<br />
@@ -1587,6 +1587,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-connect'       => 'Non ge pozze connettere \'a memorie de rrete "$1".',
 'backend-fail-internal'      => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
 'backend-fail-contenttype'   => 'Non ge pozze capìe \'u tipe de condenute d\'u file da reggistrà sus a "$1".',
+'backend-fail-batchsize'     => "L'archivije de rrete ha date 'nu processe de $1 {{PLURAL:$1|operazione|operaziune}} sus a le file; 'u limite jè $2 {{PLURAL:$2|operazione|operaziune}}.",
 
 # Lock manager
 'lockmanager-notlocked'        => 'Non ge pozze sbloccà "$1"; jidde non g\'è bloccate.',
@@ -1748,7 +1749,7 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 # MIME search
 'mimesearch'         => "Ricerca jndr'à 'u MIME",
 'mimesearch-summary' => "Sta pàgene abbilitesce 'u filtre sus a le file pu tipe de MIME.
-Input: contenttype/subtype, pe esembie <tt>image/jpeg</tt>.",
+Input: contenttype/subtype, pe esembie <code>image/jpeg</code>.",
 'mimetype'           => 'Tipe de MIME:',
 'download'           => 'scareche',
 
@@ -1797,7 +1798,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'disambiguationspage'  => 'Template:disambigue',
 'disambiguations-text' => "Le pàggene seguende appondene a 'na '''pàgene de disambiguazione'''.
 'Nvece avessere appondà a 'a temateca appropriate.<br />
-'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage|Pàggene de disambiguazione]]",
+'Na pàgene jè trattate cumme pàgene de disambiguazione ce tu ause 'nu template ca è appundate da [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'                   => 'Ridirezionaminde a doppie',
 'doubleredirectstext'               => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
@@ -1843,6 +1844,8 @@ Mò s'avène redirette a [[$2]].",
 'wantedpages'             => 'Pàggene cchiù cerchete',
 'wantedpages-badtitle'    => "Titele invalide in mmienze a l'inzieme de le resultate: $1",
 'wantedfiles'             => 'File cchiù cerchete',
+'wantedfiletext-cat'      => "Le seguende file onne state ausate ma non g'esistene, Le file de le archivije de fore ponne essere elengate fine ca esistene. Ogne false allarme avène <del>signate</del>. In aggiunde, le pàggene ca tènene ste file ca non g'esistene avène elengate jndr'à [[:$1]]",
+'wantedfiletext-nocat'    => "Le file seguende onne state ausate ma non g'esistene. Le file da le archivije esterne ponne stà in liste fine ca esistente. Ogne false allarme avène <del>segnalate</del>.",
 'wantedtemplates'         => 'Template cchiù ausete',
 'mostlinked'              => 'Pàggene cchiù appundete',
 'mostlinkedcategories'    => 'Categorije cchiù appundete',
@@ -1943,7 +1946,7 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'linksearch-ok'    => 'Cirche',
 'linksearch-text'  => 'Le wildcard cumme a "*.wikipedia.org" ponne essere ausate.<br />
 Onne abbesogne almede de \'nu dominie de levèlle ierte, pe esembie "*.org". <br />
-Protocolle supportate: <tt>$1</tt> (no sce aggiungenne nisciune de chiste jndr\'à recerca toje).',
+Protocolle supportate: <code>$1</code> (no sce aggiungenne nisciune de chiste jndr\'à recerca toje).',
 'linksearch-line'  => '$1 jè pundete da $2',
 'linksearch-error' => "Le wildcard ponne essere ausate sulamende a l'inzie de l'hostname.",
 
@@ -1976,8 +1979,8 @@ Ponne stà [[{{MediaWiki:Listgrouprights-helppage}}|'mbormaziune de cchiù]] sus
 'listgrouprights-rights'               => 'Diritte',
 'listgrouprights-helppage'             => 'Help:Deritte de le gruppe',
 'listgrouprights-members'              => '(liste de le membre)',
-'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup'             => 'Puè aggiungere {{PLURAL:$2|gruppe|gruppe}}: $1',
 'listgrouprights-removegroup'          => 'Puè scangellà {{PLURAL:$2|gruppe|gruppe}}: $1',
 'listgrouprights-addgroup-all'         => 'Puè aggiungere tutte le gruppe',
@@ -3751,7 +3754,7 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 * <span class="mw-specialpagecached">Pàggene speciale in memorie cache (ponne essere vecchie).</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other'       => 'Otre pàggene speciele',
-'specialpages-group-login'       => 'Tràse / Reggistrete',
+'specialpages-group-login'       => 'Tràse / Reggistrate',
 'specialpages-group-changes'     => 'Cangiaminde recende e archivie',
 'specialpages-group-media'       => 'Riepileghe de media e carecaminde',
 'specialpages-group-users'       => 'Utinde e deritte',
@@ -3879,6 +3882,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'api-error-badtoken'                      => 'Errore inderne: Gettone errate.',
 'api-error-copyuploaddisabled'            => "'U carecamende da URL jè disabbilitate sus a stu server.",
 'api-error-duplicate'                     => "{{PLURAL:$1|Stè [$2 'n'otre file]|Stonne [$2 otre file]}} sus a 'u site cu 'u stesse condenute.",
+'api-error-duplicate-archive'             => "{{PLURAL:$1|Stave [$2 'n'otre file]|Stavane [$2 otre file]}} già sus a 'u site cu 'u stesse condenute, ma {{PLURAL:$1|ha state|onne state}} scangellate.",
 'api-error-duplicate-archive-popup-title' => "Dupliche {{PLURAL:$1|'u file ca ha state|le file ca onne state}} scangellate.",
 'api-error-duplicate-popup-title'         => 'Dupleche {{PLURAL:$1|file|file}}',
 'api-error-empty-file'                    => "'U file ca tu è confermate ere vacande.",
