@@ -58,14 +58,13 @@ class InfoAction extends FormlessAction {
 	public function onView() {
 		global $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
 
+		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
-
-		$article = new Article( $title );
 		$id = $title->getArticleID();
 
 		// Get page information that would be too "expensive" to retrieve by normal means
-		$userCanViewUnwatchedPages = $this->getUser()->isAllowed( 'unwatchedpages' );
+		$userCanViewUnwatchedPages = $user->isAllowed( 'unwatchedpages' );
 		$pageInfo = self::pageCountInfo( $title, $userCanViewUnwatchedPages, $wgDisableCounters );
 
 		// Get page properties
@@ -86,7 +85,7 @@ class InfoAction extends FormlessAction {
 		$table = '';
 
 		// Basic information
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-basic' ) );
+		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-basic' )->text() );
 
 		// Display title
 		$displayTitle = $title->getPrefixedText();
@@ -95,7 +94,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-display-title' ), $displayTitle );
+			$this->msg( 'pageinfo-display-title' )->escaped(), $displayTitle );
 
 		// Default sort key
 		$sortKey = $title->getCategorySortKey();
@@ -104,15 +103,15 @@ class InfoAction extends FormlessAction {
 		}
 
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-default-sort' ), $sortKey );
+			$this->msg( 'pageinfo-default-sort' )->escaped(), $sortKey );
 
 		// Page length (in bytes)
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-length' ), $lang->formatNum( $title->getLength() ) );
+			$this->msg( 'pageinfo-length' )->escaped(), $lang->formatNum( $title->getLength() ) );
 
 		// Page ID
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-article-id' ), $lang->formatNum( $id ) );
+			$this->msg( 'pageinfo-article-id' )->escaped(), $lang->formatNum( $id ) );
 
 		// Search engine status
 		$pOutput = new ParserOutput();
@@ -121,7 +120,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Use robot policy logic
-		$policy = $article->getRobotPolicy( 'view', $pOutput );
+		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
 		$table = $this->addRow( $table,
 			'Search engine status', "Marked as '" . $policy['index'] . "'"
 		);
@@ -129,44 +128,43 @@ class InfoAction extends FormlessAction {
 		if ( !$wgDisableCounters ) {
 			// Number of views
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-views' ), $lang->formatNum( $pageInfo['views'] )
+				$this->msg( 'pageinfo-views' )->escaped(), $lang->formatNum( $pageInfo['views'] )
 			);
 		}
 
 		if ( $userCanViewUnwatchedPages ) {
 			// Number of page watchers
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageInfo['watchers'] ) );
+				$this->msg( 'pageinfo-watchers' )->escaped(), $lang->formatNum( $pageInfo['watchers'] ) );
 		}
 
 		// Redirects to this page
-		$whatLinksHere = SpecialPage::getTitleFor( 'WhatLinksHere', $title->getPrefixedText() );
+		$whatLinksHere = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$table = $this->addRow( $table,
 			Linker::link(
 				$whatLinksHere,
-				$this->msg( 'pageinfo-redirects-name' ),
+				$this->msg( 'pageinfo-redirects-name' )->escaped(),
 				array(),
 				array( 'hidelinks' => 1, 'hidetrans' => 1 )
 			),
-			$this->msg( 'pageinfo-redirects-value',
-				$lang->formatNum( count( $title->getRedirectsHere() ) )
-			)
+			$this->msg( 'pageinfo-redirects-value' )->numParams( count( $title->getRedirectsHere() ) )->escaped()
 		);
 
 		// Subpages of this page
-		$prefixIndex = SpecialPage::getTitleFor( 'PrefixIndex', $title->getPrefixedText() . '/' );
+		$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
 		$table = $this->addRow( $table,
-			Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' ) ),
-			$this->msg( 'pageinfo-subpages-value',
-				$lang->formatNum( $pageInfo['subpages']['total'] ),
-				$pageInfo['subpages']['redirects'],
-				$pageInfo['subpages']['nonredirects']
-			)
+			Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
+			$this->msg( 'pageinfo-subpages-value' )
+				->numParams( $pageInfo['subpages']['total'] )
+				->params(
+					$pageInfo['subpages']['redirects'],
+					$pageInfo['subpages']['nonredirects']
+				)->escaped()
 		);
 
 		// Page protection
 		$content = $this->addTable( $content, $table );
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-restrictions' ) );
+		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-restrictions' )->text() );
 		$table = '';
 
 		// Page protection
@@ -185,54 +183,54 @@ class InfoAction extends FormlessAction {
 			}
 
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-restriction', $restrictionType ), $message
+				$this->msg( 'pageinfo-restriction', $restrictionType )->escaped(), $message->escaped()
 			);
 		}
 
 		// Edit history
 		$content = $this->addTable( $content, $table );
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-edits' ) );
+		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-edits' )->text() );
 		$table = '';
 
 		// Page creator
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firstuser' ), $pageInfo['firstuser']
+			$this->msg( 'pageinfo-firstuser' )->escaped(), $pageInfo['firstuser']
 		);
 
 		// Date of page creation
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firsttime' ), $lang->timeanddate( $pageInfo['firsttime'] )
+			$this->msg( 'pageinfo-firsttime' )->escaped(), $lang->userTimeAndDate( $pageInfo['firsttime'], $user )
 		);
 
 		// Latest editor
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lastuser' ), $pageInfo['lastuser']
+			$this->msg( 'pageinfo-lastuser' )->escaped(), $pageInfo['lastuser']
 		);
 
 		// Date of latest edit
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lasttime' ), $lang->timeanddate( $pageInfo['lasttime'] )
+			$this->msg( 'pageinfo-lasttime' )->escaped(), $lang->userTimeAndDate( $pageInfo['lasttime'], $user )
 		);
 
 		// Total number of edits
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-edits' ), $lang->formatNum( $pageInfo['edits'] )
+			$this->msg( 'pageinfo-edits' )->escaped(), $lang->formatNum( $pageInfo['edits'] )
 		);
 
 		// Total number of distinct authors
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-authors' ), $lang->formatNum( $pageInfo['authors'] )
+			$this->msg( 'pageinfo-authors' )->escaped(), $lang->formatNum( $pageInfo['authors'] )
 		);
 
 		// Recent number of edits (within past 30 days)
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $wgRCMaxAge ) ),
+			$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $wgRCMaxAge ) )->escaped(),
 			$lang->formatNum( $pageInfo['recent_edits'] )
 		);
 
 		// Recent number of distinct authors
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-recent-authors' ), $lang->formatNum( $pageInfo['recent_authors'] )
+			$this->msg( 'pageinfo-recent-authors' )->escaped(), $lang->formatNum( $pageInfo['recent_authors'] )
 		);
 
 		$content = $this->addTable( $content, $table );
@@ -254,20 +252,20 @@ class InfoAction extends FormlessAction {
 		}
 
 		$localizedList = Html::rawElement( 'ul', array(), implode( '', $listItems ) );
-		$hiddenCategories = $article->getHiddenCategories();
+		$hiddenCategories = $this->page->getHiddenCategories();
 		$transcludedTemplates = $title->getTemplateLinksFrom();
 
 		if ( count( $listItems ) > 0
 			|| count( $hiddenCategories ) > 0
 			|| count( $transcludedTemplates ) > 0 ) {
 			// Page properties
-			$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-properties' ) );
+			$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-properties' )->text() );
 			$table = '';
 
 			// Magic words
 			if ( count( $listItems ) > 0 ) {
 				$table = $this->addRow( $table,
-					$this->msg( 'pageinfo-magic-words', count( $listItems ) ), $localizedList
+					$this->msg( 'pageinfo-magic-words', count( $listItems ) )->escaped(), $localizedList
 				);
 			}
 
@@ -278,7 +276,7 @@ class InfoAction extends FormlessAction {
 			// Hidden categories
 			if ( count( $hiddenCategories ) > 0 ) {
 				$table = $this->addRow( $table,
-					$this->msg( 'pageinfo-hidden-categories', count( $hiddenCategories ) ),
+					$this->msg( 'pageinfo-hidden-categories', count( $hiddenCategories ) )->escaped(),
 					Linker::formatHiddenCategories( $hiddenCategories )
 				);
 			}
@@ -290,7 +288,7 @@ class InfoAction extends FormlessAction {
 			// Transcluded templates
 			if ( count( $transcludedTemplates ) > 0 ) {
 				$table = $this->addRow( $table,
-					$this->msg( 'pageinfo-templates', count( $transcludedTemplates ) ),
+					$this->msg( 'pageinfo-templates', count( $transcludedTemplates ) )->escaped(),
 					Linker::formatTemplates( $transcludedTemplates )
 				);
 			}
