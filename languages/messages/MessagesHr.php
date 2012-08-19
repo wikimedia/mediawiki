@@ -1653,9 +1653,9 @@ Evidencije brisanja i premještanja prikazane su ovdje:",
 Za pregledavanje i pretraživanje već postavljenih datoteka vidi [[Special:FileList|popis postavljenih datoteka]], (ponovljena) postavljanja su također u [[Special:Log/upload|popisu postavljanja]], a brisanja u [[Special:Log/delete|popisu brisanja]].
 
 Da biste na stranicu stavili datoteku, koristite poveznice tipa
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' za punu verziju datoteke
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|mini|left|popratni tekst]]</nowiki></tt>''' za datoteku širine 200 px u okviru s 'popratnim tekstom' kao opisom
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direktno povezivanje na datoteku bez njenog prikazivanja",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></code>''' za punu verziju datoteke
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|mini|left|popratni tekst]]</nowiki></code>''' za datoteku širine 200 px u okviru s 'popratnim tekstom' kao opisom
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></code>''' za direktno povezivanje na datoteku bez njenog prikazivanja",
 'upload-permitted' => 'Dopušteni tipovi datoteka: $1.',
 'upload-preferred' => 'Poželjni tipovi datoteka: $1.',
 'upload-prohibited' => 'Zabranjeni tipovi datoteka: $1.',
@@ -1697,20 +1697,20 @@ Dopušteni {{PLURAL:$3|tip datoteke je|tipovi datoteke su}} $2.',
 'largefileserver' => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
 'emptyfile' => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
 'windows-nonascii-filename' => 'Ovaj wiki ne podržava imena datoteka s posebnim znakovima.',
-'fileexists' => "Datoteka s ovim imenom već postoji, pogledajte '''<tt>[[:$1]]</tt>''' ako niste sigurni želite li je uistinu promijeniti.
-[[$1|thumb]]",
-'filepageexists' => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
+'fileexists' => 'Datoteka s ovim imenom već postoji, pogledajte <strong>[[:$1]]</strong> ako niste sigurni želite li je uistinu promijeniti.
+[[$1|thumb]]',
+'filepageexists' => 'Opis stranice za ovu datoteku je već napravljen ovdje <strong>[[:$1]]</strong>, ali datoteka sa ovim nazivom trenutno ne postoji.
 Sažetak koji ste naveli neće se pojaviti na stranici opisa.
 Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite.
-[[$1|thumb]]",
-'fileexists-extension' => "Već postoji datoteka sa sličnim imenom: [[$2|thumb]]
-* Ime datoteke koju postavljate: '''<tt>[[:$1]]</tt>'''
-* Ime postojeće datoteke: '''<tt>[[:$2]]</tt>'''
-Molimo da izaberete drugo ime.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Već postoji datoteka sa sličnim imenom: [[$2|thumb]]
+* Ime datoteke koju postavljate: <strong>[[:$1]]</strong>
+* Ime postojeće datoteke: <strong>[[:$2]]</strong>
+Molimo da izaberete drugo ime.',
 'fileexists-thumbnail-yes' => "Datoteka je najvjerojatnije slika u smanjenoj veličini ''(thumbnail)''. [[$1|thumb]]
-Molimo provjerite datoteku '''<tt>[[:$1]]</tt>'''.
+Molimo provjerite datoteku <strong>[[:$1]]</strong>.
 Ukoliko je ta datoteka ista kao i ova koju ste upravo pokušali snimiti, samo u višoj rezoluciji, nije nužno snimanje smanjenje slike ''(thumbnaila)'', prikazivanje smanjene slike iz izvornika radi se softverski.",
-'file-thumbnail-no' => "Ime datoteke počinje s '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Ime datoteke počinje s <strong>$1</strong>.
 Čini se da je to slika smanjene veličine ''(minijatura)''.
 Ukoliko imate ovu sliku u punoj razlučljivosti (rezoluciji) postavite tu sliku, u protivnom, molimo promijenite ime datoteke.",
 'fileexists-forbidden' => 'Datoteka s ovim imenom već postoji i nemože biti presnimljena.
@@ -1906,7 +1906,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 
 # MIME search
 'mimesearch' => 'MIME tražilica',
-'mimesearch-summary' => 'Ova stranica omogućuje pretraživanje datoteka prema njihovim MIME zaglavljima. Ulazni parametar: tip_datoteke/podtip, npr. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ova stranica omogućuje pretraživanje datoteka prema njihovim MIME zaglavljima. Ulazni parametar: tip_datoteke/podtip, npr. <code>image/jpeg</code>.',
 'mimetype' => 'MIME tip datoteke:',
 'download' => 'skidanje',
 
@@ -2103,7 +2103,7 @@ Također pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-ok' => 'Traži',
 'linksearch-text' => 'Možete koristiti džoker znakove poput "*.wikipedia.org".
 Potrebno je navesti osnovnu domenu (TLD), npr. "*.org".<br />
-Podržani su protokoli: <tt>$1</tt> (ne stavljajte ih u vaše pretraživanje).',
+Podržani su protokoli: <code>$1</code> (ne stavljajte ih u vaše pretraživanje).',
 'linksearch-line' => '$1 poveznica s članka $2',
 'linksearch-error' => 'Džoker znakovi se mogu rabiti samo na početku imena poslužitelja.',
 
@@ -3864,5 +3864,8 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'api-error-unknownerror' => 'Nepoznata pogrješka: "$1"',
 'api-error-uploaddisabled' => 'Postavljanje datoteka je onemogućeno na ovom wikiprojektu.',
 'api-error-verification-error' => 'Ova datoteka je možda oštećena ili ima pogrešan nastavak.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}',
 
 );

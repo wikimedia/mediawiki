@@ -1430,9 +1430,9 @@ Le pàgine dzora a [[Special:Watchlist|la lista ëd lòn ch'as ten sot-euj]] a r
 Për vardé ò sërché dle figure già carià, ch'a vada an sla [[Special:FileList|lista dle figure]], ij (ri)càrich a son ëdcò registrà ant ël [[Special:Log/upload|registr dij càrich]], jë scancelament ant ël [[Special:Log/delete|registr djë scancelament]].
 
 Për buté na figura ant n'artìcol, dovré n'anliura ant un-a dle forme sì sota:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' për dovré la version pien-a dla figura
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' për dovré na dimension ëd 200 pontin ant un quàder a la bordura snistra con 'alt text' com descrission
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' për coleghé diretament la figura sensa fé vëdde l'archivi",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' për dovré la version pien-a dla figura
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' për dovré na dimension ëd 200 pontin ant un quàder a la bordura snistra con 'alt text' com descrission
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' për coleghé diretament la figura sensa fé vëdde l'archivi",
 'upload-permitted' => "Sòrt d'archivi consentìe: $1.",
 'upload-preferred' => "Sòrt d'archivi preferìe: $1.",
 'upload-prohibited' => "Sòrt d'archivi proibìe: $1.",
@@ -1478,20 +1478,20 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
 'windows-nonascii-filename' => "Sta wiki-sì a manten pa ij nòm d'archivi con caràter speciaj.",
-'fileexists' => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë vorèj cangelo.
+'fileexists' => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla <strong>[[:$1]]</strong> se a l'é pa sigur dë vorèj cangelo.
 [[$1|thumb]]",
-'filepageexists' => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é gnun archivi ch'as ciama parèj.
+'filepageexists' => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an <strong>[[:$1]]</strong>, mach ch'a-i é gnun archivi ch'as ciama parèj.
 Lòn ch'a buta për somari as ës-ciairerà nen ant la pàgina ëd descrission.
 Për podèj buté sò somari a l'ha da modifichesse la pàgina a man.
 [[$1|thumb]]",
 'fileexists-extension' => "N'archivi con ës nòm-sì a-i é già: [[$2|thumb]]
-* Nòm dl'archivi ch'as carìa: '''<tt>[[:$1]]</tt>'''
-* Nòm dl'archivi ch'a-i é già: '''<tt>[[:$2]]</tt>'''
+* Nòm dl'archivi ch'as carìa: <strong>[[:$1]]</strong>
+* Nòm dl'archivi ch'a-i é già: <strong>[[:$2]]</strong>
 Për piasì, ch'a serna un nòm diferent.",
 'fileexists-thumbnail-yes' => "L'archivi a jë smija a na ''figurin-a''. [[$1|thumb]]
-Për piasì, ch'a contròla l'archivi '''<tt>[[:$1]]</tt>'''.
+Për piasì, ch'a contròla l'archivi <strong>[[:$1]]</strong>.
 S'a l'é la midema figura a amzura pijn-a, a veul dì ch'a fa nen dë manca dë carié na figurin-a.",
-'file-thumbnail-no' => "Ël nòm dl'archivi as anandia con '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Ël nòm dl'archivi as anandia con <strong>$1</strong>.
 A jë smija a na ''figurin-a''.
 Se a l'ha na figura a amzura pijn-a a l'é mej ch'a carìa cola-lì, dësnò ch'a-j cangia nòm a l'archivi, për piasì.",
 'fileexists-forbidden' => "Belavans n'archivi con ës nòm-sì a-i é già, donca ël nòm as peul pa pì dovresse.
@@ -1753,7 +1753,7 @@ Peul desse ch'a veula modifiché la descrission dzora soa [pàgina ëd descrissi
 
 # MIME search
 'mimesearch' => 'Arserca për sòrt MIME',
-'mimesearch-summary' => "Sta pàgina-sì a lassa filtré j'archivi për sòrt MIME. Buté: sòrt/sotasòrt, pr'es. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Sta pàgina-sì a lassa filtré j'archivi për sòrt MIME. Buté: sòrt/sotasòrt, pr'es. <code>image/jpeg</code>.",
 'mimetype' => 'Sòrt MIME:',
 'download' => 'dëscarié',
 
@@ -1955,7 +1955,7 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-ok' => 'Sërché',
 'linksearch-text' => 'As peulo dovresse dij ciapatut com "*.wikipedia.org".
 A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
-Protocòj ch\'as peulo dovresse: <tt>$1</tt> (ch\'a gionta gnun ëd costi an soa arserca).',
+Protocòj ch\'as peulo dovresse: <code>$1</code> (ch\'a gionta gnun ëd costi an soa arserca).',
 'linksearch-line' => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
 'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël sërvent.',
 
@@ -3136,7 +3136,7 @@ J'àutri a saran stërmà coma stàndard.
 
 'exif-subjectdistance-value' => '$1 méter',
 
-'exif-meteringmode-0' => 'as sa nen coma',
+'exif-meteringmode-0' => 'Pa conossù',
 'exif-meteringmode-1' => 'Media',
 'exif-meteringmode-2' => 'Media centrà',
 'exif-meteringmode-3' => 'Quadrèt (Spot)',
@@ -3145,7 +3145,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-meteringmode-6' => 'Parsial',
 'exif-meteringmode-255' => "n'àutr",
 
-'exif-lightsource-0' => 'Nen marcà',
+'exif-lightsource-0' => 'Pa conossù',
 'exif-lightsource-1' => 'Lus dël dì',
 'exif-lightsource-2' => 'Fluoressenta',
 'exif-lightsource-3' => 'Lus al tungsten (a incandessensa)',
@@ -3226,7 +3226,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-sharpness-1' => 'dossa',
 'exif-sharpness-2' => 'contrastà',
 
-'exif-subjectdistancerange-0' => 'Nen specificà',
+'exif-subjectdistancerange-0' => 'Pa conossù',
 'exif-subjectdistancerange-1' => 'Macro',
 'exif-subjectdistancerange-2' => 'Prim pian',
 'exif-subjectdistancerange-3' => 'Anquadratura a soget lontan',

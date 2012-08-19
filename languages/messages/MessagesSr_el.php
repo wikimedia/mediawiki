@@ -1735,9 +1735,9 @@ Istorija brisanja i premeštanja se nalazi ispod:",
 Za pregled ili pretragu postojećih datoteka, pogledajte [[Special:FileList|spisak otpremljenih datoteka]], ponovna otpremanja su navedena u [[Special:Log/upload|dnevniku otpremanja]], a brisanja u [[Special:Log/delete|dnevniku brisanja]].
 
 Datoteku dodajete na željenu stranicu koristeći sledeće obrasce:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Slika.jpg]]</nowiki></tt>''' za verziju slike u punoj veličini
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Slika.png|200p|mini|levo|opis]]</nowiki></tt>''' za verziju slike s veličinom od 200 piksela koja je prikazana u zasebnom okviru, zajedno s opisom.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direktno povezivanje s datotekom bez njenog prikazivanja",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Slika.jpg]]</nowiki></code>''' za verziju slike u punoj veličini
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Slika.png|200p|mini|levo|opis]]</nowiki></code>''' za verziju slike s veličinom od 200 piksela koja je prikazana u zasebnom okviru, zajedno s opisom.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></code>''' za direktno povezivanje s datotekom bez njenog prikazivanja",
 'upload-permitted' => 'Dozvoljene vrste datoteka: $1.',
 'upload-preferred' => 'Poželjne vrste datoteka: $1.',
 'upload-prohibited' => 'Zabranjene vrste datoteka: $1.',
@@ -1784,21 +1784,21 @@ Promenite naziv datoteke i ponovo je pošaljite.',
 Uzrok može biti greška u nazivu datoteke.
 Proverite da li zaista želite da je pošaljete.',
 'windows-nonascii-filename' => 'Ovaj viki ne podržava nazive datoteka s posebnim znacima.',
-'fileexists' => "Datoteka s ovim nazivom već postoji. Pogledajte '''<tt>[[:$1]]</tt>''' ako niste sigurni da li želite da je promenite.
-[[$1|thumb]]",
-'filepageexists' => "Stranica s opisom ove datoteke je već napravljena ovde '''<tt>[[:$1]]</tt>''', iako datoteka ne postoji.
+'fileexists' => 'Datoteka s ovim nazivom već postoji. Pogledajte <strong>[[:$1]]</strong> ako niste sigurni da li želite da je promenite.
+[[$1|thumb]]',
+'filepageexists' => 'Stranica s opisom ove datoteke je već napravljena ovde <strong>[[:$1]]</strong>, iako datoteka ne postoji.
 Opis koji ste naveli se neće pojaviti na stranici s opisom.
 Da bi se vaš opis ovde našao, potrebno je da ga ručno izmenite.
-[[$1|thumb]]",
-'fileexists-extension' => "Datoteka sa sličnim nazivom već postoji: [[$2|thumb]]
-* Naziv datoteke koju šaljete: '''<tt>[[:$1]]</tt>'''
-* Naziv postojeće datoteke: '''<tt>[[:$2]]</tt>'''
-Izaberite drugačiji naziv.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Datoteka sa sličnim nazivom već postoji: [[$2|thumb]]
+* Naziv datoteke koju šaljete: <strong>[[:$1]]</strong>
+* Naziv postojeće datoteke: <strong>[[:$2]]</strong>
+Izaberite drugačiji naziv.',
 'fileexists-thumbnail-yes' => "Izgleda da je datoteka umanjeno izdanje slike ''(thumbnail)''.
 [[$1|thumb]]
-Proverite datoteku '''<tt>[[:$1]]</tt>'''.
+Proverite datoteku <strong>[[:$1]]</strong>.
 Ako je proverena datoteka ista slika originalne veličine, nije potrebno slati dodatnu sliku.",
-'file-thumbnail-no' => "Datoteka počinje sa '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Datoteka počinje sa <strong>$1</strong>.
 Izgleda da se radi o umanjenoj slici ''(thumbnail)''.
 Ukoliko imate ovu sliku u punoj veličini, pošaljite je, a ako nemate, promenite naziv datoteke.",
 'fileexists-forbidden' => 'Datoteka s ovim nazivom već postoji i ne može se zameniti.
@@ -2070,7 +2070,7 @@ Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
 # MIME search
 'mimesearch' => 'MIME pretraga',
 'mimesearch-summary' => 'Ova stranica omogućava filtriranje datoteka prema njihovim vrstama MIME.
-Ulazni podaci: contenttype/subtype, npr. <tt>image/jpeg</tt>.',
+Ulazni podaci: contenttype/subtype, npr. <code>image/jpeg</code>.',
 'mimetype' => 'MIME vrsta:',
 'download' => 'preuzmi',
 
@@ -2274,7 +2274,7 @@ Pogledajte i [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-ok' => 'Pretraži',
 'linksearch-text' => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.<br />
 Potreban je najviši domen, kao „*.org“.<br />
-Podržani protokoli: <tt>$1</tt> (ne stavljajte u pretragu)',
+Podržani protokoli: <code>$1</code> (ne stavljajte u pretragu)',
 'linksearch-line' => '$1 veza u $2',
 'linksearch-error' => 'Džokeri se mogu pojaviti samo na početku adrese.',
 
@@ -2307,8 +2307,8 @@ Pogledajte [[{{MediaWiki:Listgrouprights-helppage}}|više detalja]] o pojedinač
 'listgrouprights-rights' => 'Prava',
 'listgrouprights-helppage' => 'Help:Prava grupe',
 'listgrouprights-members' => '(spisak članova)',
-'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup' => 'dodaje {{PLURAL:$2|sledeću grupu|sledeće grupe}}: $1',
 'listgrouprights-removegroup' => 'briše {{PLURAL:$2|sledeću grupu|sledeće grupe}}: $1',
 'listgrouprights-addgroup-all' => 'dodavanje svih grupa',

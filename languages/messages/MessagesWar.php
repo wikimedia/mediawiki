@@ -351,7 +351,7 @@ $1',
 'nstab-media' => 'Pakli hin medya',
 'nstab-special' => 'Pinaurog nga pakli',
 'nstab-project' => 'Pakli han proyekto',
-'nstab-image' => 'Fayl',
+'nstab-image' => 'Paypay',
 'nstab-mediawiki' => 'Mensahe',
 'nstab-template' => 'Batakan',
 'nstab-help' => 'Pakli hin bulig',
@@ -908,8 +908,8 @@ Mga detalye: $1',
 'filehist-filesize' => 'Kadako han fayl',
 'filehist-comment' => 'Komento',
 'filehist-missing' => 'Nawawara an fayl',
-'imagelinks' => 'Mga gamit hin fayl',
-'linkstoimage' => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga fayl:',
+'imagelinks' => 'Mga gamit hin paypay',
+'linkstoimage' => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga paypay:',
 'nolinkstoimage' => 'Waray mga pakli nga nasumpay hini nga fayl.',
 'sharedupload' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.',
 'sharedupload-desc-there' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.
@@ -1499,6 +1499,7 @@ An iba in daan nakatago.
 'version-software-product' => 'Produkto',
 
 # Special:FilePath
+'filepath-page' => 'Paypay:',
 'filepath-submit' => 'Kadto-a',
 
 # Special:FileDuplicateSearch

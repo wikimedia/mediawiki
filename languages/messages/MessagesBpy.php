@@ -1036,9 +1036,9 @@ $2',
 আগেদে কাকরিসি ফাইল বিসারা [[Special:FileList|কাকরিসি ফাইলর লাতঙগ]], [[Special:Log/upload|আরাকমু কাকরিসি]] ফাইলর ইতিহাসহান, [[Special:Log/delete|পুসিসি]] ফাইলর ইতিহাসহান।
 
 পাতাহাত ছবি আগ বরানি মনেইলে, তলর উদাহরণর অসারে ইকর:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' ফাইলর আস্তা ভার্সনহান ব্যবহারর কা
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|সারুক ৱাহি]]</nowiki></tt>''' ২০০ পিক্সল চেপ্টা বাক্সগর বিঙেদে বদাগ দেনা বারো থাকরানির নিঙে 'সারুকে ৱাহি' বরানির কা
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' ফাইল নাদেখাদিয়া চুমেসত মিলাপর কা",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' ফাইলর আস্তা ভার্সনহান ব্যবহারর কা
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|সারুক ৱাহি]]</nowiki></code>''' ২০০ পিক্সল চেপ্টা বাক্সগর বিঙেদে বদাগ দেনা বারো থাকরানির নিঙে 'সারুকে ৱাহি' বরানির কা
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' ফাইল নাদেখাদিয়া চুমেসত মিলাপর কা",
 'upload-permitted' => 'যে জাতর ফাইল কাকরানি(আপলোড) করানি থা: $1।',
 'upload-preferred' => 'যে জাতর ফাইল থা: $1।',
 'upload-prohibited' => 'যে জাতর ফাইল থা নেই: $1।',

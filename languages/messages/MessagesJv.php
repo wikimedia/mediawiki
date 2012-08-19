@@ -1391,9 +1391,9 @@ Log pambusakan lan panyingkiran saka kaca iki sumadhiya nèng kéné:",
 Kanggé mirsani utawi madosi gambar ingkang sampun dipununggah sakdèrèngipun pigunakaken [[Special:FileList|dhaftar berkas sing wis diunggah]], gambar ingkang dipununggah ulang ugi kadhaftar ing [[Special:Log/upload|log pangunggahan]], pambusakan ing [[Special:Log/delete|Log pambusakan]].
 
 Kanggé nyertakaken gambar ing satunggiling kaca, pigunakaken pranala salah setunggal saking format ing ngandhap punika:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></tt>''' kanggé migunakaken versi pepak gambar
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></tt>''' kanggé migunakaken gambar wiyaripun 200 piksel ing kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' kanggé nggandhèng langsung dhumateng gambar tanpi nampilaké gambar",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.jpg]]</nowiki></code>''' kanggé migunakaken versi pepak gambar
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Berkas.png|200px|thumb|left|tèks alt]]</nowiki></code>''' kanggé migunakaken gambar wiyaripun 200 piksel ing kothak ing sisih kiwa kanthi 'tèks alt' minangka panjelasan
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></code>''' kanggé nggandhèng langsung dhumateng gambar tanpi nampilaké gambar",
 'upload-permitted' => 'Jenis berkas sing diidinaké: $1.',
 'upload-preferred' => 'Jenis berkas sing disaranaké: $1.',
 'upload-prohibited' => 'Jenis berkas sing dilarang: $1.',
@@ -1437,18 +1437,18 @@ Luwih becik {{PLURAL:\$3|jinis berkas|Jinis-jinis berkas}} \$2.",
 'largefileserver' => 'Berkas iki luwih gedhé tinimbang sing bisa kaparengaké server.',
 'emptyfile' => 'Berkas sing panjenengan unggahaké katoné kosong. Mbokmenawa iki amerga anané salah ketik ing jeneng berkas. Mangga dipastèkaké apa panjenengan pancèn kersa ngunggahaké berkas iki.',
 'windows-nonascii-filename' => 'Wiki iki ora nyengkuyung jeneng berkas mawa karakter kusus.',
-'fileexists' => "Sawijining berkas mawa jeneng iku wis ana, mangga dipriksa '''<tt>[[:$1]]</tt>''' yèn panjenengan ora yakin sumedya ngowahiné.
-[[$1|thumb]]",
-'filepageexists' => "Kaca dèskripsi kanggo berkas iki wis digawé ing '''<tt>[[:$1]]</tt>''', nanging saiki iki ora ditemokaké berkas mawa jeneng iku. Ringkesan sing panjenengan lebokaké ora bakal metu ing kaca dèskripsi. Kanggo ngetokaké dèskripsi iki, panjenengan kudu nyunting sacara manual. [[$1|thumb]]",
-'fileexists-extension' => "Berkas mawa jeneng sing padha wis ana: [[$2|thumb]]
-* Jeneng berkas sing bakal diunggahaké: '''<tt>[[:$1]]</tt>'''
-* Jeneng berkas sing wis ana: '''<tt>[[:$2]]</tt>'''
-Mangga milih jeneng liya.",
+'fileexists' => 'Sawijining berkas mawa jeneng iku wis ana, mangga dipriksa <strong>[[:$1]]</strong> yèn panjenengan ora yakin sumedya ngowahiné.
+[[$1|thumb]]',
+'filepageexists' => 'Kaca dèskripsi kanggo berkas iki wis digawé ing <strong>[[:$1]]</strong>, nanging saiki iki ora ditemokaké berkas mawa jeneng iku. Ringkesan sing panjenengan lebokaké ora bakal metu ing kaca dèskripsi. Kanggo ngetokaké dèskripsi iki, panjenengan kudu nyunting sacara manual. [[$1|thumb]]',
+'fileexists-extension' => 'Berkas mawa jeneng sing padha wis ana: [[$2|thumb]]
+* Jeneng berkas sing bakal diunggahaké: <strong>[[:$1]]</strong>
+* Jeneng berkas sing wis ana: <strong>[[:$2]]</strong>
+Mangga milih jeneng liya.',
 'fileexists-thumbnail-yes' => "Berkas iki katoné gambar mawa ukuran sing luwih cilik ''(thumbnail)''. [[$1|thumb]]
-Tulung dipriksa berkas '''<tt>[[:$1]]</tt>'''.
+Tulung dipriksa berkas <strong>[[:$1]]</strong>.
 Yèn berkas sing wis dipriksa iku padha, ora perlu panjenengan ngunggahaké vèrsi cilik liyané manèh.",
-'file-thumbnail-no' => "Jeneng berkas diwiwiti kanthi '''<tt>$1</tt>'''. Katoné berkas iki sawijining gambar mawa ukuran sing dicilikaké <em>(thumbnail)</em>.
-Yèn panjenengan kagungan vèrsi mawa résolusi kebak saka gambar iki, mangga diunggahaké. Yèn ora, tulung jeneng berkas diganti.",
+'file-thumbnail-no' => 'Jeneng berkas diwiwiti kanthi <strong>$1</strong>. Katoné berkas iki sawijining gambar mawa ukuran sing dicilikaké <em>(thumbnail)</em>.
+Yèn panjenengan kagungan vèrsi mawa résolusi kebak saka gambar iki, mangga diunggahaké. Yèn ora, tulung jeneng berkas diganti.',
 'fileexists-forbidden' => 'Sawijining berkas mawa jeneng iki wis ana, lan ora bisa ditindhes.
 Yèn panjenengan isih arep ngunggahaké berkas panjenengan, supaya
 mbalik lan gunakna jeneng liya.
@@ -1686,7 +1686,7 @@ Mungkin Sampéyan pingin nyunting katrangan nèng [$2 kaca katrangan berkasé] n
 
 # MIME search
 'mimesearch' => 'Panggolèkan MIME',
-'mimesearch-summary' => 'Kaca iki nyedyaké fasilitas nyaring berkas miturut tipe MIME-né. Lebokna: contenttype/subtype, contoné <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Kaca iki nyedyaké fasilitas nyaring berkas miturut tipe MIME-né. Lebokna: contenttype/subtype, contoné <code>image/jpeg</code>.',
 'mimetype' => 'Tipe MIME:',
 'download' => 'undhuh',
 
@@ -1885,7 +1885,7 @@ Deleng uga [[Special:WantedCategories|kategori sing diperlokaké]].',
 'linksearch-pat' => 'Pola panggolèkan:',
 'linksearch-ns' => 'Bilik nama:',
 'linksearch-ok' => 'Golèk',
-'linksearch-text' => "''Wildcards'' kaya ta \"*.wikipedia.org\" bisa dienggo.<br />Protokol sing disengkuyung: <tt>\$1</tt>",
+'linksearch-text' => "''Wildcards'' kaya ta \"*.wikipedia.org\" bisa dienggo.<br />Protokol sing disengkuyung: <code>\$1</code>",
 'linksearch-line' => '$1 disambung saka $2',
 'linksearch-error' => "''Wildcards'' namung bisa dienggo ing bagéyan awal saka jeneng host.",
 

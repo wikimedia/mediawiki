@@ -1275,9 +1275,9 @@ Bu səhifənin silinmə və addəyişmə jurnalı aşağıda göstərilmişdir:"
 Əvvəllər yüklənmiş fayllara baxmaq üçün [[Special:FileList|yüklənmiş fayllar siyahısına]] keçin, həmçinin (təkrar) yüklənmiş fayllara [[Special:Log/upload|yükləmə jurnalında]], silinmiş fayllara [[Special:Log/delete|silinmə jurnalında]] baxa bilərsiniz.
 
 Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifadə edin:
-* Faylın tam versiyasını yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''';
-* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></tt>''';
-* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
+* Faylın tam versiyasını yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''';
+* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></code>''';
+* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''.",
 'upload-permitted' => 'İcazə verilən fayl tipləri: $1.',
 'upload-preferred' => 'İcazə verilən fayl tipləri: $1.',
 'upload-prohibited' => 'İcazə verilməyən fayl tipləri: $1.',
@@ -1311,9 +1311,9 @@ Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifad
 'tmp-write-error' => 'Müvəqqəti fayl yazılarkən xəta.',
 'largefileserver' => 'Faylın ölçüsü yol verilən həddi aşır.',
 'emptyfile' => 'Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.',
-'fileexists' => "Yükləmək istədiyiniz adda fayl mövcuddur.
-Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
-[[$1|thumb]]",
+'fileexists' => 'Yükləmək istədiyiniz adda fayl mövcuddur.
+Lütfən <strong>[[:$1]]</strong> keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
+[[$1|thumb]]',
 'uploadwarning' => 'Yükləmə xəbərdarlığı',
 'savefile' => 'Faylı qeyd et',
 'uploadedimage' => 'yükləndi "[[$1]]"',
@@ -1663,8 +1663,8 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-rights' => 'Hüquqlar',
 'listgrouprights-helppage' => 'Help:Qrup hüquqları',
 'listgrouprights-members' => '(üzvləri)',
-'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup' => '{{PLURAL:$2|Qrupu}} əlavə et: $1',
 'listgrouprights-removegroup' => '{{PLURAL:$2|Qrupu}} sil: $1',
 'listgrouprights-addgroup-all' => 'Bütün qrupları əlavə et',

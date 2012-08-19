@@ -480,9 +480,9 @@ Płaśece specialne boki namakaju se pód [[Special:SpecialPages|lisćinu specia
 'dberrortext' => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
 To by mógło zmólki w softwarje byś.
 Slědne wótpšašowanje jo było:
-<blockquote><tt>$1</tt></blockquote>
-z funkcije "<tt>$2</tt>".
-Datowa banka jo zmólku "<tt>$3: $4</tt>" wrośiła.',
+<blockquote><code>$1</code></blockquote>
+z funkcije "<code>$2</code>".
+Datowa banka jo zmólku "<samp>$3: $4</samp>" wrośiła.',
 'dberrortextcl' => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
 Slědne wopytane wótpšašowanje jo było:
 "$1"
@@ -1516,9 +1516,9 @@ Protokola wulašowanjow a pśesunjenjow za toś ten bok stej how k twójej dispo
 Źi na [[Special:FileList|lisćinu nagratych datajow]], aby mógł južo nagrate dataje se wobglědaś abo pytaś, nagraśa protokolěruju se w [[Special:Log/upload|protokolu nagraśow]], wulašowanja w [[Special:Log/delete|protokolu wulašowanjow]].
 
 Aby dataju do boka zapśimjeł, wužyj wótkaz slědujuceje formy
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', aby wužywał połnu wersiju dataje
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></tt>''', aby wužywał wobraz we wjelikosću 200 pikselow w kašćiku na lěwej kšomje z alternatiwnym tekstom ako wopisanje
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></tt>''', aby direktnje na dataju wótkazował, bźez togo až dataja se zwobraznijo.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></code>''', aby wužywał połnu wersiju dataje
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></code>''', aby wužywał wobraz we wjelikosću 200 pikselow w kašćiku na lěwej kšomje z alternatiwnym tekstom ako wopisanje
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></code>''', aby direktnje na dataju wótkazował, bźez togo až dataja se zwobraznijo.",
 'upload-permitted' => 'Dowolone datajowe typy: $1.',
 'upload-preferred' => 'Preferěrowane datajowe typy: $1.',
 'upload-prohibited' => 'Njedowolone datajowe typy: $1.',
@@ -1562,20 +1562,20 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'largefileserver' => 'Dataja jo wětša ako serwer dopušćijo.',
 'emptyfile' => 'Dataja, kótaruž sy nagrał, jo prozna. Pśicyna móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lěc coš dataju napšawdu nagraś.',
 'windows-nonascii-filename' => 'Toś ten wiki njepódpěra datajowe mjenja z wósebnymi znamuškami.',
-'fileexists' => "Dataja z toś tym mjenim južo eksistěrujo.
-Tłocyš-lic na \"Dataju składowaś\", ga se dataja pśepišo.
-Pšosym kontrolěruj '''<tt>[[:\$1]]</tt>''', gaž njejsy se kradu wěsty.
-[[\$1|thumb]]",
-'filepageexists' => "Wopisański bok za toś tu dataju bu južo na '''<tt>[[:$1]]</tt>''' napórany, ale dataja z toś tym mjenim tuchylu njeeksistěrujo. Zespominanje, kótarež zapódawaš, njezjawijo se na wopisańskem boku. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.
-[[$1|thumb]]",
-'fileexists-extension' => "Eksistěrujo južo dataja z pódobnym mjenim: [[$2|thumb]]
-* Mě dataje, kótaraž dej se nagraś: '''<tt>[[:$1]]</tt>'''
-* Mě eksistěrujuceje dataje: '''<tt>[[:$2]]</tt>'''
-Pšosym wubjeŕ druge mě.",
+'fileexists' => 'Dataja z toś tym mjenim južo eksistěrujo.
+Tłocyš-lic na "Dataju składowaś", ga se dataja pśepišo.
+Pšosym kontrolěruj <strong>[[:$1]]</strong>, gaž njejsy se kradu wěsty.
+[[$1|thumb]]',
+'filepageexists' => 'Wopisański bok za toś tu dataju bu južo na <strong>[[:$1]]</strong> napórany, ale dataja z toś tym mjenim tuchylu njeeksistěrujo. Zespominanje, kótarež zapódawaš, njezjawijo se na wopisańskem boku. Aby se twóje zespominanje tam zjawiło, dejš jen manuelnje wobźěłaś.
+[[$1|thumb]]',
+'fileexists-extension' => 'Eksistěrujo južo dataja z pódobnym mjenim: [[$2|thumb]]
+* Mě dataje, kótaraž dej se nagraś: <strong>[[:$1]]</strong>
+* Mě eksistěrujuceje dataje: <strong>[[:$2]]</strong>
+Pšosym wubjeŕ druge mě.',
 'fileexists-thumbnail-yes' => "Zazdaśim ma dataja reducěrowanu wjelikosć ''(thumbnail)''. [[$1|thumb]]
-Kontrolěruj pšosym dataju '''<tt>[[:$1]]</tt>'''.
+Kontrolěruj pšosym dataju <strong>[[:$1]]</strong>.
 Jolic skontrolěrowana dataja jo ten samy wobraz w originalnej wjelikosći, pón njejo notne, separatny pśeglědowy wobraz nagraś.",
-'file-thumbnail-no' => "Mě dataje zachopijo z '''<tt>$1</tt>'''. Zda se, až to jo wobraz z reducěrowaneju wjelikosću. ''(thumbnail)''.
+'file-thumbnail-no' => "Mě dataje zachopijo z <strong>$1</strong>. Zda se, až to jo wobraz z reducěrowaneju wjelikosću. ''(thumbnail)''.
 Jolic maš toś ten wobraz w połnem rozeznaśu, nagraj jen, howac změń pšosym mě dataje.",
 'fileexists-forbidden' => 'Dataja z toś tym mjenim južo eksistěrujo a njedajo se pśepisaś. Jolic coš hyšći swóju dataju nagraś, źi pšosym slědk a wuž nowe mě. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dataja z toś tym mjenim južo eksistěrujo w zgromadnej chowarni. Jolic hyšći coš nagraś swóju dataju, źi pšosym slědk a wužyj nowe mě.
@@ -1827,7 +1827,7 @@ Snaź coš wopisanje na jeje [$2 boku datajowego wopisanja] wobźěłaś.',
 
 # MIME search
 'mimesearch' => 'MIME-typ pytaś',
-'mimesearch-summary' => 'Na toś tom specialnem boku mógu se dataje pó MIME-typu filtrowaś. Zapódaśe dej wopśimjeś stawnje typ medija a subtyp: <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Na toś tom specialnem boku mógu se dataje pó MIME-typu filtrowaś. Zapódaśe dej wopśimjeś stawnje typ medija a subtyp: <code>image/jpeg</code>.',
 'mimetype' => 'Typ MIME:',
 'download' => 'Ześěgnuś',
 
@@ -2025,7 +2025,7 @@ Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'linksearch-ok' => 'Pytaś',
 'linksearch-text' => 'Jo móžno zastupne znamuška kaž "*.wikipedia.org" wužywaś. 
 Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
-Pódpěrane protokole: <tt>$1</tt> (pšosym njepódaj je w swójom pytanju).',
+Pódpěrane protokole: <code>$1</code> (pšosym njepódaj je w swójom pytanju).',
 'linksearch-line' => '$1 wótkazany z $2',
 'linksearch-error' => 'Zasupne znamješko daju se jano na zachopjeńku URL wužywaś.',
 

@@ -310,6 +310,7 @@ $1',
 'youhavenewmessages' => 'Tev ir $1 (skat. $2).',
 'newmessageslink' => 'jauns vēstījums',
 'newmessagesdifflink' => 'pēdējā izmaiņa',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|pēdējā izmaiņa|pēdējās izmaiņas}}',
 'youhavenewmessagesmulti' => 'Tev ir jauns ziņojums: $1',
 'editsection' => 'labot',
 'editold' => 'labot',
@@ -668,6 +669,7 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 'updated' => '(Atjaunots)',
 'note' => "'''Piezīme: '''",
 'previewnote' => "'''Atceries, ka šis ir tikai pirmskats un teksts vēl nav saglabāts!'''",
+'continue-editing' => 'Turpināt labošanu',
 'session_fail_preview' => "'''Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
 Lūdzu mēģini vēlreiz.
 Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.'''",
@@ -1343,13 +1345,13 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 'largefileserver' => 'Šis fails ir lielāks nekā serveris ņem pretī.',
 'emptyfile' => 'Šķiet, ka tu esi augšuplādējis tukšu failu. Iespējams, faila nosaukumā esi pieļāvis kļūdu. Lūdzu, pārbaudi, vai tiešām tu vēlies augšuplādēt tieši šo failu.',
 'windows-nonascii-filename' => 'Šī viki neatbalsta failu nosaukumus ar īpašām rakstzīmēm.',
-'fileexists' => "Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi '''<tt>[[:$1]]</tt>''', ja neesi drošs, ka vēlies to mainīt.
-[[$1|thumb]]",
-'fileexists-extension' => "Pastāv fails ar līdzīgu nosaukumu: [[$2|thumb]]
-* Augšupielādējamā faila nosaukums: '''<tt>[[:$1]]</tt>'''
-* Esošā faila nosaukums: '''<tt>[[:$2]]</tt>'''
-Lūdzu, izvēlieties citu nosaukumu.",
-'file-thumbnail-no' => "Faila vārds sākas ar '''<tt>$1</tt>'''.
+'fileexists' => 'Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi <strong>[[:$1]]</strong>, ja neesi drošs, ka vēlies to mainīt.
+[[$1|thumb]]',
+'fileexists-extension' => 'Pastāv fails ar līdzīgu nosaukumu: [[$2|thumb]]
+* Augšupielādējamā faila nosaukums: <strong>[[:$1]]</strong>
+* Esošā faila nosaukums: <strong>[[:$2]]</strong>
+Lūdzu, izvēlieties citu nosaukumu.',
+'file-thumbnail-no' => "Faila vārds sākas ar <strong>$1</strong>.
 Izskatās, ka šis ir samazināts attēls ''(thumbnail)''.
 Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomaini faila vārdu.",
 'fileexists-forbidden' => 'Fails ar šādu nosaukumu jau eksistē un to nevar aizvietot ar jaunu.
@@ -1409,6 +1411,7 @@ Lūdzu, sazinieties ar [[Special:ListUsers/sysop|administratoru.]]',
 'backend-fail-notsame' => 'Neidentisks fails jau pastāv $1.',
 'backend-fail-delete' => 'Nevar izdzēst failu $1.',
 'backend-fail-alreadyexists' => 'Fails $1 jau pastāv.',
+'backend-fail-store' => 'Neizdevās saglabāt failu "$1" "$2".',
 'backend-fail-copy' => 'Nevar kopēt failu $1 uz $2.',
 'backend-fail-move' => 'Nevar pārvietot failu $1 uz $2.',
 'backend-fail-opentemp' => 'Nevar atvērt pagaidu failu.',
@@ -1442,6 +1445,7 @@ Atļauta ir tikai failu piekļuve.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL nevarēja sasniegt',
+'upload-curl-error28' => 'Augšupielādes noildze',
 
 'license' => 'Licence:',
 'license-header' => 'Licence',
@@ -1624,6 +1628,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'mostimages' => 'Attēli, uz kuriem ir visvairāk saišu',
 'mostrevisions' => 'Raksti, kuriem ir visvairāk iepriekšēju versiju',
 'prefixindex' => 'Meklēt pēc virsraksta pirmajiem burtiem',
+'prefixindex-namespace' => 'Visas lapas ar prefiksu ($1 vārdtelpa)',
 'shortpages' => 'Īsākās lapas',
 'longpages' => 'Garākās lapas',
 'deadendpages' => 'Lapas bez izejošām saitēm',
@@ -1682,6 +1687,9 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 'allpagesprefix' => 'Parādīt lapas ar šādu virsraksta sākumu:',
 'allpages-bad-ns' => '{{SITENAME}} nav vārdkopas "$1".',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Skatīt jaunāko.',
+
 # Special:Categories
 'categories' => 'Kategorijas',
 'categoriespagetext' => "{{PLURAL:$1|Šī kategorija|Šīs kategorijas}} satur lapas vai failus.
@@ -1701,7 +1709,7 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'linksearch-pat' => 'Meklēt:',
 'linksearch-ns' => 'Vārdtelpas:',
 'linksearch-ok' => 'Meklēt',
-'linksearch-text' => 'Atbalstītie protokoli: <tt>$1</tt>',
+'linksearch-text' => 'Atbalstītie protokoli: <code>$1</code>',
 'linksearch-line' => '$1 ir izveidota saite no $2',
 
 # Special:ListUsers
@@ -2102,6 +2110,7 @@ Visus blokus var apskatīties [[Special:BlockList|IP bloku sarakstā]].',
 'blocklist-userblocks' => 'Paslēpt kontu bloķējumus',
 'blocklist-tempblocks' => 'Paslēpt pagaidu bloķējumus',
 'blocklist-addressblocks' => 'Paslēpt vienas IP adreses bloķējumus',
+'blocklist-timestamp' => 'Laiks',
 'blocklist-target' => 'Mērķis',
 'blocklist-params' => 'Bloķēšanas parametri',
 'blocklist-reason' => 'Iemesls',
@@ -2642,6 +2651,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-specialinstructions' => 'Īpašas norādes',
 'exif-headline' => 'Virsraksts',
 'exif-source' => 'Avots',
+'exif-contact' => 'Kontaktinformācija',
 'exif-languagecode' => 'Valoda',
 'exif-iimversion' => 'IIM versija',
 'exif-iimcategory' => 'Kategorija',
@@ -2650,6 +2660,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-lens' => 'Izmantotais objektīvs',
 'exif-serialnumber' => 'Fotoaparāta sērijas numurs',
 'exif-cameraownername' => 'Fotoaparāta īpašnieks',
+'exif-nickname' => 'Neformāls attēla nosaukums',
 'exif-rating' => 'Vērtējums (no 5)',
 'exif-copyrighted' => 'Autortiesību statuss',
 'exif-copyrightowner' => 'Autortiesību īpašnieks',
@@ -2664,6 +2675,8 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-contentwarning' => 'Brīdinājums par saturu',
 'exif-giffilecomment' => 'GIF faila komentārs',
 'exif-event' => 'Attēlotais notikums',
+'exif-organisationinimage' => 'Attēlotā organizācija',
+'exif-personinimage' => 'Attēlotā persona',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresēts',

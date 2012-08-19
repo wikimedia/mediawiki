@@ -658,10 +658,10 @@ $1',
 'databaseerror' => '데이터베이스 오류',
 'dberrortext' => '데이터베이스 쿼리 구문 오류가 발생했습니다.
 소프트웨어의 버그가 있을 수 있습니다.
-마지막으로 요청한 데이터베이스 쿼리는 "<tt>$2</tt>" 함수에서 쓰인
-<blockquote><tt>$1</tt></blockquote>
+마지막으로 요청한 데이터베이스 쿼리는 "<code>$2</code>" 함수에서 쓰인
+<blockquote><code>$1</code></blockquote>
 입니다.
-데이터베이스는 "<tt>$3: $4</tt>" 오류를 일으켰습니다.',
+데이터베이스는 "<samp>$3: $4</samp>" 오류를 일으켰습니다.',
 'dberrortextcl' => '데이터베이스 쿼리 구문 오류가 발생했습니다.
 마지막으로 요청한 데이터베이스 쿼리는 "$2" 함수에서 쓰인
 "$1"
@@ -1326,7 +1326,7 @@ $1",
 
 # Merge log
 'mergelog' => '병합 기록',
-'pagemerge-logentry' => '[[$1]]을 [[$2]]에 병합 ($3판이 위로 옮겨짐)',
+'pagemerge-logentry' => '사용자가 [[$1]]을 [[$2]]에 병합 ($3판이 위로 옮겨짐)',
 'revertmerge' => '병합 해제',
 'mergelogpagetext' => '다음은 한 문서의 역사를 다른 문서의 역사와 합친 최근 기록입니다.',
 
@@ -1656,7 +1656,7 @@ HTML 태그를 확인하세요.',
 # User rights log
 'rightslog' => '사용자 권한 기록',
 'rightslogtext' => '사용자 권한 조정 기록입니다.',
-'rightslogentry' => '$1의 권한을 $2에서 $3(으)로 바꿈',
+'rightslogentry' => '사용자가 $1의 권한을 $2에서 $3(으)로 바꿈',
 'rightslogentry-autopromote' => '사용자의 권한이 자동적으로 $2에서 $3으로 바뀌었습니다.',
 'rightsnone' => '(없음)',
 
@@ -1761,9 +1761,9 @@ HTML 태그를 확인하세요.',
 [[Special:FileList|파일 목록]]에서 이전에 올라온 파일을 찾을 수 있습니다. [[Special:Log/upload|올리기 기록]]에는 파일이 올라온 기록이 남습니다. 삭제 기록은 [[Special:Log/delete|삭제 기록]]에서 볼 수 있습니다.
 
 문서에 파일을 넣으려면 아래 방법 중 하나를 사용하세요.
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' 파일의 온전한 모양을 사용하고자 할 때.
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></tt>''' 파일의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 파일 밑에 달 때.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' 파일을 직접 보여주지 않고 파일로 바로 링크할때.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' 파일의 온전한 모양을 사용하고자 할 때.
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200픽셀|섬네일|왼쪽|설명]]</nowiki></code>''' 파일의 넓이를 200픽셀로 하고 왼쪽 정렬하며 '설명' 이라는 주석을 파일 밑에 달 때.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' 파일을 직접 보여주지 않고 파일로 바로 링크할때.",
 'upload-permitted' => '허용하는 파일 확장자: $1',
 'upload-preferred' => '권장하는 파일 확장자: $1',
 'upload-prohibited' => '금지하는 파일 확장자: $1',
@@ -1811,23 +1811,23 @@ $2 형식만 사용할 수 있습니다.',
 파일 이름을 잘못 입력했을 수도 있습니다.
 올리려는 파일을 다시 한 번 확인해 주시기 바랍니다.',
 'windows-nonascii-filename' => '이 위키에서는 특수 문자가 포함된 파일 이름을 지원하지 않습니다.',
-'fileexists' => "같은 이름의 파일이 이미 있습니다. 파일을 바꾸고 싶지 않다면 '''<tt>[[:$1]]</tt>''' 파일을 확인해 주세요.
-[[$1|thumb]]",
-'filepageexists' => "이 파일의 설명 문서가 '''<tt>[[:$1]]</tt>'''에 존재하지만, 이 이름을 가진 파일이 존재하지 않습니다.
+'fileexists' => '같은 이름의 파일이 이미 있습니다. 파일을 바꾸고 싶지 않다면 <strong>[[:$1]]</strong> 파일을 확인해 주세요.
+[[$1|thumb]]',
+'filepageexists' => '이 파일의 설명 문서가 <strong>[[:$1]]</strong>에 존재하지만, 이 이름을 가진 파일이 존재하지 않습니다.
 당신이 입력한 설명은 설명 문서에 반영되지 않을 것입니다.
 당신의 설명을 반영시키려면, 직접 편집하셔야 합니다.
-[[$1|thumb]]",
-'fileexists-extension' => "비슷한 이름의 파일이 존재합니다: [[$2|thumb]]
-* 올리려는 파일 이름: '''<tt>[[:$1]]</tt>'''
-* 존재하는 파일 이름: '''<tt>[[:$2]]</tt>'''
-다른 이름으로 시도해 주세요.",
-'fileexists-thumbnail-yes' => "이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
+[[$1|thumb]]',
+'fileexists-extension' => '비슷한 이름의 파일이 존재합니다: [[$2|thumb]]
+* 올리려는 파일 이름: <strong>[[:$1]]</strong>
+* 존재하는 파일 이름: <strong>[[:$2]]</strong>
+다른 이름으로 시도해 주세요.',
+'fileexists-thumbnail-yes' => '이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
 [[$1|thumb]]
-'''<tt>[[:$1]]</tt>''' 파일을 확인해주세요.
-해당 파일이 현재 올리려는 파일과 같다면, 더 작은 크기의 그림을 올릴 필요는 없습니다.",
-'file-thumbnail-no' => "파일 이름이 '''<tt>$1</tt>'''으로 시작합니다.
+<strong>[[:$1]]</strong> 파일을 확인해주세요.
+해당 파일이 현재 올리려는 파일과 같다면, 더 작은 크기의 그림을 올릴 필요는 없습니다.',
+'file-thumbnail-no' => '파일 이름이 <strong>$1</strong>으로 시작합니다.
 이 파일은 원본 그림이 아닌, 다른 그림의 크기를 줄인 섬네일 파일인 것 같습니다.
-더 해상도가 좋은 파일이 있다면 그 파일을 올려주세요. 아니면 올리려는 파일 이름을 바꾸어 주세요.",
+더 해상도가 좋은 파일이 있다면 그 파일을 올려주세요. 아니면 올리려는 파일 이름을 바꾸어 주세요.',
 'fileexists-forbidden' => '같은 이름의 파일이 이미 있고, 덮어쓸 수 없습니다.
 그래도 파일을 올리시려면, 뒤로 돌아가서 다른 이름으로 시도해 주시기 바랍니다.
 [[File:$1|thumb|center|$1]]',
@@ -1839,8 +1839,8 @@ $2 형식만 사용할 수 있습니다.',
 'uploadwarning' => '올리기 경고',
 'uploadwarning-text' => '아래의 파일 설명을 수정하고 다시 시도해 주세요.',
 'savefile' => '파일 저장',
-'uploadedimage' => '"[[$1]]" 파일을 올렸습니다.',
-'overwroteimage' => '"[[$1]]" 파일의 새 판을 올렸습니다.',
+'uploadedimage' => '사용자가 "[[$1]]" 파일을 올렸습니다.',
+'overwroteimage' => '사용자가 "[[$1]]" 파일의 새 판을 올렸습니다.',
 'uploaddisabled' => '올리기 비활성화됨',
 'copyuploaddisabled' => 'URL로 파일 올리기가 비활성화되어 있습니다.',
 'uploadfromurl-queued' => '당신의 올리기 명령이 기록되었습니다.',
@@ -2095,7 +2095,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # MIME search
 'mimesearch' => 'MIME 찾기',
 'mimesearch-summary' => 'MIME 타입에 해당하는 파일을 찾습니다.
-다음 형태로 입력해주세요: 내용종류/하위종류, 예를 들어 <tt>image/jpeg</tt>',
+다음 형태로 입력해주세요: 내용종류/하위종류, 예를 들어 <code>image/jpeg</code>',
 'mimetype' => 'MIME 종류:',
 'download' => '다운로드',
 
@@ -2298,7 +2298,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'linksearch-ok' => '찾기',
 'linksearch-text' => '"*.wikipedia.org"와 같이 와일드카드를 사용할 수 있습니다.
 적어도 "*.org"와 같이 최상위 도메인을 입력해야 합니다.<br />
-지원하는 프로토콜 목록: <tt>$1</tt> (찾을 때 이것을 추가하지 마세요)',
+지원하는 프로토콜 목록: <code>$1</code> (찾을 때 이것을 추가하지 마세요)',
 'linksearch-line' => '$2에서 $1 을 링크하고 있습니다.',
 'linksearch-error' => '와일드카드는 주소의 처음 부분에만 사용될 수 있습니다.',
 
@@ -2777,11 +2777,11 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'blocklog-showsuppresslog' => '이 사용자는 과거에 차단된 적이 있으며, 그 기록이 숨겨져 있습니다.
 해당 사용자의 차단 기록은 다음과 같습니다:',
 'blocklogentry' => '사용자가 [[$1]] 사용자를 $2 차단함 $3',
-'reblock-logentry' => '[[$1]] 사용자의 차단 기간을 $2(으)로 바꿈 $3',
+'reblock-logentry' => '사용자가 [[$1]] 사용자의 차단 기간을 $2(으)로 바꿈 $3',
 'blocklogtext' => '이 목록은 사용자 차단/차단 해제 기록입니다.
 자동으로 차단된 IP 주소는 여기에 나오지 않습니다.
 [[Special:BlockList|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
-'unblocklogentry' => '$1을 차단 해제했습니다.',
+'unblocklogentry' => '사용자가 $1 사용자를 차단 해제했습니다.',
 'block-log-flags-anononly' => 'IP만 막음',
 'block-log-flags-nocreate' => '계정 만들기 금지됨',
 'block-log-flags-noautoblock' => '자동 차단 비활성화됨',

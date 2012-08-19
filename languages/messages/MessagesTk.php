@@ -1328,9 +1328,9 @@ Bu sahypanyň öçürme ýa-da at üýtgetme gündeligi aşakda berilýär:",
 Ozaldan ýüklenilgi faýllary görmek ýa-da agtarmak üçin [[Special:FileList|ýüklenilgi faýllaryň sanawyna]] serediň, (gaýtadan) ýüklenenler [[Special:Log/upload|ýükleme gündeliginde]], öçürilenler [[Special:Log/delete|öçürme gündeliginde]] saklanylýar.
 
 Bir sahypada faýl goýmaklyk üçin aşakdaky formlaryň birine görä çykgyt ulanyň;
-* Faýlyň doly wersiýasyny ulanmak üçin: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
-* Çep gyrada bir gutynyň içinde aşagyna kesgitleme hökmünde 'alt tekst' bilen, 200 piksel giňişligindäki wersiýany ulanmaklyk üçin: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt tekst]]</nowiki></tt>'''
-* Faýly görkezmän, faýla gönümel çykgyt bermek üçin: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''",
+* Faýlyň doly wersiýasyny ulanmak üçin: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''
+* Çep gyrada bir gutynyň içinde aşagyna kesgitleme hökmünde 'alt tekst' bilen, 200 piksel giňişligindäki wersiýany ulanmaklyk üçin: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt tekst]]</nowiki></code>'''
+* Faýly görkezmän, faýla gönümel çykgyt bermek üçin: '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''",
 'upload-permitted' => 'Rugsat berilýän faýl görnüşleri: $1',
 'upload-preferred' => 'Ileri tutulýan faýl görnüşleri: $1.',
 'upload-prohibited' => 'Gadagan edilen faýl görnüşleri: $1.',
@@ -1376,22 +1376,22 @@ bu faýlyň ölçegi $2.',
 'emptyfile' => 'Ýüklän faýlyňyz boş ýaly-la.
 Munuň sebäbi faýlyň adyndaky bir ýalňyşlyk bolmagy ahmal.
 Faýly hakykatdan-da ýüklemek isleýändigiňizi anyklaň.',
-'fileexists' => "Şu atly faýl eýýäm bar.
-Üýtgetmek barada ikirjiňlenýän bolsaňyz, onda ilki bilen '''<tt>[[:$1]]</tt>''' faýlyna bir göz aýlaň.
-[[$1|thumb]]",
-'filepageexists' => "Bu faýl üçin düşündiriş sahypasy '''<tt>[[:$1]]</tt>''' adresinde eýýäm döredilipdir, emma häzir şeýle atly faýl ýok.
+'fileexists' => 'Şu atly faýl eýýäm bar.
+Üýtgetmek barada ikirjiňlenýän bolsaňyz, onda ilki bilen <strong>[[:$1]]</strong> faýlyna bir göz aýlaň.
+[[$1|thumb]]',
+'filepageexists' => 'Bu faýl üçin düşündiriş sahypasy <strong>[[:$1]]</strong> adresinde eýýäm döredilipdir, emma häzir şeýle atly faýl ýok.
 Ýazjak gysgaça mazmunyňyz düşündiriş sahypasynda peýda boljak däldir.
 Mazmunyň şol ýerde peýda bolmaklygy üçin, ony el bilen redaktirlemeli bolýarsyňyz.
-[[$1|thumb]]",
-'fileexists-extension' => "Birmeňzeş atly bir faýl bar: [[$2|thumb]]
-* Ýüklenilýän faýlyň ady: '''<tt>[[:$1]]</tt>'''
-* Bar bolan faýlyň ady: '''<tt>[[:$2]]</tt>'''
-Başga bir at saýlamagyňyzy haýyş edýäris.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Birmeňzeş atly bir faýl bar: [[$2|thumb]]
+* Ýüklenilýän faýlyň ady: <strong>[[:$1]]</strong>
+* Bar bolan faýlyň ady: <strong>[[:$2]]</strong>
+Başga bir at saýlamagyňyzy haýyş edýäris.',
 'fileexists-thumbnail-yes' => "Bu faýl kiçeldilen ölçegli bir surat ýaly-la ''(thumbnail)''.
 [[$1|thumb]]
-'''<tt>[[:$1]]</tt>''' faýlyny barlap görüň.
+<strong>[[:$1]]</strong> faýlyny barlap görüň.
 Eger barlanylan faýl asyl ölçegindäki şol bir surat bolsa, onda goşmaça bir miniatýura ýüklemek hökman däl.",
-'file-thumbnail-no' => "Bu faýlyň ady '''<tt>$1</tt>''' bilen başlanýar.
+'file-thumbnail-no' => "Bu faýlyň ady <strong>$1</strong> bilen başlanýar.
 Bu ölçegi kiçeldilen başga bir surat ýaly-la ''(thumbnail)''
 Eger sizde bu suratyň doly ölçeglisi bar bolsa şony ýükläň, ýogsam faýlyň adyny üýtgediň.",
 'fileexists-forbidden' => 'Şu atly bir faýl bar we onuň üstüne ýazyp bolmaýar.
@@ -1571,7 +1571,7 @@ Goşmaça maglumat üçin [$2 faýl düşündiriş sahypasyna] serediň.',
 # MIME search
 'mimesearch' => 'MIME gözlegi',
 'mimesearch-summary' => 'Bu sahypa faýllaryň  MIME tipi boýunça filtrlenmegini üpjün edýär.
-Giriş formaty: mazmuntip/kiçitip, meselem <tt>surat/jpeg</tt>.',
+Giriş formaty: mazmuntip/kiçitip, meselem <code>surat/jpeg</code>.',
 'mimetype' => 'MIME tipi:',
 'download' => 'düşür',
 
@@ -1756,7 +1756,7 @@ Gündeligiň görnüşini, ulanyjy adyny (baş-setir harpa duýgur), ýa-da täs
 'linksearch-ns' => 'At giňişligi:',
 'linksearch-ok' => 'Gözle',
 'linksearch-text' => '"*.wikipedia.org" ýaly çalşyrma simwollar ulanylyp bilner.<br />
-Goldanylýan protokollar: <tt>$1</tt>',
+Goldanylýan protokollar: <code>$1</code>',
 'linksearch-line' => '$1 sahypasyna $2 sahypasyndan çykgyt berilýär',
 'linksearch-error' => 'Çalşyrma simwollar diňe hostuň adynyň başlangyjynda peýda bolup bilýär.',
 

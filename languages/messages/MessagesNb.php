@@ -1698,9 +1698,9 @@ Slette- og flytteloggen for denne siden gjengis her:",
 For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
 
 For å inkludere en fil på en side, bruk en slik lenke:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></tt>''' for å bruke bildet i opprinnelig form
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></tt>''' for å lenke direkte til filen uten å vise den",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></code>''' for å bruke bildet i opprinnelig form
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></code>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
+*'''<code><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></code>''' for å lenke direkte til filen uten å vise den",
 'upload-permitted' => 'Tillatte filtyper: $1.',
 'upload-preferred' => 'Foretrukne filtyper: $1',
 'upload-prohibited' => 'Forbudte filtyper: $1.',
@@ -1744,19 +1744,19 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'largefileserver' => 'Denne filen er større enn det tjeneren er satt opp til å tillate.',
 'emptyfile' => 'Filen du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne filen.',
 'windows-nonascii-filename' => 'Denne wikien støtter ikke filnavn med spesialtegn.',
-'fileexists' => "Ei fil med dette navnet finnes allerede.
-Sjekk '''<tt>[[:$1]]</tt>''' hvis du ikke er sikker på at du vil forandre den.
-[[$1|thumb]]",
-'filepageexists' => "Beskrivelsessiden for denne filen finnes allerede på '''<tt>[[:$1]]</tt>''', men ingen filer med dette navnet finnes. Sammendraget du skruver inn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å da lastet opp filen.
-[[$1|thumb]]",
-'fileexists-extension' => "En fil med et lignende navn finnes: [[$2|thumb]]
-* Navnet på din fil: '''<tt>[[:$1]]</tt>'''
-* Navn på eksisterende fil: '''<tt>[[:$2]]</tt>'''
-Velg et annet filnavn.",
-'fileexists-thumbnail-yes' => "Filen ser ut til å være et bilde av redusert størrelse. [[$1|thumb]]
-Vennligst sjekk filen '''<tt>[[:$1]]</tt>'''.
-Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.",
-'file-thumbnail-no' => "Filnavnet begynner med '''<tt>$1</tt>'''.
+'fileexists' => 'Ei fil med dette navnet finnes allerede.
+Sjekk <strong>[[:$1]]</strong> hvis du ikke er sikker på at du vil forandre den.
+[[$1|thumb]]',
+'filepageexists' => 'Beskrivelsessiden for denne filen finnes allerede på <strong>[[:$1]]</strong>, men ingen filer med dette navnet finnes. Sammendraget du skruver inn vil ikke vises på beskrivelsessiden. For at det skal dukke opp der må du skrive det inn manuelt etter å da lastet opp filen.
+[[$1|thumb]]',
+'fileexists-extension' => 'En fil med et lignende navn finnes: [[$2|thumb]]
+* Navnet på din fil: <strong>[[:$1]]</strong>
+* Navn på eksisterende fil: <strong>[[:$2]]</strong>
+Velg et annet filnavn.',
+'fileexists-thumbnail-yes' => 'Filen ser ut til å være et bilde av redusert størrelse. [[$1|thumb]]
+Vennligst sjekk filen <strong>[[:$1]]</strong>.
+Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ikke nødvendig å laste opp en ekstra fil.',
+'file-thumbnail-no' => "Filnavnet begynner med <strong>$1</strong>.
 Det virker som om det er et bilde av redusert størrelse ''(miniatyrbilde)''.
 Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.",
 'fileexists-forbidden' => 'En fil med dette navnet finnes fra før, og kan ikke erstattes.
@@ -2014,7 +2014,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 
 # MIME search
 'mimesearch' => 'MIME-søk',
-'mimesearch-summary' => 'Denne siden muliggjør filtrering av filer per MIME-type. Skriv inn: innholdstype/undertype, for eksempel <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Denne siden muliggjør filtrering av filer per MIME-type. Skriv inn: innholdstype/undertype, for eksempel <code>image/jpeg</code>.',
 'mimetype' => 'MIME-type:',
 'download' => 'last ned',
 
@@ -2214,7 +2214,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-ok' => 'Søk',
 'linksearch-text' => 'Jokertegn som «*.wikipedia.org» kan brukes.
 Det kreves at det oppgis minst et toppnivådomene, for eksempel «*.org».<br />
-Støttede protokoller: <tt>$1</tt> (ikke legg til noen av disse i søket ditt).',
+Støttede protokoller: <code>$1</code> (ikke legg til noen av disse i søket ditt).',
 'linksearch-line' => '$1 lenkes fra $2',
 'linksearch-error' => 'Jokertegn kan kun brukes foran tjenernavnet.',
 

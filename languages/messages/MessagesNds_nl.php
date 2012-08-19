@@ -1726,20 +1726,20 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur n overzichte.',
 'largefileserver' => 't Bestaand is groter as dat de server toesteet.',
 'emptyfile' => "t Bestaand da'j op-estuurd hebben is leeg. Dit kan koemen deur n tikfout in de bestaandsnaam. Kiek effen nao o'j dit bestaand wel bedoelden.",
 'windows-nonascii-filename' => 'Disse wiki ondersteunt gien bestaandsnamen mit spesiale tekens.',
-'fileexists' => "n Bestaand mit disse naam besteet al; voeg t bestaand onder n aandere naam toe.
-'''<tt>[[:$1]]</tt>''' [[$1|thumb]]",
-'filepageexists' => "De beschrievingszied veur dit bestaand bestung al op '''<tt>[[:$1]]</tt>''', mer der besteet nog gien bestaand mit disse naam.
+'fileexists' => 'n Bestaand mit disse naam besteet al; voeg t bestaand onder n aandere naam toe.
+<strong>[[:$1]]</strong> [[$1|thumb]]',
+'filepageexists' => "De beschrievingszied veur dit bestaand bestung al op <strong>[[:$1]]</strong>, mer der besteet nog gien bestaand mit disse naam.
 De samenvatting die'j op-egeven hebben zal niet op de beschrievingszied koemen.
 Bewark de zied haandmaotig um joew beschrieving daor weer te geven.
 [[$1|thumb]]",
 'fileexists-extension' => "n Bestaand mit n soortgelieke naam besteet al: [[$2|thumb]]
-* Naam van t bestaand da'j derbie zetten wollen: '''<tt>[[:$1]]</tt>'''
-* Naam van t bestaonde bestaand: '''<tt>[[:$2]]</tt>'''
+* Naam van t bestaand da'j derbie zetten wollen: <strong>[[:$1]]</strong>
+* Naam van t bestaonde bestaand: <strong>[[:$2]]</strong>
 Kies n aandere naam.",
 'fileexists-thumbnail-yes' => "Dit bestaand is n aofbeelding waorvan de grootte verkleind is ''(miniatuuraofbeelding)''. [[$1|thumb]]
-Kiek t bestaand nao <strong><tt>[[:$1]]</tt></strong>.
+Kiek t bestaand nao <strong><strong>[[:$1]]</strong></strong>.
 As de aofbeelding die'j krek nao-ekeken hebben de zelfde grootte hef, dan is t niet neudig um t opniej toe te voegen.",
-'file-thumbnail-no' => "De bestaandsnaam begint mit '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "De bestaandsnaam begint mit <strong>$1</strong>.
 Dit is warschienlik n verkleinde aofbeelding ''(overzichsaofbeelding)''.
 A'j disse aofbeelding in volle grootte hebben voeg t dan toe, wiezig aanders de bestaandsnaam.",
 'fileexists-forbidden' => 'n Bestaand mit disse naam besteet al, en kan niet overschreven wörden.
@@ -1985,7 +1985,7 @@ Je kunnen de [$2 zied mit de bestaandsbeschrieving] daor bewarken.',
 
 # MIME search
 'mimesearch' => 'Zeuken op MIME-type',
-'mimesearch-summary' => 'Op disse spesiale zied kunnen de bestaanden naor t MIME-type efiltreerd wörden. In de invoer mut altied t media- en subtype staon, bieveurbeeld: <tt>aofbeelding/jpeg</tt>.',
+'mimesearch-summary' => 'Op disse spesiale zied kunnen de bestaanden naor t MIME-type efiltreerd wörden. In de invoer mut altied t media- en subtype staon, bieveurbeeld: <code>aofbeelding/jpeg</code>.',
 'mimetype' => 'MIME-type:',
 'download' => 'binnenhaolen',
 
@@ -2189,7 +2189,7 @@ Zie oek [[Special:WantedCategories|gewunste kategorieën]].",
 'linksearch-ok' => 'Zeuken',
 'linksearch-text' => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.
 Hef tenminsten n topdomein, zo as "*.org".<br />
-Ondersteunde protokollen: <tt>$1</tt> (zet t niet in joew zeukopdrachte).',
+Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 'linksearch-line' => '$1 hef n verwiezing in $2',
 'linksearch-error' => 'Jokers bin allinnig toe-estaon an t begin van n webadres.',
 

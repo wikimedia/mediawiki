@@ -1036,19 +1036,19 @@ Ba yang iyabe ing simpan king metung a bulung gamitan me ing suglung (link) king
 Ing simpan a ini $2 ya.',
 'largefileserver' => 'Mas maragul ya ing simpan (file) a ini kesa ketang makapaintulut (configured) king server.',
 'emptyfile' => 'Balamu ala yang laman ing simpan (file) a linulan mu. Mapaliaring ing sangkan, pamagkamali (typo) ya king lagyung simpan (file name). Pakaisipan mu nung taganang buri meng ilulan ining simpan.',
-'fileexists' => "Atin nang simpan (file) a maki lagyung anti kaniti; pakilawe mu '''<tt>[[:$1]]</tt>''' nung e ka siguradu nung buri meng alilan.
-[[$1|thumb]]",
-'filepageexists' => "Melalang na ing bulung pamilarawan (description page) para king simpan (file) a ini king '''<tt>[[:$1]]</tt>''', oneng king salukuyan, ala pang simpan a maki lagyung anti kaniti.
+'fileexists' => 'Atin nang simpan (file) a maki lagyung anti kaniti; pakilawe mu <strong>[[:$1]]</strong> nung e ka siguradu nung buri meng alilan.
+[[$1|thumb]]',
+'filepageexists' => 'Melalang na ing bulung pamilarawan (description page) para king simpan (file) a ini king <strong>[[:$1]]</strong>, oneng king salukuyan, ala pang simpan a maki lagyung anti kaniti.
 E ya tambing lunto king bulung pamilarawan ing sampulung (summary) a isulat mu.
-Ba yang lunto karin ing kekang sampulung, kailangan me pamung i-edit",
-'fileexists-extension' => "Maki simpan (file) a makayawig lagyu kaniti: [[$2|thumb]]
-* Lagyu ning simpan a milululan: '''<tt>[[:$1]]</tt>'''
-* Lagyu ning salukuyan a simpan: '''<tt>[[:$2]]</tt>'''
-Mamili kang aliwang lagyu.",
+Ba yang lunto karin ing kekang sampulung, kailangan me pamung i-edit',
+'fileexists-extension' => 'Maki simpan (file) a makayawig lagyu kaniti: [[$2|thumb]]
+* Lagyu ning simpan a milululan: <strong>[[:$1]]</strong>
+* Lagyu ning salukuyan a simpan: <strong>[[:$2]]</strong>
+Mamili kang aliwang lagyu.',
 'fileexists-thumbnail-yes' => "Lupa yang larawan a pepalati ing simpan ''(thumbnail)''. [[$1|thumb]]
-Pakilawe me ing simpan '''<tt>[[:$1]]</tt>'''.
+Pakilawe me ing simpan <strong>[[:$1]]</strong>.
 Nung ya naman ketang minunang maki orihinal a dagul ing simpan a maka-check, e na kailangang maglulan karagdagan a thumbnail.",
-'file-thumbnail-no' => "Magumpisa ya ing lagyungsimpan (filename) king '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Magumpisa ya ing lagyungsimpan (filename) king <strong>$1</strong>.
 Lupa yang larawan a pepalati ''(thumbnail)''.
 Nung atyu keka ining larawan king bersion a pekamalino (full resolution), ilulan me ini; nung ali naman, pakiyalilan me ing lagyung simpan.",
 'fileexists-forbidden' => 'Atin nang simpan a maki lagyung anti kaniti;
@@ -1163,7 +1163,7 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 # MIME search
 'mimesearch' => 'pamanintun MIME',
 'mimesearch-summary' => 'Papaliari ning bulung a ini ing pamanialak (filtering) kareng simpan (file) para king kayang MIME-type.
-Isulat (input): contenttype/subtype, alimbawa <tt>image/jpeg</tt>.',
+Isulat (input): contenttype/subtype, alimbawa <code>image/jpeg</code>.',
 'download' => 'ikuldas (download)',
 
 # Unwatched pages

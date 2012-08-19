@@ -668,7 +668,14 @@ Dh'fhaoidte nach urrainn dhut am feart \"Cuir post-d dhan chleachdaiche seo\" a 
 Thoir iomradh air a' mhion-fhiosrachadh gu h-àrd ma chuireas tu ceist sam bith mu dhèidhinn.",
 'blockednoreason' => 'cha deach adhbhar a shònrachadh',
 'whitelistedittext' => 'Feumaidh tu $1 mus urrainn dhut duilleagan a dheasachadh.',
+'confirmedittext' => "Feumaidh tu am post-d agad a dhearbhadh mus urrainn dhut duilleagan a dheasachadh.
+Suidhich is dearbhaich am post-d agad ann an [[Special:Preferences|roghainnean a' chleachdaiche]]",
+'nosuchsectiontitle' => 'Cha ghabh an earrann a lorg',
+'nosuchsectiontext' => "Dh'fheuch thu ri earrann a dheasachadh nach eil ann.
+Dh'fhaoidte gun deach a ghluasad no a sguabadh às fhad 's a bha thu a' coimhead air an duilleag.",
+'loginreqtitle' => 'Feumaidh tu clàradh a-steach',
 'loginreqlink' => 'log a-steach',
+'loginreqpagetext' => 'Feumaidh tu $1 mus urrainn dhut coimhead air duilleagan eile.',
 'accmailtitle' => 'Facal-faire air a chur.',
 'accmailtext' => "Chaidh facal-faire a chruthachadh air thuaiream airson [[User talk:$1|$1]] 's a chur gu $2.
 
@@ -677,6 +684,10 @@ Gabhaidh am facal-faire airson a' chunntais ùir seo atharrachadh air an fo ''[[
 'newarticletext' => "Lean thu ri ceangal gu duilleag nach eil ann fhathast.
 Cuir teacs sa bhogsa gu h-ìosal gus an duilleag seo a chruthachadh (seall air [[{{MediaWiki:Helppage}}|duilleag na cobharach]] airson barrachd fiosrachaidh).
 Mura robh dùil agad ris an duilleag seo a ruigsinn, briog air a' phutan '''air ais''' 'nad bhrabhsair.",
+'anontalkpagetext' => "----''Seo an duilleag deasbaireachd aig cleachdaiche gun urra nach do chruthaich cunntas fhathast no nach eil 'ga chleachdadh.
+Feumaidh sinn an àireamh IP aca a chleachdadh air sgàth sin.
+Faodadh grunn chleachdaichean seòladh IP mar a chleachdadh còmhla.
+Mas e cleachdaiche gun urra a tha annad 's ma tha thu dhen bheachd nach eil na beachdan seo a' buntainn riut, nach [[Special:UserLogin/signup|clàraich thu]] no [[Special:UserLogin|clàraich a-steach]] gus bùrach mar seo a sheachnadh san àm ri teachd?''",
 'noarticletext' => 'Chan eil teacsa sam bith anns an duilleag seo an-dràsta.
 \'S urrainn dhut [[Special:Search/{{PAGENAME}}|an tiotal seo a lorg]] ann an duilleagan eile,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} na logaichean co-cheangailte a rannsachadh],
@@ -684,6 +695,27 @@ no [{{fullurl:{{FULLPAGENAME}}|action=edit}} an duilleag seo a dheasachadh]</spa
 'noarticletext-nopermission' => 'Chan eil teacsa sam bith anns an duilleag seo an-dràsta.
 \'S urrainn dhut [[Special:Search/{{PAGENAME}}|an tiotal seo a lorg]] ann an duilleagan eile,
 no <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} na logaichean co-cheangailte a rannsachadh]</span>.',
+'userpage-userdoesnotexist' => 'Chan e cunntas clàraichte a tha ann an "$1".
+Dèan cinnteach gu bheil thu airson an duilleag seo a chruthachadh/dheasachadh.',
+'userpage-userdoesnotexist-view' => 'Cha deach an cunntas cleachdaiche "$1" a chlàradh.',
+'blocked-notice-logextract' => "Tha an cleachdaiche seo air a bhacadh an-dràsta fhèin.
+Chì thu loga a' bhacaidh mu dheireadh gu h-ìosal mar fhiosrachadh dhut:",
+'clearyourcache' => "''An aire:''' As dèidh dhut sàbhaladh, 's mathaid gum bi agad tasgadan a' bhrabhsair agad a chur air gleus mus fhaic thu na dh'atharraich thu.
+* '''Firefox / Safari:''' Cum 'shìos 'Shift'' is briog air ''Ath-luchdaich' no brùth ''Ctrl-F5'' no ''Ctrl-R'' (''⌘-R'' air Mac)
+* '''Google Chrome:''' Brùth ''Ctrl-Shift-R'' (''⌘-Shift-R'' air Mac)
+* '''Internet Explorer:''' Cum shìos ''Ctrl'' is briog air ''Ath-nuadhaich'' no brùth ''Ctrl-F5''
+* '''Konqueror:''' Briog air ''Reload'' no brùth ''F5''
+* '''Opera:''' Falamhaich an tasgadan ann an ''Innealan → Roghainnean''",
+'usercssyoucanpreview' => "'''Gliocas:''' Cleachd am putan \"{{int:showpreview}}\" airson an CSS agad a chur fo dheuchainn mus sàbhail thu e.",
+'userjsyoucanpreview' => "'''Gliocas:''' Cleachd am putan \"{{int:showpreview}}\" gus an JavaScript ùr agad a chur fo dheuchainn mus sàbhail thu e.",
+'usercsspreview' => "'''Cuimhnich nach e seo ach ro-shealladh air a' CSS chleachdaiche agad.'''
+'''Cha deach a shàbhaladh fhathast!''''",
+'userjspreview' => "'''Cuimhnich nach e seo ach ro-shealladh/deuchainn air a' JavaScript agad.'''
+'''Cha deach a shàbhaladh fhathast!''''",
+'sitecsspreview' => "'''Cuimhnich nach e seo ach ro-shealladh air a' CSS agad.'''
+'''Cha deach a shàbhaladh fhathast!''''",
+'sitejspreview' => "'''Cuimhnich nach e seo ach ro-shealladh air còd a' JavaScript agad.'''
+'''Cha deach a shàbhaladh fhathast!''''",
 'updated' => '(Air ùrachadh)',
 'previewnote' => "'''Cuimhnich nach eil ann ach ro-shealladh.'''
 Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
@@ -909,8 +941,8 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'filestatus' => 'Cor dlighe-sgrìobhaidh:',
 'ignorewarning' => 'Leig seachad an rabhadh agus sàbhail am faidhle co-dhiù',
 'badfilename' => 'Ainm ìomhaigh air atharrachadh ri "$1".',
-'fileexists' => "Tha faidhle ann mu thràth air a bheil an t-ainm seo, cuir sùil air '''<tt>[[:$1]]</tt>''' mur eil thu buileach cinntach a bheil thu airson atharrachadh.
-[[$1|thumb]]",
+'fileexists' => 'Tha faidhle ann mu thràth air a bheil an t-ainm seo, cuir sùil air <strong>[[:$1]]</strong> mur eil thu buileach cinntach a bheil thu airson atharrachadh.
+[[$1|thumb]]',
 'savefile' => 'Sàbhail faidhle',
 'uploadedimage' => 'a luchdaich suas "[[$1]]"',
 

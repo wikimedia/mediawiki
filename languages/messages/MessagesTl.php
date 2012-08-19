@@ -1567,9 +1567,9 @@ Ang talaan ng pagbubura at paglipat para sa pahinang ito ay ibinigay dito para s
 Para tingnan o maghanap ng mga dati nang naikargang mga talaksan pumunta sa  [[Special:FileList|talaan ng ikinargang mga talaksan]], ang (muling) mga pagkakarga ay nakatala rin sa [[Special:Log/upload|talaan ng pagkarga]], ang mga binura/nabura sa  [[Special:Log/delete|talaan ng pagbubura]].
 
 Para maisama ang isang talaksan sa loob ng isang pahina, gumamit ng isang kawing na nasa loob ng isa sa mga sumusunod na mga pormularyo:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para magamit ang buong bersyon ng talaksan
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' para magamit ang isang may 200 piksel na paghabi sa loob ng isang kahong nasa kaliwang pataan na may 'tekstong pamalit' ('' 'alt text' '') bilang paglalarawan
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para sa tuwirang pagkakawing sa isang pahina na hindi ipinapakita ang talaksan",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para magamit ang buong bersyon ng talaksan
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' para magamit ang isang may 200 piksel na paghabi sa loob ng isang kahong nasa kaliwang pataan na may 'tekstong pamalit' ('' 'alt text' '') bilang paglalarawan
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para sa tuwirang pagkakawing sa isang pahina na hindi ipinapakita ang talaksan",
 'upload-permitted' => 'Pinapahintulutang mga uri ng talaksan: $1.',
 'upload-preferred' => 'Mas iniibig na mga uri ng talaksan: $1.',
 'upload-prohibited' => 'Ipinagbabawal na mga uri ng talaksan: $1.',
@@ -1614,20 +1614,20 @@ ang talaksang ito ay $2.',
 'largefileserver' => 'Mas malaki ang talaksan kaysa nakatakdang papahintulutan ng serbidor.',
 'emptyfile' => 'Mukhang walang laman ang talaksan (file) na ikinarga mo. Maaaring dahil ito sa maling pagkapasok ng pangalan ng talaksan.  Paki tingin kung gusto mo talagang ikarga ang talaksan na ito.',
 'windows-nonascii-filename' => 'Ang wiking ito ay hindi nagsusuporta ng mga pangalan ng talaksan na mayroong natatanging mga panitik.',
-'fileexists' => "Mayroon ng talaksan na ganitong pangalan, paki tingin ang '''<tt>[[:$1]]</tt>''' kung tiyak ka na babaguhin ito.
-[[$1|thumb]]",
-'filepageexists' => "Ang pahina ng paglalarawan para sa talaksan na ito ay nalikha na sa '''<tt>[[:$1]]</tt>''', ngunit walang talaksang umiiral na may ganitong pangalan.
+'fileexists' => 'Mayroon ng talaksan na ganitong pangalan, paki tingin ang <strong>[[:$1]]</strong> kung tiyak ka na babaguhin ito.
+[[$1|thumb]]',
+'filepageexists' => 'Ang pahina ng paglalarawan para sa talaksan na ito ay nalikha na sa <strong>[[:$1]]</strong>, ngunit walang talaksang umiiral na may ganitong pangalan.
 Hindi lilitaw ang buod na ipapasok mo sa pahina ng paglalarawan.
 Para lumitaw ang buod mo doon, kailangan mong kinakamay na baguhin ito.
-[[$1|thumb]]",
-'fileexists-extension' => "Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
-* Pangalan ng ikinakargang talaksan: '''<tt>[[:$1]]</tt>'''
-* Pangalan ng umiiral na talaksan: '''<tt>[[:$2]]</tt>'''
-Pumili ng ibang pangalan.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
+* Pangalan ng ikinakargang talaksan: <strong>[[:$1]]</strong>
+* Pangalan ng umiiral na talaksan: <strong>[[:$2]]</strong>
+Pumili ng ibang pangalan.',
 'fileexists-thumbnail-yes' => "Mukhang pinaliit ''(thumbnail)'' na larawan ang talaksan. [[$1|thumb]]
-Paki tingin ang talaksan '''<tt>[[:$1]]</tt>'''.
+Paki tingin ang talaksan <strong>[[:$1]]</strong>.
 Kung ang tinignan na talaksan ay ang kaparehong larawan ng orihinal na laki, hindi na kailangang magkarga ng panibagong ''thumbnail''.",
-'file-thumbnail-no' => "Nagsisimula ang pangalan ng talaksan sa '''<tt>$1</tt>'''.  Tila ito'y isang larawan na may pinaliit na sukat''(thumbnail)''.
+'file-thumbnail-no' => "Nagsisimula ang pangalan ng talaksan sa <strong>$1</strong>.  Tila ito'y isang larawan na may pinaliit na sukat''(thumbnail)''.
 Kung mayroon ang larawang ito ng pinakamataas na resolution, ikarga ito, kung hindi paki palitan ang pangalan ng talaksan.",
 'fileexists-forbidden' => 'Umiiral na ang isang talaksang may ganitong pangalan, at hindi maaaring patungan.
 Kung nais mo pa ring ikarga pataas ang iyong talaksan, paki bumalik lamang at gumamit ng isang bagong pangalan.
@@ -1889,7 +1889,7 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 
 # MIME search
 'mimesearch' => 'Maghanap ng MIME',
-'mimesearch-summary' => 'Pinapagana ng pahinang ito ang pagsasala ng mga talaksan para sa kanyang uri ng MIME. Pagpapasok: uringnilalaman/mababangkabahaginguri, hal. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Pinapagana ng pahinang ito ang pagsasala ng mga talaksan para sa kanyang uri ng MIME. Pagpapasok: uringnilalaman/mababangkabahaginguri, hal. <code>image/jpeg</code>.',
 'mimetype' => 'Uri ng MIME:',
 'download' => "magkargang-pakuha ng talaksan (''download'')",
 
@@ -2090,7 +2090,7 @@ Tingnan din ang [[Special:WantedCategories|ninanais na mga kategorya]].',
 'linksearch-ok' => 'Hanapin',
 'linksearch-text' => 'Maaaring gamitin ang mga "barahang pamalit" na katulad ng "*.wikipedia.org".
 Kailangan ng kahit na isang nasasakupang mataas ang kaantasan, halimbawa na ang "*.org".<br />
-Sinusuportahang mga protokolo: <tt>$1</tt> (huwag idagdag ang anuman sa mga ito sa paghahanap mo).',
+Sinusuportahang mga protokolo: <code>$1</code> (huwag idagdag ang anuman sa mga ito sa paghahanap mo).',
 'linksearch-line' => '$1 nakakawing/nakaugnay mula sa $2',
 'linksearch-error' => "Lilitaw lamang ang mga \"barahang-pamalit\" (''wildcard'') sa simula ng pangunahin/punong-abalang pangalan.",
 
@@ -2122,8 +2122,8 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'listgrouprights-rights' => 'Mga karapatan',
 'listgrouprights-helppage' => 'Help:Mga pangkat ng karapatan',
 'listgrouprights-members' => '(tala ng mga kasapi)',
-'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup' => 'Maaaring idagdag ang {{PLURAL:$2|pangkat|mga pangkat}} na: $1',
 'listgrouprights-removegroup' => 'Maaaring tanggalin ang {{PLURAL:$2|pangkat|mga pangkat}} na: $1',
 'listgrouprights-addgroup-all' => 'Maaaring idagdag ang lahat ng mga pangkat',

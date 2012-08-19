@@ -370,7 +370,7 @@ $1',
 'actionthrottled' => 'ܠܐ ܡܬܡܨܝܢܬܐ ܐܝܬܝܗܝ ܠܡܥܒܕ ܝܬܝܪ ܡܢ ܗܢܐ ܥܒܕܐ',
 'viewsourcetext' => 'ܡܨܐ ܐܢܬ ܕܢܚܙܐ ܘܢܣܚܐ ܠܡܒܘ̈ܥܐ ܕܗܕܐ ܦܐܬܐ:',
 'protectedinterface' => 'ܗܕܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ, ܘܐܝܬܝܗܝ ܢܛܪܬܐ ܠܡܘܢܥ ܚܘܒܠܐ.',
-'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܫܚܠܦܬ ܦܐܬܐ ܕܡܬܦܠܚܬ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܚܘܪܙܐ.
+'editinginterface' => "'''ܙܘܗܪܐ:''' ܐܢܬ ܫܚܠܦܬ ܦܐܬܐ ܕܡܬܦܠܚܬ ܒܚܙܝܐ ܟܬܝܒܝܐ ܕܬܚܪܙܬܐ.
 ܟܠ ܫܘܚܠܦܐ ܒܦܐܬܐ ܗܕܐ ܢܗܘܐ ܠܗ ܡܥܒܕܢܘܬܐ ܥܠ ܐܣܟܡܐ ܕܦܐܬܐ ܕܡܦܠܚܢܐ ܕܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ.
 ܠܬܘܪ̈ܓܡܐ، ܐܦܠܚ ܬܪܡܝܬܐ ܕܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
 'sqlhidden' => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
@@ -1295,10 +1295,14 @@ $1',
 'whatlinkshere-filters' => 'ܡܨܦܝܢܝܬ̈ܐ',
 
 # Block/unblock
+'autoblockid' => 'ܚܪܡܐ ܝܬܢܝܐ #$1',
+'block' => 'ܚܪܘܡ ܡܦܠܚܢܐ',
+'unblock' => 'ܫܩܘܠ ܚܪܡܐ ܡܢ ܡܦܠܚܢܐ',
 'blockip' => 'ܚܪܘܡ ܡܦܠܚܢܐ',
 'blockip-title' => 'ܚܪܘܡ ܡܦܠܚܢܐ',
 'blockip-legend' => 'ܚܪܘܡ ܡܦܠܚܢܐ',
 'ipadressorusername' => 'ܐܝ ܦܝ (IP) ܐܘ ܫܡܐ ܕܡܦܠܚܢܐ:',
+'ipbexpiry' => 'ܡܬܚܐ ܕܚܪܡܐ:',
 'ipbreason' => 'ܥܠܬܐ:',
 'ipbreasonotherlist' => 'ܥܠܬܐ ܐܚܪܬܐ',
 'ipbsubmit' => 'ܚܪܘܡ ܡܦܠܚܢܐ ܗܢܐ',

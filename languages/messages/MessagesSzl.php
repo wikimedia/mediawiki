@@ -1318,17 +1318,17 @@ Přelyź na zajta [[Special:NewFiles|galeryje nowych plikůw]], coby uobejzdře�
 'large-file' => 'Zaleco śe coby rozmjar plika ńy bůu wjynkšy jak $1 bajtůw. Tyn plik mo rozmjar $2 bajtůw.',
 'largefileserver' => 'Plik je wjynkšy ńiž maksymalny dozwolůny rozmjar.',
 'emptyfile' => 'Wćepywany plik cheba je pusty. Može to być bez tůž, co žeś wklepou zuo buchštaba w jygo mjańe. Sprowdź, čy mjano kere žeś wklepou je poprawne.',
-'fileexists' => "Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano ('''<tt>[[:$1]]</tt>''')! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.
-[[$1|thumb]]",
-'filepageexists' => "Je juž sam zajta uopisu tygo plika utwořůno '''<tt>[[:$1]]</tt>''', ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.",
-'fileexists-extension' => "Plik uo podobnym mjańe juž sam je: [[$2|thumb]]
-* Mjano wćepywanygo plika: '''<tt>[[:$1]]</tt>'''
-* Mjano plika kery juž sam je: '''<tt>[[:$2]]</tt>'''
-Wybjer proša inkše mjano.",
+'fileexists' => 'Plik uo takym mjańe juž je sam wćepany! Wćepańe nowyj grafiki ńyodwracalńe wyćepńe ta kero sam juž je wćepano (<strong>[[:$1]]</strong>)! Sprowdź čy žeś je pewny co chceš tyn plik sam wćepać.
+[[$1|thumb]]',
+'filepageexists' => 'Je juž sam zajta uopisu tygo plika utwořůno <strong>[[:$1]]</strong>, ino ńy ma terozki plika uo tym mjańy. Informacyje uo pliku, kere žeś wćepou, ńy bydům pokozane na zajće uopisu. Jakbyś chćou coby te informacyje zostouy pokozane, muśyš jeich sprowjać rynčńy.',
+'fileexists-extension' => 'Plik uo podobnym mjańe juž sam je: [[$2|thumb]]
+* Mjano wćepywanygo plika: <strong>[[:$1]]</strong>
+* Mjano plika kery juž sam je: <strong>[[:$2]]</strong>
+Wybjer proša inkše mjano.',
 'fileexists-thumbnail-yes' => "Zdowo śe co tyn plik je půmńijšůnům wersyjom grafiki ''(mińjaturkom)''. [[$1|thumb]]
-Uobejřij plik: '''<tt>[[:$1]]</tt>'''.
+Uobejřij plik: <strong>[[:$1]]</strong>.
 Jak to je ta sama grafika, ino wjelgo, ńy muśiš juž jei sam zaś wćepywać.",
-'file-thumbnail-no' => "Mjano plika začyno śe uod '''<tt>$1</tt>'''. Zdowo śe, co to je půmńijšůna grafika ''(mińaturka)''.
+'file-thumbnail-no' => "Mjano plika začyno śe uod <strong>$1</strong>. Zdowo śe, co to je půmńijšůna grafika ''(mińaturka)''.
 Jak moš ta grafika we peunym rozmjaře - wćepej ja sam.
 Jak chceš wćepać ta, bydźeš muśou zmjyńić mjano wćepywanygo terozki plika.",
 'fileexists-forbidden' => 'Plik uo takym mjańy juž sům můmy! Idź nazod i wćepej tyn plik pod inkšym mjanym. [[File:$1|thumb|center|$1]]',
@@ -1443,7 +1443,7 @@ Niżyj sům informacyje ze [$2 zajty popisu] tygo pliku.',
 
 # MIME search
 'mimesearch' => 'Sznupej MIME',
-'mimesearch-summary' => 'Ta zajta ůmožliwjo šnupańe za plikůma wedle jeich typu MIME. Užyće: typtreśći/podtyp, np. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ta zajta ůmožliwjo šnupańe za plikůma wedle jeich typu MIME. Užyće: typtreśći/podtyp, np. <code>image/jpeg</code>.',
 'mimetype' => 'Typ MIME:',
 'download' => 'pobier',
 
@@ -1620,7 +1620,7 @@ Kukńij tyż [[Special:WantedCategories|ńyistńyjůnce kategoryje]].',
 'linksearch-ns' => 'Przestrzyń mjan',
 'linksearch-ok' => 'Šnupej',
 'linksearch-text' => 'Idźe użyć symbola wjeloznacznygo „*”. Lů bajszpila „*.wikipedia.org” spowoduje sznupańy za wszyjstkimi linkůma kere prowadzům ku důmyńy „wikipedia.org” a jeij poddůmyn.<br />
-Uobsůgiwane protokoły: <tt>$1</tt>',
+Uobsůgiwane protokoły: <code>$1</code>',
 'linksearch-line' => '$1 link na zajće $2',
 'linksearch-error' => 'Symbola wjeloznacznygo idźe użyć yno na anfangu mjana hosta.',
 

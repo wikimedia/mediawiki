@@ -532,9 +532,9 @@ $1',
 'dberrortext' => '發生資料庫查詢語法錯誤。
 可能是由於軟體自身的錯誤所引起。
 最後一次資料庫查詢指令是:
-<blockquote><tt>$1</tt></blockquote>
-來自於函數 "<tt>$2</tt>"。
-數據庫返回錯誤 "<tt>$3: $4</tt>"。',
+<blockquote><code>$1</code></blockquote>
+來自於函數 "<code>$2</code>"。
+數據庫返回錯誤 "<samp>$3: $4</samp>"。',
 'dberrortextcl' => '發生資料庫查詢語法錯誤。
 最後一次的資料庫查詢是:
 「$1」
@@ -1567,9 +1567,9 @@ $1",
 要檢視或搜尋以前上傳的檔案，可以進入[[Special:FileList|檔案上傳清單]]，（重新）上傳也將在[[Special:Log/upload|上傳日誌]]中記錄，而刪除將在[[Special:Log/delete|刪除日誌]]中記錄。
 
 要在頁面中加入檔案，使用以下其中一種形式的連結：
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''使用放置於左側的一個框內的 200 像素寬的圖片，同時使用「替換文字」作為描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連結到檔案而不顯示檔案",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''使用檔案的完整版本
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></code>'''使用放置於左側的一個框內的 200 像素寬的圖片，同時使用「替換文字」作為描述
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''直接連結到檔案而不顯示檔案",
 'upload-permitted' => '准許的檔案類型: $1。',
 'upload-preferred' => '建議的檔案類型: $1。',
 'upload-prohibited' => '禁止的檔案類型: $1。',
@@ -1613,17 +1613,17 @@ $1",
 'largefileserver' => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile' => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
 'windows-nonascii-filename' => '本維基不支持帶特殊字符的檔案名。',
-'fileexists' => "已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
-'filepageexists' => "這個檔案的描述頁已於'''<tt>[[:$1]]</tt>'''建立，但是這個名稱的檔案尚未存在。因此您所輸入的摘要不會顯示在該描述頁中。如要摘要在該處中出現，您必需手動編輯它。
-[[$1|thumb]]",
-'fileexists-extension' => "一個相似檔名的檔案已經存在: [[$2|thumb]]
-* 上載檔案的檔名: '''<tt>[[:$1]]</tt>'''
-* 現有檔案的檔名: '''<tt>[[:$2]]</tt>'''
-請選擇一個不同的名字。",
+'fileexists' => '已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查<strong>[[:$1]]</strong>。 [[$1|thumb]]',
+'filepageexists' => '這個檔案的描述頁已於<strong>[[:$1]]</strong>建立，但是這個名稱的檔案尚未存在。因此您所輸入的摘要不會顯示在該描述頁中。如要摘要在該處中出現，您必需手動編輯它。
+[[$1|thumb]]',
+'fileexists-extension' => '一個相似檔名的檔案已經存在: [[$2|thumb]]
+* 上載檔案的檔名: <strong>[[:$1]]</strong>
+* 現有檔案的檔名: <strong>[[:$2]]</strong>
+請選擇一個不同的名字。',
 'fileexists-thumbnail-yes' => "這個檔案好像是一幅圖片的縮圖版本''（縮圖）''。 [[$1|thumb]]
-請檢查清楚該檔案'''<tt>[[:$1]]</tt>'''。
+請檢查清楚該檔案<strong>[[:$1]]</strong>。
 如果檢查後的檔案是同原本圖片的大小是一樣的話，就不用再上載多一幅縮圖。",
-'file-thumbnail-no' => "此圖片的檔案名稱以'''<tt>$1</tt>'''開始。它好像某幅圖片的縮小版本''（縮圖）''。
+'file-thumbnail-no' => "此圖片的檔案名稱以<strong>$1</strong>開始。它好像某幅圖片的縮小版本''（縮圖）''。
 如果{{GENDER:|你|妳|你}}有該圖片的完整大小版本，請上載它；否則請修改檔名。",
 'fileexists-forbidden' => '已存在相同名稱的檔案，且不能覆蓋；請返回並用一個新的名稱來上傳此檔案。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享檔案庫中已存在此名稱的檔案。
@@ -1866,7 +1866,7 @@ $1',
 
 # MIME search
 'mimesearch' => 'MIME 搜尋',
-'mimesearch-summary' => '本頁面啟用檔案MIME類型過濾器。輸入︰內容類型/子類型，如 <tt>image/jpeg</tt>。',
+'mimesearch-summary' => '本頁面啟用檔案MIME類型過濾器。輸入︰內容類型/子類型，如 <code>image/jpeg</code>。',
 'mimetype' => 'MIME 類型:',
 'download' => '下載',
 
@@ -2068,7 +2068,7 @@ Template:消除歧義',
 'linksearch-ns' => '名字空間：',
 'linksearch-ok' => '搜尋',
 'linksearch-text' => '製作可以使用類似“*.wikipedia.org”的通配符。必須至少是頂級域名，例如“*.org”。<br />
-支持的協議：<tt>$1</tt>（不要包含在搜索中）。',
+支持的協議：<code>$1</code>（不要包含在搜索中）。',
 'linksearch-line' => '$1 連自 $2',
 'linksearch-error' => '萬用字元僅可在主機名稱的開頭使用。',
 

@@ -1599,9 +1599,9 @@ Për të parë ose kërkuar skeda të ngarkuara më parë, shkoni tek [[Special:
 (ri)ngarkimet janë gjithashtu të regjistruara tek [[Special:Log/upload|regjistri i ngarkimeve]], grisjet tek [[Special:Log/delete|regjistri i grisjeve]].
 
 Për të përfshirë një skedë në një faqe, përdorni një nga format e mëposhtme:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.jpg]]</nowiki></tt>''' për të përdorur versionin e plotë të skedës
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.png|200px|thumb|left|alt text]]</nowiki></tt>''' për të përdorur nje interpretim prej 200 piksel në të majtë me 'alt tekst' si përshkrim
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skeda.ogg]]</nowiki></tt>''' për të lidhur skedën direkt, pa e shfaqur atë",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.jpg]]</nowiki></code>''' për të përdorur versionin e plotë të skedës
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skeda.png|200px|thumb|left|alt text]]</nowiki></code>''' për të përdorur nje interpretim prej 200 piksel në të majtë me 'alt tekst' si përshkrim
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skeda.ogg]]</nowiki></code>''' për të lidhur skedën direkt, pa e shfaqur atë",
 'upload-permitted' => 'Llojet e lejuara të skedave: $1.',
 'upload-preferred' => 'Llojet e parapëlqyera të skedave: $1.',
 'upload-prohibited' => 'Llojet e ndaluara të skedave: $1.',
@@ -1646,20 +1646,20 @@ kjo skedë është $2.',
 'largefileserver' => 'Skeda është më e madhe se sa serveri e lejon këtë.',
 'emptyfile' => 'Skeda që keni dhënë është bosh ose mbi madhësinë e lejushme. Kjo gjë mund të ndodhi nëse shtypni emrin gabim, prandaj kontrolloni nëse dëshironi të jepni skedën me këtë emër.',
 'windows-nonascii-filename' => 'Ky wiki nuk e mbështet emrin e dokumentit me karaktere të veçanta.',
-'fileexists' => "Ekziston një skedë me atë emër, ju lutem kontrolloni '''<tt>[[:$1]]</tt>''' në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.
-[[$1|thumb]]",
-'filepageexists' => "Përshkrimi i faqes për këtë skedë është krijuar tek '''<tt>[[:$1]]</tt>''', por asnjë skedë me këtë emër nuk ekziston.
+'fileexists' => 'Ekziston një skedë me atë emër, ju lutem kontrolloni <strong>[[:$1]]</strong> në qoftë se nuk jeni të sigurt nëse dëshironi ta zëvendësoni.
+[[$1|thumb]]',
+'filepageexists' => 'Përshkrimi i faqes për këtë skedë është krijuar tek <strong>[[:$1]]</strong>, por asnjë skedë me këtë emër nuk ekziston.
 Përmbledhja që shkruat nuk do të shfaqet në përshkrimin e faqes.
 Për ta bërë përmbledhjen tuaj të dukshme atje, ju duhet ta redaktoni automatikisht.
-[[$1|thumb]]",
-'fileexists-extension' => "Ekziston një skedë me emër të ngjashëm: [[$2|thumb]]
-* Emri i skedës në ngarkim: '''<tt>[[:$1]]</tt>'''
-* Emri i skedës ekzistuese: '''<tt>[[:$2]]</tt>'''
-Ju lutem zgjidhni një emër tjetër.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Ekziston një skedë me emër të ngjashëm: [[$2|thumb]]
+* Emri i skedës në ngarkim: <strong>[[:$1]]</strong>
+* Emri i skedës ekzistuese: <strong>[[:$2]]</strong>
+Ju lutem zgjidhni një emër tjetër.',
 'fileexists-thumbnail-yes' => "Kjo skedë duket se është një figurë me madhësi të zvogëluar ''(figurë përmbledhëse)''. [[$1|thumb]]
-Ju lutem kontrolloni skedën '''<tt>[[:$1]]</tt>'''.
+Ju lutem kontrolloni skedën <strong>[[:$1]]</strong>.
 Nëse skeda e kontrolluar është e së njëjtës madhësi me origjinalen atëherë nuk ka nevojë të ngarkoni një figurë përmbledhëse.",
-'file-thumbnail-no' => "Emri i skedës fillon me '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Emri i skedës fillon me <strong>$1</strong>.
 Duket se është një figurë me madhësi të zvogëluar ''(thumbnail)''.
 Nëse keni këtë figurë me madhësi të plotë ju lutem të ngarkoni atë, përndryshe ju lutem të ndryshoni emrin e skedës.",
 'fileexists-forbidden' => 'Ekziston një skedë me të njëjtin emër. Ju lutemi kthehuni mbrapsht dhe ngarkoni këtë skedë me një emër të ri. 
@@ -1901,7 +1901,7 @@ Përshkrimi në [$2 faqen përshkruese të skedës] është treguar më poshtë.
 
 # MIME search
 'mimesearch' => 'Kërkime MIME',
-'mimesearch-summary' => 'Kjo faqe lejon kërkimin e skedave sipas llojit MIME. Kërkimi duhet të jetë i llojit: contenttype/subtype, p.sh. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Kjo faqe lejon kërkimin e skedave sipas llojit MIME. Kërkimi duhet të jetë i llojit: contenttype/subtype, p.sh. <code>image/jpeg</code>.',
 'mimetype' => 'Lloji MIME:',
 'download' => 'shkarkim',
 
@@ -2103,7 +2103,7 @@ Shikoni edhe [[Special:WantedCategories|kategoritë e dëshiruara]].',
 'linksearch-ok' => 'Kërko',
 'linksearch-text' => 'Ylli zëvëndësues mund të përdoret si p.sh. "*.wikipedia.org".
 Duhet një domen top-nivel, si p.sh. "*.org.<br />
-Protokolle të mbështetura: <tt>$1<tt> (mos shtoni ndonjërin nga këta në kërkimin tuaj).',
+Protokolle të mbështetura: <code>$1<code> (mos shtoni ndonjërin nga këta në kërkimin tuaj).',
 'linksearch-line' => '$1 lidhur nga $2',
 'linksearch-error' => 'Ylli mund të përdoret vetëm në fillim të emrit',
 

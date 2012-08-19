@@ -1683,9 +1683,9 @@ Bu sayfanın silme ve taşıma günlüğü kolaylık için burada sağlanmışt�
 Önceden yüklenmiş dosyaları görmek ya da aramak için [[Special:FileList|yüklenmiş dosyalar listesine]] bakın, (tekrar) yüklenenler [[Special:Log/upload|yükleme günlüğü]]nde, silinenler [[Special:Log/delete|silinme günlüğü]]nde tutulumaktadır.
 
 Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini kullanın;
-* Dosyanın tam sürümünü kullanmak için: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></tt>'''
-* Sol kenarda bir kutu içinde, altında tanım olarak 'alt metin' ile, 200 piksel genişiğindeki sürümü kullanmak için: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|alt metin]]</nowiki></tt>'''
-* Dosyayı göstermeden, dosyaya direk bağlantı vermek için: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></tt>'''",
+* Dosyanın tam sürümünü kullanmak için: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></code>'''
+* Sol kenarda bir kutu içinde, altında tanım olarak 'alt metin' ile, 200 piksel genişiğindeki sürümü kullanmak için: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|alt metin]]</nowiki></code>'''
+* Dosyayı göstermeden, dosyaya direk bağlantı vermek için: '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></code>'''",
 'upload-permitted' => 'İzin verilen dosya türleri: $1.',
 'upload-preferred' => 'Tercih edilen dosya türleri: $1.',
 'upload-prohibited' => 'Yasaklanan dosya türleri: $1.',
@@ -1727,21 +1727,21 @@ bu dosyanın boyutu $2.',
 'largefileserver' => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile' => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten yüklemek isteyip istemediğinizden emin olun.',
 'windows-nonascii-filename' => 'Bu viki dosya isimlerinde özel karakter kullanımını desteklemiyor',
-'fileexists' => "Bu isimde bir dosya mevcut.
-Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyasına bir gözatın.
-[[$1|thumb]]",
-'filepageexists' => "Bu dosya için açıklama sayfası '''<tt>[[:$1]]</tt>''' adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
+'fileexists' => 'Bu isimde bir dosya mevcut.
+Eğer değiştirmekten emin değilseniz ilk önce <strong>[[:$1]]</strong> dosyasına bir gözatın.
+[[$1|thumb]]',
+'filepageexists' => 'Bu dosya için açıklama sayfası <strong>[[:$1]]</strong> adresinde zaten oluşturulmuş, fakat bu isimde bir dosya şu anda mevcut değil.
 Gireceğiniz özet açıklama sayfasında görünmeyecektir.
 Özetinizin orada görünmesi için, bunu elle değiştirmelisiniz.
-[[$1|küçük resim]]",
-'fileexists-extension' => "Benzer isimle başka bir dosya mevcut: [[$2|thumb]]
-* Yüklenilen dosyanın adı: '''<tt>[[:$1]]</tt>'''
-* Varolan dosyanın adı: '''<tt>[[:$2]]</tt>'''
-Lütfen başka bir isim seçin",
+[[$1|küçük resim]]',
+'fileexists-extension' => 'Benzer isimle başka bir dosya mevcut: [[$2|thumb]]
+* Yüklenilen dosyanın adı: <strong>[[:$1]]</strong>
+* Varolan dosyanın adı: <strong>[[:$2]]</strong>
+Lütfen başka bir isim seçin',
 'fileexists-thumbnail-yes' => "Bu dosya, bir resmi küçültülmüş sürümü gibi görünüyor ''(thumbnail)''. [[$1|thumb]]
-Lütfen '''<tt>[[:$1]]</tt>''' dosyasını kontrol edin .
+Lütfen <strong>[[:$1]]</strong> dosyasını kontrol edin .
 Eğer kontrol edilen dosya ile özgün boyutundaki aynı dosyaysa fazladan küçük resim yüklemeye gerek yoktur.",
-'file-thumbnail-no' => "Bu dosyanın adı '''<tt>$1</tt>''' ile başlıyor.
+'file-thumbnail-no' => "Bu dosyanın adı <strong>$1</strong> ile başlıyor.
 Bu başka bir resim küçültülmüş sürümüne benziyor ''(thumbnail)''
 Eğer sizde bu resmin tam çöznürlükteki sürümü varsa onu yükleyin, aksi takdirde lütfen dosya adını değiştirin.",
 'fileexists-forbidden' => 'Bu isimde bir dosya zaten var, ve üzerine yazılamıyor.
@@ -1964,7 +1964,7 @@ Aşağıda [$2 dosya açıklama sayfasındaki] açıklama gösteriliyor.',
 
 # MIME search
 'mimesearch' => 'MIME araması',
-'mimesearch-summary' => 'Bu sayfa, MIME türü dosyaların süzülmesini sağlar. Girdi: içeriktürü/alttürü, e.g. <tt>resim/jpeg</tt>.',
+'mimesearch-summary' => 'Bu sayfa, MIME türü dosyaların süzülmesini sağlar. Girdi: içeriktürü/alttürü, e.g. <code>resim/jpeg</code>.',
 'mimetype' => 'MIME türü:',
 'download' => 'yükle',
 
@@ -2153,7 +2153,7 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'linksearch-ok' => 'Ara',
 'linksearch-text' => '"*.wikipedia.org" gibi jokerler kullanılabilir.
 En az bir üst-seviye alan gerekir, örneğin "*.org".<br />
-Desteklenen iletişim kuralları: <tt>$1</tt> (bunların hiçbirini aramanıza eklemeyin).',
+Desteklenen iletişim kuralları: <code>$1</code> (bunların hiçbirini aramanıza eklemeyin).',
 'linksearch-line' => "$1'e $2'den bağlantı verilmiş",
 'linksearch-error' => 'Jokerler sadece ana makine adının başında görünebilir.',
 

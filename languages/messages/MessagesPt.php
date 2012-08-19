@@ -44,6 +44,7 @@
  * @author SandroHc
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
+ * @author Teles
  * @author Urhixidur
  * @author Villate
  * @author Waldir
@@ -883,10 +884,10 @@ Palavra-chave temporária: $2',
 'bold_tip' => 'Texto a negrito',
 'italic_sample' => 'Texto em itálico',
 'italic_tip' => 'Texto em itálico',
-'link_sample' => 'Título do link',
-'link_tip' => 'Link interno',
-'extlink_sample' => 'http://www.example.com link externo',
-'extlink_tip' => 'Link externo (lembre-se do prefixo http://)',
+'link_sample' => 'Título da ligação',
+'link_tip' => 'Ligação interna',
+'extlink_sample' => 'http://www.example.com título da ligação',
+'extlink_tip' => 'Ligação externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Texto do cabeçalho',
 'headline_tip' => 'Secção de nível 2',
 'nowiki_sample' => 'Inserir texto não-formatado aqui',
@@ -894,7 +895,7 @@ Palavra-chave temporária: $2',
 'image_sample' => 'Exemplo.jpg',
 'image_tip' => 'Ficheiro embutido',
 'media_sample' => 'Exemplo.ogg',
-'media_tip' => 'Link para ficheiro',
+'media_tip' => 'Ligação para ficheiro',
 'sig_tip' => 'A sua assinatura, com hora e data',
 'hr_tip' => 'Linha horizontal (utilize moderadamente)',
 
@@ -964,7 +965,7 @@ Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 
 A palavra-chave para esta nova conta pode ser alterada na página [[Special:ChangePassword|alterar palavra-chave]] após autenticação.',
 'newarticle' => '(Nova)',
-'newarticletext' => "Seguiu um link para uma página que ainda não existe.
+'newarticletext' => "Seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se chegou aqui por engano, clique o botão '''voltar''' (ou ''back'') do seu browser.",
 'anontalkpagetext' => "----''Esta é a página de discussão de um utilizador anónimo que ainda não criou uma conta ou não a utiliza, pelo que temos de utilizar o endereço IP para identificá-lo(a).
@@ -1727,9 +1728,9 @@ Para ver ou pesquisar ficheiros anteriormente enviados, consulte a [[Special:Fil
 Os reenvios de um ficheiro são também registados no [[Special:Log/upload|registo de uploads]] e as eliminações no [[Special:Log/delete|registo de eliminações]].
 
 Para utilizar um ficheiro numa página, depois de ter feito o upload, insira um link com um dos seguintes formatos:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para mostrar uma imagem nas suas dimensões originais;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para apresentar um link directo para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></code>''' para mostrar uma imagem nas suas dimensões originais;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></code>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></code>''' para apresentar um link directo para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
 'upload-permitted' => 'Tipos de ficheiros permitidos: $1.',
 'upload-preferred' => 'Tipos de ficheiros preferidos: $1.',
 'upload-prohibited' => 'Tipos de ficheiro proibidos: $1.',
@@ -1777,21 +1778,21 @@ este tem $2.',
 Isto pode dever-se a um erro no nome do ficheiro.
 Verifique se é realmente este o ficheiro que deseja carregar, por favor.',
 'windows-nonascii-filename' => 'A wiki não aceita nomes de ficheiros com caracteres especiais.',
-'fileexists' => "Já existe um ficheiro com este nome.
-Verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
-[[$1|thumb]]",
-'filepageexists' => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas neste momento não existe nenhum ficheiro com este nome.
+'fileexists' => 'Já existe um ficheiro com este nome.
+Verifique <strong>[[:$1]]</strong> caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
+[[$1|thumb]]',
+'filepageexists' => 'A página de descrição deste ficheiro já foi criada em <strong>[[:$1]]</strong>, mas neste momento não existe nenhum ficheiro com este nome.
 O resumo que introduzir não aparecerá na página de descrição.
 Para fazê-lo aparecer, terá de editar a página manualmente.
-[[$1|thumb]]",
-'fileexists-extension' => "Já existe um ficheiro de nome semelhante: [[$2|thumb]]
-* Nome do ficheiro que está sendo carregado: '''<tt>[[:$1]]</tt>'''
-* Nome do ficheiro existente: '''<tt>[[:$2]]</tt>'''
-Escolha um nome diferente, por favor.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Já existe um ficheiro de nome semelhante: [[$2|thumb]]
+* Nome do ficheiro que está sendo carregado: <strong>[[:$1]]</strong>
+* Nome do ficheiro existente: <strong>[[:$2]]</strong>
+Escolha um nome diferente, por favor.',
 'fileexists-thumbnail-yes' => "O ficheiro aparenta ser uma imagem de tamanho reduzido (''miniatura'', ou ''thumbnail)''. [[$1|thumb]]
-Verifique o ficheiro '''<tt>[[:$1]]</tt>''', por favor.
+Verifique o ficheiro <strong>[[:$1]]</strong>, por favor.
 Se este ficheiro é a mesma imagem mas no tamanho original, não é necessário carregar uma miniatura.",
-'file-thumbnail-no' => "O nome do ficheiro começa por '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "O nome do ficheiro começa por <strong>$1</strong>.
 Parece ser uma imagem de tamanho reduzido (uma ''miniatura'' ou ''thumbnail)''.
 Se tiver a imagem original de maior dimensão, envie-a em vez desta. Se não, altere o nome do ficheiro, por favor.",
 'fileexists-forbidden' => 'Já existe um ficheiro com este nome, e não pode ser reescrito.
@@ -2054,7 +2055,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 # MIME search
 'mimesearch' => 'Pesquisa MIME',
-'mimesearch-summary' => 'Esta página permite pesquisar os ficheiros da wiki, filtrando-os a partir do seu tipo MIME. O tipo MIME deve ser especificado na forma: tipo/subtipo. Alguns exemplos de tipos frequentes: <tt>image/jpeg</tt>, <tt>image/gif</tt>, <tt>image/png</tt>, <tt>application/pdf</tt>, <tt>application/vnd.ms-excel</tt>, <tt>application/zip</tt>, <tt>application/vnd.ms-powerpoint</tt>.',
+'mimesearch-summary' => 'Esta página permite pesquisar os ficheiros da wiki, filtrando-os a partir do seu tipo MIME. O tipo MIME deve ser especificado na forma: tipo/subtipo. Alguns exemplos de tipos frequentes: <code>image/jpeg</code>, <code>image/gif</code>, <code>image/png</code>, <code>application/pdf</code>, <code>application/vnd.ms-excel</code>, <code>application/zip</code>, <code>application/vnd.ms-powerpoint</code>.',
 'mimetype' => 'Tipo MIME:',
 'download' => 'download',
 
@@ -2256,7 +2257,7 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'linksearch-ok' => 'Prosseguir',
 'linksearch-text' => 'É possível usar caracteres de substituição \'\'(wildcards)\'\', como por exemplo: "*.wikipedia.org".
 É necessário, pelo menos, um domínio de topo, por exemplo "*.org".<br />
-Protocolos suportados: <tt>$1</tt> (não adicione nenhum destes na sua pesquisa).',
+Protocolos suportados: <code>$1</code> (não adicione nenhum destes na sua pesquisa).',
 'linksearch-line' => 'Link para $1 na página $2',
 'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 

@@ -435,12 +435,12 @@ Mae rhestr o'r tudalennau arbennig dilys i'w gael [[Special:SpecialPages|yma]]."
 # General errors
 'error' => 'Gwall',
 'databaseerror' => 'Gwall databas',
-'dberrortext' => 'Mae gwall cystrawen wedi taro\'r databas.
+'dberrortext' => 'Mae gwall cystrawen ymholi wedi taro\'r gronfa ddata.
 Efallai fod gwall yn y meddalwedd.
-Y gofyniad olaf y trïodd y databas oedd:
-<blockquote><tt>$1</tt></blockquote>
-o\'r ffwythiant "<tt>$2</tt>".
-Rhoddwyd y côd gwall "<tt>$3: $4</tt>".',
+Y gofyniad diwethaf a ofynwyd i\'r gronfa ddata oedd:
+<blockquote><code>$1</code></blockquote>
+o\'r ffwythiant "<code>$2</code>".
+Rhoddwyd y côd gwall "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Mae gwall cystrawen wedi taro\'r databas.
 Y gofyniad olaf y trïodd y databas oedd:
 "$1"
@@ -1489,9 +1489,9 @@ Dyma'r lòg dileu a symud ar gyfer y dudalen hon, er gwybodaeth:",
 I weld a chwilio am ffeiliau sydd eisoes wedi eu huwchlwytho, ewch at y [[Special:FileList|rhestr o'r ffeiliau sydd wedi eu huwchlwytho]]. I weld cofnodion uwchlwytho a dileu ffeiliau, ewch at y [[Special:Log/upload|lòg uwchlwytho]] neu'r [[Special:Log/delete|lòg dileu]].
 
 I osod ffeil mewn tudalen, defnyddiwch gyswllt wici ar un o'r ffurfiau canlynol:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ffeil.jpg]]</nowiki></tt>''', er mwyn defnyddio fersiwn llawn y ffeil
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ffeil.png|200px|bawd|chwith|testun amgen]]</nowiki></tt>''' a wnaiff dangos llun 200 picsel o led mewn blwch ar yr ochr chwith, a'r testun 'testun amgen' wrth ei odre
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki></tt>''' a fydd yn arwain yn syth at y ffeil heb arddangos y ffeil.",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ffeil.jpg]]</nowiki></code>''', er mwyn defnyddio fersiwn llawn y ffeil
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ffeil.png|200px|bawd|chwith|testun amgen]]</nowiki></code>''' a wnaiff dangos llun 200 picsel o led mewn blwch ar yr ochr chwith, a'r testun 'testun amgen' wrth ei odre
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ffeil.ogg]]</nowiki></code>''' a fydd yn arwain yn syth at y ffeil heb arddangos y ffeil.",
 'upload-permitted' => 'Mathau o ffeiliau a ganiateir: $1',
 'upload-preferred' => 'Mathau ffeil dewisol: $1.',
 'upload-prohibited' => 'Mathau o ffeiliau a waherddir: $1.',
@@ -1533,20 +1533,20 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'largefileserver' => "Mae'r ffeil yn fwy na'r hyn mae'r gweinydd yn ei ganiatau.",
 'emptyfile' => "Ymddengys fod y ffeil a uwchlwythwyd yn wag. Efallai bod gwall teipio yn enw'r ffeil. Sicrhewch eich bod wir am uwchlwytho'r ffeil.",
 'windows-nonascii-filename' => "Nid yw'r wici hwn yn cynnal enwau ffeiliau sy'n cynnwys nodau arbennig.",
-'fileexists' => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch '''<tt>[[:$1]]</tt>''' os nad ydych yn sicr bod angen ei newid.
+'fileexists' => "Mae ffeil gyda'r enw hwn eisoes yn bodoli; gwiriwch <strong>[[:$1]]</strong> os nad ydych yn sicr bod angen ei newid.
 [[$1|thumb]]",
-'filepageexists' => "Mae tudalen ddisgrifiad ar gyfer y ffeil hon eisoes ar gael ar '''<tt>[[:$1]]</tt>''', ond nid oes ffeil o'r enw hwn ar gael ar hyn o bryd.
+'filepageexists' => "Mae tudalen ddisgrifiad ar gyfer y ffeil hon eisoes ar gael ar <strong>[[:$1]]</strong>, ond nid oes ffeil o'r enw hwn ar gael ar hyn o bryd.
 Ni fydd crynodeb a osodir wrth uwchlwytho yn ymddangos ar y dudalen ddisgrifiad.
 Er mwyn gwneud i'r crynodeb ymddangos yno, bydd raid i chi olygu'r dudalen ddisgrifiad yn unswydd.
 [[$1|thumb]]",
 'fileexists-extension' => "Mae ffeil ag enw tebyg eisoes yn bod: [[$2|thumb]]
-* Enw'r ffeil ar fin ei uwchlwytho: '''<tt>[[:$1]]</tt>'''
-* Enw'r ffeil sydd eisoes yn bod: '''<tt>[[:$2]]</tt>'''
+* Enw'r ffeil ar fin ei uwchlwytho: <strong>[[:$1]]</strong>
+* Enw'r ffeil sydd eisoes yn bod: <strong>[[:$2]]</strong>
 Dewiswch enw arall os gwelwch yn dda.",
 'fileexists-thumbnail-yes' => "Ymddengys bod delwedd wedi ei leihau ''(bawd)'' ar y ffeil. [[$1|thumb]]
-Cymharwch gyda'r ffeil '''<tt>[[:$1]]</tt>'''.
+Cymharwch gyda'r ffeil <strong>[[:$1]]</strong>.
 Os mai'r un un llun ar ei lawn faint sydd ar yr ail ffeil yna does dim angen uwchlwytho llun ychwanegol o faint bawd.",
-'file-thumbnail-no' => "Mae '''<tt>$1</tt>''' ar ddechrau enw'r ffeil.
+'file-thumbnail-no' => "Mae <strong>$1</strong> ar ddechrau enw'r ffeil.
 Mae'n ymddangos felly bod y ddelwedd wedi ei leihau ''(maint bawd)''.
 Os yw'r ddelwedd ar ei lawn faint gallwch barhau i'w uwchlwytho. Os na, newidiwch enw'r ffeil, os gwelwch yn dda.",
 'fileexists-forbidden' => "Mae ffeil gyda'r enw hwn eisoes ar gael, ac ni ellir ei throsysgrifo.
@@ -1799,8 +1799,8 @@ Mae modd golygu'r disgrifiad ohoni ar ei [$2 thudalen disgrifio] fan honno.",
 
 # MIME search
 'mimesearch' => 'Chwiliad MIME',
-'mimesearch-summary' => "Fe allwch ddefnyddio'r dudalen hon i hidlo'r ffeiliau yn ôl math MIME.
-Mewnbwn: contenttype/subtype, e.e. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Fe allwch ddefnyddio'r dudalen hon i hidlo'r ffeiliau yn ôl eu math MIME.
+Mewnbwn: contenttype/subtype, e.e. <code>image/jpeg</code>.",
 'mimetype' => 'Ffurf MIME:',
 'download' => 'islwytho',
 
@@ -2000,7 +2000,7 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'linksearch-ok' => 'Chwilio',
 'linksearch-text' => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".
 Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
-Protocoliau sy\'n cael eu cynnal: <tt>$1</tt> (peidiwch ag ychwanegu\'r rhain wrth ysgrifennu\'r ymholiad).',
+Protocoliau sy\'n cael eu cynnal: <code>$1</code> (peidiwch ag ychwanegu\'r rhain wrth ysgrifennu\'r ymholiad).',
 'linksearch-line' => 'Mae cysylltiad i gael i $1 oddi wrth $2',
 'linksearch-error' => "Dim ond ar ddechrau enw'r gwesteiwr y gallwch osod cardiau gwyllt.",
 
@@ -2724,6 +2724,7 @@ Mae ffolder dros dro yn eisiau.',
 'import-error-special' => 'Ni fewnforiwyd y dudalen "$1" oherwydd ei bod yn perthyn i barth arbennig lle nad oes tudalennau i\'w cael.',
 'import-error-invalid' => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni yn annilys.',
 'import-options-wrong' => '{{PLURAL:$2|Dewis|Dewis|Dewisiadau}} annilys: <nowiki>$1</nowiki>',
+'import-rootpage-nosubpage' => 'Nid yw\'r parth "$1", sef parth y wraidd-dudalen, yn caniatau is-dudalennau.',
 
 # Import log
 'importlogpage' => 'Lòg mewnforio',

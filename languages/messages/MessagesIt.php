@@ -585,9 +585,9 @@ L'elenco delle pagine speciali valide si trova in [[Special:SpecialPages|Elenco 
 'dberrortext' => 'Errore di sintassi nella richiesta inoltrata al database.
 Ciò potrebbe indicare la presenza di un bug nel software.
 L\'ultima query inviata al database è stata:
-<blockquote><tt>$1</tt></blockquote>
-richiamata dalla funzione "<tt>$2</tt>".
-Il database ha restituito il seguente errore "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+richiamata dalla funzione "<code>$2</code>".
+Il database ha restituito il seguente errore "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Errore di sintassi nella richiesta inoltrata al database.
 L\'ultima query inviata al database è stata:
 "$1"
@@ -921,12 +921,11 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'userpage-userdoesnotexist-view' => 'L\'account utente "$1" non è registrato.',
 'blocked-notice-logextract' => "Questo utente è attualmente bloccato.
 L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
-'clearyourcache' => "'''Nota:''' dopo aver salvato, potrebbe essere necessario pulire la cache del tuo browser per vedere i cambiamenti. 
-*'''Firefox / Safari''': tieni premuto il tasto delle maiuscole e fai clic su ''Ricarica'', oppure premi ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' su Mac)
-*'''Google Chrome''': premi ''Ctrl-Shift-R'' (''⌘-Shift-R'' su un Mac)
-*'''Internet Explorer''': tieni premuto il tasto ''Ctrl'' mentre clicchi su ''Refresh'', oppure premi ''Ctrl-F5''
-*'''Konqueror''': premi il pulsante ''Ricarica'' o il tasto ''F5''; 
-*'''Opera''': svuota completamente la cache dal menu ''Strumenti → Preferenze''",
+'clearyourcache' => "'''Nota:''' dopo aver salvato, potrebbe essere necessario pulire la cache del proprio browser per vedere i cambiamenti. 
+*'''Firefox / Safari''': tenere premuto il tasto delle maiuscole e fare clic su ''Ricarica'', oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' su Mac)
+*'''Google Chrome''': premere ''Ctrl-Shift-R'' (''⌘-Shift-R'' su un Mac)
+*'''Internet Explorer''': tenere premuto il tasto ''Ctrl'' mentre si fa clic su ''Refresh'', oppure premere ''Ctrl-F5''
+*'''Opera''': svuotare completamente la cache dal menu ''Strumenti → Preferenze''",
 'usercssyoucanpreview' => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo CSS prima di salvarlo.",
 'userjsyoucanpreview' => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo JavaScript prima di salvarlo.",
 'usercsspreview' => "'''Questa è solo un'anteprima del proprio CSS personale. Le modifiche non sono ancora state salvate!'''",
@@ -1628,9 +1627,9 @@ Ill log delle cancellazioni e degli spostamenti di questa pagina viene qui ripor
 'uploadtext' => "Usare il modulo sottostante per caricare nuovi file. Per visualizzare o ricercare i file già caricati, consultare il [[Special:FileList|log dei file caricati]]. Caricamenti di file e di nuove versioni di file sono registrati nel [[Special:Log/upload|log degli upload]], le cancellazioni nell'[[Special:Log/delete|apposito]].
 
 Per inserire un file all'interno di una pagina, fare un collegamento di questo tipo:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' per usare la versione completa del file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></tt>''' per usare una versione larga 200 pixel inserita in un box, allineata a sinistra e con 'testo alternativo' come didascalia
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' per generare un collegamento diretto al file senza visualizzarlo",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' per usare la versione completa del file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|testo alternativo]]</nowiki></code>''' per usare una versione larga 200 pixel inserita in un box, allineata a sinistra e con 'testo alternativo' come didascalia
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' per generare un collegamento diretto al file senza visualizzarlo",
 'upload-permitted' => 'Tipi di file consentiti: $1.',
 'upload-preferred' => 'Tipi di file consigliati: $1.',
 'upload-prohibited' => 'Tipi di file non consentiti: $1.',
@@ -1672,19 +1671,19 @@ Consultare la [[Special:NewFiles|galleria dei nuovi file]] per una visione d'ins
 'largefileserver' => 'Il file supera le dimensioni consentite dalla configurazione del server.',
 'emptyfile' => 'Il file appena caricato sembra essere vuoto. Ciò potrebbe essere dovuto ad un errore nel nome del file. Verificare che si intenda realmente caricare questo file.',
 'windows-nonascii-filename' => 'Questo wiki non supporta nomi di file con caratteri speciali.',
-'fileexists' => "Un file con questo nome esiste già.
-Verificare prima '''<tt>[[:$1]]</tt>''' se non si è sicuri di volerlo sovrascrivere.
+'fileexists' => 'Un file con questo nome esiste già.
+Verificare prima <strong>[[:$1]]</strong> se non si è sicuri di volerlo sovrascrivere.
+[[$1|thumb]]',
+'filepageexists' => "La pagina di descrizione di questo file è già stata creata all'indirizzo <strong>[[:$1]]</strong>, anche se non esiste ancora un file con questo nome. La descrizione dell'oggetto inserita in fase di caricamento non apparirà sulla pagina di descrizione. Per far sì che l'oggetto compaia sulla pagina di descrizione, sarà necessario modificarla manualmente.
 [[$1|thumb]]",
-'filepageexists' => "La pagina di descrizione di questo file è già stata creata all'indirizzo '''<tt>[[:$1]]</tt>''', anche se non esiste ancora un file con questo nome. La descrizione dell'oggetto inserita in fase di caricamento non apparirà sulla pagina di descrizione. Per far sì che l'oggetto compaia sulla pagina di descrizione, sarà necessario modificarla manualmente.
-[[$1|thumb]]",
-'fileexists-extension' => "Un file con nome simile a questo esiste già: [[$2|thumb]]
-* Nome del file caricato: '''<tt>[[:$1]]</tt>'''
-* Nome del file esistente: '''<tt>[[:$2]]</tt>'''
-Scegliere un nome diverso.",
+'fileexists-extension' => 'Un file con nome simile a questo esiste già: [[$2|thumb]]
+* Nome del file caricato: <strong>[[:$1]]</strong>
+* Nome del file esistente: <strong>[[:$2]]</strong>
+Scegliere un nome diverso.',
 'fileexists-thumbnail-yes' => "Il file caricato sembra essere una miniatura ''(thumbnail)''. [[$1|thumb]]
-Verificare, per confronto, il file '''<tt>[[:$1]]</tt>'''.
+Verificare, per confronto, il file <strong>[[:$1]]</strong>.
 Se si tratta della stessa immagine, nelle dimensioni originali, non è necessario caricarne altre miniature.",
-'file-thumbnail-no' => "Il nome del file inizia con '''<tt>$1</tt>'''; sembra quindi essere una miniatura ''(thumbnail)''.
+'file-thumbnail-no' => "Il nome del file inizia con <strong>$1</strong>; sembra quindi essere una miniatura ''(thumbnail)''.
 Se si dispone dell'immagine nella risoluzione originale, si prega di caricarla. In caso contrario, si prega di cambiare il nome del file.",
 'fileexists-forbidden' => 'Un file con questo nome esiste già e non può essere sovrascritto. Tornare indietro e modificare il nome con il quale caricare il file. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => "Un file con questo nome esiste già nell'archivio di risorse multimediali condivise. Se si desidera ancora caricare il file, tornare indietro e modificare il nome con il quale caricare il file. [[File:$1|thumb|center|$1]]",
@@ -1938,7 +1937,7 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 
 # MIME search
 'mimesearch' => 'Ricerca in base al tipo MIME',
-'mimesearch-summary' => 'Questa pagina consente di filtrare i file in base al tipo MIME. Inserire la stringa di ricerca nella forma tipo/sottotipo, ad es. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Questa pagina consente di filtrare i file in base al tipo MIME. Inserire la stringa di ricerca nella forma tipo/sottotipo, ad es. <code>image/jpeg</code>.',
 'mimetype' => 'Tipo MIME:',
 'download' => 'scarica',
 
@@ -2006,11 +2005,12 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'withoutinterwiki-legend' => 'Prefisso',
 'withoutinterwiki-submit' => 'Mostra',
 
-'fewestrevisions' => 'Voci con meno revisioni',
+'fewestrevisions' => 'Pagine con meno revisioni',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorie}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|collegamento|collegamenti}}',
 'nmembers' => '$1 {{PLURAL:$1|elemento|elementi}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisione|revisioni}}',
@@ -2037,9 +2037,10 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'mostlinked' => 'Pagine più richiamate',
 'mostlinkedcategories' => 'Categorie più richiamate',
 'mostlinkedtemplates' => 'Template più utilizzati',
-'mostcategories' => 'Voci con più categorie',
+'mostcategories' => 'Pagine con più categorie',
 'mostimages' => 'File più richiamati',
-'mostrevisions' => 'Voci con più revisioni',
+'mostinterwikis' => 'Pagine con più interwiki',
+'mostrevisions' => 'Pagine con più versioni',
 'prefixindex' => 'Indice delle voci per lettere iniziali',
 'prefixindex-namespace' => 'Tutte le pagine con il prefisso del namespace $1',
 'shortpages' => 'Pagine più corte',
@@ -2139,7 +2140,7 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'linksearch-ok' => 'Cerca',
 'linksearch-text' => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".<br />
 È necessario almeno un dominio di primo livello, ad esempio "*.org".<br />
-Protocolli supportati: <tt>$1</tt> (non aggiungere nessuno di questi nella tua ricerca).',
+Protocolli supportati: <code>$1</code> (non aggiungere nessuno di questi nella tua ricerca).',
 'linksearch-line' => '$1 presente nella pagina $2',
 'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 

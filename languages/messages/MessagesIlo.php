@@ -1450,9 +1450,9 @@ Ti listaan ti panagikkat ken panagiyalis daytoy a panid ket adda ditoy tapno mak
 Ti panagkita wenno panagbiruk ti napalubos a pinag-ipan ti papeles mapan ka idiay [[Special:FileList|listaan dagiti napag-ipan a papeles]], dagiti pinag-ipan wenno pinag-ipan manen ket nakalista pay idiay [[Special:Log/upload|listaan ti pinag-ipan]], dagiti panagikkat ket idiay [[Special:Log/delete|listaan ti panagikkat]].
 
 Ti panagikabil ti papeles iti panid, usaren ti panilpo a kas dagiti sumaganad a kabuklan:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' ti panag-usar ti dakkel a bersion ti papeles
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' ti agusar ti 200 pixel a kaakaba  a panagparang iti kahon idiay kannigid nga adda 'sabali a testo' ti panagipalpalawag
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' ti dagus a panagsilpo idiay papeles nga awan ti panagparang ti papeles",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' ti panag-usar ti dakkel a bersion ti papeles
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' ti agusar ti 200 pixel a kaakaba  a panagparang iti kahon idiay kannigid nga adda 'sabali a testo' ti panagipalpalawag
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' ti dagus a panagsilpo idiay papeles nga awan ti panagparang ti papeles",
 'upload-permitted' => 'Dagiti mapalubosan a kita ti papeles: $1.',
 'upload-preferred' => 'Dagiti mabalbalin a kita ti papeles: $1.',
 'upload-prohibited' => 'Dagiti maiparit a kita ti papeles: $1.',
@@ -1500,21 +1500,21 @@ daytoy a papeles ket $2.',
 Baka daytoy ket gapu ti kamali ti inkabil a nagan ti papeles.
 Pangngaasi ta kitaem no kayatmo latta nga ipapan daytoy a papeles.',
 'windows-nonascii-filename' => 'Daytoy a wiki ket saanna a tapayaen dagiti nagan ti papeles nga adda ti kangrunaan a kababalin',
-'fileexists' => "Adda ti papeles nga agnagan ti kastoy, pangngaasi a kitaemti  '''<tt>[[:$1]]</tt>''' no saanka a sigurado a mangsukat.
-[[$1|thumb]]",
-'filepageexists' => "Ti panangipalpalawag a panid ti daytoy a papeles ket naaramiden idiay '''<tt>[[:$1]]</tt>''', mgem awan ti agnagan ti katoy a papeles.
+'fileexists' => 'Adda ti papeles nga agnagan ti kastoy, pangngaasi a kitaemti  <strong>[[:$1]]</strong> no saanka a sigurado a mangsukat.
+[[$1|thumb]]',
+'filepageexists' => 'Ti panangipalpalawag a panid ti daytoy a papeles ket naaramiden idiay <strong>[[:$1]]</strong>, mgem awan ti agnagan ti katoy a papeles.
 Ti pakabuklan nga inkabilmo ket saan nga agparang idiay panid ti panangipalpalawag.
 Tapno ti pakabuklan ket agparang idiay, masapul  a baliwam idiay.
-[[$1|thumb]]",
-'fileexists-extension' => "Adda papeles nga agnagan ti kastoy: [[$2|thumb]]
-* Nagan ti naipapan a papeles: '''<tt>[[:$1]]</tt>'''
-* Nagan ti adda a papeles: '''<tt>[[:$2]]</tt>'''
-Pangngaasi nga agpili ti sabali a nagan.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Adda papeles nga agnagan ti kastoy: [[$2|thumb]]
+* Nagan ti naipapan a papeles: <strong>[[:$1]]</strong>
+* Nagan ti adda a papeles: <strong>[[:$2]]</strong>
+Pangngaasi nga agpili ti sabali a nagan.',
 'fileexists-thumbnail-yes' => "Daytoy a papeles ket kasla imahen a napabassit ''(thumbnail)''.
 [[$1|thumb]]
-Pangngaasi a kitaem ti papeles a '''<tt>[[:$1]]</tt>'''.
+Pangngaasi a kitaem ti papeles a <strong>[[:$1]]</strong>.
 No ti nakitam a papeles ket isu met laeng dayta dati a kadakkel, saanka a mang-ipan iti sabali pay a napabassit nga imahen.",
-'file-thumbnail-no' => "Ti nagan ti papeles ket mangrugi ti '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Ti nagan ti papeles ket mangrugi ti <strong>$1</strong>.
 Kasla imahen a napabassit ''(thumbnail)''.
 No addaan ka ti dakkel a resolusion daytoy nga imahen ipag-ipan daytoy, no saan ket pangngaasi ta sukatam ti nagan ti papeles.",
 'fileexists-forbidden' => 'Daytoy a nagan ti papeles ket adda dita, ken saan a mabalin a masuratan manen.
@@ -1764,7 +1764,7 @@ Baka kayatmo nga urnosen ti bukodna a deskripsionna idiay [$2 deskripsion ti pap
 # MIME search
 'mimesearch' => 'Pagbiruk ti MIME',
 'mimesearch-summary' => 'Daytoy a panid ket pakabaelan na ti panagsagat ti papeles iti kita da a MIME.
-Ikabil: kita ti nagyan/apo a kita, e.g. <tt>image/jpeg</tt>.',
+Ikabil: kita ti nagyan/apo a kita, e.g. <code>image/jpeg</code>.',
 'mimetype' => 'Kita ti MIME:',
 'download' => 'Ikarga nga agpababa',
 
@@ -1966,7 +1966,7 @@ Kitaen met [[Special:WantedCategories|dagiti makidkiddaw a kategoria]].',
 'linksearch-ok' => 'Biruken',
 'linksearch-text' => 'Ti naataap a tarheta a kas "*.wikipedia.org" ket mabalin nga usaren.
 Masapul ti kangatuan a pagturayan, a kaspagarigan "*.org".<br />
-Natapayaen a protokol: <tt>$1</tt> (saanmo nga inayon dagitoy iti panagbirukmo) .',
+Natapayaen a protokol: <code>$1</code> (saanmo nga inayon dagitoy iti panagbirukmo) .',
 'linksearch-line' => 'Ti $1 ket nakasilpo idiay $2',
 'linksearch-error' => 'Ti naatap a tarheta ket agparang laeng iti pinagrugi ti nagan ti agsangaili.',
 

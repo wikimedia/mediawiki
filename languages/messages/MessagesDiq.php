@@ -1310,13 +1310,13 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'powersearch-field' => 'Seba cı seyr ke',
 'powersearch-togglelabel' => 'Qontrol ke:',
 'powersearch-toggleall' => 'Pêro',
-'powersearch-togglenone' => 'Çıno',
+'powersearch-togglenone' => 'Çıniyo',
 'search-external' => 'Cıgeyrayışê teberi',
 'searchdisabled' => '{{SITENAME}} no keyepel de cıgerayiş muweqqet bıryayo. no benatê de şıma pê Google eşkeni zerreyê {{SITENAME}} de cıgerayiş bıkeri.',
 
 # Quickbar
 'qbsettings' => 'Çûwo pêt',
-'qbsettings-none' => 'Çıno',
+'qbsettings-none' => 'Çıniyo',
 'qbsettings-fixedleft' => 'Rêcaene çhep',
 'qbsettings-fixedright' => 'Rêcaene raşt',
 'qbsettings-floatingleft' => 'rêcaene çhep',
@@ -1667,9 +1667,9 @@ Logê wedariyayiş u berdişi seba ena pele a ti ra xezir kerda:",
 Dosyayê ke vera cû bar biyê eke şima qayîl e ney dosyayan bivînê ya zî bigerî biewnê[[Special:FileList|listeyê dosyayê bar bîyaye]] (tekrar) bar bîyaye [[Special:Log/upload|rocaneyê barkerdişî]] de, hewn a şîyaye zî tîya de [[Special:Log/delete|rocaneyê hewn a kerdişî]] pawiyene.
 
 wexta şima qayîl e yew peli re dosya bierzî, formanê cêrinan ra yewi bişuxulne;
-* Qey xebitnayişê dosyayî: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></tt>'''
-*Heto çep de zerreyê yew qutî de, qey xebitnayişi 'nuşteyê binîn' û 200 pikseli: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|alt metin]]</nowiki></tt>'''
-* Dosya memocın, dosya te direk gırey bıerz: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></tt>'''",
+* Qey xebitnayişê dosyayî: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.jpg]]</nowiki></code>'''
+*Heto çep de zerreyê yew qutî de, qey xebitnayişi 'nuşteyê binîn' û 200 pikseli: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dosya.png|200px|thumb|left|alt metin]]</nowiki></code>'''
+* Dosya memocın, dosya te direk gırey bıerz: '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dosya.ogg]]</nowiki></code>'''",
 'upload-permitted' => 'Tipanê dosyayi ke izin ey estê: $1.',
 'upload-preferred' => 'Tipanê dosyayi ke tercihe ey estê: $1',
 'upload-prohibited' => 'Babetê dosyayanê tometebiyayeyan: $1.',
@@ -1711,19 +1711,19 @@ gırdîyê na dosyayi $2.',
 'largefileserver' => 'Ena dosya zaf girde ke server kebul nikeno.',
 'emptyfile' => 'dosya ya ke şıma bar kerda veng asena, nameyê dosyayi şaş nusyaya belka.',
 'windows-nonascii-filename' => 'Na wiki namen de dosyayan de xısusi karaxtera karkerdışa peşti nêdana.',
-'fileexists' => "no name de yew dosya ca ra esta.
-Eke şıma emin niyê bıvurni bıewne na dosya'''<tt>[[:$1]]</tt>'''
-[[$1|thumb]]",
-'filepageexists' => "qey na dosya pelê eşkera kerdışi '''<tt>[[:$1]]</tt>''' na adresi de ca ra vıraziyayo labele no name de yew dosya nêasena.
+'fileexists' => 'no name de yew dosya ca ra esta.
+Eke şıma emin niyê bıvurni bıewne na dosya<strong>[[:$1]]</strong>
+[[$1|thumb]]',
+'filepageexists' => 'qey na dosya pelê eşkera kerdışi <strong>[[:$1]]</strong> na adresi de ca ra vıraziyayo labele no name de yew dosya nêasena.
 kılmnuşteyê şıma nêasena eke şıma qayili bıvini gani şıma pê dest bıvurni
-[[$1|resimo qıc]]",
-'fileexists-extension' => "zey no nameyê dosyayi yewna nameyê dosyayi esta: [[$2|thumb]]
-* dosyaya ke bar biya: '''<tt>[[:$1]]</tt>'''
-* dosyaya ke ca ra esta: '''<tt>[[:$2]]</tt>'''
-kerem kere yewna name bıvıcinê",
+[[$1|resimo qıc]]',
+'fileexists-extension' => 'zey no nameyê dosyayi yewna nameyê dosyayi esta: [[$2|thumb]]
+* dosyaya ke bar biya: <strong>[[:$1]]</strong>
+* dosyaya ke ca ra esta: <strong>[[:$2]]</strong>
+kerem kere yewna name bıvıcinê',
 'fileexists-thumbnail-yes' => "na dosya wina asena ke versiyona yew resmê qıc biyayeya ''(thumbnail)''. [[$1|thumb]]
-kerem kerê '''<tt>[[:$1]]</tt>''' na dosya konrol bıkerê .",
-'file-thumbnail-no' => "nameyê na dosyayi pê ney '''<tt>$1</tt>''' dest keno pê.
+kerem kerê <strong>[[:$1]]</strong> na dosya konrol bıkerê .",
+'file-thumbnail-no' => "nameyê na dosyayi pê ney <strong>$1</strong> dest keno pê.
 na manena ke versiyona yew resmê qıc biyaye ya ''(thumbnail)''",
 'fileexists-forbidden' => 'no name de yew dosya ca ra esta u ser nuştış nêbeno.
 eke şıma qayile dosyaya xo bar keri tepiya agerê u yew nameyo newe bınusi. [[File:$1|thumb|center|$1]]',
@@ -1906,7 +1906,7 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'listfiles_name' => 'Name',
 'listfiles_user' => 'Karber',
 'listfiles_size' => 'Gırdiye',
-'listfiles_description' => 'Vatiş/deskripsiyon',
+'listfiles_description' => 'Şınasiyen',
 'listfiles_count' => 'Versiyoni',
 
 # File description page
@@ -1982,7 +1982,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 
 # MIME search
 'mimesearch' => 'MIME bigêre',
-'mimesearch-summary' => 'no pel, no tewır dosyayan MIME kontrol kena. kewteye: tipa zerreyi/tipa bıni, e.g. <tt>resim/jpeg</tt>.',
+'mimesearch-summary' => 'no pel, no tewır dosyayan MIME kontrol kena. kewteye: tipa zerreyi/tipa bıni, e.g. <code>resim/jpeg</code>.',
 'mimetype' => 'Babetê NIME',
 'download' => 'bar ke',
 
@@ -2180,7 +2180,7 @@ hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 'linksearch-ns' => 'Cayênameyî:',
 'linksearch-ok' => 'Cı geyre',
 'linksearch-text' => 'joker ê zey "*.wikipedia.org"i karneno.<br />
-qaydeyê destek biyayeyi: <tt>$1</tt>',
+qaydeyê destek biyayeyi: <code>$1</code>',
 'linksearch-line' => '$1, $2 ra link biya',
 'linksearch-error' => 'jokeri têna nameyê makina ya serekini de aseni/eseni.',
 
@@ -2213,8 +2213,8 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'listgrouprights-rights' => 'Heqqî',
 'listgrouprights-helppage' => 'Help:Heqqanê gruban',
 'listgrouprights-members' => '(lista ezayan)',
-'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup' => 'şıma eşkenî hesabê xo re {{PLURAL:$2|grub|gruban}} têare kerî: $1',
 'listgrouprights-removegroup' => 'şıma eşkenî hesabê xo ra {{PLURAL:$2|grub|gruban}} bıvecî: $1',
 'listgrouprights-addgroup-all' => 'şıma hesabê xo re heme gruban eşkeni têare bıkeri',
@@ -2626,7 +2626,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'blocklist-expiry' => 'Wahdey qedyayışi',
 'blocklist-by' => 'hizmetdarê blokê',
 'blocklist-params' => 'Parametreyê wedernayışi',
-'blocklist-reason' => 'Sebeb:',
+'blocklist-reason' => 'Sebeb',
 'ipblocklist-submit' => 'Cı geyre',
 'ipblocklist-localblock' => 'blokê mehelli',
 'ipblocklist-otherblocks' => '{{PLURAL:$1|blokê|blokê}} bini',
@@ -3417,7 +3417,7 @@ $8',
 'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true' => 'Heqê telifiye',
-'exif-copyrighted-false' => 'Malê umumiye',
+'exif-copyrighted-false' => 'Malê Şari',
 
 'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
@@ -3534,7 +3534,7 @@ $8',
 'exif-scenecapturetype-2' => 'Portre',
 'exif-scenecapturetype-3' => 'şew-antış',
 
-'exif-gaincontrol-0' => 'çino',
+'exif-gaincontrol-0' => 'Çıniyo',
 'exif-gaincontrol-1' => 'Low gain up',
 'exif-gaincontrol-2' => 'High gain up',
 'exif-gaincontrol-3' => 'Low gain down',

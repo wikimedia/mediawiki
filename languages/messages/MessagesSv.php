@@ -1706,9 +1706,9 @@ Raderings- och sidflyttningsloggen för denna sida återges här:",
 För att titta på eller leta efter filer som redan har laddats upp, se [[Special:FileList|listan över uppladdade filer]]. Uppladdningar loggförs även i [[Special:Log/upload|uppladdningsloggen]], och raderingar i [[Special:Log/delete|raderingsloggen]].
 
 Använd en länk på något av följande format för att infoga en fil på en sida:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' för att visa filen i dess hela storlek
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alternativ text]]</nowiki></tt>''' för att visa en rendering med bredden 200 pixel i en ruta till vänster med bildtexten 'alternativ text'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' för att länka direkt till filen utan att visa den",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' för att visa filen i dess hela storlek
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alternativ text]]</nowiki></code>''' för att visa en rendering med bredden 200 pixel i en ruta till vänster med bildtexten 'alternativ text'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' för att länka direkt till filen utan att visa den",
 'upload-permitted' => 'Tillåtna filtyper: $1.',
 'upload-preferred' => 'Föredragna filtyper: $1.',
 'upload-prohibited' => 'Förbjudna filtyper: $1.',
@@ -1753,21 +1753,21 @@ denna fil är $2.',
 'largefileserver' => 'Denna fil är större än vad servern ställts in att tillåta.',
 'emptyfile' => 'Filen du laddade upp verkar vara tom; felet kan bero på ett stavfel i filnamnet. Kontrollera om du verkligen vill ladda upp denna fil.',
 'windows-nonascii-filename' => 'Denna wiki stödjer inte filnamn med specialtecken.',
-'fileexists' => "Det finns redan en fil med detta namn.
-Titta på '''<tt>[[:$1]]</tt>''', såvida du inte är säker på att du vill ändra den.
-[[$1|thumb]]",
-'filepageexists' => "Beskrivningssidan för denna fil har redan skapats på '''<tt>[[:$1]]</tt>''', men just nu finns ingen fil med detta namn.
+'fileexists' => 'Det finns redan en fil med detta namn.
+Titta på <strong>[[:$1]]</strong>, såvida du inte är säker på att du vill ändra den.
+[[$1|thumb]]',
+'filepageexists' => 'Beskrivningssidan för denna fil har redan skapats på <strong>[[:$1]]</strong>, men just nu finns ingen fil med detta namn.
 Den sammanfattning du skriver här kommer inte visas på beskrivningssidan.
 För att din sammanfattning ska visas där, så måste du redigera beskrivningssidan manuellt.
-[[$1|thumb]]",
-'fileexists-extension' => "En fil med ett liknande namn finns redan: [[$2|thumb]]
-* Namn på den fil du försöker ladda upp: '''<tt>[[:$1]]</tt>'''
-* Namn på filen som redan finns: '''<tt>[[:$2]]</tt>'''
-Var vänlig välj ett annat namn.",
+[[$1|thumb]]',
+'fileexists-extension' => 'En fil med ett liknande namn finns redan: [[$2|thumb]]
+* Namn på den fil du försöker ladda upp: <strong>[[:$1]]</strong>
+* Namn på filen som redan finns: <strong>[[:$2]]</strong>
+Var vänlig välj ett annat namn.',
 'fileexists-thumbnail-yes' => "Filen verkar vara en bild med förminskad storlek ''(miniatyrbild)''. [[$1|thumb]]
-Var vänlig kontrollera filen '''<tt>[[:$1]]</tt>'''.
+Var vänlig kontrollera filen <strong>[[:$1]]</strong>.
 Om det är samma fil i originalstorlek så är det inte nödvändigt att ladda upp en extra miniatyrbild.",
-'file-thumbnail-no' => "Filnamnet börjar med '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Filnamnet börjar med <strong>$1</strong>.
 Det verkar vara en bild med förminskad storlek ''(miniatyrbild)''.
 Om du har denna bild i full storlek, ladda då hellre upp den, annars var vänlig och ändra filens namn.",
 'fileexists-forbidden' => 'En fil med detta namn existerar redan, och kan inte överskrivas.
@@ -2026,7 +2026,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 
 # MIME search
 'mimesearch' => 'MIME-sökning',
-'mimesearch-summary' => 'På den här sidan kan du söka efter filer via dess MIME-typ. Input: contenttype/subtype, t.ex. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'På den här sidan kan du söka efter filer via dess MIME-typ. Input: contenttype/subtype, t.ex. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-typ:',
 'download' => 'ladda ner',
 
@@ -2226,7 +2226,7 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-ok' => 'Sök',
 'linksearch-text' => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
 Det krävs åtminstone en toppnivå-domän, t.ex. "*.org".<br />
-Protokoll som stöds: <tt>$1</tt> (lägg inte till något av dessa i din sökning).',
+Protokoll som stöds: <code>$1</code> (lägg inte till något av dessa i din sökning).',
 'linksearch-line' => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 

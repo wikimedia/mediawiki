@@ -1745,9 +1745,9 @@ Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:FileList|
 Los archivos subidos quedarán registrados además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
 
 Para incluir un archivo en una página, usa un enlace como los mostrados a continuación:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 píxeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para usar el fichero en tamaño completo
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></code>''' para una versión de 200 píxeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para enlazar directamente al fichero sin mostrarlo.",
 'upload-permitted' => 'Tipos de archivo permitidos: $1.',
 'upload-preferred' => 'Tipos de archivo preferidos: $1.',
 'upload-prohibited' => 'Tipos de archivo prohibidos: $1.',
@@ -1791,19 +1791,19 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'largefileserver' => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile' => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
 'windows-nonascii-filename' => 'Este wiki no admite nombres de archivo con caracteres especiales.',
-'fileexists' => "Ya existe un archivo con este nombre, por favor comprueba '''<tt>[[:$1]]</tt>''' si no estás seguro de querer cambiarlo.
-[[$1|thumb]]",
-'filepageexists' => "La página de descripción de este archivo ya ha sido creada en '''<tt>[[:$1]]</tt>''', pero no existe actualmente ningún fichero con este nombre.
+'fileexists' => 'Ya existe un archivo con este nombre, por favor comprueba <strong>[[:$1]]</strong> si no estás seguro de querer cambiarlo.
+[[$1|thumb]]',
+'filepageexists' => 'La página de descripción de este archivo ya ha sido creada en <strong>[[:$1]]</strong>, pero no existe actualmente ningún fichero con este nombre.
 El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.
-[[$1|thumb]]",
-'fileexists-extension' => "Existe un archivo con un nombre similar: [[$2|thumb]]
-* Nombre del archivo que se está subiendo: '''<tt>[[:$1]]</tt>'''
-* Nombre del archivo ya existente: '''<tt>[[:$2]]</tt>'''
-Por favor, elige un nombre diferente.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Existe un archivo con un nombre similar: [[$2|thumb]]
+* Nombre del archivo que se está subiendo: <strong>[[:$1]]</strong>
+* Nombre del archivo ya existente: <strong>[[:$2]]</strong>
+Por favor, elige un nombre diferente.',
 'fileexists-thumbnail-yes' => "El archivo parece ser una imagen de tamaño reducido ''(thumbnail)''. [[$1|thumb]]
-Por favor comprueba el archivo '''<tt>[[:$1]]</tt>'''.
+Por favor comprueba el archivo <strong>[[:$1]]</strong>.
 Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.",
-'file-thumbnail-no' => "El nombre del archivo comienza con '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "El nombre del archivo comienza con <strong>$1</strong>.
 Parece ser una imagen de tamaño reducido ''(thumbnail)''.
 Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.",
 'fileexists-forbidden' => 'Ya existe un archivo con este nombre, y no puede ser grabado encima de otro. Si quiere subir su archivo de todos modos, por favor vuelva atrás y utilice otro nombre. [[File:$1|thumb|center|$1]]',
@@ -2065,7 +2065,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 # MIME search
 'mimesearch' => 'Búsqueda MIME',
 'mimesearch-summary' => 'Esta página permite el filtrado de ficheros por su tipo MIME.
-Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
+Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'mimetype' => 'Tipo MIME:',
 'download' => 'descargar',
 
@@ -2265,7 +2265,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
 Es necesario, por lo menos, un dominio de nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <tt>$1</tt> (no añada ninguno de estos en su búsqueda).',
+Protocolos soportados: <code>$1</code> (no añada ninguno de estos en su búsqueda).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 

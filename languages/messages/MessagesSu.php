@@ -1424,8 +1424,8 @@ Pikeun némbongkeun atawa néang gambar-gambar nu pernah dimuat saméméhna, man
 Paké formulir di handap pikeun ngamuat koropak gambar anyar pikeun ilustrasi kaca anjeun. Na kalolobaan panyungsi, anjeun bakal manggihan tombol \"Sungsi/''Browse''...\", nu bakal nganteur ka dialog muka-koropak nu baku na sistim operasi anjeun. Milih hiji koropak bakal ngeusian ngaran koropakna kana rohangan téks gigireun tombol nu tadi. Anjeun ogé kudu nyontréng kotak nu nandakeun yén anjeun teu ngarumpak hak cipta batur ku dimuatna ieu koropak. Pencét tombol \"Muatkeun/''Upload''\" pikeun ngeréngsékeun muatan. Prosés ieu bisa lila mun anjeun migunakeun sambungan internét nu lambat.
 
 Format nu dianjurkeun nyéta JPEG pikeun gambar fotografik, PNG pikeun hasil ngagambar sarta gambar séjénna, sarta OGG pikeun sora. Pilih ngaran koropak nu déskriptif sangkan teu ngalieurkeun. Pikeun ngasupkeun gambarna na kaca séjén, pigunakeun tumbu dina wujud
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Gambar.jpg]]</nowiki></tt>''' pikeun gambar dina ukuran aslina
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></tt>''' pikeun sora.
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Gambar.jpg]]</nowiki></code>''' pikeun gambar dina ukuran aslina
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Berkas.ogg]]</nowiki></code>''' pikeun sora.
 
 Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anjeun mun maranéhna nganggap ieu saluyu jeung kapentingan proyék, sarta anjeun bisa waé dipeungpeuk ti ngamuat koropak mun anjeun ngaruksak/ngaganggu sistim.",
 'upload-permitted' => 'Tipeu koropak nu diwidian: $1.',
@@ -1467,12 +1467,12 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'largefileserver' => 'Ieu koropak badag teuing, ngaleuwihan wates nu diwenangkeun ku server.',
 'emptyfile' => "Koropak nu dimuatkeun ku anjeun jigana kosong. Hal ieu bisa jadi alatan sarupaning ''typo'' na ngaran koropakna. Mangga parios deui yén anjeun leres-leres hoyong ngamuat koropak éta.",
 'windows-nonascii-filename' => 'Ieu wiki teu ngarojong ngaran berkas anu maké aksara husus.',
-'fileexists' => "Koropak nu ngaranna kieu geus aya, mangga parios '''<tt>[[:$1]]</tt>''' mun anjeun teu yakin rék ngaganti.
-[[$1|thumb]]",
-'fileexists-extension' => "Geus aya berkas anu ngaranna sarupa: [[$2|thumb]]
-* Ngaran berkas nu dimuat: '''<tt>[[:$1]]</tt>'''
-* Ngaran berkas nu geus aya: '''<tt>[[:$2]]</tt>'''
-Pilih ngaran séjén.",
+'fileexists' => 'Koropak nu ngaranna kieu geus aya, mangga parios <strong>[[:$1]]</strong> mun anjeun teu yakin rék ngaganti.
+[[$1|thumb]]',
+'fileexists-extension' => 'Geus aya berkas anu ngaranna sarupa: [[$2|thumb]]
+* Ngaran berkas nu dimuat: <strong>[[:$1]]</strong>
+* Ngaran berkas nu geus aya: <strong>[[:$2]]</strong>
+Pilih ngaran séjén.',
 'fileexists-forbidden' => 'Berkas  nu ngaranna kitu geus aya sarta teu bisa ditimpah.
 Mun anjeun keukeuh rék ngunggahkeun berkas anjeun, mangga balik deui sarta paké ngaran anyar.
 [[File:$1|thumb|center|$1]]',
@@ -1619,7 +1619,7 @@ Pedaran ti [$2 kaca pedaranana] dipidangkeun di handap.',
 
 # MIME search
 'mimesearch' => 'Sungsi MIME',
-'mimesearch-summary' => 'Ieu kaca bisa dipaké nyaring koropak dumasar tipeu MIME-na. Asupan: contenttype/subtype, contona <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ieu kaca bisa dipaké nyaring koropak dumasar tipeu MIME-na. Asupan: contenttype/subtype, contona <code>image/jpeg</code>.',
 'mimetype' => 'Tipeu MIME:',
 'download' => 'pulut',
 
@@ -1804,7 +1804,7 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'linksearch-pat' => 'Pola sungsi:',
 'linksearch-ns' => 'Spasi ngaran:',
 'linksearch-ok' => 'Sungsi',
-'linksearch-text' => "''Wildcard'' sarupaning \"*.wikipedia.org\" bisa dipaké.<br />Protokol nu dirojong: <tt>\$1</tt>",
+'linksearch-text' => "''Wildcard'' sarupaning \"*.wikipedia.org\" bisa dipaké.<br />Protokol nu dirojong: <code>\$1</code>",
 'linksearch-line' => '$1 ditumbu ti $2',
 'linksearch-error' => "''Wildcard'' ngan bisa némbongan dina awal ngaran indung (''host'').",
 

@@ -552,7 +552,7 @@ $messages = array(
 'create-this-page' => 'このページを作成',
 'delete' => '削除',
 'deletethispage' => 'このページを削除',
-'undelete_short' => '{{PLURAL:$1|$1 版}}を復帰',
+'undelete_short' => '{{PLURAL:$1|$1 編集}}を復帰',
 'viewdeleted_short' => '{{PLURAL:$1|削除された $1 編集}}を閲覧',
 'protect' => '保護',
 'protect_change' => '設定変更',
@@ -684,9 +684,9 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'dberrortext' => 'データベースクエリーの構文エラーが発生しました。
 ソフトウェアにバグがある可能性があります。
 最後に実行を試みたクエリー：
-<blockquote><tt>$1</tt></blockquote>
-（関数「<tt>$2</tt>」内）。
-データベースはエラー「<tt>$3：$4</tt>」を返しました。',
+<blockquote><code>$1</code></blockquote>
+（関数「<code>$2</code>」内）。
+データベースはエラー「<samp>$3：$4</samp>」を返しました。',
 'dberrortextcl' => 'データベースクエリーの構文エラーが発生しました。
 最後に実行を試みたクエリー：
 「$1」
@@ -1787,9 +1787,9 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用し、（再）アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを入れるには、以下の書式のリンクを使用してください：
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>'''とすると、ファイルが完全なままで使用されます
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></tt>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>'''とするとファイルを表示せずに直接ファイルへリンクします",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>'''とすると、ファイルが完全なままで使用されます
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
+* '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>'''とするとファイルを表示せずに直接ファイルへリンクします",
 'upload-permitted' => '許可されているファイル形式：$1。',
 'upload-preferred' => '推奨されているファイル形式：$1。',
 'upload-prohibited' => '禁止されているファイル形式：$1。',
@@ -1837,21 +1837,21 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 ファイル名の指定が間違っている可能性があります。
 本当にこのファイルをアップロードしたいのか、確認してください。',
 'windows-nonascii-filename' => 'このwikiではファイル名に特殊文字を使用できません。',
-'fileexists' => "この名前のファイルは既に存在します。置き換えていいかどうか確信が持てない場合は、'''<tt>[[:$1]]</tt>'''を確認してください。
-[[$1|thumb]]",
-'filepageexists' => "このファイルのための説明ページは既に'''<tt>[[:$1]]</tt>'''に作成されていますが、現在、ファイルが存在していません。
+'fileexists' => 'この名前のファイルは既に存在します。置き換えていいかどうか確信が持てない場合は、<strong>[[:$1]]</strong>を確認してください。
+[[$1|thumb]]',
+'filepageexists' => 'このファイルのための説明ページは既に<strong>[[:$1]]</strong>に作成されていますが、現在、ファイルが存在していません。
 入力した概要は説明ページに反映されません。
 新しい概要を表示させるには、説明ページを手動で編集する必要があります。
-[[$1|thumb]]",
-'fileexists-extension' => "類似した名前のファイルが既に存在しています：[[$2|thumb]]
-* アップロード中のファイルの名前：'''<tt>[[:$1]]</tt>'''
-* 既存ファイルの名前：'''<tt>[[:$2]]</tt>'''
-違う名前を選択してください。",
+[[$1|thumb]]',
+'fileexists-extension' => '類似した名前のファイルが既に存在しています：[[$2|thumb]]
+* アップロード中のファイルの名前：<strong>[[:$1]]</strong>
+* 既存ファイルの名前：<strong>[[:$2]]</strong>
+違う名前を選択してください。',
 'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの''（サムネイル）''のようです。
 [[$1|thumb]]
-ファイル'''<tt>[[:$1]]</tt>'''を確認してください。
+ファイル<strong>[[:$1]]</strong>を確認してください。
 確認したファイルが同じ画像の元のサイズの版の場合は、サムネイルを別途アップロードする必要はありません。",
-'file-thumbnail-no' => "ファイル名が'''<tt>$1</tt>'''から始まっています。
+'file-thumbnail-no' => "ファイル名が<strong>$1</strong>から始まっています。
 他の画像から縮小されたもの''（サムネイル）''のようです。
 より高精細な画像をお持ちの場合はそれをアップロードしてください。お持ちではない場合はファイル名を変更してください。",
 'fileexists-forbidden' => 'この名前のファイルは既に存在しており、上書きできません。
@@ -2121,7 +2121,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 # MIME search
 'mimesearch' => 'MIMEタイプ検索',
 'mimesearch-summary' => 'このページでは、ファイルをMIMEタイプで絞り込みます。
-contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</tt>）。',
+contenttype/subtypeの形式で入力してください（例：<code>image/jpeg</code>）。',
 'mimetype' => 'MIMEタイプ：',
 'download' => 'ダウンロード',
 
@@ -2265,7 +2265,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'booksources' => '書籍情報源',
 'booksources-search-legend' => '書籍情報源を検索',
 'booksources-go' => '検索',
-'booksources-text' => '以下は、新古本を販売している外部サイトへのリンクの一覧で、検索中の本について、更に詳しい情報が提供されているかもしれません：',
+'booksources-text' => 'お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:',
 'booksources-invalid-isbn' => '指定したISBN番号は有効ではないようです。情報源から写し間違えていないか確認してください。',
 
 # Special:Log
@@ -2324,7 +2324,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'linksearch-ok' => '検索',
 'linksearch-text' => '"*.wikipedia.org" のようにワイルドカードを使用できます。
 少なくとも "*.org" のようなトップレベルドメインが必要です。<br />
-対応プロトコル: <tt>$1</tt> (これらを検索に含めないでください)。',
+対応プロトコル: <code>$1</code> (これらを検索に含めないでください)。',
 'linksearch-line' => '$1 が $2 からリンクされています',
 'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
 
@@ -2515,8 +2515,8 @@ $UNWATCHURL
 'rollback' => '編集を巻き戻し',
 'rollback_short' => '巻き戻し',
 'rollbacklink' => '巻き戻し',
-'rollbacklinkcount' => '$1版の{{PLURAL:$1|編集}}を巻き戻し',
-'rollbacklinkcount-morethan' => '$1版以上の{{PLURAL:$1|編集}}を巻き戻し',
+'rollbacklinkcount' => '$1{{PLURAL:$1|編集}}を巻き戻し',
+'rollbacklinkcount-morethan' => '$1{{PLURAL:$1|編集}}以上を巻き戻し',
 'rollbackfailed' => '巻き戻しに失敗しました',
 'cantrollback' => '編集を差し戻せません。
 最後の投稿者が、このページの唯一の作者です。',
@@ -2942,7 +2942,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'immobile-target-namespace' => '「$1」名前空間にはページを移動できません',
 'immobile-target-namespace-iw' => 'ウィキ間リンクは、ページの移動先には指定できません。',
 'immobile-source-page' => 'このページは移動できません。',
-'immobile-target-page' => '対象ページ名に移動させることはできません。',
+'immobile-target-page' => '移動先ページ名に移動させることができません。',
 'imagenocrossnamespace' => 'ファイルを、ファイル名前空間以外に移動させることはできません',
 'nonfile-cannot-move-to-file' => 'ファイルではないものを、ファイル名前空間に移動させることはできません',
 'imagetypemismatch' => '新しいファイルの拡張子がファイルのタイプと一致していません',
@@ -3021,7 +3021,8 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-interwiki-history' => 'このページのすべての版を複製する',
 'import-interwiki-templates' => 'すべてのテンプレートを含める',
 'import-interwiki-submit' => '取り込み',
-'import-interwiki-namespace' => '目的の名前空間：',
+'import-interwiki-namespace' => '取り込み先の名前空間:',
+'import-interwiki-rootpage' => '取り込み先のルートページ (省略可能):',
 'import-upload-filename' => 'ファイル名：',
 'import-comment' => 'コメント：',
 'importtext' => '元のウィキで[[Special:Export|書き出し機能]]を使用してファイルに書き出してください。
@@ -3058,6 +3059,9 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-error-interwiki' => '名前が外部リンク (interwiki) に予約されているため、ページ「$1」を取り込みませんでした。',
 'import-error-special' => 'ページ「$1」は、ページが許可されない特別名前空間に属しているため取り込みません。',
 'import-error-invalid' => '名前が正しくないため、ページ「$1」を取り込みませんでした。',
+'import-options-wrong' => '間違った{{PLURAL:$2|オプション}}です: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => '入力されたルート ページの名前が無効です。',
+'import-rootpage-nosubpage' => 'ルート ページの名前空間「$1」では、下位ページが許可されていません。',
 
 # Import log
 'importlogpage' => '取り込み記録',

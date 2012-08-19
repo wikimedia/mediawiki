@@ -1657,21 +1657,21 @@ die lêer is $2.',
 'largefileserver' => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
 'emptyfile' => "Die lêer wat u probeer oplaai het blyk leeg te wees. Dit mag wees omdat u 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
 'windows-nonascii-filename' => 'Hierdie wiki ondersteun nie lêername met spesiale karakters nie.',
-'fileexists' => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>[[:$1]]</tt>''' as u nie seker is dat u dit wil wysig nie.
+'fileexists' => "'n Lêer met die naam bestaan reeds, kyk na <strong>[[:$1]]</strong> as u nie seker is dat u dit wil wysig nie.
 [[$1|thumb]]",
-'filepageexists' => "Die beskrywingsbladsy vir hierdie lêer bestaan reeds by '''<tt>[[:$1]]</tt>''', maar daar is nie 'n lêer met hierdie naam nie.
+'filepageexists' => "Die beskrywingsbladsy vir hierdie lêer bestaan reeds by <strong>[[:$1]]</strong>, maar daar is nie 'n lêer met hierdie naam nie.
 Die opsomming wat u verskaf het sal nie op die beskrywingsblad geplaas word nie.
 Wysig asseblief die bladsy handmatig om u beskrywing by te werk.
 [[$1|duimnael]]",
 'fileexists-extension' => "'n Lêer met hierdie naam bestaan al reeds: [[$2|thumb]]
-* Naam van die opgelaaide lêer: '''<tt>[[:$1]]</tt>'''
-* Naam van die bestaande lêer: '''<tt>[[:$2]]</tt>'''
+* Naam van die opgelaaide lêer: <strong>[[:$1]]</strong>
+* Naam van die bestaande lêer: <strong>[[:$2]]</strong>
 Kies asseblief 'n ander naam.",
 'fileexists-thumbnail-yes' => "Die lêer lyk na 'n verkleinde weergawe ''(duimnael)''.
 [[$1|thumb]]
-Kontroleer asseblief die lêer '''<tt>[[:$1]]</tt>'''.
+Kontroleer asseblief die lêer <strong>[[:$1]]</strong>.
 As die gekontroleerde lêer dieselfde beeld van oorspronklike grootte is, is dit nie nodig om 'n ekstra miniatuurafbeelding daarvan op te laai nie.",
-'file-thumbnail-no' => "Die lêernaam begin met '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Die lêernaam begin met <strong>$1</strong>.
 Dit lyk na 'n verkleinde beeld ''(duimnael)''.
 As u hierdie beeld in volle resolusie het, laai dit asseblief op.
 Indien nie, verander asseblief die lêernaam.",
@@ -1928,7 +1928,7 @@ Miskien wil u eerder die beskrywing daar op die [$2 lêerbeskrywing] bywerk.',
 
 # MIME search
 'mimesearch' => 'MIME-soek',
-'mimesearch-summary' => 'Hierdie bladsy maak dit moontlik om lêers te filtreer volgens hulle MIME-tipe. Invoer: inhoudtipe/subtipe, byvoorbeeld <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Hierdie bladsy maak dit moontlik om lêers te filtreer volgens hulle MIME-tipe. Invoer: inhoudtipe/subtipe, byvoorbeeld <code>image/jpeg</code>.',
 'mimetype' => 'MIME-tipe:',
 'download' => 'laai af',
 
@@ -2130,7 +2130,7 @@ Sie ook [[Special:WantedCategories|nie-bestaande kategorieë met verwysings]].',
 'linksearch-ok' => 'Soek',
 'linksearch-text' => 'Patrone soos "*.wikipedia.org" kan gebruik word.<br />
 Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
-Ondersteunde protokolle: <tt>$1</tt> (moenie hierdie in u soektog gebruik nie)',
+Ondersteunde protokolle: <code>$1</code> (moenie hierdie in u soektog gebruik nie)',
 'linksearch-line' => '$1 geskakel vanaf $2',
 'linksearch-error' => 'Patrone kan slegs aan die begin van die rekenaarnaam geplaas word.',
 

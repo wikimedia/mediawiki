@@ -2358,7 +2358,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 # Miscellaneous special pages
 'nbytes' => 'Message used on the history page of a wiki page. Each version of a page consist of a number of bytes. $1 is the number of bytes that the page uses. Uses plural as configured for a language based on $1.',
 'ncategories' => "Used in the special page '[[Special:MostCategories]]' in brackets after each entry on the list signifying how many categories a page is part of. $1 is the number of categories.",
-'ninterwikis' => "Used in the special page '[[Special:MostInterwikis]]' in brackets after each entry on the list signifying how many interwikis a page is part of. $1 is the number of interwikis.",
+'ninterwikis' => "Used in the special page '[[Special:MostInterwikis]]' in brackets after each entry on the list signifying how many interwikis a page is part of. Parameters:
+* $1 is the number of interwiki links.",
 'nlinks' => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
 'nmembers' => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
 'nrevisions' => 'Number of revisions.',
@@ -3254,7 +3255,8 @@ See also:
 * {{msg-mw|import-error-edit}}',
 'import-options-wrong' => 'Used on [[Special:Import]], when one of the options has an error.',
 'import-rootpage-invalid' => 'Used on [[Special:Import]], when the root page is invalid.',
-'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages.',
+'import-rootpage-nosubpage' => 'Used on [[Special:Import]], when the import namespace does not support subpages. Parameters:
+* $1 is a namespace name.',
 
 # Import log
 'importlogpage' => '{{doc-logpage}}',

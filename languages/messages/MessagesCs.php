@@ -1780,19 +1780,19 @@ Pro vložení obrázku do stránky použijte jeden z následujících způsobů 
 'largefileserver' => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
 'emptyfile' => 'Soubor, který jste vložili, se zdá být prázdný. Mohl to způsobit překlep v názvu souboru. Prosím zkontrolujte, zda jste opravdu chtěli vložit tento soubor.',
 'windows-nonascii-filename' => 'Tato wiki nepodporuje názvy souborů obsahující zvláštní znaky.',
-'fileexists' => "Soubor s tímto jménem již existuje, prosím podívejte se na '''<tt>[[:$1]]</tt>''', pokud nevíte jistě, zda chcete tento soubor nahradit.
-[[$1|thumb]]",
-'filepageexists' => "Popisná stránka pro soubor s tímto jménem již byla na '''<tt>[[:$1]]</tt>''' založena, avšak odpovídající soubor dosud neexistuje.
+'fileexists' => 'Soubor s tímto jménem již existuje, prosím podívejte se na <strong>[[:$1]]</strong>, pokud nevíte jistě, zda chcete tento soubor nahradit.
+[[$1|thumb]]',
+'filepageexists' => 'Popisná stránka pro soubor s tímto jménem již byla na <strong>[[:$1]]</strong> založena, avšak odpovídající soubor dosud neexistuje.
 Shrnutí, které zde uvedete, se na popisné stránce nezobrazí.
-Pokud tam chcete své shrnutí zobrazit, budete muset příslušnou stránku editovat ručně. [[$1|thumb]]",
-'fileexists-extension' => "Již existuje soubor s podobným jménem: [[$2|thumb]]
-* Jméno načítaného souboru: '''<tt>[[:$1]]</tt>'''
-* Jméno existujícího souboru: '''<tt>[[:$2]]</tt>'''
-Vyberte jiné jméno.",
+Pokud tam chcete své shrnutí zobrazit, budete muset příslušnou stránku editovat ručně. [[$1|thumb]]',
+'fileexists-extension' => 'Již existuje soubor s podobným jménem: [[$2|thumb]]
+* Jméno načítaného souboru: <strong>[[:$1]]</strong>
+* Jméno existujícího souboru: <strong>[[:$2]]</strong>
+Vyberte jiné jméno.',
 'fileexists-thumbnail-yes' => "Tento soubor je zřejmě obrázek ve zmenšené velikosti ''(náhled)''. [[$1|thumb]]
-Zkontrolujte soubor '''<tt>[[:$1]]</tt>'''.
+Zkontrolujte soubor <strong>[[:$1]]</strong>.
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.",
-'file-thumbnail-no' => "Jméno souboru začíná na '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Jméno souboru začíná na <strong>$1</strong>.
 Možná to je obrázek ve zmenšené velikosti ''(náhled)''.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.",
 'fileexists-forbidden' => 'Soubor s tímto názvem již existuje a není dovoleno ho přepsat.
@@ -2251,7 +2251,7 @@ Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
 'linksearch-ok' => 'Hledat',
 'linksearch-text' => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.
 Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />
-Podporované protokoly: <tt>$1</tt> (nepřidávejte je do hledání).',
+Podporované protokoly: <code>$1</code> (nepřidávejte je do hledání).',
 'linksearch-line' => '$2 odkazuje na $1',
 'linksearch-error' => 'Zástupné znaky lze použít jen na začátku doménového jména.',
 

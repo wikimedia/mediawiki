@@ -1549,9 +1549,9 @@ Jūsų patogumui pateiktas įrašas apie šio puslapio trynimą ar pervadinimą:
 Norėdami peržiūrėti ar ieškoti anksčiau įkeltų paveikslėlių, eikite į [[Special:FileList|įkeltų failų sąrašą]], įkėlimai yra registruojami [[Special:Log/upload|įkėlimų sąraše]], trynimai — [[Special:Log/delete|trynimų sąraše]].
 
 Norėdami panaudoti įkeltą failą puslapyje, naudokite tokias nuorodas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></tt>''' norėdami naudoti pilną failo versiją
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></tt>''' norėdami naudoti 200 pikselių pločio paveikslėlį rėmelyje puslapio kairėje; „alternatyvus tekstas“ bus naudojamas paveikslėlio aprašymui.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></tt>''' tiesioginei nuorodai į failą.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.jpg]]</nowiki></code>''' norėdami naudoti pilną failo versiją
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Failas.png|200px|thumb|left|alternatyvusis tekstas]]</nowiki></code>''' norėdami naudoti 200 pikselių pločio paveikslėlį rėmelyje puslapio kairėje; „alternatyvus tekstas“ bus naudojamas paveikslėlio aprašymui.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Failas.ogg]]</nowiki></code>''' tiesioginei nuorodai į failą.",
 'upload-permitted' => 'Leidžiami failų tipai: $1.',
 'upload-preferred' => 'Pageidautini failų tipai: $1.',
 'upload-prohibited' => 'Uždrausti failų tipai: $1.',
@@ -1594,20 +1594,20 @@ Taip pat galite peržvelgti [[Special:NewFiles|naujausių failų galeriją]].',
 'largefileserver' => 'Šis failas yra didesnis nei serveris yra sukonfigūruotas leisti.',
 'emptyfile' => 'Panašu, kad failas, kurį įkėlėte yra tuščias. Tai gali būti dėl klaidos failo pavadinime. Pasitikrinkite ar tikrai norite įkelti šitą failą.',
 'windows-nonascii-filename' => 'Ši viki neleidžia naudoti failų vardų su specialiais simboliais.',
-'fileexists' => "Failas tuo pačiu vardu jau egzistuoja, prašome pažiūrėti '''<tt>[[:$1]]</tt>''', jei nesate tikras, ar norite perrašyti šį failą.
-[[$1|thumb]]",
-'filepageexists' => "Šio failo aprašymo puslapis jau buvo sukurtas '''<tt>[[:$1]]</tt>''', bet šiuo metu nėra jokio failo šiuo pavadinimu.
+'fileexists' => 'Failas tuo pačiu vardu jau egzistuoja, prašome pažiūrėti <strong>[[:$1]]</strong>, jei nesate tikras, ar norite perrašyti šį failą.
+[[$1|thumb]]',
+'filepageexists' => 'Šio failo aprašymo puslapis jau buvo sukurtas <strong>[[:$1]]</strong>, bet šiuo metu nėra jokio failo šiuo pavadinimu.
 Jūsų įvestas komentaras neatsiras aprašymo puslapyje.
 Jei norite, kad jūsų komentaras ten atsirastų, jums reikia jį pakeisti pačiam.
-[[$1|thumb]]",
-'fileexists-extension' => "Failas su panašiu pavadinimu jau yra: [[$2|thumb]]
-* Įkeliamo failo pavadinimas: '''<tt>[[:$1]]</tt>'''
-* Jau esančio failo pavadinimas: '''<tt>[[:$2]]</tt>'''
-Prašome pasirinkti kitą vardą.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Failas su panašiu pavadinimu jau yra: [[$2|thumb]]
+* Įkeliamo failo pavadinimas: <strong>[[:$1]]</strong>
+* Jau esančio failo pavadinimas: <strong>[[:$2]]</strong>
+Prašome pasirinkti kitą vardą.',
 'fileexists-thumbnail-yes' => "Failas turbūt yra sumažinto dydžio failas ''(miniatiūra)''. [[$1|thumb]]
-Prašome peržiūrėti failą '''<tt>[[:$1]]</tt>'''.
+Prašome peržiūrėti failą <strong>[[:$1]]</strong>.
 Jeigu tai yra toks pats pradinio dydžio paveikslėlis, tai įkelti papildomos miniatūros nereikia.",
-'file-thumbnail-no' => "Failo pavadinimas prasideda  '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Failo pavadinimas prasideda  <strong>$1</strong>.
 Atrodo, kad yra sumažinto dydžio paveikslėlis ''(miniatiūra)''.
 Jei jūs turite šį paveisklėlį pilna raiška, įkelkite šitą, priešingu atveju prašome pakeisti failo pavadinimą.",
 'fileexists-forbidden' => 'Failas tokiu pačiu vardu jau egzistuoja ir negali būti perrašytas;
@@ -1835,7 +1835,7 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 
 # MIME search
 'mimesearch' => 'MIME paieška',
-'mimesearch-summary' => 'Šis puslapis leidžia rodyti failus pagal jų MIME tipą. Įveskite: turiniotipas/potipis, pvz. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Šis puslapis leidžia rodyti failus pagal jų MIME tipą. Įveskite: turiniotipas/potipis, pvz. <code>image/jpeg</code>.',
 'mimetype' => 'MIME tipas:',
 'download' => 'parsisiųsti',
 
@@ -2035,7 +2035,7 @@ Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'linksearch-ok' => 'Ieškoti',
 'linksearch-text' => 'Galima naudoti žvaigždutes, pvz., „*.wikipedia.org“.<br />
 Yra būtinas bent jau aukščiausio lygio domenas, pvz., „*.org“.<br />
-Palaikomi protokolai: <tt>$1</tt> (nei vieno iš jų nenurodykite paieškoje).',
+Palaikomi protokolai: <code>$1</code> (nei vieno iš jų nenurodykite paieškoje).',
 'linksearch-line' => '$1 yra susietas iš $2',
 'linksearch-error' => 'Žvaigždutės gali būti tik adreso pradžioje.',
 
@@ -2226,7 +2226,7 @@ Paskutinių šalinimų istorija - $2.',
 'rollback_short' => 'Atmesti',
 'rollbacklink' => 'atmesti',
 'rollbacklinkcount' => 'atmesti $1 {{PLURAL:$1|keitimą|keitimus}}',
-'rollbacklinkcount-morethan' => 'atmesti daugiau nei $1 {{PLURAL:$1|keitimą|keitimus}}',
+'rollbacklinkcount-morethan' => 'atmesti daugiau nei $1 {{PLURAL:$1|keitimą|keitimų}}',
 'rollbackfailed' => 'Atmetimas nepavyko',
 'cantrollback' => 'Negalima atmesti redagavimo; paskutinis keitęs naudotojas yra šio puslapio autorius.',
 'alreadyrolled' => 'Nepavyko atmesti paskutinio [[User:$2|$2]] ([[User talk:$2|Aptarimas]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) daryto puslapio [[:$1]] keitimo;

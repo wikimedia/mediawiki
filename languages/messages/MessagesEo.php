@@ -384,30 +384,30 @@ $messages = array(
 'thu' => 'Ĵaŭ',
 'fri' => 'Ven',
 'sat' => 'Sab',
-'january' => 'Januaro',
-'february' => 'Februaro',
-'march' => 'Marto',
-'april' => 'Aprilo',
-'may_long' => 'Majo',
-'june' => 'Junio',
-'july' => 'Julio',
-'august' => 'Aŭgusto',
-'september' => 'Septembro',
-'october' => 'Oktobro',
-'november' => 'Novembro',
-'december' => 'Decembro',
+'january' => 'januaro',
+'february' => 'februaro',
+'march' => 'marto',
+'april' => 'aprilo',
+'may_long' => 'majo',
+'june' => 'junio',
+'july' => 'julio',
+'august' => 'aŭgusto',
+'september' => 'septembro',
+'october' => 'oktobro',
+'november' => 'novembro',
+'december' => 'decembro',
 'january-gen' => 'januaro',
 'february-gen' => 'februaro',
 'march-gen' => 'marto',
-'april-gen' => 'Aprilo',
-'may-gen' => 'Majo',
-'june-gen' => 'Junio',
-'july-gen' => 'Julio',
-'august-gen' => 'Aŭgusto',
-'september-gen' => 'Septembro',
+'april-gen' => 'aprilo',
+'may-gen' => 'majo',
+'june-gen' => 'junio',
+'july-gen' => 'julio',
+'august-gen' => 'aŭgusto',
+'september-gen' => 'septembro',
 'october-gen' => 'oktobro',
-'november-gen' => 'Novembro',
-'december-gen' => 'Decembro',
+'november-gen' => 'novembro',
+'december-gen' => 'decembro',
 'jan' => 'Jan',
 'feb' => 'Feb',
 'mar' => 'Mar',
@@ -1762,21 +1762,21 @@ tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver' => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile' => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
 'windows-nonascii-filename' => 'Ĉi tiu vikio ne subtenas dosiernomoj kun specialaj signoj.',
-'fileexists' => "Dosiero kun tia ĉi nomo jam ekzistas.
-Bonvolu kontroli '''<tt>[[:$1]]</tt>''' krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
-[[$1|thumb]]",
-'filepageexists' => "La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe '''<tt>[[:$1]]</tt>''', sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
+'fileexists' => 'Dosiero kun tia ĉi nomo jam ekzistas.
+Bonvolu kontroli <strong>[[:$1]]</strong> krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
+[[$1|thumb]]',
+'filepageexists' => 'La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe <strong>[[:$1]]</strong>, sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
 La resumo kiun vi entajpos ne aperos en la priskribo-paĝo.
 Por aperigi vian resumon, vi devos permane redakti ĝin.
-[[$1|thumb]]",
-'fileexists-extension' => "Dosiero kun simila nomo ekzistas: [[$2|thumb]]
-* Nomo de la alŝuta dosiero: '''<tt>[[:$1]]</tt>'''
-* Nomo de la ekzistanta dosiero: '''<tt>[[:$2]]</tt>'''
-Bonvolu elekti malsaman nomon.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Dosiero kun simila nomo ekzistas: [[$2|thumb]]
+* Nomo de la alŝuta dosiero: <strong>[[:$1]]</strong>
+* Nomo de la ekzistanta dosiero: <strong>[[:$2]]</strong>
+Bonvolu elekti malsaman nomon.',
 'fileexists-thumbnail-yes' => "Ĉi tiu dosiero ŝajnas kiel bildo de malkreskigita grandeco ''(bildeto)''. [[$1|thumb]]
-Bonvolu kontroli la dosieron '''<tt>[[:$1]]</tt>'''.
+Bonvolu kontroli la dosieron <strong>[[:$1]]</strong>.
 Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne nepras alŝuti plian bideton.",
-'file-thumbnail-no' => "La dosiernomo komencas kun '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "La dosiernomo komencas kun <strong>$1</strong>.
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco ''(thumbnail)''.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.",
 'fileexists-forbidden' => 'Dosiero kun ĉi tiu nomo jam ekzistas kaj ne povas anstataŭigi ĝin.
@@ -2021,7 +2021,7 @@ Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
 
 # MIME search
 'mimesearch' => 'MIME-serĉilo',
-'mimesearch-summary' => 'Ĉi tiu paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ĉi tiu paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-tipo:',
 'download' => 'elŝuti',
 
@@ -2224,7 +2224,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'linksearch-ns' => 'Nomspaco:',
 'linksearch-ok' => 'Serĉi',
 'linksearch-text' => 'Regulesprimoj kiel "*.wikipedia.org" povas esti uzataj. Nepre havi almenaŭ plej altan domajnon, ekz-e "*.org".<br />
-Subtenataj protokoloj: <tt>$1</tt> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
+Subtenataj protokoloj: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
 'linksearch-line' => '$1 ligita de $2',
 'linksearch-error' => 'Regulesprimoj povas aperi nur ĉe la komenco de la retnoda nomo.',
 
@@ -2907,6 +2907,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-interwiki-templates' => 'Inkluzivi ĉiujn ŝablonojn',
 'import-interwiki-submit' => 'Importi',
 'import-interwiki-namespace' => 'Cela nomspaco:',
+'import-interwiki-rootpage' => 'Ircela radikopaĝo (laŭvola):',
 'import-upload-filename' => 'Dosiernomo:',
 'import-comment' => 'Komento:',
 'importtext' => 'Bonvolu eksporti la dosieron el la fonta vikio per la [[Special:Export|eksportilo]]. Konservu ĝin sur via persona komputilo kaj poste alŝutu ĝin tien ĉi.',
@@ -2938,6 +2939,9 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-error-interwiki' => 'Paĝo "$1" ne estis importita pro sia nomo estas deklarita por ekstera ligado (intervikia).',
 'import-error-special' => 'Paĝo "$1" ne estas importata, ĉar ĝi apartenas al speciala nomspaco, kiu ne permesas paĝojn.',
 'import-error-invalid' => 'Paĝo "$1" ne estas importata, ĉar ĝia nomo estas malvalida.',
+'import-options-wrong' => '{{PLURAL:$2|Erara elekto|Eraraj elektoj}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La provizita paĝo havas nevalidan titolon.',
+'import-rootpage-nosubpage' => 'La nomspaco "$1" de la radikopaĝo ne permesas subpaĝoj.',
 
 # Import log
 'importlogpage' => 'Protokolo de importaĵoj',

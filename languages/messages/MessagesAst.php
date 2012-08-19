@@ -1482,9 +1482,9 @@ Equí s'ufre'l rexistru de desaniciu y treslláu d'esta páxina por comodidá:",
 Pa ver o buscar archivos xubíos previamente, vete a la [[Special:FileList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></tt>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></tt>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></code>''' pa usar la versión completa del archivu
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></code>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></code>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
 'upload-permitted' => "Menes d'archivu permitíes: $1.",
 'upload-preferred' => "Menes d'archivu preferíes: $1.",
 'upload-prohibited' => "Menes d'archivu prohibíes: $1.",
@@ -1531,21 +1531,21 @@ esti ficheru tien $2.',
 Esto podría ser pola mor d'un enquivocu nel nome del ficheru.
 Por favor, camienta si daveres quies xubir esti archivu.",
 'windows-nonascii-filename' => 'Esta wiki nun permite nomes de ficheru con caráuteres especiales.',
-'fileexists' => "Yá esiste un ficheru con esti nome, por favor comprueba '''<tt>[[:$1]]</tt>''' si nun tas seguru de querer camudalu.
-[[$1|thumb]]",
-'filepageexists' => "La páxina de descripción d'esti ficheru yá se creó en '''<tt>[[:$1]]</tt>''', pero anguaño nun esiste nengún ficheru con esti nome.
+'fileexists' => 'Yá esiste un ficheru con esti nome, por favor comprueba <strong>[[:$1]]</strong> si nun tas seguru de querer camudalu.
+[[$1|thumb]]',
+'filepageexists' => "La páxina de descripción d'esti ficheru yá se creó en <strong>[[:$1]]</strong>, pero anguaño nun esiste nengún ficheru con esti nome.
 El resume que pongas nun va apaecer na páxina de descripción.
 Pa facer que'l to resume apaeza, vas tener que lu editar manualmente.
 [[$1|thumb]]",
-'fileexists-extension' => "Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
-* Nome del ficheru que se quier xubir: '''<tt>[[:$1]]</tt>'''
-* Nome del ficheru esistente: '''<tt>[[:$2]]</tt>'''
-Por favor escueyi un nome diferente.",
+'fileexists-extension' => 'Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
+* Nome del ficheru que se quier xubir: <strong>[[:$1]]</strong>
+* Nome del ficheru esistente: <strong>[[:$2]]</strong>
+Por favor escueyi un nome diferente.',
 'fileexists-thumbnail-yes' => "El ficheru paez ser una imaxe de tamañu menguáu ''(miniatura)''.
  [[$1|thumb]]
-Por favor comprueba el ficheru '''<tt>[[:$1]]</tt>'''.
+Por favor comprueba el ficheru <strong>[[:$1]]</strong>.
 Si'l ficheru comprobáu tien el mesmu tamañu que la imaxe orixinal, nun ye necesario xubir una miniatura estra.",
-'file-thumbnail-no' => "El ficheru entama con '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "El ficheru entama con <strong>$1</strong>.
 Paez ser una imaxe de tamañu menguáu ''(miniatura)''.
 Si tienes esta imaxe a resolución completa xúbila; si non, por favor camuda'l nome del ficheru.",
 'fileexists-forbidden' => 'Yá esiste un ficheru con esti nome, y nun se pue renomar.
@@ -1812,7 +1812,7 @@ Seique quieras camudar la descripción de la so [páxina de descripción de fich
 
 # MIME search
 'mimesearch' => 'Busca MIME',
-'mimesearch-summary' => "Esta páxina activa'l filtráu d'archivos en función de la so triba MIME. Entrada: contenttype/subtype, p.ex. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Esta páxina activa'l filtráu d'archivos en función de la so triba MIME. Entrada: contenttype/subtype, p.ex. <code>image/jpeg</code>.",
 'mimetype' => 'Triba MIME:',
 'download' => 'descargar',
 
@@ -2012,7 +2012,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-ok' => 'Guetar',
 'linksearch-text' => 'Se puen usar comodinos como "*.wikipedia.org".
 Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
-Protocolos almitíos: <tt>$1</tt> (nun amiestes dengún d\'estos na to gueta).',
+Protocolos almitíos: <code>$1</code> (nun amiestes dengún d\'estos na to gueta).',
 'linksearch-line' => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 

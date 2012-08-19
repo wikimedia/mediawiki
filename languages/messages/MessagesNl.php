@@ -669,9 +669,9 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 'dberrortext' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
-<blockquote><tt>$1</tt></blockquote>
-vanuit de functie "<tt>$2</tt>".
-De database gaf de volgende foutmelding "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+vanuit de functie "<code>$2</code>".
+De database gaf de volgende foutmelding "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
 "$1"
@@ -1047,7 +1047,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 * '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-Shift-R'' op een Mac)
 * '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op een Mac)
 * '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
-* '''Konqueror:''' klik op ''Reload'' of druk op ''F5''
 * '''Opera:''' leeg uw cache in ''Extra → Voorkeuren''",
 'usercssyoucanpreview' => "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe CSS te testen alvorens op te slaan.",
 'userjsyoucanpreview' => "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JavaScript te testen alvorens op te slaan.",
@@ -1834,20 +1833,20 @@ Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 Dit zou kunnen komen door een typefout in de bestandsnaam.
 Ga na of u dit bestand werkelijk bedoelde te uploaden.',
 'windows-nonascii-filename' => 'Deze wiki ondersteunt geen bestandsnamen met speciale tekens.',
-'fileexists' => "Er bestaat al een bestand met deze naam.
-Controleer '''<tt>[[:$1]]</tt>''' als u niet zeker weet of u het huidige bestand wilt overschrijven.
-[[$1|thumb]]",
-'filepageexists' => "De beschrijvingspagina voor dit bestand bestaat al op '''<tt>[[:$1]]</tt>''', maar er bestaat geen bestand met deze naam.
+'fileexists' => 'Er bestaat al een bestand met deze naam.
+Controleer <strong>[[:$1]]</strong> als u niet zeker weet of u het huidige bestand wilt overschrijven.
+[[$1|thumb]]',
+'filepageexists' => 'De beschrijvingspagina voor dit bestand bestaat al op <strong>[[:$1]]</strong>, maar er bestaat geen bestand met deze naam.
 De samenvatting die u hebt opgegeven zal niet op de beschrijvingspagina verschijnen.
-Bewerk de pagina handmatig om uw beschrijving daar weer te geven. [[$1|miniatuur]]",
-'fileexists-extension' => "Een bestand met dezelfde naam bestaat al: [[$2|thumb]]
-* Naam van het geüploade bestand: '''<tt>[[:$1]]</tt>'''
-* Naam van het bestaande bestand: '''<tt>[[:$2]]</tt>'''
-Kies een andere naam.",
+Bewerk de pagina handmatig om uw beschrijving daar weer te geven. [[$1|miniatuur]]',
+'fileexists-extension' => 'Een bestand met dezelfde naam bestaat al: [[$2|thumb]]
+* Naam van het geüploade bestand: <strong>[[:$1]]</strong>
+* Naam van het bestaande bestand: <strong>[[:$2]]</strong>
+Kies een andere naam.',
 'fileexists-thumbnail-yes' => "Het bestand lijkt een verkleinde versie te zijn ''(miniatuurafbeelding)''. [[$1|thumb]]
-Controleer het bestand '''<tt>[[:$1]]</tt>'''.
+Controleer het bestand <strong>[[:$1]]</strong>.
 Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte is, is het niet noodzakelijk een extra miniatuurafbeelding te uploaden.",
-'file-thumbnail-no' => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "De bestandsnaam begint met <strong>$1</strong>.
 Het lijkt een verkleinde afbeelding te zijn ''(miniatuurafbeelding)''.
 Als u deze afbeelding in volledige resolutie hebt, upload die afbeelding dan.
 Wijzig anders de bestandsnaam.",
@@ -2120,7 +2119,7 @@ U kunt de beschrijving bewerken op de [$2 pagina met de bestandsbeschrijving].',
 # MIME search
 'mimesearch' => 'Zoeken op MIME-type',
 'mimesearch-summary' => 'Deze pagina maakt het filteren van bestanden voor het MIME-type mogelijk.
-Invoer: inhoudstype/subtype, bijvoorbeeld <tt>image/jpeg</tt>.',
+Invoer: inhoudstype/subtype, bijvoorbeeld <code>image/jpeg</code>.',
 'mimetype' => 'MIME-type:',
 'download' => 'downloaden',
 
@@ -2195,6 +2194,7 @@ Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categorie|categorieën}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwikiverwijzing|interwikiverwijzingen}}',
 'nlinks' => '$1 {{PLURAL:$1|verwijzing|verwijzingen}}',
 'nmembers' => '$1 {{PLURAL:$1|item|items}}',
 'nrevisions' => '$1 {{PLURAL:$1|versie|versies}}',
@@ -2224,6 +2224,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'mostlinkedtemplates' => 'Meestgebruikte sjablonen',
 'mostcategories' => "Pagina's met de meeste categorieën",
 'mostimages' => 'Meestgebruikte bestanden',
+'mostinterwikis' => "Pagina's met de meeste interwikiverwijzingen",
 'mostrevisions' => "Pagina's met de meeste bewerkingen",
 'prefixindex' => "Alle pagina's op voorvoegsel",
 'prefixindex-namespace' => "Alle pagina's met het voorvoegsel (naamruimte $1)",
@@ -2326,7 +2327,7 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'linksearch-ok' => 'Zoeken',
 'linksearch-text' => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.
 Heeft tenminste een topleveldomein, zoals bijvoorbeeld "*.org".<br />
-Ondersteunde protocollen: <tt>$1</tt> (voeg deze niet toe in uw zoekopdracht).',
+Ondersteunde protocollen: <code>$1</code> (voeg deze niet toe in uw zoekopdracht).',
 'linksearch-line' => '$1 heeft een verwijzing in $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
@@ -3024,6 +3025,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'import-interwiki-templates' => 'Alle sjablonen opnemen',
 'import-interwiki-submit' => 'Importeren',
 'import-interwiki-namespace' => 'Doelnaamruimte:',
+'import-interwiki-rootpage' => 'Basispagina voor doel (optioneel):',
 'import-upload-filename' => 'Bestandsnaam:',
 'import-comment' => 'Opmerking:',
 'importtext' => 'Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt.
@@ -3060,6 +3062,8 @@ Een tijdelijke map is niet aanwezig.',
 'import-error-special' => 'Pagina "$1" is niet geïmporteerd omdat deze is geplaatst in een speciale naamruimte waar geen pagina\'s in geplaatst kunnen worden.',
 'import-error-invalid' => 'De pagina" "$1" is niet geïmporteerd omdat de naam ongeldig is.',
 'import-options-wrong' => 'Verkeerde {{PLURAL:$2|optie|opties}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'De opgegeven basispagina is ongeldig.',
+'import-rootpage-nosubpage' => 'In de naamruimte "$1" van de basispagina is het aanmaken van subpagina\'s niet mogelijk.',
 
 # Import log
 'importlogpage' => 'Importlogboek',

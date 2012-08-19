@@ -1766,25 +1766,25 @@ hallde deiht, wat nit erlaub, un müjjelelscherwies ene jefährlesche Dattei-Typ
 'largefileserver' => 'De Datei es ze jroß. Jrößer wie däm ẞööver sing Enstellung erlaub.',
 'emptyfile' => 'Wat De hee jetz huhjelade häs, hät kein Daate dren jehatt. Künnt sin, dat De Dich verdon häs, un dä Name wo verkihrt jeschrevve. Luur ens ov De wirklich <strong>die</strong> Datei hee huhlade wells.',
 'windows-nonascii-filename' => 'Heh dat Wiki löht kein Datteiname met Sönderzeische zoh.',
-'fileexists' => "Et jitt ald en Datei met däm Name.
+'fileexists' => 'Et jitt ald en Datei met däm Name.
 Wann De op „Datei avspeichere“ klicks, weed se ersetz.
-Bes esu jod  un luur Der '''<tt>[[:$1]]</tt>''' aan, wann De nit 100% secher bes.
-[[$1|thumb]]",
-'filepageexists' => "En Sigg övver di Datei met däm Tittel '''<tt>[[:$1]]</tt>''' es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.
-[[$1|thumb]]",
-'fileexists-extension' => "Mer han ald en Dattei, di bahl jenou esu heijß: [[$2|thumb]]
-* Huh am laade sim_mer: '''<tt>[[:$1]]</tt>'''
-* Ald om ßörve eß:</td><td>'''<tt>[[:$2]]</tt>'''
-Bes esu joot, un söök Der ene ander Name fö di Datei us.",
-'fileexists-thumbnail-yes' => "Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (''<span lang=\"en\">thumbnail</span>'') wöhr. [[\$1|thumb]]
-Don ens di Dattei '''<tt>[[:\$1]]</tt>''' prööfe.
-Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.",
-'file-thumbnail-no' => "Dä Name fö di Datei fängk met '''<tt>\$1</tt>''' aan.
+Bes esu jod  un luur Der <strong>[[:$1]]</strong> aan, wann De nit 100% secher bes.
+[[$1|thumb]]',
+'filepageexists' => 'En Sigg övver di Datei met däm Tittel <strong>[[:$1]]</strong> es ald doh, ävver en Datei met däm Name ham_mer nit. Dinge Tex kütt nit automattesch op di Sigg övver di Dattei. Di Sigg moß De wann nüüdesch noch ens extra ändere.
+[[$1|thumb]]',
+'fileexists-extension' => 'Mer han ald en Dattei, di bahl jenou esu heijß: [[$2|thumb]]
+* Huh am laade sim_mer: <strong>[[:$1]]</strong>
+* Ald om ßörve eß:</td><td><strong>[[:$2]]</strong>
+Bes esu joot, un söök Der ene ander Name fö di Datei us.',
+'fileexists-thumbnail-yes' => 'Dat süühd uß, wi wann dat hee en Minni-Beldsche em Breefmarrke-Fommaat (\'\'<span lang="en">thumbnail</span>\'\') wöhr. [[$1|thumb]]
+Don ens di Dattei <strong>[[:$1]]</strong> prööfe.
+Wann dat de Orjinaaljrüß es, do moß keij för dat Beld keij extra Vör-Aansich huhjelade wäde.',
+'file-thumbnail-no' => 'Dä Name fö di Datei fängk met <strong>$1</strong> aan.
 Dat süühd uß, wi wann dat en Minni-Beldsche em Breefmarrke-Fommaat
-(''<span lang=\"en\">thumbnail</span>'') wöhr. Don ens di Dattei
-'''<tt>\$1</tt>''' prööfe, of de nit e besser opjelööß Beld
+(\'\'<span lang="en">thumbnail</span>\'\') wöhr. Don ens di Dattei
+<strong>$1</strong> prööfe, of de nit e besser opjelööß Beld
 dofun häß, un don dat met singe Orjinaaljrüß huhlade, wann müjjelesch.
-Söns donn besser ene andere Dateiname ußsöke.",
+Söns donn besser ene andere Dateiname ußsöke.',
 'fileexists-forbidden' => 'Et jitt ald en Dattei met däm Name, un mer kann se nit övverschriive.
 Wann de Ding Dattei trozdämm huhlaade wells, da jangk zeröck un lad se
 unger enem andere Name huh. [[File:$1|thumb|center|$1]]',
@@ -2287,9 +2287,9 @@ eins vun all däm op eimol.',
 'linksearch-ok' => 'Söhke',
 'linksearch-text' => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
 
-Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <tt>http://*.example.com</tt> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <tt>http://*.org</tt> 
+Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <code>http://*.example.com</code> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <code>http://*.org</code> 
 
-De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>es',
+De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <code>$1</code>es',
 'linksearch-line' => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 

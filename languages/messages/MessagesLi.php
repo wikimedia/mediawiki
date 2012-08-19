@@ -1569,18 +1569,18 @@ Aangeweze {{PLURAL:\$3|bestandjstype|bestandjstypes}}zeen \$2.",
 'largefileserver' => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile' => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
 'windows-nonascii-filename' => 'Deze wiki ongersteunt gein bestandjsname mit speciaal teikes.',
-'fileexists' => "D'r is al e besjtand mit dees naam, bekiek '''<tt>[[:$1]]</tt>''' of se dat besjtand mesjien wils vervange.
+'fileexists' => "D'r is al e besjtand mit dees naam, bekiek <strong>[[:$1]]</strong> of se dat besjtand mesjien wils vervange.
 [[$1|thumb]]",
-'filepageexists' => "De besjrievingspagina veur dit besjtand besjteit al op '''<tt>[[:$1]]</tt>''', meh d'r besjteit gein besjtand mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspagina versjiene. Bewirk de pagina handjmaotig óm dien besjrieving dao te tuine.
+'filepageexists' => "De besjrievingspagina veur dit besjtand besjteit al op <strong>[[:$1]]</strong>, meh d'r besjteit gein besjtand mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspagina versjiene. Bewirk de pagina handjmaotig óm dien besjrieving dao te tuine.
 [[$1|thumb]]",
 'fileexists-extension' => "'n bestand met dezelfde naam bestuit al: [[$2|thumb]]
-* Naam van 't geüploade bestand: '''<tt>[[:$1]]</tt>'''
-* Naam van 't bestaonde bestand: '''<tt>[[:$2]]</tt>'''
+* Naam van 't geüploade bestand: <strong>[[:$1]]</strong>
+* Naam van 't bestaonde bestand: <strong>[[:$2]]</strong>
 Lèver 'ne angere naam te keze.",
 'fileexists-thumbnail-yes' => "'t Liek 'n afbeilding van 'n verkleinde grootte te zeen ''(thumbnail)''. [[$1|thumb]]
-Lèver 't bestand '''<tt>[[:$1]]</tt>''' te controlere.
+Lèver 't bestand <strong>[[:$1]]</strong> te controlere.
 Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, is 't neet noodzakelik 'ne extra thumbnail te uploade.",
-'file-thumbnail-no' => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "De bestandsnaam begint met <strong>$1</strong>.
 't Liek 'n verkleinde afbeelding te zeen ''(thumbnail)''.
 Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding den. Wiezig anges estebleef de bestandsnaam.",
 'fileexists-forbidden' => "d'r Besteit al 'n bestand met deze naam det neet kin waere euevergesjreve. Upload dien bestand onger 'ne angere naam.
@@ -1822,7 +1822,7 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 
 # MIME search
 'mimesearch' => 'Zeuk op MIME-type',
-'mimesearch-summary' => "Deze pagina maak het filtere van bestenj veur 't MIME-type meugelik. Inveur: contenttype/subtype, bv <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Deze pagina maak het filtere van bestenj veur 't MIME-type meugelik. Inveur: contenttype/subtype, bv <code>image/jpeg</code>.",
 'mimetype' => 'MIME-type:',
 'download' => 'Downloade',
 
@@ -2024,7 +2024,7 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'linksearch-ok' => 'Zeuk',
 'linksearch-text' => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.
 Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
-Óngerstäönendje protocolle: <tt>$1</tt> (veug dees neet tou in dien zeukópdrach).',
+Óngerstäönendje protocolle: <code>$1</code> (veug dees neet tou in dien zeukópdrach).',
 'linksearch-line' => '$1 gelink vanaaf $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 

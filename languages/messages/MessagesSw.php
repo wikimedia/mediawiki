@@ -1447,9 +1447,9 @@ Rejea kumbukumbu za kufuta au kuhamisha ukurasa huu zinazotolewa chini:",
 Kwa kutazama au kutafuta faili zilizopakiwa awali, tafadhali nenda kwenye [[Special:FileList|orodha ya mafaili yaliyopakiwa]]. Kwa zile faili ambazo zishapitiwa, basi angalia [[Special:Log/upload|kumbukumbu ya mafaili]]. Kwa mafaili yaliyofutwa, tafadhali [[Special:Log/delete|tazama hapa]].
 
 Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></tt>''' kwa kutumia toleo zima la faili
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.jpg]]</nowiki></code>''' kwa kutumia toleo zima la faili
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></code>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' kwa kuunga moja kwa moja bila kuonyesga faili",
 'upload-permitted' => 'Aina ya mafaili yanayoruhusiwa: $1.',
 'upload-preferred' => 'Aina za mafaili yaliyopendelewa: $1.',
 'upload-prohibited' => 'Aina za mafaili yanayokataliwa: $1.',
@@ -1496,21 +1496,21 @@ faili hili lina $2.',
 Hii huenda ikawa jina lake limeandikwa vibaya.
 Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
 'windows-nonascii-filename' => 'Wiki hii haiwezi kutumia majina ya mafaili yenye herufi maalumu.',
-'fileexists' => "Faili lenye jina hili lipo tayari, tafadhali tazama '''<tt>[[:$1]]</tt>''' ikiwa una mashaka kuhusu kulibadilisha.
-[[$1|thumb]]",
-'filepageexists' => "Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika '''<tt>[[:$1]]</tt>''', lakini bado hakuna faili lenye jina hili kwa sasa.
+'fileexists' => 'Faili lenye jina hili lipo tayari, tafadhali tazama <strong>[[:$1]]</strong> ikiwa una mashaka kuhusu kulibadilisha.
+[[$1|thumb]]',
+'filepageexists' => 'Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika <strong>[[:$1]]</strong>, lakini bado hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
 Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
-[[$1|thumb]]",
-'fileexists-extension' => "Faili lenye jina linalofanana nalo lipo tayari:[[$2|thumb]]
-* Jina la faili linalopakiwa: '''<tt>[[:$1]]</tt>'''
-* Jina la faili lililopo tayari: '''<tt>[[:$2]]</tt>'''
-Tafadhali chagua jina lingine.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Faili lenye jina linalofanana nalo lipo tayari:[[$2|thumb]]
+* Jina la faili linalopakiwa: <strong>[[:$1]]</strong>
+* Jina la faili lililopo tayari: <strong>[[:$2]]</strong>
+Tafadhali chagua jina lingine.',
 'fileexists-thumbnail-yes' => "Faili linaonekana kuwa ni ''picha'' iliyopunguzwa ukubwa.
 [[$1|thumb]]
-Tafadhali tazama faili la '''<tt>[[:$1]]</tt>'''.
+Tafadhali tazama faili la <strong>[[:$1]]</strong>.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
-'file-thumbnail-no' => "Jina la faili linaloanza na '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Jina la faili linaloanza na <strong>$1</strong>.
 Inaonekana kuwa ni picha iliyopunguzwa ukubwa''(thumbnail)''.
 Ikiwa unaoyo picha hii kwa ukubwa wa kawaida tafadhali pakia picha hii, vinginevyo tafadhali badilisha jina la faili.",
 'fileexists-forbidden' => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
@@ -1714,7 +1714,7 @@ Pengine ungependa kuhariri maelezo yaliyopo katika [$2 ukurasa wa maelezo ya fai
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
 'mimesearch-summary' => 'Ukarasa huu unawezesha kuchuja mafaili kutokana na aina ya MIME. 
-Ingiza: aina ya faili/aina mahususi, kwa mfano <tt>image/jpeg</tt>.',
+Ingiza: aina ya faili/aina mahususi, kwa mfano <code>image/jpeg</code>.',
 'mimetype' => 'Aina ya MIME:',
 'download' => 'pakua',
 
@@ -1902,7 +1902,7 @@ Tazama pia [[Special:WantedCategories|jamii zinazohitajika]].',
 'linksearch-ok' => 'Tafuta',
 'linksearch-text' => 'Alama maalumu za kutafuta kama vile "*.wikipedia.org" zinaweza kutumika.<br />
 Inahitajika angalau kikoa cha kiwango cha juu, kwa mfano "*.org".<br />
-Itifaki zinazoungwa mkono: <tt>$1</tt> (usiongeza hizi unapotafuta).',
+Itifaki zinazoungwa mkono: <code>$1</code> (usiongeza hizi unapotafuta).',
 'linksearch-line' => '$2 umeungwa kutoka $1',
 'linksearch-error' => 'Alama maalumu zinaweza kuonekana mwanzoni mwa URL tu.',
 

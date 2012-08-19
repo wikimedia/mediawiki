@@ -1618,9 +1618,9 @@ Ir-reġistru tat-tħassir u tat-tmexxieh għal din il-paġna huma mogħtija għa
 Biex tara jew tfittex fajls li ġew mtellgħin qabel mur fil-[[Special:FileList|lista ta' fajls mtellgħin]]. Fajls imtellgħin u verżjonijiet ġodda tal-fajls huma reġistrati fir-[[Special:Log/upload|reġistru tat-tlugħ tal-fajls]], u dawk li tħassru huma fir-[[Special:Log/delete|reġistru tat-tħassir]].
 
 Biex tinkludi fajl f'paġna, uża ħolqa taħt waħda minn dawn il-forom:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.jpg]]</nowiki></tt>''' sabiex tuża' l-verżjoni sħiħa tal-fajl
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.png|200px|thumb|left|test alternattiv]]</nowiki></tt>''' sabiex tpoġġi l-istampa fuq ix-xellug ġo kaxxa ta' 200px b'\"test alternattiv\" tkun id-deskrizzjoni
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fajl.ogg]]</nowiki></tt>''' biex toħloq ħolqa diretta lejn il-fajl, mingħajr ma turih.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.jpg]]</nowiki></code>''' sabiex tuża' l-verżjoni sħiħa tal-fajl
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fajl.png|200px|thumb|left|test alternattiv]]</nowiki></code>''' sabiex tpoġġi l-istampa fuq ix-xellug ġo kaxxa ta' 200px b'\"test alternattiv\" tkun id-deskrizzjoni
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fajl.ogg]]</nowiki></code>''' biex toħloq ħolqa diretta lejn il-fajl, mingħajr ma turih.",
 'upload-permitted' => "Tipi ta' fajls permessi: $1.",
 'upload-preferred' => "Tipi ta' fajls preferuti: $1.",
 'upload-prohibited' => "Tipi ta' fajls projibiti: $1.",
@@ -1665,19 +1665,19 @@ dan il-fajl huwa $2 kbir.',
 'emptyfile' => "Il-Fajl li ġie ''uploaded'' jidher li huwa vojt. Dan jista' jkun minħabba żball fl-isem tal-fajl.
 Jekk jogħġbok verifika jekk xorta waħda trid itella' dan il-fajl.",
 'windows-nonascii-filename' => "Din il-wiki ma taċċettax ismijiet tal-fajls b'karattri speċjali.",
-'fileexists' => "Fajl b'dan l-isem ġa jeżisti, jekk jogħġbok verifika l-ewwel '''<tt>[[:$1]]</tt>''' jekk ma tridx tikteb fuqu.
+'fileexists' => "Fajl b'dan l-isem ġa jeżisti, jekk jogħġbok verifika l-ewwel <strong>[[:$1]]</strong> jekk ma tridx tikteb fuqu.
 [[$1|thumb]]",
-'filepageexists' => "Il-paġna ta' deskrizzjoni għal dan il-fajl diġà ġiet maħluqa f''''<tt>[[:$1]]</tt>''', iżda l-ebda fajl b'dan l-isem ma jeżisti. It-taqsira li daħħalt mhux se tidher fuq il-paġna ta' deskrizzjoni.
+'filepageexists' => "Il-paġna ta' deskrizzjoni għal dan il-fajl diġà ġiet maħluqa f'<strong>[[:$1]]</strong>, iżda l-ebda fajl b'dan l-isem ma jeżisti. It-taqsira li daħħalt mhux se tidher fuq il-paġna ta' deskrizzjoni.
 Sabiex it-taqsira tidher fuq il-paġna ta' deskrizzjoni, huwa neċessarju li timmodifikaha manwalment.
 [[$1|thumb]]",
 'fileexists-extension' => "Diġà jeżisti fajl b'isem simili: [[$2|thumb]]
-* L-isem tal-fajl imtella': '''<tt>[[:$1]]</tt>'''
-* L-isem tal-fajl eżistenti: '''<tt>[[:$2]]</tt>'''
+* L-isem tal-fajl imtella': <strong>[[:$1]]</strong>
+* L-isem tal-fajl eżistenti: <strong>[[:$2]]</strong>
 Jekk jogħġbok, agħżel isem differenti.",
 'fileexists-thumbnail-yes' => "Il-fajl li ttella' jidher li huwa stampa żgħira ''(minjatura)''. [[$1|thumb]]
-Jekk jogħġbok, iċċekkja dan il-fajl '''<tt>[[:$1]]</tt>'''.
+Jekk jogħġbok, iċċekkja dan il-fajl <strong>[[:$1]]</strong>.
 Jekk il-fajl li ċċekkjajt huwa l-istess stampa fid-daqs oriġinali, m'hemmx bżonn li ttella' minjatura oħra.",
-'file-thumbnail-no' => "L-isem tal-fajl jibda' b''''<tt>$1</tt>'''. Jidher ukoll li din hija stampa tad-daqs imnaqqas ''(thumbnail)''.<br />
+'file-thumbnail-no' => "L-isem tal-fajl jibda' b'<strong>$1</strong>. Jidher ukoll li din hija stampa tad-daqs imnaqqas ''(thumbnail)''.<br />
 Jekk għandek din l-istampa ta' riżoluzzjoni sħiħa, jekk jogħġbok, tella' dan il-fajl jew inkella immodifika l-isem tal-fajl.",
 'fileexists-forbidden' => "Fajl b'dan l-isem diġà jeżisti.<br />
 Jekk jogħġbok mur lura u tella' dan il-fajl b'isem ġdid. [[File:$1|thumb|center|$1]]",
@@ -1895,7 +1895,7 @@ Id-deskrizzjoni fuq il-[$2 paġna ta' deskrizzjoni tal-fajl] tinsab hawn taħt."
 # MIME search
 'mimesearch' => 'Fittex fil-bażi għal tip MIME',
 'mimesearch-summary' => "Din il-paġna tippermetti l-iffiltrar ta' fajls abbażi tat-tip MIME.
-Daħħal: tip/sottotip, eż. <tt>image/jpeg</tt>.",
+Daħħal: tip/sottotip, eż. <code>image/jpeg</code>.",
 'mimetype' => 'Tip MIME:',
 'download' => 'niżżel',
 
@@ -2041,10 +2041,10 @@ Kun af li siti elettroniċi oħra jistgħu jorbtu b'ħolqa diretta lejn il-fajl,
 'speciallogtitlelabel' => 'Azzjoni effetwata fuq:',
 'log' => 'Reġistri',
 'all-logs-page' => 'Ir-reġistri pubbliċi kollha',
-'alllogstext' => "Preżentazzjoni unifikata tar-reġistri kollha ta' {{SITENAME}}. Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' reġistru, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",
+'alllogstext' => "Ġabra sħiħa tar-reġistri kollha ta' {{SITENAME}}. Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' reġistru, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",
 'logempty' => "Ir-reġistru m'għandu l-ebda element li jaqbel mat-tfittxija tiegħek.",
 'log-title-wildcard' => "Tfittxija ta' titli li jibdew b'dan it-test",
-'showhideselectedlogentries' => 'Uri/aħbi daħliet magħżula tar-reġistru',
+'showhideselectedlogentries' => 'Uri/aħbi d-daħliet magħżula tar-reġistru',
 
 # Special:AllPages
 'allpages' => 'Il-paġni kollha',
@@ -2088,7 +2088,7 @@ Ara wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].',
 'linksearch-ns' => 'Spazju tal-isem:',
 'linksearch-ok' => 'Fittex',
 'linksearch-text' => 'Huwa possibbli li tagħmel użu minn metakarattri, per eżempju "*.wikipedia.org".<br />
-Protokolli aċċettati: <tt>$1</tt>',
+Protokolli aċċettati: <code>$1</code>',
 'linksearch-line' => '$1 hija marbuta mill-paġna $2',
 'linksearch-error' => 'Il-metakarattri jistgħu jintużaw biss fil-bidu tal-indirizz.',
 

@@ -1696,9 +1696,9 @@ Poniżej znajduje się rejestr usunięć i zmian nazwy tej strony:",
 Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:FileList|listy plików]]. Każde przesłanie zostaje odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></tt>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></tt>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></code>''' pokaże plik w pełnej postaci
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></code>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></code>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
 'upload-permitted' => 'Dopuszczalne formaty plików: $1.',
 'upload-preferred' => 'Zalecane formaty plików: $1.',
 'upload-prohibited' => 'Zabronione formaty plików: $1.',
@@ -1744,21 +1744,21 @@ Plik ma rozmiar {{PLURAL:$2|1 bajt|$2 bajty|$2 bajtów}}.',
 'emptyfile' => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku.
 Sprawdź, czy nazwa jest prawidłowa.',
 'windows-nonascii-filename' => 'Na tej wiki nie można używać znaków specjalnych w nazwach plików.',
-'fileexists' => "Plik o takiej nazwie już istnieje.
-Sprawdź '''<tt>[[:$1]]</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.
-[[$1|thumb]]",
-'filepageexists' => "Istnieje już strona opisu tego pliku, została utworzona '''<tt>[[:$1]]</tt>''', ale brak jest pliku o tej nazwie.
+'fileexists' => 'Plik o takiej nazwie już istnieje.
+Sprawdź <strong>[[:$1]]</strong>, jeśli nie jesteś pewien czy chcesz go zastąpić.
+[[$1|thumb]]',
+'filepageexists' => 'Istnieje już strona opisu tego pliku, została utworzona <strong>[[:$1]]</strong>, ale brak jest pliku o tej nazwie.
 Informacje, które wprowadzasz o przesyłanym pliku, nie pojawią się na jego stronie opisu.
 Jeśli chcesz, by się tam pojawiły, musisz później, ręcznie przeredagować stronę opisu.
-[[$1|thumb]]",
-'fileexists-extension' => "Plik o podobnej nazwie już istnieje: [[$2|thumb]]
-* Nazwa przesyłanego pliku: '''<tt>[[:$1]]</tt>'''
-* Nazwa istniejącego pliku: '''<tt>[[:$2]]</tt>'''
-Wybierz inną nazwę.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Plik o podobnej nazwie już istnieje: [[$2|thumb]]
+* Nazwa przesyłanego pliku: <strong>[[:$1]]</strong>
+* Nazwa istniejącego pliku: <strong>[[:$2]]</strong>
+Wybierz inną nazwę.',
 'fileexists-thumbnail-yes' => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''. [[$1|thumb]]
-Sprawdź plik '''<tt>[[:$1]]</tt>'''.
+Sprawdź plik <strong>[[:$1]]</strong>.
 Jeśli wybrany plik jest tą samą grafiką co ta w rozmiarze pierwotnym, nie musisz przesyłać dodatkowej miniaturki.",
-'file-thumbnail-no' => "Nazwa pliku zaczyna się od '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Nazwa pliku zaczyna się od <strong>$1</strong>.
 Wydaje się, że jest to pomniejszona grafika ''(miniaturka)''.
 Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.",
 'fileexists-forbidden' => 'Plik o tej nazwie już istnieje i nie może zostać nadpisany.
@@ -2022,7 +2022,7 @@ Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 # MIME search
 'mimesearch' => 'Wyszukiwanie MIME',
 'mimesearch-summary' => 'Ta strona umożliwia wyszukiwanie plików ze względu na ich typ MIME.
-Użycie: typ_treści/podtyp, np. <tt>image/jpeg</tt>.',
+Użycie: typ_treści/podtyp, np. <code>image/jpeg</code>.',
 'mimetype' => 'Typ MIME',
 'download' => 'pobierz',
 
@@ -2223,7 +2223,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok' => 'Szukaj',
 'linksearch-text' => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <tt>$1</tt> (nie podawaj ich podczas wyszukiwania).',
+Obsługiwane protokoły: <code>$1</code> (nie podawaj ich podczas wyszukiwania).',
 'linksearch-line' => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 

@@ -1605,9 +1605,9 @@ Slette- og flytteloggen til sida er gjeven opp her:",
 For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]], og slettingar i [[Special:Log/delete|sletteloggen]].
 
 For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke biletet med ei breidd på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnamn.jpg<nowiki>]]</nowiki></code>''' for å bruke biletet i opphavleg form
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnamn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></code>''' for å bruke biletet med ei breidd på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
+*'''<code><nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki></code>''' for å lenkje direkte til fila utan å vise ho",
 'upload-permitted' => 'Godtekne filtypar: $1.',
 'upload-preferred' => 'Føretrekte filtypar: $1.',
 'upload-prohibited' => 'Ikkje godtekne filtypar: $1.',
@@ -1650,18 +1650,18 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'largefileserver' => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile' => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
 'windows-nonascii-filename' => 'Wikien stør ikkje filnamn med spesialteikn.',
-'fileexists' => "Ei fil med dette namnet finst allereie, sjekk '''<tt>[[:$1]]</tt>''' om du ikkje er sikker på om du vil endre namnet.
-[[$1|thumb]]",
-'filepageexists' => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
-[[$1|thumb]]",
-'fileexists-extension' => "Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
-* Namnet på fila du lastar opp: '''<tt>[[:$1]]</tt>'''
-* Namnet på den eksisterande fila: '''<tt>[[:$2]]</tt>'''
-Ver venleg og vel eit anna namn.",
-'fileexists-thumbnail-yes' => "Fila ser ut til å vere eit bilete med redusert storleik. [[$1|thumb]]
-Ver venleg og sjekk fila '''<tt>[[:$1]]</tt>'''.
-Dersom denne er det same biletet i original storleik, er det ikkje nødvendig å laste opp ein mindre versjon.",
-'file-thumbnail-no' => "Filnamnet byrjar med '''<tt>$1</tt>'''.
+'fileexists' => 'Ei fil med dette namnet finst allereie, sjekk <strong>[[:$1]]</strong> om du ikkje er sikker på om du vil endre namnet.
+[[$1|thumb]]',
+'filepageexists' => 'Skildringssida for denne fila finst allereie på <strong>[[:$1]]</strong>, men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
+[[$1|thumb]]',
+'fileexists-extension' => 'Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
+* Namnet på fila du lastar opp: <strong>[[:$1]]</strong>
+* Namnet på den eksisterande fila: <strong>[[:$2]]</strong>
+Ver venleg og vel eit anna namn.',
+'fileexists-thumbnail-yes' => 'Fila ser ut til å vere eit bilete med redusert storleik. [[$1|thumb]]
+Ver venleg og sjekk fila <strong>[[:$1]]</strong>.
+Dersom denne er det same biletet i original storleik, er det ikkje nødvendig å laste opp ein mindre versjon.',
+'file-thumbnail-no' => "Filnamnet byrjar med <strong>$1</strong>.
 Det ser ut til å vere eit bilte med redusert storleik''(miniatyrbilete)''.
 Om du har dette bilete i stor utgåve, så last det opp eller endre filnamnet på denne fila.",
 'fileexists-forbidden' => 'Ei fil med dette namnet finst allereie, og ho kan ikkje verte skriven over.
@@ -1853,7 +1853,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 
 # MIME search
 'mimesearch' => 'MIME-søk',
-'mimesearch-summary' => 'Denne sida gjer filtrering av filer etter MIME-type mogleg. Skriv inn: innhaldstype/undertype, t.d. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Denne sida gjer filtrering av filer etter MIME-type mogleg. Skriv inn: innhaldstype/undertype, t.d. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-type:',
 'download' => 'last ned',
 
@@ -2039,7 +2039,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'linksearch-pat' => 'Søkemønster:',
 'linksearch-ns' => 'Namnerom:',
 'linksearch-ok' => 'Søk',
-'linksearch-text' => 'Jokerteikn som «*.wikipedia.org» kan nyttast.<br />Støtta protokollar: <tt>$1</tt>',
+'linksearch-text' => 'Jokerteikn som «*.wikipedia.org» kan nyttast.<br />Støtta protokollar: <code>$1</code>',
 'linksearch-line' => '$2 lenkjer til $1',
 'linksearch-error' => 'Jokerteikn kan berre nyttast føre tenarnamnet.',
 

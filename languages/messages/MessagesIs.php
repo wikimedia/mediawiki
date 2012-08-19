@@ -1571,9 +1571,9 @@ Síðasta færsla skráarinnar úr bönnunarskrá og flutningskrá er sýnd hér
 'uploadtext' => "Notaðu eyðublaðið hér fyrir neðan til að hlaða inn skrám.
 Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:FileList|skráarlistann]], (endur)innhlaðnar skrár eru skráðar í [[Special:Log/upload|innhlaðningarskránni]], eyðingar í [[Special:Log/delete|eyðingaskránni]].
 
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skrá.jpg]]</nowiki></tt>''' til að sýna skránna í fullri upplausn.
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skrá.png|200px|thumb|left|alt-texti]]</nowiki></tt>''' til að nota 200 díla upplausn í kassa, sett til vinstri með 'alt text' sem myndlýsingu.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skrá.ogg]]</nowiki></tt>''' til að tengja í myndina án þess að sýna hana.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skrá.jpg]]</nowiki></code>''' til að sýna skránna í fullri upplausn.
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Skrá.png|200px|thumb|left|alt-texti]]</nowiki></code>''' til að nota 200 díla upplausn í kassa, sett til vinstri með 'alt text' sem myndlýsingu.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Skrá.ogg]]</nowiki></code>''' til að tengja í myndina án þess að sýna hana.",
 'upload-permitted' => 'Heimilaðar skráargerðir: $1.',
 'upload-preferred' => 'Ákjósanlegustu skrárgerðirnar: $1.',
 'upload-prohibited' => 'Óheimiluð skrárgerð: $1.',
@@ -1620,21 +1620,21 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 Þetta gæti verið vegna ásláttarvillu í skráarnafninu.
 Vinsamlegast athugaðu hvort þú viljir hlaða skránni inn.',
 'windows-nonascii-filename' => 'Þessi wiki styður ekki skráarnöfn með sérstökum stöfum',
-'fileexists' => "Skrá með þessu nafni er þegar til, skoðaðu '''<tt>[[:$1]]</tt>''' ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.
-[[$1|thumb]]",
-'filepageexists' => "Myndasíðan fyrir þessa síðu hefur þegar verið búin til '''<tt>[[:$1]]</tt>''', en engin skrá er til með þessu nafni.
+'fileexists' => 'Skrá með þessu nafni er þegar til, skoðaðu <strong>[[:$1]]</strong> ef þú ert óviss um hvort þú viljir breyta henni, ekki verður skrifað yfir gömlu skránna hlaðiru inn nýrri með sama nafni heldur verður núverandi útgáfa geymd í útgáfusögu.
+[[$1|thumb]]',
+'filepageexists' => 'Myndasíðan fyrir þessa síðu hefur þegar verið búin til <strong>[[:$1]]</strong>, en engin skrá er til með þessu nafni.
 Lýsingin sem þú skrifaðir verður ekki birt á myndasíðunni.
 Til þess að lýsingin geti birst á síðunni, þá þarft þú að breyta síðunni sérstaklega.
-[[$1|thumb]]",
-'fileexists-extension' => "Skrá með svipuðu nafni er til: [[$2|thumb]]
-*Nafn skráarinnar sem hlaða á inn: '''<tt>[[:$1]]</tt>'''
-*Nafn skráarinnar sem er þegar til: '''<tt>[[:$2]]</tt>'''
-Vinsamlegast veldu annað skráarnafn.",
-'fileexists-thumbnail-yes' => "Skráin virðist vera smámynd [[$1|thumb]]
-Vinsamlegast athugaðu skránna '''<tt>[[:$1]]</tt>'''.
-Ef skráin er sama myndin í upprunalegri stærð er ekki þörf á annari smámynd.",
-'file-thumbnail-no' => "Skráin er líklega smámynd, því skráarnafnið byrjar á '''<tt>$1</tt>'''.
-Ef skráin er í fullri upplausn haltu þá áfram að hlaða henni inn, en ef ekki breyttu þá skráarnafninu.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Skrá með svipuðu nafni er til: [[$2|thumb]]
+*Nafn skráarinnar sem hlaða á inn: <strong>[[:$1]]</strong>
+*Nafn skráarinnar sem er þegar til: <strong>[[:$2]]</strong>
+Vinsamlegast veldu annað skráarnafn.',
+'fileexists-thumbnail-yes' => 'Skráin virðist vera smámynd [[$1|thumb]]
+Vinsamlegast athugaðu skránna <strong>[[:$1]]</strong>.
+Ef skráin er sama myndin í upprunalegri stærð er ekki þörf á annari smámynd.',
+'file-thumbnail-no' => 'Skráin er líklega smámynd, því skráarnafnið byrjar á <strong>$1</strong>.
+Ef skráin er í fullri upplausn haltu þá áfram að hlaða henni inn, en ef ekki breyttu þá skráarnafninu.',
 'fileexists-forbidden' => 'Skrá með þessu nafni er þegar til og ekki er hægt að skrifa yfir skránna.
 Ef þú villt hlaða inn skránni þinni engu að síður, farðu þá til baka og veldu annað skráarnafn.
 [[File:$1|thumb|center|$1]]',
@@ -1857,7 +1857,7 @@ Hentugra væri ef þú gætir breytt lýsingu skráarinnar á [$2 myndasíðu] h
 'mimesearch' => 'MIME-leit',
 'mimesearch-summary' => 'Þessi síða gerir þér kleift að leita eftir skrám eftir MIME-gerð þeirra.
 
-Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <tt>image/jpeg</tt>.',
+Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-tegund:',
 'download' => 'Hlaða niður',
 
@@ -2057,7 +2057,7 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'linksearch-ok' => 'Leita',
 'linksearch-text' => 'Algildistafir eins og "*.wikipedia.org" eru leyfðir.<br />
 Stafurinn þarf í minnsta kosti að innihalda rótarlén, eins og "*.org"
-Studdar samskiptareglur: <tt>$1</tt> (ekki bæta neinum af þessum í leitina)',
+Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitina)',
 'linksearch-line' => 'Tengt er í $1 á síðunni $2',
 'linksearch-error' => 'Algildistafir mega engöngu birtast í upphafi vefslóðarinnar.',
 

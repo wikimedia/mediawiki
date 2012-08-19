@@ -473,9 +473,9 @@ Płaćiwe specialne strony hodźa so pod [[Special:SpecialPages|lisćinu special
 'databaseerror' => 'Zmylk w datowej bance',
 'dberrortext' => 'Syntaktiski zmylk při wotprašowanju datoweje banki.
 To móhło zmylk w programje być. Poslednje spytane wotprašenje w datowej bance běše:
-<blockquote><tt>$1</tt></blockquote>
-z funkcije "<tt>$2</tt>".
-Datowa banka wróći zmylk "tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+z funkcije "<code>$2</code>".
+Datowa banka wróći zmylk "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Syntaktiski zmylk je we wotprašowanju datoweje banki wustupił.
 Poslednje wotprašenje w datowej bance běše:
 "$1"
@@ -1516,9 +1516,9 @@ Protokolej zhašenjow a přesunjenjow za tutu stronu stej tu k dobroćiwemu wuž
 Zo by prjedy nahrate dataje wobhladał abo pytał dźi k [[Special:FileList|lisćinje nahratych datajow]], nahraća so tež w [[Special:Log/upload|protokolu nahraćow]], wušmórnjenja  [[Special:Log/delete|protokolu wušmornjenjow]] protokoluja.
 
 Zo by dataju do strony zapřijał, wužij wotkaz w jednej ze slědowacych formow:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></tt>''', zo by połnu wersiju dataje wužiwał
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></tt>''', zo by wobraz ze šěrokosću 200 pikselow do kašćika na lěwej kromje z alternatiwnym tekstom jako wopisanje wužiwał
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></tt>''' zo by direktnje k dataji wotkazał, bjeztoho zo by so dataja zwobrazniła",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.jpg]]</nowiki></code>''', zo by połnu wersiju dataje wužiwał
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Dataja.png|200px|thumb|left|alternatiwny tekst]]</nowiki></code>''', zo by wobraz ze šěrokosću 200 pikselow do kašćika na lěwej kromje z alternatiwnym tekstom jako wopisanje wužiwał
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Dataja.ogg]]</nowiki></code>''' zo by direktnje k dataji wotkazał, bjeztoho zo by so dataja zwobrazniła",
 'upload-permitted' => 'Dowolene datajowe typy: $1.',
 'upload-preferred' => 'Preferowane datajowe typy: $1.',
 'upload-prohibited' => 'Zakazane datajowe typy: $1.',
@@ -1562,23 +1562,23 @@ Hlej [[Special:NewFiles|galeriju nowych datajow]] za wizuelny přehlad.',
 'largefileserver' => 'Dataja je wjetša hač serwer dowoluje.',
 'emptyfile' => 'Dataja, kotruž sy nahrał, zda so prózdna być. Z přičinu móhł pisanski zmylk w mjenje dataje być. Prošu pruwuj hač chceš ju woprawdźe nahrać.',
 'windows-nonascii-filename' => 'Tutón wiki datajowe mjena ze specialnymi znamješkami njepodpěruje.',
-'fileexists' => "Dataja z tutym mjenom hižo eksistuje.
+'fileexists' => 'Dataja z tutym mjenom hižo eksistuje.
 Jeli kliknješ na „Składować”, so wona přepisuje.
-Prošu pruwuj '''<tt>[[:$1]]</tt>''' jeli njejsy wěsty hač chceš ju změnić.
-[[$1|thumb]]",
-'filepageexists' => "Wopisanska strona za tutu dataju bu hižo pola '''<tt>[[:$1]]</tt>''' wutworjena,
+Prošu pruwuj <strong>[[:$1]]</strong> jeli njejsy wěsty hač chceš ju změnić.
+[[$1|thumb]]',
+'filepageexists' => 'Wopisanska strona za tutu dataju bu hižo pola <strong>[[:$1]]</strong> wutworjena,
 ale tuchwilu dataja z tutym mjenom njeeksistuje.
 Zjeće, kotrež zapodaš, njebudźe so na wopisanskej stronje jewić.
 Zo by so twoje zjeće tam jewiło, dyrbiš ju manuelnje wobdźěłać.
-[[$1|thumb]]",
-'fileexists-extension' => "Dataja z podobnym mjenom hižo eksistuje: [[$2|thumb]]
-* Mjeno dataje, kotruž chceš nahrać: '''<tt>[[:$1]]</tt>'''
-* Mjeno eksistowaceje dataje: '''<tt>[[:$2]]</tt>'''
-Prošu wubjer druhe mjeno.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Dataja z podobnym mjenom hižo eksistuje: [[$2|thumb]]
+* Mjeno dataje, kotruž chceš nahrać: <strong>[[:$1]]</strong>
+* Mjeno eksistowaceje dataje: <strong>[[:$2]]</strong>
+Prošu wubjer druhe mjeno.',
 'fileexists-thumbnail-yes' => "Dataja zda so minaturka ''(thumbnail)'' być. [[$1|thumb]]
-Prošu přepruwuj dataju '''<tt>[[:$1]]</tt>'''.
+Prošu přepruwuj dataju <strong>[[:$1]]</strong>.
 Jeli je to wobraz w originalnej wulkosći, njetrjebaš minaturku nahrać.",
-'file-thumbnail-no' => "Mjeno dataje započina so z '''<tt>$1</tt>'''. Zda so, zo to je wobraz z redukowanej wulkosću ''(thumbnail)'' pokazać.
+'file-thumbnail-no' => "Mjeno dataje započina so z <strong>$1</strong>. Zda so, zo to je wobraz z redukowanej wulkosću ''(thumbnail)'' pokazać.
 Jeli maš tutón wobraz z połnym rozeznaćom, nahraj tutón, hewak změń prošu datajowe mjeno.",
 'fileexists-forbidden' => 'Dataja z tutym mjenom hižo eksistuje a njeda so přepisać. Jeli hišće chceš swoju dataju nahrać, dźi  prošu wróćo a wuž nowe mjeno. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Dataja z tutym mjenom hižo eksistuje w zhromadnej chowarni. Jeli hišće chceš swoju dataju nahrać,  dźi prošu wróćo a wužij nowe mjeno. [[File:$1|thumb|center|$1]]',
@@ -1830,7 +1830,7 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 
 # MIME search
 'mimesearch' => 'Pytanje za typom MIME',
-'mimesearch-summary' => 'Na tutej specialnej stronje hodźa so dataje po typje MIME filtrować. Dyrbiš přeco typ MIME a podtyp zapodać: <tt>image/jpeg</tt> (hlej stronu z wopisanjom wobraza).',
+'mimesearch-summary' => 'Na tutej specialnej stronje hodźa so dataje po typje MIME filtrować. Dyrbiš přeco typ MIME a podtyp zapodać: <code>image/jpeg</code> (hlej stronu z wopisanjom wobraza).',
 'mimetype' => 'Typ MIME:',
 'download' => 'Sćahnyć',
 
@@ -2026,7 +2026,7 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'linksearch-ok' => 'Pytać',
 'linksearch-text' => 'Zastupniske znamješka kaž "*.wikipedia.org" móža so wužiwać.
 Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
-Podpěrowane protokole: <tt>$1</tt> (prošu njepodaj je w swojim pytanje).',
+Podpěrowane protokole: <code>$1</code> (prošu njepodaj je w swojim pytanje).',
 'linksearch-line' => '$1 je z $2 wotkazany.',
 'linksearch-error' => 'Zastupniske znamjenja dadźa so jenož na spočatku URL wužiwać.',
 

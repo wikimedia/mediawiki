@@ -721,9 +721,9 @@ Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spe
 'dberrortext' => 'Es ist ein Datenbankfehler aufgetreten.
 Der Grund kann ein Programmierfehler sein.
 Die letzte Datenbankabfrage lautete:
-<blockquote><tt>$1</tt></blockquote>
-aus der Funktion „<tt>$2</tt>“.
-Die Datenbank meldete den Fehler „<tt>$3: $4</tt>“.',
+<blockquote><code>$1</code></blockquote>
+aus der Funktion „<code>$2</code>“.
+Die Datenbank meldete den Fehler „<samp>$3: $4</samp>“.',
 'dberrortextcl' => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
 Die Datenbank meldete den Fehler: „<tt>$3: $4</tt>“.',
@@ -1782,9 +1782,9 @@ Es folgt ein Auszug aus dem Lösch- und Verschiebungs-Logbuch dieser Datei.",
 Gehe zu der [[Special:FileList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]] und [[Special:Log/delete|Lösch-Logbuch]].
 
 Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden Form:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datei.jpg]]</nowiki></tt>''' – für ein Vollbild
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datei.png|200px|thumb|left|Alternativer Text]]</nowiki></tt>''' – für ein 200px breites Bild innerhalb einer Box, mit „Alternativer Text“ als Bildbeschreibung
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datei.ogg]]</nowiki></tt>''' – für einen direkten Link auf die Datei, ohne Darstellung der Datei",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datei.jpg]]</nowiki></code>''' – für ein Vollbild
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datei.png|200px|thumb|left|Alternativer Text]]</nowiki></code>''' – für ein 200px breites Bild innerhalb einer Box, mit „Alternativer Text“ als Bildbeschreibung
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datei.ogg]]</nowiki></code>''' – für einen direkten Link auf die Datei, ohne Darstellung der Datei",
 'upload-permitted' => 'Erlaubte Dateitypen: $1.',
 'upload-preferred' => 'Bevorzugte Dateitypen: $1.',
 'upload-prohibited' => 'Nicht erlaubte Dateitypen: $1.',
@@ -1826,20 +1826,20 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'largefileserver' => 'Die Datei ist größer als die vom Server eingestellte Maximalgröße.',
 'emptyfile' => 'Die hochgeladene Datei ist leer. Der Grund kann ein Tippfehler im Dateinamen sein. Bitte kontrolliere, ob du die Datei wirklich hochladen willst.',
 'windows-nonascii-filename' => 'Dieses Wiki unterstützt keine Dateinamen die Sonderzeichen enthalten.',
-'fileexists' => "Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe '''<tt>[[:$1]]</tt>''', sofern du dir nicht sicher bist, ob du sie ändern möchtest.
-[[$1|thumb]]",
-'filepageexists' => "Eine Beschreibungsseite wurde bereits als '''<tt>[[:$1]]</tt>''' erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
+'fileexists' => 'Eine Datei dieses Namens ist bereits vorhanden. Bitte prüfe <strong>[[:$1]]</strong>, sofern du dir nicht sicher bist, ob du sie ändern möchtest.
+[[$1|thumb]]',
+'filepageexists' => 'Eine Beschreibungsseite wurde bereits als <strong>[[:$1]]</strong> erstellt, es ist aber keine Datei mit diesem Namen vorhanden.
 Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
 Die Beschreibungsseite musst du nach dem Hochladen der Datei noch manuell bearbeiten.
-[[$1|thumb]]",
-'fileexists-extension' => "Eine Datei mit ähnlichem Namen existiert bereits: [[$2|thumb]]
-* Name der hochzuladenden Datei: '''<tt>[[:$1]]</tt>'''
-* Name der vorhandenen Datei: '''<tt>[[:$2]]</tt>'''
-Bitte wähle einen anderen Namen.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Eine Datei mit ähnlichem Namen existiert bereits: [[$2|thumb]]
+* Name der hochzuladenden Datei: <strong>[[:$1]]</strong>
+* Name der vorhandenen Datei: <strong>[[:$2]]</strong>
+Bitte wähle einen anderen Namen.',
 'fileexists-thumbnail-yes' => "Bei der Datei scheint es sich um ein Bild verringerter Größe ''(thumbnail)'' zu handeln. [[$1|thumb]]
-Bitte prüfe die Datei '''<tt>[[:$1]]</tt>'''.
+Bitte prüfe die Datei <strong>[[:$1]]</strong>.
 Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.",
-'file-thumbnail-no' => "Der Dateiname beginnt mit '''<tt>$1</tt>'''. Dies deutet auf ein Bild verringerter Größe ''(thumbnail)'' hin.
+'file-thumbnail-no' => "Der Dateiname beginnt mit <strong>$1</strong>. Dies deutet auf ein Bild verringerter Größe ''(thumbnail)'' hin.
 Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.",
 'fileexists-forbidden' => 'Unter diesem Namen existiert bereits eine Datei und sie kann nicht überschrieben werden. Bitte gehe zurück und lade die Datei unter einem anderen Namen hoch. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.
@@ -2098,7 +2098,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 
 # MIME search
 'mimesearch' => 'Suche nach MIME-Typ',
-'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Dateibeschreibungsseite).',
+'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <code>image/jpeg</code> (siehe Dateibeschreibungsseite).',
 'mimetype' => 'MIME-Typ:',
 'download' => 'Herunterladen',
 
@@ -2297,7 +2297,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'linksearch-pat' => 'Suchmuster:',
 'linksearch-ns' => 'Namensraum:',
 'linksearch-ok' => 'Suchen',
-'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <tt>*.beispiel.de</tt> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <tt>$1</tt> (Diese bitte nicht bei der Suchanfrage angeben.)',
+'linksearch-text' => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <code>*.beispiel.de</code> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <code>$1</code> (Diese bitte nicht bei der Suchanfrage angeben.)',
 'linksearch-line' => '$1 ist verlinkt von $2',
 'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
 

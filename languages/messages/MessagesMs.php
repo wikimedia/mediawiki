@@ -1581,9 +1581,9 @@ Log penghapusan dan pemindahan untuk laman ini disediakan di bawah ini untuk kem
 Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:FileList|senarai fail yang dimuat naik]]. Tindakan muat naik akan direkodkan dalam [[Special:Log/upload|log muat naik]], manakala penghapusan dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan satu daripada bentuk-bentuk berikut:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></tt>''' untuk menggunakan versi penuh bagi fail itu
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menggunakan lakaran 200 piksel lebar di dalam sebuah kotak yang diletakkan di jidar kiri dengan keterangan 'teks alternatif'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></tt>''' untuk memaut secara terus tanpa memaparkan fail itu",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></code>''' untuk menggunakan versi penuh bagi fail itu
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|teks alternatif]]</nowiki></code>''' untuk menggunakan lakaran 200 piksel lebar di dalam sebuah kotak yang diletakkan di jidar kiri dengan keterangan 'teks alternatif'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></code>''' untuk memaut secara terus tanpa memaparkan fail itu",
 'upload-permitted' => 'Jenis fail yang dibenarkan: $1.',
 'upload-preferred' => 'Jenis fail yang diutamakan: $1.',
 'upload-prohibited' => 'Jenis fail yang dilarang: $1.',
@@ -1624,20 +1624,20 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'largefileserver' => 'Fail ini telah melebihi had muat naik pelayan web.',
 'emptyfile' => 'Fail yang dimuat naik adalah kosong. Ini mungkin disebabkan oleh kesilapan menaip nama fail. Sila pastikan bahawa anda betul-betul mahu memuat naik fail ini.',
 'windows-nonascii-filename' => 'Wiki ini tidak menyokong nama fail yang mengandungi aksara khas.',
-'fileexists' => "Sebuah fail dengan nama ini telah pun wujud.
-Sila semak '''<tt>[[:$1]]</tt>''' sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.
-[[$1|thumb]]",
-'filepageexists' => "Laman penerangan untuk fail ini telah pun dicipta di '''<tt>[[:$1]]</tt>''', tetapi tiada fail dengan nama ini wujud.
+'fileexists' => 'Sebuah fail dengan nama ini telah pun wujud.
+Sila semak <strong>[[:$1]]</strong> sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.
+[[$1|thumb]]',
+'filepageexists' => 'Laman penerangan untuk fail ini telah pun dicipta di <strong>[[:$1]]</strong>, tetapi tiada fail dengan nama ini wujud.
 Ringkasan yang anda masukkan tidak akan muncul di laman penerangan tersebut. Untuk memastikannya muncul, anda perlu menyuntingnya secara manual.
-[[$1|thumb]]",
-'fileexists-extension' => "Sebuah fail dengan nama yang sama telah pun wujud: [[$2|thumb]]
-* Nama fail yang dimuat naik: '''<tt>[[:$1]]</tt>'''
-* Nama fail yang sedia ada: '''<tt>[[:$2]]</tt>'''
-Sila pilih nama lain.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Sebuah fail dengan nama yang sama telah pun wujud: [[$2|thumb]]
+* Nama fail yang dimuat naik: <strong>[[:$1]]</strong>
+* Nama fail yang sedia ada: <strong>[[:$2]]</strong>
+Sila pilih nama lain.',
 'fileexists-thumbnail-yes' => "Fail ini kelihatan seperti sebuah imej yang telah dikecilkan ''(gambar kenit)''. [[$1|thumb]]
-Sila semak fail '''<tt>[[:$1]]</tt>'''.
+Sila semak fail <strong>[[:$1]]</strong>.
 Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik gambar kenit tambahan.",
-'file-thumbnail-no' => "Nama fail ini bermula dengan '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Nama fail ini bermula dengan <strong>$1</strong>.
 Barangkali ia adalah sebuah imej yang telah dikecilkan ''(gambar kenit)''.
 Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. Jika tidak, sila tukar nama fail ini.",
 'fileexists-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud, dan tidak boleh ditulis ganti. Jika anda masih mahu memuat naik fail ini, sila berundur dan muat naik fail ini dengan nama lain. [[File:$1|thumb|center|$1]]',
@@ -1894,7 +1894,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 # MIME search
 'mimesearch' => 'Carian MIME',
-'mimesearch-summary' => 'Anda boleh menggunakan laman ini untuk mencari fail mengikut jenis MIME. Format input ialah "jenis/subjenis", contohnya <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Anda boleh menggunakan laman ini untuk mencari fail mengikut jenis MIME. Format input ialah "jenis/subjenis", contohnya <code>image/jpeg</code>.',
 'mimetype' => 'Jenis MIME:',
 'download' => 'muat turun',
 
@@ -2093,7 +2093,7 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ok' => 'Cari',
 'linksearch-text' => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
 Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
-Protokol yang disokong: <tt>$1</tt> (jangan bubuh sebarang protokol ini dalam carian anda)',
+Protokol yang disokong: <code>$1</code> (jangan bubuh sebarang protokol ini dalam carian anda)',
 'linksearch-line' => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 
@@ -2785,6 +2785,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'import-interwiki-templates' => 'Sertakan semua templat',
 'import-interwiki-submit' => 'Import',
 'import-interwiki-namespace' => 'Ruang nama destinasi:',
+'import-interwiki-rootpage' => 'Halaman akar tujuan (tidak wajib):',
 'import-upload-filename' => 'Nama fail:',
 'import-comment' => 'Komen:',
 'importtext' => 'Sila eksport fail daripada sumber wiki dengan menggunakan [[Special:Export|utiliti eksport]].
@@ -2817,6 +2818,9 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'import-error-interwiki' => 'Laman "$1" tidak diimport kerana namanya ditempah untuk pemautan luaran (antara wiki).',
 'import-error-special' => 'Laman "$1" tidak diimport kerana ia tergolong dalam ruang nama khas yang tidak membenarkan laman.',
 'import-error-invalid' => 'Laman "$1" tidak diimport kerana namanya tidak sah.',
+'import-options-wrong' => '{{PLURAL:$2|Pilihan|Pilihan-pilihan}} salah: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Halaman akar yang dinyatakan adalah tidak sah.',
+'import-rootpage-nosubpage' => 'Ruang nama "$1" halaman akar tidak membenarkan subhalaman.',
 
 # Import log
 'importlogpage' => 'Log import',

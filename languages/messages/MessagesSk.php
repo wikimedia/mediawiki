@@ -1720,20 +1720,20 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'largefileserver' => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile' => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
 'windows-nonascii-filename' => 'Táto wiki nepodporuje názvy súborov so špeciálnymi znakmi.',
-'fileexists' => "Súbor s týmto názvom už existuje, prosím skontrolujte '''<tt>[[:$1]]</tt>''' ak nie ste si istý, či ho chcete zmeniť.
-[[$1|thumb]]",
-'filepageexists' => "Popisná stránka pre tento súbor už bola vytvorená na '''<tt>[[:$1]]</tt>''', ale žiadny súbor s týmto názvom momentálne neexistuje.
+'fileexists' => 'Súbor s týmto názvom už existuje, prosím skontrolujte <strong>[[:$1]]</strong> ak nie ste si istý, či ho chcete zmeniť.
+[[$1|thumb]]',
+'filepageexists' => 'Popisná stránka pre tento súbor už bola vytvorená na <strong>[[:$1]]</strong>, ale žiadny súbor s týmto názvom momentálne neexistuje.
 Zadané zhrnutie sa neobjaví na popisnej stránke.
 Aby sa tam zhrnutie objavilo, budete potrebné ho manuálne upraviť.
-[[$1|thumb]]",
-'fileexists-extension' => "Súbor s podobným názvom už existuje: [[$2|thumb]]
-* Názov súboru, ktorý nahrávate: '''<tt>[[:$1]]</tt>'''
-* Názov existujúceho súboru: '''<tt>[[:$2]]</tt>'''
-Prosím, vyberte preň iný názov.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Súbor s podobným názvom už existuje: [[$2|thumb]]
+* Názov súboru, ktorý nahrávate: <strong>[[:$1]]</strong>
+* Názov existujúceho súboru: <strong>[[:$2]]</strong>
+Prosím, vyberte preň iný názov.',
 'fileexists-thumbnail-yes' => "Zdá sa, že súbor je obrázkom redukovanej veľkosti ''(náhľadom)''. [[$1|thumb]]
-Prosím, skontolujte súbor '''<tt>[[:$1]]</tt>'''.
+Prosím, skontolujte súbor <strong>[[:$1]]</strong>.
 Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.",
-'file-thumbnail-no' => "Názov súboru začína '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Názov súboru začína <strong>$1</strong>.
 Zdá sa, že je to obrázok redukovanej veľkosti ''(náhľad)''.
 Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.",
 'fileexists-forbidden' => 'Súbor s týmto názvom už existuje a nie je možné ho prepísať.
@@ -1989,7 +1989,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 
 # MIME search
 'mimesearch' => 'MIME vyhľadávanie',
-'mimesearch-summary' => 'Táto stránka umožňuje filtovanie súborov podľa MIME typu. Vstup: typobsahu/podtyp, napr. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Táto stránka umožňuje filtovanie súborov podľa MIME typu. Vstup: typobsahu/podtyp, napr. <code>image/jpeg</code>.',
 'mimetype' => 'MIME typ:',
 'download' => 'stiahnuť',
 
@@ -2190,7 +2190,7 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 'linksearch-ok' => 'Hľadať',
 'linksearch-text' => 'Je možné používať zástupné znaky, napr. „*.wikipedia.org“.
 Povinná je minimálne doména najvyššej úrovne, napr.. „*.org“.<br />
-Podporované protokoly: <tt>$1</tt> (nepridávajte ich do hľadania).',
+Podporované protokoly: <code>$1</code> (nepridávajte ich do hľadania).',
 'linksearch-line' => 'Na $1 odkazuje $2',
 'linksearch-error' => 'Zástupné znaky je možné použiť iba na začiatku názvu domény.',
 

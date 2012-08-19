@@ -620,12 +620,12 @@ O listă cu paginile speciale valide se poate găsi la [[Special:SpecialPages|{{
 # General errors
 'error' => 'Eroare',
 'databaseerror' => 'Eroare la baza de date',
-'dberrortext' => 'A apărut o eroare în sintaxa interogării.
-Aceasta poate indica o problemă în program.
-Ultima interogare încercată a fost:
-<blockquote><tt>$1</tt></blockquote>
-din cadrul funcției "<tt>$2</tt>".
-Baza de date a returnat eroarea "<tt>$3: $4</tt>".',
+'dberrortext' => 'A apărut o eroare în sintaxa interogării bazei de date.
+Acest lucru poate indica o problemă în program.
+Ultima interogare trimisă către baza de date a fost:
+<blockquote><code>$1</code></blockquote>
+din cadrul funcției „<code>$2</code>”.
+Baza de date a returnat eroarea „<samp>$3: $4</samp>”.',
 'dberrortextcl' => 'A apărut o eroare de sintaxă în interogare.
 Ultima interogare încercată a fost:
 „$1”
@@ -1705,9 +1705,9 @@ Iată aici înregistrările relevante din jurnalul de ștergeri și redenumiri:"
 Pentru a vizualiza sau căuta imagini deja trimise, mergeți la [[Special:FileList|lista cu imagini]]; (re)încărcările și ștergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fișierelor trimise]], respectiv [[Special:Log/delete|jurnalul fișierelor șterse]].
 
 Pentru a insera un fișier într-o pagină, folosiți o legătură de forma:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.jpg]]</nowiki></tt>''' pentru a include versiunea integrală a unui fișier
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.png|200px|thumb|left|informații]]</nowiki></tt>''' pentru a introduce o imagine cu o lățime de 200 de pixeli într-un chenar plasat în partea stângă, având ca descriere textul „informații”
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fișier.ogg]]</nowiki></tt>''' pentru o legătură directă către fișier, fără a-l afișa",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.jpg]]</nowiki></code>''' pentru a include versiunea integrală a unui fișier
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.png|200px|thumb|left|informații]]</nowiki></code>''' pentru a introduce o imagine cu o lățime de 200 de pixeli într-un chenar plasat în partea stângă, având ca descriere textul „informații”
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fișier.ogg]]</nowiki></code>''' pentru o legătură directă către fișier, fără a-l afișa",
 'upload-permitted' => 'Tipuri de fișiere permise: $1.',
 'upload-preferred' => 'Tipuri de fișiere preferate: $1.',
 'upload-prohibited' => 'Tipuri de fișiere interzise: $1.',
@@ -1751,20 +1751,20 @@ Vezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare
 'largefileserver' => 'Fișierul este mai mare decât este configurat serverul să permită.',
 'emptyfile' => 'Fișierul pe care l-ați încărcat pare a fi gol. Aceasta poate fi datorită unei greșeli în numele fișierului. Verificați dacă într-adevăr doriți să încărcați acest fișier.',
 'windows-nonascii-filename' => 'Acest wiki nu acceptă nume de fișiere care conțin caractere speciale.',
-'fileexists' => "Un fișier cu același nume există deja, vă rugăm verificați '''<tt>[[:$1]]</tt>''' dacă nu sunteți sigur dacă doriți să îl modificați.
-[[$1|thumb]]",
-'filepageexists' => "Pagina cu descrierea fișierului a fost deja creată la '''<tt>[[:$1]]</tt>''', dar niciun fișier cu acest nume nu există în acest moment.
+'fileexists' => 'Un fișier cu același nume există deja, vă rugăm verificați <strong>[[:$1]]</strong> dacă nu sunteți sigur dacă doriți să îl modificați.
+[[$1|thumb]]',
+'filepageexists' => 'Pagina cu descrierea fișierului a fost deja creată la <strong>[[:$1]]</strong>, dar niciun fișier cu acest nume nu există în acest moment.
 Sumarul pe care l-ai introdus nu va apărea în pagina cu descriere.
 Pentru ca sumarul tău să apară, va trebui să îl adaugi manual.
-[[$1|miniatură]]",
-'fileexists-extension' => "Un fișier cu un nume similar există: [[$2|thumb]]
-* Numele fișierului de încărcat: '''<tt>[[:$1]]</tt>'''
-* Numele fișierului existent: '''<tt>[[:$2]]</tt>'''
-Te rog alege alt nume.",
+[[$1|miniatură]]',
+'fileexists-extension' => 'Un fișier cu un nume similar există: [[$2|thumb]]
+* Numele fișierului de încărcat: <strong>[[:$1]]</strong>
+* Numele fișierului existent: <strong>[[:$2]]</strong>
+Te rog alege alt nume.',
 'fileexists-thumbnail-yes' => "Fișierul pare a fi o imagine cu o rezoluție scăzută ''(thumbnail)''. [[$1|thumb]]
-Verifică fișierul'''<tt>[[:$1]]</tt>'''.
+Verifică fișierul<strong>[[:$1]]</strong>.
 Dacă fișierul verificat este identic cu imaginea originală nu este necesară încărcarea altui thumbnail.",
-'file-thumbnail-no' => "Numele fișierului începe cu '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Numele fișierului începe cu <strong>$1</strong>.
 Se pare că este o imagine cu dimensiune redusă''(thumbnail)''.
 Dacă ai această imagine la rezoluție mare încarc-o pe aceasta, altfel schimbă numele fișierului.",
 'fileexists-forbidden' => 'Un fișier cu acest nume există deja și nu poate fi rescris.
@@ -2014,7 +2014,7 @@ Poate doriți să-i modificați descrierea pe [$2 pagina sa descriptivă] de aco
 # MIME search
 'mimesearch' => 'Căutare MIME',
 'mimesearch-summary' => 'This page enables the filtering of files for its MIME-type.
-Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.
+Input: contenttype/subtype, e.g. <code>image/jpeg</code>.
 
 
 Această pagină specială permite căutarea fișierelor în funcție de tipul MIME (Multipurpose Internet Mail Extensions). Cele mai des întâlnite sunt:
@@ -2226,7 +2226,7 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-ok' => 'Caută',
 'linksearch-text' => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
 Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
-Protocoale suportate: <tt>$1</tt> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
+Protocoale suportate: <code>$1</code> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
 'linksearch-line' => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 

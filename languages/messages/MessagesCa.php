@@ -15,6 +15,7 @@
  * @author Davidpar
  * @author El libre
  * @author Gemmaa
+ * @author Grondin
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
@@ -516,9 +517,9 @@ Vegeu la llista de pàgines especials a [[Special:SpecialPages]].',
 'dberrortext' => "S'ha produït un error de sintaxi en una consulta a la base de dades.
 Açò podria indicar un error en el programari.
 La darrera consulta que s'ha intentat fer ha estat:
-<blockquote><tt>$1</tt></blockquote>
-des de la funció «<tt>$2</tt>».
-L'error de retorn ha estat «<tt>$3: $4</tt>».",
+<blockquote><code>$1</code></blockquote>
+des de la funció «<code>$2</code>».
+L'error de retorn ha estat «<samp>$3: $4</samp>».",
 'dberrortextcl' => "S'ha produït un error de sintaxi en una consulta a la base de dades.
 La darrera consulta que s'ha intentat fer ha estat:
 <blockquote><tt>$1</tt></blockquote>
@@ -1576,9 +1577,9 @@ A continuació es mostren els registres de supressió i reanomenament d'aquesta 
 Per a visualitzar o cercar fitxers que s'hagen carregat prèviament, aneu a la [[Special:FileList|llista de fitxers carregats]]. Les càrregues es registren en el [[Special:Log/upload|registre de càrregues]] i els fitxers esborrats en el [[Special:Log/delete|registre d'esborrats]].
 
 Per a incloure una imatge en una pàgina, feu un enllaç en una de les formes següents:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitxer.jpg]]</nowiki></tt>''' per a usar la versió completa del fitxer;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitxer.png|200px|thumb|esquerra|text alternatiu]]</nowiki></tt>''' per una presentació de 200 píxels d'amplada en un requadre justificat a l'esquerra amb «text alternatiu» com a descripció;
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxer.ogg]]</nowiki></tt>''' per a enllaçar directament amb un fitxer de so.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitxer.jpg]]</nowiki></code>''' per a usar la versió completa del fitxer;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitxer.png|200px|thumb|esquerra|text alternatiu]]</nowiki></code>''' per una presentació de 200 píxels d'amplada en un requadre justificat a l'esquerra amb «text alternatiu» com a descripció;
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitxer.ogg]]</nowiki></code>''' per a enllaçar directament amb un fitxer de so.",
 'upload-permitted' => 'Tipus de fitxer permesos: $1.',
 'upload-preferred' => 'Tipus de fitxer preferits: $1.',
 'upload-prohibited' => 'Tipus de fitxer prohibits: $1.',
@@ -1622,18 +1623,18 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 Açò por ser degut a un mal caràcter en el nom del fitxer.
 Comproveu si realment voleu carregar aquest fitxer.',
 'windows-nonascii-filename' => 'Aquest wiki no permet noms de fitxer amb caràcters especials.',
-'fileexists' => "Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu '''<tt>[[:$1]]</tt>''' si no esteu segurs de voler substituir-lo.
+'fileexists' => 'Ja hi existeix un fitxer amb aquest nom, si us plau, verifiqueu <strong>[[:$1]]</strong> si no esteu segurs de voler substituir-lo.
+[[$1|thumb]]',
+'filepageexists' => "La pàgina de descripció d'aquest fitxer ja ha estat creada (<strong>[[:$1]]</strong>), però de moment no hi ha cap fitxer amb aquest nom. La descripció que heu posat no apareixerà a la pàgina de descripció. Si voleu que hi aparegui haureu d'editar-la manualment.
 [[$1|thumb]]",
-'filepageexists' => "La pàgina de descripció d'aquest fitxer ja ha estat creada ('''<tt>[[:$1]]</tt>'''), però de moment no hi ha cap fitxer amb aquest nom. La descripció que heu posat no apareixerà a la pàgina de descripció. Si voleu que hi aparegui haureu d'editar-la manualment.
-[[$1|thumb]]",
-'fileexists-extension' => "Ja existeix un fitxer amb un nom semblant: [[$2|thumb]]
-* Nom del fitxer que es puja: '''<tt>[[:$1]]</tt>'''
-* Nom del fitxer existent: '''<tt>[[:$2]]</tt>'''
-Si us plau, trieu un nom diferent.",
-'fileexists-thumbnail-yes' => "Aquest fitxer sembla ser una imatge en mida reduïda (<em>miniatura</em>). [[$1|thumb]]
-Comproveu si us plau el fitxer '''<tt>[[:$1]]</tt>'''.
-Si el fitxer és la mateixa imatge a mida original, no cal carregar cap miniatura més.",
-'file-thumbnail-no' => "El nom del fitxer comença per '''<tt>$1</tt>'''.
+'fileexists-extension' => 'Ja existeix un fitxer amb un nom semblant: [[$2|thumb]]
+* Nom del fitxer que es puja: <strong>[[:$1]]</strong>
+* Nom del fitxer existent: <strong>[[:$2]]</strong>
+Si us plau, trieu un nom diferent.',
+'fileexists-thumbnail-yes' => 'Aquest fitxer sembla ser una imatge en mida reduïda (<em>miniatura</em>). [[$1|thumb]]
+Comproveu si us plau el fitxer <strong>[[:$1]]</strong>.
+Si el fitxer és la mateixa imatge a mida original, no cal carregar cap miniatura més.',
+'file-thumbnail-no' => "El nom del fitxer comença per <strong>$1</strong>.
 Sembla ser una imatge de mida reduïda ''(miniatura)''.
 Si teniu la imatge en resolució completa, pugeu-la, sinó mireu de canviar-li el nom, si us plau.",
 'fileexists-forbidden' => 'Ja hi existeix un fitxer amb aquest nom i no es pot sobreescriure.
@@ -1873,7 +1874,7 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 
 # MIME search
 'mimesearch' => 'Cerca per MIME',
-'mimesearch-summary' => 'Aquesta pàgina habilita el filtratge de fitxers per llur tipus MIME. Contingut: contenttype/subtype, ex. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Aquesta pàgina habilita el filtratge de fitxers per llur tipus MIME. Contingut: contenttype/subtype, ex. <code>image/jpeg</code>.',
 'mimetype' => 'Tipus MIME:',
 'download' => 'baixada',
 
@@ -2073,7 +2074,7 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'linksearch-ok' => 'Cerca',
 'linksearch-text' => 'Podeu fer servir caràcters comodí com "*.wikipedia.org".
 Necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
-Protocols admesos: <tt> $1 </tt> (no els afegiu en la vostra recerca).',
+Protocols admesos: <code> $1 </code> (no els afegiu en la vostra recerca).',
 'linksearch-line' => '$1 enllaçat a $2',
 'linksearch-error' => "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
 
@@ -2762,6 +2763,7 @@ Totes les accions d'importació interwiki es conserven al [[Special:Log/import|r
 'import-interwiki-templates' => 'Inclou totes les plantilles',
 'import-interwiki-submit' => 'Importa',
 'import-interwiki-namespace' => 'Espai de noms de destinació:',
+'import-interwiki-rootpage' => 'Pàgina arrel de destí (opcional):',
 'import-upload-filename' => 'Nom de fitxer:',
 'import-comment' => 'Comentari:',
 'importtext' => "Exporteu el fitxer des del wiki d'origen utilitzant l'[[Special:Export|eina d'exportació]].
@@ -2794,6 +2796,9 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'import-error-interwiki' => "No s'importa la pàgina «$1» perquè el seu nom està reservat a l'enllaçament extern (interwiki).",
 'import-error-special' => "No s'importa la pàgina «$1» perquè el seu nom pertany a l'espai de noms especial que no permet pàgines.",
 'import-error-invalid' => "No s'importa la pàgina «$1» perquè el seu nom no és vàlid.",
+'import-options-wrong' => '{{PLURAL:$2|Opció equivocada|Opcions equivocades}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La pàgina arrel donada és un títol no vàlid.',
+'import-rootpage-nosubpage' => 'L\'espai de noms "$1" de la pàgina arrel no permet subpàgines.',
 
 # Import log
 'importlogpage' => "Registre d'importació",
@@ -3654,7 +3659,7 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 * <span class="mw-specialpagecached">Pàgines especials en memòria cau (poden ser obsoletes).</span>',
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other' => 'Altres pàgines especials',
-'specialpages-group-login' => 'Inici de sessió / Registre',
+'specialpages-group-login' => 'Iniciar sessió / Crear un compte',
 'specialpages-group-changes' => 'Canvis recents i registres',
 'specialpages-group-media' => 'Informes multimèdia i càrregues',
 'specialpages-group-users' => 'Usuaris i drets',

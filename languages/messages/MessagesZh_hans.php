@@ -1585,9 +1585,9 @@ $1",
 'uploadtext' => "请使用下面的表格上传文件。要查看或搜索以前上传的文件，可以进入[[Special:FileList|文件上传列表]]，（重新）上传也将在[[Special:Log/upload|上传日志]]中记录，而删除将在[[Special:Log/delete|删除日志]]中记录。
 
 要在页面中加入文件，请使用一种以下形式的链接：
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用文件的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></tt>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接链接到文件而不显示文件",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''使用文件的完整版本
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></code>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''直接链接到文件而不显示文件",
 'upload-permitted' => '允许的文件类型：$1。',
 'upload-preferred' => '建议的文件类型：$1。',
 'upload-prohibited' => '禁止的文件类型：$1。',
@@ -1630,19 +1630,19 @@ $1",
 'largefileserver' => '这个文件的大小比服务器配置允许的大小还要大。',
 'emptyfile' => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
 'windows-nonascii-filename' => '本wiki不支持在文件名中使用特殊字符。',
-'fileexists' => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>[[:$1]]</tt></strong>。 [[$1|thumb]]',
-'filepageexists' => '这个文件的描述页已经于<strong><tt>[[:$1]]</tt></strong>创建，但是这个名称的文件尚不存在。
+'fileexists' => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><strong>[[:$1]]</strong></strong>。 [[$1|thumb]]',
+'filepageexists' => '这个文件的描述页已经于<strong><strong>[[:$1]]</strong></strong>创建，但是这个名称的文件尚不存在。
 您输入的摘要不会显示在该描述页中。
 要令该摘要在该处中出现，您需要手动地编辑该页。
 [[$1|thumb]]',
-'fileexists-extension' => "一个相似名称的文件已经存在: [[$2|thumb]]
-* 上传文件的文件名：'''<tt>[[:$1]]</tt>'''
-* 现有文件的文件名：'''<tt>[[:$2]]</tt>'''
-请选择一个不同的名字。",
+'fileexists-extension' => '一个相似名称的文件已经存在: [[$2|thumb]]
+* 上传文件的文件名：<strong>[[:$1]]</strong>
+* 现有文件的文件名：<strong>[[:$2]]</strong>
+请选择一个不同的名字。',
 'fileexists-thumbnail-yes' => "此文件可能是另一幅图像的缩小版本''（缩略图）''。 [[$1|thumb]]
-请仔细检查该文件'''<tt>[[:$1]]</tt>'''。
+请仔细检查该文件<strong>[[:$1]]</strong>。
 如果被检查文件与原始大小的图像是同一幅图像，您无需上传多余的缩略图。",
-'file-thumbnail-no' => "文件名以'''<tt>$1</tt>'''开头。它可能是另一幅图像的缩小版本''（缩略图）''。
+'file-thumbnail-no' => "文件名以<strong>$1</strong>开头。它可能是另一幅图像的缩小版本''（缩略图）''。
 如果你有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",
 'fileexists-forbidden' => '已存在相同名称的文件，且不能覆盖；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件。
@@ -1881,7 +1881,7 @@ $1',
 
 # MIME search
 'mimesearch' => 'MIME搜索',
-'mimesearch-summary' => '本页面启用文件MIME类型过滤器。输入：内容类型/子类型，如 <tt>image/jpeg</tt>。',
+'mimesearch-summary' => '本页面启用文件MIME类型过滤器。输入：内容类型/子类型，如 <code>image/jpeg</code>。',
 'mimetype' => 'MIME 类型：',
 'download' => '下载',
 
@@ -2076,7 +2076,7 @@ $1',
 'linksearch-ns' => '名字空间：',
 'linksearch-ok' => '搜索',
 'linksearch-text' => '制作可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />
-支持的协议：<tt>$1</tt>（不要包含在搜索中）。',
+支持的协议：<code>$1</code>（不要包含在搜索中）。',
 'linksearch-line' => '$1 链自 $2',
 'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
@@ -2737,6 +2737,7 @@ $1被封禁的理由是：“$2”',
 'import-interwiki-templates' => '包含所有模板',
 'import-interwiki-submit' => '导入',
 'import-interwiki-namespace' => '目标名字空间：',
+'import-interwiki-rootpage' => '目的根页（可选）：',
 'import-upload-filename' => '文件名：',
 'import-comment' => '注释：',
 'importtext' => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
@@ -2769,6 +2770,7 @@ $1被封禁的理由是：“$2”',
 'import-error-interwiki' => '页面“$1”未能导入，因为它的名称需要使用外部跨wiki链接。',
 'import-error-special' => '页面“$1”未导入，因为它需要使用一个不能创建页面的特殊名字空间。',
 'import-error-invalid' => '页面“$1”未能导入，因为它的名字无效。',
+'import-options-wrong' => '{{PLURAL:$2|选项}}出错：<nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => '导入日志',
@@ -3093,7 +3095,7 @@ Variants for Chinese language
 'exif-compressedbitsperpixel' => '图像压缩模式',
 'exif-pixelydimension' => '图像宽度',
 'exif-pixelxdimension' => '图像高度',
-'exif-usercomment' => '用户注释',
+'exif-usercomment' => '用户评论',
 'exif-relatedsoundfile' => '相关声音文件',
 'exif-datetimeoriginal' => '数据生成日期时间',
 'exif-datetimedigitized' => '数字化日期时间',
@@ -3171,7 +3173,7 @@ Variants for Chinese language
 'exif-gpsdatestamp' => 'GPS日期',
 'exif-gpsdifferential' => 'GPS差动修正',
 'exif-jpegfilecomment' => 'JPEG 文件注释',
-'exif-keywords' => '关键字',
+'exif-keywords' => '关键词',
 'exif-worldregioncreated' => '照片中的世界区域',
 'exif-countrycreated' => '在拍摄图片的国家',
 'exif-countrycodecreated' => '在拍摄图片的国家代码',
@@ -3180,46 +3182,46 @@ Variants for Chinese language
 'exif-sublocationcreated' => '照片拍摄地点在城市中的位置',
 'exif-worldregiondest' => '世界区域显示',
 'exif-countrydest' => '所示的国家',
-'exif-countrycodedest' => '国家所示的代码',
+'exif-countrycodedest' => '国家代码',
 'exif-provinceorstatedest' => '省或状态显示',
 'exif-citydest' => '所示的城市',
 'exif-sublocationdest' => '显示城市中的详细地点',
 'exif-objectname' => '简称',
 'exif-specialinstructions' => '特别说明',
 'exif-headline' => '标题',
-'exif-credit' => '信用/供应商',
-'exif-source' => '源',
+'exif-credit' => '提供人',
+'exif-source' => '来源',
 'exif-editstatus' => '编辑状态的图像',
-'exif-urgency' => '紧迫性',
+'exif-urgency' => '紧急性',
 'exif-fixtureidentifier' => '夹具名称',
 'exif-locationdest' => '位置描述',
 'exif-locationdestcode' => '位置所示的代码',
-'exif-objectcycle' => '媒体应当使用的时间段',
+'exif-objectcycle' => '媒体文件使用时间要求',
 'exif-contact' => '联系信息',
-'exif-writer' => '作家',
+'exif-writer' => '作者',
 'exif-languagecode' => '语言',
 'exif-iimversion' => 'IIM 版本',
 'exif-iimcategory' => '类别',
 'exif-iimsupplementalcategory' => '补充的类别',
-'exif-datetimeexpires' => '不要使用后',
+'exif-datetimeexpires' => '使用截止日期',
 'exif-datetimereleased' => '发表',
 'exif-originaltransmissionref' => '传输位置的原代码',
 'exif-identifier' => '标识符',
 'exif-lens' => '使用的镜头',
-'exif-serialnumber' => '相机的序列号',
-'exif-cameraownername' => '相机的所有者',
+'exif-serialnumber' => '相机序列号',
+'exif-cameraownername' => '相机所有人',
 'exif-label' => '标签',
-'exif-datetimemetadata' => '上次修改日期的元数据',
+'exif-datetimemetadata' => '原始数据最后修改日期',
 'exif-nickname' => '非正式的图像的名称',
-'exif-rating' => '评分（满分为5）',
+'exif-rating' => '分级（最高为5）',
 'exif-rightscertificate' => '权利管理证书',
 'exif-copyrighted' => '著作权状况',
-'exif-copyrightowner' => '著作权所有者',
+'exif-copyrightowner' => '著作权所有人',
 'exif-usageterms' => '使用条款',
-'exif-webstatement' => '网上版权说明',
-'exif-originaldocumentid' => '原始文档的唯一 ID',
-'exif-licenseurl' => '版权许可的 URL',
-'exif-morepermissionsurl' => '替代的许可信息',
+'exif-webstatement' => '在线著作权声明',
+'exif-originaldocumentid' => '原始文件唯一ID',
+'exif-licenseurl' => '著作权授权协议的URL',
+'exif-morepermissionsurl' => '其他授权协议信息',
 'exif-attributionurl' => '二次使用本作品时，请链接至',
 'exif-preferredattributionname' => '二次使用本作品时，请署名',
 'exif-pngfilecomment' => 'PNG文件注释',
@@ -3232,8 +3234,8 @@ Variants for Chinese language
 'exif-event' => '事件描述',
 'exif-organisationinimage' => '组织描述',
 'exif-personinimage' => '描述的人',
-'exif-originalimageheight' => '之前它被裁剪图像的高度',
-'exif-originalimagewidth' => '之前它被裁剪图像的宽度',
+'exif-originalimageheight' => '裁剪前的图像高度',
+'exif-originalimagewidth' => '裁剪前的图像宽度',
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
@@ -3304,15 +3306,15 @@ Variants for Chinese language
 
 # Flash modes
 'exif-flash-fired-0' => '闪光灯未点亮',
-'exif-flash-fired-1' => '闪光灯开火',
+'exif-flash-fired-1' => '闪光灯开启',
 'exif-flash-return-0' => '无频闪观测器功能',
 'exif-flash-return-2' => '频闪观测器未侦测到光',
 'exif-flash-return-3' => '频闪观测器侦测到光',
-'exif-flash-mode-1' => '强制闪光灯开火',
-'exif-flash-mode-2' => '强制闪光抑制',
-'exif-flash-mode-3' => '自动方式',
+'exif-flash-mode-1' => '闪光灯强制开启',
+'exif-flash-mode-2' => '闪光灯强制关闭',
+'exif-flash-mode-3' => '自动模式',
 'exif-flash-function-1' => '无闪光灯功能',
-'exif-flash-redeye-1' => '红眼减退方式',
+'exif-flash-redeye-1' => '防红眼模式',
 
 'exif-focalplaneresolutionunit-2' => '英寸',
 
@@ -3400,9 +3402,9 @@ Variants for Chinese language
 'exif-gpsdop-fair' => '平等（$1）',
 'exif-gpsdop-poor' => '不好（$1）',
 
-'exif-objectcycle-a' => '只有上午',
-'exif-objectcycle-p' => '只有晚上',
-'exif-objectcycle-b' => '早上和晚上',
+'exif-objectcycle-a' => '仅上午（AM）',
+'exif-objectcycle-p' => '仅下午（PM）',
+'exif-objectcycle-b' => '上午（AM）下午（PM）皆可',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真实方位',
@@ -3422,7 +3424,7 @@ Variants for Chinese language
 
 'exif-rating-rejected' => '拒绝',
 
-'exif-isospeedratings-overflow' => '超过65535',
+'exif-isospeedratings-overflow' => '大于65535',
 
 'exif-iimcategory-ace' => '艺术、 文化和娱乐',
 'exif-iimcategory-clj' => '犯罪和法律',

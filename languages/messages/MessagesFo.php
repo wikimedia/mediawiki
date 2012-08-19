@@ -1385,9 +1385,9 @@ Strikingar og flytingar loggurin (søgan) fyri ta síðuna verður vístur her n
 Fyri at síggja ella leita eftir fílur sum longu eru lagdar út, kanst tú fara til [[Special:FileList|lista við upploadaðum fílum]], (endur)uploads eru eisini goymd í [[Special:Log/upload|upload logginum]], strikingar í [[Special:Log/delete|strikingarlogginum]].
 
 Fyri at taka eina fílu við á eina síðu, brúka so eina leinkju í ein av hesum formunum:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' fyri at brúka fulla versjón av fíluni
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' fyri at brúka eina 200 pixel breiða endurgeving í vinstra bredda við 'alt text' sum frágreiðing
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' fyri at leinkja beinleiðis til fíluna uttan at vísa fíluna",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' fyri at brúka fulla versjón av fíluni
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' fyri at brúka eina 200 pixel breiða endurgeving í vinstra bredda við 'alt text' sum frágreiðing
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' fyri at leinkja beinleiðis til fíluna uttan at vísa fíluna",
 'upload-permitted' => 'Loyvd fílu sløg: $1.',
 'upload-preferred' => 'Best umtóktu fílu sløg: $1.',
 'upload-prohibited' => 'Ikki loyvd fílu sløg: $1.',
