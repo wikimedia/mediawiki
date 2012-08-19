@@ -839,7 +839,7 @@ class ParserTest {
 		);
 
 		if ( $config ) {
-			$configLines = explode( "\n", $config );
+			$configLines = explode( "\n", trim( $config ) );
 
 			foreach ( $configLines as $line ) {
 				list( $var, $value ) = explode( '=', $line, 2 );
@@ -1439,6 +1439,22 @@ class ParserTest {
 	}
 
 	/**
+	 * Same as addArticle() but can't be called statically and allows for using a certain set
+	 * of globals during article creation.
+	 *
+	 * @param $name String: the title, including any prefix
+	 * @param $text String: the article text
+	 * @param $line Integer: the input line number, for reporting errors
+	 * @param $ignoreDuplicate Boolean: whether to silently ignore duplicate pages
+	 * @param $config String: overrides for global variables during article creation, one per line
+	 */
+	public function addArticleWithOptions( $name, $text, $line = 'unknown', $ignoreDuplicate = false, $config = '' ) {
+		$this->setupGlobals( '', $config );
+		self::addArticle( $name, $text, $line, $ignoreDuplicate );
+		$this->teardownGlobals();
+	}
+
+	/**
 	 * Insert a temporary test article
 	 * @param string $name The title, including any prefix
 	 * @param string $text The article text
@@ -1446,11 +1462,6 @@ class ParserTest {
 	 * @param bool $ignoreDuplicate Whether to silently ignore duplicate pages
 	 */
 	public static function addArticle( $name, $text, $line = 'unknown', $ignoreDuplicate = '' ) {
-		global $wgCapitalLinks;
-
-		$oldCapitalLinks = $wgCapitalLinks;
-		$wgCapitalLinks = true; // We only need this from SetupGlobals() See r70917#c8637
-
 		$text = self::chomp( $text );
 		$name = self::chomp( $name );
 
@@ -1472,8 +1483,6 @@ class ParserTest {
 		}
 
 		$page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
-
-		$wgCapitalLinks = $oldCapitalLinks;
 	}
 
 	/**

@@ -919,10 +919,17 @@ class NewParserTest extends MediaWikiTestCase {
 			return;
 		}
 
+		global $wgCapitalLinks;
+		$oldCapitalLinks = $wgCapitalLinks;
+		// moved here from ParserTest::addArticle() to allow for ParserTest::addArticleWithOptions(), see r71511
+		$wgCapitalLinks = true;
+
 		foreach ( self::$articles as $name => $info ) {
 			list( $text, $line ) = $info;
 			ParserTest::addArticle( $name, $text, $line, 'ignoreduplicate' );
 		}
+
+		$wgCapitalLinks = $oldCapitalLinks;
 	}
 
 	/**
