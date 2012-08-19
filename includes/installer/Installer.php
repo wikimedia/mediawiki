@@ -756,6 +756,11 @@ abstract class Installer {
 
 	/**
 	 * Environment check for the PCRE module.
+	 *
+	 * @note If this check were to fail, the parser would
+	 *   probably throw an exception before the result
+	 *   of this check is shown to the user.
+	 * @return bool
 	 */
 	protected function envCheckPCRE() {
 		if ( !function_exists( 'preg_match' ) ) {
@@ -764,8 +769,13 @@ abstract class Installer {
 		}
 		wfSuppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
+		// Need to check for \p support too, as PCRE can be compiled
+		// with utf8 support, but not unicode property support.
+		// check that \p{Zs} (space separators) matches
+		// U+3000 (Ideographic space)
+		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\xE3\x80\x80-" );
 		wfRestoreWarnings();
-		if ( $regexd != '--' ) {
+		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
 			return false;
 		}
