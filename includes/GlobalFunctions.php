@@ -1684,7 +1684,7 @@ function wfMsgExt( $key, $options ) {
  * looked up didn't exist but a XHTML string, this function checks for the
  * nonexistance of messages by checking the MessageCache::get() result directly.
  *
- * @deprecated since 1.18
+ * @deprecated since 1.18. Use Message::isDisabled().
  *
  * @param $key      String: the message key looked up
  * @return Boolean True if the message *doesn't* exist.

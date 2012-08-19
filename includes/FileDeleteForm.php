@@ -101,7 +101,8 @@ class FileDeleteForm {
 				$reason = $deleteReason;
 			} elseif ( $deleteReason != '' ) {
 				// Entry from drop down menu + additional comment
-				$reason = $deleteReasonList . wfMsgForContent( 'colon-separator' ) . $deleteReason;
+				$reason = $deleteReasonList . wfMessage( 'colon-separator' )
+					->inContentLanguage()->text() . $deleteReason;
 			} else {
 				$reason = $deleteReasonList;
 			}
@@ -156,9 +157,10 @@ class FileDeleteForm {
 			$status = $file->deleteOld( $oldimage, $reason, $suppress );
 			if( $status->ok ) {
 				// Need to do a log item
-				$logComment = wfMsgForContent( 'deletedrevision', $oldimage );
+				$logComment = wfMessage( 'deletedrevision', $oldimage )->inContentLanguage()->text();
 				if( trim( $reason ) != '' ) {
-					$logComment .= wfMsgForContent( 'colon-separator' ) . $reason;
+					$logComment .= wfMessage( 'colon-separator' )
+						->inContentLanguage()->text() . $reason;
 				}
 
 				$logtype = $suppress ? 'suppress' : 'delete';
@@ -214,7 +216,7 @@ class FileDeleteForm {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
-						Xml::checkLabel( wfMsg( 'revdelete-suppress' ),
+						Xml::checkLabel( wfMessage( 'revdelete-suppress' )->text(),
 							'wpSuppress', 'wpSuppress', false, array( 'tabindex' => '3' ) ) .
 					"</strong></td>
 				</tr>";
@@ -226,23 +228,28 @@ class FileDeleteForm {
 		$form = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getAction(),
 			'id' => 'mw-img-deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, wfMsg( 'filedelete-legend' ) ) .
+			Xml::element( 'legend', null, wfMessage( 'filedelete-legend' )->text() ) .
 			Html::hidden( 'wpEditToken', $wgUser->getEditToken( $this->oldimage ) ) .
 			$this->prepareMessage( 'filedelete-intro' ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-img-deleteconfirm-table' ) ) .
 			"<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'filedelete-comment' ), 'wpDeleteReasonList' ) .
+					Xml::label( wfMessage( 'filedelete-comment' )->text(), 'wpDeleteReasonList' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::listDropDown( 'wpDeleteReasonList',
-						wfMsgForContent( 'filedelete-reason-dropdown' ),
-						wfMsgForContent( 'filedelete-reason-otherlist' ), '', 'wpReasonDropDown', 1 ) .
+					Xml::listDropDown(
+						'wpDeleteReasonList',
+						wfMessage( 'filedelete-reason-dropdown' )->inContentLanguage()->text(),
+						wfMessage( 'filedelete-reason-otherlist' )->inContentLanguage()->text(),
+						'',
+						'wpReasonDropDown',
+						1
+					) .
 				"</td>
 			</tr>
 			<tr>
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'filedelete-otherreason' ), 'wpReason' ) .
+					Xml::label( wfMessage( 'filedelete-otherreason' )->text(), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
 					Xml::input( 'wpReason', 60, $wgRequest->getText( 'wpReason' ),
@@ -255,7 +262,7 @@ class FileDeleteForm {
 			<tr>
 				<td></td>
 				<td class='mw-input'>" .
-					Xml::checkLabel( wfMsg( 'watchthis' ),
+					Xml::checkLabel( wfMessage( 'watchthis' )->text(),
 						'wpWatch', 'wpWatch', $checkWatch, array( 'tabindex' => '3' ) ) .
 				"</td>
 			</tr>";
@@ -264,7 +271,7 @@ class FileDeleteForm {
 			<tr>
 				<td></td>
 				<td class='mw-submit'>" .
-					Xml::submitButton( wfMsg( 'filedelete-submit' ),
+					Xml::submitButton( wfMessage( 'filedelete-submit' )->text(),
 						array( 'name' => 'mw-filedelete-submit', 'id' => 'mw-filedelete-submit', 'tabindex' => '4' ) ) .
 				"</td>
 			</tr>" .
@@ -276,7 +283,7 @@ class FileDeleteForm {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Filedelete-reason-dropdown' );
 				$link = Linker::link(
 					$title,
-					wfMsgHtml( 'filedelete-edit-reasonlist' ),
+					wfMessage( 'filedelete-edit-reasonlist' )->escaped(),
 					array(),
 					array( 'action' => 'edit' )
 				);
@@ -307,19 +314,17 @@ class FileDeleteForm {
 	private function prepareMessage( $message ) {
 		global $wgLang;
 		if( $this->oldimage ) {
-			return wfMsgExt(
+			return wfMessage(
 				"{$message}-old", # To ensure grep will find them: 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
-				'parse',
 				wfEscapeWikiText( $this->title->getText() ),
 				$wgLang->date( $this->getTimestamp(), true ),
 				$wgLang->time( $this->getTimestamp(), true ),
-				wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ), PROTO_CURRENT ) );
+				wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ), PROTO_CURRENT ) )->parseAsBlock();
 		} else {
-			return wfMsgExt(
+			return wfMessage(
 				$message,
-				'parse',
 				wfEscapeWikiText( $this->title->getText() )
-			);
+			)->parseAsBlock();
 		}
 	}
 
