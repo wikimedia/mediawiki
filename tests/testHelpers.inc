@@ -426,7 +426,17 @@ class TestFileIterator implements Iterator {
 					$this->checkSection( 'text' );
 					$this->checkSection( 'article' );
 
-					$this->parserTest->addArticle( ParserTest::chomp( $this->sectionData['article'] ), $this->sectionData['text'], $this->lineNum );
+					if ( !isset( $this->sectionData['config'] ) ) {
+						$this->sectionData['config'] = '';
+					}
+
+					$this->parserTest->addArticleWithOptions(
+						ParserTest::chomp( $this->sectionData['article'] ),
+						$this->sectionData['text'],
+						$this->lineNum,
+						false,
+						$this->sectionData['config']
+					);
 
 					$this->clearSection();
 
