@@ -213,6 +213,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
   are now remembered between successive clicks.
 * (bug 26069) Page title is no longer "Error" for all error pages
+* (bug 39297) Show warning if thumbnail of animated image will not be animated.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

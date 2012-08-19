@@ -270,6 +270,19 @@ abstract class MediaHandler {
 	 */
 	function isVectorized( $file ) { return false; }
 	/**
+	 * The material is an image, and is animated.
+	 * In particular, video material need not return true.
+	 * @note Before 1.20, this was a method of ImageHandler only
+	 * @return bool
+	 */
+	function isAnimatedImage( $file ) { return false; }
+	/**
+	 * If the material is animated, we can animate the thumbnail
+	 * @since 1.20
+	 * @return bool If material is not animated, handler may return any value.
+	 */
+	function canAnimateThumbnail( $file ) { return true; }
+	/**
 	 * False if the handler is disabled for all files
 	 * @return bool
 	 */

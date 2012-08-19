@@ -64,6 +64,13 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
+	 * We do not support making animated svg thumbnails
+	 */
+	function canAnimateThumb( $file ) {
+		return false;
+	}
+
+	/**
 	 * @param $image File
 	 * @param  $params
 	 * @return bool

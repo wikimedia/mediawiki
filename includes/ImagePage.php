@@ -510,6 +510,25 @@ EOT
 				}
 			}
 
+			// Add cannot animate thumbnail warning
+			if ( !$this->displayImg->canAnimateThumbIfAppropriate() ) {
+				// Include the extension so wiki admins can
+				// customize it on a per file-type basis
+				// (aka say things like use format X instead).
+				// additionally have a specific message for
+				// file-no-thumb-animation-gif
+				$ext = $this->displayImg->getExtension();
+				$noAnimMesg = wfMessageFallback(
+					'file-no-thumb-animation-' . $ext,
+					'file-no-thumb-animation'
+				)->plain();
+
+				$out->addWikiText( <<<EOT
+<div class="mw-noanimatethumb">{$noAnimMesg}</div>
+EOT
+				);
+			}
+
 			if ( !$this->displayImg->isLocal() ) {
 				$this->printSharedImageText();
 			}

@@ -80,6 +80,14 @@ class PNGHandler extends BitmapHandler {
 		}
 		return false;
 	}
+	/**
+	 * We do not support making APNG thumbnails, so always false
+	 * @param $image File
+	 * @return bool false
+	 */
+	function canAnimateThumbnail( $image ) {
+		return false;
+	}
 	
 	function getMetadataType( $image ) {
 		return 'parsed-png';

@@ -3559,6 +3559,8 @@ Parameters:
 The variable $1 is the number of individual frames in an animated gif file.
 
 For example of message in use see [[:File:Mouse10.gif]].',
+'file-no-thumb-animation' => 'We cannot animate thumbnails of this file. This notice is shown on the image description page on animated svg files just below {{msg-mw|file-info-size}}. This message may be overridden by a more specific message of the form file-no-thumb-animation-&lt;extension&gt; like {{msg-mw|file-no-thumb-animation-gif}}',
+'file-no-thumb-animation-gif' => 'Cannot animate thumbnails of this gif file, because it has to big a resolution. The cut off resolution can vary between wikis ([[mw:manual:$wgMaxAnimatedGifArea|$wgMaxAnimatedGifArea]]). Note that resolution is calculated as width times height times number of frames. See {{msg-mw|file-no-thumb-animation}}.',
 
 # Special:NewFiles
 'newimages' => 'Page title of [[Special:NewImages]].',
