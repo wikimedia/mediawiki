@@ -39,8 +39,7 @@ class SpecialPreferences extends SpecialPage {
 
 		$user = $this->getUser();
 		if ( $user->isAnon() ) {
-			$out->showErrorPage( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
-			return;
+			throw new ErrorPageError( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
 		}
 		$this->checkReadOnly();
 
