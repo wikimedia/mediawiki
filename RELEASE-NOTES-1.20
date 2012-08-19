@@ -127,6 +127,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Allow importing pages as subpage.
 * Add lang and hreflang attributes to language links on Login page.
 * (bug 22749) Create Special:MostInterwikis.
+* SVG files will now show the actual width in the SVG's specified units
+  in the metadata box.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.

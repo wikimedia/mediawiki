@@ -89,7 +89,9 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 				array(
 					'height' => 593,
 					'metadata' => $metadata,
-					'width' => 959
+					'width' => 959,
+					'originalWidth' => '958.69',
+					'originalHeight' => '592.78998',
 				)
 			),
 		);
