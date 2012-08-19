@@ -103,7 +103,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$form = $this->getRawForm();
 				if( $form->show() ){
 					$out->addHTML( $this->successMessage );
-					$out->returnToMain();
+					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
 				}
 				break;
 
@@ -113,7 +113,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$form = $this->getNormalForm();
 				if( $form->show() ){
 					$out->addHTML( $this->successMessage );
-					$out->returnToMain();
+					$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
 				} elseif ( $this->toc !== false ) {
 					$out->prependHTML( $this->toc );
 				}
