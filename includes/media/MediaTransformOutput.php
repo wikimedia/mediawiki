@@ -359,6 +359,6 @@ class TransformParameterError extends MediaTransformError {
 		parent::__construct( 'thumbnail_error',
 			max( isset( $params['width']  ) ? $params['width']  : 0, 120 ),
 			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
-			wfMsg( 'thumbnail_invalid_params' ) );
+			wfMessage( 'thumbnail_invalid_params' )->text() );
 	}
 }

@@ -747,7 +747,7 @@ class CoreParserFunctions {
 			$title = SpecialPage::getTitleFor( $page, $subpage );
 			return $title->getPrefixedText();
 		} else {
-			return wfMsgForContent( 'nosuchspecialpage' );
+			return wfMessage( 'nosuchspecialpage' )->inContentLanguage()->text();
 		}
 	}
 
@@ -782,9 +782,7 @@ class CoreParserFunctions {
 			return '';
 		} else {
 			return( '<span class="error">' .
-				wfMsgForContent( 'duplicate-defaultsort',
-						 htmlspecialchars( $old ),
-						 htmlspecialchars( $text ) ) .
+				wfMessage( 'duplicate-defaultsort', $old, $text )->inContentLanguage()->escaped() .
 				'</span>' );
 		}
 	}
@@ -844,7 +842,7 @@ class CoreParserFunctions {
 		$stripList = $parser->getStripList();
 		if ( !in_array( $tagName, $stripList ) ) {
 			return '<span class="error">' .
-				wfMsgForContent( 'unknown_extension_tag', $tagName ) .
+				wfMessage( 'unknown_extension_tag', $tagName )->inContentLanguage()->text() .
 				'</span>';
 		}
 

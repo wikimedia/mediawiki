@@ -3032,10 +3032,7 @@ class Language {
 	 */
 	function commaList( array $list ) {
 		return implode(
-			wfMsgExt(
-				'comma-separator',
-				array( 'parsemag', 'escapenoentities', 'language' => $this )
-			),
+			wfMessage( 'comma-separator' )->inLanguage( $this )->escaped(),
 			$list
 		);
 	}
@@ -3048,10 +3045,7 @@ class Language {
 	 */
 	function semicolonList( array $list ) {
 		return implode(
-			wfMsgExt(
-				'semicolon-separator',
-				array( 'parsemag', 'escapenoentities', 'language' => $this )
-			),
+			wfMessage( 'semicolon-separator' )->inLanguage( $this )->escaped(),
 			$list
 		);
 	}
@@ -3063,10 +3057,7 @@ class Language {
 	 */
 	function pipeList( array $list ) {
 		return implode(
-			wfMsgExt(
-				'pipe-separator',
-				array( 'escapenoentities', 'language' => $this )
-			),
+			wfMessage( 'pipe-separator' )->inLanguage( $this )->escaped(),
 			$list
 		);
 	}
@@ -3091,7 +3082,7 @@ class Language {
 	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
+			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
 		}
 		# Check if there is no need to truncate
 		if ( $length == 0 ) {
@@ -3189,7 +3180,7 @@ class Language {
 	function truncateHtml( $text, $length, $ellipsis = '...' ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
+			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
 		}
 		# Check if there is clearly no need to truncate
 		if ( $length <= 0 ) {
@@ -4116,7 +4107,7 @@ class Language {
 		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) .
 			$this->getDirMark();
 		$details = $details ? $dirmark . $this->getMessageFromDB( 'word-separator' ) .
-			wfMsgExt( 'parentheses', array( 'escape', 'replaceafter', 'language' => $this ), $details ) : '';
+			wfMessage( 'parentheses' )->rawParams( $details )->inLanguage( $this )->escaped() : '';
 		return $page . $details;
 	}
 
