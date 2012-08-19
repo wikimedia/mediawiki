@@ -275,7 +275,15 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function isMetadataValid( $image, $metadata ) {
-		return $this->unpackMetadata( $metadata ) !== false;
+		$meta = $this->unpackMetadata( $metadata );
+		if ( $meta === false ) {
+			return self::METADATA_BAD;
+		}
+		if ( !isset( $meta['originalWidth'] ) ) {
+			// Old but compatible
+			return self::METADATA_COMPATIBLE;
+		}
+		return self::METADATA_GOOD;
 	}
 
 	function visibleMetadataFields() {
@@ -312,8 +320,8 @@ class SvgHandler extends ImageHandler {
 		// Rename fields to be compatible with exif, so that
 		// the labels for these fields work and reuse existing messages.
 		$conversion = array(
-			'width' => 'imagewidth',
-			'height' => 'imagelength',
+			'originalwidth' => 'imagewidth',
+			'originalheight' => 'imagelength',
 			'description' => 'imagedescription',
 			'title' => 'objectname',
 		);
