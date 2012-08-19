@@ -94,10 +94,47 @@ class ImagePage extends Article {
 	/**
 	 * Handler for action=render
 	 * Include body text only; none of the image extras
+	 * However, also include the shared description text
+	 * so that cascading ForeignAPIRepo's work.
+	 *
+	 * @note This uses a div with the class "mw-shared-image-desc"
+	 *    as opposed to the id "mw-shared-image-desc" since the text
+	 *    from here may be cascasively transcluded to other shared
+	 *    repos, and we want all ids to be unique. On normal
+	 *    view, the outermost shared description will still have
+	 *    the id.
+	 *
+	 * This also differs from normal view in that "shareddescriptionfollows"
+	 * message is not shown. I was not sure if it was appropriate to
+	 * add that message here. 
 	 */
 	public function render() {
-		$this->getContext()->getOutput()->setArticleBodyOnly( true );
-		parent::view();
+		$out = $this->getContext()->getOutput();
+                $this->loadFile();
+
+                $descText = $this->mPage->getFile()->getDescriptionText();
+
+		$out->setArticleBodyOnly( true );
+
+		if ( !$descText ) {
+			// If no description text, just do standard action=render
+			parent::view();
+		} else {
+			if ( $this->mPage->getID() !== 0 ) {
+				// Local description exists. We need to output both
+				parent::view();
+				$out->addHTML( '<div class="mw-shared-image-desc">' . $descText . "</div>\n" );
+			} else {
+				// We don't want to output both a "noarticletext" message and the shared
+				// description, so don't call parent::view().
+				$out->addHTML( '<div class="mw-shared-image-desc">' . $descText . "</div>\n" );
+				// Since we did not call parent::view(), have to call some methods it
+				// normally takes care of. (Not that it matters much since skin not displayed)
+				$out->setArticleFlag( true );
+				$out->setPageTitle( $this->getTitle()->getPrefixedText() );
+				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
+			}
+		}
 	}
 
 	public function view() {
@@ -172,7 +209,7 @@ class ImagePage extends Article {
 			if ( !$fol->isDisabled() ) {
 				$out->addWikiText( $fol->plain() );
 			}
-			$out->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
+			$out->addHTML( '<div id="shared-image-desc" class="mw-shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
 		}
 
 		$this->closeShowImage();
