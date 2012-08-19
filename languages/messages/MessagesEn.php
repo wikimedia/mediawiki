@@ -635,17 +635,17 @@ XHTML id names.
 'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles (requires JavaScript)',
 'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
-'tog-watchcreations'          => 'Add pages I create to my watchlist',
-'tog-watchdefault'            => 'Add pages I edit to my watchlist',
-'tog-watchmoves'              => 'Add pages I move to my watchlist',
-'tog-watchdeletion'           => 'Add pages I delete to my watchlist',
+'tog-watchcreations'          => 'Add pages I create and files I upload to my watchlist',
+'tog-watchdefault'            => 'Add pages and files I edit to my watchlist',
+'tog-watchmoves'              => 'Add pages and files I move to my watchlist',
+'tog-watchdeletion'           => 'Add pages and files I delete to my watchlist',
 'tog-minordefault'            => 'Mark all edits minor by default',
 'tog-previewontop'            => 'Show preview before edit box',
 'tog-previewonfirst'          => 'Show preview on first edit',
 'tog-nocache'                 => 'Disable browser page caching',
-'tog-enotifwatchlistpages'    => 'E-mail me when a page on my watchlist is changed',
+'tog-enotifwatchlistpages'    => 'E-mail me when a page or file on my watchlist is changed',
 'tog-enotifusertalkpages'     => 'E-mail me when my user talk page is changed',
-'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages',
+'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages and files',
 'tog-enotifrevealaddr'        => 'Reveal my e-mail address in notification e-mails',
 'tog-shownumberswatching'     => 'Show the number of watching users',
 'tog-oldsig'                  => 'Existing signature:',
@@ -958,9 +958,9 @@ A list of valid special pages can be found at [[Special:SpecialPages|{{int:speci
 'dberrortext'          => 'A database query syntax error has occurred.
 This may indicate a bug in the software.
 The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function "<tt>$2</tt>".
-Database returned error "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+from within function "<code>$2</code>".
+Database returned error "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'A database query syntax error has occurred.
 The last attempted database query was:
 "$1"
@@ -2098,9 +2098,9 @@ The deletion and move log for this page are provided here for convenience:",
 To view or search previously uploaded files go to the [[Special:FileList|list of uploaded files]], (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' to use the full version of the file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
 'upload-permitted'            => 'Permitted file types: $1.',
 'upload-preferred'            => 'Preferred file types: $1.',
 'upload-prohibited'           => 'Prohibited file types: $1.',
@@ -2139,7 +2139,7 @@ Permitted {{PLURAL:$3|file type is|file types are}} $2.',
 'hookaborted'                 => 'The modification you tried to make was aborted by an extension.',
 'illegal-filename'            => 'The filename is not allowed.',
 'overwrite'                   => 'Overwriting an existing file is not allowed.',
-'unknown-error'               => 'An unknown error occured.',
+'unknown-error'               => 'An unknown error occurred.',
 'tmp-create-error'            => 'Could not create temporary file.',
 'tmp-write-error'             => 'Error writing temporary file.',
 'large-file'                  => 'It is recommended that files are no larger than $1;
@@ -2149,21 +2149,21 @@ this file is $2.',
 This might be due to a typo in the filename.
 Please check whether you really want to upload this file.',
 'windows-nonascii-filename'   => 'This wiki does not support filenames with special characters.',
-'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it.
+'fileexists'                  => "A file with this name exists already, please check <strong>[[:$1]]</strong> if you are not sure if you want to change it.
 [[$1|thumb]]",
-'filepageexists'              => "The description page for this file has already been created at '''<tt>[[:$1]]</tt>''', but no file with this name currently exists.
+'filepageexists'              => "The description page for this file has already been created at <strong>[[:$1]]</strong>, but no file with this name currently exists.
 The summary you enter will not appear on the description page.
 To make your summary appear there, you will need to manually edit it.
 [[$1|thumb]]",
 'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
-* Name of the uploading file: '''<tt>[[:$1]]</tt>'''
-* Name of the existing file: '''<tt>[[:$2]]</tt>'''
+* Name of the uploading file: <strong>[[:$1]]</strong>
+* Name of the existing file: <strong>[[:$2]]</strong>
 Please choose a different name.",
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 [[$1|thumb]]
-Please check the file '''<tt>[[:$1]]</tt>'''.
+Please check the file <strong>[[:$1]]</strong>.
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
-'file-thumbnail-no'           => "The filename begins with '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "The filename begins with <strong>$1</strong>.
 It seems to be an image of reduced size ''(thumbnail)''.
 If you have this image in full resolution upload this one, otherwise change the filename please.",
 'fileexists-forbidden'        => 'A file with this name already exists, and cannot be overwritten.
@@ -2237,31 +2237,31 @@ Please verify that the URL is valid and accessible and try again.
 If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects' => 'The URL contained too many redirects',
 'upload-unknown-size'       => 'Unknown size',
-'upload-http-error'         => 'An HTTP error occured: $1',
+'upload-http-error'         => 'An HTTP error occurred: $1',
 
 # File backend
-'backend-fail-stream'        => 'Could not stream file $1.',
-'backend-fail-backup'        => 'Could not backup file $1.',
+'backend-fail-stream'        => 'Could not stream file "$1".',
+'backend-fail-backup'        => 'Could not backup file "$1".',
 'backend-fail-notexists'     => 'The file $1 does not exist.',
 'backend-fail-hashes'        => 'Could not get file hashes for comparison.',
-'backend-fail-notsame'       => 'A non-identical file already exists at $1.',
-'backend-fail-invalidpath'   => '$1 is not a valid storage path.',
-'backend-fail-delete'        => 'Could not delete file $1.',
-'backend-fail-alreadyexists' => 'The file $1 already exists.',
-'backend-fail-store'         => 'Could not store file $1 at $2.',
-'backend-fail-copy'          => 'Could not copy file $1 to $2.',
-'backend-fail-move'          => 'Could not move file $1 to $2.',
+'backend-fail-notsame'       => 'A non-identical file already exists at "$1".',
+'backend-fail-invalidpath'   => '"$1" is not a valid storage path.',
+'backend-fail-delete'        => 'Could not delete file "$1".',
+'backend-fail-alreadyexists' => 'The file "$1" already exists.',
+'backend-fail-store'         => 'Could not store file "$1" at "$2".',
+'backend-fail-copy'          => 'Could not copy file "$1" to "$2".',
+'backend-fail-move'          => 'Could not move file "$1" to "$2".',
 'backend-fail-opentemp'      => 'Could not open temporary file.',
 'backend-fail-writetemp'     => 'Could not write to temporary file.',
 'backend-fail-closetemp'     => 'Could not close temporary file.',
-'backend-fail-read'          => 'Could not read file $1.',
-'backend-fail-create'        => 'Could not write file $1.',
+'backend-fail-read'          => 'Could not read file "$1".',
+'backend-fail-create'        => 'Could not write file "$1".',
 'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given is: "\'\'$2\'\'"',
 'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal storage backends',
 'backend-fail-connect'       => 'Could not connect to storage backend "$1".',
 'backend-fail-internal'      => 'An unknown error occurred in storage backend "$1".',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
-'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
+'backend-fail-batchsize'     => 'The storage backend was given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
 
 # Lock manager
 'lockmanager-notlocked'        => 'Could not unlock "$1"; it is not locked.',
@@ -2425,7 +2425,7 @@ The description on its [$2 file description page] there is shown below.',
 # MIME search
 'mimesearch'         => 'MIME search',
 'mimesearch-summary' => 'This page enables the filtering of files for their MIME type.
-Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
+Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'mimetype'           => 'MIME type:',
 'download'           => 'download',
 
@@ -2479,8 +2479,8 @@ Remember to check for other links to the templates before deleting them.',
 'disambiguations'         => 'Pages linking to disambiguation pages',
 'disambiguations-summary' => '', # do not translate or duplicate this message to other languages
 'disambiguationspage'     => 'Template:disambig',
-'disambiguations-text'    => "The following pages link to a '''disambiguation page'''.
-They should link to the appropriate topic instead.<br />
+'disambiguations-text'    => "The following pages contain at least one link to a '''disambiguation page'''.
+They may have to link to a more appropriate page instead.<br />
 A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Double redirects',
@@ -2664,7 +2664,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-ok'    => 'Search',
 'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
-Supported protocols: <tt>$1</tt> (do not add any of these in your search).',
+Supported protocols: <code>$1</code> (do not add any of these in your search).',
 'linksearch-line'  => '$1 is linked from $2',
 'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
 
@@ -2698,8 +2698,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-rights'               => 'Rights',
 'listgrouprights-helppage'             => 'Help:Group rights',
 'listgrouprights-members'              => '(list of members)',
-'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>', # only translate this message to other languages if you have to change it
-'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>', # only translate this message to other languages if you have to change it
 'listgrouprights-addgroup'             => 'Add {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-removegroup'          => 'Remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'         => 'Add all groups',
@@ -4566,7 +4566,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-svn-revision'          => '(r$2)', # only translate this message to other languages if you have to change it
 'version-license'               => 'License',
 'version-poweredby-credits'     => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others'      => 'others',
+'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS others]',
 'version-license-info'          => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -4602,7 +4602,7 @@ Images are shown in full resolution, other file types are started with their ass
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
-'specialpages-group-login'       => 'Login / sign up',
+'specialpages-group-login'       => 'Login / create account',
 'specialpages-group-changes'     => 'Recent changes and logs',
 'specialpages-group-media'       => 'Media reports and uploads',
 'specialpages-group-users'       => 'Users and rights',
