@@ -131,6 +131,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
 * (bug 39431) SVG animated status is now shown in long description
 * (bug 39376) jquery.form upgraded to 3.14
+* SVG files will now show the actual width in the SVG's specified units
+  in the metadata box.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
