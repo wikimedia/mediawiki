@@ -836,11 +836,12 @@ class EditPage {
 							# If we just undid one rev, use an autosummary
 							$firstrev = $oldrev->getNext();
 							if ( $firstrev && $firstrev->getId() == $undo ) {
-								$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+								$undoSummary = wfMessage( 'undo-summary', $undo, $undorev->getUserText() )->inContentLanguage()->text();
 								if ( $this->summary === '' ) {
 									$this->summary = $undoSummary;
 								} else {
-									$this->summary = $undoSummary . wfMsgForContent( 'colon-separator' ) . $this->summary;
+									$this->summary = $undoSummary . wfMessage( 'colon-separator' )
+										->inContentLanguage()->text() . $this->summary;
 								}
 								$this->undidRev = $undo;
 							}
@@ -855,7 +856,7 @@ class EditPage {
 
 					$class = ( $undoMsg == 'success' ? '' : 'error ' ) . "mw-undo-{$undoMsg}";
 					$this->editFormPageTop .= $wgOut->parse( "<div class=\"{$class}\">" .
-						wfMsgNoTrans( 'undo-' . $undoMsg ) . '</div>', true, /* interface */true );
+						wfMessage( 'undo-' . $undoMsg )->plain() . '</div>', true, /* interface */true );
 				}
 
 				if ( $text === false ) {
@@ -1243,7 +1244,8 @@ class EditPage {
 			if ( $this->section == 'new' ) {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
-					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->sectiontitle ) . "\n\n" . $text;
+					$text = wfMessage( 'newsectionheaderdefaultlevel', $this->sectiontitle )
+						->inContentLanguage()->text() . "\n\n" . $text;
 
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
@@ -1253,18 +1255,21 @@ class EditPage {
 					// passed.
 					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
+						$this->summary = wfMessage( 'newsectionsummary', $cleanSectionTitle )
+							->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
-					$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
+					$text = wfMessage( 'newsectionheaderdefaultlevel', $this->summary )
+						->inContentLanguage()->text() . "\n\n" . $text;
 
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 
 					// Create a link to the new section from the edit summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
+					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
+						->inContentLanguage()->text();
 				}
 			}
 
@@ -1394,14 +1399,16 @@ class EditPage {
 					// passed.
 					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSectionTitle );
+						$this->summary = wfMessage( 'newsectionsummary', $cleanSectionTitle )
+							->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 					# This is a new section, so create a link to the new section
 					# in the revision summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
+					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
+						->inContentLanguage()->text();
 				}
 			} elseif ( $this->section != '' ) {
 				# Try to get a section anchor from the section source, redirect to edited section if header found
@@ -1813,8 +1820,8 @@ class EditPage {
 				: 'confirmrecreate';
 			$wgOut->addHTML(
 				'<div class="mw-confirm-recreate">' .
-				wfMsgExt( $key, 'parseinline', $username, "<nowiki>$comment</nowiki>" ) .
-				Xml::checkLabel( wfMsg( 'recreate' ), 'wpRecreate', 'wpRecreate', false,
+					wfMessage( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
+				Xml::checkLabel( wfMessage( 'recreate' )->text(), 'wpRecreate', 'wpRecreate', false,
 					array( 'title' => Linker::titleAttrib( 'recreate' ), 'tabindex' => 1, 'id' => 'wpRecreate' )
 				) .
 				'</div>'
@@ -2158,7 +2165,7 @@ class EditPage {
 			}
 		}
 		$summary = $wgContLang->recodeForEdit( $summary );
-		$labelText = wfMsgExt( $isSubjectPreview ? 'subject' : 'summary', 'parseinline' );
+		$labelText = wfMessage( $isSubjectPreview ? 'subject' : 'summary' )->parse();
 		list( $label, $input ) = $this->getSummaryInput( $summary, $labelText, array( 'class' => $summaryClass ), array() );
 		$wgOut->addHTML( "{$label} {$input}" );
 	}
@@ -2177,11 +2184,12 @@ class EditPage {
 		global $wgParser;
 
 		if ( $isSubjectPreview )
-			$summary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $summary ) );
+			$summary = wfMessage( 'newsectionsummary', $wgParser->stripSectionName( $summary ) )
+				->inContentLanguage()->text();
 
 		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
 
-		$summary = wfMsgExt( $message, 'parseinline' ) . Linker::commentBlock( $summary, $this->mTitle, $isSubjectPreview );
+		$summary = wfMessage( $message )->parse() . Linker::commentBlock( $summary, $this->mTitle, $isSubjectPreview );
 		return Xml::tags( 'div', array( 'class' => 'mw-summary-preview' ), $summary );
 	}
 
@@ -2377,8 +2385,8 @@ HTML
 		$newtext = $wgParser->preSaveTransform( $newtext, $this->mTitle, $wgUser, $popts );
 
 		if ( $oldtext !== false  || $newtext != '' ) {
-			$oldtitle = wfMsgExt( $oldtitlemsg, array( 'parseinline' ) );
-			$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
+			$oldtitle = wfMessage( $oldtitlemsg )->parse();
+			$newtitle = wfMessage( 'yourtext' )->parse();
 
 			$de = new DifferenceEngine( $this->mArticle->getContext() );
 			$de->setText( $oldtext, $newtext );
@@ -2430,11 +2438,11 @@ HTML
 		global $wgRightsText;
 		if ( $wgRightsText ) {
 			$copywarnMsg = array( 'copyrightwarning',
-				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]',
+				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]',
 				$wgRightsText );
 		} else {
 			$copywarnMsg = array( 'copyrightwarning2',
-				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]' );
+				'[[' . wfMessage( 'copyrightpage' )->inContentLanguage()->text() . ']]' );
 		}
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
@@ -2460,12 +2468,12 @@ HTML
 
 		$cancel = $this->getCancelLink();
 		if ( $cancel !== '' ) {
-			$cancel .= wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+			$cancel .= wfMessage( 'pipe-separator' )->text();
 		}
-		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ) );
+		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMessage( 'edithelppage' )->inContentLanguage()->text() );
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
-			htmlspecialchars( wfMsg( 'edithelp' ) ) . '</a> ' .
-			htmlspecialchars( wfMsg( 'newwindow' ) );
+			wfMessage( 'edithelp' )->escaped() . '</a> ' .
+			wfMessage( 'newwindow' )->escaped();
 		$wgOut->addHTML( "	<span class='editHelp'>{$cancel}{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
 	}
@@ -2482,7 +2490,10 @@ HTML
 
 			$de = new DifferenceEngine( $this->mArticle->getContext() );
 			$de->setText( $this->textbox2, $this->textbox1 );
-			$de->showDiff( wfMsgExt( 'yourtext', 'parseinline' ), wfMsg( 'storedversion' ) );
+			$de->showDiff(
+				wfMessage( 'yourtext' )->parse(),
+				wfMessage( 'storedversion' )->text()
+			);
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 			$this->showTextbox2();
@@ -2500,7 +2511,7 @@ HTML
 
 		return Linker::linkKnown(
 			$this->getContextTitle(),
-			wfMsgExt( 'cancel', array( 'parseinline' ) ),
+			wfMessage( 'cancel' )->parse(),
 			array( 'id' => 'mw-editform-cancel' ),
 			$cancelParams
 		);
@@ -2570,9 +2581,9 @@ HTML
 		// Quick paranoid permission checks...
 		if ( is_object( $data ) ) {
 			if ( $data->log_deleted & LogPage::DELETED_USER )
-				$data->user_name = wfMsgHtml( 'rev-deleted-user' );
+				$data->user_name = wfMessage( 'rev-deleted-user' )->escaped();
 			if ( $data->log_deleted & LogPage::DELETED_COMMENT )
-				$data->log_comment = wfMsgHtml( 'rev-deleted-comment' );
+				$data->log_comment = wfMessage( 'rev-deleted-comment' )->escaped();
 		}
 		return $data;
 	}
@@ -2595,7 +2606,7 @@ HTML
 				// string, which happens when you initially edit
 				// a category page, due to automatic preview-on-open.
 				$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
-					wfMsg( 'session_fail_preview_html' ) . "</div>", true, /* interface */true );
+					wfMessage( 'session_fail_preview_html' )->text() . "</div>", true, /* interface */true );
 			}
 			wfProfileOut( __METHOD__ );
 			return $parsedNote;
@@ -2603,15 +2614,15 @@ HTML
 
 		if ( $this->mTriedSave && !$this->mTokenOk ) {
 			if ( $this->mTokenOkExceptSuffix ) {
-				$note = wfMsg( 'token_suffix_mismatch' );
+				$note = wfMessage( 'token_suffix_mismatch' )->text();
 			} else {
-				$note = wfMsg( 'session_fail_preview' );
+				$note = wfMessage( 'session_fail_preview' )->text();
 			}
 		} elseif ( $this->incompleteForm ) {
-			$note = wfMsg( 'edit_form_incomplete' );
+			$note = wfMessage( 'edit_form_incomplete' )->text();
 		} else {
-			$note = wfMsg( 'previewnote' ) .
-				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMsg( 'continue-editing' ) . ']]';
+			$note = wfMessage( 'previewnote' ) .
+				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
 		}
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
@@ -2635,10 +2646,10 @@ HTML
 			$class = 'mw-code';
 			if ( $level ) {
 				if ( preg_match( "/\\.css$/", $this->mTitle->getText() ) ) {
-					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMsg( "{$level}csspreview" ) . "\n</div>";
+					$previewtext = "<div id='mw-{$level}csspreview'>\n" . wfMessage( "{$level}csspreview" )->text() . "\n</div>";
 					$class .= " mw-css";
 				} elseif ( preg_match( "/\\.js$/", $this->mTitle->getText() ) ) {
-					$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMsg( "{$level}jspreview" ) . "\n</div>";
+					$previewtext = "<div id='mw-{$level}jspreview'>\n" . wfMessage( "{$level}jspreview" )->text() . "\n</div>";
 					$class .= " mw-js";
 				} else {
 					throw new MWException( 'A CSS/JS (sub)page but which is not css nor js!' );
@@ -2656,7 +2667,7 @@ HTML
 			# If we're adding a comment, we need to show the
 			# summary as the headline
 			if ( $this->section == "new" && $this->summary != "" ) {
-				$toparse = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $toparse;
+				$toparse = wfMessage( 'newsectionheaderdefaultlevel', $this->summary )->inContentLanguage()->text() . "\n\n" . $toparse;
 			}
 
 			wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
@@ -2682,13 +2693,13 @@ HTML
 		}
 
 		if ( $this->isConflict ) {
-			$conflict = '<h2 id="mw-previewconflict">' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
+			$conflict = '<h2 id="mw-previewconflict">' . wfMessage( 'previewconflict' )->escaped() . "</h2>\n";
 		} else {
 			$conflict = '<hr />';
 		}
 
 		$previewhead = "<div class='previewnote'>\n" .
-			'<h2 id="mw-previewheader">' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>" .
+			'<h2 id="mw-previewheader">' . wfMessage( 'preview' )->escaped() . "</h2>" .
 			$wgOut->parse( $note, true, /* interface */true ) . $conflict . "</div>\n";
 
 		$pageLang = $this->mTitle->getPageLanguage();
@@ -2752,8 +2763,8 @@ HTML
 				'id'     => 'mw-editbutton-bold',
 				'open'   => '\'\'\'',
 				'close'  => '\'\'\'',
-				'sample' => wfMsg( 'bold_sample' ),
-				'tip'    => wfMsg( 'bold_tip' ),
+				'sample' => wfMessage( 'bold_sample' )->text(),
+				'tip'    => wfMessage( 'bold_tip' )->text(),
 				'key'    => 'B'
 			),
 			array(
@@ -2761,8 +2772,8 @@ HTML
 				'id'     => 'mw-editbutton-italic',
 				'open'   => '\'\'',
 				'close'  => '\'\'',
-				'sample' => wfMsg( 'italic_sample' ),
-				'tip'    => wfMsg( 'italic_tip' ),
+				'sample' => wfMessage( 'italic_sample' )->text(),
+				'tip'    => wfMessage( 'italic_tip' )->text(),
 				'key'    => 'I'
 			),
 			array(
@@ -2770,8 +2781,8 @@ HTML
 				'id'     => 'mw-editbutton-link',
 				'open'   => '[[',
 				'close'  => ']]',
-				'sample' => wfMsg( 'link_sample' ),
-				'tip'    => wfMsg( 'link_tip' ),
+				'sample' => wfMessage( 'link_sample' )->text(),
+				'tip'    => wfMessage( 'link_tip' )->text(),
 				'key'    => 'L'
 			),
 			array(
@@ -2779,8 +2790,8 @@ HTML
 				'id'     => 'mw-editbutton-extlink',
 				'open'   => '[',
 				'close'  => ']',
-				'sample' => wfMsg( 'extlink_sample' ),
-				'tip'    => wfMsg( 'extlink_tip' ),
+				'sample' => wfMessage( 'extlink_sample' )->text(),
+				'tip'    => wfMessage( 'extlink_tip' )->text(),
 				'key'    => 'X'
 			),
 			array(
@@ -2788,8 +2799,8 @@ HTML
 				'id'     => 'mw-editbutton-headline',
 				'open'   => "\n== ",
 				'close'  => " ==\n",
-				'sample' => wfMsg( 'headline_sample' ),
-				'tip'    => wfMsg( 'headline_tip' ),
+				'sample' => wfMessage( 'headline_sample' )->text(),
+				'tip'    => wfMessage( 'headline_tip' )->text(),
 				'key'    => 'H'
 			),
 			$imagesAvailable ? array(
@@ -2797,8 +2808,8 @@ HTML
 				'id'     => 'mw-editbutton-image',
 				'open'   => '[[' . $wgContLang->getNsText( NS_FILE ) . ':',
 				'close'  => ']]',
-				'sample' => wfMsg( 'image_sample' ),
-				'tip'    => wfMsg( 'image_tip' ),
+				'sample' => wfMessage( 'image_sample' )->text(),
+				'tip'    => wfMessage( 'image_tip' )->text(),
 				'key'    => 'D',
 			) : false,
 			$imagesAvailable ? array(
@@ -2806,8 +2817,8 @@ HTML
 				'id'     => 'mw-editbutton-media',
 				'open'   => '[[' . $wgContLang->getNsText( NS_MEDIA ) . ':',
 				'close'  => ']]',
-				'sample' => wfMsg( 'media_sample' ),
-				'tip'    => wfMsg( 'media_tip' ),
+				'sample' => wfMessage( 'media_sample' )->text(),
+				'tip'    => wfMessage( 'media_tip' )->text(),
 				'key'    => 'M'
 			) : false,
 			$wgUseTeX ? array(
@@ -2815,8 +2826,8 @@ HTML
 				'id'     => 'mw-editbutton-math',
 				'open'   => "<math>",
 				'close'  => "</math>",
-				'sample' => wfMsg( 'math_sample' ),
-				'tip'    => wfMsg( 'math_tip' ),
+				'sample' => wfMessage( 'math_sample' )->text(),
+				'tip'    => wfMessage( 'math_tip' )->text(),
 				'key'    => 'C'
 			) : false,
 			array(
@@ -2824,8 +2835,8 @@ HTML
 				'id'     => 'mw-editbutton-nowiki',
 				'open'   => "<nowiki>",
 				'close'  => "</nowiki>",
-				'sample' => wfMsg( 'nowiki_sample' ),
-				'tip'    => wfMsg( 'nowiki_tip' ),
+				'sample' => wfMessage( 'nowiki_sample' )->text(),
+				'tip'    => wfMessage( 'nowiki_tip' )->text(),
 				'key'    => 'N'
 			),
 			array(
@@ -2834,7 +2845,7 @@ HTML
 				'open'   => '--~~~~',
 				'close'  => '',
 				'sample' => '',
-				'tip'    => wfMsg( 'sig_tip' ),
+				'tip'    => wfMessage( 'sig_tip' )->text(),
 				'key'    => 'Y'
 			),
 			array(
@@ -2843,7 +2854,7 @@ HTML
 				'open'   => "\n----\n",
 				'close'  => '',
 				'sample' => '',
-				'tip'    => wfMsg( 'hr_tip' ),
+				'tip'    => wfMessage( 'hr_tip' )->text(),
 				'key'    => 'R'
 			)
 		);
@@ -2904,11 +2915,11 @@ HTML
 		// don't show the minor edit checkbox if it's a new page or section
 		if ( !$this->isNew ) {
 			$checkboxes['minor'] = '';
-			$minorLabel = wfMsgExt( 'minoredit', array( 'parseinline' ) );
+			$minorLabel = wfMessage( 'minoredit' )->parse();
 			if ( $wgUser->isAllowed( 'minoredit' ) ) {
 				$attribs = array(
 					'tabindex'  => ++$tabindex,
-					'accesskey' => wfMsg( 'accesskey-minoredit' ),
+					'accesskey' => wfMessage( 'accesskey-minoredit' )->text(),
 					'id'        => 'wpMinoredit',
 				);
 				$checkboxes['minor'] =
@@ -2919,12 +2930,12 @@ HTML
 			}
 		}
 
-		$watchLabel = wfMsgExt( 'watchthis', array( 'parseinline' ) );
+		$watchLabel = wfMessage( 'watchthis' )->parse();
 		$checkboxes['watch'] = '';
 		if ( $wgUser->isLoggedIn() ) {
 			$attribs = array(
 				'tabindex'  => ++$tabindex,
-				'accesskey' => wfMsg( 'accesskey-watch' ),
+				'accesskey' => wfMessage( 'accesskey-watch' )->text(),
 				'id'        => 'wpWatchthis',
 			);
 			$checkboxes['watch'] =
@@ -2953,9 +2964,9 @@ HTML
 			'name'      => 'wpSave',
 			'type'      => 'submit',
 			'tabindex'  => ++$tabindex,
-			'value'     => wfMsg( 'savearticle' ),
-			'accesskey' => wfMsg( 'accesskey-save' ),
-			'title'     => wfMsg( 'tooltip-save' ) . ' [' . wfMsg( 'accesskey-save' ) . ']',
+			'value'     => wfMessage( 'savearticle' )->text(),
+			'accesskey' => wfMessage( 'accesskey-save' )->text(),
+			'title'     => wfMessage( 'tooltip-save' )->text() . ' [' . wfMessage( 'accesskey-save' )->text() . ']',
 		);
 		$buttons['save'] = Xml::element( 'input', $temp, '' );
 
@@ -2965,9 +2976,9 @@ HTML
 			'name'      => 'wpPreview',
 			'type'      => 'submit',
 			'tabindex'  => $tabindex,
-			'value'     => wfMsg( 'showpreview' ),
-			'accesskey' => wfMsg( 'accesskey-preview' ),
-			'title'     => wfMsg( 'tooltip-preview' ) . ' [' . wfMsg( 'accesskey-preview' ) . ']',
+			'value'     => wfMessage( 'showpreview' )->text(),
+			'accesskey' => wfMessage( 'accesskey-preview' )->text(),
+			'title'     => wfMessage( 'tooltip-preview' )->text() . ' [' . wfMessage( 'accesskey-preview' )->text() . ']',
 		);
 		$buttons['preview'] = Xml::element( 'input', $temp, '' );
 		$buttons['live'] = '';
@@ -2977,9 +2988,9 @@ HTML
 			'name'      => 'wpDiff',
 			'type'      => 'submit',
 			'tabindex'  => ++$tabindex,
-			'value'     => wfMsg( 'showdiff' ),
-			'accesskey' => wfMsg( 'accesskey-diff' ),
-			'title'     => wfMsg( 'tooltip-diff' ) . ' [' . wfMsg( 'accesskey-diff' ) . ']',
+			'value'     => wfMessage( 'showdiff' )->text(),
+			'accesskey' => wfMessage( 'accesskey-diff' )->text(),
+			'title'     => wfMessage( 'tooltip-diff' )->text() . ' [' . wfMessage( 'accesskey-diff' )->text() . ']',
 		);
 		$buttons['diff'] = Xml::element( 'input', $temp, '' );
 
@@ -3060,7 +3071,7 @@ HTML
 
 		$wgOut->prepareErrorPage( wfMessage( 'nosuchsectiontitle' ) );
 
-		$res = wfMsgExt( 'nosuchsectiontext', 'parse', $this->section );
+		$res = wfMessage( 'nosuchsectiontext', $this->section )->parseAsBlock();
 		wfRunHooks( 'EditPageNoSuchSection', array( &$this, &$res ) );
 		$wgOut->addHTML( $res );
 

@@ -351,7 +351,7 @@ class Article extends Page {
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-		$this->mContent = wfMsgNoTrans( 'missing-revision', $oldid );
+		$this->mContent = wfMessage( 'missing-revision', $oldid )->plain();
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -1041,16 +1041,16 @@ class Article extends Page {
 		# Show error message
 		$oldid = $this->getOldID();
 		if ( $oldid ) {
-			$text = wfMsgNoTrans( 'missing-revision', $oldid );
+			$text = wfMessage( 'missing-revision', $oldid )->plain();
 		} elseif ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
 			// Use the default message text
 			$text = $this->getTitle()->getDefaultMessageText();
 		} elseif ( $this->getTitle()->quickUserCan( 'create', $this->getContext()->getUser() )
 			&& $this->getTitle()->quickUserCan( 'edit', $this->getContext()->getUser() )
 		) {
-			$text = wfMsgNoTrans( 'noarticletext' );
+			$text = wfMessage( 'noarticletext' )->plain();
 		} else {
-			$text = wfMsgNoTrans( 'noarticletext-nopermission' );
+			$text = wfMessage( 'noarticletext-nopermission' )->plain();
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
 
@@ -1218,8 +1218,9 @@ class Article extends Page {
 		}
 
 		$outputPage->addSubtitle( "<div id=\"mw-revision-nav\">" . $cdel .
-			wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
-			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>" );
+			wfMessage( 'revision-nav' )->rawParams(
+				$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff
+			)->escaped() . "</div>" );
 	}
 
 	/**
@@ -1436,7 +1437,7 @@ class Article extends Page {
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
-			Xml::tags( 'legend', null, wfMsgExt( 'delete-legend', array( 'parsemag', 'escapenoentities' ) ) ) .
+			Xml::tags( 'legend', null, wfMessage( 'delete-legend' )->escaped() ) .
 			Xml::openElement( 'table', array( 'id' => 'mw-deleteconfirm-table' ) ) .
 			"<tr id=\"wpDeleteReasonListRow\">
 				<td class='mw-label'>" .
@@ -1524,7 +1525,7 @@ class Article extends Page {
 			$outputPage->setPageTitle( wfMessage( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
+			$loglink = '[[Special:Log/delete|' . wfMessage( 'deletionlog' )->text() . ']]';
 
 			$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 			$outputPage->returnToMain( false );
