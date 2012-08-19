@@ -359,15 +359,14 @@ class PageArchive {
 		// Touch the log!
 
 		if( $textRestored && $filesRestored ) {
-			$reason = wfMsgExt( 'undeletedrevisions-files', array( 'content', 'parsemag' ),
-				$wgContLang->formatNum( $textRestored ),
-				$wgContLang->formatNum( $filesRestored ) );
+			$reason = wfMessage( 'undeletedrevisions-files' )
+				->numParams( $textRestored, $filesRestored )->inContentLanguage()->text();
 		} elseif( $textRestored ) {
-			$reason = wfMsgExt( 'undeletedrevisions', array( 'content', 'parsemag' ),
-				$wgContLang->formatNum( $textRestored ) );
+			$reason = wfMessage( 'undeletedrevisions' )->numParams( $textRestored )
+				->inContentLanguage()->text();
 		} elseif( $filesRestored ) {
-			$reason = wfMsgExt( 'undeletedfiles', array( 'content', 'parsemag' ),
-				$wgContLang->formatNum( $filesRestored ) );
+			$reason = wfMessage( 'undeletedfiles' )->numParams( $filesRestored )
+				->inContentLanguage()->text();
 		} else {
 			wfDebug( "Undelete: nothing undeleted...\n" );
 			return false;

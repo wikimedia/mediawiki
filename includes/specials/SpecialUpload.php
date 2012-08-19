@@ -255,7 +255,7 @@ class SpecialUpload extends SpecialPage {
 
 		# Add text to form
 		$form->addPreText( '<div id="uploadtext">' .
-			wfMsgExt( 'uploadtext', 'parse', array( $this->mDesiredDestName ) ) .
+			$this->msg( 'uploadtext', array( $this->mDesiredDestName ) )->parseAsBlock() .
 			'</div>' );
 		# Add upload error message
 		$form->addPreText( $message );
@@ -280,14 +280,12 @@ class SpecialUpload extends SpecialPage {
 		if( $title instanceof Title ) {
 			$count = $title->isDeleted();
 			if ( $count > 0 && $user->isAllowed( 'deletedhistory' ) ) {
-				$link = wfMsgExt(
-					$user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
-					array( 'parse', 'replaceafter' ),
-					Linker::linkKnown(
-						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
-					)
+				$restorelink = Linker::linkKnown(
+					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
+					$this->msg( 'restorelink' )->numParams( $count )->escaped()
 				);
+				$link = $this->msg( $user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted' )
+					->rawParams( $restorelink )->parseAsBlock();
 				$this->getOutput()->addHTML( "<div id=\"contentSub2\">{$link}</div>" );
 			}
 		}
@@ -357,7 +355,7 @@ class SpecialUpload extends SpecialPage {
 			$warningHtml .= $msg;
 		}
 		$warningHtml .= "</ul>\n";
-		$warningHtml .= wfMsgExt( 'uploadwarning-text', 'parse' );
+		$warningHtml .= $this->msg( 'uploadwarning-text' )->parseAsBlock();
 
 		$form = $this->getUploadForm( $warningHtml, $sessionKey, /* $hideIgnoreWarning */ true );
 		$form->setSubmitText( $this->msg( 'upload-tryagain' )->text() );
@@ -668,7 +666,7 @@ class SpecialUpload extends SpecialPage {
 					'page' => $filename
 				)
 			);
-			$warning = wfMsgExt( 'filewasdeleted', array( 'parse', 'replaceafter' ), $llink );
+			$warning = wfMessage( 'filewasdeleted' )->rawParams( $llink )->parseAsBlock();
 		}
 
 		return $warning;
@@ -714,8 +712,7 @@ class SpecialUpload extends SpecialPage {
 			}
 			$msg .= '</gallery>';
 			return '<li>' .
-				wfMsgExt( 'file-exists-duplicate', array( 'parse' ), count( $dupes ) ) .
-				$wgOut->parse( $msg ) .
+				wfMessage( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
 				"</li>\n";
 		} else {
 			return '';
@@ -840,10 +837,9 @@ class UploadForm extends HTMLForm {
 			'label-message' => 'sourcefilename',
 			'upload-type' => 'File',
 			'radio' => &$radio,
-			'help' => wfMsgExt( 'upload-maxfilesize',
-					array( 'parseinline', 'escapenoentities' ),
+			'help' => $this->msg( 'upload-maxfilesize',
 					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
-				) . ' ' . $this->msg( 'upload_source_file' )->escaped(),
+				)->parse() . ' ' . $this->msg( 'upload_source_file' )->escaped(),
 			'checked' => $selectedSourceType == 'file',
 		);
 		if ( $canUploadByUrl ) {
@@ -855,10 +851,9 @@ class UploadForm extends HTMLForm {
 				'label-message' => 'sourceurl',
 				'upload-type' => 'url',
 				'radio' => &$radio,
-				'help' => wfMsgExt( 'upload-maxfilesize',
-						array( 'parseinline', 'escapenoentities' ),
+				'help' => $this->msg( 'upload-maxfilesize',
 						$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
-					) . ' ' . $this->msg( 'upload_source_url' )->escaped(),
+					)->parse() . ' ' . $this->msg( 'upload_source_url' )->escaped(),
 				'checked' => $selectedSourceType == 'url',
 			);
 		}
@@ -889,16 +884,16 @@ class UploadForm extends HTMLForm {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
-					wfMsgExt( 'upload-permitted', 'parse', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) ) .
+					$this->msg( 'upload-permitted', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) )->parseAsBlock() .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
-					wfMsgExt( 'upload-preferred', 'parse', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) ) .
+						$this->msg( 'upload-preferred', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) )->parseAsBlock() .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
-					wfMsgExt( 'upload-prohibited', 'parse', $this->getContext()->getLanguage()->commaList( $wgFileBlacklist ) ) .
+						$this->msg( 'upload-prohibited', $this->getContext()->getLanguage()->commaList( $wgFileBlacklist ) )->parseAsBlock() .
 					"</div>\n";
 			}
 		} else {
