@@ -424,7 +424,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Set a message to display on a validation error.
-	 * @param $msg Mixed String or Array of valid inputs to wfMsgExt()
+	 * @param $msg Mixed String or Array of valid inputs to wfMessage()
 	 *	 (so each entry can be either a String or Array)
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -700,7 +700,7 @@ class HTMLForm extends ContextSource {
 				'input',
 				array(
 					'type' => 'reset',
-					'value' => wfMsg( 'htmlform-reset' )
+					'value' => wfMessage( 'htmlform-reset' )->text()
 				)
 			) . "\n";
 		}
@@ -776,7 +776,7 @@ class HTMLForm extends ContextSource {
 			$errorstr .= Html::rawElement(
 				'li',
 				array(),
-				wfMsgExt( $msg, array( 'parseinline' ), $error )
+				wfMessage( $msg, $error )->parse()
 			);
 		}
 
@@ -813,7 +813,7 @@ class HTMLForm extends ContextSource {
 	function getSubmitText() {
 		return $this->mSubmitText
 			? $this->mSubmitText
-			: wfMsg( 'htmlform-submit' );
+			: wfMessage( 'htmlform-submit' )->text();
 	}
 
 	/**
@@ -1051,7 +1051,7 @@ class HTMLForm extends ContextSource {
 	 * @return String
 	 */
 	public function getLegend( $key ) {
-		return wfMsg( "{$this->mMessagePrefix}-$key" );
+		return wfMessage( "{$this->mMessagePrefix}-$key" )->text();
 	}
 
 	/**
@@ -1110,7 +1110,7 @@ abstract class HTMLFormField {
 	 */
 	function validate( $value, $alldata ) {
 		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value === '' ) {
-			return wfMsgExt( 'htmlform-required', 'parseinline' );
+			return wfMessage( 'htmlform-required' )->parse();
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {
@@ -1170,7 +1170,7 @@ abstract class HTMLFormField {
 				$msgInfo = array();
 			}
 
-			$this->mLabel = wfMsgExt( $msg, 'parseinline', $msgInfo );
+			$this->mLabel = wfMessage( $msg, $msgInfo )->parse();
 		} elseif ( isset( $params['label'] ) ) {
 			$this->mLabel = $params['label'];
 		}
@@ -1642,7 +1642,7 @@ class HTMLFloatField extends HTMLTextField {
 		# http://dev.w3.org/html5/spec/common-microsyntaxes.html#real-numbers
 		# with the addition that a leading '+' sign is ok.
 		if ( !preg_match( '/^((\+|\-)?\d+(\.\d+)?(E(\+|\-)?\d+)?)?$/i', $value ) ) {
-			return wfMsgExt( 'htmlform-float-invalid', 'parse' );
+			return wfMessage( 'htmlform-float-invalid' )->parseAsBlock();
 		}
 
 		# The "int" part of these message names is rather confusing.
@@ -1651,7 +1651,7 @@ class HTMLFloatField extends HTMLTextField {
 			$min = $this->mParams['min'];
 
 			if ( $min > $value ) {
-				return wfMsgExt( 'htmlform-int-toolow', 'parse', array( $min ) );
+				return wfMessage( 'htmlform-int-toolow', array( $min ) )->parseAsBlock();
 			}
 		}
 
@@ -1659,7 +1659,7 @@ class HTMLFloatField extends HTMLTextField {
 			$max = $this->mParams['max'];
 
 			if ( $max < $value ) {
-				return wfMsgExt( 'htmlform-int-toohigh', 'parse', array( $max ) );
+				return wfMessage( 'htmlform-int-toohigh', array( $max ) )->parseAsBlock();
 			}
 		}
 
@@ -1686,7 +1686,7 @@ class HTMLIntField extends HTMLFloatField {
 		# value to, eg, save in the DB, clean it up with intval().
 		if ( !preg_match( '/^((\+|\-)?\d+)?$/', trim( $value ) )
 		) {
-			return wfMsgExt( 'htmlform-int-invalid', 'parse' );
+			return wfMessage( 'htmlform-int-invalid' )->parseAsBlock();
 		}
 
 		return true;
@@ -1770,7 +1770,7 @@ class HTMLSelectField extends HTMLFormField {
 		if ( in_array( $value, $validOptions ) )
 			return true;
 		else
-			return wfMsgExt( 'htmlform-select-badoption', 'parseinline' );
+			return wfMessage( 'htmlform-select-badoption' )->parse();
 	}
 
 	function getInputHTML( $value ) {
@@ -1808,7 +1808,9 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 	function __construct( $params ) {
 		if ( !in_array( 'other', $params['options'], true ) ) {
-			$msg = isset( $params['other'] ) ? $params['other'] : wfMsg( 'htmlform-selectorother-other' );
+			$msg = isset( $params['other'] ) ?
+				$params['other'] :
+				wfMessage( 'htmlform-selectorother-other' )->text();
 			$params['options'][$msg] = 'other';
 		}
 
@@ -1912,7 +1914,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 		if ( count( $validValues ) == count( $value ) ) {
 			return true;
 		} else {
-			return wfMsgExt( 'htmlform-select-badoption', 'parseinline' );
+			return wfMessage( 'htmlform-select-badoption' )->parse();
 		}
 	}
 
@@ -2114,7 +2116,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			} elseif ( $text == '' ) {
 				$final = $list;
 			} else {
-				$final = $list . wfMsgForContent( 'colon-separator' ) . $text;
+				$final = $list . wfMessage( 'colon-separator' )->inContentLanguage()->text() . $text;
 			}
 
 		} else {
@@ -2123,7 +2125,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$list = 'other';
 			$text = $final;
 			foreach ( $this->mFlatOptions as $option ) {
-				$match = $option . wfMsgForContent( 'colon-separator' );
+				$match = $option . wfMessage( 'colon-separator' )->inContentLanguage()->text();
 				if ( strpos( $text, $match ) === 0 ) {
 					$list = $option;
 					$text = substr( $text, strlen( $match ) );
@@ -2151,7 +2153,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		}
 
 		if ( isset( $this->mParams['required'] ) && $this->mParams['required'] !== false && $value[1] === '' ) {
-			return wfMsgExt( 'htmlform-required', 'parseinline' );
+			return wfMessage( 'htmlform-required' )->parse();
 		}
 
 		return true;
@@ -2180,7 +2182,7 @@ class HTMLRadioField extends HTMLFormField {
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
 		} else {
-			return wfMsgExt( 'htmlform-select-badoption', 'parseinline' );
+			return wfMessage( 'htmlform-select-badoption' )->parse();
 		}
 	}
 
