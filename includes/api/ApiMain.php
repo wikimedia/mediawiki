@@ -65,6 +65,7 @@ class ApiMain extends ApiBase {
 
 		// Write modules
 		'purge' => 'ApiPurge',
+		'setnotificationtimestamp' => 'ApiSetNotificationTimestamp',
 		'rollback' => 'ApiRollback',
 		'delete' => 'ApiDelete',
 		'undelete' => 'ApiUndelete',
@@ -393,7 +394,7 @@ class ApiMain extends ApiBase {
 			// Reset and print just the error message
 			ob_clean();
 
-			// If the error occured during printing, do a printer->profileOut()
+			// If the error occurred during printing, do a printer->profileOut()
 			$this->mPrinter->safeProfileOut();
 			$this->printResult( true );
 		}
@@ -423,15 +424,22 @@ class ApiMain extends ApiBase {
 	 */
 	protected function handleCORS() {
 		global $wgCrossSiteAJAXdomains, $wgCrossSiteAJAXdomainExceptions;
-		$response = $this->getRequest()->response();
+
 		$originParam = $this->getParameter( 'origin' ); // defaults to null
 		if ( $originParam === null ) {
 			// No origin parameter, nothing to do
 			return true;
 		}
+
+		$request = $this->getRequest();
+		$response = $request->response();
 		// Origin: header is a space-separated list of origins, check all of them
-		$originHeader = isset( $_SERVER['HTTP_ORIGIN'] ) ? $_SERVER['HTTP_ORIGIN'] : '';
-		$origins = explode( ' ', $originHeader );
+		$originHeader = $request->getHeader( 'Origin' );
+		if ( $originHeader === false ) {
+			$origins = array();
+		} else {
+			$origins = explode( ' ', $originHeader );
+		}
 		if ( !in_array( $originParam, $origins ) ) {
 			// origin parameter set but incorrect
 			// Send a 403 response

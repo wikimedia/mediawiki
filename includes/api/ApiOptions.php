@@ -135,8 +135,8 @@ class ApiOptions extends ApiBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			array( 'notloggedin' ),
-			array( 'nochanges' ),
+			array( 'code' => 'notloggedin', 'info' => 'Anonymous users cannot change preferences' ),
+			array( 'code' => 'nochanges', 'info' => 'No changes were requested' ),
 		) );
 	}
 

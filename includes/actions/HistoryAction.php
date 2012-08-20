@@ -248,8 +248,8 @@ class HistoryAction extends FormlessAction {
 
 		$feed = new $wgFeedClasses[$type](
 			$this->getTitle()->getPrefixedText() . ' - ' .
-			wfMsgForContent( 'history-feed-title' ),
-			wfMsgForContent( 'history-feed-description' ),
+			$this->msg( 'history-feed-title' )->inContentLanguage()->text(),
+			$this->msg( 'history-feed-description' )->inContentLanguage()->text(),
 			$this->getTitle()->getFullUrl( 'action=history' )
 		);
 
@@ -275,8 +275,8 @@ class HistoryAction extends FormlessAction {
 
 	function feedEmpty() {
 		return new FeedItem(
-			wfMsgForContent( 'nohistory' ),
-			$this->getOutput()->parse( wfMsgForContent( 'history-feed-empty' ) ),
+			$this->msg( 'nohistory' )->inContentLanguage()->text(),
+			$this->msg( 'history-feed-empty' )->inContentLanguage()->parseAsBlock(),
 			$this->getTitle()->getFullUrl(),
 			wfTimestamp( TS_MW ),
 			'',
@@ -304,15 +304,14 @@ class HistoryAction extends FormlessAction {
 		);
 		if ( $rev->getComment() == '' ) {
 			global $wgContLang;
-			$title = wfMsgForContent( 'history-feed-item-nocomment',
+			$title = $this->msg( 'history-feed-item-nocomment',
 				$rev->getUserText(),
 				$wgContLang->timeanddate( $rev->getTimestamp() ),
 				$wgContLang->date( $rev->getTimestamp() ),
-				$wgContLang->time( $rev->getTimestamp() )
-			);
+				$wgContLang->time( $rev->getTimestamp() ) )->inContentLanguage()->text();
 		} else {
 			$title = $rev->getUserText() .
-			wfMsgForContent( 'colon-separator' ) .
+			$this->msg( 'colon-separator' )->inContentLanguage()->text() .
 			FeedItem::stripComment( $rev->getComment() );
 		}
 		return new FeedItem(

@@ -2,7 +2,7 @@
  * Implementation for mediaWiki.user
  */
 
-(function( $ ) {
+( function ( mw, $ ) {
 
 	/**
 	 * User object
@@ -12,9 +12,37 @@
 		/* Private Members */
 
 		var that = this;
-		var api = new mw.Api();
-		var groupsDeferred;
-		var rightsDeferred;
+		var callbacks = {};
+
+		/**
+		 * Gets the current user's groups or rights.
+		 * @param {String} info: One of 'groups' or 'rights'.
+		 * @param {Function} callback
+		 */
+		function getUserInfo( info, callback ) {
+			var api;
+			if ( callbacks[info] ) {
+				callbacks[info].add( callback );
+				return;
+			}
+			callbacks.rights = $.Callbacks('once memory');
+			callbacks.groups = $.Callbacks('once memory');
+			callbacks[info].add( callback );
+			api = new mw.Api();
+			api.get( {
+				action: 'query',
+				meta: 'userinfo',
+				uiprop: 'rights|groups'
+			} ).always( function ( data ) {
+				var rights, groups;
+				if ( data.query && data.query.userinfo ) {
+					rights = data.query.userinfo.rights;
+					groups = data.query.userinfo.groups;
+				}
+				callbacks.rights.fire( rights || [] );
+				callbacks.groups.fire( groups || [] );
+			} );
+		}
 
 		/* Public Members */
 
@@ -84,7 +112,7 @@
 		 */
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
-			if ( typeof sessionId == 'undefined' || sessionId === null ) {
+			if ( typeof sessionId === 'undefined' || sessionId === null ) {
 				sessionId = generateId();
 				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
 			}
@@ -106,11 +134,14 @@
 				return name;
 			}
 			var id = $.cookie( 'mediaWiki.user.id' );
-			if ( typeof id == 'undefined' || id === null ) {
+			if ( typeof id === 'undefined' || id === null ) {
 				id = generateId();
 			}
 			// Set cookie if not set, or renew it if already set
-			$.cookie( 'mediaWiki.user.id', id, { 'expires': 365, 'path': '/' } );
+			$.cookie( 'mediaWiki.user.id', id, {
+				expires: 365,
+				path: '/'
+			} );
 			return id;
 		};
 
@@ -137,7 +168,7 @@
 		 *         'expires': 7
 		 *     } );
 		 */
-		this.bucket = function( key, options ) {
+		this.bucket = function ( key, options ) {
 			options = $.extend( {
 				'buckets': {},
 				'version': 0,
@@ -150,7 +181,7 @@
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
 			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) > 0 ) {
 				var parts = cookie.split( ':' );
-				if ( parts.length > 1 && parts[0] == options.version ) {
+				if ( parts.length > 1 && Number( parts[0] ) === options.version ) {
 					version = Number( parts[0] );
 					bucket = String( parts[1] );
 				}
@@ -177,7 +208,7 @@
 					}
 				}
 				if ( options.tracked ) {
-					mw.loader.using( 'jquery.clickTracking', function() {
+					mw.loader.using( 'jquery.clickTracking', function () {
 						$.trackAction(
 							'mediaWiki.user.bucket:' + key + '@' + version + ':' + bucket
 						);
@@ -196,52 +227,14 @@
 		 * Gets the current user's groups.
 		 */
 		this.getGroups = function ( callback ) {
-			if ( groupsDeferred ) {
-				groupsDeferred.always( callback );
-				return;
-			}
-
-			groupsDeferred = $.Deferred();
-			groupsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'groups'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.groups ) {
-					groupsDeferred.resolve( data.query.userinfo.groups );
-				} else {
-					groupsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-					groupsDeferred.reject( [] );
-			} );
+			getUserInfo( 'groups', callback );
 		};
 
 		/**
 		 * Gets the current user's rights.
 		 */
 		this.getRights = function ( callback ) {
-			if ( rightsDeferred ) {
-				rightsDeferred.always( callback );
-				return;
-			}
-
-			rightsDeferred = $.Deferred();
-			rightsDeferred.always( callback );
-			api.get( {
-				action: 'query',
-				meta: 'userinfo',
-				uiprop: 'rights'
-			} ).done( function ( data ) {
-				if ( data.query && data.query.userinfo && data.query.userinfo.rights ) {
-					rightsDeferred.resolve( data.query.userinfo.rights );
-				} else {
-					rightsDeferred.reject( [] );
-				}
-			} ).fail( function ( data ) {
-				rightsDeferred.reject( [] );
-			} );
+			getUserInfo( 'rights', callback );
 		};
 	}
 
@@ -249,4 +242,4 @@
 	// This is kind of ugly but we're stuck with this for b/c reasons
 	mw.user = new User( mw.user.options, mw.user.tokens );
 
-})(jQuery);
+}( mediaWiki, jQuery ) );

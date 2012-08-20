@@ -173,7 +173,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ocultar redactiones de usatores registrat del liste de págines vigilat',
 'tog-watchlisthideanons' => 'Ocultar redactiones de usatores anonim del liste de págines vigilat',
 'tog-watchlisthidepatrolled' => 'Ocultar redactiones vigilat del liste de págines vigilat',
-'tog-nolangconversion' => 'Desvalidar conversion de variantes',
 'tog-ccmeonemails' => 'Inviar me copies de e-mailes que yo invia por altri usatores',
 'tog-diffonly' => 'Ne monstrar li contenete de págine in infra del changes',
 'tog-showhiddencats' => 'Monstrar categories ne visibil',
@@ -779,9 +778,9 @@ Págines in [[Special:Watchlist|tui liste de págines vigilat]] es '''nigri'''."
 Por vider o serchar files cargat anteriorimen ear por li [[Special:FileList|liste de files cargat]], (re)cargamentes es anc registrat in li [[Special:Log/upload|diarium de cargament]], deletiones in li [[Special:Log/delete|diarium de deletion]].
 
 Por includer un file in un págine, usa un catenun in un de sequent formes:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' por usar li version complet de li file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' por usar un rendition larg de 200 pixel in un buxe in li márgine levul che 'alt text' quam descrition
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' por ligar inmediatmen por li file sin monstrar li file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' por usar li version complet de li file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' por usar un rendition larg de 200 pixel in un buxe in li márgine levul che 'alt text' quam descrition
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' por ligar inmediatmen por li file sin monstrar li file",
 'upload-permitted' => 'Tipes de file permisset: $1.',
 'upload-preferred' => 'Tipes de file preferet: $1.',
 'upload-prohibited' => 'Tipes de file prohibit: $1.',

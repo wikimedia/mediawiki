@@ -1043,7 +1043,7 @@ class LocalFile extends File {
 		if ( !$props ) {
 			wfProfileIn( __METHOD__ . '-getProps' );
 			$props = $this->repo->getFileProps( $this->getVirtualUrl() );
-			wfProfileOut( __METHOD__ . -'getProps' );
+			wfProfileOut( __METHOD__ . '-getProps' );
 		}
 
 		if ( $timestamp === false ) {
@@ -1456,7 +1456,7 @@ class LocalFile extends File {
 	 */
 	function getDescriptionText() {
 		global $wgParser;
-		$revision = Revision::newFromTitle( $this->title, false, Revision::AVOID_MASTER );
+		$revision = Revision::newFromTitle( $this->title, false, Revision::READ_NORMAL );
 		if ( !$revision ) return false;
 		$content = $revision->getContent();
 		if ( !$content ) return false;

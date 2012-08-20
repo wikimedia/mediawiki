@@ -1,7 +1,7 @@
 <?php
 /**
- * Script to reset the user_token for all users on the wiki. Useful if you
- * believe that your user table was acidentally leaked to an external source.
+ * Reset the user_token for all users on the wiki. Useful if you believe
+ * that your user table was acidentally leaked to an external source.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to reset the user_token for all users on the wiki.
+ *
+ * @ingroup Maintenance
+ */
 class ResetUserTokens extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -33,7 +38,7 @@ class ResetUserTokens extends Maintenance {
 	}
 
 	public function execute() {
-		
+
 		if ( !$this->getOption( 'nowarn' ) ) {
 			$this->output( "The script is about to reset the user_token for ALL USERS in the database.\n" );
 			$this->output( "This may log some of them out and is not necessary unless you believe your\n" );
@@ -42,7 +47,7 @@ class ResetUserTokens extends Maintenance {
 			$this->output( "Abort with control-c in the next five seconds (skip this countdown with --nowarn) ... " );
 			wfCountDown( 5 );
 		}
-		
+
 		// We list user by user_id from one of the slave database
 		$dbr = wfGetDB( DB_SLAVE );
 		$result = $dbr->select( 'user',
@@ -53,19 +58,19 @@ class ResetUserTokens extends Maintenance {
 
 		foreach ( $result as $id ) {
 			$user = User::newFromId( $id->user_id );
-			
+
 			$username = $user->getName();
-			
+
 			$this->output( "Resetting user_token for $username: " );
-			
+
 			// Change value
 			$user->setToken();
 			$user->saveSettings();
-			
+
 			$this->output( " OK\n" );
-			
+
 		}
-		
+
 	}
 }
 

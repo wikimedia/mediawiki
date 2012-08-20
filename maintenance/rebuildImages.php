@@ -1,6 +1,6 @@
 <?php
 /**
- * Script to update image metadata records
+ * Update image metadata records.
  *
  * Usage: php rebuildImages.php [--missing] [--dry-run]
  * Options:
@@ -32,6 +32,11 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script to update image metadata records.
+ *
+ * @ingroup Maintenance
+ */
 class ImageBuilder extends Maintenance {
 
 	/**

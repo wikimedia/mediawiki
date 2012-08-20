@@ -30,20 +30,20 @@ jQuery( document ).ready( function ( $ ) {
 				return true;
 			}
 
-			if ( $oldidRadio.prop( 'checked' ) ) { 
+			if ( $oldidRadio.prop( 'checked' ) ) {
 				oldLi = true;
 				$li.addClass( 'selected' );
 				$oldidRadio.css( 'visibility', 'visible' );
 				$diffRadio.css( 'visibility', 'hidden' );
 
-			} else if ( $diffRadio.prop( 'checked' ) ) { 
+			} else if ( $diffRadio.prop( 'checked' ) ) {
 				diffLi = true;
 				$li.addClass( 'selected' );
 				$oldidRadio.css( 'visibility', 'hidden' );
 				$diffRadio.css( 'visibility', 'visible' );
 
 			// This list item has neither checked
-			} else { 
+			} else {
 				// We're below the selected radios
 				if ( diffLi && oldLi ) {
 					$oldidRadio.css( 'visibility', 'visible' );

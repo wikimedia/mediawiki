@@ -326,7 +326,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 */
 	public static function setResult( $result, $feed, $feedItems ) {
 		// Store output in the Result data.
-		// This way we can check during execution if any error has occured
+		// This way we can check during execution if any error has occurred
 		// Disable size checking for this because we can't continue
 		// cleanly; size checking would cause more problems than it'd
 		// solve
@@ -371,7 +371,7 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 			}
 			$feed->outFooter();
 		} else {
-			// Error has occured, print something useful
+			// Error has occurred, print something useful
 			ApiBase::dieDebug( __METHOD__, 'Invalid feed class/item' );
 		}
 	}

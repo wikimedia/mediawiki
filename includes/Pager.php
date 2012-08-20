@@ -119,6 +119,11 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mLastShown, $mFirstShown, $mPastTheEndIndex, $mDefaultQuery, $mNavigationBar;
 
 	/**
+	 * Whether to include the offset in the query
+	 */
+	protected $mIncludeOffset = false;
+
+	/**
 	 * Result object for the query. Warning: seek before use.
 	 *
 	 * @var ResultWrapper
@@ -139,7 +144,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		# Use consistent behavior for the limit options
 		$this->mDefaultLimit = intval( $this->getUser()->getOption( 'rclimit' ) );
-		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
+		if ( !$this->mLimit ) {
+			// Don't override if a subclass calls $this->setLimit() in its constructor.
+			list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
+		}
 
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
 		$this->mDb = wfGetDB( DB_SLAVE );
@@ -231,10 +239,30 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Set the limit from an other source than the request
 	 *
+	 * Verifies limit is between 1 and 5000
+	 *
 	 * @param $limit Int|String
 	 */
 	function setLimit( $limit ) {
-		$this->mLimit = $limit;
+		$limit = (int) $limit;
+		// WebRequest::getLimitOffset() puts a cap of 5000, so do same here.
+		if ( $limit > 5000 ) {
+			$limit = 5000;
+		}
+		if ( $limit > 0 ) {
+			$this->mLimit = $limit;
+		}
+	}
+
+	/**
+	 * Set whether a row matching exactly the offset should be also included
+	 * in the result or not. By default this is not the case, but when the
+	 * offset is user-supplied this might be wanted.
+	 *
+	 * @param $include bool
+	 */
+	public function setIncludeOffset( $include ) {
+		$this->mIncludeOffset = $include;
 	}
 
 	/**
@@ -337,14 +365,14 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$sortColumns = array_merge( array( $this->mIndexField ), $this->mExtraSortFields );
 		if ( $descending ) {
 			$options['ORDER BY'] = $sortColumns;
-			$operator = '>';
+			$operator = $this->mIncludeOffset ? '>=' : '>';
 		} else {
 			$orderBy = array();
 			foreach ( $sortColumns as $col ) {
 				$orderBy[] = $col . ' DESC';
 			}
 			$options['ORDER BY'] = $orderBy;
-			$operator = '<';
+			$operator = $this->mIncludeOffset ? '<=' : '<';
 		}
 		if ( $offset != '' ) {
 			$conds[] = $this->mIndexField . $operator . $this->mDb->addQuotes( $offset );
@@ -899,7 +927,7 @@ abstract class TablePager extends IndexPager {
 		$tableClass = htmlspecialchars( $this->getTableClass() );
 		$sortClass = htmlspecialchars( $this->getSortHeaderClass() );
 
-		$s = "<table style='border:1;' class=\"mw-datatable $tableClass\"><thead><tr>\n";
+		$s = "<table style='border:1px;' class=\"mw-datatable $tableClass\"><thead><tr>\n";
 		$fields = $this->getFieldNames();
 
 		# Make table header

@@ -242,9 +242,6 @@ $magicWords = array(
 
 $linkTrail = '/^()(.*)$/sD';
 
-$extraUserToggles = array(
-	'nolangconversion',
-);
 $datePreferences = array(
 	'default',
 	'ISO 8601',
@@ -285,17 +282,17 @@ $messages = array(
 'tog-editsectiononrightclick' => '启用右击段落标题编辑段落（需要JavaScript）',
 'tog-showtoc' => '显示目录（对于有多于3个标题的页面）',
 'tog-rememberpassword' => '在浏览器上记住我的登录状态（最长$1天）',
-'tog-watchcreations' => '添加我创建的页面至我的监视列表',
-'tog-watchdefault' => '添加我编辑的页面至我的监视列表',
+'tog-watchcreations' => '添加我创建的页面和上传的文件至我的监视列表',
+'tog-watchdefault' => '添加我编辑的页面和文件至我的监视列表',
 'tog-watchmoves' => '将我移动的页面和文件添加到我的监视列表',
-'tog-watchdeletion' => '添加我删除的页面至我的监视列表',
+'tog-watchdeletion' => '添加我删除的页面和文件至我的监视列表',
 'tog-minordefault' => '默认标记编辑为小编辑',
 'tog-previewontop' => '在编辑框上方显示预览',
 'tog-previewonfirst' => '首次编辑时显示预览',
 'tog-nocache' => '停用浏览器页面缓存',
-'tog-enotifwatchlistpages' => '当我的监视列表中的页面更改时发送电子邮件通知我',
+'tog-enotifwatchlistpages' => '当我的监视列表中的页面或文件更改时发送电子邮件通知我',
 'tog-enotifusertalkpages' => '当我的讨论页更改时发送电子邮件通知我',
-'tog-enotifminoredits' => '当页面有小编辑时发送电子邮件通知我',
+'tog-enotifminoredits' => '当页面和文件有小编辑时发送电子邮件通知我',
 'tog-enotifrevealaddr' => '在通知电子邮件中显示我的电子邮件地址',
 'tog-shownumberswatching' => '显示监视用户数',
 'tog-oldsig' => '当前签名：',
@@ -311,7 +308,6 @@ $messages = array(
 'tog-watchlisthideliu' => '在监视列表中隐藏登录用户',
 'tog-watchlisthideanons' => '在监视列表中隐藏匿名用户',
 'tog-watchlisthidepatrolled' => '在监视列表中隐藏已巡查的编辑',
-'tog-nolangconversion' => '停用字词转换',
 'tog-ccmeonemails' => '把我给其他用户发送的电子邮件的副本发送给我',
 'tog-diffonly' => '比较差异时不显示页面内容',
 'tog-showhiddencats' => '显示隐藏分类',
@@ -528,13 +524,18 @@ $1',
 'badaccess-groups' => '您刚才请求的操作只有{{PLURAL:$2|这个用户组|以下用户组}}中的用户才能使用： $1',
 
 'versionrequired' => '需要版本为$1的MediaWiki',
-'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。请见[[Special:Version|版本页面]]。',
+'versionrequiredtext' => '需要版本为$1的MediaWiki才能使用本页。
+请见[[Special:Version|版本页面]]。',
 
 'ok' => '确定',
 'retrievedfrom' => '来自“$1”',
 'youhavenewmessages' => '你有$1（$2）。',
 'newmessageslink' => '新信息',
 'newmessagesdifflink' => '最后更改',
+'youhavenewmessagesfromusers' => '你有来自{{PLURAL:$3| 另一位用户| $3位用户}}的$1（$2）。',
+'youhavenewmessagesmanyusers' => '你有来自多位用户的$1（$2）。',
+'newmessageslinkplural' => '{{PLURAL:$1|一条新信息|$1条信息}}',
+'newmessagesdifflinkplural' => '最新$1次更改',
 'youhavenewmessagesmulti' => '你在$1有新信息',
 'editsection' => '编辑',
 'editold' => '编辑',
@@ -672,6 +673,7 @@ $2',
 'remembermypassword' => '在此浏览器上保留我的登录信息（最长$1{{PLURAL:$1|日|日}}）',
 'securelogin-stick-https' => '登陆后继续使用 HTTPS 连接',
 'yourdomainname' => '您的域名：',
+'password-change-forbidden' => '您不能更改此wiki上的密码。',
 'externaldberror' => '这可能是由于验证数据库错误或您被禁止更新您的外部账号。',
 'login' => '登录',
 'nav-login-createaccount' => '登录/创建账户',
@@ -882,6 +884,10 @@ $2
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索该页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
 'noarticletext-nopermission' => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
+'missing-revision' => '“{{PAGENAME}}”的修订#$1不存在。
+
+这通常是因为进入了一个已被删除的页面的历史链接。
+详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。',
 'userpage-userdoesnotexist' => '用户账户"$1"未注册。
 请在创建／编辑该页之前进行核对。',
 'userpage-userdoesnotexist-view' => '用户账户“$1”未曾创建。',
@@ -1002,6 +1008,7 @@ $2
 'expansion-depth-exceeded-warning' => '页面超过了扩展深度',
 'parser-unstrip-loop-warning' => '检测到回圈',
 'parser-unstrip-recursion-limit' => '递归超过限制 ($1)',
+'converter-manual-rule-error' => '手动语言转换规则中检测到错误',
 
 # "Undo" feature
 'undo-success' => '此编辑可以被撤销。请检查以下比较以核实这正是您想做的，然后保存以下更改完成撤销编辑。',
@@ -1169,6 +1176,10 @@ $1",
 'editundo' => '撤销',
 'diff-multi' => '（未显示$2个用户的$1个中间版本）',
 'diff-multi-manyusers' => '（未显示超过$2个用户的$1个中间版本）',
+'difference-missing-revision' => '此差异对比的{{PLURAL:$2|一个修订|$2个修订}}（$1）{{PLURAL:$2|没有}}找到。
+
+这通常是因为进入了一个已被删除的页面的修订差异对比链接。
+详细信息可以在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。',
 
 # Search results
 'searchresults' => '搜索结果',
@@ -1245,7 +1256,7 @@ $1",
 
 # Preferences page
 'preferences' => '系统设置',
-'mypreferences' => '设置',
+'mypreferences' => '我的设置',
 'prefs-edits' => '编辑数量：',
 'prefsnologin' => '尚未登录',
 'prefsnologintext' => '您必须先<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 登录]</span>才能设置个人参数。',
@@ -1253,9 +1264,9 @@ $1",
 'prefs-skin' => '皮肤',
 'skin-preview' => '预览',
 'datedefault' => '默认格式',
-'prefs-beta' => '测试版特色',
+'prefs-beta' => '测试特性',
 'prefs-datetime' => '日期时间',
-'prefs-labs' => '实验室特色',
+'prefs-labs' => '实验室特性',
 'prefs-user-pages' => '用户页面',
 'prefs-personal' => '用户资料',
 'prefs-rc' => '最近更改',
@@ -1306,7 +1317,7 @@ $1",
 'timezoneregion-indian' => '印度洋',
 'timezoneregion-pacific' => '太平洋',
 'allowemail' => '接受来自其他用户的邮件',
-'prefs-searchoptions' => '搜索选项',
+'prefs-searchoptions' => '搜索',
 'prefs-namespaces' => '名字空间',
 'defaultns' => '否则在这些名字空间中搜索：',
 'default' => '默认',
@@ -1426,10 +1437,11 @@ $1",
 'right-autoconfirmed' => '编辑半保护页面',
 'right-bot' => '被视为自动过程',
 'right-nominornewtalk' => '不使小编辑在讨论页面引发新信息提示',
-'right-apihighlimits' => '在API问题中使用更高的限制',
+'right-apihighlimits' => '在API查询中使用更高的限制',
 'right-writeapi' => '使用书写API',
 'right-delete' => '删除页面',
 'right-bigdelete' => '删除有大型历史的页面',
+'right-deletelogentry' => '删除和恢复特定的日志项目',
 'right-deleterevision' => '删除和恢复页面的特定版本',
 'right-deletedhistory' => '查看被删除的历史条目，无其相关文字',
 'right-deletedtext' => '查看被删除的版本间的被删除的文字和更改',
@@ -1573,9 +1585,9 @@ $1",
 'uploadtext' => "请使用下面的表格上传文件。要查看或搜索以前上传的文件，可以进入[[Special:FileList|文件上传列表]]，（重新）上传也将在[[Special:Log/upload|上传日志]]中记录，而删除将在[[Special:Log/delete|删除日志]]中记录。
 
 要在页面中加入文件，请使用一种以下形式的链接：
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用文件的完整版本
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></tt>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接链接到文件而不显示文件",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''使用文件的完整版本
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替换文字]]</nowiki></code>'''使用放置于左侧的一个框内的200像素宽的图片，同时使用“替换文字”作为描述
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''直接链接到文件而不显示文件",
 'upload-permitted' => '允许的文件类型：$1。',
 'upload-preferred' => '建议的文件类型：$1。',
 'upload-prohibited' => '禁止的文件类型：$1。',
@@ -1618,19 +1630,19 @@ $1",
 'largefileserver' => '这个文件的大小比服务器配置允许的大小还要大。',
 'emptyfile' => '您所上传的文件不存在。这可能是由于文件名键入错误。请检查您是否真的要上传此文件。',
 'windows-nonascii-filename' => '本wiki不支持在文件名中使用特殊字符。',
-'fileexists' => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><tt>[[:$1]]</tt></strong>。 [[$1|thumb]]',
-'filepageexists' => '这个文件的描述页已经于<strong><tt>[[:$1]]</tt></strong>创建，但是这个名称的文件尚不存在。
+'fileexists' => '已存在相同名称的文件，如果您无法确定您是否要改变它，请检查<strong><strong>[[:$1]]</strong></strong>。 [[$1|thumb]]',
+'filepageexists' => '这个文件的描述页已经于<strong><strong>[[:$1]]</strong></strong>创建，但是这个名称的文件尚不存在。
 您输入的摘要不会显示在该描述页中。
 要令该摘要在该处中出现，您需要手动地编辑该页。
 [[$1|thumb]]',
-'fileexists-extension' => "一个相似名称的文件已经存在: [[$2|thumb]]
-* 上传文件的文件名：'''<tt>[[:$1]]</tt>'''
-* 现有文件的文件名：'''<tt>[[:$2]]</tt>'''
-请选择一个不同的名字。",
+'fileexists-extension' => '一个相似名称的文件已经存在: [[$2|thumb]]
+* 上传文件的文件名：<strong>[[:$1]]</strong>
+* 现有文件的文件名：<strong>[[:$2]]</strong>
+请选择一个不同的名字。',
 'fileexists-thumbnail-yes' => "此文件可能是另一幅图像的缩小版本''（缩略图）''。 [[$1|thumb]]
-请仔细检查该文件'''<tt>[[:$1]]</tt>'''。
+请仔细检查该文件<strong>[[:$1]]</strong>。
 如果被检查文件与原始大小的图像是同一幅图像，您无需上传多余的缩略图。",
-'file-thumbnail-no' => "文件名以'''<tt>$1</tt>'''开头。它可能是另一幅图像的缩小版本''（缩略图）''。
+'file-thumbnail-no' => "文件名以<strong>$1</strong>开头。它可能是另一幅图像的缩小版本''（缩略图）''。
 如果你有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",
 'fileexists-forbidden' => '已存在相同名称的文件，且不能覆盖；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件。
@@ -1869,7 +1881,7 @@ $1',
 
 # MIME search
 'mimesearch' => 'MIME搜索',
-'mimesearch-summary' => '本页面启用文件MIME类型过滤器。输入：内容类型/子类型，如 <tt>image/jpeg</tt>。',
+'mimesearch-summary' => '本页面启用文件MIME类型过滤器。输入：内容类型/子类型，如 <code>image/jpeg</code>。',
 'mimetype' => 'MIME 类型：',
 'download' => '下载',
 
@@ -1915,7 +1927,7 @@ $1',
 
 'disambiguations' => '链接至消歧义页的页面',
 'disambiguationspage' => 'Template:消歧义',
-'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们应该链接到适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
+'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们可能可以链接到更适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
 
 'doubleredirects' => '双重重定向页',
 'doubleredirectstext' => '此页列出了所有重定向到另一重定向页面的页面。每一行都包含有到第一和第二个重定向页面的链接，以及第二个重定向页面的目标——通常就是“真正的”目标页面，亦即是第一个重定向页面应该指向的页面。<del>已划去</del>的为已经解决的项目。',
@@ -2064,7 +2076,7 @@ $1',
 'linksearch-ns' => '名字空间：',
 'linksearch-ok' => '搜索',
 'linksearch-text' => '制作可以使用类似“*.wikipedia.org”的通配符。必须至少是顶级域名，例如“*.org”。<br />
-支持的协议：<tt>$1</tt>（不要包含在搜索中）。',
+支持的协议：<code>$1</code>（不要包含在搜索中）。',
 'linksearch-line' => '$1 链自 $2',
 'linksearch-error' => '通配符仅可在主机名称的开头使用。',
 
@@ -2077,7 +2089,7 @@ $1',
 # Special:ActiveUsers
 'activeusers' => '活跃用户列表',
 'activeusers-intro' => '这个列表列出了最近$1天进行过操作的用户。',
-'activeusers-count' => '最近$3天编辑了$1次',
+'activeusers-count' => '最近$3天内有$1次编辑',
 'activeusers-from' => '显示用户开始于：',
 'activeusers-hidebots' => '隐藏机器人',
 'activeusers-hidesysops' => '隐藏管理员',
@@ -2246,6 +2258,8 @@ $UNWATCHURL
 'rollback' => '回退编辑',
 'rollback_short' => '回退',
 'rollbacklink' => '回退',
+'rollbacklinkcount' => '回退$1次编辑',
+'rollbacklinkcount-morethan' => '回退超过$1次的编辑',
 'rollbackfailed' => '回退失败',
 'cantrollback' => '无法恢复编辑。最后的贡献者是本文的唯一作者。',
 'alreadyrolled' => '无法回退[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）对[[:$1]]的编辑，其他人已经编辑或者回退了该页。
@@ -2382,7 +2396,7 @@ $1',
 # Contributions
 'contributions' => '用户贡献',
 'contributions-title' => '$1的用户贡献',
-'mycontris' => '贡献',
+'mycontris' => '我的贡献',
 'contribsub2' => '$1的贡献（$2）',
 'nocontribs' => '没有找到符合特征的更改。',
 'uctop' => '（最后更改）',
@@ -2664,11 +2678,9 @@ $1被封禁的理由是：“$2”',
 
 # Export
 'export' => '导出页面',
-'exporttext' => '您可以将特定页面或一组页面的文本以及编辑历史以 XML 格式导出；这样可以将有关页面通过“[[Special:Import|导入页面]]”页面导入到另一个运行 MediaWiki 的网站。
+'exporttext' => '您可以将特定页面或一组页面的文本以及编辑历史以XML格式导出；这样可以将有关页面通过“[[Special:Import|导入页面]]”页面导入到另一个运行MediaWiki的网站。
 
-要导出页面，请在下面的文本框中输入页面标题，每行一个标题，
-并选择你是否需要导出带有页面历史的以前的修订本，
-或是只选择导出带有最后一次编辑信息的当前修订版本。
+要导出页面，请在下面的文本框中输入页面标题，每行一个标题，并选择你是否需要导出带有页面历史的以前的修订本，或是只选择导出带有最后一次编辑信息的当前修订版本。
 
 此外你还可以利用链接导出文件，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出“[[{{MediaWiki:Mainpage}}]]”页面。',
 'exportall' => '导出所有页面',
@@ -2725,6 +2737,7 @@ $1被封禁的理由是：“$2”',
 'import-interwiki-templates' => '包含所有模板',
 'import-interwiki-submit' => '导入',
 'import-interwiki-namespace' => '目标名字空间：',
+'import-interwiki-rootpage' => '目的根页（可选）：',
 'import-upload-filename' => '文件名：',
 'import-comment' => '注释：',
 'importtext' => '请使用[[Special:Export|导出功能]]从源 wiki 导出文件，
@@ -2757,6 +2770,7 @@ $1被封禁的理由是：“$2”',
 'import-error-interwiki' => '页面“$1”未能导入，因为它的名称需要使用外部跨wiki链接。',
 'import-error-special' => '页面“$1”未导入，因为它需要使用一个不能创建页面的特殊名字空间。',
 'import-error-invalid' => '页面“$1”未能导入，因为它的名字无效。',
+'import-options-wrong' => '{{PLURAL:$2|选项}}出错：<nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => '导入日志',
@@ -3081,7 +3095,7 @@ Variants for Chinese language
 'exif-compressedbitsperpixel' => '图像压缩模式',
 'exif-pixelydimension' => '图像宽度',
 'exif-pixelxdimension' => '图像高度',
-'exif-usercomment' => '用户注释',
+'exif-usercomment' => '用户评论',
 'exif-relatedsoundfile' => '相关声音文件',
 'exif-datetimeoriginal' => '数据生成日期时间',
 'exif-datetimedigitized' => '数字化日期时间',
@@ -3159,7 +3173,7 @@ Variants for Chinese language
 'exif-gpsdatestamp' => 'GPS日期',
 'exif-gpsdifferential' => 'GPS差动修正',
 'exif-jpegfilecomment' => 'JPEG 文件注释',
-'exif-keywords' => '关键字',
+'exif-keywords' => '关键词',
 'exif-worldregioncreated' => '照片中的世界区域',
 'exif-countrycreated' => '在拍摄图片的国家',
 'exif-countrycodecreated' => '在拍摄图片的国家代码',
@@ -3168,46 +3182,46 @@ Variants for Chinese language
 'exif-sublocationcreated' => '照片拍摄地点在城市中的位置',
 'exif-worldregiondest' => '世界区域显示',
 'exif-countrydest' => '所示的国家',
-'exif-countrycodedest' => '国家所示的代码',
+'exif-countrycodedest' => '国家代码',
 'exif-provinceorstatedest' => '省或状态显示',
 'exif-citydest' => '所示的城市',
 'exif-sublocationdest' => '显示城市中的详细地点',
 'exif-objectname' => '简称',
 'exif-specialinstructions' => '特别说明',
 'exif-headline' => '标题',
-'exif-credit' => '信用/供应商',
-'exif-source' => '源',
+'exif-credit' => '提供人',
+'exif-source' => '来源',
 'exif-editstatus' => '编辑状态的图像',
-'exif-urgency' => '紧迫性',
+'exif-urgency' => '紧急性',
 'exif-fixtureidentifier' => '夹具名称',
 'exif-locationdest' => '位置描述',
 'exif-locationdestcode' => '位置所示的代码',
-'exif-objectcycle' => '媒体应当使用的时间段',
+'exif-objectcycle' => '媒体文件使用时间要求',
 'exif-contact' => '联系信息',
-'exif-writer' => '作家',
+'exif-writer' => '作者',
 'exif-languagecode' => '语言',
 'exif-iimversion' => 'IIM 版本',
 'exif-iimcategory' => '类别',
 'exif-iimsupplementalcategory' => '补充的类别',
-'exif-datetimeexpires' => '不要使用后',
+'exif-datetimeexpires' => '使用截止日期',
 'exif-datetimereleased' => '发表',
 'exif-originaltransmissionref' => '传输位置的原代码',
 'exif-identifier' => '标识符',
 'exif-lens' => '使用的镜头',
-'exif-serialnumber' => '相机的序列号',
-'exif-cameraownername' => '相机的所有者',
+'exif-serialnumber' => '相机序列号',
+'exif-cameraownername' => '相机所有人',
 'exif-label' => '标签',
-'exif-datetimemetadata' => '上次修改日期的元数据',
+'exif-datetimemetadata' => '原始数据最后修改日期',
 'exif-nickname' => '非正式的图像的名称',
-'exif-rating' => '评分（满分为5）',
+'exif-rating' => '分级（最高为5）',
 'exif-rightscertificate' => '权利管理证书',
 'exif-copyrighted' => '著作权状况',
-'exif-copyrightowner' => '著作权所有者',
+'exif-copyrightowner' => '著作权所有人',
 'exif-usageterms' => '使用条款',
-'exif-webstatement' => '网上版权说明',
-'exif-originaldocumentid' => '原始文档的唯一 ID',
-'exif-licenseurl' => '版权许可的 URL',
-'exif-morepermissionsurl' => '替代的许可信息',
+'exif-webstatement' => '在线著作权声明',
+'exif-originaldocumentid' => '原始文件唯一ID',
+'exif-licenseurl' => '著作权授权协议的URL',
+'exif-morepermissionsurl' => '其他授权协议信息',
 'exif-attributionurl' => '二次使用本作品时，请链接至',
 'exif-preferredattributionname' => '二次使用本作品时，请署名',
 'exif-pngfilecomment' => 'PNG文件注释',
@@ -3220,8 +3234,8 @@ Variants for Chinese language
 'exif-event' => '事件描述',
 'exif-organisationinimage' => '组织描述',
 'exif-personinimage' => '描述的人',
-'exif-originalimageheight' => '之前它被裁剪图像的高度',
-'exif-originalimagewidth' => '之前它被裁剪图像的宽度',
+'exif-originalimageheight' => '裁剪前的图像高度',
+'exif-originalimagewidth' => '裁剪前的图像宽度',
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
@@ -3292,15 +3306,15 @@ Variants for Chinese language
 
 # Flash modes
 'exif-flash-fired-0' => '闪光灯未点亮',
-'exif-flash-fired-1' => '闪光灯开火',
+'exif-flash-fired-1' => '闪光灯开启',
 'exif-flash-return-0' => '无频闪观测器功能',
 'exif-flash-return-2' => '频闪观测器未侦测到光',
 'exif-flash-return-3' => '频闪观测器侦测到光',
-'exif-flash-mode-1' => '强制闪光灯开火',
-'exif-flash-mode-2' => '强制闪光抑制',
-'exif-flash-mode-3' => '自动方式',
+'exif-flash-mode-1' => '闪光灯强制开启',
+'exif-flash-mode-2' => '闪光灯强制关闭',
+'exif-flash-mode-3' => '自动模式',
 'exif-flash-function-1' => '无闪光灯功能',
-'exif-flash-redeye-1' => '红眼减退方式',
+'exif-flash-redeye-1' => '防红眼模式',
 
 'exif-focalplaneresolutionunit-2' => '英寸',
 
@@ -3388,9 +3402,9 @@ Variants for Chinese language
 'exif-gpsdop-fair' => '平等（$1）',
 'exif-gpsdop-poor' => '不好（$1）',
 
-'exif-objectcycle-a' => '只有上午',
-'exif-objectcycle-p' => '只有晚上',
-'exif-objectcycle-b' => '早上和晚上',
+'exif-objectcycle-a' => '仅上午（AM）',
+'exif-objectcycle-p' => '仅下午（PM）',
+'exif-objectcycle-b' => '上午（AM）下午（PM）皆可',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真实方位',
@@ -3410,7 +3424,7 @@ Variants for Chinese language
 
 'exif-rating-rejected' => '拒绝',
 
-'exif-isospeedratings-overflow' => '超过65535',
+'exif-isospeedratings-overflow' => '大于65535',
 
 'exif-iimcategory-ace' => '艺术、 文化和娱乐',
 'exif-iimcategory-clj' => '犯罪和法律',
@@ -3659,7 +3673,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 *<span class="mw-specialpagerestricted">非公开特殊页面。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other' => '其它特殊页面',
-'specialpages-group-login' => '登录/注册',
+'specialpages-group-login' => '登录/创建账户',
 'specialpages-group-changes' => '最近更改与日志',
 'specialpages-group-media' => '媒体文件报告与上传',
 'specialpages-group-users' => '用户与权限',
@@ -3798,6 +3812,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'api-error-file-too-large' => '您提交的文件过大。',
 'api-error-filename-tooshort' => '文件名过短。',
 'api-error-filetype-banned' => '此类文件被禁止。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|不是允许的文件类型}}。允许的{{PLURAL:$3|文件类型是|文件类型有}}$2。',
 'api-error-filetype-missing' => '该文件没有扩展名。',
 'api-error-hookaborted' => '你试图进行的修改被一个扩展钩子终止。',
 'api-error-http' => '内部错误：无法连接到服务器。',

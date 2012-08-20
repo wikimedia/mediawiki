@@ -99,9 +99,9 @@ class DisambiguationsPage extends QueryPage {
 				'p2' => 'page'
 			),
 			'fields' => array(
-				'p1.page_namespace AS namespace',
-				'p1.page_title AS title',
-				'pl_from AS value'
+				'namespace' => 'p1.page_namespace',
+				'title' => 'p1.page_title',
+				'value' => 'pl_from'
 			),
 			'conds' => array(
 				$this->getQueryFromLinkBatch(),

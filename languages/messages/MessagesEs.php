@@ -12,6 +12,7 @@
  * @author Alhen
  * @author Alpertron
  * @author Alvaro qc
+ * @author Amire80
  * @author Armando-Martin
  * @author Ascánder
  * @author Baiji
@@ -46,8 +47,10 @@
  * @author Invadinado
  * @author Jatrobat
  * @author Jens Liebenau
+ * @author Jewbask
  * @author Jurock
  * @author Kaganer
+ * @author Larjona
  * @author Lin linao
  * @author Linterweb
  * @author Locos epraix
@@ -360,17 +363,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
 'tog-showtoc' => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword' => 'Recordar mi nombre de usuario y contraseña entre sesiones en este navegador (por un máximo de $1 {{PLURAL:$1|día|días}})',
-'tog-watchcreations' => 'Vigilar las páginas que yo cree',
-'tog-watchdefault' => 'Vigilar las páginas que yo modifique',
-'tog-watchmoves' => 'Vigilar las páginas que renombre',
-'tog-watchdeletion' => 'Vigilar las páginas que borre',
+'tog-watchcreations' => 'Añadir las páginas que cree y los archivos que cargue a mi lista de vigilancia',
+'tog-watchdefault' => 'Añadir la páginas y archivos que edite a mi lista de vigilancia',
+'tog-watchmoves' => 'Añadir las páginas y archivos que mueva a mi lista de vigilancia',
+'tog-watchdeletion' => 'Añadir la páginas y archivos que borre a mi lista de vigilancia',
 'tog-minordefault' => 'Marcar todas las ediciones como menores de manera predeterminada',
 'tog-previewontop' => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst' => 'Mostrar previsualización en la primera edición',
 'tog-nocache' => 'Desactivar la caché de páginas del navegador',
 'tog-enotifwatchlistpages' => 'Enviarme un correo electrónico cuando se modifique una página o un archivo de mi lista de seguimiento',
 'tog-enotifusertalkpages' => 'Enviarme un correo electrónico cuando se modifique mi página de discusión',
-'tog-enotifminoredits' => 'Notificarme también los cambios menores de páginas',
+'tog-enotifminoredits' => 'Notificarme también por correo electrónico los cambios menores de las páginas y archivos',
 'tog-enotifrevealaddr' => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching' => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig' => 'Firma actual:',
@@ -386,7 +389,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ocultar ediciones de usuarios registrados en la lista de seguimiento',
 'tog-watchlisthideanons' => 'Ocultar ediciones de usuarios anónimos en la lista de seguimiento',
 'tog-watchlisthidepatrolled' => 'Ocultar las ediciones patrulladas en la lista de seguimiento',
-'tog-nolangconversion' => 'Deshabilitar conversión de lenguajes',
 'tog-ccmeonemails' => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly' => 'No mostrar el contenido de la página bajo las diferencias',
 'tog-showhiddencats' => 'Mostrar categorías escondidas',
@@ -610,6 +612,10 @@ $1',
 'youhavenewmessages' => 'Tienes $1 ($2).',
 'newmessageslink' => 'mensajes nuevos',
 'newmessagesdifflink' => 'última modificación',
+'youhavenewmessagesfromusers' => 'Tienes $1 de {{PLURAL:$3|otro usuario|$3 usuarios}} ($2).',
+'youhavenewmessagesmanyusers' => 'Tienes $1 de muchos usuarios ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un nuevo mensaje|mensajes nuevos}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|últimos cambios}}',
 'youhavenewmessagesmulti' => 'Tienes nuevos mensajes en $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -758,6 +764,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'remembermypassword' => 'Mantenerme conectado en este navegador (hasta $1 {{PLURAL:$1|día|días}})',
 'securelogin-stick-https' => 'Permanecer conectado a HTTPS después de iniciar sesión',
 'yourdomainname' => 'Dominio',
+'password-change-forbidden' => 'No puedes cambiar las contraseñas de este wiki.',
 'externaldberror' => 'Hubo un error de autenticación externa de la base de datos o bien no tienes autorización para actualizar tu cuenta externa.',
 'login' => 'Iniciar sesión',
 'nav-login-createaccount' => 'Iniciar sesión / crear cuenta',
@@ -1009,6 +1016,8 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
+'missing-revision' => 'La revisión # $1  de la página denominada "{{PAGENAME}}" no existe.
+!¡ N!Esto es generalmente causado al seguir un enlace de historia obsoleto a una página que se ha borrado.!¡ N!Los detalles pueden encontrarse en el [{{fullurl: {{#Special:Log}} / delete|page = {{FULLPAGENAMEE}}}} registro de borrado].',
 'userpage-userdoesnotexist' => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view' => 'La cuenta de usuario «$1» no está registrada.',
 'blocked-notice-logextract' => 'Este usuario está actualmente bloqueado.
@@ -1096,7 +1105,7 @@ Puede volver atrás y editar una página existente, [[Special:UserLogin|identifi
 'sectioneditnotsupported-text' => 'La edición de sección no es compatible con esta página.',
 'permissionserrors' => 'Errores de permisos',
 'permissionserrorstext' => 'No tienes permiso para hacer eso, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
-'permissionserrorstext-withaction' => 'No tienes permiso para $2, por los siguientes {{PLURAL:$1|motivo|motivos}}:',
+'permissionserrorstext-withaction' => 'No tienes permiso para $2, por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:',
 'recreate-moveddeleted-warn' => "'''Atención: estás volviendo a crear una página que ha sido borrada anteriormente.'''
 
 Deberías considerar si es apropiado continuar editando esta página.
@@ -1134,6 +1143,7 @@ Ese o esos parámetros han sido omitidos.',
 'expansion-depth-exceeded-warning' => 'Página que ha superado la profundidad de expansión',
 'parser-unstrip-loop-warning' => 'Se ha detectado un bucle "unstrip"',
 'parser-unstrip-recursion-limit' => 'Se ha superado el límite de recursión de "unstrip" ($1)',
+'converter-manual-rule-error' => 'Error detectado en la regla de conversión manual del lenguaje',
 
 # "Undo" feature
 'undo-success' => 'La edición puede deshacerse. Antes de deshacer la edición, comprueba la siguiente comparación para verificar que realmente es lo que quieres hacer, y entonces guarda los cambios para así deshacer la edición.',
@@ -1322,6 +1332,8 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'editundo' => 'deshacer',
 'diff-multi' => '(No se {{PLURAL:$1|muestra una edición intermedia realizada|muestran $1 ediciones intermedias realizadas}} por {{PLURAL:$2|un usuario|$2 usuarios}})',
 'diff-multi-manyusers' => '(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|un usuario|$2 usuarios}})',
+'difference-missing-revision' => '{{PLURAL:$2|Un revisión| $2  revisiones}} de esta diferencia ( $1 )  no {{PLURAL:$2| ha siado encontrada|han sido encontradas}}.
+!¡ N!Esto es generalmente causado por seguir un enlace de diffs obsoletas a una página que ha sido borrada.!¡ N!Los detalles pueden encontrarse en el [{{fullurl:{{#Special:log}} / delete|page = {{FULLPAGENAMEE}}}} registro de borrado].',
 
 # Search results
 'searchresults' => 'Resultados de la búsqueda',
@@ -1588,6 +1600,7 @@ Tu dirección de correo no se revela cuando otros usuarios te contactan.',
 'right-writeapi' => 'Hacer uso del API para escribir',
 'right-delete' => 'Borrar páginas',
 'right-bigdelete' => 'Borrar páginas con historiales grandes',
+'right-deletelogentry' => 'Borrar y recuperar entradas de registro específicas',
 'right-deleterevision' => 'Borrar y restaurar revisiones específicas de páginas',
 'right-deletedhistory' => 'Ver el historial de páginas borradas, sin el texto asociado',
 'right-deletedtext' => 'Ver texto borrado y cambios entre revisiones borradas',
@@ -1732,9 +1745,9 @@ Para ver o buscar archivos subidos con anterioridad, ve a la [[Special:FileList|
 Los archivos subidos quedarán registrados además en el [[Special:Log/upload|registro de archivos subidos]] y los borrados en el [[Special:Log/delete|registro de borrados]].
 
 Para incluir un archivo en una página, usa un enlace como los mostrados a continuación:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 píxeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para usar el fichero en tamaño completo
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></code>''' para una versión de 200 píxeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para enlazar directamente al fichero sin mostrarlo.",
 'upload-permitted' => 'Tipos de archivo permitidos: $1.',
 'upload-preferred' => 'Tipos de archivo preferidos: $1.',
 'upload-prohibited' => 'Tipos de archivo prohibidos: $1.',
@@ -1778,19 +1791,19 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'largefileserver' => 'El tamaño de este archivo es mayor del que este servidor admite por configuración.',
 'emptyfile' => 'El archivo que has intentado subir parece estar vacío; por favor, verifica que realmente se trate del archivo que intentabas subir.',
 'windows-nonascii-filename' => 'Este wiki no admite nombres de archivo con caracteres especiales.',
-'fileexists' => "Ya existe un archivo con este nombre, por favor comprueba '''<tt>[[:$1]]</tt>''' si no estás seguro de querer cambiarlo.
-[[$1|thumb]]",
-'filepageexists' => "La página de descripción de este archivo ya ha sido creada en '''<tt>[[:$1]]</tt>''', pero no existe actualmente ningún fichero con este nombre.
+'fileexists' => 'Ya existe un archivo con este nombre, por favor comprueba <strong>[[:$1]]</strong> si no estás seguro de querer cambiarlo.
+[[$1|thumb]]',
+'filepageexists' => 'La página de descripción de este archivo ya ha sido creada en <strong>[[:$1]]</strong>, pero no existe actualmente ningún fichero con este nombre.
 El resumen que ha ingresado no aparecerá en la página de descripción. Para que el sumario aparezca, deberá editarlo manualmente.
-[[$1|thumb]]",
-'fileexists-extension' => "Existe un archivo con un nombre similar: [[$2|thumb]]
-* Nombre del archivo que se está subiendo: '''<tt>[[:$1]]</tt>'''
-* Nombre del archivo ya existente: '''<tt>[[:$2]]</tt>'''
-Por favor, elige un nombre diferente.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Existe un archivo con un nombre similar: [[$2|thumb]]
+* Nombre del archivo que se está subiendo: <strong>[[:$1]]</strong>
+* Nombre del archivo ya existente: <strong>[[:$2]]</strong>
+Por favor, elige un nombre diferente.',
 'fileexists-thumbnail-yes' => "El archivo parece ser una imagen de tamaño reducido ''(thumbnail)''. [[$1|thumb]]
-Por favor comprueba el archivo '''<tt>[[:$1]]</tt>'''.
+Por favor comprueba el archivo <strong>[[:$1]]</strong>.
 Si el archivo comprobado es la misma imagen a tamaño original no es necesario subir un thumbnail más.",
-'file-thumbnail-no' => "El nombre del archivo comienza con '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "El nombre del archivo comienza con <strong>$1</strong>.
 Parece ser una imagen de tamaño reducido ''(thumbnail)''.
 Si tiene esta imagen a toda resolución súbala, si no, por favor cambie el nombre del archivo.",
 'fileexists-forbidden' => 'Ya existe un archivo con este nombre, y no puede ser grabado encima de otro. Si quiere subir su archivo de todos modos, por favor vuelva atrás y utilice otro nombre. [[File:$1|thumb|center|$1]]',
@@ -1898,6 +1911,7 @@ $1',
 'lockmanager-fail-releaselock' => 'No se pudo liberar el bloqueo de "$1".',
 'lockmanager-fail-db-bucket' => 'No se pudo contactar con las suficientes bases de datos del conjunto $1.',
 'lockmanager-fail-db-release' => 'No se pudieron liberar los bloqueos registrados en la base de datos $1.',
+'lockmanager-fail-svr-acquire' => 'No se pudieron obtener bloqueos en el servidor $1.',
 'lockmanager-fail-svr-release' => 'No se pudieron liberar los bloqueos registrados en el servidor $1.',
 
 # ZipDirectoryReader
@@ -2051,7 +2065,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 # MIME search
 'mimesearch' => 'Búsqueda MIME',
 'mimesearch-summary' => 'Esta página permite el filtrado de ficheros por su tipo MIME.
-Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
+Entrada: contenttype/subtype, p. ej. <code>image/jpeg</code>.',
 'mimetype' => 'Tipo MIME:',
 'download' => 'descargar',
 
@@ -2097,8 +2111,8 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 
 'disambiguations' => 'Páginas que enlazan con páginas de desambiguación',
 'disambiguationspage' => 'Template:Desambiguación',
-'disambiguations-text' => "Las siguientes páginas enlazan con una '''página de desambiguación'''.
-En lugar de ello deberían enlazar con  el tema apropiado.<br />
+'disambiguations-text' => "Las siguientes páginas contienen al menos un enlace a una '''página de desambiguación'''.
+En lugar de ello deberían enlazar a una página más apropiada.<br />
 Una página es considerada página de desambiguación si utiliza la plantilla que está enlazada desde [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirecciones dobles',
@@ -2251,7 +2265,7 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-ok' => 'Buscar',
 'linksearch-text' => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
 Es necesario, por lo menos, un dominio de nivel, por ejemplo "*.org".<br />
-Protocolos soportados: <tt>$1</tt> (no añada ninguno de estos en su búsqueda).',
+Protocolos soportados: <code>$1</code> (no añada ninguno de estos en su búsqueda).',
 'linksearch-line' => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2437,6 +2451,8 @@ Véase $2 para un registro de los borrados recientes.',
 'rollback' => 'Revertir ediciones',
 'rollback_short' => 'Revertir',
 'rollbacklink' => 'revertir',
+'rollbacklinkcount' => 'revertir $1 {{PLURAL:$1|edición|ediciones}}',
+'rollbacklinkcount-morethan' => 'revertir más de $1 {{PLURAL:$1|edición|ediciones}}',
 'rollbackfailed' => 'No se pudo revertir',
 'cantrollback' => 'No se puede revertir la edición;
 el último colaborador es el único autor de esta página.',
@@ -2926,6 +2942,7 @@ Todas las importaciones transwiki se registran en el [[Special:Log/import|regist
 'import-interwiki-templates' => 'Incluir todas las plantillas',
 'import-interwiki-submit' => 'Importar',
 'import-interwiki-namespace' => 'Espacio de nombres de destino:',
+'import-interwiki-rootpage' => 'Página raíz del destino (opcional):',
 'import-upload-filename' => 'Nombre de archivo:',
 'import-comment' => 'Comentario:',
 'importtext' => 'Por favor, exporta el archivo desde el wiki de origen usando la [[Special:Export|herramienta de exportación]], guárdalo en tu disco y súbelo aquí.',
@@ -2960,6 +2977,9 @@ No hay un directorio temporal.',
 'import-error-interwiki' => 'La página "$1" no se ha importado porque su nombre está reservado para la vinculación externa (interwikis).',
 'import-error-special' => 'La página "$1" no se ha importado porque pertenece a un espacio de nombres especial que no admite páginas.',
 'import-error-invalid' => 'La página "$1" no se ha importado porque su nombre no es válido.',
+'import-options-wrong' => '{{PLURAL:$2|Opción errónea|Opciones erróneas}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La página raíz dada es un título inválido.',
+'import-rootpage-nosubpage' => 'El espacio de nombres "$1" de la página raíz no permite subpáginas.',
 
 # Import log
 'importlogpage' => 'Registro de importaciones',
@@ -3853,7 +3873,7 @@ Las imágenes se muestran en resolución máxima, otros tipos de archivo se inic
 * <span class="mw-specialpagecached">Páginas especiales en caché (podrían ser obsoletas).</span>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other' => 'Otras páginas especiales',
-'specialpages-group-login' => 'Iniciar sesión / Registrarse',
+'specialpages-group-login' => 'Iniciar sesión / Crear cuenta',
 'specialpages-group-changes' => 'Cambios recientes y registros',
 'specialpages-group-media' => 'Páginas sobre archivos',
 'specialpages-group-users' => 'Usuarios y permisos',
@@ -3994,6 +4014,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'api-error-file-too-large' => 'El archivo que enviaste era demasiado grande.',
 'api-error-filename-tooshort' => 'El nombre de archivo es demasiado corto.',
 'api-error-filetype-banned' => 'Este tipo de archivo está prohibido.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|no es un tipo de archivo permitido|no son tipos de archivos permitidos}}. {{PLURAL:$3|El tipo de archivo permitido es|Los tipos de archivos permitidos son}} $2.',
 'api-error-filetype-missing' => 'El archivo no tiene extensión de archivo.',
 'api-error-hookaborted' => 'La modificación que intentaste hacer fue cancelada por un gancho de extensión.',
 'api-error-http' => 'Error interno: No se puede conectar al servidor.',
@@ -4029,6 +4050,4 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'No se pudieron obtener bloqueos en el servidor $1.',
 );

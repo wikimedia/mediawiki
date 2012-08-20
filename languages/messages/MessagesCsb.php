@@ -79,7 +79,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Zatacë edicëje wlogòwónych brëkòwników na lësce ùzérónych artiklów',
 'tog-watchlisthideanons' => 'Zatacë edicëje anonimòwich brëkòwników na lësce ùzérónych artiklów',
 'tog-watchlisthidepatrolled' => 'Zatacë sprôwdzoné edicëje z lëstë ùzérónych artiklów',
-'tog-nolangconversion' => 'Wëłączë kònwersëjã wariantów',
 'tog-ccmeonemails' => 'Sélôj do mie kòpije e-mailów, chtërné sélóm do jinych brëkòwników',
 'tog-diffonly' => 'Nie wëskrzëniôj zamkłoscë starnë niżi przërónaniô zjinaków',
 'tog-showhiddencats' => 'Wëskrzëni zataconé kategòrëje',
@@ -768,9 +767,9 @@ Starnë z [[Special:Watchlist|lëstë ùzérónëch artiklów]] są '''pògrëbi
 Jeżlë chcesz przezdrzec abò szëkac w dotenczas wladowónëch lopkach, biéj do [[Special:FileList|lësta lopków]]. Kòżdi wladënk je registrowóny w [[Special:Log/upload|registrze wladënkù]], a rëmniãcé w [[Special:Log/delete|registrze rëmaniô]].
 
 Abë dodac lopk do starnë, ùżëjë ùniższegò lënka wedle nôslédnëch mùstrów:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lopk.jpg]]</nowiki></tt>''' wëskrzëni całi lopk
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lopk.png|200px|thumb|left|pòdpisënk òbrôzka]]</nowiki></tt>''' wëskrzëni z lewi starnë, przë ùbrzégù, miniaturkã w szérzë 200 pikslów w ramie, z nôdpisã 'pòdpisënk òbrôzka'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Lopk.ogg]]</nowiki></tt>''' òtemknie prosti lënk do lopka bez wëskrzënianiô sómegò lopka",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lopk.jpg]]</nowiki></code>''' wëskrzëni całi lopk
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Lopk.png|200px|thumb|left|pòdpisënk òbrôzka]]</nowiki></code>''' wëskrzëni z lewi starnë, przë ùbrzégù, miniaturkã w szérzë 200 pikslów w ramie, z nôdpisã 'pòdpisënk òbrôzka'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Lopk.ogg]]</nowiki></code>''' òtemknie prosti lënk do lopka bez wëskrzënianiô sómegò lopka",
 'uploadlog' => 'Lësta wladënków',
 'uploadlogpage' => 'Dołączoné',
 'uploadlogpagetext' => 'Hewò je lësta slédno wladowónëch lopków.

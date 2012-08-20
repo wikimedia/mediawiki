@@ -28,7 +28,7 @@ class OrphanStats extends Maintenance {
 		$this->mDescription = "how some statistics on the blob_orphans table, created with trackBlobs.php";
 	}
 
-	private function getDB( $cluster ) {
+	protected function &getDB( $cluster, $groups = array(), $wiki = false ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
 		return $lb->getConnection( DB_SLAVE );
 	}

@@ -41,14 +41,11 @@ class FormatJson {
 	 * @return string
 	 */
 	public static function encode( $value, $isHtml = false ) {
-		// Some versions of PHP have a broken json_encode, see PHP bug
-		// 46944. Test encoding an affected character (U+20000) to
-		// avoid this.
-		if ( !function_exists( 'json_encode' ) || $isHtml || strtolower( json_encode( "\xf0\xa0\x80\x80" ) ) != '"\ud840\udc00"' ) {
+		if ( !function_exists( 'json_encode' ) || ( $isHtml && version_compare( PHP_VERSION, '5.4.0', '<' ) ) ) {
 			$json = new Services_JSON();
 			return $json->encode( $value, $isHtml );
 		} else {
-			return json_encode( $value );
+			return json_encode( $value, $isHtml ? JSON_PRETTY_PRINT : 0 );
 		}
 	}
 

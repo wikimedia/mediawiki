@@ -33,6 +33,15 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		parent::__construct( 'Emailuser' );
 	}
 
+	public function getDescription() {
+		$target = self::getTarget( $this->mTarget );
+		if( !$target instanceof User ) {
+			return $this->msg( 'emailuser-title-notarget' )->text();
+		}
+
+		return $this->msg( 'emailuser-title-target', $target->getName() )->text();
+	}
+
 	protected function getFormFields() {
 		return array(
 			'From' => array(
@@ -66,14 +75,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				'label-message' => 'emailsubject',
 				'maxlength' => 200,
 				'size' => 60,
-				'required' => 1,
+				'required' => true,
 			),
 			'Text' => array(
 				'type' => 'textarea',
 				'rows' => 20,
 				'cols' => 80,
 				'label-message' => 'emailmessage',
-				'required' => 1,
+				'required' => true,
 			),
 			'CCMe' => array(
 				'type' => 'check',
@@ -84,13 +93,18 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
-		$this->setHeaders();
-		$this->outputHeader();
 		$out = $this->getOutput();
 		$out->addModuleStyles( 'mediawiki.special' );
+
 		$this->mTarget = is_null( $par )
 			? $this->getRequest()->getVal( 'wpTarget', $this->getRequest()->getVal( 'target', '' ) )
 			: $par;
+
+		// This needs to be below assignment of $this->mTarget because
+		// getDescription() needs it to determine the correct page title.
+		$this->setHeaders();
+		$this->outputHeader();
+
 		// error out if sending user cannot do this
 		$error = self::getPermissionsError( $this->getUser(), $this->getRequest()->getVal( 'wpEditToken' ) );
 		switch ( $error ) {
@@ -136,7 +150,6 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return false;
 		}
 
-		$out->setPageTitle( $this->msg( 'emailpage' ) );
 		$result = $form->show();
 
 		if( $result === true || ( $result instanceof Status && $result->isGood() ) ) {

@@ -235,6 +235,7 @@ class Preprocessor_DOM implements Preprocessor {
 
 		$searchBase = "[{<\n"; #}
 		$revText = strrev( $text ); // For fast reverse searches
+		$lengthText = strlen( $text );
 
 		$i = 0;                     # Input pointer, starts out pointing to a pseudo-newline before the start
 		$accum =& $stack->getAccum();   # Current accumulator
@@ -290,7 +291,7 @@ class Preprocessor_DOM implements Preprocessor {
 					$accum .= htmlspecialchars( substr( $text, $i, $literalLength ) );
 					$i += $literalLength;
 				}
-				if ( $i >= strlen( $text ) ) {
+				if ( $i >= $lengthText ) {
 					if ( $currentClosing == "\n" ) {
 						// Do a past-the-end run to finish off the heading
 						$curChar = '';
@@ -354,10 +355,10 @@ class Preprocessor_DOM implements Preprocessor {
 						// Unclosed comment in input, runs to end
 						$inner = substr( $text, $i );
 						$accum .= '<comment>' . htmlspecialchars( $inner ) . '</comment>';
-						$i = strlen( $text );
+						$i = $lengthText;
 					} else {
 						// Search backwards for leading whitespace
-						$wsStart = $i ? ( $i - strspn( $revText, ' ', strlen( $text ) - $i ) ) : 0;
+						$wsStart = $i ? ( $i - strspn( $revText, ' ', $lengthText - $i ) ) : 0;
 						// Search forwards for trailing whitespace
 						// $wsEnd will be the position of the last space (or the '>' if there's none)
 						$wsEnd = $endPos + 2 + strspn( $text, ' ', $endPos + 3 );
@@ -438,7 +439,7 @@ class Preprocessor_DOM implements Preprocessor {
 					} else {
 						// No end tag -- let it run out to the end of the text.
 						$inner = substr( $text, $tagEndPos + 1 );
-						$i = strlen( $text );
+						$i = $lengthText;
 						$close = '';
 					}
 				}
@@ -498,16 +499,16 @@ class Preprocessor_DOM implements Preprocessor {
 				$part = $piece->getCurrentPart();
 				// Search back through the input to see if it has a proper close
 				// Do this using the reversed string since the other solutions (end anchor, etc.) are inefficient
-				$wsLength = strspn( $revText, " \t", strlen( $text ) - $i );
+				$wsLength = strspn( $revText, " \t", $lengthText - $i );
 				$searchStart = $i - $wsLength;
 				if ( isset( $part->commentEnd ) && $searchStart - 1 == $part->commentEnd ) {
 					// Comment found at line end
 					// Search for equals signs before the comment
 					$searchStart = $part->visualEnd;
-					$searchStart -= strspn( $revText, " \t", strlen( $text ) - $searchStart );
+					$searchStart -= strspn( $revText, " \t", $lengthText - $searchStart );
 				}
 				$count = $piece->count;
-				$equalsLength = strspn( $revText, '=', strlen( $text ) - $searchStart );
+				$equalsLength = strspn( $revText, '=', $lengthText - $searchStart );
 				if ( $equalsLength > 0 ) {
 					if ( $searchStart - $equalsLength == $piece->startPos ) {
 						// This is just a single string of equals signs on its own line

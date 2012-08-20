@@ -335,7 +335,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ẩn sửa đổi của thành viên đã đăng nhập khỏi danh sách theo dõi',
 'tog-watchlisthideanons' => 'Ẩn sửa đổi của người dùng vô danh khỏi danh sách theo dõi',
 'tog-watchlisthidepatrolled' => 'Ẩn sửa đổi đã tuần tra trong danh sách theo dõi',
-'tog-nolangconversion' => 'Tắt chuyển đổi biến thể',
 'tog-ccmeonemails' => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
 'tog-diffonly' => 'Không hiển thị nội dung trang dưới phần so sánh phiên bản',
 'tog-showhiddencats' => 'Hiển thị thể loại ẩn',
@@ -560,6 +559,10 @@ $1',
 'youhavenewmessages' => 'Bạn có $1 ($2).',
 'newmessageslink' => 'tin nhắn mới',
 'newmessagesdifflink' => 'thay đổi gần nhất',
+'youhavenewmessagesfromusers' => 'Bạn có $1 từ {{PLURAL:$3|người dùng khác|$3 người dùng}} ($2).',
+'youhavenewmessagesmanyusers' => 'Bạn có $1 từ nhiều người dùng ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1}}tin nhắn mới',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|thay đổi|các thay đổi}} gần đây',
 'youhavenewmessagesmulti' => 'Bạn có tin nhắn mới ở $1',
 'editsection' => 'sửa',
 'editold' => 'sửa',
@@ -706,6 +709,7 @@ Tài khoản của bạn đã mở.
 'remembermypassword' => 'Nhớ thông tin đăng nhập của tôi trên máy tính này (cho đến $1 ngày)',
 'securelogin-stick-https' => 'Giữ kết nối với HTTPS sau khi đăng nhập',
 'yourdomainname' => 'Tên miền của bạn:',
+'password-change-forbidden' => 'Bạn không thể đổi mật khẩu trên wiki này.',
 'externaldberror' => 'Có lỗi khi xác nhận cơ sở dữ liệu bên ngoài hoặc bạn không được phép cập nhật tài khoản bên ngoài.',
 'login' => 'Đăng nhập',
 'nav-login-createaccount' => 'Đăng nhập / Mở tài khoản',
@@ -947,6 +951,10 @@ hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
 hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>.',
+'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
+
+Lỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến phiên bản cũ của một trang đã bị xóa.
+Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
 'userpage-userdoesnotexist' => 'Tài khoản mang tên “<nowiki>$1</nowiki>” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
 'userpage-userdoesnotexist-view' => 'Tài khoản “$1” chưa được đăng ký.',
 'blocked-notice-logextract' => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
@@ -1071,6 +1079,7 @@ Những giá trị này sẽ bị bỏ đi.',
 'expansion-depth-exceeded-warning' => 'Trang bung bản mẫu sâu quá',
 'parser-unstrip-loop-warning' => 'Vòng lặp unstrip',
 'parser-unstrip-recursion-limit' => 'Đã vượt quá giới hạn về độ sâu đệ quy unstrip ($1)',
+'converter-manual-rule-error' => 'Lỗi được phát hiện trong quy tắc chuyển đổi ngôn ngữ thủ công',
 
 # "Undo" feature
 'undo-success' => 'Các sửa đổi có thể được lùi lại. Xin hãy kiểm tra phần so sánh bên dưới để xác nhận lại những gì bạn muốn làm, sau đó lưu thay đổi ở dưới để hoàn tất việc lùi lại sửa đổi.',
@@ -1257,6 +1266,10 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'editundo' => 'lùi sửa',
 'diff-multi' => '(Không hiển thị {{PLURAL:$1||$1}} phiên bản {{PLURAL:$2||của $2 thành viên}} ở giữa)',
 'diff-multi-manyusers' => '(Không hiển thị {{PLURAL:$1||$1}} phiên bản của hơn $2 thành viên ở giữa)',
+'difference-missing-revision' => 'Không tìm thấy {{PLURAL:$2|một phiên bản|$2 phiên bản}} trong khác biệt này ($1).
+
+Lỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến khác biệt giữa các bản của trang đã bị xóa.
+Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].',
 
 # Search results
 'searchresults' => 'Kết quả tìm kiếm',
@@ -1524,12 +1537,13 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-writeapi' => 'Sử dụng API để viết',
 'right-delete' => 'Xóa trang',
 'right-bigdelete' => 'Xóa trang có lịch sử lớn',
+'right-deletelogentry' => 'Xóa và phục hồi khoản mục nhật trình nào đó',
 'right-deleterevision' => 'Xóa và phục hồi phiên bản nào đó của trang',
 'right-deletedhistory' => 'Xem phần lịch sử đã xóa, mà không xem nội dung đi kèm',
 'right-deletedtext' => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
 'right-browsearchive' => 'Tìm kiếm trang đã bị xóa',
 'right-undelete' => 'Phục hồi trang',
-'right-suppressrevision' => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
+'right-suppressrevision' => 'Xem và phục hồi phiên bản mà bảo quản viên không thấy',
 'right-suppressionlog' => 'Xem nhật trình riêng tư',
 'right-block' => 'Cấm thành viên khác sửa đổi',
 'right-blockemail' => 'Cấm người dùng gửi thư điện tử',
@@ -1588,7 +1602,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-deletedhistory' => 'xem các phiên bản đã bị xóa của trang này',
 'action-browsearchive' => 'tìm kiếm trang đã bị xóa',
 'action-undelete' => 'phục hồi trang này',
-'action-suppressrevision' => 'duyệt và phục hồi phiên bản bị giấu này',
+'action-suppressrevision' => 'xem và phục hồi phiên bản ẩn này',
 'action-suppressionlog' => 'xem nhật trình ẩn giấu này',
 'action-block' => 'cấm không cho người dùng này sửa đổi',
 'action-protect' => 'thay đổi mức khóa của trang này',
@@ -1669,9 +1683,9 @@ Nhật trình xóa và di chuyển của trang này được ghi ở dưới đ�
 việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]], việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 điểm ảnh chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki></tt>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.jpg]]</nowiki></code>''' để phiên bản đầy đủ của tập tin
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></code>''' để dùng hình đã được co lại còn 200 điểm ảnh chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki></code>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
 'upload-permitted' => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred' => 'Các định dạng tập tin nên dùng: $1.',
 'upload-prohibited' => 'Các định dạng tập tin bị cấm: $1.',
@@ -1715,20 +1729,20 @@ Chỉ chấp nhận {{PLURAL:$3|loại tập tin|các loại tập tin}} sau: $2
 'largefileserver' => 'Tập tin này quá lớn so với khả năng phục vụ của máy chủ.',
 'emptyfile' => 'Tập tin bạn vừa mới tải lên có vẻ trống không. Điều này có thể xảy ra khi bạn đánh sai tên tập tin. Xin hãy chắc chắn rằng bạn thật sự muốn tải lên tập tin này.',
 'windows-nonascii-filename' => 'Wiki này không hỗ trợ ký tự đặc biệt trong tên tập tin.',
-'fileexists' => "Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại '''<tt>[[:$1]]</tt>''' nếu bạn không chắc bạn có muốn thay đổi nó hay không.
-[[$1|thumb]]",
-'filepageexists' => "Trang miêu tả của tập tin này đã được tạo tại '''<tt>[[:\$1]]</tt>''', nhưng hiện không có tập tin nào có tên như vậy.
-Những gì bạn ghi trong ô \"Tóm tắt tập tin\" sẽ không hiện ra ở trang miêu tả.
+'fileexists' => 'Một tập tin với tên này đã tồn tại, xin hãy kiểm tra lại <strong>[[:$1]]</strong> nếu bạn không chắc bạn có muốn thay đổi nó hay không.
+[[$1|thumb]]',
+'filepageexists' => 'Trang miêu tả của tập tin này đã được tạo tại <strong>[[:$1]]</strong>, nhưng hiện không có tập tin nào có tên như vậy.
+Những gì bạn ghi trong ô "Tóm tắt tập tin" sẽ không hiện ra ở trang miêu tả.
 Để khiến nó hiển thị, bạn cần phải sửa đổi trang đó bằng tay.
-[[\$1|thumb]]",
-'fileexists-extension' => "Hiện có một tập tin trùng tên: [[$2|thumb]]
-* Tên tập tin đang tải lên: '''<tt>[[:$1]]</tt>'''
-* Tên tập tin có từ trước: '''<tt>[[:$2]]</tt>'''
-Xin hãy chọn một tên tập tin khác.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Hiện có một tập tin trùng tên: [[$2|thumb]]
+* Tên tập tin đang tải lên: <strong>[[:$1]]</strong>
+* Tên tập tin có từ trước: <strong>[[:$2]]</strong>
+Xin hãy chọn một tên tập tin khác.',
 'fileexists-thumbnail-yes' => "Tập tin này có vẻ là hình có kích thước thu gọn ''(hình thu nhỏ)''. [[$1|thumb]]
-Xin kiểm tra lại tập tin '''<tt>[[:$1]]</tt>'''.
+Xin kiểm tra lại tập tin <strong>[[:$1]]</strong>.
 Nếu tập tin được kiểm tra trùng với hình có kích cỡ gốc thì không cần thiết tải lên một hình thu nhỏ khác.",
-'file-thumbnail-no' => "Tên tập tin bắt đầu bằng '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Tên tập tin bắt đầu bằng <strong>$1</strong>.
 Có vẻ đây là bản thu nhỏ của hình gốc ''(thumbnail)''.
 Nếu bạn có hình ở độ phân giải tối đa, xin hãy tải bản đó lên, nếu không xin hãy đổi lại tên tập tin.",
 'fileexists-forbidden' => 'Đã có tập tin với tên gọi này, và nó không thể bị ghi đè.
@@ -1747,7 +1761,7 @@ Nếu bạn vẫn muốn tải tập tin của bạn lên, xin hãy quay lại v
 'uploadfromurl-queued' => 'Tập tin của bạn đã được xếp vào hàng đợi tải lên.',
 'uploaddisabledtext' => 'Chức năng tải tập tin đã bị tắt.',
 'php-uploaddisabledtext' => 'Việc tải tập tin trong PHP đã bị tắt. Xin hãy kiểm tra lại thiết lập file_uploads.',
-'uploadscripted' => 'Tập tin này có chứa mã HTML hoặc script có thể khiến trình duyệt web thông dịch sai.',
+'uploadscripted' => 'Tập tin này có chứa mã HTML hoặc kịch bản có thể khiến trình duyệt web thông dịch sai.',
 'uploadvirus' => 'Tập tin có virút! Chi tiết: $1',
 'uploadjava' => 'Tập tin ZIP này chứa một tập tin Java .class.
 Không được phép tải lên các tập tin Java, bởi vì chúng có thể vượt qua các hạn chế bảo mật.',
@@ -1837,6 +1851,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'lockmanager-fail-releaselock' => 'Không thể thả khóa cho “$1”.',
 'lockmanager-fail-db-bucket' => 'Không thể liên lạc với đủ cơ sở dữ liệu khóa trong nhóm $1.',
 'lockmanager-fail-db-release' => 'Không thể thả các chìa khóa trên cơ sở dữ liệu $1.',
+'lockmanager-fail-svr-acquire' => 'Không thể lấy các chìa khóa trên máy chủ $1.',
 'lockmanager-fail-svr-release' => 'Không thể thả các chìa khóa trên máy chủ $1.',
 
 # ZipDirectoryReader
@@ -1987,7 +2002,7 @@ Có lẽ bạn muốn miêu tả nó trên [$2 trang miêu tả tập tin] tại
 
 # MIME search
 'mimesearch' => 'Tìm kiếm theo định dạng',
-'mimesearch-summary' => 'Trang này có khả năng lọc tập tin theo kiểu MIME. Đầu vào: kiểu-nội-dung/kiểu-phụ, v.d. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Trang này có khả năng lọc tập tin theo kiểu MIME. Đầu vào: kiểu-nội-dung/kiểu-phụ, v.d. <code>image/jpeg</code>.',
 'mimetype' => 'Kiểu MIME:',
 'download' => 'tải về',
 
@@ -2035,7 +2050,7 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 
 'disambiguations' => 'Trang liên kết đến trang định hướng',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Các trang này có liên kết đến ít nhất một '''trang định hướng''', những trang này có thể có liên kết đến các trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Đổi hướng kép',
 'doubleredirectstext' => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
@@ -2185,7 +2200,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'linksearch-pat' => 'Mẫu liên kết:',
 'linksearch-ns' => 'Không gian tên:',
 'linksearch-ok' => 'Tìm kiếm',
-'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <tt>$1</tt>; vui lòng không đưa giao thức vào truy vấn.",
+'linksearch-text' => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <code>$1</code>; vui lòng không đưa giao thức vào truy vấn.",
 'linksearch-line' => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 
@@ -2376,6 +2391,8 @@ hãy cẩn trọng khi thực hiện.',
 'rollback' => 'Lùi tất cả sửa đổi',
 'rollback_short' => 'Lùi tất cả',
 'rollbacklink' => 'lùi tất cả',
+'rollbacklinkcount' => 'lùi tất cả $1 sửa đổi',
+'rollbacklinkcount-morethan' => 'lùi tất cả hơn $1 sửa đổi',
 'rollbackfailed' => 'Lùi sửa đổi không thành công',
 'cantrollback' => 'Không lùi sửa đổi được;
 người viết trang cuối cùng cũng là tác giả duy nhất của trang này.',
@@ -2867,6 +2884,7 @@ Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[S
 'import-interwiki-templates' => 'Gồm tất cả các bản mẫu',
 'import-interwiki-submit' => 'Nhập trang',
 'import-interwiki-namespace' => 'Không gian tên đích:',
+'import-interwiki-rootpage' => 'Trang gốc đích (tùy chọn):',
 'import-upload-filename' => 'Tên tập tin:',
 'import-comment' => 'Lý do:',
 'importtext' => 'Xin hãy xuất tập tin từ wiki nguồn dùng [[Special:Export|công cụ xuất]].
@@ -2899,6 +2917,9 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'import-error-interwiki' => 'Trang “$1” không được nhập vì tên của nó được dành riêng cho liên kết ngoài (liên wiki).',
 'import-error-special' => 'Trang “$1” không được nhập vì nó thuộc về không gian tên đặc biệt không cho phép các trang không mặc định.',
 'import-error-invalid' => 'Trang “$1” không được nhập vì tên của nó không hợp lệ.',
+'import-options-wrong' => '{{PLURAL:$2|Tùy chọn|Các tùy chọn}} có vấn đề: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Trang đích không hợp lệ.',
+'import-rootpage-nosubpage' => 'Không gian tên “$1” của trang gốc không cho phép các trang con.',
 
 # Import log
 'importlogpage' => 'Nhật trình nhập trang',
@@ -2983,7 +3004,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-watchlistedit-raw-submit' => 'Cập nhật danh sách theo dõi',
 'tooltip-recreate' => 'Tạo lại trang dù cho nó vừa bị xóa',
 'tooltip-upload' => 'Bắt đầu tải lên',
-'tooltip-rollback' => '"Lùi tất cả" sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
+'tooltip-rollback' => '“Lùi tất cả” sẽ lùi mọi sửa đổi của người sửa đổi cuối cùng chỉ bằng một cú nhấp chuột.',
 'tooltip-undo' => '"Lùi lại" sẽ lùi sửa đổi này và mở trang sửa đổi ở chế độ xem thử. Cho phép thêm lý do vào tóm lược.',
 'tooltip-preferences-save' => 'Lưu tùy chọn',
 'tooltip-summary' => 'Hãy nhập câu tóm lược',
@@ -4027,6 +4048,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'api-error-file-too-large' => 'Bạn đã gửi tập tin lớn quá hạn.',
 'api-error-filename-tooshort' => 'Tên tập tin ngắn quá.',
 'api-error-filetype-banned' => 'Kiểu tập tin này đã bị cấm.',
+'api-error-filetype-banned-type' => '{{PLURAL:$4|Định dạng|Các định dạng}} $1 không được chấp nhận. Chỉ chấp nhận {{PLURAL:$3|loại tập tin|các loại tập tin}} sau: $2.',
 'api-error-filetype-missing' => 'Tên tập tin bị thiếu phần mở rộng.',
 'api-error-hookaborted' => 'Sửa đổi của bạn bị hook phần mở rộng hủy bỏ.',
 'api-error-http' => 'Lỗi nội bộ: Không thể kết nối với dịch vụ.',
@@ -4062,6 +4084,4 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Không thể lấy các chìa khóa trên máy chủ $1.',
 );

@@ -326,7 +326,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc' => 'Montri enhavliston (por paĝoj kun pli ol 3 sekcioj)',
 'tog-rememberpassword' => 'Memori mian ensalutadon ĉe ĉi tiu retumilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
-'tog-watchcreations' => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
+'tog-watchcreations' => 'Aldoni miajn kreatajn paĝojn al mia atentaro',
 'tog-watchdefault' => 'Aldoni al mia atentaro paĝojn redaktitajn de mi',
 'tog-watchmoves' => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
 'tog-watchdeletion' => 'Aldoni paĝojn, kiujn mi forigas, al mia atentaro',
@@ -334,9 +334,9 @@ $messages = array(
 'tog-previewontop' => 'Montri antaŭrigardon antaŭ redaktilo',
 'tog-previewonfirst' => 'Montri antaŭrigardon je unua redakto',
 'tog-nocache' => 'Malŝalti retumilan kaŝmemoron de paĝoj',
-'tog-enotifwatchlistpages' => 'Sendi al mi retmesaĝon kiam tiu paĝo estas ŝanĝita',
+'tog-enotifwatchlistpages' => 'Sendi al mi retmesaĝon kiam tiu paĝo en mia atentaro estas ŝanĝita',
 'tog-enotifusertalkpages' => 'Sendi al mi retmesaĝon kiam mia diskutpaĝo estas ŝanĝita',
-'tog-enotifminoredits' => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
+'tog-enotifminoredits' => 'Sendi al mi ankaŭ retmesaĝojn pro malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr' => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching' => 'Montri la nombron da priatentaj uzantoj',
 'tog-oldsig' => 'Ekzistanta subskribo:',
@@ -353,7 +353,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
 'tog-watchlisthideanons' => 'Kaŝi redaktojn de anonimuloj de la atentaro',
 'tog-watchlisthidepatrolled' => 'Kaŝi patrolitajn redaktojn de la atentaro',
-'tog-nolangconversion' => 'Malŝalti konvertadon de variantoj',
 'tog-ccmeonemails' => 'Sendi al mi kopiojn de retpoŝtaĵoj, kiujn mi sendis al aliaj uzantoj.',
 'tog-diffonly' => 'Ne montri paĝan enhavon sub la ŝanĝoj',
 'tog-showhiddencats' => 'Montri kaŝitajn kategoriojn',
@@ -385,30 +384,30 @@ $messages = array(
 'thu' => 'Ĵaŭ',
 'fri' => 'Ven',
 'sat' => 'Sab',
-'january' => 'Januaro',
-'february' => 'Februaro',
-'march' => 'Marto',
-'april' => 'Aprilo',
-'may_long' => 'Majo',
-'june' => 'Junio',
-'july' => 'Julio',
-'august' => 'Aŭgusto',
-'september' => 'Septembro',
-'october' => 'Oktobro',
-'november' => 'Novembro',
-'december' => 'Decembro',
+'january' => 'januaro',
+'february' => 'februaro',
+'march' => 'marto',
+'april' => 'aprilo',
+'may_long' => 'majo',
+'june' => 'junio',
+'july' => 'julio',
+'august' => 'aŭgusto',
+'september' => 'septembro',
+'october' => 'oktobro',
+'november' => 'novembro',
+'december' => 'decembro',
 'january-gen' => 'januaro',
 'february-gen' => 'februaro',
 'march-gen' => 'marto',
-'april-gen' => 'Aprilo',
-'may-gen' => 'Majo',
-'june-gen' => 'Junio',
-'july-gen' => 'Julio',
-'august-gen' => 'Aŭgusto',
-'september-gen' => 'Septembro',
+'april-gen' => 'aprilo',
+'may-gen' => 'majo',
+'june-gen' => 'junio',
+'july-gen' => 'julio',
+'august-gen' => 'aŭgusto',
+'september-gen' => 'septembro',
 'october-gen' => 'oktobro',
-'november-gen' => 'Novembro',
-'december-gen' => 'Decembro',
+'november-gen' => 'novembro',
+'december-gen' => 'decembro',
 'jan' => 'Jan',
 'feb' => 'Feb',
 'mar' => 'Mar',
@@ -576,6 +575,10 @@ $1',
 'youhavenewmessages' => 'Por vi estas $1 ($2).',
 'newmessageslink' => 'novaj mesaĝoj',
 'newmessagesdifflink' => 'ŝanĝoj kompare kun antaŭlasta versio',
+'youhavenewmessagesfromusers' => 'Riceviĝis $1 de {{PLURAL:$3|alia uzanto|$3 uzantoj}} ($2).',
+'youhavenewmessagesmanyusers' => 'Riceviĝis $1 de multaj uzantoj ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|nova mesaĝo|novaj mesaĝoj}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|lasta ŝanĝo|lastaj ŝanĝoj}}',
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection' => 'redakti',
 'editold' => 'redakti',
@@ -673,6 +676,8 @@ Bonvolu raporti ĉi tiun al [[Special:ListUsers/sysop|administranto]], notante l
 'cannotdelete' => 'Ne eblis forigi la elektitan paĝon aŭ dosieron "$1".
 Eble ĝi estis jam forigita de iu alia.',
 'cannotdelete-title' => 'Ne eblas forigi paĝon "$1"',
+'delete-hook-aborted' => 'Forigo ĉesigis per hoko.
+Ĝi ne donis eksplikon.',
 'badtitle' => 'Fuŝa titolo',
 'badtitletext' => 'La petita paĝotitolo estis malvalida, malplena, aŭ malĝuste ligita interlingva aŭ intervikia titolo.
 Ĝi eble enhavas unu aŭ pliaj signoj kiu ne povas esti uzata en titoloj.',
@@ -701,8 +706,13 @@ $2',
 'ns-specialprotected' => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected' => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
+'filereadonlyerror' => 'La dosiero "$1" ne estas modifebla, ĉar la datumbazujo "$2" estas en nurlegebla modo.
+
+La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 'invalidtitle-knownnamespace' => 'Nevalida titolo kun nomspaco "$2" kaj teksto "$3"',
 'invalidtitle-unknownnamespace' => 'Nevalida titolo kun nekonata nomspaca numero $1 kaj teksto "$2"',
+'exception-nologin' => 'Ne ensalutita',
+'exception-nologin-text' => 'Vi devas ensaluti ĉi tiun vikion por fari ĉi tiun agon.',
 
 # Virus scanner
 'virus-badscanner' => "Malbona konfiguro: nekonata virusa skanilo: ''$1''",
@@ -723,6 +733,7 @@ Ne forgesu fari viajn [[Special:Preferences|{{SITENAME}}-preferojn]].',
 'remembermypassword' => 'Memori mian ensalutadon ĉe ĉi tiu komputilo (daŭrante maksimume $1 {{PLURAL:$1|tagon|tagojn}})',
 'securelogin-stick-https' => 'Resti konektita al HTTPS post ensalutado',
 'yourdomainname' => 'Via domajno',
+'password-change-forbidden' => 'Ve ne povas ŝanĝi pasvortojn en ĉi tiu vikio.',
 'externaldberror' => 'Aŭ estis datenbaza eraro rilate al ekstera aŭtentikigado, aŭ vi ne rajtas ĝisdatigi vian eksteran konton.',
 'login' => 'Ensaluti',
 'nav-login-createaccount' => 'Ensaluti / Krei novan konton',
@@ -970,6 +981,10 @@ aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
 'noarticletext-nopermission' => 'Estas neniom da teksto en ĉi tiu paĝo.
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
 aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serĉi la rilatajn protokolojn]</span>.',
+'missing-revision' => 'La revizio n-ro $1 de la paĝo nomata "{{PAGENAME}}" ne ekzistas.
+
+La kutima kaŭzo estas sekvi malaktualan historio-ligilon al paĝo forviŝita.
+Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de forviŝoj].',
 'userpage-userdoesnotexist' => 'Uzantokonto "<nowiki>$1</nowiki>" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiun paĝon.',
 'userpage-userdoesnotexist-view' => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract' => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
@@ -1076,6 +1091,7 @@ Verŝajne ĝi estis forigita.',
 'edit-no-change' => 'Via redakto estis ignorita, ĉar neniu ŝanĝo estis farita al la teksto.',
 'edit-already-exists' => 'Ne eblis krei novan paĝon.
 Ĝi jam ekzistas.',
+'defaultmessagetext' => 'Defaŭlta teksto',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Averto: Ĉi tiu paĝo enhavas tro da multekostaj sintaksaj funkcio-vokoj.
@@ -1095,6 +1111,9 @@ Iuj ŝablonoj ne estos inkluzivitaj.',
 'node-count-exceeded-warning' => 'Paĝo preterpasis la nombron da nodoj.',
 'expansion-depth-exceeded-category' => 'Paĝoj en kiuj la ekpansiprofundo estas preterpasita',
 'expansion-depth-exceeded-warning' => 'Paĝo preterpasis la ekpansiprofundon.',
+'parser-unstrip-loop-warning' => 'Cirkloreferencon detektis',
+'parser-unstrip-recursion-limit' => 'Rikurlimiton de analizopoj ($1) superis',
+'converter-manual-rule-error' => 'Eraron detektis en mana lingvokonverta regulo',
 
 # "Undo" feature
 'undo-success' => 'La redakto estas malfarebla.
@@ -1281,6 +1300,10 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'editundo' => 'malfari',
 'diff-multi' => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Unu intermeza versio|$1 intermezaj versioj}} de pli ol {{PLURAL:$2|unu uzanto|$2 uzantoj}} ne estas {{PLURAL:$1|montrata|montrataj}}.)',
+'difference-missing-revision' => '{{PLURAL:$2|Unu revizio|$2 revizioj}} de ĉi tiu malsameco ($1) ne {{PLURAL:$2|estis|estis}} trovebla.
+
+La kutima kaŭzo estas sekvi malaktualan malsamo-ligilon al paĝo forviŝita.
+Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de forviŝoj].',
 
 # Search results
 'searchresults' => 'Serĉrezultoj',
@@ -1548,6 +1571,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-writeapi' => 'Uzi la API por modifi la vikion',
 'right-delete' => 'Forigi paĝojn',
 'right-bigdelete' => 'Forigi paĝojn kun grandaj historioj',
+'right-deletelogentry' => 'Forigi kaj malforigi specifajn enmetojn en la registro.',
 'right-deleterevision' => 'Forigi kaj malforigi specifajn versiojn de paĝoj',
 'right-deletedhistory' => 'Rigardi listanojn de forigitaj historioj, sen ties asociaj tekstoj',
 'right-deletedtext' => 'Rigardi forigitan tekston kaj ŝanĝojn inter forigitaj revizioj.',
@@ -1738,21 +1762,21 @@ tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver' => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile' => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
 'windows-nonascii-filename' => 'Ĉi tiu vikio ne subtenas dosiernomoj kun specialaj signoj.',
-'fileexists' => "Dosiero kun tia ĉi nomo jam ekzistas.
-Bonvolu kontroli '''<tt>[[:$1]]</tt>''' krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
-[[$1|thumb]]",
-'filepageexists' => "La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe '''<tt>[[:$1]]</tt>''', sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
+'fileexists' => 'Dosiero kun tia ĉi nomo jam ekzistas.
+Bonvolu kontroli <strong>[[:$1]]</strong> krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
+[[$1|thumb]]',
+'filepageexists' => 'La priskriba paĝo por ĉi tiu dosiero jam estis kreita ĉe <strong>[[:$1]]</strong>, sed neniu dosiero kun ĉi tiu nomo nune ekzistas.
 La resumo kiun vi entajpos ne aperos en la priskribo-paĝo.
 Por aperigi vian resumon, vi devos permane redakti ĝin.
-[[$1|thumb]]",
-'fileexists-extension' => "Dosiero kun simila nomo ekzistas: [[$2|thumb]]
-* Nomo de la alŝuta dosiero: '''<tt>[[:$1]]</tt>'''
-* Nomo de la ekzistanta dosiero: '''<tt>[[:$2]]</tt>'''
-Bonvolu elekti malsaman nomon.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Dosiero kun simila nomo ekzistas: [[$2|thumb]]
+* Nomo de la alŝuta dosiero: <strong>[[:$1]]</strong>
+* Nomo de la ekzistanta dosiero: <strong>[[:$2]]</strong>
+Bonvolu elekti malsaman nomon.',
 'fileexists-thumbnail-yes' => "Ĉi tiu dosiero ŝajnas kiel bildo de malkreskigita grandeco ''(bildeto)''. [[$1|thumb]]
-Bonvolu kontroli la dosieron '''<tt>[[:$1]]</tt>'''.
+Bonvolu kontroli la dosieron <strong>[[:$1]]</strong>.
 Se la kontrolita dosiero estas la sama bildo kiel la originala grandeco, ĝi ne nepras alŝuti plian bideton.",
-'file-thumbnail-no' => "La dosiernomo komencas kun '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "La dosiernomo komencas kun <strong>$1</strong>.
 Ĝi ŝajnas kiel bildo de malgrandigita grandeco ''(thumbnail)''.
 Se vi havas ĉi tiun bildon en plena distingivo, alŝutu ĉi tiun, alikaze bonvolu ŝanĝi la dosieran nomon.",
 'fileexists-forbidden' => 'Dosiero kun ĉi tiu nomo jam ekzistas kaj ne povas anstataŭigi ĝin.
@@ -1806,6 +1830,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload-too-many-redirects' => 'La URL-o enhavis tro multajn alidirektilojn',
 'upload-unknown-size' => 'Nekonata grandeco',
 'upload-http-error' => 'HTTP-eraro okazis: $1',
+'upload-copy-upload-invalid-domain' => 'Kopio-alŝutoj ne disponiĝas el ĉi tiu domajno.',
 
 # File backend
 'backend-fail-stream' => 'Ne povis fluigi dosieron $1.',
@@ -1824,6 +1849,18 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'backend-fail-closetemp' => 'Ne povis fermi provizoran dosieron.',
 'backend-fail-read' => 'Ne povas legi dosieron "$1".',
 'backend-fail-create' => 'Ne povas skribi dosieron $1.',
+'backend-fail-maxsize' => 'Ne povis skribi la dosieron "$1," ĉar ĝi estas pli granda ol {{plural: $2|bitoko|$2 bitokoj}}.',
+'backend-fail-readonly' => 'La interna konservujo "$1" nune estas nurlega. La indikata kialo estas: "\'\'$2\'\'"',
+'backend-fail-synced' => 'La dosiero "$1" estas en nekohera stato kun la internaj konservujoj',
+'backend-fail-connect' => 'Ne eblis konekti la internan konservujon "$1".',
+'backend-fail-internal' => 'Nekonata eraro okazis en interna konservujo "$1".',
+'backend-fail-contenttype' => 'Ne eblis determini la enhavo-tipo de la dosiero por konservi ĉe "$1".',
+'backend-fail-batchsize' => 'Interna konservujo estis donita komandaron de $1 {{PLURAL:$1|dosiera operacio|dosieraj operacioj}}; la limo estas $2 {{PLURAL:$2|operacio|operacioj}}.',
+'backend-fail-usable' => 'Ne eblis skribi dosieron "$1" pro malsufiĉaj permesoj aŭ mankantaj dosierujoj.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Ne eblis konekti la protokolan datumbazon por la ekstera konservujo "$1".',
+'filejournal-fail-dbquery' => 'Ne eblis ĝisdatigi la protokolan datumbazon por la ekstera konservujo "$1".',
 
 # Lock manager
 'lockmanager-notlocked' => 'Ne povis malŝlosi "$1"; ĝi ne estas ŝlosita.',
@@ -1834,6 +1871,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'lockmanager-fail-releaselock' => 'Ne povis liberigi ŝlosadon por "$1".',
 'lockmanager-fail-db-bucket' => 'Ne povis kontakti sufiĉajn ŝlos-datumbazojn en ujo $1.',
 'lockmanager-fail-db-release' => 'Ne povis liberigi ŝlosadojn de datumbazao $1.',
+'lockmanager-fail-svr-acquire' => 'Ne povis akiri ŝlosadojn de servilo $1.',
 'lockmanager-fail-svr-release' => 'Ne povis liberigi ŝlosadojn de servilo $1.',
 
 # ZipDirectoryReader
@@ -1941,6 +1979,10 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 Bonvolu vidi la [$2 dosier-priskriban paĝon] por plua informo.',
 'sharedupload-desc-here' => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.
 Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
+'sharedupload-desc-edit' => 'Ĉi tiu dosiero estas el $1 kaj estas uzebla en aliaj projektoj.
+Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
+'sharedupload-desc-create' => 'Ĉi tiu dosiero estas el $1 kaj estas uzebla en aliaj projektoj.
+Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
 'filepage-nofile' => 'Neniu dosiero de ĉi tiu nomo ekzistas.',
 'filepage-nofile-link' => 'Neniu dosiero de ĉi tiu nomo ekzistas, sed vi povas [$1 alŝuti ĝin].',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
@@ -1979,7 +2021,7 @@ Jen la priskribo en ties [$2 dosier-priskriba paĝo].',
 
 # MIME search
 'mimesearch' => 'MIME-serĉilo',
-'mimesearch-summary' => 'Ĉi tiu paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ĉi tiu paĝo ebligas la filtradon de dosieroj por ties MIME-tipo. Enigu: enhavo-tipo/subtipo, ekz. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-tipo:',
 'download' => 'elŝuti',
 
@@ -2073,6 +2115,8 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'wantedpages' => 'Dezirataj paĝoj',
 'wantedpages-badtitle' => 'Malvalida titolo en rezulta aro: $1',
 'wantedfiles' => 'Dezirataj dosieroj',
+'wantedfiletext-cat' => 'La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj konservujoj eble estos listigita malgraŭ ne ekzistante. Tia malprave pozitivaj rezultoj estos <del>forstrekita</del>. Ankaŭ, paĝoj kiuj enmetas dosierojn kiuj ne ekzistas estas listigita en [[:$1]].',
+'wantedfiletext-nocat' => 'La jenaj dosieroj estas uzataj sed ne ekzistas. Dosieroj de eksteraj dosierujoj eble estas listigitaj malgraŭ eksistado. Tia malprave pozitiva rezulto estos <del>forstrekita</del>.',
 'wantedtemplates' => 'Dezirataj ŝablonoj',
 'mostlinked' => 'Plej ligitaj paĝoj',
 'mostlinkedcategories' => 'Plej ligitaj kategorioj',
@@ -2135,6 +2179,7 @@ komprenata kiel rekomendo aŭ reklamo.',
 Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (inkluzivante uskladon) aŭ la efika paĝo (ankaŭ inkluzivas uskladon).',
 'logempty' => 'Neniaj artikoloj en la protokolo.',
 'log-title-wildcard' => 'Serĉi titolojn komencantajn kun ĉi tiu teksto',
+'showhideselectedlogentries' => 'Montri/kaŝi elektitajn protokolerojn',
 
 # Special:AllPages
 'allpages' => 'Ĉiuj paĝoj',
@@ -2155,6 +2200,8 @@ Vi povas plistrikti la mendon per selektado de protokola speco, la salutnomo (in
 'allpages-hide-redirects' => 'Kaŝi alidirektilojn',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Vi vidas version de la paĝo el kaŝmemoro, kiu eble estis aktuala ekde $1.',
+'cachedspecial-viewing-cached-ts' => 'Vi vidas version de la paĝo el kaŝmemoro, kiu eble ne estas la plej aktuala.',
 'cachedspecial-refresh-now' => 'Vidas plej nova.',
 
 # Special:Categories
@@ -2177,7 +2224,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'linksearch-ns' => 'Nomspaco:',
 'linksearch-ok' => 'Serĉi',
 'linksearch-text' => 'Regulesprimoj kiel "*.wikipedia.org" povas esti uzataj. Nepre havi almenaŭ plej altan domajnon, ekz-e "*.org".<br />
-Subtenataj protokoloj: <tt>$1</tt> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
+Subtenataj protokoloj: <code>$1</code> (ne aldonu ĉi tiujn ajn en via serĉo-mendo).',
 'linksearch-line' => '$1 ligita de $2',
 'linksearch-error' => 'Regulesprimoj povas aperi nur ĉe la komenco de la retnoda nomo.',
 
@@ -2363,6 +2410,8 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'rollback' => 'Restarigi antaŭan redakton',
 'rollback_short' => 'Malfari',
 'rollbacklink' => 'malfari',
+'rollbacklinkcount' => 'nuligi $1 {{PLURAL:$1|redakton|redaktojn}}',
+'rollbacklinkcount-morethan' => 'nuligi pli ol $1 {{PLURAL:$1|redakton|redaktojn}}',
 'rollbackfailed' => 'Malfaro malsukcesis',
 'cantrollback' => 'Ne povas restarigi antaŭan redakton; la redaktinto lasta estas la sola aŭtoro de la paĝo.',
 'alreadyrolled' => 'Ne povas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2858,6 +2907,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-interwiki-templates' => 'Inkluzivi ĉiujn ŝablonojn',
 'import-interwiki-submit' => 'Importi',
 'import-interwiki-namespace' => 'Cela nomspaco:',
+'import-interwiki-rootpage' => 'Ircela radikopaĝo (laŭvola):',
 'import-upload-filename' => 'Dosiernomo:',
 'import-comment' => 'Komento:',
 'importtext' => 'Bonvolu eksporti la dosieron el la fonta vikio per la [[Special:Export|eksportilo]]. Konservu ĝin sur via persona komputilo kaj poste alŝutu ĝin tien ĉi.',
@@ -2886,8 +2936,12 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'import-invalid-interwiki' => 'Ne povas importi de la specifita vikio.',
 'import-error-edit' => 'Paĝo "$1" ne estas importita ĉar vi ne rajtas radakti ĝin.',
 'import-error-create' => 'Paĝo "$1" ne estas importita ĉar vi ne rajtas krei ĝin.',
+'import-error-interwiki' => 'Paĝo "$1" ne estis importita pro sia nomo estas deklarita por ekstera ligado (intervikia).',
 'import-error-special' => 'Paĝo "$1" ne estas importata, ĉar ĝi apartenas al speciala nomspaco, kiu ne permesas paĝojn.',
 'import-error-invalid' => 'Paĝo "$1" ne estas importata, ĉar ĝia nomo estas malvalida.',
+'import-options-wrong' => '{{PLURAL:$2|Erara elekto|Eraraj elektoj}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La provizita paĝo havas nevalidan titolon.',
+'import-rootpage-nosubpage' => 'La nomspaco "$1" de la radikopaĝo ne permesas subpaĝoj.',
 
 # Import log
 'importlogpage' => 'Protokolo de importaĵoj',
@@ -2901,6 +2955,9 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'javascripttest' => 'Ĝavoskripta testado',
 'javascripttest-disabled' => 'Ĉi tiu funkcio estas malŝaltita en ĉi tiu vikio.',
 'javascripttest-title' => 'Irigante $1 testoj',
+'javascripttest-pagetext-noframework' => 'Ĉi tiu paĝo estas konservita por funkciigi testojn de JavaScript.',
+'javascripttest-pagetext-unknownframework' => 'Nekonta test-framo "$1".',
+'javascripttest-pagetext-frameworks' => 'Bonvolu elekti unu el la jenaj test-framoj: $1',
 'javascripttest-pagetext-skins' => 'Elektu kun kio etoso irigi la testojn:',
 'javascripttest-qunit-intro' => 'Vidu [$1 testa dokumentaro] en mediawiki.org.',
 'javascripttest-qunit-heading' => 'Testaro QUnit por JavaScript de MediaWiki',
@@ -3032,6 +3089,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spambot_username' => 'Trudmesaĝa forigo de MediaWiki',
 'spam_reverting' => 'Restarigo de lasta versio ne entenante ligilojn al $1',
 'spam_blanking' => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
+'spam_deleting' => 'Ĉiuj versioj enhavis ligilojn al $1 - forigante',
 
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',
@@ -3737,6 +3795,9 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'version-software' => 'Instalita programaro',
 'version-software-product' => 'Produkto',
 'version-software-version' => 'Versio',
+'version-entrypoints' => 'Eniropunktaj URL-oj',
+'version-entrypoints-header-entrypoint' => 'Eniropunkto',
+'version-entrypoints-header-url' => 'Retadreso',
 
 # Special:FilePath
 'filepath' => 'Vojo al dosiero',
@@ -3764,7 +3825,7 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 * <span class="mw-specialpagecached">Memorkaŝitaj specialaj paĝoj (eble malaktualaj).</span>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other' => 'Aliaj specialaj paĝoj',
-'specialpages-group-login' => 'Ensaluti / Krei novan konton',
+'specialpages-group-login' => 'Ensaluti /  registriĝi',
 'specialpages-group-changes' => 'Lastaj ŝanĝoj kaj protokoloj',
 'specialpages-group-media' => 'Raportoj pri dosieroj kaj alŝutoj',
 'specialpages-group-users' => 'Uzantoj kaj rajtoj',
@@ -3898,9 +3959,12 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-empty-file' => 'La dosiero kiun vi sendis estis malplena.',
 'api-error-emptypage' => 'Kreo de novaj malplenaj paĝoj ne estas permesita.',
 'api-error-fetchfileerror' => 'Interna eraro: io misfunkciis dum la dosiera prenado.',
+'api-error-fileexists-forbidden' => 'Dosiero nomata "$1" jam existas kaj ne estas surskribebla.',
+'api-error-fileexists-shared-forbidden' => 'Dosiero nomata "$1" jam existas en la kunhavata dosier-datumbazo kaj ne estas surskribebla.',
 'api-error-file-too-large' => 'La dosiero kiun vi alŝutis estis tro granda.',
 'api-error-filename-tooshort' => 'La dosiernomo estas tro mallonga.',
 'api-error-filetype-banned' => 'Ĉi tiu tipo de dosiero estas malpermesita.',
+'api-error-filetype-banned-type' => '$1 ne estas {{PLURAL:$4|permesita dosiero-tipo|permesitaj dosiero-tipoj}}. {{PLURAL:$3|Permesita dosiero-tipo|Permesitaj dosiero-tipoj}} estas $2.',
 'api-error-filetype-missing' => 'Mankas sufikso de la dosiero.',
 'api-error-hookaborted' => 'La ŝanĝo kiun vi provis fari estis haltigita de etendaĵa hoko.',
 'api-error-http' => 'Interna eraro: ne eblas konektiĝi al la servilo.',
@@ -3924,5 +3988,16 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'api-error-unknownerror' => 'Nekonata eraro: "$1"',
 'api-error-uploaddisabled' => 'Alŝutato estas malebligata en tiu ĉi vikio.',
 'api-error-verification-error' => 'Tiu ĉi dosiero eble estas difektita, aŭ havas la malĝustan dosieran finaĵon.',
+
+# Durations
+'duration-seconds' => '$1 {{PLURAL:$1|sekundo|sekundoj}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minuto|minutoj}}',
+'duration-hours' => '$1 {{PLURAL:$1|horo|horoj}}',
+'duration-days' => '$1 {{PLURAL:$1|tago|tagoj}}',
+'duration-weeks' => '$1 {{PLURAL:$1|semajno|$1 semajnoj}}',
+'duration-years' => '$1 {{PLURAL:$1|jaro|jaroj}}',
+'duration-decades' => '$1 {{PLURAL:$1|jardeko|jardekoj}}',
+'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
+'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
 );

@@ -42,9 +42,9 @@ class MostlinkedPage extends QueryPage {
 	function getQueryInfo() {
 		return array (
 			'tables' => array ( 'pagelinks', 'page' ),
-			'fields' => array ( 'pl_namespace AS namespace',
-					'pl_title AS title',
-					'COUNT(*) AS value',
+			'fields' => array ( 'namespace' => 'pl_namespace',
+					'title' => 'pl_title',
+					'value' => 'COUNT(*)',
 					'page_namespace' ),
 			'options' => array ( 'HAVING' => 'COUNT(*) > 1',
 				'GROUP BY' => array( 'pl_namespace', 'pl_title',

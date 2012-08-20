@@ -41,9 +41,9 @@ class UnwatchedpagesPage extends QueryPage {
 	function getQueryInfo() {
 		return array (
 			'tables' => array ( 'page', 'watchlist' ),
-			'fields' => array ( 'page_namespace AS namespace',
-					'page_title AS title',
-					'page_namespace AS value' ),
+			'fields' => array ( 'namespace' => 'page_namespace',
+					'title' => 'page_title',
+					'value' => 'page_namespace' ),
 			'conds' => array ( 'wl_title IS NULL',
 					'page_is_redirect' => 0,
 					"page_namespace != '" . NS_MEDIAWIKI .

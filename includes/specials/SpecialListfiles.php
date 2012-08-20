@@ -174,20 +174,14 @@ class ImageListPager extends TablePager {
 		return 'img_timestamp';
 	}
 
-	function getStartBody() {
-		# Do a link batch query for user pages
-		if ( $this->mResult->numRows() ) {
-			$lb = new LinkBatch;
-			$this->mResult->seek( 0 );
-			foreach ( $this->mResult as $row ) {
-				if ( $row->img_user ) {
-					$lb->add( NS_USER, str_replace( ' ', '_', $row->img_user_text ) );
-				}
-			}
-			$lb->execute();
+	function doBatchLookups() {
+		$userIds = array();
+		$this->mResult->seek( 0 );
+		foreach ( $this->mResult as $row ) {
+			$userIds[] = $row->img_user;
 		}
-
-		return parent::getStartBody();
+		# Do a link batch query for names and userpages
+		UserCache::singleton()->doQuery( $userIds, array( 'userpage' ), __METHOD__ );
 	}
 
 	function formatValue( $field, $value ) {
@@ -217,9 +211,10 @@ class ImageListPager extends TablePager {
 				}
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
+					$name = User::whoIs( $this->mCurrentRow->img_user );
 					$link = Linker::link(
-						Title::makeTitle( NS_USER, $value ),
-						htmlspecialchars( $value )
+						Title::makeTitle( NS_USER, $name ),
+						htmlspecialchars( $name )
 					);
 				} else {
 					$link = htmlspecialchars( $value );
@@ -254,8 +249,9 @@ class ImageListPager extends TablePager {
 		return Html::openElement( 'form',
 				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
 			Xml::fieldset( $this->msg( 'listfiles' )->text() ) .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::buildForm( $inputForm, 'table_pager_limit_submit' ) .
-			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user' ) ) .
+			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user', 'title' ) ) .
 			Html::closeElement( 'fieldset' ) .
 			Html::closeElement( 'form' ) . "\n";
 	}
@@ -289,5 +285,9 @@ class ImageListPager extends TablePager {
 			$queries['user'] = $this->mUserName;
 		}
 		return $queries;
+	}
+
+	function getTitle() {
+		return SpecialPage::getTitleFor( 'Listfiles' );
 	}
 }

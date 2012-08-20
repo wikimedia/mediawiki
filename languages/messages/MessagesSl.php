@@ -448,6 +448,7 @@ $1',
 'youhavenewmessages' => 'Imate $1 ($2)',
 'newmessageslink' => 'nova sporočila',
 'newmessagesdifflink' => 'zadnja sprememba',
+'newmessageslinkplural' => '{{PLURAL:$1|novo sporočilo|nova sporočila}}',
 'youhavenewmessagesmulti' => 'Na $1 imate novo sporočilo',
 'editsection' => 'uredi',
 'editold' => 'spremeni',
@@ -600,6 +601,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'remembermypassword' => 'Zapomni si me na tem računalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'securelogin-stick-https' => 'Po prijavi ostani povezan preko HTTPS',
 'yourdomainname' => 'Domena',
+'password-change-forbidden' => 'Na tem wikiju ne morete spreminjati gesel.',
 'externaldberror' => 'Pri potrjevanju istovetnosti je prišlo do notranje napake ali pa za osveževanje zunanjega računa nimate dovoljenja.',
 'login' => 'Prijava',
 'nav-login-createaccount' => 'Prijavite se / registrirajte se',
@@ -1441,6 +1443,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'right-writeapi' => 'Uporaba napisanega API-ja',
 'right-delete' => 'Brisanje strani',
 'right-bigdelete' => 'Brisanje strani z obsežno zgodovino',
+'right-deletelogentry' => 'Brisanje in obnavljanje izbranih dnevniških vnosov',
 'right-deleterevision' => 'Brisanje in obnova posebnih redakcij strani',
 'right-deletedhistory' => 'Ogled zgodovine brisanja, brez besedila izbrisanih strani',
 'right-deletedtext' => 'Ogled izbrisanega besedila in primerjava med izbrisanimi redakcijami',
@@ -1585,9 +1588,9 @@ Dnevnik brisanja in prestavitev za to stran sta navedena tukaj:",
 Za ogled ali iskanje že naloženih pojdite na [[Special:FileList|seznam naloženih datotek]]; ponovna nalaganja so zabeležena tudi v [[Special:Log/upload|dnevniku nalaganja]], izbrisi pa v [[Special:Log/delete|dnevniku brisanja]].
 
 Datoteko lahko na želeno stran vključite na naslednje načine:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' (polna velikost)
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg|200px|thumb|left|opisno besedilo]]</nowiki></tt>''' (slika pomanjšana na 200 slikovnih pik širine, uokvirjena, z levo poravnavo in opisom »opisno besedilo«)
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' (neposredna povezava z datoteko)",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></code>''' (polna velikost)
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg|200px|thumb|left|opisno besedilo]]</nowiki></code>''' (slika pomanjšana na 200 slikovnih pik širine, uokvirjena, z levo poravnavo in opisom »opisno besedilo«)
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></code>''' (neposredna povezava z datoteko)",
 'upload-permitted' => 'Dovoljene vrste datotek: $1.',
 'upload-preferred' => 'Priporočene vrste datotek: $1.',
 'upload-prohibited' => 'Prepovedane vrste datotek: $1.',
@@ -1633,20 +1636,20 @@ Za grafični pogled obiščite [[Special:NewFiles|galerijo novih datotek]].',
 Do tega bi lahko prišlo zaradi tipkarske napake v imenu.
 Ali datoteko resnično želite naložiti?',
 'windows-nonascii-filename' => 'Ta wiki ne podpira imen datotek s posebnimi znaki.',
-'fileexists' => "Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran '''<tt>[[:$1]]</tt>'''.
-[[$1|thumb]]",
-'filepageexists' => "Opisna stran za to datoteko je bila že ustvarjena na '''<tt>[[:$1]]</tt>''', vendar datoteka s tem imenom trenutno ne obstaja.
+'fileexists' => 'Datoteka s tem imenom že obstaja. Preden jo povozite, preverite stran <strong>[[:$1]]</strong>.
+[[$1|thumb]]',
+'filepageexists' => 'Opisna stran za to datoteko je bila že ustvarjena na <strong>[[:$1]]</strong>, vendar datoteka s tem imenom trenutno ne obstaja.
 Povzetek, ki ste ga vnesli, se ne bo prikazal na opisni strani.
 Da tam prikažete povzetek, morate stran urediti ročno.
-[[$1|thumb]]",
-'fileexists-extension' => "Datoteka s podobnim imenom že obstaja: [[$2|thumb]]
-* Ime naložene datoteke: '''<tt>[[:$1]]</tt>'''
-* Ime obstoječe datoteke: '''<tt>[[:$2]]</tt>'''
-Prosimo, izberite drugo ime.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Datoteka s podobnim imenom že obstaja: [[$2|thumb]]
+* Ime naložene datoteke: <strong>[[:$1]]</strong>
+* Ime obstoječe datoteke: <strong>[[:$2]]</strong>
+Prosimo, izberite drugo ime.',
 'fileexists-thumbnail-yes' => "Kot izgleda, je ta slika pomanjšana ''(thumbnail)''. [[$1|thumb]]
-Prosimo, preverite datoteko '''<tt>[[:$1]]</tt>'''.
+Prosimo, preverite datoteko <strong>[[:$1]]</strong>.
 Če je preverjena datoteka enaka kot ta, ki jo nalage, ni potrebno nalagati še dodatne sličice.",
-'file-thumbnail-no' => "Ime datoteke se začne z '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Ime datoteke se začne z <strong>$1</strong>.
 Izgleda, da je to pomanjšana slika ''(thumbnail)''.
 Če imate sliko polne resolucije, jo naložite, drugače spremenite ime datoteke.",
 'fileexists-forbidden' => 'Datoteka s tem imenom že obstaja in je ni mogoče prepisati.
@@ -1761,6 +1764,7 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'lockmanager-fail-releaselock' => 'Ne morem sprostiti zaklepa »$1«.',
 'lockmanager-fail-db-bucket' => 'Ne morem kontaktirati zadostnega števila zaklenitvenih zbirk podatkov v vedru $1.',
 'lockmanager-fail-db-release' => 'Ne morem sprostiti zaklepov zbirke podatkov $1.',
+'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 'lockmanager-fail-svr-release' => 'Ne morem sprostiti zaklepov strežnika $1.',
 
 # ZipDirectoryReader
@@ -1915,7 +1919,7 @@ Morda želite urediti njeno opisno stran na tamkajšnji [$2 opisni strani datote
 # MIME search
 'mimesearch' => 'Iskanje po vrsti MIME',
 'mimesearch-summary' => 'Ta stran omogoča filtriranje datotek po njihovi vrsti MIME.
-Vnesite: vrstavsebine/podvrsta, npr. <tt>image/jpeg</tt>.',
+Vnesite: vrstavsebine/podvrsta, npr. <code>image/jpeg</code>.',
 'mimetype' => 'Vrsta MIME:',
 'download' => 'prenesi',
 
@@ -1962,9 +1966,9 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 
 'disambiguations' => 'Strani s povezavami na razločitvene strani',
 'disambiguationspage' => 'Template:Razločitev',
-'disambiguations-text' => "Naslednje strani se povezujejo na '''razločitvene strani'''.
-Namesto tega bi se naj povezovale na primerno temo.<br />
-Stran se obravnava kot razločitvena, če uporablja predloge povezane iz [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Naslednje strani vsebujejo vsaj eno povezavo na '''razločitvene strani'''.
+Namesto tega bi morda bilo bolje, da se povezujejo na primernejše strani.<br />
+Stran se obravnava kot razločitvena, če uporablja predloge, povezane z [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojne preusmeritve',
 'doubleredirectstext' => 'Ta stran navaja strani, ki se preusmerjajo na druge preusmeritvene strani.
@@ -2117,7 +2121,7 @@ Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'linksearch-ok' => 'Išči',
 'linksearch-text' => 'Nadomestne znake, kot je »*.wikipedia.org«, lahko uporabljate.
 Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
-Podprti protokoli: <tt>$1</tt> (teh ne dodajte v svoje iskanje).',
+Podprti protokoli: <code>$1</code> (teh ne dodajte v svoje iskanje).',
 'linksearch-line' => '$1 povezano iz $2',
 'linksearch-error' => 'Jokerji se lahko pojavijo le na začetku gostiteljskega imena.',
 
@@ -2309,6 +2313,8 @@ nadaljujte s previdnostjo.',
 'rollback' => 'Vrni spremembe',
 'rollback_short' => 'Vrni',
 'rollbacklink' => 'vrni',
+'rollbacklinkcount' => 'vrni $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
+'rollbacklinkcount-morethan' => 'vrni več kot $1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
 'rollbackfailed' => 'Vrnitev ni uspela',
 'cantrollback' => 'Urejanja ne morem vrniti; zadnji urejevalec je hkrati edini.',
 'alreadyrolled' => 'Zadnje spremembe [[:$1]] uporabnika [[User:$2|$2]] ([[User talk:$2|pogovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ne morem vrniti;
@@ -3705,7 +3711,7 @@ Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
 * <span class="mw-specialpagecached">Predpomnjene posebne strani (morda so zastarele).</span>',
 'specialpages-group-maintenance' => 'Vzdrževalna poročila',
 'specialpages-group-other' => 'Ostale posebne strani',
-'specialpages-group-login' => 'Prijavite se / registrirajte se',
+'specialpages-group-login' => 'Prijavite se / ustvarite račun',
 'specialpages-group-changes' => 'Zadnje spremembe in dnevniki',
 'specialpages-group-media' => 'Poročila o datotekah in nalaganja',
 'specialpages-group-users' => 'Uporabniki in pravice',
@@ -3845,6 +3851,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'api-error-file-too-large' => 'Poslana datoteka je prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ta vrsta datoteke je prepovedana.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ni dovoljena datotečna vrsta|nista dovoljeni datotečni vrsti|niso dovoljene datotečne vrste}}. {{PLURAL:$3|Dovoljena datotečna vrsta je|Dovoljeni datotečni vrsti sta|Dovoljene datotečne vrste so}} $2.',
 'api-error-filetype-missing' => 'Datoteki manjka končnica.',
 'api-error-hookaborted' => 'Spremembo, ki ste jo poskušali narediti, je prekinila razširitev.',
 'api-error-http' => 'Notranja napaka: ni mogoče vzpostaviti povezave s strežnikom.',
@@ -3880,6 +3887,4 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Ne morem pridobiti zaklepov na strežniku $1.',
 );

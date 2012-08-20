@@ -149,7 +149,7 @@ $messages = array(
 'tog-hidepatrolled' => 'ఇటీవలి మార్పులలో నిఘా ఉన్న మార్పులను దాచిపెట్టు',
 'tog-newpageshidepatrolled' => 'కొత్త పేజీల జాబితా నుంచి నిఘా ఉన్న పేజీలను దాచిపెట్టు',
 'tog-extendwatchlist' => 'కేవలం ఇటీవలి మార్పులే కాక, మార్పులన్నీ చూపించటానికి నా వీక్షణా జాబితాను పెద్దది చేయి',
-'tog-usenewrc' => 'మెరుగైన ఇటీవలి మార్పుల పేజీ (జావాస్క్రిప్టు అవసరం)',
+'tog-usenewrc' => 'ఇటీవలి మార్పులు మరియు విక్షణ జాబితాలలో మార్పులను పేజీ వారిగా చూపించు (జావాస్క్రిప్టు అవసరం)',
 'tog-numberheadings' => 'శీర్షికలకు ఆటోమాటిక్‌గా వరుస సంఖ్యలు పెట్టు',
 'tog-showtoolbar' => 'దిద్దుబాట్లు చేసేటప్పుడు, అందుకు సహాయపడే పరికరాలపెట్టెను చూపించు (జావాస్క్రిప్టు)',
 'tog-editondblclick' => 'డబుల్‌ క్లిక్కు చేసినప్పుడు పేజీని మార్చు (జావాస్క్రిప్టు)',
@@ -157,8 +157,8 @@ $messages = array(
 'tog-editsectiononrightclick' => 'విభాగం పేరు మీద కుడి క్లిక్కుతో విభాగం మార్పు కావాలి (జావాస్క్రిప్టు)',
 'tog-showtoc' => 'విషయసూచిక చూపించు (3 కంటే ఎక్కువ శీర్షికలున్న పేజీలకు)',
 'tog-rememberpassword' => 'ఈ విహారిణిలో నా ప్రవేశాన్ని గుర్తుంచుకో (గరిష్ఠంగా $1 {{PLURAL:$1|రోజు|రోజుల}}కి)',
-'tog-watchcreations' => 'నేను సృష్టించిన పేజీలను నా వీక్షణ జాబితాకు కలుపు',
-'tog-watchdefault' => 'నేను దిద్దుబాట్లు చేసిన పేజీలను నా వీక్షణ జాబితాకు కలుపు',
+'tog-watchcreations' => 'నేను సృష్టించే పేజీలను మరియు దస్త్రాలను నా వీక్షణ జాబితాకు చేర్చు',
+'tog-watchdefault' => 'నేను మార్చే పేజీలను మరియు దస్త్రాలను నా వీక్షణ జాబితాకు చేర్చు',
 'tog-watchmoves' => 'నేను తరలించిన పేజీలను దస్త్రాలను నా వీక్షణ జాబితాకు చేర్చు',
 'tog-watchdeletion' => 'నేను తొలగించిన పేజీలను దస్త్రాలను నా వీక్షణ జాబితాకు చేర్చు',
 'tog-minordefault' => 'ప్రత్యేకంగా తెలుపనంతవరకూ నా మార్పులను చిన్న మార్పులుగా గుర్తించు',
@@ -302,7 +302,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'మెరుగైన అన్వేషణ సలహాలని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
 'vector-view-create' => 'సృష్టించు',
 'vector-view-edit' => 'సవరించు',
-'vector-view-history' => 'చరిత్రని చూడండి',
+'vector-view-history' => 'చరిత్రను చూడండి',
 'vector-view-view' => 'చదువు',
 'vector-view-viewsource' => 'మూలాన్ని చూడండి',
 'actions' => 'పనులు',
@@ -405,6 +405,10 @@ $1',
 'youhavenewmessages' => 'మీకు $1 ఉన్నాయి ($2).',
 'newmessageslink' => 'కొత్త సందేశాలు',
 'newmessagesdifflink' => 'క్రితం సంచికతో గల తేడాలు',
+'youhavenewmessagesfromusers' => 'మీకు {{PLURAL:$3|మరో వాడుకరి|$3 వాడుకరుల}} నుండి $1 ($2).',
+'youhavenewmessagesmanyusers' => 'మీకు చాలా వాడుకరుల నుండి $1 ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ఒక కొత్త సందేశం వచ్చింది|కొత్త సందేశాలు ఉన్నాయి}}',
+'newmessagesdifflinkplural' => 'చివరి {{PLURAL:$1|మార్పు|మార్పులు}}',
 'youhavenewmessagesmulti' => '$1లో మీకో సందేశం ఉంది',
 'editsection' => 'మార్చు',
 'editold' => 'సవరించు',
@@ -526,6 +530,8 @@ $2',
 'ns-specialprotected' => 'ప్రత్యేక పేజీలపై దిద్దుబాట్లు చేయలేరు.',
 'titleprotected' => "సభ్యులు [[User:$1|$1]] ఈ పేజీని సృష్టించనివ్వకుండా నిరోదిస్తున్నారు.
 అందుకు ఇచ్చిన కారణం: ''$2''.",
+'exception-nologin' => 'లోనికి ప్రవేశించిలేరు',
+'exception-nologin-text' => 'ఈ వికీలో ఈ పేజీ లేదా పనికి మీరు తప్పనిసరిగా ప్రవేశించివుండాలి.',
 
 # Virus scanner
 'virus-badscanner' => "తప్పుడు స్వరూపణం: తెలియని వైరస్ స్కానర్: ''$1''",
@@ -547,6 +553,7 @@ $2',
 'remembermypassword' => 'ఈ కంప్యూటరులో నా ప్రవేశాన్ని గుర్తుంచుకో (గరిష్ఠంగా $1 {{PLURAL:$1|రోజు|రోజుల}}కి)',
 'securelogin-stick-https' => 'ప్రవేశం తర్వాత కూడా HTTPSకి అనుసంధానమై ఉండు',
 'yourdomainname' => 'మీ డోమైను',
+'password-change-forbidden' => 'ఈ వికీలో మీరు సంకేతపదాలను మార్చలేరు.',
 'externaldberror' => 'డేటాబేసు అధీకరణలో పొరపాటు జరిగింది లేదా మీ బయటి ఖాతాని తాజాకరించడానికి మీకు అనుమతి లేదు.',
 'login' => 'లోనికి రండి',
 'nav-login-createaccount' => 'లోనికి ప్రవేశించండి / ఖాతాని సృష్టించుకోండి',
@@ -616,6 +623,7 @@ $2',
 'invalidemailaddress' => 'మీరు ఇచ్చిన ఈ-మెయిలు చిరునామా సరైన రీతిలో లేనందున అంగీకరించటంలేదు.
 దయచేసి ఈ-మెయిలు చిరునామాను సరైన రీతిలో ఇవ్వండి లేదా ఖాళీగా వదిలేయండి.',
 'cannotchangeemail' => 'ఈ వికీలో ఖాతా ఈ-మెయిలు చిరునామాను మార్చుకోలేరు.',
+'emaildisabled' => 'ఈ సైటు ఈమెయిళ్ళను పంపించలేదు.',
 'accountcreated' => 'ఖాతాని సృష్టించాం',
 'accountcreatedtext' => '$1 కి వాడుకరి ఖాతాని సృష్టించాం.',
 'createaccount-title' => '{{SITENAME}} కోసం ఖాతా సృష్టి',
@@ -658,7 +666,7 @@ $2',
 'passwordreset-legend' => 'సంకేతపదాన్ని మార్చుకోండి',
 'passwordreset-disabled' => 'ఈ వికీలో సంకేతపదాల మార్పును అచేతనం చేసాం.',
 'passwordreset-pretext' => '{{PLURAL:$1||డేటా శకలాల్లోంచి ఒకదాన్ని ఇవ్వండి}}',
-'passwordreset-username' => 'వాడుకరిపేరు:',
+'passwordreset-username' => 'వాడుకరి పేరు:',
 'passwordreset-domain' => 'డొమైన్:',
 'passwordreset-email' => 'ఈ-మెయిలు చిరునామా:',
 'passwordreset-emailtitle' => '{{SITENAME}}లో ఖాతా వివరాలు',
@@ -801,6 +809,7 @@ $2
 'note' => "'''గమనిక:'''",
 'previewnote' => "'''ఇది మునుజూపు మాత్రమేనని గుర్తుంచుకోండి.'''
 మీ మార్పులు ఇంకా భద్రమవ్వలేదు!",
+'continue-editing' => 'దిద్దుబాటుని కొనసాగించండి',
 'previewconflict' => 'భద్రపరచిన తరువాత పై టెక్స్ట్‌ ఏరియాలోని టెక్స్టు ఇలాగ కనిపిస్తుంది.',
 'session_fail_preview' => "'''క్షమించండి! సెషను డేటా పోవడం వలన మీ మార్పులను స్వీకరించలేకపోతున్నాం.'''
 దయచేసి మళ్ళీ ప్రయత్నించండి.
@@ -873,6 +882,7 @@ $2
 'edit-no-change' => 'పాఠ్యంలో ఏమీ మార్పులు లేవు గనక, మీ మార్పుని పట్టించుకోవట్లేదు.',
 'edit-already-exists' => 'కొత్త పేజీని సృష్టించలేము.
 అది ఇప్పటికే ఉంది.',
+'defaultmessagetext' => 'అప్రమేయ సందేశపు పాఠ్యం',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'హెచ్చరిక: ఈ పేజీలో ఖరీదైన పార్సరు పిలుపులు చాలా ఉన్నాయి.
@@ -1065,6 +1075,7 @@ $1",
 # Diffs
 'history-title' => '"$1" యొక్క కూర్పుల చరిత్ర',
 'difference-title' => '"$1" యొక్క తిరిగిచూపుల నడుమ తేడాలు',
+'difference-title-multipage' => '"$1" మరియు "$2" పేజీల మధ్య తేడా',
 'difference-multipage' => '(పేజీల మధ్య తేడా)',
 'lineno' => 'పంక్తి $1:',
 'compareselectedversions' => 'ఎంచుకున్న సంచికలను పోల్చిచూడు',
@@ -1443,9 +1454,11 @@ $1",
 'number_of_watching_users_pageview' => '[వీక్షిస్తున్న సభ్యులు: {{PLURAL:$1|ఒక్కరు|$1}}]',
 'rc_categories' => 'ఈ వర్గాలకు పరిమితం చెయ్యి ("|" తో వేరు చెయ్యండి)',
 'rc_categories_any' => 'ఏదయినా',
+'rc-change-size-new' => 'మార్పు తర్వాత $1 {{PLURAL:$1|బైటు|బైట్లు}}',
 'newsectionsummary' => '/* $1 */ కొత్త విభాగం',
 'rc-enhanced-expand' => 'వివరాలని చూపించు (జావాస్క్రిప్ట్ అవసరం)',
 'rc-enhanced-hide' => 'వివరాలను దాచు',
+'rc-old-title' => 'మొదట "$1"గా సృష్టించారు',
 
 # Recent changes linked
 'recentchangeslinked' => 'సంబంధిత మార్పులు',
@@ -1474,9 +1487,9 @@ $1",
 గతంలో ఎక్కించిన దస్త్రాలను చూడడానికి లేదా వెతకడానికి [[Special:FileList|ఎక్కించిన దస్త్రాల యొక్క జాబితా]]కు వెళ్ళండి, (పునః)ఎక్కింపులు [[Special:Log/upload|ఎక్కింపుల చిట్టా]] లోనూ తొలగింపులు [[Special:Log/delete|తొలగింపుల చిట్టా]] లోనూ కూడా నమోదవుతాయి.
 
 ఒక దస్త్రాన్ని ఏదైనా పుటలో చేర్చడానికి, కింద చూపిన వాటిలో ఏదేనీ విధంగా లింకుని వాడండి:
-* దస్త్రపు పూర్తి కూర్పుని వాడడానికి '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''
-* ఎడమ వైపు మార్జినులో 200 పిక్సెళ్ళ వెడల్పుగల బొమ్మ  మరియు 'ప్రత్యామ్నాయ పాఠ్యం' అన్న వివరణతో గల పెట్టె కోసం  '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|ప్రత్యామ్నాయ పాఠ్యం]]</nowiki></tt>'''
-* దస్త్రాన్ని చూపించకుండా నేరుగా లింకు ఇవ్వడానికి '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''",
+* దస్త్రపు పూర్తి కూర్పుని వాడడానికి '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>'''
+* ఎడమ వైపు మార్జినులో 200 పిక్సెళ్ళ వెడల్పుగల బొమ్మ  మరియు 'ప్రత్యామ్నాయ పాఠ్యం' అన్న వివరణతో గల పెట్టె కోసం  '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|ప్రత్యామ్నాయ పాఠ్యం]]</nowiki></code>'''
+* దస్త్రాన్ని చూపించకుండా నేరుగా లింకు ఇవ్వడానికి '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''",
 'upload-permitted' => 'అనుమతించే ఫైలు రకాలు: $1.',
 'upload-preferred' => 'అనుమతించే ఫైలు రకాలు: $1.',
 'upload-prohibited' => 'నిషేధించిన ఫైలు రకాలు: $1.',
@@ -1495,6 +1508,7 @@ $1",
 'minlength1' => 'పైలు పేర్లు కనీసం ఒక్క అక్షరమైనా ఉండాలి.',
 'illegalfilename' => '"$1" అనే దస్త్రపుపేరు పేజీ శీర్షికలలో వాడకూడని అక్షరాలను కలిగివుంది.
 దస్త్రపు పేరుని మార్చి మళ్ళీ ఎక్కించడానికి ప్రయత్నించండి.',
+'filename-toolong' => 'దస్త్రపు పేరు 240 బైట్ల కంటే పొడవు ఉండకూడదు.',
 'badfilename' => 'ఫైలు పేరు "$1"కి మార్చబడినది.',
 'filetype-mime-mismatch' => 'దస్త్రపు పొడగింపు ".$1" ఆ దస్త్రం యొక్క MIME రకం ($2) తో సరిపోలలేదు.',
 'filetype-badmime' => '"$1" MIME రకం ఉన్న ఫైళ్ళను ఎగుమతికి అనుమతించం.',
@@ -1519,19 +1533,19 @@ $1",
 'largefileserver' => 'ఈ ఫైలు సైజు సర్వరులో విధించిన పరిమితి కంటే ఎక్కువగా ఉంది.',
 'emptyfile' => 'మీరు అప్‌లోడు చేసిన ఫైలు ఖాళీగా ఉన్నట్లుంది. ఫైలు పేరును ఇవ్వడంలో స్పెల్లింగు తప్పు దొర్లి ఉండొచ్చు. మీరు అప్‌లోడు చెయ్యదలచింది ఇదో కాదో నిర్ధారించుకోండి.',
 'windows-nonascii-filename' => 'దస్త్రాల పేర్లలో ప్రత్యేక అక్షరాలకు ఈ వికీలో తోడ్పాటు లేదు.',
-'fileexists' => "ఈ పేరుతో ఒక ఫైలు ఇప్పటికే ఉంది.
-దీనిని మీరు మార్చాలో లేదో తెలియకపోతె ఫైలు '''<tt>[[:$1]]</tt>'''ని చూడండి.
-[[$1|thumb]]",
-'filepageexists' => "ఈ ఫైలు కొరకు వివరణ పేజీని '''<tt>[[:$1]]</tt>''' వద్ద ఈసరికే సృష్టించారు, కానీ ఆ పేరుతో ప్రస్తుతం ఏ ఫైలూ లేదు. మీరు ఇస్తున్న సంగ్రహం ఆ వివరణ పేజీలో కనబడదు. మీ సంగ్రహం అక్కడ కనబడాలంటే, నేరుగా అక్కడే చేర్చాలి.
-[[$1|thumb]]",
-'fileexists-extension' => "ఇటువంటి పేరుతో మరో ఫైలు ఉంది: [[$2|thumb]]
-* ఎగుమతి చేస్తున్న ఫైలు పేరు: '''<tt>[[:$1]]</tt>'''
-* ప్రస్తుతం ఉన్న ఫైలు పేరు: '''<tt>[[:$2]]</tt>'''
-దయచేసి మరో పేరు ఎంచుకోండి.",
+'fileexists' => 'ఈ పేరుతో ఒక ఫైలు ఇప్పటికే ఉంది.
+దీనిని మీరు మార్చాలో లేదో తెలియకపోతె ఫైలు <strong>[[:$1]]</strong>ని చూడండి.
+[[$1|thumb]]',
+'filepageexists' => 'ఈ ఫైలు కొరకు వివరణ పేజీని <strong>[[:$1]]</strong> వద్ద ఈసరికే సృష్టించారు, కానీ ఆ పేరుతో ప్రస్తుతం ఏ ఫైలూ లేదు. మీరు ఇస్తున్న సంగ్రహం ఆ వివరణ పేజీలో కనబడదు. మీ సంగ్రహం అక్కడ కనబడాలంటే, నేరుగా అక్కడే చేర్చాలి.
+[[$1|thumb]]',
+'fileexists-extension' => 'ఇటువంటి పేరుతో మరో ఫైలు ఉంది: [[$2|thumb]]
+* ఎగుమతి చేస్తున్న ఫైలు పేరు: <strong>[[:$1]]</strong>
+* ప్రస్తుతం ఉన్న ఫైలు పేరు: <strong>[[:$2]]</strong>
+దయచేసి మరో పేరు ఎంచుకోండి.',
 'fileexists-thumbnail-yes' => "ఈ ఫైలు కుదించిన బొమ్మ లాగా ఉంది ''(థంబ్‌నెయిలు)''. [[$1|thumb]]
-'''<tt>[[:$1]]</tt>''' ఫైలు చూడండి.
+<strong>[[:$1]]</strong> ఫైలు చూడండి.
 గుర్తు పెట్టబడిన ఫైలు అసలు సైజే అది అయితే, మరో థంబ్‌నెయిలును అప్‌లోడు చెయ్యాల్సిన అవసరం లేదు.",
-'file-thumbnail-no' => "ఫైలు పేరు '''<tt>$1</tt>''' తో మొదలవుతోంది.
+'file-thumbnail-no' => "ఫైలు పేరు <strong>$1</strong> తో మొదలవుతోంది.
 అది పరిమాణం తగ్గించిన ''(నఖచిత్రం)'' లాగా అనిపిస్తోంది.
 ఈ బొమ్మ యొక్క పూర్తి స్పష్టత కూర్పు ఉంటే, దాన్ని ఎగుమతి చెయ్యండి. లేదా ఫైలు పేరును మార్చండి.",
 'fileexists-forbidden' => 'ఈ పేరుతో ఇప్పటికే ఒక ఫైలు ఉంది, దాన్ని తిరగరాయలేరు.
@@ -1555,12 +1569,12 @@ $1",
 'uploadvirus' => 'ఈ ఫైలులో వైరస్‌ ఉంది! వివరాలు: $1',
 'uploadjava' => 'ఇదొక ZIP ఫైలు, ఇందులో ఒక Java .class ఫైలు ఉంది.
 Java ఫైళ్ళ వలన భద్రతకు తూట్లు పడే అవకాశం ఉంది కాబట్టి, వాటిని ఎక్కించడానికి అనుమతి లేదు.',
-'upload-source' => 'మూల ఫైలు',
+'upload-source' => 'మూల దస్త్రం',
 'sourcefilename' => 'మూలం ఫైలుపేరు:',
 'sourceurl' => 'మూల URL:',
 'destfilename' => 'ఉద్దేశించిన ఫైలుపేరు:',
 'upload-maxfilesize' => 'గరిష్ట ఫైలు పరిమాణం: $1',
-'upload-description' => 'ఫైలు వివరణ',
+'upload-description' => 'దస్త్రపు వివరణ',
 'upload-options' => 'ఎక్కింపు వికల్పాలు',
 'watchthisupload' => 'ఈ ఫైలుని గమనించు',
 'filewasdeleted' => 'ఇదే పేరుతో ఉన్న ఒక ఫైలును గతంలో అప్లోడు చేసారు, తరువాతి కాలంలో దాన్ని తొలగించారు. దాన్నీ మళ్ళీ అప్లోడు చేసే ముందు, మీరు $1 ను చూడాలి',
@@ -1589,6 +1603,7 @@ $1',
 'backend-fail-delete' => '$1 ఫైలును తొలగించలేకున్నాం.',
 'backend-fail-alreadyexists' => '$1 అనే దస్త్రం ఇప్పటికే ఉంది.',
 'backend-fail-opentemp' => 'తాత్కాలిక దస్త్రాన్ని తెరవలేకపోతున్నాం.',
+'backend-fail-closetemp' => 'తాత్కాలిక దస్త్రాన్ని మూసివేయలేకపోయాం.',
 'backend-fail-read' => '$1 దస్త్రము చదువలేకపోతిమి.',
 
 # ZipDirectoryReader
@@ -1662,7 +1677,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'listfiles_count' => 'కూర్పులు',
 
 # File description page
-'file-anchor-link' => 'ఫైలు',
+'file-anchor-link' => 'దస్త్రం',
 'filehist' => 'దస్త్రపు చరిత్ర',
 'filehist-help' => 'తేదీ/సమయం ను నొక్కి ఆ సమయాన ఫైలు ఎలా ఉండేదో చూడవచ్చు.',
 'filehist-deleteall' => 'అన్నిటినీ తొలగించు',
@@ -1731,7 +1746,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 
 # MIME search
 'mimesearch' => 'బొమ్మల మెటాడేటా(MIME)ను వెతకండి',
-'mimesearch-summary' => 'ఈ పేజీ MIME-రకాన్ననుసరించి ఫైళ్ళను వడగట్టేందుకు దోహదం చేస్తుంది. Input: contenttype/subtype, ఉదా. <tt>బొమ్మ/jpeg</tt>.',
+'mimesearch-summary' => 'ఈ పేజీ MIME-రకాన్ననుసరించి ఫైళ్ళను వడగట్టేందుకు దోహదం చేస్తుంది. Input: contenttype/subtype, ఉదా. <code>బొమ్మ/jpeg</code>.',
 'mimetype' => 'MIME రకం:',
 'download' => 'డౌన్‌లోడు',
 
@@ -1882,6 +1897,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 ఒక చిట్టా రకాన్ని గానీ, ఒక వాడుకరి పేరు గానీ (case-sensitive), లేదా ప్రభావిత  పుటని (ఇది కూడా case-sensitive) గానీ ఎంచుకుని సంబంధిత చిట్టాను మాత్రమే చూడవచ్చు.',
 'logempty' => 'సరిపోలిన అంశాలేమీ చిట్టాలో లేవు.',
 'log-title-wildcard' => 'ఈ పాఠ్యంతో మొదలయ్యే పుస్తకాల కొరకు వెతుకు',
+'showhideselectedlogentries' => 'ఎంచుకున్న చిట్టా పద్దులను చూపించు/దాచు',
 
 # Special:AllPages
 'allpages' => 'అన్ని పేజీలు',
@@ -1900,6 +1916,9 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'allpagesbadtitle' => 'మీరిచ్చిన పేజీ పేరు సరైనది కాకపోయి ఉండాలి లేదా దానికి భాషాంతర లేదా అంతర్వికీ ఆదిపదమైనా ఉండి ఉండాలి. పేర్లలో వాడకూడని కారెక్టర్లు ఆ పేరులో ఉండి ఉండవచ్చు.',
 'allpages-bad-ns' => '{{SITENAME}} లో "$1" అనే నేమ్&zwnj;స్పేస్ లేదు.',
 'allpages-hide-redirects' => 'దారిమార్పులను దాచు',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'సరికొత్త కూర్పును చూడండి.',
 
 # Special:Categories
 'categories' => 'వర్గాలు',
@@ -1920,7 +1939,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'linksearch-pat' => 'వెతకాల్సిన నమూనా:',
 'linksearch-ns' => 'పేరుబరి:',
 'linksearch-ok' => 'వెతుకు',
-'linksearch-text' => '"*.wikipedia.org" వంటి వైల్డ్ కార్డులు వాడవచ్చు.<br />ఉపయోగించుకోగల ప్రోటోకాళ్లు: <tt>$1</tt>',
+'linksearch-text' => '"*.wikipedia.org" వంటి వైల్డ్ కార్డులు వాడవచ్చు.<br />ఉపయోగించుకోగల ప్రోటోకాళ్లు: <code>$1</code>',
 'linksearch-line' => '$2 నుండి $1కి లింకు ఉంది',
 'linksearch-error' => 'హోస్ట్‌నేముకు ముందు మాత్రమే వైల్డ్ కార్డులు వాడవచ్చు.',
 
@@ -2100,6 +2119,8 @@ $UNWATCHURL కి వెళ్ళండి.
 'rollback' => 'దిద్దుబాట్లను రద్దుచేయి',
 'rollback_short' => 'రద్దుచేయి',
 'rollbacklink' => 'రద్దుచేయి',
+'rollbacklinkcount' => '$1 {{PLURAL:$1|మార్పును|మార్పులను}} రద్దుచేయి',
+'rollbacklinkcount-morethan' => '$1 కంటే ఎక్కువ {{PLURAL:$1|మార్పును|మార్పులను}} రద్దుచేయి',
 'rollbackfailed' => 'రద్దుచేయటం విఫలమైంది',
 'cantrollback' => 'రచనను వెనక్కి తీసుకువెళ్ళలేము; ఈ పేజీకి ఇదొక్కటే రచన.',
 'alreadyrolled' => '[[:$1]]లో [[User:$2|$2]] ([[User talk:$2|చర్చ]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) చేసిన చివరి మార్పును రద్దు చెయ్యలేము;
@@ -2147,6 +2168,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'protect-level-sysop' => 'నిర్వాహకులు మాత్రమే',
 'protect-summary-cascade' => 'కాస్కేడింగు',
 'protect-expiring' => '$1 (UTC)న కాలంచెల్లుతుంది',
+'protect-expiring-local' => '$1న కాలంచెల్లుతుంది',
 'protect-expiry-indefinite' => 'నిరవధికం',
 'protect-cascade' => 'ఈ పేజీకి జతపరిచిన పేజీలను కూడా రక్షించు (కాస్కేడింగు రక్షణ)',
 'protect-cantedit' => 'ఈ పేజీ యొక్క సంరక్షణా స్థాయిని మీరు మార్చలేరు, ఎందుకంటే దాన్ని మార్చే అనుమతి మీకు లేదు.',
@@ -2537,7 +2559,7 @@ $UNWATCHURL కి వెళ్ళండి.
 # Namespace 8 related
 'allmessages' => 'అన్ని సిస్టం సందేశాలు',
 'allmessagesname' => 'పేరు',
-'allmessagesdefault' => 'డీఫాల్టు పాఠ్యం',
+'allmessagesdefault' => 'అప్రమేయ సందేశపు పాఠ్యం',
 'allmessagescurrent' => 'ప్రస్తుత పాఠ్యం',
 'allmessagestext' => 'మీడియావికీ పేరుబరిలో ఉన్న అంతరవర్తి సందేశాల జాబితా ఇది.
 సాధారణ మీడియావికీ స్థానికీకరణకి మీరు తోడ్పడాలనుకుంటే, దయచేసి [//www.mediawiki.org/wiki/Localisation మీడియావికీ స్థానికీకరణ] మరియు [//translatewiki.net ట్రాన్స్&zwnj;లేట్&zwnj;వికీ.నెట్] సైట్లను చూడండి.',
@@ -2613,6 +2635,7 @@ $UNWATCHURL కి వెళ్ళండి.
 
 # JavaScriptTest
 'javascripttest' => 'జావాస్క్రిప్ట్ పరీక్ష',
+'javascripttest-title' => '$1 పరీక్షలు నడుస్తున్నాయి',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'మీ వాడుకరి పేజీ',
@@ -2973,6 +2996,7 @@ $1',
 'exif-iimcategory' => 'వర్గం',
 'exif-iimsupplementalcategory' => 'అనుషంగిక వర్గాలు',
 'exif-datetimeexpires' => 'దీని తరువాత వాడవద్దు',
+'exif-datetimereleased' => 'విడుదల తేదీ',
 'exif-identifier' => 'గుర్తింపకం',
 'exif-lens' => 'వాడిన కటకం',
 'exif-serialnumber' => 'కెమేరా యొక్క సీరియల్ నంబర్',
@@ -3370,6 +3394,9 @@ $5
 'version-software' => 'స్థాపిత మృదూపకరణాలు',
 'version-software-product' => 'ప్రోడక్టు',
 'version-software-version' => 'వెర్షను',
+'version-entrypoints' => 'ప్రవేశ బిందు చిరునామాలు',
+'version-entrypoints-header-entrypoint' => 'ప్రవేశ బిందువు',
+'version-entrypoints-header-url' => 'చిరునామా',
 
 # Special:FilePath
 'filepath' => 'పూర్తి చిరునామా',
@@ -3502,19 +3529,26 @@ $5
 
 # API errors
 'api-error-badaccess-groups' => 'ఈ వికీ లోనికి దస్త్రాలను ఎక్కించే అనుమతి మీకు లేదు.',
+'api-error-duplicate-archive-popup-title' => 'నకిలీ {{PLURAL:$1|దస్త్రాన్ని|దస్త్రాలను}} ఇప్పటికే తొలగించారు.',
+'api-error-duplicate-popup-title' => 'నకిలీ {{PLURAL:$1|దస్త్రం|దస్త్రాలు}}.',
 'api-error-empty-file' => 'మీరు దాఖలుచేసిన ఫైల్ ఖాళీది.',
 'api-error-emptypage' => 'కొత్త మరియు ఖాళీ పేజీలను సృష్టించడానికి అనుమతి లేదు.',
+'api-error-file-too-large' => 'మీరు సమర్పించిన దస్త్రం చాలా పెద్దగా ఉంది.',
 'api-error-filename-tooshort' => 'దస్త్రపు పేరు మరీ చిన్నగా ఉంది.',
 'api-error-filetype-banned' => 'ఈ రకపు దస్త్రాలని నిషేధించారు.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|అనేది అనుమతించబడిన ఫైలు రకం కాదు|అనేవి అనుమతించబడిన ఫైలు రకాలు కాదు}}. అనుమతించబడిన {{PLURAL:$3|ఫైలు రకం|ఫైలు రకాలు}} $2.',
 'api-error-http' => 'అంతర్గత దోషము: సేవకానికి అనుసంధానమవలేకపోతున్నది.',
 'api-error-illegal-filename' => 'ఆ పైల్ పేరు అనుమతించబడదు.',
 'api-error-invalid-file-key' => 'అంతర్గత దోషము: తాత్కాలిక నిల్వలో ఫైల్ కనపడలేదు.',
 'api-error-mustbeloggedin' => 'దస్త్రాలను ఎక్కించడానికి మీరు ప్రవేశించివుండాలి.',
 'api-error-nomodule' => 'అంతర్గత దోషము: ఎక్కింపు పర్వికము అమర్చబడలేదు.',
 'api-error-ok-but-empty' => 'అంతర్గత దోషము: సేవకము నుండి ఎటువంటి స్పందనా లేదు.',
+'api-error-stashfailed' => 'అంతర్గత పొరపాటు: తాత్కాలిక దస్త్రాన్ని భద్రపరచడంలో సేవకి విఫలమైంది.',
 'api-error-unclassified' => 'ఒక తెలియని దోషము సంభవించినది',
-'api-error-unknown-code' => 'తెలియని దోషము: $1',
+'api-error-unknown-code' => 'తెలియని పొరపాటు: "$1".',
+'api-error-unknown-error' => 'అంతర్గత పొరపాటు: మీ దస్త్రాన్ని ఎక్కించేప్పుడు ఏదో పొరపాటు జరిగింది.',
 'api-error-unknown-warning' => 'తెలియని హెచ్చరిక: $1',
+'api-error-unknownerror' => 'తెలియని పొరపాటు: "$1".',
 'api-error-uploaddisabled' => 'ఈ వికీలో ఎక్కింపులని అచేతనం చేసారు.',
 'api-error-verification-error' => 'ఈ ఫైల్ పాడైవుండవచ్చు, లేదా తప్పుడు పొడిగింతను కలిగివుండవచ్చు.',
 

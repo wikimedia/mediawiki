@@ -179,6 +179,22 @@ class DifferenceEngine extends ContextSource {
 		}
 	}
 
+	private function showMissingRevision() {
+		$out = $this->getOutput();
+
+		$missing = array();
+		if ( $this->mOldRev === null ) {
+			$missing[] = $this->deletedIdMarker( $this->mOldid );
+		}
+		if ( $this->mNewRev === null ) {
+			$missing[] = $this->deletedIdMarker( $this->mNewid );
+		}
+
+		$out->setPageTitle( $this->msg( 'errorpagetitle' ) );
+		$out->addWikiMsg( 'difference-missing-revision',
+			$this->getLanguage()->listToText( $missing ), count( $missing ) );
+	}
+
 	function showDiffPage( $diffOnly = false ) {
 		wfProfileIn( __METHOD__ );
 
@@ -188,13 +204,7 @@ class DifferenceEngine extends ContextSource {
 		$out->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( !$this->loadRevisionData() ) {
-			// Sounds like a deleted revision... Let's see what we can do.
-			$t = $this->getTitle()->getPrefixedText();
-			$d = $this->msg( 'missingarticle-diff',
-				$this->deletedIdMarker( $this->mOldid ),
-				$this->deletedIdMarker( $this->mNewid ) )->escaped();
-			$out->setPageTitle( $this->msg( 'errorpagetitle' ) );
-			$out->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", "<span class='plainlinks'>$d</span>" );
+			$this->showMissingRevision();
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -563,7 +573,7 @@ class DifferenceEngine extends ContextSource {
 	function showDiff( $otitle, $ntitle, $notice = '' ) {
 		$diff = $this->getDiff( $otitle, $ntitle, $notice );
 		if ( $diff === false ) {
-			$this->getOutput()->addWikiMsg( 'missing-article', "<nowiki>(fixme, bug)</nowiki>", '' );
+			$this->showMissingRevision();
 			return false;
 		} else {
 			$this->showDiffStyle();
@@ -1077,7 +1087,7 @@ class DifferenceEngine extends ContextSource {
 		// Load the new revision object
 		$this->mNewRev = $this->mNewid
 			? Revision::newFromId( $this->mNewid )
-			: Revision::newFromTitle( $this->getTitle(), false, Revision::AVOID_MASTER );
+			: Revision::newFromTitle( $this->getTitle(), false, Revision::READ_NORMAL );
 
 		if ( !$this->mNewRev instanceof Revision ) {
 			return false;

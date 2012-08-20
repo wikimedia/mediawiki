@@ -44,6 +44,7 @@
  * @author SandroHc
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
+ * @author Teles
  * @author Urhixidur
  * @author Villate
  * @author Waldir
@@ -349,7 +350,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Esconder edições de utilizadores autenticados ao listar mudanças às páginas vigiadas',
 'tog-watchlisthideanons' => 'Esconder edições de utilizadores anónimos ao listar mudanças às páginas vigiadas',
 'tog-watchlisthidepatrolled' => 'Esconder edições patrulhadas ao listar mudanças às páginas vigiadas',
-'tog-nolangconversion' => 'Impossibilitar a conversão de variantes da língua',
 'tog-ccmeonemails' => 'Enviar-me cópias das mensagens por correio electrónico que eu enviar a outros utilizadores',
 'tog-diffonly' => 'Não mostrar o conteúdo da página ao comparar duas edições',
 'tog-showhiddencats' => 'Mostrar categorias ocultas',
@@ -574,6 +574,10 @@ Consulte a página da [[Special:Version|versão do sistema]].',
 'youhavenewmessages' => 'Tem $1 ($2).',
 'newmessageslink' => 'mensagens novas',
 'newmessagesdifflink' => 'comparar com a penúltima revisão',
+'youhavenewmessagesfromusers' => 'Você tem $1 de {{PLURAL:$3|outro utilizador|$3 utilizadores}} ($2).',
+'youhavenewmessagesmanyusers' => 'Você tem $1 de muitos utilizadores ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|últimas alterações}}',
 'youhavenewmessagesmulti' => 'Tem mensagens novas em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -724,6 +728,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'remembermypassword' => 'Recordar os meus dados neste computador (no máximo, por $1 {{PLURAL:$1|dia|dias}})',
 'securelogin-stick-https' => 'Manter a ligação HTTPS após a autenticação',
 'yourdomainname' => 'O seu domínio:',
+'password-change-forbidden' => 'Não podes alterar senhas nesta wiki.',
 'externaldberror' => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'login' => 'Autenticação',
 'nav-login-createaccount' => 'Entrar / criar conta',
@@ -879,10 +884,10 @@ Palavra-chave temporária: $2',
 'bold_tip' => 'Texto a negrito',
 'italic_sample' => 'Texto em itálico',
 'italic_tip' => 'Texto em itálico',
-'link_sample' => 'Título do link',
-'link_tip' => 'Link interno',
-'extlink_sample' => 'http://www.example.com link externo',
-'extlink_tip' => 'Link externo (lembre-se do prefixo http://)',
+'link_sample' => 'Título da ligação',
+'link_tip' => 'Ligação interna',
+'extlink_sample' => 'http://www.example.com título da ligação',
+'extlink_tip' => 'Ligação externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Texto do cabeçalho',
 'headline_tip' => 'Secção de nível 2',
 'nowiki_sample' => 'Inserir texto não-formatado aqui',
@@ -890,7 +895,7 @@ Palavra-chave temporária: $2',
 'image_sample' => 'Exemplo.jpg',
 'image_tip' => 'Ficheiro embutido',
 'media_sample' => 'Exemplo.ogg',
-'media_tip' => 'Link para ficheiro',
+'media_tip' => 'Ligação para ficheiro',
 'sig_tip' => 'A sua assinatura, com hora e data',
 'hr_tip' => 'Linha horizontal (utilize moderadamente)',
 
@@ -960,7 +965,7 @@ Ela pode ter sido movida ou removida enquanto estava a ver a página.',
 
 A palavra-chave para esta nova conta pode ser alterada na página [[Special:ChangePassword|alterar palavra-chave]] após autenticação.',
 'newarticle' => '(Nova)',
-'newarticletext' => "Seguiu um link para uma página que ainda não existe.
+'newarticletext' => "Seguiu uma ligação para uma página que ainda não existe.
 Para criá-la, escreva o seu conteúdo na caixa abaixo (consulte a [[{{MediaWiki:Helppage}}|página de ajuda]] para mais detalhes).
 Se chegou aqui por engano, clique o botão '''voltar''' (ou ''back'') do seu browser.",
 'anontalkpagetext' => "----''Esta é a página de discussão de um utilizador anónimo que ainda não criou uma conta ou não a utiliza, pelo que temos de utilizar o endereço IP para identificá-lo(a).
@@ -973,6 +978,10 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Ainda não existe texto nesta página.
 Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar registos relacionados]</span>.',
+'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
+
+Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
+Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
 'userpage-userdoesnotexist' => 'A conta "<nowiki>$1</nowiki>" não se encontra registada.
 Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view' => 'A conta de utilizador "$1" não está registada.',
@@ -1105,6 +1114,7 @@ Estes argumentos foram omitidos.',
 'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
 'parser-unstrip-loop-warning' => 'Foi detectado um ciclo infinito unstrip',
 'parser-unstrip-recursion-limit' => 'Limite de recursão do unstrip excedido ($1)',
+'converter-manual-rule-error' => 'Erro detetado na regra de conversão de língua manual',
 
 # "Undo" feature
 'undo-success' => 'É possível desfazer a edição.
@@ -1298,6 +1308,10 @@ Note que, se usar os links de navegação, os botões de opção voltarão aos v
 'editundo' => 'desfazer',
 'diff-multi' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de {{PLURAL:$2|um utilizador|$2 utilizadores}} {{PLURAL:$1|não apresentada|não apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermédia|$1 edições intermédias}} de mais de {{PLURAL:$2|um utilizador|$2 utilizadores}} não {{PLURAL:$1|apresentada|apresentadas}})',
+'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
+
+Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
+Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
 
 # Search results
 'searchresults' => 'Resultados da pesquisa',
@@ -1714,9 +1728,9 @@ Para ver ou pesquisar ficheiros anteriormente enviados, consulte a [[Special:Fil
 Os reenvios de um ficheiro são também registados no [[Special:Log/upload|registo de uploads]] e as eliminações no [[Special:Log/delete|registo de eliminações]].
 
 Para utilizar um ficheiro numa página, depois de ter feito o upload, insira um link com um dos seguintes formatos:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para mostrar uma imagem nas suas dimensões originais;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para apresentar um link directo para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></code>''' para mostrar uma imagem nas suas dimensões originais;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></code>''' para mostrar uma imagem com a dimensão horizontal de 200 pixels, dentro de uma caixa, na margem esquerda, contendo 'texto' como descrição (pode usar subconjuntos destas características);
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></code>''' para apresentar um link directo para o ficheiro em vez de mostrá-lo, quer este tenha por conteúdo uma imagem ou outros dados.",
 'upload-permitted' => 'Tipos de ficheiros permitidos: $1.',
 'upload-preferred' => 'Tipos de ficheiros preferidos: $1.',
 'upload-prohibited' => 'Tipos de ficheiro proibidos: $1.',
@@ -1764,21 +1778,21 @@ este tem $2.',
 Isto pode dever-se a um erro no nome do ficheiro.
 Verifique se é realmente este o ficheiro que deseja carregar, por favor.',
 'windows-nonascii-filename' => 'A wiki não aceita nomes de ficheiros com caracteres especiais.',
-'fileexists' => "Já existe um ficheiro com este nome.
-Verifique '''<tt>[[:$1]]</tt>''' caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
-[[$1|thumb]]",
-'filepageexists' => "A página de descrição deste ficheiro já foi criada em '''<tt>[[:$1]]</tt>''', mas neste momento não existe nenhum ficheiro com este nome.
+'fileexists' => 'Já existe um ficheiro com este nome.
+Verifique <strong>[[:$1]]</strong> caso não tenha a certeza de que quer alterar o ficheiro actual, por favor.
+[[$1|thumb]]',
+'filepageexists' => 'A página de descrição deste ficheiro já foi criada em <strong>[[:$1]]</strong>, mas neste momento não existe nenhum ficheiro com este nome.
 O resumo que introduzir não aparecerá na página de descrição.
 Para fazê-lo aparecer, terá de editar a página manualmente.
-[[$1|thumb]]",
-'fileexists-extension' => "Já existe um ficheiro de nome semelhante: [[$2|thumb]]
-* Nome do ficheiro que está sendo carregado: '''<tt>[[:$1]]</tt>'''
-* Nome do ficheiro existente: '''<tt>[[:$2]]</tt>'''
-Escolha um nome diferente, por favor.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Já existe um ficheiro de nome semelhante: [[$2|thumb]]
+* Nome do ficheiro que está sendo carregado: <strong>[[:$1]]</strong>
+* Nome do ficheiro existente: <strong>[[:$2]]</strong>
+Escolha um nome diferente, por favor.',
 'fileexists-thumbnail-yes' => "O ficheiro aparenta ser uma imagem de tamanho reduzido (''miniatura'', ou ''thumbnail)''. [[$1|thumb]]
-Verifique o ficheiro '''<tt>[[:$1]]</tt>''', por favor.
+Verifique o ficheiro <strong>[[:$1]]</strong>, por favor.
 Se este ficheiro é a mesma imagem mas no tamanho original, não é necessário carregar uma miniatura.",
-'file-thumbnail-no' => "O nome do ficheiro começa por '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "O nome do ficheiro começa por <strong>$1</strong>.
 Parece ser uma imagem de tamanho reduzido (uma ''miniatura'' ou ''thumbnail)''.
 Se tiver a imagem original de maior dimensão, envie-a em vez desta. Se não, altere o nome do ficheiro, por favor.",
 'fileexists-forbidden' => 'Já existe um ficheiro com este nome, e não pode ser reescrito.
@@ -2041,7 +2055,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 # MIME search
 'mimesearch' => 'Pesquisa MIME',
-'mimesearch-summary' => 'Esta página permite pesquisar os ficheiros da wiki, filtrando-os a partir do seu tipo MIME. O tipo MIME deve ser especificado na forma: tipo/subtipo. Alguns exemplos de tipos frequentes: <tt>image/jpeg</tt>, <tt>image/gif</tt>, <tt>image/png</tt>, <tt>application/pdf</tt>, <tt>application/vnd.ms-excel</tt>, <tt>application/zip</tt>, <tt>application/vnd.ms-powerpoint</tt>.',
+'mimesearch-summary' => 'Esta página permite pesquisar os ficheiros da wiki, filtrando-os a partir do seu tipo MIME. O tipo MIME deve ser especificado na forma: tipo/subtipo. Alguns exemplos de tipos frequentes: <code>image/jpeg</code>, <code>image/gif</code>, <code>image/png</code>, <code>application/pdf</code>, <code>application/vnd.ms-excel</code>, <code>application/zip</code>, <code>application/vnd.ms-powerpoint</code>.',
 'mimetype' => 'Tipo MIME:',
 'download' => 'download',
 
@@ -2087,9 +2101,9 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 
 'disambiguations' => 'Páginas com ligações para páginas de desambiguação',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => 'As páginas abaixo contêm links para uma página de desambiguação.
-Estes links deviam ser desambiguados, apontando-os para a página apropriada.<br />
-Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].',
+'disambiguations-text' => "As páginas abaixo contêm pelo menos um link para uma '''página de desambiguação'''.
+Estes links deviam ser desambiguados, apontando-os para uma página mais apropriada.<br />
+Considera-se que uma página é de desambiguação se nela for utilizada uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redireccionamentos duplos',
 'doubleredirectstext' => 'Esta página lista todas as páginas que redireccionam para outras páginas de redireccionamento.
@@ -2243,7 +2257,7 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'linksearch-ok' => 'Prosseguir',
 'linksearch-text' => 'É possível usar caracteres de substituição \'\'(wildcards)\'\', como por exemplo: "*.wikipedia.org".
 É necessário, pelo menos, um domínio de topo, por exemplo "*.org".<br />
-Protocolos suportados: <tt>$1</tt> (não adicione nenhum destes na sua pesquisa).',
+Protocolos suportados: <code>$1</code> (não adicione nenhum destes na sua pesquisa).',
 'linksearch-line' => 'Link para $1 na página $2',
 'linksearch-error' => "Caracteres de substituição ''(wildcards)'' só podem ser usados no início do endereço.",
 
@@ -2436,6 +2450,8 @@ prossiga com precaução.',
 'rollback' => 'Reverter edições',
 'rollback_short' => 'Voltar',
 'rollbacklink' => 'voltar',
+'rollbacklinkcount' => 'reverter $1 {{PLURAL:$1|edição|edições}}',
+'rollbacklinkcount-morethan' => 'reverter mais do que $1 {{PLURAL:$1|edição|edições}}',
 'rollbackfailed' => 'A reversão falhou',
 'cantrollback' => 'Não foi possível reverter a edição; o último contribuidor é o único autor desta página',
 'alreadyrolled' => 'Não foi possível reverter as edições de [[:$1]] por [[User:$2|$2]] ([[User talk:$2|discussão]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -3991,6 +4007,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'api-error-file-too-large' => 'O ficheiro que enviou era demasiado grande.',
 'api-error-filename-tooshort' => 'O nome do ficheiro é demasiado curto.',
 'api-error-filetype-banned' => 'Este tipo de ficheiro é proibido.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|não é um tipo de ficheiro permitido|não são tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos são}} $2.',
 'api-error-filetype-missing' => 'Falta a extensão do ficheiro.',
 'api-error-hookaborted' => 'A modificação que tentou fazer foi cancelada por uma extensão.',
 'api-error-http' => 'Erro interno: Ocorreu um problema na ligação ao servidor.',

@@ -321,7 +321,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sakrij promjene prijavljenih korisnika sa liste praćenja',
 'tog-watchlisthideanons' => 'Sakrij promjene anonimnih korisnika sa liste praćenja',
 'tog-watchlisthidepatrolled' => 'Sakrij patrolirane izmjene sa spiska praćenja',
-'tog-nolangconversion' => 'Onemogući konverziju varijanti',
 'tog-ccmeonemails' => 'Pošalji mi kopije emailova koje pošaljem drugim korisnicima',
 'tog-diffonly' => 'Ne prikazuj sadržaj stranice ispod prikaza razlika',
 'tog-showhiddencats' => 'Prikaži skrivene kategorije',
@@ -1669,9 +1668,9 @@ Zapisnik brisanja i pomjeranja za ovu stranicu je dostupan ovdje na uvid:",
 Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:FileList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
 
 Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih načina:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></tt>''' da upotrijebite potpunu veziju datoteke
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|thumb|lijevo|opis slike]]</nowiki></tt>''' da upotrijebite smanjeni prikaz širine 200 piksela unutar okvira, s lijevim poravnanjem i ''opisom slike''.
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></tt>''' za direkno povezivanje datoteke bez njenog prikazivanja",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.jpg]]</nowiki></code>''' da upotrijebite potpunu veziju datoteke
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Datoteka.png|200px|thumb|lijevo|opis slike]]</nowiki></code>''' da upotrijebite smanjeni prikaz širine 200 piksela unutar okvira, s lijevim poravnanjem i ''opisom slike''.
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Datoteka.ogg]]</nowiki></code>''' za direkno povezivanje datoteke bez njenog prikazivanja",
 'upload-permitted' => 'Podržane vrste datoteka: $1.',
 'upload-preferred' => 'Preferirane vrste datoteka: $1.',
 'upload-prohibited' => 'Zabranjene vrste datoteka: $1.',
@@ -1716,21 +1715,21 @@ Ova datoteka je velika $2.',
 'largefileserver' => 'Ova datoteka je veća nego što server dopušta.',
 'emptyfile' => 'Datoteka koju ste poslali je prazna. Ovo je moguće zbog greške u imenu datoteke. Molimo Vas da provjerite da li stvarno želite da pošaljete ovu datoteku.',
 'windows-nonascii-filename' => 'Ova wiki ne podržava imena datoteka sa posebnim znacima.',
-'fileexists' => "Datoteka sa ovim imenom već postoji.
-Molimo Vas da provjerite '''<tt>[[:$1]]</tt>''' ako niste sigurni da li želite da je promjenite.
-[[$1|thumb]]",
-'filepageexists' => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
+'fileexists' => 'Datoteka sa ovim imenom već postoji.
+Molimo Vas da provjerite <strong>[[:$1]]</strong> ako niste sigurni da li želite da je promjenite.
+[[$1|thumb]]',
+'filepageexists' => 'Opis stranice za ovu datoteku je već napravljen ovdje <strong>[[:$1]]</strong>, ali datoteka sa ovim nazivom trenutno ne postoji.
 Sažetak koji ste naveli neće se pojaviti na stranici opisa.
 Da bi se Vaš opis ovdje našao, potrebno je da ga ručno uredite.
-[[$1|thumb]]",
-'fileexists-extension' => "Datoteka sa sličnim nazivom postoji: [[$2|thumb]]
-* Naziv datoteke koja se postavlja: '''<tt>[[:$1]]</tt>'''
-* Naziv postojeće datoteke: '''<tt>[[:$2]]</tt>'''
-Molimo Vas da izaberete drugačiji naziv.",
-'fileexists-thumbnail-yes' => "Izgleda da je datoteka slika smanjene veličine ''(\"thumbnail\")''. [[\$1|thumb]]
-Molimo provjerite datoteku '''<tt>[[:\$1]]</tt>'''.
-Ako je provjerena datoteka ista slika originalne veličine, nije potrebno postavljati dodatnu sliku.",
-'file-thumbnail-no' => "Naziv datoteke počinje sa '''<tt>\$1</tt>'''.
+[[$1|thumb]]',
+'fileexists-extension' => 'Datoteka sa sličnim nazivom postoji: [[$2|thumb]]
+* Naziv datoteke koja se postavlja: <strong>[[:$1]]</strong>
+* Naziv postojeće datoteke: <strong>[[:$2]]</strong>
+Molimo Vas da izaberete drugačiji naziv.',
+'fileexists-thumbnail-yes' => 'Izgleda da je datoteka slika smanjene veličine \'\'("thumbnail")\'\'. [[$1|thumb]]
+Molimo provjerite datoteku <strong>[[:$1]]</strong>.
+Ako je provjerena datoteka ista slika originalne veličine, nije potrebno postavljati dodatnu sliku.',
+'file-thumbnail-no' => "Naziv datoteke počinje sa <strong>\$1</strong>.
 Izgleda da se radi o smanjenoj slici ''(\"thumbnail\")''.
 Ako imate ovu sliku u punoj rezoluciji, postavite nju; ili promijenite naslov ove datoteke.",
 'fileexists-forbidden' => 'Datoteka sa ovim imenom već postoji i ne može biti prepisana.
@@ -1963,7 +1962,7 @@ Opis sa njene [$2 stranice opisa datoteke] je prikazan ispod.',
 # MIME search
 'mimesearch' => 'MIME pretraga',
 'mimesearch-summary' => 'Ova stranica omogućava filtriranje datoteka prema njihovoj MIME vrsti.
-Ulazni podaci: vrstasadržaja/subvrsta, npr. <tt>image/jpeg</tt>.',
+Ulazni podaci: vrstasadržaja/subvrsta, npr. <code>image/jpeg</code>.',
 'mimetype' => 'MIME tip:',
 'download' => 'učitaj',
 
@@ -2158,7 +2157,7 @@ Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 'linksearch-ok' => 'Traži',
 'linksearch-text' => 'Mogu se koristiti općeniti izrazi poput "*.wikipedia.org"
 Potrebna je najmanje osnovna domena, naprimjer "*.org."<br />
-Podržani protokoli: <tt>$1</tt> (ne dodavajte bilo koji od ovih u vašu pretragu).',
+Podržani protokoli: <code>$1</code> (ne dodavajte bilo koji od ovih u vašu pretragu).',
 'linksearch-line' => '$1 je povezan od $2',
 'linksearch-error' => 'Džokeri se mogu pojavljivati samo na početku naziva servera.',
 
@@ -3942,6 +3941,7 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'api-error-file-too-large' => 'Datoteka koju ste poslali je bila prevelika.',
 'api-error-filename-tooshort' => 'Ime datoteke je prekratko.',
 'api-error-filetype-banned' => 'Ova vrsta datoteke je zabranjena.',
+'api-error-filetype-banned-type' => '$1 nije dopuštena vrsta datoteke. {{PLURAL:$3|Dopuštena vrsta datoteke je|Dopuštene vrste datoteka su}} $2.',
 'api-error-filetype-missing' => 'Datoteci nedostaje nastavak.',
 'api-error-hookaborted' => 'Izmjena koji ste pokušali načiniti je obustavljena preko kuke proširenja.',
 'api-error-http' => 'Unutrašnja greška: ne može se spojiti na server.',

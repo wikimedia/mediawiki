@@ -299,6 +299,7 @@ class MagicWord {
 	 * Initialises this object with an ID
 	 *
 	 * @param $id
+	 * @throws MWException
 	 */
 	function load( $id ) {
 		global $wgContLang;
@@ -645,6 +646,9 @@ class MagicWordArray {
 	var $baseRegex, $regex;
 	var $matches;
 
+	/**
+	 * @param $names array
+	 */
 	function __construct( $names = array() ) {
 		$this->names = $names;
 	}
@@ -773,12 +777,21 @@ class MagicWordArray {
 	}
 
 	/**
+	 * @since 1.20
+	 * @return array
+	 */
+	public function getNames() {
+		return $this->names;
+	}
+
+	/**
 	 * Parse a match array from preg_match
 	 * Returns array(magic word ID, parameter value)
 	 * If there is no parameter value, that element will be false.
 	 *
 	 * @param $m array
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function parseMatch( $m ) {
@@ -815,7 +828,7 @@ class MagicWordArray {
 		$regexes = $this->getVariableStartToEndRegex();
 		foreach ( $regexes as $regex ) {
 			if ( $regex !== '' ) {
-				$m = false;
+				$m = array();
 				if ( preg_match( $regex, $text, $m ) ) {
 					return $this->parseMatch( $m );
 				}

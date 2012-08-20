@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ankry
  * @author Bartek50003
  * @author BdgwksxD
  * @author Beau
@@ -333,7 +334,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ukryj edycje zalogowanych użytkowników na liście obserwowanych',
 'tog-watchlisthideanons' => 'Ukryj edycje anonimowych użytkowników na liście obserwowanych',
 'tog-watchlisthidepatrolled' => 'Ukryj sprawdzone edycje na liście obserwowanych',
-'tog-nolangconversion' => 'Wyłącz odmianę',
 'tog-ccmeonemails' => 'Przesyłaj mi kopie wiadomości, które wysyłam do innych użytkowników',
 'tog-diffonly' => 'Nie pokazuj treści stron pod porównaniami zmian',
 'tog-showhiddencats' => 'Pokazuj ukryte kategorie',
@@ -558,6 +558,10 @@ $1',
 'youhavenewmessages' => 'Masz $1 ($2).',
 'newmessageslink' => 'nowe wiadomości',
 'newmessagesdifflink' => 'różnica z poprzednią wersją',
+'youhavenewmessagesfromusers' => 'Masz $1 od {{PLURAL:$3|innego użytkownika|$3 innych użytkowników}} ($2).',
+'youhavenewmessagesmanyusers' => 'Masz $1 od wielu użytkowników ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|jedną wiadomość|$1 wiadomości}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|ostatnia zmiana|ostatnie $1 zmiany|ostatnie $1 zmian}}',
 'youhavenewmessagesmulti' => 'Masz nowe wiadomości na $1',
 'editsection' => 'edytuj',
 'editold' => 'edytuj',
@@ -707,6 +711,7 @@ Nie zapomnij dostosować [[Special:Preferences|preferencji dla {{GRAMMAR:D.lp|{{
 'remembermypassword' => 'Zapamiętaj moje hasło na tym komputerze (maksymalnie przez $1 {{PLURAL:$1|dzień|dni}})',
 'securelogin-stick-https' => 'Po zalogowaniu utrzymuj połączenie poprzez HTTPS',
 'yourdomainname' => 'Twoja domena',
+'password-change-forbidden' => 'Nie można zmieniać haseł na tej wiki.',
 'externaldberror' => 'Wystąpił błąd zewnętrznej bazy autentyfikacyjnej lub nie posiadasz uprawnień koniecznych do aktualizacji zewnętrznego konta.',
 'login' => 'Zaloguj się',
 'nav-login-createaccount' => 'Logowanie i rejestracja',
@@ -958,6 +963,9 @@ Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych str
 'noarticletext-nopermission' => 'Na tej stronie nie ma jeszcze artykułu.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
 lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
+'missing-revision' => 'Wersja #$1 strony "{{PAGENAME}}" nie istnieje.
+
+Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
 'userpage-userdoesnotexist' => 'Użytkownik „<nowiki>$1</nowiki>” nie jest zarejestrowany.
 Upewnij się, czy na pewno zamierza{{GENDER:|łeś|łaś|sz}} utworzyć lub zmodyfikować właśnie tę stronę.',
 'userpage-userdoesnotexist-view' => 'Konto użytkownika „$1” nie jest zarejestrowane.',
@@ -1086,6 +1094,7 @@ Argument ten będzie pominięty.',
 'expansion-depth-exceeded-warning' => 'Strona przekroczyła głębokość rozbudowy',
 'parser-unstrip-loop-warning' => 'Wykryto nieskończoną pętlę',
 'parser-unstrip-recursion-limit' => 'Przekroczono maksymalną głębokość zagnieżdżania ($1)',
+'converter-manual-rule-error' => 'Błąd w językowych regułach konwersji',
 
 # "Undo" feature
 'undo-success' => 'Edycja może zostać wycofana. Porównaj ukazane poniżej różnice między wersjami, a następnie zapisz zmiany.',
@@ -1271,6 +1280,9 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'editundo' => 'anuluj edycję',
 'diff-multi' => '(Nie pokazano $1 wersji {{PLURAL:$1|utworzonej|utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
 'diff-multi-manyusers' => '(Nie pokazano $1 {{PLURAL:$1|pośredniej wersji utworzonej|pośrednich wersji utworzonych}} przez {{PLURAL:$2|jednego użytkownika|$2 użytkowników}})',
+'difference-missing-revision' => '{{PLURAL:$2|Wersja|$2 wersje|$2 wersji}} #$1 strony "{{PAGENAME}}" nie {{PLURAL:$2|została znaleziona|zostały znalezione|zostało znalezionych}}.
+
+Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
 
 # Search results
 'searchresults' => 'Wyniki wyszukiwania',
@@ -1539,6 +1551,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-writeapi' => 'Zapis poprzez interfejs API',
 'right-delete' => 'Usuwanie stron',
 'right-bigdelete' => 'Usuwanie stron z długą historią edycji',
+'right-deletelogentry' => 'Usuwanie i przywracanie wpisów rejestru',
 'right-deleterevision' => 'Usuwanie i odtwarzanie określonej wersji strony',
 'right-deletedhistory' => 'Podgląd usuniętych wersji, bez przypisanego im tekstu',
 'right-deletedtext' => 'Podgląd usuniętego tekstu i zmian pomiędzy usuniętymi wersjami',
@@ -1683,9 +1696,9 @@ Poniżej znajduje się rejestr usunięć i zmian nazwy tej strony:",
 Jeśli chcesz przejrzeć lub przeszukać dotychczas przesłane pliki, przejdź do [[Special:FileList|listy plików]]. Każde przesłanie zostaje odnotowane w [[Special:Log/upload|rejestrze przesyłanych plików]], a usunięcie w [[Special:Log/delete|rejestrze usuniętych]].
 
 Plik pojawi się na stronie, jeśli użyjesz linku według jednego z następujących wzorów:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></tt>''' pokaże plik w pełnej postaci
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></tt>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></tt>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.jpg]]</nowiki></code>''' pokaże plik w pełnej postaci
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Plik.png|200px|thumb|left|podpis grafiki]]</nowiki></code>''' pokaże szeroką na 200 pikseli miniaturkę umieszczoną przy lewym marginesie, otoczoną ramką, z podpisem „podpis grafiki”
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Plik.ogg]]</nowiki></code>''' utworzy bezpośredni link do pliku bez wyświetlania samego pliku",
 'upload-permitted' => 'Dopuszczalne formaty plików: $1.',
 'upload-preferred' => 'Zalecane formaty plików: $1.',
 'upload-prohibited' => 'Zabronione formaty plików: $1.',
@@ -1731,21 +1744,21 @@ Plik ma rozmiar {{PLURAL:$2|1 bajt|$2 bajty|$2 bajtów}}.',
 'emptyfile' => 'Przesłany plik wydaje się być pusty. Może być to spowodowane literówką w nazwie pliku.
 Sprawdź, czy nazwa jest prawidłowa.',
 'windows-nonascii-filename' => 'Na tej wiki nie można używać znaków specjalnych w nazwach plików.',
-'fileexists' => "Plik o takiej nazwie już istnieje.
-Sprawdź '''<tt>[[:$1]]</tt>''', jeśli nie jesteś pewien czy chcesz go zastąpić.
-[[$1|thumb]]",
-'filepageexists' => "Istnieje już strona opisu tego pliku, została utworzona '''<tt>[[:$1]]</tt>''', ale brak jest pliku o tej nazwie.
+'fileexists' => 'Plik o takiej nazwie już istnieje.
+Sprawdź <strong>[[:$1]]</strong>, jeśli nie jesteś pewien czy chcesz go zastąpić.
+[[$1|thumb]]',
+'filepageexists' => 'Istnieje już strona opisu tego pliku, została utworzona <strong>[[:$1]]</strong>, ale brak jest pliku o tej nazwie.
 Informacje, które wprowadzasz o przesyłanym pliku, nie pojawią się na jego stronie opisu.
 Jeśli chcesz, by się tam pojawiły, musisz później, ręcznie przeredagować stronę opisu.
-[[$1|thumb]]",
-'fileexists-extension' => "Plik o podobnej nazwie już istnieje: [[$2|thumb]]
-* Nazwa przesyłanego pliku: '''<tt>[[:$1]]</tt>'''
-* Nazwa istniejącego pliku: '''<tt>[[:$2]]</tt>'''
-Wybierz inną nazwę.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Plik o podobnej nazwie już istnieje: [[$2|thumb]]
+* Nazwa przesyłanego pliku: <strong>[[:$1]]</strong>
+* Nazwa istniejącego pliku: <strong>[[:$2]]</strong>
+Wybierz inną nazwę.',
 'fileexists-thumbnail-yes' => "Plik wydaje się być pomniejszoną grafiką ''(miniaturką)''. [[$1|thumb]]
-Sprawdź plik '''<tt>[[:$1]]</tt>'''.
+Sprawdź plik <strong>[[:$1]]</strong>.
 Jeśli wybrany plik jest tą samą grafiką co ta w rozmiarze pierwotnym, nie musisz przesyłać dodatkowej miniaturki.",
-'file-thumbnail-no' => "Nazwa pliku zaczyna się od '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Nazwa pliku zaczyna się od <strong>$1</strong>.
 Wydaje się, że jest to pomniejszona grafika ''(miniaturka)''.
 Jeśli posiadasz tę grafikę w pełnym rozmiarze – prześlij ją. Jeśli chcesz wysłać tę – zmień nazwę przesyłanego obecnie pliku.",
 'fileexists-forbidden' => 'Plik o tej nazwie już istnieje i nie może zostać nadpisany.
@@ -1841,7 +1854,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-connect' => 'Nie można nawiązać połączenia do wewnętrznych funkcji magazynowania "$1".',
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
-'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit wynosi $2 {{PLURAL:$2| operacja|operacje|operacji}}.',
+'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit to $2 {{PLURAL:$2|operacja|operacje|operacji}}.',
 'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
@@ -2009,7 +2022,7 @@ Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 # MIME search
 'mimesearch' => 'Wyszukiwanie MIME',
 'mimesearch-summary' => 'Ta strona umożliwia wyszukiwanie plików ze względu na ich typ MIME.
-Użycie: typ_treści/podtyp, np. <tt>image/jpeg</tt>.',
+Użycie: typ_treści/podtyp, np. <code>image/jpeg</code>.',
 'mimetype' => 'Typ MIME',
 'download' => 'pobierz',
 
@@ -2210,7 +2223,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-ok' => 'Szukaj',
 'linksearch-text' => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
 Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
-Obsługiwane protokoły: <tt>$1</tt> (nie podawaj ich podczas wyszukiwania).',
+Obsługiwane protokoły: <code>$1</code> (nie podawaj ich podczas wyszukiwania).',
 'linksearch-line' => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',
 
@@ -2369,7 +2382,7 @@ Pomoc
 'exblank' => 'Strona była pusta',
 'delete-confirm' => 'Usuwanie „$1”',
 'delete-legend' => 'Usuń',
-'historywarning' => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
+'historywarning' => "'''Uwaga!''' Strona, którą chcesz usunąć, ma w przybliżeniu {{PLURAL:$1|jedną starszą wersję|$1 starsze wersje|$1 starszych wersji}}:",
 'confirmdeletetext' => 'Zamierzasz usunąć stronę razem z całą dotyczącą jej historią.
 Upewnij się, czy na pewno chcesz to zrobić, że rozumiesz konsekwencje i że robisz to w zgodzie z [[{{MediaWiki:Policy-url}}|zasadami]].',
 'actioncomplete' => 'Operacja wykonana',
@@ -2397,6 +2410,8 @@ Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w prac
 'rollback' => 'Cofnij edycję',
 'rollback_short' => 'Cofnij',
 'rollbacklink' => 'cofnij',
+'rollbacklinkcount' => 'cofnij $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'rollbacklinkcount-morethan' => 'cofnij więcej niż $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'rollbackfailed' => 'Nie udało się cofnąć zmiany',
 'cantrollback' => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
 'alreadyrolled' => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
@@ -2484,7 +2499,7 @@ Obecne ustawienia dla strony '''$1''' to:",
 'undeletepage' => 'Odtwarzanie usuniętych stron',
 'undeletepagetitle' => "'''Poniżej znajdują się usunięte wersje strony [[:$1]]'''.",
 'viewdeletedpage' => 'Zobacz usunięte wersje',
-'undeletepagetext' => '{{PLURAL:$1|Następująca strona została usunięta, ale jej|Następujące $1 strony zostały usunięte, ale ich}} kopia wciąż znajduje się w archiwum.
+'undeletepagetext' => '{{PLURAL:$1|Następująca strona została usunięta, ale jej kopia wciąż znajduje|Następujące $1 strony zostały usunięte, ale ich kopie wciąż znajdują|Następujące $1 stron zostało usuniętych, ale ich kopie wciąż znajdują}} się w archiwum.
 Archiwum co jakiś czas może być oczyszczane.',
 'undelete-fieldset-title' => 'Odtwarzanie wersji',
 'undeleteextrahelp' => "Jeśli chcesz odtworzyć całą historię edycji strony, pozostaw wszystkie pola niezaznaczone i kliknij '''''{{int:undeletebtn}}'''''.
@@ -2896,6 +2911,7 @@ Wszystkie operacje importu transwiki są odnotowywane w [[Special:Log/import|rej
 'import-interwiki-templates' => 'Załącz wszystkie szablony',
 'import-interwiki-submit' => 'Importuj',
 'import-interwiki-namespace' => 'Docelowa przestrzeń nazw',
+'import-interwiki-rootpage' => 'Docelowa strona główna (opcjonalna):',
 'import-upload-filename' => 'Nazwa pliku',
 'import-comment' => 'Komentarz:',
 'importtext' => 'Korzystając na źródłowej wiki z narzędzia [[Special:Export|eksportu]] wyeksportuj plik.
@@ -2929,6 +2945,9 @@ Brak katalogu dla plików tymczasowych.',
 'import-error-interwiki' => 'Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest zarezerwowana do linków zewnętrznych (interwiki).',
 'import-error-special' => 'Strona „$1” nie została zaimportowana, ponieważ należy do specjalnej przestrzeni nazw, która nie zezwala na strony.',
 'import-error-invalid' => 'Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest nieprawidłowa.',
+'import-options-wrong' => '{{PLURAL:$2|Niepoprawna opcja|Niepoprawne opcje}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Wskazana strona główna jest niepoprawna.',
+'import-rootpage-nosubpage' => 'Przestrzeń nazw "$1" strony głównej nie dopuszcza stron podrzędnych.',
 
 # Import log
 'importlogpage' => 'Rejestr importu',
@@ -3869,7 +3888,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 * <span class="mw-specialpagerestricted">Zastrzeżone strony specjalne.</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other' => 'Inne strony specjalne',
-'specialpages-group-login' => 'Logowanie i rejestracja',
+'specialpages-group-login' => 'Zaloguj się / utwórz konto',
 'specialpages-group-changes' => 'Ostatnie zmiany i rejestry',
 'specialpages-group-media' => 'Pliki',
 'specialpages-group-users' => 'Użytkownicy i uprawnienia',
@@ -3999,7 +4018,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-duplicate' => '{{PLURAL:$1|Jest już [$2 inny plik]|Są już [$2 inne pliki]}} o tej samej zawartości',
 'api-error-duplicate-archive' => '{{PLURAL:$1|Był już [$2 inny plik]|Były już [$2 inne pliki]}} o takiej samej zawartości, ale {{PLURAL:$1|został usunięty|zostały usunięte}}.',
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Zdublowany plik, który został już usunięty|Zdublowane pliki, które zostały już usunięte}}',
-'api-error-duplicate-popup-title' => '{{PLURAL:$1|Zdublowany plik|Zdublowane plik}}',
+'api-error-duplicate-popup-title' => '{{PLURAL:$1|Zdublowany plik|Zdublowane pliki}}',
 'api-error-empty-file' => 'Przesłany przez Ciebie plik jest pusty.',
 'api-error-emptypage' => 'Tworzenie nowych, pustych stron jest niedozwolone.',
 'api-error-fetchfileerror' => 'Błąd wewnętrzny – wystąpił błąd w trakcie pobierania pliku.',
@@ -4008,6 +4027,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'api-error-file-too-large' => 'Przesłany przez Ciebie plik jest zbyt duży.',
 'api-error-filename-tooshort' => 'Nazwa pliku jest zbyt krótka.',
 'api-error-filetype-banned' => 'Zabroniony format pliku.',
+'api-error-filetype-banned-type' => '$1 nie {{PLURAL:$4|jest dozwolonym typem pliku|są dozwolonymi typami plików}}. Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.',
 'api-error-filetype-missing' => 'Brak rozszerzenia w nazwie pliku.',
 'api-error-hookaborted' => 'Zmiana, którą próbowałeś wykonać została przerwana przez hak rozszerzenia.',
 'api-error-http' => 'Błąd wewnętrzny – brak połączenia z serwerem.',

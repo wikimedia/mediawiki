@@ -340,7 +340,6 @@ pe titlul secțiunii (JavaScript)',
 'tog-watchlisthideliu' => 'Ascunde modificările făcute de utilizatori anonimi din lista de pagini urmărite',
 'tog-watchlisthideanons' => 'Ascunde modificările făcute de utilizatori anonimi din lista de pagini urmărite',
 'tog-watchlisthidepatrolled' => 'Ascunde paginile patrulate din lista de pagini urmărite',
-'tog-nolangconversion' => 'Dezactivează conversia variabilelor',
 'tog-ccmeonemails' => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly' => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats' => 'Arată categoriile ascunse',
@@ -566,6 +565,10 @@ $1',
 'youhavenewmessages' => 'Aveți $1 ($2).',
 'newmessageslink' => 'mesaje noi',
 'newmessagesdifflink' => 'comparație cu versiunea precedentă',
+'youhavenewmessagesfromusers' => 'Aveți $1 de la {{PLURAL:$3|un alt utilizator|$3 utilizatori}} ($2).',
+'youhavenewmessagesmanyusers' => 'Aveți $1 de la mulți utilizatori ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un mesaj nou|mesaje noi}}',
+'newmessagesdifflinkplural' => 'ultima/(ele) {{PLURAL:$1|schimbare|schimbări}}',
 'youhavenewmessagesmulti' => 'Aveți mesaje noi la $1',
 'editsection' => 'modificare',
 'editold' => 'modificare',
@@ -617,12 +620,12 @@ O listă cu paginile speciale valide se poate găsi la [[Special:SpecialPages|{{
 # General errors
 'error' => 'Eroare',
 'databaseerror' => 'Eroare la baza de date',
-'dberrortext' => 'A apărut o eroare în sintaxa interogării.
-Aceasta poate indica o problemă în program.
-Ultima interogare încercată a fost:
-<blockquote><tt>$1</tt></blockquote>
-din cadrul funcției "<tt>$2</tt>".
-Baza de date a returnat eroarea "<tt>$3: $4</tt>".',
+'dberrortext' => 'A apărut o eroare în sintaxa interogării bazei de date.
+Acest lucru poate indica o problemă în program.
+Ultima interogare trimisă către baza de date a fost:
+<blockquote><code>$1</code></blockquote>
+din cadrul funcției „<code>$2</code>”.
+Baza de date a returnat eroarea „<samp>$3: $4</samp>”.',
 'dberrortextcl' => 'A apărut o eroare de sintaxă în interogare.
 Ultima interogare încercată a fost:
 „$1”
@@ -634,12 +637,12 @@ Baza de date a returnat eroarea „$3: $4”',
 'readonlytext' => 'Baza de date {{SITENAME}} este momentan blocată la scriere, probabil pentru o operațiune de rutină, după care va fi deblocată și se va reveni la starea normală.
 
 Administratorul care a blocat-o a oferit această explicație: $1',
-'missing-article' => 'Baza de date nu găsește textul unei pagini care ar fi trebuit găsit, numit „$1” $2.
+'missing-article' => 'Baza de date nu găsește textul unei pagini care ar fi trebuit găsită, numită „$1” $2.
 
-În mod normal faptul este cauzat de urmărirea unei dif neactualizată sau a unei legături din istoric spre o pagină care a fost ștearsă.
+În mod normal faptul este cauzat de accesarea unei dif neactualizată sau a unei legături din istoric spre o pagină care a fost ștearsă.
 
 Dacă nu acesta e motivul, s-ar putea să fi găsit un bug în program.
-Te rog anunță acest aspect unui [[Special:ListUsers/sysop|administrator]], indicându-i adresa URL.',
+Vă rugăm să-i semnalați acest aspect unui [[Special:ListUsers/sysop|administrator]], indicându-i adresa URL.',
 'missingarticle-rev' => '(versiunea#: $1)',
 'missingarticle-diff' => '(Dif: $1, $2)',
 'readonly_lag' => 'Baza de date a fost închisă automatic în timp ce serverele secundare ale bazei de date îl urmează pe cel principal.',
@@ -719,6 +722,7 @@ Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:P
 'remembermypassword' => 'Autentificare automată de la acest calculator (expiră după {{PLURAL:$1|24 de ore|$1 zile|$1 de zile}})',
 'securelogin-stick-https' => 'Rămâi conectat la HTTPS după autentificare',
 'yourdomainname' => 'Domeniul dumneavoastră:',
+'password-change-forbidden' => 'Nu puteți schimba parole pe acest wiki.',
 'externaldberror' => 'A fost fie o eroare de bază de date pentru o autentificare extenă sau nu aveți permisiunea să actualizați contul extern.',
 'login' => 'Autentificare',
 'nav-login-createaccount' => 'Creare cont / Autentificare',
@@ -959,6 +963,10 @@ sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</sp
 'noarticletext-nopermission' => 'Actualmente, această pagină este lipsită de conținut.
 Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
 sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
+'missing-revision' => 'Versiunea nr. $1 a paginii „{{PAGENAME}}” nu există.
+
+Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].',
 'userpage-userdoesnotexist' => 'Contul de utilizator „<nowiki>$1</nowiki>” nu este înregistrat.
 Asigurați-vă că doriți să creați/modificați această pagină.',
 'userpage-userdoesnotexist-view' => 'Contul de utilizator „$1” nu este înregistrat.',
@@ -1087,6 +1095,11 @@ Acsete argumente au fost omise.',
 'language-converter-depth-warning' => 'Limita adâncimii convertorului de limbă a fost depășită ($1)',
 'node-count-exceeded-category' => 'Pagini unde numărul de noduri este depășit',
 'node-count-exceeded-warning' => 'Pagina a depășit numărul de noduri',
+'expansion-depth-exceeded-category' => 'Pagini unde profunzimea de expansiune este depășită',
+'expansion-depth-exceeded-warning' => 'Pagina depășește profunzimea de expansiune',
+'parser-unstrip-loop-warning' => 'Buclă nedetașabilă detectată',
+'parser-unstrip-recursion-limit' => 'Limita de recursivitate nedetașabilă depășită ($1)',
+'converter-manual-rule-error' => 'Eroare detectată în regula manuală de conversie a limbii',
 
 # "Undo" feature
 'undo-success' => 'Modificarea poate fi anulată. Verificați diferența de dedesupt și apoi salvați pentru a termina anularea modificării.',
@@ -1273,6 +1286,10 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'editundo' => 'anulare',
 'diff-multi' => '({{PLURAL:$1|O revizie intermediară|$1 revizii intermediare|$1 de revizii intermediare}} efectuată de {{PLURAL:$2|un utilizator|$2 utilizatori|$2 de utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|O versiune intermediară efectuată de|$1 (de) versiuni intermediare efectuate de peste}} $2 {{PLURAL:$2|utilizator|utilizatori}} {{PLURAL:$1|neafișată|neafișate}})',
+'difference-missing-revision' => '{{PLURAL:$2|O versiune a|$2 versiuni ale|$2 de versiuni ale}} acestei diferențe ($1) nu {{PLURAL:$2|a fost găsită|au fost găsite}}.
+
+Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].',
 
 # Search results
 'searchresults' => 'Rezultatele căutării',
@@ -1688,9 +1705,9 @@ Iată aici înregistrările relevante din jurnalul de ștergeri și redenumiri:"
 Pentru a vizualiza sau căuta imagini deja trimise, mergeți la [[Special:FileList|lista cu imagini]]; (re)încărcările și ștergerile sunt de asemenea înregistrate în [[Special:Log/upload|jurnalul fișierelor trimise]], respectiv [[Special:Log/delete|jurnalul fișierelor șterse]].
 
 Pentru a insera un fișier într-o pagină, folosiți o legătură de forma:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.jpg]]</nowiki></tt>''' pentru a include versiunea integrală a unui fișier
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.png|200px|thumb|left|informații]]</nowiki></tt>''' pentru a introduce o imagine cu o lățime de 200 de pixeli într-un chenar plasat în partea stângă, având ca descriere textul „informații”
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fișier.ogg]]</nowiki></tt>''' pentru o legătură directă către fișier, fără a-l afișa",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.jpg]]</nowiki></code>''' pentru a include versiunea integrală a unui fișier
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fișier.png|200px|thumb|left|informații]]</nowiki></code>''' pentru a introduce o imagine cu o lățime de 200 de pixeli într-un chenar plasat în partea stângă, având ca descriere textul „informații”
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fișier.ogg]]</nowiki></code>''' pentru o legătură directă către fișier, fără a-l afișa",
 'upload-permitted' => 'Tipuri de fișiere permise: $1.',
 'upload-preferred' => 'Tipuri de fișiere preferate: $1.',
 'upload-prohibited' => 'Tipuri de fișiere interzise: $1.',
@@ -1734,20 +1751,20 @@ Vezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare
 'largefileserver' => 'Fișierul este mai mare decât este configurat serverul să permită.',
 'emptyfile' => 'Fișierul pe care l-ați încărcat pare a fi gol. Aceasta poate fi datorită unei greșeli în numele fișierului. Verificați dacă într-adevăr doriți să încărcați acest fișier.',
 'windows-nonascii-filename' => 'Acest wiki nu acceptă nume de fișiere care conțin caractere speciale.',
-'fileexists' => "Un fișier cu același nume există deja, vă rugăm verificați '''<tt>[[:$1]]</tt>''' dacă nu sunteți sigur dacă doriți să îl modificați.
-[[$1|thumb]]",
-'filepageexists' => "Pagina cu descrierea fișierului a fost deja creată la '''<tt>[[:$1]]</tt>''', dar niciun fișier cu acest nume nu există în acest moment.
+'fileexists' => 'Un fișier cu același nume există deja, vă rugăm verificați <strong>[[:$1]]</strong> dacă nu sunteți sigur dacă doriți să îl modificați.
+[[$1|thumb]]',
+'filepageexists' => 'Pagina cu descrierea fișierului a fost deja creată la <strong>[[:$1]]</strong>, dar niciun fișier cu acest nume nu există în acest moment.
 Sumarul pe care l-ai introdus nu va apărea în pagina cu descriere.
 Pentru ca sumarul tău să apară, va trebui să îl adaugi manual.
-[[$1|miniatură]]",
-'fileexists-extension' => "Un fișier cu un nume similar există: [[$2|thumb]]
-* Numele fișierului de încărcat: '''<tt>[[:$1]]</tt>'''
-* Numele fișierului existent: '''<tt>[[:$2]]</tt>'''
-Te rog alege alt nume.",
+[[$1|miniatură]]',
+'fileexists-extension' => 'Un fișier cu un nume similar există: [[$2|thumb]]
+* Numele fișierului de încărcat: <strong>[[:$1]]</strong>
+* Numele fișierului existent: <strong>[[:$2]]</strong>
+Te rog alege alt nume.',
 'fileexists-thumbnail-yes' => "Fișierul pare a fi o imagine cu o rezoluție scăzută ''(thumbnail)''. [[$1|thumb]]
-Verifică fișierul'''<tt>[[:$1]]</tt>'''.
+Verifică fișierul<strong>[[:$1]]</strong>.
 Dacă fișierul verificat este identic cu imaginea originală nu este necesară încărcarea altui thumbnail.",
-'file-thumbnail-no' => "Numele fișierului începe cu '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Numele fișierului începe cu <strong>$1</strong>.
 Se pare că este o imagine cu dimensiune redusă''(thumbnail)''.
 Dacă ai această imagine la rezoluție mare încarc-o pe aceasta, altfel schimbă numele fișierului.",
 'fileexists-forbidden' => 'Un fișier cu acest nume există deja și nu poate fi rescris.
@@ -1822,8 +1839,17 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-read' => 'Imposibil de citit fișierul $1.',
 'backend-fail-create' => 'Imposibil de scris fișierul $1.',
 'backend-fail-maxsize' => 'Nu s-a putut scrie fișierul $1 pentru că acesta este mai mare de {{PLURAL:$2|un octet|$2 octeți|$2 de octeți}}.',
+'backend-fail-readonly' => "Suportul de stocare „$1” este în prezent doar în citire. Motivul dat este: „''$2''”",
+'backend-fail-synced' => 'Fișierul „$1” este într-o stare de inconsistență în suporturile de stocare internă',
+'backend-fail-connect' => 'Imposibil de conectat la suportul de stocare „$1”.',
+'backend-fail-internal' => 'O eroare necunoscută s-a produs în suportul de stocare „$1”.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
+'backend-fail-batchsize' => 'Suportul de stocare a furnizat un lot de $1 {{PLURAL:$1|operațiune|operațiuni|de operațiuni}} de fișier; limita este $2 {{PLURAL:$2|operațiune|operațiuni|de operațiuni}}.',
 'backend-fail-usable' => 'Imposibil de scris fișierul $1 din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Imposibil de conectat la baza de date a jurnalului pentru terminatul de stocare „$1”.',
+'filejournal-fail-dbquery' => 'Imposibil de actualizat baza de date a jurnalului pentru terminalul de stocare „$1”.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Imposibil de deblocat „$1”; nu este blocată.',
@@ -1834,6 +1860,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'lockmanager-fail-releaselock' => 'Imposibil de eliberat blocarea pentru „$1”.',
 'lockmanager-fail-db-bucket' => 'Imposibil de contactat suficient baza de date cu blocări în găleata $1.',
 'lockmanager-fail-db-release' => 'Imposibil de eliberat blocările din baza de date $1.',
+'lockmanager-fail-svr-acquire' => 'Imposibil de obținut blocări pe serverul $1.',
 'lockmanager-fail-svr-release' => 'Imposibil de eliberat blocările de pe serverul $1.',
 
 # ZipDirectoryReader
@@ -1918,7 +1945,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 'filehist' => 'Istoricul fișierului',
 'filehist-help' => "Apăsați pe '''Data și ora''' pentru a vedea versiunea fișierului trimisă la momentul respectiv.",
 'filehist-deleteall' => 'șterge tot',
-'filehist-deleteone' => 'șterge',
+'filehist-deleteone' => 'ștergere',
 'filehist-revert' => 'revenire',
 'filehist-current' => 'actuală',
 'filehist-datetime' => 'Data și ora',
@@ -1987,7 +2014,7 @@ Poate doriți să-i modificați descrierea pe [$2 pagina sa descriptivă] de aco
 # MIME search
 'mimesearch' => 'Căutare MIME',
 'mimesearch-summary' => 'This page enables the filtering of files for its MIME-type.
-Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.
+Input: contenttype/subtype, e.g. <code>image/jpeg</code>.
 
 
 Această pagină specială permite căutarea fișierelor în funcție de tipul MIME (Multipurpose Internet Mail Extensions). Cele mai des întâlnite sunt:
@@ -2045,9 +2072,9 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 
 'disambiguations' => 'Pagini care trimit către pagini de dezambiguizare',
 'disambiguationspage' => 'Template:Dezambiguizare',
-'disambiguations-text' => "Paginile următoare conțin legături către o '''pagină de dezambiguizare'''.
-În locul acesteia ar trebui să conțină legături către un articol.<br />
-O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Paginile următoare conțin cel puțin o legătură către o '''pagină de dezambiguizare'''.
+Acestea ar trebui să conțină legături către un articol mai potrivit.<br />
+O pagină este considerată o pagină de dezambiguizare dacă folosește formate care apar la [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirecționări duble',
 'doubleredirectstext' => 'Această listă conține pagini care redirecționează la alte pagini de redirecționare.
@@ -2060,7 +2087,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'brokenredirects' => 'Redirecționări greșite',
 'brokenredirectstext' => 'Următoarele redirecționări conduc spre articole inexistente:',
 'brokenredirects-edit' => 'modificare',
-'brokenredirects-delete' => 'șterge',
+'brokenredirects-delete' => 'ștergere',
 
 'withoutinterwiki' => 'Pagini fără legături interwiki',
 'withoutinterwiki-summary' => 'Următoarele pagini nu se leagă la versiuni ale lor în alte limbi:',
@@ -2199,7 +2226,7 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-ok' => 'Caută',
 'linksearch-text' => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
 Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
-Protocoale suportate: <tt>$1</tt> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
+Protocoale suportate: <code>$1</code> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
 'linksearch-line' => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 
@@ -2389,6 +2416,8 @@ continuă cu atenție.',
 'rollback' => 'Editări de revenire',
 'rollback_short' => 'Revenire',
 'rollbacklink' => 'revenire',
+'rollbacklinkcount' => 'revenire asupra {{PLURAL:$1|unei modificări|a $1 modificări|a $1 de modificări}}',
+'rollbacklinkcount-morethan' => 'revenire asupra a mai mult de {{PLURAL:$1|o modificare|$1 modificări|$1 de modificări}}',
 'rollbackfailed' => 'Revenirea nu s-a putut face',
 'cantrollback' => 'Nu se poate reveni; ultimul contribuitor este autorul acestui articol.',
 'alreadyrolled' => 'Nu se poate reveni peste ultima modificare a articolului [[:$1]] făcută de către [[User:$2|$2]] ([[User talk:$2|discuție]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); altcineva a modificat articolul sau a revenit deja.
@@ -2887,6 +2916,7 @@ Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Locali
 'import-interwiki-templates' => 'Includeți toate formatele',
 'import-interwiki-submit' => 'Importă',
 'import-interwiki-namespace' => 'Transferă către spațiul de nume:',
+'import-interwiki-rootpage' => 'Pagina rădăcină de destinație (opțional):',
 'import-upload-filename' => 'Nume fișier:',
 'import-comment' => 'Comentariu:',
 'importtext' => 'Vă rugăm să exportați fișierul din wikiul sursă folosind [[Special:Export|utilitarul de exportare]].
@@ -2922,6 +2952,9 @@ Un dosar temporar lipsește.',
 'import-error-interwiki' => 'Pagina „$1” nu poate fi importată deoarece numele acesteia este rezervat pentru legături externe (interwiki).',
 'import-error-special' => 'Pagina „$1” nu poate fi importată deoarece aparține unui spațiu de nume special care nu admite pagini.',
 'import-error-invalid' => 'Pagina „$1” nu poate fi importată deoarece numele acesteia este invalid.',
+'import-options-wrong' => '{{PLURAL:$2|Opțiune eronată|Opțiuni eronate}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Pagina rădăcină furnizată este un titlu nevalid.',
+'import-rootpage-nosubpage' => 'Spațiul de nume „$1” al paginii rădăcină nu permite subpagini.',
 
 # Import log
 'importlogpage' => 'Log import',
@@ -3784,7 +3817,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 * <span class="mw-specialpagecached">Pagini speciale aflate doar în memoria cache (pot fi neactualizate).</span>',
 'specialpages-group-maintenance' => 'Întreținere',
 'specialpages-group-other' => 'Alte pagini speciale',
-'specialpages-group-login' => 'Autentificare / Înregistrare',
+'specialpages-group-login' => 'Autentificare / creare cont',
 'specialpages-group-changes' => 'Schimbări recente și jurnale',
 'specialpages-group-media' => 'Fișiere',
 'specialpages-group-users' => 'Utilizatori și permisiuni',
@@ -3892,8 +3925,8 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'newuserlog-byemail' => 'parola trimisă prin e-mail',
 
 # Feedback
-'feedback-bugornote' => 'Dacă sunteți pregătit să descrieți o problemă tehnică în detaliu vă rugăm să [ $1 raportați un bug].
-În caz contrar, puteți utiliza formularul de mai jos. Comentariul dumneavoastră va fi adăugat pe pagina „[ $3  $2 ]”, împreună cu numele de utilizator și numele navigatorului pe care îl folosiți.',
+'feedback-bugornote' => 'Dacă sunteți pregătit să descrieți o problemă tehnică în detaliu vă rugăm să [$1 raportați un bug].
+În caz contrar, puteți utiliza formularul de mai jos. Comentariul dumneavoastră va fi adăugat pe pagina „[$3 $2]”, împreună cu numele de utilizator și numele navigatorului pe care îl folosiți.',
 'feedback-subject' => 'Subiect:',
 'feedback-message' => 'Mesaj:',
 'feedback-cancel' => 'Revocare',
@@ -3923,6 +3956,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'api-error-file-too-large' => 'Fișierul pe care l-ați trimis este prea mare.',
 'api-error-filename-tooshort' => 'Numele fișierului este prea scurt.',
 'api-error-filetype-banned' => 'Acest tip de fișiere este interzis.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|este un tip de fișier nepermis|sunt tipuri de fișier nepermise}}. {{PLURAL:$3|Tip de fișier permis este|Tipuri de fișier permise sunt}} $2.',
 'api-error-filetype-missing' => 'Fișierului îi lipsește extensia.',
 'api-error-hookaborted' => 'Modificarea pe care ați încercat să o faceți a fost oprită de sesizarea unei extensii.',
 'api-error-http' => 'Eroare internă: nu s-a reușit conectarea la server.',

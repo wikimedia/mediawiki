@@ -326,10 +326,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 	}
 
-	public static function disableInterwikis( $prefix, &$data ) {
-		return false;
-	}
-
 	/**
 	 * Don't throw a warning if $function is deprecated and called later
 	 *
@@ -347,6 +343,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * The expected rows should be given as indexed (not associative) arrays, with
 	 * the values given in the order of the columns in the $fields parameter.
 	 * Note that the rows are sorted by the columns given in $fields.
+	 *
+	 * @since 1.20
 	 *
 	 * @param $table String|Array the table(s) to query
 	 * @param $fields String|Array the columns to include in the result (and to sort by)
@@ -388,6 +386,26 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Utility method taking an array of elements and wrapping
+	 * each element in it's own array. Useful for data providers
+	 * that only return a single argument.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $elements
+	 *
+	 * @return array
+	 */
+	protected function arrayWrap( array $elements ) {
+		return array_map(
+			function( $element ) {
+				return array( $element );
+			},
+			$elements
+		);
+	}
+
+	/**
 	 * Assert that two arrays are equal. By default this means that both arrays need to hold
 	 * the same set of values. Using additional arguments, order and associated key can also
 	 * be set as relevant.
@@ -401,8 +419,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	protected function assertArrayEquals( array $expected, array $actual, $ordered = false, $named = false ) {
 		if ( !$ordered ) {
-			asort( $expected );
-			asort( $actual );
+			$this->objectAssociativeSort( $expected );
+			$this->objectAssociativeSort( $actual );
 		}
 
 		if ( !$named ) {
@@ -417,18 +435,40 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Does an associative sort that works for objects.
+	 *
+	 * @since 1.20
+	 *
+	 * @param array $array
+	 */
+	protected function objectAssociativeSort( array &$array ) {
+		uasort(
+			$array,
+			function( $a, $b ) {
+				return serialize( $a ) > serialize( $b ) ? 1 : -1;
+			}
+		);
+	}
+
+	/**
 	 * Utility function for eliminating all string keys from an array.
 	 * Useful to turn a database result row as returned by fetchRow() into
 	 * a pure indexed array.
 	 *
-	 * @static
+	 * @since 1.20
+	 *
 	 * @param $r mixed the array to remove string keys from.
 	 */
 	protected static function stripStringKeys( &$r ) {
-		if ( !is_array( $r ) ) return;
+		if ( !is_array( $r ) ) {
+			return;
+		}
 
 		foreach ( $r as $k => $v ) {
-			if ( is_string( $k ) ) unset( $r[$k] );
+			if ( is_string( $k ) ) {
+				unset( $r[$k] );
+			}
 		}
 	}
+
 }

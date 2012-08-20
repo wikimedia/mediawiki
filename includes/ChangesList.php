@@ -163,8 +163,8 @@ class ChangesList extends ContextSource {
 				'unpatrolled' => array( 'unpatrolledletter', 'recentchanges-label-unpatrolled' ),
 			);
 			foreach( $messages as &$value ) {
-				$value[0] = wfMsgExt( $value[0], 'escapenoentities' );
-				$value[1] = wfMsgExt( $value[1], 'escapenoentities' );
+				$value[0] = wfMessage( $value[0] )->escaped();
+				$value[1] = wfMessage( $value[1] )->escaped();
 			}
 		}
 
@@ -507,7 +507,7 @@ class ChangesList extends ContextSource {
 	 * @param $rc RecentChange
 	 */
 	public function insertRollback( &$s, &$rc ) {
-		if( !$rc->mAttribs['rc_new'] && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
+		if( $rc->mAttribs['rc_type'] != RC_NEW && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
 			$page = $rc->getTitle();
 			/** Check for rollback and edit permissions, disallow special pages, and only
 			  * show a link on the top-most revision */
@@ -548,7 +548,7 @@ class ChangesList extends ContextSource {
 		if ( !$rc->mAttribs['rc_patrolled'] ) {
 			if ( $this->getUser()->useRCPatrol() ) {
 				$unpatrolled = true;
-			} elseif ( $this->getUser()->useNPPatrol() && $rc->mAttribs['rc_new'] ) {
+			} elseif ( $this->getUser()->useNPPatrol() && $rc->mAttribs['rc_type'] == RC_NEW ) {
 				$unpatrolled = true;
 			}
 		}
@@ -613,7 +613,7 @@ class OldChangesList extends ChangesList {
 			# M, N, b and ! (minor, new, bot and unpatrolled)
 			$s .= $this->recentChangesFlags(
 				array(
-					'newpage' => $rc->mAttribs['rc_new'],
+					'newpage' => $rc->mAttribs['rc_type'] == RC_NEW,
 					'minor' => $rc->mAttribs['rc_minor'],
 					'unpatrolled' => $unpatrolled,
 					'bot' => $rc->mAttribs['rc_bot']
@@ -868,7 +868,7 @@ class EnhancedChangesList extends ChangesList {
 		$allLogs = true;
 		foreach( $block as $rcObj ) {
 			$oldid = $rcObj->mAttribs['rc_last_oldid'];
-			if( $rcObj->mAttribs['rc_new'] ) {
+			if( $rcObj->mAttribs['rc_type'] == RC_NEW ) {
 				$isnew = true;
 			}
 			// If all log actions to this page were hidden, then don't
@@ -1028,7 +1028,7 @@ class EnhancedChangesList extends ChangesList {
 
 			$r .= '<tr><td></td><td class="mw-enhanced-rc">';
 			$r .= $this->recentChangesFlags( array(
-				'newpage' => $rcObj->mAttribs['rc_new'],
+				'newpage' => $type == RC_NEW,
 				'minor' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
@@ -1185,9 +1185,10 @@ class EnhancedChangesList extends ChangesList {
 		$r .= '&#160;'.$rcObj->timestamp.'&#160;</td><td>';
 		# Article or log link
 		if( $logType ) {
-			$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
-			$logname = LogPage::logName( $logType );
-			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) )->escaped();
+			$logPage = new LogPage( $logType );
+			$logTitle = SpecialPage::getTitleFor( 'Log', $logType );
+			$logName = $logPage->getName()->escaped();
+			$r .= $this->msg( 'parentheses' )->rawParams( Linker::linkKnown( $logTitle, $logName ) )->escaped();
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}

@@ -165,35 +165,6 @@ class Status {
 	}
 
 	/**
-	 * @param $item
-	 * @return string
-	 */
-	protected function getItemXML( $item ) {
-		$params = $this->cleanParams( $item['params'] );
-		$xml = "<{$item['type']}>\n" .
-			Xml::element( 'message', null, $item['message'] ) . "\n" .
-			Xml::element( 'text', null, wfMsg( $item['message'], $params ) ) ."\n";
-		foreach ( $params as $param ) {
-			$xml .= Xml::element( 'param', null, $param );
-		}
-		$xml .= "</{$item['type']}>\n";
-		return $xml;
-	}
-
-	/**
-	 * Get the error list as XML
-	 * @return string
-	 */
-	function getXML() {
-		$xml = "<errors>\n";
-		foreach ( $this->errors as $error ) {
-			$xml .= $this->getItemXML( $error );
-		}
-		$xml .= "</errors>\n";
-		return $xml;
-	}
-
-	/**
 	 * Get the error list as a wikitext formatted list
 	 *
 	 * @param $shortContext String: a short enclosing context message name, to
@@ -214,17 +185,17 @@ class Status {
 		if ( count( $this->errors ) == 1 ) {
 			$s = $this->getWikiTextForError( $this->errors[0], $this->errors[0]  );
 			if ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, $s );
+				$s = wfMessage( $shortContext, $s )->plain();
 			} elseif ( $longContext ) {
-				$s = wfMsgNoTrans( $longContext, "* $s\n" );
+				$s = wfMessage( $longContext, "* $s\n" )->plain();
 			}
 		} else {
 			$s = '* '. implode("\n* ",
 				$this->getWikiTextArray( $this->errors ) ) . "\n";
 			if ( $longContext ) {
-				$s = wfMsgNoTrans( $longContext, $s );
+				$s = wfMessage( $longContext, $s )->plain();
 			} elseif ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, "\n$s\n" );
+				$s = wfMessage( $shortContext, "\n$s\n" )->plain();
 			}
 		}
 		return $s;
@@ -242,15 +213,15 @@ class Status {
 	protected function getWikiTextForError( $error ) {
 		if ( is_array( $error ) ) {
 			if ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				return wfMsgNoTrans( $error['message'],
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) )  );
+				return wfMessage( $error['message'],
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error['params'] ) )  )->plain();
 			} else {
 				$message = array_shift($error);
-				return wfMsgNoTrans( $message,
-					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) );
+				return wfMessage( $message,
+					array_map( 'wfEscapeWikiText', $this->cleanParams( $error ) ) )->plain();
 			}
 		} else {
-			return wfMsgNoTrans( $error );
+			return wfMessage( $error )->plain();
 		}
 	}
 

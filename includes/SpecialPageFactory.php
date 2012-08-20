@@ -134,6 +134,7 @@ class SpecialPageFactory {
 		// High use pages
 		'Mostlinkedcategories'      => 'MostlinkedCategoriesPage',
 		'Mostimages'                => 'MostimagesPage',
+		'Mostinterwikis'            => 'MostinterwikisPage',
 		'Mostlinked'                => 'MostlinkedPage',
 		'Mostlinkedtemplates'       => 'MostlinkedTemplatesPage',
 		'Mostcategories'            => 'MostcategoriesPage',

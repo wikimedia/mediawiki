@@ -70,7 +70,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ādihtas bȳ inmeldedum brūcendum hȳdan ƿiþ þā ƿæccȝetale',
 'tog-watchlisthideanons' => 'Hȳd ādihtas fram uncūðum brūcendum ƿiþ þæt ƿæccȝetæl',
 'tog-watchlisthidepatrolled' => 'Hȳd ƿeardode ādihtas ƿiþ þæt ƿæccȝetæl',
-'tog-nolangconversion' => 'Ne lǣt missenlicnessa æfter āwendungum',
 'tog-ccmeonemails' => 'Send mē ȝelīcnessa þāra spearcræftiȝena ǣrenda þe ic ōðrum brūcendum sende',
 'tog-diffonly' => 'Ne ēoƿa sīdan innunȝe under scādunȝum',
 'tog-showhiddencats' => 'Ēoƿa ȝehȳdede floccas',

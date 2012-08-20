@@ -45,7 +45,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 				return array( $revision_id, $text_id );
 			}
 		}
-		throw new MWException( "Could not determine revision id (" . $status->getXML() . ")" );
+		throw new MWException( "Could not determine revision id (" . $status->getWikiText() . ")" );
 	}
 
 

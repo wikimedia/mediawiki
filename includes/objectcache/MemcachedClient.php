@@ -259,7 +259,7 @@ class MWMemcached {
 		$this->_host_dead = array();
 
 		$this->_timeout_seconds = 0;
-		$this->_timeout_microseconds = isset( $args['timeout'] ) ? $args['timeout'] : 100000;
+		$this->_timeout_microseconds = isset( $args['timeout'] ) ? $args['timeout'] : 500000;
 
 		$this->_connect_timeout = isset( $args['connect_timeout'] ) ? $args['connect_timeout'] : 0.1;
 		$this->_connect_attempts = 2;
@@ -330,11 +330,10 @@ class MWMemcached {
 			$this->stats['delete'] = 1;
 		}
 		$cmd = "delete $key $time\r\n";
-		if( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
-			$this->_dead_sock( $sock );
+		if( !$this->_fwrite( $sock, $cmd ) ) {
 			return false;
 		}
-		$res = trim( fgets( $sock ) );
+		$res = $this->_fgets( $sock );
 
 		if ( $this->_debug ) {
 			$this->_debugprint( sprintf( "MemCache: delete %s (%s)\n", $key, $res ) );
@@ -439,8 +438,7 @@ class MWMemcached {
 		}
 
 		$cmd = "get $key\r\n";
-		if ( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
-			$this->_dead_sock( $sock );
+		if ( !$this->_fwrite( $sock, $cmd ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -491,25 +489,23 @@ class MWMemcached {
 			}
 			$key = is_array( $key ) ? $key[1] : $key;
 			if ( !isset( $sock_keys[$sock] ) ) {
-				$sock_keys[$sock] = array();
+				$sock_keys[ intval( $sock ) ] = array();
 				$socks[] = $sock;
 			}
-			$sock_keys[$sock][] = $key;
+			$sock_keys[ intval( $sock ) ][] = $key;
 		}
 
 		$gather = array();
 		// Send out the requests
 		foreach ( $socks as $sock ) {
 			$cmd = 'get';
-			foreach ( $sock_keys[$sock] as $key ) {
+			foreach ( $sock_keys[ intval( $sock ) ] as $key ) {
 				$cmd .= ' ' . $key;
 			}
 			$cmd .= "\r\n";
 
-			if ( $this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
+			if ( $this->_fwrite( $sock, $cmd ) ) {
 				$gather[] = $sock;
-			} else {
-				$this->_dead_sock( $sock );
 			}
 		}
 
@@ -572,12 +568,6 @@ class MWMemcached {
 	 * Passes through $cmd to the memcache server connected by $sock; returns
 	 * output as an array (null array if no output)
 	 *
-	 * NOTE: due to a possible bug in how PHP reads while using fgets(), each
-	 *       line may not be terminated by a "\r\n".  More specifically, my testing
-	 *       has shown that, on FreeBSD at least, each line is terminated only
-	 *       with a "\n".  This is with the PHP flag auto_detect_line_endings set
-	 *       to false (the default).
-	 *
 	 * @param $sock Resource: socket to send command on
 	 * @param $cmd String: command to run
 	 *
@@ -588,13 +578,13 @@ class MWMemcached {
 			return array();
 		}
 
-		if ( !$this->_safe_fwrite( $sock, $cmd, strlen( $cmd ) ) ) {
+		if ( !$this->_fwrite( $sock, $cmd ) ) {
 			return array();
 		}
 
 		$ret = array();
 		while ( true ) {
-			$res = fgets( $sock );
+			$res = $this->_fgets( $sock );
 			$ret[] = $res;
 			if ( preg_match( '/^END/', $res ) ) {
 				break;
@@ -731,15 +721,19 @@ class MWMemcached {
 			wfRestoreWarnings();
 		}
 		if ( !$sock ) {
-			if ( $this->_debug ) {
-				$this->_debugprint( "Error connecting to $host: $errstr\n" );
-			}
+			$this->_error_log( "Error connecting to $host: $errstr\n" );
+			$this->_dead_host( $host );
 			return false;
 		}
 
 		// Initialise timeout
 		stream_set_timeout( $sock, $this->_timeout_seconds, $this->_timeout_microseconds );
 
+		// If the connection was persistent, flush the read buffer in case there
+		// was a previous incomplete request on this connection
+		if ( $this->_persistent ) {
+			$this->_flush_read_buffer( $sock );
+		}
 		return true;
 	}
 
@@ -786,7 +780,6 @@ class MWMemcached {
 		}
 
 		if ( $this->_single_sock !== null ) {
-			$this->_flush_read_buffer( $this->_single_sock );
 			return $this->sock_to_host( $this->_single_sock );
 		}
 
@@ -811,7 +804,6 @@ class MWMemcached {
 			$host = $this->_buckets[$hv % $this->_bucketcount];
 			$sock = $this->sock_to_host( $host );
 			if ( is_resource( $sock ) ) {
-				$this->_flush_read_buffer( $sock );
 				return $sock;
 			}
 			$hv = $this->_hashfunc( $hv . $realkey );
@@ -867,12 +859,11 @@ class MWMemcached {
 		} else {
 			$this->stats[$cmd] = 1;
 		}
-		if ( !$this->_safe_fwrite( $sock, "$cmd $key $amt\r\n" ) ) {
-			$this->_dead_sock( $sock );
+		if ( !$this->_fwrite( $sock, "$cmd $key $amt\r\n" ) ) {
 			return null;
 		}
 
-		$line = fgets( $sock );
+		$line = $this->_fgets( $sock );
 		$match = array();
 		if ( !preg_match( '/^(\d+)/', $line, $match ) ) {
 			return null;
@@ -888,63 +879,42 @@ class MWMemcached {
 	 *
 	 * @param $sock Resource: socket to read from
 	 * @param $ret Array: returned values
+	 * @return boolean True for success, false for failure
 	 *
-	 * @return bool|int
 	 * @access private
 	 */
 	function _load_items( $sock, &$ret ) {
 		while ( 1 ) {
-			$decl = fgets( $sock );
+			$decl = $this->_fgets( $sock );
 			if( $decl === false ) {
-				$this->_debugprint( "Error reading socket for a memcached response\n" );
-				return 0;
-			} elseif ( $decl == "END\r\n" ) {
+				return false;
+			} elseif ( $decl == "END" ) {
 				return true;
-			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)\r\n$/', $decl, $match ) ) {
+			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)$/', $decl, $match ) ) {
 				list( $rkey, $flags, $len ) = array( $match[1], $match[2], $match[3] );
-				$bneed = $len + 2;
-				$offset = 0;
-
-				while ( $bneed > 0 ) {
-					$data = fread( $sock, $bneed );
-					$n = strlen( $data );
-					if ( $n == 0 ) {
-						break;
-					}
-					$offset += $n;
-					$bneed -= $n;
-					if ( isset( $ret[$rkey] ) ) {
-						$ret[$rkey] .= $data;
-					} else {
-						$ret[$rkey] = $data;
-					}
-				}
-
-				if ( $offset != $len + 2 ) {
-					// Something is borked!
-					if ( $this->_debug ) {
-						$this->_debugprint( sprintf( "Something is borked!  key %s expecting %d got %d length\n", $rkey, $len + 2, $offset ) );
-					}
-
-					unset( $ret[$rkey] );
-					$this->_close_sock( $sock );
+				$data = $this->_fread( $sock, $len + 2 );
+				if ( $data === false ) {
 					return false;
 				}
+				if ( substr( $data, -2 ) !== "\r\n" ) {
+					$this->_handle_error( $sock, 
+						'line ending missing from data block from $1' );
+					return false;
+				}
+				$data = substr( $data, 0, -2 );
+				$ret[$rkey] = $data;
 
 				if ( $this->_have_zlib && $flags & self::COMPRESSED ) {
 					$ret[$rkey] = gzuncompress( $ret[$rkey] );
 				}
-
-				$ret[$rkey] = rtrim( $ret[$rkey] );
 
 				if ( $flags & self::SERIALIZED ) {
 					$ret[$rkey] = unserialize( $ret[$rkey] );
 				}
 
 			} else {
-				$peer = stream_socket_get_name( $sock, true /** remote **/ );
-				$this->_debugprint( "Error parsing memcached response from [{$peer}]\n" );
-				return 0;
+				$this->_handle_error( $sock, 'Error parsing response from $1' );
+				return false;
 			}
 		}
 	}
@@ -1010,12 +980,11 @@ class MWMemcached {
 				$flags |= self::COMPRESSED;
 			}
 		}
-		if ( !$this->_safe_fwrite( $sock, "$cmd $key $flags $exp $len\r\n$val\r\n" ) ) {
-			$this->_dead_sock( $sock );
+		if ( !$this->_fwrite( $sock, "$cmd $key $flags $exp $len\r\n$val\r\n" ) ) {
 			return false;
 		}
 
-		$line = trim( fgets( $sock ) );
+		$line = $this->_fgets( $sock );
 
 		if ( $this->_debug ) {
 			$this->_debugprint( sprintf( "%s %s (%s)\n", $cmd, $key, $line ) );
@@ -1052,7 +1021,6 @@ class MWMemcached {
 		}
 
 		if ( !$this->_connect_sock( $sock, $host ) ) {
-			$this->_dead_host( $host );
 			return null;
 		}
 
@@ -1065,51 +1033,130 @@ class MWMemcached {
 	}
 
 	/**
-	 * @param $str string
+	 * @param $text string
 	 */
-	function _debugprint( $str ) {
-		print( $str );
+	function _debugprint( $text ) {
+		global $wgDebugLogGroups;
+		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
+			# Prefix message since it will end up in main debug log file
+			$text = "memcached: $text";
+		}
+		wfDebugLog( 'memcached', $text );
 	}
 
 	/**
-	 * Write to a stream, timing out after the correct amount of time
-	 *
-	 * @return Boolean: false on failure, true on success
+	 * @param $text string
 	 */
-	/*
-	function _safe_fwrite( $f, $buf, $len = false ) {
-		stream_set_blocking( $f, 0 );
-
-		if ( $len === false ) {
-			wfDebug( "Writing " . strlen( $buf ) . " bytes\n" );
-			$bytesWritten = fwrite( $f, $buf );
-		} else {
-			wfDebug( "Writing $len bytes\n" );
-			$bytesWritten = fwrite( $f, $buf, $len );
-		}
-		$n = stream_select( $r = null, $w = array( $f ), $e = null, 10, 0 );
-		#   $this->_timeout_seconds, $this->_timeout_microseconds );
-
-		wfDebug( "stream_select returned $n\n" );
-		stream_set_blocking( $f, 1 );
-		return $n == 1;
-		return $bytesWritten;
-	}*/
+	function _error_log( $text ) {
+		wfDebugLog( 'memcached-serious', "Memcached error: $text" );
+	}
 
 	/**
-	 * Original behaviour
-	 * @param $f
-	 * @param $buf
-	 * @param $len bool
-	 * @return int
+	 * Write to a stream. If there is an error, mark the socket dead.
+	 *
+	 * @param $sock The socket
+	 * @param $buf The string to write
+	 * @return bool True on success, false on failure
 	 */
-	function _safe_fwrite( $f, $buf, $len = false ) {
-		if ( $len === false ) {
-			$bytesWritten = fwrite( $f, $buf );
-		} else {
-			$bytesWritten = fwrite( $f, $buf, $len );
+	function _fwrite( $sock, $buf ) {
+		$bytesWritten = 0;
+		$bufSize = strlen( $buf );
+		while ( $bytesWritten < $bufSize  ) {
+			$result = fwrite( $sock, $buf );
+			$data = stream_get_meta_data( $sock );
+			if ( $data['timed_out'] ) {
+				$this->_handle_error( $sock, 'timeout writing to $1' );
+				return false;
+			}
+			// Contrary to the documentation, fwrite() returns zero on error in PHP 5.3.
+			if ( $result === false || $result === 0 ) {
+				$this->_handle_error( $sock, 'error writing to $1' );
+				return false;
+			}
+			$bytesWritten += $result;
 		}
-		return $bytesWritten;
+
+		return true;
+	}
+
+	/**
+	 * Handle an I/O error. Mark the socket dead and log an error.
+	 */
+	function _handle_error( $sock, $msg ) {
+		$peer = stream_socket_get_name( $sock, true /** remote **/ );
+		if ( strval( $peer ) === '' ) {
+			$peer = array_search( $sock, $this->_cache_sock );
+			if ( $peer === false ) {
+				$peer = '[unknown host]';
+			}
+		}
+		$msg = str_replace( '$1', $peer, $msg );
+		$this->_error_log( "$msg\n" );
+		$this->_dead_sock( $sock );
+	}
+
+	/**
+	 * Read the specified number of bytes from a stream. If there is an error, 
+	 * mark the socket dead.
+	 *
+	 * @param $sock The socket
+	 * @param $len The number of bytes to read
+	 * @return The string on success, false on failure.
+	 */
+	function _fread( $sock, $len ) {
+		$buf = '';
+		while ( $len > 0 ) {
+			$result = fread( $sock, $len );
+			$data = stream_get_meta_data( $sock );
+			if ( $data['timed_out'] ) {
+				$this->_handle_error( $sock, 'timeout reading from $1' );
+				return false;
+			}
+			if ( $result === false ) {
+				$this->_handle_error( $sock, 'error reading buffer from $1' );
+				return false;
+			}
+			if ( $result === '' ) {
+				// This will happen if the remote end of the socket is shut down
+				$this->_handle_error( $sock, 'unexpected end of file reading from $1' );
+				return false;
+			}
+			$len -= strlen( $result );
+			$buf .= $result;
+		}
+		return $buf;
+	}
+
+	/**
+	 * Read a line from a stream. If there is an error, mark the socket dead.
+	 * The \r\n line ending is stripped from the response.
+	 *
+	 * @param $sock The socket
+	 * @return The string on success, false on failure
+	 */
+	function _fgets( $sock ) {
+		$result = fgets( $sock );
+		// fgets() may return a partial line if there is a select timeout after
+		// a successful recv(), so we have to check for a timeout even if we 
+		// got a string response.
+		$data = stream_get_meta_data( $sock );
+		if ( $data['timed_out'] ) {
+			$this->_handle_error( $sock, 'timeout reading line from $1' );
+			return false;
+		}
+		if ( $result === false ) {
+			$this->_handle_error( $sock, 'error reading line from $1' );
+			return false;
+		}
+		if ( substr( $result, -2 ) === "\r\n" ) {
+			$result = substr( $result, 0, -2 );
+		} elseif ( substr( $result, -1 ) === "\n" ) {
+			$result = substr( $result, 0, -1 );
+		} else {
+			$this->_handle_error( $sock, 'line ending missing in response from $1' );
+			return false;
+		}
+		return $result;
 	}
 
 	/**
@@ -1132,18 +1179,8 @@ class MWMemcached {
 	// }}}
 }
 
-// vim: sts=3 sw=3 et
 
 // }}}
 
 class MemCachedClientforWiki extends MWMemcached {
-
-	function _debugprint( $text ) {
-		global $wgDebugLogGroups;
-		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
-			# Prefix message since it will end up in main debug log file
-			$text = "memcached: $text";
-		}
-		wfDebugLog( 'memcached', $text );
-	}
 }

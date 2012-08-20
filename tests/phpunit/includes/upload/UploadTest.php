@@ -12,7 +12,9 @@ class UploadTest extends MediaWikiTestCase {
 
 		$this->upload = new UploadTestHandler;
 		$this->hooks = $wgHooks;
-		$wgHooks['InterwikiLoadPrefix'][] = 'MediaWikiTestCase::disableInterwikis';
+		$wgHooks['InterwikiLoadPrefix'][] = function( $prefix, &$data ) {
+			return false;
+		};
 	}
 
 	function tearDown() {

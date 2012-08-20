@@ -8,8 +8,6 @@ CREATE TABLE /*_*/filejournal (
   fj_backend varchar(255) NOT NULL,
   -- The storage path that was affected (may be internal paths)
   fj_path blob NOT NULL,
-  -- SHA-1 file path hash in base-36
-  fj_path_sha1 varbinary(32) NOT NULL default '',
   -- Primitive operation description (create/update/delete)
   fj_op varchar(16) NOT NULL default '',
   -- SHA-1 file content hash in base-36

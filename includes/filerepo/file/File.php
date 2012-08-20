@@ -804,7 +804,7 @@ abstract class File {
 			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		} else {
 			return new MediaTransformError( 'thumbnail_error',
-				$params['width'], 0, wfMsg( 'thumbnail-dest-create' ) );
+				$params['width'], 0, wfMessage( 'thumbnail-dest-create' )->text() );
 		}
 	}
 
@@ -894,7 +894,9 @@ abstract class File {
 			$tmpThumbPath = $tmpFile->getPath(); // path of 0-byte temp file
 
 			// Actually render the thumbnail...
+			wfProfileIn( __METHOD__ . '-doTransform' );
 			$thumb = $this->handler->doTransform( $this, $tmpThumbPath, $thumbUrl, $params );
+			wfProfileOut( __METHOD__ . '-doTransform' );
 			$tmpFile->bind( $thumb ); // keep alive with $thumb
 
 			if ( !$thumb ) { // bad params?

@@ -332,7 +332,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Amaga, de la tièra, las modificacions pels utilizaires connectats',
 'tog-watchlisthideanons' => 'Amaga, de la tièra, las modificacions anonimas',
 'tog-watchlisthidepatrolled' => 'Amagar las modificacions susvelhadas de la lista de seguiment',
-'tog-nolangconversion' => 'Desactivar la conversion de las variantas de lenga',
 'tog-ccmeonemails' => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly' => 'Far pas veire lo contengut de las paginas jos las difs',
 'tog-showhiddencats' => 'Afichar las categorias amagadas',
@@ -1585,9 +1584,9 @@ Lo jornal de las supressions e lo dels desplaçaments d'aquesta pagina son afich
 Per veire o recercar d'imatges mandats precedentament, consultatz [[Special:FileList|la tièra dels imatges]]. Las còpias e las supressions tanben son enregistradas dins l'[[Special:Log/upload|istoric dels impòrts]], las supressions dins l’[[Special:Log/delete|istoric de las supressions]].
 
 Per inclure un imatge dins una pagina, utilizatz un ligam de la forma
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.jpg]]</nowiki></tt>''',
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.png|200px|thumb|left|tèxte descriptiu]]</nowiki></tt>''' per utilizar una miniatura de 200 pixèls de larg dins una bóstia a esquèrra amb 'tèxte descriptiu' coma descripcion
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichièr.ogg]]</nowiki></tt>''' per ligar dirèctament cap al fichièr sens l'afichar.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.jpg]]</nowiki></code>''',
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichièr.png|200px|thumb|left|tèxte descriptiu]]</nowiki></code>''' per utilizar una miniatura de 200 pixèls de larg dins una bóstia a esquèrra amb 'tèxte descriptiu' coma descripcion
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichièr.ogg]]</nowiki></code>''' per ligar dirèctament cap al fichièr sens l'afichar.",
 'upload-permitted' => 'Formats de fichièrs autorizats : $1.',
 'upload-preferred' => 'Formats de fichièrs preferits : $1.',
 'upload-prohibited' => 'Formats de fichièrs interdiches : $1.',
@@ -1629,20 +1628,20 @@ Vejatz la [[Special:NewFiles|galariá dels imatges novèls]] per una presentacio
 'large-file' => 'Los fichièrs importats deurián pas èsser mai gros que $1 ; aqueste fichièr fa $2.',
 'largefileserver' => "La talha d'aqueste fichièr es superiora al maximum autorizat.",
 'emptyfile' => 'Lo fichièr que volètz importar sembla void. Aquò pòt èsser degut a una error dins lo nom del fichièr. Verificatz que desiratz vertadièrament copiar aqueste fichièr.',
-'fileexists' => "Un fichièr amb aqueste nom existís ja.
-Mercé de verificar '''<tt>[[:$1]]</tt>'''.
-Sètz segur de voler modificar aqueste fichièr ? [[$1|thumb]]",
-'filepageexists' => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí '''<tt>[[:$1]]</tt>''', mas cap de fichièr existís pas actualament jos aqueste nom.
+'fileexists' => 'Un fichièr amb aqueste nom existís ja.
+Mercé de verificar <strong>[[:$1]]</strong>.
+Sètz segur de voler modificar aqueste fichièr ? [[$1|thumb]]',
+'filepageexists' => "La pagina de descripcion per aqueste fichièr ja es estada creada aicí <strong>[[:$1]]</strong>, mas cap de fichièr existís pas actualament jos aqueste nom.
 Lo resumit qu'anatz especificar apareisserà pas sus la pagina de descripcion.
 Per o far, vos caldrà modificar la pagina manualament. [[$1|vinheta]]",
 'fileexists-extension' => "Un fichièr amb un nom pròchi existís ja : [[$2|thumb]]
-* Nom del fichièr d'importar : '''<tt>[[:$1]]</tt>'''
-* Nom del fichièr existent : '''<tt>[[:$2]]</tt>'''
+* Nom del fichièr d'importar : <strong>[[:$1]]</strong>
+* Nom del fichièr existent : <strong>[[:$2]]</strong>
 Causissètz-ne un autre.",
 'fileexists-thumbnail-yes' => "Lo fichièr sembla èsser un imatge en talha reducha ''(thumbnail)''. [[$1|thumb]]
-Verificatz lo fichièr '''<tt>[[:$1]]</tt>'''.
+Verificatz lo fichièr <strong>[[:$1]]</strong>.
 Se lo fichièr verificat es lo meteis imatge (dins una resolucion melhora), es pas de besonh d’importar una version reducha.",
-'file-thumbnail-no' => "Lo nom del fichièr comença per '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Lo nom del fichièr comença per <strong>$1</strong>.
 Es possible que s’agisca d’una version reducha ''(miniatura)''.
 Se dispausatz del fichièr en resolucion nauta, importatz-lo, si que non cambiatz lo nom del fichièr.",
 'fileexists-forbidden' => "Un fichièr amb aqueste nom existís ja e pòt pas èsser espotit.
@@ -1827,7 +1826,7 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 
 # MIME search
 'mimesearch' => 'Recèrca per tipe MIME',
-'mimesearch-summary' => 'Aquesta pagina especiala permet de cercar de fichièrs en foncion de lor tipe MIME. Entrada : tipe/sostipe, per exemple <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Aquesta pagina especiala permet de cercar de fichièrs en foncion de lor tipe MIME. Entrada : tipe/sostipe, per exemple <code>image/jpeg</code>.',
 'mimetype' => 'Tipe MIME :',
 'download' => 'telecargament',
 
@@ -2015,7 +2014,7 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'linksearch-pat' => 'Recercar l’expression :',
 'linksearch-ns' => 'Espacis de noms :',
 'linksearch-ok' => 'Recercar',
-'linksearch-text' => 'De caractèrs « joker » pòdon èsser utilizats, per exemple <code>*.wikipedia.org</code>.<br />Protocòls reconeguts : <tt>$1</tt>.',
+'linksearch-text' => 'De caractèrs « joker » pòdon èsser utilizats, per exemple <code>*.wikipedia.org</code>.<br />Protocòls reconeguts : <code>$1</code>.',
 'linksearch-line' => '$1 amb un ligam a partir de $2',
 'linksearch-error' => 'Los caractèrs « joker » pòdon pas èsser utilizats qu’al començament del nom de domeni.',
 

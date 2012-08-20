@@ -361,17 +361,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop (vereist JavaScript)',
 'tog-showtoc' => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
-'tog-watchcreations' => 'Pagina’s die ik aanmaak automatisch volgen',
-'tog-watchdefault' => 'Pagina’s die ik bewerk automatisch volgen',
-'tog-watchmoves' => 'Pagina’s die ik hernoem automatisch volgen',
-'tog-watchdeletion' => 'Pagina’s die ik verwijder automatisch volgen',
+'tog-watchcreations' => "Pagina's die ik aanmaak en bestanden die ik upload automatisch volgen",
+'tog-watchdefault' => 'Pagina’s en bestanden die ik bewerk automatisch volgen',
+'tog-watchmoves' => 'Pagina’s en bestanden die ik hernoem automatisch volgen',
+'tog-watchdeletion' => 'Pagina’s en bestanden die ik verwijder automatisch volgen',
 'tog-minordefault' => 'Mijn bewerkingen als ‘klein’ markeren',
 'tog-previewontop' => 'Voorvertoning boven bewerkingsveld weergeven',
 'tog-previewonfirst' => 'Voorvertoning bij eerste bewerking weergeven',
 'tog-nocache' => "Cachen van pagina's door de browser uitschakelen",
-'tog-enotifwatchlistpages' => 'Mij e-mailen bij bewerkingen van pagina’s op mijn volglijst',
+'tog-enotifwatchlistpages' => 'Mij e-mailen bij bewerkingen van pagina’s of bestanden op mijn volglijst',
 'tog-enotifusertalkpages' => 'Mij e-mailen als iemand mijn overlegpagina wijzigt',
-'tog-enotifminoredits' => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
+'tog-enotifminoredits' => 'Mij e-mailen bij kleine bewerkingen van pagina’s en bestanden op mijn volglijst',
 'tog-enotifrevealaddr' => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching' => 'Het aantal gebruikers weergeven dat deze pagina volgt',
 'tog-oldsig' => 'Bestaande ondertekening:',
@@ -387,7 +387,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewerkingen van aangemelde gebruikers op mijn volglijst verbergen',
 'tog-watchlisthideanons' => 'Bewerkingen van anonieme gebruikers op mijn volglijst verbergen',
 'tog-watchlisthidepatrolled' => 'Gemarkeerde wijzigingen op mijn volglijst verbergen',
-'tog-nolangconversion' => 'Variantomzetting uitschakelen',
 'tog-ccmeonemails' => 'Mij een kopie zenden van e-mails die ik naar andere gebruikers stuur',
 'tog-diffonly' => 'Pagina-inhoud onder wijzigingen niet weergeven',
 'tog-showhiddencats' => 'Verborgen categorieën weergeven',
@@ -508,7 +507,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create' => 'Aanmaken',
 'vector-view-edit' => 'Bewerken',
-'vector-view-history' => 'Geschiedenis bekijken',
+'vector-view-history' => 'Geschiedenis weergeven',
 'vector-view-view' => 'Lezen',
 'vector-view-viewsource' => 'Brontekst bekijken',
 'actions' => 'Handelingen',
@@ -612,6 +611,10 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'youhavenewmessages' => 'U hebt $1 ($2).',
 'newmessageslink' => 'nieuwe berichten',
 'newmessagesdifflink' => 'laatste wijziging',
+'youhavenewmessagesfromusers' => 'U heeft $1 van {{PLURAL:$3|een andere gebruiker|$3 gebruikers}} ($2).',
+'youhavenewmessagesmanyusers' => 'U heeft $1 van een groot aantal gebruikers ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|een nieuw bericht|nieuwe berichten}}',
+'newmessagesdifflinkplural' => 'laatste {{PLURAL:$1|wijziging|wijzigingen}}',
 'youhavenewmessagesmulti' => 'U hebt nieuwe berichten op $1',
 'editsection' => 'bewerken',
 'editold' => 'bewerken',
@@ -666,9 +669,9 @@ Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{in
 'dberrortext' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
-<blockquote><tt>$1</tt></blockquote>
-vanuit de functie "<tt>$2</tt>".
-De database gaf de volgende foutmelding "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+vanuit de functie "<code>$2</code>".
+De database gaf de volgende foutmelding "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
 "$1"
@@ -705,8 +708,8 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'cannotdelete' => 'De pagina of het bestand "$1" kon niet verwijderd worden.
 Mogelijk is deze al door iemand anders verwijderd.',
 'cannotdelete-title' => 'Pagina "$1" kan niet verwijderd worden',
-'delete-hook-aborted' => 't Vortdoon is aofebreuken deur n haak.
-Der is gien informasie over beschikbaor.',
+'delete-hook-aborted' => 'Het verwijderen is afgebroken door een hook.
+Er is geen toelichting beschikbaar.',
 'badtitle' => 'Ongeldige paginanaam',
 'badtitletext' => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane tekens.',
@@ -767,6 +770,7 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'remembermypassword' => 'Aanmeldgegevens onthouden (maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'securelogin-stick-https' => 'Verbonden blijven via HTTPS na aanmelden',
 'yourdomainname' => 'Uw domein:',
+'password-change-forbidden' => 'U kunt uw wachtwoord niet wijzigen in deze wiki.',
 'externaldberror' => 'Er is een fout opgetreden bij het aanmelden bij de database of u hebt geen toestemming uw externe gebruiker bij te werken.',
 'login' => 'Aanmelden',
 'nav-login-createaccount' => 'Aanmelden / registreren',
@@ -1030,6 +1034,10 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 'noarticletext-nopermission' => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
+'missing-revision' => 'De versie #$1 van de pagina "{{PAGENAME}} bestaat niet.
+
+Dit wordt meestal veroorzaakt door het volgen van een verouderde verwijzing naar een pagina die is verwijderd.
+Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
 'userpage-userdoesnotexist' => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
 Controleer of u deze pagina wel wilt aanmaken of bewerken.',
 'userpage-userdoesnotexist-view' => 'De gebruiker "$1" is niet geregistreerd.',
@@ -1039,7 +1047,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 * '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-Shift-R'' op een Mac)
 * '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op een Mac)
 * '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
-* '''Konqueror:''' klik op ''Reload'' of druk op ''F5''
 * '''Opera:''' leeg uw cache in ''Extra → Voorkeuren''",
 'usercssyoucanpreview' => "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe CSS te testen alvorens op te slaan.",
 'userjsyoucanpreview' => "'''Tip:''' gebruik de knop \"{{int:showpreview}}\" om uw nieuwe JavaScript te testen alvorens op te slaan.",
@@ -1163,6 +1170,7 @@ Deze parameters zijn weggelaten.',
 'expansion-depth-exceeded-warning' => 'De pagina bevat te veel sjablonen',
 'parser-unstrip-loop-warning' => 'Er is een "unstrip"-lus gedetecteerd',
 'parser-unstrip-recursion-limit' => 'De recursielimiet ($1) voor "unstrip" is overschreden',
+'converter-manual-rule-error' => 'Er is een fout gedetecteerd in een handmatig toegevoegde taalconversieregel.',
 
 # "Undo" feature
 'undo-success' => 'Deze bewerking kan ongedaan gemaakt worden.
@@ -1352,6 +1360,10 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'editundo' => 'ongedaan maken',
 'diff-multi' => '({{PLURAL:$1|Eén tussenliggende versie|$1 tussenliggende versies}} door {{PLURAL:$2|één gebruiker|$2 gebruikers}} {{PLURAL:$1|wordt|worden}} niet weergegeven)',
 'diff-multi-manyusers' => '($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)',
+'difference-missing-revision' => '{{PLURAL:$2|Eén versie|$2 versies}} van deze verschillen ($1) {{PLURAL:$2|is|zijn}} niet aangetroffen.
+
+Dit wordt meestal veroorzaakt door het volgen van een verouderde verwijzing verschillen voor een pagina die is verwijderd.
+Meer gegevens zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].',
 
 # Search results
 'searchresults' => 'Zoekresultaten',
@@ -1625,6 +1637,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'right-writeapi' => 'Bewerken via de API',
 'right-delete' => "Pagina's verwijderen",
 'right-bigdelete' => "Pagina's met een grote geschiedenis verwijderen",
+'right-deletelogentry' => 'Specifieke logboekregels verwijderen en terugplaatsen',
 'right-deleterevision' => "Versies van pagina's verbergen",
 'right-deletedhistory' => 'Verwijderde versies bekijken, zonder te kunnen zien wat verwijderd is',
 'right-deletedtext' => 'Verwijderde tekst en wijzigingen tussen verwijderde versies bekijken',
@@ -1820,20 +1833,20 @@ Aangewezen {{PLURAL:\$3|bestandstype is|bestandstypes zijn}} \$2.",
 Dit zou kunnen komen door een typefout in de bestandsnaam.
 Ga na of u dit bestand werkelijk bedoelde te uploaden.',
 'windows-nonascii-filename' => 'Deze wiki ondersteunt geen bestandsnamen met speciale tekens.',
-'fileexists' => "Er bestaat al een bestand met deze naam.
-Controleer '''<tt>[[:$1]]</tt>''' als u niet zeker weet of u het huidige bestand wilt overschrijven.
-[[$1|thumb]]",
-'filepageexists' => "De beschrijvingspagina voor dit bestand bestaat al op '''<tt>[[:$1]]</tt>''', maar er bestaat geen bestand met deze naam.
+'fileexists' => 'Er bestaat al een bestand met deze naam.
+Controleer <strong>[[:$1]]</strong> als u niet zeker weet of u het huidige bestand wilt overschrijven.
+[[$1|thumb]]',
+'filepageexists' => 'De beschrijvingspagina voor dit bestand bestaat al op <strong>[[:$1]]</strong>, maar er bestaat geen bestand met deze naam.
 De samenvatting die u hebt opgegeven zal niet op de beschrijvingspagina verschijnen.
-Bewerk de pagina handmatig om uw beschrijving daar weer te geven. [[$1|miniatuur]]",
-'fileexists-extension' => "Een bestand met dezelfde naam bestaat al: [[$2|thumb]]
-* Naam van het geüploade bestand: '''<tt>[[:$1]]</tt>'''
-* Naam van het bestaande bestand: '''<tt>[[:$2]]</tt>'''
-Kies een andere naam.",
+Bewerk de pagina handmatig om uw beschrijving daar weer te geven. [[$1|miniatuur]]',
+'fileexists-extension' => 'Een bestand met dezelfde naam bestaat al: [[$2|thumb]]
+* Naam van het geüploade bestand: <strong>[[:$1]]</strong>
+* Naam van het bestaande bestand: <strong>[[:$2]]</strong>
+Kies een andere naam.',
 'fileexists-thumbnail-yes' => "Het bestand lijkt een verkleinde versie te zijn ''(miniatuurafbeelding)''. [[$1|thumb]]
-Controleer het bestand '''<tt>[[:$1]]</tt>'''.
+Controleer het bestand <strong>[[:$1]]</strong>.
 Als het gecontroleerde bestand dezelfde afbeelding van oorspronkelijke grootte is, is het niet noodzakelijk een extra miniatuurafbeelding te uploaden.",
-'file-thumbnail-no' => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "De bestandsnaam begint met <strong>$1</strong>.
 Het lijkt een verkleinde afbeelding te zijn ''(miniatuurafbeelding)''.
 Als u deze afbeelding in volledige resolutie hebt, upload die afbeelding dan.
 Wijzig anders de bestandsnaam.",
@@ -1950,6 +1963,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'lockmanager-fail-releaselock' => 'Het was niet mogelijk vergrendeling van "$1" op te heffen.',
 'lockmanager-fail-db-bucket' => 'Het was niet mogelijk om in contact te komen met voldoende vergrendelingsdatabases in de bucket $1.',
 'lockmanager-fail-db-release' => 'Het was niet mogelijk om de vergrendeling voor de database $1 op te heffen.',
+'lockmanager-fail-svr-acquire' => 'Het was niet mogelijk een vergrendeling te krijgen op server $1.',
 'lockmanager-fail-svr-release' => 'Het was niet mogelijk om de vergrendeling voor de server $1 op te heffen.',
 
 # ZipDirectoryReader
@@ -2105,7 +2119,7 @@ U kunt de beschrijving bewerken op de [$2 pagina met de bestandsbeschrijving].',
 # MIME search
 'mimesearch' => 'Zoeken op MIME-type',
 'mimesearch-summary' => 'Deze pagina maakt het filteren van bestanden voor het MIME-type mogelijk.
-Invoer: inhoudstype/subtype, bijvoorbeeld <tt>image/jpeg</tt>.',
+Invoer: inhoudstype/subtype, bijvoorbeeld <code>image/jpeg</code>.',
 'mimetype' => 'MIME-type:',
 'download' => 'downloaden',
 
@@ -2152,8 +2166,8 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 
 'disambiguations' => "Pagina's die verwijzen naar doorverwijspagina's",
 'disambiguationspage' => 'Template:Doorverwijspagina',
-'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''.
-Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.<br />
+'disambiguations-text' => "Hieronder staan pagina's met tenminste één verwijzing naar een '''doorverwijspagina'''.
+Deze horen waarschijnlijk direct naar een meer toepasselijke pagina te verwijzen.<br />
 Een pagina wordt gezien als doorverwijspagina als er een sjabloon op staat dat opgenomen is op [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dubbele doorverwijzingen',
@@ -2180,6 +2194,7 @@ Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categorie|categorieën}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwikiverwijzing|interwikiverwijzingen}}',
 'nlinks' => '$1 {{PLURAL:$1|verwijzing|verwijzingen}}',
 'nmembers' => '$1 {{PLURAL:$1|item|items}}',
 'nrevisions' => '$1 {{PLURAL:$1|versie|versies}}',
@@ -2209,6 +2224,7 @@ De pagina's zijn ook niet als sjabloon opgenomen.",
 'mostlinkedtemplates' => 'Meestgebruikte sjablonen',
 'mostcategories' => "Pagina's met de meeste categorieën",
 'mostimages' => 'Meestgebruikte bestanden',
+'mostinterwikis' => "Pagina's met de meeste interwikiverwijzingen",
 'mostrevisions' => "Pagina's met de meeste bewerkingen",
 'prefixindex' => "Alle pagina's op voorvoegsel",
 'prefixindex-namespace' => "Alle pagina's met het voorvoegsel (naamruimte $1)",
@@ -2311,7 +2327,7 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'linksearch-ok' => 'Zoeken',
 'linksearch-text' => 'Wildcards zoals "*.wikipedia.org" of "*.org" zijn toegestaan.
 Heeft tenminste een topleveldomein, zoals bijvoorbeeld "*.org".<br />
-Ondersteunde protocollen: <tt>$1</tt> (voeg deze niet toe in uw zoekopdracht).',
+Ondersteunde protocollen: <code>$1</code> (voeg deze niet toe in uw zoekopdracht).',
 'linksearch-line' => '$1 heeft een verwijzing in $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
@@ -2502,6 +2518,8 @@ Wees voorzichtig.',
 'rollback' => 'Wijzigingen ongedaan maken',
 'rollback_short' => 'Terugdraaien',
 'rollbacklink' => 'terugdraaien',
+'rollbacklinkcount' => '{{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien',
+'rollbacklinkcount-morethan' => 'Meer dan {{PLURAL:$1|één bewerking|$1 bewerkingen}} terugdraaien',
 'rollbackfailed' => 'Ongedaan maken van wijzigingen mislukt.',
 'cantrollback' => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
 'alreadyrolled' => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|bijdragen]]) ongedaan te maken.
@@ -3007,6 +3025,7 @@ Alle transwiki-importhandelingen worden opgeslagen in het [[Special:Log/import|i
 'import-interwiki-templates' => 'Alle sjablonen opnemen',
 'import-interwiki-submit' => 'Importeren',
 'import-interwiki-namespace' => 'Doelnaamruimte:',
+'import-interwiki-rootpage' => 'Basispagina voor doel (optioneel):',
 'import-upload-filename' => 'Bestandsnaam:',
 'import-comment' => 'Opmerking:',
 'importtext' => 'Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt.
@@ -3042,6 +3061,9 @@ Een tijdelijke map is niet aanwezig.',
 'import-error-interwiki' => 'De pagina "$1" is niet geïmporteerd omdat deze naam is gereserveerd voor externe verwijzingen (interwiki).',
 'import-error-special' => 'Pagina "$1" is niet geïmporteerd omdat deze is geplaatst in een speciale naamruimte waar geen pagina\'s in geplaatst kunnen worden.',
 'import-error-invalid' => 'De pagina" "$1" is niet geïmporteerd omdat de naam ongeldig is.',
+'import-options-wrong' => 'Verkeerde {{PLURAL:$2|optie|opties}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'De opgegeven basispagina is ongeldig.',
+'import-rootpage-nosubpage' => 'In de naamruimte "$1" van de basispagina is het aanmaken van subpagina\'s niet mogelijk.',
 
 # Import log
 'importlogpage' => 'Importlogboek',
@@ -4093,6 +4115,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'api-error-file-too-large' => 'Het bestand dat u hebt geüpload is te groot.',
 'api-error-filename-tooshort' => 'De bestandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestandstype mag niet geüpload worden.',
+'api-error-filetype-banned-type' => '{{PLURAL:$4|Het bestandstype $1 wordt|De bestandstypes $1 worden}} niet toegelaten. {{PLURAL:$3|Het toegelaten bestandstype is|De toegelaten bestandstypes zijn}} $2.',
 'api-error-filetype-missing' => 'Het bestand heeft geen extensie.',
 'api-error-hookaborted' => 'De wijziging die u probeert te maken is afgebroken door een uitbreiding.',
 'api-error-http' => 'Interne fout: er kon geen verbinding gemaakt worden met de server.',
@@ -4128,6 +4151,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Het was niet mogelijk een vergrendeling te krijgen op server $1.',
 );

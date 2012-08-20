@@ -308,7 +308,7 @@ abstract class ORMTable implements IORMTable {
 	 */
 	public function count( array $conditions = array(), array $options = array() ) {
 		$res = $this->rawSelectRow(
-			array( 'COUNT(*) AS rowcount' ),
+			array( 'rowcount' => 'COUNT(*)' ),
 			$this->getPrefixedValues( $conditions ),
 			$options
 		);
@@ -329,7 +329,7 @@ abstract class ORMTable implements IORMTable {
 	public function delete( array $conditions, $functionName = null ) {
 		return wfGetDB( DB_MASTER )->delete(
 			$this->getName(),
-			$this->getPrefixedValues( $conditions ),
+			$conditions === array() ? '*' : $this->getPrefixedValues( $conditions ),
 			$functionName
 		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 	}
@@ -452,7 +452,10 @@ abstract class ORMTable implements IORMTable {
 	public function updateSummaryFields( $summaryFields = null, array $conditions = array() ) {
 		$this->setReadDb( DB_MASTER );
 
-		foreach ( $this->select( null, $conditions ) as /* IORMRow */ $item ) {
+		/**
+		 * @var IORMRow $item
+		 */
+		foreach ( $this->select( null, $conditions ) as $item ) {
 			$item->loadSummaryFields( $summaryFields );
 			$item->setSummaryMode( true );
 			$item->save();

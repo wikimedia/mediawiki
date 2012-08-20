@@ -341,7 +341,7 @@ abstract class Action {
 	 * @return String
 	 */
 	protected function getDescription() {
-		return wfMsgHtml( strtolower( $this->getName() ) );
+		return $this->msg( strtolower( $this->getName() ) )->escaped();
 	}
 
 	/**
@@ -397,7 +397,7 @@ abstract class FormAction extends Action {
 		// Give hooks a chance to alter the form, adding extra fields or text etc
 		wfRunHooks( 'ActionModifyFormFields', array( $this->getName(), &$this->fields, $this->page ) );
 
-		$form = new HTMLForm( $this->fields, $this->getContext() );
+		$form = new HTMLForm( $this->fields, $this->getContext(), $this->getName() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
 
 		// Retain query parameters (uselang etc)

@@ -322,7 +322,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Skryť úpravy prihlásených používateľov zo zoznamu sledovaných stránok',
 'tog-watchlisthideanons' => 'Skryť úpravy anonymných používateľov zo zoznamu sledovaných stránok',
 'tog-watchlisthidepatrolled' => 'Skryť strážené úpravy Zozname sledovaných stránok',
-'tog-nolangconversion' => 'Vypnúť konverziu variantov',
 'tog-ccmeonemails' => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly' => 'Nezobrazovať obsah stránky pod rozdielmi',
 'tog-showhiddencats' => 'Zobraziť skryté kategórie',
@@ -616,7 +615,7 @@ Databáza vrátila chybu „$3: $4“.',
 Správca, ktorý nariadil uzamknutie, uvádza tento dôvod: $1',
 'missing-article' => 'Text stránky s názvom „$1” $2, ktorú ste požadovali, nebol nájdený v databáze.
 
-To sa zvyčajne stane, keď kliknete na zastaralý odkaz na rozdiel alebo do histórie stránky, ktorá bola zmazaná.
+To sa zvyčajne stane, keď kliknete na zastaraný odkaz na rozdiel alebo do histórie stránky, ktorá bola zmazaná.
 
 Ak to tak nie je, je možné, že ste našli chybu v softvéri.
 Oznámte to prosím [[Special:ListUsers/sysop|správcovi]] a uveďte URL.',
@@ -695,6 +694,7 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'remembermypassword' => 'Pamätať si prihlásenie na tomto počítači (naviac $1 {{PLURAL:$1|deň|dni|dní}})',
 'securelogin-stick-https' => 'Zostať pripojený cez HTTPS po prihlásení',
 'yourdomainname' => 'Vaša doména:',
+'password-change-forbidden' => 'Na tejto wiki si nemôžete zmeniť heslo.',
 'externaldberror' => 'Buď nastala chyba externej autentifikačnej databázy alebo vám nie je povolené aktualizovať váš externý účet.',
 'login' => 'Prihlásiť',
 'nav-login-createaccount' => 'Vytvorenie konta / prihlásenie',
@@ -947,6 +947,10 @@ alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku]</span
 'noarticletext-nopermission' => 'Táto stránka momentálne neobsahuje žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
+'missing-revision' => 'Revízia #$1 stránky s názvom „{{PAGENAME}}“ neexistuje.
+
+Pravdepodobne ste nasledovali zastaraný odkaz na historickú verziu stránky, ktorá bola medzičasom odstránená.
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].',
 'userpage-userdoesnotexist' => 'Používateľský účet „<nowiki>$1</nowiki>“ nie je registrovaný. Prosím, skontrolujte, či naozaj chcete vytvoriť/upravovať túto stránku.',
 'userpage-userdoesnotexist-view' => 'Používateľský účet „$1“ nie je registrovaný.',
 'blocked-notice-logextract' => 'Tento používateľ je momentálne zablokovaný.
@@ -1256,6 +1260,10 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'editundo' => 'vrátiť',
 'diff-multi' => '{{PLURAL:$1|Jedna medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od {{PLURAL:$2|jedného používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}}.',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 medziľahlá revízia|$1 medziľahlé revízie|$1 medziľahlých revízií}} od viac ako {{PLURAL:$2|$2 používateľa|$2 používateľov}} {{PLURAL:$1|nie je zobrazená|nie sú zobrazené|nie je zobrazených}})',
+'difference-missing-revision' => '{{PLURAL:$2|$2 revízia|$2 revízie|$2 revízií}} pre požadovaný rozdiel ($1) {{PLURAL:$2|neexistuje|neexistujú|neexistuje}}.
+
+Pravdepodobne ste nasledovali zastaraný odkaz na rozdiel revízií, z ktorých niektorá bola medzičasom odstránená.
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname zmazaní].',
 
 # Search results
 'searchresults' => 'Výsledky vyhľadávania',
@@ -1520,6 +1528,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-writeapi' => 'Použitie API na zápis',
 'right-delete' => 'Mazať stránky',
 'right-bigdelete' => 'Mazať stránky s veľkou históriou',
+'right-deletelogentry' => 'Odstrániť a obnoviť špecifické položky',
 'right-deleterevision' => 'Mazať a obnovovať konkrétne revízie stránok',
 'right-deletedhistory' => 'Zobrazovať zmazané položky histórie bez ich plného textu',
 'right-deletedtext' => 'Zobrazovať zmazané texty a zmeny medzi zmazanými verziami',
@@ -1711,20 +1720,20 @@ Vizuálny prehľad nájdete v [[Special:NewFiles|galérii novo nahraných súbor
 'largefileserver' => 'Tento súbor je väčší ako je možné nahrať na server (z dôvodu obmedzenia veľkosti súboru v konfigurácii servera).',
 'emptyfile' => 'Zdá sa, že súbor, ktorý ste nahrali je prázdny. Mohlo sa stať, že ste urobili v názve súboru preklep. Prosím, skontrolujte, či skutočne chcete nahrať tento súbor.',
 'windows-nonascii-filename' => 'Táto wiki nepodporuje názvy súborov so špeciálnymi znakmi.',
-'fileexists' => "Súbor s týmto názvom už existuje, prosím skontrolujte '''<tt>[[:$1]]</tt>''' ak nie ste si istý, či ho chcete zmeniť.
-[[$1|thumb]]",
-'filepageexists' => "Popisná stránka pre tento súbor už bola vytvorená na '''<tt>[[:$1]]</tt>''', ale žiadny súbor s týmto názvom momentálne neexistuje.
+'fileexists' => 'Súbor s týmto názvom už existuje, prosím skontrolujte <strong>[[:$1]]</strong> ak nie ste si istý, či ho chcete zmeniť.
+[[$1|thumb]]',
+'filepageexists' => 'Popisná stránka pre tento súbor už bola vytvorená na <strong>[[:$1]]</strong>, ale žiadny súbor s týmto názvom momentálne neexistuje.
 Zadané zhrnutie sa neobjaví na popisnej stránke.
 Aby sa tam zhrnutie objavilo, budete potrebné ho manuálne upraviť.
-[[$1|thumb]]",
-'fileexists-extension' => "Súbor s podobným názvom už existuje: [[$2|thumb]]
-* Názov súboru, ktorý nahrávate: '''<tt>[[:$1]]</tt>'''
-* Názov existujúceho súboru: '''<tt>[[:$2]]</tt>'''
-Prosím, vyberte preň iný názov.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Súbor s podobným názvom už existuje: [[$2|thumb]]
+* Názov súboru, ktorý nahrávate: <strong>[[:$1]]</strong>
+* Názov existujúceho súboru: <strong>[[:$2]]</strong>
+Prosím, vyberte preň iný názov.',
 'fileexists-thumbnail-yes' => "Zdá sa, že súbor je obrázkom redukovanej veľkosti ''(náhľadom)''. [[$1|thumb]]
-Prosím, skontolujte súbor '''<tt>[[:$1]]</tt>'''.
+Prosím, skontolujte súbor <strong>[[:$1]]</strong>.
 Ak je kontrolovaný súbor rovnaký obrázok v pôvodnej veľkosti, nie je potrebné nahrávať ďalší náhľad.",
-'file-thumbnail-no' => "Názov súboru začína '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Názov súboru začína <strong>$1</strong>.
 Zdá sa, že je to obrázok redukovanej veľkosti ''(náhľad)''.
 Ak máte tento obrázok v plnom rozlíšení, nahrajte ho, inak prosím zmeňte názov.",
 'fileexists-forbidden' => 'Súbor s týmto názvom už existuje a nie je možné ho prepísať.
@@ -1833,6 +1842,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'lockmanager-fail-releaselock' => 'Nepodarilo sa uvoľniť zámok „$1“.',
 'lockmanager-fail-db-bucket' => 'Nepodarilo sa kontaktovať dostatok databáz zámkov v buckete $1.',
 'lockmanager-fail-db-release' => 'Nepodarilo sa uvoľniť zámky na databáze $1.',
+'lockmanager-fail-svr-acquire' => 'Nepodarilo sa získať zámky na serveri $1.',
 'lockmanager-fail-svr-release' => 'Nepodarilo sa uvoľniť zámky na serveri $1.',
 
 # ZipDirectoryReader
@@ -1979,7 +1989,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 
 # MIME search
 'mimesearch' => 'MIME vyhľadávanie',
-'mimesearch-summary' => 'Táto stránka umožňuje filtovanie súborov podľa MIME typu. Vstup: typobsahu/podtyp, napr. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Táto stránka umožňuje filtovanie súborov podľa MIME typu. Vstup: typobsahu/podtyp, napr. <code>image/jpeg</code>.',
 'mimetype' => 'MIME typ:',
 'download' => 'stiahnuť',
 
@@ -2027,7 +2037,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'disambiguationspage' => 'Template:Rozlišovacia stránka',
 'disambiguations-text' => "Nasledovné stránky odkazujú na '''rozlišovaciu stránku'''.
 Mali by však odkazovať priamo na príslušnú tému.<br />
-Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
+Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojité presmerovania',
 'doubleredirectstext' => 'Táto stránka obsahuje zoznam stránok, ktoré presmerovávajú na iné presmerovacie stránky.
@@ -2180,7 +2190,7 @@ Pozri aj [[Special:WantedCategories|žiadané kategórie]].',
 'linksearch-ok' => 'Hľadať',
 'linksearch-text' => 'Je možné používať zástupné znaky, napr. „*.wikipedia.org“.
 Povinná je minimálne doména najvyššej úrovne, napr.. „*.org“.<br />
-Podporované protokoly: <tt>$1</tt> (nepridávajte ich do hľadania).',
+Podporované protokoly: <code>$1</code> (nepridávajte ich do hľadania).',
 'linksearch-line' => 'Na $1 odkazuje $2',
 'linksearch-error' => 'Zástupné znaky je možné použiť iba na začiatku názvu domény.',
 
@@ -2362,9 +2372,11 @@ Na $2 nájdete zoznam posledných zmazaní.',
 'delete-warning-toobig' => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
 
 # Rollback
-'rollback' => 'Rollback úprav',
-'rollback_short' => 'Rollback',
+'rollback' => 'Vrátiť späť úpravy',
+'rollback_short' => 'Vrátiť',
 'rollbacklink' => 'rollback',
+'rollbacklinkcount' => 'vrátenie $1 {{PLURAL:$1|úpravy|úprav}}',
+'rollbacklinkcount-morethan' => 'vrátiť viac ako $1 {{PLURAL:$1|úpravu|úprav}}',
 'rollbackfailed' => 'Rollback neúspešný',
 'cantrollback' => 'Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
 'alreadyrolled' => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
@@ -3934,6 +3946,7 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'api-error-file-too-large' => 'Súbor, ktorý ste poslali bol príliš veľký.',
 'api-error-filename-tooshort' => 'Názov súboru je príliš krátky.',
 'api-error-filetype-banned' => 'Tento typ súboru je zakázaný.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nie je povolený typ súboru|nie sú povolené typy súboru}}. {{PLURAL:$3|Povolený typ súborov je|Povolené typy súborov sú}} $2.',
 'api-error-filetype-missing' => 'Súboru chýba prípona.',
 'api-error-hookaborted' => 'Zmena, ktorú ste sa pokúsili vykonať bola zrušená prípojným bodom rozšírenia.',
 'api-error-http' => 'Vnútorná chyba: Nepodarilo sa pripojiť k serveru.',
@@ -3969,6 +3982,4 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Nepodarilo sa získať zámky na serveri $1.',
 );

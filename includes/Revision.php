@@ -45,12 +45,13 @@ class Revision implements IDBAccessObject {
 	protected $mContent;
 	protected $mContentHandler;
 
+	// Revision deletion constants
 	const DELETED_TEXT = 1;
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
-	// Convenience field
-	const SUPPRESSED_USER = 12;
+	const SUPPRESSED_USER = 12; // convenience
+
 	// Audience options for accessors
 	const FOR_PUBLIC = 1;
 	const FOR_THIS_USER = 2;
@@ -61,9 +62,8 @@ class Revision implements IDBAccessObject {
 	 * Returns null if no such revision can be found.
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::LATEST_READ  : Select the data from the master
-	 *      IDBAccessObject::LOCKING_READ : Select & lock the data from the master
-	 *      IDBAccessObject::AVOID_MASTER : Avoid master queries; data may be stale
+	 *      Revision::READ_LATEST  : Select the data from the master
+	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
 	 * @param $id Integer
 	 * @param $flags Integer (optional)
@@ -79,16 +79,15 @@ class Revision implements IDBAccessObject {
 	 * to that title, will return null.
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::LATEST_READ  : Select the data from the master
-	 *      IDBAccessObject::LOCKING_READ : Select & lock the data from the master
-	 *      IDBAccessObject::AVOID_MASTER : Avoid master queries; data may be stale
+	 *      Revision::READ_LATEST  : Select the data from the master
+	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
 	 * @param $title Title
 	 * @param $id Integer (optional)
 	 * @param $flags Integer Bitfield (optional)
 	 * @return Revision or null
 	 */
-	public static function newFromTitle( $title, $id = 0, $flags = 0 ) {
+	public static function newFromTitle( $title, $id = 0, $flags = null ) {
 		$conds = array(
 			'page_namespace' => $title->getNamespace(),
 			'page_title' 	 => $title->getDBkey()
@@ -96,19 +95,13 @@ class Revision implements IDBAccessObject {
 		if ( $id ) {
 			// Use the specified ID
 			$conds['rev_id'] = $id;
-		} elseif ( !( $flags & self::AVOID_MASTER ) && wfGetLB()->getServerCount() > 1 ) {
-			// Get the latest revision ID from the master
-			$dbw = wfGetDB( DB_MASTER );
-			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
-			if ( $latest === false ) {
-				return null; // page does not exist
-			}
-			$conds['rev_id'] = $latest;
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
+			// Callers assume this will be up-to-date
+			$flags = is_int( $flags ) ? $flags : self::READ_LATEST; // b/c
 		}
-		return self::newFromConds( $conds, $flags );
+		return self::newFromConds( $conds, (int)$flags );
 	}
 
 	/**
@@ -117,31 +110,25 @@ class Revision implements IDBAccessObject {
 	 * Returns null if no such revision can be found.
 	 *
 	 * $flags include:
-	 *      IDBAccessObject::LATEST_READ  : Select the data from the master
-	 *      IDBAccessObject::LOCKING_READ : Select & lock the data from the master
-	 *      IDBAccessObject::AVOID_MASTER : Avoid master queries; data may be stale
+	 *      Revision::READ_LATEST  : Select the data from the master
+	 *      Revision::READ_LOCKING : Select & lock the data from the master
 	 *
 	 * @param $revId Integer
 	 * @param $pageId Integer (optional)
 	 * @param $flags Integer Bitfield (optional)
 	 * @return Revision or null
 	 */
-	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
+	public static function newFromPageId( $pageId, $revId = 0, $flags = null ) {
 		$conds = array( 'page_id' => $pageId );
 		if ( $revId ) {
 			$conds['rev_id'] = $revId;
-		} elseif ( !( $flags & self::AVOID_MASTER ) && wfGetLB()->getServerCount() > 1 ) {
-			// Get the latest revision ID from the master
-			$dbw = wfGetDB( DB_MASTER );
-			$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
-			if ( $latest === false ) {
-				return null; // page does not exist
-			}
-			$conds['rev_id'] = $latest;
 		} else {
+			// Use a join to get the latest revision
 			$conds[] = 'rev_id = page_latest';
+			// Callers assume this will be up-to-date
+			$flags = is_int( $flags ) ? $flags : self::READ_LATEST; // b/c
 		}
-		return self::newFromConds( $conds, $flags );
+		return self::newFromConds( $conds, (int)$flags );
 	}
 
 	/**
@@ -279,10 +266,10 @@ class Revision implements IDBAccessObject {
 	 * @return Revision or null
 	 */
 	private static function newFromConds( $conditions, $flags = 0 ) {
-		$db = wfGetDB( ( $flags & self::LATEST_READ ) ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( ( $flags & self::READ_LATEST ) ? DB_MASTER : DB_SLAVE );
 		$rev = self::loadFromConds( $db, $conditions, $flags );
 		if ( is_null( $rev ) && wfGetLB()->getServerCount() > 1 ) {
-			if ( !( $flags & self::LATEST_READ ) && !( $flags & self::AVOID_MASTER ) ) {
+			if ( !( $flags & self::READ_LATEST ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$rev = self::loadFromConds( $dbw, $conditions, $flags );
 			}
@@ -346,7 +333,7 @@ class Revision implements IDBAccessObject {
 			self::selectUserFields()
 		);
 		$options = array( 'LIMIT' => 1 );
-		if ( $flags & self::FOR_UPDATE ) {
+		if ( $flags & self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
 		return $db->select(
@@ -1560,7 +1547,7 @@ class Revision implements IDBAccessObject {
 	 * @return Integer
 	 */
 	static function countByPageId( $db, $id ) {
-		$row = $db->selectRow( 'revision', 'COUNT(*) AS revCount',
+		$row = $db->selectRow( 'revision', array( 'revCount' => 'COUNT(*)' ),
 			array( 'rev_page' => $id ), __METHOD__ );
 		if( $row ) {
 			return $row->revCount;

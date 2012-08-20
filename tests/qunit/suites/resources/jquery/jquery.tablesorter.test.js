@@ -298,7 +298,7 @@ tableTest(
 );
 
 var planetsRowspan = [["Earth","6051.8"], jupiter, ["Mars","6051.8"], mercury, saturn, venus];
-var planetsRowspanII = [jupiter, mercury, saturn, ['Venus', '6371.0'], venus, ['Venus', '3390.0']];
+var planetsRowspanII = [jupiter, mercury, saturn, venus, ['Venus', '6371.0'], ['Venus', '3390.0']];
 
 tableTest(
 	'Basic planet table: same value for multiple rows via rowspan',

@@ -133,7 +133,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Avtorizatsiäne uzğan qullanuçılarnıñ üzgärtüläre küzätü isemlegennän yäşerelsen',
 'tog-watchlisthideanons' => 'Anonim qullanuçılarnıñ üzgärtüläre küzätü isemlegennän yäşerelsen',
 'tog-watchlisthidepatrolled' => 'Tikşerelgän üzgärtülär küzätü isemlegennän yäşerelsen',
-'tog-nolangconversion' => 'Yazu sistemalarınıñ üzgärtüen sünderü',
 'tog-ccmeonemails' => 'Başqa qullanuçılarğa cibärgän xatlarımnıñ kopiäläre miña da cibärelsen',
 'tog-diffonly' => 'Yurama çağıştıru astında bit eçtälege kürsätelmäsen',
 'tog-showhiddencats' => 'Yäşeren törkemnär kürsätelsen',
@@ -1189,9 +1188,9 @@ Ul $1 {{PLURAL:$1|xäreftän}} kübräk bulırğa tieş tügel.',
 'uploadtext' => "Bu formanı qullanıp serverğa fayllar yökli alasız. Elegräk yöklänelgän fayllarnı qaraw öçen [[Special:FileList|Yöklänelgän fayllar isemlegenä]] märäcäğät itegez. Şulay uq ul [[Special:Log/upload|yöklänmälär isemlegenä]] häm [[Special:Log/delete|beterelgän fayllar]] isemlegenä dä yazıla.
 
 Faylnı mäqälägä yökläw öçen Sez menä bu ürnäklärne qullana alasız:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Räsem.jpg]]</nowiki></tt>''' faylnıñ tulı yuramasın quyu öçen;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Räsem.png|200px|thumb|left|taswirlaması]]</nowiki></tt>'''  200 pikselğa qädär kiñlektäge  häm tekstnıñ sul yağında, taswirlaması belän;
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''bittä faylnı sürätlämiçä, barı tik sıltamasın ğına quyu.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Räsem.jpg]]</nowiki></code>''' faylnıñ tulı yuramasın quyu öçen;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Räsem.png|200px|thumb|left|taswirlaması]]</nowiki></code>'''  200 pikselğa qädär kiñlektäge  häm tekstnıñ sul yağında, taswirlaması belän;
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''bittä faylnı sürätlämiçä, barı tik sıltamasın ğına quyu.",
 'upload-permitted' => 'Röxsät itelgän fayl törläre:$1',
 'upload-preferred' => 'Mömkin bulğan fayl törläre:$1',
 'upload-prohibited' => 'Tıyılğan fayl törläre:$1',

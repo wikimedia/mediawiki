@@ -50,7 +50,7 @@ class FileOpBatch {
 	 *
 	 * The resulting Status will be "OK" unless:
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
-	 *   - b) significant operation errors occured and 'force' was not set
+	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
 	 * @param $performOps Array List of FileOp operations
 	 * @param $opts Array Batch operation options

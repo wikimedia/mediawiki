@@ -1318,6 +1318,10 @@ $wgDBuser = 'wikiuser';
 $wgDBpassword = '';
 /** Database type */
 $wgDBtype = 'mysql';
+/** Whether to use SSL in DB connection. */
+$wgDBssl = false;
+/** Whether to use compression in DB connection. */
+$wgDBcompress = false;
 
 /** Separate username for maintenance tasks. Leave as null to use the default. */
 $wgDBadminuser = null;
@@ -1403,6 +1407,8 @@ $wgSharedTables = array( 'user', 'user_properties' );
  *                  - DBO_IGNORE -- ignore errors (not useful in LocalSettings.php)
  *                  - DBO_NOBUFFER -- turn off buffering (not useful in LocalSettings.php)
  *                  - DBO_PERSISTENT -- enables persistent database connections
+ *                  - DBO_SSL -- uses SSL/TLS encryption in database connections, if available
+ *                  - DBO_COMPRESS -- uses internal compression in database connections, if available
  *
  *   - max lag:     (optional) Maximum replication lag before a slave will taken out of rotation
  *   - max threads: (optional) Maximum number of running threads
@@ -1446,11 +1452,26 @@ $wgMasterWaitTimeout = 10;
 
 /** File to log database errors to */
 $wgDBerrorLog = false;
+
 /**
- * Override wiki timezone to UTC for wgDBerrorLog
+ * Timezone to use in the error log.
+ * Defaults to the wiki timezone ($wgLocalTimezone).
+ *
+ * A list of useable timezones can found at:
+ * http://php.net/manual/en/timezones.php
+ *
+ * @par Examples:
+ * @code
+ * $wgLocaltimezone = 'UTC';
+ * $wgLocaltimezone = 'GMT';
+ * $wgLocaltimezone = 'PST8PDT';
+ * $wgLocaltimezone = 'Europe/Sweden';
+ * $wgLocaltimezone = 'CET';
+ * @endcode
+ *
  * @since 1.20
  */
-$wgDBerrorLogInUTC = false;
+$wgDBerrorLogTZ = false;
 
 /** When to give an error message */
 $wgDBClusterTimeout = 10;
@@ -1670,6 +1691,13 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
+ * The cache type for storing session data. Used if $wgSessionsInObjectCache is true.
+ *
+ * For available types see $wgMainCacheType.
+ */
+$wgSessionCacheType = CACHE_ANYTHING;
+
+/**
  * The cache type for storing language conversion tables,
  * which are used when parsing certain text and interface messages.
  *
@@ -1724,11 +1752,25 @@ $wgParserCacheExpireTime = 86400;
 $wgDBAhandler = 'db3';
 
 /**
- * Store sessions in MemCached. This can be useful to improve performance, or to
- * avoid the locking behaviour of PHP's default session handler, which tends to
- * prevent multiple requests for the same user from acting concurrently.
+ * Deprecated alias for $wgSessionsInObjectCache.
+ *
+ * @deprecated Use $wgSessionsInObjectCache
  */
 $wgSessionsInMemcached = false;
+
+/**
+ * Store sessions in an object cache, configured by $wgSessionCacheType. This
+ * can be useful to improve performance, or to avoid the locking behaviour of
+ * PHP's default session handler, which tends to prevent multiple requests for
+ * the same user from acting concurrently.
+ */
+$wgSessionsInObjectCache = false;
+
+/**
+ * The expiry time to use for session storage when $wgSessionsInObjectCache is
+ * enabled, in seconds.
+ */
+$wgObjectCacheSessionExpiry = 3600;
 
 /**
  * This is used for setting php's session.save_handler. In practice, you will
@@ -1753,7 +1795,7 @@ $wgMemCachedPersistent = false;
 /**
  * Read/write timeout for MemCached server communication, in microseconds.
  */
-$wgMemCachedTimeout = 100000;
+$wgMemCachedTimeout = 500000;
 
 /**
  * Set this to true to make a local copy of the message cache, for use in
@@ -2291,16 +2333,16 @@ $wgVariantArticlePath = false;
 $wgLoginLanguageSelector = false;
 
 /**
- * When translating messages with wfMsg(), it is not always clear what should
- * be considered UI messages and what should be content messages.
+ * When translating messages with wfMessage(), it is not always clear what 
+ * should be considered UI messages and what should be content messages.
  *
  * For example, for the English Wikipedia, there should be only one 'mainpage',
  * so when getting the link for 'mainpage', we should treat it as site content
- * and call wfMsgForContent(), but for rendering the text of the link, we call
- * wfMsg(). The code behaves this way by default. However, sites like the
- * Wikimedia Commons do offer different versions of 'mainpage' and the like for
- * different languages. This array provides a way to override the default
- * behavior.
+ * and call ->inContentLanguage()->text(), but for rendering the text of the
+ * link, we call ->text(). The code behaves this way by default. However,
+ * sites like the Wikimedia Commons do offer different versions of 'mainpage'
+ * and the like for different languages. This array provides a way to override
+ * the default behavior.
  *
  * @par Example:
  * To allow language-specific main page and community
@@ -2322,8 +2364,12 @@ $wgForceUIMsgAsContentMsg = array();
  * Timezones can be translated by editing MediaWiki messages of type
  * timezone-nameinlowercase like timezone-utc.
  *
+ * A list of useable timezones can found at:
+ * http://php.net/manual/en/timezones.php
+ *
  * @par Examples:
  * @code
+ * $wgLocaltimezone = 'UTC';
  * $wgLocaltimezone = 'GMT';
  * $wgLocaltimezone = 'PST8PDT';
  * $wgLocaltimezone = 'Europe/Sweden';
@@ -5627,6 +5673,7 @@ $wgSpecialPageGroups = array(
 	'Mostlinkedtemplates'       => 'highuse',
 	'Mostcategories'            => 'highuse',
 	'Mostimages'                => 'highuse',
+	'Mostinterwikis'            => 'highuse',
 	'Mostrevisions'             => 'highuse',
 
 	'Allpages'                  => 'pages',

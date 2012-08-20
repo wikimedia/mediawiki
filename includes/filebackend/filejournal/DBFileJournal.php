@@ -33,7 +33,7 @@ class DBFileJournal extends FileJournal {
 	 * Construct a new instance from configuration.
 	 * $config includes:
 	 *     'wiki' : wiki name to use for LoadBalancer
-	 * 
+	 *
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {
@@ -65,7 +65,6 @@ class DBFileJournal extends FileJournal {
 				'fj_backend'    => $this->backend,
 				'fj_op'         => $entry['op'],
 				'fj_path'       => $entry['path'],
-				'fj_path_sha1'  => wfBaseConvert( sha1( $entry['path'] ), 16, 36, 31 ),
 				'fj_new_sha1'   => $entry['newSha1'],
 				'fj_timestamp'  => $dbw->timestamp( $now )
 			);

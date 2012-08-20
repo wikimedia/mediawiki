@@ -383,13 +383,15 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
+		return array_merge( parent::getPossibleErrors(),
 			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
-			array( 'code' => 'cidrtoobroad', 'info' => 'CIDR ranges broader than /16 are not accepted' ),
-			array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
-			array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
-			array( 'show' ),
-		) );
+			array(
+				array( 'code' => 'cidrtoobroad', 'info' => 'CIDR ranges broader than /16 are not accepted' ),
+				array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
+				array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
+				array( 'show' ),
+			)
+		);
 	}
 
 	public function getExamples() {

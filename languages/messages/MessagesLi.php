@@ -10,6 +10,7 @@
  * @author Aelske
  * @author Benopat
  * @author Cicero
+ * @author Geitost
  * @author Kaganer
  * @author Matthias
  * @author Ooswesthoesbes
@@ -163,7 +164,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Gemarkeerde wieziginge verberge in recente wieziginge',
 'tog-newpageshidepatrolled' => "Gemarkeerde pagina's verberge in de lies mit nuuj pagina's",
 'tog-extendwatchlist' => 'Oetgebreide volglies gebroeke óm alle verangeringe te zeen en neet allein de lèste',
-'tog-usenewrc' => 'Oetgebreide recènte verangeringe (Javascript nudig)',
+'tog-usenewrc' => 'Tuun verangeringe per pagina in recènte verangeringe en volglies (Javascript nudig)',
 'tog-numberheadings' => 'Köpkes automatisch nummere',
 'tog-showtoolbar' => 'Laot edit toolbar zeen',
 'tog-editondblclick' => "Bewirk pagina's bie 'ne dobbelklik (JavaScript)",
@@ -171,17 +172,17 @@ $messages = array(
 'tog-editsectiononrightclick' => "Secties bewirke mit 'ne rechtermoesklik op sectietitels (JavaScript nudig)",
 'tog-showtoc' => "Inhaudsopgaaf veur pagina's mit mie es 3 köpkes",
 'tog-rememberpassword' => 'Mien wachwaord onthouwe veur later sessies (hoegstens $1 {{PLURAL:$1|daag|daag}})',
-'tog-watchcreations' => "Pagina's die ich aanmaak automatisch volge",
-'tog-watchdefault' => "Voog pagina's die se bewirks toe aan dien volglies",
-'tog-watchmoves' => "Pagina's die ich verplaats automatisch volge",
-'tog-watchdeletion' => "Pagina's die ich ewegsjaf automatisch volge",
+'tog-watchcreations' => "Volg autematis pagina's die ich aanmaak en bestenj die ich upload",
+'tog-watchdefault' => "Voog pagina's em bestenj die se bewirks toe aan dien volglies",
+'tog-watchmoves' => "Volg autematis pagina's en bestenj die ich verplaats",
+'tog-watchdeletion' => "Volg autematis pagina's en bestenj die ich ewegsjaf",
 'tog-minordefault' => 'Markeer sjtanderd alle bewirkinge es klein',
 'tog-previewontop' => 'Veurvertuin baove bewèrkingsveld tuine',
 'tog-previewonfirst' => 'Preview laote zien bie de ierste bewirking',
 'tog-nocache' => 'Zèt de browserpaginacaching oet',
-'tog-enotifwatchlistpages' => "'ne E-mail nao mich versjikke bie bewirkinge van pagina's op mien volglies",
+'tog-enotifwatchlistpages' => "Versjik 'ne e-mail nao mich bie bewirkinge van pagina's en bestenj op mien volglies",
 'tog-enotifusertalkpages' => "'ne E-mail nao mich versjikke es emes mien euverlèkpagina verangert",
-'tog-enotifminoredits' => "'ne E-mail nao mich versjikke bie klein bewirkinge op pagina's op mien volglies",
+'tog-enotifminoredits' => "Versjik  mich 'ne e-mail bie klein bewirkinge op pagina's en bestenj op mien volglies",
 'tog-enotifrevealaddr' => 'Mien e-mailadres tuine in e-mailberichte',
 'tog-shownumberswatching' => "'t Aantal gebroekers tuine die dees pagina volg",
 'tog-oldsig' => 'Bestaonde ongerteikening:',
@@ -197,7 +198,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bewirkinge van aangemelde gebroekers op mien volglies versjtaeke',
 'tog-watchlisthideanons' => 'Bewirkinge van anonieme gebroekers op mien volglies versjtaeke',
 'tog-watchlisthidepatrolled' => 'Gemarkeerde wieziginge op mien volglies verberge',
-'tog-nolangconversion' => 'Variantconversie oetsjakele',
 'tog-ccmeonemails' => "'n Kopie nao mich versjikke van de e-mail dae ich nao anger gebroekers sjik",
 'tog-diffonly' => 'Pagina-inhaud zónger verangeringe neet tuine',
 'tog-showhiddencats' => 'Verbórge categorië tuine',
@@ -514,6 +514,8 @@ Maak hievan melding bie 'ne [[Special:ListUsers/sysop|systeembeheerder]] van {{S
 'cannotdelete' => 'Kós de pagina of \'t besjtand "$1" neet ewegsjaffe.
 Mesjiens haet emes angers det al gedaon.',
 'cannotdelete-title' => 'Pagina "$1" kin neet gewösj waere',
+'delete-hook-aborted' => "'t Wösje is aafgebroke door 'ne 'hook'.
+D'r is gein toelichting besjikbaar.",
 'badtitle' => 'Óngeljige paginatitel',
 'badtitletext' => 'De opgevraogde pagina is neet besjikbaar of laeg.',
 'perfcached' => "De gegaeves koume oet 'n cache en zeen mäögelik neet actueel. 't Geuf {{PLURAL:$1|maximaal ei rizzeltaot|maximaal $1 rizzeltaote}} inne cache.",
@@ -545,6 +547,8 @@ De gegaeve ree is ''$2''.",
 d\'n Opgegaeve raej vanne sloetendje admin waar "\'\'$3\'\'".',
 'invalidtitle-knownnamespace' => 'Óngèljige titel mit naamruumdje "$2" en teks "$3"',
 'invalidtitle-unknownnamespace' => 'Óngèljige titel mit ónbekèndj naamruumdenómmer $1 en teks "$2"',
+'exception-nologin' => 'Neet aangemèld',
+'exception-nologin-text' => 'Óm dees pagina te betrachte of dees hanjeling te kinne doon mós se aangemèldj zeen bie deze wiki.',
 
 # Virus scanner
 'virus-badscanner' => "Slechte configuratie: onbekenge virusscanner: ''$1''",
@@ -1372,6 +1376,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'right-writeapi' => 'Bewèrke via de API',
 'right-delete' => "Pagina's verwijdere",
 'right-bigdelete' => "Pagina's mit 'n grote gesjiedenis verwijdere",
+'right-deletelogentry' => 'Wösj of plaats trögk specifieke logbookregels',
 'right-deleterevision' => "Versies van pagina's verberge",
 'right-deletedhistory' => 'Verwijderde versies bekieke, zonder te kinne zeen wat verwijderd is',
 'right-deletedtext' => 'Bekieke gewösjde teks en wieziginge tösse verwiedere versies',
@@ -1564,18 +1569,18 @@ Aangeweze {{PLURAL:\$3|bestandjstype|bestandjstypes}}zeen \$2.",
 'largefileserver' => "'t Bestandj is groter dan de instelling van de server toestuit.",
 'emptyfile' => "'t Besjtand wats re höbs geupload is laeg. Dit kump waorsjienliek door 'n typfout in de besjtandsnaom. Kiek estebleef ofs te dit besjtand wirkelik wils uploade.",
 'windows-nonascii-filename' => 'Deze wiki ongersteunt gein bestandjsname mit speciaal teikes.',
-'fileexists' => "D'r is al e besjtand mit dees naam, bekiek '''<tt>[[:$1]]</tt>''' of se dat besjtand mesjien wils vervange.
+'fileexists' => "D'r is al e besjtand mit dees naam, bekiek <strong>[[:$1]]</strong> of se dat besjtand mesjien wils vervange.
 [[$1|thumb]]",
-'filepageexists' => "De besjrievingspagina veur dit besjtand besjteit al op '''<tt>[[:$1]]</tt>''', meh d'r besjteit gein besjtand mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspagina versjiene. Bewirk de pagina handjmaotig óm dien besjrieving dao te tuine.
+'filepageexists' => "De besjrievingspagina veur dit besjtand besjteit al op <strong>[[:$1]]</strong>, meh d'r besjteit gein besjtand mit deze naam. De samevatting dies te höbs opgegaeve zal neet op de besjrievingspagina versjiene. Bewirk de pagina handjmaotig óm dien besjrieving dao te tuine.
 [[$1|thumb]]",
 'fileexists-extension' => "'n bestand met dezelfde naam bestuit al: [[$2|thumb]]
-* Naam van 't geüploade bestand: '''<tt>[[:$1]]</tt>'''
-* Naam van 't bestaonde bestand: '''<tt>[[:$2]]</tt>'''
+* Naam van 't geüploade bestand: <strong>[[:$1]]</strong>
+* Naam van 't bestaonde bestand: <strong>[[:$2]]</strong>
 Lèver 'ne angere naam te keze.",
 'fileexists-thumbnail-yes' => "'t Liek 'n afbeilding van 'n verkleinde grootte te zeen ''(thumbnail)''. [[$1|thumb]]
-Lèver 't bestand '''<tt>[[:$1]]</tt>''' te controlere.
+Lèver 't bestand <strong>[[:$1]]</strong> te controlere.
 Es 't gecontroleerde bestand dezelfde afbeilding van oorspronkelike grootte is, is 't neet noodzakelik 'ne extra thumbnail te uploade.",
-'file-thumbnail-no' => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "De bestandsnaam begint met <strong>$1</strong>.
 't Liek 'n verkleinde afbeelding te zeen ''(thumbnail)''.
 Esse deze afbeelding in volledige resolutie höbs, upload dae afbeelding den. Wiezig anges estebleef de bestandsnaam.",
 'fileexists-forbidden' => "d'r Besteit al 'n bestand met deze naam det neet kin waere euevergesjreve. Upload dien bestand onger 'ne angere naam.
@@ -1669,6 +1674,7 @@ Gank trök nao t [[Special:Upload/stash/$1|uploadformuleer]] om dit perbleem te 
 'lockmanager-fail-releaselock' => 'Kós de vergrendeling veur "$1" neet opheffe.',
 'lockmanager-fail-db-bucket' => 'Kós neet in kontak kómme mit genóg vergrendelingsdatabases in de bucket $1.',
 'lockmanager-fail-db-release' => "'t Waar neet meugelik ómme vergrendeling veure database $1 óp tö höffe.",
+'lockmanager-fail-svr-acquire' => "'t Waar neet meugelik ómme vergrendeling oppe server $1 tö kriege.",
 'lockmanager-fail-svr-release' => "'t Waar neet meugelik ómme vergrendeling veure server $1 óp tö höffe.",
 
 # ZipDirectoryReader
@@ -1816,7 +1822,7 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 
 # MIME search
 'mimesearch' => 'Zeuk op MIME-type',
-'mimesearch-summary' => "Deze pagina maak het filtere van bestenj veur 't MIME-type meugelik. Inveur: contenttype/subtype, bv <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Deze pagina maak het filtere van bestenj veur 't MIME-type meugelik. Inveur: contenttype/subtype, bv <code>image/jpeg</code>.",
 'mimetype' => 'MIME-type:',
 'download' => 'Downloade',
 
@@ -2018,7 +2024,7 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'linksearch-ok' => 'Zeuk',
 'linksearch-text' => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.
 Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
-Óngerstäönendje protocolle: <tt>$1</tt> (veug dees neet tou in dien zeukópdrach).',
+Óngerstäönendje protocolle: <code>$1</code> (veug dees neet tou in dien zeukópdrach).',
 'linksearch-line' => '$1 gelink vanaaf $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
@@ -2826,6 +2832,7 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 'spambot_username' => 'MediaWiki spam opruming',
 'spam_reverting' => 'Bezig mit trökdrèjje nao de letste versie die gein verwiezing haet nao $1',
 'spam_blanking' => "Alle wieziginge mit 'ne link nao $1 waere verwiederd",
+'spam_deleting' => 'Alle wieziginge hawwe links nao $1, wuuertj gewösj',
 
 # Info page
 'pageinfo-title' => 'Informatie euver "$1"',
@@ -3687,9 +3694,12 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'api-error-empty-file' => 't Bestandj det se perbeers te uploade had gein inhald.',
 'api-error-emptypage' => "Doe maags gein nuuj, laeg pagina's aanmake.",
 'api-error-fetchfileerror' => "Intern fout: d'r is get fout gegange bie 't óphaole van 't bestandj.",
+'api-error-fileexists-forbidden' => 'd\'r Besteit al e bestandj mitte naam "$1" det neet euversjreve kin waere.',
+'api-error-fileexists-shared-forbidden' => 'd\'r Besteit al e bestandj mitte naam "$1" inne gedeildje repositoir det neet euversjreve kin waere.',
 'api-error-file-too-large' => 't Bestandj det se perbeers te uploade waas te groet.',
 'api-error-filename-tooshort' => "t Bestandj det se perbeers te uploade had 'ne te kórte bestandjsnaam.",
 'api-error-filetype-banned' => 't Bestandj det se perbeers te uploade waas van e neet-toegelaote bestandjstype.',
+'api-error-filetype-banned-type' => "{{PLURAL:$4|'t bestandjstype $1 weurt|De bestandjstypes $1 waere}} neet toegelaote. {{PLURAL:$3|'t Toegelaote bestandjstype is|De toegelaote bestandjstypes zeen}} $2.",
 'api-error-filetype-missing' => "'t Bestandj haet gein extensie.",
 'api-error-hookaborted' => "De wieziging die se perbeers te make is aafgebraoke door 'nen oetbreidingshook.",
 'api-error-http' => "Intern fout: d'r kós gein verbinjing gemaak waere mitte server.",

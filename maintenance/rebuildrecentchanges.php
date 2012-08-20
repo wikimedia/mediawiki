@@ -1,7 +1,7 @@
 <?php
 /**
- * Rebuild link tracking tables from scratch.  This takes several
- * hours, depending on the database size and server configuration.
+ * Rebuild recent changes from scratch.  This takes several hours,
+ * depending on the database size and server configuration.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  * @todo Document
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that rebuilds recent changes from scratch.
+ *
+ * @ingroup Maintenance
+ */
 class RebuildRecentchanges extends Maintenance {
 	public function __construct() {
 		parent::__construct();

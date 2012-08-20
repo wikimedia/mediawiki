@@ -158,8 +158,8 @@ abstract class Job {
 		if ( !$affected ) {
 			// Failed, someone else beat us to it
 			// Try getting a random row
-			$row = $dbw->selectRow( 'job', array( 'MIN(job_id) as minjob',
-				'MAX(job_id) as maxjob' ), '1=1', __METHOD__ );
+			$row = $dbw->selectRow( 'job', array( 'minjob' => 'MIN(job_id)',
+				'maxjob' => 'MAX(job_id)' ), '1=1', __METHOD__ );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
 				wfProfileOut( __METHOD__ );
@@ -213,8 +213,9 @@ abstract class Job {
 	 *
 	 * @param $command String: Job command
 	 * @param $title Title: Associated title
-	 * @param $params Array: Job parameters
+	 * @param $params Array|bool: Job parameters
 	 * @param $id Int: Job identifier
+	 * @throws MWException
 	 * @return Job
 	 */
 	static function factory( $command, Title $title, $params = false, $id = 0 ) {
@@ -343,8 +344,8 @@ abstract class Job {
 	/**
 	 * @param $command
 	 * @param $title
-	 * @param $params array
-	 * @param int $id
+	 * @param $params array|bool
+	 * @param $id int
 	 */
 	function __construct( $command, $title, $params = false, $id = 0 ) {
 		$this->command = $command;

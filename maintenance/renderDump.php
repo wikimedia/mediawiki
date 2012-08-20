@@ -30,6 +30,12 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that takes page text out of an XML dump file
+ * and render basic HTML out to files.
+ *
+ * @ingroup Maintenance
+ */
 class DumpRenderer extends Maintenance {
 
 	private $count = 0;

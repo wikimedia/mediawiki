@@ -45,13 +45,19 @@ class SwiftFileBackend extends FileBackendStore {
 	protected $swiftCDNExpiry; // integer; how long to cache things in the CDN
 	protected $swiftCDNPurgable; // boolean; whether object CDN purging is enabled
 
-	protected $maxContCacheSize = 300; // integer; max containers with entries
-
 	/** @var CF_Connection */
 	protected $conn; // Swift connection handle
-	protected $connStarted = 0; // integer UNIX timestamp
-	protected $connContainers = array(); // container object cache
-	protected $connException; // CloudFiles exception
+	protected $sessionStarted = 0; // integer UNIX timestamp
+
+	/** @var CloudFilesException */
+	protected $connException;
+	protected $connErrorTime = 0; // UNIX timestamp
+
+	/** @var BagOStuff */
+	protected $srvCache;
+
+	/** @var ProcessCacheLRU */
+	protected $connContainerCache; // container object cache
 
 	/**
 	 * @see FileBackendStore::__construct()
@@ -75,6 +81,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                             - levels : the number of hash levels (and digits)
 	 *                             - repeat : hash subdirectories are prefixed with all the
 	 *                                        parent hash directory names (e.g. "a/ab/abc")
+	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC/XCache.
+	 *                          This is probably insecure in shared hosting environments.
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -107,8 +115,17 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
 			? $config['swiftCDNPurgable']
 			: true;
-		// Cache container info to mask latency
+		// Cache container information to mask latency
 		$this->memCache = wfGetMainCache();
+		// Process cache for container info
+		$this->connContainerCache = new ProcessCacheLRU( 300 );
+		// Cache auth token information to avoid RTTs
+		if ( !empty( $config['cacheAuthInfo'] ) ) {
+			try { // look for APC, XCache, WinCache, ect...
+				$this->srvCache = ObjectCache::newAccelerator( array() );
+			} catch ( Exception $e ) {}
+		}
+		$this->srvCache = $this->srvCache ? $this->srvCache : new EmptyBagOStuff();
 	}
 
 	/**
@@ -116,7 +133,9 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @return null
 	 */
 	protected function resolveContainerPath( $container, $relStoragePath ) {
-		if ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
+		if ( !mb_check_encoding( $relStoragePath, 'UTF-8' ) ) { // mb_string required by CF
+			return null; // not UTF-8, makes it hard to use CF and the swift HTTP API
+		} elseif ( strlen( urlencode( $relStoragePath ) ) > 1024 ) {
 			return null; // too long for Swift
 		}
 		return $relStoragePath;
@@ -710,6 +729,7 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( isset( $obj->metadata['Sha1base36'] ) ) {
 			return true; // nothing to do
 		}
+		wfProfileIn( __METHOD__ );
 		$status = Status::newGood();
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
@@ -720,11 +740,13 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( $hash !== false ) {
 					$obj->metadata['Sha1base36'] = $hash;
 					$obj->sync_metadata(); // save to Swift
+					wfProfileOut( __METHOD__ );
 					return true; // success
 				}
 			}
 		}
 		$obj->metadata['Sha1base36'] = false;
+		wfProfileOut( __METHOD__ );
 		return false; // failed
 	}
 
@@ -1087,7 +1109,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$url = $creds['storage_url'] . '/' . rawurlencode( $contObj->name );
 
 		// Note: 10 second timeout consistent with php-cloudfiles
-		$req = new CurlHttpRequest( $url, array( 'method' => 'POST', 'timeout' => 10 ) );
+		$req = MWHttpRequest::factory( $url, array( 'method' => 'POST', 'timeout' => 10 ) );
 		$req->setHeader( 'X-Auth-Token', $creds['auth_token'] );
 		$req->setHeader( 'X-Container-Read', implode( ',', $readGrps ) );
 		$req->setHeader( 'X-Container-Write', implode( ',', $writeGrps ) );
@@ -1118,41 +1140,67 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Get a connection to the Swift proxy
+	 * Get an authenticated connection handle to the Swift proxy
 	 *
 	 * @return CF_Connection|bool False on failure
 	 * @throws CloudFilesException
 	 */
 	protected function getConnection() {
-		if ( $this->connException instanceof Exception ) {
-			throw $this->connException; // failed last attempt
-		}
-		// Session keys expire after a while, so we renew them periodically
-		if ( $this->conn && ( time() - $this->connStarted ) > $this->authTTL ) {
-			$this->conn->close(); // close active cURL connections
-			$this->conn = null;
-		}
-		// Authenticate with proxy and get a session key...
-		if ( !$this->conn ) {
-			$this->connStarted = 0;
-			$this->connContainers = array();
-			try {
-				$this->auth->authenticate();
-				$this->conn = new CF_Connection( $this->auth );
-				$this->connStarted = time();
-			} catch ( CloudFilesException $e ) {
-				$this->connException = $e; // don't keep re-trying
-				throw $e; // throw it back
+		if ( $this->connException instanceof CloudFilesException ) {
+			if ( ( time() - $this->connErrorTime ) < 60 ) {
+				throw $this->connException; // failed last attempt; don't bother
+			} else { // actually retry this time
+				$this->connException = null;
+				$this->connErrorTime = 0;
 			}
 		}
+		// Session keys expire after a while, so we renew them periodically
+		$reAuth = ( ( time() - $this->sessionStarted ) > $this->authTTL );
+		// Authenticate with proxy and get a session key...
+		if ( !$this->conn || $reAuth ) {
+			$this->sessionStarted = 0;
+			$this->connContainerCache->clear();
+			$cacheKey = $this->getCredsCacheKey( $this->auth->username );
+			$creds = $this->srvCache->get( $cacheKey ); // credentials
+			if ( is_array( $creds ) ) { // cache hit
+				$this->auth->load_cached_credentials(
+					$creds['auth_token'], $creds['storage_url'], $creds['cdnm_url'] );
+				$this->sessionStarted = time() - ceil( $this->authTTL/2 ); // skew for worst case
+			} else { // cache miss
+				try {
+					$this->auth->authenticate();
+					$creds = $this->auth->export_credentials();
+					$this->srvCache->add( $cacheKey, $creds, ceil( $this->authTTL/2 ) ); // cache
+					$this->sessionStarted = time();
+				} catch ( CloudFilesException $e ) {
+					$this->connException = $e; // don't keep re-trying
+					$this->connErrorTime = time();
+					throw $e; // throw it back
+				}
+			}
+			if ( $this->conn ) { // re-authorizing?
+				$this->conn->close(); // close active cURL handles in CF_Http object
+			}
+			$this->conn = new CF_Connection( $this->auth );
+		}
 		return $this->conn;
+	}
+
+	/**
+	 * Get the cache key for a container
+	 *
+	 * @param $username string
+	 * @return string
+	 */
+	private function getCredsCacheKey( $username ) {
+		return wfMemcKey( 'backend', $this->getName(), 'usercreds', $username );
 	}
 
 	/**
 	 * @see FileBackendStore::doClearCache()
 	 */
 	protected function doClearCache( array $paths = null ) {
-		$this->connContainers = array(); // clear container object cache
+		$this->connContainerCache->clear(); // clear container object cache
 	}
 
 	/**
@@ -1167,25 +1215,21 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function getContainer( $container, $bypassCache = false ) {
 		$conn = $this->getConnection(); // Swift proxy connection
 		if ( $bypassCache ) { // purge cache
-			unset( $this->connContainers[$container] );
-		} elseif ( !isset( $this->connContainers[$container] ) ) {
+			$this->connContainerCache->clear( $container );
+		} elseif ( !$this->connContainerCache->has( $container, 'obj' ) ) {
 			$this->primeContainerCache( array( $container ) ); // check persistent cache
 		}
-		if ( !isset( $this->connContainers[$container] ) ) {
+		if ( !$this->connContainerCache->has( $container, 'obj' ) ) {
 			$contObj = $conn->get_container( $container );
 			// NoSuchContainerException not thrown: container must exist
-			if ( count( $this->connContainers ) >= $this->maxContCacheSize ) { // trim cache?
-				reset( $this->connContainers );
-				unset( $this->connContainers[key( $this->connContainers )] );
-			}
-			$this->connContainers[$container] = $contObj; // cache it
+			$this->connContainerCache->set( $container, 'obj', $contObj ); // cache it
 			if ( !$bypassCache ) {
 				$this->setContainerCache( $container, // update persistent cache
 					array( 'bytes' => $contObj->bytes_used, 'count' => $contObj->object_count )
 				);
 			}
 		}
-		return $this->connContainers[$container];
+		return $this->connContainerCache->get( $container, 'obj' );
 	}
 
 	/**
@@ -1198,7 +1242,7 @@ class SwiftFileBackend extends FileBackendStore {
 	protected function createContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
 		$contObj = $conn->create_container( $container );
-		$this->connContainers[$container] = $contObj; // cache it
+		$this->connContainerCache->set( $container, 'obj', $contObj ); // cache
 		return $contObj;
 	}
 
@@ -1211,7 +1255,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	protected function deleteContainer( $container ) {
 		$conn = $this->getConnection(); // Swift proxy connection
-		unset( $this->connContainers[$container] ); // purge cache
+		$this->connContainerCache->clear( $container ); // purge
 		$conn->delete_container( $container );
 	}
 
@@ -1223,13 +1267,9 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$conn = $this->getConnection(); // Swift proxy connection
 			foreach ( $containerInfo as $container => $info ) {
-				$this->connContainers[$container] = new CF_Container(
-					$conn->cfs_auth,
-					$conn->cfs_http,
-					$container,
-					$info['count'],
-					$info['bytes']
-				);
+				$contObj = new CF_Container( $conn->cfs_auth, $conn->cfs_http,
+					$container, $info['count'], $info['bytes'] );
+				$this->connContainerCache->set( $container, 'obj', $contObj );
 			}
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, null, __METHOD__, array() );

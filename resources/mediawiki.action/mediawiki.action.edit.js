@@ -24,7 +24,7 @@
 				selectText: selectText
 			};
 		}
-		var $image = $('<img>', {
+		var $image = $( '<img>', {
 			width : 23,
 			height: 22,
 			src   : b.imageFile,
@@ -96,7 +96,7 @@
 	mw.toolbar = toolbar;
 
 	$( document ).ready( function () {
-		var buttons, i, b, iframe;
+		var buttons, i, b, $iframe;
 
 		// currentFocus is used to determine where to insert tags
 		currentFocused = $( '#wpTextbox1' );
@@ -154,13 +154,14 @@
 
 		// HACK: make currentFocused work with the usability iframe
 		// With proper focus detection support (HTML 5!) this'll be much cleaner
-		iframe = $( '.wikiEditor-ui-text iframe' );
-		if ( iframe.length > 0 ) {
-			$( iframe.get( 0 ).contentWindow.document )
+		// TODO: Get rid of this WikiEditor code from MediaWiki core!
+		$iframe = $( '.wikiEditor-ui-text iframe' );
+		if ( $iframe.length > 0 ) {
+			$( $iframe.get( 0 ).contentWindow.document )
 				// for IE
-				.add( iframe.get( 0 ).contentWindow.document.body )
+				.add( $iframe.get( 0 ).contentWindow.document.body )
 				.focus( function () {
-					currentFocused = iframe;
+					currentFocused = $iframe;
 				} );
 		}
 	});

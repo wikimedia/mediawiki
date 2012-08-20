@@ -1076,10 +1076,10 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'large-file' => 'De Dateigriße sullte noach Meeglichkeet $1 ne ieberschreita. Diese Datei ies $2 gruß.',
 'largefileserver' => 'De Datei ies grißer ols de vum Server eengestallte Maximalgriße.',
 'emptyfile' => 'De huchgeloadene Datei ies laar. Dar Grund koan a Tippfahler eim Dateinoama sei. Bitte kontrolliere, ob du de Datei wirklich huchloada wielst.',
-'fileexists' => "Anne Datei miet diesem Noama existiert bereits.
-Bitte priefe '''<tt>[[:$1]]</tt>''', wenn du dir ne secher biest, ob du se ändern wielst.
-[[$1|thumb]]",
-'file-thumbnail-no' => "Dar Dateinoame beginnt miet '''<tt>$1</tt>'''. Dies deutet uff a Bild verringerter Griße ''(thumbnail)'' hin.
+'fileexists' => 'Anne Datei miet diesem Noama existiert bereits.
+Bitte priefe <strong>[[:$1]]</strong>, wenn du dir ne secher biest, ob du se ändern wielst.
+[[$1|thumb]]',
+'file-thumbnail-no' => "Dar Dateinoame beginnt miet <strong>$1</strong>. Dies deutet uff a Bild verringerter Griße ''(thumbnail)'' hin.
 Bitte priefe, ob du doas Bild ei voller Ufflesung vorliegen host und loade dieses under damm Originalnoama huch.",
 'file-exists-duplicate' => 'Diese Datei ies a Duplikat dar fulgenda {{PLURAL:$1|Datei|$1 Dateien}}:',
 'file-deleted-duplicate' => 'Anne identische Datei dieser Datei ([[:$1]]) wurde frieher geläscht. Ieberpriefe doas Läsch-Logbuch, bevor du se huchlädst.',
@@ -1192,7 +1192,7 @@ Anne [[Special:WhatLinksHere/$2|vullständige Liste]] ies verfiegbar.',
 
 # MIME search
 'mimesearch' => 'Suche noach MIME-Typ',
-'mimesearch-summary' => 'Uff dieser Spezialseyte kinna de Dateien noach damm MIME-Typ gefiltert waan. Die Eingabe muuß emmer dann Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Dateibeschreibungsseyte).',
+'mimesearch-summary' => 'Uff dieser Spezialseyte kinna de Dateien noach damm MIME-Typ gefiltert waan. Die Eingabe muuß emmer dann Medien- und Subtyp beinhalten: <code>image/jpeg</code> (siehe Dateibeschreibungsseyte).',
 'download' => 'Herunderloada',
 
 # Unwatched pages
@@ -1356,7 +1356,7 @@ Siehe au de Liste der [[Special:WantedCategories|gewinschta Kategorien]].',
 # Special:LinkSearch
 'linksearch-ns' => 'Noamensraum:',
 'linksearch-ok' => 'Sucha',
-'linksearch-text' => 'Diese Spezialseite ermeegliecht de Suche noach Seita, ei denen bestimmte Weblinks enthaala sein. Dabei kinna Wildcards wie beispielsweise <tt>*.example.com</tt> benutzt waan.<br />Understitzte Protokolle: <tt>$1</tt>',
+'linksearch-text' => 'Diese Spezialseite ermeegliecht de Suche noach Seita, ei denen bestimmte Weblinks enthaala sein. Dabei kinna Wildcards wie beispielsweise <code>*.example.com</code> benutzt waan.<br />Understitzte Protokolle: <code>$1</code>',
 'linksearch-line' => '$1 ies verlinkt vun $2',
 'linksearch-error' => 'Wildcards kinna ock oam Oanfang dar URL verwendet waan.',
 

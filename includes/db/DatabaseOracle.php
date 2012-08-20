@@ -979,11 +979,6 @@ class DatabaseOracle extends DatabaseBase {
 		}
 	}
 
-	/* Not even sure why this is used in the main codebase... */
-	function limitResultForUpdate( $sql, $num ) {
-		return $sql;
-	}
-
 	/* defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}'; */
 	function sourceStream( $fp, $lineCallback = false, $resultCallback = false,
 		$fname = 'DatabaseOracle::sourceStream', $inputCallback = false ) {

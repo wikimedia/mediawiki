@@ -1151,9 +1151,9 @@ Po håyner ou cweri des fitchîs k' ont ddja stî rçuvous, alez sol [[Special:F
 Les (r)eberwetaedjes sont eto metos sol [[Special:Log/upload|djournå des eberwetaedjes]], les disfaçaedjes sol [[Special:Log/delete|ci des disfaçaedjes]].
 
 Po mete on fitchî dins ene pådje, eployîz on loyén del fôme:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitchî.jpg]]</nowiki></tt>''' po-z eployî l' modêye e grandeu oridjinnåle do fitchî
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitchî.png|200px|thumb|left|tecse di rawete]]</nowiki></tt>''' po håyner so ene lårdjeur di 200 picsels dins ene boesse (''thumb'') sol hintche (''left''; metoz ''right'' pol mete sol droete) avou «tecse di rawete» come discrijhaedje
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitchî.ogg]]</nowiki></tt>''' po fé on loyén viè l' fitchî, sins l' håyner",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitchî.jpg]]</nowiki></code>''' po-z eployî l' modêye e grandeu oridjinnåle do fitchî
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fitchî.png|200px|thumb|left|tecse di rawete]]</nowiki></code>''' po håyner so ene lårdjeur di 200 picsels dins ene boesse (''thumb'') sol hintche (''left''; metoz ''right'' pol mete sol droete) avou «tecse di rawete» come discrijhaedje
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fitchî.ogg]]</nowiki></code>''' po fé on loyén viè l' fitchî, sins l' håyner",
 'uploadlog' => 'djournå des eberwetaedjes',
 'uploadlogpage' => 'Djournå des eberwetaedjes',
 'uploadlogpagetext' => 'Chal pa dzo li djivêye des dierins eberwetaedjes.
@@ -1170,7 +1170,7 @@ Loukîz al [[Special:NewFiles|galreye des noveas fitchîs]] po ene vuwe pus vizu
 'badfilename' => "Li no d' l' imådje a stî candjî a «$1».",
 'largefileserver' => "Ci fitchî ci est pus pezant ki çou k' li sierveu est apontyî po-z accepter.",
 'emptyfile' => "I shonnreut kel fitchî k' vos eberwetez soeye vude. Çoula pout esse cåze d' ene aroke di tapaedje dins l' no do fitchî. Acertinez si vos vloz evoyî po do bon ç' fitchî ci, s' i vs plait.",
-'fileexists' => "On fitchî avou ç' no la egzistêye dedja, loukîz s' i vs plait a '''<tt>[[:$1]]</tt>''' po vs acertiner ki vos vloz bén replaecî l' fitchî avou l' ci ki vos eberwetez asteure, oubén si vos l' voloz eberweter dizo èn ôte no.
+'fileexists' => "On fitchî avou ç' no la egzistêye dedja, loukîz s' i vs plait a <strong>[[:$1]]</strong> po vs acertiner ki vos vloz bén replaecî l' fitchî avou l' ci ki vos eberwetez asteure, oubén si vos l' voloz eberweter dizo èn ôte no.
 [[$1|thumb]]",
 'fileexists-forbidden' => "I gn a ddja on fitchî avou ç' no la, et n' pout nén esse sipotchî.
 Si vos l' voloz tot l' minme eberweter, rivnoz en erî et s' reberwetez l' fitchî dizo èn ôte no.
@@ -1413,7 +1413,7 @@ Loukîz eto [[Special:WantedCategories|les categoreyes dimandêyes]].',
 'linksearch-ok' => 'Cweri',
 'linksearch-text' => 'Des caracteres «djokers» polèt esse eployîs, metans «*.wikipedia.org».
 Mins i fåt pol moens on dominne di prumî livea, metans «*.org»<br />
-Protocoles ricnoxhous: <tt>$1</tt> (nelzès metoz nén dins vosse tchinne di cweraedje).',
+Protocoles ricnoxhous: <code>$1</code> (nelzès metoz nén dins vosse tchinne di cweraedje).',
 'linksearch-line' => "$1 est loyî a pårti d' $2",
 'linksearch-error' => "Les caracteres djokers èn polèt esse eployîs k' a l' atake d' on no d' dominne ou d' lodjoe.",
 

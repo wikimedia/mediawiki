@@ -28,7 +28,7 @@
  *
  * First implemented with MediaWiki 1.17, the Message class is intented to
  * replace the old wfMsg* functions that over time grew unusable.
- * @see https://www.mediawiki.org/wiki/New_messages_API for equivalences
+ * @see https://www.mediawiki.org/wiki/Manual:Messages_API for equivalences
  * between old and new functions.
  *
  * You should use the wfMessage() global function which acts as a wrapper for
@@ -329,6 +329,7 @@ class Message {
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
 	 * turned off.
+	 * @since 1.17
 	 * @param $lang Mixed: language code or Language object.
 	 * @return Message: $this
 	 */
@@ -352,6 +353,7 @@ class Message {
 	/**
 	 * Request the message in the wiki's content language,
 	 * unless it is disabled for this message.
+	 * @since 1.17
 	 * @see $wgForceUIMsgAsContentMsg
 	 * @return Message: $this
 	 */

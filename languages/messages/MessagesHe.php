@@ -393,7 +393,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'הסתרת עריכות של משתמשים רשומים ברשימת המעקב',
 'tog-watchlisthideanons' => 'הסתרת עריכות של משתמשים אנונימיים ברשימת המעקב',
 'tog-watchlisthidepatrolled' => 'הסתרת עריכות בדוקות ברשימת המעקב',
-'tog-nolangconversion' => 'ביטול המרת גרסאות שפה',
 'tog-ccmeonemails' => 'לשלוח אליי העתקים של הודעות דואר אלקטרוני ששלחתי למשתמשים אחרים',
 'tog-diffonly' => 'ביטול הצגת תוכן הדף מתחת להשוואות הגרסאות',
 'tog-showhiddencats' => 'הצגת קטגוריות מוסתרות',
@@ -619,6 +618,10 @@ $1',
 'youhavenewmessages' => 'יש לך $1 ($2).',
 'newmessageslink' => 'הודעות חדשות',
 'newmessagesdifflink' => 'השוואה לגרסה הקודמת',
+'youhavenewmessagesfromusers' => 'יש לך $1 {{PLURAL:$3|ממשתמש אחר|מ־$3 משתמשים}} ($2).',
+'youhavenewmessagesmanyusers' => 'יש לך $1 ממשתמשים רבים ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|הודעה חדשה|הודעות חדשות}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|שינוי אחרון|שינויים אחרונים}}',
 'youhavenewmessagesmulti' => 'יש לך הודעות חדשות ב־$1',
 'editsection' => 'עריכה',
 'editold' => 'עריכה',
@@ -672,10 +675,10 @@ $1',
 'databaseerror' => 'שגיאת בסיס נתונים',
 'dberrortext' => 'אירעה שגיאת תחביר בשאילתה לבסיס הנתונים.
 שגיאה זו עלולה להעיד על באג בתוכנה.
-השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
-<blockquote><tt>$1</tt></blockquote>
-מתוך הפונקציה "<tt>$2</tt>".
-בסיס הנתונים החזיר את השגיאה "<tt>$3: $4</tt>".',
+השאילתה האחרונה לבסיס הנתונים שהתכונה ניסתה להריץ הייתה:
+<blockquote lang="en" dir="ltr"><code>$1</code></blockquote>
+מתוך הפונקציה "<code lang="en" dir="ltr">$2</code>".
+בסיס הנתונים החזיר את השגיאה הבאה: "<samp lang="en" dir="ltr">$3: $4</samp>".',
 'dberrortextcl' => 'אירעה שגיאת תחביר בשאילתה לבסיס הנתונים.
 השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
 "$1"
@@ -770,6 +773,7 @@ $2',
 'remembermypassword' => 'שמירת הכניסה שלי בדפדפן הזה (ל{{PLURAL:$1|יום אחד|־$1 ימים|יומיים}} לכל היותר)',
 'securelogin-stick-https' => 'המשך שימוש ב־HTTPS אחרי הכניסה',
 'yourdomainname' => 'המתחם שלך:',
+'password-change-forbidden' => 'אינכם יכולים לשנות סיסמאות באתר זה.',
 'externaldberror' => 'הייתה שגיאה בבסיס הנתונים של ההזדהות, או שאינכם רשאים לעדכן את חשבונכם החיצוני.',
 'login' => 'כניסה לחשבון',
 'nav-login-createaccount' => 'כניסה לחשבון / הרשמה',
@@ -1020,16 +1024,19 @@ $2
 'noarticletext-nopermission' => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
 או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].</span>',
+'missing-revision' => 'גרסה #$1 של הדף "{{PAGENAME}}" אינה קיימת.
+
+זה נגרם בדרך כלל על־ידי לחיצה על קישור ישן לגרסה קודמת של דף שנמחק.
+אפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
 'userpage-userdoesnotexist' => 'חשבון המשתמש "$1" אינו רשום.
 אנא בדקו אם ברצונכם ליצור/לערוך דף זה.',
 'userpage-userdoesnotexist-view' => 'חשבון המשתמש "$1" אינו רשום.',
 'blocked-notice-logextract' => 'משתמש זה חסום כרגע.
 פעולת יומן החסימות האחרונה מוצגת להלן:',
-'clearyourcache' => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (Cache) של הדפדפן כדי להבחין בשינויים.
+'clearyourcache' => "'''הערה:''' לאחר השמירה, עליכם לנקות את זיכרון המטמון (cache) של הדפדפן כדי להבחין בשינויים.
 * '''פיירפוקס / ספארי:''' לחצו על Shift בעת לחיצתכם על '''העלה מחדש''' (Reload), או הקישו על ''Ctrl-F5'' או על ''Ctrl-R'' (או על ''<span dir=\"ltr\">⌘-R</span>'' במחשב מק)
-* '''Google Chrome:''' לחצו על ''Ctrl-Shift-R'' (או על ''<span dir=\"ltr\">⌘-Shift-R</span>'' במק)
+* '''גוגל כרום:''' לחצו על ''Ctrl-Shift-R'' (או על ''<span dir=\"ltr\">⌘-Shift-R</span>'' במק)
 * '''אינטרנט אקספלורר:''' לחצו על Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl-F5''
-* '''Konqueror:''' לחצו על '''טען מחדש''' (Reload) או הקישו על ''F5''
 * '''אופרה''': נקו את המטמון ב־''Tools‏ ← Preferences''",
 'usercssyoucanpreview' => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גיליון ה־CSS החדש שלכם לפני השמירה.",
 'userjsyoucanpreview' => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
@@ -1146,6 +1153,7 @@ $2
 'expansion-depth-exceeded-warning' => 'עומק ההרחבה בדף גדול מדי',
 'parser-unstrip-loop-warning' => 'נמצאה לולאה בפריסה',
 'parser-unstrip-recursion-limit' => 'עומק הרקורסיה של הפריסה עבר את המגבלה ($1)',
+'converter-manual-rule-error' => 'התגלתה שגיאה בכלל המרת שפה ידני',
 
 # "Undo" feature
 'undo-success' => 'ניתן לבטל את העריכה. אנא בִדקו את השוואת הגרסאות למטה כדי לוודא שזה מה שאתם רוצים לעשות, ואז שמרו את השינויים למטה כדי לבצע את ביטול העריכה.',
@@ -1332,6 +1340,10 @@ $1",
 'editundo' => 'ביטול',
 'diff-multi' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של {{PLURAL:$2|משתמש אחד|$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|גרסת ביניים אחת|$1 גרסאות ביניים}} של יותר {{PLURAL:$2|ממשתמש אחד|מ־$2 משתמשים}} {{PLURAL:$1|אינה מוצגת|אינן מוצגות}})',
+'difference-missing-revision' => '{{PLURAL:$2|גרסה אחת|$2 גרסאות}} של ההבדל הזה בין שתי גרסאות ($1) {{PLURAL:$2|לא נמצאה|לא נמצאו}}.
+
+זה נגרם בדרך כלל על־ידי לחיצה על קישור ישן להבדל בין גרסאות של דף שנמחק.
+אפשר למצוא פרטים ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].',
 
 # Search results
 'searchresults' => 'תוצאות החיפוש',
@@ -1747,9 +1759,9 @@ $1",
 כדי לראות או לחפש קבצים שהועלו בעבר אנא פנו ל[[Special:FileList|רשימת הקבצים שהועלו]], וכמו כן, העלאות (כולל העלאות של גרסה חדשה) מוצגות ב[[Special:Log/upload|יומן ההעלאות]], ומחיקות ב[[Special:Log/delete|יומן המחיקות]].
 
 כדי לכלול קובץ בדף, השתמשו בקישור באחת הצורות הבאות:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' לשימוש בגרסה המלאה של הקובץ
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|טקסט תיאור]]</nowiki></tt>''' לשימוש בגרסה מוקטנת ברוחב 200 פיקסלים בתיבה בצד שמאל של הדף, עם 'טקסט תיאור' כתיאור
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' לקישור ישיר לקובץ בלי להציגו",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' לשימוש בגרסה המלאה של הקובץ
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|טקסט תיאור]]</nowiki></code>''' לשימוש בגרסה מוקטנת ברוחב 200 פיקסלים בתיבה בצד שמאל של הדף, עם 'טקסט תיאור' כתיאור
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' לקישור ישיר לקובץ בלי להציגו",
 'upload-permitted' => 'סוגי קבצים מותרים: $1.',
 'upload-preferred' => 'סוגי קבצים מומלצים: $1.',
 'upload-prohibited' => 'סוגי קבצים אסורים: $1.',
@@ -1794,20 +1806,20 @@ $1",
 'largefileserver' => 'גודל הקובץ שהעליתם חורג ממגבלת השרת.',
 'emptyfile' => 'נראה שהקובץ שהעליתם ריק. ייתכן שהסיבה לכך היא שגיאת הקלדה בשם הקובץ. אנא ודאו שזהו הקובץ שברצונכם להעלות.',
 'windows-nonascii-filename' => 'אתר ויקי זה אינו תומך בשמות קבצים עם תווים מיוחדים או תווים שאינם באנגלית.',
-'fileexists' => "קובץ בשם זה כבר קיים, אנא בדקו את '''<tt>[[:$1]]</tt>''' אם אינכם בטוחים שברצונכם להחליף אותו.
-[[$1|thumb]]",
-'filepageexists' => "דף תיאור הקובץ עבור קובץ זה כבר נוצר ב'''<tt>[[:$1]]</tt>''', אך לא קיים קובץ בשם זה.
+'fileexists' => 'קובץ בשם זה כבר קיים, אנא בדקו את <strong>[[:$1]]</strong> אם אינכם בטוחים שברצונכם להחליף אותו.
+[[$1|thumb]]',
+'filepageexists' => 'דף תיאור הקובץ עבור קובץ זה כבר נוצר ב<strong>[[:$1]]</strong>, אך לא קיים קובץ בשם זה.
 תיאור הקובץ שתכתבו לא יופיע בדף תיאור הקובץ.
-כדי לגרום לו להופיע שם, יהיה עליכם לערוך אותו ידנית. [[$1|thumb]]",
-'fileexists-extension' => "קובץ עם שם דומה כבר קיים: [[$2|thumb]]
-* שם הקובץ המועלה: '''<tt>[[:$1]]</tt>'''
-* שם הקובץ הקיים: '''<tt>[[:$2]]</tt>'''
-אנא בחרו שם אחר.",
-'fileexists-thumbnail-yes' => "הקובץ הוא כנראה תמונה מוקטנת (ממוזערת). [[$1|thumb]]
-אנא בדקו את הקובץ '''<tt>[[:$1]]</tt>'''.
-אם הקובץ שבדקתם הוא אותה התמונה בגודל מקורי, אין זה הכרחי להעלות גם תמונה ממוזערת.",
-'file-thumbnail-no' => "שם הקובץ מתחיל עם '''<tt>$1</tt>'''. נראה שזוהי תמונה מוקטנת (ממוזערת).
-אם התמונה בגודל מלא מצויה ברשותכם, אנא העלו אותה ולא את התמונה הממוזערת; אחרת, אנא שנו את שם הקובץ.",
+כדי לגרום לו להופיע שם, יהיה עליכם לערוך אותו ידנית. [[$1|thumb]]',
+'fileexists-extension' => 'קובץ עם שם דומה כבר קיים: [[$2|thumb]]
+* שם הקובץ המועלה: <strong>[[:$1]]</strong>
+* שם הקובץ הקיים: <strong>[[:$2]]</strong>
+אנא בחרו שם אחר.',
+'fileexists-thumbnail-yes' => 'הקובץ הוא כנראה תמונה מוקטנת (ממוזערת). [[$1|thumb]]
+אנא בדקו את הקובץ <strong>[[:$1]]</strong>.
+אם הקובץ שבדקתם הוא אותה התמונה בגודל מקורי, אין זה הכרחי להעלות גם תמונה ממוזערת.',
+'file-thumbnail-no' => 'שם הקובץ מתחיל עם <strong>$1</strong>. נראה שזוהי תמונה מוקטנת (ממוזערת).
+אם התמונה בגודל מלא מצויה ברשותכם, אנא העלו אותה ולא את התמונה הממוזערת; אחרת, אנא שנו את שם הקובץ.',
 'fileexists-forbidden' => 'קובץ בשם זה כבר קיים, ואינכם יכולים להחליף אותו.
 אם אתם עדיין מעוניינים להעלות קובץ זה, אנא חזרו לדף הקודם והעלו את הקובץ תחת שם חדש.
 [[File:$1|thumb|center|$1]]',
@@ -2072,7 +2084,7 @@ $1',
 # MIME search
 'mimesearch' => 'חיפוש MIME',
 'mimesearch-summary' => 'דף זה מאפשר את סינון הקבצים לפי סוג ה־MIME שלהם.
-סוג ה־MIME בנוי בצורה "סוג תוכן/סוג משני", לדוגמה <tt>image/jpeg</tt>.',
+סוג ה־MIME בנוי בצורה "סוג תוכן/סוג משני", לדוגמה <code>image/jpeg</code>.',
 'mimetype' => 'סוג MIME:',
 'download' => 'הורדה',
 
@@ -2106,7 +2118,7 @@ $1',
 'statistics-pages' => 'דפים',
 'statistics-pages-desc' => 'כל הדפים באתר הוויקי, כולל דפי שיחה, הפניות, וכדומה',
 'statistics-files' => 'קבצים שהועלו',
-'statistics-edits' => 'העריכות מאז תחילת הפעולה של {{SITENAME}}',
+'statistics-edits' => 'עריכות של דפים מאז התקנת {{SITENAME}}',
 'statistics-edits-average' => 'מספר העריכות הממוצע לדף',
 'statistics-views-total' => 'מספר הצפיות הכולל',
 'statistics-views-total-desc' => 'צפיות בדפים שאינם קיימים ובדפים מיוחדים אינן כלולות',
@@ -2118,9 +2130,9 @@ $1',
 
 'disambiguations' => 'דפים שמקשרים לדפי פירושונים',
 'disambiguationspage' => 'Template:פירושונים',
-'disambiguations-text' => "הדפים הבאים מקשרים ל'''דפי פירושונים'''.
-עליהם לקשר לדף הנושא הרלוונטי במקום זאת.<br />
-הדף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מהדף [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "בדפים הבאים יש לפחות קישור אחד ל'''דף פירושונים'''.
+ייתכן שעליהם לקשר במקום זאת לדף מתאים יותר.<br />
+דף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מהדף [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'הפניות כפולות',
 'doubleredirectstext' => 'בדף הזה מופיעה רשימת דפי הפניה שמפנים לדפי הפניה אחרים.
@@ -2274,7 +2286,7 @@ $1',
 'linksearch-ok' => 'חיפוש',
 'linksearch-text' => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.
 נדרשת לפחות סיומת אינטרנט (TLD), למשל <span dir="ltr">"*.org"</span>.<br />
-פרוטוקולים נתמכים: <tt dir="ltr">$1</tt> (אין להוסיף אותם בחיפוש).',
+פרוטוקולים נתמכים: <tt dir="ltr">$1</code> (אין להוסיף אותם בחיפוש).',
 'linksearch-line' => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 
@@ -2463,6 +2475,8 @@ $UNWATCHURL
 'rollback' => 'שחזור עריכות',
 'rollback_short' => 'שחזור',
 'rollbacklink' => 'שחזור',
+'rollbacklinkcount' => 'שחזור {{PLURAL:$1|עריכה אחת|$1 עריכות}}',
+'rollbacklinkcount-morethan' => 'שחזור יותר מ{{PLURAL:$1|עריכה אחת|־$1 עריכות}}',
 'rollbackfailed' => 'השחזור נכשל',
 'cantrollback' => 'לא ניתן לשחזר את העריכה;
 התורם האחרון הוא היחיד שכתב בדף זה.',
@@ -2956,6 +2970,7 @@ $1',
 'import-interwiki-templates' => 'ייבוא גם של כל התבניות המוכללות בדף',
 'import-interwiki-submit' => 'ייבוא',
 'import-interwiki-namespace' => 'העתקה למרחב השם:',
+'import-interwiki-rootpage' => 'דף הבסיס של היעד (לא חובה):',
 'import-upload-filename' => 'שם הקובץ:',
 'import-comment' => 'הערה:',
 'importtext' => 'נא לייצא את הקובץ מאתר המקור באמצעות ב[[Special:Export|כלי הייצוא]].
@@ -2989,6 +3004,9 @@ $1',
 'import-error-interwiki' => 'לא ניתן לייבא את הדף "$1" כיוון ששמו שמור לקישור חיצוני (בין־ויקי).',
 'import-error-special' => 'לא ניתן לייבא את הדף "$1" כיוון שהוא שייך למרחב שם מיוחד שלא יכול להכיל דפים.',
 'import-error-invalid' => 'לא ניתן לייבא את הדף "$1" כיוון ששמו אינו תקין.',
+'import-options-wrong' => '{{PLURAL:$2|אפשרות שגויה|אפשרויות שגויות}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'לדף הבסיס שניתן יש כותרת לא תקינה.',
+'import-rootpage-nosubpage' => 'מרחב השם "$1" של דף הבסיס אינו מאפשר דפי־משנה.',
 
 # Import log
 'importlogpage' => 'יומן ייבוא',
@@ -3940,7 +3958,7 @@ $5
 * <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other' => 'דפים מיוחדים אחרים',
-'specialpages-group-login' => 'כניסה / הרשמה לחשבון',
+'specialpages-group-login' => 'כניסה לחשבון / הרשמה',
 'specialpages-group-changes' => 'שינויים אחרונים ויומנים',
 'specialpages-group-media' => 'קובצי מדיה והעלאות',
 'specialpages-group-users' => 'משתמשים והרשאות',
@@ -4079,6 +4097,7 @@ $5
 'api-error-file-too-large' => 'הקובץ ששלחתם היה גדול מדי.',
 'api-error-filename-tooshort' => 'שם הקובץ קצר מדי.',
 'api-error-filetype-banned' => 'סוג קובץ זה חסום.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|הוא סוג קובץ אסור להעלאה|הם סוגי קבצים אסורים להעלאה}}. {{PLURAL:$3|סוג הקובץ המותר הוא|סוגי הקבצים המותרים הם}} $2.',
 'api-error-filetype-missing' => 'חסרה סיומת לשם הקובץ.',
 'api-error-hookaborted' => 'השינוי שניסיתם לעשות נחסם על ידי הרחבה.',
 'api-error-http' => 'שגיאה פנימית: לא ניתן להתחבר לשרת.',

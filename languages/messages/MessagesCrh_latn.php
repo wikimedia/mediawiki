@@ -142,7 +142,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Közetüv cedvelimde qaydlı qullanıcılar tarafından yapılğan deñişmelerni kösterme',
 'tog-watchlisthideanons' => 'Közetüv cedvelimde qaydsız (anonim) qullanıcılar tarafından yapılğan deñişmelerni kösterme',
 'tog-watchlisthidepatrolled' => 'Közetüv cedvelinde teşkerilgen deñişmelerni gizle',
-'tog-nolangconversion' => 'Yazuv sisteması variantları deñiştirüvni işletme',
 'tog-ccmeonemails' => 'Diger qullanıcılarğa yollağan mektüplerimniñ kopiyalarını maña da yolla',
 'tog-diffonly' => 'Teñeştirme saifelerinde saifeniñ esas mündericesini kösterme',
 'tog-showhiddencats' => 'Gizli kategoriyalarnı köster',
@@ -709,10 +708,10 @@ Siziñ deñişmeleriñiz astında kösterildi. Şimdi yapqan deñişmeleriñizni
 'editingold' => "'''DİQQAT: Saifeniñ eski bir versiyasını deñiştireyatasız.
 Saifeni saqlağanıñızdan soñ bu tarihlı versiyadan künümizge qadar olğan deñişmeler yoq olacaq.'''",
 'yourdiff' => 'Farqlar',
-'copyrightwarning' => "'''Lütfen, diqqat:''' {{SITENAME}} saytına qoşulğan bütün isseler <i>$2</i> muqavelesi dairesindedir (tafsilât içün $1 saifesine baqıñız).
+'copyrightwarning' => "'''Lütfen, diqqat:''' {{SITENAME}} saytına qoşulğan bütün isseler $2 muqavelesi dairesindedir (tafsilât içün $1 saifesine baqıñız).
 Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini ya da azat tarzda ve sıñırsızca başqa yerlerge dağıtılmasını istemeseñiz, isse qoşmañız.<br />
 Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan kopiyalanğanına garantiya bergen olasıñız.<br />
-'''<center>MÜELLİFLİK AQQINEN QORÇALANĞAN İÇ BİR METİNNİ MINDA RUHSETSİZ QOŞMAÑIZ!</center>'''",
+'''MÜELLİFLİK AQQINEN QORÇALANĞAN İÇ BİR METİNNİ MINDA RUHSETSİZ QOŞMAÑIZ!'''",
 'copyrightwarning2' => "'''Lütfen, diqqat:''' {{SITENAME}} saytına siz qoşqan bütün isseler başqa bir qullanıcı tarafından deñiştirilip ya da yoq etilip olur. Qoşqan isseñizniñ başqa insanlar tarafından acımasızca deñiştirilmesini ya da azat tarzda ve sıñırsızca başqa yerlerge dağıtılmasını istemeseñiz, isse qoşmañız.<br />
 Ayrıca, mında isse qoşıp, bu isseniñ özüñiz tarafından yazılğanına, ya da cemaatqa açıq bir menbadan ya da başqa bir azat menbadan kopiyalanğanına garantiya bergen olasıñız ($1 baqıñız).<br />
 '''MÜELLİFLİK AQQINEN QORÇALANĞAN İÇ BİR METİNNİ MINDA RUHSETSİZ QOŞMAÑIZ!'''",
@@ -1092,9 +1091,9 @@ Eger bildirseñiz, saifelerdeki deñişmelerni kimniñ yapqanını köstermek i�
 Evelce yüklengen resim tapmaq ya da baqmaq içün [[Special:FileList|yüklengen fayllar cedveline]] keçiñiz, bundan ğayrı fayl yüklenüv ve yoq etilüv qaydlarını [[Special:Log/upload|yüklenüv jurnalında]] ve [[Special:Log/delete|yoq etilüv jurnalında]] tapıp olasıñız.
 
 Saifede resim qullanmaq içün böyle şekilli bağlantılar qullanıñız:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' faylnıñ tam versiyasını qullanmaq içün,
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|tarif]]</nowiki></tt>''' bir tarif ile 200 piksel bir resim qullanmaq içün,
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' faylğa vastasız bağlantı içün.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' faylnıñ tam versiyasını qullanmaq içün,
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|tarif]]</nowiki></code>''' bir tarif ile 200 piksel bir resim qullanmaq içün,
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' faylğa vastasız bağlantı içün.",
 'upload-permitted' => 'İzinli fayl çeşitleri: $1.',
 'upload-preferred' => 'İstenilgen fayl çeşitleri: $1.',
 'upload-prohibited' => 'Yasaqlı fayl çeşitleri: $1.',
@@ -1125,21 +1124,21 @@ Daa körgezmeli körüniş içün [[Special:NewFiles|yañı fayllar galereyasın
 'largefileserver' => 'Bu faylnıñ uzunlığı serverde izin berilgenden büyükçedir.',
 'emptyfile' => 'İhtimal ki, yüklengen fayl boş. İhtimallı sebep - fayl adlandıruv
 hatasıdır. Lütfen, tamam bu faylnı yüklemege isteycek ekeniñizni teşkeriñiz.',
-'fileexists' => "Bu isimde bir fayl endi bar.
-Lütfen, eger siz deñiştirmekten emin olmasañız başta '''<tt>[[:$1]]</tt>''' faylına köz taşlañız.
-[[$1|thumb]]",
-'filepageexists' => "Bu fayl içün tasvir saifesi endi yapılğan ('''<tt>[[:$1]]</tt>'''), lâkin bu adda bir fayl yoqtır.
+'fileexists' => 'Bu isimde bir fayl endi bar.
+Lütfen, eger siz deñiştirmekten emin olmasañız başta <strong>[[:$1]]</strong> faylına köz taşlañız.
+[[$1|thumb]]',
+'filepageexists' => 'Bu fayl içün tasvir saifesi endi yapılğan (<strong>[[:$1]]</strong>), lâkin bu adda bir fayl yoqtır.
 Yazılğan tasviriñiz fayl saifesinde kösterilmeycek.
 Tasviriñiz anda kösterilecegi içün, bunı qolnen deñiştirmek kereksiñiz.
-[[$1|thumb]]",
-'fileexists-extension' => "Buña oşağan adda bir fayl bar: [[$2|thumb]]
-* Yüklengen faylnıñ adı: '''<tt>[[:$1]]</tt>'''
-* Mevcut olğan faylnıñ adı: '''<tt>[[:$2]]</tt>'''
-Lütfen, başqa bir ad saylap yazıñız.",
-'fileexists-thumbnail-yes' => "Belki de bu fayl bir ufaqlaştırılğan kopiyadır (thumbnail). [[$1|thumb]]
-Lütfen, '''<tt>[[:$1]]</tt>''' faylını teşkeriñiz.
-Eger şu fayl aynı şu resim olsa, onıñ ufaqlaştırılğan kopiyasını ayrı olaraq yüklemek aceti yoqtır.",
-'file-thumbnail-no' => "Faylnıñ adı '''<tt>$1</tt>'''nen başlana. Belki de bu resimniñ ufaqlaştırılğan bir kopiyasıdır ''(thumbnail)''.
+[[$1|thumb]]',
+'fileexists-extension' => 'Buña oşağan adda bir fayl bar: [[$2|thumb]]
+* Yüklengen faylnıñ adı: <strong>[[:$1]]</strong>
+* Mevcut olğan faylnıñ adı: <strong>[[:$2]]</strong>
+Lütfen, başqa bir ad saylap yazıñız.',
+'fileexists-thumbnail-yes' => 'Belki de bu fayl bir ufaqlaştırılğan kopiyadır (thumbnail). [[$1|thumb]]
+Lütfen, <strong>[[:$1]]</strong> faylını teşkeriñiz.
+Eger şu fayl aynı şu resim olsa, onıñ ufaqlaştırılğan kopiyasını ayrı olaraq yüklemek aceti yoqtır.',
+'file-thumbnail-no' => "Faylnıñ adı <strong>$1</strong>nen başlana. Belki de bu resimniñ ufaqlaştırılğan bir kopiyasıdır ''(thumbnail)''.
 Eger sizde bu resim tam büyükliginde bar olsa, lütfen, onı yükleñiñiz ya da faylnıñ adını deñiştiriñiz.",
 'fileexists-forbidden' => 'Bu isimde bir fayl endi bar, ve üzerine yazılamay.
 Faylıñıznı yañıdan yüklemege isteseñiz, lütfen, keri qaytıp yañı bir isim qullanıñız.
