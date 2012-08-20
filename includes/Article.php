@@ -391,7 +391,7 @@ class Article extends Page {
 		$content = $this->fetchContentObject();
 
 		$this->mContent = ContentHandler::getContentText( $content ); #@todo: get rid of mContent everywhere!
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft, deprecated!
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
 
 		wfProfileOut( __METHOD__ );
 
@@ -679,10 +679,16 @@ class Article extends Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
+					} elseif( !wfRunHooks( 'ArticleContentViewCustom',
+											array( $this->fetchContentObject(), $this->getTitle(),
+													$outputPage ) ) ) {
+
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $outputPage ) ) ) { #FIXME: fetchContent() is deprecated!
+					} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
+																array( $this->fetchContentObject(), $this->getTitle(),
+																		$outputPage ) ) ) {
+
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
@@ -693,7 +699,8 @@ class Article extends Page {
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$outputPage->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions, false );
+							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid,
+																				$parserOptions, false );
 							$outputPage->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
@@ -830,7 +837,7 @@ class Article extends Page {
 		}
 
 		// Give hooks a chance to customise the output
-		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated
+		if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) {
 			$po = $this->mContentObject->getParserOutput( $this->getTitle() );
 			$wgOut->addHTML( $po->getText() );
 		}
@@ -1704,8 +1711,10 @@ class Article extends Page {
 	 * @return ParserOutput or false if the given revsion ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
+		//XXX: bypasses mParserOptions and thus setParserOptions()
+
 		$user = is_null( $user ) ? $this->getContext()->getUser() : $user;
-		$parserOptions = $this->mPage->makeParserOptions( $user ); //XXX: bypasses mParserOptions and thus setParserOptions()
+		$parserOptions = $this->mPage->makeParserOptions( $user );
 
 		return $this->mPage->getParserOutput( $parserOptions, $oldid );
 	}

@@ -825,6 +825,62 @@ abstract class ContentHandler {
 	public function supportsSections() {
 		return false;
 	}
+
+	/**
+	 * Call a legacy hook that uses text instead of Content objects.
+	 * Will log a warning when a matching hook function is registered.
+	 * If the textual representation of the content is changed by the
+	 * hook function, a new Content object is constructed from the new
+	 * text.
+	 *
+	 * @param $event String: event name
+	 * @param $args Array: parameters passed to hook functions
+	 *
+	 * @return Boolean True if no handler aborted the hook
+	 */
+	public static function runLegacyHooks( $event, $args = array() ) {
+		if ( !Hooks::isRegistered( $event ) ) {
+			return true; // nothing to do here
+		}
+
+		wfWarn( "Using obsolete hook $event" );
+
+		// convert Content objects to text
+		$contentObjects = array();
+		$contentTexts = array();
+
+		foreach ( $args as $k => $v ) {
+			if ( $v instanceof Content ) {
+				/* @var Content $v */
+
+				$contentObjects[$k] = $v;
+
+				$v = $v->serialize();
+				$contentTexts[ $k ] = $v;
+				$args[ $k ] = $v;
+			}
+		}
+
+		// call the hook functions
+		$ok = wfRunHooks( $event, $args );
+
+		// see if the hook changed the text
+		foreach ( $contentTexts as $k => $orig ) {
+			/* @var Content $content */
+
+			$modified = $args[ $k ];
+			$content = $contentObjects[$k];
+
+			if ( $modified !== $orig ) {
+				// text was changed, create updated Content object
+				$content = $content->getContentHandler()->unserializeContent( $modified );
+			}
+
+			$args[ $k ] = $content;
+		}
+
+		return $ok;
+	}
 }
 
 /**

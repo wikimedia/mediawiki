@@ -1623,24 +1623,13 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		$flags = $this->checkFlags( $flags );
 
-		# call legacy hook
-		$hook_ok = wfRunHooks( 'ArticleContentSave', array( &$this, &$user, &$content, &$summary,
-			$flags & EDIT_MINOR, null, null, &$flags, &$status ) );
+		# handle hook
+		$hook_args = array( &$this, &$user, &$content, &$summary,
+							$flags & EDIT_MINOR, null, null, &$flags, &$status );
 
-		if ( $hook_ok && Hooks::isRegistered( 'ArticleSave' ) ) { # avoid serialization overhead if the hook isn't present
-			$content_text = $content->serialize();
-			$txt = $content_text; # clone
+		if ( !wfRunHooks( 'ArticleContentSave', $hook_args )
+			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args ) ) {
 
-			$hook_ok = wfRunHooks( 'ArticleSave', array( &$this, &$user, &$txt, &$summary,
-				$flags & EDIT_MINOR, null, null, &$flags, &$status ) ); #TODO: survey extensions using this hook
-
-			if ( $txt !== $content_text ) {
-				# if the text changed, unserialize the new version to create an updated Content object.
-				$content = $content->getContentHandler()->unserializeContent( $txt );
-			}
-		}
-
-		if ( !$hook_ok ) {
 			wfDebug( __METHOD__ . ": ArticleSave or ArticleSaveContent hook aborted save!\n" );
 
 			if ( $status->isOK() ) {
@@ -1869,11 +1858,11 @@ class WikiPage extends Page implements IDBAccessObject {
 			# Update links, etc.
 			$this->doEditUpdates( $revision, $user, array( 'created' => true ) );
 
-			wfRunHooks( 'ArticleInsertComplete', array( &$this, &$user, $serialized, $summary,
-				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+			$hook_args = array( &$this, &$user, $content, $summary,
+								$flags & EDIT_MINOR, null, null, &$flags, $revision );
 
-			wfRunHooks( 'ArticleContentInsertComplete', array( &$this, &$user, $content, $summary,
-				$flags & EDIT_MINOR, null, null, &$flags, $revision ) );
+			ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
+			wfRunHooks( 'ArticleContentInsertComplete', $hook_args );
 		}
 
 		# Do updates right now unless deferral was requested
@@ -1884,11 +1873,11 @@ class WikiPage extends Page implements IDBAccessObject {
 		// Return the new revision (or null) to the caller
 		$status->value['revision'] = $revision;
 
-		wfRunHooks( 'ArticleSaveComplete', array( &$this, &$user, $serialized, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
+		$hook_args = array( &$this, &$user, $content, $summary,
+							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
-		wfRunHooks( 'ArticleContentSaveComplete', array( &$this, &$user, $content, $summary,
-			$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId ) );
+		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
+		wfRunHooks( 'ArticleContentSaveComplete', $hook_args );
 
 		# Promote user to any groups they meet the criteria for
 		$user->addAutopromoteOnceGroups( 'onEdit' );
