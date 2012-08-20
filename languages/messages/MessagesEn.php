@@ -282,6 +282,7 @@ $magicWords = array(
 	'img_text_bottom'         => array( 1,    'text-bottom' ),
 	'img_link'                => array( 1,    'link=$1' ),
 	'img_alt'                 => array( 1,    'alt=$1' ),
+	'img_class'               => array( 1,    'class=$1' ),
 	'int'                     => array( 0,    'INT:' ),
 	'sitename'                => array( 1,    'SITENAME' ),
 	'ns'                      => array( 0,    'NS:' ),
