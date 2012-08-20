@@ -68,7 +68,8 @@ class ApiEditPage extends ApiBase {
 			$name = $titleObj->getPrefixedDBkey();
 			$model = $contentHandler->getModelID();
 
-			$this->dieUsage( "The requested format $contentFormat is not supported for content model $model used by $name", 'badformat' );
+			$this->dieUsage( "The requested format $contentFormat is not supported for content model ".
+							" $model used by $name", 'badformat' );
 		}
 
 		$apiResult = $this->getResult();
@@ -123,7 +124,8 @@ class ApiEditPage extends ApiBase {
 
 			if ( !( $content instanceof TextContent ) ) {
 				// @todo: ContentHandler should have an isFlat() method or some such
-				// @todo: XXX: or perhaps there should be Content::append(), Content::prepend() and Content::supportsConcatenation()
+				// @todo: XXX: or perhaps there should be Content::append(), Content::prepend()
+				// @todo: ...and Content::supportsConcatenation()
 				$mode = $contentHandler->getModelID();
 				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
 			}
@@ -441,9 +443,12 @@ class ApiEditPage extends ApiBase {
 				array( 'code' => 'nosuchsection', 'info' => 'There is no section section.' ),
 				array( 'code' => 'invalidsection', 'info' => 'The section parameter must be set to an integer or \'new\'' ),
 				array( 'code' => 'sectionsnotsupported', 'info' => 'Sections are not supported for this type of page.' ),
-				array( 'code' => 'editnotsupported', 'info' => 'Editing of this type of page is not supported using the text based edit API.' ),
-				array( 'code' => 'appendnotsupported', 'info' => 'This type of page can not be edited by appending or prepending text.' ),
-				array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to the page\'s content model' ),
+				array( 'code' => 'editnotsupported', 'info' => 'Editing of this type of page is not supported using '
+																. 'the text based edit API.' ),
+				array( 'code' => 'appendnotsupported', 'info' => 'This type of page can not be edited by appending '
+																. 'or prepending text.' ),
+				array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to '
+														. 'the page\'s content model' ),
 				array( 'customcssprotected' ),
 				array( 'customjsprotected' ),
 			)

@@ -89,9 +89,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		if ( $expected ) {
 			$this->assertNotNull( $name, "no name found for content model $id" );
-			$this->assertTrue( preg_match( $expected, $name ) > 0 , "content model name for #$id did not match pattern $expected" );
+			$this->assertTrue( preg_match( $expected, $name ) > 0 ,
+								"content model name for #$id did not match pattern $expected" );
 		} else {
-			$this->assertEquals( $id, $name, "localization of unknown model $id should have fallen back to use the model id directly." );
+			$this->assertEquals( $id, $name, "localization of unknown model $id should have "
+											. "fallen back to use the model id directly." );
 		}
 	}
 

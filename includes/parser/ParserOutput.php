@@ -50,7 +50,7 @@ class ParserOutput extends CacheTime {
 		$mTimestamp;                  # Timestamp of the revision
 		private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
-		private $mSecondaryDataUpdates = array(); # List of instances of DataUpdate, used to cause some information extracted from the page in a custom place.
+		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
@@ -380,7 +380,8 @@ class ParserOutput extends CacheTime {
 	 *
 	 * @since 1.20
 	 *
-	 * @param $title Title of the page we're updating. If not given, a title object will be created based on $this->getTitleText()
+	 * @param $title Title The title of the page we're updating. If not given, a title object will be created
+	 *                      based on $this->getTitleText()
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 *
 	 * @return Array. An array of instances of DataUpdate

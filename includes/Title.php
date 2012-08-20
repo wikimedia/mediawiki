@@ -3884,7 +3884,8 @@ class Title {
 			}
 		} else {
 			# Fail safe (not a redirect after all. strange.)
-			wfDebug( __METHOD__ . ": failsafe: database sais " . $nt->getPrefixedDBkey() . " is a redirect, but it doesn't contain a valid redirect.\n" );
+			wfDebug( __METHOD__ . ": failsafe: database sais " . $nt->getPrefixedDBkey() .
+						" is a redirect, but it doesn't contain a valid redirect.\n" );
 			return false;
 		}
 	}

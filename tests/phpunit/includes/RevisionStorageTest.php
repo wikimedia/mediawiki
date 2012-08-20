@@ -217,8 +217,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertTrue( in_array( 'rev_user', $fields ), 'missing rev_user in list of fields');
 
 		if ( $wgContentHandlerUseDB ) {
-			$this->assertTrue( in_array( 'rev_content_model', $fields ), 'missing rev_content_model in list of fields');
-			$this->assertTrue( in_array( 'rev_content_format', $fields ), 'missing rev_content_format in list of fields');
+			$this->assertTrue( in_array( 'rev_content_model', $fields ),
+								'missing rev_content_model in list of fields');
+			$this->assertTrue( in_array( 'rev_content_format', $fields ),
+								'missing rev_content_format in list of fields');
 		} else {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
@@ -292,7 +294,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
+		$orig = $this->makeRevision( array( 'text' => 'hello hello.',
+											'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
@@ -309,7 +312,9 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT, 'content_format' => CONTENT_FORMAT_JAVASCRIPT ) );
+		$orig = $this->makeRevision( array( 'text' => 'hello hello.',
+											'content_model' => CONTENT_MODEL_JAVASCRIPT,
+											'content_format' => CONTENT_FORMAT_JAVASCRIPT ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
 		$this->assertEquals( CONTENT_FORMAT_JAVASCRIPT, $rev->getContentFormat() );
@@ -352,7 +357,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$this->assertNull( $rev1->getPrevious() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ), 'second rev testGetPrevious' );
+		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ),
+								'second rev testGetPrevious' );
 		$rev2 = $page->getRevision();
 
 		$this->assertNotNull( $rev2->getPrevious() );
@@ -369,7 +375,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 		$this->assertNull( $rev1->getNext() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ), 'second rev testGetNext' );
+		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ),
+								'second rev testGetNext' );
 		$rev2 = $page->getRevision();
 
 		$this->assertNotNull( $rev1->getNext() );
@@ -387,8 +394,10 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$dbw = wfGetDB( DB_MASTER );
 		$rev = Revision::newNullRevision( $dbw, $page->getId(), 'a null revision', false );
 
-		$this->assertNotEquals( $orig->getId(), $rev->getId(), 'new null revision shold have a different id from the original revision' );
-		$this->assertEquals( $orig->getTextId(), $rev->getTextId(), 'new null revision shold have the same text id as the original revision' );
+		$this->assertNotEquals( $orig->getId(), $rev->getId(),
+								'new null revision shold have a different id from the original revision' );
+		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
+								'new null revision shold have the same text id as the original revision' );
 		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
 	}
 }

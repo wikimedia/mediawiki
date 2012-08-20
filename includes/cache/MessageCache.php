@@ -774,10 +774,13 @@ class MessageCache {
 				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title} ($code)" );
 				$message = null; // no negative caching
 			} else {
-				$message = $content->getWikitextForTransclusion(); #XXX: is this the reight way to turn a Content object into a mesage?
+				#XXX: is this the reight way to turn a Content object into a mesage?
+				$message = $content->getWikitextForTransclusion();
 
 				if ( $message === false || $message === null ) {
-					wfDebugLog( 'MessageCache', __METHOD__ . ": message content doesn't provide wikitext (content model: #" . $content->getContentHandler() . ")" );
+					wfDebugLog( 'MessageCache', __METHOD__ . ": message content doesn't provide wikitext "
+								. "(content model: #" . $content->getContentHandler() . ")" );
+
 					$message = false; // negative caching
 				} else {
 					$this->mCache[$code][$title] = ' ' . $message;

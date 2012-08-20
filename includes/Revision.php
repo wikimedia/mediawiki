@@ -534,8 +534,10 @@ class Revision implements IDBAccessObject {
 
 			# if we have a content object, use it to set the model and type
 			if ( !empty( $row['content'] ) ) {
-				if ( !empty( $row['text_id'] ) ) { //@todo: when is that set? test with external store setup! check out insertOn() [dk]
-					throw new MWException( "Text already stored in external store (id {$row['text_id']}), can't serialize content object" );
+				//@todo: when is that set? test with external store setup! check out insertOn() [dk]
+				if ( !empty( $row['text_id'] ) ) {
+					throw new MWException( "Text already stored in external store (id {$row['text_id']}), "
+											. "can't serialize content object" );
 				}
 
 				$row['content_model'] = $row['content']->getModel();
@@ -588,7 +590,8 @@ class Revision implements IDBAccessObject {
 				$this->mTitle     = null; // Load on demand if needed
 			}
 
-			$this->mCurrent   = false; // @todo: XXX: really? we are about to create a revision. it will usually then be the current one.
+			// @todo: XXX: really? we are about to create a revision. it will usually then be the current one.
+			$this->mCurrent   = false;
 
 			// If we still have no length, see it we have the text to figure it out
 			if ( !$this->mSize ) {
@@ -931,7 +934,8 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @return String
 	 *
-	 * @deprecated since 1.WD. Instead, use Revision::getContent( Revision::RAW ) or Revision::getSerializedData() as appropriate.
+	 * @deprecated since 1.WD. Instead, use Revision::getContent( Revision::RAW )
+	 *                         or Revision::getSerializedData() as appropriate.
 	 */
 	public function getRawText() {
 		wfDeprecated( __METHOD__, "1.WD" );
@@ -1319,13 +1323,15 @@ class Revision implements IDBAccessObject {
 			if ( $this->getContentModel() != $defaultModel ) {
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: model is $model , default for $t is $defaultModel" );
+				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: "
+										. "model is $model , default for $t is $defaultModel" );
 			}
 
 			if ( $this->getContentFormat() != $defaultFormat ) {
 				$t = $title->getPrefixedDBkey();
 
-				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: format is $format, default for $t is $defaultFormat" );
+				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: "
+										. "format is $format, default for $t is $defaultFormat" );
 			}
 		}
 

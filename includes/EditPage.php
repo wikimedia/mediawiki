@@ -1007,7 +1007,8 @@ class EditPage {
 		wfDeprecated( __METHOD__, "1.WD" );
 
 		$content = $this->getPreloadedContent( $preload );
-		$text = $content->serialize( $this->content_format ); #XXX: really use serialized form? use ContentHandler::getContentText() instead?!
+		$text = $content->serialize( $this->content_format );
+		#XXX: really use serialized form? use ContentHandler::getContentText() instead?!
 
 		return $text;
 	}
@@ -1344,7 +1345,8 @@ class EditPage {
 					return $status;
 				}
 
-				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
+														$this->content_model, $this->content_format );
 
 				$result['sectionanchor'] = '';
 				if ( $this->section == 'new' ) {
@@ -1415,14 +1417,18 @@ class EditPage {
 					$sectionTitle = $this->summary;
 				}
 
-				$textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+				$textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
+																$this->content_model, $this->content_format );
 				$content = null;
 
 				if ( $this->isConflict ) {
-					wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
-					$content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle, $this->edittime );
+					wfDebug( __METHOD__ . ": conflict! getting section '{$this->section}' for time '{$this->edittime}'"
+							. " (article time '{$timestamp}')\n" );
+
+					$content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content,
+																		$sectionTitle, $this->edittime );
 				} else {
-					wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
+					wfDebug( __METHOD__ . ": getting section '{$this->section}'\n" );
 					$content = $this->mArticle->replaceSectionContent( $this->section, $textbox_content, $sectionTitle );
 				}
 
@@ -1466,7 +1472,8 @@ class EditPage {
 					return $status;
 				}
 
-				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+				$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
+														$this->content_model, $this->content_format );
 
 				# Handle the user preference to force summaries here, but not for null edits
 				if ( $this->section != 'new' && !$this->allowBlankSummary
@@ -1559,7 +1566,8 @@ class EditPage {
 				( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 				( $bot ? EDIT_FORCE_BOT : 0 );
 
-				$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags, false, null, $this->content_format );
+				$doEditStatus = $this->mArticle->doEditContent( $content, $this->summary, $flags,
+																false, null, $this->content_format );
 
 			if ( $doEditStatus->isOK() ) {
 					$result['redirect'] = $content->isRedirect();
@@ -1647,7 +1655,8 @@ class EditPage {
 	function mergeChangesInto( &$editText ){
 		wfDebug( __METHOD__, "1.WD" );
 
-		$editContent = ContentHandler::makeContent( $editText, $this->getTitle(), $this->content_model, $this->content_format );
+		$editContent = ContentHandler::makeContent( $editText, $this->getTitle(),
+													$this->content_model, $this->content_format );
 
 		$ok = $this->mergeChangesIntoContent( $editContent );
 
@@ -2530,8 +2539,9 @@ HTML
 			$oldContent = $this->getOriginalContent();
 		}
 
+		#XXX: handle parse errors ?
 		$textboxContent = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
-														$this->content_model, $this->content_format ); #XXX: handle parse errors ?
+														$this->content_model, $this->content_format );
 
 		$newContent = $this->mArticle->replaceSectionContent(
 											$this->section, $textboxContent,
@@ -2544,7 +2554,9 @@ HTML
 
 		if ( $newtext != $newtext_orig ) {
 						#if the hook changed the text, create a new Content object accordingly.
-						$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModel() ); #XXX: handle parse errors ?
+						#XXX: handle parse errors ?
+						$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(),
+																	$newContent->getModel() );
 		}
 
 		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
@@ -2786,7 +2798,8 @@ HTML
 		$note = '';
 
 		try {
-			$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
+			$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
+													$this->content_model, $this->content_format );
 
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
@@ -2798,7 +2811,8 @@ HTML
 				$note = wfMessage( 'edit_form_incomplete' )->text() ;
 			} else {
 				$note = wfMessage( 'previewnote' )->text()  .
-					' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text()  . ']]';
+					' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' '
+					. wfMessage( 'continue-editing' )->text()  . ']]';
 			}
 
 			$parserOptions = ParserOptions::newFromUser( $wgUser );
@@ -2854,14 +2868,16 @@ HTML
 
 				if ( $toparse !== $toparse_orig ) {
 					#hook changed the text, create new Content object
-					$content = ContentHandler::makeContent( $toparse, $this->getTitle(), $this->content_model, $this->content_format );
+					$content = ContentHandler::makeContent( $toparse, $this->getTitle(),
+															$this->content_model, $this->content_format );
 				}
 
 				wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) );
 
 				$parserOptions->enableLimitReport();
 
-				#XXX: For CSS/JS pages, we should have called the ShowRawCssJs hook here. But it's now deprecated, so never mind
+				#XXX: For CSS/JS pages, we should have called the ShowRawCssJs hook here.
+				#     But it's now deprecated, so never mind
 				$content = $content->preSaveTransform( $this->mTitle, $wgUser, $parserOptions );
 
 				// TODO: might be a saner way to get a meaningfull context here?
@@ -2876,7 +2892,8 @@ HTML
 				}
 			}
 		} catch (MWContentSerializationException $ex) {
-			$note .= "\n\n" . wfMessage('content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() )->parse();
+			$m = wfMessage('content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() );
+			$note .= "\n\n" . $m->parse();
 			$previewHTML = '';
 		}
 

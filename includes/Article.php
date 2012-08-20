@@ -424,7 +424,8 @@ class Article extends Page {
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() ) ; // @todo: this isn't page content but a UI message. horrible.
+		// @todo: this isn't page content but a UI message. horrible.
+		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() ) ;
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -1720,7 +1721,8 @@ class Article extends Page {
 			throw new MWException( "can't change parser options after they have already been set" );
 		}
 
-		$this->mParserOptions = clone $options; // clone, so if $options is modified later, it doesn't confuse the parser cache.
+		// clone, so if $options is modified later, it doesn't confuse the parser cache.
+		$this->mParserOptions = clone $options;
 	}
 
 	/**

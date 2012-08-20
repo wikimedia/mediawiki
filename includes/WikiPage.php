@@ -1259,7 +1259,8 @@ class WikiPage extends Page implements IDBAccessObject {
 			$this->mLatest = $revision->getId();
 			$this->mIsRedirect = (bool)$rt;
 			# Update the LinkCache.
-			LinkCache::singleton()->addGoodLinkObj( $this->getId(), $this->mTitle, $len, $this->mIsRedirect, $this->mLatest, $revision->getContentModel() );
+			LinkCache::singleton()->addGoodLinkObj( $this->getId(), $this->mTitle, $len, $this->mIsRedirect,
+													$this->mLatest, $revision->getContentModel() );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1410,7 +1411,8 @@ class WikiPage extends Page implements IDBAccessObject {
 			throw new MWException( "sections not supported for content model " . $this->getContentHandler()->getModelID() );
 		}
 
-		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() ); # could even make section title, but that's not required.
+		# could even make section title, but that's not required.
+		$sectionContent = ContentHandler::makeContent( $text, $this->getTitle() );
 
 		$newContent = $this->replaceSectionContent( $section, $sectionContent, $sectionTitle, $edittime );
 
@@ -1543,8 +1545,9 @@ class WikiPage extends Page implements IDBAccessObject {
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
 	 *
 	 * @deprecated since 1.WD: use doEditContent() instead.
+	 * @todo: use doEditContent() instead everywhere
 	 */
-	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) { #@todo: use doEditContent() instead
+	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
@@ -2064,7 +2067,8 @@ class WikiPage extends Page implements IDBAccessObject {
 		}
 
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
-		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) ); #TODO: let the search engine decide what to do with the content object
+		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $content->getTextForSearchIndex() ) );
+		#@TODO: let the search engine decide what to do with the content object
 
 		# If this is another user's talk page, update newtalk.
 		# Don't do this if $options['changed'] = false (null-edits) nor if
@@ -2090,7 +2094,8 @@ class WikiPage extends Page implements IDBAccessObject {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$msgtext = $content->getWikitextForTransclusion(); #XXX: could skip pseudo-messages like js/css here, based on content model.
+			#XXX: could skip pseudo-messages like js/css here, based on content model.
+			$msgtext = $content->getWikitextForTransclusion();
 			if ( $msgtext === false || $msgtext === null ) $msgtext = '';
 
 			MessageCache::singleton()->replace( $shortTitle, $msgtext );
@@ -3281,20 +3286,24 @@ class PoolWorkArticleView extends PoolCounterWork {
 	function doWork() {
 		global $wgUseFileCache;
 
-		// @todo: several of the methods called on $this->page are not declared in Page, but present in WikiPage and delegated by Article.
+		// @todo: several of the methods called on $this->page are not declared in Page, but present
+		//        in WikiPage and delegated by Article.
 
 		$isCurrent = $this->revid === $this->page->getLatest();
 
 		if ( $this->content !== null ) {
 			$content = $this->content;
 		} elseif ( $isCurrent ) {
-			$content = $this->page->getContent( Revision::RAW ); #XXX: why use RAW audience here, and PUBLIC (default) below?
+			#XXX: why use RAW audience here, and PUBLIC (default) below?
+			$content = $this->page->getContent( Revision::RAW );
 		} else {
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
 			if ( $rev === null ) {
 				return false;
 			}
-			$content = $rev->getContent(); #XXX: why use PUBLIC audience here (default), and RAW above?
+
+			#XXX: why use PUBLIC audience here (default), and RAW above?
+			$content = $rev->getContent();
 		}
 
 		$time = - microtime( true );

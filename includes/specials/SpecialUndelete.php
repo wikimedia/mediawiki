@@ -889,12 +889,14 @@ class SpecialUndelete extends SpecialPage {
 			$out->addWikiTextTitleTidy( $rev->getText( Revision::FOR_THIS_USER, $user ), $this->mTargetObj, true );
 		}
 
+		//FIXME: ContentHandler will have to provide some specialized magic for reviewing content before undeletion
+
 		$out->addHTML(
 			Xml::element( 'textarea', array(
 					'readonly' => 'readonly',
 					'cols' => intval( $user->getOption( 'cols' ) ),
 					'rows' => intval( $user->getOption( 'rows' ) ) ),
-				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) . //FIXME: ContentHandler will have to provide some specialized magic to do this
+				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) .
 			Xml::openElement( 'div' ) .
 			Xml::openElement( 'form', array(
 				'method' => 'post',

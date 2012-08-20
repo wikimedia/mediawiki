@@ -297,7 +297,7 @@ define( 'CONTENT_FORMAT_JAVASCRIPT', 'text/javascript' ); // for js pages
 define( 'CONTENT_FORMAT_CSS', 'text/css' );  // for css pages
 define( 'CONTENT_FORMAT_TEXT', 'text/plain' ); // for future use, e.g. with some plain-html messages.
 define( 'CONTENT_FORMAT_HTML', 'text/html' ); // for future use, e.g. with some plain-html messages.
-define( 'CONTENT_FORMAT_SERIALIZED', 'application/vnd.php.serialized' ); // for future use with the api, and for use by extensions
+define( 'CONTENT_FORMAT_SERIALIZED', 'application/vnd.php.serialized' ); // for future use with the api and for extensions
 define( 'CONTENT_FORMAT_JSON', 'application/json' ); // for future use with the api, and for use by extensions
 define( 'CONTENT_FORMAT_XML', 'application/xml' ); // for future use with the api, and for use by extensions
 /**@}*/

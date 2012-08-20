@@ -96,8 +96,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$page = $this->newPage( $title );
 
 		$content = ContentHandler::makeContent( "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-		                                        . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
-		                                        $title );
+		                                      . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+		                                      $title );
 
 		$page->doEditContent( $content, "[[testing]] 1" );
 
@@ -596,7 +596,9 @@ more stuff
 			       "2",
 			       "== TEST ==\nmore fun",
 			       null,
-			       trim( preg_replace( '/^== test ==.*== foo ==/sm', "== TEST ==\nmore fun\n\n== foo ==", WikiPageTest::$sections ) )
+			       trim( preg_replace( '/^== test ==.*== foo ==/sm',
+			                           "== TEST ==\nmore fun\n\n== foo ==",
+			                           WikiPageTest::$sections ) )
 			),
 			array( 'WikiPageTest_testReplaceSection',
 			       WikiPageTest::$sections,
@@ -698,19 +700,22 @@ more stuff
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "section one", EDIT_NEW, false, $admin );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+								"section one", EDIT_NEW, false, $admin );
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two", 0, false, $user1 );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+								"adding section two", 0, false, $user1 );
 
 		$user2 = new User();
 		$user2->setName( "127.0.2.13" );
 		$text .= "\n\nthree";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section three", 0, false, $user2 );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+								"adding section three", 0, false, $user2 );
 
 		# we are having issues with doRollback spuriously failing. apparently the last revision somehow goes missing
 		# or not committed under some circumstances. so, make sure the last revision has the right user name.
@@ -737,7 +742,8 @@ more stuff
 		}
 
 		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(), "rollback did not revert to the correct revision" );
+		$this->assertEquals( $rev2->getSha1(), $page->getRevision()->getSha1(),
+								"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getNativeData() );
 	}
 
@@ -750,14 +756,16 @@ more stuff
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "section one", EDIT_NEW, false, $admin );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+								"section one", EDIT_NEW, false, $admin );
 		$rev1 = $page->getRevision();
 
 		$user1 = new User();
 		$user1->setName( "127.0.1.11" );
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), "adding section two", 0, false, $user1 );
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+								"adding section two", 0, false, $user1 );
 
 		# now, try the rollback
 		$admin->addGroup( "sysop" ); #XXX: make the test user a sysop...
@@ -769,7 +777,8 @@ more stuff
 		}
 
 		$page = new WikiPage( $page->getTitle() );
-		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(), "rollback did not revert to the correct revision" );
+		$this->assertEquals( $rev1->getSha1(), $page->getRevision()->getSha1(),
+							"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one", $page->getContent()->getNativeData() );
 	}
 
@@ -822,7 +831,8 @@ more stuff
 
 		$summary = $page->getAutosummary( $old, $new, $flags );
 
-		$this->assertTrue( (bool)preg_match( $expected, $summary ), "Autosummary didn't match expected pattern $expected: $summary" );
+		$this->assertTrue( (bool)preg_match( $expected, $summary ),
+							"Autosummary didn't match expected pattern $expected: $summary" );
 	}
 
 	public function dataGetAutoDeleteReason( ) {
@@ -909,9 +919,11 @@ more stuff
 		$reason = $page->getAutoDeleteReason( $hasHistory );
 
 		if ( is_bool( $expectedResult ) || is_null( $expectedResult ) ) $this->assertEquals( $expectedResult, $reason );
-		else $this->assertTrue( (bool)preg_match( $expectedResult, $reason ), "Autosummary didn't match expected pattern $expectedResult: $reason" );
+		else $this->assertTrue( (bool)preg_match( $expectedResult, $reason ),
+								"Autosummary didn't match expected pattern $expectedResult: $reason" );
 
-		$this->assertEquals( $expectedHistory, $hasHistory, "expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
+		$this->assertEquals( $expectedHistory, $hasHistory,
+							"expected \$hasHistory to be " . var_export( $expectedHistory, true ) );
 
 		$page->doDeleteArticle( "done" );
 	}

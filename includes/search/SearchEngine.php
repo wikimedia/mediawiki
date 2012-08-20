@@ -803,8 +803,9 @@ class SearchResult {
 	protected function initText() {
 		if ( !isset( $this->mText ) ) {
 			if ( $this->mRevision != null ) {
+				//TODO: don't use the text, but the content object!
 				$content = $this->mRevision->getContent();
-				$this->mText = $content->getTextForSearchIndex(); //XXX: maybe we don't even need the text, but the content object?
+				$this->mText = $content->getTextForSearchIndex();
 			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
 			}
@@ -818,8 +819,10 @@ class SearchResult {
 	function getTextSnippet( $terms ) {
 		global $wgUser, $wgAdvancedSearchHighlighting;
 		$this->initText();
+
+		// TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
 		list( $contextlines, $contextchars ) = SearchEngine::userHighlightPrefs( $wgUser );
-		$h = new SearchHighlighter(); // TODO: make highliter take a content object. Make ContentHandler a factory for SearchHighliter.
+		$h = new SearchHighlighter();
 		if ( $wgAdvancedSearchHighlighting )
 			return $h->highlightText( $this->mText, $terms, $contextlines, $contextchars );
 		else

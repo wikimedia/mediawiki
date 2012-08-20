@@ -550,7 +550,8 @@ class ApiQueryRevisions extends ApiQueryBase {
 					$model = $content->getModel();
 					$name = $title->getPrefixedDBkey();
 
-					$this->dieUsage( "The requested format {$this->contentFormat} is not supported for content model $model used by $name", 'badformat' );
+					$this->dieUsage( "The requested format {$this->contentFormat} is not supported ".
+									"for content model $model used by $name", 'badformat' );
 				}
 
 				$text = $content->serialize( $format );
@@ -576,10 +577,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 				if ( !is_null( $this->difftotext ) ) {
 					$model = $title->getContentModel();
 
-					if ( $this->contentFormat && !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat ) ) {
+					if ( $this->contentFormat
+						&& !ContentHandler::getForModelID( $model )->isSupportedFormat( $this->contentFormat ) ) {
+
 						$name = $title->getPrefixedDBkey();
 
-						$this->dieUsage( "The requested format {$this->contentFormat} is not supported for content model $model used by $name", 'badformat' );
+						$this->dieUsage( "The requested format {$this->contentFormat} is not supported for ".
+											"content model $model used by $name", 'badformat' );
 					}
 
 					$difftocontent = ContentHandler::makeContent( $this->difftotext, $title, $model, $this->contentFormat );
@@ -799,14 +803,18 @@ class ApiQueryRevisions extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'nosuchrevid', 'diffto' ),
-			array( 'code' => 'revids', 'info' => 'The revids= parameter may not be used with the list options (limit, startid, endid, dirNewer, start, end).' ),
-			array( 'code' => 'multpages', 'info' => 'titles, pageids or a generator was used to supply multiple pages, but the limit, startid, endid, dirNewer, user, excludeuser, start and end parameters may only be used on a single page.' ),
+			array( 'code' => 'revids', 'info' => 'The revids= parameter may not be used with the list options '
+													. '(limit, startid, endid, dirNewer, start, end).' ),
+			array( 'code' => 'multpages', 'info' => 'titles, pageids or a generator was used to supply multiple pages, '
+													. ' but the limit, startid, endid, dirNewer, user, excludeuser, '
+													. 'start and end parameters may only be used on a single page.' ),
 			array( 'code' => 'diffto', 'info' => 'rvdiffto must be set to a non-negative number, "prev", "next" or "cur"' ),
 			array( 'code' => 'badparams', 'info' => 'start and startid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'end and endid cannot be used together' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'nosuchsection', 'info' => 'There is no section section in rID' ),
-			array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied to the page\'s content model' ),
+			array( 'code' => 'badformat', 'info' => 'The requested serialization format can not be applied '
+													. ' to the page\'s content model' ),
 		) );
 	}
 

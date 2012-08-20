@@ -144,7 +144,8 @@ class SpecialBookSources extends SpecialPage {
 		$title = Title::makeTitleSafe( NS_PROJECT, $page ); # Show list in content language
 		if( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) ); #FIXME: need a way to do this via ContentHandler (or enforce flat text-based content)
+			#FIXME: need a way to do this via ContentHandler (or enforce flat text-based content)
+			$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
 			return true;
 		}
 
