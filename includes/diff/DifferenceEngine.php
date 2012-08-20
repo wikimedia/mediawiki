@@ -504,16 +504,14 @@ class DifferenceEngine extends ContextSource {
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
-				if ( !Hook::isRegistered( 'ShowRawCssJs' )
-					|| wfRunHooks( 'ShowRawCssJs', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 					// use the content object's own rendering
 					$po = $this->mContentObject->getParserOutput();
 					$out->addHTML( $po->getText() );
 				}
 			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
-			} elseif( Hooks::isRegistered( 'ArticleViewCustom' )
-					&& !wfRunHooks( 'ArticleViewCustom', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) { #NOTE: deperecated hook, B/C only
+			} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
 			} else {
 				// Normal page

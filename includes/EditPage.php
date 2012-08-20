@@ -1451,8 +1451,10 @@ class EditPage {
 				}
 
 				// Run post-section-merge edit filter
-				if ( !wfRunHooks( 'EditFilterMerged', array( $this, $content->serialize( $this->content_format ), &$this->hookError, $this->summary ) )
-						|| !wfRunHooks( 'EditFilterMergedContent', array( $this, $content, &$this->hookError, $this->summary ) ) ) {
+				$hook_args = array( $this, $content, &$this->hookError, $this->summary );
+
+				if ( !ContentHandler::runLegacyHooks( 'EditFilterMerged', $hook_args )
+						|| !wfRunHooks( 'EditFilterMergedContent', $hook_args ) ) {
 					# Error messages etc. could be handled within the hook...
 					$status->fatal( 'hookaborted' );
 					$status->value = self::AS_HOOK_ERROR;
@@ -2538,16 +2540,7 @@ HTML
 											$this->section, $textboxContent,
 											$this->summary, $this->edittime );
 
-		# hanlde legacy text-based hook
-		$newtext_orig = $newContent->serialize( $this->content_format );
-		$newtext = $newtext_orig; #clone
-		wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
-
-		if ( $newtext != $newtext_orig ) {
-						#if the hook changed the text, create a new Content object accordingly.
-						$newContent = ContentHandler::makeContent( $newtext, $this->getTitle(), $newContent->getModel() ); #XXX: handle parse errors ?
-		}
-
+		ContentHandler::runLegacyHooks( 'EditPageGetDiffText', array( $this, &$newContent ) );
 		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
 
 		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
@@ -2848,16 +2841,9 @@ HTML
 					$content = $content->addSectionHeader( $this->summary );
 				}
 
-				$toparse_orig = $content->serialize( $this->content_format );
-				$toparse = $toparse_orig;
-				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
-
-				if ( $toparse !== $toparse_orig ) {
-					#hook changed the text, create new Content object
-					$content = ContentHandler::makeContent( $toparse, $this->getTitle(), $this->content_model, $this->content_format );
-				}
-
-				wfRunHooks( 'EditPageGetPreviewContent', array( $this, &$content ) );
+				$hook_args = array( $this, &$content );
+				ContentHandler::runLegacyHooks( 'EditPageGetPreviewText', $hook_args );
+				wfRunHooks( 'EditPageGetPreviewContent', $hook_args );
 
 				$parserOptions->enableLimitReport();
 

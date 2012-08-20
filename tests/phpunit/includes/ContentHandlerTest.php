@@ -234,6 +234,26 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	public function testSupportsSections() {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
+
+	public function testRunLegacyHooks() {
+		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
+
+		$content = new WikitextContent( 'test text' );
+		$ok = ContentHandler::runLegacyHooks( 'testRunLegacyHooks', array( 'foo', &$content, 'bar' ) );
+
+		$this->assertTrue( $ok, "runLegacyHooks should have returned true" );
+		$this->assertEquals( "TEST TEXT", $content->getNativeData() );
+	}
+
+	public static function dummyHookHandler( $foo, &$text, $bar ) {
+		if ( $text === null || $text === false ) {
+			return false;
+		}
+
+		$text = strtoupper( $text );
+
+		return true;
+	}
 }
 
 class DummyContentHandlerForTesting extends ContentHandler {
@@ -387,4 +407,3 @@ class DummyContentForTesting extends AbstractContent {
 		return new ParserOutput( $this->getNativeData() );
 	}
 }
-

@@ -390,7 +390,7 @@ class Article extends Page {
 		$content = $this->fetchContentObject();
 
 		$this->mContent = ContentHandler::getContentText( $content ); #@todo: get rid of mContent everywhere!
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) ); #BC cruft, deprecated!
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
 
 		wfProfileOut( __METHOD__ );
 
@@ -682,7 +682,7 @@ class Article extends Page {
 					} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
-					} elseif( Hooks::isRegistered( 'ArticleViewCustom' ) && !wfRunHooks( 'ArticleViewCustom', array( $this->fetchContent(), $this->getTitle(), $outputPage ) ) ) { #FIXME: fetchContent() is deprecated!
+					} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
@@ -830,7 +830,7 @@ class Article extends Page {
 		}
 
 		// Give hooks a chance to customise the output
-		if ( !Hooks::isRegistered('ShowRawCssJs') || wfRunHooks( 'ShowRawCssJs', array( $this->fetchContent(), $this->getTitle(), $wgOut ) ) ) { #FIXME: fetchContent() is deprecated
+		if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) {
 			$po = $this->mContentObject->getParserOutput( $this->getTitle() );
 			$wgOut->addHTML( $po->getText() );
 		}
