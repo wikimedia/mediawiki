@@ -873,7 +873,7 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function setWrapperLegendMsg( $msg ) {
-		$this->setWrapperLegend( $this->msg( $msg )->escaped() );
+		$this->setWrapperLegend( $this->msg( $msg )->text() );
 		return $this;
 	}
 
