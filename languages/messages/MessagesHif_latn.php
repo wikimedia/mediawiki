@@ -2699,11 +2699,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'spam_blanking' => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
 
 # Info page
-'pageinfo-header-watchlist' => 'Dhyan suchi',
-'pageinfo-header-views' => 'Ketna angle se dekha jaae hae',
-'pageinfo-subjectpage' => 'Panna',
 'pageinfo-edits' => 'Etna badlao rahaa',
-'pageinfo-viewsperedit' => 'Har ek badlao ke ketna dafe dekha gais hae',
 
 # Patrolling
 'markaspatrolleddiff' => 'Mark karo ke pahraa dewa jaawe hai',

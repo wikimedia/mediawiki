@@ -2568,9 +2568,6 @@ Tafadhali jaribu tena.',
 # Info page
 'pageinfo-title' => 'Taarifa juu ya "$1"',
 'pageinfo-header-edits' => 'Maharirio',
-'pageinfo-header-watchlist' => 'Maangalizi',
-'pageinfo-subjectpage' => 'Ukurasa',
-'pageinfo-talkpage' => 'Ukurasa wa majadiliano',
 'pageinfo-watchers' => 'Idadi ya wanaofuatilia',
 'pageinfo-edits' => 'Idadi ya haririo',
 

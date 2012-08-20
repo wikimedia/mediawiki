@@ -2843,15 +2843,10 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 # Info page
 'pageinfo-title' => 'Manylion "$1"',
 'pageinfo-header-edits' => 'Golygiadau',
-'pageinfo-header-watchlist' => 'Rhestr wylio',
-'pageinfo-header-views' => 'Ymweliadau',
-'pageinfo-subjectpage' => 'Tudalen',
-'pageinfo-talkpage' => 'Tudalen sgwrs',
+'pageinfo-views' => 'Nifer yr ymweliadau',
 'pageinfo-watchers' => 'Nifer y gwylwyr',
 'pageinfo-edits' => 'Nifer y golygiadau',
 'pageinfo-authors' => 'Nifer yr awduron gwahanol',
-'pageinfo-views' => 'Nifer yr ymweliadau',
-'pageinfo-viewsperedit' => 'Ymweliadau wrth y golygiad',
 
 # Skin names
 'skinname-standard' => 'Safonol',

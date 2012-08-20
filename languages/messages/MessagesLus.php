@@ -1748,15 +1748,10 @@ A hnar i en thei ang.',
 # Info page
 'pageinfo-title' => '"$1" chungchanga hriattirna',
 'pageinfo-header-edits' => 'Siamţhatnate',
-'pageinfo-header-watchlist' => 'Ralvèn',
-'pageinfo-header-views' => 'En zât',
-'pageinfo-subjectpage' => 'Phêk',
-'pageinfo-talkpage' => 'Sawihona phêk',
+'pageinfo-views' => 'Thlir/en tawh zât',
 'pageinfo-watchers' => 'Thlirtu zât',
 'pageinfo-edits' => 'Siamţhat zât',
 'pageinfo-authors' => 'Ziaktu hrang zât',
-'pageinfo-views' => 'Thlir/en tawh zât',
-'pageinfo-viewsperedit' => 'Siamţhat pakhat zel en zât',
 
 # Patrolling
 'markaspatrolleddiff' => 'Vil angah chhiar rawh',

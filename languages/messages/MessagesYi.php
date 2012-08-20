@@ -507,11 +507,11 @@ $1',
 'error' => 'פעלער',
 'databaseerror' => 'דאטנבאזע פעלער',
 'dberrortext' => 'א דאטנבאזע זוכונג סינטאקס גרייז האט פאסירט.
-דאס טעות קען זיין צוליב א באג אינעם ווייכווארג.
+דאס קען זיין צוליב א באג אינעם ווייכווארג.
 די לעצטע דאטנבאזע זוכונג איז געווען:
-<blockquote><tt>$1</tt></blockquote>
-פון דער פונקציע "<tt>$2</tt>".
-דאטנבאזע האט צוריקגעגעבן גרייז "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+פון דער פונקציע "<code>$2</code>".
+דאטנבאזע האט צוריקגעגעבן גרייז "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'א דאטנבאזע זוכונג סינטאקס גרייז האט פאסירט.
 די לעצטע דאטנבאזע זוכונג איז געווען:
 "$1"
@@ -548,6 +548,8 @@ $1',
 'cannotdelete' => 'נישט געווען מעגלעך אויסמעקן דעם בלאט אדער די טעקע "$1".
 קען זיין  אז דאס איז שוין געווארן אויסגעמעקט דורך אן אנדערן.',
 'cannotdelete-title' => 'מען קען נישט אויסמעקן בלאט "$1"',
+'delete-hook-aborted' => 'אויסמעקונג אנולירט דורך hook.
+נישט געגעבן קיין דערקלערונג.',
 'badtitle' => 'שלעכט קעפל',
 'badtitletext' => "דאס קעפל פון דעם געזוכטן בלאט איז געווען אומגעזעצליך, ליידיג, אן אינטערשפראך אדער אינטערוויקי לינק וואס פאסט נישט, אדער אנטהאט כאראקטערס וואס מ'קען נישט ניצן אין א קעפל.",
 'perfcached' => "די פאלגנדע דאטן זענען גענומען פונעם 'זאַפאַס' און מעגלעך נישט אקטועל. מאקסימום {{PLURAL:$1|איין רעזולטאט איז|$1 רעזולטאטן זענען}} פאראן אין זאפאס.",
@@ -864,8 +866,6 @@ $2
 * '''גוגל כראם:''' דרוקט ''Ctrl-Shift-R'' (אויף א מאקינטאש ''⌘-Shift-R'')
 
 * '''אינטערנעט עקספלארער:''' האלט אראפ ''Ctrl'' בשעתן קליקן ''Refresh'', אדער  דרוקט ''Ctrl-F5''
-
-* '''קאנקעראר:''' קליקט ''Reload'' אדער דרוקט ''F5''
 
 * '''אפערע:''' ליידיגט אויס דעם זאַפאַס אין ''Tools → Preferences'' (''העדפות'' > ''כלים'')",
 'usercssyoucanpreview' => "'''טיפ:''' נוצט דאס {{int:showpreview}} קנעפל אויספרובירן אייער CSS בעפארן אויפהיטן.",
@@ -2816,16 +2816,32 @@ $1',
 
 # Info page
 'pageinfo-title' => 'אינפֿאָרמאַציע פֿאַר "$1"',
-'pageinfo-header-edits' => 'רעדאַקטירונגען',
-'pageinfo-header-watchlist' => 'אויפֿפאַסונג ליסטע',
-'pageinfo-header-views' => 'קוקן',
-'pageinfo-subjectpage' => 'בלאַט',
-'pageinfo-talkpage' => 'רעדן בלאַט',
-'pageinfo-watchers' => 'צאָל אויפֿפאַסער',
-'pageinfo-edits' => 'צאָל ענדערונגען',
-'pageinfo-authors' => 'צאָל באַזונדערע שרײַבער',
+'pageinfo-header-basic' => 'גרונטלעכע אינפֿארמאַציע',
+'pageinfo-header-edits' => '!רעדאַקטירן היסטאריע',
+'pageinfo-header-restrictions' => 'בלאט באַשיצונג',
+'pageinfo-header-properties' => 'בלאַט אייגנשאַפֿטן',
+'pageinfo-display-title' => 'געוויזענע קעפל',
+'pageinfo-default-sort' => 'גרונט סארטירן שליסל',
+'pageinfo-length' => 'בלאט לענג (אין בייטן)',
+'pageinfo-article-id' => 'בלאט נומער',
+'pageinfo-robot-policy' => 'זוכמאשין סטאטוס',
 'pageinfo-views' => 'צאַל קוקן',
-'pageinfo-viewsperedit' => 'צאל קוקן צו א רעדאַקטירונג',
+'pageinfo-watchers' => '!צאָל בלאט אויפֿפאַסער',
+'pageinfo-redirects-name' => 'ווײַטערפירונגען צו דעם בלאט',
+'pageinfo-subpages-name' => 'אונטערבלעטער פון דעם בלאט',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ווײַטערפירונג|ווײַטערפירונגען}}; $3 {{PLURAL:$3|סתם בלאט|סתם בלעטער}})',
+'pageinfo-firstuser' => 'בלאט שאפער',
+'pageinfo-firsttime' => 'דאטע פון שאפן בלאט',
+'pageinfo-lastuser' => 'לעצטער רעדאקטירער',
+'pageinfo-lasttime' => 'דאטע פון לעצטער רעדאקטירונג',
+'pageinfo-edits' => 'סה"כ צאָל ענדערונגען',
+'pageinfo-authors' => 'סה"כ צאָל באַזונדערע שרײַבער',
+'pageinfo-recent-edits' => 'לעצטיקע צאל רעדאקטירונגען (במשך די לעצטע $1)',
+'pageinfo-recent-authors' => 'לעצטיקע צאָל באַזונדערע שרײַבער',
+'pageinfo-restriction' => 'בלאט שוץ (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|מאגיש ווארט|מאגישע ווערטער}} ($1)',
+'pageinfo-hidden-categories' => 'באהאלטענע {{PLURAL:$1|קאטעגאריע|קאטעגאריעס}} ($1)',
+'pageinfo-templates' => ' {{PLURAL:$1|אריבערגעשלאסענער מוסטער|אריבערגשלאסענע מוסטערן}} ($1)',
 
 # Skin names
 'skinname-standard' => 'קלאסיש',
@@ -3433,12 +3449,17 @@ $5
 'version-variables' => 'וואַריאַבלען',
 'version-skins' => 'באניצער־אייבערפלאכן',
 'version-other' => 'אנדער',
+'version-hooks' => 'Hook סטרוקטורן',
+'version-extension-functions' => 'פארברייטערן פונקציעס',
+'version-parser-extensiontags' => 'פארזער פארברייטערן טאַגן',
+'version-hook-name' => 'נאמען פון hook',
 'version-version' => '(ווערסיע $1)',
 'version-license' => 'ליצענץ',
 'version-poweredby-others' => 'אַנדערע',
 'version-software' => 'אינסטאַלירט ווייכוואַרג',
 'version-software-product' => 'פראדוקט',
 'version-software-version' => 'ווערסיע',
+'version-entrypoints-header-entrypoint' => 'אריינגאנג פונקט',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath

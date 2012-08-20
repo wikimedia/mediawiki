@@ -3222,15 +3222,10 @@ $1',
 # Info page
 'pageinfo-title' => 'اطلاعات در مورد «$1»',
 'pageinfo-header-edits' => 'ویرایش',
-'pageinfo-header-watchlist' => 'فهرست پی‌گیری‌ها',
-'pageinfo-header-views' => 'بازدیدها',
-'pageinfo-subjectpage' => 'صفحه',
-'pageinfo-talkpage' => 'صفحه بحث',
+'pageinfo-views' => 'شمار بازدیدها',
 'pageinfo-watchers' => 'شمار پی‌گیری‌کنندگان',
 'pageinfo-edits' => 'شمار ویرایش‌ها',
 'pageinfo-authors' => 'شمار نویسندگان یکتا',
-'pageinfo-views' => 'شمار بازدیدها',
-'pageinfo-viewsperedit' => 'تعداد بازدید به ازای هر ویرایش',
 
 # Skin names
 'skinname-standard' => 'کلاسیک',

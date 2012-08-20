@@ -2870,15 +2870,10 @@ $1',
 # Info page
 'pageinfo-title' => 'ព័ត៌មានសម្រាប់ "$1"',
 'pageinfo-header-edits' => 'កែប្រែ',
-'pageinfo-header-watchlist' => 'បញ្ជីតាមដាន',
-'pageinfo-header-views' => 'បើកមើល',
-'pageinfo-subjectpage' => 'ទំព័រ',
-'pageinfo-talkpage' => 'ទំព័រពិភាក្សា',
+'pageinfo-views' => 'ចំនួនការបើកមើល',
 'pageinfo-watchers' => 'ចំនួនអ្នកតាមដាន',
 'pageinfo-edits' => 'ចំនួនកំណែប្រែ',
 'pageinfo-authors' => 'ចំនួនអ្នកនិពន្ធ',
-'pageinfo-views' => 'ចំនួនការបើកមើល',
-'pageinfo-viewsperedit' => 'ចំនួនការចូលមើលក្នុងមួយកំណែប្រែ',
 
 # Skin names
 'skinname-standard' => 'បុរាណ',

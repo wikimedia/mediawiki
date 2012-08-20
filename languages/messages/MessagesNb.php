@@ -576,6 +576,10 @@ $1',
 'youhavenewmessages' => 'Du har $1 ($2).',
 'newmessageslink' => 'nye meldinger',
 'newmessagesdifflink' => 'siste endring',
+'youhavenewmessagesfromusers' => 'Du har $1 fra {{PLURAL:$3|en annen bruker| $3 brukere}} ($2).',
+'youhavenewmessagesmanyusers' => 'Du har $1 fra mange brukere ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|en ny melding|nye meldinger}}',
+'newmessagesdifflinkplural' => 'siste {{PLURAL:$1|endring|endringer}}',
 'youhavenewmessagesmulti' => 'Du har nye beskjeder på $1',
 'editsection' => 'rediger',
 'editold' => 'rediger',
@@ -727,6 +731,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'remembermypassword' => 'Husk meg på denne datamaskinen (i maks $1 {{PLURAL:$1|dag|dager}})',
 'securelogin-stick-https' => 'Vær fortsatt koblet til HTTPS etter innlogging',
 'yourdomainname' => 'Ditt domene',
+'password-change-forbidden' => 'Du kan ikke endre passord på denne wikien.',
 'externaldberror' => 'Det var en ekstern autentifiseringsfeil, eller du kan ikke oppdatere din eksterne konto.',
 'login' => 'Logg inn',
 'nav-login-createaccount' => 'Logg inn eller opprett en konto',
@@ -976,6 +981,10 @@ Du kan [[Special:Search/{{PAGENAME}}|søke etter denne sidetittelen]] på andre 
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
 'noarticletext-nopermission' => 'Det er ingen tekst på denne siden.
 Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
+'missing-revision' => 'Revisjonen #$1 av siden med navnet "{{PAGENAME}}" eksisterer ikke.
+
+Dette skyldes som regel at en gammel historikklenke er fulgt til en side som er slettet.
+Detaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
 'userpage-userdoesnotexist' => 'Brukerkontoen «$1» er ikke registrert.
 Sjekk om du ønsker å opprette/redigere denne siden.',
 'userpage-userdoesnotexist-view' => 'Kontoen «$1» er ikke registrert.',
@@ -985,7 +994,6 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 * '''Firefox / Safari:''' Hold ''Shift'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på en Mac)
 * '''Google Chrome:''' Trykk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac)
 * '''Internet Explorer:''' Hold ''Ctrl'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5''
-* '''Konqueror:''' Klikk ''Oppdater'' eller trykk ''F5''
 * '''Opera:''' Tøm hurtiglageret i ''Verktøy → Innstillinger''",
 'usercssyoucanpreview' => "'''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste din nye CSS før du lagrer.",
 'userjsyoucanpreview' => "'''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste ditt nye JS før du lagrer.",
@@ -1100,6 +1108,7 @@ Disse parameterne har blitt utelatt.',
 'expansion-depth-exceeded-warning' => 'Sida har overskredet ekspansjonsdybden',
 'parser-unstrip-loop-warning' => '«Unstrip»-loop påvist',
 'parser-unstrip-recursion-limit' => 'Rekursjonsgrense for taggfjerning overskredet ($1)',
+'converter-manual-rule-error' => 'En feil ble oppdaget i en manuell språkkonverteringsregel',
 
 # "Undo" feature
 'undo-success' => 'Redigeringen kan omgjøres. Sjekk sammenligningen under for å bekrefte at du vil gjøre dette, og lagre endringene for å fullføre omgjøringen.',
@@ -1286,6 +1295,10 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'editundo' => 'fjern',
 'diff-multi' => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} av {{PLURAL:$2|én bruker|$2 brukere}} vises ikke)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Én mellomrevisjon|$1 mellomrevisjoner}} av mer enn $2 {{PLURAL:$2|bruker|brukere}} vises ikke)',
+'difference-missing-revision' => '{{PLURAL:$2|En revisjon|$2 revisjoner}} av denne forskjellen ($1) {{PLURAL:$2|ble|ble}} ikke funnet.
+
+Dette skyldes som regel at en gammel forskjell-lenke er fulgt til en side som er slettet.
+Detaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
 
 # Search results
 'searchresults' => 'Søkeresultater',
@@ -1695,12 +1708,12 @@ Sider på [[Special:Watchlist|overvåkningslisten din]] er i '''fet skrift'''.",
 
 Slette- og flytteloggen for denne siden gjengis her:",
 'uploadtext' => "Bruk skjemaet nedenfor for å laste opp filer.
-For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
+For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]] og slettinger i [[Special:Log/delete|sletteloggen]].
 
 For å inkludere en fil på en side, bruk en slik lenke:
-*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></code>''' for å bruke bildet i opprinnelig form
-*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></code>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
-*'''<code><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></code>''' for å lenke direkte til filen uten å vise den",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filnavn.jpg]]</nowiki></code>''' for å bruke bildet i opprinnelig form
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filnavn.png|200px|thumb|left|Alternativ tekst]]</nowiki></code>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Filnavn.ogg]]</nowiki></code>''' for å lenke direkte til filen uten å vise den",
 'upload-permitted' => 'Tillatte filtyper: $1.',
 'upload-preferred' => 'Foretrukne filtyper: $1',
 'upload-prohibited' => 'Forbudte filtyper: $1.',
@@ -2062,7 +2075,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 'disambiguationspage' => 'Template:Peker',
 'disambiguations-text' => "Følgende sider lenker til en '''pekerside'''.
 De burde i stedet lenke til en passende innholdsside.<br />
-En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]]",
+En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Doble omdirigeringer',
 'doubleredirectstext' => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
@@ -2087,6 +2100,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|kategori|kategorier}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikier}}',
 'nlinks' => '$1 {{PLURAL:$1|lenke|lenker}}',
 'nmembers' => '$1 {{PLURAL:$1|medlem|medlemmer}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisjon|revisjoner}}',
@@ -2115,6 +2129,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'mostlinkedtemplates' => 'Mest brukte maler',
 'mostcategories' => 'Sider med flest kategorier',
 'mostimages' => 'Mest brukte filer',
+'mostinterwikis' => 'Sider med flest interwikier',
 'mostrevisions' => 'Artikler med flest revisjoner',
 'prefixindex' => 'Alle sider med prefiks',
 'prefixindex-namespace' => 'All sider med prefiks ($1 navnerom)',
@@ -2888,6 +2903,7 @@ Besøk [//translatewiki.net translatewiki.net] om du ønsker å bidra med overse
 'import-interwiki-templates' => 'Inkluder alle maler',
 'import-interwiki-submit' => 'Importer',
 'import-interwiki-namespace' => 'Målnavnerom:',
+'import-interwiki-rootpage' => 'Destinasjonens grunnside (valgfri):',
 'import-upload-filename' => 'Filnavn:',
 'import-comment' => 'Kommentar:',
 'importtext' => 'Importer filen fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
@@ -2920,6 +2936,9 @@ Lagre den på din egen datamaskin og last den opp her.',
 'import-error-interwiki' => 'Siden «$1» ble ikke importert fordi navnet er reservert for ekstern lenking (interwiki).',
 'import-error-special' => 'Siden «$1» ble ikke importert fordi den tilhører et spesialnavnerom som ikke tillater sider.',
 'import-error-invalid' => 'Siden «$1» ble ikke importert fordi navnet er ugyldig.',
+'import-options-wrong' => 'Feil {{PLURAL:$2|opsjon|opsjoner}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Den angitte grunnsiden har en ugyldig tittel.',
+'import-rootpage-nosubpage' => 'Navnerommet "$1" til grunnsiden tillater ikke undersider.',
 
 # Import log
 'importlogpage' => 'Importlogg',
@@ -3060,15 +3079,10 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
 'pageinfo-header-edits' => 'Redigeringer',
-'pageinfo-header-watchlist' => 'Overvåkningsliste',
-'pageinfo-header-views' => 'Visninger',
-'pageinfo-subjectpage' => 'Side',
-'pageinfo-talkpage' => 'Diskusjonsside',
+'pageinfo-views' => 'Antall visninger',
 'pageinfo-watchers' => 'Antall overvåkere',
 'pageinfo-edits' => 'Antall redigeringer',
 'pageinfo-authors' => 'Antall forskjellige forfattere',
-'pageinfo-views' => 'Antall visninger',
-'pageinfo-viewsperedit' => 'Visninger per redigering',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3816,7 +3830,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 * <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk (kan være foreldede).</span>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other' => 'Andre spesialsider',
-'specialpages-group-login' => 'Innlogging / registrering',
+'specialpages-group-login' => 'Innlogging / opprette bruker',
 'specialpages-group-changes' => 'Siste endringer og logger',
 'specialpages-group-media' => 'Medierapporter og opplastinger',
 'specialpages-group-users' => 'Brukere og rettigheter',

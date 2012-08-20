@@ -2778,15 +2778,10 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" туһунан',
 'pageinfo-header-edits' => 'Уларытыылар',
-'pageinfo-header-watchlist' => 'Кэтээһин тиһигэ',
-'pageinfo-header-views' => 'Көрүүлэр',
-'pageinfo-subjectpage' => 'Сирэй',
-'pageinfo-talkpage' => 'Ырытыы сирэйэ',
+'pageinfo-views' => 'Көрүү ахсаана',
 'pageinfo-watchers' => 'Кэтээччилэр ахсааннара',
 'pageinfo-edits' => 'Көннөрүү ахсаана',
 'pageinfo-authors' => 'Араас ааптардар ахсааннара',
-'pageinfo-views' => 'Көрүү ахсаана',
-'pageinfo-viewsperedit' => 'Биир уларытыыга тиксэр көрүү ахсаана',
 
 # Skin names
 'skinname-standard' => 'Классика',

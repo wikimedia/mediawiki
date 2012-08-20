@@ -796,8 +796,6 @@ $messages = array(
 
 # Info page
 'pageinfo-header-edits' => 'Сәрост кардеј',
-'pageinfo-header-views' => 'Тәмшо',
-'pageinfo-subjectpage' => 'Сәһифә',
 
 # Browsing diffs
 'previousdiff' => '← Навынәни дәгиши',

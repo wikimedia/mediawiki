@@ -3022,15 +3022,10 @@ Ovo je vjerovatno izazvao vezom ka vanjskoj nepoželjnoj stranici.',
 # Info page
 'pageinfo-title' => 'Informacije za "$1"',
 'pageinfo-header-edits' => 'Izmjene',
-'pageinfo-header-watchlist' => 'Praćeni članci',
-'pageinfo-header-views' => 'Pregledi',
-'pageinfo-subjectpage' => 'Stranica',
-'pageinfo-talkpage' => 'Stranica za razgovor',
+'pageinfo-views' => 'Broj pogleda',
 'pageinfo-watchers' => 'Broj onih koji pregledaju',
 'pageinfo-edits' => 'Broj izmjena',
 'pageinfo-authors' => 'Broj različitih autora',
-'pageinfo-views' => 'Broj pogleda',
-'pageinfo-viewsperedit' => 'Pogleda po izmjeni',
 
 # Skin names
 'skinname-standard' => 'Klasično',

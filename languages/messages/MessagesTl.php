@@ -462,12 +462,12 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 # General errors
 'error' => 'Kamalian',
 'databaseerror' => 'Kamalian sa kalipunan ng dato',
-'dberrortext' => 'Nagkaroon po ng isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
-Maaaring dahil ito sa depekto sa sopwer (\'\'software\'\').
-Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
-<blockquote><tt>$1</tt></blockquote>
-mula sa gawaing "<tt>$2</tt>".
-Ibinalik ng kalipunan ng datos ang kamaliang "<tt>$3: $4</tt>".',
+'dberrortext' => 'Naganap ang isang pagkakamali sa pag-uusisa na pampalaugnayan sa kalipunan ng dato.
+Maaaring magpahiwatig ito ng isang surot sa loob ng sopwer.
+Ang huling tinangkang pag-uusisa sa kalipunan ng dato ay:
+<blockquote><code>$1</code></blockquote>
+magmula sa loob ng tungkuling "<code>$2</code>".
+Nagbalik ang kalipunan ng dato ng kamalian na "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Nagkaroon po ng isang pagkakamali sa usisang pampalaugnayan sa kalipunan ng datos.
 Ang huling sinubukang paguusisa sa kalipunan ng datos ay:
 "$1"
@@ -832,12 +832,11 @@ Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'userpage-userdoesnotexist-view' => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".',
 'blocked-notice-logextract' => 'Kasalukuyang hinarang ang tagagamit na ito.
 Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa inyong pagsasangguni:',
-'clearyourcache' => "'''Paunawa: Pagkatapos magsagip, baka kailangan mong laktawan ang taguan ng pantingin-tingin mo upang makita ang mga pagbabago.
-'''Firefox / Safari:''' Panatilihin ang pagpindot sa ''Shift'' habang nilalagitik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sa Mac)
-'''Google Chrome:''' Pindutin ang ''Ctrl-Shift-R'' (''⌘-Shift-R'' sa Mac)
+'clearyourcache' => "'''Paunawa: Pagkatapos magsagip, maaaring kailanganing mong laktawan ang taguan ng iyong pantingin-tingin upang makita ang mga pagbabago.
+'''Firefox / Safari:''' Panatilihin ang pagpindot sa ''Shift'' habang nilalagitik ang ''Reload'', o pindutin ang ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sa isang Mac)
+'''Google Chrome:''' Pindutin ang ''Ctrl-Shift-R'' (''⌘-Shift-R'' sa isang Mac)
 '''Internet Explorer:''' Panatilihin ang pagpindot sa ''Ctrl'' habang nilalagitik ang ''Refresh'', o pindutin ang ''Ctrl-F5''
-'''Konqueror:''' Lagitikin ang ''Reload'' o pindutin ang ''F5''
-'''Opera:''' Linisin ang taguan sa ''Tools → Preferences''",
+'''Opera:''' Hawiin ang taguan sa loob ng ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong CSS bago sagipin.",
 'userjsyoucanpreview' => "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong JavaScript bago sagipin.",
 'usercsspreview' => "'''Tandaan mong paunang tingin pa lamang ito ng iyong CSS na pantagagamit.'''
@@ -1329,7 +1328,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-help-email' => 'Hindi talaga kailangang may tirahan ng e-liham, subalit kailangan para sa muling pagtatakda ng hudyat, kung makalimutan mo ang hudyat mo.',
 'prefs-help-email-others' => 'Mapipili mo rin na makipag-ugnayan sa iyo ang iba sa pamamagitan ng iyong pahina ng tagagamit o usapan na hindi kailangang ilantad ang katauhan mo.',
 'prefs-help-email-required' => 'Kailangan ang direksiyong e-liham.',
-'prefs-info' => 'Payak na kabatiran',
+'prefs-info' => 'Saligang kabatiran',
 'prefs-i18n' => 'Internasyonalisasyon',
 'prefs-signature' => 'Lagda',
 'prefs-dateformat' => 'Anyo ng petsa',
@@ -1961,6 +1960,7 @@ Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|mga byte}}',
 'ncategories' => '$1 {{PLURAL:$1|kategorya|mga kategorya}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|mga interwiki}}',
 'nlinks' => '$1 {{PLURAL:$1|ugnay|mga ugnay}}',
 'nmembers' => '$1 {{PLURAL:$1|kasapi|mga kasapi}}',
 'nrevisions' => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
@@ -1989,6 +1989,7 @@ Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 'mostlinkedtemplates' => 'Pinakamaraming ugnay sa mga suleras',
 'mostcategories' => 'Mga artikulong may pinakamaraming kategorya',
 'mostimages' => 'Pinakamaraming ugnay sa mga larawan',
+'mostinterwikis' => 'Mga pahinang mayroong pinakamaraming mga interwiki',
 'mostrevisions' => 'Mga artikulong may pinakamaraming pagbabago',
 'prefixindex' => 'Lahat ng mga pahinang may unlapi',
 'prefixindex-namespace' => 'Lahat ng mga pahinang may unlapi ($1 puwang ng pangalan)',
@@ -2137,6 +2138,8 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'mailnologin' => 'Walang adres na mapagpapadalahan',
 'mailnologintext' => 'Kailangan mong [[Special:UserLogin|lumagda]] at magkaroon ng tanggap na e-liham sa iyong [[Special:Preferences|mga kagustuhan]] para makapagpadala ng e-liham sa ibang mga tagagamit.',
 'emailuser' => 'Padalhan ng e-liham ang tagagamit',
+'emailuser-title-target' => 'Padalhan ng elektronikong liham ang {{GENDER:$1|tagagamit}} na ito',
+'emailuser-title-notarget' => 'Padalhan ng e-liham ang tagagamit',
 'emailpage' => 'Magpadala ng e-liham sa tagagamit',
 'emailpagetext' => 'Magagamit mo ang pormularyo sa ibaba para makapagpadala ng mensahe sa pamamagitan ng isang e-liham para sa tagagamit na ito.
 Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustuhan ng tagagamit]] ay lilitaw bilang adres na "Mula kay" ng e-liham, para tuwirang makatugon sa iyo ang nakatanggap.',
@@ -2970,16 +2973,33 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 
 # Info page
 'pageinfo-title' => 'Kabatiran para sa "$1"',
-'pageinfo-header-edits' => 'Mga pagpatnugot',
-'pageinfo-header-watchlist' => 'Bantayan ko',
-'pageinfo-header-views' => 'Mga pagtanaw',
-'pageinfo-subjectpage' => 'Pahina',
-'pageinfo-talkpage' => 'Pahina ng usapan',
-'pageinfo-watchers' => 'Bilang ng mga nagbabantay',
-'pageinfo-edits' => 'Bilang ng mga pamamatnugot',
-'pageinfo-authors' => 'Bilang ng magkakabukod na mga may-akda',
+'pageinfo-header-basic' => 'Saligang kabatiran',
+'pageinfo-header-edits' => 'Kasaysayan ng pamamatnugot',
+'pageinfo-header-restrictions' => 'Pruteksiyon ng pahina',
+'pageinfo-header-properties' => 'Mga kaarian ng pahina',
+'pageinfo-display-title' => 'Pamagat na ipinapakita',
+'pageinfo-default-sort' => 'Likas na nakatakdang susi ng pag-uuri',
+'pageinfo-length' => 'Haba ng pahina (na nasa mga byte)',
+'pageinfo-article-id' => 'ID ng pahina',
+'pageinfo-robot-policy' => 'Katayuan ng makinang panghanap',
 'pageinfo-views' => 'Bilang ng mga pagtanaw',
-'pageinfo-viewsperedit' => 'Pagtanaw sa bawat pagbago',
+'pageinfo-watchers' => 'Bilang ng mga nagbabantay ng pahina',
+'pageinfo-redirects-name' => 'Napapapunta sa pahinang ito',
+'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'Mga kabahaging pahina ng pahinang ito',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|pagpapapunta sa ibang pahina|mga pagpapapunta sa ibang pahina}}; $3 {{PLURAL:$3|hindi pagpapapunta sa ibang pahina|mga hindi pagpapapunta sa ibang pahina}})',
+'pageinfo-firstuser' => 'Tagapaglikha ng pahina',
+'pageinfo-firsttime' => 'Petsa ng paglikha ng pahina',
+'pageinfo-lastuser' => 'Pinakahuling patnugot',
+'pageinfo-lasttime' => 'Petsa ng pinakahuling pagpatnugot',
+'pageinfo-edits' => 'Kabuuang bilang ng mga pamamatnugot',
+'pageinfo-authors' => 'Kabuuang bilang ng magkakabukod na mga may-akda',
+'pageinfo-recent-edits' => 'Kamakailang bilang ng mga pamamatnugot (sa loob ng huling $1)',
+'pageinfo-recent-authors' => 'Kamakailang bilang ng magkakabukod na mga may-akda',
+'pageinfo-restriction' => 'Pruteksiyon ng pahina ($1)',
+'pageinfo-magic-words' => 'Mga salitang mahiwaga ($1)',
+'pageinfo-hidden-categories' => 'Nakatagong mga kategorya ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',
 
 # Skin names
 'skinname-standard' => 'Klasiko',

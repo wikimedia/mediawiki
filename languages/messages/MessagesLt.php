@@ -2892,15 +2892,10 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 # Info page
 'pageinfo-title' => '„$1“ informacija',
 'pageinfo-header-edits' => 'Pakeitimai',
-'pageinfo-header-watchlist' => 'Stebėjimo sąrašas',
-'pageinfo-header-views' => 'Peržiūrėta',
-'pageinfo-subjectpage' => 'Puslapis',
-'pageinfo-talkpage' => 'Pokalbių puslapis',
+'pageinfo-views' => 'Peržiūrų skaičius',
 'pageinfo-watchers' => 'Stebėtojų skaičius',
 'pageinfo-edits' => 'Keitimų skaičius',
 'pageinfo-authors' => 'Skirtingų autorių skaičius',
-'pageinfo-views' => 'Peržiūrų skaičius',
-'pageinfo-viewsperedit' => 'Peržiūrėta redaguojant',
 
 # Skin names
 'skinname-standard' => 'Klasikinė',

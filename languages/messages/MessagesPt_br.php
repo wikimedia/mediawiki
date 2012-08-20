@@ -3055,15 +3055,10 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
 'pageinfo-header-edits' => 'Edições',
-'pageinfo-header-watchlist' => 'Páginas vigiadas',
-'pageinfo-header-views' => 'Visitas',
-'pageinfo-subjectpage' => 'Página',
-'pageinfo-talkpage' => 'Página de discussão',
+'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de pessoas vigiando',
 'pageinfo-edits' => 'Número de edições',
 'pageinfo-authors' => 'Número de autores individuais',
-'pageinfo-views' => 'Número de visitas',
-'pageinfo-viewsperedit' => 'Visitas por edição',
 
 # Skin names
 'skinname-standard' => 'Clássico',

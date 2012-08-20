@@ -2760,14 +2760,9 @@ $1',
 # Info page
 'pageinfo-title' => 'ข้อมูลสำหรับ "$1"',
 'pageinfo-header-edits' => 'การแก้ไข',
-'pageinfo-header-watchlist' => 'รายการเฝ้าดู',
-'pageinfo-header-views' => 'การเข้าดู',
-'pageinfo-subjectpage' => 'หน้า',
-'pageinfo-talkpage' => 'หน้าพูดคุย',
+'pageinfo-views' => 'จำนวนการเข้าดู',
 'pageinfo-watchers' => 'จำนวนผู้เข้าดู',
 'pageinfo-edits' => 'จำนวนการแก้ไข',
-'pageinfo-views' => 'จำนวนการเข้าดู',
-'pageinfo-viewsperedit' => 'จำนวนการเข้าดูต่อการแก้ไข',
 
 # Skin names
 'skinname-standard' => 'คลาสสิก',

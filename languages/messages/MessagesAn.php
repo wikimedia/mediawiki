@@ -2791,15 +2791,10 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 # Info page
 'pageinfo-title' => 'Información ta «$1»',
 'pageinfo-header-edits' => 'Edicions',
-'pageinfo-header-watchlist' => 'Lista de seguimiento',
-'pageinfo-header-views' => 'Vistas',
-'pageinfo-subjectpage' => 'Pachina',
-'pageinfo-talkpage' => 'Pachina de descusión',
+'pageinfo-views' => 'Numero de vistas',
 'pageinfo-watchers' => "Numero d'usuarios que la cosiran",
 'pageinfo-edits' => "Numero d'edicions",
 'pageinfo-authors' => "Numero d'autors diferents",
-'pageinfo-views' => 'Numero de vistas',
-'pageinfo-viewsperedit' => 'Vistas por edición',
 
 # Skin names
 'skinname-standard' => 'Clasica (Classic)',

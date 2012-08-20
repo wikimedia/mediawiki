@@ -2916,15 +2916,10 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 # Info page
 'pageinfo-title' => ' $1 પાના ની માહિતી નૂ મથાડૂ',
 'pageinfo-header-edits' => 'કરેલા ફેરફાર',
-'pageinfo-header-watchlist' => 'ધ્યાનસૂચિ',
-'pageinfo-header-views' => 'દ્રશ્ય',
-'pageinfo-subjectpage' => 'પૃષ્ઠ',
-'pageinfo-talkpage' => 'ચર્ચા પત્ર',
+'pageinfo-views' => 'જોનારાની સંખ્યા',
 'pageinfo-watchers' => 'નીરીક્ષકોની સંખ્યા',
 'pageinfo-edits' => 'સંપાદનોની સંખ્યા',
 'pageinfo-authors' => 'ક્ષેત્રના લેખકોની સંખ્યા',
-'pageinfo-views' => 'જોનારાની સંખ્યા',
-'pageinfo-viewsperedit' => 'પ્રતિ ફેરફાર ના દ્રશ્યો',
 
 # Patrolling
 'markaspatrolleddiff' => 'નિરીક્ષીત અંકિત કરો',

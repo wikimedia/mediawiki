@@ -2122,13 +2122,8 @@ $1',
 # Info page
 'pageinfo-title' => 'Πύστις περὶ "$1"',
 'pageinfo-header-edits' => 'Μεταγραφαί',
-'pageinfo-header-watchlist' => 'Τὰ ἐφορώμενα',
-'pageinfo-header-views' => 'Προβολαί',
-'pageinfo-subjectpage' => 'Δέλτος',
-'pageinfo-talkpage' => 'Δέλτος διαλέξεως',
-'pageinfo-edits' => 'Ἀριθμὸς μεταγραφῶν',
 'pageinfo-views' => 'Ἀριθμὸς προβολῶν',
-'pageinfo-viewsperedit' => 'Προβολαὶ ἀνὰ μεταγραφήν',
+'pageinfo-edits' => 'Ἀριθμὸς μεταγραφῶν',
 
 # Patrolling
 'markaspatrolleddiff' => 'Σεσημασμένη ὡς φρουρουμένη',

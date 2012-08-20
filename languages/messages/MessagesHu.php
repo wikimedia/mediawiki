@@ -3057,15 +3057,10 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 # Info page
 'pageinfo-title' => 'Információk a(z) „$1” lapról',
 'pageinfo-header-edits' => 'Szerkesztések',
-'pageinfo-header-watchlist' => 'Figyelőlista',
-'pageinfo-header-views' => 'Megtekintések',
-'pageinfo-subjectpage' => 'Lap',
-'pageinfo-talkpage' => 'Vitalap',
+'pageinfo-views' => 'Megtekintések száma',
 'pageinfo-watchers' => 'Figyelők száma',
 'pageinfo-edits' => 'Szerkesztések száma',
 'pageinfo-authors' => 'Egyedi szerkesztők száma',
-'pageinfo-views' => 'Megtekintések száma',
-'pageinfo-viewsperedit' => 'Megtekintés/szerkesztés',
 
 # Skin names
 'skinname-standard' => 'Klasszikus',

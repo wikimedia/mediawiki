@@ -3094,15 +3094,10 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 # Info page
 'pageinfo-title' => 'Information om "$1"',
 'pageinfo-header-edits' => 'Redigeringar',
-'pageinfo-header-watchlist' => 'Bevakningslista',
-'pageinfo-header-views' => 'Visningar',
-'pageinfo-subjectpage' => 'Sida',
-'pageinfo-talkpage' => 'Diskussionssida',
+'pageinfo-views' => 'Antal visningar',
 'pageinfo-watchers' => 'Antal användare som bevakar sidan',
 'pageinfo-edits' => 'Antal redigeringar',
 'pageinfo-authors' => 'Antal olika författare',
-'pageinfo-views' => 'Antal visningar',
-'pageinfo-viewsperedit' => 'Sidvisningar per redigering',
 
 # Skin names
 'skinname-standard' => 'Standard',

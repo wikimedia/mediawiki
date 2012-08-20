@@ -2067,13 +2067,9 @@ $UNWATCHURL  نه ليدنه وکړۍ
 # Info page
 'pageinfo-title' => 'د "$1" مالومات',
 'pageinfo-header-edits' => 'سمونونه',
-'pageinfo-header-watchlist' => 'کتنلړ',
-'pageinfo-header-views' => 'کتنې',
-'pageinfo-subjectpage' => 'مخ',
-'pageinfo-talkpage' => 'د خبرواترو مخ',
+'pageinfo-views' => 'د کتنو شمېر',
 'pageinfo-watchers' => 'د کتونکو شمېر',
 'pageinfo-edits' => 'د سمونونو شمېر',
-'pageinfo-views' => 'د کتنو شمېر',
 
 # Skin names
 'skinname-standard' => 'کلاسيک',

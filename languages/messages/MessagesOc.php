@@ -2797,11 +2797,9 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'spam_blanking' => 'Totas las versions que contenon de ligams cap a $1 son blanquidas',
 
 # Info page
-'pageinfo-subjectpage' => 'Pagina',
+'pageinfo-views' => 'Nombre de vistas',
 'pageinfo-edits' => "Nombre d'edicions",
 'pageinfo-authors' => "Nombre d'autors distints",
-'pageinfo-views' => 'Nombre de vistas',
-'pageinfo-viewsperedit' => 'Visitas per modificacions',
 
 # Skin names
 'skinname-standard' => 'Estandard',

@@ -2917,15 +2917,10 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 # Info page
 'pageinfo-title' => 'Informazzjoni għal "$1"',
 'pageinfo-header-edits' => 'Modifiki',
-'pageinfo-header-watchlist' => "Lista ta' osservazzjonijiet",
-'pageinfo-header-views' => 'Viżti',
-'pageinfo-subjectpage' => 'Paġna',
-'pageinfo-talkpage' => "Paġna ta' diskussjoni",
+'pageinfo-views' => "Numru ta' viżti",
 'pageinfo-watchers' => "Numru ta' osservaturi",
 'pageinfo-edits' => "Numru ta' modifiki",
 'pageinfo-authors' => "Numru ta' awturi distinti",
-'pageinfo-views' => "Numru ta' viżti",
-'pageinfo-viewsperedit' => 'Viżti kull modifika',
 
 # Skin names
 'skinname-standard' => 'Classic',

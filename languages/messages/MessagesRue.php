@@ -2744,15 +2744,10 @@ $1',
 # Info page
 'pageinfo-title' => 'Інформація про "$1"',
 'pageinfo-header-edits' => 'Едітованя',
-'pageinfo-header-watchlist' => 'Слїдованы сторінкы',
-'pageinfo-header-views' => 'Перегляды',
-'pageinfo-subjectpage' => 'Сторінка',
-'pageinfo-talkpage' => 'Сторінка діскузії',
+'pageinfo-views' => 'Чісло переглядів',
 'pageinfo-watchers' => 'Чісло слїдуючіх',
 'pageinfo-edits' => 'Чісло едітовань',
 'pageinfo-authors' => 'Чісло різных авторів',
-'pageinfo-views' => 'Чісло переглядів',
-'pageinfo-viewsperedit' => 'Чісло зображінь на едітованя',
 
 # Patrolling
 'markaspatrolleddiff' => 'Означіти як перевірене',

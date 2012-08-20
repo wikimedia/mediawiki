@@ -2959,15 +2959,10 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 # Info page
 'pageinfo-title' => '"$1" සඳහා තොරතුරු',
 'pageinfo-header-edits' => 'සංස්කරණ',
-'pageinfo-header-watchlist' => 'මුර-ලැයිස්තුව',
-'pageinfo-header-views' => 'නැරඹුම්',
-'pageinfo-subjectpage' => 'පිටුව',
-'pageinfo-talkpage' => 'සාකච්ඡා පිටුව',
+'pageinfo-views' => 'නැරඹුම් සංඛ්‍යාව',
 'pageinfo-watchers' => 'මුරකරන්නන් සංඛ්‍යාව',
 'pageinfo-edits' => 'සංස්කරණයන් සංඛ්‍යාව',
 'pageinfo-authors' => 'ප්‍රභින්න කර්තෘවරුන් සංඛ්‍යාව',
-'pageinfo-views' => 'නැරඹුම් සංඛ්‍යාව',
-'pageinfo-viewsperedit' => 'එක් සංස්කරණයකට නැරඹුම් ගණන',
 
 # Patrolling
 'markaspatrolleddiff' => 'පරික්ෂාකර බැලූ ලෙස සලකුණු කරන්න',

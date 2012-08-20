@@ -2925,15 +2925,10 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 # Info page
 'pageinfo-title' => '"$1" sutiyuq p\'anqamanta willay',
 'pageinfo-header-edits' => "Llamk'apusqakuna",
-'pageinfo-header-watchlist' => "Watiqasqa p'anqakuna",
-'pageinfo-header-views' => 'Rikunakuna',
-'pageinfo-subjectpage' => "P'anqa",
-'pageinfo-talkpage' => "Rimanakuy p'anqa",
+'pageinfo-views' => "Hayk'a qhawaykuna",
 'pageinfo-watchers' => "Hayk'a watiqaqkuna",
 'pageinfo-edits' => "Hayk'a hukchasqakuna",
 'pageinfo-authors' => "Hayk'a sapaq kaq ruraqkuna",
-'pageinfo-views' => "Hayk'a qhawaykuna",
-'pageinfo-viewsperedit' => "Qhawasqakuna llamk'apusqaman",
 
 # Patrolling
 'markaspatrolleddiff' => 'Qhawakipasqaman sananchay',

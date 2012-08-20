@@ -2877,15 +2877,10 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 # Info page
 'pageinfo-title' => '"$1" ৰ তথ্য',
 'pageinfo-header-edits' => 'সম্পাদনাসমূহ',
-'pageinfo-header-watchlist' => 'লক্ষ্যতালিকা',
-'pageinfo-header-views' => 'দৰ্শন',
-'pageinfo-subjectpage' => 'পৃষ্ঠা',
-'pageinfo-talkpage' => 'আলোচনা পৃষ্ঠা',
+'pageinfo-views' => 'দৰ্শনৰ সংখ্যা',
 'pageinfo-watchers' => 'নিৰীক্ষকৰ সংখ্যা',
 'pageinfo-edits' => 'সম্পাদনাৰ সংখ্যা',
 'pageinfo-authors' => 'মুখ্য লেখকৰ সংখ্যা',
-'pageinfo-views' => 'দৰ্শনৰ সংখ্যা',
-'pageinfo-viewsperedit' => 'প্ৰতি সম্পাদনাৰ দৰ্শন',
 
 # Patrolling
 'markaspatrolleddiff' => 'নিৰীক্ষিত বুলি চিহ্নিত কৰক',

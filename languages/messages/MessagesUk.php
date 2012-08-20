@@ -1022,8 +1022,7 @@ $2
 'clearyourcache' => "'''Увага:''' Після збереження слід очистити кеш браузера, щоб побачити зміни.
 * '''Firefox / Safari:''' тримайте ''Shift'', коли натискаєте ''Оновити'', або натисніть ''Ctrl-F5'' чи ''Ctrl-Shift-R'' (''⌘-R'' на Apple Mac)
 * '''Google Chrome:''' натисніть ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Apple Mac)
-* '''Internet Explorer:''' тримайте ''Ctrl'', коли натискаєте ''Оновити'' або натисніть ''Ctrl-F5''
-* '''Konqueror:''' натисніть кнопку ''Оновити'' або клавішу ''F5''
+* '''Internet Explorer:''' тримайте ''Ctrl'', коли натискаєте ''Оновити'', або натисніть ''Ctrl-F5''
 * '''Opera:''' очистіть кеш за допомогою ''Інструменти → Налаштування''",
 'usercssyoucanpreview' => "'''Підказка:''' використовуйте кнопку «{{int:showpreview}}», щоб протестувати ваш новий css-файл перед збереженням.",
 'userjsyoucanpreview' => "'''Підказка:''' використовуйте кнопку «{{int:showpreview}}», щоб протестувати ваш новий код JavaScript перед збереженням.",
@@ -3157,15 +3156,10 @@ The wiki server can't provide data in a format your client can read.",
 # Info page
 'pageinfo-title' => 'Інформація про " $1 "',
 'pageinfo-header-edits' => 'Редагування',
-'pageinfo-header-watchlist' => 'Список спостереження',
-'pageinfo-header-views' => 'Перегляди',
-'pageinfo-subjectpage' => 'Сторінка',
-'pageinfo-talkpage' => 'Сторінка обговорення',
+'pageinfo-views' => 'Кількість переглядів',
 'pageinfo-watchers' => 'Кількість спостерігачів',
 'pageinfo-edits' => 'Кількість редагувань',
 'pageinfo-authors' => 'Кількість унікальних авторів',
-'pageinfo-views' => 'Кількість переглядів',
-'pageinfo-viewsperedit' => 'Переглядів на редагування',
 
 # Skin names
 'skinname-standard' => 'Стандартне',

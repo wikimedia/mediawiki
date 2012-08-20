@@ -3008,15 +3008,10 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',
 'pageinfo-header-edits' => 'Muokkaukset',
-'pageinfo-header-watchlist' => 'Tarkkailulista',
-'pageinfo-header-views' => 'Näyttökerrat',
-'pageinfo-subjectpage' => 'Sivu',
-'pageinfo-talkpage' => 'Keskustelusivu',
+'pageinfo-views' => 'Katselukertojen määrä',
 'pageinfo-watchers' => 'Tarkkailijoiden lukumäärä',
 'pageinfo-edits' => 'Muokkausten lukumäärä',
 'pageinfo-authors' => 'Eri tekijöiden lukumäärä',
-'pageinfo-views' => 'Katselukertojen määrä',
-'pageinfo-viewsperedit' => 'Katseluita per muokkaus',
 
 # Skin names
 'skinname-standard' => 'Perus',

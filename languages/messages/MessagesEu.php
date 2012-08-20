@@ -2574,11 +2574,8 @@ Baliteke zerrenda beltzean dagoen kanpo lotura batek sortzea arazo hori.',
 
 # Info page
 'pageinfo-header-edits' => 'Aldaketak',
-'pageinfo-header-views' => 'Ikustaldiak',
-'pageinfo-subjectpage' => 'Orrialdea',
-'pageinfo-talkpage' => 'Eztabaida-orria',
-'pageinfo-edits' => 'Aldaketa kopurua',
 'pageinfo-views' => 'Bistaratze-kopurua',
+'pageinfo-edits' => 'Aldaketa kopurua',
 
 # Skin names
 'skinname-standard' => 'Lehenetsia',

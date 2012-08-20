@@ -2375,14 +2375,10 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 
 # Info page
 'pageinfo-header-edits' => 'Redakcijad',
-'pageinfo-header-watchlist' => 'Kaclendnimikirjutez',
-'pageinfo-header-views' => 'Kacundad',
-'pageinfo-subjectpage' => 'Lehtpol’',
-'pageinfo-talkpage' => "Lodulehtpol'",
+'pageinfo-views' => 'Kacundoiden lugu',
 'pageinfo-watchers' => 'Kaclijoiden lugu',
 'pageinfo-edits' => 'Redakcijoiden lugumär',
 'pageinfo-authors' => 'Erazvuiččiden avtoroiden lugu',
-'pageinfo-views' => 'Kacundoiden lugu',
 
 # Skin names
 'skinname-standard' => 'Klassine',

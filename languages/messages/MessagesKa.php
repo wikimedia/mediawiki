@@ -476,9 +476,9 @@ $1',
 'dberrortext' => 'აღმოჩენილია სინტაქსური შეცდომა მონაცემთა ბაზასთან დაკავშირებისას
 შესაძლოა ეს არის შეცდომა პროგრამულ უზრუნველყოფაში,
 ბოლო დაკავშირება მონაცემთა ბაზასან
-<blockquote><tt>$1</tt></blockquote>
-მოხდა ფუნქციიდან <tt>„$2“</tt>.
-მონაცემთა ბაზამ დააბრუნა შეცდომა <tt>„$3: $4“</tt>.',
+<blockquote><code>$1</code></blockquote>
+მოხდა ფუნქციიდან „<code>$2</code>“.
+მონაცემთა ბაზამ დააბრუნა შეცდომა „<samp>$3: $4</samp>“.',
 'dberrortextcl' => 'მონაცემთა ბაზასთან დაკავშირებისას აღმოჩენილია სინტქსური შეცდომა.
 საბოლოო დაკავშირება მოხდა:
 „$1“
@@ -837,11 +837,10 @@ $2
 'userpage-userdoesnotexist-view' => 'მომხმარებელი „$1“ არ არის დარეგისტრირებული.',
 'blocked-notice-logextract' => 'ეს მომხმარებელი უკვე დაიბლოკა.
 დაბლოკვის მიზეზი შემდეგშია:',
-'clearyourcache' => "''შენიშვნა:''' შენახვის შემდეგ შესაძლოა დაგჭირდეთ ბრაუზერის ქეშის გაწმენდა ცვლილებების სანახავად. 
+'clearyourcache' => "'''შენიშვნა:''' შენახვის შემდეგ შესაძლოა დაგჭირდეთ ბრაუზერის ქეშის გაწმენდა ცვლილებების სანახავად. 
 * '''Firefox / Safari:''' დააჭირეთ ''Shift'' ''Reload''-ზე დაწკაპებისას, ან დააჭირეთ ''Ctrl-F5'', ან ''Ctrl-R'' (''⌘-R'' Mac-ზე); 
 * '''Google Chrome:''' დააჭირეთ ''Ctrl-Shift-R'' (''⌘-Shift-R'' Mac-ზე);
 * '''IE:''' დააჭირეთ ''Ctrl'' ''Refresh''-ზე დაწკაპებისას, ან დააჭირეთ ''Ctrl-F5'';
-* '''Konqueror:''' მხოლოდ დააწკაპეთ ''Reload'' ღილაკს, ან დააჭირეთ ''F5'';
 * '''Opera''' გაწმინდეთ კეში ''Tools→Preferences''-დან.",
 'usercssyoucanpreview' => "'''რჩევა:''' შენახვამდე გამოიყენეთ ღილაკი \"{{int:showpreview}}\" თქვენი ახალი CSS ტესტირებისთვის.",
 'userjsyoucanpreview' => "'''რჩევა:''' შენახვამდე გამოიყენეთ ღილაკი \"{{int:showpreview}}\" თქვენი ახალი JS ტესტირებისთვის.",
@@ -2911,16 +2910,21 @@ $1',
 
 # Info page
 'pageinfo-title' => 'ინფორმაცია „$1“-თვის',
-'pageinfo-header-edits' => 'რედაქტირებები',
-'pageinfo-header-watchlist' => 'კონტროლის სია',
-'pageinfo-header-views' => 'ხილვა',
-'pageinfo-subjectpage' => 'გვერდი',
-'pageinfo-talkpage' => 'განხილვის გვერდი',
-'pageinfo-watchers' => 'დამკვირვებელთა რაოდენობა',
-'pageinfo-edits' => 'რედაქციების რაოდენობა',
-'pageinfo-authors' => 'განსხვავებულ ავტორთა რაოდენობა',
+'pageinfo-header-basic' => 'საბაზისო ინფორმაცია',
+'pageinfo-header-edits' => 'რედაქტირების ისტორია',
+'pageinfo-header-restrictions' => 'გვერდის დაცვა',
+'pageinfo-article-id' => 'გვერდის ID',
 'pageinfo-views' => 'ხილვების რაოდენობა',
-'pageinfo-viewsperedit' => 'შესწორებათა ხილვა',
+'pageinfo-watchers' => 'გვერდის დამკვირვებელთა რაოდენობა',
+'pageinfo-firstuser' => 'გვერდის შემქნელი',
+'pageinfo-firsttime' => 'გვერდის შექმნის თარიღი',
+'pageinfo-lastuser' => 'ბოლო რედაქტორი',
+'pageinfo-lasttime' => 'ბოლო რედაქტირების თარიღი',
+'pageinfo-edits' => 'რედაქტირებების ჯამური რაოდენობა',
+'pageinfo-authors' => 'განსხვავებულ ავტორთა ჯამური რაოდენობა',
+'pageinfo-restriction' => 'გვერდის დაცვა (<code>$1</code>)',
+'pageinfo-magic-words' => 'ჯადოსნური {{PLURAL:$1|სიტყვა|სიტყვა}} ($1)',
+'pageinfo-hidden-categories' => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორია}} ($1)',
 
 # Skin names
 'skinname-standard' => 'კლასიკური',
