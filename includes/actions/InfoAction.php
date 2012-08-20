@@ -179,14 +179,14 @@ class InfoAction extends FormlessAction {
 				$message = $this->msg( "protect-level-$protectionLevel" );
 				if ( $message->isDisabled() ) {
 					// Require "$1" permission
-					$message = $this->msg( "protect-fallback", $protectionLevel )->escaped();
+					$message = $this->msg( "protect-fallback", $protectionLevel )->parse();
 				} else {
 					$message = $message->escaped();
 				}
 			}
 
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-restriction', $restrictionType )->escaped(), $message
+				$this->msg( 'pageinfo-restriction', $restrictionType )->parse(), $message
 			);
 		}
 
