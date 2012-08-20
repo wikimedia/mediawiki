@@ -163,8 +163,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		# No targets?
 		if( !isset( self::$allowedTypes[$this->typeName] ) || count( $this->ids ) == 0 ) {
-			$output->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-			return;
+			throw new ErrorPageError( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		}
 		$this->typeInfo = self::$allowedTypes[$this->typeName];
 		$this->mIsAllowed = $user->isAllowed( $this->typeInfo['permission'] );
@@ -286,11 +285,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$user = $this->getUser();
 		if( !$oimage->userCan( File::DELETED_FILE, $user ) ) {
 			if( $oimage->isDeleted( File::DELETED_RESTRICTED ) ) {
-				$this->getOutput()->permissionRequired( 'suppressrevision' );
+				throw new PermissionsError( 'suppressrevision' );
 			} else {
-				$this->getOutput()->permissionRequired( 'deletedtext' );
+				throw new PermissionsError( 'deletedtext' );
 			}
-			return;
 		}
 		if ( !$user->matchEditToken( $this->token, $archiveName ) ) {
 			$lang = $this->getLanguage();
@@ -360,8 +358,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$item = $list->current();
 			if ( !$item->canView() ) {
 				if( !$this->submitClicked ) {
-					$this->getOutput()->permissionRequired( 'suppressrevision' );
-					return;
+					throw new PermissionsError( 'suppressrevision' );
 				}
 				$UserAllowed = false;
 			}
@@ -370,8 +367,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 
 		if( !$numRevisions ) {
-			$this->getOutput()->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
-			return;
+			throw new ErrorPageError( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 		}
 
 		$this->getOutput()->addHTML( "</ul>" );
@@ -528,8 +524,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 		# Can the user set this field?
 		if( $bitParams[Revision::DELETED_RESTRICTED]==1 && !$this->getUser()->isAllowed('suppressrevision') ) {
-			$this->getOutput()->permissionRequired( 'suppressrevision' );
-			return false;
+			throw new PermissionsError( 'suppressrevision' );
 		}
 		# If the save went through, go to success message...
 		$status = $this->save( $bitParams, $comment, $this->targetObj );
