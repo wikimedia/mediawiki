@@ -2672,6 +2672,8 @@ $wgMessageStructure = array(
 		'pageinfo-length',
 		'pageinfo-article-id',
 		'pageinfo-robot-policy',
+		'pageinfo-robot-index',
+		'pageinfo-robot-noindex',
 		'pageinfo-views',
 		'pageinfo-watchers',
 		'pageinfo-redirects-name',

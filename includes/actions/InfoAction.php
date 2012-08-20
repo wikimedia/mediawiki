@@ -121,9 +121,9 @@ class InfoAction extends FormlessAction {
 
 		// Use robot policy logic
 		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
-		// @todo FIXME: Hard coded English text.
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-robot-policy' )->escaped(), "Marked as '" . $policy['index'] . "'"
+			$this->msg( 'pageinfo-robot-policy' )->escaped(),
+			$this->msg( "pageinfo-robot-${policy['index']}" )->escaped()
 		);
 
 		if ( !$wgDisableCounters ) {
