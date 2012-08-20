@@ -56,7 +56,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
-		global $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
+		global $wgContLang, $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -244,10 +244,8 @@ class InfoAction extends FormlessAction {
 		// Array of magic word IDs
 		$wordIDs = $magicWords->names;
 
-		// @todo FIXME: Should report in content language, as localised
-		//              magic words cannot be used.
 		// Array of IDs => localized magic words
-		$localizedWords = $lang->getMagicWords();
+		$localizedWords = $wgContLang->getMagicWords();
 
 		$listItems = array();
 		foreach ( $pageProperties as $property => $value ) {
