@@ -475,6 +475,7 @@ $wgOptionalMessages = array(
 	'mergehistory-revisionrow',
 	'categoryviewer-pagedlinks',
 	'undelete-revisionrow',
+	'pageinfo-redirects-value',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
