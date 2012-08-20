@@ -128,6 +128,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Add lang and hreflang attributes to language links on Login page.
 * (bug 22749) Create Special:MostInterwikis.
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
+* (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
