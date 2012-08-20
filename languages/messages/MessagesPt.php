@@ -3125,15 +3125,10 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
 'pageinfo-header-edits' => 'Edições',
-'pageinfo-header-watchlist' => 'Páginas vigiadas',
-'pageinfo-header-views' => 'Visitas',
-'pageinfo-subjectpage' => 'Página',
-'pageinfo-talkpage' => 'Página de discussão',
+'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vigilantes',
 'pageinfo-edits' => 'Número de edições',
 'pageinfo-authors' => 'Número de autores individuais',
-'pageinfo-views' => 'Número de visitas',
-'pageinfo-viewsperedit' => 'Visitas por edição',
 
 # Skin names
 'skinname-standard' => 'Clássico',

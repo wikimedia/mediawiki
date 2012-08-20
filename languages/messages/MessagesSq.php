@@ -2961,15 +2961,10 @@ Ju lutemi provoni përsëri.',
 # Info page
 'pageinfo-title' => 'Informacion për " $1 "',
 'pageinfo-header-edits' => 'Redaktimet',
-'pageinfo-header-watchlist' => 'Lista mbikqyrëse',
-'pageinfo-header-views' => 'Shikime',
-'pageinfo-subjectpage' => 'Faqe',
-'pageinfo-talkpage' => 'Faqe diskutimi',
+'pageinfo-views' => 'Numri i shikimeve',
 'pageinfo-watchers' => 'Numri i mbikqyrësve',
 'pageinfo-edits' => 'Numri i redaktimeve',
 'pageinfo-authors' => 'Numri i autorëve të veçantë',
-'pageinfo-views' => 'Numri i shikimeve',
-'pageinfo-viewsperedit' => 'Shikime për redaktim',
 
 # Skin names
 'skinname-standard' => 'Standarte',

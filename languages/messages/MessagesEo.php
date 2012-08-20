@@ -3094,15 +3094,10 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',
 'pageinfo-header-edits' => 'Redaktoj',
-'pageinfo-header-watchlist' => 'Atentaro',
-'pageinfo-header-views' => 'Rigardoj',
-'pageinfo-subjectpage' => 'Paĝo',
-'pageinfo-talkpage' => 'Diskuto-paĝo',
+'pageinfo-views' => 'Nombro de rigardoj',
 'pageinfo-watchers' => 'Nombro de atentantoj',
 'pageinfo-edits' => 'Nombro de redaktoj',
 'pageinfo-authors' => 'Nombro de distingaj aŭtoroj',
-'pageinfo-views' => 'Nombro de rigardoj',
-'pageinfo-viewsperedit' => 'Po rigardoj por redakto',
 
 # Skin names
 'skinname-standard' => 'Klasiko',

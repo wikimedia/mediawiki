@@ -615,9 +615,9 @@ Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].'
 'dberrortext' => 'Wystąpił błąd składni w zapytaniu do bazy danych.
 Może to oznaczać błąd w oprogramowaniu.
 Ostatnie, nieudane zapytanie to:
-<blockquote><tt>$1</tt></blockquote>
-wysłane przez funkcję „<tt>$2</tt>”.
-Baza danych zgłosiła błąd „<tt>$3: $4</tt>”.',
+<blockquote><code>$1</code></blockquote>
+wysłane przez funkcję „<code>$2</code>”.
+Baza danych zgłosiła błąd „<samp>$3: $4</samp>”.',
 'dberrortextcl' => 'Wystąpił błąd składni w zapytaniu do bazy danych.
 Ostatnie, nieudane zapytanie to:
 „$1”
@@ -975,7 +975,6 @@ Ostatni wpis rejestru blokad jest pokazany poniżej.',
 * '''Firefox / Safari:''' Przytrzymaj ''Shift'' podczas klikania ''Odśwież bieżącą stronę'', lub naciśnij klawisze ''Ctrl+F5'' lub ''Ctrl+R'' (''⌘-R'' na komputerze Mac)
 * '''Google Chrome:''' Naciśnij ''Ctrl-Shift-R'' (''⌘-Shift-R'' na komputerze Mac)
 * '''Internet Explorer:''' Przytrzymaj ''Ctrl'' jednocześnie klikając ''Odśwież'' lub naciśnij klawisze ''Ctrl+F5''
-* '''Konqueror:''' Kliknij polecenie ''Odśwież'' lub naciśnij klawisz ''F5''
 * '''Opera:''' Wyczyść pamięć podręczną w ''Narzędzia → Preferencje''",
 'usercssyoucanpreview' => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview' => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
@@ -2124,6 +2123,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'mostlinkedtemplates' => 'Najczęściej linkowane szablony',
 'mostcategories' => 'Strony z największą liczbą kategorii',
 'mostimages' => 'Najczęściej linkowane pliki',
+'mostinterwikis' => 'Strony z największą liczbą linków interwiki',
 'mostrevisions' => 'Strony o największej liczbie wersji',
 'prefixindex' => 'Wszystkie strony o prefiksie',
 'prefixindex-namespace' => 'Wszystkie strony z prefiksem (przestrzeń nazw $1)',
@@ -2269,6 +2269,8 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'mailnologin' => 'Brak adresu',
 'mailnologintext' => 'Musisz się [[Special:UserLogin|zalogować]] i mieć wpisany aktualny adres e‐mailowy w swoich [[Special:Preferences|preferencjach]], aby móc wysłać e‐mail do innego użytkownika.',
 'emailuser' => 'Wyślij e‐mail do tego użytkownika',
+'emailuser-title-target' => 'Wyślij e-mail do {{GENDER:$1|tego użytkownika|tej użytkowniczki|tego użytkownika}}',
+'emailuser-title-notarget' => 'Wyślij wiadomość e‐mail',
 'emailpage' => 'Wyślij e‐mail do użytkownika',
 'emailpagetext' => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do tego użytkownika.
 Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
@@ -3092,16 +3094,31 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',
-'pageinfo-header-edits' => 'Edycje',
-'pageinfo-header-watchlist' => 'Obserwowane',
-'pageinfo-header-views' => 'Odsłon',
-'pageinfo-subjectpage' => 'Strona',
-'pageinfo-talkpage' => 'Strona dyskusji',
-'pageinfo-watchers' => 'Obserwujących',
-'pageinfo-edits' => 'Edycji',
-'pageinfo-authors' => 'Autorów',
+'pageinfo-header-basic' => 'Podstawowe informacje',
+'pageinfo-header-edits' => 'Historia edycji',
+'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
+'pageinfo-header-properties' => 'Właściwości strony',
+'pageinfo-display-title' => 'Wyświetl tytuł',
+'pageinfo-default-sort' => 'Domyślny klucz sortowania',
+'pageinfo-length' => 'Długość strony (w bajtach)',
+'pageinfo-article-id' => 'Identyfikator strony',
+'pageinfo-robot-policy' => 'Stan wyszukiwarki',
 'pageinfo-views' => 'Odsłon',
-'pageinfo-viewsperedit' => 'Odsłon na edycję',
+'pageinfo-watchers' => 'Liczba obserwujących',
+'pageinfo-redirects-name' => 'Liczba przekierowań do tej strony',
+'pageinfo-subpages-name' => 'Liczba podstron tej strony',
+'pageinfo-firstuser' => 'Twórca strony',
+'pageinfo-firsttime' => 'Data utworzenia strony',
+'pageinfo-lastuser' => 'Autor ostatniej edycji',
+'pageinfo-lasttime' => 'Data ostatniej edycji',
+'pageinfo-edits' => 'Liczba edycji',
+'pageinfo-authors' => 'Całkowita liczba autorów',
+'pageinfo-recent-edits' => 'Liczba ostatnich edycji (w przeciągu $1)',
+'pageinfo-recent-authors' => 'Liczba ostatnich autorów',
+'pageinfo-restriction' => 'Zabezpieczenie strony ($1)',
+'pageinfo-magic-words' => 'Magiczne słowa ($1)',
+'pageinfo-hidden-categories' => 'Ukryte kategorie ( $1 )',
+'pageinfo-templates' => 'Transkludowan{{PLURAL:$1|y szablon|e szablony}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Standardowa',

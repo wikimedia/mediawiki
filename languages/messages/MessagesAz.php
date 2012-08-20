@@ -2328,15 +2328,10 @@ Zəhmət olmasa başqa ad seçin.',
 # Info page
 'pageinfo-title' => '"$1" üçün məlumat',
 'pageinfo-header-edits' => 'Redaktələr',
-'pageinfo-header-watchlist' => 'İzləmə siyahısı',
-'pageinfo-header-views' => 'Görünüş',
-'pageinfo-subjectpage' => 'Səhifə',
-'pageinfo-talkpage' => 'Müzakirə səhifəsi',
+'pageinfo-views' => 'Göstərmə səhifəsi',
 'pageinfo-watchers' => 'Baxış sayı',
 'pageinfo-edits' => 'Redaktələrin sayı',
 'pageinfo-authors' => 'Fərqli müəlliflərin sayı',
-'pageinfo-views' => 'Göstərmə səhifəsi',
-'pageinfo-viewsperedit' => 'Redaktə başına göstərmə',
 
 # Skin names
 'skinname-standard' => 'Classic',

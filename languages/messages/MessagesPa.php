@@ -1869,9 +1869,6 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 
 # Info page
 'pageinfo-header-edits' => 'ਸੋਧਾਂ',
-'pageinfo-header-watchlist' => 'ਨਿਗਰਾਨੀ-ਲਿਸਟ',
-'pageinfo-subjectpage' => 'ਸਫ਼ਾ',
-'pageinfo-talkpage' => 'ਗੱਲ-ਬਾਤ ਸਫ਼ਾ',
 'pageinfo-watchers' => 'ਨਜ਼ਰ ਰੱਖਣ ਵਾਲ਼ਿਆਂ ਦੀ ਗਿਣਤੀ',
 'pageinfo-edits' => 'ਸੋਧਾਂ ਦੀ ਗਿਣਤੀ',
 

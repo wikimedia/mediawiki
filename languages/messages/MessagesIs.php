@@ -2883,15 +2883,10 @@ Vinsamlegast reyndu aftur.',
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',
 'pageinfo-header-edits' => 'Breytingar',
-'pageinfo-header-watchlist' => 'Vaktlistinn',
-'pageinfo-header-views' => 'Flettingar',
-'pageinfo-subjectpage' => 'Síða',
-'pageinfo-talkpage' => 'Spjallsíða',
+'pageinfo-views' => 'Fjöldi innlita',
 'pageinfo-watchers' => 'Fjöldi notenda',
 'pageinfo-edits' => 'Fjöldi breytinga',
 'pageinfo-authors' => 'Fjöldi einstakra höfunda',
-'pageinfo-views' => 'Fjöldi innlita',
-'pageinfo-viewsperedit' => 'Flettingar á hverja breytingu',
 
 # Skin names
 'skinname-standard' => 'Sígilt',

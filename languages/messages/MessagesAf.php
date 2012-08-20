@@ -2977,15 +2977,10 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 # Info page
 'pageinfo-title' => 'Inligting oor "$1"',
 'pageinfo-header-edits' => 'Wysigings',
-'pageinfo-header-watchlist' => 'Dophoulys',
-'pageinfo-header-views' => 'Kere gewys',
-'pageinfo-subjectpage' => 'Bladsy',
-'pageinfo-talkpage' => 'Besprekingsblad',
+'pageinfo-views' => 'Aantal kere gewys',
 'pageinfo-watchers' => 'Aantal dophouers',
 'pageinfo-edits' => 'Aantal wysigings',
 'pageinfo-authors' => 'Aantal verskillende outeurs',
-'pageinfo-views' => 'Aantal kere gewys',
-'pageinfo-viewsperedit' => 'Kere gewys per wysiging',
 
 # Skin names
 'skinname-standard' => 'Standaard',

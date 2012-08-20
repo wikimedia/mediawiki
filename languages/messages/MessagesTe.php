@@ -2733,15 +2733,10 @@ $UNWATCHURL కి వెళ్ళండి.
 
 # Info page
 'pageinfo-title' => '"$1" గురించి సమాచారం',
-'pageinfo-header-edits' => 'మార్పులు',
-'pageinfo-header-watchlist' => 'వీక్షణ జాబితా',
-'pageinfo-header-views' => 'వీక్షణలు',
-'pageinfo-subjectpage' => 'పుట',
-'pageinfo-talkpage' => 'చర్చా పేజీ',
-'pageinfo-watchers' => 'వీక్షకుల సంఖ్య',
-'pageinfo-edits' => 'మార్పుల సంఖ్య',
+'pageinfo-header-edits' => 'మార్పుల చరిత్ర',
 'pageinfo-views' => 'వీక్షణల సంఖ్య',
-'pageinfo-viewsperedit' => 'ఒక మార్పుకి వీక్షణలు',
+'pageinfo-watchers' => 'పేజీ వీక్షకుల సంఖ్య',
+'pageinfo-edits' => 'మొత్తం మార్పుల సంఖ్య',
 
 # Skin names
 'skinname-standard' => 'సంప్రదాయ',

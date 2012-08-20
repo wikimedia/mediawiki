@@ -3126,15 +3126,10 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 # Info page
 'pageinfo-title' => 'Enformacions por « $1 »',
 'pageinfo-header-edits' => 'Changements',
-'pageinfo-header-watchlist' => 'Lista de survelyence',
-'pageinfo-header-views' => 'Visualisacions',
-'pageinfo-subjectpage' => 'Pâge',
-'pageinfo-talkpage' => 'Pâge de discussion',
+'pageinfo-views' => 'Nombro de visualisacions',
 'pageinfo-watchers' => 'Nombro de contributors qu’ont la pâge dens lor lista de survelyence',
 'pageinfo-edits' => 'Nombro de changements',
 'pageinfo-authors' => 'Nombro d’ôtors difèrents',
-'pageinfo-views' => 'Nombro de visualisacions',
-'pageinfo-viewsperedit' => 'Visualisacions per changement',
 
 # Skin names
 'skinname-standard' => 'Estandârd',

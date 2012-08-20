@@ -3064,15 +3064,10 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 # Info page
 'pageinfo-title' => 'Informácie o „$1“',
 'pageinfo-header-edits' => 'Úpravy',
-'pageinfo-header-watchlist' => 'Sledované stránky',
-'pageinfo-header-views' => 'Zobrazení',
-'pageinfo-subjectpage' => 'Stránka',
-'pageinfo-talkpage' => 'Diskusná stránka',
+'pageinfo-views' => 'Počet zobrazení',
 'pageinfo-watchers' => 'Počet sledovateľov',
 'pageinfo-edits' => 'Počet úprav',
 'pageinfo-authors' => 'Počet rôznych autorov',
-'pageinfo-views' => 'Počet zobrazení',
-'pageinfo-viewsperedit' => 'Zobrazení na úpravu',
 
 # Skin names
 'skinname-standard' => 'Klasický',

@@ -2717,15 +2717,10 @@ $1',
 # Info page
 'pageinfo-title' => 'Інфармацыя для "$1"',
 'pageinfo-header-edits' => 'Змены',
-'pageinfo-header-watchlist' => 'Спіс назіранага',
-'pageinfo-header-views' => 'Прагляды',
-'pageinfo-subjectpage' => 'Старонка',
-'pageinfo-talkpage' => 'Старонка размоў',
+'pageinfo-views' => 'Колькасць праглядаў',
 'pageinfo-watchers' => 'Колькасць назіральнікаў',
 'pageinfo-edits' => 'Колькасць правак:',
 'pageinfo-authors' => 'Колькасць розных аўтараў',
-'pageinfo-views' => 'Колькасць праглядаў',
-'pageinfo-viewsperedit' => 'Колькасць паказаў на 1 праўку',
 
 # Skin names
 'skinname-standard' => 'Класіка',

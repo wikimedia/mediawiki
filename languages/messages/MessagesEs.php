@@ -669,9 +669,9 @@ Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:
 'dberrortext' => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
 Esto puede indicar un error en el software.
 La última consulta a la base de datos que se intentó fue:
-<blockquote><tt>$1</tt></blockquote>
-dentro de la función «<tt>$2</tt>».
-La base de datos devolvió el error «<tt>$3: $4</tt>».',
+<blockquote><code>$1</code></blockquote>
+dentro de la función "<code>$2</code>".
+La base de datos devolvió el error "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
 La última consulta a la base de datos que se intentó fue:
 «$1»
@@ -1026,7 +1026,6 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 * '''Firefox / Safari:''' Mantén presionada ''Mayús'' mientras pulsas el botón ''Actualizar'', o presiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en Mac)
 * '''Google Chrome:''' presiona ''Ctrl+Shift+R'' (''⌘+Mayús+R'' en Mac)
 * '''Internet Explorer:''' mantén presionada ''Ctrl'' mientras pulsas ''Actualizar'', o presiona ''Ctrl+F5''
-* '''Konqueror:''' pulsa ''Recargar'' o presiona ''F5''
 * '''Opera:''' vacía la caché en ''Herramientas → Preferencias''",
 'usercssyoucanpreview' => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo CSS antes de guardarlo.",
 'userjsyoucanpreview' => "'''Consejo:''' Usa el botón «{{int:showpreview}}» para probar el nuevo JS antes de guardarlo.",
@@ -2138,6 +2137,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categoría|categorías}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|enlace|enlaces}}',
 'nmembers' => '$1 {{PLURAL:$1|artículo|artículos}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisión|revisiones}}',
@@ -2166,6 +2166,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'mostlinkedtemplates' => 'Plantillas más enlazadas',
 'mostcategories' => 'Páginas con más categorías',
 'mostimages' => 'Imágenes más usadas',
+'mostinterwikis' => 'Páginas con más interwikis',
 'mostrevisions' => 'Artículos con más ediciones',
 'prefixindex' => 'Todas las páginas con prefijo',
 'prefixindex-namespace' => 'Todas las páginas con el prefijo (espacio de nombres $1)',
@@ -2311,6 +2312,8 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'mailnologin' => 'Ninguna dirección de envio',
 'mailnologintext' => 'Debes [[Special:UserLogin|iniciar sesión]] y tener una dirección electrónica válida en tus [[Special:Preferences|preferencias]] para enviar un correo electrónico a otros usuarios.',
 'emailuser' => 'Enviar correo electrónico a este usuario',
+'emailuser-title-target' => 'Enviar un correo electrónico a {{GENDER:$1|este usuario|esta usuaria}}',
+'emailuser-title-notarget' => 'Enviar un correo electrónico al usuario',
 'emailpage' => 'Correo electrónico a usuario',
 'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
 La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
@@ -3133,16 +3136,33 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',
-'pageinfo-header-edits' => 'Ediciones',
-'pageinfo-header-watchlist' => 'Lista de seguimiento',
-'pageinfo-header-views' => 'Vistas',
-'pageinfo-subjectpage' => 'Página',
-'pageinfo-talkpage' => 'Página de discusión',
-'pageinfo-watchers' => 'Número de usuarios vigilándola',
-'pageinfo-edits' => 'Número de ediciones',
-'pageinfo-authors' => 'Número de autores distintos',
+'pageinfo-header-basic' => 'Información básica',
+'pageinfo-header-edits' => 'Historial de ediciones',
+'pageinfo-header-restrictions' => 'Protección de página',
+'pageinfo-header-properties' => 'Propiedades de página',
+'pageinfo-display-title' => 'Visualizar el título',
+'pageinfo-default-sort' => 'Criterio de ordenación predeterminado',
+'pageinfo-length' => 'Longitud de la página (en bytes)',
+'pageinfo-article-id' => 'Identificador ID de la página',
+'pageinfo-robot-policy' => 'Estado del motor de búsqueda',
 'pageinfo-views' => 'Número de vistas',
-'pageinfo-viewsperedit' => 'Vistas por edición',
+'pageinfo-watchers' => 'Número de usuarios que vigilan la página',
+'pageinfo-redirects-name' => 'Redirecciones a esta página',
+'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'Subpáginas de esta página',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirección|redirecciones}}; $3 {{PLURAL:$3|no-redirección|no-redirecciones}})',
+'pageinfo-firstuser' => 'Creador de la página',
+'pageinfo-firsttime' => 'Fecha de creación de la página',
+'pageinfo-lastuser' => 'Último editor',
+'pageinfo-lasttime' => 'Fecha de la última edición',
+'pageinfo-edits' => 'Número total de ediciones',
+'pageinfo-authors' => 'Número total de autores distintos',
+'pageinfo-recent-edits' => 'Número de ediciones recientes (en los últimos $1)',
+'pageinfo-recent-authors' => 'Número de autores distintos recientes',
+'pageinfo-restriction' => 'Protección de la página (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Estándar',

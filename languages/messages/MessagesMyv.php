@@ -1810,12 +1810,9 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'spambot_username' => 'MediaWiki-нь шукшто ванькскавтома',
 
 # Info page
-'pageinfo-header-views' => 'Ванома потмот',
-'pageinfo-subjectpage' => 'Лопа',
-'pageinfo-talkpage' => 'Кортнема лопа',
+'pageinfo-views' => 'Зяро ванома потмонзо',
 'pageinfo-edits' => 'Зяроксть витнезь-петнезь',
 'pageinfo-authors' => 'Зяро авторонзо',
-'pageinfo-views' => 'Зяро ванома потмонзо',
 
 # Skin names
 'skinname-standard' => 'Классикань',

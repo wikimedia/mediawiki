@@ -2660,15 +2660,10 @@ Ini hurot na pinagkausa nin sarong sugpunan pasiring sa sarong pinagbawal na pan
 # Info page
 'pageinfo-title' => 'Impormasyon para sa "$1"',
 'pageinfo-header-edits' => 'Mga pagliliwat',
-'pageinfo-header-watchlist' => 'Bantay-listahan',
-'pageinfo-header-views' => 'Mga Patanaw',
-'pageinfo-subjectpage' => 'An pahina',
-'pageinfo-talkpage' => 'Pahina nin olayan',
+'pageinfo-views' => 'Numero kan mga patanaw',
 'pageinfo-watchers' => 'Numero kan mga parabantay',
 'pageinfo-edits' => 'Numero kan mga pagliliwat',
 'pageinfo-authors' => 'Numero kan bantog na mga awtor',
-'pageinfo-views' => 'Numero kan mga patanaw',
-'pageinfo-viewsperedit' => 'Mga patanaw sa kada pagliliwat',
 
 # Skin names
 'skinname-standard' => 'Klasiko',

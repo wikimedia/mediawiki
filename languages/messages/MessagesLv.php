@@ -1254,6 +1254,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'newsectionsummary' => '/* $1 */ jauna sadaļa',
 'rc-enhanced-expand' => 'Rādīt informāciju (nepieciešams JavaScript)',
 'rc-enhanced-hide' => 'Paslēpt detaļas',
+'rc-old-title' => 'sākotnēji izveidota kā "$1 "',
 
 # Recent changes linked
 'recentchangeslinked' => 'Saistītās izmaiņas',
@@ -2443,15 +2444,10 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 # Info page
 'pageinfo-title' => 'Informācija par "$1"',
 'pageinfo-header-edits' => 'Labojumi',
-'pageinfo-header-watchlist' => 'Uzraugāmie raksti',
-'pageinfo-header-views' => 'Skatījumi',
-'pageinfo-subjectpage' => 'Lapa',
-'pageinfo-talkpage' => 'Diskusiju lapa',
+'pageinfo-views' => 'Skatījumu skaits',
 'pageinfo-watchers' => 'Uzraudzītāju skaits',
 'pageinfo-edits' => 'Izmaiņu skaits',
 'pageinfo-authors' => 'Atsevišķu autoru skaits',
-'pageinfo-views' => 'Skatījumu skaits',
-'pageinfo-viewsperedit' => 'Skatījumi uz labojumu',
 
 # Patrolling
 'markaspatrolleddiff' => 'Atzīmēt kā pārbaudītu',

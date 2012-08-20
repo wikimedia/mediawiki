@@ -1234,7 +1234,7 @@ $2
 'permissionserrors' => 'أخطاء السماحات',
 'permissionserrorstext' => 'لا تمتلك الصلاحية لفعل هذا، {{PLURAL:$1||للسبب التالي|للسببين التاليين|للأسباب التالية}}:',
 'permissionserrorstext-withaction' => 'لا تملك الصلاحيات ل$2، لل{{PLURAL:$1||سبب التالي|سببين التاليين|أسباب التالية}}:',
-'recreate-moveddeleted-warn' => "'''تحذير: أنت تقوم بإعادة إنشاء صفحة سبق حذفها.'''
+'recreate-moveddeleted-warn' => "'''تحذير: أنت تعيد إنشاء صفحة سبق حذفها.'''
 
 يجب عليك التيقن من أن الاستمرار بتحرير هذه الصفحة ملائم.
 سجلا الحذف والنقل لهذه الصفحة معروضان هنا للتيسير:",
@@ -2880,7 +2880,7 @@ $1',
 'unblocklink' => 'ارفع المنع',
 'change-blocklink' => 'تغيير المنع',
 'contribslink' => 'مساهمات',
-'emaillink' => 'أرسل بريدًا إلكترونيًا',
+'emaillink' => 'أرسل بريدا إلكترونيا',
 'autoblocker' => 'تم منعك تلقائياً لأن الأيبي الخاص بك تم استخدامه مؤخراً بواسطة «[[User:$1|$1]]».
 السبب المعطى لمنع $1 هو: «$2»',
 'blocklogpage' => 'سجل المنع',
@@ -3303,15 +3303,10 @@ $1',
 # Info page
 'pageinfo-title' => 'المعلومات ل"$1"',
 'pageinfo-header-edits' => 'التعديلات',
-'pageinfo-header-watchlist' => 'قائمة المراقبة',
-'pageinfo-header-views' => 'مشاهدات',
-'pageinfo-subjectpage' => 'الصفحة',
-'pageinfo-talkpage' => 'صفحة نقاش',
+'pageinfo-views' => 'عدد المشاهدات',
 'pageinfo-watchers' => 'عدد المراقبين',
 'pageinfo-edits' => 'عدد التعديلات',
 'pageinfo-authors' => 'عدد المؤلفين المختلفين',
-'pageinfo-views' => 'عدد المشاهدات',
-'pageinfo-viewsperedit' => 'المشاهدات لكل تعديل',
 
 # Skin names
 'skinname-standard' => 'كلاسيك',

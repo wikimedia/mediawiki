@@ -2884,15 +2884,10 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
 'pageinfo-header-edits' => 'Ännerungen',
-'pageinfo-header-watchlist' => 'Iwwerwaachungslëscht',
-'pageinfo-header-views' => 'Affichagen',
-'pageinfo-subjectpage' => 'Säit',
-'pageinfo-talkpage' => 'Diskussiounssäit',
+'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-watchers' => 'Zuel vun de Benotzer déi iwwerwaachen',
 'pageinfo-edits' => 'Zuel vun den Ännerungen',
 'pageinfo-authors' => 'Zuel vun de verschiddenen Auteuren',
-'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
-'pageinfo-viewsperedit' => 'Affichage pro Ännerung',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

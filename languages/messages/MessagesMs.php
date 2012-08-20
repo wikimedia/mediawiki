@@ -2949,15 +2949,10 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',
 'pageinfo-header-edits' => 'Suntingan',
-'pageinfo-header-watchlist' => 'Senarai pantau',
-'pageinfo-header-views' => 'Kunjungan',
-'pageinfo-subjectpage' => 'Laman',
-'pageinfo-talkpage' => 'Laman perbincangan',
+'pageinfo-views' => 'Bilangan kunjungan',
 'pageinfo-watchers' => 'Bilangan pemantau',
 'pageinfo-edits' => 'Bilangan suntingan',
 'pageinfo-authors' => 'Bilangan pengarang yang berlainan',
-'pageinfo-views' => 'Bilangan kunjungan',
-'pageinfo-viewsperedit' => 'Kunjungan sesuntingan',
 
 # Skin names
 'skinname-standard' => 'Klasik',

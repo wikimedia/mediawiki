@@ -3180,15 +3180,10 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 # Info page
 'pageinfo-title' => 'Övver di Sigg: „$1“',
 'pageinfo-header-edits' => 'De Änderonge',
-'pageinfo-header-watchlist' => 'De Oppassleß',
-'pageinfo-header-views' => 'De Affroofe',
-'pageinfo-subjectpage' => 'För de Sigg selver',
-'pageinfo-talkpage' => 'För de Klaafsigg',
+'pageinfo-views' => 'De Aanzahl Affroofe',
 'pageinfo-watchers' => 'De Aanzahl Oppaßer',
 'pageinfo-edits' => 'De Aanzahl Änderonge',
 'pageinfo-authors' => 'De Aanzahl ongerscheidlije Schriever',
-'pageinfo-views' => 'De Aanzahl Affroofe',
-'pageinfo-viewsperedit' => 'De Aanzahl Affroofe pro Änderong',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

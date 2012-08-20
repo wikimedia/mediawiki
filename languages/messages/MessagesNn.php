@@ -603,7 +603,7 @@ Dette kan òg skuldast ein feil i programvara som er nytta av {{SITENAME}}.',
 # General errors
 'error' => 'Feil',
 'databaseerror' => 'Databasefeil',
-'dberrortext' => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå innan funksjonen «<tt>$2</tt>». Databasen returnerte feilen «<tt>$3: $4</tt>».',
+'dberrortext' => 'Det oppstod ein syntaksfeil i ein databaseførespurnad. Dette kan tyda på feil i programvara. Siste førespurnaden til databasen var: <blockquote><code>$1</code></blockquote> frå funksjonen «<code>$2</code>». Databasen returnerte feilen «<samp>$3: $4</samp>».',
 'dberrortextcl' => 'Det oppstod ein syntaksfeil i databaseførespurnaden.
 Den sist prøvde førespurnaden var: «$1» frå funksjonen «$2».
 Databasen returnerte feilen «$3: $4».',
@@ -2833,15 +2833,10 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
 'pageinfo-header-edits' => 'Endringar',
-'pageinfo-header-watchlist' => 'Overvakingsliste',
-'pageinfo-header-views' => 'Visningar',
-'pageinfo-subjectpage' => 'Side',
-'pageinfo-talkpage' => 'Diskusjonsside',
+'pageinfo-views' => 'Tal på visningar',
 'pageinfo-watchers' => 'Antal overvakarar',
 'pageinfo-edits' => 'Tal på endringar',
 'pageinfo-authors' => 'Tal på forskjellege forfattarar',
-'pageinfo-views' => 'Tal på visningar',
-'pageinfo-viewsperedit' => 'Visningar per endring',
 
 # Skin names
 'skinname-standard' => 'Klassisk',

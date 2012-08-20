@@ -2844,15 +2844,10 @@ Ngini pinanya dikaranakan ulih sabuah tautan ka sabuah situs daptar-hirang luar.
 # Info page
 'pageinfo-title' => "Panjalasan gasan ''$1''",
 'pageinfo-header-edits' => 'Babakan',
-'pageinfo-header-watchlist' => 'Paitihan',
-'pageinfo-header-views' => 'Titiringan',
-'pageinfo-subjectpage' => 'Tungkaran',
-'pageinfo-talkpage' => 'Tungkaran pamandiran',
+'pageinfo-views' => 'Rikinan titiringan',
 'pageinfo-watchers' => 'Jumlah papaitih',
 'pageinfo-edits' => 'Rikinan babakan',
 'pageinfo-authors' => 'Rikinan panulis balain',
-'pageinfo-views' => 'Rikinan titiringan',
-'pageinfo-viewsperedit' => 'Titiringan par babakan',
 
 # Patrolling
 'markaspatrolleddiff' => 'Ciri-i sawagai ta-awasi',

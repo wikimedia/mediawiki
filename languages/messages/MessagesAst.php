@@ -378,11 +378,11 @@ Pues atopar una llista de les páxines especiales válides en [[Special:SpecialP
 'error' => 'Fallu',
 'databaseerror' => 'Fallu na base de datos',
 'dberrortext' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
-Esti fallu puede ser por un problema del software.
+Esti fallu pue ser por un problema del software.
 La postrer consulta a la base de datos que s'intentó foi:
-<blockquote><tt>$1</tt></blockquote>
-dende la función «<tt>$2</tt>».
-La base datos dio'l fallu «<tt>$3: $4</tt>».",
+<blockquote><code>$1</code></blockquote>
+dende la función «<code>$2</code>».
+La base datos dio'l fallu «<samp>$3: $4</samp>».",
 'dberrortextcl' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
 La postrer consulta de la base de datos que s'intentó foi:
 «$1»
@@ -762,7 +762,6 @@ La postrer entrada del rexistru de bloqueos úfrese darréu pa referencia:',
 *'''Firefox / Safari:''' Caltén ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' nun Mac)
 * '''Google Chrome:''' Calca ''Ctrl-Mayús-R'' (''⌘-Mayús-R'' nun Mac)
 * '''Internet Explorer:''' Caltén ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
-* '''Konqueror:''' Calca en ''Recargar'', o calca ''F5''
 * '''Opera:''' llimpia la caché en ''Ferramientes → Preferencies''",
 'usercssyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to CSS nuevu enantes de guardalu.",
 'userjsyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to JavaScript nuevu enantes de guardalu.",
@@ -1885,6 +1884,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categoría|categoríes}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|enllaz|enllaces}}',
 'nmembers' => '$1 {{PLURAL:$1|miembru|miembros}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisión|revisiones}}',
@@ -1913,6 +1913,7 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'mostlinkedtemplates' => 'Plantíes más enllaciaes',
 'mostcategories' => 'Páxines con más categoríes',
 'mostimages' => 'Archivos más enllaciaos',
+'mostinterwikis' => 'Páxines con más interwikis',
 'mostrevisions' => 'Páxines con más revisiones',
 'prefixindex' => 'Toles páxines col prefixu',
 'prefixindex-namespace' => 'Toles páxines col prefixu (espaciu de nomes $1)',
@@ -2890,15 +2891,10 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',
 'pageinfo-header-edits' => 'Ediciones',
-'pageinfo-header-watchlist' => 'Llista de vixilancia',
-'pageinfo-header-views' => 'Vistes',
-'pageinfo-subjectpage' => 'Páxina',
-'pageinfo-talkpage' => "Páxina d'alderique",
+'pageinfo-views' => 'Númberu de visites',
 'pageinfo-watchers' => 'Númberu de vixilantes',
 'pageinfo-edits' => "Númberu d'ediciones",
 'pageinfo-authors' => "Númberu d'autores distintos",
-'pageinfo-views' => 'Númberu de visites',
-'pageinfo-viewsperedit' => 'Visites por edición',
 
 # Skin names
 'skinname-standard' => 'Clásicu',

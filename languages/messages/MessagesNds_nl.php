@@ -3016,15 +3016,10 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 # Info page
 'pageinfo-title' => 'Informasie over "$1"',
 'pageinfo-header-edits' => 'Bewarkingen',
-'pageinfo-header-watchlist' => 'Volglieste',
-'pageinfo-header-views' => 'Bekeken',
-'pageinfo-subjectpage' => 'Zied:',
-'pageinfo-talkpage' => 'Overlegzied',
+'pageinfo-views' => 'Antal keer bekeken',
 'pageinfo-watchers' => 'Antal volgers',
 'pageinfo-edits' => 'Antal bewarkingen',
 'pageinfo-authors' => 'Antal verschillende auteurs',
-'pageinfo-views' => 'Antal keer bekeken',
-'pageinfo-viewsperedit' => 'Antal keer bekeken per bewarking',
 
 # Skin names
 'skinname-standard' => 'Klassiek',

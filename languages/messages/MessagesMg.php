@@ -2844,15 +2844,10 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 # Info page
 'pageinfo-title' => 'Fampahalalana ho an\'i "$1"',
 'pageinfo-header-edits' => 'Fanovana',
-'pageinfo-header-watchlist' => 'Pejy arahana',
-'pageinfo-header-views' => 'Jery',
-'pageinfo-subjectpage' => 'Pejy',
-'pageinfo-talkpage' => 'Pejin-dresaka',
+'pageinfo-views' => "Isan'ny jery",
 'pageinfo-watchers' => "Isan'ny mpikambana manaraka an'ity pejy ity",
 'pageinfo-edits' => "Isan'ny fanovana",
 'pageinfo-authors' => "Isan'ny mpanoratra tokana",
-'pageinfo-views' => "Isan'ny jery",
-'pageinfo-viewsperedit' => 'Tsidika isaky ny fanovana',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marihana ho voamarina',

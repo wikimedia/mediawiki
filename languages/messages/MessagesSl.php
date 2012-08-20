@@ -2971,15 +2971,10 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
 'pageinfo-header-edits' => 'Urejanja',
-'pageinfo-header-watchlist' => 'Spisek nadzorov',
-'pageinfo-header-views' => 'Ogledi',
-'pageinfo-subjectpage' => 'Stran',
-'pageinfo-talkpage' => 'Pogovorna stran',
+'pageinfo-views' => 'Število ogledov',
 'pageinfo-watchers' => 'Število spremljevalcev',
 'pageinfo-edits' => 'Število urejanj',
 'pageinfo-authors' => 'Število različnih avtorjev',
-'pageinfo-views' => 'Število ogledov',
-'pageinfo-viewsperedit' => 'Razmerje med ogledi in urejanji',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označite kot nadzorovano',

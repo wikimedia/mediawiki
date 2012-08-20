@@ -2924,15 +2924,10 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 # Info page
 'pageinfo-title' => 'Informació de «$1»',
 'pageinfo-header-edits' => 'Modificacions',
-'pageinfo-header-watchlist' => 'Llista de seguiment',
-'pageinfo-header-views' => 'Visites',
-'pageinfo-subjectpage' => 'Pàgina',
-'pageinfo-talkpage' => 'Pàgina de discussió',
+'pageinfo-views' => 'Número de visites',
 'pageinfo-watchers' => "Número d'usuaris que l'estan vigilant",
 'pageinfo-edits' => "Número d'edicions",
 'pageinfo-authors' => "Número d'autors diferents",
-'pageinfo-views' => 'Número de visites',
-'pageinfo-viewsperedit' => 'Visites per edició',
 
 # Skin names
 'skinname-standard' => 'Clàssic',

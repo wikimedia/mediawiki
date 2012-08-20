@@ -617,9 +617,9 @@ Có danh sách trang đặc biệt tại [[Special:SpecialPages|{{int:specialpag
 'dberrortext' => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
 Có vẻ như nguyên nhân của vấn đề này xuất phát từ một lỗi trong phần mềm.
 Truy vấn vừa rồi là:
-<blockquote><tt>$1</tt></blockquote>
-từ hàm “<tt>$2</tt>”.
-Cơ sở dữ liệu  báo lỗi “<tt>$3: $4</tt>”.',
+<blockquote><code>$1</code></blockquote>
+từ hàm “<code>$2</code>”.
+Cơ sở dữ liệu  báo lỗi “<samp>$3: $4</samp>”.',
 'dberrortextcl' => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
 Truy vấn vừa rồi là:
 “$1”
@@ -962,7 +962,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 * '''Firefox / Safari:''' Giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (⌘R trên Mac)
 * '''Google Chrome:''' Nhấn tổ hợp ''Ctrl-Shift-R'' (⇧⌘R trên Mac)
 * '''Internet Explorer:''' Giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
-* '''Konqueror:''' Nhấn nút ''Reload'' hoặc nhấn ''F5''
 * '''Opera:''' Xóa bộ nhớ đệm trong ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview' => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
@@ -2075,6 +2074,7 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|byte}}',
 'ncategories' => '$1 {{PLURAL:$1|thể loại|thể loại}}',
+'ninterwikis' => '$1 liên kết liên wiki',
 'nlinks' => '$1 {{PLURAL:$1|liên kết|liên kết}}',
 'nmembers' => '$1 {{PLURAL:$1|trang|trang}}',
 'nrevisions' => '$1 {{PLURAL:$1|phiên bản|phiên bản}}',
@@ -2103,6 +2103,7 @@ Các mục <del>bị gạch bỏ</del> là các trang đã được sửa.',
 'mostlinkedtemplates' => 'Bản mẫu được liên kết đến nhiều nhất',
 'mostcategories' => 'Các trang có nhiều thể loại nhất',
 'mostimages' => 'Tập tin được liên kết đến nhiều nhất',
+'mostinterwikis' => 'Các trang có nhiều liên kết liên wiki nhất',
 'mostrevisions' => 'Các trang được sửa đổi nhiều lần nhất',
 'prefixindex' => 'Tất cả các trang trùng với tiền tố',
 'prefixindex-namespace' => 'Tất cả các trang trùng với tiền tố (không gian $1)',
@@ -2246,6 +2247,8 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'mailnologin' => 'Không có địa chỉ gửi thư',
 'mailnologintext' => 'Bạn phải [[Special:UserLogin|đăng nhập]] và khai báo một địa chỉ thư điện tử hợp lệ trong phần [[Special:Preferences|tùy chọn cá nhân]] thì mới gửi được thư cho người khác.',
 'emailuser' => 'Gửi thư cho người này',
+'emailuser-title-target' => '{{GENDER:$1}}Gửi thư cho người dùng này',
+'emailuser-title-notarget' => 'Gửi thư cho người dùng',
 'emailpage' => 'Gửi thư',
 'emailpagetext' => 'Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
 Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
@@ -2882,7 +2885,7 @@ Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[S
 'import-interwiki-source' => 'Wiki/trang mã nguồn:',
 'import-interwiki-history' => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-templates' => 'Gồm tất cả các bản mẫu',
-'import-interwiki-submit' => 'Nhập trang',
+'import-interwiki-submit' => 'Nhập',
 'import-interwiki-namespace' => 'Không gian tên đích:',
 'import-interwiki-rootpage' => 'Trang gốc đích (tùy chọn):',
 'import-upload-filename' => 'Tên tập tin:',
@@ -3071,16 +3074,33 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Info page
 'pageinfo-title' => 'Thông tin về “$1”',
-'pageinfo-header-edits' => 'Lần sửa',
-'pageinfo-header-watchlist' => 'Danh sách theo dõi',
-'pageinfo-header-views' => 'Lần xem',
-'pageinfo-subjectpage' => 'Trang',
-'pageinfo-talkpage' => 'Trang thảo luận',
-'pageinfo-watchers' => 'Số người theo dõi',
-'pageinfo-edits' => 'Số lần sửa đổi',
-'pageinfo-authors' => 'Số tác giả riêng',
+'pageinfo-header-basic' => 'Thông tin cơ bản',
+'pageinfo-header-edits' => 'Lịch sử sửa đổi',
+'pageinfo-header-restrictions' => 'Mức khóa trang',
+'pageinfo-header-properties' => 'Thuộc tính trang',
+'pageinfo-display-title' => 'Tên hiển thị',
+'pageinfo-default-sort' => 'Từ khóa sắp xếp mặc định',
+'pageinfo-length' => 'Chiều dài của trang (byte)',
+'pageinfo-article-id' => 'Mã số trang',
+'pageinfo-robot-policy' => 'Trạng thái công cụ tìm kiếm',
 'pageinfo-views' => 'Số lần xem',
-'pageinfo-viewsperedit' => 'Số lần xem mỗi sửa đổi',
+'pageinfo-watchers' => 'Số người theo dõi trang',
+'pageinfo-redirects-name' => 'Số trang đổi hướng đến trang này',
+'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'Số trang con của trang này',
+'pageinfo-subpages-value' => '$1 ($2 đổi hướng; $3 không đổi hướng)',
+'pageinfo-firstuser' => 'Người dùng tạo trang',
+'pageinfo-firsttime' => 'Lúc tạo trang',
+'pageinfo-lastuser' => 'Người dùng cuối cùng sửa đổi',
+'pageinfo-lasttime' => 'Lúc sửa đổi cuối cùng',
+'pageinfo-edits' => 'Tổng số lần sửa đổi',
+'pageinfo-authors' => 'Tổng số tác giả riêng',
+'pageinfo-recent-edits' => 'Số lần sửa đổi gần đây (trong $1 qua)',
+'pageinfo-recent-authors' => 'Số người dùng sửa đổi gần đây',
+'pageinfo-restriction' => 'Mức khóa trang ($1)',
+'pageinfo-magic-words' => 'Số từ thần chú ($1)',
+'pageinfo-hidden-categories' => 'Số thể loại ẩn ($1)',
+'pageinfo-templates' => 'Số bản mẫu được nhúng ($1)',
 
 # Skin names
 'skinname-standard' => 'Cổ điển',
@@ -3129,14 +3149,14 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'thumbsize' => 'Cỡ hình thu nhỏ:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info' => 'kích thước tập tin: $1, kiểu MIME: $2',
-'file-info-size' => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
-'file-info-size-pages' => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
+'file-info-size' => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
+'file-info-size-pages' => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
 'file-nohires' => 'Không có độ phân giải cao hơn.',
-'svg-long-desc' => 'tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3',
+'svg-long-desc' => 'tập tin SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3',
 'show-big-image' => 'Độ phân giải tối đa',
 'show-big-image-preview' => 'Kích thước của ảnh xem thử: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Độ phân giải|Các độ phân giải}} khác: $1.',
-'show-big-image-size' => '$1 × $2 điểm ảnh',
+'show-big-image-size' => '$1×$2 điểm ảnh',
 'file-info-gif-looped' => 'có lặp',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|khung ảnh|khung ảnh}}',
 'file-info-png-looped' => 'có lặp',
@@ -3896,7 +3916,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'fileduplicatesearch-legend' => 'Tìm kiếm tập tin trùng lắp',
 'fileduplicatesearch-filename' => 'Tên tập tin:',
 'fileduplicatesearch-submit' => 'Tìm kiếm',
-'fileduplicatesearch-info' => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
+'fileduplicatesearch-info' => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
 'fileduplicatesearch-result-1' => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n' => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
 'fileduplicatesearch-noresults' => 'Không tìm thấy tập tin nào tên “$1”.',

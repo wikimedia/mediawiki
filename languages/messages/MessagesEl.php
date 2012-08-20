@@ -3045,15 +3045,10 @@ $1',
 # Info page
 'pageinfo-title' => 'Πληροφορίες για "$1"',
 'pageinfo-header-edits' => 'Επεξεργασίες',
-'pageinfo-header-watchlist' => 'Λίστα παρακολούθησης',
-'pageinfo-header-views' => 'Προβολές',
-'pageinfo-subjectpage' => 'Σελίδα',
-'pageinfo-talkpage' => 'Σελίδα συζήτησης',
+'pageinfo-views' => 'Αριθμός προβολών',
 'pageinfo-watchers' => 'Αριθμός παρατηρητών',
 'pageinfo-edits' => 'Αριθμός επεξεργασιών',
 'pageinfo-authors' => 'Αριθμός ξεχωριστών συγγραφέων',
-'pageinfo-views' => 'Αριθμός προβολών',
-'pageinfo-viewsperedit' => 'Προβολές ανά επεξεργασία',
 
 # Skin names
 'skinname-standard' => 'Κλασσικό',

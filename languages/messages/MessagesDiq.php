@@ -3026,15 +3026,10 @@ Tı eşkeno yew sebeb bınus.',
 # Info page
 'pageinfo-title' => 'Heq tê "$1"\'i',
 'pageinfo-header-edits' => 'Vurnayışi',
-'pageinfo-header-watchlist' => 'Listey temaşi',
-'pageinfo-header-views' => 'Bıvin',
-'pageinfo-subjectpage' => 'Pele',
-'pageinfo-talkpage' => 'Pelay qıse',
+'pageinfo-views' => 'Amarina mocnayışan',
 'pageinfo-watchers' => 'Amariya serykeran',
 'pageinfo-edits' => 'Amarina vurnayışan',
 'pageinfo-authors' => 'Amarina nuştekaran',
-'pageinfo-views' => 'Amarina mocnayışan',
-'pageinfo-viewsperedit' => 'Vurnayışi sero vurnayışa bımocnêyış',
 
 # Skin names
 'skinname-standard' => 'Klasik',

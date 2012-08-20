@@ -2922,15 +2922,10 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 # Info page
 'pageinfo-title' => 'Titouroù evit "$1"',
 'pageinfo-header-edits' => 'Kemmoù',
-'pageinfo-header-watchlist' => 'Roll evezhiañ',
-'pageinfo-header-views' => 'Gweladennoù',
-'pageinfo-subjectpage' => 'Pajenn',
-'pageinfo-talkpage' => 'Pajenn gaozeal',
+'pageinfo-views' => 'Niver a weladennoù',
 'pageinfo-watchers' => 'Niver a dud o heuliañ',
 'pageinfo-edits' => 'Niver a gemmoù',
 'pageinfo-authors' => 'Niver a aozerien disheñvel',
-'pageinfo-views' => 'Niver a weladennoù',
-'pageinfo-viewsperedit' => 'Gweladenoù dre gemmoù',
 
 # Skin names
 'skinname-standard' => 'Standard',

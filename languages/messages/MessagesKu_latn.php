@@ -1856,13 +1856,9 @@ Ji ber ku girêdaneke derve di wê rûpelê de heye ev pirsgirêk pêk hat.',
 
 # Info page
 'pageinfo-header-edits' => 'Guherandin',
-'pageinfo-header-watchlist' => 'Lîsteya şopandinê',
-'pageinfo-header-views' => 'Dîtin',
-'pageinfo-subjectpage' => 'Rûpel',
-'pageinfo-talkpage' => 'Rûpela gotûbêjê',
+'pageinfo-views' => 'Hejmara dîtinê',
 'pageinfo-watchers' => 'Hejmara kesên dişopînin',
 'pageinfo-edits' => 'Hejmara guherandinan',
-'pageinfo-views' => 'Hejmara dîtinê',
 
 # Patrolling
 'markaspatrolleddiff' => 'Wek serrastkirî nîşan bide',

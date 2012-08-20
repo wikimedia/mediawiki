@@ -634,9 +634,9 @@ Spisak svih posebnih stranica nalazi se [[Special:SpecialPages|ovde]].',
 'dberrortext' => 'Došlo je do sintaktičke greške u bazi.
 Možda se radi o grešci u softveru.
 Poslednji pokušaj upita je glasio:
-<blockquote><tt>$1</tt></blockquote>
-unutar funkcije „<tt>$2</tt>“.
-Baza podataka je prijavila grešku „<tt>$3: $4</tt>“.',
+<blockquote><code>$1</code></blockquote>
+unutar funkcije „<code>$2</code>“.
+Baza podataka je prijavila grešku „<samp>$3: $4</samp>“.',
 'dberrortextcl' => 'Došlo je do sintaktičke greške u bazi.
 Poslednji pokušaj upita je glasio:
 „$1“
@@ -997,7 +997,6 @@ Izveštaj o poslednjem blokiranju možete pogledati ispod:',
 *'''Fajerfoks i Safari:''' držite ''Shift'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5'' ili Ctrl-R (''⌘-R'' na Makintošu)
 *'''Gugl kroum:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Makintošu)
 *'''Internet eksplorer: '''držite ''Ctrl'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5''
-*'''K-osvajač: '''kliknite na ''Osveži'' ili pritisnite ''F5''
 *'''Opera:''' očistite privremenu memoriju preko menija ''Alatke → Postavke''.",
 'usercssyoucanpreview' => "'''Savet:''' korisitite dugme „{{int:showpreview}}“ da isprobate svoj novi CSS pre nego što ga sačuvate.",
 'userjsyoucanpreview' => "'''Savet:''' korisitite dugme „{{int:showpreview}}“ da isprobate svoj novi javaskript pre nego što ga sačuvate.",
@@ -3169,16 +3168,11 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 
 # Info page
 'pageinfo-title' => 'Podaci o „$1“',
-'pageinfo-header-edits' => 'Izmena',
-'pageinfo-header-watchlist' => 'Spisak nadgledanja',
-'pageinfo-header-views' => 'Pregleda',
-'pageinfo-subjectpage' => 'Stranica',
-'pageinfo-talkpage' => 'Stranica za razgovor',
-'pageinfo-watchers' => 'Broj pregledača',
-'pageinfo-edits' => 'Broj izmena',
-'pageinfo-authors' => 'Broj različitih autora',
+'pageinfo-header-edits' => 'Istorija izmena',
 'pageinfo-views' => 'Broj pregleda',
-'pageinfo-viewsperedit' => 'Pregleda po izmeni',
+'pageinfo-watchers' => 'Broj nadgledača stranica',
+'pageinfo-edits' => 'Broj izmena',
+'pageinfo-authors' => 'Broj zasebnih autora',
 
 # Skin names
 'skinname-standard' => 'Klasično',

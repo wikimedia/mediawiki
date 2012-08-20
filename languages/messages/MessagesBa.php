@@ -2814,15 +2814,10 @@ The wiki server cannot provide data in a format your client can read.',
 # Info page
 'pageinfo-title' => '«$1» буйынса мәғлүмәт',
 'pageinfo-header-edits' => 'Үҙгәртеүҙәр',
-'pageinfo-header-watchlist' => 'Күҙәтеү исемлеге',
-'pageinfo-header-views' => 'Ҡарау',
-'pageinfo-subjectpage' => 'Бит',
-'pageinfo-talkpage' => 'Фекер алышыу бите',
+'pageinfo-views' => 'Ҡарау һаны',
 'pageinfo-watchers' => 'Күҙәтеүселәр һаны',
 'pageinfo-edits' => 'Төҙәтеү һаны',
 'pageinfo-authors' => 'Төрлө авторҙар һаны',
-'pageinfo-views' => 'Ҡарау һаны',
-'pageinfo-viewsperedit' => 'Бер үҙгәртеүгә ҡарау һаны',
 
 # Skin names
 'skinname-standard' => 'Классик',

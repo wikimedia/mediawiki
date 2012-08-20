@@ -1065,8 +1065,7 @@ Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 * '''Firefox/Safari:''' ''Umschalttaste'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''⌘+R'' auf dem Mac) drücken
 * '''Google Chrome:''' ''Umschalttaste+Strg+R'' (''⌘+Umschalttaste+R'' auf dem Mac) drücken
 * '''Internet Explorer:''' ''Strg+F5'' drücken oder ''Strg'' drücken und gleichzeitig ''Aktualisieren'' anklicken
-* '''Opera:''' ''Extras → Internetspuren löschen … → Individuelle Auswahl → Den kompletten Cache löschen''
-* '''Konqueror:''' ''Aktualisieren'' anklicken oder ''F5'' drücken",
+* '''Opera:''' ''Extras → Internetspuren löschen … → Individuelle Auswahl → Den kompletten Cache löschen''",
 'usercssyoucanpreview' => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues CSS vor dem Speichern zu testen.",
 'userjsyoucanpreview' => "'''Tipp:''' Benutze den „{{int:showpreview}}“-Button, um dein neues JavaScript vor dem Speichern zu testen.",
 'usercsspreview' => "'''Beachte, dass du nur eine Vorschau deines Benutzer-CSS betrachtest.'''
@@ -1832,14 +1831,14 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 Die eingegebene Beschreibung wird nicht auf die Beschreibungsseite übernommen.
 Die Beschreibungsseite musst du nach dem Hochladen der Datei noch manuell bearbeiten.
 [[$1|thumb]]',
-'fileexists-extension' => 'Eine Datei mit ähnlichem Namen existiert bereits: [[$2|thumb]]
+'fileexists-extension' => 'Eine Datei ähnlichen Namens ist bereits vorhanden: [[$2|thumb]]
 * Name der hochzuladenden Datei: <strong>[[:$1]]</strong>
 * Name der vorhandenen Datei: <strong>[[:$2]]</strong>
 Bitte wähle einen anderen Namen.',
-'fileexists-thumbnail-yes' => "Bei der Datei scheint es sich um ein Bild verringerter Größe ''(thumbnail)'' zu handeln. [[$1|thumb]]
+'fileexists-thumbnail-yes' => "Bei der Datei scheint es sich um ein Bild verringerter Größe ''(Miniatur)'' zu handeln. [[$1|thumb]]
 Bitte prüfe die Datei <strong>[[:$1]]</strong>.
 Wenn es sich um das Bild in Originalgröße handelt, so braucht kein separates Vorschaubild hochgeladen zu werden.",
-'file-thumbnail-no' => "Der Dateiname beginnt mit <strong>$1</strong>. Dies deutet auf ein Bild verringerter Größe ''(thumbnail)'' hin.
+'file-thumbnail-no' => "Der Dateiname beginnt mit <strong>$1</strong>. Dies deutet auf ein Bild verringerter Größe ''(Minitatur)'' hin.
 Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses unter dem Originalnamen hoch.",
 'fileexists-forbidden' => 'Unter diesem Namen existiert bereits eine Datei und sie kann nicht überschrieben werden. Bitte gehe zurück und lade die Datei unter einem anderen Namen hoch. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Unter diesem Namen existiert bereits eine Datei im zentralen Medienarchiv.
@@ -2172,6 +2171,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|Byte|Byte}}',
 'ncategories' => '$1 {{PLURAL:$1|Kategorie|Kategorien}}',
+'ninterwikis' => '{{PLURAL:$1|Ein Interwikilink|$1 Interwikilinks}}',
 'nlinks' => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers' => '{{PLURAL:$1|1 Eintrag|$1 Einträge}}',
 'nrevisions' => '{{PLURAL:$1|1 Bearbeitung|$1 Bearbeitungen}}',
@@ -2195,11 +2195,12 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'wantedfiletext-cat' => 'Die folgenden Dateien werden verwendet, sind jedoch nicht vorhanden. Vorhandene Dateien aus fremden Repositorien können dennoch hier aufgelistet sein und werden <del>durchgestrichen</del> dargestellt. Zusätzlich werden Seiten, die nicht vorhandene Dateien enthalten, in die [[:$1]] eingeordnet.',
 'wantedfiletext-nocat' => 'Die folgenden Dateien werden verwendet, sind jedoch nicht vorhanden. Vorhandene Dateien aus fremden Repositorien können dennoch hier aufgelistet sein und werden <del>durchgestrichen</del> dargestellt.',
 'wantedtemplates' => 'Gewünschte Vorlagen',
-'mostlinked' => 'Meistverlinkte Seiten',
+'mostlinked' => 'Seiten mit den meisten Links',
 'mostlinkedcategories' => 'Meistbenutzte Kategorien',
 'mostlinkedtemplates' => 'Meistbenutzte Vorlagen',
 'mostcategories' => 'Seiten mit den meisten Kategorien',
 'mostimages' => 'Meistbenutzte Dateien',
+'mostinterwikis' => 'Seiten mit den meisten Interwikilinks',
 'mostrevisions' => 'Seiten mit den meisten Versionen',
 'prefixindex' => 'Alle Seiten (mit Präfix)',
 'prefixindex-namespace' => 'Alle Seiten mit Präfix (Namensraum $1)',
@@ -2343,6 +2344,8 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'mailnologin' => 'Fehler beim E-Mail-Versand',
 'mailnologintext' => 'Du musst [[Special:UserLogin|angemeldet sein]] und eine bestätigte E-Mail-Adresse in deinen [[Special:Preferences|Einstellungen]] eingetragen haben, um anderen Benutzern E-Mails schicken zu können.',
 'emailuser' => 'E-Mail an diesen Benutzer',
+'emailuser-title-target' => 'E-Mail an {{GENDER:$1|diesen Benutzer|diese Benutzerin}} senden',
+'emailuser-title-notarget' => 'E-Mail an Benutzer',
 'emailpage' => 'E-Mail an Benutzer',
 'emailpagetext' => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
 Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
@@ -3156,16 +3159,35 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',
-'pageinfo-header-edits' => 'Bearbeitungen',
-'pageinfo-header-watchlist' => 'Beobachtungsliste',
-'pageinfo-header-views' => 'Seitenaufrufe',
-'pageinfo-subjectpage' => 'Seite',
-'pageinfo-talkpage' => 'Diskussionsseite',
-'pageinfo-watchers' => 'Anzahl der Beobachter',
-'pageinfo-edits' => 'Anzahl der Bearbeitungen',
-'pageinfo-authors' => 'Anzahl unterschiedlicher Autoren',
+'pageinfo-header-basic' => 'Basisinformationen',
+'pageinfo-header-edits' => 'Bearbeitungsgeschichte',
+'pageinfo-header-restrictions' => 'Seitenschutz',
+'pageinfo-header-properties' => 'Seiteneigenschaften',
+'pageinfo-display-title' => 'Anzeigetitel',
+'pageinfo-default-sort' => 'Standardsortierkriterium',
+'pageinfo-length' => 'Seitenlänge (in Byte)',
+'pageinfo-article-id' => 'Seitenkennnummer',
+'pageinfo-robot-policy' => 'Suchmaschinenstatus',
+'pageinfo-robot-index' => 'Indizierbar',
+'pageinfo-robot-noindex' => 'Nicht indizierbar',
 'pageinfo-views' => 'Anzahl der Seitenaufrufe',
-'pageinfo-viewsperedit' => 'Seitenaufrufe pro Bearbeitung',
+'pageinfo-watchers' => 'Anzahl der Beobachter der Seite',
+'pageinfo-redirects-name' => 'Weiterleitungen zu dieser Seite',
+'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'Unterseiten dieser Seite',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|Weiterleitung|Weiterleitungen}}; $3 {{PLURAL:$3|Unterseite|Unterseiten}})',
+'pageinfo-firstuser' => 'Seitenersteller',
+'pageinfo-firsttime' => 'Datum der Seitenerstellung',
+'pageinfo-lastuser' => 'Letzter Bearbeiter',
+'pageinfo-lasttime' => 'Datum der letzten Bearbeitung',
+'pageinfo-edits' => 'Gesamtzahl der Bearbeitungen',
+'pageinfo-authors' => 'Gesamtzahl unterschiedlicher Autoren',
+'pageinfo-recent-edits' => 'Anzahl der kürzlich erfolgten Bearbeitungen (innerhalb von $1)',
+'pageinfo-recent-authors' => 'Anzahl der unterschiedlichen Autoren',
+'pageinfo-restriction' => 'Seitenschutz (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Magisches Wort|Magische Wörter}} ($1)',
+'pageinfo-hidden-categories' => 'Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
+'pageinfo-templates' => 'Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Klassik',

@@ -2923,15 +2923,10 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 # Info page
 'pageinfo-title' => 'Podatci o "$1"',
 'pageinfo-header-edits' => 'Uređivanja',
-'pageinfo-header-watchlist' => 'Praćene stranice',
-'pageinfo-header-views' => 'Pregleda',
-'pageinfo-subjectpage' => 'Stranica',
-'pageinfo-talkpage' => 'Stranica za razgovor',
+'pageinfo-views' => 'Broj pregleda',
 'pageinfo-watchers' => 'Broj pratitelja stranice',
 'pageinfo-edits' => 'Broj uređivanja',
 'pageinfo-authors' => 'Broj različitih autora',
-'pageinfo-views' => 'Broj pregleda',
-'pageinfo-viewsperedit' => 'Pregleda po uređivanju',
 
 # Skin names
 'skinname-standard' => 'Standardna',

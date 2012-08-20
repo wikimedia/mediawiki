@@ -3047,15 +3047,10 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 # Info page
 'pageinfo-title' => 'Informasi untuk "$1"',
 'pageinfo-header-edits' => 'Suntingan',
-'pageinfo-header-watchlist' => 'Daftar pantauan',
-'pageinfo-header-views' => 'Tampilan',
-'pageinfo-subjectpage' => 'Halaman',
-'pageinfo-talkpage' => 'Halaman pembicaraan',
+'pageinfo-views' => 'Jumlah penampilan',
 'pageinfo-watchers' => 'Jumlah pemantau',
 'pageinfo-edits' => 'Jumlah suntingan',
 'pageinfo-authors' => 'Jumlah penulis yang berbeda',
-'pageinfo-views' => 'Jumlah penampilan',
-'pageinfo-viewsperedit' => 'Jumlah penampilan per suntingan',
 
 # Skin names
 'skinname-standard' => 'Klasik',

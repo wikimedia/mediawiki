@@ -3069,15 +3069,10 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" എന്ന താളിന്റെ വിവരങ്ങൾ',
 'pageinfo-header-edits' => 'തിരുത്തലുകൾ',
-'pageinfo-header-watchlist' => 'ശ്രദ്ധിക്കുന്നവ',
-'pageinfo-header-views' => 'എടുത്തുനോക്കലുകൾ',
-'pageinfo-subjectpage' => 'താൾ',
-'pageinfo-talkpage' => 'സം‌വാദം താൾ',
+'pageinfo-views' => 'എടുത്തുനോക്കലുകളുടെ എണ്ണം',
 'pageinfo-watchers' => 'ശ്രദ്ധിക്കുന്നവരുടെ എണ്ണം',
 'pageinfo-edits' => 'ആകെ തിരുത്തലുകൾ',
 'pageinfo-authors' => 'ആകെ രചയിതാക്കളുടെ എണ്ണം',
-'pageinfo-views' => 'എടുത്തുനോക്കലുകളുടെ എണ്ണം',
-'pageinfo-viewsperedit' => 'ഓരോ തിരുത്തലിലും ഉള്ള എടുത്തുനോട്ടങ്ങൾ',
 
 # Skin names
 'skinname-standard' => 'സാർവത്രികം',

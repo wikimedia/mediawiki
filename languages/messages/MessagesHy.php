@@ -2271,15 +2271,10 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 # Info page
 'pageinfo-title' => 'Տեղեկություններ $1-ի վերաբերյալ',
 'pageinfo-header-edits' => 'Խմբագրումներ',
-'pageinfo-header-watchlist' => 'Հսկացանկ',
-'pageinfo-header-views' => 'Դիտումներ',
-'pageinfo-subjectpage' => 'Էջ',
-'pageinfo-talkpage' => 'Քննարկման էջ',
+'pageinfo-views' => 'Դիտումների քանակ',
 'pageinfo-watchers' => 'Դիտողների քանակ',
 'pageinfo-edits' => 'Խմբագրումների քանակ',
 'pageinfo-authors' => 'Տարբեր հեղինակների քանակ',
-'pageinfo-views' => 'Դիտումների քանակ',
-'pageinfo-viewsperedit' => 'Դիտումները ըստ խմբագրումների',
 
 # Skin names
 'skinname-standard' => 'Դասական',

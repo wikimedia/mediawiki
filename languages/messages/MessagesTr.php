@@ -2972,14 +2972,9 @@ Geçici dosya kayıp.',
 # Info page
 'pageinfo-title' => 'Bilgi için "$1"',
 'pageinfo-header-edits' => 'Değişiklikler',
-'pageinfo-header-watchlist' => 'İzleme listesi',
-'pageinfo-header-views' => 'Görüntüle',
-'pageinfo-subjectpage' => 'Sayfa',
-'pageinfo-talkpage' => 'Tartışma sayfası',
+'pageinfo-views' => 'Görüntülenme sayısı',
 'pageinfo-watchers' => 'İzleyen sayısı',
 'pageinfo-edits' => 'Değişiklik sayısı',
-'pageinfo-views' => 'Görüntülenme sayısı',
-'pageinfo-viewsperedit' => 'Değişiklik başına görüntüleme',
 
 # Skin names
 'skinname-standard' => 'Klasik',

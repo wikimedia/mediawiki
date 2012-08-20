@@ -2894,15 +2894,10 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 # Info page
 'pageinfo-title' => '\'Mbormaziune pe "$1"',
 'pageinfo-header-edits' => 'Cangiaminde',
-'pageinfo-header-watchlist' => 'Pàggene condrollate',
-'pageinfo-header-views' => 'Visite',
-'pageinfo-subjectpage' => 'Pàgene',
-'pageinfo-talkpage' => "Pàgene de le 'ngazzaminde",
+'pageinfo-views' => 'Numere de visite',
 'pageinfo-watchers' => 'Numere de visitature',
 'pageinfo-edits' => 'Numere de cangiaminde',
 'pageinfo-authors' => 'Numere de autore diverse',
-'pageinfo-views' => 'Numere de visite',
-'pageinfo-viewsperedit' => 'Visite pe cangiaminde',
 
 # Skin names
 'skinname-standard' => 'Classeche',

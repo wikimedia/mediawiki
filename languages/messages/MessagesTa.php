@@ -2712,15 +2712,10 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" பக்கத்துக்கான தகவல்',
 'pageinfo-header-edits' => 'தொகுப்புகள்',
-'pageinfo-header-watchlist' => 'கவனிப்புப் பட்டியல்',
-'pageinfo-header-views' => 'பார்வைகள்',
-'pageinfo-subjectpage' => 'பக்கம்',
-'pageinfo-talkpage' => 'பேச்சுப் பக்கம்',
+'pageinfo-views' => 'காட்சிகள் எண்ணிக்கை',
 'pageinfo-watchers' => 'பார்வையாளர்கள் எண்ணிக்கை',
 'pageinfo-edits' => 'தொகுப்புகளின் எண்ணிக்கை:',
 'pageinfo-authors' => 'சாதகமான அம்சங்களை பெற்றிருக்கும் எழுத்தாளர்கள் எண்ணிக்கை',
-'pageinfo-views' => 'காட்சிகள் எண்ணிக்கை',
-'pageinfo-viewsperedit' => 'திருத்தந்களுக்கான காட்சிகள்',
 
 # Skin names
 'skinname-standard' => 'இயல்பான',

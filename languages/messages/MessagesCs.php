@@ -679,9 +679,9 @@ Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speci�
 'dberrortext' => 'Při dotazu do databáze došlo k syntaktické chybě.
 Příčinou může být chyba v programu.
 Poslední dotaz byl:
-<blockquote><tt>$1</tt></blockquote>
-z funkce „<tt>$2</tt>“.
-Databáze vrátila chybu „<tt>$3: $4</tt>“.',
+<blockquote><code>$1</code></blockquote>
+z funkce „<code>$2</code>“.
+Databáze vrátila chybu „<samp>$3: $4</samp>“.',
 'dberrortextcl' => 'Při dotazu do databáze došlo k syntaktické chybě.
 Poslední dotaz byl:
 „$1“
@@ -1022,7 +1022,6 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 * '''Firefox / Safari:''' Při kliknutí na ''Aktualizovat'' držte ''Shift'' nebo stiskněte ''Ctrl-F5'' nebo ''Ctrl-R'' (na Macu ''⌘-R'').
 * '''Google Chrome:''' Stiskněte ''Ctrl-Shift-R'' (na Macu ''⌘-Shift-R'').
 * '''Internet Explorer:''' Při kliknutí na ''Aktualizovat'' držte ''Ctrl'' nebo stiskněte ''Ctrl-F5''.
-* '''Konqueror:''' Klikněte na ''Aktualizovat'' nebo stiskněte ''F5''.
 * '''Opera:''' Smažte obsah cache v menu ''Nástroje → Nastavení''.",
 'usercssyoucanpreview' => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového CSS před uložením.",
 'userjsyoucanpreview' => "'''Tip:''' Použijte tlačítko „{{int:showpreview}}“ k testování vašeho nového JavaScriptu před uložením.",
@@ -2124,6 +2123,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bajt|bajty|bajtů}}',
 'ncategories' => '$1 {{PLURAL:$1|kategorie|kategorie|kategorií}}',
+'ninterwikis' => '$1 {{PLURAL:$1|mezijazykový odkaz|mezijazykové odkazy|mezijazykových odkazů}}',
 'nlinks' => '$1 {{PLURAL:$1|odkaz|odkazy|odkazů}}',
 'nmembers' => '$1 {{PLURAL:$1|stránka|stránky|stránek}}',
 'nrevisions' => '$1 {{PLURAL:$1|revize|revize|revizí}}',
@@ -2152,6 +2152,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'mostlinkedtemplates' => 'Nejvkládanější šablony',
 'mostcategories' => 'Stránky s nejvyšším počtem kategorií',
 'mostimages' => 'Nejpoužívanější soubory',
+'mostinterwikis' => 'Stránky s nejvyšším počtem mezijazykových odkazů',
 'mostrevisions' => 'Stránky s nejvíce revizemi',
 'prefixindex' => 'Seznam stránek dle začátku názvu',
 'prefixindex-namespace' => 'Seznam stránek dle začátku názvu (jmenný prostor $1)',
@@ -2298,6 +2299,8 @@ Podporované protokoly: <code>$1</code> (nepřidávejte je do hledání).',
 'mailnologin' => 'Bez odesílací adresy',
 'mailnologintext' => 'Pokud chcete posílat e-maily jiným uživatelům, musíte se [[Special:UserLogin|přihlásit]] a mít platnou e-mailovou adresu ve svém [[Special:Preferences|nastavení]].',
 'emailuser' => 'Poslat e-mail',
+'emailuser-title-target' => 'Poslat e-mail {{GENDER:$1|tomuto uživateli|této uživatelce}}',
+'emailuser-title-notarget' => 'Poslat e-mail uživateli',
 'emailpage' => 'Poslat e-mail',
 'emailpagetext' => 'Pomocí níže zobrazeného formuláře můžete tomuto uživateli poslat zprávu e-mailem.
 E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se objeví jako adresa odesílatele pošty, aby vám adresát mohl odpovědět přímo.',
@@ -3098,16 +3101,32 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # Info page
 'pageinfo-title' => 'Informace o "$1"',
-'pageinfo-header-edits' => 'Editace',
-'pageinfo-header-watchlist' => 'Sledované stránky',
-'pageinfo-header-views' => 'Zobrazení',
-'pageinfo-subjectpage' => 'Stránka',
-'pageinfo-talkpage' => 'Diskusní stránka',
-'pageinfo-watchers' => 'Počet sledujících',
-'pageinfo-edits' => 'Počet editací',
-'pageinfo-authors' => 'Počet různých autorů',
+'pageinfo-header-basic' => 'Základní údaje',
+'pageinfo-header-edits' => 'Historie editací',
+'pageinfo-header-restrictions' => 'Zámek stránky',
+'pageinfo-header-properties' => 'Vlastnosti stránky',
+'pageinfo-display-title' => 'Zobrazovaný název',
+'pageinfo-default-sort' => 'Výchozí klíč řazení',
+'pageinfo-length' => 'Velikost stránky (v bajtech)',
+'pageinfo-article-id' => 'ID stránky',
+'pageinfo-robot-policy' => 'Nastavení pro vyhledávače',
 'pageinfo-views' => 'Počet zobrazení',
-'pageinfo-viewsperedit' => 'Počet zobrazení na editaci',
+'pageinfo-watchers' => 'Počet sledujících',
+'pageinfo-redirects-name' => 'Přesměrování na tuto stránku',
+'pageinfo-subpages-name' => 'Podstránky této stránky',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|přesměrování}}; $3 {{PLURAL:$3|nepřesměrování}})',
+'pageinfo-firstuser' => 'Zakladatel stránky',
+'pageinfo-firsttime' => 'Datum založení stránky',
+'pageinfo-lastuser' => 'Nejnovější editor',
+'pageinfo-lasttime' => 'Datum nejnovější editace',
+'pageinfo-edits' => 'Celkový počet editací',
+'pageinfo-authors' => 'Celkový počet různých autorů',
+'pageinfo-recent-edits' => 'Počet nedávných editací (za posledních $1)',
+'pageinfo-recent-authors' => 'Nedávný počet různých autorů',
+'pageinfo-restriction' => 'Zámek stránky (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Kouzelné slovo|Kouzelná slova}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá|Skryté}} kategorie ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Použitá šablona|Použité šablony}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Klasický',

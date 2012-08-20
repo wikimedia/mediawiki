@@ -2936,15 +2936,10 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" च्याबद्दल माहिती',
 'pageinfo-header-edits' => 'संपादने',
-'pageinfo-header-watchlist' => 'पहाऱ्याची सूची',
-'pageinfo-header-views' => 'दृष्टीपथात',
-'pageinfo-subjectpage' => 'पान',
-'pageinfo-talkpage' => 'चर्चा पान',
+'pageinfo-views' => 'अभिप्रायांची संख्या',
 'pageinfo-watchers' => 'पाहणाऱ्यांची संख्या',
 'pageinfo-edits' => 'संपादनांची संख्या',
 'pageinfo-authors' => 'वेगळ्या लेखकांची संख्या',
-'pageinfo-views' => 'अभिप्रायांची संख्या',
-'pageinfo-viewsperedit' => 'प्रति संपादन अभिप्राय',
 
 # Skin names
 'skinname-standard' => 'अभिजात',

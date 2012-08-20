@@ -132,6 +132,7 @@
  * @author Yyy
  * @author Žekřil71pl
  * @author פוילישער
+ * @author 아라
  */
 
 $messages = array(
@@ -3461,7 +3462,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
 'pageinfo-length' => 'The length of the page, in bytes.',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
-'pageinfo-robot-policy' => 'The search engine status of the page.',
+'pageinfo-robot-policy' => 'The search engine status of the page, e.g. "marked as index".',
 'pageinfo-robot-index' => 'An indication that the page is indexable.',
 'pageinfo-robot-noindex' => 'An indication that the page is not indexable.',
 'pageinfo-views' => 'The number of times the page has been viewed.',
@@ -3480,7 +3481,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-lasttime' => 'The date and time the page was last edited.',
 'pageinfo-edits' => 'The total number of times the page has been edited.',
 'pageinfo-authors' => 'The total number of users who have edited the page.',
-'pageinfo-recent-edits' => 'The number of times the page has been edited recently.',
+'pageinfo-recent-edits' => 'The number of times the page has been edited recently. $1 is a localised duration (e.g. 9 days).',
 'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
 'pageinfo-restriction' => 'Parameters:
 * $1 is the type of page protection.',

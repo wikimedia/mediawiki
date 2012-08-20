@@ -1976,14 +1976,10 @@ Dj' ô bén, ça permete di disfé l' candjmint et d' mete on messaedje dins l' 
 
 # Info page
 'pageinfo-title' => 'Infôrmåcion po «$1»',
-'pageinfo-header-watchlist' => 'Djivêye des shuvous',
-'pageinfo-header-views' => 'Vuwes',
-'pageinfo-subjectpage' => 'Pådje',
-'pageinfo-talkpage' => 'Pådje di copene',
+'pageinfo-views' => 'Nombe di lijhaedjes',
 'pageinfo-watchers' => 'Nombe di shuveus',
 'pageinfo-edits' => 'Nombe di candjmints',
 'pageinfo-authors' => "Nombe d' oteurs diferins",
-'pageinfo-views' => 'Nombe di lijhaedjes',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marké come patrouyî',

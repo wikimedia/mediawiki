@@ -861,12 +861,11 @@ $2
 'userpage-userdoesnotexist-view' => '未曾建立用戶名「$1」。',
 'blocked-notice-logextract' => '這位用戶現正被封鎖。
 下面有最近的封鎖紀錄以供參考：',
-'clearyourcache' => "'''注意：在保存以後，您必須繞過瀏覽器緩存才能看到所作出的改變。'''
-* '''火狐（Firefox）／Safari'''：按住“Shift”鍵再點擊“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上為“⌘-R”）
-* '''谷歌瀏覽器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上為“⌘-Shift-R”）
-* '''Internet Explorer'''：按住“Ctrl”鍵再點擊“刷新”，或按下“Ctrl-F5”
-* '''Konqueror'''：點擊“刷新”或按下“F5”
-* '''Opera'''：在“工具→首選項”中清除緩存",
+'clearyourcache' => "'''注意：'''在保存以後，您必須繞過瀏覽器緩存才能看到所作出的改變。
+* '''火狐（Firefox）／Safari：'''按住“Shift”鍵再點擊“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上為“⌘-R”）
+* '''谷歌瀏覽器（Google Chrome）：'''按下“Ctrl-Shift-R”（Mac上為“⌘-Shift-R”）
+* '''Internet Explorer：'''按住“Ctrl”鍵再點擊“刷新”，或按下“Ctrl-F5”
+* '''Opera：'''在“工具→首選項”中清除緩存",
 'usercssyoucanpreview' => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 CSS 。",
 'userjsyoucanpreview' => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 JavaScript 。",
 'usercsspreview' => "'''記住您只是在預覽您的個人 CSS。'''
@@ -2116,6 +2115,8 @@ Template:消除歧義',
 並在[[Special:Preferences|偏好設定]]
 中有一個有效的 e-mail 地址才可以電郵其他用戶。',
 'emailuser' => 'E-mail該用戶',
+'emailuser-title-target' => '電郵這位{{GENDER:$1|用戶}}',
+'emailuser-title-notarget' => 'E-mail用戶',
 'emailpage' => 'E-mail用戶',
 'emailpagetext' => '您可以用下面的表格去寄一封電郵給這位用戶。
 您在[[Special:Preferences|您的參數設置]]中所輸入的電子郵件地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
@@ -2785,6 +2786,7 @@ $1被封禁的理由是“$2”',
 'import-error-interwiki' => '頁面"$1"未能導入，這是因為他的頁面名稱預留了供跨維基連結使用。',
 'import-error-special' => '"$1"未能導入因為該頁面使用一個不能創建頁面的特殊名字空間。',
 'import-error-invalid' => '"$1"不能導入，因為名字無效。',
+'import-options-wrong' => '{{PLURAL:$2|選項}}出錯：<nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => '匯入日誌',
@@ -2932,16 +2934,32 @@ $1被封禁的理由是“$2”',
 
 # Info page
 'pageinfo-title' => '" $1 "的信息',
-'pageinfo-header-edits' => '編輯',
-'pageinfo-header-watchlist' => '監視列表',
-'pageinfo-header-views' => '檢視',
-'pageinfo-subjectpage' => '頁',
-'pageinfo-talkpage' => '討論頁',
-'pageinfo-watchers' => '監視者數目',
-'pageinfo-edits' => '編輯次數',
-'pageinfo-authors' => '作者數',
+'pageinfo-header-basic' => '基本資料',
+'pageinfo-header-edits' => '編輯歷史',
+'pageinfo-header-restrictions' => '保護頁面',
+'pageinfo-header-properties' => '頁面屬性',
+'pageinfo-display-title' => '顯示標題',
+'pageinfo-default-sort' => '預設排序字：',
+'pageinfo-length' => '頁面長度 （以位元組為單位）',
+'pageinfo-article-id' => '頁面編號',
+'pageinfo-robot-policy' => '搜尋引擎狀態',
 'pageinfo-views' => '觀看次數',
-'pageinfo-viewsperedit' => '每次編輯檢視數',
+'pageinfo-watchers' => '頁面監視者數目',
+'pageinfo-redirects-name' => '重定向到此頁',
+'pageinfo-subpages-name' => '此頁面的子頁面',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|重定向|重定向}}; $3 {{PLURAL:$3|非重定向|非重定向}})',
+'pageinfo-firstuser' => '頁面的建立者',
+'pageinfo-firsttime' => '頁面創建日期',
+'pageinfo-lastuser' => '最近編者',
+'pageinfo-lasttime' => '最新編輯日期',
+'pageinfo-edits' => '編輯總次數',
+'pageinfo-authors' => '作者總數',
+'pageinfo-recent-edits' => '最近編輯次數 (過去 $1 內)',
+'pageinfo-recent-authors' => '最近作者數目',
+'pageinfo-restriction' => '保護頁面 （ <code>$1</code> ）',
+'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}} ( $1 )',
+'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}} ( $1 )',
+'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}} ( $1 )',
 
 # Skin names
 'skinname-standard' => '標準',

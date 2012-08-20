@@ -1773,9 +1773,6 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 'spamprotectionmatch' => 'Truicear ár scagaire dramhála ag an téacs seo a leanas: $1',
 'spambot_username' => 'MediaWiki turscar glanadh',
 
-# Info page
-'pageinfo-subjectpage' => 'Leathanach',
-
 # Skin names
 'skinname-standard' => 'Clasaiceach',
 'skinname-nostalgia' => 'Sean-nós',
