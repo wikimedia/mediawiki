@@ -385,7 +385,9 @@ $wgImgAuthPublicTest = true;
  *                      some remote repos.
  *   - thumbDir         The base thumbnail directory. Defaults to "<directory>/thumb".
  *   - thumbUrl         The base thumbnail URL. Defaults to "<url>/thumb".
- *
+ *   - isPrivate        Set this if measures should always be taken to keep the files private.
+ *                      One should not trust this to assure that the files are not web readable;
+ *                      the server configuration should be done manually depending on the backend.
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
@@ -2323,7 +2325,7 @@ $wgVariantArticlePath = false;
 $wgLoginLanguageSelector = false;
 
 /**
- * When translating messages with wfMessage(), it is not always clear what 
+ * When translating messages with wfMessage(), it is not always clear what
  * should be considered UI messages and what should be content messages.
  *
  * For example, for the English Wikipedia, there should be only one 'mainpage',
