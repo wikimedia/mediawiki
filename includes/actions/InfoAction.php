@@ -140,7 +140,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Redirects to this page
-		$whatLinksHere = SpecialPage::getTitleFor( 'WhatLinksHere', $title->getPrefixedText() );
+		$whatLinksHere = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$table = $this->addRow( $table,
 			Linker::link(
 				$whatLinksHere,
@@ -154,7 +154,7 @@ class InfoAction extends FormlessAction {
 		);
 
 		// Subpages of this page
-		$prefixIndex = SpecialPage::getTitleFor( 'PrefixIndex', $title->getPrefixedText() . '/' );
+		$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
 		$table = $this->addRow( $table,
 			Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' ) ),
 			$this->msg( 'pageinfo-subpages-value',
