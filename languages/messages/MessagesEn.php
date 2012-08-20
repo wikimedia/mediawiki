@@ -3756,9 +3756,9 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-authors'             => 'Total number of distinct authors',
 'pageinfo-recent-edits'        => 'Recent number of edits (within past $1)',
 'pageinfo-recent-authors'      => 'Recent number of distinct authors',
-'pageinfo-restriction'         => 'Page protection ($1)',
-'pageinfo-magic-words'         => 'Magic words ($1)',
-'pageinfo-hidden-categories'   => 'Hidden categories ($1)',
+'pageinfo-restriction'         => 'Page protection (<code>$1</code>)',
+'pageinfo-magic-words'         => 'Magic {{PLURAL:$1|word|words}} ($1)',
+'pageinfo-hidden-categories'   => 'Hidden {{PLURAL:$1|category|categories}} ($1)',
 'pageinfo-templates'           => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
 
 # Skin names
