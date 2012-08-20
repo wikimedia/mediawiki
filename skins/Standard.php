@@ -133,7 +133,7 @@ class StandardTemplate extends LegacyTemplate {
 					$s.= Linker::specialLink( 'Watchlist' ) ;
 					$s .= $sep . Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Contributions' ),
-						$this->msg( 'mycontris' )->text(),
+						wfMsg( 'mycontris' ),
 						array(),
 						array( 'target' => $this->data['username'] )
 					);
@@ -158,34 +158,34 @@ class StandardTemplate extends LegacyTemplate {
 						case NS_TEMPLATE_TALK:
 						case NS_HELP_TALK:
 						case NS_CATEGORY_TALK:
-							$text = $this->msg('viewtalkpage')->text();
+							$text = wfMsg('viewtalkpage');
 							break;
 						case NS_MAIN:
-							$text = $this->msg( 'articlepage' )->text();
+							$text = wfMsg( 'articlepage' );
 							break;
 						case NS_USER:
-							$text = $this->msg( 'userpage' )->text();
+							$text = wfMsg( 'userpage' );
 							break;
 						case NS_PROJECT:
-							$text = $this->msg( 'projectpage' )->text();
+							$text = wfMsg( 'projectpage' );
 							break;
 						case NS_FILE:
-							$text = $this->msg( 'imagepage' )->text();
+							$text = wfMsg( 'imagepage' );
 							break;
 						case NS_MEDIAWIKI:
-							$text = $this->msg( 'mediawikipage' )->text();
+							$text = wfMsg( 'mediawikipage' );
 							break;
 						case NS_TEMPLATE:
-							$text = $this->msg( 'templatepage' )->text();
+							$text = wfMsg( 'templatepage' );
 							break;
 						case NS_HELP:
-							$text = $this->msg( 'viewhelppage' )->text();
+							$text = wfMsg( 'viewhelppage' );
 							break;
 						case NS_CATEGORY:
-							$text = $this->msg( 'categorypage' )->text();
+							$text = wfMsg( 'categorypage' );
 							break;
 						default:
-							$text = $this->msg( 'articlepage' )->text();
+							$text = wfMsg( 'articlepage' );
 					}
 
 					$link = $title->getText();
@@ -198,7 +198,7 @@ class StandardTemplate extends LegacyTemplate {
 				} elseif( $title->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
-					$s .= '<strong>' . $this->msg( 'newpage' )->text() . '</strong>';
+					$s .= '<strong>' . wfMsg( 'newpage' ) . '</strong>';
 				}
 			}
 
@@ -206,7 +206,7 @@ class StandardTemplate extends LegacyTemplate {
 			if( ( $title->isTalkPage() || $this->getSkin()->getOutput()->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
 				$s .= '<br />' . Linker::link(
 					$title,
-					$this->msg( 'postcomment' )->text(),
+					wfMsg( 'postcomment' ),
 					array(),
 					array(
 						'action' => 'edit',
@@ -268,7 +268,7 @@ class StandardTemplate extends LegacyTemplate {
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {
 			$s .= "\n<br /><a href=\"" . htmlspecialchars( $wgSiteSupportPage ) .
-			'" class="internal">' . $this->msg( 'sitesupport' )->text() . '</a>';
+			'" class="internal">' . wfMsg( 'sitesupport' ) . '</a>';
 		}
 
 		$s .= "\n<br /></div>\n";
