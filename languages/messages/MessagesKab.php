@@ -11,6 +11,7 @@
  * @author Agzennay
  * @author Azwaw
  * @author Mmistmurt
+ * @author MoubarikBelkasim
  * @author Teak
  * @author Urhixidur
  */
@@ -75,7 +76,6 @@ $messages = array(
 'tog-watchlisthideown' => 'Ffer ibeddlen inu seg wumuɣ n uɛessi inu',
 'tog-watchlisthidebots' => 'Ffer ibeddlen n iboṭiyen seg wumuɣ n uɛessi inu',
 'tog-watchlisthideminor' => 'Ffer ibeddlen ifessasen seg wumuɣ n uɛessi inu',
-'tog-nolangconversion' => 'Kkes abeddel n yimeskilen',
 'tog-ccmeonemails' => 'Azen-iyi-d email n wayen uzneɣ i imseqdacen wiyaḍ',
 'tog-diffonly' => 'Ur temliḍ-iyi-d ara ayen yellan seddaw imgerraden',
 
@@ -654,7 +654,7 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'revertmerge' => 'Fru',
 
 # Diffs
-'history-title' => 'Amazray n allasen n "$1"',
+'history-title' => 'Tiẓṛi tiss sint umezruy n "$1"',
 'lineno' => 'Ajerriḍ $1:',
 'compareselectedversions' => 'Ẓer imgerraden ger tisiwal i textareḍ',
 'editundo' => 'ssefsu',
@@ -866,16 +866,16 @@ Akken ad tessekcmeḍ tugna deg usebter, seqdec azay am wagi
 'large-file' => 'Ilaq tiddi n ufayluwen ur tettili kter n $1; tiddi n ufaylu-agi $2.',
 'largefileserver' => 'Afaylu meqqer aṭṭas, server ur t-yeqbil ara.',
 'emptyfile' => 'Afaylu i tazneḍ d ilem. Waqila tɣelṭeḍ deg isem-is. G leɛnayek ssenqed-it.',
-'fileexists' => "Afaylu s yisem-agi yewǧed yagi, ssenqed '''<tt>[[:$1]]</tt>''' ma telliḍ mačči meḍmun akken a t-tbeddleḍ.
-[[$1|thumb]]",
-'fileexists-extension' => "Afaylu s yisem-agi yewǧed: [[\$2|thumb]]
-* Isem n ufaylu i tazneḍ: '''<tt>[[:\$1]]</tt>'''
-* Isem n ufaylu i yewǧed: '''<tt>[[:\$2]]</tt>'''
-Amgirred i yella kan deg isekkilen imecṭuḥen/imeqqranen deg taseggiwit (am \".jpg\"/\".jPg\"). G leɛnayek ssenqed-it.",
+'fileexists' => 'Afaylu s yisem-agi yewǧed yagi, ssenqed <strong>[[:$1]]</strong> ma telliḍ mačči meḍmun akken a t-tbeddleḍ.
+[[$1|thumb]]',
+'fileexists-extension' => 'Afaylu s yisem-agi yewǧed: [[$2|thumb]]
+* Isem n ufaylu i tazneḍ: <strong>[[:$1]]</strong>
+* Isem n ufaylu i yewǧed: <strong>[[:$2]]</strong>
+Amgirred i yella kan deg isekkilen imecṭuḥen/imeqqranen deg taseggiwit (am ".jpg"/".jPg"). G leɛnayek ssenqed-it.',
 'fileexists-thumbnail-yes' => "Iban-d belli tugna-nni d tugna tamecṭuht n tugna nniḍen ''(thumbnail)''. [[$1|thumb]]
-G leɛnayek ssenqed tugna-agi '''<tt>[[:$1]]</tt>'''.
+G leɛnayek ssenqed tugna-agi <strong>[[:$1]]</strong>.
 Ma llant kif-kif ur tt-taznepd ara.",
-'file-thumbnail-no' => "Isem n tugna yebda s '''<tt>$1</tt>'''. Waqila tugna-nni d tugna tamecṭuht n tugna nniḍen ''(thumbnail)''.
+'file-thumbnail-no' => "Isem n tugna yebda s <strong>$1</strong>. Waqila tugna-nni d tugna tamecṭuht n tugna nniḍen ''(thumbnail)''.
 Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.",
 'fileexists-forbidden' => 'Tugna s yisem kif-kif tewǧed yagi; g leɛnayek uɣal u beddel isem-is. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Tugna s yisem kif-kif tewǧed yagi; g leɛnayek uɣal u beddel isem-is. [[File:$1|thumb|center|$1]]',
@@ -943,7 +943,7 @@ Aglam-is ɣef [$2 asebter n aglam] ye beqqeḍ ddaw-agi.',
 
 # MIME search
 'mimesearch' => 'Anadi n MIME',
-'mimesearch-summary' => 'Asebter-agi yeǧǧa astay n ifayluwen n unaw n MIME ines. Asekcem: ayen yella/anaw azellum, e.g. <tt>tugna/jpeg</tt>.',
+'mimesearch-summary' => 'Asebter-agi yeǧǧa astay n ifayluwen n unaw n MIME ines. Asekcem: ayen yella/anaw azellum, e.g. <code>tugna/jpeg</code>.',
 'mimetype' => 'Anaw n MIME:',
 'download' => 'Ddem-it ɣer uselkim inek',
 

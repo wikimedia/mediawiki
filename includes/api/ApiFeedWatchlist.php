@@ -117,7 +117,7 @@ class ApiFeedWatchlist extends ApiBase {
 				$feedItems[] = $this->createFeedItem( $info );
 			}
 
-			$msg = wfMsgForContent( 'watchlist' );
+			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
 
 			$feedTitle = $wgSitename . ' - ' . $msg . ' [' . $wgLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
@@ -131,11 +131,12 @@ class ApiFeedWatchlist extends ApiBase {
 			// Error results should not be cached
 			$this->getMain()->setCacheMaxAge( 0 );
 
-			$feedTitle = $wgSitename . ' - Error - ' . wfMsgForContent( 'watchlist' ) . ' [' . $wgLanguageCode . ']';
+			$feedTitle = $wgSitename . ' - Error - ' . wfMessage( 'watchlist' )->inContentLanguage()->text() . ' [' . $wgLanguageCode . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = isset( $params['feedformat'] ) ? $params['feedformat'] : 'rss';
-			$feed = new $wgFeedClasses[$feedFormat] ( $feedTitle, htmlspecialchars( wfMsgForContent( 'watchlist' ) ), $feedUrl );
+			$msg = wfMessage( 'watchlist' )->inContentLanguage()->escaped();
+			$feed = new $wgFeedClasses[$feedFormat] ( $feedTitle, $msg, $feedUrl );
 
 			if ( $e instanceof UsageException ) {
 				$errorCode = $e->getCodeString();

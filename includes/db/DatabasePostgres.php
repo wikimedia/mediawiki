@@ -356,6 +356,10 @@ class DatabasePostgres extends DatabaseBase {
 		if ( $port != false && $port != '' ) {
 			$connectVars['port'] = $port;
 		}
+		if ( $this->mFlags & DBO_SSL ) {
+			$connectVars['sslmode'] = 1;
+		}
+
 		$this->connectString = $this->makeConnectionString( $connectVars, PGSQL_CONNECT_FORCE_NEW );
 		$this->close();
 		$this->installErrorHandler();
@@ -1294,11 +1298,6 @@ SQL;
 			$res = $res->result;
 		}
 		return pg_field_type( $res, $index );
-	}
-
-	/* Not even sure why this is used in the main codebase... */
-	function limitResultForUpdate( $sql, $num ) {
-		return $sql;
 	}
 
 	/**

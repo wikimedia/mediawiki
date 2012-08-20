@@ -772,6 +772,16 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 */
 	function makeOptionsLink( $title, $override, $options, $active = false ) {
 		$params = $override + $options;
+
+		// Bug 36524: false values have be converted to "0" otherwise
+		// wfArrayToCgi() will omit it them.
+		foreach ( $params as &$value ) {
+			if ( $value === false ) {
+				$value = '0';
+			}
+		}
+		unset( $value );
+
 		$text = htmlspecialchars( $title );
 		if ( $active ) {
 			$text = '<strong>' . $text . '</strong>';

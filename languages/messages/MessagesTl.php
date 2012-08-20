@@ -174,7 +174,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Itago ang mga pagbabago ng mga nakalagdang tagagamit mula sa tala ng mga binabantayan',
 'tog-watchlisthideanons' => 'Itago ang mga pagbabago ng hindi nakikilalang mga tagagamit mula sa tala ng mga binabantayan',
 'tog-watchlisthidepatrolled' => 'Itago ang napatrolyang mga pagbabago mula sa tala ng mga binabantayan',
-'tog-nolangconversion' => 'Huwag paganahin ang pagpapalit ng mga halagang nagkakaibaiba (baryante)',
 'tog-ccmeonemails' => 'Padalahan ako ng mga kopya ng mga ipinadala kong e-liham sa ibang mga tagagamit',
 'tog-diffonly' => 'Huwag ipakita ang nilalaman ng pahinang nasa ilalim ng mga pagkakaiba',
 'tog-showhiddencats' => 'Ipakita ang mga nakatagong kategorya',
@@ -405,6 +404,10 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'youhavenewmessages' => 'Mayroon kang $1 ($2).',
 'newmessageslink' => 'mga bagong mensahe',
 'newmessagesdifflink' => 'huling pagbabago',
+'youhavenewmessagesfromusers' => 'Mayroon kang $1 magmula sa {{PLURAL:$3|ibang tagagamit|$3 mga tagagamit}} ($2).',
+'youhavenewmessagesmanyusers' => 'Mayroon kang $1 magmula sa maraming mga tagagamit ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|isang bagong mensahe|bagong mga mensahe}}',
+'newmessagesdifflinkplural' => 'huling {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'youhavenewmessagesmulti' => 'Mayroon kang mga bagong mensahe sa $1',
 'editsection' => 'baguhin',
 'editsection-brackets' => '[$1]',
@@ -561,6 +564,7 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'remembermypassword' => 'Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
 'securelogin-stick-https' => 'Manatiling konektado sa HTTPS matapos lumagda',
 'yourdomainname' => 'Dominyo mo:',
+'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga hudyat sa wiking ito.',
 'externaldberror' => 'Maaaring may kamalian sa pagpapatotoo ng kalipunan ng mga dato o kaya hindi ka pinahintulutang isapanahon ng iyong panlabas na kuwenta o patnugutan.',
 'login' => 'Lumagda',
 'nav-login-createaccount' => 'Lumagda / lumikha ng kuwenta',
@@ -819,6 +823,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} baguhin ang pahinang ito]</span>.',
 'noarticletext-nopermission' => 'Kasalukuyang walang teksto sa pahinang ito.
 Maaari mong [[Special:Search/{{PAGENAME}}|hanapin ang pamagat ng pahinang ito]] sa ibang mga pahina,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa kaugnay na mga talaan]</span>.',
+'missing-revision' => 'Hindi umiiral ang rebisyong #$1 ng pahinang napangalanang "{{PAGENAME}}".
+
+Karaniwang itong dulot ng pagsunod sa isang wala na sa panahong kawing ng kasaysayan na papunta sa isang pahinang nabura na.
+Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].',
 'userpage-userdoesnotexist' => 'Hindi nakatala ang kuwenta ng tagagamit na "<nowiki>$1</nowiki>".
 Pakisuri kung ibig mong likhain/baguhin ang pahinang ito.',
 'userpage-userdoesnotexist-view' => 'Hindi nakatala ang kuwenta ng tagagamit na "$1".',
@@ -951,6 +959,7 @@ Hindi isasama ang ilang mga suleras.',
 'expansion-depth-exceeded-warning' => 'Lumampas ang pahina sa lalim ng paglawak',
 'parser-unstrip-loop-warning' => 'Napansin ang silo ng hindi pagtalop',
 'parser-unstrip-recursion-limit' => 'Nalampasan ang hangganan ng rekursiyon ng hindi pagtalop ($1)',
+'converter-manual-rule-error' => 'Napansin ang kamalian sa alituntunin ng kinakamay na pagpapalit ng wika',
 
 # "Undo" feature
 'undo-success' => 'Matatanggal ang pagbabago.
@@ -1138,6 +1147,10 @@ Tiyakin na ang pagbabago ay makapagpapanatili ng pagkakatuluy-tuloy ng pahinang 
 'editundo' => 'ibalik',
 'diff-multi' => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} ng {{PLURAL:$2|isang tagagamit|$2 mga tagagamit}} ang hindi ipinakikita.)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Isang panggitnang pagbabago|$1 panggitnang mga pagbabago}} ng {{PLURAL:$2|isang tagagamit|$2 mga tagagamit}} ang hindi ipinapakikita.)',
+'difference-missing-revision' => 'Hindi natagpuan ang {{PLURAL:$2|isang rebisyon|$2 mga rebisyon}} ng kaibahang ($1) ito.
+
+Karaniwang itong isinanhi ng pagsunod sa isang wala na sa panahong kawing sa pagkakaiba na papunta sa isang pahinang nabura na.
+Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].',
 
 # Search results
 'searchresults' => 'Kinalabasan/Resulta ng paghahanap',
@@ -1554,9 +1567,9 @@ Ang talaan ng pagbubura at paglipat para sa pahinang ito ay ibinigay dito para s
 Para tingnan o maghanap ng mga dati nang naikargang mga talaksan pumunta sa  [[Special:FileList|talaan ng ikinargang mga talaksan]], ang (muling) mga pagkakarga ay nakatala rin sa [[Special:Log/upload|talaan ng pagkarga]], ang mga binura/nabura sa  [[Special:Log/delete|talaan ng pagbubura]].
 
 Para maisama ang isang talaksan sa loob ng isang pahina, gumamit ng isang kawing na nasa loob ng isa sa mga sumusunod na mga pormularyo:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para magamit ang buong bersyon ng talaksan
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' para magamit ang isang may 200 piksel na paghabi sa loob ng isang kahong nasa kaliwang pataan na may 'tekstong pamalit' ('' 'alt text' '') bilang paglalarawan
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para sa tuwirang pagkakawing sa isang pahina na hindi ipinapakita ang talaksan",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para magamit ang buong bersyon ng talaksan
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' para magamit ang isang may 200 piksel na paghabi sa loob ng isang kahong nasa kaliwang pataan na may 'tekstong pamalit' ('' 'alt text' '') bilang paglalarawan
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para sa tuwirang pagkakawing sa isang pahina na hindi ipinapakita ang talaksan",
 'upload-permitted' => 'Pinapahintulutang mga uri ng talaksan: $1.',
 'upload-preferred' => 'Mas iniibig na mga uri ng talaksan: $1.',
 'upload-prohibited' => 'Ipinagbabawal na mga uri ng talaksan: $1.',
@@ -1601,20 +1614,20 @@ ang talaksang ito ay $2.',
 'largefileserver' => 'Mas malaki ang talaksan kaysa nakatakdang papahintulutan ng serbidor.',
 'emptyfile' => 'Mukhang walang laman ang talaksan (file) na ikinarga mo. Maaaring dahil ito sa maling pagkapasok ng pangalan ng talaksan.  Paki tingin kung gusto mo talagang ikarga ang talaksan na ito.',
 'windows-nonascii-filename' => 'Ang wiking ito ay hindi nagsusuporta ng mga pangalan ng talaksan na mayroong natatanging mga panitik.',
-'fileexists' => "Mayroon ng talaksan na ganitong pangalan, paki tingin ang '''<tt>[[:$1]]</tt>''' kung tiyak ka na babaguhin ito.
-[[$1|thumb]]",
-'filepageexists' => "Ang pahina ng paglalarawan para sa talaksan na ito ay nalikha na sa '''<tt>[[:$1]]</tt>''', ngunit walang talaksang umiiral na may ganitong pangalan.
+'fileexists' => 'Mayroon ng talaksan na ganitong pangalan, paki tingin ang <strong>[[:$1]]</strong> kung tiyak ka na babaguhin ito.
+[[$1|thumb]]',
+'filepageexists' => 'Ang pahina ng paglalarawan para sa talaksan na ito ay nalikha na sa <strong>[[:$1]]</strong>, ngunit walang talaksang umiiral na may ganitong pangalan.
 Hindi lilitaw ang buod na ipapasok mo sa pahina ng paglalarawan.
 Para lumitaw ang buod mo doon, kailangan mong kinakamay na baguhin ito.
-[[$1|thumb]]",
-'fileexists-extension' => "Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
-* Pangalan ng ikinakargang talaksan: '''<tt>[[:$1]]</tt>'''
-* Pangalan ng umiiral na talaksan: '''<tt>[[:$2]]</tt>'''
-Pumili ng ibang pangalan.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Mayroon talaksan na ganitong pangalan: [[$2|thumb]]
+* Pangalan ng ikinakargang talaksan: <strong>[[:$1]]</strong>
+* Pangalan ng umiiral na talaksan: <strong>[[:$2]]</strong>
+Pumili ng ibang pangalan.',
 'fileexists-thumbnail-yes' => "Mukhang pinaliit ''(thumbnail)'' na larawan ang talaksan. [[$1|thumb]]
-Paki tingin ang talaksan '''<tt>[[:$1]]</tt>'''.
+Paki tingin ang talaksan <strong>[[:$1]]</strong>.
 Kung ang tinignan na talaksan ay ang kaparehong larawan ng orihinal na laki, hindi na kailangang magkarga ng panibagong ''thumbnail''.",
-'file-thumbnail-no' => "Nagsisimula ang pangalan ng talaksan sa '''<tt>$1</tt>'''.  Tila ito'y isang larawan na may pinaliit na sukat''(thumbnail)''.
+'file-thumbnail-no' => "Nagsisimula ang pangalan ng talaksan sa <strong>$1</strong>.  Tila ito'y isang larawan na may pinaliit na sukat''(thumbnail)''.
 Kung mayroon ang larawang ito ng pinakamataas na resolution, ikarga ito, kung hindi paki palitan ang pangalan ng talaksan.",
 'fileexists-forbidden' => 'Umiiral na ang isang talaksang may ganitong pangalan, at hindi maaaring patungan.
 Kung nais mo pa ring ikarga pataas ang iyong talaksan, paki bumalik lamang at gumamit ng isang bagong pangalan.
@@ -1876,7 +1889,7 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 
 # MIME search
 'mimesearch' => 'Maghanap ng MIME',
-'mimesearch-summary' => 'Pinapagana ng pahinang ito ang pagsasala ng mga talaksan para sa kanyang uri ng MIME. Pagpapasok: uringnilalaman/mababangkabahaginguri, hal. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Pinapagana ng pahinang ito ang pagsasala ng mga talaksan para sa kanyang uri ng MIME. Pagpapasok: uringnilalaman/mababangkabahaginguri, hal. <code>image/jpeg</code>.',
 'mimetype' => 'Uri ng MIME:',
 'download' => "magkargang-pakuha ng talaksan (''download'')",
 
@@ -1922,9 +1935,9 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 
 'disambiguations' => 'Mga pahinang nakakawing sa mga pahina ng paglilinaw',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Ang sumusunod ay mga pahinang may ugnay (link) sa isang '''pahinang naglilinaw'''.
-Dapat silang umugnay sa tamang paksa<br />
-Tinuturing ang isang pahina bilang pahinang naglilinaw kung ginagamit nito ang isang suleras (template) na nakaugnay mula sa [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Ang sumusunod na mga pahina ay naglalaman ng kahit na isang kawing na papunta sa isang '''pahina ng paglilinaw'''.
+Sa halip, maaaring kailanganing kumawing ang mga ito sa isang mas naaangkop na pahina.<br />
+Ang isang pahina ay itinuturing bilang pahina ng paglilinaw kung gumagamit ito ng isang suleras na nakakawing magmula sa [[MediaWiki:Disambiguationspage|MediaWiki:Pahina ng mga paglilinaw]].",
 
 'doubleredirects' => 'Mga dobleng karga',
 'doubleredirectstext' => 'Nagtatala ang pahinang ito ng mga pahinang pumupunta sa iba pang mga pahinang nililipatan.  Naglalaman ang bawat hanay ng mga kawing sa una ang pangalawang kapupuntahan, maging ng puntiryang pangalawang kapupuntahan, na karaniwang "tunay" na puntiryang pahina, na dapat kinatuturuan ng unang pupuntahan.
@@ -1951,7 +1964,7 @@ Nasugpo na ang mga ipinasok na <del>inekisan</del>.',
 'nlinks' => '$1 {{PLURAL:$1|ugnay|mga ugnay}}',
 'nmembers' => '$1 {{PLURAL:$1|kasapi|mga kasapi}}',
 'nrevisions' => '$1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
-'nviews' => '$1 {{PLURAL:$1|nakita|mga nakikita}}',
+'nviews' => '$1 {{PLURAL:$1|pagtingin|mga pagtingin}}',
 'nimagelinks' => 'Ginamit sa $1 {{PLURAL:$1|pahina|mga pahina}}',
 'ntransclusions' => 'ginamit sa $1 {{plural:$1|pahina|mga pahina}}',
 'specialpage-empty' => 'Walang resulta para sa ulat na ito.',
@@ -2077,7 +2090,7 @@ Tingnan din ang [[Special:WantedCategories|ninanais na mga kategorya]].',
 'linksearch-ok' => 'Hanapin',
 'linksearch-text' => 'Maaaring gamitin ang mga "barahang pamalit" na katulad ng "*.wikipedia.org".
 Kailangan ng kahit na isang nasasakupang mataas ang kaantasan, halimbawa na ang "*.org".<br />
-Sinusuportahang mga protokolo: <tt>$1</tt> (huwag idagdag ang anuman sa mga ito sa paghahanap mo).',
+Sinusuportahang mga protokolo: <code>$1</code> (huwag idagdag ang anuman sa mga ito sa paghahanap mo).',
 'linksearch-line' => '$1 nakakawing/nakaugnay mula sa $2',
 'linksearch-error' => "Lilitaw lamang ang mga \"barahang-pamalit\" (''wildcard'') sa simula ng pangunahin/punong-abalang pangalan.",
 
@@ -2109,8 +2122,8 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'listgrouprights-rights' => 'Mga karapatan',
 'listgrouprights-helppage' => 'Help:Mga pangkat ng karapatan',
 'listgrouprights-members' => '(tala ng mga kasapi)',
-'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup' => 'Maaaring idagdag ang {{PLURAL:$2|pangkat|mga pangkat}} na: $1',
 'listgrouprights-removegroup' => 'Maaaring tanggalin ang {{PLURAL:$2|pangkat|mga pangkat}} na: $1',
 'listgrouprights-addgroup-all' => 'Maaaring idagdag ang lahat ng mga pangkat',
@@ -2270,6 +2283,8 @@ magpatuloy na may pagiingat.',
 'rollback' => 'Mga pagbabagong may kaugnayan sa pagpapagulong na pabalik sa (mas) dati',
 'rollback_short' => 'Pagulunging pabalik sa (mas) dati',
 'rollbacklink' => 'pagulunging pabalik sa (mas) dati',
+'rollbacklinkcount' => 'pagulunging pabalik ang $1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
+'rollbacklinkcount-morethan' => 'pagulunging pabalik ang mahigit sa $1 {{PLURAL:$1|pagbabago|mga pagbabago}}',
 'rollbackfailed' => 'Nabigo ang pagpapagulong na pabalik sa (mas) dati',
 'cantrollback' => 'Hindi maibalik ang pagbabago; tanging ang may-akda lamang ng pahinang ito ang huling tagapagambag/tagapaglathala.',
 'alreadyrolled' => 'Hindi mapagulong na pabalik sa dati ang huling pagbabago ng [[$1]] ni ([[User talk:$2|Usapan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2768,6 +2783,7 @@ Naitatala sa [[Special:Log/import|tala ng inangkat]] ang lahat ng mga transwikin
 'import-interwiki-templates' => 'Isama ang lahat ng mga suleras',
 'import-interwiki-submit' => 'Mag-angkat',
 'import-interwiki-namespace' => 'Kapupuntahang espasyo ng pangalan:',
+'import-interwiki-rootpage' => 'Ugat na pahina ng kapupuntahan (maaaring wala ito):',
 'import-upload-filename' => 'Pangalan ng talaksan:',
 'import-comment' => 'Komento:',
 'importtext' => 'Pakiluwas ang talaksan magmula sa pinagmulang wiki na ginagamit ang [[Special:Export|kasangkapang pangluwas]].  
@@ -2800,6 +2816,9 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'import-error-interwiki' => 'Hindi naangkat ang pahinang "$1" dahil ang pangalan nito ay nakalaan para sa pagkakawing na panlabas (interwiki).',
 'import-error-special' => 'Hindi naangkat ang pahinang "$1" dahil pag-aari ito ng isang natatanging puwang na pampangalan na hindi nagpapahintulot ng mga pahina.',
 'import-error-invalid' => 'Hindi naangkat ang pahinang "$1" dahil hindi katanggap-tanggap ang pangalan nito.',
+'import-options-wrong' => 'Maling {{PLURAL:$2|pili|mga mapipili}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Ang ibinigay na ugat na pahina ay isang hindi katanggap-tanggap na pamagat.',
+'import-rootpage-nosubpage' => 'Ang puwang ng pangalan na "$1" ng ugat na pahina ay hindi nagpapahintulot ng kabahaging mga pahina.',
 
 # Import log
 'importlogpage' => 'Talaan ng pagaangkat',
@@ -3886,7 +3905,7 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 * <span class="mw-specialpagerestricted">Pinaghihigpitang natatanging mga pahina.</span>',
 'specialpages-group-maintenance' => 'Mga pagpapanatiling ulat',
 'specialpages-group-other' => 'Iba pang natatanging mga pahina',
-'specialpages-group-login' => 'Lumagda/tumala',
+'specialpages-group-login' => 'Lumagda / lumikha ng akawnt',
 'specialpages-group-changes' => 'Mga huling binago at mga tala',
 'specialpages-group-media' => 'Mga ulat ng midya at mga pagkarga',
 'specialpages-group-users' => 'Mga tagagamit at mga karapatan',
@@ -4024,6 +4043,7 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'api-error-file-too-large' => 'Napakalaki ng talaksang ipinasa mo.',
 'api-error-filename-tooshort' => 'Napakaiksi ng pangalan ng talaksan.',
 'api-error-filetype-banned' => 'Ipinagbabawal ang ganitong uri ng talaksan.',
+'api-error-filetype-banned-type' => 'Ang $1 {{PLURAL:$4|ay isang hindi pinapahintulutang uri ng talaksan|ay hindi pinapahintulutang mga uri ng talaksan}}. Ang pinapayagang {{PLURAL:$3|uri ng talaksan ay ang|mga uri ng talaksan ay ang mga}} $2.',
 'api-error-filetype-missing' => 'Kulang ng karugtong ang talaksan.',
 'api-error-hookaborted' => 'Ang pagbabagong sinubok mong gawin ay hindi itinuloy ng isang kawil ng dugtong.',
 'api-error-http' => 'Panloob na kamalian: hindi makaugnay sa tagahain.',

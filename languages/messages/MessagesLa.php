@@ -666,7 +666,7 @@ aut [{{fullurl:{{FULLPAGENAME}}|action=edit}} hanc paginam creare]</span>.',
 'userpage-userdoesnotexist' => 'Usor "<nowiki>$1</nowiki>" non est. Visne re vera hanc paginam creare vel recensere?',
 'updated' => '(Novata)',
 'note' => "'''Nota:'''",
-'previewnote' => "'''Memento hanc paginam solum praevisum esse, neque iam servatam!'''",
+'previewnote' => "'''Memento hanc paginam solum praevisam esse, neque iam servatam!'''",
 'editing' => 'Recensio paginae "$1"',
 'creating' => 'Creans $1',
 'editingsection' => 'Recensens $1 (partem)',
@@ -808,6 +808,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'compareselectedversions' => 'Conferre emendationes selectas',
 'showhideselectedversions' => 'Monstrare/celare emendationes selectas',
 'editundo' => 'abrogare',
+'diff-multi' => '(Inter has {{PLURAL:$1|una emendatio|$1 emendationes}} ab {{PLURAL:$2|uno usore|$2 usoribus}} {{PLURAL:$1|facta|factae}} non {{PLURAL:$1|videtur|videntur}})',
 
 # Search results
 'searchresults' => 'Eventum investigationis',
@@ -1122,9 +1123,9 @@ Si vis id dare, opera tua tibi ascribentur.',
 Ut fasciculos antea impositos videas aut quaeras, adi ad [[Special:FileList|indicem fasciculorum impositorum]]. Fasciculi impositi et deleti quoque in [[Special:Log/upload|notatione fasciculorum impositorum]] notantur.
 
 Ad fasciculum in pagina includendum, utere nexu:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fasciculus.jpg]]</nowiki></tt>''' aut
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fasciculus.png|verba alia]]</nowiki></tt>''' aut
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fasciculus.ogg]]</nowiki></tt>''' pro nexum ad fasciculum directum.",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fasciculus.jpg]]</nowiki></code>''' aut
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fasciculus.png|verba alia]]</nowiki></code>''' aut
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fasciculus.ogg]]</nowiki></code>''' pro nexum ad fasciculum directum.",
 'upload-permitted' => 'Genera fasciculorum licita: $1.',
 'upload-preferred' => 'Genera fasciculorum suasa: $1.',
 'upload-prohibited' => 'Typi fasciculorum vetiti: $1.',
@@ -1163,7 +1164,7 @@ Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum imposito
 'upload-unknown-size' => 'Magnitudo ignota',
 
 'license' => 'Typus permissionis:',
-'license-header' => 'Typus permissionis:',
+'license-header' => 'Potestas usoris',
 'nolicense' => 'Nulla selecta',
 'license-nopreview' => '(Praevisum monstrari non potest)',
 
@@ -1556,6 +1557,8 @@ Adfirma quaesumus te paginam re vera delere velle, te consequentias intellere, e
 'rollback' => 'Reverti mutationes',
 'rollback_short' => 'Reverti',
 'rollbacklink' => 'reverti',
+'rollbacklinkcount' => 'reverti {{PLURAL:$1|unam recensionem|$1 recensiones}}',
+'rollbacklinkcount-morethan' => 'reverti plus quam {{PLURAL:$1|unam recensionem|$1 recensiones}}',
 'rollbackfailed' => 'Reversum defecit',
 'cantrollback' => 'Haec non potest reverti; conlator proximus solus auctor huius rei est.',
 'alreadyrolled' => 'Ad emendationem proximam paginae [[:$1]] ab usore [[User:$2|$2]] ([[User talk:$2|Disputatio]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) reverti non potest; alius paginam iam recensuit vel revertit.

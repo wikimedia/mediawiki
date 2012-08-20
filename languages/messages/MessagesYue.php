@@ -272,7 +272,6 @@ $messages = array(
 'tog-watchlisthideliu' => '響監視清單度隱藏登入用戶',
 'tog-watchlisthideanons' => '響監視清單度隱藏匿名用戶',
 'tog-watchlisthidepatrolled' => '響監視清單度隱藏巡查過嘅編輯',
-'tog-nolangconversion' => '唔要用字轉換',
 'tog-ccmeonemails' => '當我寄電郵畀其他人嗰陣寄返封副本畀我',
 'tog-diffonly' => '響差異下面唔顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏類',
@@ -1504,9 +1503,9 @@ $1",
 要睇或者搵嘢之前上載嘅圖像請去[[Special:FileList|已上載檔案一覽]]，（再）上載嘅動作會喺[[Special:Log/upload|上載日誌]]裏面記錄落嚟，而刪除嘅動作會喺[[Special:Log/delete|刪除日誌]]裏面記錄落嚟。
 
 如果要喺頁面度引入呢張圖像，可以使用以下其中一種方式嘅連結：
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}:file.jpg<nowiki>]]</nowiki></tt>'''去用檔案嘅完整版
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}:file.png|200px|thumb|left|替代文字<nowiki>]]</nowiki></tt>'''去用200像素比例闊，靠左邊加盒，響描述度加'替代文字'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki></tt>''' 直接連結到檔案而唔顯示個檔案。",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:file.jpg<nowiki>]]</nowiki></code>'''去用檔案嘅完整版
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:file.png|200px|thumb|left|替代文字<nowiki>]]</nowiki></code>'''去用200像素比例闊，靠左邊加盒，響描述度加'替代文字'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}:file.ogg<nowiki>]]</nowiki></code>''' 直接連結到檔案而唔顯示個檔案。",
 'upload-permitted' => '准許嘅檔案類型: $1。',
 'upload-preferred' => '建議嘅檔案類型: $1。',
 'upload-prohibited' => '禁止嘅檔案類型: $1。',
@@ -1548,17 +1547,17 @@ $1",
 'large-file' => '建議檔案嘅大細唔好大過$1 bytes，呢個檔案有$2 bytes',
 'largefileserver' => '呢個檔案超過咗伺服器設定允許嘅大細。',
 'emptyfile' => '你上載嘅檔案似乎係空嘅。噉樣可能係因為你打錯咗個檔名。請檢查吓你係唔係真係要上載呢個檔案。',
-'fileexists' => "呢個檔名已經存在，如果你唔肯定係唔係要更改'''<tt>[[:$1]]</tt>'''，請先檢查佢。 [[$1|thumb]]",
-'filepageexists' => "呢個檔嘅描述頁已經響'''<tt>[[:$1]]</tt>'''開咗，但係呢個名嘅檔案重未存在。你輸入咗嘅摘要係唔會顯示響個描述頁度。要令到個摘要響嗰度出現，你就要手動噉去改佢。
-[[$1|thumb]]",
-'fileexists-extension' => "一個相似檔名嘅檔案已經存在: [[$2|thumb]]
-* 上載檔案嘅檔名: '''<tt>[[:$1]]</tt>'''
-* 現有檔案嘅檔名: '''<tt>[[:$2]]</tt>'''
-請揀一個唔同嘅名。",
+'fileexists' => '呢個檔名已經存在，如果你唔肯定係唔係要更改<strong>[[:$1]]</strong>，請先檢查佢。 [[$1|thumb]]',
+'filepageexists' => '呢個檔嘅描述頁已經響<strong>[[:$1]]</strong>開咗，但係呢個名嘅檔案重未存在。你輸入咗嘅摘要係唔會顯示響個描述頁度。要令到個摘要響嗰度出現，你就要手動噉去改佢。
+[[$1|thumb]]',
+'fileexists-extension' => '一個相似檔名嘅檔案已經存在: [[$2|thumb]]
+* 上載檔案嘅檔名: <strong>[[:$1]]</strong>
+* 現有檔案嘅檔名: <strong>[[:$2]]</strong>
+請揀一個唔同嘅名。',
 'fileexists-thumbnail-yes' => "呢個檔案好似係一幅圖像縮細咗嘅版本''（縮圖）''。 [[$1|thumb]]
-請檢查清楚個檔案'''<tt>[[:$1]]</tt>'''。
+請檢查清楚個檔案<strong>[[:$1]]</strong>。
 如果檢查咗嘅檔案係同原本幅圖個大細係一樣嘅話，就唔使再上載多一幅縮圖。",
-'file-thumbnail-no' => "個檔名係以'''<tt>$1</tt>'''開始。佢好似係一幅圖像嘅縮細版本''（縮圖）''。
+'file-thumbnail-no' => "個檔名係以<strong>$1</strong>開始。佢好似係一幅圖像嘅縮細版本''（縮圖）''。
 如果你有呢幅圖像嘅完整大細，唔係嘅話請再改過個檔名。",
 'fileexists-forbidden' => '呢個檔案嘅名已經存在，唔可以覆蓋；麻煩返轉去用第二個名嚟上載呢個檔案。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '共享檔案庫入面已經有一個同名嘅檔案。
@@ -1750,7 +1749,7 @@ $1',
 
 # MIME search
 'mimesearch' => 'MIME 搜尋',
-'mimesearch-summary' => '呢一版可以過濾有關檔案嘅MIME類型。輸入方法：contenttype/subtype，例如 <tt>image/jpeg</tt>。',
+'mimesearch-summary' => '呢一版可以過濾有關檔案嘅MIME類型。輸入方法：contenttype/subtype，例如 <code>image/jpeg</code>。',
 'mimetype' => 'MIME 類型：',
 'download' => '下載',
 
@@ -1936,7 +1935,7 @@ Template:搞清楚',
 'linksearch-ns' => '空間名',
 'linksearch-ok' => '搵',
 'linksearch-text' => '可以用類似"*.wikipedia.org"嘅萬用字元。<br />
-支援嘅協議: <tt>$1</tt>',
+支援嘅協議: <code>$1</code>',
 'linksearch-line' => '$1 連自 $2',
 'linksearch-error' => '萬用字元只可以響主機名嘅開頭度用。',
 

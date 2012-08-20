@@ -372,7 +372,7 @@ if ( $wgNewUserLog ) {
 }
 
 if ( $wgCookieSecure === 'detect' ) {
-	$wgCookieSecure = ( substr( $wgServer, 0, 6 ) === 'https:' );
+	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https:' );
 }
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
@@ -449,7 +449,7 @@ if ( $wgCommandLineMode ) {
 	# Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
 	$wgRequest = new WebRequest;
 
-	$debug = "\n\nStart request {$_SERVER['REQUEST_METHOD']} {$wgRequest->getRequestURL()}\n";
+	$debug = "\n\nStart request {$wgRequest->getMethod()} {$wgRequest->getRequestURL()}\n";
 
 	if ( $wgDebugPrintHttpHeaders ) {
 		$debug .= "HTTP HEADERS:\n";

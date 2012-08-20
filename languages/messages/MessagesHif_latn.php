@@ -10,6 +10,7 @@
  * @author Abdul Kadir
  * @author AndySingh
  * @author Bihari
+ * @author Brijlal
  * @author Girmitya
  * @author Kaganer
  * @author Malafaya
@@ -58,7 +59,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Logged in sadasya ke badlao ke dhyan suchi se lukao',
 'tog-watchlisthideanons' => 'Bina naam ke sadasya ke badlao ke dhyan suchi se lukao',
 'tog-watchlisthidepatrolled' => 'Pahraa dewa gais badlao ke dhyan suchi me se lukao',
-'tog-nolangconversion' => 'Variants conversion ke disable karo',
 'tog-ccmeonemails' => 'Jon e-mail ham duusra sadasya ke lage bhejtaa hai uske copy hamaar lage bhi bhejo',
 'tog-diffonly' => 'Diff ke niche panna ke content ke nai dekhao',
 'tog-showhiddencats' => 'Lukawal waala vibhag ke dekhao',
@@ -1408,9 +1408,9 @@ Hian pe mitae waala suchi aur naam badle waala suchi ke aap ke dekhe ke khatir d
 Pahile upload karaa file ke dekhe khatir [[Special:FileList|list of uploaded files]] jao, (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' to use the full version of the file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
 'upload-permitted' => 'File types jiske ijajat hai: $1.',
 'upload-preferred' => 'Kon rakam ke file ke mangtaa hai: $1.',
 'upload-prohibited' => 'Ii rakam ke file ke upload nai karaa jaae sake hai: $1.',
@@ -1458,20 +1458,20 @@ ii file hai $2',
 Ii saait file ke naam likhe me typing mistake ke kaaran hoi.
 Meharbaani kar ke ii dekho ki aap such me ii file upload kare mangtaa hai ki nai.',
 'windows-nonascii-filename' => 'Ii wiki me password jisme special characters hae, ke kaam me nai lawa jaae sake hae.',
-'fileexists' => "Ii naam ke file abhi hai, meharbani kar ke check karo '''<tt>[[:$1]]</tt>''' agar jo aap sure nai hai ki aap iske badle mangta hai.
-[[$1|thumb]]",
-'filepageexists' => "Ii file ke description ke '''<tt>[[:$1]]</tt>''' me banae dewa gais rahaa, lekin ii naam ke koi file abhi nai hai.
+'fileexists' => 'Ii naam ke file abhi hai, meharbani kar ke check karo <strong>[[:$1]]</strong> agar jo aap sure nai hai ki aap iske badle mangta hai.
+[[$1|thumb]]',
+'filepageexists' => 'Ii file ke description ke <strong>[[:$1]]</strong> me banae dewa gais rahaa, lekin ii naam ke koi file abhi nai hai.
 Aap jon summary likhtaa hai uu panna ke description me nai dekhai.
 Description ke dekhae ke khatir, aap ke iske manually badle ke parri.
-[[$1|thumb]]",
-'fileexists-extension' => "Ii rakam ke naam ke ek aur file hai: [[$2|thumb]]
-* Uploading file ke naam: '''<tt>[[:$1]]</tt>'''
-* Abhi ke file ke naam: '''<tt>[[:$2]]</tt>'''
-Meharbani kar ke duusra naam chuno.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Ii rakam ke naam ke ek aur file hai: [[$2|thumb]]
+* Uploading file ke naam: <strong>[[:$1]]</strong>
+* Abhi ke file ke naam: <strong>[[:$2]]</strong>
+Meharbani kar ke duusra naam chuno.',
 'fileexists-thumbnail-yes' => "Ii janawe hai ki ii file ek chhota chapa hai ''(thumbnail)''. [[$1|thumb]]
-Meharbani kar ke file ke check karo '''<tt>[[:$1]]</tt>'''.
+Meharbani kar ke file ke check karo <strong>[[:$1]]</strong>.
 Agar jo check karaa gais file wahi chhapa ke original size hai tab ek aur thumbnail ke upload kare ke jaruri nai hai.",
-'file-thumbnail-no' => "File ke naam '''<tt>$1</tt>''' se suruu hoe hai.
+'file-thumbnail-no' => "File ke naam <strong>$1</strong> se suruu hoe hai.
 Ii janawe hai ki ii chhota size ke chapa hai ''(thumbnail)''.
 Agar jo aap ke lage ii chapa full resolution me hai tab uske upload karna, nai to file ke naam badlo.",
 'fileexists-forbidden' => 'Ii naam ke file abhi hai, aur iske badlawa nai jaae sake hai.
@@ -1563,6 +1563,7 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'lockmanager-notlocked' => '"$1" ke  nai khole sakaa hae; ii lock nai hae.',
 'lockmanager-fail-closelock' => '"$1" ke khatir lock file ke nai band kare sakaa hae.',
 'lockmanager-fail-deletelock' => '"$1" ke khatir lock file ke nai mitae sakaa hae.',
+'lockmanager-fail-openlock' => '"$1" ke khatir lock file ke nai khola jaae sake hae',
 
 # Special:UploadStash
 'uploadstash' => 'Gupt file ke upload karo',
@@ -1700,7 +1701,7 @@ Iske baare me aur jaankari [$2 file description page] ke niche dekhawa jaae hai.
 # MIME search
 'mimesearch' => 'MIME khojo',
 'mimesearch-summary' => 'Ii panna filtering of files for its MIME-type ke enable kare hai.
-Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
+Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'mimetype' => 'MIME ke rakam:',
 'download' => 'download karo',
 
@@ -1869,6 +1870,7 @@ Ketna chij dekhae hae ke aap kamti kare saktaa hae sadasya ke naam (case-sensiti
 'allpagesbadtitle' => 'Dewa gias panna ke title kharaab rahaa nai to inter-language nai to inter-wiki ke prefix hai.
 Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.',
 'allpages-bad-ns' => '{{SITENAME}} me namespace "$1" nai hai.',
+'allpages-hide-redirects' => 'Redirects lukao',
 
 # Special:Categories
 'categories' => 'Vibhag',
@@ -1890,7 +1892,7 @@ Is me ek nai to jaada akchhar hai jiske title me nai kaam me lawa jaae sake hai.
 'linksearch-ns' => 'Namespace:',
 'linksearch-ok' => 'Khojo',
 'linksearch-text' => 'Wildcard jaise ki "*.wikipedia.org" ke kaam me lawa jaae sake hai.<br />
-Support karaa gais protocol: <tt>$1</tt>',
+Support karaa gais protocol: <code>$1</code>',
 'linksearch-line' => '$1, $2 se jurraa hai',
 'linksearch-error' => 'Wildcards khaali hostname ke suruu me hoe ke chaahi.',
 
@@ -2204,6 +2206,7 @@ saait aur koi panna ke pahile jaise kar diis hai.',
 
 Nawaa mitawa gais aur badlao ke ulta karaa gais panna ke dekhe ke khatir [[Special:Log/delete|deletion log]] ke dekho.",
 'undelete-header' => 'Nawaa mitawa gais panna ke dekhe ke khatir [[Special:Log/delete|the deletion log]] ke dekho.',
+'undelete-search-title' => 'Mitawa gais panna ke khojo',
 'undelete-search-box' => 'Mitawa gais panna ke khojo',
 'undelete-search-prefix' => 'Uu panna ke dekhao jon ki isse suruu hoe hai:',
 'undelete-search-submit' => 'Khojo',
@@ -2318,6 +2321,7 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:BlockList|IP block list]] k
 'ipusubmit' => 'Ii rukawat ke hatao',
 'unblocked' => '[[User:$1|$1]] ke rukawat ke khalaas kar dewa gais hai',
 'unblocked-id' => 'Roko $1 ke khalaas kar dewa gais hai',
+'blocklist' => 'Roka gais sadasya',
 'ipblocklist' => 'Roka gais sadasya',
 'ipblocklist-legend' => 'Ek roka gais sadasya ke khojo',
 'blocklist-userblocks' => 'Roka gais account ke lukao',
@@ -2339,6 +2343,7 @@ Ii rukawat pe fir se bichar kare ke khatir [[Special:BlockList|IP block list]] k
 'unblocklink' => 'rukawat khatam karo',
 'change-blocklink' => 'rukawat ke badlo',
 'contribslink' => 'yogdaan',
+'emaillink' => 'E-mail bhejo',
 'autoblocker' => 'Apne se rokaa gais hai kaahe ki aap ke IP address ke abhi haali "[[User:$1|$1]]" use karis hai.
 $1 ke roke ke kaaran hai: "$2"',
 'blocklogpage' => 'Suchi ke roko',
@@ -2416,6 +2421,17 @@ Database ke khole nai to band kare ke khatir, iske web server se likhe ke laayek
 Puraana title nawaa title pe redirect hoe jaai.
 Aap uu redirect, jon ki pahile waala title pe jawe hai, ke update kare sakta hai.
 Agar aap ii nai kare mangta hai, tab [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karna.
+Aap ke jimewaari hai ki dekho ki links right jagah point kare hai.
+
+Khayal rakhna ki agar jo nawaa title ke naam ke ek panna hai tab panna move '''nai''' hae saki jab tak ki panna khali nahi hai yah to redirect hai yah to koi pahile ke edit itihaas nahi hai.
+Iske matlab ii hai ki aap ek panna ke naam badal ke wahi naam rakh de sakta hai jon naam pahile rahaa aur agar aap mistake karaa tab abhi ke panna ke overwrite nahi kare saktaa.
+
+'''CHETAWANI'''
+Ii ek lokpriye panna ke galti se badal de sake hai;
+meharbaani kar ke aap aapan karya ke natiija ke baare me socho aage kuch kare se pahile.",
+'movepagetext-noredirectfixer' => "Niche ke form kaam me laae se panna ke naam badal jaai aur iske itihass nawaa naam ke niche hoe jaai.
+Puraana title nawaa title pe redirect hoe jaai.
+Ii jaruri hae ki aap  [[Special:DoubleRedirects|double]] nai to [[Special:BrokenRedirects|broken redirects]] ke check karo.
 Aap ke jimewaari hai ki dekho ki links right jagah point kare hai.
 
 Khayal rakhna ki agar jo nawaa title ke naam ke ek panna hai tab panna move '''nai''' hae saki jab tak ki panna khali nahi hai yah to redirect hai yah to koi pahile ke edit itihaas nahi hai.
@@ -2683,7 +2699,11 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'spam_blanking' => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
 
 # Info page
+'pageinfo-header-watchlist' => 'Dhyan suchi',
+'pageinfo-header-views' => 'Ketna angle se dekha jaae hae',
 'pageinfo-subjectpage' => 'Panna',
+'pageinfo-edits' => 'Etna badlao rahaa',
+'pageinfo-viewsperedit' => 'Har ek badlao ke ketna dafe dekha gais hae',
 
 # Patrolling
 'markaspatrolleddiff' => 'Mark karo ke pahraa dewa jaawe hai',

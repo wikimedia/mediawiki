@@ -353,7 +353,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Bejelentkezett szerkesztők módosításainak elrejtése a figyelőlistáról',
 'tog-watchlisthideanons' => 'Névtelen szerkesztések elrejtése',
 'tog-watchlisthidepatrolled' => 'Az ellenőrzött szerkesztések elrejtése',
-'tog-nolangconversion' => 'Nyelvvariánsok közötti átalakítás letiltása',
 'tog-ccmeonemails' => 'A másoknak küldött e-mailjeimről kapjak én is másolatot',
 'tog-diffonly' => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
 'tog-showhiddencats' => 'Rejtett kategóriák megjelenítése',
@@ -577,6 +576,9 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 'youhavenewmessages' => 'Új üzenet vár $1! (Az üzenetet $2.)',
 'newmessageslink' => 'a vitalapodon',
 'newmessagesdifflink' => 'külön is megtekintheted',
+'youhavenewmessagesmanyusers' => '$1ed van több szerkesztőtől ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|egy|$1}} új üzenet',
+'newmessagesdifflinkplural' => 'utolsó {{PLURAL:$1|egy|$1}} változtatás',
 'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 wikin',
 'editsection' => 'szerkesztés',
 'editold' => 'szerkesztés',
@@ -695,6 +697,13 @@ $2',
 'ns-specialprotected' => 'A speciális lapok nem szerkeszthetőek.',
 'titleprotected' => "Ilyen címmel nem lehet szócikket készíteni, [[User:$1|$1]] letiltotta.
 A blokkolás oka: „''$2''”.",
+'filereadonlyerror' => 'A(z) "$1" fájl nem módosítható, mert a(z) "$2" fájltároló csak olvasható módban üzemel.
+
+A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
+'invalidtitle-knownnamespace' => 'Érvénytelen cím "$2" névtérrel és "$3" szöveggel',
+'invalidtitle-unknownnamespace' => 'Érvénytelen cím az ismeretlen $1 névtérszámmal és "$2" szöveggel',
+'exception-nologin' => 'Nem vagy bejelentkezve.',
+'exception-nologin-text' => 'Ezen lap vagy művelet használatához be kell jelenetkezned erre a wikire.',
 
 # Virus scanner
 'virus-badscanner' => "Hibás beállítás: ismeretlen víruskereső: ''$1''",
@@ -715,6 +724,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'remembermypassword' => 'Emlékezzen rám ezen a számítógépen (legfeljebb $1 napig)',
 'securelogin-stick-https' => 'Kapcsolódás HTTPS-en keresztül bejelentkezés után is',
 'yourdomainname' => 'A domainneved:',
+'password-change-forbidden' => 'Nem módosíthatod a jelszót ezen a wikin.',
 'externaldberror' => 'Hiba történt a külső adatbázis hitelesítése közben, vagy nem vagy jogosult a külső fiókod frissítésére.',
 'login' => 'Bejelentkezés',
 'nav-login-createaccount' => 'Bejelentkezés / fiók létrehozása',
@@ -956,6 +966,9 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'noarticletext-nopermission' => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
+'missing-revision' => 'A(z) "{{PAGENAME}}" nevű oldal #$1 változata nem létezik.
+
+Ezt általában egy elavult, törölt oldalra mutató laptörténeti hivatkozás használata okozza. Részletek a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatóak.',
 'userpage-userdoesnotexist' => 'Nincs „<nowiki>$1</nowiki>” nevű regisztrált felhasználónk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.',
 'userpage-userdoesnotexist-view' => 'Nincs regisztrálva „$1” szerkesztői azonosító.',
@@ -1073,6 +1086,7 @@ Néhány sablon nem fog megjelenni.',
 'parser-template-loop-warning' => 'Végtelen ciklus a következő sablonban: [[$1]]',
 'parser-template-recursion-depth-warning' => 'A sablon rekurzív beillesztésének mélysége átlépte a határérékét ($1)',
 'language-converter-depth-warning' => 'A nyelvátalakító rekurzióinak száma túllépve ($1)',
+'expansion-depth-exceeded-category' => 'Lapok, melyeken a sablonok kibontása meghaladja a megengedett szintet',
 
 # "Undo" feature
 'undo-success' => 'A szerkesztés visszavonható. Kérlek ellenőrizd alább a változásokat, hogy valóban ezt szeretnéd-e tenni, majd kattints a lap mentése gombra a visszavonás véglegesítéséhez.',
@@ -1711,20 +1725,20 @@ ez a fájl $2.',
 Ez valószínűleg azért van, mert hibásan adtad meg a feltöltendő fájl nevét.
 Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
 'windows-nonascii-filename' => 'A wiki nem támogatja a speciális karaktereket tartalmazó fájlneveket.',
-'fileexists' => "'''<tt>[[:$1]]</tt>''' névvel már létezik egy állomány.
-Ellenőrizd, hogy biztosan felül akarod-e írni! [[$1|thumb]]",
-'filepageexists' => "Ehhez a fájlnévhez már létezik leírás a '''<tt>[[:$1]]</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl.
+'fileexists' => '<strong>[[:$1]]</strong> névvel már létezik egy állomány.
+Ellenőrizd, hogy biztosan felül akarod-e írni! [[$1|thumb]]',
+'filepageexists' => 'Ehhez a fájlnévhez már létezik leírás a <strong>[[:$1]]</strong> lapon, de jelenleg nincs feltöltve ilyen nevű fájl.
 A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt.
 Ha meg szeretnéd változtatni a leírást, meg kell nyitnod szerkesztésre a lapjot.
-[[$1|thumb]]",
-'fileexists-extension' => "Már van egy hasonló nevű feltöltött fájl: [[$2|thumb]]
-* A feltöltendő fájl neve: '''<tt>[[:$1]]</tt>'''
-* A már létező fájl neve: '''<tt>[[:$2]]</tt>'''
-Kérjük, hogy válassz másik nevet.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Már van egy hasonló nevű feltöltött fájl: [[$2|thumb]]
+* A feltöltendő fájl neve: <strong>[[:$1]]</strong>
+* A már létező fájl neve: <strong>[[:$2]]</strong>
+Kérjük, hogy válassz másik nevet.',
 'fileexists-thumbnail-yes' => "A fájl egy kisméretű képnek ''(bélyegképnek)'' tűnik. [[$1|thumb]]
-Kérjük, hogy ellenőrizd a(z) '''<tt>[[:$1]]</tt>''' fájlt.
+Kérjük, hogy ellenőrizd a(z) <strong>[[:$1]]</strong> fájlt.
 Ha az ellenőrzött fájl ugyanakkora, mint az eredeti méretű kép, akkor nincs szükség bélyegkép feltöltésére.",
-'file-thumbnail-no' => "A fájlnév a(z) '''<tt>$1</tt>''' karakterlánccal kezdődik.
+'file-thumbnail-no' => "A fájlnév a(z) <strong>$1</strong> karakterlánccal kezdődik.
 Úgy tűnik, hogy ez egy kisméretű kép ''(bélyegkép)''.
 Ha rendelkezel a teljesméretű képpel, akkor töltsd fel azt, egyébként kérjük, hogy változtasd meg a fájlnevet.",
 'fileexists-forbidden' => 'Már létezik egy ugyanilyen nevű fájl, és nem lehet felülírni.
@@ -1969,7 +1983,7 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 
 # MIME search
 'mimesearch' => 'Keresés MIME-típus alapján',
-'mimesearch-summary' => 'Ez az oldal engedélyezi a fájlok MIME-típus alapján történő szűrését. Bevitel: tartalomtípus/altípus, pl. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ez az oldal engedélyezi a fájlok MIME-típus alapján történő szűrését. Bevitel: tartalomtípus/altípus, pl. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-típus:',
 'download' => 'letöltés',
 
@@ -2125,6 +2139,7 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vagy az érintett lap kiválasztásával (ez is kis- és nagybetűérzékeny) szűkítheted a találatok listáját.',
 'logempty' => 'Nincs illeszkedő naplóbejegyzés.',
 'log-title-wildcard' => 'Így kezdődő címek keresése',
+'showhideselectedlogentries' => 'Kijelölt napló bejegyzések megjelenítése/elrejtése',
 
 # Special:AllPages
 'allpages' => 'Az összes lap listája',
@@ -2169,7 +2184,7 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'linksearch-ns' => 'Névtér:',
 'linksearch-ok' => 'keresés',
 'linksearch-text' => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org". Legalább egy felső szintű tartománynak lennie kell, például "*.org"<br />
-Támogatott protokollok: <tt>$1</tt> (ezeket ne írd be a keresésbe).',
+Támogatott protokollok: <code>$1</code> (ezeket ne írd be a keresésbe).',
 'linksearch-line' => '$1 hivatkozva innen: $2',
 'linksearch-error' => 'Helyettesítő karakterek csak a cím elején szerepelhetnek.',
 
@@ -2357,6 +2372,8 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'rollback' => 'Szerkesztések visszaállítása',
 'rollback_short' => 'Visszaállítás',
 'rollbacklink' => 'visszaállítás',
+'rollbacklinkcount' => '$1 szerkesztés visszaállítása',
+'rollbacklinkcount-morethan' => 'több mint $1 szerkesztés visszaállítása',
 'rollbackfailed' => 'A visszaállítás nem sikerült',
 'cantrollback' => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
 'alreadyrolled' => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
@@ -3906,9 +3923,12 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'api-error-empty-file' => 'Az általad elküldött fájl üres volt.',
 'api-error-emptypage' => 'Új, üres lap létrehozása nem engedélyezett.',
 'api-error-fetchfileerror' => 'Belső hiba: valami baj történt a fájl beolvasása közben.',
+'api-error-fileexists-forbidden' => 'Már létezik „$1” nevű fájl, és nem lehet felülírni.',
+'api-error-fileexists-shared-forbidden' => 'Már létezik „$1” nevű fájl a megosztott fájlok között, és nem lehet felülírni.',
 'api-error-file-too-large' => 'Az általad elküldött fájl túl nagy.',
 'api-error-filename-tooshort' => 'A fájlnév túl rövid.',
 'api-error-filetype-banned' => 'Tiltott fájltípus.',
+'api-error-filetype-banned-type' => '!A következő {{PLURAL:$4|fájltípus nem engedélyezett|fájltípusok nem engedélyezettek}}: $1. Engedélyezett {{PLURAL:$3|típus|típusok}}: $2.',
 'api-error-filetype-missing' => 'Hiányzik a fájl kiterjesztése.',
 'api-error-hookaborted' => 'Az általad kezdeményezett módosítást nem lehet végrehajtani. (Egy bővítmény megakadályozta.)',
 'api-error-http' => 'Belső hiba: nem sikerült kapcsolódni a kiszolgálóhoz.',

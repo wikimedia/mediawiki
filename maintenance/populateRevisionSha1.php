@@ -18,11 +18,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that fills the rev_sha1 and ar_sha1 columns of revision
+ * and archive tables for revisions created before MW 1.19.
+ *
+ * @ingroup Maintenance
+ */
 class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();

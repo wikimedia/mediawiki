@@ -457,7 +457,7 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 			$dbSupport .= wfMsgNoTrans( "config-support-$type", $link ) . "\n";
 		}
 		$this->addHTML( $this->parent->getInfoBox(
-			wfMsg( 'config-support-info', $dbSupport ) ) );
+			wfMsg( 'config-support-info', trim( $dbSupport ) ) ) );
 
 		foreach ( $this->parent->getVar( '_CompiledDBs' ) as $type ) {
 			$installer = $this->parent->getDBInstaller( $type );

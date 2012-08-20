@@ -8,10 +8,14 @@
  * @file
  *
  * @author Agzennay
+ * @author Amqui
  * @author Arkanosis
+ * @author Boniface
+ * @author Brunoperel
  * @author Cedric31
  * @author ChrisPtDe
  * @author Coyau
+ * @author Cquoi
  * @author Crochet.david
  * @author Csisc
  * @author Damouns
@@ -22,6 +26,7 @@
  * @author Dodoïste
  * @author Elfix
  * @author Enzoreg
+ * @author Erkethan
  * @author Esbardu
  * @author Fryed-peach
  * @author Giro720
@@ -62,6 +67,7 @@
  * @author Sherbrooke
  * @author Skalman
  * @author The Evil IP address
+ * @author Tititou36
  * @author TouzaxA
  * @author Tpt
  * @author Urhixidur
@@ -405,7 +411,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi',
 'tog-watchlisthideanons' => 'Masquer les modifications anonymes dans la liste de suivi',
 'tog-watchlisthidepatrolled' => 'Masquer les modifications surveillées dans la liste de suivi',
-'tog-nolangconversion' => 'Désactiver la conversion des variantes linguistiques',
 'tog-ccmeonemails' => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly' => 'Ne pas afficher le contenu des pages sous les diffs',
 'tog-showhiddencats' => 'Afficher les catégories cachées',
@@ -629,6 +634,10 @@ $1',
 'youhavenewmessages' => 'Vous avez $1 ($2).',
 'newmessageslink' => 'de nouveaux messages',
 'newmessagesdifflink' => 'dernière modification',
+'youhavenewmessagesfromusers' => "Vous avez  $1  d'{{PLURAL:$3| un autre utilisateur|$3 autres utilisateurs}} ( $2 ).",
+'youhavenewmessagesmanyusers' => 'Vous avez $1 de nombreux utilisateurs ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un message|nouveaux messages}}',
+'newmessagesdifflinkplural' => 'dernières {{PLURAL:$1|modification|modifications}}',
 'youhavenewmessagesmulti' => 'Vous avez de nouveaux messages sur $1.',
 'editsection' => 'modifier',
 'editold' => 'modifier',
@@ -683,9 +692,9 @@ Une liste des pages spéciales valides se trouve sur [[Special:SpecialPages|{{in
 'dberrortext' => 'Une erreur de syntaxe de la requête dans la base de données est survenue.
 Ceci peut indiquer un bogue dans le logiciel.
 La dernière requête traitée par la base de données était :
-<blockquote><tt>$1</tt></blockquote>
-depuis la fonction « <tt>$2</tt> ».
-La base de données a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
+<blockquote><code>$1</code></blockquote>
+depuis la fonction « <code>$2</code> ».
+La base de données a renvoyé l’erreur « <samp>$3 : $4</samp> ».',
 'dberrortextcl' => 'Une requête dans la base de données comporte une erreur de syntaxe.
 La dernière requête émise était :
 « $1 »
@@ -779,6 +788,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
+'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
 'externaldberror' => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login' => 'Connexion',
 'nav-login-createaccount' => 'Créer un compte ou se connecter',
@@ -932,7 +942,7 @@ Mot de passe temporaire : $2',
 'link_tip' => 'Lien interne',
 'extlink_sample' => 'http://www.example.com titre du lien',
 'extlink_tip' => 'Lien externe (n’oubliez pas le préfixe http://)',
-'headline_sample' => 'Texte de sous-titre',
+'headline_sample' => 'Texte du titre',
 'headline_tip' => 'Sous-titre niveau 2',
 'nowiki_sample' => 'Entrez le texte non formaté ici',
 'nowiki_tip' => 'Ignorer la syntaxe wiki',
@@ -1016,6 +1026,10 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} créer cette page]</span>.',
 'noarticletext-nopermission' => 'Il n’y a pour l’instant aucun texte sur cette page.
 Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur ce titre]] dans les autres pages,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} rechercher dans les journaux associés]</span>.',
+'missing-revision' => "La révision n° $1 de la page intitulée « {{PAGENAME}} » n'existe pas.
+
+Cela survient en général en suivant un lien historique obsolète vers une page qui a été supprimée.
+Vous pouvez trouver plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'userpage-userdoesnotexist' => 'Le compte utilisateur « <nowiki>$1</nowiki> » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'userpage-userdoesnotexist-view' => 'Le compte utilisateur « $1 » n’est pas enregistré.',
 'blocked-notice-logextract' => 'Cet utilisateur est actuellement bloqué.
@@ -1137,6 +1151,7 @@ Il devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maint
 'expansion-depth-exceeded-warning' => "Page dépassant la profondeur d'expansion",
 'parser-unstrip-loop-warning' => 'Boucle non démontable détectée',
 'parser-unstrip-recursion-limit' => 'Limite de récursion non démontable dépassée ($1)',
+'converter-manual-rule-error' => 'Erreur détectée dans la règle manuelle de conversion de langue',
 
 # "Undo" feature
 'undo-success' => 'Cette modification va être défaite. Veuillez vérifier les modifications ci-dessous, puis publier si c’est bien ce que vous voulez faire.',
@@ -1321,6 +1336,10 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'editundo' => 'défaire',
 'diff-multi' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par {{PLURAL:$2|un utilisateur|$2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Une révision intermédiaire|$1 révisions intermédiaires}} par plus {{PLURAL:$2|d’un utilisateur|de $2 utilisateurs}} {{PLURAL:$1|est masquée|sont masquées}})',
+'difference-missing-revision' => "{{PLURAL:$2|Une révision|$2 révisions}} de cette différence ($1) {{PLURAL:$2|n'a pas été trouvée|n'ont pas été trouvées}}.
+
+Cela survient en général en suivant un lien de différence obsolète vers une page qui a été supprimée.
+Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 
 # Search results
 'searchresults' => 'Résultats de la recherche',
@@ -1779,20 +1798,20 @@ Voyez la [[Special:NewFiles|galerie des nouvelles images]] pour une présentatio
 Ceci peut être dû à une erreur dans le nom du fichier.
 Veuillez vérifier que vous désirez vraiment importer ce fichier.',
 'windows-nonascii-filename' => 'Ce wiki ne supporte pas les noms de fichiers avec des caractères spéciaux.',
-'fileexists' => "Un fichier existe déjà sous ce nom.
-Merci de vérifier '''<tt>[[:$1]]</tt>''' si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
-[[$1|thumb]]",
-'filepageexists' => "La page de description pour ce fichier a déjà été créée ici '''<tt>[[:$1]]</tt>''', mais aucun fichier n’existe actuellement sous ce nom.
+'fileexists' => 'Un fichier existe déjà sous ce nom.
+Merci de vérifier <strong>[[:$1]]</strong> si vous n’êtes pas certain{{GENDER:||e|}} de vouloir le modifier.
+[[$1|thumb]]',
+'filepageexists' => 'La page de description pour ce fichier a déjà été créée ici <strong>[[:$1]]</strong>, mais aucun fichier n’existe actuellement sous ce nom.
 Le résumé que vous allez spécifier n’apparaîtra pas sur la page de description.
-Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]",
-'fileexists-extension' => "Un fichier existe avec un nom proche : [[$2|thumb]]
-* Nom du fichier à importer : '''<tt>[[:$1]]</tt>'''
-* Nom du fichier existant : '''<tt>[[:$2]]</tt>'''
-Veuillez choisir un autre nom.",
+Pour que ce soit le cas, vous devrez modifier manuellement la page. [[$1|thumb]]',
+'fileexists-extension' => 'Un fichier existe avec un nom proche : [[$2|thumb]]
+* Nom du fichier à importer : <strong>[[:$1]]</strong>
+* Nom du fichier existant : <strong>[[:$2]]</strong>
+Veuillez choisir un autre nom.',
 'fileexists-thumbnail-yes' => "Le fichier semble être une image en taille réduite ''(vignette)''. [[$1|thumb]]
-Veuillez vérifier le fichier '''<tt>[[:$1]]</tt>'''.
+Veuillez vérifier le fichier <strong>[[:$1]]</strong>.
 Si le fichier vérifié est la même image avec la taille initiale, il n’y a pas besoin d’importer une version réduite.",
-'file-thumbnail-no' => "Le nom du fichier commence par '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Le nom du fichier commence par <strong>$1</strong>.
 Il est possible qu’il s’agisse d’une version réduite ''(vignette)''.
 Si vous disposez du fichier en haute résolution, importez-le, sinon veuillez modifier son nom.",
 'fileexists-forbidden' => 'Un fichier avec ce nom existe déjà et ne peut pas être écrasé.
@@ -1988,7 +2007,7 @@ Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la p
 'filehist-revert' => 'rétablir',
 'filehist-current' => 'actuel',
 'filehist-datetime' => 'Date et heure',
-'filehist-thumb' => 'Miniature',
+'filehist-thumb' => 'Vignette',
 'filehist-thumbtext' => 'Vignette pour la version du $1',
 'filehist-nothumb' => 'Pas de miniature',
 'filehist-user' => 'Utilisateur',
@@ -2008,7 +2027,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 'sharedupload' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.',
 'sharedupload-desc-there' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
 Veuillez consulter [$2 sa page de description] pour plus d’informations.',
-'sharedupload-desc-here' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
+'sharedupload-desc-here' => 'Ce fichier provient de $1. Il peut être utilisé par d’autres projets.
 Sa description sur sa [$2 page de description] est affichée ci-dessous.',
 'sharedupload-desc-edit' => 'Ce fichier provient de : $1. Il peut être utilisé par d’autres projets.
 Vous voulez peut-être modifier la description sur sa [$2 page de description].',
@@ -2055,7 +2074,7 @@ Vous voulez peut-être modifier la description sur sa [$2 page de description].'
 # MIME search
 'mimesearch' => 'Recherche par type de contenu MIME',
 'mimesearch-summary' => "Cette page vous permet de lister les fichiers accessibles par ce wiki en fonction de leur type de contenu MIME.
-Entrée : ''typedecontenu''/''sous-type'', par exemple <tt>image/jpeg</tt>.",
+Entrée : ''typedecontenu''/''sous-type'', par exemple <code>image/jpeg</code>.",
 'mimetype' => 'Type MIME :',
 'download' => 'télécharger',
 
@@ -2102,9 +2121,9 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 
 'disambiguations' => 'Pages ayant des liens vers des pages d’homonymie',
 'disambiguationspage' => 'Template:Homonymie',
-'disambiguations-text' => "Les pages suivantes comportent un lien vers une '''page d’homonymie'''.
-Ces liens ambigus devraient plutôt pointer vers le bon article.<br />
-Une page est considérée comme une page d’homonymie si elle inclut (directement ou récursivement) un des modèles listés sur [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Les pages suivantes comportent au moins un lien vers une '''page d’homonymie'''.
+Elles devraient plutôt pointer vers le bon article.<br />
+Une page est considérée comme une page d’homonymie si elle utilise un modèle lié à [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Doubles redirections',
 'doubleredirectstext' => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
@@ -2257,7 +2276,7 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-ok' => 'Rechercher',
 'linksearch-text' => 'Des caractères jokers comme « *.wikipedia.org » peuvent être utilisés.
 Ils nécessitent au moins un domaine de niveau supérieur, par exemple « *.org ».<br />
-Protocoles reconnus : <tt>$1</tt> (n’ajoutez aucun de ceux-ci dans votre recherche).',
+Protocoles reconnus : <code>$1</code> (n’ajoutez aucun de ceux-ci dans votre recherche).',
 'linksearch-line' => '$1 est lié depuis $2',
 'linksearch-error' => 'Les caractères jokers ne peuvent être utilisés qu’au début du nom de domaine de l’hôte.',
 
@@ -2446,6 +2465,8 @@ veuiller ne procéder qu’avec prudence.',
 'rollback' => 'Révoquer les modifications',
 'rollback_short' => 'Révoquer',
 'rollbacklink' => 'révoquer',
+'rollbacklinkcount' => 'révoquer $1 {{PLURAL:$1|modification|modifications}}',
+'rollbacklinkcount-morethan' => 'révoquer plus de $1 {{PLURAL:$1|modification|modifications}}',
 'rollbackfailed' => 'La révocation a échoué',
 'cantrollback' => 'Impossible de révoquer la modification ;
 le dernier contributeur est le seul auteur de cette page.',
@@ -2939,6 +2960,7 @@ Toutes les actions d’importation inter-wiki sont consignées dans l’[[Specia
 'import-interwiki-templates' => 'Inclure tous les modèles',
 'import-interwiki-submit' => 'Importer',
 'import-interwiki-namespace' => 'Espace de noms de destination :',
+'import-interwiki-rootpage' => 'Page racine de destination (optionnelle):',
 'import-upload-filename' => 'Nom du fichier :',
 'import-comment' => 'Commentaire :',
 'importtext' => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant son [[Special:Export|outil d’exportation]].
@@ -2974,6 +2996,9 @@ Un dossier temporaire est manquant.",
 'import-error-interwiki' => "La page « $1 » n'est pas importée parce que son nom est réservé pour un lien externe (interwiki).",
 'import-error-special' => 'La page " $1 " n\'est pas importée parce qu\'elle appartient à un espace de noms special qui n’en autorise aucune.',
 'import-error-invalid' => 'Page « $1 » n’est pas importée parce que son nom n’est pas valide.',
+'import-options-wrong' => '{{PLURAL:$2|Mauvaise option|Mauvaises options}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La page racine fournie est un titre non valide.',
+'import-rootpage-nosubpage' => 'L\'espace de noms "$1" de la page racine n\'autorise pas les sous-pages.',
 
 # Import log
 'importlogpage' => 'Journal des importations',
@@ -3096,7 +3121,10 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'simple.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement */',
 'modern.js' => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
 'vector.js' => '/* Tout code JavaScript placé ici sera chargé pour les utilisateurs de l’habillage Vector */',
+'group-autoconfirmed.js' => '/* Le JavaScript inclus ici n’affectera que les utilisateurs auto-confirmés */',
+'group-bot.js' => '/* Le JavaScript inclus ici n’affectera que les robots */',
 'group-sysop.js' => '/* Le JavaScript inclus ici n’affectera que les administrateurs */',
+'group-bureaucrat.js' => '/* Le JavaScript inclus ici n’affectera que les bureaucrates */',
 
 # Metadata
 'notacceptable' => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',
@@ -4026,6 +4054,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-file-too-large' => 'Le fichier que vous avez soumis était trop grand.',
 'api-error-filename-tooshort' => 'Le nom du fichier est trop court.',
 'api-error-filetype-banned' => 'Ce type de fichier est interdit.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|n’est pas un type de fichier autorisé|ne sont pas des types de fichiers autorisés}}. {{PLURAL:$3|Le type de fichier autorisé est |Les types de fichiers autorisés sont}} $2.',
 'api-error-filetype-missing' => 'L’extension du fichier est manquante.',
 'api-error-hookaborted' => 'La modification que vous avez essayé de faire a été arrêtée par un crochet d’une extension.',
 'api-error-http' => 'Erreur interne : ne peut se connecter au serveur.',

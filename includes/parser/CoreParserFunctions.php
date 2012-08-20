@@ -793,7 +793,6 @@ class CoreParserFunctions {
 	// or {{filepath|300px}}, {{filepath|200x300px}}, {{filepath|nowiki|200x300px}}, {{filepath|200x300px|nowiki}}
 	public static function filepath( $parser, $name='', $argA='', $argB='' ) {
 		$file = wfFindFile( $name );
-		$isNowiki = false;
 
 		if( $argA == 'nowiki' ) {
 			// {{filepath: | option [| size] }}

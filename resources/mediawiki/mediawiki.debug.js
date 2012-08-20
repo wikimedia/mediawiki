@@ -5,12 +5,13 @@
  * @since 1.19
  */
 
-( function ( $, mw, undefined ) {
-"use strict";
+( function ( mw, $ ) {
+	'use strict';
 
-	var hovzer = $.getFootHovzer();
+	var debug,
+		hovzer = $.getFootHovzer();
 
-	var debug = mw.Debug = {
+	debug = mw.Debug = {
 		/**
 		 * Toolbar container element
 		 *
@@ -160,10 +161,10 @@
 			paneTriggerBitDiv( 'includes', 'PHP includes', this.data.includes.length );
 
 			var gitInfo = '';
-			if ( this.data.gitRevision != false ) {
+			if ( this.data.gitRevision !== false ) {
 				gitInfo = '(' + this.data.gitRevision.substring( 0, 7 ) + ')';
-				if ( this.data.gitViewUrl != false ) {
-					gitInfo = $( '<a></a>' ).attr( 'href', this.data.gitViewUrl ).text( gitInfo );
+				if ( this.data.gitViewUrl !== false ) {
+					gitInfo = $( '<a>' ).attr( 'href', this.data.gitViewUrl ).text( gitInfo );
 				}
 			}
 
@@ -172,7 +173,7 @@
 				.append( ': ' + this.data.mwVersion + ' ' )
 				.append( gitInfo );
 
-			if ( this.data.gitBranch != false ) {
+			if ( this.data.gitBranch !== false ) {
 				bitDiv( 'gitbranch' ).text( 'Git branch: ' + this.data.gitBranch );
 			}
 
@@ -223,7 +224,7 @@
 
 			$table = $( '<table id="mw-debug-console">' );
 
-			$('<colgroup>').css( 'width', /*padding=*/20 + ( 10*/*fontSize*/11 ) ).appendTo( $table );
+			$('<colgroup>').css( 'width', /*padding=*/20 + ( 10 * /*fontSize*/11 ) ).appendTo( $table );
 			$('<colgroup>').appendTo( $table );
 			$('<colgroup>').css( 'width', 350 ).appendTo( $table );
 
@@ -361,4 +362,4 @@
 		}
 	};
 
-} )( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );

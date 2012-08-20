@@ -198,6 +198,12 @@ class Linker {
 			wfProfileOut( __METHOD__ );
 			return "<!-- ERROR -->$html";
 		}
+
+		if( is_string( $query ) ) {
+			// some functions withing core using this still hand over query strings
+			wfDeprecated( __METHOD__ . ' with parameter $query as string (should be array)', '1.20' );
+			$query = wfCgiToArray( $query );
+		}
 		$options = (array)$options;
 
 		$dummy = new DummyLinker; // dummy linker instance for bc on the hooks
@@ -513,7 +519,8 @@ class Linker {
 	 * Given parameters derived from [[Image:Foo|options...]], generate the
 	 * HTML that that syntax inserts in the page.
 	 *
-	 * @param $title Title object
+	 * @param $parser Parser object
+	 * @param $title Title object of the file (not the currently viewed page)
 	 * @param $file File object, or false if it doesn't exist
 	 * @param $frameParams Array: associative array of parameters external to the media handler.
 	 *     Boolean parameters are indicated by presence or absence, the value is arbitrary and
@@ -540,9 +547,10 @@ class Linker {
 	 * @param $time String: timestamp of the file, set as false for current
 	 * @param $query String: query params for desc url
 	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
+	 * @since 1.20
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
-	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
+	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
 	{
 		$res = null;
@@ -615,16 +623,20 @@ class Linker {
 		}
 
 		if ( isset( $fp['thumbnail'] ) || isset( $fp['manualthumb'] ) || isset( $fp['framed'] ) ) {
-			global $wgContLang;
-			# Create a thumbnail. Alignment depends on language
-			# writing direction, # right aligned for left-to-right-
-			# languages ("Western languages"), left-aligned
-			# for right-to-left-languages ("Semitic languages")
+			# Create a thumbnail. Alignment depends on the writing direction of
+			# the page content language (right-aligned for LTR languages,
+			# left-aligned for RTL languages)
 			#
-			# If  thumbnail width has not been provided, it is set
+			# If a thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
 			if ( $fp['align'] == '' ) {
-				$fp['align'] = $wgContLang->alignEnd();
+				if( $parser instanceof Parser ) {
+					$fp['align'] = $parser->getTargetLanguage()->alignEnd();
+				} else {
+					# backwards compatibility, remove with makeImageLink2()
+					global $wgContLang;
+					$fp['align'] = $wgContLang->alignEnd();
+				}
 			}
 			return $prefix . self::makeThumbLink2( $title, $file, $fp, $hp, $time, $query ) . $postfix;
 		}
@@ -653,7 +665,7 @@ class Linker {
 				'title' => $fp['title'],
 				'valign' => isset( $fp['valign'] ) ? $fp['valign'] : false ,
 				'img-class' => isset( $fp['border'] ) ? 'thumbborder' : false );
-			$params = self::getImageLinkMTOParams( $fp, $query ) + $params;
+			$params = self::getImageLinkMTOParams( $fp, $query, $parser ) + $params;
 
 			$s = $thumb->toHtml( $params );
 		}
@@ -664,18 +676,36 @@ class Linker {
 	}
 
 	/**
+	 * See makeImageLink()
+	 * When this function is removed, remove if( $parser instanceof Parser ) check there too
+	 * @deprecated since 1.20
+	 */
+	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
+		$handlerParams = array(), $time = false, $query = "", $widthOption = null ) {
+		return self::makeImageLink( null, $title, $file, $frameParams,
+			$handlerParams, $time, $query, $widthOption );
+	}
+
+	/**
 	 * Get the link parameters for MediaTransformOutput::toHtml() from given
 	 * frame parameters supplied by the Parser.
 	 * @param $frameParams array The frame parameters
 	 * @param $query string An optional query string to add to description page links
 	 * @return array
 	 */
-	private static function getImageLinkMTOParams( $frameParams, $query = '' ) {
+	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
 		$mtoParams = array();
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];
 			if ( isset( $frameParams['link-target'] ) ) {
 				$mtoParams['custom-target-link'] = $frameParams['link-target'];
+			}
+			if ( $parser ) {
+				$extLinkAttrs = $parser->getExternalLinkAttribs( $frameParams['link-url'] );
+				foreach ( $extLinkAttrs as $name => $val ) {
+					// Currently could include 'rel' and 'target'
+					$mtoParams['parser-extlink-'.$name] = $val;
+				}
 			}
 		} elseif ( isset( $frameParams['link-title'] ) && $frameParams['link-title'] !== '' ) {
 			$mtoParams['custom-title-link'] = self::normaliseSpecialPage( $frameParams['link-title'] );
@@ -851,7 +881,7 @@ class Linker {
 
 			if ( $redir ) {
 				wfProfileOut( __METHOD__ );
-				return self::linkKnown( $title, "$prefix$html$inside", array(), $query ) . $trail;
+				return self::linkKnown( $title, "$prefix$html$inside", array(), wfCgiToArray( $query ) ) . $trail;
 			}
 
 			$href = self::getUploadUrl( $title, $query );
@@ -862,7 +892,7 @@ class Linker {
 				"$prefix$html$inside</a>$trail";
 		} else {
 			wfProfileOut( __METHOD__ );
-			return self::linkKnown( $title, "$prefix$html$inside", array(), $query ) . $trail;
+			return self::linkKnown( $title, "$prefix$html$inside", array(), wfCgiToArray( $query ) ) . $trail;
 		}
 	}
 
@@ -1673,7 +1703,10 @@ class Linker {
 	 * @return String: HTML fragment
 	 */
 	public static function buildRollbackLink( $rev, IContextSource $context = null ) {
-		global $wgShowRollbackEditCount;
+		global $wgShowRollbackEditCount, $wgMiserMode;
+		
+		// To config which pages are effected by miser mode
+		$disableRollbackEditCountSpecialPage = array( 'Recentchanges', 'Watchlist' );
 
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
@@ -1690,13 +1723,24 @@ class Linker {
 			$query['hidediff'] = '1'; // bug 15999
 		}
 
-		if( is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
+		$disableRollbackEditCount = false;
+		if( $wgMiserMode ) {
+			foreach( $disableRollbackEditCountSpecialPage as $specialPage ) {
+				if( $context->getTitle()->isSpecial( $specialPage ) ) {
+					$disableRollbackEditCount = true;
+					break;
+				}
+			}
+		}
+
+		if( !$disableRollbackEditCount && is_int( $wgShowRollbackEditCount ) && $wgShowRollbackEditCount > 0 ) {
 			$dbr = wfGetDB( DB_SLAVE );
 
 			// Up to the value of $wgShowRollbackEditCount revisions are counted
 			$res = $dbr->select( 'revision',
 				array( 'rev_id', 'rev_user_text' ),
-				array( 'rev_page' => $rev->getPage() ),
+				// $rev->getPage() returns null sometimes
+				array( 'rev_page' => $rev->getTitle()->getArticleID() ),
 				__METHOD__,
 				array(  'USE INDEX' => 'page_timestamp',
 					'ORDER BY' => 'rev_timestamp DESC',

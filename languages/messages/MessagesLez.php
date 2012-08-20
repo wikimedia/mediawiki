@@ -163,7 +163,7 @@ $messages = array(
 'vector-action-unprotect' => 'Хуьн дегишарун',
 'vector-simplesearch-preference' => 'Гегьенш жагъурунин рикIел гъун кутун (кьилди "Вектор" акунар патал)',
 'vector-view-create' => 'Туькlуьрун',
-'vector-view-edit' => 'Дуьзар хъувун',
+'vector-view-edit' => 'Расун',
 'vector-view-history' => 'Тарихдиз килигун',
 'vector-view-view' => 'Кlелун',
 'vector-view-viewsource' => 'Чешме къалурун',
@@ -223,7 +223,7 @@ $messages = array(
 'lastmodifiedat' => 'Ччинин эхиримжи масакIа хьун:  $1,  $2',
 'protectedpage' => 'Хвенвай ччин',
 'jumpto' => 'ЭлячIун иниз:',
-'jumptonavigation' => 'Навигация',
+'jumptonavigation' => 'Навигаци',
 'jumptosearch' => 'Жугъурун',
 'pool-queuefull' => 'ТIалабар кIватзавайди ацIа я',
 'pool-errorunknown' => 'Малумтушир гъалатI',
@@ -256,7 +256,7 @@ $messages = array(
 'newmessageslink' => 'цlийи чарар',
 'newmessagesdifflink' => 'Эхиримжи масакIавилер',
 'youhavenewmessagesmulti' => '"$1"-да квез цIийи чарар атанва.',
-'editsection' => 'дуьзар хъувун',
+'editsection' => 'Расун',
 'editold' => 'Дуьзар хъувун',
 'viewsourceold' => 'сифте кьилин коддиз килига',
 'editlink' => 'Дуьзар хъувун',
@@ -939,7 +939,7 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Зи вилив хуьнин сиягь',
-'mywatchlist' => 'Зи вилив хуьнин сиягь',
+'mywatchlist' => 'Зи вилив хюнин сиягь',
 'watchlistfor2' => '$1 $2 патал',
 'addedwatchtext' => "Чар \"[[:\$1]]\" тун хъувунай куьн [[Special:Watchlist|watchlist]].                                                                                                             Къвезмай дегишунар и чарчел ва галкlанавай чарчихъ ихтилатар жеда инна, ахъатдава \"сакlус яцlу''''' инна [[Special:RecentChanges|list of recent changes]] гьам кьизил авун.",
 'removedwatchtext' => 'Чар "[[:$1]]" Идай чlурнай [[Special:Watchlist|ахтармишунин цlарар]].',
@@ -1204,7 +1204,7 @@ $messages = array(
 'file-info-size' => '$1 × $2 пикселар, файлдин кьадар: $3, MIME жуьре: $4',
 'file-nohires' => 'Идалайни хъсан ери авайд туш',
 'svg-long-desc' => 'SVG файл, номилдаказ $1 $2 × пикселяр, файлдин кьадар: $3',
-'show-big-image' => 'Мадни хъсан еридин шикил',
+'show-big-image' => 'Цlарафа хвена тунвай жергедай',
 
 # Bad image list
 'bad_image_list' => 'Формат гьихьтинди хьана кlанда:

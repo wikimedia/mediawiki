@@ -43,6 +43,7 @@ class LanguageConverter {
 		'shi',
 		'sr',
 		'tg',
+		'uz',
 		'zh',
 	);
 
@@ -686,8 +687,8 @@ class LanguageConverter {
 						$inner .= '-{';
 						if ( !$warningDone ) {
 							$inner .= '<span class="error">' .
-								wfMsgForContent( 'language-converter-depth-warning',
-									$this->mMaxDepth ) .
+								wfMessage( 'language-converter-depth-warning' )
+									->numParams( $this->mMaxDepth )->inContentLanguage()->text() .
 								'</span>';
 							$warningDone = true;
 						}
@@ -1118,7 +1119,6 @@ class LanguageConverter {
 class ConverterRule {
 	var $mText; // original text in -{text}-
 	var $mConverter; // LanguageConverter object
-	var $mManualCodeError = '<strong class="error">code error!</strong>';
 	var $mRuleDisplay = '';
 	var $mRuleTitle = false;
 	var $mRules = '';// string : the text of the rules
@@ -1494,7 +1494,9 @@ class ConverterRule {
 			}
 		}
 		if ( $this->mRuleDisplay === false ) {
-			$this->mRuleDisplay = $this->mManualCodeError;
+			$this->mRuleDisplay = '<span class="error">'
+				. wfMessage( 'converter-manual-rule-error' )->inContentLanguage()->escaped()
+				. '</span>';
 		}
 
 		$this->generateConvTable();

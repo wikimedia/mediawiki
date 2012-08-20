@@ -71,9 +71,10 @@ class ApiFileRevert extends ApiBase {
 	 * @param $user User The user to check.
 	 */
 	protected function checkPermissions( $user ) {
+		$title = $this->file->getTitle();
 		$permissionErrors = array_merge(
-			$this->file->getTitle()->getUserPermissionsErrors( 'edit' , $user ),
-			$this->file->getTitle()->getUserPermissionsErrors( 'upload' , $user )
+			$title->getUserPermissionsErrors( 'edit' , $user ),
+			$title->getUserPermissionsErrors( 'upload' , $user )
 		);
 
 		if ( $permissionErrors ) {
@@ -91,15 +92,17 @@ class ApiFileRevert extends ApiBase {
 		if ( is_null( $title ) ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $this->params['filename'] ) );
 		}
+		$localRepo = RepoGroup::singleton()->getLocalRepo();
+
 		// Check if the file really exists
-		$this->file = wfLocalFile( $title );
+		$this->file = $localRepo->newFile( $title );
 		if ( !$this->file->exists() ) {
 			$this->dieUsageMsg( 'notanarticle' );
 		}
 
 		// Check if the archivename is valid for this file
 		$this->archiveName = $this->params['archivename'];
-		$oldFile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $this->archiveName );
+		$oldFile = $localRepo->newFromArchiveName( $title, $this->archiveName );
 		if ( !$oldFile->exists() ) {
 			$this->dieUsageMsg( 'filerevert-badversion' );
 		}

@@ -197,7 +197,7 @@ div.vectorTabs span {
 }
 div.vectorTabs li.selected a,
 div.vectorTabs li.selected a:visited{
-	color: #333333;
+	color: #333;
 	text-decoration: none;
 }
 div.vectorTabs li.new a,
@@ -342,7 +342,7 @@ div.vectorMenu li > a {
 }
 div.vectorMenu li.selected a,
 div.vectorMenu li.selected a:visited {
-	color: #333333;
+	color: #333;
 	text-decoration: none;
 }
 /* Search */
@@ -369,7 +369,7 @@ div#simpleSearch {
 	margin-top: 0.65em;
 	position: relative;
 	min-height: 1px; /* Gotta trigger hasLayout for IE7 */
-	border: solid 1px #AAAAAA;
+	border: solid 1px #aaa;
 	color: black;
 	background-color: white;
 	/* @embed */
@@ -394,10 +394,10 @@ div#simpleSearch input:focus {
 	outline: none;
 }
 div#simpleSearch input.placeholder {
-	color: #999999;
+	color: #999;
 }
 div#simpleSearch input::-webkit-input-placeholder {
-	color: #999999;
+	color: #999;
 }
 div#simpleSearch input#searchInput {
 	position: absolute;
@@ -459,7 +459,7 @@ div#mw-panel div.portal {
 }
 div#mw-panel div.portal h5 {
 	font-weight: normal;
-	color: #444444;
+	color: #444;
 	padding: 0.25em;
 	padding-top: 0;
 	padding-left: 1.75em;
@@ -488,8 +488,8 @@ div#mw-panel div.portal div.body ul li {
 	padding: 0;
 	padding-bottom: 0.5em;
 	margin: 0;
-	overflow: hidden;
 	font-size: 0.75em;
+	word-wrap: break-word;
 }
 div#mw-panel div.portal div.body ul li a {
 	color: #0645ad;
@@ -520,7 +520,7 @@ div#footer ul li {
 	padding: 0;
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
-	color: #333333;
+	color: #333;
 	font-size: 0.7em;
 }
 div#footer #footer-icons {
@@ -619,7 +619,7 @@ div#footer #footer-places li {
 		background-image: url(images/preferences-fade.png);
 		background-position: bottom;
 		background-repeat: repeat-x;
-		color: #333333;
+		color: #333;
 		text-decoration: none;
 	}
 #preferences {
@@ -628,14 +628,14 @@ div#footer #footer-places li {
 	margin: 0;
 	margin-top: -2px;
 	clear: both;
-	border: solid 1px #cccccc;
+	border: solid 1px #ccc;
 	background-color: #f9f9f9;
 	/* @embed */
 	background-image: url(images/preferences-base.png);
 }
 #preferences fieldset {
 	border: none;
-	border-top: solid 1px #cccccc;
+	border-top: solid 1px #ccc;
 }
 #preferences fieldset.prefsection {
 	border: none;
@@ -643,7 +643,7 @@ div#footer #footer-places li {
 	margin: 1em;
 }
 #preferences legend {
-	color: #666666;
+	color: #666;
 }
 #preferences fieldset.prefsection legend.mainLegend {
 	display: none;
@@ -655,7 +655,7 @@ div#footer #footer-places li {
 .htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
-	color: #666666;
+	color: #666;
 }
 #preferences div.mw-prefs-buttons {
 	padding: 1em;
@@ -784,8 +784,21 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	position: relative;
 	width: 100%;
 }
-#mw-js-message {
+div#mw-js-message {
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.93);
 	font-size: 0.8em;
+	position: absolute;
+	margin: 0;
+	padding: 1em 2em;
+	right: 1em;
+	top: 7em;
+	width: 20em;
+	z-index: 10000;
+	border: solid 1px #a7d7f9;
+	border-radius: 0.75em;
+	-webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
+	box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
 }
 div#bodyContent {
 	line-height: 1.5em;

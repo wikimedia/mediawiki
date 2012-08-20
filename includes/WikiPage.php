@@ -33,28 +33,8 @@ abstract class Page {}
  *
  * @internal documentation reviewed 15 Mar 2010
  */
-class WikiPage extends Page {
+class WikiPage extends Page implements IDBAccessObject {
 	// Constants for $mDataLoadedFrom and related
-
-	/**
-	 * Data has not been loaded yet (or the object was cleared)
-	 */
-	const DATA_NOT_LOADED = 0;
-
-	/**
-	 * Data has been loaded from a slave database
-	 */
-	const DATA_FROM_SLAVE = 1;
-
-	/**
-	 * Data has been loaded from the master database
-	 */
-	const DATA_FROM_MASTER = 2;
-
-	/**
-	 * Data has been loaded from the master database using FOR UPDATE
-	 */
-	const DATA_FOR_UPDATE = 3;
 
 	/**
 	 * @var Title
@@ -71,9 +51,9 @@ class WikiPage extends Page {
 	/**@}}*/
 
 	/**
-	 * @var int; one of the DATA_* constants
+	 * @var int; one of the READ_* constants
 	 */
-	protected $mDataLoadedFrom = self::DATA_NOT_LOADED;
+	protected $mDataLoadedFrom = self::READ_NONE;
 
 	/**
 	 * @var Title
@@ -142,14 +122,14 @@ class WikiPage extends Page {
 	 *
 	 * @param $id Int article ID to load
 	 * @param $from string|int one of the following values:
-	 *        - "fromdb" or self::DATA_FROM_SLAVE to select from a slave database
-	 *        - "fromdbmaster" or self::DATA_FROM_MASTER to select from the master database
+	 *        - "fromdb" or WikiPage::READ_NORMAL to select from a slave database
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the master database
 	 *
 	 * @return WikiPage|null
 	 */
 	public static function newFromID( $id, $from = 'fromdb' ) {
 		$from = self::convertSelectType( $from );
-		$db = wfGetDB( $from === self::DATA_FROM_MASTER ? DB_MASTER : DB_SLAVE );
+		$db = wfGetDB( $from === self::READ_LATEST ? DB_MASTER : DB_SLAVE );
 		$row = $db->selectRow( 'page', self::selectFields(), array( 'page_id' => $id ), __METHOD__ );
 		if ( !$row ) {
 			return null;
@@ -164,9 +144,9 @@ class WikiPage extends Page {
 	 * @param $row object: database row containing at least fields returned
 	 *        by selectFields().
 	 * @param $from string|int: source of $data:
-	 *        - "fromdb" or self::DATA_FROM_SLAVE: from a slave DB
-	 *        - "fromdbmaster" or self::DATA_FROM_MASTER: from the master DB
-	 *        - "forupdate" or self::DATA_FOR_UPDATE: from the master DB using SELECT FOR UPDATE
+	 *        - "fromdb" or WikiPage::READ_NORMAL: from a slave DB
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the master DB
+	 *        - "forupdate" or WikiPage::READ_LOCKING: from the master DB using SELECT FOR UPDATE
 	 * @return WikiPage
 	 */
 	public static function newFromRow( $row, $from = 'fromdb' ) {
@@ -176,7 +156,7 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Convert 'fromdb', 'fromdbmaster' and 'forupdate' to DATA_* constants.
+	 * Convert 'fromdb', 'fromdbmaster' and 'forupdate' to READ_* constants.
 	 *
 	 * @param $type object|string|int
 	 * @return mixed
@@ -184,11 +164,11 @@ class WikiPage extends Page {
 	private static function convertSelectType( $type ) {
 		switch ( $type ) {
 		case 'fromdb':
-			return self::DATA_FROM_SLAVE;
+			return self::READ_NORMAL;
 		case 'fromdbmaster':
-			return self::DATA_FROM_MASTER;
+			return self::READ_LATEST;
 		case 'forupdate':
-			return self::DATA_FOR_UPDATE;
+			return self::READ_LOCKING;
 		default:
 			// It may already be an integer or whatever else
 			return $type;
@@ -237,7 +217,7 @@ class WikiPage extends Page {
 	 */
 	public function clear() {
 		$this->mDataLoaded = false;
-		$this->mDataLoadedFrom = self::DATA_NOT_LOADED;
+		$this->mDataLoadedFrom = self::READ_NONE;
 
 		$this->clearCacheFields();
 	}
@@ -339,9 +319,9 @@ class WikiPage extends Page {
 	 *
 	 * @param $from object|string|int One of the following:
 	 *        - A DB query result object
-	 *        - "fromdb" or self::DATA_FROM_SLAVE to get from a slave DB
-	 *        - "fromdbmaster" or self::DATA_FROM_MASTER to get from the master DB
-	 *        - "forupdate"  or self::DATA_FOR_UPDATE to get from the master DB using SELECT FOR UPDATE
+	 *        - "fromdb" or WikiPage::READ_NORMAL to get from a slave DB
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB
+	 *        - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB using SELECT FOR UPDATE
 	 *
 	 * @return void
 	 */
@@ -352,25 +332,25 @@ class WikiPage extends Page {
 			return;
 		}
 
-		if ( $from === self::DATA_FOR_UPDATE ) {
+		if ( $from === self::READ_LOCKING ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle, array( 'FOR UPDATE' ) );
-		} elseif ( $from === self::DATA_FROM_MASTER ) {
+		} elseif ( $from === self::READ_LATEST ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
-		} elseif ( $from === self::DATA_FROM_SLAVE ) {
+		} elseif ( $from === self::READ_NORMAL ) {
 			$data = $this->pageDataFromTitle( wfGetDB( DB_SLAVE ), $this->mTitle );
 			# Use a "last rev inserted" timestamp key to dimish the issue of slave lag.
 			# Note that DB also stores the master position in the session and checks it.
 			$touched = $this->getCachedLastEditTime();
 			if ( $touched ) { // key set
 				if ( !$data || $touched > wfTimestamp( TS_MW, $data->page_touched ) ) {
-					$from = self::DATA_FROM_MASTER;
+					$from = self::READ_LATEST;
 					$data = $this->pageDataFromTitle( wfGetDB( DB_MASTER ), $this->mTitle );
 				}
 			}
 		} else {
 			// No idea from where the caller got this data, assume slave database.
 			$data = $from;
-			$from = self::DATA_FROM_SLAVE;
+			$from = self::READ_NORMAL;
 		}
 
 		$this->loadFromRow( $data, $from );
@@ -383,9 +363,9 @@ class WikiPage extends Page {
 	 * @param $data object: database row containing at least fields returned
 	 *        by selectFields()
 	 * @param $from string|int One of the following:
-	 *        - "fromdb" or self::DATA_FROM_SLAVE if the data comes from a slave DB
-	 *        - "fromdbmaster" or self::DATA_FROM_MASTER if the data comes from the master DB
-	 *        - "forupdate"  or self::DATA_FOR_UPDATE if the data comes from from
+	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a slave DB
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the master DB
+	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from from
 	 *          the master DB using SELECT FOR UPDATE
 	 */
 	public function loadFromRow( $data, $from ) {
@@ -588,7 +568,7 @@ class WikiPage extends Page {
 		// also gets the revision row FOR UPDATE; otherwise, it may not find it since a page row
 		// UPDATE and revision row INSERT by S2 may have happened after the first S1 SELECT.
 		// http://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read.
-		$flags = ( $this->mDataLoadedFrom == self::DATA_FOR_UPDATE ) ? Revision::LOCKING_READ : 0;
+		$flags = ( $this->mDataLoadedFrom == self::READ_LOCKING ) ? Revision::READ_LOCKING : 0;
 		$revision = Revision::newFromPageId( $this->getId(), $latest, $flags );
 		if ( $revision ) { // sanity
 			$this->setLastEdit( $revision );
@@ -977,10 +957,10 @@ class WikiPage extends Page {
 		$tables = array( 'revision', 'user' );
 
 		$fields = array(
-			'rev_user as user_id',
-			'rev_user_text AS user_name',
+			'user_id' => 'rev_user',
+			'user_name' => 'rev_user_text',
 			$realNameField,
-			'MAX(rev_timestamp) AS timestamp',
+			'timestamp' => 'MAX(rev_timestamp)',
 		);
 
 		$conds = array( 'rev_page' => $this->getId() );
@@ -2100,9 +2080,9 @@ class WikiPage extends Page {
 					wfDebug( __METHOD__ . ": invalid username\n" );
 				} elseif ( User::isIP( $shortTitle ) ) {
 					// An anonymous user
-					$other->setNewtalk( true );
+					$other->setNewtalk( true, $revision );
 				} elseif ( $other->isLoggedIn() ) {
-					$other->setNewtalk( true );
+					$other->setNewtalk( true, $revision );
 				} else {
 					wfDebug( __METHOD__ . ": don't need to notify a nonexistent user\n" );
 				}
@@ -2416,11 +2396,8 @@ class WikiPage extends Page {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress int bitfield
-	 * 	Revision::DELETED_TEXT
-	 * 	Revision::DELETED_COMMENT
-	 * 	Revision::DELETED_USER
-	 * 	Revision::DELETED_RESTRICTED
+	 * @param $suppress boolean suppress all revisions and log the deletion in
+	 *        the suppression log instead of the deletion log
 	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
@@ -2438,13 +2415,11 @@ class WikiPage extends Page {
 	 * Back-end article deletion
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
+	 * @since 1.19
+	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param $suppress int bitfield
-	 * 	Revision::DELETED_TEXT
-	 * 	Revision::DELETED_COMMENT
-	 * 	Revision::DELETED_USER
-	 * 	Revision::DELETED_RESTRICTED
-	 * @param $id int article ID
+	 * @param $suppress boolean suppress all revisions and log the deletion in
+	 *        the suppression log instead of the deletion log
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user

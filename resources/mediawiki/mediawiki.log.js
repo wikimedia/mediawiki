@@ -6,7 +6,7 @@
  * @author Trevor Parscal <tparscal@wikimedia.org>
  */
 
-( function ( $ ) {
+( function ( mw, $ ) {
 
 	/**
 	 * Logs a message to the console.
@@ -17,7 +17,7 @@
 	 *
 	 * @param {String} First in list of variadic messages to output to console.
 	 */
-	mw.log = function( /* logmsg, logmsg, */ ) {
+	mw.log = function ( /* logmsg, logmsg, */ ) {
 		// Turn arguments into an array
 		var	args = Array.prototype.slice.call( arguments ),
 			// Allow log messages to use a configured prefix to identify the source window (ie. frame)
@@ -67,4 +67,4 @@
 		} );
 	};
 
-})( jQuery );
+}( mediaWiki, jQuery ) );

@@ -85,7 +85,7 @@ class FeedUtils {
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
 			($row->rc_deleted & Revision::DELETED_COMMENT)
-				? wfMsgHtml('rev-deleted-comment') 
+				? wfMessage('rev-deleted-comment')->escaped()
 				: $row->rc_comment,
 			$actiontext 
 		);

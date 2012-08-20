@@ -175,7 +175,6 @@ class ApiPurge extends ApiBase {
 		$psModule = new ApiPageSet( $this );
 		return array_merge(
 			parent::getPossibleErrors(),
-			array( array( 'cantpurge' ), ),
 			$psModule->getPossibleErrors()
 		);
 	}

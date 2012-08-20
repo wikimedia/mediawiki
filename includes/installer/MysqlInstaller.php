@@ -89,7 +89,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		return
 			$this->getTextBox( 'wgDBserver', 'config-db-host', array(), $this->parent->getHelpBox( 'config-db-host-help' ) ) .
 			Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', array(), wfMsg( 'config-db-wiki-settings' ) ) .
+			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBname', 'config-db-name', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-name-help' ) ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-prefix-help' ) ) .
 			Html::closeElement( 'fieldset' ) .
@@ -351,7 +351,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		$s .= Xml::openElement( 'div', array(
 			'id' => 'dbMyisamWarning'
 		));
-		$s .= $this->parent->getWarningBox( wfMsg( 'config-mysql-myisam-dep' ) );
+		$s .= $this->parent->getWarningBox( wfMessage( 'config-mysql-myisam-dep' )->text() );
 		$s .= Xml::closeElement( 'div' );
 
 		if( $this->getVar( '_MysqlEngine' ) != 'MyISAM' ) {

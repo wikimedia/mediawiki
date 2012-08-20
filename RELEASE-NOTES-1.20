@@ -23,8 +23,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * The user right 'upload_by_url' is no longer given to sysops by default.
   This only affects installations which have $wgAllowCopyUploads set to true.
 * Removed f-prot support from $wgAntivirusSetup.
-* $wgDBerrorLogInUTC to log error in $wgDBerrorLog using an UTC date instead
-  of the wiki timezone set by $wgLocalTimezone.
+* New variable $wgDBerrorLogTZ to provide dates in the error log in a
+  different timezone than the wiki timezone set by $wgLocalTimezone.
+* New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
+  connections, if either are available for the selected DB type.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
@@ -34,6 +36,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added SpecialPageAfterExecute hook which gets called after SpecialPage::execute.
 * Added ORMTable, ORMRow and ORMResult classes for additional abstraction of
   database interaction.
+* Added CacheHelper and associated SpecialCachedPage and CachedAction helper classes.
 * (bug 32341) Add upload by URL domain limitation.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
@@ -62,7 +65,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
 * Edit notices can now be translated.
-* (bug 35680) jQuery upgraded to 1.7.2.
+* jQuery upgraded to 1.8.
 * jQuery UI upgraded to 1.8.22.
 * (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
 * (bug 37604) jquery.cookie upgraded to 2011 version.
@@ -109,9 +112,23 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Added support in jquery.localize for placeholder attributes.
 * (bug 38151) Implemented mw.user.getRights for getting and caching the current
   user's user rights.
+* Session storage can now configured independently of general object cache
+  storage, by using $wgSessionCacheType. $wgSessionsInMemcached has been
+  renamed to $wgSessionsInObjectCache, with the old name retained for backwards
+  compatibility. When this feature is enabled, the expiry time can now be
+  configured with $wgObjectCacheSessionExpiry.
+* Added a Redis client for object caching.
 * Implemented mw.user.getGroups for getting and caching user groups.
 * (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
   confirmation is required for changing an email address or not.
+* HTMLForm mutators can now be chained (they return $this)
+* A new message, "api-error-filetype-banned-type", is available for formatting
+  API upload errors due to the file extension blacklist.
+* jsMessage: Redesigned in Vector/Monobook as floating bubble with auto-hide.
+* New hook 'ParserTestGlobals' allows to set globals before running parser tests.
+* Allow importing pages as subpage.
+* Add lang and hreflang attributes to language links on Login page.
+* (bug 22749) Create Special:MostInterwikis.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -186,6 +203,14 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
   insecure links to foreign wikis in the WikiMap.
 * (bug 36073) Avoid duplicate element IDs on File pages
+* (bug 25095) Special:Categories should also include the first relevant item
+  when "from" is filled.
+* (bug 35526) jquery.tablesorter now uses a stable sort.
+* (bug 38953) --memory-limit switch not working for runJobs.php.
+* (bug 33037) Make subpage of Special:newfiles control how many files
+  are returned, like in previous versions.
+* (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
+  are now remembered between successive clicks.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -217,6 +242,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38190) Add "required" flag to some token params for hint in api docs.
 * (bug 27567) Add file repo support to prop=duplicatefiles.
 * (bug 27610) Add archivename for non-latest image version to list=filearchive
+* (bug 38231) Add xml parse tree to action=parse.
+* Watchlist notification timestamp may be queried by page and may be updated via the API.
+* (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
+* (bug 39032) ApiQuery generates help in constructor.
+* (bug 11142) Improve file extension blacklist error reporting in API upload
 
 === Languages updated in 1.20 ===
 
@@ -248,6 +278,8 @@ changes to languages because of Bugzilla reports.
   so the WikiPage code wasn't useful there either.
 * Deprecated mw.user.name in favour of mw.user.getName.
 * Deprecated mw.user.anonymous in favour of mw.user.isAnon.
+* Deprecated DatabaseBase functions newFromParams(), newFromType(), set(),
+  quote_ident(), and escapeLike() were removed.
 
 == Compatibility ==
 

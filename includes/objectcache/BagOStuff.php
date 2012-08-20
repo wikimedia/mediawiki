@@ -216,4 +216,23 @@ abstract class BagOStuff {
 			return $exptime;
 		}
 	}
+
+	/**
+	 * Convert an optionally absolute expiry time to a relative time. If an 
+	 * absolute time is specified which is in the past, use a short expiry time.
+	 *
+	 * @param $exptime integer
+	 * @return integer
+	 */
+	protected function convertToRelative( $exptime ) {
+		if ( $exptime >= 86400 * 3650 /* 10 years */ ) {
+			$exptime -= time();
+			if ( $exptime <= 0 ) {
+				$exptime = 1;
+			}
+			return $exptime;
+		} else {
+			return $exptime;
+		}
+	}
 }

@@ -1628,21 +1628,21 @@ Ngeza noho izay zakan'ny serveur io rakitra io.",
 'emptyfile' => "Ohatry ny tsy misy na inona na inona ilay rakitra nalefanao teo.
 Sao dia misy diso tsipelina ny anaran'ny rakitra? Azafady mba hamarino fa tena naniry handefa io rakitra io tokoa ianao.",
 'windows-nonascii-filename' => 'Tsy mahazaka anaran-drakitra misy tarehintsoratra manokana ity wiki ity.',
-'fileexists' => "Efa misy rakitra manana io anarana io ato.
-Mariho '''<tt>[[:$1]]</tt>''' raha mbola tsy te-hanova azy ianao.
-[[$1|thumb]]",
-'filepageexists' => "Efa namboarina teto ny pejy mamisavisa ity rakitra ity '''<tt>[[:$1]]</tt>''', fa tsy misy rakitra mitondra io anarana io.
+'fileexists' => 'Efa misy rakitra manana io anarana io ato.
+Mariho <strong>[[:$1]]</strong> raha mbola tsy te-hanova azy ianao.
+[[$1|thumb]]',
+'filepageexists' => "Efa namboarina teto ny pejy mamisavisa ity rakitra ity <strong>[[:$1]]</strong>, fa tsy misy rakitra mitondra io anarana io.
 Ny ambangovangony ho ataonareo dia tsy hiseho eo amin'ny pejy famisavisana.
 Mba hanao azy, tsy maintsy ovainao manokana ilay pejy [[$1|thumb]]",
-'fileexists-extension' => "Misy rakitra manana anarana mitovitovy : [[$2|thumb]]
-* Anaran-drakitra ho ampidirina : '''<tt>[[:$1]]</tt>'''
-* Anaran-drakitra misy : '''<tt>[[:$2]]</tt>'''
-Misafidia anarana hafa.",
+'fileexists-extension' => 'Misy rakitra manana anarana mitovitovy : [[$2|thumb]]
+* Anaran-drakitra ho ampidirina : <strong>[[:$1]]</strong>
+* Anaran-drakitra misy : <strong>[[:$2]]</strong>
+Misafidia anarana hafa.',
 'fileexists-thumbnail-yes' => "
 Hoatry ny saritapaka ''(vignette)'' ilay sary. [[$1|thumb]]
-Marino ilay rakitra '''<tt>[[:$1]]</tt>'''.
+Marino ilay rakitra <strong>[[:$1]]</strong>.
 Raha mitovy amin'ny sary voalohany ny sarin'ilay rakitra marinina, tsy ilaina ny mampiditra santiôna nakelezina.",
-'file-thumbnail-no' => "Manomboka amin'ny '''<tt>$1</tt>''' ny anaran'ilay rakitra.
+'file-thumbnail-no' => "Manomboka amin'ny <strong>$1</strong> ny anaran'ilay rakitra.
 Mety saritapaka ''(vignette)'' io sary io.
 Raha manana santiôna ilay rakitra ngezangeza noho io ianao, ampidiro ato ilay izy, raha tsy izany ovay ny anarany.",
 'fileexists-forbidden' => 'EEfa misy rakitra iray mitondra io anarana io ary tsy afaka itsahina ilay rakitra.
@@ -1867,7 +1867,7 @@ Aseho eo ambany ny [$2 famisavisana ilay rakitra].",
 'mimesearch' => 'Fikarohana MIME',
 'mimesearch-summary' => "Ity pejy ity dia afahanao manalisitra ny rakitra azo jerena amin'ny alàlan' ity wiki ity arakaraka ny karazana votoatiny MIME ananany
 
-Fampidirana : ''karazambotoatiny''/''zanakarazana'', ohatra par exemple <tt>sary/jpeg</tt>",
+Fampidirana : ''karazambotoatiny''/''zanakarazana'', ohatra par exemple <code>sary/jpeg</code>",
 'mimetype' => 'Karazana MIME :',
 'download' => 'Hampidina',
 
@@ -2050,7 +2050,7 @@ Vangio koa ny [[Special:WantedCategories|sokajy ilaina]].",
 'linksearch-ns' => 'Anaran-tsehatra :',
 'linksearch-ok' => 'Fikarohana',
 'linksearch-text' => 'Ny soratra « joker » dia azo soratana ohatra <code>*.wikipedia.org</code>. br />
-Prôtôkôly zaka : <tt>$1</tt>.',
+Prôtôkôly zaka : <code>$1</code>.',
 'linksearch-line' => "$1 dia voarohy amin'ny $2",
 'linksearch-error' => "Ny soratra joker dia ampiasaina anatin'ny fanombohan'ny anaran-tsehatry ny milina hôte ihany.",
 

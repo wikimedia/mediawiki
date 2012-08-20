@@ -735,16 +735,22 @@ class Parser {
 	/**
 	 * Get the target language for the content being parsed. This is usually the
 	 * language that the content is in.
+	 *
+	 * @since 1.19
+	 *
+	 * @return Language|null
 	 */
-	function getTargetLanguage() {
+	public function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
+
 		if ( $target !== null ) {
 			return $target;
 		} elseif( $this->mOptions->getInterfaceMessage() ) {
 			return $this->mOptions->getUserLangObj();
 		} elseif( is_null( $this->mTitle ) ) {
-			throw new MWException( __METHOD__.': $this->mTitle is null' );
+			throw new MWException( __METHOD__ . ': $this->mTitle is null' );
 		}
+
 		return $this->mTitle->getPageLanguage();
 	}
 
@@ -3553,7 +3559,7 @@ class Parser {
 			# Get the revision
 			$rev = $id
 				? Revision::newFromId( $id )
-				: Revision::newFromTitle( $title );
+				: Revision::newFromTitle( $title, 0, Revision::READ_NORMAL );
 			$rev_id = $rev ? $rev->getId() : 0;
 			# If there is no current revision, there is no page
 			if ( $id === false && !$rev ) {
@@ -5182,7 +5188,7 @@ class Parser {
 
 		# Linker does the rest
 		$time = isset( $options['time'] ) ? $options['time'] : false;
-		$ret = Linker::makeImageLink2( $title, $file, $params['frame'], $params['handler'],
+		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 
 		# Give the handler a chance to modify the parser object

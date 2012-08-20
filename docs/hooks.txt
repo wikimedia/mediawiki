@@ -266,7 +266,7 @@ $reason: the reason for the move (added in 1.13)
 
 'AbortNewAccount': Return false to cancel explicit account creation.
 $user: the User object about to be created (read-only, incomplete)
-&$msg: out parameter: name of error message to display on abort
+&$msg: out parameter: HTML to display on abort
 
 'ActionBeforeFormDisplay': before executing the HTMLForm object
 $name: name of the action
@@ -1133,9 +1133,9 @@ $result: User permissions error to add. If none, return true.
 &$title: Title object of the image
 &$file: File object, or false if it doesn't exist
 &$frameParams: Various parameters with special meanings; see documentation in
-	includes/Linker.php for Linker::makeImageLink2
+	includes/Linker.php for Linker::makeImageLink
 &$handlerParams: Various parameters with special meanings; see documentation in
-	includes/Linker.php for Linker::makeImageLink2
+	includes/Linker.php for Linker::makeImageLink
 &$time: Timestamp of file in 'YYYYMMDDHHIISS' string form, or false for current
 &$res: Final HTML output, used if you return false
 
@@ -1642,6 +1642,10 @@ $showEditLinks: boolean describing whether this section has an edit link
 'ParserTestParser': called when creating a new instance of Parser in
 maintenance/parserTests.inc
 $parser: Parser object created
+
+'ParserTestGlobals': Allows to define globals for parser tests.
+&$globals: Array with all the globals which should be set for parser tests.
+	The arrays keys serve as the globals names, its values are the globals values.
 
 'ParserTestTables': alter the list of tables to duplicate when parser tests
 are run. Use when page save hooks require the presence of custom tables

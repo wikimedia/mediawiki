@@ -50,7 +50,6 @@ $messages = array(
 'tog-watchlisthideown' => 'Cíiitám he ticpatlöxde listade cáminot zo',
 'tog-watchlisthidebots' => 'Cíiitám botám listade cáminot zo',
 'tog-watchlisthideminor' => 'Cíiitám ticpatlöx nebajlipöxde listade cáminot zo',
-'tog-nolangconversion' => 'Necoccebj convercionde variantám',
 'tog-ccmeonemails' => 'Iitom he copynámde e-iitom he iitomde diijömde caitóm',
 'tog-diffonly' => 'Necohuatlöx contentuade páhina minöxde quiíx.',
 

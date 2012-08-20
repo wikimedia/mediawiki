@@ -17,11 +17,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that builds file cache for content pages.
+ *
+ * @ingroup Maintenance
+ */
 class RebuildFileCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
@@ -97,7 +103,7 @@ class RebuildFileCache extends Maintenance {
 			foreach ( $res as $row ) {
 				$rebuilt = false;
 				$wgRequestTime = microtime( true ); # bug 22852
-				
+
 				$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if ( null == $wgTitle ) {
 					$this->output( "Page {$row->page_id} has bad title\n" );

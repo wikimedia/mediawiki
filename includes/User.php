@@ -123,6 +123,7 @@ class User {
 		'deleterevision',
 		'edit',
 		'editinterface',
+		'editprotected',
 		'editusercssjs', #deprecated
 		'editusercss',
 		'edituserjs',
@@ -140,12 +141,15 @@ class User {
 		'nominornewtalk',
 		'noratelimit',
 		'override-export-depth',
+		'passwordreset',
 		'patrol',
+		'patrolmarks',
 		'protect',
 		'proxyunbannable',
 		'purge',
 		'read',
 		'reupload',
+		'reupload-own',
 		'reupload-shared',
 		'rollback',
 		'sendemail',
@@ -464,8 +468,7 @@ class User {
 	 * @return String|bool The corresponding username
 	 */
 	public static function whoIs( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ), __METHOD__ );
+		return UserCache::singleton()->getProp( $id, 'name' );
 	}
 
 	/**
@@ -475,8 +478,7 @@ class User {
 	 * @return String|bool The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
-		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'user', 'user_real_name', array( 'user_id' => $id ), __METHOD__ );
+		return UserCache::singleton()->getProp( $id, 'real_name' );
 	}
 
 	/**
@@ -1388,11 +1390,11 @@ class User {
 				$ipList = gethostbynamel( $host );
 
 				if( $ipList ) {
-					wfDebug( "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
+					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $base!\n" );
 					$found = true;
 					break;
 				} else {
-					wfDebug( "Requested $host, not found in $base.\n" );
+					wfDebugLog( 'dnsblacklist', "Requested $host, not found in $base.\n" );
 				}
 			}
 		}
@@ -1764,16 +1766,22 @@ class User {
 			# Check memcached separately for anons, who have no
 			# entire User object stored in there.
 			if( !$this->mId ) {
-				global $wgMemc;
-				$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
-				$newtalk = $wgMemc->get( $key );
-				if( strval( $newtalk ) !== '' ) {
-					$this->mNewtalk = (bool)$newtalk;
+				global $wgDisableAnonTalk;
+				if( $wgDisableAnonTalk ) {
+					// Anon newtalk disabled by configuration.
+					$this->mNewtalk = false;
 				} else {
-					// Since we are caching this, make sure it is up to date by getting it
-					// from the master
-					$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName(), true );
-					$wgMemc->set( $key, (int)$this->mNewtalk, 1800 );
+					global $wgMemc;
+					$key = wfMemcKey( 'newtalk', 'ip', $this->getName() );
+					$newtalk = $wgMemc->get( $key );
+					if( strval( $newtalk ) !== '' ) {
+						$this->mNewtalk = (bool)$newtalk;
+					} else {
+						// Since we are caching this, make sure it is up to date by getting it
+						// from the master
+						$this->mNewtalk = $this->checkNewtalk( 'user_ip', $this->getName(), true );
+						$wgMemc->set( $key, (int)$this->mNewtalk, 1800 );
+					}
 				}
 			} else {
 				$this->mNewtalk = $this->checkNewtalk( 'user_id', $this->mId );
@@ -1789,14 +1797,20 @@ class User {
 	 */
 	public function getNewMessageLinks() {
 		$talks = array();
-		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) )
+		if( !wfRunHooks( 'UserRetrieveNewTalks', array( &$this, &$talks ) ) ) {
 			return $talks;
-
-		if( !$this->getNewtalk() )
+		} elseif( !$this->getNewtalk() ) {
 			return array();
-		$up = $this->getUserPage();
-		$utp = $up->getTalkPage();
-		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL() ) );
+		}
+		$utp = $this->getTalkPage();
+		$dbr = wfGetDB( DB_SLAVE );
+		// Get the "last viewed rev" timestamp from the oldest message notification
+		$timestamp = $dbr->selectField( 'user_newtalk',
+			'MIN(user_last_timestamp)',
+			$this->isAnon() ? array( 'user_ip' => $this->getName() ) : array( 'user_id' => $this->getID() ),
+			__METHOD__ );
+		$rev = $timestamp ? Revision::loadFromTimestamp( $dbr, $utp, $timestamp ) : null;
+		return array( array( 'wiki' => wfWikiID(), 'link' => $utp->getLocalURL(), 'rev' => $rev ) );
 	}
 
 	/**
@@ -1823,12 +1837,17 @@ class User {
 	 * Add or update the new messages flag
 	 * @param $field String 'user_ip' for anonymous users, 'user_id' otherwise
 	 * @param $id String|Int User's IP address for anonymous users, User ID otherwise
+	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null.
 	 * @return Bool True if successful, false otherwise
 	 */
-	protected function updateNewtalk( $field, $id ) {
+	protected function updateNewtalk( $field, $id, $curRev = null ) {
+		// Get timestamp of the talk page revision prior to the current one
+		$prevRev = $curRev ? $curRev->getPrevious() : false;
+		$ts = $prevRev ? $prevRev->getTimestamp() : null;
+		// Mark the user as having new messages since this revision
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'user_newtalk',
-			array( $field => $id ),
+			array( $field => $id, 'user_last_timestamp' => $dbw->timestampOrNull( $ts ) ),
 			__METHOD__,
 			'IGNORE' );
 		if ( $dbw->affectedRows() ) {
@@ -1863,8 +1882,9 @@ class User {
 	/**
 	 * Update the 'You have new messages!' status.
 	 * @param $val Bool Whether the user has new messages
+	 * @param $curRev Revision new, as yet unseen revision of the user talk page. Ignored if null or !$val.
 	 */
-	public function setNewtalk( $val ) {
+	public function setNewtalk( $val, $curRev = null ) {
 		if( wfReadOnly() ) {
 			return;
 		}
@@ -1882,7 +1902,7 @@ class User {
 		global $wgMemc;
 
 		if( $val ) {
-			$changed = $this->updateNewtalk( $field, $id );
+			$changed = $this->updateNewtalk( $field, $id, $curRev );
 		} else {
 			$changed = $this->deleteNewtalk( $field, $id );
 		}

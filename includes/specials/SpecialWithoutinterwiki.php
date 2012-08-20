@@ -41,10 +41,10 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getPageHeader() {
-		global $wgScript, $wgMiserMode;
+		global $wgScript;
 
-		# Do not show useless input form if wiki is running in misermode
-		if( $wgMiserMode ) {
+		# Do not show useless input form if special page is cached
+		if( $this->isCached() ) {
 			return '';
 		}
 
@@ -80,9 +80,9 @@ class WithoutInterwikiPage extends PageQueryPage {
 	function getQueryInfo() {
 		$query = array (
 			'tables' => array ( 'page', 'langlinks' ),
-			'fields' => array ( 'page_namespace AS namespace',
-					'page_title AS title',
-					'page_title AS value' ),
+			'fields' => array ( 'namespace' => 'page_namespace',
+					'title' => 'page_title',
+					'value' => 'page_title' ),
 			'conds' => array ( 'll_title IS NULL',
 					'page_namespace' => MWNamespace::getContentNamespaces(),
 					'page_is_redirect' => 0 ),

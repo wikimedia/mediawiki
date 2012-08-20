@@ -92,7 +92,7 @@ class PageArchive {
 				array(
 					'ar_namespace',
 					'ar_title',
-					'COUNT(*) AS count'
+					'count' => 'COUNT(*)'
 				),
 				$condition,
 				__METHOD__,
@@ -379,22 +379,21 @@ class PageArchive {
 		// Touch the log!
 
 		if( $textRestored && $filesRestored ) {
-			$reason = wfMsgExt( 'undeletedrevisions-files', array( 'content', 'parsemag' ),
-				$wgContLang->formatNum( $textRestored ),
-				$wgContLang->formatNum( $filesRestored ) );
+			$reason = wfMessage( 'undeletedrevisions-files' )
+				->numParams( $textRestored, $filesRestored )->inContentLanguage()->text();
 		} elseif( $textRestored ) {
-			$reason = wfMsgExt( 'undeletedrevisions', array( 'content', 'parsemag' ),
-				$wgContLang->formatNum( $textRestored ) );
+			$reason = wfMessage( 'undeletedrevisions' )->numParams( $textRestored )
+				->inContentLanguage()->text();
 		} elseif( $filesRestored ) {
-			$reason = wfMsgExt( 'undeletedfiles', array( 'content', 'parsemag' ),
-				$wgContLang->formatNum( $filesRestored ) );
+			$reason = wfMessage( 'undeletedfiles' )->numParams( $filesRestored )
+				->inContentLanguage()->text();
 		} else {
 			wfDebug( "Undelete: nothing undeleted...\n" );
 			return false;
 		}
 
 		if( trim( $comment ) != '' ) {
-			$reason .= wfMsgForContent( 'colon-separator' ) . $comment;
+			$reason .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $comment;
 		}
 
 		if ( $user === null ) {
@@ -1114,11 +1113,13 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		# Show relevant lines from the deletion log:
-		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) . "\n" );
+		$deleteLogPage = new LogPage( 'delete' );
+		$out->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) . "\n" );
 		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj );
 		# Show relevant lines from the suppression log:
+		$suppressLogPage = new LogPage( 'suppress' );
 		if( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
-			$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'suppress' ) ) . "\n" );
+			$out->addHTML( Xml::element( 'h2', null, $suppressLogPage->getName()->text() ) . "\n" );
 			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj );
 		}
 

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author 2nd-player
  * @author Akaniji
  * @author Alexsh
  * @author Ant176
@@ -370,7 +371,7 @@ $messages = array(
 'tog-newpageshidepatrolled' => '新しいページの一覧に巡回済みのページを表示しない',
 'tog-extendwatchlist' => 'ウォッチリストを拡張し、最新のものだけではなくすべての変更を表示',
 'tog-usenewrc' => '最近の更新とウォッチリストで複数の変更をページごとにまとめる（JavaScriptが必要）',
-'tog-numberheadings' => '自動的に見出しに番号を振る',
+'tog-numberheadings' => '見出しに番号を自動的に振る',
 'tog-showtoolbar' => '編集用のツールバーを表示（JavaScriptが必要）',
 'tog-editondblclick' => 'ダブルクリックで編集（JavaScriptが必要）',
 'tog-editsection' => '[編集]リンクから節を編集できるようにする',
@@ -378,14 +379,14 @@ $messages = array(
 'tog-showtoc' => '目次を表示（ページに見出しが4つ以上ある場合）',
 'tog-rememberpassword' => 'このブラウザーにログイン情報を記憶（最大 $1 {{PLURAL:$1|日間}}）',
 'tog-watchcreations' => '自分が作成したページとアップロードしたファイルをウォッチリストに追加',
-'tog-watchdefault' => '自分が編集したページとファイルをウォッチリストに追加',
-'tog-watchmoves' => '自分が移動したページとファイルをウォッチリストに追加',
-'tog-watchdeletion' => '自分が削除したページとファイルをウォッチリストに追加',
+'tog-watchdefault' => '自分が編集したページやファイルをウォッチリストに追加',
+'tog-watchmoves' => '自分が移動したページやファイルをウォッチリストに追加',
+'tog-watchdeletion' => '自分が削除したページやファイルをウォッチリストに追加',
 'tog-minordefault' => '細部の編集に既定でチェックを入れる',
 'tog-previewontop' => 'プレビューを編集ボックスの前に配置',
 'tog-previewonfirst' => '編集開始時にもプレビューを表示',
 'tog-nocache' => 'ブラウザーによるページのキャッシュを無効にする',
-'tog-enotifwatchlistpages' => 'ウォッチリストにあるページかファイルが更新されたらメールを受け取る',
+'tog-enotifwatchlistpages' => 'ウォッチリストにあるページやファイルが更新されたらメールを受け取る',
 'tog-enotifusertalkpages' => '自分のトークページが更新されたらメールを受け取る',
 'tog-enotifminoredits' => 'ページやファイルへの細部の編集でもメールを受け取る',
 'tog-enotifrevealaddr' => '通知メールで自分のメールアドレスを明示',
@@ -403,7 +404,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'ウォッチリストにログイン利用者の編集を表示しない',
 'tog-watchlisthideanons' => 'ウォッチリストに匿名利用者の編集を表示しない',
 'tog-watchlisthidepatrolled' => 'ウォッチリストに巡回済みの編集を表示しない',
-'tog-nolangconversion' => '言語変種変換を無効にする',
 'tog-ccmeonemails' => '他の利用者に送信したメールの控えを自分にも送信',
 'tog-diffonly' => '差分の下にページ内容を表示しない',
 'tog-showhiddencats' => '隠しカテゴリを表示',
@@ -552,7 +552,7 @@ $messages = array(
 'create-this-page' => 'このページを作成',
 'delete' => '削除',
 'deletethispage' => 'このページを削除',
-'undelete_short' => '{{PLURAL:$1|$1 版}}を復帰',
+'undelete_short' => '{{PLURAL:$1|$1 編集}}を復帰',
 'viewdeleted_short' => '{{PLURAL:$1|削除された $1 編集}}を閲覧',
 'protect' => '保護',
 'protect_change' => '設定変更',
@@ -628,6 +628,8 @@ $1',
 'youhavenewmessages' => '$1があります（$2）。',
 'newmessageslink' => '新着メッセージ',
 'newmessagesdifflink' => '最終更新の差分',
+'newmessageslinkplural' => '{{PLURAL:$1|新着メッセージ}}',
+'newmessagesdifflinkplural' => '最終更新の{{PLURAL:$1|差分}}',
 'youhavenewmessagesmulti' => '$1に新着メッセージがあります',
 'editsection' => '編集',
 'editold' => '編集',
@@ -682,9 +684,9 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'dberrortext' => 'データベースクエリーの構文エラーが発生しました。
 ソフトウェアにバグがある可能性があります。
 最後に実行を試みたクエリー：
-<blockquote><tt>$1</tt></blockquote>
-（関数「<tt>$2</tt>」内）。
-データベースはエラー「<tt>$3：$4</tt>」を返しました。',
+<blockquote><code>$1</code></blockquote>
+（関数「<code>$2</code>」内）。
+データベースはエラー「<samp>$3：$4</samp>」を返しました。',
 'dberrortextcl' => 'データベースクエリーの構文エラーが発生しました。
 最後に実行を試みたクエリー：
 「$1」
@@ -721,6 +723,8 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'cannotdelete' => 'ページまたはファイル「$1」を削除できませんでした。
 他の人が既に削除した可能性があります。',
 'cannotdelete-title' => '「$1」というページを削除できません',
+'delete-hook-aborted' => 'フックによって削除が中止されました。
+理由は不明です。',
 'badtitle' => '正しくないページ名',
 'badtitletext' => '要求されたページ名は、無効、空、正しくない言語間リンク/ウィキ間リンクのページ名、のいずれかです。
 ページ名に使用できない文字が1つ以上含まれている可能性があります。',
@@ -755,6 +759,8 @@ $2',
 'filereadonlyerror' => 'ファイルリポジトリ「$2」が読み取り専用の状態にあるため、ファイル「$1」を変更できません。
 
 読み取り専用に設定した管理者からの説明：「$3」',
+'exception-nologin' => 'ログインしていません',
+'exception-nologin-text' => 'このページまたは操作には、このウィキへのログインが必要です。',
 
 # Virus scanner
 'virus-badscanner' => "環境設定が不適合です：不明なウイルス検知ソフトウェア：''$1''",
@@ -775,6 +781,7 @@ $2',
 'remembermypassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'securelogin-stick-https' => 'ログイン後にHTTPS接続を維持',
 'yourdomainname' => 'ドメイン：',
+'password-change-forbidden' => 'このウィキではパスワードを変更できません。',
 'externaldberror' => '外部の認証データベースでエラーが発生したか、または外部アカウント情報の更新が許可されていません。',
 'login' => 'ログイン',
 'nav-login-createaccount' => 'ログインまたはアカウント作成',
@@ -1172,6 +1179,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'expansion-depth-exceeded-warning' => 'ページが展開の深さ制限を超えました',
 'parser-unstrip-loop-warning' => 'Unstrip のループが検出されました',
 'parser-unstrip-recursion-limit' => 'Unstrip の再帰（$1）が上限を超えました',
+'converter-manual-rule-error' => '手動の言語変換規則でエラーを検出しました。',
 
 # "Undo" feature
 'undo-success' => 'この編集を取り消せます。
@@ -1310,7 +1318,7 @@ $1",
 ** 名誉毀損のおそれ
 ** 非公開個人情報',
 'revdelete-otherreason' => '他の、または追加の理由：',
-'revdelete-reasonotherlist' => '他の理由',
+'revdelete-reasonotherlist' => 'その他の理由',
 'revdelete-edit-reasonlist' => '削除理由を編集',
 'revdelete-offender' => '指定版の投稿者：',
 
@@ -1586,7 +1594,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 
 # Groups
 'group' => 'グループ：',
-'group-user' => '利用者',
+'group-user' => '登録利用者',
 'group-autoconfirmed' => '自動承認された利用者',
 'group-bot' => 'ボット',
 'group-sysop' => '管理者',
@@ -1594,14 +1602,14 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'group-suppress' => '秘匿者',
 'group-all' => '（全員）',
 
-'group-user-member' => '{{GENDER:$1|利用者}}',
+'group-user-member' => '{{GENDER:$1|登録利用者}}',
 'group-autoconfirmed-member' => '{{GENDER:$1|自動承認された利用者}}',
 'group-bot-member' => '{{GENDER:$1|ボット}}',
 'group-sysop-member' => '{{GENDER:$1|管理者}}',
 'group-bureaucrat-member' => '{{GENDER:$1|ビューロクラット}}',
 'group-suppress-member' => '{{GENDER:$1|秘匿者}}',
 
-'grouppage-user' => '{{ns:project}}:利用者',
+'grouppage-user' => '{{ns:project}}:登録利用者',
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
 'grouppage-bot' => '{{ns:project}}:ボット',
 'grouppage-sysop' => '{{ns:project}}:管理者',
@@ -1633,6 +1641,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-writeapi' => '書き込みAPIの使用',
 'right-delete' => 'ページの削除',
 'right-bigdelete' => '大きな履歴があるページを削除',
+'right-deletelogentry' => '特定の記録項目の削除と復帰',
 'right-deleterevision' => 'ページの特定の版の削除と復帰',
 'right-deletedhistory' => '削除された履歴項目（関連する本文を除く）を閲覧',
 'right-deletedtext' => '削除された本文と削除された版間の差分を閲覧',
@@ -1652,7 +1661,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-editusercssjs' => '他の利用者のCSSとJavaScriptファイルを編集',
 'right-editusercss' => '他の利用者のCSSファイルを編集',
 'right-edituserjs' => '他の利用者のJavaScriptファイルを編集',
-'right-rollback' => '特定ページを最後に編集した利用者の編集の即時巻き戻し',
+'right-rollback' => '特定ページを最後に編集した利用者の編集を即時巻き戻し',
 'right-markbotedits' => '巻き戻しをボットの編集として扱う',
 'right-noratelimit' => '速度制限を受けない',
 'right-import' => '他のウィキからのページ取り込み',
@@ -1714,7 +1723,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'action-sendemail' => 'メールを送信',
 
 # Recent changes
-'nchanges' => '$1{{PLURAL:$1|回の変更}}',
+'nchanges' => '$1 {{PLURAL:$1|回の変更}}',
 'recentchanges' => '最近の更新',
 'recentchanges-legend' => '最近の更新のオプション',
 'recentchanges-summary' => 'このページでは、このウィキでの最近の更新を確認できます。',
@@ -1778,9 +1787,9 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 以前にアップロードされたファイルの表示と検索には[[Special:FileList|{{int:listfiles}}]]を使用し、（再）アップロードは[[Special:Log/upload|アップロード記録]]に、削除は[[Special:Log/delete|削除記録]]にも記録されます。
 
 ページにファイルを入れるには、以下の書式のリンクを使用してください：
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></tt>'''とすると、ファイルが完全なままで使用されます
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></tt>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></tt>'''とするとファイルを表示せずに直接ファイルへリンクします",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>'''とすると、ファイルが完全なままで使用されます
+* '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
+* '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>'''とするとファイルを表示せずに直接ファイルへリンクします",
 'upload-permitted' => '許可されているファイル形式：$1。',
 'upload-preferred' => '推奨されているファイル形式：$1。',
 'upload-prohibited' => '禁止されているファイル形式：$1。',
@@ -1828,21 +1837,21 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 ファイル名の指定が間違っている可能性があります。
 本当にこのファイルをアップロードしたいのか、確認してください。',
 'windows-nonascii-filename' => 'このwikiではファイル名に特殊文字を使用できません。',
-'fileexists' => "この名前のファイルは既に存在します。置き換えていいかどうか確信が持てない場合は、'''<tt>[[:$1]]</tt>'''を確認してください。
-[[$1|thumb]]",
-'filepageexists' => "このファイルのための説明ページは既に'''<tt>[[:$1]]</tt>'''に作成されていますが、現在、ファイルが存在していません。
+'fileexists' => 'この名前のファイルは既に存在します。置き換えていいかどうか確信が持てない場合は、<strong>[[:$1]]</strong>を確認してください。
+[[$1|thumb]]',
+'filepageexists' => 'このファイルのための説明ページは既に<strong>[[:$1]]</strong>に作成されていますが、現在、ファイルが存在していません。
 入力した概要は説明ページに反映されません。
 新しい概要を表示させるには、説明ページを手動で編集する必要があります。
-[[$1|thumb]]",
-'fileexists-extension' => "類似した名前のファイルが既に存在しています：[[$2|thumb]]
-* アップロード中のファイルの名前：'''<tt>[[:$1]]</tt>'''
-* 既存ファイルの名前：'''<tt>[[:$2]]</tt>'''
-違う名前を選択してください。",
+[[$1|thumb]]',
+'fileexists-extension' => '類似した名前のファイルが既に存在しています：[[$2|thumb]]
+* アップロード中のファイルの名前：<strong>[[:$1]]</strong>
+* 既存ファイルの名前：<strong>[[:$2]]</strong>
+違う名前を選択してください。',
 'fileexists-thumbnail-yes' => "このファイルは元の画像から縮小されたもの''（サムネイル）''のようです。
 [[$1|thumb]]
-ファイル'''<tt>[[:$1]]</tt>'''を確認してください。
+ファイル<strong>[[:$1]]</strong>を確認してください。
 確認したファイルが同じ画像の元のサイズの版の場合は、サムネイルを別途アップロードする必要はありません。",
-'file-thumbnail-no' => "ファイル名が'''<tt>$1</tt>'''から始まっています。
+'file-thumbnail-no' => "ファイル名が<strong>$1</strong>から始まっています。
 他の画像から縮小されたもの''（サムネイル）''のようです。
 より高精細な画像をお持ちの場合はそれをアップロードしてください。お持ちではない場合はファイル名を変更してください。",
 'fileexists-forbidden' => 'この名前のファイルは既に存在しており、上書きできません。
@@ -2112,7 +2121,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 # MIME search
 'mimesearch' => 'MIMEタイプ検索',
 'mimesearch-summary' => 'このページでは、ファイルをMIMEタイプで絞り込みます。
-contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</tt>）。',
+contenttype/subtypeの形式で入力してください（例：<code>image/jpeg</code>）。',
 'mimetype' => 'MIMEタイプ：',
 'download' => 'ダウンロード',
 
@@ -2159,9 +2168,9 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 
 'disambiguations' => '曖昧さ回避ページにリンクしているページ',
 'disambiguationspage' => 'Template:曖昧回避',
-'disambiguations-text' => "以下のページは'''曖昧さ回避ページ'''へリンクしています。
-これらのページは、より適した主題のページへリンクされるべきです。<br />
-[[MediaWiki:Disambiguationspage]]からリンクされたテンプレートを使用しているページは、曖昧さ回避ページと見なされます。",
+'disambiguations-text' => "以下のページには、'''曖昧さ回避ページ'''へのリンクが1個以上あります。
+そのようなリンクは、より適切なページへのリンクに変更する必要があります。<br />
+[[MediaWiki:Disambiguationspage]]からリンクされたテンプレートを使用しているページが、曖昧さ回避ページと見なされます。",
 
 'doubleredirects' => '二重転送',
 'doubleredirectstext' => 'これは他のリダイレクトページへのリダイレクトの一覧です。
@@ -2187,7 +2196,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 # Miscellaneous special pages
 'nbytes' => '$1バイト',
 'ncategories' => '$1カテゴリ',
-'nlinks' => '$1個のリンク',
+'nlinks' => '$1 {{PLURAL:$1|個のリンク}}',
 'nmembers' => '$1項目',
 'nrevisions' => '$1版',
 'nviews' => '$1回の閲覧',
@@ -2230,10 +2239,10 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'protectedtitles' => '作成保護されているページ名',
 'protectedtitlestext' => '以下のページは新規作成が禁止されています',
 'protectedtitlesempty' => 'これらの引数で現在保護されているページはありません。',
-'listusers' => '利用者の一覧',
+'listusers' => '利用者一覧',
 'listusers-editsonly' => '投稿記録のある利用者のみを表示',
 'listusers-creationsort' => '作成日順に並べ替え',
-'usereditcount' => '$1{{PLURAL:$1|回の編集}}',
+'usereditcount' => '$1 {{PLURAL:$1|回の編集}}',
 'usercreated' => '$1 $2 に{{GENDER:$3|作成}}',
 'newpages' => '新しいページ',
 'newpages-username' => '利用者名：',
@@ -2256,7 +2265,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'booksources' => '書籍情報源',
 'booksources-search-legend' => '書籍情報源を検索',
 'booksources-go' => '検索',
-'booksources-text' => '以下は、新古本を販売している外部サイトへのリンクの一覧で、検索中の本について、更に詳しい情報が提供されているかもしれません：',
+'booksources-text' => 'お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:',
 'booksources-invalid-isbn' => '指定したISBN番号は有効ではないようです。情報源から写し間違えていないか確認してください。',
 
 # Special:Log
@@ -2315,7 +2324,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'linksearch-ok' => '検索',
 'linksearch-text' => '"*.wikipedia.org" のようにワイルドカードを使用できます。
 少なくとも "*.org" のようなトップレベルドメインが必要です。<br />
-対応プロトコル: <tt>$1</tt> (これらを検索に含めないでください)。',
+対応プロトコル: <code>$1</code> (これらを検索に含めないでください)。',
 'linksearch-line' => '$1 が $2 からリンクされています',
 'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
 
@@ -2386,7 +2395,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'emailccsubject' => '$1に送信したメールの控え：$2',
 'emailsent' => 'メールを送信しました',
 'emailsenttext' => 'メールを送信しました。',
-'emailuserfooter' => 'このメールは {{SITENAME}} の「利用者にメール送信」機能が、「$1」から「$2」に送信したものです。',
+'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメールを送信」機能でお送りしました。',
 
 # User Messenger
 'usermessage-summary' => 'システムメッセージを残す。',
@@ -2396,7 +2405,7 @@ contenttype/subtypeの形式で入力してください（例：<tt>image/jpeg</
 'watchlist' => 'ウォッチリスト',
 'mywatchlist' => 'ウォッチリスト',
 'watchlistfor2' => '利用者: $1 $2',
-'nowatchlist' => 'ウォッチリストに項目がありません。',
+'nowatchlist' => 'ウォッチリストには何も項目がありません。',
 'watchlistanontext' => 'ウォッチリストにある項目を閲覧または編集するには、$1してください。',
 'watchnologin' => 'ログインしていません',
 'watchnologintext' => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
@@ -2506,6 +2515,8 @@ $UNWATCHURL
 'rollback' => '編集を巻き戻し',
 'rollback_short' => '巻き戻し',
 'rollbacklink' => '巻き戻し',
+'rollbacklinkcount' => '$1{{PLURAL:$1|編集}}を巻き戻し',
+'rollbacklinkcount-morethan' => '$1{{PLURAL:$1|編集}}以上を巻き戻し',
 'rollbackfailed' => '巻き戻しに失敗しました',
 'cantrollback' => '編集を差し戻せません。
 最後の投稿者が、このページの唯一の作者です。',
@@ -2931,7 +2942,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'immobile-target-namespace' => '「$1」名前空間にはページを移動できません',
 'immobile-target-namespace-iw' => 'ウィキ間リンクは、ページの移動先には指定できません。',
 'immobile-source-page' => 'このページは移動できません。',
-'immobile-target-page' => '対象ページ名に移動させることはできません。',
+'immobile-target-page' => '移動先ページ名に移動させることができません。',
 'imagenocrossnamespace' => 'ファイルを、ファイル名前空間以外に移動させることはできません',
 'nonfile-cannot-move-to-file' => 'ファイルではないものを、ファイル名前空間に移動させることはできません',
 'imagetypemismatch' => '新しいファイルの拡張子がファイルのタイプと一致していません',
@@ -3010,7 +3021,8 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-interwiki-history' => 'このページのすべての版を複製する',
 'import-interwiki-templates' => 'すべてのテンプレートを含める',
 'import-interwiki-submit' => '取り込み',
-'import-interwiki-namespace' => '目的の名前空間：',
+'import-interwiki-namespace' => '取り込み先の名前空間:',
+'import-interwiki-rootpage' => '取り込み先のルートページ (省略可能):',
 'import-upload-filename' => 'ファイル名：',
 'import-comment' => 'コメント：',
 'importtext' => '元のウィキで[[Special:Export|書き出し機能]]を使用してファイルに書き出してください。
@@ -3047,6 +3059,9 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-error-interwiki' => '名前が外部リンク (interwiki) に予約されているため、ページ「$1」を取り込みませんでした。',
 'import-error-special' => 'ページ「$1」は、ページが許可されない特別名前空間に属しているため取り込みません。',
 'import-error-invalid' => '名前が正しくないため、ページ「$1」を取り込みませんでした。',
+'import-options-wrong' => '間違った{{PLURAL:$2|オプション}}です: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => '入力されたルート ページの名前が無効です。',
+'import-rootpage-nosubpage' => 'ルート ページの名前空間「$1」では、下位ページが許可されていません。',
 
 # Import log
 'importlogpage' => '取り込み記録',
@@ -3798,10 +3813,10 @@ Variants for Chinese language
 'confirmemail_loggedin' => 'メールアドレスは確認されました。',
 'confirmemail_error' => '確認情報を保存する際にエラーが発生しました。',
 'confirmemail_subject' => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body' => 'だれかが、IPアドレス$1から、
+'confirmemail_body' => '誰か（おそらくあなた）が、IPアドレス$1から、
 このメールアドレスで{{SITENAME}}のアカウント「$2」を登録しました。
 
-このアカウントが本当に自分のものであるか確認して、
+このアカウントが本当に自分のものか確認して、
 {{SITENAME}}のメール機能を有効にするには、以下のURLをブラウザーで開いてください：
 
 $3
@@ -4073,7 +4088,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 * <span class="mw-specialpagerestricted">制限されている特別ページ</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other' => 'その他の特別ページ',
-'specialpages-group-login' => 'ログイン/利用者登録',
+'specialpages-group-login' => 'ログインまたはアカウント作成',
 'specialpages-group-changes' => '最近の更新と記録',
 'specialpages-group-media' => 'メディア情報とアップロード',
 'specialpages-group-users' => '利用者と権限',
@@ -4208,9 +4223,12 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'api-error-empty-file' => '送信されたファイルは空でした。',
 'api-error-emptypage' => '内容がないページの新規作成は許可されていません。',
 'api-error-fetchfileerror' => '内部エラー：ファイルの取得中に問題が発生しました。',
+'api-error-fileexists-forbidden' => '「$1」という名前のファイルは存在しており、上書きはできません。',
+'api-error-fileexists-shared-forbidden' => '「$1」という名前のファイルは共有ファイルリポジトリに存在しており、上書きはできません。',
 'api-error-file-too-large' => '送信されたファイルは大きすぎます。',
 'api-error-filename-tooshort' => 'ファイル名が短すぎます。',
 'api-error-filetype-banned' => 'この形式のファイルは禁止されています。',
+'api-error-filetype-banned-type' => '$1{{PLURAL:$4|は許可されていないファイル形式です}}。許可されている{{PLURAL:$3|ファイル形式}}は$2です。',
 'api-error-filetype-missing' => 'ファイルに拡張子がありません。',
 'api-error-hookaborted' => '拡張機能のフックによって、修正が中断されました。',
 'api-error-http' => '内部エラー：サービスへの接続で問題が発生しました。',

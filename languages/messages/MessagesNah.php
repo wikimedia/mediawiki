@@ -107,7 +107,6 @@ $messages = array(
 'tog-watchlisthideminor' => 'Tiquintlātīz tlapatlalitzintli motlachiyalizpan',
 'tog-watchlisthideliu' => 'Tiquintlātīz tlācah ōmocalacqueh īntlapatlaliz motlachiyalizpan',
 'tog-watchlisthideanons' => 'Tiquintlātīz tlācah ahtōcāitl īntlapatlaliz motlachiyalizpan',
-'tog-nolangconversion' => 'Ahmo tictēquitiltia tlahtōlcuepaliztli',
 'tog-ccmeonemails' => 'Nō xinēch-mailīz ihcuāc nitē-mailīz tlatequitiltilīlli',
 'tog-diffonly' => 'Ahmo tiquittāz zāzanilli ītlapiyaliz ahneneuhquilitzīntlan',
 'tog-showhiddencats' => 'Mà monèxtìkàn in tlatlatìltìn tlaìxmatkàtlàlilòmë',
@@ -813,10 +812,10 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 Tlahcuilōlli iuhcāyōtl {{PLURAL:\$3|moēlēhuia cah|moēlēhuiah cateh}} \$2.",
 'filetype-missing' => 'Tlahcuilōlli ahmo quipiya huēiyaquiliztli (quemeh ".jpg").',
 'large-file' => 'Mā tlahcuilōlli ahmo achi huēiyac $1; inīn cah $2.',
-'fileexists-extension' => "Tlahcuilōlli zan iuh tōcātica ia: [[$2|thumb]]
-* Tlahcuilōlli moquetzacah: '''<tt>[[:$1]]</tt>'''
-* Tlahcuilōlli tlein ia ītōca: '''<tt>[[:$2]]</tt>'''
-Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
+'fileexists-extension' => 'Tlahcuilōlli zan iuh tōcātica ia: [[$2|thumb]]
+* Tlahcuilōlli moquetzacah: <strong>[[:$1]]</strong>
+* Tlahcuilōlli tlein ia ītōca: <strong>[[:$2]]</strong>
+Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.',
 'savefile' => 'Quipiyāz tlahcuilōlli',
 'uploadedimage' => 'ōmoquetz "[[$1]]"',
 'overwroteimage' => 'ōmoquetz yancuīc "[[$1]]" iuhcāyōtl',

@@ -697,14 +697,15 @@ abstract class ApiBase extends ContextSource {
 	public function requireOnlyOneParameter( $params ) {
 		$required = func_get_args();
 		array_shift( $required );
+		$p = $this->getModulePrefix();
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
 			array( $this, "parameterNotEmpty" ) ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
-			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
+			$this->dieUsage( "The parameters {$p}" . implode( ", {$p}",  $intersection ) . ' can not be used together', "{$p}invalidparammix" );
 		} elseif ( count( $intersection ) == 0 ) {
-			$this->dieUsage( 'One of the parameters ' . implode( ', ', $required ) . ' is required', 'missingparam' );
+			$this->dieUsage( "One of the parameters {$p}" . implode( ", {$p}", $required ) . ' is required', "{$p}missingparam" );
 		}
 	}
 
@@ -732,12 +733,13 @@ abstract class ApiBase extends ContextSource {
 	public function requireMaxOneParameter( $params ) {
 		$required = func_get_args();
 		array_shift( $required );
+		$p = $this->getModulePrefix();
 
 		$intersection = array_intersect( array_keys( array_filter( $params,
 			array( $this, "parameterNotEmpty" ) ) ), $required );
 
 		if ( count( $intersection ) > 1 ) {
-			$this->dieUsage( 'The parameters ' . implode( ', ', $intersection ) . ' can not be used together', 'invalidparammix' );
+			$this->dieUsage( "The parameters {$p}" . implode( ", {$p}", $intersection ) . ' can not be used together', "{$p}invalidparammix" );
 		}
 	}
 
@@ -1270,6 +1272,8 @@ abstract class ApiBase extends ContextSource {
 		'nouserspecified' => array( 'code' => 'invaliduser', 'info' => "Invalid username \"\$1\"" ),
 		'noname' => array( 'code' => 'invaliduser', 'info' => "Invalid username \"\$1\"" ),
 		'summaryrequired' => array( 'code' => 'summaryrequired', 'info' => 'Summary required' ),
+		'import-rootpage-invalid' => array( 'code' => 'import-rootpage-invalid', 'info' => 'Root page is an invalid title' ),
+		'import-rootpage-nosubpage' => array( 'code' => 'import-rootpage-nosubpage', 'info' => 'Namespace "$1" of the root page does not allow subpages' ),
 
 		// API-specific messages
 		'readrequired' => array( 'code' => 'readapidenied', 'info' => "You need read permission to use this module" ),
@@ -1318,6 +1322,7 @@ abstract class ApiBase extends ContextSource {
 		'nodeleteablefile' => array( 'code' => 'nodeleteablefile', 'info' => 'No such old version of the file' ),
 		'fileexists-forbidden' => array( 'code' => 'fileexists-forbidden', 'info' => 'A file with name "$1" already exists, and cannot be overwritten.' ),
 		'fileexists-shared-forbidden' => array( 'code' => 'fileexists-shared-forbidden', 'info' => 'A file with name "$1" already exists in the shared file repository, and cannot be overwritten.' ),
+		'filerevert-badversion' => array( 'code' => 'filerevert-badversion', 'info' => 'There is no previous local version of this file with the provided timestamp.' ),
 
 		// ApiEditPage messages
 		'noimageredirect-anon' => array( 'code' => 'noimageredirect-anon', 'info' => "Anonymous users can't create image redirects" ),
@@ -1342,7 +1347,7 @@ abstract class ApiBase extends ContextSource {
 		'edit-already-exists' => array( 'code' => 'edit-already-exists', 'info' => "It seems the page you tried to create already exist" ),
 
 		// uploadMsgs
-		'invalid-session-key' => array( 'code' => 'invalid-session-key', 'info' => 'Not a valid session key' ),
+		'invalid-file-key' => array( 'code' => 'invalid-file-key', 'info' => 'Not a valid file key' ),
 		'nouploadmodule' => array( 'code' => 'nouploadmodule', 'info' => 'No upload module set' ),
 		'uploaddisabled' => array( 'code' => 'uploaddisabled', 'info' => 'Uploads are not enabled.  Make sure $wgEnableUploads is set to true in LocalSettings.php and the PHP ini setting file_uploads is true' ),
 		'copyuploaddisabled' => array( 'code' => 'copyuploaddisabled', 'info' => 'Uploads by URL is not enabled.  Make sure $wgAllowCopyUploads is set to true in LocalSettings.php.' ),

@@ -274,7 +274,7 @@ class BitmapHandler extends ImageHandler {
 	 * @param $image File File associated with this thumbnail
 	 * @param $params array Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occured, false (=no error) otherwise
+	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagick( $image, $params ) {
 		# use ImageMagick
@@ -373,7 +373,7 @@ class BitmapHandler extends ImageHandler {
 	 * @param $image File File associated with this thumbnail
 	 * @param $params array Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occured, false (=no error) otherwise
+	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformImageMagickExt( $image, $params ) {
 		global $wgSharpenReductionThreshold, $wgSharpenParameter, $wgMaxAnimatedGifArea;
@@ -450,7 +450,7 @@ class BitmapHandler extends ImageHandler {
 	 * @param $image File File associated with this thumbnail
 	 * @param $params array Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occured, false (=no error) otherwise
+	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformCustom( $image, $params ) {
 		# Use a custom convert command
@@ -477,7 +477,7 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Log an error that occured in an external process
+	 * Log an error that occurred in an external process
 	 *
 	 * @param $retval int
 	 * @param $err int
@@ -506,7 +506,7 @@ class BitmapHandler extends ImageHandler {
 	 * @param $image File File associated with this thumbnail
 	 * @param $params array Array with scaler params
 	 *
-	 * @return MediaTransformError Error object if error occured, false (=no error) otherwise
+	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
 	protected function transformGd( $image, $params ) {
 		# Use PHP's builtin GD library functions.

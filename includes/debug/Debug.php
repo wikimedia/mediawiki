@@ -312,6 +312,18 @@ class MWDebug {
 			return;
 		}
 
+		// output errors as debug info, when display_errors is on
+		// this is necessary for all non html output of the api, because that clears all errors first
+		$obContents = ob_get_contents();
+		if( $obContents ) {
+			$obContentArray = explode( '<br />', $obContents );
+			foreach( $obContentArray as $obContent ) {
+				if( trim( $obContent ) ) {
+					self::debugMsg( Sanitizer::stripAllTags( $obContent ) );
+				}
+			}
+		}
+
 		MWDebug::log( 'MWDebug output complete' );
 		$debugInfo = self::getDebugInfo( $context );
 
@@ -352,7 +364,7 @@ class MWDebug {
 			'debugLog' => self::$debug,
 			'queries' => self::$query,
 			'request' => array(
-				'method' => $_SERVER['REQUEST_METHOD'],
+				'method' => $request->getMethod(),
 				'url' => $request->getRequestURL(),
 				'headers' => $request->getAllHeaders(),
 				'params' => $request->getValues(),

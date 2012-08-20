@@ -156,8 +156,6 @@ class ApiDelete extends ApiBase {
 			if ( !$oldfile->exists() || !$oldfile->isLocal() || $oldfile->getRedirected() ) {
 				return array( array( 'nodeleteablefile' ) );
 			}
-		} else {
-			$oldfile = false;
 		}
 
 		if ( is_null( $reason ) ) { // Log and RC don't like null reasons

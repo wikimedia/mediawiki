@@ -206,17 +206,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bolehkan penyuntingan bahagian dengan mengklik kanan pada tajuk bahagian (JavaScript)',
 'tog-showtoc' => 'Tunjukkan isi kandungan (bagi rencana yang melebihi 3 tajuk)',
 'tog-rememberpassword' => 'Ingat log masuk saya di pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
-'tog-watchcreations' => 'Tambahkan laman yang saya cipta ke dalam senarai pantau',
-'tog-watchdefault' => 'Tambahkan laman yang saya sunting ke dalam senarai pantau',
-'tog-watchmoves' => 'Tambahkan laman yang saya pindahkan ke dalam senarai pantau',
-'tog-watchdeletion' => 'Tambahkan laman yang saya hapuskan ke dalam senarai pantau',
+'tog-watchcreations' => 'Tambahkan halaman-halaman yang saya buat dan fail-fail yang saya muat naik ke dalam senarai pantau',
+'tog-watchdefault' => 'Tambahkan halaman-halaman dan fail-fail yang saya sunting ke dalam senarai pantau',
+'tog-watchmoves' => 'Tambahkan halaman-halaman dan fail-fail yang saya pindahkan ke dalam senarai pantau',
+'tog-watchdeletion' => 'Tambahkan halaman-halaman dan fail-fail yang saya hapuskan ke dalam senarai pantau',
 'tog-minordefault' => 'Tandakan semua suntingan sebagai kecil secara asali',
 'tog-previewontop' => 'Tunjukkan pralihat di atas kotak sunting',
 'tog-previewonfirst' => 'Tunjukkan pralihat pada suntingan pertama',
 'tog-nocache' => 'Lumpuhkan pengagregatan laman',
-'tog-enotifwatchlistpages' => 'E-melkan saya apabila berlaku perubahan pada laman yang dipantau',
+'tog-enotifwatchlistpages' => 'E-mel kepada saya tentang perubahan pada halaman-halaman dan fail-fail dalam senarai pantau saya',
 'tog-enotifusertalkpages' => 'E-melkan saya apabila berlaku perubahan pada laman perbincangan saya',
-'tog-enotifminoredits' => 'Juga e-melkan saya apabila berlaku penyuntingan kecil',
+'tog-enotifminoredits' => 'Juga e-mel kepada saya tentang suntingan kecil pada halaman-halaman dan fail-fail',
 'tog-enotifrevealaddr' => 'Serlahkan alamat e-mel saya dalam e-mel pemberitahuan',
 'tog-shownumberswatching' => 'Tunjukkan bilangan pemantau',
 'tog-oldsig' => 'Tanda tangan yang sedia ada:',
@@ -232,7 +232,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Sembunyikan suntingan oleh pengguna log masuk daripada senarai pantau',
 'tog-watchlisthideanons' => 'Sembunyikan suntingan oleh pengguna tanpa nama daripada senarai pantau',
 'tog-watchlisthidepatrolled' => 'Sorokkan suntingan yang telah dironda daripada senarai pantau',
-'tog-nolangconversion' => 'Lumpuhkan penukaran kelainan',
 'tog-ccmeonemails' => 'Kirimkan saya salinan e-mel yang saya hantar kepada pengguna lain',
 'tog-diffonly' => 'Jangan tunjukkan kandungan laman di bawah perbezaan',
 'tog-showhiddencats' => 'Tunjukkan kategori tersembunyi',
@@ -460,6 +459,10 @@ $1',
 'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
 'newmessageslink' => 'pesanan baru',
 'newmessagesdifflink' => 'perubahan terakhir',
+'youhavenewmessagesfromusers' => 'Anda menerima $1 daripada {{PLURAL:$3|seorang|$3 orang}} pengguna lain ($2).',
+'youhavenewmessagesmanyusers' => 'Anda menerima $1 daripada ramai pengguna ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|pesanan|pesanan-pesanan}} baru',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|perubahan|perubahan-perubahan}} terkini',
 'youhavenewmessagesmulti' => 'Anda telah menerima pesanan baru pada $1',
 'editsection' => 'sunting',
 'editsection-brackets' => '[$1]',
@@ -608,6 +611,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'remembermypassword' => 'Ingat log masuk saya pada pelayar ini (tidak melebihi $1 {{PLURAL:$1|hari|hari}})',
 'securelogin-stick-https' => 'Kekal disambungkan ke HTTPS selepas log masuk',
 'yourdomainname' => 'Domain anda:',
+'password-change-forbidden' => 'Anda tidak dapat mengubah kata laluan di wiki ini.',
 'externaldberror' => 'Berlaku ralat pangkalan data bagi pengesahan luar atau anda tidak dibenarkan mengemaskinikan akaun luar anda.',
 'login' => 'Log masuk',
 'nav-login-createaccount' => 'Log masuk / buka akaun',
@@ -842,6 +846,10 @@ Sekiranya anda adalah seorang pengguna tanpa nama dan berasa bahawa komen yang t
 'noarticletext-nopermission' => 'Tiada teks dalam laman ini ketika ini.
 Anda boleh [[Special:Search/{{PAGENAME}}|mencari tajuk laman ini]] dalam laman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mencari log yang berkaitan]</span>.',
+'missing-revision' => 'Semakan #$1 pada halaman "{{PAGENAME}}" tidak wujud.
+
+Hal ini biasanya disebabkan oleh pautan sejarah yang lapuk ke halaman yang sudah dihapuskan.
+Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
 'userpage-userdoesnotexist' => 'Akaun pengguna "<nowiki>$1</nowiki>" tidak berdaftar. Sila pastikan sama ada anda mahu mencipta/menyunting laman ini.',
 'userpage-userdoesnotexist-view' => 'Akaun pengguna "$1" tidak berdaftar.',
 'blocked-notice-logextract' => 'Pengguna ini sedang disekat.
@@ -965,6 +973,7 @@ Argumen-argumen ini telah ditinggalkan.',
 'expansion-depth-exceeded-warning' => 'Laman terlebih dalam peluasan',
 'parser-unstrip-loop-warning' => 'Gelung unstrip dikesan',
 'parser-unstrip-recursion-limit' => 'Had rekursi unstrip dilampaui ($1)',
+'converter-manual-rule-error' => 'Ralat dikesan dalam aturan penukaran bahasa manual',
 
 # "Undo" feature
 'undo-success' => 'Suntingan ini boleh dibatalkan. Sila semak perbandingan di bawah untuk mengesahkan bahawa anda betul-betul mahu melakukan tindakan ini, kemudian simpan perubahan tersebut.',
@@ -1153,6 +1162,10 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'editundo' => 'batal',
 'diff-multi' => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
 'diff-multi-manyusers' => '($1 {{PLURAL:$1|semakan pertengahan|semakan pertengahan}} oleh lebih daripada $2 {{PLURAL:$2|pengguna|pengguna}} tidak dipaparkan)',
+'difference-missing-revision' => '{{PLURAL:$2|Satu semakan|$2 semakan}} bagi perbezaan ini ($1) tidak ditemui.
+
+Hal ini biasanya disebabkan oleh pautan perbezaan yang lapuk ke halaman yang sudah dihapuskan.
+Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].',
 
 # Search results
 'searchresults' => 'Hasil carian',
@@ -1421,6 +1434,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-writeapi' => 'Menggunakan API tulis',
 'right-delete' => 'Menghapuskan laman',
 'right-bigdelete' => 'Menghapuskan laman bersejarah',
+'right-deletelogentry' => 'Memadamkan dan memulihkan entri log tertentu',
 'right-deleterevision' => 'Menghapuskan dan memulihkan semula mana-mana semakan bagi sesebuah laman',
 'right-deletedhistory' => 'Melihat senarai entri sejarah yang telah dihapuskan, tetapi tanpa teks yang berkaitan',
 'right-deletedtext' => 'Melihat teks yang telah dihapuskan dan perubahan antara semakan-semakan yang telah dihapuskan',
@@ -1567,9 +1581,9 @@ Log penghapusan dan pemindahan untuk laman ini disediakan di bawah ini untuk kem
 Untuk melihat atau mencari imej yang sudah dimuat naik, sila ke [[Special:FileList|senarai fail yang dimuat naik]]. Tindakan muat naik akan direkodkan dalam [[Special:Log/upload|log muat naik]], manakala penghapusan dalam [[Special:Log/delete|log penghapusan]].
 
 Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan satu daripada bentuk-bentuk berikut:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></tt>''' untuk menggunakan versi penuh bagi fail itu
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|teks alternatif]]</nowiki></tt>''' untuk menggunakan lakaran 200 piksel lebar di dalam sebuah kotak yang diletakkan di jidar kiri dengan keterangan 'teks alternatif'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></tt>''' untuk memaut secara terus tanpa memaparkan fail itu",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></code>''' untuk menggunakan versi penuh bagi fail itu
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|teks alternatif]]</nowiki></code>''' untuk menggunakan lakaran 200 piksel lebar di dalam sebuah kotak yang diletakkan di jidar kiri dengan keterangan 'teks alternatif'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></code>''' untuk memaut secara terus tanpa memaparkan fail itu",
 'upload-permitted' => 'Jenis fail yang dibenarkan: $1.',
 'upload-preferred' => 'Jenis fail yang diutamakan: $1.',
 'upload-prohibited' => 'Jenis fail yang dilarang: $1.',
@@ -1610,20 +1624,20 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'largefileserver' => 'Fail ini telah melebihi had muat naik pelayan web.',
 'emptyfile' => 'Fail yang dimuat naik adalah kosong. Ini mungkin disebabkan oleh kesilapan menaip nama fail. Sila pastikan bahawa anda betul-betul mahu memuat naik fail ini.',
 'windows-nonascii-filename' => 'Wiki ini tidak menyokong nama fail yang mengandungi aksara khas.',
-'fileexists' => "Sebuah fail dengan nama ini telah pun wujud.
-Sila semak '''<tt>[[:$1]]</tt>''' sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.
-[[$1|thumb]]",
-'filepageexists' => "Laman penerangan untuk fail ini telah pun dicipta di '''<tt>[[:$1]]</tt>''', tetapi tiada fail dengan nama ini wujud.
+'fileexists' => 'Sebuah fail dengan nama ini telah pun wujud.
+Sila semak <strong>[[:$1]]</strong> sekiranya anda tidak pasti bahawa anda mahu menukarnya atau tidak.
+[[$1|thumb]]',
+'filepageexists' => 'Laman penerangan untuk fail ini telah pun dicipta di <strong>[[:$1]]</strong>, tetapi tiada fail dengan nama ini wujud.
 Ringkasan yang anda masukkan tidak akan muncul di laman penerangan tersebut. Untuk memastikannya muncul, anda perlu menyuntingnya secara manual.
-[[$1|thumb]]",
-'fileexists-extension' => "Sebuah fail dengan nama yang sama telah pun wujud: [[$2|thumb]]
-* Nama fail yang dimuat naik: '''<tt>[[:$1]]</tt>'''
-* Nama fail yang sedia ada: '''<tt>[[:$2]]</tt>'''
-Sila pilih nama lain.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Sebuah fail dengan nama yang sama telah pun wujud: [[$2|thumb]]
+* Nama fail yang dimuat naik: <strong>[[:$1]]</strong>
+* Nama fail yang sedia ada: <strong>[[:$2]]</strong>
+Sila pilih nama lain.',
 'fileexists-thumbnail-yes' => "Fail ini kelihatan seperti sebuah imej yang telah dikecilkan ''(gambar kenit)''. [[$1|thumb]]
-Sila semak fail '''<tt>[[:$1]]</tt>'''.
+Sila semak fail <strong>[[:$1]]</strong>.
 Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik gambar kenit tambahan.",
-'file-thumbnail-no' => "Nama fail ini bermula dengan '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Nama fail ini bermula dengan <strong>$1</strong>.
 Barangkali ia adalah sebuah imej yang telah dikecilkan ''(gambar kenit)''.
 Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. Jika tidak, sila tukar nama fail ini.",
 'fileexists-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud, dan tidak boleh ditulis ganti. Jika anda masih mahu memuat naik fail ini, sila berundur dan muat naik fail ini dengan nama lain. [[File:$1|thumb|center|$1]]',
@@ -1728,6 +1742,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'lockmanager-fail-releaselock' => 'Kunci untuk "$1" tidak dapat dikeluarkan.',
 'lockmanager-fail-db-bucket' => 'Di baldi $1 tidak dapat dihubungi pangkalan data selak yang secukupnya.',
 'lockmanager-fail-db-release' => 'Selak-selak tidak dapat dikeluarkan di pangkalan data $1.',
+'lockmanager-fail-svr-acquire' => 'Selak-selak tidak dapat diperoleh di pelayan $1.',
 'lockmanager-fail-svr-release' => 'Selak-selak tidak dapat dikeluarkan di pelayan $1.',
 
 # ZipDirectoryReader
@@ -1879,7 +1894,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 # MIME search
 'mimesearch' => 'Carian MIME',
-'mimesearch-summary' => 'Anda boleh menggunakan laman ini untuk mencari fail mengikut jenis MIME. Format input ialah "jenis/subjenis", contohnya <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Anda boleh menggunakan laman ini untuk mencari fail mengikut jenis MIME. Format input ialah "jenis/subjenis", contohnya <code>image/jpeg</code>.',
 'mimetype' => 'Jenis MIME:',
 'download' => 'muat turun',
 
@@ -1925,7 +1940,9 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 
 'disambiguations' => 'Laman-laman yang berpaut dengan laman penyahkekaburan',
 'disambiguationspage' => 'Template:disambig',
-'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Laman-laman berikut mengandungi sekurang-kurangnya satu pautan ke '''laman penyahkekaburan'''.
+Pautan ini sepatutnya ditujukan ke topik yang sepatutnya.<br />
+Sesebuah laman dianggap sebagai laman penyahkekaburan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Lencongan berganda',
 'doubleredirectstext' => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
@@ -2076,7 +2093,7 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ok' => 'Cari',
 'linksearch-text' => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
 Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
-Protokol yang disokong: <tt>$1</tt> (jangan bubuh sebarang protokol ini dalam carian anda)',
+Protokol yang disokong: <code>$1</code> (jangan bubuh sebarang protokol ini dalam carian anda)',
 'linksearch-line' => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 
@@ -2273,6 +2290,8 @@ Sila lihat $2 untuk rekod penghapusan terkini.',
 'rollback' => 'Undurkan suntingan.',
 'rollback_short' => 'Undur',
 'rollbacklink' => 'undur',
+'rollbacklinkcount' => 'mengundurkan $1 {{PLURAL:$1|suntingan}}',
+'rollbacklinkcount-morethan' => 'mengundurkan lebih daripada $1 {{PLURAL:$1|suntingan}}',
 'rollbackfailed' => 'Pengunduran gagal',
 'cantrollback' => 'Suntingan tersebut tidak dapat dibalikkan: penyumbang terakhir adalah satu-satunya pengarang bagi rencana ini.',
 'alreadyrolled' => 'Suntingan terakhir bagi [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|Perbualan]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tidak dapat dibalikkan; terdapat pengguna lain yang telah menyunting atau membalikkan laman itu.
@@ -2766,6 +2785,7 @@ Semua tindakan import transwiki dicatatkan dalam [[Special:Log/import|log import
 'import-interwiki-templates' => 'Sertakan semua templat',
 'import-interwiki-submit' => 'Import',
 'import-interwiki-namespace' => 'Ruang nama destinasi:',
+'import-interwiki-rootpage' => 'Halaman akar tujuan (tidak wajib):',
 'import-upload-filename' => 'Nama fail:',
 'import-comment' => 'Komen:',
 'importtext' => 'Sila eksport fail daripada sumber wiki dengan menggunakan [[Special:Export|utiliti eksport]].
@@ -2798,6 +2818,9 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'import-error-interwiki' => 'Laman "$1" tidak diimport kerana namanya ditempah untuk pemautan luaran (antara wiki).',
 'import-error-special' => 'Laman "$1" tidak diimport kerana ia tergolong dalam ruang nama khas yang tidak membenarkan laman.',
 'import-error-invalid' => 'Laman "$1" tidak diimport kerana namanya tidak sah.',
+'import-options-wrong' => '{{PLURAL:$2|Pilihan|Pilihan-pilihan}} salah: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Halaman akar yang dinyatakan adalah tidak sah.',
+'import-rootpage-nosubpage' => 'Ruang nama "$1" halaman akar tidak membenarkan subhalaman.',
 
 # Import log
 'importlogpage' => 'Log import',
@@ -3673,7 +3696,7 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 * <span class="mw-specialpagecached">Laman khas tercache (mungkin lapuk).</span>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other' => 'Laman khas lain',
-'specialpages-group-login' => 'Log masuk / daftar',
+'specialpages-group-login' => 'Log masuk / buka akaun',
 'specialpages-group-changes' => 'Perubahan terkini dan log',
 'specialpages-group-media' => 'Laporan media dan muat naik',
 'specialpages-group-users' => 'Pengguna dan hak',
@@ -3812,6 +3835,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'api-error-file-too-large' => 'Fail yang anda serahkan adalah terlalu besar.',
 'api-error-filename-tooshort' => 'Nama fail ini terlalu pendek.',
 'api-error-filetype-banned' => 'Fail jenis ini adalah dilarang.',
+'api-error-filetype-banned-type' => '$1 merupakan {{PLURAL:$4|jenis|jenis-jenis}} fail yang dilarang. {{PLURAL:$3|Jenis|Jenis-jenis}} fail yang dibenarkan ialah $2.',
 'api-error-filetype-missing' => 'Fail ini tiada sambungannya.',
 'api-error-hookaborted' => 'Pengubahsuaian yang anda buat telah disekat oleh cangkuk sambungan.',
 'api-error-http' => 'Ralat dalaman: tidak dapat bersambung dengan pelayan.',
@@ -3847,6 +3871,4 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Selak-selak tidak dapat diperoleh di pelayan $1.',
 );

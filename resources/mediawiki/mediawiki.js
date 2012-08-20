@@ -1,5 +1,3 @@
-/*jslint browser: true, continue: true, white: true, forin: true*/
-/*global jQuery*/
 /*
  * Core MediaWiki JavaScript Library
  */
@@ -9,7 +7,9 @@ var mw = ( function ( $, undefined ) {
 
 	/* Private Members */
 
-	var hasOwn = Object.prototype.hasOwnProperty;
+	var hasOwn = Object.prototype.hasOwnProperty,
+		slice = Array.prototype.slice;
+
 	/* Object constructors */
 
 	/**
@@ -45,7 +45,7 @@ var mw = ( function ( $, undefined ) {
 			var results, i;
 
 			if ( $.isArray( selection ) ) {
-				selection = $.makeArray( selection );
+				selection = slice.call( selection );
 				results = {};
 				for ( i = 0; i < selection.length; i += 1 ) {
 					results[selection[i]] = this.get( selection[i], fallback );
@@ -130,7 +130,7 @@ var mw = ( function ( $, undefined ) {
 		this.format = 'plain';
 		this.map = map;
 		this.key = key;
-		this.parameters = parameters === undefined ? [] : $.makeArray( parameters );
+		this.parameters = parameters === undefined ? [] : slice.call( parameters );
 		return this;
 	}
 
@@ -141,7 +141,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * This function will not be called for nonexistent messages.
 		 */
-		parser: function() {
+		parser: function () {
 			var parameters = this.parameters;
 			return this.map.get( this.key ).replace( /\$(\d+)/g, function ( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
@@ -168,7 +168,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * @return string Message as a string in the current form or <key> if key does not exist.
 		 */
-		toString: function() {
+		toString: function () {
 			var text;
 
 			if ( !this.exists() ) {
@@ -205,7 +205,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * @return {string} String form of parsed message
 		 */
-		parse: function() {
+		parse: function () {
 			this.format = 'parse';
 			return this.toString();
 		},
@@ -215,7 +215,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * @return {string} String form of plain message
 		 */
-		plain: function() {
+		plain: function () {
 			this.format = 'plain';
 			return this.toString();
 		},
@@ -225,7 +225,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * @return {string} String form of html escaped message
 		 */
-		escaped: function() {
+		escaped: function () {
 			this.format = 'escaped';
 			return this.toString();
 		},
@@ -235,7 +235,7 @@ var mw = ( function ( $, undefined ) {
 		 *
 		 * @return {string} String form of parsed message
 		 */
-		exists: function() {
+		exists: function () {
 			return this.map.exists( this.key );
 		}
 	};
@@ -247,7 +247,7 @@ var mw = ( function ( $, undefined ) {
 		 * Dummy function which in debug mode can be replaced with a function that
 		 * emulates console.log in console-less environments.
 		 */
-		log: function() { },
+		log: function () { },
 
 		/**
 		 * @var constructor Make the Map constructor publicly available.
@@ -298,7 +298,7 @@ var mw = ( function ( $, undefined ) {
 			var parameters;
 			// Support variadic arguments
 			if ( parameter_1 !== undefined ) {
-				parameters = $.makeArray( arguments );
+				parameters = slice.call( arguments );
 				parameters.shift();
 			} else {
 				parameters = [];
@@ -341,7 +341,7 @@ var mw = ( function ( $, undefined ) {
 			 *	{
 			 *		'moduleName': {
 			 *			'version': ############## (unix timestamp),
-			 *			'dependencies': ['required.foo', 'bar.also', ...], (or) function() {}
+			 *			'dependencies': ['required.foo', 'bar.also', ...], (or) function () {}
 			 *			'group': 'somegroup', (or) null,
 			 *			'source': 'local', 'someforeignwiki', (or) null
 			 *			'state': 'registered', 'loading', 'loaded', 'ready', 'error' or 'missing'
@@ -717,6 +717,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param callback Function: Optional callback which will be run when the script is done
 			 */
 			function addScript( src, callback, async ) {
+				/*jshint evil:true */
 				var script, head,
 					done = false;
 
@@ -731,7 +732,7 @@ var mw = ( function ( $, undefined ) {
 					script.setAttribute( 'type', 'text/javascript' );
 					if ( $.isFunction( callback ) ) {
 						// Attach handlers for all browsers (based on jQuery.ajax)
-						script.onload = script.onreadystatechange = function() {
+						script.onload = script.onreadystatechange = function () {
 
 							if (
 								!done
@@ -768,7 +769,7 @@ var mw = ( function ( $, undefined ) {
 						// scripts only start loading after  the document has been rendered,
 						// but so be it. Opera users don't deserve faster web pages if their
 						// browser makes it impossible
-						$( function() { document.body.appendChild( script ); } );
+						$( function () { document.body.appendChild( script ); } );
 					} else {
 						// IE-safe way of getting the <head> . document.documentElement.head doesn't
 						// work in scripts that run in the <head>
@@ -830,7 +831,7 @@ var mw = ( function ( $, undefined ) {
 				// Execute script
 				try {
 					script = registry[module].script;
-					markModuleReady = function() {
+					markModuleReady = function () {
 						registry[module].state = 'ready';
 						handlePending( module );
 					};
@@ -843,7 +844,7 @@ var mw = ( function ( $, undefined ) {
 							return;
 						}
 
-						addScript( arr[i], function() {
+						addScript( arr[i], function () {
 							nestedAddScript( arr, callback, async, i + 1 );
 						}, async );
 					};

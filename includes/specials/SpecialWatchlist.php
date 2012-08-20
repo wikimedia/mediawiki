@@ -500,7 +500,7 @@ class SpecialWatchlist extends SpecialPage {
 		$dbr = wfGetDB( DB_SLAVE, 'watchlist' );
 
 		# Fetch the raw count
-		$res = $dbr->select( 'watchlist', 'COUNT(*) AS count',
+		$res = $dbr->select( 'watchlist', array( 'count' => 'COUNT(*)' ),
 			array( 'wl_user' => $this->getUser()->getId() ), __METHOD__ );
 		$row = $dbr->fetchObject( $res );
 		$count = $row->count;

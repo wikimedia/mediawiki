@@ -8,16 +8,16 @@
 		// On IE, patch the focus() method to restore the windows' scroll position
 		// (bug 32241)
 		$.fn.extend({
-			focus : ( function ( _focus ) {
+			focus: ( function ( jqFocus ) {
 				return function () {
 					if ( arguments.length === 0 ) {
 						var $w = $( window );
 						var state = {top: $w.scrollTop(), left: $w.scrollLeft()};
-						var result = _focus.apply( this, arguments );
+						var result = jqFocus.apply( this, arguments );
 						window.scrollTo( state.top, state.left );
 						return result;
 					}
-					return _focus.apply( this, arguments );
+					return jqFocus.apply( this, arguments );
 				};
 			}( $.fn.focus ) )
 		});

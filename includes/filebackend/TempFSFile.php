@@ -36,12 +36,13 @@ class TempFSFile extends FSFile {
 	/**
 	 * Make a new temporary file on the file system.
 	 * Temporary files may be purged when the file object falls out of scope.
-	 * 
+	 *
 	 * @param $prefix string
 	 * @param $extension string
-	 * @return TempFSFile|null 
+	 * @return TempFSFile|null
 	 */
 	public static function factory( $prefix, $extension = '' ) {
+		wfProfileIn( __METHOD__ );
 		$base = wfTempDir() . '/' . $prefix . dechex( mt_rand( 0, 99999999 ) );
 		$ext = ( $extension != '' ) ? ".{$extension}" : "";
 		for ( $attempt = 1; true; $attempt++ ) {
@@ -54,17 +55,19 @@ class TempFSFile extends FSFile {
 				break; // got it
 			}
 			if ( $attempt >= 15 ) {
+				wfProfileOut( __METHOD__ );
 				return null; // give up
 			}
 		}
 		$tmpFile = new self( $path );
 		$tmpFile->canDelete = true; // safely instantiated
+		wfProfileOut( __METHOD__ );
 		return $tmpFile;
 	}
 
 	/**
 	 * Purge this file off the file system
-	 * 
+	 *
 	 * @return bool Success
 	 */
 	public function purge() {

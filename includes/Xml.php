@@ -166,7 +166,7 @@ class Xml {
 		if( is_null( $selected ) )
 			$selected = '';
 		if( !is_null( $allmonths ) )
-			$options[] = self::option( wfMsg( 'monthsall' ), $allmonths, $selected === $allmonths );
+			$options[] = self::option( wfMessage( 'monthsall' )->text(), $allmonths, $selected === $allmonths );
 		for( $i = 1; $i < 13; $i++ )
 			$options[] = self::option( $wgLang->getMonthName( $i ), $i, $selected === $i );
 		return self::openElement( 'select', array( 'id' => $id, 'name' => 'month', 'class' => 'mw-month-selector' ) )
@@ -198,9 +198,9 @@ class Xml {
 		} else {
 			$encYear = '';
 		}
-		return Xml::label( wfMsg( 'year' ), 'year' ) . ' '.
+		return Xml::label( wfMessage( 'year' )->text(), 'year' ) . ' '.
 			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) . ' '.
-			Xml::label( wfMsg( 'month' ), 'month' ) . ' '.
+			Xml::label( wfMessage( 'month' )->text(), 'month' ) . ' '.
 			Xml::monthSelector( $encMonth, -1 );
 	}
 
@@ -772,7 +772,7 @@ class Xml {
 		foreach( $fields as $labelmsg => $input ) {
 			$id = "mw-$labelmsg";
 			$form .= Xml::openElement( 'tr', array( 'id' => $id ) );
-			$form .= Xml::tags( 'td', array('class' => 'mw-label'), wfMsgExt( $labelmsg, array('parseinline') ) );
+			$form .= Xml::tags( 'td', array('class' => 'mw-label'), wfMessage( $labelmsg )->parse() );
 			$form .= Xml::openElement( 'td', array( 'class' => 'mw-input' ) ) . $input . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
@@ -780,7 +780,7 @@ class Xml {
 		if( $submitLabel ) {
 			$form .= Xml::openElement( 'tr' );
 			$form .= Xml::tags( 'td', array(), '' );
-			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMsg( $submitLabel ) ) . Xml::closeElement( 'td' );
+			$form .= Xml::openElement( 'td', array( 'class' => 'mw-submit' ) ) . Xml::submitButton( wfMessage( $submitLabel )->text() ) . Xml::closeElement( 'td' );
 			$form .= Xml::closeElement( 'tr' );
 		}
 

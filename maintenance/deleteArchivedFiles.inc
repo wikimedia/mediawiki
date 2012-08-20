@@ -50,8 +50,8 @@ class DeleteArchivedFilesImplementation {
 				__METHOD__,
 				array( 'FOR UPDATE' )
 			);
-			if ( $path && file_exists( $path ) && !$inuse ) {
-				if( unlink( $path ) ) { // delete
+			if ( $path && $repo->fileExists( $path ) && !$inuse ) {
+				if ( $repo->quickPurge( $path ) ) {
 					$count++;
 					$dbw->query( "DELETE FROM $tbl_arch WHERE fa_id = $id" );
 				} else {

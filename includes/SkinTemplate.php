@@ -625,35 +625,23 @@ class SkinTemplate extends Skin {
 			$is_signup = $request->getText( 'type' ) == 'signup';
 
 			# anonlogin & login are the same
+			global $wgSecureLogin;
+			$proto = $wgSecureLogin ? PROTO_HTTPS : null;
+
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup )
+				'href' => self::makeSpecialUrl( 'Userlogin', $returnto, $proto ),
+				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == 'nav-login-createaccount' || !$is_signup ),
+				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
-				$createaccount_url = array(
-					'text' => $this->msg( 'createaccount' )->text(),
-					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
-					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup
-				);
-			}
-			global $wgServer, $wgSecureLogin;
-			if( substr( $wgServer, 0, 5 ) === 'http:' && $wgSecureLogin ) {
-				$title = SpecialPage::getTitleFor( 'Userlogin' );
-				$https_url = preg_replace( '/^http:/', 'https:', $title->getFullURL() );
-				$login_url['href']  = $https_url;
-				# @todo FIXME: Class depends on skin
-				$login_url['class'] = 'link-https';
-				if ( isset( $createaccount_url ) ) {
-					$https_url = preg_replace( '/^http:/', 'https:',
-						$title->getFullURL( 'type=signup' ) );
-					$createaccount_url['href']  = $https_url;
-					# @todo FIXME: Class depends on skin
-					$createaccount_url['class'] = 'link-https';
-				}
-			}
+			$createaccount_url = array(
+				'text' => $this->msg( 'createaccount' )->text(),
+				'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup", $proto ),
+				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
+				'class' => $wgSecureLogin ? 'link-https' : ''
+			);
 
-			if ( isset( $createaccount_url ) ) {
+			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
@@ -1420,6 +1408,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		if ( isset( $this->data['nav_urls']['print'] ) && $this->data['nav_urls']['print'] ) {
 			$toolbox['print'] = $this->data['nav_urls']['print'];
+			$toolbox['print']['id'] = 't-print';
 			$toolbox['print']['rel'] = 'alternate';
 			$toolbox['print']['msg'] = 'printableversion';
 		}

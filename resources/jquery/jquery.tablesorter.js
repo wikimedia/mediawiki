@@ -330,62 +330,31 @@
 	}
 
 	function sortText( a, b ) {
-		return ( (a < b) ? false : ((a > b) ? true : 0) );
+		return ( (a < b) ? -1 : ((a > b) ? 1 : 0) );
 	}
 
 	function sortTextDesc( a, b ) {
-		return ( (b < a) ? false : ((b > a) ? true : 0) );
-	}
-
-	function checkSorting( array1, array2, sortList ) {
-		var col, fn, ret;
-		for ( var i = 0, len = sortList.length; i < len; i++ ) {
-			col = sortList[i][0];
-			fn = ( sortList[i][1] ) ? sortTextDesc : sortText;
-			ret = fn.call( this, array1[col], array2[col] );
-			if ( ret !== 0 ) {
-				return ret;
-			}
-		}
-		return ret;
-	}
-
-	// Merge sort algorithm
-	// Based on http://en.literateprograms.org/Merge_sort_(JavaScript)
-	function mergeSortHelper( array, begin, beginRight, end, sortList ) {
-		for ( ; begin < beginRight; ++begin ) {
-			if ( checkSorting( array[begin], array[beginRight], sortList ) ) {
-				var v = array[begin];
-				array[begin] = array[beginRight];
-				var begin2 = beginRight;
-				while ( begin2 + 1 < end && checkSorting( v, array[begin2 + 1], sortList ) ) {
-					var tmp = array[begin2];
-					array[begin2] = array[begin2 + 1];
-					array[begin2 + 1] = tmp;
-					++begin2;
-				}
-				array[begin2] = v;
-			}
-		}
-	}
-
-	function mergeSort(array, begin, end, sortList) {
-		var size = end - begin;
-		if ( size < 2 ) {
-			return;
-		}
-
-		var beginRight = begin + Math.floor(size / 2);
-
-		mergeSort( array, begin, beginRight, sortList );
-		mergeSort( array, beginRight, end, sortList );
-		mergeSortHelper( array, begin, beginRight, end, sortList );
+		return ( (b < a) ? -1 : ((b > a) ? 1 : 0) );
 	}
 
 	function multisort( table, sortList, cache ) {
-		var i = sortList.length;
-		mergeSort( cache.normalized, 0, cache.normalized.length, sortList );
-
+		var sortFn = [];
+		var len = sortList.length;
+		for ( var i = 0; i < len; i++ ) {
+			sortFn[i] = ( sortList[i][1] ) ? sortTextDesc : sortText;
+		}
+		cache.normalized.sort( function ( array1, array2 ) {
+			var col, ret;
+			for ( var i = 0; i < len; i++ ) {
+				col = sortList[i][0];
+				ret = sortFn[i].call( this, array1[col], array2[col] );
+				if ( ret !== 0 ) {
+					return ret;
+				}
+			}
+			// Fall back to index number column to ensure stable sort
+			return sortText.call( this, array1[array1.length - 1], array2[array2.length - 1] );
+		} );
 		return cache;
 	}
 

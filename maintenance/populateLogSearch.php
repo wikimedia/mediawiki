@@ -18,11 +18,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that makes the required database updates for populating the
+ * log_search table retroactively
+ *
+ * @ingroup Maintenance
+ */
 class PopulateLogSearch extends LoggedUpdateMaintenance {
 	static $tableMap = array( 'rev' => 'revision', 'fa' => 'filearchive', 'oi' => 'oldimage', 'ar' => 'archive' );
 

@@ -183,7 +183,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Celar modificationes de usatores registrate in le observatorio',
 'tog-watchlisthideanons' => 'Celar modificationes de usatores anonyme in le observatorio',
 'tog-watchlisthidepatrolled' => 'Celar le modificationes patruliate in le observatorio',
-'tog-nolangconversion' => 'Disactivar conversion de variantes',
 'tog-ccmeonemails' => 'Inviar me copias del messages de e-mail que io invia a altere usatores',
 'tog-diffonly' => 'Non monstrar le contento del pagina sub le comparation de duo versiones',
 'tog-showhiddencats' => 'Monstrar categorias celate',
@@ -407,6 +406,10 @@ $1',
 'youhavenewmessages' => 'Tu ha $1 ($2).',
 'newmessageslink' => 'nove messages',
 'newmessagesdifflink' => 'ultime modification',
+'youhavenewmessagesfromusers' => 'Tu ha $1 de {{PLURAL:$3|un altere usator|$3 usatores}} ($2).',
+'youhavenewmessagesmanyusers' => 'Tu ha $1 de multe usatores ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un nove message|$1 nove messages}}',
+'newmessagesdifflinkplural' => 'ultime {{PLURAL:$1|modification|modificationes}}',
 'youhavenewmessagesmulti' => 'Tu ha nove messages in $1',
 'editsection' => 'modificar',
 'editold' => 'modificar',
@@ -461,9 +464,9 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 'dberrortext' => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Isto pote indicar le presentia de un defecto in le software.
 Le ultime consulta que esseva tentate es:
-<blockquote><tt>$1</tt></blockquote>
-effectuate per le function "<tt>$2</tt>".
-Le base de datos retornava le error "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+effectuate per le function "<code>$2</code>".
+Le base de datos retornava le error "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Le ultime consulta que esseva tentate es:
 "$1"
@@ -560,6 +563,7 @@ Non oblida personalisar tu [[Special:Preferences|preferentias in {{SITENAME}}]].
 'remembermypassword' => 'Memorar mi contrasigno in iste navigator (pro un maximo de $1 {{PLURAL:$1|die|dies}})',
 'securelogin-stick-https' => 'Remaner connectite via HTTPS post apertura de session',
 'yourdomainname' => 'Tu dominio:',
+'password-change-forbidden' => 'Non es possibile cambiar le contrasigno in iste wiki.',
 'externaldberror' => 'O il occurreva un error in le base de datos de authentication, o tu non ha le autorisation de actualisar tu conto externe.',
 'login' => 'Aperir session',
 'nav-login-createaccount' => 'Aperir session / crear conto',
@@ -824,6 +828,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
 'noarticletext-nopermission' => 'Al momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
+'missing-revision' => 'Le version №$1 del pagina nominate "{{PAGENAME}}" non existe.
+
+Isto es generalmente causate per sequer un ligamine de historia obsolete a un pagina que ha essite delite.
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
 'userpage-userdoesnotexist' => 'Le conto de usator "<nowiki>$1</nowiki>" non es registrate. Per favor verifica que tu vole crear/modificar iste pagina.',
 'userpage-userdoesnotexist-view' => 'Le conto de usator "$1" non es registrate.',
 'blocked-notice-logextract' => 'Iste usator es actualmente blocate.
@@ -955,6 +963,7 @@ Iste parametros ha essite omittite.",
 'expansion-depth-exceeded-warning' => 'Le profunditate de expansion in iste pagina excede le limite',
 'parser-unstrip-loop-warning' => 'Bucla de "unstrip" detegite',
 'parser-unstrip-recursion-limit' => 'Limite de recursion de "unstrip" excedite ($1)',
+'converter-manual-rule-error' => 'Error detegite in le regula manual de conversion de lingua',
 
 # "Undo" feature
 'undo-success' => 'Le modification pote esser disfacite.
@@ -1145,6 +1154,10 @@ Nota que le uso del ligamines de navigation causara le perdita de tote cambios i
 'editundo' => 'disfacer',
 'diff-multi' => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per {{PLURAL:$2|un usator|$2 usatores}} non es monstrate)',
 'diff-multi-manyusers' => '({{PLURAL:$1|Un version intermedie|$1 versiones intermedie}} facite per plus de $2 {{PLURAL:$2|usator|usatores}} non es monstrate)',
+'difference-missing-revision' => '{{PLURAL:$2|Un version|$2 versiones}} de iste differentia ($1) non ha essite trovate.
+
+Isto es generalmente causate per sequer un ligamine de diff obsolete a un pagina que ha essite delite.
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].',
 
 # Search results
 'searchresults' => 'Resultatos del recerca',
@@ -1414,6 +1427,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-writeapi' => 'Uso del API pro modificar le wiki',
 'right-delete' => 'Deler paginas',
 'right-bigdelete' => 'Deler paginas con historias longe',
+'right-deletelogentry' => 'Deler e restaurar specific entratas del registro',
 'right-deleterevision' => 'Deler e restaurar versiones specific de paginas',
 'right-deletedhistory' => 'Vider entratas de historia delite, sin lor texto associate',
 'right-deletedtext' => 'Vider texto delite e differentias inter versiones delite',
@@ -1558,9 +1572,9 @@ Le registro de deletiones e renominationes pro iste pagina es fornite hic pro ma
 Pro vider o cercar files ja incargate, visita le [[Special:FileList|lista de files incargate]]. In ultra, le (re)incargamentos es registrate in le [[Special:Log/upload|registro de incargamentos]], le deletiones in le [[Special:Log/delete|registro de deletiones]].
 
 Pro includer un file in un pagina, usa un ligamine in un del sequente formas:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' pro usar le version complete del file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></tt>''' pro usar un rendition a latitude de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' pro facer un ligamine directe al file sin monstrar le file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' pro usar le version complete del file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternative]]</nowiki></code>''' pro usar un rendition a latitude de 200 pixel in un quadro in le margine sinistre con 'texto alternative' qua description
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' pro facer un ligamine directe al file sin monstrar le file",
 'upload-permitted' => 'Typos de file permittite: $1.',
 'upload-preferred' => 'Typos de file preferite: $1.',
 'upload-prohibited' => 'Typos de file prohibite: $1.',
@@ -1608,21 +1622,21 @@ iste file occupa $2.',
 Isto pote esser debite a un error in le nomine del file.
 Per favor verifica que tu realmente vole incargar iste file.',
 'windows-nonascii-filename' => 'Iste wiki non supporta nomines de file con characteres special.',
-'fileexists' => "Un file con iste nomine existe ja.
-Per favor verifica '''<tt>[[:$1]]</tt>''' si tu non es secur de voler cambiar lo.
-[[$1|thumb]]",
-'filepageexists' => "Le pagina de description correspondente a iste file ha ja essite create a '''<tt>[[:$1]]</tt>''', ma nulle file con iste nomine existe al momento.
+'fileexists' => 'Un file con iste nomine existe ja.
+Per favor verifica <strong>[[:$1]]</strong> si tu non es secur de voler cambiar lo.
+[[$1|thumb]]',
+'filepageexists' => 'Le pagina de description correspondente a iste file ha ja essite create a <strong>[[:$1]]</strong>, ma nulle file con iste nomine existe al momento.
 Le summario que tu entra non apparera in le pagina de description.
 Si tu vole que illo appare, tu debe inserer lo manualmente.
-[[$1|thumb]]",
-'fileexists-extension' => "Un file con un nomine similar existe ja: [[$2|thumb]]
-* Nomine del file a incargar: '''<tt>[[:$1]]</tt>'''
-* Nomine del file existente: '''<tt>[[:$2]]</tt>'''
-Per favor selige un altere nomine.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Un file con un nomine similar existe ja: [[$2|thumb]]
+* Nomine del file a incargar: <strong>[[:$1]]</strong>
+* Nomine del file existente: <strong>[[:$2]]</strong>
+Per favor selige un altere nomine.',
 'fileexists-thumbnail-yes' => "Iste file pare esser un imagine a grandor reducite ''(miniatura)''. [[$1|thumb]]
-Per favor verifica le file '''<tt>[[:$1]]</tt>'''.
+Per favor verifica le file <strong>[[:$1]]</strong>.
 Si le file verificate es le mesme imagine a grandor original, non es necessari incargar un miniatura additional.",
-'file-thumbnail-no' => "Le nomine del file comencia con '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Le nomine del file comencia con <strong>$1</strong>.
 Illo pare esser un imagine a grandor reducite ''(miniatura)''.
 Si tu possede iste imagine in plen resolution, incarga lo, alteremente cambia le nomine del file per favor.",
 'fileexists-forbidden' => 'Un file con iste nomine existe ja, e non pote esser superscribite.
@@ -1733,6 +1747,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'lockmanager-fail-releaselock' => 'Non poteva liberar le file de serratura pro "$1".',
 'lockmanager-fail-db-bucket' => 'Non poteva contactar sufficiente bases de datos de serratura in situla $1.',
 'lockmanager-fail-db-release' => 'Non poteva liberar le serraturas sur le base de datos $1.',
+'lockmanager-fail-svr-acquire' => 'Non poteva acquirer le serraturas sur le servitor $1.',
 'lockmanager-fail-svr-release' => 'Non poteva liberar le serraturas sur le servitor $1.',
 
 # ZipDirectoryReader
@@ -1886,7 +1901,7 @@ Tu vole forsan modificar le description in le [$2 pagina de description del file
 # MIME search
 'mimesearch' => 'Recerca de typo MIME',
 'mimesearch-summary' => 'Iste pagina permitte filtrar le files a base de lor typos MIME.
-Syntaxe: typo/subtypo, p.ex. <tt>image/jpeg</tt>.',
+Syntaxe: typo/subtypo, p.ex. <code>image/jpeg</code>.',
 'mimetype' => 'Typo MIME:',
 'download' => 'discargar',
 
@@ -1933,9 +1948,9 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 
 'disambiguations' => 'Paginas con ligamines a paginas de disambiguation',
 'disambiguationspage' => 'Template:Disambiguation',
-'disambiguations-text' => "Le sequente paginas ha ligamines a un '''pagina de disambiguation'''.
-Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
-Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual [[MediaWiki:Disambiguationspage]] ha un ligamine.",
+'disambiguations-text' => "Le sequente paginas contine al minus un ligamine a un '''pagina de disambiguation'''.
+Istes debe forsan ligar directemente al articulo sur le thema in question.<br />
+Un pagina se tracta como pagina de disambiguation si illo usa un patrono que es ligate ab [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Redirectiones duple',
 'doubleredirectstext' => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
@@ -2089,7 +2104,7 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-ok' => 'Cercar',
 'linksearch-text' => 'Es possibile usar metacharacteres como in "*.wikipedia.org".
 Necessita al minus un dominio de nivello superior, per exemplo "*.org".<br />
-Protocollos supportate: <tt>$1</tt> (non include alcun de istes in tu recerca).',
+Protocollos supportate: <code>$1</code> (non include alcun de istes in tu recerca).',
 'linksearch-line' => '$1 ligate ab $2',
 'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 
@@ -2287,6 +2302,8 @@ procede con caution.',
 'rollback' => 'Revocar modificationes',
 'rollback_short' => 'Revocar',
 'rollbacklink' => 'revocar',
+'rollbacklinkcount' => 'revocar $1 {{PLURAL:$1|modification|modificationes}}',
+'rollbacklinkcount-morethan' => 'revocar plus de $1 {{PLURAL:$1|modification|modificationes}}',
 'rollbackfailed' => 'Revocation fallite',
 'cantrollback' => 'Impossibile revocar le modification;
 le ultime contributor es le sol autor de iste pagina.',
@@ -2694,7 +2711,7 @@ Per favor selige un altere nomine.',
 'talkexists' => "'''Le pagina mesme ha essite renominate con successo, ma su pagina de discussion non poteva esser renominate proque il ja existe un con le nove titulo.
 Per favor fusiona los manualmente.'''",
 'movedto' => 'renominate a',
-'movetalk' => 'Renominar etiam su pagina de discussion',
+'movetalk' => 'Renominar le pagina de discussion associate',
 'move-subpages' => 'Renominar le subpaginas (usque a $1)',
 'move-talk-subpages' => 'Renominar le subpaginas del pagina de discussion (usque a $1)',
 'movepage-page-exists' => 'Le pagina $1 existe ja e non pote esser automaticamente superscribite.',
@@ -2798,6 +2815,7 @@ Tote le actiones de importation transwiki se registra in le [[Special:Log/import
 'import-interwiki-templates' => 'Includer tote le patronos',
 'import-interwiki-submit' => 'Importar',
 'import-interwiki-namespace' => 'Spatio de nomines de destination:',
+'import-interwiki-rootpage' => 'Pagina radice de destination (optional):',
 'import-upload-filename' => 'Nomine del file:',
 'import-comment' => 'Commento:',
 'importtext' => 'Per favor exporta le file del wiki de origine con le [[Special:Export|facilitate de exportation]].
@@ -2825,11 +2843,14 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'import-upload' => 'Incargar datos XML',
 'import-token-mismatch' => 'Perdita del datos del session. Per favor reprova.',
 'import-invalid-interwiki' => 'Non pote importar ab le wiki specificate.',
-'import-error-edit' => 'Le pagina "$1" non es importate proque tu non ha le permission de modificar lo.',
-'import-error-create' => 'Le pagina "$1" non es importate proque tu non ha le permission de crear lo.',
+'import-error-edit' => 'Le pagina "$1" non es importate perque tu non ha le permission de modificar lo.',
+'import-error-create' => 'Le pagina "$1" non es importate perque tu non ha le permission de crear lo.',
 'import-error-interwiki' => 'Le pagina "$1" non es importate perque su nomine es reservate pro ligation externe (interwiki).',
 'import-error-special' => 'Le pagina "$1" non es importate perque illo pertine a un spatio de nomines special que non permitte paginas.',
 'import-error-invalid' => 'Le pagina "$1" non es importate perque su nomine es invalide.',
+'import-options-wrong' => 'Mal {{PLURAL:$2|option|optiones}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Le pagina radice specificate es un titulo invalide.',
+'import-rootpage-nosubpage' => 'Le spatio de nomines "$1" del pagina radice non permitte subpaginas.',
 
 # Import log
 'importlogpage' => 'Registro de importationes',
@@ -3855,6 +3876,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'api-error-file-too-large' => 'Le file que tu submitteva es troppo grande.',
 'api-error-filename-tooshort' => 'Le nomine del file es troppo curte.',
 'api-error-filetype-banned' => 'Iste typo de file es prohibite.',
+'api-error-filetype-banned-type' => '$1 non es {{PLURAL:$4|un typo|typos}} de file permittite. Le {{PLURAL:$3|typo|typos}} de file permittite es $2.',
 'api-error-filetype-missing' => 'Le nomine del file non ha un extension.',
 'api-error-hookaborted' => 'Le modification que tu ha tentate facer ha essite abortate per un extension.',
 'api-error-http' => 'Error interne: impossibile connecter al servitor.',
@@ -3890,6 +3912,4 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
-# Unknown messages
-'lockmanager-fail-svr-acquire' => 'Non poteva acquirer le serraturas sur le servitor $1.',
 );

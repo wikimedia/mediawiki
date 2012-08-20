@@ -59,7 +59,7 @@ class ApiQueryTags extends ApiQueryBase {
 		$this->addTables( 'change_tag' );
 		$this->addFields( 'ct_tag' );
 
-		$this->addFieldsIf( 'count(*) AS hitcount', $this->fld_hitcount );
+		$this->addFieldsIf( array( 'hitcount' => 'COUNT(*)' ), $this->fld_hitcount );
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
 		$this->addOption( 'GROUP BY', 'ct_tag' );
@@ -73,7 +73,7 @@ class ApiQueryTags extends ApiQueryBase {
 			if ( !$ok ) {
 				break;
 			}
-			$ok = $this->doTag( $row->ct_tag, $row->hitcount );
+			$ok = $this->doTag( $row->ct_tag, $this->fld_hitcount ? $row->hitcount : 0 );
 		}
 
 		// include tags with no hits yet

@@ -17,11 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
+/**
+ * Maintenance script that populates the rev_len field for old revisions
+ * created before MW 1.10.
+ *
+ * @ingroup Maintenance
+ */
 class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();

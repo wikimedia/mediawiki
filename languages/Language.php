@@ -810,7 +810,7 @@ class Language {
 	 * @return string
 	 */
 	function getMessageFromDB( $msg ) {
-		return wfMsgExt( $msg, array( 'parsemag', 'language' => $this ) );
+		return wfMessage( $msg )->inLanguage( $this )->text();
 	}
 
 	/**
@@ -2875,7 +2875,7 @@ class Language {
 	  *
 	  * An example of this function being called:
 	  * <code>
-	  * wfMsg( 'message', $wgLang->formatNum( $num ) )
+	  * wfMessage( 'message' )->numParams( $num )->text()
 	  * </code>
 	  *
 	  * See LanguageGu.php for the Gujarati implementation and

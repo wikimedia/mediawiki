@@ -1,7 +1,7 @@
 /**
  * MediaWiki legacy wikibits
  */
-(function(){
+( function ( mw ) {
 
 window.clientPC = navigator.userAgent.toLowerCase(); // Get client info
 window.is_gecko = /gecko/.test( clientPC ) &&
@@ -515,55 +515,14 @@ window.redirectToFragment = function( fragment ) {
  * Add a cute little box at the top of the screen to inform the user of
  * something, replacing any preexisting message.
  *
- * @param message String -or- Dom Object  HTML to be put inside the right div
- * @param className String   Used in adding a class; should be different for each
- *   call to allow CSS/JS to hide different boxes.  null = no class used.
- * @return Boolean       True on success, false on failure
+ * @deprecated since 1.17 Use mw.util.jsMessage instead.
+ * @param {String|HTMLElement} message To be put inside the message box.
+ * @param {String} className Used in adding a class; Can be used to selectively
+ *  apply CSS to a certain category of messages.  null = no class used.
+ * @return {Boolean} True on success, false on failure
  */
-window.jsMsg = function( message, className ) {
-	if ( !document.getElementById ) {
-		return false;
-	}
-	// We special-case skin structures provided by the software.  Skins that
-	// choose to abandon or significantly modify our formatting can just define
-	// an mw-js-message div to start with.
-	var messageDiv = document.getElementById( 'mw-js-message' );
-	if ( !messageDiv ) {
-		messageDiv = document.createElement( 'div' );
-		if ( document.getElementById( 'column-content' )
-		&& document.getElementById( 'content' ) ) {
-			// MonoBook, presumably
-			document.getElementById( 'content' ).insertBefore(
-				messageDiv,
-				document.getElementById( 'content' ).firstChild
-			);
-		} else if ( document.getElementById( 'content' )
-		&& document.getElementById( 'article' ) ) {
-			// Non-Monobook but still recognizable (old-style)
-			document.getElementById( 'article').insertBefore(
-				messageDiv,
-				document.getElementById( 'article' ).firstChild
-			);
-		} else {
-			return false;
-		}
-	}
-
-	messageDiv.setAttribute( 'id', 'mw-js-message' );
-	messageDiv.style.display = 'block';
-	if( className ) {
-		messageDiv.setAttribute( 'class', 'mw-js-message-' + className );
-	}
-
-	if ( typeof message === 'object' ) {
-		while ( messageDiv.hasChildNodes() ) { // Remove old content
-			messageDiv.removeChild( messageDiv.firstChild );
-		}
-		messageDiv.appendChild( message ); // Append new content
-	} else {
-		messageDiv.innerHTML = message;
-	}
-	return true;
+window.jsMsg = function () {
+	return mw.util.jsMessage.apply( mw.util, arguments );
 };
 
 /**
@@ -663,4 +622,4 @@ if ( ie6_bugs ) {
 	importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
 }
 
-})();
+}( mediaWiki ) );

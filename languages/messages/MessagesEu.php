@@ -20,6 +20,7 @@
  * @author Urhixidur
  * @author Xabier Armendaritz
  * @author לערי ריינהארט
+ * @author පසිඳු කාවින්ද
  */
 
 $namespaceNames = array(
@@ -165,7 +166,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Ezkutatu izena emana duten lankideen aldaketak, jarraitze-zerrendan',
 'tog-watchlisthideanons' => 'Ezkutatu lankide anonimoen aldaketak, jarraitze-zerrendan',
 'tog-watchlisthidepatrolled' => 'Ezkutatu patruilatutako aldaketak jarraitze-zerrendan',
-'tog-nolangconversion' => 'Aldaeren arteko konbertsioa ezgaitu',
 'tog-ccmeonemails' => 'Beste erabiltzaileei bidaltzen dizkiedan mezuen kopiak niri ere bidali',
 'tog-diffonly' => "''Diff''-ak agertzen direnean, orrialdearen edukiera ezkutatu",
 'tog-showhiddencats' => 'Ikusi kategoria ezkutuak',
@@ -1415,8 +1415,8 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 Aurretik igotako irudiak ikusi edo bilatzeko [[Special:FileList|igotako fitxategien zerrendara]] jo. Igoerak [[Special:Log/upload|igoera erregistroan]] ikus daitezke eta ezabatutakoak [[Special:Log/delete|ezabaketa erregistroan]] zerrendatzen dira.
 
 Orrialde baten irudi bat txertatzeko, erabili kode hauetako bat:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''',
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' irudia zuzenean erabiltzeko.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''',
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' irudia zuzenean erabiltzeko.",
 'upload-permitted' => 'Baimendutako fitxategi motak: $1.',
 'upload-preferred' => 'Fitxategi mota hobetsiak: $1.',
 'upload-prohibited' => 'Debekatutako fitxategi motak: $1.',
@@ -1454,20 +1454,20 @@ Baimendutako fitxategi {{PLURAL:$3|mota $2 da|motak $2 dira}}.',
 'large-file' => 'Ez da gomendagarria fitxategiak $1 baino handiagoak izatea; fitxategi honen tamaina: $2.',
 'largefileserver' => 'Fitxategi hau zerbitzariak baimentzen duena baino handiagoa da.',
 'emptyfile' => 'Badirudi igotzen ari zaren fitxategia hutsik dagoela. Mesedez, egiaztatu fitxategi hori dela igo nahi duzuna.',
-'fileexists' => "Badago izen hori daukan fitxategi bat; mesedez, ikusi existitzen den '''<tt>[[:$1]]</tt>''' fitxategia aldatu nahi duzun egiaztatzeko.
-[[$1|thumb]]",
-'filepageexists' => "Fitxategi honen deskribapen orria dagoeneko sortuta dago '''<tt>[[:$1]]</tt>'''-en, baina, ez da existitzen izen hori duen fitxategirik.
+'fileexists' => 'Badago izen hori daukan fitxategi bat; mesedez, ikusi existitzen den <strong>[[:$1]]</strong> fitxategia aldatu nahi duzun egiaztatzeko.
+[[$1|thumb]]',
+'filepageexists' => 'Fitxategi honen deskribapen orria dagoeneko sortuta dago <strong>[[:$1]]</strong>-en, baina, ez da existitzen izen hori duen fitxategirik.
 Idazten duzun laburpena ez da deskribapen orrian agertuko.
 Zure laburpena agertzeko, eskuz aldatu beharko duzu.
-[[$1|thumb]]",
-'fileexists-extension' => "Badago antzeko izena duen fitxategi bat: [[$2|thumb]]
-* Igotako fitxategiaren izena: '''<tt>[[:$1]]</tt>'''
-* Aurretik dagoen fitxategiaren izena: '''<tt>[[:$2]]</tt>'''
-Hautatu beste izen bat.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Badago antzeko izena duen fitxategi bat: [[$2|thumb]]
+* Igotako fitxategiaren izena: <strong>[[:$1]]</strong>
+* Aurretik dagoen fitxategiaren izena: <strong>[[:$2]]</strong>
+Hautatu beste izen bat.',
 'fileexists-thumbnail-yes' => "Badirudi neurri txikiko irudia dela ''(irudi txikia)''. [[$1|thumb]]
-Egiaztatu '''<tt>[[:$1]]</tt>''' fitxategia.
+Egiaztatu <strong>[[:$1]]</strong> fitxategia.
 Egiaztatutako fitxategia eta jatorrizkoa berdinak badira ez dago irudi txikia igo beharrik.",
-'file-thumbnail-no' => "Fitxategiaren izena '''<tt>$1</tt>'''-(r)ekin hasten da.
+'file-thumbnail-no' => "Fitxategiaren izena <strong>$1</strong>-(r)ekin hasten da.
 Badirudi tamaina txikiko irudia ''(thumbnail)'' dela.
 Irudi hau bereizmen handiagoan izango bazenu igo ezazu, bestela, fitxategiaren izena aldatu mesedez.",
 'fileexists-forbidden' => 'Badago izen hori daukan fitxategia, eta ezin da gainidatzi.
@@ -1637,7 +1637,7 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 
 # MIME search
 'mimesearch' => 'MIME bilaketa',
-'mimesearch-summary' => 'Orrialde honek fitxategiak bere MIME motaren arabera iragaztea ahalbidetzen du. Iragazkia: eduki-mota/azpi-mota, adib. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Orrialde honek fitxategiak bere MIME motaren arabera iragaztea ahalbidetzen du. Iragazkia: eduki-mota/azpi-mota, adib. <code>image/jpeg</code>.',
 'mimetype' => 'MIME mota:',
 'download' => 'jaitsi',
 
@@ -1819,7 +1819,7 @@ Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'linksearch-ok' => 'Bilatu',
 'linksearch-text' => '"*.wikipedia.org" bezalako izartxoak erabil daitezke.
 Gutxienez goi mailako domeinua behar du, adibidez "*.org".<br />
-Baimendutako protokoloak: <tt>$1</tt> (zure bilaketan hauek ez gehitu).',
+Baimendutako protokoloak: <code>$1</code> (zure bilaketan hauek ez gehitu).',
 'linksearch-line' => '$1, $2(e)tik lotuta',
 'linksearch-error' => 'Komodinak izenaren hasieran bakarrik agertu beharko lirateke.',
 
@@ -3163,6 +3163,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'version-software' => 'Instalatutako softwarea',
 'version-software-product' => 'Produktua',
 'version-software-version' => 'Bertsioa',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Fitxategi bidea',

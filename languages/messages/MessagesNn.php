@@ -13,6 +13,7 @@
  * @author Eirik
  * @author Finnrind
  * @author Frokor
+ * @author Geitost
  * @author Gunnernett
  * @author Guttorm Flatabø
  * @author H92
@@ -328,7 +329,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Gøym endringar av innlogga brukarar i overvakingslista.',
 'tog-watchlisthideanons' => 'Gøym endringar av anonyme brukarar i overvakingslista.',
 'tog-watchlisthidepatrolled' => 'Gøym patruljerte endringar i overvakingslista',
-'tog-nolangconversion' => 'Slå av variantkonvertering',
 'tog-ccmeonemails' => 'Send meg kopi av e-postane eg sender til andre brukarar',
 'tog-diffonly' => 'Ikkje vis sideinnhaldet under skilnadene mellom versjonane',
 'tog-showhiddencats' => 'Vis gøymde kategoriar',
@@ -845,7 +845,7 @@ Mellombels passord: $2',
 'showpreview' => 'Førehandsvis',
 'showlivepreview' => 'Levande førehandsvising',
 'showdiff' => 'Vis skilnad',
-'anoneditwarning' => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for denne sida.",
+'anoneditwarning' => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for sida.",
 'anonpreviewwarning' => "''Du er ikkje innlogga. Lagrar du vil IP-adressa di verta førd opp i endringshistorikken til denne sida.''",
 'missingsummary' => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
 'missingcommenttext' => 'Ver venleg og skriv ein kommentar nedanfor.',
@@ -1194,7 +1194,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
 'compareselectedversions' => 'Samanlikn valde versjonar',
-'showhideselectedversions' => 'Syn/skjul valde versjonar',
+'showhideselectedversions' => 'Vis/løyn valde versjonar',
 'editundo' => 'angre',
 'diff-multi' => '({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} frå {{PLURAL:$2|éin brukar|$2 brukarar}} er ikkje {{PLURAL:$1|vist|viste}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein mellomversjon|$1 mellomversjonar}} av meir enn $2 {{PLURAL:$2|brukar|brukarar}}  er ikkje {{PLURAL:$1|vist|viste}})',
@@ -1349,7 +1349,7 @@ Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'prefs-custom-js' => 'Eigendefinert JavaScript',
 'prefs-common-css-js' => 'Delt CSS/JavaScript for alle draktene:',
 'prefs-reset-intro' => 'Du kan nytta denne sida til å tilbakestilla innstillingane dine til standardinnstillingane.
-Dette kan ikke tilbakestillast.',
+Dette kan ikkje tilbakestillast.',
 'prefs-emailconfirm-label' => 'Stadfesting av e-post:',
 'prefs-textboxsize' => 'Storleiken til redigeringsvindauga',
 'youremail' => 'E-post:',
@@ -1477,7 +1477,7 @@ Dette kan ikke tilbakestillast.',
 'right-ipblock-exempt' => 'Kan gjere endringar frå blokkerte IP-adresser',
 'right-proxyunbannable' => 'Kan gjere endringar frå blokkerte proxyar',
 'right-unblockself' => 'Avblokkera seg sjølve',
-'right-protect' => 'Endre vernenivå',
+'right-protect' => 'Endre vernenivå<!-- og redigera beskyttete sider-->',
 'right-editprotected' => 'Endre verna sider',
 'right-editinterface' => 'Redigere brukargrensesnittet',
 'right-editusercssjs' => 'Endre andre brukarar sine CSS- og JS-filer',
@@ -1605,9 +1605,9 @@ Slette- og flytteloggen til sida er gjeven opp her:",
 For å sjå eller søkje i eksisterande filer, gå til [[Special:FileList|fillista]]. Opplastingar vert òg lagra i [[Special:Log/upload|opplastingsloggen]], og slettingar i [[Special:Log/delete|sletteloggen]].
 
 For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.jpg<nowiki>]]</nowiki></tt>''' for å bruke biletet i opphavleg form
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}:Filnamn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></tt>''' for å bruke biletet med ei breidd på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki></tt>''' for å lenkje direkte til fila utan å vise ho",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnamn.jpg<nowiki>]]</nowiki></code>''' for å bruke biletet i opphavleg form
+*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnamn.png|200px|mini|venstre|Alternativ tekst<nowiki>]]</nowiki></code>''' for å bruke biletet med ei breidd på 200&nbsp;pikslar, venstrestilt og med «Alternativ tekst» som bilettekst
+*'''<code><nowiki>[[</nowiki>{{ns:media}}:Filnamn.ogg<nowiki>]]</nowiki></code>''' for å lenkje direkte til fila utan å vise ho",
 'upload-permitted' => 'Godtekne filtypar: $1.',
 'upload-preferred' => 'Føretrekte filtypar: $1.',
 'upload-prohibited' => 'Ikkje godtekne filtypar: $1.',
@@ -1650,18 +1650,18 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'largefileserver' => 'Denne fila er større enn det tenaren tillèt.',
 'emptyfile' => 'Det ser ut til at fila du lasta opp er tom. Dette kan komma av ein skrivefeil i filnamnet. Sjekk og tenk etter om du verkeleg vil laste opp fila.',
 'windows-nonascii-filename' => 'Wikien stør ikkje filnamn med spesialteikn.',
-'fileexists' => "Ei fil med dette namnet finst allereie, sjekk '''<tt>[[:$1]]</tt>''' om du ikkje er sikker på om du vil endre namnet.
-[[$1|thumb]]",
-'filepageexists' => "Skildringssida for denne fila finst allereie på '''<tt>[[:$1]]</tt>''', men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
-[[$1|thumb]]",
-'fileexists-extension' => "Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
-* Namnet på fila du lastar opp: '''<tt>[[:$1]]</tt>'''
-* Namnet på den eksisterande fila: '''<tt>[[:$2]]</tt>'''
-Ver venleg og vel eit anna namn.",
-'fileexists-thumbnail-yes' => "Fila ser ut til å vere eit bilete med redusert storleik. [[$1|thumb]]
-Ver venleg og sjekk fila '''<tt>[[:$1]]</tt>'''.
-Dersom denne er det same biletet i original storleik, er det ikkje nødvendig å laste opp ein mindre versjon.",
-'file-thumbnail-no' => "Filnamnet byrjar med '''<tt>$1</tt>'''.
+'fileexists' => 'Ei fil med dette namnet finst allereie, sjekk <strong>[[:$1]]</strong> om du ikkje er sikker på om du vil endre namnet.
+[[$1|thumb]]',
+'filepageexists' => 'Skildringssida for denne fila finst allereie på <strong>[[:$1]]</strong>, men det finst ikkje noka fil med dette namnet. Endringssamandraget du skriv inn vert ikkje vist på skildringssida. For at det skal dukke opp der, må du skrive det inn på skildringssida manuelt etter å ha lasta opp fila.
+[[$1|thumb]]',
+'fileexists-extension' => 'Ei fil med eit liknande namn finst allereie: [[$2|thumb]]
+* Namnet på fila du lastar opp: <strong>[[:$1]]</strong>
+* Namnet på den eksisterande fila: <strong>[[:$2]]</strong>
+Ver venleg og vel eit anna namn.',
+'fileexists-thumbnail-yes' => 'Fila ser ut til å vere eit bilete med redusert storleik. [[$1|thumb]]
+Ver venleg og sjekk fila <strong>[[:$1]]</strong>.
+Dersom denne er det same biletet i original storleik, er det ikkje nødvendig å laste opp ein mindre versjon.',
+'file-thumbnail-no' => "Filnamnet byrjar med <strong>$1</strong>.
 Det ser ut til å vere eit bilte med redusert storleik''(miniatyrbilete)''.
 Om du har dette bilete i stor utgåve, så last det opp eller endre filnamnet på denne fila.",
 'fileexists-forbidden' => 'Ei fil med dette namnet finst allereie, og ho kan ikkje verte skriven over.
@@ -1790,7 +1790,7 @@ For best tryggleik, er img_auth.php sett ut av funksjon.',
 'filehist-help' => 'Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.',
 'filehist-deleteall' => 'slett alle',
 'filehist-deleteone' => 'slett',
-'filehist-revert' => 'rull attende',
+'filehist-revert' => 'rulla attende',
 'filehist-current' => 'noverande',
 'filehist-datetime' => 'Dato/klokkeslett',
 'filehist-thumb' => 'Miniatyrbilete',
@@ -1822,7 +1822,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'shared-repo' => 'eit sams fillager',
 
 # File reversion
-'filerevert' => 'Rull attende $1',
+'filerevert' => 'Rulla attende $1',
 'filerevert-legend' => 'Rull attende fila',
 'filerevert-intro' => "Du rullar attende '''[[Media:$1|$1]]''' til [$4 versjonen frå $3, $2].",
 'filerevert-comment' => 'Årsak:',
@@ -1853,7 +1853,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 
 # MIME search
 'mimesearch' => 'MIME-søk',
-'mimesearch-summary' => 'Denne sida gjer filtrering av filer etter MIME-type mogleg. Skriv inn: innhaldstype/undertype, t.d. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Denne sida gjer filtrering av filer etter MIME-type mogleg. Skriv inn: innhaldstype/undertype, t.d. <code>image/jpeg</code>.',
 'mimetype' => 'MIME-type:',
 'download' => 'last ned',
 
@@ -1997,6 +1997,7 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'alllogstext' => 'Kombinert vising av alle loggane på {{SITENAME}}. Du kan avgrense resultatet ved å velje loggtype, brukarnamn eller den sida som er påverka (hugs å skilje mellom store og små bokstavar)',
 'logempty' => 'Ingen treff i loggane.',
 'log-title-wildcard' => 'Søk i titlar som byrjar med denne teksten',
+'showhideselectedlogentries' => 'Vis/gøym valde loggoppføringar',
 
 # Special:AllPages
 'allpages' => 'Alle sider',
@@ -2038,7 +2039,7 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'linksearch-pat' => 'Søkemønster:',
 'linksearch-ns' => 'Namnerom:',
 'linksearch-ok' => 'Søk',
-'linksearch-text' => 'Jokerteikn som «*.wikipedia.org» kan nyttast.<br />Støtta protokollar: <tt>$1</tt>',
+'linksearch-text' => 'Jokerteikn som «*.wikipedia.org» kan nyttast.<br />Støtta protokollar: <code>$1</code>',
 'linksearch-line' => '$2 lenkjer til $1',
 'linksearch-error' => 'Jokerteikn kan berre nyttast føre tenarnamnet.',
 
@@ -2215,8 +2216,10 @@ Tilbakemeldingar og anna hjelp:
 
 # Rollback
 'rollback' => 'Rull attende endringar',
-'rollback_short' => 'Rull attende',
-'rollbacklink' => 'rull attende',
+'rollback_short' => 'Rulla attende',
+'rollbacklink' => 'rulla attende',
+'rollbacklinkcount' => 'rulla attende {{PLURAL:$1|éi endring|$1 endringar}}',
+'rollbacklinkcount-morethan' => 'rulla attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}',
 'rollbackfailed' => 'Kunne ikkje rulle attende',
 'cantrollback' => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
 'alreadyrolled' => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
@@ -2579,7 +2582,7 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'move-subpages' => 'Flytt undersider (opp til $1)',
 'move-talk-subpages' => 'Flytt undersider av diskusjonssida (opp til $1)',
 'movepage-page-exists' => 'Sida $1 finst alt og kan ikkje skrivast over automatisk.',
-'movepage-page-moved' => 'Sida $1 har blitt flytta til $2.',
+'movepage-page-moved' => 'Sida $1 er flytt til $2.',
 'movepage-page-unmoved' => 'Sida $1 kunne ikkje flyttast til $2.',
 'movepage-max-pages' => 'Grensa på {{PLURAL:$1|éi side|$1 sider}} er nådd; ingen fleire sider kjem til å verte flytta automatisk.',
 'movelogpage' => 'Flyttelogg',
@@ -2775,7 +2778,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-watchlistedit-raw-submit' => 'Oppdater overvakingslista',
 'tooltip-recreate' => 'Ved å trykkje på «Nyopprett» vert sida oppretta på nytt.',
 'tooltip-upload' => 'Start opplastinga',
-'tooltip-rollback' => '«Attenderull»-knappen attenderullar endringar på denne sida med eitt klikk til den førre utgåva av ein annan brukar',
+'tooltip-rollback' => '«Rulla attende»-knappen rullar med eitt klikk attende endringa(ne) på sida gjorde av den siste bidragsytaren',
 'tooltip-undo' => '«Gjer om» attenderullar endringar og opnar endringsvindauga med førehandsvising. Gjer at ein kan leggje til ei årsak samandragsboksen.',
 'tooltip-preferences-save' => 'Lagra innstillingar',
 'tooltip-summary' => 'Skriv inn eit kort samandrag',
@@ -3605,6 +3608,7 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'api-error-file-too-large' => 'Fila du sende var for stor.',
 'api-error-filename-tooshort' => 'Filnamnet er for stutt.',
 'api-error-filetype-banned' => 'Denne filtypen er ikkje tillaten.',
+'api-error-filetype-banned-type' => '$1 er ikkje ein tillaten filtype. {{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.',
 'api-error-filetype-missing' => 'Fila saknar ei ending.',
 'api-error-http' => 'Intern feil: kan ikkje kopla til tenaren.',
 'api-error-illegal-filename' => 'Filnamnet er ikkje tillate.',

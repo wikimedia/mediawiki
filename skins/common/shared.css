@@ -116,14 +116,19 @@ span.texhtml {
 #wpTextbox1 {
 	clear: both;
 }
+
 #toolbar img {
 	cursor: pointer;
 }
+
 div#mw-js-message {
 	margin: 1em 5%;
 	padding: 0.5em 2.5%;
 	border: solid 1px #ddd;
 	background-color: #fcfcfc;
+	/* Message hides on-click */
+	/* See also mw.util.jsMessage */
+	cursor: pointer;
 }
 
 /* Edit section links */

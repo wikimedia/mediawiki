@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chmee2
  * @author Danny B.
  * @author Dontlietome7
  * @author Helix84
@@ -28,6 +29,7 @@
  * @author Tchoř
  * @author Urhixidur
  * @author Utar
+ * @author Vks
  * @author לערי ריינהארט
  */
 
@@ -395,7 +397,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Na seznamu sledovaných stránek skrýt editace přihlášených uživatelů',
 'tog-watchlisthideanons' => 'Na seznamu sledovaných stránek skrýt editace nepřihlášených uživatelů',
 'tog-watchlisthidepatrolled' => 'Skrýt patrolované editace ve sledovaných stránkách',
-'tog-nolangconversion' => 'Vypnout konverzi variant',
 'tog-ccmeonemails' => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly' => 'Nezobrazovat obsah stránky pod rozdílem verzí',
 'tog-showhiddencats' => 'Zobrazit skryté kategorie',
@@ -620,6 +621,10 @@ $1',
 'youhavenewmessages' => 'Máte $1 ($2).',
 'newmessageslink' => 'nové zprávy',
 'newmessagesdifflink' => 'rozdíl oproti předchozí verzi',
+'youhavenewmessagesfromusers' => 'Máte $1 od {{PLURAL:$3|jiného uživatele|$3 jiných uživatelů}} ($2).',
+'youhavenewmessagesmanyusers' => 'Máte $1 od mnoha dalších uživatelů ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|novou zprávu|nové zprávy}}',
+'newmessagesdifflinkplural' => 'poslední {{PLURAL:$1|změna|změny}}',
 'youhavenewmessagesmulti' => 'Na $1 máte nové zprávy',
 'editsection' => 'editovat',
 'editold' => 'editovat',
@@ -765,6 +770,7 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'remembermypassword' => 'Zapamatovat si mé přihlášení na tomto počítači (maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'securelogin-stick-https' => 'Zůstat po přihlášení připojen přes HTTPS',
 'yourdomainname' => 'Vaše doména',
+'password-change-forbidden' => 'Na této wiki nemůžete měnit hesla.',
 'externaldberror' => 'Buď nastala chyba externí autentizační databáze, nebo nemáte dovoleno měnit svůj externí účet.',
 'login' => 'Přihlaste se',
 'nav-login-createaccount' => 'Přihlášení / vytvoření účtu',
@@ -1004,6 +1010,10 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'noarticletext-nopermission' => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>.',
+'missing-revision' => 'Revize #$1 stránky s názvem „{{PAGENAME}}“ neexistuje.
+
+Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
 'userpage-userdoesnotexist' => 'Uživatelský účet „<nowiki>$1</nowiki>“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'userpage-userdoesnotexist-view' => 'Uživatelský účet „$1“ není zaregistrován.',
 'blocked-notice-logextract' => 'Tento uživatel je momentálně zablokován.
@@ -1126,6 +1136,7 @@ Tyto argumenty byly vynechány.',
 'expansion-depth-exceeded-warning' => 'Stránka překročila hloubku expanze',
 'parser-unstrip-loop-warning' => 'Detekováno zacyklení unstrip',
 'parser-unstrip-recursion-limit' => 'Překročen limit rekurze unstrip ($1)',
+'converter-manual-rule-error' => 'Detekována chyba v pravidlech manuální jazykové konverze',
 
 # "Undo" feature
 'undo-success' => 'Editace může být zrušena. Zkontrolujte a pak potvrďte změny zobrazené níže.',
@@ -1312,6 +1323,10 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'editundo' => 'zrušit editaci',
 'diff-multi' => '({{PLURAL:$1|Není zobrazena 1 mezilehlá verze|Nejsou zobrazeny $1 mezilehlé verze|Není zobrazeno $1 mezilehlých verzí}} od {{PLURAL:$2|1 uživatele|$2 uživatelů}}.)',
 'diff-multi-manyusers' => '(Není zobrazeno $1 mezilehlých verzí od více než $2 {{PLURAL:$2|uživatele|uživatelů}}.)',
+'difference-missing-revision' => '{{PLURAL:$2|Jedna z revizí|$2 revize|$2 revizí}} k požadovanému porovnání ($1) {{PLURAL:$2|neexistuje|neexistují|neexistuje}}.
+
+Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].',
 
 # Search results
 'searchresults' => 'Výsledky hledání',
@@ -1331,7 +1346,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'shown-title' => 'Zobrazit $1 {{PLURAL:$1|výsledek|výsledky|výsledků}} na stránku',
 'viewprevnext' => 'Ukázat ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Možnosti hledání',
-'searchmenu-exists' => "*Stránka '''[[$1]]'''",
+'searchmenu-exists' => "'''Na této wiki existuje stránka nazvaná „[[:$1]]“.'''",
 'searchmenu-new' => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
 'searchhelp-url' => 'Help:Obsah',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
@@ -1765,19 +1780,19 @@ Pro vložení obrázku do stránky použijte jeden z následujících způsobů 
 'largefileserver' => 'Velikost tohoto souboru překračuje limit nastavený na serveru.',
 'emptyfile' => 'Soubor, který jste vložili, se zdá být prázdný. Mohl to způsobit překlep v názvu souboru. Prosím zkontrolujte, zda jste opravdu chtěli vložit tento soubor.',
 'windows-nonascii-filename' => 'Tato wiki nepodporuje názvy souborů obsahující zvláštní znaky.',
-'fileexists' => "Soubor s tímto jménem již existuje, prosím podívejte se na '''<tt>[[:$1]]</tt>''', pokud nevíte jistě, zda chcete tento soubor nahradit.
-[[$1|thumb]]",
-'filepageexists' => "Popisná stránka pro soubor s tímto jménem již byla na '''<tt>[[:$1]]</tt>''' založena, avšak odpovídající soubor dosud neexistuje.
+'fileexists' => 'Soubor s tímto jménem již existuje, prosím podívejte se na <strong>[[:$1]]</strong>, pokud nevíte jistě, zda chcete tento soubor nahradit.
+[[$1|thumb]]',
+'filepageexists' => 'Popisná stránka pro soubor s tímto jménem již byla na <strong>[[:$1]]</strong> založena, avšak odpovídající soubor dosud neexistuje.
 Shrnutí, které zde uvedete, se na popisné stránce nezobrazí.
-Pokud tam chcete své shrnutí zobrazit, budete muset příslušnou stránku editovat ručně. [[$1|thumb]]",
-'fileexists-extension' => "Již existuje soubor s podobným jménem: [[$2|thumb]]
-* Jméno načítaného souboru: '''<tt>[[:$1]]</tt>'''
-* Jméno existujícího souboru: '''<tt>[[:$2]]</tt>'''
-Vyberte jiné jméno.",
+Pokud tam chcete své shrnutí zobrazit, budete muset příslušnou stránku editovat ručně. [[$1|thumb]]',
+'fileexists-extension' => 'Již existuje soubor s podobným jménem: [[$2|thumb]]
+* Jméno načítaného souboru: <strong>[[:$1]]</strong>
+* Jméno existujícího souboru: <strong>[[:$2]]</strong>
+Vyberte jiné jméno.',
 'fileexists-thumbnail-yes' => "Tento soubor je zřejmě obrázek ve zmenšené velikosti ''(náhled)''. [[$1|thumb]]
-Zkontrolujte soubor '''<tt>[[:$1]]</tt>'''.
+Zkontrolujte soubor <strong>[[:$1]]</strong>.
 Pokud je zmiňovaný soubor větší, ale jinak stejný, není potřeba zvlášť načítat jeho zmenšenou verzi.",
-'file-thumbnail-no' => "Jméno souboru začíná na '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "Jméno souboru začíná na <strong>$1</strong>.
 Možná to je obrázek ve zmenšené velikosti ''(náhled)''.
 Načtěte soubor v plném rozlišením, pokud je k dispozici, nebo změňte jméno souboru.",
 'fileexists-forbidden' => 'Soubor s tímto názvem již existuje a není dovoleno ho přepsat.
@@ -2082,7 +2097,9 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 
 'disambiguations' => 'Stránky odkazující na rozcestníky',
 'disambiguationspage' => 'Template:Rozcestník',
-'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
+'disambiguations-text' => "Následující stránky obsahují nejméně jeden odkaz na '''rozcestník'''.
+Asi by místo toho měly odkazovat na konkrétnější stránku.<br />
+Stránka je považována za rozcestník, pokud používá některou ze šablon odkazovaných na [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dvojitá přesměrování',
 'doubleredirectstext' => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
@@ -2234,7 +2251,7 @@ Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
 'linksearch-ok' => 'Hledat',
 'linksearch-text' => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.
 Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />
-Podporované protokoly: <tt>$1</tt> (nepřidávejte je do hledání).',
+Podporované protokoly: <code>$1</code> (nepřidávejte je do hledání).',
 'linksearch-line' => '$2 odkazuje na $1',
 'linksearch-error' => 'Zástupné znaky lze použít jen na začátku doménového jména.',
 
@@ -2420,6 +2437,8 @@ Rady a kontakt:
 'rollback' => 'Vrátit zpět editace',
 'rollback_short' => 'Vrátit zpět',
 'rollbacklink' => 'vrácení zpět',
+'rollbacklinkcount' => 'vrácení $1 {{PLURAL:$1|editace|editací}} zpět',
+'rollbacklinkcount-morethan' => 'vrácení více než $1 {{PLURAL:$1|editace|editací}} zpět',
 'rollbackfailed' => 'Nešlo vrátit zpět',
 'cantrollback' => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
 'alreadyrolled' => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
@@ -3872,7 +3891,7 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 * <span class="mw-specialpagecached">Speciální stránky z&nbsp;cache (mohou být zastaralé)</span>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other' => 'Ostatní',
-'specialpages-group-login' => 'Přihlašování / registrace',
+'specialpages-group-login' => 'Přihlášení / vytvoření účtu',
 'specialpages-group-changes' => 'Poslední změny a záznamy',
 'specialpages-group-media' => 'Média',
 'specialpages-group-users' => 'Uživatelé a skupiny',
@@ -4011,6 +4030,7 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'api-error-file-too-large' => 'Načtený soubor je příliš velký.',
 'api-error-filename-tooshort' => 'Název souboru je příliš krátký.',
 'api-error-filetype-banned' => 'Tento typ souboru je zakázán.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|je nedovolený formát souborů|jsou nedovolené formáty souborů}}. {{PLURAL:$3|Povolený formát souborů je|Povolené formáty souborů jsou}} $2.',
 'api-error-filetype-missing' => 'Tento soubor nemá příponu.',
 'api-error-hookaborted' => 'Zamýšlená úprava byla zakázána rozšiřujícím modulem.',
 'api-error-http' => 'Vnitřní chyba: nepodařilo se připojit k serveru.',

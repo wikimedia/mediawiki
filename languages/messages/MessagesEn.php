@@ -417,6 +417,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIMESearch' ),
 	'Mostcategories'            => array( 'MostCategories' ),
 	'Mostimages'                => array( 'MostLinkedFiles', 'MostFiles', 'MostImages' ),
+	'Mostinterwikis'            => array( 'MostInterwikis' ),
 	'Mostlinked'                => array( 'MostLinkedPages', 'MostLinked' ),
 	'Mostlinkedcategories'      => array( 'MostLinkedCategories', 'MostUsedCategories' ),
 	'Mostlinkedtemplates'       => array( 'MostLinkedTemplates', 'MostUsedTemplates' ),
@@ -675,7 +676,6 @@ XHTML id names.
 'tog-watchlisthideliu'        => 'Hide edits by logged in users from the watchlist',
 'tog-watchlisthideanons'      => 'Hide edits by anonymous users from the watchlist',
 'tog-watchlisthidepatrolled'  => 'Hide patrolled edits from the watchlist',
-'tog-nolangconversion'        => 'Disable variants conversion', # only translate this message to other languages if you have to change it
 'tog-ccmeonemails'            => 'Send me copies of e-mails I send to other users',
 'tog-diffonly'                => 'Do not show page content below diffs',
 'tog-showhiddencats'          => 'Show hidden categories',
@@ -912,6 +912,10 @@ See [[Special:Version|version page]].',
 'youhavenewmessages'           => 'You have $1 ($2).',
 'newmessageslink'              => 'new messages',
 'newmessagesdifflink'          => 'last change',
+'youhavenewmessagesfromusers'  => 'You have $1 from {{PLURAL:$3|another user|$3 users}} ($2).',
+'youhavenewmessagesmanyusers'  => 'You have $1 from many users ($2).',
+'newmessageslinkplural'        => '{{PLURAL:$1|a new message|new messages}}', # don't rely on the value of $1, it's 1 for singular and 2 for "more than one"
+'newmessagesdifflinkplural'    => 'last {{PLURAL:$1|change|changes}}', # don't rely on the value of $1, it's 1 for singular and 2 for "more than one"
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
 'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
@@ -974,9 +978,9 @@ A list of valid special pages can be found at [[Special:SpecialPages|{{int:speci
 'dberrortext'                   => 'A database query syntax error has occurred.
 This may indicate a bug in the software.
 The last attempted database query was:
-<blockquote><tt>$1</tt></blockquote>
-from within function "<tt>$2</tt>".
-Database returned error "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+from within function "<code>$2</code>".
+Database returned error "<samp>$3: $4</samp>".',
 'dberrortextcl'                 => 'A database query syntax error has occurred.
 The last attempted database query was:
 "$1"
@@ -1073,6 +1077,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'remembermypassword'         => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
 'securelogin-stick-https'    => 'Stay connected to HTTPS after login',
 'yourdomainname'             => 'Your domain:',
+'password-change-forbidden'  => 'You cannot change passwords on this wiki.',
 'externaldberror'            => 'There was either an authentication database error or you are not allowed to update your external account.',
 'login'                      => 'Log in',
 'nav-login-createaccount'    => 'Log in / create account',
@@ -1360,6 +1365,10 @@ or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
+'missing-revision'                 => 'The revision #$1 of the page named "{{PAGENAME}}" does not exist.
+
+This is usually caused by following an outdated history link to a page that has been deleted.
+Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
 'userpage-userdoesnotexist-view'   => 'User account "$1" is not registered.',
@@ -1369,7 +1378,6 @@ The latest block log entry is provided below for reference:',
 * '''Firefox / Safari:''' Hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''⌘-R'' on a Mac)
 * '''Google Chrome:''' Press ''Ctrl-Shift-R'' (''⌘-Shift-R'' on a Mac)
 * '''Internet Explorer:''' Hold ''Ctrl'' while clicking ''Refresh'', or press ''Ctrl-F5''
-* '''Konqueror:''' Click ''Reload'' or press ''F5''
 * '''Opera:''' Clear the cache in ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Use the \"{{int:showpreview}}\" button to test your new CSS before saving.",
 'userjsyoucanpreview'              => "'''Tip:''' Use the \"{{int:showpreview}}\" button to test your new JavaScript before saving.",
@@ -1499,6 +1507,7 @@ These arguments have been omitted.",
 'expansion-depth-exceeded-warning'        => 'Page exceeded the expansion depth',
 'parser-unstrip-loop-warning'             => 'Unstrip loop detected',
 'parser-unstrip-recursion-limit'          => 'Unstrip recursion limit exceeded ($1)',
+'converter-manual-rule-error'             => 'Error detected in manual language conversion rule',
 
 # "Undo" feature
 'undo-success' => 'The edit can be undone.
@@ -1683,16 +1692,20 @@ Note that using the navigation links will reset this column.',
 'mergelogpagetext'   => 'Below is a list of the most recent merges of one page history into another.',
 
 # Diffs
-'history-title'              => 'Revision history of "$1"',
-'difference-title'           => 'Difference between revisions of "$1"',
-'difference-title-multipage' => 'Difference between pages "$1" and "$2"',
-'difference-multipage'       => '(Difference between pages)',
-'lineno'                     => 'Line $1:',
-'compareselectedversions'    => 'Compare selected revisions',
-'showhideselectedversions'   => 'Show/hide selected revisions',
-'editundo'                   => 'undo',
-'diff-multi'                 => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
-'diff-multi-manyusers'       => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'history-title'               => 'Revision history of "$1"',
+'difference-title'            => 'Difference between revisions of "$1"',
+'difference-title-multipage'  => 'Difference between pages "$1" and "$2"',
+'difference-multipage'        => '(Difference between pages)',
+'lineno'                      => 'Line $1:',
+'compareselectedversions'     => 'Compare selected revisions',
+'showhideselectedversions'    => 'Show/hide selected revisions',
+'editundo'                    => 'undo',
+'diff-multi'                  => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by {{PLURAL:$2|one user|$2 users}} not shown)',
+'diff-multi-manyusers'        => '({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} by more than $2 {{PLURAL:$2|user|users}} not shown)',
+'difference-missing-revision' => '{{PLURAL:$2|One revision|$2 revisions}} of this difference ($1) {{PLURAL:$2|was|were}} not found.
+
+This is usually caused by following an outdated diff link to a page that has been deleted.
+Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].',
 
 # Search results
 'search-summary'                   => '', # do not translate or duplicate this message to other languages
@@ -2142,9 +2155,9 @@ The deletion and move log for this page are provided here for convenience:",
 To view or search previously uploaded files go to the [[Special:FileList|list of uploaded files]], (re)uploads are also logged in the [[Special:Log/upload|upload log]], deletions in the [[Special:Log/delete|deletion log]].
 
 To include a file in a page, use a link in one of the following forms:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' to use the full version of the file
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' for directly linking to the file without displaying the file",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' to use the full version of the file
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' to use a 200 pixel wide rendition in a box in the left margin with 'alt text' as description
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' for directly linking to the file without displaying the file",
 'upload-permitted'            => 'Permitted file types: $1.',
 'upload-preferred'            => 'Preferred file types: $1.',
 'upload-prohibited'           => 'Prohibited file types: $1.',
@@ -2183,7 +2196,7 @@ Permitted {{PLURAL:$3|file type is|file types are}} $2.',
 'hookaborted'                 => 'The modification you tried to make was aborted by an extension.',
 'illegal-filename'            => 'The filename is not allowed.',
 'overwrite'                   => 'Overwriting an existing file is not allowed.',
-'unknown-error'               => 'An unknown error occured.',
+'unknown-error'               => 'An unknown error occurred.',
 'tmp-create-error'            => 'Could not create temporary file.',
 'tmp-write-error'             => 'Error writing temporary file.',
 'large-file'                  => 'It is recommended that files are no larger than $1;
@@ -2193,21 +2206,21 @@ this file is $2.',
 This might be due to a typo in the filename.
 Please check whether you really want to upload this file.',
 'windows-nonascii-filename'   => 'This wiki does not support filenames with special characters.',
-'fileexists'                  => "A file with this name exists already, please check '''<tt>[[:$1]]</tt>''' if you are not sure if you want to change it.
+'fileexists'                  => "A file with this name exists already, please check <strong>[[:$1]]</strong> if you are not sure if you want to change it.
 [[$1|thumb]]",
-'filepageexists'              => "The description page for this file has already been created at '''<tt>[[:$1]]</tt>''', but no file with this name currently exists.
+'filepageexists'              => "The description page for this file has already been created at <strong>[[:$1]]</strong>, but no file with this name currently exists.
 The summary you enter will not appear on the description page.
 To make your summary appear there, you will need to manually edit it.
 [[$1|thumb]]",
 'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
-* Name of the uploading file: '''<tt>[[:$1]]</tt>'''
-* Name of the existing file: '''<tt>[[:$2]]</tt>'''
+* Name of the uploading file: <strong>[[:$1]]</strong>
+* Name of the existing file: <strong>[[:$2]]</strong>
 Please choose a different name.",
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 [[$1|thumb]]
-Please check the file '''<tt>[[:$1]]</tt>'''.
+Please check the file <strong>[[:$1]]</strong>.
 If the checked file is the same image of original size it is not necessary to upload an extra thumbnail.",
-'file-thumbnail-no'           => "The filename begins with '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "The filename begins with <strong>$1</strong>.
 It seems to be an image of reduced size ''(thumbnail)''.
 If you have this image in full resolution upload this one, otherwise change the filename please.",
 'fileexists-forbidden'        => 'A file with this name already exists, and cannot be overwritten.
@@ -2281,34 +2294,34 @@ Please verify that the URL is valid and accessible and try again.
 If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-too-many-redirects'         => 'The URL contained too many redirects',
 'upload-unknown-size'               => 'Unknown size',
-'upload-http-error'                 => 'An HTTP error occured: $1',
+'upload-http-error'                 => 'An HTTP error occurred: $1',
 'upload-copy-upload-invalid-domain' => 'Copy uploads are not available from this domain.',
 
 # File backend
-'backend-fail-stream'        => 'Could not stream file $1.',
-'backend-fail-backup'        => 'Could not backup file $1.',
+'backend-fail-stream'        => 'Could not stream file "$1".',
+'backend-fail-backup'        => 'Could not backup file "$1".',
 'backend-fail-notexists'     => 'The file $1 does not exist.',
 'backend-fail-hashes'        => 'Could not get file hashes for comparison.',
-'backend-fail-notsame'       => 'A non-identical file already exists at $1.',
-'backend-fail-invalidpath'   => '$1 is not a valid storage path.',
-'backend-fail-delete'        => 'Could not delete file $1.',
-'backend-fail-alreadyexists' => 'The file $1 already exists.',
-'backend-fail-store'         => 'Could not store file $1 at $2.',
-'backend-fail-copy'          => 'Could not copy file $1 to $2.',
-'backend-fail-move'          => 'Could not move file $1 to $2.',
+'backend-fail-notsame'       => 'A non-identical file already exists at "$1".',
+'backend-fail-invalidpath'   => '"$1" is not a valid storage path.',
+'backend-fail-delete'        => 'Could not delete file "$1".',
+'backend-fail-alreadyexists' => 'The file "$1" already exists.',
+'backend-fail-store'         => 'Could not store file "$1" at "$2".',
+'backend-fail-copy'          => 'Could not copy file "$1" to "$2".',
+'backend-fail-move'          => 'Could not move file "$1" to "$2".',
 'backend-fail-opentemp'      => 'Could not open temporary file.',
 'backend-fail-writetemp'     => 'Could not write to temporary file.',
 'backend-fail-closetemp'     => 'Could not close temporary file.',
-'backend-fail-read'          => 'Could not read file $1.',
-'backend-fail-create'        => 'Could not write file $1.',
-'backend-fail-maxsize'       => 'Could not write file $1 because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
+'backend-fail-read'          => 'Could not read file "$1".',
+'backend-fail-create'        => 'Could not write file "$1".',
+'backend-fail-maxsize'       => 'Could not write file "$1" because it is larger than {{PLURAL:$2|one byte|$2 bytes}}.',
 'backend-fail-readonly'      => 'The storage backend "$1" is currently read-only. The reason given is: "\'\'$2\'\'"',
 'backend-fail-synced'        => 'The file "$1" is in an inconsistent state within the internal storage backends',
 'backend-fail-connect'       => 'Could not connect to storage backend "$1".',
 'backend-fail-internal'      => 'An unknown error occurred in storage backend "$1".',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
-'backend-fail-batchsize'     => 'Storage backend given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
-'backend-fail-usable'        => 'Could not write file $1 due to insufficient permissions or missing directories/containers.',
+'backend-fail-batchsize'     => 'The storage backend was given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
+'backend-fail-usable'        => 'Could not write file "$1" due to insufficient permissions or missing directories/containers.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
@@ -2481,7 +2494,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 # MIME search
 'mimesearch'         => 'MIME search',
 'mimesearch-summary' => 'This page enables the filtering of files for their MIME type.
-Input: contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
+Input: contenttype/subtype, e.g. <code>image/jpeg</code>.',
 'mimetype'           => 'MIME type:',
 'download'           => 'download',
 
@@ -2535,8 +2548,8 @@ Remember to check for other links to the templates before deleting them.',
 'disambiguations'         => 'Pages linking to disambiguation pages',
 'disambiguations-summary' => '', # do not translate or duplicate this message to other languages
 'disambiguationspage'     => 'Template:disambig',
-'disambiguations-text'    => "The following pages link to a '''disambiguation page'''.
-They should link to the appropriate topic instead.<br />
+'disambiguations-text'    => "The following pages contain at least one link to a '''disambiguation page'''.
+They may have to link to a more appropriate page instead.<br />
 A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Double redirects',
@@ -2566,6 +2579,7 @@ It now redirects to [[$2]].',
 # Miscellaneous special pages
 'nbytes'                          => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories'                     => '$1 {{PLURAL:$1|category|categories}}',
+'ninterwikis'                     => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks'                          => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'                        => '$1 {{PLURAL:$1|member|members}}',
 'nrevisions'                      => '$1 {{PLURAL:$1|revision|revisions}}',
@@ -2611,6 +2625,8 @@ It now redirects to [[$2]].',
 'mostcategories-summary'          => '', # do not translate or duplicate this message to other languages
 'mostimages'                      => 'Most linked-to files',
 'mostimages-summary'              => '', # do not translate or duplicate this message to other languages
+'mostinterwikis'                  => 'Pages with the most interwikis',
+'mostinterwikis-summary'          => '', # do not translate or duplicate this message to other languages
 'mostrevisions'                   => 'Pages with the most revisions',
 'mostrevisions-summary'           => '', # do not translate or duplicate this message to other languages
 'prefixindex'                     => 'All pages with prefix',
@@ -2731,7 +2747,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-ok'      => 'Search',
 'linksearch-text'    => 'Wildcards such as "*.wikipedia.org" may be used.
 Needs at least a top-level domain, for example "*.org".<br />
-Supported protocols: <tt>$1</tt> (do not add any of these in your search).',
+Supported protocols: <code>$1</code> (do not add any of these in your search).',
 'linksearch-line'    => '$1 is linked from $2',
 'linksearch-error'   => 'Wildcards may appear only at the start of the hostname.',
 
@@ -2765,8 +2781,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-rights'               => 'Rights',
 'listgrouprights-helppage'             => 'Help:Group rights',
 'listgrouprights-members'              => '(list of members)',
-'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>', # only translate this message to other languages if you have to change it
-'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>', # only translate this message to other languages if you have to change it
 'listgrouprights-addgroup'             => 'Add {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-removegroup'          => 'Remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'         => 'Add all groups',
@@ -2780,6 +2796,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'mailnologin'          => 'No send address',
 'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
 'emailuser'            => 'E-mail this user',
+'emailuser-title-target' => 'E-mail this {{GENDER:$1|user}}',
+'emailuser-title-notarget' => 'E-mail user',
 'emailuser-summary'    => '', # do not translate or duplicate this message to other languages
 'emailpage'            => 'E-mail user',
 'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
@@ -2926,22 +2944,22 @@ Deleting it may disrupt database operations of {{SITENAME}};
 proceed with caution.',
 
 # Rollback
-'rollback'          => 'Roll back edits',
-'rollback_short'    => 'Rollback',
-'rollbacklink'      => 'rollback',
-'rollbacklinkcount' => 'rollback $1 {{PLURAL:$1|edit|edits}}',
+'rollback'                   => 'Roll back edits',
+'rollback_short'             => 'Rollback',
+'rollbacklink'               => 'rollback',
+'rollbacklinkcount'          => 'rollback $1 {{PLURAL:$1|edit|edits}}',
 'rollbacklinkcount-morethan' => 'rollback more than $1 {{PLURAL:$1|edit|edits}}',
-'rollbackfailed'    => 'Rollback failed',
-'cantrollback'      => 'Cannot revert edit;
+'rollbackfailed'             => 'Rollback failed',
+'cantrollback'               => 'Cannot revert edit;
 last contributor is only author of this page.',
-'alreadyrolled'     => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'              => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'       => "The edit summary was: \"''\$1''\".",
-'revertpage'        => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]',
-'revertpage-nouser' => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
-'rollback-success'  => 'Reverted edits by $1;
+'editcomment'                => "The edit summary was: \"''\$1''\".",
+'revertpage'                 => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) to last revision by [[User:$1|$1]]',
+'revertpage-nouser'          => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
+'rollback-success'           => 'Reverted edits by $1;
 changed back to last revision by $2.',
 
 # Edit tokens
@@ -3268,6 +3286,7 @@ You cannot create an account',
 Since you do not have the hideuser right, you cannot see or edit the user's block.",
 'ipbblocked'                      => 'You cannot block or unblock other users, because you are yourself blocked',
 'ipbnounblockself'                => 'You are not allowed to unblock yourself',
+'ipb-default-expiry'              => '', # do not translate or duplicate this message to other languages
 
 # Developer tools
 'lockdb'              => 'Lock database',
@@ -3452,6 +3471,7 @@ All transwiki import actions are logged at the [[Special:Log/import|import log]]
 'import-interwiki-templates' => 'Include all templates',
 'import-interwiki-submit'    => 'Import',
 'import-interwiki-namespace' => 'Destination namespace:',
+'import-interwiki-rootpage'  => 'Destination root page (optional):',
 'import-upload-filename'     => 'Filename:',
 'import-comment'             => 'Comment:',
 'importtext'                 => 'Please export the file from the source wiki using the [[Special:Export|export utility]].
@@ -3488,6 +3508,9 @@ Please try again.',
 'import-error-interwiki'     => 'Page "$1" is not imported because its name is reserved for external linking (interwiki).',
 'import-error-special'       => 'Page "$1" is not imported because it belongs to a special namespace that does not allow pages.',
 'import-error-invalid'       => 'Page "$1" is not imported because its name is invalid.',
+'import-options-wrong'       => 'Wrong {{PLURAL:$2|option|options}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid'    => 'Given root page is an invalid title.',
+'import-rootpage-nosubpage'  => 'Namespace "$1" of the root page does not allow subpages.',
 
 # Import log
 'importlogpage'                    => 'Import log',
@@ -3711,17 +3734,34 @@ This is probably caused by a link to a blacklisted external site.',
 'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
-'pageinfo-title'            => 'Information for "$1"',
-'pageinfo-header-edits'     => 'Edits',
-'pageinfo-header-watchlist' => 'Watchlist',
-'pageinfo-header-views'     => 'Views',
-'pageinfo-subjectpage'      => 'Page',
-'pageinfo-talkpage'         => 'Talk page',
-'pageinfo-watchers'         => 'Number of watchers',
-'pageinfo-edits'            => 'Number of edits',
-'pageinfo-authors'          => 'Number of distinct authors',
-'pageinfo-views'            => 'Number of views',
-'pageinfo-viewsperedit'     => 'Views per edit',
+'pageinfo-title'               => 'Information for "$1"',
+'pageinfo-header-basic'        => 'Basic information',
+'pageinfo-header-edits'        => 'Edit history',
+'pageinfo-header-restrictions' => 'Page protection',
+'pageinfo-header-properties'   => 'Page properties',
+'pageinfo-display-title'       => 'Display title',
+'pageinfo-default-sort'        => 'Default sort key',
+'pageinfo-length'              => 'Page length (in bytes)',
+'pageinfo-article-id'          => 'Page ID',
+'pageinfo-robot-policy'        => 'Search engine status',
+'pageinfo-views'               => 'Number of views',
+'pageinfo-watchers'            => 'Number of page watchers',
+'pageinfo-redirects-name'      => 'Redirects to this page',
+'pageinfo-redirects-value'     => '$1',
+'pageinfo-subpages-name'       => 'Subpages of this page',
+'pageinfo-subpages-value'      => '$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})',
+'pageinfo-firstuser'           => 'Page creator',
+'pageinfo-firsttime'           => 'Date of page creation',
+'pageinfo-lastuser'            => 'Latest editor',
+'pageinfo-lasttime'            => 'Date of latest edit',
+'pageinfo-edits'               => 'Total number of edits',
+'pageinfo-authors'             => 'Total number of distinct authors',
+'pageinfo-recent-edits'        => 'Recent number of edits (within past $1)',
+'pageinfo-recent-authors'      => 'Recent number of distinct authors',
+'pageinfo-restriction'         => 'Page protection (<code>$1</code>)',
+'pageinfo-magic-words'         => 'Magic {{PLURAL:$1|word|words}} ($1)',
+'pageinfo-hidden-categories'   => 'Hidden {{PLURAL:$1|category|categories}} ($1)',
+'pageinfo-templates'           => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it
@@ -4693,7 +4733,7 @@ Images are shown in full resolution, other file types are started with their ass
 * <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
-'specialpages-group-login'       => 'Login / sign up',
+'specialpages-group-login'       => 'Login / create account',
 'specialpages-group-changes'     => 'Recent changes and logs',
 'specialpages-group-media'       => 'Media reports and uploads',
 'specialpages-group-users'       => 'Users and rights',
@@ -4858,6 +4898,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-file-too-large'                => 'The file you submitted was too large.',
 'api-error-filename-tooshort'             => 'The filename is too short.',
 'api-error-filetype-banned'               => 'This type of file is banned.',
+'api-error-filetype-banned-type'          => '$1 {{PLURAL:$4|is not a permitted file type|are not permitted file types}}. Permitted {{PLURAL:$3|file type is|file types are}} $2.',
 'api-error-filetype-missing'              => 'The filename is missing an extension.',
 'api-error-hookaborted'                   => 'The modification you tried to make was aborted by an extension.',
 'api-error-http'                          => 'Internal error: Unable to connect to server.',

@@ -96,7 +96,6 @@ $messages = array(
 'tog-watchlisthideliu' => '到監視清單裡頭弆到登入用戶',
 'tog-watchlisthideanons' => '到監視清單裡頭弆到匿名用戶',
 'tog-watchlisthidepatrolled' => '到監視清單裡頭弆到巡查過嗰編輯',
-'tog-nolangconversion' => '嫑字轉換',
 'tog-ccmeonemails' => '我發email到人家時也發封副本到我',
 'tog-diffonly' => '比較兩隻版本差異嗰時間伓顯示文章嗰內容',
 'tog-showhiddencats' => '顯示弆到嗰分類',
@@ -988,15 +987,15 @@ $2',
 'large-file' => '建議檔案嗰大小伓要超吥$1；本檔案大小係$2。',
 'largefileserver' => '箇隻檔案要大過服務器配置容允嗰大小。',
 'emptyfile' => '倷上傳嗰檔案伓存在。箇可能係因為檔案名按錯嘞。請檢查倷係否真嗰要上傳箇隻檔案。',
-'fileexists' => "箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
-'fileexists-extension' => "有嘞隻飛像嗰檔名: [[$2|thumb]]
-* 上載文檔嗰檔名: '''<tt>[[:$1]]</tt>'''
-* 目前檔嗰檔名: '''<tt>[[:$2]]</tt>'''
-請揀隻伓同嗰名字。",
+'fileexists' => '箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查<strong>[[:$1]]</strong>。 [[$1|thumb]]',
+'fileexists-extension' => '有嘞隻飛像嗰檔名: [[$2|thumb]]
+* 上載文檔嗰檔名: <strong>[[:$1]]</strong>
+* 目前檔嗰檔名: <strong>[[:$2]]</strong>
+請揀隻伓同嗰名字。',
 'fileexists-thumbnail-yes' => "箇隻檔案好像係一隻圖像嗰縮小版''（縮圖）''。 [[$1|thumb]]
-請檢查清楚箇隻檔案'''<tt>[[:$1]]</tt>'''。
+請檢查清楚箇隻檔案<strong>[[:$1]]</strong>。
 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。",
-'file-thumbnail-no' => "箇隻檔案名係以'''<tt>$1</tt>'''開頭。佢好像一隻圖像嗰縮小版''（縮圖）''。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。",
+'file-thumbnail-no' => "箇隻檔案名係以<strong>$1</strong>開頭。佢好像一隻圖像嗰縮小版''（縮圖）''。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。",
 'fileexists-forbidden' => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '到共用檔案庫裡度有嘞同名嗰檔案；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'uploadwarning' => '上傳警告',
@@ -1098,7 +1097,7 @@ $2',
 
 # MIME search
 'mimesearch' => 'MIME 搜尋',
-'mimesearch-summary' => '箇隻頁面啟用檔案MIME類型篩檢程式。輸入：內容類型/子類型，像 <tt>image/jpeg</tt>。',
+'mimesearch-summary' => '箇隻頁面啟用檔案MIME類型篩檢程式。輸入：內容類型/子類型，像 <code>image/jpeg</code>。',
 'mimetype' => 'MIME 類型:',
 'download' => '下載',
 

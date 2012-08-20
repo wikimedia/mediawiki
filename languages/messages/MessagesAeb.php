@@ -951,20 +951,60 @@ $1",
 'revdelete-otherreason' => 'سبب آخر/إضافي:',
 'revdelete-reasonotherlist' => 'سبب آخر',
 'revdelete-edit-reasonlist' => 'عدل أسباب الحذف',
+'revdelete-offender' => 'مؤلف المراجعة:',
+
+# Suppression log
+'suppressionlog' => 'سجل الإخفاء',
+'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا عن الإداريين.
+انظر [[Special:BlockList|قائمة منع الآيبي]] لترى عمليات المنع القائمة الآن.',
+
+# History merging
+'mergehistory' => 'دمج تواريخ الصفحة',
+'mergehistory-header' => 'هذه الصفحة تسمح لك بدمج نسخ تاريخ صفحة ما إلى صفحة أخرى.
+تأكد من أن هذا التغيير سيحافظ على استمرار تاريخ الصفحة.',
+'mergehistory-box' => 'دمج مراجعات صفحتين:',
+'mergehistory-from' => 'الصفحة المصدر:',
+'mergehistory-into' => 'الصفحة الهدف:',
+'mergehistory-list' => 'تاريخ التعديل القابل للدمج',
+'mergehistory-merge' => 'المراجعات التالية من [[:$1]] يمكن دمجها إلى [[:$2]].
+استخدم عامود الصناديق لدمج المراجعات التي تم إنشاؤها في وقبل الوقت المحدد.
+لاحظ أن استخدام وصلات التصفح سيعيد ضبط هذا العامود.',
+'mergehistory-go' => 'عرض التعديلات القابلة للدمج',
+'mergehistory-submit' => 'دمج المراجعات',
+'mergehistory-empty' => 'لا مراجعات يمكن دمجها.',
+'mergehistory-success' => '$3 {{PLURAL:$3|مراجعة|مراجعة}} من [[:$1]] تم دمجها بنجاح في [[:$2]].',
+'mergehistory-fail' => 'غير قادر على عمل دمج التاريخ، من فضلك أعد التحقق من محددات الصفحة والزمن.',
+'mergehistory-no-source' => 'الصفحة المصدر $1 غير موجودة.',
+'mergehistory-no-destination' => 'الصفحة الهدف $1 غير موجودة.',
+'mergehistory-invalid-source' => 'الصفحة المصدر يجب أن تكون عنوانا صحيحا.',
+'mergehistory-invalid-destination' => 'الصفحة الهدف يجب أن تكون عنوانا صحيحا.',
+'mergehistory-autocomment' => 'دمج [[:$1]] في [[:$2]]',
+'mergehistory-comment' => 'دمج [[:$1]] في [[:$2]]: $3',
+'mergehistory-same-destination' => 'صفحتا المصدر والهدف لا يمكن أن تكونا نفس الشيء',
+'mergehistory-reason' => 'السبب:',
 
 # Merge log
+'mergelog' => 'سجل الدمج',
+'pagemerge-logentry' => 'دمج [[$1]] إلى [[$2]] (المراجعات حتى $3)',
 'revertmerge' => 'إلغاء الدمج',
+'mergelogpagetext' => 'بالأسفل قائمة بأحدث عمليات الدمج لتاريخ صفحة ما إلى أخرى.',
 
 # Diffs
 'history-title' => ' «$1»: تاريخ المراجعة',
+'difference-title' => '«$1»: الفرق بين المراجعتين',
+'difference-title-multipage' => '«$1» و«$2»: الفرق بين الصفحتين',
+'difference-multipage' => '(الفرق بين الصفحتين)',
 'lineno' => 'سطر $1:',
 'compareselectedversions' => 'قارن بين النسختين المختارتين',
+'showhideselectedversions' => 'أظهر/أخف المراجعات المختارة',
 'editundo' => 'تراجع',
 'diff-multi' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة أجراها|مراجعتان متوسطتان غير معروضتين أجراهما|$1 مراجعات متوسطة غير معروضة أجراها|$1 مراجعة متوسطة غير معروضة أجراها}} {{PLURAL:$2||مستخدم واحد|مستخدمان|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
+'diff-multi-manyusers' => '({{PLURAL:$1||مراجعة واحدة متوسطة غير معروضة أجراها|مراجعتان متوسطتان غير معروضتان أجراهما|$1 مراجعات متوسطة غير معروضة أجراها|$1 مراجعة متوسطة غير معروضة أجراها}} أكثر من {{PLURAL:$2||مستخدم واحد|مستخدمين|$2 مستخدمين|$2 مستخدمًا|$2 مستخدم}}.)',
 
 # Search results
 'searchresults' => 'el resultats',
 'searchresults-title' => 'نتائج البحث عن "$1"',
+'searchresulttext' => 'للمزيد من المعلومات حول البحث في {{SITENAME}}، انظر [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'prevn' => '{{PLURAL:$1|$1}} السابقة',
 'nextn' => '{{PLURAL:$1|$1}} التالية',
 'prevn-title' => '$1 {{PLURAL:$1|نتيجة|نتيجة}} سابقة',

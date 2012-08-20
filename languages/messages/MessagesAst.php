@@ -99,7 +99,6 @@ $messages = array(
 'tog-watchlisthideliu' => "Anubrir les ediciones d'usuarios identificaos na llista de vixilancia",
 'tog-watchlisthideanons' => "Anubrir les ediciones d'usuarios anónimos na llista de vixilancia",
 'tog-watchlisthidepatrolled' => 'Anubrir les ediciones vixilaes de la llista de vixilancia',
-'tog-nolangconversion' => 'Desactivar la conversión de variantes',
 'tog-ccmeonemails' => "Mandame copies de los correos qu'unvio a otros usuarios",
 'tog-diffonly' => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats' => 'Amosar categoríes anubríes',
@@ -323,6 +322,10 @@ $1',
 'youhavenewmessages' => 'Tienes $1 ($2).',
 'newmessageslink' => 'mensaxes nuevos',
 'newmessagesdifflink' => 'cambéu postreru',
+'youhavenewmessagesfromusers' => "Tienes $1 {{PLURAL:$3|d'otru usuariu|de $3 usuarios}} ($2).",
+'youhavenewmessagesmanyusers' => 'Tienes $1 de munchos usuarios ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|un mensaxe nuevu|$1 mensaxes nuevos}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|cambéu postreru|cambeos postreros}}',
 'youhavenewmessagesmulti' => 'Tienes mensaxes nuevos en $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -476,6 +479,7 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'remembermypassword' => "Recordar la mio identificación nesti restolador (un máximu {{PLURAL:$1|d'un día|de $1 díes}})",
 'securelogin-stick-https' => "Siguir coneutáu al HTTPS dempués d'identificase",
 'yourdomainname' => 'El to dominiu:',
+'password-change-forbidden' => 'Nun se pueden camudar les contraseñes nesta wiki.',
 'externaldberror' => "O hebo un fallu d'autenticación de la base de datos o nun tienes permisu p'anovar la to cuenta esterna.",
 'login' => 'Identificase',
 'nav-login-createaccount' => 'Identificase / crear una cuenta',
@@ -745,6 +749,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta páxina equí]</span>.',
 'noarticletext-nopermission' => 'Nestos momentos nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos]</span>.',
+'missing-revision' => 'La revisión #$1 de la páxina llamada "{{PAGENAME}}" nun esiste.
+
+De vezu la causa d\'esto ye siguir un enllaz antiguu del historial a una páxina que se desanició.
+Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].',
 'userpage-userdoesnotexist' => "La cuenta d'usuariu «$1» nun ta rexistrada.
 Por favor comprueba si quies crear/editar esta páxina.",
 'userpage-userdoesnotexist-view' => "La cuenta d'usuariu «$1» nun ta rexistrada.",
@@ -872,6 +880,7 @@ Estos parámetros s'omitieron.",
 'expansion-depth-exceeded-warning' => "La páxina pasó la fondura d'espansión",
 'parser-unstrip-loop-warning' => 'Deteutóse un bucle "unstrip"',
 'parser-unstrip-recursion-limit' => 'Superóse\'l llímite de recursión d\'"unstrip" ($1)',
+'converter-manual-rule-error' => 'Detectóse un error na regla de conversión manual de llingua',
 
 # "Undo" feature
 'undo-success' => "La edición se pue esfacer.
@@ -1059,6 +1068,10 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'editundo' => 'esfacer',
 'diff-multi' => "({{PLURAL:$1|Nun s'amuesa 1 revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} {{PLURAL:$2|d'un usuariu|de $2 usuarios}} )",
 'diff-multi-manyusers' => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
+'difference-missing-revision' => "{{PLURAL:$2|Nun s'alcontró|Nun s'alcontraron}} {{PLURAL:$2|una revisión|$2 revisiones}} d'esta diferencia ($1).
+
+De vezu la causa d'esto ye siguir un enllaz de diferencia antiguu a una páxina que se desanició.
+Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 
 # Search results
 'searchresults' => 'Resultaos de la gueta',
@@ -1469,9 +1482,9 @@ Equí s'ufre'l rexistru de desaniciu y treslláu d'esta páxina por comodidá:",
 Pa ver o buscar archivos xubíos previamente, vete a la [[Special:FileList|llista d'archivos xubíos]]. Les xubíes tamién queden conseñaos nel [[Special:Log/upload|rexistru de xubíes]], y los esborraos nel [[Special:Log/delete|rexistru d'esborraos]].
 
 P'amiestar un archivu nuna páxina, usa un enllaz con ún de los siguientes formatos:
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></tt>''' pa usar la versión completa del archivu
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></tt>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></tt>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.jpg]]</nowiki></code>''' pa usar la versión completa del archivu
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Archivu.png|200px|thumb|left|testu alternativu]]</nowiki></code>''' pa usar un renderizáu de 200 píxeles d'anchu nun caxellu al marxe esquierdu con 'testu alternativu' como la so descripción
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Archivu.ogg]]</nowiki></code>''' pa enllazar direutamente al archivu ensin amosar l'archivu",
 'upload-permitted' => "Menes d'archivu permitíes: $1.",
 'upload-preferred' => "Menes d'archivu preferíes: $1.",
 'upload-prohibited' => "Menes d'archivu prohibíes: $1.",
@@ -1518,21 +1531,21 @@ esti ficheru tien $2.',
 Esto podría ser pola mor d'un enquivocu nel nome del ficheru.
 Por favor, camienta si daveres quies xubir esti archivu.",
 'windows-nonascii-filename' => 'Esta wiki nun permite nomes de ficheru con caráuteres especiales.',
-'fileexists' => "Yá esiste un ficheru con esti nome, por favor comprueba '''<tt>[[:$1]]</tt>''' si nun tas seguru de querer camudalu.
-[[$1|thumb]]",
-'filepageexists' => "La páxina de descripción d'esti ficheru yá se creó en '''<tt>[[:$1]]</tt>''', pero anguaño nun esiste nengún ficheru con esti nome.
+'fileexists' => 'Yá esiste un ficheru con esti nome, por favor comprueba <strong>[[:$1]]</strong> si nun tas seguru de querer camudalu.
+[[$1|thumb]]',
+'filepageexists' => "La páxina de descripción d'esti ficheru yá se creó en <strong>[[:$1]]</strong>, pero anguaño nun esiste nengún ficheru con esti nome.
 El resume que pongas nun va apaecer na páxina de descripción.
 Pa facer que'l to resume apaeza, vas tener que lu editar manualmente.
 [[$1|thumb]]",
-'fileexists-extension' => "Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
-* Nome del ficheru que se quier xubir: '''<tt>[[:$1]]</tt>'''
-* Nome del ficheru esistente: '''<tt>[[:$2]]</tt>'''
-Por favor escueyi un nome diferente.",
+'fileexists-extension' => 'Yá esiste un ficheru con un nome asemeyáu: [[$2|thumb]]
+* Nome del ficheru que se quier xubir: <strong>[[:$1]]</strong>
+* Nome del ficheru esistente: <strong>[[:$2]]</strong>
+Por favor escueyi un nome diferente.',
 'fileexists-thumbnail-yes' => "El ficheru paez ser una imaxe de tamañu menguáu ''(miniatura)''.
  [[$1|thumb]]
-Por favor comprueba el ficheru '''<tt>[[:$1]]</tt>'''.
+Por favor comprueba el ficheru <strong>[[:$1]]</strong>.
 Si'l ficheru comprobáu tien el mesmu tamañu que la imaxe orixinal, nun ye necesario xubir una miniatura estra.",
-'file-thumbnail-no' => "El ficheru entama con '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "El ficheru entama con <strong>$1</strong>.
 Paez ser una imaxe de tamañu menguáu ''(miniatura)''.
 Si tienes esta imaxe a resolución completa xúbila; si non, por favor camuda'l nome del ficheru.",
 'fileexists-forbidden' => 'Yá esiste un ficheru con esti nome, y nun se pue renomar.
@@ -1799,7 +1812,7 @@ Seique quieras camudar la descripción de la so [páxina de descripción de fich
 
 # MIME search
 'mimesearch' => 'Busca MIME',
-'mimesearch-summary' => "Esta páxina activa'l filtráu d'archivos en función de la so triba MIME. Entrada: contenttype/subtype, p.ex. <tt>image/jpeg</tt>.",
+'mimesearch-summary' => "Esta páxina activa'l filtráu d'archivos en función de la so triba MIME. Entrada: contenttype/subtype, p.ex. <code>image/jpeg</code>.",
 'mimetype' => 'Triba MIME:',
 'download' => 'descargar',
 
@@ -1846,7 +1859,8 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 
 'disambiguations' => "Páxines qu'enllacen con páxines de dixebra",
 'disambiguationspage' => 'Template:dixebra',
-'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Les siguientes páxines contienen polo menos un enllaz a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar a una páxina más apropiada.<br />
+Una páxina tratase como una páxina de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Redireiciones dobles',
 'doubleredirectstext' => 'Esta páxina llista páxines que redireicionen a otres páxines de redireición.
@@ -1998,7 +2012,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-ok' => 'Guetar',
 'linksearch-text' => 'Se puen usar comodinos como "*.wikipedia.org".
 Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
-Protocolos almitíos: <tt>$1</tt> (nun amiestes dengún d\'estos na to gueta).',
+Protocolos almitíos: <code>$1</code> (nun amiestes dengún d\'estos na to gueta).',
 'linksearch-line' => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 
@@ -2192,6 +2206,8 @@ obra con precaución.",
 'rollback' => 'Revertir ediciones',
 'rollback_short' => 'Revertir',
 'rollbacklink' => 'revertir',
+'rollbacklinkcount' => 'revertir $1 {{PLURAL:$1|edición|ediciones}}',
+'rollbacklinkcount-morethan' => 'revertir más de $1 {{PLURAL:$1|edición|ediciones}}',
 'rollbackfailed' => 'Falló la reversión',
 'cantrollback' => "Nun se pue revertir la edición; el postrer collaborador ye l'únicu autor d'esta páxina.",
 'alreadyrolled' => 'Nun se pue revertir la postrer edición de [[:$1]] fecha por [[User:$2|$2]] ([[User talk:$2|alderique]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2685,6 +2701,7 @@ Toles aiciones d'importación treswiki queden rexistraes nel [[Special:Log/impor
 'import-interwiki-templates' => 'Incluyir toles plantíes',
 'import-interwiki-submit' => 'Importar',
 'import-interwiki-namespace' => 'Espaciu de nomes de destín:',
+'import-interwiki-rootpage' => 'Páxina raíz de destín (opcional):',
 'import-upload-filename' => 'Nome del ficheru:',
 'import-comment' => 'Comentariu:',
 'importtext' => "Por favor, esporta'l ficheru dende la wiki d'orixe usando la [[Special:Export|ferramienta d'esportación]].
@@ -2717,6 +2734,9 @@ Guárdalu nel ordenador y xúbilu equí.",
 'import-error-interwiki' => "La páxina «$1» nun s'importó porque'l so nome ta acutáu pa enllaces esternos (interwiki).",
 'import-error-special' => "La páxina «$1» nun s'importó porque pertenez a un espaciu de nomes especial que nun permite les páxines.",
 'import-error-invalid' => "La páxina «$1» nun s'importó porque tien un nome inválidu.",
+'import-options-wrong' => '{{PLURAL:$2|Opción enquivocada|Opciones enquivocaes}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'La páxina raíz dada ye un títulu inválidu.',
+'import-rootpage-nosubpage' => 'L\'espaciu de nomes "$1" de la páxina raíz nun permite subpáxines.',
 
 # Import log
 'importlogpage' => "Rexistru d'importaciones",
@@ -3611,7 +3631,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 * <span class="mw-specialpagecached">Páxines especiales en caché (seique nun tean actualizaes).</span>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other' => 'Otres páxines especiales',
-'specialpages-group-login' => 'Entrar / Crear cuenta',
+'specialpages-group-login' => 'Identificase / crear cuenta',
 'specialpages-group-changes' => 'Cambeos recientes y rexistros',
 'specialpages-group-media' => 'Informes multimedia y xubíes',
 'specialpages-group-users' => 'Usuarios y drechos',
@@ -3750,6 +3770,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'api-error-file-too-large' => "El ficheru qu'unviasti yera demasiao grande.",
 'api-error-filename-tooshort' => 'El nome de ficheru ye demasiao curtiu.',
 'api-error-filetype-banned' => 'Esta triba de ficheru ta torgada.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|nun ye una triba de ficheru permitida|nun son tribes de ficheru permitíes}}. {{PLURAL:$3|La triba de ficheru permitida ye|Les tribes de ficheru permitíes son}} $2.',
 'api-error-filetype-missing' => 'Al ficheru falta-y una estensión.',
 'api-error-hookaborted' => 'La conexón con una estensión encaboxó el cambéu que tentasti facer.',
 'api-error-http' => 'Fallu internu: Nun se pudo coneutar col sirvidor.',

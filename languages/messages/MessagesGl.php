@@ -263,7 +263,6 @@ $messages = array(
 'tog-watchlisthideliu' => 'Agochar as edicións dos usuarios rexistrados na lista de vixilancia',
 'tog-watchlisthideanons' => 'Agochar as edicións dos usuarios anónimos na lista de vixilancia',
 'tog-watchlisthidepatrolled' => 'Agochar as edicións patrulladas na lista de vixilancia',
-'tog-nolangconversion' => 'Desactivar a conversión de variantes',
 'tog-ccmeonemails' => 'Enviádeme ao meu enderezo unha copia das mensaxes de correo electrónico que envíe a outros usuarios',
 'tog-diffonly' => 'Non mostrar o contido da páxina debaixo das diferenzas entre edicións',
 'tog-showhiddencats' => 'Mostrar as categorías ocultas',
@@ -487,6 +486,10 @@ $1',
 'youhavenewmessages' => 'Ten $1 ($2).',
 'newmessageslink' => 'mensaxes novas',
 'newmessagesdifflink' => 'diferenzas coa revisión anterior',
+'youhavenewmessagesfromusers' => 'Ten $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).',
+'youhavenewmessagesmanyusers' => 'Ten $1 de moitos usuarios ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|$1 mensaxes novas}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|últimas modificacións}}',
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -539,11 +542,11 @@ Pode atopar unha lista coas páxinas especiais válidas en [[Special:SpecialPage
 'error' => 'Erro',
 'databaseerror' => 'Erro na base de datos',
 'dberrortext' => 'Ocorreu un erro de sintaxe na consulta á base de datos.
-Isto pódese deber a un erro no programa.
+Isto pódese deber a un erro no software.
 A última consulta á base de datos foi:
-<blockquote><tt>$1</tt></blockquote>
-desde a función "<tt>$2</tt>".
-A base de datos devolveu o erro "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+desde a función "<code>$2</code>".
+A base de datos devolveu o erro "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Ocorreu un erro de sintaxe na consulta.
 A última consulta á base de datos foi:
 "$1"
@@ -639,6 +642,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'remembermypassword' => 'Lembrar o meu contrasinal neste ordenador (ata $1 {{PLURAL:$1|día|días}})',
 'securelogin-stick-https' => 'Permanecer conectado mediante as HTTPS despois de acceder',
 'yourdomainname' => 'O seu dominio:',
+'password-change-forbidden' => 'Non pode mudar os contrasinais neste wiki.',
 'externaldberror' => 'Ou ben se produciu un erro da base de datos na autenticación externa ou ben non se lle permite actualizar a súa conta externa.',
 'login' => 'Acceder ao sistema',
 'nav-login-createaccount' => 'Rexistro',
@@ -897,6 +901,10 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission' => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
+'missing-revision' => 'A revisión nº$1 da páxina chamada "{{PAGENAME}}" non existe.
+
+A miúdo, isto está provocado por seguir unha ligazón de historial obsoleta cara a unha páxina que foi borrada.
+O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados] contén máis detalles.',
 'userpage-userdoesnotexist' => 'A conta do usuario "<nowiki>$1</nowiki>" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'userpage-userdoesnotexist-view' => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract' => 'Este usuario está bloqueado.
@@ -905,7 +913,6 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 * '''Firefox / Safari:''' Prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' nos Mac)
 * '''Google Chrome:''' Prema en ''Ctrl-Shift-R'' (''⌘-Shift-R'' nos Mac)
 * '''Internet Explorer:''' Prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
-* '''Konqueror:''' Prema en ''Recargar'' ou prema en ''F5''
 * '''Opera:''' Limpe a súa memoria caché en ''Ferramentas → Preferencias''",
 'usercssyoucanpreview' => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
 'userjsyoucanpreview' => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
@@ -1026,6 +1033,7 @@ Estes argumentos foron omitidos.",
 'expansion-depth-exceeded-warning' => 'Páxina que supera a profundidade de expansión',
 'parser-unstrip-loop-warning' => 'Detectouse un bucle inamovible',
 'parser-unstrip-recursion-limit' => 'Excedeuse o límite de recursión inamovible ($1)',
+'converter-manual-rule-error' => 'Detectouse un erro na regra manual de conversión da lingua',
 
 # "Undo" feature
 'undo-success' => 'A edición pódese desfacer.
@@ -1212,6 +1220,10 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'editundo' => 'desfacer',
 'diff-multi' => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por {{PLURAL:$2|un usuario|$2 usuarios}}.)',
 'diff-multi-manyusers' => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial {{PLURAL:$1|feita|feitas}} por máis {{PLURAL:$2|dun usuario|de $2 usuarios}}.)',
+'difference-missing-revision' => 'Non se {{PLURAL:$2|atopou revisión ningunha|atoparon $2 revisións}} desta diferenza ($1).
+
+A miúdo, isto está provocado por seguir unha ligazón de diferenzas obsoleta cara a unha páxina que foi borrada.
+O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados] contén máis detalles.',
 
 # Search results
 'searchresults' => 'Resultados da procura',
@@ -1625,9 +1637,9 @@ Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por 
 Para ver ou procurar imaxes subidas con anterioridade vaia á [[Special:FileList|lista de imaxes]]; os envíos tamén se rexistran no [[Special:Log/upload|rexistro de cargas]] e as eliminacións no [[Special:Log/delete|rexistro de borrados]].
 
 Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar a versión completa do ficheiro
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternativo]]</nowiki></tt>''' para usar unha resolución de 200 píxeles de ancho nunha caixa na marxe esquerda cunha descrición (\"texto alternativo\")
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para ligar directamente co ficheiro sen que este saia na páxina",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' para usar a versión completa do ficheiro
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto alternativo]]</nowiki></code>''' para usar unha resolución de 200 píxeles de ancho nunha caixa na marxe esquerda cunha descrición (\"texto alternativo\")
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' para ligar directamente co ficheiro sen que este saia na páxina",
 'upload-permitted' => 'Tipos de ficheiro permitidos: $1.',
 'upload-preferred' => 'Tipos de arquivos preferidos: $1.',
 'upload-prohibited' => 'Tipos de arquivos prohibidos: $1.',
@@ -1674,23 +1686,23 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
 'windows-nonascii-filename' => 'Este wiki non soporta os nomes de ficheiros con caracteres especiais.',
-'fileexists' => "Xa existe un ficheiro con ese nome. Por favor, comprobe '''<tt>[[:$1]]</tt>''' se non está seguro de querer cambialo.
-[[$1|thumb]]",
-'filepageexists' => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>[[:$1]]</tt>''', pero polo de agora non existe ningún ficheiro con este nome.
+'fileexists' => 'Xa existe un ficheiro con ese nome. Por favor, comprobe <strong>[[:$1]]</strong> se non está seguro de querer cambialo.
+[[$1|thumb]]',
+'filepageexists' => 'A páxina de descrición deste ficheiro xa foi creada en <strong>[[:$1]]</strong>, pero polo de agora non existe ningún ficheiro con este nome.
 O resumo que escribiu non aparecerá na páxina de descrición.
 Para facer que o resumo apareza alí, necesitará editar a páxina manualmente.
-[[$1|miniatura]]",
-'fileexists-extension' => "Xa existe un ficheiro cun nome semellante: [[$2|thumb]]
-* Nome do ficheiro que intenta cargar: '''<tt>[[:$1]]</tt>'''
-* Nome de ficheiro existente: '''<tt>[[:$2]]</tt>'''
-Por favor, escolla un nome diferente.",
+[[$1|thumb]]',
+'fileexists-extension' => 'Xa existe un ficheiro cun nome semellante: [[$2|thumb]]
+* Nome do ficheiro que intenta cargar: <strong>[[:$1]]</strong>
+* Nome de ficheiro existente: <strong>[[:$2]]</strong>
+Por favor, escolla un nome diferente.',
 'fileexists-thumbnail-yes' => "Semella que o ficheiro é unha imaxe de tamaño reducido ''(miniatura)''.
 [[$1|thumb]]
-Por favor, comprobe o ficheiro '''<tt>[[:$1]]</tt>'''.
+Por favor, comprobe o ficheiro <strong>[[:$1]]</strong>.
 Se o ficheiro seleccionado é a mesma imaxe en tamaño orixinal non é preciso enviar unha miniatura adicional.",
-'file-thumbnail-no' => "O nome do ficheiro comeza por '''<tt>$1</tt>'''.
+'file-thumbnail-no' => "O nome do ficheiro comeza por <strong>$1</strong>.
 Parece tratarse dunha imaxe de tamaño reducido ''(miniatura)''.
-Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.",
+Se dispón dunha versión desta imaxe de maior resolución cárguea; se non, múdelle o nome ao ficheiro.",
 'fileexists-forbidden' => 'Xa existe un ficheiro co mesmo nome e este non pode ser sobrescrito.
 Se aínda quere cargar o seu ficheiro, por favor, retroceda e use un novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no repositorio de ficheiros compartidos.
@@ -1954,7 +1966,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 # MIME search
 'mimesearch' => 'Busca MIME',
 'mimesearch-summary' => 'Esta páxina permite filtrar os ficheiros segundo o seu tipo MIME.
-Entrada: tipodecontido/subtipo, p.ex. <tt>image/jpeg</tt>.',
+Entrada: tipodecontido/subtipo, por exemplo <code>image/jpeg</code>.',
 'mimetype' => 'Tipo MIME:',
 'download' => 'descargar',
 
@@ -2001,7 +2013,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 
 'disambiguations' => 'Páxinas que ligan con páxinas de homónimos',
 'disambiguationspage' => 'Template:Homónimos',
-'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
+'disambiguations-text' => "As seguintes páxinas conteñen, polo menos, unha ligazón cara a unha '''páxina de homónimos'''.
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
 Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde [[MediaWiki:Disambiguationspage]].",
 
@@ -2155,7 +2167,7 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-ok' => 'Procurar',
 'linksearch-text' => 'Pódense usar caracteres comodín como "*.wikipedia.org".
 Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
-Protocolos soportados: <tt>$1</tt> (non engada ningún destes na súa procura).',
+Protocolos soportados: <code>$1</code> (non engada ningún destes na súa procura).',
 'linksearch-line' => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
@@ -2253,7 +2265,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'notvisiblerev' => 'A revisión foi borrada',
 'watchnochange' => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo indicado.',
 'watchlist-details' => 'Hai {{PLURAL:$1|unha páxina|$1 páxinas}} na súa lista de vixilancia, sen contar as de conversa.',
-'wlheader-enotif' => '* Está dispoñible a notificación por correo electrónico.',
+'wlheader-enotif' => '* A notificación por correo electrónico está activada.',
 'wlheader-showupdated' => "* As páxinas que cambiaron desde a súa última visita móstranse en '''negra'''",
 'watchmethod-recent' => 'comprobando as edicións recentes na procura de páxinas vixiadas',
 'watchmethod-list' => 'comprobando as páxinas vixiadas na procura de edicións recentes',
@@ -2348,6 +2360,8 @@ proceda con coidado.',
 'rollback' => 'Reverter as edicións',
 'rollback_short' => 'Reverter',
 'rollbacklink' => 'reverter',
+'rollbacklinkcount' => 'reverter $1 {{PLURAL:$1|edición|edicións}}',
+'rollbacklinkcount-morethan' => 'reverter máis de $1 {{PLURAL:$1|edición|edicións}}',
 'rollbackfailed' => 'Houbo un fallo ao reverter as edicións',
 'cantrollback' => 'Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.',
 'alreadyrolled' => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
@@ -2842,6 +2856,7 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'import-interwiki-templates' => 'Incluír todos os modelos',
 'import-interwiki-submit' => 'Importar',
 'import-interwiki-namespace' => 'Espazo de nomes de destino:',
+'import-interwiki-rootpage' => 'Páxina raíz de destino (opcional):',
 'import-upload-filename' => 'Nome do ficheiro:',
 'import-comment' => 'Comentario:',
 'importtext' => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta de exportación]].
@@ -2874,6 +2889,9 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'import-error-interwiki' => 'Non se pode importar a páxina "$1" porque o seu nome está reservado para unha ligazón externa (interwiki).',
 'import-error-special' => 'Non se pode importar a páxina "$1" porque pertence a un espazo de nomes especial que non o permite.',
 'import-error-invalid' => 'Non se pode importar a páxina "$1" porque o seu nome non é válido.',
+'import-options-wrong' => '{{PLURAL:$2|Opción incorrecta|Opcións incorrectas}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'A páxina raíz dada é un título non válido.',
+'import-rootpage-nosubpage' => 'O espazo de nomes "$1" da páxina raíz non permite as subpáxinas.',
 
 # Import log
 'importlogpage' => 'Rexistro de importacións',
@@ -3911,6 +3929,7 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'api-error-file-too-large' => 'O ficheiro que enviou era grande de máis.',
 'api-error-filename-tooshort' => 'O nome do ficheiro é curto de máis.',
 'api-error-filetype-banned' => 'Este tipo de ficheiro está prohibido.',
+'api-error-filetype-banned-type' => '$1 non {{PLURAL:$4|é un tipo de ficheiro permitido|son tipos de ficheiro permitidos}}. {{PLURAL:$3|O tipo de ficheiro permitido é|Os tipos de ficheiro permitidos son}} $2.',
 'api-error-filetype-missing' => 'Fáltalle a extensión ao ficheiro.',
 'api-error-hookaborted' => 'O asociador da extensión cancelou a modificación que intentou realizar.',
 'api-error-http' => 'Erro interno: Non se puido conectar co servidor.',

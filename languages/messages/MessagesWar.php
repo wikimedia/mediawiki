@@ -351,9 +351,9 @@ $1',
 'nstab-media' => 'Pakli hin medya',
 'nstab-special' => 'Pinaurog nga pakli',
 'nstab-project' => 'Pakli han proyekto',
-'nstab-image' => 'Fayl',
+'nstab-image' => 'Paypay',
 'nstab-mediawiki' => 'Mensahe',
-'nstab-template' => 'Plantilya',
+'nstab-template' => 'Batakan',
 'nstab-help' => 'Pakli hin bulig',
 'nstab-category' => 'Kaarangay',
 
@@ -555,6 +555,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''
 ¡Waray pa katipig an imo mga ginbag-o!",
 'editing' => 'Ginliliwat an $1',
+'creating' => 'Ginhihimo an $1',
 'editingsection' => 'Ginliliwat an $1 (bahin)',
 'editingcomment' => 'Ginliliwat an $1 (bag-o nga bahin)',
 'editconflict' => 'Diri pagkakauroyon han pagliwat: $1',
@@ -907,8 +908,8 @@ Mga detalye: $1',
 'filehist-filesize' => 'Kadako han fayl',
 'filehist-comment' => 'Komento',
 'filehist-missing' => 'Nawawara an fayl',
-'imagelinks' => 'Mga gamit hin fayl',
-'linkstoimage' => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga fayl:',
+'imagelinks' => 'Mga gamit hin paypay',
+'linkstoimage' => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga paypay:',
 'nolinkstoimage' => 'Waray mga pakli nga nasumpay hini nga fayl.',
 'sharedupload' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.',
 'sharedupload-desc-there' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.
@@ -948,13 +949,13 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'statistics-articles' => 'Unod nga mga pakli',
 'statistics-pages' => 'Mga pakli',
 'statistics-pages-desc' => 'Ngatanan nga mga pakli ha sulod hini nga wiki, lakip an hiruhimangraw nga mga pakli, mga redirect, ngan iba pa',
-'statistics-files' => 'Ginkarga nga mga paypay',
+'statistics-files' => 'Mga paypay nga iginkarga pasaka',
 'statistics-edits' => 'Mga pagliwat hit pakli tikang gintukod hini nga {{SITENAME}}',
 'statistics-edits-average' => 'Average nga mga pagliwat kada pakli',
 'statistics-views-total' => 'Ngatanan nga mga panginano',
 'statistics-views-peredit' => 'Mga panginano kada pagliwat',
-'statistics-users' => 'Mga nakarehistro nga [[Special:ListUsers|gumaramit]]',
-'statistics-users-active' => 'Mga nanggigios nga gumaramit',
+'statistics-users' => 'Mga [[Special:ListUsers|gumaramit]] nga nakarehistro',
+'statistics-users-active' => 'Mga gumaramit nga nanggigios',
 'statistics-users-active-desc' => 'Mga gumaramit nga may-ada iginbuhat ha urhi nga {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}',
 'statistics-mostpopular' => 'Gidamoi nga ginpanginanohan nga mga pakli',
 
@@ -1050,7 +1051,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'listusers-blocked' => '(ginpugngan)',
 
 # Special:ActiveUsers
-'activeusers' => 'Lista han mga nanggigios nga gumaramit',
+'activeusers' => 'Taramdan hin mga gumaramit nga nanggigios',
 'activeusers-hidebots' => 'Igtago an mga bot',
 'activeusers-hidesysops' => 'Igtago an mga magdudumara',
 'activeusers-noresult' => 'Waray gumaramit nga nahiagian.',
@@ -1498,6 +1499,7 @@ An iba in daan nakatago.
 'version-software-product' => 'Produkto',
 
 # Special:FilePath
+'filepath-page' => 'Paypay:',
 'filepath-submit' => 'Kadto-a',
 
 # Special:FileDuplicateSearch

@@ -85,9 +85,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$this->addFields( array(
-			$this->prefix . '_from AS pl_from',
-			$this->prefix . '_namespace AS pl_namespace',
-			$this->prefix . '_title AS pl_title'
+			'pl_from' => $this->prefix . '_from',
+			'pl_namespace' => $this->prefix . '_namespace',
+			'pl_title' => $this->prefix . '_title'
 		) );
 
 		$this->addTables( $this->table );

@@ -145,6 +145,17 @@ $.fn.localize = function ( options ) {
 		} );
 	} );
 
+	// HTML, Text for elements which cannot have children e.g. OPTION
+	$target.find( '[data-msg-text]' ).each( function() {
+		var $el = $( this );
+		$el.text( msg( options, $el.attr( 'data-msg-text' ) ) );
+	} );
+
+	$target.find( '[data-msg-html]' ).each( function() {
+		var $el = $( this );
+		$el.html( msg( options, $el.attr( 'data-msg-html' ) ) );
+	} );
+
 	return $target;
 };
 

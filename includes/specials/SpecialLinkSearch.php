@@ -171,9 +171,9 @@ class LinkSearchPage extends QueryPage {
 		$like = $dbr->buildLike( $stripped );
 		$retval = array (
 			'tables' => array ( 'page', 'externallinks' ),
-			'fields' => array ( 'page_namespace AS namespace',
-					'page_title AS title',
-					'el_index AS value', 'el_to AS url' ),
+			'fields' => array ( 'namespace' => 'page_namespace',
+					'title' => 'page_title',
+					'value' => 'el_index', 'url' => 'el_to' ),
 			'conds' => array ( 'page_id = el_from',
 					"$clause $like" ),
 			'options' => array( 'USE INDEX' => $clause )

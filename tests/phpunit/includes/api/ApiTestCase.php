@@ -122,7 +122,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'titles' => 'Main Page',
-			'intoken' => 'edit|delete|protect|move|block|unblock',
+			'intoken' => 'edit|delete|protect|move|block|unblock|watch',
 			'prop' => 'info' ), $session, false, $user->user );
 		return $data;
 	}

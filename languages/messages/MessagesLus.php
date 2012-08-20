@@ -1039,9 +1039,9 @@ I ràwnah paihna leh sawnna chhinchhiahna thuziak kan rawn chhawpchhuak e:",
 Ahmaa taksa hlankaisaho en tùr emaw zawng tùr chuan [[Special:FileList|taksa hlankai tawh zawng zawng tlarna]] tihah hian kal rawh; hlankai (nawn)ho pawh [[Special:Log/upload|hlankai chhinchhiahna]]-ah vawnfel an ni a, paih tawhho pawh [[Special:Log/delete|paihho chhinchhiahna]]-ah chhinchhiah fel vek an ni.
 
 Phêka taksa hmang tùrin ahnuaia tihphung engemaw ni ber hmang khuan zawmna i siam thei ang:
-*A taksa pumpui hmang tùr chuan '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' tiin. Heti hi chuan taksa hi i sezawl chhuah a ni.
-*Phêk veilam síra 'Sawifiahna' hmanga 200px-a liana i tàrlan duh chuan '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|Sawifiahna]]</nowiki></tt>'''  tiin.
-*A taksa tárlang lova zawm ringawt i duh chuan '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' tiin.",
+*A taksa pumpui hmang tùr chuan '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' tiin. Heti hi chuan taksa hi i sezawl chhuah a ni.
+*Phêk veilam síra 'Sawifiahna' hmanga 200px-a liana i tàrlan duh chuan '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|Sawifiahna]]</nowiki></code>'''  tiin.
+*A taksa tárlang lova zawm ringawt i duh chuan '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' tiin.",
 'upload-permitted' => 'Taksa phal chiho: $1.',
 'upload-preferred' => 'Taksa duh deuh bîk: $1.',
 'upload-prohibited' => 'Taksa khap: $1.',

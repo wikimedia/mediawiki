@@ -71,10 +71,9 @@ function wfThumbHandle404() {
 	}
 	# Just get the URI path (REDIRECT_URL/REQUEST_URI is either a full URL or a path)
 	if ( substr( $uriPath, 0, 1 ) !== '/' ) {
-		$bits = wfParseUrl( $uriPath );
-		if ( $bits && isset( $bits['path'] ) ) {
-			$uriPath = $bits['path'];
-		} else {
+		$uri = new Uri( $uriPath );
+		$uriPath = $uri->getPath();
+		if ( $uriPath === null ) {
 			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 			return;
 		}
@@ -129,13 +128,13 @@ function wfStreamThumb( array $params ) {
 		// Format is <timestamp>!<name>
 		$bits = explode( '!', $fileName, 2 );
 		if ( count( $bits ) != 2 ) {
-			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
 		if ( !$title ) {
-			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -147,7 +146,7 @@ function wfStreamThumb( array $params ) {
 		// Get the name without the timestamp so hash paths are correctly computed
 		$title = Title::makeTitleSafe( NS_FILE, isset( $bits[1] ) ? $bits[1] : $fileName );
 		if ( !$title ) {
-			wfThumbError( 404, wfMsg( 'badtitletext' ) );
+			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -172,7 +171,7 @@ function wfStreamThumb( array $params ) {
 
 	// Check the source file storage path
 	if ( !$img ) {
-		wfThumbError( 404, wfMsg( 'badtitletext' ) );
+		wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
 		wfProfileOut( __METHOD__ );
 		return;
 	}
@@ -243,15 +242,16 @@ function wfStreamThumb( array $params ) {
 
 	// Check for thumbnail generation errors...
 	$errorMsg = false;
+	$msg = wfMessage( 'thumbnail_error' );
 	if ( !$thumb ) {
-		$errorMsg = wfMsgHtml( 'thumbnail_error', 'File::transform() returned false' );
+		$errorMsg = $msg->rawParams( 'File::transform() returned false' )->escaped();
 	} elseif ( $thumb->isError() ) {
 		$errorMsg = $thumb->getHtmlMsg();
 	} elseif ( !$thumb->hasFile() ) {
-		$errorMsg = wfMsgHtml( 'thumbnail_error', 'No path supplied in thumbnail object' );
+		$errorMsg = $msg->rawParams( 'No path supplied in thumbnail object' )->escaped();
 	} elseif ( $thumb->fileIsSource() ) {
-		$errorMsg = wfMsgHtml( 'thumbnail_error',
-			'Image was not scaled, is the requested width bigger than the source?' );
+		$errorMsg = $msg->
+			rawParams( 'Image was not scaled, is the requested width bigger than the source?' )->escaped();
 	}
 
 	if ( $errorMsg !== false ) {

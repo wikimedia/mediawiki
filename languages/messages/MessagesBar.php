@@ -914,7 +914,7 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'filedelete-intro' => "Du léschst dé Daatei '''„[[Media:$1|$1]]“'''.",
 
 # MIME search
-'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <tt>image/jpeg</tt> (siehe Bildbeschreibungsseite).',
+'mimesearch-summary' => 'Auf dieser Spezialseite können die Dateien nach dem MIME-Typ gefiltert werden. Die Eingabe muss immer den Medien- und Subtyp beinhalten: <code>image/jpeg</code> (siehe Bildbeschreibungsseite).',
 'download' => 'Owerlooden',
 
 # Unused templates
@@ -1039,7 +1039,7 @@ Links as Naumensraim wern do néd afglistt.",
 'linksearch-pat' => 'Suachmuster:',
 'linksearch-ns' => 'Nåmensraum:',
 'linksearch-ok' => 'Suacher',
-'linksearch-text' => "Dé Speziaalseiten do daméglicht d' Suach noch Seiten, in dénen bstimmte Weblinks enthoiden san. Dodabei kennern Blootzhoiter wia beispüsweis  <tt>*.beispü.at</tt> hergnummer wern. Es muass mindastens a Top-Level-Domain, z. Bsp. „*.org“. auhgeem wern. <br />Unterstytzde Protokói: <tt>$1</tt> (Dé bittscheh bei da Suachauhgob auhgeem.)",
+'linksearch-text' => "Dé Speziaalseiten do daméglicht d' Suach noch Seiten, in dénen bstimmte Weblinks enthoiden san. Dodabei kennern Blootzhoiter wia beispüsweis  <code>*.beispü.at</code> hergnummer wern. Es muass mindastens a Top-Level-Domain, z. Bsp. „*.org“. auhgeem wern. <br />Unterstytzde Protokói: <code>$1</code> (Dé bittscheh bei da Suachauhgob auhgeem.)",
 'linksearch-line' => '$1 is valinkt voh $2',
 
 # Special:ListUsers

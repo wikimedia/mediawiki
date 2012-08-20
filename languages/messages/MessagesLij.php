@@ -712,7 +712,7 @@ E pàgine che t'æ in oservaçion inti [[Special:Watchlist|oservæ speciâli]] s
 'filesource' => 'Reixe:',
 'uploadedfiles' => 'Papê caregæ',
 'badfilename' => 'O nomme do papê o l\'è stæto cangioö in "$1".',
-'fileexists' => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a '''<tt>[[:$1]]</tt>''' se non ti tei seguo de voleilo cangiâ.
+'fileexists' => "Un papê co sto nomme o existe de zà, pe piaxei da unn'euggiâ a <strong>[[:$1]]</strong> se non ti tei seguo de voleilo cangiâ.
 [[$1|thumb]]",
 'fileexists-forbidden' => 'Un papê co sto nomme o existe de zà, pe piaxei vanni in derrê e carega sto papê co un ätro nomme. [[File:$1|thumb|center|$1]]',
 'savefile' => 'Sarva o papê',

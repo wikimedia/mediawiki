@@ -72,9 +72,12 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
-		$namesUsed = array();
+		$this->syncChecks = isset( $config['syncChecks'] )
+			? $config['syncChecks']
+			: self::CHECK_SIZE;
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
+		$namesUsed = array();
 		foreach ( $config['backends'] as $index => $config ) {
 			if ( isset( $config['template'] ) ) {
 				// Config is just a modified version of a registered backend's.
@@ -108,9 +111,6 @@ class FileBackendMultiWrite extends FileBackend {
 		if ( $this->masterIndex < 0 ) { // need backends and must have a master
 			throw new MWException( 'No master backend defined.' );
 		}
-		$this->syncChecks = isset( $config['syncChecks'] )
-			? $config['syncChecks']
-			: self::CHECK_SIZE;
 	}
 
 	/**
@@ -140,7 +140,7 @@ class FileBackendMultiWrite extends FileBackend {
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
 		// Do a consistency check to see if the backends agree
-		$status->merge( $this->consistencyCheck( array_merge( $paths['sh'], $paths['ex'] ) ) );
+		$status->merge( $this->consistencyCheck( $this->fileStoragePathsForOps( $ops ) ) );
 		if ( !$status->isOK() ) {
 			return $status; // abort
 		}
@@ -167,7 +167,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of files are consistent across all internal backends
 	 *
-	 * @param $paths Array
+	 * @param $paths Array List of storage paths
 	 * @return Status
 	 */
 	public function consistencyCheck( array $paths ) {
@@ -183,7 +183,7 @@ class FileBackendMultiWrite extends FileBackend {
 			// Stat the file on the 'master' backend
 			$mStat = $mBackend->getFileStat( $mParams );
 			if ( $this->syncChecks & self::CHECK_SHA1 ) {
-				$mSha1 = $mBackend->getFileSha1( $mParams );
+				$mSha1 = $mBackend->getFileSha1Base36( $mParams );
 			} else {
 				$mSha1 = false;
 			}
@@ -215,7 +215,7 @@ class FileBackendMultiWrite extends FileBackend {
 						}
 					}
 					if ( $this->syncChecks & self::CHECK_SHA1 ) {
-						if ( $cBackend->getFileSha1( $cParams ) !== $mSha1 ) { // wrong SHA1
+						if ( $cBackend->getFileSha1Base36( $cParams ) !== $mSha1 ) { // wrong SHA1
 							$status->fatal( 'backend-fail-synced', $path );
 							continue;
 						}
@@ -232,6 +232,66 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		return $status;
+	}
+
+	/**
+	 * Check that a set of files are consistent across all internal backends
+	 * and re-synchronize those files againt the "multi master" if needed.
+	 *
+	 * @param $paths Array List of storage paths
+	 * @return Status
+	 */
+	public function resyncFiles( array $paths ) {
+		$status = Status::newGood();
+
+		$mBackend = $this->backends[$this->masterIndex];
+		foreach ( $paths as $path ) {
+			$mPath  = $this->substPaths( $path, $mBackend );
+			$mSha1  = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
+			$mExist = $mBackend->fileExists( array( 'src' => $mPath ) );
+			// Check of all clone backends agree with the master...
+			foreach ( $this->backends as $index => $cBackend ) {
+				if ( $index === $this->masterIndex ) {
+					continue; // master
+				}
+				$cPath = $this->substPaths( $path, $cBackend );
+				$cSha1 = $cBackend->getFileSha1Base36( array( 'src' => $cPath ) );
+				if ( $mSha1 === $cSha1 ) {
+					// already synced; nothing to do
+				} elseif ( $mSha1 ) { // file is in master
+					$fsFile = $mBackend->getLocalReference( array( 'src' => $mPath ) );
+					$status->merge( $cBackend->quickStore(
+						array( 'src' => $fsFile->getPath(), 'dst' => $cPath )
+					) );
+				} elseif ( $mExist === false ) { // file is not in master
+					$status->merge( $cBackend->quickDelete( array( 'src' => $cPath ) ) );
+				}
+			}
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Get a list of file storage paths to read or write for a list of operations
+	 *
+	 * @param $ops Array Same format as doOperations()
+	 * @return Array List of storage paths to files (does not include directories)
+	 */
+	protected function fileStoragePathsForOps( array $ops ) {
+		$paths = array();
+		foreach ( $ops as $op ) {
+			if ( isset( $op['src'] ) ) {
+				$paths[] = $op['src'];
+			}
+			if ( isset( $op['srcs'] ) ) {
+				$paths = array_merge( $paths, $op['srcs'] );
+			}
+			if ( isset( $op['dst'] ) ) {
+				$paths[] = $op['dst'];
+			}
+		}
+		return array_unique( $paths );
 	}
 
 	/**

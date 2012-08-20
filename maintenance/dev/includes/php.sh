@@ -1,12 +1,14 @@
 # Include-able script to determine the location of our php if any
+# We search for a environment var called PHP, native php,
+# a local copy, home directory location used by installphp.sh
+# and previous home directory location
+# The binary path is returned in $PHP if any
 
-if [ -d "$DEV/php" -a -x "$DEV/php/bin/php" ]; then
-	# Quick local copy
-	PHP="$DEV/php/bin/php"
-elif [ -d "$HOME/.mediawiki/php" -a -x "$HOME/.mediawiki/php/bin/php" ]; then
-	# Previous home directory location to install php in
-	PHP="$HOME/.mediawiki/php/bin/php"
-elif [ -d "$HOME/.mwphp" -a -x "$HOME/.mwphp/bin/php" ]; then
-	# Previous home directory location to install php in
-	PHP="$HOME/.mwphp/bin/php"
-fi
+for binary in $PHP `which php || true` "$DEV/php/bin/php" "$HOME/.mediawiki/php/bin/php" "$HOME/.mwphp/bin/php" ]; do
+	if [ -x "$binary" ]; then
+		if "$binary" -r 'exit((int)!version_compare(PHP_VERSION, "5.4", ">="));'; then
+			PHP="$binary"
+			break
+		fi
+	fi
+done
