@@ -2681,7 +2681,7 @@ Donnez ci-dessous un motif précis (par exemple en citant les pages qui ont ét�
 'ipbreason-dropdown' => '* Motifs de blocage les plus fréquents
 ** Insertion de fausses informations
 ** Suppression injustifiée de contenu des pages
-** Insertion répétée de liens externes publicitaires (spam)
+** Insertion répétée de liens externes publicitaires (pollupostage)
 ** Insertion de contenu sans aucun sens et de déchets dans les pages
 ** Tentative d’intimidation ou harcèlement
 ** Abus d’utilisation de comptes multiples
@@ -3164,6 +3164,8 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-length' => 'Taille de la page (en octets)',
 'pageinfo-article-id' => 'Numéro de la page',
 'pageinfo-robot-policy' => 'Statut de moteur de recherche',
+'pageinfo-robot-index' => 'Indexable',
+'pageinfo-robot-noindex' => 'Non indexable',
 'pageinfo-views' => 'Nombre de vues',
 'pageinfo-watchers' => 'Nombre de contributeurs ayant la page dans leur liste de suivi',
 'pageinfo-redirects-name' => 'Redirections vers cette page',
@@ -3177,9 +3179,9 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-authors' => "Nombre total d'auteurs distincts",
 'pageinfo-recent-edits' => 'Nombre de modifications récentes (dans les derniers $1)',
 'pageinfo-recent-authors' => "Nombre d'auteurs distincts récents",
-'pageinfo-restriction' => 'Protection de la page ($1)',
-'pageinfo-magic-words' => 'Mots magiques ($1)',
-'pageinfo-hidden-categories' => 'Catégories cachées ($1)',
+'pageinfo-restriction' => 'Protection de la page (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Mot magique|Mots magiques}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
 
 # Skin names

@@ -2169,9 +2169,9 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 
 'disambiguations' => '曖昧さ回避ページにリンクしているページ',
 'disambiguationspage' => 'Template:曖昧回避',
-'disambiguations-text' => "以下のページには、'''曖昧さ回避ページ'''へのリンクが1個以上あります。
-そのようなリンクは、より適切なページへのリンクに変更する必要があります。<br />
-[[MediaWiki:Disambiguationspage]]からリンクされたテンプレートを使用しているページが、曖昧さ回避ページと見なされます。",
+'disambiguations-text' => "以下のページには'''曖昧さ回避ページ'''へのリンクが 1 個以上あります。
+これらのリンクは、より適切なページへのリンクに変更する必要があります。<br />
+[[MediaWiki:Disambiguationspage]] にリンクがあるテンプレートを使用しているページを、曖昧さ回避ページと見なします。",
 
 'doubleredirects' => '二重転送',
 'doubleredirectstext' => 'これは他のリダイレクトページへのリダイレクトの一覧です。
@@ -3158,7 +3158,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'tooltip-summary' => '短い要約を入力してください',
 
 # Stylesheets
-'common.css' => '/* ここに書いたCSSはすべての外装に反映されます */',
+'common.css' => '/* ここに記述したCSSはすべての外装に反映されます */',
 'standard.css' => '/* ここに記述したCSSはスタンダード外装の利用者に影響します */',
 'nostalgia.css' => '/* ここに記述したCSSはノスタルジア外装の利用者に影響します */',
 'cologneblue.css' => '/* ここに記述したCSSはケルンブルー外装の利用者に影響します */',
@@ -3188,9 +3188,9 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'modern.js' => '/* ここにあるすべてのJavaScriptは、モダン外装を使用している利用者に対して読み込まれます */',
 'vector.js' => '/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */',
 'group-autoconfirmed.js' => '/* ここにあるすべてのJavaScriptは、自動承認された利用者に対して読み込まれます */',
-'group-bot.js' => '/* ここにあるすべてのJavaScriptは、ボットのみに対して読み込まれます */',
-'group-sysop.js' => '/* ここにあるすべてのJavaScriptは、管理者のみに対して読み込まれます */',
-'group-bureaucrat.js' => '/* ここにあるすべてのJavaScriptは、ビューロクラットのみに対して読み込まれます */',
+'group-bot.js' => '/* ここにあるすべてのJavaScriptは、ボットのみに読み込まれます */',
+'group-sysop.js' => '/* ここにあるすべてのJavaScriptは、管理者のみに読み込まれます */',
+'group-bureaucrat.js' => '/* ここにあるすべてのJavaScriptは、ビューロクラットのみに読み込まれます */',
 
 # Metadata
 'notacceptable' => 'ウィキサーバーは、ご使用中のクライアントが読める形式では情報を提供できません。',
@@ -3226,6 +3226,8 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'pageinfo-default-sort' => '既定のソートキー',
 'pageinfo-length' => 'ページの長さ (バイト単位)',
 'pageinfo-article-id' => 'ページ ID',
+'pageinfo-robot-index' => 'インデックス可能',
+'pageinfo-robot-noindex' => 'インデックス不可',
 'pageinfo-views' => '閲覧回数',
 'pageinfo-watchers' => 'ページをウォッチリストに入れている人数',
 'pageinfo-redirects-name' => 'このページへのリダイレクト',

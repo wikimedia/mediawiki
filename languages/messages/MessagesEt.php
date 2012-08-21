@@ -610,9 +610,9 @@ Käibel olevad erileheküljed on loetletud leheküljel [[Special:SpecialPages|{{
 'dberrortext' => 'Andmebaasipäringus oli süntaksiviga.
 Selle võis tingida tarkvaraviga.
 Viimane andmebaasipäring oli:
-<blockquote><tt>$1</tt></blockquote>
-ja see kutsuti funktsioonist "<tt>$2</tt>".
-Andmebaas tagastas veateate "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+ja see ilmnes funktsiooniga "<code>$2</code>".
+Andmebaas tagastas veateate "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Andmebaasipäringus oli süntaksiviga.
 Viimane andmebaasipäring oli:
 "$1"
@@ -954,7 +954,6 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 * '''Firefox / Safari:''' Hoia all ''Shift''-klahvi ja klõpsa ''Laadi uuesti'' või vajuta kas ''Ctrl-F5'' või ''Ctrl-R'' (Macis ''⌘-R'').
 * '''Google Chrome:''' Vajuta ''Ctrl-Shift-R'' (Macis ''⌘-Shift-R'').
 * '''Internet Explorer:''' Hoia all ''Ctrl''-klahvi ja klõpsa ''Värskenda'' või vajuta ''Ctrl-F5''.
-* '''Konqueror:''' Klõpsa ''Reload'' või vajuta ''F5''.
 * '''Opera:''' Tühjenda puhver asukohas ''Seaded → Eelistused''.",
 'usercssyoucanpreview' => "'''Vihje:''' Enne salvestamist kasuta oma uue CSSi proovimiseks nuppu \"{{int:showpreview}}\".",
 'userjsyoucanpreview' => "'''Vihje:''' Enne salvestamist kasuta oma uue JavaScripti proovimiseks nuppu \"{{int:showpreview}}\".",
@@ -3031,6 +3030,8 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-length' => 'Lehekülje pikkus (baitides)',
 'pageinfo-article-id' => 'Lehekülje identifikaator',
 'pageinfo-robot-policy' => 'Otsimootori olek',
+'pageinfo-robot-index' => 'Indekseeritav',
+'pageinfo-robot-noindex' => 'Indekseerimatu',
 'pageinfo-views' => 'Vaatamiste arv',
 'pageinfo-watchers' => 'Lehekülje jälgijate arv',
 'pageinfo-redirects-name' => 'Ümbersuunamisi sellele leheküljele',
@@ -3044,9 +3045,9 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-authors' => 'Erinevate autorite koguarv',
 'pageinfo-recent-edits' => 'Viimaste redigeerimiste arv (viimase $1 jooksul)',
 'pageinfo-recent-authors' => 'Erinevate viimaste toimetajate arv',
-'pageinfo-restriction' => 'Lehekülje kaitse ($1)',
-'pageinfo-magic-words' => 'Võlusõnad ($1)',
-'pageinfo-hidden-categories' => 'Peidetud kategooriad ($1)',
+'pageinfo-restriction' => 'Lehekülje kaitse (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Võlusõna|Võlusõnad}} ($1)',
+'pageinfo-hidden-categories' => 'Peidetud {{PLURAL:$1|kategooria|kategooriad}} ($1)',
 'pageinfo-templates' => 'Kasutatud {{PLURAL:$1|mall|mallid}} ($1)',
 
 # Skin names

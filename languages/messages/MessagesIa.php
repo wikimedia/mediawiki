@@ -3007,6 +3007,8 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-length' => 'Dimension del pagina (in bytes)',
 'pageinfo-article-id' => 'ID del pagina',
 'pageinfo-robot-policy' => 'Stato del motor de recerca',
+'pageinfo-robot-index' => 'Indexabile',
+'pageinfo-robot-noindex' => 'Non indexabile',
 'pageinfo-views' => 'Numero de visitas',
 'pageinfo-watchers' => 'Numero de observatores del pagina',
 'pageinfo-redirects-name' => 'Redirectiones verso iste pagina',

@@ -599,11 +599,11 @@ Seba lista pelanê xasanê vêrdeyan reca kena: [[Special:SpecialPages|{{int:spe
 # General errors
 'error' => 'Xırab',
 'databaseerror' => 'Xeta serveri',
-'dberrortext' => 'Rêzê vateyê database de xeta bı.
+'dberrortext' => 'Rêzê vateyê malumati de xeta bı.
 No xeta belka software ra yo.
-"<tt>$2</tt>" ra pers kerdışê peyin:
-<blockquote><tt>$1</tt></blockquote>.
-Database yo ke xeta dayo "<tt>$3: $4</tt>".',
+"<blockquote><tt>$1</tt></blockquote>.
+<tt>$2</tt>" ra pers kerdışê peyin:
+Malumatê yo ke xeta dayo "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Persê rêzê vateyê database de xeta bı.
 Persê databaseyê peyin:
 "$1"
@@ -946,8 +946,9 @@ Kerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.',
 'blocked-notice-logextract' => 'No karber/na karbere emanet blokekerdeyo/blokekediya.
 Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'clearyourcache' => "'''Not:''' Bahde sazkerdışi, gani hafızayê cı gerayoğ pak bıbo.
-*'''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere yana zi ''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');,
-*'''IE:''' ''Ctrl-F5'', '''Konqueror:''' tena tuşê pelaya newi ra bar kere cı sernê.",
+*'''Mozilla / Firefox / Safari:''' ''Shift'' ri gıştê şıma ser nayi pel newe ra bar kere yana zi''Ctrl-Shift-R'' bıkere u (qey Apple Mac ''Cmd-Shift-R'');,
+*'''IE:''' ''Ctrl-F5' piya pıploxnê ke wa newe bo', 
+* '''Operar:'''hacetan ra şı rê →tercihan ra bıvurnen",
 'usercssyoucanpreview' => "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
 'userjsyoucanpreview' => "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
 'usercsspreview' => "'''şıma tena verqaydê dosyayê CSS vineni.''' '''Dosyayê Karberi CSS hema qayd nebiyo!'''",
@@ -2053,6 +2054,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bayt|bayti}}',
 'ncategories' => '$1 {{PLURAL:$1|Kategoriye|Kategoriy}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikiy}}',
 'nlinks' => '$1 {{PLURAL:$1|link|linkî}}',
 'nmembers' => '$1 {{PLURAL:$1|eza|ezayan}}',
 'nrevisions' => '$1 {{PLURAL:$1|revizyon|revizyonî}}',
@@ -2081,6 +2083,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'mostlinkedtemplates' => 'Şablonê ke tewr zafî pela re gıre bîye.',
 'mostcategories' => 'Pelan ke tewr zaf kategorî estê.',
 'mostimages' => 'Dosyayan ke tewr zaf link estê.',
+'mostinterwikis' => 'Pelan ke tewr zaf interwiki biyê.',
 'mostrevisions' => 'Pelan ke tewr zaf revizyonî biyê.',
 'prefixindex' => 'Veroleya peley pêro',
 'prefixindex-namespace' => 'Peleyê Veroleyıni ($1 cay nami)',
@@ -2228,6 +2231,8 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'mailnologin' => 'adresa erşawıtışi/ruşnayişi çina.',
 'mailnologintext' => 'qey karberanê binan re e-posta erşawıtış de gani şıma [[Special:UserLogin|hesab aker]]ê [[Special:Preferences|pelê tercihani]] de gani yew e-postayo meqbul bıbo.',
 'emailuser' => 'Ena karberi rê mesac bırse',
+'emailuser-title-target' => 'Na E-postaya {{GENDER:$1|karberi}}ya',
+'emailuser-title-notarget' => 'E-postaya karberi',
 'emailpage' => 'karberi re e-mail bışaw',
 'emailpagetext' => 'no/na karberi re e-posta erşawıtışi de şıma pê forma cêrıni eşkeni kar bıkerî.
 [[Special:Preferences|tercihanê şıma ye karberi]] de adresa e-posta ya ke şıma dayo, na adres qısmê adresa e-postayi de "From (kam ra)" asena, no sebebi ra gırewtox/e eşkeno/a direk cewab bıdo şıma.',
@@ -3025,11 +3030,34 @@ Tı eşkeno yew sebeb bınus.',
 
 # Info page
 'pageinfo-title' => 'Heq tê "$1"\'i',
-'pageinfo-header-edits' => 'Vurnayışi',
+'pageinfo-header-basic' => 'Seron zanayış',
+'pageinfo-header-edits' => 'Vurnayışi verêni',
+'pageinfo-header-restrictions' => 'Xısusiyetê pela',
+'pageinfo-header-properties' => 'Xısusiyetê pela',
+'pageinfo-display-title' => 'Asenge sernuşte',
+'pageinfo-default-sort' => 'Hesıbyaye mırfeyo kılm',
+'pageinfo-length' => 'Derdeya pela (bayti heta)',
+'pageinfo-article-id' => 'Nımrey pela',
+'pageinfo-robot-policy' => 'Weziyetê motor de cıgeyrayışi',
+'pageinfo-robot-index' => 'İIndeksbiyayen',
+'pageinfo-robot-noindex' => 'İndeksnêbiyayen',
 'pageinfo-views' => 'Amarina mocnayışan',
-'pageinfo-watchers' => 'Amariya serykeran',
-'pageinfo-edits' => 'Amarina vurnayışan',
-'pageinfo-authors' => 'Amarina nuştekaran',
+'pageinfo-watchers' => 'Amariya pela serykeran',
+'pageinfo-redirects-name' => 'Hetenayışê na pela',
+'pageinfo-subpages-name' => 'Bınpelê na pela',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|hetenayış|hetenayışi}}; $3 {{PLURAL:$3|raykerdışt|raykerdışi}})',
+'pageinfo-firstuser' => 'Pela vıraşter',
+'pageinfo-firsttime' => 'Demê pela vıraştışi',
+'pageinfo-lastuser' => 'Vurnayeno peyên',
+'pageinfo-lasttime' => 'Deme u vurnayışo peyên',
+'pageinfo-edits' => 'Amarina vurnayışan pêro',
+'pageinfo-authors' => 'Amarina nuştekaran pêro',
+'pageinfo-recent-edits' => 'Amariya vurnayışan ($1 ra nata)',
+'pageinfo-recent-authors' => 'Amarina nuştekaran pêro',
+'pageinfo-restriction' => 'Xısusiyetê pela da  (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Çekuya|Çekuyê}} ($1) sihırini',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategoriye|Kategoriyan}} ($1) bınımne',
+'pageinfo-templates' => '{{PLURAL:$1|Şablon|Şabloni}} ($1) açarneyayê',
 
 # Skin names
 'skinname-standard' => 'Klasik',

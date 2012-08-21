@@ -3145,6 +3145,8 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-length' => 'Longitud de la página (en bytes)',
 'pageinfo-article-id' => 'Identificador ID de la página',
 'pageinfo-robot-policy' => 'Estado del motor de búsqueda',
+'pageinfo-robot-index' => 'Indexable',
+'pageinfo-robot-noindex' => 'No indexable',
 'pageinfo-views' => 'Número de vistas',
 'pageinfo-watchers' => 'Número de usuarios que vigilan la página',
 'pageinfo-redirects-name' => 'Redirecciones a esta página',

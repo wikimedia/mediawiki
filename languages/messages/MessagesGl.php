@@ -3057,6 +3057,8 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-length' => 'Lonxitude da páxina (en bytes)',
 'pageinfo-article-id' => 'ID da páxina',
 'pageinfo-robot-policy' => 'Estado do motor de procuras',
+'pageinfo-robot-index' => 'Indexable',
+'pageinfo-robot-noindex' => 'Non indexable',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de vixiantes da páxina',
 'pageinfo-redirects-name' => 'Redireccións cara a esta páxina',

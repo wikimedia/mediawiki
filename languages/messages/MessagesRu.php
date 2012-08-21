@@ -3196,11 +3196,16 @@ The wiki server can't provide data in a format your client can read.",
 
 # Info page
 'pageinfo-title' => 'Сведения по «$1»',
-'pageinfo-header-edits' => 'Правки',
+'pageinfo-header-edits' => 'История изменений',
+'pageinfo-length' => 'Длина страницы (в байтах)',
+'pageinfo-article-id' => 'Идентификатор страницы',
+'pageinfo-robot-policy' => 'Индексация поисковыми службами',
+'pageinfo-robot-index' => 'Индексируется',
+'pageinfo-robot-noindex' => 'Не индексируется',
 'pageinfo-views' => 'Количество просмотров',
 'pageinfo-watchers' => 'Число наблюдающих',
 'pageinfo-edits' => 'Общее число правок',
-'pageinfo-authors' => 'Количество различных авторов',
+'pageinfo-authors' => 'Общее число различных авторов',
 
 # Skin names
 'skinname-standard' => 'Классическое',

@@ -2853,6 +2853,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-length' => 'Dołhosć strony (w bajtach)',
 'pageinfo-article-id' => 'ID strony',
 'pageinfo-robot-policy' => 'Status pytawy',
+'pageinfo-robot-index' => 'Indeksujomny',
+'pageinfo-robot-noindex' => 'Njeindeksujomny',
 'pageinfo-views' => 'Ličba zwobraznjenjow',
 'pageinfo-watchers' => 'Ličba wobkedźbowarjow strony',
 'pageinfo-redirects-name' => 'Dalesposrědkowanja k tutej stronje',

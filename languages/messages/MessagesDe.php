@@ -2144,9 +2144,9 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 
 'disambiguations' => 'Seiten die auf Begriffsklärungsseiten verlinken',
 'disambiguationspage' => 'Template:Begriffsklärung',
-'disambiguations-text' => "Die folgenden Seiten enthalten mindestens einen Link zur einer '''Begriffsklärungsseite'''. Sie sollten möglicherweise auf die eigentlich gemeinte Seite verlinken.
+'disambiguations-text' => "Die folgenden Seiten enthalten mindestens einen Link zur einer '''Begriffsklärungsseite'''. Stattdessen sollten sie möglicherweise auf die eigentlich gemeinte Seite verlinken.
 
-Eine Seite gilt als Begriffsklärungsseite, wenn sie mindestens eine der auf [[MediaWiki:Disambiguationspage]] aufgeführten Vorlagen enthält.",
+Eine Seite gilt als Begriffsklärungsseite, wenn sie mindestens eine der auf der Seite [[MediaWiki:Disambiguationspage|Disambiguationspage]] aufgeführten Vorlagen enthält.",
 
 'doubleredirects' => 'Doppelte Weiterleitungen',
 'doubleredirectstext' => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.
@@ -2178,7 +2178,7 @@ Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel de
 'nviews' => '{{PLURAL:$1|1 Abfrage|$1 Abfragen}}',
 'nimagelinks' => 'Verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',
 'ntransclusions' => 'verwendet auf {{PLURAL:$1|einer Seite|$1 Seiten}}',
-'specialpage-empty' => 'Die Seite enthält aktuell keine Einträge.',
+'specialpage-empty' => 'Es sind aktuell keine zutreffenden Einträge vorhanden.',
 'lonelypages' => 'Verwaiste Seiten',
 'lonelypagestext' => 'Die folgenden Seiten werden nicht eingebunden oder es wird nicht auf sie in {{SITENAME}} verwiesen.',
 'uncategorizedpages' => 'Nicht kategorisierte Seiten',

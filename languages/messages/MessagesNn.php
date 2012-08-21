@@ -2593,9 +2593,9 @@ I desse falla lyt du flytte eller flette saman sida manuelt.",
 'movereason' => 'Årsak:',
 'revertmove' => 'flytt attende',
 'delete_and_move' => 'Slett og flytt',
-'delete_and_move_text' => '== Sletting påkrevd ==
+'delete_and_move_text' => '== Sletting påkravd ==
 
-Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?',
+Målsida «[[:$1]]» finst alt. Vil du sletta henne for å gjeva rom for flytting?',
 'delete_and_move_confirm' => 'Ja, slett sida',
 'delete_and_move_reason' => 'Sletta for å gje rom for flytting frå «[[$1]]»',
 'selfmove' => 'Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.',

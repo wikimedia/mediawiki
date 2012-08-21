@@ -2982,6 +2982,8 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-length' => 'Haba ng pahina (na nasa mga byte)',
 'pageinfo-article-id' => 'ID ng pahina',
 'pageinfo-robot-policy' => 'Katayuan ng makinang panghanap',
+'pageinfo-robot-index' => 'Matataluntunan',
+'pageinfo-robot-noindex' => 'Hindi matataluntunan',
 'pageinfo-views' => 'Bilang ng mga pagtanaw',
 'pageinfo-watchers' => 'Bilang ng mga nagbabantay ng pahina',
 'pageinfo-redirects-name' => 'Napapapunta sa pahinang ito',
@@ -2996,9 +2998,9 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-authors' => 'Kabuuang bilang ng magkakabukod na mga may-akda',
 'pageinfo-recent-edits' => 'Kamakailang bilang ng mga pamamatnugot (sa loob ng huling $1)',
 'pageinfo-recent-authors' => 'Kamakailang bilang ng magkakabukod na mga may-akda',
-'pageinfo-restriction' => 'Pruteksiyon ng pahina ($1)',
-'pageinfo-magic-words' => 'Mga salitang mahiwaga ($1)',
-'pageinfo-hidden-categories' => 'Nakatagong mga kategorya ($1)',
+'pageinfo-restriction' => 'Pruteksiyon ng pahina (<code>$1</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Salita|Mga salita}}ng mahiwaga ($1)',
+'pageinfo-hidden-categories' => 'Nakatagong {{PLURAL:$1|kategorya|mga kategorya}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',
 
 # Skin names
