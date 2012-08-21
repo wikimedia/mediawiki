@@ -186,7 +186,8 @@ class InfoAction extends FormlessAction {
 			}
 
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-restriction', $restrictionType )->parse(), $message
+				$this->msg( 'pageinfo-restriction', $restrictionType )->parse(),
+				$lang->lcfirst( $this->msg( "restriction-$restrictionType" )->escaped() )
 			);
 		}
 
