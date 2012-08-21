@@ -169,9 +169,10 @@ class UsercreateTemplate extends QuickTemplate {
 			<td></td>
 			<td class="mw-input">
 				<?php
-				global $wgCookieExpiration, $wgLang;
+				global $wgCookieExpiration;
+				$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
 				echo Xml::checkLabel(
-					wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
+					wfMessage( 'remembermypassword' )->numParams( $expirationDays )->text(),
 					'wpRemember',
 					'wpRemember',
 					$this->data['remember'],

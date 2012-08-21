@@ -1227,7 +1227,7 @@ abstract class UploadBase {
 
 			if ( $wgAntivirusRequired ) {
 				wfProfileOut( __METHOD__ );
-				return wfMsg( 'virus-scanfailed', array( $exitCode ) );
+				return wfMessage( 'virus-scanfailed', array( $exitCode ) )->text();
 			} else {
 				wfProfileOut( __METHOD__ );
 				return null;

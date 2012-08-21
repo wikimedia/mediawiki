@@ -1230,7 +1230,7 @@ class Parser {
 				throw new MWException( __METHOD__.': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
-			$url = wfMsgForContent( $urlmsg, $id );
+			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $CssClass );
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN
@@ -1684,7 +1684,7 @@ class Parser {
 		}
 		if ( !$text && $this->mOptions->getEnableImageWhitelist()
 			 && preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
-			$whitelist = explode( "\n", wfMsgForContent( 'external_image_whitelist' ) );
+			$whitelist = explode( "\n", wfMessage( 'external_image_whitelist' )->inContentLanguage()->text() );
 			foreach ( $whitelist as $entry ) {
 				# Sanitize the regex fragment, make it case-insensitive, ignore blank entries/comments
 				if ( strpos( $entry, '#' ) === 0 || $entry === '' ) {
@@ -1749,7 +1749,7 @@ class Parser {
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-			$e2 = wfMsgForContent( 'linkprefix' );
+			$e2 = wfMessage( 'linkprefix' )->inContentLanguage()->text();
 		}
 
 		if ( is_null( $this->mTitle ) ) {
@@ -3085,7 +3085,8 @@ class Parser {
 	 */
 	function limitationWarn( $limitationType, $current = null, $max = null) {
 		# does no harm if $current and $max are present but are unnecessary for the message
-		$warning = wfMsgExt( "$limitationType-warning", array( 'parsemag', 'escape' ), $current, $max );
+		$warning = wfMessage( "$limitationType-warning" )->numParams( $current, $max )
+			->inContentLanguage()->escaped();
 		$this->mOutput->addWarning( $warning );
 		$this->addTrackingCategory( "$limitationType-category" );
 	}
@@ -3290,7 +3291,8 @@ class Parser {
 				if ( $frame->depth >= $limit ) {
 					$found = true;
 					$text = '<span class="error">'
-						. wfMsgForContent( 'parser-template-recursion-depth-warning', $limit )
+						. wfMessage( 'parser-template-recursion-depth-warning' )
+							->numParams( $limit )->inContentLanguage()->text()
 						. '</span>';
 				}
 			}
@@ -3370,7 +3372,9 @@ class Parser {
 			# This has to be done after redirect resolution to avoid infinite loops via redirects
 			if ( !$frame->loopCheck( $title ) ) {
 				$found = true;
-				$text = '<span class="error">' . wfMsgForContent( 'parser-template-loop-warning', $titleText ) . '</span>';
+				$text = '<span class="error">'
+					. wfMessage( 'parser-template-loop-warning', $titleText )->inContentLanguage()->text()
+					. '</span>';
 				wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
 			}
 			wfProfileOut( __METHOD__ . '-loadtpl' );
@@ -3660,13 +3664,13 @@ class Parser {
 		global $wgEnableScaryTranscluding;
 
 		if ( !$wgEnableScaryTranscluding ) {
-			return wfMsgForContent('scarytranscludedisabled');
+			return wfMessage('scarytranscludedisabled')->inContentLanguage()->text();
 		}
 
 		$url = $title->getFullUrl( "action=$action" );
 
 		if ( strlen( $url ) > 255 ) {
-			return wfMsgForContent( 'scarytranscludetoolong' );
+			return wfMessage( 'scarytranscludetoolong' )->inContentLanguage()->text();
 		}
 		return $this->fetchScaryTemplateMaybeFromCache( $url );
 	}
@@ -3687,7 +3691,7 @@ class Parser {
 
 		$text = Http::get( $url );
 		if ( !$text ) {
-			return wfMsgForContent( 'scarytranscludefailed', $url );
+			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -4412,7 +4416,7 @@ class Parser {
 		$text = $this->replaceVariables( $text );
 
 		# This works almost by chance, as the replaceVariables are done before the getUserSig(),
-		# which may corrupt this parser instance via its wfMsgExt( parsemag ) call-
+		# which may corrupt this parser instance via its wfMessage()->text() call-
 
 		# Signatures
 		$sigText = $this->getUserSig( $user );
