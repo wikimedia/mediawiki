@@ -429,6 +429,25 @@ just a test"
 		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word" );
 	}
 
+	public function testUpdateRedirect( ) {
+		$target = Title::newFromText( "testUpdateRedirect_target" );
+
+		// test with non-redirect page
+		$content = $this->newContent( "hello world." );
+		$newContent = $content->updateRedirect( $target );
+
+		$this->assertTrue( $content->equals( $newContent ), "content should be unchanged" );
+
+		// test with actual redirect
+		$content = $this->newContent( "#REDIRECT [[Someplace]]" );
+		$newContent = $content->updateRedirect( $target );
+
+		$this->assertFalse( $content->equals( $newContent ), "content should have changed" );
+		$this->assertTrue( $newContent->isRedirect(), "new content should be a redirect" );
+
+		$this->assertEquals( $target->getFullText(), $newContent->getRedirectTarget()->getFullText() );
+	}
+
 	# =================================================================================================================
 
 	public function testGetModel() {
