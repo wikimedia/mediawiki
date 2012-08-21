@@ -548,7 +548,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			return 'private';
 		}
 		if ( !is_null( $params['prop'] ) && in_array( 'parsedcomment', $params['prop'] ) ) {
-			// formatComment() calls wfMsg() among other things
+			// formatComment() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
 		return 'public';

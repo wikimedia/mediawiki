@@ -308,7 +308,7 @@ abstract class Installer {
 
 	/**
 	 * UI interface for displaying a short message
-	 * The parameters are like parameters to wfMsg().
+	 * The parameters are like parameters to wfMessage().
 	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
 	 * @param $msg
@@ -645,7 +645,7 @@ abstract class Installer {
 		$allNames = array();
 
 		foreach ( self::getDBTypes() as $name ) {
-			$allNames[] = wfMsg( "config-type-$name" );
+			$allNames[] = wfMessage( "config-type-$name" )->text();
 		}
 
 		// cache initially available databases to make sure that everything will be displayed correctly
@@ -1585,12 +1585,13 @@ abstract class Installer {
 		$status = Status::newGood();
 		try {
 			$page = WikiPage::factory( Title::newMainPage() );
-			$page->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
-							wfMsgForContent( 'mainpagedocfooter' ),
-							'',
-							EDIT_NEW,
-							false,
-							User::newFromName( 'MediaWiki default' ) );
+			$page->doEdit( wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
+					wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text(),
+					'',
+					EDIT_NEW,
+					false,
+					User::newFromName( 'MediaWiki default' )
+			);
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
