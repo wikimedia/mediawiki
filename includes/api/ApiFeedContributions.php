@@ -93,7 +93,7 @@ class ApiFeedContributions extends ApiBase {
 
 	protected function feedItem( $row ) {
 		$title = Title::makeTitle( intval( $row->page_namespace ), $row->page_title );
-		if ( $title ) {
+		if( $title && $title->userCan( 'read' ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
 			$revision = Revision::newFromRow( $row );
@@ -106,9 +106,8 @@ class ApiFeedContributions extends ApiBase {
 				$this->feedItemAuthor( $revision ),
 				$comments
 			);
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	/**
