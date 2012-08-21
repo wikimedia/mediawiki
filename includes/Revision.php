@@ -970,7 +970,7 @@ class Revision implements IDBAccessObject {
 			$this->mContent = is_null( $this->mText ) ? null : $handler->unserializeContent( $this->mText, $format );
 		}
 
-		return $this->mContent;
+		return $this->mContent->copy(); // NOTE: copy() will return $this for immutable content objects
 	}
 
 	/**

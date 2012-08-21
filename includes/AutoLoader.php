@@ -293,6 +293,7 @@ $wgAutoloadLocalClasses = array(
 	'AbstractContent' => 'includes/Content.php',
 	'ContentHandler' => 'includes/ContentHandler.php',
 	'CssContent' => 'includes/Content.php',
+	'TextContentHandler' => 'includes/ContentHandler.php',
 	'CssContentHandler' => 'includes/ContentHandler.php',
 	'JavaScriptContent' => 'includes/Content.php',
 	'JavaScriptContentHandler' => 'includes/ContentHandler.php',

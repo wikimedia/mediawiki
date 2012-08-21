@@ -31,6 +31,7 @@ class RevisionTest extends MediaWikiTestCase {
 
 		$wgNamespaceContentModels[ 12312 ] = "testing";
 		$wgContentHandlers[ "testing" ] = 'DummyContentHandlerForTesting';
+		$wgContentHandlers[ "RevisionTestModifyableContent" ] = 'RevisionTestModifyableContentHandler';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -346,6 +347,87 @@ class RevisionTest extends MediaWikiTestCase {
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $rev->getContentModel() );
 	}
 
+	/**
+	 * Tests whether $rev->getContent() returns a clone when needed.
+	 *
+	 * @group Database
+	 */
+	function testGetContentClone( ) {
+		$content = new RevisionTestModifyableContent( "foo" );
+
+		$rev = new Revision(
+			array(
+				'id'         => 42,
+				'page'       => 23,
+				'title'      => Title::newFromText( "testGetContentClone_dummy" ),
+
+				'content'    => $content,
+				'length'     => $content->getSize(),
+				'comment'    => "testing",
+				'minor_edit' => false,
+			)
+		);
+
+		$content = $rev->getContent( Revision::RAW );
+		$content->setText( "bar" );
+
+		$content2 = $rev->getContent( Revision::RAW );
+		$this->assertNotSame( $content, $content2, "expected a clone" ); // content is mutable, expect clone
+		$this->assertEquals( "foo", $content2->getText() ); // clone should contain the original text
+
+		$content2->setText( "bla bla" );
+		$this->assertEquals( "bar", $content->getText() ); // clones should be independent
+	}
+
+
+	/**
+	 * Tests whether $rev->getContent() returns the same object repeatedly if appropriate.
+	 *
+	 * @group Database
+	 */
+	function testGetContentUncloned() {
+		$rev = $this->newTestRevision( "hello", "testGetContentUncloned_dummy", CONTENT_MODEL_WIKITEXT );
+		$content = $rev->getContent( Revision::RAW );
+		$content2 = $rev->getContent( Revision::RAW );
+
+		// for immutable content like wikitext, this should be the same object
+		$this->assertSame( $content, $content2 );
+	}
+
 }
 
+class RevisionTestModifyableContent extends TextContent {
+	public function __construct( $text ) {
+		parent::__construct( $text, "RevisionTestModifyableContent" );
+	}
 
+	public function copy( ) {
+		return new RevisionTestModifyableContent( $this->mText );
+	}
+
+	public function getText() {
+		return $this->mText;
+	}
+
+	public function setText( $text ) {
+		$this->mText = $text;
+	}
+
+}
+
+class RevisionTestModifyableContentHandler extends TextContentHandler {
+
+	public function __construct( ) {
+		parent::__construct( "RevisionTestModifyableContent", array( CONTENT_FORMAT_TEXT ) );
+	}
+
+	public function unserializeContent( $text, $format = null ) {
+		$this->checkFormat( $format );
+
+		return new RevisionTestModifyableContent( $text );
+	}
+
+	public function makeEmptyContent() {
+		return new RevisionTestModifyableContent( '' );
+	}
+}
