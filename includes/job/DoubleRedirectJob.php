@@ -126,14 +126,10 @@ class DoubleRedirectJob extends Job {
 			$currentDest->getFragment() );
 
 		# Fix the text
-		# Remember that redirect pages can have categories, templates, etc.,
-		# so the regex has to be fairly general
-		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x',
-			'[[' . $newTitle->getFullText() . ']]',
-			$text, 1 ); #FIXME: need a way to do this via ContentHandler!
+		$newContent = $content->updateRedirect( $newTitle );
 
-		if ( $newText === $text ) {
-			$this->setLastError( 'Text unchanged???' );
+		if ( $newContent->equals( $content ) ) {
+			$this->setLastError( 'Content unchanged???' );
 			return false;
 		}
 
@@ -145,7 +141,7 @@ class DoubleRedirectJob extends Job {
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
-		$article->doEdit( $newText, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $this->getUser() );
+		$article->doEditContent( $newContent, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $this->getUser() );
 		$wgUser = $oldUser;
 
 		return true;
