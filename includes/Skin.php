@@ -1103,7 +1103,7 @@ abstract class Skin extends ContextSource {
 	 * @return String
 	 */
 	static function makeI18nUrl( $name, $urlaction = '' ) {
-		$title = Title::newFromText( wfMsgForContent( $name ) );
+		$title = Title::newFromText( wfMessage( $name )->inContentLanguage()->text() );
 		self::checkTitle( $title, $name );
 		return $title->getLocalURL( $urlaction );
 	}
@@ -1235,7 +1235,7 @@ abstract class Skin extends ContextSource {
 	 * @param $message String
 	 */
 	function addToSidebar( &$bar, $message ) {
-		$this->addToSidebarPlain( $bar, wfMsgForContentNoTrans( $message ) );
+		$this->addToSidebarPlain( $bar, wfMessage( $message )->inContentLanguage()->plain() );
 	}
 
 	/**
@@ -1551,9 +1551,10 @@ abstract class Skin extends ContextSource {
 		if ( !is_null( $tooltip ) ) {
 			# Bug 25462: undo double-escaping.
 			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
-			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'replaceafter' ), $tooltip );
+			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
+				->inLanguage( $lang )->text();
 		}
-		$link = Linker::link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
+		$link = Linker::link( $nt, wfMessage( 'editsection' )->inLanguage( $lang )->text(),
 			$attribs,
 			array( 'action' => 'edit', 'section' => $section ),
 			array( 'noclasses', 'known' )
@@ -1563,7 +1564,8 @@ abstract class Skin extends ContextSource {
 		# we can rid of it someday.
 		$attribs = '';
 		if ( $tooltip ) {
-			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape', 'replaceafter' ), $tooltip );
+			$attribs = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
+				->inLanguage( $lang )->escaped();
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
@@ -1573,13 +1575,15 @@ abstract class Skin extends ContextSource {
 			# run, and even add them to hook-provided text.  (This is the main
 			# reason that the EditSectionLink hook is deprecated in favor of
 			# DoEditSectionLink: it can't change the brackets or the span.)
-			$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $result );
+			$result = wfMessage( 'editsection-brackets' )->rawParams( $result )
+				->inLanguage( $lang )->escaped();
 			return "<span class=\"editsection\">$result</span>";
 		}
 
 		# Add the brackets and the span, and *then* run the nice new hook, with
 		# clean and non-redundant arguments.
-		$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $link );
+		$result = wfMessage( 'editsection-brackets' )->rawParams( $link )
+			->inLanguage( $lang )->escaped();
 		$result = "<span class=\"editsection\">$result</span>";
 
 		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );

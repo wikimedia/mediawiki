@@ -40,7 +40,7 @@ class MediaWiki_I18N {
 		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
 		$value = preg_replace( '/^string:/', '', $value );
 
-		$value = wfMsg( $value );
+		$value = wfMessage( $value )->text();
 		// interpolate variables
 		$m = array();
 		while( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {

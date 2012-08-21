@@ -182,12 +182,12 @@ class LegacyTemplate extends BaseTemplate {
 		  . $this->getSkin()->escapeSearchLink() . "\">\n"
 		  . '<input type="text" id="searchInput' . $this->searchboxes . '" name="search" size="19" value="'
 		  . htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />\n"
-		  . '<input type="submit" name="go" value="' . wfMsg( 'searcharticle' ) . '" />';
+		  . '<input type="submit" name="go" value="' . wfMessage( 'searcharticle' )->text() . '" />';
 
 		if ( $wgUseTwoButtonsSearchForm ) {
-			$s .= '&#160;<input type="submit" name="fulltext" value="' . wfMsg( 'searchbutton' ) . "\" />\n";
+			$s .= '&#160;<input type="submit" name="fulltext" value="' . wfMessage( 'searchbutton' )->text() . "\" />\n";
 		} else {
-			$s .= ' <a href="' . $this->getSkin()->escapeSearchLink() . '" rel="search">' . wfMsg( 'powersearch-legend' ) . "</a>\n";
+			$s .= ' <a href="' . $this->getSkin()->escapeSearchLink() . '" rel="search">' . wfMessage( 'powersearch-legend' )->text() . "</a>\n";
 		}
 
 		$s .= '</form>';
@@ -236,7 +236,7 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		// @todo FIXME: Is using Language::pipeList impossible here? Do not quite understand the use of the newline
-		return implode( $s, wfMsgExt( 'pipe-separator', 'escapenoentities' ) . "\n" );
+		return implode( $s, wfMessage( 'pipe-separator' )->escaped() . "\n" );
 	}
 
 	/**
@@ -292,7 +292,7 @@ class LegacyTemplate extends BaseTemplate {
 		if ( count( $s ) ) {
 			global $wgLang;
 
-			$out = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
+			$out = wfMessage( 'pipe-separator' )->escaped();
 			$out .= $wgLang->pipeList( $s );
 		}
 
@@ -301,7 +301,7 @@ class LegacyTemplate extends BaseTemplate {
 
 	function bottomLinks() {
 		global $wgOut, $wgUser;
-		$sep = wfMsgExt( 'pipe-separator', 'escapenoentities' ) . "\n";
+		$sep = wfMessage( 'pipe-separator' )->escaped() . "\n";
 
 		$s = '';
 		if ( $wgOut->isArticleRelated() ) {
@@ -373,7 +373,7 @@ class LegacyTemplate extends BaseTemplate {
 			return '';
 		}
 
-		$s = wfMsg( 'otherlanguages' ) . wfMsg( 'colon-separator' );
+		$s = wfMessage( 'otherlanguages' )->text() . wfMessage( 'colon-separator' )->text();
 		$first = true;
 
 		if ( $wgLang->isRTL() ) {
@@ -382,7 +382,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		foreach ( $a as $l ) {
 			if ( !$first ) {
-				$s .= wfMsgExt( 'pipe-separator', 'escapenoentities' );
+				$s .= wfMessage( 'pipe-separator' )->escaped();
 			}
 
 			$first = false;
@@ -417,8 +417,9 @@ class LegacyTemplate extends BaseTemplate {
 				$obj->getTitle()->getPrefixedDBkey() );
 		}
 
-		return Html::rawElement( 'form', array( 'id' => 'specialpages', 'method' => 'get',
-			'action' => $wgScript ), $select->getHTML() . Xml::submitButton( wfMsg( 'go' ) ) );
+		return Html::rawElement( 'form',
+			array( 'id' => 'specialpages', 'method' => 'get', 'action' => $wgScript ),
+			$select->getHTML() . Xml::submitButton( wfMessage( 'go' )->text() ) );
 	}
 
 	function pageTitleLinks() {
@@ -459,8 +460,8 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
 			$s[] .= Linker::linkKnown(
-					$title,
-					wfMsg( 'currentrev' )
+				$title,
+				wfMessage( 'currentrev' )->text()
 			);
 		}
 
@@ -470,18 +471,18 @@ class LegacyTemplate extends BaseTemplate {
 			if ( !$title->equals( $wgUser->getTalkPage() ) ) {
 				$tl = Linker::linkKnown(
 					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessageslink' ),
+					wfMessage( 'newmessageslink' )->escaped(),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
 				$dl = Linker::linkKnown(
 					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessagesdifflink' ),
+					wfMessage( 'newmessagesdifflink' )->escaped(),
 					array(),
 					array( 'diff' => 'cur' )
 				);
-				$s[] = '<strong>' . wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
+				$s[] = '<strong>' . wfMessage( 'youhavenewmessages', $tl, $dl )->text() . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage( 0 );
 				$wgOut->enableClientCache( false );
@@ -514,7 +515,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $sub == '' ) {
 			global $wgExtraSubtitle;
-			$sub = wfMsgExt( 'tagline', 'parsemag' ) . $wgExtraSubtitle;
+			$sub = wfMessage( 'tagline' )->parse() . $wgExtraSubtitle;
 		}
 
 		$subpages = $this->getSkin()->subPageSubtitle();
@@ -532,14 +533,15 @@ class LegacyTemplate extends BaseTemplate {
 		if ( !$wgOut->isPrintable() ) {
 			$printurl = htmlspecialchars( $this->getSkin()->getTitle()->getLocalUrl(
 				$wgRequest->appendQueryValue( 'printable', 'yes', true ) ) );
-			$s[] = "<a href=\"$printurl\" rel=\"alternate\">" . wfMsg( 'printableversion' ) . '</a>';
+			$s[] = "<a href=\"$printurl\" rel=\"alternate\">"
+				. wfMessage( 'printableversion' )->text() . '</a>';
 		}
 
 		if ( $wgOut->isSyndicated() ) {
 			foreach ( $wgOut->getSyndicationLinks() as $format => $link ) {
 				$feedurl = htmlspecialchars( $link );
 				$s[] = "<a href=\"$feedurl\" rel=\"alternate\" type=\"application/{$format}+xml\""
-						. " class=\"feedlink\">" . wfMsgHtml( "feed-$format" ) . "</a>";
+						. " class=\"feedlink\">" . wfMessage( "feed-$format" )->escaped() . "</a>";
 			}
 		}
 		return $wgLang->pipeList( $s );
@@ -558,15 +560,15 @@ class LegacyTemplate extends BaseTemplate {
 		global $wgOut;
 
 		if ( !$wgOut->isArticleRelated() ) {
-			$s = wfMsg( 'protectedpage' );
+			$s = wfMessage( 'protectedpage' )->text();
 		} else {
 			$title = $this->getSkin()->getTitle();
 			if ( $title->quickUserCan( 'edit' ) && $title->exists() ) {
-				$t = wfMsg( 'editthispage' );
+				$t = wfMessage( 'editthispage' )->text();
 			} elseif ( $title->quickUserCan( 'create' ) && !$title->exists() ) {
-				$t = wfMsg( 'create-this-page' );
+				$t = wfMessage( 'create-this-page' )->text();
 			} else {
-				$t = wfMsg( 'viewsource' );
+				$t = wfMessage( 'viewsource' )->text();
 			}
 
 			$s = Linker::linkKnown(
@@ -587,7 +589,7 @@ class LegacyTemplate extends BaseTemplate {
 		$title = $this->getSkin()->getTitle();
 
 		if ( $title->getArticleID() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
-			$t = wfMsg( 'deletethispage' );
+			$t = wfMessage( 'deletethispage' )->text();
 
 			$s = Linker::linkKnown(
 				$title,
@@ -610,10 +612,10 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
 			if ( $title->isProtected() ) {
-				$text = wfMsg( 'unprotectthispage' );
+				$text = wfMessage( 'unprotectthispage' )->text();
 				$query = array( 'action' => 'unprotect' );
 			} else {
-				$text = wfMsg( 'protectthispage' );
+				$text = wfMessage( 'protectthispage' )->text();
 				$query = array( 'action' => 'protect' );
 			}
 
@@ -639,14 +641,14 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $wgUser->isWatched( $title ) ) {
-				$text = wfMsg( 'unwatchthispage' );
+				$text = wfMessage( 'unwatchthispage' )->text();
 				$query = array(
 					'action' => 'unwatch',
 					'token' => UnwatchAction::getUnwatchToken( $title, $wgUser ),
 				);
 				$id = 'mw-unwatch-link' . $this->mWatchLinkNum;
 			} else {
-				$text = wfMsg( 'watchthispage' );
+				$text = wfMessage( 'watchthispage' )->text();
 				$query = array(
 					'action' => 'watch',
 					'token' => WatchAction::getWatchToken( $title, $wgUser ),
@@ -661,7 +663,7 @@ class LegacyTemplate extends BaseTemplate {
 				$query
 			);
 		} else {
-			$s = wfMsg( 'notanarticle' );
+			$s = wfMessage( 'notanarticle' )->text();
 		}
 
 		return $s;
@@ -671,7 +673,7 @@ class LegacyTemplate extends BaseTemplate {
 		if ( $this->getSkin()->getTitle()->quickUserCan( 'move' ) ) {
 			return Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Movepage' ),
-				wfMsg( 'movethispage' ),
+				wfMessage( 'movethispage' )->text(),
 				array(),
 				array( 'target' => $this->getSkin()->getTitle()->getPrefixedDBkey() )
 			);
@@ -684,7 +686,7 @@ class LegacyTemplate extends BaseTemplate {
 	function historyLink() {
 		return Linker::link(
 			$this->getSkin()->getTitle(),
-			wfMsgHtml( 'history' ),
+			wfMessage( 'history' )->escaped(),
 			array( 'rel' => 'archives' ),
 			array( 'action' => 'history' )
 		);
@@ -693,21 +695,21 @@ class LegacyTemplate extends BaseTemplate {
 	function whatLinksHere() {
 		return Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Whatlinkshere', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
-			wfMsgHtml( 'whatlinkshere' )
+			wfMessage( 'whatlinkshere' )->escaped()
 		);
 	}
 
 	function userContribsLink() {
 		return Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Contributions', $this->getSkin()->getTitle()->getDBkey() ),
-			wfMsgHtml( 'contributions' )
+			wfMessage( 'contributions' )->escaped()
 		);
 	}
 
 	function emailUserLink() {
 		return Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Emailuser', $this->getSkin()->getTitle()->getDBkey() ),
-			wfMsgHtml( 'emailuser' )
+			wfMessage( 'emailuser' )->escaped()
 		);
 	}
 
@@ -719,7 +721,7 @@ class LegacyTemplate extends BaseTemplate {
 		} else {
 			return Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
-				wfMsgHtml( 'recentchangeslinked-toolbox' )
+				wfMessage( 'recentchangeslinked-toolbox' )->escaped()
 			);
 		}
 	}
@@ -737,41 +739,41 @@ class LegacyTemplate extends BaseTemplate {
 			$link = $title->getSubjectPage();
 			switch( $link->getNamespace() ) {
 				case NS_MAIN:
-					$text = wfMsg( 'articlepage' );
+					$text = wfMessage( 'articlepage' );
 					break;
 				case NS_USER:
-					$text = wfMsg( 'userpage' );
+					$text = wfMessage( 'userpage' );
 					break;
 				case NS_PROJECT:
-					$text = wfMsg( 'projectpage' );
+					$text = wfMessage( 'projectpage' );
 					break;
 				case NS_FILE:
-					$text = wfMsg( 'imagepage' );
+					$text = wfMessage( 'imagepage' );
 					# Make link known if image exists, even if the desc. page doesn't.
 					if ( wfFindFile( $link ) )
 						$linkOptions[] = 'known';
 					break;
 				case NS_MEDIAWIKI:
-					$text = wfMsg( 'mediawikipage' );
+					$text = wfMessage( 'mediawikipage' );
 					break;
 				case NS_TEMPLATE:
-					$text = wfMsg( 'templatepage' );
+					$text = wfMessage( 'templatepage' );
 					break;
 				case NS_HELP:
-					$text = wfMsg( 'viewhelppage' );
+					$text = wfMessage( 'viewhelppage' );
 					break;
 				case NS_CATEGORY:
-					$text = wfMsg( 'categorypage' );
+					$text = wfMessage( 'categorypage' );
 					break;
 				default:
-					$text = wfMsg( 'articlepage' );
+					$text = wfMessage( 'articlepage' );
 			}
 		} else {
 			$link = $title->getTalkPage();
-			$text = wfMsg( 'talkpage' );
+			$text = wfMessage( 'talkpage' );
 		}
 
-		$s = Linker::link( $link, $text, array(), array(), $linkOptions );
+		$s = Linker::link( $link, $text->text(), array(), array(), $linkOptions );
 
 		return $s;
 	}
@@ -793,7 +795,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		return Linker::linkKnown(
 			$title,
-			wfMsg( 'postcomment' ),
+			wfMessage( 'postcomment' )->text(),
 			array(),
 			array(
 				'action' => 'edit',
@@ -807,11 +809,13 @@ class LegacyTemplate extends BaseTemplate {
 
 		if ( $wgUploadNavigationUrl ) {
 			# Using an empty class attribute to avoid automatic setting of "external" class
-			return Linker::makeExternalLink( $wgUploadNavigationUrl, wfMsgHtml( 'upload' ), false, null, array( 'class' => '' ) );
+			return Linker::makeExternalLink( $wgUploadNavigationUrl,
+				wfMessage( 'upload' )->escaped(),
+				false, null, array( 'class' => '' ) );
 		} else {
 			return Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Upload' ),
-				wfMsgHtml( 'upload' )
+				wfMessage( 'upload' )->escaped()
 			);
 		}
 	}
@@ -832,7 +836,7 @@ class LegacyTemplate extends BaseTemplate {
 
 				$ret .= "$name $talkLink";
 			} else {
-				$ret .= wfMsg( 'notloggedin' );
+				$ret .= wfMessage( 'notloggedin' )->text();
 			}
 
 			$query = array();
@@ -846,7 +850,7 @@ class LegacyTemplate extends BaseTemplate {
 				: 'login';
 			$ret .= "\n<br />" . Linker::link(
 				SpecialPage::getTitleFor( 'Userlogin' ),
-				wfMsg( $loginlink ), array(), $query
+				wfMessage( $loginlink )->text(), array(), $query
 			);
 		} else {
 			$talkLink = Linker::link( $wgUser->getTalkPage(),
@@ -858,7 +862,7 @@ class LegacyTemplate extends BaseTemplate {
 			$ret .= " $talkLink<br />";
 			$ret .= $wgLang->pipeList( array(
 				Linker::link(
-					SpecialPage::getTitleFor( 'Userlogout' ), wfMsg( 'logout' ),
+					SpecialPage::getTitleFor( 'Userlogout' ), wfMessage( 'logout' )->text(),
 					array(), array( 'returnto' => $returnTo->getPrefixedDBkey() )
 				),
 				Linker::specialLink( 'Preferences' ),
@@ -868,8 +872,8 @@ class LegacyTemplate extends BaseTemplate {
 		$ret = $wgLang->pipeList( array(
 			$ret,
 			Linker::link(
-				Title::newFromText( wfMsgForContent( 'helppage' ) ),
-				wfMsg( 'help' )
+				Title::newFromText( wfMessage( 'helppage' )->inContentLanguage()->text() ),
+				wfMessage( 'help' )->text()
 			),
 		) );
 
