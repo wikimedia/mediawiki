@@ -117,7 +117,7 @@ class ApexTemplate extends BaseTemplate {
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
 				if ( $section == 'views' && !( isset( $link['primary'] ) && $link['primary'] ) ) {
-					$link['class'] = rtrim( 'collapsible ' . $link['class'], ' ' );
+					$link['class'] = rtrim( 'apex-nav-stashable ' . $link['class'], ' ' );
 				}
 
 				$xmlID = isset( $link['id'] ) ? $link['id'] : 'ca-' . $xmlID;
@@ -199,10 +199,10 @@ class ApexTemplate extends BaseTemplate {
 			<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>><span><?php echo $wgSitename ?></span></a></div>
 			<?php $this->renderNavigation( array( 'SEARCH', 'PERSONAL' ) ); ?>
 			<div class="apex-nav">
-				<div class="apex-nav-left">
+				<div class="apex-nav-primary">
 					<?php $this->renderNavigation( array( 'NAMESPACES', 'VARIANTS' ) ); ?>
 				</div>
-				<div class="apex-nav-right">
+				<div class="apex-nav-secondary">
 					<?php $this->renderNavigation( array( 'VIEWS', 'ACTIONS' ) ); ?>
 				</div>
 			</div>
@@ -393,7 +393,7 @@ class ApexTemplate extends BaseTemplate {
 	<div class="apex-menu-popup">
 		<ul<?php $this->html( 'userlangattributes' ) ?>>
 			<?php foreach ( $this->data['action_urls'] as $link ): ?>
-				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+				<li<?php echo $link['attributes'] ?>><span><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
 			<?php endforeach; ?>
 		</ul>
 	</div>

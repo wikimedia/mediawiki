@@ -58,17 +58,17 @@ a:visited {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#edf8f9',GradientType=0 ); /* IE6-8 */
 }
 
-.apex-nav-left {
+.apex-nav-primary {
 	float: left;
 }
 
-.apex-nav-right {
+.apex-nav-secondary {
 	float: right;
 }
 
 .apex-nav,
-.apex-nav-left,
-.apex-nav-right {
+.apex-nav-primary,
+.apex-nav-secondary {
 	height: 2em;
 }
 
