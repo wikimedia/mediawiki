@@ -882,9 +882,10 @@ class Revision implements IDBAccessObject {
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
-	 * @return String
+	 *
 	 * @deprecated in 1.WD, use getContent() instead
 	 * @todo: replace usage in core
+	 * @return String
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
@@ -904,9 +905,8 @@ class Revision implements IDBAccessObject {
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
-	 * @return Content
-	 *
 	 * @since 1.WD
+	 * @return Content
 	 */
 	public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
 		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
@@ -946,14 +946,19 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Fetch original serialized data without regard for view restrictions
 	 *
-	 * @return String
-	 *
 	 * @since 1.WD
+	 * @return String
 	 */
 	public function getSerializedData() {
 		return $this->mText;
 	}
 
+	/**
+	 * Gets the content object for the revision
+	 *
+	 * @since 1.WD
+	 * @return Content
+	 */
 	protected function getContentInternal() {
 		if( is_null( $this->mContent ) ) {
 			// Revision is immutable. Load on demand:
