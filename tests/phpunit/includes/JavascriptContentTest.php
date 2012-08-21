@@ -214,6 +214,13 @@ class JavascriptContentTest extends WikitextContentTest {
 		);
 	}
 
+	public function testMatchMagicWord( ) {
+		$mw = MagicWord::get( "staticredirect" );
+
+		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
+		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word, since it's not wikitext" );
+	}
+
 	# =================================================================================================================
 
 	public function testGetModel() {
