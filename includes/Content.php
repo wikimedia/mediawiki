@@ -432,6 +432,15 @@ interface Content {
 	public function getDeletionUpdates( Title $title,
 		ParserOutput $parserOutput = null );
 
+	/**
+	 * Returns true if this Content object matches the given magic word.
+	 *
+	 * @param MagicWord $word the magic word to match
+	 *
+	 * @return bool whether this Content object matches the given magic word.
+	 */
+	public function matchMagicWord( MagicWord $word );
+
 	# TODO: handle ImagePage and CategoryPage
 	# TODO: make sure we cover lucene search / wikisearch.
 	# TODO: make sure ReplaceTemplates still works
@@ -730,9 +739,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * Returns a list of updates to perform when this content is deleted.
-	 * The necessary updates may be taken from the Content object, or depend on
-	 * the current state of the database.
+	 * @see  Content::getDeletionUpdates()
 	 *
 	 * @since WD.1
 	 *
@@ -750,6 +757,19 @@ abstract class AbstractContent implements Content {
 		return array(
 			new LinksDeletionUpdate( $title ),
 		);
+	}
+
+	/**
+	 * @see  Content::matchMagicWord()
+	 *
+	 * This default implementation always returns false. Subclasses may override this to supply matching logic.
+	 *
+	 * @param MagicWord $word
+	 *
+	 * @return bool
+	 */
+	public function matchMagicWord( MagicWord $word ) {
+		return false;
 	}
 }
 
@@ -930,7 +950,6 @@ abstract class TextContent extends AbstractContent {
 		# TODO: make Highlighter interface, use highlighter here, if available
 		return htmlspecialchars( $this->getNativeData() );
 	}
-
 }
 
 /**
@@ -1182,7 +1201,18 @@ class WikitextContent extends TextContent {
 		);
 	}
 
-
+	/**
+	 * @see  Content::matchMagicWord()
+	 *
+	 * This implementation calls $word->match() on the this TextContent object's text.
+	 *
+	 * @param MagicWord $word
+	 *
+	 * @return bool whether this Content object matches the given magic word.
+	 */
+	public function matchMagicWord( MagicWord $word ) {
+		return $word->match( $this->getNativeData() );
+	}
 }
 
 /**
