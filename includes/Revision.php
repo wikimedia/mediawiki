@@ -954,6 +954,13 @@ class Revision implements IDBAccessObject {
 		return $this->mText;
 	}
 
+	/**
+	 * Gets the content object for the revision
+	 *
+	 * @return Content
+	 *
+	 * @since 1.WD
+	 */
 	protected function getContentInternal() {
 		if( is_null( $this->mContent ) ) {
 			// Revision is immutable. Load on demand:
