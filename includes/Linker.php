@@ -345,7 +345,7 @@ class Linker {
 		} elseif ( in_array( 'known', $options ) ) {
 			$defaults['title'] = $target->getPrefixedText();
 		} else {
-			$defaults['title'] = wfMsg( 'red-link-title', $target->getPrefixedText() );
+			$defaults['title'] = wfMessage( 'red-link-title', $target->getPrefixedText() )->text();
 		}
 
 		# Finally, merge the custom attribs with the default ones, and iterate
@@ -825,7 +825,7 @@ class Linker {
 			$s .= self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
 			$zoomIcon = '';
 		} elseif ( !$thumb ) {
-			$s .= htmlspecialchars( wfMsg( 'thumbnail_error', '' ) );
+			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
 			$params = array(
@@ -841,7 +841,7 @@ class Linker {
 					Html::rawElement( 'a', array(
 						'href' => $url,
 						'class' => 'internal',
-						'title' => wfMsg( 'thumbnail-more' ) ),
+						'title' => wfMessage( 'thumbnail-more' )->text() ),
 						Html::element( 'img', array(
 							'src' => $wgStylePath . '/common/images/magnify-clip' . ( $wgContLang->isRTL() ? '-rtl' : '' ) . '.png',
 							'width' => 15,
@@ -971,7 +971,7 @@ class Linker {
 			$key = strtolower( $name );
 		}
 
-		return self::linkKnown( SpecialPage::getTitleFor( $name ) , wfMsg( $key ) );
+		return self::linkKnown( SpecialPage::getTitleFor( $name ) , wfMessage( $key )->text() );
 	}
 
 	/**
@@ -1063,7 +1063,7 @@ class Linker {
 			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
 
-			$items[] = self::link( $contribsPage, wfMsgHtml( 'contribslink' ), $attribs );
+			$items[] = self::link( $contribsPage, wfMessage( 'contribslink' )->escaped(), $attribs );
 		}
 		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = self::blockLink( $userId, $userText );
@@ -1104,7 +1104,7 @@ class Linker {
 	 */
 	public static function userTalkLink( $userId, $userText ) {
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
-		$userTalkLink = self::link( $userTalkPage, wfMsgHtml( 'talkpagelinktext' ) );
+		$userTalkLink = self::link( $userTalkPage, wfMessage( 'talkpagelinktext' )->escaped() );
 		return $userTalkLink;
 	}
 
@@ -1115,7 +1115,7 @@ class Linker {
 	 */
 	public static function blockLink( $userId, $userText ) {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
-		$blockLink = self::link( $blockPage, wfMsgHtml( 'blocklink' ) );
+		$blockLink = self::link( $blockPage, wfMessage( 'blocklink' )->escaped() );
 		return $blockLink;
 	}
 
@@ -1126,7 +1126,7 @@ class Linker {
 	 */
 	public static function emailLink( $userId, $userText ) {
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
-		$emailLink = self::link( $emailPage, wfMsgHtml( 'emaillink' ) );
+		$emailLink = self::link( $emailPage, wfMessage( 'emaillink' )->escaped() );
 		return $emailLink;
 	}
 
@@ -1138,12 +1138,12 @@ class Linker {
 	 */
 	public static function revUserLink( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
+			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$link = self::userLink( $rev->getUser( Revision::FOR_THIS_USER ),
 				$rev->getUserText( Revision::FOR_THIS_USER ) );
 		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
+			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
@@ -1159,7 +1159,7 @@ class Linker {
 	 */
 	public static function revUserTools( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
-			$link = wfMsgHtml( 'rev-deleted-user' );
+			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
 			$userId = $rev->getUser( Revision::FOR_THIS_USER );
 			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
@@ -1167,7 +1167,7 @@ class Linker {
 				. wfMessage( 'word-separator' )->plain()
 				. self::userToolLinks( $userId, $userText );
 		} else {
-			$link = wfMsgHtml( 'rev-deleted-user' );
+			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 		if ( $rev->isDeleted( Revision::DELETED_USER ) ) {
 			return ' <span class="history-deleted">' . $link . '</span>';
@@ -1281,11 +1281,11 @@ class Linker {
 			}
 			if ( $pre ) {
 				# written summary $presep autocomment (summary /* section */)
-				$pre .= wfMsgExt( 'autocomment-prefix', array( 'escapenoentities', 'content' ) );
+				$pre .= wfMessage( 'autocomment-prefix' )->inContentLanguage()->escaped();
 			}
 			if ( $post ) {
 				# autocomment $postsep written summary (/* section */ summary)
-				$auto .= wfMsgExt( 'colon-separator', array( 'escapenoentities', 'content' ) );
+				$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
 			}
 			$auto = '<span class="autocomment">' . $auto . '</span>';
 			$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
@@ -1507,12 +1507,12 @@ class Linker {
 			return "";
 		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
-			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
+			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
 			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
 				$rev->getTitle(), $local );
 		} else {
-			$block = " <span class=\"comment\">" . wfMsgHtml( 'rev-deleted-comment' ) . "</span>";
+			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) ) {
 			return " <span class=\"history-deleted\">$block</span>";
@@ -1526,13 +1526,11 @@ class Linker {
 	 */
 	public static function formatRevisionSize( $size ) {
 		if ( $size == 0 ) {
-			$stxt = wfMsgExt( 'historyempty', 'parsemag' );
+			$stxt = wfMessage( 'historyempty' )->escaped();
 		} else {
-			global $wgLang;
-			$stxt = wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $size ) );
+			$stxt = wfMessage( 'nbytes' )->numParams( $size )->escaped();
 			$stxt = wfMessage( 'parentheses' )->rawParams( $stxt )->escaped();
 		}
-		$stxt = htmlspecialchars( $stxt );
 		return "<span class=\"history-size\">$stxt</span>";
 	}
 
@@ -1588,7 +1586,7 @@ class Linker {
 	 * @return String: full html of the TOC
 	 */
 	public static function tocList( $toc, $lang = false ) {
-		$title = wfMsgExt( 'toc', array( 'language' => $lang, 'escape' ) );
+		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 		return
 		   '<table id="toc" class="toc"><tr><td>'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
@@ -1803,11 +1801,14 @@ class Linker {
 			# Construct the HTML
 			$outText = '<div class="mw-templatesUsedExplanation">';
 			if ( $preview ) {
-				$outText .= wfMsgExt( 'templatesusedpreview', array( 'parse' ), count( $templates ) );
+				$outText .= wfMessage( 'templatesusedpreview' )->numParams( count( $templates ) )
+					->parseAsBlock();
 			} elseif ( $section ) {
-				$outText .= wfMsgExt( 'templatesusedsection', array( 'parse' ), count( $templates ) );
+				$outText .= wfMessage( 'templatesusedsection' )->numParams( count( $templates ) )
+					->parseAsBlock();
 			} else {
-				$outText .= wfMsgExt( 'templatesused', array( 'parse' ), count( $templates ) );
+				$outText .= wfMessage( 'templatesused' )->numParams( count( $templates ) )
+					->parseAsBlock();
 			}
 			$outText .= "</div><ul>\n";
 
@@ -1815,23 +1816,23 @@ class Linker {
 			foreach ( $templates as $titleObj ) {
 				$r = $titleObj->getRestrictions( 'edit' );
 				if ( in_array( 'sysop', $r ) ) {
-					$protected = wfMsgExt( 'template-protected', array( 'parseinline' ) );
+					$protected = wfMessage( 'template-protected' )->parse();
 				} elseif ( in_array( 'autoconfirmed', $r ) ) {
-					$protected = wfMsgExt( 'template-semiprotected', array( 'parseinline' ) );
+					$protected = wfMessage( 'template-semiprotected' )->parse();
 				} else {
 					$protected = '';
 				}
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
 					$editLink = self::link(
 						$titleObj,
-						wfMsg( 'editlink' ),
+						wfMessage( 'editlink' )->text(),
 						array(),
 						array( 'action' => 'edit' )
 					);
 				} else {
 					$editLink = self::link(
 						$titleObj,
-						wfMsg( 'viewsourcelink' ),
+						wfMessage( 'viewsourcelink' )->text(),
 						array(),
 						array( 'action' => 'edit' )
 					);
@@ -1859,7 +1860,7 @@ class Linker {
 		if ( count( $hiddencats ) > 0 ) {
 			# Construct the HTML
 			$outText = '<div class="mw-hiddenCategoriesExplanation">';
-			$outText .= wfMsgExt( 'hiddencategories', array( 'parse' ), $wgLang->formatnum( count( $hiddencats ) ) );
+			$outText .= wfMessage( 'hiddencategories' )->numParams( count( $hiddencats ) )->parseAsBlock();
 			$outText .= "</div><ul>\n";
 
 			foreach ( $hiddencats as $titleObj ) {
@@ -2019,7 +2020,8 @@ class Linker {
 	 */
 	public static function revDeleteLink( $query = array(), $restricted = false, $delete = true ) {
 		$sp = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
+		$msgKey = $delete ? 'rev-delundel' : 'rev-showdeleted';
+		$html = wfMessage( $msgKey )->escaped();
 		$tag = $restricted ? 'strong' : 'span';
 		$link = self::link( $sp, $html, array(), $query, array( 'known', 'noclasses' ) );
 		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $link )->escaped() );
@@ -2034,8 +2036,10 @@ class Linker {
 	 * of appearance with CSS
 	 */
 	public static function revDeleteLinkDisabled( $delete = true ) {
-		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
-		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), wfMessage( 'parentheses' )->rawParams( $html )->escaped() );
+		$msgKey = $delete ? 'rev-delundel' : 'rev-showdeleted';
+		$html = wfMessage( $msgKey )->escaped();
+		$htmlParentheses = wfMessage( 'parentheses' )->rawParams( $html )->escaped();
+		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), $htmlParentheses );
 	}
 
 	/* Deprecated methods */
