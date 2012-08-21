@@ -330,6 +330,18 @@ interface Content {
 	public function isRedirect();
 
 	/**
+	 * If this Content object is a redirect, this method updates the redirect target.
+	 * Otherwise, it does nothing.
+	 *
+	 * @since WD.1
+	 *
+	 * @param Title $target the new redirect target
+	 *
+	 * @return Content a new Content object with the updated redirect (or $this if this Content object isn't a redirect)
+	 */
+	public function updateRedirect( Title $target );
+
+	/**
 	 * Returns the section with the given ID.
 	 *
 	 * @since WD.1
@@ -675,12 +687,27 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * @see Content::isRedirect()
+	 *
 	 * @since WD.1
 	 *
 	 * @return bool
 	 */
 	public function isRedirect() {
 		return $this->getRedirectTarget() !== null;
+	}
+
+	/**
+	 * @see Content::updateRedirect()
+	 *
+	 * This default implementation always returns $this.
+	 *
+	 * @since WD.1
+	 *
+	 * @return Content $this
+	 */
+	public function updateRedirect( Title $target ) {
+		return $this;
 	}
 
 	/**
@@ -1087,6 +1114,33 @@ class WikitextContent extends TextContent {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @see   Content::updateRedirect()
+	 *
+	 * This implementation replaces the first link on the page with the given new target
+	 * if this Content object is a redirect. Otherwise, this method returns $this.
+	 *
+	 * @since WD.1
+	 *
+	 * @param Title $target
+	 *
+	 * @return Content a new Content object with the updated redirect (or $this if this Content object isn't a redirect)
+	 */
+	public function updateRedirect( Title $target ) {
+		if ( !$this->isRedirect() ) {
+			return $this;
+		}
+
+		# Fix the text
+		# Remember that redirect pages can have categories, templates, etc.,
+		# so the regex has to be fairly general
+		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x',
+			'[[' . $target->getFullText() . ']]',
+			$this->getNativeData(), 1 );
+
+		return new WikitextContent( $newText );
 	}
 
 	/**

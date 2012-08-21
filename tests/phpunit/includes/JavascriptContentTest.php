@@ -214,6 +214,15 @@ class JavascriptContentTest extends WikitextContentTest {
 		);
 	}
 
+	public function testUpdateRedirect( ) {
+		$target = Title::newFromText( "testUpdateRedirect_target" );
+
+		$content = $this->newContent( "#REDIRECT [[Someplace]]" );
+		$newContent = $content->updateRedirect( $target );
+
+		$this->assertTrue( $content->equals( $newContent ), "content should be unchanged since it's not wikitext" );
+	}
+
 	# =================================================================================================================
 
 	public function testGetModel() {
