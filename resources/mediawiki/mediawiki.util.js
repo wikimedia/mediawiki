@@ -157,7 +157,11 @@
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
 		wikiScript: function ( str ) {
-			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) +
+			str = str || 'index';
+			if ( str === 'index' ) {
+				return mw.config.get( 'wgScript' );
+			}
+			return mw.config.get( 'wgScriptPath' ) + '/' + str +
 				mw.config.get( 'wgScriptExtension' );
 		},
 
