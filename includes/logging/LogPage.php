@@ -90,6 +90,9 @@ class LogPage {
 			'log_comment' => $this->comment,
 			'log_params' => $this->params
 		);
+
+		wfRunHooks( 'LogPage::saveContent', array( &$data, $this ) );
+
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = !is_null( $log_id ) ? $log_id : $dbw->insertId();
 

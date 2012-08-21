@@ -1320,6 +1320,10 @@ $paramArray: Array of parameters that corresponds to logging.log_params field.
 &$revert: string that is displayed in the UI, similar to $comment.
 $time: timestamp of the log entry (added in 1.12)
 
+'LogPage::saveContent': Called right before LogPage inserts data in 'logging' table
+&$data: The data being inserted into 'logging' table
+$logPage: The LogPage object executing
+
 'MaintenanceRefreshLinksInit': before executing the refreshLinks.php maintenance script
 $refreshLinks: RefreshLinks object
 
