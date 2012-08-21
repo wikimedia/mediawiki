@@ -314,6 +314,12 @@ $body: Body of the message
 Use this to extend core API modules.
 &$module: Module object
 
+'APICheckCanExecute': Called during ApiMain::checkCanExecute. Use to
+further authenticate and authorize API clients before executing the
+module. Throw an exception if there is a permissions problem.
+&$module: Module object
+&$user: Current user
+
 'APIEditBeforeSave': before saving a page with api.php?action=edit,
 after processing request parameters. Return false to let the request
 fail, returning an error message or an <edit result="Failure"> tag
