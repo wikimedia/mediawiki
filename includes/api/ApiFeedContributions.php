@@ -102,17 +102,19 @@ class ApiFeedContributions extends ApiBase {
 			$comments = $title->getTalkPage()->getFullURL();
 			$revision = Revision::newFromRow( $row );
 
-			return new FeedItem(
-				$title->getPrefixedText(),
-				$this->feedItemDesc( $revision ),
-				$title->getFullURL(),
-				$date,
-				$this->feedItemAuthor( $revision ),
-				$comments
-			);
-		} else {
-			return null;
+			//bug 38082
+			if ( $title->userCan('read') ) {
+				return new FeedItem(
+					$title->getPrefixedText(),
+					$this->feedItemDesc( $revision ),
+					$title->getFullURL(),
+					$date,
+					$this->feedItemAuthor( $revision ),
+					$comments
+				);
+			}
 		}
+		return null;
 	}
 
 	/**
