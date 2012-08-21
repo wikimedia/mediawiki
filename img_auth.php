@@ -148,13 +148,13 @@ function wfForbidden( $msg1, $msg2 ) {
 	array_shift( $args );
 	array_shift( $args );
 
-	$msgHdr = htmlspecialchars( wfMsg( $msg1 ) );
+	$msgHdr = wfMessage( $msg1 )->escaped();
 	$detailMsgKey = $wgImgAuthDetails ? $msg2 : 'badaccess-group0';
-	$detailMsg = htmlspecialchars( wfMsg( $detailMsgKey, $args ) );
+	$detailMsg = wfMessage( $detailMsgKey, $args )->escaped();
 
 	wfDebugLog( 'img_auth',
-		"wfForbidden Hdr:" . wfMsgExt( $msg1, array( 'language' => 'en' ) ). " Msg: ".
-		wfMsgExt( $msg2, array( 'language' => 'en' ), $args )
+		"wfForbidden Hdr:" . wfMessage( $msg1 )->inLanguage( 'en' )->text() . " Msg: ".
+		wfMessage( $msg2, $args )->inLanguage( 'en' )->text()
 	);
 
 	header( 'HTTP/1.0 403 Forbidden' );
