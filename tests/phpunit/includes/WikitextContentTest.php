@@ -419,6 +419,16 @@ just a test"
 		$this->assertEquals( "hello world.", $content->getWikitextForTransclusion() );
 	}
 
+	public function testMatchMagicWord( ) {
+		$mw = MagicWord::get( "staticredirect" );
+
+		$content = $this->newContent( "#REDIRECT [[FOO]]\n__STATICREDIRECT__" );
+		$this->assertTrue( $content->matchMagicWord( $mw ), "should have matched magic word" );
+
+		$content = $this->newContent( "#REDIRECT [[FOO]]" );
+		$this->assertFalse( $content->matchMagicWord( $mw ), "should not have matched magic word" );
+	}
+
 	# =================================================================================================================
 
 	public function testGetModel() {

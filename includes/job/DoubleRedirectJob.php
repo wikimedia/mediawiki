@@ -102,9 +102,8 @@ class DoubleRedirectJob extends Job {
 		}
 
 		# Check for a suppression tag (used e.g. in periodically archived discussions)
-		$text = ContentHandler::getContentText( $content );
 		$mw = MagicWord::get( 'staticredirect' );
-		if ( $mw->match( $text ) ) { #FIXME: add support for this to ContentHandler/Content
+		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__.": skipping: suppressed with __STATICREDIRECT__\n" );
 			return true;
 		}
