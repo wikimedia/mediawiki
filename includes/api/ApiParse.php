@@ -425,7 +425,7 @@ class ApiParse extends ApiBase {
 				$text == '' ? $l : $text );
 		}
 
-		$s .= implode( htmlspecialchars( wfMsgExt( 'pipe-separator', 'escapenoentities' ) ), $langs );
+		$s .= implode( wfMessage( 'pipe-separator' )->escaped(), $langs );
 
 		if ( $wgContLang->isRTL() ) {
 			$s = Html::rawElement( 'span', array( 'dir' => "LTR" ), $s );

@@ -369,7 +369,7 @@ class WebInstaller extends Installer {
 	}
 
 	/**
-	 * Show an error message in a box. Parameters are like wfMsg().
+	 * Show an error message in a box. Parameters are like wfMessage().
 	 * @param $msg
 	 */
 	public function showError( $msg /*...*/ ) {
@@ -540,7 +540,7 @@ class WebInstaller extends Installer {
 		$s .= $this->getPageListItem( 'Restart', true, $currentPageName );
 		$s .= "</ul></div>\n"; // end list pane
 		$s .= Html::element( 'h2', array(),
-				wfMsg( 'config-page-' . strtolower( $currentPageName ) ) );
+			wfMessage( 'config-page-' . strtolower( $currentPageName ) )->text() );
 
 		$this->output->addHTMLNoFlush( $s );
 	}
@@ -556,7 +556,7 @@ class WebInstaller extends Installer {
 	 */
 	private function getPageListItem( $pageName, $enabled, $currentPageName ) {
 		$s = "<li class=\"config-page-list-item\">";
-		$name = wfMsg( 'config-page-' . strtolower( $pageName ) );
+		$name = wfMessage( 'config-page-' . strtolower( $pageName ) )->text();
 
 		if ( $enabled ) {
 			$query = array( 'page' => $pageName );
@@ -609,7 +609,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an error box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 * @param $text String: wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -620,7 +620,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for a warning box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 * @param $text String: wikitext, get this with wfMessage()->plain()
 	 *
 	 * @return string
 	 */
@@ -631,7 +631,7 @@ class WebInstaller extends Installer {
 	/**
 	 * Get HTML for an info box with an icon.
 	 *
-	 * @param $text String: wikitext, get this with wfMsgNoTrans()
+	 * @param $text String: wikitext, get this with wfMessage()->plain()
 	 * @param $icon String: icon name, file in skins/common/images
 	 * @param $class String: additional class name to add to the wrapper div
 	 *
@@ -640,13 +640,13 @@ class WebInstaller extends Installer {
 	public function getInfoBox( $text, $icon = false, $class = false ) {
 		$text = $this->parse( $text, true );
 		$icon = ( $icon == false ) ? '../skins/common/images/info-32.png' : '../skins/common/images/'.$icon;
-		$alt = wfMsg( 'config-information' );
+		$alt = wfMessage( 'config-information' )->text();
 		return Html::infoBox( $text, $icon, $alt, $class, false );
 	}
 
 	/**
 	 * Get small text indented help for a preceding form field.
-	 * Parameters like wfMsg().
+	 * Parameters like wfMessage().
 	 *
 	 * @param $msg
 	 * @return string
@@ -659,14 +659,15 @@ class WebInstaller extends Installer {
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
-			"<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
+			"<span class=\"mw-help-field-hint\">" . wfMessage( 'config-help' )->escaped() .
+			"</span>\n" .
 			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
 			"</div>\n";
 	}
 
 	/**
 	 * Output a help box.
-	 * @param $msg String key for wfMsg()
+	 * @param $msg String key for wfMessage()
 	 */
 	public function showHelpBox( $msg /*, ... */ ) {
 		$args = func_get_args();
@@ -713,7 +714,7 @@ class WebInstaller extends Installer {
 		if ( strval( $msg ) == '' ) {
 			$labelText = '&#160;';
 		} else {
-			$labelText = wfMsgHtml( $msg );
+			$labelText = wfMessage( $msg )->escaped();
 		}
 
 		$attributes = array( 'class' => 'config-label' );
@@ -893,7 +894,7 @@ class WebInstaller extends Installer {
 		if( isset( $params['rawtext'] ) ) {
 			$labelText = $params['rawtext'];
 		} else {
-			$labelText = $this->parse( wfMsg( $params['label'] ) );
+			$labelText = $this->parse( wfMessage( $params['label'] )->text() );
 		}
 
 		return
@@ -969,7 +970,7 @@ class WebInstaller extends Installer {
 				Xml::radio( $params['controlName'], $value, $checked, $itemAttribs ) .
 				'&#160;' .
 				Xml::tags( 'label', array( 'for' => $id ), $this->parse(
-					wfMsgNoTrans( $params['itemLabelPrefix'] . strtolower( $value ) )
+					wfMessage( $params['itemLabelPrefix'] . strtolower( $value ) )->plain()
 				) ) .
 				"</li>\n";
 		}
@@ -1077,7 +1078,7 @@ class WebInstaller extends Installer {
 		) );
 		$anchor = Html::rawElement( 'a',
 			array( 'href' => $this->getURL( array( 'localsettings' => 1 ) ) ),
-			$img . ' ' . wfMsgHtml( 'config-download-localsettings' ) );
+			$img . ' ' . wfMessage( 'config-download-localsettings' )->escaped() );
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
 	}
 
