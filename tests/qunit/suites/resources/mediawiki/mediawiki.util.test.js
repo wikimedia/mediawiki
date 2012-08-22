@@ -24,14 +24,17 @@ QUnit.test( 'wikiGetlink', 3, function ( assert ) {
 	assert.equal( hrefC, '/wiki/Foobar', 'Default title; Get link for current page ("Foobar")' );
 });
 
-QUnit.test( 'wikiScript', 2, function ( assert ) {
+QUnit.test( 'wikiScript', 4, function ( assert ) {
 	mw.config.set({
-		'wgScript': '/w/index.php',
+		'wgScript': '/w/i.php', // customized wgScript for bug 39103
+		'wgLoadScript': '/w/l.php', // customized wgLoadScript for bug 39103
 		'wgScriptPath': '/w',
 		'wgScriptExtension': '.php'
 	});
 
-	assert.equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript' );
+	assert.equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'wikiScript() returns wgScript' );
+	assert.equal( mw.util.wikiScript( 'index' ), mw.config.get( 'wgScript' ), "wikiScript( 'index' ) returns wgScript" );
+	assert.equal( mw.util.wikiScript( 'load' ), mw.config.get( 'wgLoadScript' ), "wikiScript( 'load' ) returns wgLoadScript" );
 	assert.equal( mw.util.wikiScript( 'api' ), '/w/api.php', 'API path' );
 });
 

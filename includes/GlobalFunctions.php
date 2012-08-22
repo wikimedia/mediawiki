@@ -3590,13 +3590,20 @@ function wfQueriesMustScale() {
 /**
  * Get the path to a specified script file, respecting file
  * extensions; this is a wrapper around $wgScriptExtension etc.
+ * except for 'index' and 'load' which use $wgScript/$wgLoadScript
  *
  * @param $script String: script filename, sans extension
  * @return String
  */
 function wfScript( $script = 'index' ) {
-	global $wgScriptPath, $wgScriptExtension;
-	return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
+	global $wgScriptPath, $wgScriptExtension, $wgScript, $wgLoadScript;
+	if ( $script === 'index' ) {
+		return $wgScript;
+	} else if ( $script === 'load' ) {
+		return $wgLoadScript;
+	} else {
+		return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
+	}
 }
 
 /**
