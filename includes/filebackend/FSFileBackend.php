@@ -43,6 +43,8 @@ class FSFileBackend extends FileBackendStore {
 	/** @var Array Map of container names to root paths */
 	protected $containerPaths = array(); // for custom container paths
 	protected $fileMode; // integer; file permission mode
+	protected $fileOwner; // string; required OS username to own files
+	protected $currentUser; // string; OS username running this script
 
 	protected $hadWarningErrors = array();
 
@@ -71,9 +73,12 @@ class FSFileBackend extends FileBackendStore {
 			}
 		}
 
-		$this->fileMode = isset( $config['fileMode'] )
-			? $config['fileMode']
-			: 0644;
+		$this->fileMode = isset( $config['fileMode'] ) ? $config['fileMode'] : 0644;
+		if ( isset( $config['fileOwner'] ) && function_exists( 'posix_getuid' ) ) {
+			$this->fileOwner = $config['fileOwner'];
+			$info = posix_getpwuid( posix_getuid() );
+			$this->currentUser = $info['name']; // cache this, assuming it doesn't change
+		}
 	}
 
 	/**
@@ -162,6 +167,11 @@ class FSFileBackend extends FileBackendStore {
 			$ok = is_file( $fsPath ) && is_writable( $fsPath );
 		} else {
 			$ok = is_dir( $parentDir ) && is_writable( $parentDir );
+		}
+
+		if ( $this->fileOwner !== null && $this->currentUser !== $this->fileOwner ) {
+			$ok = false;
+			trigger_error( __METHOD__ . ": PHP process owner is not '{$this->fileOwner}'." );
 		}
 
 		return $ok;
