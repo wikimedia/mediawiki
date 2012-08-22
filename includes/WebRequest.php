@@ -1046,11 +1046,23 @@ HTML;
 	 * @return String
 	 */
 	protected function getRawIP() {
-		if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
-			return IP::canonicalize( $_SERVER['REMOTE_ADDR'] );
-		} else {
+		if ( !isset( $_SERVER['REMOTE_ADDR'] ) ) {
 			return null;
 		}
+
+		if ( is_array( $_SERVER['REMOTE_ADDR'] ) ) {
+			// Already have an array
+			$ipchain = array_reverse( $_SERVER['REMOTE_ADDR'] );
+		} elseif ( strpos( $_SERVER['REMOTE_ADDR'], ',' ) != -1 ) {
+			// CSV list of IP addresses.
+			$ipchain = array_map( 'trim', explode( ',', $_SERVER['REMOTE_ADDR'] ) );
+			$ipchain = array_reverse( $ipchain );
+		} else {
+			// Plain old string (most cases).
+			$ipchain = (array) $_SERVER['REMOTE_ADDR'];
+		}
+
+		return IP::canonicalize( $ipchain[0] );
 	}
 
 	/**
