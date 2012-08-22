@@ -11,7 +11,24 @@
 	display: inline-block;
 	overflow: hidden;
 	background-position: right center;
+	opacity: 0.75;
+}
+#p-personal:hover #pt-userpage a {
+	opacity: 1;
 }
 #searchInput {
 	width: 10em;
+}
+#ca-talk a {
+	display: inline-block;
+	background-image: url(images/icons/talk.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-left: 16px;
+	width: 0;
+	overflow: hidden;
+	opacity: 0.75;
+}
+#ca-talk a:hover {
+	opacity: 1;
 }

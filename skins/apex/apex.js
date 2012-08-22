@@ -16,6 +16,9 @@ mw.ApexSkin = function () {
 
 	// Events
 	$( window ).on( 'resize', $.proxy( this.onResize, this ) );
+
+	// Initialization
+	this.onResize();
 };
 
 mw.ApexSkin.prototype.getNavDistance = function () {

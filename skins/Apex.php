@@ -428,7 +428,7 @@ class ApexTemplate extends BaseTemplate {
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 		<div id="simpleSearch">
 			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'search' ) ); ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-icon.png' ), 'width' => '12', 'height' => '13' ) ); ?>
+			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/icons/search.png' ), 'width' => '12', 'height' => '13' ) ); ?>
 			<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
 		</div>
 	</form>

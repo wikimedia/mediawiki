@@ -35,9 +35,15 @@ a:visited {
 	display: none;
 }
 
+.apex-nav,
+.apex-nav-primary,
+.apex-nav-secondary {
+	position: absolute;
+	height: 2em;
+}
+
 .apex-nav {
 	line-height: 1.5em;
-	position: absolute;
 	top: 4em;
 	left: 0;
 	right: 0;
@@ -59,17 +65,11 @@ a:visited {
 }
 
 .apex-nav-primary {
-	float: left;
+	left: 3em;
 }
 
 .apex-nav-secondary {
-	float: right;
-}
-
-.apex-nav,
-.apex-nav-primary,
-.apex-nav-secondary {
-	height: 2em;
+	right: 3em;
 }
 
 .apex-tabs {
@@ -233,7 +233,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	left: 0;
 	width: 3em;
 	height: 2em;
-	background-image: url(images/nav-icon.png);
+	background-image: url(images/icons/nav.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -244,18 +244,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	right: 0;
 	width: 3em;
 	height: 2em;
-	background-image: url(images/toc-icon.png);
+	background-image: url(images/icons/toc.png);
 	background-position: center center;
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
 
 #mw-panel:hover .apex-flyout-pull {
-	background-image: url(images/nav-icon-hover.png);
+	background-image: url(images/icons/nav-hover.png);
 }
 
 #toc:hover #toctitle {
-	background-image: url(images/toc-icon-hover.png);
+	background-image: url(images/icons/toc-hover.png);
 }
 
 #toc ul,
@@ -313,17 +313,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 #pt-userpage {
 	padding-right: 18px;
-	background-image: url(images/menu-icon.png);
 	background-position: right center;
 	background-repeat: no-repeat;
-}
-#p-personal:hover #pt-userpage {
-	background-image: url(images/menu-icon-hover.png);
 }
 
 #pt-userpage a {
 	padding-left: 18px;
-	background-image: url(images/user-icon.png);
+	background-image: url(images/icons/user.png);
 	background-position: left 40%;
 	background-repeat: no-repeat;
 }
@@ -362,7 +358,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	padding-left: 26px;
 	width: 0;
 	overflow: hidden;
-	background-image: url(images/watch-icons.png);
+	background-image: url(images/icons/watch.png);
 	background-position: left center;
 	background-repeat: no-repeat;
 }
@@ -383,7 +379,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #ca-unwatch .loading,
 #ca-watch .loading {
 	/* @embed */
-	background-image: url(images/watch-icon-loading.gif);
+	background-image: url(images/icons/watch-loading.gif);
 	background-position: 5px 50%;
 }
 
@@ -394,14 +390,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 #p-cactions h5 {
 	padding-right: 18px;
-	background-image: url(images/menu-icon.png);
 	background-position: right center;
 	background-repeat: no-repeat;
 	cursor: pointer;
-}
-
-#p-cactions:hover h5 {
-	background-image: url(images/menu-icon-hover.png);
 }
 
 #p-cactions .apex-menu-popup {
@@ -411,7 +402,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 
 #footer {
-	background-color: #eaf2f7;
+	background-color: #eaf5f7;
 	border-top: solid 1px #d5eaed;
 	font-size: 0.8em;
 }
@@ -435,7 +426,7 @@ ul#footer-icons {
 
 div#mw-js-message {
 	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.93);
+	background-color: rgba(255, 255, 255, 0.98);
 	font-size: 0.8em;
 	position: absolute;
 	margin: 0;
@@ -444,7 +435,7 @@ div#mw-js-message {
 	top: 8.5em;
 	width: 20em;
 	z-index: 10000;
-	border: solid 1px #a7d7f9;
+	border: solid 1px #d5eaed;
 	-webkit-border-radius: 0.25em;
 	-moz-border-radius: 0.25em;
 	border-radius: 0.25em;
@@ -452,3 +443,16 @@ div#mw-js-message {
 	-moz-box-shadow: 0 0.125em 0.5em 0 rgba(0, 0, 0, 0.25);
 	box-shadow: 0 0.125em 0.5em 0 rgba(0, 0, 0, 0.25);
 }
+
+/* Background images */
+
+#pt-userpage,
+#p-cactions h5 {
+	background-image: url(images/icons/menu.png);
+}
+
+#p-personal:hover #pt-userpage,
+#p-cactions:hover h5 {
+	background-image: url(images/icons/menu-hover.png);
+}
+
