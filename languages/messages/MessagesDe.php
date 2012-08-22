@@ -2064,6 +2064,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'shared-repo-from' => 'aus $1',
 'shared-repo' => 'einem gemeinsam genutzten Medienarchiv',
 'filepage.css' => '/* Das folgende CSS wird auf Dateibeschreibungsseiten, auch auf fremden Client-Wikis, geladen. */',
+'upload-disallowed-here' => 'Leider kannst du dieses Bild nicht überschreiben.',
 
 # File reversion
 'filerevert' => 'Zurücksetzen von „$1“',
@@ -3184,7 +3185,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-authors' => 'Gesamtzahl unterschiedlicher Autoren',
 'pageinfo-recent-edits' => 'Anzahl der kürzlich erfolgten Bearbeitungen (innerhalb von $1)',
 'pageinfo-recent-authors' => 'Anzahl der unterschiedlichen Autoren',
-'pageinfo-restriction' => 'Seitenschutz (<code>$1</code>)',
+'pageinfo-restriction' => 'Seitenschutz (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisches Wort|Magische Wörter}} ($1)',
 'pageinfo-hidden-categories' => 'Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)',
@@ -3242,6 +3243,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-size-pages' => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seite| Seiten}}',
 'file-nohires' => 'Keine höhere Auflösung vorhanden.',
 'svg-long-desc' => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
+'svg-long-desc-animated' => 'Animierte SVG-Datei, Basisgröße $1 × $2 Pixel, Dateigröße: $3',
 'show-big-image' => 'Volle Auflösung',
 'show-big-image-preview' => 'Größe dieser Vorschau: $1.',
 'show-big-image-other' => 'Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.',
@@ -3251,6 +3253,8 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-png-looped' => 'Endlosschleife',
 'file-info-png-repeat' => '$1-{{PLURAL:$1|mal|mal}} abgespielt',
 'file-info-png-frames' => '$1 {{PLURAL:$1|Bild|Bilder}}',
+'file-no-thumb-animation' => "'''Hinweis: Aufgrund technischer Beschränkungen werden Vorschaubilder dieser Datei nicht animiert.'''",
+'file-no-thumb-animation-gif' => "'''Hinweis: Aufgrund technischer Beschränkungen werden Vorschaubilder hochauflösender GIF-Dateien wie dieser nicht animiert.'''",
 
 # Special:NewFiles
 'newimages' => 'Neue Dateien',

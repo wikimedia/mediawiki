@@ -17,6 +17,7 @@
  * @author Wisesabre
  * @author ZxxZxxZ
  * @author לערי ריינהארט
+ * @author زكريا
  * @author سمرقندی
  * @author محبوب عالم
  */
@@ -1405,6 +1406,34 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlisttools-view' => 'متعلقہ تبدیلیاں دیکھیں',
 'watchlisttools-edit' => 'زیرِنظرفہرست دیکھیں اور تدوین کریں',
 'watchlisttools-raw' => 'خام زیرِنظرفہرست تدوین کریں',
+
+# Iranian month names
+'iranian-calendar-m1' => 'فروردین',
+'iranian-calendar-m2' => 'اردیبهشت',
+'iranian-calendar-m3' => 'خرداد',
+'iranian-calendar-m4' => 'تیر',
+'iranian-calendar-m5' => 'مرداد',
+'iranian-calendar-m6' => 'شهریور',
+'iranian-calendar-m7' => 'مهر',
+'iranian-calendar-m8' => 'آبان',
+'iranian-calendar-m9' => 'آذر',
+'iranian-calendar-m10' => 'دی',
+'iranian-calendar-m11' => 'بهمن',
+'iranian-calendar-m12' => 'اسفند',
+
+# Hijri month names
+'hijri-calendar-m1' => 'محرم',
+'hijri-calendar-m2' => 'صفر',
+'hijri-calendar-m3' => 'ربیع الاول',
+'hijri-calendar-m4' => 'ربیع الثانی',
+'hijri-calendar-m5' => 'جمادی الاول',
+'hijri-calendar-m6' => 'جمادی الثانی',
+'hijri-calendar-m7' => 'رجب',
+'hijri-calendar-m8' => 'شعبان',
+'hijri-calendar-m9' => 'رمضان',
+'hijri-calendar-m10' => 'شوال',
+'hijri-calendar-m11' => 'ذوالقعدہ',
+'hijri-calendar-m12' => 'ذوالحجہ',
 
 # Special:Version
 'version' => 'ورژن',

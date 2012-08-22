@@ -1855,6 +1855,7 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'shared-repo' => 'isang pinagsasaluhang repositoryo',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => '/* Ang Cascading Style Sheets na inilagay dito ay kabilang sa pahina ng paglalarawan ng talaksan, na kabilang din sa mga wiki ng dayuhang kliyente */',
+'upload-disallowed-here' => 'Sa kasamaang palad hindi mo muling masusulatan ang imaheng ito.',
 
 # File reversion
 'filerevert' => 'Ibalik sa dati ang $1',
@@ -3057,6 +3058,7 @@ Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'file-info-size-pages' => '$1 × $2 mga piksel, sukat ng talaksan: $3, uri ng MIME: $4, $5 {{PLURAL:$5|pahina|mga pahina}}',
 'file-nohires' => 'Walang makuhang mas mataas na resolusyon (kalinawan).',
 'svg-long-desc' => 'Talaksang SVG, nasa mga bilang na $1 × $2 mga piksel, sukat ng talaksan: $3',
+'svg-long-desc-animated' => 'Animadong talaksang SVG, nasa mga bilang na $1 × $2 mga piksel, sukat ng talaksan: $3',
 'show-big-image' => 'Buong resolusyon (kalinawan)',
 'show-big-image-preview' => 'Sukat ng paunang-tingin na ito: $1.',
 'show-big-image-other' => 'Iba pang {{PLURAL:$2|resolusyon|mga resolusyon}}: $1.',
@@ -3066,6 +3068,8 @@ Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'file-info-png-looped' => 'nakalikaw',
 'file-info-png-repeat' => 'pinaandar ng $1 {{PLURAL:$1|ulit|mga ulit}}',
 'file-info-png-frames' => ' $1 {{PLURAL:$1|kuwadro|mga kuwadro}}',
+'file-no-thumb-animation' => "'''Paunawa: Dahil sa limitasyong teknikal, ang mga kagyat ng talaksang ito ay hindi magiging animado.'''",
+'file-no-thumb-animation-gif' => "'''Paunawa: Dahil sa mga limitasyong teknikal, ang mga kagyat ng mga imahe na GIF na mataas ang resolusyon na katulad ng isang ito ay hindi magiging animado.'''",
 
 # Special:NewFiles
 'newimages' => 'Galerya ng mga bagong talaksan',

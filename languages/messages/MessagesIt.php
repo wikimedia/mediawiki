@@ -1904,6 +1904,7 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 'shared-repo-from' => 'da $1',
 'shared-repo' => 'un archivio condiviso',
 'filepage.css' => '/* Il CSS messo qui viene incluso nella pagina di descrizione del file, inclusa anche su wiki client esterni */',
+'upload-disallowed-here' => 'Impossibile sovrascrivere questa immagine.',
 
 # File reversion
 'filerevert' => 'Ripristina $1',
@@ -3058,6 +3059,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 pixel, dimensione del file: $3, tipo MIME: $4, $5 {{PLURAL:$5|pagina|pagine}}',
 'file-nohires' => 'Non sono disponibili versioni a risoluzione più elevata.',
 'svg-long-desc' => 'file in formato SVG, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
+'svg-long-desc-animated' => 'file in formato SVG animato, dimensioni nominali $1 × $2 pixel, dimensione del file: $3',
 'show-big-image' => 'Versione ad alta risoluzione',
 'show-big-image-preview' => 'Dimensioni di questa anteprima: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Altra risoluzione|Altre risoluzioni}}: $1.',
@@ -3067,6 +3069,8 @@ $1',
 'file-info-png-looped' => 'ciclico',
 'file-info-png-repeat' => 'ripetuto $1 {{PLURAL:$1|volta|volte}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'file-no-thumb-animation' => "'''Nota: a causa di limitazioni tecniche, le miniature di questo file non saranno animate.'''",
+'file-no-thumb-animation-gif' => "'''Nota: a causa di limitazioni tecniche, le miniature delle immagini GIF ad alta risoluzione come questa non saranno animate.'''",
 
 # Special:NewFiles
 'newimages' => 'Galleria dei nuovi file',
