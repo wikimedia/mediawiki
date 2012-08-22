@@ -1796,6 +1796,7 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zhromadny repozitorij',
+'upload-disallowed-here' => 'Bohužel njemóžeš tutón wobraz přepisać.',
 
 # File reversion
 'filerevert' => 'Wersiju $1 cofnyć',
@@ -2926,6 +2927,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 pikselow, wulkosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|strona|stronje|strony|stronow}}',
 'file-nohires' => 'Za tutu dataju žane wyše rozeznaće njeje.',
 'svg-long-desc' => 'SVG-dataja, zakładna wulkosć: $1 × $2 pikselow, datajowa wulkosć: $3',
+'svg-long-desc-animated' => 'Animěrowana SVG-dataja, zakładnej wotměraj $1 × $2 pikselow, datajowa wulkosć: $3',
 'show-big-image' => 'Wersija z wyšim rozeznaćom',
 'show-big-image-preview' => 'Wulkosć tutoho přehlada: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druhe rozeznaće|Druhej rozeznaći|Druhe rozeznaća|Druhe rozeznaća}}: $1.',
@@ -2935,6 +2937,8 @@ $1',
 'file-info-png-looped' => 'Sekla',
 'file-info-png-repeat' => '{{PLURAL:$1|$1 raz|dwójce|$1 razy|$1 razow}} wotehrata',
 'file-info-png-frames' => '$1 {{PLURAL:$1|wobłuk|wobłukaj|wobłuki|wobłukow}}',
+'file-no-thumb-animation' => "'''Kedźbu: Techniskich wobmjezowanjow dla přehladne wobrazki tuteje dataje so njeaniměruja.'''",
+'file-no-thumb-animation-gif' => "'''Kedźbu: Techniskich wobmjezowanjow dla přehladne wobrazki wysokeho rozeznaća GIF-wobrazow kaž tutoho njebudu so animěrować.'''",
 
 # Special:NewFiles
 'newimages' => 'Nowe dataje',

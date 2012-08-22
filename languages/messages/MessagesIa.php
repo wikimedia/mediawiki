@@ -1866,6 +1866,7 @@ Tu vole forsan modificar le description in le [$2 pagina de description del file
 'uploadnewversion-linktext' => 'Incargar un nove version de iste file',
 'shared-repo-from' => 'ab $1',
 'shared-repo' => 'un repositorio partite',
+'upload-disallowed-here' => 'Infortunatemente tu non pote superscriber iste imagine.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -3079,6 +3080,7 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'file-info-size-pages' => '$1 × $2 pixels, dimension del file: $3, typo MIME: $4, $5 {{PLURAL:$5|pagina|paginas}}',
 'file-nohires' => 'Non disponibile in resolution plus alte.',
 'svg-long-desc' => 'File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
+'svg-long-desc-animated' => 'File SVG animate, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'show-big-image' => 'Plen resolution',
 'show-big-image-preview' => ' Dimension de iste previsualisation: $1.',
 'show-big-image-other' => 'Altere {{PLURAL:$2|resolution|resolutiones}}: $1.',

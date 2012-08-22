@@ -2219,7 +2219,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}',
 'shared-repo-name-wikimediacommons' => '{{optional}}',
 'filepage.css' => '{{Optional}}',
-'upload-disallowed-here'            => 'This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right priviledge.',
+'upload-disallowed-here' => 'This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right priviledge.',
 
 # File reversion
 'filerevert' => '{{Identical|Revert}}',
@@ -3561,7 +3561,7 @@ The variable $1 is the number of individual frames in an animated gif file.
 
 For example of message in use see [[:File:Mouse10.gif]].',
 'file-no-thumb-animation' => 'We cannot animate thumbnails of this file. This notice is shown on the image description page on animated svg files just below {{msg-mw|file-info-size}}. This message may be overridden by a more specific message of the form file-no-thumb-animation-&lt;extension&gt; like {{msg-mw|file-no-thumb-animation-gif}}',
-'file-no-thumb-animation-gif' => 'Cannot animate thumbnails of this gif file, because it has to big a resolution. The cut off resolution can vary between wikis ([[mw:manual:$wgMaxAnimatedGifArea|$wgMaxAnimatedGifArea]]). Note that resolution is calculated as width times height times number of frames. See {{msg-mw|file-no-thumb-animation}}.',
+'file-no-thumb-animation-gif' => 'Cannot animate thumbnails of this gif file, because it has too big a resolution. The cut off resolution can vary between wikis ([[mw:manual:$wgMaxAnimatedGifArea|$wgMaxAnimatedGifArea]]). Note that resolution is calculated as width times height times number of frames. See {{msg-mw|file-no-thumb-animation}}.',
 
 # Special:NewFiles
 'newimages' => 'Page title of [[Special:NewImages]].',
@@ -4444,113 +4444,113 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 
 # Iranian month names
 'iranian-calendar-m1' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m2' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m3' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m4' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m5' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m6' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m7' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m8' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m9' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m10' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m11' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m12' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 
 # Hijri month names
 'hijri-calendar-m1' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m2' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m3' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m4' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m5' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m6' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m7' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m8' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m9' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m10' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m11' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m12' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 
 # Hebrew month names
 'hebrew-calendar-m1' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m2' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m3' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m4' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m5' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6a' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6b' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m7' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m8' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m9' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m10' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m11' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m12' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m1-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m2-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m3-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m4-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m5-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6a-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6b-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m7-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m8-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m9-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m10-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m11-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m12-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 
 # Signatures
 'signature' => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)
