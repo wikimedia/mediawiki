@@ -319,7 +319,7 @@ class Revision implements IDBAccessObject {
 			self::selectUserFields()
 		);
 		$options = array( 'LIMIT' => 1 );
-		if ( $flags & self::READ_LOCKING ) {
+		if ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING ) {
 			$options[] = 'FOR UPDATE';
 		}
 		return $db->select(
