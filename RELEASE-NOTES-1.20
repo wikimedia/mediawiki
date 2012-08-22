@@ -214,6 +214,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   are now remembered between successive clicks.
 * (bug 26069) Page title is no longer "Error" for all error pages
 * (bug 39297) Show warning if thumbnail of animated image will not be animated.
+* (bug 38249) Parser will throw an exception instead of outputting gibberish if
+  PCRE is compiled without support for unicode properties.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
