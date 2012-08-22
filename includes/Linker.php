@@ -1594,7 +1594,11 @@ class Linker {
 	 * @return String: full html of the TOC
 	 */
 	public static function tocList( $toc, $lang = false ) {
-		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
+		$msg = wfMessage( 'toc' );
+		if ( $lang !== false ) {
+			$msg = $msg->inLanguage( $lang );
+		}
+		$title = $msg->escaped();
 		return
 		   '<table id="toc" class="toc"><tr><td>'
 		 . '<div id="toctitle"><h2>' . $title . "</h2></div>\n"
