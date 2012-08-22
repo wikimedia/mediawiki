@@ -130,6 +130,24 @@ class WebRequestTest extends MediaWikiTestCase {
 			array(
 				'12.0.0.3',
 				array(
+					'REMOTE_ADDR' => '12.0.0.1, 12.0.0.2, 12.0.0.3'
+				),
+				array(),
+				false,
+				'CSV in REMOTE_ADDR (bug 26585)'
+			),
+			array(
+				'12.0.0.3',
+				array(
+					'REMOTE_ADDR' => array( '12.0.0.1', '12.0.0.2', '12.0.0.3' )
+				),
+				array(),
+				false,
+				'Array in REMOTE_ADDR (bug 26585)'
+			),
+			array(
+				'12.0.0.3',
+				array(
 					'REMOTE_ADDR' => '12.0.0.1',
 					'HTTP_X_FORWARDED_FOR' => '12.0.0.3, 12.0.0.2'
 				),
