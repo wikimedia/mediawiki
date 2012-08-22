@@ -563,7 +563,8 @@ class SkinTemplate extends Skin {
 				'text' => $this->username,
 				'href' => &$this->userpageUrlDetails['href'],
 				'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
-				'active' => ( $this->userpageUrlDetails['href'] == $pageurl )
+				'active' => ( $this->userpageUrlDetails['href'] == $pageurl ),
+				'dir' => 'auto'
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 			$personal_urls['mytalk'] = array(
