@@ -1046,11 +1046,17 @@ HTML;
 	 * @return String
 	 */
 	protected function getRawIP() {
-		if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
-			return IP::canonicalize( $_SERVER['REMOTE_ADDR'] );
-		} else {
+		if ( !isset( $_SERVER['REMOTE_ADDR'] ) ) {
 			return null;
 		}
+
+		if ( is_array( $_SERVER['REMOTE_ADDR'] ) || strpos( $_SERVER['REMOTE_ADDR'], ',' ) !== false ) {
+			throw new MWException( __METHOD__ . " : Could not determine the remote IP address. {$_SERVER['REMOTE_ADDR']}" );
+		} else {
+			$ipchain = $_SERVER['REMOTE_ADDR'];
+		}
+
+		return IP::canonicalize( $ipchain );
 	}
 
 	/**
