@@ -118,8 +118,8 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			}
 			foreach ( $dupFiles as $dupFile ) {
 				$dupName = $dupFile->getName();
-				if( $image == $dupName ) {
-					continue; //ignore the file itself
+				if( $image == $dupName && $dupFile->isLocal() ) {
+					continue; //ignore the local file itself
 				}
 				if( $skipUntilThisDup !== false && $dupName < $skipUntilThisDup ) {
 					continue; //skip to pos after the image from continue param
@@ -140,6 +140,9 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 						'user' => $dupFile->getUser( 'text' ),
 						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() )
 					);
+					if( !$dupFile->isLocal() ) {
+						$r['shared'] = '';
+					}
 					$fit = $this->addPageSubItem( $pageId, $r );
 					if ( !$fit ) {
 						$this->setContinueEnumParameter( 'continue', $image . '|' . $dupName );
@@ -191,7 +194,8 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 			'' => array(
 				'name' => 'string',
 				'user' => 'string',
-				'timestamp' => 'timestamp'
+				'timestamp' => 'timestamp',
+				'shared' => 'boolean',
 			)
 		);
 	}
