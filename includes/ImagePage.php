@@ -662,7 +662,7 @@ EOT
 			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMessage( 'uploadnewversion-linktext' )->text() );
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		} else {
-			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
+			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->getContext()->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
 		}
 
 		# External editing link
