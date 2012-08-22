@@ -510,7 +510,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
 					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}
-			$this->toc = Linker::tocList( $this->toc );
+			$this->toc = Linker::tocList( $this->toc, $this->getLanguage()->getCode() );
 		} else {
 			$this->toc = false;
 		}
