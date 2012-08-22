@@ -305,12 +305,9 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $this->data['loggedin'] ) {
-			$tl = Linker::link(
+			$tl = Linker::linkKnown(
 				$user->getTalkPage(),
-				wfMessage( 'mytalk' )->text(),
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
+				wfMessage( 'mytalk' )->escaped()
 			);
 			if ( $user->getNewtalk() ) {
 				$tl .= ' *';
@@ -318,12 +315,12 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 			$s .= Linker::linkKnown(
 					$user->getUserPage(),
-					wfMessage( 'mypage' )->text()
+					wfMessage( 'mypage' )->escaped()
 				) . $sep . $tl . $sep . Linker::specialLink( 'Watchlist' )
 					. $sep .
 				Linker::linkKnown(
 					SpecialPage::getSafeTitleFor( 'Contributions', $user->getName() ),
-					wfMessage( 'mycontris' )->text()
+					wfMessage( 'mycontris' )->escaped()
 				) . $sep . Linker::specialLink( 'Preferences' )
 				. $sep . Linker::specialLink( 'Userlogout' );
 		} else {
@@ -342,7 +339,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		if( $wgSiteSupportPage ) {
 			$s .= $sep . '<a href="' . htmlspecialchars( $wgSiteSupportPage ) . '" class="internal">'
-					. wfMessage( 'sitesupport' )->text() . '</a>';
+					. wfMessage( 'sitesupport' )->escaped() . '</a>';
 		}
 
 		$s .= $sep . Linker::linkKnown(
@@ -384,7 +381,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 		if( $wgUseTwoButtonsSearchForm ) {
 			$s .= "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
 		} else {
-			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->text() . "</a></div>\n";
+			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
 		}
 
 		$s .= '</form>';

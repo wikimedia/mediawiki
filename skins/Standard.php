@@ -133,7 +133,7 @@ class StandardTemplate extends LegacyTemplate {
 					$s.= Linker::specialLink( 'Watchlist' ) ;
 					$s .= $sep . Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Contributions' ),
-						wfMessage( 'mycontris' )->text(),
+						wfMessage( 'mycontris' )->escaped(),
 						array(),
 						array( 'target' => $this->data['username'] )
 					);
