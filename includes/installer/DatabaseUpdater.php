@@ -561,15 +561,27 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * If the specified table exists, drop it, or execute the
+	 * patch if one is provided.
+	 *
+	 * Public @since 1.20
+	 *
 	 * @param $table string
-	 * @param $patch string
+	 * @param $patch string|false
 	 * @param $fullpath bool
 	 */
-	protected function dropTable( $table, $patch, $fullpath = false ) {
+	public function dropTable( $table, $patch = false, $fullpath = false ) {
 		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
-			$this->output( "Dropping table $table... " );
-			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$msg = "Dropping table $table";
+
+			if ( $patch === false ) {
+				$this->output( "$msg ..." );
+				$this->db->dropTable( $table, __METHOD__ );
+				$this->output( "done.\n" );
+			}
+			else {
+				$this->applyPatch( $patch, $fullpath, $msg );
+			}
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}
