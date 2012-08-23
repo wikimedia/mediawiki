@@ -2614,12 +2614,12 @@ HTML
 
 		if ( $this->mTriedSave && !$this->mTokenOk ) {
 			if ( $this->mTokenOkExceptSuffix ) {
-				$note = wfMessage( 'token_suffix_mismatch' )->text();
+				$note = wfMessage( 'token_suffix_mismatch' )->plain();
 			} else {
-				$note = wfMessage( 'session_fail_preview' )->text();
+				$note = wfMessage( 'session_fail_preview' )->plain();
 			}
 		} elseif ( $this->incompleteForm ) {
-			$note = wfMessage( 'edit_form_incomplete' )->text();
+			$note = wfMessage( 'edit_form_incomplete' )->plain();
 		} else {
 			$note = wfMessage( 'previewnote' )->plain() .
 				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
