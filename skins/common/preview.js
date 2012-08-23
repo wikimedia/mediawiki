@@ -8,10 +8,10 @@
 		$( mw ).trigger( 'LivePreviewPrepare' );
 
 		var postData = $('#editform').formToArray();
-		postData.push( { 'name' : 'wpPreview', 'value' : '1' } );
+		postData.push( { 'name' : e.target.name, 'value' : '1' } );
 
 		// Hide active diff, used templates, old preview if shown
-		var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats',
+		var copyElements = ['#wikiPreview', '#wikiDiff', '.templatesUsed', '.hiddencats',
 							'#catlinks', '#p-lang', '.mw-summary-preview'];
 		var copySelector = copyElements.join(',');
 
@@ -135,6 +135,14 @@
 			$( '.editCheckboxes' ).before( $( '<div>' ).addClass( 'mw-summary-preview' ) );
 		}
 
-		$( '#wpPreview' ).click( doLivePreview );
+		// construct space for diff if missing. also load diff styles.
+		if ( !document.getElementById( 'wikiDiff' ) && document.getElementById( 'wikiPreview' ) ) {
+			$( '#wikiPreview' ).after( $( '<div>' ).attr( 'id', 'wikiDiff' ) );
+			// diff styles are by default only loaded when needed
+			// if there was no diff container, we can expect the styles not to be there either
+			mw.loader.load( 'mediawiki.action.history.diff' );
+		}
+
+		$( '#wpPreview, #wpDiff' ).click( doLivePreview );
 	} );
 }) ( jQuery );
