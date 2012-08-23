@@ -172,7 +172,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/protect
 		$this->assertIRCComment(
-			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'protectedarticle', 'SomeTitle' )->plain() . ' ' . $protectParams[0] . ': ' .  $this->user_comment,
 			'protect', 'protect',
 			$protectParams,
 			$this->user_comment
@@ -188,7 +188,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle' )->plain() . ' ' . $protectParams[0] . ': ' .  $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
 			$this->user_comment
