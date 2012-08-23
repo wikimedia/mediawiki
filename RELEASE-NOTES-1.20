@@ -206,7 +206,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
 * (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
   insecure links to foreign wikis in the WikiMap.
-* (bug 36073) Avoid duplicate element IDs on File pages
+* (bug 36073) Avoid duplicate element IDs on File pages.
 * (bug 25095) Special:Categories should also include the first relevant item
   when "from" is filled.
 * (bug 35526) jquery.tablesorter now uses a stable sort.
@@ -215,14 +215,15 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   are returned, like in previous versions.
 * (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
   are now remembered between successive clicks.
-* (bug 26069) Page title is no longer "Error" for all error pages
+* (bug 26069) Page title is no longer "Error" for all error pages.
 * (bug 39297) Show warning if thumbnail of animated image will not be animated.
 * (bug 38249) Parser will throw an exception instead of outputting gibberish if
   PCRE is compiled without support for unicode properties.
 * (bug 30390) Suggested file name on Special:Upload should not contain
   illegal characters.
-* (bug 27111) Cascading foreign file repos now fetch shared descriptions properly
-* EXIF below sea level GPS altitude data is now shown correctly
+* (bug 27111) Cascading foreign file repos now fetch shared descriptions properly.
+* EXIF below sea level GPS altitude data is now shown correctly.
+* (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
