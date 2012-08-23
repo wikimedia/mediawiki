@@ -83,6 +83,12 @@ class SVGReader {
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
 		$this->metadata['height'] = self::DEFAULT_HEIGHT;
 
+		// The size in the units specified by the SVG file
+		// (for the metadata box)
+		// Per the SVG spec, if unspecified, default to '100%'
+		$this->metadata['originalWidth'] = '100%';
+		$this->metadata['originalHeight'] = '100%';
+
 		// Because we cut off the end of the svg making an invalid one. Complicated
 		// try catch thing to make sure warnings get restored. Seems like there should
 		// be a better way.
@@ -90,6 +96,8 @@ class SVGReader {
 		try {
 			$this->read();
 		} catch( Exception $e ) {
+			// Note, if this happens, the width/height will be taken to be 0x0.
+			// Should we consider it the default 512x512 instead?
 			wfRestoreWarnings();
 			throw $e;
 		}
@@ -288,9 +296,11 @@ class SVGReader {
 		}
 		if( $this->reader->getAttribute('width') ) {
 			$width = $this->scaleSVGUnit( $this->reader->getAttribute('width'), $defaultWidth );
+			$this->metadata['originalWidth'] = $this->reader->getAttribute( 'width' );
 		}
 		if( $this->reader->getAttribute('height') ) {
 			$height = $this->scaleSVGUnit( $this->reader->getAttribute('height'), $defaultHeight );
+			$this->metadata['originalHeight'] = $this->reader->getAttribute( 'height' );
 		}
 
 		if( !isset( $width ) && !isset( $height ) ) {

@@ -45,21 +45,27 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 				"$base/Wikimedia-logo.svg",
 				array(
 					'width' => 1024,
-					'height' => 1024
+					'height' => 1024,
+					'originalWidth' => '1024',
+					'originalHeight' => '1024',
 				)
 			),
 			array(
 				"$base/QA_icon.svg",
 				array(
 					'width' => 60,
-					'height' => 60
+					'height' => 60,
+					'originalWidth' => '60',
+					'originalHeight' => '60',
 				)
 			),
 			array(
 				"$base/Gtk-media-play-ltr.svg",
 				array(
 					'width' => 60,
-					'height' => 60
+					'height' => 60,
+					'originalWidth' => '60.0000000',
+					'originalHeight' => '60.0000000',
 				)
 			),
 			array(
@@ -67,7 +73,9 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 				// This file triggered bug 31719, needs entity expansion in the xmlns checks
 				array(
 					'width' => 385,
-					'height' => 385
+					'height' => 385,
+					'originalWidth' => '385',
+					'originalHeight' => '385.0004883',
 				)
 			)
 		);
@@ -89,7 +97,9 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 				array(
 					'height' => 593,
 					'metadata' => $metadata,
-					'width' => 959
+					'width' => 959,
+					'originalWidth' => '958.69',
+					'originalHeight' => '592.78998',
 				)
 			),
 		);
