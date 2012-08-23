@@ -2182,7 +2182,7 @@ class HTMLRadioField extends HTMLFormField {
 		if ( in_array( $value, $validOptions ) ) {
 			return true;
 		} else {
-			return $this->mParent->msg( 'htmlform-select-badoption' )->parse();
+			return wfMessage( 'htmlform-select-badoption' )->parse();
 		}
 	}
 
