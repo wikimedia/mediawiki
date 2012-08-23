@@ -2621,7 +2621,7 @@ HTML
 		} elseif ( $this->incompleteForm ) {
 			$note = wfMessage( 'edit_form_incomplete' )->text();
 		} else {
-			$note = wfMessage( 'previewnote' ) .
+			$note = wfMessage( 'previewnote' )->plain() .
 				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
 		}
 
