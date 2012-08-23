@@ -365,6 +365,34 @@ tableTest(
 	}
 );
 
+var currencyUnsorted = [
+	// Some dollar values 
+	['1.02 $'],
+	['$ 3.00'],
+	['$ 1.00'],
+	['$3.50'],
+	['$ 1.50']
+];
+
+var currencySorted = [
+	['$ 1.00'],
+	['1.02 $'],
+	['$ 1.50'],
+	['$ 3.00'],
+	['$3.50']
+];
+
+tableTest(
+	'Currency parsing I',
+	['currency'],
+	currencyUnsorted,
+	currencySorted,
+	function ( $table ) {
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+	}
+);
+
 var ascendingNameLegacy = ascendingName.slice(0);
 ascendingNameLegacy[4] = ascendingNameLegacy[5];
 ascendingNameLegacy.pop();
@@ -380,6 +408,7 @@ tableTest(
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
+
 
 /** FIXME: the diff output is not very readeable. */
 QUnit.test( 'bug 32047 - caption must be before thead', function ( assert ) {
