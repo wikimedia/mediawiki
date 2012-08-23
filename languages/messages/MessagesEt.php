@@ -3046,7 +3046,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-authors' => 'Erinevate autorite koguarv',
 'pageinfo-recent-edits' => 'Viimaste redigeerimiste arv (viimase $1 jooksul)',
 'pageinfo-recent-authors' => 'Erinevate viimaste toimetajate arv',
-'pageinfo-restriction' => 'Lehekülje kaitse (<code>$1</code>)',
+'pageinfo-restriction' => 'Lehekülje kaitse (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Võlusõna|Võlusõnad}} ($1)',
 'pageinfo-hidden-categories' => 'Peidetud {{PLURAL:$1|kategooria|kategooriad}} ($1)',
 'pageinfo-templates' => 'Kasutatud {{PLURAL:$1|mall|mallid}} ($1)',

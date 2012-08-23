@@ -2900,17 +2900,26 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 
 # Info page
 'pageinfo-title' => '\'Mbormaziune pe "$1"',
+'pageinfo-header-basic' => "'Mbormaziune 'nderra-'nderre",
 'pageinfo-header-edits' => 'Cunde de le cangiaminde',
+'pageinfo-header-properties' => "Probbietà d'a pàgene",
+'pageinfo-display-title' => "Fà vedè 'u titole",
 'pageinfo-article-id' => "ID d'a pàgene",
+'pageinfo-robot-policy' => "State d'u motore de ricerche",
 'pageinfo-robot-index' => 'Indicizzabbele',
 'pageinfo-robot-noindex' => 'None indicizzabbele',
 'pageinfo-views' => 'Numere de visite',
 'pageinfo-watchers' => "Numere de visitature d'a pàgene",
 'pageinfo-redirects-name' => 'Redirezionaminde a sta pàgene',
 'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'Sottopàggene de sta pàgene',
 'pageinfo-firstuser' => "Ccrejatore d'a pàgene",
+'pageinfo-firsttime' => "Date d'a ccrejazione d'a pàgene",
+'pageinfo-lastuser' => 'Urteme cangiatore',
+'pageinfo-lasttime' => "Darte de l'urteme cangiamende",
 'pageinfo-edits' => 'Numere totale de cangiaminde',
 'pageinfo-authors' => 'Numere Totale de autore diverse',
+'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 
 # Skin names
 'skinname-standard' => 'Classeche',

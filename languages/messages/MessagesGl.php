@@ -3073,7 +3073,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edicións recentes (durante os últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recentes',
-'pageinfo-restriction' => 'Protección da páxina (<code>$1</code>)',
+'pageinfo-restriction' => 'Protección da páxina (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra máxica|Palabras máxicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',

@@ -73,6 +73,7 @@
  * @author Metalhead64
  * @author MichaelFrey
  * @author Mihai
+ * @author Minh Nguyen
  * @author Mormegil
  * @author Mpradeep
  * @author Murma174
@@ -3485,7 +3486,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-recent-edits' => 'The number of times the page has been edited recently. $1 is a localised duration (e.g. 9 days).',
 'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
 'pageinfo-restriction' => 'Parameters:
-* $1 is the type of page protection (message restriction-$type, preferably in lowercase).',
+* $1 is the type of page protection (message restriction-$type, preferably in lowercase). If your language doesn\'t have small and capital letters, you can simply write <nowiki><code>$1</code></nowiki>.',
 'pageinfo-magic-words' => 'The list of magic words on the page. Parameters:
 * $1 is the number of magic words on the page.',
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
@@ -3544,8 +3545,12 @@ Parameters:
 * $4 is the MIME type, a formalized textual information — for example: <code>image/jpeg</code>
 * $5 is the total number of pages in the document.',
 'file-nohires' => 'File info displayed on file description page. For example of message in use see [[:File:Mouse10.gif]].',
-'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].',
-'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}. $1 is width, $2 is height, and $3 is file size, including unit (for example "10 KB").',
+'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].
+
+Start with a lowercase letter, unless the first word is “SVG”.',
+'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}. $1 is width, $2 is height, and $3 is file size, including unit (for example "10 KB").
+
+Start with a lowercase letter, unless the first word is “SVG”.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-size' => '
 Parameters:

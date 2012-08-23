@@ -3023,7 +3023,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-authors' => 'Numero total de autores distincte',
 'pageinfo-recent-edits' => 'Numero de modificationes recente (intra le ultime $1)',
 'pageinfo-recent-authors' => 'Numero de autores distincte recente',
-'pageinfo-restriction' => 'Protection del pagina (<code>$1</code>)',
+'pageinfo-restriction' => 'Protection del pagina (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola|Parolas}} magic ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria|Categorias}} celate ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Patrono|Patronos}} transcludite ($1)',
@@ -3090,6 +3090,8 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'file-info-png-looped' => 'repetente',
 'file-info-png-repeat' => 'repetite $1 {{PLURAL:$1|vice|vices}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|photogramma|photogrammas}}',
+'file-no-thumb-animation' => "'''Note: A causa de limitationes technic, le miniaturas de iste file non essera animate.'''",
+'file-no-thumb-animation-gif' => "'''Nota: A causa de limitationes technic, le miniaturas de imagines GIF in alte resolution como iste non essera animate.'''",
 
 # Special:NewFiles
 'newimages' => 'Galeria de nove files',

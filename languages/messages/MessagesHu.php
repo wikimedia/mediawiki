@@ -382,7 +382,7 @@ $messages = array(
 'tue' => 'kedd',
 'wed' => 'sze',
 'thu' => 'csü',
-'fri' => 'pé',
+'fri' => 'pén',
 'sat' => 'szo',
 'january' => 'január',
 'february' => 'február',
@@ -633,9 +633,9 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|{{int:special
 'databaseerror' => 'Adatbázishiba',
 'dberrortext' => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
 Ezt szoftverhiba okozhatta.
-Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
-<blockquote><tt>$1</tt></blockquote>
-Az adatbázis ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+Az utolsó adatbázis-lekérdezés a(z) „<code>$2</code>” függvényből történt, és a következő volt:
+<blockquote><code>$1</code></blockquote>
+Az adatbázis ezzel a hibával tért vissza: „<samp>$3: $4</samp>”.',
 'dberrortextcl' => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
 Az utolsó adatbázis-lekérdezés a(z) „$2” függvényből történt, és a következő volt:
 „$1”
@@ -978,7 +978,6 @@ A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 '''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra a címsorban, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
 '''Google Chrome:''' használd a ''Ctrl–Shift–R'' billentyűkombinációt (Mac-en ''Command–Shift–R'');
 '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt;
-'''Konqueror: '''kattints a ''Frissítés'' gombra vagy nyomj ''F5''-öt;
 '''Opera:''' ürítsd ki a gyorsítótárat a ''Beállítások / Haladó / Előzmények→Törlés most'' gombbal, majd frissítsd az oldalt.",
 'usercssyoucanpreview' => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új CSS-ed teszteléséhez.",
 'userjsyoucanpreview' => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új JavaScipted teszteléséhez.",
@@ -2372,7 +2371,7 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'rollback' => 'Szerkesztések visszaállítása',
 'rollback_short' => 'Visszaállítás',
 'rollbacklink' => 'visszaállítás',
-'rollbacklinkcount' => '$1 szerkesztés visszaállítása',
+'rollbacklinkcount' => '{{PLURAL:$1|Egy|$1}} szerkesztés visszaállítása',
 'rollbacklinkcount-morethan' => 'több mint $1 szerkesztés visszaállítása',
 'rollbackfailed' => 'A visszaállítás nem sikerült',
 'cantrollback' => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
@@ -3056,11 +3055,11 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 
 # Info page
 'pageinfo-title' => 'Információk a(z) „$1” lapról',
-'pageinfo-header-edits' => 'Szerkesztések',
+'pageinfo-header-edits' => 'Szerkesztések története',
 'pageinfo-views' => 'Megtekintések száma',
 'pageinfo-watchers' => 'Figyelők száma',
-'pageinfo-edits' => 'Szerkesztések száma',
-'pageinfo-authors' => 'Egyedi szerkesztők száma',
+'pageinfo-edits' => 'Szerkesztések teljes száma',
+'pageinfo-authors' => 'Egyedi szerkesztők teljes száma',
 
 # Skin names
 'skinname-standard' => 'Klasszikus',

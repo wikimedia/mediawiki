@@ -1076,6 +1076,13 @@ Neki predlošci neće biti uključeni.',
 'parser-template-loop-warning' => 'Otkrivena petlja predloška: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Dubina rekurzije predloška je izvan granice ($1)',
 'language-converter-depth-warning' => 'Prekoračena granica dubine jezičnog pretvarača ($1)',
+'node-count-exceeded-category' => 'Stranice s previše čvorova',
+'node-count-exceeded-warning' => 'Ova stranica ima previše čvorova',
+'expansion-depth-exceeded-category' => 'Stranice s prevelikom dubinom proširenja',
+'expansion-depth-exceeded-warning' => 'Na ovoj stranici dubina proširenja je prevelika',
+'parser-unstrip-loop-warning' => 'Nedopuštena petlja',
+'parser-unstrip-recursion-limit' => 'Dosegnuto je ograničenje rekurzije ($1)',
+'converter-manual-rule-error' => 'Pronađena je pogrješka u pravilu ručnog prijevoda',
 
 # "Undo" feature
 'undo-success' => 'Izmjena je uklonjena (tekst u okviru ispod ne sadrži zadnju izmjenu). Molim sačuvajte stranicu (provjerite sažetak).',
@@ -1252,7 +1259,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 
 # Diffs
 'history-title' => 'Povijest izmjena stranice "$1"',
-'difference-title' => '$1: Razlika između inačica',
+'difference-title' => 'Razlika između inačica stranice $1',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Redak $1:',
 'compareselectedversions' => 'Usporedi odabrane inačice',
@@ -1779,6 +1786,12 @@ Ako se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].',
 'backend-fail-backup' => 'Izrada sigurnosne kopije datoteke "$1" nije uspjela.',
 'backend-fail-notexists' => 'Datoteka $1 ne postoji.',
 'backend-fail-hashes' => '"Hash" indeksi datoteka za usporedbu nisu nađeni.',
+'backend-fail-notsame' => 'Na lokaciji $1 već postoji datoteka koja se razlikuje.',
+'backend-fail-invalidpath' => "$1 nije valjana pričuvna putanja (''path'').",
+'backend-fail-delete' => 'Ne mogu obrisati datoteku $1.',
+'backend-fail-opentemp' => 'Ne mogu otvoriti privremenu datoteku.',
+'backend-fail-writetemp' => 'Ne mogu pisati u privremenu datoteku.',
+'backend-fail-closetemp' => 'Ne mogu zatvoriti privremenu datoteku.',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Došlo je do pogreške pri otvaranju datoteke za ZIP provjeru.',
@@ -2842,6 +2855,10 @@ Snimite je na svoje računalo i postavite je ovdje.',
 'import-logentry-interwiki' => 'transwiki uvezeno $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|promjena|promjene|promjena}} od $2',
 
+# JavaScriptTest
+'javascripttest' => 'Testiranje JavaScripta',
+'javascripttest-disabled' => 'Ova funkcija nije omogućena na ovom wikiprojektu.',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Moja suradnička stranica',
 'tooltip-pt-anonuserpage' => 'Suradnička stranica za IP adresu pod kojom uređujete',
@@ -2958,6 +2975,10 @@ Razlog je vjerojatno vanjska poveznica koja se nalazi na crnom popisu.',
 'pageinfo-robot-index' => 'Stranicu je moguće indeksirati',
 'pageinfo-views' => 'Broj pregleda',
 'pageinfo-watchers' => 'Broj pratitelja stranice',
+'pageinfo-firstuser' => 'Suradnik koji je stvorio stranicu',
+'pageinfo-firsttime' => 'Datum stvaranja stranice',
+'pageinfo-lastuser' => 'Posljednji urednik stranice',
+'pageinfo-lasttime' => 'Datum zadnjeg uređivanja',
 'pageinfo-edits' => 'Broj uređivanja',
 'pageinfo-authors' => 'Broj različitih autora',
 
@@ -3711,6 +3732,9 @@ Trebali ste primiti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju GNU opće javne lic
 'version-software' => 'Instalirani softver',
 'version-software-product' => 'Proizvod',
 'version-software-version' => 'Verzija',
+'version-entrypoints' => 'URL adresa instalacije',
+'version-entrypoints-header-entrypoint' => 'Početna adresa',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Putanja datoteke',
@@ -3862,9 +3886,9 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 
 # API errors
 'api-error-badaccess-groups' => 'Nemate ovlasti za postavljanje datoteka na ovu wiki.',
-'api-error-badtoken' => "''Token'' koji smo koristili za vašu identifikaciju na ovaj poslužitelj nije bio ispravan.",
-'api-error-copyuploaddisabled' => 'Postavljanja datoteka kopiranjem su onemogućena.',
-'api-error-duplicate' => 'Već postoji jedna datoteka na ovoj wiki s istim sadržajem',
+'api-error-badtoken' => 'Interna pogrješka: Token nije ispravan.',
+'api-error-copyuploaddisabled' => 'Postavljanje datoteka putem URL-a nije omogućeno na ovom projektu.',
+'api-error-duplicate' => '{{PLURAL:$1|Postoji [$2 druga datoteka]|Postoje $1 [$2 druge datoteke]|Postoji $1 [$2 drugih datoteka]}} istog sadržaja.',
 'api-error-empty-file' => 'Datoteka koju ste poslali je prazna.',
 'api-error-fetchfileerror' => 'Pojavio se neki problem pri dobivanju podataka o datoteci.',
 'api-error-file-too-large' => 'Datoteka koju ste poslali bila je prevelika.',

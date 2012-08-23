@@ -59,6 +59,7 @@
  * @author Rave
  * @author Rubin
  * @author Sagan
+ * @author Shirayuki
  * @author Sk
  * @author TarzanASG
  * @author Temuri rajavi
@@ -3224,7 +3225,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-authors' => 'Общее число различных авторов',
 'pageinfo-recent-edits' => 'Правок за последнее время (в течение $1)',
 'pageinfo-recent-authors' => 'Уникальных авторов за последнее время',
-'pageinfo-restriction' => 'Защита страницы (<code>$1</code>)',
+'pageinfo-restriction' => 'Защита страницы (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магическое слово|Магические слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',

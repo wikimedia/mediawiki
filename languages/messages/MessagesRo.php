@@ -1539,10 +1539,10 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-createtalk' => 'Creează pagini de discuție',
 'right-createaccount' => 'Creează conturi noi',
 'right-minoredit' => 'Marchează modificările minore',
-'right-move' => 'Mută paginile',
-'right-move-subpages' => 'Mută paginile cu tot cu subpagini',
+'right-move' => 'Redenumește paginile',
+'right-move-subpages' => 'Redenumește paginile cu tot cu subpagini',
 'right-move-rootuserpages' => 'Redenumește pagina principală a unui utilizator',
-'right-movefile' => 'Mută fișierele',
+'right-movefile' => 'Redenumește fișiere',
 'right-suppressredirect' => 'Nu crea o redirecționare de la vechiul nume atunci când muți o pagină',
 'right-upload' => 'Încarcă fișiere',
 'right-reupload' => 'Suprascrie un fișier existent',
@@ -1608,10 +1608,10 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'action-createtalk' => 'creați pagini de discuție',
 'action-createaccount' => 'creați acest cont de utilizator',
 'action-minoredit' => 'marcați această modificare ca minoră',
-'action-move' => 'mutați această pagină',
-'action-move-subpages' => 'mutați această pagină și subpaginile sale',
+'action-move' => 'redenumiți această pagină',
+'action-move-subpages' => 'redenumiți această pagină și subpaginile sale',
 'action-move-rootuserpages' => 'redenumiți pagina principală a unui utilizator',
-'action-movefile' => 'mutați acest fișier',
+'action-movefile' => 'redenumiți acest fișier',
 'action-upload' => 'încărcați acest fișier',
 'action-reupload' => 'suprascrieți fișierul existent',
 'action-reupload-shared' => 'rescrieți acest fișier în depozitul partajat',
@@ -2153,12 +2153,12 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'newpages-username' => 'Nume de utilizator:',
 'ancientpages' => 'Cele mai vechi articole',
 'move' => 'Redenumire',
-'movethispage' => 'Mută această pagină',
+'movethispage' => 'Redenumește această pagină',
 'unusedimagestext' => 'Următoarele fișiere există dar nu sunt incluse în nicio altă pagină.
 Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătură directă către acest URL și s-ar putea afla aici chiar dacă nu sunt în utlizare activă.',
 'unusedcategoriestext' => 'Următoarele categorii de pagini există și totuși nici un articol sau categorie nu le folosește.',
 'notargettitle' => 'Lipsă țintă',
-'notargettext' => 'Nu ai specificat nici o pagină sau un utilizator țintă pentru care să se efectueze această operațiune.',
+'notargettext' => 'Nu ați specificat nici o pagină sau un utilizator țintă pentru care să se efectueze această operațiune.',
 'nopagetitle' => 'Nu există pagina destinație',
 'nopagetext' => 'Pagina destinație specificată nu există.',
 'pager-newer-n' => '{{PLURAL:$1|1 mai nou|$1 mai noi}}',
@@ -2495,9 +2495,9 @@ Puteți schimba nivelul de protejare al acestei pagini, dar asta nu va afecta pr
 
 # Restrictions (nouns)
 'restriction-edit' => 'Modificare',
-'restriction-move' => 'Mută',
-'restriction-create' => 'Creează',
-'restriction-upload' => 'Încarcă',
+'restriction-move' => 'Redenumire',
+'restriction-create' => 'Creare',
+'restriction-upload' => 'Încărcare',
 
 # Restriction levels
 'restriction-level-sysop' => 'protejat complet',
@@ -2518,7 +2518,7 @@ Pentru a realiza o recuperare selectivă bifați versiunile pe care doriți să 
 'undeleterevdel' => "Restaurarea unui versiuni nu va fi efectuată dacă ea va apărea în capul listei de versiuni parțial șterse.
 În acest caz, trebuie să debifați sau să reafișați (''unhide'') cea mai recentă versiune ștearsă.",
 'undeletehistorynoadmin' => 'Acest articol a fost șters. Motivul ștergerii apare mai jos, alături de detaliile utilzatorilor care au editat această pagină înainte de ștergere. Textul prorpiu-zis al reviziilor șterse este disponibil doar administratorilor.',
-'undelete-revision' => 'Ştergere revizia $1 (din $4 $5) de către $3:',
+'undelete-revision' => 'Ștergere versiunea $1 (din $4 $5) de către $3:',
 'undeleterevision-missing' => 'Versiune lipsă sau invalidă.
 S-ar putea ca legătura să fie greșită, ori versiunea să fi fost restaurată sau ștearsă din arhivă.',
 'undelete-nodiff' => 'Nu s-a găsit vreo versiune anterioară.',
@@ -2763,22 +2763,22 @@ Pentru a închide sau deschide baza de date, acesta trebuie să poată fi scris 
 'lockedbyandtime' => '(de $1, pe $2, la $3 )',
 
 # Move page
-'move-page' => 'Mută $1',
-'move-page-legend' => 'Mută pagina',
-'movepagetext' => "Puteți folosi formularul de mai jos pentru a redenumi o pagină, mutându-i toată istoria sub noul nume.
+'move-page' => 'Redenumire $1',
+'move-page-legend' => 'Redenumire pagină',
+'movepagetext' => "Puteți folosi formularul de mai jos pentru a redenumi o pagină, mutându-i tot istoricul sub noul nume.
 Pagina veche va deveni o pagină de redirecționare către pagina nouă.
 Legăturile către pagina veche nu vor fi redirecționate către cea nouă;
 nu uitați să verificați dacă nu există redirecționări [[Special:DoubleRedirects|duble]] sau [[Special:BrokenRedirects|invalide]].
 
 Vă rugăm să rețineți că sunteți responsabil(ă) pentru a face legăturile vechi să rămână valide.
 
-Rețineți că pagina '''nu va fi mutată''' dacă există deja o pagină cu noul titlu, în afară de cazul că este complet goală sau este
-o redirecționare și în plus nu are nici o istorie de modificare.
-Cu alte cuvinte, veți putea muta înapoi o pagină pe care ați mutat-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin mutarea alteia.
+Rețineți că pagina '''nu va fi redenumită''' dacă există deja o pagină cu noul titlu, în afara cazurilor în care cea din urmă nu are conținut sau este deja
+o redirecționare; în plus, aceasta nu trebuie să aibă un istoric de modificări.
+Cu alte cuvinte, veți putea redenumi înapoi o pagină pe care ați redenumit-o greșit, dar nu veți putea suprascrie o pagină validă existentă prin redenumirea alteia.
 
 '''ATENȚIE!'''
 Aceasta poate fi o schimbare drastică și neașteptată pentru o pagină populară;
-vă rugăm, să vă asigurați că înțelegeți toate consecințele înainte de a continua.",
+vă rugăm să vă asigurați că înțelegeți toate consecințele înainte de a continua.",
 'movepagetext-noredirectfixer' => "Completând formularul de mai jos veți redenumi o pagină, mutând tot istoricul la noul nume.
 Vechiul titlu va deveni o pagină de redirecționare către noul titlu.
 Fiți sigur că ați verificat lista redirecționărilor [[Special:DoubleRedirects|duble]] sau [[Special:BrokenRedirects|nefuncționale]].
@@ -2790,43 +2790,42 @@ Acest lucru înseamnă că veți putea redenumi la titlul inițial o pagină gre
 '''Atenție!'''
 Această acțiune poate determina o schimbare dramatică, neașteptată pentru o pagină cu trafic crescut;
 asigurați-vă că înțelegeți toate consecințele înainte de a continua.",
-'movepagetalktext' => "Pagina asociată de discuții, dacă există, va fi mutată
-automat odată cu aceasta '''afară de cazul că''':
-* Mutați pagina în altă secțiune a {{SITENAME}}
-* Există deja o pagină de discuții cu conținut (care nu este goală), sau
-* Nu confirmi căsuța de mai jos.
+'movepagetalktext' => "Pagina de discuții asociată, dacă există, va fi redenumită
+automat odată cu aceasta în '''afara următoarelor cazuri''':
+* există deja o pagină de discuții cu conținut (care nu este goală) sub noul nume, sau
+* nu bifați căsuța de mai jos.
 
-În oricare din cazurile de mai sus va trebui să muți sau să unifici
-manual paginile de discuții, dacă dorești acest lucru.",
+În oricare din cazurile de mai sus va trebui să redenumiți sau să unificați
+manual paginile de discuții, dacă doriți acest lucru.",
 'movearticle' => 'Pagina de redenumit:',
 'moveuserpage-warning' => "'''Atenție''': sunteți pe cale să redenumiți o pagină de utilizator. Vă rugăm să rețineți că singura redenumită va fi pagina, nu și utilizatorul.",
 'movenologin' => 'Nu sunteți autentificat{{GENDER:||ă}}.',
-'movenologintext' => 'Trebuie să fii un utilizator înregistrat și să te [[Special:UserLogin|autentifici]] pentru a muta o pagină.',
-'movenotallowed' => 'Nu ai permisiunea să muți pagini.',
-'movenotallowedfile' => 'Nu ai permisiunea de a muta fișiere.',
-'cant-move-user-page' => 'Nu ai permisiunea de a muta paginile utilizatorului (în afară de subpagini).',
-'cant-move-to-user-page' => 'Nu aveți permisiunea de a muta o pagină în pagina utilizatorului (cu excepția subpaginii utilizatorului).',
+'movenologintext' => 'Trebuie să fiți un utilizator înregistrat și [[Special:UserLogin|autentificat]] pentru a redenumi o pagină.',
+'movenotallowed' => 'Nu aveți permisiunea de a redenumi pagini.',
+'movenotallowedfile' => 'Nu aveți permisiunea de a redenumi fișiere.',
+'cant-move-user-page' => 'Nu aveți permisiunea de a redenumi pagini de utilizator (cu excepția subpaginilor).',
+'cant-move-to-user-page' => 'Nu aveți permisiunea de a redenumi o pagină într-o pagină de utilizator (cu excepția subpaginii utilizatorului).',
 'newtitle' => 'Titlul nou',
 'move-watch' => 'Urmărește această pagină',
-'movepagebtn' => 'Mută pagina',
-'pagemovedsub' => 'Pagina a fost mutată',
-'movepage-moved' => "'''Pagina „$1” a fost mutată la „$2”'''",
+'movepagebtn' => 'Redenumește pagina',
+'pagemovedsub' => 'Pagina a fost redenumită',
+'movepage-moved' => "'''Pagina „$1” a fost redenumită în „$2”'''",
 'movepage-moved-redirect' => 'O redirecționare a fost creată.',
 'movepage-moved-noredirect' => 'Crearea redirecționărilor a fost suprimată.',
 'articleexists' => 'O pagină cu același nume există deja, sau numele pe care l-ați ales este invalid. Sunteți rugat să alegeți un alt nume.',
-'cantmove-titleprotected' => 'Nu puteți muta o pagină la această locație, pentru că noul titlu a fost protejat la creare',
-'talkexists' => "'''Pagina în sine a fost mutată cu succes, dar pagina de discuții nu a putut fi mutată deoarece o alta deja există la noul titlu.
-Te rugăm să le unifici manual.'''",
-'movedto' => 'mutată la',
+'cantmove-titleprotected' => 'Nu puteți redenumi o pagină cu acest nume, pentru că noul titlu a fost protejat la creare.',
+'talkexists' => "'''Pagina în sine a fost redenumită cu succes, dar pagina de discuții nu a putut fi redenumită deoarece o alta deja există la noul titlu.
+Vă rugăm să le unificați manual.'''",
+'movedto' => 'redenumită în',
 'movetalk' => 'Redenumește pagina de discuții asociată',
-'move-subpages' => 'Mută subpaginile (până la $1)',
-'move-talk-subpages' => 'Mută subpaginile paginii de discuții (până la $1)',
+'move-subpages' => 'Redenumește subpaginile (până la $1)',
+'move-talk-subpages' => 'Redenumește subpaginile paginii de discuții (până la $1)',
 'movepage-page-exists' => 'Pagina $1 există deja și nu poate fi rescrisă automat.',
-'movepage-page-moved' => 'Pagina $1 a fost mutată la $2.',
-'movepage-page-unmoved' => 'Pagina $1 nu a putut fi mutată la $2.',
-'movepage-max-pages' => 'Maxim $1 {{PLURAL:$1|pagină a fost mutată|pagini au fost mutate}}, nicio altă pagină nu va mai fi mutată automat.',
-'movelogpage' => 'Jurnal mutări',
-'movelogpagetext' => 'Mai jos se află o listă cu paginile mutate.',
+'movepage-page-moved' => 'Pagina $1 a fost redenumită în $2.',
+'movepage-page-unmoved' => 'Pagina $1 nu a putut fi redenumită în $2.',
+'movepage-max-pages' => 'Maximul de $1 {{PLURAL:$1|pagină redenumită|pagini redenumite|de pagini redenumite}} a fost atins și nici o altă pagină nu va mai fi redenumită automat.',
+'movelogpage' => 'Jurnal redenumiri',
+'movelogpagetext' => 'Mai jos se află o listă cu paginile redenumite.',
 'movesubpage' => '{{PLURAL:$1|Subpagină|Subpagini}}',
 'movesubpagetext' => 'Această pagină are $1 {{PLURAL:$1|subpagină afișată|subpagini afișate}} mai jos.',
 'movenosubpage' => 'Această pagină nu are subpagini.',
@@ -2838,12 +2837,12 @@ Te rugăm să le unifici manual.'''",
 Pagina destinație „[[:$1]]” există deja. Doriți să o ștergeți pentru a face loc redenumirii?',
 'delete_and_move_confirm' => 'Da, șterge pagina.',
 'delete_and_move_reason' => 'Șters pentru a face loc redenumirii paginii „[[$1]]”',
-'selfmove' => 'Titlurile sursei și ale destinației sunt aceleași; nu puteți muta o pagină peste ea însăși.',
+'selfmove' => 'Titlul sursei și al destinației este aceleași; nu puteți redenumi o pagină peste ea însăși.',
 'immobile-source-namespace' => 'Nu se pot redenumi paginile din spațiul de nume „$1”',
 'immobile-target-namespace' => 'Nu se pot redenumi paginile în spațiul de nume „$1”',
 'immobile-target-namespace-iw' => 'Legătura interwiki nu este o țintă validă pentru redenumire.',
-'immobile-source-page' => 'Această pagină nu poate fi mutată.',
-'immobile-target-page' => 'Nu poate fi mutat la destinația cu acest titlu.',
+'immobile-source-page' => 'Această pagină nu poate fi redenumită.',
+'immobile-target-page' => 'Imposibil de redenumit pagina la acel titlu.',
 'imagenocrossnamespace' => 'Fișierul nu poate fi mutat la un spațiu de nume care nu este destinat fișierelor',
 'nonfile-cannot-move-to-file' => 'Entitatea (care nu este un fișier) nu poate fi mutată în spațiul de nume destinat fișierelor',
 'imagetypemismatch' => 'Extensia nouă a fișierului nu se potrivește cu tipul acestuia',
@@ -3112,7 +3111,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-authors' => 'Număr total de autori distincți',
 'pageinfo-recent-edits' => 'Număr de modificări recente (în ultima perioadă de $1)',
 'pageinfo-recent-authors' => 'Număr de autori distincți recenți',
-'pageinfo-restriction' => 'Protecție pagină (<code>$1</code>)',
+'pageinfo-restriction' => 'Protecție pagină (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Cuvânt magic|Cuvinte magice}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Format inclus|Formate incluse}} ($1)',

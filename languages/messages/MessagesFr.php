@@ -65,6 +65,7 @@
  * @author Sandji
  * @author Seb35
  * @author Sherbrooke
+ * @author Shirayuki
  * @author Skalman
  * @author The Evil IP address
  * @author Tititou36
@@ -3180,7 +3181,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-authors' => "Nombre total d'auteurs distincts",
 'pageinfo-recent-edits' => 'Nombre de modifications récentes (dans les derniers $1)',
 'pageinfo-recent-authors' => "Nombre d'auteurs distincts récents",
-'pageinfo-restriction' => 'Protection de la page (<code>$1</code>)',
+'pageinfo-restriction' => 'Protection de la page (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Mot magique|Mots magiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
