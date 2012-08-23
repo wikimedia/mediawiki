@@ -1326,7 +1326,8 @@ class WikiPage extends Page implements IDBAccessObject {
 
 			if ( $section == 'new' ) {
 				# Inserting a new section
-				$subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
+				$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel', $sectionTitle )
+					->inContentLanguage()->text() . "\n\n" : '';
 				if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
 					$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"
@@ -1930,12 +1931,15 @@ class WikiPage extends Page implements IDBAccessObject {
 			if ( $restrictions != '' ) {
 				$protectDescription .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
 				if ( $encodedExpiry[$action] != 'infinity' ) {
-					$protectDescription .= wfMsgForContent( 'protect-expiring',
+					$protectDescription .= wfMessage(
+						'protect-expiring',
 						$wgContLang->timeanddate( $expiry[$action], false, false ) ,
 						$wgContLang->date( $expiry[$action], false, false ) ,
-						$wgContLang->time( $expiry[$action], false, false ) );
+						$wgContLang->time( $expiry[$action], false, false )
+					)->inContentLanguage()->text();
 				} else {
-					$protectDescription .= wfMsgForContent( 'protect-expiry-indefinite' );
+					$protectDescription .= wfMessage( 'protect-expiry-indefinite' )
+						->inContentLanguage()->text();
 				}
 
 				$protectDescription .= ') ';
@@ -1976,7 +1980,12 @@ class WikiPage extends Page implements IDBAccessObject {
 			}
 
 			# Prepare a null revision to be added to the history
-			$editComment = $wgContLang->ucfirst( wfMsgForContent( $revCommentMsg, $this->mTitle->getPrefixedText() ) );
+			$editComment = $wgContLang->ucfirst(
+				wfMessage(
+					$revCommentMsg,
+					$this->mTitle->getPrefixedText()
+				)->inContentLanguage()->text()
+			);
 			if ( $reason ) {
 				$editComment .= ": $reason";
 			}
@@ -1984,7 +1993,9 @@ class WikiPage extends Page implements IDBAccessObject {
 				$editComment .= " ($protectDescription)";
 			}
 			if ( $cascade ) {
-				$editComment .= ' [' . wfMsgForContent( 'protect-summary-cascade' ) . ']';
+				// FIXME: Should use 'brackets' message.
+				$editComment .= ' [' . wfMessage( 'protect-summary-cascade' )
+					->inContentLanguage()->text() . ']';
 			}
 
 			# Insert a null revision
@@ -2392,9 +2403,9 @@ class WikiPage extends Page implements IDBAccessObject {
 		$target = Revision::newFromId( $s->rev_id );
 		if ( empty( $summary ) ) {
 			if ( $from == '' ) { // no public user name
-				$summary = wfMsgForContent( 'revertpage-nouser' );
+				$summary = wfMessage( 'revertpage-nouser' )->inContentLanguage()->text();
 			} else {
-				$summary = wfMsgForContent( 'revertpage' );
+				$summary = wfMessage( 'revertpage' )->inContentLanguage()->text();
 			}
 		}
 
@@ -2582,10 +2593,11 @@ class WikiPage extends Page implements IDBAccessObject {
 			$truncatedtext = $wgContLang->truncate(
 				str_replace( "\n", ' ', $newtext ),
 				max( 0, 255
-					- strlen( wfMsgForContent( 'autoredircomment' ) )
+					- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
 					- strlen( $rt->getFullText() )
 				) );
-			return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
+			return wfMessage( 'autoredircomment', $rt->getFullText(), $truncatedtext )
+				->inContentLanguage()->text();
 		}
 
 		# New page autosummaries
@@ -2594,22 +2606,22 @@ class WikiPage extends Page implements IDBAccessObject {
 
 			$truncatedtext = $wgContLang->truncate(
 				str_replace( "\n", ' ', $newtext ),
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) ) );
+				max( 0, 200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) ) );
 
-			return wfMsgForContent( 'autosumm-new', $truncatedtext );
+			return wfMessage( 'autosumm-new', $truncatedtext )->inContentLanguage()->text();
 		}
 
 		# Blanking autosummaries
 		if ( $oldtext != '' && $newtext == '' ) {
-			return wfMsgForContent( 'autosumm-blank' );
+			return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
 		} elseif ( strlen( $oldtext ) > 10 * strlen( $newtext ) && strlen( $newtext ) < 500 ) {
 			# Removing more than 90% of the article
 
 			$truncatedtext = $wgContLang->truncate(
 				$newtext,
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) ) );
+				max( 0, 200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) ) );
 
-			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
+			return wfMessage( 'autosumm-replace', $truncatedtext )->inContentLanguage()->text();
 		}
 
 		# If we reach this point, there's no applicable autosummary for our case, so our
@@ -2684,12 +2696,16 @@ class WikiPage extends Page implements IDBAccessObject {
 		if ( $blank ) {
 			// The current revision is blank and the one before is also
 			// blank. It's just not our lucky day
-			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
+			$reason = wfMessage( 'exbeforeblank', '$1' )->inContentLanguage()->text();
 		} else {
 			if ( $onlyAuthor ) {
-				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+				$reason = wfMessage(
+					'excontentauthor',
+					'$1',
+					$onlyAuthor
+				)->inContentLanguage()->text();
 			} else {
-				$reason = wfMsgForContent( 'excontent', '$1' );
+				$reason = wfMessage( 'excontent', '$1' )->inContentLanguage()->text();
 			}
 		}
 

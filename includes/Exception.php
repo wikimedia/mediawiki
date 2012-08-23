@@ -321,7 +321,7 @@ class ErrorPageError extends MWException {
 	/**
 	 * @todo document
 	 *
-	 * Note: these arguments are keys into wfMsg(), not text!
+	 * Note: these arguments are keys into wfMessage(), not text!
 	 *
 	 * @param $title A title
 	 * @param $msg String|Message . In string form, should be a message key

@@ -624,7 +624,7 @@ class User {
 		// Certain names may be reserved for batch processes.
 		foreach ( $reservedUsernames as $reserved ) {
 			if ( substr( $reserved, 0, 4 ) == 'msg:' ) {
-				$reserved = wfMsgForContent( substr( $reserved, 4 ) );
+				$reserved = wfMessage( substr( $reserved, 4 ) )->inContentLanguage()->text();
 			}
 			if ( $reserved == $name ) {
 				return false;
@@ -1305,13 +1305,13 @@ class User {
 			# Local list
 			if ( self::isLocallyBlockedProxy( $ip ) ) {
 				$block = new Block;
-				$block->setBlocker( wfMsg( 'proxyblocker' ) );
-				$block->mReason = wfMsg( 'proxyblockreason' );
+				$block->setBlocker( wfMessage( 'proxyblocker' )->text() );
+				$block->mReason = wfMessage( 'proxyblockreason' )->text();
 				$block->setTarget( $ip );
 			} elseif ( $this->isAnon() && $this->isDnsBlacklisted( $ip ) ) {
 				$block = new Block;
-				$block->setBlocker( wfMsg( 'sorbs' ) );
-				$block->mReason = wfMsg( 'sorbsreason' );
+				$block->setBlocker( wfMessage( 'sorbs' )->text() );
+				$block->mReason = wfMessage( 'sorbsreason' )->text();
 				$block->setTarget( $ip );
 			}
 		}
@@ -2016,7 +2016,7 @@ class User {
 
 		if( $str !== null ) {
 			if( !$wgAuth->allowPasswordChange() ) {
-				throw new PasswordError( wfMsg( 'password-change-forbidden' ) );
+				throw new PasswordError( wfMessage( 'password-change-forbidden' )->text() );
 			}
 
 			if( !$this->isValidPassword( $str ) ) {
@@ -2029,12 +2029,12 @@ class User {
 					$message = $valid;
 					$params = array( $wgMinimalPasswordLength );
 				}
-				throw new PasswordError( wfMsgExt( $message, array( 'parsemag' ), $params ) );
+				throw new PasswordError( wfMessage( $message, $params )->text() );
 			}
 		}
 
 		if( !$wgAuth->setPassword( $this, $str ) ) {
-			throw new PasswordError( wfMsg( 'externaldberror' ) );
+			throw new PasswordError( wfMessage( 'externaldberror' )->text() );
 		}
 
 		$this->setInternalPassword( $str );
@@ -3353,15 +3353,15 @@ class User {
 			$message = 'confirmemail_body_' . $type;
 		}
 
-		return $this->sendMail( wfMsg( 'confirmemail_subject' ),
-			wfMsg( $message,
+		return $this->sendMail( wfMessage( 'confirmemail_subject' )->text(),
+			wfMessage( $message,
 				$this->getRequest()->getIP(),
 				$this->getName(),
 				$url,
 				$wgLang->timeanddate( $expiration, false ),
 				$invalidateURL,
 				$wgLang->date( $expiration, false ),
-				$wgLang->time( $expiration, false ) ) );
+				$wgLang->time( $expiration, false ) )->text() );
 	}
 
 	/**
@@ -4013,10 +4013,10 @@ class User {
 			$action = 'create2';
 			if ( $byEmail ) {
 				if ( $reason === '' ) {
-					$reason = wfMsgForContent( 'newuserlog-byemail' );
+					$reason = wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text();
 				} else {
 					$reason = $wgContLang->commaList( array(
-						$reason, wfMsgForContent( 'newuserlog-byemail' ) ) );
+						$reason, wfMessage( 'newuserlog-byemail' )->inContentLanguage()->text() ) );
 				}
 			}
 		}
@@ -4185,8 +4185,8 @@ class User {
 		/*
 		if ( $wgMinimalPasswordLength > 1 ) {
 			$ret['pattern'] = '.{' . intval( $wgMinimalPasswordLength ) . ',}';
-			$ret['title'] = wfMsgExt( 'passwordtooshort', 'parsemag',
-				$wgMinimalPasswordLength );
+			$ret['title'] = wfMessage( 'passwordtooshort' )
+				->numParams( $wgMinimalPasswordLength )->text();
 		}
 		*/
 
