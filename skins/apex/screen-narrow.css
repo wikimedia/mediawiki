@@ -16,9 +16,7 @@
 #p-personal:hover #pt-userpage a {
 	opacity: 1;
 }
-#searchInput {
-	width: 10em;
-}
+
 #ca-talk a {
 	display: inline-block;
 	background-image: url(images/icons/talk.png);
@@ -31,4 +29,20 @@
 }
 #ca-talk a:hover {
 	opacity: 1;
+}
+
+#searchInput {
+	width: 10em;
+}
+
+#content {
+	margin: 7em 1.5em 3em 1.5em;
+}
+
+#p-logo {
+	margin-left: 1.5em;
+}
+
+#p-search {
+	margin-right: 1.5em;
 }

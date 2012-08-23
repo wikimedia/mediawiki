@@ -5,6 +5,8 @@ body {
 	padding: 0;
 	font-family: sans-serif;
 	font-size: 100%;
+	min-width: 30em;
+	position: relative;
 }
 
 a {
@@ -18,7 +20,8 @@ a:visited {
 #p-logo {
 	position: absolute;
 	top: 0;
-	left: 3em;
+	left: 0;
+	margin-left: 3em;
 }
 #p-logo a span {
 	display: block;
@@ -157,7 +160,7 @@ a:visited {
 
 #mw-head {
 	position: absolute;
-	top: 0;
+	top: -6em;
 	left: 0;
 	right: 0;
 	height: 4em;
@@ -177,7 +180,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #mw-panel,
 #toc {
 	position: absolute;
-	top: 6em;
+	top: 0;
 	margin: 0;
 	padding: 0;
 	margin-top: 1px;
@@ -356,7 +359,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 #p-personal {
 	float: right;
-	margin-right: 2em;
+	margin-right: 1em;
 	margin-top: 1em;
 	position: relative;
 }
@@ -398,7 +401,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #p-search {
 	float: right;
 	margin-right: 3em;
-	margin-top: 1em;
+	margin-top: 0.75em;
 }
 #p-search h5 {
 	display: none;
@@ -527,3 +530,33 @@ div#mw-js-message {
 	background-image: url(images/icons/menu-hover.png);
 }
 
+/* Animation for media-query changes */
+
+#searchInput {
+	transition: width 250ms;
+	-moz-transition: width 250ms;
+	-webkit-transition: width 250ms;
+	-o-transition: width 250ms;
+}
+
+#content {
+	transition: margin 250ms;
+	-moz-transition: margin 250ms;
+	-webkit-transition: margin 250ms;
+	-o-transition: margin 250ms;
+}
+
+#p-cactions,
+#p-logo {
+	transition: margin-left 250ms;
+	-moz-transition: margin-left 250ms;
+	-webkit-transition: margin-left 250ms;
+	-o-transition: margin-left 250ms;
+}
+
+#p-search {
+	transition: margin-right 250ms;
+	-moz-transition: margin-right 250ms;
+	-webkit-transition: margin-right 250ms;
+	-o-transition: margin-right 250ms;
+}
