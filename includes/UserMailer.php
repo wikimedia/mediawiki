@@ -623,32 +623,36 @@ class EmailNotification {
 
 		if ( $this->oldid ) {
 			// Always show a link to the diff which triggered the mail. See bug 32210.
-			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
-				$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) );
+			$keys['$NEWPAGE'] = wfMessage( 'enotif_lastdiff',
+				$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) )
+				->inContentLanguage()->text();
 			if ( !$wgEnotifImpersonal ) {
 				// For personal mail, also show a link to the diff of all changes
 				// since last visited.
-				$keys['$NEWPAGE'] .= " \n" . wfMsgForContent( 'enotif_lastvisited',
-					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) );
+				$keys['$NEWPAGE'] .= " \n" . wfMessage( 'enotif_lastvisited',
+					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) )
+					->inContentLanguage()->text();
 			}
 			$keys['$OLDID']   = $this->oldid;
-			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'changed' );
+			$keys['$CHANGEDORCREATED'] = wfMessage( 'changed' )->inContentLanguage()->text();
 		} else {
-			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_newpagetext' );
+			$keys['$NEWPAGE'] = wfMessage( 'enotif_newpagetext' )->inContentLanguage()->text();
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID']   = '';
-			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'created' );
+			$keys['$CHANGEDORCREATED'] = wfMessage( 'created' )->inContentLanguage()->text();
 		}
 
 		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
 		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalUrl();
-		$keys['$PAGEMINOREDIT'] = $this->minorEdit ? wfMsgForContent( 'minoredit' ) : '';
+		$keys['$PAGEMINOREDIT'] = $this->minorEdit ?
+			wfMessage( 'minoredit' )->inContentLanguage()->text() : '';
 		$keys['$UNWATCHURL'] = $this->title->getCanonicalUrl( 'action=unwatch' );
 
 		if ( $this->editor->isAnon() ) {
 			# real anon (user:xxx.xxx.xxx.xxx)
-			$keys['$PAGEEDITOR'] = wfMsgForContent( 'enotif_anon_editor', $this->editor->getName() );
-			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
+			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_anon_editor', $this->editor->getName() )
+				->inContentLanguage()->text();
+			$keys['$PAGEEDITOR_EMAIL'] = wfMessage( 'noemailtitle' )->inContentLanguage()->text();
 		} else {
 			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealName() : $this->editor->getName();
 			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
@@ -662,12 +666,12 @@ class EmailNotification {
 
 		# Now build message's subject and body
 
-		$subject = wfMsgExt( 'enotif_subject', 'content' );
+		$subject = wfMessage( 'enotif_subject' )->inContentLanguage()->text();
 		$subject = strtr( $subject, $keys );
 		$subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
 		$this->subject = strtr( $subject, $postTransformKeys );
 
-		$body = wfMsgExt( 'enotif_body', 'content' );
+		$body = wfMessage( 'enotif_body' )->inContentLanguage()->text();
 		$body = strtr( $body, $keys );
 		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
 		$this->body = wordwrap( strtr( $body, $postTransformKeys ), 72 );
@@ -769,7 +773,7 @@ class EmailNotification {
 				array( '$WATCHINGUSERNAME',
 					'$PAGEEDITDATE',
 					'$PAGEEDITTIME' ),
-				array( wfMsgForContent( 'enotif_impersonal_salutation' ),
+				array( wfMessage( 'enotif_impersonal_salutation' )->inContentLanguage()->text(),
 					$wgContLang->date( $this->timestamp, false, false ),
 					$wgContLang->time( $this->timestamp, false, false ) ),
 				$this->body );
