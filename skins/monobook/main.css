@@ -840,7 +840,7 @@ div#searchTargetHide {
 }
 
 #powersearch p {
-	margin-top:0px;
+	margin-top: 0px;
 }
 
 div.multipageimagenavbox {
@@ -924,6 +924,7 @@ div#mw-js-message {
 	top: 1em;
 	width: 20em;
 	z-index: 10000;
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.125);
 	-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.125);
 	box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.125);
 }
