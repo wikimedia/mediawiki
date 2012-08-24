@@ -702,21 +702,18 @@ class SpecialUpload extends SpecialPage {
 	 * @return string
 	 */
 	public static function getDupeWarning( $dupes ) {
-		global $wgOut;
-		if( $dupes ) {
-			$msg = '<gallery>';
-			foreach( $dupes as $file ) {
-				$title = $file->getTitle();
-				$msg .= $title->getPrefixedText() .
-					'|' . $title->getText() . "\n";
-			}
-			$msg .= '</gallery>';
-			return '<li>' .
-				wfMessage( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
-				$wgOut->parse( $msg ) . "</li>\n";
-		} else {
+		if ( !$dupes ) {
 			return '';
 		}
+
+		$gallery = new ImageGallery;
+		$gallery->setShowBytes( false );
+		foreach( $dupes as $file ) {
+			$gallery->add( $file->getTitle() );
+		}
+		return '<li>' .
+			wfMessage( 'file-exists-duplicate' )->numParams( count( $dupes ) )->parse() .
+			$gallery->toHtml() . "</li>\n";
 	}
 
 }
