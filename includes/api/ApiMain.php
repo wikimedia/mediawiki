@@ -368,6 +368,9 @@ class ApiMain extends ApiBase {
 		try {
 			$this->executeAction();
 		} catch ( Exception $e ) {
+			// Allow external logging
+			wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
+
 			// Log it
 			if ( !( $e instanceof UsageException ) ) {
 				wfDebugLog( 'exception', $e->getLogMessage() );
