@@ -397,6 +397,11 @@ is the User object. In the hook, just add your callback to the
 $tokenFunctions array and return true (returning false makes no sense)
 $tokenFunctions: array(action => callback)
 
+'ApiMain::onException': Called by ApiMain::executeActionWithErrorHandling()
+when an exception is thrown during API action execution.
+$apiMain: Calling ApiMain instance.
+$e: Exception object.
+
 'ApiRsdServiceApis': Add or remove APIs from the RSD services list.
 Each service should have its own entry in the $apis array and have a
 unique name, passed as key for the array that represents the service data.
