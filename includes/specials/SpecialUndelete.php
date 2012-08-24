@@ -156,7 +156,8 @@ class PageArchive {
 					'fa_user',
 					'fa_user_text',
 					'fa_timestamp',
-					'fa_deleted' ),
+					'fa_deleted',
+					'fa_sha1' ),
 				array( 'fa_name' => $this->title->getDBkey() ),
 				__METHOD__,
 				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
