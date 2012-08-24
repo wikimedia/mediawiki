@@ -72,7 +72,11 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return Bool
 	 */
 	public function isCompiled() {
-		return self::checkExtension( 'mysql' );
+		if( self::checkExtension( 'mysql' ) || self::checkExtension( 'mysqlnd' ) ) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	/**
