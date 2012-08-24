@@ -223,16 +223,36 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * @param $page Integer: page number, for multipage files
 	 * @private
 	 */
-	function __construct( $file, $url, $width, $height, $path = false, $page = false ) {
+	function __construct( $file, $url, $path = false, $parameters = array(), $arg5 = null, $arg6 = null ) {
+		# Previous parameters:
+		#   $file, $url, $width, $height, $path = false, $page = false
+
+		if( is_array( $parameters ) ){
+			$defaults = array(
+				'page' => false
+			);
+			$actualParams = $parameters + $defaults;
+		} else {
+			# Using old format, should convert. Later a warning could be added here.
+			$actualParams = array(
+				'width' => $path,
+				'height' => $parameters,
+				'page' => $arg6
+			);
+			$path = $arg5;
+		}
+
 		$this->file = $file;
 		$this->url = $url;
+		$this->path = $path;
+
 		# These should be integers when they get here.
 		# If not, there's a bug somewhere.  But let's at
 		# least produce valid HTML code regardless.
-		$this->width = round( $width );
-		$this->height = round( $height );
-		$this->path = $path;
-		$this->page = $page;
+		$this->width = round( $actualParams['width'] );
+		$this->height = round( $actualParams['height'] );
+
+		$this->page = $actualParams['page'];
 	}
 
 	/**
