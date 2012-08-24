@@ -1,0 +1,8 @@
+Change-Id: I91d00bc181670c1e6a4bcbd1f02a35b4007dd964
+Code-Review+2: Demon <chadh@wikimedia.org>
+Verified+1: jenkins-bot
+Submitted-by: Demon <chadh@wikimedia.org>
+Submitted-at: Fri, 24 Aug 2012 13:51:51 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/21137
+Project: mediawiki/core
+Branch: refs/heads/master
