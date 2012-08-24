@@ -111,15 +111,19 @@ class SpecialComparePages extends SpecialPage {
 		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
 		if( $rev1 && $rev2 ) {
-			$contentHandler = ContentHandler::getForModelID( $rev1->getContentModel() );
-			$de = $contentHandler->createDifferenceEngine( $form->getContext(),
-				$rev1,
-				$rev2,
-				null, // rcid
-				( $data['Action'] == 'purge' ),
-				( $data['Unhide'] == '1' )
-			);
-			$de->showDiffPage( true );
+			$revision = Revision::newFromId( $rev1 );
+
+			if ( $revision ) { // NOTE: $rev1 was already checked, should exist.
+				$contentHandler = $revision->getContentHandler();
+				$de = $contentHandler->createDifferenceEngine( $form->getContext(),
+					$rev1,
+					$rev2,
+					null, // rcid
+					( $data['Action'] == 'purge' ),
+					( $data['Unhide'] == '1' )
+				);
+				$de->showDiffPage( true );
+			}
 		}
 	}
 
