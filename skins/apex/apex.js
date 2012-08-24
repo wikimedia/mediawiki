@@ -21,15 +21,12 @@ mw.ApexSkin = function () {
 	this.onResize();
 };
 
-mw.ApexSkin.prototype.getNavDistance = function () {
-	return this.$navRight.offset().left - ( this.$navLeft.offset().left + this.$navLeft.width() );
-};
-
 mw.ApexSkin.prototype.onResize = function () {
 	var i, stashable, $item, $anchor, width,
 		$actionsList = this.$actionsList,
 		stash = this.stash,
-		gap = this.getNavDistance(),
+		gap = this.$navRight.offset().left -
+			( this.$navLeft.offset().left + this.$navLeft.width() ),
 		buffer = this.minimumNavDistance;
 	if ( gap < buffer ) {
 		// Collect a list of all overlapping items
