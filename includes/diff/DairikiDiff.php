@@ -15,7 +15,7 @@
  * @private
  * @ingroup DifferenceEngine
  */
-class _DiffOp { #FIXME: no longer private!
+class _DiffOp {
 	var $type;
 	var $orig;
 	var $closing;
@@ -44,7 +44,7 @@ class _DiffOp { #FIXME: no longer private!
  * @private
  * @ingroup DifferenceEngine
  */
-class _DiffOp_Copy extends _DiffOp { #FIXME: no longer private!
+class _DiffOp_Copy extends _DiffOp {
 	var $type = 'copy';
 
 	function __construct( $orig, $closing = false ) {
@@ -68,7 +68,7 @@ class _DiffOp_Copy extends _DiffOp { #FIXME: no longer private!
  * @private
  * @ingroup DifferenceEngine
  */
-class _DiffOp_Delete extends _DiffOp { #FIXME: no longer private!
+class _DiffOp_Delete extends _DiffOp {
 	var $type = 'delete';
 
 	function __construct( $lines ) {
@@ -89,7 +89,7 @@ class _DiffOp_Delete extends _DiffOp { #FIXME: no longer private!
  * @private
  * @ingroup DifferenceEngine
  */
-class _DiffOp_Add extends _DiffOp { #FIXME: no longer private!
+class _DiffOp_Add extends _DiffOp {
 	var $type = 'add';
 
 	function __construct( $lines ) {
@@ -110,7 +110,7 @@ class _DiffOp_Add extends _DiffOp { #FIXME: no longer private!
  * @private
  * @ingroup DifferenceEngine
  */
-class _DiffOp_Change extends _DiffOp { #FIXME: no longer private!
+class _DiffOp_Change extends _DiffOp {
 	var $type = 'change';
 
 	function __construct( $orig, $closing ) {
@@ -150,7 +150,7 @@ class _DiffOp_Change extends _DiffOp { #FIXME: no longer private!
  * @private
  * @ingroup DifferenceEngine
  */
-class _DiffEngine { #FIXME: no longer private!
+class _DiffEngine {
 
 	const MAX_XREF_LENGTH =  10000;
 
@@ -637,7 +637,7 @@ class _DiffEngine { #FIXME: no longer private!
  * @private
  * @ingroup DifferenceEngine
  */
-class Diff extends DiffResult {
+class Diff {
 	var $edits;
 
 	/**
@@ -647,36 +647,11 @@ class Diff extends DiffResult {
 	 * @param $from_lines array An array of strings.
 	 *		  (Typically these are lines from a file.)
 	 * @param $to_lines array An array of strings.
-	 * @param $eng _DiffEngine|null The diff engine to use.
 	 */
-	function __construct( $from_lines, $to_lines, $eng = null  ) {
-		if ( !$eng ) {
-			$eng = new _DiffEngine();
-		}
-
-		$edits = $eng->diff( $from_lines, $to_lines );
-
-		parent::__construct( $edits );
-
-		//$this->_check( $from_lines, $to_lines );
-	}
-}
-
-/**
- * Class representing the result of 'diffin' two sequences of strings.
- * @todo document
- * @private
- * @ingroup DifferenceEngine
- */
-class DiffResult {
-
-	/**
-	 * Constructor.
-	 *
-	 * @param $edits array An array of Edit.
-	 */
-	function __construct( $edits  ) {
-		$this->edits = $edits;
+	function __construct( $from_lines, $to_lines ) {
+		$eng = new _DiffEngine;
+		$this->edits = $eng->diff( $from_lines, $to_lines );
+		// $this->_check($from_lines, $to_lines);
 	}
 
 	/**
@@ -750,6 +725,9 @@ class DiffResult {
 
 	/**
 	 * Get the closing set of lines.
+	 *
+	 * This reconstructs the $to_lines parameter passed to the
+	 * constructor.
 	 *
 	 * @return array The sequence of strings.
 	 */
