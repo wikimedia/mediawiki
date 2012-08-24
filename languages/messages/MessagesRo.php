@@ -1617,7 +1617,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'action-reupload-shared' => 'rescrieți acest fișier în depozitul partajat',
 'action-upload_by_url' => 'încărcați acest fișier de la o adresă URL',
 'action-writeapi' => 'utilizați scrierea prin API',
-'action-delete' => 'șterge această pagină',
+'action-delete' => 'ștergeți această pagină',
 'action-deleterevision' => 'ștergeți această versiune',
 'action-deletedhistory' => 'vizualizați istoricul șters al aceste pagini',
 'action-browsearchive' => 'căutați pagini șterse',

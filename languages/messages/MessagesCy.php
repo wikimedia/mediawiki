@@ -2191,7 +2191,7 @@ Gallai dileu tudalen, gyda hanes golygu cymaint â hyn iddi, beri dryswch i weit
 # Rollback
 'rollback' => 'Gwrthdroi golygiadau',
 'rollback_short' => 'Gwrthdroi',
-'rollbacklink' => 'gwrthdroi',
+'rollbacklink' => 'gwrthdröer',
 'rollbacklinkcount' => 'gwrthdröer $1 {{PLURAL:$1||golygiad|olygiad|golygiad|golygiad|golygiad}}',
 'rollbacklinkcount-morethan' => 'gwrthdröer mwy na $1 {{PLURAL:$1||golygiad|olygiad|golygiad|golygiad|golygiad}}',
 'rollbackfailed' => 'Methodd y gwrthdroi',

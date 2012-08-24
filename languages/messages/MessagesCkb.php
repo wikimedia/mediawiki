@@ -2080,7 +2080,7 @@ $UNWATCHURL
 
 دوایین دەستکاری ئەم لاپەڕە [[User:$3|$3]] کردوویە ([[User talk:$3|وتووێژ]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "پوختەی دەستکاری \"''\$1''\" بوو.",
-'revertpage' => 'گەڕاندنەوەی دەستکارییەکان لەلایەن [[Special:Contributions/$2|$2]] ([[User talk:$2|لێدوان]]) بۆ دوایین دەستکاریی [[User:$1|$1]]',
+'revertpage' => 'گەڕاندنەوەی دەستکارییەکانی [[Special:Contributions/$2|$2]] ([[User talk:$2|لێدوان]]) بۆ دوایین دەستکاریی [[User:$1|$1]]',
 'rollback-success' => 'دەستکارییەکانی $1 وەرگێرایەوە؛<br />
 گۆڕدرا بۆ دوایین دەستکاریی $2.',
 

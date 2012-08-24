@@ -347,9 +347,9 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection' => 'මාතෘකාව එක්කරන්න',
-'vector-action-delete' => 'මකාදමන්න',
+'vector-action-delete' => 'මකන්න',
 'vector-action-move' => 'ගෙනයන්න',
-'vector-action-protect' => 'ආරක්‍ෂණය කරන්න',
+'vector-action-protect' => 'ආරක්‍ෂණය',
 'vector-action-undelete' => 'මකාදැමීම අවලංගු කරන්න',
 'vector-action-unprotect' => 'ආරක්ෂණ තත්වය වෙනස් කරන්න',
 'vector-simplesearch-preference' => 'වැඩිදියුණුකළ සෙවුම් යෝජනා සක්‍රීය කරන්න (වෙක්ටර් තීමය සඳහා පමණි)',
@@ -365,7 +365,7 @@ $messages = array(
 'errorpagetitle' => 'දෝෂය',
 'returnto' => '$1 වෙත නැවත යන්න.',
 'tagline' => '{{SITENAME}} වෙතින්',
-'help' => 'උදවු',
+'help' => 'උදව්',
 'search' => 'සොයන්න',
 'searchbutton' => 'සොයන්න',
 'go' => 'යන්න',
@@ -373,11 +373,11 @@ $messages = array(
 'history' => 'පිටුවේ ඉතිහාසය',
 'history_short' => 'ඉතිහාසය',
 'updatedmarker' => 'මාගේ අවසාන පිවිසුමෙන් පසුව යාවත්කාලීන කරඇත',
-'printableversion' => 'මුද්‍රණයකලහැකි සංස්කරණය',
+'printableversion' => 'මුද්‍රණය කල හැකි සංස්කරණය',
 'permalink' => 'ස්ථාවර සබැඳුම',
 'print' => 'මුද්‍රණය කරන්න',
 'view' => 'දසුන',
-'edit' => 'සංස්කරණය කරන්න',
+'edit' => 'සංස්කරණය',
 'create' => 'තනන්න',
 'editthispage' => 'මෙම පිටුව සංස්කරණය කරන්න',
 'create-this-page' => 'මෙම පිටුව තනන්න',
@@ -385,7 +385,7 @@ $messages = array(
 'deletethispage' => 'මෙම පිටුව මකන්න',
 'undelete_short' => '{{PLURAL:$1|එක් සංස්කරණයක|සංස්කරණ $1 ක}} මකා දැමීම ප්‍රතිලෝම කරන්න',
 'viewdeleted_short' => 'මකා දමනු ලැබූ {{PLURAL:$1|එක් සංස්කරණයක්|සංස්කරණ $1  ක්}} බලන්න',
-'protect' => 'ආරක්‍ෂණය කරන්න',
+'protect' => 'ආරක්‍ෂණය',
 'protect_change' => 'වෙනස් කරන්න',
 'protectthispage' => 'මෙම පිටුව ආරක්‍ෂණය කරන්න',
 'unprotect' => 'ආරක්ෂණ තත්වය වෙනස් කරන්න',
@@ -414,7 +414,7 @@ $messages = array(
 'lastmodifiedat' => 'මෙම පිටුව අවසන් වරට වෙනස් කරන ලද්දේ $1 දිනදී, $2 වේලාවෙහිදීය.',
 'viewcount' => 'මෙම පිටුවට {{PLURAL:$1|එක් වරක්|$1 වරක්}} පිවිස ඇත.',
 'protectedpage' => 'ආරක්ෂිත පිටුව',
-'jumpto' => 'වෙත යන්න:',
+'jumpto' => 'වෙත පනින්න:',
 'jumptonavigation' => 'සංචලනය',
 'jumptosearch' => 'සොයන්න',
 'view-pool-error' => "සමාවන්න, ස'වරයන් මෙම අවස්ථාවෙහිදී අධිපූරණය වී ඇත.
@@ -626,7 +626,7 @@ $2',
 'nologin' => "ඔබ හට ගිණුමක් නොමැතිද? '''$1'''.",
 'nologinlink' => 'ගිණුමක් තනන්න',
 'createaccount' => 'අලුත් ගිණුමක් තනන්න',
-'gotaccount' => "දැනටමත් ගිණුමක් තිබේද? '''$1'''.",
+'gotaccount' => 'දැනටමත් ගිණුමක් තිබේද? $1.',
 'gotaccountlink' => 'පිවිසෙන්න',
 'userlogin-resetlink' => 'ඔබේ පිවිසුම් තොරතුරු අමතකද?',
 'createaccountmail' => 'විද්‍යුත් තැපෑල මගින්',
@@ -768,7 +768,7 @@ $2
 'link_sample' => 'සබැඳි ශීර්ෂය',
 'link_tip' => 'අභ්‍යන්තර සබැඳිය',
 'extlink_sample' => 'http://www.example.com සබැඳුම් මාතෘකාව',
-'extlink_tip' => 'බාහිර සබැඳිය ( http:// උපසර්ගය සිහි තබාගන්න)',
+'extlink_tip' => 'බාහිර සබැඳිය (http:// උපසර්ගය සිහි තබාගන්න)',
 'headline_sample' => 'සිරස්තල පෙළ',
 'headline_tip' => '2 වන මට්ටමෙහි සිරස්තලය',
 'nowiki_sample' => 'ආකෘතිකරණය-නොකල පෙළ මෙහි රුවන්න',
@@ -1000,7 +1000,7 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 'currentrev' => 'නවතම සංශෝධනය',
 'currentrev-asof' => '$1 වන විට නවතම සංශෝධනය',
 'revisionasof' => '$1 තෙක් සංශෝධනය',
-'revision-info' => '$1 වන විට  $2 විසින් සිදු කර ඇති සංශෝධන',
+'revision-info' => '$1 වන විට $2 විසින් සිදු කර ඇති සංශෝධන',
 'previousrevision' => '← පැරණි සංශෝධනය',
 'nextrevision' => 'නව සංශෝධනය →',
 'currentrevisionlink' => 'වත්මන් සංශෝධනය',
@@ -1022,7 +1022,7 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 # Revision feed
 'history-feed-title' => 'සංශෝධන ඉතිහාසය',
 'history-feed-description' => 'විකියෙහි මෙම පිටුව සඳහා ඇති සංශෝධන ඉතිහාසය',
-'history-feed-item-nocomment' => '$1 විසින්  $2 හිදී',
+'history-feed-item-nocomment' => '$1 විසින් $2 හිදී',
 'history-feed-empty' => 'අයැදුනු පිටුව නොපවතියි.
 එය විකියෙන් මකා දමා හෝ නම-වෙනස් කොට ඇතිවා විය හැකිය.
 අදාල නව පිටු සඳහා  [[Special:Search|විකිය තුල ගවේෂණය]] අත්හදා බලන්න.',
@@ -1164,8 +1164,8 @@ $1",
 'lineno' => 'පේළිය $1:',
 'compareselectedversions' => 'තෝරාගත් සංශෝධන සසඳන්න',
 'showhideselectedversions' => 'තෝරාගත් සංශෝධන පෙන්වන්න/සඟවන්න',
-'editundo' => 'අහෝසි කරන්න',
-'diff-multi' => '({{PLURAL:$2|one user|$2 users}} විසින් සිදුකල {{PLURAL:$1|එක් අතරමැදි සංශෝධනයක්| අතරමැදි සංශෝධන $1 ක්}} පෙන්නුම් කර නොමැත.)',
+'editundo' => 'අහෝසිය',
+'diff-multi' => '({{PLURAL:$2|එක් පරිශීලකයෙක්|පරිශීලකයන් $2 ක්}} විසින් සිදුකල {{PLURAL:$1|එක් අතරමැදි සංශෝධනයක්|අතරමැදි සංශෝධන $1 ක්}} පෙන්නුම් කර නොමැත.)',
 'diff-multi-manyusers' => '(පරිශීලකයන් $2 කට වඩා වැඩි ගණනකගේ ආසන්න පුනරීක්‍ෂණ $1ක් පෙන්වා නොමැත)',
 
 # Search results
@@ -1179,14 +1179,14 @@ $1",
 'notitlematches' => 'පිටු ශීර්ෂ ගැලපීම් කිසිවක් නොමැත',
 'textmatches' => 'පිටු පෙළ ගැළපෙයි',
 'notextmatches' => 'පිටු පෙළ කිසිවක් නොගැළපෙයි',
-'prevn' => 'පෙර  {{PLURAL:$1|$1}}',
-'nextn' => 'මීලඟ  {{PLURAL:$1|$1}}',
-'prevn-title' => 'පූර්ව  {{PLURAL:$1|ප්‍රතිඵලය|ප්‍රතිඵලයන් $1}}',
-'nextn-title' => 'මීලඟ  {{PLURAL:$1|ප්‍රතිඵලය|ප්‍රතිඵල $1}}',
+'prevn' => 'පෙර {{PLURAL:$1|$1}}',
+'nextn' => 'මීලඟ {{PLURAL:$1|$1}}',
+'prevn-title' => 'පූර්ව {{PLURAL:$1|ප්‍රතිඵලය|ප්‍රතිඵලයන් $1}}',
+'nextn-title' => 'මීලඟ {{PLURAL:$1|ප්‍රතිඵලය|ප්‍රතිඵල $1}}',
 'shown-title' => 'එක් පිටුවක {{PLURAL:$1|ප්‍රතිඵලයක්|ප්‍රතිඵල $1 ක්}} බැගින් පෙන්වන්න',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) නරඹන්න',
 'searchmenu-legend' => 'ගවේෂණ තෝරාගැනීම්',
-'searchmenu-exists' => "''' මෙම විකියෙහි  \"[[:\$1]]\" ලෙස නම් කර ඇති පිටුවක් ඇත'''",
+'searchmenu-exists' => "'''මෙම විකියෙහි \"[[:\$1]]\" ලෙස නම් කර ඇති පිටුවක් ඇත.'''",
 'searchmenu-new' => "'''මෙම විකියෙහි \"[[:\$1]]\" පිටුව තනන්න!'''",
 'searchhelp-url' => 'Help:පටුන',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|මෙම උපසර්ගය භාවිත කරමින් පිටු පිරික්සන්න]]',
@@ -1198,9 +1198,9 @@ $1",
 'searchprofile-articles-tooltip' => '$1 හි ගවේෂණය කරන්න',
 'searchprofile-project-tooltip' => '$1 හි ගවේෂණය කරන්න',
 'searchprofile-images-tooltip' => 'ගොනු සඳහා ගවේෂණය කරන්න',
-'searchprofile-everything-tooltip' => 'සියළු අන්තර්ගතය ගවේෂණය කරන්න(සාකච්ඡා පිටුද ඇතුළුව)',
+'searchprofile-everything-tooltip' => 'සියළු අන්තර්ගතය ගවේෂණය කරන්න (සාකච්ඡා පිටුද ඇතුළුව)',
 'searchprofile-advanced-tooltip' => 'අභිරුචි නාමඅවකාශයන්හි ගවේෂණය කරන්න',
-'search-result-size' => '$1 ({{PLURAL:$2|වචන 1 ක් |වචන $2 ක්}})',
+'search-result-size' => '$1 ({{PLURAL:$2|වචන 1 ක්|වචන $2 ක්}})',
 'search-result-category-size' => '{{PLURAL:$1|එක් සාමාජීකයෙන්|සාමාජීකයන් $1 ක්}} ({{PLURAL:$2|එක් උප-ප්‍රවර්ගයක්|උප-ප්‍රවර්ග $2 ක්}}, {{PLURAL:$3|එක් ගොනුවක්|ගොනු $3 ක්}})',
 'search-result-score' => 'අදාළතාව: $1%',
 'search-redirect' => '($1 යළි-යොමු කරන්න)',
@@ -1214,11 +1214,11 @@ $1",
 'search-relatedarticle' => 'සහසම්බන්ධිත',
 'mwsuggest-disable' => 'AJAX ඇඟවිලි අක්‍රීය කරන්න',
 'searcheverything-enable' => 'සියළු නාමඅවකාශයන්හි ගවේෂණය කරන්න',
-'searchrelated' => 'සහසම්බන්ධිත',
+'searchrelated' => 'ආශ්‍රිත',
 'searchall' => 'සියල්ල',
 'showingresults' => "#'''$2''' ගෙන් ආරම්භ කොට, {{PLURAL:$1|ප්‍රතිඵල '''1'''  ක් |ප්‍රතිඵල '''$1''' ක්}} දක්වා පහත පෙන්වා ඇත.",
 'showingresultsnum' => "#'''$2''' ගෙන් ආරම්භ කොට, {{PLURAL:$3|ප්‍රතිඵල '''1'''  ක් |ප්‍රතිඵල '''$3''' ක්}} පහත පෙන්වා ඇත.",
-'showingresultsheader' => "'''$4''' සඳහා {{PLURAL:$5| '''$3''' අතුරින් '''$1''' ප්‍රතිඵලය| '''$3''' අතුරින් '''$1 - $2''' ප්‍රතිඵලයන් }}",
+'showingresultsheader' => "'''$4''' සඳහා {{PLURAL:$5| '''$3''' අතුරින් '''$1''' ප්‍රතිඵලය| '''$3''' අතුරින් '''$1 - $2''' ප්‍රතිඵලයන්}}",
 'nonefound' => "'''සටහන''': පෙරනිමියෙන් ගවේෂණය වන්නේ සමහරක් නාමඅවකාශ පමණි.
 ඔබ‍ගේ විමසුමට ''all:'' උපසර්ගය යෙදීම මගින් සියළු අන්තර්ගතය ගවේෂණයට ඉඩ සැලසීම අත්හදා බලන්න (සාකච්ඡා පිටු, සැකිලි, ආදියද ඇතුළුව), නැතහොත්, උපසර්ගය ලෙස අපේක්‍ෂිත නාමඅවකාශය භාවිතා කරන්න.",
 'search-nonefound' => 'විමසුම හා ගැලපෙන ප්‍රතිඵල කිසිවක් නොමැත.',
@@ -1342,7 +1342,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'email' => 'විද්‍යුත් තැපෑල',
 'prefs-help-realname' => 'සැබෑ නාමය හෙළි කිරීම වෛකල්පිකයි.
 ඔබ විසින් එය හෙළි කල හොත්, ඔබගේ කෘතීන් සඳහා ඔබහට කතෘ-බුහුමන් පිරිනැමීමට එය භාවිතා කරනු ඇත.',
-'prefs-help-email' => 'විද්‍යුත් ලිපිනය අත්‍යාවශ්‍ය නොවේ, එහෙත් ඔබගේ මුර පදය අමතක වූ විටෙක එය යලි සැකසීමට නම් විද්‍යුත් ලිපිනයක් දී තිබිය යුතුය.',
+'prefs-help-email' => 'විද්‍යුත් තැපැල් ලිපිනය අත්‍යාවශ්‍ය නොවේ, එහෙත් ඔබගේ මුර පදය අමතක වූ විටෙක එය යලි සැකසීමට නම් විද්‍යුත් ලිපිනයක් දී තිබිය යුතුය.',
 'prefs-help-email-others' => 'ඔබගේ පරිශීලක හෝ පරිශීලක සාකච්ඡා පිටුවෙහි සබැඳියක් ඔස්සේ විද්‍යුත් තැපෑල මගින් අනෙක් අයට ඔබව සම්බන්ධ කර ගැනීම පිණිස තේරිමක් සිදු කල හැක.
 අනෙකුත් පරිශීලකයන් ඔබව අමතන විට ඔබගේ විද්‍යුත් තැපැල් ලිපිනය හෙලිදරවු නොකෙරේ.',
 'prefs-help-email-required' => 'විද්‍යුත්-ලිපිනය අවශ්‍යයි.',
@@ -1526,7 +1526,7 @@ HTML ටැගයන් පිරික්සන්න.',
 'recentchanges-label-minor' => 'මෙය සුළු සංස්කරණයකි',
 'recentchanges-label-bot' => 'මෙය රොබෝවක් විසින් කරන ලද සංස්කරණයකි',
 'recentchanges-label-unpatrolled' => 'මෙම සංස්කරණය තවම විමර්ශනය කර නොමැත',
-'rcnote' => "$4 දින, $5 වන තෙක්, අවසන් {{PLURAL:$2|දිනදී|දින '''$2''' තුලදී}} සිදුවී ඇති, {{PLURAL:$1| '''1''' ක් වෙනස|අවසන් වෙනස්වීම් '''$1'''  }} පහත දැක්වේ.",
+'rcnote' => "$4 දින, $5 වන තෙක්, අවසන් {{PLURAL:$2|දිනදී|දින '''$2''' තුලදී}} සිදුවී ඇති, {{PLURAL:$1| '''1''' ක් වෙනස|අවසන් වෙනස්වීම් '''$1'''}} පහත දැක්වේ.",
 'rcnotefrom' => "'''$2''' න් පසු සිදුවී ඇති වෙනස්කම් මෙහි පහත දැක්වේ ('''$1''' ක ප්‍රමාණයක උපරිමයක් පෙන්වා ඇත).",
 'rclistfrom' => '$1 සිට බලපැවැත්වෙන මෑත වෙනස්වීම් පෙන්වන්න',
 'rcshowhideminor' => 'සුළු සංස්කරණ $1',
@@ -1557,13 +1557,13 @@ HTML ටැගයන් පිරික්සන්න.',
 'recentchangeslinked-toolbox' => 'සහසම්බන්ධිත වෙනස්වීම්',
 'recentchangeslinked-title' => '"$1" ආශ්‍රිත වෙනස්කිරීම්',
 'recentchangeslinked-noresult' => 'සලකා බැලූ කාලසීමාවෙහිදී, සබැඳි පිටු වල කිසිදු වෙනසක් සිදුවී නොමැත.',
-'recentchangeslinked-summary' => "විශේෂී ලෙස නිරූපිත පිටුවකට (හෝ විශේෂි ලෙස නිරූපිත ප්‍රවර්ගයක සාමාජීකයන්ට) සබැඳි පිටුවල  මෑතදී සිදුවූ වෙනස්වීම් දැක්වෙන ලැයිස්තුවක් මෙහි දැක්වේ.
-[[Special:Watchlist|ඔබගේ  මුර-ලැයිස්තුවෙහි]] පිටු  '''තදකුරු''' වලින් දක්වා ඇත.",
+'recentchangeslinked-summary' => "විශේෂී ලෙස නිරූපිත පිටුවකට (හෝ විශේෂි ලෙස නිරූපිත ප්‍රවර්ගයක සාමාජීකයන්ට) සබැඳි පිටුවල මෑතදී සිදුවූ වෙනස්වීම් දැක්වෙන ලැයිස්තුවක් මෙහි දැක්වේ.
+[[Special:Watchlist|ඔබගේ  මුර-ලැයිස්තුවෙහි]] පිටු '''තදකුරු''' වලින් දක්වා ඇත.",
 'recentchangeslinked-page' => 'පිටු නාමය:',
 'recentchangeslinked-to' => 'ඒ වෙනුවට දී ඇති පිටුවට සබැඳෙන පිටුවල වෙනස්වීම්  පෙන්වන්න',
 
 # Upload
-'upload' => 'ගොනුවක් උඩුගත කිරීම',
+'upload' => 'ගොනුවක් උඩුගත කරන්න',
 'uploadbtn' => 'ගොනුව උඩුගත කරන්න',
 'reuploaddesc' => 'උඩුගත කිරීම අත්හැරදමා උඩුගත කිරීම් ආකෘති පත්‍රය වෙත යන්න',
 'upload-tryagain' => 'වෙනස් කරන ලද ගොනු විස්තරය ඉදිරිපත් කරන්න',
@@ -2187,7 +2187,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'notanarticle' => 'අන්තර්ගත පිටුවක් නොවේ',
 'notvisiblerev' => 'සංශෝධනය මකාදමා ඇත',
 'watchnochange' => 'ඔබ විසින් මුරකෙරෙන කිසිදු අයිතමයක් දක්වා ඇති කාල සීමාවෙහිදී  සංස්කරණයට භාජනය වී නොමැත.',
-'watchlist-details' => 'සාකච්ඡා පිටු නොගිණුනු කල, ඔබගේ මුර-ලැයිස්තුවෙහි {{PLURAL:$1|එක් පිටුවක්|පිටු $1 ක්}} ඇත.',
+'watchlist-details' => 'සාකච්ඡා පිටු නොගිණුනු කල, ඔබගේ මුර ලැයිස්තුවෙහි {{PLURAL:$1|එක් පිටුවක්|පිටු $1 ක්}} ඇත.',
 'wlheader-enotif' => '* විද්‍යුත්-තැපැල් දැනුම්දීම සක්‍රීය කෙරිණි.',
 'wlheader-showupdated' => "* ඔබ විසින් ඒවාට අවසන් වරට පිවිසුනු පසුව වෙනස්කෙරුනු පිටු  '''තදකුරු''' වලින් පෙන්වා ඇත",
 'watchmethod-recent' => 'මුර-කෙරෙන පිටු සඳහා මෑත සංස්කරණයන් පරික්‍ෂා කරමින්',
@@ -2195,7 +2195,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'watchlistcontains' => 'ඔබගේ මුර-ලැයිස්තුවෙහි  {{PLURAL:$1|එක් පිටුවක්|පිටු $1 ක්}} අඩංගුය.',
 'iteminvalidname' => "'$1' අයිතමය පිළිබඳ ගැටළුවක් ඇත, අනීතික නමකි...",
 'wlnote' => "පහත දැක්වෙන්නේ $3, $4 මෙන්, අවසන් {{PLURAL:$2|පැය|පැය '''$2''' }} තුලදී සිදු කෙරී ඇති {{PLURAL:$1|අවසන් වෙනස්වීම්යි |අවසන් වෙනස්වීම්  '''$1''' යි}}.",
-'wlshowlast' => 'පසුගිය පැය  $1 දින  $2  $3 පෙන්වන්න',
+'wlshowlast' => 'පසුගිය පැය $1 දින $2 $3 පෙන්වන්න',
 'watchlist-options' => 'තෝරාගතහැකි මුර ලැයිස්තු සැකසුම්',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2458,7 +2458,7 @@ $1',
 'sp-contributions-submit' => 'සොයන්න',
 
 # What links here
-'whatlinkshere' => 'සබැඳි පිටු',
+'whatlinkshere' => 'මෙතනට සබැඳි පිටු',
 'whatlinkshere-title' => '"$1" වෙත සබැ‍ඳෙන පිටු',
 'whatlinkshere-page' => 'පිටුව:',
 'linkshere' => "ඉදිරියෙහි දැක්වෙන පිටු, '''[[:$1]]''' වෙත සබැඳෙයි:",
@@ -2844,16 +2844,15 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'tooltip-pt-preferences' => 'මගේ අභිරුචි',
 'tooltip-pt-watchlist' => 'වෙනස්වීම් සිදුවී තිබේදැයි යන්න පිලිබඳව ඔබගේ විමසුමට ලක්ව ඇති පිටු ලැයිස්තුව',
 'tooltip-pt-mycontris' => 'ඔබගේ දායකත්වයන් ලැයිස්තුව‍',
-'tooltip-pt-login' => 'ප්‍රවිසීම වඩා යෝග්‍යවේ. නමුත් එය අනිවාර්ය නැත.',
+'tooltip-pt-login' => 'පිවිසීම වඩා යෝග්‍ය වේ. නමුත්, එය අනිවාර්ය නැත',
 'tooltip-pt-anonlogin' => 'එය අවශ්‍ය‍යෙන් කල යුත්තක් ‍නොවුනද, ප්‍රවිෂ්ට වීම සඳහා ඔබ ධෛර්යමත් කරනු ලැබේ.',
 'tooltip-pt-logout' => 'නික්මීම',
 'tooltip-ca-talk' => 'අන්තර්ගත පිටුව පිළිබඳ සාකච්ඡාව',
-'tooltip-ca-edit' => 'ඔබ‍ට මෙම පිටුව සංස්කරණය කල හැක.
-සුරැකීමට පෙර කරුණාකර පෙරදසුන බොත්තම භාවිතා කරන්න.',
+'tooltip-ca-edit' => 'ඔබ‍ට මෙම පිටුව සංස්කරණය කල හැක. සුරැකීමට පෙර කරුණාකර පෙරදසුන බොත්තම භාවිතා කරන්න',
 'tooltip-ca-addsection' => 'නව ඡේදයක් අරඹන්න',
 'tooltip-ca-viewsource' => 'මෙම පිටුව ආරක්‍ෂණය කොට ඇත.
 ඔබට එහි මූලාශ්‍රය නැරඹිය හැක.',
-'tooltip-ca-history' => 'මෙම පිටුවේ පෙර අනුවාදයන්.',
+'tooltip-ca-history' => 'මෙම පිටුවේ පෙර සංශෝධනයන්',
 'tooltip-ca-protect' => 'මෙම පිටුව ආරක්‍ෂණය කරන්න',
 'tooltip-ca-unprotect' => 'මෙම පිටුවෙහි ආරක්ෂණ තත්වය වෙනස් කරන්න',
 'tooltip-ca-delete' => 'මේ පිටුව මකන්න',
@@ -2870,7 +2869,7 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'tooltip-n-portal' => 'ව්‍යාපෘති පිළිබඳ, ඔබට කල හැක්කේ කුමක්ද, තොරතුරු සොයාගත හැක්කේ කොතැනද',
 'tooltip-n-currentevents' => 'කාලීන සිදුවීම් පිළිබඳ පසුබිම් තොරතුරු සොයා දැනගන්න',
 'tooltip-n-recentchanges' => 'විකියෙහි මෑත වෙනස්කිරීම් ලැයිස්තුවක්',
-'tooltip-n-randompage' => 'අහඹු පිටුවක් ලෝඩ්කරන්න',
+'tooltip-n-randompage' => 'අහඹු පිටුවක් පූරණය කරන්න',
 'tooltip-n-help' => 'සොයා දැනගත හැකි තැන',
 'tooltip-t-whatlinkshere' => 'මෙය හා සබැ‍ඳෙන සියළු විකි පිටු ලැයිස්තුව',
 'tooltip-t-recentchangeslinked' => 'මෙම පිටුව හා සබැඳි පිටුවල ‍නව වෙනස්වීම්',
@@ -3004,7 +3003,7 @@ $1',
 'file-info' => 'ගොනු විශාලත්වය: $1, MIME වර්ගය: $2',
 'file-info-size' => '$1 × $2 පික්සල, ගොනු විශාලත්වය: $3, MIME ශෛලිය: $4',
 'file-info-size-pages' => '$1 × $2 පික්සල, ගොනු තරම: $3, MIME වර්ගය: $4, $5 {{PLURAL:$5|පිටුව|පිටු}}',
-'file-nohires' => 'මෙයට ඉහල විසර්ජනයක් (resolution) දක්වා එළඹිය නොහැක.',
+'file-nohires' => 'මෙයට ඉහල විසර්ජනයක් දක්වා එළඹිය නොහැක.',
 'svg-long-desc' => 'SVG ගොනුව, නාමමාත්‍රිකව $1 × $2 පික්සල්, ගොනු විශාලත්වය: $3',
 'show-big-image' => 'පූර්ණ විභේදනය',
 'show-big-image-preview' => 'මෙම පෙරදසුනෙහි තරම: $1.',
@@ -3087,7 +3086,7 @@ Variants for Chinese language
 'variantname-tg' => 'tg',
 
 # Metadata
-'metadata' => 'පාරදත්ත (Metadata)',
+'metadata' => 'පාරදත්ත',
 'metadata-help' => 'සමහරවිට ඩිජිටල් කැමරාවක් හෝ ස්කෑනරයක් හෝ භාවිතයෙන්, නිමැවා හෝ සංඛ්‍යාංකකරණය (ඩිජිටල්කරණය) කොට එක් කල , අමතර තොරතුරු මෙම ගොනුවේ අඩංගුය.
 ගොනුව මුලින්ම පැවැති තත්ත්වයෙහි සිට විකරණය කොට තිබේ නම්, සමහරක් තොරතුරු විකරිත ගොනුව පූර්ණ වශයෙන් පිළිඹිමු නොකරනු ඇත.',
 'metadata-expand' => 'විස්තීරණය කරන ලද විස්තර පෙන්වන්න',
@@ -3095,14 +3094,14 @@ Variants for Chinese language
 'metadata-fields' => 'Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.
 Others will be hidden by default.
 * make
-* model
+* මාදිලිය
 * datetimeoriginal
 * exposuretime
 * fnumber
 * isospeedratings
 * focallength
-* artist
-* copyright
+* කලාකරු
+* ප්‍රකාශන හිමිකම
 * imagedescription
 * gpslatitude
 * gpslongitude
@@ -3684,8 +3683,8 @@ This confirmation code will expire at $4.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'අදාල වෙනස්වීම් නරඹන්න',
-'watchlisttools-edit' => 'මුර-ලැයිස්තුව නැරඹීම හා සංස්කරණය',
-'watchlisttools-raw' => 'නොනිමි මුර-ලැයිස්තුව සංස්කරණය කරන්න',
+'watchlisttools-edit' => 'මුර ලැයිස්තුව නැරඹීම හා සංස්කරණය',
+'watchlisttools-raw' => 'නොනිමි මුර ලැයිස්තුව සංස්කරණය කරන්න',
 
 # Iranian month names
 'iranian-calendar-m1' => 'ෆාර්වාදීන්',
@@ -3751,7 +3750,7 @@ This confirmation code will expire at $4.',
 
 # Core parser functions
 'unknown_extension_tag' => 'අඥාත ප්‍රසර්ජන ටැගය "$1"',
-'duplicate-defaultsort' => 'අවවාදයයි: "$2" පෙරනිමි සුබෙදුම් යතුර විසින් ‍පූර්ව පෙරනිමි සුබෙදුම් යතුර  වූ  "$1" අතික්‍රමණය කරයි.',
+'duplicate-defaultsort' => '\'\'\'අවවාදයයි:\'\'\' "$2" පෙරනිමි සුබෙදුම් යතුර විසින් ‍පූර්ව පෙරනිමි සුබෙදුම් යතුර වූ "$1" අතික්‍රමණය කරයි.',
 
 # Special:Version
 'version' => 'අනුවාදය',

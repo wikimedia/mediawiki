@@ -2742,8 +2742,9 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 'rollback' => '{{Identical|Rollback}}',
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
+This link text appears on the recent changes page to users who have the "rollback" right.  It is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.
 This message has a tooltip {{msg-mw|tooltip-rollback}}',
-'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
+'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. This link is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.  See also {{msg-mw|rollbacklink}}.
 * $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.',
 'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
 

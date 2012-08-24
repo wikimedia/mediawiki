@@ -639,6 +639,8 @@ Behin-behineko pasahitza: $2',
 'passwordreset-emailsent' => 'Gogorarazteko e-posta bidali da.',
 
 # Special:ChangeEmail
+'changeemail' => 'Aldatu e-mail helbidea',
+'changeemail-oldemail' => 'Egungo e-mail helbidea:',
 'changeemail-newemail' => 'E-posta helbide berria:',
 'changeemail-none' => '(bat ere ez)',
 'changeemail-submit' => 'E-posta aldatu',
@@ -1128,6 +1130,8 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'prefs-watchlist-token' => 'Jarraipen zerrendaren tokena:',
 'prefs-misc' => 'Denetarik',
 'prefs-resetpass' => 'Pasahitza aldatu',
+'prefs-changeemail' => 'Aldatu e-mail helbidea',
+'prefs-setemail' => 'E-mail helbide bat ezarri',
 'prefs-email' => 'E-posta aukerak',
 'prefs-rendering' => 'Itxura',
 'saveprefs' => 'Gorde',
@@ -1362,6 +1366,7 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'action-userrights' => 'lankide guztien eskumenak aldatu',
 'action-userrights-interwiki' => 'beste wikietako lankideen lankide-eskumenak aldatu',
 'action-siteadmin' => 'datubasea babestu edo babesa kendu',
+'action-sendemail' => 'E-mailak bidali',
 
 # Recent changes
 'nchanges' => '{{PLURAL:$1|aldaketa 1|$1 aldaketa}}',
@@ -1641,6 +1646,7 @@ Bere [$2 fitxategiaren deskribapen orrialdea] behean dago.',
 ** Copyright bortxaketa
 ** Bikoiztutako fitxategia',
 'filedelete-edit-reasonlist' => 'Ezabaketa arrazoiak aldatu',
+'filedelete-maintenance-title' => 'Ezin da artxiboa ezabatu',
 
 # MIME search
 'mimesearch' => 'MIME bilaketa',
@@ -1806,6 +1812,10 @@ Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistar
 'allpagesprefix' => 'Aurrizki hau duten orrialdeak bistaratu:',
 'allpagesbadtitle' => 'Orrialdearen izena baliogabekoa da edo interwiki edo hizkuntzen arteko aurrizkia dauka. Izenburuetan erabili ezin daitezkeen karaktere bat edo gehiago izan ditzake.',
 'allpages-bad-ns' => '{{SITENAME}}(e)k ez dauka "$1" izeneko izen-tarterik.',
+'allpages-hide-redirects' => 'Birzuzenketak ezkutatu',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Azkena ikusi.',
 
 # Special:Categories
 'categories' => 'Kategoriak',
@@ -1871,6 +1881,7 @@ Badago [[{{MediaWiki:Listgrouprights-helppage}}|informazio osagarria]] banakako 
 'mailnologin' => 'Bidalketa helbiderik ez',
 'mailnologintext' => 'Beste erabiltzaileei e-posta mezuak bidaltzeko [[Special:UserLogin|saioa hasi]] eta baliozko e-posta helbidea behar duzu izan zure [[Special:Preferences|hobespenetan]].',
 'emailuser' => 'Erabiltzaile honi e-posta bidali',
+'emailuser-title-notarget' => 'Erabiltzaileari e-maila bidali',
 'emailpage' => 'Erabiltzaileari e-posta bidali',
 'emailpagetext' => 'Erabiltzaile honek baliozko e-posta helbide bat ezarri badu bere hobespenetan, beheko formularioa erabiliz mezu bat bidal dakioke.
 [[Special:Preferences|Hobespenetan]] daukazun e-posta helbidea azalduko da mezuaren bidaltzaile bezala eta beraz erantzun ahal izango dizu.',
@@ -2123,6 +2134,7 @@ In such cases, you must uncheck or unhide the newest deleted revision.',
 
 [[Special:Log/delete|Ezabaketa erregistrora]] jo azken ezabaketa eta leheneraketak ikusteko.",
 'undelete-header' => 'Berriki ezabatutako orrialdeak ikusteko [[Special:Log/delete|ezabaketa erregistrora]] jo.',
+'undelete-search-title' => 'Ezabatutako orrialdeak bilatu',
 'undelete-search-box' => 'Ezabatutako orrialdeak bilatu',
 'undelete-search-prefix' => 'Honela hasten diren orrialdeak erakutsi:',
 'undelete-search-submit' => 'Bilatu',
@@ -2256,6 +2268,7 @@ Ikus [[Special:BlockList|blokeoen zerrenda]] blokeoak aztertzeko.',
 'unblocklink' => 'blokeoa kendu',
 'change-blocklink' => 'blokeoa aldatu',
 'contribslink' => 'ekarpenak',
+'emaillink' => 'E-maila bidali',
 'autoblocker' => '"[[User:$1|$1]]"(e)k berriki erabili duen IP helbidea duzulako autoblokeatu zaizu. $1(e)k emandako arrazoia zera da: "\'\'\'$2\'\'\'"',
 'blocklogpage' => 'Blokeo erregistroa',
 'blocklog-showlog' => 'Lankide hau aurretik blokeatua izan da.
@@ -2398,6 +2411,7 @@ Azken erregistroko sarrera ematen da azpian erreferentzia gisa:",
 Orrialdeak esportatzeko zehaztu hauen izenburuak beheko koadroan, izenburu bat lerroko, eta aukeratu zein bertsio esportatu nahi dituzun.
 
 Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] "[[{{MediaWiki:Mainpage}}]]" orrialdearentzako.',
+'exportall' => 'Orrialde guztiak esportatu',
 'exportcuronly' => 'Oraingo berrikuspena bakarrik hartu, ez historia guztia',
 'exportnohistory' => "----
 '''Oharra:''' Formulario honen bitartez orrialdeen historia osoak esportatzeko aukera ezgaitu egin da, errendimendua dela-eta.",
@@ -3081,6 +3095,10 @@ Egiaztapen kode hau $4 iraungiko da.',
 'confirm_purge_button' => 'Ados',
 'confirm-purge-top' => 'Orrialde honen katxea ezabatu?',
 'confirm-purge-bottom' => 'Orrialdea purgatzean katxea ezabatzen du eta orrialdearen bertsiorik eguneratuena erakustera behartzen du.',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'Ados',
+'confirm-unwatch-button' => 'Ados',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; aurreko orrialdea',
