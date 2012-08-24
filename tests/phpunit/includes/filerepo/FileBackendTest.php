@@ -882,6 +882,18 @@ class FileBackendTest extends MediaWikiTestCase {
 				"Correct file size of '$path'" );
 			$this->assertTrue( abs( time() - wfTimestamp( TS_UNIX, $time ) ) < 10,
 				"Correct file timestamp of '$path'" );
+
+			$this->backend->clearCache( array( $path ) );
+
+			$size = $this->backend->getFileSize( array( 'src' => $path ) );
+
+			$this->assertEquals( strlen( $content ), $size,
+				"Correct file size of '$path'" );
+
+			$this->backend->preloadCache( array( $path ) );
+
+			$this->assertEquals( strlen( $content ), $size,
+				"Correct file size of '$path'" );
 		} else {
 			$size = $this->backend->getFileSize( array( 'src' => $path ) );
 			$time = $this->backend->getFileTimestamp( array( 'src' => $path ) );

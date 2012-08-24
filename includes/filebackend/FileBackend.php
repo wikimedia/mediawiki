@@ -899,7 +899,16 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Invalidate any in-process file existence and property cache.
+	 * Preload persistent file stat and property cache into in-process cache.
+	 * This should be used when stat calls will be made on a known list of a many files.
+	 *
+	 * @param $paths Array Storage paths
+	 * @return void
+	 */
+	public function preloadCache( array $paths ) {}
+
+	/**
+	 * Invalidate any in-process file stat and property cache.
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
 	 * @param $paths Array Storage paths (optional)
