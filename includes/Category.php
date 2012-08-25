@@ -297,8 +297,8 @@ class Category {
 			'IGNORE'
 		);
 
-		$cond1 = $dbw->conditional( 'page_namespace=' . NS_CATEGORY, 1, 'NULL' );
-		$cond2 = $dbw->conditional( 'page_namespace=' . NS_FILE, 1, 'NULL' );
+		$cond1 = $dbw->conditional( array( 'page_namespace' => NS_CATEGORY ), 1, 'NULL' );
+		$cond2 = $dbw->conditional( array( 'page_namespace' => NS_FILE ), 1, 'NULL' );
 		$result = $dbw->selectRow(
 			array( 'categorylinks', 'page' ),
 			array( 'pages' => 'COUNT(*)',
