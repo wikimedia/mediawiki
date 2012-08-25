@@ -1069,7 +1069,7 @@ $1",
 
 # Diffs
 'history-title' => 'مێژووی پیاچوونەوەکانی «$1»',
-'difference-title' => 'جیاوازی نێوان پیاچوونەوەکانی «$1»',
+'difference-title' => 'جیاوازیی نێوان پێداچوونەوەکانی «$1»',
 'difference-title-multipage' => 'جیاوازیی نێوان پەڕەی «$1» و «$2»',
 'difference-multipage' => '(جیاوازی نێوان پەڕەکان)',
 'lineno' => 'ھێڵی  $1:',
@@ -3220,7 +3220,7 @@ $5
 'revdelete-unrestricted' => 'ئەو سنووری بەرگریانەی لابردراوە لە سەر بەڕێوبەران',
 'logentry-move-move' => '$1 پەڕەی $3ی گواستەوە بۆ $4',
 'logentry-move-move-noredirect' => '$1 پەڕەی $3 بەبێ بەجێھشتنی ڕەوانەکەرێک گواستەوە بۆ $4',
-'logentry-move-move_redir' => '$1 پەڕەی $3 گۆاستەوە بۆ $4 کە پێشتر ڕەوانەکەر بوو',
+'logentry-move-move_redir' => '$1 پەڕەی $3 گواستەوە بۆ $4 کە پێشتر ڕەوانەکەر بوو',
 'logentry-move-move_redir-noredirect' => '$1 پەڕەی $3 گواستەوە بۆ $4 لە جێگەی ڕەوانەکەرێک بە بێ بەجێھشتنی ڕەوانەکردنەوەیەک',
 'logentry-newusers-newusers' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد',
 'logentry-newusers-create' => '$1 ھەژمارێکی بەکارھێنەریی دروستکرد',

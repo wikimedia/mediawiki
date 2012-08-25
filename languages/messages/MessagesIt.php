@@ -2152,7 +2152,7 @@ Protocolli supportati: <code>$1</code> (non aggiungere nessuno di questi nella t
 'listusers-blocked' => '(bloccato)',
 
 # Special:ActiveUsers
-'activeusers' => 'Lista degli utenti attivi',
+'activeusers' => 'Elenco degli utenti attivi',
 'activeusers-intro' => 'Questo è un elenco di utenti che hanno avuto qualche tipo di attività da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.',
 'activeusers-count' => "$1 {{PLURAL:$1|modifica|modifiche}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
 'activeusers-from' => 'Mostra gli utenti a partire da:',
@@ -3644,7 +3644,7 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'size-bytes' => '$1 byte',
 
 # Live preview
-'livepreview-loading' => 'Caricamento in corso…',
+'livepreview-loading' => 'Caricamento in corso...',
 'livepreview-ready' => 'Caricamento in corso… Pronto.',
 'livepreview-failed' => "Errore nella funzione Live preview.
 Usare l'anteprima standard.",

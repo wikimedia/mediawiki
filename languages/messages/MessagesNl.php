@@ -3311,6 +3311,8 @@ $1',
 'file-info-png-looped' => 'herhalend',
 'file-info-png-repeat' => '$1 {{PLURAL:$1|keer|keer}} afgespeeld',
 'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frames}}',
+'file-no-thumb-animation' => "'''Let op: vanwege technische beperkingen, kunnen miniaturen van dit bestand niet geanimeerd worden weergegeven.''",
+'file-no-thumb-animation-gif' => "'''Let op: vanwege technische beperkingen, kunnen miniaturen van GIF-afbeeldingen met een hoge resolutie niet geanimeerd worden weergegeven.''",
 
 # Special:NewFiles
 'newimages' => 'Nieuwe bestanden',

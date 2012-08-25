@@ -1796,7 +1796,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'filereuploadsummary' => 'Dateiänderungen:',
 'filestatus' => 'Copyright-Status:',
 'filesource' => 'Quelle:',
-'uploadedfiles' => 'Hochgeladene Dateien',
+'uploadedfiles' => 'Hochladen',
 'ignorewarning' => 'Warnung ignorieren und Datei speichern',
 'ignorewarnings' => 'Warnungen ignorieren',
 'minlength1' => 'Dateinamen müssen mindestens einen Buchstaben lang sein.',

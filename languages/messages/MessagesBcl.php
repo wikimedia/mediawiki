@@ -2921,7 +2921,7 @@ Sublokas kan siyudad na ipinahiling',
 'exif-exposureprogram-3' => 'Apertoryong Prayoridad',
 'exif-exposureprogram-4' => 'Panseradong Prayoridad',
 'exif-exposureprogram-5' => 'Pangmuknaon na programa (minapabor sa hararomon na kinasakupan)',
-'exif-exposureprogram-6' => 'Aksyon pamprograma (kakundian na minapanungod sa mabilison na pansaradong buklos',
+'exif-exposureprogram-6' => 'Pamprogramang Aksyon (minauyon sa mabilison pampundong buklos)',
 'exif-exposureprogram-7' => 'Modong patindog (para haranihang mga litrato na igwang kalikudan na luwas sa pokus)',
 'exif-exposureprogram-8' => 'Modong pahigda ( para sa pahigdang mga litrato na igwang kalikudan na nakapokus)',
 
@@ -2938,9 +2938,33 @@ Sublokas kan siyudad na ipinahiling',
 
 'exif-lightsource-0' => 'Bakong bistado',
 'exif-lightsource-1' => 'Maliwanagong aldaw',
+'exif-lightsource-2' => 'Kalaadan',
+'exif-lightsource-3' => 'Tungsten (mainitong liwanag)',
 'exif-lightsource-4' => 'Kitkilát',
 'exif-lightsource-9' => 'Magayón na panahón',
+'exif-lightsource-10' => 'Mapanginurong panahon',
+'exif-lightsource-11' => 'Lindong',
+'exif-lightsource-12' => 'Pan-agang kalaadan (D 5700 - 7100K)',
+'exif-lightsource-13' => 'Pan-agang mapution na kalaadan (N 4600 - 5400K)',
+'exif-lightsource-14' => 'Malipotong mapution na kalaadan (W 3900 - 4500K)',
+'exif-lightsource-15' => 'Maputiong kalaadan (WW 3200 - 3700K)',
+'exif-lightsource-17' => 'Estandarteng Laad A',
+'exif-lightsource-18' => 'Estandarteng Laad B',
+'exif-lightsource-19' => 'Estandarteng Laad C',
+'exif-lightsource-24' => 'ISO estudyong tungsten',
 'exif-lightsource-255' => 'Mga ibang ginikanan nin ilaw',
+
+# Flash modes
+'exif-flash-fired-0' => 'An flash dae nagsindi',
+'exif-flash-fired-1' => 'An flash nagsindi',
+'exif-flash-return-0' => 'mayong estrobo sa pambalik na punksyon sa deteksyon',
+'exif-flash-return-2' => 'estrobong pambalik liwanag bakong detektado',
+'exif-flash-return-3' => 'estrobong pambalik na liwanag detektado',
+'exif-flash-mode-1' => 'kompulsaryong flash nagsindi',
+'exif-flash-mode-2' => 'kompulsaryong flash pinupugulan',
+'exif-flash-mode-3' => 'automatikong modo',
+'exif-flash-function-1' => 'Mayong naggaganang flash',
+'exif-flash-redeye-1' => 'mapulang-mata modong pambawas',
 
 'exif-focalplaneresolutionunit-2' => 'pulgada',
 
@@ -2948,12 +2972,55 @@ Sublokas kan siyudad na ipinahiling',
 
 'exif-scenetype-1' => 'Direktong naretratong ladawan',
 
+'exif-customrendered-0' => 'Normal na proseso',
+'exif-customrendered-1' => 'Pambagong proseso',
+
+'exif-scenecapturetype-0' => 'Estandarte',
+'exif-scenecapturetype-1' => 'Pahigda',
 'exif-scenecapturetype-2' => 'Retrato',
 'exif-scenecapturetype-3' => 'Eksenang banggi',
+
+'exif-gaincontrol-0' => 'Mayo',
+'exif-gaincontrol-1' => 'Hababaong pampalangkaw',
+'exif-gaincontrol-2' => 'Paitaas na pampalangkaw',
+'exif-gaincontrol-3' => 'Hababaong pampababa',
+'exif-gaincontrol-4' => 'Paitaas na pampababa',
+
+'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Malumoy',
+'exif-contrast-2' => 'Matagas',
+
+'exif-saturation-0' => 'Normal',
+'exif-saturation-1' => 'Hababaon na satyurasyon',
+'exif-saturation-2' => 'Halangkawon na satyurasyon',
+
+'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Malumoy',
+'exif-sharpness-2' => 'Matagas',
+
+'exif-subjectdistancerange-0' => 'Bakong bisto',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Haranihon pagtanaw',
+'exif-subjectdistancerange-3' => 'Harayoong pagtanaw',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometros kada oras',
 'exif-gpsspeed-m' => 'Milya kada oras',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'kilometros',
+'exif-gpsdestdistance-m' => 'Milyas',
+'exif-gpsdestdistance-n' => 'Milya nautikal',
+
+'exif-gpsdop-excellent' => 'Ekselente ($1)',
+'exif-gpsdop-good' => 'Marahayon ($1)',
+'exif-gpsdop-moderate' => 'Moderato ($1)',
+'exif-gpsdop-fair' => 'Marahay-rahay ($1)',
+'exif-gpsdop-poor' => 'Maluyahon ($1)',
+
+'exif-objectcycle-a' => 'Pan-aga sana',
+'exif-objectcycle-p' => 'Panbanggi sana',
+'exif-objectcycle-b' => 'Pareho sa pagka-aga asin pagkabanggi',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tunay na direksyon',
@@ -2963,6 +3030,15 @@ Sublokas kan siyudad na ipinahiling',
 'exif-ycbcrpositioning-2' => 'Katampad-sityo',
 
 'exif-dc-contributor' => 'Mga Tagapag-ambag',
+'exif-dc-coverage' => 'Espasyal o temporal tungkos kan midya',
+'exif-dc-date' => 'Petsa (s)',
+'exif-dc-publisher' => 'Publikador',
+'exif-dc-relation' => 'Kaampad na midya',
+'exif-dc-rights' => 'Mga karapatan',
+'exif-dc-source' => 'Ginikanang midya',
+'exif-dc-type' => 'Tipo kan midya',
+
+'exif-rating-rejected' => 'Dinihado',
 
 # External editor support
 'edit-externally' => 'Hirahón an file gamit an panluwas na aplikasyon',

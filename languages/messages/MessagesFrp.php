@@ -992,12 +992,11 @@ Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 'userpage-userdoesnotexist-view' => 'Lo compto usanciér « $1 » est pas encartâ.',
 'blocked-notice-logextract' => 'Ceti usanciér est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
-'clearyourcache' => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
+'clearyourcache' => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cacho de voutron navigator por vêre los changements.
 * '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Rechargiér'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' sur un Mac)
 * '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur un Mac)
 * '''Internet Explorer :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Rafrèchir'' (''Refresh'') ou ben prèssâd ''Ctrl-F5''
-* '''Konqueror :''' clicâd sur lo boton ''Rechargiér'' ou ben prèssâd ''F5''
-* '''Opera :''' èfaciéd lo cache dens ''Outils → Prèferences''",
+* '''Opera :''' èfaciéd lo cacho dedens ''Outils → Prèferences''",
 'usercssyoucanpreview' => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
 'userjsyoucanpreview' => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
 'usercsspreview' => "'''Rapelâd-vos que vos éte solament aprés prèvisualisar voutra prôpra fôlye CSS.'''
@@ -3125,11 +3124,11 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 
 # Info page
 'pageinfo-title' => 'Enformacions por « $1 »',
-'pageinfo-header-edits' => 'Changements',
+'pageinfo-header-edits' => 'Historico des changements',
 'pageinfo-views' => 'Nombro de visualisacions',
-'pageinfo-watchers' => 'Nombro de contributors qu’ont la pâge dens lor lista de survelyence',
-'pageinfo-edits' => 'Nombro de changements',
-'pageinfo-authors' => 'Nombro d’ôtors difèrents',
+'pageinfo-watchers' => 'Nombro de contributors qu’ont la pâge dedens lor lista de survelyence',
+'pageinfo-edits' => 'Soma totâla de changements',
+'pageinfo-authors' => 'Soma totâla d’ôtors difèrents',
 
 # Skin names
 'skinname-standard' => 'Estandârd',

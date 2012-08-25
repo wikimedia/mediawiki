@@ -2082,6 +2082,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'mailnologin' => 'Keng E-Mailadress',
 'mailnologintext' => 'Dir musst [[Special:UserLogin|ugemellt]] sinn an eng gëlteg E-Mail Adress an Äre [[Special:Preferences|Astellungen]] aginn hunn, fir engem anere Benotzer eng E-Mail ze schécken.',
 'emailuser' => 'Dësem Benotzer eng E-Mail schécken',
+'emailuser-title-target' => '{{GENDER:$1|Dëser Benotzerin|Dësem Benotzer}} eng Mail schécken',
 'emailpage' => 'Dem Benotzer eng E-Mail schécken',
 'emailpagetext' => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
 D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech direkt äntwerte kann.',
@@ -2883,11 +2884,16 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
-'pageinfo-header-edits' => 'Ännerungen',
+'pageinfo-header-basic' => 'Basisinformatiounen',
+'pageinfo-header-edits' => 'Historique vun den Ännerungen',
 'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
-'pageinfo-watchers' => 'Zuel vun de Benotzer déi iwwerwaachen',
-'pageinfo-edits' => 'Zuel vun den Ännerungen',
-'pageinfo-authors' => 'Zuel vun de verschiddenen Auteuren',
+'pageinfo-watchers' => "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
+'pageinfo-redirects-name' => 'Viruleedungen op dës Säit',
+'pageinfo-subpages-name' => 'Ënnersäite vun dëser Säit',
+'pageinfo-edits' => 'Gesamtzuel vun den Ännerungen',
+'pageinfo-authors' => 'Gesamtzuel vun de verschiddenen Auteuren',
+'pageinfo-magic-words' => '{{PLURAL:$1|Magescht Wuert|Magesch Wierder}} ($1)',
+'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

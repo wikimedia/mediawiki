@@ -529,12 +529,11 @@ Mitaky version $1-n'i MediaWiki",
 # General errors
 'error' => 'Tsy mety',
 'databaseerror' => "Tsy fetezana eo amin'ny toby",
-'dberrortext' => 'Nisy tsy fetezana ao amin\'ny fangatahana tany amin\'ny database.
-Inoana fa ny rindrankajy no misy olana (bug).
-Ny fangatahana farany dia:
-<blockquote><tt>$1</tt></blockquote>
-tao amin\'ny tao "<tt>$2</tt>".
-Toy izao no navalin\'ny MySQL "<tt>$3: $4</tt>".',
+'dberrortext' => "Nitranga ny hadisoana ara-pirafi-kataka (syntax error).
+Mety noho ny tsifandehanan'ny rindrankajy tsara izany.
+<blockquote><code>$1</code></blockquote>
+avy amin'ny tao « <code>$2</code> ».
+ary « <samp>$3 : $4</samp> » no hadisoana naverinn'ny banky angona.",
 'dberrortextcl' => "Ao amin'ny fangatahana tao amin'ny banky angona dia misy tsi-fetezana ara-pehezanteny.
 Ny fangatahana farany nalefa dia :
 « $1 »
@@ -869,10 +868,9 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy
 'blocked-notice-logextract' => "Ankehitriny ity mpikambana ity dia voasakana.
 Ny fampidirana faran'ny laogin'ny fanakanam-pikambana dia naseho teo ambany ho an'ny fampahalalàna :",
 'clearyourcache' => "'''Fantaro :''' Rehefa avy mitahiry, dia mila terenao ny fanavaozana ny voatakon'ny mpitety tranonkalanao hahafahanao mahita ny fanovana.
-'''Firefox/Safari:''' Tazomy ho voapotsitra ny kitika ''Maj'' na ''Shift'', dia tsindrio eo amin'i ''Actualiser'', na tsindrio Ctrl+F5
-'''Google Chrome:''' Miaraka tsindrio Ctrl, Maj ary R.
-'''Internet Explorer''': Miaraka tsindrio Ctrl sy F5
-'''Konqueror''': Tsindrio F5
+'''Firefox/Safari:''' Tazomy ho voapotsitra ny kitika ''Maj'' na ''Shift'', dia tsindrio eo amin'i ''Actualiser'', na Ctrl+F5
+'''Google Chrome:''' Tsindrio miaraka ny Ctrl, Maj ary R.
+'''Internet Explorer''': Tsindrio miaraka Ctrl sy F5
 '''Opera''': Esory ny voatatoka ao amin'ny ''Outils → Préférences'' (''Fitaovana  → Safidy'').",
 'usercssyoucanpreview' => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny CSS-nao vaovao.",
 'userjsyoucanpreview' => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny JS-nao vaovao.",
@@ -1268,7 +1266,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'prefs-rc' => 'Vao niova',
 'prefs-watchlist' => 'Lisitry ny pejy arahana-maso',
 'prefs-watchlist-days' => "Isa ny andro haseho anatin'ny lisitra ny pejy arahana-maso",
-'prefs-watchlist-days-max' => 'Maximum $1 {{PLURAL:$1|day|days}}',
+'prefs-watchlist-days-max' => '$1 {{PLURAL:$1|}} andro farafahabetsany',
 'prefs-watchlist-edits' => "Isa ny fanovana aseho eo amin'ny fanaraha-maso navelatra:",
 'prefs-watchlist-edits-max' => 'Isa fara-fahabetsany : 1000',
 'prefs-watchlist-token' => "token ho an'ny lisitry ny pejy arahi-maso:",
