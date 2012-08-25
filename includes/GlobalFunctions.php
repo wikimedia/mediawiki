@@ -1082,35 +1082,7 @@ function wfLogDBError( $text ) {
  * @return null
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
-	static $functionsWarned = array();
-
-	MWDebug::deprecated( $function, $version, $component );
-
-	if ( !isset( $functionsWarned[$function] ) ) {
-		$functionsWarned[$function] = true;
-
-		if ( $version ) {
-			global $wgDeprecationReleaseLimit;
-
-			if ( $wgDeprecationReleaseLimit && $component === false ) {
-				# Strip -* off the end of $version so that branches can use the
-				# format #.##-branchname to avoid issues if the branch is merged into
-				# a version of MediaWiki later than what it was branched from
-				$comparableVersion = preg_replace( '/-.*$/', '', $version );
-
-				# If the comparableVersion is larger than our release limit then
-				# skip the warning message for the deprecation
-				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
-					return;
-				}
-			}
-
-			$component = $component === false ? 'MediaWiki' : $component;
-			wfWarn( "Use of $function was deprecated in $component $version.", $callerOffset );
-		} else {
-			wfWarn( "Use of $function is deprecated.", $callerOffset );
-		}
-	}
+	MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
 }
 
 /**
@@ -1124,34 +1096,7 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
  *        is true
  */
 function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
-	global $wgDevelopmentWarnings;
-
-	MWDebug::warning( $msg, $callerOffset + 2 );
-
-	$callers = wfDebugBacktrace();
-	if ( isset( $callers[$callerOffset + 1] ) ) {
-		$callerfunc = $callers[$callerOffset + 1];
-		$callerfile = $callers[$callerOffset];
-		if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
-			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
-		} else {
-			$file = '(internal function)';
-		}
-		$func = '';
-		if ( isset( $callerfunc['class'] ) ) {
-			$func .= $callerfunc['class'] . '::';
-		}
-		if ( isset( $callerfunc['function'] ) ) {
-			$func .= $callerfunc['function'];
-		}
-		$msg .= " [Called from $func in $file]";
-	}
-
-	if ( $wgDevelopmentWarnings ) {
-		trigger_error( $msg, $level );
-	} else {
-		wfDebug( "$msg\n" );
-	}
+	MWDebug::warning( $msg, $callerOffset + 1, $level );
 }
 
 /**
