@@ -92,7 +92,9 @@ class PageArchive {
 				array(
 					'ar_namespace',
 					'ar_title',
-					'count' => 'COUNT(*)'
+					'count' => 'COUNT(*)',
+					// count version where all parts suppressed
+					'count_all_suppressed' => 'COUNT(' . $dbr->conditional( $dbr->bitAnd( 'ar_deleted', Revision::SUPPRESSED_ALL ) . ' = ' . Revision::SUPPRESSED_ALL, 1, 'NULL' ) . ')',
 				),
 				$condition,
 				__METHOD__,
@@ -751,11 +753,20 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		$out->addWikiMsg( 'undeletepagetext', $this->getLanguage()->formatNum( $result->numRows() ) );
-
+		$addedRows = 0;
 		$undelete = $this->getTitle();
-		$out->addHTML( "<ul>\n" );
+		$isAllowSuppressrevision = $this->getUser()->isAllowed( 'suppressrevision' );
 		foreach ( $result as $row ) {
+			// when all versions have suppressed all data, skip, if user is not allow to see the versions
+			if( $row->count_all_suppressed === $row->count && !$isAllowSuppressrevision ) {
+				continue;
+			}
+			// found first valid row, add the help text and start list
+			if( $addedRows === 0 ) {
+				$out->addWikiMsg( 'undeletepagetext', $this->getLanguage()->formatNum( $result->numRows() ) );
+				$out->addHTML( "<ul>\n" );
+			}
+			$addedRows++;
 			$title = Title::makeTitleSafe( $row->ar_namespace, $row->ar_title );
 			if ( $title !== null ) {
 				$item = Linker::linkKnown(
@@ -769,11 +780,19 @@ class SpecialUndelete extends SpecialPage {
 				$item = Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
 					Linker::getInvalidTitleDescription( $this->getContext(), $row->ar_namespace, $row->ar_title ) );
 			}
+			// strike, if all is suppressed
+			if( $row->count_all_suppressed === $row->count ) {
+				$item = '<span class="deleted">' . $item . '</span>';
+			}
 			$revs = $this->msg( 'undeleterevisions' )->numParams( $row->count )->parse();
 			$out->addHTML( "<li>{$item} ({$revs})</li>\n" );
 		}
 		$result->free();
-		$out->addHTML( "</ul>\n" );
+		if( $addedRows === 0 ) {
+			$out->addWikiMsg( 'undelete-no-results' );
+		} else {
+			$out->addHTML( "</ul>\n" );
+		}
 
 		return true;
 	}
