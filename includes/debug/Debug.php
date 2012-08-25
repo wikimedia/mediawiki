@@ -133,70 +133,155 @@ class MWDebug {
 	 * Adds a warning entry to the log
 	 *
 	 * @since 1.19
-	 * @param $msg
-	 * @param int $callerOffset
+	 * @param $msg string
+	 * @param $callerOffset int
 	 * @return mixed
 	 */
-	public static function warning( $msg, $callerOffset = 1 ) {
-		if ( !self::$enabled ) {
-			return;
-		}
+	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
+		$callerDescription = self::getCallerDescription( $callerOffset );
 
-		// Check to see if there was already a deprecation notice, so not to
-		// get a duplicate warning
-		$logCount = count( self::$log );
-		$caller = wfGetCaller( $callerOffset + 1 );
-		if ( $logCount ) {
-			$lastLog = self::$log[ $logCount - 1 ];
-			if ( $lastLog['type'] == 'deprecated' && $lastLog['caller'] == $caller ) {
+		self::sendWarning( $msg, $callerDescription, $level );
+
+		if ( self::$enabled ) {
+			self::$log[] = array(
+				'msg' => htmlspecialchars( $msg ),
+				'type' => 'warn',
+				'caller' => $callerDescription['func'],
+			);
+		}
+	}
+
+	/**
+	 * Show a warning that $function is deprecated.
+	 * This will send it to the following locations:
+	 * - Debug toolbar, with one item per function and caller, if $wgDebugToolbar
+	 *   is set to true.
+	 * - PHP's error log, with level E_USER_DEPRECATED, if $wgDevelopmentWarnings
+	 *   is set to true.
+	 * - MediaWiki's debug log, if $wgDevelopmentWarnings is set to false.
+	 *
+	 * @since 1.19
+	 * @param $function string: Function that is deprecated.
+	 * @param $version string|bool: Version in which the function was deprecated.
+	 * @param $component string|bool: Component to which the function belongs.
+	 *     If false, it is assumbed the function is in MediaWiki core.
+	 * @param $callerOffset integer: How far up the callstack is the original
+	 *    caller. 2 = function that called the function that called
+	 *    MWDebug::deprecated() (Added in 1.20).
+	 * @return mixed
+	 */
+	public static function deprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
+		$callerDescription = self::getCallerDescription( $callerOffset );
+		$callerFunc = $callerDescription['func'];
+
+		$sendToLog = true;
+
+		// Check to see if there already was a warning about this function
+		if ( isset( self::$deprecationWarnings[$function][$callerFunc] ) ) {
+			return;
+		} elseif ( isset( self::$deprecationWarnings[$function] ) ) {
+			if ( self::$enabled ) {
+				$sendToLog = false;
+			} else {
 				return;
 			}
 		}
 
-		self::$log[] = array(
-			'msg' => htmlspecialchars( $msg ),
-			'type' => 'warn',
-			'caller' => $caller,
-		);
+		self::$deprecationWarnings[$function][$callerFunc] = true;
+
+		if ( $version ) {
+			global $wgDeprecationReleaseLimit;
+				if ( $wgDeprecationReleaseLimit && $component === false ) {
+				# Strip -* off the end of $version so that branches can use the
+				# format #.##-branchname to avoid issues if the branch is merged into
+				# a version of MediaWiki later than what it was branched from
+				$comparableVersion = preg_replace( '/-.*$/', '', $version );
+
+				# If the comparableVersion is larger than our release limit then
+				# skip the warning message for the deprecation
+				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
+					$sendToLog = false;
+				}
+			}
+
+			$component = $component === false ? 'MediaWiki' : $component;
+			$msg = "Use of $function was deprecated in $component $version.";
+		} else {
+			$msg = "Use of $function is deprecated.";
+		}
+
+		if ( $sendToLog ) {
+			self::sendWarning( $msg, $callerDescription, E_USER_DEPRECATED );
+		}
+
+		if ( self::$enabled ) {
+			$logMsg = htmlspecialchars( $msg ) .
+				Html::rawElement( 'div', array( 'class' => 'mw-debug-backtrace' ),
+					Html::element( 'span', array(), 'Backtrace:' ) . wfBacktrace()
+				);
+
+			self::$log[] = array(
+				'msg' => $logMsg,
+				'type' => 'deprecated',
+				'caller' => $callerFunc,
+			);
+		}
 	}
 
 	/**
-	 * Adds a depreciation entry to the log, along with a backtrace
+	 * Get an array describing the calling function at a specified offset.
 	 *
-	 * @since 1.19
-	 * @param $function
-	 * @param $version
-	 * @param $component
-	 * @return mixed
+	 * @param $callerOffset int
+	 * @return array with two keys: 'file' and 'func'
 	 */
-	public static function deprecated( $function, $version, $component ) {
-		if ( !self::$enabled ) {
-			return;
+	private static function getCallerDescription( $callerOffset ) {
+		$callers = wfDebugBacktrace();
+
+		if ( isset( $callers[$callerOffset] ) ) {
+			$callerfile = $callers[$callerOffset];
+			if ( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ) {
+				$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
+			} else {
+				$file = '(internal function)';
+			}
+		} else {
+			$file = '(unknown location)';
 		}
 
-		// Chain: This function -> wfDeprecated -> deprecatedFunction -> caller
-		$caller = wfGetCaller( 4 );
-
-		// Check to see if there already was a warning about this function
-		$functionString = "$function-$caller";
-		if ( in_array( $functionString, self::$deprecationWarnings ) ) {
-			return;
+		if ( isset( $callers[$callerOffset + 1] ) ) {
+			$callerfunc = $callers[$callerOffset + 1];
+			$func = '';
+			if ( isset( $callerfunc['class'] ) ) {
+				$func .= $callerfunc['class'] . '::';
+			}
+			if ( isset( $callerfunc['function'] ) ) {
+				$func .= $callerfunc['function'];
+			}
+		} else {
+			$func = 'unknown';
 		}
 
-		$version = $version === false ? '(unknown version)' : $version;
-		$component = $component === false ? 'MediaWiki' : $component;
-		$msg = htmlspecialchars( "Use of function $function was deprecated in $component $version" );
-		$msg .= Html::rawElement( 'div', array( 'class' => 'mw-debug-backtrace' ),
-			Html::element( 'span', array(), 'Backtrace:' )
-			 . wfBacktrace()
-		);
+		return array( 'file' => $file, 'func' => $func );
+	}
 
-		self::$deprecationWarnings[] = $functionString;
-		self::$log[] = array(
-			'msg' => $msg,
-			'type' => 'deprecated',
-			'caller' => $caller,
-		);
+	/**
+	 * Send a warning either to the debug log or by triggering an user PHP
+	 * error depending on $wgDevelopmentWarnings.
+	 *
+	 * @param $msg string Message to send
+	 * @param $caller array caller description get from getCallerDescription()
+	 * @param $level error level to use if $wgDevelopmentWarnings is true
+	 */
+	private static function sendWarning( $msg, $caller, $level ) {
+		global $wgDevelopmentWarnings;
+
+		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
+
+		if ( $wgDevelopmentWarnings ) {
+			trigger_error( $msg, $level );
+		} else {
+			wfDebug( "$msg\n" );
+		}
 	}
 
 	/**
