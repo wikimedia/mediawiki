@@ -630,12 +630,12 @@ Listo de validaj specialaj paĝoj estas trovebla ĉe [[Special:SpecialPages|{{in
 # General errors
 'error' => 'Eraro',
 'databaseerror' => 'Datumbaza eraro',
-'dberrortext' => 'Sintakseraro okazis dum informpeto al la datumaro.
-Ĝi eble indikas cimon en la programaro.
+'dberrortext' => 'Sintakseraro okazis dum informpeto al la datenbazo.
+Ĝi eble indikas misaĵeton en la programaro.
 Jen la plej laste provita informpeto:
-<blockquote><tt>$1</tt></blockquote>
-el la funkcio "<tt>$2</tt>".
-MySQL liveris eraron "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+el la funkcio "<code>$2</code>".
+La datenbazo liveris eraron "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Sintaksa eraro de la datumbaza informmendo okazis.
 La lasta provita datumbaza informmendo estis:
 "$1"
@@ -989,12 +989,10 @@ Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view' => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract' => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
 La lasta protokolero estas jene montrata por via referenco:',
-'clearyourcache' => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn. 
-* '''Firefox / Safari:''' Premu majuskligan klavon klakante ''Reŝarĝi'', aŭ premu ''Stir-F5'', aŭ premu ''Stir-R'' aŭ ''⌘-R'' kun Makintoŝo
-* '''Google Chrome:''' Premu ''Stir-majuskligklavon'' aŭ ⌘-Majuskligklavo-R'' kun Makintoŝo
+'clearyourcache' => "Notu:''' Post konservado, vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn. 
+* '''Firefox / Safari:''' Premu majuskligan klavon klakante ''Reŝarĝi'', aŭ premu aŭ ''Stir-F5'' aŭ ''Stir-R'' (''⌘-R'' kun Makintoŝo)
+* '''Google Chrome:''' Premu ''Stir-majuskligklavon-R'' (''⌘-Majuskligklavo-R'' kun Makintoŝo)
 * '''Interreta Esplorilo''': Premu ''Stir'' klakante ''Refreŝu'', aŭ premu ''Stir-F5'' 
-* '''Safari:''' ''Cmd-R''
-* '''Konqueror:''' Klaku ''Reŝarĝu'' aŭ premu ''F5''
 * '''Opera:''' Nuligi la kaŝmemoro en ''Iloj → Preferoj''",
 'usercssyoucanpreview' => "'''Konsileto:''' Uzu la butonon \"Antaŭrigardi\" por provi vian novan CSS-kodon antaŭ konservado.",
 'userjsyoucanpreview' => "'''Konsileto:''' Uzu la butonon \"Antaŭrigard\" por provi vian novan JS-kodon antaŭ konservado.",
@@ -1988,6 +1986,7 @@ Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'komuna dosierujo',
+'upload-disallowed-here' => 'Bedaŭrinde, vi ne povas superskribi ĉi tiun bildon.',
 
 # File reversion
 'filerevert' => 'Restarigi $1',
@@ -2270,6 +2269,8 @@ Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj r
 'mailnologin' => 'Neniu alsendota adreso',
 'mailnologintext' => 'Vi nepre estu [[Special:UserLogin|salutanta]] kaj havanta validan retpoŝtadreson en viaj [[Special:Preferences|preferoj]] por retpoŝti al aliaj uzantoj.',
 'emailuser' => 'Retpoŝti ĉi tiun uzanton',
+'emailuser-title-target' => 'Retpoŝti ĉi tiun {{GENDER:$1|uzanton}}',
+'emailuser-title-notarget' => 'Retpoŝti uzanton',
 'emailpage' => 'Retpoŝti uzanton',
 'emailpagetext' => 'Vi povas uzi la jenan paĝon por sendi retpoŝtan mesaĝon al ĉi tiu uzanto.
 La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel la "De" adreso de la retpoŝto, do la ricevonto eblos respondi rekte al vi.',
@@ -3093,11 +3094,17 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Info page
 'pageinfo-title' => 'Informoj por "$1"',
-'pageinfo-header-edits' => 'Redaktoj',
+'pageinfo-header-basic' => 'Baza informo',
+'pageinfo-header-edits' => 'Historio de redaktoj',
+'pageinfo-robot-index' => 'Indeksebla',
+'pageinfo-robot-noindex' => 'Ne indeksebla',
 'pageinfo-views' => 'Nombro de rigardoj',
-'pageinfo-watchers' => 'Nombro de atentantoj',
-'pageinfo-edits' => 'Nombro de redaktoj',
-'pageinfo-authors' => 'Nombro de distingaj aŭtoroj',
+'pageinfo-watchers' => 'Nombro de paĝatentantoj',
+'pageinfo-lastuser' => 'Lasta redaktoro',
+'pageinfo-lasttime' => 'Dato de lasta redakto',
+'pageinfo-edits' => 'Tuta nombro de redaktoj',
+'pageinfo-authors' => 'Tuta nombro de malsamaj aŭtoroj',
+'pageinfo-recent-authors' => 'Lasta nombro de malsamaj aŭtoroj',
 
 # Skin names
 'skinname-standard' => 'Klasiko',

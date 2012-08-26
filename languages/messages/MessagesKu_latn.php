@@ -1577,7 +1577,7 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'sp-contributions-newbies' => 'Tenê beşdariyên bikarhênerên nû nîşan bide',
 'sp-contributions-newbies-sub' => 'Ji bikarhênerên nû re',
 'sp-contributions-newbies-title' => 'Tevkariyên bikarhêner ji bo hesabên nû',
-'sp-contributions-blocklog' => 'Astengkirina têketinê',
+'sp-contributions-blocklog' => 'astengkirina têketinê',
 'sp-contributions-deleted' => 'beşdariyên bikarhêner yên jêbirî',
 'sp-contributions-uploads' => 'yên barkirî',
 'sp-contributions-logs' => 'têketin',

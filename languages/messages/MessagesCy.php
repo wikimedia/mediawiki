@@ -775,7 +775,6 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 *'''Firefox / Safari:''' Pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''⌘-R'' ar Mac);
 *'''Google Chrome:'''Pwyswch ar Ctrl-Shift-R'' (''⌘-Shift-R'' ar Mac)
 *'''Internet Explorer:''' Pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''. 
-*'''Konqueror:''' Cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; 
 *'''Opera:''' gwacewch y celc yn llwyr trwy ''Offer → Dewisiadau / Tools→Preferences'';",
 'usercssyoucanpreview' => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich CSS newydd cyn ei gadw.",
 'userjsyoucanpreview' => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich JS newydd cyn ei gadw.",
@@ -2047,6 +2046,7 @@ Protocoliau sy\'n cael eu cynnal: <code>$1</code> (peidiwch ag ychwanegu\'r rhai
 a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
 er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'emailuser' => 'Anfon e-bost at y defnyddiwr hwn',
+'emailuser-title-notarget' => 'Anfon e-bost at ddefnyddiwr',
 'emailpage' => 'Anfon e-bost at ddefnyddiwr',
 'emailpagetext' => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod.
 Bydd y cyfeiriad e-bost a osodoch yn eich [[Special:Preferences|dewisiadau chithau]] yn ymddangos ym maes \"Oddi wrth\" yr e-bost, fel bod y defnyddiwr arall yn gallu anfon ateb atoch.",
@@ -2842,11 +2842,20 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 
 # Info page
 'pageinfo-title' => 'Manylion "$1"',
-'pageinfo-header-edits' => 'Golygiadau',
+'pageinfo-header-basic' => 'Gwybodaeth sylfaenol',
+'pageinfo-header-edits' => 'Hanes golygu',
+'pageinfo-header-restrictions' => 'Diogelwch y dudalen',
+'pageinfo-header-properties' => "Priodweddau'r dudalen",
+'pageinfo-length' => 'Hyd y dudalen (beitiau)',
+'pageinfo-article-id' => 'ID y dudalen',
 'pageinfo-views' => 'Nifer yr ymweliadau',
-'pageinfo-watchers' => 'Nifer y gwylwyr',
-'pageinfo-edits' => 'Nifer y golygiadau',
-'pageinfo-authors' => 'Nifer yr awduron gwahanol',
+'pageinfo-watchers' => 'Nifer gwylwyr y dudalen',
+'pageinfo-firstuser' => 'Y defnyddiwr a ddechreuodd y dudalen',
+'pageinfo-firsttime' => "Dyddiad dechrau'r dudalen",
+'pageinfo-lastuser' => 'Y golygydd diweddaraf',
+'pageinfo-lasttime' => 'Dyddiad y golygiad diweddaraf',
+'pageinfo-edits' => 'Cyfanswm y golygiadau',
+'pageinfo-authors' => 'Cyfanswm yr awduron gwahanol',
 
 # Skin names
 'skinname-standard' => 'Safonol',

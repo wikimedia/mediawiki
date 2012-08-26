@@ -3152,6 +3152,7 @@ $1',
 Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'imagemaxsize' => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
 'thumbsize' => 'Cỡ hình thu nhỏ:',
+'widthheight' => '$1×$2',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info' => 'kích thước tập tin: $1, kiểu MIME: $2',
 'file-info-size' => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
@@ -3184,6 +3185,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ lúc $2, ngày $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1, $2×$3',
 'seconds-abbrev' => '$1s',
 'minutes-abbrev' => '$1m',
 'hours-abbrev' => '$1h',
@@ -3760,6 +3762,7 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'confirm-unwatch-top' => 'Bạn có muốn gỡ trang này khỏi danh sách theo dõi của bạn?',
 
 # Separators for various lists, etc.
+'autocomment-prefix' => '–&#32;',
 'ellipsis' => '…',
 
 # Multipage image navigation
@@ -3788,6 +3791,17 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 
 # Size units
 'size-kilobytes' => '$1 kB',
+
+# Bitrate units
+'bitrate-bits' => '$1 bps',
+'bitrate-kilobits' => '$1 kbps',
+'bitrate-megabits' => '$1 Mbps',
+'bitrate-gigabits' => '$1 Gbps',
+'bitrate-terabits' => '$1 Tbps',
+'bitrate-petabits' => '$1 Pbps',
+'bitrate-exabits' => '$1 Ebps',
+'bitrate-zetabits' => '$1 Zbps',
+'bitrate-yottabits' => '$1 Ybps',
 
 # Live preview
 'livepreview-loading' => 'Đang tải…',
@@ -3910,6 +3924,8 @@ hoặc [//www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực tuy�
 'version-entrypoints' => 'Các URL lối vào',
 'version-entrypoints-header-entrypoint' => 'Lối vào',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath?uselang=vi Đường dẫn bài]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath?uselang=vi Đường dẫn kịch bản]',
 
 # Special:FilePath
 'filepath' => 'Đường dẫn tập tin',

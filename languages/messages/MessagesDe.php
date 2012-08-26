@@ -2568,7 +2568,7 @@ Siehe die [[Special:ProtectedPages|Liste der geschützten Seiten]] für alle akt
 
 # Restriction levels
 'restriction-level-sysop' => 'geschützt (nur Administratoren)',
-'restriction-level-autoconfirmed' => 'geschützt (nur angemeldete, nicht-neue Benutzer)',
+'restriction-level-autoconfirmed' => 'geschützt (nur angemeldete, nicht neue Benutzer)',
 'restriction-level-all' => 'alle',
 
 # Undelete

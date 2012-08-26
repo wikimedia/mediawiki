@@ -785,11 +785,11 @@ pouede ignorar ceti mèssâjo et continuar a empleyér voutron viely contresegno
 'noemailcreate' => 'Vos dête balyér n’adrèce èlèctronica valida',
 'passwordsent' => 'Un contresegno novél est étâ mandâ a l’adrèce èlèctronica de l’utilisator « $1 ».
 Vos volyéd tornar branchiér aprés l’avêr reçu.',
-'blocked-mailpassword' => 'Voutron adrèce IP est blocâye en ècritura, la fonccion de rapèl du contresegno est vêr dèsactivâye por èvitar los abus.',
+'blocked-mailpassword' => 'Voutron adrèce IP est blocâye en ècritura, la fonccion de sovegnence du contresegno est vêr dèsactivâye por èvitar los abus.',
 'eauthentsent' => 'Un mèssâjo de confirmacion est étâ mandâ a l’adrèce endicâye.
 Devant qu’un ôtro mèssâjo seye mandâ a ceti compto, vos devréd siuvre les enstruccions du mèssâjo et pués confirmar que lo compto est franc lo voutro.',
-'throttled-mailpassword' => 'Un mèssâjo de rapèl de voutron contresegno est ja étâ mandâ pendent {{PLURAL:$1|l’hora passâye|les $1 hores passâyes}}.
-Por èvitar los abus, solament yon mèssâjo de rapèl serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
+'throttled-mailpassword' => 'Un mèssâjo de sovegnence de voutron contresegno est ja étâ mandâ pendent {{PLURAL:$1|l’hora passâye|les $1 hores passâyes}}.
+Por èvitar los abus, solament yon mèssâjo de sovegnence serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
 'mailerror' => 'Fôta pendent l’èxpèdicion du mèssâjo : $1',
 'acct_creation_throttle_hit' => 'Quârqu’un qu’empleye voutron adrèce IP at fêt {{PLURAL:$1|yon compto|$1 comptos}} pendent les 24 hores passâyes, cen qu’est la limita ôtorisâye dens ceti temps.
 Du côp la crèacion de compto est étâye dèsactivâye temporèrament por cel’adrèce IP.',
@@ -822,7 +822,7 @@ Volyéd atendre devant que tornar èprovar.',
 
 # Change password dialog
 'resetpass' => 'Changiér lo contresegno',
-'resetpass_announce' => 'Vos vos éte branchiê avouéc un contresegno temporèro mandâ per mèssageria èlèctronica.
+'resetpass_announce' => 'Vos vos éte branchiê{{GENDER:||ye|(ye)}} avouéc un contresegno temporèro mandâ per mèssageria èlèctronica.
 Por chavonar lo branchement, vos dête buchiér un contresegno novél ique :',
 'resetpass_text' => '<!-- Apondéd lo tèxto ique -->',
 'resetpass_header' => 'Changiér lo contresegno du compto',
@@ -830,21 +830,21 @@ Por chavonar lo branchement, vos dête buchiér un contresegno novél ique :',
 'newpassword' => 'Contresegno novél :',
 'retypenew' => 'Confirmar lo contresegno novél :',
 'resetpass_submit' => 'Changiér lo contresegno et sè branchiér',
-'resetpass_success' => 'Voutron contresegno at étâ changiê avouéc reusséta !
+'resetpass_success' => 'Voutron contresegno est étâ changiê avouéc reusséta !
 Branchement en cors...',
-'resetpass_forbidden' => 'Los contresegnos pôvont pas étre changiês.',
+'resetpass_forbidden' => 'Los contresegnos pôvont pas étre changiês',
 'resetpass-no-info' => 'Vos dête étre branchiê por avêr accès a cela pâge.',
 'resetpass-submit-loggedin' => 'Changiér lo contresegno',
 'resetpass-submit-cancel' => 'Anular',
-'resetpass-wrong-oldpass' => 'Contresegno temporèro ou ben d’ora fôx.
-Vos éd pôt-étre ja changiê voutron contresegno avouéc reusséta ou ben demandâ un contresegno temporèro novél.',
+'resetpass-wrong-oldpass' => 'Contresegno temporèro ou ben d’ora envalido.
+Pôt-étre vos éd ja changiê voutron contresegno avouéc reusséta ou ben demandâ un contresegno temporèro novél.',
 'resetpass-temp-password' => 'Contresegno temporèro :',
 
 # Special:PasswordReset
-'passwordreset' => 'Tornar inicialisar lo contresegno',
-'passwordreset-text' => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
+'passwordreset' => 'Remisa a zérô du contresegno',
+'passwordreset-text' => 'Rempléd ceti formulèro por recêvre un mèssâjo de sovegnence des dètalys de voutron compto.',
 'passwordreset-legend' => 'Tornar inicialisar lo contresegno',
-'passwordreset-disabled' => 'La remisa a zérô des contresegnos at étâ dèsactivâ sur ceti vouiqui.',
+'passwordreset-disabled' => 'La remisa a zérô des contresegnos est étâye dèsactivâye sur ceti vouiqui.',
 'passwordreset-pretext' => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
 'passwordreset-username' => 'Nom d’usanciér :',
 'passwordreset-domain' => 'Domêno :',
