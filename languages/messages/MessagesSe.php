@@ -48,6 +48,7 @@ $specialPageAliases = array(
 	'Contributions'             => array( 'Geavaheaddji_rievdadusat' ),
 	'Disambiguations'           => array( 'Liŋkkat_dárkonsiidduide' ),
 	'DoubleRedirects'           => array( 'Guoktegeardásaš_ođđasitstivremat' ),
+	'Emailuser'                 => array( 'SáddeEpoastta' ),
 	'Export'                    => array( 'Olggosfievrrit_siidduid' ),
 	'Listfiles'                 => array( 'Fiilalogahallan' ),
 	'Listredirects'             => array( 'Listu_ođđasitstivremiin' ),

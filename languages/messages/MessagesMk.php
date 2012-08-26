@@ -139,6 +139,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIMEПребарување' ),
 	'Mostcategories'            => array( 'НајмногуКатегории' ),
 	'Mostimages'                => array( 'НајмногуСлики', 'НајмногуПодатотеки', 'ПодатотекиСоНајмногуВрски' ),
+	'Mostinterwikis'            => array( 'НајмногуМеѓувикија' ),
 	'Mostlinked'                => array( 'СоНајмногуВрски', 'СтранициСоНајмногуВрски' ),
 	'Mostlinkedcategories'      => array( 'НајупотребуваниКатегории' ),
 	'Mostlinkedtemplates'       => array( 'НајупотребуваниШаблони' ),

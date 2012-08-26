@@ -105,6 +105,7 @@ $specialPageAliases = array(
 	'Newimages'                 => array( 'Uued_failid' ),
 	'Newpages'                  => array( 'Uued_leheküljed' ),
 	'PasswordReset'             => array( 'Parooli_lähtestamine' ),
+	'PermanentLink'             => array( 'Püsilink' ),
 	'Popularpages'              => array( 'Loetumad_leheküljed' ),
 	'Preferences'               => array( 'Eelistused' ),
 	'Prefixindex'               => array( 'Kõik_pealkirjad_eesliitega' ),

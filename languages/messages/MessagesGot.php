@@ -14,6 +14,11 @@
  * @author Zylbath
  */
 
+$specialPageAliases = array(
+	'Allpages'                  => array( '𐌰𐌻𐌻𐍃𐍃𐌴𐌹𐌳𐍉𐌽𐍃' ),
+	'Recentchanges'             => array( '𐌰𐍆𐍄𐌿𐌼𐌹𐍃𐍄𐍉𐍃𐌼𐌰𐌹𐌳𐌴𐌹𐌽𐌴𐌹𐍃' ),
+);
+
 $messages = array(
 'underline-always' => 'Sinteino',
 'underline-never'  => 'Niu',

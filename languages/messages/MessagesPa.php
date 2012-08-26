@@ -40,6 +40,13 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ',
 );
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'ਸਰਗਰਮ_ਵਰਤੌਂਕਾਰ' ),
+	'Blankpage'                 => array( 'ਖਾਲੀ_ਸਫ਼ਾ' ),
+	'Block'                     => array( 'ਪਾਬੰਦੀ_ਲਾਉਣਾ', 'ਪਾਬੰਦੀ_ਸ਼ੁਦਾ_ਆਈ_ਪੀ', 'ਪਾਬੰਦੀ_ਸ਼ੁਦਾ_ਵਰਤੌਂਕਾਰ' ),
+	'Listusers'                 => array( 'ਵਰਤੌਂਕਾਰਾਂ_ਦੀ_ਸੂਚੀ' ),
+);
+
 $digitTransformTable = array(
 	'0' => '੦', # &#x0a66;
 	'1' => '੧', # &#x0a67;

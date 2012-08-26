@@ -288,6 +288,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIMEzoeken', 'MIME-zoeken' ),
 	'Mostcategories'            => array( 'MeesteCategorieën' ),
 	'Mostimages'                => array( 'MeesteVerwezenBestanden', 'MeesteBestanden', 'MeesteAfbeeldingen' ),
+	'Mostinterwikis'            => array( 'MeesteInterwikiverwijzingen' ),
 	'Mostlinked'                => array( 'MeestVerwezenPaginas', 'MeestVerwezenPagina\'s', 'MeestVerwezen' ),
 	'Mostlinkedcategories'      => array( 'MeestVerwezenCategorieën' ),
 	'Mostlinkedtemplates'       => array( 'MeestVerwezenSjablonen' ),

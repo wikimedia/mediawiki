@@ -157,6 +157,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'MIME-Typ-Suche' ),
 	'Mostcategories'            => array( 'Meistkategorisierte_Seiten' ),
 	'Mostimages'                => array( 'Meistbenutzte_Dateien' ),
+	'Mostinterwikis'            => array( 'Meiste_Interwikilinks' ),
 	'Mostlinked'                => array( 'Meistverlinkte_Seiten' ),
 	'Mostlinkedcategories'      => array( 'Meistbenutzte_Kategorien' ),
 	'Mostlinkedtemplates'       => array( 'Meistbenutzte_Vorlagen' ),

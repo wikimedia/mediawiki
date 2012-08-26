@@ -32,6 +32,33 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Tispiron_nopegət',
 );
 
+$specialPageAliases = array(
+	'Allpages'                  => array( 'Һәммәј_сәһифон' ),
+	'Blankpage'                 => array( 'Тәјлијә_сәһифә' ),
+	'ChangeEmail'               => array( 'Е-номә_дәгиш_кардеј' ),
+	'ChangePassword'            => array( 'Пароли_дәгиш_кардеј' ),
+	'Emailuser'                 => array( 'Бә_иштирокәкә_номә_вығандеј' ),
+	'Longpages'                 => array( 'Дырозә_сәһифон' ),
+	'Movepage'                  => array( 'Сәһифә_номи_дәгиш_кардеј' ),
+	'Mypage'                    => array( 'Чымы_сәһифә' ),
+	'Mytalk'                    => array( 'Чымы_мызокирә' ),
+	'Myuploads'                 => array( 'Чымы_бо_жә_быә_чијон' ),
+	'Newimages'                 => array( 'Нујә_фајлон' ),
+	'Newpages'                  => array( 'Нујә_сәһифон' ),
+	'PasswordReset'             => array( 'Пароли_ләғв_кардеј' ),
+	'Protectedpages'            => array( 'Мыдофијә_кардә_быә_сәһифон' ),
+	'Protectedtitles'           => array( 'Мыдофијә_кардә_быә_номон' ),
+	'Randompage'                => array( 'Рајрастә_сәһифә._Рајрастә' ),
+	'Recentchanges'             => array( 'Ән_нујә_дәгишон' ),
+	'Recentchangeslinked'       => array( 'Ангыл_кардә_быә_дәгишон' ),
+	'Revisiondelete'            => array( 'Рәдд_кардә_быә_дәгишон' ),
+	'Search'                    => array( 'Нәве' ),
+	'Shortpages'                => array( 'Кыртә_сәһифон' ),
+	'Tags'                      => array( 'Нышонон' ),
+	'Undelete'                  => array( 'Бәрпо_кардеј' ),
+	'Version'                   => array( 'Рәвојәт' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Линки жинтоно ријә быкәш:',

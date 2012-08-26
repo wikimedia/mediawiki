@@ -50,7 +50,33 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Recentchanges'             => array( 'Фæстаг_ивдтытæ' ),
+	'Activeusers'               => array( 'АктивонАрхайджытæ' ),
+	'Allmessages'               => array( 'ФыстæджытæИууылдæр' ),
+	'Allpages'                  => array( 'ФæрстæИууылдæр' ),
+	'Blankpage'                 => array( 'АфтидФарс' ),
+	'Block'                     => array( 'Блок' ),
+	'Blockme'                   => array( 'НыблокМæКæн' ),
+	'Booksources'               => array( 'ЧингуытыРавзæрæнтæ' ),
+	'BrokenRedirects'           => array( 'ЦъæлРарвыстытæ' ),
+	'Categories'                => array( 'Категоритæ' ),
+	'ChangeEmail'               => array( 'EmailИвын' ),
+	'ChangePassword'            => array( 'ПарольИвын' ),
+	'ComparePages'              => array( 'ФæрстæАбарын' ),
+	'Confirmemail'              => array( 'EmailБæлвырдКæнын' ),
+	'Contributions'             => array( 'Бавæрд' ),
+	'CreateAccount'             => array( 'АккаунтСкæнын' ),
+	'DeletedContributions'      => array( 'ХафтБавæрд' ),
+	'Mycontributions'           => array( 'МæБавæрд' ),
+	'Mypage'                    => array( 'МæФарс' ),
+	'Mytalk'                    => array( 'МæНыхас' ),
+	'Myuploads'                 => array( 'МæБавгæд' ),
+	'Newimages'                 => array( 'НогФайлтæ' ),
+	'Newpages'                  => array( 'НогФæрстæ' ),
+	'Preferences'               => array( 'Фадæттæ' ),
+	'Randompage'                => array( 'ÆрхаугæФарс' ),
+	'Recentchanges'             => array( 'ФæстагИвдтытæ' ),
+	'Search'                    => array( 'Агурын' ),
+	'Watchlist'                 => array( 'Цæстдард' ),
 );
 
 

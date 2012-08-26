@@ -388,6 +388,7 @@ $specialPageAliases = array(
 	'MIMEsearch'                => array( 'بحث_ميم' ),
 	'Mostcategories'            => array( 'الأكثر_تصنيفا' ),
 	'Mostimages'                => array( 'أكثر_الملفات_وصلا', 'أكثر_الملفات', 'أكثر_الصور' ),
+	'Mostinterwikis'            => array( 'الأكثر_إنترويكي' ),
 	'Mostlinked'                => array( 'أكثر_الصفحات_وصلا', 'الأكثر_وصلا' ),
 	'Mostlinkedcategories'      => array( 'أكثر_التصنيفات_وصلا', 'أكثر_التصنيفات_استخداما' ),
 	'Mostlinkedtemplates'       => array( 'أكثر_القوالب_وصلا', 'أكثر_القوالب_استخداما' ),
