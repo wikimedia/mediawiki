@@ -24,22 +24,32 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Taybet',
-	NS_TALK             => 'Nîqaş',
+	NS_TALK             => 'Gotûbêj',
 	NS_USER             => 'Bikarhêner',
-	NS_USER_TALK        => 'Bikarhêner_nîqaş',
-	NS_PROJECT_TALK     => '$1_nîqaş',
+	NS_USER_TALK        => 'Gotûbêja_bikarhêner',
+	NS_PROJECT_TALK     => '$1_gotûbêj',
 	NS_FILE             => 'Wêne',
-	NS_FILE_TALK        => 'Wêne_nîqaş',
+	NS_FILE_TALK        => 'Gotûbêja_wêneyî',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_nîqaş',
+	NS_MEDIAWIKI_TALK   => 'Gotûbêja_MediaWiki',
 	NS_TEMPLATE         => 'Şablon',
-	NS_TEMPLATE_TALK    => 'Şablon_nîqaş',
+	NS_TEMPLATE_TALK    => 'Gotûbêja_şablonê',
 	NS_HELP             => 'Alîkarî',
-	NS_HELP_TALK        => 'Alîkarî_nîqaş',
+	NS_HELP_TALK        => 'Gotûbêja_alîkariyê',
 	NS_CATEGORY         => 'Kategorî',
-	NS_CATEGORY_TALK    => 'Kategorî_nîqaş',
+	NS_CATEGORY_TALK    => 'Gotûbêja_kategoriyê',
 );
 
+$namespaceAliases = array(
+	'Nîqaş'            => NS_TALK,
+	'Bikarhêner_nîqaş' => NS_USER_TALK,
+	'$1_nîqaş'         => NS_PROJECT_TALK,
+	'Wêne_nîqaş'       => NS_FILE_TALK,
+	'MediaWiki_nîqaş'  => NS_MEDIAWIKI_TALK,
+	'Şablon_nîqaş'     => NS_TEMPLATE_TALK,
+	'Alîkarî_nîqaş'    => NS_HELP_TALK,
+	'Kategorî_nîqaş'   => NS_CATEGORY_TALK,
+);
 
 $specialPageAliases = array(
 	'Categories'                => array( 'Dara_kategoriyan' ),

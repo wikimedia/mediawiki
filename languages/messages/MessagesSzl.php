@@ -26,21 +26,21 @@
 $fallback = 'pl';
 
 $namespaceNames = array(
-	NS_SPECIAL        => 'Szpecyjalna',
-	NS_TALK           => 'Dyskusyjo',
-	NS_USER           => 'Używacz',
-	NS_USER_TALK      => 'Dyskusyjo_używacza',
-	NS_PROJECT_TALK   => 'Dyskusyjo_$1',
-	NS_FILE           => 'Plik',
-	NS_FILE_TALK      => 'Dyskusyjo_plika',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Dyskusyjo_MediaWiki',
-	NS_TEMPLATE       => 'Muster',
-	NS_TEMPLATE_TALK  => 'Dyskusyjo_mustra',
-	NS_HELP           => 'Půmoc',
-	NS_HELP_TALK      => 'Dyskusyjo_půmocy',
-	NS_CATEGORY       => 'Kategoryjo',
-	NS_CATEGORY_TALK  => 'Dyskusyjo_kategoryji',
+	NS_SPECIAL          => 'Szpecyjalna',
+	NS_TALK             => 'Dyskusyjo',
+	NS_USER             => 'Używacz',
+	NS_USER_TALK        => 'Dyskusyjo_używacza',
+	NS_PROJECT_TALK     => 'Dyskusyjo_$1',
+	NS_FILE             => 'Plik',
+	NS_FILE_TALK        => 'Dyskusyjo_plika',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Dyskusyjo_MediaWiki',
+	NS_TEMPLATE         => 'Muster',
+	NS_TEMPLATE_TALK    => 'Dyskusyjo_mustra',
+	NS_HELP             => 'Půmoc',
+	NS_HELP_TALK        => 'Dyskusyjo_půmocy',
+	NS_CATEGORY         => 'Kategoryjo',
+	NS_CATEGORY_TALK    => 'Dyskusyjo_kategoryji',
 );
 
 $namespaceAliases = array(

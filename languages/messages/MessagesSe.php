@@ -20,7 +20,7 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Doaimmat',
+	NS_SPECIAL          => 'Erenoamáš',
 	NS_TALK             => 'Ságastallan',
 	NS_USER             => 'Geavaheaddji',
 	NS_USER_TALK        => 'Geavaheaddjeságastallan',
@@ -35,6 +35,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Veahkkeságastallan',
 	NS_CATEGORY         => 'Kategoriija',
 	NS_CATEGORY_TALK    => 'Kategoriijaságastallan',
+);
+
+$namespaceAliases = array(
+	'Doaimmat' => NS_SPECIAL,
 );
 
 $specialPageAliases = array(

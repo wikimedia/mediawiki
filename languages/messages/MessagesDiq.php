@@ -24,7 +24,7 @@ $namespaceNames = array(
 	NS_SPECIAL          => 'Xısusi',
 	NS_TALK             => 'Werênayış',
 	NS_USER             => 'Karber',
-	NS_USER_TALK        => 'Karber_mesac',
+	NS_USER_TALK        => 'Karber_werênayış',
 	NS_PROJECT_TALK     => '$1_werênayış',
 	NS_FILE             => 'Dosya',
 	NS_FILE_TALK        => 'Dosya_werênayış',
@@ -32,10 +32,18 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'MediaWiki_werênayış',
 	NS_TEMPLATE         => 'Şablon',
 	NS_TEMPLATE_TALK    => 'Şablon_werênayış',
-	NS_HELP             => 'Desteg',
-	NS_HELP_TALK        => 'Desteg_werênayış',
-	NS_CATEGORY         => 'Kategori',
-	NS_CATEGORY_TALK    => 'Kategori_werênayış',
+	NS_HELP             => 'Peşti',
+	NS_HELP_TALK        => 'Peşti_werênayış',
+	NS_CATEGORY         => 'Kategoriye',
+	NS_CATEGORY_TALK    => 'Kategoriye_werênayış',
+);
+
+$namespaceAliases = array(
+	'Karber_mesac'       => NS_USER_TALK,
+	'Desteg'             => NS_HELP,
+	'Desteg_werênayış'   => NS_HELP_TALK,
+	'Kategori'           => NS_CATEGORY,
+	'Kategori_werênayış' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
