@@ -323,8 +323,8 @@ class ErrorPageError extends MWException {
 	 *
 	 * Note: these arguments are keys into wfMsg(), not text!
 	 *
-	 * @param $title A title
-	 * @param $msg String|Message . In string form, should be a message key
+	 * @param $title string Page title
+	 * @param $msg string|Message . In string form, should be a message key
 	 * @param $params Array Array to wfMessage()
 	 */
 	function __construct( $title, $msg, $params = null ) {
