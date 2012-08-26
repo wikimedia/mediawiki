@@ -242,6 +242,9 @@ abstract class FileBackend {
 	 *   - allowStale          : Don't require the latest available data.
 	 *                           This can increase performance for non-critical writes.
 	 *                           This has no effect unless the 'force' flag is set.
+	 *   - preserveCache       : Don't clear the process cache before checking files.
+	 *                           This should only be used if all entries in the process
+	 *                           cache were added after the files were already locked.
 	 *   - nonJournaled        : Don't log this operation batch in the file journal.
 	 *                           This limits the ability of recovery scripts.
 	 *   - parallelize         : Try to do operations in parallel when possible.

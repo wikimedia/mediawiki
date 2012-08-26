@@ -989,7 +989,9 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		// Clear any file cache entries (after locks acquired)
-		$this->clearCache();
+		if ( empty( $opts['preserveCache'] ) ) {
+			$this->clearCache();
+		}
 
 		// Load from the persistent file and container caches
 		$this->primeFileCache( $performOps );

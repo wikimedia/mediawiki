@@ -151,6 +151,7 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
+		$opts['preserveCache'] = true; // only locked files are cached
 		// Do a consistency check to see if the backends agree
 		$status->merge( $this->consistencyCheck( $this->fileStoragePathsForOps( $ops ) ) );
 		if ( !$status->isOK() ) {
