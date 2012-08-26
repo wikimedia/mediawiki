@@ -2406,6 +2406,9 @@ class WikiPage extends Page implements IDBAccessObject {
 		);
 		$summary = wfMsgReplaceArgs( $summary, $args );
 
+		# Truncate for whole multibyte characters.
+		$summary = $wgContLang->truncate( $summary, 255 );
+
 		# Save
 		$flags = EDIT_UPDATE;
 
