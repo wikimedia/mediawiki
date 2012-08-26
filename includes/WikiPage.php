@@ -2383,7 +2383,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				array( /* WHERE */
 					'rc_cur_id' => $current->getPage(),
 					'rc_user_text' => $current->getUserText(),
-					"rc_timestamp > '{$s->rev_timestamp}'",
+					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
 				), __METHOD__
 			);
 		}
