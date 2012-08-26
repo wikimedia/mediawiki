@@ -295,7 +295,7 @@ class LanguageConverter {
 			// We record these fallback variants, and process
 			// them later.
 			$fallbacks = $this->getVariantFallbacks( $language );
-			if ( is_string( $fallbacks ) ) {
+			if ( is_string( $fallbacks ) && $fallbacks !== $this->mMainLanguageCode ) {
 				$fallbackLanguages[] = $fallbacks;
 			} elseif ( is_array( $fallbacks ) ) {
 				$fallbackLanguages =
