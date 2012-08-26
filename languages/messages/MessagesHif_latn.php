@@ -17,6 +17,23 @@
  * @author Thakurji
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'saadhan',
+	NS_SPECIAL          => 'khaas',
+	NS_TALK             => 'baat',
+	NS_USER             => 'sadasya',
+	NS_USER_TALK        => 'sadasya_ke_baat',
+	NS_PROJECT_TALK     => '$1_baat',
+	NS_FILE             => 'file',
+	NS_FILE_TALK        => 'file_ke_baat',
+	NS_MEDIAWIKI_TALK   => 'Mediawiki_ke_baat',
+	NS_TEMPLATE_TALK    => 'Template_ke_baat',
+	NS_HELP             => 'madat',
+	NS_HELP_TALK        => 'madat_ke_baat',
+	NS_CATEGORY         => 'vibhag',
+	NS_CATEGORY_TALK    => 'voibhag_ke_baat',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Jorr ke niche line khicho:',
@@ -687,7 +704,7 @@ Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:'
 * '''Mozilla / Firefox / Safari:'''  ''Shift'' ke dabae ke ''Reload,'' pe click karo, nai to chaahe ''Ctrl-F5'' nai to ''Ctrl-R'' (''Command-R''  Mac pe)
 * '''Google Chrome:'''  ''Ctrl-Shift-R'' dabao (''Command-Shift-R'' Mac pe)
 *  '''Internet Explorer:'''  ''Ctrl'' dabae ke  ''Refresh'' pe click karo, nai to  ''Ctrl-F5'' dabao
-*  '''Konqueror: ''' ''Reload''  click karo nai to  ''F5 dabao;'' 
+*  '''Konqueror: ''' ''Reload''  click karo nai to  ''F5 dabao;''
 * '''Opera:'''  ''Tools → Preferences''  me se cache ke safaa karo",
 'usercssyoucanpreview' => "'''Salah:''' Bachae se pahile \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa CSS ke test karo.",
 'userjsyoucanpreview' => "'''Salah:''' Bachae se pahile  \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa JavaScript ke test karo.",

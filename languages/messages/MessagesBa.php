@@ -37,19 +37,20 @@ $namespaceNames = array(
 	NS_TEMPLATE_TALK    => 'Ҡалып_буйынса_фекерләшеү',
 	NS_HELP             => 'Белешмә',
 	NS_HELP_TALK        => 'Белешмә_буйынса_фекерләшеү',
-	NS_CATEGORY         => 'Төркөм',
-	NS_CATEGORY_TALK    => 'Төркөм_буйынса_фекерләшеү',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категория_буйынса_фекерләшеү',
 );
 
 $namespaceAliases = array(
-	'Фекер_алышыу' => NS_TALK,
+	'Фекер_алышыу'                => NS_TALK,
 	'Ҡатнашыусы_м-н_фекер_алышыу' => NS_USER_TALK,
-	'$1_б-са_фекер_алышыу' => NS_PROJECT_TALK,
-	'Рәсем_б-са_фекер_алышыу' => NS_FILE_TALK,
+	'$1_б-са_фекер_алышыу'        => NS_PROJECT_TALK,
+	'Рәсем_б-са_фекер_алышыу'     => NS_FILE_TALK,
 	'MediaWiki_б-са_фекер_алышыу' => NS_MEDIAWIKI_TALK,
-	'Ҡалып_б-са_фекер_алышыу' => NS_TEMPLATE_TALK,
-	'Белешмә_б-са_фекер_алышыу' => NS_HELP_TALK,
-	'Категория' => NS_CATEGORY,
+	'Ҡалып_б-са_фекер_алышыу'     => NS_TEMPLATE_TALK,
+	'Белешмә_б-са_фекер_алышыу'   => NS_HELP_TALK,
+	'Төркөм'                      => NS_CATEGORY,
+	'Төркөм_буйынса_фекерләшеү'   => NS_CATEGORY_TALK,
 	'Категория_б-са_фекер_алышыу' => NS_CATEGORY_TALK,
 );
 

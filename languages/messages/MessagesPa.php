@@ -23,21 +23,36 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => 'ਮੀਡੀਆ',
-	NS_SPECIAL          => 'ਖਾਸ',
-	NS_TALK             => 'ਚਰਚਾ',
-	NS_USER             => 'ਮੈਂਬਰ',
-	NS_USER_TALK        => 'ਮੈਂਬਰ_ਚਰਚਾ',
-	NS_PROJECT_TALK     => '$1_ਚਰਚਾ',
+	NS_SPECIAL          => 'ਖ਼ਾਸ',
+	NS_TALK             => 'ਗੱਲ-ਬਾਤ',
+	NS_USER             => 'ਵਰਤੌਂਕਾਰ',
+	NS_USER_TALK        => 'ਵਰਤੌਂਕਾਰ_ਗੱਲ-ਬਾਤ',
+	NS_PROJECT_TALK     => '$1_ਗੱਲ-ਬਾਤ',
 	NS_FILE             => 'ਤਸਵੀਰ',
-	NS_FILE_TALK        => 'ਤਸਵੀਰ_ਚਰਚਾ',
-	NS_MEDIAWIKI        => 'ਮੀਡੀਆਵਿਕਿ',
-	NS_MEDIAWIKI_TALK   => 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
-	NS_TEMPLATE         => 'ਨਮੂਨਾ',
-	NS_TEMPLATE_TALK    => 'ਨਮੂਨਾ_ਚਰਚਾ',
+	NS_FILE_TALK        => 'ਤਸਵੀਰ_ਗੱਲ-ਬਾਤ',
+	NS_MEDIAWIKI        => 'ਮੀਡੀਆਵਿਕੀ',
+	NS_MEDIAWIKI_TALK   => 'ਮੀਡੀਆਵਿਕੀ_ਗੱਲ-ਬਾਤ',
+	NS_TEMPLATE         => 'ਫਰਮਾ',
+	NS_TEMPLATE_TALK    => 'ਫਰਮਾ_ਗੱਲ-ਬਾਤ',
 	NS_HELP             => 'ਮਦਦ',
-	NS_HELP_TALK        => 'ਮਦਦ_ਚਰਚਾ',
+	NS_HELP_TALK        => 'ਮਦਦ_ਗੱਲ-ਬਾਤ',
 	NS_CATEGORY         => 'ਸ਼੍ਰੇਣੀ',
-	NS_CATEGORY_TALK    => 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ',
+	NS_CATEGORY_TALK    => 'ਸ਼੍ਰੇਣੀ_ਗੱਲ-ਬਾਤ',
+);
+
+$namespaceAliases = array(
+	'ਖਾਸ' => NS_SPECIAL,
+	'ਚਰਚਾ' => NS_TALK,
+	'ਮੈਂਬਰ' => NS_USER,
+	'ਮੈਂਬਰ_ਚਰਚਾ' => NS_USER_TALK,
+	'$1_ਚਰਚਾ' => NS_PROJECT_TALK,
+	'ਤਸਵੀਰ_ਚਰਚਾ' => NS_FILE_TALK,
+	'ਮੀਡੀਆਵਿਕਿ' => NS_MEDIAWIKI,
+	'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ' => NS_MEDIAWIKI_TALK,
+	'ਨਮੂਨਾ' => NS_TEMPLATE,
+	'ਨਮੂਨਾ_ਚਰਚਾ' => NS_TEMPLATE_TALK,
+	'ਮਦਦ_ਚਰਚਾ' => NS_HELP_TALK,
+	'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ' => NS_CATEGORY_TALK,
 );
 
 $specialPageAliases = array(
