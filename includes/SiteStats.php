@@ -347,8 +347,8 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			array(
 				'rc_user != 0',
 				'rc_bot' => 0,
-				"rc_log_type != 'newusers' OR rc_log_type IS NULL",
-				"rc_timestamp >= '{$dbw->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 )}'",
+				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
+				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 ) ),
 			),
 			__METHOD__
 		);
