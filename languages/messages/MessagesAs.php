@@ -157,6 +157,14 @@ $specialPageAliases = array(
 	'Withoutinterwiki'          => array( 'আন্তঃৱিকিবিহীন' ),
 );
 
+$magicWords = array(
+	'redirect'                  => array( '0', 'পুণঃনিৰ্দেশ', '#REDIRECT' ),
+	'special'                   => array( '0', 'বিশেষ', 'special' ),
+	'hiddencat'                 => array( '1', '__গোপন_শ্ৰেণী__', '__HIDDENCAT__' ),
+	'pagesize'                  => array( '1', 'পৃষ্ঠাৰ_আকাৰ', 'PAGESIZE' ),
+	'index'                     => array( '1', '__সূচী__', '__INDEX__' ),
+);
+
 $digitTransformTable = array(
 	'0' => '০', # &#x09e6;
 	'1' => '১', # &#x09e7;

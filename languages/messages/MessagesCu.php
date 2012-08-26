@@ -61,8 +61,8 @@ $namespaceAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
-	'language'                => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
+	'redirect'                  => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
+	'language'                  => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
 );
 
 $defaultDateFormat = 'mdy';

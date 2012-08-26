@@ -54,16 +54,16 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'currentmonth'            => array( '1', 'MUEJIAKTUAL', 'MUEJIAKTUAL2', 'MUAJIMOMENTAL', 'MUAJIMOMENTAL2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonth1'           => array( '1', 'MUEJIAKTUAL1', 'MUAJIMOMENTAL1', 'CURRENTMONTH1' ),
-	'currentmonthname'        => array( '1', 'EMNIMUEJITAKTUAL', 'EMRIIMUAJITMOMENTAL', 'CURRENTMONTHNAME' ),
-	'currenttime'             => array( '1', 'KOHATASH', 'KOHATANI', 'CURRENTTIME' ),
-	'currenthour'             => array( '1', 'ORATASH', 'ORATANI', 'CURRENTHOUR' ),
-	'localmonth'              => array( '1', 'MUEJILOKAL', 'MUAJILOKAL', 'LOCALMONTH', 'LOCALMONTH2' ),
-	'img_center'              => array( '1', 'qendër', 'qendrore', 'qëndër', 'qëndrore', 'center', 'centre' ),
-	'img_baseline'            => array( '1', 'vijabazë', 'linjabazë', 'baseline' ),
-	'servername'              => array( '0', 'EMNISERVERIT', 'EMRIISERVERIT', 'SERVERNAME' ),
-	'currentweek'             => array( '1', 'JAVAAKTUALE', 'JAVAMOMENTALE', 'CURRENTWEEK' ),
+	'currentmonth'              => array( '1', 'MUEJIAKTUAL', 'MUEJIAKTUAL2', 'MUAJIMOMENTAL', 'MUAJIMOMENTAL2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'             => array( '1', 'MUEJIAKTUAL1', 'MUAJIMOMENTAL1', 'CURRENTMONTH1' ),
+	'currentmonthname'          => array( '1', 'EMNIMUEJITAKTUAL', 'EMRIIMUAJITMOMENTAL', 'CURRENTMONTHNAME' ),
+	'currenttime'               => array( '1', 'KOHATASH', 'KOHATANI', 'CURRENTTIME' ),
+	'currenthour'               => array( '1', 'ORATASH', 'ORATANI', 'CURRENTHOUR' ),
+	'localmonth'                => array( '1', 'MUEJILOKAL', 'MUAJILOKAL', 'LOCALMONTH', 'LOCALMONTH2' ),
+	'img_center'                => array( '1', 'qendër', 'qendrore', 'qëndër', 'qëndrore', 'center', 'centre' ),
+	'img_baseline'              => array( '1', 'vijabazë', 'linjabazë', 'baseline' ),
+	'servername'                => array( '0', 'EMNISERVERIT', 'EMRIISERVERIT', 'SERVERNAME' ),
+	'currentweek'               => array( '1', 'JAVAAKTUALE', 'JAVAMOMENTALE', 'CURRENTWEEK' ),
 );
 
 $messages = array(

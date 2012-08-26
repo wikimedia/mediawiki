@@ -47,16 +47,16 @@ $namespaceAliases = array(
 $namespaceGenderAliases = array();
 
 $magicWords = array(
-	'redirect'                => array( '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
-	'namespace'               => array( '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ),
-	'namespacee'              => array( '1', 'ESPACIODENOMBRESE', 'ESPACIODENOMBREC', 'NAMESPACEE' ),
-	'img_right'               => array( '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ),
-	'img_left'                => array( '1', 'cucha', 'zurda', 'izquierda', 'izda', 'izq', 'left' ),
-	'ns'                      => array( '0', 'EN:', 'EDN:', 'NS:' ),
-	'displaytitle'            => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
-	'currentversion'          => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ),
-	'language'                => array( '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
-	'special'                 => array( '0', 'especial', 'espezial', 'special' ),
+	'redirect'                  => array( '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
+	'namespace'                 => array( '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ),
+	'namespacee'                => array( '1', 'ESPACIODENOMBRESE', 'ESPACIODENOMBREC', 'NAMESPACEE' ),
+	'img_right'                 => array( '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ),
+	'img_left'                  => array( '1', 'cucha', 'zurda', 'izquierda', 'izda', 'izq', 'left' ),
+	'ns'                        => array( '0', 'EN:', 'EDN:', 'NS:' ),
+	'displaytitle'              => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
+	'currentversion'            => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ),
+	'language'                  => array( '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
+	'special'                   => array( '0', 'especial', 'espezial', 'special' ),
 );
 
 $specialPageAliases = array(

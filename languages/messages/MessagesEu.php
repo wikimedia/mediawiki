@@ -104,22 +104,22 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#BIRZUZENDU', '#REDIRECT' ),
-	'currentmonth'            => array( '1', 'ORAINGOHILABETE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonthname'        => array( '1', 'ORAINGOHILABETEIZEN', 'CURRENTMONTHNAME' ),
-	'currentday'              => array( '1', 'ORAINGOEGUN', 'CURRENTDAY' ),
-	'currentday2'             => array( '1', 'ORAINGOEGUN2', 'CURRENTDAY2' ),
-	'currentdayname'          => array( '1', 'ORAINGOEGUNIZEN', 'CURRENTDAYNAME' ),
-	'currentyear'             => array( '1', 'ORAINGOURTE', 'CURRENTYEAR' ),
-	'numberofpages'           => array( '1', 'ORRIALDEKOPURU', 'NUMBEROFPAGES' ),
-	'numberofarticles'        => array( '1', 'ARTIKULUKOPURU', 'NUMBEROFARTICLES' ),
-	'numberoffiles'           => array( '1', 'FITXATEGIKOPURU', 'NUMBEROFFILES' ),
-	'numberofusers'           => array( '1', 'LANKIDEKOPURU', 'NUMBEROFUSERS' ),
-	'numberofedits'           => array( '1', 'ALDAKETAKOPURU', 'NUMBEROFEDITS' ),
-	'pagename'                => array( '1', 'ORRIALDEIZEN', 'PAGENAME' ),
-	'img_right'               => array( '1', 'eskuinera', 'right' ),
-	'img_left'                => array( '1', 'ezkerrera', 'left' ),
-	'img_center'              => array( '1', 'erdian', 'center', 'centre' ),
+	'redirect'                  => array( '0', '#BIRZUZENDU', '#REDIRECT' ),
+	'currentmonth'              => array( '1', 'ORAINGOHILABETE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonthname'          => array( '1', 'ORAINGOHILABETEIZEN', 'CURRENTMONTHNAME' ),
+	'currentday'                => array( '1', 'ORAINGOEGUN', 'CURRENTDAY' ),
+	'currentday2'               => array( '1', 'ORAINGOEGUN2', 'CURRENTDAY2' ),
+	'currentdayname'            => array( '1', 'ORAINGOEGUNIZEN', 'CURRENTDAYNAME' ),
+	'currentyear'               => array( '1', 'ORAINGOURTE', 'CURRENTYEAR' ),
+	'numberofpages'             => array( '1', 'ORRIALDEKOPURU', 'NUMBEROFPAGES' ),
+	'numberofarticles'          => array( '1', 'ARTIKULUKOPURU', 'NUMBEROFARTICLES' ),
+	'numberoffiles'             => array( '1', 'FITXATEGIKOPURU', 'NUMBEROFFILES' ),
+	'numberofusers'             => array( '1', 'LANKIDEKOPURU', 'NUMBEROFUSERS' ),
+	'numberofedits'             => array( '1', 'ALDAKETAKOPURU', 'NUMBEROFEDITS' ),
+	'pagename'                  => array( '1', 'ORRIALDEIZEN', 'PAGENAME' ),
+	'img_right'                 => array( '1', 'eskuinera', 'right' ),
+	'img_left'                  => array( '1', 'ezkerrera', 'left' ),
+	'img_center'                => array( '1', 'erdian', 'center', 'centre' ),
 );
 
 $separatorTransformTable = array( ',' => '.', '.' => ',' ); /* Bug 15717 */
