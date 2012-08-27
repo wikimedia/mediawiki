@@ -351,7 +351,7 @@ class SpecialPage {
 			$this->mFunction = $function;
 		}
 		if ( $file === 'default' ) {
-			$this->mFile = dirname( __FILE__ ) . "/specials/Special$name.php";
+			$this->mFile = __DIR__ . "/specials/Special$name.php";
 		} else {
 			$this->mFile = $file;
 		}

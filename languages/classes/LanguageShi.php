@@ -21,7 +21,7 @@
  * @ingroup Language
  */
 
-require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
+require_once( __DIR__ . '/../LanguageConverter.php' );
 
 /**
  * Conversion script between Latin and Tifinagh for Tachelhit.

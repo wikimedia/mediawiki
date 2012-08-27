@@ -123,7 +123,7 @@ abstract class Maintenance {
 		global $IP;
 		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
 			? getenv( 'MW_INSTALL_PATH' )
-			: realpath( dirname( __FILE__ ) . '/..' );
+			: realpath( __DIR__ . '/..' );
 
 		$this->addDefaultParams();
 		register_shutdown_function( array( $this, 'outputChanneled' ), false );
@@ -988,7 +988,7 @@ abstract class Maintenance {
 	 * @return string
 	 */
 	protected function getDir() {
-		return dirname( __FILE__ );
+		return __DIR__;
 	}
 
 	/**
@@ -1009,9 +1009,9 @@ abstract class Maintenance {
 	protected static function getCoreScripts() {
 		if ( !self::$mCoreScripts ) {
 			$paths = array(
-				dirname( __FILE__ ),
-				dirname( __FILE__ ) . '/language',
-				dirname( __FILE__ ) . '/storage',
+				__DIR__,
+				__DIR__ . '/language',
+				__DIR__ . '/storage',
 			);
 			self::$mCoreScripts = array();
 			foreach ( $paths as $p ) {

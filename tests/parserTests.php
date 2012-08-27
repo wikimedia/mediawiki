@@ -27,7 +27,7 @@
 $otions = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
 
-require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
+require_once( __DIR__ . '/../maintenance/commandLine.inc' );
 
 if ( isset( $options['help'] ) ) {
 	echo <<<ENDS

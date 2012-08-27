@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/../../../maintenance/getSlaveServer.php";
+require_once __DIR__ . "/../../../maintenance/getSlaveServer.php";
 
 /**
  * Tests for getSlaveServer

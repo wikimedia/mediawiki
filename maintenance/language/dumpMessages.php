@@ -22,7 +22,7 @@
  * @todo Make this more useful, right now just dumps $wgContentLang
  */
 
-require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
+require_once( __DIR__ . '/../Maintenance.php' );
 
 class DumpMessages extends Maintenance {
 	public function __construct() {

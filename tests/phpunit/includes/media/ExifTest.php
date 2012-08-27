@@ -2,7 +2,7 @@
 class ExifTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		$this->mediaPath = dirname( __FILE__ ) . '/../../data/media/';
+		$this->mediaPath = __DIR__ . '/../../data/media/';
 
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );

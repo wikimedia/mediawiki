@@ -2,7 +2,7 @@
 <?php
 
 define( 'MW_CONFIG_CALLBACK', 'MakeHipHop::noConfigNeeded' );
-require( dirname( __FILE__ ) . '/../Maintenance.php' );
+require( __DIR__ . '/../Maintenance.php' );
 
 class MakeHipHop extends Maintenance {
 	function noConfigNeeded() {}
@@ -12,7 +12,7 @@ class MakeHipHop extends Maintenance {
 
 		$startTime = time();
 
-		$thisDir = realpath( dirname( __FILE__ ) );
+		$thisDir = realpath( __DIR__ );
 		$IP = realpath( "$thisDir/../.." );
 		if ( strval( $wgHipHopBuildDirectory ) !== '' ) {
 			$buildDir = $wgHipHopBuildDirectory;
@@ -278,7 +278,7 @@ class MakeHipHop extends Maintenance {
 			}
 		}
 
-		$extraCoreFiles = array_map( 'trim', file( dirname( __FILE__ ) . '/extra-files' ) );
+		$extraCoreFiles = array_map( 'trim', file( __DIR__ . '/extra-files' ) );
 		foreach ( $extraCoreFiles as $file ) {
 			if ( $file === '' ) {
 				continue;

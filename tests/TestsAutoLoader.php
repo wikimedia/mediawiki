@@ -1,7 +1,7 @@
 <?php
 
 global $wgAutoloadClasses;
-$testFolder = dirname( __FILE__ );
+$testFolder = __DIR__;
 
 $wgAutoloadClasses += array(
 
