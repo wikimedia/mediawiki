@@ -84,6 +84,10 @@ class InfoAction extends FormlessAction {
 		$content = '';
 		$table = '';
 
+		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
+			$content .= $this->msg( 'pageinfo-header ' )->parse();
+		}
+
 		// Basic information
 		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-basic' )->text() );
 
@@ -302,6 +306,10 @@ class InfoAction extends FormlessAction {
 			}
 
 			$content = $this->addTable( $content, $table );
+		}
+
+		if ( !$this->msg( 'pageinfo-footer' )->isDisabled() ) {
+			$content .= $this->msg( 'pageinfo-footer' )->parse();
 		}
 
 		return $content;
