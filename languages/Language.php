@@ -32,7 +32,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 # Read language names
 global $wgLanguageNames;
-require_once( dirname( __FILE__ ) . '/Names.php' );
+require_once( __DIR__ . '/Names.php' );
 
 if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );

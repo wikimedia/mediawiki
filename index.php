@@ -41,7 +41,7 @@
 # PHP 4. Setup.php and ObjectCache.php have structures invalid in PHP 5.0 and
 # 5.1, respectively.
 if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
-	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
+	require( __DIR__ . '/includes/PHPVersionError.php' );
 	wfPHPVersionError( 'index.php' );
 }
 
@@ -51,7 +51,7 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'phase3/includes/WebStart.php' );
 } else {
-	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+	require ( __DIR__ . '/includes/WebStart.php' );
 }
 
 $mediaWiki = new MediaWiki();

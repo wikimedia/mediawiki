@@ -1,6 +1,6 @@
 <?php
 
-require_once( dirname( dirname( __FILE__ ) ) . '/includes/upload/UploadFromUrlTest.php' );
+require_once( dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php' );
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	public $savedGlobals = array();

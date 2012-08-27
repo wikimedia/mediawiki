@@ -24,14 +24,14 @@
 
 // Bail if PHP is too low
 if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
-	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
+	require( __DIR__ . '/includes/PHPVersionError.php' );
 	wfPHPVersionError( 'load.php' );
 }
 
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'phase3/includes/WebStart.php' );
 } else {
-	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+	require ( __DIR__ . '/includes/WebStart.php' );
 }
 
 wfProfileIn( 'load.php' );

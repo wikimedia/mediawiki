@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( __DIR__ . '/Maintenance.php' );
 
 /**
  * Maintenance script to populate the img_sha1 field.

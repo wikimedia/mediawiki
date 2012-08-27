@@ -35,7 +35,7 @@ define( 'MW_API', true );
 
 // Bail if PHP is too low
 if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
-	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
+	require( __DIR__ . '/includes/PHPVersionError.php' );
 	wfPHPVersionError( 'api.php' );
 }
 
@@ -43,7 +43,7 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'core/includes/WebStart.php' );
 } else {
-	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+	require ( __DIR__ . '/includes/WebStart.php' );
 }
 
 wfProfileIn( 'api.php' );

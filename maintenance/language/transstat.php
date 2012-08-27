@@ -28,9 +28,9 @@
  */
 $optionsWithArgs = array( 'output' );
 
-require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
+require_once( __DIR__ . '/../commandLine.inc' );
 require_once( 'languages.inc' );
-require_once( dirname( __FILE__ ) . '/StatOutputs.php' );
+require_once( __DIR__ . '/StatOutputs.php' );
 
 
 if ( isset( $options['help'] ) ) {

@@ -339,7 +339,7 @@ abstract class Installer {
 
 		// Load the installer's i18n file.
 		$wgExtensionMessagesFiles['MediawikiInstaller'] =
-			dirname( __FILE__ ) . '/Installer.i18n.php';
+			__DIR__ . '/Installer.i18n.php';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
@@ -935,7 +935,7 @@ abstract class Installer {
 	 */
 	protected function envCheckPath() {
 		global $IP;
-		$IP = dirname( dirname( dirname( __FILE__ ) ) );
+		$IP = dirname( dirname( __DIR__ ) );
 		$this->setVar( 'IP', $IP );
 
 		$this->showMessage( 'config-using-uri', $this->getVar( 'wgServer' ), $this->getVar( 'wgScriptPath' ) );

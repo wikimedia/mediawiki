@@ -2760,7 +2760,7 @@ $wgShowRollbackEditCount = 10;
  *      'scripts' => 'myExtension.js',
  *      'styles' => 'myExtension.css',
  *      'dependencies' => array( 'jquery.cookie', 'jquery.tabIndex' ),
- *      'localBasePath' => dirname( __FILE__ ),
+ *      'localBasePath' => __DIR__,
  *      'remoteExtPath' => 'MyExtension',
  *   );
  * @endcode
