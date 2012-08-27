@@ -246,6 +246,15 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $delimiter = ';';
 
+	/**
+	 * Remembers the function name given for starting the most recent transaction via the begin() method.
+	 * Used to provide additional context for error reporting.
+	 *
+	 * @var String
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxFname = null;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -2828,6 +2837,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname string
 	 */
 	public function begin( $fname = 'DatabaseBase::begin' ) {
+		if ( $this->mTrxLevel != 0 ) {
+			wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), will cause implicit commit!" );
+			// could return here, but that would just make things brake in a different way
+		}
+
+		$this->mTrxFname = $fname;
+
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
 	}
@@ -2841,6 +2857,8 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( $this->mTrxLevel ) {
 			$this->query( 'COMMIT', $fname );
 			$this->mTrxLevel = 0;
+		} else {
+			wfWarn( "$fname: No transaction to commit, something got out of sync!" );
 		}
 	}
 
@@ -2854,6 +2872,8 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( $this->mTrxLevel ) {
 			$this->query( 'ROLLBACK', $fname, true );
 			$this->mTrxLevel = 0;
+		} else {
+			wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
 		}
 	}
 
