@@ -1007,6 +1007,7 @@ $wgAutoloadLocalClasses = array(
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
 	'CLDRPluralRuleEvaluator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 
 	# maintenance
 	'ConvertLinks' => 'maintenance/convertLinks.php',
