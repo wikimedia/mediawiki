@@ -12,7 +12,7 @@
 		 * @param err {Function} [optional] deprecated (error callback)
 		 * @return {jQuery.Promise}
 		 */
-		parse: function( wikiText, ok, err ) {
+		parse: function ( wikiText, ok, err ) {
 			var apiDeferred = $.Deferred();
 
 			// Backwards compatibility (< MW 1.20)
@@ -39,4 +39,4 @@
 		}
 	} );
 
-} )( mediaWiki, jQuery );
+}( mediaWiki, jQuery ) );

@@ -55,6 +55,7 @@
 			return true;
 		},
 		compareObject: function ( objectA, objectB ) {
+			var prop, type;
 
 			// Do a simple check if the types match
 			if ( typeof objectA === typeof objectB ) {
@@ -65,13 +66,12 @@
 					if ( objectA === objectB ) {
 						return true;
 					} else {
-						var prop;
 						// Iterate over each property
 						for ( prop in objectA ) {
 							// Check if this property is also present in the other object
 							if ( prop in objectB ) {
 								// Compare the types of the properties
-								var type = typeof objectA[prop];
+								type = typeof objectA[prop];
 								if ( type === typeof objectB[prop] ) {
 									// Recursively check objects inside this one
 									switch ( type ) {

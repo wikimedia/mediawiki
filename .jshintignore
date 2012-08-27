@@ -16,6 +16,6 @@ resources/jquery/jquery.xmldom.js
 resources/jquery.effects
 resources/jquery.tipsy
 resources/jquery.ui
-resources/mediawiki.libs/mediawiki.libs.jpegmeta.js
+resources/mediawiki.libs
 tests/jasmine/lib/jasmine-1.0.1/jasmine-html.js
 tests/jasmine/lib/jasmine-1.0.1/jasmine.js
