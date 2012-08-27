@@ -286,7 +286,10 @@ class User {
 				$this->loadFromId();
 				break;
 			case 'session':
-				$this->loadFromSession();
+				if( !$this->loadFromSession() ) {
+					// Loading from session failed. Load defaults.
+					$this->loadDefaults();
+				}
 				wfRunHooks( 'UserLoadAfterLoadFromSession', array( $this ) );
 				break;
 			default:
@@ -962,7 +965,6 @@ class User {
 		if ( $cookieId !== null ) {
 			$sId = intval( $cookieId );
 			if( $sessId !== null && $cookieId != $sessId ) {
-				$this->loadDefaults(); // Possible collision!
 				wfDebugLog( 'loginSessions', "Session user ID ($sessId) and
 					cookie user ID ($sId) don't match!" );
 				return false;
@@ -971,7 +973,6 @@ class User {
 		} elseif ( $sessId !== null && $sessId != 0 ) {
 			$sId = $sessId;
 		} else {
-			$this->loadDefaults();
 			return false;
 		}
 
@@ -981,21 +982,18 @@ class User {
 			$sName = $request->getCookie( 'UserName' );
 			$request->setSessionData( 'wsUserName', $sName );
 		} else {
-			$this->loadDefaults();
 			return false;
 		}
 
 		$proposedUser = User::newFromId( $sId );
 		if ( !$proposedUser->isLoggedIn() ) {
 			# Not a valid ID
-			$this->loadDefaults();
 			return false;
 		}
 
 		global $wgBlockDisablesLogin;
 		if( $wgBlockDisablesLogin && $proposedUser->isBlocked() ) {
 			# User blocked and we've disabled blocked user logins
-			$this->loadDefaults();
 			return false;
 		}
 
@@ -1007,7 +1005,6 @@ class User {
 			$from = 'cookie';
 		} else {
 			# No session or persistent login cookie
-			$this->loadDefaults();
 			return false;
 		}
 
@@ -1019,7 +1016,6 @@ class User {
 		} else {
 			# Invalid credentials
 			wfDebug( "User: can't log in from $from, invalid credentials\n" );
-			$this->loadDefaults();
 			return false;
 		}
 	}
