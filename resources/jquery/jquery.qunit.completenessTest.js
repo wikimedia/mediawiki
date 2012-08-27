@@ -96,7 +96,7 @@
 	 *  other constructor. Otherwise "missingTests" will include all methods that
 	 *  were not called from that instance.
 	 */
-	var CompletenessTest = function ( masterVariable, ignoreFn ) {
+	function CompletenessTest( masterVariable, ignoreFn ) {
 
 		// Keep track in these objects. Keyed by strings with the
 		// method names (ie. 'my.foo', 'my.bar', etc.) values are boolean true.
@@ -199,7 +199,7 @@
 		});
 
 		return this;
-	};
+	}
 
 	/* Static members */
 	CompletenessTest.ACTION_INJECT = 500;

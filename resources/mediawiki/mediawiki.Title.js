@@ -36,6 +36,11 @@
 
 var
 	/**
+	 * Public methods (defined later)
+	 */
+	fn,
+
+	/**
 	 * Strip some illegal chars: control chars, colon, less than, greater than,
 	 * brackets, braces, pipe, whitespace and normal spaces. This still leaves some insanity
 	 * intact, like unicode bidi chars, but it's a good start..
@@ -221,7 +226,7 @@ var
 
 	/* Public methods */
 
-	var fn = {
+	fn = {
 		constructor: Title,
 
 		/**

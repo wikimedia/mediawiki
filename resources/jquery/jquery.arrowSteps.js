@@ -40,18 +40,18 @@
  * </script>
  *
  */
-
 ( function ( $ ) {
 	$.fn.arrowSteps = function () {
+		var $steps, width, arrowWidth;
 		this.addClass( 'arrowSteps' );
-		var $steps = this.find( 'li' );
+		$steps = this.find( 'li' );
 
-		var width = parseInt( 100 / $steps.length, 10 );
+		width = parseInt( 100 / $steps.length, 10 );
 		$steps.css( 'width', width + '%' );
 
 		// every step except the last one has an arrow at the right hand side. Also add in the padding
 		// for the calculated arrow width.
-		var arrowWidth = parseInt( this.outerHeight(), 10 );
+		arrowWidth = parseInt( this.outerHeight(), 10 );
 		$steps.filter( ':not(:last-child)' ).addClass( 'arrow' )
 		      .find( 'div' ).css( 'padding-right', arrowWidth.toString() + 'px' );
 
@@ -60,8 +60,8 @@
 	};
 
 	$.fn.arrowStepsHighlight = function ( selector ) {
-		var $steps = this.data( 'arrowSteps' );
-		var $previous;
+		var $previous,
+			$steps = this.data( 'arrowSteps' );
 		$.each( $steps, function ( i, step ) {
 			var $step = $( step );
 			if ( $step.is( selector ) ) {
