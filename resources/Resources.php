@@ -160,6 +160,7 @@ return array(
 	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
+		'dependencies' => 'jquery.mwExtension',
 	),
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/jquery/jquery.hoverIntent.js',
@@ -216,6 +217,7 @@ return array(
 		'scripts' => 'resources/jquery/jquery.tablesorter.js',
 		'styles' => 'resources/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
+		'dependencies' => 'jquery.mwExtension',
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
@@ -789,6 +791,7 @@ return array(
 			'mediawiki.api.watch',
 			'mediawiki.util',
 			'mediawiki.notify',
+			'jquery.mwExtension',
 		),
 		'messages' => array(
 			'watch',

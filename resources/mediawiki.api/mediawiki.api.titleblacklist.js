@@ -2,7 +2,7 @@
  * Additional mw.Api methods to assist with API calls to the API module of the TitleBlacklist extension.
  */
 
-( function( $, mw, undefined ) {
+( function ( mw, $ ) {
 
 	$.extend( mw.Api.prototype, {
 		/**
@@ -15,13 +15,13 @@
 		 * @param err {Function} optional callback to run if api error
 		 * @return {jqXHR}
 		 */
-		isBlacklisted: function( title, success, err ) {
+		isBlacklisted: function ( title, success, err ) {
 			var	params = {
 					action: 'titleblacklist',
 					tbaction: 'create',
 					tbtitle: title.toString()
 				},
-				ok = function( data ) {
+				ok = function ( data ) {
 					var result;
 
 					// this fails open (if nothing valid is returned by the api, allows the title)
@@ -48,4 +48,5 @@
 		}
 
 	} );
-} )( jQuery, mediaWiki );
+
+}( mediaWiki, jQuery ) );

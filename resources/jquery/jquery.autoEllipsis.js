@@ -3,10 +3,12 @@
  */
 ( function ( $ ) {
 
-// Cache ellipsed substrings for every string-width-position combination
-var cache = { };
-// Use a separate cache when match highlighting is enabled
-var matchTextCache = { };
+var
+	// Cache ellipsed substrings for every string-width-position combination
+	cache = { },
+
+	// Use a separate cache when match highlighting is enabled
+	matchTextCache = { };
 
 $.fn.autoEllipsis = function ( options ) {
 	options = $.extend( {
@@ -19,7 +21,7 @@ $.fn.autoEllipsis = function ( options ) {
 	$(this).each( function () {
 		var $container, $trimmableText,
 			text, trimmableText, w, pw,
-			l, r, i, side,
+			l, r, i, side, m,
 			$el = $(this);
 		if ( options.restoreText ) {
 			if ( !$el.data( 'autoEllipsis.originalText' ) ) {
@@ -90,7 +92,7 @@ $.fn.autoEllipsis = function ( options ) {
 					l = 0;
 					r = trimmableText.length;
 					do {
-						var m = Math.ceil( ( l + r ) / 2 );
+						m = Math.ceil( ( l + r ) / 2 );
 						$trimmableText.text( trimmableText.substr( 0, m ) + '...' );
 						if ( $trimmableText.width() + pw > w ) {
 							// Text is too long
