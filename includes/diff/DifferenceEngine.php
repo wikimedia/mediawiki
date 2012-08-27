@@ -917,7 +917,7 @@ class DifferenceEngine extends ContextSource {
 
 		if ( !$diff && !$otitle ) {
 			$header .= "
-			<tr valign='top'>
+			<tr style='vertical-align: top;'>
 			<td class='diff-ntitle'>{$ntitle}</td>
 			</tr>";
 			$multiColspan = 1;
@@ -935,7 +935,7 @@ class DifferenceEngine extends ContextSource {
 				$multiColspan = 2;
 			}
 			$header .= "
-			<tr valign='top'>
+			<tr style='vertical-align: top;'>
 			<td colspan='$colspan' class='diff-otitle'>{$otitle}</td>
 			<td colspan='$colspan' class='diff-ntitle'>{$ntitle}</td>
 			</tr>";

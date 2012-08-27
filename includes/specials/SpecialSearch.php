@@ -667,10 +667,10 @@ class SpecialSearch extends SpecialPage {
 					return "<li>" .
 						'<table class="searchResultImage">' .
 						'<tr>' .
-						'<td width="120" align="center" valign="top">' .
+						'<td width="120" align="center" style="vertical-align: top;">' .
 						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
-						'<td valign="top">' .
+						'<td style="vertical-align: top;">' .
 						$link .
 						$extract .
 						"<div class='mw-search-result-data'>{$score}{$desc} - {$date}{$related}</div>" .
