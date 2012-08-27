@@ -23,7 +23,7 @@
  */
 
 /** */
-require_once( dirname( __FILE__ ) . '/commandLine.inc' );
+require_once( __DIR__ . '/commandLine.inc' );
 
 $mcc = new MWMemcached( array( 'persistent' => true/*, 'debug' => true*/ ) );
 $mcc->set_servers( $wgMemCachedServers );

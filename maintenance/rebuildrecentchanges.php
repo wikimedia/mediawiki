@@ -23,7 +23,7 @@
  * @todo Document
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( __DIR__ . '/Maintenance.php' );
 
 /**
  * Maintenance script that rebuilds recent changes from scratch.

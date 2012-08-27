@@ -29,7 +29,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/cleanupTable.inc' );
+require_once( __DIR__ . '/cleanupTable.inc' );
 
 /**
  * Maintenance script to clean up broken, unparseable upload filenames.

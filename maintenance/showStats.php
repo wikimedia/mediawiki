@@ -28,7 +28,7 @@
  * @license GNU General Public License 2.0 or later
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( __DIR__ . '/Maintenance.php' );
 
 class ShowStats extends Maintenance {
 	public function __construct() {

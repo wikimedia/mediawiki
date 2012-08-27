@@ -2,7 +2,7 @@
 class JpegTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
+		$this->filePath = __DIR__ . '/../../data/media/';
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}

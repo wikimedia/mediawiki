@@ -6,11 +6,11 @@
  */
 
 // Evaluate the include path relative to this file
-$IP = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) );
+$IP = dirname( dirname( dirname( dirname( __DIR__ ) ) ) );
 
 // Start up MediaWiki in command-line mode
 require_once( "$IP/maintenance/Maintenance.php" );
-require(  dirname( __FILE__ ) . "/RandomImageGenerator.php" );
+require(  __DIR__ . "/RandomImageGenerator.php" );
 
 class GenerateRandomImages extends Maintenance {
 
