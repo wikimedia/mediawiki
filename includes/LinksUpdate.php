@@ -51,7 +51,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @param $recursive Boolean: queue jobs for recursive updates?
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
-		parent::__construct( );
+		parent::__construct( false ); // no implicit transaction
 
 		if ( !( $title instanceof Title ) ) {
 			throw new MWException( "The calling convention to LinksUpdate::LinksUpdate() has changed. " .
@@ -825,7 +825,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	 * @param $page WikiPage Page we are updating
 	 */
 	function __construct( WikiPage $page ) {
-		parent::__construct( );
+		parent::__construct( false ); // no implicit transaction
 
 		$this->mPage = $page;
 	}
