@@ -37,7 +37,7 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 		# PHPUnit uses stream_resolve_include_path() internally
 		# See bug 32022
 		set_include_path(
-			dirname( __FILE__ )
+			__DIR__
 			.PATH_SEPARATOR
 			. get_include_path()
 		);

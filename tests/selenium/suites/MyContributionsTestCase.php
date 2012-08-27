@@ -27,7 +27,7 @@
  *
  */
 
-require_once dirname( dirname( __FILE__ ) ) . '/SeleniumTestConstants.php';
+require_once dirname( __DIR__ ) . '/SeleniumTestConstants.php';
 
 class MyContributionsTestCase extends SeleniumTestCase {
 

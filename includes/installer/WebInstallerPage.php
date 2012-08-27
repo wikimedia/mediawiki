@@ -1269,7 +1269,7 @@ abstract class WebInstaller_Document extends WebInstallerPage {
 	}
 
 	public function getFileContents() {
-		$file = dirname( __FILE__ ) . '/../../' . $this->getFileName();
+		$file = __DIR__ . '/../../' . $this->getFileName();
 		if( ! file_exists( $file ) ) {
 			return wfMessage( 'config-nofile', $file )->plain();
 		}

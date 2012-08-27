@@ -11,7 +11,7 @@ if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
 You are running these tests directly from phpunit. You may not have all globals correctly set.
 Running phpunit.php instead is recommended.
 EOF;
-	require_once ( dirname( __FILE__ ) . "/phpunit.php" );
+	require_once ( __DIR__ . "/phpunit.php" );
 }
 
 // Output a notice when running with older versions of PHPUnit

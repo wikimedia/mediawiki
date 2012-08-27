@@ -5,7 +5,7 @@ class TiffTest extends MediaWikiTestCase {
 		global $wgShowEXIF;
 		$this->showExif = $wgShowEXIF;
 		$wgShowEXIF = true;
-		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
+		$this->filePath = __DIR__ . '/../../data/media/';
 		$this->handler = new TiffHandler;
 	}
 

@@ -24,8 +24,8 @@
  * @author Aaron Schulz
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
-require_once( dirname( __FILE__ ) . '/deleteArchivedRevisions.inc' );
+require_once( __DIR__ . '/Maintenance.php' );
+require_once( __DIR__ . '/deleteArchivedRevisions.inc' );
 
 /**
  * Maintenance script to delete archived (deleted from public) revisions
