@@ -1297,6 +1297,9 @@ class SwiftFileBackend extends FileBackendStore {
 		if ( $e->getMessage() ) {
 			trigger_error( "$func: " . $e->getMessage(), E_USER_WARNING );
 		}
+		if ( $e instanceof InvalidResponseException ) { // possibly a stale token
+			$this->srvCache->delete( $this->getCredsCacheKey( $this->auth->username ) );
+		}
 		wfDebugLog( 'SwiftBackend',
 			get_class( $e ) . " in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
 			( $e->getMessage() ? ": {$e->getMessage()}" : "" )
