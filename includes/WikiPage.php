@@ -2746,6 +2746,11 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		# Actually store the edit
 		$status = $this->doEditContent( $target->getContent(), $summary, $flags, $target->getId(), $guser );
+
+		if ( !$status->isOK() ) {
+			return $status->getErrorsArray();
+		}
+
 		if ( !empty( $status->value['revision'] ) ) {
 			$revId = $status->value['revision']->getId();
 		} else {
