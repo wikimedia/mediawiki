@@ -118,7 +118,7 @@ class Uri {
 		} elseif ( $uri instanceof Uri ) {
 			$this->setComponents( $uri->getComponents() );
 		} else {
-			throw new MWException( __METHOD__ . ': $uri is not of a valid type.' );
+			throw new MWException( __METHOD__ . ": $uri is not of a valid type." );
 		}
 	}
 
