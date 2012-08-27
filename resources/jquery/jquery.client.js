@@ -32,7 +32,7 @@
 		 *  }
 		 */
 		profile: function ( nav ) {
-			/*jshint boss:true */
+			/*jshint boss: true */
 
 			if ( nav === undefined ) {
 				nav = window.navigator;

@@ -26,5 +26,5 @@
 	"jquery": true,
 
 	"nomen": true,
-	"onevar": false
+	"onevar": true
 }

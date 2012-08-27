@@ -33,7 +33,8 @@
 		// If there is no console, use our own log box
 		mw.loader.using( 'jquery.footHovzer', function () {
 
-			var	d = new Date(),
+			var	hovzer,
+				d = new Date(),
 				// Create HH:MM:SS.MIL timestamp
 				time = ( d.getHours() < 10 ? '0' + d.getHours() : d.getHours() ) +
 				 ':' + ( d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes() ) +
@@ -48,7 +49,7 @@
 						backgroundColor: 'white',
 						borderTop: 'solid 2px #ADADAD'
 					} );
-				var hovzer = $.getFootHovzer();
+				hovzer = $.getFootHovzer();
 				hovzer.$.append( $log );
 				hovzer.update();
 			}
