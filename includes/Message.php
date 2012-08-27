@@ -292,6 +292,7 @@ class Message {
 	/**
 	 * Add parameters that are numeric and will be passed through
 	 * Language::formatNum before substitution
+	 * @since 1.18
 	 * @param Varargs: numeric parameters (or single argument that is array of numeric parameters)
 	 * @return Message: $this
 	 */
