@@ -170,7 +170,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 				call_user_func( $function, $list, $element );
 				$valid = true;
 			}
-			catch ( Exception $exception ) {
+			catch ( InvalidArgumentException $exception ) {
 				$valid = false;
 			}
 
