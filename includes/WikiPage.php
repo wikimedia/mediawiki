@@ -92,6 +92,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * Create a WikiPage object of the appropriate class for the given title.
 	 *
 	 * @param $title Title
+	 * @throws MWException
 	 * @return WikiPage object of the appropriate type
 	 */
 	public static function factory( Title $title ) {
@@ -711,7 +712,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * Determine whether a page would be suitable for being counted as an
 	 * article in the site_stats table based on the title & its content
 	 *
-	 * @param $editInfo Object or false: object returned by prepareTextForEdit(),
+	 * @param $editInfo Object|bool (false): object returned by prepareTextForEdit(),
 	 *        if false, the current database state will be used
 	 * @return Boolean
 	 */
@@ -1326,7 +1327,8 @@ class WikiPage extends Page implements IDBAccessObject {
 
 			if ( $section == 'new' ) {
 				# Inserting a new section
-				$subject = $sectionTitle ? wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n" : '';
+				$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
+					->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
 				if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
 					$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"
@@ -1389,9 +1391,10 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param $baseRevId int the revision ID this edit was based off, if any
+	 * @param bool|int $baseRevId int the revision ID this edit was based off, if any
 	 * @param $user User the user doing the edit
 	 *
+	 * @throws MWException
 	 * @return Status object. Possible errors:
 	 *     edit-hook-aborted:       The ArticleSave hook aborted the edit but didn't set the fatal flag of $status
 	 *     edit-gone-missing:       In update mode, but the article didn't exist
@@ -1930,12 +1933,15 @@ class WikiPage extends Page implements IDBAccessObject {
 			if ( $restrictions != '' ) {
 				$protectDescription .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
 				if ( $encodedExpiry[$action] != 'infinity' ) {
-					$protectDescription .= wfMsgForContent( 'protect-expiring',
+					$protectDescription .= wfMessage(
+						'protect-expiring',
 						$wgContLang->timeanddate( $expiry[$action], false, false ) ,
 						$wgContLang->date( $expiry[$action], false, false ) ,
-						$wgContLang->time( $expiry[$action], false, false ) );
+						$wgContLang->time( $expiry[$action], false, false )
+					)->inContentLanguage()->text();
 				} else {
-					$protectDescription .= wfMsgForContent( 'protect-expiry-indefinite' );
+					$protectDescription .= wfMessage( 'protect-expiry-indefinite' )
+						->inContentLanguage()->text();
 				}
 
 				$protectDescription .= ') ';
@@ -1976,7 +1982,12 @@ class WikiPage extends Page implements IDBAccessObject {
 			}
 
 			# Prepare a null revision to be added to the history
-			$editComment = $wgContLang->ucfirst( wfMsgForContent( $revCommentMsg, $this->mTitle->getPrefixedText() ) );
+			$editComment = $wgContLang->ucfirst(
+				wfMessage(
+					$revCommentMsg,
+					$this->mTitle->getPrefixedText()
+				)->inContentLanguage()->text()
+			);
 			if ( $reason ) {
 				$editComment .= ": $reason";
 			}
@@ -1984,7 +1995,9 @@ class WikiPage extends Page implements IDBAccessObject {
 				$editComment .= " ($protectDescription)";
 			}
 			if ( $cascade ) {
-				$editComment .= ' [' . wfMsgForContent( 'protect-summary-cascade' ) . ']';
+				// FIXME: Should use 'brackets' message.
+				$editComment .= ' [' . wfMessage( 'protect-summary-cascade' )
+					->inContentLanguage()->text() . ']';
 			}
 
 			# Insert a null revision
@@ -2051,6 +2064,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * Take an array of page restrictions and flatten it to a string
 	 * suitable for insertion into the page_restrictions field.
 	 * @param $limit Array
+	 * @throws MWException
 	 * @return String
 	 */
 	protected static function flattenRestrictions( $limit ) {
@@ -2392,9 +2406,9 @@ class WikiPage extends Page implements IDBAccessObject {
 		$target = Revision::newFromId( $s->rev_id );
 		if ( empty( $summary ) ) {
 			if ( $from == '' ) { // no public user name
-				$summary = wfMsgForContent( 'revertpage-nouser' );
+				$summary = wfMessage( 'revertpage-nouser' )->inContentLanguage()->text();
 			} else {
-				$summary = wfMsgForContent( 'revertpage' );
+				$summary = wfMessage( 'revertpage' )->inContentLanguage()->text();
 			}
 		}
 
@@ -2585,10 +2599,11 @@ class WikiPage extends Page implements IDBAccessObject {
 			$truncatedtext = $wgContLang->truncate(
 				str_replace( "\n", ' ', $newtext ),
 				max( 0, 255
-					- strlen( wfMsgForContent( 'autoredircomment' ) )
+					- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
 					- strlen( $rt->getFullText() )
 				) );
-			return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
+			return wfMessage( 'autoredircomment', $rt->getFullText() )
+				->rawParams( $truncatedtext )->inContentLanguage()->text();
 		}
 
 		# New page autosummaries
@@ -2597,22 +2612,24 @@ class WikiPage extends Page implements IDBAccessObject {
 
 			$truncatedtext = $wgContLang->truncate(
 				str_replace( "\n", ' ', $newtext ),
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-new' ) ) ) );
+				max( 0, 200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) ) );
 
-			return wfMsgForContent( 'autosumm-new', $truncatedtext );
+			return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
+				->inContentLanguage()->text();
 		}
 
 		# Blanking autosummaries
 		if ( $oldtext != '' && $newtext == '' ) {
-			return wfMsgForContent( 'autosumm-blank' );
+			return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
 		} elseif ( strlen( $oldtext ) > 10 * strlen( $newtext ) && strlen( $newtext ) < 500 ) {
 			# Removing more than 90% of the article
 
 			$truncatedtext = $wgContLang->truncate(
 				$newtext,
-				max( 0, 200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) ) );
+				max( 0, 200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) ) );
 
-			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
+			return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
+				->inContentLanguage()->text();
 		}
 
 		# If we reach this point, there's no applicable autosummary for our case, so our
@@ -2687,12 +2704,16 @@ class WikiPage extends Page implements IDBAccessObject {
 		if ( $blank ) {
 			// The current revision is blank and the one before is also
 			// blank. It's just not our lucky day
-			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
+			$reason = wfMessage( 'exbeforeblank', '$1' )->inContentLanguage()->text();
 		} else {
 			if ( $onlyAuthor ) {
-				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+				$reason = wfMessage(
+					'excontentauthor',
+					'$1',
+					$onlyAuthor
+				)->inContentLanguage()->text();
 			} else {
-				$reason = wfMsgForContent( 'excontent', '$1' );
+				$reason = wfMessage( 'excontent', '$1' )->inContentLanguage()->text();
 			}
 		}
 
@@ -2946,6 +2967,7 @@ class WikiPage extends Page implements IDBAccessObject {
 
 	/**
 	 * @deprecated since 1.18
+	 * @param $oldid int
 	 * @return bool
 	 */
 	public function useParserCache( $oldid ) {
