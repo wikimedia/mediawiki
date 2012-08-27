@@ -39,7 +39,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	function providerSvgFiles() {
-		$base = dirname( __FILE__ ) . '/../../data/media';
+		$base = __DIR__ . '/../../data/media';
 		return array(
 			array(
 				"$base/Wikimedia-logo.svg",
@@ -82,7 +82,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	function providerSvgFilesWithXMLMetadata() {
-		$base = dirname( __FILE__ ) . '/../../data/media';
+		$base = __DIR__ . '/../../data/media';
 		$metadata = 
     '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <ns4:Work xmlns:ns4="http://creativecommons.org/ns#" rdf:about="">

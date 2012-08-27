@@ -22,7 +22,7 @@
  * @author  Platonides
  */
 
-require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
+require_once( __DIR__ . '/Benchmarker.php' );
 class bench_wfIsWindows extends Benchmarker {
 
 	public function __construct() {

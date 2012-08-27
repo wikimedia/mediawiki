@@ -108,7 +108,7 @@ class WebInstallerOutput {
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
-		$skinDir = dirname( dirname( dirname( __FILE__ ) ) ) . '/skins';
+		$skinDir = dirname( dirname( __DIR__ ) ) . '/skins';
 
 		// All these files will be concatenated in sequence and loaded
 		// as one file.

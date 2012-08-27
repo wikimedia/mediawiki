@@ -23,7 +23,7 @@
  */
 
 /** */
-require_once( dirname( __FILE__ ) . '/commandLine.inc' );
+require_once( __DIR__ . '/commandLine.inc' );
 
 function cdbShowHelp( $command ) {
 	$commandList = array(

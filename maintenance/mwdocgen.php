@@ -49,7 +49,7 @@ if ( php_sapi_name() != 'cli' ) {
 }
 
 /** Figure out the base directory for MediaWiki location */
-$mwPath = dirname( dirname( __FILE__ ) ) . DIRECTORY_SEPARATOR;
+$mwPath = dirname( __DIR__ ) . DIRECTORY_SEPARATOR;
 
 /** doxygen binary script */
 $doxygenBin = 'doxygen';

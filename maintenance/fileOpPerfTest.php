@@ -25,7 +25,7 @@ $initialTime = microtime( true );
 $wgProfiler = array( 'class' => 'ProfilerSimpleText' );
 error_reporting( E_ALL );
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( __DIR__ . '/Maintenance.php' );
 
 /**
  * Maintenance script to test fileop performance.

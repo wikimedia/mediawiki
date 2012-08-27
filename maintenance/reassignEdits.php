@@ -23,7 +23,7 @@
  * @licence GNU General Public Licence 2.0 or later
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( __DIR__ . '/Maintenance.php' );
 
 /**
  * Maintenance script that reassigns edits from a user or IP address
