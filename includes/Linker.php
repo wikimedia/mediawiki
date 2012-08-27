@@ -1863,7 +1863,6 @@ class Linker {
 	 * @return String: HTML output
 	 */
 	public static function formatHiddenCategories( $hiddencats ) {
-		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		$outText = '';
