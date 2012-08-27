@@ -692,7 +692,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'userlogin' => 'Entra / registrati',
 'userloginnocreate' => 'Entra',
 'logout' => 'Esci',
-'userlogout' => 'Esci',
+'userlogout' => 'esci',
 'notloggedin' => 'Accesso non effettuato',
 'nologin' => "Non hai ancora un accesso? '''$1'''.",
 'nologinlink' => 'Registrati',

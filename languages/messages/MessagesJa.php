@@ -815,6 +815,7 @@ Cookieを無効にしているようです。
 Cookieを有効にしてから、もう一度試してください。',
 'nocookiesfornew' => '発信元を確認できなかったため、アカウントは作成されませんでした。
 Cookieを有効にしていることを確認して、このページを再読込してもう一度試してください。',
+'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'noname' => '利用者名を正しく指定していません。',
 'loginsuccesstitle' => 'ログイン成功',
 'loginsuccess' => "'''{{SITENAME}}に「$1」としてログインしました。'''",
@@ -1229,8 +1230,8 @@ $3が示した理由：''$2''",
 
 # Revision deletion
 'rev-deleted-comment' => '(要約は除去されています)',
-'rev-deleted-user' => '（利用者名は除去されています）',
-'rev-deleted-event' => '（記録は除去されています）',
+'rev-deleted-user' => '(利用者名は除去されています)',
+'rev-deleted-event' => '(記録は除去されています)',
 'rev-deleted-user-contribs' => '[利用者名またはIPアドレスは除去されました - その編集は投稿記録で非表示にされています]',
 'rev-deleted-text-permission' => "この版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
@@ -2268,6 +2269,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 # Book sources
 'booksources' => '書籍情報源',
 'booksources-search-legend' => '書籍情報源を検索',
+'booksources-isbn' => 'ISBN:',
 'booksources-go' => '検索',
 'booksources-text' => 'お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:',
 'booksources-invalid-isbn' => '指定したISBN番号は有効ではないようです。情報源から写し間違えていないか確認してください。',
@@ -2361,6 +2363,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'listgrouprights-rights' => '権限',
 'listgrouprights-helppage' => 'Help:グループ権限',
 'listgrouprights-members' => '（該当者一覧）',
+'listgrouprights-right-display' => '<span class="listgrouprights-granted">$1 (<code>$2</code>)</span>',
 'listgrouprights-right-revoked' => '<span class="listgrouprights-revoked">$1 (<code>$2</code>)</span>',
 'listgrouprights-addgroup' => '{{PLURAL:$2|グループ}}を追加：$1',
 'listgrouprights-removegroup' => '{{PLURAL:$2|グループ}}を除去：$1',
@@ -2842,6 +2845,7 @@ $1のブロックの理由は「''$2''」です。",
 'proxyblockreason' => 'ご使用中のIPアドレスは公開プロキシであるため投稿ブロックされています。
 使用中のインターネットサービスプロバイダー、または所属組織の技術担当者に連絡して、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess' => '完了。',
+'sorbs' => 'DNSBL',
 'sorbsreason' => 'ご使用中のIPアドレスが、{{SITENAME}}の使用しているDNSBLに公開プロキシとして記載されています。',
 'sorbs_create_account_reason' => 'ご使用中のIPアドレスが、{{SITENAME}}の使用しているDNSBLに公開プロキシとして記載されています。
 アカウント作成はできません',

@@ -2569,10 +2569,10 @@ Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newuse
 'listgrouprights-helppage' => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
 'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
 'listgrouprights-right-display' => "{{optional}}
-* $1 is the text from the 'right-...' messages, i.e. [[MediaWiki:right-edit]] = {{int:right-edit}}
+* $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
 * $2 is the codename of this right",
 'listgrouprights-right-revoked' => "{{optional}}
-* $1 is the text from the 'right-...' messages, i.e. [[MediaWiki:right-edit]] = {{int:right-edit}}
+* $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
 * $2 is the codename of this right",
 'listgrouprights-addgroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 is an enumeration of group names.

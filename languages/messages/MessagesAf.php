@@ -526,12 +526,12 @@ Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 # General errors
 'error' => 'Fout',
 'databaseerror' => 'Databasisfout',
-'dberrortext' => 'Sintaksisfout in databasisnavraag.
+'dberrortext' => 'Daar was \'n sintaksisfout in die databasisnavraag.
 Dit kan moontlik dui op \'n fout in die sagteware.
 Die laaste navraag was:
-<blockquote><tt>$1</tt></blockquote>
-vanuit funksie "<tt>$2</tt>".
-Databasis gee foutboodskap "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+vanuit funksie "<code>$2</code>".
+Databasis gee foutboodskap "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 "$1"
@@ -880,7 +880,6 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 * '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op 'n Mac)
 * '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''⌘-Shift-R'' op 'n Mac)
 * '''Internet Explorer:''' hou ''Ctrl'' en kliek ''Refresh'', of druk ''Ctrl-F5''
-* '''Konqueror:''' kliek ''Reload'' of druk ''F5''
 * '''Opera:''' maak die kas skoon by ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe CSS te toets voor u dit stoor.",
 'userjsyoucanpreview' => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe JS te toets voor u dit stoor.",
@@ -2976,11 +2975,11 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 
 # Info page
 'pageinfo-title' => 'Inligting oor "$1"',
-'pageinfo-header-edits' => 'Wysigings',
+'pageinfo-header-edits' => 'Wysigingsgeskiedenis',
 'pageinfo-views' => 'Aantal kere gewys',
 'pageinfo-watchers' => 'Aantal dophouers',
-'pageinfo-edits' => 'Aantal wysigings',
-'pageinfo-authors' => 'Aantal verskillende outeurs',
+'pageinfo-edits' => 'Totale aantal wysigings',
+'pageinfo-authors' => 'Totale aantal verskillende outeurs',
 
 # Skin names
 'skinname-standard' => 'Standaard',

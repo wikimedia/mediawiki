@@ -2206,14 +2206,14 @@ $1',
 'changed' => '更改',
 'created' => '创建',
 'enotif_subject' => '{{SITENAME}}页面“$PAGETITLE”已被$PAGEEDITOR$CHANGEDORCREATED',
-'enotif_lastvisited' => '请浏览$1查看你上次访问后的所有更改。',
-'enotif_lastdiff' => '请浏览$1查看该更改。',
+'enotif_lastvisited' => '请浏览 $1 查看你上次访问后的所有更改。',
+'enotif_lastdiff' => '请浏览 $1 查看该更改。',
 'enotif_anon_editor' => '匿名用户$1',
 'enotif_body' => '亲爱的$WATCHINGUSERNAME：
 
 你好！
 
-{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR$CHANGEDORCREATED，请浏览$PAGETITLE_URL查看当前版本。
+{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR $CHANGEDORCREATED，请浏览 $PAGETITLE_URL 查看当前版本。
 $NEWPAGE
 编辑摘要：$PAGESUMMARY $PAGEMINOREDIT
 

@@ -1510,7 +1510,7 @@ Tafadhali chagua jina lingine.',
 [[$1|thumb]]
 Tafadhali tazama faili la <strong>[[:$1]]</strong>.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
-'file-thumbnail-no' => "Jina la faili linaloanza na <strong>$1</strong>.
+'file-thumbnail-no' => "Jina la faili linaanza na <strong>$1</strong>.
 Inaonekana kuwa ni picha iliyopunguzwa ukubwa''(thumbnail)''.
 Ikiwa unaoyo picha hii kwa ukubwa wa kawaida tafadhali pakia picha hii, vinginevyo tafadhali badilisha jina la faili.",
 'fileexists-forbidden' => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.

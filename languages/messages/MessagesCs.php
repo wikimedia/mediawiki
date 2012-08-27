@@ -2922,6 +2922,7 @@ Pokud si přejete přispívat k lokalizaci softwaru MediaWiki, navštivte [//www
 'import-interwiki-templates' => 'Zahrnout všechny šablony',
 'import-interwiki-submit' => 'Importovat',
 'import-interwiki-namespace' => 'Cílový jmenný prostor:',
+'import-interwiki-rootpage' => 'Cílová kořenová stránka (nepovinné):',
 'import-upload-filename' => 'Jméno souboru:',
 'import-comment' => 'Zdůvodnění:',
 'importtext' => 'Prosím exportujte soubor ze zdrojové wiki pomocí [[Special:Export|exportního nástroje]].
@@ -2954,6 +2955,8 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'import-error-interwiki' => 'Stránka „$1“ se neimportuje, protože její název je vyhrazen pro externí odkazy (interwiki).',
 'import-error-special' => 'Stránka „$1“ se neimportuje, protože patří do speciálního jmenného prostoru, do kterého stránky nepatří.',
 'import-error-invalid' => 'Stránka „$1“ se neimportuje, protože její název je neplatný.',
+'import-options-wrong' => '{{PLURAL:$2|Chybná volba|Chybné volby}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Zadaný název kořenové stránky je neplatný.',
 'import-rootpage-nosubpage' => 'Ve jmenném prostoru „$1“ kořenové stránky nejsou dovoleny podstránky.',
 
 # Import log
