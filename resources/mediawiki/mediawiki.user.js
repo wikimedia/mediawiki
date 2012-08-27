@@ -8,11 +8,12 @@
 	 * User object
 	 */
 	function User( options, tokens ) {
+		var user, callbacks;
 
 		/* Private Members */
 
-		var that = this;
-		var callbacks = {};
+		user = this;
+		callbacks = {};
 
 		/**
 		 * Gets the current user's groups or rights.
@@ -61,9 +62,10 @@
 		 * @return String: Random set of 32 alpha-numeric characters
 		 */
 		function generateId() {
-			var id = '';
-			var seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-			for ( var i = 0, r; i < 32; i++ ) {
+			var i, r,
+				id = '',
+				seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+			for ( i = 0; i < 32; i++ ) {
 				r = Math.floor( Math.random() * seed.length );
 				id += seed.substring( r, r + 1 );
 			}
@@ -92,14 +94,14 @@
 		 * @return Boolean
 		 */
 		this.isAnon = function () {
-			return that.getName() === null;
+			return user.getName() === null;
 		};
 
 		/**
 		 * @deprecated since 1.20 use mw.user.isAnon() instead
 		 */
 		this.anonymous = function () {
-			return that.isAnon();
+			return user.isAnon();
 		};
 
 		/**
@@ -129,11 +131,12 @@
 		 * @return String: User name or random session ID
 		 */
 		this.id = function() {
-			var name = that.getName();
+			var id,
+				name = user.getName();
 			if ( name ) {
 				return name;
 			}
-			var id = $.cookie( 'mediaWiki.user.id' );
+			id = $.cookie( 'mediaWiki.user.id' );
 			if ( typeof id === 'undefined' || id === null ) {
 				id = generateId();
 			}
@@ -169,37 +172,40 @@
 		 *     } );
 		 */
 		this.bucket = function ( key, options ) {
+			var cookie, parts, version, bucket,
+				range, k, rand, total;
+
 			options = $.extend( {
-				'buckets': {},
-				'version': 0,
-				'tracked': false,
-				'expires': 30
+				buckets: {},
+				version: 0,
+				tracked: false,
+				expires: 30
 			}, options || {} );
-			var cookie = $.cookie( 'mediaWiki.user.bucket:' + key );
-			var bucket = null;
-			var version = 0;
+
+			cookie = $.cookie( 'mediaWiki.user.bucket:' + key );
+
 			// Bucket information is stored as 2 integers, together as version:bucket like: "1:2"
 			if ( typeof cookie === 'string' && cookie.length > 2 && cookie.indexOf( ':' ) > 0 ) {
-				var parts = cookie.split( ':' );
+				parts = cookie.split( ':' );
 				if ( parts.length > 1 && Number( parts[0] ) === options.version ) {
 					version = Number( parts[0] );
 					bucket = String( parts[1] );
 				}
 			}
-			if ( bucket === null ) {
+			if ( bucket === undefined ) {
 				if ( !$.isPlainObject( options.buckets ) ) {
 					throw 'Invalid buckets error. Object expected for options.buckets.';
 				}
 				version = Number( options.version );
 				// Find range
-				var	range = 0, k;
+				range = 0;
 				for ( k in options.buckets ) {
 					range += options.buckets[k];
 				}
 				// Select random value within range
-				var rand = Math.random() * range;
+				rand = Math.random() * range;
 				// Determine which bucket the value landed in
-				var total = 0;
+				total = 0;
 				for ( k in options.buckets ) {
 					bucket = k;
 					total += options.buckets[k];

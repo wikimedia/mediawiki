@@ -16,8 +16,7 @@
  *
  * This program is distributed WITHOUT ANY WARRANTY.
  */
-
-(function( $ ) {
+( function ( $ ) {
 	$.fn.badge = function( badge, options ) {
 		var existingBadge = this.find( '.mw-badge' );
 		options = $.extend( {}, options );
@@ -75,4 +74,4 @@
 			}
 		}
 	};
-} ) ( jQuery );
+}( jQuery ) );

@@ -1,7 +1,7 @@
 /**
  * mw.Api objects represent the API of a particular MediaWiki server.
  */
-( function( $, mw, undefined ) {
+( function ( mw, $ ) {
 
 	/**
 	 * @var defaultOptions {Object}
@@ -47,7 +47,7 @@
 	 * @param options {Object} See defaultOptions documentation above. Ajax options can also be
 	 * overridden for each individual request to jQuery.ajax() later on.
 	 */
-	mw.Api = function( options ) {
+	mw.Api = function ( options ) {
 
 		if ( options === undefined ) {
 			options = {};
@@ -91,7 +91,7 @@
 		 * @param {Object|Function} [optional] ajax options
 		 * @return {jQuery.Promise}
 		 */
-		get: function( parameters, ajaxOptions ) {
+		get: function ( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
 			ajaxOptions.type = 'GET';
 			return this.ajax( parameters, ajaxOptions );
@@ -105,7 +105,7 @@
 		 * @param {Object|Function} [optional] ajax options
 		 * @return {jQuery.Promise}
 		 */
-		post: function( parameters, ajaxOptions ) {
+		post: function ( parameters, ajaxOptions ) {
 			ajaxOptions = this.normalizeAjaxOptions( ajaxOptions );
 			ajaxOptions.type = 'POST';
 			return this.ajax( parameters, ajaxOptions );
@@ -120,7 +120,7 @@
 		 * - done: API response data as first argument
 		 * - fail: errorcode as first arg, details (string or object) as second arg.
 		 */
-		ajax: function( parameters, ajaxOptions ) {
+		ajax: function ( parameters, ajaxOptions ) {
 			var token,
 				apiDeferred = $.Deferred();
 
@@ -246,4 +246,4 @@
 		'exists'
 	];
 
-})( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );

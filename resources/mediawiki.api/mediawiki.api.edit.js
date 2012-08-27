@@ -1,8 +1,7 @@
 /**
  * Additional mw.Api methods to assist with API calls related to editing wiki pages.
  */
-
-( function( $, mw, undefined ) {
+( function ( mw, $ ) {
 
 	// Cache token so we don't have to keep fetching new ones for every single request.
 	var cachedToken = null;
@@ -19,13 +18,14 @@
 		 * @param err {Function} [optional] error callback
 		 * @return {jqXHR}
 		 */
-		postWithEditToken: function( params, ok, err ) {
-			var api = this, useTokenToPost, getTokenIfBad;
+		postWithEditToken: function ( params, ok, err ) {
+			var useTokenToPost, getTokenIfBad,
+				api = this;
 			if ( cachedToken === null ) {
 				// We don't have a valid cached token, so get a fresh one and try posting.
 				// We do not trap any 'badtoken' or 'notoken' errors, because we don't want
 				// an infinite loop. If this fresh token is bad, something else is very wrong.
-				useTokenToPost = function( token ) {
+				useTokenToPost = function ( token ) {
 					params.token = token;
 					api.post( params, ok, err );
 				};
@@ -34,9 +34,10 @@
 				// We do have a token, but it might be expired. So if it is 'bad' then
 				// start over with a new token.
 				params.token = cachedToken;
-				getTokenIfBad = function( code, result ) {
+				getTokenIfBad = function ( code, result ) {
 					if ( code === 'badtoken' ) {
-						cachedToken = null; // force a new token
+						// force a new token, clear any old one
+						cachedToken = null;
 						api.postWithEditToken( params, ok, err );
 					} else {
 						err( code, result );
@@ -58,12 +59,12 @@
 		 * @param err {Function} error callback
 		 * @return {jqXHR}
 		 */
-		getEditToken: function( tokenCallback, err ) {
+		getEditToken: function ( tokenCallback, err ) {
 			var parameters = {
 					action: 'tokens',
 					type: 'edit'
 				},
-				ok = function( data ) {
+				ok = function ( data ) {
 					var token;
 					// If token type is not available for this user,
 					// key 'edittoken' is missing or can contain Boolean false
@@ -96,7 +97,7 @@
 		 * @param err {Function} error handler
 		 * @return {jqXHR}
 		 */
-		newSection: function( title, header, message, ok, err ) {
+		newSection: function ( title, header, message, ok, err ) {
 			var params = {
 				action: 'edit',
 				section: 'new',
@@ -110,4 +111,4 @@
 
 	 } );
 
-} )( jQuery, mediaWiki );
+}( mediaWiki, jQuery ) );

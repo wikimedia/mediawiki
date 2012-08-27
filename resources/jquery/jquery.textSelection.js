@@ -10,10 +10,11 @@
 		$.fn.extend({
 			focus: ( function ( jqFocus ) {
 				return function () {
+					var $w , state, result;
 					if ( arguments.length === 0 ) {
-						var $w = $( window );
-						var state = {top: $w.scrollTop(), left: $w.scrollLeft()};
-						var result = jqFocus.apply( this, arguments );
+						$w = $( window );
+						state = {top: $w.scrollTop(), left: $w.scrollLeft()};
+						result = jqFocus.apply( this, arguments );
 						window.scrollTo( state.top, state.left );
 						return result;
 					}
@@ -63,17 +64,20 @@
 			 * in some browsers (IE/Opera)
 			 */
 			getSelection: function () {
-				var e = this.get( 0 );
-				var retval = '';
-				if ( $(e).is( ':hidden' ) ) {
+				var retval, range,
+					el = this.get( 0 );
+
+				if ( $(el).is( ':hidden' ) ) {
 					// Do nothing
+					retval = '';
 				} else if ( document.selection && document.selection.createRange ) {
-					activateElementOnIE( e );
-					var range = document.selection.createRange();
+					activateElementOnIE( el );
+					range = document.selection.createRange();
 					retval = range.text;
-				} else if ( e.selectionStart || e.selectionStart === 0 ) {
-					retval = e.value.substring( e.selectionStart, e.selectionEnd );
+				} else if ( el.selectionStart || el.selectionStart === 0 ) {
+					retval = el.value.substring( el.selectionStart, el.selectionEnd );
 				}
+
 				return retval;
 			},
 			/**
@@ -88,6 +92,7 @@
 			encapsulateSelection: function ( options ) {
 				return this.each( function () {
 					var selText, scrollTop, insertText,
+						isSample, range, range2, range3, startPos, endPos,
 						pre = options.pre,
 						post = options.post;
 
@@ -120,9 +125,10 @@
 					 * Wrap each line of the selected text with pre and post
 					 */
 					function doSplitLines( selText, pre, post ) {
-						var insertText = '';
-						var selTextArr = selText.split( '\n' );
-						for ( var i = 0; i < selTextArr.length; i++ ) {
+						var i,
+							insertText = '',
+							selTextArr = selText.split( '\n' );
+						for ( i = 0; i < selTextArr.length; i++ ) {
 							insertText += pre + selTextArr[i] + post;
 							if ( i !== selTextArr.length - 1 ) {
 								insertText += '\n';
@@ -131,7 +137,7 @@
 						return insertText;
 					}
 
-					var isSample = false;
+					isSample = false;
 					if ( this.style.display === 'none' ) {
 						// Do nothing
 					} else if ( document.selection && document.selection.createRange ) {
@@ -150,7 +156,7 @@
 
 						selText = $(this).textSelection( 'getSelection' );
 						scrollTop = this.scrollTop;
-						var range = document.selection.createRange();
+						range = document.selection.createRange();
 
 						checkSelectedText();
 						insertText = pre + selText + post;
@@ -158,7 +164,7 @@
 							insertText = doSplitLines( selText, pre, post );
 						}
 						if ( options.ownline && range.moveStart ) {
-							var range2 = document.selection.createRange();
+							range2 = document.selection.createRange();
 							range2.collapse();
 							range2.moveStart( 'character', -1 );
 							// FIXME: Which check is correct?
@@ -166,7 +172,7 @@
 								insertText = "\n" + insertText;
 								pre += "\n";
 							}
-							var range3 = document.selection.createRange();
+							range3 = document.selection.createRange();
 							range3.collapse( false );
 							range3.moveEnd( 'character', 1 );
 							if ( range3.text !== "\r" && range3.text !== "\n" && range3.text !== "" ) {
@@ -192,8 +198,8 @@
 						}
 
 						selText = $(this).textSelection( 'getSelection' );
-						var startPos = this.selectionStart;
-						var endPos = this.selectionEnd;
+						startPos = this.selectionStart;
+						endPos = this.selectionEnd;
 						scrollTop = this.scrollTop;
 						checkSelectedText();
 						if ( options.selectionStart !== undefined
@@ -263,26 +269,34 @@
 						// whatever we do later (bug 31847).
 						activateElementOnIE( e );
 
-						// IE Support
-						var preFinished = false;
-						var periFinished = false;
-						var postFinished = false;
-						var preText, rawPreText, periText;
-						var rawPeriText, postText, rawPostText;
-						// Create range containing text in the selection
-						var periRange = document.selection.createRange().duplicate();
-						// Create range containing text before the selection
-						var preRange = rangeForElementIE( e );
+						var
+							preText, rawPreText, periText,
+							rawPeriText, postText, rawPostText,
+
+							// IE Support
+							preFinished = false,
+							periFinished = false,
+							postFinished = false,
+							// Range containing text in the selection
+							periRange = document.selection.createRange().duplicate(),
+							// Range containing text before the selection
+							preRange,
+							// Range containing text after the selection
+							postRange;
+
+						preRange = rangeForElementIE( e ),
 						// Move the end where we need it
 						preRange.setEndPoint( 'EndToStart', periRange );
-						// Create range containing text after the selection
-						var postRange = rangeForElementIE( e );
+
+						postRange = rangeForElementIE( e );
 						// Move the start where we need it
 						postRange.setEndPoint( 'StartToEnd', periRange );
+
 						// Load the text values we need to compare
 						preText = rawPreText = preRange.text;
 						periText = rawPeriText = periRange.text;
 						postText = rawPostText = postRange.text;
+
 						/*
 						 * Check each range for trimmed newlines by shrinking the range by 1
 						 * character and seeing if the text property has changed. If it has
@@ -342,6 +356,7 @@
 			 */
 			setSelection: function ( options ) {
 				return this.each( function () {
+					var selection, length, newLines;
 					if ( $(this).is( ':hidden' ) ) {
 						// Do nothing
 					} else if ( this.selectionStart || this.selectionStart === 0 ) {
@@ -356,10 +371,10 @@
 							this.selectionEnd = options.end;
 						}
 					} else if ( document.body.createTextRange ) {
-						var selection = rangeForElementIE( this );
-						var length = this.value.length;
+						selection = rangeForElementIE( this );
+						length = this.value.length;
 						// IE doesn't count \n when computing the offset, so we won't either
-						var newLines = this.value.match( /\n/g );
+						newLines = this.value.match( /\n/g );
 						if ( newLines ) {
 							length = length - newLines.length;
 						}
@@ -370,7 +385,7 @@
 						// Silence that error
 						try {
 							selection.select();
-						} catch( e ) { }
+						} catch ( e ) { }
 					}
 				});
 			},
@@ -434,11 +449,12 @@
 					return ( $.client.profile().platform === 'mac' ? 13 : ( $.client.profile().platform === 'linux' ? 15 : 16 ) ) * row;
 				}
 				return this.each(function () {
+					var scroll, range, savedRange, pos, oldScrollTop;
 					if ( $(this).is( ':hidden' ) ) {
 						// Do nothing
 					} else if ( this.selectionStart || this.selectionStart === 0 ) {
 						// Mozilla
-						var scroll = getCaretScrollPosition( this );
+						scroll = getCaretScrollPosition( this );
 						if ( options.force || scroll < $(this).scrollTop() ||
 								scroll > $(this).scrollTop() + $(this).height() ) {
 							$(this).scrollTop( scroll );
@@ -453,10 +469,10 @@
 						 * cover that case, we'll force it to act by moving one
 						 * character back and forth.
 						 */
-						var range = document.body.createTextRange();
-						var savedRange = document.selection.createRange();
-						var pos = $(this).textSelection( 'getCaretPosition' );
-						var oldScrollTop = this.scrollTop;
+						range = document.body.createTextRange();
+						savedRange = document.selection.createRange();
+						pos = $(this).textSelection( 'getCaretPosition' );
+						oldScrollTop = this.scrollTop;
 						range.moveToElementText( this );
 						range.collapse();
 						range.move( 'character', pos + 1);
