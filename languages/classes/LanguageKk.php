@@ -62,7 +62,7 @@ class KkConverter extends LanguageConverter {
 	}
 
 	function loadDefaultTables() {
-		// require( dirname(__FILE__)."/../../includes/KkConversion.php" );
+		// require( __DIR__."/../../includes/KkConversion.php" );
 		// Placeholder for future implementing. Remove variables declarations
 		// after generating KkConversion.php
 		$kk2Cyrl = array();

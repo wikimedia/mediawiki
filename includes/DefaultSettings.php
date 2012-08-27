@@ -5212,7 +5212,7 @@ $wgExtensionFunctions = array();
  *
  * @par Example:
  * @code
- *    $wgExtensionMessagesFiles['ConfirmEdit'] = dirname(__FILE__).'/ConfirmEdit.i18n.php';
+ *    $wgExtensionMessagesFiles['ConfirmEdit'] = __DIR__.'/ConfirmEdit.i18n.php';
  * @endcode
  */
 $wgExtensionMessagesFiles = array();
