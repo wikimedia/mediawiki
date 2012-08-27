@@ -568,71 +568,7 @@ abstract class Skin extends ContextSource {
 	 * @return String HTML containing debug data, if enabled (otherwise empty).
 	 */
 	protected function generateDebugHTML() {
-		global $wgShowDebug;
-
-		$html = MWDebug::getDebugHTML( $this->getContext() );
-
-		if ( $wgShowDebug ) {
-			$listInternals = $this->formatDebugHTML( $this->getOutput()->mDebugtext );
-			$html .= "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">" .
-				$listInternals . "</ul>\n";
-		}
-
-		return $html;
-	}
-
-	/**
-	 * @param $debugText string
-	 * @return string
-	 */
-	private function formatDebugHTML( $debugText ) {
-		global $wgDebugTimestamps;
-
-		$lines = explode( "\n", $debugText );
-		$curIdent = 0;
-		$ret = '<li>';
-
-		foreach ( $lines as $line ) {
-			$pre = '';
-			if ( $wgDebugTimestamps ) {
-				$matches = array();
-				if ( preg_match( '/^(\d+\.\d+ {1,3}\d+.\dM\s{2})/', $line, $matches ) ) {
-					$pre = $matches[1];
-					$line = substr( $line, strlen( $pre ) );
-				}
-			}
-			$display = ltrim( $line );
-			$ident = strlen( $line ) - strlen( $display );
-			$diff = $ident - $curIdent;
-
-			$display = $pre . $display;
-			if ( $display == '' ) {
-				$display = "\xc2\xa0";
-			}
-
-			if ( !$ident && $diff < 0 && substr( $display, 0, 9 ) != 'Entering ' && substr( $display, 0, 8 ) != 'Exiting ' ) {
-				$ident = $curIdent;
-				$diff = 0;
-				$display = '<span style="background:yellow;">' . htmlspecialchars( $display ) . '</span>';
-			} else {
-				$display = htmlspecialchars( $display );
-			}
-
-			if ( $diff < 0 ) {
-				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "</li><li>\n";
-			} elseif ( $diff == 0 ) {
-				$ret .= "</li><li>\n";
-			} else {
-				$ret .= str_repeat( "<ul><li>\n", $diff );
-			}
-			$ret .= "<tt>$display</tt>\n";
-
-			$curIdent = $ident;
-		}
-
-		$ret .= str_repeat( '</li></ul>', $curIdent ) . '</li>';
-
-		return $ret;
+		return MWDebug::getHTMLDebugLog();
 	}
 
 	/**

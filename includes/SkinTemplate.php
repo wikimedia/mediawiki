@@ -135,7 +135,6 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgSitename, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
-		global $wgDebugComments;
 		global $wgArticlePath, $wgScriptPath, $wgServer;
 
 		wfProfileIn( __METHOD__ );
@@ -387,12 +386,6 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		if ( $wgDebugComments ) {
-			$tpl->setRef( 'debug', $out->mDebugtext );
-		} else {
-			$tpl->set( 'debug', '' );
-		}
-
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
@@ -468,6 +461,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'headscripts', $out->getHeadScripts() . $out->getHeadItems() );
 		}
 
+		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
 		$tpl->set( 'reporttime', wfReportTime() );
 
@@ -1886,13 +1880,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	function printTrail() { ?>
 <?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 <?php $this->html( 'reporttime' ) ?>
-<?php if ( $this->data['debug'] ): ?>
-<!-- Debug output:
-<?php $this->text( 'debug' ); ?>
-
--->
-<?php endif;
+<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() );
 	}
 
 }
-
