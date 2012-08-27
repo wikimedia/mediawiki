@@ -394,12 +394,17 @@ interface Content {
 	public function preloadTransform( Title $title, ParserOptions $popts );
 
 	/**
-	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent().
-	 * This may be used to store additional information in the database, or check the content's
-	 * consistency with global state.
+	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent() and in
+	 * similar places.
 	 *
-	 * Note that this method will be called inside the same transaction bracket that will be used
+	 * This may be used to check the content's consistency with global state. This function should
+	 * NOT write any information to the database.
+	 *
+	 * Note that this method will usually be called inside the same transaction bracket that will be used
 	 * to save the new revision.
+	 *
+	 * Note that this method is called before any update to the page table is performed. This means that
+	 * $page may not yet know a page ID.
 	 *
 	 * @param WikiPage $page The page to be saved.
 	 * @param int      $flags bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()

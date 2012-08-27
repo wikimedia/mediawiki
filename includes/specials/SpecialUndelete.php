@@ -32,7 +32,16 @@ class PageArchive {
 	 * @var Title
 	 */
 	protected $title;
-	var $fileStatus;
+
+	/**
+	 * @var Status
+	 */
+	protected $fileStatus;
+
+	/**
+	 * @var Status
+	 */
+	protected $revisionStatus;
 
 	function __construct( $title ) {
 		if( is_null( $title ) ) {
@@ -359,7 +368,7 @@ class PageArchive {
 		if( $restoreFiles && $this->title->getNamespace() == NS_FILE ) {
 			$img = wfLocalFile( $this->title );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
-			if ( !$this->fileStatus->isOk() ) {
+			if ( !$this->fileStatus->isOK() ) {
 				return false;
 			}
 			$filesRestored = $this->fileStatus->successCount;
@@ -368,10 +377,12 @@ class PageArchive {
 		}
 
 		if( $restoreText ) {
-			$textRestored = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
-			if( $textRestored === false ) { // It must be one of UNDELETE_*
+			$this->revisionStatus = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
+			if( !$this->revisionStatus->isOK() ) {
 				return false;
 			}
+
+			$textRestored = $this->revisionStatus->getValue();
 		} else {
 			$textRestored = 0;
 		}
@@ -419,13 +430,13 @@ class PageArchive {
 	 * @param $comment String
 	 * @param $unsuppress Boolean: remove all ar_deleted/fa_deleted restrictions of seletected revs
 	 *
-	 * @return Mixed: number of revisions restored or false on failure
+	 * @return Status, containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
 		global $wgContentHandlerNoDB;
 
 		if ( wfReadOnly() ) {
-			return false;
+			throw new ReadOnlyError();
 		}
 		$restoreAll = empty( $timestamps );
 
@@ -455,9 +466,14 @@ class PageArchive {
 			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
 				array( 'rev_id' => $previousRevId ),
 				__METHOD__ );
+
 			if( $previousTimestamp === false ) {
 				wfDebug( __METHOD__.": existing page refers to a page_latest that does not exist\n" );
-				return 0;
+
+				$status = Status::newGood( 0 );
+				$status->warning( 'undeleterevision-missing' );
+
+				return $status;
 			}
 		} else {
 			# Have to create a new article...
@@ -513,17 +529,38 @@ class PageArchive {
 		$rev_count = $dbw->numRows( $result );
 		if( !$rev_count ) {
 			wfDebug( __METHOD__ . ": no revisions to restore\n" );
-			return false; // ???
+
+			$status = Status::newGood( 0 );
+			$status->warning( "undelete-no-results" );
+			return $status;
 		}
 
 		$ret->seek( $rev_count - 1 ); // move to last
 		$row = $ret->fetchObject(); // get newest archived rev
 		$ret->seek( 0 ); // move back
 
+		// grab the content to check consistency with global state before restoring the page.
+		$revision = Revision::newFromArchiveRow( $row,
+			array(
+				'title' => $article->getTitle(), // used to derive default content model
+			) );
+
+		$m = $revision->getContentModel();
+
+		$user = User::newFromName( $revision->getRawUserText(), false );
+		$content = $revision->getContent( Revision::RAW );
+
+		//NOTE: article ID may not be known yet. prepareSave() should not modify the database.
+		$status = $content->prepareSave( $article, 0, -1, $user );
+
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
 		if( $makepage ) {
 			// Check the state of the newest to-be version...
 			if( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
-				return false; // we can't leave the current revision like this!
+				return Status::newFatal( "undeleterevdel" );
 			}
 			// Safe to insert now...
 			$newid  = $article->insertOn( $dbw );
@@ -533,7 +570,7 @@ class PageArchive {
 			if( $row->ar_timestamp > $previousTimestamp ) {
 				// Check the state of the newest to-be version...
 				if( !$unsuppress && ( $row->ar_deleted & Revision::DELETED_TEXT ) ) {
-					return false; // we can't leave the current revision like this!
+					return Status::newFatal( "undeleterevdel" );
 				}
 			}
 		}
@@ -573,7 +610,7 @@ class PageArchive {
 
 		// Was anything restored at all?
 		if ( $restored == 0 ) {
-			return 0;
+			return Status::newGood( 0 );
 		}
 
 		$created = (bool)$newid;
@@ -593,13 +630,18 @@ class PageArchive {
 			$update->doUpdate();
 		}
 
-		return $restored;
+		return Status::newGood( $restored );
 	}
 
 	/**
 	 * @return Status
 	 */
 	function getFileStatus() { return $this->fileStatus; }
+
+	/**
+	 * @return Status
+	 */
+	function getRevisionStatus() { return $this->revisionStatus; }
 }
 
 /**
@@ -1448,11 +1490,15 @@ class SpecialUndelete extends SpecialPage {
 			$out->addHTML( $this->msg( 'undeletedpage' )->rawParams( $link )->parse() );
 		} else {
 			$out->setPageTitle( $this->msg( 'undelete-error' ) );
-			$out->addWikiMsg( 'cannotundelete' );
-			$out->addWikiMsg( 'undeleterevdel' );
 		}
 
-		// Show file deletion warnings and errors
+		// Show revision undeletion warnings and errors
+		$status = $archive->getRevisionStatus();
+		if( $status && !$status->isGood() ) {
+			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'cannotundelete', 'cannotundelete' ) . '</div>' );
+		}
+
+		// Show file undeletion warnings and errors
 		$status = $archive->getFileStatus();
 		if( $status && !$status->isGood() ) {
 			$out->addWikiText( '<div class="error">' . $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) . '</div>' );

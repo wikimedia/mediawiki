@@ -2872,6 +2872,8 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 {{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',
 'undeletecomment' => '{{Identical|Reason}}',
+'cannotundelete' => 'Message shown when undeletion failed for some reason.
+* <code>$1</code> is the combined wikitext of messages for all errors that caused the failure.',
 'undelete-search-title' => 'Page title when showing the search form in Special:Undelete',
 'undelete-search-submit' => '{{Identical|Search}}',
 'undelete-error' => 'Page title when a page could not be undeleted',
