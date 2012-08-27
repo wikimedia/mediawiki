@@ -67,7 +67,7 @@ class StandardTemplate extends LegacyTemplate {
 		wfProfileOut( __METHOD__ . '-1' );
 		wfProfileIn( __METHOD__ . '-2' );
 		$l = $this->getSkin()->getLanguage()->alignStart();
-		$s .= "<td class='bottom' align='$l' valign='top'>";
+		$s .= "<td class='bottom' style='text-align: $l; vertical-align: top;'>";
 
 		$s .= $this->bottomLinks();
 		$s .= "\n<br />" . $this->getSkin()->getLanguage()->pipeList( array(
