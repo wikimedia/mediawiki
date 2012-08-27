@@ -319,13 +319,11 @@ class ErrorPageError extends MWException {
 	public $title, $msg, $params;
 
 	/**
-	 * @todo document
+	 * Note: these arguments are keys into wfMessage(), not text!
 	 *
-	 * Note: these arguments are keys into wfMsg(), not text!
-	 *
-	 * @param $title A title
-	 * @param $msg String|Message . In string form, should be a message key
-	 * @param $params Array Array to wfMessage()
+	 * @param $title string|Message Message key (string) for page title, or a Message object
+	 * @param $msg string|Message Message key (string) for error text, or a Message object
+	 * @param $params array with parameters to wfMessage()
 	 */
 	function __construct( $title, $msg, $params = null ) {
 		$this->title = $title;
@@ -356,9 +354,8 @@ class ErrorPageError extends MWException {
  * @ingroup Exception
  */
 class BadTitleError extends ErrorPageError {
-
 	/**
-	 * @param $msg string A message key (default: 'badtitletext')
+	 * @param $msg string|Message A message key (default: 'badtitletext')
 	 * @param $params Array parameter to wfMessage()
 	 */
 	function __construct( $msg = 'badtitletext', $params = null ) {
