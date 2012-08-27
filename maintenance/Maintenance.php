@@ -20,22 +20,23 @@
  * @defgroup Maintenance Maintenance
  */
 
+// Make sure we're on PHP5 or better
+if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
+	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
+	wfPHPVersionError( 'cli' );
+}
+
 /**
  * @defgroup MaintenanceArchive Maintenance archives
  * @ingroup Maintenance
  */
 
 // Define this so scripts can easily find doMaintenance.php
-define( 'RUN_MAINTENANCE_IF_MAIN', dirname( __FILE__ ) . '/doMaintenance.php' );
+define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
 define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN ); // original name, harmless
 
 $maintClass = false;
 
-// Make sure we're on PHP5 or better
-if ( !function_exists( 'version_compare' ) || version_compare( PHP_VERSION, '5.3.2' ) < 0 ) {
-	require_once( dirname( __FILE__ ) . '/../includes/PHPVersionError.php' );
-	wfPHPVersionError( 'cli' );
-}
 
 /**
  * Abstract maintenance class for quickly writing and churning out
