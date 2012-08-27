@@ -1154,7 +1154,9 @@ class LocalFile extends File {
 		$logId = $log->addEntry( $action, $descTitle, $comment, array(), $user );
 
 		wfProfileIn( __METHOD__ . '-edit' );
-		if ( $descTitle->exists() ) {
+		$exists = $descTitle->exists();
+
+		if ( $exists ) {
 			# Create a null revision
 			$latest = $descTitle->getLatestRevID();
 			$nullRevision = Revision::newNullRevision(
@@ -1169,6 +1171,15 @@ class LocalFile extends File {
 				wfRunHooks( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
+		}
+
+		# Commit the transaction now, in case something goes wrong later
+		# The most important thing is that files don't get lost, especially archives
+		# NOTE: once we have support for nested transactions, the commit may be moved
+		#       to after $wikiPage->doEdit has been called.
+		$dbw->commit( __METHOD__ );
+
+		if ( $exists ) {
 			$dbw->update( 'logging', array( 'log_page' => $descTitle->getArticleID() ), array( 'log_id' => $logId ), __METHOD__ );
 
 			# Invalidate the cache for the description page
@@ -1185,10 +1196,6 @@ class LocalFile extends File {
 			}
 		}
 		wfProfileOut( __METHOD__ . '-edit' );
-
-		# Commit the transaction now, in case something goes wrong later
-		# The most important thing is that files don't get lost, especially archives
-		$dbw->commit( __METHOD__ );
 
 		# Save to cache and purge the squid
 		# We shall not saveToCache before the commit since otherwise
