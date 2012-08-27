@@ -1153,6 +1153,12 @@ class LocalFile extends File {
 		$action = $reupload ? 'overwrite' : 'upload';
 		$log->addEntry( $action, $descTitle, $comment, array(), $user );
 
+		# Commit the transaction now, in case something goes wrong later
+		# The most important thing is that files don't get lost, especially archives
+		# NOTE: once we have support for nested transactions, the commit may be moved
+		#       to after $wikiPage->doEdit has been called.
+		$dbw->commit( __METHOD__ );
+
 		wfProfileIn( __METHOD__ . '-edit' );
 		if ( $descTitle->exists() ) {
 			# Create a null revision
@@ -1179,10 +1185,6 @@ class LocalFile extends File {
 			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
 		}
 		wfProfileOut( __METHOD__ . '-edit' );
-
-		# Commit the transaction now, in case something goes wrong later
-		# The most important thing is that files don't get lost, especially archives
-		$dbw->commit( __METHOD__ );
 
 		# Save to cache and purge the squid
 		# We shall not saveToCache before the commit since otherwise
