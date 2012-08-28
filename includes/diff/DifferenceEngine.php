@@ -510,13 +510,12 @@ class DifferenceEngine extends ContextSource {
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
 			$out->setArticleFlag( true );
 
-			#NOTE: only needed for B/C: custom rendering of JS/CSS via hook
+			// NOTE: only needed for B/C: custom rendering of JS/CSS via hook
 			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
-				if ( !Hook::isRegistered( 'ShowRawCssJs' )
-					|| wfRunHooks( 'ShowRawCssJs', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) {
+				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 					// NOTE: deprecated hook, B/C only
 					// use the content object's own rendering
 					$po = $this->mContentObject->getParserOutput();
@@ -524,8 +523,7 @@ class DifferenceEngine extends ContextSource {
 				}
 			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
-			} elseif( Hooks::isRegistered( 'ArticleViewCustom' )
-					&& !wfRunHooks( 'ArticleViewCustom', array( ContentHandler::getContentText( $this->mNewContent ), $this->mNewPage, $out ) ) ) {
+			} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// NOTE: deprecated hook, B/C only
 				// Handled by extension
 			} else {
