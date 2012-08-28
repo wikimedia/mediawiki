@@ -3271,19 +3271,16 @@ class User {
 			$request = $this->getRequest();
 		}
 
-		if ( $this->isAnon() ) {
-			return EDIT_TOKEN_SUFFIX;
-		} else {
-			$token = $request->getSessionData( 'wsEditToken' );
-			if ( $token === null ) {
-				$token = MWCryptRand::generateHex( 32 );
-				$request->setSessionData( 'wsEditToken', $token );
-			}
-			if( is_array( $salt ) ) {
-				$salt = implode( '|', $salt );
-			}
-			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
+		$token = $request->getSessionData( 'wsEditToken' );
+		if ( $token === null ) {
+			$token = MWCryptRand::generateHex( 32 );
+			$request->setSessionData( 'wsEditToken', $token );
 		}
+		if( is_array( $salt ) ) {
+			$salt = implode( '|', $salt );
+		}
+
+		return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
 	}
 
 	/**
