@@ -852,13 +852,13 @@ class SwiftFileBackend extends FileBackendStore {
 						// See function "create_container_table" in common/db.py.
 						// If a directory is not "greater" than the last one,
 						// then it was already listed by the calling iterator.
-						if ( $objectDir > $lastDir ) {
+						if ( strcmp( $objectDir, $lastDir ) > 0 ) {
 							$pDir = $objectDir;
 							do { // add dir and all its parent dirs
 								$dirs[] = "{$pDir}/";
 								$pDir = $this->getParentDir( $pDir );
 							} while ( $pDir !== false // sanity
-								&& $pDir > $lastDir // not done already
+								&& strcmp( $pDir, $lastDir ) > 0 // not done already
 								&& strlen( $pDir ) > strlen( $dir ) // within $dir
 							);
 						}
