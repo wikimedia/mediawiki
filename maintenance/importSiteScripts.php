@@ -56,12 +56,9 @@ class ImportSiteScripts extends Maintenance {
 			}
 
 			$this->output( "Importing $page\n" );
-			$uri = new Uri( $baseUrl );
-			$uri->extendQuery( array(
+			$url = wfAppendQuery( $baseUrl, array(
 				'action' => 'raw',
 				'title' => "MediaWiki:{$page}" ) );
-			$url = $uri->toString();
-
 			$text = Http::get( $url );
 
 			$wikiPage = WikiPage::factory( $title );
@@ -82,9 +79,7 @@ class ImportSiteScripts extends Maintenance {
 		$pages = array();
 
 		do {
-			$uri = new Uri( $baseUrl );
-			$uri->extendQuery( $data );
-			$url = $uri->toString();
+			$url = wfAppendQuery( $baseUrl, $data );
 			$strResult = Http::get( $url );
 			//$result = FormatJson::decode( $strResult ); // Still broken
 			$result = unserialize( $strResult );

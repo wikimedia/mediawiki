@@ -252,7 +252,6 @@ $wgAutoloadLocalClasses = array(
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
-	'Uri' => 'includes/Uri.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
