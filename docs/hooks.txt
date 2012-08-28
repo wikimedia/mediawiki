@@ -478,7 +478,7 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to Article::doEdit()
+$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
 'ArticleContentInsertComplete': After a new article is created
@@ -489,7 +489,7 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to Article::doEdit()
+$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
 'ArticleMergeComplete': after merging to article using Special:Mergehistory
@@ -566,9 +566,9 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to Article::doEdit()
+$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
-$status: Status object about to be returned by doEdit()
+$status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 
 'ArticleContentSaveComplete': After an article has been updated
@@ -579,9 +579,9 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to Article::doEdit()
+$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
-$status: Status object about to be returned by doEdit()
+$status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 
 'ArticleUndelete': When one or more revisions of an article are restored
@@ -860,7 +860,7 @@ pages
 $editPage: EditPage	object
 
 'EditPage::attemptSave': called before an article is
-saved, that is before Article::doEdit() is called
+saved, that is before WikiPage::doEditContent() is called
 $editpage_Obj: the current EditPage object
 
 'EditPage::importFormData': allow extensions to read additional data

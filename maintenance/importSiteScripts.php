@@ -65,7 +65,8 @@ class ImportSiteScripts extends Maintenance {
 			$text = Http::get( $url );
 
 			$wikiPage = WikiPage::factory( $title );
-			$wikiPage->doEdit( $text, "Importing from $url", 0, false, $user );
+			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
+			$wikiPage->doEditContent( $content, "Importing from $url", 0, false, $user );
 		}
 
 	}
