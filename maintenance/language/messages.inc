@@ -653,6 +653,7 @@ $wgMessageStructure = array(
 		'yourdiff',
 		'copyrightwarning',
 		'copyrightwarning2',
+		'editpage-head-copy-warn',
 		'editpage-tos-summary',
 		'longpage-hint',
 		'longpageerror',
