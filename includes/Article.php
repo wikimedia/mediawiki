@@ -794,6 +794,8 @@ class Article extends Page {
 	/**
 	 * Show a diff page according to current request variables. For use within
 	 * Article::view() only, other callers should use the DifferenceEngine class.
+	 *
+	 * @todo: make protected
 	 */
 	public function showDiffPage() {
 		$request = $this->getContext()->getRequest();
@@ -805,7 +807,15 @@ class Article extends Page {
 		$unhide = $request->getInt( 'unhide' ) == 1;
 		$oldid = $this->getOldID();
 
-		$contentHandler = ContentHandler::getForTitle( $this->getTitle() );
+		$rev = $this->getRevisionFetched();
+
+		if ( !$rev ) {
+			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' )->text() );
+			$this->getContext()->getOutput()->addWikiMsg( 'difference-missing-revision', $oldid, 1 );
+			return;
+		}
+
+		$contentHandler = $rev->getContentHandler();
 		$de = $contentHandler->createDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
 
 		// DifferenceEngine directly fetched the revision:

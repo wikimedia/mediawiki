@@ -572,7 +572,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$vals['diff'] = array();
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
-				$handler = ContentHandler::getForTitle( $title );
+				$handler = $revision->getContentHandler();
 
 				if ( !is_null( $this->difftotext ) ) {
 					$model = $title->getContentModel();

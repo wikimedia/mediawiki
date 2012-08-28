@@ -109,7 +109,7 @@ class RollbackAction extends FormlessAction {
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) && !$this->getUser()->getBoolOption( 'norollbackdiff', false ) ) {
-			$contentHandler = ContentHandler::getForTitle( $this->getTitle() );
+			$contentHandler = $current->getContentHandler();
 			$de = $contentHandler->createDifferenceEngine( $this->getContext(), $current->getId(), $newId, false, true );
 			$de->showDiff( '', '' );
 		}
