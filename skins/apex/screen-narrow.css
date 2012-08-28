@@ -20,9 +20,10 @@
 #ca-talk a {
 	display: inline-block;
 	background-image: url(images/icons/talk.png);
-	background-position: left center;
+	background-position: center center;
 	background-repeat: no-repeat;
-	padding-left: 16px;
+	padding-left: 2.5em;
+	padding-right: 0;
 	width: 0;
 	overflow: hidden;
 	opacity: 0.75;
