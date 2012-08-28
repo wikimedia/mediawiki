@@ -764,6 +764,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'contribslink' => 'kontribuisaun',
 'block-log-flags-nocreate' => 'la bele kria konta foun',
 'block-log-flags-noemail' => 'korreiu eletróniku blokeiu',
+'block-log-flags-nousertalk' => 'la bele edita pájina diskusaun rasik',
 'ipb_already_blocked' => 'Ema ruma blokeiu "$1" tiha ona',
 
 # Move page

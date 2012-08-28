@@ -251,7 +251,7 @@ $messages = array(
 'otherlanguages' => 'Ann an cànain eile',
 'redirectedfrom' => '(Air ath-sheòladh o $1)',
 'redirectpagesub' => 'Ath-sheòl an duilleag',
-'lastmodifiedat' => 'Chaidh an duilleag seo a mhùthadh $1, aig $2 turas mu dheireadh.',
+'lastmodifiedat' => 'Chaidh an duilleag seo a mhùthadh $1 aig $2 turas mu dheireadh.',
 'viewcount' => 'Chaidh inntrigeadh a dhèanam dhan duilleag seo {{PLURAL:$1|aon turas|$1 thuras|$1 turas|$1 turais|$1 turas}}.',
 'protectedpage' => 'Duilleag fo dhìon',
 'jumpto' => 'Gearr leum gu:',
@@ -731,8 +731,13 @@ Mur obraich e fhathast, feuch is [[Special:UserLogout|clàraich a-mach]] is a-st
 
 '''Mas e deasachadh dligheach a tha seo, feuch ris a-rithist.'''
 Mur obraich e fhathast, feuch is [[Special:UserLogout|clàraich a-mach]] is a-steach a-rithist an uairsin.",
+'token_suffix_mismatch' => "'''Dhiùlt sinn na dheasaich thu a chionn 's gun do chuir an cliant agad na caractaran puingeachaidh tro chèile san tòcan deasachaidh.'''
+Dhiùlt sinn na dheasaich thu air eagal 's gun coirbeadh e teacsa na duilleige.
+Tachraidh seo uaireannan ma chleachdar seirbheis-lìn progsaidh gun urra a tha làn de mhearachdan.",
+'edit_form_incomplete' => "'''Cha do ràinig cuid dhen fhoirm deasachaidh am frithealaichte; dèan cinnteach gu bheil gach deasachadh agad slàn is feuch ris a-rithist.'''",
 'editing' => "A' deasachadh $1",
 'editingsection' => "A' deasachadh $1 (earrann)",
+'editingcomment' => "A' deasachadh $1 (earrann ùr)",
 'editconflict' => 'Còmhstri deasachaidh: $1',
 'explainconflict' => "Tha cuideigin eile air an duilleag seo a mhùthadh on a thòisich thu fhèin air a dheasachadh.
 Tha am bogsa teacsa gu h-àrd a' nochdadh na duilleige mar a tha i an-dràsta.
@@ -741,6 +746,8 @@ Bidh agad ris na mùthaidhean agad fhilleadh a-steach san teacsa làithreach.
 Cha dèid '''ach an teacsa gu h-àrd''' a shàbhaladh nuair a bhriogas tu air \"{{int:savearticle}}\".",
 'yourtext' => 'An teacsa agad',
 'storedversion' => 'Lethbhreac taisgte',
+'nonunicodebrowser' => "'''Rabhadh: Chan eil am brabhsair agad co-chòrdail le Unicode.'''
+Chuir sinn gleus air dòigh dhut a nì cinnteach gun urrainn dhut duilleagan a shàbhaladh gu tèarainte: Nochdaidh caractaran taobh a-muigh ASCII mar chòd sia-dheicheach sa bhogsa deasachaidh.",
 'editingold' => "'''RABHADH: Tha thu a' deasachadh lethbhreac seann-aimsireil na duilleige seo.
 Ma shàbhalas tu seo, thèid gach mùthadh air chall a rinneadh a-mach on mhùthadh seo.'''",
 'yourdiff' => 'Caochlaidhean',
@@ -752,10 +759,22 @@ Tha thu a' toirt geall cuideachd gun do sgrìobh thu fhèin seo no gun do rinn t
 Mur eil thu ag iarraidh an sgrìobhaidh agad a dheasaichear is a sgaoilear le càch, na cuir e.<br />
 Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu fhèin e, no gur ann às an raon phòballach a thàinig e; thoir aire '''nach eil''' sin a' gabhail a-staigh duilleagan-lìn mar as àbhaist (seall $1 airson barrachd fiosrachaidh). <br />
 '''NA CLEACHDAIBH SAOTHAIR FO DHLIGHE-SGRÌOBHAIDH GUN CHEAD!'''",
+'longpageerror' => "'''Mearachd: Tha an teacsa a chur thu thugainn {{PLURAL:$1 kilobyte|$1 kilobyte|$1 kilobyte|$1 kilobyte|$1 kilobyte|$1 kilobyte|}} a dh'fhaid is tha sin nas fhaide na tha ceadaichte ({{PLURAL:$1 kilobyte|$2 kilobyte|$2 kilobyte|$2 kilobyte|$2 kilobyte|$2 kilobyte|}}).'''
+Cha ghabh a shàbhaladh.",
+'readonlywarning' => "'''Rabhadh: Chaidh an stòr-dàta a ghlasadh a chum obair-ghlèidhidh agus chan urrainn dhut na còraichean-deasachaidh agad a chur gu feum an-dràsta fhèin.'''
+'S mathaid gum b' fheairrde dhut lethbhreac a dhèanamh dhen teacsa agus a shàbhaladh ann am faidhle ach an urrainn dhut a chleachdadh as a dhèidh seo.
+
+Seo am mìneachadh a thug an rianaire a ghlais e: $1",
 'protectedpagewarning' => "'''Rabhadh: Chaidh an duilleag seo a dhìon 's chan urrainn ach dhan fheadhainn aig a bheil ùghdarras rianaire a dheasachadh.'''
 Chì thu an clàr mu dheireadh san loga mar fhiosrachadh dhut gu h-ìosal:",
+'semiprotectedpagewarning' => "'''An aire:''' Chaidh an duilleag seo a dhìon 's chan fhaod ach cleachdaichean clàraichte a dheasachadh.
+Seo an rud mu dheireadh san loga mar fhiosrachadh dhut:",
+'cascadeprotectedwarning' => "'''Rabhadh:''' Chaidh an duilleag seo a dhìon 's chan fhaod ach rianairean a dheasachadh a chionn 's gun robh e am broinn {{PLURAL:$1|na duilleige|nan duilleagan}} a leanas a tha cascade-protected.",
+'titleprotectedwarning' => "'''Rabhadh: Chaidh an duilleag seo a dhìon 's feumar [[Special:ListGroupRights|còraichean sònraichte]] gus a dheasachadh.'''
+Seo an rud mu dheireadh san loga mar fhiosrachadh dhut:",
 'templatesused' => "Tha {{PLURAL:$1|teamplaid|theamplaid||teamplaid|theamplaid|teamplaidean|teamplaid}} 'gan cleachdadh air an duilleag seo:",
 'templatesusedpreview' => "Tha {{PLURAL:$1|teamplaid 'ga cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh}} san ro-shealladh seo:",
+'templatesusedsection' => "Tha {{PLURAL:$1|teamplaid 'ga cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh|teamplaidean 'gan cleachdadh}} san earrann seo:",
 'template-protected' => '(air a dhìon)',
 'template-semiprotected' => '(air a leth-dhìon)',
 'hiddencategories' => "Tha an duilleag seo 'na ball de {{PLURAL:$1|1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|$1 roinnean-seòrsa falaichte|$1 roinn-seòrsa fhalaichte}}:",
