@@ -1175,8 +1175,9 @@ class LocalFile extends File {
 		} else {
 			# New file; create the description page.
 			# There's already a log entry, so don't make a second RC entry
-			# Squid and file cache for the description page are purged by doEdit.
-			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
+			# Squid and file cache for the description page are purged by doEditContent.
+			$content = ContentHandler::makeContent( $pageText, $descTitle );
+			$wikiPage->doEditContent( $content, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
 		}
 		wfProfileOut( __METHOD__ . '-edit' );
 

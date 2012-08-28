@@ -68,10 +68,11 @@ class EditCLI extends Maintenance {
 
 		# Read the text
 		$text = $this->getStdin( Maintenance::STDIN_ALL );
+		$content = ContentHandler::makeContent( $text, $wgTitle );
 
 		# Do the edit
 		$this->output( "Saving... " );
-		$status = $page->doEdit( $text, $summary,
+		$status = $page->doEditContent( $content, $summary,
 			( $minor ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 ) |
 			( $autoSummary ? EDIT_AUTOSUMMARY : 0 ) |
