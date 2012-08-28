@@ -111,7 +111,7 @@ class SwiftFileBackend extends FileBackendStore {
 			: false;
 		$this->swiftCDNExpiry = isset( $config['swiftCDNExpiry'] )
 			? $config['swiftCDNExpiry']
-			: 3600; // hour
+			: 12*3600; // 12 hours is safe (tokens last 24 hours per http://docs.openstack.org)
 		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
 			? $config['swiftCDNPurgable']
 			: true;
