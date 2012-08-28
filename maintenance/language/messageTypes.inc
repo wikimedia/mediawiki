@@ -189,6 +189,7 @@ $wgIgnoredMessages = array(
 	'wantedtemplates-summary',
 	'activeusers-summary',
 	'search-summary',
+	'editpage-head-copy-warn',
 	'editpage-tos-summary',
 	'addsection-preload',
 	'addsection-editintro',
