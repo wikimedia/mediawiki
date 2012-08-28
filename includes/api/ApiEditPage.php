@@ -54,7 +54,11 @@ class ApiEditPage extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
-		$contentHandler = $pageObj->getContentHandler();
+		if ( !isset( $params['contentmodel'] ) || $params['contentmodel'] == '' ) {
+			$contentHandler = $pageObj->getContentHandler();
+		} else {
+			$contentHandler = ContentHandler::getForModelID( $params['contentmodel'] );
+		}
 
 		// @todo ask handler whether direct editing is supported at all! make allowFlatEdit() method or some such
 
@@ -139,7 +143,12 @@ class ApiEditPage extends ApiBase {
 						$text = '';
 					}
 
-					$content = ContentHandler::makeContent( $text, $this->getTitle() );
+					try {
+						$content = ContentHandler::makeContent( $text, $this->getTitle() );
+					} catch ( MWContentSerializationException $ex ) {
+						$this->dieUsage( $ex->getMessage(), 'parseerror' );
+						return;
+					}
 				}
 			}
 
@@ -195,12 +204,12 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( array( 'revwrongpage', $undoafterRev->getID(), $titleObj->getPrefixedText() ) );
 			}
 
-			$newContent = $contentHandler->getUndoContent( $undoRev, $undoafterRev );
+			$newContent = $contentHandler->getUndoContent( $pageObj->getRevision(), $undoRev, $undoafterRev );
+
 			if ( !$newContent ) {
 				$this->dieUsageMsg( 'undo-failure' );
 			}
 
-			$params['contentformat'] = $contentHandler->getDefaultFormat();
 			$params['text'] = $newContent->serialize( $params['contentformat'] );
 
 			// If no summary was given and we only undid one rev,
@@ -322,6 +331,9 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				$this->dieUsageMsg( 'hookaborted' );
 
+			case EditPage::AS_PARSE_ERROR:
+				$this->dieUsage( $status->getMessage(), 'parseerror' );
+
 			case EditPage::AS_IMAGE_REDIRECT_ANON:
 				$this->dieUsageMsg( 'noimageredirect-anon' );
 
@@ -425,6 +437,7 @@ class ApiEditPage extends ApiBase {
 				array( 'undo-failure' ),
 				array( 'hashcheckfailed' ),
 				array( 'hookaborted' ),
+				array( 'code' => 'parseerror', 'info' => 'Failed to parse the given text.' ),
 				array( 'noimageredirect-anon' ),
 				array( 'noimageredirect-logged' ),
 				array( 'spamdetected', 'spam' ),
@@ -512,6 +525,12 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_TYPE => 'boolean',
 				ApiBase::PARAM_DFLT => false,
 			),
+			'contentformat' => array(
+				ApiBase::PARAM_TYPE => ContentHandler::getAllContentFormats(),
+			),
+			'contentmodel' => array(
+				ApiBase::PARAM_TYPE => ContentHandler::getContentModels(),
+			)
 		);
 	}
 
@@ -550,6 +569,8 @@ class ApiEditPage extends ApiBase {
 			'undo' => "Undo this revision. Overrides {$p}text, {$p}prependtext and {$p}appendtext",
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
 			'redirect' => 'Automatically resolve redirects',
+			'contentformat' => 'Content serialization format used for the input text',
+			'contentmodel' => 'Content model of the new content',
 		);
 	}
 

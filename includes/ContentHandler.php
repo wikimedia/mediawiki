@@ -331,6 +331,12 @@ abstract class ContentHandler {
 		else return wfMsg( $key );
 	}
 
+	public static function getContentModels() {
+		global $wgContentHandlers;
+
+		return array_keys( $wgContentHandlers );
+	}
+
 	public static function getAllContentFormats() {
 		global $wgContentHandlers;
 
