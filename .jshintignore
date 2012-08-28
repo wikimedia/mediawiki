@@ -8,6 +8,7 @@ resources/jquery/jquery.form.js
 resources/jquery/jquery.hoverIntent.js
 resources/jquery/jquery.js
 resources/jquery/jquery.json.js
+resources/jquery/jquery.jStorage.js
 resources/jquery/jquery.mockjax.js
 resources/jquery/jquery.qunit.js
 resources/jquery/jquery.validate.js
