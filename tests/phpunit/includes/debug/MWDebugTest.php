@@ -12,6 +12,11 @@ class MWDebugTest extends MediaWikiTestCase {
 		}
 		/** Clear log before each test */
 		MWDebug::clearLog();
+		wfSuppressWarnings();
+	}
+
+	function tearDown() {
+		wfRestoreWarnings();
 	}
 
 	function testAddLog() {
