@@ -914,10 +914,10 @@ class SpecialUndelete extends SpecialPage {
 			"<col class='diff-marker' />" .
 			"<col class='diff-content' />" .
 			"<tr>" .
-				"<td colspan='2' width='50%' align='center' class='diff-otitle'>" .
+				"<td colspan='2' width='50%' style='text-align: center' class='diff-otitle'>" .
 				$this->diffHeader( $previousRev, 'o' ) .
 				"</td>\n" .
-				"<td colspan='2' width='50%' align='center' class='diff-ntitle'>" .
+				"<td colspan='2' width='50%' style='text-align: center' class='diff-ntitle'>" .
 				$this->diffHeader( $currentRev, 'n' ) .
 				"</td>\n" .
 			"</tr>" .

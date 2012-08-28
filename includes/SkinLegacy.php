@@ -123,18 +123,18 @@ class LegacyTemplate extends BaseTemplate {
 		  "<table border='0' cellspacing='0' width='100%'>\n<tr>\n";
 
 		if ( $this->getSkin()->qbSetting() == 0 ) {
-			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
+			$s .= "<td class='top' style='text-align: left; vertical-align: top;' rowspan='{$rows}'>\n" .
 				$this->getSkin()->logoText( $wgLang->alignStart() ) . '</td>';
 		}
 
 		$l = $wgLang->alignStart();
-		$s .= "<td {$borderhack} align='$l' valign='top'>\n";
+		$s .= "<td {$borderhack} style='text-align: $l; vertical-align: top;'>\n";
 
 		$s .= $this->topLinks();
 		$s .= '<p class="subtitle">' . $this->pageTitleLinks() . "</p>\n";
 
 		$r = $wgLang->alignEnd();
-		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap='nowrap'>";
+		$s .= "</td>\n<td {$borderhack} style='text-align: $r; vertical-align: top;' nowrap='nowrap'>";
 		$s .= $this->nameAndLogin();
 		$s .= "\n<br />" . $this->searchForm() . '</td>';
 

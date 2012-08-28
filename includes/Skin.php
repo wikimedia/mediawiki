@@ -835,7 +835,7 @@ abstract class Skin extends ContextSource {
 	 */
 	function logoText( $align = '' ) {
 		if ( $align != '' ) {
-			$a = " align='{$align}'";
+			$a = " style='float: {$align};'";
 		} else {
 			$a = '';
 		}
