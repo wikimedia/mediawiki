@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Editing
  * @group API
  * @group Database
  */
