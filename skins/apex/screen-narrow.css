@@ -36,8 +36,8 @@
 	width: 10em;
 }
 
-#content {
-	margin: 7em 1.5em 3em 1.5em;
+.apex-content-wrapper {
+	margin: 6.5em 1.5em 3em 1.5em;
 }
 
 #p-logo {

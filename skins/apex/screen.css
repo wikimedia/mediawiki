@@ -568,7 +568,7 @@ div#mw-js-message {
 	-o-transition: width 250ms;
 }
 
-#content {
+.apex-content-wrapper {
 	transition: margin 250ms;
 	-moz-transition: margin 250ms;
 	-webkit-transition: margin 250ms;
