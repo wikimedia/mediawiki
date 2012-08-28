@@ -154,45 +154,47 @@ class ApexTemplate extends BaseTemplate {
 		// Output HTML Page
 		$this->html( 'headelement' );
 ?>
-		<div id="content" class="mw-body">
-			<a id="top"></a>
-			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
-			<?php if ( $this->data['sitenotice'] ): ?>
-			<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
-			<?php endif; ?>
-			<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
-			<div id="bodyContent">
-				<?php if ( $this->data['isarticle'] ): ?>
-				<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
+		<div class="apex-content-wrapper">
+			<div id="content" class="mw-body">
+				<a id="top"></a>
+				<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
+				<?php if ( $this->data['sitenotice'] ): ?>
+				<div id="siteNotice"><?php $this->html( 'sitenotice' ) ?></div>
 				<?php endif; ?>
-				<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
-				<?php if ( $this->data['undelete'] ): ?>
-				<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
-				<?php endif; ?>
-				<?php if( $this->data['newtalk'] ): ?>
-				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
-				<?php endif; ?>
-				<?php if ( $this->data['showjumplinks'] ): ?>
-				<div id="jump-to-nav" class="mw-jump">
-					<?php $this->msg( 'jumpto' ) ?>
-					<a href="#mw-head"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?>
-					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
+				<h1 id="firstHeading" class="firstHeading"><span dir="auto"><?php $this->html( 'title' ) ?></span></h1>
+				<div id="bodyContent">
+					<?php if ( $this->data['isarticle'] ): ?>
+					<div id="siteSub"><?php $this->msg( 'tagline' ) ?></div>
+					<?php endif; ?>
+					<div id="contentSub"<?php $this->html( 'userlangattributes' ) ?>><?php $this->html( 'subtitle' ) ?></div>
+					<?php if ( $this->data['undelete'] ): ?>
+					<div id="contentSub2"><?php $this->html( 'undelete' ) ?></div>
+					<?php endif; ?>
+					<?php if( $this->data['newtalk'] ): ?>
+					<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
+					<?php endif; ?>
+					<?php if ( $this->data['showjumplinks'] ): ?>
+					<div id="jump-to-nav" class="mw-jump">
+						<?php $this->msg( 'jumpto' ) ?>
+						<a href="#mw-head"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?>
+						<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
+					</div>
+					<?php endif; ?>
+					<?php $this->html( 'bodycontent' ) ?>
+					<?php if ( $this->data['printfooter'] ): ?>
+					<div class="printfooter">
+					<?php $this->html( 'printfooter' ); ?>
+					</div>
+					<?php endif; ?>
+					<?php if ( $this->data['catlinks'] ): ?>
+					<?php $this->html( 'catlinks' ); ?>
+					<?php endif; ?>
+					<?php if ( $this->data['dataAfterContent'] ): ?>
+					<?php $this->html( 'dataAfterContent' ); ?>
+					<?php endif; ?>
+					<div class="visualClear"></div>
+					<?php $this->html( 'debughtml' ); ?>
 				</div>
-				<?php endif; ?>
-				<?php $this->html( 'bodycontent' ) ?>
-				<?php if ( $this->data['printfooter'] ): ?>
-				<div class="printfooter">
-				<?php $this->html( 'printfooter' ); ?>
-				</div>
-				<?php endif; ?>
-				<?php if ( $this->data['catlinks'] ): ?>
-				<?php $this->html( 'catlinks' ); ?>
-				<?php endif; ?>
-				<?php if ( $this->data['dataAfterContent'] ): ?>
-				<?php $this->html( 'dataAfterContent' ); ?>
-				<?php endif; ?>
-				<div class="visualClear"></div>
-				<?php $this->html( 'debughtml' ); ?>
 			</div>
 		</div>
 		<div id="mw-head" class="noprint">
