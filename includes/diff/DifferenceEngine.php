@@ -223,7 +223,11 @@ class DifferenceEngine extends ContextSource {
 		# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
-		if ( ExternalEdit::useExternalEngine( $this->getContext(), 'diff' ) ) { #FIXME: how to handle this for non-text content?
+		if ( ExternalEdit::useExternalEngine( $this->getContext(), 'diff' ) ) {
+			//TODO: come up with a good solution for non-text content here.
+			//      at least, the content format needs to be passed to the client somehow.
+			//      Currently, action=raw will just fail for non-text content.
+
 			$urls = array(
 				'File' => array( 'Extension' => 'wiki', 'URL' =>
 					# This should be mOldPage, but it may not be set, see below.
@@ -709,13 +713,19 @@ class DifferenceEngine extends ContextSource {
 	 * @since 1.WD
 	 */
 	function generateContentDiffBody( Content $old, Content $new ) {
-		#XXX: generate a warning if $old or $new are not instances of TextContent?
-		#XXX: fail if $old and $new don't have the same content model? or what?
+		if ( !( $old instanceof TextContent ) ) {
+			throw new MWException( "Diff not implemented for " . get_class( $old ) . "; "
+								. "override generateContentDiffBody to fix this." );
+		}
+
+		if ( !( $new instanceof TextContent ) ) {
+			throw new MWException( "Diff not implemented for " . get_class( $new ) . "; "
+				. "override generateContentDiffBody to fix this." );
+		}
 
 		$otext = $old->serialize();
 		$ntext = $new->serialize();
 
-		#XXX: text should be "already segmented". what does that mean?
 		return $this->generateTextDiffBody( $otext, $ntext );
 	}
 
@@ -996,9 +1006,9 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
-	 * @deprecated since 1.WD
+	 * @deprecated since 1.WD, use setContent() instead.
 	 */
-	function setText( $oldText, $newText ) { #FIXME: no longer use this, use setContent()!
+	function setText( $oldText, $newText ) {
 		wfDeprecated( __METHOD__, "1.WD" );
 
 		$oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
