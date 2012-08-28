@@ -84,8 +84,8 @@ abstract class DataUpdate implements DeferrableUpdate {
 		$exception = null;
 
 		/**
-		 * @var $update StorageUpdate
-		 * @var $trans StorageUpdate
+		 * @var $update DataUpdate
+		 * @var $trans DataUpdate
 		 */
 
 		try {
