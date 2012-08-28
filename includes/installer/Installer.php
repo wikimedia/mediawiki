@@ -1585,8 +1585,12 @@ abstract class Installer {
 		$status = Status::newGood();
 		try {
 			$page = WikiPage::factory( Title::newMainPage() );
-			$page->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
-							wfMsgForContent( 'mainpagedocfooter' ),
+			$content = new WikitextContent (
+				wfMsgForContent( 'mainpagetext' ) . "\n\n" .
+				wfMsgForContent( 'mainpagedocfooter' )
+			);
+
+			$page->doEditContent( $content,
 							'',
 							EDIT_NEW,
 							false,
