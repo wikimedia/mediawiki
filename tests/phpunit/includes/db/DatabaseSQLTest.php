@@ -16,9 +16,9 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataSQL
+	 * @dataProvider dataSelectSQLText
 	 */
-	function testSQL( $sql, $sqlText ) {
+	function testSelectSQLText( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->db->selectSQLText(
 			isset( $sql['tables'] ) ? $sql['tables'] : array(),
 			isset( $sql['fields'] ) ? $sql['fields'] : array(),
@@ -29,7 +29,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 		) ), $sqlText );
 	}
 
-	function dataSQL() {
+	function dataSelectSQLText() {
 		return array(
 			array(
 				array(
@@ -69,6 +69,38 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 				"WHERE alias = 'text'  " .
 				"ORDER BY field " .
 				"LIMIT 1"
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider dataConditional
+	 */
+	function testConditional( $sql, $sqlText ) {
+		$this->assertEquals( trim( $this->db->conditional(
+			$sql['conds'],
+			$sql['true'],
+			$sql['false']
+		) ), $sqlText );
+	}
+
+	function dataConditional() {
+		return array(
+			array(
+				array(
+					'conds' => array( 'field' => 'text' ),
+					'true' => 1,
+					'false' => 'NULL',
+				),
+				"(CASE WHEN field = 'text' THEN 1 ELSE NULL END)"
+			),
+			array(
+				array(
+					'conds' => 'field=1',
+					'true' => 1,
+					'false' => 'NULL',
+				),
+				"(CASE WHEN field=1 THEN 1 ELSE NULL END)"
 			),
 		);
 	}
