@@ -932,10 +932,7 @@ function wfMatchesDomainList( $url, $domains ) {
  * @param $logonly Bool: set true to avoid appearing in HTML when $wgDebugComments is set
  */
 function wfDebug( $text, $logonly = false ) {
-	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
-	global $wgDebugLogPrefix, $wgShowDebug;
-
-	static $cache = array(); // Cache of unoutputted messages
+	global $wgDebugLogFile, $wgProfileOnly, $wgDebugRawPage, $wgDebugLogPrefix;
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -946,15 +943,10 @@ function wfDebug( $text, $logonly = false ) {
 		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
 	}
 
-	if ( ( $wgDebugComments || $wgShowDebug ) && !$logonly ) {
-		$cache[] = $text;
-
-		if ( isset( $wgOut ) && is_object( $wgOut ) ) {
-			// add the message and any cached messages to the output
-			array_map( array( $wgOut, 'debug' ), $cache );
-			$cache = array();
-		}
+	if ( !$logonly ) {
+		MWDebug::debugMsg( $text );
 	}
+
 	if ( wfRunHooks( 'Debug', array( $text, null /* no log group */ ) ) ) {
 		if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
 			# Strip unprintables; they can switch terminal modes when binary data
@@ -964,8 +956,6 @@ function wfDebug( $text, $logonly = false ) {
 			wfErrorLog( $text, $wgDebugLogFile );
 		}
 	}
-
-	MWDebug::debugMsg( $text );
 }
 
 /**
