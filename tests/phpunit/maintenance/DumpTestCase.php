@@ -35,7 +35,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @throws MWExcepion
 	 */
 	protected function addRevision( Page $page, $text, $summary ) {
-		$status = $page->doEdit( $text, $summary );
+		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
 			$revision = $value['revision'];

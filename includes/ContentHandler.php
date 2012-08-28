@@ -841,15 +841,19 @@ abstract class ContentHandler {
 	 *
 	 * @param $event String: event name
 	 * @param $args Array: parameters passed to hook functions
+	 * @param $warn bool: whether to log a warning (default: true). Should generally be true,
+	 *                    may be set to false for testing.
 	 *
 	 * @return Boolean True if no handler aborted the hook
 	 */
-	public static function runLegacyHooks( $event, $args = array() ) {
+	public static function runLegacyHooks( $event, $args = array(), $warn = true ) {
 		if ( !Hooks::isRegistered( $event ) ) {
 			return true; // nothing to do here
 		}
 
-		wfWarn( "Using obsolete hook $event" );
+		if ( $warn ) {
+			wfWarn( "Using obsolete hook $event" );
+		}
 
 		// convert Content objects to text
 		$contentObjects = array();

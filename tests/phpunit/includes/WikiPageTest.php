@@ -145,6 +145,10 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 	
 	public function testDoEdit() {
+		$this->hideDeprecated( "WikiPage::doEdit" );
+		$this->hideDeprecated( "WikiPage::getText" );
+		$this->hideDeprecated( "Revision::getText" );
+
 		$title = Title::newFromText( "WikiPageTest_testDoEdit" );
 
 		$page = $this->newPage( $title );
@@ -198,6 +202,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	public function testDoQuickEdit() {
 		global $wgUser;
+
+		$this->hideDeprecated( "WikiPage::doQuickEdit" );
 
 		$page = $this->createPage( "WikiPageTest_testDoQuickEdit", "original text" );
 
@@ -290,6 +296,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetText() {
+		$this->hideDeprecated( "WikiPage::getText" );
+
 		$page = $this->newPage( "WikiPageTest_testGetText" );
 
 		$text = $page->getText();
@@ -303,6 +311,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetRawText() {
+		$this->hideDeprecated( "WikiPage::getRawText" );
+
 		$page = $this->newPage( "WikiPageTest_testGetRawText" );
 
 		$text = $page->getRawText();
@@ -621,6 +631,8 @@ more stuff
 	 * @dataProvider dataReplaceSection
 	 */
 	public function testReplaceSection( $title, $text, $section, $with, $sectionTitle, $expected ) {
+		$this->hideDeprecated( "WikiPage::replaceSection" );
+
 		$page = $this->createPage( $title, $text );
 		$text = $page->replaceSection( $section, $with, $sectionTitle );
 		$text = trim( $text );
@@ -827,6 +839,8 @@ more stuff
 	 * @dataProvider dataGetAutoSummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
+		$this->hideDeprecated( "WikiPage::getAutosummary" );
+
 		$page = $this->newPage( "WikiPageTest_testGetAutosummary" );
 
 		$summary = $page->getAutosummary( $old, $new, $flags );

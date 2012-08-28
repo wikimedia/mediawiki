@@ -186,7 +186,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$page = $this->createPage( 'RevisionStorageTest_testFetchRevision', 'one' );
 		$id1 = $page->getRevision()->getId();
 
-		$page->doEdit( 'two', 'second rev' );
+		$page->doEditContent( new WikitextContent( 'two' ), 'second rev' );
 		$id2 = $page->getRevision()->getId();
 
 		$res = Revision::fetchRevision( $page->getTitle() );
@@ -244,6 +244,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetText()
 	{
+		$this->hideDeprecated( 'Revision::getText' );
+
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.' ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
@@ -266,6 +268,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testRevText()
 	{
+		$this->hideDeprecated( 'Revision::revText' );
+
 		$orig = $this->makeRevision( array( 'text' => 'hello hello rev.' ) );
 		$rev = Revision::newFromId( $orig->getId() );
 
@@ -277,6 +281,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetRawText()
 	{
+		$this->hideDeprecated( 'Revision::getRawText' );
+
 		$orig = $this->makeRevision( array( 'text' => 'hello hello raw.' ) );
 		$rev = Revision::newFromId( $orig->getId() );
 

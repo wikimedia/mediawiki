@@ -468,7 +468,8 @@ class WikiPage extends Page implements IDBAccessObject {
 			if ( $rev !== null ) {
 				return $rev->getContentModel();
 			} else {
-				wfWarn( "Page exists but has no revision!" );
+				$title = $this->mTitle->getPrefixedDBkey();
+				wfWarn( "Page $title exists but has no (visible) revisions!" );
 			}
 		}
 

@@ -241,7 +241,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
 
 		$content = new WikitextContent( 'test text' );
-		$ok = ContentHandler::runLegacyHooks( 'testRunLegacyHooks', array( 'foo', &$content, 'bar' ) );
+		$ok = ContentHandler::runLegacyHooks( 'testRunLegacyHooks', array( 'foo', &$content, 'bar' ), false );
 
 		$this->assertTrue( $ok, "runLegacyHooks should have returned true" );
 		$this->assertEquals( "TEST TEXT", $content->getNativeData() );

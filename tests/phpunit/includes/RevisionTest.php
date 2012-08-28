@@ -270,6 +270,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetText
 	 */
 	function testGetText( $text, $title, $model, $format, $audience, $expectedText ) {
+		$this->hideDeprecated( 'Revision::getText' );
+
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 
 		$this->assertEquals( $expectedText, $rev->getText( $audience ) );
@@ -280,6 +282,8 @@ class RevisionTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetText
 	 */
 	function testGetRawText( $text, $title, $model, $format, $audience, $expectedText ) {
+		$this->hideDeprecated( 'Revision::getRawText' );
+
 		$rev = $this->newTestRevision( $text, $title, $model, $format );
 
 		$this->assertEquals( $expectedText, $rev->getRawText( $audience ) );
