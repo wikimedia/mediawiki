@@ -71,23 +71,16 @@ class RollbackAction extends FormlessAction {
 			return;
 		}
 
-		# Display permissions errors before read-only message -- there's no
-		# point in misleading the user into thinking the inability to rollback
-		# is only temporary.
-		if ( !empty( $result ) && $result !== array( array( 'readonlytext' ) ) ) {
-			# array_diff is completely broken for arrays of arrays, sigh.
-			# Remove any 'readonlytext' error manually.
-			$out = array();
-			foreach ( $result as $error ) {
-				if ( $error != array( 'readonlytext' ) ) {
-					$out [] = $error;
-				}
-			}
-			throw new PermissionsError( 'rollback', $out );
-		}
+		#NOTE: Permission errors already handled by Action::checkExecute.
 
 		if ( $result == array( array( 'readonlytext' ) ) ) {
 			throw new ReadOnlyError;
+		}
+
+		#XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
+		#     Right now, we only show the first error
+		foreach ( $result as $error ) {
+			throw new ErrorPageError( 'rollbackfailed', $error[0], array_slice( $error, 1 ) );
 		}
 
 		$current = $details['current'];
