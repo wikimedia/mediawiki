@@ -1886,10 +1886,6 @@ class EditPage {
 
 		$wgOut->addHTML( $this->editFormTextAfterContent );
 
-		$wgOut->addWikiText( $this->getCopywarn() );
-
-		$wgOut->addHTML( $this->editFormTextAfterWarn );
-
 		$this->showStandardInputs();
 
 		$this->showFormAfterText();
@@ -2478,6 +2474,11 @@ HTML
 		$checkboxes = $this->getCheckboxes( $tabindex,
 			array( 'minor' => $this->minoredit, 'watch' => $this->watchthis ) );
 		$wgOut->addHTML( "<div class='editCheckboxes'>" . implode( $checkboxes, "\n" ) . "</div>\n" );
+
+		// Show copyright warning.
+		$wgOut->addWikiText( $this->getCopywarn() );
+		$wgOut->addHTML( $this->editFormTextAfterWarn );
+
 		$wgOut->addHTML( "<div class='editButtons'>\n" );
 		$wgOut->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
 
