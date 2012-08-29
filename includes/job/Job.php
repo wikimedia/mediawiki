@@ -153,7 +153,6 @@ abstract class Job {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 		$affected = $dbw->affectedRows();
-		$dbw->commit( __METHOD__ );
 
 		if ( !$affected ) {
 			// Failed, someone else beat us to it
@@ -177,7 +176,6 @@ abstract class Job {
 			// Delete the random row
 			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 			$affected = $dbw->affectedRows();
-			$dbw->commit( __METHOD__ );
 
 			if ( !$affected ) {
 				// Random job gone before we exclusively deleted it

@@ -342,6 +342,7 @@ class CoreParserFunctions {
 	static function plural( $parser, $text = '' ) {
 		$forms = array_slice( func_get_args(), 2 );
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
+		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
 		return $parser->getFunctionLang()->convertPlural( $text, $forms );
 	}
 
@@ -660,7 +661,7 @@ class CoreParserFunctions {
 		if( isset( $cache[$page] ) ) {
 			$length = $cache[$page];
 		} elseif( $parser->incrementExpensiveFunctionCount() ) {
-			$rev = Revision::newFromTitle( $title );
+			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 			$id = $rev ? $rev->getPage() : 0;
 			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
 

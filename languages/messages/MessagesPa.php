@@ -1890,9 +1890,9 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'spamprotectiontitle' => 'Spam ਸੁਰੱਖਿਆ ਫਿਲਟਰ',
 
 # Info page
-'pageinfo-header-edits' => 'ਸੋਧਾਂ',
-'pageinfo-watchers' => 'ਨਜ਼ਰ ਰੱਖਣ ਵਾਲ਼ਿਆਂ ਦੀ ਗਿਣਤੀ',
-'pageinfo-edits' => 'ਸੋਧਾਂ ਦੀ ਗਿਣਤੀ',
+'pageinfo-header-edits' => 'ਸੋਧਾਂ ਦਾ ਅਤੀਤ',
+'pageinfo-watchers' => 'ਸਫ਼ੇ ’ਤੇ ਨਜ਼ਰ ਰੱਖਣ ਵਾਲ਼ੇ',
+'pageinfo-edits' => 'ਕੁੱਲ ਸੋਧਾਂ',
 
 # Skin names
 'skinname-standard' => 'ਕਲਾਸਿਕ',

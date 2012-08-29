@@ -242,6 +242,9 @@ abstract class FileBackend {
 	 *   - allowStale          : Don't require the latest available data.
 	 *                           This can increase performance for non-critical writes.
 	 *                           This has no effect unless the 'force' flag is set.
+	 *   - preserveCache       : Don't clear the process cache before checking files.
+	 *                           This should only be used if all entries in the process
+	 *                           cache were added after the files were already locked.
 	 *   - nonJournaled        : Don't log this operation batch in the file journal.
 	 *                           This limits the ability of recovery scripts.
 	 *   - parallelize         : Try to do operations in parallel when possible.
@@ -899,7 +902,16 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Invalidate any in-process file existence and property cache.
+	 * Preload persistent file stat and property cache into in-process cache.
+	 * This should be used when stat calls will be made on a known list of a many files.
+	 *
+	 * @param $paths Array Storage paths
+	 * @return void
+	 */
+	public function preloadCache( array $paths ) {}
+
+	/**
+	 * Invalidate any in-process file stat and property cache.
 	 * If $paths is given, then only the cache for those files will be cleared.
 	 *
 	 * @param $paths Array Storage paths (optional)

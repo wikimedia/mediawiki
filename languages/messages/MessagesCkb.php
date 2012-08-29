@@ -808,6 +808,7 @@ $2
 'note' => "'''تێبینی:'''",
 'previewnote' => "'''لە بیرت نەچێت ئەمە تەنیا پێشبینینە.'''
 گۆڕانکارییەکانت ھێشتا پاشەکەوت نەکراون!",
+'continue-editing' => 'بەردەوام بە لەدەستکاریکردن',
 'previewconflict' => 'ئەم پێشبینینە بە تۆ نیشان ئەدات ئەو دەقەی لە شوێنی دەستکاری سەرەوە داتناوە چۆن بەرچاو ئەکەوێت ئەگەر پاشەکەوتی بکەیت.',
 'session_fail_preview' => "'''ببوورە! ناتوانین دەستکارییەکەت پێواژۆ بکەین بە ھۆی لەدەستدانی session data.'''
 تکایە دیسان ھەوڵبدەوە.
@@ -1697,6 +1698,7 @@ $1',
 **لادان لە مافەکانی بڵاوکردنەوە
 ***پەڕگەی دووبارەکراوە',
 'filedelete-edit-reasonlist' => 'دەستکاری هۆکارەکانی سڕینەوە',
+'filedelete-maintenance-title' => 'ناتوانیت پەڕگە بسڕیتەوە',
 
 # MIME search
 'mimesearch' => 'گەڕانی MIME',
@@ -1759,7 +1761,7 @@ $1',
 ئێستا ڕەوانکەرە بۆ [[$2]].',
 'double-redirect-fixer' => 'چارەسەرکەری ڕەوانکەر',
 
-'brokenredirects' => 'ڕەوانەکراوە شکاوەکان',
+'brokenredirects' => 'ڕەوانەکەرە شکاوەکان',
 'brokenredirectstext' => 'ئەم ڕەوانەکراوانە بەستەرن بۆ ئەو پەڕانە کە بوونیان نییە:',
 'brokenredirects-edit' => 'دەستکاری',
 'brokenredirects-delete' => 'سڕینەوە',
@@ -1871,6 +1873,9 @@ $1',
 لەوانەیە یەک یان زیاتر پیتی نەگونجاو بۆ سەردێڕی لەخۆ گرتبێ.',
 'allpages-bad-ns' => '{{SITENAME}} ناوبۆشایی نیە "$1".',
 'allpages-hide-redirects' => 'ڕەوانەکراوەکان بشارەوە',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'دواترین پیشانبدە',
 
 # Special:Categories
 'categories' => 'پۆلەكان',
@@ -2100,7 +2105,7 @@ $UNWATCHURL
 'protectedarticle' => '«[[$1]]»ی پاراست',
 'modifiedarticleprotection' => 'ئاستی پاراستنی «[[$1]]»ی گۆڕا',
 'unprotectedarticle' => 'پاراستنی لەسەر «[[$1]]» لابرد',
-'movedarticleprotection' => 'ڕێککارییەکانی پاراستن لە  "[[$2]]" گوازرایەوە بۆ "[[$1]]"',
+'movedarticleprotection' => 'ڕێککارییەکانی پاراستن لە  «[[$2]]» گوازرایەوە بۆ «[[$1]]»',
 'protect-title' => 'گۆڕینی ئاستی پاراستنی "$1"',
 'prot_1movedto2' => '[[$1]] گوازرایەوە بۆ [[$2]]',
 'protect-legend' => 'پاراستن تەیید بکە',
@@ -2425,7 +2430,7 @@ $1',
 'movepagebtn' => 'ئەم پەڕەیە بگوازەوە',
 'pagemovedsub' => 'گواستنەوە بە سەرکەوتوویی جێبەجێ کرا',
 'movepage-moved' => "'''«$1» گوازرایەوە بۆ «$2»'''",
-'movepage-moved-redirect' => 'ڕەوانکەرێک درووست‌کرا.',
+'movepage-moved-redirect' => 'ڕەوانەکەرێک دروست کرا.',
 'movepage-moved-noredirect' => 'لە دانانی ڕەوانەکەر بەرگری کرا.',
 'articleexists' => 'پەڕەیەک بەم ناوە ھەیە یان ئەو ناوەی تۆ ھەڵتبژاردووە ڕێگەی پێنەدراوە.
 تکایە ناوێکی دیکە ھەڵبژێرە.',
@@ -2435,7 +2440,7 @@ $1',
 'movedto' => 'گواسترایەوە بۆ',
 'movetalk' => 'پەڕەی وتووێژی پەیوەندیدار بگوازەوە',
 'move-subpages' => 'ژێرپەڕەکانی بگوازەوە (ھەتا $1 پەڕە)',
-'move-talk-subpages' => 'ژێرپەڕەکانی پەڕەی وتووێژی بگۆزەرەوە (ھەتاکوو $1)',
+'move-talk-subpages' => 'ژێرپەڕەکانی پەڕەی وتووێژ بگوازەوە (ھەتا $1 پەڕە)',
 'movepage-page-exists' => 'پەڕەی $1 هەیە و ناتوانرێت خۆکار بخرێتە جێی.',
 'movepage-page-moved' => 'پەڕەی $1 گۆزرایەوە بۆ $2.',
 'movepage-page-unmoved' => 'ناکرێ پەڕەی $1 بگوێزرێتەوە بۆ $2.',
@@ -2444,7 +2449,7 @@ $1',
 'movelogpagetext' => 'لە خوارەوەدا لیستی ھەموو پەڕە گواستنەوەکان دەبینن.',
 'movesubpage' => '{{PLURAL:$1|ژێرپەڕە|ژێرپەڕە}}',
 'movesubpagetext' => 'ئەم لاپەڕە $1 {{PLURAL:$1|ژێرلاپەڕەی‌|ژێرلاپەڕەی}} هەیە کە لەخوارە نیشان دراوە.',
-'movenosubpage' => 'ئەم پەڕە ھیچ ژێرپەڕەیەکی نییە.',
+'movenosubpage' => 'ئەم پەڕەیە ھیچ ژێرپەڕەیەکی نییە.',
 'movereason' => 'ھۆکار:',
 'revertmove' => 'پێچەوانەکردنەوە',
 'delete_and_move' => 'بیسڕەوە و بیگوازەوە',
@@ -2663,9 +2668,11 @@ $1',
 
 # Info page
 'pageinfo-title' => 'زانیاری بۆ «$1»',
+'pageinfo-header-basic' => 'زانیاریی سەرەتایی',
 'pageinfo-header-edits' => 'دەستکاریەکان',
 'pageinfo-views' => 'ژمارەی بینینەکان',
 'pageinfo-watchers' => 'ژمارەی چاودێران',
+'pageinfo-firstuser' => 'دروستکەری پەڕە',
 'pageinfo-edits' => 'ژمارەی دەستکارییەکان',
 
 # Skin names
@@ -2777,8 +2784,11 @@ $1',
 'exif-imagelength' => 'بەرزی',
 'exif-imagedescription' => 'ناونیشانی وێنە',
 'exif-model' => 'جۆری کامێرا',
+'exif-software' => 'نەرمەواڵەی بەکارهاتوو',
 'exif-artist' => 'نووسەر',
 'exif-colorspace' => 'بۆشایی ره‌نگ',
+'exif-pixelydimension' => 'پانی وێنە',
+'exif-pixelxdimension' => 'بەرزی وێنە',
 'exif-usercomment' => 'بۆچوونەکانی بەکارهێنەر',
 'exif-relatedsoundfile' => 'فایلی ده‌نگی لێکچوو',
 'exif-lightsource' => 'سەرچاوەی ڕووناکی',
@@ -2794,6 +2804,10 @@ $1',
 'exif-gpstrack' => 'ئاڕاستەی جوڵان',
 'exif-gpsimgdirection' => 'ئاڕاستەی وێنە',
 'exif-gpsdatestamp' => 'ڕێکەوتی GPS',
+'exif-objectname' => 'سەردێری کورت',
+'exif-headline' => 'سەردێر',
+'exif-source' => 'سەرچاوە',
+'exif-copyrighted' => 'ڕەوشی مافی لەبەرگرتنەوە',
 
 # EXIF attributes
 'exif-compression-1' => 'نەپەستێنراو',
@@ -2902,6 +2916,18 @@ $1',
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کیلۆمەتر هەر کاتژمێر',
 'exif-gpsspeed-m' => 'مایل هەر کاتژمێر',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'کیلۆمەتر',
+'exif-gpsdestdistance-m' => 'میل',
+'exif-gpsdestdistance-n' => 'میکی دەریایی',
+
+'exif-dc-date' => 'ڕۆژ(ەکان)',
+'exif-dc-publisher' => 'بڵاوکار',
+'exif-dc-relation' => 'پەڕگەی پەیوەندیدار',
+'exif-dc-rights' => 'مافەکان',
+'exif-dc-source' => 'سەرچاوەی پەڕگە',
+'exif-dc-type' => 'جۆری پەڕگە',
 
 'exif-iimcategory-hth' => 'تەندروستی',
 'exif-iimcategory-sci' => 'زانست و تەکنۆلۆژیا',

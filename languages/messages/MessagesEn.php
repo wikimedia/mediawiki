@@ -1436,6 +1436,7 @@ You are also promising us that you wrote this yourself, or copied editpageit fro
 If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
 You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource (see $1 for details).
 '''Do not submit copyrighted work without permission!'''",
+'editpage-head-copy-warn'          => '-', # do not translate or duplicate this message to other languages
 'editpage-tos-summary'             => '-', # do not translate or duplicate this message to other languages
 'longpage-hint'                    => '-', # do not translate or duplicate this message to other languages
 'longpageerror'                    => "'''Error: The text you have submitted is {{PLURAL:$1|one kilobyte|$1 kilobytes}} long, which is longer than the maximum of {{PLURAL:$2|one kilobyte|$2 kilobytes}}.'''

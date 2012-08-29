@@ -1079,7 +1079,6 @@ $wgAutoloadLocalClasses = array(
 	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
 	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
-	
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
 

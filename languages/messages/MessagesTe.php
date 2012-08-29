@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Arjunaraoc
  * @author Chaduvari
  * @author Jprmvnvijay5
  * @author Kaganer
@@ -692,6 +693,7 @@ $2
 # Special:ChangeEmail
 'changeemail' => 'ఈ-మెయిలు చిరునామా మార్పు',
 'changeemail-header' => 'ఖాతా ఈ-మెయిల్ చిరునామాని మార్చండి',
+'changeemail-text' => 'మీ ఈమెయిల్ చిరునామా మార్చుటకు ఈ ఫారము నింపండి. ఈ మార్పుని ఖచ్చితపరచుటకు మీ సంకేతపదం  ప్రవేశపెట్టాలి.',
 'changeemail-no-info' => 'ఈ పేజీని నేరుగా చూడటానికి మీరు లోనికి ప్రవేశించివుండాలి.',
 'changeemail-oldemail' => 'ప్రస్తుత ఈ-మెయిలు చిరునామా:',
 'changeemail-newemail' => 'కొత్త ఈ-మెయిలు చిరునామా:',

@@ -111,7 +111,7 @@ class SwiftFileBackend extends FileBackendStore {
 			: false;
 		$this->swiftCDNExpiry = isset( $config['swiftCDNExpiry'] )
 			? $config['swiftCDNExpiry']
-			: 3600; // hour
+			: 12*3600; // 12 hours is safe (tokens last 24 hours per http://docs.openstack.org)
 		$this->swiftCDNPurgable = isset( $config['swiftCDNPurgable'] )
 			? $config['swiftCDNPurgable']
 			: true;
@@ -852,13 +852,13 @@ class SwiftFileBackend extends FileBackendStore {
 						// See function "create_container_table" in common/db.py.
 						// If a directory is not "greater" than the last one,
 						// then it was already listed by the calling iterator.
-						if ( $objectDir > $lastDir ) {
+						if ( strcmp( $objectDir, $lastDir ) > 0 ) {
 							$pDir = $objectDir;
 							do { // add dir and all its parent dirs
 								$dirs[] = "{$pDir}/";
 								$pDir = $this->getParentDir( $pDir );
 							} while ( $pDir !== false // sanity
-								&& $pDir > $lastDir // not done already
+								&& strcmp( $pDir, $lastDir ) > 0 // not done already
 								&& strlen( $pDir ) > strlen( $dir ) // within $dir
 							);
 						}
@@ -1296,6 +1296,9 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 		if ( $e->getMessage() ) {
 			trigger_error( "$func: " . $e->getMessage(), E_USER_WARNING );
+		}
+		if ( $e instanceof InvalidResponseException ) { // possibly a stale token
+			$this->srvCache->delete( $this->getCredsCacheKey( $this->auth->username ) );
 		}
 		wfDebugLog( 'SwiftBackend',
 			get_class( $e ) . " in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .

@@ -268,10 +268,17 @@ class CSSJanus {
 	 * @return string
 	 */
 	private static function fixBackgroundPosition( $css ) {
-		$css = preg_replace_callback( self::$patterns['bg_horizontal_percentage'],
+		$replaced = preg_replace_callback( self::$patterns['bg_horizontal_percentage'],
 			array( 'self', 'calculateNewBackgroundPosition' ), $css );
-		$css = preg_replace_callback( self::$patterns['bg_horizontal_percentage_x'],
+		if ( $replaced !== null ) {
+			// Check for null; sometimes preg_replace_callback() returns null here for some weird reason
+			$css = $replaced;
+		}
+		$replaced = preg_replace_callback( self::$patterns['bg_horizontal_percentage_x'],
 			array( 'self', 'calculateNewBackgroundPosition' ), $css );
+		if ( $replaced !== null ) {
+			$css = $replaced;
+		}
 
 		return $css;
 	}

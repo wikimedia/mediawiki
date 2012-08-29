@@ -989,7 +989,9 @@ abstract class FileBackendStore extends FileBackend {
 		}
 
 		// Clear any file cache entries (after locks acquired)
-		$this->clearCache();
+		if ( empty( $opts['preserveCache'] ) ) {
+			$this->clearCache();
+		}
 
 		// Load from the persistent file and container caches
 		$this->primeFileCache( $performOps );
@@ -1104,6 +1106,20 @@ abstract class FileBackendStore extends FileBackend {
 			throw new MWException( "This backend supports no asynchronous operations." );
 		}
 		return array();
+	}
+
+	/**
+	 * @see FileBackend::preloadCache()
+	 */
+	final public function preloadCache( array $paths ) {
+		$fullConts = array(); // full container names
+		foreach ( $paths as $path ) {
+			list( $fullCont, $r, $s ) = $this->resolveStoragePath( $path );
+			$fullConts[] = $fullCont;
+		}
+		// Load from the persistent file and container caches
+		$this->primeContainerCache( $fullConts );
+		$this->primeFileCache( $paths );
 	}
 
 	/**

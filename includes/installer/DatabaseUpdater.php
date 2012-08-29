@@ -579,6 +579,7 @@ abstract class DatabaseUpdater {
 			else {
 				$this->applyPatch( $patch, $fullpath, $msg );
 			}
+
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}

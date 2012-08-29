@@ -105,7 +105,6 @@ class LoginForm extends SpecialPage {
 		$this->mLanguage = $request->getText( 'uselang' );
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
-
 		$this->mReturnTo = $request->getVal( 'returnto', '' );
 		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
 

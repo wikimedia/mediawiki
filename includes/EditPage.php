@@ -1384,7 +1384,8 @@ class EditPage {
 
 					// Create a link to the new section from the edit summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )->inContentLanguage()->text() ;
+					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
+						->inContentLanguage()->text();
 				}
 			}
 
@@ -2273,7 +2274,10 @@ class EditPage {
 				);
 			}
 		}
+		# Add header copyright warning
+		$this->showHeaderCopyrightWarning();
 	}
+
 
 	/**
 	 * Standard summary input and label (wgSummary), abstracted so EditPage
@@ -2583,6 +2587,18 @@ HTML
 		}
 
 		$wgOut->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
+	}
+
+	/**
+	 * Show the header copyright warning.
+	 */
+	protected function showHeaderCopyrightWarning() {
+		$msg = 'editpage-head-copy-warn';
+		if ( !wfMessage( $msg )->isDisabled() ) {
+			global $wgOut;
+			$wgOut->wrapWikiMsg( "<div class='editpage-head-copywarn'>\n$1\n</div>",
+				'editpage-head-copy-warn' );
+		}
 	}
 
 	/**

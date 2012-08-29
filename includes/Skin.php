@@ -835,7 +835,7 @@ abstract class Skin extends ContextSource {
 	 */
 	function logoText( $align = '' ) {
 		if ( $align != '' ) {
-			$a = " align='{$align}'";
+			$a = " style='float: {$align};'";
 		} else {
 			$a = '';
 		}
@@ -1288,18 +1288,19 @@ abstract class Skin extends ContextSource {
 		$ntl = '';
 
 		if ( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
-			$userTalkTitle = $this->getUser()->getTalkPage();
+			$uTalkTitle = $this->getUser()->getTalkPage();
 
-			if ( !$userTalkTitle->equals( $out->getTitle() ) ) {
+			if ( !$uTalkTitle->equals( $out->getTitle() ) ) {
 				$lastSeenRev = isset( $newtalks[0]['rev'] ) ? $newtalks[0]['rev'] : null;
 				$nofAuthors = 0;
 				if ( $lastSeenRev !== null ) {
 					$plural = true; // Default if we have a last seen revision: if unknown, use plural
-					$latestRev = Revision::newFromTitle ($userTalkTitle);
+					$latestRev = Revision::newFromTitle( $uTalkTitle, false, Revision::READ_NORMAL );
 					if ( $latestRev !== null ) {
 						// Singular if only 1 unseen revision, plural if several unseen revisions.
 						$plural = $latestRev->getParentId() !== $lastSeenRev->getId();
-						$nofAuthors = $userTalkTitle->countAuthorsBetween( $lastSeenRev, $latestRev, 10, 'include_new' );
+						$nofAuthors = $uTalkTitle->countAuthorsBetween(
+							$lastSeenRev, $latestRev, 10, 'include_new' );
 					}
 				} else {
 					// Singular if no revision -> diff link will show latest change only in any case
@@ -1310,14 +1311,14 @@ abstract class Skin extends ContextSource {
 				// the number of revisions or authors is not necessarily the same as the number of
 				// "messages".
 				$newMessagesLink = Linker::linkKnown(
-					$userTalkTitle,
+					$uTalkTitle,
 					$this->msg( 'newmessageslinkplural' )->params( $plural )->escaped(),
 					array(),
 					array( 'redirect' => 'no' )
 				);
 
 				$newMessagesDiffLink = Linker::linkKnown(
-					$userTalkTitle,
+					$uTalkTitle,
 					$this->msg( 'newmessagesdifflinkplural' )->params( $plural )->escaped(),
 					array(),
 					$lastSeenRev !== null

@@ -927,7 +927,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 L'ultimo elemento del registro dei blocchi è riportato di seguito per informazione:",
 'clearyourcache' => "'''Nota:''' dopo aver salvato, potrebbe essere necessario pulire la cache del proprio browser per vedere i cambiamenti. 
 *'''Firefox / Safari''': tenere premuto il tasto delle maiuscole e fare clic su ''Ricarica'', oppure premere ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' su Mac)
-*'''Google Chrome''': premere ''Ctrl-Shift-R'' (''⌘-Shift-R'' su un Mac)
+*'''Google Chrome''': fare clic su ''Ricarica'', oppure premere ''Ctrl-R'' o ''Ctrl-Shift-R'' (''⌘-Shift-R'' su un Mac)
 *'''Internet Explorer''': tenere premuto il tasto ''Ctrl'' mentre si fa clic su ''Refresh'', oppure premere ''Ctrl-F5''
 *'''Opera''': svuotare completamente la cache dal menu ''Strumenti → Preferenze''",
 'usercssyoucanpreview' => "'''Suggerimento:''' usa il pulsante 'Visualizza anteprima' per provare il tuo nuovo CSS prima di salvarlo.",

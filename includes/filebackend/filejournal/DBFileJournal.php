@@ -27,6 +27,9 @@
  * @since 1.20
  */
 class DBFileJournal extends FileJournal {
+	/** @var DatabaseBase */
+	protected $dbw;
+
 	protected $wiki = false; // string; wiki DB name
 
 	/**
@@ -71,9 +74,7 @@ class DBFileJournal extends FileJournal {
 		}
 
 		try {
-			$dbw->begin();
 			$dbw->insert( 'filejournal', $data, __METHOD__ );
-			$dbw->commit();
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
 			return $status;
@@ -125,12 +126,10 @@ class DBFileJournal extends FileJournal {
 		$dbw = $this->getMasterDB();
 		$dbCutoff = $dbw->timestamp( time() - 86400 * $this->ttlDays );
 
-		$dbw->begin();
 		$dbw->delete( 'filejournal',
 			array( 'fj_timestamp < ' . $dbw->addQuotes( $dbCutoff ) ),
 			__METHOD__
 		);
-		$dbw->commit();
 
 		return $status;
 	}
@@ -142,7 +141,12 @@ class DBFileJournal extends FileJournal {
 	 * @throws DBError
 	 */
 	protected function getMasterDB() {
-		$lb = wfGetLBFactory()->newMainLB();
-		return $lb->getConnection( DB_MASTER, array(), $this->wiki );
+		if ( !$this->dbw ) {
+			// Get a separate connection in autocommit mode
+			$lb = wfGetLBFactory()->newMainLB();
+			$this->dbw = $lb->getConnection( DB_MASTER, array(), $this->wiki );
+			$this->dbw->clearFlag( DBO_TRX );
+		}
+		return $this->dbw;
 	}
 }
