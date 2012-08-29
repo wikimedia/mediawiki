@@ -27,9 +27,9 @@
  * @ingroup JobQueue
  */
 class RefreshLinksJob extends Job {
-
 	function __construct( $title, $params = '', $id = 0 ) {
 		parent::__construct( 'refreshLinks', $title, $params, $id );
+		$this->removeDuplicates = true; // job is expensive
 	}
 
 	/**
