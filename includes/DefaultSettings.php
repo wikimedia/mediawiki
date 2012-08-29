@@ -5341,6 +5341,14 @@ $wgJobClasses = array(
 $wgJobTypesExcludedFromDefaultQueue = array();
 
 /**
+ * Map of job types to configuration arrays.
+ * These settings should be global to all wikis.
+ */
+$wgJobTypeConf = array(
+	'default' => array( 'class' => 'JobQueueDB' ),
+);
+
+/**
  * Additional functions to be performed with updateSpecialPages.
  * Expensive Querypages are already updated.
  */
