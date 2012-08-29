@@ -807,7 +807,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Start a transaction (mandatory)
 	 */
-	public function begin( $fname = 'DatabaseIbm_db2::begin' ) {
+	protected function doBegin( $fname = 'DatabaseIbm_db2::begin' ) {
 		// BEGIN is implicit for DB2
 		// However, it requires that AutoCommit be off.
 
@@ -823,7 +823,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * End a transaction
 	 * Must have a preceding begin()
 	 */
-	public function commit( $fname = 'DatabaseIbm_db2::commit' ) {
+	protected function doCommit( $fname = 'DatabaseIbm_db2::commit' ) {
 		db2_commit( $this->mConn );
 
 		// Some MediaWiki code is still transaction-less (?).
@@ -837,7 +837,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Cancel a transaction
 	 */
-	public function rollback( $fname = 'DatabaseIbm_db2::rollback' ) {
+	protected function doRollback( $fname = 'DatabaseIbm_db2::rollback' ) {
 		db2_rollback( $this->mConn );
 		// turn auto-commit back on
 		// not sure if this is appropriate
