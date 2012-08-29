@@ -2490,7 +2490,8 @@ HTML
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
 			wfMessage( 'edithelp' )->escaped() . '</a> ' .
 			wfMessage( 'newwindow' )->escaped();
-		$wgOut->addHTML( "	<span class='editHelp'>{$cancel}{$edithelp}</span>\n" );
+		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
+		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
 	}
 
