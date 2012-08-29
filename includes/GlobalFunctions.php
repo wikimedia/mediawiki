@@ -1879,16 +1879,15 @@ function wfBacktrace() {
  * wfGetCaller( 3 ) is the parent of that.
  *
  * @param $level Int
- * @return Bool|string
+ * @return string
  */
 function wfGetCaller( $level = 2 ) {
 	$backtrace = wfDebugBacktrace( $level + 1 );
 	if ( isset( $backtrace[$level] ) ) {
 		return wfFormatStackFrame( $backtrace[$level] );
 	} else {
-		$caller = 'unknown';
+		return 'unknown';
 	}
-	return $caller;
 }
 
 /**
@@ -1912,7 +1911,7 @@ function wfGetAllCallers( $limit = 3 ) {
  * Return a string representation of frame
  *
  * @param $frame Array
- * @return Bool
+ * @return string
  */
 function wfFormatStackFrame( $frame ) {
 	return isset( $frame['class'] ) ?
