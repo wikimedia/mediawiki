@@ -1151,7 +1151,7 @@ class LocalFile extends File {
 		# Add the log entry
 		$log = new LogPage( 'upload' );
 		$action = $reupload ? 'overwrite' : 'upload';
-		$log->addEntry( $action, $descTitle, $comment, array(), $user );
+		$logId = $log->addEntry( $action, $descTitle, $comment, array(), $user );
 
 		wfProfileIn( __METHOD__ . '-edit' );
 		if ( $descTitle->exists() ) {
@@ -1169,6 +1169,8 @@ class LocalFile extends File {
 				wfRunHooks( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
+			$dbw->update( 'logging', array( 'log_page' => $descTitle->getArticleID() ), array( 'log_id' => $logId ), __METHOD__ );
+
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$descTitle->purgeSquid();
@@ -1176,7 +1178,11 @@ class LocalFile extends File {
 			# New file; create the description page.
 			# There's already a log entry, so don't make a second RC entry
 			# Squid and file cache for the description page are purged by doEdit.
-			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
+			$status = $wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC, false, $user );
+
+			if ( isset( $status->value['revision'] ) ) {
+				$dbw->update( 'logging', array( 'log_page' => $status->value['revision']->getPage() ), array( 'log_id' => $logId ), __METHOD__ );
+			}
 		}
 		wfProfileOut( __METHOD__ . '-edit' );
 
