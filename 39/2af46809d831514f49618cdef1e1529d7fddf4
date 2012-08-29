@@ -1,0 +1,8 @@
+Change-Id: I392af46809d831514f49618cdef1e1529d7fddf4
+Code-Review+2: Daniel Kinzler <daniel.kinzler@wikimedia.de>
+Verified+1: Daniel Kinzler <daniel.kinzler@wikimedia.de>
+Submitted-by: Daniel Kinzler <daniel.kinzler@wikimedia.de>
+Submitted-at: Wed, 29 Aug 2012 13:15:19 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/21880
+Project: mediawiki/core
+Branch: refs/heads/Wikidata
