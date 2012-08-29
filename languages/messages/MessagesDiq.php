@@ -416,7 +416,7 @@ $messages = array(
 'dec' => 'Kan',
 
 # Categories related messages
-'pagecategories' => '{{PLURAL:$1|Kategori|Kategoriy}}',
+'pagecategories' => '{{PLURAL:$1|Kategoriye|Kategoriy}}',
 'category_header' => 'Pelê ke kategoriya "$1" derê',
 'subcategories' => 'Kategoriyê bınêni',
 'category-media-header' => 'Medyawa ke kategoriya "$1" dera',
@@ -508,7 +508,7 @@ $messages = array(
 'talkpage' => 'Ena pele sero werêne',
 'talkpagelinktext' => 'Mesac',
 'specialpage' => 'Pela xısusiye',
-'personaltools' => 'Hacetê şexsi',
+'personaltools' => 'Haletê şexsi',
 'postcomment' => 'Qısımo newe',
 'articlepage' => 'Pela zerreki bıvêne',
 'talk' => 'Werênayış',
@@ -1334,7 +1334,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'searchrelated' => 'eleqayî',
 'searchall' => 'têdıne',
 'showingresults' => "Heta {{PLURAL:$1|'''1''' netice|'''$1''' neticeyan}} ke pê #'''$2''' başli beno ey bimocne .",
-'showingresultsnum' => "Heta binê {{PLURAL:$3|'''1''' netice|'''$3''' neticeyan}} ke pê #'''$2''' başli beno ey bimocne .",
+'showingresultsnum' => "'''$2''' netican ra nata  {{PLURAL:$3|'''1''' netice|'''$3''' neticeyê}} cêrde liste biyê.",
 'showingresultsheader' => "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' of '''$3'''}} qe '''$4'''",
 'nonefound' => "'''Teme''': Teyna tay namecayan cıgeyro beno.
 Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mınaqeşe, templatenan, ucb.) ya zi cıgeyro ser namecay ki tı wazeni.",
@@ -2938,7 +2938,7 @@ dosyaya emaneti vindbiyo',
 'xml-error-string' => '$1 çizgi de $2 col $3 (bit $4): $5',
 'import-upload' => 'Dosyayê XML bar bike',
 'import-token-mismatch' => "vindibiyayişê ma'lumatê hesabi. kerem kerê newe ra tesel/cereb bıkerê.",
-'import-invalid-interwiki' => 'Eya wîkî ra nieşkenî împort bike.',
+'import-invalid-interwiki' => 'Ena wiki ra azere kerdış nêbeno.',
 'import-error-edit' => 'Pela " $1 " qandê vurnayışi aya nêgêrêna çıkı cı rê icazet nêdeyayo.',
 'import-error-create' => 'Pela " $1 " qandê vıraştışi aya nêabêna çıkı cı rê icazet nêdeyayo.',
 'import-error-interwiki' => 'Pela " $1 " qandê name dayışi aya nêgêrêna çıkı namey cı (interwiki) sero cırê ca abıryayo.',
@@ -4031,10 +4031,10 @@ Resımi be tam asayış mocniyayê, tipê dosyaê bini be programê cıyo elaqed
 'specialpages-group-users' => 'Karber u heqqî',
 'specialpages-group-highuse' => 'Peleyê ke vêşi karênê',
 'specialpages-group-pages' => 'listeyanê pelan',
-'specialpages-group-pagetools' => 'Hacetê pelan',
+'specialpages-group-pagetools' => 'Haletê pelan',
 'specialpages-group-wiki' => 'Malumatê wiki u haceti',
 'specialpages-group-redirects' => 'Pela xasîyê ke heteneyayê',
-'specialpages-group-spam' => 'hacetê spami',
+'specialpages-group-spam' => 'haletê spami',
 
 # Special:BlankPage
 'blankpage' => 'Pela venge',
