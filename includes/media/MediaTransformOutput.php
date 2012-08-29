@@ -214,25 +214,46 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * Get a thumbnail object from a file and parameters.
 	 * If $path is set to null, the output file is treated as a source copy.
 	 * If $path is set to false, no output file will be created.
+	 * $parameters should include, as a minimum, (file) 'width' and 'height'.
+	 * It may also include a 'page' parameter for multipage files.
 	 *
 	 * @param $file File object
 	 * @param $url String: URL path to the thumb
-	 * @param $width Integer: file's width
-	 * @param $height Integer: file's height
 	 * @param $path String|bool|null: filesystem path to the thumb
-	 * @param $page Integer: page number, for multipage files
+	 * @param $parameters Array: Associative array of parameters
 	 * @private
 	 */
-	function __construct( $file, $url, $width, $height, $path = false, $page = false ) {
+	function __construct( $file, $url, $path = false, $parameters = array() ) {
+		# Previous parameters:
+		#   $file, $url, $width, $height, $path = false, $page = false
+
+		if( is_array( $parameters ) ){
+			$defaults = array(
+				'page' => false
+			);
+			$actualParams = $parameters + $defaults;
+		} else {
+			# Using old format, should convert. Later a warning could be added here.
+			$numArgs = func_num_args();
+			$actualParams = array(
+				'width' => $path,
+				'height' => $parameters,
+				'page' => ( $numArgs > 5 ) ? func_get_arg( 5 ) : false
+			);
+			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
+		}
+
 		$this->file = $file;
 		$this->url = $url;
+		$this->path = $path;
+
 		# These should be integers when they get here.
 		# If not, there's a bug somewhere.  But let's at
 		# least produce valid HTML code regardless.
-		$this->width = round( $width );
-		$this->height = round( $height );
-		$this->path = $path;
-		$this->page = $page;
+		$this->width = round( $actualParams['width'] );
+		$this->height = round( $actualParams['height'] );
+
+		$this->page = $actualParams['page'];
 	}
 
 	/**
