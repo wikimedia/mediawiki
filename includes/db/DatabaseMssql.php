@@ -694,7 +694,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * Begin a transaction, committing any previously open transaction
 	 */
-	function begin( $fname = 'DatabaseMssql::begin' ) {
+	protected function doBegin( $fname = 'DatabaseMssql::begin' ) {
 		sqlsrv_begin_transaction( $this->mConn );
 		$this->mTrxLevel = 1;
 	}
@@ -702,7 +702,7 @@ class DatabaseMssql extends DatabaseBase {
 	/**
 	 * End a transaction
 	 */
-	function commit( $fname = 'DatabaseMssql::commit' ) {
+	protected function doCommit( $fname = 'DatabaseMssql::commit' ) {
 		sqlsrv_commit( $this->mConn );
 		$this->mTrxLevel = 0;
 	}
@@ -711,7 +711,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * Rollback a transaction.
 	 * No-op on non-transactional databases.
 	 */
-	function rollback( $fname = 'DatabaseMssql::rollback' ) {
+	protected function doRollback( $fname = 'DatabaseMssql::rollback' ) {
 		sqlsrv_rollback( $this->mConn );
 		$this->mTrxLevel = 0;
 	}
