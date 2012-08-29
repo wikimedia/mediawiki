@@ -25,7 +25,7 @@
 # Start from scratch
 define( 'MW_NO_EXTENSION_MESSAGES', 1 );
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 $maintClass = 'MergeMessageFileList';
 $mmfl = false;
 
@@ -104,7 +104,7 @@ $s =
 
 $dirs = array(
 	$IP,
-	dirname( __DIR__ ),
+	dirname( dirname( __FILE__ ) ),
 	realpath( $IP )
 );
 

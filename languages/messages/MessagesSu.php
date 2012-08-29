@@ -2478,6 +2478,8 @@ Sigana mah ieu téh alatan tumbu ka loka luar.',
 # Info page
 'pageinfo-title' => 'Émbaran pikeun "$1"',
 'pageinfo-header-edits' => 'Éditan',
+'pageinfo-subjectpage' => 'Kaca',
+'pageinfo-talkpage' => 'Kaca sawala',
 'pageinfo-watchers' => 'Jumlah nu ngawaskeun',
 'pageinfo-edits' => 'Jumlah éditan',
 'pageinfo-authors' => 'Jumlah kontributor nu béda',

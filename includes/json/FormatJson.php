@@ -20,7 +20,7 @@
  * @file
  */
 
-require_once __DIR__ . '/Services_JSON.php';
+require_once dirname( __FILE__ ) . '/Services_JSON.php';
 
 /**
  * JSON formatter wrapper class

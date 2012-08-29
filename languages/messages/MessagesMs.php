@@ -68,36 +68,36 @@ $namespaceAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#LENCONG', '#REDIRECT' ),
-	'currentmonth'              => array( '1', 'BULANSEMASA', 'BULANSEMASA2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonth1'             => array( '1', 'BULANSEMASA1', 'CURRENTMONTH1' ),
-	'currentmonthname'          => array( '1', 'NAMABULANSEMASA', 'CURRENTMONTHNAME' ),
-	'currentmonthnamegen'       => array( '1', 'NAMABULANSEMASAGEN', 'CURRENTMONTHNAMEGEN' ),
-	'currentmonthabbrev'        => array( '1', 'SINGBULANSEMASA', 'CURRENTMONTHABBREV' ),
-	'currentday'                => array( '1', 'HARISEMASA', 'CURRENTDAY' ),
-	'currentday2'               => array( '1', 'HARISEMASA2', 'CURRENTDAY2' ),
-	'currentdayname'            => array( '1', 'NAMAHARISEMASA', 'CURRENTDAYNAME' ),
-	'currentyear'               => array( '1', 'TAHUNSEMASA', 'CURRENTYEAR' ),
-	'currenttime'               => array( '1', 'WAKTUSEMASA', 'CURRENTTIME' ),
-	'currenthour'               => array( '1', 'JAMSEMASA', 'CURRENTHOUR' ),
-	'pagename'                  => array( '1', 'NAMALAMAN', 'PAGENAME' ),
-	'pagenamee'                 => array( '1', 'NAMALAMANE', 'PAGENAMEE' ),
-	'namespace'                 => array( '1', 'RUANGNAMA', 'NAMESPACE' ),
-	'namespacee'                => array( '1', 'RUANGNAMAE', 'NAMESPACEE' ),
-	'talkspace'                 => array( '1', 'RUANGBINCANG', 'TALKSPACE' ),
-	'talkspacee'                => array( '1', 'RUANGBINCANGE', 'TALKSPACEE' ),
-	'fullpagename'              => array( '1', 'NAMALAMANPENUH', 'FULLPAGENAME' ),
-	'fullpagenamee'             => array( '1', 'NAMALAMANPENUHE', 'FULLPAGENAMEE' ),
-	'msg'                       => array( '0', 'PESAN:', 'MSG:' ),
-	'subst'                     => array( '0', 'TUKAR:', 'SUBST:' ),
-	'img_right'                 => array( '1', 'kiri', 'right' ),
-	'img_left'                  => array( '1', 'kanan', 'left' ),
-	'img_none'                  => array( '1', 'tiada', 'none' ),
-	'img_center'                => array( '1', 'tengah', 'center', 'centre' ),
-	'sitename'                  => array( '1', 'NAMATAPAK', 'SITENAME' ),
-	'ns'                        => array( '0', 'RN:', 'NS:' ),
-	'nse'                       => array( '0', 'RNE:', 'NSE:' ),
-	'currentweek'               => array( '1', 'MINGGUSEMASA', 'CURRENTWEEK' ),
+	'redirect'                => array( '0', '#LENCONG', '#REDIRECT' ),
+	'currentmonth'            => array( '1', 'BULANSEMASA', 'BULANSEMASA2', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'           => array( '1', 'BULANSEMASA1', 'CURRENTMONTH1' ),
+	'currentmonthname'        => array( '1', 'NAMABULANSEMASA', 'CURRENTMONTHNAME' ),
+	'currentmonthnamegen'     => array( '1', 'NAMABULANSEMASAGEN', 'CURRENTMONTHNAMEGEN' ),
+	'currentmonthabbrev'      => array( '1', 'SINGBULANSEMASA', 'CURRENTMONTHABBREV' ),
+	'currentday'              => array( '1', 'HARISEMASA', 'CURRENTDAY' ),
+	'currentday2'             => array( '1', 'HARISEMASA2', 'CURRENTDAY2' ),
+	'currentdayname'          => array( '1', 'NAMAHARISEMASA', 'CURRENTDAYNAME' ),
+	'currentyear'             => array( '1', 'TAHUNSEMASA', 'CURRENTYEAR' ),
+	'currenttime'             => array( '1', 'WAKTUSEMASA', 'CURRENTTIME' ),
+	'currenthour'             => array( '1', 'JAMSEMASA', 'CURRENTHOUR' ),
+	'pagename'                => array( '1', 'NAMALAMAN', 'PAGENAME' ),
+	'pagenamee'               => array( '1', 'NAMALAMANE', 'PAGENAMEE' ),
+	'namespace'               => array( '1', 'RUANGNAMA', 'NAMESPACE' ),
+	'namespacee'              => array( '1', 'RUANGNAMAE', 'NAMESPACEE' ),
+	'talkspace'               => array( '1', 'RUANGBINCANG', 'TALKSPACE' ),
+	'talkspacee'              => array( '1', 'RUANGBINCANGE', 'TALKSPACEE' ),
+	'fullpagename'            => array( '1', 'NAMALAMANPENUH', 'FULLPAGENAME' ),
+	'fullpagenamee'           => array( '1', 'NAMALAMANPENUHE', 'FULLPAGENAMEE' ),
+	'msg'                     => array( '0', 'PESAN:', 'MSG:' ),
+	'subst'                   => array( '0', 'TUKAR:', 'SUBST:' ),
+	'img_right'               => array( '1', 'kiri', 'right' ),
+	'img_left'                => array( '1', 'kanan', 'left' ),
+	'img_none'                => array( '1', 'tiada', 'none' ),
+	'img_center'              => array( '1', 'tengah', 'center', 'centre' ),
+	'sitename'                => array( '1', 'NAMATAPAK', 'SITENAME' ),
+	'ns'                      => array( '0', 'RN:', 'NS:' ),
+	'nse'                     => array( '0', 'RNE:', 'NSE:' ),
+	'currentweek'             => array( '1', 'MINGGUSEMASA', 'CURRENTWEEK' ),
 );
 
 $specialPageAliases = array(
@@ -515,12 +515,12 @@ Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].',
 # General errors
 'error' => 'Ralat',
 'databaseerror' => 'Ralat pangkalan data',
-'dberrortext' => 'Terjadinya ralat sintaks pertanyaan pangkalan data.
-Ini mungkin menandakan adanya pepijat dalam perisian ini.
-Pertanyaan pangkalan data terakhir yang dicuba ialah:
-<blockquote><code>$1</code></blockquote>
-daripada dalam fungsi "<samp>$2</samp>".
-Pangkalan data memulangkan ralat "<samp>$3: $4</samp>".',
+'dberrortext' => 'Ralat sintaks pertanyaan pangkalan data telah terjadi.
+Ini mungkin menandakan pepijat dalam perisian wiki ini.
+Pertanyaan pangkalan data yang terakhir ialah:
+<blockquote><tt>$1</tt></blockquote>
+daripada fungsi "<tt>$2</tt>".
+Pangkalan data memulangkan ralat "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Terdapat ralat sintaks pertanyaan pangkalan data.
 Pertanyaan terakhir ialah:
 "$1"
@@ -854,10 +854,11 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'userpage-userdoesnotexist-view' => 'Akaun pengguna "$1" tidak berdaftar.',
 'blocked-notice-logextract' => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
-'clearyourcache' => "'''Catatan:''' Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.
+'clearyourcache' => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
 *'''Firefox/Safari:''' Tekan terus ''Shift'' sambil klik ''Reload'', atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R''  (''⌘+R'' bagi Mac)
 *'''Google Chrome:''' Tekan ''Ctrl+Shift+R''  (''⌘+Shift+R'' bagi Mac)
 *'''Internet Explorer:''' Tekan terus ''Ctrl'' sambil klik ''Refresh'', atau tekan ''Ctrl+F5''
+*'''Konqueror:''' Klik butang ''Reload'', atau tekan ''F5''
 *'''Opera:''' Kosongkan cache di menu ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menyimpan.",
 'userjsyoucanpreview' => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
@@ -1859,7 +1860,6 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 'shared-repo' => 'sebuah gedung kongsi',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => '/* CSS yang ditempatkan di sini disertakan pada laman keterangan fail, dan juga pada klien wiki asing */',
-'upload-disallowed-here' => 'Maaf, anda tidak boleh menggantikan imej ini.',
 
 # File reversion
 'filerevert' => 'Balikkan $1',
@@ -1966,7 +1966,6 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 # Miscellaneous special pages
 'nbytes' => '{{PLURAL:$1|$1 bait}}',
 'ncategories' => '$1 kategori',
-'ninterwikis' => '$1 pautan antara wiki',
 'nlinks' => '$1 pautan',
 'nmembers' => '$1 ahli',
 'nrevisions' => '$1 semakan',
@@ -1995,7 +1994,6 @@ Masukan yang <del>dipotong</del> telah diselesaikan.',
 'mostlinkedtemplates' => 'Templat dipaut terbanyak',
 'mostcategories' => 'Rencana dengan kategori terbanyak',
 'mostimages' => 'Imej dipaut terbanyak',
-'mostinterwikis' => 'Halaman yang paling banyak pautan antara wiki',
 'mostrevisions' => 'Rencana dengan semakan terbanyak',
 'prefixindex' => 'Indeks awalan',
 'prefixindex-namespace' => 'Semua laman dengan awalan (ruang nama $1)',
@@ -2143,8 +2141,6 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 [[Special:Preferences|laman keutamaan]] untuk mengirim e-mel kepada pengguna lain.',
 'emailuser' => 'Kirim e-mel kepada pengguna ini',
-'emailuser-title-target' => 'E-mel {{GENDER:$1|pengguna}} ini',
-'emailuser-title-notarget' => 'E-mel pengguna',
 'emailpage' => 'E-mel pengguna',
 'emailpagetext' => 'Gunakan borang berikut untuk mengirim pesanan e-mel kepada pengguna ini.
 
@@ -2952,34 +2948,16 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',
-'pageinfo-header-basic' => 'Maklumat asas',
-'pageinfo-header-edits' => 'Sunting sejarah',
-'pageinfo-header-restrictions' => 'Perlindungan halaman',
-'pageinfo-header-properties' => 'Sifat halaman',
-'pageinfo-display-title' => 'Tajuk paparan',
-'pageinfo-default-sort' => 'Kunci isih azali',
-'pageinfo-length' => 'Kepanjangan halaman (bait)',
-'pageinfo-article-id' => 'ID halaman',
-'pageinfo-robot-policy' => 'Status enjin pencarian',
-'pageinfo-robot-index' => 'Boleh diindekskan',
-'pageinfo-robot-noindex' => 'Tidak boleh diindekskan',
+'pageinfo-header-edits' => 'Suntingan',
+'pageinfo-header-watchlist' => 'Senarai pantau',
+'pageinfo-header-views' => 'Kunjungan',
+'pageinfo-subjectpage' => 'Laman',
+'pageinfo-talkpage' => 'Laman perbincangan',
+'pageinfo-watchers' => 'Bilangan pemantau',
+'pageinfo-edits' => 'Bilangan suntingan',
+'pageinfo-authors' => 'Bilangan pengarang yang berlainan',
 'pageinfo-views' => 'Bilangan kunjungan',
-'pageinfo-watchers' => 'Bilangan pemantau halaman',
-'pageinfo-redirects-name' => 'Lencongan ke halaman ini',
-'pageinfo-subpages-name' => 'Subhalaman untuk halaman ini',
-'pageinfo-subpages-value' => '$1 ($2 lencongan; $3 bukan lencongan)',
-'pageinfo-firstuser' => 'Pembuat halaman',
-'pageinfo-firsttime' => 'Tarikh halaman dibuat',
-'pageinfo-lastuser' => 'Penyunting terkini',
-'pageinfo-lasttime' => 'Tarikh suntingan terkini',
-'pageinfo-edits' => 'Jumlah suntingan',
-'pageinfo-authors' => 'Jumlah pengarang yang berlainan',
-'pageinfo-recent-edits' => 'Bilangan suntingan terkini (dalam $1 yang lalu)',
-'pageinfo-recent-authors' => 'Bilangan pengarang berbeza yang terkini',
-'pageinfo-restriction' => 'Perlindungan halaman (<code>{{lcfirst:$1}}</code>)',
-'pageinfo-magic-words' => 'Kata sakti ($1)',
-'pageinfo-hidden-categories' => 'Kategori tersembunyi ($1)',
-'pageinfo-templates' => 'Templat tertransklusi ($1)',
+'pageinfo-viewsperedit' => 'Kunjungan sesuntingan',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3035,7 +3013,6 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'file-info-size-pages' => '$1 × $2 piksel, saiz fail: $3, jenis MIME: $4, $5 laman',
 'file-nohires' => 'Tiada leraian lebih besar.',
 'svg-long-desc' => 'Fail SVG, ukuran dasar $1 × $2 piksel, saiz fail: $3',
-'svg-long-desc-animated' => 'Fail SVG animasi, ukuran dasar $1 × $2 piksel, saiz fail: $3',
 'show-big-image' => 'Leraian penuh',
 'show-big-image-preview' => 'Saiz pralihat ini: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Leraian|Leraian-leraian}} lain: $1.',
@@ -3045,8 +3022,6 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'file-info-png-looped' => 'berulang',
 'file-info-png-repeat' => 'dimainkan {{PLURAL:$1|sekali|sebanyak $1 kali}}',
 'file-info-png-frames' => '$1 bingkai',
-'file-no-thumb-animation' => "'''Perhatian: Disebabkan had teknikal, gambar kenit untuk fail ini tidak beranimasi.'''",
-'file-no-thumb-animation-gif' => "''''''Perhatian: Disebabkan had teknikal, gambar kenit untuk imej GIF beresolusi tinggi seperti ini tidak beranimasi.'''",
 
 # Special:NewFiles
 'newimages' => 'Galeri fail baru',

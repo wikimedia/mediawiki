@@ -1,4 +1,4 @@
-( function ( mw, $ ) {
+( function () {
 var	ajaxUploadDestCheck = mw.config.get( 'wgAjaxUploadDestCheck' ),
 	fileExtensions = mw.config.get( 'wgFileExtensions' );
 
@@ -241,17 +241,10 @@ window.fillDestFilename = function(id) {
 	}
 
 	// Output result
-	var destFile = document.getElementById( 'wpDestFile' );
-	if ( destFile ) {
-		// Call decodeURIComponent function to remove possible URL-encoded characters
-		// from the file name (bug 30390). Especially likely with upload-form-url.
-		// decodeURIComponent can throw an exception in input is invalid utf-8
-		try {
-			destFile.value = decodeURIComponent( fname );
-		} catch ( e ) {
-			destFile.value = fname;
-		}
-		wgUploadWarningObj.checkNow( fname );
+	var destFile = document.getElementById('wpDestFile');
+	if (destFile) {
+		destFile.value = fname;
+		wgUploadWarningObj.checkNow(fname) ;
 	}
 };
 
@@ -309,4 +302,4 @@ window.wgUploadLicenseObj = {
 
 $( document ).ready( uploadSetup );
 
-}( mediaWiki, jQuery ) );
+}() );

@@ -113,9 +113,10 @@ class FileRepo {
 			? $info['deletedHashLevels']
 			: $this->hashLevels;
 		$this->transformVia404 = !empty( $info['transformVia404'] );
-		$this->isPrivate = !empty( $info['isPrivate'] );
+		$this->zones = isset( $info['zones'] )
+			? $info['zones']
+			: array();
 		// Give defaults for the basic zones...
-		$this->zones = isset( $info['zones'] ) ? $info['zones'] : array();
 		foreach ( array( 'public', 'thumb', 'temp', 'deleted' ) as $zone ) {
 			if ( !isset( $this->zones[$zone]['container'] ) ) {
 				$this->zones[$zone]['container'] = "{$this->name}-{$zone}";
@@ -1162,7 +1163,7 @@ class FileRepo {
 		list( $b, $container, $r ) = FileBackend::splitStoragePath( $path );
 
 		$params = array( 'dir' => $path );
-		if ( $this->isPrivate || $container === $this->zones['deleted']['container'] ) {
+		if ( $container === $this->zones['deleted']['container'] ) {
 			# Take all available measures to prevent web accessibility of new deleted
 			# directories, in case the user has not configured offline storage
 			$params = array( 'noAccess' => true, 'noListing' => true ) + $params;

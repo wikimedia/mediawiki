@@ -79,7 +79,7 @@ class RandomImageGenerator {
 			foreach ( array(
 					'/usr/share/dict/words',
 					'/usr/dict/words',
-					__DIR__ . '/words.txt' )
+					dirname( __FILE__ ) . '/words.txt' )
 					as $dictionaryFile ) {
 				if ( is_file( $dictionaryFile ) and is_readable( $dictionaryFile ) ) {
 					$this->dictionaryFile = $dictionaryFile;

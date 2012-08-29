@@ -64,17 +64,17 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#ANCAMINAR', '#REDIRECIONAMENTO', '#REDIRECT' ),
-	'img_right'                 => array( '1', 'dreita', 'direita', 'right' ),
-	'img_left'                  => array( '1', 'squierda', 'esquerda', 'left' ),
-	'img_none'                  => array( '1', 'nanhun', 'nenhum', 'none' ),
-	'img_center'                => array( '1', 'centro', 'center', 'centre' ),
-	'img_middle'                => array( '1', 'meio', 'middle' ),
-	'language'                  => array( '0', '#LHENGUA:', '#IDIOMA:', '#LANGUAGE:' ),
-	'filepath'                  => array( '0', 'CAMINOFEXEIRO:', 'CAMINHODOARQUIVO', 'FILEPATH:' ),
-	'tag'                       => array( '0', 'eitiqueta', 'tag' ),
-	'pagesize'                  => array( '1', 'TAMANHOFEXEIRO', 'TAMANHODAPAGINA', 'TAMANHODAPÁGINA', 'PAGESIZE' ),
-	'staticredirect'            => array( '1', '_ANCAMINARSTATICO_', '__REDIRECIONAMENTOESTATICO__', '__REDIRECIONAMENTOESTÁTICO__', '__STATICREDIRECT__' ),
+	'redirect'                => array( '0', '#ANCAMINAR', '#REDIRECIONAMENTO', '#REDIRECT' ),
+	'img_right'               => array( '1', 'dreita', 'direita', 'right' ),
+	'img_left'                => array( '1', 'squierda', 'esquerda', 'left' ),
+	'img_none'                => array( '1', 'nanhun', 'nenhum', 'none' ),
+	'img_center'              => array( '1', 'centro', 'center', 'centre' ),
+	'img_middle'              => array( '1', 'meio', 'middle' ),
+	'language'                => array( '0', '#LHENGUA:', '#IDIOMA:', '#LANGUAGE:' ),
+	'filepath'                => array( '0', 'CAMINOFEXEIRO:', 'CAMINHODOARQUIVO', 'FILEPATH:' ),
+	'tag'                     => array( '0', 'eitiqueta', 'tag' ),
+	'pagesize'                => array( '1', 'TAMANHOFEXEIRO', 'TAMANHODAPAGINA', 'TAMANHODAPÁGINA', 'PAGESIZE' ),
+	'staticredirect'          => array( '1', '_ANCAMINARSTATICO_', '__REDIRECIONAMENTOESTATICO__', '__REDIRECIONAMENTOESTÁTICO__', '__STATICREDIRECT__' ),
 );
 
 $messages = array(

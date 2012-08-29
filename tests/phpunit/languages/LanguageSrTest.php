@@ -12,7 +12,7 @@
  * @file
  */
 
-require_once dirname( __DIR__ ) . '/bootstrap.php';
+require_once dirname( dirname( __FILE__ ) ) . '/bootstrap.php';
 
 /** Tests for MediaWiki languages/LanguageSr.php */
 class LanguageSrTest extends MediaWikiTestCase {

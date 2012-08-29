@@ -29,7 +29,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/cleanupTable.inc' );
+require_once( dirname( __FILE__ ) . '/cleanupTable.inc' );
 
 /**
  * Maintenance script to remove broken, unparseable titles in the watchlist table.

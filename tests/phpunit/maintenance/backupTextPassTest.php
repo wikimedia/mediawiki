@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../../maintenance/backupTextPass.inc";
+require_once dirname( __FILE__ ) . "/../../../maintenance/backupTextPass.inc";
 
 /**
  * Tests for page dumps of BackupDumper

@@ -22,7 +22,7 @@
  * @author Roan Kattouw
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Maintenance script to remove cache entries for removed ResourceLoader modules

@@ -847,7 +847,10 @@ function wfMatchesDomainList( $url, $domains ) {
  * @param $logonly Bool: set true to avoid appearing in HTML when $wgDebugComments is set
  */
 function wfDebug( $text, $logonly = false ) {
-	global $wgDebugLogFile, $wgProfileOnly, $wgDebugRawPage, $wgDebugLogPrefix;
+	global $wgOut, $wgDebugLogFile, $wgDebugComments, $wgProfileOnly, $wgDebugRawPage;
+	global $wgDebugLogPrefix, $wgShowDebug;
+
+	static $cache = array(); // Cache of unoutputted messages
 
 	if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
 		return;
@@ -858,10 +861,15 @@ function wfDebug( $text, $logonly = false ) {
 		$text = preg_replace( '/[^\n]/', $timer . '\0', $text, 1 );
 	}
 
-	if ( !$logonly ) {
-		MWDebug::debugMsg( $text );
-	}
+	if ( ( $wgDebugComments || $wgShowDebug ) && !$logonly ) {
+		$cache[] = $text;
 
+		if ( isset( $wgOut ) && is_object( $wgOut ) ) {
+			// add the message and any cached messages to the output
+			array_map( array( $wgOut, 'debug' ), $cache );
+			$cache = array();
+		}
+	}
 	if ( wfRunHooks( 'Debug', array( $text, null /* no log group */ ) ) ) {
 		if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
 			# Strip unprintables; they can switch terminal modes when binary data
@@ -871,6 +879,8 @@ function wfDebug( $text, $logonly = false ) {
 			wfErrorLog( $text, $wgDebugLogFile );
 		}
 	}
+
+	MWDebug::debugMsg( $text );
 }
 
 /**
@@ -969,13 +979,8 @@ function wfLogDBError( $text ) {
 			$logDBErrorTimeZoneObject = new DateTimeZone( $wgDBerrorLogTZ );
 		}
 
-		// Workaround for https://bugs.php.net/bug.php?id=52063
-		// Can be removed when min PHP > 5.3.2
-		if ( $logDBErrorTimeZoneObject === null ) {
-			$d = date_create( "now" );
-		} else {
-			$d = date_create( "now", $logDBErrorTimeZoneObject );
-		}
+		$d = date_create( "now",  $logDBErrorTimeZoneObject );
+
 		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$text = "$date\t$host\t$wiki\t$text";
@@ -1673,7 +1678,7 @@ function wfMsgExt( $key, $options ) {
  * looked up didn't exist but a XHTML string, this function checks for the
  * nonexistance of messages by checking the MessageCache::get() result directly.
  *
- * @deprecated since 1.18. Use Message::isDisabled().
+ * @deprecated since 1.18
  *
  * @param $key      String: the message key looked up
  * @return Boolean True if the message *doesn't* exist.
@@ -2596,7 +2601,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
 
 	if ( FileBackend::isStoragePath( $dir ) ) { // sanity
-		throw new MWException( __FUNCTION__ . " given storage path '$dir'." );
+		throw new MWException( __FUNCTION__ . " given storage path `$dir`.");
 	}
 
 	if ( !is_null( $caller ) ) {
@@ -3579,20 +3584,13 @@ function wfQueriesMustScale() {
 /**
  * Get the path to a specified script file, respecting file
  * extensions; this is a wrapper around $wgScriptExtension etc.
- * except for 'index' and 'load' which use $wgScript/$wgLoadScript
  *
  * @param $script String: script filename, sans extension
  * @return String
  */
 function wfScript( $script = 'index' ) {
-	global $wgScriptPath, $wgScriptExtension, $wgScript, $wgLoadScript;
-	if ( $script === 'index' ) {
-		return $wgScript;
-	} else if ( $script === 'load' ) {
-		return $wgLoadScript;
-	} else {
-		return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
-	}
+	global $wgScriptPath, $wgScriptExtension;
+	return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
 }
 
 /**

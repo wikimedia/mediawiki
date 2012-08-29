@@ -64,13 +64,6 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * We do not support making animated svg thumbnails
-	 */
-	function canAnimateThumb( $file ) {
-		return false;
-	}
-
-	/**
 	 * @param $image File
 	 * @param  $params
 	 * @return bool
@@ -122,7 +115,7 @@ class SvgHandler extends ImageHandler {
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
 			return new MediaTransformError( 'thumbnail_error', $clientWidth, $clientHeight,
-				wfMessage( 'thumbnail_dest_directory' )->text() );
+				wfMsg( 'thumbnail_dest_directory' ) );
 		}
 
 		$srcPath = $image->getLocalRefPath();
@@ -221,30 +214,15 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	 * Subtitle for the image. Different from the base
-	 * class so it can be denoted that SVG's have
-	 * a "nominal" resolution, and not a fixed one,
-	 * as well as so animation can be denoted.
-	 *
 	 * @param $file File
 	 * @return string
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
-		$size = $wgLang->formatSize( $file->getSize() );
-
-		if ( $this->isAnimatedImage( $file ) ) {
-			$msg = wfMessage( 'svg-long-desc-animated' );
-		} else {
-			$msg = wfMessage( 'svg-long-desc' );
-		}
-
-		$msg->numParams(
-			$file->getWidth(),
-			$file->getHeight()
-		);
-		$msg->Params( $size );
-		return $msg->parse();
+		return wfMsgExt( 'svg-long-desc', 'parseinline',
+			$wgLang->formatNum( $file->getWidth() ),
+			$wgLang->formatNum( $file->getHeight() ),
+			$wgLang->formatSize( $file->getSize() ) );
 	}
 
 	function getMetadata( $file, $filename ) {
@@ -275,19 +253,11 @@ class SvgHandler extends ImageHandler {
 	}
 
 	function isMetadataValid( $image, $metadata ) {
-		$meta = $this->unpackMetadata( $metadata );
-		if ( $meta === false ) {
-			return self::METADATA_BAD;
-		}
-		if ( !isset( $meta['originalWidth'] ) ) {
-			// Old but compatible
-			return self::METADATA_COMPATIBLE;
-		}
-		return self::METADATA_GOOD;
+		return $this->unpackMetadata( $metadata ) !== false;
 	}
 
 	function visibleMetadataFields() {
-		$fields = array( 'objectname', 'imagedescription' );
+		$fields = array( 'title', 'description', 'animated' );
 		return $fields;
 	}
 
@@ -308,6 +278,8 @@ class SvgHandler extends ImageHandler {
 		if ( !$metadata ) {
 			return false;
 		}
+		unset( $metadata['version'] );
+		unset( $metadata['metadata'] ); /* non-formatted XML */
 
 		/* TODO: add a formatter
 		$format = new FormatSVG( $metadata );
@@ -318,10 +290,9 @@ class SvgHandler extends ImageHandler {
 		$visibleFields = $this->visibleMetadataFields();
 
 		// Rename fields to be compatible with exif, so that
-		// the labels for these fields work and reuse existing messages.
-		$conversion = array(
-			'originalwidth' => 'imagewidth',
-			'originalheight' => 'imagelength',
+		// the labels for these fields work.
+		$conversion = array( 'width' => 'imagewidth',
+			'height' => 'imagelength',
 			'description' => 'imagedescription',
 			'title' => 'objectname',
 		);
@@ -329,9 +300,6 @@ class SvgHandler extends ImageHandler {
 			$tag = strtolower( $name );
 			if ( isset( $conversion[$tag] ) ) {
 				$tag = $conversion[$tag];
-			} else {
-				// Do not output other metadata not in list
-				continue;
 			}
 			self::addMeta( $result,
 				in_array( $tag, $visibleFields ) ? 'visible' : 'collapsed',

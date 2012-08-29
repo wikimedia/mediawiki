@@ -2087,10 +2087,14 @@ Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] o
 # Info page
 'pageinfo-title' => 'Kunning um "$1"',
 'pageinfo-header-edits' => 'Rættingar',
-'pageinfo-views' => 'Tal av skoðanum',
+'pageinfo-header-watchlist' => 'Eftirlits listi',
+'pageinfo-header-views' => 'Skoðanir',
+'pageinfo-subjectpage' => 'Síða',
+'pageinfo-talkpage' => 'Kjak síða',
 'pageinfo-watchers' => 'Tal av fólkum sum hava eftirlit',
 'pageinfo-edits' => 'Tal av rættingum',
 'pageinfo-authors' => 'Tal av ymiskum høvundum',
+'pageinfo-views' => 'Tal av skoðanum',
 
 # Skin names
 'skinname-standard' => 'Standardur',

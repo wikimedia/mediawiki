@@ -299,7 +299,7 @@ class MessageBlobStore {
 	 */
 	private static function reencodeBlob( $blob, $key, $lang ) {
 		$decoded = FormatJson::decode( $blob, true );
-		$decoded[$key] = wfMessage( $key )->inLanguage( $lang )->text();
+		$decoded[$key] = wfMsgExt( $key, array( 'language' => $lang ) );
 
 		return FormatJson::encode( (object)$decoded );
 	}
@@ -353,7 +353,7 @@ class MessageBlobStore {
 		$messages = array();
 
 		foreach ( $module->getMessages() as $key ) {
-			$messages[$key] = wfMessage( $key )->inLanguage( $lang )->text();
+			$messages[$key] = wfMsgExt( $key, array( 'language' => $lang ) );
 		}
 
 		return FormatJson::encode( (object)$messages );

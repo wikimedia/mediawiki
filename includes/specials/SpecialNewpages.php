@@ -360,8 +360,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$classes[] = 'mw-newpages-zero-byte-page';
 		}
 
-		# Tags, if any.
-		if( isset( $result->ts_tags ) ) {
+		# Tags, if any. check for including due to bug 23293
+		if ( !$this->including() ) {
 			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $result->ts_tags, 'newpages' );
 			$classes = array_merge( $classes, $newClasses );
 		} else {
@@ -531,7 +531,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$fields = array(
 			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
 			'rc_comment', 'rc_timestamp', 'rc_patrolled','rc_id', 'rc_deleted',
-			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
+			'length' => 'page_len', 'rev_id' => 'page_latest', 'ts_tags', 'rc_this_oldid',
 			'page_namespace', 'page_title'
 		);
 		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ) );
@@ -547,10 +547,13 @@ class NewPagesPager extends ReverseChronologicalPager {
 			'join_conds' => $join_conds
 		);
 
+		// Empty array for fields, it'll be set by us anyway.
+		$fields = array();
+
 		// Modify query for tags
 		ChangeTags::modifyDisplayQuery(
 			$info['tables'],
-			$info['fields'],
+			$fields,
 			$info['conds'],
 			$info['join_conds'],
 			$info['options'],

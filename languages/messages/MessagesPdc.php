@@ -890,6 +890,9 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Info page
 'pageinfo-header-edits' => 'Enneringe',
+'pageinfo-header-watchlist' => 'Watsch-Lischt',
+'pageinfo-subjectpage' => 'Blatt',
+'pageinfo-talkpage' => 'Gschwetz-Blatt',
 
 # Browsing diffs
 'nextdiff' => 'Zum neegschte Versionsunnerschidd →',

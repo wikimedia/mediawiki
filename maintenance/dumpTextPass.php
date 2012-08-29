@@ -26,8 +26,8 @@
 
 $originalDir = getcwd();
 
-require_once( __DIR__ . '/commandLine.inc' );
-require_once( __DIR__ . '/backupTextPass.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/backupTextPass.inc' );
 
 
 $dumper = new TextPassDumper( $argv );

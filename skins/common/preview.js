@@ -12,7 +12,7 @@
 
 		// Hide active diff, used templates, old preview if shown
 		var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats',
-							'#catlinks', '#p-lang', '.mw-summary-preview'];
+							'#catlinks'];
 		var copySelector = copyElements.join(',');
 
 		$.each( copyElements, function(k,v) { $(v).fadeOut('fast'); } );
@@ -123,18 +123,6 @@
 	};
 
 	$(document).ready( function() {
-		// construct space for interwiki links if missing
-		// (it is usually not shown when action=edit, but shown if action=submit)
-		if ( !document.getElementById( 'p-lang' ) && document.getElementById( 'p-tb' ) ) {
-			// we need not hide this, because it's empty anyway
-			$( '#p-tb' ).after( $( '<div>' ).attr( 'id', 'p-lang' ) );
-		}
-
-		// construct space for summary preview if missing
-		if ( $( '.mw-summary-preview' ).length === 0 ) {
-			$( '.editCheckboxes' ).before( $( '<div>' ).addClass( 'mw-summary-preview' ) );
-		}
-
-		$( '#wpPreview' ).click( doLivePreview );
+		$('#wpPreview').click( doLivePreview );
 	} );
 }) ( jQuery );

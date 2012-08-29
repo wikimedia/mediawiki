@@ -307,7 +307,7 @@ var mw = ( function ( $, undefined ) {
 		},
 
 		/**
-		 * Gets a message string, similar to wfMessage()
+		 * Gets a message string, similar to wfMsg()
 		 *
 		 * @param key string Key of message to get
 		 * @param parameters mixed First argument in a list of variadic arguments,

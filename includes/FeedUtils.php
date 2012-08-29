@@ -129,11 +129,11 @@ class FeedUtils {
 		if( $oldid ) {
 			wfProfileIn( __METHOD__."-dodiff" );
 
-			#$diffText = $de->getDiff( wfMessage( 'revisionasof',
+			#$diffText = $de->getDiff( wfMsg( 'revisionasof',
 			#	$wgLang->timeanddate( $timestamp ),
 			#	$wgLang->date( $timestamp ),
-			#	$wgLang->time( $timestamp ) )->text(),
-			#	wfMessage( 'currentrev' )->text() );
+			#	$wgLang->time( $timestamp ) ),
+			#	wfMsg( 'currentrev' ) );
 
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
@@ -149,11 +149,11 @@ class FeedUtils {
 					$contentHandler = $rev->getContentHandler();
 					$de = $contentHandler->createDifferenceEngine( $context, $oldid, $newid );
 					$diffText = $de->getDiff(
-						wfMessage( 'previousrevision' )->text(), // hack
-						wfMessage( 'revisionasof',
-							$wgLang->timeanddate( $timestamp ),
-							$wgLang->date( $timestamp ),
-							$wgLang->time( $timestamp ) )->text() );
+						wfMsg( 'previousrevision' ), // hack
+						wfMsg( 'revisionasof',
+						$wgLang->timeanddate( $timestamp ),
+						$wgLang->date( $timestamp ),
+						$wgLang->time( $timestamp ) ) );
 				}
 			}
 
@@ -180,7 +180,7 @@ class FeedUtils {
 				// Omit large new page diffs, bug 29110
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {
-				$diffText = '<p><b>' . wfMessage( 'newpage' )->text() . '</b></p>' .
+				$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
 					'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
 			}
 		}
@@ -206,7 +206,7 @@ class FeedUtils {
 		$diffUrl = $title->getFullUrl( $queryParameters );
 
 		$diffLink = Html::element( 'a', array( 'href' => $diffUrl ),
-			wfMessage( 'showdiff' )->inContentLanguage()->text() );
+			wfMsgForContent( 'showdiff' ) );
 
 		return $diffLink;
 	}

@@ -2683,10 +2683,15 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 # Info page
 'pageinfo-title' => '"$1"पृष्ठक लेल नब गप',
 'pageinfo-header-edits' => 'संपादन',
-'pageinfo-views' => 'देखहि बला के संख्या',
+'pageinfo-header-watchlist' => 'साकांक्ष-सूची',
+'pageinfo-header-views' => 'देखू',
+'pageinfo-subjectpage' => 'पृष्ठ',
+'pageinfo-talkpage' => 'टॉक पृष्ठ',
 'pageinfo-watchers' => 'जानकारक संख्या',
 'pageinfo-edits' => 'सम्पादनक संख्या',
 'pageinfo-authors' => 'भिन्न लेखक संख्या',
+'pageinfo-views' => 'देखहि बला के संख्या',
+'pageinfo-viewsperedit' => 'प्रति सम्पादन देखल गेल',
 
 # Skin names
 'skinname-standard' => 'प्राचीन',

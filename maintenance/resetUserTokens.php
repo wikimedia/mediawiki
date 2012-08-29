@@ -23,7 +23,7 @@
  * @author Daniel Friesen <mediawiki@danielfriesen.name>
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Maintenance script to reset the user_token for all users on the wiki.

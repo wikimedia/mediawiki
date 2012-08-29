@@ -334,7 +334,7 @@ abstract class DatabaseInstaller {
 	 * @return String
 	 */
 	public function getReadableName() {
-		return wfMessage( 'config-type-' . $this->getName() )->text();
+		return wfMsg( 'config-type-' . $this->getName() );
 	}
 
 	/**
@@ -509,7 +509,7 @@ abstract class DatabaseInstaller {
 	public function getInstallUserBox() {
 		return
 			Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', array(), wfMessage( 'config-db-install-account' )->text() ) .
+			Html::element( 'legend', array(), wfMsg( 'config-db-install-account' ) ) .
 			$this->getTextBox( '_InstallUser', 'config-db-username', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-username' ) ) .
 			$this->getPasswordBox( '_InstallPassword', 'config-db-password', array( 'dir' => 'ltr' ), $this->parent->getHelpBox( 'config-db-install-password' ) ) .
 			Html::closeElement( 'fieldset' );
@@ -534,7 +534,7 @@ abstract class DatabaseInstaller {
 	public function getWebUserBox( $noCreateMsg = false ) {
 		$wrapperStyle = $this->getVar( '_SameAccount' ) ? 'display: none' : '';
 		$s = Html::openElement( 'fieldset' ) .
-			Html::element( 'legend', array(), wfMessage( 'config-db-web-account' )->text() ) .
+			Html::element( 'legend', array(), wfMsg( 'config-db-web-account' ) ) .
 			$this->getCheckBox(
 				'_SameAccount', 'config-db-web-account-same',
 				array( 'class' => 'hideShowRadio', 'rel' => 'dbOtherAccount' )
@@ -544,7 +544,7 @@ abstract class DatabaseInstaller {
 			$this->getPasswordBox( 'wgDBpassword', 'config-db-password' ) .
 			$this->parent->getHelpBox( 'config-db-web-help' );
 		if ( $noCreateMsg ) {
-			$s .= $this->parent->getWarningBox( wfMessage( $noCreateMsg )->plain() );
+			$s .= $this->parent->getWarningBox( wfMsgNoTrans( $noCreateMsg ) );
 		} else {
 			$s .= $this->getCheckBox( '_CreateDBAccount', 'config-db-web-create' );
 		}

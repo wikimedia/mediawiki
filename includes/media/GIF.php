@@ -93,17 +93,6 @@ class GIFHandler extends BitmapHandler {
 		return false;
 	}
 
-	/**
-	 * We cannot animate thumbnails that are bigger than a particular size
-	 * @param File $file
-	 * @return bool
-	 */
-	function canAnimateThumbnail( $file ) {
-		global $wgMaxAnimatedGifArea;
-		$answer = $this->getImageArea( $file ) <= $wgMaxAnimatedGifArea;
-		return $answer;
-	}
-
 	function getMetadataType( $image ) {
 		return 'parsed-gif';
 	}

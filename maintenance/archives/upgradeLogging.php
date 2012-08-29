@@ -21,7 +21,7 @@
  * @ingroup MaintenanceArchive
  */
 
-require( __DIR__ . '/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 class UpdateLogging {
 

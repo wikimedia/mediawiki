@@ -197,13 +197,13 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#ÖMLEIDE_OP', '#ÖMLEIDE', '#LEIDT_ÖM_OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
-	'nogallery'                 => array( '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ),
-	'toc'                       => array( '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ),
-	'img_right'                 => array( '1', 'rähß', 'räts', 'rechts', 'right' ),
-	'img_left'                  => array( '1', 'lengks', 'lenks', 'links', 'left' ),
-	'language'                  => array( '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ),
-	'hiddencat'                 => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
+	'redirect'                => array( '0', '#ÖMLEIDE_OP', '#ÖMLEIDE', '#LEIDT_ÖM_OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
+	'nogallery'               => array( '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ),
+	'toc'                     => array( '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ),
+	'img_right'               => array( '1', 'rähß', 'räts', 'rechts', 'right' ),
+	'img_left'                => array( '1', 'lengks', 'lenks', 'links', 'left' ),
+	'language'                => array( '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ),
+	'hiddencat'               => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 );
 
 $imageFiles = array(
@@ -3180,10 +3180,15 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 # Info page
 'pageinfo-title' => 'Övver di Sigg: „$1“',
 'pageinfo-header-edits' => 'De Änderonge',
-'pageinfo-views' => 'De Aanzahl Affroofe',
+'pageinfo-header-watchlist' => 'De Oppassleß',
+'pageinfo-header-views' => 'De Affroofe',
+'pageinfo-subjectpage' => 'För de Sigg selver',
+'pageinfo-talkpage' => 'För de Klaafsigg',
 'pageinfo-watchers' => 'De Aanzahl Oppaßer',
 'pageinfo-edits' => 'De Aanzahl Änderonge',
 'pageinfo-authors' => 'De Aanzahl ongerscheidlije Schriever',
+'pageinfo-views' => 'De Aanzahl Affroofe',
+'pageinfo-viewsperedit' => 'De Aanzahl Affroofe pro Änderong',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

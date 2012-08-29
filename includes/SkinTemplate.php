@@ -40,7 +40,7 @@ class MediaWiki_I18N {
 		// Hack for i18n:attributes in PHPTAL 1.0.0 dev version as of 2004-10-23
 		$value = preg_replace( '/^string:/', '', $value );
 
-		$value = wfMessage( $value )->text();
+		$value = wfMsg( $value );
 		// interpolate variables
 		$m = array();
 		while( preg_match( '/\$([0-9]*?)/sm', $value, $m ) ) {
@@ -135,6 +135,7 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgSitename, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
+		global $wgDebugComments;
 		global $wgArticlePath, $wgScriptPath, $wgServer;
 
 		wfProfileIn( __METHOD__ );
@@ -386,6 +387,12 @@ class SkinTemplate extends Skin {
 			}
 		}
 
+		if ( $wgDebugComments ) {
+			$tpl->setRef( 'debug', $out->mDebugtext );
+		} else {
+			$tpl->set( 'debug', '' );
+		}
+
 		$tpl->set( 'sitenotice', $this->getSiteNotice() );
 		$tpl->set( 'bottomscripts', $this->bottomScripts() );
 		$tpl->set( 'printfooter', $this->printSource() );
@@ -461,7 +468,6 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'headscripts', $out->getHeadScripts() . $out->getHeadItems() );
 		}
 
-		$tpl->set( 'debug', '' );
 		$tpl->set( 'debughtml', $this->generateDebugHTML() );
 		$tpl->set( 'reporttime', wfReportTime() );
 
@@ -557,8 +563,7 @@ class SkinTemplate extends Skin {
 				'text' => $this->username,
 				'href' => &$this->userpageUrlDetails['href'],
 				'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
-				'active' => ( $this->userpageUrlDetails['href'] == $pageurl ),
-				'dir' => 'auto'
+				'active' => ( $this->userpageUrlDetails['href'] == $pageurl )
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 			$personal_urls['mytalk'] = array(
@@ -623,7 +628,6 @@ class SkinTemplate extends Skin {
 			global $wgSecureLogin;
 			$proto = $wgSecureLogin ? PROTO_HTTPS : null;
 
-			$login_id = $this->showIPinHeader() ? 'anonlogin' : 'login';
 			$login_url = array(
 				'text' => $this->msg( $loginlink )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto, $proto ),
@@ -636,6 +640,10 @@ class SkinTemplate extends Skin {
 				'active' => $title->isSpecial( 'Userlogin' ) && $is_signup,
 				'class' => $wgSecureLogin ? 'link-https' : ''
 			);
+
+			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
+				$personal_urls['createaccount'] = $createaccount_url;
+			}
 
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
@@ -653,13 +661,10 @@ class SkinTemplate extends Skin {
 					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 					'active' => ( $pageurl == $href )
 				);
+				$personal_urls['anonlogin'] = $login_url;
+			} else {
+				$personal_urls['login'] = $login_url;
 			}
-
-			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
-				$personal_urls['createaccount'] = $createaccount_url;
-			}
-
-			$personal_urls[$login_id] = $login_url;
 		}
 
 		wfRunHooks( 'PersonalUrls', array( &$personal_urls, &$title ) );
@@ -1880,7 +1885,13 @@ abstract class BaseTemplate extends QuickTemplate {
 	function printTrail() { ?>
 <?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 <?php $this->html( 'reporttime' ) ?>
-<?php echo MWDebug::getDebugHTML( $this->getSkin()->getContext() );
+<?php if ( $this->data['debug'] ): ?>
+<!-- Debug output:
+<?php $this->text( 'debug' ); ?>
+
+-->
+<?php endif;
 	}
 
 }
+

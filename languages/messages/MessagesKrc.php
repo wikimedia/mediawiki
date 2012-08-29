@@ -2583,6 +2583,10 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 # Info page
 'pageinfo-title' => '«$1» бетни юсюнден информация',
 'pageinfo-header-edits' => 'Тюрлендириуле',
+'pageinfo-header-watchlist' => 'Кёзде тургъан тизме',
+'pageinfo-header-views' => 'Къараула',
+'pageinfo-subjectpage' => 'Бет',
+'pageinfo-talkpage' => 'Сюзюу бет',
 'pageinfo-watchers' => 'Кёргенлени саны',
 'pageinfo-edits' => 'Тюрлендириулени саны',
 'pageinfo-authors' => 'Авторланы саны',

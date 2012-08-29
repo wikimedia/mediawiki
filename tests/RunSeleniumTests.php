@@ -24,12 +24,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-$IP = dirname( __DIR__ );
+$IP = dirname( dirname( __FILE__ ) );
 
 define( 'SELENIUMTEST', true );
 
-//require_once( __DIR__ . '/../maintenance/commandLine.inc' );
-require( __DIR__ . '/../maintenance/Maintenance.php' );
+//require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
+require( dirname( __FILE__ ) . '/../maintenance/Maintenance.php' );
 
 require_once( 'PHPUnit/Runner/Version.php' );
 if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
@@ -43,7 +43,7 @@ if( version_compare( PHPUnit_Runner_Version::id(), '3.5.0', '>=' ) ) {
 require_once( 'PHPUnit/Extensions/SeleniumTestCase.php' );
 include_once( 'PHPUnit/Util/Log/JUnit.php' );
 
-require_once( __DIR__ . "/selenium/SeleniumServerManager.php" );
+require_once( dirname( __FILE__ ) . "/selenium/SeleniumServerManager.php" );
 
 class SeleniumTester extends Maintenance {
 	protected $selenium;

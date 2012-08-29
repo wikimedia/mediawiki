@@ -824,11 +824,11 @@ $title: Title object for the title being linked to (may not be the same as
   $wgTitle, if the section is included from a template)
 $section: The designation of the section being pointed to, to be included in
   the link, like "&section=$section"
-$tooltip: The default tooltip.  Escape before using.
+$tooltip: The default tooltip.  Escape with htmlspecialchars() before using.
   By default, this is wrapped in the 'editsectionhint' message.
 &$result: The HTML to return, prefilled with the default plus whatever other
   changes earlier hooks have made
-$lang: The language code to use for the link in the wfMessage function
+$lang: The language code to use for the link in the wfMsg* functions
 
 'EditFilter': Perform checks on an edit
 $editor: Edit form (see includes/EditPage.php)
@@ -950,7 +950,7 @@ $title: Title being linked to
 $section: Section to link to
 $link: Default link
 &$result: Result (alter this to override the generated links)
-$lang: The language code to use for the link in the wfMessage function
+$lang: The language code to use for the link in the wfMsg* functions
 
 'EmailConfirmed': When checking that the user's email address is "confirmed"
 $user: User being checked
@@ -1365,7 +1365,7 @@ $param: Associative Array with the following additional options:
  - lim Integer Limit of items to show, default is 50
  - conds Array Extra conditions for the query (e.g. "log_action != 'revision'")
  - showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty if set to true (default), "No matching items in log" is displayed if loglist is empty
- - msgKey Array If you want a nice box with a message, set this to the key of the message. First element is the message key, additional optional elements are parameters for the key that are processed with wfMessage()->params()->parseAsBlock()
+ - msgKey Array If you want a nice box with a message, set this to the key of the message. First element is the message key, additional optional elements are parameters for the key that are processed with wfMsgExt and option 'parse'
  - offset Set to overwrite offset parameter in $wgRequest set to '' to unset offset
  - wrap String Wrap the message in html (usually something like "&lt;div ...>$1&lt;/div>").
  - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
@@ -1674,7 +1674,7 @@ Return false and put the merged text into $text to override the default behavior
 'PreferencesGetLegend': Override the text used for the <legend> of a preferences section
 $form: the PreferencesForm object. This is a ContextSource as well
 $key: the section name
-&$legend: the legend text. Defaults to wfMessage( "prefs-$key" )->text() but may be overridden
+&$legend: the legend text. Defaults to wfMsg( "prefs-$key" ) but may be overridden
 
 'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.

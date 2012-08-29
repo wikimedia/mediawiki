@@ -1535,7 +1535,6 @@ $wgMessageStructure = array(
 		'shared-repo',
 		'shared-repo-name-wikimediacommons',
 		'filepage.css',
-		'upload-disallowed-here',
 	),
 	'filerevert' => array(
 		'filerevert',
@@ -2673,8 +2672,6 @@ $wgMessageStructure = array(
 		'pageinfo-length',
 		'pageinfo-article-id',
 		'pageinfo-robot-policy',
-		'pageinfo-robot-index',
-		'pageinfo-robot-noindex',
 		'pageinfo-views',
 		'pageinfo-watchers',
 		'pageinfo-redirects-name',
@@ -2746,7 +2743,6 @@ $wgMessageStructure = array(
 		'file-info-size-pages',
 		'file-nohires',
 		'svg-long-desc',
-		'svg-long-desc-animated',
 		'show-big-image',
 		'show-big-image-preview',
 		'show-big-image-other',
@@ -2756,8 +2752,6 @@ $wgMessageStructure = array(
 		'file-info-png-looped',
 		'file-info-png-repeat',
 		'file-info-png-frames',
-		'file-no-thumb-animation',
-		'file-no-thumb-animation-gif',
 	),
 	'newfiles' => array(
 		'newimages',

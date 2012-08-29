@@ -22,11 +22,11 @@ class XMPTest extends MediaWikiTestCase {
 		}
 		$reader = new XMPReader;
 		$reader->parse( $xmp );
-		$this->assertEquals( $expected, $reader->getResults(), $info, 0.0000000001 );
+		$this->assertEquals( $expected, $reader->getResults(), $info );
 	}
 
 	public function dataXMPParse() {
-		$xmpPath = __DIR__ . '/../../data/xmp/' ;
+		$xmpPath = dirname( __FILE__ ) . '/../../data/xmp/' ;
 		$data = array();
 
 		// $xmpFiles format: array of arrays with first arg file base name,
@@ -52,7 +52,6 @@ class XMPTest extends MediaWikiTestCase {
 			array( 'utf32BE', 'UTF-32BE encoding' ),
 			array( 'utf32LE', 'UTF-32LE encoding' ),
 			array( 'xmpExt', 'Extended XMP missing second part' ),
-			array( 'gps', 'Handling of exif GPS parameters in XMP' ),
 		 );
 		foreach( $xmpFiles as $file ) {
 			$xmp = file_get_contents( $xmpPath . $file[0] . '.xmp' );
@@ -73,7 +72,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * world example file to double check the support for this is right.
 	 */
 	function testExtendedXMP() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = dirname( __FILE__ ) . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
 
@@ -103,7 +102,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * and thus should only return the StandardXMP, not the ExtendedXMP.
 	 */
 	function testExtendedXMPWithWrongGUID() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = dirname( __FILE__ ) . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
 
@@ -131,7 +130,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * which should cause it to ignore the ExtendedXMP packet.
 	 */
 	function testExtendedXMPMissingPacket() {
-		$xmpPath = __DIR__ . '/../../data/xmp/';
+		$xmpPath = dirname( __FILE__ ) . '/../../data/xmp/';
 		$standardXMP = file_get_contents( $xmpPath . 'xmpExt.xmp' );
 		$extendedXMP = file_get_contents( $xmpPath . 'xmpExt2.xmp' );
 

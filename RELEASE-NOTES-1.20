@@ -129,12 +129,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Allow importing pages as subpage.
 * Add lang and hreflang attributes to language links on Login page.
 * (bug 22749) Create Special:MostInterwikis.
-* Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
-* (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
-* (bug 39431) SVG animated status is now shown in long description
-* (bug 39376) jquery.form upgraded to 3.14
-* SVG files will now show the actual width in the SVG's specified units
-  in the metadata box.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -208,7 +202,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
 * (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
   insecure links to foreign wikis in the WikiMap.
-* (bug 36073) Avoid duplicate element IDs on File pages.
+* (bug 36073) Avoid duplicate element IDs on File pages
 * (bug 25095) Special:Categories should also include the first relevant item
   when "from" is filled.
 * (bug 35526) jquery.tablesorter now uses a stable sort.
@@ -217,15 +211,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   are returned, like in previous versions.
 * (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
   are now remembered between successive clicks.
-* (bug 26069) Page title is no longer "Error" for all error pages.
-* (bug 39297) Show warning if thumbnail of animated image will not be animated.
-* (bug 38249) Parser will throw an exception instead of outputting gibberish if
-  PCRE is compiled without support for unicode properties.
-* (bug 30390) Suggested file name on Special:Upload should not contain
-  illegal characters.
-* (bug 27111) Cascading foreign file repos now fetch shared descriptions properly.
-* EXIF below sea level GPS altitude data is now shown correctly.
-* (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -262,7 +247,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 * (bug 39032) ApiQuery generates help in constructor.
 * (bug 11142) Improve file extension blacklist error reporting in API upload
-* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error
 
 === Languages updated in 1.20 ===
 
@@ -296,7 +280,6 @@ changes to languages because of Bugzilla reports.
 * Deprecated mw.user.anonymous in favour of mw.user.isAnon.
 * Deprecated DatabaseBase functions newFromParams(), newFromType(), set(),
   quote_ident(), and escapeLike() were removed.
-* Use of __DIR__ instead of dirname( __FILE__ ).
 
 == Compatibility ==
 

@@ -20,7 +20,7 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Erenoamáš',
+	NS_SPECIAL          => 'Doaimmat',
 	NS_TALK             => 'Ságastallan',
 	NS_USER             => 'Geavaheaddji',
 	NS_USER_TALK        => 'Geavaheaddjeságastallan',
@@ -37,10 +37,6 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kategoriijaságastallan',
 );
 
-$namespaceAliases = array(
-	'Doaimmat' => NS_SPECIAL,
-);
-
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktiivvalaš_geavaheaddjit' ),
 	'Allmessages'               => array( 'Buot_systemasánit' ),
@@ -52,7 +48,6 @@ $specialPageAliases = array(
 	'Contributions'             => array( 'Geavaheaddji_rievdadusat' ),
 	'Disambiguations'           => array( 'Liŋkkat_dárkonsiidduide' ),
 	'DoubleRedirects'           => array( 'Guoktegeardásaš_ođđasitstivremat' ),
-	'Emailuser'                 => array( 'SáddeEpoastta' ),
 	'Export'                    => array( 'Olggosfievrrit_siidduid' ),
 	'Listfiles'                 => array( 'Fiilalogahallan' ),
 	'Listredirects'             => array( 'Listu_ođđasitstivremiin' ),
@@ -88,8 +83,8 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#OĐĐASITSTIVREN', '#STIVREN', '#REDIRECT' ),
-	'numberofarticles'          => array( '1', 'ARTIHKKALIIDMEARRI', 'NUMBEROFARTICLES' ),
+	'redirect'                => array( '0', '#OĐĐASITSTIVREN', '#STIVREN', '#REDIRECT' ),
+	'numberofarticles'        => array( '1', 'ARTIHKKALIIDMEARRI', 'NUMBEROFARTICLES' ),
 );
 
 $linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';

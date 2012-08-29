@@ -171,7 +171,7 @@ class LogFormatter {
 			if ( $actionComment == '' ) {
 				$actionComment = $comment;
 			} else {
-				$actionComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $comment;
+				$actionComment .= wfMsgForContent( 'colon-separator' ) . $comment;
 			}
 		}
 
@@ -191,6 +191,7 @@ class LogFormatter {
 		$entry = $this->entry;
 		$parameters = $entry->getParameters();
 		// @see LogPage::actionText()
+		$msgOpts = array( 'parsemag', 'escape', 'replaceafter', 'content' );
 		// Text of title the action is aimed at.
 		$target = $entry->getTarget()->getPrefixedText() ;
 		$text = null;
@@ -199,13 +200,11 @@ class LogFormatter {
 				switch( $entry->getSubtype() ) {
 					case 'move':
 						$movesource =  $parameters['4::target'];
-						$text = wfMessage( '1movedto2' )
-							->rawParams( $target, $movesource )->inContentLanguage()->escaped();
+						$text = wfMsgExt( '1movedto2', $msgOpts, $target, $movesource );
 						break;
 					case 'move_redir':
 						$movesource =  $parameters['4::target'];
-						$text = wfMessage( '1movedto2_redir' )
-							->rawParams( $target, $movesource )->inContentLanguage()->escaped();
+						$text = wfMsgExt( '1movedto2_redir', $msgOpts, $target, $movesource );
 						break;
 					case 'move-noredirect':
 						break;
@@ -217,12 +216,10 @@ class LogFormatter {
 			case 'delete':
 				switch( $entry->getSubtype() ) {
 					case 'delete':
-						$text = wfMessage( 'deletedarticle' )
-							->rawParams( $target )->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'deletedarticle', $msgOpts, $target );
 						break;
 					case 'restore':
-						$text = wfMessage( 'undeletedarticle' )
-							->rawParams( $target )->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'undeletedarticle', $msgOpts, $target );
 						break;
 					//case 'revision': // Revision deletion
 					//case 'event': // Log deletion
@@ -236,10 +233,8 @@ class LogFormatter {
 				// Create a diff link to the patrolled revision
 				if ( $entry->getSubtype() === 'patrol' ) {
 					$diffLink = htmlspecialchars(
-						wfMessage( 'patrol-log-diff', $parameters['4::curid'] )
-							->inContentLanguage()->text() );
-					$text = wfMessage( 'patrol-log-line', $diffLink, "[[$target]]", "" )
-						->inContentLanguage()->text();
+						wfMsgForContent( 'patrol-log-diff', $parameters['4::curid'] ) );
+					$text = wfMsgForContent( 'patrol-log-line', $diffLink, "[[$target]]", "" );
 				} else {
 					// broken??
 				}
@@ -248,17 +243,14 @@ class LogFormatter {
 			case 'protect':
 				switch( $entry->getSubtype() ) {
 				case 'protect':
-					$text = wfMessage( 'protectedarticle' )
-						->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
-					break;
+					$text = wfMsgExt( 'protectedarticle', $msgOpts, $target . ' ' . $parameters[0] );
+						break;
 				case 'unprotect':
-					$text = wfMessage( 'unprotectedarticle' )
-						->rawParams( $target )->inContentLanguage()->escaped();
-					break;
+					$text = wfMsgExt( 'unprotectedarticle', $msgOpts, $target );
+						break;
 				case 'modify':
-					$text = wfMessage( 'modifiedarticleprotection' )
-						->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
-					break;
+					$text = wfMsgExt( 'modifiedarticleprotection', $msgOpts, $target . ' ' . $parameters[0] );
+						break;
 				}
 				break;
 
@@ -266,16 +258,13 @@ class LogFormatter {
 				switch( $entry->getSubtype() ) {
 					case 'newusers':
 					case 'create':
-						$text = wfMessage( 'newuserlog-create-entry' )
-							->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'newuserlog-create-entry', $msgOpts /* no params */ );
 						break;
 					case 'create2':
-						$text = wfMessage( 'newuserlog-create2-entry' )
-							->rawParams( $target )->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'newuserlog-create2-entry', $msgOpts, $target );
 						break;
 					case 'autocreate':
-						$text = wfMessage( 'newuserlog-autocreate-entry' )
-							->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'newuserlog-autocreate-entry', $msgOpts /* no params */ );
 						break;
 				}
 				break;
@@ -283,12 +272,10 @@ class LogFormatter {
 			case 'upload':
 				switch( $entry->getSubtype() ) {
 					case 'upload':
-						$text = wfMessage( 'uploadedimage' )
-							->rawParams( $target )->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'uploadedimage', $msgOpts, $target );
 						break;
 					case 'overwrite':
-						$text = wfMessage( 'overwroteimage' )
-							->rawParams( $target )->inContentLanguage()->escaped();
+						$text = wfMsgExt( 'overwroteimage', $msgOpts, $target );
 						break;
 				}
 				break;

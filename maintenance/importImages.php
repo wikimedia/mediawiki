@@ -32,8 +32,8 @@
  */
 
 $optionsWithArgs = array( 'extensions', 'comment', 'comment-file', 'comment-ext', 'user', 'license', 'sleep', 'limit', 'from', 'source-wiki-url' );
-require_once( __DIR__ . '/commandLine.inc' );
-require_once( __DIR__ . '/importImages.inc' );
+require_once( dirname( __FILE__ ) . '/commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/importImages.inc' );
 $processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
 
 echo( "Import Images\n\n" );

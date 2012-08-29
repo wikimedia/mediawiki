@@ -33,7 +33,6 @@
  * @author PhiLiP
  * @author Philip
  * @author Shinjiman
- * @author Shirayuki
  * @author Shizhao
  * @author Simon Shek
  * @author Skjackey tse
@@ -251,7 +250,7 @@ $messages = array(
 'tog-watchlisthideliu' => '監視列表中隱藏登入用戶',
 'tog-watchlisthideanons' => '監視列表中隱藏匿名用戶',
 'tog-watchlisthidepatrolled' => '監視清單中隱藏已巡查的編輯',
-'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱',
+'tog-ccmeonemails' => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly' => '比較版本差異時不顯示頁面內容',
 'tog-showhiddencats' => '顯示隱藏分類',
 'tog-noconvertlink' => '不轉換連結標題',
@@ -862,11 +861,12 @@ $2
 'userpage-userdoesnotexist-view' => '未曾建立用戶名「$1」。',
 'blocked-notice-logextract' => '這位用戶現正被封鎖。
 下面有最近的封鎖紀錄以供參考：',
-'clearyourcache' => "'''注意：'''在保存以後，您必須繞過瀏覽器緩存才能看到所作出的改變。
-* '''火狐（Firefox）／Safari：'''按住“Shift”鍵再點擊“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上為“⌘-R”）
-* '''谷歌瀏覽器（Google Chrome）：'''按下“Ctrl-Shift-R”（Mac上為“⌘-Shift-R”）
-* '''Internet Explorer：'''按住“Ctrl”鍵再點擊“刷新”，或按下“Ctrl-F5”
-* '''Opera：'''在“工具→首選項”中清除緩存",
+'clearyourcache' => "'''注意：在保存以後，您必須繞過瀏覽器緩存才能看到所作出的改變。'''
+* '''火狐（Firefox）／Safari'''：按住“Shift”鍵再點擊“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上為“⌘-R”）
+* '''谷歌瀏覽器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上為“⌘-Shift-R”）
+* '''Internet Explorer'''：按住“Ctrl”鍵再點擊“刷新”，或按下“Ctrl-F5”
+* '''Konqueror'''：點擊“刷新”或按下“F5”
+* '''Opera'''：在“工具→首選項”中清除緩存",
 'usercssyoucanpreview' => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 CSS 。",
 'userjsyoucanpreview' => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 JavaScript 。",
 'usercsspreview' => "'''記住您只是在預覽您的個人 CSS。'''
@@ -1832,7 +1832,6 @@ $1',
 'shared-repo-from' => '出自$1',
 'shared-repo' => '一個共用檔案庫',
 'shared-repo-name-wikimediacommons' => '維基共享資源',
-'upload-disallowed-here' => '您不可以覆蓋此圖像。',
 
 # File reversion
 'filerevert' => '恢復$1',
@@ -1943,7 +1942,6 @@ Template:消除歧義',
 # Miscellaneous special pages
 'nbytes' => '$1位元組',
 'ncategories' => '$1個分類',
-'ninterwikis' => '$1 個跨維基',
 'nlinks' => '$1個連結',
 'nmembers' => '$1個成員',
 'nrevisions' => '$1個修訂',
@@ -1972,7 +1970,6 @@ Template:消除歧義',
 'mostlinkedtemplates' => '最多連結模板',
 'mostcategories' => '最多分類頁面',
 'mostimages' => '最多連結檔案',
-'mostinterwikis' => '最多跨維基頁面',
 'mostrevisions' => '最多修訂頁面',
 'prefixindex' => '所有有前綴的頁面',
 'prefixindex-namespace' => '帶有前綴的頁面（屬於$1名字空間）',
@@ -2119,8 +2116,6 @@ Template:消除歧義',
 並在[[Special:Preferences|偏好設定]]
 中有一個有效的 e-mail 地址才可以電郵其他用戶。',
 'emailuser' => 'E-mail該用戶',
-'emailuser-title-target' => '電郵這位{{GENDER:$1|用戶}}',
-'emailuser-title-notarget' => 'E-mail用戶',
 'emailpage' => 'E-mail用戶',
 'emailpagetext' => '您可以用下面的表格去寄一封電郵給這位用戶。
 您在[[Special:Preferences|您的參數設置]]中所輸入的電子郵件地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
@@ -2195,8 +2190,8 @@ Template:消除歧義',
 'changed' => '更改',
 'created' => '建立了',
 'enotif_subject' => '{{SITENAME}}頁面“$PAGETITLE”已被$PAGEEDITOR$CHANGEDORCREATED',
-'enotif_lastvisited' => '請參閱 $1 檢視你上次訪問後的所有更改。',
-'enotif_lastdiff' => '請參閱 $1 檢視該更改。',
+'enotif_lastvisited' => '檢視您上次訪問後的所有更改請參閱$1。',
+'enotif_lastdiff' => '檢視更改請參閱$1。',
 'enotif_anon_editor' => '匿名用戶$1',
 'enotif_body' => '親愛的$WATCHINGUSERNAME：
 
@@ -2758,7 +2753,6 @@ $1被封禁的理由是“$2”',
 'import-interwiki-templates' => '包含所有模板',
 'import-interwiki-submit' => '匯入',
 'import-interwiki-namespace' => '目的名字空間:',
-'import-interwiki-rootpage' => '目標根頁（可選）：',
 'import-upload-filename' => '檔案名稱：',
 'import-comment' => '註解:',
 'importtext' => '請使用[[Special:Export|匯出功能]]從來源維基匯出檔案，
@@ -2791,9 +2785,6 @@ $1被封禁的理由是“$2”',
 'import-error-interwiki' => '頁面"$1"未能導入，這是因為他的頁面名稱預留了供跨維基連結使用。',
 'import-error-special' => '"$1"未能導入因為該頁面使用一個不能創建頁面的特殊名字空間。',
 'import-error-invalid' => '"$1"不能導入，因為名字無效。',
-'import-options-wrong' => '{{PLURAL:$2|選項}}出錯：<nowiki>$1</nowiki>',
-'import-rootpage-invalid' => '指定的根頁標題無效。',
-'import-rootpage-nosubpage' => '名字空間「$1」的根頁面不允許子頁面。',
 
 # Import log
 'importlogpage' => '匯入日誌',
@@ -2941,34 +2932,16 @@ $1被封禁的理由是“$2”',
 
 # Info page
 'pageinfo-title' => '" $1 "的信息',
-'pageinfo-header-basic' => '基本資料',
-'pageinfo-header-edits' => '編輯歷史',
-'pageinfo-header-restrictions' => '保護頁面',
-'pageinfo-header-properties' => '頁面屬性',
-'pageinfo-display-title' => '顯示標題',
-'pageinfo-default-sort' => '預設排序字：',
-'pageinfo-length' => '頁面長度 （以位元組為單位）',
-'pageinfo-article-id' => '頁面編號',
-'pageinfo-robot-policy' => '搜尋引擎狀態',
-'pageinfo-robot-index' => '可索引',
-'pageinfo-robot-noindex' => '不可索引',
+'pageinfo-header-edits' => '編輯',
+'pageinfo-header-watchlist' => '監視列表',
+'pageinfo-header-views' => '檢視',
+'pageinfo-subjectpage' => '頁',
+'pageinfo-talkpage' => '討論頁',
+'pageinfo-watchers' => '監視者數目',
+'pageinfo-edits' => '編輯次數',
+'pageinfo-authors' => '作者數',
 'pageinfo-views' => '觀看次數',
-'pageinfo-watchers' => '頁面監視者數目',
-'pageinfo-redirects-name' => '重定向到此頁',
-'pageinfo-subpages-name' => '此頁面的子頁面',
-'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|重定向|重定向}}; $3 {{PLURAL:$3|非重定向|非重定向}})',
-'pageinfo-firstuser' => '頁面的建立者',
-'pageinfo-firsttime' => '頁面創建日期',
-'pageinfo-lastuser' => '最近編者',
-'pageinfo-lasttime' => '最新編輯日期',
-'pageinfo-edits' => '編輯總次數',
-'pageinfo-authors' => '作者總數',
-'pageinfo-recent-edits' => '最近編輯次數 (過去 $1 內)',
-'pageinfo-recent-authors' => '最近作者數目',
-'pageinfo-restriction' => '保護頁面 （ <code>{{lcfirst:$1}}</code> ）',
-'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}} ( $1 )',
-'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}} ( $1 )',
-'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}} ( $1 )',
+'pageinfo-viewsperedit' => '每次編輯檢視數',
 
 # Skin names
 'skinname-standard' => '標準',
@@ -3019,7 +2992,6 @@ $1',
 'file-info-size-pages' => '$1 × $2像素，檔案大小: $3，檔案類型: $4, $5 {{PLURAL:$5|頁|頁}}',
 'file-nohires' => '無更高解像度可提供。',
 'svg-long-desc' => 'SVG 檔案，表面大小：$1 × $2 像素，檔案大小：$3',
-'svg-long-desc-animated' => 'SVG 動畫檔案，表面大小：$1 × $2 像素，檔案大小：$3',
 'show-big-image' => '完整解像度',
 'show-big-image-preview' => '此預覽的大小：$1.',
 'show-big-image-other' => '其他{{PLURAL:$2||}}解析度：$1。',
@@ -3029,8 +3001,6 @@ $1',
 'file-info-png-looped' => '循環',
 'file-info-png-repeat' => '已播放$1次',
 'file-info-png-frames' => '$1幀',
-'file-no-thumb-animation' => "'''注意： 由於技術限制，不能播放此檔案縮圖的動畫。'''",
-'file-no-thumb-animation-gif' => "'''注意： 由於技術限制，不能播放此高解析度GIF圖像縮圖的動畫。'''",
 
 # Special:NewFiles
 'newimages' => '新建圖片畫廊',

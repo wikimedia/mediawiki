@@ -24,8 +24,8 @@
  * @author Aaron Schulz
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
-require_once( __DIR__ . '/deleteArchivedFiles.inc' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/deleteArchivedFiles.inc' );
 
 /**
  * Maintenance script to delete archived (non-current) files from the database.

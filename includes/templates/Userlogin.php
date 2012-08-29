@@ -108,10 +108,9 @@ class UserloginTemplate extends QuickTemplate {
 			<td></td>
 			<td class="mw-input">
 				<?php
-				global $wgCookieExpiration;
-				$expirationDays = ceil( $wgCookieExpiration / ( 3600 * 24 ) );
+				global $wgCookieExpiration, $wgLang;
 				echo Xml::checkLabel(
-					wfMessage( 'remembermypassword' )->numParams( $expirationDays )->text(),
+					wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
 					'wpRemember',
 					'wpRemember',
 					$this->data['remember'],
@@ -127,7 +126,7 @@ class UserloginTemplate extends QuickTemplate {
 			<td class="mw-input">
 			<?php
 			echo Xml::checkLabel(
-				wfMessage( 'securelogin-stick-https' )->text(),
+				wfMsg( 'securelogin-stick-https' ),
 				'wpStickHTTPS',
 				'wpStickHTTPS',
 				$this->data['stickHTTPS'],
@@ -141,7 +140,7 @@ class UserloginTemplate extends QuickTemplate {
 			<td></td>
 			<td class="mw-submit">
 				<?php
-		echo Html::input( 'wpLoginAttempt', wfMessage( 'login' )->text(), 'submit', array(
+		echo Html::input( 'wpLoginAttempt', wfMsg( 'login' ), 'submit', array(
 			'id' => 'wpLoginAttempt',
 			'tabindex' => '9'
 		) );
@@ -154,14 +153,10 @@ class UserloginTemplate extends QuickTemplate {
 				);
 			} elseif( $this->data['resetlink'] === null ) {
 				echo '&#160;';
-				echo Html::input(
-					'wpMailmypassword',
-					wfMessage( 'mailmypassword' )->text(),
-					'submit', array(
-						'id' => 'wpMailmypassword',
-						'tabindex' => '10'
-					)
-				);
+				echo Html::input( 'wpMailmypassword', wfMsg( 'mailmypassword' ), 'submit', array(
+					'id' => 'wpMailmypassword',
+					'tabindex' => '10'
+				) );
 			}
 		} ?>
 

@@ -2621,15 +2621,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Returns an SQL expression for a simple conditional.  This doesn't need
 	 * to be overridden unless CASE isn't supported in your DBMS.
 	 *
-	 * @param $cond string|array SQL expression which will result in a boolean value
+	 * @param $cond String: SQL expression which will result in a boolean value
 	 * @param $trueVal String: SQL expression to return if true
 	 * @param $falseVal String: SQL expression to return if false
 	 * @return String: SQL fragment
 	 */
 	public function conditional( $cond, $trueVal, $falseVal ) {
-		if ( is_array( $cond ) ) {
-			$cond = $this->makeList( $cond, LIST_AND );
-		}
 		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 

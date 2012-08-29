@@ -110,7 +110,7 @@ class LocalisationCache {
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
-		'digitGroupingPattern', 'pluralRules'
+		'digitGroupingPattern'
 	);
 
 	/**
@@ -118,7 +118,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
-		'dateFormats', 'imageFiles', 'preloadedMessages', 'pluralRules'
+		'dateFormats', 'imageFiles', 'preloadedMessages',
 	);
 
 	/**
@@ -153,12 +153,6 @@ class LocalisationCache {
 	 * Keys which are loaded automatically by initLanguage()
 	 */
 	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames' );
-
-	/**
-	 * Associative array of cached plural rules. The key is the language code,
-	 * the value is an array of plural rules for that language.
-	 */
-	var $pluralRules = null;
 
 	var $mergeableKeys = null;
 
@@ -240,9 +234,9 @@ class LocalisationCache {
 	 */
 	public function getItem( $code, $key ) {
 		if ( !isset( $this->loadedItems[$code][$key] ) ) {
-			wfProfileIn( __METHOD__ . '-load' );
+			wfProfileIn( __METHOD__.'-load' );
 			$this->loadItem( $code, $key );
-			wfProfileOut( __METHOD__ . '-load' );
+			wfProfileOut( __METHOD__.'-load' );
 		}
 
 		if ( $key === 'fallback' && isset( $this->shallowFallbacks[$code] ) ) {
@@ -262,9 +256,9 @@ class LocalisationCache {
 	public function getSubitem( $code, $key, $subkey ) {
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) &&
 			 !isset( $this->loadedItems[$code][$key] ) ) {
-			wfProfileIn( __METHOD__ . '-load' );
+			wfProfileIn( __METHOD__.'-load' );
 			$this->loadSubitem( $code, $key, $subkey );
-			wfProfileOut( __METHOD__ . '-load' );
+			wfProfileOut( __METHOD__.'-load' );
 		}
 
 		if ( isset( $this->data[$code][$key][$subkey] ) ) {
@@ -373,7 +367,7 @@ class LocalisationCache {
 	 */
 	public function isExpired( $code ) {
 		if ( $this->forceRecache && !isset( $this->recachedLangs[$code] ) ) {
-			wfDebug( __METHOD__ . "($code): forced reload\n" );
+			wfDebug( __METHOD__."($code): forced reload\n" );
 			return true;
 		}
 
@@ -382,7 +376,7 @@ class LocalisationCache {
 		$preload = $this->store->get( $code, 'preload' );
 		// Different keys may expire separately, at least in LCStore_Accel
 		if ( $deps === null || $keys === null || $preload === null ) {
-			wfDebug( __METHOD__ . "($code): cache missing, need to make one\n" );
+			wfDebug( __METHOD__."($code): cache missing, need to make one\n" );
 			return true;
 		}
 
@@ -392,7 +386,7 @@ class LocalisationCache {
 			// anymore (e.g. uninstalled extensions)
 			// When this happens, always expire the cache
 			if ( !$dep instanceof CacheDependency || $dep->isExpired() ) {
-				wfDebug( __METHOD__ . "($code): cache for $code expired due to " .
+				wfDebug( __METHOD__."($code): cache for $code expired due to " .
 					get_class( $dep ) . "\n" );
 				return true;
 			}
@@ -487,68 +481,10 @@ class LocalisationCache {
 		} elseif ( $_fileType == 'aliases' ) {
 			$data = compact( 'aliases' );
 		} else {
-			throw new MWException( __METHOD__ . ": Invalid file type: $_fileType" );
+			throw new MWException( __METHOD__.": Invalid file type: $_fileType" );
 		}
+
 		return $data;
-	}
-
-	/**
-	 * Get the compiled plural rules for a given language from the XML files.
-	 * @since 1.20
-	 */
-	public function getCompiledPluralRules( $code ) {
-		$rules = $this->getPluralRules( $code );
-		try {
-			$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
-		} catch( CLDRPluralRuleError $e ) {
-			wfDebugLog( 'l10n', $e->getMessage() . "\n" );
-			return array();
-		}
-		return $compiledRules;
-	}
-
-	/**
-	 * Get the plural rules for a given language from the XML files.
-	 * Cached.
-	 * @since 1.20
-	 */
-	public function getPluralRules( $code ) {
-		if ( $this->pluralRules === null ) {
-			$cldrPlural = __DIR__ . "/../languages/data/plurals.xml";
-			$mwPlural = __DIR__ . "/../languages/data/plurals-mediawiki.xml";
-			// Load CLDR plural rules
-			$this->loadPluralFile( $cldrPlural );
-			if ( file_exists( $mwPlural ) ) {
-				// Override or extend
-				$this->loadPluralFile( $mwPlural );
-			}
-		}
-		if ( !isset( $this->pluralRules[$code] ) ) {
-			return array();
-		} else {
-			return $this->pluralRules[$code];
-		}
-	}
-
-	/**
-	 * Load a plural XML file with the given filename, compile the relevant
-	 * rules, and save the compiled rules in a process-local cache.
-	 */
-	private function loadPluralFile( $fileName ) {
-		$doc = new DOMDocument;
-		$doc->load( $fileName );
-		$rulesets = $doc->getElementsByTagName( "pluralRules" );
-		foreach ( $rulesets as $ruleset ) {
-			$codes = $ruleset->getAttribute( 'locales' );
-			$rules = array();
-			$ruleElements = $ruleset->getElementsByTagName( "pluralRule" );
-			foreach ( $ruleElements as $elt ) {
-				$rules[] = $elt->nodeValue;
-			}
-			foreach ( explode( ' ', $codes ) as $code ) {
-				$this->pluralRules[$code] = $rules;
-			}
-		}
 	}
 
 	/**
@@ -651,12 +587,12 @@ class LocalisationCache {
 		# Load the primary localisation from the source file
 		$fileName = Language::getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
-			wfDebug( __METHOD__ . ": no localisation file for $code, using fallback to en\n" );
+			wfDebug( __METHOD__.": no localisation file for $code, using fallback to en\n" );
 			$coreData['fallback'] = 'en';
 		} else {
 			$deps[] = new FileDependency( $fileName );
 			$data = $this->readPHPFile( $fileName, 'core' );
-			wfDebug( __METHOD__ . ": got localisation for $code from source\n" );
+			wfDebug( __METHOD__.": got localisation for $code from source\n" );
 
 			# Merge primary localisation
 			foreach ( $data as $key => $value ) {
@@ -669,6 +605,7 @@ class LocalisationCache {
 		if ( is_null( $coreData['fallback'] ) ) {
 			$coreData['fallback'] = $code === 'en' ? false : 'en';
 		}
+
 		if ( $coreData['fallback'] === false ) {
 			$coreData['fallbackSequence'] = array();
 		} else {
@@ -717,7 +654,7 @@ class LocalisationCache {
 			$used = false;
 
 			foreach ( $data as $key => $item ) {
-				if ( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
+				if( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
 					$used = true;
 				}
 			}
@@ -747,22 +684,19 @@ class LocalisationCache {
 			$page = str_replace( ' ', '_', $page );
 		}
 		# Decouple the reference to prevent accidental damage
-		unset( $page );
+		unset($page);
 
 		# Set the list keys
 		$allData['list'] = array();
 		foreach ( self::$splitKeys as $key ) {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
-		# Load CLDR plural rules for JavaScript
-		$allData['pluralRules'] = $this->getPluralRules( $code );
-		# And for PHP
-		$allData['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
+
 		# Run hooks
 		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
 
 		if ( is_null( $allData['namespaceNames'] ) ) {
-			throw new MWException( __METHOD__ . ': Localisation data failed sanity check! ' .
+			throw new MWException( __METHOD__.': Localisation data failed sanity check! ' .
 				'Check that your languages/messages/MessagesEn.php file is intact.' );
 		}
 
@@ -990,7 +924,7 @@ class LCStore_DB implements LCStore {
 		}
 
 		if ( !$code ) {
-			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
+			throw new MWException( __METHOD__.": Invalid language \"$code\"" );
 		}
 
 		$this->dbw = wfGetDB( DB_MASTER );
@@ -1034,7 +968,7 @@ class LCStore_DB implements LCStore {
 		}
 
 		if ( is_null( $this->currentLang ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before calling set()' );
+			throw new MWException( __CLASS__.': must call startWrite() before calling set()' );
 		}
 
 		$this->batch[] = array(
@@ -1106,7 +1040,7 @@ class LCStore_CDB implements LCStore {
 		}
 
 		// Close reader to stop permission errors on write
-		if ( !empty( $this->readers[$code] ) ) {
+		if( !empty($this->readers[$code]) ) {
 			$this->readers[$code]->close();
 		}
 
@@ -1124,14 +1058,14 @@ class LCStore_CDB implements LCStore {
 
 	public function set( $key, $value ) {
 		if ( is_null( $this->writer ) ) {
-			throw new MWException( __CLASS__ . ': must call startWrite() before calling set()' );
+			throw new MWException( __CLASS__.': must call startWrite() before calling set()' );
 		}
 		$this->writer->set( $key, serialize( $value ) );
 	}
 
 	protected function getFileName( $code ) {
 		if ( !$code || strpos( $code, '/' ) !== false ) {
-			throw new MWException( __METHOD__ . ": Invalid language \"$code\"" );
+			throw new MWException( __METHOD__.": Invalid language \"$code\"" );
 		}
 		return "{$this->directory}/l10n_cache-$code.cdb";
 	}
@@ -1247,9 +1181,8 @@ class LocalisationCache_BulkLoad extends LocalisationCache {
 		while ( count( $this->data ) > $this->maxLoadedLangs && count( $this->mruLangs ) ) {
 			reset( $this->mruLangs );
 			$code = key( $this->mruLangs );
-			wfDebug( __METHOD__ . ": unloading $code\n" );
+			wfDebug( __METHOD__.": unloading $code\n" );
 			$this->unload( $code );
 		}
 	}
-
 }

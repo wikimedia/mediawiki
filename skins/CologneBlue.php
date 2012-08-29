@@ -84,14 +84,14 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= '<td class="top" nowrap="nowrap">';
 		$s .= '<a href="' . htmlspecialchars( $mainPageObj->getLocalURL() ) . '">';
-		$s .= '<span id="sitetitle">' . wfMessage( 'sitetitle' )->escaped() . '</span></a>';
+		$s .= '<span id="sitetitle">' . $this->msg( 'sitetitle' )->text() . '</span></a>';
 
 		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
 		$s .= $this->sysLinks();
 		$s .= '</td></tr><tr><td class="top-subheader">';
 
 		$s .= '<font size="-1"><span id="sitesub">';
-		$s .= wfMessage( 'sitesubtitle' )->escaped() . '</span></font>';
+		$s .= htmlspecialchars( $this->msg( 'sitesubtitle' )->text() ) . '</span></font>';
 		$s .= '</td><td class="top-linkcollection">';
 
 		$s .= '<font size="-1"><span id="langlinks">';
@@ -128,11 +128,15 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= $this->bottomLinks();
 		$s .= $this->getSkin()->getLanguage()->pipeList( array(
-			"\n<br />" . Linker::linkKnown(
-				Title::newMainPage()
+			"\n<br />" . Linker::link(
+				Title::newMainPage(),
+				null,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
 			),
 			$this->getSkin()->aboutLink(),
-			$this->searchForm( wfMessage( 'qbfind' )->text() )
+			$this->searchForm( $this->msg( 'qbfind' )->text() )
 		) );
 
 		$s .= "\n<br />" . $this->pageStats();
@@ -163,16 +167,16 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$s = array(
 			$this->getSkin()->mainPageLink(),
 			Linker::linkKnown(
-				Title::newFromText( wfMessage( 'aboutpage' )->inContentLanguage()->text() ),
-				wfMessage( 'about' )->text()
+				Title::newFromText( $this->msg( 'aboutpage' )->inContentLanguage()->text() ),
+				$this->msg( 'about' )->text()
 			),
 			Linker::linkKnown(
-				Title::newFromText( wfMessage( 'helppage' )->inContentLanguage()->text() ),
-				wfMessage( 'help' )->text()
+				Title::newFromText( $this->msg( 'helppage' )->inContentLanguage()->text() ),
+				$this->msg( 'help' )->text()
 			),
 			Linker::linkKnown(
-				Title::newFromText( wfMessage( 'faqpage' )->inContentLanguage()->text() ),
-				wfMessage( 'faq' )->text()
+				Title::newFromText( $this->msg( 'faqpage' )->inContentLanguage()->text() ),
+				$this->msg( 'faq' )->text()
 			),
 			Linker::specialLink( 'Specialpages' )
 		);
@@ -187,14 +191,14 @@ class CologneBlueTemplate extends LegacyTemplate {
 		if ( $this->data['loggedin'] ) {
 			$s[] = Linker::linkKnown(
 				$lo,
-				wfMessage( 'logout' )->text(),
+				$this->msg( 'logout' )->text(),
 				array(),
 				$q
 			);
 		} else {
 			$s[] = Linker::linkKnown(
 				$li,
-				wfMessage( 'login' )->text(),
+				$this->msg( 'login' )->text(),
 				array(),
 				$q
 			);
@@ -253,8 +257,8 @@ class CologneBlueTemplate extends LegacyTemplate {
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
 
 			$s .= $sep . Linker::linkKnown(
-				Title::newFromText( wfMessage( 'edithelppage' )->inContentLanguage()->text() ),
-				wfMessage( 'edithelp' )->text()
+				Title::newFromText( $this->msg( 'edithelppage' )->inContentLanguage()->text() ),
+				$this->msg( 'edithelp' )->text()
 			);
 
 			if( $this->data['loggedin'] ) {
@@ -305,22 +309,31 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $this->data['loggedin'] ) {
-			$tl = Linker::linkKnown(
+			$tl = Linker::link(
 				$user->getTalkPage(),
-				wfMessage( 'mytalk' )->escaped()
+				$this->msg( 'mytalk' )->text(),
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
 			);
 			if ( $user->getNewtalk() ) {
 				$tl .= ' *';
 			}
 
-			$s .= Linker::linkKnown(
+			$s .= Linker::link(
 					$user->getUserPage(),
-					wfMessage( 'mypage' )->escaped()
+					$this->msg( 'mypage' )->text(),
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
 				) . $sep . $tl . $sep . Linker::specialLink( 'Watchlist' )
 					. $sep .
-				Linker::linkKnown(
+				Linker::link(
 					SpecialPage::getSafeTitleFor( 'Contributions', $user->getName() ),
-					wfMessage( 'mycontris' )->escaped()
+					$this->msg( 'mycontris' )->text(),
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
 				) . $sep . Linker::specialLink( 'Preferences' )
 				. $sep . Linker::specialLink( 'Userlogout' );
 		} else {
@@ -339,12 +352,15 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		if( $wgSiteSupportPage ) {
 			$s .= $sep . '<a href="' . htmlspecialchars( $wgSiteSupportPage ) . '" class="internal">'
-					. wfMessage( 'sitesupport' )->escaped() . '</a>';
+					. $this->msg( 'sitesupport' )->text() . '</a>';
 		}
 
-		$s .= $sep . Linker::linkKnown(
+		$s .= $sep . Linker::link(
 			SpecialPage::getTitleFor( 'Specialpages' ),
-			wfMessage( 'moredotdotdot' )->text()
+			$this->msg( 'moredotdotdot' )->text(),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
 		);
 
 		$s .= $sep . "\n</div>\n";
@@ -356,7 +372,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 	 * @return string
 	 */
 	function menuHead( $key ) {
-		$s = "\n<h6>" . wfMessage( $key )->text() . "</h6>";
+		$s = "\n<h6>" . $this->msg( $key )->text() . "</h6>";
 		return $s;
 	}
 
@@ -376,12 +392,12 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= "<input type='text' id=\"searchInput{$this->searchboxes}\" class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
 			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" /><br />"
-			. "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
+			. "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . htmlspecialchars( wfMessage( 'searcharticle' )->text() ) . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
-			$s .= "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
+			$s .= "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . htmlspecialchars( $this->msg( 'search' )->text() ) . "\" />\n";
 		} else {
-			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
+			$s .= '<div><a href="' . $action . '" rel="search">' . $this->msg( 'powersearch-legend' )->text() . "</a></div>\n";
 		}
 
 		$s .= '</form>';

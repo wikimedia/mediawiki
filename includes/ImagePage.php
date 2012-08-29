@@ -94,47 +94,10 @@ class ImagePage extends Article {
 	/**
 	 * Handler for action=render
 	 * Include body text only; none of the image extras
-	 * However, also include the shared description text
-	 * so that cascading ForeignAPIRepo's work.
-	 *
-	 * @note This uses a div with the class "mw-shared-image-desc"
-	 *    as opposed to the id "mw-shared-image-desc" since the text
-	 *    from here may be cascadingly transcluded to other shared
-	 *    repos, and we want all ids to be unique. On normal
-	 *    view, the outermost shared description will still have
-	 *    the id.
-	 *
-	 * This also differs from normal view in that "shareddescriptionfollows"
-	 * message is not shown. I was not sure if it was appropriate to
-	 * add that message here.
 	 */
 	public function render() {
-		$out = $this->getContext()->getOutput();
-                $this->loadFile();
-
-                $descText = $this->mPage->getFile()->getDescriptionText();
-
-		$out->setArticleBodyOnly( true );
-
-		if ( !$descText ) {
-			// If no description text, just do standard action=render
-			parent::view();
-		} else {
-			if ( $this->mPage->getID() !== 0 ) {
-				// Local description exists. We need to output both
-				parent::view();
-				$out->addHTML( '<div class="mw-shared-image-desc">' . $descText . "</div>\n" );
-			} else {
-				// We don't want to output both a "noarticletext" message and the shared
-				// description, so don't call parent::view().
-				$out->addHTML( '<div class="mw-shared-image-desc">' . $descText . "</div>\n" );
-				// Since we did not call parent::view(), have to call some methods it
-				// normally takes care of. (Not that it matters much since skin not displayed)
-				$out->setArticleFlag( true );
-				$out->setPageTitle( $this->getTitle()->getPrefixedText() );
-				$this->mPage->doViewUpdates( $this->getContext()->getUser() );
-			}
-		}
+		$this->getContext()->getOutput()->setArticleBodyOnly( true );
+		parent::view();
 	}
 
 	public function view() {
@@ -211,7 +174,7 @@ class ImagePage extends Article {
 			if ( !$fol->isDisabled() ) {
 				$out->addWikiText( $fol->plain() );
 			}
-			$out->addHTML( '<div id="shared-image-desc" class="mw-shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
+			$out->addHTML( '<div id="shared-image-desc">' . $this->mExtraDescription . "</div>\n" );
 		}
 
 		$this->closeShowImage();
@@ -220,7 +183,7 @@ class ImagePage extends Article {
 
 		$out->addHTML( Xml::element( 'h2',
 			array( 'id' => 'filelinks' ),
-			wfMessage( 'imagelinks' )->text() ) . "\n" );
+			wfMsg( 'imagelinks' ) ) . "\n" );
 		$this->imageDupes();
 		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
@@ -234,10 +197,7 @@ class ImagePage extends Article {
 		}
 
 		if ( $showmeta ) {
-			$out->addHTML( Xml::element(
-				'h2',
-				array( 'id' => 'metadata' ),
-				wfMessage( 'metadata' )->text() ) . "\n" );
+			$out->addHTML( Xml::element( 'h2', array( 'id' => 'metadata' ), wfMsg( 'metadata' ) ) . "\n" );
 			$out->addWikiText( $this->makeMetadataTable( $formattedMetadata ) );
 			$out->addModules( array( 'mediawiki.action.view.metadata' ) );
 		}
@@ -269,12 +229,12 @@ class ImagePage extends Article {
 	 */
 	protected function showTOC( $metadata ) {
 		$r = array(
-			'<li><a href="#file">' . wfMessage( 'file-anchor-link' )->escaped() . '</a></li>',
-			'<li><a href="#filehistory">' . wfMessage( 'filehist' )->escaped() . '</a></li>',
-			'<li><a href="#filelinks">' . wfMessage( 'imagelinks' )->escaped() . '</a></li>',
+			'<li><a href="#file">' . wfMsgHtml( 'file-anchor-link' ) . '</a></li>',
+			'<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>',
+			'<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . '</a></li>',
 		);
 		if ( $metadata ) {
-			$r[] = '<li><a href="#metadata">' . wfMessage( 'metadata' )->escaped() . '</a></li>';
+			$r[] = '<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>';
 		}
 
 		wfRunHooks( 'ImagePageShowTOC', array( $this, &$r ) );
@@ -292,7 +252,7 @@ class ImagePage extends Article {
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = "<div class=\"mw-imagepage-section-metadata\">";
-		$r .= wfMessage( 'metadata-help' )->plain();
+		$r .= wfMsgNoTrans( 'metadata-help' );
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
@@ -364,7 +324,7 @@ class ImagePage extends Article {
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
 
-			$longDesc = wfMessage( 'parentheses', $this->displayImg->getLongDesc() )->text();
+			$longDesc = wfMsg( 'parentheses', $this->displayImg->getLongDesc() );
 
 			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this, &$out ) );
 
@@ -372,7 +332,7 @@ class ImagePage extends Article {
 				# image
 
 				# "Download high res version" link below the image
-				# $msgsize = wfMessage( 'file-info-size', $width_orig, $height_orig, Linker::formatSize( $this->displayImg->getSize() ), $mime )->escaped();
+				# $msgsize = wfMsgHtml( 'file-info-size', $width_orig, $height_orig, Linker::formatSize( $this->displayImg->getSize() ), $mime );
 				# We'll show a thumbnail of this image
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
@@ -388,7 +348,7 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$msgbig = wfMessage( 'show-big-image' )->escaped();
+					$msgbig = wfMsgHtml( 'show-big-image' );
 					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 						$thumbSizes = $wgImageLimits;
 					} else {
@@ -453,7 +413,7 @@ class ImagePage extends Article {
 					$count = $this->displayImg->pageCount();
 
 					if ( $page > 1 ) {
-						$label = $out->parse( wfMessage( 'imgmultipageprev' )->text(), false );
+						$label = $out->parse( wfMsg( 'imgmultipageprev' ), false );
 						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
@@ -467,7 +427,7 @@ class ImagePage extends Article {
 					}
 
 					if ( $page < $count ) {
-						$label = wfMessage( 'imgmultipagenext' )->text();
+						$label = wfMsg( 'imgmultipagenext' );
 						$link = Linker::linkKnown(
 							$this->getTitle(),
 							$label,
@@ -499,8 +459,8 @@ class ImagePage extends Article {
 						'</td><td><div class="multipageimagenavbox">' .
 						Xml::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-							wfMessage( 'imgmultigoto' )->rawParams( $select )->parse() .
-						Xml::submitButton( wfMessage( 'imgmultigo' )->text() ) .
+						wfMsgExt( 'imgmultigoto', array( 'parseinline', 'replaceafter' ), $select ) .
+						Xml::submitButton( wfMsg( 'imgmultigo' ) ) .
 						Xml::closeElement( 'form' ) .
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
@@ -527,7 +487,7 @@ class ImagePage extends Article {
 				$medialink = "[[Media:$filename|$linktext]]";
 
 				if ( !$this->displayImg->isSafeFile() ) {
-					$warning = wfMessage( 'mediawarning' )->plain();
+					$warning = wfMsgNoTrans( 'mediawarning' );
 					// dirmark is needed here to separate the file name, which
 					// most likely ends in Latin characters, from the description,
 					// which may begin with the file type. In RTL environment
@@ -547,25 +507,6 @@ EOT
 EOT
 					);
 				}
-			}
-
-			// Add cannot animate thumbnail warning
-			if ( !$this->displayImg->canAnimateThumbIfAppropriate() ) {
-				// Include the extension so wiki admins can
-				// customize it on a per file-type basis
-				// (aka say things like use format X instead).
-				// additionally have a specific message for
-				// file-no-thumb-animation-gif
-				$ext = $this->displayImg->getExtension();
-				$noAnimMesg = wfMessageFallback(
-					'file-no-thumb-animation-' . $ext,
-					'file-no-thumb-animation'
-				)->plain();
-
-				$out->addWikiText( <<<EOT
-<div class="mw-noanimatethumb">{$noAnimMesg}</div>
-EOT
-				);
 			}
 
 			if ( !$this->displayImg->isLocal() ) {
@@ -654,9 +595,9 @@ EOT
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->mPage->getFile()->getRepo()->getDisplayName();
 
-		if ( $descUrl && $descText && wfMessage( 'sharedupload-desc-here' )->plain() !== '-'  ) {
+		if ( $descUrl && $descText && wfMsgNoTrans( 'sharedupload-desc-here' ) !== '-'  ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
-		} elseif ( $descUrl && wfMessage( 'sharedupload-desc-there' )->plain() !== '-' ) {
+		} elseif ( $descUrl && wfMsgNoTrans( 'sharedupload-desc-there' ) !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
 		} else {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload', $repo ), ''/*BACKCOMPAT*/ );
@@ -693,22 +634,19 @@ EOT
 		}
 
 		$out = $this->getContext()->getOutput();
-		$out->addHTML( "<ul>\n" );
+		$out->addHTML( "<br /><ul>\n" );
 
 		# "Upload a new version of this file" link
-		$canUpload = $this->getTitle()->userCan( 'upload', $this->getContext()->getUser() );
-		if ( $canUpload && UploadBase::userCanReUpload( $this->getContext()->getUser(), $this->mPage->getFile()->name ) ) {
-			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMessage( 'uploadnewversion-linktext' )->text() );
+		if ( UploadBase::userCanReUpload( $this->getContext()->getUser(), $this->mPage->getFile()->name ) ) {
+			$ulink = Linker::makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
-		} else {
-			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->getContext()->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
 		}
 
 		# External editing link
 		if ( $wgUseExternalEditor ) {
 			$elink = Linker::linkKnown(
 				$this->getTitle(),
-				wfMessage( 'edit-externally' )->escaped(),
+				wfMsgHtml( 'edit-externally' ),
 				array(),
 				array(
 					'action' => 'edit',
@@ -718,8 +656,8 @@ EOT
 			);
 			$out->addHTML(
 				'<li id="mw-imagepage-edit-external">' . $elink . ' <small>' .
-					wfMessage( 'edit-externally-help' )->parse() .
-					"</small></li>\n"
+				wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) .
+				"</small></li>\n"
 			);
 		}
 
@@ -893,7 +831,7 @@ EOT
 			} else {
 				$link = Linker::makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
-				$fromSrc = wfMessage( 'shared-repo-from', $file->getRepo()->getDisplayName() )->text();
+				$fromSrc = wfMsg( 'shared-repo-from', $file->getRepo()->getDisplayName() );
 			}
 			$out->addHTML( "<li>{$link} {$fromSrc}</li>\n" );
 		}

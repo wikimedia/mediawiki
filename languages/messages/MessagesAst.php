@@ -378,11 +378,11 @@ Pues atopar una llista de les páxines especiales válides en [[Special:SpecialP
 'error' => 'Fallu',
 'databaseerror' => 'Fallu na base de datos',
 'dberrortext' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
-Esti fallu pue ser por un problema del software.
+Esti fallu puede ser por un problema del software.
 La postrer consulta a la base de datos que s'intentó foi:
-<blockquote><code>$1</code></blockquote>
-dende la función «<code>$2</code>».
-La base datos dio'l fallu «<samp>$3: $4</samp>».",
+<blockquote><tt>$1</tt></blockquote>
+dende la función «<tt>$2</tt>».
+La base datos dio'l fallu «<tt>$3: $4</tt>».",
 'dberrortextcl' => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
 La postrer consulta de la base de datos que s'intentó foi:
 «$1»
@@ -762,6 +762,7 @@ La postrer entrada del rexistru de bloqueos úfrese darréu pa referencia:',
 *'''Firefox / Safari:''' Caltén ''Mayús'' mentes calques en ''Recargar'', o calca ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' nun Mac)
 * '''Google Chrome:''' Calca ''Ctrl-Mayús-R'' (''⌘-Mayús-R'' nun Mac)
 * '''Internet Explorer:''' Caltén ''Ctrl'' mentes calques ''Refrescar'', o calca ''Ctrl-F5''
+* '''Konqueror:''' Calca en ''Recargar'', o calca ''F5''
 * '''Opera:''' llimpia la caché en ''Ferramientes → Preferencies''",
 'usercssyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to CSS nuevu enantes de guardalu.",
 'userjsyoucanpreview' => "'''Conseyu:''' Usa'l botón \"{{int:showpreview}}\" pa probar el to JavaScript nuevu enantes de guardalu.",
@@ -1778,7 +1779,6 @@ Seique quieras camudar la descripción de la so [páxina de descripción de fich
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'un repositoriu compartíu',
 'filepage.css' => "/* El CSS allugáu equí s'incluye na páxina de descripción del ficheru, que tamién s'incluye nes wikis clientes foriates */",
-'upload-disallowed-here' => 'Por desgracia nun pues sobrescribir esta imaxe.',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -1885,7 +1885,6 @@ Les entraes <del>tachaes</del> tan resueltes.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categoría|categoríes}}',
-'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|enllaz|enllaces}}',
 'nmembers' => '$1 {{PLURAL:$1|miembru|miembros}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisión|revisiones}}',
@@ -1914,7 +1913,6 @@ Les entraes <del>tachaes</del> tan resueltes.',
 'mostlinkedtemplates' => 'Plantíes más enllaciaes',
 'mostcategories' => 'Páxines con más categoríes',
 'mostimages' => 'Archivos más enllaciaos',
-'mostinterwikis' => 'Páxines con más interwikis',
 'mostrevisions' => 'Páxines con más revisiones',
 'prefixindex' => 'Toles páxines col prefixu',
 'prefixindex-namespace' => 'Toles páxines col prefixu (espaciu de nomes $1)',
@@ -2062,9 +2060,7 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
 pa poder unviar correos a otros usuarios.',
 'emailuser' => 'Manda-y un corréu a esti usuariu',
-'emailuser-title-target' => 'Unviar un corréu electrónicu a {{GENDER:$1|esti usuariu|esta usuaria}}',
-'emailuser-title-notarget' => 'Unviar un corréu electrónicu a un usuariu',
-'emailpage' => 'Envigar un corréu electrónicu a un usuariu',
+'emailpage' => "Corréu d'usuariu",
 'emailpagetext' => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
 La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
 'usermailererror' => "L'operador de corréu devolvió un error:",
@@ -2893,34 +2889,16 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',
-'pageinfo-header-basic' => 'Información básica',
-'pageinfo-header-edits' => "Historial d'ediciones",
-'pageinfo-header-restrictions' => 'Proteición de páxina',
-'pageinfo-header-properties' => 'Propiedaes de la páxina',
-'pageinfo-display-title' => 'Amosar el títulu',
-'pageinfo-default-sort' => "Clave d'ordenación predeterminada",
-'pageinfo-length' => 'Llonxitú de la páxina (en bytes)',
-'pageinfo-article-id' => 'ID de la páxina',
-'pageinfo-robot-policy' => 'Estáu del motor de gueta',
-'pageinfo-robot-index' => 'Pue ser índiz',
-'pageinfo-robot-noindex' => 'Nun pue ser índiz',
+'pageinfo-header-edits' => 'Ediciones',
+'pageinfo-header-watchlist' => 'Llista de vixilancia',
+'pageinfo-header-views' => 'Vistes',
+'pageinfo-subjectpage' => 'Páxina',
+'pageinfo-talkpage' => "Páxina d'alderique",
+'pageinfo-watchers' => 'Númberu de vixilantes',
+'pageinfo-edits' => "Númberu d'ediciones",
+'pageinfo-authors' => "Númberu d'autores distintos",
 'pageinfo-views' => 'Númberu de visites',
-'pageinfo-watchers' => 'Númberu de vixilantes de la páxina',
-'pageinfo-redirects-name' => 'Redireiciones a esta páxina',
-'pageinfo-subpages-name' => "Subpáxines d'esta páxina",
-'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redireición|redireiciones}}; $3 {{PLURAL:$3|non-redireición|non-redireiciones}})',
-'pageinfo-firstuser' => 'Creador de la páxina',
-'pageinfo-firsttime' => 'Data de creación de la páxina',
-'pageinfo-lastuser' => 'Caberu editor',
-'pageinfo-lasttime' => 'Data de la cabera edición',
-'pageinfo-edits' => "Númberu total d'ediciones",
-'pageinfo-authors' => "Númberu total d'autores distintos",
-'pageinfo-recent-edits' => "Númberu d'ediciones recientes (nos caberos $1)",
-'pageinfo-recent-authors' => "Númberu d'autores distintos recientes",
-'pageinfo-restriction' => 'Proteición de la páxina (<code>{{lcfirst:$1}}</code>)',
-'pageinfo-magic-words' => '{{PLURAL:$1|Pallabra máxica|Pallabres máxiques}} ($1)',
-'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría anubrida|Categoríes anubríes}} ($1)',
-'pageinfo-templates' => '{{PLURAL:$1|Plantía incluída|Plantíes incluíes}} ($1)',
+'pageinfo-viewsperedit' => 'Visites por edición',
 
 # Skin names
 'skinname-standard' => 'Clásicu',
@@ -2971,7 +2949,6 @@ Al executalu pues comprometer el to sistema.",
 'file-info-size-pages' => '$1 × $2 pixels, tamañu del ficheru: $3, triba MIME: $4, $5 {{PLURAL:$5|páxina|páxines}}',
 'file-nohires' => 'Nun ta disponible con mayor resolución.',
 'svg-long-desc' => 'ficheru SVG, $1 × $2 píxels nominales, tamañu de ficheru: $3',
-'svg-long-desc-animated' => 'Ficheru SVG animáu; nominalmente de $1 × $2 pixels; tamañu del ficheru: $3',
 'show-big-image' => 'Resolución completa',
 'show-big-image-preview' => "Tamañu d'esta previsualización: $1.",
 'show-big-image-other' => '{{PLURAL:$2|Otra resolución|Otres resoluciones}}: $1.',
@@ -2981,8 +2958,6 @@ Al executalu pues comprometer el to sistema.",
 'file-info-png-looped' => 'animáu',
 'file-info-png-repeat' => 'reproducíu $1 {{PLURAL:$1|vez|veces}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|cuadru|cuadros}}',
-'file-no-thumb-animation' => "'''Nota: pola mor de llímites téunicos, les miniatures d'esti ficheru nun tan animaes.'''",
-'file-no-thumb-animation-gif' => "'''Nota: pola mor de llímites téunicos, les miniatures d'imaxes GIF d'alta resolución como esta nun tan animaes.'''",
 
 # Special:NewFiles
 'newimages' => "Galería d'imáxenes nueves",

@@ -207,11 +207,11 @@ class MWDebug {
 	 * @param $str string
 	 */
 	public static function debugMsg( $str ) {
-		global $wgDebugComments, $wgShowDebug;
-
-		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
-			self::$debug[] = rtrim( $str );
+		if ( !self::$enabled ) {
+			return;
 		}
+
+		self::$debug[] = trim( $str );
 	}
 
 	/**
@@ -283,91 +283,22 @@ class MWDebug {
 	 * @return string
 	 */
 	public static function getDebugHTML( IContextSource $context ) {
-		global $wgDebugComments;
-
-		$html = '';
-
-		if ( self::$enabled ) {
-			MWDebug::log( 'MWDebug output complete' );
-			$debugInfo = self::getDebugInfo( $context );
-
-			// Cannot use OutputPage::addJsConfigVars because those are already outputted
-			// by the time this method is called.
-			$html = Html::inlineScript(
-				ResourceLoader::makeLoaderConditionalScript(
-					ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
-				)
-			);
-		}
-
-		if ( $wgDebugComments ) {
-			$html .= "<!-- Debug output:\n" .
-				htmlspecialchars( implode( "\n", self::$debug ) ) .
-				"\n\n-->";
-		}
-
-		return $html;
-	}
-
-	/**
-	 * Generate debug log in HTML for displaying at the bottom of the main
-	 * content area.
-	 * If $wgShowDebug is false, an empty string is always returned.
-	 *
-	 * @since 1.20
-	 * @return string HTML fragment
-	 */
-	public static function getHTMLDebugLog() {
-		global $wgDebugTimestamps, $wgShowDebug;
-
-		if ( !$wgShowDebug ) {
+		if ( !self::$enabled ) {
 			return '';
 		}
 
-		$curIdent = 0;
-		$ret = "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">\n<li>";
+		MWDebug::log( 'MWDebug output complete' );
+		$debugInfo = self::getDebugInfo( $context );
 
-		foreach ( self::$debug as $line ) {
-			$pre = '';
-			if ( $wgDebugTimestamps ) {
-				$matches = array();
-				if ( preg_match( '/^(\d+\.\d+ {1,3}\d+.\dM\s{2})/', $line, $matches ) ) {
-					$pre = $matches[1];
-					$line = substr( $line, strlen( $pre ) );
-				}
-			}
-			$display = ltrim( $line );
-			$ident = strlen( $line ) - strlen( $display );
-			$diff = $ident - $curIdent;
+		// Cannot use OutputPage::addJsConfigVars because those are already outputted
+		// by the time this method is called.
+		$html = Html::inlineScript(
+			ResourceLoader::makeLoaderConditionalScript(
+				ResourceLoader::makeConfigSetScript( array( 'debugInfo' => $debugInfo ) )
+			)
+		);
 
-			$display = $pre . $display;
-			if ( $display == '' ) {
-				$display = "\xc2\xa0";
-			}
-
-			if ( !$ident && $diff < 0 && substr( $display, 0, 9 ) != 'Entering ' && substr( $display, 0, 8 ) != 'Exiting ' ) {
-				$ident = $curIdent;
-				$diff = 0;
-				$display = '<span style="background:yellow;">' . nl2br( htmlspecialchars( $display ) ) . '</span>';
-			} else {
-				$display = nl2br( htmlspecialchars( $display ) );
-			}
-
-			if ( $diff < 0 ) {
-				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "</li><li>\n";
-			} elseif ( $diff == 0 ) {
-				$ret .= "</li><li>\n";
-			} else {
-				$ret .= str_repeat( "<ul><li>\n", $diff );
-			}
-			$ret .= "<tt>$display</tt>\n";
-
-			$curIdent = $ident;
-		}
-
-		$ret .= str_repeat( '</li></ul>', $curIdent ) . "</li>\n</ul>\n";
-
-		return $ret;
+		return $html;
 	}
 
 	/**

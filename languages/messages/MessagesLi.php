@@ -2837,10 +2837,15 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 # Info page
 'pageinfo-title' => 'Informatie euver "$1"',
 'pageinfo-header-edits' => 'Bewirk',
-'pageinfo-views' => 'Aantal waergave',
+'pageinfo-header-watchlist' => 'Volglies',
+'pageinfo-header-views' => 'Weergave',
+'pageinfo-subjectpage' => 'Pagina',
+'pageinfo-talkpage' => 'Euverlègkpazjena',
 'pageinfo-watchers' => 'Aantal volgers',
 'pageinfo-edits' => 'Aantal bewèrkinge',
 'pageinfo-authors' => 'Aantal versjillende sjrievers',
+'pageinfo-views' => 'Aantal waergave',
+'pageinfo-viewsperedit' => 'Weergave per bewerking',
 
 # Skin names
 'skinname-standard' => 'Standaard',

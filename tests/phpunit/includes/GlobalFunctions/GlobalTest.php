@@ -311,7 +311,7 @@ class GlobalTest extends MediaWikiTestCase {
 	
 	function testDebugFunctionTest() {
 	
-		global $wgDebugLogFile, $wgDebugTimestamps;
+		global $wgDebugLogFile, $wgOut, $wgShowDebug, $wgDebugTimestamps;
 		
 		$old_log_file = $wgDebugLogFile;
 		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
@@ -333,7 +333,33 @@ class GlobalTest extends MediaWikiTestCase {
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals( " 05This has böth UTF and control chars ", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
-
+		
+		
+		
+		$old_wgOut = $wgOut;
+		$old_wgShowDebug = $wgShowDebug;
+		
+		$wgOut = new MockOutputPage;
+		
+		$wgShowDebug = true;
+		
+		$message = "\00305This has böth UTF and control chars\003";
+		
+		wfDebug( $message );
+		
+		if( $wgOut->message == "JAJA is a stupid error message. Anyway, here's your message: $message" ) {
+			$this->assertTrue( true, 'MockOutputPage called, set the proper message.' );
+		}
+		else {
+			$this->assertTrue( false, 'MockOutputPage was not called.' );
+		}
+		
+		$wgOut = $old_wgOut;
+		$wgShowDebug = $old_wgShowDebug;		
+		unlink( $wgDebugLogFile );
+		
+		
+		
 		wfDebugMem();
 		$this->assertGreaterThan( 5000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );

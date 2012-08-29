@@ -14,7 +14,7 @@
  *
  */ 
 
-$maintenanceDir = dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) . '/maintenance';
+$maintenanceDir = dirname( dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) ) . '/maintenance';
 
 require( "$maintenanceDir/Maintenance.php" );
 

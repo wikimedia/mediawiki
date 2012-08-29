@@ -108,7 +108,7 @@ class WebInstallerOutput {
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
-		$skinDir = dirname( dirname( __DIR__ ) ) . '/skins';
+		$skinDir = dirname( dirname( dirname( __FILE__ ) ) ) . '/skins';
 
 		// All these files will be concatenated in sequence and loaded
 		// as one file.
@@ -273,7 +273,7 @@ class WebInstallerOutput {
 	</div>
 	<div class="portal"><div class="body">
 <?php
-	echo $this->parent->parse( wfMessage( 'config-sidebar' )->plain(), true );
+	echo $this->parent->parse( wfMsgNoTrans( 'config-sidebar' ), true );
 ?>
 	</div></div>
 </div>
@@ -301,7 +301,7 @@ class WebInstallerOutput {
 
 	public function outputTitle() {
 		global $wgVersion;
-		echo wfMessage( 'config-title', $wgVersion )->escaped();
+		echo htmlspecialchars( wfMsg( 'config-title', $wgVersion ) );
 	}
 
 	public function getJQuery() {

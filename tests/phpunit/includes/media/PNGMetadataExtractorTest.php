@@ -2,7 +2,7 @@
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
 	function setUp() {
-		$this->filePath = __DIR__ . '/../../data/media/';
+		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';	
 	}
 	/**
 	 * Tests zTXt tag (compressed textual metadata) 

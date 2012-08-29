@@ -353,9 +353,9 @@ Gheibh thu liosta nan duilleagan sònraichte 's dligheach aig [[Special:SpecialP
 'dberrortext' => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
 Faodaidh gu bheil seo a\' comharrachadh mearachd sa bhathar-bhog.
 Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
-<blockquote><code>$1</code></blockquote>
-o bhroinn an fhoincsein "<code>$2</code>".
-Thill an stòr-dàta a\' mhearachd "<samp>$3: $4</samp>".',
+<blockquote><tt>$1</tt></blockquote>
+o bhroinn an fhoincsein "<tt>$2</tt>".
+Thill an stòr-dàta a\' mhearachd "<tt>$3: $4</tt>".',
 'dberrortextcl' => 'Thachair mearachd co-chàraidh rè iarrtas an stòir-dhàta.
 Seo iarrtas an stòir-dhàta mu dheireadh a chaidh feuchainn ris:
 "$1"
@@ -700,10 +700,11 @@ Dèan cinnteach gu bheil thu airson an duilleag seo a chruthachadh/dheasachadh.'
 'userpage-userdoesnotexist-view' => 'Cha deach an cunntas cleachdaiche "$1" a chlàradh.',
 'blocked-notice-logextract' => "Tha an cleachdaiche seo air a bhacadh an-dràsta fhèin.
 Chì thu loga a' bhacaidh mu dheireadh gu h-ìosal mar fhiosrachadh dhut:",
-'clearyourcache' => "'''An aire:''' As dèidh dhut sàbhaladh, 's mathaid gum bi agad tasgadan a' bhrabhsair agad a chur air gleus mus fhaic thu na dh'atharraich thu.
+'clearyourcache' => "''An aire:''' As dèidh dhut sàbhaladh, 's mathaid gum bi agad tasgadan a' bhrabhsair agad a chur air gleus mus fhaic thu na dh'atharraich thu.
 * '''Firefox / Safari:''' Cum 'shìos 'Shift'' is briog air ''Ath-luchdaich' no brùth ''Ctrl-F5'' no ''Ctrl-R'' (''⌘-R'' air Mac)
 * '''Google Chrome:''' Brùth ''Ctrl-Shift-R'' (''⌘-Shift-R'' air Mac)
 * '''Internet Explorer:''' Cum shìos ''Ctrl'' is briog air ''Ath-nuadhaich'' no brùth ''Ctrl-F5''
+* '''Konqueror:''' Briog air ''Reload'' no brùth ''F5''
 * '''Opera:''' Falamhaich an tasgadan ann an ''Innealan → Roghainnean''",
 'usercssyoucanpreview' => "'''Gliocas:''' Cleachd am putan \"{{int:showpreview}}\" airson an CSS agad a chur fo dheuchainn mus sàbhail thu e.",
 'userjsyoucanpreview' => "'''Gliocas:''' Cleachd am putan \"{{int:showpreview}}\" gus an JavaScript ùr agad a chur fo dheuchainn mus sàbhail thu e.",
@@ -715,22 +716,9 @@ Chì thu loga a' bhacaidh mu dheireadh gu h-ìosal mar fhiosrachadh dhut:",
 '''Cha deach a shàbhaladh fhathast!''''",
 'sitejspreview' => "'''Cuimhnich nach e seo ach ro-shealladh air còd a' JavaScript agad.'''
 '''Cha deach a shàbhaladh fhathast!''''",
-'userinvalidcssjstitle' => "'''Rabhadh:''' Chan eil an craiceann \"\$1\" ann.
-Cleachdaidh duilleagan gnàthaichte .css agus .js tiotal ann an litrichean beaga, m.e. {{ns:user}}:Foo/vector.css seach {{ns:user}}:Foo/Vector.css.",
 'updated' => '(Air ùrachadh)',
-'note' => "'''An aire:'''",
 'previewnote' => "'''Cuimhnich nach eil ann ach ro-shealladh.'''
 Cha deach na mùthaidhean agad a shàbhaladh fhathast!",
-'previewconflict' => "Tha an ro-shealladh seo a' sealltainn dhut an teacsa san raon teacsa gu h-àrd mar a nochdas e ma shàbhaileas tu an-dràsta.",
-'session_fail_preview' => "'''Duilich! Cha b' urrainn dhuinn na dheasaich thu a làimhseachadh air sgàth call dàta an t-seisein.'''
-Nach fheuch thu ris a-rithist?
-Mur obraich e fhathast, feuch is [[Special:UserLogout|clàraich a-mach]] is a-steach a-rithist an uairsin.",
-'session_fail_preview_html' => "'''Duilich! Cha b' urrainn dhuinn na dheasaich thu a làimhseachadh air sgàth call dàta an t-seisein.'''
-
-''A chionn 's gun do chuir {{SITENAME}} HTML amh an comas, tha an ro-shealladh falaichte mar dhìon an aghaidh ionnsaighean JavaScript.''
-
-'''Mas e deasachadh dligheach a tha seo, feuch ris a-rithist.'''
-Mur obraich e fhathast, feuch is [[Special:UserLogout|clàraich a-mach]] is a-steach a-rithist an uairsin.",
 'editing' => "A' deasachadh $1",
 'editingsection' => "A' deasachadh $1 (earrann)",
 'editconflict' => 'Còmhstri deasachaidh: $1',

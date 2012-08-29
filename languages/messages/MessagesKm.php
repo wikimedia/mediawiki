@@ -189,76 +189,76 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#បញ្ជូនបន្ត', '#ប្ដូរទីតាំងទៅ', '#ប្តូរទីតាំងទៅ', '#ប្ដូរទីតាំង', '#ប្តូរទីតាំង', '#ប្ដូរចំណងជើង', '#REDIRECT' ),
-	'notoc'                     => array( '0', '__លាក់មាតិកា__', '__លាក់បញ្ជីអត្ថបទ__', '__គ្មានមាតិកា__', '__គ្មានបញ្ជីអត្ថបទ__', '__កុំបង្ហាញមាតិកា__', '__NOTOC__' ),
-	'nogallery'                 => array( '0', '__លាក់វិចិត្រសាល__', '__NOGALLERY__' ),
-	'forcetoc'                  => array( '0', '__បង្ខំមាតិកា__', '__បង្ខំបញ្ជីអត្ថបទ__', '__បង្ខំអោយបង្ហាញមាតិកា__', '__FORCETOC__' ),
-	'toc'                       => array( '0', '__មាតិកា__', '__បញ្ជីអត្ថបទ__', '__TOC__' ),
-	'noeditsection'             => array( '0', '__ផ្នែកមិនត្រូវកែប្រែ__', '__មិនមានផ្នែកកែប្រែ__', '__លាក់ផ្នែកកែប្រែ__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__លាក់បឋមកថា__', '__NOHEADER__' ),
-	'currentmonth'              => array( '1', 'ខែនេះ', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonthname'          => array( '1', 'ឈ្មោះខែនេះ', 'CURRENTMONTHNAME' ),
-	'currentday'                => array( '1', 'ថ្ងៃនេះ', 'CURRENTDAY' ),
-	'currentdayname'            => array( '1', 'ឈ្មោះថ្ងៃនេះ', 'CURRENTDAYNAME' ),
-	'currentyear'               => array( '1', 'ឆ្នាំនេះ', 'CURRENTYEAR' ),
-	'currenttime'               => array( '1', 'ពេលនេះ', 'CURRENTTIME' ),
-	'currenthour'               => array( '1', 'ម៉ោងនេះ', 'ម៉ោងឥឡូវ', 'CURRENTHOUR' ),
-	'localyear'                 => array( '1', 'LOCALDAYNAME', 'LOCALYEAR' ),
-	'localtime'                 => array( '1', 'ពេលវេលាក្នុងតំបន់', 'LOCALTIME' ),
-	'localhour'                 => array( '1', 'ម៉ោងតំបន់', 'LOCALHOUR' ),
-	'numberofpages'             => array( '1', 'ចំនួនទំព័រ', 'NUMBEROFPAGES' ),
-	'numberofarticles'          => array( '1', 'ចំនួនអត្ថបទ', 'NUMBEROFARTICLES' ),
-	'numberoffiles'             => array( '1', 'ចំនួនឯកសារ', 'NUMBEROFFILES' ),
-	'numberofusers'             => array( '1', 'ចំនួនអ្នកប្រើប្រាស់', 'NUMBEROFUSERS' ),
-	'numberofedits'             => array( '1', 'ចំនួនកំណែប្រែ', 'NUMBEROFEDITS' ),
-	'pagename'                  => array( '1', 'ឈ្មោះទំព័រ', 'PAGENAME' ),
-	'namespace'                 => array( '1', 'លំហឈ្មោះ', 'NAMESPACE' ),
-	'talkspace'                 => array( '1', 'លំហឈ្មោះទំព័រពិភាក្សា', 'TALKSPACE' ),
-	'fullpagename'              => array( '1', 'ឈ្មោះទំព័រពេញ', 'FULLPAGENAME' ),
-	'subpagename'               => array( '1', 'ឈ្មោះទំព័ររង', 'SUBPAGENAME' ),
-	'talkpagename'              => array( '1', 'ឈ្មោះទំព័រពិភាក្សា', 'TALKPAGENAME' ),
-	'msg'                       => array( '0', 'សារ:', 'MSG:' ),
-	'msgnw'                     => array( '0', 'សារមិនមែនជាកូដវិគី:', 'MSGNW:' ),
-	'img_thumbnail'             => array( '1', 'រូបភាពតូច', 'រូបតូច', 'thumbnail', 'thumb' ),
-	'img_manualthumb'           => array( '1', 'រូបភាពតូច=$1', 'រូបតូច=$1', 'thumbnail=$1', 'thumb=$1' ),
-	'img_right'                 => array( '1', 'ស្តាំ', 'ខាងស្តាំ', 'right' ),
-	'img_left'                  => array( '1', 'ធ្វេង', 'ខាងធ្វេង', 'left' ),
-	'img_none'                  => array( '1', 'ទទេ', 'គ្មាន', 'none' ),
-	'img_width'                 => array( '1', '$1ភីកសែល', '$1ភស', '$1px' ),
-	'img_center'                => array( '1', 'កណ្តាល', 'center', 'centre' ),
-	'img_framed'                => array( '1', 'ស៊ុម', 'framed', 'enframed', 'frame' ),
-	'img_frameless'             => array( '1', 'គ្មានស៊ុម', 'frameless' ),
-	'img_page'                  => array( '1', 'ទំព័រ=$1', 'ទំព័រ$1', 'page=$1', 'page $1' ),
-	'img_top'                   => array( '1', 'ផ្នែកលើ', 'ផ្នែកខាងលើ', 'top' ),
-	'img_text_top'              => array( '1', 'ឃ្លានៅផ្នែកខាងលើ', 'ឃ្លាផ្នែកខាងលើ', 'text-top' ),
-	'img_middle'                => array( '1', 'ផ្នែកកណ្តាល', 'middle' ),
-	'img_bottom'                => array( '1', 'បាត', 'ផ្នែកបាត', 'bottom' ),
-	'img_text_bottom'           => array( '1', 'ឃ្លានៅផ្នែកបាត', 'ឃ្លាផ្នែកបាត', 'text-bottom' ),
-	'img_link'                  => array( '1', 'តំនភ្ជាប់=$1', 'តំណភ្ជាប់=$1', 'link=$1' ),
-	'sitename'                  => array( '1', 'ឈ្មោះវិបសាយ', 'ឈ្មោះគេហទំព័រ', 'SITENAME' ),
-	'ns'                        => array( '0', 'លឈ:', 'NS:' ),
-	'server'                    => array( '0', 'ម៉ាស៊ីនបម្រើសេវា', 'SERVER' ),
-	'servername'                => array( '0', 'ឈ្មោះម៉ាស៊ីនបម្រើសេវា', 'SERVERNAME' ),
-	'scriptpath'                => array( '0', 'ផ្លូវស្រ្គីប', 'SCRIPTPATH' ),
-	'grammar'                   => array( '0', 'វេយ្យាករណ៍:', 'GRAMMAR:' ),
-	'currentweek'               => array( '1', 'សប្ដាហ៍នេះ', 'CURRENTWEEK' ),
-	'plural'                    => array( '0', 'ពហុវចនៈ:', 'PLURAL:' ),
-	'fullurl'                   => array( '0', 'URLពេញ:', 'FULLURL:' ),
-	'displaytitle'              => array( '1', 'បង្ហាញចំណងជើង', 'បង្ហាញចំនងជើង', 'DISPLAYTITLE' ),
-	'rawsuffix'                 => array( '1', 'រ', 'R' ),
-	'newsectionlink'            => array( '1', '__តំនភ្ជាប់ផ្នែកថ្មី__', '__តំណភ្ជាប់ផ្នែកថ្មី__', '__NEWSECTIONLINK__' ),
-	'language'                  => array( '0', '#ភាសា:', '#LANGUAGE:' ),
-	'contentlanguage'           => array( '1', 'កូដភាសា', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
-	'numberofadmins'            => array( '1', 'ចំនួនអ្នកអភិបាល', 'ចំនួនអ្នកថែទាំប្រព័ន្ធ', 'NUMBEROFADMINS' ),
-	'special'                   => array( '0', 'ពិសេស', 'special' ),
-	'filepath'                  => array( '0', 'ផ្លូវនៃឯកសារ:', 'FILEPATH:' ),
-	'tag'                       => array( '0', 'ប្លាក', 'tag' ),
-	'hiddencat'                 => array( '1', '__ចំណាត់ថ្នាក់ក្រុមមិនបានបង្ហាញ__', '__HIDDENCAT__' ),
-	'pagesincategory'           => array( '1', 'ចំនួនទំព័រក្នុងចំនាត់ថ្នាក់ក្រុម', 'ចំនួនទំព័រក្នុងចំណាត់ថ្នាក់ក្រុម', 'PAGESINCATEGORY', 'PAGESINCAT' ),
-	'pagesize'                  => array( '1', 'ទំហំទំព័រ', 'PAGESIZE' ),
-	'index'                     => array( '1', '__លិបិក្រម__', '__INDEX__' ),
-	'noindex'                   => array( '1', '__មិនមានលិបិក្រម__', '__NOINDEX__' ),
-	'staticredirect'            => array( '1', '__ស្ថិតិទំព័របញ្ជូនបន្ត__', '__STATICREDIRECT__' ),
+	'redirect'                => array( '0', '#បញ្ជូនបន្ត', '#ប្ដូរទីតាំងទៅ', '#ប្តូរទីតាំងទៅ', '#ប្ដូរទីតាំង', '#ប្តូរទីតាំង', '#ប្ដូរចំណងជើង', '#REDIRECT' ),
+	'notoc'                   => array( '0', '__លាក់មាតិកា__', '__លាក់បញ្ជីអត្ថបទ__', '__គ្មានមាតិកា__', '__គ្មានបញ្ជីអត្ថបទ__', '__កុំបង្ហាញមាតិកា__', '__NOTOC__' ),
+	'nogallery'               => array( '0', '__លាក់វិចិត្រសាល__', '__NOGALLERY__' ),
+	'forcetoc'                => array( '0', '__បង្ខំមាតិកា__', '__បង្ខំបញ្ជីអត្ថបទ__', '__បង្ខំអោយបង្ហាញមាតិកា__', '__FORCETOC__' ),
+	'toc'                     => array( '0', '__មាតិកា__', '__បញ្ជីអត្ថបទ__', '__TOC__' ),
+	'noeditsection'           => array( '0', '__ផ្នែកមិនត្រូវកែប្រែ__', '__មិនមានផ្នែកកែប្រែ__', '__លាក់ផ្នែកកែប្រែ__', '__NOEDITSECTION__' ),
+	'noheader'                => array( '0', '__លាក់បឋមកថា__', '__NOHEADER__' ),
+	'currentmonth'            => array( '1', 'ខែនេះ', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonthname'        => array( '1', 'ឈ្មោះខែនេះ', 'CURRENTMONTHNAME' ),
+	'currentday'              => array( '1', 'ថ្ងៃនេះ', 'CURRENTDAY' ),
+	'currentdayname'          => array( '1', 'ឈ្មោះថ្ងៃនេះ', 'CURRENTDAYNAME' ),
+	'currentyear'             => array( '1', 'ឆ្នាំនេះ', 'CURRENTYEAR' ),
+	'currenttime'             => array( '1', 'ពេលនេះ', 'CURRENTTIME' ),
+	'currenthour'             => array( '1', 'ម៉ោងនេះ', 'ម៉ោងឥឡូវ', 'CURRENTHOUR' ),
+	'localyear'               => array( '1', 'LOCALDAYNAME', 'LOCALYEAR' ),
+	'localtime'               => array( '1', 'ពេលវេលាក្នុងតំបន់', 'LOCALTIME' ),
+	'localhour'               => array( '1', 'ម៉ោងតំបន់', 'LOCALHOUR' ),
+	'numberofpages'           => array( '1', 'ចំនួនទំព័រ', 'NUMBEROFPAGES' ),
+	'numberofarticles'        => array( '1', 'ចំនួនអត្ថបទ', 'NUMBEROFARTICLES' ),
+	'numberoffiles'           => array( '1', 'ចំនួនឯកសារ', 'NUMBEROFFILES' ),
+	'numberofusers'           => array( '1', 'ចំនួនអ្នកប្រើប្រាស់', 'NUMBEROFUSERS' ),
+	'numberofedits'           => array( '1', 'ចំនួនកំណែប្រែ', 'NUMBEROFEDITS' ),
+	'pagename'                => array( '1', 'ឈ្មោះទំព័រ', 'PAGENAME' ),
+	'namespace'               => array( '1', 'លំហឈ្មោះ', 'NAMESPACE' ),
+	'talkspace'               => array( '1', 'លំហឈ្មោះទំព័រពិភាក្សា', 'TALKSPACE' ),
+	'fullpagename'            => array( '1', 'ឈ្មោះទំព័រពេញ', 'FULLPAGENAME' ),
+	'subpagename'             => array( '1', 'ឈ្មោះទំព័ររង', 'SUBPAGENAME' ),
+	'talkpagename'            => array( '1', 'ឈ្មោះទំព័រពិភាក្សា', 'TALKPAGENAME' ),
+	'msg'                     => array( '0', 'សារ:', 'MSG:' ),
+	'msgnw'                   => array( '0', 'សារមិនមែនជាកូដវិគី:', 'MSGNW:' ),
+	'img_thumbnail'           => array( '1', 'រូបភាពតូច', 'រូបតូច', 'thumbnail', 'thumb' ),
+	'img_manualthumb'         => array( '1', 'រូបភាពតូច=$1', 'រូបតូច=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'               => array( '1', 'ស្តាំ', 'ខាងស្តាំ', 'right' ),
+	'img_left'                => array( '1', 'ធ្វេង', 'ខាងធ្វេង', 'left' ),
+	'img_none'                => array( '1', 'ទទេ', 'គ្មាន', 'none' ),
+	'img_width'               => array( '1', '$1ភីកសែល', '$1ភស', '$1px' ),
+	'img_center'              => array( '1', 'កណ្តាល', 'center', 'centre' ),
+	'img_framed'              => array( '1', 'ស៊ុម', 'framed', 'enframed', 'frame' ),
+	'img_frameless'           => array( '1', 'គ្មានស៊ុម', 'frameless' ),
+	'img_page'                => array( '1', 'ទំព័រ=$1', 'ទំព័រ$1', 'page=$1', 'page $1' ),
+	'img_top'                 => array( '1', 'ផ្នែកលើ', 'ផ្នែកខាងលើ', 'top' ),
+	'img_text_top'            => array( '1', 'ឃ្លានៅផ្នែកខាងលើ', 'ឃ្លាផ្នែកខាងលើ', 'text-top' ),
+	'img_middle'              => array( '1', 'ផ្នែកកណ្តាល', 'middle' ),
+	'img_bottom'              => array( '1', 'បាត', 'ផ្នែកបាត', 'bottom' ),
+	'img_text_bottom'         => array( '1', 'ឃ្លានៅផ្នែកបាត', 'ឃ្លាផ្នែកបាត', 'text-bottom' ),
+	'img_link'                => array( '1', 'តំនភ្ជាប់=$1', 'តំណភ្ជាប់=$1', 'link=$1' ),
+	'sitename'                => array( '1', 'ឈ្មោះវិបសាយ', 'ឈ្មោះគេហទំព័រ', 'SITENAME' ),
+	'ns'                      => array( '0', 'លឈ:', 'NS:' ),
+	'server'                  => array( '0', 'ម៉ាស៊ីនបម្រើសេវា', 'SERVER' ),
+	'servername'              => array( '0', 'ឈ្មោះម៉ាស៊ីនបម្រើសេវា', 'SERVERNAME' ),
+	'scriptpath'              => array( '0', 'ផ្លូវស្រ្គីប', 'SCRIPTPATH' ),
+	'grammar'                 => array( '0', 'វេយ្យាករណ៍:', 'GRAMMAR:' ),
+	'currentweek'             => array( '1', 'សប្ដាហ៍នេះ', 'CURRENTWEEK' ),
+	'plural'                  => array( '0', 'ពហុវចនៈ:', 'PLURAL:' ),
+	'fullurl'                 => array( '0', 'URLពេញ:', 'FULLURL:' ),
+	'displaytitle'            => array( '1', 'បង្ហាញចំណងជើង', 'បង្ហាញចំនងជើង', 'DISPLAYTITLE' ),
+	'rawsuffix'               => array( '1', 'រ', 'R' ),
+	'newsectionlink'          => array( '1', '__តំនភ្ជាប់ផ្នែកថ្មី__', '__តំណភ្ជាប់ផ្នែកថ្មី__', '__NEWSECTIONLINK__' ),
+	'language'                => array( '0', '#ភាសា:', '#LANGUAGE:' ),
+	'contentlanguage'         => array( '1', 'កូដភាសា', 'CONTENTLANGUAGE', 'CONTENTLANG' ),
+	'numberofadmins'          => array( '1', 'ចំនួនអ្នកអភិបាល', 'ចំនួនអ្នកថែទាំប្រព័ន្ធ', 'NUMBEROFADMINS' ),
+	'special'                 => array( '0', 'ពិសេស', 'special' ),
+	'filepath'                => array( '0', 'ផ្លូវនៃឯកសារ:', 'FILEPATH:' ),
+	'tag'                     => array( '0', 'ប្លាក', 'tag' ),
+	'hiddencat'               => array( '1', '__ចំណាត់ថ្នាក់ក្រុមមិនបានបង្ហាញ__', '__HIDDENCAT__' ),
+	'pagesincategory'         => array( '1', 'ចំនួនទំព័រក្នុងចំនាត់ថ្នាក់ក្រុម', 'ចំនួនទំព័រក្នុងចំណាត់ថ្នាក់ក្រុម', 'PAGESINCATEGORY', 'PAGESINCAT' ),
+	'pagesize'                => array( '1', 'ទំហំទំព័រ', 'PAGESIZE' ),
+	'index'                   => array( '1', '__លិបិក្រម__', '__INDEX__' ),
+	'noindex'                 => array( '1', '__មិនមានលិបិក្រម__', '__NOINDEX__' ),
+	'staticredirect'          => array( '1', '__ស្ថិតិទំព័របញ្ជូនបន្ត__', '__STATICREDIRECT__' ),
 );
 
 $messages = array(
@@ -287,7 +287,7 @@ $messages = array(
 'tog-nocache' => 'មិនប្រើសតិភ្ជាប់​នៃ​ទំព័រ',
 'tog-enotifwatchlistpages' => 'ផ្ញើអ៊ីមែល​មកខ្ញុំ​កាលបើ​មានបំលាស់ប្ដូរនៃទំព័រ​ណាមួយដែលមានក្នុងបញ្ជីតាមដានរបស់ខ្ញុំ',
 'tog-enotifusertalkpages' => 'ផ្ញើអ៊ីមែល​មកខ្ញុំ​កាលបើ​មានបំលាស់ប្ដូរ​នៅ​ក្នុងទំព័រពិភាក្សា​របស់ខ្ញុំ',
-'tog-enotifminoredits' => 'ផ្ញើអ៊ីមែល​មកខ្ញុំពេលមានបំលាស់ប្ដូរតិចតួច​លើទំព័រឬឯកសារផងដែរ​',
+'tog-enotifminoredits' => 'ផ្ញើអ៊ីមែល​មកខ្ញុំផងដែរ​ចំពោះ​បំលាស់ប្ដូរតិចតួច​',
 'tog-enotifrevealaddr' => 'បង្ហាញ​អាសយដ្ឋានអ៊ីមែល​របស់ខ្ញុំ​ក្នុង​​មែល​ក្រើនរំលឹក​នានា',
 'tog-shownumberswatching' => 'បង្ហាញ​ចំនួនអ្នកប្រើប្រាស់​ដែលតាមដាន​ទំព័រនេះ',
 'tog-oldsig' => 'ហត្ថលេខាមានហើយ៖',
@@ -528,10 +528,6 @@ $1',
 'youhavenewmessages' => 'អ្នកមាន $1 ($2)។',
 'newmessageslink' => 'សារថ្មីៗ',
 'newmessagesdifflink' => 'បំលាស់ប្ដូរចុងក្រោយ',
-'youhavenewmessagesfromusers' => 'អ្នកមាន $1 ទទួលបានពី {{PLURAL:$3|អ្នកប្រើប្រាស់ម្នាក់|អុ្នកប្រើប្រាស់ចំនួន $3 នាក់}} ($2)។',
-'youhavenewmessagesmanyusers' => 'អ្នកមាន $1 ទទួលបានពីអ្នកប្រើប្រាស់ជាច្រើន ($2)។',
-'newmessageslinkplural' => '{{PLURAL:$1|សារថ្មីមួយ|សារថ្មី}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|បំលាស់ប្ដូរ|បំលាស់ប្ដូរ}}ចុងក្រោយ',
 'youhavenewmessagesmulti' => 'អ្នកមានសារថ្មីៗនៅ $1',
 'editsection' => 'កែប្រែ',
 'editold' => 'កែប្រែ',
@@ -616,8 +612,8 @@ $1',
 'cannotdelete-title' => 'មិនអាចលុបទំព័រ "$1"',
 'badtitle' => 'ចំណងជើង​មិនល្អ',
 'badtitletext' => 'ចំណងជើងទំព័រដែលបានស្នើ គ្មានសុពលភាព, ទទេ, ឬ ចំណងជើងតំណភ្ជាប់អន្តរភាសាឬអន្តរវិគី មិនត្រឹមត្រូវ ។ ប្រហែលជាមានតួអក្សរមួយឬច្រើន ដែលជាតួអក្សរហាមប្រើ​ក្នុង​ចំណងជើង។',
-'perfcached' => 'ទិន្នន័យទាំងនេះត្រូវបានដាក់ទៅសតិភ្ជាប់និងប្រហែលជាមិនទាន់សម័យ ។ ជាអតិបរមា {{PLURAL:$1|លទ្ធផលមួយ|លទ្ធផលចំនួន $1}} អាចប្រើបាននៅក្នុងសតិភ្ជាប់។',
-'perfcachedts' => 'ទិន្នន័យខាងក្រោមនេះត្រូវបានដាក់ក្នុងសតិភ្ជាប់ និង បានត្រូវបន្ទាន់សម័យចុងក្រោយនៅ $1។ ជាអតិបរមា {{PLURAL:$4|លទ្ធផលមួយ|លទ្ធផលចំនួន $4}} អាចប្រើបាននៅក្នុងសតិភ្ជាប់។',
+'perfcached' => 'ទិន្នន័យទាំងនេះត្រូវបានដាក់ទៅសតិភ្ជាប់និងប្រហែលជាមិនទាន់សម័យ ។ A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'perfcachedts' => 'ទិន្នន័យខាងក្រោមនេះត្រូវបានដាក់ក្នុងសតិភ្ជាប់ និង បានត្រូវបន្ទាន់សម័យចុងក្រោយនៅ $1។ A maximum of {{PLURAL:$4|one result is|$4 results are}} available in the cache.',
 'querypage-no-updates' => 'ការបន្ទាន់សម័យសម្រាប់ទំព័រនេះគឺមិនអាចធ្វើទៅរួចទេនាពេលឥឡូវទេ។
 
 ទិន្នន័យនៅទីនេះនឹងមិនត្រូវផ្លាស់ប្ដូរថ្មីនាពេលបច្ចុប្បន្នទេ។',
@@ -644,10 +640,6 @@ $2',
 'ns-specialprotected' => 'ទំព័រពិសេសៗមិនអាចកែប្រែបានទេ។',
 'titleprotected' => "ចំណងជើងនេះត្រូវបានការពារមិនឱ្យបង្កើត​ដោយ [[User:$1|$1]]។
 ហេតុផលលើកឡើងគឺ ''$2''។",
-'filereadonlyerror' => 'មិនអាចកែប្រែឯកសារ "$1" បានទេពីព្រោះថតឯកសារ "$2" ស្ថិតក្នុងម៉ូដសំរាប់តែអានប៉ុណ្ណោះ។
-
-អភិបាលដែលបានចាក់សោរវាបានផ្ដល់សេចក្ដីពន្យល់បែបនេះ៖ "$3"។',
-'exception-nologin-text' => 'ទំព័រឬសកម្មភាពនេះតំរូវអោយអ្នកធ្វើការកត់ឈ្មោះចូលទៅក្នុងវិគីនេះ។',
 
 # Virus scanner
 'virus-badscanner' => "ការ​កំណត់​រចនា​សម្ព័ន្ធ​មិន​ល្អ​៖ កម្មវិធី​ស្កេន​មេរោគមិន​ស្គាល់​៖ ''$1''",
@@ -670,7 +662,6 @@ $2',
 'remembermypassword' => 'ចងចាំកំណត់ឈ្មោះចូលរបស់ខ្ញុំក្នុងកុំព្យូទ័រនេះ (សំរាប់រយៈពេលយូរបំផុត $1 {{PLURAL:$1|ថ្ងៃ|ថ្ងៃ}})',
 'securelogin-stick-https' => 'នៅភ្ជាប់ទៅ HTTPS ដដែលបន្ទាប់ពីចុះឈ្មោះចូលហើយក៏ដោយ',
 'yourdomainname' => 'ដូម៉ែនរបស់អ្នក៖',
-'password-change-forbidden' => 'អ្នកមិនអាចផ្លាស់ប្ដូរពាក្យសំងាត់ក្នុងវិគីនេះទេ។',
 'externaldberror' => 'មាន​​បញ្ហាក្នុងការ​បញ្ជាក់​ផ្ទៀង​ផ្ទាត់​​មូលដ្ឋាន​ទិន្នន័យ​ ឬ​អ្នក​មិន​ត្រូវ​បាន​អនុញ្ញាត​ឲ្យ​បន្ទាន់​សម័យ​គណនី​ខាង​ក្រៅ​របស់​អ្នក​។​
 ​',
 'login' => 'កត់ឈ្មោះចូល',
@@ -759,7 +750,6 @@ $2',
 
 សូមបញ្ចូល​អាសយដ្ឋានមួយ​ដែលមាន​ទម្រង់​ត្រឹមត្រូវ ឬមួយក៏ទុកវាលនោះឱ្យនៅទំនេរ​​។',
 'cannotchangeemail' => 'អាសយដ្ឋានអ៊ីមែលរបស់គណនីមិនអាចប្ដូរបានទេនៅលើវិគីនេះ។',
-'emaildisabled' => 'វិបសៃថ៍នេះមិនអាចផ្ញើអ៊ីមែលបានទេ។',
 'accountcreated' => 'គណនីរបស់លោកអ្នកត្រូវបានបង្កើតហើយ',
 'accountcreatedtext' => 'គណនីឈ្មោះ $1 ត្រូវបានបង្កើតហើយ។',
 'createaccount-title' => 'ការបង្កើតគណនីសម្រាប់{{SITENAME}}',
@@ -812,25 +802,6 @@ $2',
 'passwordreset-capture-help' => 'ប្រសិនបើអ្នកគូសធីកប្រអប់នេះ អ៊ីមែល (ដែលមានពាក្យសំងាត់បណ្ដោះអាសន្ន) មិនត្រូវបានបង្ហាញដូចគ្នានឹងអ៊ីមែលដែលនឹងត្រូវផ្ញើទៅទៅកាន់អ្នកប្រើប្រាស់ដែរ។',
 'passwordreset-email' => 'អាសយដ្ឋានអ៊ីមែល៖',
 'passwordreset-emailtitle' => 'ព័ត៌មានលំអិតពីគណនីនៅលើ {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'មាននរណាម្នាក់ (ប្រហែលជាខ្លួនអ្នកផ្ទាល់, មកពីអាស័យដ្ឋាន IP $1) បានស្នើសុំសារក្រើនរំលឹកពីព័ត៌មានពិស្ដារ
-អំពីគណនីរបស់អ្នកសំរាប់ {{SITENAME}} ($4)។ {{PLURAL:$3|គណនី|គណនី}}អ្នកប្រើប្រាស់ដូចតទៅនេះ
-មានជាប់ទាក់ទិននឹងអាស័យដ្ឋានអ៊ីមែលនេះ៖
-
-$2
-
-{{PLURAL:$3|ពាក្យសំងាត់បណ្ដោះអាសន្ននេះ|ពាក្យសំងាត់បណ្ដោះអាសន្នទាំងនេះ}} និងហួសសុពលភាពក្នុងរយៈពេល {{PLURAL:$5|មួយថ្ងៃ|$5 ថ្ងៃ}}។
-យកល្អអ្នកគួរតែកត់ឈ្មោះរួចជ្រើសរើសពាក្យសំងាត់ថ្មីមួយ។ ប្រសិនបើមាននរណាម្នាក់ផ្សេងធ្វើការស្នើសុំនេះ 
-ឬប្រសិនបើអ្នកនឹកឃើញពាក្យសំងាត់ដើមរបស់អ្នកហើយអ្នកមិនប្រាថ្នាផ្លាស់ប្ដូរវាទៀតទេនោះ អ្នកគ្រាន់តែ
-កុំខ្វល់ជាមួយសារមួយនេះ ហើយបន្តប្រើប្រាស់ពាក្យសំងាត់ចាស់របស់អ្នកទៅបានហើយ។',
-'passwordreset-emailtext-user' => 'អ្នកប្រើប្រាស់ $1 នៅក្នុង {{SITENAME}} បានស្នើសុំសារក្រើនរំលឹកអំពីព័ត៌មានពិស្ដាររបស់គណនីរបស់អ្នកនៅក្នុង {{SITENAME}} ($4)។
- {{PLURAL:$3|គណនី|គណនី}}អ្នកប្រើប្រាស់ដូចតទៅនេះមានជាប់ទាក់ទិននឹងអាស័យដ្ឋានអ៊ីមែលនេះ៖
-
-$2
-
-{{PLURAL:$3|ពាក្យសំងាត់បណ្ដោះអាសន្ននេះ|ពាក្យសំងាត់បណ្ដោះអាសន្នទាំងនេះ}} និងហួសសុពលភាពក្នុងរយៈពេល {{PLURAL:$5|មួយថ្ងៃ|$5 ថ្ងៃ}}។
-យកល្អអ្នកគួរតែកត់ឈ្មោះរួចជ្រើសរើសពាក្យសំងាត់ថ្មីមួយ។ ប្រសិនបើមាននរណាម្នាក់ផ្សេងធ្វើការស្នើសុំនេះ 
-ឬប្រសិនបើអ្នកនឹកឃើញពាក្យសំងាត់ដើមរបស់អ្នកហើយអ្នកមិនប្រាថ្នាផ្លាស់ប្ដូរវាទៀតទេនោះ អ្នកគ្រាន់តែ
-កុំខ្វល់ជាមួយសារមួយនេះ ហើយបន្តប្រើប្រាស់ពាក្យសំងាត់ចាស់របស់អ្នកទៅបានហើយ។',
 'passwordreset-emailelement' => 'ឈ្មោះអ្នកប្រើប្រាស់៖ $1
 លេខសម្ងាត់បណ្ដោះអាសន្ន៖ $2',
 'passwordreset-emailsent' => 'អីុមែលរំលឹកមួយបានផ្ញើទៅហើយ។',
@@ -959,12 +930,12 @@ $2
 'userpage-userdoesnotexist-view' => 'គណនីអ្នកប្រើប្រាស់ដែលមានឈ្មោះ "$1"មិនទាន់បានចុះឈ្មោះទេ។',
 'blocked-notice-logextract' => 'អ្នកប្រើប្រាស់នេះត្រូវបានហាមឃាត់ហើយនាពេលនេះ។
 កំណត់ត្រាស្ដីពីការហាមឃាត់ចុងក្រោយមានបង្ហាញដូចខាងក្រោមនេះ៖',
-'clearyourcache' => "'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
-* ''' Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' ( ''⌘-R'' សំរាប់ Mac)
-* '''Google Chrome:''' ចុច ''Ctrl-Shift-R'' (''⌘-Shift-R'' សំរាប់ Mac)
+'clearyourcache' => "!'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
+* ''' Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')
+* '''Google Chrome:''' ចុច ''Ctrl-Shift-R'' (''Command-Shift-R'' សំរាប់ Mac)
 * '''IE(Internet Explorer):''' សង្កត់ [Ctrl] ឱ្យជាប់ រួចចុច ''Refresh''ប៊ូតុង ឬក៏ចុច ''Ctrl-F5''​។
 * '''Konqueror:''' ចុចប៊ូតុង  ''Reload'' ឬក៏ចុច ''F5''
-* '''Opera:''' សូមសំអាតcacheនៅក្នុង  ''[Tools]→[Preferences]''​",
+* '''Opera:''' សូមចុច  ''[Tools]→[Preferences]''​។",
 'usercssyoucanpreview' => "'''គន្លឹះ ៖ ''' សូមប្រើប្រាស់ប៊ូតុង\"{{int:showpreview}}\"ដើម្បី​ធ្វើតេស្ត​សន្លឹក CSS ថ្មីរបស់អ្នក​មុននឹង​រក្សាទុកវា ។",
 'userjsyoucanpreview' => "'''គន្លឹះ ៖ ''' សូមប្រើប្រាស់​ប៊ូតុង \"{{int:showpreview}}\" ដើម្បី​ធ្វើតេស្ត​សន្លឹក JS ថ្មីរបស់អ្នក​មុននឹង​រក្សាទុកវា ។",
 'usercsspreview' => "'''កុំភ្លេចថា​អ្នកគ្រាន់តែ​កំពុងមើលជាមុនសន្លឹក CSS របស់អ្នក។
@@ -978,7 +949,6 @@ $2
 'updated' => '(បានបន្ទាន់សម័យ)',
 'note' => "'''ចំណាំ៖'''",
 'previewnote' => "'''សូមចាំថានេះគ្រាន់តែជា​ការបង្ហាញការមើលជាមុនប៉ុណ្ណោះ។ បំលាស់ប្ដូរ​របស់អ្នកមិនទាន់បាន​រក្សាទុកទេ!'''",
-'continue-editing' => 'បន្តធ្វើការកែប្រែ',
 'previewconflict' => 'ការមើលមុននេះយោងតាមអត្ថបទក្នុងប្រអប់កែប្រែខាងលើ។ ទំព័រអត្ថបទនឹងបង្ហាញចេញបែបនេះប្រសិនបើអ្នកជ្រើសរើសរក្សាទុក។',
 'session_fail_preview' => "'''សូមអភ័យទោស! យើងមិនអាចរក្សាទុកការកែប្រែរបស់អ្នកបានទេ ដោយសារបាត់ទិន្នន័យវេនការងារ។
 
@@ -993,7 +963,6 @@ $2
 
 បើនៅតែមិនបានទេ សូមព្យាយាម[[Special:UserLogout|កត់ឈ្មោះចេញ]] រួចកត់ឈ្មោះចូលឡើងវិញ។'''",
 'editing' => 'កំពុងកែប្រែ​ $1',
-'creating' => 'កំពុងបង្កើត $1',
 'editingsection' => "កំពុងកែប្រែ'''$1'''(ផ្នែក)",
 'editingcomment' => 'កែប្រែ $1 (ផ្នែកថ្មី)',
 'editconflict' => 'ភាពឆ្គងនៃកំណែប្រែ៖ $1',
@@ -1062,7 +1031,6 @@ $2
 'edit-already-exists' => 'មិនអាចបង្កើតទំព័រថ្មីមួយទេ។
 
 ទំព័រនេះមានរួចហើយ។',
-'defaultmessagetext' => 'អត្ថបទសារតាមលំនាំដើម',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''ប្រយ័ត្ន៖''' ទំព័រនេះមានប្រើអនុគមន៍ញែកច្រើនពេកហើយ។
@@ -1212,7 +1180,7 @@ $1",
 'suppressionlog' => 'កំណត់​ហេតុ​នៃ​ការ​ហាម​ឃាត់​',
 'suppressionlogtext' => 'ខាងក្រោមនេះជាបញ្ជីការលុបចោលនិងការហាមឃាត់ទាក់ទិននឹងខ្លឹមសារដែលអ្នកអភិបាលបានលាក់។
 
-សូមមើលបំរាមនិងការហាមឃាត់ដែលនៅជាធរមាននាពេលបច្ចុប្បន្ននៅក្នុង[[Special:BlockList|បញ្ជីនៃការហាមឃាត់]]។',
+សូមមើលបំរាមនិងការហាមឃាត់ដែលនៅជាធរមាននាពេលបច្ចុប្បន្ននៅក្នុង[[Special:BlockList|បញ្ជីនៃការហាមឃាត់ IP]]។',
 
 # History merging
 'mergehistory' => 'ច្របាច់ប្រវត្តិទាំងឡាយរបស់ទំព័របញ្ចូលគ្នា',
@@ -1244,9 +1212,7 @@ $1",
 'mergelogpagetext' => 'ខាងក្រោមគឺជាតារាងនៃការច្របាច់បញ្ចូលគ្នាថ្មីៗបំផុតរបស់ប្រវត្តិនៃទំព័រមួយទៅក្នុងប្រវត្តិនៃទំព័រមួយទៀត។',
 
 # Diffs
-'history-title' => 'ប្រវត្តិកំណែប្រែរបស់ "$1"',
-'difference-title' => 'ភាពខុសគ្នារវាងកំណែនានារបស់ "$1"',
-'difference-title-multipage' => 'ភាពខុសគ្នារបស់ទំព័រ "$1" និង "$2"',
+'history-title' => 'ប្រវត្តិកំណែប្រែនានានៃ "$1"',
 'difference-multipage' => '(ភាពខុសគ្នារវាងទំព័រនានា)',
 'lineno' => 'បន្ទាត់ទី$1៖',
 'compareselectedversions' => 'ប្រៀបធៀប​កំណែដែលបាន​ជ្រើសយក',
@@ -1254,10 +1220,6 @@ $1",
 'editundo' => 'មិនធ្វើវិញ',
 'diff-multi' => '({{PLURAL:$1|កំណែប្រែកម្រិតបង្គួរមួយ|កំណែប្រែកម្រិតបង្គួរចំនួន $1}}មិនត្រូវបានបង្ហាញ)',
 'diff-multi-manyusers' => '({{PLURAL:$1|កំណែប្រែកម្រិតបង្គួរមួយ|កំណែប្រែកម្រិតបង្គួរចំនួន $1}}មិនត្រូវបានបង្ហាញ)',
-'difference-missing-revision' => ' {{PLURAL:$2|រកមិនឃើញ|រកមិនឃើញ}}{{PLURAL:$2|កំណែមួយ|កំណែចំនួន $2}} របស់ភាពខុសគ្នានេះ ($1) ទេ។
-
-ជាធម្មតានេះបណ្ដាលមកពីការតាមទៅកាន់តំនភ្ជាប់ភាពខុសគ្នារបស់ទំព័រដែលត្រូវបានលុបចោល។
-ព័ត៌មានលំអិតអាចរកបាននៅក្នុង [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} កំណត់ហេតុនៃការលុបចោល]។',
 
 # Search results
 'searchresults' => 'លទ្ធផលស្វែងរក',
@@ -1348,7 +1310,6 @@ $1",
 'prefs-beta' => 'មុខងារពិសេសថ្មីៗរបស់ស៊េរីបេតា',
 'prefs-datetime' => 'កាលបរិច្ឆេទនិងល្វែងម៉ោង',
 'prefs-labs' => 'មុខងារពិសេសថ្មីៗដែលស្ថិតក្រោមការពិសោធន៍នៅឡើយ',
-'prefs-user-pages' => 'ទំព័រអ្នកប្រើប្រាស់',
 'prefs-personal' => 'ប្រវត្តិរូប',
 'prefs-rc' => 'បំលាស់ប្ដូរថ្មីៗ',
 'prefs-watchlist' => 'បញ្ជីតាមដាន',
@@ -1597,7 +1558,6 @@ $1",
 'action-userrights' => 'កែប្រែសិទ្ធិរបស់អ្នកប្រើប្រាស់ទាំងអស់',
 'action-userrights-interwiki' => 'កែប្រែសិទ្ធិនានារបស់អ្នកប្រើប្រាស់នៅលើវិគីដទៃ',
 'action-siteadmin' => 'ចាក់សោឬដោះសោមូលដ្ឋានទិន្នន័យ',
-'action-sendemail' => 'ផ្ញើអ៊ីមែល',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|បំលាស់ប្ដូរ|បំលាស់ប្ដូរ}}',
@@ -1630,11 +1590,9 @@ $1",
 'rc_categories' => 'កម្រិតទីតាំងចំណាត់ថ្នាក់ក្រុម(ខណ្ឌដោយសញ្ញា "|")',
 'rc_categories_any' => 'មួយណាក៏បាន',
 'rc-change-size' => '$1',
-'rc-change-size-new' => '$1 {{PLURAL:$1|បៃ|បៃ}} បន្ទាប់ពីបំលាស់ប្ដូរ',
 'newsectionsummary' => '/* $1 */ ផ្នែកថ្មី',
 'rc-enhanced-expand' => 'បង្ហាញព័ត៌មានលំអិត (តម្រូវអោយមាន JavaScript)',
 'rc-enhanced-hide' => 'លាក់ព័ត៌មានលំអិត',
-'rc-old-title' => 'បង្កើតឡើងដំបូងដោយ "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'បន្លាស់ប្ដូរពាក់ព័ន្ធ',
@@ -1810,21 +1768,6 @@ $1',
 'upload-too-many-redirects' => 'URLនេះមានតំនភ្ជាប់បញ្ជូនបន្តច្រើនពេកហើយ',
 'upload-unknown-size' => 'មិនដឹងទំហំ',
 'upload-http-error' => 'មានកំហុសHTTPមួយបានកើតឡើង៖ $1',
-
-# File backend
-'backend-fail-notexists' => 'គ្មានឯកសារ "$1" ទេ។',
-'backend-fail-notsame' => 'ឯកសារដែលមិនដូចគ្នាបេះបិទមួយមានរួចហើយនៅ "$1"។',
-'backend-fail-delete' => 'មិនអាចលុបឯកសារ "$1" បានទេ។',
-'backend-fail-alreadyexists' => 'ឯកសារ "$1" មានរួចហើយ។',
-'backend-fail-store' => 'មិនអាចស្តុកឯកសារ "$1" នៅ "$2" បានទេ។',
-'backend-fail-copy' => 'មិនអាចចំលងឯកសារ "$1" ទៅ "$2" បានទេ។',
-'backend-fail-move' => 'មិនអាចផ្លាស់ប្ដូរទីតាំងឯកសារ "$1" ទៅ "$2"​ បានទេ។',
-'backend-fail-opentemp' => 'មិនអាចបើកឯកសារបណ្ដោះអាសន្ន។',
-'backend-fail-writetemp' => 'មិនអាចសរសេរទៅក្នុងឯកសារបណ្ដោះអាសន្ន។',
-'backend-fail-closetemp' => 'មិនអាចបិទឯកសារបណ្ដោះអាសន្ន។',
-'backend-fail-read' => 'មិនអាចអានឯកសារ "$1" បានទេ។',
-'backend-fail-create' => 'មិនអាចសរសេរឯកសារ "$1" បានទេ។',
-'backend-fail-maxsize' => 'មិនអាចសរសេរឯកសារ "$1" បានទេពីព្រោះវាមានទំហំធំជាង {{PLURAL:$2|មួយបៃ|$2 បៃ}}.',
 
 # Special:UploadStash
 'uploadstash-errclear' => 'ការសំអាតឯកសារមិនបានសំរេច។',
@@ -2185,8 +2128,6 @@ $1',
 'mailnologin' => 'មិនមានអាសយដ្ឋានផ្ញើទេ',
 'mailnologintext' => 'អ្នកត្រូវតែ [[Special:UserLogin|កត់ឈ្មោះចូល]] និង មានអាសយដ្ឋានអ៊ីមែលមានសុពលភាពមួយ ក្នុង[[Special:Preferences|ចំណង់ចំណូលចិត្ត]]របស់អ្នក ដើម្បីមានសិទ្ធិផ្ញើអ៊ីមែលទៅអ្នកប្រើប្រាស់ដទៃទៀត។',
 'emailuser' => 'ផ្ញើអ៊ីមែល​ទៅកាន់​អ្នក​ប្រើប្រាស់នេះ',
-'emailuser-title-target' => 'ផ្ញើសារទៅកាន់ {{GENDER:$1|អ្នកប្រើប្រាស់}} នេះ',
-'emailuser-title-notarget' => 'ផ្ញើអ៊ីមែលទៅកាន់អ្នកប្រើប្រាស់',
 'emailpage' => 'ផ្ញើអ៊ីមែលទៅកាន់អ្នកប្រើប្រាស់',
 'emailpagetext' => 'អ្នក​អាច​ប្រើសំនុំ​បែប​បទ​ខាង​ក្រោម​ក្នុង​ការ​ផ្ញើ​សារ​ជា​អ៊ីមែល​ទៅ​កាន់​អ្នក​ប្រើប្រាស់​នេះ​។
 អាសយដ្ឋាន​អ៊ីមែល​ដែល​អ្នក​បាន​វាយ​បញ្ចូល​ក្នុង​[[Special:Preferences|ចំណង់ចំណូល​ចិត្ត​]]​របស់​អ្នក នឹង​បង្ហាញ​ជា​អាសយដ្ឋាន​អ៊ីមែល "From" ដូច្នោះ​អ្នក​ទទួល​នឹង​អាច​ឆ្លើយ​តប​ទៅ​អ្នក​វិញ​ដោយ​ផ្ទាល់​។',
@@ -2569,8 +2510,6 @@ $1',
 'ipb-confirm' => 'បញ្ជាក់ទទួលស្គាល់ការហាមឃាត់',
 'badipaddress' => 'អាសយដ្ឋានIPមិនត្រឹមត្រូវ',
 'blockipsuccesssub' => 'ដាក់ការហាមឃាត់បានសំរេច',
-'ipb-blockingself' => 'អ្នករៀបនឹងរាំងខ្ទប់ខ្លួនឯងហើយ! តើអ្នកប្រាកដថាចង់ធ្វើបែបនេះមែនទេ?',
-'ipb-confirmhideuser' => 'អ្នករៀបនឹងរាំងខ្ទប់អ្នកប្រើប្រាស់ម្នាក់ដែលមានប្រើមុខងារ "អ្នកប្រើប្រាស់លាក់មុខ"។ ការធ្វើបែបនេះនឹងលាក់ឈ្មោះរបស់អ្នកប្រើប្រាស់នេះនៅក្នុងបញ្ជីនិងកំណត់ហេតុទាំងអស់។ តើអ្នកប្រាកដថាចង់ធ្វើបែបនេះមែនទេ?',
 'ipb-edit-dropdown' => 'កែប្រែមូលហេតុនៃការហាមឃាត់',
 'ipb-unblock-addr' => 'ដកការហាមឃាត់លើ $1',
 'ipb-unblock' => 'ដកការហាមឃាត់លើអ្នកប្រើប្រាស់ ឬ អាសយដ្ឋាន IP',
@@ -2614,7 +2553,7 @@ $1',
 'blocklog-showlog' => 'អ្នកប្រើប្រាស់នេះត្រូវបានរាំងខ្ទប់មុននេះម្ដងហើយ។
 កំណត់ហេតុស្ដីពីការរាំងខ្ទប់ត្រូវបានផ្ដល់អោយដូចខាងក្រោម៖',
 'blocklogentry' => 'បានហាមឃាត់ [[$1]]​ដោយរយៈពេលផុតកំណត់$2 $3',
-'blocklogtext' => 'នេះជាកំណត់ហេតុនៃការហាមឃាត់និងឈប់ហាមឃាត់អ្នកប្រើប្រាស់។ អាសយដ្ឋានIPដែលត្រូវបានហាមឃាត់ដោយស្វ័យប្រវត្តិមិនត្រូវបានដាក់ក្នុងបញ្ជីនេះទេ។ សូមមើល[[Special:BlockList|បញ្ជីនៃការហាមឃាត់]]ចំពោះបញ្ជីនៃហាមឃាត់នាថ្មីៗ។',
+'blocklogtext' => 'នេះជាកំណត់ហេតុនៃការហាមឃាត់និងឈប់ហាមឃាត់អ្នកប្រើប្រាស់។ អាសយដ្ឋានIPដែលត្រូវបានហាមឃាត់ដោយស្វ័យប្រវត្តិមិនត្រូវបានដាក់ក្នុងបញ្ជីនេះទេ។ សូមមើល[[Special:BlockList|បញ្ជីនៃការហាមឃាត់IP]]ចំពោះបញ្ជីនៃហាមឃាត់នាថ្មីៗ។',
 'unblocklogentry' => 'បានឈប់ហាមឃាត់ $1',
 'block-log-flags-anononly' => 'សម្រាប់​តែ​អ្នកប្រើប្រាស់​អនាមិក​ប៉ុណ្ណោះ',
 'block-log-flags-nocreate' => 'ការបង្កើតគណនីត្រូវបានហាមឃាត់',
@@ -2930,30 +2869,16 @@ $1',
 
 # Info page
 'pageinfo-title' => 'ព័ត៌មានសម្រាប់ "$1"',
-'pageinfo-header-basic' => 'ព័ត៌មាន​មូលដ្ឋាន​',
-'pageinfo-header-edits' => 'ប្រវត្តិកែប្រែ',
-'pageinfo-header-restrictions' => 'ការការពារទំព័រ',
-'pageinfo-header-properties' => 'លក្ខណៈសម្បត្តិទំព័រ',
-'pageinfo-display-title' => 'បង្ហាញចំណងជើង',
-'pageinfo-length' => 'ប្រវែងទំព័រ (គិតជាបៃ)',
-'pageinfo-article-id' => 'អត្តលេខទំព័រ',
-'pageinfo-robot-policy' => 'ស្ថានភាពម៉ាស៊ីនស្វែងរក',
+'pageinfo-header-edits' => 'កែប្រែ',
+'pageinfo-header-watchlist' => 'បញ្ជីតាមដាន',
+'pageinfo-header-views' => 'បើកមើល',
+'pageinfo-subjectpage' => 'ទំព័រ',
+'pageinfo-talkpage' => 'ទំព័រពិភាក្សា',
+'pageinfo-watchers' => 'ចំនួនអ្នកតាមដាន',
+'pageinfo-edits' => 'ចំនួនកំណែប្រែ',
+'pageinfo-authors' => 'ចំនួនអ្នកនិពន្ធ',
 'pageinfo-views' => 'ចំនួនការបើកមើល',
-'pageinfo-watchers' => 'ចំនួនអ្នកតាមដានទំព័រ',
-'pageinfo-redirects-name' => 'ចំនួនការបញ្ជូនបន្តមកកាន់ទំព័រនេះ',
-'pageinfo-subpages-name' => 'ទំព័ររងរបស់ទំព័រនេះ',
-'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ទំព័របញ្ជូនបន្ត|ទំព័របញ្ជូនបន្ត}}; $3 {{PLURAL:$3|ទំព័រមិនបញ្ជូនបន្ត|ទំព័រមិនបញ្ជូនបន្ត}})',
-'pageinfo-firstuser' => 'អ្នកបង្កើតទំព័រ',
-'pageinfo-firsttime' => 'កាលបរិច្ឆេទបង្កើតទំព័រ',
-'pageinfo-lastuser' => 'អ្នកកែប្រែចុងក្រោយ',
-'pageinfo-lasttime' => 'កាលបរិច្ឆេទនៃការកែប្រែចុងក្រោយ',
-'pageinfo-edits' => 'ចំនួនកំណែប្រែសរុប',
-'pageinfo-authors' => 'ចំនួនអ្នកនិពន្ធសរុប',
-'pageinfo-recent-edits' => 'ចំនួនការកែប្រែថ្មីៗ (ក្នុងរយៈពេល $1 កន្លងទៅនេះ)',
-'pageinfo-recent-authors' => 'ចំនួនអ្នកនិពន្ធថ្មីៗនេះ',
-'pageinfo-restriction' => 'ការការពារទំព័រ (<code>{{$1}}</code>)',
-'pageinfo-magic-words' => '{{PLURAL:$1|ពាក្យ|ពាក្យ}} វេទមន្ត ($1)',
-'pageinfo-hidden-categories' => '{{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុម|ចំណាត់ថ្នាក់ក្រុម}}ដែលបានលាក់ ($1)',
+'pageinfo-viewsperedit' => 'ចំនួនការចូលមើលក្នុងមួយកំណែប្រែ',
 
 # Skin names
 'skinname-standard' => 'បុរាណ',
@@ -3000,12 +2925,9 @@ $1',
 'widthheightpage' => '$1 × $2, $3{{PLURAL:$3|ទំព័រ|ទំព័រ}}',
 'file-info' => 'ទំហំឯកសារ៖ $1, ប្រភេទ MIME ៖ $2',
 'file-info-size' => '$1 × $2 ភីកសែល ទំហំឯកសារ៖ $3 ប្រភេទ MIME៖ $4',
-'file-info-size-pages' => '$1 × $2 ភិចសែល, ទំហំឯកសារ: $3, ប្រភេទ MIME: $4, $5 {{PLURAL:$5|ទំព័រ|ទំព័រ}}',
 'file-nohires' => 'គ្មានភាពម៉ត់ ដែលខ្ពស់ជាង។',
 'svg-long-desc' => 'ឯកសារប្រភេទSVG  $1 × $2 ភីកសែល ទំហំឯកសារ៖ $3',
-'svg-long-desc-animated' => 'ឯកសារជីវចល SVG, ជាធម្មតា $1 × $2 ភិចសែល, ទំហំឯកសារ: $3',
 'show-big-image' => 'រូបភាពពេញ',
-'show-big-image-preview' => 'ទំហំរបស់ការមើលមុននេះ: $1។',
 'show-big-image-size' => '$1 × $2 ភីកសែ',
 'file-info-gif-looped' => 'រង្វិល',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ផ្ទាំង|ផ្ទាំង}}',
@@ -3137,33 +3059,6 @@ $1',
 'exif-specialinstructions' => 'ការណែនាំពិសេស',
 'exif-credit' => 'អ្នកផ្ដល់',
 'exif-source' => 'ប្រភព',
-'exif-contact' => 'ព័ត៌មានសំរាប់ធ្វើការទាក់ទង',
-'exif-writer' => 'អ្នកសរសេរ',
-'exif-languagecode' => 'ភាសា​',
-'exif-iimcategory' => 'ចំណាត់ថ្នាក់ក្រុម',
-'exif-iimsupplementalcategory' => 'ចំណាត់ថ្នាក់ក្រុមបំពេញ',
-'exif-datetimeexpires' => 'កុំប្រើបន្ទាប់ពី',
-'exif-datetimereleased' => 'ចេញផ្សាយនៅ',
-'exif-lens' => 'ឡង់ទីដែលបានប្រើ',
-'exif-cameraownername' => 'ម្ចាស់កាមេរ៉ា',
-'exif-label' => 'ផ្លាក',
-'exif-rating' => 'រង្វាយតំលៃ (ធំបំផុត ៥)',
-'exif-rightscertificate' => 'លិខិត្របញ្ជាក់ការគ្រប់គ្រងកម្មសិទ្ធបញ្ញា',
-'exif-copyrighted' => 'ស្ថានភាពកម្មសិទ្ធបញ្ញា',
-'exif-copyrightowner' => 'ម្ចាស់កម្មសិទ្ធិបញ្ញា',
-'exif-usageterms' => 'លក្ខខណ្ឌប្រើប្រាស់',
-'exif-webstatement' => 'សេចក្ដីប្រកាសកម្មសិទ្ធបញ្ញាលើអ៊ីនធើណិត',
-'exif-licenseurl' => 'URL សំរាប់អាជ្ញាបណ្ឌកម្មសិទ្ធបញ្ញា',
-'exif-morepermissionsurl' => 'ព័ត៌មានអាជ្ញាបណ្ឌជំនួស',
-'exif-attributionurl' => 'នៅពេលកែច្នៃស្នាដៃនេះយកទៅប្រើ សូមដាក់តំណភ្ជាប់ទៅ',
-'exif-preferredattributionname' => 'នៅពេលកែច្នៃស្នាដៃនេះយកទៅប្រើ សូមថ្លែងអំណរគុណដល់ម្ចាស់ដើម',
-'exif-pngfilecomment' => 'វិចារលើឯកសារ PNG',
-'exif-disclaimer' => 'ការបដិសេធ',
-'exif-contentwarning' => 'ការព្រមានអំពីខ្លឹមសារ',
-'exif-giffilecomment' => 'វិចារលើឯកសារ GIF',
-'exif-intellectualgenre' => 'ប្រភេទរបស់',
-'exif-originalimageheight' => 'កំពស់របស់រូបភាពមុនពេលកាត់តំរឹម',
-'exif-originalimagewidth' => 'ទទឹងរបស់រូបភាពមុនពេលកាត់តំរឹម',
 
 # EXIF attributes
 'exif-compression-1' => 'លែងបានបង្ហាប់',
@@ -3359,34 +3254,6 @@ $3
 $5
 
 កូដដើម្បីទទួលស្គាល់នេះនឹងផុតកំណត់នៅ  $4 ។',
-'confirmemail_body_changed' => 'មាននរណាម្នាក់, ប្រហែលជាខ្លួនអ្នកផ្ទាល់, មកពីអាស័យដ្ឋាន IP $1,
-បានផ្លាស់ប្ដូរអាស័យដ្ឋានអ៊ីមែលរបស់គណនី "$2" មកកាន់អាស័យដ្ឋាននេះនៅក្នុង {{SITENAME}}។
-
-ដើម្បីបញ្ជាក់ថាគណនីនេះពិតជារបស់អ្នកមែន រួចដំណើរការមុខងារអ៊ីមែលនៅលើ {{SITENAME}} ឡើងវិញ
-សូមបើកតំណភ្ជាប់ខាងក្រោមនេះនៅលើកម្មវិធីរាយរកអ៊ីនធើណិតរបស់អ្នក៖
-
-$3
-
-ប្រសិនបើគណនីនេះ *មិនមែន* ជារបស់អ្នក សូមចុចលើតំណភ្ជាប់ខាងក្រោមនេះ
-ដើម្បីលុបចោលការបញ្ជាក់ទទួលស្គាល់អាស័យដ្ឋានអ៊ីមែល៖
-
-$5
-
-កូដបញ្ជាក់ទទួលស្គាល់នេះនឹងផុតកំណត់នៅ $4។',
-'confirmemail_body_set' => 'នរណាម្នាក់ ប្រហែលជាខ្លួនអ្នកផ្ទាល់ មកពីអាស័យដ្ឋានIP $1,
-បានដាក់ភ្ជាប់អាស័យដ្ឋានអ៊ីមែលរបស់គណនី "$2" ជាមួយនឹងអាស័យដ្ឋានអ៊ីមែលនេះនៅលើ{{SITENAME}}។
-
-ដើម្បីបញ្ជាក់ថានេះពិតជាគណនីផ្ទាល់របស់អ្នកមែន និងដំណើរការមុខងារអ៊ីមែលក្នុង{{SITENAME}}ឡើងវិញ
-សូមបើកតំណភ្ជាប់ខាងក្រោមនេះក្នុងកម្មវិធីរាយរកអ៊ីនធើណិតរបស់អ្នក៖
-
-$3
-
-ប្រសិនបើនេះ*មិនមែន*ជាគណនីរបស់អ្នកទេ សូមចុចតំណភ្ជាប់ខាងក្រោម 
-ដើម្បីបោះបង់ចោលនូវការបញ្ជាក់ទទួលស្គាល់អាសយដ្ឋានអ៊ីមែលនេះ៖
-
-$5
-
-កូដដើម្បីទទួលស្គាល់នេះនឹងផុតកំណត់នៅ  $4 ។',
 'confirmemail_invalidated' => 'ការអះអាងបញ្ជាក់ទទួលស្គាល់អាសយដ្ឋានអ៊ីមែលបានបោះបង់ចោលហើយ',
 'invalidateemail' => 'បោះបង់ចោលការបញ្ជាក់ទទួលស្គាល់អ៊ីមែល',
 
@@ -3538,7 +3405,7 @@ $5
 * <span class="mw-specialpagecached">ទំព័រពិសេសៗសំរាប់រក្សាទុក។</span>',
 'specialpages-group-maintenance' => 'របាយការណ៍នានាអំពីតំហែទាំ',
 'specialpages-group-other' => 'ទំព័រពិសេសៗផ្សេងៗទៀត',
-'specialpages-group-login' => 'កត់ឈ្មោះចូល / បង្កើតគណនី',
+'specialpages-group-login' => 'កត់ឈ្មោះចូល / ចុះឈ្មោះ',
 'specialpages-group-changes' => 'បំលាស់ប្តូរថ្មីៗនិងកំណត់ហេតុ',
 'specialpages-group-media' => 'របាយការណ៍មេឌានិងការផ្ទុកឯកសារ',
 'specialpages-group-users' => 'អ្នកប្រើប្រាស់និងសិទ្ធិ',
@@ -3599,14 +3466,6 @@ $5
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
 
 # New logging system
-'logentry-delete-delete' => '$1 បានលុបទំព័រ $3 ចោល',
-'logentry-delete-restore' => '$1 បានស្ដារទំព័រ $3 ឡើងវិញ',
-'revdelete-content-hid' => 'ខ្លឹមសារត្រូវបានលាក់',
-'revdelete-summary-hid' => 'ចំណារពន្យល់ការកែប្រែត្រូវបានលាក់',
-'revdelete-uname-hid' => 'អត្តនាមត្រូវបានលាក់',
-'revdelete-content-unhid' => 'ខ្លឹមសារត្រូវបានបង្ហាញ',
-'revdelete-summary-unhid' => 'ចំណារពន្យល់ការកែប្រែត្រូវបានបង្ហាញ',
-'revdelete-uname-unhid' => 'អត្តនាមត្រូវបានបង្ហាញ',
 'revdelete-restricted' => 'បានអនុវត្តការដាក់កំហិតចំពោះអ្នកអភិបាល',
 'revdelete-unrestricted' => 'បានដកការដាក់កំហិតចេញសម្រាប់អ្នកអភិបាល',
 'logentry-move-move' => '$1 បានប្ដូរទីតាំងទំព័រ $3 ពី $4',
@@ -3619,35 +3478,7 @@ $5
 'logentry-newusers-autocreate' => 'គណនី $1 ត្រូវ បានបង្កើត ដោយស្វ័យប្រវត្តិ',
 'newuserlog-byemail' => 'ពាក្យសំងាត់ត្រូវបានផ្ញើតាមអ៊ីមែល',
 
-# Feedback
-'feedback-subject' => 'កម្មវត្ថុ ៖',
-'feedback-message' => 'សារ​៖',
-'feedback-cancel' => 'បោះបង់​',
-'feedback-submit' => 'ដាក់ស្នើមតិយោបល់',
-'feedback-adding' => 'កំពុងបន្ថែមមតិយោបល់ទៅលើទំព័រ...',
-'feedback-thanks' => 'សូមអរគុណ! មតិយោបល់របស់អ្នកត្រូវបានដាក់ផ្សាយនៅលើទំព័រ "[$2 $1]"។',
-'feedback-close' => 'រួចរាល់',
-
 # API errors
-'api-error-badaccess-groups' => 'អ្នកគ្មានការអនុញ្ញាតអោយផ្ទុកឯកសារឡើងទៅក្នុងវិគីនេះទេ។',
-'api-error-empty-file' => 'ឯកសារដែលអ្នកបានដាក់ស្នើគឺទទេ។',
-'api-error-emptypage' => 'ការអនុញ្ញាតអោយបង្កើតទំព័រថ្មីដែលគ្មានសរសេរអ្វីទេ',
-'api-error-fileexists-forbidden' => 'ឯកសារដែលមានឈ្មោះ "$1" មានរួចហើយ ហើយមិនអាចសរសេរជាន់ពីលើបានទេ។',
-'api-error-fileexists-shared-forbidden' => 'ឯកសារដែលមានឈ្មោះ "$1" មានរួចហើយនៅក្នុងថតឯកសាររួម ហើយមិនអាចសរសេរជាន់ពីលើបានទេ។',
-'api-error-file-too-large' => 'ឯកសារដែលអ្នកបានដាក់ស្នើធំពេកហើយ។',
-'api-error-filename-tooshort' => 'ឈ្មោះឯកសារខ្លីពេកហើយ។',
-'api-error-filetype-banned' => 'ឯកសារប្រភេទនេះត្រូវបានហាមប្រាម។',
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|មិនមែនជា​ប្រភេទ​ឯកសារ​ដែល​ត្រូវ​បាន​គេ​អនុញ្ញាត​ទេ|មិនមែនជា​ប្រភេទ​ឯកសារ​ដែល​ត្រូវ​បាន​គេ​អនុញ្ញាត​ទេ​}}។
-{{PLURAL:$3|ប្រភេទឯកសារ​|ប្រភេទឯកសារ​}}ដែល​ត្រូវ​បាន​គេ​អនុញ្ញាត​គឺ $2 ។',
-'api-error-filetype-missing' => 'ឈ្មោះឯកសារបាត់កន្ទុយ។',
-'api-error-http' => 'បញ្ហាខាងក្នុង៖ មិនអាចភ្ជាប់ទោកាន់ម៉ាស៊ីនបំរើការ។',
-'api-error-illegal-filename' => 'មិនអនុញ្ញាតអោយប្រើឈ្មោះឯកសារនេះ។',
-'api-error-internal-error' => 'បញ្ហាខាងក្នុង៖ មានបញ្ហាណាមួយកើតឡើងពេលកំពុងដំណើរការផ្ទុកឯកសារអ្នកឡើងទៅក្នុងវិគី។',
-'api-error-missingresult' => 'បញ្ហាខាងក្នុង៖ មិនអាចកំណត់បានថាការថតចំលងបានសំរេចទេ។',
-'api-error-mustbeloggedin' => 'អ្នកត្រូវតែកត់ឈ្មោះចូលដើម្បីផ្ទុកឯកសារឡើង។',
-'api-error-ok-but-empty' => 'បញ្ហាខាងក្នុង៖ គ្មានចំលើយពីម៉ាស៊ីនបំរើការ។',
-'api-error-overwrite' => 'មិនអនុញ្ញាតអោយសរសេរជាន់ពីលើឯកសារដែលមានស្រាប់ហើយ។',
-'api-error-timeout' => 'ម៉ាស៊ីនបំរើការមិនបានឆ្លើយតបក្នុងរយៈពេលដែលយើងរំពឹងទុក។',
 'api-error-unclassified' => 'បញ្ហាមិនស្គាល់មួយបានកើតឡើង។',
 'api-error-unknown-code' => 'បញ្ហាមិនស្គាល់៖ "$1" ។',
 'api-error-unknown-error' => 'បញ្ហាខាងក្នុង៖ មានបញ្ហាមិនស្រួលពេលកំពុងព្យាយាមផ្ទុកឯកសាររបស់អ្នកឡើង។',
@@ -3655,15 +3486,5 @@ $5
 'api-error-unknownerror' => 'បញ្ហាមិនស្គាល់៖ "$1" ។',
 'api-error-uploaddisabled' => 'ការផ្ទុកឡើងត្រូវបានបិទមិនអោយប្រើនៅលើវិគីនេះទេ។',
 'api-error-verification-error' => 'ឯកសារនេះប្រហែលជាខូច ឯមានកន្ទុយមិនត្រឹមត្រូវ។',
-
-# Durations
-'duration-seconds' => '$1 {{PLURAL:$1|វិនាទី|វិនាទី}}',
-'duration-minutes' => '$1 {{PLURAL:$1|នាទី|នាទី}}',
-'duration-hours' => '$1 {{PLURAL:$1|ម៉ោង|ម៉ោង}}',
-'duration-days' => '$1 {{PLURAL:$1|ថ្ងៃ|ថ្ងៃ}}',
-'duration-weeks' => '$1 {{PLURAL: $1|សប្តាហ៍|សប្តាហ៍}}',
-'duration-years' => '$1 {{PLURAL:$1|ឆ្នាំ|ឆ្នាំ}}',
-'duration-decades' => '$1 {{PLURAL:$1|ទសវត្សរ៍|ទសវត្សរ៍}}',
-'duration-centuries' => '$1 {{PLURAL:$1|សតវត្សរ៍|សតវត្សរ៍}}',
 
 );

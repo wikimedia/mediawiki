@@ -4,7 +4,7 @@
  * @ingroup Benchmark
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 
 class BenchmarkDeleteTruncate extends Benchmarker {
 

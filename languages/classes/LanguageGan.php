@@ -21,8 +21,8 @@
  * @ingroup Language
  */
 
-require_once( __DIR__ . '/../LanguageConverter.php' );
-require_once( __DIR__ . '/LanguageZh.php' );
+require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
+require_once( dirname( __FILE__ ) . '/LanguageZh.php' );
 
 /**
  * @ingroup Language
@@ -58,7 +58,7 @@ class GanConverter extends LanguageConverter {
 	}
 
 	function loadDefaultTables() {
-		require( __DIR__ . "/../../includes/ZhConversion.php" );
+		require( dirname( __FILE__ ) . "/../../includes/ZhConversion.php" );
 		$this->mTables = array(
 			'gan-hans' => new ReplacementArray( $zh2Hans ),
 			'gan-hant' => new ReplacementArray( $zh2Hant ),

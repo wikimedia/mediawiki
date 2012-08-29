@@ -1635,10 +1635,11 @@ class Article extends Page {
 		} else {
 			$outputPage->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 			if ( $error == '' ) {
-				$outputPage->addWikiText(
-					"<div class=\"error mw-error-cannotdelete\">\n" . $status->getWikiText() . "\n</div>"
-				);
+				$errors = $status->getErrorsArray();
 				$deleteLogPage = new LogPage( 'delete' );
+				$outputPage->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
+					$errors[0]
+				);
 				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
 
 				LogEventsList::showLogExtract(

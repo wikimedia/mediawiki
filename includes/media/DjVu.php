@@ -138,7 +138,7 @@ class DjVuHandler extends ImageHandler {
 			$width = isset( $params['width'] ) ? $params['width'] : 0;
 			$height = isset( $params['height'] ) ? $params['height'] : 0;
 			return new MediaTransformError( 'thumbnail_error', $width, $height,
-				wfMessage( 'djvu_no_xml' )->text() );
+				wfMsg( 'djvu_no_xml' ) );
 		}
 
 		if ( !$this->normaliseParams( $image, $params ) ) {
@@ -148,12 +148,7 @@ class DjVuHandler extends ImageHandler {
 		$height = $params['height'];
 		$page = $params['page'];
 		if ( $page > $this->pageCount( $image ) ) {
-			return new MediaTransformError(
-				'thumbnail_error',
-				$width,
-				$height,
-				wfMessage( 'djvu_page_error' )->text()
-			);
+			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'djvu_page_error' ) );
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
@@ -161,12 +156,7 @@ class DjVuHandler extends ImageHandler {
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
-			return new MediaTransformError(
-				'thumbnail_error',
-				$width,
-				$height,
-				wfMessage( 'thumbnail_dest_directory' )->text()
-			);
+			return new MediaTransformError( 'thumbnail_error', $width, $height, wfMsg( 'thumbnail_dest_directory' ) );
 		}
 
 		$srcPath = $image->getLocalRefPath();

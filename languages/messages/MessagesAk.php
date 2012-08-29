@@ -12,25 +12,6 @@
  * @author Paa.kwesi
  */
 
-$namespaceNames = array(
-	NS_MEDIA            => 'Medya',
-	NS_SPECIAL          => 'Spesial',
-	NS_TALK             => 'Nkɔmbɔ',
-	NS_USER             => 'User',
-	NS_USER_TALK        => 'User_nkɔmbɔ',
-	NS_PROJECT_TALK     => '$1_nkɔmbɔ',
-	NS_FILE             => 'Fayl',
-	NS_FILE_TALK        => 'Fayl_nkɔmbɔ',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_nkɔmbɔ',
-	NS_TEMPLATE         => 'Şablon',
-	NS_TEMPLATE_TALK    => 'Şablon_nkɔmbɔ',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Help_nkɔmbɔ',
-	NS_CATEGORY         => 'Kategori',
-	NS_CATEGORY_TALK    => 'Kategori_nkɔmbɔ',
-);
-
 $messages = array(
 # User preference toggles
 'tog-underline'             => 'Twa lenk nyina ase:',

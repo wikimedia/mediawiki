@@ -22,7 +22,7 @@
  * @author  Platonides
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 class bench_if_switch extends Benchmarker {
 
 	public function __construct() {

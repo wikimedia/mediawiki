@@ -1494,6 +1494,9 @@ Bsuach bittschee de Saiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Loka
 'othercontribs' => 'Basiard auf da Orweid voh $1',
 'creditspage' => 'Seiteninformaziónen',
 
+# Info page
+'pageinfo-subjectpage' => 'Seiten',
+
 # Patrolling
 'markedaspatrollederrortext' => 'Du muasst a Seitenänderrung auswön',
 

@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require( __DIR__ . '/Maintenance.php' );
+require( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Maintenance script to remove old objects from the parser cache.

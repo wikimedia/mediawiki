@@ -1022,8 +1022,6 @@ $wgAutoloadLocalClasses = array(
 	'FakeConverter' => 'languages/Language.php',
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
-	'CLDRPluralRuleEvaluator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
-	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 
 	# maintenance
 	'ConvertLinks' => 'maintenance/convertLinks.php',
@@ -1079,7 +1077,7 @@ $wgAutoloadLocalClasses = array(
 	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
 	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
-	
+
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
 

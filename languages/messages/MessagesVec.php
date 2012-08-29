@@ -23,7 +23,7 @@
  */
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#VARDA', '#RINVIA', '#RINVIO', '#RIMANDO', '#REDIRECT' ),
+	'redirect'                => array( '0', '#VARDA', '#RINVIA', '#RINVIO', '#RIMANDO', '#REDIRECT' ),
 );
 
 $fallback = 'it';

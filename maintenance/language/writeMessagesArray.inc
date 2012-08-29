@@ -105,7 +105,7 @@ $messages = array(
 	 */
 	public static function writeMessagesArray( $messages, $ignoredComments = false, $prefix = false, $removeUnknown = false ) {
 		# Load messages
-		$dir = $prefix ? $prefix : __DIR__;
+		$dir = $prefix ? $prefix : dirname( __FILE__ );
 
 		require( $dir . '/messages.inc' );
 		self::$messageStructure = $wgMessageStructure;

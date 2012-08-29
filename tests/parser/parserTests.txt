@@ -4984,15 +4984,6 @@ Bug 3090: External links other than http: in image captions
 
 !! end
 
-!! test
-Custom class
-!! input
-[[Image:foobar.jpg|a|class=b]]
-!! result
-<p><a href="/wiki/File:Foobar.jpg" class="image" title="a"><img alt="a" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" class="b" /></a>
-</p>
-!! end
-
 !! article 
 File:Barfoo.jpg
 !! text

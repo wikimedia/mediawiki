@@ -74,7 +74,7 @@ class LoginForm extends SpecialPage {
 	 * Loader
 	 */
 	function load() {
-		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail;
+		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
 
 		if ( $this->mLoaded ) {
 			return;
@@ -106,8 +106,13 @@ class LoginForm extends SpecialPage {
 		$this->mSkipCookieCheck = $request->getCheck( 'wpSkipCookieCheck' );
 		$this->mToken = ( $this->mType == 'signup' ) ? $request->getVal( 'wpCreateaccountToken' ) : $request->getVal( 'wpLoginToken' );
 
-		$this->mReturnTo = $request->getVal( 'returnto', '' );
-		$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+		if ( $wgRedirectOnLogin ) {
+			$this->mReturnTo = $wgRedirectOnLogin;
+			$this->mReturnToQuery = '';
+		} else {
+			$this->mReturnTo = $request->getVal( 'returnto', '' );
+			$this->mReturnToQuery = $request->getVal( 'returntoquery', '' );
+		}
 
 		if( $wgEnableEmail ) {
 			$this->mEmail = $request->getText( 'wpEmail' );
@@ -202,7 +207,7 @@ class LoginForm extends SpecialPage {
 			$this->mainLoginForm( $this->msg( 'mailerror', $result->getWikiText() )->text() );
 		} else {
 			$out->addWikiMsg( 'accmailtext', $u->getName(), $u->getEmail() );
-			$this->executeReturnTo( 'success' );
+			$out->returnToMain( false );
 		}
 	}
 
@@ -261,7 +266,7 @@ class LoginForm extends SpecialPage {
 			# Confirm that the account was created
 			$out->setPageTitle( $this->msg( 'accountcreated' ) );
 			$out->addWikiMsg( 'accountcreatedtext', $u->getName() );
-			$out->addReturnTo( $this->getTitle() );
+			$out->returnToMain( false, $this->getTitle() );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
 			$u->addNewUserLogEntry( false, $this->mReason );
 		}
@@ -861,7 +866,16 @@ class LoginForm extends SpecialPage {
 		if( $injected_html !== '' ) {
 			$this->displaySuccessfulLogin( 'loginsuccess', $injected_html );
 		} else {
-			$this->executeReturnTo( 'successredirect' );
+			$titleObj = Title::newFromText( $this->mReturnTo );
+			if ( !$titleObj instanceof Title ) {
+				$titleObj = Title::newMainPage();
+			}
+			$redirectUrl = $titleObj->getFullURL( $this->mReturnToQuery );
+			global $wgSecureLogin;
+			if( $wgSecureLogin && !$this->mStickHTTPS ) {
+				$redirectUrl = preg_replace( '/^https:/', 'http:', $redirectUrl );
+			}
+			$this->getOutput()->redirect( $redirectUrl );
 		}
 	}
 
@@ -903,7 +917,11 @@ class LoginForm extends SpecialPage {
 
 		$out->addHTML( $injected_html );
 
-		$this->executeReturnTo( 'success' );
+		if ( $this->mReturnTo !== '' ) {
+			$out->returnToMain( null, $this->mReturnTo, $this->mReturnToQuery );
+		} else {
+			$out->returnToMain( null );
+		}
 	}
 
 	/**
@@ -937,42 +955,7 @@ class LoginForm extends SpecialPage {
 			$block->getByName()
 		);
 
-		$this->executeReturnTo( 'error' );
-	}
-
-	/**
-	 * Add a "return to" link or redirect to it.
-	 *
-	 * @param $type string, one of the following:
-	 *    - error: display a return to link ignoring $wgRedirectOnLogin
-	 *    - success: display a return to link using $wgRedirectOnLogin if needed
-	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
-	 */
-	private function executeReturnTo( $type ) {
-		global $wgRedirectOnLogin, $wgSecureLogin;
-
-		if ( $type != 'error' && $wgRedirectOnLogin !== null ) {
-			$returnTo = $wgRedirectOnLogin;
-			$returnToQuery = array();
-		} else {
-			$returnTo = $this->mReturnTo;
-			$returnToQuery = wfCgiToArray( $this->mReturnToQuery );
-		}
-
-		$returnToTitle = Title::newFromText( $returnTo );
-		if ( !$returnToTitle ) {
-			$returnToTitle = Title::newMainPage();
-		}
-
-		if ( $type == 'successredirect' ) {
-			$redirectUrl = $returnToTitle->getFullURL( $returnToQuery );
-			if( $wgSecureLogin && !$this->mStickHTTPS ) {
-				$redirectUrl = preg_replace( '/^https:/', 'http:', $redirectUrl );
-			}
-			$this->getOutput()->redirect( $redirectUrl );
-		} else {
-			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery );
-		}
+		$out->returnToMain( false );
 	}
 
 	/**

@@ -45,7 +45,7 @@ class MWException extends Exception {
 	}
 
 	/**
-	 * Can the extension use the Message class/wfMessage to get i18n-ed messages?
+	 * Can the extension use wfMsg() to get i18n messages?
 	 *
 	 * @return bool
 	 */
@@ -109,7 +109,7 @@ class MWException extends Exception {
 		$args = array_slice( func_get_args(), 2 );
 
 		if ( $this->useMessageCache() ) {
-			return wfMessage( $key, $args )->plain();
+			return wfMsgNoTrans( $key, $args );
 		} else {
 			return wfMsgReplaceArgs( $fallback, $args );
 		}
@@ -319,11 +319,13 @@ class ErrorPageError extends MWException {
 	public $title, $msg, $params;
 
 	/**
-	 * Note: these arguments are keys into wfMessage(), not text!
+	 * @todo document
 	 *
-	 * @param $title string|Message Message key (string) for page title, or a Message object
-	 * @param $msg string|Message Message key (string) for error text, or a Message object
-	 * @param $params array with parameters to wfMessage()
+	 * Note: these arguments are keys into wfMsg(), not text!
+	 *
+	 * @param $title A title
+	 * @param $msg String|Message . In string form, should be a message key
+	 * @param $params Array Array to wfMsg()
 	 */
 	function __construct( $title, $msg, $params = null ) {
 		$this->title = $title;
@@ -333,7 +335,7 @@ class ErrorPageError extends MWException {
 		if( $msg instanceof Message ){
 			parent::__construct( $msg );
 		} else {
-			parent::__construct( wfMessage( $msg )->text() );
+			parent::__construct( wfMsg( $msg ) );
 		}
 	}
 
@@ -354,9 +356,10 @@ class ErrorPageError extends MWException {
  * @ingroup Exception
  */
 class BadTitleError extends ErrorPageError {
+
 	/**
-	 * @param $msg string|Message A message key (default: 'badtitletext')
-	 * @param $params Array parameter to wfMessage()
+	 * @param $msg string A message key (default: 'badtitletext')
+	 * @param $params Array parameter to wfMsg()
 	 */
 	function __construct( $msg = 'badtitletext', $params = null ) {
 		parent::__construct( 'badtitle', $msg, $params );
@@ -474,7 +477,7 @@ class UserBlockedError extends ErrorPageError {
 
 		$reason = $block->mReason;
 		if( $reason == '' ) {
-			$reason = wfMessage( 'blockednoreason' )->text();
+			$reason = wfMsg( 'blockednoreason' );
 		}
 
 		/* $ip returns who *is* being blocked, $intended contains who was meant to be blocked.
@@ -533,7 +536,7 @@ class UserNotLoggedIn extends ErrorPageError {
 	 *        Optional, default: 'exception-nologin-text'
 	 * @param $titleMsg A message key to set the page title.
 	 *        Optional, default: 'exception-nologin'
-	 * @param $params Parameters to wfMessage().
+	 * @param $params Parameters to wfMsg().
 	 *        Optiona, default: null
 	 */
 	public function __construct(

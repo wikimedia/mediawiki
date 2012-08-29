@@ -26,7 +26,7 @@
 
 #$optionsWithArgs = array( 'begin', 'max-slave-lag' );
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 50; // Number of rows to process in one batch

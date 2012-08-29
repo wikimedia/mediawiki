@@ -9,7 +9,7 @@
 /* Configuration */
 
 // Evaluate the include path relative to this file
-$IP = dirname( dirname( __DIR__ ) );
+$IP = dirname( dirname( dirname( __FILE__ ) ) );
 
 // Set a flag which can be used to detect when other scripts have been entered through this entry point or not
 define( 'MW_PHPUNIT_TEST', true );
@@ -34,10 +34,6 @@ class PHPUnitMaintClass extends Maintenance {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
-		global $wgDevelopmentWarnings;
-
-		// wfWarn should cause tests to fail
-		$wgDevelopmentWarnings = true;
 
 		$wgMainCacheType = CACHE_NONE;
 		$wgMessageCacheType = CACHE_NONE;
