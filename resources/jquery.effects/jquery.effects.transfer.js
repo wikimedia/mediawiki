@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Effects Transfer 1.8.22
+ * jQuery UI Effects Transfer 1.8.23
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
