@@ -146,7 +146,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 */
 	function testTrackingCategory() {
 		$title = Title::newFromText( __FUNCTION__ );
-		$catName =  wfMessage( 'broken-file-category' )->inContentLanguage()->text();
+		$catName =  wfMsgForContent( 'broken-file-category' );
 		$cat = Title::makeTitleSafe( NS_CATEGORY, $catName );
 		$expected = array( $cat->getDBkey() );
 		$parserOutput = $this->parser->parse( "[[file:nonexistent]]" , $title, $this->options );

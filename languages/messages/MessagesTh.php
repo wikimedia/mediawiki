@@ -139,12 +139,12 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#เปลี่ยนทาง', '#REDIRECT' ),
-	'notoc'                     => array( '0', '__ไม่มีสารบัญ__', '__NOTOC__' ),
-	'nogallery'                 => array( '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ),
-	'noeditsection'             => array( '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ),
-	'currentmonth'              => array( '1', 'เดือนปัจจุบัน', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonthname'          => array( '1', 'ชื่อเดือนปัจจุบัน', 'CURRENTMONTHNAME' ),
+	'redirect'                => array( '0', '#เปลี่ยนทาง', '#REDIRECT' ),
+	'notoc'                   => array( '0', '__ไม่มีสารบัญ__', '__NOTOC__' ),
+	'nogallery'               => array( '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ),
+	'noeditsection'           => array( '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ),
+	'currentmonth'            => array( '1', 'เดือนปัจจุบัน', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonthname'        => array( '1', 'ชื่อเดือนปัจจุบัน', 'CURRENTMONTHNAME' ),
 );
 
 $datePreferences = array(
@@ -2760,9 +2760,14 @@ $1',
 # Info page
 'pageinfo-title' => 'ข้อมูลสำหรับ "$1"',
 'pageinfo-header-edits' => 'การแก้ไข',
-'pageinfo-views' => 'จำนวนการเข้าดู',
+'pageinfo-header-watchlist' => 'รายการเฝ้าดู',
+'pageinfo-header-views' => 'การเข้าดู',
+'pageinfo-subjectpage' => 'หน้า',
+'pageinfo-talkpage' => 'หน้าพูดคุย',
 'pageinfo-watchers' => 'จำนวนผู้เข้าดู',
 'pageinfo-edits' => 'จำนวนการแก้ไข',
+'pageinfo-views' => 'จำนวนการเข้าดู',
+'pageinfo-viewsperedit' => 'จำนวนการเข้าดูต่อการแก้ไข',
 
 # Skin names
 'skinname-standard' => 'คลาสสิก',

@@ -157,15 +157,8 @@
 		 * @return string Address to script (eg. '/w/api.php' )
 		 */
 		wikiScript: function ( str ) {
-			str = str || 'index';
-			if ( str === 'index' ) {
-				return mw.config.get( 'wgScript' );
-			} else if ( str === 'load' ) {
-				return mw.config.get( 'wgLoadScript' );
-			} else {
-				return mw.config.get( 'wgScriptPath' ) + '/' + str +
-					mw.config.get( 'wgScriptExtension' );
-			}
+			return mw.config.get( 'wgScriptPath' ) + '/' + ( str || 'index' ) +
+				mw.config.get( 'wgScriptExtension' );
 		},
 
 		/**

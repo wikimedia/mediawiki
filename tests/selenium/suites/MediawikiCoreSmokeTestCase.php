@@ -43,7 +43,7 @@ class MediawikiCoreSmokeTestCase extends SeleniumTestCase {
 		$this->login();
 		$this->open( $this->getUrl() .
 			'/index.php?title=Special:Upload' );
-		$this->type( 'wpUploadFile', __DIR__ .
+		$this->type( 'wpUploadFile', dirname( __FILE__ ) .
 			"\\..\\data\\Wikipedia-logo-v2-de.png" );
 		$this->check( 'wpIgnoreWarning' );
 		$this->click( 'wpUpload' );

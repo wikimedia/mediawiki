@@ -68,4 +68,23 @@ class LanguageHe extends Language {
 		return $word;
 	}
 
+	/**
+	 * Gets a number and uses the suited form of the word.
+	 *
+	 * @param $count Integer: the number of items
+	 * @param $forms Array with 3 items: the three plural forms
+	 * @return String: the suited form of word
+	 */
+	function convertPlural( $count, $forms ) {
+		if ( !count( $forms ) ) { return ''; }
+		$forms = $this->preConvertPlural( $forms, 3 );
+
+		if ( $count == 1 ) {
+			return $forms[0]; // Singular
+		} elseif ( $count == 2 ) {
+			return $forms[2]; // Dual or plural if dual is not provided (filled in preConvertPlural)
+		} else {
+			return $forms[1]; // Plural
+		}
+	}
 }

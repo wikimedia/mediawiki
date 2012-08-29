@@ -21,7 +21,7 @@
  * @ingroup Language
  */
 
-require_once( __DIR__ . '/../LanguageConverter.php' );
+require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
 
 /**
  * Converts Tajiki to latin orthography

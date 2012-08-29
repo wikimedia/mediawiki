@@ -96,10 +96,10 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'img_right'                 => array( '1', 'drita', 'destra', 'right' ),
-	'img_left'                  => array( '1', 'manzína', 'sinistra', 'left' ),
-	'img_none'                  => array( '1', 'nissön', 'nessuno', 'none' ),
-	'sitename'                  => array( '1', 'NUMSIT', 'NOMESITO', 'SITENAME' ),
+	'img_right'               => array( '1', 'drita', 'destra', 'right' ),
+	'img_left'                => array( '1', 'manzína', 'sinistra', 'left' ),
+	'img_none'                => array( '1', 'nissön', 'nessuno', 'none' ),
+	'sitename'                => array( '1', 'NUMSIT', 'NOMESITO', 'SITENAME' ),
 );
 
 $messages = array(

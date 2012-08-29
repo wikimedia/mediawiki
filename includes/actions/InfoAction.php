@@ -56,7 +56,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
-		global $wgContLang, $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
+		global $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -121,9 +121,9 @@ class InfoAction extends FormlessAction {
 
 		// Use robot policy logic
 		$policy = $this->page->getRobotPolicy( 'view', $pOutput );
+		// @todo FIXME: Hard coded English text.
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-robot-policy' )->escaped(),
-			$this->msg( "pageinfo-robot-${policy['index']}" )->escaped()
+			$this->msg( 'pageinfo-robot-policy' )->escaped(), "Marked as '" . $policy['index'] . "'"
 		);
 
 		if ( !$wgDisableCounters ) {
@@ -179,16 +179,14 @@ class InfoAction extends FormlessAction {
 				$message = $this->msg( "protect-level-$protectionLevel" );
 				if ( $message->isDisabled() ) {
 					// Require "$1" permission
-					$message = $this->msg( "protect-fallback", $protectionLevel )->parse();
+					$message = $this->msg( "protect-fallback", $protectionLevel )->escaped();
 				} else {
 					$message = $message->escaped();
 				}
 			}
 
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-restriction',
-					$this->msg( "restriction-$restrictionType" )->plain()
-				)->parse(), $message
+				$this->msg( 'pageinfo-restriction', $restrictionType )->escaped(), $message
 			);
 		}
 
@@ -246,8 +244,10 @@ class InfoAction extends FormlessAction {
 		// Array of magic word IDs
 		$wordIDs = $magicWords->names;
 
+		// @todo FIXME: Should report in content language, as localised
+		//              magic words cannot be used.
 		// Array of IDs => localized magic words
-		$localizedWords = $wgContLang->getMagicWords();
+		$localizedWords = $lang->getMagicWords();
 
 		$listItems = array();
 		foreach ( $pageProperties as $property => $value ) {

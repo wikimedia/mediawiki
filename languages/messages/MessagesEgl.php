@@ -588,10 +588,14 @@ Vadä la pàgina dal file',
 
 # Info page
 'pageinfo-header-edits' => 'Mudifich',
-'pageinfo-views' => 'Nümar ad visit',
+'pageinfo-header-views' => 'Visit',
+'pageinfo-subjectpage' => 'Pàgina',
+'pageinfo-talkpage' => 'Pàgina ad discüssion',
 'pageinfo-watchers' => 'Numar ad visitador',
 'pageinfo-edits' => 'Nümar ad mudifich',
 'pageinfo-authors' => 'Nümar ad devers autor',
+'pageinfo-views' => 'Nümar ad visit',
+'pageinfo-viewsperedit' => 'Visit par mudifich',
 
 # Browsing diffs
 'previousdiff' => "← Mudifich piö vecc'",

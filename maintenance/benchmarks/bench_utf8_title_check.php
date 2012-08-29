@@ -4,7 +4,7 @@
  * @ingroup Benchmark
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once( dirname( __FILE__ ) . '/Benchmarker.php' );
 
 /**
  * This little benchmark executes the regexp used in Language->checkTitleEncoding() and compares its execution time

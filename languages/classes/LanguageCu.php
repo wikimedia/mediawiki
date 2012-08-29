@@ -20,7 +20,7 @@
  * @file
  * @ingroup Language
  */
-
+ 
 /**
  * Old Church Slavonic (Ѩзыкъ словѣньскъ)
  *

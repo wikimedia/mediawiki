@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 define( 'MW_UPGRADE_COPY',     false );
 define( 'MW_UPGRADE_ENCODE',   true  );

@@ -2656,10 +2656,14 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" - хуудасны мэдээлэл',
 'pageinfo-header-edits' => 'Өөрчлөлтүүд',
-'pageinfo-views' => 'Харагдацуудын тоо',
+'pageinfo-header-views' => 'Харагдац',
+'pageinfo-subjectpage' => 'Хуудас',
+'pageinfo-talkpage' => 'Ярианы хуудас',
 'pageinfo-watchers' => 'Хянагчдын тоо',
 'pageinfo-edits' => 'Засваруудын тоо',
 'pageinfo-authors' => 'Тус тусын зохиогчидын тоо',
+'pageinfo-views' => 'Харагдацуудын тоо',
+'pageinfo-viewsperedit' => 'Засвар тус бүрийн харагдац',
 
 # Patrolling
 'markaspatrolleddiff' => 'Хяналтанд авъя',

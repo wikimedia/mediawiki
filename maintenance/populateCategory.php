@@ -22,7 +22,7 @@
  * @author Simetrical
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Mainteance script to populate the category table.

@@ -233,7 +233,7 @@ class FormatMetadata {
 				case 'dc-date':
 				case 'DateTimeMetadata':
 					if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
-						$val = wfMessage( 'exif-unknowndate' )->text();
+						$val = wfMsg( 'exif-unknowndate' );
 					} elseif ( preg_match( '/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D', $val ) ) {
 						// Full date.
 						$time = wfTimestamp( TS_MW, $val );
@@ -591,7 +591,7 @@ class FormatMetadata {
 				case 'Software':
 					if ( is_array( $val ) ) {
 						//if its a software, version array.
-						$val = wfMessage( 'exif-software-version-value', $val[0], $val[1] )->text();
+						$val = wfMsg( 'exif-software-version-value', $val[0], $val[1] );
 					} else {
 						$val = self::msg( $tag, '', $val );
 					}
@@ -599,8 +599,8 @@ class FormatMetadata {
 
 				case 'ExposureTime':
 					// Show the pretty fraction as well as decimal version
-					$val = wfMessage( 'exif-exposuretime-format',
-						self::formatFraction( $val ), self::formatNum( $val ) )->text();
+					$val = wfMsg( 'exif-exposuretime-format',
+						self::formatFraction( $val ), self::formatNum( $val ) );
 					break;
 				case 'ISOSpeedRatings':
 					// If its = 65535 that means its at the
@@ -613,13 +613,13 @@ class FormatMetadata {
 					}
 					break;
 				case 'FNumber':
-					$val = wfMessage( 'exif-fnumber-format',
-						self::formatNum( $val ) )->text();
+					$val = wfMsg( 'exif-fnumber-format',
+						self::formatNum( $val ) );
 					break;
 
 				case 'FocalLength': case 'FocalLengthIn35mmFilm':
-					$val = wfMessage( 'exif-focallength-format',
-						self::formatNum( $val ) )->text();
+					$val = wfMsg( 'exif-focallength-format',
+						self::formatNum( $val ) );
 					break;
 
 				case 'MaxApertureValue':
@@ -633,10 +633,10 @@ class FormatMetadata {
 					if ( is_numeric( $val ) ) {
 						$fNumber = pow( 2, $val / 2 );
 						if ( $fNumber !== false ) {
-							$val = wfMessage( 'exif-maxaperturevalue-value',
+							$val = wfMsg( 'exif-maxaperturevalue-value',
 								self::formatNum( $val ),
 								self::formatNum( $fNumber, 2 )
-							)->text();
+							);
 						}
 					}
 					break;
@@ -696,7 +696,7 @@ class FormatMetadata {
 				case 'PixelYDimension':
 				case 'ImageWidth':
 				case 'ImageLength':
-					$val = self::formatNum( $val ) . ' ' . wfMessage( 'unit-pixel' )->text();
+					$val = self::formatNum( $val ) . ' ' . wfMsg( 'unit-pixel' );
 					break;
 
 				// Do not transform fields with pure text.
@@ -958,12 +958,12 @@ class FormatMetadata {
 
 		if ( $lang === false ) {
 			if ( $noHtml ) {
-				return wfMessage( 'metadata-langitem-default',
-					$wrappedValue )->text() . "\n\n";
+				return wfMsg( 'metadata-langitem-default',
+					$wrappedValue ) . "\n\n";
 			} /* else */
 			return '<li class="mw-metadata-lang-default">'
-				. wfMessage( 'metadata-langitem-default',
-					$wrappedValue )->text()
+				. wfMsg( 'metadata-langitem-default',
+					$wrappedValue )
 				. "</li>\n";
 		}
 
@@ -981,8 +981,8 @@ class FormatMetadata {
 		// else we have a language specified
 
 		if ( $noHtml ) {
-			return '*' . wfMessage( 'metadata-langitem',
-				$wrappedValue, $langName, $lang )->text();
+			return '*' . wfMsg( 'metadata-langitem',
+				$wrappedValue, $langName, $lang );
 		} /* else: */
 
 		$item = '<li class="mw-metadata-lang-code-'
@@ -991,8 +991,8 @@ class FormatMetadata {
 			$item .= ' mw-metadata-lang-default';
 		}
 		$item .= '" lang="' . $lang . '">';
-		$item .= wfMessage( 'metadata-langitem',
-			$wrappedValue, $langName, $lang )->text();
+		$item .= wfMsg( 'metadata-langitem',
+			$wrappedValue, $langName, $lang );
 		$item .= "</li>\n";
 		return $item;
 	}
@@ -1006,14 +1006,14 @@ class FormatMetadata {
 	 * @param $val String: the value of the tag
 	 * @param $arg String: an argument to pass ($1)
 	 * @param $arg2 String: a 2nd argument to pass ($2)
-	 * @return string A wfMessage of "exif-$tag-$val" in lower case
+	 * @return string A wfMsg of "exif-$tag-$val" in lower case
 	 */
 	static function msg( $tag, $val, $arg = null, $arg2 = null ) {
 		global $wgContLang;
 
 		if ($val === '')
 			$val = 'value';
-		return wfMessage( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 )->text();
+		return wfMsg( $wgContLang->lc( "exif-$tag-$val" ), $arg, $arg2 );
 	}
 
 	/**
@@ -1214,7 +1214,7 @@ class FormatMetadata {
 		$min = self::formatNum( $min );
 		$sec = self::formatNum( $sec );
 
-		return wfMessage( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord )->text();
+		return wfMsg( 'exif-coordinate-format', $deg, $min, $sec, $ref, $coord );
 	}
 
 	/**
@@ -1335,9 +1335,9 @@ class FormatMetadata {
 					. htmlspecialchars( $vals['CiUrlWork'] )
 					. '</span>';
 			}
-			return wfMessage( 'exif-contact-value', $email, $url,
+			return wfMsg( 'exif-contact-value', $email, $url,
 				$street, $city, $region, $postal, $country,
-				$tel )->text();
+				$tel );
 		}
 	}
 }

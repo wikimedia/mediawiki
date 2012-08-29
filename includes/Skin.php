@@ -437,7 +437,7 @@ abstract class Skin extends ContextSource {
 		if ( !empty( $allCats['normal'] ) ) {
 			$t = $embed . implode( "{$pop}{$embed}" , $allCats['normal'] ) . $pop;
 
-			$msg = $this->msg( 'pagecategories' )->numParams( count( $allCats['normal'] ) )->escaped();
+			$msg = $this->msg( 'pagecategories', count( $allCats['normal'] ) )->escaped();
 			$linkPage = wfMessage( 'pagecategorieslink' )->inContentLanguage()->text();
 			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
 				Linker::link( Title::newFromText( $linkPage ), $msg )
@@ -455,7 +455,7 @@ abstract class Skin extends ContextSource {
 			}
 
 			$s .= "<div id=\"mw-hidden-catlinks\" class=\"mw-hidden-catlinks$class\">" .
-				$this->msg( 'hidden-categories' )->numParams( count( $allCats['hidden'] ) )->escaped() .
+				$this->msg( 'hidden-categories', count( $allCats['hidden'] ) )->escaped() .
 				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
 		}
@@ -568,7 +568,71 @@ abstract class Skin extends ContextSource {
 	 * @return String HTML containing debug data, if enabled (otherwise empty).
 	 */
 	protected function generateDebugHTML() {
-		return MWDebug::getHTMLDebugLog();
+		global $wgShowDebug;
+
+		$html = MWDebug::getDebugHTML( $this->getContext() );
+
+		if ( $wgShowDebug ) {
+			$listInternals = $this->formatDebugHTML( $this->getOutput()->mDebugtext );
+			$html .= "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">" .
+				$listInternals . "</ul>\n";
+		}
+
+		return $html;
+	}
+
+	/**
+	 * @param $debugText string
+	 * @return string
+	 */
+	private function formatDebugHTML( $debugText ) {
+		global $wgDebugTimestamps;
+
+		$lines = explode( "\n", $debugText );
+		$curIdent = 0;
+		$ret = '<li>';
+
+		foreach ( $lines as $line ) {
+			$pre = '';
+			if ( $wgDebugTimestamps ) {
+				$matches = array();
+				if ( preg_match( '/^(\d+\.\d+ {1,3}\d+.\dM\s{2})/', $line, $matches ) ) {
+					$pre = $matches[1];
+					$line = substr( $line, strlen( $pre ) );
+				}
+			}
+			$display = ltrim( $line );
+			$ident = strlen( $line ) - strlen( $display );
+			$diff = $ident - $curIdent;
+
+			$display = $pre . $display;
+			if ( $display == '' ) {
+				$display = "\xc2\xa0";
+			}
+
+			if ( !$ident && $diff < 0 && substr( $display, 0, 9 ) != 'Entering ' && substr( $display, 0, 8 ) != 'Exiting ' ) {
+				$ident = $curIdent;
+				$diff = 0;
+				$display = '<span style="background:yellow;">' . htmlspecialchars( $display ) . '</span>';
+			} else {
+				$display = htmlspecialchars( $display );
+			}
+
+			if ( $diff < 0 ) {
+				$ret .= str_repeat( "</li></ul>\n", -$diff ) . "</li><li>\n";
+			} elseif ( $diff == 0 ) {
+				$ret .= "</li><li>\n";
+			} else {
+				$ret .= str_repeat( "<ul><li>\n", $diff );
+			}
+			$ret .= "<tt>$display</tt>\n";
+
+			$curIdent = $ident;
+		}
+
+		$ret .= str_repeat( '</li></ul>', $curIdent ) . '</li>';
+
+		return $ret;
 	}
 
 	/**
@@ -1039,7 +1103,7 @@ abstract class Skin extends ContextSource {
 	 * @return String
 	 */
 	static function makeI18nUrl( $name, $urlaction = '' ) {
-		$title = Title::newFromText( wfMessage( $name )->inContentLanguage()->text() );
+		$title = Title::newFromText( wfMsgForContent( $name ) );
 		self::checkTitle( $title, $name );
 		return $title->getLocalURL( $urlaction );
 	}
@@ -1171,7 +1235,7 @@ abstract class Skin extends ContextSource {
 	 * @param $message String
 	 */
 	function addToSidebar( &$bar, $message ) {
-		$this->addToSidebarPlain( $bar, wfMessage( $message )->inContentLanguage()->plain() );
+		$this->addToSidebarPlain( $bar, wfMsgForContentNoTrans( $message ) );
 	}
 
 	/**
@@ -1483,17 +1547,13 @@ abstract class Skin extends ContextSource {
 	public function doEditSectionLink( Title $nt, $section, $tooltip = null, $lang = false ) {
 		// HTML generated here should probably have userlangattributes
 		// added to it for LTR text on RTL pages
-
-		$lang = wfGetLangObj( $lang );
-
 		$attribs = array();
 		if ( !is_null( $tooltip ) ) {
 			# Bug 25462: undo double-escaping.
 			$tooltip = Sanitizer::decodeCharReferences( $tooltip );
-			$attribs['title'] = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
-				->inLanguage( $lang )->text();
+			$attribs['title'] = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'replaceafter' ), $tooltip );
 		}
-		$link = Linker::link( $nt, wfMessage( 'editsection' )->inLanguage( $lang )->text(),
+		$link = Linker::link( $nt, wfMsgExt( 'editsection', array( 'language' => $lang ) ),
 			$attribs,
 			array( 'action' => 'edit', 'section' => $section ),
 			array( 'noclasses', 'known' )
@@ -1503,8 +1563,7 @@ abstract class Skin extends ContextSource {
 		# we can rid of it someday.
 		$attribs = '';
 		if ( $tooltip ) {
-			$attribs = wfMessage( 'editsectionhint' )->rawParams( $tooltip )
-				->inLanguage( $lang )->escaped();
+			$attribs = wfMsgExt( 'editsectionhint', array( 'language' => $lang, 'parsemag', 'escape', 'replaceafter' ), $tooltip );
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
@@ -1514,15 +1573,13 @@ abstract class Skin extends ContextSource {
 			# run, and even add them to hook-provided text.  (This is the main
 			# reason that the EditSectionLink hook is deprecated in favor of
 			# DoEditSectionLink: it can't change the brackets or the span.)
-			$result = wfMessage( 'editsection-brackets' )->rawParams( $result )
-				->inLanguage( $lang )->escaped();
+			$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $result );
 			return "<span class=\"editsection\">$result</span>";
 		}
 
 		# Add the brackets and the span, and *then* run the nice new hook, with
 		# clean and non-redundant arguments.
-		$result = wfMessage( 'editsection-brackets' )->rawParams( $link )
-			->inLanguage( $lang )->escaped();
+		$result = wfMsgExt( 'editsection-brackets', array( 'escape', 'replaceafter', 'language' => $lang ), $link );
 		$result = "<span class=\"editsection\">$result</span>";
 
 		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );

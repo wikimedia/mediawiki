@@ -50,40 +50,14 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
-	'Activeusers'               => array( 'АктивонАрхайджытæ' ),
-	'Allmessages'               => array( 'ФыстæджытæИууылдæр' ),
-	'Allpages'                  => array( 'ФæрстæИууылдæр' ),
-	'Blankpage'                 => array( 'АфтидФарс' ),
-	'Block'                     => array( 'Блок' ),
-	'Blockme'                   => array( 'НыблокМæКæн' ),
-	'Booksources'               => array( 'ЧингуытыРавзæрæнтæ' ),
-	'BrokenRedirects'           => array( 'ЦъæлРарвыстытæ' ),
-	'Categories'                => array( 'Категоритæ' ),
-	'ChangeEmail'               => array( 'EmailИвын' ),
-	'ChangePassword'            => array( 'ПарольИвын' ),
-	'ComparePages'              => array( 'ФæрстæАбарын' ),
-	'Confirmemail'              => array( 'EmailБæлвырдКæнын' ),
-	'Contributions'             => array( 'Бавæрд' ),
-	'CreateAccount'             => array( 'АккаунтСкæнын' ),
-	'DeletedContributions'      => array( 'ХафтБавæрд' ),
-	'Mycontributions'           => array( 'МæБавæрд' ),
-	'Mypage'                    => array( 'МæФарс' ),
-	'Mytalk'                    => array( 'МæНыхас' ),
-	'Myuploads'                 => array( 'МæБавгæд' ),
-	'Newimages'                 => array( 'НогФайлтæ' ),
-	'Newpages'                  => array( 'НогФæрстæ' ),
-	'Preferences'               => array( 'Фадæттæ' ),
-	'Randompage'                => array( 'ÆрхаугæФарс' ),
-	'Recentchanges'             => array( 'ФæстагИвдтытæ' ),
-	'Search'                    => array( 'Агурын' ),
-	'Watchlist'                 => array( 'Цæстдард' ),
+	'Recentchanges'             => array( 'Фæстаг_ивдтытæ' ),
 );
 
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#РАРВЫСТ', '#перенаправление', '#перенапр', '#REDIRECT' ),
-	'img_right'                 => array( '1', 'рахиз', 'справа', 'right' ),
-	'img_left'                  => array( '1', 'галиу', 'слева', 'left' ),
+	'redirect'                => array( '0', '#РАРВЫСТ', '#перенаправление', '#перенапр', '#REDIRECT' ),
+	'img_right'               => array( '1', 'рахиз', 'справа', 'right' ),
+	'img_left'                => array( '1', 'галиу', 'слева', 'left' ),
 );
 
 $linkTrail = '/^((?:[a-z]|а|æ|б|в|г|д|е|ё|ж|з|и|й|к|л|м|н|о|п|р|с|т|у|ф|х|ц|ч|ш|щ|ъ|ы|ь|э|ю|я|“|»)+)(.*)$/sDu';

@@ -22,7 +22,7 @@
  * @see wfWaitForSlaves()
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class WaitForSlave extends Maintenance {
 	public function __construct() {

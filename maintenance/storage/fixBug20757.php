@@ -21,7 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class FixBug20757 extends Maintenance {
 	var $batchSize = 10000;

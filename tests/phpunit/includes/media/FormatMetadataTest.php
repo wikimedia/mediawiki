@@ -4,7 +4,7 @@ class FormatMetadataTest extends MediaWikiTestCase {
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
-		$filePath = __DIR__ .  '/../../data/media';
+		$filePath = dirname( __FILE__ ) .  '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name'           => 'localtesting',
 			'lockManager'    => 'nullLockManager',

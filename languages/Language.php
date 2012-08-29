@@ -32,7 +32,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 # Read language names
 global $wgLanguageNames;
-require_once( __DIR__ . '/Names.php' );
+require_once( dirname( __FILE__ ) . '/Names.php' );
 
 if ( function_exists( 'mb_strtoupper' ) ) {
 	mb_internal_encoding( 'UTF-8' );
@@ -266,9 +266,9 @@ class Language {
 	 */
 	public static function isValidBuiltInCode( $code ) {
 
-		if ( !is_string( $code ) ) {
+		if( !is_string($code) ) {
 			$type = gettype( $code );
-			if ( $type === 'object' ) {
+			if( $type === 'object' ) {
 				$addmsg = " of class " . get_class( $code );
 			} else {
 				$addmsg = '';
@@ -752,7 +752,7 @@ class Language {
 
 		$names = array();
 
-		if ( $inLanguage ) {
+		if( $inLanguage ) {
 			# TODO: also include when $inLanguage is null, when this code is more efficient
 			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
 		}
@@ -772,11 +772,11 @@ class Language {
 
 		$returnMw = array();
 		$coreCodes = array_keys( $mwNames );
-		foreach ( $coreCodes as $coreCode ) {
+		foreach( $coreCodes as $coreCode ) {
 			$returnMw[$coreCode] = $names[$coreCode];
 		}
 
-		if ( $include === 'mwfile' ) {
+		if( $include === 'mwfile' ) {
 			$namesMwFile = array();
 			# We do this using a foreach over the codes instead of a directory
 			# loop so that messages files in extensions will work correctly.
@@ -3042,7 +3042,10 @@ class Language {
 	 */
 	function commaList( array $list ) {
 		return implode(
-			wfMessage( 'comma-separator' )->inLanguage( $this )->escaped(),
+			wfMsgExt(
+				'comma-separator',
+				array( 'parsemag', 'escapenoentities', 'language' => $this )
+			),
 			$list
 		);
 	}
@@ -3055,7 +3058,10 @@ class Language {
 	 */
 	function semicolonList( array $list ) {
 		return implode(
-			wfMessage( 'semicolon-separator' )->inLanguage( $this )->escaped(),
+			wfMsgExt(
+				'semicolon-separator',
+				array( 'parsemag', 'escapenoentities', 'language' => $this )
+			),
 			$list
 		);
 	}
@@ -3067,7 +3073,10 @@ class Language {
 	 */
 	function pipeList( array $list ) {
 		return implode(
-			wfMessage( 'pipe-separator' )->inLanguage( $this )->escaped(),
+			wfMsgExt(
+				'pipe-separator',
+				array( 'escapenoentities', 'language' => $this )
+			),
 			$list
 		);
 	}
@@ -3092,7 +3101,7 @@ class Language {
 	function truncate( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
+			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
 		# Check if there is no need to truncate
 		if ( $length == 0 ) {
@@ -3190,7 +3199,7 @@ class Language {
 	function truncateHtml( $text, $length, $ellipsis = '...' ) {
 		# Use the localized ellipsis character
 		if ( $ellipsis == '...' ) {
-			$ellipsis = wfMessage( 'ellipsis' )->inLanguage( $this )->escaped();
+			$ellipsis = wfMsgExt( 'ellipsis', array( 'escapenoentities', 'language' => $this ) );
 		}
 		# Check if there is clearly no need to truncate
 		if ( $length <= 0 ) {
@@ -3419,9 +3428,9 @@ class Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
-		$pluralForm = $this->getPluralForm( $count );
-		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
-		return $forms[$pluralForm];
+		$forms = $this->preConvertPlural( $forms, 2 );
+
+		return ( $count == 1 ) ? $forms[0] : $forms[1];
 	}
 
 	/**
@@ -4117,7 +4126,7 @@ class Language {
 		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) .
 			$this->getDirMark();
 		$details = $details ? $dirmark . $this->getMessageFromDB( 'word-separator' ) .
-			wfMessage( 'parentheses' )->rawParams( $details )->inLanguage( $this )->escaped() : '';
+			wfMsgExt( 'parentheses', array( 'escape', 'replaceafter', 'language' => $this ), $details ) : '';
 		return $page . $details;
 	}
 
@@ -4190,34 +4199,4 @@ class Language {
 	public function getConvRuleTitle() {
 		return $this->mConverter->getConvRuleTitle();
 	}
-
-	/**
-	 * Get the compiled plural rules for the language
-	 * @since 1.20
-	 * @return array Associative array with plural form, and plural rule as key-value pairs
-	 */
-	public function getCompiledPluralRules() {
-		return self::$dataCache->getItem( strtolower( $this->mCode ), 'compiledPluralRules' );
-	}
-
-	/**
-	 * Get the plural rules for the language
-	 * @since 1.20
-	 * @return array Associative array with plural form, and plural rule as key-value pairs
-	 */
-	public function getPluralRules() {
-		return self::$dataCache->getItem( strtolower( $this->mCode ), 'pluralRules' );
-	}
-
-	/**
-	 * Find the plural form matching to the given number
-	 * It return the form index.
-	 * @return int The index of the plural form
-	 */
-	private function getPluralForm( $number ) {
-		$pluralRules = $this->getCompiledPluralRules();
-		$form = CLDRPluralRuleEvaluator::evaluateCompiled( $number, $pluralRules );
-		return $form;
-	}
-
 }

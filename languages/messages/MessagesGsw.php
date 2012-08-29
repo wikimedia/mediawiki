@@ -127,7 +127,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'displaytitle'              => array( '1', 'SYTETITEL', 'SEITENTITEL', 'DISPLAYTITLE' ),
+	'displaytitle'            => array( '1', 'SYTETITEL', 'SEITENTITEL', 'DISPLAYTITLE' ),
 );
 
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
@@ -2792,10 +2792,15 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 # Info page
 'pageinfo-title' => 'Informatione zue „$1“',
 'pageinfo-header-edits' => 'Bearbeitunge',
-'pageinfo-views' => 'Aazahl Sytenufruef',
+'pageinfo-header-watchlist' => 'Beobachtigslischte',
+'pageinfo-header-views' => 'Ufruef',
+'pageinfo-subjectpage' => 'Syte',
+'pageinfo-talkpage' => 'Diskussionssyte',
 'pageinfo-watchers' => 'Aazahl vu Beobachter',
 'pageinfo-edits' => 'Aazahl Bearbeitige',
 'pageinfo-authors' => 'Aazahl vu unterschidlige Autore',
+'pageinfo-views' => 'Aazahl Sytenufruef',
+'pageinfo-viewsperedit' => 'Sytenufruef pro Bearbeitig',
 
 # Patrolling
 'markaspatrolleddiff' => 'Als patrulyrt markyre',

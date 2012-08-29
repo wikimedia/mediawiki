@@ -21,7 +21,7 @@
  * @file
  */
 
-require_once( __DIR__ .'/../Maintenance.php' );
+require_once( dirname( __FILE__ ) .'/../Maintenance.php' );
 
 /**
  * Generate first letter data files for Collation.php

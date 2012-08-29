@@ -49,7 +49,7 @@
  * @license GNU General Public License 2.0 or later
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 /**
  * Maintenance script to parse some wikitext.

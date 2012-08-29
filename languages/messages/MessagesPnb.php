@@ -2724,10 +2724,15 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" لئی جانکاری',
 'pageinfo-header-edits' => 'تبدیلیاں',
-'pageinfo-views' => 'را‎ ۓ گنتی',
+'pageinfo-header-watchlist' => 'اکھ تھلے رکھی لسٹ',
+'pageinfo-header-views' => 'وکھالے',
+'pageinfo-subjectpage' => 'صفہ',
+'pageinfo-talkpage' => 'گل بات صفہ',
 'pageinfo-watchers' => 'ویکھن والے',
 'pageinfo-edits' => 'تبدیلیاں گنتی',
 'pageinfo-authors' => 'وکھرے لکھاریاں دی گنتی',
+'pageinfo-views' => 'را‎ ۓ گنتی',
+'pageinfo-viewsperedit' => 'تبدیلی سعاب نال وکھالے',
 
 # Patrolling
 'markaspatrolleddiff' => 'ویکھے گۓ دا نشان لاؤ',

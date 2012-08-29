@@ -8,7 +8,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	function setUp() {
 		parent::setUp();
 		$this->handler = new BitmapHandler();
-		$filePath = __DIR__ . '/../../data/media';
+		$filePath = dirname( __FILE__ ) . '/../../data/media';
 
 		$tmpDir = $this->getNewTempDirectory();
 

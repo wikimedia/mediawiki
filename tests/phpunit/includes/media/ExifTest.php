@@ -2,7 +2,7 @@
 class ExifTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		$this->mediaPath = __DIR__ . '/../../data/media/';
+		$this->mediaPath = dirname( __FILE__ ) . '/../../data/media/';
 
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
@@ -25,7 +25,7 @@ class ExifTest extends MediaWikiTestCase {
 		$expected = array(
 			'GPSLatitude' => 88.5180555556,
 			'GPSLongitude' => -21.12357,
-			'GPSAltitude' => -3.141592653,
+			'GPSAltitude' => -200,
 			'GPSDOP' => '5/1',
 			'GPSVersionID' => '2.2.0.0',
 		);

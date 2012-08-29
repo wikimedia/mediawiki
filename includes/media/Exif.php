@@ -370,12 +370,6 @@ class Exif {
 		$this->exifGPStoNumber( 'GPSDestLongitude' );
 
 		if ( isset( $this->mFilteredExifData['GPSAltitude'] ) && isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
-
-			// We know altitude data is a <num>/<denom> from the validation functions ran earlier.
-			// But multiplying such a string by -1 doesn't work well, so convert.
-			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'] );
-			$this->mFilteredExifData['GPSAltitude'] = $num / $denom;
-
 			if ( $this->mFilteredExifData['GPSAltitudeRef'] === "\1" ) {
 				$this->mFilteredExifData['GPSAltitude'] *= - 1;
 			}

@@ -83,8 +83,8 @@ class MWCryptRand {
 		$files[] = __FILE__;
 
 		// We must also have a parent folder, and with the usual file structure, a grandparent
-		$files[] = __DIR__;
-		$files[] = dirname( __DIR__ );
+		$files[] = dirname( __FILE__ );
+		$files[] = dirname( dirname( __FILE__ ) );
 
 		// The config file is likely the most often edited file we know should be around
 		// so include its stat info into the state.

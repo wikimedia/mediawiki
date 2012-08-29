@@ -43,10 +43,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/** @var Array Prioritized list of FileBackendStore objects */
 	protected $backends = array(); // array of (backend index => backends)
 	protected $masterIndex = -1; // integer; index of master backend
-	protected $syncChecks = 0; // integer; bitfield
-	/** @var Array */
-	protected $noPushDirConts = array();
-	protected $noPushQuickOps = false; // boolean
+	protected $syncChecks = 0; // integer bitfield
 
 	/* Possible internal backend consistency checks */
 	const CHECK_SIZE = 1;
@@ -58,21 +55,18 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Locking, journaling, and read-only checks are handled by the proxy backend.
 	 *
 	 * Additional $config params include:
-	 *   - backends       : Array of backend config and multi-backend settings.
-	 *                      Each value is the config used in the constructor of a
-	 *                          FileBackendStore class, but with these additional settings:
-	 *                        - class         : The name of the backend class
-	 *                        - isMultiMaster : This must be set for one backend.
-	 *                        - template:     : If given a backend name, this will use
-	 *                                          the config of that backend as a template.
-	 *                                          Values specified here take precedence.
-	 *   - syncChecks     : Integer bitfield of internal backend sync checks to perform.
-	 *                      Possible bits include the FileBackendMultiWrite::CHECK_* constants.
-	 *                      There are constants for SIZE, TIME, and SHA1.
-	 *                      The checks are done before allowing any file operations.
-	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
-	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
-	 *
+	 *   - backends   : Array of backend config and multi-backend settings.
+	 *                  Each value is the config used in the constructor of a
+	 *                  FileBackendStore class, but with these additional settings:
+	 *                    - class         : The name of the backend class
+	 *                    - isMultiMaster : This must be set for one backend.
+	 *                    - template:     : If given a backend name, this will use
+	 *                                      the config of that backend as a template.
+	 *                                      Values specified here take precedence.
+	 *   - syncChecks : Integer bitfield of internal backend sync checks to perform.
+	 *                  Possible bits include the FileBackendMultiWrite::CHECK_* constants.
+	 *                  There are constants for SIZE, TIME, and SHA1.
+	 *                  The checks are done before allowing any file operations.
 	 * @param $config Array
 	 * @throws MWException
 	 */
@@ -81,12 +75,6 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->syncChecks = isset( $config['syncChecks'] )
 			? $config['syncChecks']
 			: self::CHECK_SIZE;
-		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
-			? $config['noPushQuickOps']
-			: false;
-		$this->noPushDirConts = isset( $config['noPushDirConts'] )
-			? $config['noPushDirConts']
-			: array();
 		// Construct backends here rather than via registration
 		// to keep these backends hidden from outside the proxy.
 		$namesUsed = array();
@@ -380,12 +368,10 @@ class FileBackendMultiWrite extends FileBackend {
 		$masterStatus = $this->backends[$this->masterIndex]->doQuickOperations( $realOps );
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends...
-		if ( !$this->noPushQuickOps ) {
-			foreach ( $this->backends as $index => $backend ) {
-				if ( $index !== $this->masterIndex ) { // not done already
-					$realOps = $this->substOpBatchPaths( $ops, $backend );
-					$status->merge( $backend->doQuickOperations( $realOps ) );
-				}
+		foreach ( $this->backends as $index => $backend ) {
+			if ( $index !== $this->masterIndex ) { // not done already
+				$realOps = $this->substOpBatchPaths( $ops, $backend );
+				$status->merge( $backend->doQuickOperations( $realOps ) );
 			}
 		}
 		// Make 'success', 'successCount', and 'failCount' fields reflect
@@ -398,26 +384,14 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param $path string Storage path
-	 * @return bool Path container should have dir changes pushed to all backends
-	 */
-	protected function replicateContainerDirChanges( $path ) {
-		list( $b, $shortCont, $r ) = self::splitStoragePath( $path );
-		return !in_array( $shortCont, $this->noPushDirConts );
-	}
-
-	/**
 	 * @see FileBackend::doPrepare()
 	 * @return Status
 	 */
 	protected function doPrepare( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doPrepare( $realParams ) );
-			}
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doPrepare( $realParams ) );
 		}
 		return $status;
 	}
@@ -429,12 +403,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected function doSecure( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doSecure( $realParams ) );
-			}
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doSecure( $realParams ) );
 		}
 		return $status;
 	}
@@ -446,12 +417,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected function doPublish( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doPublish( $realParams ) );
-			}
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doPublish( $realParams ) );
 		}
 		return $status;
 	}
@@ -463,12 +431,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 */
 	protected function doClean( array $params ) {
 		$status = Status::newGood();
-		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $replicate || $index == $this->masterIndex ) {
-				$realParams = $this->substOpPaths( $params, $backend );
-				$status->merge( $backend->doClean( $realParams ) );
-			}
+		foreach ( $this->backends as $backend ) {
+			$realParams = $this->substOpPaths( $params, $backend );
+			$status->merge( $backend->doClean( $realParams ) );
 		}
 		return $status;
 	}

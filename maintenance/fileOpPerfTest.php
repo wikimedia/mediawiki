@@ -25,7 +25,7 @@ $initialTime = microtime( true );
 $wgProfiler = array( 'class' => 'ProfilerSimpleText' );
 error_reporting( E_ALL );
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Maintenance script to test fileop performance.
@@ -40,7 +40,6 @@ class TestFileOpPerformance extends Maintenance {
 		$this->addOption( 'b2', 'Backend 2', false, true );
 		$this->addOption( 'srcdir', 'File source directory', true, true );
 		$this->addOption( 'maxfiles', 'Max files', false, true );
-		$this->addOption( 'quick', 'Avoid operation pre-checks' );
 	}
 
 	public function execute() {
@@ -77,14 +76,11 @@ class TestFileOpPerformance extends Maintenance {
 			if ( $file[0] != '.' ) {
 				$this->output( "Using '$dirname/$file' in operations.\n" );
 				$dst = $baseDir . '/' . wfBaseName( $file );
-				$ops1[] = array( 'op' => 'store',
-					'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1);
-				$ops2[] = array( 'op' => 'copy',
-					'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => 1 );
-				$ops3[] = array( 'op' => 'move',
-					'src' => $dst, 'dst' => "$dst-2", 'overwrite' => 1 );
-				$ops4[] = array( 'op' => 'delete', 'src' => "$dst-1" );
-				$ops5[] = array( 'op' => 'delete', 'src' => "$dst-2" );
+				$ops1[] = array( 'op' => 'store', 'src' => "$dirname/$file", 'dst' => $dst, 'overwrite' => 1);
+				$ops2[] = array( 'op' => 'copy', 'src' => "$dst", 'dst' => "$dst-1", 'overwrite' => 1);
+				$ops3[] = array( 'op' => 'move', 'src' => $dst, 'dst' => "$dst-2", 'overwrite' => 1);
+				$ops4[] = array( 'op' => 'delete', 'src' => "$dst-1", 'overwrite' => 1 );
+				$ops5[] = array( 'op' => 'delete', 'src' => "$dst-2", 'overwrite' => 1 );
 			}
 			if ( count( $ops1 ) >= $this->getOption( 'maxfiles', 20 ) ) {
 				break; // enough
@@ -93,10 +89,8 @@ class TestFileOpPerformance extends Maintenance {
 		closedir( $dir );
 		$this->output( "\n" );
 
-		$method = $this->hasOption( 'quick' ) ? 'doQuickOperations' : 'doOperations';
-
 		$start = microtime( true );
-		$status = $backend->$method( $ops1, array( 'force' => 1 ) );
+		$status = $backend->doOperations( $ops1, array( 'force' => 1 ) );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -105,7 +99,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Stored " . count( $ops1 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops2, array( 'force' => 1 ) );
+		$backend->doOperations( $ops2, array( 'force' => 1 ) );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -114,7 +108,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Copied " . count( $ops2 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops3, array( 'force' => 1 ) );
+		$backend->doOperations( $ops3, array( 'force' => 1 ) );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -123,7 +117,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Moved " . count( $ops3 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops4, array( 'force' => 1 ) );
+		$backend->doOperations( $ops4, array( 'force' => 1 ) );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -132,7 +126,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Deleted " . count( $ops4 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops5, array( 'force' => 1 ) );
+		$backend->doOperations( $ops5, array( 'force' => 1 ) );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );

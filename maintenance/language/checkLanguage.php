@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../commandLine.inc' );
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
 require_once( 'checkLanguage.inc' );
 require_once( 'languages.inc' );
 

@@ -33,7 +33,7 @@
  * based on nukePage by Rob Church
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Maintenance script that removes pages with only one revision from the

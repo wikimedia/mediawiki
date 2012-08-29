@@ -190,7 +190,7 @@ class UtfNormal {
 	 */
 	static function loadData() {
 		if( !isset( self::$utfCombiningClass ) ) {
-			require_once( __DIR__ . '/UtfNormalData.inc' );
+			require_once( dirname(__FILE__) . '/UtfNormalData.inc' );
 		}
 	}
 

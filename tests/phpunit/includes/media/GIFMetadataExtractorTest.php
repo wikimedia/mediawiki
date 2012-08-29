@@ -2,7 +2,7 @@
 class GIFMetadataExtractorTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		$this->mediaPath = __DIR__ . '/../../data/media/';
+		$this->mediaPath = dirname( __FILE__ ) . '/../../data/media/';
 	}
 	/**
 	 * Put in a file, and see if the metadata coming out is as expected.

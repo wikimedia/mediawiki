@@ -30,7 +30,7 @@ array_shift( $argv );
 define( 'MEDIAWIKI', 1 );
 define( 'NOT_REALLY_MEDIAWIKI', 1 );
 
-$IP = __DIR__ . '/../..';
+$IP = dirname( __FILE__ ) . '/../..';
 
 require_once( "$IP/includes/Defines.php" );
 require_once( "$IP/languages/Language.php" );

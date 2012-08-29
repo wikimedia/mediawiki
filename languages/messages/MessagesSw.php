@@ -1498,7 +1498,7 @@ Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
 'windows-nonascii-filename' => 'Wiki hii haiwezi kutumia majina ya mafaili yenye herufi maalumu.',
 'fileexists' => 'Faili lenye jina hili lipo tayari, tafadhali tazama <strong>[[:$1]]</strong> ikiwa una mashaka kuhusu kulibadilisha.
 [[$1|thumb]]',
-'filepageexists' => 'Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika <strong>[[:$1]]</strong>, lakini hakuna faili lenye jina hili kwa sasa.
+'filepageexists' => 'Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika <strong>[[:$1]]</strong>, lakini bado hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
 Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
 [[$1|thumb]]',
@@ -1510,7 +1510,7 @@ Tafadhali chagua jina lingine.',
 [[$1|thumb]]
 Tafadhali tazama faili la <strong>[[:$1]]</strong>.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
-'file-thumbnail-no' => "Jina la faili linaanza na <strong>$1</strong>.
+'file-thumbnail-no' => "Jina la faili linaloanza na <strong>$1</strong>.
 Inaonekana kuwa ni picha iliyopunguzwa ukubwa''(thumbnail)''.
 Ikiwa unaoyo picha hii kwa ukubwa wa kawaida tafadhali pakia picha hii, vinginevyo tafadhali badilisha jina la faili.",
 'fileexists-forbidden' => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
@@ -2568,6 +2568,9 @@ Tafadhali jaribu tena.',
 # Info page
 'pageinfo-title' => 'Taarifa juu ya "$1"',
 'pageinfo-header-edits' => 'Maharirio',
+'pageinfo-header-watchlist' => 'Maangalizi',
+'pageinfo-subjectpage' => 'Ukurasa',
+'pageinfo-talkpage' => 'Ukurasa wa majadiliano',
 'pageinfo-watchers' => 'Idadi ya wanaofuatilia',
 'pageinfo-edits' => 'Idadi ya haririo',
 

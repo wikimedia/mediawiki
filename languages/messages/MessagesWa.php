@@ -59,17 +59,11 @@ $specialPageAliases = array(
 	'Allpages'                  => array( 'Totes_les_pådjes' ),
 	'Block'                     => array( 'Bloker', 'Blocaedje' ),
 	'Categories'                => array( 'Categoreyes' ),
-	'Listusers'                 => array( 'Djivêye_des_uzeus' ),
-	'Log'                       => array( 'Djournå', 'Djournås' ),
 	'Preferences'               => array( 'Preferinces' ),
 	'Prefixindex'               => array( 'Indecse_pa_betchete' ),
 	'Search'                    => array( 'Cweri' ),
 	'Specialpages'              => array( 'Pådjes_sipeciåles' ),
 	'Statistics'                => array( 'Sitatistikes' ),
-	'Undelete'                  => array( 'Rapexhî' ),
-	'Upload'                    => array( 'Eberweter', 'Eberwetaedje' ),
-	'Userlogin'                 => array( 'Elodjaedje' ),
-	'Userlogout'                => array( 'Dislodjaedje' ),
 	'Version'                   => array( 'Modêye' ),
 	'Watchlist'                 => array( 'Pådjes_shuvowes' ),
 );
@@ -1982,10 +1976,14 @@ Dj' ô bén, ça permete di disfé l' candjmint et d' mete on messaedje dins l' 
 
 # Info page
 'pageinfo-title' => 'Infôrmåcion po «$1»',
-'pageinfo-views' => 'Nombe di lijhaedjes',
+'pageinfo-header-watchlist' => 'Djivêye des shuvous',
+'pageinfo-header-views' => 'Vuwes',
+'pageinfo-subjectpage' => 'Pådje',
+'pageinfo-talkpage' => 'Pådje di copene',
 'pageinfo-watchers' => 'Nombe di shuveus',
 'pageinfo-edits' => 'Nombe di candjmints',
 'pageinfo-authors' => "Nombe d' oteurs diferins",
+'pageinfo-views' => 'Nombe di lijhaedjes',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marké come patrouyî',

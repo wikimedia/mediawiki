@@ -21,8 +21,8 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../commandLine.inc' );
-$messagesDir = __DIR__ . '/../../languages/messages/';
+require_once( dirname( __FILE__ ) . '/../commandLine.inc' );
+$messagesDir = dirname( __FILE__ ) . '/../../languages/messages/';
 $runTest = false;
 $run = false;
 $runMode = 'text';

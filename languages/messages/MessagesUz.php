@@ -865,6 +865,9 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # Info page
 'pageinfo-title' => '"$1" sahifasi haqida maʼlumot',
 'pageinfo-header-edits' => 'Tahrirlar',
+'pageinfo-header-watchlist' => 'Kuzatuv roʻyxati',
+'pageinfo-subjectpage' => 'Sahifa:',
+'pageinfo-talkpage' => 'Munozara sahifasi',
 'pageinfo-watchers' => 'Kuzatuvchilar soni',
 'pageinfo-edits' => 'Tahrirlar soni',
 

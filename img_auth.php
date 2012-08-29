@@ -43,7 +43,7 @@ define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'core/includes/WebStart.php' );
 } else {
-	require ( __DIR__ . '/includes/WebStart.php' );
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
 wfProfileIn( 'img_auth.php' );
 
@@ -148,13 +148,13 @@ function wfForbidden( $msg1, $msg2 ) {
 	array_shift( $args );
 	array_shift( $args );
 
-	$msgHdr = wfMessage( $msg1 )->escaped();
+	$msgHdr = htmlspecialchars( wfMsg( $msg1 ) );
 	$detailMsgKey = $wgImgAuthDetails ? $msg2 : 'badaccess-group0';
-	$detailMsg = wfMessage( $detailMsgKey, $args )->escaped();
+	$detailMsg = htmlspecialchars( wfMsg( $detailMsgKey, $args ) );
 
 	wfDebugLog( 'img_auth',
-		"wfForbidden Hdr:" . wfMessage( $msg1 )->inLanguage( 'en' )->text() . " Msg: ".
-		wfMessage( $msg2, $args )->inLanguage( 'en' )->text()
+		"wfForbidden Hdr:" . wfMsgExt( $msg1, array( 'language' => 'en' ) ). " Msg: ".
+		wfMsgExt( $msg2, array( 'language' => 'en' ), $args )
 	);
 
 	header( 'HTTP/1.0 403 Forbidden' );

@@ -2933,10 +2933,15 @@ $1 को बाध्य करने का कारण है: "$2"',
 # Info page
 'pageinfo-title' => '"$1" के लिये जानकारी',
 'pageinfo-header-edits' => 'बदलने के लिये',
-'pageinfo-views' => 'दर्शाव की संख्या',
+'pageinfo-header-watchlist' => 'ध्यानसूची',
+'pageinfo-header-views' => 'दर्शाव',
+'pageinfo-subjectpage' => 'पृष्ठ',
+'pageinfo-talkpage' => 'वार्ता पृष्ठ',
 'pageinfo-watchers' => 'पर नजर रखने वालों की संख्या',
 'pageinfo-edits' => 'संपादन की संख्या',
 'pageinfo-authors' => 'अलग लेखकों की संख्या',
+'pageinfo-views' => 'दर्शाव की संख्या',
+'pageinfo-viewsperedit' => 'दर्शाव प्रति संपादन',
 
 # Patrolling
 'markaspatrolleddiff' => 'देख लिया ऐसा मार्क करें',

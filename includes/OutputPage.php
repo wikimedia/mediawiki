@@ -56,9 +56,9 @@ class OutputPage extends ContextSource {
 	/**
 	 * Holds the debug lines that will be output as comments in page source if
 	 * $wgDebugComments is enabled. See also $wgShowDebug.
-	 * @deprecated since 1.20; use MWDebug class instead.
+	 * TODO: make a getter method for this
 	 */
-	public $mDebugtext = '';
+	public $mDebugtext = ''; // TODO: we might want to replace it by wfDebug() wfDebugLog()
 
 	/// Should be private. Stores contents of "<title>" tag
 	var $mHTMLtitle = '';
@@ -1315,6 +1315,15 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Add $text to the debug output
+	 *
+	 * @param $text String: debug text
+	 */
+	public function debug( $text ) {
+		$this->mDebugtext .= $text;
+	}
+
+	/**
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
 	 * @param $options ParserOptions|null either the ParserOption to use or null to only get the
@@ -2027,6 +2036,10 @@ class OutputPage extends ContextSource {
 	 *                   based on $pageTitle
 	 */
 	public function prepareErrorPage( $pageTitle, $htmlTitle = false ) {
+		if ( $this->getTitle() ) {
+			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
+		}
+
 		$this->setPageTitle( $pageTitle );
 		if ( $htmlTitle !== false ) {
 			$this->setHTMLTitle( $htmlTitle );
@@ -2055,7 +2068,7 @@ class OutputPage extends ContextSource {
 			$title = $this->msg( $title );
 		}
 
-		$this->prepareErrorPage( $title );
+		$this->prepareErrorPage( $title, $this->msg( 'errorpagetitle' ) );
 
 		if ( $msg instanceof Message ){
 			$this->addHTML( $msg->parse() );

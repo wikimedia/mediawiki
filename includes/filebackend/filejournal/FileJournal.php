@@ -43,7 +43,7 @@ abstract class FileJournal {
 	 * Construct a new instance from configuration.
 	 * $config includes:
 	 *     'ttlDays' : days to keep log entries around (false means "forever")
-	 *
+	 * 
 	 * @param $config Array
 	 */
 	protected function __construct( array $config ) {
@@ -70,7 +70,7 @@ abstract class FileJournal {
 
 	/**
 	 * Get a statistically unique ID string
-	 *
+	 * 
 	 * @return string <9 char TS_MW timestamp in base 36><22 random base 36 chars>
 	 */
 	final public function getTimestampedUUID() {
@@ -89,7 +89,7 @@ abstract class FileJournal {
 	 *     path    : The storage path of the file
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 * Note that 'false' should be used as the SHA-1 for non-existing files.
-	 *
+	 * 
 	 * @param $entries Array List of file operations (each an array of parameters)
 	 * @param $batchId string UUID string that identifies the operation batch
 	 * @return Status
@@ -103,7 +103,7 @@ abstract class FileJournal {
 
 	/**
 	 * @see FileJournal::logChangeBatch()
-	 *
+	 * 
 	 * @param $entries Array List of file operations (each an array of parameters)
 	 * @param $batchId string UUID string that identifies the operation batch
 	 * @return Status
@@ -118,9 +118,9 @@ abstract class FileJournal {
 	 *     id         : unique, monotonic, ID for this change
 	 *     batch_uuid : UUID for an operation batch
 	 *     backend    : the backend name
-	 *     op         : primitive operation (create,update,delete,null)
+	 *     op         : primitive operation (create,update,delete)
 	 *     path       : affected storage path
-	 *     new_sha1   : base 36 sha1 of the new file had the operation succeeded
+	 *     path_sha1  : base 36 sha1 of the affected storage path
 	 *     timestamp  : TS_MW timestamp of the batch change
 
 	 * Also, $next is updated to the ID of the next entry.

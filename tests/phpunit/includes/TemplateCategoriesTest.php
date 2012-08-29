@@ -3,7 +3,7 @@
 /**
  * @group Database
  */
-require __DIR__ . "/../../../maintenance/runJobs.php";
+require dirname( __FILE__ ) . "/../../../maintenance/runJobs.php";
 
 class TemplateCategoriesTest extends MediaWikiLangTestCase {
 

@@ -2697,10 +2697,15 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 # Info page
 'pageinfo-title' => 'Inpormasi kanggo "$1"',
 'pageinfo-header-edits' => 'Suntingan',
-'pageinfo-views' => 'Cacahing delokan',
+'pageinfo-header-watchlist' => 'Daptar pangawasan',
+'pageinfo-header-views' => 'Delokan',
+'pageinfo-subjectpage' => 'Kaca',
+'pageinfo-talkpage' => 'Kaca guneman',
 'pageinfo-watchers' => 'Cacahing pangawas',
 'pageinfo-edits' => 'Cacahing suntingan',
 'pageinfo-authors' => 'Cacahing beda-beda panganggit',
+'pageinfo-views' => 'Cacahing delokan',
+'pageinfo-viewsperedit' => 'Delokan per suntingan',
 
 # Patrolling
 'markaspatrolleddiff' => 'Tandhanana wis dipatroli',

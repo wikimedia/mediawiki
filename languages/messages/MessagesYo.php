@@ -2619,10 +2619,15 @@ kò le yípò ojúewé padà sí ara rẹ̀.',
 # Info page
 'pageinfo-title' => 'Àròyé fún "$1"',
 'pageinfo-header-edits' => 'Àwọn àtúnṣe',
-'pageinfo-views' => 'Iye àwọn ìwò',
+'pageinfo-header-watchlist' => 'Ìmójútó',
+'pageinfo-header-views' => 'Àwọn ìwò',
+'pageinfo-subjectpage' => 'Ojúewé',
+'pageinfo-talkpage' => 'Ojúewé ọ̀rọ̀',
 'pageinfo-watchers' => 'Iye àwọn aláàbójúwò',
 'pageinfo-edits' => 'Iye àwọn àtúnṣe',
 'pageinfo-authors' => 'Iye àwọn olùdá ọ̀tọ̀ọ̀tọ̀',
+'pageinfo-views' => 'Iye àwọn ìwò',
+'pageinfo-viewsperedit' => 'Iye ìwò fún àtúnṣe kọ̀ọ̀kan',
 
 # Patrolling
 'markaspatrolleddiff' => 'Ìṣààmí sí bíi sísọ́',

@@ -22,7 +22,7 @@
  * @see wfWaitForSlaves()
  */
 
-require( __DIR__ . '/../commandLine.inc' );
+require( dirname( __FILE__ ) . '/../commandLine.inc' );
 
 
 if ( count( $args ) < 1 ) {
@@ -113,7 +113,7 @@ class TrackBlobs {
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ) );
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_orphans' ) );
 		}
-		$dbw->sourceFile( __DIR__ . '/blob_tracking.sql' );
+		$dbw->sourceFile( dirname( __FILE__ ) . '/blob_tracking.sql' );
 	}
 
 	function getTextClause() {

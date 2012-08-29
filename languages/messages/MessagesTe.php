@@ -128,13 +128,13 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                  => array( '0', '#దారిమార్పు', '#REDIRECT' ),
-	'notoc'                     => array( '0', '__విషయసూచికవద్దు__', '__NOTOC__' ),
-	'toc'                       => array( '0', '__విషయసూచిక__', '__TOC__' ),
-	'pagename'                  => array( '1', 'పేజీపేరు', 'PAGENAME' ),
-	'img_right'                 => array( '1', 'కుడి', 'right' ),
-	'img_left'                  => array( '1', 'ఎడమ', 'left' ),
-	'special'                   => array( '0', 'ప్రత్యేక', 'special' ),
+	'redirect'                => array( '0', '#దారిమార్పు', '#REDIRECT' ),
+	'notoc'                   => array( '0', '__విషయసూచికవద్దు__', '__NOTOC__' ),
+	'toc'                     => array( '0', '__విషయసూచిక__', '__TOC__' ),
+	'pagename'                => array( '1', 'పేజీపేరు', 'PAGENAME' ),
+	'img_right'               => array( '1', 'కుడి', 'right' ),
+	'img_left'                => array( '1', 'ఎడమ', 'left' ),
+	'special'                 => array( '0', 'ప్రత్యేక', 'special' ),
 );
 
 $linkTrail = "/^([\xE0\xB0\x81-\xE0\xB1\xAF]+)(.*)$/sDu";
@@ -2733,10 +2733,15 @@ $UNWATCHURL కి వెళ్ళండి.
 
 # Info page
 'pageinfo-title' => '"$1" గురించి సమాచారం',
-'pageinfo-header-edits' => 'మార్పుల చరిత్ర',
+'pageinfo-header-edits' => 'మార్పులు',
+'pageinfo-header-watchlist' => 'వీక్షణ జాబితా',
+'pageinfo-header-views' => 'వీక్షణలు',
+'pageinfo-subjectpage' => 'పుట',
+'pageinfo-talkpage' => 'చర్చా పేజీ',
+'pageinfo-watchers' => 'వీక్షకుల సంఖ్య',
+'pageinfo-edits' => 'మార్పుల సంఖ్య',
 'pageinfo-views' => 'వీక్షణల సంఖ్య',
-'pageinfo-watchers' => 'పేజీ వీక్షకుల సంఖ్య',
-'pageinfo-edits' => 'మొత్తం మార్పుల సంఖ్య',
+'pageinfo-viewsperedit' => 'ఒక మార్పుకి వీక్షణలు',
 
 # Skin names
 'skinname-standard' => 'సంప్రదాయ',

@@ -43,7 +43,7 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'core/includes/WebStart.php' );
 } else {
-	require ( __DIR__ . '/includes/WebStart.php' );
+	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
 
 wfProfileIn( 'api.php' );

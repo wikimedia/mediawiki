@@ -18,31 +18,31 @@ class LanguageHeTest extends MediaWikiTestCase {
 
 	/** @dataProvider providerPluralDual */
 	function testPluralDual( $result, $value ) {
-		$forms = array( 'one', 'two', 'other' );
+		$forms = array( 'one', 'many', 'two' );
 		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
 	}
 
 	function providerPluralDual() {
 		return array (
-			array( 'other', 0 ), // Zero -> plural
+			array( 'many', 0 ), // Zero -> plural
 			array( 'one', 1 ), // Singular
 			array( 'two', 2 ), // Dual
-			array( 'other', 3 ), // Plural
+			array( 'many', 3 ), // Plural
 		);
 	}
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
-		$forms = array( 'one', 'other' );
+		$forms = array( 'one', 'many' );
 		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {
 		return array (
-			array( 'other', 0 ), // Zero -> plural
+			array( 'many', 0 ), // Zero -> plural
 			array( 'one', 1 ), // Singular
-			array( 'other', 2 ), // Plural, no dual provided
-			array( 'other', 3 ), // Plural
+			array( 'many', 2 ), // Plural, no dual provided
+			array( 'many', 3 ), // Plural
 		);
 	}
 }

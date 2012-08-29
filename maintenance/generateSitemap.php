@@ -26,7 +26,7 @@
  * @see http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 /**
  * Maintenance script that generates a sitemap for the site.

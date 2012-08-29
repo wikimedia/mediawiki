@@ -1230,7 +1230,7 @@ class Parser {
 				throw new MWException( __METHOD__.': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
-			$url = wfMessage( $urlmsg, $id )->inContentLanguage()->text();
+			$url = wfMsgForContent( $urlmsg, $id );
 			return Linker::makeExternalLink( $url, "{$keyword} {$id}", true, $CssClass );
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN
@@ -1522,9 +1522,6 @@ class Parser {
 		wfProfileIn( __METHOD__ );
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
-		if ( $bits === false ) {
-			throw new MWException( "PCRE needs to be compiled with --enable-unicode-properties in order for MediaWiki to function" );
-		}
 		$s = array_shift( $bits );
 
 		$i = 0;
@@ -1687,7 +1684,7 @@ class Parser {
 		}
 		if ( !$text && $this->mOptions->getEnableImageWhitelist()
 			 && preg_match( self::EXT_IMAGE_REGEX, $url ) ) {
-			$whitelist = explode( "\n", wfMessage( 'external_image_whitelist' )->inContentLanguage()->text() );
+			$whitelist = explode( "\n", wfMsgForContent( 'external_image_whitelist' ) );
 			foreach ( $whitelist as $entry ) {
 				# Sanitize the regex fragment, make it case-insensitive, ignore blank entries/comments
 				if ( strpos( $entry, '#' ) === 0 || $entry === '' ) {
@@ -1752,7 +1749,7 @@ class Parser {
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
 			# e.g. in the case of 'The Arab al[[Razi]]', 'al' will be matched
-			$e2 = wfMessage( 'linkprefix' )->inContentLanguage()->text();
+			$e2 = wfMsgForContent( 'linkprefix' );
 		}
 
 		if ( is_null( $this->mTitle ) ) {
@@ -3087,10 +3084,9 @@ class Parser {
 	 * @param $max int|null Maximum allowed, when an explicit limit has been
 	 *	 exceeded, provide the values (optional)
 	 */
-	function limitationWarn( $limitationType, $current = '', $max = '' ) {
+	function limitationWarn( $limitationType, $current = null, $max = null) {
 		# does no harm if $current and $max are present but are unnecessary for the message
-		$warning = wfMessage( "$limitationType-warning" )->numParams( $current, $max )
-			->inContentLanguage()->escaped();
+		$warning = wfMsgExt( "$limitationType-warning", array( 'parsemag', 'escape' ), $current, $max );
 		$this->mOutput->addWarning( $warning );
 		$this->addTrackingCategory( "$limitationType-category" );
 	}
@@ -3295,8 +3291,7 @@ class Parser {
 				if ( $frame->depth >= $limit ) {
 					$found = true;
 					$text = '<span class="error">'
-						. wfMessage( 'parser-template-recursion-depth-warning' )
-							->numParams( $limit )->inContentLanguage()->text()
+						. wfMsgForContent( 'parser-template-recursion-depth-warning', $limit )
 						. '</span>';
 				}
 			}
@@ -3376,9 +3371,7 @@ class Parser {
 			# This has to be done after redirect resolution to avoid infinite loops via redirects
 			if ( !$frame->loopCheck( $title ) ) {
 				$found = true;
-				$text = '<span class="error">'
-					. wfMessage( 'parser-template-loop-warning', $titleText )->inContentLanguage()->text()
-					. '</span>';
+				$text = '<span class="error">' . wfMsgForContent( 'parser-template-loop-warning', $titleText ) . '</span>';
 				wfDebug( __METHOD__.": template loop broken at '$titleText'\n" );
 			}
 			wfProfileOut( __METHOD__ . '-loadtpl' );
@@ -3675,13 +3668,13 @@ class Parser {
 		global $wgEnableScaryTranscluding;
 
 		if ( !$wgEnableScaryTranscluding ) {
-			return wfMessage('scarytranscludedisabled')->inContentLanguage()->text();
+			return wfMsgForContent('scarytranscludedisabled');
 		}
 
 		$url = $title->getFullUrl( "action=$action" );
 
 		if ( strlen( $url ) > 255 ) {
-			return wfMessage( 'scarytranscludetoolong' )->inContentLanguage()->text();
+			return wfMsgForContent( 'scarytranscludetoolong' );
 		}
 		return $this->fetchScaryTemplateMaybeFromCache( $url );
 	}
@@ -3702,7 +3695,7 @@ class Parser {
 
 		$text = Http::get( $url );
 		if ( !$text ) {
-			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
+			return wfMsgForContent( 'scarytranscludefailed', $url );
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -4427,7 +4420,7 @@ class Parser {
 		$text = $this->replaceVariables( $text );
 
 		# This works almost by chance, as the replaceVariables are done before the getUserSig(),
-		# which may corrupt this parser instance via its wfMessage()->text() call-
+		# which may corrupt this parser instance via its wfMsgExt( parsemag ) call-
 
 		# Signatures
 		$sigText = $this->getUserSig( $user );
@@ -4970,7 +4963,7 @@ class Parser {
 				'vertAlign' => array( 'baseline', 'sub', 'super', 'top', 'text-top', 'middle',
 					'bottom', 'text-bottom' ),
 				'frame' => array( 'thumbnail', 'manualthumb', 'framed', 'frameless',
-					'upright', 'border', 'link', 'alt', 'class' ),
+					'upright', 'border', 'link', 'alt' ),
 			);
 			static $internalParamMap;
 			if ( !$internalParamMap ) {
@@ -5020,7 +5013,6 @@ class Parser {
 		#  * upright    reduce width for upright images, rounded to full __0 px
 		#  * border     draw a 1px border around the image
 		#  * alt        Text for HTML alt attribute (defaults to empty)
-		#  * class      Set a class for img node
 		#  * link       Set the target of the image link. Can be external, interwiki, or local
 		# vertical-align values (no % or length right now):
 		#  * baseline
@@ -5089,7 +5081,6 @@ class Parser {
 						switch( $paramName ) {
 						case 'manualthumb':
 						case 'alt':
-						case 'class':
 							# @todo FIXME: Possibly check validity here for
 							# manualthumb? downstream behavior seems odd with
 							# missing manual thumbs.

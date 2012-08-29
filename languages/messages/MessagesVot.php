@@ -832,6 +832,9 @@ Että või muuttaa cülcia, mutta võittõ kattsoa sene lähtekoodi.',
 Toož, võittõ tširjutta väänteüssee süü.',
 'tooltip-summary' => 'Turvotuz',
 
+# Info page
+'pageinfo-subjectpage' => 'Cülci',
+
 # Browsing diffs
 'previousdiff' => '← Vanõpi muutuz',
 'nextdiff' => 'Uuvvõpi muutuz →',

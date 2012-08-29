@@ -3,7 +3,7 @@
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$wgNoDBParam = true;
 	$optionsWithArgs = array( 'o' );
-	require_once( __DIR__ .'/../maintenance/commandLine.inc' );
+	require_once( dirname(__FILE__).'/../maintenance/commandLine.inc' );
 
 	$stderr = fopen( 'php://stderr', 'w' );
 	if ( !isset( $args[0] ) ) {

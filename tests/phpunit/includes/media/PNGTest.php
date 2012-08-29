@@ -2,7 +2,7 @@
 class PNGHandlerTest extends MediaWikiTestCase {
 
 	public function setUp() {
-		$this->filePath = __DIR__ .  '/../../data/media';
+		$this->filePath = dirname( __FILE__ ) .  '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name'           => 'localtesting',
 			'lockManager'    => 'nullLockManager',

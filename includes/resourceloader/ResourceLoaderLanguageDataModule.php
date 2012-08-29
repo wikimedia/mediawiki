@@ -29,21 +29,12 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 	protected $language;
 	/**
-	 * Get the grammar forms for the site content language.
+	 * Get the grammer forms for the site content language.
 	 *
 	 * @return array
 	 */
 	protected function getSiteLangGrammarForms() {
 		return $this->language->getGrammarForms();
-	}
-
-	/**
-	 * Get the plural forms for the site content language.
-	 *
-	 * @return array
-	 */
-	protected function getPluralRules() {
-		return $this->language->getPluralRules();
 	}
 
 	/**
@@ -70,19 +61,17 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 * @return array
 	 */
 	protected function getData() {
-		return array(
-			'digitTransformTable' => $this->getDigitTransformTable(),
-			'grammarForms' => $this->getSiteLangGrammarForms(),
-			'pluralRules' => $this->getPluralRules(),
-		);
+		return array( 'grammarForms' => $this->getSiteLangGrammarForms(),
+				'digitTransformTable' => $this->getDigitTransformTable()
+			);
 	}
 
 	/**
 	 * @param $context ResourceLoaderContext
-	 * @return string: JavaScript code
+	 * @return string: Javascript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$this->language = Language::factory( $context->getLanguage() );
+		$this->language = Language::factory( $context ->getLanguage() );
 		return Xml::encodeJsCall( 'mw.language.setData', array(
 			$this->language->getCode(),
 			$this->getData()

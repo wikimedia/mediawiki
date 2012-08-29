@@ -39,33 +39,27 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	function providerSvgFiles() {
-		$base = __DIR__ . '/../../data/media';
+		$base = dirname( __FILE__ ) . '/../../data/media';
 		return array(
 			array(
 				"$base/Wikimedia-logo.svg",
 				array(
 					'width' => 1024,
-					'height' => 1024,
-					'originalWidth' => '1024',
-					'originalHeight' => '1024',
+					'height' => 1024
 				)
 			),
 			array(
 				"$base/QA_icon.svg",
 				array(
 					'width' => 60,
-					'height' => 60,
-					'originalWidth' => '60',
-					'originalHeight' => '60',
+					'height' => 60
 				)
 			),
 			array(
 				"$base/Gtk-media-play-ltr.svg",
 				array(
 					'width' => 60,
-					'height' => 60,
-					'originalWidth' => '60.0000000',
-					'originalHeight' => '60.0000000',
+					'height' => 60
 				)
 			),
 			array(
@@ -73,16 +67,14 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 				// This file triggered bug 31719, needs entity expansion in the xmlns checks
 				array(
 					'width' => 385,
-					'height' => 385,
-					'originalWidth' => '385',
-					'originalHeight' => '385.0004883',
+					'height' => 385
 				)
 			)
 		);
 	}
 
 	function providerSvgFilesWithXMLMetadata() {
-		$base = __DIR__ . '/../../data/media';
+		$base = dirname( __FILE__ ) . '/../../data/media';
 		$metadata = 
     '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <ns4:Work xmlns:ns4="http://creativecommons.org/ns#" rdf:about="">
@@ -97,9 +89,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 				array(
 					'height' => 593,
 					'metadata' => $metadata,
-					'width' => 959,
-					'originalWidth' => '958.69',
-					'originalHeight' => '592.78998',
+					'width' => 959
 				)
 			),
 		);

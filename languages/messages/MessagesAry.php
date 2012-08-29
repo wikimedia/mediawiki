@@ -2128,10 +2128,15 @@ Imken lek ṫċof l-ĝin dyalha.',
 # Info page
 'pageinfo-title' => 'mĝlomaṫ l-"$1"',
 'pageinfo-header-edits' => 'ṫĝdilaṫ',
-'pageinfo-views' => 'ĝadad l-moċahadaṫ',
+'pageinfo-header-watchlist' => "qa'imaṫ l-ṃoṛaqaba",
+'pageinfo-header-views' => 'moċahadaṫ',
+'pageinfo-subjectpage' => 'ṣfḫa',
+'pageinfo-talkpage' => 'ṣfḫṫ n-niqaċ',
 'pageinfo-watchers' => 'ĝadad l-moraqibin',
 'pageinfo-edits' => 'ĝadad ṫ-ṫĝdilaṫ',
 'pageinfo-authors' => "ĝadad l-mo'llifin l-mĥṫalfin",
+'pageinfo-views' => 'ĝadad l-moċahadaṫ',
+'pageinfo-viewsperedit' => 'l-moċahadaĝ l-koll ṫĝdil',
 
 # Patrolling
 'markaspatrolleddiff' => 'marki kamorajaaa',
