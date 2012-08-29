@@ -645,7 +645,7 @@ class DatabaseSqlite extends DatabaseBase {
 		return false;
 	}
 
-	function begin( $fname = '' ) {
+	protected function doBegin( $fname = '' ) {
 		if ( $this->mTrxLevel == 1 ) {
 			$this->commit( __METHOD__ );
 		}
@@ -653,7 +653,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->mTrxLevel = 1;
 	}
 
-	function commit( $fname = '' ) {
+	protected function doCommit( $fname = '' ) {
 		if ( $this->mTrxLevel == 0 ) {
 			return;
 		}
@@ -661,7 +661,7 @@ class DatabaseSqlite extends DatabaseBase {
 		$this->mTrxLevel = 0;
 	}
 
-	function rollback( $fname = '' ) {
+	protected function doRollback( $fname = '' ) {
 		if ( $this->mTrxLevel == 0 ) {
 			return;
 		}
