@@ -3735,6 +3735,7 @@ This is probably caused by a link to a blacklisted external site.',
 'spam_deleting'       => 'All revisions contained links to $1, deleting',
 
 # Info page
+'pageinfo-header'              => '-', # do not translate or duplicate this message to other languages
 'pageinfo-title'               => 'Information for "$1"',
 'pageinfo-header-basic'        => 'Basic information',
 'pageinfo-header-edits'        => 'Edit history',
@@ -3765,6 +3766,7 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-magic-words'         => 'Magic {{PLURAL:$1|word|words}} ($1)',
 'pageinfo-hidden-categories'   => 'Hidden {{PLURAL:$1|category|categories}} ($1)',
 'pageinfo-templates'           => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
+'pageinfo-footer'              => '-', # do not translate or duplicate this message to other languages
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it

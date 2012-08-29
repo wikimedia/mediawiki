@@ -3455,6 +3455,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 * $1 is a spammed domain name.',
 
 # Info page
+'pageinfo-header' => 'Header for action=info, set by wiki administrator(s).',
 'pageinfo-title' => 'Page title for action=info. Parameters:
 * $1 is the page name',
 'pageinfo-header-basic' => 'Table section header in action=info.',
@@ -3494,6 +3495,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
+'pageinfo-footer' => 'Footer for action=info, set by wiki administrator(s).',
 
 # Skin names
 'skinname-standard' => '{{optional}}

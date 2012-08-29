@@ -2664,6 +2664,7 @@ $wgMessageStructure = array(
 		'spam_deleting',
 	),
 	'info' => array(
+		'pageinfo-header',
 		'pageinfo-title',
 		'pageinfo-header-basic',
 		'pageinfo-header-edits',
@@ -2694,6 +2695,7 @@ $wgMessageStructure = array(
 		'pageinfo-magic-words',
 		'pageinfo-hidden-categories',
 		'pageinfo-templates',
+		'pageinfo-footer',
 	),
 	'skin' => array(
 		'skinname-standard',
