@@ -15,6 +15,7 @@ production.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname' instead
 
 === New features in 1.21 ===
+* (bug 34876) jquery.makeCollapsible has been improved in performance.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
