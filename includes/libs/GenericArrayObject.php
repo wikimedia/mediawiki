@@ -142,11 +142,11 @@ abstract class GenericArrayObject extends ArrayObject {
 	 * @param mixed $index
 	 * @param mixed $value
 	 *
-	 * @throws Exception
+	 * @throws InvalidArgumentException
 	 */
 	protected function setElement( $index, $value ) {
 		if ( !$this->hasValidType( $value ) ) {
-			throw new Exception(
+			throw new InvalidArgumentException(
 				'Can only add ' . $this->getObjectType() . ' implementing objects to ' . get_called_class() . '.'
 			);
 		}

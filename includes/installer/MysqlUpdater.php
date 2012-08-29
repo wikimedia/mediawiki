@@ -240,9 +240,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( in_array( 'binary', $flags ) ) {
 			$this->output( "...$table table has correct $field encoding.\n" );
 		} else {
-			$this->output( "Fixing $field encoding on $table table... " );
-			$this->applyPatch( $patchFile );
-			$this->output( "done.\n" );
+			$this->applyPatch( $patchFile, false, "Fixing $field encoding on $table table" );
 		}
 	}
 
@@ -279,12 +277,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( 'Creating interwiki table...' );
-		$this->applyPatch( 'patch-interwiki.sql' );
-		$this->output( "done.\n" );
-		$this->output( 'Adding default interwiki definitions...' );
-		$this->applyPatch( "$IP/maintenance/interwiki.sql", true );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-interwiki.sql', false, 'Creating interwiki table' );
+		$this->applyPatch( "$IP/maintenance/interwiki.sql", true, 'Adding default interwiki definitions' );
 	}
 
 	/**
@@ -300,9 +294,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Updating indexes to 20031107..." );
-		$this->applyPatch( 'patch-indexes.sql', true );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-indexes.sql', true, "Updating indexes to 20031107" );
 	}
 
 	protected function doOldLinksUpdate() {
@@ -317,10 +309,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Fixing ancient broken imagelinks table.\n" );
-		$this->output( "NOTE: you will have to run maintenance/refreshLinks.php after this.\n" );
-		$this->applyPatch( 'patch-fix-il_from.sql' );
-		$this->output( "done.\n" );
+		if( $this->applyPatch( 'patch-fix-il_from.sql', false, "Fixing ancient broken imagelinks table." ) ) {
+			$this->output("NOTE: you will have to run maintenance/refreshLinks.php after this." );
+		}
 	}
 
 	/**
@@ -542,9 +533,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Converting links and brokenlinks tables to pagelinks... " );
-		$this->applyPatch( 'patch-pagelinks.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-pagelinks.sql', false, "Converting links and brokenlinks tables to pagelinks" );
 
 		global $wgContLang;
 		foreach ( MWNamespace::getCanonicalNamespaces() as $ns => $name ) {
@@ -580,9 +569,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( !$duper->clearDupes() ) {
 			$this->output( "WARNING: This next step will probably fail due to unfixed duplicates...\n" );
 		}
-		$this->output( "Adding unique index on user_name... " );
-		$this->applyPatch( 'patch-user_nameindex.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-user_nameindex.sql', false, "Adding unique index on user_name" );
 	}
 
 	protected function doUserGroupsUpdate() {
@@ -595,9 +582,7 @@ class MysqlUpdater extends DatabaseUpdater {
 				$this->db->query( "ALTER TABLE $oldug RENAME TO $newug", __METHOD__ );
 				$this->output( "done.\n" );
 
-				$this->output( "Re-adding fresh user_groups table... " );
-				$this->applyPatch( 'patch-user_groups.sql' );
-				$this->output( "done.\n" );
+				$this->applyPatch( 'patch-user_groups.sql', false, "Re-adding fresh user_groups table" );
 
 				$this->output( "***\n" );
 				$this->output( "*** WARNING: You will need to manually fix up user permissions in the user_groups\n" );
@@ -609,15 +594,11 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Adding user_groups table... " );
-		$this->applyPatch( 'patch-user_groups.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-user_groups.sql', false, "Adding user_groups table" );
 
 		if ( !$this->db->tableExists( 'user_rights', __METHOD__ ) ) {
 			if ( $this->db->fieldExists( 'user', 'user_rights', __METHOD__ ) ) {
-				$this->output( "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion..." );
-				$this->db->applyPatch( 'patch-user_rights.sql' );
-				$this->output( "done.\n" );
+				$this->db->applyPatch( 'patch-user_rights.sql', false, "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion" );
 			} else {
 				$this->output( "*** WARNING: couldn't locate user_rights table or field for upgrade.\n" );
 				$this->output( "*** You may need to manually configure some sysops by manipulating\n" );
@@ -659,9 +640,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Making wl_notificationtimestamp nullable... " );
-		$this->applyPatch( 'patch-watchlist-null.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-watchlist-null.sql', false, "Making wl_notificationtimestamp nullable" );
 	}
 
 	/**
@@ -687,8 +666,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Creating templatelinks table...\n" );
-		$this->applyPatch( 'patch-templatelinks.sql' );
+		$this->applyPatch( 'patch-templatelinks.sql', false, "Creating templatelinks table" );
+
 		$this->output( "Populating...\n" );
 		if ( wfGetLB()->getServerCount() > 1 ) {
 			// Slow, replication-friendly update
@@ -729,8 +708,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			!$this->indexHasField( 'templatelinks', 'tl_namespace', 'tl_from' ) ||
 			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' ) )
 		{
-			$this->applyPatch( 'patch-backlinkindexes.sql' );
-			$this->output( "...backlinking indices updated\n" );
+			$this->applyPatch( 'patch-backlinkindexes.sql', false, "Updating backlinking indices" );
 		}
 	}
 
@@ -745,9 +723,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Creating page_restrictions table..." );
-		$this->applyPatch( 'patch-page_restrictions.sql' );
-		$this->applyPatch( 'patch-page_restrictions_sortkey.sql' );
+		$this->applyPatch( 'patch-page_restrictions.sql', false, "Creating page_restrictions table (1/2)" );
+		$this->applyPatch( 'patch-page_restrictions_sortkey.sql', false, "Creating page_restrictions table (2/2)" );
 		$this->output( "done.\n" );
 
 		$this->output( "Migrating old restrictions to new table...\n" );
@@ -757,8 +734,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doCategorylinksIndicesUpdate() {
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
-			$this->applyPatch( 'patch-categorylinksindex.sql' );
-			$this->output( "...categorylinks indices updated\n" );
+			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
 		}
 	}
 
@@ -797,18 +773,14 @@ class MysqlUpdater extends DatabaseUpdater {
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
 		} else {
-			$this->output( "Adding pf_memory field to table profiling..." );
-			$this->applyPatch( 'patch-profiling-memory.sql' );
-			$this->output( "done.\n" );
+			$this->applyPatch( 'patch-profiling-memory.sql', false, "Adding pf_memory field to table profiling" );
 		}
 	}
 
 	protected function doFilearchiveIndicesUpdate() {
 		$info = $this->db->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
 		if ( !$info ) {
-			$this->output( "Updating filearchive indices..." );
-			$this->applyPatch( 'patch-filearchive-user-index.sql' );
-			$this->output( "done.\n" );
+			$this->applyPatch( 'patch-filearchive-user-index.sql', false, "Updating filearchive indices" );
 		}
 	}
 
@@ -819,9 +791,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Making pl_namespace, tl_namespace and il_to indices UNIQUE... " );
-		$this->applyPatch( 'patch-pl-tl-il-unique.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-pl-tl-il-unique.sql', false, "Making pl_namespace, tl_namespace and il_to indices UNIQUE" );
 	}
 
 	protected function renameEuWikiId() {
@@ -830,9 +800,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Renaming eu_wiki_id -> eu_local_id... " );
-		$this->applyPatch( 'patch-eu_local_id.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-eu_local_id.sql', false, "Renaming eu_wiki_id -> eu_local_id" );
 	}
 
 	protected function doUpdateMimeMinorField() {
@@ -841,9 +809,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Altering all *_mime_minor fields to 100 bytes in size ... " );
-		$this->applyPatch( 'patch-mime_minor_length.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-mime_minor_length.sql', false, "Altering all *_mime_minor fields to 100 bytes in size" );
 	}
 
 	protected function doClFieldsUpdate() {
@@ -852,9 +818,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( 'Updating categorylinks (again)...' );
-		$this->applyPatch( 'patch-categorylinks-better-collation2.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-categorylinks-better-collation2.sql', false, 'Updating categorylinks (again)' );
 	}
 
 	protected function doLangLinksLengthUpdate() {
@@ -863,9 +827,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$row = $this->db->fetchObject( $res );
 
 		if ( $row && $row->Type == "varbinary(10)" ) {
-			$this->output( 'Updating length of ll_lang in langlinks...' );
-			$this->applyPatch( 'patch-langlinks-ll_lang-20.sql' );
-			$this->output( "done.\n" );
+			$this->applyPatch( 'patch-langlinks-ll_lang-20.sql', false, 'Updating length of ll_lang in langlinks' );
 		} else {
 			$this->output( "...ll_lang is up-to-date.\n" );
 		}
@@ -878,8 +840,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			return;
 		}
 
-		$this->output( "Making user_last_timestamp nullable... " );
-		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
-		$this->output( "done.\n" );
+		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql', false, "Making user_last_timestamp nullable" );
 	}
 }

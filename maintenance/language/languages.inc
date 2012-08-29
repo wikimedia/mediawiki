@@ -46,7 +46,7 @@ class languages {
 	 * @param $exif bool Treat the EXIF messages?
 	 */
 	function __construct( $exif = true ) {
-		require( dirname(__FILE__) . '/messageTypes.inc' );
+		require( __DIR__ . '/messageTypes.inc' );
 		$this->mIgnoredMessages = $wgIgnoredMessages;
 		if ( $exif ) {
 			$this->mOptionalMessages = array_merge( $wgOptionalMessages );

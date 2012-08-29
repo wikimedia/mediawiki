@@ -15,22 +15,21 @@
 $fallback = 'gan-hant, zh-hant, zh-hans';
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Special',
-	NS_TALK             => 'Talk',
-	NS_USER             => 'User',
-	NS_USER_TALK        => 'User_talk',
-	NS_PROJECT_TALK     => '$1_talk',
-	NS_FILE             => 'File',
-	NS_FILE_TALK        => 'File_talk',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
-	NS_TEMPLATE         => 'Template',
-	NS_TEMPLATE_TALK    => 'Template_talk',
-	NS_HELP             => 'Help',
-	NS_HELP_TALK        => 'Help_talk',
-	NS_CATEGORY         => 'Category',
-	NS_CATEGORY_TALK    => 'Category_talk',
+	NS_MEDIA            => '媒體',
+	NS_SPECIAL          => '特別',
+	NS_TALK             => '談詑',
+	NS_USER             => '用戶',
+	NS_USER_TALK        => '用戶・談詑',
+	NS_PROJECT_TALK     => '$1_談詑',
+	NS_FILE             => '文檔',
+	NS_FILE_TALK        => '文檔・談詑',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki・談詑',
+	NS_TEMPLATE         => '模板',
+	NS_TEMPLATE_TALK    => '模板・談詑',
+	NS_HELP             => '幫助',
+	NS_HELP_TALK        => '幫助・談詑',
+	NS_CATEGORY         => '分類',
+	NS_CATEGORY_TALK    => '分類・談詑',
 );
 
 $messages = array(

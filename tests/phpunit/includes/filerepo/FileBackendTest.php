@@ -1150,26 +1150,6 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->tearDownFiles();
 		$this->doTestDoOperations();
 		$this->tearDownFiles();
-
-		$this->backend = $this->singleBackend;
-		$this->tearDownFiles();
-		$this->doTestDoOperations2();
-		$this->tearDownFiles();
-
-		$this->backend = $this->multiBackend;
-		$this->tearDownFiles();
-		$this->doTestDoOperations2();
-		$this->tearDownFiles();
-
-		$this->backend = $this->singleBackend;
-		$this->tearDownFiles();
-		$this->doTestDoOperationsFailing();
-		$this->tearDownFiles();
-
-		$this->backend = $this->multiBackend;
-		$this->tearDownFiles();
-		$this->doTestDoOperationsFailing();
-		$this->tearDownFiles();
 	}
 
 	private function doTestDoOperations() {
@@ -1245,8 +1225,20 @@ class FileBackendTest extends MediaWikiTestCase {
 			"Correct file SHA-1 of $fileC" );
 	}
 
+	public function testDoOperationsPipeline() {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperationsPipeline();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperationsPipeline();
+		$this->tearDownFiles();
+	}
+
 	// concurrency orientated
-	private function doTestDoOperations2() {
+	private function doTestDoOperationsPipeline() {
 		$base = $this->baseStorePath();
 
 		$fileAContents = '3tqtmoeatmn4wg4qe-mg3qt3 tq';
@@ -1330,6 +1322,18 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->assertEquals( wfBaseConvert( sha1( $fileBContents ), 16, 36, 31 ),
 			$this->backend->getFileSha1Base36( array( 'src' => $fileC ) ),
 			"Correct file SHA-1 of $fileC" );
+	}
+
+	public function testDoOperationsFailing() {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperationsFailing();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestDoOperationsFailing();
+		$this->tearDownFiles();
 	}
 
 	private function doTestDoOperationsFailing() {

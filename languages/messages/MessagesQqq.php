@@ -73,6 +73,7 @@
  * @author Metalhead64
  * @author MichaelFrey
  * @author Mihai
+ * @author Minh Nguyen
  * @author Mormegil
  * @author Mpradeep
  * @author Murma174
@@ -132,6 +133,7 @@
  * @author Yyy
  * @author Žekřil71pl
  * @author פוילישער
+ * @author 아라
  */
 
 $messages = array(
@@ -2219,6 +2221,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 * {{msg-mw|sharedupload}}, {{msg-mw|sharedupload-desc-here}}, {{msg-mw|sharedupload-desc-there}}',
 'shared-repo-name-wikimediacommons' => '{{optional}}',
 'filepage.css' => '{{Optional}}',
+'upload-disallowed-here' => 'This message appears on an image page in place of the normal reupload link if they cannot upload - e.g. if the image page is upload protected and they do not have the right priviledge.',
 
 # File reversion
 'filerevert' => '{{Identical|Revert}}',
@@ -2567,10 +2570,10 @@ Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newuse
 'listgrouprights-helppage' => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
 'listgrouprights-members' => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
 'listgrouprights-right-display' => "{{optional}}
-* $1 is the text from the 'right-...' messages, i.e. [[MediaWiki:right-edit]] = {{int:right-edit}}
+* $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
 * $2 is the codename of this right",
 'listgrouprights-right-revoked' => "{{optional}}
-* $1 is the text from the 'right-...' messages, i.e. [[MediaWiki:right-edit]] = {{int:right-edit}}
+* $1 is the text from the 'right-...' messages, i.e. {{msg-mw|right-edit}}
 * $2 is the codename of this right",
 'listgrouprights-addgroup' => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 is an enumeration of group names.
@@ -2740,8 +2743,9 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 'rollback' => '{{Identical|Rollback}}',
 'rollback_short' => '{{Identical|Rollback}}',
 'rollbacklink' => '{{Identical|Rollback}}
+This link text appears on the recent changes page to users who have the "rollback" right.  It is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.
 This message has a tooltip {{msg-mw|tooltip-rollback}}',
-'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. See also {{msg-mw|rollbacklink}}.
+'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. This link is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.  See also {{msg-mw|rollbacklink}}.
 * $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.',
 'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
 
@@ -3464,7 +3468,9 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
 'pageinfo-length' => 'The length of the page, in bytes.',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
-'pageinfo-robot-policy' => 'The search engine status of the page.',
+'pageinfo-robot-policy' => 'The search engine status of the page, e.g. "marked as index".',
+'pageinfo-robot-index' => 'An indication that the page is indexable.',
+'pageinfo-robot-noindex' => 'An indication that the page is not indexable.',
 'pageinfo-views' => 'The number of times the page has been viewed.',
 'pageinfo-watchers' => 'The number of users watching the page.',
 'pageinfo-redirects-name' => 'The number of redirects to the page.',
@@ -3481,10 +3487,10 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-lasttime' => 'The date and time the page was last edited.',
 'pageinfo-edits' => 'The total number of times the page has been edited.',
 'pageinfo-authors' => 'The total number of users who have edited the page.',
-'pageinfo-recent-edits' => 'The number of times the page has been edited recently.',
+'pageinfo-recent-edits' => 'The number of times the page has been edited recently. $1 is a localised duration (e.g. 9 days).',
 'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
 'pageinfo-restriction' => 'Parameters:
-* $1 is the type of page protection.',
+* $1 is the type of page protection (message restriction-$type, preferably in lowercase). If your language doesn\'t have small and capital letters, you can simply write <nowiki><code>$1</code></nowiki>.',
 'pageinfo-magic-words' => 'The list of magic words on the page. Parameters:
 * $1 is the number of magic words on the page.',
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
@@ -3543,7 +3549,12 @@ Parameters:
 * $4 is the MIME type, a formalized textual information — for example: <code>image/jpeg</code>
 * $5 is the total number of pages in the document.',
 'file-nohires' => 'File info displayed on file description page. For example of message in use see [[:File:Mouse10.gif]].',
-'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].',
+'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].
+
+Start with a lowercase letter, unless the first word is “SVG”.',
+'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}. $1 is width, $2 is height, and $3 is file size, including unit (for example "10 KB").
+
+Start with a lowercase letter, unless the first word is “SVG”.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-size' => '
 Parameters:
@@ -3558,6 +3569,8 @@ Parameters:
 The variable $1 is the number of individual frames in an animated gif file.
 
 For example of message in use see [[:File:Mouse10.gif]].',
+'file-no-thumb-animation' => 'We cannot animate thumbnails of this file. This notice is shown on the image description page on animated svg files just below {{msg-mw|file-info-size}}. This message may be overridden by a more specific message of the form file-no-thumb-animation-&lt;extension&gt; like {{msg-mw|file-no-thumb-animation-gif}}',
+'file-no-thumb-animation-gif' => 'Cannot animate thumbnails of this gif file, because it has too big a resolution. The cut off resolution can vary between wikis ([[mw:manual:$wgMaxAnimatedGifArea|$wgMaxAnimatedGifArea]]). Note that resolution is calculated as width times height times number of frames. See {{msg-mw|file-no-thumb-animation}}.',
 
 # Special:NewFiles
 'newimages' => 'Page title of [[Special:NewImages]].',
@@ -4440,113 +4453,113 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 
 # Iranian month names
 'iranian-calendar-m1' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m2' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m3' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m4' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m5' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m6' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m7' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m8' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m9' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m10' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m11' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 'iranian-calendar-m12' => '{{optional}}
-Name of month in Iranian calender.',
+Name of month in Iranian calendar.',
 
 # Hijri month names
 'hijri-calendar-m1' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m2' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m3' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m4' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m5' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m6' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m7' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m8' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m9' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m10' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m11' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 'hijri-calendar-m12' => '{{optional}}
-Name of month in Islamic calender.',
+Name of month in Islamic calendar.',
 
 # Hebrew month names
 'hebrew-calendar-m1' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m2' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m3' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m4' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m5' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6a' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6b' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m7' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m8' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m9' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m10' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m11' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m12' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m1-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m2-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m3-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m4-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m5-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6a-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m6b-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m7-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m8-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m9-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m10-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m11-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 'hebrew-calendar-m12-gen' => '{{optional}}
-Name of month in Hebrew calender.',
+Name of month in Hebrew calendar.',
 
 # Signatures
 'signature' => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)

@@ -1152,10 +1152,6 @@ Ona te source em ńel daṛeaḱ',
 
 # Info page
 'pageinfo-header-edits' => 'Toṅgeko',
-'pageinfo-header-watchlist' => 'Ńeloḱ tạlika',
-'pageinfo-header-views' => 'Ńelme',
-'pageinfo-subjectpage' => 'Sakam',
-'pageinfo-talkpage' => 'Galmarao sakam',
 'pageinfo-watchers' => 'Ńeńelkoaḱ nombor',
 
 # Browsing diffs

@@ -38,7 +38,7 @@
  * @licence GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-require_once dirname( __FILE__ ) . "/ORMRowTest.php";
+require_once __DIR__ . "/ORMRowTest.php";
 
 class TestORMRowTest extends ORMRowTest {
 

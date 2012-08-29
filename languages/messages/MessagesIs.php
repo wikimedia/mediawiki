@@ -80,54 +80,54 @@ $dateFormats = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#tilvísun', '#TILVÍSUN', '#REDIRECT' ),
-	'nogallery'               => array( '0', '__EMSAFN__', '__NOGALLERY__' ),
-	'currentday'              => array( '1', 'NÚDAGUR', 'CURRENTDAY' ),
-	'currentday2'             => array( '1', 'NÚDAGUR2', 'CURRENTDAY2' ),
-	'currentdayname'          => array( '1', 'NÚDAGNAFN', 'CURRENTDAYNAME' ),
-	'currentyear'             => array( '1', 'NÚÁR', 'CURRENTYEAR' ),
-	'currenttime'             => array( '1', 'NÚTÍMI', 'CURRENTTIME' ),
-	'currenthour'             => array( '1', 'NÚKTÍMI', 'CURRENTHOUR' ),
-	'localmonth'              => array( '1', 'STMÁN', 'LOCALMONTH', 'LOCALMONTH2' ),
-	'localmonthname'          => array( '1', 'STMÁNNAFN', 'LOCALMONTHNAME' ),
-	'localmonthabbrev'        => array( '1', 'STMÁNST', 'LOCALMONTHABBREV' ),
-	'localday'                => array( '1', 'STDAGUR', 'LOCALDAY' ),
-	'localday2'               => array( '1', 'STDAGUR2', 'LOCALDAY2' ),
-	'localdayname'            => array( '1', 'STDAGNAFN', 'LOCALDAYNAME' ),
-	'localyear'               => array( '1', 'STÁR', 'LOCALYEAR' ),
-	'localtime'               => array( '1', 'STTÍMI', 'LOCALTIME' ),
-	'localhour'               => array( '1', 'STKTÍMI', 'LOCALHOUR' ),
-	'numberofpages'           => array( '1', 'FJLSÍÐA', 'NUMBEROFPAGES' ),
-	'numberofarticles'        => array( '1', 'FJLGREINA', 'NUMBEROFARTICLES' ),
-	'numberoffiles'           => array( '1', 'FJLSKJALA', 'NUMBEROFFILES' ),
-	'numberofusers'           => array( '1', 'FJLNOT', 'NUMBEROFUSERS' ),
-	'numberofedits'           => array( '1', 'FJLBREYT', 'NUMBEROFEDITS' ),
-	'pagename'                => array( '1', 'SÍÐUNAFN', 'PAGENAME' ),
-	'namespace'               => array( '1', 'NAFNSVÆÐI', 'NAMESPACE' ),
-	'talkspace'               => array( '1', 'SPJALLSVÆÐI', 'TALKSPACE' ),
-	'fullpagename'            => array( '1', 'FULLTSÍÐUNF', 'FULLPAGENAME' ),
-	'img_manualthumb'         => array( '1', 'þumall', 'thumbnail=$1', 'thumb=$1' ),
-	'img_right'               => array( '1', 'hægri', 'right' ),
-	'img_left'                => array( '1', 'vinstri', 'left' ),
-	'img_none'                => array( '1', 'engin', 'none' ),
-	'img_width'               => array( '1', '$1dp', '$1px' ),
-	'img_center'              => array( '1', 'miðja', 'center', 'centre' ),
-	'img_sub'                 => array( '1', 'undir', 'sub' ),
-	'img_super'               => array( '1', 'yfir', 'super', 'sup' ),
-	'img_top'                 => array( '1', 'efst', 'top' ),
-	'img_bottom'              => array( '1', 'neðst', 'bottom' ),
-	'img_text_bottom'         => array( '1', 'texti-neðst', 'text-bottom' ),
-	'ns'                      => array( '0', 'NR:', 'NS:' ),
-	'server'                  => array( '0', 'VEFÞJ', 'SERVER' ),
-	'servername'              => array( '0', 'VEFÞJNF', 'SERVERNAME' ),
-	'grammar'                 => array( '0', 'MÁLFRÆÐI:', 'GRAMMAR:' ),
-	'currentweek'             => array( '1', 'NÚVIKA', 'CURRENTWEEK' ),
-	'localweek'               => array( '1', 'STVIKA', 'LOCALWEEK' ),
-	'plural'                  => array( '0', 'FLTALA:', 'PLURAL:' ),
-	'raw'                     => array( '0', 'HRÁ:', 'RAW:' ),
-	'displaytitle'            => array( '1', 'SÝNATITIL', 'DISPLAYTITLE' ),
-	'language'                => array( '0', '#TUNGUMÁL', '#LANGUAGE:' ),
-	'special'                 => array( '0', 'kerfissíða', 'special' ),
+	'redirect'                  => array( '0', '#tilvísun', '#TILVÍSUN', '#REDIRECT' ),
+	'nogallery'                 => array( '0', '__EMSAFN__', '__NOGALLERY__' ),
+	'currentday'                => array( '1', 'NÚDAGUR', 'CURRENTDAY' ),
+	'currentday2'               => array( '1', 'NÚDAGUR2', 'CURRENTDAY2' ),
+	'currentdayname'            => array( '1', 'NÚDAGNAFN', 'CURRENTDAYNAME' ),
+	'currentyear'               => array( '1', 'NÚÁR', 'CURRENTYEAR' ),
+	'currenttime'               => array( '1', 'NÚTÍMI', 'CURRENTTIME' ),
+	'currenthour'               => array( '1', 'NÚKTÍMI', 'CURRENTHOUR' ),
+	'localmonth'                => array( '1', 'STMÁN', 'LOCALMONTH', 'LOCALMONTH2' ),
+	'localmonthname'            => array( '1', 'STMÁNNAFN', 'LOCALMONTHNAME' ),
+	'localmonthabbrev'          => array( '1', 'STMÁNST', 'LOCALMONTHABBREV' ),
+	'localday'                  => array( '1', 'STDAGUR', 'LOCALDAY' ),
+	'localday2'                 => array( '1', 'STDAGUR2', 'LOCALDAY2' ),
+	'localdayname'              => array( '1', 'STDAGNAFN', 'LOCALDAYNAME' ),
+	'localyear'                 => array( '1', 'STÁR', 'LOCALYEAR' ),
+	'localtime'                 => array( '1', 'STTÍMI', 'LOCALTIME' ),
+	'localhour'                 => array( '1', 'STKTÍMI', 'LOCALHOUR' ),
+	'numberofpages'             => array( '1', 'FJLSÍÐA', 'NUMBEROFPAGES' ),
+	'numberofarticles'          => array( '1', 'FJLGREINA', 'NUMBEROFARTICLES' ),
+	'numberoffiles'             => array( '1', 'FJLSKJALA', 'NUMBEROFFILES' ),
+	'numberofusers'             => array( '1', 'FJLNOT', 'NUMBEROFUSERS' ),
+	'numberofedits'             => array( '1', 'FJLBREYT', 'NUMBEROFEDITS' ),
+	'pagename'                  => array( '1', 'SÍÐUNAFN', 'PAGENAME' ),
+	'namespace'                 => array( '1', 'NAFNSVÆÐI', 'NAMESPACE' ),
+	'talkspace'                 => array( '1', 'SPJALLSVÆÐI', 'TALKSPACE' ),
+	'fullpagename'              => array( '1', 'FULLTSÍÐUNF', 'FULLPAGENAME' ),
+	'img_manualthumb'           => array( '1', 'þumall', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'                 => array( '1', 'hægri', 'right' ),
+	'img_left'                  => array( '1', 'vinstri', 'left' ),
+	'img_none'                  => array( '1', 'engin', 'none' ),
+	'img_width'                 => array( '1', '$1dp', '$1px' ),
+	'img_center'                => array( '1', 'miðja', 'center', 'centre' ),
+	'img_sub'                   => array( '1', 'undir', 'sub' ),
+	'img_super'                 => array( '1', 'yfir', 'super', 'sup' ),
+	'img_top'                   => array( '1', 'efst', 'top' ),
+	'img_bottom'                => array( '1', 'neðst', 'bottom' ),
+	'img_text_bottom'           => array( '1', 'texti-neðst', 'text-bottom' ),
+	'ns'                        => array( '0', 'NR:', 'NS:' ),
+	'server'                    => array( '0', 'VEFÞJ', 'SERVER' ),
+	'servername'                => array( '0', 'VEFÞJNF', 'SERVERNAME' ),
+	'grammar'                   => array( '0', 'MÁLFRÆÐI:', 'GRAMMAR:' ),
+	'currentweek'               => array( '1', 'NÚVIKA', 'CURRENTWEEK' ),
+	'localweek'                 => array( '1', 'STVIKA', 'LOCALWEEK' ),
+	'plural'                    => array( '0', 'FLTALA:', 'PLURAL:' ),
+	'raw'                       => array( '0', 'HRÁ:', 'RAW:' ),
+	'displaytitle'              => array( '1', 'SÝNATITIL', 'DISPLAYTITLE' ),
+	'language'                  => array( '0', '#TUNGUMÁL', '#LANGUAGE:' ),
+	'special'                   => array( '0', 'kerfissíða', 'special' ),
 );
 
 $specialPageAliases = array(
@@ -148,7 +148,7 @@ $specialPageAliases = array(
 	'Contributions'             => array( 'Framlög' ),
 	'CreateAccount'             => array( 'Búa_til_aðgang' ),
 	'Deadendpages'              => array( 'Botnlangar' ),
-	'DeletedContributions'      => array( 'Edd_framlög' ),
+	'DeletedContributions'      => array( 'Eydd_framlög' ),
 	'Disambiguations'           => array( 'Tenglar_í_aðgreiningarsíður' ),
 	'DoubleRedirects'           => array( 'Tvöfaldar_tilvísanir' ),
 	'EditWatchlist'             => array( 'Breyta_vaktlista' ),
@@ -200,6 +200,7 @@ $specialPageAliases = array(
 	'Shortpages'                => array( 'Stuttar_síður' ),
 	'Specialpages'              => array( 'Kerfissíður' ),
 	'Statistics'                => array( 'Tölfræði' ),
+	'Tags'                      => array( 'Tög' ),
 	'Unblock'                   => array( 'Afbönnun' ),
 	'Uncategorizedcategories'   => array( 'Óflokkaðir_flokkar' ),
 	'Uncategorizedimages'       => array( 'Óflokkaðar_myndir' ),
@@ -217,6 +218,7 @@ $specialPageAliases = array(
 	'Userrights'                => array( 'Notandaréttindi' ),
 	'Version'                   => array( 'Útgáfa' ),
 	'Wantedcategories'          => array( 'Eftirsóttir_flokkar' ),
+	'Wantedfiles'               => array( 'Eftirsóttar_skrár' ),
 	'Wantedpages'               => array( 'Eftirsóttar_síður' ),
 	'Wantedtemplates'           => array( 'Eftirsótt_snið' ),
 	'Watchlist'                 => array( 'Vaktlistinn' ),
@@ -2174,41 +2176,48 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_newpagetext' => 'Þetta er ný síða.',
 'enotif_impersonal_salutation' => '{{SITENAME}}notandi',
 'changed' => 'breytt',
-'created' => 'búið til',
+'created' => 'búin til',
 'enotif_subject' => '$PAGETITLE á {{SITENAME}} hefur verið $CHANGEDORCREATED af $PAGEEDITOR',
-'enotif_lastvisited' => 'Sjá $1 fyrir allar breytingar síðan þú sóttir síðuna síðast.',
-'enotif_lastdiff' => 'Sjá $1 til að skoða þessa breytingu.',
+'enotif_lastvisited' => 'Heimsóttu eftirfarandi tengil til að sjá allar breytingar síðan 
+þú heimsóttir síðuna síðast:
+  $1',
+'enotif_lastdiff' => 'Einnig getur þú heimsótt eftirfarandi tengil til að skoða þessa breytingu:
+  $1',
 'enotif_anon_editor' => 'ónefndur notandi $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
+Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} $PAGETITLE.
+Hún hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
+$PAGEEDITOR. Breytingarágripið var:
 
-Síðan $PAGETITLE á {{SITENAME}} hefur verið $CHANGEDORCREATED þann $PAGEEDITDATE eftir $PAGEEDITOR, sjá $PAGETITLE_URL fyrir núverandi útgáfu.
+   $PAGESUMMARY
+
+Þetta er tengill á spjallsíðuna þína:
+
+   $PAGETITLE_URL
 
 $NEWPAGE
 
-Breytingarágrip notandans: $PAGESUMMARY $PAGEMINOREDIT
+Til þess að hafa samband við $PAGEEDITOR, heimsóttu:
 
-Samskipta upplýsingar notandans:
-netfang: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+   $PAGEEDITOR_WIKI
 
-Engar frekari tilkynningar verða sendar nema þú heimsækir síðuna.
-Þú getur einnig endursett tilkynninga merkingar fyrir allar síður á vaktlistanum.
+Athugaðu að frekari breytingar á $PAGETITLE leiða
+ekki af sér fleiri tilkynningar fyrr en þú hefur heimsótt síðuna.
 
-			 Vingjarnlega {{SITENAME}} tilkynningar kerfið
+Kveðja,
+{{SITENAME}}
 
 --
-Til þess að breyta tilkynningum sem sendast á netfangið, smelltu á
+
+Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, heimsóttu:
+
 {{canonicalurl:{{#special:Preferences}}}}
 
-Til þess að breyta stillingum vaktlistans, smelltu á
-{{canonicalurl:{{#special:EditWatchlist}}}}
 
-Til þess að eyða síðunni af vaktlistanum, smelltu á
-$UNWATCHURL
+Til þess að hætta að fylgjast með $PAGETITLE, heimsóttu:
 
-Svörun og frekari aðstoð:
-{{canonicalurl:{{MediaWiki:Helppage}}}}',
+$UNWATCHURL',
 
 # Delete
 'deletepage' => 'Eyða',
@@ -2883,15 +2892,10 @@ Vinsamlegast reyndu aftur.',
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',
 'pageinfo-header-edits' => 'Breytingar',
-'pageinfo-header-watchlist' => 'Vaktlistinn',
-'pageinfo-header-views' => 'Flettingar',
-'pageinfo-subjectpage' => 'Síða',
-'pageinfo-talkpage' => 'Spjallsíða',
+'pageinfo-views' => 'Fjöldi innlita',
 'pageinfo-watchers' => 'Fjöldi notenda',
 'pageinfo-edits' => 'Fjöldi breytinga',
 'pageinfo-authors' => 'Fjöldi einstakra höfunda',
-'pageinfo-views' => 'Fjöldi innlita',
-'pageinfo-viewsperedit' => 'Flettingar á hverja breytingu',
 
 # Skin names
 'skinname-standard' => 'Sígilt',

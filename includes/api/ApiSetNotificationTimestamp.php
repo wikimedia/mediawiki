@@ -269,12 +269,9 @@ class ApiSetNotificationTimestamp extends ApiBase {
 
 	public function getExamples() {
 		return array(
-			'api.php?action=setnotificationtimestamp&entirewatchlist=&token=ABC123'
-				=> 'Reset the notification status for the entire watchlist',
-			'api.php?action=setnotificationtimestamp&titles=Main_page&token=ABC123'
-				=> 'Reset the notification status for "Main page"',
-			'api.php?action=setnotificationtimestamp&titles=Main_page&timestamp=2012-01-01T00:00:00Z&token=ABC123'
-				=> 'Set the notification timestamp for "Main page" so all edits since 1 January 2012 are unviewed',
+			'api.php?action=setnotificationtimestamp&entirewatchlist=&token=ABC123' => 'Reset the notification status for the entire watchlist',
+			'api.php?action=setnotificationtimestamp&titles=Main_page&token=ABC123' => 'Reset the notification status for "Main page"',
+			'api.php?action=setnotificationtimestamp&titles=Main_page&timestamp=2012-01-01T00:00:00Z&token=ABC123' => 'Set the notification timestamp for "Main page" so all edits since 1 January 2012 are unviewed',
 		);
 	}
 

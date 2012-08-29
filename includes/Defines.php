@@ -205,7 +205,7 @@ define( 'LIST_SET_PREPARED', 8);  // List of (?, ?, ?) for DatabaseIbm_db2
 /**
  * Unicode and normalisation related
  */
-require_once dirname(__FILE__).'/normal/UtfNormalDefines.php';
+require_once __DIR__.'/normal/UtfNormalDefines.php';
 
 /**@{
  * Hook support constants

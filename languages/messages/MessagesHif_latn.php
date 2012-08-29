@@ -17,6 +17,23 @@
  * @author Thakurji
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'saadhan',
+	NS_SPECIAL          => 'khaas',
+	NS_TALK             => 'baat',
+	NS_USER             => 'sadasya',
+	NS_USER_TALK        => 'sadasya_ke_baat',
+	NS_PROJECT_TALK     => '$1_baat',
+	NS_FILE             => 'file',
+	NS_FILE_TALK        => 'file_ke_baat',
+	NS_MEDIAWIKI_TALK   => 'Mediawiki_ke_baat',
+	NS_TEMPLATE_TALK    => 'Template_ke_baat',
+	NS_HELP             => 'madat',
+	NS_HELP_TALK        => 'madat_ke_baat',
+	NS_CATEGORY         => 'vibhag',
+	NS_CATEGORY_TALK    => 'voibhag_ke_baat',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Jorr ke niche line khicho:',
@@ -2699,11 +2716,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'spam_blanking' => 'Sab badlao jisme $1 se jorr hai, ke mitawa jaawe hai',
 
 # Info page
-'pageinfo-header-watchlist' => 'Dhyan suchi',
-'pageinfo-header-views' => 'Ketna angle se dekha jaae hae',
-'pageinfo-subjectpage' => 'Panna',
 'pageinfo-edits' => 'Etna badlao rahaa',
-'pageinfo-viewsperedit' => 'Har ek badlao ke ketna dafe dekha gais hae',
 
 # Patrolling
 'markaspatrolleddiff' => 'Mark karo ke pahraa dewa jaawe hai',

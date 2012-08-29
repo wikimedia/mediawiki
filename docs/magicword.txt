@@ -40,7 +40,7 @@ $magicWords['es'] = array(
 );
 ----
 
-$wgExtensionMessagesFiles['ExtensionNameMagic'] = dirname( __FILE__ ) . '/ExtensionName.i18n.magic.php';
+$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
 $wgHooks['MagicWordwgVariableIDs'][] = 'wfAddCustomMagicWordID';
 $wgHooks['ParserGetVariableValueSwitch'][] = 'wfGetCustomMagicWordValue';
 
@@ -74,7 +74,7 @@ $magicWords['es'] = array(
 );
 ----
 
-$wgExtensionMessagesFiles['ExtensionNameMagic'] = dirname( __FILE__ ) . '/ExtensionName.i18n.magic.php';
+$wgExtensionMessagesFiles['ExtensionNameMagic'] = __DIR__ . '/ExtensionName.i18n.magic.php';
 $wgHooks['ParserFirstCallInit'][] = 'wfRegisterCustomMagicWord';
 
 function wfRegisterCustomMagicWord( &$parser ){

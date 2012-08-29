@@ -23,7 +23,7 @@
  */
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();
-require( dirname( __FILE__ ) . '/../commandLine.inc' );
+require( __DIR__ . '/../commandLine.inc' );
 
 if ( count( $args ) < 1 ) {
 	echo "Usage: php recompressTracked.php [options] <cluster> [... <cluster>...]

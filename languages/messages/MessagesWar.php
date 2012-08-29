@@ -772,7 +772,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'group-bot' => 'Mga bot',
 'group-sysop' => 'Mga magdudumara',
 'group-bureaucrat' => 'Mga burokrata',
-'group-suppress' => 'Mga mananahon',
+'group-suppress' => 'Mga nanginginano',
 'group-all' => '(ngatanan)',
 
 'group-user-member' => '{{HENERO:$1|gumaramit}}',
@@ -781,6 +781,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 
 'grouppage-user' => '{{ns:project}}:Mga gumaramit',
 'grouppage-sysop' => '{{ns:project}}:Mga magdudumara',
+'grouppage-suppress' => '{{ns:project}}:Nanginginano',
 
 # Rights
 'right-read' => 'Igbasa an mga pakli',
@@ -789,7 +790,7 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'right-createtalk' => 'Paghimo hin hiruhimangraw nga mga pakli',
 'right-minoredit' => 'Igmarka an mga ginliwat komo gutiay la',
 'right-move' => 'Igbalhin an mga pakli',
-'right-movefile' => 'Balhina an mga fayl',
+'right-movefile' => 'Balhina an mga paypay',
 'right-delete' => 'Igpara an mga pakli',
 'right-undelete' => 'Igpawara an pagpara han pakli',
 
@@ -1320,11 +1321,6 @@ Makikit-an nimo an ginkuhaaan',
 
 # Attribution
 'othercontribs' => 'Ginbasihan ha binuhat ni $1.',
-
-# Info page
-'pageinfo-header-watchlist' => 'Barantayan',
-'pageinfo-subjectpage' => 'Pakli',
-'pageinfo-talkpage' => 'Hiruhimangraw nga pakli',
 
 # Browsing diffs
 'previousdiff' => '← Durudaan nga pagliwat',

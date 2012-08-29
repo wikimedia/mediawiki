@@ -61,19 +61,19 @@ $namespaceAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#வழிமாற்று', '#REDIRECT' ),
-	'img_right'               => array( '1', 'வலது', 'right' ),
-	'img_left'                => array( '1', 'இடது', 'left' ),
-	'img_none'                => array( '1', 'ஒன்றுமில்லை', 'none' ),
-	'img_center'              => array( '1', 'மையம்', 'center', 'centre' ),
-	'img_top'                 => array( '1', 'மேல்', 'top' ),
-	'img_middle'              => array( '1', 'மத்தியில்', 'middle' ),
-	'img_bottom'              => array( '1', 'கீழ்', 'bottom' ),
-	'plural'                  => array( '0', 'பன்மை', 'PLURAL:' ),
-	'special'                 => array( '0', 'சிறப்பு', 'special' ),
-	'pagesize'                => array( '1', 'பக்க_அளவு', 'PAGESIZE' ),
-	'url_path'                => array( '0', 'வழி', 'PATH' ),
-	'url_wiki'                => array( '0', 'விக்கி', 'WIKI' ),
+	'redirect'                  => array( '0', '#வழிமாற்று', '#REDIRECT' ),
+	'img_right'                 => array( '1', 'வலது', 'right' ),
+	'img_left'                  => array( '1', 'இடது', 'left' ),
+	'img_none'                  => array( '1', 'ஒன்றுமில்லை', 'none' ),
+	'img_center'                => array( '1', 'மையம்', 'center', 'centre' ),
+	'img_top'                   => array( '1', 'மேல்', 'top' ),
+	'img_middle'                => array( '1', 'மத்தியில்', 'middle' ),
+	'img_bottom'                => array( '1', 'கீழ்', 'bottom' ),
+	'plural'                    => array( '0', 'பன்மை', 'PLURAL:' ),
+	'special'                   => array( '0', 'சிறப்பு', 'special' ),
+	'pagesize'                  => array( '1', 'பக்க_அளவு', 'PAGESIZE' ),
+	'url_path'                  => array( '0', 'வழி', 'PATH' ),
+	'url_wiki'                  => array( '0', 'விக்கி', 'WIKI' ),
 );
 
 $linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
@@ -1887,7 +1887,7 @@ $1',
 'allpagesprefix' => 'பின்வரும் முன்னொட்டு உடைய பக்கங்களை காட்டு:',
 'allpagesbadtitle' => 'கொடுக்கப்பட்ட தலைப்பு செல்லுபடியற்றது அல்லது பிழையான விக்கியிடை அல்லது மொழி முன்னொட்டைக் கொண்டுள்ளது. இது தலைப்புக்களில் பயன்படுத்த முடியாத எழுத்துக்களையும் கொண்டிருக்கலாம்.',
 'allpages-bad-ns' => '{{SITENAME}} தளத்தில் "$1" பெயர்வெளி கிடையாது.',
-'allpages-hide-redirects' => 'வழிமாற்றுகளைப் மறை',
+'allpages-hide-redirects' => 'வழிமாற்றுகளை மறை',
 
 # SpecialCachedPage
 'cachedspecial-refresh-now' => 'அண்மையான பதிப்பை காண்க',
@@ -2712,15 +2712,10 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" பக்கத்துக்கான தகவல்',
 'pageinfo-header-edits' => 'தொகுப்புகள்',
-'pageinfo-header-watchlist' => 'கவனிப்புப் பட்டியல்',
-'pageinfo-header-views' => 'பார்வைகள்',
-'pageinfo-subjectpage' => 'பக்கம்',
-'pageinfo-talkpage' => 'பேச்சுப் பக்கம்',
+'pageinfo-views' => 'காட்சிகள் எண்ணிக்கை',
 'pageinfo-watchers' => 'பார்வையாளர்கள் எண்ணிக்கை',
 'pageinfo-edits' => 'தொகுப்புகளின் எண்ணிக்கை:',
 'pageinfo-authors' => 'சாதகமான அம்சங்களை பெற்றிருக்கும் எழுத்தாளர்கள் எண்ணிக்கை',
-'pageinfo-views' => 'காட்சிகள் எண்ணிக்கை',
-'pageinfo-viewsperedit' => 'திருத்தந்களுக்கான காட்சிகள்',
 
 # Skin names
 'skinname-standard' => 'இயல்பான',

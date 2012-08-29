@@ -94,17 +94,17 @@ class DeletedContribsPager extends IndexPager {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
-		$lang = $this->getLanguage();
-		$fmtLimit = $lang->formatNum( $this->mLimit );
+
 		$linkTexts = array(
-			'prev' => $this->msg( 'pager-newer-n', $fmtLimit )->escaped(),
-			'next' => $this->msg( 'pager-older-n', $fmtLimit )->escaped(),
+			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
+			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
 			'first' => $this->msg( 'histlast' )->escaped(),
 			'last' => $this->msg( 'histfirst' )->escaped()
 		);
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
+		$lang = $this->getLanguage();
 		$limits = $lang->pipeList( $limitLinks );
 
 		$this->mNavigationBar = "(" . $lang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .

@@ -2299,10 +2299,6 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 
 # Info page
 'pageinfo-header-edits' => 'Redakams',
-'pageinfo-header-watchlist' => 'Galädalised',
-'pageinfo-header-views' => 'Logams',
-'pageinfo-subjectpage' => 'Pad',
-'pageinfo-talkpage' => 'Bespikapad',
 
 # Patrolling
 'markaspatrolleddiff' => 'Zepön',

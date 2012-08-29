@@ -138,7 +138,7 @@ Message Cache:
 	key: $wgDBname:messages, $wgDBname:messages-hash, $wgDBname:messages-status
 	ex: wikidb:messages, wikidb:messages-hash, wikidb:messages-status
 	stores: an array where the keys are DB keys and the values are messages
-	set in: wfMsg(), Article::editUpdates() and Title::moveTo()
+	set in: wfMessage(), Article::editUpdates() and Title::moveTo()
 	expriy: $wgMsgCacheExpiry
 	cleared by: nothing
 

@@ -2769,15 +2769,10 @@ $1',
 # Info page
 'pageinfo-title' => '"$1" نىڭ ئۇچۇرى',
 'pageinfo-header-edits' => 'تەھرىر',
-'pageinfo-header-watchlist' => 'كۆزەت تىزىمى',
-'pageinfo-header-views' => 'كۆرۈنۈش',
-'pageinfo-subjectpage' => 'بەت',
-'pageinfo-talkpage' => 'مۇنازىرە بېتى',
+'pageinfo-views' => 'كۆرۈنۈش سانى',
 'pageinfo-watchers' => 'كۆزەتكۈچىلەر سانى',
 'pageinfo-edits' => 'تەھرىر سانى',
 'pageinfo-authors' => 'يازغۇچىلار سانى',
-'pageinfo-views' => 'كۆرۈنۈش سانى',
-'pageinfo-viewsperedit' => 'ھەر بىر تەھرىر كۆرۈنۈشى',
 
 # Patrolling
 'markaspatrolleddiff' => 'چارلاش بەلگىسى قوي',
