@@ -267,7 +267,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			throw new MWException( __METHOD__ .' called in the old style' );
 		}
 
-		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
+		$alt = ( empty( $options['alt'] ) && $options['alt'] != '0' ) ? '' : $options['alt'];
 
 		$query = empty( $options['desc-query'] )  ? '' : $options['desc-query'];
 
