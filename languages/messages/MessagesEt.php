@@ -290,16 +290,16 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline' => 'Lingid alla kriipsutada',
+'tog-underline' => 'Linkide allakriipsutus:',
 'tog-justify' => 'Lõikude rööpjoondus',
 'tog-hideminor' => 'Peida pisiparandused viimastes muudatustes',
-'tog-hidepatrolled' => 'Peida viimaste muudatuste loetelus jälgimisloendis esitatavad muudatused',
+'tog-hidepatrolled' => 'Peida kontrollitud redaktsioonid viimastes muudatustes',
 'tog-newpageshidepatrolled' => 'Peida uute lehtede loendis kontrollitud leheküljed',
 'tog-extendwatchlist' => 'Laienda jälgimisloendit, et näha kõiki muudatusi, mitte vaid kõige värskemaid',
 'tog-usenewrc' => 'Rühmita viimased muudatused ja muudatused jälgimisloendis lehekülje järgi (vaja JavaScripti)',
 'tog-numberheadings' => 'Pealkirjade automaatnummerdus',
-'tog-showtoolbar' => 'Redigeerimise tööriistariba näitamine',
-'tog-editondblclick' => 'Artiklite redigeerimine topeltklõpsu peale (JavaScript)',
+'tog-showtoolbar' => 'Näita redigeerimise tööriistariba (vaja JavaScripti)',
+'tog-editondblclick' => 'Redigeeri lehekülgi topeltklõpsu peale (vaja JavaScripti)',
 'tog-editsection' => 'Näita alaosade redigeerimise linke',
 'tog-editsectiononrightclick' => 'Alusta alaosa redigeerimist paremklõpsuga alaosa pealkirjal (vaja JavaScripti)',
 'tog-showtoc' => 'Näita sisukorda (lehtedel, millel on rohkem kui 3 pealkirja)',

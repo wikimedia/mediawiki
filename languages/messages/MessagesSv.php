@@ -638,7 +638,7 @@ I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsido
 'error' => 'Fel',
 'databaseerror' => 'Databasfel',
 'dberrortext' => 'Ett syntaxfel i databasfrågan har uppstått.
-Detta kan indikera en bug i mjukvaran.
+Detta kan indikera en bugg i mjukvaran.
 Den senaste databasfrågan att köras var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen "<tt>$2</tt>".
@@ -981,11 +981,10 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view' => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract' => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'clearyourcache' => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
+'clearyourcache' => "'''OBS:''' Efter du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
 *'''Firefox / Safari:''' Håll ned ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på Mac)
 *'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''⌘-Shift-R'' på Mac)
 *'''Internet Explorer:'''  Håll ned ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
-*'''Konqueror:''' Klicka på ''Reload'' eller tryck på ''F5''
 *'''Opera:''' Rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview' => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview' => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
@@ -1993,6 +1992,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'shared-repo-from' => 'från $1',
 'shared-repo' => 'en gemensam filförvaring',
 'filepage.css' => '/* CSS som skrivs här inkluderas på filbeskrivningssidan, även på utländska klientwikis */',
+'upload-disallowed-here' => 'Tyvärr inte kan du skriva över denna bild.',
 
 # File reversion
 'filerevert' => 'Återställ $1',
@@ -3112,6 +3112,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-watchers' => 'Antal användare som bevakar sidan',
 'pageinfo-redirects-name' => 'Omdirigeringar till denna sida',
 'pageinfo-subpages-name' => 'Undersidor till denna sida',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringar}}; $3 {{PLURAL:$3|icke-omdirigering|icke-omdirigeringar}})',
 'pageinfo-lasttime' => 'Datum för senaste redigeringen',
 'pageinfo-edits' => 'Totalt antal redigeringar',
 'pageinfo-authors' => 'Totalt antal olika författare',
