@@ -1,6 +1,7 @@
 <?php
 /**
  * @group FileRepo
+ * @group medium
  */
 class StoreBatchTest extends MediaWikiTestCase {
 
