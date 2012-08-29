@@ -1,0 +1,8 @@
+Verified+1: jenkins-bot
+Code-Review+1: MarkTraceur <mtraceur@member.fsf.org>
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Submitted-by: Siebrand <siebrand@wikimedia.org>
+Submitted-at: Wed, 29 Aug 2012 20:40:28 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/21954
+Project: mediawiki/core
+Branch: refs/heads/master
