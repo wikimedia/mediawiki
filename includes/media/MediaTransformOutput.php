@@ -157,7 +157,14 @@ abstract class MediaTransformOutput {
 	 * @return Bool success
 	 */
 	public function streamFile( $headers = array() ) {
-		return $this->path && StreamFile::stream( $this->getLocalCopyPath(), $headers );
+		if ( !$this->path ) {
+			return false;
+		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
+			$be = $this->file->getRepo()->getBackend();
+			return $be->streamFile( array( 'src' => $this->path, 'headers' => $headers ) )->isOK();
+		} else { // FS-file
+			return StreamFile::stream( $this->getLocalCopyPath(), $headers );
+		}
 	}
 
 	/**
@@ -359,6 +366,6 @@ class TransformParameterError extends MediaTransformError {
 		parent::__construct( 'thumbnail_error',
 			max( isset( $params['width']  ) ? $params['width']  : 0, 120 ),
 			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
-			wfMsg( 'thumbnail_invalid_params' ) );
+			wfMessage( 'thumbnail_invalid_params' )->text() );
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname( __FILE__ ) . "/../../../maintenance/fetchText.php";
+require_once __DIR__ . "/../../../maintenance/fetchText.php";
 
 /**
  * Mock for the input/output of FetchText

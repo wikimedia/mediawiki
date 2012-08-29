@@ -29,8 +29,8 @@ $originalDir = getcwd();
 
 $optionsWithArgs = array( 'pagelist', 'start', 'end', 'revstart', 'revend');
 
-require_once( dirname( __FILE__ ) . '/commandLine.inc' );
-require_once( dirname( __FILE__ ) . '/backup.inc' );
+require_once( __DIR__ . '/commandLine.inc' );
+require_once( __DIR__ . '/backup.inc' );
 
 $dumper = new BackupDumper( $argv );
 

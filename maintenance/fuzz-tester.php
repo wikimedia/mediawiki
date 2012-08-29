@@ -181,7 +181,7 @@ TODO:
 // ///////////////////////// COMMAND LINE HELP ////////////////////////////////////
 
 // This is a command line script, load MediaWiki env (gives command line options);
-require_once( dirname( __FILE__ ) . '/commandLine.inc' );
+require_once( __DIR__ . '/commandLine.inc' );
 
 // if the user asked for an explanation of command line options.
 if ( isset( $options["help"] ) ) {
@@ -381,7 +381,6 @@ class wikiFuzz {
 			"br"         => array( "CLASS", "ID", "STYLE", "title", "clear" ),
 			"cite"       => array( "CLASS", "ID", "STYLE", "lang", "dir", "title" ),
 			"var"        => array( "CLASS", "ID", "STYLE", "lang", "dir", "title" ),
-			"dl"         => array( "CLASS", "ID", "STYLE", "lang", "dir", "title" ),
 			"ruby"       => array( "CLASS", "ID", "STYLE", "lang", "dir", "title" ),
 			"rt"         => array( "CLASS", "ID", "STYLE", "lang", "dir", "title" ),
 			"rp"         => array( "CLASS", "ID", "STYLE", "lang", "dir", "title" ),
@@ -1360,6 +1359,7 @@ class viewPageTest extends pageTest {
 				"rdfrom"         => wikiFuzz::makeFuzz( 2 ),  // things from Article.php from here on:
 				"token"          => wikiFuzz::makeFuzz( 2 ),
 				"tbid"           => wikiFuzz::makeFuzz( 2 ),
+				// @todo FIXME: Duplicate array key.
 				"action"         => wikiFuzz::chooseInput( array( "purge", wikiFuzz::makeFuzz( 2 ) ) ),
 				"wpReason"       => wikiFuzz::makeFuzz( 2 ),
 				"wpEditToken"    => wikiFuzz::makeFuzz( 2 ),

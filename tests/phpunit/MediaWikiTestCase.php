@@ -115,12 +115,19 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
-		// Cleaning up temoporary files
+		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
 			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
 				unlink( $fname );
 			} elseif ( is_dir( $fname ) ) {
 				wfRecursiveRemoveDir( $fname );
+			}
+		}
+
+		// clean up open transactions
+		if( $this->needsDB() && $this->db ) {
+			while( $this->db->trxLevel() > 0 ) {
+				$this->db->rollback();
 			}
 		}
 

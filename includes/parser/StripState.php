@@ -134,11 +134,14 @@ class StripState {
 		$marker = $m[1];
 		if ( isset( $this->data[$this->tempType][$marker] ) ) {
 			if ( isset( $this->circularRefGuard[$marker] ) ) {
-				return '<span class="error">' . wfMsgForContent( 'parser-unstrip-loop-warning' ) . '</span>';
+				return '<span class="error">'
+					. wfMessage( 'parser-unstrip-loop-warning' )->inContentLanguage()->text()
+					. '</span>';
 			}
 			if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
 				return '<span class="error">' . 
-					wfMsgForContent( 'parser-unstrip-recursion-limit', self::UNSTRIP_RECURSION_LIMIT ) . 
+					wfMessage( 'parser-unstrip-recursion-limit' )
+						->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
 					'</span>';
 			}
 			$this->circularRefGuard[$marker] = true;

@@ -461,8 +461,8 @@
 				new RegExp( /^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}$/)
 			],
 			currency: [
-				new RegExp( /^[£$€?.]/),
-				new RegExp( /[£$€]/g)
+				new RegExp( /(^[£$€¥]|[£$€¥]$)/),
+				new RegExp( /[£$€¥]/g)
 			],
 			url: [
 				new RegExp( /^(https?|ftp|file):\/\/$/),

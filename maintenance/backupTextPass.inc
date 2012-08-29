@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/backup.inc' );
+require_once( __DIR__ . '/backup.inc' );
 
 /**
  * @ingroup Maintenance
@@ -354,12 +354,12 @@ class TextPassDumper extends BackupDumper {
 				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
 
 				$byte = xml_get_current_byte_index( $parser );
-				$msg = wfMsgHtml( 'xml-error-string',
+				$msg = wfMessage( 'xml-error-string',
 					'XML import parse failure',
 					xml_get_current_line_number( $parser ),
 					xml_get_current_column_number( $parser ),
 					$byte . ( is_null( $chunk ) ? null : ( '; "' . substr( $chunk, $byte -$offset, 16 ) . '"' ) ),
-					xml_error_string( xml_get_error_code( $parser ) ) );
+					xml_error_string( xml_get_error_code( $parser ) ) )->escaped();
 
 				xml_parser_free( $parser );
 

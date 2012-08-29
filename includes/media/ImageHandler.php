@@ -204,10 +204,6 @@ abstract class ImageHandler extends MediaHandler {
 		return $gis;
 	}
 
-	function isAnimatedImage( $image ) {
-		return false;
-	}
-
 	/**
 	 * @param $file File
 	 * @return string

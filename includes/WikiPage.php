@@ -2700,7 +2700,7 @@ class WikiPage extends Page implements IDBAccessObject {
 				array( /* WHERE */
 					'rc_cur_id' => $current->getPage(),
 					'rc_user_text' => $current->getUserText(),
-					"rc_timestamp > '{$s->rev_timestamp}'",
+					'rc_timestamp > ' . $dbw->addQuotes( $s->rev_timestamp ),
 				), __METHOD__
 			);
 		}
@@ -2722,6 +2722,9 @@ class WikiPage extends Page implements IDBAccessObject {
 			$current->getId(), $wgContLang->timeanddate( $current->getTimestamp() )
 		);
 		$summary = wfMsgReplaceArgs( $summary, $args );
+
+		# Truncate for whole multibyte characters.
+		$summary = $wgContLang->truncate( $summary, 255 );
 
 		# Save
 		$flags = EDIT_UPDATE;

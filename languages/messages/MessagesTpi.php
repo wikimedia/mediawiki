@@ -7,12 +7,31 @@
  * @ingroup Language
  * @file
  *
+ * @author BarkingFish
  * @author Caffelice (on tpi.wikipedia.org)
  * @author Iketsi
  * @author Wantok
  * @author Wytukaze
  * @author לערי ריינהארט
  */
+
+$namespaceNames = array(
+	NS_SPECIAL          => 'Sipesol',
+	NS_TALK             => 'Toktok',
+	NS_USER             => 'Yusa',
+	NS_USER_TALK        => 'Toktok_bilong_yusa',
+	NS_PROJECT_TALK     => '$1_toktok',
+	NS_FILE             => 'Fail',
+	NS_FILE_TALK        => 'Toktok_bilong_fail',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Toktok_bilong_mediawiki',
+	NS_TEMPLATE         => 'Templet',
+	NS_TEMPLATE_TALK    => 'Toktok_bilong_templet',
+	NS_HELP             => 'Halivim',
+	NS_HELP_TALK        => 'Toktok_bilong_halivim',
+	NS_CATEGORY         => 'Grup',
+	NS_CATEGORY_TALK    => 'Toktok_bilong_grup',
+);
 
 $specialPageAliases = array(
 	'Confirmemail'              => array( 'Orait long imel' ),
@@ -37,28 +56,39 @@ $messages = array(
 'tog-hideminor' => 'Noken soim ol liklik senis insait long ol nupela senis',
 'tog-hidepatrolled' => 'Noken soim ol lukluk senis insait long ol nupela senis',
 'tog-newpageshidepatrolled' => 'Noken soim ol lukluk senis insait long ol nupela pes',
-'tog-extendwatchlist' => 'Larim lukautbuk i go longpela long soim olgeta senis',
-'tog-usenewrc' => 'Moa beta stail bilong nupela senis (i nidim JavaScript)',
+'tog-extendwatchlist' => ' Larim lukautbuk i go longpela long soim olgeta senis, long halivim tasol bihain tru',
+'tog-usenewrc' => 'Moa beta stail bilong nupela senis na lukautbuk (i nidim JavaScript)',
 'tog-numberheadings' => 'Putim ol namba i go long wanwan hap bilong pes',
 'tog-showtoolbar' => 'Soim ol liklik link long wokim senis kwiktaim (i nidim JavaScript)',
 'tog-editondblclick' => 'Senisim pes taim yu paitim tupela taim kwiktaim (i nidim JavaScript)',
 'tog-editsection' => 'Soim ol [senisim] link long wanwan hap bilong ol pes',
 'tog-editsectiononrightclick' => 'Senisim ol hap bilong pes taim yu paitim nem bilong hap<br />wantaim raithan-klik (i nidim Javascript)',
 'tog-showtoc' => 'Soim ol nem bilong hap insait long liklik bokis, taim igat antap long 3 hap long pes',
-'tog-rememberpassword' => 'Holim nem bilong yusa bilong mi long dispela kompiuta (for a maximum of $1 {{PLURAL:$1|day|days}})',
-'tog-watchcreations' => 'Putim ol nupela pes mi wokim long lukautbuk',
-'tog-watchdefault' => 'Putim ol pes mi senisim long lukautbuk bilong mi',
+'tog-rememberpassword' => 'Holim yusanem bilong mi long dispela komputa (holim pas longpela taim $1 {{PLURAL:$1|de|de}})',
+'tog-watchcreations' => 'Putim ol nupela pes mi wokim na fail mi salim long lukautbuk',
+'tog-watchdefault' => 'Putim ol pes na fail mi senisim long lukautbuk bilong mi',
 'tog-watchmoves' => 'Putim ol pes mi surikim long lukautbuk bilong mi',
 'tog-watchdeletion' => 'Putim ol pes mi rausim long lukautbuk bilong mi',
 'tog-minordefault' => 'Makim ol senis mi wokim olsem ol i liklik, sapos mi no makim',
 'tog-previewontop' => 'Soim pes mi senisim (pastaim long raitim) antap long bokis bilong wokim senis',
 'tog-previewonfirst' => 'Soim pes mi senisim pastaim long raitim',
-'tog-enotifwatchlistpages' => 'Salim imel (e-mail) long mi taim wanpela pes mi lukautim i senis',
+'tog-nocache' => ' Nogat stoa pes long browser',
+'tog-enotifwatchlistpages' => 'Salim imel long mi taim wanpela pes mi lukautim i senis',
+'tog-enotifusertalkpages' => 'Salim imel long mi wanem taim toktok bilong mi i senis',
+'tog-enotifminoredits' => 'Salim imel long mi tasol long liklik senis long pes na fail',
+'tog-enotifrevealaddr' => 'Soim imel adres bilong mi long olpela infomesen imel',
 'tog-shownumberswatching' => 'Soim hamas yusa i lukautim pes',
+'tog-oldsig' => 'Olsem wanem yu raitim nem nau',
+'tog-fancysig' => 'Dispela rot yu raitim long nem stap wikitext (i no gat otomatik link)',
+'tog-externaleditor' => 'Yusim long ausait edita oltaim (tasol long man bilong save, i nidim sipesol setap antap long komputa bilong yu. [//www.mediawiki.org/wiki/Manual:External_editors Lukim moa infomesen.])',
+'tog-externaldiff' => 'Yusim long ausait diff oltaim (tasol long man bilong save, i nidim sipesol setap antap long komputa bilong yu. [//www.mediawiki.org/wiki/Manual:External_editors Lukim moa infomesen.])',
+'tog-showjumplinks' => ' Setap ol "Go stret long" links bilong helpim',
 'tog-uselivepreview' => 'Soim ol senis kwiktaim taim mi wokim (i nidim Javascript)',
+'tog-forceeditsummary' => 'Tokim mi long wanem taim raitim mi nating long liklik toksave bilong senis',
 'tog-watchlisthideown' => 'Haitim ol senis mi wokim long lukautbuk bilong mi',
 'tog-watchlisthidebots' => 'Haitim ol senis ol bot i wokim long lukautbuk bilong mi',
 'tog-watchlisthideminor' => 'Haitim ol liklik senis long lukautbuk bilong mi',
+'tog-watchlisthideliu' => ' Haitim senis long olpela yusa husat "logged in" long lukautbuk bilong mi',
 'tog-showhiddencats' => 'Soim ol grup hait',
 
 'underline-always' => 'Olgeta taim',

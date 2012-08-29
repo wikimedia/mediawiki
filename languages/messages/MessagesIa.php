@@ -840,7 +840,6 @@ Le ultime entrata del registro de blocadas es reproducite ci infra pro informati
 * '''Firefox / Safari:''' Tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sur Mac)
 * '''Google Chrome:''' Preme ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur Mac)
 * '''Internet Explorer:''' Tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
-* '''Konqueror:''' Clicca ''Reload (Recargar)'' o preme ''F5''
 * '''Opera:''' Vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
 'usercssyoucanpreview' => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
 'userjsyoucanpreview' => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
@@ -1867,6 +1866,7 @@ Tu vole forsan modificar le description in le [$2 pagina de description del file
 'uploadnewversion-linktext' => 'Incargar un nove version de iste file',
 'shared-repo-from' => 'ab $1',
 'shared-repo' => 'un repositorio partite',
+'upload-disallowed-here' => 'Infortunatemente tu non pote superscriber iste imagine.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -1975,6 +1975,7 @@ Le entratas <del>cancellate</del> ha essite resolvite.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorias}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|ligamine|ligamines}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|version|versiones}}',
@@ -2003,6 +2004,7 @@ Le entratas <del>cancellate</del> ha essite resolvite.',
 'mostlinkedtemplates' => 'Patronos le plus utilisate',
 'mostcategories' => 'Paginas con le plus categorias',
 'mostimages' => 'Files le plus utilisate',
+'mostinterwikis' => 'Paginas con le plus interwikis',
 'mostrevisions' => 'Paginas le plus modificate',
 'prefixindex' => 'Tote le paginas con prefixo',
 'prefixindex-namespace' => 'Tote le paginas con prefixo (spatio de nomines $1)',
@@ -2152,6 +2154,8 @@ Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]
 e haber un adresse de e-mail valide in tu [[Special:Preferences|preferentias]]
 pro inviar e-mail a altere usatores.',
 'emailuser' => 'Inviar e-mail a iste usator',
+'emailuser-title-target' => 'Inviar e-mail a iste {{GENDER:$1|usator|usatrice}}',
+'emailuser-title-notarget' => 'Inviar e-mail al usator',
 'emailpage' => 'Inviar e-mail al usator',
 'emailpagetext' => 'Le formulario infra es pro inviar un message de e-mail a iste usator.
 Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
@@ -2995,16 +2999,34 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 
 # Info page
 'pageinfo-title' => 'Informationes pro "$1"',
-'pageinfo-header-edits' => 'Modificationes',
-'pageinfo-header-watchlist' => 'Observatorio',
-'pageinfo-header-views' => 'Visitas',
-'pageinfo-subjectpage' => 'Pagina',
-'pageinfo-talkpage' => 'Discussion',
-'pageinfo-watchers' => 'Numero de observatores',
-'pageinfo-edits' => 'Numero de modificationes',
-'pageinfo-authors' => 'Numero de autores distincte',
+'pageinfo-header-basic' => 'Information de base',
+'pageinfo-header-edits' => 'Historia de modificationes',
+'pageinfo-header-restrictions' => 'Protection del pagina',
+'pageinfo-header-properties' => 'Proprietates del pagina',
+'pageinfo-display-title' => 'Titulo monstrate',
+'pageinfo-default-sort' => 'Clave de ordination predefinite',
+'pageinfo-length' => 'Dimension del pagina (in bytes)',
+'pageinfo-article-id' => 'ID del pagina',
+'pageinfo-robot-policy' => 'Stato del motor de recerca',
+'pageinfo-robot-index' => 'Indexabile',
+'pageinfo-robot-noindex' => 'Non indexabile',
 'pageinfo-views' => 'Numero de visitas',
-'pageinfo-viewsperedit' => 'Visitas per modification',
+'pageinfo-watchers' => 'Numero de observatores del pagina',
+'pageinfo-redirects-name' => 'Redirectiones verso iste pagina',
+'pageinfo-subpages-name' => 'Subpaginas de iste pagina',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|redirection|redirectiones}}; $3 {{PLURAL:$3|non-redirection|non-redirectiones}})',
+'pageinfo-firstuser' => 'Creator del pagina',
+'pageinfo-firsttime' => 'Data de creation del pagina',
+'pageinfo-lastuser' => 'Ultime contributor',
+'pageinfo-lasttime' => 'Data del ultime modification',
+'pageinfo-edits' => 'Numero total de modificationes',
+'pageinfo-authors' => 'Numero total de autores distincte',
+'pageinfo-recent-edits' => 'Numero de modificationes recente (intra le ultime $1)',
+'pageinfo-recent-authors' => 'Numero de autores distincte recente',
+'pageinfo-restriction' => 'Protection del pagina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Parola|Parolas}} magic ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria|Categorias}} celate ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Patrono|Patronos}} transcludite ($1)',
 
 # Skin names
 'skinname-standard' => 'Classic',
@@ -3058,6 +3080,7 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'file-info-size-pages' => '$1 × $2 pixels, dimension del file: $3, typo MIME: $4, $5 {{PLURAL:$5|pagina|paginas}}',
 'file-nohires' => 'Non disponibile in resolution plus alte.',
 'svg-long-desc' => 'File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
+'svg-long-desc-animated' => 'File SVG animate, dimensiones nominal: $1 × $2 pixels, grandor del file: $3',
 'show-big-image' => 'Plen resolution',
 'show-big-image-preview' => ' Dimension de iste previsualisation: $1.',
 'show-big-image-other' => 'Altere {{PLURAL:$2|resolution|resolutiones}}: $1.',
@@ -3067,6 +3090,8 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'file-info-png-looped' => 'repetente',
 'file-info-png-repeat' => 'repetite $1 {{PLURAL:$1|vice|vices}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|photogramma|photogrammas}}',
+'file-no-thumb-animation' => "'''Note: A causa de limitationes technic, le miniaturas de iste file non essera animate.'''",
+'file-no-thumb-animation-gif' => "'''Nota: A causa de limitationes technic, le miniaturas de imagines GIF in alte resolution como iste non essera animate.'''",
 
 # Special:NewFiles
 'newimages' => 'Galeria de nove files',
@@ -3397,7 +3422,7 @@ Le alteres essera initialmente celate.
 'exif-whitebalance-1' => 'Balancia de blanc manual',
 
 'exif-scenecapturetype-0' => 'Standard',
-'exif-scenecapturetype-1' => 'Panorama',
+'exif-scenecapturetype-1' => 'Paisage',
 'exif-scenecapturetype-2' => 'Portrait',
 'exif-scenecapturetype-3' => 'Scena nocturne',
 

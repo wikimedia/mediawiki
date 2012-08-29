@@ -1,7 +1,7 @@
 <?php
 
 global $wgAutoloadClasses;
-$testFolder = dirname( __FILE__ );
+$testFolder = __DIR__;
 
 $wgAutoloadClasses += array(
 
@@ -13,7 +13,6 @@ $wgAutoloadClasses += array(
 
 	//includes
 	'BlockTest' => "$testFolder/phpunit/includes/BlockTest.php",
-	'MockOutputPage' => "$testFolder/phpunit/includes/MockOutputPage.php",
 
 	//API
 	'ApiFormatTestBase' => "$testFolder/phpunit/includes/api/format/ApiFormatTestBase.php",

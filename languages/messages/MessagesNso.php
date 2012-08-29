@@ -32,14 +32,14 @@ $namespaceNames = array(
 );
 
 $magicWords = array(
-	'currentmonth'            => array( '1', 'KGWEDI_BJALE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
-	'currentmonthname'        => array( '1', 'LEINA_KGWEDI_BJALE', 'CURRENTMONTHNAME' ),
-	'currentday'              => array( '1', 'LEHONO_LETSATSI', 'CURRENTDAY' ),
-	'currentday2'             => array( '1', 'LEHONO_LETSATSI2', 'CURRENTDAY2' ),
-	'currentdayname'          => array( '1', 'LEHONO_LETSATSILEINA', 'CURRENTDAYNAME' ),
-	'currentyear'             => array( '1', 'NGWAGA_BJALE', 'CURRENTYEAR' ),
-	'currenttime'             => array( '1', 'NAKO_BJALE', 'CURRENTTIME' ),
-	'currenthour'             => array( '1', 'IRI_BJALE', 'CURRENTHOUR' ),
+	'currentmonth'              => array( '1', 'KGWEDI_BJALE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonthname'          => array( '1', 'LEINA_KGWEDI_BJALE', 'CURRENTMONTHNAME' ),
+	'currentday'                => array( '1', 'LEHONO_LETSATSI', 'CURRENTDAY' ),
+	'currentday2'               => array( '1', 'LEHONO_LETSATSI2', 'CURRENTDAY2' ),
+	'currentdayname'            => array( '1', 'LEHONO_LETSATSILEINA', 'CURRENTDAYNAME' ),
+	'currentyear'               => array( '1', 'NGWAGA_BJALE', 'CURRENTYEAR' ),
+	'currenttime'               => array( '1', 'NAKO_BJALE', 'CURRENTTIME' ),
+	'currenthour'               => array( '1', 'IRI_BJALE', 'CURRENTHOUR' ),
 );
 
 $messages = array(

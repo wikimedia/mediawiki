@@ -19,7 +19,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
+require_once( __DIR__ . '/../Maintenance.php' );
 
 class StorageTypeStats extends Maintenance {
 	function execute() {

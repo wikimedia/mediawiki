@@ -100,6 +100,15 @@ class TempFSFile extends FSFile {
 	}
 
 	/**
+	 * Set flag clean up after the temporary file
+	 *
+	 * @return void
+	 */
+	public function autocollect() {
+		$this->canDelete = true;
+	}
+
+	/**
 	 * Cleans up after the temporary file by deleting it
 	 */
 	function __destruct() {

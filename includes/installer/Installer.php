@@ -308,7 +308,7 @@ abstract class Installer {
 
 	/**
 	 * UI interface for displaying a short message
-	 * The parameters are like parameters to wfMsg().
+	 * The parameters are like parameters to wfMessage().
 	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
 	 * @param $msg
@@ -339,7 +339,7 @@ abstract class Installer {
 
 		// Load the installer's i18n file.
 		$wgExtensionMessagesFiles['MediawikiInstaller'] =
-			dirname( __FILE__ ) . '/Installer.i18n.php';
+			__DIR__ . '/Installer.i18n.php';
 
 		// Having a user with id = 0 safeguards us from DB access via User::loadOptions().
 		$wgUser = User::newFromId( 0 );
@@ -645,7 +645,7 @@ abstract class Installer {
 		$allNames = array();
 
 		foreach ( self::getDBTypes() as $name ) {
-			$allNames[] = wfMsg( "config-type-$name" );
+			$allNames[] = wfMessage( "config-type-$name" )->text();
 		}
 
 		// cache initially available databases to make sure that everything will be displayed correctly
@@ -788,6 +788,10 @@ abstract class Installer {
 
 	/**
 	 * Environment check for the PCRE module.
+	 *
+	 * @note If this check were to fail, the parser would
+	 *   probably throw an exception before the result
+	 *   of this check is shown to the user.
 	 * @return bool
 	 */
 	protected function envCheckPCRE() {
@@ -797,8 +801,13 @@ abstract class Installer {
 		}
 		wfSuppressWarnings();
 		$regexd = preg_replace( '/[\x{0430}-\x{04FF}]/iu', '', '-АБВГД-' );
+		// Need to check for \p support too, as PCRE can be compiled
+		// with utf8 support, but not unicode property support.
+		// check that \p{Zs} (space separators) matches
+		// U+3000 (Ideographic space)
+		$regexprop = preg_replace( '/\p{Zs}/u', '', "-\xE3\x80\x80-" );
 		wfRestoreWarnings();
-		if ( $regexd != '--' ) {
+		if ( $regexd != '--' || $regexprop != '--' ) {
 			$this->showError( 'config-pcre-no-utf8' );
 			return false;
 		}
@@ -926,7 +935,7 @@ abstract class Installer {
 	 */
 	protected function envCheckPath() {
 		global $IP;
-		$IP = dirname( dirname( dirname( __FILE__ ) ) );
+		$IP = dirname( dirname( __DIR__ ) );
 		$this->setVar( 'IP', $IP );
 
 		$this->showMessage( 'config-using-uri', $this->getVar( 'wgServer' ), $this->getVar( 'wgScriptPath' ) );
@@ -1585,12 +1594,13 @@ abstract class Installer {
 		$status = Status::newGood();
 		try {
 			$page = WikiPage::factory( Title::newMainPage() );
-			$page->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
-							wfMsgForContent( 'mainpagedocfooter' ),
-							'',
-							EDIT_NEW,
-							false,
-							User::newFromName( 'MediaWiki default' ) );
+			$page->doEdit( wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
+					wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text(),
+					'',
+					EDIT_NEW,
+					false,
+					User::newFromName( 'MediaWiki default' )
+			);
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );

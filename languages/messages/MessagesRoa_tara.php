@@ -153,6 +153,7 @@ $messages = array(
 'index-category' => 'Pàggene indicizzate',
 'noindex-category' => 'Pàggene none indicizzate',
 'broken-file-category' => 'Pàggene cu collegaminde a le file scuasciate',
+'categoryviewer-pagedlinks' => '($1) ($2)',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
@@ -356,9 +357,9 @@ Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:
 'dberrortext' => "Ha assute n'errore de sindassi de 'na inderrogazione sus a 'u database.
 Quiste pò indicà 'nu bochere jndr'à 'u software.
 L'urteme tendative de inderrogazione sus a 'u database ha state:
-<blockquote><tt>\$1</tt></blockquote>
-cu 'a funzione \"<tt>\$2</tt>\".
-'U database ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
+<blockquote><code>\$1</code></blockquote>
+cu 'a funzione \"<code>\$2</code>\".
+'U database ha returnate l'errore \"<samp>\$3: \$4</samp>\".",
 'dberrortextcl' => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
 L\'urteme tendative de inderrogazione sus a \'u database ha state:
 "$1"
@@ -721,12 +722,11 @@ Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view' => '\'U cunde utende "$1" non g\'è reggistrate.',
 'blocked-notice-logextract' => "Stu utende jè correndemende bloccate.<br />
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
-'clearyourcache' => "''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tune pe vedè le cangiaminde.'''
-*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sus a 'nu Mac);
+'clearyourcache' => "'''Vide Bbuene''' - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tune pe vedè le cangiaminde.
+*'''Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sus a 'nu Mac);
 *'''Google Chrome:''' cazze ''Ctrl-Shift-R'' (''⌘-Shift-R'' sus a 'nu Mac)
 *'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.
-*'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
-*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);",
+*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tarandine);",
 'usercssyoucanpreview' => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
 'userjsyoucanpreview' => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview' => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
@@ -1021,6 +1021,7 @@ Vide Bbuene ca ausanne le collegaminde de navigazzione sta culonne avène azzera
 'mergehistory-comment' => "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
 'mergehistory-same-destination' => 'Le pàggene sorgende e de destinazione non ge ponne essere le stesse',
 'mergehistory-reason' => 'Mutive:',
+'mergehistory-revisionrow' => '$1 ($2) $3 . . $4 $5 $6',
 
 # Merge log
 'mergelog' => 'Archivije de le scuagghiaminde',
@@ -1870,6 +1871,7 @@ Mò s'avène redirette a [[$2]].",
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categorije|categorije}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interuicchi|interuicchi}}',
 'nlinks' => '$1 {{PLURAL:$1|collegamende|collegaminde}}',
 'nmembers' => '$1 {{PLURAL:$1|membre|membre}}',
 'nrevisions' => '$1 {{PLURAL:$1|revisione|revisiune}}',
@@ -1898,6 +1900,7 @@ Mò s'avène redirette a [[$2]].",
 'mostlinkedtemplates' => 'Template cchiù appundete',
 'mostcategories' => "Pàggene cu 'nu sacche de categorije",
 'mostimages' => 'Fail cchiù appundete',
+'mostinterwikis' => 'Pàggene cu cchiù interuicchi de tutte',
 'mostrevisions' => 'Pàggene cchiù cangete',
 'prefixindex' => "Tutte le pàggene cu 'u prefisse",
 'prefixindex-namespace' => "Tutte le pàggene cu 'u prefisse ($1 namespace)",
@@ -2047,6 +2050,8 @@ Ponne stà [[{{MediaWiki:Listgrouprights-helppage}}|'mbormaziune de cchiù]] sus
 'mailnologin' => 'Nisciune indirizze de invie',
 'mailnologintext' => "Tu a essere [[Special:UserLogin|collegate]] e a avè 'n'indirizze email valide jndr'à le [[Special:Preferences|preferenze]] tue pe mannà 'na mail a otre utinde.",
 'emailuser' => "Manne n'email a stu utende",
+'emailuser-title-target' => "Manne n'email a quiste {{GENDER:$1|utende}}",
+'emailuser-title-notarget' => "E-mail de l'utende",
 'emailpage' => "E-mail de l'utende",
 'emailpagetext' => "Tu puè ausà 'a schermate aqquà sotte pe mannà 'n'email a stu utende.
 L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze tue]] iesse jndr'à 'u cambe \"Da\" de l'e-mail, accussìa ce riceve 'a mail sape a ce addà responnere.",
@@ -2337,6 +2342,7 @@ Pò essere ca già ha state scangellate.",
 $1",
 'undelete-show-file-confirm' => 'Sì secure ca tu vuè ccu vide \'na revisiona scangellate d\'u file "<nowiki>$1</nowiki>" d\'u $2 a le $3?',
 'undelete-show-file-submit' => 'Sine',
+'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'Namespace:',
@@ -2740,6 +2746,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-error-interwiki' => 'Pagene "$1" non g\'ha state \'mbortate purcé \'u nome sue jè riservate pe collegaminde esterne (interuicchi).',
 'import-error-special' => "'A pagena \"\$1\" non g'ha state 'mbortate purcé apponde a 'nu namespace speciale ca non g'è permesse a le pàggene normale.",
 'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
+'import-options-wrong' => '{{PLURAL:$2|opzione|opziune}} sbagliate: <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => "Archivie de le 'mbortaziune",
@@ -2893,16 +2900,26 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 
 # Info page
 'pageinfo-title' => '\'Mbormaziune pe "$1"',
-'pageinfo-header-edits' => 'Cangiaminde',
-'pageinfo-header-watchlist' => 'Pàggene condrollate',
-'pageinfo-header-views' => 'Visite',
-'pageinfo-subjectpage' => 'Pàgene',
-'pageinfo-talkpage' => "Pàgene de le 'ngazzaminde",
-'pageinfo-watchers' => 'Numere de visitature',
-'pageinfo-edits' => 'Numere de cangiaminde',
-'pageinfo-authors' => 'Numere de autore diverse',
+'pageinfo-header-basic' => "'Mbormaziune 'nderra-'nderre",
+'pageinfo-header-edits' => 'Cunde de le cangiaminde',
+'pageinfo-header-properties' => "Probbietà d'a pàgene",
+'pageinfo-display-title' => "Fà vedè 'u titole",
+'pageinfo-article-id' => "ID d'a pàgene",
+'pageinfo-robot-policy' => "State d'u motore de ricerche",
+'pageinfo-robot-index' => 'Indicizzabbele',
+'pageinfo-robot-noindex' => 'None indicizzabbele',
 'pageinfo-views' => 'Numere de visite',
-'pageinfo-viewsperedit' => 'Visite pe cangiaminde',
+'pageinfo-watchers' => "Numere de visitature d'a pàgene",
+'pageinfo-redirects-name' => 'Redirezionaminde a sta pàgene',
+'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'Sottopàggene de sta pàgene',
+'pageinfo-firstuser' => "Ccrejatore d'a pàgene",
+'pageinfo-firsttime' => "Date d'a ccrejazione d'a pàgene",
+'pageinfo-lastuser' => 'Urteme cangiatore',
+'pageinfo-lasttime' => "Darte de l'urteme cangiamende",
+'pageinfo-edits' => 'Numere totale de cangiaminde',
+'pageinfo-authors' => 'Numere Totale de autore diverse',
+'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 
 # Skin names
 'skinname-standard' => 'Classeche',
@@ -3618,6 +3635,7 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'ellipsis' => '...',
 'percent' => '$1%',
 'parentheses' => '($1)',
+'brackets' => '[$1]',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgena precedende',
@@ -3648,6 +3666,22 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'size-kilobytes' => '$1 KB',
 'size-megabytes' => '$1 MB',
 'size-gigabytes' => '$1 GB',
+'size-terabytes' => '$1 TB',
+'size-petabytes' => '$1 PB',
+'size-exabytes' => '$1 EB',
+'size-zetabytes' => '$1 ZB',
+'size-yottabytes' => '$1 YB',
+
+# Bitrate units
+'bitrate-bits' => '$1bps',
+'bitrate-kilobits' => '$1kbps',
+'bitrate-megabits' => '$1Mbps',
+'bitrate-gigabits' => '$1Gbps',
+'bitrate-terabits' => '$1Tbps',
+'bitrate-petabits' => '$1Pbps',
+'bitrate-exabits' => '$1Ebps',
+'bitrate-zetabits' => '$1Zbps',
+'bitrate-yottabits' => '$1Ybps',
 
 # Live preview
 'livepreview-loading' => 'Stoche a careche…',

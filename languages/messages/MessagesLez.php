@@ -1189,12 +1189,8 @@ $messages = array(
 
 # Info page
 'pageinfo-header-edits' => 'Дуьзар хъувун',
-'pageinfo-header-watchlist' => 'Гуьзетунин сиягь',
-'pageinfo-header-views' => 'Килигунар',
-'pageinfo-subjectpage' => 'Ччин',
-'pageinfo-talkpage' => 'Веревирдрин ччин',
-'pageinfo-edits' => 'Дьузар хъувунрин кьадар',
 'pageinfo-views' => 'Килигунрин кьадар',
+'pageinfo-edits' => 'Дьузар хъувунрин кьадар',
 
 # Browsing diffs
 'previousdiff' => 'Вилик алатай дуьзар хъувун',

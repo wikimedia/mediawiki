@@ -2818,15 +2818,10 @@ Daytoy ket mabalin a gapuanan babaen ti panilpo a naiparit ti akin ruar a pagsaa
 # Info page
 'pageinfo-title' => 'Pakaammo para iti "$1"',
 'pageinfo-header-edits' => 'Dagiti inurnos',
-'pageinfo-header-watchlist' => 'Listaan ti bambantayan',
-'pageinfo-header-views' => 'Dagiti pangkitaan',
-'pageinfo-subjectpage' => 'Panid',
-'pageinfo-talkpage' => 'Tungtungan a panid',
+'pageinfo-views' => 'Bilang dagiti panagkita',
 'pageinfo-watchers' => 'Bilang dagiti agbuybuya',
 'pageinfo-edits' => 'Bilang dagiti inurnos:',
 'pageinfo-authors' => 'Ti bilang dagiti sabsabali a mannurat',
-'pageinfo-views' => 'Bilang dagiti panagkita',
-'pageinfo-viewsperedit' => 'Mano a panagkita ti tunggal maysa nga urnos',
 
 # Patrolling
 'markaspatrolleddiff' => 'Markaan a kas napatruliaan',

@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/dumpIterator.php' );
+require_once( __DIR__ . '/dumpIterator.php' );
 
 /**
  * Maintenance script to take page text out of an XML dump file and render

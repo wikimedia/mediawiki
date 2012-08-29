@@ -61,8 +61,8 @@ $namespaceAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
-	'language'                => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
+	'redirect'                  => array( '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ),
+	'language'                  => array( '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ),
 );
 
 $defaultDateFormat = 'mdy';
@@ -733,11 +733,6 @@ $messages = array(
 'tooltip-t-print' => 'сѥѩ страницѧ пєчатьнъ обраꙁъ',
 'tooltip-ca-nstab-special' => 'си нарочьна страница ѥстъ · ѥѩжє иꙁмѣнꙗти нє можєши',
 'tooltip-watch' => 'си страницѧ блюдєниѥ',
-
-# Info page
-'pageinfo-header-watchlist' => 'блюдєниꙗ',
-'pageinfo-subjectpage' => 'страница',
-'pageinfo-talkpage' => 'бєсѣда',
 
 # Media information
 'file-info-size' => '$1 × $2 п҃ѯ · дѣла мѣра : $3 · MIME тѷпъ : $4',
