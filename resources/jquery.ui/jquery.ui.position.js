@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Position 1.8.22
+ * jQuery UI Position 1.8.23
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -255,6 +255,11 @@ if ( !$.offset.setOffset ) {
 		}
 		return _offset.call( this );
 	};
+}
+
+// jQuery <1.4.3 uses curCSS, in 1.4.3 - 1.7.2 curCSS = css, 1.8+ only has css
+if ( !$.curCSS ) {
+	$.curCSS = $.css;
 }
 
 // fraction support test (older versions of jQuery don't support fractions)

@@ -1,5 +1,5 @@
 /*!
- * jQuery UI Selectable 1.8.22
+ * jQuery UI Selectable 1.8.23
  *
  * Copyright 2012, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -261,7 +261,7 @@ $.widget("ui.selectable", $.ui.mouse, {
 });
 
 $.extend($.ui.selectable, {
-	version: "1.8.22"
+	version: "1.8.23"
 });
 
 })(jQuery);
