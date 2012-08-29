@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ) . '/Maintenance.php' );
+require_once( __DIR__ . '/Maintenance.php' );
 
 /**
  * Maintenance script that fills the rev_sha1 and ar_sha1 columns of revision

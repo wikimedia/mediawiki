@@ -1,7 +1,10 @@
 <?php
 
 /**
- * @group Editing
+ * Tests for MediaWiki api.php?action=edit.
+ *
+ * @author Daniel Kinzler
+ *
  * @group API
  * @group Database
  */
@@ -12,70 +15,42 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->doLogin();
 	}
 
-	function getTokens() {
-		return $this->getTokenList( self::$users['sysop'] );
-	}
-
-	function testEdit() {
+	function testEdit( ) {
 		$name = 'ApiEditPageTest_testEdit';
 
-		$tokenData = $this->getTokens();
-
-		if( !isset( $tokenData[0]['query']['pages'] ) ) {
-			$this->markTestIncomplete( "No edit token found" );
-		}
-
-		$keys = array_keys( $tokenData[0]['query']['pages'] );
-		$key = array_pop( $keys );
-		$pageinfo = $tokenData[0]['query']['pages'][$key];
-		$session = $tokenData[2];
-
-		// -----------------------------------------------------------------------
-
-		$data = $this->doApiRequest( array(
+		// -- test new page --------------------------------------------
+		$apiResult = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
-				'text' => 'some text',
-				'token' => $pageinfo['edittoken'] ),
-			$session,
-			false,
-			self::$users['sysop']->user );
+				'text' => 'some text', ) );
+		$apiResult = $apiResult[0];
 
-		$this->assertArrayHasKey( 'edit', $data[0] );
-		$this->assertArrayHasKey( 'result', $data[0]['edit'] );
-		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
+		# Validate API result data
+		$this->assertArrayHasKey( 'edit', $apiResult );
+		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
+		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
 
-		$this->assertArrayHasKey( 'new', $data[0]['edit'] );
-		$this->assertArrayNotHasKey( 'nochange', $data[0]['edit'] );
+		$this->assertArrayHasKey( 'new', $apiResult['edit'] );
+		$this->assertArrayNotHasKey( 'nochange', $apiResult['edit'] );
 
-		$this->assertArrayHasKey( 'pageid', $data[0]['edit'] );
-		$this->assertArrayHasKey( 'contentmodel', $data[0]['edit'] );
-		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $data[0]['edit']['contentmodel'] );
+		$this->assertArrayHasKey( 'pageid', $apiResult['edit'] );
 
-		// -----------------------------------------------------------------------
-		$data = $this->doApiRequest( array(
+		// -- test existing page, no change ----------------------------
+		$data = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
-				'text' => 'some text',
-				'token' => $pageinfo['edittoken'] ),
-			$session,
-			false,
-			self::$users['sysop']->user );
+				'text' => 'some text', ) );
 
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
 
 		$this->assertArrayNotHasKey( 'new', $data[0]['edit'] );
 		$this->assertArrayHasKey( 'nochange', $data[0]['edit'] );
 
-		// -----------------------------------------------------------------------
-		$data = $this->doApiRequest( array(
+		// -- test existing page, with change --------------------------
+		$data = $this->doApiRequestWithToken( array(
 				'action' => 'edit',
 				'title' => $name,
-				'text' => 'different text',
-				'token' => $pageinfo['edittoken'] ),
-			$session,
-			false,
-			self::$users['sysop']->user );
+				'text' => 'different text' ) );
 
 		$this->assertEquals( 'Success', $data[0]['edit']['result'] );
 
@@ -84,7 +59,11 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'oldrevid', $data[0]['edit'] );
 		$this->assertArrayHasKey( 'newrevid', $data[0]['edit'] );
-		$this->assertTrue( $data[0]['edit']['newrevid'] !== $data[0]['edit']['oldrevid'], "revision id should change after edit" );
+		$this->assertNotEquals(
+			$data[0]['edit']['newrevid'],
+			$data[0]['edit']['oldrevid'],
+			"revision id should change after edit"
+		);
 	}
 
 	function testEditAppend() {

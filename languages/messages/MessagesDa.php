@@ -2896,15 +2896,10 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 # Info page
 'pageinfo-title' => 'Information om "$1"',
 'pageinfo-header-edits' => 'Redigeringer',
-'pageinfo-header-watchlist' => 'Overvågningsliste',
-'pageinfo-header-views' => 'Visninger',
-'pageinfo-subjectpage' => 'Side',
-'pageinfo-talkpage' => 'Diskussionsside',
+'pageinfo-views' => 'Antal visninger',
 'pageinfo-watchers' => 'Antal brugere, der overvåger siden',
 'pageinfo-edits' => 'Antal redigeringer',
 'pageinfo-authors' => 'Antal forskellige forfattere',
-'pageinfo-views' => 'Antal visninger',
-'pageinfo-viewsperedit' => 'Visninger per redigering',
 
 # Skin names
 'skinname-standard' => 'Klassik',

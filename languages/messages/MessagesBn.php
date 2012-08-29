@@ -2510,13 +2510,9 @@ $1',
 
 # Info page
 'pageinfo-header-edits' => 'সম্পাদনা',
-'pageinfo-header-watchlist' => 'নজরতালিকা',
-'pageinfo-header-views' => 'দৃষ্টিকোণ',
-'pageinfo-subjectpage' => 'পাতা',
-'pageinfo-talkpage' => 'আলাপ পাতা',
+'pageinfo-views' => 'পরিদর্শন সংখ্যা',
 'pageinfo-edits' => 'সম্পাদনা সংখ্যা',
 'pageinfo-authors' => 'সতন্ত্র সম্পাদকের সংখ্যা',
-'pageinfo-views' => 'পরিদর্শন সংখ্যা',
 
 # Patrolling
 'markaspatrolleddiff' => 'পরীক্ষিত বলে চিহ্নিত করুন',

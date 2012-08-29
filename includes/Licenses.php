@@ -120,7 +120,7 @@ class Licenses extends HTMLFormField {
 		foreach ( $tagset as $key => $val )
 			if ( is_array( $val ) ) {
 				$this->html .= $this->outputOption(
-					$this->msg( $key ), '',
+					$key, '',
 					array(
 						'disabled' => 'disabled',
 						'style' => 'color: GrayText', // for MSIE
@@ -130,7 +130,7 @@ class Licenses extends HTMLFormField {
 				$this->makeHtml( $val, $depth + 1 );
 			} else {
 				$this->html .= $this->outputOption(
-					$this->msg( $val->text ), $val->template,
+					$val->text, $val->template,
 					array( 'title' => '{{' . $val->template . '}}' ),
 					$depth
 				);
@@ -138,27 +138,20 @@ class Licenses extends HTMLFormField {
 	}
 
 	/**
-	 * @param $text
+	 * @param $message
 	 * @param $value
 	 * @param $attribs null
 	 * @param $depth int
 	 * @return string
 	 */
-	protected function outputOption( $text, $value, $attribs = null, $depth = 0 ) {
+	protected function outputOption( $message, $value, $attribs = null, $depth = 0 ) {
+		$msgObj = $this->msg( $message );
+		$text = $msgObj->exists() ? $msgObj->text() : $message;
 		$attribs['value'] = $value;
 		if ( $value === $this->selected )
 			$attribs['selected'] = 'selected';
 		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
-	}
-
-	/**
-	 * @param $str string
-	 * @return String
-	 */
-	protected function msg( $str ) {
-		$msg = wfMessage( $str );
-		return $msg->exists() ? $msg->text() : $str;
 	}
 
 	/**#@-*/

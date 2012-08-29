@@ -2609,15 +2609,10 @@ Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 # Info page
 'pageinfo-title' => 'Informatione tou „$1“',
 'pageinfo-header-edits' => 'Beoarbaidengen',
-'pageinfo-header-watchlist' => 'Beooboachtengslieste',
-'pageinfo-header-views' => 'Siedenaproupe',
-'pageinfo-subjectpage' => 'Siede',
-'pageinfo-talkpage' => 'Diskussionssiede',
+'pageinfo-views' => 'Antaal fon Siedenaproupe',
 'pageinfo-watchers' => 'Antaal fon do Besäikere',
 'pageinfo-edits' => 'Antaal fon do  Beoarbaidengen',
 'pageinfo-authors' => 'Antaal fon unnerskeedelke Autoren',
-'pageinfo-views' => 'Antaal fon Siedenaproupe',
-'pageinfo-viewsperedit' => 'Siedenaproupe pro Beoarbaidenge',
 
 # Patrolling
 'markaspatrolleddiff' => 'As pröiwed markierje',

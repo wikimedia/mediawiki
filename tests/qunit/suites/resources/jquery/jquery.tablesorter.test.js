@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function ( $, mw ) {
 
 var config = {
 	wgMonthNames: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -345,11 +345,11 @@ var complexMDYDates = [
 ];
 
 var complexMDYSorted = [
-	["5.12.1990"],
-	["April 21 1991"],
-	["04 22 1991"],
-	["January, 19 2010"],
-	["December 12 '10"]
+	['5.12.1990'],
+	['April 21 1991'],
+	['04 22 1991'],
+	['January, 19 2010'],
+	['December 12 \'10']
 ];
 
 tableTest(
@@ -360,6 +360,39 @@ tableTest(
 	function ( $table ) {
 		mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+	}
+);
+
+var currencyUnsorted = [
+	['1.02 $'],
+	['$ 3.00'],
+	['€ 2,99'],
+	['$ 1.00'],
+	['$3.50'],
+	['$ 1.50'],
+	['€ 0.99']
+];
+
+var currencySorted = [
+	['€ 0.99'],
+	['$ 1.00'],
+	['1.02 $'],
+	['$ 1.50'],
+	['$ 3.00'],
+	['$3.50'],
+	// Comma's sort after dots
+	// Not intentional but test to detect changes
+	['€ 2,99']
+];
+
+tableTest(
+	'Currency parsing I',
+	['currency'],
+	currencyUnsorted,
+	currencySorted,
+	function ( $table ) {
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -380,6 +413,7 @@ tableTest(
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
+
 
 /** FIXME: the diff output is not very readeable. */
 QUnit.test( 'bug 32047 - caption must be before thead', function ( assert ) {
@@ -660,4 +694,4 @@ tableTest(
 	}
 );
 
-}( jQuery ) );
+}( jQuery, mediaWiki ) );

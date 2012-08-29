@@ -2564,15 +2564,10 @@ $1को बन्देजको कारण : "$2" हो',
 # Info page
 'pageinfo-title' => ' "$1"को लागि जाकारी',
 'pageinfo-header-edits' => 'सम्पादनहरु',
-'pageinfo-header-watchlist' => 'निगरानी सुची',
-'pageinfo-header-views' => 'अवलोकनहरु',
-'pageinfo-subjectpage' => 'पृष्ठ',
-'pageinfo-talkpage' => 'वार्तालाप पृष्ठ',
+'pageinfo-views' => 'अवलोकन संख्या',
 'pageinfo-watchers' => 'निगरानी कर्ताहरुको संख्या',
 'pageinfo-edits' => 'सम्पादन संख्या',
 'pageinfo-authors' => 'फरक सम्पादकरुको संख्या',
-'pageinfo-views' => 'अवलोकन संख्या',
-'pageinfo-viewsperedit' => 'प्रति सम्पादन अवलोकन संख्या',
 
 # Skin names
 'skinname-standard' => 'क्लासिक',

@@ -93,7 +93,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'                => array( '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ),
+	'redirect'                  => array( '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ),
 );
 
 $messages = array(

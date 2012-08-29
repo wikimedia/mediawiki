@@ -47,16 +47,16 @@ $namespaceAliases = array(
 $namespaceGenderAliases = array();
 
 $magicWords = array(
-	'redirect'                => array( '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
-	'namespace'               => array( '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ),
-	'namespacee'              => array( '1', 'ESPACIODENOMBRESE', 'ESPACIODENOMBREC', 'NAMESPACEE' ),
-	'img_right'               => array( '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ),
-	'img_left'                => array( '1', 'cucha', 'zurda', 'izquierda', 'izda', 'izq', 'left' ),
-	'ns'                      => array( '0', 'EN:', 'EDN:', 'NS:' ),
-	'displaytitle'            => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
-	'currentversion'          => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ),
-	'language'                => array( '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
-	'special'                 => array( '0', 'especial', 'espezial', 'special' ),
+	'redirect'                  => array( '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ),
+	'namespace'                 => array( '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ),
+	'namespacee'                => array( '1', 'ESPACIODENOMBRESE', 'ESPACIODENOMBREC', 'NAMESPACEE' ),
+	'img_right'                 => array( '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ),
+	'img_left'                  => array( '1', 'cucha', 'zurda', 'izquierda', 'izda', 'izq', 'left' ),
+	'ns'                        => array( '0', 'EN:', 'EDN:', 'NS:' ),
+	'displaytitle'              => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
+	'currentversion'            => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ),
+	'language'                  => array( '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
+	'special'                   => array( '0', 'especial', 'espezial', 'special' ),
 );
 
 $specialPageAliases = array(
@@ -2791,15 +2791,10 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 # Info page
 'pageinfo-title' => 'Información ta «$1»',
 'pageinfo-header-edits' => 'Edicions',
-'pageinfo-header-watchlist' => 'Lista de seguimiento',
-'pageinfo-header-views' => 'Vistas',
-'pageinfo-subjectpage' => 'Pachina',
-'pageinfo-talkpage' => 'Pachina de descusión',
+'pageinfo-views' => 'Numero de vistas',
 'pageinfo-watchers' => "Numero d'usuarios que la cosiran",
 'pageinfo-edits' => "Numero d'edicions",
 'pageinfo-authors' => "Numero d'autors diferents",
-'pageinfo-views' => 'Numero de vistas',
-'pageinfo-viewsperedit' => 'Vistas por edición',
 
 # Skin names
 'skinname-standard' => 'Clasica (Classic)',

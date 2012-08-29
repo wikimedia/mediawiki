@@ -613,11 +613,11 @@ END;
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
-			$this->output( "Creating index '$index' on table '$table'\n" );
 			if ( preg_match( '/^\(/', $type ) ) {
+				$this->output( "Creating index '$index' on table '$table'\n" );
 				$this->db->query( "CREATE INDEX $index ON $table $type" );
 			} else {
-				$this->applyPatch( $type, true );
+				$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
 			}
 		}
 	}
@@ -647,7 +647,6 @@ END;
 
 	protected function convertArchive2() {
 		if ( $this->db->tableExists( "archive2" ) ) {
-			$this->output( "Converting 'archive2' back to normal archive table\n" );
 			if ( $this->db->ruleExists( 'archive', 'archive_insert' ) ) {
 				$this->output( "Dropping rule 'archive_insert'\n" );
 				$this->db->query( 'DROP RULE archive_insert ON archive' );
@@ -656,7 +655,7 @@ END;
 				$this->output( "Dropping rule 'archive_delete'\n" );
 				$this->db->query( 'DROP RULE archive_delete ON archive' );
 			}
-			$this->applyPatch( 'patch-remove-archive2.sql' );
+			$this->applyPatch( 'patch-remove-archive2.sql', false, "Converting 'archive2' back to normal archive table" );
 		} else {
 			$this->output( "...obsolete table 'archive2' does not exist\n" );
 		}
@@ -691,8 +690,7 @@ END;
 
 	protected function checkPageDeletedTrigger() {
 		if ( !$this->db->triggerExists( 'page', 'page_deleted' ) ) {
-			$this->output( "Adding function and trigger 'page_deleted' to table 'page'\n" );
-			$this->applyPatch( 'patch-page_deleted.sql' );
+			$this->applyPatch( 'patch-page_deleted.sql', false, "Adding function and trigger 'page_deleted' to table 'page'" );
 		} else {
 			$this->output( "...table 'page' has 'page_deleted' trigger\n" );
 		}
@@ -727,35 +725,30 @@ END;
 		if ( $this->fkeyDeltype( 'revision_rev_user_fkey' ) == 'r' ) {
 			$this->output( "...constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
 		} else {
-			$this->output( "Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT\n" );
-			$this->applyPatch( 'patch-revision_rev_user_fkey.sql' );
+			$this->applyPatch( 'patch-revision_rev_user_fkey.sql', false, "Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT" );
 		}
 	}
 
 	protected function checkIwlPrefix() {
 		if ( $this->db->indexExists( 'iwlinks', 'iwl_prefix' ) ) {
-			$this->output( "Replacing index 'iwl_prefix' with 'iwl_prefix_from_title'...\n" );
-			$this->applyPatch( 'patch-rename-iwl_prefix.sql' );
+			$this->applyPatch( 'patch-rename-iwl_prefix.sql', false, "Replacing index 'iwl_prefix' with 'iwl_prefix_from_title'" );
 		}
 	}
 
 	protected function addInterwikiType() {
-		$this->output( "Refreshing add_interwiki()...\n" );
-		$this->applyPatch( 'patch-add_interwiki.sql' );
+		$this->applyPatch( 'patch-add_interwiki.sql', false, "Refreshing add_interwiki()" );
 	}
 
 	protected function tsearchFixes() {
 		# Tweak the page_title tsearch2 trigger to filter out slashes
 		# This is create or replace, so harmless to call if not needed
-		$this->output( "Refreshing ts2_page_title()...\n" );
-		$this->applyPatch( 'patch-ts2pagetitle.sql' );
+		$this->applyPatch( 'patch-ts2pagetitle.sql', false, "Refreshing ts2_page_title()" );
 
 		# If the server is 8.3 or higher, rewrite the tsearch2 triggers
 		# in case they have the old 'default' versions
 		# Gather version numbers in case we need them
 		if ( $this->db->getServerVersion() >= 8.3 ) {
-			$this->output( "Rewriting tsearch2 triggers...\n" );
-			$this->applyPatch( 'patch-tsearch2funcs.sql' );
+			$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
 		}
 	}
 }

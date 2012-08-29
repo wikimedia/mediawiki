@@ -21,8 +21,8 @@
  * @ingroup Language
  */
 
-require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
-require_once( dirname( __FILE__ ) . '/LanguageZh_hans.php' );
+require_once( __DIR__ . '/../LanguageConverter.php' );
+require_once( __DIR__ . '/LanguageZh_hans.php' );
 
 /**
  * @ingroup Language
@@ -64,7 +64,7 @@ class ZhConverter extends LanguageConverter {
 	}
 
 	function loadDefaultTables() {
-		require( dirname( __FILE__ ) . "/../../includes/ZhConversion.php" );
+		require( __DIR__ . "/../../includes/ZhConversion.php" );
 		$this->mTables = array(
 			'zh-hans' => new ReplacementArray( $zh2Hans ),
 			'zh-hant' => new ReplacementArray( $zh2Hant ),

@@ -139,7 +139,7 @@ class PageArchive {
 			$fields,
 			array( 'ar_namespace' => $this->title->getNamespace(),
 				   'ar_title' => $this->title->getDBkey() ),
-			'PageArchive::listRevisions',
+			__METHOD__,
 			array( 'ORDER BY' => 'ar_timestamp DESC' ) );
 		$ret = $dbr->resultObject( $res );
 		return $ret;
@@ -337,7 +337,9 @@ class PageArchive {
 		$dbr = wfGetDB( DB_SLAVE );
 		$n = $dbr->selectField( 'archive', 'COUNT(ar_title)',
 			array( 'ar_namespace' => $this->title->getNamespace(),
-				   'ar_title' => $this->title->getDBkey() ) );
+				   'ar_title' => $this->title->getDBkey() ),
+			__METHOD__
+		);
 		return ( $n > 0 );
 	}
 
@@ -356,7 +358,7 @@ class PageArchive {
 	 * on success, false on failure
 	 */
 	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false, User $user = null ) {
-		global $wgContLang, $wgUser;
+		global $wgUser;
 
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.

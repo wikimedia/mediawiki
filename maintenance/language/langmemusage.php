@@ -22,8 +22,8 @@
  */
 
 /** This is a command line script */
-require_once( dirname( __FILE__ ) . '/../Maintenance.php' );
-require_once( dirname( __FILE__ ) . '/languages.inc' );
+require_once( __DIR__ . '/../Maintenance.php' );
+require_once( __DIR__ . '/languages.inc' );
 
 class LangMemUsage extends Maintenance {
 

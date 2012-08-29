@@ -30,6 +30,7 @@ return array(
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.parse.test.js',
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.language.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.cldr.test.js',
 		),
 		'dependencies' => array(
 			'jquery.autoEllipsis',
@@ -55,6 +56,7 @@ return array(
 			'mediawiki.util',
 			'mediawiki.special.recentchanges',
 			'mediawiki.language',
+			'mediawiki.cldr',
 		),
 		'position' => 'top',
 	)
