@@ -262,6 +262,12 @@ input#wpSummary {
 	width: 80%;
 }
 
+#wpSummary,
+#wpSummaryLabel {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
 /**
  * Image captions
  */
