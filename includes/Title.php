@@ -1162,7 +1162,47 @@ class Title {
 	}
 
 	/**
-	 * Get the base page name, i.e. the leftmost part before any slashes
+	 * Get the root page name text without a namespace, i.e. the leftmost part before any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getRootText();
+	 * # returns: 'Foo'
+	 * @endcode
+	 *
+	 * @return String Root name
+	 */
+	public function getRootText() {
+		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+			return $this->getText();
+		}
+
+		return strtok( $this->getText(), '/' );
+	}
+
+	/**
+	 * Get the root page name title, i.e. the leftmost part before any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getRootTitle();
+	 * # returns: Title{User:Foo}
+	 * @endcode
+	 *
+	 * @return Title Root title
+	 */
+	public function getRootTitle() {
+		return Title::makeTitle( $this->getNamespace(), $this->getRootText() );
+	}
+
+	/**
+	 * Get the base page name without a namespace, i.e. the part before the subpage name
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getBaseText();
+	 * # returns: 'Foo/Bar'
+	 * @endcode
 	 *
 	 * @return String Base name
 	 */
@@ -1180,7 +1220,28 @@ class Title {
 	}
 
 	/**
+	 * Get the base page name title, i.e. the leftmost part before any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getBaseTitle();
+	 * # returns: Title{User:Foo/Bar}
+	 * @endcode
+	 *
+	 * @return Title Base title
+	 */
+	public function getBaseTitle() {
+		return Title::makeTitle( $this->getNamespace(), $this->getBaseText() );
+	}
+
+	/**
 	 * Get the lowest-level subpage name, i.e. the rightmost part after any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getSubpageText();
+	 * # returns: "Baz"
+	 * @endcode
 	 *
 	 * @return String Subpage name
 	 */
@@ -1190,6 +1251,22 @@ class Title {
 		}
 		$parts = explode( '/', $this->mTextform );
 		return( $parts[count( $parts ) - 1] );
+	}
+
+	/**
+	 * Get the title for a subpage of the current page
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getSubpage("Asdf");
+	 * # returns: Title{User:Foo/Bar/Baz/Asdf}
+	 * @endcode
+	 *
+	 * @param $text String The subpage name to add to the title
+	 * @return Title Subpage title
+	 */
+	public function getSubpage( $text ) {
+		return Title::makeTitleSafe( $this->getNamespace(), $this->getText() . '/' . $text );
 	}
 
 	/**
