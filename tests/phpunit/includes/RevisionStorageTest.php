@@ -5,6 +5,9 @@
  *
  * @group Database
  * ^--- important, causes temporary tables to be used instead of the real database
+ *
+ * @group medium
+ * ^--- important, causes tests not to fail with timeout
  */
 class RevisionStorageTest extends MediaWikiTestCase {
 
@@ -305,5 +308,101 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertNotEquals( $orig->getId(), $rev->getId(), 'new null revision shold have a different id from the original revision' );
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(), 'new null revision shold have the same text id as the original revision' );
 		$this->assertEquals( 'some testing text', $rev->getText() );
+	}
+
+	public function dataUserWasLastToEdit() {
+		return array(
+			array( #0
+				3, true, # actually the last edit
+			),
+			array( #1
+				2, true, # not the current edit, but still by this user
+			),
+			array( #2
+				1, false, # edit by another user
+			),
+			array( #3
+				0, false, # first edit, by this user, but another user edited in the mean time
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider dataUserWasLastToEdit
+	 */
+	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
+		$userA = \User::newFromName( "RevisionStorageTest_userA" );
+		$userB = \User::newFromName( "RevisionStorageTest_userB" );
+
+		if ( $userA->getId() === 0 ) {
+			$userA = \User::createNew( $userA->getName() );
+		}
+
+		if ( $userB->getId() === 0 ) {
+			$userB = \User::createNew( $userB->getName() );
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$revisions = array();
+
+		// create revisions -----------------------------
+		$page = WikiPage::factory( Title::newFromText( 'RevisionStorageTest_testUserWasLastToEdit' ) );
+
+		# zero
+		$revisions[0] = new Revision( array(
+			'page' => $page->getId(),
+			'timestamp' => '20120101000000',
+			'user' => $userA->getId(),
+			'text' => 'zero',
+			'summary' => 'edit zero'
+		) );
+		$revisions[0]->insertOn( $dbw );
+
+		# one
+		$revisions[1] = new Revision( array(
+			'page' => $page->getId(),
+			'timestamp' => '20120101000100',
+			'user' => $userA->getId(),
+			'text' => 'one',
+			'summary' => 'edit one'
+		) );
+		$revisions[1]->insertOn( $dbw );
+
+		# two
+		$revisions[2] = new Revision( array(
+			'page' => $page->getId(),
+			'timestamp' => '20120101000200',
+			'user' => $userB->getId(),
+			'text' => 'two',
+			'summary' => 'edit two'
+		) );
+		$revisions[2]->insertOn( $dbw );
+
+		# three
+		$revisions[3] = new Revision( array(
+			'page' => $page->getId(),
+			'timestamp' => '20120101000300',
+			'user' => $userA->getId(),
+			'text' => 'three',
+			'summary' => 'edit three'
+		) );
+		$revisions[3]->insertOn( $dbw );
+
+		# four
+		$revisions[4] = new Revision( array(
+			'page' => $page->getId(),
+			'timestamp' => '20120101000200',
+			'user' => $userA->getId(),
+			'text' => 'zero',
+			'summary' => 'edit four'
+		) );
+		$revisions[4]->insertOn( $dbw );
+
+		// test it ---------------------------------
+		$since = $revisions[ $sinceIdx ]->getTimestamp();
+
+		$wasLast = Revision::userWasLastToEdit( $dbw, $page->getId(), $userA->getId(), $since );
+
+		$this->assertEquals( $expectedLast, $wasLast );
 	}
 }
