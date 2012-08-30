@@ -3820,7 +3820,7 @@ class Title {
 			return false;
 		}
 		# Get the article text
-		$rev = Revision::newFromTitle( $nt );
+		$rev = Revision::newFromTitle( $nt, false, Revision::READ_LATEST );
 		if( !is_object( $rev ) ){
 			return false;
 		}
