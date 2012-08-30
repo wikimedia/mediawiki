@@ -77,7 +77,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( !$title->isCssJsSubpage() && !$title->isCssOrJsPage() ) {
 			return null;
 		}
-		$revision = Revision::newFromTitle( $title );
+		$revision = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
 		if ( !$revision ) {
 			return null;
 		}
@@ -182,7 +182,7 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			// We're dealing with a subclass that doesn't have a DB
 			return array();
 		}
-		
+
 		$hash = $context->getHash();
 		if ( isset( $this->titleMtimes[$hash] ) ) {
 			return $this->titleMtimes[$hash];

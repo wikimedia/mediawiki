@@ -766,7 +766,9 @@ class MessageCache {
 		}
 
 		# Try loading it from the database
-		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
+		$revision = Revision::newFromTitle(
+			Title::makeTitle( NS_MEDIAWIKI, $title ), false, Revision::READ_LATEST
+		);
 		if ( $revision ) {
 			$message = $revision->getText();
 			if ($message === false) {
