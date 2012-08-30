@@ -39,15 +39,6 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	public abstract function elementInstancesProvider();
 
 	/**
-	 * Provides instances of the concrete class being tested.
-	 *
-	 * @since 1.20
-	 *
-	 * @return array
-	 */
-	public abstract function instanceProvider();
-
-	/**
 	 * Returns the name of the concrete class being tested.
 	 *
 	 * @since 1.20
@@ -55,6 +46,23 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 	 * @return string
 	 */
 	public abstract function getInstanceClass();
+
+	/**
+	 * Provides instances of the concrete class being tested.
+	 *
+	 * @since 1.20
+	 *
+	 * @return array
+	 */
+	public function instanceProvider() {
+		$instances = array();
+
+		foreach ( $this->elementInstancesProvider() as $elementInstances ) {
+			$instances[] = $this->getNew( $elementInstances );
+		}
+
+		return $this->arrayWrap( $instances );
+	}
 
 	/**
 	 * @since 1.20
