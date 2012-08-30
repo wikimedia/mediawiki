@@ -99,7 +99,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			// add edit token to fake session
 			$session['wsEditToken'] = $session['wsToken'];
 			// add token to request parameters
-			$params['token'] = md5( $session['wsToken'] ) . User::EDIT_TOKEN_SUFFIX;
+			$params['token'] = hash_hmac( 'sha256', $session['wsToken'], '' ) . User::EDIT_TOKEN_SUFFIX;
 			return $this->doApiRequest( $params, $session, false, $user );
 		} else {
 			throw new Exception( "request data not in right format" );

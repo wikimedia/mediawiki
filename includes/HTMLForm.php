@@ -336,13 +336,19 @@ class HTMLForm extends ContextSource {
 		if ( $this->getMethod() != 'post' ) {
 			$submit = true; // no session check needed
 		} elseif ( $this->getRequest()->wasPosted() ) {
+			global $wgServer;
 			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
-			if ( $this->getUser()->isLoggedIn() || $editToken != null ) {
-				// Session tokens for logged-out users have no security value.
-				// However, if the user gave one, check it in order to give a nice
-				// "session expired" error instead of "permission denied" or such.
-				$submit = $this->getUser()->matchEditToken( $editToken );
-			} else {
+			$referer = $this->getRequest()->getHeader( 'referer' );
+			$parsedServer = wfParseUrl( $wgServer );
+			$parsedReferer = $referer ? wfParseUrl( $referer ) : false;
+			$host = $parsedServer['host'];
+
+			// Check referer and edit token.
+			if (
+				$parsedReferer &&
+				$host == $parsedReferer['host'] &&
+				$this->getUser()->matchEditToken( $editToken )
+			) {
 				$submit = true;
 			}
 		}

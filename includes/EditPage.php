@@ -966,10 +966,20 @@ class EditPage {
 	 * @private
 	 */
 	function tokenOk( &$request ) {
-		global $wgUser;
-		$token = $request->getVal( 'wpEditToken' );
-		$this->mTokenOk = $wgUser->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		global $wgUser, $wgServer;
+		$parsedServer = wfParseUrl( $wgServer );
+		$host = $parsedServer['host'];
+		$referer = $request->getHeader( 'referer' );
+		$parsedReferer = $referer ? wfParseUrl( $referer ) : false;
+
+		if( !$parsedReferer || $host != $parsedReferer['host'] ) {
+			$this->mTokenOk = false;
+			$this->mTokenOkExceptSuffix = false;
+		} else {
+			$token = $request->getVal( 'wpEditToken' );
+			$this->mTokenOk = $wgUser->matchEditToken( $token );
+			$this->mTokenOkExceptSuffix = $wgUser->matchEditTokenNoSuffix( $token );
+		}
 		return $this->mTokenOk;
 	}
 

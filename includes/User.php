@@ -92,6 +92,7 @@ class User {
 		'mEmailTokenExpires',
 		'mRegistration',
 		'mEditCount',
+		'mEditToken',
 		// user_groups table
 		'mGroups',
 		// user_properties table
@@ -176,7 +177,7 @@ class User {
 	var $mId, $mName, $mRealName, $mPassword, $mNewpassword, $mNewpassTime,
 		$mEmail, $mTouched, $mToken, $mEmailAuthenticated,
 		$mEmailToken, $mEmailTokenExpires, $mRegistration, $mEditCount,
-		$mGroups, $mOptionOverrides;
+		$mGroups, $mOptionOverrides, $mEditToken;
 	//@}
 
 	/**
@@ -3271,18 +3272,34 @@ class User {
 			$request = $this->getRequest();
 		}
 
-		if ( $this->isAnon() ) {
-			return EDIT_TOKEN_SUFFIX;
-		} else {
+		$token = null;
+		if ( $this->mEditToken !== null ) {
+			$token = $this->mEditToken;
+		} elseif ( $request->sessionStatus() ) {
 			$token = $request->getSessionData( 'wsEditToken' );
 			if ( $token === null ) {
 				$token = MWCryptRand::generateHex( 32 );
 				$request->setSessionData( 'wsEditToken', $token );
 			}
+		} else {
+			global $wgMemc;
+			$memcKey = wfMemcKey( 'edittoken', $request->getIP() );
+			$token = $wgMemc->get( $memcKey );
+			if ( $token === null ) {
+				$token = MWCryptRand::generateHex( 32 );
+				$wgMemc->set( $memcKey, $token );
+			}
+		}
+
+		if ( $token === null ) {
+			wfDebug( "Edit token failed to be generated, for some reason." );
+			return EDIT_TOKEN_SUFFIX;
+		} else {
+			$this->mEditToken = $token;
 			if( is_array( $salt ) ) {
 				$salt = implode( '|', $salt );
 			}
-			return md5( $token . $salt ) . EDIT_TOKEN_SUFFIX;
+			return hash_hmac( 'sha256', $token, $salt ) . EDIT_TOKEN_SUFFIX;
 		}
 	}
 
