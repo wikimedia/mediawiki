@@ -41,7 +41,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
 * (bug 27619) Remove preference option to display broken links as link?
-* (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17).
+* (bug 34896) jQuery JSON plugin upgraded to v2.3 (2011-09-17).
 * (bug 34302) Add CSS classes to email fields in user preferences.
 * Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only).
 * (bug 23795) Add parser itself to ParserMakeImageParams hook.
@@ -66,8 +66,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   Special:Version
 * Edit notices can now be translated.
 * jQuery upgraded to 1.8.
-* jQuery UI upgraded to 1.8.22.
-* (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
+* jQuery UI upgraded to 1.8.23.
+* (bug 35705) QUnit upgraded from v1.2.0 to v1.9.0.
 * (bug 37604) jquery.cookie upgraded to 2011 version.
 * (bug 22887) Add warning and tracking category for preprocessor errors
 * (bug 31704) Allow selection of associated namespace on the watchlist
@@ -130,11 +130,12 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
 * (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
 * (bug 39431) SVG animated status is now shown in long description
-* (bug 39376) jquery.form upgraded to 3.14
+* (bug 39376) jquery.form upgraded to 3.14.
 * SVG files will now show the actual width in the SVG's specified units
   in the metadata box.
 * Added ResourceLoader module "jquery.jStorage".
 * (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
+* Added ResourceLoader module "jquery.badge".
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
