@@ -327,6 +327,8 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	public function testConstructWithText() {
+		$this->hideDeprecated( "Revision::getText" );
+
 		$rev = new Revision( array(
 		                          'text' => 'hello world.',
 		                          'content_model' => CONTENT_MODEL_JAVASCRIPT
@@ -339,6 +341,8 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	public function testConstructWithContent() {
+		$this->hideDeprecated( "Revision::getText" );
+
 		$title = Title::newFromText( 'RevisionTest_testConstructWithContent' );
 
 		$rev = new Revision( array(
