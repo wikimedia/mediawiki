@@ -211,6 +211,23 @@ class Html {
 				'search',
 			);
 
+			if( $wgHtml5 ) {
+				$validTypes = array_merge( $validTypes, array(
+					'datetime',
+					'datetime-local',
+					'date',
+					'month',
+					'time',
+					'week',
+					'number',
+					'range',
+					'email',
+					'url',
+					'search',
+					'tel',
+					'color',
+				) );
+			}
 			if ( isset( $attribs['type'] )
 			&& !in_array( $attribs['type'], $validTypes ) ) {
 				unset( $attribs['type'] );
