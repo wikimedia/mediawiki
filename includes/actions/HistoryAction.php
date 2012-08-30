@@ -604,7 +604,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			: 0;
 		$sDiff = ChangesList::showCharacterDifference( $prevSize, $rev->getSize() );
 		$fSize = Linker::formatRevisionSize($rev->getSize());
-		$s .= " . . $fSize $sDiff";
+		$s .= ' <span class="mw-changeslist-separator">. .</span> ' . "$fSize $sDiff";
 
 		# Text following the character difference is added just before running hooks
 		$s2 = Linker::revComment( $rev, false, true );
@@ -658,7 +658,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Include separator between character difference and following text
 		if ( $s2 !== '' ) {
-			$s .= " . . $s2";
+			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
 		}
 
 		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row , &$s, &$classes ) );
@@ -684,7 +684,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$link = Linker::linkKnown(
 				$this->getTitle(),
 				$date,
-				array(),
+				array( 'class' => 'mw-changeslist-date' ),
 				array( 'oldid' => $rev->getId() )
 			);
 		} else {

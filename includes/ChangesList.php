@@ -345,7 +345,7 @@ class ChangesList extends ContextSource {
 				'action' => 'history'
 			)
 		);
-		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() . ' . . ';
+		$s .= $this->msg( 'parentheses' )->rawParams( $diffhist )->escaped() . ' <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
@@ -366,7 +366,7 @@ class ChangesList extends ContextSource {
 		$articlelink = Linker::linkKnown(
 			$rc->getTitle(),
 			null,
-			array(),
+			array( 'class' => 'mw-changeslist-title' ),
 			$params
 		);
 		if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
@@ -388,8 +388,8 @@ class ChangesList extends ContextSource {
 	 * @param $rc RecentChange
 	 */
 	public function insertTimestamp( &$s, $rc ) {
-		$s .= $this->message['semicolon-separator'] .
-			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . ' . . ';
+		$s .= $this->message['semicolon-separator'] . '<span class="mw-changeslist-date">' .
+			$this->getLanguage()->userTime( $rc->mAttribs['rc_timestamp'], $this->getUser() ) . '</span> <span class="mw-changeslist-separator">. .</span> ';
 	}
 
 	/**
@@ -628,7 +628,7 @@ class OldChangesList extends ChangesList {
 		if ( $wgRCShowChangedSize ) {
 			$cd = $this->formatCharacterDifference( $rc );
 			if ( $cd !== '' ) {
-				$s .= "$cd  . . ";
+				$s .= $cd . '  <span class="mw-changeslist-separator">. .</span> ';
 			}
 		}
 
@@ -994,7 +994,7 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->msg( 'parentheses' )->rawParams( $logtext )->escaped();
 		}
 
-		$r .= ' . . ';
+		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
 		# Character difference (does not apply if only log items)
 		if( $wgRCShowChangedSize && !$allLogs ) {
@@ -1013,7 +1013,7 @@ class EnhancedChangesList extends ChangesList {
 			if( $chardiff == '' ) {
 				$r .= ' ';
 			} else {
-				$r .= ' ' . $chardiff. ' . . ';
+				$r .= ' ' . $chardiff. ' <span class="mw-changeslist-separator">. .</span> ';
 			}
 		}
 
@@ -1066,13 +1066,13 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$type == RC_LOG || $type == RC_NEW ) {
 				$r .= ' ' . $this->msg( 'parentheses' )->rawParams( $rcObj->curlink . $this->message['pipe-separator'] . $rcObj->lastlink )->escaped();
 			}
-			$r .= ' . . ';
+			$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 
 			# Character diff
 			if ( $wgRCShowChangedSize ) {
 				$cd = $this->formatCharacterDifference( $rcObj );
 				if ( $cd !== '' ) {
-					$r .= "$cd . . ";
+					$r .= $cd . ' <span class="mw-changeslist-separator">. .</span> ';
 				}
 			}
 
@@ -1202,12 +1202,12 @@ class EnhancedChangesList extends ChangesList {
 				$query
 			) )->escaped();
 		}
-		$r .= ' . . ';
+		$r .= ' <span class="mw-changeslist-separator">. .</span> ';
 		# Character diff
 		if ( $wgRCShowChangedSize ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
-				$r .= "$cd . . ";
+				$r .= $cd . ' <span class="mw-changeslist-separator">. .</span> ';
 			}
 		}
 
