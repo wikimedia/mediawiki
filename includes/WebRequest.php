@@ -886,6 +886,15 @@ class WebRequest {
 	}
 
 	/**
+	 * Determine the status of the session.
+	 *
+	 * @return bool
+	 */
+	public function hasSession() {
+		return isset( $_SESSION );
+	}
+
+	/**
 	 * Get data from $_SESSION
 	 *
 	 * @param string $key name of key in $_SESSION
@@ -1351,6 +1360,15 @@ class FauxRequest extends WebRequest {
 	 */
 	public function setHeader( $name, $val ) {
 		$this->headers[$name] = $val;
+	}
+
+	/**
+	 * Determine if session data is set.
+	 *
+	 * @return bool
+	 */
+	public function hasSession() {
+		return (bool) $this->session;
 	}
 
 	/**
