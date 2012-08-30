@@ -68,6 +68,11 @@ abstract class FileBackendStore extends FileBackend {
 	 * @return integer Bytes
 	 */
 	final public function maxFileSizeInternal() {
+		$wgMaxUploadSize = $GLOBALS['wgMaxUploadSize'];
+		if ( is_array( $wgMaxUploadSize ) && !empty( $wgMaxUploadSize ) )
+			$wgMaxUploadSize = max( $wgMaxUploadSize );
+		if ( is_integer( $wgMaxUploadSize ) && $wgMaxUploadSize > $this->maxFileSize )
+			return $wgMaxUploadSize;
 		return $this->maxFileSize;
 	}
 
