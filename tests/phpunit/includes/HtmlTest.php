@@ -419,6 +419,92 @@ class HtmlTest extends MediaWikiTestCase {
 		# <expected>, <element name>, <array of attributes> [, <message>]
 		# Will be mapped to Html::element()
 		$cases = array();
+
+		### Generic cases, match $attribDefault static array
+		$cases[] = array( '<area />',
+			'area', array( 'shape' => 'rect' )
+		);
+
+		$cases[] = array( '<button></button>',
+			'button', array( 'formaction' => 'GET' )
+		);
+		$cases[] = array( '<button></button>',
+			'button', array( 'formenctype' => 'application/x-www-form-urlencoded' )
+		);
+		$cases[] = array( '<button></button>',
+			'button', array( 'type' => 'submit' )
+		);
+
+		$cases[] = array( '<canvas></canvas>',
+			'canvas', array( 'height' => '150' )
+		);
+		$cases[] = array( '<canvas></canvas>',
+			'canvas', array( 'width' => '300' )
+		);
+		# Also check with numeric values
+		$cases[] = array( '<canvas></canvas>',
+			'canvas', array( 'height' => 150 )
+		);
+		$cases[] = array( '<canvas></canvas>',
+			'canvas', array( 'width' => 300 )
+		);
+
+		$cases[] = array( '<command />',
+			'command', array( 'type' => 'command' )
+		);
+
+		$cases[] = array( '<form></form>',
+			'form', array( 'action' => 'GET' )
+		);
+		$cases[] = array( '<form></form>',
+			'form', array( 'autocomplete' => 'on' )
+		);
+		$cases[] = array( '<form></form>',
+			'form', array( 'enctype' => 'application/x-www-form-urlencoded' )
+		);
+
+		$cases[] = array( '<input />',
+			'input', array( 'formaction' => 'GET' )
+		);
+		$cases[] = array( '<input />',
+			'input', array( 'type' => 'text' )
+		);
+
+		$cases[] = array( '<keygen />',
+			'keygen', array( 'keytype' => 'rsa' )
+		);
+
+		$cases[] = array( '<link />',
+			'link', array( 'media' => 'all' )
+		);
+
+		$cases[] = array( '<menu></menu>',
+			'menu', array( 'type' => 'list' )
+		);
+
+		$cases[] = array( '<script></script>',
+			'script', array( 'type' => 'text/javascript' )
+		);
+
+		$cases[] = array( '<style></style>',
+			'style', array( 'media' => 'all' )
+		);
+		$cases[] = array( '<style></style>',
+			'style', array( 'type' => 'text/css' )
+		);
+
+		$cases[] = array( '<textarea></textarea>',
+			'textarea', array( 'wrap' => 'soft' )
+		);
+
+		### SPECIFIC CASES
+
+		# <link type="text/css" />
+		$cases[] = array( '<link />',
+			'link', array( 'type' => 'text/css' )
+		);
+
+		# <input /> specific handling
 		$cases[] = array( '<input type="checkbox" />',
 			'input', array( 'type' => 'checkbox', 'value' => 'on' ),
 			'Default value "on" is stripped of checkboxes',
@@ -436,6 +522,22 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 		$cases[] = array( '<input type="range" />',
 			'input', array( 'type' => 'range', 'value' => '' ),
+		);
+
+		# <select /> specifc handling
+		$cases[] = array( '<select multiple=""></select>',
+			'select', array( 'size' => '4', 'multiple' => true ),
+		);
+		# .. with numeric value
+		$cases[] = array( '<select multiple=""></select>',
+			'select', array( 'size' => 4, 'multiple' => true ),
+		);
+		$cases[] = array( '<select></select>',
+			'select', array( 'size' => '1', 'multiple' => false ),
+		);
+		# .. with numeric value
+		$cases[] = array( '<select></select>',
+			'select', array( 'size' => 1, 'multiple' => false ),
 		);
 
 		# Craft the Html elements

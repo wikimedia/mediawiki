@@ -303,6 +303,8 @@ class Html {
 			return $attribs;
 		}
 
+		# Whenever altering this array, please provide a covering test case
+		# in HtmlTest::provideElementsWithAttributesHavingDefaultValues
 		static $attribDefaults = array(
 			'area' => array( 'shape' => 'rect' ),
 			'button' => array(
