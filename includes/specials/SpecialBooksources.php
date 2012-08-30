@@ -144,9 +144,17 @@ class SpecialBookSources extends SpecialPage {
 		$title = Title::makeTitleSafe( NS_PROJECT, $page ); # Show list in content language
 		if( is_object( $title ) && $title->exists() ) {
 			$rev = Revision::newFromTitle( $title, false, Revision::READ_NORMAL );
-			#FIXME: need a way to do this via ContentHandler (or enforce flat text-based content)
-			$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $rev->getText() ) );
-			return true;
+			$content = $rev->getContent();
+
+			if ( $content instanceof TextContent ) {
+				//XXX: in the future, this could be stored as structured data, defining a list of book sources
+
+				$text = $content->getNativeData();
+				$this->getOutput()->addWikiText( str_replace( 'MAGICNUMBER', $this->isbn, $text ) );
+				return true;
+			} else {
+				throw new MWException( "Unexpected content type for book sources: " . $content->getModel() );
+			}
 		}
 
 		# Fall back to the defaults given in the language file
