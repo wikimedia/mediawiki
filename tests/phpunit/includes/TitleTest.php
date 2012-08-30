@@ -75,6 +75,23 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
 		);
 	}
+
+	/**
+	 * Tests the Title::getBaseText, Title::getRootText, Title::getBaseTitle,
+	 * Title::getRootTitle, Title::getSubpageText, and Title::getSubpage methods.
+	 */
+	function testRootBaseSubpageTitleText() {
+		$title = Title::newFromText("User:Foo/Bar/Baz");
+		$this->assertEquals( "Foo/Bar", $title->getBaseText(), 'Base text of [[User:Foo/Bar/Baz]] is "Foo/Bar".' );
+		$this->assertEquals( "Foo", $title->getRootText(), 'Root text of [[User:Foo/Bar/Baz]] is "Foo".' );
+		$this->assertEquals( "Baz", $title->getSubpageText(), 'Subpage text of [[User:Foo/Bar/Baz]] is "Baz".' );
+		$this->assertTrue( $title->getBaseTitle()
+			->equals( Title::newFromText( "User:Foo/Bar" ) ), 'Base title of [[User:Foo/Bar/Baz]] is [[User:Foo/Bar]].' );
+		$this->assertTrue( $title->getRootTitle()
+			->equals( Title::newFromText( "User:Foo" ) ), 'Base title of [[User:Foo/Bar/Baz]] is [[User:Foo]].' );
+		$this->assertTrue( $title->getSubpage( "Asdf" )
+			->equals( Title::newFromText( "User:Foo/Bar/Baz/Asdf" ) ), 'Subpage "Asdf" of [[User:Foo/Bar/Baz]] is [[User:Foo/Bar/Baz/Asdf]].' );
+	}
 	
 	
 }
