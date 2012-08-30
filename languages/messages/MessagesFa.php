@@ -697,6 +697,10 @@ $1',
 'youhavenewmessages' => '$1 دارید ($2).',
 'newmessageslink' => 'پیام‌های جدید',
 'newmessagesdifflink' => 'آخرین تغییر',
+'youhavenewmessagesfromusers' => 'شما  $1  از  {{PLURAL:$3| کاربر دیگر| $3  کاربر}} دارید ( $2 ).',
+'youhavenewmessagesmanyusers' => 'شما  $1  از تعدادی کاربر دارید ( $2 ).',
+'newmessageslinkplural' => '{{PLURAL:$1|پیام جدید |پیام جدید}}',
+'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|تغییر|تغییرات}} اخیر',
 'youhavenewmessagesmulti' => 'پیام‌های جدیدی در $1 دارید.',
 'editsection' => 'ویرایش',
 'editold' => 'ویرایش',
@@ -753,10 +757,10 @@ $1',
 'dberrortext' => 'اشکال نحوی در درخواست فرستاده شده به پایگاه داده رخ داد.
 دلیل این مشکل می‌تواند ایرادی در نرم‌افزار باشد.
 آخرین درخواست که برای پایگاه داده فرستاد شد این بود:
-<blockquote style="direction:ltr;"><tt>$1</tt></blockquote>
-این درخواست از درون عملگر «<span class="ltr"><tt>$2</tt></span>» فرستاده شد.
+<blockquote style="direction:ltr;"><code>$1</code></blockquote>
+این درخواست از درون عملگر «<span class="ltr"><code>$2</code></span>» فرستاده شد.
 پایگاه داده این خطا را بازگرداند:
-<div class="ltr"><tt>$3: $4</tt></div>',
+<div class="ltr"><samp>$3: $4</samp></div>',
 'dberrortextcl' => 'اشکال نحوی در درخواست فرستاده شده به پایگاه داده رخ داد.
 آخرین درخواستی که برای پایگاه داده فرستاد شد این بود:
 <div class="ltr">$1</div>
@@ -1109,16 +1113,19 @@ $2
 'noarticletext-nopermission' => 'این صفحه هم‌اکنون متنی ندارد.
 شما می‌توانید در دیگر صفحه‌ها [[Special:Search/{{PAGENAME}}|این عنوان را جستجو کنید]]،
 یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} سیاهه‌های مرتبط را بگردید]</span>.',
+'missing-revision' => 'ویرایش #$1 از صفحهٔ "{{PAGENAME}}" موجود نیست.
+
+معمولاً در اثر پیوند به تاریخچهٔ به‌روز نشدهٔ صفحهٔ حذف شده است.
+می‌توانید جزئیات بیشتر را در [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] بیابید.',
 'userpage-userdoesnotexist' => 'حساب کاربر «<nowiki>$1</nowiki>» ثبت نشده‌است.
 لطفاً مطمئن شوید که می‌خواهید این صفحه را ایجاد یا ویرایش کنید.',
 'userpage-userdoesnotexist-view' => 'حساب کاربری «$1» ثبت نشده‌است.',
 'blocked-notice-logextract' => 'دسترسی این کاربر در حال حاضر بسته است.
 آخرین مورد سیاهه قطع دسترسی در زیر آمده‌است:',
-'clearyourcache' => "'''نکته:''' پس از ذخیره‌کردن ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را پاک کنید.
+'clearyourcache' => "''نکته:''' پس از ذخیره‌کردن ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را پاک کنید.
 *'''فایرفاکس / سافاری:'''  کلید ''Shift'' را نگه دارید و روی دکمهٔ ''Reload'' کلیک کنید، یا کلید‌های ''Ctrl-F5'' یا ''Ctrl-R'' را با هم فشار دهید (در رایانه‌های اپل مکینتاش کلید‌های ''⌘-R'')
 *'''گوگل کروم:'''کلیدهای ''Ctrl+Shift+R'' را با هم فشار دهید. (در رایانه‌های اپل مکینتاش کلید‌های ''⌘-Shift-R'')
 *'''اینترنت اکسپلورر:''' کلید ''Ctrl'' را نگه‌دارید و روی دکمهٔ ''Refresh'' کلیک کنید، یا کلید‌های ''Ctrl-F5'' را با هم فشار دهید
-*'''کانکوئرر:''' روی دکمهٔ ''Reload'' کلیک کنید و یا کلید ''F5'' را فشار دهید
 *'''اپرا:''' حافظهٔ نهانی مرورگر را از طریق منوی ''Tools &rarr; Preferences'' پاک کنید",
 'usercssyoucanpreview' => "'''نکته:''' پیش از ذخیه‌کردن فایل CSS یا JS خود، با دکمهٔ '''{{int:showpreview}}''' آن را آزمایش کنید.",
 'userjsyoucanpreview' => "'''نکته:''' پیش از ذخیره‌کردن فایل CSS یا JS خود، با دکمهٔ '''{{int:showpreview}}''' آن را آزمایش کنید.",
@@ -1242,6 +1249,7 @@ $2
 'expansion-depth-exceeded-warning' => 'صفحه حداکثر عمق بسط دادن تجاوز کرد',
 'parser-unstrip-loop-warning' => 'حلقه در دستور unstrip پیدا شد',
 'parser-unstrip-recursion-limit' => 'از حداکثر ارجاع در دستور unstrip تجاوز شد ($1)',
+'converter-manual-rule-error' => 'خطا در ساختار کتابچهٔ مبدل زبان',
 
 # "Undo" feature
 'undo-success' => 'این ویرایش را می‌توان خنثی کرد.
@@ -1428,6 +1436,10 @@ $1",
 'editundo' => 'خنثی‌سازی',
 'diff-multi' => '({{PLURAL:$1|یک|$1}} ویرایش میانی توسط {{PLURAL:$2|یک|$2}} کاربر نشان داده نشده‌است)',
 'diff-multi-manyusers' => '({{PLURAL:$1|یک|$1}} ویرایش میانی توسط بیش از {{PLURAL:$2|یک|$2}} کاربر نشان داده نشده‌است)',
+'difference-missing-revision' => '{{PLURAL:$2|یک ویرایش|$2 ویرایش}}  از تفاوت نسخه‌ها ($1) {{PLURAL:$2|یافت|یافت}}  نشد.
+
+معمولاً در اثر پیوند به تاریخچهٔ به‌روز نشدهٔ صفحهٔ حذف شده است.
+می‌توانید جزئیات بیشتر را در [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] بیابید.',
 
 # Search results
 'searchresults' => 'نتایج جستجو',
@@ -2132,6 +2144,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'shared-repo-from' => 'از $1',
 'shared-repo' => 'یک مخزن مشترک',
 'shared-repo-name-wikimediacommons' => 'ویکی‌انبار',
+'upload-disallowed-here' => 'متاسفانه شما نمی توانید این نگاره را بازنویس کنید.',
 
 # File reversion
 'filerevert' => 'واگردانی $1',
@@ -2213,8 +2226,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 'disambiguations' => 'صفحه‌های دارای پیوند به صفحه‌های ابهام‌زدایی',
 'disambiguationspage' => 'Template:ابهام‌زدایی',
-'disambiguations-text' => "صفحه‌های زیر پیوندی به یک '''صفحهٔ ابهام‌زدایی''' هستند.
-این صفحه‌ها باید در عوض به موضوعات مرتبط پیوند داده شوند.<br />
+'disambiguations-text' => "صفحه‌های زیر حاوی حداقل یک پیوند به یک '''صفحهٔ ابهام‌زدایی''' هستند.
+این صفحه‌ها شاید در عوض به موضوعات مرتبط پیوند داده شوند.<br />
 یک صفحه هنگامی صفحهٔ ابهام‌زدایی در نظر گرفته می‌شود که در آن از الگویی که به [[MediaWiki:Disambiguationspage]] پیوند دارد استفاده شده باشد.",
 
 'doubleredirects' => 'تغییرمسیرهای دوتایی',
@@ -2240,6 +2253,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایت|بایت}}',
 'ncategories' => '$1 {{PLURAL:$1|رده|رده}}',
+'ninterwikis' => '$1 {{PLURAL:$1|میان‌ویکی|میان‌ویکی}}',
 'nlinks' => '$1 {{PLURAL:$1|پیوند|پیوند}}',
 'nmembers' => '$1 {{PLURAL:$1|عضو|عضو}}',
 'nrevisions' => '$1 {{PLURAL:$1|نسخه|نسخه}}',
@@ -2268,6 +2282,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'mostlinkedtemplates' => 'الگوهایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
 'mostcategories' => 'صفحه‌های دارای بیشترین رده',
 'mostimages' => 'پرونده‌هایی که بیشتر از همه به آن‌ها پیوند داده شده‌است',
+'mostinterwikis' => 'صفحه‌های دارای بیشترین میان‌ویکی',
 'mostrevisions' => 'صفحه‌های دارای بیشترین نسخه',
 'prefixindex' => 'تمام صفحه‌ها با پیشوند',
 'prefixindex-namespace' => 'همهٔ صفحه‌های دارای پیشوند (فضای‌نام $1)',
@@ -2414,6 +2429,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'mailnologin' => 'نشانی‌ای از فرستنده موجود نیست',
 'mailnologintext' => 'برای فرستادن رایانامه به کاربران دیگر باید [[Special:UserLogin|به سامانه وارد شوید]] و نشانی رایانامهٔ معتبری در [[Special:Preferences|ترجیحات]] خود داشته باشید.',
 'emailuser' => 'فرستادن نامه به این کاربر',
+'emailuser-title-target' => 'ایمیل این {{GENDER:$1| کاربر}}',
+'emailuser-title-notarget' => 'رایانامه به کاربر',
 'emailpage' => 'رایانامه به کاربر',
 'emailpagetext' => 'شما می‌توانید از فرم زیر برای ارسال یک رایانامه به این کاربر استفاده کنید.
 نشانی رایانامه‌ای که در [[Special:Preferences|ترجیحات کاربریتان]] وارد کرده‌اید در نشانی فرستنده (From) نامه خواهد آمد، تا گیرنده بتواند پاسخ دهد.',
@@ -3066,6 +3083,7 @@ $1',
 'import-interwiki-templates' => 'تمام الگوها را شامل شود',
 'import-interwiki-submit' => 'درون‌ریزی شود',
 'import-interwiki-namespace' => 'فضای نام مقصد:',
+'import-interwiki-rootpage' => 'مقصد صفحه ٔ مبنا (اختیاری):',
 'import-upload-filename' => 'نام پرونده:',
 'import-comment' => 'توضیح:',
 'importtext' => 'لطفاً پرونده را از ویکی منبع با کمک [[Special:Export|ابزار برون‌بری]] دریافت کنید.
@@ -3100,6 +3118,9 @@ $1',
 'import-error-interwiki' => 'صفحه «$1» وارد نشد. چون نام آن برای پیوند خارجی (interwiki) رزرو شده‌است.',
 'import-error-special' => 'صفحه «$1» درون‌ریزی نشد، چرا که متعلق به فضای نام غیرمجاز است.',
 'import-error-invalid' => 'صفحه "$1" به دلیل نامعتبر بودن نامش وارد نمی‌شود.',
+'import-options-wrong' => '{{PLURAL:$2|جزئیات|جزئیات}} اشتباه: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'با توجه به ریشه صفحه عنوان نامعتبر است.',
+'import-rootpage-nosubpage' => 'فضای نام  "$1" صفحهٔ مبنا اجازهٔ زیرصفحه نمی‌دهد.',
 
 # Import log
 'importlogpage' => 'سیاههٔ درون‌ریزی‌ها',
@@ -3221,11 +3242,34 @@ $1',
 
 # Info page
 'pageinfo-title' => 'اطلاعات در مورد «$1»',
-'pageinfo-header-edits' => 'ویرایش',
+'pageinfo-header-basic' => 'اطلاعات اولیه',
+'pageinfo-header-edits' => 'ویرایش تاریخچه',
+'pageinfo-header-restrictions' => 'حفاظت از صفحه',
+'pageinfo-header-properties' => 'ويژگيهای صفحه',
+'pageinfo-display-title' => 'نمایش عنوان',
+'pageinfo-default-sort' => 'کلید مرتب‌سازی پیش‌فرض',
+'pageinfo-length' => 'حجم صفحه  (بایت)',
+'pageinfo-article-id' => 'شناسهٔ صفحه',
+'pageinfo-robot-policy' => 'وضعیت موتور جستجو',
+'pageinfo-robot-index' => 'فهرست‌پذیر',
+'pageinfo-robot-noindex' => 'عدم فهرست‌پذیری',
 'pageinfo-views' => 'شمار بازدیدها',
-'pageinfo-watchers' => 'شمار پی‌گیری‌کنندگان',
-'pageinfo-edits' => 'شمار ویرایش‌ها',
-'pageinfo-authors' => 'شمار نویسندگان یکتا',
+'pageinfo-watchers' => 'شمار پی‌گیری‌کنندگان صفحه',
+'pageinfo-redirects-name' => 'تغییرمسیرها به این صفحه',
+'pageinfo-subpages-name' => 'زیرصفحه‌های این صفحه',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|تغییرمسیر|تغییرمسیر}}; $3 {{PLURAL:$3|غیرتغییرمسیر|غیرتغییرمسیر}})',
+'pageinfo-firstuser' => 'به‌وجود آورندهٔ صفحه',
+'pageinfo-firsttime' => 'زمان ایجاد صفحه',
+'pageinfo-lastuser' => 'آخرین ویرایشگر',
+'pageinfo-lasttime' => 'تاریخ آخرین ویرایش',
+'pageinfo-edits' => 'شمار کلی ویرایش‌ها',
+'pageinfo-authors' => 'تعداد کلی نویسندگان یکتا',
+'pageinfo-recent-edits' => 'شماره ویرایش‌های اخیر (در $1 گذشته)',
+'pageinfo-recent-authors' => 'تعداد نویسندگان یکتای اخیر',
+'pageinfo-restriction' => 'محافظت صفحه ( <code>{{lcfirst:$1}}</code> )',
+'pageinfo-magic-words' => '{{PLURAL:$1|حرف|حروف}} جادویی ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1| ردهٔ|ردهٔ}} پنهان ( $1 )',
+'pageinfo-templates' => '{{PLURAL:$1|الگو|الگو}} استفاده‌شده ($1)',
 
 # Skin names
 'skinname-standard' => 'کلاسیک',
@@ -3281,6 +3325,7 @@ $1',
 'file-info-size-pages' => '<span style="direction:ltr">$1 × $2</span> نقطه، حجم پرونده: $3، نوع MIME پرونده: $4، $5 صفحه',
 'file-nohires' => 'تفکیک‌پذیری بالاتری در دسترس نیست.',
 'svg-long-desc' => 'پروندهٔ اس‌وی‌جی، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
+'svg-long-desc-animated' => 'پروندهٔ اس‌وی‌جی متحرک، با ابعاد <span dir="ltr">$1 × $2</span> پیکسل، اندازهٔ پرونده: $3',
 'show-big-image' => 'تصویر با تفکیک‌پذیری بالاتر',
 'show-big-image-preview' => 'اندازهٔ این پیش‌نمایش: $1.',
 'show-big-image-other' => '{{PLURAL:$2|کیفیت|کیفیت‌های}} دیگر: $1.',
@@ -3290,6 +3335,8 @@ $1',
 'file-info-png-looped' => 'چرخش‌دار',
 'file-info-png-repeat' => '$1 {{PLURAL:$1|بار|بار}} پخش شد',
 'file-info-png-frames' => '$1 {{PLURAL:$1|قاب|قاب}}',
+'file-no-thumb-animation' => "'''توجه: به علت مسائل فنی پیش‌نمایش پرونده به صورت متحرک نمایش داده نمی‌شود.'''",
+'file-no-thumb-animation-gif' => "'''توجه:به علت مسائل فنی پیش‌نمایش پرونده‌های GIF مانند این پرونده، به صورت متحرک نمایش داده نمی‌شود.'''",
 
 # Special:NewFiles
 'newimages' => 'نگارخانهٔ پرونده‌های جدید',
