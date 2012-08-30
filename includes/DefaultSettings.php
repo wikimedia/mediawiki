@@ -507,7 +507,7 @@ $wgSharedUploadDBprefix = '';
 $wgCacheSharedUploads = true;
 
 /**
- * Allow for upload to be copied from an URL.
+ * Allow for upload to be copied from an URL. Requires Special:Upload?source=web
  * The timeout for copy uploads is set by $wgHTTPTimeout.
  * You have to assign the user right 'upload_by_url' to a user group, to use this.
  */
@@ -523,13 +523,6 @@ $wgAllowAsyncCopyUploads = false;
  * A list of domains copy uploads can come from
  */
 $wgCopyUploadsDomains = array();
-
-/**
- * Enable copy uploads from Special:Upload. $wgAllowCopyUploads must also be
- * true. If $wgAllowCopyUploads is true, but this is false, you will only be
- * able to perform copy uploads from the API or extensions (e.g. UploadWizard).
- */
-$wgCopyUploadsFromSpecialUpload = false;
 
 /**
  * Max size for uploads, in bytes. If not set to an array, applies to all

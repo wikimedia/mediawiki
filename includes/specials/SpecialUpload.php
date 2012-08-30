@@ -798,8 +798,6 @@ class UploadForm extends HTMLForm {
 	 * @return Array: descriptor array
 	 */
 	protected function getSourceSection() {
-		global $wgCopyUploadsFromSpecialUpload;
-
 		if ( $this->mSessionKey ) {
 			return array(
 				'SessionKey' => array(
@@ -813,9 +811,7 @@ class UploadForm extends HTMLForm {
 			);
 		}
 
-		$canUploadByUrl = UploadFromUrl::isEnabled()
-			&& UploadFromUrl::isAllowed( $this->getUser() )
-			&& $wgCopyUploadsFromSpecialUpload;
+		$canUploadByUrl = UploadFromUrl::isEnabled() && UploadFromUrl::isAllowed( $this->getUser() );
 		$radio = $canUploadByUrl;
 		$selectedSourceType = strtolower( $this->getRequest()->getText( 'wpSourceType', 'File' ) );
 
