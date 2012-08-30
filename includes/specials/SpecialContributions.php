@@ -841,7 +841,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$link = Linker::link(
 				$page,
 				htmlspecialchars( $page->getPrefixedText() ),
-				array(),
+				array( 'class' => 'mw-contributions-title' ),
 				$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
 			);
 			# Mark current revisions
@@ -896,7 +896,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$d = Linker::linkKnown(
 					$page,
 					htmlspecialchars( $date ),
-					array(),
+					array( 'class' => 'mw-contributions-date' ),
 					array( 'oldid' => intval( $row->rev_id ) )
 				);
 			} else {
