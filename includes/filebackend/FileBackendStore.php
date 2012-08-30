@@ -105,7 +105,9 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
+			if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+				$this->deleteFileCache( $params['dst'] ); // persistent cache
+			}
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -141,7 +143,9 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
+			if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+				$this->deleteFileCache( $params['dst'] ); // persistent cache
+			}
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -173,7 +177,9 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
-		$this->deleteFileCache( $params['dst'] ); // persistent cache
+		if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -235,7 +241,9 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
-		$this->deleteFileCache( $params['dst'] ); // persistent cache
+		if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
+		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -1460,7 +1468,9 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * Set the cached stat info for a file path
+	 * Set the cached stat info for a file path.
+	 * Negatives (404s) are not cached. By not caching negatives, we can skip cache
+	 * salting for the case when a file is created at a path were there was none before.
 	 *
 	 * @param $path string Storage path
 	 * @param $val mixed Information to cache
