@@ -81,7 +81,7 @@ class ApiBlockTest extends ApiTestCase {
 			false,
 			self::$users['sysop']->user
 		);
-		$this->assertEquals( 34, strlen( $data[0][$action]["{$action}token"] ) );
+		$this->assertEquals( 66, strlen( $data[0][$action]["{$action}token"] ) );
 	}
 
 	/**
