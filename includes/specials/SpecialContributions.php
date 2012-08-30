@@ -841,7 +841,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$link = Linker::link(
 				$page,
 				htmlspecialchars( $page->getPrefixedText() ),
-				array(),
+				array( 'class' => 'mw-contributions-title' ),
 				$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
 			);
 			# Mark current revisions
@@ -882,11 +882,11 @@ class ContribsPager extends ReverseChronologicalPager {
 				// For some reason rev_parent_id isn't populated for this row.
 				// Its rumoured this is true on wikipedia for some revisions (bug 34922).
 				// Next best thing is to have the total number of bytes.
-				$chardiff = ' . . ' . Linker::formatRevisionSize( $row->rev_len ) . ' . . ';
+				$chardiff = ' <span class="mw-contributions-separator">. .</span> ' . Linker::formatRevisionSize( $row->rev_len ) . ' <span class="mw-contributions-separator">. .</span> ';
 			} else {
 				$parentLen = isset( $this->mParentLens[$row->rev_parent_id] ) ? $this->mParentLens[$row->rev_parent_id] : 0;
-				$chardiff = ' . . ' . ChangesList::showCharacterDifference(
-						$parentLen, $row->rev_len, $this->getContext() ) . ' . . ';
+				$chardiff = ' <span class="mw-contributions-separator">. .</span> ' . ChangesList::showCharacterDifference(
+						$parentLen, $row->rev_len, $this->getContext() ) . ' <span class="mw-contributions-separator">. .</span> ';
 			}
 
 			$lang = $this->getLanguage();
@@ -896,7 +896,7 @@ class ContribsPager extends ReverseChronologicalPager {
 				$d = Linker::linkKnown(
 					$page,
 					htmlspecialchars( $date ),
-					array(),
+					array( 'class' => 'mw-contributions-date' ),
 					array( 'oldid' => intval( $row->rev_id ) )
 				);
 			} else {
