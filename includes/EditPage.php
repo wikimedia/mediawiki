@@ -1295,7 +1295,7 @@ class EditPage {
 						$this->isConflict = false;
 						wfDebug( __METHOD__ . ": conflict suppressed; new section\n" );
 					}
-				} elseif ( $this->section == '' && $this->userWasLastToEdit( $wgUser->getId(), $this->edittime ) ) {
+				} elseif ( $this->section == '' && Revision::userWasLastToEdit( $this->mTitle->getArticleID(), $wgUser->getId(), $this->edittime ) ) {
 					# Suppress edit conflict with self, except for section edits where merging is required.
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, same user.\n" );
 					$this->isConflict = false;
@@ -1487,35 +1487,6 @@ class EditPage {
 			}
 			$dbw->commit( __METHOD__ );
 		}
-	}
-
-	/**
-	 * Check if no edits were made by other users since
-	 * the time a user started editing the page. Limit to
-	 * 50 revisions for the sake of performance.
-	 *
-	 * @param $id int
-	 * @param $edittime string
-	 *
-	 * @return bool
-	 */
-	protected function userWasLastToEdit( $id, $edittime ) {
-		if ( !$id ) return false;
-		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( 'revision',
-			'rev_user',
-			array(
-				'rev_page' => $this->mTitle->getArticleID(),
-				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $edittime ) )
-			),
-			__METHOD__,
-			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ) );
-		foreach ( $res as $row ) {
-			if ( $row->rev_user != $id ) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	/**

@@ -1290,4 +1290,35 @@ class Revision implements IDBAccessObject {
 		}
 		return 0;
 	}
+
+	/**
+	 * Check if no edits were made by other users since
+	 * the time a user started editing the page. Limit to
+	 * 50 revisions for the sake of performance.
+	 *
+	 * @param int $pageId the ID of the page in question
+	 * @param int $userId the ID of the user in question
+	 * @param $since string look at edits since this time
+	 *
+	 * @return bool
+	 */
+	public static function userWasLastToEdit( $pageId, $userId, $since ) {
+		if ( !$userId ) return false;
+		$dbw = wfGetDB( DB_MASTER );
+		$res = $dbw->select( 'revision',
+			'rev_user',
+			array(
+				'rev_page' => $pageId,
+				'rev_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $since ) )
+			),
+			__METHOD__,
+			array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 50 ) );
+		foreach ( $res as $row ) {
+			if ( $row->rev_user != $userId ) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
+
