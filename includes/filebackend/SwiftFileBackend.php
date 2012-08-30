@@ -213,10 +213,14 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $obj->write_async( $params['content'] );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $handle );
-				$status->value->affectedObjects[] = $obj;
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$status->value->affectedObjects[] = $obj;
+				}
 			} else { // actually write the object in Swift
 				$obj->write( $params['content'] );
-				$this->purgeCDNCache( array( $obj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $obj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -302,11 +306,15 @@ class SwiftFileBackend extends FileBackendStore {
 					$handle = $obj->write_async( $fp, filesize( $params['src'] ), true );
 					$status->value = new SwiftFileOpHandle( $this, $params, 'Store', $handle );
 					$status->value->resourcesToClose[] = $fp;
-					$status->value->affectedObjects[] = $obj;
+					if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+						$status->value->affectedObjects[] = $obj;
+					}
 				}
 			} else { // actually write the object in Swift
 				$obj->load_from_filename( $params['src'], true ); // calls $obj->write()
-				$this->purgeCDNCache( array( $obj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $obj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -377,10 +385,14 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !empty( $params['async'] ) ) { // deferred
 				$handle = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Copy', $handle );
-				$status->value->affectedObjects[] = $dstObj;
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$status->value->affectedObjects[] = $dstObj;
+				}
 			} else { // actually write the object in Swift
 				$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel );
-				$this->purgeCDNCache( array( $dstObj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $dstObj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -449,10 +461,15 @@ class SwiftFileBackend extends FileBackendStore {
 				$handle = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel );
 				$status->value = new SwiftFileOpHandle( $this, $params, 'Move', $handle );
 				$status->value->affectedObjects[] = $srcObj;
-				$status->value->affectedObjects[] = $dstObj;
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$status->value->affectedObjects[] = $dstObj;
+				}
 			} else { // actually write the object in Swift
 				$sContObj->move_object_to( $srcRel, $dContObj, $dstRel );
-				$this->purgeCDNCache( array( $srcObj, $dstObj ) );
+				$this->purgeCDNCache( array( $srcObj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $dstObj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
