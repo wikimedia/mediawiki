@@ -34,6 +34,7 @@ class CreateAndPromote extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Create a new user account";
+		$this->addOption( "force", "Promote the account even if it already exists" );
 		$this->addOption( "sysop", "Grant the account sysop rights" );
 		$this->addOption( "bureaucrat", "Grant the account bureaucrat rights" );
 		$this->addArg( "username", "Username of new user" );
@@ -43,6 +44,7 @@ class CreateAndPromote extends Maintenance {
 	public function execute() {
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
+		$force    = $this->hasOption( 'force' );
 
 		$this->output( wfWikiID() . ": Creating and promoting User:{$username}..." );
 
@@ -50,7 +52,12 @@ class CreateAndPromote extends Maintenance {
 		if ( !is_object( $user ) ) {
 			$this->error( "invalid username.", true );
 		} elseif ( 0 != $user->idForName() ) {
-			$this->error( "account exists.", true );
+			if( $force ) {
+				$this->error( "acccount exists, still promoting" );
+				$force = 'skip-creation';
+			} else {
+				$this->error( "account exists.", true );
+			}
 		}
 
 		# Try to set the password
@@ -61,8 +68,10 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		# Insert the account into the database
-		$user->addToDatabase();
-		$user->saveSettings();
+		if( $force !== 'skip-creation' ) {
+			$user->addToDatabase();
+			$user->saveSettings();
+		}
 
 		# Promote user
 		if ( $this->hasOption( 'sysop' ) ) {
