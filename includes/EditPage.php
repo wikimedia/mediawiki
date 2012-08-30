@@ -1377,7 +1377,7 @@ class EditPage {
 					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
-					$content = $content->addSectionHeader( $this->sectiontitle );
+					$content = $content->addSectionHeader( $this->summary );
 
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
