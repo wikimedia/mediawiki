@@ -365,4 +365,42 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider providesHtml5InputTypes
+	 */
+	function testHtmlElementAcceptsNewHtml5TypesInHtml5Mode( $HTML5InputType ) {
+		$this->enableHTML5();
+		$this->assertEquals(
+			'<input type="' . $HTML5InputType . '" />',
+			HTML::element( 'input', array( 'type' => $HTML5InputType ) ),
+			'In HTML5, HTML::element() should accept type="' . $HTML5InputType . '"'
+		);
+	}
+
+	/**
+	 * List of input element types values introduced by HTML5
+	 * Full list at http://www.w3.org/TR/html-markup/input.html
+	 */
+	function providesHtml5InputTypes() {
+		$types = array(
+			'datetime',
+			'datetime-local',
+			'date',
+			'month',
+			'time',
+			'week',
+			'number',
+			'range',
+			'email',
+			'url',
+			'search',
+			'tel',
+			'color',
+		);
+		$cases = array();
+		foreach( $types as $type ) {
+			$cases[] = array( $type );
+		}
+		return $cases;
+	}
 }
