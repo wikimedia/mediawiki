@@ -989,11 +989,8 @@ class SwiftFileBackend extends FileBackendStore {
 			return null;
 		}
 
-		# Check the recursion guard to avoid loops when filling metadata
-		if ( empty( $params['nostat'] ) && !$this->fileExists( $params ) ) {
-			return null;
-		}
-
+		// Blindly create a tmp file and stream to it, catching any exception if the file does
+		// not exist. Also, doing a stat here will cause infinite loops when filling metadata.
 		$tmpFile = null;
 		try {
 			$sContObj = $this->getContainer( $srcCont );
@@ -1012,6 +1009,8 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			}
 		} catch ( NoSuchContainerException $e ) {
+			$tmpFile = null;
+		} catch ( NoSuchObjectException $e ) {
 			$tmpFile = null;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$tmpFile = null;
