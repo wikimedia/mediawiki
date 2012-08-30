@@ -160,11 +160,14 @@ class FileBackendMultiWrite extends FileBackend {
 		// Actually attempt the operation batch on the master backend...
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
-		// Propagate the operations to the clone backends...
-		foreach ( $this->backends as $index => $backend ) {
-			if ( $index !== $this->masterIndex ) { // not done already
-				$realOps = $this->substOpBatchPaths( $ops, $backend );
-				$status->merge( $backend->doOperations( $realOps, $opts ) );
+		// Propagate the operations to the clone backends if there were no fatal errors.
+		// If $ops only had one operation, this might avoid backend inconsistencies.
+		if ( !count( $masterStatus->getErrorsArray() ) ) {
+			foreach ( $this->backends as $index => $backend ) {
+				if ( $index !== $this->masterIndex ) { // not done already
+					$realOps = $this->substOpBatchPaths( $ops, $backend );
+					$status->merge( $backend->doOperations( $realOps, $opts ) );
+				}
 			}
 		}
 		// Make 'success', 'successCount', and 'failCount' fields reflect
