@@ -290,8 +290,8 @@ abstract class Skin extends ContextSource {
 			return $this->mRelevantUser;
 		}
 		$title = $this->getRelevantTitle();
-		if( $title->getNamespace() == NS_USER || $title->getNamespace() == NS_USER_TALK ) {
-			$rootUser = strtok( $title->getText(), '/' );
+		if( $title->hasSubjectNamespace( NS_USER ) ) {
+			$rootUser = $title->getRootText();
 			if ( User::isIP( $rootUser ) ) {
 				$this->mRelevantUser = User::newFromName( $rootUser, false );
 			} else {
