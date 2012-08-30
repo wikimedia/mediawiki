@@ -675,7 +675,7 @@ class FSFileBackend extends FileBackendStore {
 
 		// Create a new temporary file with the same extension...
 		$ext = FileBackend::extensionFromPath( $params['src'] );
-		$tmpFile = TempFSFile::factory( wfBaseName( $source ) . '_', $ext );
+		$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
 		if ( !$tmpFile ) {
 			return null;
 		}
