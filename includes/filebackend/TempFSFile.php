@@ -43,7 +43,7 @@ class TempFSFile extends FSFile {
 	 */
 	public static function factory( $prefix, $extension = '' ) {
 		wfProfileIn( __METHOD__ );
-		$base = wfTempDir() . '/' . $prefix . dechex( mt_rand( 0, 99999999 ) );
+		$base = wfTempDir() . '/' . $prefix . wfRandomString( 12 );
 		$ext = ( $extension != '' ) ? ".{$extension}" : "";
 		for ( $attempt = 1; true; $attempt++ ) {
 			$path = "{$base}-{$attempt}{$ext}";
