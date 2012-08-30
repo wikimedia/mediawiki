@@ -6,8 +6,15 @@
 class WikitextContentTest extends MediaWikiTestCase {
 
 	public function setup() {
+		global $wgUser;
+
+		// anon user
+		$wgUser = new User();
+		$wgUser->setName( '127.0.0.1' );
+
 		$this->context = new RequestContext( new FauxRequest() );
 		$this->context->setTitle( Title::newFromText( "Test" ) );
+		$this->context->setUser( $wgUser );
 	}
 
 	public function newContent( $text ) {
@@ -191,8 +198,9 @@ just a test"
 	 * @dataProvider dataPreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
-		global $wgUser, $wgContLang;
-		$options = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+		global $wgContLang;
+
+		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(), $wgContLang );
 
 		$content = $this->newContent( $text );
 		$content = $content->preSaveTransform( $this->context->getTitle(), $this->context->getUser(), $options );
@@ -215,8 +223,8 @@ just a test"
 	 * @dataProvider dataPreloadTransform
 	 */
 	public function testPreloadTransform( $text, $expected ) {
-		global $wgUser, $wgContLang;
-		$options = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+		global $wgContLang;
+		$options = ParserOptions::newFromUserAndLang( $this->context->getUser(), $wgContLang );
 
 		$content = $this->newContent( $text );
 		$content = $content->preloadTransform( $this->context->getTitle(), $options );
