@@ -233,6 +233,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * EXIF below sea level GPS altitude data is now shown correctly.
 * (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
 * (bug 39273) "Show changes" should not be incorrectly displayed in the Live Preview state.
+* In HTML5 mode, allow new input element types values (such as color, range..)
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
