@@ -2904,6 +2904,7 @@ $templates
 		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
 
 		$latestRevID = 0;
+		$latestRevTime = 0;
 		$pageID = 0;
 		$canonicalName = false; # bug 21115
 
@@ -2920,6 +2921,7 @@ $templates
 		} elseif ( $this->canUseWikiPage() ) {
 			$wikiPage = $this->getWikiPage();
 			$latestRevID = $wikiPage->getLatest();
+			$latestRevTime = $wikiPage->getTimestamp();
 			$pageID = $wikiPage->getId();
 		}
 
@@ -2946,6 +2948,7 @@ $templates
 			'wgPageName' => $title->getPrefixedDBKey(),
 			'wgTitle' => $title->getText(),
 			'wgCurRevisionId' => $latestRevID,
+			'wgCurRevisionTime' => $latestRevTime,
 			'wgArticleId' => $pageID,
 			'wgIsArticle' => $this->isArticle(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
