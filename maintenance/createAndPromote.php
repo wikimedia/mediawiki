@@ -20,6 +20,7 @@
  * @file
  * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
+ * @author Pablo Castellano <pablo@anche.no>
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
@@ -31,50 +32,82 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
  */
 class CreateAndPromote extends Maintenance {
 
+	static $permitRoles = array( 'sysop', 'bureaucrat' );
+
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Create a new user account";
-		$this->addOption( "sysop", "Grant the account sysop rights" );
-		$this->addOption( "bureaucrat", "Grant the account bureaucrat rights" );
+		$this->mDescription = "Create a new user account and/or grant it additional rights";
+		$this->addOption( "force", "If acccount exists already, just grant it rights or change password." );
+		foreach( self::$permitRoles as $role ) {
+			$this->addOption( $role, "Add the account to the {$role} group" );
+		}
 		$this->addArg( "username", "Username of new user" );
-		$this->addArg( "password", "Password to set" );
+		$this->addArg( "password", "Password to set (not required if --force is used)", false);
 	}
 
 	public function execute() {
 		$username = $this->getArg( 0 );
 		$password = $this->getArg( 1 );
-
-		$this->output( wfWikiID() . ": Creating and promoting User:{$username}..." );
+		$force = $this->hasOption( 'force' );
+		$inGroups = array();
 
 		$user = User::newFromName( $username );
 		if ( !is_object( $user ) ) {
 			$this->error( "invalid username.", true );
-		} elseif ( 0 != $user->idForName() ) {
-			$this->error( "account exists.", true );
 		}
 
-		# Try to set the password
-		try {
-			$user->setPassword( $password );
-		} catch ( PasswordError $pwe ) {
-			$this->error( $pwe->getText(), true );
+		$exists = ( 0 !== $user->idForName() );
+
+		if ( $exists && !$force ) {
+			$this->error( "Account exists. Perhaps you want the --force option?", true );
+		} else if ( !$exists && !$password ) {
+			$this->error( "Argument <password> required!", false );
+			$this->maybeHelp( true );
+		} else if ( $exists ) {
+			$inGroups = $user->getGroups();
 		}
 
-		# Insert the account into the database
-		$user->addToDatabase();
-		$user->saveSettings();
+		$promotions = array_diff( array_filter( self::$permitRoles, array( $this, 'hasOption' ) ), $inGroups );
+
+		if ( $exists && !$password && count( $promotions ) === 0 ) {
+			$this->output( "Account exists and nothing to do.\n" );
+			return;
+		} else if ( count( $promotions ) !== 0 ) {
+			$promoText = "User:{$username} into " . implode( ', ', $promotions ) . "...\n";
+			if ( $exists ) {
+				$this->output( wfWikiID() . ": Promoting $promoText" );
+			} else {
+				$this->output( wfWikiID() . ": Creating and promoting $promoText" );
+			}
+		}
+
+		if ( $password ) {
+			# Try to set the password
+			try {
+				$user->setPassword( $password );
+				if ( $exists ) {
+					$this->output( "Password set.\n" );
+					$user->saveSettings();
+				}
+			} catch ( PasswordError $pwe ) {
+				$this->error( $pwe->getText(), true );
+			}
+		}
+
+		if ( !$exists ) {
+			# Insert the account into the database
+			$user->addToDatabase();
+			$user->saveSettings();
+		}
 
 		# Promote user
-		if ( $this->hasOption( 'sysop' ) ) {
-			$user->addGroup( 'sysop' );
-		}
-		if ( $this->hasOption( 'bureaucrat' ) ) {
-			$user->addGroup( 'bureaucrat' );
-		}
+		array_map( array( $user, 'addGroup' ), $promotions );
 
-		# Increment site_stats.ss_users
-		$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
-		$ssu->doUpdate();
+		if ( !$exists ) {
+			# Increment site_stats.ss_users
+			$ssu = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
+			$ssu->doUpdate();
+		}
 
 		$this->output( "done.\n" );
 	}
