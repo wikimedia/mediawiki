@@ -329,10 +329,7 @@ class LogEventsList extends ContextSource {
 
 		// Any tags...
 		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $row->ts_tags, 'logevent' );
-		$classes = array_merge(
-			array( 'mw-logline-' . $entry->getType() ),
-			$newClasses
-		);
+		$classes = 'mw-logline-' . $entry->getType() . ' ' . implode( ' ', $newClasses );
 
 		return Html::rawElement( 'li', array( 'class' => $classes ),
 			"$del $time $action $comment $revert $tagDisplay" ) . "\n";
@@ -560,7 +557,7 @@ class LogEventsList extends ContextSource {
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
 		if ( wfRunHooks( 'LogEventsListShowLogExtract', array( &$s, $types, $page, $user, $param ) ) ) {
 			// $out can be either an OutputPage object or a String-by-reference
-			if ( $out instanceof OutputPage ){
+			if ( $out instanceof OutputPage ) {
 				$out->addHTML( $s );
 			} else {
 				$out = $s;
