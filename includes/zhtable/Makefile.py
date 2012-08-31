@@ -31,7 +31,7 @@ def unichr3( *args ):
 
 # DEFINE
 UNIHAN_VER = '5.2.0'
-SF_MIRROR = 'cdnetworks-kr-2'
+SF_MIRROR = 'dfn'
 SCIM_TABLES_VER = '0.5.10'
 SCIM_PINYIN_VER = '0.5.91'
 LIBTABE_VER = '0.2.3'
@@ -370,7 +370,7 @@ $zh2Hant = array(\n'''
         +  PHPArray( toCN ) \
         +  '\n);\n\n$zh2SG = array(\n' \
         +  PHPArray( toSG ) \
-        +  '\n);'
+        +  '\n);\n'
     
     f = open( os.path.join( '..', 'ZhConversion.php' ), 'wb', encoding = 'utf8' )
     print ('Writing ZhConversion.php ... ')
