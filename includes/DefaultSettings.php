@@ -399,7 +399,9 @@ $wgImgAuthPublicTest = true;
  *
  *   - articleUrl        Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1
  *   - fetchDescription  Fetch the text of the remote file description page. Equivalent to
- *                      $wgFetchCommonsDescriptions.
+ *                       $wgFetchCommonsDescriptions.
+ *   - abbrvThreshold    File names over this size will use the short form of thumbnail names.
+ *                       Short thumbnail names only have the width, parameters, and the extension.
  *
  * ForeignDBRepo:
  *   - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
