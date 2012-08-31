@@ -798,9 +798,10 @@ div.gallerytext {
 	word-wrap: break-word;
 }
 
+/* Deprecated. Use .mw-throbber instead. */
 .mw-ajax-loader {
 	/* @embed */
-	background-image: url(images/ajax-loader.gif);
+	background-image: url(images/ajax-throbber.gif);
 	background-position: center center;
 	background-repeat: no-repeat;
 	padding: 16px;
@@ -808,11 +809,30 @@ div.gallerytext {
 	top: -16px;
 }
 
+/* Deprecated. Use .mw-throbber-small instead. */
 .mw-small-spinner {
 	padding: 10px !important;
 	margin-right: 0.6em;
 	/* @embed */
-	background-image: url(images/spinner.gif);
+	background-image: url(images/ajax-throbber-small.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.mw-throbber {
+	/* @embed */
+	background-image: url(images/ajax-throbber.gif);
+	height: 32px;
+}
+
+.mw-throbber-small {
+	/* @embed */
+	background-image: url(images/ajax-throbber-small.gif);
+	height: 20px;
+}
+
+.mw-throbber,
+.mw-throbber-small {
 	background-position: center center;
 	background-repeat: no-repeat;
 }
