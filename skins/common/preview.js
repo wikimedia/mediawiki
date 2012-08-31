@@ -28,8 +28,7 @@
 		];
 		var $copyElements = $( copySelectors.join( ',' ) );
 
-		var $loadSpinner = $( '<div>' ).addClass( 'mw-ajax-loader' );
-		$loadSpinner.css( 'top', '0' ); // move away from header (default is -16px)
+		var $loadSpinner = $( '<div>' ).addClass( 'mw-throbber' );
 
 		// If the preview is already visible, overlay the spinner on top of it.
 		if ( previewVisible ) {
