@@ -527,13 +527,6 @@ $wgAllowAsyncCopyUploads = false;
 $wgCopyUploadsDomains = array();
 
 /**
- * Enable copy uploads from Special:Upload. $wgAllowCopyUploads must also be
- * true. If $wgAllowCopyUploads is true, but this is false, you will only be
- * able to perform copy uploads from the API or extensions (e.g. UploadWizard).
- */
-$wgCopyUploadsFromSpecialUpload = false;
-
-/**
  * Max size for uploads, in bytes. If not set to an array, applies to all
  * uploads. If set to an array, per upload type maximums can be set, using the
  * file and url keys. If the * key is set this value will be used as maximum
