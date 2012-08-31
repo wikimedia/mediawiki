@@ -1112,8 +1112,8 @@ abstract class FileBackend {
 	 * @return string
 	 */
 	final public static function makeContentDisposition( $type, $filename ) {
-		$type     = strtolower( $type );
-		$type     = in_array( $type, array( 'inline', 'attachment' ) ) ? $type : 'inline';
+		$type = strtolower( $type );
+		$type = in_array( $type, array( 'inline', 'attachment' ) ) ? $type : 'inline';
 		return "$type; filename*=UTF-8''" . rawurlencode( basename( $filename ) );
 	}
 
