@@ -387,12 +387,12 @@ class Interwiki {
 	 * @return string The URL
 	 * @note Prior to 1.19 The getURL with an argument was broken.
 	 *       If you if you use this arg in an extension that supports MW earlier
-	 *       than 1.19 please wfUrlencode and substitute $1 on your own.
+	 *       than 1.19 please Uri::encode and substitute $1 on your own.
 	 */
 	public function getURL( $title = null ) {
 		$url = $this->mURL;
 		if ( $title !== null ) {
-			$url = str_replace( "$1", wfUrlencode( $title ), $url );
+			$url = str_replace( "$1", Uri::encode( $title ), $url );
 		}
 
 		return $url;

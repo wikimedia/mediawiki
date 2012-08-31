@@ -883,7 +883,7 @@ class ApiMain extends ApiBase {
 		$milliseconds = $time === null ? '?' : round( $time * 1000 );
 		$s = 'API' .
 			' ' . $request->getMethod() .
-			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
+			' ' . Uri::encode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
 			' ' . $request->getIP() .
 			' T=' . $milliseconds . 'ms';
 		foreach ( $this->getParamsUsed() as $name ) {
