@@ -24,7 +24,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   This only affects installations which have $wgAllowCopyUploads set to true.
 * Removed f-prot support from $wgAntivirusSetup.
 * New variable $wgDBerrorLogTZ to provide dates in the error log in a
-  different timezone than the wiki timezone set by $wgLocalTimezone.
+  different timezone than the wiki timezone set by $wgLocaltimezone.
 * New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
   connections, if either are available for the selected DB type.
 

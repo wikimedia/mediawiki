@@ -523,6 +523,8 @@ $wgAllowAsyncCopyUploads = false;
 
 /**
  * A list of domains copy uploads can come from
+ *
+ * @since 1.20
  */
 $wgCopyUploadsDomains = array();
 
@@ -1447,7 +1449,7 @@ $wgDBerrorLog = false;
 
 /**
  * Timezone to use in the error log.
- * Defaults to the wiki timezone ($wgLocalTimezone).
+ * Defaults to the wiki timezone ($wgLocaltimezone).
  *
  * A list of useable timezones can found at:
  * http://php.net/manual/en/timezones.php
@@ -1694,6 +1696,8 @@ $wgSessionCacheType = CACHE_ANYTHING;
  * which are used when parsing certain text and interface messages.
  *
  * For available types see $wgMainCacheType.
+ *
+ * @since 1.20
  */
 $wgLanguageConverterCacheType = CACHE_ANYTHING;
 
@@ -2043,6 +2047,8 @@ $wgMaxSquidPurgeTitles = 400;
  *         ),
  * );
  * @endcode
+ *
+ * @since 1.20
  *
  * @see $wgHTCPMulticastTTL
  */
@@ -2750,6 +2756,8 @@ $wgSend404Code = true;
  * The $wgShowRollbackEditCount variable is used to show how many edits will be
  * rollback. The numeric value of the varible are the limit up to are counted.
  * If the value is false or 0, the edits are not counted.
+ *
+ * @since 1.20
  */
 $wgShowRollbackEditCount = 10;
 
@@ -4387,6 +4395,8 @@ $wgDebugComments = false;
 
 /**
  * Extensive database transaction state debugging
+ *
+ * @since 1.20
  */
 $wgDebugDBTransactions = false;
 
@@ -4904,6 +4914,8 @@ $wgUpgradeKey = false;
  * The value is the replacement for the key (it can contain $1, etc.)
  * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
  * full SHA-1 of the HEAD revision.
+ *
+ * @since 1.20
  */
 $wgGitRepositoryViewers = array(
     'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
@@ -6203,6 +6215,8 @@ $wgDBtestpassword = '';
 
 /**
  * Whether the user must enter their password to change their e-mail address
+ *
+ * @since 1.20
  */
 $wgRequirePasswordforEmailChange = true;
 
