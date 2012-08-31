@@ -413,6 +413,10 @@ $1',
 'youhavenewmessages' => '$1ت ھەیە ($2).',
 'newmessageslink' => 'پەیامی نوێ',
 'newmessagesdifflink' => 'دوا گۆڕانکارییەکان',
+'youhavenewmessagesfromusers' => '$1ت لە {{PLURAL:$3|بەکارھێنەرێکی تر| $3 بەکارھێنەر}} ھەیە ( $2 ).',
+'youhavenewmessagesmanyusers' => '$1ت  لە ژمارەیەک بەکارھێنەر ھەیە ( $2 ).',
+'newmessageslinkplural' => '{{PLURAL:$1|پەیامێکی نوێ|پەیامی نوێ}}',
+'newmessagesdifflinkplural' => 'دوایین {{PLURAL:$1|گۆڕانکاری|گۆڕانکارییەکان}}',
 'youhavenewmessagesmulti' => 'لە $1 دا پەیامی نوێت ھەیە',
 'editsection' => 'دەستکاری',
 'editold' => 'دەستکاری',
@@ -3149,7 +3153,7 @@ $5
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|لێدوان]])',
-'timezone-utc' => 'بەکاتی جیهانی',
+'timezone-utc' => 'UTC',
 
 # Core parser functions
 'unknown_extension_tag' => 'تاگی درێژکراوەی نەناسراو "$1"',

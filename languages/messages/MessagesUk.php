@@ -620,8 +620,8 @@ $1',
 'youhavenewmessages' => 'Ви отримали $1 ($2).',
 'newmessageslink' => 'нові повідомлення',
 'newmessagesdifflink' => 'остання зміна',
-'newmessageslinkplural' => '{{PLURAL:$1|нове повідомлення|нові повідомлення}}',
-'newmessagesdifflinkplural' => '{{PLURAL:$1|остання зміна|останні зміни}}',
+'newmessageslinkplural' => '{{PLURAL:$1|нове повідомлення|нові повідомлення|нових повідомлень}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|остання зміна|останні зміни|останніх змін}}',
 'youhavenewmessagesmulti' => 'Ви отримали нові повідомлення на $1',
 'editsection' => 'ред.',
 'editsection-brackets' => '[$1]',
@@ -1026,7 +1026,7 @@ $2
 'userpage-userdoesnotexist-view' => 'Обліковий запис користувача „$1“ не зареєстровано.',
 'blocked-notice-logextract' => 'Цей користувач наразі заблокований.
 Останній запис у журналі блокувань такий:',
-'clearyourcache' => "'''Увага:''' Після збереження слід очистити кеш браузера, щоб побачити зміни.
+'clearyourcache' => "'''Увага:''' Після збереження слід очистити кеш оглядача, щоб побачити зміни.
 * '''Firefox / Safari:''' тримайте ''Shift'', коли натискаєте ''Оновити'', або натисніть ''Ctrl-F5'' чи ''Ctrl-Shift-R'' (''⌘-R'' на Apple Mac)
 * '''Google Chrome:''' натисніть ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Apple Mac)
 * '''Internet Explorer:''' тримайте ''Ctrl'', коли натискаєте ''Оновити'', або натисніть ''Ctrl-F5''
