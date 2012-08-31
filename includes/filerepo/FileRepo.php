@@ -935,19 +935,38 @@ class FileRepo {
 	public function storeTemp( $originalName, $srcPath ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
-		$date      = gmdate( "YmdHis" );
-		$hashPath  = $this->getHashPath( $originalName );
-		$dstRel    = "{$hashPath}{$date}!{$originalName}";
-		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
+		$date       = gmdate( "YmdHis" );
+		$hashPath   = $this->getHashPath( $originalName );
+		$dstRel     = "{$hashPath}{$date}!{$originalName}";
+		$dstUrlRel  = $hashPath . $date . '!' . rawurlencode( $originalName );
+		$virtualUrl = $this->getVirtualUrl( 'temp' )  . '/' . $dstUrlRel;
 
-		$result = $this->store( $srcPath, 'temp', $dstRel, self::SKIP_LOCKING );
-		$result->value = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
+		$result = $this->quickImport( $srcPath, $virtualUrl );
+		$result->value = $virtualUrl;
 
 		return $result;
 	}
 
 	/**
-	 * Concatenate a list of files into a target file location.
+	 * Remove a temporary file or mark it for garbage collection
+	 *
+	 * @param $virtualUrl String: the virtual URL returned by FileRepo::storeTemp()
+	 * @return Boolean: true on success, false on failure
+	 */
+	public function freeTemp( $virtualUrl ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
+		$temp = $this->getVirtualUrl( 'temp' );
+		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
+			wfDebug( __METHOD__.": Invalid temp virtual URL\n" );
+			return false;
+		}
+
+		return $this->quickPurge( $virtualUrl )->isOK();
+	}
+
+	/**
+	 * Concatenate a list of temporary files into a target file location.
 	 *
 	 * @param $srcPaths Array Ordered list of source virtual URLs/storage paths
 	 * @param $dstPath String Target file system path
@@ -961,14 +980,10 @@ class FileRepo {
 		$status = $this->newGood();
 
 		$sources = array();
-		$deleteOperations = array(); // post-concatenate ops
 		foreach ( $srcPaths as $srcPath ) {
 			// Resolve source to a storage path if virtual
 			$source = $this->resolveToStoragePath( $srcPath );
 			$sources[] = $source; // chunk to merge
-			if ( $flags & self::DELETE_SOURCE ) {
-				$deleteOperations[] = array( 'op' => 'delete', 'src' => $source );
-			}
 		}
 
 		// Concatenate the chunks into one FS file
@@ -979,34 +994,14 @@ class FileRepo {
 		}
 
 		// Delete the sources if required
-		if ( $deleteOperations ) {
-			$opts = array( 'force' => true );
-			$status->merge( $this->backend->doOperations( $deleteOperations, $opts ) );
+		if ( $flags & self::DELETE_SOURCE ) {
+			$status->merge( $this->quickPurgeBatch( $srcPaths ) );
 		}
 
-		// Make sure status is OK, despite any $deleteOperations fatals
+		// Make sure status is OK, despite any quickPurgeBatch() fatals
 		$status->setResult( true );
 
 		return $status;
-	}
-
-	/**
-	 * Remove a temporary file or mark it for garbage collection
-	 *
-	 * @param $virtualUrl String: the virtual URL returned by FileRepo::storeTemp()
-	 * @return Boolean: true on success, false on failure
-	 */
-	public function freeTemp( $virtualUrl ) {
-		$this->assertWritableRepo(); // fail out if read-only
-
-		$temp = "mwrepo://{$this->name}/temp";
-		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
-			wfDebug( __METHOD__.": Invalid temp virtual URL\n" );
-			return false;
-		}
-		$path = $this->resolveVirtualUrl( $virtualUrl );
-
-		return $this->cleanupBatch( array( $path ), self::SKIP_LOCKING )->isOK();
 	}
 
 	/**
