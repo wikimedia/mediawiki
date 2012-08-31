@@ -22,12 +22,8 @@ class wfAssembleUrl extends MediaWikiTestCase {
 	public static function provideURLParts() {
 		$schemes = array(
 			'' => array(),
-			'//' => array(
-				'delimiter' => '//',
-			),
-			'http://' => array(
+			'http' => array(
 				'scheme' => 'http',
-				'delimiter' => '://',
 			),
 		);
 
@@ -72,9 +68,17 @@ class wfAssembleUrl extends MediaWikiTestCase {
 								$schemeParts,
 								$hostParts
 							);
-							$url = $scheme .
-								$host .
-								$path;
+
+							$url = '';
+							if( $scheme ) {
+								$url .= "$scheme:";
+							}
+							if( $host ) {
+								$url .= "//$host";
+							}
+							if( $path ) {
+								$url .= "$path";
+							}
 
 							if ( $path ) {
 								$parts['path'] = $path;
