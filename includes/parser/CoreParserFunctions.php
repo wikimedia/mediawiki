@@ -138,7 +138,7 @@ class CoreParserFunctions {
 	public static function nse( $parser, $part1 = '' ) {
 		$ret = self::ns( $parser, $part1 );
 		if ( is_string( $ret ) ) {
-			$ret = wfUrlencode( str_replace( ' ', '_', $ret ) );
+			$ret = Uri::encode( str_replace( ' ', '_', $ret ) );
 		}
 		return $ret;
 	}
@@ -164,7 +164,7 @@ class CoreParserFunctions {
 
 			// Encode as though it's a wiki page, '_' for ' '.
 			case 'url_wiki':
-				$func = 'wfUrlencode';
+				$func = 'Uri::encode';
 				$s = str_replace( ' ', '_', $s );
 				break;
 
@@ -521,7 +521,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return wfUrlencode( $t->getNsText() );
+		return Uri::encode( $t->getNsText() );
 	}
 	public static function namespacenumber( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -542,7 +542,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) || !$t->canTalk() ) {
 			return '';
 		}
-		return wfUrlencode( $t->getTalkNsText() );
+		return Uri::encode( $t->getTalkNsText() );
 	}
 	public static function subjectspace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -556,7 +556,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return wfUrlencode( $t->getSubjectNsText() );
+		return Uri::encode( $t->getSubjectNsText() );
 	}
 
 	/**
@@ -620,7 +620,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getRootText() ) ) );
+		return wfEscapeWikiText( Uri::encode( str_replace( ' ', '_', $t->getRootText() ) ) );
 	}
 	public static function basepagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -634,7 +634,7 @@ class CoreParserFunctions {
 		if ( is_null( $t ) ) {
 			return '';
 		}
-		return wfEscapeWikiText( wfUrlEncode( str_replace( ' ', '_', $t->getBaseText() ) ) );
+		return wfEscapeWikiText( Uri::encode( str_replace( ' ', '_', $t->getBaseText() ) ) );
 	}
 	public static function talkpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
@@ -861,7 +861,7 @@ class CoreParserFunctions {
 	}
 
 	public static function speciale( $parser, $text ) {
-		return wfUrlencode( str_replace( ' ', '_', self::special( $parser, $text ) ) );
+		return Uri::encode( str_replace( ' ', '_', self::special( $parser, $text ) ) );
 	}
 
 	/**

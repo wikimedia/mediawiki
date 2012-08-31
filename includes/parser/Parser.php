@@ -2889,7 +2889,7 @@ class Parser {
 				$value = wfEscapeWikiText( $this->mTitle->getRootText() );
 				break;
 			case 'rootpagenamee':
-				$value = wfEscapeWikiText( wfUrlEncode( str_replace(
+				$value = wfEscapeWikiText( Uri::encode( str_replace(
 					' ',
 					'_',
 					$this->mTitle->getRootText()
@@ -2899,7 +2899,7 @@ class Parser {
 				$value = wfEscapeWikiText( $this->mTitle->getBaseText() );
 				break;
 			case 'basepagenamee':
-				$value = wfEscapeWikiText( wfUrlEncode( str_replace(
+				$value = wfEscapeWikiText( Uri::encode( str_replace(
 					' ',
 					'_',
 					$this->mTitle->getBaseText()
@@ -3008,7 +3008,7 @@ class Parser {
 				$value = str_replace( '_', ' ', $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 				break;
 			case 'namespacee':
-				$value = wfUrlencode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
+				$value = Uri::encode( $wgContLang->getNsText( $this->mTitle->getNamespace() ) );
 				break;
 			case 'namespacenumber':
 				$value = $this->mTitle->getNamespace();
@@ -3019,13 +3019,13 @@ class Parser {
 					: '';
 				break;
 			case 'talkspacee':
-				$value = $this->mTitle->canTalk() ? wfUrlencode( $this->mTitle->getTalkNsText() ) : '';
+				$value = $this->mTitle->canTalk() ? Uri::encode( $this->mTitle->getTalkNsText() ) : '';
 				break;
 			case 'subjectspace':
 				$value = str_replace( '_', ' ', $this->mTitle->getSubjectNsText() );
 				break;
 			case 'subjectspacee':
-				$value = ( wfUrlencode( $this->mTitle->getSubjectNsText() ) );
+				$value = ( Uri::encode( $this->mTitle->getSubjectNsText() ) );
 				break;
 			case 'currentdayname':
 				$value = $pageLang->getWeekdayName( (int)MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
