@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for wfUrlencode()
+ * Tests for Uri::encode()
  *
  * The function only need a string parameter and might react to IIS7.0
  */
@@ -32,12 +32,12 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 			? $_SERVER['SERVER_SOFTWARE']
 			: null;
 		$_SERVER['SERVER_SOFTWARE'] = $server;
-		wfUrlencode( null );
+		Uri::encode( null );
 
 		// do the requested test
 		$this->assertEquals(
 			$expected,
-			wfUrlencode( $input ),
+			Uri::encode( $input ),
 			"Encoding '$input' for server '$server' should be '$expected'"
 		);
 
@@ -47,7 +47,7 @@ class WfUrlencodeTest extends MediaWikiTestCase {
 		} else {
 			$_SERVER['SERVER_SOFTWARE'] = $old;
 		}
-		wfUrlencode( null );
+		Uri::encode( null );
 	}
 
 	/**
