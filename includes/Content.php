@@ -1028,7 +1028,9 @@ class WikitextContent extends TextContent {
 		} if ( $section == 'new' ) {
 			# Inserting a new section
 			if ( $sectionTitle ) {
-				$subject = wfMsgForContent( 'newsectionheaderdefaultlevel', $sectionTitle ) . "\n\n";
+				$subject = wfMessage( 'newsectionheaderdefaultlevel' )
+							->inContentLanguage()->params( $sectionTitle )->text();
+				$subject .= "\n\n";
 			} else {
 				$subject = '';
 			}
@@ -1058,8 +1060,10 @@ class WikitextContent extends TextContent {
 	 * @return Content
 	 */
 	public function addSectionHeader( $header ) {
-		$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $header ) . "\n\n" . 
-			$this->getNativeData();
+		$text = wfMessage( 'newsectionheaderdefaultlevel' )
+				->inContentLanguage()->params( $header )->text();
+		$text .= "\n\n";
+		$text .= $this->getNativeData();
 
 		return new WikitextContent( $text );
 	}
