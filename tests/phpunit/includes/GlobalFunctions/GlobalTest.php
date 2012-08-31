@@ -71,7 +71,7 @@ class GlobalTest extends MediaWikiTestCase {
 	public function testUrlencode() {
 		$this->assertEquals(
 			"%E7%89%B9%E5%88%A5:Contributions/Foobar",
-			wfUrlencode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
+			Uri::encode( "\xE7\x89\xB9\xE5\x88\xA5:Contributions/Foobar" ) );
 	}
 
 	/**

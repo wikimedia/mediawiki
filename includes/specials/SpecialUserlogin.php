@@ -1119,10 +1119,10 @@ class LoginForm extends SpecialPage {
 		}
 
 		if ( $this->mReturnTo !== '' ) {
-			$returnto = '&returnto=' . wfUrlencode( $this->mReturnTo );
+			$returnto = '&returnto=' . Uri::encode( $this->mReturnTo );
 			if ( $this->mReturnToQuery !== '' ) {
 				$returnto .= '&returntoquery=' .
-					wfUrlencode( $this->mReturnToQuery );
+					Uri::encode( $this->mReturnToQuery );
 			}
 			$q .= $returnto;
 			$linkq .= $returnto;
