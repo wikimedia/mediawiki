@@ -646,7 +646,7 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getDescriptionUrl( $name ) {
-		$encName = wfUrlencode( $name );
+		$encName = Uri::encode( $name );
 		if ( !is_null( $this->descBaseUrl ) ) {
 			# "http://example.com/wiki/Image:"
 			return $this->descBaseUrl . $encName;
@@ -688,7 +688,7 @@ class FileRepo {
 		if ( isset( $this->scriptDirUrl ) ) {
 			return $this->makeUrl(
 				'title=' .
-				wfUrlencode( 'Image:' . $name ) .
+				Uri::encode( 'Image:' . $name ) .
 				"&$query" );
 		} else {
 			$descUrl = $this->getDescriptionUrl( $name );
