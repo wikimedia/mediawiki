@@ -542,9 +542,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$this->doQuery();
 		}
 
-		# Don't announce the limit everywhere if it's the default
-		$urlLimit = $this->mLimit == $this->mDefaultLimit ? null : $this->mLimit;
-
 		if ( $this->mIsFirst ) {
 			$prev = false;
 			$first = false;
@@ -552,23 +549,33 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$prev = array(
 				'dir' => 'prev',
 				'offset' => $this->mFirstShown,
-				'limit' => $urlLimit
 			);
-			$first = array( 'limit' => $urlLimit );
+			$first = array();
 		}
 		if ( $this->mIsLast ) {
 			$next = false;
 			$last = false;
 		} else {
-			$next = array( 'offset' => $this->mLastShown, 'limit' => $urlLimit );
-			$last = array( 'dir' => 'prev', 'limit' => $urlLimit );
+			$next = array( 'offset' => $this->mLastShown );
+			$last = array( 'dir' => 'prev' );
 		}
-		return array(
+
+		$queries = array(
 			'prev' => $prev,
 			'next' => $next,
 			'first' => $first,
 			'last' => $last
 		);
+
+		if( $this->mLimit != $this->mDefaultLimit ) {
+			foreach( $queries as &$query ) {
+				if( $query !== false ) {
+					$query['limit'] = $this->mLimit;
+				}
+			}
+		}
+
+		return $queries;
 	}
 
 	/**
