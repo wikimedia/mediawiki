@@ -185,7 +185,7 @@ class WikiReference {
 	 * @return String: Url fragment
 	 */
 	private function getLocalUrl( $page ) {
-		return str_replace( '$1', wfUrlEncode( str_replace( ' ', '_', $page ) ), $this->mPath );
+		return str_replace( '$1', Uri::encode( str_replace( ' ', '_', $page ) ), $this->mPath );
 	}
 
 	/**

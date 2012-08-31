@@ -339,7 +339,7 @@ class Title {
 		$t->mNamespace = $ns = intval( $ns );
 		$t->mDbkeyform = str_replace( ' ', '_', $title );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
-		$t->mUrlform = wfUrlencode( $t->mDbkeyform );
+		$t->mUrlform = Uri::encode( $t->mDbkeyform );
 		$t->mTextform = str_replace( '_', ' ', $title );
 		$t->mContentModel = false; # initialized lazily in getContentModel()
 		return $t;
@@ -1427,7 +1427,7 @@ class Title {
 	 */
 	public function getSubpageUrlForm() {
 		$text = $this->getSubpageText();
-		$text = wfUrlencode( str_replace( ' ', '_', $text ) );
+		$text = Uri::encode( str_replace( ' ', '_', $text ) );
 		return $text;
 	}
 
@@ -1438,7 +1438,7 @@ class Title {
 	 */
 	public function getPrefixedURL() {
 		$s = $this->prefix( $this->mDbkeyform );
-		$s = wfUrlencode( str_replace( ' ', '_', $s ) );
+		$s = Uri::encode( str_replace( ' ', '_', $s ) );
 		return $s;
 	}
 
@@ -1546,7 +1546,7 @@ class Title {
 			$url = $interwiki->getURL( $namespace . $this->getDBkey() );
 			$url = wfAppendQuery( $url, $query );
 		} else {
-			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
+			$dbkey = Uri::encode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
 				$url = str_replace( '$1', $dbkey, $wgArticlePath );
 				wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
@@ -3340,7 +3340,7 @@ class Title {
 
 		# Fill fields
 		$this->mDbkeyform = $dbkey;
-		$this->mUrlform = wfUrlencode( $dbkey );
+		$this->mUrlform = Uri::encode( $dbkey );
 
 		$this->mTextform = str_replace( '_', ' ', $dbkey );
 
