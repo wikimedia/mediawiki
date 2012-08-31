@@ -39,8 +39,7 @@
  * All "storage paths" are of the format "mwstore://<backend>/<container>/<path>".
  * The "<path>" portion is a relative path that uses UNIX file system (FS)
  * notation, though any particular backend may not actually be using a local
- * filesystem.
- * Therefore, the relative paths are only virtual.
+ * filesystem. Therefore, the relative paths are only virtual.
  *
  * Backend contents are stored under wiki-specific container names by default.
  * For legacy reasons, this has no effect for the FS backend class, and per-wiki
@@ -171,7 +170,8 @@ abstract class FileBackend {
 	 *         'dst'                 => <storage path>,
 	 *         'content'             => <string of new file contents>,
 	 *         'overwrite'           => <boolean>,
-	 *         'overwriteSame'       => <boolean>
+	 *         'overwriteSame'       => <boolean>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     );
 	 * @endcode
 	 *
@@ -182,7 +182,8 @@ abstract class FileBackend {
 	 *         'src'                 => <file system path>,
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
-	 *         'overwriteSame'       => <boolean>
+	 *         'overwriteSame'       => <boolean>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 *
@@ -193,7 +194,8 @@ abstract class FileBackend {
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
-	 *         'overwriteSame'       => <boolean>
+	 *         'overwriteSame'       => <boolean>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 *
@@ -204,7 +206,8 @@ abstract class FileBackend {
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
-	 *         'overwriteSame'       => <boolean>
+	 *         'overwriteSame'       => <boolean>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 *
@@ -231,6 +234,10 @@ abstract class FileBackend {
 	 *   - overwriteSame       : An error will not be given if a file already
 	 *                           exists at the destination that has the same
 	 *                           contents as the new contents to be written there.
+	 *   - disposition         : When supplied, the backend will add a Content-Disposition
+	 *                           header when GETs/HEADs of the destination file are made.
+	 *                           Backends that don't support file metadata will ignore this.
+	 *                           See http://tools.ietf.org/html/rfc6266 (since 1.20).
 	 *
 	 * $opts is an associative of boolean flags, including:
 	 *   - force               : Operation precondition errors no longer trigger an abort.
@@ -400,7 +407,8 @@ abstract class FileBackend {
 	 *     array(
 	 *         'op'                  => 'create',
 	 *         'dst'                 => <storage path>,
-	 *         'content'             => <string of new file contents>
+	 *         'content'             => <string of new file contents>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 * b) Copy a file system file into storage
@@ -408,7 +416,8 @@ abstract class FileBackend {
 	 *     array(
 	 *         'op'                  => 'store',
 	 *         'src'                 => <file system path>,
-	 *         'dst'                 => <storage path>
+	 *         'dst'                 => <storage path>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 * c) Copy a file within storage
@@ -416,7 +425,8 @@ abstract class FileBackend {
 	 *     array(
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
-	 *         'dst'                 => <storage path>
+	 *         'dst'                 => <storage path>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 * d) Move a file within storage
@@ -424,7 +434,8 @@ abstract class FileBackend {
 	 *     array(
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
-	 *         'dst'                 => <storage path>
+	 *         'dst'                 => <storage path>,
+	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
 	 * e) Delete a file within storage
@@ -445,6 +456,10 @@ abstract class FileBackend {
 	 * @par Boolean flags for operations (operation-specific):
 	 *   - ignoreMissingSource : The operation will simply succeed and do
 	 *                           nothing if the source file does not exist.
+	 *   - disposition         : When supplied, the backend will add a Content-Disposition
+	 *                           header when GETs/HEADs of the destination file are made.
+	 *                           Backends that don't support file metadata will ignore this.
+	 *                           See http://tools.ietf.org/html/rfc6266 (since 1.20).
 	 *
 	 * $opts is an associative of boolean flags, including:
 	 *   - bypassReadOnly      : Allow writes in read-only mode (since 1.20)
@@ -1087,6 +1102,19 @@ abstract class FileBackend {
 	 */
 	final public static function isPathTraversalFree( $path ) {
 		return ( self::normalizeContainerPath( $path ) !== null );
+	}
+
+	/**
+	 * Build a Content-Disposition header value per RFC 6266
+	 *
+	 * @param $type string One of (attachment, inline)
+	 * @param $filename string Suggested file name (should not contain slashes)
+	 * @return string
+	 */
+	final public static function makeContentDisposition( $type, $filename ) {
+		$type     = strtolower( $type );
+		$type     = in_array( $type, array( 'inline', 'attachment' ) ) ? $type : 'inline';
+		return "$type; filename*=UTF-8''" . rawurlencode( basename( $filename ) );
 	}
 
 	/**

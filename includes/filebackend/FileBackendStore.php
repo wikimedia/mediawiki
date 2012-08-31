@@ -89,6 +89,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - content       : the raw file contents
 	 *   - dst           : destination storage path
 	 *   - overwrite     : overwrite any file that exists at the destination
+	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
@@ -127,6 +128,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src           : source path on disk
 	 *   - dst           : destination storage path
 	 *   - overwrite     : overwrite any file that exists at the destination
+	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
@@ -165,6 +167,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src           : source storage path
 	 *   - dst           : destination storage path
 	 *   - overwrite     : overwrite any file that exists at the destination
+	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
@@ -228,6 +231,7 @@ abstract class FileBackendStore extends FileBackend {
 	 *   - src           : source storage path
 	 *   - dst           : destination storage path
 	 *   - overwrite     : overwrite any file that exists at the destination
+	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
 	 *                     set to a FileBackendStoreOpHandle object.
