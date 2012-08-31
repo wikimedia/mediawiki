@@ -2443,6 +2443,21 @@ Link with double quotes in title part (literal) and alternate part (interpreted)
 !! end
 
 !! test
+Broken image links with HTML captions (bug 39700)
+!! input
+[[File:Nonexistent|<script></script>]]
+[[File:Nonexistent|100px|<script></script>]]
+[[File:Nonexistent|&lt;]]
+[[File:Nonexistent|a<i>b</i>c]]
+!! result
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;script&gt;&lt;/script&gt;</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;script&gt;&lt;/script&gt;</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">&lt;</a>
+<a href="/index.php?title=Special:Upload&amp;wpDestFile=Nonexistent" class="new" title="File:Nonexistent">abc</a>
+</p>
+!! end
+
+!! test
 Plain link to URL
 !! input
 [[http://www.example.com]]
