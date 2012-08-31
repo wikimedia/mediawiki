@@ -29,9 +29,7 @@
 		} );
 
 		// Display a loading graphic
-		var loadSpinner = $('<div class="mw-ajax-loader"/>');
-		// Move away from header (default is -16px)
-		loadSpinner.css( 'top', '0' );
+		var loadSpinner = $('<div class="mw-throbber"/>');
 		$wikiPreview.before( loadSpinner );
 
 		var page = $('<div/>');
