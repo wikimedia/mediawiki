@@ -71,10 +71,9 @@ function wfThumbHandle404() {
 	}
 	# Just get the URI path (REDIRECT_URL/REQUEST_URI is either a full URL or a path)
 	if ( substr( $uriPath, 0, 1 ) !== '/' ) {
-		$bits = wfParseUrl( $uriPath );
-		if ( $bits && isset( $bits['path'] ) ) {
-			$uriPath = $bits['path'];
-		} else {
+		$uri = new Uri( $uriPath );
+		$uriPath = $uri->getPath();
+		if ( $uriPath === null ) {
 			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 			return;
 		}

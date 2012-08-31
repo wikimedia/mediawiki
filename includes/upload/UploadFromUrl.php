@@ -70,13 +70,14 @@ class UploadFromUrl extends UploadBase {
 		if ( !count( $wgCopyUploadsDomains ) ) {
 			return true;
 		}
-		$parsedUrl = wfParseUrl( $url );
-		if ( !$parsedUrl ) {
+		$uri = new Uri( $url );
+		$parsedDomain = $uri->getHost();
+		if ( $parsedDomain === null ) {
 			return false;
 		}
 		$valid = false;
 		foreach( $wgCopyUploadsDomains as $domain ) {
-			if ( $parsedUrl['host'] === $domain ) {
+			if ( $parsedDomain === $domain ) {
 				$valid = true;
 				break;
 			}
