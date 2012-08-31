@@ -1103,7 +1103,10 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		if ( isset( $options['HAVING'] ) ) {
-			$preLimitTail .= " HAVING {$options['HAVING']}";
+			$having = is_array( $options['HAVING'] )
+				? $this->makeList( $options['HAVING'], LIST_AND )
+				: $options['HAVING'];
+			$preLimitTail .= " HAVING {$having}";
 		}
 
 		if ( isset( $options['ORDER BY'] ) ) {
@@ -1264,7 +1267,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   - GROUP BY: May be either an SQL fragment string naming a field or
 	 *     expression to group by, or an array of such SQL fragments.
 	 *
-	 *   - HAVING: A string containing a HAVING clause.
+	 *   - HAVING: May be either an string containing a HAVING clause or an array of
+	 *     conditions building the HAVING clause. If an array is given, the conditions
+	 *     constructed from each element are combined with AND.
 	 *
 	 *   - ORDER BY: May be either an SQL fragment giving a field name or
 	 *     expression to order by, or an array of such SQL fragments.
