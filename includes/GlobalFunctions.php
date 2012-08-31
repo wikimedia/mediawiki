@@ -349,30 +349,11 @@ function wfRandomString( $length = 32 ) {
  * %2F in the page titles seems to fatally break for some reason.
  *
  * @param $s String:
+ * @deprecated Since 1.21. Use Uri::encode instead
  * @return string
 */
 function wfUrlencode( $s ) {
-	static $needle;
-	if ( is_null( $s ) ) {
-		$needle = null;
-		return '';
-	}
-
-	if ( is_null( $needle ) ) {
-		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F' );
-		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) || ( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false ) ) {
-			$needle[] = '%3A';
-		}
-	}
-
-	$s = urlencode( $s );
-	$s = str_ireplace(
-		$needle,
-		array( ';', '@', '$', '!', '*', '(', ')', ',', '/', ':' ),
-		$s
-	);
-
-	return $s;
+	return Uri::encode( $s );
 }
 
 /**
@@ -390,35 +371,8 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 		$array1 = $array1 + $array2;
 	}
 
-	$cgi = '';
-	foreach ( $array1 as $key => $value ) {
-		if ( !is_null($value) && $value !== false ) {
-			if ( $cgi != '' ) {
-				$cgi .= '&';
-			}
-			if ( $prefix !== '' ) {
-				$key = $prefix . "[$key]";
-			}
-			if ( is_array( $value ) ) {
-				$firstTime = true;
-				foreach ( $value as $k => $v ) {
-					$cgi .= $firstTime ? '' : '&';
-					if ( is_array( $v ) ) {
-						$cgi .= wfArrayToCgi( $v, null, $key . "[$k]" );
-					} else {
-						$cgi .= urlencode( $key . "[$k]" ) . '=' . urlencode( $v );
-					}
-					$firstTime = false;
-				}
-			} else {
-				if ( is_object( $value ) ) {
-					$value = $value->__toString();
-				}
-				$cgi .= urlencode( $key ) . '=' . urlencode( $value );
-			}
-		}
-	}
-	return $cgi;
+	$query = new UriFormQuery( $array1 );
+	return $query->getQueryString();
 }
 
 /**
@@ -431,42 +385,8 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
  * @return array Array version of input
  */
 function wfCgiToArray( $query ) {
-	if ( isset( $query[0] ) && $query[0] == '?' ) {
-		$query = substr( $query, 1 );
-	}
-	$bits = explode( '&', $query );
-	$ret = array();
-	foreach ( $bits as $bit ) {
-		if ( $bit === '' ) {
-			continue;
-		}
-		if ( strpos( $bit, '=' ) === false ) {
-			// Pieces like &qwerty become 'qwerty' => '' (at least this is what php does)
-			$key = $bit;
-			$value = '';
-		} else {
-			list( $key, $value ) = explode( '=', $bit );
-		}
-		$key = urldecode( $key );
-		$value = urldecode( $value );
-		if ( strpos( $key, '[' ) !== false ) {
-			$keys = array_reverse( explode( '[', $key ) );
-			$key = array_pop( $keys );
-			$temp = $value;
-			foreach ( $keys as $k ) {
-				$k = substr( $k, 0, -1 );
-				$temp = array( $k => $temp );
-			}
-			if ( isset( $ret[$key] ) ) {
-				$ret[$key] = array_merge( $ret[$key], $temp );
-			} else {
-				$ret[$key] = $temp;
-			}
-		} else {
-			$ret[$key] = $value;
-		}
-	}
-	return $ret;
+	$query = new UriFormQuery( $query );
+	return $query->getArray();
 }
 
 /**
@@ -478,18 +398,9 @@ function wfCgiToArray( $query ) {
  * @return string
  */
 function wfAppendQuery( $url, $query ) {
-	if ( is_array( $query ) ) {
-		$query = wfArrayToCgi( $query );
-	}
-	if( $query != '' ) {
-		if( false === strpos( $url, '?' ) ) {
-			$url .= '?';
-		} else {
-			$url .= '&';
-		}
-		$url .= $query;
-	}
-	return $url;
+	$obj = new Uri( $url );
+	$obj->extendQuery( $query );
+	return $obj->toString();
 }
 
 /**
@@ -507,7 +418,7 @@ function wfAppendQuery( $url, $query ) {
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
  *
- * @param $url String: either fully-qualified or a local path + query
+ * @param $url Uri|String: either fully-qualified or local path + query or URI object
  * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the
  *                             protocol to use if $url or $wgServer is
  *                             protocol-relative
@@ -516,55 +427,43 @@ function wfAppendQuery( $url, $query ) {
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer, $wgCanonicalServer, $wgInternalServer;
-	$serverUrl = $wgServer;
-	if ( $defaultProto === PROTO_CANONICAL ) {
-		$serverUrl = $wgCanonicalServer;
+	$server = $wgServer;
+	if( $defaultProto === PROTO_CANONICAL ) {
+		$server = $wgCanonicalServer;
 	}
 	// Make $wgInternalServer fall back to $wgServer if not set
-	if ( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
-		$serverUrl = $wgInternalServer;
-	}
-	if ( $defaultProto === PROTO_CURRENT ) {
-		$defaultProto = WebRequest::detectProtocol() . '://';
+	if( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
+		$server = $wgInternalServer;
 	}
 
-	// Analyze $serverUrl to obtain its protocol
-	$bits = wfParseUrl( $serverUrl );
-	$serverHasProto = $bits && $bits['scheme'] != '';
+	// Wrap in Uri objects.
+	if( !$url instanceof Uri ) {
+		$url = new Uri( $url );
+	}
+	$server = new Uri( $server );
 
-	if ( $defaultProto === PROTO_CANONICAL || $defaultProto === PROTO_INTERNAL ) {
-		if ( $serverHasProto ) {
-			$defaultProto = $bits['scheme'] . '://';
-		} else {
-			// $wgCanonicalServer or $wgInternalServer doesn't have a protocol. This really isn't supposed to happen
-			// Fall back to HTTP in this ridiculous case
-			$defaultProto = PROTO_HTTP;
+	// Set the appropriate scheme if necessary.
+	if(
+		!$url->getScheme() && $url->getAuthority() ||
+		!$server->getScheme() && !$url->getAuthority()
+	) {
+		switch( $defaultProto ) {
+			case PROTO_HTTP:
+				$url->setScheme( 'http' );
+				break;
+			case PROTO_HTTPS:
+				$url->setScheme( 'https' );
+				break;
+			case PROTO_CURRENT:
+				$url->setScheme( WebRequest::detectProtocol() );
+				break;
+			case PROTO_RELATIVE:
+				$server->setScheme( null );
+				break;
 		}
 	}
 
-	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
-
-	if ( substr( $url, 0, 2 ) == '//' ) {
-		$url = $defaultProtoWithoutSlashes . $url;
-	} elseif ( substr( $url, 0, 1 ) == '/' ) {
-		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
-		$url = ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
-	}
-
-	$bits = wfParseUrl( $url );
-	if ( $bits && isset( $bits['path'] ) ) {
-		$bits['path'] = wfRemoveDotSegments( $bits['path'] );
-		return wfAssembleUrl( $bits );
-	} elseif ( $bits ) {
-		# No path to expand
-		return $url;
-	} elseif ( substr( $url, 0, 1 ) != '/' ) {
-		# URL is a relative path
-		return wfRemoveDotSegments( $url );
-	}
-
-	# Expanded URL is not valid.
-	return false;
+	return $url->expand( $server )->resolvePath()->toString();
 }
 
 /**
@@ -575,51 +474,19 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  * [scheme][delimiter][user]:[pass]@[host]:[port][path]?[query]#[fragment]
  *
  * @todo Need to integrate this into wfExpandUrl (bug 32168)
+ * @deprecated Use Uri class instead
  *
  * @since 1.19
  * @param $urlParts Array URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
  */
 function wfAssembleUrl( $urlParts ) {
-	$result = '';
-
-	if ( isset( $urlParts['delimiter'] ) ) {
-		if ( isset( $urlParts['scheme'] ) ) {
-			$result .= $urlParts['scheme'];
-		}
-
-		$result .= $urlParts['delimiter'];
+	if( isset( $urlParts['delimiter'] ) ) {
+		unset( $urlParts['delimiter'] );
 	}
 
-	if ( isset( $urlParts['host'] ) ) {
-		if ( isset( $urlParts['user'] ) ) {
-			$result .= $urlParts['user'];
-			if ( isset( $urlParts['pass'] ) ) {
-				$result .= ':' . $urlParts['pass'];
-			}
-			$result .= '@';
-		}
-
-		$result .= $urlParts['host'];
-
-		if ( isset( $urlParts['port'] ) ) {
-			$result .= ':' . $urlParts['port'];
-		}
-	}
-
-	if ( isset( $urlParts['path'] ) ) {
-		$result .= $urlParts['path'];
-	}
-
-	if ( isset( $urlParts['query'] ) ) {
-		$result .= '?' . $urlParts['query'];
-	}
-
-	if ( isset( $urlParts['fragment'] ) ) {
-		$result .= '#' . $urlParts['fragment'];
-	}
-
-	return $result;
+	$uri = new Uri( $urlParts );
+	return $uri->toString();
 }
 
 /**
@@ -627,80 +494,16 @@ function wfAssembleUrl( $urlParts ) {
  * '/a/./b/../c/' becomes '/a/c/'.  For details on the algorithm, please see
  * RFC3986 section 5.2.4.
  *
- * @todo Need to integrate this into wfExpandUrl (bug 32168)
+ * @deprecated Use URI object instead
  *
  * @param $urlPath String URL path, potentially containing dot-segments
  * @return string URL path with all dot-segments removed
  */
 function wfRemoveDotSegments( $urlPath ) {
-	$output = '';
-	$inputOffset = 0;
-	$inputLength = strlen( $urlPath );
-
-	while ( $inputOffset < $inputLength ) {
-		$prefixLengthOne = substr( $urlPath, $inputOffset, 1 );
-		$prefixLengthTwo = substr( $urlPath, $inputOffset, 2 );
-		$prefixLengthThree = substr( $urlPath, $inputOffset, 3 );
-		$prefixLengthFour = substr( $urlPath, $inputOffset, 4 );
-		$trimOutput = false;
-
-		if ( $prefixLengthTwo == './' ) {
-			# Step A, remove leading "./"
-			$inputOffset += 2;
-		} elseif ( $prefixLengthThree == '../' ) {
-			# Step A, remove leading "../"
-			$inputOffset += 3;
-		} elseif ( ( $prefixLengthTwo == '/.' ) && ( $inputOffset + 2 == $inputLength ) ) {
-			# Step B, replace leading "/.$" with "/"
-			$inputOffset += 1;
-			$urlPath[$inputOffset] = '/';
-		} elseif ( $prefixLengthThree == '/./' ) {
-			# Step B, replace leading "/./" with "/"
-			$inputOffset += 2;
-		} elseif ( $prefixLengthThree == '/..' && ( $inputOffset + 3 == $inputLength ) ) {
-			# Step C, replace leading "/..$" with "/" and
-			# remove last path component in output
-			$inputOffset += 2;
-			$urlPath[$inputOffset] = '/';
-			$trimOutput = true;
-		} elseif ( $prefixLengthFour == '/../' ) {
-			# Step C, replace leading "/../" with "/" and
-			# remove last path component in output
-			$inputOffset += 3;
-			$trimOutput = true;
-		} elseif ( ( $prefixLengthOne == '.' ) && ( $inputOffset + 1 == $inputLength ) ) {
-			# Step D, remove "^.$"
-			$inputOffset += 1;
-		} elseif ( ( $prefixLengthTwo == '..' ) && ( $inputOffset + 2 == $inputLength ) ) {
-			# Step D, remove "^..$"
-			$inputOffset += 2;
-		} else {
-			# Step E, move leading path segment to output
-			if ( $prefixLengthOne == '/' ) {
-				$slashPos = strpos( $urlPath, '/', $inputOffset + 1 );
-			} else {
-				$slashPos = strpos( $urlPath, '/', $inputOffset );
-			}
-			if ( $slashPos === false ) {
-				$output .= substr( $urlPath, $inputOffset );
-				$inputOffset = $inputLength;
-			} else {
-				$output .= substr( $urlPath, $inputOffset, $slashPos - $inputOffset );
-				$inputOffset += $slashPos - $inputOffset;
-			}
-		}
-
-		if ( $trimOutput ) {
-			$slashPos = strrpos( $output, '/' );
-			if ( $slashPos === false ) {
-				$output = '';
-			} else {
-				$output = substr( $output, 0, $slashPos );
-			}
-		}
-	}
-
-	return $output;
+	$uri = new Uri;
+	$uri->setPath( $urlPath );
+	$uri->resolvePath();
+	return $uri->getPath();
 }
 
 /**
@@ -767,60 +570,43 @@ function wfUrlProtocolsWithoutProtRel() {
  * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2))
  *
  * @param $url String: a URL to parse
+ * @deprecated Use a URI object
  * @return Array: bits of the URL in an associative array, per PHP docs
  */
 function wfParseUrl( $url ) {
-	global $wgUrlProtocols; // Allow all protocols defined in DefaultSettings/LocalSettings.php
+	$obj = new Uri( $url );
+	$parts = $obj->getComponents();
 
-	// Protocol-relative URLs are handled really badly by parse_url(). It's so bad that the easiest
-	// way to handle them is to just prepend 'http:' and strip the protocol out later
-	$wasRelative = substr( $url, 0, 2 ) == '//';
-	if ( $wasRelative ) {
-		$url = "http:$url";
+	// Add delimiter to bits for compatibility.
+	$delimiter = '';
+	if( !empty( $parts['scheme'] ) ) {
+		$delimiter .= ':';
 	}
-	wfSuppressWarnings();
-	$bits = parse_url( $url );
-	wfRestoreWarnings();
-	// parse_url() returns an array without scheme for some invalid URLs, e.g.
-	// parse_url("%0Ahttp://example.com") == array( 'host' => '%0Ahttp', 'path' => 'example.com' )
-	if ( !$bits || !isset( $bits['scheme'] ) ) {
-		return false;
+	if( !empty( $parts['host'] ) || isset( $parts['scheme'] ) && $parts['scheme'] == 'file' ) {
+		$delimiter .= '//';
 	}
+	$parts['delimiter'] = $delimiter;
 
-	// parse_url() incorrectly handles schemes case-sensitively. Convert it to lowercase.
-	$bits['scheme'] = strtolower( $bits['scheme'] );
-
-	// most of the protocols are followed by ://, but mailto: and sometimes news: not, check for it
-	if ( in_array( $bits['scheme'] . '://', $wgUrlProtocols ) ) {
-		$bits['delimiter'] = '://';
-	} elseif ( in_array( $bits['scheme'] . ':', $wgUrlProtocols ) ) {
-		$bits['delimiter'] = ':';
-		// parse_url detects for news: and mailto: the host part of an url as path
-		// We have to correct this wrong detection
-		if ( isset( $bits['path'] ) ) {
-			$bits['host'] = $bits['path'];
-			$bits['path'] = '';
-		}
-	} else {
-		return false;
+	// Some wfParseUrl users expect mailto: URIs to have the host in 'host' instead of 'path'
+	if( $delimiter == ':' && isset( $parts['path'] ) ) {
+		$parts['host'] = $parts['path'];
+		$parts['path'] = '';
 	}
 
-	/* Provide an empty host for eg. file:/// urls (see bug 28627) */
-	if ( !isset( $bits['host'] ) ) {
-		$bits['host'] = '';
+	// Some users of wfParseUrl expect scheme to exist, even if empty.
+	if( !isset( $parts['scheme'] ) ) {
+		$parts['scheme'] = '';
+	}
 
-		/* parse_url loses the third / for file:///c:/ urls (but not on variants) */
-		if ( substr( $bits['path'], 0, 1 ) !== '/' ) {
-			$bits['path'] = '/' . $bits['path'];
+	// File URLs need an empty host and an absolute path.
+	if( $parts['scheme'] == 'file' && !isset( $parts['host'] ) ) {
+		$parts['host'] = '';
+		if( substr( $parts['path'], 0, 1 ) !== '/' ) {
+			$parts['path'] = '/' . $parts['path'];
 		}
 	}
 
-	// If the URL was protocol-relative, fix scheme and delimiter
-	if ( $wasRelative ) {
-		$bits['scheme'] = '';
-		$bits['delimiter'] = '//';
-	}
-	return $bits;
+	return $parts;
 }
 
 /**
