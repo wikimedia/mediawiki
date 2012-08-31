@@ -72,15 +72,16 @@ class UploadFromUrl extends UploadBase {
 		if ( !count( $wgCopyUploadsDomains ) ) {
 			return true;
 		}
-		$parsedUrl = wfParseUrl( $url );
-		if ( !$parsedUrl ) {
+		$uri = new Uri( $url );
+		$parsedDomain = $uri->getHost();
+		if ( $parsedDomain === null ) {
 			return false;
 		}
 		$valid = false;
 		foreach( $wgCopyUploadsDomains as $domain ) {
 			// See if the domain for the upload matches this whitelisted domain
 			$whitelistedDomainPieces = explode( '.', $domain );
-			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
+			$uploadDomainPieces = explode( '.', $parsedDomain );
 			if ( count( $whitelistedDomainPieces ) === count( $uploadDomainPieces ) ) {
 				$valid = true;
 				// See if all the pieces match or not (excluding wildcards)
@@ -95,7 +96,7 @@ class UploadFromUrl extends UploadBase {
 				}
 			}
 			/* Non-wildcard test
-			if ( $parsedUrl['host'] === $domain ) {
+			if ( $parsedDomain === $domain ) {
 				$valid = true;
 				break;
 			}
