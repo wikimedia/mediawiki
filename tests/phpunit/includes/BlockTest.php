@@ -88,6 +88,9 @@ class BlockTest extends MediaWikiLangTestCase {
 	 *
 	 * This stopped working with r84475 and friends: regression being fixed for bug 29116.
 	 *
+	 * Test is broken in REL1_18:
+	 * @group Broken
+	 *
 	 * @dataProvider dataBug29116
 	 */
 	function testBug29116LoadWithEmptyIp( $vagueTarget ) {

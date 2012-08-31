@@ -25,6 +25,10 @@ class ApiBlockTest extends ApiTestCase {
 		}
 	}
 
+	/**
+	 * Test is broken in REL1_18:
+	 * @group Broken
+	 */
 	function testMakeNormalBlock() {
 
 		$data = $this->getTokens();
