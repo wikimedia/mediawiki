@@ -308,6 +308,13 @@ class LoginForm extends SpecialPage {
 			return false;
 		}
 
+		# Include checks that will include GlobalBlocking (Bug 38333)
+		$permErrors = $this->getTitle()->getUserPermissionsErrors( 'createaccount', $wgUser, true );
+		if ( count( $permErrors ) ) {
+			$wgOut->permissionRequired( 'createaccount' );
+			return false;
+		}
+
 		$ip = wfGetIP();
 		if ( $wgUser->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
 			$this->mainLoginForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
