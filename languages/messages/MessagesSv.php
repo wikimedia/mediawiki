@@ -37,6 +37,7 @@
  * @author Petter Strandmark
  * @author Poxnar
  * @author Purodha
+ * @author Rotsee
  * @author S.Örvarr.S
  * @author Sannab
  * @author Sertion
@@ -1996,7 +1997,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'shared-repo-from' => 'från $1',
 'shared-repo' => 'en gemensam filförvaring',
 'filepage.css' => '/* CSS som skrivs här inkluderas på filbeskrivningssidan, även på utländska klientwikis */',
-'upload-disallowed-here' => 'Tyvärr inte kan du skriva över denna bild.',
+'upload-disallowed-here' => 'Du kan inte skriva över denna bild.',
 
 # File reversion
 'filerevert' => 'Återställ $1',

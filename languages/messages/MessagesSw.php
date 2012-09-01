@@ -1598,7 +1598,9 @@ Haliwezi kukaguliwa vilivyo kwa sababu za kiusalama.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ruksa imekataliwa',
+'img-auth-nologinnWL' => '',
 'img-auth-nofile' => 'Hakuna faili la "$1".',
+'img-auth-isdir' => '',
 'img-auth-noread' => 'Mtumiaji hana fursa ya kusoma "$1".',
 
 # HTTP errors
@@ -2124,7 +2126,7 @@ ukurasa huu una mhariri mmoja tu.',
 'protect-unchain-permissions' => 'Fungua chaguzi zingine za ulindaji',
 'protect-text' => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''$1'''.",
 'protect-locked-dblock' => "Viwango vya ulindaji haviwezi kubadilishwa kwa sababu hifadhidata imefungwa.
-Hapo panaandikwa viwango vya ulindaji wa ukurasa '''$1''':",
+Hii hapa ni mipangilio iliyopo kwa ajili ya ukurasa '''$1''':",
 'protect-locked-access' => "Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
 Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-cascadeon' => 'Ukurasa huu umelindwa kwa sababu umezingatiwa katika {{PLURAL:$1|ukurasa $1 unaolinda kurasa chini yake|kurasa $1 zinazolinda kurasa chini yake}}. Unaweza kubadilisha kiwango cha ulindaji wa ukurasa huu, lakini hutaathirika ulindaji kutoka kurasa juu yake.',
@@ -2134,13 +2136,13 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-level-sysop' => 'Wakabidhi tu',
 'protect-summary-cascade' => 'ulindaji kwa kurasa chini yake',
 'protect-expiring' => 'itakwisha $1 (UTC)',
-'protect-expiring-local' => 'inaishia saa $1',
+'protect-expiring-local' => 'inaisha $1',
 'protect-expiry-indefinite' => 'bila mwisho',
 'protect-cascade' => 'Linda kurasa zinazozingatiwa chini ya ukurasa huu',
 'protect-cantedit' => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
 'protect-othertime' => 'Kipindi kingine:',
 'protect-othertime-op' => 'kipindi kingine',
-'protect-existing-expiry' => 'Kipindi cha ulindaji uliowekwa unaishia: $3, $2',
+'protect-existing-expiry' => 'Muda wa kwisha uliopo: $3, $2',
 'protect-otherreason' => 'Sababu nyingine:',
 'protect-otherreason-op' => 'Sababu nyingine',
 'protect-dropdown' => '*Sababu za kawaida za ulindaji
@@ -2152,8 +2154,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-expiry-options' => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'restriction-type' => 'Ruhusa:',
 'restriction-level' => 'Kiwango cha kizuia:',
-'minimum-size' => 'Saizi ndogo mno',
-'maximum-size' => 'Saizi kubwa mno:',
+'minimum-size' => 'Saizi ndogo',
+'maximum-size' => 'Saizi kubwa:',
 'pagesize' => '(baiti)',
 
 # Restrictions (nouns)
@@ -2164,8 +2166,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Restriction levels
 'restriction-level-sysop' => 'umelindwa kabisa',
-'restriction-level-autoconfirmed' => 'umelindwa kwa kiasi',
-'restriction-level-all' => 'chochote',
+'restriction-level-autoconfirmed' => 'umelindwa kiasi',
+'restriction-level-all' => 'kiasi chochote',
 
 # Undelete
 'undelete' => 'Kuzitazama kurasa zilizofutwa',
@@ -2569,7 +2571,7 @@ Tafadhali jaribu tena.',
 'pageinfo-title' => 'Taarifa juu ya "$1"',
 'pageinfo-header-edits' => 'Maharirio',
 'pageinfo-watchers' => 'Idadi ya wanaofuatilia',
-'pageinfo-edits' => 'Idadi ya haririo',
+'pageinfo-edits' => 'Idadi ya maharirio',
 
 # Image deletion
 'deletedrevision' => 'Pitio la awali lililofutwa $1',

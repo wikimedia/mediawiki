@@ -1792,19 +1792,19 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 * '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.jpg]]</nowiki></code>'''とすると、ファイルが完全なままで使用されます
 * '''<code><nowiki>[[</nowiki>{{ns:file}}:<nowiki>File.png|200px|thumb|left|代替文]]</nowiki></code>'''とすると、200ピクセルの幅に修正された状態で、左寄せの枠内に、「代替文」が説明として使用されます。
 * '''<code><nowiki>[[</nowiki>{{ns:media}}:<nowiki>File.ogg]]</nowiki></code>'''とするとファイルを表示せずに直接ファイルへリンクします",
-'upload-permitted' => '許可されているファイル形式：$1。',
-'upload-preferred' => '推奨されているファイル形式：$1。',
-'upload-prohibited' => '禁止されているファイル形式：$1。',
+'upload-permitted' => '許可されているファイル形式: $1。',
+'upload-preferred' => '推奨されているファイル形式: $1。',
+'upload-prohibited' => '禁止されているファイル形式: $1。',
 'uploadlog' => 'アップロード記録',
 'uploadlogpage' => 'アップロード記録',
 'uploadlogpagetext' => '以下はファイルアップロードの最近の記録です。
 画像付きで見るには[[Special:NewFiles|新規ファイルの一覧]]をご覧ください。',
 'filename' => 'ファイル名',
 'filedesc' => '概要',
-'fileuploadsummary' => '概要：',
-'filereuploadsummary' => 'ファイルの変更：',
-'filestatus' => '著作権情報：',
-'filesource' => '出典：',
+'fileuploadsummary' => '概要:',
+'filereuploadsummary' => 'ファイルの変更:',
+'filestatus' => '著作権情報:',
+'filesource' => '出典:',
 'uploadedfiles' => 'アップロードされたファイル',
 'ignorewarning' => '警告を無視してファイルを保存',
 'ignorewarnings' => '警告を無視',
@@ -1882,11 +1882,11 @@ file_uploadsの設定を確認してください。',
 'uploadjava' => 'このファイルは、Javaの.classファイルを含むZIPファイルです。
 セキュリティの制限を回避されるおそれがあるため、Javaファイルのアップロードは許可されていません。',
 'upload-source' => 'アップロード元ファイル',
-'sourcefilename' => 'アップロード元のファイル名：',
-'sourceurl' => 'アップロード元のURL：',
-'destfilename' => '登録するファイル名：',
-'upload-maxfilesize' => 'ファイルの最大サイズ：$1',
-'upload-description' => 'ファイル説明',
+'sourcefilename' => 'アップロード元のファイル名:',
+'sourceurl' => 'アップロード元の URL:',
+'destfilename' => '登録するファイル名:',
+'upload-maxfilesize' => 'ファイルの最大サイズ: $1',
+'upload-description' => 'ファイルの説明',
 'upload-options' => 'アップロードのオプション',
 'watchthisupload' => 'このファイルをウォッチ',
 'filewasdeleted' => 'この名前のファイルは一度アップロードされ、その後削除されています。
@@ -2026,7 +2026,7 @@ URLが正しいものであり、ウェブサイトが稼働していること�
 ウェブサイトが現在稼働していることを確認し、しばらく待ってからもう一度お試しください。
 混雑していない時間帯に試すことをおすすめします。',
 
-'license' => 'ライセンス：',
+'license' => 'ライセンス:',
 'license-header' => 'ライセンス',
 'nolicense' => '選択なし',
 'license-nopreview' => '（プレビューはありません）',
@@ -3910,7 +3910,7 @@ $5
 # action=purge
 'confirm_purge_button' => 'OK',
 'confirm-purge-top' => 'このページのキャッシュを破棄しますか？',
-'confirm-purge-bottom' => 'ページをパージすると、キャッシュが破棄され、強制的に最新の版が表示されます。',
+'confirm-purge-bottom' => 'ページをパージすると、キャッシュが破棄され、強制的に最新版が表示されます。',
 
 # action=watch/unwatch
 'confirm-watch-button' => 'OK',

@@ -3827,7 +3827,7 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'htmlform-float-invalid' => 'Vrijednost koju ste naveli nije broj.',
 'htmlform-int-toolow' => 'Vrijednost koju ste naveli je ispod minimuma od $1',
 'htmlform-int-toohigh' => 'Vrijednost koju ste naveli je iznad maksimuma od $1',
-'htmlform-required' => 'Ova vrijednost je potrebna',
+'htmlform-required' => 'Ova je vrijednost potrebna',
 'htmlform-submit' => 'Pošalji',
 'htmlform-reset' => 'Poništi izmjene',
 'htmlform-selectorother-other' => 'Drugi',

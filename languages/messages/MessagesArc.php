@@ -825,6 +825,7 @@ $1',
 'newsectionsummary' => '/* $1 */ ܡܢܬܐ ܚܕܬܐ',
 'rc-enhanced-expand' => 'ܚܘܝ ܐܪ̈ܝܟܬܐ (ܒܥܐ ܠܟ JavaScript)',
 'rc-enhanced-hide' => 'ܛܫܝ ܐܪ̈ܝܟܬܐ',
+'rc-old-title' => 'ܐܬܒܪܝ ܫܪܫܐܝܬ ܐܝܟ "$1"',
 
 # Recent changes linked
 'recentchangeslinked' => 'ܫܘܚܠܦ̈ܐ ܕ̈ܡܝܐ',

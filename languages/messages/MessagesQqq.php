@@ -2745,7 +2745,9 @@ The name of the deletion log. Used as heading on [[Special:Log/delete]] and in t
 This link text appears on the recent changes page to users who have the "rollback" right.  It is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.
 This message has a tooltip {{msg-mw|tooltip-rollback}}',
 'rollbacklinkcount' => 'Text of the rollback link showing the number of edits to be rolled back. This link is also effectively a submit button; when clicked it performs the rollback without going to a dialog box first.  See also {{msg-mw|rollbacklink}}.
-* $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.',
+* $1: the number of edits that will be rollbacked. If $1 is over the value of $wgShowRollbackEditCount (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.
+
+The rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}',
 'rollbacklinkcount-morethan' => 'Text of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.
 
 When the number of edits rolled back is smaller than [[mw:Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.',
@@ -3352,7 +3354,7 @@ If the length of the translated message is over 60 characters (including spaces)
 'tooltip-watch' => '{{Identical|Add this page to your watchlist}}',
 'tooltip-watchlistedit-normal-submit' => 'Tooltip for {{msg|watchlistedit-normal-submit}} (used as button on [[Special:EditWatchlist]]).',
 'tooltip-watchlistedit-raw-submit' => 'Tooltip for {{msg|watchlistedit-raw-submit}} (used as button on [[Special:EditWatchlist/raw]]).',
-'tooltip-rollback' => 'Tooltip of the rollback link on the history page and the diff view {{msg-mw|rollbacklink}}
+'tooltip-rollback' => 'Tooltip of the rollback link on the history page and the diff view {{msg-mw|rollbacklinkcount}}
 {{Identical|Rollback}}
 {{Identical|Revert}}',
 'tooltip-undo' => 'Tooltip of the undo link on the history page and the diff view {{msg-mw|editundo}}

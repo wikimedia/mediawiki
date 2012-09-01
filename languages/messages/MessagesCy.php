@@ -1678,7 +1678,7 @@ Gweler https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-nofile' => 'Nid oes ffeil a\'r enw "$1" ar gael.',
 'img-auth-isdir' => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
 Dim ond ffeiliau y cewch eu cyrchu.',
-'img-auth-streaming' => 'Wrthi\'n llifo "$1".',
+'img-auth-streaming' => 'Wrthi\'n ffrydio "$1".',
 'img-auth-public' => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
 Mae'r wici hwn wedi ei osod yn wici gyhoeddus.
 Er mwyn sicrhau'r diogelwch gorau posib, analluogwyd img_auth.php.",
@@ -1871,6 +1871,7 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|beit|beit|feit|beit|beit|beit}}',
 'ncategories' => '$1 {{PLURAL:$1|categori|categori|gategori|chategori|chategori|categori}}',
+'ninterwikis' => '$1 {{PLURAL:$1|cyswllt|cyswllt|gyswllt|chyswllt|chyswllt|cyswllt}}',
 'nlinks' => '$1 {{PLURAL:$1|cyswllt|cyswllt|gyswllt|chyswllt|chyswllt|cyswllt}}',
 'nmembers' => '$1 {{PLURAL:$1|aelod|aelod|aelod|aelod|aelod|aelod}}',
 'nrevisions' => '$1 {{PLURAL:$1|diwygiad|diwygiad|ddiwygiad|diwygiad|diwygiad|diwygiad}}',
@@ -1899,6 +1900,7 @@ Gosodwyd <del>llinell</del> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'mostlinkedtemplates' => 'Nodiadau yn nhrefn nifer y cysylltiadau iddynt',
 'mostcategories' => 'Erthyglau yn nhrefn nifer eu categorïau',
 'mostimages' => 'Ffeiliau yn nhrefn nifer y cysylltiadau iddynt',
+'mostinterwikis' => "Tudalennau a'r nifer mwyaf o gysylltau rhyngwici",
 'mostrevisions' => 'Tudalennau yn nhrefn nifer y newidiadau iddynt',
 'prefixindex' => 'Pob tudalen yn ôl parth',
 'prefixindex-namespace' => 'Pob tudalen â rhagddodiad penodol (y parth $1)',
@@ -2046,6 +2048,7 @@ Protocoliau sy\'n cael eu cynnal: <code>$1</code> (peidiwch ag ychwanegu\'r rhai
 a bod cyfeiriad e-bost dilys yn eich [[Special:Preferences|dewisiadau]]
 er mwyn medru anfon e-bost at ddefnyddwyr eraill.',
 'emailuser' => 'Anfon e-bost at y defnyddiwr hwn',
+'emailuser-title-target' => "Ebostio'r {{GENDER:$1|defnyddiwr hwn}}",
 'emailuser-title-notarget' => 'Anfon e-bost at ddefnyddiwr',
 'emailpage' => 'Anfon e-bost at ddefnyddiwr',
 'emailpagetext' => "Os yw'r cyfeiriad e-bost sydd yn newisiadau'r defnyddiwr hwn yn un dilys, gellir anfon neges ato o'i ysgrifennu ar y ffurflen isod.

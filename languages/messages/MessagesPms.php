@@ -2763,18 +2763,18 @@ A peul visualisene la sorgiss",
 'tooltip-ca-nstab-help' => "Vardé la pàgina d'agiut",
 'tooltip-ca-nstab-category' => 'Vardé la pàgina dla categorìa.',
 'tooltip-minoredit' => 'Marché sòn coma modìfica cita',
-'tooltip-save' => 'Salva le modìfiche',
+'tooltip-save' => 'Salvé le modìfiche',
 'tooltip-preview' => 'Preuva dle modìfiche (mej sempe fela, prima che fé che salvé!)',
-'tooltip-diff' => "Fame vëdde che modìfiche che i l'hai faje al test.",
-'tooltip-compareselectedversions' => 'Fame ël paragon dle diferense antra le version selessionà.',
-'tooltip-watch' => 'Gionta sta pàgina-sì a la lista dle ròbe che im ten-o sot euj',
+'tooltip-diff' => "A fa vëdde le modìfiche che a l'ha faje al test",
+'tooltip-compareselectedversions' => 'Fé ël paragon dle diferense antra le version selessionà.',
+'tooltip-watch' => 'Gionté sta pàgina-sì a la lista dle ròbe che im ten-o sot euj',
 'tooltip-watchlistedit-normal-submit' => 'Gavé via ij tìtoj',
-'tooltip-watchlistedit-raw-submit' => 'Agiorné la Lista',
-'tooltip-recreate' => 'Creé torna la pàgina contut che a la sia staita scancelà',
+'tooltip-watchlistedit-raw-submit' => "Agiorné la lista dle ròbe ch'as ten-o sot-euj",
+'tooltip-recreate' => 'Creé torna la pàgina contut che a la sia stàita scancelà',
 'tooltip-upload' => 'Anandiesse a carié',
-'tooltip-rollback' => '"Rollback" a scansela con un clich le modìfiche fàite a costa pagina da l\'ùltim contribudor',
-'tooltip-undo' => '"Undo" a scansela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd vardé prima.
-At lassa gionté na spiegassion ëd la modìfica.',
+'tooltip-rollback' => "«Tiré andré» a gava con un colp ëd rat le modìfiche fàite a costa pàgina da l'ùltim contributor",
+'tooltip-undo' => "«Buté 'me ch'a l'era» a scancela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd preuva.
+A lassa gionté na spiegassion ant ël resumé.",
 'tooltip-preferences-save' => 'Salvé ij sò gust',
 'tooltip-summary' => 'Anserì un curt resumé',
 
@@ -2787,7 +2787,7 @@ At lassa gionté na spiegassion ëd la modìfica.',
 'monobook.js' => "/* Ës messagi-sì as dovrìa pa pì dovrelo; a sò pòst ch'a dòvra [[MediaWiki:common.js]] */",
 
 # Metadata
-'notacceptable' => 'Ël server dla wiki a-i la fa pa a provëdde dij dat ant na forma che sò programa local a peula lese.',
+'notacceptable' => 'Ës servent ëd la wiki a-i la fa pa a fornì dij dat ant na forma che sò programa local a peula lese.',
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|Utent|Utent}} anònim ëd {{SITENAME}}',
