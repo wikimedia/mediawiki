@@ -1332,7 +1332,7 @@ Detayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'mwsuggest-disable' => 'Tewsiyay AJAXi bıgê',
 'searcheverything-enable' => 'cayê nameyê hemi de bigêre',
 'searchrelated' => 'eleqayî',
-'searchall' => 'têdıne',
+'searchall' => 'pêro',
 'showingresults' => "Heta {{PLURAL:$1|'''1''' netice|'''$1''' neticeyan}} ke pê #'''$2''' başli beno ey bimocne .",
 'showingresultsnum' => "'''$2''' netican ra nata  {{PLURAL:$3|'''1''' netice|'''$3''' neticeyê}} cêrde liste biyê.",
 'showingresultsheader' => "{{PLURAL:$5|Neticeyê '''$1''' of '''$3'''|Neticeyanê '''$1 - $2''' of '''$3'''}} qe '''$4'''",
@@ -1942,7 +1942,7 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'listfiles_name' => 'Name',
 'listfiles_user' => 'Karber',
 'listfiles_size' => 'Gırdiye',
-'listfiles_description' => 'Şınasiyen',
+'listfiles_description' => 'Sılasnayış',
 'listfiles_count' => 'Versiyoni',
 
 # File description page
@@ -2341,7 +2341,7 @@ Ena deme ra, ma qe vurnayışan ser ena pele tı haberdar keni. Hem zi çı dem 
 'enotif_reset' => 'Pela pêro ziyaret kerde deye mor ke',
 'enotif_newpagetext' => 'Ena yew pela newî ya.',
 'enotif_impersonal_salutation' => '{{SITENAME}} karber',
-'changed' => 'vurniya',
+'changed' => 'vurneya',
 'created' => 'viraziya',
 'enotif_subject' => 'pelê {{SITENAME}}i $PAGETITLE, hetê/perrê $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => 'ziyareta şıma ye peyini ra nata heme vuryayiş ê ke biyê bıewnê $1i re..',
@@ -3708,9 +3708,9 @@ $8',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pêro',
-'namespacesall' => 'têde',
+'namespacesall' => 'pêro',
 'monthsall' => 'pêro',
-'limitall' => 'hemi',
+'limitall' => 'pêro',
 
 # E-mail address confirmation
 'confirmemail' => 'Adresê e-posta tesdiq ker',
