@@ -10,9 +10,9 @@
 		var $wikiPreview = $( '#wikiPreview' );
 
 		// this needs to be checked before we unconditionally show the preview
-		var previewVisible = false;
-		if ( $wikiPreview.is( ':visible' ) ) {
-			previewVisible = true;
+		var overlaySpinner = false;
+		if ( $wikiPreview.is( ':visible' ) || $( '.mw-newarticletext:visible' ).length > 0 ) {
+			overlaySpinner = true;
 		}
 
 		// show #wikiPreview if it's hidden to be able to scroll to it
@@ -22,9 +22,11 @@
 		$wikiPreview[0].scrollIntoView();
 
 		// list of elements that will be loaded from the preview page
+		// elements absent in the preview page (such as .mw-newarticletext) will be cleared using .empty()
 		var copySelectors = [
 			'#wikiPreview', '#wikiDiff', '#catlinks', '.hiddencats', '#p-lang', // the meat
-			'.templatesUsed', '.mw-summary-preview' // editing-related
+			'.templatesUsed', '.mw-summary-preview', // editing-related
+			'.mw-newarticletext' // it is not shown during normal preview, and looks weird with throbber overlaid
 		];
 		var $copyElements = $( copySelectors.join( ',' ) );
 
@@ -32,7 +34,7 @@
 		$loadSpinner.css( 'top', '0' ); // move away from header (default is -16px)
 
 		// If the preview is already visible, overlay the spinner on top of it.
-		if ( previewVisible ) {
+		if ( overlaySpinner ) {
 			$( '#mw-content-text' ).css( 'position', 'relative' ); // FIXME this seems like a bad idea
 
 			$loadSpinner.css( {
