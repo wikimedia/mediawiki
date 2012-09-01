@@ -767,7 +767,8 @@ abstract class File {
 	 * @return string
 	 */
 	function thumbName( $params ) {
-		return $this->generateThumbName( $this->getName(), $params );
+		$name = $this->repo ? $this->repo->nameForThumb( $this->getName() ) : $this->getName();
+		return $this->generateThumbName( $name, $params );
 	}
 
 	/**
@@ -942,7 +943,8 @@ abstract class File {
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 				// Copy the thumbnail from the file system into storage...
-				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath );
+				$disposition = FileBackend::makeContentDisposition( 'inline', $this->name );
+				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
 				if ( $status->isOK() ) {
 					$thumb->setStoragePath( $thumbPath );
 				} else {
