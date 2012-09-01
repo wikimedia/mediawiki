@@ -334,7 +334,7 @@ class LogEventsList extends ContextSource {
 			$newClasses
 		);
 
-		return Html::rawElement( 'li', array( 'class' => $classes ),
+		return Html::rawElement( 'li', array( 'class' => implode( ' ', $classes ) ),
 			"$del $time $action $comment $revert $tagDisplay" ) . "\n";
 	}
 
