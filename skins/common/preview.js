@@ -11,7 +11,7 @@
 
 		// this needs to be checked before we unconditionally show the preview
 		var previewVisible = false;
-		if ( $wikiPreview.is( ':visible' ) ) {
+		if ( $wikiPreview.is( ':visible' ) || $( '.mw-newarticletext:visible' ).length > 0 ) {
 			previewVisible = true;
 		}
 
@@ -24,7 +24,8 @@
 		// list of elements that will be loaded from the preview page
 		var copySelectors = [
 			'#wikiPreview', '#wikiDiff', '#catlinks', '.hiddencats', '#p-lang', // the meat
-			'.templatesUsed', '.mw-summary-preview' // editing-related
+			'.templatesUsed', '.mw-summary-preview', // editing-related
+			'.mw-newarticletext' // it is not shown during normal preview, and looks weird with throbber overlaid
 		];
 		var $copyElements = $( copySelectors.join( ',' ) );
 
