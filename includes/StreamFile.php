@@ -79,8 +79,6 @@ class StreamFile {
 	public static function prepareForStream(
 		$path, $info, $headers = array(), $sendErrors = true
 	) {
-		global $wgLanguageCode;
-
 		if ( !is_array( $info ) ) {
 			if ( $sendErrors ) {
 				header( 'HTTP/1.0 404 Not Found' );
@@ -120,9 +118,6 @@ class StreamFile {
 			echo "Headers already sent, terminating.\n";
 			return false;
 		}
-
-		header( "Content-Disposition: inline;filename*=utf-8'$wgLanguageCode'" .
-			urlencode( basename( $path ) ) );
 
 		// Send additional headers
 		foreach ( $headers as $header ) {
