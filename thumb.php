@@ -188,6 +188,9 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
+	$disposition = FileBackend::makeContentDisposition( 'inline', $img->getName() );
+	$headers[] = "Content-Disposition: $disposition";
+
 	// Check IMS against the source file
 	// This means that clients can keep a cached copy even after it has been deleted on the server
 	if ( !empty( $_SERVER['HTTP_IF_MODIFIED_SINCE'] ) ) {
