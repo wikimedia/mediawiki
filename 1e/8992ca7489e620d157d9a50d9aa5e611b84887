@@ -1,0 +1,9 @@
+Code-Review+1: Demon <chadh@wikimedia.org>
+Verified+1: jenkins-bot
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Verified+1: Siebrand <siebrand@wikimedia.org>
+Submitted-by: Siebrand <siebrand@wikimedia.org>
+Submitted-at: Sat, 01 Sep 2012 12:33:07 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/17609
+Project: mediawiki/core
+Branch: refs/heads/master
