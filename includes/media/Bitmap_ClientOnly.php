@@ -52,7 +52,6 @@ class BitmapHandler_ClientOnly extends BitmapHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return new TransformParameterError( $params );
 		}
-		return new ThumbnailImage( $image, $image->getURL(), $params['width'], 
-			$params['height'], $image->getLocalRefPath() );
+		return new ThumbnailImage( $image, $image->getURL(), $image->getLocalRefPath(), $params );
 	}
 }
