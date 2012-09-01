@@ -923,7 +923,10 @@ return array(
 		'scripts' => 'common/preview.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array(
+			'mediawiki.legacy.wikibits',
+			'jquery.form',
+		)
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'common/protect.js',
