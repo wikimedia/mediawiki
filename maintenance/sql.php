@@ -23,6 +23,11 @@
 
 require_once( __DIR__ . '/Maintenance.php' );
 
+/**
+ * Maintenance script that sends SQL queries from the specified file to the database.
+ *
+ * @ingroup Maintenance
+ */
 class MwSql extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -17,11 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( __DIR__ . '/Maintenance.php' );
 
+/**
+ * Maintenance script that syncs one file backend to another based on
+ * the journal of later.
+ *
+ * @ingroup Maintenance
+ */
 class SyncFileBackend extends Maintenance {
 	public function __construct() {
 		parent::__construct();
