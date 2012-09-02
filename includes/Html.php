@@ -325,7 +325,11 @@ class Html {
 
 		foreach ( $attribs as $attrib => $value ) {
 			$lcattrib = strtolower( $attrib );
-			$value = strval( $value );
+			if( is_array( $value ) ) {
+				$value = implode( ' ', $value );
+			} else {
+				$value = strval( $value );
+			}
 
 			# Simple checks using $attribDefaults
 			if ( isset( $attribDefaults[$element][$lcattrib] ) &&
