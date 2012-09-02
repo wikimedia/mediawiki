@@ -1,0 +1,26 @@
+/**
+ * Stylesheet for mediawiki.notification module
+ */
+
+#mw-notification-area {
+	position: absolute;
+	top: 1em;
+	right: 1em;
+	width: 20em;
+	line-height: 1.35;
+	z-index: 10000;
+}
+
+.mw-notification {
+	padding: 0.25em 1em;
+	margin-bottom: 0.5em;
+	border: solid 1px #ddd;
+	background-color: #fcfcfc;
+	/* Message hides on-click */
+	/* See also mediawiki.notification.js */
+	cursor: pointer;
+}
+
+.mw-notification-title {
+	font-weight: bold;
+}

@@ -784,25 +784,24 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	position: relative;
 	width: 100%;
 }
-div#mw-js-message {
-	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.93);
-	font-size: 0.8em;
-	position: absolute;
-	margin: 0;
-	padding: 1em 2em;
-	right: 1em;
-	top: 7em;
-	width: 20em;
-	z-index: 10000;
-	border: solid 1px #a7d7f9;
-	border-radius: 0.75em;
-	-moz-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
-	-webkit-box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
-	box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.125);
-}
 div#bodyContent {
 	line-height: 1.5em;
+}
+
+/* mediawiki.notification */
+.skin-vector #mw-notification-area {
+	top: 7em;
+	font-size: 0.8em;
+}
+.skin-vector .mw-notification {
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.93);
+	padding: 0.75em 1.5em;
+	border: solid 1px #a7d7f9;
+	border-radius: 0.75em;
+	-webkit-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.125);
+	-moz-box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.125);
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.125);
 }
 
 /* Watch/Unwatch Icon Styling */
