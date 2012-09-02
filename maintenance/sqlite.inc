@@ -23,6 +23,8 @@
 
 /**
  * This class contains code common to different SQLite-related maintenance scripts
+ *
+ * @ingroup Maintenance
  */
 class Sqlite {
 
