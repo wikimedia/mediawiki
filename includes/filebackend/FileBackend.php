@@ -1110,6 +1110,7 @@ abstract class FileBackend {
 	 * @param $type string One of (attachment, inline)
 	 * @param $filename string Suggested file name (should not contain slashes)
 	 * @return string
+	 * @since 1.20
 	 */
 	final public static function makeContentDisposition( $type, $filename ) {
 		$type = strtolower( $type );
