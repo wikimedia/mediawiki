@@ -585,6 +585,7 @@ class LoadBalancer {
 			$server['serverIndex'] = $i;
 			$conn = $this->reallyOpenConnection( $server, false );
 			if ( $conn->isOpen() ) {
+				wfDebug( "Connected to database $i at {$this->mServers[$i]['host']}\n" );
 				$this->mConns['local'][$i][0] = $conn;
 			} else {
 				wfDebug( "Failed to connect to database $i at {$this->mServers[$i]['host']}\n" );
@@ -706,7 +707,6 @@ class LoadBalancer {
 		}
 
 		# Create object
-		wfDebug( "Connecting to $host $dbname...\n" );
 		try {
 			$db = DatabaseBase::factory( $server['type'], $server );
 		} catch ( DBConnectionError $e ) {
@@ -715,11 +715,6 @@ class LoadBalancer {
 			$db = $e->db;
 		}
 
-		if ( $db->isOpen() ) {
-			wfDebug( "Connected to $host $dbname.\n" );
-		} else {
-			wfDebug( "Connection failed to $host $dbname.\n" );
-		}
 		$db->setLBInfo( $server );
 		if ( isset( $server['fakeSlaveLag'] ) ) {
 			$db->setFakeSlaveLag( $server['fakeSlaveLag'] );
