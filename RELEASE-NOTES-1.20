@@ -65,7 +65,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
 * Edit notices can now be translated.
-* jQuery upgraded to 1.8.
+* jQuery upgraded to 1.8.1
 * jQuery UI upgraded to 1.8.23.
 * (bug 35705) QUnit upgraded from v1.2.0 to v1.9.0.
 * (bug 37604) jquery.cookie upgraded to 2011 version.
