@@ -59,7 +59,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @throws DBConnectionError
 	 */
 	function open( $server, $user, $password, $dbName ) {
-		global $wgAllDBsAreLocalhost;
+		global $wgAllDBsAreLocalhost, $wgDBmysql5, $wgSQLMode;
 		wfProfileIn( __METHOD__ );
 
 		# Load mysql.so if we don't have it
@@ -91,7 +91,7 @@ class DatabaseMysql extends DatabaseBase {
 			$connFlags |= MYSQL_CLIENT_COMPRESS;
 		}
 
-		wfProfileIn("dbconnect-$server");
+		wfProfileIn( "dbconnect-$server" );
 
 		# The kernel's default SYN retransmission period is far too slow for us,
 		# so we use a short timeout plus a manual retry. Retrying means that a small
@@ -118,60 +118,54 @@ class DatabaseMysql extends DatabaseBase {
 				#wfLogDBError("Connect loop error $iplus of $max ($server): " . mysql_errno() . " - " . mysql_error()."\n");
 			#}
 		}
-		$phpError = $this->restoreErrorHandler();
+		$error = $this->restoreErrorHandler();
+
+		wfProfileOut( "dbconnect-$server" );
+
 		# Always log connection errors
 		if ( !$this->mConn ) {
-			$error = $phpError;
 			if ( !$error ) {
 				$error = $this->lastError();
 			}
 			wfLogDBError( "Error connecting to {$this->mServer}: $error\n" );
-			wfDebug( "DB connection error\n" );
-			wfDebug( "Server: $server, User: $user, Password: " .
+			wfDebug( "DB connection error\n" .
+				"Server: $server, User: $user, Password: " .
 				substr( $password, 0, 3 ) . "..., error: " . $error . "\n" );
+
+			wfProfileOut( __METHOD__ );
+			$this->reportConnectionError( $error );
 		}
 
-		wfProfileOut("dbconnect-$server");
-
-		if ( $dbName != '' && $this->mConn !== false ) {
+		if ( $dbName != '' ) {
 			wfSuppressWarnings();
 			$success = mysql_select_db( $dbName, $this->mConn );
 			wfRestoreWarnings();
 			if ( !$success ) {
-				$error = "Error selecting database $dbName on server {$this->mServer} " .
-					"from client host " . wfHostname() . "\n";
-				wfLogDBError(" Error selecting database $dbName on server {$this->mServer} \n");
-				wfDebug( $error );
+				wfLogDBError( "Error selecting database $dbName on server {$this->mServer}\n" );
+				wfDebug( "Error selecting database $dbName on server {$this->mServer} " .
+					"from client host " . wfHostname() . "\n" );
+
+				wfProfileOut( __METHOD__ );
+				$this->reportConnectionError( "Error selecting database $dbName" );
 			}
-		} else {
-			# Delay USE query
-			$success = (bool)$this->mConn;
 		}
 
-		if ( $success ) {
-			// Tell the server we're communicating with it in UTF-8.
-			// This may engage various charset conversions.
-			global $wgDBmysql5;
-			if( $wgDBmysql5 ) {
-				$this->query( 'SET NAMES utf8', __METHOD__ );
-			} else {
-				$this->query( 'SET NAMES binary', __METHOD__ );
-			}
-			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
-			global $wgSQLMode;
-			if ( is_string( $wgSQLMode ) ) {
-				$mode = $this->addQuotes( $wgSQLMode );
-				$this->query( "SET sql_mode = $mode", __METHOD__ );
-			}
-
-			// Turn off strict mode if it is on
+		// Tell the server we're communicating with it in UTF-8.
+		// This may engage various charset conversions.
+		if( $wgDBmysql5 ) {
+			$this->query( 'SET NAMES utf8', __METHOD__ );
 		} else {
-			$this->reportConnectionError( $phpError );
+			$this->query( 'SET NAMES binary', __METHOD__ );
+		}
+		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
+		if ( is_string( $wgSQLMode ) ) {
+			$mode = $this->addQuotes( $wgSQLMode );
+			$this->query( "SET sql_mode = $mode", __METHOD__ );
 		}
 
-		$this->mOpened = $success;
+		$this->mOpened = true;
 		wfProfileOut( __METHOD__ );
-		return $success;
+		return true;
 	}
 
 	/**
