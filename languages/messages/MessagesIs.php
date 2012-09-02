@@ -1931,7 +1931,7 @@ Hún er tilvísun á [[$2]].',
 'fewestrevisions' => 'Greinar með fæstar breytingar',
 
 # Miscellaneous special pages
-'nbytes' => '$1 {{PLURAL:$1|bæt|bæt}}',
+'nbytes' => '$1 {{PLURAL:$1|bæt|bæti}}',
 'ncategories' => '$1 {{PLURAL:$1|flokkur|flokkar}}',
 'nlinks' => '$1 {{PLURAL:$1|tengill|tenglar}}',
 'nmembers' => '$1 {{PLURAL:$1|meðlimur|meðlimir}}',
