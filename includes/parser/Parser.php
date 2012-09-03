@@ -4137,14 +4137,21 @@ class Parser {
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
 
 			# Strip out HTML (first regex removes any tag not allowed)
-			# Allowed tags are <sup> and <sub> (bug 8393), <i> (bug 26375) and <b> (r105284)
-			# We strip any parameter from accepted tags (second regex)
+			# Allowed tags are:
+			# * <sup> and <sub> (bug 8393)
+			# * <i> (bug 26375)
+			# * <b> (r105284)
+			# * <span dir="rtl"> and <span dir="ltr"> (bug 35167)
+			#
+			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
+			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
-				array( '#<(?!/?(sup|sub|i|b)(?: [^>]*)?>).*?'.'>#', '#<(/?(sup|sub|i|b))(?: .*?)?'.'>#' ),
+				array( '#<(?!/?(span dir="(?:ltr|rtl)"|sup|sub|i|b)(?: [^>]*)?>).*?'.'>#', '#<(/?(span dir="(?:ltr|rtl)"|sup|sub|i|b))(?: .*?)?'.'>#' ),
 				array( '',                          '<$1>' ),
 				$safeHeadline
 			);
 			$tocline = trim( $tocline );
+			wfDebug( "tocline: <$tocline>; safeHeadline: <$safeHeadline>\n" );
 
 			# For the anchor, strip out HTML-y stuff period
 			$safeHeadline = preg_replace( '/<.*?'.'>/', '', $safeHeadline );
