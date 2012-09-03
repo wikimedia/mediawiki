@@ -179,7 +179,8 @@ class SyncFileBackend extends Maintenance {
 				// Note: getLocalReference() is fast for FS backends
 				$fsFile = $src->getLocalReference( array( 'src' => $sPath, 'latest' => 1 ) );
 				if ( !$fsFile ) {
-					$this->error( "Unable to sync '$dPath': could not get local copy." );
+					$this->error( "Unable to sync '$dPath' to '$sPath': could not get local copy." );
+					print_r( $src->getFileStat( array( 'src' => $sPath, 'latest' => 1 ) ) );
 					$status->fatal( 'backend-fail-internal', $src->getName() );
 					return $status;
 				}

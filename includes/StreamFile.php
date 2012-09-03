@@ -40,6 +40,10 @@ class StreamFile {
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
 		wfProfileIn( __METHOD__ );
 
+		if ( FileBackend::isStoragePath( $fname ) ) {
+			wfDebugLog( 'tempDebug', wfGetCaller() . " :got storage path $fname for stream.\n" );
+		}
+
 		wfSuppressWarnings();
 		$stat = stat( $fname );
 		wfRestoreWarnings();
