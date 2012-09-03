@@ -1700,10 +1700,6 @@ class WikiPage extends Page implements IDBAccessObject {
 				'content_format' => $serialisation_format,
 			) ); #XXX: pass content object?!
 
-			# Bug 37225: use accessor to get the text as Revision may trim it.
-			# After trimming, the text may be a duplicate of the current text.
-			$content = $revision->getContent(); // sanity; EditPage should trim already
-
 			$changed = !$content->equals( $old_content );
 
 			if ( $changed ) {
