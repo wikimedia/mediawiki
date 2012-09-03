@@ -152,10 +152,17 @@ class FileBackendMultiWrite extends FileBackend {
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
 		$opts['preserveCache'] = true; // only locked files are cached
-		// Do a consistency check to see if the backends agree
-		$status->merge( $this->consistencyCheck( $this->fileStoragePathsForOps( $ops ) ) );
-		if ( !$status->isOK() ) {
-			return $status; // abort
+		// Do a consistency check to see if the backends agree...
+		$relevantPaths = $this->fileStoragePathsForOps( $ops );
+		$syncStatus = $this->consistencyCheck( $relevantPaths );
+		if ( !$syncStatus->isOK() ) {
+			wfDebugLog( 'FileOperation', get_class( $this ) .
+				" failed sync check: " . FormatJson::encode( $relevantPaths ) );
+			// Try to resync the clone backends to the master on the spot...
+			if ( !$this->resyncFiles( $relevantPaths )->isOK() ) {
+				$status->merge( $syncStatus );
+				return $status; // abort
+			}
 		}
 		// Actually attempt the operation batch on the master backend...
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
