@@ -3548,7 +3548,7 @@ $templates
 	 *
 	 * Is equivalent to:
 	 *
-	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMsgNoTrans( 'some-error' ) . "\n</div>" );
+	 *    $wgOut->addWikiText( "<div class='error'>\n" . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
 	 * The newline after opening div is needed in some wikitext. See bug 19226.
 	 *
