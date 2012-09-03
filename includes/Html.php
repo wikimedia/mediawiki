@@ -323,22 +323,37 @@ class Html {
 
 		$element = strtolower( $element );
 
-		foreach ( $attribs as $attrib => $value ) {
+		foreach ( $attribs as $attrib => $values ) {
 			$lcattrib = strtolower( $attrib );
-			if( is_array( $value ) ) {
-				$value = implode( ' ', $value );
+			// Convert values into an array of all non-empty strings.
+			$values = array_filter( array_map( 'strval', (array) $values ), 'strlen' );
+
+			// Remove defaults for each value.
+			foreach ( $values as $key => $value ) {
+				// Simple checks using $attribDefaults
+				if (
+					isset( $attribDefaults[$element][$lcattrib] ) &&
+					$attribDefaults[$element][$lcattrib] == $value
+				) {
+					unset( $values[$key] );
+				}
+
+				// Class applies for all elements.
+				if ( $lcattrib == 'class' && $value == '' ) {
+					unset( $values[$key] );
+				}
+			}
+
+			// Set the appropriate value in the final attributes array.
+			if ( count( $values ) == 0 ) {
+				// All values were defaults, so remove attribute entirely.
+				unset( $attribs[$attrib] );
+			} elseif ( count( $values ) == 1 ) {
+				// All but one attribute was a default. Set attribute to the only remaining.
+				$attribs[$attrib] = $values[0];
 			} else {
-				$value = strval( $value );
-			}
-
-			# Simple checks using $attribDefaults
-			if ( isset( $attribDefaults[$element][$lcattrib] ) &&
-			$attribDefaults[$element][$lcattrib] == $value ) {
-				unset( $attribs[$attrib] );
-			}
-
-			if ( $lcattrib == 'class' && $value == '' ) {
-				unset( $attribs[$attrib] );
+				// Multiple values left. Just set the array.
+				$attribs = $values;
 			}
 		}
 
