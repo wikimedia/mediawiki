@@ -546,9 +546,7 @@ class HtmlTest extends MediaWikiTestCase {
 			"dropDefaults accepts values given as an array"
 		);
 
-		# FIXME: doDropDefault should remove defaults given in an array
-		# Expected should be '<a></a>'
-		$cases[] = array( '<a class=""></a>',
+		$cases[] = array( '<a></a>',
 			'a', array( 'class' => array( '', '' ) ),
 			"dropDefaults accepts values given as an array"
 		);
