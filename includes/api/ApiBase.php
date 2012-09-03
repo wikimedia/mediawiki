@@ -1401,10 +1401,9 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( isset( self::$messageMap[$key] ) ) {
-			return array( 'code' =>
-			wfMsgReplaceArgs( self::$messageMap[$key]['code'], $error ),
-				'info' =>
-				wfMsgReplaceArgs( self::$messageMap[$key]['info'], $error )
+			return array(
+				'code' => wfMsgReplaceArgs( self::$messageMap[$key]['code'], $error ),
+				'info' => wfMsgReplaceArgs( self::$messageMap[$key]['info'], $error )
 			);
 		}
 

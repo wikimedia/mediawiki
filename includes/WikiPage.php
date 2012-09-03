@@ -2406,9 +2406,9 @@ class WikiPage extends Page implements IDBAccessObject {
 		$target = Revision::newFromId( $s->rev_id );
 		if ( empty( $summary ) ) {
 			if ( $from == '' ) { // no public user name
-				$summary = wfMessage( 'revertpage-nouser' )->inContentLanguage()->text();
+				$summary = wfMessage( 'revertpage-nouser' );
 			} else {
-				$summary = wfMessage( 'revertpage' )->inContentLanguage()->text();
+				$summary = wfMessage( 'revertpage' );
 			}
 		}
 
@@ -2418,7 +2418,11 @@ class WikiPage extends Page implements IDBAccessObject {
 			$wgContLang->timeanddate( wfTimestamp( TS_MW, $s->rev_timestamp ) ),
 			$current->getId(), $wgContLang->timeanddate( $current->getTimestamp() )
 		);
-		$summary = wfMsgReplaceArgs( $summary, $args );
+		if( $summary instanceof Message ) {
+			$summary = $summary->params( $args )->inContentLanguage()->text();
+		} else {
+			$summary = wfMsgReplaceArgs( $summary, $args );
+		}
 
 		# Truncate for whole multibyte characters.
 		$summary = $wgContLang->truncate( $summary, 255 );

@@ -1539,8 +1539,6 @@ function wfMsgGetKey( $key, $useDB = true, $langCode = false, $transform = true 
 /**
  * Replace message parameter keys on the given formatted output.
  *
- * @deprecated since 1.18
- *
  * @param $message String
  * @param $args Array
  * @return string
