@@ -1765,6 +1765,7 @@ Mae modd golygu'r disgrifiad ohoni ar ei [$2 thudalen disgrifio] fan honno.",
 'shared-repo-from' => 'oddi ar $1',
 'shared-repo' => 'storfa cyfrannol',
 'shared-repo-name-wikimediacommons' => 'Comin Wikimedia',
+'upload-disallowed-here' => "Yn anffodus ni allwch drosysgrifo'r ddelwedd hon.",
 
 # File reversion
 'filerevert' => 'Gwrthdroi $1',
@@ -2857,12 +2858,15 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 'pageinfo-views' => 'Nifer yr ymweliadau',
 'pageinfo-watchers' => 'Nifer gwylwyr y dudalen',
 'pageinfo-redirects-name' => "Nifer yr ailgyfeiriadau i'r dudalen hon",
+'pageinfo-subpages-name' => "Nifer yr is-dudalennau i'r dudalen hon",
 'pageinfo-firstuser' => 'Y defnyddiwr a ddechreuodd y dudalen',
 'pageinfo-firsttime' => "Dyddiad dechrau'r dudalen",
 'pageinfo-lastuser' => 'Y golygydd diweddaraf',
 'pageinfo-lasttime' => 'Dyddiad y golygiad diweddaraf',
 'pageinfo-edits' => 'Cyfanswm y golygiadau',
 'pageinfo-authors' => 'Cyfanswm yr awduron gwahanol',
+'pageinfo-magic-words' => '{{PLURAL:$1|Gair|Gair|Geiriau}} hud ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categori|Categori|Categorïau}} cudd ($1)',
 
 # Skin names
 'skinname-standard' => 'Safonol',

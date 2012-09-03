@@ -1762,6 +1762,7 @@ Pò essere ca tu vuè cangià 'a descrizione de jidde [$2 pàgene de descrizione
 'shared-repo' => "'nu condenitore de cose condivise",
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => "/* 'U CSS ca se iacchie aqquà jè ingluse sus 'a pàgene de descrizione d'u file, pure ingluse pe le client de le Uicchi furastire */",
+'upload-disallowed-here' => "Sfortunatamende non ge puè sovrascrivere st'immaggine.",
 
 # File reversion
 'filerevert' => "'Nvirte $1",
@@ -2922,6 +2923,8 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-lasttime' => "Darte de l'urteme cangiamende",
 'pageinfo-edits' => 'Numere totale de cangiaminde',
 'pageinfo-authors' => 'Numere Totale de autore diverse',
+'pageinfo-recent-edits' => "Numere de le urteme cangiaminde ('mbonde a $1)",
+'pageinfo-recent-authors' => 'Numere de le urteme autore diverse',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 
 # Skin names

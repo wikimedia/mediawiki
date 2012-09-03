@@ -1701,7 +1701,7 @@ It-tlugħ ta' fajls tal-Java mhuwiex permess, minħabba li jistgħu jaqbżu rest
 'upload-source' => 'Sors tal-fajl',
 'sourcefilename' => 'L-isem tal-fajl tal-oriġini:',
 'sourceurl' => 'Sors tal-URL:',
-'destfilename' => 'L-Isem tal-fajl tad-destinazzjoni:',
+'destfilename' => "Isem tal-fajl ta' destinazzjoni:",
 'upload-maxfilesize' => 'Daqs massimu tal-fajl: $1',
 'upload-description' => 'Deskrizzjoni tal-fajl',
 'upload-options' => 'Opzjonijiet għat-tlugħ tal-fajl',
