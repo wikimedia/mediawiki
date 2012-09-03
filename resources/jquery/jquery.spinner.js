@@ -4,27 +4,69 @@
  * Simple jQuery plugin to create, inject and remove spinners.
  */
 ( function ( $ ) {
-
 	$.extend( {
 		/**
 		 * Creates a spinner element.
-		 *
-		 * @param id {String} id of the spinner
+		 * 
+		 * The argument is an object with options used to construct the spinner. These can be:
+		 *   id: if given, spinner will be given an id of "mw-spinner-<id>"
+		 *   size: 'small' (default) or 'large' for a 20-pixel or 32-pixel spinner
+		 *   inline: if truthy (default), return an inline elem. with width & height equal to spinner size
+		 *           if falsy, return a block elem. with width 100%, height equal to spinner size
+		 * 
+		 * For backwards compatibility, if opts is a string, it is assumed to be the id option.
+		 * Therefore the following two are equivalent:
+		 *   $.createSpinner( 'magic' )
+		 *   $.createSpinner( { id: 'magic' } )
+		 * 
+		 * CSS classes used:
+		 *   .mw-spinner for every spinner
+		 *   .mw-spinner-small / .mw-spinner-large for small/large spinners
+		 *   .mw-spinner-block / .mw-spinner-inline for block/inline spinners
+		 * 
+		 * @example
+		 *   // Place a big spinner at the top of the page, spanning its entire width, with spinner centered
+		 *   $( '#mw-content-text' ).prepend( $.createSpinner({ size: 'large', inline: false }) );
+		 * @example
+		 *   // Place a small inline spinner next to the "Save" button
+		 *   $( '#wpSave' ).after( $.createSpinner( { size: 'small', inline: true } ) );
+		 *   // alternative: $( '#wpSave' ).after( $.createSpinner() );
+		 * 
+		 * @param opts {Object} additional options (optional)
 		 * @return {jQuery} spinner
 		 */
-		createSpinner: function ( id ) {
-			return $( '<div>' ).attr( {
-				id: 'mw-spinner-' + id,
-				'class': 'mw-spinner',
-				title: '...'
-			} );
+		createSpinner: function ( opts ) {
+			/**
+			 * Default options for new spinners.
+			 */
+			this.defaults = {
+				id: null,
+				size: 'small',
+				inline: true
+			};
+			
+			if ( $.type(opts) !== 'object' ) {
+				opts = { id: opts };
+			}
+			
+			opts = $.extend( {}, this.defaults, opts );
+			
+			var $spinner = $( '<div>', { 'class': 'mw-spinner', 'title': '...' } );
+			if ( opts.id ) {
+				$spinner.attr( 'id', 'mw-spinner-' + opts.id );
+			}
+			
+			$spinner.addClass( opts.size === 'large' ? 'mw-spinner-large' : 'mw-spinner-small' );
+			$spinner.addClass( opts.inline ? 'mw-spinner-inline' : 'mw-spinner-block' );
+			
+			return $spinner;
 		},
 
 		/**
 		 * Removes a spinner element.
 		 *
-		 * @param id {String}
-		 * @return {jQuery} spinner
+		 * @param id {String} id as passed to createSpinner
+		 * @return {jQuery} removed spinner
 		 */
 		removeSpinner: function ( id ) {
 			return $( '#mw-spinner-' + id ).remove();
@@ -34,11 +76,10 @@
 	/**
 	 * Injects a spinner after the elements in the jQuery collection.
 	 *
-	 * @param id String id of the spinner
+	 * @param opts {Object} options, see createSpinner() for description
 	 * @return {jQuery}
 	 */
-	$.fn.injectSpinner = function ( id ) {
-		return this.after( $.createSpinner( id ) );
+	$.fn.injectSpinner = function ( opts ) {
+		return this.after( $.createSpinner( opts ) );
 	};
-
 }( jQuery ) );
