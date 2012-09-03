@@ -44,6 +44,8 @@ class FileBackendMultiWrite extends FileBackend {
 	protected $backends = array(); // array of (backend index => backends)
 	protected $masterIndex = -1; // integer; index of master backend
 	protected $syncChecks = 0; // integer; bitfield
+	protected $autoResync = false; // boolean
+
 	/** @var Array */
 	protected $noPushDirConts = array();
 	protected $noPushQuickOps = false; // boolean
@@ -70,6 +72,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      Possible bits include the FileBackendMultiWrite::CHECK_* constants.
 	 *                      There are constants for SIZE, TIME, and SHA1.
 	 *                      The checks are done before allowing any file operations.
+	 *   - autoResync     : Automatically resync the clone backends to the master backend
+	 *                      when pre-operation sync checks fail. This should only be used
+	 *                      when if the master backend is stable and not missing any files.
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
@@ -81,6 +86,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->syncChecks = isset( $config['syncChecks'] )
 			? $config['syncChecks']
 			: self::CHECK_SIZE;
+		$this->autoResync = !empty( $config['autoResync'] );
 		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
 			? $config['noPushQuickOps']
 			: false;
@@ -152,10 +158,17 @@ class FileBackendMultiWrite extends FileBackend {
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
 		$opts['preserveCache'] = true; // only locked files are cached
-		// Do a consistency check to see if the backends agree
-		$status->merge( $this->consistencyCheck( $this->fileStoragePathsForOps( $ops ) ) );
-		if ( !$status->isOK() ) {
-			return $status; // abort
+		// Do a consistency check to see if the backends agree...
+		$relevantPaths = $this->fileStoragePathsForOps( $ops );
+		$syncStatus = $this->consistencyCheck( $relevantPaths );
+		if ( !$syncStatus->isOK() ) {
+			wfDebugLog( 'FileOperation', get_class( $this ) .
+				" failed sync check: " . FormatJson::encode( $relevantPaths ) );
+			// Try to resync the clone backends to the master on the spot...
+			if ( !$this->autoResync || !$this->resyncFiles( $relevantPaths )->isOK() ) {
+				$status->merge( $syncStatus );
+				return $status; // abort
+			}
 		}
 		// Actually attempt the operation batch on the master backend...
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
