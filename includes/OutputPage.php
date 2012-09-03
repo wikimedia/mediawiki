@@ -3562,7 +3562,6 @@ $templates
 				$args = $spec;
 				$name = array_shift( $args );
 				if ( isset( $args['options'] ) ) {
-					$options = $args['options'];
 					unset( $args['options'] );
 					wfDeprecated(
 						'Adding "options" to ' . __METHOD__ . ' is no longer supported',
@@ -3573,7 +3572,7 @@ $templates
 				$args = array();
 				$name = $spec;
 			}
-			$s = str_replace( '$' . ( $n + 1 ), wfMessage( $name, $args )->plain(), $s );
+			$s = str_replace( '$' . ( $n + 1 ), $this->msg( $name, $args )->plain(), $s );
 		}
 		$this->addWikiText( $s );
 	}
