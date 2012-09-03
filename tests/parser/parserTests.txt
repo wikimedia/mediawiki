@@ -10132,6 +10132,37 @@ __TOC__
 
 !! end
 
+!! test
+span tags with directionality in TOC
+!! input
+__TOC__
+== <span dir="ltr">C++</span> ==
+
+== <span dir="rtl">זבנג!</span> ==
+
+== <span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span> ==
+
+== <span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span> ==
+
+== <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> ==
+!! result
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">3</span> <span class="toctext"><span>The attributes on these span tags must be deleted from the TOC</span></span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">4</span> <span class="toctext"><span>All attributes on these span tags must be deleted from the TOC</span></span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">5</span> <span class="toctext"><span dir="ltr">Attributes after dir on these span tags must be deleted from the TOC</span></span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: C++">edit</a>]</span> <span class="mw-headline" id="C.2B.2B"> <span dir="ltr">C++</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: זבנג!">edit</a>]</span> <span class="mw-headline" id=".D7.96.D7.91.D7.A0.D7.92.21"> <span dir="rtl">זבנג!</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: The attributes on these span tags must be deleted from the TOC">edit</a>]</span> <span class="mw-headline" id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"> <span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: All attributes on these span tags must be deleted from the TOC">edit</a>]</span> <span class="mw-headline" id="All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"> <span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Attributes after dir on these span tags must be deleted from the TOC">edit</a>]</span> <span class="mw-headline" id="Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"> <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> </span></h2>
+
+!! end
+
 !! article
 MediaWiki:Bug32057
 !! text
