@@ -1,8 +1,29 @@
 .mw-spinner {
+	background-color: transparent;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.mw-spinner-small {
 	/* @embed */
-	background: transparent url(images/spinner.gif);
+	background-image: url(images/spinner.gif);
 	height: 20px;
 	width: 20px;
+}
+
+.mw-spinner-large {
+	/* @embed */
+	background-image: url(images/ajax-loader.gif);
+	height: 32px;
+	width: 32px;
+}
+
+.mw-spinner-block {
+	display: block;
+	width: 100%; /* this overrides width from .mw-spinner-large / .mw-spinner-small */
+}
+
+.mw-spinner-inline {
 	display: inline-block;
 	vertical-align: middle;
 	
