@@ -3537,9 +3537,6 @@ $templates
 	 * message names, or arrays, in which case the first element is the message name,
 	 * and subsequent elements are the parameters to that message.
 	 *
-	 * The special named parameter 'options' in a message specification array is passed
-	 * through to the $options parameter of wfMsgExt().
-	 *
 	 * Don't use this for messages that are not in users interface language.
 	 *
 	 * For example:
@@ -3572,7 +3569,7 @@ $templates
 				$args = array();
 				$name = $spec;
 			}
-			$s = str_replace( '$' . ( $n + 1 ), wfMsgExt( $name, $options, $args ), $s );
+			$s = str_replace( '$' . ( $n + 1 ), wfMessage( $name, $args )->plain(), $s );
 		}
 		$this->addWikiText( $s );
 	}
