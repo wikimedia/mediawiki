@@ -44,6 +44,8 @@ class FileBackendMultiWrite extends FileBackend {
 	protected $backends = array(); // array of (backend index => backends)
 	protected $masterIndex = -1; // integer; index of master backend
 	protected $syncChecks = 0; // integer; bitfield
+	protected $autoResync = false; // boolean
+
 	/** @var Array */
 	protected $noPushDirConts = array();
 	protected $noPushQuickOps = false; // boolean
@@ -70,6 +72,9 @@ class FileBackendMultiWrite extends FileBackend {
 	 *                      Possible bits include the FileBackendMultiWrite::CHECK_* constants.
 	 *                      There are constants for SIZE, TIME, and SHA1.
 	 *                      The checks are done before allowing any file operations.
+	 *   - autoResync     : Automatically resync the clone backends to the master backend
+	 *                      when pre-operation sync checks fail. This should only be used
+	 *                      when if the master backend is stable and not missing any files.
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
@@ -81,6 +86,7 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->syncChecks = isset( $config['syncChecks'] )
 			? $config['syncChecks']
 			: self::CHECK_SIZE;
+		$this->autoResync = !empty( $config['autoResync'] );
 		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
 			? $config['noPushQuickOps']
 			: false;
@@ -152,16 +158,30 @@ class FileBackendMultiWrite extends FileBackend {
 		// Clear any cache entries (after locks acquired)
 		$this->clearCache();
 		$opts['preserveCache'] = true; // only locked files are cached
-		// Do a consistency check to see if the backends agree
-		$status->merge( $this->consistencyCheck( $this->fileStoragePathsForOps( $ops ) ) );
+		// Get the list of paths to read/write...
+		$relevantPaths = $this->fileStoragePathsForOps( $ops );
+		// Check if the paths are valid and accessible on all backends...
+		$status->merge( $this->accessibilityCheck( $relevantPaths ) );
 		if ( !$status->isOK() ) {
 			return $status; // abort
+		}
+		// Do a consistency check to see if the backends are consistent...
+		$syncStatus = $this->consistencyCheck( $relevantPaths );
+		if ( !$syncStatus->isOK() ) {
+			wfDebugLog( 'FileOperation', get_class( $this ) .
+				" failed sync check: " . FormatJson::encode( $relevantPaths ) );
+			// Try to resync the clone backends to the master on the spot...
+			if ( !$this->autoResync || !$this->resyncFiles( $relevantPaths )->isOK() ) {
+				$status->merge( $syncStatus );
+				return $status; // abort
+			}
 		}
 		// Actually attempt the operation batch on the master backend...
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
 		// Propagate the operations to the clone backends if there were no fatal errors.
 		// If $ops only had one operation, this might avoid backend inconsistencies.
+		// This also avoids inconsistency for expected errors (like "file already exists").
 		if ( !count( $masterStatus->getErrorsArray() ) ) {
 			foreach ( $this->backends as $index => $backend ) {
 				if ( $index !== $this->masterIndex ) { // not done already
@@ -193,7 +213,7 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 
 		$mBackend = $this->backends[$this->masterIndex];
-		foreach ( array_unique( $paths ) as $path ) {
+		foreach ( $paths as $path ) {
 			$params = array( 'src' => $path, 'latest' => true );
 			$mParams = $this->substOpPaths( $params, $mBackend );
 			// Stat the file on the 'master' backend
@@ -203,8 +223,7 @@ class FileBackendMultiWrite extends FileBackend {
 			} else {
 				$mSha1 = false;
 			}
-			$mUsable = $mBackend->isPathUsableInternal( $mParams['src'] );
-			// Check of all clone backends agree with the master...
+			// Check if all clone backends agree with the master...
 			foreach ( $this->backends as $index => $cBackend ) {
 				if ( $index === $this->masterIndex ) {
 					continue; // master
@@ -241,8 +260,29 @@ class FileBackendMultiWrite extends FileBackend {
 						$status->fatal( 'backend-fail-synced', $path );
 					}
 				}
-				if ( $mUsable !== $cBackend->isPathUsableInternal( $cParams['src'] ) ) {
-					$status->fatal( 'backend-fail-synced', $path );
+			}
+		}
+
+		return $status;
+	}
+
+	/**
+	 * Check that a set of file paths are usable across all internal backends
+	 *
+	 * @param $paths Array List of storage paths
+	 * @return Status
+	 */
+	public function accessibilityCheck( array $paths ) {
+		$status = Status::newGood();
+		if ( count( $this->backends ) <= 1 ) {
+			return $status; // skip checks
+		}
+
+		foreach ( $paths as $path ) {
+			foreach ( $this->backends as $backend ) {
+				$realPath = $this->substPaths( $path, $backend );
+				if ( !$backend->isPathUsableInternal( $realPath ) ) {
+					$status->fatal( 'backend-fail-usable', $path );
 				}
 			}
 		}
@@ -265,6 +305,10 @@ class FileBackendMultiWrite extends FileBackend {
 			$mPath  = $this->substPaths( $path, $mBackend );
 			$mSha1  = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
 			$mExist = $mBackend->fileExists( array( 'src' => $mPath ) );
+			// Check if the master backend is available...
+			if ( $mExist === null ) {
+				$status->fatal( 'backend-fail-internal', $this->name );
+			}
 			// Check of all clone backends agree with the master...
 			foreach ( $this->backends as $index => $cBackend ) {
 				if ( $index === $this->masterIndex ) {
@@ -307,7 +351,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$paths[] = $op['dst'];
 			}
 		}
-		return array_unique( $paths );
+		return array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) );
 	}
 
 	/**

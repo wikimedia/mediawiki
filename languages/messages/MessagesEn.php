@@ -2321,7 +2321,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-internal'      => 'An unknown error occurred in storage backend "$1".',
 'backend-fail-contenttype'   => 'Could not determine the content type of the file to store at "$1".',
 'backend-fail-batchsize'     => 'The storage backend was given a batch of $1 file {{PLURAL:$1|operation|operations}}; the limit is $2 {{PLURAL:$2|operation|operations}}.',
-'backend-fail-usable'        => 'Could not write file "$1" due to insufficient permissions or missing directories/containers.',
+'backend-fail-usable'        => 'Could not read or write file "$1" due to insufficient permissions or missing directories/containers.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Could not connect to the journal database for storage backend "$1".',
