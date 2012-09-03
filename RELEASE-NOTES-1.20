@@ -306,6 +306,8 @@ changes to languages because of Bugzilla reports.
 * Deprecated DatabaseBase functions newFromParams(), newFromType(), set(),
   quote_ident(), and escapeLike() were removed.
 * Use of __DIR__ instead of dirname( __FILE__ ).
+* OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
+  not used and complicated migration to Message class.
 
 == Compatibility ==
 
