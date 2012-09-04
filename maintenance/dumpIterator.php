@@ -62,7 +62,7 @@ abstract class DumpIterator extends Maintenance {
 			return;
 		}
 
-		$this->startTime = wfTime();
+		$this->startTime = microtime( true );
 
 		if ( $this->getOption('dump') == '-' ) {
 			$source = new ImportStreamSource( $this->getStdin() );
@@ -80,7 +80,7 @@ abstract class DumpIterator extends Maintenance {
 
 		$this->conclusions();
 
-		$delta = wfTime() - $this->startTime;
+		$delta = microtime( true ) - $this->startTime;
 		$this->error( "Done {$this->count} revisions in " . round($delta, 2) . " seconds " );
 		if ($delta > 0)
 			$this->error( round($this->count / $delta, 2) . " pages/sec" );

@@ -208,7 +208,7 @@ TEXT;
 
 	function showReport() {
 		if ( !$this->mQuiet ) {
-			$delta = wfTime() - $this->startTime;
+			$delta = microtime( true ) - $this->startTime;
 			if ( $delta ) {
 				$rate = sprintf( "%.2f", $this->pageCount / $delta );
 				$revrate = sprintf( "%.2f", $this->revCount / $delta );
@@ -254,7 +254,7 @@ TEXT;
 	}
 
 	function importFromHandle( $handle ) {
-		$this->startTime = wfTime();
+		$this->startTime = microtime( true );
 
 		$source = new ImportStreamSource( $handle );
 		$importer = new WikiImporter( $source );

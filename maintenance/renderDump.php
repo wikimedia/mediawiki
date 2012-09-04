@@ -52,7 +52,7 @@ class DumpRenderer extends Maintenance {
 	public function execute() {
 		$this->outputDirectory = $this->getOption( 'output-dir' );
 		$this->prefix = $this->getOption( 'prefix', 'wiki' );
-		$this->startTime = wfTime();
+		$this->startTime = microtime( true );
 
 		if ( $this->hasOption( 'parser' ) ) {
 			global $wgParserConf;
@@ -68,7 +68,7 @@ class DumpRenderer extends Maintenance {
 
 		$importer->doImport();
 
-		$delta = wfTime() - $this->startTime;
+		$delta = microtime( true ) - $this->startTime;
 		$this->error( "Rendered {$this->count} pages in " . round($delta, 2) . " seconds " );
 		if ($delta > 0)
 			$this->error( round($this->count / $delta, 2) . " pages/sec" );
