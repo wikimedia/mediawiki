@@ -90,7 +90,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Basic information
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-basic' )->text() );
+		$content .= $this->msg( 'pageinfo-header-basic' )->parse();
 
 		// Display title
 		$displayTitle = $title->getPrefixedText();
@@ -170,12 +170,21 @@ class InfoAction extends FormlessAction {
 
 		// Page protection
 		$content = $this->addTable( $content, $table );
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-restrictions' )->text() );
+		$content .= $this->msg( 'pageinfo-header-restrictions' )->parse();
 		$table = '';
 
 		// Page protection
 		foreach ( $wgRestrictionTypes as $restrictionType ) {
+			if ( $restrictionType == 'upload' && $title->getNamespace() != NS_FILE ) {
+				continue;
+			} elseif ( $restrictionType == 'create' && $title->exists() ) {
+				continue;
+			} elseif ( ( $restrictionType == 'edit' || $restrictionType == 'move' ) && !$title->exists() ) {
+				continue;
+			}
+
 			$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
+
 			if ( $protectionLevel == '' ) {
 				// Allow all users
 				$message = $this->msg( 'protect-default' )->escaped();
@@ -191,20 +200,19 @@ class InfoAction extends FormlessAction {
 			}
 
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-restriction',
-					$this->msg( "restriction-$restrictionType" )->plain()
-				)->parse(), $message
+				$this->msg( "restriction-$restrictionType" )->plain(),
+				$message
 			);
 		}
 
 		// Edit history
 		$content = $this->addTable( $content, $table );
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-edits' )->text() );
+		$content .= $this->msg( 'pageinfo-header-edits' )->parse();
 		$table = '';
 
 		// Page creator
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firstuser' )->escaped(), $pageInfo['firstuser']
+			$this->msg( 'pageinfo-firstuser' )->escaped(), Linker::userLink( $pageInfo['firstuserid'], $pageInfo['firstuser'] )
 		);
 
 		// Date of page creation
@@ -214,7 +222,7 @@ class InfoAction extends FormlessAction {
 
 		// Latest editor
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lastuser' )->escaped(), $pageInfo['lastuser']
+			$this->msg( 'pageinfo-lastuser' )->escaped(), Linker::userLink( $pageInfo['lastuserid'], $pageInfo['lastuser'] )
 		);
 
 		// Date of latest edit
@@ -269,7 +277,7 @@ class InfoAction extends FormlessAction {
 			|| count( $hiddenCategories ) > 0
 			|| count( $transcludedTemplates ) > 0 ) {
 			// Page properties
-			$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-properties' )->text() );
+			$content .= $this->msg( 'pageinfo-header-properties' )->parse();
 			$table = '';
 
 			// Magic words
@@ -431,41 +439,32 @@ class InfoAction extends FormlessAction {
 		$options = array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 );
 		$row = $dbr->fetchRow( $dbr->select(
 			'revision',
-			array( 'rev_user_text', 'rev_timestamp' ),
+			array( 'rev_user', 'rev_user_text', 'rev_timestamp' ),
 			array( 'rev_page' => $id ),
 			__METHOD__,
 			$options
 		) );
 
 		$result['firstuser'] = $row['rev_user_text'];
+		$result['firstuserid'] = $row['rev_user'];
 		$result['firsttime'] = $row['rev_timestamp'];
 
 		// Latest editor + date of latest edit
 		$options['ORDER BY'] = 'rev_timestamp DESC';
 		$row = $dbr->fetchRow( $dbr->select(
 			'revision',
-			array( 'rev_user_text', 'rev_timestamp' ),
+			array( 'rev_user', 'rev_user_text', 'rev_timestamp' ),
 			array( 'rev_page' => $id ),
 			__METHOD__,
 			$options
 		) );
 
 		$result['lastuser'] = $row['rev_user_text'];
+		$result['lastuserid'] = $row['rev_user'];
 		$result['lasttime'] = $row['rev_timestamp'];
 
 		wfProfileOut( __METHOD__ );
 		return $result;
-	}
-
-	/**
-	 * Adds a header to the content that will be added to the output.
-	 *
-	 * @param $content string The content that will be added to the output
-	 * @param $header string The value of the header
-	 * @return string The content with the header added
-	 */
-	protected function addHeader( $content, $header ) {
-		return $content . Html::element( 'h2', array(), $header );
 	}
 
 	/**
