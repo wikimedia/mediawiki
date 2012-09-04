@@ -19,6 +19,9 @@
  * @example $( 'table' ).tablesorter();
  * @desc Create a simple tablesorter interface.
  *
+ * @example $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
+ * @desc Create a tablesorter interface initially sorting on the first and second column.
+ *
  * @option String cssHeader ( optional ) A string of the class name to be appended
  *         to sortable tr elements in the thead of the table. Default value:
  *         "header"
@@ -44,8 +47,17 @@
  *         tablesorter should cancel selection of the table headers text.
  *         Default value: true
  *
+ * @option Array sortList ( optional ) An array containing objects specifying sorting.
+ *         By passing more than one object, multi-sorting will be applied. Object structure:
+ *         { <Integer column index>: <String 'asc' or 'desc'> }
+ *         Default value: []
+ *
  * @option Boolean debug ( optional ) Boolean flag indicating if tablesorter
  *         should display debuging information usefull for development.
+ *
+ * @event ( inbound ) sorton.tablesorter: Sort programmatically passing the sortList parameter.
+ *        Parameters:
+ *        (1) Array - sortList - The sort order that should be applied (see option sortList).
  *
  * @type jQuery
  *
@@ -514,8 +526,7 @@
 					// Declare and cache.
 					var $document, $headers, cache, config, sortOrder,
 						$table = $( table ),
-						shiftDown = 0,
-						firstTime = true;
+						shiftDown = 0;
 
 					// Quit if no tbody
 					if ( !table.tBodies ) {
@@ -558,34 +569,34 @@
 					// performance improvements in some browsers.
 					cacheRegexs();
 
+					// Legacy fix of .sortbottoms
+					// Wrap them inside inside a tfoot (because that's what they actually want to be) &
+					// and put the <tfoot> at the end of the <table>
+					var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
+					if ( $sortbottoms.length ) {
+						var $tfoot = $table.children( 'tfoot' );
+						if ( $tfoot.length ) {
+							$tfoot.eq(0).prepend( $sortbottoms );
+						} else {
+							$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
+						}
+					}
+
+					explodeRowspans( $table );
+
+					// try to auto detect column type, and store in tables config
+					table.config.parsers = buildParserCache( table, $headers );
+
+					// initially build the cache for the tbody cells (to be able to sort initially)
+					cache = buildCache( table );
+
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.click( function ( e ) {
+					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
 						if ( e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header
 							// Do nothing and let the default link click action continue
 							return true;
-						}
-
-						if ( firstTime ) {
-							firstTime = false;
-
-							// Legacy fix of .sortbottoms
-							// Wrap them inside inside a tfoot (because that's what they actually want to be) &
-							// and put the <tfoot> at the end of the <table>
-							var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
-							if ( $sortbottoms.length ) {
-								var $tfoot = $table.children( 'tfoot' );
-								if ( $tfoot.length ) {
-									$tfoot.eq(0).prepend( $sortbottoms );
-								} else {
-									$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
-								}
-							}
-
-							explodeRowspans( $table );
-							// try to auto detect column type, and store in tables config
-							table.config.parsers = buildParserCache( table, $headers );
 						}
 
 						// Build the cache for the tbody cells
@@ -655,6 +666,36 @@
 							return false;
 						}
 					} );
+
+					$table.on( 'sorton.tablesorter', function( event, list ) {
+						// reset the sort list
+						config.sortList = [];
+
+						// convert sort objects [ { Integer: String }, ... ] to the internally used
+						// nested array structure [ [ Integer , Integer ], ... ]
+						$.each( list, function( i, sortObject ) {
+							$.each ( sortObject, function( columnIndex, order ) {
+								var orderIndex = ( order === 'desc' ) ? 1 : 0;
+								config.sortList.push( [columnIndex, orderIndex] );
+							} );
+						} );
+
+						// re-build the cache for the tbody cells
+						cache = buildCache( table );
+
+						// set css for headers
+						setHeadersCss( $table[0], $headers, config.sortList, sortCSS, sortMsg );
+
+						// sort the table and append it to the dom
+						appendToTable( $table[0], multisort( $table[0], config.sortList, cache ) );
+					} );
+
+					// sort initially
+					if ( config.sortList.length > 0 ) {
+						explodeRowspans( $table );
+						$table.trigger( 'sorton.tablesorter', [config.sortList] );
+					}
+
 				} );
 			},
 
