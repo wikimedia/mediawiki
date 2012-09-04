@@ -1258,11 +1258,13 @@ class LanguageTest extends LanguageClassesTestCase {
 	}
 
 	function provideTranslateBlockExpiry() {
+		$msg2Hours = wfMessage( 'duration-hours' )->params( 2 )->text();
+		$msgInfinite = wfMessage( 'infiniteblock' )->text();
 		return array(
-			array( '2 hours', '2 hours', 'simple data from ipboptions' ),
-			array( 'indefinite', 'infinite', 'infinite from ipboptions' ),
-			array( 'indefinite', 'infinity', 'alternative infinite from ipboptions' ),
-			array( 'indefinite', 'indefinite', 'another alternative infinite from ipboptions' ),
+			array( $msg2Hours, '2 hours', 'simple data from ipboptions' ),
+			array( $msgInfinite, 'infinite', 'infinite from ipboptions' ),
+			array( $msgInfinite, 'infinity', 'alternative infinite from ipboptions' ),
+			array( $msgInfinite, 'indefinite', 'another alternative infinite from ipboptions' ),
 			array( array( 'formatDuration', 1023 * 60 * 60 ), '1023 hours', 'relative' ),
 			array( array( 'formatDuration', -1023 ), '-1023 seconds', 'negative relative' ),
 			array( array( 'formatDuration', 0 ), 'now', 'now' ),
