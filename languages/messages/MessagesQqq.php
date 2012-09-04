@@ -3009,9 +3009,9 @@ Example line:
 'ipbenableautoblock' => '{{Identical|Automatically block ...}}',
 'ipbsubmit' => '{{Identical|Block this user}}',
 'ipbother' => '{{Identical|Other time}}',
-'ipboptions' => "{{Identical|Infinite}}{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}
+'ipboptions-dropdown' => "{{Identical|Infinite}}{{doc-important|Be careful: '''* 1 english|1 translation''', so the second part is the translation and the first part should stay in English.}}
 
-Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.",
+Options for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions-dropdown/nl]] if you still don't know how to do it.",
 'ipbotheroption' => '{{Identical|Other}}',
 'ipbotherreason' => '{{Identical|Other/additional reason}}',
 'ipbhidename' => 'This is the label for a checkbox in the user block form on [[Special:Block]].',

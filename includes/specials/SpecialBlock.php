@@ -760,9 +760,14 @@ class SpecialBlock extends FormSpecialPage {
 	public static function getSuggestedDurations( $lang = null ) {
 		$a = array();
 		$msg = $lang === null
-			? wfMessage( 'ipboptions' )->inContentLanguage()->text()
-			: wfMessage( 'ipboptions' )->inLanguage( $lang )->text();
+			? wfMessage( 'ipboptions' )->inContentLanguage()
+			: wfMessage( 'ipboptions' )->inLanguage( $lang );
 
+		if ( !$msg->exists() ) {
+			return self::getSuggestedDurationsNewStyle( $lang );
+		}
+
+		$msg = $msg->text();
 		if ( $msg == '-' ) {
 			return array();
 		}
@@ -777,6 +782,26 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		return $a;
+	}
+
+	/**
+	 * Get an array of suggested block durations from MediaWiki:Ipboptions-dropdown
+	 *
+	 * @param $lang Language|null the language to get the durations in, or null to use
+	 *     the interface language, different from self::getSuggestedDurations().
+	 * @return Array
+	 */
+	private static function getSuggestedDurationsNewStyle( $lang = null ) {
+		$msg = wfMessage( 'ipboptions-dropdown' )->inContentLanguage()->plain();
+
+		if ( $msg == '-' ) {
+			return array();
+		}
+		if ( is_null( $lang ) ) {
+			$lang = true;
+		}
+
+		return Xml::listDropDownDescriptor( $msg, '', 'first', $lang );
 	}
 
 	/**

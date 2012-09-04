@@ -2172,7 +2172,7 @@ $wgMessageStructure = array(
 		'ipbenableautoblock',
 		'ipbsubmit',
 		'ipbother',
-		'ipboptions',
+		'ipboptions-dropdown',
 		'ipbotheroption',
 		'ipbotherreason',
 		'ipbhidename',
