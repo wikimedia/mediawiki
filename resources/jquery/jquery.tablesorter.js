@@ -19,6 +19,9 @@
  * @example $( 'table' ).tablesorter();
  * @desc Create a simple tablesorter interface.
  *
+ * @example $( 'table' ).tablesorter( { sortList: [[0,0],[1,0]] } );
+ * @desc Create a tablesorter interface and sort on the first and secound column headers.
+ *
  * @option String cssHeader ( optional ) A string of the class name to be appended
  *         to sortable tr elements in the thead of the table. Default value:
  *         "header"
@@ -44,8 +47,16 @@
  *         tablesorter should cancel selection of the table headers text.
  *         Default value: true
  *
+ * @option Array sortList (optional) An array containing the forces sorting
+ *         rules. This option let's you specify a default sorting rule.
+ *         Default value: null
+ *
  * @option Boolean debug ( optional ) Boolean flag indicating if tablesorter
  *         should display debuging information usefull for development.
+ *
+ * @event (inbound) sorton.tablesorter: Sort programmatically passing the sortList parameter.
+ *        Parameters:
+ *        (1) Array - sortList - The sort order that should be applied (see option sortList).
  *
  * @type jQuery
  *
@@ -558,9 +569,15 @@
 					// performance improvements in some browsers.
 					cacheRegexs();
 
+					// try to auto detect column type, and store in tables config
+					table.config.parsers = buildParserCache( table, $headers );
+
+					// initially build the cache for the tbody cells (to be able to sort initially)
+					cache = buildCache( table );
+
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.click( function ( e ) {
+					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
 						if ( e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header
 							// Do nothing and let the default link click action continue
@@ -584,8 +601,6 @@
 							}
 
 							explodeRowspans( $table );
-							// try to auto detect column type, and store in tables config
-							table.config.parsers = buildParserCache( table, $headers );
 						}
 
 						// Build the cache for the tbody cells
@@ -655,6 +670,25 @@
 							return false;
 						}
 					} );
+
+					$table.on( 'sorton.tablesorter', function( event, list ) {
+						config.sortList = list;
+
+						// update and store the sortlist
+						var sortList = config.sortList;
+
+						// set css for headers
+						setHeadersCss( $table[0], $headers, sortList, sortCSS, sortMsg );
+
+						// sort the table and append it to the dom
+						appendToTable( $table[0], multisort( $table[0], sortList, cache ) );
+					} );
+
+					// sort initially
+					if ( config.sortList.length > 0 ) {
+						$table.trigger( 'sorton.tablesorter', [config.sortList] );
+					}
+
 				} );
 			},
 

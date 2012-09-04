@@ -108,6 +108,24 @@ var ascendingName   = [earth, jupiter, mars, mercury, saturn, venus];
 var ascendingRadius = [mercury, mars, venus, earth, saturn, jupiter];
 
 tableTest(
+	'Basic planet table: sorting initially - ascending by name',
+	header,
+	planets,
+	ascendingName,
+	function ( $table ) {
+		$table.tablesorter( { sortList: [[0,0]] } );
+	}
+);
+tableTest(
+	'Basic planet table: sorting initially - descending by radius',
+	header,
+	planets,
+	reversed(ascendingRadius),
+	function ( $table ) {
+		$table.tablesorter( { sortList: [[1,1]] } );
+	}
+);
+tableTest(
 	'Basic planet table: ascending by name',
 	header,
 	planets,
@@ -158,6 +176,37 @@ tableTest(
 	}
 );
 
+// Sample data set to test multiple column sorting
+	var header  = [ 'column1' , 'column2'],
+		a1 = [ 'A', '1' ],
+		a2 = [ 'A', '2' ],
+		a3 = [ 'A', '3' ],
+		b1 = [ 'B', '1' ],
+		b2 = [ 'B', '2' ],
+		b3 = [ 'B', '3' ];
+	var initial = [a2, b3, a1, a3, b2, b1];
+	var asc = [a1, a2, a3, b1, b2, b3];
+	var descasc = [b1, b2, b3, a1, a2, a3];
+
+	tableTest(
+		'Sorting multiple columns by initially passing sort list',
+		header,
+		initial,
+		asc,
+		function ( $table ) {
+			$table.tablesorter( { sortList: [[0,0],[1,0]] } );
+		}
+	);
+	tableTest(
+		'Sorting multiple columns by triggering sorton event',
+		header,
+		initial,
+		descasc,
+		function ( $table ) {
+			$table.tablesorter();
+			$table.triggerHandler( 'sorton.tablesorter', [[[0,1],[1,0]]] );
+		}
+	);
 
 // Regression tests!
 tableTest(
