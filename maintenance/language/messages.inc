@@ -2182,7 +2182,7 @@ $wgMessageStructure = array(
 		'ipbenableautoblock',
 		'ipbsubmit',
 		'ipbother',
-		'ipboptions',
+		'ipboption-dropdown',
 		'ipbotheroption',
 		'ipbotherreason',
 		'ipbhidename',
@@ -2805,6 +2805,9 @@ $wgMessageStructure = array(
 		'minutes',
 		'hours',
 		'days',
+		'weeks',
+		'months',
+		'years',
 		'ago',
 	),
 	'badimagelist' => array(
