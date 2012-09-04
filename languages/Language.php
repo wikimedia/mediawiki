@@ -3443,8 +3443,16 @@ class Language {
 	function translateBlockExpiry( $str ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
-			if ( strcmp( $str, $value ) == 0 ) {
-				return htmlspecialchars( trim( $show ) );
+			if ( is_array( $value ) ) {
+				foreach ( $value as $show2 => $value2 ) {
+					if ( strcmp( $str, $value2 ) == 0 ) {
+						return htmlspecialchars( trim( $show2 ) );
+					}
+				}
+			} else {
+				if ( strcmp( $str, $value ) == 0 ) {
+					return htmlspecialchars( trim( $show ) );
+				}
 			}
 		}
 

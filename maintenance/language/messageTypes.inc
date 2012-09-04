@@ -374,6 +374,7 @@ $wgOptionalMessages = array(
 	'days-abbrev',
 	'pagetitle',
 	'filename-prefix-blacklist',
+	'ipboptions-dropdown',
 	'edittools',
 	'edittools-upload',
 	'size-bytes',
