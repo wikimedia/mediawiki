@@ -3194,7 +3194,16 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbenableautoblock'              => 'Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from',
 'ipbsubmit'                       => 'Block this user',
 'ipbother'                        => 'Other time:',
-'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite',
+'ipboption-dropdown'             => '** 2 hours|hours|2
+** 1 day|duration-days|1
+** 3 days|duration-days|3
+** 1 week|duration-weeks|1
+** 2 weeks|duration-weeks|2
+** 1 month|duration-months|1
+** 3 months|duration-months|3
+** 6 months|duration-months|6
+** 1 year|duration-years|1
+** infinite|infiniteblock',
 'ipbotheroption'                  => 'other',
 'ipbotherreason'                  => 'Other/additional reason:',
 'ipbhidename'                     => 'Hide username from edits and lists',
@@ -4965,6 +4974,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-hours'     => '$1 {{PLURAL:$1|hour|hours}}',
 'duration-days'      => '$1 {{PLURAL:$1|day|days}}',
 'duration-weeks'     => '$1 {{PLURAL:$1|week|weeks}}',
+'duration-months'    => '$1 {{PLURAL:$1|month|months}}',
 'duration-years'     => '$1 {{PLURAL:$1|year|years}}',
 'duration-decades'   => '$1 {{PLURAL:$1|decade|decades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
