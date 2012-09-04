@@ -385,3 +385,6 @@
 [submodule "extensions/ZeroRatedMobileAccess"]
 	path = extensions/ZeroRatedMobileAccess
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ZeroRatedMobileAccess.git
+[submodule "extensions/SubpageSortKey"]
+	path = extensions/SubpageSortKey
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/SubpageSortkey.git
