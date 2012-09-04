@@ -3565,8 +3565,16 @@ class Language {
 	function translateBlockExpiry( $str ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
-			if ( strcmp( $str, $value ) == 0 ) {
-				return htmlspecialchars( trim( $show ) );
+			if ( is_array( $value ) ) {
+				foreach ( $value as $show2 => $value2 ) {
+					if ( strcmp( $str, $value2 ) == 0 ) {
+						return htmlspecialchars( trim( $show2 ) );
+					}
+				}
+			} else {
+				if ( strcmp( $str, $value ) == 0 ) {
+					return htmlspecialchars( trim( $show ) );
+				}
 			}
 		}
 
@@ -3575,7 +3583,12 @@ class Language {
 		$indefs = array( 'infinite', 'infinity', 'indefinite' );
 		if ( in_array( $str, $indefs ) ) {
 			foreach ( $indefs as $val ) {
-				$show = array_search( $val, $duration, true );
+				$show = false;
+				array_walk_recursive( $duration, function ( $value, $key ) use ( $show ) {
+					if ( $val === $value ) {
+						$show = $key;
+					}
+				} );
 				if ( $show !== false ) {
 					return htmlspecialchars( trim( $show ) );
 				}
