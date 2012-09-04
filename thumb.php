@@ -217,16 +217,24 @@ function wfStreamThumb( array $params ) {
 
 	// Stream the file if it exists already...
 	try {
+		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
 		// For 404 handled thumbnails, we only use the the base name of the URI
 		// for the thumb params and the parent directory for the source file name.
 		// Check that the zone relative path matches up so squid caches won't pick
 		// up thumbs that would not be purged on source file deletion (bug 34231).
-		if ( isset( $params['rel404'] ) // thumbnail was handled via 404
-			&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
-		{
-			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
-			wfProfileOut( __METHOD__ );
-			return;
+		if ( isset( $params['rel404'] ) ) { // thumbnail was handled via 404
+			if ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
+				// Request for the canonical thumbnail name
+			} elseif ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
+				// Request for the "long" thumbnail name; redirect to canonical name
+				$response = RequestContext::getMain()->getRequest()->response();
+				$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
+				$response->header( 'Location: ' . $img->getThumbUrl( $thumbName ) );
+			} else {
+				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 		}
 		$thumbPath = $img->getThumbPath( $thumbName );
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
