@@ -3183,7 +3183,26 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbenableautoblock'              => 'Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from',
 'ipbsubmit'                       => 'Block this user',
 'ipbother'                        => 'Other time:',
-'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite',
+'ipboptions-dropdown'             => '** 2 hours|ipboption-2-hours
+** 1 day|ipboptions-1-day
+** 3 days|ipboptions-3-days
+** 1 week|ipboptions-1-week
+** 2 weeks|ipboptions-2-weeks
+** 1 month|ipboptions-1-month
+** 3 months|ipboptions-3-month
+** 6 months|ipboptions-6-month
+** 1 year|ipboptions-1-year
+** infinite|ipboptions-infinite',
+'ipboption-2-hours'               => '2 hours',
+'ipboption-1-day'                 => '1 day',
+'ipboption-3-days'                => '3 days',
+'ipboption-1-week'                => '1 week',
+'ipboption-2-weeks'               => '2 weeks',
+'ipboption-1-month'               => '1 month',
+'ipboption-3-months'              => '3 months',
+'ipboption-6-months'              => '6 months',
+'ipboption-1-year'                => '1 year',
+'ipboption-infinite'              => 'indefinite',
 'ipbotheroption'                  => 'other',
 'ipbotherreason'                  => 'Other/additional reason:',
 'ipbhidename'                     => 'Hide username from edits and lists',

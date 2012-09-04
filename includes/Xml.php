@@ -484,57 +484,137 @@ class Xml {
 	 * @param $selected Mixed: Option which should be pre-selected
 	 * @param $class Mixed: CSS classes for the drop-down
 	 * @param $tabindex Mixed: Value of the tabindex attribute
+	 * @param $pipe string: How to handle pipes in lines:
+	 *                      * 'none': Don't look for pipes. Use the whole line as both value and text.
+	 *                      * 'first': Split from the first pipe, use the first part as value and the second part as text.
+	 *                      * 'last': Split from the last pipe, use the first part as value and the second part as text.
+	 * @param $lang Mixed: Language to use to find a localized text.
+	 *                     * false or null: don't localize text.
+	 *                     * true: use interface language.
+	 *                     * String: specified language code.
 	 * @return string
 	 */
-	public static function listDropDown( $name= '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
-		$optgroup = false;
+	public static function listDropDown(
+		$name = '', $list = '', $other = '', $selected = '',
+		$class = '', $tabindex = null, $pipe = 'none', $lang = false
+	) {
+		$select = new XmlSelect( $name, $name, $selected );
+		$options = self::listDropDownDescriptor( $list, $other, $pipe, $lang );
+		$select->addOptions( $options );
 
-		$options = self::option( $other, 'other', $selected === 'other' );
+		if ( $class ) {
+			$select->setAttribute( 'class', $class );
+		}
 
-		foreach ( explode( "\n", $list ) as $option) {
-				$value = trim( $option );
-				if ( $value == '' ) {
-					continue;
-				} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
-					// A new group is starting ...
-					$value = trim( substr( $value, 1 ) );
-					if( $optgroup ) $options .= self::closeElement('optgroup');
-					$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
-					$optgroup = true;
-				} elseif ( substr( $value, 0, 2) == '**' ) {
-					// groupmember
-					$value = trim( substr( $value, 2 ) );
-					$options .= self::option( $value, $value, $selected === $value );
-				} else {
-					// groupless reason list
-					if( $optgroup ) $options .= self::closeElement('optgroup');
-					$options .= self::option( $value, $value, $selected === $value );
-					$optgroup = false;
+		if ( $tabindex ) {
+			$select->setAttribute( 'tabindex', $tabindex );
+		}
+
+		return $select->getHTML();
+	}
+
+	/**
+	 * Build a drop-down descriptor from a textual list, the
+	 * returned value is suitable for XmlSelect::addOptions()
+	 * and various 'options' settings in HTMLForm fields.
+	 *
+	 * @param $list Mixed: Correctly formatted text (newline delimited) to be used to generate the options
+	 * @param $other Mixed: Text for the "Other reasons" option, or '' for not to use. 'other' will be the value for this.
+	 * @param $pipe string: How to handle pipes in lines:
+	 *                      * 'none': Don't look for pipes. Use the whole line as both value and text.
+	 *                      * 'first': Split from the first pipe, use the first part as value and the second part as text.
+	 *                      * 'last': Split from the last pipe, use the first part as value and the second part as text.
+	 * @param $lang Mixed: Language to use to find a localized text.
+	 *                     * false or null: don't localize text.
+	 *                     * true: use interface language.
+	 *                     * String: specified language code.
+	 * @return Array
+	 */
+	public static function listDropDownDescriptor( $list = '', $other = '', $pipe = 'none', $lang = false ) {
+		$options = array();
+		$optgroup = &$options;
+		if ( $other !== '' ) {
+			$options[$other] = 'other';
+		}
+		if ( is_null( $lang ) ) {
+			$lang = false;
+		}
+
+		foreach ( explode( "\n", $list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+				// A new group is starting ...
+				$value = trim( substr( $value, 1 ) );
+				if ( $lang !== false ) {
+					$msg = wfMessage( $value );
+					if ( $lang !== true ) {
+						$msg->inLanguage( $lang );
+					}
+					if ( $msg->exists() ) {
+						$value = $msg->text();
+					}
 				}
+				$options[$value] = array();
+				$optgroup = &$options[$value];
+			} elseif ( substr( $value, 0, 2) == '**' ) {
+				// groupmember
+				$value = trim( substr( $value, 2 ) );
+				list( $text, $value ) = self::listDropDownOption( $value, $pipe, $lang );
+				$optgroup[$text] = $value;
+			} else {
+				// groupless reason list, close any opening optgroup.
+				$optgroup = &$options;
+				list( $text, $value ) = self::listDropDownOption( $value, $pipe, $lang );
+				$optgroup[$text] = $value;
 			}
-
-			if( $optgroup ) $options .= self::closeElement('optgroup');
-
-		$attribs = array();
-
-		if( $name ) {
-			$attribs['id'] = $name;
-			$attribs['name'] = $name;
 		}
 
-		if( $class ) {
-			$attribs['class'] = $class;
-		}
+		return $options;
+	}
 
-		if( $tabindex ) {
-			$attribs['tabindex'] = $tabindex;
+	/**
+	 * Create an option for self::listDropDownDescriptor().
+	 *
+	 * @param $line Mixed: A line in a textual list with prefixing asterisks removed.
+	 * @param $pipe string: How to handle pipes in lines:
+	 *                      * 'none': Don't look for pipes. Use the whole line as both value and text.
+	 *                      * 'first': Split from the first pipe, use the first part as value and the second part as text.
+	 *                      * 'last': Split from the last pipe, use the first part as value and the second part as text.
+	 * @param $lang Mixed: Language to use to find a localized text.
+	 *                     * false or null: don't localize text.
+	 *                     * true: use interface language.
+	 *                     * String: specified language code.
+	 * @return Array: array( $text, $value );
+	 */
+	private static function listDropDownOption( $line, $pipe, $lang ) {
+		if ( $pipe === 'none' || strpos( $line, '|' ) === false ) {
+			$value = $text = $line;
+		} else {
+			switch ( $pipe ) {
+			case 'first':
+				list( $value, $text ) = explode( '|', $line, 2 );
+				break;
+			case 'last':
+				list( $text, $value ) = explode( '|', strrev( $line ), 2 );
+				$text = strrev( $text );
+				$value = strrev( $value );
+				break;
+			default:
+				throw new MWException( 'Unknown $pipe argument for Xml::listDropDown(): ' . $pipe );
+			}
 		}
-
-		return Xml::openElement( 'select', $attribs )
-			. "\n"
-			. $options
-			. "\n"
-			. Xml::closeElement( 'select' );
+		if ( $lang !== false ) {
+			$msg = wfMessage( $text );
+			if ( $lang !== true ) {
+				$msg->inLanguage( $lang );
+			}
+			if ( $msg->exists() ) {
+				$text = $msg->text();
+			}
+		}
+		return array( $text, $value );
 	}
 
 	/**
