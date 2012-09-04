@@ -2691,7 +2691,6 @@ $wgMessageStructure = array(
 		'pageinfo-authors',
 		'pageinfo-recent-edits',
 		'pageinfo-recent-authors',
-		'pageinfo-restriction',
 		'pageinfo-magic-words',
 		'pageinfo-hidden-categories',
 		'pageinfo-templates',
