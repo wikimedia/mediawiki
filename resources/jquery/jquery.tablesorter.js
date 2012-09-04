@@ -19,6 +19,9 @@
  * @example $( 'table' ).tablesorter();
  * @desc Create a simple tablesorter interface.
  *
+ * @example $( 'table' ).tablesorter( { sortList: [ { 0: 'desc' }, { 1: 'asc' } ] } );
+ * @desc Create a tablesorter interface initially sorting on the first and second column.
+ *
  * @option String cssHeader ( optional ) A string of the class name to be appended
  *         to sortable tr elements in the thead of the table. Default value:
  *         "header"
@@ -44,8 +47,15 @@
  *         tablesorter should cancel selection of the table headers text.
  *         Default value: true
  *
+ * @option Array sortList ( optional ) An array containing objects specifying sorting.
+ *         By passing more than one object, multi-sorting will be applied. Object structure:
+ *         { <Integer column index>: <String 'asc' or 'desc'> }
+ *         Default value: []
+ *
  * @option Boolean debug ( optional ) Boolean flag indicating if tablesorter
  *         should display debuging information usefull for development.
+ *
+ * @event sortEnd.tablesorter: Triggered as soon as any sorting has been applied.
  *
  * @type jQuery
  *
@@ -223,6 +233,8 @@
 
 		}
 		table.tBodies[0].appendChild( fragment );
+
+		$( table ).trigger( 'sortEnd.tablesorter' );
 	}
 
 	/**
@@ -313,8 +325,8 @@
 	}
 
 	function setHeadersCss( table, $headers, list, css, msg ) {
-		// Remove all header information
-		$headers.removeClass( css[0] ).removeClass( css[1] );
+		// Remove all header information and reset titles to default message
+		$headers.removeClass( css[0] ).removeClass( css[1] ).attr( 'title', msg[1] );
 
 		var h = [];
 		$headers.each( function ( offset ) {
@@ -480,6 +492,25 @@
 		};
 	}
 
+	/**
+	 * Converts sort objects [ { Integer: String }, ... ] to the internally used nested array
+	 * structure [ [ Integer , Integer ], ... ]
+	 *
+	 * @param sortObjects {Array} List of sort objects.
+	 * @return {Array} List of internal sort definitions.
+	 */
+
+	function convertSortList( sortObjects ) {
+		var sortList = [];
+		$.each( sortObjects, function( i, sortObject ) {
+			$.each ( sortObject, function( columnIndex, order ) {
+				var orderIndex = ( order === 'desc' ) ? 1 : 0;
+				sortList.push( [columnIndex, orderIndex] );
+			} );
+		} );
+		return sortList;
+	}
+
 	/* Public scope */
 
 	$.tablesorter = {
@@ -514,8 +545,7 @@
 					// Declare and cache.
 					var $document, $headers, cache, config, sortOrder,
 						$table = $( table ),
-						shiftDown = 0,
-						firstTime = true;
+						shiftDown = 0;
 
 					// Quit if no tbody
 					if ( !table.tBodies ) {
@@ -533,6 +563,7 @@
 					}
 					$table.addClass( "jquery-tablesorter" );
 
+					// FIXME config should probably not be stored in the plain table node
 					// New config object.
 					table.config = {};
 
@@ -540,7 +571,7 @@
 					config = $.extend( table.config, $.tablesorter.defaultOptions, settings );
 
 					// Save the settings where they read
-					$.data( table, 'tablesorter', config );
+					$.data( table, 'tablesorter', { config: config } );
 
 					// Get the CSS class names, could be done else where.
 					var sortCSS = [ config.cssDesc, config.cssAsc ];
@@ -558,34 +589,34 @@
 					// performance improvements in some browsers.
 					cacheRegexs();
 
+					// Legacy fix of .sortbottoms
+					// Wrap them inside inside a tfoot (because that's what they actually want to be) &
+					// and put the <tfoot> at the end of the <table>
+					var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
+					if ( $sortbottoms.length ) {
+						var $tfoot = $table.children( 'tfoot' );
+						if ( $tfoot.length ) {
+							$tfoot.eq(0).prepend( $sortbottoms );
+						} else {
+							$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
+						}
+					}
+
+					explodeRowspans( $table );
+
+					// try to auto detect column type, and store in tables config
+					table.config.parsers = buildParserCache( table, $headers );
+
+					// initially build the cache for the tbody cells (to be able to sort initially)
+					cache = buildCache( table );
+
 					// Apply event handling to headers
 					// this is too big, perhaps break it out?
-					$headers.click( function ( e ) {
+					$headers.filter( ':not(.unsortable)' ).click( function ( e ) {
 						if ( e.target.nodeName.toLowerCase() === 'a' ) {
 							// The user clicked on a link inside a table header
 							// Do nothing and let the default link click action continue
 							return true;
-						}
-
-						if ( firstTime ) {
-							firstTime = false;
-
-							// Legacy fix of .sortbottoms
-							// Wrap them inside inside a tfoot (because that's what they actually want to be) &
-							// and put the <tfoot> at the end of the <table>
-							var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
-							if ( $sortbottoms.length ) {
-								var $tfoot = $table.children( 'tfoot' );
-								if ( $tfoot.length ) {
-									$tfoot.eq(0).prepend( $sortbottoms );
-								} else {
-									$table.append( $( '<tfoot>' ).append( $sortbottoms ) );
-								}
-							}
-
-							explodeRowspans( $table );
-							// try to auto detect column type, and store in tables config
-							table.config.parsers = buildParserCache( table, $headers );
 						}
 
 						// Build the cache for the tbody cells
@@ -655,6 +686,40 @@
 							return false;
 						}
 					} );
+
+					/**
+					 * Sorts the table. If no sorting is specified by passing a list of sort
+					 * objects, the table is sorted according to the initial sorting order.
+					 * Passing an empty array will reset sorting (basically just reset the headers
+					 * making the table appear unsorted).
+					 *
+					 * @param sortList {Array} (optional) List of sort objects.
+					 */
+					$table.data( 'tablesorter' ).sort = function( sortList ) {
+
+						if ( sortList === undefined ) {
+							sortList = config.sortList;
+						} else if ( sortList.length > 0 ) {
+							sortList = convertSortList( sortList );
+						}
+
+						// re-build the cache for the tbody cells
+						cache = buildCache( table );
+
+						// set css for headers
+						setHeadersCss( table, $headers, sortList, sortCSS, sortMsg );
+
+						// sort the table and append it to the dom
+						appendToTable( table, multisort( table, sortList, cache ) );
+					};
+
+					// sort initially
+					if ( config.sortList.length > 0 ) {
+						explodeRowspans( $table );
+						config.sortList = convertSortList( config.sortList );
+						$table.data( 'tablesorter' ).sort();
+					}
+
 				} );
 			},
 

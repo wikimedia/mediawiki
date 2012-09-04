@@ -108,6 +108,24 @@ var ascendingName   = [earth, jupiter, mars, mercury, saturn, venus];
 var ascendingRadius = [mercury, mars, venus, earth, saturn, jupiter];
 
 tableTest(
+	'Basic planet table: sorting initially - ascending by name',
+	header,
+	planets,
+	ascendingName,
+	function ( $table ) {
+		$table.tablesorter( { sortList: [ { 0: 'asc' } ] } );
+	}
+);
+tableTest(
+	'Basic planet table: sorting initially - descending by radius',
+	header,
+	planets,
+	reversed(ascendingRadius),
+	function ( $table ) {
+		$table.tablesorter( { sortList: [ { 1: 'desc' } ] } );
+	}
+);
+tableTest(
 	'Basic planet table: ascending by name',
 	header,
 	planets,
@@ -158,6 +176,81 @@ tableTest(
 	}
 );
 
+// Sample data set to test multiple column sorting
+var header  = [ 'column1' , 'column2'],
+	a1 = [ 'A', '1' ],
+	a2 = [ 'A', '2' ],
+	a3 = [ 'A', '3' ],
+	b1 = [ 'B', '1' ],
+	b2 = [ 'B', '2' ],
+	b3 = [ 'B', '3' ];
+var initial = [a2, b3, a1, a3, b2, b1];
+var asc = [a1, a2, a3, b1, b2, b3];
+var descasc = [b1, b2, b3, a1, a2, a3];
+
+tableTest(
+	'Sorting multiple columns by passing sort list',
+	header,
+	initial,
+	asc,
+	function ( $table ) {
+		$table.tablesorter(
+			{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
+		);
+	}
+);
+tableTest(
+	'Sorting multiple columns by programmatically triggering sort()',
+	header,
+	initial,
+	descasc,
+	function ( $table ) {
+		$table.tablesorter();
+		$table.data( 'tablesorter' ).sort(
+			[ { 0: 'desc' }, { 1: 'asc' } ]
+		);
+	}
+);
+tableTest(
+	'Reset to initial sorting by triggering sort() without any parameters',
+	header,
+	initial,
+	asc,
+	function ( $table ) {
+		$table.tablesorter(
+			{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
+		);
+		$table.data( 'tablesorter' ).sort(
+			[ { 0: 'desc' }, { 1: 'asc' } ]
+		);
+		$table.data( 'tablesorter' ).sort();
+	}
+);
+QUnit.test( 'Reset sorting making table appear unsorted', 3, function ( assert ) {
+	var $table = tableCreate( header, initial );
+	$table.tablesorter(
+		{ sortList: [ { 0: 'desc' }, { 1: 'asc' } ] }
+	);
+	$table.data( 'tablesorter' ).sort( [] );
+
+	assert.equal(
+		$table.find( 'th.headerSortUp' ).length + $table.find( 'th.headerSortDown' ).length,
+		0,
+		'No sort specific sort classes addign to header cells'
+	);
+
+	assert.equal(
+		$table.find( 'th' ).first().attr( 'title' ),
+		mw.msg( 'sort-ascending' ),
+		'First header cell has default title'
+	);
+
+	assert.equal(
+		$table.find( 'th' ).first().attr( 'title' ),
+		$table.find( 'th' ).last().attr( 'title' ),
+		'Both header cells\' titles match'
+	);
+} );
 
 // Regression tests!
 tableTest(
@@ -306,7 +399,7 @@ tableTest(
 	planets,
 	planetsRowspan,
 	function ( $table ) {
-		// Modify the table to have a multiuple-row-spanning cell:
+		// Modify the table to have a multiple-row-spanning cell:
 		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
 		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
 		// - Set rowspan for 2nd cell of 3rd row to 3.
@@ -318,12 +411,28 @@ tableTest(
 	}
 );
 tableTest(
+	'Basic planet table: same value for multiple rows via rowspan (sorting initially)',
+	header,
+	planets,
+	planetsRowspan,
+	function ( $table ) {
+		// Modify the table to have a multiple-row-spanning cell:
+		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
+		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
+		// - Set rowspan for 2nd cell of 3rd row to 3.
+		//   This covers the removed cell in the 4th and 5th row.
+		$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
+
+		$table.tablesorter( { sortList: [ { 0: 'asc' } ] } );
+	}
+);
+tableTest(
 	'Basic planet table: Same value for multiple rows via rowspan II',
 	header,
 	planets,
 	planetsRowspanII,
 	function ( $table ) {
-		// Modify the table to have a multiuple-row-spanning cell:
+		// Modify the table to have a multiple-row-spanning cell:
 		// - Remove 1st cell of 4th row, and, 1st cell or 5th row.
 		$table.find( 'tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)' ).remove();
 		// - Set rowspan for 1st cell of 3rd row to 3.
@@ -414,6 +523,24 @@ tableTest(
 	}
 );
 
+QUnit.test( 'Test detection routine', function ( assert ) {
+	var $table;
+	$table = $(
+		'<table class="sortable">' +
+		'<caption>CAPTION</caption>' +
+		'<tr><th>THEAD</th></tr>' +
+		'<tr><td>1</td></tr>' +
+		'<tr class="sortbottom"><td>text</td></tr>' +
+		'</table>'
+	);
+	$table.tablesorter();
+
+	assert.equal(
+		$table.data( 'tablesorter' ).config.parsers[0].id,
+		'number',
+		'Correctly detected column content skipping sortbottom'
+	);
+} );
 
 /** FIXME: the diff output is not very readeable. */
 QUnit.test( 'bug 32047 - caption must be before thead', function ( assert ) {
