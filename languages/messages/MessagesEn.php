@@ -3183,7 +3183,17 @@ Fill in a specific reason below (for example, citing particular pages that were 
 'ipbenableautoblock'              => 'Automatically block the last IP address used by this user, and any subsequent IP addresses they try to edit from',
 'ipbsubmit'                       => 'Block this user',
 'ipbother'                        => 'Other time:',
-'ipboptions'                      => '2 hours:2 hours,1 day:1 day,3 days:3 days,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,indefinite:infinite',
+'ipboption-dropdown'             => '** 2 hours|hours|2
+** 1 day|days|1
+** 3 days|days|3
+** 1 week|weeks|1
+** 2 weeks|weeks|2
+** 1 month|months|1
+** 3 months|months|3
+** 6 months|months|6
+** 1 year|years|1
+** infinite|ipboption-infinite',
+'ipboption-infinite'              => 'indefinite',
 'ipbotheroption'                  => 'other',
 'ipbotherreason'                  => 'Other/additional reason:',
 'ipbhidename'                     => 'Hide username from edits and lists',
@@ -3858,6 +3868,9 @@ By executing it, your system may be compromised.",
 'minutes'        => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours'          => '{{PLURAL:$1|$1 hour|$1 hours}}',
 'days'           => '{{PLURAL:$1|$1 day|$1 days}}',
+'weeks'          => '{{PLURAL:$1|$1 week|$1 weeks}}',
+'months'           => '{{PLURAL:$1|$1 month|$1 months}}',
+'years'           => '{{PLURAL:$1|$1 year|$1 years}}',
 'ago'            => '$1 ago',
 
 # Bad image list
