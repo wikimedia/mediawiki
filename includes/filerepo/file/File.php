@@ -943,7 +943,7 @@ abstract class File {
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 				// Copy the thumbnail from the file system into storage...
-				$disposition = FileBackend::makeContentDisposition( 'inline', $this->name );
+				$disposition = $this->getThumbDisposition( $thumbName );
 				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
 				if ( $status->isOK() ) {
 					$thumb->setStoragePath( $thumbPath );
@@ -966,6 +966,19 @@ abstract class File {
 
 		wfProfileOut( __METHOD__ );
 		return is_object( $thumb ) ? $thumb : false;
+	}
+
+	/**
+	 * @param $thumbName string Thumbnail name
+	 * @return string Content-Disposition header value
+	 */
+	function getThumbDisposition( $thumbName ) {
+		$fileName = $this->name; // file name to suggest
+		$thumbExt = FileBackend::extensionFromPath( $thumbName );
+		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
+			$fileName .= ".$thumbExt";
+		}
+		return FileBackend::makeContentDisposition( 'inline', $fileName );
 	}
 
 	/**
