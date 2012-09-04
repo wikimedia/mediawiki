@@ -56,7 +56,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
-		global $wgContLang, $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
+		global $wgContLang, $wgDisableCounters, $wgRCMaxAge;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -86,11 +86,16 @@ class InfoAction extends FormlessAction {
 
 		// Header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
-			$content .= $this->msg( 'pageinfo-header ' )->parse();
+			$content .= $this->msg( 'pageinfo-header' )->parse();
+		}
+
+		// Credits
+		if ( $title->exists() ) {
+			$content .= Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $this->getContributors() );
 		}
 
 		// Basic information
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-basic' )->text() );
+		$content .= $this->makeHeader( $this->msg( 'pageinfo-header-basic' )->plain() );
 
 		// Display title
 		$displayTitle = $title->getPrefixedText();
@@ -170,12 +175,13 @@ class InfoAction extends FormlessAction {
 
 		// Page protection
 		$content = $this->addTable( $content, $table );
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-restrictions' )->text() );
+		$content .= $this->makeHeader( $this->msg( 'pageinfo-header-restrictions' )->plain() );
 		$table = '';
 
 		// Page protection
-		foreach ( $wgRestrictionTypes as $restrictionType ) {
+		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
 			$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
+
 			if ( $protectionLevel == '' ) {
 				// Allow all users
 				$message = $this->msg( 'protect-default' )->escaped();
@@ -191,20 +197,19 @@ class InfoAction extends FormlessAction {
 			}
 
 			$table = $this->addRow( $table,
-				$this->msg( 'pageinfo-restriction',
-					$this->msg( "restriction-$restrictionType" )->plain()
-				)->parse(), $message
+				$this->msg( "restriction-$restrictionType" )->plain(),
+				$message
 			);
 		}
 
 		// Edit history
 		$content = $this->addTable( $content, $table );
-		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-edits' )->text() );
+		$content .= $this->makeHeader( $this->msg( 'pageinfo-header-edits' )->plain() );
 		$table = '';
 
 		// Page creator
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firstuser' )->escaped(), $pageInfo['firstuser']
+			$this->msg( 'pageinfo-firstuser' )->escaped(), Linker::userLink( $pageInfo['firstuserid'], $pageInfo['firstuser'] )
 		);
 
 		// Date of page creation
@@ -214,7 +219,7 @@ class InfoAction extends FormlessAction {
 
 		// Latest editor
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lastuser' )->escaped(), $pageInfo['lastuser']
+			$this->msg( 'pageinfo-lastuser' )->escaped(), Linker::userLink( $pageInfo['lastuserid'], $pageInfo['lastuser'] )
 		);
 
 		// Date of latest edit
@@ -269,7 +274,7 @@ class InfoAction extends FormlessAction {
 			|| count( $hiddenCategories ) > 0
 			|| count( $transcludedTemplates ) > 0 ) {
 			// Page properties
-			$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-properties' )->text() );
+			$content .= $this->makeHeader( $this->msg( 'pageinfo-header-properties' )->plain() );
 			$table = '';
 
 			// Magic words
@@ -315,6 +320,18 @@ class InfoAction extends FormlessAction {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Creates a header that can be added to the output.
+	 *
+	 * @param $header The header text.
+	 * @return string The HTML.
+	 */
+	public static function makeHeader( $header ) {
+		global $wgParser;
+		$spanAttribs = array( 'class' => 'mw-headline', 'id' => $wgParser->guessSectionNameFromWikiText( $header ) );
+		return Html::rawElement( 'h2', array(), Html::element( 'span', $spanAttribs, $header ) );
 	}
 
 	/**
@@ -431,41 +448,32 @@ class InfoAction extends FormlessAction {
 		$options = array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 );
 		$row = $dbr->fetchRow( $dbr->select(
 			'revision',
-			array( 'rev_user_text', 'rev_timestamp' ),
+			array( 'rev_user', 'rev_user_text', 'rev_timestamp' ),
 			array( 'rev_page' => $id ),
 			__METHOD__,
 			$options
 		) );
 
 		$result['firstuser'] = $row['rev_user_text'];
+		$result['firstuserid'] = $row['rev_user'];
 		$result['firsttime'] = $row['rev_timestamp'];
 
 		// Latest editor + date of latest edit
 		$options['ORDER BY'] = 'rev_timestamp DESC';
 		$row = $dbr->fetchRow( $dbr->select(
 			'revision',
-			array( 'rev_user_text', 'rev_timestamp' ),
+			array( 'rev_user', 'rev_user_text', 'rev_timestamp' ),
 			array( 'rev_page' => $id ),
 			__METHOD__,
 			$options
 		) );
 
 		$result['lastuser'] = $row['rev_user_text'];
+		$result['lastuserid'] = $row['rev_user'];
 		$result['lasttime'] = $row['rev_timestamp'];
 
 		wfProfileOut( __METHOD__ );
 		return $result;
-	}
-
-	/**
-	 * Adds a header to the content that will be added to the output.
-	 *
-	 * @param $content string The content that will be added to the output
-	 * @param $header string The value of the header
-	 * @return string The content with the header added
-	 */
-	protected function addHeader( $content, $header ) {
-		return $content . Html::element( 'h2', array(), $header );
 	}
 
 	/**
@@ -511,5 +519,89 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function getPageTitle() {
 		return $this->msg( 'pageinfo-title', $this->getTitle()->getPrefixedText() )->text();
+	}
+
+	/**
+	 * Get a list of contributors of $article
+	 * @return string: html
+	 */
+	protected function getContributors() {
+		global $wgHiddenPrefs;
+
+		$contributors = $this->page->getContributors();
+		$real_names = array();
+		$user_names = array();
+		$anon_ips = array();
+
+		# Sift for real versus user names
+		foreach ( $contributors as $user ) {
+			if ( $user->getID() == 0 ) {
+				$anon_ips[] = $this->link( $user );
+			} else {
+				if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {
+					$real_names[] = $this->link( $user );
+				} else {
+					$user_names[] = $this->link( $user );
+				}
+			}
+		}
+
+		$lang = $this->getLanguage();
+
+		if ( count( $real_names ) ) {
+			$real = $lang->listToText( $real_names );
+		} else {
+			$real = false;
+		}
+
+		# "ThisSite user(s) A, B and C"
+		if ( count( $user_names ) ) {
+			$user = $this->msg( 'siteusers' )->rawParams( $lang->listToText( $user_names ) )->params(
+				count( $user_names ) )->escaped();
+		} else {
+			$user = false;
+		}
+
+		if ( count( $anon_ips ) ) {
+			$anon = $this->msg( 'anonusers' )->rawParams( $lang->listToText( $anon_ips ) )->params(
+				count( $anon_ips ) )->escaped();
+		} else {
+			$anon = false;
+		}
+
+		# This is the big list, all mooshed together. We sift for blank strings
+		$fulllist = array();
+		foreach ( array( $real, $user, $anon ) as $s ) {
+			if ( $s !== false ) {
+				array_push( $fulllist, $s );
+			}
+		}
+
+		$count = count( $fulllist );
+		# "Based on work by ..."
+		return $count
+			? $this->msg( 'othercontribs' )->rawParams(
+				$lang->listToText( $fulllist ) )->params( $count )->escaped()
+			: '';
+	}
+
+	/**
+	 * Get a link to $user's user page
+	 * @param $user User object
+	 * @return String: html
+	 */
+	protected function link( User $user ) {
+		global $wgHiddenPrefs;
+		if ( !in_array( 'realname', $wgHiddenPrefs ) && !$user->isAnon() ) {
+			$real = $user->getRealName();
+		} else {
+			$real = false;
+		}
+
+		$page = $user->isAnon()
+			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
+			: $user->getUserPage();
+
+		return Linker::link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
 	}
 }
