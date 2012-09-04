@@ -2169,7 +2169,6 @@
     "ipbenableautoblock": "{{doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}\n{{Identical|Automatically block ...}}",
     "ipbsubmit": "{{Identical|Block this user}}",
     "ipbother": "{{Identical|Other time}}",
-    "ipboptions": "{{doc-important|Be careful: '''1 translation:1 english''', so the first part is the translation and the second part should stay in English.}}\nOptions for the duration of the block. Example: See e.g. [[MediaWiki:Ipboptions/nl]] if you still don't know how to do it.\n{{Identical|Infinite}}",
     "ipbhidename": "This is the label for a checkbox in the user block form on [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
     "ipbwatchuser": "This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipb-hardblock}}",
     "ipb-disableusertalk": "{{doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",

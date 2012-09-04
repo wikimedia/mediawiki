@@ -633,4 +633,3 @@ $preloadedMessages = array(
 	'views',
 	'whatlinkshere',
 );
-
