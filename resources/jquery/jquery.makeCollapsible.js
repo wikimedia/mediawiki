@@ -19,10 +19,10 @@
 $.fn.makeCollapsible = function () {
 
 	return this.each(function () {
-		var lpx = 'jquery.makeCollapsible> ';
 
 		// Define reused variables and functions
 		var $toggle,
+			lpx = 'jquery.makeCollapsible> ',
 			$that = $(this).addClass( 'mw-collapsible' ), // case: $( '#myAJAXelement' ).makeCollapsible()
 			that = this,
 			collapsetext = $(this).attr( 'data-collapsetext' ),
@@ -230,7 +230,7 @@ $.fn.makeCollapsible = function () {
 				.parent()
 				.prepend( '&nbsp;[' )
 				.append( ']&nbsp;' )
-				.bind( 'click.mw-collapse', function (e) {
+				.on( 'click.mw-collapse', function ( e ) {
 					toggleLinkDefault( this, e );
 				} );
 
@@ -252,7 +252,7 @@ $.fn.makeCollapsible = function () {
 
 			// Double check that there is actually a customtoggle link
 			if ( $customTogglers.length ) {
-				$customTogglers.bind( 'click.mw-collapse', function ( e ) {
+				$customTogglers.on( 'click.mw-collapse', function ( e ) {
 					toggleLinkCustom( $(this), e, $that );
 				} );
 			} else {
@@ -279,7 +279,7 @@ $.fn.makeCollapsible = function () {
 				if ( !$toggle.length ) {
 					$firstRowCells.eq(-1).prepend( $toggleLink );
 				} else {
-					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function ( e ) {
+					$toggleLink = $toggle.off( 'click.mw-collapse' ).on( 'click.mw-collapse', function ( e ) {
 						toggleLinkPremade( $toggle, e );
 					} );
 				}
@@ -300,7 +300,7 @@ $.fn.makeCollapsible = function () {
 					}
 					$that.prepend( $toggleLink.wrap( '<li class="mw-collapsible-toggle-li"></li>' ).parent() );
 				} else {
-					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function ( e ) {
+					$toggleLink = $toggle.off( 'click.mw-collapse' ).on( 'click.mw-collapse', function ( e ) {
 						toggleLinkPremade( $toggle, e );
 					} );
 				}
@@ -319,7 +319,7 @@ $.fn.makeCollapsible = function () {
 				if ( !$toggle.length ) {
 					$that.prepend( $toggleLink );
 				} else {
-					$toggleLink = $toggle.unbind( 'click.mw-collapse' ).bind( 'click.mw-collapse', function ( e ) {
+					$toggleLink = $toggle.off( 'click.mw-collapse' ).on( 'click.mw-collapse', function ( e ) {
 						toggleLinkPremade( $toggle, e );
 					} );
 				}
