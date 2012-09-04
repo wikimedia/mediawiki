@@ -138,6 +138,7 @@ class TitleTest extends MediaWikiTestCase {
 
 			array( 'zh-cn', 'Main_page',                 'zh', 'zh-tw', 'zh-cn' ),
 			array( 'zh',    'MediaWiki:About',           'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh',    'MediaWiki:About/',          'zh', 'zh-tw', 'zh-cn' ),
 			array( 'de',    'MediaWiki:About/de',        'zh', 'zh-tw', 'zh-cn' ),
 			array( 'zh-cn', 'MediaWiki:About/zh-cn',     'zh', 'zh-tw', 'zh-cn' ),
 			array( 'zh-tw', 'MediaWiki:About/zh-tw',     'zh', 'zh-tw', 'zh-cn' ),
