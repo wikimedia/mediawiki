@@ -26,6 +26,8 @@ production.
 * jQuery UI upgraded from 1.8.23 to 1.8.24.
 * Added separate fa_sha1 field to filearchive table. This allows sha1
   searches with the api in miser mode for deleted files.
+* Add initial and programmatic sorting for tablesorter.
+* Add the event "sortEnd.tablesorter", triggered after sorting has completed.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
