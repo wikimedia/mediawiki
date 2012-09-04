@@ -100,7 +100,7 @@ class FormatMetadata {
 				) {
 					continue;
 				}
-				$tags[$tag] = intval( $h[0] / $h[1] )
+				$tags[$tag] = str_pad( intval( $h[0] / $h[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( intval( $m[0] / $m[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( intval( $s[0] / $s[1] ), 2, '0', STR_PAD_LEFT );
 
