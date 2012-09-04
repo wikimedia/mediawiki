@@ -117,7 +117,7 @@ class SvgHandler extends ImageHandler {
 		$physicalHeight = $params['physicalHeight'];
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
+			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
@@ -128,7 +128,7 @@ class SvgHandler extends ImageHandler {
 		$srcPath = $image->getLocalRefPath();
 		$status = $this->rasterize( $srcPath, $dstPath, $physicalWidth, $physicalHeight );
 		if( $status === true ) {
-			return new ThumbnailImage( $image, $dstUrl, $clientWidth, $clientHeight, $dstPath );
+			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		} else {
 			return $status; // MediaTransformError
 		}

@@ -157,7 +157,12 @@ class DjVuHandler extends ImageHandler {
 		}
 
 		if ( $flags & self::TRANSFORM_LATER ) {
-			return new ThumbnailImage( $image, $dstUrl, $width, $height, $dstPath, $page );
+			$params = array(
+				'width' => $width,
+				'height' => $height,
+				'page' => $page
+			);
+			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 
 		if ( !wfMkdirParents( dirname( $dstPath ), null, __METHOD__ ) ) {
@@ -192,7 +197,12 @@ class DjVuHandler extends ImageHandler {
 					wfHostname(), $retval, trim($err), $cmd ) );
 			return new MediaTransformError( 'thumbnail_error', $width, $height, $err );
 		} else {
-			return new ThumbnailImage( $image, $dstUrl, $width, $height, $dstPath, $page );
+			$params = array(
+				'width' => $width,
+				'height' => $height,
+				'page' => $page
+			);
+			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 	}
 

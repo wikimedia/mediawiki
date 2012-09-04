@@ -1000,7 +1000,8 @@ abstract class File {
 			$path = '/common/images/icons/' . $icon;
 			$filepath = $wgStyleDirectory . $path;
 			if ( file_exists( $filepath ) ) { // always FS
-				return new ThumbnailImage( $this, $wgStylePath . $path, 120, 120 );
+				$params = array( 'width' => 120, 'height' => 120 );
+				return new ThumbnailImage( $this, $wgStylePath . $path, false, $params );
 			}
 		}
 		return null;
