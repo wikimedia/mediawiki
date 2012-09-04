@@ -15,6 +15,8 @@ production.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname' instead
 
 === New features in 1.21 ===
+* Add initial and programmatic sorting for tablesorter.
+* Add the event "sortEnd.tablesorter", triggered after sorting has completed.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
