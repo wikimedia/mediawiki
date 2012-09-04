@@ -3737,10 +3737,10 @@ This is probably caused by a link to a blacklisted external site.',
 # Info page
 'pageinfo-header'              => '-', # do not translate or duplicate this message to other languages
 'pageinfo-title'               => 'Information for "$1"',
-'pageinfo-header-basic'        => 'Basic information',
-'pageinfo-header-edits'        => 'Edit history',
-'pageinfo-header-restrictions' => 'Page protection',
-'pageinfo-header-properties'   => 'Page properties',
+'pageinfo-header-basic'        => '== Basic information ==',
+'pageinfo-header-edits'        => '== Edit history ==',
+'pageinfo-header-restrictions' => '== Page protection ==',
+'pageinfo-header-properties'   => '== Page properties ==',
 'pageinfo-display-title'       => 'Display title',
 'pageinfo-default-sort'        => 'Default sort key',
 'pageinfo-length'              => 'Page length (in bytes)',
@@ -3762,11 +3762,11 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-authors'             => 'Total number of distinct authors',
 'pageinfo-recent-edits'        => 'Recent number of edits (within past $1)',
 'pageinfo-recent-authors'      => 'Recent number of distinct authors',
-'pageinfo-restriction'         => 'Page protection (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words'         => 'Magic {{PLURAL:$1|word|words}} ($1)',
 'pageinfo-hidden-categories'   => 'Hidden {{PLURAL:$1|category|categories}} ($1)',
 'pageinfo-templates'           => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
 'pageinfo-footer'              => '-', # do not translate or duplicate this message to other languages
+'pageinfo-toolboxlink'              => 'Page information',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it

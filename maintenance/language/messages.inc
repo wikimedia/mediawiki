@@ -2691,11 +2691,11 @@ $wgMessageStructure = array(
 		'pageinfo-authors',
 		'pageinfo-recent-edits',
 		'pageinfo-recent-authors',
-		'pageinfo-restriction',
 		'pageinfo-magic-words',
 		'pageinfo-hidden-categories',
 		'pageinfo-templates',
 		'pageinfo-footer',
+		'pageinfo-toolboxlink',
 	),
 	'skin' => array(
 		'skinname-standard',
