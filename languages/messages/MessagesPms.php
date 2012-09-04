@@ -2792,14 +2792,14 @@ A lassa gionté na spiegassion ant ël resumé.",
 # Attribution
 'anonymous' => '{{PLURAL:$1|Utent|Utent}} anònim ëd {{SITENAME}}',
 'siteuser' => '$1, utent ëd {{SITENAME}}',
-'anonuser' => '{{SITENAME}} utent anònim $1',
-'lastmodifiedatby' => "Sta pàgina-sì a l'é staita modificà l'ùltima vira al $2, $1 da $3.",
+'anonuser' => "l'utent anònim $1 ëd {{SITENAME}}",
+'lastmodifiedatby' => "Costa pàgina-sì a l'é staita modificà l'ùltima vira a $2, $1 da $3.",
 'othercontribs' => 'Basà ant sëj travaj ëd $1.',
 'others' => 'àutri',
 'siteusers' => '$1, {{PLURAL:$2|utent|utent}} ëd {{SITENAME}}',
 'anonusers' => '{{SITENAME}} {{PLURAL:$2|utent|utent}} anònim $1',
-'creditspage' => 'Credit dla pàgina',
-'nocredits' => 'A-i é pa gnun crédit për sta pagina-sì.',
+'creditspage' => 'Paternità dla pàgina',
+'nocredits' => "A-i é gnun-a anformassion d'atribussion disponìbil për costa pàgina.",
 
 # Spam protection
 'spamprotectiontitle' => 'Filtror dla rumenta',

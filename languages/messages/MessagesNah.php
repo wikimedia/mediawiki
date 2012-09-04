@@ -588,7 +588,7 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'revertmerge' => 'Tiquīxipehuaz',
 
 # Diffs
-'history-title' => '"$1" tlahcuilōlloh ītlachiyaliz',
+'history-title' => '«$1» tlahcuilōlloh ītlaihittaliz',
 'lineno' => 'Pāntli $1:',
 'editundo' => 'Tichuelōz',
 'diff-multi' => '({{PLURAL:$1|Cē tlapatlaliztli nepantlah ahmo motta in ōquichīuh|$1 Tlapatlaliztli nepantlah ahmo mottah in ōquinchīuh}}  {{PLURAL:$2|cē tlatequitiltilīlli|$2 tlatequitiltilīltin}})',

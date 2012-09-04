@@ -3162,11 +3162,11 @@ The wiki server can't provide data in a format your client can read.",
 
 # Info page
 'pageinfo-title' => 'Інформація про " $1 "',
-'pageinfo-header-edits' => 'Редагування',
+'pageinfo-header-edits' => 'Історія редагувань',
 'pageinfo-views' => 'Кількість переглядів',
 'pageinfo-watchers' => 'Кількість спостерігачів',
-'pageinfo-edits' => 'Кількість редагувань',
-'pageinfo-authors' => 'Кількість унікальних авторів',
+'pageinfo-edits' => 'Загальна кількість редагувань',
+'pageinfo-authors' => 'Загальна кількість унікальних авторів',
 
 # Skin names
 'skinname-standard' => 'Стандартне',

@@ -2050,7 +2050,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'statistics-header-users' => 'Îstatistiksê karberî',
 'statistics-header-hooks' => 'Îstatistiksê binî',
 'statistics-articles' => 'Pelanê tedesteyî',
-'statistics-pages' => 'Peli',
+'statistics-pages' => 'Peley',
 'statistics-pages-desc' => 'Pelanê hemî ke wîkî de estê, pelanê mineqeşeyî, redireksiyon ucb... dehil o.',
 'statistics-files' => 'Dosyayê bar biye',
 'statistics-edits' => 'Amarê vurnayîşî ke wextê {{SITENAME}} ronayîşî ra',
@@ -2269,7 +2269,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'emailuser' => 'Ena karberi rê mesac bırse',
 'emailuser-title-target' => 'Na E-postaya {{GENDER:$1|karberi}}ya',
 'emailuser-title-notarget' => 'E-postaya karberi',
-'emailpage' => 'karberi re e-mail bışaw',
+'emailpage' => 'karberi re e-posta bırışê',
 'emailpagetext' => 'no/na karberi re e-posta erşawıtışi de şıma pê forma cêrıni eşkeni kar bıkerî.
 [[Special:Preferences|tercihanê şıma ye karberi]] de adresa e-posta ya ke şıma dayo, na adres qısmê adresa e-postayi de "From (kam ra)" asena, no sebebi ra gırewtox/e eşkeno/a direk cewab bıdo şıma.',
 'usermailererror' => 'xizmetê e-postayi xeta da:',

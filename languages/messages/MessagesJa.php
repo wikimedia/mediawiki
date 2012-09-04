@@ -1515,7 +1515,7 @@ $1",
 'allowemail' => '他の利用者からのメールを受け取る',
 'prefs-searchoptions' => '検索設定',
 'prefs-namespaces' => '名前空間',
-'defaultns' => 'または次の名前空間のみを検索：',
+'defaultns' => '指定した名前空間のみを検索:',
 'default' => '既定',
 'prefs-files' => 'ファイル',
 'prefs-custom-css' => 'カスタムCSS',
@@ -1767,10 +1767,10 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'recentchangeslinked-toolbox' => '関連ページの更新状況',
 'recentchangeslinked-title' => '「$1」と関連する変更',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に変更はありませんでした。',
-'recentchangeslinked-summary' => "これは、指定したページからリンクされている（または指定したカテゴリに含まれている）ページへの最近の変更の一覧です。
-[[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''になります。",
+'recentchangeslinked-summary' => "これは指定したページからリンクされている（または指定したカテゴリに含まれている）ページの最近の変更の一覧です。
+[[Special:Watchlist|自分のウォッチリスト]]にあるページは'''太字'''で表示されます。",
 'recentchangeslinked-page' => 'ページ名：',
-'recentchangeslinked-to' => '代わりに、指定したページへのリンク元での変更を表示',
+'recentchangeslinked-to' => '指定したページの「リンク元」ページの変更を表示',
 
 # Upload
 'upload' => 'ファイルをアップロード',
