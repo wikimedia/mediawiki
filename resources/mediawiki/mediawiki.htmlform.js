@@ -31,8 +31,8 @@ $.fn.goOut = function ( instantToggle ) {
 
 /**
  * Bind a function to the jQuery object via live(), and also immediately trigger
- * the function on the objects with an 'instant' paramter set to true
- * @param callback function taking one paramter, which is Bool true when the event
+ * the function on the objects with an 'instant' parameter set to true
+ * @param callback function taking one parameter, which is Bool true when the event
  *     is called immediately, and the EventArgs object when triggered from an event
  */
 $.fn.liveAndTestAtStart = function ( callback ){

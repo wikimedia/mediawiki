@@ -40,7 +40,7 @@
 				// Hide on focus
 				// Also listen for other events in case $input was
 				// already focused when the events were bound
-				.bind( 'focus drop keydown paste', function ( e ) {
+				.on( 'focus drop keydown paste', function ( e ) {
 					if ( $input.hasClass( 'placeholder' ) ) {
 						if ( e.type === 'drop' && e.originalEvent.dataTransfer ) {
 							// Support for drag&drop. Instead of inserting the dropped
