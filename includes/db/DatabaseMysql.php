@@ -203,7 +203,12 @@ class DatabaseMysql extends DatabaseBase {
 		wfSuppressWarnings();
 		$row = mysql_fetch_object( $res );
 		wfRestoreWarnings();
-		if( $this->lastErrno() ) {
+
+		$errno = $this->lastErrno();
+		// Unfortunately, mysql_fetch_object does not reset the last errno.
+		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
+		// these are the only errors mysql_fetch_object can cause.
+		if( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
@@ -221,7 +226,12 @@ class DatabaseMysql extends DatabaseBase {
 		wfSuppressWarnings();
 		$row = mysql_fetch_array( $res );
 		wfRestoreWarnings();
-		if ( $this->lastErrno() ) {
+
+		$errno = $this->lastErrno();
+		// Unfortunately, mysql_fetch_array does not reset the last errno.
+		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
+		// these are the only errors mysql_fetch_object can cause.
+		if( $errno == 2000 || $errno == 2013 ) {
 			throw new DBUnexpectedError( $this, 'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() ) );
 		}
 		return $row;
