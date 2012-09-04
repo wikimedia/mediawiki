@@ -488,67 +488,26 @@ class Xml {
 	 *
 	 * @param $name Mixed: Name and id for the drop-down
 	 * @param $list Mixed: Correctly formatted text (newline delimited) to be used to generate the options
-	 * @param $other Mixed: Text for the "Other reasons" option
+	 * @param $other Mixed: Text for the "Other reasons" option, or '' for not to use. 'other' will be the value for this.
 	 * @param $selected Mixed: Option which should be pre-selected
 	 * @param $class Mixed: CSS classes for the drop-down
 	 * @param $tabindex Mixed: Value of the tabindex attribute
 	 * @return string
 	 */
 	public static function listDropDown( $name = '', $list = '', $other = '', $selected = '', $class = '', $tabindex = null ) {
-		$optgroup = false;
-
-		$options = self::option( $other, 'other', $selected === 'other' );
-
-		foreach ( explode( "\n", $list ) as $option ) {
-			$value = trim( $option );
-			if ( $value == '' ) {
-				continue;
-			} elseif ( substr( $value, 0, 1 ) == '*' && substr( $value, 1, 1 ) != '*' ) {
-				// A new group is starting ...
-				$value = trim( substr( $value, 1 ) );
-				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
-				}
-				$options .= self::openElement( 'optgroup', array( 'label' => $value ) );
-				$optgroup = true;
-			} elseif ( substr( $value, 0, 2 ) == '**' ) {
-				// groupmember
-				$value = trim( substr( $value, 2 ) );
-				$options .= self::option( $value, $value, $selected === $value );
-			} else {
-				// groupless reason list
-				if ( $optgroup ) {
-					$options .= self::closeElement( 'optgroup' );
-				}
-				$options .= self::option( $value, $value, $selected === $value );
-				$optgroup = false;
-			}
-		}
-
-		if ( $optgroup ) {
-			$options .= self::closeElement( 'optgroup' );
-		}
-
-		$attribs = array();
-
-		if ( $name ) {
-			$attribs['id'] = $name;
-			$attribs['name'] = $name;
-		}
+		$select = new XmlSelect( $name, $name, $selected );
+		$parser = new XmlListDropDownParser( $list, $other, 'none', false );
+		$select->addOptions( $parser->getOptions() );
 
 		if ( $class ) {
-			$attribs['class'] = $class;
+			$select->setAttribute( 'class', $class );
 		}
 
 		if ( $tabindex ) {
-			$attribs['tabindex'] = $tabindex;
+			$select->setAttribute( 'tabindex', $tabindex );
 		}
 
-		return Xml::openElement( 'select', $attribs )
-			. "\n"
-			. $options
-			. "\n"
-			. Xml::closeElement( 'select' );
+		return $select->getHTML();
 	}
 
 	/**
@@ -942,6 +901,140 @@ class XmlSelect {
 		}
 
 		return Html::rawElement( 'select', $this->attributes, rtrim( $contents ) );
+	}
+}
+
+/**
+ * This class parses a textual list into a drop-down descriptor,
+ * the returned 'options' array is suitable for XmlSelect::addOptions()
+ * and various 'options' settings in HTMLForm fields.
+ */
+class XmlListDropDownParser {
+
+	protected $list = '';
+
+	protected $other = '';
+
+	protected $pipe = 'none';
+
+	protected $language = false;
+
+	protected $options = null;
+
+	/**
+	 * Create a parser with given data.
+	 *
+	 * @param $list Mixed: Correctly formatted text (newline delimited) to be used to generate the options
+	 * @param $other Mixed: Text for the "Other reasons" option, or '' for not to use. 'other' will be the value for this.
+	 * @param $pipe string: How to handle pipes in lines:
+	 *                      * 'none': Don't look for pipes. Use the whole line as both value and text.
+	 *                      * 'first': Split from the first pipe, use the first part as value and the second part as text.
+	 *                      * 'last': Split from the last pipe, use the first part as value and the second part as text.
+	 * @param $language Mixed: Language to use to find a localized text.
+	 *                     * false: don't localize text.
+	 *                     * null: use content language.
+	 *                     * true: use interface language.
+	 *                     * String: specified language code.
+	 */
+	public function __construct( $list = '', $other = '', $pipe = 'none', $language = false ) {
+		$this->list = $list;
+		$this->other = $other;
+		$this->pipe = $pipe;
+		$this->language = $language;
+	}
+
+	protected function parse() {
+		$options = array();
+		$optgroup = &$options;
+		if ( $this->other !== '' ) {
+			$options[$this->other] = 'other';
+		}
+
+		foreach ( explode( "\n", $this->list ) as $option ) {
+			$value = trim( $option );
+			if ( $value == '' ) {
+				continue;
+			} elseif ( substr( $value, 0, 1) == '*' && substr( $value, 1, 1) != '*' ) {
+				// A new group is starting ...
+				$value = trim( substr( $value, 1 ) );
+				$value = $this->makeLabel( $value );
+				$options[$value] = array();
+				$optgroup = &$options[$value];
+			} elseif ( substr( $value, 0, 2) == '**' ) {
+				// groupmember
+				$value = trim( substr( $value, 2 ) );
+				list( $text, $value ) = $this->makeOption( $value );
+				$optgroup[$text] = $value;
+			} else {
+				// groupless reason list, close any opening optgroup.
+				$optgroup = &$options;
+				list( $text, $value ) = $this->makeOption( $value );
+				$optgroup[$text] = $value;
+			}
+		}
+
+		$this->options = $options;
+	}
+
+	/**
+	 * Get the 'options' array.
+	 *
+	 * @return Array
+	 */
+	public function getOptions() {
+		if ( $this->options === null ) {
+			$this->parse();
+		}
+
+		return $this->options;
+	}
+
+	/**
+	 * Create an option.
+	 *
+	 * @param $line Mixed: A line in a textual list with prefixing asterisks removed.
+	 *
+	 * @return Array: array( $text, $value );
+	 */
+	protected function makeOption( $line ) {
+		if ( $this->pipe === 'none' || strpos( $line, '|' ) === false ) {
+			$value = $text = $line;
+		} else {
+			switch ( $this->pipe ) {
+			case 'first':
+				list( $value, $text ) = explode( '|', $line, 2 );
+				break;
+			case 'last':
+				list( $text, $value ) = explode( '|', strrev( $line ), 2 );
+				$text = strrev( $text );
+				$value = strrev( $value );
+				break;
+			default:
+				throw new MWException( 'Unknown $pipe argument for XmlListDropDownParser: ' . $this->pipe );
+			}
+		}
+
+		return array( $this->makeLabel( $text ), $value );
+	}
+
+	protected function makeLabel( $text ) {
+		if ( $this->language !== false ) {
+			$params = explode( '|', $text );
+			$msgKey = array_shift( $params );
+			$msg = wfMessage( $msgKey );
+			if ( $this->language !== true ) {
+				if ( $this->language === null ) {
+					$msg->inContentLanguage();
+				} else {
+					$msg->inLanguage( $this->language );
+				}
+			}
+			if ( $msg->exists() ) {
+				$text = $msg->params( $params )->text();
+			}
+		}
+
+		return $text;
 	}
 }
 

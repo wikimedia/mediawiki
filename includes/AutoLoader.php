@@ -235,6 +235,7 @@ $wgAutoloadLocalClasses = array(
 	'Xml' => 'includes/Xml.php',
 	'XmlDumpWriter' => 'includes/Export.php',
 	'XmlJsCode' => 'includes/Xml.php',
+	'XmlListDropDownParser' => 'includes/Xml.php',
 	'XMLReader2' => 'includes/Import.php',
 	'XmlSelect' => 'includes/Xml.php',
 
