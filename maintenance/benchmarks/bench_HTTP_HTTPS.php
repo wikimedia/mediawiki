@@ -1,6 +1,8 @@
 <?php
 /**
- * This come from r75429 message
+ * Benchmark HTTP request vs HTTPS request.
+ *
+ * This come from r75429 message.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +25,12 @@
  */
 
 require_once( __DIR__ . '/Benchmarker.php' );
+
+/**
+ * Maintenance script that benchmarks HTTP request vs HTTPS request.
+ *
+ * @ingroup Benchmark
+ */
 class bench_HTTP_HTTPS extends Benchmarker {
 
 	public function __construct() {

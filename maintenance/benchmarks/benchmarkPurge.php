@@ -1,6 +1,6 @@
 <?php
 /**
- * Squid purge benchmark script
+ * Benchmark for Squid purge.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,11 @@
 
 require_once( __DIR__ . '/Benchmarker.php' );
 
+/**
+ * Maintenance script that benchmarks Squid purge.
+ *
+ * @ingroup Benchmark
+ */
 class BenchmarkPurge extends Benchmarker {
 
 	public function __construct() {

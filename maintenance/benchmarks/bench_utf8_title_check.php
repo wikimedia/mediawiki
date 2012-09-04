@@ -1,5 +1,22 @@
 <?php
 /**
+ * Benchmark for using a regexp vs. mb_check_encoding to check for UTF-8 encoding.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @file
  * @ingroup Benchmark
  */
@@ -7,8 +24,10 @@
 require_once( __DIR__ . '/Benchmarker.php' );
 
 /**
- * This little benchmark executes the regexp used in Language->checkTitleEncoding() and compares its execution time
- * against that of mb_check_encoding, if available.
+ * This little benchmark executes the regexp used in Language->checkTitleEncoding()
+ * and compares its execution time against that of mb_check_encoding, if available.
+ *
+ * @ingroup Benchmark
  */
 class bench_utf8_title_check extends Benchmarker {
 
