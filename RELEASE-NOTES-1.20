@@ -229,7 +229,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   PCRE is compiled without support for unicode properties.
 * (bug 30390) Suggested file name on Special:Upload should not contain
   illegal characters.
-* (bug 27111) Cascading foreign file repos now fetch shared descriptions properly.
 * EXIF below sea level GPS altitude data is now shown correctly.
 * (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
 * (bug 39273) "Show changes" should not be incorrectly displayed in the Live Preview state.
