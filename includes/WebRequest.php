@@ -321,9 +321,10 @@ class WebRequest {
 	 * @param $arr Array
 	 * @param $name String
 	 * @param $default Mixed
+	 * @param $normalizeUnicode Whether to normalize Unicode in the returned value
 	 * @return mixed
 	 */
-	private function getGPCVal( $arr, $name, $default ) {
+	private function getGPCVal( $arr, $name, $default, $normalizeUnicode = true ) {
 		# PHP is so nice to not touch input data, except sometimes:
 		# http://us2.php.net/variables.external#language.variables.external.dot-in-names
 		# Work around PHP *feature* to avoid *bugs* elsewhere.
@@ -337,7 +338,9 @@ class WebRequest {
 					$data = $wgContLang->checkTitleEncoding( $data );
 				}
 			}
-			$data = $this->normalizeUnicode( $data );
+			if ( $normalizeUnicode ) {
+				$data = $this->normalizeUnicode( $data );
+			}
 			return $data;
 		} else {
 			taint( $default );
@@ -353,10 +356,11 @@ class WebRequest {
 	 *
 	 * @param $name String
 	 * @param $default String: optional default (or NULL)
+	 * @param $normalizeUnicode Whether to normalize Unicode in the returned value
 	 * @return String
 	 */
-	public function getVal( $name, $default = null ) {
-		$val = $this->getGPCVal( $this->data, $name, $default );
+	public function getVal( $name, $default = null, $normalizeUnicode = true ) {
+		$val = $this->getGPCVal( $this->data, $name, $default, $normalizeUnicode );
 		if( is_array( $val ) ) {
 			$val = $default;
 		}

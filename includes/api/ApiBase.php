@@ -55,6 +55,7 @@ abstract class ApiBase extends ContextSource {
 	const PARAM_REQUIRED = 8; // Boolean, is the parameter required?
 	/// @since 1.17
 	const PARAM_RANGE_ENFORCE = 9; // Boolean, if MIN/MAX are set, enforce (die) these? Only applies if TYPE='integer' Use with extreme caution
+	const PARAM_NORMALIZE_UNICODE = 10; // Boolean, should we normalize Unicode for a parameter? Defaults to true
 
 	const PROP_ROOT = 'ROOT'; // Name of property group that is on the root element of the result, i.e. not part of a list
 	const PROP_LIST = 'LIST'; // Boolean, is the result multiple items? Defaults to true for query modules, to false for other modules
@@ -905,6 +906,7 @@ abstract class ApiBase extends ContextSource {
 			$dupes = false;
 			$deprecated = false;
 			$required = false;
+			$normalizeUnicode = true;
 		} else {
 			$default = isset( $paramSettings[self::PARAM_DFLT] ) ? $paramSettings[self::PARAM_DFLT] : null;
 			$multi = isset( $paramSettings[self::PARAM_ISMULTI] ) ? $paramSettings[self::PARAM_ISMULTI] : false;
@@ -912,6 +914,7 @@ abstract class ApiBase extends ContextSource {
 			$dupes = isset( $paramSettings[self::PARAM_ALLOW_DUPLICATES] ) ? $paramSettings[self::PARAM_ALLOW_DUPLICATES] : false;
 			$deprecated = isset( $paramSettings[self::PARAM_DEPRECATED] ) ? $paramSettings[self::PARAM_DEPRECATED] : false;
 			$required = isset( $paramSettings[self::PARAM_REQUIRED] ) ? $paramSettings[self::PARAM_REQUIRED] : false;
+			$normalizeUnicode = isset( $paramSettings[self::PARAM_NORMALIZE_UNICODE] ) ? $paramSettings[self::PARAM_NORMALIZE_UNICODE] : true;
 
 			// When type is not given, and no choices, the type is the same as $default
 			if ( !isset( $type ) ) {
@@ -931,7 +934,7 @@ abstract class ApiBase extends ContextSource {
 
 			$value = $this->getRequest()->getCheck( $encParamName );
 		} else {
-			$value = $this->getRequest()->getVal( $encParamName, $default );
+			$value = $this->getRequest()->getVal( $encParamName, $default, $normalizeUnicode );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
 				$type = MWNamespace::getValidNamespaces();

@@ -679,18 +679,29 @@ class ApiPageSet extends ApiQueryBase {
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
+		global $wgContLang;
 		$genderCache = GenderCache::singleton();
 		$genderCache->doTitlesArray( $titles, __METHOD__ );
 
 		$linkBatch = new LinkBatch();
 
 		foreach ( $titles as $title ) {
-			$titleObj = is_string( $title ) ? Title::newFromText( $title ) : $title;
+			if ( is_string( $title ) ) {
+				// Normalize title for Unicode and create a Title object
+				$normTitle = $wgContLang->normalize( $title );
+				$titleObj = Title::newFromText( $normTitle );
+			} else {
+				$titleObj = $title;
+				$normTitle = $titleObj->getPrefixedText();
+			}
 			if ( !$titleObj ) {
 				// Handle invalid titles gracefully
-				$this->mAllpages[0][$title] = $this->mFakePageId;
-				$this->mInvalidTitles[$this->mFakePageId] = $title;
+				$this->mAllpages[0][$normTitle] = $this->mFakePageId;
+				$this->mInvalidTitles[$this->mFakePageId] = $normTitle;
 				$this->mFakePageId--;
+				if ( is_string( $title ) && $title !== $normTitle ) {
+					$this->mNormalizedTitles[$title] = $normTitle;
+				}
 				continue; // There's nothing else we can do
 			}
 			$unconvertedTitle = $titleObj->getPrefixedText();
@@ -701,7 +712,6 @@ class ApiPageSet extends ApiQueryBase {
 				$this->mInterwikiTitles[$titleObj->getPrefixedText()] = $iw;
 			} else {
 				// Variants checking
-				global $wgContLang;
 				if ( $this->mConvertTitles &&
 						count( $wgContLang->getVariants() ) > 1  &&
 						!$titleObj->exists() ) {
@@ -759,7 +769,8 @@ class ApiPageSet extends ApiQueryBase {
 	public function getAllowedParams() {
 		return array(
 			'titles' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_NORMALIZE_UNICODE => false,
 			),
 			'pageids' => array(
 				ApiBase::PARAM_TYPE => 'integer',
