@@ -1244,7 +1244,7 @@ $1",
 'prefs-emailconfirm-label' => 'پشتڕاست کردنەوەی ئیمەیل:',
 'prefs-textboxsize' => 'قەبارەی پەنجەرەی دەستکاریکردن',
 'youremail' => 'ئیمەیل:',
-'username' => 'ناوی به‌كارهێنه‌ر:',
+'username' => 'ناوی به‌کارھێنەر:',
 'uid' => 'ژمارەی بەکارھێنەر:',
 'prefs-memberingroups' => 'ئەندامی {{PLURAL:$1|گرووپی|گرووپەکانی}}:',
 'prefs-registration' => 'کاتی خۆتۆمارکردن:',
@@ -1285,12 +1285,12 @@ $1",
 
 # User rights
 'userrights' => 'بەڕێوەبردنی مافەکانی بەکارھێنەر',
-'userrights-lookup-user' => 'بەڕێوەبردنی گرووپەکانی بەکارهێنەران',
+'userrights-lookup-user' => 'بەڕێوەبردنی گرووپەکانی بەکارھێنەر',
 'userrights-user-editname' => 'ناوی بەکارهێنەرێک بنووسە:',
-'editusergroup' => 'گرووپەکانی بەکارهێنەر بگۆڕە',
+'editusergroup' => 'گرووپەکانی بەکارھێنەر دەستکاری بکە',
 'editinguser' => "گۆڕینی مافەکانی بەکارهێنەر '''[[User:$1|$1]]''' $2",
-'userrights-editusergroup' => 'دەستکاری کردنی گرووپەکانی بەکارهێنەران',
-'saveusergroups' => 'گرووپی بەکارهێنەران پاشەکەوت بکە',
+'userrights-editusergroup' => 'دەستکاریی گرووپەکانی بەکارهێنەر',
+'saveusergroups' => 'گرووپەکانی بەکارھێنەر پاشەکەوت بکە',
 'userrights-groupsmember' => 'ئەندامە لە:',
 'userrights-groups-help' => 'دەتوانی ئەو گرووپانەی ئەم بەکار‌هێنەرە تێیدایە بگۆڕیت:
 * چوارچێوەی نیشان‌کراو مانای ئەوەیە لەو گرووپەدا هەیە.
@@ -1930,7 +1930,7 @@ $1',
 'newuserlogpagetext' => 'ئەمە لۆگێکی دروستکردنی بەکارھێنەرە.',
 
 # Special:ListGroupRights
-'listgrouprights' => 'مافەکانی گرووپە بەکارھێنەرییەکان',
+'listgrouprights' => 'مافەکانی گرووپی بەکارھێنەر',
 'listgrouprights-summary' => 'ئەمە لیستێکە لە گرووپەکانی بەکارهێنەر لەسەر ئەم ویکی‌یە، دەگەڵ مافەکانی دەست‌پێ‌گەیشتنی هاوپەیوەندیان.
 لێرەدا لەوانەیە [[{{MediaWiki:Listgrouprights-helppage}}|زانیاری زیاترت]] دەست‌کەوێت سەبارەت بە مافە تاکەکەسیەکان.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">مافی دراوە</span>

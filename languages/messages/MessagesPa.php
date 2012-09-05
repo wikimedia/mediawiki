@@ -17,6 +17,7 @@
  * @author Sukh
  * @author Surinder.wadhawan
  * @author TariButtar
+ * @author Xqt
  * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
  */
@@ -1340,7 +1341,7 @@ to upload files.',
 'statistics-users-active-desc' => 'ਮੈਂਬਰ, ਜਿੰਨ੍ਹਾ ਨੇ ਆਖ਼ਰੀ {{PLURAL:$1|ਦਿਨ|$1 ਦਿਨਾਂ}} ਵਿਚ ਕੋਈ ਕੰਮ ਕੀਤਾ ਹੈ।',
 'statistics-mostpopular' => 'ਸਭ ਤੋਂ ਵੱਧ ਵੇਖੇ ਪੇਜ',
 
-'disambiguationspage' => 'ਗੁੰਝਲ ਖੋਲ੍ਹ',
+'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => 'ਦੋਹਰੇ ਰੀਡਿਰੈਕਟ',
 

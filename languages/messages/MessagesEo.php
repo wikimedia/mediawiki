@@ -3096,6 +3096,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-title' => 'Informoj por "$1"',
 'pageinfo-header-basic' => 'Baza informo',
 'pageinfo-header-edits' => 'Historio de redaktoj',
+'pageinfo-article-id' => 'Paĝa identigo',
 'pageinfo-robot-index' => 'Indeksebla',
 'pageinfo-robot-noindex' => 'Ne indeksebla',
 'pageinfo-views' => 'Nombro de rigardoj',

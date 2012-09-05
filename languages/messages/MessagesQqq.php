@@ -26,6 +26,7 @@
  * @author Brest
  * @author BrokenArrow
  * @author Byrial
+ * @author BáthoryPéter
  * @author Claudia Hattitten
  * @author Codex Sinaiticus
  * @author Crt
@@ -544,7 +545,7 @@ Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedi
 Appears in subtitle
 * $1 is a link to the page (HTML)',
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
-'youhavenewmessages' => 'The blue message appearing when someone edited your user talk page.
+'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 
