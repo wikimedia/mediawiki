@@ -761,6 +761,12 @@ class ApiMain extends ApiBase {
 				$this->dieReadOnly();
 			}
 		}
+
+		// Allow extensions to stop execution for arbitrary reasons.
+		$message = false;
+		if( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
+			$this->dieUsageMsg( $message );
+		}
 	}
 
 	/**
