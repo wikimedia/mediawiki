@@ -280,6 +280,24 @@ class Language {
 	}
 
 	/**
+	 * Return an actual language code.
+	 *
+	 * Historically the software has used several codes that do not match
+	 * official language codes. This normalizes those codes using $wgDummyLanguageCodes.
+	 *
+	 * @param $code string
+	 * @since 1.20
+	 * @return string
+	 */
+	public static function getLinguisticCode( $code ) {
+		global $wgDummyLanguageCodes;
+		if( isset( $wgDummyLanguageCodes[$code] ) ) {
+			return $wgDummyLanguageCodes[$code];
+		}
+		return $code;
+	}
+
+	/**
 	 * @param $code
 	 * @return String Name of the language class
 	 */
@@ -3699,7 +3717,7 @@ class Language {
 
 	/**
 	 * Get the code in Bcp47 format which we can use
-	 * inside of html lang="" tags.
+	 * inside of html lang="" tags. Resolves built-in codes to valid language codes.
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
 	 * htmlspecialchars() or similar.

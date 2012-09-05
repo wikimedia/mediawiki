@@ -237,6 +237,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36761) "Mark pages as visited" now submits previously established filter options.
 * (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
 * (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
+* (bug 32483) Simple English should not use lang="simple" for inter language links.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

@@ -420,6 +420,7 @@ class SkinTemplate extends Skin {
 				$nt = Title::newFromText( $l );
 				if ( $nt ) {
 					$ilLangName = Language::fetchLanguageName( $nt->getInterwiki() );
+					$langCode = wfBCP47( Language::getLinguisticCode( $nt->getInterWiki() ) );
 					if ( strval( $ilLangName ) === '' ) {
 						$ilLangName = $l;
 					} else {
@@ -430,8 +431,8 @@ class SkinTemplate extends Skin {
 						'text' => $ilLangName,
 						'title' => $nt->getText(),
 						'class' => $class,
-						'lang' => $nt->getInterwiki(),
-						'hreflang' => $nt->getInterwiki(),
+						'lang' => $langCode,
+						'hreflang' => $langCode,
 					);
 				}
 			}
