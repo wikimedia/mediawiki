@@ -70,7 +70,7 @@ class DBABagOStuff extends BagOStuff {
 	 */
 	protected function decode( $blob ) {
 		if ( !is_string( $blob ) ) {
-			return array( null, 0 );
+			return array( false, 0 );
 		} else {
 			return array(
 				unserialize( substr( $blob, 11 ) ),
@@ -111,7 +111,7 @@ class DBABagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
-	 * @return mixed|null|string
+	 * @return mixed
 	 */
 	public function get( $key ) {
 		wfProfileIn( __METHOD__ );
@@ -120,7 +120,7 @@ class DBABagOStuff extends BagOStuff {
 		$handle = $this->getReader();
 		if ( !$handle ) {
 			wfProfileOut( __METHOD__ );
-			return null;
+			return false;
 		}
 
 		$val = dba_fetch( $key, $handle );
@@ -129,13 +129,13 @@ class DBABagOStuff extends BagOStuff {
 		# Must close ASAP because locks are held
 		dba_close( $handle );
 
-		if ( !is_null( $val ) && $expiry && $expiry < time() ) {
+		if ( $val !== false && $expiry && $expiry < time() ) {
 			# Key is expired, delete it
 			$handle = $this->getWriter();
 			dba_delete( $key, $handle );
 			dba_close( $handle );
 			wfDebug( __METHOD__ . ": $key expired\n" );
-			$val = null;
+			$val = false;
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -182,7 +182,7 @@ class DBABagOStuff extends BagOStuff {
 			return false;
 		}
 
-		$ret = dba_delete( $key, $handle );
+		$ret = !dba_exists( $key, $handle ) || dba_delete( $key, $handle );
 		dba_close( $handle );
 
 		wfProfileOut( __METHOD__ );
@@ -243,18 +243,18 @@ class DBABagOStuff extends BagOStuff {
 		}
 
 		list( $value, $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
-		if ( !is_null( $value ) ) {
+		if ( $value !== false ) {
 			if ( $expiry && $expiry < time() ) {
 				# Key is expired, delete it
 				dba_delete( $key, $handle );
 				wfDebug( __METHOD__ . ": $key expired\n" );
-				$value = null;
+				$value = false;
 			} else {
 				$value += $step;
 				$blob = $this->encode( $value, $expiry );
 
 				$ret = dba_replace( $key, $blob, $handle );
-				$value = $ret ? $value : null;
+				$value = $ret ? $value : false;
 			}
 		}
 
@@ -262,7 +262,7 @@ class DBABagOStuff extends BagOStuff {
 
 		wfProfileOut( __METHOD__ );
 
-		return is_null( $value ) ? false : (int)$value;
+		return ( $value === false ) ? false : (int)$value;
 	}
 
 	function keys() {
