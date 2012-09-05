@@ -1,5 +1,10 @@
 <?php
 
+/**
+ *
+ * @group Database
+ *        ^--- needed for language cache stuff
+ */
 class TitleTest extends MediaWikiTestCase {
 
 	function testLegalChars() {
