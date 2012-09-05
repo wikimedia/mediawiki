@@ -3778,6 +3778,7 @@ $wgMessageStructure = array(
 		'api-error-unknownerror',
 		'api-error-uploaddisabled',
 		'api-error-verification-error',
+		'api-error-xframeoptions-deny',
 	),
 	'duration' => array(
 		'duration-seconds',

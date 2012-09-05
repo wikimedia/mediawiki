@@ -154,7 +154,7 @@
 			}
 
 			// Make the AJAX request
-			$.ajax( ajaxOptions )
+			var xhr = $.ajax( ajaxOptions )
 				// If AJAX fails, reject API call with error code 'http'
 				// and details in second argument.
 				.fail( function ( xhr, textStatus, exception ) {
@@ -173,6 +173,9 @@
 					} else if ( result.error ) {
 						var code = result.error.code === undefined ? 'unknown' : result.error.code;
 						apiDeferred.reject( code, result );
+					} else if ( xhr.getResponseHeader('X-Frame-Options') !== undefined &&
+						    xhr.getResponseHeader('X-Frame-Options').toLowerCase().indexOf( "deny" ) >= 0 ) {
+						apiDeferred.reject( 'xframeoptions-deny', result );
 					} else {
 						apiDeferred.resolve( result );
 					}
@@ -233,7 +236,8 @@
 		'fetchfileerror',
 		'fileexists-shared-forbidden',
 		'invalidtitle',
-		'notloggedin'
+		'notloggedin',
+		'xframeoptions-deny'
 	];
 
 	/**

@@ -4930,6 +4930,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'api-error-unknownerror'                  => 'Unknown error: "$1".',
 'api-error-uploaddisabled'                => 'Uploading is disabled on this wiki.',
 'api-error-verification-error'            => 'This file might be corrupt, or have the wrong extension.',
+'api-error-xframeoptions-deny'            => 'The API request is not allowed to be made from an HTML frame or iframe.',
 
 # Durations
 'duration-seconds'   => '$1 {{PLURAL:$1|second|seconds}}',
