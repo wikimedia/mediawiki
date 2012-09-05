@@ -1181,9 +1181,8 @@ class SkinTemplate extends Skin {
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
 			);
 
-			$logPage = SpecialPage::getTitleFor( 'Log' );
 			$nav_urls['log'] = array(
-				'href' => $logPage->getLocalUrl( array( 'user' => $rootUser ) )
+				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
 			);
 
 			if ( $this->getUser()->isAllowed( 'block' ) ) {
