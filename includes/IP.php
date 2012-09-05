@@ -714,6 +714,8 @@ class IP {
 	 * @return String: valid dotted quad IPv4 address or null
 	 */
 	public static function canonicalize( $addr ) {
+		$addr = preg_replace('/\%.*/i','',$addr); #remove zone info (Bug 35738)
+
 		if ( self::isValid( $addr ) ) {
 			return $addr;
 		}
