@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Session storage in object cache.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,6 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
+ * @ingroup Cache
+ */
+
+/**
+ * Session storage in object cache.
+ * Used if $wgSessionsInObjectCache is true.
+ *
  * @ingroup Cache
  */
 class ObjectCacheSessionHandler {
@@ -129,7 +136,7 @@ class ObjectCacheSessionHandler {
 	}
 
 	/**
-	 * Shutdown function. See the comment inside ObjectCacheSessionHandler::install 
+	 * Shutdown function. See the comment inside ObjectCacheSessionHandler::install
 	 * for rationale.
 	 */
 	static function handleShutdown() {

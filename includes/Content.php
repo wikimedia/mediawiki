@@ -1027,13 +1027,8 @@ class WikitextContent extends TextContent {
 			return $with; # XXX: copy first?
 		} if ( $section == 'new' ) {
 			# Inserting a new section
-			if ( $sectionTitle ) {
-				$subject = wfMessage( 'newsectionheaderdefaultlevel' )
-							->inContentLanguage()->params( $sectionTitle )->text();
-				$subject .= "\n\n";
-			} else {
-				$subject = '';
-			}
+			$subject = $sectionTitle ? wfMessage( 'newsectionheaderdefaultlevel' )
+				->rawParams( $sectionTitle )->inContentLanguage()->text() . "\n\n" : '';
 			if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
 				$text = strlen( trim( $oldtext ) ) > 0
 					? "{$oldtext}\n\n{$subject}{$text}"

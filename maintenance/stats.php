@@ -1,6 +1,6 @@
 <?php
 /**
- * Show statistics from the cache
+ * Show statistics from the cache.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance
  */
 
 require_once( __DIR__ . '/Maintenance.php' );
 
+/**
+ * Maintenance script that shows statistics from the cache.
+ *
+ * @ingroup Maintenance
+ */
 class CacheStats extends Maintenance {
 
 	public function __construct() {

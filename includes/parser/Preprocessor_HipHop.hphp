@@ -51,7 +51,7 @@ class Preprocessor_HipHop implements Preprocessor {
 	 * @param $args array
 	 * @return PPCustomFrame_HipHop
 	 */
-	function newCustomFrame( array $args ) {
+	function newCustomFrame( $args ) {
 		return new PPCustomFrame_HipHop( $this, $args );
 	}
 
@@ -109,7 +109,7 @@ class Preprocessor_HipHop implements Preprocessor {
 	 * @throws MWException
 	 * @return PPNode_HipHop_Tree
 	 */
-	function preprocessToObj( string $text, int $flags = 0 ) {
+	function preprocessToObj( $text, $flags = 0 ) {
 		wfProfileIn( __METHOD__ );
 
 		// Check cache.
@@ -1066,11 +1066,12 @@ class PPFrame_HipHop implements PPFrame {
 	 *
 	 * @param $args PPNode_HipHop_Array|array|bool
 	 * @param $title Title|bool
+	 * @param $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @throws MWException
 	 * @return PPTemplateFrame_HipHop
 	 */
-	function newChild( $args = false, $title = false ) {
+	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
 		$namedArgs = array();
 		$numberedArgs = array();
 		if ( $title === false ) {

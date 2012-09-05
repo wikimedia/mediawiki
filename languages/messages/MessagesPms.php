@@ -360,12 +360,12 @@ Na lista ëd pàgine speciaj bon-e a peul esse trovà ambelessì [[Special:Speci
 # General errors
 'error' => 'Eror',
 'databaseerror' => 'Eror ant la base dat',
-'dberrortext' => 'A l\'é capitaje n\'eror ëd sintassi ant la domanda mandà a la base dat.
-Sòn a peul vorèj dì n\'eror ant ël programa.
-L\'ùltima domanda mandà a la base dat a l\'é stàita:
+'dberrortext' => "A l'é capitaje n'eror ëd sintassi ant la domanda mandà a la base dij dat.
+Sòn a peul vorèj dì n'eror ant ël programa.
+L'ùltima arcesta mandà a la base dij dat a l'é stàita:
 <blockquote><tt>$1</tt></blockquote>
-da \'nt la funsion "<tt>$2</tt>".
-La base dat a l\'ha dane andré n\'eror "<tt>$3: $4</tt>".',
+da 'nt la funsion «<tt>$2</tt>».
+La base dij dat a l'ha dàit n'eror «<tt>$3: $4</tt>».",
 'dberrortextcl' => 'A-i é staje n\'eror ant la sintassi d\'anterogassion dla base dat.
 L\'ùltima anterogassion a l\'é stàita:
 "$1"
@@ -1720,7 +1720,7 @@ Peul desse ch'a veula modifiché la descrission dzora soa [pàgina ëd descrissi
 'shared-repo-from' => 'da $1',
 'shared-repo' => "n'archivi condivis",
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
-'upload-disallowed-here' => 'Për maleur it peule pa dzorscrive sta figura.',
+'upload-disallowed-here' => 'Për maleur a peul pa rampiassé sta figura.',
 
 # File reversion
 'filerevert' => "Buté torna $1 tanme ch'a l'era",
@@ -1858,7 +1858,7 @@ Adess a l'é na ridiression a [[$2]].",
 'mostlinkedtemplates' => 'Stamp pì dovrà',
 'mostcategories' => 'Artìcoj che a son marcà an pì categorìe',
 'mostimages' => 'Figure pì dovrà',
-'mostinterwikis' => 'Pagine con pi antërwiki',
+'mostinterwikis' => "Pàgine con pi 'd liure antërwiki",
 'mostrevisions' => 'Artìcoj pì modificà',
 'prefixindex' => "Tute le pàgine ch'a ancamin-o con",
 'prefixindex-namespace' => 'Tute le pàgine con prefiss ($1 spassi nominal)',
@@ -2005,7 +2005,7 @@ A peulo ess-ie d'[[{{MediaWiki:Listgrouprights-helppage}}|anformassion adissiona
 'mailnologintext' => "A dev [[Special:UserLogin|rintré ant ël sistema]]
 e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Preferences|sò gust]] për podèj mandé dij mëssagi ëd pòsta eletrònica a j'àutri Utent.",
 'emailuser' => "Mandeje un mëssagi eletrònich a st'utent-sì",
-'emailuser-title-target' => 'Manda e-mail a sto {{GENDER:$1|utent}}',
+'emailuser-title-target' => 'Mandé un mëssagi ëd pòsta eletrònica a cost {{GENDER:$1|utent}}',
 'emailuser-title-notarget' => "Mandeje un mëssagi ëd pòsta eletrònica a st'utent-sì",
 'emailpage' => "Mandeje un mëssagi ëd pòsta eletrònica a st'utent-sì",
 'emailpagetext' => "A peule dovré ël formolari sì-sota për mandé un mëssagi ëd pòsta eletrònica a st'utent-sì.
@@ -2755,26 +2755,26 @@ A peul visualisene la sorgiss",
 'tooltip-ca-nstab-main' => 'Vardé la pàgina ëd contnù.',
 'tooltip-ca-nstab-user' => 'Vardé la pàgina Utent.',
 'tooltip-ca-nstab-media' => 'Vardé la pàgina dël mojen',
-'tooltip-ca-nstab-special' => 'Costa a l',
+'tooltip-ca-nstab-special' => "Costa a l'é na pàgina special, a peul nen modifichela.",
 'tooltip-ca-nstab-project' => 'Vardé la pàgina proteta.',
-'tooltip-ca-nstab-image' => 'Vardé la pàgina dl',
-'tooltip-ca-nstab-mediawiki' => 'Vardé ël messagi ëd sistema.',
+'tooltip-ca-nstab-image' => "Vardé la pàgina dl'archivi",
+'tooltip-ca-nstab-mediawiki' => 'Vardé ël mëssagi ëd sistema.',
 'tooltip-ca-nstab-template' => 'Vardé lë stamp.',
-'tooltip-ca-nstab-help' => 'Vardé la pàgina d',
+'tooltip-ca-nstab-help' => "Vardé la pàgina d'agiut",
 'tooltip-ca-nstab-category' => 'Vardé la pàgina dla categorìa.',
-'tooltip-minoredit' => 'Marca sossì coma modìfica cita',
-'tooltip-save' => 'Salva le modìfiche',
+'tooltip-minoredit' => 'Marché sòn coma modìfica cita',
+'tooltip-save' => 'Salvé le modìfiche',
 'tooltip-preview' => 'Preuva dle modìfiche (mej sempe fela, prima che fé che salvé!)',
-'tooltip-diff' => "Fame vëdde che modìfiche che i l'hai faje al test.",
-'tooltip-compareselectedversions' => 'Fame ël paragon dle diferense antra le version selessionà.',
-'tooltip-watch' => 'Gionta sta pàgina-sì a la lista dle ròbe che im ten-o sot euj',
+'tooltip-diff' => "A fa vëdde le modìfiche che a l'ha faje al test",
+'tooltip-compareselectedversions' => 'Fé ël paragon dle diferense antra le version selessionà.',
+'tooltip-watch' => 'Gionté sta pàgina-sì a la lista dle ròbe che im ten-o sot euj',
 'tooltip-watchlistedit-normal-submit' => 'Gavé via ij tìtoj',
-'tooltip-watchlistedit-raw-submit' => 'Agiorné la Lista',
-'tooltip-recreate' => 'Creé torna la pàgina contut che a la sia staita scancelà',
+'tooltip-watchlistedit-raw-submit' => "Agiorné la lista dle ròbe ch'as ten-o sot-euj",
+'tooltip-recreate' => 'Creé torna la pàgina contut che a la sia stàita scancelà',
 'tooltip-upload' => 'Anandiesse a carié',
-'tooltip-rollback' => '"Rollback" a scansela con un clich le modìfiche fàite a costa pagina da l\'ùltim contribudor',
-'tooltip-undo' => '"Undo" a scansela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd vardé prima.
-At lassa gionté na spiegassion ëd la modìfica.',
+'tooltip-rollback' => "«Tiré andré» a gava con un colp ëd rat le modìfiche fàite a costa pàgina da l'ùltim contributor",
+'tooltip-undo' => "«Buté 'me ch'a l'era» a scancela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd preuva.
+A lassa gionté na spiegassion ant ël resumé.",
 'tooltip-preferences-save' => 'Salvé ij sò gust',
 'tooltip-summary' => 'Anserì un curt resumé',
 
@@ -2787,19 +2787,19 @@ At lassa gionté na spiegassion ëd la modìfica.',
 'monobook.js' => "/* Ës messagi-sì as dovrìa pa pì dovrelo; a sò pòst ch'a dòvra [[MediaWiki:common.js]] */",
 
 # Metadata
-'notacceptable' => 'Ël server dla wiki a-i la fa pa a provëdde dij dat ant na forma che sò programa local a peula lese.',
+'notacceptable' => 'Ës servent ëd la wiki a-i la fa pa a fornì dij dat ant na forma che sò programa local a peula lese.',
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|Utent|Utent}} anònim ëd {{SITENAME}}',
 'siteuser' => '$1, utent ëd {{SITENAME}}',
-'anonuser' => '{{SITENAME}} utent anònim $1',
-'lastmodifiedatby' => "Sta pàgina-sì a l'é staita modificà l'ùltima vira al $2, $1 da $3.",
+'anonuser' => "l'utent anònim $1 ëd {{SITENAME}}",
+'lastmodifiedatby' => "Costa pàgina-sì a l'é staita modificà l'ùltima vira a $2, $1 da $3.",
 'othercontribs' => 'Basà ant sëj travaj ëd $1.',
 'others' => 'àutri',
 'siteusers' => '$1, {{PLURAL:$2|utent|utent}} ëd {{SITENAME}}',
 'anonusers' => '{{SITENAME}} {{PLURAL:$2|utent|utent}} anònim $1',
-'creditspage' => 'Credit dla pàgina',
-'nocredits' => 'A-i é pa gnun crédit për sta pagina-sì.',
+'creditspage' => 'Paternità dla pàgina',
+'nocredits' => "A-i é gnun-a anformassion d'atribussion disponìbil për costa pàgina.",
 
 # Spam protection
 'spamprotectiontitle' => 'Filtror dla rumenta',
@@ -2815,32 +2815,32 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-title' => 'Anformassion për "$1"',
 'pageinfo-header-basic' => 'Anformassion ëd base',
 'pageinfo-header-edits' => 'Modìfiche',
-'pageinfo-header-restrictions' => 'Protession ëd pagina',
-'pageinfo-header-properties' => 'Proprietà ëd pagina',
-'pageinfo-display-title' => 'Visualisa tìtol',
+'pageinfo-header-restrictions' => 'Protession ëd la pàgina',
+'pageinfo-header-properties' => 'Proprietà ëd la pàgina',
+'pageinfo-display-title' => 'Tìtol visualisà',
 'pageinfo-default-sort' => "ciav d'ordinament për sòlit",
-'pageinfo-length' => 'Lunghëssa ëd pagina (an byte)',
+'pageinfo-length' => 'Longheur ëd la pàgina (an byte)',
 'pageinfo-article-id' => 'Identificativ ëd la pàgina',
 'pageinfo-robot-policy' => "Stat dël motor d'arserca",
-'pageinfo-robot-index' => 'Andicisàbil',
-'pageinfo-robot-noindex' => 'Pa andicisàbil',
+'pageinfo-robot-index' => 'Indesàbil',
+'pageinfo-robot-noindex' => 'Nen indesàbil',
 'pageinfo-views' => 'Nùmer ëd vìsite',
 'pageinfo-watchers' => "Vàire ch'a ten-o sot-euj la pàgina",
-'pageinfo-redirects-name' => 'Rediression a sta pagina-sì',
-'pageinfo-subpages-name' => 'Sotpagine dë sta pagina',
-'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|rediression|rediression}}; $3 {{PLURAL:$3|non-rediression|non-rediression}})',
-'pageinfo-firstuser' => 'Creator ëd la pagina',
-'pageinfo-firsttime' => 'Data ëd creassion ëd la pagina',
-'pageinfo-lastuser' => 'Ultim editor',
+'pageinfo-redirects-name' => 'Ridiression a sta pàgina-sì',
+'pageinfo-subpages-name' => 'Sot-pàgine ëd costa pàgina',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ridiression|ridiression}}; $3 {{PLURAL:$3|nen ridiression|nen ridiression}})',
+'pageinfo-firstuser' => 'Creator ëd la pàgina',
+'pageinfo-firsttime' => 'Data ëd creassion ëd la pàgina',
+'pageinfo-lastuser' => 'Ùltim contributor',
 'pageinfo-lasttime' => "Data ëd l'ùltima modìfica",
 'pageinfo-edits' => 'Nùmer ëd modìfiche',
 'pageinfo-authors' => "Nùmer d'autor diferent",
-'pageinfo-recent-edits' => "Nùmer ëd modìfiche recente (an drinta a j'ùltim $1)",
-'pageinfo-recent-authors' => "Nùmer recent d'autor diferent",
-'pageinfo-restriction' => 'Protession ëd pagina (<code>{{lcfirst:$1}}</code>)',
-'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgic|Paròle màgiche}} ($1)',
+'pageinfo-recent-edits' => "Nùmer ëd modìfiche recente (ant j'ùltim $1)",
+'pageinfo-recent-authors' => "Nùmer d'autor diferent recent",
+'pageinfo-restriction' => 'Protession ëd la pàgina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgica|Paròle màgiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
-'pageinfo-templates' => 'Trascludù {{PLURAL:$1|stamp|stamp}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marca coma verificà',
@@ -2884,7 +2884,7 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'file-info-size-pages' => "$1 × $2 pontin, dimension ëd l'archivi: $3, sòrt MIME: $4, $5 {{PLURAL:$5|pàgina|pàgine}}",
 'file-nohires' => 'Gnun-a risolussion pì bela disponìbil.',
 'svg-long-desc' => "archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3",
-'svg-long-desc-animated' => "Archivi SVG animà, nominalment $1 × $2 pixel, amzura dl'archivi: $3",
+'svg-long-desc-animated' => "Archivi SVG animà, dimension $1 × $2 pontin, amzura dl'archivi: $3",
 'show-big-image' => 'Version a amzura pijn-a',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Àutra arzolussion|Àutre arzolussion}}: $1.',
@@ -2894,7 +2894,7 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'file-info-png-looped' => 'an sìrcol',
 'file-info-png-repeat' => 'sonà $1 {{PLURAL:$1|vira|vire}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|quàder|quàder}}',
-'file-no-thumb-animation' => "'''Nòta: Për limitassion técniche, le miniadure dë sto archivi a saran pa animà.'''",
+'file-no-thumb-animation' => "'''Nòta: Për dle limitassion técniche, le miniadure ëd s'archivi a saran pa animà.'''",
 'file-no-thumb-animation-gif' => "'''Nòta: Për limitassion técniche, le miniadure ëd figure GIF a àuta arzolussion com costa a saran pa animà.'''",
 
 # Special:NewFiles

@@ -138,7 +138,7 @@ class ApiQueryUsers extends ApiQueryBase {
 
 				if ( isset( $this->prop['groups'] ) ) {
 					if ( !isset( $data[$name]['groups'] ) ) {
-						$data[$name]['groups'] = self::getAutoGroups( $user );
+						$data[$name]['groups'] = $user->getAutomaticGroups();
 					}
 
 					if ( !is_null( $row->ug_group ) ) {
@@ -148,7 +148,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['implicitgroups'] ) && !isset( $data[$name]['implicitgroups'] ) ) {
-					$data[$name]['implicitgroups'] =  self::getAutoGroups( $user );
+					$data[$name]['implicitgroups'] =  $user->getAutomaticGroups();
 				}
 
 				if ( isset( $this->prop['rights'] ) ) {
@@ -249,20 +249,15 @@ class ApiQueryUsers extends ApiQueryBase {
 
 	/**
 	* Gets all the groups that a user is automatically a member of (implicit groups)
+	*
+	* @deprecated since 1.20; call User::getAutomaticGroups() directly.
 	* @param $user User
 	* @return array
 	*/
 	public static function getAutoGroups( $user ) {
-		// FIXME this logic is duplicated from User::getEffectiveGroups(), centralize this
-		$groups = array();
-		$groups[] = '*';
+		wfDeprecated( __METHOD__, '1.20' );
 
-		if ( !$user->isAnon() ) {
-			$groups[] = 'user';
-			$groups = array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
-		}
-
-		return $groups;
+		return $user->getAutomaticGroups();
 	}
 
 	public function getCacheMode( $params ) {

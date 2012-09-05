@@ -632,10 +632,11 @@ abstract class ContentHandler {
 			{
 				$truncatedtext = $newContent->getTextForSummary(
 					250
-						- strlen( wfMsgForContent( 'autoredircomment' ) )
+						- strlen( wfMessage( 'autoredircomment' )->inContentLanguage()->text() )
 						- strlen( $rt->getFullText() ) );
 
-				return wfMsgForContent( 'autoredircomment', $rt->getFullText(), $truncatedtext );
+				return wfMessage( 'autoredircomment', $rt->getFullText() )
+						->rawParams( $truncatedtext )->inContentLanguage()->text();
 			}
 		}
 
@@ -645,14 +646,15 @@ abstract class ContentHandler {
 			// the summary.
 
 			$truncatedtext = $newContent->getTextForSummary(
-				200 - strlen( wfMsgForContent( 'autosumm-new' ) ) );
+				200 - strlen( wfMessage( 'autosumm-new' )->inContentLanguage()->text() ) );
 
-			return wfMsgForContent( 'autosumm-new', $truncatedtext );
+			return wfMessage( 'autosumm-new' )->rawParams( $truncatedtext )
+					->inContentLanguage()->text();
 		}
 
 		// Blanking auto-summaries
 		if ( !empty( $oldContent ) && $oldContent->getSize() > 0 && $newContent->getSize() == 0 ) {
-			return wfMsgForContent( 'autosumm-blank' );
+			return wfMessage( 'autosumm-blank' )->inContentLanguage()->text();
 		} elseif ( !empty( $oldContent )
 			&& $oldContent->getSize() > 10 * $newContent->getSize()
 			&& $newContent->getSize() < 500 )
@@ -660,14 +662,14 @@ abstract class ContentHandler {
 			// Removing more than 90% of the article
 
 			$truncatedtext = $newContent->getTextForSummary(
-				200 - strlen( wfMsgForContent( 'autosumm-replace' ) ) );
+				200 - strlen( wfMessage( 'autosumm-replace' )->inContentLanguage()->text() ) );
 
-			return wfMsgForContent( 'autosumm-replace', $truncatedtext );
+			return wfMessage( 'autosumm-replace' )->rawParams( $truncatedtext )
+					->inContentLanguage()->text();
 		}
 
 		// If we reach this point, there's no applicable auto-summary for our
 		// case, so our auto-summary is empty.
-
 		return '';
 	}
 
@@ -749,12 +751,16 @@ abstract class ContentHandler {
 		if ( $blank ) {
 			// The current revision is blank and the one before is also
 			// blank. It's just not our lucky day
-			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
+			$reason = wfMessage( 'exbeforeblank', '$1' )->inContentLanguage()->text();
 		} else {
 			if ( $onlyAuthor ) {
-				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+				$reason = wfMessage(
+					'excontentauthor',
+					'$1',
+					$onlyAuthor
+				)->inContentLanguage()->text();
 			} else {
-				$reason = wfMsgForContent( 'excontent', '$1' );
+				$reason = wfMessage( 'excontent', '$1' )->inContentLanguage()->text();
 			}
 		}
 

@@ -26,6 +26,12 @@
 
 require_once( __DIR__ . '/Maintenance.php' );
 
+/**
+ * Maintenance script that updates page_restrictions table from
+ * old page_restriction column.
+ *
+ * @ingroup Maintenance
+ */
 class UpdateRestrictions extends Maintenance {
 	public function __construct() {
 		parent::__construct();

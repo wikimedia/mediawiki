@@ -1,7 +1,7 @@
 <?php
 /**
- * Script will find all rows in the categorylinks table whose collation is
- * out-of-date (cl_collation != $wgCategoryCollation) and repopulate cl_sortkey
+ * Find all rows in the categorylinks table whose collation is out-of-date
+ * (cl_collation != $wgCategoryCollation) and repopulate cl_sortkey
  * using the page title and cl_sortkey_prefix.
  *
  * This program is free software; you can redistribute it and/or modify
@@ -28,6 +28,12 @@
 
 require_once( __DIR__ . '/Maintenance.php' );
 
+/**
+ * Maintenance script that will find all rows in the categorylinks table
+ * whose collation is out-of-date.
+ *
+ * @ingroup Maintenance
+ */
 class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 50; // Number of rows to process in one batch
 	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
@@ -53,8 +59,8 @@ TEXT;
 			'collation, though, so it may miss out-of-date rows with a different, ' .
 			'even older collation.', false, true );
 		$this->addOption( 'target-collation', 'Set this to the new collation type to ' .
-			'use instead of $wgCategoryCollation. Usually you should not use this, ' . 
-			'you should just update $wgCategoryCollation in LocalSettings.php.', 
+			'use instead of $wgCategoryCollation. Usually you should not use this, ' .
+			'you should just update $wgCategoryCollation in LocalSettings.php.',
 			false, true );
 		$this->addOption( 'dry-run', 'Don\'t actually change the collations, just ' .
 			'compile statistics.' );

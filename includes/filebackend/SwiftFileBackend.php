@@ -210,13 +210,21 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !strlen( $obj->content_type ) ) { // special case
 				$obj->content_type = 'unknown/unknown';
 			}
+			// Set the Content-Disposition header if requested
+			if ( isset( $params['disposition'] ) ) {
+				$obj->headers['Content-Disposition'] = $params['disposition'];
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
-				$handle = $obj->write_async( $params['content'] );
-				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $handle );
-				$status->value->affectedObjects[] = $obj;
+				$op = $obj->write_async( $params['content'] );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Create', $op );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$status->value->affectedObjects[] = $obj;
+				}
 			} else { // actually write the object in Swift
 				$obj->write( $params['content'] );
-				$this->purgeCDNCache( array( $obj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $obj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -292,6 +300,10 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( !strlen( $obj->content_type ) ) { // special case
 				$obj->content_type = 'unknown/unknown';
 			}
+			// Set the Content-Disposition header if requested
+			if ( isset( $params['disposition'] ) ) {
+				$obj->headers['Content-Disposition'] = $params['disposition'];
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				wfSuppressWarnings();
 				$fp = fopen( $params['src'], 'rb' );
@@ -299,14 +311,18 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( !$fp ) {
 					$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
 				} else {
-					$handle = $obj->write_async( $fp, filesize( $params['src'] ), true );
-					$status->value = new SwiftFileOpHandle( $this, $params, 'Store', $handle );
+					$op = $obj->write_async( $fp, filesize( $params['src'] ), true );
+					$status->value = new SwiftFileOpHandle( $this, $params, 'Store', $op );
 					$status->value->resourcesToClose[] = $fp;
-					$status->value->affectedObjects[] = $obj;
+					if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+						$status->value->affectedObjects[] = $obj;
+					}
 				}
 			} else { // actually write the object in Swift
 				$obj->load_from_filename( $params['src'], true ); // calls $obj->write()
-				$this->purgeCDNCache( array( $obj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $obj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -374,13 +390,21 @@ class SwiftFileBackend extends FileBackendStore {
 		// (b) Actually copy the file to the destination
 		try {
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
+			$hdrs = array(); // source file headers to override with new values
+			if ( isset( $params['disposition'] ) ) {
+				$hdrs['Content-Disposition'] = $params['disposition'];
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
-				$handle = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel );
-				$status->value = new SwiftFileOpHandle( $this, $params, 'Copy', $handle );
-				$status->value->affectedObjects[] = $dstObj;
+				$op = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel, null, $hdrs );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Copy', $op );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$status->value->affectedObjects[] = $dstObj;
+				}
 			} else { // actually write the object in Swift
-				$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel );
-				$this->purgeCDNCache( array( $dstObj ) );
+				$sContObj->copy_object_to( $srcRel, $dContObj, $dstRel, null, $hdrs );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $dstObj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -445,14 +469,23 @@ class SwiftFileBackend extends FileBackendStore {
 		try {
 			$srcObj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
+			$hdrs = array(); // source file headers to override with new values
+			if ( isset( $params['disposition'] ) ) {
+				$hdrs['Content-Disposition'] = $params['disposition'];
+			}
 			if ( !empty( $params['async'] ) ) { // deferred
-				$handle = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel );
-				$status->value = new SwiftFileOpHandle( $this, $params, 'Move', $handle );
+				$op = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel, null, $hdrs );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Move', $op );
 				$status->value->affectedObjects[] = $srcObj;
-				$status->value->affectedObjects[] = $dstObj;
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$status->value->affectedObjects[] = $dstObj;
+				}
 			} else { // actually write the object in Swift
-				$sContObj->move_object_to( $srcRel, $dContObj, $dstRel );
-				$this->purgeCDNCache( array( $srcObj, $dstObj ) );
+				$sContObj->move_object_to( $srcRel, $dContObj, $dstRel, null, $hdrs );
+				$this->purgeCDNCache( array( $srcObj ) );
+				if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
+					$this->purgeCDNCache( array( $dstObj ) );
+				}
 			}
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
@@ -493,8 +526,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$sContObj = $this->getContainer( $srcCont );
 			$srcObj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
 			if ( !empty( $params['async'] ) ) { // deferred
-				$handle = $sContObj->delete_object_async( $srcRel );
-				$status->value = new SwiftFileOpHandle( $this, $params, 'Delete', $handle );
+				$op = $sContObj->delete_object_async( $srcRel );
+				$status->value = new SwiftFileOpHandle( $this, $params, 'Delete', $op );
 				$status->value->affectedObjects[] = $srcObj;
 			} else { // actually write the object in Swift
 				$sContObj->delete_object( $srcRel );
@@ -989,11 +1022,8 @@ class SwiftFileBackend extends FileBackendStore {
 			return null;
 		}
 
-		# Check the recursion guard to avoid loops when filling metadata
-		if ( empty( $params['nostat'] ) && !$this->fileExists( $params ) ) {
-			return null;
-		}
-
+		// Blindly create a tmp file and stream to it, catching any exception if the file does
+		// not exist. Also, doing a stat here will cause infinite loops when filling metadata.
 		$tmpFile = null;
 		try {
 			$sContObj = $this->getContainer( $srcCont );
@@ -1001,7 +1031,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// Get source file extension
 			$ext = FileBackend::extensionFromPath( $srcRel );
 			// Create a new temporary file...
-			$tmpFile = TempFSFile::factory( wfBaseName( $srcRel ) . '_', $ext );
+			$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
 			if ( $tmpFile ) {
 				$handle = fopen( $tmpFile->getPath(), 'wb' );
 				if ( $handle ) {
@@ -1012,6 +1042,8 @@ class SwiftFileBackend extends FileBackendStore {
 				}
 			}
 		} catch ( NoSuchContainerException $e ) {
+			$tmpFile = null;
+		} catch ( NoSuchObjectException $e ) {
 			$tmpFile = null;
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$tmpFile = null;

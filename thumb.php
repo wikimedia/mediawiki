@@ -204,27 +204,34 @@ function wfStreamThumb( array $params ) {
 		}
 	}
 
+	$thumbName = $img->thumbName( $params );
+	if ( !strlen( $thumbName ) ) { // invalid params?
+		wfThumbError( 400, 'The specified thumbnail parameters are not valid.' );
+		wfProfileOut( __METHOD__ );
+		return;
+	}
+
+	$disposition = $img->getThumbDisposition( $thumbName );
+	$headers[] = "Content-Disposition: $disposition";
+
 	// Stream the file if it exists already...
 	try {
-		$thumbName = $img->thumbName( $params );
-		if ( strlen( $thumbName ) ) { // valid params?
-			// For 404 handled thumbnails, we only use the the base name of the URI
-			// for the thumb params and the parent directory for the source file name.
-			// Check that the zone relative path matches up so squid caches won't pick
-			// up thumbs that would not be purged on source file deletion (bug 34231).
-			if ( isset( $params['rel404'] ) // thumbnail was handled via 404
-				&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
-			{
-				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
-				wfProfileOut( __METHOD__ );
-				return;
-			}
-			$thumbPath = $img->getThumbPath( $thumbName );
-			if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-				$img->getRepo()->streamFile( $thumbPath, $headers );
-				wfProfileOut( __METHOD__ );
-				return;
-			}
+		// For 404 handled thumbnails, we only use the the base name of the URI
+		// for the thumb params and the parent directory for the source file name.
+		// Check that the zone relative path matches up so squid caches won't pick
+		// up thumbs that would not be purged on source file deletion (bug 34231).
+		if ( isset( $params['rel404'] ) // thumbnail was handled via 404
+			&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
+		{
+			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+		$thumbPath = $img->getThumbPath( $thumbName );
+		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+			$img->getRepo()->streamFile( $thumbPath, $headers );
+			wfProfileOut( __METHOD__ );
+			return;
 		}
 	} catch ( MWException $e ) {
 		wfThumbError( 500, $e->getHTML() );

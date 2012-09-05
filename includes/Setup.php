@@ -332,9 +332,6 @@ if ( !$wgEnotifMinorEdits ) {
 foreach( $wgDisabledActions as $action ){
 	$wgActions[$action] = false;
 }
-if( !$wgAllowPageInfo ){
-	$wgActions['info'] = false;
-}
 
 if ( !$wgHtml5Version && $wgHtml5 && $wgAllowRdfaAttributes ) {
 	# see http://www.w3.org/TR/rdfa-in-html/#document-conformance

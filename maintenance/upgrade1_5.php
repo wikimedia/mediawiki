@@ -252,7 +252,7 @@ class FiveUpgrade extends Maintenance {
 		$this->chunkSize  = $chunksize;
 		$this->chunkFinal = $final;
 		$this->chunkCount = 0;
-		$this->chunkStartTime = wfTime();
+		$this->chunkStartTime = microtime( true );
 		$this->chunkOptions = array( 'IGNORE' );
 		$this->chunkTable = $table;
 		$this->chunkFunction = $fname;
@@ -273,7 +273,7 @@ class FiveUpgrade extends Maintenance {
 			$this->insertChunk( $chunk );
 
 			$this->chunkCount += count( $chunk );
-			$now = wfTime();
+			$now = microtime( true );
 			$delta = $now - $this->chunkStartTime;
 			$rate = $this->chunkCount / $delta;
 

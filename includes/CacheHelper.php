@@ -143,9 +143,17 @@ class CacheHelper implements ICacheHelper {
 	 * Function that gets called when initialization is done.
 	 *
 	 * @since 1.20
-	 * @var function
+	 * @var callable
 	 */
 	protected $onInitHandler = false;
+
+	/**
+	 * Elements to build a cache key with.
+	 *
+	 * @since 1.20
+	 * @var array
+	 */
+	protected $cacheKey = array();
 
 	/**
 	 * Sets if the cache should be enabled or not.
@@ -338,8 +346,13 @@ class CacheHelper implements ICacheHelper {
 	 * @since 1.20
 	 *
 	 * @return string
+	 * @throws MWException
 	 */
 	protected function getCacheKeyString() {
+		if ( $this->cacheKey === array() ) {
+			throw new MWException( 'No cache key set, so cannot obtain or save the CacheHelper values.' );
+		}
+
 		return call_user_func_array( 'wfMemcKey', $this->cacheKey );
 	}
 

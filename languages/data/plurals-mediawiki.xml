@@ -6,30 +6,30 @@
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>
 		</pluralRules>
+		<pluralRules locales="dsb">
+			<pluralRule count="one">n mod 100 is 1</pluralRule>
+			<pluralRule count="two">n mod 100 is 2</pluralRule>
+			<pluralRule count="few">n mod 100 in 3..4</pluralRule>
+		</pluralRules>
+		<pluralRules locales="cu">
+			<pluralRule count="one">n mod 10 is 1</pluralRule>
+			<pluralRule count="two">n mod 10 is 2</pluralRule>
+			<pluralRule count="few">n mod 10 in 3..4</pluralRule>
+		</pluralRules>
+		<!-- Plural form transformations
+		Based on this discussion: http://translatewiki.net/wiki/Thread:Support/New_plural_rules_for_Scots_Gaelic_(gd)
+		$forms[0] - 1
+		$forms[1] - 2
+		$forms[2] - 11
+		$forms[3] - 12
+		$forms[4] - 3-10, 13-19
+		$forms[5] - 0, 20, rest -->
+		<pluralRules locales="gd">
+			<pluralRule count="one">n is 1</pluralRule>
+			<pluralRule count="two">n is 2</pluralRule>
+			<pluralRule count="elevan">n is 11</pluralRule>
+			<pluralRule count="twelve">n is 12</pluralRule>
+			<pluralRule count="few">n in 3..10 or n in 13..19</pluralRule>
+		</pluralRules>
 	</plurals>
-	<pluralRules locales="dsb">
-		<pluralRule count="one">n mod 100 is 1</pluralRule>
-		<pluralRule count="two">n mod 100 is 2</pluralRule>
-		<pluralRule count="few">n mod 100 in 3..4</pluralRule>
-	</pluralRules>
-	<pluralRules locales="cu">
-		<pluralRule count="one">n mod 10 is 1</pluralRule>
-		<pluralRule count="two">n mod 10 is 2</pluralRule>
-		<pluralRule count="few">n mod 10 in 3..4</pluralRule>
-	</pluralRules>
-	<!-- Plural form transformations
-	Based on this discussion: http://translatewiki.net/wiki/Thread:Support/New_plural_rules_for_Scots_Gaelic_(gd)
-	$forms[0] - 1
-	$forms[1] - 2
-	$forms[2] - 11
-	$forms[3] - 12
-	$forms[4] - 3-10, 13-19
-	$forms[5] - 0, 20, rest -->
-	<pluralRules locales="gd">
-		<pluralRule count="one">n is 1</pluralRule>
-		<pluralRule count="two">n is 2</pluralRule>
-		<pluralRule count="elevan">n is 11</pluralRule>
-		<pluralRule count="twelve">n is 12</pluralRule>
-		<pluralRule count="few">n in 3..10 or n in 13..19</pluralRule>
-	</pluralRules>
 </supplementalData>

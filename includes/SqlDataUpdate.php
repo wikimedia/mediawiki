@@ -36,11 +36,16 @@ abstract class SqlDataUpdate extends DataUpdate {
 	protected $mOptions;       //!< SELECT options to be used (array)
 
 	private   $mHasTransaction; //!< bool whether a transaction is open on this object (internal use only!)
+	protected $mUseTransaction; //!< bool whether this update should be wrapped in a transaction
 
 	/**
 	 * Constructor
-	**/
-	public function __construct( ) {
+	 *
+	 * @param bool $withTransaction whether this update should be wrapped in a transaction (default: true).
+	 *             A transaction is only started if no transaction is already in progress,
+	 *             see beginTransaction() for details.
+	 **/
+	public function __construct( $withTransaction = true ) {
 		global $wgAntiLockFlags;
 
 		parent::__construct( );
@@ -51,17 +56,23 @@ abstract class SqlDataUpdate extends DataUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 
+		// @todo: get connection only when it's needed? make sure that doesn't break anything, especially transactions!
+		$this->mDb = wfGetDB( DB_MASTER );
+
+		$this->mWithTransaction = $withTransaction;
 		$this->mHasTransaction = false;
 	}
 
 	/**
-	 * Begin a database transaction.
+	 * Begin a database transaction, if $withTransaction was given as true in the constructor for this SqlDataUpdate.
 	 *
-	 * Because nested transactions are not supportred by the Database class, this implementation
-	 * checkes Database::trxLevel() and only opens a transaction if none is yet active.
+	 * Because nested transactions are not supported by the Database class, this implementation
+	 * checks Database::trxLevel() and only opens a transaction if none is already active.
 	 */
 	public function beginTransaction() {
-		$this->mDb = wfGetDB( DB_MASTER );
+		if ( !$this->mWithTransaction ) {
+			return;
+		}
 
 		// NOTE: nested transactions are not supported, only start a transaction if none is open
 		if ( $this->mDb->trxLevel() === 0 ) {
@@ -76,6 +87,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	public function commitTransaction() {
 		if ( $this->mHasTransaction ) {
 			$this->mDb->commit( get_class( $this ) . '::commitTransaction' );
+			$this->mHasTransaction = false;
 		}
 	}
 
@@ -85,6 +97,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	public function abortTransaction() {
 		if ( $this->mHasTransaction ) { //XXX: actually... maybe always?
 			$this->mDb->rollback( get_class( $this ) . '::abortTransaction' );
+			$this->mHasTransaction = false;
 		}
 	}
 

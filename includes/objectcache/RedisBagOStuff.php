@@ -1,4 +1,25 @@
 <?php
+/**
+ * Object caching using Redis (http://redis.io/).
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
 
 class RedisBagOStuff extends BagOStuff {
 	protected $connectTimeout, $persistent, $password, $automaticFailover;
@@ -9,16 +30,16 @@ class RedisBagOStuff extends BagOStuff {
 	protected $servers;
 
 	/**
-	 * A cache of Redis objects, representing connections to Redis servers. 
+	 * A cache of Redis objects, representing connections to Redis servers.
 	 * The key is the server name.
 	 */
 	protected $conns = array();
 
 	/**
-	 * An array listing "dead" servers which have had a connection error in 
-	 * the past. Servers are marked dead for a limited period of time, to 
+	 * An array listing "dead" servers which have had a connection error in
+	 * the past. Servers are marked dead for a limited period of time, to
 	 * avoid excessive overhead from repeated connection timeouts. The key in
-	 * the array is the server name, the value is the UNIX timestamp at which 
+	 * the array is the server name, the value is the UNIX timestamp at which
 	 * the server is resurrected.
 	 */
 	protected $deadServers = array();
@@ -26,9 +47,9 @@ class RedisBagOStuff extends BagOStuff {
 	/**
 	 * Construct a RedisBagOStuff object. Parameters are:
 	 *
-	 *   - servers: An array of server names. A server name may be a hostname, 
+	 *   - servers: An array of server names. A server name may be a hostname,
 	 *     a hostname/port combination or the absolute path of a UNIX socket.
-	 *     If a hostname is specified but no port, the standard port number 
+	 *     If a hostname is specified but no port, the standard port number
 	 *     6379 will be used. Required.
 	 *
 	 *   - connectTimeout: The timeout for new connections, in seconds. Optional,
@@ -37,16 +58,16 @@ class RedisBagOStuff extends BagOStuff {
 	 *   - persistent: Set this to true to allow connections to persist across
 	 *     multiple web requests. False by default.
 	 *
-	 *   - password: The authentication password, will be sent to Redis in 
+	 *   - password: The authentication password, will be sent to Redis in
 	 *     clear text. Optional, if it is unspecified, no AUTH command will be
 	 *     sent.
 	 *
 	 *   - automaticFailover: If this is false, then each key will be mapped to
 	 *     a single server, and if that server is down, any requests for that key
 	 *     will fail. If this is true, a connection failure will cause the client
-	 *     to immediately try the next server in the list (as determined by a 
-	 *     consistent hashing algorithm). True by default. This has the 
-	 *     potential to create consistency issues if a server is slow enough to 
+	 *     to immediately try the next server in the list (as determined by a
+	 *     consistent hashing algorithm). True by default. This has the
+	 *     potential to create consistency issues if a server is slow enough to
 	 *     flap, for example if it is in swap death.
 	 */
 	function __construct( $params ) {
@@ -56,7 +77,7 @@ class RedisBagOStuff extends BagOStuff {
 		}
 
 		$this->servers = $params['servers'];
-		$this->connectTimeout = isset( $params['connectTimeout'] ) 
+		$this->connectTimeout = isset( $params['connectTimeout'] )
 			? $params['connectTimeout'] : 1;
 		$this->persistent = !empty( $params['persistent'] );
 		if ( isset( $params['password'] ) ) {
@@ -106,7 +127,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = false;
 			$this->handleException( $server, $e );
 		}
-		
+
 		$this->logRequest( 'set', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
 		return $result;
@@ -196,7 +217,7 @@ class RedisBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Non-atomic implementation of replace(). Could perhaps be done atomically 
+	 * Non-atomic implementation of replace(). Could perhaps be done atomically
 	 * with WATCH or scripting, but this function is rarely used.
 	 */
 	public function replace( $key, $value, $expiry = 0 ) {
@@ -222,19 +243,19 @@ class RedisBagOStuff extends BagOStuff {
 			$result = false;
 			$this->handleException( $server, $e );
 		}
-			
+
 		$this->logRequest( 'replace', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
 		return $result;
 	}
 
 	/**
-	 * Non-atomic implementation of incr(). 
+	 * Non-atomic implementation of incr().
 	 *
-	 * Probably all callers actually want incr() to atomically initialise 
-	 * values to zero if they don't exist, as provided by the Redis INCR 
-	 * command. But we are constrained by the memcached-like interface to 
-	 * return null in that case. Once the key exists, further increments are 
+	 * Probably all callers actually want incr() to atomically initialise
+	 * values to zero if they don't exist, as provided by the Redis INCR
+	 * command. But we are constrained by the memcached-like interface to
+	 * return null in that case. Once the key exists, further increments are
 	 * atomic.
 	 */
 	public function incr( $key, $value = 1 ) {
@@ -254,7 +275,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = false;
 			$this->handleException( $server, $e );
 		}
-			
+
 		$this->logRequest( 'incr', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
 		return $result;
@@ -317,7 +338,7 @@ class RedisBagOStuff extends BagOStuff {
 
 		if ( substr( $server, 0, 1 ) === '/' ) {
 			// UNIX domain socket
-			// These are required by the redis extension to start with a slash, but 
+			// These are required by the redis extension to start with a slash, but
 			// we still need to set the port to a special value to make it work.
 			$host = $server;
 			$port = 0;
@@ -372,8 +393,8 @@ class RedisBagOStuff extends BagOStuff {
 
 	/**
 	 * The redis extension throws an exception in response to various read, write
-	 * and protocol errors. Sometimes it also closes the connection, sometimes 
-	 * not. The safest response for us is to explicitly destroy the connection 
+	 * and protocol errors. Sometimes it also closes the connection, sometimes
+	 * not. The safest response for us is to explicitly destroy the connection
 	 * object and let it be reopened during the next request.
 	 */
 	protected function handleException( $server, $e ) {
@@ -385,7 +406,7 @@ class RedisBagOStuff extends BagOStuff {
 	 * Send information about a single request to the debug log
 	 */
 	public function logRequest( $method, $key, $server, $result ) {
-		$this->debug( "$method $key on $server: " . 
+		$this->debug( "$method $key on $server: " .
 			( $result === false ? "failure" : "success" ) );
 	}
 }

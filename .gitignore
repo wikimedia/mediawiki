@@ -13,7 +13,7 @@ nbproject*
 project.index
 
 # MediaWiki install & usage
-cache/*.cdb
+cache
 images/[0-9a-f]
 images/archive
 images/deleted

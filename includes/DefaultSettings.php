@@ -399,7 +399,9 @@ $wgImgAuthPublicTest = true;
  *
  *   - articleUrl        Equivalent to $wgArticlePath, e.g. http://en.wikipedia.org/wiki/$1
  *   - fetchDescription  Fetch the text of the remote file description page. Equivalent to
- *                      $wgFetchCommonsDescriptions.
+ *                       $wgFetchCommonsDescriptions.
+ *   - abbrvThreshold    File names over this size will use the short form of thumbnail names.
+ *                       Short thumbnail names only have the width, parameters, and the extension.
  *
  * ForeignDBRepo:
  *   - dbType, dbServer, dbUser, dbPassword, dbName, dbFlags
@@ -509,7 +511,7 @@ $wgSharedUploadDBprefix = '';
 $wgCacheSharedUploads = true;
 
 /**
- * Allow for upload to be copied from an URL. Requires Special:Upload?source=web
+ * Allow for upload to be copied from an URL.
  * The timeout for copy uploads is set by $wgHTTPTimeout.
  * You have to assign the user right 'upload_by_url' to a user group, to use this.
  */
@@ -523,6 +525,8 @@ $wgAllowAsyncCopyUploads = false;
 
 /**
  * A list of domains copy uploads can come from
+ *
+ * @since 1.20
  */
 $wgCopyUploadsDomains = array();
 
@@ -1457,7 +1461,7 @@ $wgDBerrorLog = false;
 
 /**
  * Timezone to use in the error log.
- * Defaults to the wiki timezone ($wgLocalTimezone).
+ * Defaults to the wiki timezone ($wgLocaltimezone).
  *
  * A list of useable timezones can found at:
  * http://php.net/manual/en/timezones.php
@@ -1704,6 +1708,8 @@ $wgSessionCacheType = CACHE_ANYTHING;
  * which are used when parsing certain text and interface messages.
  *
  * For available types see $wgMainCacheType.
+ *
+ * @since 1.20
  */
 $wgLanguageConverterCacheType = CACHE_ANYTHING;
 
@@ -2053,6 +2059,8 @@ $wgMaxSquidPurgeTitles = 400;
  *         ),
  * );
  * @endcode
+ *
+ * @since 1.20
  *
  * @see $wgHTCPMulticastTTL
  */
@@ -2639,6 +2647,18 @@ $wgBreakFrames = false;
 $wgEditPageFrameOptions = 'DENY';
 
 /**
+ * Disallow framing of API pages directly, by setting the X-Frame-Options
+ * header. Since the API returns CSRF tokens, allowing the results to be
+ * framed can compromise your user's account security.
+ * Options are:
+ *   - 'DENY': Do not allow framing. This is recommended for most wikis.
+ *   - 'SAMEORIGIN': Allow framing by pages on the same domain.
+ *   - false: Allow all framing.
+ */
+
+$wgApiFrameOptions = 'DENY';
+
+/**
  * Disable output compression (enabled by default if zlib is available)
  */
 $wgDisableOutputCompression = false;
@@ -2748,6 +2768,8 @@ $wgSend404Code = true;
  * The $wgShowRollbackEditCount variable is used to show how many edits will be
  * rollback. The numeric value of the varible are the limit up to are counted.
  * If the value is false or 0, the edits are not counted.
+ *
+ * @since 1.20
  */
 $wgShowRollbackEditCount = 10;
 
@@ -4385,6 +4407,8 @@ $wgDebugComments = false;
 
 /**
  * Extensive database transaction state debugging
+ *
+ * @since 1.20
  */
 $wgDebugDBTransactions = false;
 
@@ -4902,6 +4926,8 @@ $wgUpgradeKey = false;
  * The value is the replacement for the key (it can contain $1, etc.)
  * %h will be replaced by the short SHA-1 (7 first chars) and %H by the
  * full SHA-1 of the HEAD revision.
+ *
+ * @since 1.20
  */
 $wgGitRepositoryViewers = array(
     'https://gerrit.wikimedia.org/r/p/(.*)' => 'https://gerrit.wikimedia.org/r/gitweb?p=$1;h=%H',
@@ -5774,11 +5800,6 @@ $wgActions = array(
  */
 $wgDisabledActions = array();
 
-/**
- * Allow the "info" action, very inefficient at the moment
- */
-$wgAllowPageInfo = false;
-
 /** @} */ # end actions }
 
 /*************************************************************************//**
@@ -6231,6 +6252,8 @@ $wgContentHandlerUseDB = true;
 
 /**
  * Whether the user must enter their password to change their e-mail address
+ *
+ * @since 1.20
  */
 $wgRequirePasswordforEmailChange = true;
 

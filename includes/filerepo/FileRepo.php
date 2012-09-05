@@ -51,6 +51,7 @@ class FileRepo {
 	var $pathDisclosureProtection = 'simple'; // 'paranoid'
 	var $descriptionCacheExpiry, $url, $thumbUrl;
 	var $hashLevels, $deletedHashLevels;
+	protected $abbrvThreshold;
 
 	/**
 	 * Factory functions for creating new files
@@ -113,6 +114,9 @@ class FileRepo {
 			? $info['deletedHashLevels']
 			: $this->hashLevels;
 		$this->transformVia404 = !empty( $info['transformVia404'] );
+		$this->abbrvThreshold = isset( $info['abbrvThreshold'] )
+			? $info['abbrvThreshold']
+			: 255;
 		$this->isPrivate = !empty( $info['isPrivate'] );
 		// Give defaults for the basic zones...
 		$this->zones = isset( $info['zones'] ) ? $info['zones'] : array();
@@ -839,10 +843,11 @@ class FileRepo {
 	 *
 	 * @param $src string File system path
 	 * @param $dst string Virtual URL or storage path
+	 * @param $disposition string|null Content-Disposition if given and supported
 	 * @return FileRepoStatus
 	 */
-	final public function quickImport( $src, $dst ) {
-		return $this->quickImportBatch( array( array( $src, $dst ) ) );
+	final public function quickImport( $src, $dst, $disposition = null ) {
+		return $this->quickImportBatch( array( array( $src, $dst, $disposition ) ) );
 	}
 
 	/**
@@ -878,7 +883,9 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
-	 * @param $pairs Array List of tuples (file system path, virtual URL or storage path)
+	 * When "dispositions" are given they are used as Content-Disposition if supported.
+	 *
+	 * @param $pairs Array List of tuples (file system path, virtual URL/storage path, disposition)
 	 * @return FileRepoStatus
 	 */
 	public function quickImportBatch( array $pairs ) {
@@ -888,9 +895,10 @@ class FileRepo {
 			list ( $src, $dst ) = $pair;
 			$dst = $this->resolveToStoragePath( $dst );
 			$operations[] = array(
-				'op'        => 'store',
-				'src'       => $src,
-				'dst'       => $dst
+				'op'          => 'store',
+				'src'         => $src,
+				'dst'         => $dst,
+				'disposition' => isset( $pair[2] ) ? $pair[2] : null
 			);
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
@@ -935,19 +943,38 @@ class FileRepo {
 	public function storeTemp( $originalName, $srcPath ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
-		$date      = gmdate( "YmdHis" );
-		$hashPath  = $this->getHashPath( $originalName );
-		$dstRel    = "{$hashPath}{$date}!{$originalName}";
-		$dstUrlRel = $hashPath . $date . '!' . rawurlencode( $originalName );
+		$date       = gmdate( "YmdHis" );
+		$hashPath   = $this->getHashPath( $originalName );
+		$dstRel     = "{$hashPath}{$date}!{$originalName}";
+		$dstUrlRel  = $hashPath . $date . '!' . rawurlencode( $originalName );
+		$virtualUrl = $this->getVirtualUrl( 'temp' )  . '/' . $dstUrlRel;
 
-		$result = $this->store( $srcPath, 'temp', $dstRel, self::SKIP_LOCKING );
-		$result->value = $this->getVirtualUrl( 'temp' ) . '/' . $dstUrlRel;
+		$result = $this->quickImport( $srcPath, $virtualUrl );
+		$result->value = $virtualUrl;
 
 		return $result;
 	}
 
 	/**
-	 * Concatenate a list of files into a target file location.
+	 * Remove a temporary file or mark it for garbage collection
+	 *
+	 * @param $virtualUrl String: the virtual URL returned by FileRepo::storeTemp()
+	 * @return Boolean: true on success, false on failure
+	 */
+	public function freeTemp( $virtualUrl ) {
+		$this->assertWritableRepo(); // fail out if read-only
+
+		$temp = $this->getVirtualUrl( 'temp' );
+		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
+			wfDebug( __METHOD__.": Invalid temp virtual URL\n" );
+			return false;
+		}
+
+		return $this->quickPurge( $virtualUrl )->isOK();
+	}
+
+	/**
+	 * Concatenate a list of temporary files into a target file location.
 	 *
 	 * @param $srcPaths Array Ordered list of source virtual URLs/storage paths
 	 * @param $dstPath String Target file system path
@@ -961,14 +988,10 @@ class FileRepo {
 		$status = $this->newGood();
 
 		$sources = array();
-		$deleteOperations = array(); // post-concatenate ops
 		foreach ( $srcPaths as $srcPath ) {
 			// Resolve source to a storage path if virtual
 			$source = $this->resolveToStoragePath( $srcPath );
 			$sources[] = $source; // chunk to merge
-			if ( $flags & self::DELETE_SOURCE ) {
-				$deleteOperations[] = array( 'op' => 'delete', 'src' => $source );
-			}
 		}
 
 		// Concatenate the chunks into one FS file
@@ -979,34 +1002,14 @@ class FileRepo {
 		}
 
 		// Delete the sources if required
-		if ( $deleteOperations ) {
-			$opts = array( 'force' => true );
-			$status->merge( $this->backend->doOperations( $deleteOperations, $opts ) );
+		if ( $flags & self::DELETE_SOURCE ) {
+			$status->merge( $this->quickPurgeBatch( $srcPaths ) );
 		}
 
-		// Make sure status is OK, despite any $deleteOperations fatals
+		// Make sure status is OK, despite any quickPurgeBatch() fatals
 		$status->setResult( true );
 
 		return $status;
-	}
-
-	/**
-	 * Remove a temporary file or mark it for garbage collection
-	 *
-	 * @param $virtualUrl String: the virtual URL returned by FileRepo::storeTemp()
-	 * @return Boolean: true on success, false on failure
-	 */
-	public function freeTemp( $virtualUrl ) {
-		$this->assertWritableRepo(); // fail out if read-only
-
-		$temp = "mwrepo://{$this->name}/temp";
-		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
-			wfDebug( __METHOD__.": Invalid temp virtual URL\n" );
-			return false;
-		}
-		$path = $this->resolveVirtualUrl( $virtualUrl );
-
-		return $this->cleanupBatch( array( $path ), self::SKIP_LOCKING )->isOK();
 	}
 
 	/**
@@ -1552,6 +1555,21 @@ class FileRepo {
 		}
 		// 'shared-repo-name-wikimediacommons' is used when $wgUseInstantCommons = true
 		return wfMessageFallback( 'shared-repo-name-' . $this->name, 'shared-repo' )->text();
+	}
+
+	/**
+	 * Get the portion of the file that contains the origin file name.
+	 * If that name is too long, then the name "thumbnail.<ext>" will be given.
+	 *
+	 * @param $name string
+	 * @return string
+	 */
+	public function nameForThumb( $name ) {
+		if ( strlen( $name ) > $this->abbrvThreshold ) {
+			$ext  = FileBackend::extensionFromPath( $name );
+			$name = ( $ext == '' ) ? 'thumbnail' : "thumbnail.$ext";
+		}
+		return $name;
 	}
 
 	/**

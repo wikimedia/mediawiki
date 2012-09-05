@@ -89,7 +89,7 @@ class DoubleRedirectJob extends Job {
 			return false;
 		}
 
-		$targetRev = Revision::newFromTitle( $this->title );
+		$targetRev = Revision::newFromTitle( $this->title, false, Revision::READ_LATEST );
 		if ( !$targetRev ) {
 			wfDebug( __METHOD__.": target redirect already deleted, ignoring\n" );
 			return true;

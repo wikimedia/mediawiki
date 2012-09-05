@@ -110,7 +110,7 @@ class LocalisationCache {
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
 		'defaultDateFormat', 'extraUserToggles', 'specialPageAliases',
 		'imageFiles', 'preloadedMessages', 'namespaceGenderAliases',
-		'digitGroupingPattern', 'pluralRules'
+		'digitGroupingPattern', 'pluralRules', 'compiledPluralRules',
 	);
 
 	/**
@@ -118,7 +118,7 @@ class LocalisationCache {
 	 * by a fallback sequence.
 	 */
 	static public $mergeableMapKeys = array( 'messages', 'namespaceNames',
-		'dateFormats', 'imageFiles', 'preloadedMessages', 'pluralRules'
+		'dateFormats', 'imageFiles', 'preloadedMessages'
 	);
 
 	/**
@@ -498,6 +498,9 @@ class LocalisationCache {
 	 */
 	public function getCompiledPluralRules( $code ) {
 		$rules = $this->getPluralRules( $code );
+		if ( $rules === null ) {
+			return null;
+		}
 		try {
 			$compiledRules = CLDRPluralRuleEvaluator::compile( $rules );
 		} catch( CLDRPluralRuleError $e ) {
@@ -524,17 +527,18 @@ class LocalisationCache {
 			}
 		}
 		if ( !isset( $this->pluralRules[$code] ) ) {
-			return array();
+			return null;
 		} else {
 			return $this->pluralRules[$code];
 		}
 	}
 
+
 	/**
 	 * Load a plural XML file with the given filename, compile the relevant
 	 * rules, and save the compiled rules in a process-local cache.
 	 */
-	private function loadPluralFile( $fileName ) {
+	protected function loadPluralFile( $fileName ) {
 		$doc = new DOMDocument;
 		$doc->load( $fileName );
 		$rulesets = $doc->getElementsByTagName( "pluralRules" );
@@ -549,6 +553,30 @@ class LocalisationCache {
 				$this->pluralRules[$code] = $rules;
 			}
 		}
+	}
+
+	/**
+	 * Read the data from the source files for a given language, and register
+	 * the relevant dependencies in the $deps array. If the localisation
+	 * exists, the data array is returned, otherwise false is returned.
+	 */
+	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
+		$fileName = Language::getMessagesFileName( $code );
+		if ( !file_exists( $fileName ) ) {
+			return false;
+		}
+
+		$deps[] = new FileDependency( $fileName );
+		$data = $this->readPHPFile( $fileName, 'core' );
+
+		# Load CLDR plural rules for JavaScript
+		$data['pluralRules'] = $this->getPluralRules( $code );
+		# And for PHP
+		$data['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
+
+		$deps['plurals'] = new FileDependency( __DIR__ . "/../languages/data/plurals.xml" );
+		$deps['plurals-mw'] = new FileDependency( __DIR__ . "/../languages/data/plurals-mediawiki.xml" );
+		return $data;
 	}
 
 	/**
@@ -649,13 +677,11 @@ class LocalisationCache {
 		$deps = array();
 
 		# Load the primary localisation from the source file
-		$fileName = Language::getMessagesFileName( $code );
-		if ( !file_exists( $fileName ) ) {
+		$data = $this->readSourceFilesAndRegisterDeps( $code, $deps );
+		if ( $data === false ) {
 			wfDebug( __METHOD__ . ": no localisation file for $code, using fallback to en\n" );
 			$coreData['fallback'] = 'en';
 		} else {
-			$deps[] = new FileDependency( $fileName );
-			$data = $this->readPHPFile( $fileName, 'core' );
 			wfDebug( __METHOD__ . ": got localisation for $code from source\n" );
 
 			# Merge primary localisation
@@ -684,14 +710,10 @@ class LocalisationCache {
 			foreach ( $coreData['fallbackSequence'] as $fbCode ) {
 				# Load the secondary localisation from the source file to
 				# avoid infinite cycles on cyclic fallbacks
-				$fbFilename = Language::getMessagesFileName( $fbCode );
-
-				if ( !file_exists( $fbFilename ) ) {
+				$fbData = $this->readSourceFilesAndRegisterDeps( $fbCode, $deps );
+				if ( $fbData === false ) {
 					continue;
 				}
-
-				$deps[] = new FileDependency( $fbFilename );
-				$fbData = $this->readPHPFile( $fbFilename, 'core' );
 
 				foreach ( self::$allKeys as $key ) {
 					if ( !isset( $fbData[$key] ) ) {
@@ -749,15 +771,19 @@ class LocalisationCache {
 		# Decouple the reference to prevent accidental damage
 		unset( $page );
 
+		# If there were no plural rules, return an empty array
+		if ( $allData['pluralRules'] === null ) {
+			$allData['pluralRules'] = array();
+		}
+		if ( $allData['compiledPluralRules'] === null ) {
+			$allData['compiledPluralRules'] = array();
+		}
+
 		# Set the list keys
 		$allData['list'] = array();
 		foreach ( self::$splitKeys as $key ) {
 			$allData['list'][$key] = array_keys( $allData[$key] );
 		}
-		# Load CLDR plural rules for JavaScript
-		$allData['pluralRules'] = $this->getPluralRules( $code );
-		# And for PHP
-		$allData['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
 		# Run hooks
 		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
 

@@ -121,16 +121,6 @@ span.texhtml {
 	cursor: pointer;
 }
 
-div#mw-js-message {
-	margin: 1em 5%;
-	padding: 0.5em 2.5%;
-	border: solid 1px #ddd;
-	background-color: #fcfcfc;
-	/* Message hides on-click */
-	/* See also mw.util.jsMessage */
-	cursor: pointer;
-}
-
 /* Edit section links */
 /* Correct directionality when page dir is different from site/user dir */
 /* @noflip */
@@ -260,6 +250,7 @@ tr.mw-htmlform-vertical-label td.mw-label {
 
 input#wpSummary {
 	width: 80%;
+	margin: 1em 0;
 }
 
 /**

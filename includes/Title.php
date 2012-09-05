@@ -369,7 +369,7 @@ class Title {
 	 * @return Title the new object
 	 */
 	public static function newMainPage() {
-		$title = Title::newFromText( wfMsgForContent( 'mainpage' ) );
+		$title = Title::newFromText( wfMessage( 'mainpage' )->inContentLanguage()->text() );
 		// Don't give fatal errors if the message is broken
 		if ( !$title ) {
 			$title = Title::newFromText( 'Main Page' );
@@ -1604,7 +1604,7 @@ class Title {
 	 *   queries by skipping checks for cascading protections and user blocks.
 	 * @param $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
-	 * @return Array of arguments to wfMsg to explain permissions problems.
+	 * @return Array of arguments to wfMessage to explain permissions problems.
 	 */
 	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) {
 		$errors = $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries );
@@ -1761,7 +1761,7 @@ class Title {
 		# Check $wgNamespaceProtection for restricted namespaces
 		if ( $this->isNamespaceProtected( $user ) ) {
 			$ns = $this->mNamespace == NS_MAIN ?
-				wfMsg( 'nstab-main' ) : $this->getNsText();
+				wfMessage( 'nstab-main' )->text() : $this->getNsText();
 			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
 				array( 'protectedinterface' ) : array( 'namespaceprotected',  $ns );
 		}
@@ -1960,7 +1960,7 @@ class Title {
 			$id = $user->blockedBy();
 			$reason = $user->blockedFor();
 			if ( $reason == '' ) {
-				$reason = wfMsg( 'blockednoreason' );
+				$reason = wfMessage( 'blockednoreason' )->text();
 			}
 			$ip = $user->getRequest()->getIP();
 
@@ -2118,7 +2118,7 @@ class Title {
 	 * @param $user User to check
 	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries.
 	 * @param $short Bool Set this to true to stop after the first permission error.
-	 * @return Array of arrays of the arguments to wfMsg to explain permissions problems.
+	 * @return Array of arrays of the arguments to wfMessage to explain permissions problems.
 	 */
 	protected function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true, $short = false ) {
 		wfProfileIn( __METHOD__ );
@@ -3584,9 +3584,13 @@ class Title {
 			);
 			# Update the protection log
 			$log = new LogPage( 'protect' );
-			$comment = wfMsgForContent( 'prot_1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
+			$comment = wfMessage(
+				'prot_1movedto2',
+				$this->getPrefixedText(),
+				$nt->getPrefixedText()
+			)->inContentLanguage()->text();
 			if ( $reason ) {
-				$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
+				$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 			}
 			// @todo FIXME: $params?
 			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ) );
@@ -3644,7 +3648,7 @@ class Title {
 		$formatter->setContext( RequestContext::newExtraneousContext( $this ) );
 		$comment = $formatter->getPlainActionText();
 		if ( $reason ) {
-			$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
+			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 		# Truncate for whole multibyte characters.
 		$comment = $wgContLang->truncate( $comment, 255 );
@@ -3865,7 +3869,7 @@ class Title {
 			return false;
 		}
 		# Get the article text
-		$rev = Revision::newFromTitle( $nt );
+		$rev = Revision::newFromTitle( $nt, false, Revision::READ_LATEST );
 		if( !is_object( $rev ) ){
 			return false;
 		}
@@ -4572,9 +4576,9 @@ class Title {
 	}
 
 	/**
-	 * Get the language in which the content of this page is written.
-	 * Defaults to $wgContLang, but in certain cases it can be e.g.
-	 * $wgLang (such as special pages, which are in the user language).
+	 * Get the language in which the content of this page is written in
+	 * wikitext. Defaults to $wgContLang, but in certain cases it can be
+	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
 	 * @return Language
@@ -4598,5 +4602,30 @@ class Title {
 		// Hook at the end because we don't want to override the above stuff
 		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
 		return wfGetLangObj( $pageLang );
+	}
+
+	/**
+	 * Get the language in which the content of this page is written when
+	 * viewed by user. Defaults to $wgContLang, but in certain cases it can be
+	 * e.g. $wgLang (such as special pages, which are in the user language).
+	 *
+	 * @since 1.20
+	 * @return Language
+	 */
+	public function getPageViewLanguage() {
+		$pageLang = $this->getPageLanguage();
+		// If this is nothing special (so the content is converted when viewed)
+		if ( !$this->isSpecialPage()
+			&& !$this->isCssOrJsPage() && !$this->isCssJsSubpage()
+			&& $this->getNamespace() !== NS_MEDIAWIKI
+		) {
+			// If the user chooses a variant, the content is actually
+			// in a language whose code is the variant code.
+			$variant = $pageLang->getPreferredVariant();
+			if ( $pageLang->getCode() !== $variant ) {
+				$pageLang = Language::factory( $variant );
+			}
+		}
+		return $pageLang;
 	}
 }

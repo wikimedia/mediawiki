@@ -167,8 +167,11 @@ class BitmapHandler extends ImageHandler {
 
 		if ( $flags & self::TRANSFORM_LATER ) {
 			wfDebug( __METHOD__ . ": Transforming later per flags.\n" );
-			return new ThumbnailImage( $image, $dstUrl, $scalerParams['clientWidth'],
-				$scalerParams['clientHeight'], false );
+			$params = array(
+				'width' => $scalerParams['clientWidth'],
+				'height' => $scalerParams['clientHeight']
+			);
+			return new ThumbnailImage( $image, $dstUrl, false, $params );
 		}
 
 		# Try to make a target path for the thumbnail
@@ -220,8 +223,11 @@ class BitmapHandler extends ImageHandler {
 		} elseif ( $mto ) {
 			return $mto;
 		} else {
-			return new ThumbnailImage( $image, $dstUrl, $scalerParams['clientWidth'],
-				$scalerParams['clientHeight'], $dstPath );
+			$params = array(
+				'width' => $scalerParams['clientWidth'],
+				'height' => $scalerParams['clientHeight']
+			);
+			return new ThumbnailImage( $image, $dstUrl, $dstPath, $params );
 		}
 	}
 
@@ -258,14 +264,17 @@ class BitmapHandler extends ImageHandler {
 	 * client side
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param $scalerParams array Array with scaler params
 	 * @return ThumbnailImage
 	 *
 	 * @todo fixme: no rotation support
 	 */
-	protected function getClientScalingThumbnailImage( $image, $params ) {
-		return new ThumbnailImage( $image, $image->getURL(),
-			$params['clientWidth'], $params['clientHeight'], null );
+	protected function getClientScalingThumbnailImage( $image, $scalerParams ) {
+		$params = array(
+			'width' => $scalerParams['clientWidth'],
+			'height' => $scalerParams['clientHeight']
+		);
+		return new ThumbnailImage( $image, $image->getURL(), null, $params );
 	}
 
 	/**

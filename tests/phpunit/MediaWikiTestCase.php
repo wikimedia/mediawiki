@@ -472,6 +472,25 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Put each HTML element on its own line and then equals() the results
+	 *
+	 * Use for nicely formatting of PHPUnit diff output when comparing very
+	 * simple HTML
+	 *
+	 * @since 1.20
+	 *
+	 * @param String $expected HTML on oneline
+	 * @param String $actual HTML on oneline
+	 * @param String $msg Optional message
+	 */
+	protected function assertHTMLEquals( $expected, $actual, $msg='' ) {
+		$expected = str_replace( '>', ">\n", $expected );
+		$actual   = str_replace( '>', ">\n", $actual   );
+
+		$this->assertEquals( $expected, $actual, $msg );
+	}
+
+	/**
 	 * Does an associative sort that works for objects.
 	 *
 	 * @since 1.20

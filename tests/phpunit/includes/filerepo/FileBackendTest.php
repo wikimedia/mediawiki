@@ -6,6 +6,7 @@
  * 
  * @group FileRepo
  * @group FileBackend
+ * @group medium
  */
 class FileBackendTest extends MediaWikiTestCase {
 	private $backend, $multiBackend;

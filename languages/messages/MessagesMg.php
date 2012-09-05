@@ -1396,7 +1396,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'group-autoconfirmed' => 'Mpikambana voamarina',
 'group-bot' => 'Mpikambana rôbô',
 'group-sysop' => 'Mpandrindra',
-'group-bureaucrat' => 'Borōkraty',
+'group-bureaucrat' => 'Borôkraty',
 'group-suppress' => 'Mpitondra',
 'group-all' => '(izy rehetra)',
 
@@ -1411,7 +1411,7 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'grouppage-autoconfirmed' => '{{ns:project}}:Mpikambana Voamafy',
 'grouppage-bot' => '{{ns:project}}:Mpikambana rôbô',
 'grouppage-sysop' => '{{ns:project}}:Mpandrindra',
-'grouppage-bureaucrat' => '{{ns:project}}:Borōkraty',
+'grouppage-bureaucrat' => '{{ns:project}}:Borôkraty',
 'grouppage-suppress' => '{{ns:project}}:Oversight',
 
 # Rights
@@ -1636,9 +1636,8 @@ Mba hanao azy, tsy maintsy ovainao manokana ilay pejy [[$1|thumb]]",
 * Anaran-drakitra ho ampidirina : <strong>[[:$1]]</strong>
 * Anaran-drakitra misy : <strong>[[:$2]]</strong>
 Misafidia anarana hafa.',
-'fileexists-thumbnail-yes' => "
-Hoatry ny saritapaka ''(vignette)'' ilay sary. [[$1|thumb]]
-Marino ilay rakitra <strong>[[:$1]]</strong>.
+'fileexists-thumbnail-yes' => "Ohatry ny sary nakelezina ilay rakitra. [[$1|thumb]]
+Mba marino ilay rakitra <strong>[[:$1]]</strong>.
 Raha mitovy amin'ny sary voalohany ny sarin'ilay rakitra marinina, tsy ilaina ny mampiditra santiôna nakelezina.",
 'file-thumbnail-no' => "Manomboka amin'ny <strong>$1</strong> ny anaran'ilay rakitra.
 Mety saritapaka ''(vignette)'' io sary io.
@@ -2063,8 +2062,8 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'listusers-blocked' => '(voasakana)',
 
 # Special:ActiveUsers
-'activeusers' => 'lisitra ny mpikambana miasa',
-'activeusers-intro' => "Ity ny lisitra ny mpikambana niasa teto tanatin'ny $1 andro farany {{PLURAL:}}",
+'activeusers' => 'Lisitry ny mpikambana mavitrika',
+'activeusers-intro' => 'Ity ny lisitry ny mpikambana izay nanao zavatra iray nandritry ny andro $1 farany. {{PLURAL:}}',
 'activeusers-count' => "Nanova in-$1 tao anatin'ny $3 andro{{PLURAL:}}",
 'activeusers-from' => 'Aseho ny mpikambana hatry ny :',
 'activeusers-hidebots' => 'Asitriho ny robo',
@@ -2080,7 +2079,7 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'listgrouprights-group' => 'Vondrona/Gropy',
 'listgrouprights-rights' => 'Fahefana miaraka aminy',
 'listgrouprights-helppage' => "Help:Fahefan'ny vondrona",
-'listgrouprights-members' => '(lisitra ny mpikambana)',
+'listgrouprights-members' => '(lisitry ny mpikambana)',
 'listgrouprights-addgroup' => '{{PLURAL:$2}}Manampy ny mpikambana : $1',
 'listgrouprights-removegroup' => "Manala ny mpikambana {{PLURAL:$2}}amin'ny gropy : $1",
 'listgrouprights-addgroup-all' => 'Manampy mpikambana anaty vondrona rehetra',

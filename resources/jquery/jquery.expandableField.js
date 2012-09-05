@@ -52,15 +52,15 @@
 	$.fn.expandableField = function () {
 
 		// Multi-context fields
-		var returnValue;
-		var args = arguments;
+		var returnValue,
+			args = arguments;
 
 		$( this ).each( function () {
-			var key;
+			var key, context;
 
 			/* Construction / Loading */
 
-			var context = $( this ).data( 'expandableField-context' );
+			context = $( this ).data( 'expandableField-context' );
 
 			// TODO: Do we need to check both null and undefined?
 			if ( context === undefined || context === null ) {

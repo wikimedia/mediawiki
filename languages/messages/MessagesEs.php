@@ -391,7 +391,7 @@ $messages = array(
 'tog-externaldiff' => 'Utilizar diff externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
 'tog-showjumplinks' => 'Habilitar enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview' => 'Usar live preview (JavaScript) (Experimental)',
-'tog-forceeditsummary' => 'Alertar al grabar sin resumen de edición.',
+'tog-forceeditsummary' => 'Avisar cuando grabe la página sin introducir un resumen de edición',
 'tog-watchlisthideown' => 'Ocultar mis ediciones en la lista de seguimiento',
 'tog-watchlisthidebots' => 'Ocultar ediciones de bots en la lista de seguimiento',
 'tog-watchlisthideminor' => 'Ocultar ediciones menores en la lista de seguimiento',
@@ -572,7 +572,7 @@ $messages = array(
 'categorypage' => 'Ver página de categoría',
 'viewtalkpage' => 'Ver discusión',
 'otherlanguages' => 'Otros idiomas',
-'redirectedfrom' => '(Redirigido desde $1)',
+'redirectedfrom' => '(Redirigido desde «$1»)',
 'redirectpagesub' => 'Página redirigida',
 'lastmodifiedat' => 'Esta página fue modificada por última vez el $1, a las $2.',
 'viewcount' => 'Esta página ha sido visitada {{PLURAL:$1|una vez|$1 veces}}.',
@@ -610,7 +610,7 @@ $1',
 'privacypage' => 'Project:Política de protección de datos',
 
 'badaccess' => 'Error de permisos',
-'badaccess-group0' => 'No tienes autorización para ejecutar la acción que ha solicitado.',
+'badaccess-group0' => 'No estás autorizado a ejecutar la acción solicitada.',
 'badaccess-groups' => 'La acción que has solicitado está restringida a los usuarios {{PLURAL:$2|del grupo|de uno de estos $2 grupos}}: $1.',
 
 'versionrequired' => 'La versión $1 de MediaWiki es necesaria para utilizar esta página',
@@ -1025,8 +1025,10 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
 Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
-'missing-revision' => 'La revisión # $1  de la página denominada "{{PAGENAME}}" no existe.
-!¡ N!Esto es generalmente causado al seguir un enlace de historia obsoleto a una página que se ha borrado.!¡ N!Los detalles pueden encontrarse en el [{{fullurl: {{#Special:Log}} / delete|page = {{FULLPAGENAMEE}}}} registro de borrado].',
+'missing-revision' => 'La revisión #$1 de la página «{{PAGENAME}}» no existe.
+
+Esto suele deberse a seguir un enlace obsoleto hacia el historial de una página que ya ha sido borrada.
+Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrado].',
 'userpage-userdoesnotexist' => 'La cuenta de usuario «<nowiki>$1</nowiki>» no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'userpage-userdoesnotexist-view' => 'La cuenta de usuario «$1» no está registrada.',
 'blocked-notice-logextract' => 'Este usuario está actualmente bloqueado.
@@ -1340,8 +1342,10 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'editundo' => 'deshacer',
 'diff-multi' => '(No se {{PLURAL:$1|muestra una edición intermedia realizada|muestran $1 ediciones intermedias realizadas}} por {{PLURAL:$2|un usuario|$2 usuarios}})',
 'diff-multi-manyusers' => '(No se {{PLURAL:$1|muestra una edición intermedia|muestran $1 ediciones intermedias}} de {{PLURAL:$2|un usuario|$2 usuarios}})',
-'difference-missing-revision' => '{{PLURAL:$2|Un revisión| $2  revisiones}} de esta diferencia ( $1 )  no {{PLURAL:$2| ha siado encontrada|han sido encontradas}}.
-!¡ N!Esto es generalmente causado por seguir un enlace de diffs obsoletas a una página que ha sido borrada.!¡ N!Los detalles pueden encontrarse en el [{{fullurl:{{#Special:log}} / delete|page = {{FULLPAGENAMEE}}}} registro de borrado].',
+'difference-missing-revision' => 'No {{PLURAL:$2|se ha encontrado|se han encontrado}} {{PLURAL:$2|una revisión|$2 revisiones}} de esta diferencia ($1).
+
+Esto suele deberse a seguir un enlace obsoleto hacia una página que ya ha sido borrada.
+Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrado].',
 
 # Search results
 'searchresults' => 'Resultados de la búsqueda',

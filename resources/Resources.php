@@ -160,6 +160,7 @@ return array(
 	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
+		'dependencies' => 'jquery.mwExtension',
 	),
 	'jquery.hoverIntent' => array(
 		'scripts' => 'resources/jquery/jquery.hoverIntent.js',
@@ -174,10 +175,6 @@ return array(
 		'scripts' => 'resources/jquery/jquery.makeCollapsible.js',
 		'styles' => 'resources/jquery/jquery.makeCollapsible.css',
 		'messages' => array( 'collapsible-expand', 'collapsible-collapse' ),
-	),
-	'jquery.messageBox' => array(
-		'scripts' => 'resources/jquery/jquery.messageBox.js',
-		'styles' => 'resources/jquery/jquery.messageBox.css',
 	),
 	'jquery.mockjax' => array(
 		'scripts' => 'resources/jquery/jquery.mockjax.js',
@@ -220,6 +217,7 @@ return array(
 		'scripts' => 'resources/jquery/jquery.tablesorter.js',
 		'styles' => 'resources/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
+		'dependencies' => 'jquery.mwExtension',
 	),
 	'jquery.textSelection' => array(
 		'scripts' => 'resources/jquery/jquery.textSelection.js',
@@ -606,6 +604,16 @@ return array(
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
+	'mediawiki.notification' => array(
+		'styles' => 'resources/mediawiki/mediawiki.notification.css',
+		'scripts' => 'resources/mediawiki/mediawiki.notification.js',
+		'dependencies' => array(
+			'mediawiki.page.startup',
+		),
+	),
+	'mediawiki.notify' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.notify.js',
+	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
@@ -625,8 +633,8 @@ return array(
 		'dependencies' => array(
 			'jquery.client',
 			'jquery.cookie',
-			'jquery.messageBox',
 			'jquery.mwExtension',
+			'mediawiki.notify',
 		),
 		'messages' => array( 'showtoc', 'hidetoc' ),
 		'position' => 'top', // For $wgPreloadJavaScriptMwUtil
@@ -781,7 +789,9 @@ return array(
 		'dependencies' => array(
 			'mediawiki.page.startup',
 			'mediawiki.api.watch',
-			'mediawiki.util'
+			'mediawiki.util',
+			'mediawiki.notify',
+			'jquery.mwExtension',
 		),
 		'messages' => array(
 			'watch',
@@ -923,7 +933,10 @@ return array(
 		'scripts' => 'common/preview.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
+		'dependencies' => array(
+			'mediawiki.legacy.wikibits',
+			'jquery.form',
+		)
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'common/protect.js',

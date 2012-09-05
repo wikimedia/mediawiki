@@ -620,6 +620,8 @@ $1',
 'youhavenewmessages' => 'Ви отримали $1 ($2).',
 'newmessageslink' => 'нові повідомлення',
 'newmessagesdifflink' => 'остання зміна',
+'newmessageslinkplural' => '{{PLURAL:$1|нове повідомлення|нові повідомлення|нових повідомлень}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|остання зміна|останні зміни|останніх змін}}',
 'youhavenewmessagesmulti' => 'Ви отримали нові повідомлення на $1',
 'editsection' => 'ред.',
 'editsection-brackets' => '[$1]',
@@ -1024,7 +1026,7 @@ $2
 'userpage-userdoesnotexist-view' => 'Обліковий запис користувача „$1“ не зареєстровано.',
 'blocked-notice-logextract' => 'Цей користувач наразі заблокований.
 Останній запис у журналі блокувань такий:',
-'clearyourcache' => "'''Увага:''' Після збереження слід очистити кеш браузера, щоб побачити зміни.
+'clearyourcache' => "'''Увага:''' Після збереження слід очистити кеш оглядача, щоб побачити зміни.
 * '''Firefox / Safari:''' тримайте ''Shift'', коли натискаєте ''Оновити'', або натисніть ''Ctrl-F5'' чи ''Ctrl-Shift-R'' (''⌘-R'' на Apple Mac)
 * '''Google Chrome:''' натисніть ''Ctrl-Shift-R'' (''⌘-Shift-R'' на Apple Mac)
 * '''Internet Explorer:''' тримайте ''Ctrl'', коли натискаєте ''Оновити'', або натисніть ''Ctrl-F5''
@@ -3039,7 +3041,7 @@ $1',
 'tooltip-ca-move' => 'Перейменувати цю сторінку',
 'tooltip-ca-watch' => 'Додати цю сторінку до вашого списку спостереження',
 'tooltip-ca-unwatch' => 'Вилучити цю сторінку з вашого списку спостереження',
-'tooltip-search' => 'Шукати у {{GRAMMAR:locative|{{SITENAME}}}}',
+'tooltip-search' => 'Шукати',
 'tooltip-search-go' => 'Перейти до сторінки, що має точно таку назву (якщо вона існує)',
 'tooltip-search-fulltext' => 'Знайти сторінки, що містять зазначений текст',
 'tooltip-p-logo' => 'Головна сторінка',
@@ -3160,11 +3162,11 @@ The wiki server can't provide data in a format your client can read.",
 
 # Info page
 'pageinfo-title' => 'Інформація про " $1 "',
-'pageinfo-header-edits' => 'Редагування',
+'pageinfo-header-edits' => 'Історія редагувань',
 'pageinfo-views' => 'Кількість переглядів',
 'pageinfo-watchers' => 'Кількість спостерігачів',
-'pageinfo-edits' => 'Кількість редагувань',
-'pageinfo-authors' => 'Кількість унікальних авторів',
+'pageinfo-edits' => 'Загальна кількість редагувань',
+'pageinfo-authors' => 'Загальна кількість унікальних авторів',
 
 # Skin names
 'skinname-standard' => 'Стандартне',

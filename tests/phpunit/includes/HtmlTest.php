@@ -6,15 +6,18 @@ class HtmlTest extends MediaWikiTestCase {
 	private static $oldContLang;
 	private static $oldLanguageCode;
 	private static $oldNamespaces;
+	private static $oldHTML5;
 
 	public function setUp() {
-		global $wgLang, $wgContLang, $wgLanguageCode;
-		
+		global $wgLang, $wgContLang, $wgLanguageCode, $wgHTML5;
+
+		// Save globals
 		self::$oldLang = $wgLang;
 		self::$oldContLang = $wgContLang;
 		self::$oldNamespaces = $wgContLang->getNamespaces();
 		self::$oldLanguageCode = $wgLanguageCode;
-		
+		self::$oldHTML5 = $wgHTML5;
+
 		$wgLanguageCode = 'en';
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
 
@@ -42,14 +45,35 @@ class HtmlTest extends MediaWikiTestCase {
 			101  => 'Custom_talk',
 		) );
 	}
-	
-	public function tearDown() {
-		global $wgLang, $wgContLang, $wgLanguageCode;
 
+	public function tearDown() {
+		global $wgLang, $wgContLang, $wgLanguageCode, $wgHTML5;
+
+		// Restore globals
 		$wgContLang->setNamespaces( self::$oldNamespaces );
 		$wgLang = self::$oldLang;
 		$wgContLang = self::$oldContLang;
 		$wgLanguageCode = self::$oldLanguageCode;
+		$wgHTML5 = self::$oldHTML5;
+	}
+
+	/**
+	 * Wrapper to easily set $wgHTML5 = true.
+	 * Original value will be restored after test completion.
+	 * @todo Move to MediaWikiTestCase
+	 */
+	public function enableHTML5() {
+		global $wgHTML5;
+		$wgHTML5 = true;
+	}
+	/**
+	 * Wrapper to easily set $wgHTML5 = false
+	 * Original value will be restored after test completion.
+	 * @todo Move to MediaWikiTestCase
+	 */
+	public function disableHTML5() {
+		global $wgHTML5;
+		$wgHTML5 = false;
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {

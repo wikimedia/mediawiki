@@ -1,8 +1,6 @@
 <?php
 /**
- * Script to change users skins on the fly.
- * This is for at least MediaWiki 1.10alpha (r19611) and have not been
- * tested with previous versions. It should probably work with 1.7+.
+ * Script to change users preferences on the fly.
  *
  * Made on an original idea by Fooey (freenode)
  *

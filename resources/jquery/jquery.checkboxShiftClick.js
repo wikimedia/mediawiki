@@ -6,10 +6,9 @@
  * @author Krinkle <krinklemail@gmail.com>
  * @license GPL v2
  */
-( function( $ ) {
+( function ( $ ) {
 	$.fn.checkboxShiftClick = function ( text ) {
-		var prevCheckbox = null;
-		var $box = this;
+		var prevCheckbox = null, $box = this;
 		// When our boxes are clicked..
 		$box.click( function ( e ) {
 			// And one has been clicked before...
@@ -18,7 +17,7 @@
 				$box.slice(
 					Math.min( $box.index( prevCheckbox ), $box.index( e.target ) ),
 					Math.max( $box.index( prevCheckbox ), $box.index( e.target ) ) + 1
-				).prop( 'checked', e.target.checked ? true : false );
+				).prop( 'checked', !!e.target.checked );
 			}
 			// Either way, update the prevCheckbox variable to the one clicked now
 			prevCheckbox = e.target;

@@ -5,9 +5,7 @@
 	'use strict';
 
 	// Local cache and alias
-	var hideMessageTimeout,
-		messageBoxEvents = false,
-		util = {
+	var util = {
 
 		/**
 		 * Initialisation
@@ -15,12 +13,6 @@
 		 */
 		init: function () {
 			var profile, $tocTitle, $tocToggleLink, hideTocCookie;
-
-			/* Set up $.messageBox */
-			$.messageBoxNew( {
-				id: 'mw-js-message',
-				parent: '#content'
-			} );
 
 			/* Set tooltipAccessKeyPrefix */
 			profile = $.client.profile();
@@ -50,7 +42,11 @@
 				&& profile.name === 'safari'
 				&& profile.layoutVersion > 526 ) {
 				util.tooltipAccessKeyPrefix = 'ctrl-alt-';
-
+			// Firefox 14+ on Mac
+			} else if ( profile.platform === 'mac'
+				&& profile.name === 'firefox'
+				&& profile.versionNumber >= 14 ) {
+				util.tooltipAccessKeyPrefix = 'ctrl-option-';
 			// Safari/Konqueror on any platform, or any browser on Mac
 			// (but not Safari on Windows)
 			} else if ( !( profile.platform === 'win' && profile.name === 'safari' )
@@ -65,25 +61,49 @@
 			}
 
 			/* Fill $content var */
-			if ( $( '#bodyContent' ).length ) {
-				// Vector, Monobook, Chick etc.
-				util.$content = $( '#bodyContent' );
+			util.$content = ( function () {
+				var $content, selectors = [
+					// The preferred standard for setting $content (class="mw-body")
+					// You may also use (class="mw-body mw-body-primary") if you use
+					// mw-body in multiple locations.
+					// Or class="mw-body-primary" if you want $content to be deeper
+					// in the dom than mw-body
+					'.mw-body-primary',
+					'.mw-body',
 
-			} else if ( $( '#mw_contentholder' ).length ) {
-				// Modern
-				util.$content = $( '#mw_contentholder' );
+					/* Legacy fallbacks for setting the content */
+					// Vector, Monobook, Chick, etc... based skins
+					'#bodyContent',
 
-			} else if ( $( '#article' ).length ) {
-				// Standard, CologneBlue
-				util.$content = $( '#article' );
+					// Modern based skins
+					'#mw_contentholder',
 
-			} else {
-				// #content is present on almost all if not all skins. Most skins (the above cases)
-				// have #content too, but as an outer wrapper instead of the article text container.
-				// The skins that don't have an outer wrapper do have #content for everything
-				// so it's a good fallback
-				util.$content = $( '#content' );
-			}
+					// Standard, CologneBlue
+					'#article',
+
+					// #content is present on almost all if not all skins. Most skins (the above cases)
+					// have #content too, but as an outer wrapper instead of the article text container.
+					// The skins that don't have an outer wrapper do have #content for everything
+					// so it's a good fallback
+					'#content',
+
+					// If nothing better is found fall back to our bodytext div that is guaranteed to be here
+					'#mw-content-text',
+
+					// Should never happen... well, it could if someone is not finished writing a skin and has
+					// not inserted bodytext yet. But in any case <body> should always exist
+					'body'
+				];
+				for ( var i = 0, l = selectors.length; i < l; i++ ) {
+					$content = $( selectors[i] ).first();
+					if ( $content.length ) {
+						return $content;
+					}
+				}
+
+				// Make sure we don't unset util.$content if it was preset and we don't find anything
+				return util.$content;
+			} )();
 
 			// Table of contents toggle
 			$tocTitle = $( '#toctitle' );
@@ -293,7 +313,7 @@
 
 		/*
 		 * @var jQuery
-		 * A jQuery object that refers to the page-content element
+		 * A jQuery object that refers to the content area element
 		 * Populated by init().
 		 */
 		$content: null,
@@ -436,60 +456,18 @@
 		 * Calling with no arguments, with an empty string or null will hide the message
 		 *
 		 * @param message {mixed} The DOM-element, jQuery object or HTML-string to be put inside the message box.
-		 * @param className {String} Used in adding a class; should be different for each call
 		 * to allow CSS/JS to hide different boxes. null = no class used.
-		 * @return {Boolean} True on success, false on failure.
+		 * @depreceated Use mw.notify
 		 */
-		jsMessage: function ( message, className ) {
-			var $messageDiv = $( '#mw-js-message' );
-
+		jsMessage: function ( message ) {
 			if ( !arguments.length || message === '' || message === null ) {
-				$messageDiv.empty().hide();
-				stopHideMessageTimeout();
-				return true; // Emptying and hiding message is intended behaviour, return true
-			} else {
-				// We special-case skin structures provided by the software. Skins that
-				// choose to abandon or significantly modify our formatting can just define
-				// an mw-js-message div to start with.
-				if ( !$messageDiv.length ) {
-					$messageDiv = $( '<div id="mw-js-message"></div>' );
-					if ( util.$content.parent().length ) {
-						util.$content.parent().prepend( $messageDiv );
-					} else {
-						return false;
-					}
-				}
-
-				if ( !messageBoxEvents ) {
-					messageBoxEvents = true;
-					$messageDiv
-						.on( {
-							'mouseenter': stopHideMessageTimeout,
-							'mouseleave': startHideMessageTimeout,
-							'click': hideMessage
-						} )
-						.on( 'click', 'a', function ( e ) {
-							// Prevent links, even those that don't exist yet, from causing the
-							// message box to close when clicked
-							e.stopPropagation();
-						} );
-				}
-
-				if ( className ) {
-					$messageDiv.prop( 'className', 'mw-js-message-' + className );
-				}
-
-				if ( typeof message === 'object' ) {
-					$messageDiv.empty();
-					$messageDiv.append( message );
-				} else {
-					$messageDiv.html( message );
-				}
-
-				$messageDiv.slideDown();
-				startHideMessageTimeout();
 				return true;
 			}
+			if ( typeof message !== 'object' ) {
+				message = $.parseHTML( message );
+			}
+			mw.notify( message, { autoHide: true, tag: 'legacy' } );
+			return true;
 		},
 
 		/**
@@ -624,18 +602,6 @@
 				&& address.search( /::/ ) !== -1 && address.search( /::.*::/ ) === -1;
 		}
 	};
-
-	// Message auto-hide helpers
-	function hideMessage() {
-		$( '#mw-js-message' ).fadeOut( 'slow' );
-	}
-	function stopHideMessageTimeout() {
-		clearTimeout( hideMessageTimeout );
-	}
-	function startHideMessageTimeout() {
-		clearTimeout( hideMessageTimeout );
-		hideMessageTimeout = setTimeout( hideMessage, 5000 );
-	}
 
 	mw.util = util;
 

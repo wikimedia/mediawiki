@@ -1,7 +1,7 @@
 <?php
 /**
- * Run this script periodically if you have miser mode enabled, to refresh the
- * caches
+ * Update for cached special pages.
+ * Run this script periodically if you have miser mode enabled.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,11 @@
 
 require_once( __DIR__ . '/Maintenance.php' );
 
+/**
+ * Maintenance script to update cached special pages.
+ *
+ * @ingroup Maintenance
+ */
 class UpdateSpecialPages extends Maintenance {
 	public function __construct() {
 		parent::__construct();

@@ -1,5 +1,7 @@
 <?php
 /**
+ * Benchmark %MediaWiki hooks.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,6 +23,11 @@
 
 require_once( __DIR__ . '/Benchmarker.php' );
 
+/**
+ * Maintenance script that benchmarks %MediaWiki hooks.
+ *
+ * @ingroup Benchmark
+ */
 class BenchmarkHooks extends Benchmarker {
 
 	public function __construct() {

@@ -328,7 +328,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc' => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword' => 'Recordar os meus dados neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
-'tog-watchcreations' => 'Adicionar páginas criadas por mim à minha lista de páginas vigiadas',
+'tog-watchcreations' => 'Adicionar as páginas e arquivos que eu criar às minhas páginas vigiadas',
 'tog-watchdefault' => 'Adicionar páginas editadas por mim à minha lista de páginas vigiadas',
 'tog-watchmoves' => 'Adicionar páginas movidas por mim à minha lista de páginas vigiadas',
 'tog-watchdeletion' => 'Adicionar páginas eliminadas por mim à minha lista de páginas vigiadas',
@@ -578,6 +578,10 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 'youhavenewmessages' => 'Você tem $1 ($2).',
 'newmessageslink' => 'novas mensagens',
 'newmessagesdifflink' => 'última alteração',
+'youhavenewmessagesfromusers' => 'Você tem $1 de {{PLURAL:$3|outro usuário|outros usuários}} ($2)',
+'youhavenewmessagesmanyusers' => 'Você tem $1 de muitos usuários ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|uma mensagem nova|mensagens novas}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|última alteração|últimas alterações}}',
 'youhavenewmessagesmulti' => 'Você tem novas mensagens em $1',
 'editsection' => 'editar',
 'editold' => 'editar',
@@ -671,6 +675,8 @@ Anote o URL e reporte o ocorrido a um [[Special:ListUsers/sysop|administrador]].
 'cannotdelete' => 'Não foi possível eliminar a página ou arquivo $1.
 É possível que ele já tenha sido eliminado por outra pessoa.',
 'cannotdelete-title' => 'Não é possível excluir a página " $1 "',
+'delete-hook-aborted' => 'A eliminação foi cancelada por um "hook".
+Não foi dada nenhuma explicação.',
 'badtitle' => 'Título inválido',
 'badtitletext' => 'O título de página solicitado era inválido, vazio, ou um link interlínguas ou interwikis incorreto.
 Talvez contenha um ou mais caracteres que não podem ser usados em títulos.',
@@ -726,6 +732,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências no 
 'remembermypassword' => 'Lembrar meu login neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
 'securelogin-stick-https' => 'Permanecer conectado ao HTTPS após a autenticação',
 'yourdomainname' => 'Seu domínio:',
+'password-change-forbidden' => 'Você não pode alterar senhas nessa wiki.',
 'externaldberror' => 'Ocorreu ou um erro no banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
 'login' => 'Autenticar-se',
 'nav-login-createaccount' => 'Entrar / criar conta',
@@ -965,16 +972,19 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
 'noarticletext-nopermission' => 'No momento, não há conteúdo nesta página
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas,
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar por registros relacionados] </span>.',
+'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
+
+Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
+Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
 'userpage-userdoesnotexist' => 'A conta "<nowiki>$1</nowiki>" não se encontra registrada.
 Verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view' => 'A conta de usuário "$1" não está registrada.',
 'blocked-notice-logextract' => 'Este usuário está atualmente bloqueado.
 O registro de bloqueio mais recente é fornecido abaixo, para referência:',
-'clearyourcache' => "'''Nota:''' Depois de salvar, você terá de limpar o ''cache'' do seu navegador para ver as alterações.
+'clearyourcache' => "Nota:''' Depois de salvar, você terá de limpar o ''cache'' do seu navegador para ver as alterações.
 * '''Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Mac);
 * '''Google Chrome:''' pressione ''Ctrl-Shift-R'' (''Command-Shift-R'' em um Mac)
 * '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';
-* '''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
 * '''Opera:''' limpe o ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview' => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 'userjsyoucanpreview' => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
@@ -1087,6 +1097,13 @@ Estes argumentos foram omitidos.',
 'parser-template-loop-warning' => 'Ciclo de predefinições detectado: [[$1]]',
 'parser-template-recursion-depth-warning' => 'O limite de profundidade de recursividade de predefinição foi ultrapassado ($1)',
 'language-converter-depth-warning' => 'O limite de profundidade do conversor de línguas excedeu a ($1)',
+'node-count-exceeded-category' => 'Páginas em que o total de nós é excedido',
+'node-count-exceeded-warning' => 'A página excedeu o total de nós',
+'expansion-depth-exceeded-category' => 'Páginas em que a profundidade de expansão é excedida',
+'expansion-depth-exceeded-warning' => 'A página excedeu a profundidade de expansão',
+'parser-unstrip-loop-warning' => 'Foi detectado um ciclo infinito unstrip',
+'parser-unstrip-recursion-limit' => 'Limite de recursão do unstrip excedido ($1)',
+'converter-manual-rule-error' => 'Erro detectado na regra de conversão de língua manual',
 
 # "Undo" feature
 'undo-success' => 'A edição pôde ser desfeita. Por gentileza, verifique o comparativo a seguir para se certificar de que é isto que deseja fazer, salvando as alterações após ter terminado de revisá-las.',
@@ -1272,6 +1289,10 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'editundo' => 'desfazer',
 'diff-multi' => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de {{PLURAL:$2|um usuário|$2 usuários}} {{PLURAL:$1|não apresentada|não apresentadas}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Uma edição intermediária|$1 edições intermediárias}} de mais de {{PLURAL:$2|um usuário|$2 usuário}} não {{PLURAL:$1|apresentada|apresentadas}})',
+'difference-missing-revision' => '{{PLURAL:$2|Uma revisão|$2 revisões}} desta diferença ($1) não {{PLURAL:$2|foi encontrada|foram encontradas}}.
+
+Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.
+Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
 
 # Search results
 'searchresults' => 'Resultados da pesquisa',
@@ -1541,6 +1562,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-writeapi' => 'Uso da API de escrita',
 'right-delete' => 'Eliminar páginas',
 'right-bigdelete' => 'Eliminar páginas com histórico grande',
+'right-deletelogentry' => 'Eliminar e restaurar entradas específicas de registos',
 'right-deleterevision' => 'Eliminar e restaurar revisões específicas de páginas',
 'right-deletedhistory' => 'Ver entradas de histórico eliminadas, sem o texto associado',
 'right-deletedtext' => 'Ver texto removido e alterado entre revisões removidas',
@@ -1851,6 +1873,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'backend-fail-internal' => 'Ocorreu um erro desconhecido no servidor de armazenamento "$1".',
 'backend-fail-contenttype' => 'Não foi possível determinar o tipo de conteúdo do arquivo para armazenar em "$1".',
 'backend-fail-batchsize' => 'O servidor de armazenamento retornou um conjunto de $1 {{PLURAL:$1|operação|operações}} de arquivo, enquanto seu limite é de $2 {{PLURAL:$1|operação|operações}}.',
+'backend-fail-usable' => 'Não foi possível salvar o arquivo $1 devido a permissões insuficientes a diretórios ou repositórios inexistentes.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Não foi possível se conectar ao banco de dados de registros do sistema de armazenamento "$1".',
@@ -1865,6 +1888,7 @@ Caso o problema persista, procure um [[Special:ListUsers/sysop|administrador]].'
 'lockmanager-fail-releaselock' => 'Não foi possível liberar o bloqueio para "$1".',
 'lockmanager-fail-db-bucket' => 'Não foi possível contatar suficientemente bloqueio das bases de dados no bucket $1 .',
 'lockmanager-fail-db-release' => 'Não foi possível liberar os bloqueios para "$1".',
+'lockmanager-fail-svr-acquire' => 'Não foi possível obter bloqueios no servidor $1.',
 'lockmanager-fail-svr-release' => 'Não foi possível liberar os bloqueios do servidor "$1".',
 
 # ZipDirectoryReader
@@ -1883,6 +1907,7 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
 'uploadstash-errclear' => 'Não foi possível apagar os arquivos.',
 'uploadstash-refresh' => 'Atualizar a lista de arquivos',
+'invalid-chunk-offset' => 'Deslocamento de fragmento inválido',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negado',
@@ -1981,6 +2006,7 @@ Talvez você deseje editar a descrição na sua [$2 página de descrição de ar
 'uploadnewversion-linktext' => 'Enviar uma nova versão deste arquivo',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'um repositório compartilhado',
+'upload-disallowed-here' => 'Infelizmente você não pode substituir essa imagem.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -3054,7 +3080,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 
 # Info page
 'pageinfo-title' => 'Informações sobre "$1"',
-'pageinfo-header-edits' => 'Edições',
+'pageinfo-header-edits' => 'Histórico de edições',
 'pageinfo-views' => 'Número de visitas',
 'pageinfo-watchers' => 'Número de pessoas vigiando',
 'pageinfo-edits' => 'Número de edições',
@@ -3789,7 +3815,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other' => 'Outras páginas especiais',
-'specialpages-group-login' => 'Entrar / registrar-se',
+'specialpages-group-login' => 'Entrar / Criar conta',
 'specialpages-group-changes' => 'Mudanças e registros recentes',
 'specialpages-group-media' => 'Relatórios de mídias e uploads',
 'specialpages-group-users' => 'Usuários e privilégios',

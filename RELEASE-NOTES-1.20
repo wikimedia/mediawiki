@@ -24,7 +24,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   This only affects installations which have $wgAllowCopyUploads set to true.
 * Removed f-prot support from $wgAntivirusSetup.
 * New variable $wgDBerrorLogTZ to provide dates in the error log in a
-  different timezone than the wiki timezone set by $wgLocalTimezone.
+  different timezone than the wiki timezone set by $wgLocaltimezone.
 * New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
   connections, if either are available for the selected DB type.
 
@@ -41,7 +41,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * &useskin=default will now always display the default skin. Useful for users with a
   preference for the non-default skin to look at something using the default skin.
 * (bug 27619) Remove preference option to display broken links as link?
-* (bug 34896) Update jQuery JSON plugin to v2.3 (2011-09-17).
+* (bug 34896) jQuery JSON plugin upgraded to v2.3 (2011-09-17).
 * (bug 34302) Add CSS classes to email fields in user preferences.
 * Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only).
 * (bug 23795) Add parser itself to ParserMakeImageParams hook.
@@ -65,9 +65,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
 * Edit notices can now be translated.
-* (bug 35680) jQuery upgraded to 1.7.2.
-* jQuery UI upgraded to 1.8.22.
-* (bug 35705) QUnit upgraded from v1.2.0 to v1.8.0.
+* jQuery upgraded to 1.7.2
+* jQuery UI upgraded to 1.8.23.
+* QUnit upgraded from v1.2.0 to v1.10.0.
 * (bug 37604) jquery.cookie upgraded to 2011 version.
 * (bug 22887) Add warning and tracking category for preprocessor errors
 * (bug 31704) Allow selection of associated namespace on the watchlist
@@ -124,7 +124,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * HTMLForm mutators can now be chained (they return $this)
 * A new message, "api-error-filetype-banned-type", is available for formatting
   API upload errors due to the file extension blacklist.
-* jsMessage: Redesigned in Vector/Monobook as floating bubble with auto-hide.
 * New hook 'ParserTestGlobals' allows to set globals before running parser tests.
 * Allow importing pages as subpage.
 * Add lang and hreflang attributes to language links on Login page.
@@ -132,10 +131,19 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
 * (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
 * (bug 39431) SVG animated status is now shown in long description
-* (bug 39376) jquery.form upgraded to 3.14
+* (bug 39376) jquery.form upgraded to 3.14.
 * SVG files will now show the actual width in the SVG's specified units
   in the metadata box.
 * Added ResourceLoader module "jquery.jStorage".
+* (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
+* Added ResourceLoader module "jquery.badge".
+* mw.util.$content now points to the overall content area in the skin rather than just
+  page text content area. If you need the old behaviour please use $( '#mw-content-text').
+* jsMessage has been replaced with a floating bubble notification system complete
+  with auto-hide, multi-message support, and message replacement tags.
+* jquery.messageBox which appears to be unused by both core and extensions has
+  been removed.
+* (bug 34939) made link parsking insensitive ([HttP://])
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -227,13 +235,16 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 27111) Cascading foreign file repos now fetch shared descriptions properly.
 * EXIF below sea level GPS altitude data is now shown correctly.
 * (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
+* (bug 39273) "Show changes" should not be incorrectly displayed in the Live Preview state.
+* Made body-content lang attribute honor the variant language when it is set.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
 * (bug 34313) MediaWiki API intro message about "HTML format" should mention
   the format parameter.
 * (bug 32384) Allow descending order for list=watchlistraw.
-* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is not documented in API help.
+* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is
+  not documented in API help.
 * (bug 32492) API now allows editing using pageid.
 * (bug 32497) API now allows changing of protection level using pageid.
 * (bug 32498) API now allows comparing pages using pageids.
@@ -262,8 +273,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * Watchlist notification timestamp may be queried by page and may be updated via the API.
 * (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 * (bug 39032) ApiQuery generates help in constructor.
-* (bug 11142) Improve file extension blacklist error reporting in API upload
-* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error
+* (bug 11142) Improve file extension blacklist error reporting in API upload.
+* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
+* (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
 
 === Languages updated in 1.20 ===
 
@@ -298,6 +310,8 @@ changes to languages because of Bugzilla reports.
 * Deprecated DatabaseBase functions newFromParams(), newFromType(), set(),
   quote_ident(), and escapeLike() were removed.
 * Use of __DIR__ instead of dirname( __FILE__ ).
+* OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
+  not used and complicated migration to Message class.
 
 == Compatibility ==
 

@@ -247,9 +247,9 @@ class TextPassDumper extends BackupDumper {
 
 		if ( $this->reporting ) {
 			$now = wfTimestamp( TS_DB );
-			$nowts = wfTime();
-			$deltaAll = wfTime() - $this->startTime;
-			$deltaPart = wfTime() - $this->lastTime;
+			$nowts = microtime( true );
+			$deltaAll = $nowts - $this->startTime;
+			$deltaPart = $nowts - $this->lastTime;
 			$this->pageCountPart = $this->pageCount - $this->pageCountLast;
 			$this->revCountPart = $this->revCount - $this->revCountLast;
 

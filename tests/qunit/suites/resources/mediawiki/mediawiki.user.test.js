@@ -37,7 +37,7 @@ QUnit.asyncTest( 'getGroups', 3, function ( assert ) {
 	mw.user.getGroups( function ( groups ) {
 		// First group should always be '*'
 		assert.equal( $.type( groups ), 'array', 'Callback gets an array' );
-		assert.equal( groups[0], '*', '"*"" is the first group' );
+		assert.notStrictEqual( $.inArray( '*', groups ), -1, '"*"" is in the list' );
 		// Sort needed because of different methods if creating the arrays,
 		// only the content matters.
 		assert.deepEqual( groups.sort(), mw.config.get( 'wgUserGroups' ).sort(), 'Array contains all groups, just like wgUserGroups' );

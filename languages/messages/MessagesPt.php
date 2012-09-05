@@ -2022,6 +2022,7 @@ Talvez queira editar a descrição na [$2 página original de descrição do fic
 'uploadnewversion-linktext' => 'Carregar uma nova versão deste ficheiro',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'um repositório partilhado',
+'upload-disallowed-here' => 'Infelizmente você não pode substituir essa imagem.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -2129,6 +2130,7 @@ Agora redirecciona para [[$2]].',
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|categoria|categorias}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|link|links}}',
 'nmembers' => '$1 {{PLURAL:$1|membro|membros}}',
 'nrevisions' => '$1 {{PLURAL:$1|edição|edições}}',
@@ -2157,6 +2159,7 @@ Agora redirecciona para [[$2]].',
 'mostlinkedtemplates' => 'Predefinições com mais afluentes',
 'mostcategories' => 'Páginas com mais categorias',
 'mostimages' => 'Ficheiros com mais afluentes',
+'mostinterwikis' => 'Páginas com mais interwikis',
 'mostrevisions' => 'Páginas com mais revisões',
 'prefixindex' => 'Todas as páginas iniciadas por',
 'prefixindex-namespace' => 'Todas as páginas com prefixo (domínio $1)',

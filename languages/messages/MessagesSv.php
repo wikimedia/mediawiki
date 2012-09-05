@@ -37,6 +37,7 @@
  * @author Petter Strandmark
  * @author Poxnar
  * @author Purodha
+ * @author Rotsee
  * @author S.Örvarr.S
  * @author Sannab
  * @author Sertion
@@ -638,7 +639,7 @@ I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsido
 'error' => 'Fel',
 'databaseerror' => 'Databasfel',
 'dberrortext' => 'Ett syntaxfel i databasfrågan har uppstått.
-Detta kan indikera en bug i mjukvaran.
+Detta kan indikera en bugg i mjukvaran.
 Den senaste databasfrågan att köras var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen "<tt>$2</tt>".
@@ -981,11 +982,10 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view' => 'Kontot "$1" är inte registrerat.',
 'blocked-notice-logextract' => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
-'clearyourcache' => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
+'clearyourcache' => "'''OBS:''' Efter du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
 *'''Firefox / Safari:''' Håll ned ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på Mac)
 *'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''⌘-Shift-R'' på Mac)
 *'''Internet Explorer:'''  Håll ned ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
-*'''Konqueror:''' Klicka på ''Reload'' eller tryck på ''F5''
 *'''Opera:''' Rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview' => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview' => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
@@ -1293,6 +1293,10 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'editundo' => 'gör ogjord',
 'diff-multi' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av {{PLURAL:$2|en användare|$2 användare}} visas inte)',
 'diff-multi-manyusers' => '({{PLURAL:$1|En mellanliggande version|$1 mellanliggande versioner}} av mer än $2 användare visas inte)',
+'difference-missing-revision' => '{{PLURAL:$2|En revision|$2 revisioner}} av denna skillnad ($1) kunde inte hittas.
+
+Detta orsakas vanligtvis av att följa en utgången difflänk till en sida som har raderats.
+Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].',
 
 # Search results
 'searchresults' => 'Sökresultat',
@@ -1993,6 +1997,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'shared-repo-from' => 'från $1',
 'shared-repo' => 'en gemensam filförvaring',
 'filepage.css' => '/* CSS som skrivs här inkluderas på filbeskrivningssidan, även på utländska klientwikis */',
+'upload-disallowed-here' => 'Du kan inte skriva över denna bild.',
 
 # File reversion
 'filerevert' => 'Återställ $1',
@@ -2073,8 +2078,8 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 
 'disambiguations' => 'Sidor som länkar till förgreningssidor',
 'disambiguationspage' => 'Template:Förgrening',
-'disambiguations-text' => "Följande sidor länkar till ''förgreningssidor''.
-Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<br />
+'disambiguations-text' => "Följande sidorna innehåller minst en länk till en '''förgreningssida'''.
+De bör troligtvis ändras så att de länkar till en mer passande sida istället.<br />
 En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dubbla omdirigeringar',
@@ -2912,6 +2917,7 @@ All överföring mellan wikier (transwiki) listas i  [[Special:Log/import|import
 'import-interwiki-templates' => 'Inkludera alla mallar',
 'import-interwiki-submit' => 'Importera',
 'import-interwiki-namespace' => 'Målnamnrymd:',
+'import-interwiki-rootpage' => 'Destinationens grundsida (valfri):',
 'import-upload-filename' => 'Filnamn:',
 'import-comment' => 'Kommentar:',
 'importtext' => 'Var god exportera filen från ursprungs-wikin med hjälp av [[Special:Export|exporteringsverktyget]].
@@ -2945,6 +2951,7 @@ Spara den på din dator och ladda upp den här.',
 'import-error-special' => 'Sidan "$1" är inte importerad eftersom den tillhör en särskild namnrymd som inte tillåter sidor.',
 'import-error-invalid' => 'Sidan "$1" är inte importerad eftersom dess namn är ogiltigt.',
 'import-options-wrong' => 'Fel {{PLURAL:$2|alternativ|alternativ}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Angiven grundsida är en ogiltig titel.',
 'import-rootpage-nosubpage' => 'Namnrymden "$1" till grundsidan tillåter inte undersidor.',
 
 # Import log
@@ -3108,13 +3115,22 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-length' => 'Sidlängd (i byte)',
 'pageinfo-article-id' => 'Sid-ID',
 'pageinfo-robot-policy' => 'Sökmotorns status',
+'pageinfo-robot-index' => 'Indexerbar',
+'pageinfo-robot-noindex' => 'Inte indexerbar',
 'pageinfo-views' => 'Antal visningar',
 'pageinfo-watchers' => 'Antal användare som bevakar sidan',
 'pageinfo-redirects-name' => 'Omdirigeringar till denna sida',
 'pageinfo-subpages-name' => 'Undersidor till denna sida',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|omdirigering|omdirigeringar}}; $3 {{PLURAL:$3|icke-omdirigering|icke-omdirigeringar}})',
+'pageinfo-firstuser' => 'Sidskapare',
+'pageinfo-firsttime' => 'Datum när sidan skapades',
+'pageinfo-lastuser' => 'Senaste redigeraren',
 'pageinfo-lasttime' => 'Datum för senaste redigeringen',
 'pageinfo-edits' => 'Totalt antal redigeringar',
 'pageinfo-authors' => 'Totalt antal olika författare',
+'pageinfo-recent-edits' => 'Antal nyliga redigeringar (inom de senaste $1)',
+'pageinfo-recent-authors' => 'Antal nyliga olika författare',
+'pageinfo-restriction' => 'Sidskydd (<code>{{lcfirst:$1}}</code>)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiskt|Magiska}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Dold kategori|Dolda kategorier}} ($1)',
 
@@ -3181,6 +3197,8 @@ Om du kör den kan din dator skadas.",
 'file-info-png-looped' => 'upprepad',
 'file-info-png-repeat' => 'spelad $1 {{PLURAL:$1|gång|gånger}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|bild|bilder}}',
+'file-no-thumb-animation' => "'''OBS: På grund av tekniska begränsningar kommer inte miniatyrer av denna fil animeras.'''",
+'file-no-thumb-animation-gif' => "'''OBS: På grund av tekniska begränsningar kommer inte miniatyrer av GIF-bilder med hög upplösning som denna animeras.'''",
 
 # Special:NewFiles
 'newimages' => 'Galleri över nya filer',

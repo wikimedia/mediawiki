@@ -91,7 +91,7 @@ class ImageBuilder extends Maintenance {
 		$this->processed = 0;
 		$this->updated = 0;
 		$this->count = $count;
-		$this->startTime = wfTime();
+		$this->startTime = microtime( true );
 		$this->table = $table;
 	}
 
@@ -104,7 +104,7 @@ class ImageBuilder extends Maintenance {
 		$portion = $this->processed / $this->count;
 		$updateRate = $this->updated / $this->processed;
 
-		$now = wfTime();
+		$now = microtime( true );
 		$delta = $now - $this->startTime;
 		$estimatedTotalTime = $delta / $portion;
 		$eta = $this->startTime + $estimatedTotalTime;

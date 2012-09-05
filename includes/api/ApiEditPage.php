@@ -82,7 +82,9 @@ class ApiEditPage extends ApiBase {
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
 
-				$titles = Revision::newFromTitle( $oldTitle )->getContent( Revision::FOR_THIS_USER )->getRedirectChain();
+				$titles = Revision::newFromTitle( $oldTitle, false, Revision::READ_LATEST )
+							->getContent( Revision::FOR_THIS_USER )
+							->getRedirectChain();
 				// array_shift( $titles );
 
 				$redirValues = array();
@@ -237,7 +239,7 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['summary'] ) ) {
 			$requestArray['wpSummary'] = $params['summary'];
 		}
-		
+
 		if ( !is_null( $params['sectiontitle'] ) ) {
 			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
 		}

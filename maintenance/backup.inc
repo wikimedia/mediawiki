@@ -259,7 +259,7 @@ class BackupDumper {
 			$dbr = wfGetDB( DB_SLAVE );
 		}
 		$this->maxCount = $dbr->selectField( $table, "MAX($field)", '', __METHOD__ );
-		$this->startTime = wfTime();
+		$this->startTime = microtime( true );
 		$this->lastTime = $this->startTime;
 		$this->ID = getmypid();
 	}
@@ -328,9 +328,9 @@ class BackupDumper {
 	function showReport() {
 		if ( $this->reporting ) {
 			$now = wfTimestamp( TS_DB );
-			$nowts = wfTime();
-			$deltaAll = wfTime() - $this->startTime;
-			$deltaPart = wfTime() - $this->lastTime;
+			$nowts = microtime( true );
+			$deltaAll = $nowts - $this->startTime;
+			$deltaPart = $nowts - $this->lastTime;
 			$this->pageCountPart = $this->pageCount - $this->pageCountLast;
 			$this->revCountPart = $this->revCount - $this->revCountLast;
 

@@ -767,7 +767,8 @@ abstract class File {
 	 * @return string
 	 */
 	function thumbName( $params ) {
-		return $this->generateThumbName( $this->getName(), $params );
+		$name = $this->repo ? $this->repo->nameForThumb( $this->getName() ) : $this->getName();
+		return $this->generateThumbName( $name, $params );
 	}
 
 	/**
@@ -942,7 +943,8 @@ abstract class File {
 				}
 			} elseif ( $this->repo && $thumb->hasFile() && !$thumb->fileIsSource() ) {
 				// Copy the thumbnail from the file system into storage...
-				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath );
+				$disposition = $this->getThumbDisposition( $thumbName );
+				$status = $this->repo->quickImport( $tmpThumbPath, $thumbPath, $disposition );
 				if ( $status->isOK() ) {
 					$thumb->setStoragePath( $thumbPath );
 				} else {
@@ -964,6 +966,19 @@ abstract class File {
 
 		wfProfileOut( __METHOD__ );
 		return is_object( $thumb ) ? $thumb : false;
+	}
+
+	/**
+	 * @param $thumbName string Thumbnail name
+	 * @return string Content-Disposition header value
+	 */
+	function getThumbDisposition( $thumbName ) {
+		$fileName = $this->name; // file name to suggest
+		$thumbExt = FileBackend::extensionFromPath( $thumbName );
+		if ( $thumbExt != '' && $thumbExt !== $this->getExtension() ) {
+			$fileName .= ".$thumbExt";
+		}
+		return FileBackend::makeContentDisposition( 'inline', $fileName );
 	}
 
 	/**
@@ -998,7 +1013,8 @@ abstract class File {
 			$path = '/common/images/icons/' . $icon;
 			$filepath = $wgStyleDirectory . $path;
 			if ( file_exists( $filepath ) ) { // always FS
-				return new ThumbnailImage( $this, $wgStylePath . $path, 120, 120 );
+				$params = array( 'width' => 120, 'height' => 120 );
+				return new ThumbnailImage( $this, $wgStylePath . $path, false, $params );
 			}
 		}
 		return null;

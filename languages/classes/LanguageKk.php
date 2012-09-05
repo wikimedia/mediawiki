@@ -444,20 +444,6 @@ class LanguageKk extends LanguageKk_cyrl {
 	}
 
 	/**
-	 * Work around for right-to-left direction support in kk-arab and kk-cn
-	 *
-	 * @return bool
-	 */
-	function isRTL() {
-		$variant = $this->getPreferredVariant();
-		if ( $variant == 'kk-arab' || $variant == 'kk-cn' ) {
-			return true;
-		} else {
-			return parent::isRTL();
-		}
-	}
-
-	/**
 	 * It fixes issue with ucfirst for transforming 'i' to 'İ'
 	 *
 	 * @param $string string

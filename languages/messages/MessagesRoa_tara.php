@@ -1762,6 +1762,7 @@ Pò essere ca tu vuè cangià 'a descrizione de jidde [$2 pàgene de descrizione
 'shared-repo' => "'nu condenitore de cose condivise",
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => "/* 'U CSS ca se iacchie aqquà jè ingluse sus 'a pàgene de descrizione d'u file, pure ingluse pe le client de le Uicchi furastire */",
+'upload-disallowed-here' => "Sfortunatamende non ge puè sovrascrivere st'immaggine.",
 
 # File reversion
 'filerevert' => "'Nvirte $1",
@@ -2902,8 +2903,11 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-title' => '\'Mbormaziune pe "$1"',
 'pageinfo-header-basic' => "'Mbormaziune 'nderra-'nderre",
 'pageinfo-header-edits' => 'Cunde de le cangiaminde',
+'pageinfo-header-restrictions' => "Protezione d'a pàgene",
 'pageinfo-header-properties' => "Probbietà d'a pàgene",
 'pageinfo-display-title' => "Fà vedè 'u titole",
+'pageinfo-default-sort' => 'Chiave de ordenamende de base',
+'pageinfo-length' => "Lunghezze d'a pàgene (in byte)",
 'pageinfo-article-id' => "ID d'a pàgene",
 'pageinfo-robot-policy' => "State d'u motore de ricerche",
 'pageinfo-robot-index' => 'Indicizzabbele',
@@ -2919,6 +2923,8 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-lasttime' => "Darte de l'urteme cangiamende",
 'pageinfo-edits' => 'Numere totale de cangiaminde',
 'pageinfo-authors' => 'Numere Totale de autore diverse',
+'pageinfo-recent-edits' => "Numere de le urteme cangiaminde ('mbonde a $1)",
+'pageinfo-recent-authors' => 'Numere de le urteme autore diverse',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 
 # Skin names
@@ -2975,6 +2981,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'file-info-size-pages' => "$1 × $2 pixel, dimenzione d'u file: $3, tipe de MIME: $4, $5 {{PLURAL:$5|pàgene|pàggene}}",
 'file-nohires' => "Manghe 'a risoluzione ierta.",
 'svg-long-desc' => "Fail SVG, nominalmende sonde $1 × $2 pixel, dimenzione d'u fail: $3",
+'svg-long-desc-animated' => "File SVG animate, nominalmende sonde $1 × $2 pixel, dimenzione d'u file: $3",
 'show-big-image' => 'Risoluzione chiena chiena',
 'show-big-image-preview' => 'Dimenziune de sta andeprime: $1.',
 'show-big-image-other' => 'Otre {{PLURAL:$2|resoluzione|resoluziune}}: $1.',

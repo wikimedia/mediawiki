@@ -225,11 +225,11 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $mServer, $mUser, $mPassword, $mDBname;
 
-	/**
-	 * @var DatabaseBase
-	 */
 	protected $mConn = null;
 	protected $mOpened = false;
+
+	/** @var Array */
+	protected $trxIdleCallbacks = array();
 
 	protected $mTablePrefix;
 	protected $mFlags;
@@ -1103,7 +1103,10 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 
 		if ( isset( $options['HAVING'] ) ) {
-			$preLimitTail .= " HAVING {$options['HAVING']}";
+			$having = is_array( $options['HAVING'] )
+				? $this->makeList( $options['HAVING'], LIST_AND )
+				: $options['HAVING'];
+			$preLimitTail .= " HAVING {$having}";
 		}
 
 		if ( isset( $options['ORDER BY'] ) ) {
@@ -1264,7 +1267,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 *   - GROUP BY: May be either an SQL fragment string naming a field or
 	 *     expression to group by, or an array of such SQL fragments.
 	 *
-	 *   - HAVING: A string containing a HAVING clause.
+	 *   - HAVING: May be either an string containing a HAVING clause or an array of
+	 *     conditions building the HAVING clause. If an array is given, the conditions
+	 *     constructed from each element are combined with AND.
 	 *
 	 *   - ORDER BY: May be either an SQL fragment giving a field name or
 	 *     expression to order by, or an array of such SQL fragments.
@@ -2826,11 +2831,61 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Run an anonymous function as soon as there is no transaction pending.
+	 * If there is a transaction and it is rolled back, then the callback is cancelled.
+	 * Callbacks must commit any transactions that they begin.
+	 *
+	 * This is useful for updates to different systems or separate transactions are needed.
+	 *
+	 * @param Closure $callback
+	 * @return void
+	 */
+	final public function onTransactionIdle( Closure $callback ) {
+		if ( $this->mTrxLevel ) {
+			$this->trxIdleCallbacks[] = $callback;
+		} else {
+			$callback();
+		}
+	}
+
+	/**
+	 * Actually run the "on transaction idle" callbacks
+	 */
+	protected function runOnTransactionIdleCallbacks() {
+		$e = null; // last exception
+		do { // callbacks may add callbacks :)
+			$callbacks = $this->trxIdleCallbacks;
+			$this->trxIdleCallbacks = array(); // recursion guard
+			foreach ( $callbacks as $callback ) {
+				try {
+					$callback();
+				} catch ( Exception $e ) {}
+			}
+		} while ( count( $this->trxIdleCallbacks ) );
+
+		if ( $e instanceof Exception ) {
+			throw $e; // re-throw any last exception
+		}
+	}
+
+	/**
 	 * Begin a transaction
 	 *
 	 * @param $fname string
 	 */
-	public function begin( $fname = 'DatabaseBase::begin' ) {
+	final public function begin( $fname = 'DatabaseBase::begin' ) {
+		if ( $this->mTrxLevel ) { // implicit commit
+			$this->doCommit( $fname );
+			$this->runOnTransactionIdleCallbacks();
+		}
+		$this->doBegin( $fname );
+	}
+
+	/**
+	 * @see DatabaseBase::begin()
+	 * @param type $fname
+	 */
+	protected function doBegin( $fname ) {
 		$this->query( 'BEGIN', $fname );
 		$this->mTrxLevel = 1;
 	}
@@ -2840,7 +2895,16 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $fname string
 	 */
-	public function commit( $fname = 'DatabaseBase::commit' ) {
+	final public function commit( $fname = 'DatabaseBase::commit' ) {
+		$this->doCommit( $fname );
+		$this->runOnTransactionIdleCallbacks();
+	}
+
+	/**
+	 * @see DatabaseBase::commit()
+	 * @param type $fname
+	 */
+	protected function doCommit( $fname ) {
 		if ( $this->mTrxLevel ) {
 			$this->query( 'COMMIT', $fname );
 			$this->mTrxLevel = 0;
@@ -2853,7 +2917,16 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $fname string
 	 */
-	public function rollback( $fname = 'DatabaseBase::rollback' ) {
+	final public function rollback( $fname = 'DatabaseBase::rollback' ) {
+		$this->doRollback( $fname );
+		$this->trxIdleCallbacks = array(); // cancel
+	}
+
+	/**
+	 * @see DatabaseBase::rollback()
+	 * @param type $fname
+	 */
+	protected function doRollback( $fname ) {
 		if ( $this->mTrxLevel ) {
 			$this->query( 'ROLLBACK', $fname, true );
 			$this->mTrxLevel = 0;
