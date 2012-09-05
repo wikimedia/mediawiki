@@ -273,6 +273,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 11142) Improve file extension blacklist error reporting in API upload.
 * (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
 * (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
+* (bug 39665) Cache AllowedGenerator array so it doesn't autoload all query classes
+  on every request.
 
 === Languages updated in 1.20 ===
 

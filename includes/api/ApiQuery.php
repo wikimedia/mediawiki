@@ -111,7 +111,8 @@ class ApiQuery extends ApiBase {
 		parent::__construct( $main, $action );
 
 		// Allow custom modules to be added in LocalSettings.php
-		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules;
+		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules,
+			$wgMemc, $wgAPICacheHelpTimeout;
 		self::appendUserModules( $this->mQueryPropModules, $wgAPIPropModules );
 		self::appendUserModules( $this->mQueryListModules, $wgAPIListModules );
 		self::appendUserModules( $this->mQueryMetaModules, $wgAPIMetaModules );
@@ -120,8 +121,22 @@ class ApiQuery extends ApiBase {
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
 
+		// Get help text from cache if present
+		$key = wfMemcKey( 'apiquerygenerators', SpecialVersion::getVersion( 'nodb' ) );
+
+		if ( $wgAPICacheHelpTimeout > 0 ) {
+			$cached = $wgMemc->get( $key );
+			if ( $cached ) {
+				$this->mAllowedGenerators = $cached;
+				return;
+			}
+		}
 		$this->makeGeneratorList( $this->mQueryPropModules );
 		$this->makeGeneratorList( $this->mQueryListModules );
+
+		if ( $wgAPICacheHelpTimeout > 0 ) {
+			$wgMemc->set( $key, $this->mAllowedGenerators, $wgAPICacheHelpTimeout );
+		}
 	}
 
 	/**
