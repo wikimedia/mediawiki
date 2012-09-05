@@ -15,6 +15,7 @@
  * @author Kumariprity
  * @author Manojberma77
  * @author Meno25
+ * @author Nemo bis
  * @author Priyanka.rachna.jha
  * @author Rajesh
  * @author Reedy
@@ -3532,8 +3533,8 @@ $5
 'logentry-move-move-noredirect' => '$1 {{लिंग:$2|हटाएल}} पन्ना $3 सँ $4 घुमौआकेँ बिना छोड़ने',
 'logentry-move-move_redir' => '$1 {{लिंग:$2|हटाएल}} पन्ना $3 सँ $4 घुमौआक अतिरिक्त',
 'logentry-move-move_redir-noredirect' => '$1 {{लिंग:$2|हटाएल}} पन्ना $3 सँ $4 घुमौआक अतितिक्त घुमौआकेँ बिना छोड़ने',
-'logentry-patrol-patrol' => '$1 {{लिंग:$2|चिन्हित}} संशोधन $4 $3 पन्नाक निरीक्षित',
-'logentry-patrol-patrol-auto' => '$1 स्वतः {{लिंग:$2|चिन्हित}} संशोधन $4 $3 पन्नाक निरीक्षित',
+'logentry-patrol-patrol' => '$1 {{GENDER:$2|चिन्हित}} संशोधन $4 $3 पन्नाक निरीक्षित',
+'logentry-patrol-patrol-auto' => '$1 स्वतः {{GENDER:$2|चिन्हित}} संशोधन $4 $3 पन्नाक निरीक्षित',
 'logentry-newusers-newusers' => '$1 {{लिंग:$2|बनाएल}} एकटा प्रयोक्ता खाता',
 'logentry-newusers-create' => '$1 {{लिंग:$2|बनाएल}} एकटा प्रयोक्ता खाता',
 'logentry-newusers-create2' => '$1 {{लिंग:$2|बनाएल}} {{लिंग:$4|एकटा प्रयोक्ता खाता}} $3',

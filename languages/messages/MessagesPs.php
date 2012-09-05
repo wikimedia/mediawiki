@@ -417,6 +417,8 @@ $1',
 'youhavenewmessages' => 'تاسې $1 لری  ($2).',
 'newmessageslink' => 'نوي پيغامونه',
 'newmessagesdifflink' => 'وروستی بدلون',
+'newmessageslinkplural' => '{{PLURAL:$1|يو نوی پيغام|نوي پيغامونه}}',
+'newmessagesdifflinkplural' => 'وروستي {{PLURAL:$1|بدلون|بدلونونه}}',
 'youhavenewmessagesmulti' => 'تاسې په $1 کې نوي پېغامونه لرۍ',
 'editsection' => 'سمول',
 'editold' => 'سمول',
@@ -736,11 +738,10 @@ $1',
 'userpage-userdoesnotexist-view' => 'د "$1" ګڼون نه دی ثبت شوی.',
 'blocked-notice-logextract' => 'دم مهال په دې کارن بنديز لګېدلی.
 دلته لاندې د بنديز تازه يادښت د سرچينې په توګه ورکړ شوی:',
-'clearyourcache' => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. 
-* '''موزېلا/ فايرفاکس/ سفري:''' په دې کتنمل کې د ''Reload'' د ټکوهلو په وخت د ''Shift'' تڼۍ نيولې وساتی، او يا هم ''Ctrl-F5'' يا ''Ctrl-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''⌘-R'' کېښکاږۍ)
+'clearyourcache' => "'''يادښت:''' د غوره توبونو د خوندي کولو وروسته، خپل د کتنمل (بروزر) ساتل شوې حافظه تازه کړی.
+* '''فايرفاکس/ سفري:''' په دې کتنمل کې د ''Reload'' د ټکوهلو په وخت د ''Shift'' تڼۍ نيولې وساتی، او يا هم ''Ctrl-F5'' يا ''Ctrl-R''تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''⌘-R'' کېښکاږۍ)
 * '''ګووګل کروم:''' په دې کتنمل کې د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''⌘-Shift-R'')
 * '''انټرنټ اېکسپلورر:''' په دې کتنمل کې د ''Refresh'' د ټکوهلو په وخت کې د ''Ctrl'' تڼۍ کېښکاږلې ونيسۍ، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
-* '''کانکوېرور:''' په دې کتنمل کې د يواځې د ''Reload'' تڼۍ ټکوهۍ، او يا ''F5'' کېښکاږۍ
 * '''اوپرا''': په دې کتنمل کې د خپل براوزر ساتل شوې حافظه پدې توګه سپينولی شی ''Tools→Preferences''",
 'usercsspreview' => "'''هېر مو نشي چې دا يوازې ستاسې د کارن CSS مخليدنه ده.'''
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
@@ -1008,6 +1009,7 @@ $1',
 'resultsperpage' => 'په هر مخ کې د پايلو شمېر:',
 'stub-threshold-disabled' => 'ناچارن',
 'recentchangesdays' => 'د هغو ورځو شمېر وټاکی چې په وروستي بدلونو کې يې ليدل غواړی:',
+'recentchangesdays-max' => 'حد اکثر $1 {{PLURAL:$1|ورځ|ورځې}}',
 'recentchangescount' => 'د هغو سمونو شمېر چې په تلواليزه بڼه ښکاره بايد شي:',
 'prefs-help-recentchangescount' => 'پدې کې د وروستني بدلونونو، د مخونو د پېښليکونو او يادښتونه شامل دي.',
 'savedprefs' => 'ستاسو غوره توبونه خوندي شوه.',
@@ -1266,6 +1268,7 @@ $1',
 که تاسې بيا هم د خپلې دوتنې پورته کول غواړۍ، نو لطفاً بېرته وګرځۍ او همدغه دوتنه بيا په يوه نوي نوم پورته کړی.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'همدا دوتنه د {{PLURAL:$1|لاندينۍ دوتنې|لاندينيو دوتنو}} غبرګه لمېسه ده:',
+'uploadwarning' => 'د پورته کولو ګواښ',
 'savefile' => 'دوتنه خوندي کړه',
 'uploadedimage' => '"[[$1]]" پورته شوه',
 'uploaddisabled' => 'پورته کول ناچارن شوي',
@@ -1280,6 +1283,7 @@ $1',
 'watchthisupload' => 'همدا دوتنه کتل',
 'upload-success-subj' => 'دوتنه پورته کېدل په برياليتوب سره ترسره شو',
 'upload-failure-subj' => 'د پورته کېدو ستونزه',
+'upload-warning-subj' => 'د پورته کولو ګواښ',
 
 'upload-file-error' => 'کورنۍ ستونزه',
 'upload-unknown-size' => 'ناڅرګنده کچه',
@@ -1508,6 +1512,7 @@ $1',
 'allpagesprefix' => 'هغه مخونه ښکاره کړه چې مختاړی يې وي:',
 'allpagesbadtitle' => 'ورکړ شوی سرليک سم نه دی او يا هم د ژبو او يا د بېلابېلو ويکي ګانو مختاړی لري. ستاسو په سرليک کې يو يا څو داسې ابېڅې دي کوم چې په سرليک کې نه شي کارېدلی.',
 'allpages-bad-ns' => '{{SITENAME}} د "$1" په نامه هېڅ کوم نوم-تشيال نه لري.',
+'allpages-hide-redirects' => 'مخ ګرځونې پټول',
 
 # Special:Categories
 'categories' => 'وېشنيزې',
@@ -1540,6 +1545,7 @@ $1',
 'activeusers' => 'د فعالو کارنانو لړليک',
 'activeusers-count' => 'په {{PLURAL:$2|تېرې|تېرو}} {{PLURAL:$3|ورځ|$3 ورځو}} کې $1 {{PLURAL:$1|سمون|سمونونه}}',
 'activeusers-from' => 'هغه کارنان کتل چې نومونه يې پېلېږي په:',
+'activeusers-hidebots' => 'روباټونه پټول',
 'activeusers-hidesysops' => 'پازوالان پټول',
 'activeusers-noresult' => 'کارن و نه موندل شو.',
 
@@ -1565,6 +1571,8 @@ $1',
 # E-mail user
 'mailnologin' => 'هېڅ کومه لېږل شوې پته نشته',
 'emailuser' => 'کارن ته برېښليک لېږل',
+'emailuser-title-target' => 'دې {{GENDER:$1|کارن}} ته برېښليک لېږل',
+'emailuser-title-notarget' => 'کارن ته برېښليک لېږل',
 'emailpage' => 'کارن ته برېښليک لېږل',
 'defemailsubject' => 'د "$1" کارن لخوا د {{SITENAME}} برېښليک',
 'usermaildisabled' => 'د کارن برېښليک ناچارند دی',
@@ -2066,10 +2074,10 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 # Info page
 'pageinfo-title' => 'د "$1" مالومات',
-'pageinfo-header-edits' => 'سمونونه',
+'pageinfo-header-edits' => 'د سمون پېښليک',
 'pageinfo-views' => 'د کتنو شمېر',
-'pageinfo-watchers' => 'د کتونکو شمېر',
-'pageinfo-edits' => 'د سمونونو شمېر',
+'pageinfo-watchers' => 'د مخ د کتونکو شمېر',
+'pageinfo-edits' => 'د ټولو سمونونو شمېر',
 
 # Skin names
 'skinname-standard' => 'کلاسيک',
@@ -2080,6 +2088,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'skinname-chick' => 'شيک',
 'skinname-simple' => 'ساده',
 'skinname-modern' => 'نوی',
+'skinname-vector' => 'وېکټور',
 
 # Patrolling
 'markaspatrolledtext' => 'دا مخ څارل شوی په نخښه کول',
@@ -2366,6 +2375,11 @@ $5
 'confirm-watch-button' => 'ښه',
 'confirm-unwatch-button' => 'ښه',
 
+# Separators for various lists, etc.
+'percent' => '$1%',
+'parentheses' => '($1)',
+'brackets' => '[$1]',
+
 # Multipage image navigation
 'imgmultipageprev' => '← پخوانی مخ',
 'imgmultipagenext' => 'راتلونکی مخ →',
@@ -2389,6 +2403,17 @@ $5
 'autosumm-replace' => "دا مخ د '$1' پرځای راوستل",
 'autoredircomment' => '[[$1]] ته وګرځولی شو',
 'autosumm-new' => 'د "$1" تورو مخ جوړ شو',
+
+# Size units
+'size-bytes' => '$1 بايټ',
+'size-kilobytes' => '$1 کيلوبايټ',
+'size-megabytes' => '$1 مېګابايټ',
+'size-gigabytes' => '$1 ګېګابايټ',
+'size-terabytes' => '$1 ټېرابايټ',
+'size-petabytes' => '$1 پېبي بايټ',
+'size-exabytes' => '$1 اېکسبي بايټ',
+'size-zetabytes' => '$1 زېبي بايټ',
+'size-yottabytes' => '$1 يوبي بايټ',
 
 # Live preview
 'livepreview-loading' => 'برسېرېدنې کې دی...',
@@ -2426,6 +2451,28 @@ $5
 'iranian-calendar-m10' => 'مرغومی',
 'iranian-calendar-m11' => 'سلواغه',
 'iranian-calendar-m12' => 'کب',
+
+# Hijri month names
+'hijri-calendar-m1' => 'محرم',
+'hijri-calendar-m2' => 'صفر',
+'hijri-calendar-m3' => 'ربيع الاول',
+'hijri-calendar-m4' => 'ربيع الثاني',
+'hijri-calendar-m5' => 'جمادى الاولى',
+'hijri-calendar-m6' => 'جمادى الثانية',
+'hijri-calendar-m7' => 'رجب',
+'hijri-calendar-m8' => 'شعبان',
+'hijri-calendar-m9' => 'رمضان',
+'hijri-calendar-m10' => 'شوال',
+'hijri-calendar-m11' => 'ذو القعدة',
+'hijri-calendar-m12' => 'ذو الحجة',
+
+# Hebrew month names
+'hebrew-calendar-m1' => 'تيشري',
+'hebrew-calendar-m2' => 'حشوان',
+'hebrew-calendar-m3' => 'كيسليف',
+'hebrew-calendar-m4' => 'تيفيت',
+'hebrew-calendar-m5' => 'شيفات',
+'hebrew-calendar-m6' => 'آدار',
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|خبرې اترې]])',

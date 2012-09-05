@@ -652,7 +652,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'lineno' => 'Zeiln $1:',
 'compareselectedversions' => 'Gwöde Versionen vagleichen',
 'editundo' => 'ryckgängig',
-'diff-multi' => '({{PLURAL:$1|A dazwischenliegerte Versión|$1 dazwischenliegende Versiónen}} vohram {{PLURAL:$2|Benutzer|$2 Benutzern}} {{PLURAL:$1|werd|wern}} néd åzoagt)',
+'diff-multi' => '({{PLURAL:$1|A dazwischenliegerte Versión|$1 dazwischenliegende Versiónen}} {{PLURAL:$2|vohram Benutzer|vo $2 Benutzern}} {{PLURAL:$1|werd|wern}} néd åzoagt)',
 
 # Search results
 'searchresults' => 'Suachergebniss',

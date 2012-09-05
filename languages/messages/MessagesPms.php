@@ -2803,11 +2803,11 @@ A lassa gionté na spiegassion ant ël resumé.",
 
 # Spam protection
 'spamprotectiontitle' => 'Filtror dla rumenta',
-'spamprotectiontext' => "La pàgina che a vorìa salvé a l'é staita blocà dal filtror dla rumenta.
+'spamprotectiontext' => "Ël test che a vorìa salvé a l'é stàit blocà dal filtror dla rumenta.
 Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit estern ëd coj blocà.",
 'spamprotectionmatch' => "Cost-sì a l'é ël test che a l'é restà ciapà andrinta al filtror dla rumenta: $1",
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
-'spam_reverting' => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
+'spam_reverting' => "Butà andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
 'spam_deleting' => 'Tute le revision a contnisìo dle liure a $1, scancelament',
 

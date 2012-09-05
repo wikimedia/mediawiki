@@ -1678,8 +1678,8 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 # User rights log
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
-'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
-'rightslogentry-autopromote' => 'wurde automatisch von „$2“ nach „$3“ zugeordnet',
+'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ zu „$3“',
+'rightslogentry-autopromote' => 'wurde automatisch von „$2“ zu „$3“ zugeordnet',
 'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"

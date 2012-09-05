@@ -1260,7 +1260,7 @@ $1",
 'group-autoconfirmed-member' => '{{GENDER:$1|தானாக உறுதிசெய்யப்பட்ட பயனர்}}',
 'group-bot-member' => '{{GENDER:$1|தானியங்கி}}',
 'group-sysop-member' => '{{GENDER:$1|நிர்வாகி}}',
-'group-bureaucrat-member' => '{{GENDER:$1|படிப்பாளர்கள்}}',
+'group-bureaucrat-member' => '{{GENDER:$1|அதிகாரிகள்}}',
 'group-suppress-member' => '{{GENDER:$1|மேற்பார்வை}}',
 
 'grouppage-user' => '{{ns:project}}:பயனர்கள்',
