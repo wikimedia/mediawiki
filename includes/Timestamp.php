@@ -61,6 +61,7 @@ class MWTimestamp {
 	 * The actual timestamp being wrapped. Either a DateTime
 	 * object or a string with a Unix timestamp depending on
 	 * PHP.
+	 * @var string|DateTime
 	 */
 	private $timestamp;
 
@@ -68,7 +69,7 @@ class MWTimestamp {
 	 * Make a new timestamp and set it to the specified time,
 	 * or the current time if unspecified.
 	 *
-	 * @param $timestamp Timestamp to set, or false for current time
+	 * @param $timestamp bool|string Timestamp to set, or false for current time
 	 */
 	public function __construct( $timestamp = false ) {
 		$this->setTimestamp( $timestamp );
@@ -77,17 +78,17 @@ class MWTimestamp {
 	/**
 	 * Set the timestamp to the specified time, or the current time if unspecified.
 	 *
-	 * Parse the given timestamp into either a DateTime object or a Unix teimstamp,
+	 * Parse the given timestamp into either a DateTime object or a Unix timestamp,
 	 * and then store it.
 	 *
-	 * @param $ts Timestamp to store, or false for now
+	 * @param $ts string|bool Timestamp to store, or false for now
+	 * @throws TimestampException
 	 */
 	public function setTimestamp( $ts = false ) {
-		$uts = 0;
 		$da = array();
 		$strtime = '';
 
-		if ( !$ts ) { // We want to catch 0, '', null... but not date strings starting with a letter.
+		if ( !$ts || $ts === "\0\0\0\0\0\0\0\0\0\0\0\0\0\0" ) { // We want to catch 0, '', null... but not date strings starting with a letter.
 			$uts = time();
 			$strtime = "@$uts";
 		} elseif ( preg_match( '/^(\d{4})\-(\d\d)\-(\d\d) (\d\d):(\d\d):(\d\d)$/D', $ts, $da ) ) {
@@ -98,7 +99,6 @@ class MWTimestamp {
 			# TS_MW
 		} elseif ( preg_match( '/^-?\d{1,13}$/D', $ts ) ) {
 			# TS_UNIX
-			$uts = $ts;
 			$strtime = "@$ts"; // http://php.net/manual/en/datetime.formats.compound.php
 		} elseif ( preg_match( '/^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d{6}$/', $ts ) ) {
 			# TS_ORACLE // session altered to DD-MM-YYYY HH24:MI:SS.FF6
@@ -158,7 +158,8 @@ class MWTimestamp {
 	 * Convert the internal timestamp to the specified format and then
 	 * return it.
 	 *
-	 * @param $style Output format for timestamp
+	 * @param $style int Constant Output format for timestamp
+	 * @throws TimestampException
 	 * @return string The formatted timestamp
 	 */
 	public function getTimestamp( $style = TS_UNIX ) {
@@ -166,7 +167,7 @@ class MWTimestamp {
 			throw new TimestampException( __METHOD__ . ' : Illegal timestamp output type.' );
 		}
 
-		if( is_object( $this->timestamp ) ) {
+		if( is_object( $this->timestamp  ) ) {
 			// DateTime object was used, call DateTime::format.
 			$output = $this->timestamp->format( self::$formats[$style] );
 		} elseif( TS_UNIX == $style ) {
@@ -217,6 +218,9 @@ class MWTimestamp {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	public function __toString() {
 		return $this->getTimestamp();
 	}
