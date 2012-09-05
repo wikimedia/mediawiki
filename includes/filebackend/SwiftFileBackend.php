@@ -1219,6 +1219,19 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * Close the connection to the Swift proxy
+	 *
+	 * @return void
+	 */
+	protected function closeConnection() {
+		if ( $this->conn ) {
+			$this->conn->close(); // close active cURL handles in CF_Http object
+			$this->sessionStarted = 0;
+			$this->connContainerCache->clear();
+		}
+	}
+
+	/**
 	 * Get the cache key for a container
 	 *
 	 * @param $username string
@@ -1331,6 +1344,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 		if ( $e instanceof InvalidResponseException ) { // possibly a stale token
 			$this->srvCache->delete( $this->getCredsCacheKey( $this->auth->username ) );
+			$this->closeConnection(); // force a re-connect and re-auth next time
 		}
 		wfDebugLog( 'SwiftBackend',
 			get_class( $e ) . " in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .
