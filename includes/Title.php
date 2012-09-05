@@ -4588,10 +4588,6 @@ class Title {
 		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
-		} elseif ( $this->getNamespace() == NS_MEDIAWIKI ) {
-			// Parse mediawiki messages with correct target language
-			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $this->getText() );
-			return wfGetLangObj( $lang );
 		}
 
 		//TODO: use the LinkCache to cache this!
@@ -4613,19 +4609,24 @@ class Title {
 	 * @return Language
 	 */
 	public function getPageViewLanguage() {
-		$pageLang = $this->getPageLanguage();
-		// If this is nothing special (so the content is converted when viewed)
-		if ( !$this->isSpecialPage()
-			&& !$this->isCssOrJsPage() && !$this->isCssJsSubpage()
-			&& $this->getNamespace() !== NS_MEDIAWIKI
-		) {
+		global $wgLang;
+
+		if ( $this->isSpecialPage() ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
-			$variant = $pageLang->getPreferredVariant();
-			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = Language::factory( $variant );
+			$variant = $wgLang->getPreferredVariant();
+			if ( $wgLang->getCode() !== $variant ) {
+				return Language::factory( $variant );
 			}
+
+			return $wgLang;
 		}
+
+		//NOTE: can't be cached, depends on user settings
+		//NOTE: ContentHandler::getPageViewLanguage() may need to load the content to determine the page language!
+		$contentHandler = ContentHandler::getForTitle( $this );
+		$pageLang = $contentHandler->getPageViewLanguage( $this );
+
 		return $pageLang;
 	}
 }

@@ -549,10 +549,11 @@ abstract class ContentHandler {
 	/**
 	 * Get the language in which the content of the given page is written.
 	 *
-	 * This default implementation returns $wgContLang->getCode().
+	 * This default implementation just returns $wgContLang (except for pages in the MediaWiki namespace)
 	 *
 	 * Note that a page's language must be permanent and cacheable, that is, it must not depend
-	 * on user preferences, request parameters or session state.
+	 * on user preferences, request parameters or session state. The only exception is pages in the
+	 * MediaWiki namespace.
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
@@ -566,7 +567,49 @@ abstract class ContentHandler {
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		global $wgContLang;
+
+		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
+			// Parse mediawiki messages with correct target language
+			list( /* $unused */, $lang ) = MessageCache::singleton()->figureMessage( $title->getText() );
+			return wfGetLangObj( $lang );
+		}
+
 		return $wgContLang;
+	}
+
+	/**
+	 * Get the language in which the content of this page is written when
+	 * viewed by user. Defaults to $this->getPageLanguage(), but if the user
+	 * specified a preferred variant, the variant will be used.
+	 *
+	 * This default implementation just returns $this->getPageLanguage( $title, $content ) unless
+	 * the user specified a preferred variant.
+	 *
+	 * Note that the pages view language is not cacheable, since it depends on user settings.
+	 *
+	 * Also note that the page language may or may not depend on the actual content of the page,
+	 * that is, this method may load the content in order to determine the language.
+	 *
+	 * @since 1.WD
+	 *
+	 * @param Title        $title the page to determine the language for.
+	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
+	 *
+	 * @return Language the page's language code for viewing
+	 */
+	public function getPageViewLanguage( Title $title, Content $content = null ) {
+		$pageLang = $this->getPageLanguage( $title, $content );
+
+		if ( $title->getNamespace() !== NS_MEDIAWIKI ) {
+			// If the user chooses a variant, the content is actually
+			// in a language whose code is the variant code.
+			$variant = $pageLang->getPreferredVariant();
+			if ( $pageLang->getCode() !== $variant ) {
+				$pageLang = Language::factory( $variant );
+			}
+		}
+
+		return $pageLang;
 	}
 
 	/**
@@ -1022,6 +1065,17 @@ class JavaScriptContentHandler extends TextContentHandler {
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
+
+	/**
+	 * Returns the english language, because CSS is english, and should be handled as such.
+	 *
+	 * @return Language wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageViewLanguage()
+	 */
+	public function getPageViewLanguage( Title $title, Content $content = null ) {
+		return wfGetLangObj( 'en' );
+	}
 }
 
 /**
@@ -1051,6 +1105,17 @@ class CssContentHandler extends TextContentHandler {
 	 * @see ContentHandler::getPageLanguage()
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
+		return wfGetLangObj( 'en' );
+	}
+
+	/**
+	 * Returns the english language, because CSS is english, and should be handled as such.
+	 *
+	 * @return Language wfGetLangObj( 'en' )
+	 *
+	 * @see ContentHandler::getPageViewLanguage()
+	 */
+	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
 }
