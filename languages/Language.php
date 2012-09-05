@@ -280,6 +280,24 @@ class Language {
 	}
 
 	/**
+	 * Returns a valid language code, based on our builtin code
+	 *
+	 * Historically, MediaWiki has had a few codes that do not match official
+	 * language codes. This normalizes those using $wgDummyLanguageCodes
+	 *
+	 * @param $code string
+	 * @since 1.20
+	 * @return string
+	 */
+	public static function normalizeBuiltInCode( $code ) {
+		global $wgDummyLanguageCodes;
+		if( isset( $wgDummyLanguageCodes[$code] ) ) {
+			return $wgDummyLanguageCodes[$code];
+		}
+		return $code;
+	}
+
+	/**
 	 * @param $code
 	 * @return String Name of the language class
 	 */
@@ -3691,6 +3709,9 @@ class Language {
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
 	 * htmlspecialchars() or similar
 	 *
+	 * NOTE: This does not guarantee to return an actual language code. Use
+	 * getBCP47Code() instead.
+	 *
 	 * @return string
 	 */
 	public function getCode() {
@@ -3698,8 +3719,21 @@ class Language {
 	}
 
 	/**
+	 * Get the BCP 47 code for this language object
+	 *
+	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
+	 * htmlspecialchars() or similar
+	 *
+	 * @since 1.20
+	 * @return string
+	 */
+	public function getBCP47Code() {
+		return Language::normalizeBuiltinCode( $this->mCode );
+	}
+
+	/**
 	 * Get the code in Bcp47 format which we can use
-	 * inside of html lang="" tags.
+	 * inside of html lang="" tags. Resolves built-in codes to valid language codes.
 	 *
 	 * NOTE: The return value of this function is NOT HTML-safe and must be escaped with
 	 * htmlspecialchars() or similar.
@@ -3709,7 +3743,7 @@ class Language {
 	 */
 	public function getHtmlCode() {
 		if ( is_null( $this->mHtmlCode ) ) {
-			$this->mHtmlCode = wfBCP47( $this->getCode() );
+			$this->mHtmlCode = wfBCP47( $this->getBCP47Code() );
 		}
 		return $this->mHtmlCode;
 	}

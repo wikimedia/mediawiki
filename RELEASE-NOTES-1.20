@@ -235,6 +235,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
 * (bug 39273) "Show changes" should not be incorrectly displayed in the Live Preview state.
 * Made body-content lang attribute honor the variant language when it is set.
+* (bug 32483) Simple English should not use lang="simple" for inter language links.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
