@@ -4874,5 +4874,6 @@ $4 is the gender of the target user.',
 * $1 is an unknown warning.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
+'api-error-xframeoptions-deny' => 'API error message that can be used for client side localisation of API errors.',
 
 );
