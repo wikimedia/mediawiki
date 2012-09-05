@@ -209,7 +209,11 @@ class SyncFileBackend extends Maintenance {
 		}
 
 		$t_start = microtime( true );
-		$status->merge( $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) ) );
+		$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
+		if ( !$status->isOK() ) {
+			sleep( 10 ); // wait and retry copy again
+			$status = $dst->doQuickOperations( $ops, array( 'bypassReadOnly' => 1 ) );
+		}
 		$ellapsed_ms = floor( ( microtime( true ) - $t_start ) * 1000 );
 		if ( $status->isOK() && $this->getOption( 'verbose' ) ) {
 			$this->output( "Synchronized these file(s) [{$ellapsed_ms}ms]:\n" .
