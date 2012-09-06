@@ -478,7 +478,7 @@ class InfoAction extends FormlessAction {
 	 */
 	protected function addRow( $table, $name, $value ) {
 		return $table . Html::rawElement( 'tr', array(),
-			Html::rawElement( 'td', array(), $name ) .
+			Html::rawElement( 'td', array('valign' => 'top'), $name ) .
 			Html::rawElement( 'td', array(), $value )
 		);
 	}
