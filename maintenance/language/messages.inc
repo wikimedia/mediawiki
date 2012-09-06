@@ -2673,6 +2673,7 @@ $wgMessageStructure = array(
 	'info' => array(
 		'pageinfo-header',
 		'pageinfo-title',
+		'pageinfo-not-current',
 		'pageinfo-header-basic',
 		'pageinfo-header-edits',
 		'pageinfo-header-restrictions',
