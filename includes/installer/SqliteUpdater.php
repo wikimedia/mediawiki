@@ -92,6 +92,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ),
 			array( 'addField', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id.sql' ),
 			array( 'addIndex', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id-index.sql' ),
+			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
 		);
 	}
 
