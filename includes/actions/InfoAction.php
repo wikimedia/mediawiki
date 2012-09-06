@@ -63,6 +63,27 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
+		// Validate page
+		if ( !$this->page->exists() ) {
+			return $this->msg( 'nopagetext' )->plain();
+		}
+
+		// Validate revision
+		$oldid = $this->page->getOldID();
+		if ( $oldid ) {
+			$revision = Revision::newFromId( $oldid );
+
+			// Revision is missing
+			if ( $revision === null ) {
+				return $this->msg( 'missing-revision', $oldid )->parse();
+			}
+
+			// Revision is not current
+			if ( !$this->page->isCurrent() ) {
+				return $this->msg( 'pageinfo-not-current' )->plain();
+			}
+		}
+
 		// Get page information that would be too "expensive" to retrieve by normal means
 		$userCanViewUnwatchedPages = $user->isAllowed( 'unwatchedpages' );
 		$pageInfo = self::pageCountInfo( $title, $userCanViewUnwatchedPages, $wgDisableCounters );
