@@ -157,6 +157,20 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
+		// Validate revision
+		$oldid = $this->page->getOldID();
+		if ( $oldid ) {
+			// Revision is missing
+			if ( Revision::newFromId( $oldid ) === null ) {
+				return $this->msg( 'missing-revision', $oldid )->parse();
+			}
+
+			// Revision is not current
+			if ( !$this->page->isCurrent() ) {
+				return $this->msg( 'pageinfo-not-current' )->plain();
+			}
+		}
+
 		// Get page information that would be too "expensive" to retrieve by normal means
 		$userCanViewUnwatchedPages = $user->isAllowed( 'unwatchedpages' );
 		$pageCounts = self::pageCounts( $title, $userCanViewUnwatchedPages, $wgDisableCounters );
@@ -283,116 +297,118 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
-		// Edit history
-		$pageInfo['header-edits'] = array();
+		if ( $title->exists() ) {
+			// Edit history
+			$pageInfo['header-edits'] = array();
 
-		$firstRev = $this->page->getOldestRevision();
+			$firstRev = $this->page->getOldestRevision();
 
-		// Page creator
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-firstuser' ),
-			Linker::revUserTools( $firstRev )
-		);
+			// Page creator
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-firstuser' ),
+				Linker::revUserTools( $firstRev )
+			);
 
-		// Date of page creation
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-firsttime' ),
-			Linker::linkKnown(
-				$title,
-				$lang->userTimeAndDate( $firstRev->getTimestamp(), $user ),
-				array(),
-				array( 'oldid' => $firstRev->getId() )
-			)
-		);
+			// Date of page creation
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-firsttime' ),
+				Linker::linkKnown(
+					$title,
+					$lang->userTimeAndDate( $firstRev->getTimestamp(), $user ),
+					array(),
+					array( 'oldid' => $firstRev->getId() )
+				)
+			);
 
-		// Latest editor
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-lastuser' ),
-			Linker::revUserTools( $this->page->getRevision() )
-		);
+			// Latest editor
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-lastuser' ),
+				Linker::revUserTools( $this->page->getRevision() )
+			);
 
-		// Date of latest edit
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-lasttime' ),
-			Linker::linkKnown(
-				$title,
-				$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
-				array(),
-				array( 'oldid' => $this->page->getLatest() )
-			)
-		);
+			// Date of latest edit
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-lasttime' ),
+				Linker::linkKnown(
+					$title,
+					$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+					array(),
+					array( 'oldid' => $this->page->getLatest() )
+				)
+			);
 
-		// Total number of edits
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-edits' ), $lang->formatNum( $pageCounts['edits'] )
-		);
+			// Total number of edits
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-edits' ), $lang->formatNum( $pageCounts['edits'] )
+			);
 
-		// Total number of distinct authors
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-authors' ), $lang->formatNum( $pageCounts['authors'] )
-		);
+			// Total number of distinct authors
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-authors' ), $lang->formatNum( $pageCounts['authors'] )
+			);
 
-		// Recent number of edits (within past 30 days)
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $wgRCMaxAge ) ),
-			$lang->formatNum( $pageCounts['recent_edits'] )
-		);
+			// Recent number of edits (within past 30 days)
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-recent-edits', $lang->formatDuration( $wgRCMaxAge ) ),
+				$lang->formatNum( $pageCounts['recent_edits'] )
+			);
 
-		// Recent number of distinct authors
-		$pageInfo['header-edits'][] = array(
-			$this->msg( 'pageinfo-recent-authors' ), $lang->formatNum( $pageCounts['recent_authors'] )
-		);
+			// Recent number of distinct authors
+			$pageInfo['header-edits'][] = array(
+				$this->msg( 'pageinfo-recent-authors' ), $lang->formatNum( $pageCounts['recent_authors'] )
+			);
 
-		// Array of MagicWord objects
-		$magicWords = MagicWord::getDoubleUnderscoreArray();
+			// Array of MagicWord objects
+			$magicWords = MagicWord::getDoubleUnderscoreArray();
 
-		// Array of magic word IDs
-		$wordIDs = $magicWords->names;
+			// Array of magic word IDs
+			$wordIDs = $magicWords->names;
 
-		// Array of IDs => localized magic words
-		$localizedWords = $wgContLang->getMagicWords();
+			// Array of IDs => localized magic words
+			$localizedWords = $wgContLang->getMagicWords();
 
-		$listItems = array();
-		foreach ( $pageProperties as $property => $value ) {
-			if ( in_array( $property, $wordIDs ) ) {
-				$listItems[] = Html::element( 'li', array(), $localizedWords[$property][1] );
-			}
-		}
-
-		$localizedList = Html::rawElement( 'ul', array(), implode( '', $listItems ) );
-		$hiddenCategories = $this->page->getHiddenCategories();
-		$transcludedTemplates = $title->getTemplateLinksFrom();
-
-		if ( count( $listItems ) > 0
-			|| count( $hiddenCategories ) > 0
-			|| count( $transcludedTemplates ) > 0 ) {
-			// Page properties
-			$pageInfo['header-properties'] = array();
-
-			// Magic words
-			if ( count( $listItems ) > 0 ) {
-				$pageInfo['header-properties'][] = array(
-					$this->msg( 'pageinfo-magic-words' )->numParams( count( $listItems ) ),
-					$localizedList
-				);
+			$listItems = array();
+			foreach ( $pageProperties as $property => $value ) {
+				if ( in_array( $property, $wordIDs ) ) {
+					$listItems[] = Html::element( 'li', array(), $localizedWords[$property][1] );
+				}
 			}
 
-			// Hidden categories
-			if ( count( $hiddenCategories ) > 0 ) {
-				$pageInfo['header-properties'][] = array(
-					$this->msg( 'pageinfo-hidden-categories' )
-						->numParams( count( $hiddenCategories ) ),
-					Linker::formatHiddenCategories( $hiddenCategories )
-				);
-			}
+			$localizedList = Html::rawElement( 'ul', array(), implode( '', $listItems ) );
+			$hiddenCategories = $this->page->getHiddenCategories();
+			$transcludedTemplates = $title->getTemplateLinksFrom();
 
-			// Transcluded templates
-			if ( count( $transcludedTemplates ) > 0 ) {
-				$pageInfo['header-properties'][] = array(
-					$this->msg( 'pageinfo-templates' )
-						->numParams( count( $transcludedTemplates ) ),
-					Linker::formatTemplates( $transcludedTemplates )
-				);
+			if ( count( $listItems ) > 0
+				|| count( $hiddenCategories ) > 0
+				|| count( $transcludedTemplates ) > 0 ) {
+				// Page properties
+				$pageInfo['header-properties'] = array();
+
+				// Magic words
+				if ( count( $listItems ) > 0 ) {
+					$pageInfo['header-properties'][] = array(
+						$this->msg( 'pageinfo-magic-words' )->numParams( count( $listItems ) ),
+						$localizedList
+					);
+				}
+
+				// Hidden categories
+				if ( count( $hiddenCategories ) > 0 ) {
+					$pageInfo['header-properties'][] = array(
+						$this->msg( 'pageinfo-hidden-categories' )
+							->numParams( count( $hiddenCategories ) ),
+						Linker::formatHiddenCategories( $hiddenCategories )
+					);
+				}
+
+				// Transcluded templates
+				if ( count( $transcludedTemplates ) > 0 ) {
+					$pageInfo['header-properties'][] = array(
+						$this->msg( 'pageinfo-templates' )
+							->numParams( count( $transcludedTemplates ) ),
+						Linker::formatTemplates( $transcludedTemplates )
+					);
+				}
 			}
 		}
 
