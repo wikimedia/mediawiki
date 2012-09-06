@@ -71,8 +71,8 @@ class BenchmarkHooks extends Benchmarker {
 		}
 		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;
-		return sprintf( "Took %6.2fs",
-			$pertrial );
+		return sprintf( "Took %6.3fms",
+			$pertrial * 1000 );
 	}
 
 	/**
