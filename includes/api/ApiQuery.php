@@ -46,6 +46,10 @@ class ApiQuery extends ApiBase {
 
 	private $params, $redirects, $convertTitles, $iwUrl;
 
+	/**
+	 * List of Api Query prop modules
+	 * @var array
+	 */
 	private $mQueryPropModules = array(
 		'categories' => 'ApiQueryCategories',
 		'categoryinfo' => 'ApiQueryCategoryInfo',
@@ -63,6 +67,10 @@ class ApiQuery extends ApiBase {
 		'templates' => 'ApiQueryLinks',
 	);
 
+	/**
+	 * List of Api Query list modules
+	 * @var array
+	 */
 	private $mQueryListModules = array(
 		'allcategories' => 'ApiQueryAllCategories',
 		'allimages' => 'ApiQueryAllImages',
@@ -92,16 +100,52 @@ class ApiQuery extends ApiBase {
 		'watchlistraw' => 'ApiQueryWatchlistRaw',
 	);
 
+	/**
+	 * List of Api Query meta modules
+	 * @var array
+	 */
 	private $mQueryMetaModules = array(
 		'allmessages' => 'ApiQueryAllMessages',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
 	);
 
+	/**
+	 * List of Api Query generator modules
+	 * Defined in code, rather than being derived at runtime,
+	 * due to performance reasons
+	 * @var array
+	 */
+	private $mQueryGenerators = array(
+		'allcategories' => 'ApiQueryAllCategories',
+		'allimages' => 'ApiQueryAllImages',
+		'alllinks' => 'ApiQueryAllLinks',
+		'allpages' => 'ApiQueryAllPages',
+		'backlinks' => 'ApiQueryBacklinks',
+		'categories' => 'ApiQueryCategories',
+		'categorymembers' => 'ApiQueryCategoryMembers',
+		'duplicatefiles' => 'ApiQueryDuplicateFiles',
+		'embeddedin' => 'ApiQueryBacklinks',
+		'exturlusage' => 'ApiQueryExtLinksUsage',
+		'images' => 'ApiQueryImages',
+		'imageusage' => 'ApiQueryBacklinks',
+		'iwbacklinks' => 'ApiQueryIWBacklinks',
+		'langbacklinks' => 'ApiQueryLangBacklinks',
+		'links' => 'ApiQueryLinks',
+		'protectedtitles' => 'ApiQueryProtectedTitles',
+		'querypage' => 'ApiQueryQueryPage',
+		'random' => 'ApiQueryRandom',
+		'recentchanges' => 'ApiQueryRecentChanges',
+		'search' => 'ApiQuerySearch',
+		'templates' => 'ApiQueryLinks',
+		'watchlist' => 'ApiQueryWatchlist',
+		'watchlistraw' => 'ApiQueryWatchlistRaw',
+	);
+
 	private $mSlaveDB = null;
 	private $mNamedDB = array();
 
-	protected $mAllowedGenerators = array();
+	protected $mAllowedGenerators;
 
 	/**
 	 * @param $main ApiMain
@@ -111,32 +155,16 @@ class ApiQuery extends ApiBase {
 		parent::__construct( $main, $action );
 
 		// Allow custom modules to be added in LocalSettings.php
-		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules,
-			$wgMemc, $wgAPICacheHelpTimeout;
+		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules, $wgAPIGeneratorModules;
 		self::appendUserModules( $this->mQueryPropModules, $wgAPIPropModules );
 		self::appendUserModules( $this->mQueryListModules, $wgAPIListModules );
 		self::appendUserModules( $this->mQueryMetaModules, $wgAPIMetaModules );
+		self::appendUserModules( $this->mQueryGenerators, $wgAPIGeneratorModules );
 
 		$this->mPropModuleNames = array_keys( $this->mQueryPropModules );
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
-
-		// Get array of query generators from cache if present
-		$key = wfMemcKey( 'apiquerygenerators', SpecialVersion::getVersion( 'nodb' ) );
-
-		if ( $wgAPICacheHelpTimeout > 0 ) {
-			$cached = $wgMemc->get( $key );
-			if ( $cached ) {
-				$this->mAllowedGenerators = $cached;
-				return;
-			}
-		}
-		$this->makeGeneratorList( $this->mQueryPropModules );
-		$this->makeGeneratorList( $this->mQueryListModules );
-
-		if ( $wgAPICacheHelpTimeout > 0 ) {
-			$wgMemc->set( $key, $this->mAllowedGenerators, $wgAPICacheHelpTimeout );
-		}
+		$this->mAllowedGenerators = array_keys( $this->mQueryGenerators );
 	}
 
 	/**
@@ -196,8 +224,16 @@ class ApiQuery extends ApiBase {
 	 * Get the array mapping module names to class names
 	 * @return array array(modulename => classname)
 	 */
-	function getModules() {
+	public function getModules() {
 		return array_merge( $this->mQueryPropModules, $this->mQueryListModules, $this->mQueryMetaModules );
+	}
+
+	/**
+	 * Get the generators array mapping module names to class names
+	 * @return array array(modulename => classname)
+	 */
+	public function getGenerators() {
+		return $this->mQueryGenerators;
 	}
 
 	/**
@@ -678,19 +714,6 @@ class ApiQuery extends ApiBase {
 		}
 
 		return implode( "\n", $moduleDescriptions );
-	}
-
-	/**
-	 * Adds any classes that are a subclass of ApiQueryGeneratorBase
-	 * to the allowed generator list
-	 * @param $moduleList array()
-	 */
-	private function makeGeneratorList( $moduleList ) {
-		foreach( $moduleList as  $moduleName => $moduleClass ) {
-			if ( is_subclass_of( $moduleClass, 'ApiQueryGeneratorBase'  ) ) {
-				$this->mAllowedGenerators[] = $moduleName;
-			}
-		}
 	}
 
 	/**
