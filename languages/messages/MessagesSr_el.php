@@ -3197,7 +3197,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-authors' => 'Broj zasebnih autora',
 'pageinfo-recent-edits' => 'Broj skorašnjih izmena (u poslednjih $1)',
 'pageinfo-recent-authors' => 'Broj skorašnjih zasebnih autora',
-'pageinfo-restriction' => 'Zaštita stranice (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Zaštita stranice ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična reč|Magične reči}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Uključeni šablon|Uključeni šabloni}} ($1)',

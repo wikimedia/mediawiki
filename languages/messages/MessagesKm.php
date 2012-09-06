@@ -2951,7 +2951,7 @@ $1',
 'pageinfo-authors' => 'ចំនួនអ្នកនិពន្ធសរុប',
 'pageinfo-recent-edits' => 'ចំនួនការកែប្រែថ្មីៗ (ក្នុងរយៈពេល $1 កន្លងទៅនេះ)',
 'pageinfo-recent-authors' => 'ចំនួនអ្នកនិពន្ធថ្មីៗនេះ',
-'pageinfo-restriction' => 'ការការពារទំព័រ (<code>{{$1}}</code>)',
+'pageinfo-restriction' => 'ការការពារទំព័រ ({{$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|ពាក្យ|ពាក្យ}} វេទមន្ត ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុម|ចំណាត់ថ្នាក់ក្រុម}}ដែលបានលាក់ ($1)',
 

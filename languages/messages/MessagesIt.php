@@ -3017,7 +3017,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-authors' => 'Numero totale di autori diversi',
 'pageinfo-recent-edits' => 'Numero di modifiche recenti (negli ultimi $1)',
 'pageinfo-recent-authors' => 'Numero di autori diversi recenti',
-'pageinfo-restriction' => 'Protezione della pagina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protezione della pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola magica|Parole magiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}} ($1)',
 'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',

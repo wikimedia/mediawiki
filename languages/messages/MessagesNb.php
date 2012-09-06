@@ -3105,7 +3105,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-authors' => 'Totalt antall forskjellige forfattere',
 'pageinfo-recent-edits' => 'Antall nylige redigeringer (innen siste $1)',
 'pageinfo-recent-authors' => 'Antall nylige forfattere',
-'pageinfo-restriction' => 'Sidebeskyttelse (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Sidebeskyttelse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => 'Transkludert {{PLURAL:$1|mal|maler}} ($1)',

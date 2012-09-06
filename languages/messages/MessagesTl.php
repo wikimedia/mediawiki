@@ -3013,7 +3013,7 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-authors' => 'Kabuuang bilang ng magkakabukod na mga may-akda',
 'pageinfo-recent-edits' => 'Kamakailang bilang ng mga pamamatnugot (sa loob ng huling $1)',
 'pageinfo-recent-authors' => 'Kamakailang bilang ng magkakabukod na mga may-akda',
-'pageinfo-restriction' => 'Pruteksiyon ng pahina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Pruteksiyon ng pahina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Salita|Mga salita}}ng mahiwaga ($1)',
 'pageinfo-hidden-categories' => 'Nakatagong {{PLURAL:$1|kategorya|mga kategorya}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',

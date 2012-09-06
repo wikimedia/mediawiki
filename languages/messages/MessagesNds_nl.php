@@ -319,7 +319,7 @@ $messages = array(
 'tog-numberheadings' => 'Koppen vanzelf nummeren',
 'tog-showtoolbar' => 'Laot de warkbalke zien',
 'tog-editondblclick' => 'Mit dubbelklik bewarken (JavaScript)',
-'tog-editsection' => 'Mit bewarkgedeeltes',
+'tog-editsection' => 'Mit bewarkgedeelten',
 'tog-editsectiononrightclick' => 'Bewarkgedeelte mit rechtermuusknoppe bewarken (JavaScript)',
 'tog-showtoc' => 'Samenvatting laoten zien van de zaken die an bod koemen (mit meer as dree onderwarpen)',
 'tog-rememberpassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
@@ -572,6 +572,10 @@ $1",
 'youhavenewmessages' => 'Je hebben $1 ($2).',
 'newmessageslink' => 'nieje berichten',
 'newmessagesdifflink' => 'verschil mit de veurige versie',
+'youhavenewmessagesfromusers' => 'Je hebben $1 van {{PLURAL:$3|n aandere gebruker|$3 gebrukers}} ($2).',
+'youhavenewmessagesmanyusers' => 'Je hebben $1 van n bulte gebrukers ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|n niej bericht|nieje berichten}}',
+'newmessagesdifflinkplural' => 'leste {{PLURAL:$1|wieziging|wiezigingen}}',
 'youhavenewmessagesmulti' => 'Je hebben nieje berichten op $1',
 'editsection' => 'bewark',
 'editold' => 'bewark',
@@ -628,9 +632,9 @@ De oorzake hiervan kan dujen op n fout in de programmatuur.
 Der is n syntaxisfout in t databankeverzeuk op-etrejen.
 t Kan ween dat der n fout in de programmatuur zit.
 De leste zeukpoging in de databanke was:
-<blockquote><tt>$1</tt></blockquote>
-vanuut de funksie "<tt>$2</tt>".
-De databanke gaf de volgende foutmelding "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+vanuut de funksie "<code>$2</code>".
+De databanke gaf de volgende foutmelding "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Der is n syntaxisfout in t databankeverzeuk op-etrejen.
 t Leste veurzeuk an de databanke was:
 "$1"
@@ -720,6 +724,7 @@ Vergeet niet joew [[Special:Preferences|veurkeuren veur {{SITENAME}}]] in te ste
 'remembermypassword' => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
 'securelogin-stick-https' => "Verbunnen blieven via HTTPS naoda'j an-emeld bin",
 'yourdomainname' => 'Joew domein',
+'password-change-forbidden' => 'Je kunnen joew wachtwoord niet wiezigen op disse wiki.',
 'externaldberror' => 'Der gung iets fout bie de externe authentisering, of je maggen je gebrukersprofiel niet bewarken.',
 'login' => 'Anmelden',
 'nav-login-createaccount' => 'Anmelden',
@@ -965,6 +970,10 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse zied bewarken]</span>.',
 'noarticletext-nopermission' => 'Op disse zied steet gien tekste.
 Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere ziejen of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken deurzeuken]</span>.',
+'missing-revision' => 'De versie #$1 van de zied "{{PAGENAME}} besteet niet.
+
+Dit kömp meestentieds deur t volgen van n verouwerde verwiezing naor n zied die vortedaon is.
+Waorschienlik ku\'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].',
 'userpage-userdoesnotexist' => 'Je bewarken n gebrukerszied van n gebruker die niet besteet (gebruker "<nowiki>$1</nowiki>"). Kiek effen nao o\'j disse zied wel anmaken/bewarken willen.',
 'userpage-userdoesnotexist-view' => 'Gebruker "$1" steet hier niet in-eschreven',
 'blocked-notice-logextract' => 'Disse gebruker is op t moment eblokkeerd.
@@ -973,7 +982,6 @@ De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 *'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op n knipperkiste van Mac)
 * '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op n knipperkiste van Mac)
 *'''Internet Explorer:''' drok op ''Ctrl'' terwiel je op ''verniejen'' klikken of drok op ''Ctrl-F5''
-*'''Konqueror: '''klik op ''verniejen'' of drok op ''F5''
 *'''Opera:''' leeg t tussengeheugen in ''Extra → Voorkeuren\"",
 'usercssyoucanpreview' => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda'j t opslaon.",
 'userjsyoucanpreview' => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda'j t opslaon.",
@@ -1088,6 +1096,7 @@ Sommigen mallen wörden niet in-evoegd.',
 'expansion-depth-exceeded-warning' => 'Op disse zied staon te veule mallen',
 'parser-unstrip-loop-warning' => 'Der is n "unstrip"-lusse evunnen',
 'parser-unstrip-recursion-limit' => 'De rekursielimiet ($1) veur "unstrip" is overschrejen',
+'converter-manual-rule-error' => 'Der is n fout evunnen in n haandmaotig in-evoegden taalkonversieregel.',
 
 # "Undo" feature
 'undo-success' => 'De bewarking kan weerummedreid wörden. Kiek de vergelieking hieronder nao um der wisse van de ween dat alles goed is, en slao de de zied op um de bewarking weerumme te dreien.',
@@ -1269,6 +1278,10 @@ In de [[Special:BlockList|blokkeerlieste]] bin de blokkeringen, die noen van toe
 'editundo' => 'weerummedreien',
 'diff-multi' => '(Hier {{PLURAL:$1|zit nog 1 versie|zitten nog $1 versies}} van {{PLURAL:$2|1 gebruker|$2 gebrukers}} tussen die der niet bie staon.)',
 'diff-multi-manyusers' => '($1 tussenliggende {{PLURAL:$1|versie|versies}} deur meer as $2 {{PLURAL:$2|gebruker|gebrukers}} niet weeregeven)',
+'difference-missing-revision' => "{{PLURAL:$2|Eén versie|$2 versies}} van disse verschillen ($1) {{PLURAL:$2|is|bin}} niet evunnen.
+
+Dit kömp meestentieds deur t volgen van n verouwerde verwiezing naor n zied die vortedaon is.
+Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 
 # Search results
 'searchresults' => 'Zeukresultaoten',
@@ -1626,7 +1639,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'recentchanges-label-minor' => 'Dit is n kleine wieziging',
 'recentchanges-label-bot' => 'Disse bewarking is uutevoerd deur n bot',
 'recentchanges-label-unpatrolled' => 'Disse bewarking is nog niet nao-ekeken',
-'rcnote' => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de aofeleupen {{PLURAL:$2|dag|'''$2''' dagen}} (stand: $5, $4).",
+'rcnote' => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de aofgeleupen {{PLURAL:$2|dag|'''$2''' dagen}} (per: $5, $4).",
 'rcnotefrom' => 'Dit bin de wiezigingen sinds <b>$2</b> (maximum van <b>$1</b> wiezigingen).',
 'rclistfrom' => 'Bekiek wiezigingen vanaof $1',
 'rcshowhideminor' => '$1 kleine wiezigingen',
@@ -1635,7 +1648,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'rcshowhideanons' => '$1 anonieme gebrukers',
 'rcshowhidepatr' => '$1 nao-ekeken bewarkingen',
 'rcshowhidemine' => '$1 mien bewarkingen',
-'rclinks' => 'Bekiek de leste $1 wiezigingen van de aofeleupen $2 dagen<br />$3',
+'rclinks' => 'Bekiek de leste $1 wiezigingen van de aofgeleupen $2 dagen<br />$3',
 'diff' => 'wiezig',
 'hist' => 'gesch',
 'hide' => 'verbarg',
@@ -1952,6 +1965,7 @@ Je kunnen de [$2 zied mit de bestaandsbeschrieving] daor bewarken.',
 'uploadnewversion-linktext' => 'n Niejere versie van dit bestaand opsturen.',
 'shared-repo-from' => 'uut $1',
 'shared-repo' => 'n edeelden mediadatabanke',
+'upload-disallowed-here' => 'Je kunnen disse aofbeelding niet overschrieven.',
 
 # File reversion
 'filerevert' => '$1 weerummedreien',
@@ -2032,9 +2046,9 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 
 'disambiguations' => 'Ziejen die verwiezen naor deurverwiesziejen',
 'disambiguationspage' => 'Template:Dv',
-'disambiguations-text' => "De onderstaonde ziejen verwiezen naor n '''deurverwieszied'''. Disse verwiezingen mutten eigenliks rechtstreeks verwiezen naor t juuste onderwarp.
-
-Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Hieronder staon ziejen mit tenminsten één verwiezing naor n '''deurverwieszied'''. 
+Feitelik mutten ze rechtstreeks verwiezen naor t juuste onderwarp.<br />
+Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Dubbele deurverwiezingen',
 'doubleredirectstext' => 'Op disse lieste staon alle ziejen die deurverwiezen naor aandere deurverwiezingen.
@@ -2059,6 +2073,7 @@ Meestentieds is leste zied de gewunste doelzied, waor oek de eerste zied heer zo
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte|bytes}}',
 'ncategories' => '$1 {{PLURAL:$1|kategorie|kategorieën}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwikiverwiezing|interwikiverwiezingen}}',
 'nlinks' => '$1 {{PLURAL:$1|verwiezing|verwiezingen}}',
 'nmembers' => '$1 {{PLURAL:$1|onderwarp|onderwarpen}}',
 'nrevisions' => '$1 {{PLURAL:$1|versie|versies}}',
@@ -2087,6 +2102,7 @@ Meestentieds is leste zied de gewunste doelzied, waor oek de eerste zied heer zo
 'mostlinkedtemplates' => 'Meestgebruukten mallen',
 'mostcategories' => 'Artikels mit de meeste kategorieën',
 'mostimages' => 'Meestgebruukten bestaanden',
+'mostinterwikis' => "Pagina's mit de meeste interwikiverwiezingen",
 'mostrevisions' => 'Artikels mit de meeste bewarkingen',
 'prefixindex' => 'Alle ziejen op veurvoegsel',
 'prefixindex-namespace' => 'Alle ziejen mit t veurvoegsel (naamruumte $1)',
@@ -2201,8 +2217,8 @@ Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 
 # Special:ActiveUsers
 'activeusers' => 'Aktieve gebrukers',
-'activeusers-intro' => 'Dit is n lieste van gebrukers die de aofeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewes bin.',
-'activeusers-count' => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofeleupen {{PLURAL:$3|dag|$3 dagen}}',
+'activeusers-intro' => 'Dit is n lieste van gebrukers die de aofgeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewest hebben.',
+'activeusers-count' => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofgeleupen {{PLURAL:$3|dag|$3 dagen}}',
 'activeusers-from' => 'Laot gebrukers zien vanaof:',
 'activeusers-hidebots' => 'Bots verbargen',
 'activeusers-hidesysops' => 'Beheerders verbargen',
@@ -2235,6 +2251,8 @@ Meer informasie over de rechten ku'j [[{{MediaWiki:Listgrouprights-helppage}}|hi
 'mailnologin' => 'Niet an-emeld.',
 'mailnologintext' => 'Je mutten [[Special:UserLogin|an-emeld]] ween en n geldig e-mailadres in "[[Special:Preferences|mien veurkeuren]]" invoeren um disse funksie te kunnen gebruken.',
 'emailuser' => 'n Bericht sturen',
+'emailuser-title-target' => 'Disse {{GENDER:$1|gebruker}} n bericht sturen',
+'emailuser-title-notarget' => 'Gebruker n bericht sturen',
 'emailpage' => 'Gebruker n bericht sturen',
 'emailpagetext' => "Deur middel van dit formulier ku'j n bericht sturen naor disse gebruker.
 t Adres da'j op-egeven hebben bie [[Special:Preferences|joew veurkeuren]] zal as aofzender gebruukt wörden.
@@ -2294,7 +2312,7 @@ Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wör
 'watchmethod-list' => 'Kik joew nao volglieste veur de leste wiezigingen',
 'watchlistcontains' => 'Der {{PLURAL:$1|steet 1 zied|staon $1 ziejen}} op joew volglieste.',
 'iteminvalidname' => "Verkeerde naam '$1'",
-'wlnote' => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofeleupen ure|de leste $2 uren}} vanaof $3 um $4.',
+'wlnote' => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofgeleupen ure|de leste $2 uren}} vanaof $3 um $4.',
 'wlshowlast' => 'Laot de veurbieje $1 uur $2 dagen $3 zien',
 'watchlist-options' => 'Opsies veur de volglieste',
 
@@ -2380,6 +2398,8 @@ Wees veurzichtig',
 'rollback' => 'Wiezigingen herstellen',
 'rollback_short' => 'Weerummedreien',
 'rollbacklink' => 'Weerummedreien',
+'rollbacklinkcount' => '{{PLURAL:$1|één bewarking|$1 bewarkingen}} weerummedreien',
+'rollbacklinkcount-morethan' => 'Meer as {{PLURAL:$1|één bewarking|$1 bewarkingen}} weerummedreien',
 'rollbackfailed' => 'Wieziging herstellen is mislokt',
 'cantrollback' => 'De wiezigingen konnen niet hersteld wörden; der is mer 1 auteur.',
 'alreadyrolled' => 'Kan de leste wieziging van de zied [[:$1]] deur [[User:$2|$2]] ([[User talk:$2|Overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niet weerummedreien.
@@ -2863,6 +2883,7 @@ Alle transwiki-invoerhaandelingen wörden op-esleugen in t [[Special:Log/import|
 'import-interwiki-templates' => 'Alle mallen opnemen',
 'import-interwiki-submit' => 'Invoeren',
 'import-interwiki-namespace' => 'Doelnaamruumte:',
+'import-interwiki-rootpage' => 'Baosiszied veur doel (opsioneel):',
 'import-upload-filename' => 'Bestaandsnaam:',
 'import-comment' => 'Opmarkingen:',
 'importtext' => 'Gebruuk de [[Special:Export|uutvoerfunksie]] in de wiki waor de informasie vandaon kömp.
@@ -2898,6 +2919,9 @@ De tiedelike map is niet anwezig.',
 'import-error-interwiki' => 'De zied "$1" is niet in-evoerd umdat disse naam ereserveerd is veur externe verwiezingen (interwiki).',
 'import-error-special' => 'Zied "$1" is niet in-evoerd umdat t eplaotst is in n spesiale naamruumte waor gien ziejen in eplaotst kunnen wörden.',
 'import-error-invalid' => 'De zied" "$1" is niet in-evoerd umdat de naam ongeldig is.',
+'import-options-wrong' => 'Verkeerde {{PLURAL:$2|opsie|opsies}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'De op-egeven baosiszied is ongeldig.',
+'import-rootpage-nosubpage' => 'In de naamruumte "$1" van de baosiszied is t anmaken van onderziejen niet meugelik.',
 
 # Import log
 'importlogpage' => 'Invoerlogboek',
@@ -3015,11 +3039,34 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 
 # Info page
 'pageinfo-title' => 'Informasie over "$1"',
-'pageinfo-header-edits' => 'Bewarkingen',
+'pageinfo-header-basic' => 'Baosisinformasie',
+'pageinfo-header-edits' => 'Bewarkingsgeschiedenisse',
+'pageinfo-header-restrictions' => 'Ziedbeveiliging',
+'pageinfo-header-properties' => 'Ziedeigenschappen',
+'pageinfo-display-title' => 'Weeregeven ziednaam',
+'pageinfo-default-sort' => 'Standard sorteerwieze',
+'pageinfo-length' => 'Ziedlengte (in bytes)',
+'pageinfo-article-id' => 'Zied-ID',
+'pageinfo-robot-policy' => 'Staotus veur de zeukmasine',
+'pageinfo-robot-index' => 'Indexeerbaor',
+'pageinfo-robot-noindex' => 'Niet indexeerbaor',
 'pageinfo-views' => 'Antal keer bekeken',
-'pageinfo-watchers' => 'Antal volgers',
-'pageinfo-edits' => 'Antal bewarkingen',
-'pageinfo-authors' => 'Antal verschillende auteurs',
+'pageinfo-watchers' => 'Antal ziedvolgers',
+'pageinfo-redirects-name' => 'Deurverwiezingen naor disse zied',
+'pageinfo-subpages-name' => 'Onderziejen van disse zied',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|deurverwiezing|deurverwiezingen}}; $3 {{PLURAL:$3|niet-deurverwiezing|niet-deurverwiezingen}})',
+'pageinfo-firstuser' => 'Gebruker die de zied an-emaakt hef',
+'pageinfo-firsttime' => 'Daotum waorop de zied an-emaakt is',
+'pageinfo-lastuser' => 'Leste bewarker',
+'pageinfo-lasttime' => 'Daotum van leste bewarking',
+'pageinfo-edits' => 'Totaal antal bewarkingen',
+'pageinfo-authors' => 'Totaal antal verschillende auteurs',
+'pageinfo-recent-edits' => 'Antal nieje bewarkingen (in de veurbieje $1).',
+'pageinfo-recent-authors' => 'Leste antal van verschillende auteurs',
+'pageinfo-restriction' => 'Ziedbeveiliging ({{lcfirst:$1}})',
+'pageinfo-magic-words' => '{{PLURAL:$1|Magies woord|Magiese woorden}} ($1)',
+'pageinfo-hidden-categories' => 'Verbörgen {{PLURAL:$1|kategorie|kategorieën}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Gebruukten mal|Gebruukten mallen}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Klassiek',
@@ -3073,6 +3120,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 beeldpunten, bestaandsgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|zied|ziejen}}',
 'file-nohires' => 'Gien hogere resolusie beschikbaor.',
 'svg-long-desc' => 'SVG-bestaand, uutgangsgrootte $1 × $2 beeldpunten, bestaandsgrootte: $3',
+'svg-long-desc-animated' => 'Bewegend SVG-bestaand, uutgangsgrootte $1 × $2 beeldpunten, bestaandsgrootte: $3',
 'show-big-image' => 'Volle resolusie',
 'show-big-image-preview' => 'Grootte van disse weergave: $1.',
 'show-big-image-other' => 'Aandere {{PLURAL:$2|resolusie|resolusies}}: $1.',
@@ -3082,6 +3130,8 @@ $1',
 'file-info-png-looped' => 'herhaolend',
 'file-info-png-repeat' => '$1 {{PLURAL:$1|keer|keer}} aofespeuld',
 'file-info-png-frames' => '$1 {{PLURAL:$1|beeld|beelden}}',
+'file-no-thumb-animation' => "'''Opmarking: vanwegen techniese beparkingen, zie'j bie miniaturen de boel niet bewegen.''",
+'file-no-thumb-animation-gif' => "'''Opmarking: vanwegen techniese beparkingen, zie'j bie miniaturen van GIF-aofbeeldingen mit n hoge resolusie de boel niet bewegen.''",
 
 # Special:NewFiles
 'newimages' => 'Nieje bestaanden',
@@ -3881,7 +3931,7 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'api-error-file-too-large' => "t Bestaand da'j op-estuurd hebben is te groot.",
 'api-error-filename-tooshort' => 'De bestaandsnaam is te kort.',
 'api-error-filetype-banned' => 'Dit bestaandstype is niet toe-estaon.',
-'api-error-filetype-banned-type' => '{{PLURAL:$4|t Bestaandstype $1 wordt|De bestandstypes $1 worden}} niet toegelaten. {{PLURAL:$3|t Toe-estaone bestaandstype is|De toe-estaone bestaandstypen bin}} $2.',
+'api-error-filetype-banned-type' => '{{PLURAL:$4|t Bestaandstype $1|De bestaandstypes $1}} wörden niet toe-eleuten. {{PLURAL:$3|t Toe-estaone bestaandstype is|De toe-estaone bestaandstypen bin}} $2.',
 'api-error-filetype-missing' => 't Bestaand hef gien extensie.',
 'api-error-hookaborted' => "De wieziging die'j proberen deur te voeren is aofebreuken deur n extra uutbreiding.",
 'api-error-http' => 'Interne fout: der kon gien verbiending emaakt wörden mit de server.',

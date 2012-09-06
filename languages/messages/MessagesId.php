@@ -2005,7 +2005,7 @@ Mungkin Anda ingin menyunting keterangan pada [$2 halaman deskripsi berkas] di s
 
 # MIME search
 'mimesearch' => 'Pencarian MIME',
-'mimesearch-summary' => 'Halaman ini menyediakan fasilitas menyaring berkas berdasarkan tipe MIME nya. Masukkan: contenttype/subtype, misalnya <code>image/jpeg</code>.',
+'mimesearch-summary' => 'Halaman ini menyediakan fasilitas menyaring berkas berdasarkan tipe MIME-nya. Masukkan: contenttype/subtype, misalnya <code>image/jpeg</code>.',
 'mimetype' => 'Tipe MIME:',
 'download' => 'unduh',
 

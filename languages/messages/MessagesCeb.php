@@ -10,6 +10,7 @@
  * @author Abastillas
  * @author Dosmiin Barsbold
  * @author Jordz
+ * @author Mirzali
  * @author Palang hernan
  * @author Reedy
  * @author לערי ריינהארט
@@ -456,7 +457,7 @@ Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga prepere
 'loginprompt' => 'Kinahanglang naka-enable ang mga koki aron ikaw maka-log-in sa {{SITENAME}}.',
 'userlogin' => 'Rehistro / Dayon',
 'logout' => 'Biya',
-'userlogout' => 'Biya',
+'userlogout' => 'Bıveciye',
 'notloggedin' => 'Wala ka pa masulod',
 'nologin' => "Wala pay akawnt? '''$1'''.",
 'nologinlink' => 'Paghimo og akawnt',
