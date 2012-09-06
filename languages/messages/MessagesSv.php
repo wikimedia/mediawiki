@@ -3130,7 +3130,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-authors' => 'Totalt antal olika författare',
 'pageinfo-recent-edits' => 'Antal nyliga redigeringar (inom de senaste $1)',
 'pageinfo-recent-authors' => 'Antal nyliga olika författare',
-'pageinfo-restriction' => 'Sidskydd (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Sidskydd ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiskt|Magiska}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Dold kategori|Dolda kategorier}} ($1)',
 

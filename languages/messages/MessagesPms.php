@@ -2808,8 +2808,8 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spamprotectionmatch' => "Cost-sì a l'é ël test che a l'é restà ciapà andrinta al filtror dla rumenta: $1",
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting' => "Butà andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
-'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
-'spam_deleting' => 'Tute le revision a contnisìo dle liure a $1, scancelament',
+'spam_blanking' => "Pàgina dësvujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
+'spam_deleting' => 'Scancelà, dagià che tute le revision a contnisìo dle liure a $1',
 
 # Info page
 'pageinfo-title' => 'Anformassion për "$1"',
@@ -2837,7 +2837,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-authors' => "Nùmer d'autor diferent",
 'pageinfo-recent-edits' => "Nùmer ëd modìfiche recente (ant j'ùltim $1)",
 'pageinfo-recent-authors' => "Nùmer d'autor diferent recent",
-'pageinfo-restriction' => 'Protession ëd la pàgina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protession ëd la pàgina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgica|Paròle màgiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',

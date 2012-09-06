@@ -3023,7 +3023,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-authors' => 'Numero total de autores distincte',
 'pageinfo-recent-edits' => 'Numero de modificationes recente (intra le ultime $1)',
 'pageinfo-recent-authors' => 'Numero de autores distincte recente',
-'pageinfo-restriction' => 'Protection del pagina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protection del pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola|Parolas}} magic ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria|Categorias}} celate ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Patrono|Patronos}} transcludite ($1)',

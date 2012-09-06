@@ -3175,7 +3175,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de ediciones recientes (en los últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recientes',
-'pageinfo-restriction' => 'Protección de la página (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protección de la página ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',

@@ -2870,7 +2870,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-authors' => 'Cyłkowna ličba rozdźělnych awtorow',
 'pageinfo-recent-edits' => 'Ličba najnowšich změnow (za zańdźenych $1)',
 'pageinfo-recent-authors' => 'Najnowša ličba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Škit strony (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Škit strony ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',

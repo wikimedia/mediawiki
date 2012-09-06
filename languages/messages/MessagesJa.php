@@ -3248,7 +3248,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'pageinfo-edits' => '総編集回数',
 'pageinfo-authors' => '総投稿者数',
 'pageinfo-recent-edits' => '最近の編集回数 (過去 $1)',
-'pageinfo-restriction' => 'ページ保護 (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'ページ保護 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'マジック {{PLURAL:$1|ワード}} ($1)',
 'pageinfo-hidden-categories' => '隠し{{PLURAL:$1|カテゴリ}} ($1)',
 'pageinfo-templates' => '参照読み込みされた{{PLURAL:$1|テンプレート}} ($1)',
