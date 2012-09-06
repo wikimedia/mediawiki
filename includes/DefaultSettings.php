@@ -5896,6 +5896,7 @@ $wgAPIModules = array();
 $wgAPIMetaModules = array();
 $wgAPIPropModules = array();
 $wgAPIListModules = array();
+$wgAPIGeneratorModules = array();
 
 /**
  * Maximum amount of rows to scan in a DB query in the API

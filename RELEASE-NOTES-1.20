@@ -234,9 +234,6 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
 * (bug 39273) "Show changes" should not be incorrectly displayed in the Live Preview state.
 * Made body-content lang attribute honor the variant language when it is set.
-* (bug 36761) "Mark pages as visited" now submits previously established filter options.
-* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
-* (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -253,6 +250,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 34927) Output media_type for list=filearchive.
 * (bug 28814) add properties to output of action=parse.
 * (bug 33224) add variants of content language to meta=siteinfo.
+* (bug 36761) "Mark pages as visited" now submits previously established filter options.
 * (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached.
 * The paraminfo module now also contains result properties for most modules.
 * (bug 32348) Allow descending order for list=alllinks.
@@ -273,8 +271,10 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
 * (bug 39032) ApiQuery generates help in constructor.
 * (bug 11142) Improve file extension blacklist error reporting in API upload.
-* (bug 39665) Cache AllowedGenerator array so it doesn't autoload all query classes
-  on every request.
+* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
+* (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
+* (bug 39665) List of query generators is now not built using reflection, instead it is
+  defined in code.
 
 === Languages updated in 1.20 ===
 
