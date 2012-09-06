@@ -65,11 +65,11 @@ class BenchmarkHooks extends Benchmarker {
 	 * @return string
 	 */
 	private function benchHooks( $trials = 10 ) {
-		$start = wfTime();
+		$start = microtime( true );
 		for ( $i = 0; $i < $trials; $i++ ) {
 			wfRunHooks( 'Test' );
 		}
-		$delta = wfTime() - $start;
+		$delta = microtime( true ) - $start;
 		$pertrial = $delta / $trials;
 		return sprintf( "Took %6.2fs",
 			$pertrial );

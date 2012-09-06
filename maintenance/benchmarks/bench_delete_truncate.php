@@ -46,22 +46,22 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 
 		$this->insertData( $dbw );
 
-		$start = wfTime();
+		$start = microtime( true );
 
 		$this->delete( $dbw );
 
-		$end = wfTime();
+		$end = microtime( true );
 
 		echo "Delete: " . $end - $start;
 		echo "\r\n";
 
 		$this->insertData( $dbw );
 
-		$start = wfTime();
+		$start = microtime( true );
 
 		$this->truncate( $dbw );
 
-		$end = wfTime();
+		$end = microtime( true );
 
 		echo "Truncate: " . $end - $start;
 		echo "\r\n";
