@@ -156,6 +156,20 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
+		// Validate revision
+		$oldid = $this->page->getOldID();
+		if ( $oldid ) {
+			// Revision is missing
+			if ( Revision::newFromId( $oldid ) === null ) {
+				return $this->msg( 'missing-revision', $oldid )->parse();
+			}
+
+			// Revision is not current
+			if ( !$this->page->isCurrent() ) {
+				return $this->msg( 'pageinfo-not-current' )->plain();
+			}
+		}
+
 		// Get page information that would be too "expensive" to retrieve by normal means
 		$pageCounts = self::pageCounts( $title, $user );
 
@@ -279,6 +293,10 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-restrictions'][] = array(
 				$this->msg( "restriction-$restrictionType" ), $message
 			);
+		}
+
+		if ( !$title->exists() ) {
+			return $pageInfo;
 		}
 
 		// Edit history
