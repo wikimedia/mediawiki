@@ -68,9 +68,6 @@ abstract class File {
 	const FOR_THIS_USER = 2;
 	const RAW = 3;
 
-	// Options for File::thumbName()
-	const THUMB_FULL_NAME = 1;
-
 	/**
 	 * Some member variables can be lazy-initialised using __get(). The
 	 * initialisation function for these variables is always a function named
@@ -762,18 +759,15 @@ abstract class File {
 	}
 
 	/**
-	 * Return the file name of a thumbnail with the specified parameters.
-	 * Use File::THUMB_FULL_NAME to always get a name like "<params>-<source>".
-	 * Otherwise, the format may be "<params>-<source>" or "<params>-thumbnail.<ext>".
+	 * Return the file name of a thumbnail with the specified parameters
 	 *
 	 * @param $params Array: handler-specific parameters
-	 * @param $flags integer Bitfield that supports THUMB_* constants
+	 * @private -ish
+	 *
 	 * @return string
 	 */
-	public function thumbName( $params, $flags = 0 ) {
-		$name = ( $this->repo && !( $flags & self::THUMB_FULL_NAME ) )
-			? $this->repo->nameForThumb( $this->getName() )
-			: $this->getName();
+	function thumbName( $params ) {
+		$name = $this->repo ? $this->repo->nameForThumb( $this->getName() ) : $this->getName();
 		return $this->generateThumbName( $name, $params );
 	}
 
@@ -785,7 +779,7 @@ abstract class File {
 	 *
 	 * @return string
 	 */
-	public function generateThumbName( $name, $params ) {
+	function generateThumbName( $name, $params ) {
 		if ( !$this->getHandler() ) {
 			return null;
 		}
