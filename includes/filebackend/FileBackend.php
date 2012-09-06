@@ -1105,17 +1105,27 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Build a Content-Disposition header value per RFC 6266
+	 * Build a Content-Disposition header value per RFC 6266.
 	 *
 	 * @param $type string One of (attachment, inline)
 	 * @param $filename string Suggested file name (should not contain slashes)
 	 * @return string
 	 * @since 1.20
 	 */
-	final public static function makeContentDisposition( $type, $filename ) {
+	final public static function makeContentDisposition( $type, $filename = '' ) {
+		$parts = array();
+
 		$type = strtolower( $type );
-		$type = in_array( $type, array( 'inline', 'attachment' ) ) ? $type : 'inline';
-		return "$type; filename*=UTF-8''" . rawurlencode( basename( $filename ) );
+		if ( !in_array( $type, array( 'inline', 'attachment' ) ) ) {
+			throw new MWException( "Invalid Content-Disposition type '$type'." );
+		}
+		$parts[] = $type;
+
+		if ( strlen( $filename ) ) {
+			$parts[] = "filename*=UTF-8''" . rawurlencode( basename( $filename ) );
+		}
+
+		return implode( ';', $parts );
 	}
 
 	/**
