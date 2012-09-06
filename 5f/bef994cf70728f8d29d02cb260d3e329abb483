@@ -1,0 +1,8 @@
+Change-Id: I5fbef994cf70728f8d29d02cb260d3e329abb483
+Code-Review+2: Aaron Schulz <aschulz@wikimedia.org>
+Verified+1: jenkins-bot
+Submitted-by: Aaron Schulz <aschulz@wikimedia.org>
+Submitted-at: Thu, 06 Sep 2012 17:54:59 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/22926
+Project: mediawiki/core
+Branch: refs/heads/master
