@@ -140,14 +140,14 @@ class MWTimestamp {
 			try {
 				$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
 			} catch(Exception $e) {
-				throw new TimestampException( __METHOD__ . 'Invalid timestamp format.' );
+				throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 			}
 		} else {
 			$final = strtotime( $strtime );
 		}
 
 		if( $final === false ) {
-			throw new TimestampException( __METHOD__ . 'Invalid timestamp format.' );
+			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 		}
 		$this->timestamp = $final;
 	}
