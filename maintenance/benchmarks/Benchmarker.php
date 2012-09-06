@@ -53,11 +53,11 @@ abstract class Benchmarker extends Maintenance {
 			}
 
 			$bench_number++;
-			$start = wfTime();
+			$start = microtime( true );
 			for( $i=0; $i<$count; $i++ ) {
 				call_user_func_array( $bench['function'], $bench['args'] );
 			}
-			$delta = wfTime() - $start;
+			$delta = microtime( true ) - $start;
 
 			// function passed as a callback
 			if( is_array( $bench['function'] ) ) {
