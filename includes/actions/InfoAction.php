@@ -58,6 +58,22 @@ class InfoAction extends FormlessAction {
 	public function onView() {
 		$content = '';
 
+		// Validate revision
+		$oldid = $this->page->getOldID();
+		if ( $oldid ) {
+			$revision = $this->page->getRevisionFetched();
+
+			// Revision is missing
+			if ( $revision === null ) {
+				return $this->msg( 'missing-revision', $oldid )->parse();
+			}
+
+			// Revision is not current
+			if ( !$revision->isCurrent() ) {
+				return $this->msg( 'pageinfo-not-current' )->plain();
+			}
+		}
+
 		// Page header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
@@ -279,6 +295,10 @@ class InfoAction extends FormlessAction {
 			$pageInfo['header-restrictions'][] = array(
 				$this->msg( "restriction-$restrictionType" ), $message
 			);
+		}
+
+		if ( !$this->page->exists() ) {
+			return $pageInfo;
 		}
 
 		// Edit history
