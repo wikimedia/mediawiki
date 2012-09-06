@@ -473,7 +473,7 @@ a.feedlink {
  * keep in sync with commonPrint.css
  */
 table.wikitable {
-	margin: 1em 1em 1em 0;
+	margin: 1em 0;
 	background-color: #f9f9f9;
 	border: 1px #aaa solid;
 	border-collapse: collapse;
