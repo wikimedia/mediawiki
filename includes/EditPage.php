@@ -2489,7 +2489,7 @@ HTML
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMessage( 'edithelppage' )->inContentLanguage()->text() );
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
 			wfMessage( 'edithelp' )->escaped() . '</a> ' .
-			wfMessage( 'newwindow' )->escaped();
+			wfMessage( 'newwindow' )->parse();
 		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
 		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
