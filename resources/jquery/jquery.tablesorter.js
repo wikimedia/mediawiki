@@ -75,7 +75,7 @@
 		return false;
 	}
 
-	function getElementText( node ) {
+	function getElementTextOrAltText( node ) {
 		var $node = $( node ),
 			// Use data-sort-value attribute.
 			// Use data() instead of attr() so that live value changes
@@ -87,15 +87,17 @@
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
 		} else {
-			return $node.text();
-		}
-	}
-
-	function getTextFromRowAndCellIndex( rows, rowIndex, cellIndex ) {
-		if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
-			return $.trim( getElementText( rows[rowIndex].cells[cellIndex] ) );
-		} else {
-			return '';
+			if ( $node[0].tagName.toLowerCase() === 'img' ) {
+				return $node.attr( 'alt' );
+			} else {
+				return $( $node[0].childNodes ).map( function( i, elem ) {
+					if ( elem.nodeType === document.ELEMENT_NODE ) {
+						return getElementTextOrAltText( elem );
+					} else {
+						return $.text( elem );
+					}
+				} ).toArray().join( '' );
+			}
 		}
 	}
 
@@ -108,8 +110,13 @@
 			concurrent = 0,
 			needed = ( rows.length > 4 ) ? 5 : rows.length;
 
-		while( i < l ) {
-			nodeValue = getTextFromRowAndCellIndex( rows, rowIndex, cellIndex );
+		while ( i < l ) {
+			if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
+				nodeValue = $.trim( getElementTextOrAltText( rows[rowIndex].cells[cellIndex] ) );
+			} else {
+				nodeValue = '';
+			}
+			
 			if ( nodeValue !== '') {
 				if ( parsers[i].is( nodeValue, table ) ) {
 					concurrent++;
@@ -194,7 +201,7 @@
 			cache.row.push( $row );
 
 			for ( var j = 0; j < totalCells; ++j ) {
-				cols.push( parsers[j].format( getElementText( $row[0].cells[j] ), table, $row[0].cells[j] ) );
+				cols.push( parsers[j].format( getElementTextOrAltText( $row[0].cells[j] ), table, $row[0].cells[j] ) );
 			}
 
 			cols.push( cache.normalized.length ); // add position for rowCache
