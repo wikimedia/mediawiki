@@ -1169,8 +1169,6 @@ class LocalFile extends File {
 				wfRunHooks( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
 				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
-			$dbw->update( 'logging', array( 'log_page' => $descTitle->getArticleID() ), array( 'log_id' => $logId ), __METHOD__ );
-
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
 			$descTitle->purgeSquid();
