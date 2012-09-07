@@ -4431,7 +4431,8 @@ class Title {
 		$where = array(
 			'rd_namespace' => $this->getNamespace(),
 			'rd_title' => $this->getDBkey(),
-			'rd_from = page_id'
+			'rd_from = page_id',
+			'rd_interwiki IS NULL OR rd_interwiki = ' . $dbr->addQuotes( '' )
 		);
 		if ( !is_null( $ns ) ) {
 			$where['page_namespace'] = $ns;
