@@ -2404,7 +2404,6 @@ define( 'TS_ISO_8601_BASIC', 9 );
 /**
  * Get a timestamp string in one of various formats
  *
- * @deprecated
  * @param $outputtype Mixed: A timestamp in one of the supported formats, the
  *                    function will autodetect which format is supplied and act
  *                    accordingly.
