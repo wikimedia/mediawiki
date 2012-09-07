@@ -86,8 +86,12 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = array();
-			// We *could* run this through wfExpandUrl() but I think it's better to output the link verbatim, even if it's protocol-relative --Roan
-			ApiResult::setContent( $entry, $row->el_to );
+			$to = $row->el_to;
+			// expand protocol-relative urls
+			if( $params['expandurl'] ) {
+				$to = wfExpandUrl( $to, PROTO_CANONICAL );
+			}
+			ApiResult::setContent( $entry, $to );
 			$fit = $this->addPageSubItem( $row->el_from, $entry );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'offset', $offset + $count - 1 );
@@ -117,6 +121,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				ApiBase::PARAM_DFLT => '',
 			),
 			'query' => null,
+			'expandurl' => false,
 		);
 	}
 
@@ -130,6 +135,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				"Leave both this and {$p}query empty to list all external links"
 			),
 			'query' => 'Search string without protocol. Useful for checking whether a certain page contains a certain external url',
+			'expandurl' => 'Expand protocol-relative urls with the canonical protocol',
 		);
 	}
 
