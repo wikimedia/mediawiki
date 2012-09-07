@@ -149,6 +149,13 @@ class SearchPostgres extends SearchEngine {
 	 * @return string
 	 */
 	function searchQuery( $term, $fulltext, $colname ) {
+	        if($term == "'")
+                {
+                        ## TODO: Better output (example to catch: one 'two)
+                        die ("Sorry, that was not a valid search string. Please go back and try again");
+                }
+
+
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 
