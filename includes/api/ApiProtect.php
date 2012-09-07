@@ -87,16 +87,19 @@ class ApiProtect extends ApiBase {
 					$this->dieUsageMsg( array( 'invalidexpiry', $expiry[$i] ) );
 				}
 
-				$exp = wfTimestamp( TS_MW, $exp );
+				$timestamp = new MWTimestamp( $exp );
+				$exp = $timestamp->getTimestamp( TS_MW );
 				if ( $exp < wfTimestampNow() ) {
 					$this->dieUsageMsg( array( 'pastexpiry', $expiry[$i] ) );
 				}
 				$expiryarray[$p[0]] = $exp;
 			}
+
+			$timestamp = new MWTimestamp( $expiryarray[$p[0]] );
 			$resultProtections[] = array( $p[0] => $protections[$p[0]],
 					'expiry' => ( $expiryarray[$p[0]] == $db->getInfinity() ?
 								'infinite' :
-								wfTimestamp( TS_ISO_8601, $expiryarray[$p[0]] ) ) );
+								$timestamp->getTimestamp( TS_ISO_8601 ) ) );
 		}
 
 		$cascade = $params['cascade'];

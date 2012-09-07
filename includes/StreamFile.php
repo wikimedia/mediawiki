@@ -97,7 +97,8 @@ class StreamFile {
 		}
 
 		// Sent Last-Modified HTTP header for client-side caching
-		header( 'Last-Modified: ' . wfTimestamp( TS_RFC2822, $info['mtime'] ) );
+		$timestamp = new MWTimestamp( $info['mtime'] );
+		header( 'Last-Modified: ' . $timestamp->getTimestamp( TS_RFC2822 ) );
 
 		// Cancel output buffering and gzipping if set
 		wfResetOutputBuffers();

@@ -47,10 +47,12 @@ class PurgeParserCache extends Maintenance {
 		$inputDate = $this->getOption( 'expiredate' );
 		$inputAge = $this->getOption( 'age' );
 		if ( $inputDate !== null ) {
-			$date = wfTimestamp( TS_MW, strtotime( $inputDate ) );
+			$timestamp = new MWTimestamp( strtotime( $inputDate ) );
+			$date = $timestamp->getTimestamp( TS_MW );
 		} elseif ( $inputAge !== null ) {
 			global $wgParserCacheExpireTime;
-			$date = wfTimestamp( TS_MW, time() + $wgParserCacheExpireTime - intval( $inputAge ) );
+			$timestamp = new MWTimestamp( time() + $wgParserCacheExpireTime - intval( $inputAge ) );
+			$date = $timestamp->getTimestamp( TS_MW );
 		} else {
 			echo "Must specify either --expiredate or --age\n";
 			exit( 1 );

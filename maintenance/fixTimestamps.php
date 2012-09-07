@@ -79,7 +79,8 @@ class FixTimestamps extends Maintenance {
 		$numGoodRevs = 0;
 
 		foreach ( $res as $row ) {
-			$timestamp = wfTimestamp( TS_UNIX, $row->rev_timestamp );
+			$timestamp = new MWTimestamp( $row->rev_timestamp );
+			$timestamp = $timestamp->getTimestamp();
 			$delta = $timestamp - $lastNormal;
 			$sign = $delta == 0 ? 0 : $delta / abs( $delta );
 			if ( $sign == 0 || $sign == $expectedSign ) {

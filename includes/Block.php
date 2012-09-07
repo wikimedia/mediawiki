@@ -84,14 +84,16 @@ class Block {
 			$this->setBlocker( $byText );
 		}
 		$this->mReason = $reason;
-		$this->mTimestamp = wfTimestamp( TS_MW, $timestamp );
+		$timestamp = new MWTimestamp( $timestamp );
+		$this->mTimestamp = $timestamp->getTimestamp( TS_MW );
 		$this->mAuto = $auto;
 		$this->isHardblock( !$anonOnly );
 		$this->prevents( 'createaccount', $createAccount );
 		if ( $expiry == 'infinity' || $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
 			$this->mExpiry = 'infinity';
 		} else {
-			$this->mExpiry = wfTimestamp( TS_MW, $expiry );
+			$timestamp = new MWTimestamp( $expiry );
+			$this->mExpiry = $timestamp->getTimestamp( TS_MW );
 		}
 		$this->isAutoblocking( $enableAutoblock );
 		$this->mHideName = $hideName;

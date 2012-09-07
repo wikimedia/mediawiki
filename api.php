@@ -86,8 +86,9 @@ wfLogProfilingData();
 
 // Log the request
 if ( $wgAPIRequestLog ) {
+	$timestamp = new MWTimestamp();
 	$items = array(
-			wfTimestamp( TS_MW ),
+			$timestamp->getTimestamp( TS_MW ),
 			$endtime - $starttime,
 			$wgRequest->getIP(),
 			$_SERVER['HTTP_USER_AGENT']

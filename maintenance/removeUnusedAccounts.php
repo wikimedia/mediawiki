@@ -60,9 +60,11 @@ class RemoveUnusedAccounts extends Maintenance {
 		foreach ( $res as $row ) {
 			# Check the account, but ignore it if it's within a $excludedGroups group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
+			$tsTouched = new MWTimestamp( $row->user_touched );
+			$tsDaysAgo = new MWTimestamp( time() - $touchedSeconds );
 			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
 				&& $this->isInactiveAccount( $row->user_id, true )
-				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
+				&& $tsTouched->getTimestamp() < $tsDaysAgo->getTimestamp()
 				) {
 				# Inactive; print out the name and flag it
 				$del[] = $row->user_id;

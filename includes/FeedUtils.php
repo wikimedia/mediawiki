@@ -75,7 +75,8 @@ class FeedUtils {
 	 */
 	public static function formatDiff( $row ) {
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
-		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
+		$timestamp = new MWTimestamp( $row->rc_timestamp );
+		$timestamp = $timestamp->getTimestamp( TS_MW );
 		$actiontext = '';
 		if( $row->rc_type == RC_LOG ) {
 			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows

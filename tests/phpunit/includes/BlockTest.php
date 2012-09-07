@@ -38,7 +38,8 @@ class BlockTest extends MediaWikiLangTestCase {
 		$this->block = new Block( 'UTBlockee', $user->getID(), 0,
 			'Parce que', 0, false, time() + 100500
 		);
-		$this->madeAt = wfTimestamp( TS_MW );
+		$timestamp = new MWTimestamp();
+		$this->madeAt = $timestamp->getTimestamp( TS_MW );
 
 		$this->block->insert();
 		// save up ID for use in assertion. Since ID is an autoincrement,

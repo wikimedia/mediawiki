@@ -46,7 +46,8 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		}
 
 		global $wgUser;
-		return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
+		$timestamp = new MWTimestamp( $wgUser->getTouched() );
+		return $this->modifiedTime[$hash] = $timestamp->getTimestamp();
 	}
 	
 	/**

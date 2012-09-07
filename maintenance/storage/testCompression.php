@@ -30,7 +30,8 @@ if ( !isset( $args[0] )  ) {
 
 $title = Title::newFromText( $args[0] );
 if ( isset( $options['start'] ) ) {
-	$start = wfTimestamp( TS_MW, strtotime( $options['start'] ) );
+	$timestamp = new MWTimestamp( strtotime( $options['start'] );
+	$start = $timestamp->getTimestamp( TS_MW );
 	echo "Starting from " . $wgLang->timeanddate( $start ) . "\n";
 } else {
 	$start = '19700101000000';

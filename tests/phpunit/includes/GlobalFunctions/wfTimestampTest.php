@@ -8,7 +8,8 @@ class wfTimestamp extends MediaWikiTestCase {
 	 * @dataProvider provideNormalTimestamps
 	 */
 	function testNormalTimestamps( $input, $format, $output, $desc ) {
-		$this->assertEquals( $output, wfTimestamp( $format, $input ), $desc );
+		$timestamp = new MWTimestamp( $input );
+		$this->assertEquals( $output,  $timestamp->getTimestamp( $format ), $desc );
 	}
 
 	function provideNormalTimestamps() {
@@ -58,7 +59,8 @@ class wfTimestamp extends MediaWikiTestCase {
 	 * @dataProvider provideOldTimestamps
 	 */
 	function testOldTimestamps( $input, $format, $output, $desc ) {
-		$this->assertEquals( $output, wfTimestamp( $format, $input ), $desc );
+		$timestamp = new MWTimestamp( $input );
+		$this->assertEquals( $output, $timestamp->getTimestamp( $format ), $desc );
 	}
 
 	function provideOldTimestamps() {
@@ -97,7 +99,8 @@ class wfTimestamp extends MediaWikiTestCase {
 	 * @dataProvider provideHttpDates
 	 */
 	function testHttpDate( $input, $output, $desc ) {
-		$this->assertEquals( $output, wfTimestamp( TS_MW, $input ), $desc );
+		$timestamp = new MWTimestamp( $input );
+		$this->assertEquals( $output, $timestamp->getTimestamp( TS_MW ), $desc );
 	}
 
 	function provideHttpDates() {
@@ -113,6 +116,7 @@ class wfTimestamp extends MediaWikiTestCase {
 	/**
 	 * There are a number of assumptions in our codebase where wfTimestamp()
 	 * should give the current date but it is not given a 0 there. See r71751 CR
+	 * @deprecated
 	 */
 	function testTimestampParameter() {
 		$now = wfTimestamp( TS_UNIX );

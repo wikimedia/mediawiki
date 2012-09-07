@@ -79,7 +79,8 @@ class FSFile {
 		$timestamp = filemtime( $this->path );
 		wfRestoreWarnings();
 		if ( $timestamp !== false ) {
-			$timestamp = wfTimestamp( TS_MW, $timestamp );
+			$timestamp = new MWTimestamp( $timestamp );
+			$timestamp = $timestamp->getTimestamp( TS_MW );
 		}
 		return $timestamp;
 	}

@@ -88,7 +88,8 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 				$r['cached'] = '';
 				$ts = $qp->getCachedTimestamp();
 				if ( $ts ) {
-					$r['cachedtimestamp'] = wfTimestamp( TS_ISO_8601, $ts );
+					$timestamp = new MWTimestamp( $ts );
+					$r['cachedtimestamp'] = $timestamp->getTimestamp( TS_ISO_8601 );
 				}
 				$r['maxresults'] = $wgQueryCacheLimit;
 			}

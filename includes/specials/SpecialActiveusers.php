@@ -95,7 +95,8 @@ class ActiveUsersPager extends UsersPager {
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		$conds[] = "rc_log_type IS NULL OR rc_log_type != 'newusers'";
-		$conds[] = "rc_timestamp >= '{$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 )}'";
+		$timestamp = new MWTimestamp();
+		$conds[] = "rc_timestamp >= '{$dbr->timestamp( $timestamp->getTimestamp() - $this->RCMaxAge*24*3600 )}'";
 
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );

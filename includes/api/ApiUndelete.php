@@ -57,7 +57,8 @@ class ApiUndelete extends ApiBase {
 			$params['timestamps'] = array( $params['timestamps'] );
 		}
 		foreach ( $params['timestamps'] as $i => $ts ) {
-			$params['timestamps'][$i] = wfTimestamp( TS_MW, $ts );
+			$timestamp = new MWTimestamp( $ts );
+			$params['timestamps'][$i] = $timestamp->getTimestamp( TS_MW );
 		}
 
 		$pa = new PageArchive( $titleObj );

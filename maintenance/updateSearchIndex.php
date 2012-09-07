@@ -63,7 +63,8 @@ class UpdateSearchIndex extends Maintenance {
 		} elseif( is_readable( $posFile ) ) {
 			$start = file_get_contents( $posFile );
 		} else {
-			$start = wfTimestamp( TS_MW, time() - 86400 );
+			$timestamp = new MWTimestamp( time() - 86400 );
+			$start = $timestamp->getTimestamp( TS_MW );
 		}
 		$lockTime = $this->getOption( 'l', 20 );
 

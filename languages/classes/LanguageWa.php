@@ -57,8 +57,11 @@ class LanguageWa extends Language {
 	 * @return string
 	 */
 	function date( $ts, $adj = false, $format = true, $tc = false ) {
-		$ts = wfTimestamp( TS_MW, $ts );
-		if ( $adj ) { $ts = $this->userAdjust( $ts, $tc ); }
+		$timestamp = new MWTimestamp( $ts );
+		$ts = $timestamp->getTimestamp( TS_MW );
+		if ( $adj ) {
+			$ts = $this->userAdjust( $ts, $tc );
+		}
 		$datePreference = $this->dateFormat( $format );
 
 		# ISO (YYYY-mm-dd) format

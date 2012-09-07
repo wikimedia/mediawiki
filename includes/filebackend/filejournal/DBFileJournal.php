@@ -59,7 +59,8 @@ class DBFileJournal extends FileJournal {
 			return $status;
 		}
 
-		$now = wfTimestamp( TS_UNIX );
+		$timestamp = new MWTimestamp();
+		$now = $timestamp->getTimestamp();
 
 		$data = array();
 		foreach ( $entries as $entry ) {

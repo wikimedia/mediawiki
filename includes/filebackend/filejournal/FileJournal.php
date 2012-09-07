@@ -79,7 +79,8 @@ abstract class FileJournal {
 			$s .= mt_rand( 0, 2147483647 );
 		}
 		$s = wfBaseConvert( sha1( $s ), 16, 36, 31 );
-		return substr( wfBaseConvert( wfTimestamp( TS_MW ), 10, 36, 9 ) . $s, 0, 31 );
+		$timestamp = new MWTimestamp();
+		return substr( wfBaseConvert( $timestamp->getTimestamp( TS_MW ), 10, 36, 9 ) . $s, 0, 31 );
 	}
 
 	/**

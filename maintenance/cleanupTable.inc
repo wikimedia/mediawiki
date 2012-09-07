@@ -80,13 +80,15 @@ class TableCleanup extends Maintenance {
 		$estimatedTotalTime = $delta / $portion;
 		$eta = $this->startTime + $estimatedTotalTime;
 
+		$tsNow = new MWTimestamp( intval( $now ) );
+		$tsEta = new MWTimestamp( intval( $eta ) );
 		$this->output(
 			sprintf( "%s %s: %6.2f%% done on %s; ETA %s [%d/%d] %.2f/sec <%.2f%% updated>\n",
 				wfWikiID(),
-				wfTimestamp( TS_DB, intval( $now ) ),
+				$tsNow->getTimestamp( TS_DB ),
 				$portion * 100.0,
 				$this->table,
-				wfTimestamp( TS_DB, intval( $eta ) ),
+				$tsEta->getTimestamp( TS_DB ),
 				$this->processed,
 				$this->count,
 				$this->processed / $delta,
