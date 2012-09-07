@@ -986,7 +986,9 @@ Pe piacere condrolle l'archivije.",
 'revdelete-only-restricted' => "Errore scunnènne l'artichele datate $2, $1: tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opziune de soppressione.",
 'revdelete-reason-dropdown' => "*Mutive comune pa scangellazzione
 ** Violazione d'u copyright
-** 'Mbormaziune personale inappropriate",
+** 'Mbormaziune personale o commende inappropriate
+** Nome utende inappropriate
+** 'Mbormaziune potenzialmende diffamatorie",
 'revdelete-otherreason' => 'Otre/addizionale mutive:',
 'revdelete-reasonotherlist' => 'Otre mutive',
 'revdelete-edit-reasonlist' => "Mutive d'a scangellazione d'u cangiamende",

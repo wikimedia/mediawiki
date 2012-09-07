@@ -2812,7 +2812,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spam_deleting' => 'Scancelà, dagià che tute le revision a contnisìo dle liure a $1',
 
 # Info page
-'pageinfo-title' => 'Anformassion për "$1"',
+'pageinfo-title' => 'Anformassion për «$1»',
 'pageinfo-header-basic' => 'Anformassion ëd base',
 'pageinfo-header-edits' => 'Modìfiche',
 'pageinfo-header-restrictions' => 'Protession ëd la pàgina',
@@ -2825,7 +2825,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-robot-index' => 'Indesàbil',
 'pageinfo-robot-noindex' => 'Nen indesàbil',
 'pageinfo-views' => 'Nùmer ëd vìsite',
-'pageinfo-watchers' => "Vàire ch'a ten-o sot-euj la pàgina",
+'pageinfo-watchers' => "Vàire utent ch'a ten-o sot-euj la pàgina",
 'pageinfo-redirects-name' => 'Ridiression a sta pàgina-sì',
 'pageinfo-subpages-name' => 'Sot-pàgine ëd costa pàgina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ridiression|ridiression}}; $3 {{PLURAL:$3|nen ridiression|nen ridiression}})',
@@ -2843,14 +2843,14 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
 
 # Patrolling
-'markaspatrolleddiff' => 'Marca coma verificà',
-'markaspatrolledtext' => "Marca st'artìcol-sì coma verificà",
+'markaspatrolleddiff' => 'Marché coma verificà',
+'markaspatrolledtext' => 'Marché costa pàgina coma verificà',
 'markedaspatrolled' => 'Marca dla verìfica butà',
 'markedaspatrolledtext' => "La version selessionà ëd [[:$1]] a l'é staita marcà coma verificà.",
 'rcpatroldisabled' => "Verìfica dj'ùltime modìfiche disabilità",
 'rcpatroldisabledtext' => "La possibilità ëd verifichè j'ùltime modìfiche a l'é disabilità.",
-'markedaspatrollederror' => 'As peul pa marchè verificà',
-'markedaspatrollederrortext' => 'A venta che a specìfica che version che a veul marchè verificà.',
+'markedaspatrollederror' => 'As peul pa marché coma verificà',
+'markedaspatrollederrortext' => 'A venta che a spessìfica che version che a veul marchè coma verificà.',
 'markedaspatrollederror-noautopatrol' => 'A l\'ha nen ël përmess dë marchesse soe modìfiche coma "controlà".',
 
 # Patrol log

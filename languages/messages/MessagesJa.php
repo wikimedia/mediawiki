@@ -483,7 +483,7 @@ $messages = array(
 'hidden-category-category' => '隠しカテゴリ',
 'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の {{PLURAL:$1|$1 下位カテゴリ}}を表示しています。}}',
 'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}が含まれています。',
-'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の {{PLURAL:$1|$1 ページ}}を表示しています。}}',
+'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の $1 ページを表示しています。}}',
 'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ|&#32;$1 ページ}}が含まれています。',
 'category-file-count' => '{{PLURAL:$2|このカテゴリには以下のファイルのみが含まれています。|このカテゴリには $2 ファイルが含まれており、そのうち以下の {{PLURAL:$1|$1 ファイル}}を表示しています。}}',
 'category-file-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ファイル|&#32;$1 ファイル}}が含まれています。',
@@ -700,14 +700,14 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'readonlytext' => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらくデータベースの定期メンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
 
 データベースをロックした管理者による説明は以下の通りです：$1',
-'missing-article' => '求められたページ「$1」$2 の本文がデータベース内で見つかりませんでした。
+'missing-article' => '指定されたページ「$1」$2 の本文がデータベース内で見つかりませんでした。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。
 
 それ以外の操作でこのメッセージが表示された場合、ソフトウェアのバグである可能性があります。
-[[Special:ListUsers/sysop|管理者]]までそのURLを添えてお知らせください。',
-'missingarticle-rev' => '（版番号：$1）',
-'missingarticle-diff' => '（差分：$1、$2）',
+[[Special:ListUsers/sysop|管理者]]までその URL を添えてお知らせください。',
+'missingarticle-rev' => '(版番号: $1)',
+'missingarticle-diff' => '(差分: $1, $2)',
 'readonly_lag' => 'データベースはスレーブのデータベースサーバーがマスターに同期するまで自動的にロックされています',
 'internalerror' => '内部エラー',
 'internalerror_info' => '内部エラー：$1',
@@ -1049,6 +1049,10 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
 'noarticletext-nopermission' => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができます。',
+'missing-revision' => '「{{PAGENAME}}」というページの #$1 という版は存在しません。
+
+通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
+詳細は[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
 'userpage-userdoesnotexist' => '「$1」という利用者アカウントは登録されていません。
 このページの作成/編集が適切かご確認ください。',
 'userpage-userdoesnotexist-view' => '利用者アカウント「$1」は登録されていません。',
@@ -1315,7 +1319,8 @@ $1",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
 記録を確認してください。',
 'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
-'revdelete-reason-dropdown' => '*よくある削除理由
+'revdelete-reason-dropdown' => '
+*よくある削除理由
 ** 著作権侵害
 ** 名誉毀損のおそれ
 ** 非公開個人情報',
@@ -1371,6 +1376,10 @@ $1",
 'editundo' => '取り消し',
 'diff-multi' => '（{{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
 'diff-multi-manyusers' => '（{{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
+'difference-missing-revision' => '指定された{{PLURAL:$2|$2版}}の差分 ($1) が見つかりませんでした。
+
+通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
+詳細は[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
 
 # Search results
 'searchresults' => '検索結果',
@@ -2405,7 +2414,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'emailccsubject' => '$1に送信したメールの控え：$2',
 'emailsent' => 'メールを送信しました',
 'emailsenttext' => 'メールを送信しました。',
-'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメールを送信」機能でお送りしました。',
+'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメールを送信」機能で送信されました。',
 
 # User Messenger
 'usermessage-summary' => 'システムメッセージを残す。',
@@ -2674,7 +2683,7 @@ $1',
 'tooltip-invert' => '選択した名前空間（チェックされている場合は、関連付けられた名前空間も）のページの変更を非表示にするには、このボックスにチェックを入れる',
 'namespace_association' => '対応付けられた名前空間',
 'tooltip-namespace_association' => '選択した名前空間に関連付けられているトークページまたは対象の名前空間も含めるには、このボックスにチェックを入れる',
-'blanknamespace' => '（標準）',
+'blanknamespace' => '(標準)',
 
 # Contributions
 'contributions' => '利用者の投稿記録',

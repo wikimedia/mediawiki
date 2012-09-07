@@ -2598,7 +2598,7 @@ De leste regel uut t blokkeerlogboek steet as referensie',
 'ipbreason' => 'Reden:',
 'ipbreasonotherlist' => 'aandere reden',
 'ipbreason-dropdown' => '*Algemene redens veur t blokkeren
-** valse informasie invoeren
+** verkeerde informasie invoeren
 ** ziejen leegmaken
 ** ongewunste verwiezingen plaotsen
 ** onzinteksten schrieven

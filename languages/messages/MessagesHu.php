@@ -573,7 +573,7 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 
 'ok' => 'OK',
 'retrievedfrom' => 'A lap eredeti címe: „$1”',
-'youhavenewmessages' => '$1 a vitalapodon! ($2. külön is megtekintheted)',
+'youhavenewmessages' => '$1 a vitalapodon! ($2 külön is megtekintheted.)',
 'newmessageslink' => 'új üzenet vár',
 'newmessagesdifflink' => 'az utolsó üzenetet',
 'youhavenewmessagesmanyusers' => '$1ed van több szerkesztőtől ($2).',

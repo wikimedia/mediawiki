@@ -1168,8 +1168,10 @@ Non ten acceso a el.',
 Por favor, comprobe os rexistros.',
 'revdelete-only-restricted' => 'Erro ao agochar o elemento con data do $1 ás $2: Non pode eliminar elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de visibilidade.',
 'revdelete-reason-dropdown' => '* Motivos frecuentes para borrar
-** Violación dos dereitos de autor
-** Información persoal inapropiada',
+** Violación dos dereitos de autoría
+** Comentario inapropiado ou información persoal
+** Nome de usuario inapropiado
+** Información potencialmente difamatoria',
 'revdelete-otherreason' => 'Outro motivo:',
 'revdelete-reasonotherlist' => 'Outro motivo',
 'revdelete-edit-reasonlist' => 'Editar os motivos de borrado',

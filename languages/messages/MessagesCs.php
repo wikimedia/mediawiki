@@ -1272,7 +1272,8 @@ Prohlédněte si protokolovací záznamy.',
 'revdelete-only-restricted' => 'Chyba skrývání položky z $2 $1: Nemůžete položky pouze skrýt před správci, aniž byste současně vybrali i některou z dalších možností utajení.',
 'revdelete-reason-dropdown' => '*Obvyklé důvody smazání
 ** Porušení autorských práv
-** Nevhodné osobní údaje
+** Nevhodné komentáře nebo osobní údaje
+** Nevhodné uživatelské jméno
 ** Potenciálně pomlouvačné údaje',
 'revdelete-otherreason' => 'Jiný/další důvod:',
 'revdelete-reasonotherlist' => 'Jiný důvod',

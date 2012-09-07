@@ -1317,7 +1317,9 @@ Bitte prüfe die Logbücher.',
 'revdelete-only-restricted' => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Du kannst keinen Eintrag vor Administratoren verstecken, ohne eine der anderen Ansichtsoptionen gewählt zu haben.',
 'revdelete-reason-dropdown' => '*Allgemeine Löschgründe
 ** Urheberrechtsverletzung
-** Unangebrachte persönliche Informationen',
+** Unangebrachte Kommentare oder persönliche Informationen
+** Unangebrachter Benutzername
+** Potentiell beleidigende Informationen',
 'revdelete-otherreason' => 'Anderer/ergänzender Grund:',
 'revdelete-reasonotherlist' => 'Anderer Grund',
 'revdelete-edit-reasonlist' => 'Löschgründe bearbeiten',
@@ -2975,7 +2977,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-interwiki-source' => 'Quell-Wiki/-Seite:',
 'import-interwiki-history' => 'Alle Versionen dieser Seite importieren',
 'import-interwiki-templates' => 'Alle Vorlagen einschließen',
-'import-interwiki-submit' => 'Import',
+'import-interwiki-submit' => 'Importieren',
 'import-interwiki-namespace' => 'Zielnamensraum:',
 'import-interwiki-rootpage' => 'Zielstammseite (optional):',
 'import-upload-filename' => 'Dateiname:',

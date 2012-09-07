@@ -1167,9 +1167,10 @@ $1",
 'revdelete-no-change' => "'''Attenzione:''' l'oggetto con data $1 $2 aveva già le impostazioni di visibilità richieste.",
 'revdelete-concurrent-change' => "Impossibile modificare l'oggetto con data $1 $2 in quanto il suo stato è stato modificato da un altro utente mentre se ne tentava la modifica.",
 'revdelete-only-restricted' => "Errore nel nascondere l'oggetto datato $1, $2: non è possibile nascondere gli oggetti alla vista degli amministratori senza selezionare almeno un'altra delle opzioni di rimozione.",
-'revdelete-reason-dropdown' => '*Motivazioni più comuni per la cancellazione
+'revdelete-reason-dropdown' => '* Motivazioni più comuni per la cancellazione
 ** Violazione di copyright
-** Informazioni personali inappropriate
+** Commenti o informazioni personali inappropriate
+** Nome utente inappropriato
 ** Informazione potenzialmente diffamatoria',
 'revdelete-otherreason' => 'Altra motivazione o motivazione aggiuntiva:',
 'revdelete-reasonotherlist' => 'Altra motivazione',

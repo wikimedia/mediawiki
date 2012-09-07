@@ -1079,8 +1079,10 @@ Dir hutt keen Zougang dozou.',
 Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted' => 'Feler beim verstoppe vum Objet vum $2, $1: Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den aneren Optiounen vum weisen erauszesichen.',
 'revdelete-reason-dropdown' => "* Generell Läschgrënn
-**Verletzung vun den Droits d'Auteur
-**Net ubruechte perséinlech Informatioun",
+** Verletzung vun den Droits d'Auteur
+** Net ubruechte perséinlech Informatioun
+** Inadequate Benotzernumm
+** Informatioun déi beleidege kann",
 'revdelete-otherreason' => 'Aneren/zousätzleche Grond:',
 'revdelete-reasonotherlist' => 'Anere Grond:',
 'revdelete-edit-reasonlist' => 'Läschgrënn änneren',
@@ -2909,7 +2911,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-restriction' => 'Protectioun vun der Säit ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magescht Wuert|Magesch Wierder}} ($1)',
 'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
-'pageinfo-templates' => 'Agebonne {{PLURAL:$2|Schabloun|Schabloune}} ($1)',
+'pageinfo-templates' => 'Agebonne {{PLURAL:$1|Schabloun|Schabloune}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -2963,6 +2965,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'file-info-size-pages' => '$1 × $2 Pixelen, Gréisst vum Fichier: $3, MIME Typ: $4, $5 {{PLURAL:$5|Säit|Säiten}}',
 'file-nohires' => 'Et gëtt keng méi héich Opléisung.',
 'svg-long-desc' => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
+'svg-long-desc-animated' => 'Animéierten SVG-Fichier, Basisgréisst $1 x $2 Pixel, Gréisst vum Fichier: $3',
 'show-big-image' => 'Voll Opléisung',
 'show-big-image-preview' => 'Gréisst vun dësem Preview: $1.',
 'show-big-image-other' => 'Aner {{PLURAL:$2|Opléisung|Opléisungen}}: $1.',

@@ -721,7 +721,7 @@ Sinu konto on loodud.
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
-'createaccountmail' => 'e-posti teel',
+'createaccountmail' => 'E-posti teel',
 'createaccountreason' => 'Põhjus:',
 'badretype' => 'Sisestatud paroolid ei lange kokku.',
 'userexists' => 'Sisestatud kasutajanimi on juba kasutusel.

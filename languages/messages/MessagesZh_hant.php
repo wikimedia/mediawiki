@@ -1102,7 +1102,9 @@ $1",
 'revdelete-only-restricted' => '在隱藏$1 $2的項目時發生錯誤：您不能在選擇了另一可見性選項後廢止管理員查看該項目。',
 'revdelete-reason-dropdown' => '*常用刪除理由
 ** 侵犯版權
-** 不合適的個人資料',
+** 不合適的評論或個人資料
+** 不當的用戶名
+** 潛在誹謗的資料',
 'revdelete-otherreason' => '其它／附加的理由：',
 'revdelete-reasonotherlist' => '其它理由',
 'revdelete-edit-reasonlist' => '編輯刪除埋由',

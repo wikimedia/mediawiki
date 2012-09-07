@@ -1241,7 +1241,8 @@ Vänligen kontrollera loggarna.',
 'revdelete-only-restricted' => 'Fel vid döljning av objekt daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja en av de övriga visningsalternativen.',
 'revdelete-reason-dropdown' => '*Vanliga orsaker till radering
 ** Brott mot copyright
-** Opassande personupplysningar
+** Opassande kommentar eller personupplysningar
+** Opassande användarnamn
 ** Möjligt ärekränkande uppgifter',
 'revdelete-otherreason' => 'Annan/ytterligare anledning:',
 'revdelete-reasonotherlist' => 'Annan anledning',

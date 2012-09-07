@@ -1119,7 +1119,7 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-comment' => '(muokkausyhteenveto poistettu)',
 'rev-deleted-user' => '(käyttäjänimi poistettu)',
 'rev-deleted-event' => '(lokitapahtuma poistettu)',
-'rev-deleted-user-contribs' => '[käyttäjänimi tai IP-osoite poistettu – muokkaus piilotettu muokkauksista]',
+'rev-deleted-user-contribs' => '[käyttäjänimi tai IP-osoite poistettu – muokkaus on piilotettu muokkausluettelosta]',
 'rev-deleted-text-permission' => "Tämä versio sivusta on '''poistettu'''.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 'rev-deleted-text-unhide' => "Tämä versio sivusta on '''poistettu'''.
