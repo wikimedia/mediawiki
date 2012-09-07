@@ -383,6 +383,9 @@ class ImagePage extends Article {
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
 					$msgsmall = '';
+				} else if ( $this->displayImg->isVectorized() ) {
+					# For vectorized images, full size is just the frame size
+					$msgsmall = '';
 				} else {
 					# Image is small enough to show full size on image page
 					$msgsmall = wfMessage( 'file-nohires' )->parse();
