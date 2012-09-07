@@ -1153,7 +1153,7 @@ class SkinTemplate extends Skin {
 			if ( $revid ) {
 				$nav_urls['permalink'] = array(
 					'text' => $this->msg( 'permalink' )->text(),
-					'href' => $out->getTitle()->getLocalURL( "oldid=$revid" )
+					'href' => $this->getTitle()->getLocalURL( "oldid=$revid" )
 				);
 			}
 
