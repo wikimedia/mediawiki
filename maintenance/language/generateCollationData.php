@@ -17,14 +17,16 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @ingroup Maintenance
  * @file
+ * @ingroup MaintenanceLanguage
  */
 
 require_once( __DIR__ .'/../Maintenance.php' );
 
 /**
  * Generate first letter data files for Collation.php
+ *
+ * @ingroup MaintenanceLanguage
  */
 class GenerateCollationData extends Maintenance {
 	/** The directory with source data files in it */

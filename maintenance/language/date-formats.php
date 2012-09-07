@@ -17,11 +17,17 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup MaintenanceLanguage
  */
 
 require_once( __DIR__ . '/../Maintenance.php' );
 
+/**
+ * Maintenance script that tests various language time and date functions.
+ *
+ * @ingroup MaintenanceLanguage
+ */
 class DateFormats extends Maintenance {
 
 	private $ts = '20010115123456';

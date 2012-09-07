@@ -17,11 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup MaintenanceLanguage
  */
 
 require_once( __DIR__ . '/../Maintenance.php' );
 
+/**
+ * Maintenance script that counts how many messages we have defined
+ * for each language.
+ *
+ * @ingroup MaintenanceLanguage
+ */
 class CountMessages extends Maintenance {
 	public function __construct() {
 		parent::__construct();
