@@ -1716,6 +1716,11 @@ in the $searchEngine->namespaces array.
 $query : Original query.
 &$parsed : Resultant query with the prefixes stripped.
 
+'SearchResultInitFromTitle': Set the revision used when displaying a page in
+search results.
+$title : Current Title object being displayed in search results.
+&$id: Revision ID (default is false, for latest)
+
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr : Array of namespaces ($nsId => $name) which will be used.
 
