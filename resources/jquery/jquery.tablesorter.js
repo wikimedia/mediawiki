@@ -86,7 +86,7 @@
 		return false;
 	}
 
-	function getElementText( node ) {
+	function getElementSortKey( node ) {
 		var $node = $( node ),
 			// Use data-sort-value attribute.
 			// Use data() instead of attr() so that live value changes
@@ -98,13 +98,24 @@
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
 		} else {
-			return $node.text();
+			if ( node.tagName.toLowerCase() === 'img' ) {
+				return $node.attr( 'alt' ) || ''; // handle undefined alt
+			} else {
+				return $.map( $.makeArray( node.childNodes ), function( elem ) {
+					// 1 is for document.ELEMENT_NODE (the constant is undefined on old browsers)
+					if ( elem.nodeType === 1 ) {
+						return getElementSortKey( elem );
+					} else {
+						return $.text( elem );
+					}
+				} ).join( '' );
+			}
 		}
 	}
 
 	function getTextFromRowAndCellIndex( rows, rowIndex, cellIndex ) {
 		if ( rows[rowIndex] && rows[rowIndex].cells[cellIndex] ) {
-			return $.trim( getElementText( rows[rowIndex].cells[cellIndex] ) );
+			return $.trim( getElementSortKey( rows[rowIndex].cells[cellIndex] ) );
 		} else {
 			return '';
 		}
@@ -205,7 +216,7 @@
 			cache.row.push( $row );
 
 			for ( var j = 0; j < totalCells; ++j ) {
-				cols.push( parsers[j].format( getElementText( $row[0].cells[j] ), table, $row[0].cells[j] ) );
+				cols.push( parsers[j].format( getElementSortKey( $row[0].cells[j] ), table, $row[0].cells[j] ) );
 			}
 
 			cols.push( cache.normalized.length ); // add position for rowCache
