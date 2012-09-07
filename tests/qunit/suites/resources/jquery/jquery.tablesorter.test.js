@@ -694,4 +694,61 @@ tableTest(
 	}
 );
 
+QUnit.test( 'Sorting images using alt text', function ( assert ) {
+	var $table = $(
+		'<table class="sortable">' +
+		'<tr><th>THEAD</th></tr>' +
+		'<tr><td><img alt="2"/></td></tr>' +
+		'<tr><td>1</td></tr>' +
+		'</table>'
+	);
+	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+
+	assert.equal(
+		$table.find( 'td' ).first().text(),
+		'1',
+		'Applied correct sorting order'
+	);
+} );
+
+QUnit.test( 'Sorting images using alt text (complex)', function ( assert ) {
+	var $table = $(
+		'<table class="sortable">' +
+		'<tr><th>THEAD</th></tr>' +
+		'<tr><td><img alt="D" />A</td></tr>' +
+		'<tr><td>CC</td></tr>' +
+		'<tr><td><a><img alt="A" /></a>F</tr>' +
+		'<tr><td><img alt="A" /><strong>E</strong></tr>' +
+		'<tr><td><strong><img alt="A" />D</strong></tr>' +
+		'<tr><td><img alt="A" />C</tr>' +
+		'</table>'
+	);
+	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+
+	assert.equal(
+		$table.find( 'td' ).text(),
+		'CDEFCCA',
+		'Applied correct sorting order'
+	);
+} );
+
+QUnit.test( 'Sorting images using alt text (with format autodetection)', function ( assert ) {
+	var $table = $(
+		'<table class="sortable">' +
+		'<tr><th>THEAD</th></tr>' +
+		'<tr><td><img alt="1" />7</td></tr>' +
+		'<tr><td>1<img alt="6" /></td></tr>' +
+		'<tr><td>5</td></tr>' +
+		'<tr><td>4</td></tr>' +
+		'</table>'
+	);
+	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+
+	assert.equal(
+		$table.find( 'td' ).text(),
+		'4517',
+		'Applied correct sorting order'
+	);
+} );
+
 }( jQuery, mediaWiki ) );
