@@ -2750,6 +2750,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-error-special' => "'A pagena \"\$1\" non g'ha state 'mbortate purcé apponde a 'nu namespace speciale ca non g'è permesse a le pàggene normale.",
 'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
 'import-options-wrong' => '{{PLURAL:$2|opzione|opziune}} sbagliate: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => "'A pàgene radice date tène 'nu titole invalide.",
 
 # Import log
 'importlogpage' => "Archivie de le 'mbortaziune",

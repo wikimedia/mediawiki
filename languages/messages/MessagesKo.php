@@ -1293,7 +1293,8 @@ $1",
 'revdelete-only-restricted' => '$1 $2 버전 숨기기 오류: 다른 숨기기 설정을 같이 설정하지 않고 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
 'revdelete-reason-dropdown' => '*일반적인 삭제 이유
 ** 저작권 침해
-** 부적절한 개인 정보
+** 부적절한 의견과 개인 정보
+** 부적절한 이름
 ** 잠재적인 비방 정보',
 'revdelete-otherreason' => '다른 이유/부가적인 이유',
 'revdelete-reasonotherlist' => '다른 이유',

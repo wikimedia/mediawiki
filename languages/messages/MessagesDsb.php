@@ -1051,7 +1051,9 @@ Pšosym pśeglědaj protokole.',
 'revdelete-only-restricted' => 'Zmólka pśi chowanju zapiska wót $2, $1; njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich wiźobnosćowych opcijow.',
 'revdelete-reason-dropdown' => '*Zwucone pśicyny za wulašowanje
 ** Pśestupjenje awtorskego pšawa
-** Njegóźece se wósobinske informacije',
+** Njegóźece se komentary abo wósobinske informacije
+** Njegóźece se wužywarske mě
+** Potencielnje kśiwźece informacije',
 'revdelete-otherreason' => 'Druga/pśidatna pśicyna:',
 'revdelete-reasonotherlist' => 'Druga pśicyna',
 'revdelete-edit-reasonlist' => 'Pśicyny za lašowanje wobźěłaś',

@@ -557,6 +557,7 @@ $messages = array(
 'revdelete-show-file-submit' => 'Бәле',
 'revdelete-radio-set' => 'Бәле',
 'revdelete-radio-unset' => 'Не',
+'revdelete-log' => 'Сәбәб:',
 'revdel-restore' => 'Винде дәрәҹә дәгиш карде',
 'revdel-restore-deleted' => 'Рәдд кардә быә рәвојәтон',
 'revdel-restore-visible' => 'Чијә рәвојәтон',
@@ -632,6 +633,9 @@ $messages = array(
 'email' => 'E-номә',
 'prefs-help-email' => 'Е-номә унвони нывыштеј һукман ни, интаси ав бә шымә гәрәк бәбе гирам шымә пароли виро бебәкардејон.',
 'prefs-help-email-others' => 'Комәг бәка бә ҹо иштироәкон шымә е-номә унвони оныкарде, че шымә шәхси сәһифәдә быә линки де шымә әлогә огәтеј.',
+
+# User rights
+'userrights-reason' => 'Сәбәб:',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Ым сәһифә сәрост кардеј',
@@ -781,6 +785,7 @@ $messages = array(
 'actioncomplete' => 'Һәрәкәт иҹро кардә быә',
 'actionfailed' => 'Һәрәкәт иҹро кардә бәни',
 'dellogpage' => 'Рәдд кардә быә чијон журнал',
+'deletecomment' => 'Сәбәб:',
 
 # Rollback
 'rollbacklink' => 'Окырнијеј',
@@ -788,10 +793,12 @@ $messages = array(
 # Protect
 'protectlogpage' => 'Мыдофијә журнал',
 'protectedarticle' => 'мыдофијә быә "[[$1]]"',
+'protectcomment' => 'Сәбәб:',
 
 # Undelete
 'undeletelink' => 'чәшику дәвонијеј/бәрпо кардеј',
 'undeleteviewlink' => 'тәмшо кардеј',
+'undeletecomment' => 'Сәбәб:',
 'undelete-search-submit' => 'Нәве',
 'undelete-show-file-submit' => 'Бәле',
 
@@ -838,6 +845,7 @@ $messages = array(
 'whatlinkshere-filters' => 'Филтрон',
 
 # Block/unblock
+'ipbreason' => 'Сәбәб:',
 'ipboptions' => '2 саат:2 hours,1 руж:1 day,3 руж:3 days,1 һафтә:1 week,2 һафтә:2 weeks,1 манг:1 month,3 манг:3 months,6 манг:6 months,1 сор:1 year,бемыһләт:infinite',
 'ipblocklist' => 'Бастә быә иштирокәкон',
 'blocklink' => 'Бә гырд гәтеј',

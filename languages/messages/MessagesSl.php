@@ -948,7 +948,7 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'sectioneditnotsupported-text' => 'Urejanje razdelkov ni podprto na tej strani.',
 'permissionserrors' => 'Napake dovoljenj',
 'permissionserrorstext' => 'Nimate dovoljenja za izvedbo dejanja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
-'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2, zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
+'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2 zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
 'recreate-moveddeleted-warn' => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
 Premislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.
@@ -1118,7 +1118,8 @@ Prosimo, preverite dnevnik.',
 'revdelete-only-restricted' => 'Napaka pri skrivanju predmeta z dne $1, $2: ne morete spremeniti vidnosti predmeta pred administratorji brez izbire ene od drugih možnosti vidnosti.',
 'revdelete-reason-dropdown' => '* Pogosti razlogi za izbris
 ** Kršitev avtorskih pravic
-** Neprimerni osebni podatki
+** Neprimerna pripomba ali osebni podatki
+** Neprimerno uporabniško ime
 ** Morebitni žaljivi podatki',
 'revdelete-otherreason' => 'Drug/dodaten razlog:',
 'revdelete-reasonotherlist' => 'Drug razlog',
@@ -2975,6 +2976,8 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'pageinfo-header-edits' => 'Zgodovina urejanja',
 'pageinfo-header-restrictions' => 'Zaščita strani',
 'pageinfo-header-properties' => 'Lastnosti strani',
+'pageinfo-display-title' => 'Naslov za prikaz',
+'pageinfo-default-sort' => 'Privzeti ključ za razvrščanje',
 'pageinfo-views' => 'Število ogledov',
 'pageinfo-watchers' => 'Število spremljevalcev strani',
 'pageinfo-redirects-name' => 'Preusmeritve na stran',

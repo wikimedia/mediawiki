@@ -1288,7 +1288,8 @@ No tiene acceso a él.',
 'revdelete-only-restricted' => 'Error ocultando el item de fecha $2, $1: no puedes suprimir elementos de vista de los administradores sin seleccionar asímismo una de las otras opciones de visibilidad.',
 'revdelete-reason-dropdown' => '*Razones de borrado comunes
 ** Violación a los derechos de autor
-** Información personal inapropiada
+** Comentario o información personal inapropiados
+** Nombre de usuario inapropiado
 ** Información potencialmente injuriosa o calumniante',
 'revdelete-otherreason' => 'Otra/adicional razón:',
 'revdelete-reasonotherlist' => 'Otra razón',

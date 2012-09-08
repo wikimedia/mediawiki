@@ -1688,7 +1688,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
 'windows-nonascii-filename' => 'Este wiki non soporta os nomes de ficheiros con caracteres especiais.',
-'fileexists' => 'Xa existe un ficheiro con ese nome. Por favor, comprobe <strong>[[:$1]]</strong> se non está seguro de querer cambialo.
+'fileexists' => 'Xa existe un ficheiro con ese nome. Por favor, comprobe "<strong>[[:$1]]</strong>" se non está seguro de querer cambialo.
 [[$1|thumb]]',
 'filepageexists' => 'A páxina de descrición deste ficheiro xa foi creada en <strong>[[:$1]]</strong>, pero polo de agora non existe ningún ficheiro con este nome.
 O resumo que escribiu non aparecerá na páxina de descrición.

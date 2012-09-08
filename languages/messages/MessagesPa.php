@@ -130,7 +130,7 @@ Manual:External_editors ਹੋਰ ਜਾਣਕਾਰੀ।])',
 'tog-watchlisthidepatrolled' => 'ਵੇਖੀਆਂ ਜਾ ਚੁੱਕੀਆਂ ਸੋਧਾਂ ਨਿਗਰਾਨੀ-ਲਿਸਟ ਵਿਚੋਂ ਲੁਕਾਓ',
 'tog-ccmeonemails' => 'ਜੋ ਈ-ਮੇਲਾਂ ਮੈਂ ਦੂਜੇ ਮੈਂਬਰਾਂ ਨੂੰ ਭੇਜਦਾ ਹਾਂ ਓਹਨਾਂ ਦੀਆਂ ਨਕਲਾਂ ਮੈਨੂੰ ਭੇਜੋ',
 'tog-diffonly' => 'ਫ਼ਰਕਾਂ ਤੋਂ ਹੇਠ ਸਫ਼ੇ ਦੀ ਸਮੱਗਰੀ ਨਾ ਵਖਾਓ',
-'tog-showhiddencats' => 'ਲੁਕੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਵਿਖਾਓ',
+'tog-showhiddencats' => 'ਲੁਕੀਆਂ ਸ਼੍ਰੇਣੀਆਂ ਵਖਾਓ',
 'tog-norollbackdiff' => '"ਵਾਪਸ ਮੋੜੌ"ਅਮਲ ਵਿਚ ਲਿਆਣ ਬਾਦ ਫ਼ਰਕ ਨਾ ਦਿਖਾਓ',
 
 'underline-always' => 'ਹਮੇਸ਼ਾਂ',
@@ -488,7 +488,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'nologin' => 'ਖਾਤਾ ਨਹੀਂ ਹੈ? $1।',
 'nologinlink' => 'ਖਾਤਾ ਬਣਾਓ',
 'createaccount' => 'ਖਾਤਾ ਬਣਾਓ',
-'gotaccount' => 'ਕੀ ਪਹਿਲਾਂ ਤੌਂ ਖਾਤਾ ਹੈ? $1',
+'gotaccount' => 'ਖਾਤਾ ਪਹਿਲਾਂ ਹੀ ਹੈ? $1',
 'gotaccountlink' => 'ਲਾਗ ਇਨ',
 'userlogin-resetlink' => 'ਆਪਣੀ ਲਾਗਇਨ ਜਾਣਕਾਰੀ ਭੁੱਲ ਗਏ ਹੋ?',
 'createaccountmail' => 'ਈਮੇਲ ਨਾਲ',
@@ -1341,7 +1341,7 @@ to upload files.',
 'statistics-users-active-desc' => 'ਮੈਂਬਰ, ਜਿੰਨ੍ਹਾ ਨੇ ਆਖ਼ਰੀ {{PLURAL:$1|ਦਿਨ|$1 ਦਿਨਾਂ}} ਵਿਚ ਕੋਈ ਕੰਮ ਕੀਤਾ ਹੈ।',
 'statistics-mostpopular' => 'ਸਭ ਤੋਂ ਵੱਧ ਵੇਖੇ ਪੇਜ',
 
-'disambiguationspage' => 'Template:disambig',
+'disambiguationspage' => 'Template:ਗੁੰਝਲ ਖੋਲ੍ਹ',
 
 'doubleredirects' => 'ਦੋਹਰੇ ਰੀਡਿਰੈਕਟ',
 
@@ -1661,7 +1661,7 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'sp-contributions-blocked-notice-anon' => 'ਇਹ IP ਪਤਾ ਇਸ ਵੇਲ਼ੇ ਪਾਬੰਦੀਸ਼ੁਦਾ ਹੈ।
 ਪਾਬੰਦੀ ਚਿੱਠੇ ਦਾ ਤਾਜ਼ਾ ਦਾਖ਼ਲਾ ਹਵਾਲੇ ਲਈ ਹੇਠਾਂ ਦਿੱਤਾ ਗਿਆ ਹੈ:',
 'sp-contributions-search' => 'ਯੋਗਦਾਨ ਖੋਜੋ',
-'sp-contributions-username' => 'IP ਪਤਾ ਜਾਂ ਵਰਤੌਂਕਾਰ ਨਾਮ:',
+'sp-contributions-username' => 'IP ਪਤਾ ਜਾਂ ਵਰਤੋਂਕਾਰ ਨਾਮ:',
 'sp-contributions-toponly' => 'ਸਿਰਫ਼ ਉਹੀ ਸੋਧਾਂ ਵਖਾਓ ਜੋ ਸਭ ਤੋਂ ਨਵੀਂਆਂ ਹਨ',
 'sp-contributions-submit' => 'ਖੋਜੋ',
 

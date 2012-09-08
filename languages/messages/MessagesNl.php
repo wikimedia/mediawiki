@@ -1309,7 +1309,8 @@ Controleer de logboeken.',
 'revdelete-only-restricted' => 'Er is een fout opgetreden bij het verbergen van het item van $1, $2: u kunt geen items onderdrukken uit het zicht van beheerders zonder ook een van de andere zichtbaarheidsopties te selecteren.',
 'revdelete-reason-dropdown' => '* Veel voorkomende redenen voor verwijderen
 ** Auteursrechtenschending
-** Onbetamelijke persoonlijke gegevens
+** Onbetamelijke reactie of persoonlijke gegevens
+** Onbetamelijke gebruikersnaam
 ** Potentieel lasterlijke gegevens',
 'revdelete-otherreason' => 'Andere reden:',
 'revdelete-reasonotherlist' => 'Andere reden',
@@ -3246,7 +3247,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-authors' => 'Totaal aantal verschillende auteurs',
 'pageinfo-recent-edits' => 'Recent aantal bewerkingen (binnen de afgelopen $1).',
 'pageinfo-recent-authors' => 'Recent aantal verschillende auteurs',
-'pageinfo-restriction' => 'Paginabeveiliging ({{lcfirst:$1}})',
+'pageinfo-restriction' => 'Paginabeveiliging ($1)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisch woord|Magische woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikt sjabloon|Gebruikte sjablonen}} ($1)',

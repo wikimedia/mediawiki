@@ -1048,7 +1048,9 @@ Prošu přepruwuj protokole.',
 'revdelete-only-restricted' => 'Zmylk při chowanju zapiska wot $2, $1; njemóžeš zapiski před wočemi administratorow potłóčić, bjez toho zo wuběraš tež jednu z druhich widźomnosćowych opcijow.',
 'revdelete-reason-dropdown' => '*Zwučene přičiny za wušmórnjenje
 ** Přeńdźenje awtorskeho prawa
-** Njepřihódne wosobinske informacije',
+** Njepřihódne komentary abo wosobinske informacije
+** Njepřihódne wužiwarske mjeno
+** Potencielnje ranjace informacije',
 'revdelete-otherreason' => 'Druha/přidatna přičina:',
 'revdelete-reasonotherlist' => 'Druha přičina',
 'revdelete-edit-reasonlist' => 'Přičiny za wušmórnjenje wobdźěłać',
