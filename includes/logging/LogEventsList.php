@@ -166,7 +166,7 @@ class LogEventsList extends ContextSource {
 			$query[$queryKey] = $hideVal;
 
 			$link = Linker::linkKnown(
-				$this->getDisplayTitle(),
+				$this->getTitle(),
 				$messages[$hideVal],
 				array(),
 				$query
