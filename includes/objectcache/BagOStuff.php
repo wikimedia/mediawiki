@@ -167,19 +167,18 @@ abstract class BagOStuff {
 	 * Increase stored value of $key by $value while preserving its TTL
 	 * @param $key String: Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
-	 * @return null if lock is not possible else $key value increased by $value
-	 * @return integer
+	 * @return integer|bool New value or false on failure
 	 */
 	public function incr( $key, $value = 1 ) {
 		if ( !$this->lock( $key ) ) {
-			return null;
+			return false;
 		}
-
-		$value = intval( $value );
-
-		if ( ( $n = $this->get( $key ) ) !== false ) {
-			$n += $value;
-			$this->set( $key, $n ); // exptime?
+		$n = $this->get( $key );
+		if ( $this->isInteger( $n ) ) { // key exists?
+			$n += intval( $value );
+			$this->set( $key, max( 0, $n ) ); // exptime?
+		} else {
+			$n = false;
 		}
 		$this->unlock( $key );
 
@@ -220,7 +219,7 @@ abstract class BagOStuff {
 	}
 
 	/**
-	 * Convert an optionally absolute expiry time to a relative time. If an 
+	 * Convert an optionally absolute expiry time to a relative time. If an
 	 * absolute time is specified which is in the past, use a short expiry time.
 	 *
 	 * @param $exptime integer
