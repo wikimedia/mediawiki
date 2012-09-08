@@ -45,16 +45,22 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		 * sure we will be able to fully compare the above code. PHPUnit stop
 		 * after an assertion fail.
 		 */
-		$this->assertEquals(
+		$actualProfile = $search->getProfile();
+		$actualNS = $search->getNamespaces();
+		$expected = 
 			array( /** Expected: */
 				'ProfileName' => $expectedProfile,
 				'Namespaces'  => $expectedNS,
-			)
-			, array( /** Actual: */
-				'ProfileName' => $search->getProfile(),
-				'Namespaces'  => $search->getNamespaces(),
-			)
-			, $message
+			);
+		$actual = 
+			array( /** Actual: */
+				'ProfileName' => $actualProfile,
+				'Namespaces'  => $actualNS,
+			);
+		print_r( $expected );
+		print_r( $actual );
+		$this->assertEquals(
+			$expected, $actual, $message
 		);
 
 	}
