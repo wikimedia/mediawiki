@@ -88,7 +88,7 @@ class UsersPager extends AlphabeticPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 		// Don't show hidden names
-		if( !$this->getUser()->isAllowed('hideuser') ) {
+		if( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$conds[] = 'ipb_deleted IS NULL';
 		}
 
@@ -116,18 +116,22 @@ class UsersPager extends AlphabeticPager {
 		$query = array(
 			'tables' => array( 'user', 'user_groups', 'ipblocks'),
 			'fields' => array(
-				$this->creationSort ? 'MAX(user_name) AS user_name' : 'user_name',
-				$this->creationSort ? 'user_id' : 'MAX(user_id) AS user_id',
-				'MAX(user_editcount) AS edits',
-				'COUNT(ug_group) AS numgroups',
-				'MAX(ug_group) AS singlegroup', // the usergroup if there is only one
-				'MIN(user_registration) AS creation',
-				'MAX(ipb_deleted) AS ipb_deleted' // block/hide status
+				'user_name' => $this->creationSort ? 'MAX(user_name)' : 'user_name',
+				'user_id' => $this->creationSort ? 'user_id' : 'MAX(user_id)',
+				'edits' => 'MAX(user_editcount)',
+				'numgroups' => 'COUNT(ug_group)',
+				'singlegroup' => 'MAX(ug_group)', // the usergroup if there is only one
+				'creation' => 'MIN(user_registration)',
+				'ipb_deleted' => 'MAX(ipb_deleted)' // block/hide status
 			),
 			'options' => $options,
 			'join_conds' => array(
 				'user_groups' => array( 'LEFT JOIN', 'user_id=ug_user' ),
-				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_deleted=1 AND ipb_auto=0' ),
+				'ipblocks' => array( 'LEFT JOIN', array(
+					'user_id=ipb_user',
+					'ipb_deleted' => 1,
+					'ipb_auto' => 0
+				)),
 			),
 			'conds' => $conds
 		);
@@ -183,7 +187,7 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
-		return "<li>{$item}{$edits}{$created}</li>";
+		return Html::rawElement( 'li', array(), "{$item}{$edits}{$created}" );
 	}
 
 	function doBatchLookups() {
