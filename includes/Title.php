@@ -4433,6 +4433,11 @@ class Title {
 			'rd_title' => $this->getDBkey(),
 			'rd_from = page_id'
 		);
+		if ( $this->isExternal() ) {
+			$where['rd_interwiki'] = $this->getInterwiki();
+		} else {
+			$where[] = 'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL';
+		}
 		if ( !is_null( $ns ) ) {
 			$where['page_namespace'] = $ns;
 		}
