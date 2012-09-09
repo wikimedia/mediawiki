@@ -885,20 +885,20 @@ class FileRepo {
 	 *
 	 * When "dispositions" are given they are used as Content-Disposition if supported.
 	 *
-	 * @param $pairs Array List of tuples (file system path, virtual URL/storage path, disposition)
+	 * @param $triples Array List of (file system path, virtual URL/storage path, disposition)
 	 * @return FileRepoStatus
 	 */
-	public function quickImportBatch( array $pairs ) {
+	public function quickImportBatch( array $triples ) {
 		$status = $this->newGood();
 		$operations = array();
-		foreach ( $pairs as $pair ) {
-			list ( $src, $dst ) = $pair;
+		foreach ( $triples as $triple ) {
+			list( $src, $dst ) = $triple;
 			$dst = $this->resolveToStoragePath( $dst );
 			$operations[] = array(
 				'op'          => 'store',
 				'src'         => $src,
 				'dst'         => $dst,
-				'disposition' => isset( $pair[2] ) ? $pair[2] : null
+				'disposition' => isset( $triple[2] ) ? $triple[2] : null
 			);
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
