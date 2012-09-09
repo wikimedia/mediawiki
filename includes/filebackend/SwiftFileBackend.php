@@ -1023,6 +1023,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$output = fopen( 'php://output', 'wb' );
 			$obj = new CF_Object( $cont, $srcRel, false, false ); // skip HEAD
 			$obj->stream( $output, $this->headersFromParams( $params ) );
+		} catch ( NoSuchObjectException $e ) {
+			$status->fatal( 'backend-fail-stream', $params['src'] );
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
 		}
