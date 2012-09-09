@@ -240,7 +240,6 @@ class MWException extends Exception {
 			}
 
 			echo "</body></html>\n";
-			die( 1 );
 		}
 	}
 
@@ -639,7 +638,7 @@ class MWExceptionHandler {
 				if ( $cmdLine ) {
 					self::printError( $message );
 				} else {
-					self::escapeEchoAndDie( $message );
+					echo nl2br( htmlspecialchars( $message ) ) . "\n";
 				}
 			}
 		} else {
@@ -653,7 +652,7 @@ class MWExceptionHandler {
 			if ( $cmdLine ) {
 				self::printError( $message );
 			} else {
-				self::escapeEchoAndDie( $message );
+				echo nl2br( htmlspecialchars( $message ) ) . "\n";
 			}
 		}
 	}
@@ -672,17 +671,6 @@ class MWExceptionHandler {
 		} else {
 			echo( $message );
 		}
-	}
-
-	/**
-	 * Print a message after escaping it and converting newlines to <br>
-	 * Use this for non-command line failures.
-	 *
-	 * @param $message string Failure text
-	 */
-	private static function escapeEchoAndDie( $message ) {
-		echo nl2br( htmlspecialchars( $message ) ) . "\n";
-		die(1);
 	}
 
 	/**
