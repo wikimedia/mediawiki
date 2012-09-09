@@ -696,7 +696,7 @@ class FileRepo {
 	/**
 	 * Store a file to a given destination.
 	 *
-	 * @param $srcPath String: source FS path, storage path, or virtual URL
+	 * @param $srcPath String: source file system path, storage path, or virtual URL
 	 * @param $dstZone String: destination zone
 	 * @param $dstRel String: destination relative path
 	 * @param $flags Integer: bitwise combination of the following flags:
@@ -841,7 +841,7 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
-	 * @param $src string File system path
+	 * @param $src string Source file system path, storage path, or virtual URL
 	 * @param $dst string Virtual URL or storage path
 	 * @param $disposition string|null Content-Disposition if given and supported
 	 * @return FileRepoStatus
@@ -883,9 +883,10 @@ class FileRepo {
 	 * This function can be used to write to otherwise read-only foreign repos.
 	 * This is intended for copying generated thumbnails into the repo.
 	 *
+	 * All "path" parameters may be an file system path, storage path, or virtual URL.
 	 * When "dispositions" are given they are used as Content-Disposition if supported.
 	 *
-	 * @param $triples Array List of (file system path, virtual URL/storage path, disposition)
+	 * @param $triples Array List of (source path, destination path, disposition)
 	 * @return FileRepoStatus
 	 */
 	public function quickImportBatch( array $triples ) {
@@ -893,9 +894,10 @@ class FileRepo {
 		$operations = array();
 		foreach ( $triples as $triple ) {
 			list( $src, $dst ) = $triple;
+			$src = $this->resolveToStoragePath( $src );
 			$dst = $this->resolveToStoragePath( $dst );
 			$operations[] = array(
-				'op'          => 'store',
+				'op'          => FileBackend::isStoragePath( $src ) ? 'copy' : 'store',
 				'src'         => $src,
 				'dst'         => $dst,
 				'disposition' => isset( $triple[2] ) ? $triple[2] : null
@@ -1014,12 +1016,12 @@ class FileRepo {
 
 	/**
 	 * Copy or move a file either from a storage path, virtual URL,
-	 * or FS path, into this repository at the specified destination location.
+	 * or file system path, into this repository at the specified destination location.
 	 *
 	 * Returns a FileRepoStatus object. On success, the value contains "new" or
 	 * "archived", to indicate whether the file was new with that name.
 	 *
-	 * @param $srcPath String: the source FS path, storage path, or URL
+	 * @param $srcPath String: the source file system path, storage path, or URL
 	 * @param $dstRel String: the destination relative path
 	 * @param $archiveRel String: the relative path where the existing file is to
 	 *        be archived, if there is one. Relative to the public zone root.
