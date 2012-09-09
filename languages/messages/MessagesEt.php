@@ -1194,9 +1194,11 @@ Sul ei ole sellele ligipääsu.',
 'revdelete-concurrent-change' => 'Tõrge üksuse kuupäevaga $2, kell $1 muutmisel: paistab, et keegi teine on selle olekut sel ajal muutnud, kui sina seda muuta üritasid.
 Palun vaata logisid.',
 'revdelete-only-restricted' => 'Ei õnnestu varjata üksust seisuga $1, kell $2: Seda üksust ei saa administraatorite eest varjata, valimata seejuures ka ühte muudest nähtavussuvanditest.',
-'revdelete-reason-dropdown' => '*Tavalised kustutamise põhjused
+'revdelete-reason-dropdown' => '*Peamised kustutamise põhjused
 ** Autoriõiguste rikkumine
-** Kohatud eraelulised andmed',
+** Kohatu märkus või isiklik info
+** Kohatu kasutajanimi
+** Potentsiaalne halvustav informatsioon',
 'revdelete-otherreason' => 'Muu või täiendav põhjus:',
 'revdelete-reasonotherlist' => 'Muu põhjus',
 'revdelete-edit-reasonlist' => 'Redigeeri kustutamise põhjuseid',

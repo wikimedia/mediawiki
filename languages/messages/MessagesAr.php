@@ -1417,8 +1417,9 @@ $1",
 'revdelete-only-restricted' => 'خطأ إخفاء العنصر المؤرخ $2, $1: لا تستطيع تنحية العناصر من عرض الإداريين بدون أن تحدد أيضا إحدى خيارات التنحية الأخرى.',
 'revdelete-reason-dropdown' => '* أسباب حذف عامة
 ** خرق لحقوق النشر
-** معلومات شخصية غير ملائمة
-**معلومات تشهيرية محتملة',
+** تعليق أو معلومات شخصية غير ملائمة
+** اسم مستخدم غير ملائم
+** معلومات تشهيرية محتملة',
 'revdelete-otherreason' => 'سبب آخر/إضافي:',
 'revdelete-reasonotherlist' => 'سبب آخر',
 'revdelete-edit-reasonlist' => 'عدل أسباب الحذف',
@@ -4136,7 +4137,7 @@ $5
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|نقاش]])',
-'timezone-utc' => 'بالتوقيت العالمي',
+'timezone-utc' => 'ت ع م',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',

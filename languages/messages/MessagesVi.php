@@ -1216,7 +1216,9 @@ Xin hãy kiểm tra nhật trình.',
 'revdelete-only-restricted' => 'Có lỗi khi ẩn mục vào $2, $1: nếu ẩn mục để cho bảo quản viên khỏi nhìn thấy được thì cũng cần chọn một trong những tùy chọn ẩn khác.',
 'revdelete-reason-dropdown' => '*Các lý do thường gặp khi xóa
 ** Vi phạm bản quyền
-** Thông tin cá nhân không thích hợp',
+** Bình luận hoặc thông tin cá nhân không thích hợp
+** Tên người dùng không thích hợp
+** Thông tin có thể bôi nhọ người khác',
 'revdelete-otherreason' => 'Lý do khác/bổ sung:',
 'revdelete-reasonotherlist' => 'Lý do khác',
 'revdelete-edit-reasonlist' => 'Sửa lý do xóa',

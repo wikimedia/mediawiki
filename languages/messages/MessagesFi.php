@@ -969,7 +969,6 @@ Alla on viimeisin estolokin tapahtuma:',
 * '''Firefox ja Safari:''' Napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''⌘-R'' Macilla)
 * '''Google Chrome:''' Paina ''Ctrl-Shift-R'' (''⌘-Shift-R'' Macilla)
 * '''Internet Explorer:''' Napsauta ''Ctrl''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5''
-* '''Konqueror''': Napsauta ''Päivitä'' tai paina ''F5''
 * '''Opera:''' Tyhjennä välimuisti: ''Tools→Preferences''",
 'usercssyoucanpreview' => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview' => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',

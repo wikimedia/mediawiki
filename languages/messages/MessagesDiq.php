@@ -439,7 +439,7 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '(zerreyê pençereyê newey de beno a)',
+'newwindow' => '(zerreyê teqeyê newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşêri...',
 'mypage' => 'Pela mı',
@@ -1108,7 +1108,7 @@ Taye şabloni zerre pel de nêmociyayeni.',
 Sebebo ke terefê $3 ra diyao ''$2''",
 
 # History pages
-'viewpagelogs' => 'Qe ena pele logan bevinin',
+'viewpagelogs' => 'Heq dê ena perer qeydan bıvinên',
 'nohistory' => 'Verê vurnayışanê na pele çıniyo.',
 'currentrev' => 'Halo nıkayên',
 'currentrev-asof' => 'Revizyonanê peniyan, tarixê $1',

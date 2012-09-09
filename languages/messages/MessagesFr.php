@@ -1284,7 +1284,7 @@ Vérifiez les journaux.',
 'revdelete-only-restricted' => 'Erreur lors de la suppression de l’entrée datée du $1 à $2 : vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
 'revdelete-reason-dropdown' => '* Raisons courantes de suppression :
 ** Violation des droits d’auteurs ;
-** Renseignements personnels inappropriés ;
+** Commentaires ou renseignements personnels inappropriés ;
 ** Informations potentiellement diffamatoires.',
 'revdelete-otherreason' => 'Autre raison / raison supplémentaire :',
 'revdelete-reasonotherlist' => 'Autre raison',

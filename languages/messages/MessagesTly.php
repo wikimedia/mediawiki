@@ -369,6 +369,7 @@ $messages = array(
 'youhavenewmessages' => 'Шымә сәјоне $1 ($2).',
 'newmessageslink' => 'нујә хәбон',
 'newmessagesdifflink' => 'охонә дәгиши',
+'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|охонә дәгиши|охонә дәгишон}}',
 'editsection' => 'Сәрост кардеј',
 'editold' => 'Сәрост кардеј',
 'viewsourceold' => 'бешемонә коди дијә кардеј',
@@ -415,6 +416,7 @@ $messages = array(
 'badtitletext' => 'Ахтар кардә быә сәһифә ном сәһве, тәјлије, јаанки сәрост доә быәнин мијонзывонон ја мијонвики номон.
 Бе бәзне ки кали рәмзон сәрловһәдә око дој әбыни.',
 'viewsource' => 'Дијә кардеј',
+'exception-nologin' => 'Ыштәни едаштәнијоне',
 
 # Login and logout pages
 'yourname' => 'Иштирокәкә ном:',
@@ -436,6 +438,7 @@ $messages = array(
 'gotaccountlink' => 'Ыштәни едаштеј',
 'userlogin-resetlink' => 'Бә системә дәше мәлумоти јодәдә бекардәјоне?',
 'createaccountmail' => 'бә е-номә',
+'createaccountreason' => 'Сәбәб:',
 'mailmypassword' => 'Нујә парол вығандеј бә Е-номә.',
 'loginlanguagelabel' => 'Зывон: $1',
 
@@ -870,7 +873,7 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname' => 'Хәбә',
 'allmessagesdefault' => 'Иминә огәтә быә мәтн',
-'allmessages-filter-all' => 'Һаммај',
+'allmessages-filter-all' => 'Һәммәј',
 'allmessages-filter-submit' => 'Давард',
 
 # Thumbnails

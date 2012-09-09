@@ -1411,7 +1411,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 # User rights log
 'rightslog' => 'Protokol zrjadowanja wužiwarskich prawow',
 'rightslogtext' => 'To je protokol změnow wužiwarskich prawow.',
-'rightslogentry' => 'skupinowe čłonstwo za $1 z $2 na $3 změnjene',
+'rightslogentry' => 'změni skupinske čłonstwo za $1 z $2 do $3',
 'rightslogentry-autopromote' => 'je so awtomatisce wot $2 do $3 změnił',
 'rightsnone' => '(ničo)',
 

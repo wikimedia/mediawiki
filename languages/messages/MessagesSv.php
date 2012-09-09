@@ -774,7 +774,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'nosuchusershort' => 'Det finns ingen användare som heter "$1". Kontrollera att du stavat rätt.',
 'nouserspecified' => 'Du måste ange ett användarnamn.',
 'login-userblocked' => 'Denna användare är blockerad. Login inte tillåtet.',
-'wrongpassword' => 'Lösenordet du angav är felaktigt. Försök igen',
+'wrongpassword' => 'Lösenordet du angav är felaktigt. Försök igen.',
 'wrongpasswordempty' => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort' => 'Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
 'password-name-match' => 'Ditt lösenord måste vara olikt ditt användarnamn.',
