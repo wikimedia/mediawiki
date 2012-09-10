@@ -2851,11 +2851,11 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'rcpatroldisabledtext' => "La possibilità ëd verifichè j'ùltime modìfiche a l'é disabilità.",
 'markedaspatrollederror' => 'As peul pa marché coma verificà',
 'markedaspatrollederrortext' => 'A venta che a spessìfica che version che a veul marchè coma verificà.',
-'markedaspatrollederror-noautopatrol' => 'A l\'ha nen ël përmess dë marchesse soe modìfiche coma "controlà".',
+'markedaspatrollederror-noautopatrol' => "A l'ha nen ël përmess dë marchesse soe modìfiche coma «controlà».",
 
 # Patrol log
 'patrol-log-page' => 'Registr dij contròj',
-'patrol-log-header' => "Sto sì a l'é un registr ëd le revision verificà.",
+'patrol-log-header' => "Cost-sì a l'é un registr ëd le revision controlà.",
 'log-show-hide-patrol' => '$1 registr verificà',
 
 # Image deletion

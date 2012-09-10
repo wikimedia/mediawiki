@@ -463,7 +463,8 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'toolbox' => 'The title of the toolbox below the search menu.',
 'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.
 {{Identical|Otherlanguages}}',
-'redirectedfrom' => 'The text displayed when a certain page is redirected to another page. Variable <tt>$1</tt> contains the name of the page user came from.',
+'redirectedfrom' => 'The text displayed when a certain page is redirected to another page.
+*<tt>$1</tt> contains the name of the page user came from.',
 'redirectpagesub' => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.
 
 {{Identical|Redirect page}}',
