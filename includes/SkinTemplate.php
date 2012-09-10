@@ -1130,6 +1130,7 @@ class SkinTemplate extends Skin {
 
 		$nav_urls['print'] = false;
 		$nav_urls['permalink'] = false;
+		$nav_urls['info'] = false;
 		$nav_urls['whatlinkshere'] = false;
 		$nav_urls['recentchangeslinked'] = false;
 		$nav_urls['contributions'] = false;
@@ -1156,6 +1157,11 @@ class SkinTemplate extends Skin {
 					'href' => $this->getTitle()->getLocalURL( "oldid=$revid" )
 				);
 			}
+
+			$nav_urls['info'] = array(
+				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
+				'href' => $out->getTitle()->getLocalURL( "action=info" )
+			);
 
 			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
@@ -1417,6 +1423,10 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox['permalink']['id'] = 't-permalink';
 			}
 		}
+		if ( isset( $this->data['nav_urls']['info'] ) && $this->data['nav_urls']['info'] ) {
+			$toolbox['info'] = $this->data['nav_urls']['info'];
+		}
+
 		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
 		wfProfileOut( __METHOD__ );
 		return $toolbox;
