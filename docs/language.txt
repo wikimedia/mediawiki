@@ -1,21 +1,5 @@
 language.txt
 
-The Language object handles all readable text produced by the software. The most
-used function is getMessage(), usually called with the wrapper function wfMsg()
-which calls that method on the global language object. It just returns a piece
-of text given a text key. It is recommended that you use each key only
-once--bits of text in different contexts that happen to be identical in English
-may not be in other languages, so it's better to add new keys than to reuse them
-a lot. Likewise, if there is text that gets combined with things like names and
-titles, it is better to put markers like "$1" inside a piece of text and use
-str_replace() than to compose such messages in code, because their order may
-change in other languages too.
+The Language object handles all readable text produced by the software.
 
-While the system is running, there will be one global language object, which
-will be a subtype of Language. The methods in these objects will return the
-native text requested if available, otherwise they fall back to sending English
-text (which is why the LanguageEn object has no code at all--it just inherits
-the English defaults of the Language base class).
-
-The names of the namespaces are also contained in the language object, though
-the numbers are fixed.
+See http://www.mediawiki.org/wiki/Localisation#General_use_.28for_developers.29

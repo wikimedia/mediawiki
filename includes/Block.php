@@ -1003,41 +1003,6 @@ class Block {
 	}
 
 	/**
-	 * Convert a DB-encoded expiry into a real string that humans can read.
-	 *
-	 * @param $encoded_expiry String: Database encoded expiry time
-	 * @return Html-escaped String
-	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
-	 */
-	public static function formatExpiry( $encoded_expiry ) {
-		wfDeprecated( __METHOD__, '1.18' );
-
-		global $wgContLang;
-		static $msg = null;
-
-		if ( is_null( $msg ) ) {
-			$msg = array();
-			$keys = array( 'infiniteblock', 'expiringblock' );
-
-			foreach ( $keys as $key ) {
-				$msg[$key] = wfMessage( $key )->escaped();
-			}
-		}
-
-		$expiry = $wgContLang->formatExpiry( $encoded_expiry, TS_MW );
-		if ( $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
-			$expirystr = $msg['infiniteblock'];
-		} else {
-			global $wgLang;
-			$expiredatestr = htmlspecialchars( $wgLang->date( $expiry, true ) );
-			$expiretimestr = htmlspecialchars( $wgLang->time( $expiry, true ) );
-			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array( $expiredatestr, $expiretimestr ) );
-		}
-
-		return $expirystr;
-	}
-
-	/**
 	 * Convert a submitted expiry time, which may be relative ("2 weeks", etc) or absolute
 	 * ("24 May 2034"), into an absolute timestamp we can put into the database.
 	 * @param $expiry String: whatever was typed into the form
