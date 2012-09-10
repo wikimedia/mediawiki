@@ -2459,7 +2459,7 @@ HTML
 		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
 		return "<div id=\"editpage-copywarn\">\n" .
-			call_user_func_array( "wfMsgNoTrans", $copywarnMsg ) . "\n</div>";
+			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
