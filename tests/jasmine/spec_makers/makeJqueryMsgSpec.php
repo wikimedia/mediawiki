@@ -51,27 +51,22 @@ class MakeLanguageSpec extends Maintenance {
 	private function getMessagesAndTests() {
 		$messages = array();
 		$tests = array();
-		$wfMsgExtOptions = array( 'parsemag' );
 		foreach ( array( 'en', 'fr', 'ar', 'jp', 'zh' ) as $languageCode ) {
-			$wfMsgExtOptions['language'] = $languageCode;
 			foreach ( self::$keyToTestArgs as $key => $testArgs ) {
 				foreach ($testArgs as $args) {
 					// get the raw template, without any transformations
 					$template = wfMessage( $key )->inLanguage( $languageCode )->plain();
 
-					// get the magic-parsed version with args
-					$wfMsgExtArgs = array_merge( array( $key, $wfMsgExtOptions ), $args );
-					// @todo FIXME: Use Message class.
-					$result = call_user_func_array( 'wfMsgExt', $wfMsgExtArgs ); 
+					$result = wfMessage( $key, $args )->inLanguage( $languageCode )->text();
 
 					// record the template, args, language, and expected result
-					// fake multiple languages by flattening them together	
+					// fake multiple languages by flattening them together
 					$langKey = $languageCode . '_' . $key;
 					$messages[ $langKey ] = $template;
-					$tests[] = array( 
+					$tests[] = array(
 						'name' => $languageCode . " " . $key . " " . join( ",", $args ),
 						'key' => $langKey,
-						'args' => $args, 
+						'args' => $args,
 						'result' => $result,
 						'lang' => $languageCode
 					);

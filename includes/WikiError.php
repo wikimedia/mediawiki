@@ -91,22 +91,22 @@ class WikiErrorMsg extends WikiError {
 		wfDeprecated( __METHOD__, '1.17' );
 		$args = func_get_args();
 		array_shift( $args );
-		$this->mMessage = wfMsgReal( $message, $args, true );
+		$this->mMessage = wfMessage( $message )->rawParams( $args )->text();
 		$this->mMsgKey = $message;
 		$this->mMsgArgs = $args;
 	}
-	
+
 	function getMessageKey() {
 		return $this->mMsgKey;
 	}
-	
+
 	function getMessageArgs() {
 		return $this->mMsgArgs;
 	}
 }
 
 /**
- * Error class designed to handle errors involved with 
+ * Error class designed to handle errors involved with
  * XML parsing
  * @ingroup Exception
  */
