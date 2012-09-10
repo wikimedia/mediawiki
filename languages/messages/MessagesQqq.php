@@ -3498,6 +3498,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
+'pageinfo-toolboxlink' => 'Information link for the page (like \'View history\', but to action=info instead)',
 
 # Skin names
 'skinname-standard' => '{{optional}}
