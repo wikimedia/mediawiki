@@ -578,7 +578,7 @@ $messages = array(
 'categorypage' => 'カテゴリのページを表示',
 'viewtalkpage' => '議論を表示',
 'otherlanguages' => '他言語版',
-'redirectedfrom' => '（$1から転送）',
+'redirectedfrom' => '($1から転送)',
 'redirectpagesub' => 'リダイレクトページ',
 'lastmodifiedat' => 'このページが最後に更新されたのは $1 $2 です。',
 'viewcount' => 'このページは {{PLURAL:$1|$1 回}}アクセスされました。',
@@ -625,7 +625,7 @@ $1',
 
 'ok' => 'OK',
 'retrievedfrom' => '「$1」から取得',
-'youhavenewmessages' => '$1があります（$2）。',
+'youhavenewmessages' => '$1があります ($2)。',
 'newmessageslink' => '新着メッセージ',
 'newmessagesdifflink' => '最終更新の差分',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|他の利用者|$3 人の利用者}}からの$1があります ($2)。',
@@ -835,7 +835,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'password-login-forbidden' => 'この利用者名とパスワードの使用は禁止されています。',
 'mailmypassword' => '新しいパスワードをメールで送信',
 'passwordremindertitle' => '{{SITENAME}}の仮パスワード通知',
-'passwordremindertext' => '誰か（おそらくあなた）がIPアドレス$1から{{SITENAME}}（$4）のログイン用パスワードの再発行を申請しました。
+'passwordremindertext' => '誰か（おそらくあなた）がIPアドレス$1から{{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。
 利用者「$2」の仮パスワードが作成され「$3」に設定されました。
 もしあなたがこの申請をしたのであれば、ログインして新しいパスワードを決めてください。
 この仮パスワードは {{PLURAL:$5|$5 日間}}で有効期限が切れます。
@@ -1049,7 +1049,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
 'noarticletext-nopermission' => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができます。',
-'missing-revision' => '「{{PAGENAME}}」というページの #$1 という版は存在しません。
+'missing-revision' => '「{{PAGENAME}}」というページの版番号 $1 の版は存在しません。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
 詳細は[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
@@ -1192,7 +1192,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 下記の差分を確認して、本当に取り消していいか検証してください。よろしければ変更を保存して取り消しを完了してください。',
 'undo-failure' => '中間の版での編集と競合したため、取り消せませんでした。',
 'undo-norev' => '取り消そうとした編集が存在しないか削除済みのため取り消せませんでした。',
-'undo-summary' => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による第$1版を取り消し',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による版 $1 を取り消し',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
@@ -1416,8 +1416,8 @@ $1",
 'search-result-size' => '$1（{{PLURAL:$2|$2単語}}）',
 'search-result-category-size' => '{{PLURAL:$1|$1件}}（{{PLURAL:$2|$2下位カテゴリ}}、{{PLURAL:$3|$3ファイル}}）',
 'search-result-score' => '関連度：$1%',
-'search-redirect' => '（$1からのリダイレクト）',
-'search-section' => '（$1の節）',
+'search-redirect' => '($1からのリダイレクト)',
+'search-section' => '($1の節)',
 'search-suggest' => 'もしかして：$1',
 'search-interwiki-caption' => '姉妹プロジェクト',
 'search-interwiki-default' => '$1の結果：',
@@ -2297,13 +2297,13 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 # Special:AllPages
 'allpages' => '全ページ',
 'alphaindexline' => '$1から$2まで',
-'nextpage' => '次のページ（$1）',
-'prevpage' => '前のページ（$1）',
+'nextpage' => '次のページ ($1)',
+'prevpage' => '前のページ ($1)',
 'allpagesfrom' => '最初に表示するページ：',
 'allpagesto' => '最後に表示するページ：',
 'allarticles' => '全ページ',
-'allinnamespace' => '全ページ（$1名前空間）',
-'allnotinnamespace' => '全ページ（$1名前空間を除く）',
+'allinnamespace' => '全ページ ($1名前空間)',
+'allnotinnamespace' => '全ページ ($1名前空間以外)',
 'allpagesprev' => '前へ',
 'allpagesnext' => '次へ',
 'allpagessubmit' => '表示',
@@ -2689,9 +2689,9 @@ $1',
 'contributions' => '利用者の投稿記録',
 'contributions-title' => '$1の投稿記録',
 'mycontris' => '自分の投稿記録',
-'contribsub2' => '利用者:$1（$2）',
+'contribsub2' => '利用者: $1 ($2)',
 'nocontribs' => 'これらの条件に一致する変更は見つかりませんでした。',
-'uctop' => '（最新）',
+'uctop' => '(最新)',
 'month' => 'これ以前の月：',
 'year' => 'これ以前の年：',
 
@@ -2937,8 +2937,8 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 手動で統合してください。'''",
 'movedto' => '移動先：',
 'movetalk' => '付随するトークページも移動',
-'move-subpages' => '下位ページも移動（$1 件まで）',
-'move-talk-subpages' => 'トークページの下位ページも移動（$1 件まで）',
+'move-subpages' => '下位ページも移動 ($1 件まで)',
+'move-talk-subpages' => 'トークページの下位ページも移動 ($1 件まで)',
 'movepage-page-exists' => 'ページ「$1」は既に存在するため、自動的な上書きはできませんでした。',
 'movepage-page-moved' => 'ページ「$1」は「$2」に移動しました。',
 'movepage-page-unmoved' => 'ページ「$1」は「$2」に移動できませんでした。',
@@ -3069,7 +3069,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-parse-failure' => 'XMLの取り込み構文解析に失敗しました',
 'import-noarticle' => '取り込むページがありません！',
 'import-nonewrevisions' => 'すべての版は以前に取り込み済みです。',
-'xml-error-string' => '$1、$2行の$3文字目（$4バイト目）：$5',
+'xml-error-string' => '$1、$2 行の $3 文字目 ($4バイト目): $5',
 'import-upload' => 'XMLデータをアップロード',
 'import-token-mismatch' => 'セッションデータを損失しました。
 もう一度試してください。',
@@ -3290,7 +3290,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'log-show-hide-patrol' => '巡回記録を$1',
 
 # Image deletion
-'deletedrevision' => '古い版$1を削除しました',
+'deletedrevision' => '古い版 $1 を削除しました',
 'filedeleteerror-short' => 'ファイル削除エラー：$1',
 'filedeleteerror-long' => 'ファイルの削除中にエラーが発生しました：
 
@@ -3335,7 +3335,7 @@ $1',
 'newimages-summary' => 'この特別ページでは、最近アップロードされたファイルを表示します。',
 'newimages-legend' => '絞り込み',
 'newimages-label' => 'ファイル名（またはその一部）：',
-'showhidebots' => '（ボットを$1）',
+'showhidebots' => '(ボットを$1)',
 'noimages' => '表示できるものがありません。',
 'ilsubmit' => '検索',
 'bydate' => '日付順',

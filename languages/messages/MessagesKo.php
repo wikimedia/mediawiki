@@ -2709,7 +2709,7 @@ $1',
 차단은 문서 훼손을 막기 위해, [[{{MediaWiki:Policy-url}}|정책]]에 의해서만 이루어져야 합니다.
 차단 이유를 같이 적어주세요(예: 특정 문서 훼손).',
 'ipadressorusername' => 'IP 주소 또는 사용자 이름:',
-'ipbexpiry' => '기간:',
+'ipbexpiry' => '기한:',
 'ipbreason' => '이유:',
 'ipbreasonotherlist' => '다른 이유',
 'ipbreason-dropdown' => '*일반적인 차단 이유
