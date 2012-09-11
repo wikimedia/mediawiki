@@ -452,11 +452,12 @@ class User {
 	 * will be loaded once more from the database when accessing them.
 	 *
 	 * @param $row Array A row from the user table
+	 * @param $data Array Further data to load into the object (see User::loadFromRow for valid keys)
 	 * @return User
 	 */
-	public static function newFromRow( $row ) {
+	public static function newFromRow( $row, $data = null ) {
 		$user = new User;
-		$user->loadFromRow( $row );
+		$user->loadFromRow( $row, $data );
 		return $user;
 	}
 
@@ -1063,8 +1064,12 @@ class User {
 	 * Initialize this object from a row from the user table.
 	 *
 	 * @param $row Array Row from the user table to load.
+	 * @param $data Array Further user data to load into the object
+	 *
+	 *	user_groups		Array with groups out of the user_groups table
+	 *	user_properties		Array with properties out of the user_properties table
 	 */
-	public function loadFromRow( $row ) {
+	public function loadFromRow( $row, $data = null ) {
 		$all = true;
 
 		$this->mGroups = null; // deferred
@@ -1121,6 +1126,15 @@ class User {
 
 		if ( $all ) {
 			$this->mLoadedItems = true;
+		}
+
+		if ( is_array( $data ) ) {
+			if ( is_array( $data['user_groups'] ) ) {
+				$this->mGroups = $data['user_groups'];
+			}
+			if ( is_array( $data['user_properties'] ) ) {
+				$this->loadOptions( $data['user_properties'] );
+			}
 		}
 	}
 
@@ -4051,9 +4065,11 @@ class User {
 	}
 
 	/**
-	 * @todo document
+	 * Load the user options either from cache, the database or an array
+	 *
+	 * @param $data Rows for the current user out of the user_properties table
 	 */
-	protected function loadOptions() {
+	protected function loadOptions( $data = null ) {
 		$this->load();
 		if ( $this->mOptionsLoaded || !$this->getId() )
 			return;
@@ -4067,21 +4083,27 @@ class User {
 				$this->mOptions[$key] = $value;
 			}
 		} else {
-			wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
-			// Load from database
-			$dbr = wfGetDB( DB_SLAVE );
+			if( !is_array( $data ) ) {
+				wfDebug( "User: loading options for user " . $this->getId() . " from database.\n" );
+				// Load from database
+				$dbr = wfGetDB( DB_SLAVE );
 
-			$res = $dbr->select(
-				'user_properties',
-				array( 'up_property', 'up_value' ),
-				array( 'up_user' => $this->getId() ),
-				__METHOD__
-			);
+				$res = $dbr->select(
+					'user_properties',
+					array( 'up_property', 'up_value' ),
+					array( 'up_user' => $this->getId() ),
+					__METHOD__
+				);
 
-			$this->mOptionOverrides = array();
-			foreach ( $res as $row ) {
-				$this->mOptionOverrides[$row->up_property] = $row->up_value;
-				$this->mOptions[$row->up_property] = $row->up_value;
+				$this->mOptionOverrides = array();
+				$data = array();
+				foreach ( $res as $row ) {
+					$data[$row->up_property] = $row->up_value;
+				}
+			}
+			foreach ( $data as $property => $value ) {
+				$this->mOptionOverrides[$property] = $value;
+				$this->mOptions[$property] = $value;
 			}
 		}
 
