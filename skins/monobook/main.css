@@ -133,18 +133,6 @@ table.rimage {
 ** keep the whitespace in front of the ^=, hides rule from konqueror
 ** this is css3, the validator doesn't like it when validating as css2
 */
-#bodyContent a.external,
-#bodyContent a.external[href ^="gopher://"] {
-	/* @embed */
-	background: url(external-ltr.png) center right no-repeat;
-	padding-right: 13px;
-}
-#bodyContent a.external[href ^="https://"],
-.link-https {
-	/* @embed */
-	background: url(lock_icon.gif) center right no-repeat;
-	padding-right: 16px;
-}
 #bodyContent a.external[href ^="mailto:"],
 .link-mailto {
 	/* @embed */

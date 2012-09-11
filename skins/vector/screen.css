@@ -697,18 +697,6 @@ pre, .mw-code {
 	padding-top: 0;
 	font-size: 1.6em;
 }
-div#content a.external,
-div#content a.external[href ^="gopher://"] {
-	/* @embed */
-	background: url(images/external-link-ltr-icon.png) center right no-repeat;
-	padding-right: 13px;
-}
-div#content a.external[href ^="https://"],
-.link-https {
-	/* @embed */
-	background: url(images/lock-icon.png) center right no-repeat;
-	padding-right: 13px;
-}
 div#content a.external[href ^="mailto:"],
 .link-mailto {
 	/* @embed */

@@ -402,18 +402,6 @@ h1, h2, h3, h4, h5, h6 {
 	clear: both;
 }
 
-#mw_content a.external,
-#mw_content a.external[href ^="gopher://"] {
-	/* @embed */
-	background: url(external.png) center right no-repeat;
-	padding-right: 13px;
-}
-#mw_content a.external[href ^="https://"],
-.link-https {
-	/* @embed */
-	background: url(lock_icon.gif) center right no-repeat;
-	padding-right: 16px;
-}
 #mw_content a.external[href ^="mailto:"],
 .link-mailto {
 	/* @embed */

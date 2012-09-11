@@ -224,16 +224,6 @@ h1.firstHeading,
 h2 {
 	border-bottom: solid 1px black;
 }
-#bodyContent a.external,
-#bodyContent a.external[href ^="gopher://"] {
-	background: url(external.png) center right no-repeat;
-	padding-right: 13px;
-}
-#bodyContent a.external[href ^="https://"],
-.link-https {
-	background: url(lock_icon.gif) center right no-repeat;
-	padding-right: 16px;
-}
 #bodyContent a.external[href ^="mailto:"],
 .link-mailto {
 	background: url(mail_icon.gif) center right no-repeat;
