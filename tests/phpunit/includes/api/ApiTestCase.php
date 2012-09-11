@@ -1,10 +1,6 @@
 <?php 
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
-	/**
-	 * @var Array of ApiTestUser
-	 */
-	public static $users;
 	protected static $apiUrl;
 
 	/**
@@ -23,13 +19,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgRequest = new FauxRequest( array() );
 
 		self::$users = array(
-			'sysop' => new ApiTestUser(
+			'sysop' => new TestUser(
 				'Apitestsysop',
 				'Api Test Sysop',
 				'api_test_sysop@example.com',
 				array( 'sysop' )
 			),
-			'uploader' => new ApiTestUser(
+			'uploader' => new TestUser(
 				'Apitestuser',
 				'Api Test User',
 				'api_test_user@example.com',

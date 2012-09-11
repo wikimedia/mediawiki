@@ -1,7 +1,7 @@
 <?php
 
 /* Wraps the user object, so we can also retain full access to properties like password if we log in via the API */
-class ApiTestUser {
+class TestUser {
 	public $username;
 	public $password;
 	public $email;
@@ -55,5 +55,4 @@ class ApiTestUser {
 		$this->user->saveSettings();
 
 	}
-
 }
