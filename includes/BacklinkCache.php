@@ -91,14 +91,16 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Create a new BacklinkCache or reuse any existing one
+	 * Create a new BacklinkCache or reuse any existing one.
+	 * Currently, only one cache instance can exist; callers that
+	 * need multiple backlink cache objects should keep them in scope.
 	 *
 	 * @param Title $title : Title object to get a backlink cache for
 	 * @return BacklinkCache
 	 */
 	public static function get( Title $title ) {
 		if ( !self::$cache ) { // init cache
-			self::$cache = new ProcessCacheLRU( 2 );
+			self::$cache = new ProcessCacheLRU( 1 );
 		}
 		$dbKey = $title->getPrefixedDBkey();
 		if ( !self::$cache->has( $dbKey, 'obj' ) ) {
