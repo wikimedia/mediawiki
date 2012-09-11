@@ -613,6 +613,23 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Determines whether the content type handled by this ContentHandler
+	 * can be used on the given page.
+	 *
+	 * This default implementation always returns true.
+	 * Subclasses may override this to restrict the use of this content model to specific locations,
+	 * typically based on the namespace or some other aspect of the title, such as a special suffix
+	 * (e.g. ".svg" for SVG content).
+	 *
+	 * @param Title $title the page's title.
+	 *
+	 * @return bool true if content of this kind can be used on the given page, false otherwise.
+	 */
+	public function canBeUsedOn( Title $title ) {
+		return true;
+	}
+
+	/**
 	 * Returns the name of the diff engine to use.
 	 *
 	 * @since WD.1

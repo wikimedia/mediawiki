@@ -1616,6 +1616,13 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		wfProfileIn( __METHOD__ );
 
+		if ( !$content->getContentHandler()->canBeUsedOn( $this->getTitle() ) ) {
+			wfProfileOut( __METHOD__ );
+			return Status::newFatal( 'content-not-allowed-here',
+				ContentHandler::getLocalizedName( $content->getModel() ),
+				$this->getTitle()->getPrefixedText() );
+		}
+
 		$user = is_null( $user ) ? $wgUser : $user;
 		$status = Status::newGood( array() );
 

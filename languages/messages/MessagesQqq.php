@@ -1054,6 +1054,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
 'invalid-content-data'             => 'Error message indicating that the page\'s content can not be saved because it is invalid. This may occurr for some non-text content types.',
+'content-not-allowed-here'         => 'Error message indicating that the desired content model is not supported in given localtion.
+* $1 is the human readable name of the content model
+* $1 is the title of the page in question.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
