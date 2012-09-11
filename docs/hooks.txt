@@ -320,12 +320,13 @@ $body: Body of the message
 Use this to extend core API modules.
 &$module: Module object
 
-'APICheckCanExecute': Called during ApiMain::checkCanExecute. Use to
+'ApiCheckCanExecute': Called during ApiMain::checkCanExecute. Use to
 further authenticate and authorize API clients before executing the
 module. Return false and set a message to cancel the request.
 $module: Module object
 $user: Current user
-&$message: API usage message to die with
+&$message: API usage message to die with, as a message key or array
+as accepted by ApiBase::dieUsageMsg.
 
 'APIEditBeforeSave': before saving a page with api.php?action=edit,
 after processing request parameters. Return false to let the request
