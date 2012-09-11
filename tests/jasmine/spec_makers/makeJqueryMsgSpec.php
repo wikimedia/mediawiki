@@ -8,13 +8,13 @@
  * which can be used with the JasmineBDD framework. This specification can then be used by simply including it into
  * the SpecRunner.html file.
  *
- * This is similar to Michael Dale (mdale@mediawiki.org)'s parser tests, except that it doesn't look up the 
+ * This is similar to Michael Dale (mdale@mediawiki.org)'s parser tests, except that it doesn't look up the
  * API results while doing the test, so the Jasmine run is much faster(at the cost of being out of date in rare
  * circumstances. But mostly the parsing that we are doing in Javascript doesn't change much.)
  *
- */ 
+ */
 
-$maintenanceDir = dirname( dirname( dirname( dirname( __DIR__ ) ) ) ) . '/maintenance';
+$maintenanceDir = dirname( dirname( dirname( __DIR__ ) ) ) . '/maintenance';
 
 require( "$maintenanceDir/Maintenance.php" );
 
