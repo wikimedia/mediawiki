@@ -1168,8 +1168,10 @@ Non ten acceso a el.',
 Por favor, comprobe os rexistros.',
 'revdelete-only-restricted' => 'Erro ao agochar o elemento con data do $1 ás $2: Non pode eliminar elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de visibilidade.',
 'revdelete-reason-dropdown' => '* Motivos frecuentes para borrar
-** Violación dos dereitos de autor
-** Información persoal inapropiada',
+** Violación dos dereitos de autoría
+** Comentario inapropiado ou información persoal
+** Nome de usuario inapropiado
+** Información potencialmente difamatoria',
 'revdelete-otherreason' => 'Outro motivo:',
 'revdelete-reasonotherlist' => 'Outro motivo',
 'revdelete-edit-reasonlist' => 'Editar os motivos de borrado',
@@ -1686,7 +1688,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
 'windows-nonascii-filename' => 'Este wiki non soporta os nomes de ficheiros con caracteres especiais.',
-'fileexists' => 'Xa existe un ficheiro con ese nome. Por favor, comprobe <strong>[[:$1]]</strong> se non está seguro de querer cambialo.
+'fileexists' => 'Xa existe un ficheiro con ese nome. Por favor, comprobe "<strong>[[:$1]]</strong>" se non está seguro de querer cambialo.
 [[$1|thumb]]',
 'filepageexists' => 'A páxina de descrición deste ficheiro xa foi creada en <strong>[[:$1]]</strong>, pero polo de agora non existe ningún ficheiro con este nome.
 O resumo que escribiu non aparecerá na páxina de descrición.
@@ -3073,7 +3075,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edicións recentes (durante os últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recentes',
-'pageinfo-restriction' => 'Protección da páxina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protección da páxina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra máxica|Palabras máxicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',

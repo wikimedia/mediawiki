@@ -295,6 +295,12 @@ $revCount: Number of revisions in the XML file
 $sRevCount: Number of sucessfully imported revisions
 $pageInfo: associative array of page information
 
+'AfterFinalPageOutput': Nearly at the end of OutputPage::output() but
+before OutputPage::sendCacheControl() and final ob_end_flush() which
+will send the buffered output to the client. This allows for last-minute
+modification of the output within the buffer by using ob_get_clean().
+$output: The OutputPage object where output() was called
+
 'AjaxAddScript': Called in output page just before the initialisation
 of the javascript ajax engine. The hook is only called when ajax
 is enabled ( $wgUseAjax = true; ).
@@ -318,6 +324,13 @@ $body: Body of the message
 'APIAfterExecute': after calling the execute() method of an API module.
 Use this to extend core API modules.
 &$module: Module object
+
+'APICheckCanExecute': Called during ApiMain::checkCanExecute. Use to
+further authenticate and authorize API clients before executing the
+module. Return false and set a message to cancel the request.
+$module: Module object
+$user: Current user
+&$message: API usage message to die with
 
 'APIEditBeforeSave': before saving a page with api.php?action=edit,
 after processing request parameters. Return false to let the request
@@ -1784,6 +1797,11 @@ $searchEngine : The SearchEngine object. Users of this hooks will be interested
 in the $searchEngine->namespaces array.
 $query : Original query.
 &$parsed : Resultant query with the prefixes stripped.
+
+'SearchResultInitFromTitle': Set the revision used when displaying a page in
+search results.
+$title : Current Title object being displayed in search results.
+&$id: Revision ID (default is false, for latest)
 
 'SearchableNamespaces': An option to modify which namespaces are searchable.
 &$arr : Array of namespaces ($nsId => $name) which will be used.

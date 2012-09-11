@@ -1025,7 +1025,9 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 'revdelete-only-restricted' => "Cafwyd gwall wrth guddio'r eitem dyddiedig $2, $1: ni allwch guddio eitemau o olwg gweinyddwyr heb ar yr un pryd ddewis un o'r opsiynau eraill i gyfyngu ar y gallu i weld.",
 'revdelete-reason-dropdown' => '*Rhesymau cyffredin dros ddileu
 ** Torri hawlfraint
-** Gwybodaeth bersonol anaddas',
+** Gwybodaeth bersonol anaddas neu sylw anaddas
+** Enw defnydiwr anaddas
+** Gwybodaeth a allai fod yn enllibus',
 'revdelete-otherreason' => 'Rheswm arall:',
 'revdelete-reasonotherlist' => 'Rheswm arall',
 'revdelete-edit-reasonlist' => 'Golygu rhestr y rhesymau dros ddileu',
@@ -2728,7 +2730,7 @@ Mae ffolder dros dro yn eisiau.',
 'import-error-special' => 'Ni fewnforiwyd y dudalen "$1" oherwydd ei bod yn perthyn i barth arbennig lle nad oes tudalennau i\'w cael.',
 'import-error-invalid' => 'Ni fewnforwyd y dudalen "$1" oherwydd bod yr enw arni yn annilys.',
 'import-options-wrong' => '{{PLURAL:$2|Dewis|Dewis|Dewisiadau}} annilys: <nowiki>$1</nowiki>',
-'import-rootpage-nosubpage' => 'Nid yw\'r parth "$1", sef parth y wraidd-dudalen, yn caniatau is-dudalennau.',
+'import-rootpage-nosubpage' => 'Nid yw\'r parth "$1", sef parth y brif dudalen y mewnforir iddi, yn caniatau is-dudalennau.',
 
 # Import log
 'importlogpage' => 'Lòg mewnforio',

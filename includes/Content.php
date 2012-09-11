@@ -438,7 +438,7 @@ interface Content {
 	 *
 	 * @since WD.1
 	 *
-	 * @param $title \Title the title of the deleted page
+	 * @param $page \WikiPage the deleted page
 	 * @param $parserOutput null|\ParserOutput optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
@@ -446,7 +446,7 @@ interface Content {
 	 * @return array A list of DataUpdate instances that will clean up the
 	 *    database after deletion.
 	 */
-	public function getDeletionUpdates( Title $title,
+	public function getDeletionUpdates( WikiPage $page,
 		ParserOutput $parserOutput = null );
 
 	/**
@@ -775,7 +775,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since WD.1
 	 *
-	 * @param $title \Title the title of the deleted page
+	 * @param $page \WikiPage the deleted page
 	 * @param $parserOutput null|\ParserOutput optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
@@ -783,11 +783,11 @@ abstract class AbstractContent implements Content {
 	 * @return array A list of DataUpdate instances that will clean up the
 	 *    database after deletion.
 	 */
-	public function getDeletionUpdates( Title $title,
+	public function getDeletionUpdates( WikiPage $page,
 		ParserOutput $parserOutput = null )
 	{
 		return array(
-			new LinksDeletionUpdate( $title ),
+			new LinksDeletionUpdate( $page ),
 		);
 	}
 

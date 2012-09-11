@@ -54,7 +54,7 @@ class TempFSFile extends FSFile {
 				fclose( $newFileHandle );
 				break; // got it
 			}
-			if ( $attempt >= 15 ) {
+			if ( $attempt >= 5 ) {
 				wfProfileOut( __METHOD__ );
 				return null; // give up
 			}

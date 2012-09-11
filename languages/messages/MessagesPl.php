@@ -3120,7 +3120,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-authors' => 'Całkowita liczba autorów',
 'pageinfo-recent-edits' => 'Liczba ostatnich edycji (w przeciągu $1)',
 'pageinfo-recent-authors' => 'Liczba ostatnich autorów',
-'pageinfo-restriction' => 'Zabezpieczenie strony (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Zabezpieczenie strony ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Magiczne {{PLURAL:$1|słowo|słowa|słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukryte kategorie}} ($1)',
 'pageinfo-templates' => 'Transkludowan{{PLURAL:$1|y szablon|e szablony}} ($1)',

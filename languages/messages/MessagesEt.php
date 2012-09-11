@@ -721,7 +721,7 @@ Sinu konto on loodud.
 'gotaccount' => "Kui sul on juba konto, '''$1'''.",
 'gotaccountlink' => 'logi sisse',
 'userlogin-resetlink' => 'Kas oled unustanud oma sisselogimisandmed?',
-'createaccountmail' => 'e-posti teel',
+'createaccountmail' => 'E-posti teel',
 'createaccountreason' => 'Põhjus:',
 'badretype' => 'Sisestatud paroolid ei lange kokku.',
 'userexists' => 'Sisestatud kasutajanimi on juba kasutusel.
@@ -1194,9 +1194,11 @@ Sul ei ole sellele ligipääsu.',
 'revdelete-concurrent-change' => 'Tõrge üksuse kuupäevaga $2, kell $1 muutmisel: paistab, et keegi teine on selle olekut sel ajal muutnud, kui sina seda muuta üritasid.
 Palun vaata logisid.',
 'revdelete-only-restricted' => 'Ei õnnestu varjata üksust seisuga $1, kell $2: Seda üksust ei saa administraatorite eest varjata, valimata seejuures ka ühte muudest nähtavussuvanditest.',
-'revdelete-reason-dropdown' => '*Tavalised kustutamise põhjused
+'revdelete-reason-dropdown' => '*Peamised kustutamise põhjused
 ** Autoriõiguste rikkumine
-** Kohatud eraelulised andmed',
+** Kohatu märkus või isiklik info
+** Kohatu kasutajanimi
+** Potentsiaalne halvustav informatsioon',
 'revdelete-otherreason' => 'Muu või täiendav põhjus:',
 'revdelete-reasonotherlist' => 'Muu põhjus',
 'revdelete-edit-reasonlist' => 'Redigeeri kustutamise põhjuseid',
@@ -3047,7 +3049,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'pageinfo-authors' => 'Erinevate autorite koguarv',
 'pageinfo-recent-edits' => 'Viimaste redigeerimiste arv (viimase $1 jooksul)',
 'pageinfo-recent-authors' => 'Erinevate viimaste toimetajate arv',
-'pageinfo-restriction' => 'Lehekülje kaitse (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Lehekülje kaitse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Võlusõna|Võlusõnad}} ($1)',
 'pageinfo-hidden-categories' => 'Peidetud {{PLURAL:$1|kategooria|kategooriad}} ($1)',
 'pageinfo-templates' => 'Kasutatud {{PLURAL:$1|mall|mallid}} ($1)',

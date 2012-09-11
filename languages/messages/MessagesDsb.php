@@ -1051,7 +1051,9 @@ Pšosym pśeglědaj protokole.',
 'revdelete-only-restricted' => 'Zmólka pśi chowanju zapiska wót $2, $1; njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich wiźobnosćowych opcijow.',
 'revdelete-reason-dropdown' => '*Zwucone pśicyny za wulašowanje
 ** Pśestupjenje awtorskego pšawa
-** Njegóźece se wósobinske informacije',
+** Njegóźece se komentary abo wósobinske informacije
+** Njegóźece se wužywarske mě
+** Potencielnje kśiwźece informacije',
 'revdelete-otherreason' => 'Druga/pśidatna pśicyna:',
 'revdelete-reasonotherlist' => 'Druga pśicyna',
 'revdelete-edit-reasonlist' => 'Pśicyny za lašowanje wobźěłaś',
@@ -2874,7 +2876,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'pageinfo-authors' => 'Cełkowna licba wšakich awtorow',
 'pageinfo-recent-edits' => 'Licba nejnowšych změnow (za zachadnych $1)',
 'pageinfo-recent-authors' => 'Nejnowša licba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Šćit boka (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Šćit boka ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapśěgnjona pśedłoga|Zapśěgnjonej pśedłoze|Zapśěgnjone pśedłogi|Zapśěgnjone pśedłogi}} ($1)',

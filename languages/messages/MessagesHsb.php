@@ -1048,7 +1048,9 @@ Prošu přepruwuj protokole.',
 'revdelete-only-restricted' => 'Zmylk při chowanju zapiska wot $2, $1; njemóžeš zapiski před wočemi administratorow potłóčić, bjez toho zo wuběraš tež jednu z druhich widźomnosćowych opcijow.',
 'revdelete-reason-dropdown' => '*Zwučene přičiny za wušmórnjenje
 ** Přeńdźenje awtorskeho prawa
-** Njepřihódne wosobinske informacije',
+** Njepřihódne komentary abo wosobinske informacije
+** Njepřihódne wužiwarske mjeno
+** Potencielnje ranjace informacije',
 'revdelete-otherreason' => 'Druha/přidatna přičina:',
 'revdelete-reasonotherlist' => 'Druha přičina',
 'revdelete-edit-reasonlist' => 'Přičiny za wušmórnjenje wobdźěłać',
@@ -1409,7 +1411,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 # User rights log
 'rightslog' => 'Protokol zrjadowanja wužiwarskich prawow',
 'rightslogtext' => 'To je protokol změnow wužiwarskich prawow.',
-'rightslogentry' => 'skupinowe čłonstwo za $1 z $2 na $3 změnjene',
+'rightslogentry' => 'změni skupinske čłonstwo za $1 z $2 do $3',
 'rightslogentry-autopromote' => 'je so awtomatisce wot $2 do $3 změnił',
 'rightsnone' => '(ničo)',
 
@@ -2870,7 +2872,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-authors' => 'Cyłkowna ličba rozdźělnych awtorow',
 'pageinfo-recent-edits' => 'Ličba najnowšich změnow (za zańdźenych $1)',
 'pageinfo-recent-authors' => 'Najnowša ličba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Škit strony (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Škit strony ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',

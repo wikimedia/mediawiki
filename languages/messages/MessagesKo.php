@@ -1293,7 +1293,8 @@ $1",
 'revdelete-only-restricted' => '$1 $2 버전 숨기기 오류: 다른 숨기기 설정을 같이 설정하지 않고 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
 'revdelete-reason-dropdown' => '*일반적인 삭제 이유
 ** 저작권 침해
-** 부적절한 개인 정보
+** 부적절한 의견과 개인 정보
+** 부적절한 이름
 ** 잠재적인 비방 정보',
 'revdelete-otherreason' => '다른 이유/부가적인 이유',
 'revdelete-reasonotherlist' => '다른 이유',
@@ -2708,7 +2709,7 @@ $1',
 차단은 문서 훼손을 막기 위해, [[{{MediaWiki:Policy-url}}|정책]]에 의해서만 이루어져야 합니다.
 차단 이유를 같이 적어주세요(예: 특정 문서 훼손).',
 'ipadressorusername' => 'IP 주소 또는 사용자 이름:',
-'ipbexpiry' => '기간:',
+'ipbexpiry' => '기한:',
 'ipbreason' => '이유:',
 'ipbreasonotherlist' => '다른 이유',
 'ipbreason-dropdown' => '*일반적인 차단 이유
@@ -3226,7 +3227,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-authors' => '총 서로 다른 편집자 수',
 'pageinfo-recent-edits' => '최근 편집 수 (지난 $1일 이내)',
 'pageinfo-recent-authors' => '최근 기여자 수',
-'pageinfo-restriction' => '문서 보호 (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => '문서 보호 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '매직 {{PLURAL:$1|워드}} ($1개)',
 'pageinfo-hidden-categories' => '숨은 {{PLURAL:$1|분류}} ($1개)',
 'pageinfo-templates' => '포함한 {{PLURAL:$1|틀}} ($1개)',

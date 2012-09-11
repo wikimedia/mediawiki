@@ -774,7 +774,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'nosuchusershort' => 'Det finns ingen användare som heter "$1". Kontrollera att du stavat rätt.',
 'nouserspecified' => 'Du måste ange ett användarnamn.',
 'login-userblocked' => 'Denna användare är blockerad. Login inte tillåtet.',
-'wrongpassword' => 'Lösenordet du angav är felaktigt. Försök igen',
+'wrongpassword' => 'Lösenordet du angav är felaktigt. Försök igen.',
 'wrongpasswordempty' => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort' => 'Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
 'password-name-match' => 'Ditt lösenord måste vara olikt ditt användarnamn.',
@@ -1241,7 +1241,8 @@ Vänligen kontrollera loggarna.',
 'revdelete-only-restricted' => 'Fel vid döljning av objekt daterat $2, $1: du kan inte undanhålla objekt från att visas för administratörer utan att också välja en av de övriga visningsalternativen.',
 'revdelete-reason-dropdown' => '*Vanliga orsaker till radering
 ** Brott mot copyright
-** Opassande personupplysningar
+** Opassande kommentar eller personupplysningar
+** Opassande användarnamn
 ** Möjligt ärekränkande uppgifter',
 'revdelete-otherreason' => 'Annan/ytterligare anledning:',
 'revdelete-reasonotherlist' => 'Annan anledning',
@@ -3130,7 +3131,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-authors' => 'Totalt antal olika författare',
 'pageinfo-recent-edits' => 'Antal nyliga redigeringar (inom de senaste $1)',
 'pageinfo-recent-authors' => 'Antal nyliga olika författare',
-'pageinfo-restriction' => 'Sidskydd (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Sidskydd ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiskt|Magiska}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Dold kategori|Dolda kategorier}} ($1)',
 

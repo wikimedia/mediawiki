@@ -292,8 +292,14 @@ abstract class FileBackendStore extends FileBackend {
 		// Try to lock the source files for the scope of this function
 		$scopeLockS = $this->getScopedFileLocks( $params['srcs'], LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
-			// Actually do the concatenation
+			// Actually do the file concatenation...
+			$start_time = microtime( true );
 			$status->merge( $this->doConcatenate( $params ) );
+			$sec = microtime( true ) - $start_time;
+			if ( !$status->isOK() ) {
+				wfDebugLog( 'FileOperation', get_class( $this ) . " failed to concatenate " .
+					count( $params['srcs'] ) . " file(s) [$sec sec]" );
+			}
 		}
 
 		wfProfileOut( __METHOD__ . '-' . $this->name );

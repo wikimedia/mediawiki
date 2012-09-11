@@ -1272,7 +1272,8 @@ Prohlédněte si protokolovací záznamy.',
 'revdelete-only-restricted' => 'Chyba skrývání položky z $2 $1: Nemůžete položky pouze skrýt před správci, aniž byste současně vybrali i některou z dalších možností utajení.',
 'revdelete-reason-dropdown' => '*Obvyklé důvody smazání
 ** Porušení autorských práv
-** Nevhodné osobní údaje
+** Nevhodné komentáře nebo osobní údaje
+** Nevhodné uživatelské jméno
 ** Potenciálně pomlouvačné údaje',
 'revdelete-otherreason' => 'Jiný/další důvod:',
 'revdelete-reasonotherlist' => 'Jiný důvod',
@@ -3132,7 +3133,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-authors' => 'Celkový počet různých autorů',
 'pageinfo-recent-edits' => 'Počet nedávných ($1) editací',
 'pageinfo-recent-authors' => 'Nedávný počet různých autorů',
-'pageinfo-restriction' => 'Zámek stránky (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Zámek stránky ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Kouzelné slovo|Kouzelná slova}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá|Skryté}} kategorie ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Použitá šablona|Použité šablony}} ($1)',

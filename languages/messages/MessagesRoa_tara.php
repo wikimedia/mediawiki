@@ -986,7 +986,9 @@ Pe piacere condrolle l'archivije.",
 'revdelete-only-restricted' => "Errore scunnènne l'artichele datate $2, $1: tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opziune de soppressione.",
 'revdelete-reason-dropdown' => "*Mutive comune pa scangellazzione
 ** Violazione d'u copyright
-** 'Mbormaziune personale inappropriate",
+** 'Mbormaziune personale o commende inappropriate
+** Nome utende inappropriate
+** 'Mbormaziune potenzialmende diffamatorie",
 'revdelete-otherreason' => 'Otre/addizionale mutive:',
 'revdelete-reasonotherlist' => 'Otre mutive',
 'revdelete-edit-reasonlist' => "Mutive d'a scangellazione d'u cangiamende",
@@ -2748,6 +2750,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-error-special' => "'A pagena \"\$1\" non g'ha state 'mbortate purcé apponde a 'nu namespace speciale ca non g'è permesse a le pàggene normale.",
 'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
 'import-options-wrong' => '{{PLURAL:$2|opzione|opziune}} sbagliate: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => "'A pàgene radice date tène 'nu titole invalide.",
 
 # Import log
 'importlogpage' => "Archivie de le 'mbortaziune",

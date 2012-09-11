@@ -250,9 +250,9 @@ class TextPassDumperTest extends DumpTestCase {
 			$dumper->stderr = $stderr;
 
 			// The actual dump and taking time
-			$ts_before = wfTime();
+			$ts_before = microtime( true );
 			$dumper->dump( WikiExporter::FULL, WikiExporter::TEXT );
-			$ts_after = wfTime();
+			$ts_after = microtime( true );
 			$lastDuration = $ts_after - $ts_before;
 
 			// Handling increasing the iteration count for the stubs

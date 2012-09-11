@@ -28,6 +28,8 @@ require_once( __DIR__ . '/../../includes/normal/UtfNormalUtil.php' );
 /**
  * Generates normalizer data files for Arabic and Malayalam.
  * For NFC see includes/normal.
+ *
+ * @ingroup MaintenanceLanguage
  */
 class GenerateNormalizerData extends Maintenance {
 	var $dataFile;

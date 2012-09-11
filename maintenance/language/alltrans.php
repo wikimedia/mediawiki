@@ -17,11 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup MaintenanceLanguage
  */
 
 require_once( __DIR__ . '/../Maintenance.php' );
 
+/**
+ * Maintenance script that gets all messages as defined by the
+ * English language file.
+ *
+ * @ingroup MaintenanceLanguage
+ */
 class AllTrans extends Maintenance {
 	public function __construct() {
 		parent::__construct();

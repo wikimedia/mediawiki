@@ -1105,9 +1105,10 @@ Hindi mo ito mapupuntahan.',
 'revdelete-concurrent-change' => 'May mali sa pagbabago ng bagay na may petsang $2, $1: ang katayuan nito ay tila nagpapakitang binago ng ibang tao habang sinubukan mong baguhin ito.
 Pakitingnan ang mga talaan.',
 'revdelete-only-restricted' => 'May mali sa pagtatago ng bagay na may petsang $2, $1: hindi mo mapipigil ang mga bagay na matingnan ng mga tagapangasiwa na hindi rin pipili ng isa sa mga pagpipiliang kaugnay ng antas ng pagpapakita.',
-'revdelete-reason-dropdown' => '*Mga karaniwang dahilan sa pagbubura
+'revdelete-reason-dropdown' => '*Mga karaniwang dahilan ng pagbura
 ** Paglabag sa karapatang-ari (kopirayt)
 ** Hindi nararapat na personal na impormasyon
+** Hindi nararapat na pangalan ng tagagamit
 ** Impormasyong maaaring mapanirang-puri',
 'revdelete-otherreason' => 'Iba/karagdagang dahilan:',
 'revdelete-reasonotherlist' => 'Ibang dahilan',
@@ -3013,7 +3014,7 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-authors' => 'Kabuuang bilang ng magkakabukod na mga may-akda',
 'pageinfo-recent-edits' => 'Kamakailang bilang ng mga pamamatnugot (sa loob ng huling $1)',
 'pageinfo-recent-authors' => 'Kamakailang bilang ng magkakabukod na mga may-akda',
-'pageinfo-restriction' => 'Pruteksiyon ng pahina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Pruteksiyon ng pahina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Salita|Mga salita}}ng mahiwaga ($1)',
 'pageinfo-hidden-categories' => 'Nakatagong {{PLURAL:$1|kategorya|mga kategorya}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',

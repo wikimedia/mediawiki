@@ -57,10 +57,6 @@ function donorm( $str ) {
 	return rtrim( utf8_normalize( $str . "\x01", UtfNormal::UNORM_NFC ), "\x01" );
 }
 
-function wfMsg($x) {
-	return $x;
-}
-
 function showDiffs( $a, $b ) {
 	$ota = explode( "\n", str_replace( "\r\n", "\n", $a ) );
 	$nta = explode( "\n", str_replace( "\r\n", "\n", $b ) );

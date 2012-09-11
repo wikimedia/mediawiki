@@ -75,6 +75,7 @@ class ApiMove extends ApiBase {
 		}
 
 		// Move the page
+		$toTitleExists = $toTitle->exists();
 		$retval = $fromTitle->moveTo( $toTitle, true, $params['reason'], !$params['noredirect'] );
 		if ( $retval !== true ) {
 			$this->dieUsageMsg( reset( $retval ) );
@@ -84,13 +85,20 @@ class ApiMove extends ApiBase {
 		if ( !$params['noredirect'] || !$user->isAllowed( 'suppressredirect' ) ) {
 			$r['redirectcreated'] = '';
 		}
+		if( $toTitleExists ) {
+			$r['moveoverredirect'] = '';
+		}
 
 		// Move the talk page
 		if ( $params['movetalk'] && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
+			$toTalkExists = $toTalk->exists();
 			$retval = $fromTalk->moveTo( $toTalk, true, $params['reason'], !$params['noredirect'] );
 			if ( $retval === true ) {
 				$r['talkfrom'] = $fromTalk->getPrefixedText();
 				$r['talkto'] = $toTalk->getPrefixedText();
+				if( $toTalkExists ) {
+					$r['talkmoveoverredirect'] = '';
+				}
 			} else {
 				// We're not gonna dieUsage() on failure, since we already changed something
 				$parsed = $this->parseMsg( reset( $retval ) );
@@ -231,6 +239,7 @@ class ApiMove extends ApiBase {
 				'to' => 'string',
 				'reason' => 'string',
 				'redirectcreated' => 'boolean',
+				'moveoverredirect' => 'boolean',
 				'talkfrom' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
@@ -239,6 +248,7 @@ class ApiMove extends ApiBase {
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				),
+				'talkmoveoverredirect' => 'boolean',
 				'talkmove-error-code' => array(
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true

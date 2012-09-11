@@ -1079,8 +1079,10 @@ Dir hutt keen Zougang dozou.',
 Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted' => 'Feler beim verstoppe vum Objet vum $2, $1: Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den aneren Optiounen vum weisen erauszesichen.',
 'revdelete-reason-dropdown' => "* Generell Läschgrënn
-**Verletzung vun den Droits d'Auteur
-**Net ubruechte perséinlech Informatioun",
+** Verletzung vun den Droits d'Auteur
+** Net ubruechte perséinlech Informatioun
+** Inadequate Benotzernumm
+** Informatioun déi beleidege kann",
 'revdelete-otherreason' => 'Aneren/zousätzleche Grond:',
 'revdelete-reasonotherlist' => 'Anere Grond:',
 'revdelete-edit-reasonlist' => 'Läschgrënn änneren',
@@ -2894,6 +2896,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-title' => 'Informatioun iwwer "$1"',
 'pageinfo-header-basic' => 'Basisinformatiounen',
 'pageinfo-header-edits' => 'Historique vun den Ännerungen',
+'pageinfo-header-restrictions' => 'Spär vun der Säit',
 'pageinfo-display-title' => 'Titel dee gewise gëtt',
 'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-watchers' => "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
@@ -2905,9 +2908,10 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-edits' => 'Gesamtzuel vun den Ännerungen',
 'pageinfo-authors' => 'Gesamtzuel vun de verschiddenen Auteuren',
 'pageinfo-recent-edits' => 'Zuel vun de rezenten Ännerungen (an de leschten $1)',
-'pageinfo-restriction' => 'Protectioun vun der Säit (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protectioun vun der Säit ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magescht Wuert|Magesch Wierder}} ($1)',
 'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
+'pageinfo-templates' => 'Agebonne {{PLURAL:$1|Schabloun|Schabloune}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -2961,6 +2965,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'file-info-size-pages' => '$1 × $2 Pixelen, Gréisst vum Fichier: $3, MIME Typ: $4, $5 {{PLURAL:$5|Säit|Säiten}}',
 'file-nohires' => 'Et gëtt keng méi héich Opléisung.',
 'svg-long-desc' => 'SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3',
+'svg-long-desc-animated' => 'Animéierten SVG-Fichier, Basisgréisst $1 x $2 Pixel, Gréisst vum Fichier: $3',
 'show-big-image' => 'Voll Opléisung',
 'show-big-image-preview' => 'Gréisst vun dësem Preview: $1.',
 'show-big-image-other' => 'Aner {{PLURAL:$2|Opléisung|Opléisungen}}: $1.',
@@ -2970,6 +2975,7 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'file-info-png-looped' => 'endlos Schleef',
 'file-info-png-repeat' => 'gouf $1 {{PLURAL:$1|mol|mol}} gespillt',
 'file-info-png-frames' => '$1 {{PLURAL:$1|Frame|Framen}}',
+'file-no-thumb-animation' => "''''Informatioun: Wéinst technesche Limitatioune sinn d'Miniatur-Biller vun dësem Fichier net animéiert.'''",
 
 # Special:NewFiles
 'newimages' => 'Gallerie vun den neie Biller',

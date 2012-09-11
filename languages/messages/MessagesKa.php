@@ -294,6 +294,7 @@ $messages = array(
 'index-category' => 'გვერდების ინდექსაცია',
 'noindex-category' => 'არ არსებობს ინდექსირებული გვერდები',
 'broken-file-category' => 'გვერდები ფაილების არასწორი ბმულებით',
+'categoryviewer-pagedlinks' => '($1) ($2)',
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
@@ -936,7 +937,7 @@ $2
 'sectioneditnotsupported-text' => 'სექციის რედაქტირება გათიშულია ამ გვერდისთვის',
 'permissionserrors' => 'ნებართვის შეცდომა',
 'permissionserrorstext' => 'თქვენ არ გაქვთ ამის გაკეთების უფლება, შემდეგი {{PLURAL:$1|მიზეზის|მიზეზების}} გამო:',
-'permissionserrorstext-withaction' => 'თქვენ არ გაქვთ ამ მოქმედების - $2 განხორციელების ნებართვა შემდეგი $1 მიზეზის გამო:',
+'permissionserrorstext-withaction' => 'თქვენ არ გაქვთ ამ მოქმედების - „$2“ განხორციელების ნებართვა შემდეგი {{PLURAL:$1|მიზეზის|მიზეზის}} გამო:',
 'recreate-moveddeleted-warn' => "'''გაფრთხილება: თქვენ ხელახლა ქმნით გვერდს, რომელიც ადრე წაიშალა.'''
 
 გთხოვთ დაფიქრდეთ, მისაღები არის თუ არა ამ გვერდის რედაქტირების გაგრძელება.
@@ -1142,6 +1143,7 @@ $1",
 'mergehistory-comment' => 'გადატანა[[:$1]]-ის [[:$2]]-ში: $3',
 'mergehistory-same-destination' => 'თავდაპირველი და სამიზნე გვერდები უნდა განსხვავდებოდეს.',
 'mergehistory-reason' => 'მიზეზი:',
+'mergehistory-revisionrow' => '$1 ($2) $3 . . $4 $5 $6',
 
 # Merge log
 'mergelog' => 'გაერთიანებათა ჟურნალი',
@@ -2103,7 +2105,7 @@ $1',
 # Special:ActiveUsers
 'activeusers' => 'აქტიურ მომხმარებელთა სია',
 'activeusers-intro' => 'ეს არის მომხმარებელთა სია, რომელთაც აქვს წვლილი უკანასკნელი $1 {{PLURAL:$1|დღის|დღის}} განმავლობაში.',
-'activeusers-count' => '$1 {{PLURAL:$1|ცვილება|ცვლილება}} {{PLURAL:$2|$3 დღე|$3 დღის|$3 დღეების}} განმავლობაში.',
+'activeusers-count' => '$1 {{PLURAL:$1|ცვლილება|ცვლილება}} {{PLURAL:$2|$3 დღე|$3 დღის}} განმავლობაში.',
 'activeusers-from' => 'მომხმარებელთა ჩვენება, დაწყებული:',
 'activeusers-hidebots' => 'რობოტების დამალვა',
 'activeusers-hidesysops' => 'ადმინისტრატორების დამალვა',
@@ -2169,6 +2171,7 @@ $1',
 # User Messenger
 'usermessage-summary' => 'სისტემური შეტყობინების დატოვება.',
 'usermessage-editor' => 'სისტემური მესენჯერი',
+'usermessage-template' => 'MediaWiki:მომხმარებლის შეტყობინება',
 
 # Watchlist
 'watchlist' => 'ჩემი კონტროლის სია',
@@ -2419,6 +2422,7 @@ $UNWATCHURL
 $1',
 'undelete-show-file-confirm' => 'დარწმუნებული ხართ, რომ გსურთ ფაილ <nowiki>$1</nowiki>-ის წაშლილი ვერსიის ხილვა $2 $3-დან?',
 'undelete-show-file-submit' => 'ჰო',
+'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
 'namespace' => 'სახელთა სივრცე:',
@@ -2803,6 +2807,7 @@ $1',
 'import-error-invalid' => 'გვერდი "$1" იმპორტირება არ მოხდა მიუღებელი სახელის გამო.',
 'import-options-wrong' => 'არასწორი {{PLURAL:$2|პარამეტრი|პარამეტრი}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'ძირეული გვერდის მითითებული სახელი არასწორია.',
+'import-rootpage-nosubpage' => 'სახელტა სივრცეში მითითებულ ძირეულ გვერდში „$1“ ქვეგვერდები დაუშვებელია.',
 
 # Import log
 'importlogpage' => 'იმპორტის ჟურნალი',
@@ -2942,17 +2947,23 @@ $1',
 'pageinfo-header-edits' => 'რედაქტირების ისტორია',
 'pageinfo-header-restrictions' => 'გვერდის დაცვა',
 'pageinfo-header-properties' => 'გვერდის თვისებები',
+'pageinfo-display-title' => 'ნაჩვენები სათაური',
+'pageinfo-default-sort' => 'სტანდარტული სორტირების გასაღები',
+'pageinfo-length' => 'გვერდის სიგრძე (ბაიტებში)',
 'pageinfo-article-id' => 'გვერდის ID',
 'pageinfo-robot-policy' => 'საძიებო სისტემის სტატუსი',
 'pageinfo-views' => 'ხილვების რაოდენობა',
 'pageinfo-watchers' => 'გვერდის დამკვირვებელთა რაოდენობა',
+'pageinfo-redirects-name' => 'გადამისამართება ამ გვერდზე',
+'pageinfo-redirects-value' => '$1',
+'pageinfo-subpages-name' => 'ამ გვერდის ქვეგვერდები',
 'pageinfo-firstuser' => 'გვერდის შემქნელი',
 'pageinfo-firsttime' => 'გვერდის შექმნის თარიღი',
 'pageinfo-lastuser' => 'ბოლო რედაქტორი',
 'pageinfo-lasttime' => 'ბოლო რედაქტირების თარიღი',
 'pageinfo-edits' => 'რედაქტირებების ჯამური რაოდენობა',
 'pageinfo-authors' => 'განსხვავებულ ავტორთა ჯამური რაოდენობა',
-'pageinfo-restriction' => 'გვერდის დაცვა (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'გვერდის დაცვა ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'ჯადოსნური {{PLURAL:$1|სიტყვა|სიტყვა}} ($1)',
 'pageinfo-hidden-categories' => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორია}} ($1)',
 'pageinfo-templates' => 'ინტეგრირებულია {{PLURAL:$1|თარგი|თარგი}} ($1)',
@@ -3021,6 +3032,8 @@ $1',
 'file-info-png-looped' => 'დარგოლილი',
 'file-info-png-repeat' => 'დაკრულია $1 {{PLURAL:$1|ჯერ}}',
 'file-info-png-frames' => '$1 კადრი',
+'file-no-thumb-animation' => "'''შენიშვნა: ტექნიკური მიზეზების გამო, ამ ფაილის მინიატიურები არ იქნება ანიმირებული.'''",
+'file-no-thumb-animation-gif' => "'''შენიშვნა: ტექნიკური მიზეზების გამო, მაღალი გარჩევადობის GIF ფორმატის სურათების მსგავსი მინიატიურები არ იქნება ანიმირებული.'''",
 
 # Special:NewFiles
 'newimages' => 'ახალი ფაილების გალერეა',
@@ -3613,6 +3626,7 @@ $5
 'ellipsis' => '...',
 'percent' => '$1%',
 'parentheses' => '($1)',
+'brackets' => '[$1]',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; წინა გვერდი',
@@ -3643,6 +3657,11 @@ $5
 'size-kilobytes' => '$1 კბ',
 'size-megabytes' => '$1 მბ',
 'size-gigabytes' => '$1 გბ',
+'size-terabytes' => '$1 ტბ',
+'size-petabytes' => '$1 პბ',
+'size-exabytes' => '$1 ებ',
+'size-zetabytes' => '$1 ზბ',
+'size-yottabytes' => '$1 იბ',
 
 # Bitrate units
 'bitrate-bits' => '$1 ბ/წმ',

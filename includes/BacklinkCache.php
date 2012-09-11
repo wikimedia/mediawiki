@@ -41,6 +41,8 @@
  * @internal documentation reviewed on 18 Mar 2011 by hashar
  */
 class BacklinkCache {
+	/** @var ProcessCacheLRU */
+	protected static $cache;
 
 	/**
 	 * Multi dimensions array representing batches. Keys are:
@@ -81,10 +83,30 @@ class BacklinkCache {
 
 	/**
 	 * Create a new BacklinkCache
-	 * @param Title $title : Title object to create a backlink cache for.
+	 *
+	 * @param Title $title : Title object to create a backlink cache for
 	 */
-	function __construct( $title ) {
+	public function __construct( Title $title ) {
 		$this->title = $title;
+	}
+
+	/**
+	 * Create a new BacklinkCache or reuse any existing one.
+	 * Currently, only one cache instance can exist; callers that
+	 * need multiple backlink cache objects should keep them in scope.
+	 *
+	 * @param Title $title : Title object to get a backlink cache for
+	 * @return BacklinkCache
+	 */
+	public static function get( Title $title ) {
+		if ( !self::$cache ) { // init cache
+			self::$cache = new ProcessCacheLRU( 1 );
+		}
+		$dbKey = $title->getPrefixedDBkey();
+		if ( !self::$cache->has( $dbKey, 'obj' ) ) {
+			self::$cache->set( $dbKey, 'obj', new self( $title ) );
+		}
+		return self::$cache->get( $dbKey, 'obj' );
 	}
 
 	/**
@@ -303,7 +325,7 @@ class BacklinkCache {
 	 */
 	public function partition( $table, $batchSize ) {
 
-		// 1) try partition cache ... 
+		// 1) try partition cache ...
 
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
 			wfDebug( __METHOD__ . ": got from partition cache\n" );
@@ -358,7 +380,7 @@ class BacklinkCache {
 	 * Partition a DB result with backlinks in it into batches
 	 * @param $res ResultWrapper database result
 	 * @param $batchSize integer
-	 * @return array @see 
+	 * @return array @see
 	 */
 	protected function partitionResult( $res, $batchSize ) {
 		$batches = array();

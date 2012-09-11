@@ -600,6 +600,10 @@ $1',
 'youhavenewmessages' => 'Anda mempunyai $1 ($2).',
 'newmessageslink' => 'pesan baru',
 'newmessagesdifflink' => 'perubahan terakhir',
+'youhavenewmessagesfromusers' => 'Anda memiliki $1 dari {{PLURAL:$3||}}pengguna lain ($2).',
+'youhavenewmessagesmanyusers' => 'Anda memiliki $1 dari pengguna lain ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1||}}pesan baru',
+'newmessagesdifflinkplural' => '{{PLURAL:$1||}}perubahan terakhir',
 'youhavenewmessagesmulti' => 'Anda mendapat beberapa pesan baru pada $1',
 'editsection' => 'sunting',
 'editold' => 'sunting',
@@ -2005,7 +2009,7 @@ Mungkin Anda ingin menyunting keterangan pada [$2 halaman deskripsi berkas] di s
 
 # MIME search
 'mimesearch' => 'Pencarian MIME',
-'mimesearch-summary' => 'Halaman ini menyediakan fasilitas menyaring berkas berdasarkan tipe MIME nya. Masukkan: contenttype/subtype, misalnya <code>image/jpeg</code>.',
+'mimesearch-summary' => 'Halaman ini menyediakan fasilitas menyaring berkas berdasarkan tipe MIME-nya. Masukkan: contenttype/subtype, misalnya <code>image/jpeg</code>.',
 'mimetype' => 'Tipe MIME:',
 'download' => 'unduh',
 

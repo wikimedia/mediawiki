@@ -104,10 +104,16 @@ class FormatMetadata {
 					. ':' . str_pad( intval( $m[0] / $m[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( intval( $s[0] / $s[1] ), 2, '0', STR_PAD_LEFT );
 
-				$time = wfTimestamp( TS_MW, '1971:01:01 ' . $tags[$tag] );
-				// the 1971:01:01 is just a placeholder, and not shown to user.
-				if ( $time && intval( $time ) > 0 ) {
-					$tags[$tag] = $wgLang->time( $time );
+				try {
+					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $tags[$tag] );
+					// the 1971:01:01 is just a placeholder, and not shown to user.
+					if ( $time && intval( $time ) > 0 ) {
+						$tags[$tag] = $wgLang->time( $time );
+					}
+				} catch ( TimestampException $e ) {
+					// This shouldn't happen, but we've seen bad formats
+					// such as 4-digit seconds in the wild.
+					// leave $tags[$tag] as-is
 				}
 				continue;
 			}

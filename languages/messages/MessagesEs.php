@@ -1288,7 +1288,8 @@ No tiene acceso a él.',
 'revdelete-only-restricted' => 'Error ocultando el item de fecha $2, $1: no puedes suprimir elementos de vista de los administradores sin seleccionar asímismo una de las otras opciones de visibilidad.',
 'revdelete-reason-dropdown' => '*Razones de borrado comunes
 ** Violación a los derechos de autor
-** Información personal inapropiada
+** Comentario o información personal inapropiados
+** Nombre de usuario inapropiado
 ** Información potencialmente injuriosa o calumniante',
 'revdelete-otherreason' => 'Otra/adicional razón:',
 'revdelete-reasonotherlist' => 'Otra razón',
@@ -3175,7 +3176,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de ediciones recientes (en los últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recientes',
-'pageinfo-restriction' => 'Protección de la página (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protección de la página ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',

@@ -163,6 +163,24 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @param $disposition string Content-Disposition header value
+	 * @return string Truncated Content-Disposition header value to meet Swift limits
+	 */
+	protected function truncDisp( $disposition ) {
+		$res = '';
+		foreach ( explode( ';', $disposition ) as $part ) {
+			$part = trim( $part );
+			$new  = ( $res === '' ) ? $part : "{$res};{$part}";
+			if ( strlen( $new ) <= 255 ) {
+				$res = $new;
+			} else {
+				break; // too long; sigh
+			}
+		}
+		return $res;
+	}
+
+	/**
 	 * @see FileBackendStore::doCreateInternal()
 	 * @return Status
 	 */
@@ -212,7 +230,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 			// Set the Content-Disposition header if requested
 			if ( isset( $params['disposition'] ) ) {
-				$obj->headers['Content-Disposition'] = $params['disposition'];
+				$obj->headers['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $obj->write_async( $params['content'] );
@@ -302,7 +320,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 			// Set the Content-Disposition header if requested
 			if ( isset( $params['disposition'] ) ) {
-				$obj->headers['Content-Disposition'] = $params['disposition'];
+				$obj->headers['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				wfSuppressWarnings();
@@ -392,7 +410,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			$hdrs = array(); // source file headers to override with new values
 			if ( isset( $params['disposition'] ) ) {
-				$hdrs['Content-Disposition'] = $params['disposition'];
+				$hdrs['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $sContObj->copy_object_to_async( $srcRel, $dContObj, $dstRel, null, $hdrs );
@@ -471,7 +489,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$dstObj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
 			$hdrs = array(); // source file headers to override with new values
 			if ( isset( $params['disposition'] ) ) {
-				$hdrs['Content-Disposition'] = $params['disposition'];
+				$hdrs['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
 			}
 			if ( !empty( $params['async'] ) ) { // deferred
 				$op = $sContObj->move_object_to_async( $srcRel, $dContObj, $dstRel, null, $hdrs );
@@ -1005,6 +1023,8 @@ class SwiftFileBackend extends FileBackendStore {
 			$output = fopen( 'php://output', 'wb' );
 			$obj = new CF_Object( $cont, $srcRel, false, false ); // skip HEAD
 			$obj->stream( $output, $this->headersFromParams( $params ) );
+		} catch ( NoSuchObjectException $e ) {
+			$status->fatal( 'backend-fail-stream', $params['src'] );
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
 		}
@@ -1219,6 +1239,19 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * Close the connection to the Swift proxy
+	 *
+	 * @return void
+	 */
+	protected function closeConnection() {
+		if ( $this->conn ) {
+			$this->conn->close(); // close active cURL handles in CF_Http object
+			$this->sessionStarted = 0;
+			$this->connContainerCache->clear();
+		}
+	}
+
+	/**
 	 * Get the cache key for a container
 	 *
 	 * @param $username string
@@ -1331,6 +1364,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 		if ( $e instanceof InvalidResponseException ) { // possibly a stale token
 			$this->srvCache->delete( $this->getCredsCacheKey( $this->auth->username ) );
+			$this->closeConnection(); // force a re-connect and re-auth next time
 		}
 		wfDebugLog( 'SwiftBackend',
 			get_class( $e ) . " in '{$func}' (given '" . FormatJson::encode( $params ) . "')" .

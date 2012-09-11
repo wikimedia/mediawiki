@@ -756,8 +756,10 @@ class SearchResult {
 	protected function initFromTitle( $title ) {
 		$this->mTitle = $title;
 		if ( !is_null( $this->mTitle ) ) {
+			$id = false;
+			wfRunHooks( 'SearchResultInitFromTitle', array( $title, &$id ) );
 			$this->mRevision = Revision::newFromTitle(
-				$this->mTitle, false, Revision::READ_NORMAL );
+				$this->mTitle, $id, Revision::READ_NORMAL );
 			if ( $this->mTitle->getNamespace() === NS_FILE )
 				$this->mImage = wfFindFile( $this->mTitle );
 		}

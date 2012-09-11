@@ -1286,7 +1286,8 @@ $1",
 'revdelete-only-restricted' => 'שגיאה בהסתרת הפריט מתאריך $2, $1: אין באפשרותכם להסתיר פרטים מצפיית מפעילי מערכת בלי לבחור גם באחת מאפשרויות ההסתרה האחרות.',
 'revdelete-reason-dropdown' => '* סיבות מחיקה נפוצות
 ** הפרת זכויות יוצרים
-** חשיפת מידע אישי
+** תקציר עריכה או מידע אישי לא הולמים
+** שם משתמש לא הולם
 ** מידע שעלול להיות לשון הרע',
 'revdelete-otherreason' => 'סיבה אחרת/נוספת:',
 'revdelete-reasonotherlist' => 'סיבה אחרת',
@@ -3188,7 +3189,7 @@ $1',
 'pageinfo-authors' => 'המספר הכולל של כותבים שונים',
 'pageinfo-recent-edits' => 'מספר העריכות לאחרונה ($1)',
 'pageinfo-recent-authors' => 'מספר הכותבים הייחודיים לאחרונה',
-'pageinfo-restriction' => 'הגנה על הדף (<code>$1</code>)',
+'pageinfo-restriction' => 'הגנה על הדף ($1)',
 'pageinfo-magic-words' => '{{PLURAL:$1|מילת קסם|מילות קסם}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|תבנית מוכללת|תבניות מוכללות}} ($1)',

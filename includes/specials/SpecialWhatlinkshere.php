@@ -163,7 +163,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			'rd_from = page_id',
 			'rd_namespace' => $target->getNamespace(),
 			'rd_title' => $target->getDBkey(),
-			'(rd_interwiki is NULL) or (rd_interwiki = \'\')'
+			'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
 		)));
 
 		if( $fetchlinks ) {

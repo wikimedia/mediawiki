@@ -2645,9 +2645,8 @@ HTML
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		wfRunHooks( 'EditPageCopyrightWarning', array( $title, &$copywarnMsg ) );
 
-		$msg = call_user_func_array( "wfMessage", $copywarnMsg );
 		return "<div id=\"editpage-copywarn\">\n" .
-			$msg->plain() . "\n</div>";
+			call_user_func_array( 'wfMessage', $copywarnMsg )->plain() . "\n</div>";
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
@@ -2677,7 +2676,7 @@ HTML
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMessage( 'edithelppage' )->inContentLanguage()->text() );
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
 			wfMessage( 'edithelp' )->escaped() . '</a> ' .
-			wfMessage( 'newwindow' )->escaped();
+			wfMessage( 'newwindow' )->parse();
 		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
 		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
 		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );

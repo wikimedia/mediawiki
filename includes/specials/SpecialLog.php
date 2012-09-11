@@ -33,7 +33,7 @@ class SpecialLog extends SpecialPage {
 	/**
 	 * List log type for which the target is a user
 	 * Thus if the given target is in NS_MAIN we can alter it to be an NS_USER
-	 * Title user instead. 
+	 * Title user instead.
 	 */
 	private $typeOnUser = array(
 		'block',
@@ -47,7 +47,7 @@ class SpecialLog extends SpecialPage {
 
 	public function execute( $par ) {
 		global $wgLogRestrictions;
-		
+
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -65,7 +65,7 @@ class SpecialLog extends SpecialPage {
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
-		if ( $par ) {
+		if ( $par !== null ) {
 			$this->parseParams( $opts, (string)$par );
 		}
 

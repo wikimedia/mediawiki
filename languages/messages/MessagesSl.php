@@ -449,6 +449,7 @@ $1',
 'newmessageslink' => 'nova sporočila',
 'newmessagesdifflink' => 'zadnja sprememba',
 'newmessageslinkplural' => '{{PLURAL:$1|novo sporočilo|nova sporočila}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|zadnja sprememba|zadnji spremembi|zadnje spremembe}}',
 'youhavenewmessagesmulti' => 'Na $1 imate novo sporočilo',
 'editsection' => 'uredi',
 'editold' => 'spremeni',
@@ -501,11 +502,11 @@ Seznam vseh prepoznanih posebnih strani je na razpolago na strani [[Special:Spec
 'error' => 'Napaka',
 'databaseerror' => 'Napaka zbirke podatkov',
 'dberrortext' => 'Prišlo je do napake podatkovne zbirke.
-Vzrok bi lahko bil nesprejemljiv iskalni niz ali programski hrošč.
-Zadnje poskušano iskanje:
-<blockquote><tt>$1</tt></blockquote>
-znotraj funkcije »<tt>$2</tt>«.
-Podatkovna zbirka je vrnila napako »<tt>$3: $4</tt>«.',
+Vzrok je lahko programski hrošč v programju.
+Zadnja poskušana poizvedba po zbirki podatkov:
+<blockquote><code>$1</code></blockquote>
+znotraj funkcije »<code>$2</code>«.
+Zbirka podatkov je vrnila napako »<samp>$3: $4</samp>«.',
 'dberrortextcl' => 'Pri iskanju v podatkoovni zbirki je prišlo do skladenjske napake.
 Zadnje iskanje v zbirki podatkov:
 »$1«
@@ -865,7 +866,6 @@ Najnovejši vnos v dnevniku blokad je prikazan spodaj:',
 * '''Firefox/Safari:''' Držite ''Shift'' in kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''Ctrl-Shift-R'' ali ''Ctrl-R'' (''⌘-R'' na sistemu Mac)
 * '''Internet Explorer:''' Držite ''Ctrl-F5'' in kliknite ''Osveži'' (''Refresh'') ali pritisnite ''Ctrl-F5''
 * '''Google Chrome:''' Pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na sistemu Mac)
-* '''Konqueror:''' Kliknite ''Ponovno naloži'' (''Reload'') ali pritisnite ''F5''.
 * '''Opera:''' Počistite predpomnilnik v ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Nasvet:''' Za preizkušanje svojega novega CSS pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
 'userjsyoucanpreview' => "'''Nasvet:''' Za preizkušanje svojega novega JavaScripta pred shranjevanjem uporabite gumb »{{int:showpreview}}«.",
@@ -948,7 +948,7 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 'sectioneditnotsupported-text' => 'Urejanje razdelkov ni podprto na tej strani.',
 'permissionserrors' => 'Napake dovoljenj',
 'permissionserrorstext' => 'Nimate dovoljenja za izvedbo dejanja zaradi {{PLURAL:$1|naslednjega razloga|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov|naslednjih razlogov}}:',
-'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2, zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
+'permissionserrorstext-withaction' => 'Nimate dovoljenja za $2 zaradi {{PLURAL:$1|naslednjega razloga|naslednjih $1 razlogov|naslednjih $1 razlogov|naslednjih $1 razlogov}}:',
 'recreate-moveddeleted-warn' => "'''Opozorilo: Pišete stran, ki je bila nekoč že izbrisana.'''
 
 Premislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.
@@ -1118,7 +1118,8 @@ Prosimo, preverite dnevnik.',
 'revdelete-only-restricted' => 'Napaka pri skrivanju predmeta z dne $1, $2: ne morete spremeniti vidnosti predmeta pred administratorji brez izbire ene od drugih možnosti vidnosti.',
 'revdelete-reason-dropdown' => '* Pogosti razlogi za izbris
 ** Kršitev avtorskih pravic
-** Neprimerni osebni podatki
+** Neprimerna pripomba ali osebni podatki
+** Neprimerno uporabniško ime
 ** Morebitni žaljivi podatki',
 'revdelete-otherreason' => 'Drug/dodaten razlog:',
 'revdelete-reasonotherlist' => 'Drug razlog',
@@ -1885,6 +1886,7 @@ Morda želite urediti njeno opisno stran na tamkajšnji [$2 opisni strani datote
 'shared-repo-from' => 'iz $1',
 'shared-repo' => 'skupno skladišče',
 'shared-repo-name-wikimediacommons' => 'Wikimedijina Zbirka',
+'upload-disallowed-here' => 'Slike žal ne morete prepisati.',
 
 # File reversion
 'filerevert' => 'Vrni $1',
@@ -2970,11 +2972,22 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
-'pageinfo-header-edits' => 'Urejanja',
+'pageinfo-header-basic' => 'Osnovni podatki',
+'pageinfo-header-edits' => 'Zgodovina urejanja',
+'pageinfo-header-restrictions' => 'Zaščita strani',
+'pageinfo-header-properties' => 'Lastnosti strani',
+'pageinfo-display-title' => 'Naslov za prikaz',
+'pageinfo-default-sort' => 'Privzeti ključ za razvrščanje',
 'pageinfo-views' => 'Število ogledov',
-'pageinfo-watchers' => 'Število spremljevalcev',
-'pageinfo-edits' => 'Število urejanj',
-'pageinfo-authors' => 'Število različnih avtorjev',
+'pageinfo-watchers' => 'Število spremljevalcev strani',
+'pageinfo-redirects-name' => 'Preusmeritve na stran',
+'pageinfo-subpages-name' => 'Podstrani strani',
+'pageinfo-firstuser' => 'Ustvarjalec strani',
+'pageinfo-firsttime' => 'Datum ustvarjanja strani',
+'pageinfo-lastuser' => 'Zadnji urejevalec',
+'pageinfo-lasttime' => 'Datum zadnjega urejanja',
+'pageinfo-edits' => 'Skupno število urejanj',
+'pageinfo-authors' => 'Skupno število različnih avtorjev',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označite kot nadzorovano',
@@ -3019,6 +3032,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'file-info-size-pages' => '$1 × $2 točk, velikost datoteke: $3, vrsta MIME: $4, $5 {{PLURAL:$5|stran|strani}}',
 'file-nohires' => 'Slika višje ločljivosti ni na voljo.',
 'svg-long-desc' => 'datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
+'svg-long-desc-animated' => 'animirana datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'show-big-image' => 'Slika v višji ločljivosti',
 'show-big-image-preview' => 'Velikost predogleda: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Druga resolucija|Drugi resoluciji|Druge resolucije}}: $1.',

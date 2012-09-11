@@ -1228,10 +1228,10 @@ Nu ai acces asupra lui.',
 'revdelete-no-change' => "'''Atenție:''' elementul datat $2, $1 are deja aplicată vizibilitatea cerută.",
 'revdelete-concurrent-change' => 'Eroare la modificarea elementului datat $2, $1: statutul său a fost modificat de altcineva în timpul acestei modificări.',
 'revdelete-only-restricted' => 'Eroare în timpul suprimării elementului datat $1, $2: nu puteți suprima elemente la vizualizarea de către administratori fără a marca una din celelalte opțiuni de suprimare.',
-'revdelete-reason-dropdown' => '*Motive de ascundere
+'revdelete-reason-dropdown' => '*Motive generale de ștergere
 ** Violarea drepturilor de autor
-** Informații personale
-** Obscenități
+** Comentarii inadecvate sau informații personale
+** Nume de utilizator inadecvat
 ** Atacuri la persoană',
 'revdelete-otherreason' => 'Motiv suplimentar, detalii',
 'revdelete-reasonotherlist' => 'Alt motiv',
@@ -3111,7 +3111,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-authors' => 'Număr total de autori distincți',
 'pageinfo-recent-edits' => 'Număr de modificări recente (în ultima perioadă de $1)',
 'pageinfo-recent-authors' => 'Număr de autori distincți recenți',
-'pageinfo-restriction' => 'Protecție pagină (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protecție pagină ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Cuvânt magic|Cuvinte magice}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Format inclus|Formate incluse}} ($1)',

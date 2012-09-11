@@ -483,7 +483,7 @@ $messages = array(
 'hidden-category-category' => '隠しカテゴリ',
 'category-subcat-count' => '{{PLURAL:$2|このカテゴリには以下の下位カテゴリのみが含まれています。|このカテゴリには $2 下位カテゴリが含まれており、そのうち以下の {{PLURAL:$1|$1 下位カテゴリ}}を表示しています。}}',
 'category-subcat-count-limited' => 'このカテゴリには以下の{{PLURAL:$1|下位カテゴリ|&#32;$1 下位カテゴリ}}が含まれています。',
-'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の {{PLURAL:$1|$1 ページ}}を表示しています。}}',
+'category-article-count' => '{{PLURAL:$2|このカテゴリには以下のページのみが含まれています。|このカテゴリには $2 ページが含まれており、そのうち以下の $1 ページを表示しています。}}',
 'category-article-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ページ|&#32;$1 ページ}}が含まれています。',
 'category-file-count' => '{{PLURAL:$2|このカテゴリには以下のファイルのみが含まれています。|このカテゴリには $2 ファイルが含まれており、そのうち以下の {{PLURAL:$1|$1 ファイル}}を表示しています。}}',
 'category-file-count-limited' => '現在のカテゴリには以下の{{PLURAL:$1|ファイル|&#32;$1 ファイル}}が含まれています。',
@@ -578,7 +578,7 @@ $messages = array(
 'categorypage' => 'カテゴリのページを表示',
 'viewtalkpage' => '議論を表示',
 'otherlanguages' => '他言語版',
-'redirectedfrom' => '（$1から転送）',
+'redirectedfrom' => '($1から転送)',
 'redirectpagesub' => 'リダイレクトページ',
 'lastmodifiedat' => 'このページが最後に更新されたのは $1 $2 です。',
 'viewcount' => 'このページは {{PLURAL:$1|$1 回}}アクセスされました。',
@@ -625,7 +625,7 @@ $1',
 
 'ok' => 'OK',
 'retrievedfrom' => '「$1」から取得',
-'youhavenewmessages' => '$1があります（$2）。',
+'youhavenewmessages' => '$1があります ($2)。',
 'newmessageslink' => '新着メッセージ',
 'newmessagesdifflink' => '最終更新の差分',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|他の利用者|$3 人の利用者}}からの$1があります ($2)。',
@@ -683,14 +683,14 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 # General errors
 'error' => 'エラー',
 'databaseerror' => 'データベース エラー',
-'dberrortext' => 'データベースクエリーの構文エラーが発生しました。
+'dberrortext' => 'データベース クエリの構文エラーが発生しました。
 ソフトウェアにバグがある可能性があります。
-最後に実行を試みたクエリー：
+最後に実行を試みたクエリ:
 <blockquote><code>$1</code></blockquote>
 （関数「<code>$2</code>」内）。
 データベースはエラー「<samp>$3：$4</samp>」を返しました。',
-'dberrortextcl' => 'データベースクエリーの構文エラーが発生しました。
-最後に実行を試みたクエリー：
+'dberrortextcl' => 'データベース クエリの構文エラーが発生しました。
+最後に実行を試みたクエリ:
 「$1」
 （関数「$2」内）。
 データベースはエラー「$3：$4」を返しました',
@@ -700,14 +700,14 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'readonlytext' => 'データベースは現在、新しいページの追加や編集を受け付けない「ロック状態」になっています。これはおそらくデータベースの定期メンテナンスのためで、メンテナンス終了後は正常な状態に復帰します。
 
 データベースをロックした管理者による説明は以下の通りです：$1',
-'missing-article' => '求められたページ「$1」$2 の本文がデータベース内で見つかりませんでした。
+'missing-article' => '指定されたページ「$1」$2 の本文がデータベース内で見つかりませんでした。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。
 
 それ以外の操作でこのメッセージが表示された場合、ソフトウェアのバグである可能性があります。
-[[Special:ListUsers/sysop|管理者]]までそのURLを添えてお知らせください。',
-'missingarticle-rev' => '（版番号：$1）',
-'missingarticle-diff' => '（差分：$1、$2）',
+[[Special:ListUsers/sysop|管理者]]までその URL を添えてお知らせください。',
+'missingarticle-rev' => '(版番号: $1)',
+'missingarticle-diff' => '(差分: $1, $2)',
 'readonly_lag' => 'データベースはスレーブのデータベースサーバーがマスターに同期するまで自動的にロックされています',
 'internalerror' => '内部エラー',
 'internalerror_info' => '内部エラー：$1',
@@ -734,9 +734,9 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'perfcachedts' => '以下のデータはキャッシュされており、最終更新日時は $1 です。最大 $4 {{PLURAL:$4|件の結果}}がキャッシュされます。',
 'querypage-no-updates' => 'ページの更新は無効になっています。
 以下のデータの更新は現在行われていません。',
-'wrong_wfQuery_params' => 'wfQuery()に正しくないパラメーターが渡されました<br />
-関数：$1<br />
-クエリー：$2',
+'wrong_wfQuery_params' => 'wfQuery() のパラメーターが無効です<br />
+関数: $1<br />
+クエリ: $2',
 'viewsource' => 'ソースを表示',
 'viewsource-title' => '$1のソースを表示',
 'actionthrottled' => '操作が速度規制されました',
@@ -749,7 +749,7 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'editinginterface' => "'''警告：'''ソフトウェアのインターフェイスの文章として使用しているページを編集しています。
 このページの変更は他の利用者のユーザーインターフェイスの外観に影響します。
 翻訳する場合、MediaWiki のローカライズプロジェクト [//translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] の使用を検討してください。",
-'sqlhidden' => '（SQLクエリー非表示）',
+'sqlhidden' => '(SQL クエリ非表示)',
 'cascadeprotected' => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ|ページ群}}で読み込まれているため、編集できないように保護されています:
 $2',
 'namespaceprotected' => "'''$1'''名前空間にあるページを編集する権限がありません。",
@@ -835,7 +835,7 @@ Cookieを有効にしていることを確認して、このページを再読�
 'password-login-forbidden' => 'この利用者名とパスワードの使用は禁止されています。',
 'mailmypassword' => '新しいパスワードをメールで送信',
 'passwordremindertitle' => '{{SITENAME}}の仮パスワード通知',
-'passwordremindertext' => '誰か（おそらくあなた）がIPアドレス$1から{{SITENAME}}（$4）のログイン用パスワードの再発行を申請しました。
+'passwordremindertext' => '誰か（おそらくあなた）がIPアドレス$1から{{SITENAME}} ($4) のログイン用パスワードの再発行を申請しました。
 利用者「$2」の仮パスワードが作成され「$3」に設定されました。
 もしあなたがこの申請をしたのであれば、ログインして新しいパスワードを決めてください。
 この仮パスワードは {{PLURAL:$5|$5 日間}}で有効期限が切れます。
@@ -1049,6 +1049,10 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
 'noarticletext-nopermission' => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができます。',
+'missing-revision' => '「{{PAGENAME}}」というページの版番号 $1 の版は存在しません。
+
+通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
+詳細は[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
 'userpage-userdoesnotexist' => '「$1」という利用者アカウントは登録されていません。
 このページの作成/編集が適切かご確認ください。',
 'userpage-userdoesnotexist-view' => '利用者アカウント「$1」は登録されていません。',
@@ -1188,7 +1192,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 下記の差分を確認して、本当に取り消していいか検証してください。よろしければ変更を保存して取り消しを完了してください。',
 'undo-failure' => '中間の版での編集と競合したため、取り消せませんでした。',
 'undo-norev' => '取り消そうとした編集が存在しないか削除済みのため取り消せませんでした。',
-'undo-summary' => '[[Special:Contributions/$2|$2]]（[[User talk:$2|トーク]]）による第$1版を取り消し',
+'undo-summary' => '[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による版 $1 を取り消し',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'アカウントを作成できません',
@@ -1315,7 +1319,8 @@ $1",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
 記録を確認してください。',
 'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
-'revdelete-reason-dropdown' => '*よくある削除理由
+'revdelete-reason-dropdown' => '
+*よくある削除理由
 ** 著作権侵害
 ** 名誉毀損のおそれ
 ** 非公開個人情報',
@@ -1371,6 +1376,10 @@ $1",
 'editundo' => '取り消し',
 'diff-multi' => '（{{PLURAL:$2|$2人の利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
 'diff-multi-manyusers' => '（{{PLURAL:$2|$2人を超える利用者}}による、{{PLURAL:$1|間の$1版}}が非表示）',
+'difference-missing-revision' => '指定された{{PLURAL:$2|$2版}}の差分 ($1) が見つかりませんでした。
+
+通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
+詳細は[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]を参照してください。',
 
 # Search results
 'searchresults' => '検索結果',
@@ -1407,8 +1416,8 @@ $1",
 'search-result-size' => '$1（{{PLURAL:$2|$2単語}}）',
 'search-result-category-size' => '{{PLURAL:$1|$1件}}（{{PLURAL:$2|$2下位カテゴリ}}、{{PLURAL:$3|$3ファイル}}）',
 'search-result-score' => '関連度：$1%',
-'search-redirect' => '（$1からのリダイレクト）',
-'search-section' => '（$1の節）',
+'search-redirect' => '($1からのリダイレクト)',
+'search-section' => '($1の節)',
 'search-suggest' => 'もしかして：$1',
 'search-interwiki-caption' => '姉妹プロジェクト',
 'search-interwiki-default' => '$1の結果：',
@@ -1428,10 +1437,10 @@ $1",
 'search-nonefound' => '問い合わせに合致する検索結果はありませんでした。',
 'powersearch' => '高度な検索',
 'powersearch-legend' => '高度な検索',
-'powersearch-ns' => '名前空間を指定して検索：',
+'powersearch-ns' => '名前空間を指定して検索:',
 'powersearch-redir' => 'リダイレクトを表示',
-'powersearch-field' => '検索対象：',
-'powersearch-togglelabel' => 'チェックを入れる：',
+'powersearch-field' => '検索対象',
+'powersearch-togglelabel' => 'チェックを入れる:',
 'powersearch-toggleall' => 'すべて',
 'powersearch-togglenone' => 'すべて外す',
 'search-external' => '外部検索',
@@ -2288,13 +2297,13 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 # Special:AllPages
 'allpages' => '全ページ',
 'alphaindexline' => '$1から$2まで',
-'nextpage' => '次のページ（$1）',
-'prevpage' => '前のページ（$1）',
+'nextpage' => '次のページ ($1)',
+'prevpage' => '前のページ ($1)',
 'allpagesfrom' => '最初に表示するページ：',
 'allpagesto' => '最後に表示するページ：',
 'allarticles' => '全ページ',
-'allinnamespace' => '全ページ（$1名前空間）',
-'allnotinnamespace' => '全ページ（$1名前空間を除く）',
+'allinnamespace' => '全ページ ($1名前空間)',
+'allnotinnamespace' => '全ページ ($1名前空間以外)',
 'allpagesprev' => '前へ',
 'allpagesnext' => '次へ',
 'allpagessubmit' => '表示',
@@ -2405,7 +2414,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'emailccsubject' => '$1に送信したメールの控え：$2',
 'emailsent' => 'メールを送信しました',
 'emailsenttext' => 'メールを送信しました。',
-'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメールを送信」機能でお送りしました。',
+'emailuserfooter' => 'このメールは$1から$2へ、{{SITENAME}}の「利用者にメールを送信」機能で送信されました。',
 
 # User Messenger
 'usermessage-summary' => 'システムメッセージを残す。',
@@ -2674,15 +2683,15 @@ $1',
 'tooltip-invert' => '選択した名前空間（チェックされている場合は、関連付けられた名前空間も）のページの変更を非表示にするには、このボックスにチェックを入れる',
 'namespace_association' => '対応付けられた名前空間',
 'tooltip-namespace_association' => '選択した名前空間に関連付けられているトークページまたは対象の名前空間も含めるには、このボックスにチェックを入れる',
-'blanknamespace' => '（標準）',
+'blanknamespace' => '(標準)',
 
 # Contributions
 'contributions' => '利用者の投稿記録',
 'contributions-title' => '$1の投稿記録',
 'mycontris' => '自分の投稿記録',
-'contribsub2' => '利用者:$1（$2）',
+'contribsub2' => '利用者: $1 ($2)',
 'nocontribs' => 'これらの条件に一致する変更は見つかりませんでした。',
-'uctop' => '（最新）',
+'uctop' => '(最新)',
 'month' => 'これ以前の月：',
 'year' => 'これ以前の年：',
 
@@ -2928,8 +2937,8 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 手動で統合してください。'''",
 'movedto' => '移動先：',
 'movetalk' => '付随するトークページも移動',
-'move-subpages' => '下位ページも移動（$1 件まで）',
-'move-talk-subpages' => 'トークページの下位ページも移動（$1 件まで）',
+'move-subpages' => '下位ページも移動 ($1 件まで)',
+'move-talk-subpages' => 'トークページの下位ページも移動 ($1 件まで)',
 'movepage-page-exists' => 'ページ「$1」は既に存在するため、自動的な上書きはできませんでした。',
 'movepage-page-moved' => 'ページ「$1」は「$2」に移動しました。',
 'movepage-page-unmoved' => 'ページ「$1」は「$2」に移動できませんでした。',
@@ -3060,7 +3069,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'import-parse-failure' => 'XMLの取り込み構文解析に失敗しました',
 'import-noarticle' => '取り込むページがありません！',
 'import-nonewrevisions' => 'すべての版は以前に取り込み済みです。',
-'xml-error-string' => '$1、$2行の$3文字目（$4バイト目）：$5',
+'xml-error-string' => '$1、$2 行の $3 文字目 ($4バイト目): $5',
 'import-upload' => 'XMLデータをアップロード',
 'import-token-mismatch' => 'セッションデータを損失しました。
 もう一度試してください。',
@@ -3248,7 +3257,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'pageinfo-edits' => '総編集回数',
 'pageinfo-authors' => '総投稿者数',
 'pageinfo-recent-edits' => '最近の編集回数 (過去 $1)',
-'pageinfo-restriction' => 'ページ保護 (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'ページ保護 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'マジック {{PLURAL:$1|ワード}} ($1)',
 'pageinfo-hidden-categories' => '隠し{{PLURAL:$1|カテゴリ}} ($1)',
 'pageinfo-templates' => '参照読み込みされた{{PLURAL:$1|テンプレート}} ($1)',
@@ -3281,7 +3290,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'log-show-hide-patrol' => '巡回記録を$1',
 
 # Image deletion
-'deletedrevision' => '古い版$1を削除しました',
+'deletedrevision' => '古い版 $1 を削除しました',
 'filedeleteerror-short' => 'ファイル削除エラー：$1',
 'filedeleteerror-long' => 'ファイルの削除中にエラーが発生しました：
 
@@ -3326,7 +3335,7 @@ $1',
 'newimages-summary' => 'この特別ページでは、最近アップロードされたファイルを表示します。',
 'newimages-legend' => '絞り込み',
 'newimages-label' => 'ファイル名（またはその一部）：',
-'showhidebots' => '（ボットを$1）',
+'showhidebots' => '(ボットを$1)',
 'noimages' => '表示できるものがありません。',
 'ilsubmit' => '検索',
 'bydate' => '日付順',
@@ -3460,7 +3469,7 @@ Variants for Chinese language
 'exif-compressedbitsperpixel' => '画像圧縮モード',
 'exif-pixelydimension' => '実効画像の幅',
 'exif-pixelxdimension' => '実効画像の高さ',
-'exif-usercomment' => 'ユーザコメント',
+'exif-usercomment' => 'ユーザー コメント',
 'exif-relatedsoundfile' => '関連音声ファイル',
 'exif-datetimeoriginal' => '原画像データの生成日時',
 'exif-datetimedigitized' => 'デジタルデータの作成日時',

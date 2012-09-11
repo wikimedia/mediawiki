@@ -1649,7 +1649,8 @@ Please check the logs.',
 'revdelete-only-restricted'   => 'Error hiding the item dated $2, $1: You cannot suppress items from view by administrators without also selecting one of the other visibility options.',
 'revdelete-reason-dropdown'   => '*Common delete reasons
 ** Copyright violation
-** Inappropriate personal information
+** Inappropriate comment or personal information
+** Inappropriate username
 ** Potentially libelous information',
 'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-reasonotherlist'   => 'Other reason',
@@ -3764,7 +3765,7 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-authors'             => 'Total number of distinct authors',
 'pageinfo-recent-edits'        => 'Recent number of edits (within past $1)',
 'pageinfo-recent-authors'      => 'Recent number of distinct authors',
-'pageinfo-restriction'         => 'Page protection (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction'         => 'Page protection ({{lcfirst:$1}})',
 'pageinfo-magic-words'         => 'Magic {{PLURAL:$1|word|words}} ($1)',
 'pageinfo-hidden-categories'   => 'Hidden {{PLURAL:$1|category|categories}} ($1)',
 'pageinfo-templates'           => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',

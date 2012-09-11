@@ -69,7 +69,7 @@ class SpecialTags extends SpecialPage {
 		}
 
 		$newRow = '';
-		$newRow .= Xml::tags( 'td', null, Xml::element( 'tt', null, $tag ) );
+		$newRow .= Xml::tags( 'td', null, Xml::element( 'code', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
 		$disp .= ' ';

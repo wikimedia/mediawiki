@@ -1216,7 +1216,9 @@ Xin hãy kiểm tra nhật trình.',
 'revdelete-only-restricted' => 'Có lỗi khi ẩn mục vào $2, $1: nếu ẩn mục để cho bảo quản viên khỏi nhìn thấy được thì cũng cần chọn một trong những tùy chọn ẩn khác.',
 'revdelete-reason-dropdown' => '*Các lý do thường gặp khi xóa
 ** Vi phạm bản quyền
-** Thông tin cá nhân không thích hợp',
+** Bình luận hoặc thông tin cá nhân không thích hợp
+** Tên người dùng không thích hợp
+** Thông tin có thể bôi nhọ người khác',
 'revdelete-otherreason' => 'Lý do khác/bổ sung:',
 'revdelete-reasonotherlist' => 'Lý do khác',
 'revdelete-edit-reasonlist' => 'Sửa lý do xóa',
@@ -3102,7 +3104,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'pageinfo-authors' => 'Tổng số tác giả riêng',
 'pageinfo-recent-edits' => 'Số lần sửa đổi gần đây (trong $1 qua)',
 'pageinfo-recent-authors' => 'Số người dùng sửa đổi gần đây',
-'pageinfo-restriction' => 'Mức khóa trang (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Mức khóa trang ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Từ thần chú ($1)',
 'pageinfo-hidden-categories' => 'Thể loại ẩn ($1)',
 'pageinfo-templates' => 'Bản mẫu được nhúng ($1)',

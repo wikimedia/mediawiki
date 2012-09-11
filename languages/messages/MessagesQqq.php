@@ -26,6 +26,7 @@
  * @author Brest
  * @author BrokenArrow
  * @author Byrial
+ * @author BáthoryPéter
  * @author Claudia Hattitten
  * @author Codex Sinaiticus
  * @author Crt
@@ -462,7 +463,8 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'toolbox' => 'The title of the toolbox below the search menu.',
 'otherlanguages' => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.
 {{Identical|Otherlanguages}}',
-'redirectedfrom' => 'The text displayed when a certain page is redirected to another page. Variable <tt>$1</tt> contains the name of the page user came from.',
+'redirectedfrom' => 'The text displayed when a certain page is redirected to another page.
+*<tt>$1</tt> contains the name of the page user came from.',
 'redirectpagesub' => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.
 
 {{Identical|Redirect page}}',
@@ -544,7 +546,7 @@ Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedi
 Appears in subtitle
 * $1 is a link to the page (HTML)',
 'retrievedfrom' => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
-'youhavenewmessages' => 'The blue message appearing when someone edited your user talk page.
+'youhavenewmessages' => 'The yellow message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
 'newmessageslink' => 'This is the first link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $1).
 
@@ -3492,7 +3494,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-recent-edits' => 'The number of times the page has been edited recently. $1 is a localised duration (e.g. 9 days).',
 'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
 'pageinfo-restriction' => 'Parameters:
-* $1 is the type of page protection (message restriction-$type, preferably in lowercase). If your language doesn\'t have small and capital letters, you can simply write <nowiki><code>$1</code></nowiki>.',
+* $1 is the type of page protection (message restriction-$type, preferably in lowercase). If your language doesn\'t have small and capital letters, you can simply write <nowiki>$1</nowiki>.',
 'pageinfo-magic-words' => 'The list of magic words on the page. Parameters:
 * $1 is the number of magic words on the page.',
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:

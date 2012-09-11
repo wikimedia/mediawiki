@@ -931,7 +931,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-text' => 'Bitte dieses Formular ausfüllen, um per E-Mail eine Erinnerung zu den Anmeldeinformationen deines Benutzerkontos zu erhalten.',
 'passwordreset-legend' => 'Passwort zurücksetzen',
 'passwordreset-disabled' => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
-'passwordreset-pretext' => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
+'passwordreset-pretext' => '{{PLURAL:$1||Gib eines der folgenden Daten ein.}}',
 'passwordreset-username' => 'Benutzername:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Die E-Mail-Nachricht ansehen?',
@@ -1317,7 +1317,9 @@ Bitte prüfe die Logbücher.',
 'revdelete-only-restricted' => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Du kannst keinen Eintrag vor Administratoren verstecken, ohne eine der anderen Ansichtsoptionen gewählt zu haben.',
 'revdelete-reason-dropdown' => '*Allgemeine Löschgründe
 ** Urheberrechtsverletzung
-** Unangebrachte persönliche Informationen',
+** Unangebrachte Kommentare oder persönliche Informationen
+** Unangebrachter Benutzername
+** Potentiell beleidigende Informationen',
 'revdelete-otherreason' => 'Anderer/ergänzender Grund:',
 'revdelete-reasonotherlist' => 'Anderer Grund',
 'revdelete-edit-reasonlist' => 'Löschgründe bearbeiten',
@@ -1678,8 +1680,8 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 # User rights log
 'rightslog' => 'Rechte-Logbuch',
 'rightslogtext' => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
-'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
-'rightslogentry-autopromote' => 'wurde automatisch von „$2“ nach „$3“ zugeordnet',
+'rightslogentry' => 'änderte die Benutzerrechte für „$1“ von „$2“ zu „$3“',
+'rightslogentry-autopromote' => 'wurde automatisch von „$2“ zu „$3“ zugeordnet',
 'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2976,7 +2978,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'import-interwiki-source' => 'Quell-Wiki/-Seite:',
 'import-interwiki-history' => 'Alle Versionen dieser Seite importieren',
 'import-interwiki-templates' => 'Alle Vorlagen einschließen',
-'import-interwiki-submit' => 'Import',
+'import-interwiki-submit' => 'Importieren',
 'import-interwiki-namespace' => 'Zielnamensraum:',
 'import-interwiki-rootpage' => 'Zielstammseite (optional):',
 'import-upload-filename' => 'Dateiname:',
@@ -3190,7 +3192,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-authors' => 'Gesamtzahl unterschiedlicher Autoren',
 'pageinfo-recent-edits' => 'Anzahl der kürzlich erfolgten Bearbeitungen (innerhalb von $1)',
 'pageinfo-recent-authors' => 'Anzahl der unterschiedlichen Autoren',
-'pageinfo-restriction' => 'Seitenschutz (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Seitenschutz ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisches Wort|Magische Wörter}} ($1)',
 'pageinfo-hidden-categories' => 'Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)',

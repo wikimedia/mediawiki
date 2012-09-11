@@ -529,7 +529,7 @@ just a test"
 		$handler = ContentHandler::getForModelID( $title->getContentModel() );
 		$content = ContentHandler::makeContent( $text, $title );
 
-		$updates = $content->getDeletionUpdates( $title );
+		$updates = $content->getDeletionUpdates( WikiPage::factory( $title ) );
 
 		// make updates accessible by class name
 		foreach ( $updates as $update ) {

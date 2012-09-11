@@ -246,6 +246,7 @@ $messages = array(
 'listingcontinuesabbrev' => '(дәвом)',
 'index-category' => 'Индекс быә сәһифон.',
 'noindex-category' => 'Индекс нибыә саһифон',
+'broken-file-category' => 'Сәһифон де ко ныкардә фајлинә сәбонон',
 
 'about' => 'Тәсвир',
 'article' => 'Мәғолә',
@@ -360,7 +361,7 @@ $messages = array(
 'privacy' => 'Мәхфијәти сијосәт',
 'privacypage' => 'Project:Мәхфијәти сијосәт',
 
-'badaccess' => 'Иҹазә хәта.',
+'badaccess' => 'Дастрәси ғәләт',
 'badaccess-group0' => 'Ын фәалијјәти ичра карде әзынишон.',
 
 'ok' => 'OK',
@@ -368,6 +369,7 @@ $messages = array(
 'youhavenewmessages' => 'Шымә сәјоне $1 ($2).',
 'newmessageslink' => 'нујә хәбон',
 'newmessagesdifflink' => 'охонә дәгиши',
+'newmessagesdifflinkplural' => '$1 {{PLURAL:$1|охонә дәгиши|охонә дәгишон}}',
 'editsection' => 'Сәрост кардеј',
 'editold' => 'Сәрост кардеј',
 'viewsourceold' => 'бешемонә коди дијә кардеј',
@@ -405,15 +407,16 @@ $messages = array(
 Хаһиш кардәмон че сәһифә URL-и бә [[Special:ListUsers/sysop|администратори]] бывғандәнән.',
 'missingarticle-rev' => '(рәвојәт#: $1)',
 'missingarticle-diff' => '(Фәрг: $1, $2)',
-'internalerror' => 'Дахили хәта',
-'internalerror_info' => 'Дахили хәта: $1',
-'fileappenderrorread' => 'Әлавон гејд карде быәдә"$1" һанде ныбе.',
-'formerror' => 'Хәта: Че формә мәлумотон әкс карде ғерри мумкуне.',
+'internalerror' => 'Дыләтонә ғәләт',
+'internalerror_info' => 'Дыләтонә ғәләт: $1',
+'fileappenderrorread' => 'Әловон ғејд карде быәдә"$1" һанде ныбе.',
+'formerror' => 'Сәһв: Че формә мәлумотон әкс карде ғерри мымкуне.',
 'cannotdelete-title' => 'Сәһифә әбыни рәдд кардеј "$1"',
 'badtitle' => 'Роныдоә ном',
 'badtitletext' => 'Ахтар кардә быә сәһифә ном сәһве, тәјлије, јаанки сәрост доә быәнин мијонзывонон ја мијонвики номон.
 Бе бәзне ки кали рәмзон сәрловһәдә око дој әбыни.',
 'viewsource' => 'Дијә кардеј',
+'exception-nologin' => 'Ыштәни едаштәнијоне',
 
 # Login and logout pages
 'yourname' => 'Иштирокәкә ном:',
@@ -435,6 +438,7 @@ $messages = array(
 'gotaccountlink' => 'Ыштәни едаштеј',
 'userlogin-resetlink' => 'Бә системә дәше мәлумоти јодәдә бекардәјоне?',
 'createaccountmail' => 'бә е-номә',
+'createaccountreason' => 'Сәбәб:',
 'mailmypassword' => 'Нујә парол вығандеј бә Е-номә.',
 'loginlanguagelabel' => 'Зывон: $1',
 
@@ -556,6 +560,7 @@ $messages = array(
 'revdelete-show-file-submit' => 'Бәле',
 'revdelete-radio-set' => 'Бәле',
 'revdelete-radio-unset' => 'Не',
+'revdelete-log' => 'Сәбәб:',
 'revdel-restore' => 'Винде дәрәҹә дәгиш карде',
 'revdel-restore-deleted' => 'Рәдд кардә быә рәвојәтон',
 'revdel-restore-visible' => 'Чијә рәвојәтон',
@@ -605,7 +610,7 @@ $messages = array(
 'powersearch-toggleall' => 'Һәммәј',
 
 # Preferences page
-'preferences' => 'Чичсә печыније',
+'preferences' => 'Кукон',
 'mypreferences' => 'Кукон',
 'prefsnologin' => 'Ыштәни едаштәнијоне',
 'prefsnologintext' => 'Шымә бәбе <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ыштәни едәштән]</span> бо иштирокәкә пеғәндон дәгиш кардеј.',
@@ -614,7 +619,9 @@ $messages = array(
 'prefs-user-pages' => 'Иштирокәкә сәһифон',
 'prefs-rc' => 'Ән нујә дәгишон',
 'prefs-changeemail' => 'Е-номә дәгиш кардеј',
+'prefs-email' => 'Е-номә кукон',
 'saveprefs' => 'Огәтеј',
+'rows' => 'Сәтырон:',
 'searchresultshead' => 'Нәве',
 'timezoneregion-america' => 'Америка',
 'timezoneregion-europe' => 'Авропа',
@@ -629,6 +636,9 @@ $messages = array(
 'email' => 'E-номә',
 'prefs-help-email' => 'Е-номә унвони нывыштеј һукман ни, интаси ав бә шымә гәрәк бәбе гирам шымә пароли виро бебәкардејон.',
 'prefs-help-email-others' => 'Комәг бәка бә ҹо иштироәкон шымә е-номә унвони оныкарде, че шымә шәхси сәһифәдә быә линки де шымә әлогә огәтеј.',
+
+# User rights
+'userrights-reason' => 'Сәбәб:',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Ым сәһифә сәрост кардеј',
@@ -713,6 +723,10 @@ $messages = array(
 'sharedupload-desc-here' => 'Ым фајл чыјо пегәтә быә $1 ијән бәзыне истифодә бе бә ҹо нәхшонәдә.
 Мәлумот чн әчәј [$2 тәсвири сәһифәку] бә жиј доә быә.',
 
+# File deletion
+'filedelete-comment' => 'Сәбәб:',
+'filedelete-submit' => 'Рәдд кардеј',
+
 # Random page
 'randompage' => 'Рајрастә мәғолә',
 
@@ -774,6 +788,7 @@ $messages = array(
 'actioncomplete' => 'Һәрәкәт иҹро кардә быә',
 'actionfailed' => 'Һәрәкәт иҹро кардә бәни',
 'dellogpage' => 'Рәдд кардә быә чијон журнал',
+'deletecomment' => 'Сәбәб:',
 
 # Rollback
 'rollbacklink' => 'Окырнијеј',
@@ -781,10 +796,12 @@ $messages = array(
 # Protect
 'protectlogpage' => 'Мыдофијә журнал',
 'protectedarticle' => 'мыдофијә быә "[[$1]]"',
+'protectcomment' => 'Сәбәб:',
 
 # Undelete
 'undeletelink' => 'чәшику дәвонијеј/бәрпо кардеј',
 'undeleteviewlink' => 'тәмшо кардеј',
+'undeletecomment' => 'Сәбәб:',
 'undelete-search-submit' => 'Нәве',
 'undelete-show-file-submit' => 'Бәле',
 
@@ -831,6 +848,7 @@ $messages = array(
 'whatlinkshere-filters' => 'Филтрон',
 
 # Block/unblock
+'ipbreason' => 'Сәбәб:',
 'ipboptions' => '2 саат:2 hours,1 руж:1 day,3 руж:3 days,1 һафтә:1 week,2 һафтә:2 weeks,1 манг:1 month,3 манг:3 months,6 манг:6 months,1 сор:1 year,бемыһләт:infinite',
 'ipblocklist' => 'Бастә быә иштирокәкон',
 'blocklink' => 'Бә гырд гәтеј',
@@ -855,7 +873,7 @@ $messages = array(
 # Namespace 8 related
 'allmessagesname' => 'Хәбә',
 'allmessagesdefault' => 'Иминә огәтә быә мәтн',
-'allmessages-filter-all' => 'Һаммај',
+'allmessages-filter-all' => 'Һәммәј',
 'allmessages-filter-submit' => 'Давард',
 
 # Thumbnails
@@ -920,7 +938,7 @@ $messages = array(
 'tooltip-summary' => 'Кыртә тәсвир бынывыштән',
 
 # Info page
-'pageinfo-header-edits' => 'Сәрост кардеј',
+'pageinfo-header-edits' => 'Дәгиш кардә быә чијон тарых',
 
 # Browsing diffs
 'previousdiff' => '← Навынәни дәгиши',

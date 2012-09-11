@@ -1167,9 +1167,10 @@ $1",
 'revdelete-no-change' => "'''Attenzione:''' l'oggetto con data $1 $2 aveva già le impostazioni di visibilità richieste.",
 'revdelete-concurrent-change' => "Impossibile modificare l'oggetto con data $1 $2 in quanto il suo stato è stato modificato da un altro utente mentre se ne tentava la modifica.",
 'revdelete-only-restricted' => "Errore nel nascondere l'oggetto datato $1, $2: non è possibile nascondere gli oggetti alla vista degli amministratori senza selezionare almeno un'altra delle opzioni di rimozione.",
-'revdelete-reason-dropdown' => '*Motivazioni più comuni per la cancellazione
+'revdelete-reason-dropdown' => '* Motivazioni più comuni per la cancellazione
 ** Violazione di copyright
-** Informazioni personali inappropriate
+** Commenti o informazioni personali inappropriate
+** Nome utente inappropriato
 ** Informazione potenzialmente diffamatoria',
 'revdelete-otherreason' => 'Altra motivazione o motivazione aggiuntiva:',
 'revdelete-reasonotherlist' => 'Altra motivazione',
@@ -3017,7 +3018,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-authors' => 'Numero totale di autori diversi',
 'pageinfo-recent-edits' => 'Numero di modifiche recenti (negli ultimi $1)',
 'pageinfo-recent-authors' => 'Numero di autori diversi recenti',
-'pageinfo-restriction' => 'Protezione della pagina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protezione della pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola magica|Parole magiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}} ($1)',
 'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',

@@ -85,7 +85,6 @@ class Title {
 	var $mLength = -1;                // /< The page length, 0 for special pages
 	var $mRedirect = null;            // /< Is the article at this title a redirect?
 	var $mNotificationTimestamp = array(); // /< Associative array of user ID -> timestamp/false
-	var $mBacklinkCache = null;       // /< Cache of links to this title
 	var $mHasSubpage;                 // /< Whether a page has any subpages
 	// @}
 
@@ -4479,6 +4478,11 @@ class Title {
 			'rd_title' => $this->getDBkey(),
 			'rd_from = page_id'
 		);
+		if ( $this->isExternal() ) {
+			$where['rd_interwiki'] = $this->getInterwiki();
+		} else {
+			$where[] = 'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL';
+		}
 		if ( !is_null( $ns ) ) {
 			$where['page_namespace'] = $ns;
 		}
@@ -4523,11 +4527,8 @@ class Title {
 	 *
 	 * @return BacklinkCache
 	 */
-	function getBacklinkCache() {
-		if ( is_null( $this->mBacklinkCache ) ) {
-			$this->mBacklinkCache = new BacklinkCache( $this );
-		}
-		return $this->mBacklinkCache;
+	public function getBacklinkCache() {
+		return BacklinkCache::get( $this );
 	}
 
 	/**
@@ -4626,7 +4627,6 @@ class Title {
 		//NOTE: ContentHandler::getPageViewLanguage() may need to load the content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
 		$pageLang = $contentHandler->getPageViewLanguage( $this );
-
 		return $pageLang;
 	}
 }

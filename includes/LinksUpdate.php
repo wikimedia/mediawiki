@@ -39,6 +39,8 @@ class LinksUpdate extends SqlDataUpdate {
 		$mCategories,    //!< Map of category names to sort keys
 		$mInterlangs,    //!< Map of language codes to titles
 		$mProperties,    //!< Map of arbitrary name to value
+		$mDb,            //!< Database connection reference
+		$mOptions,       //!< SELECT options to be used (array)
 		$mRecursive;     //!< Whether to queue jobs for recursive updates
 
 	/**
@@ -816,20 +818,20 @@ class LinksUpdate extends SqlDataUpdate {
  **/
 class LinksDeletionUpdate extends SqlDataUpdate {
 
-	protected $mTitle;     //!< Title the title of page that was deleted
+	protected $mPage;     //!< WikiPage the wikipage that was deleted
 
 	/**
 	 * Constructor
 	 *
 	 * @param $page WikiPage Page we are updating
 	 */
-	function __construct( Title $title ) {
+	function __construct( WikiPage $page ) {
 		parent::__construct( false ); // no implicit transaction
 
-		$this->mTitle = $title;
+		$this->mPage = $page;
 
-		if ( !$title->getArticleID() ) {
-			throw new MWException( "The Title object did not provide an article ID. Perhaps the page doesn't exist?" );
+		if ( !$page->getId() ) {
+			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
 		}
 	}
 
@@ -837,8 +839,8 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	 * Do some database updates after deletion
 	 */
 	public function doUpdate() {
-		$title = $this->mTitle;
-		$id = $title->getArticleID();
+		$title = $this->mPage->getTitle();
+		$id = $this->mPage->getId();
 
 		# Delete restrictions for it
 		$this->mDb->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
@@ -851,7 +853,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 			$cats [] = $row->cl_to;
 		}
 
-		$this->updateCategoryCounts( array(), $cats );
+		$this->mPage->updateCategoryCounts( array(), $cats );
 
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$this->mDb->cascadingDeletes() ) {

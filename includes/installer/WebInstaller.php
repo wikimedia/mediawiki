@@ -376,7 +376,7 @@ class WebInstaller extends Installer {
 		$args = func_get_args();
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
-		$msg = wfMsgReal( $msg, $args, false, false, false );
+		$msg = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$this->output->addHTML( $this->getErrorBox( $msg ) );
 	}
 
@@ -655,7 +655,7 @@ class WebInstaller extends Installer {
 		$args = func_get_args();
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
-		$text = wfMsgReal( $msg, $args, false, false, false );
+		$text = wfMessage( $msg, $args )->useDatabase( false )->plain();
 		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
@@ -685,7 +685,7 @@ class WebInstaller extends Installer {
 		$args = func_get_args();
 		array_shift( $args );
 		$html = '<div class="config-message">' .
-			$this->parse( wfMsgReal( $msg, $args, false, false, false ) ) .
+		$this->parse( wfMessage( $msg, $args )->useDatabase( false )->plain() ) .
 			"</div>\n";
 		$this->output->addHTML( $html );
 	}

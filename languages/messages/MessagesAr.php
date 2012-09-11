@@ -1417,8 +1417,9 @@ $1",
 'revdelete-only-restricted' => 'خطأ إخفاء العنصر المؤرخ $2, $1: لا تستطيع تنحية العناصر من عرض الإداريين بدون أن تحدد أيضا إحدى خيارات التنحية الأخرى.',
 'revdelete-reason-dropdown' => '* أسباب حذف عامة
 ** خرق لحقوق النشر
-** معلومات شخصية غير ملائمة
-**معلومات تشهيرية محتملة',
+** تعليق أو معلومات شخصية غير ملائمة
+** اسم مستخدم غير ملائم
+** معلومات تشهيرية محتملة',
 'revdelete-otherreason' => 'سبب آخر/إضافي:',
 'revdelete-reasonotherlist' => 'سبب آخر',
 'revdelete-edit-reasonlist' => 'عدل أسباب الحذف',
@@ -2648,8 +2649,8 @@ $UNWATCHURL
 'protect-title' => 'ضبط مستوى الحماية ل"$1"',
 'protect-title-notallowed' => 'عرض مستوى الحماية ل "$1"',
 'prot_1movedto2' => 'نُقلت [[$1]] إلى [[$2]]',
-'protect-badnamespace-title' => 'مساحة إسم غير محمية',
-'protect-badnamespace-text' => 'لا يمكن حماية الصفحات الموجودة في مساحة الإسم',
+'protect-badnamespace-title' => 'نطاق لا يحمى',
+'protect-badnamespace-text' => 'صفحات هذا النطاق لا يمكن حمايتها',
 'protect-legend' => 'تأكيد الحماية',
 'protectcomment' => 'السبب:',
 'protectexpiry' => 'تنتهي في:',
@@ -3158,7 +3159,7 @@ $1',
 'import-error-edit' => 'الصفحة "$1" لم يتم استيرادها لأنه لا يمكن لك تحريرها.',
 'import-error-create' => 'الصفحة "$1" لم يتم استيرادها لأنه لا يمكن لك استحداثها أصلا.',
 'import-error-interwiki' => 'تعذر أستيراد الصفحة "$1" بسبب أن إسمها محجوز للربط الخارجي (interwiki).',
-'import-error-special' => 'تعذر أستيراد الصفحة "$1" لأنها تنتمي إلى مساحة إسم خاصة تمنع الصفحات.',
+'import-error-special' => 'صفحة "$1" لم تستورد لأنها تنتمي إلى نطاق خاص يمنع الصفحات.',
 'import-error-invalid' => 'تعذر أستيراد الصفحة "$1" بسبب أن إسمها غير صحيح.',
 'import-options-wrong' => 'خطأ {{PLURAL:$2|خيار|خيارات}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'إن عنوان الصفحة الجذر المعطاة هي ذات عنوان غير صالح.',
@@ -3340,7 +3341,7 @@ $1',
 'pageinfo-authors' => 'عدد المؤلفين المختلفين',
 'pageinfo-recent-edits' => 'عدد التعديلات الأخيرة (خلال  $1 يوم/أيام)',
 'pageinfo-recent-authors' => 'عدد المؤلفين المختلفين الأخيرين',
-'pageinfo-restriction' => 'حماية الصفحة (<code>$1</code>)',
+'pageinfo-restriction' => 'حماية الصفحة ($1)',
 'pageinfo-magic-words' => 'السحرية {{PLURAL:$1|الكلمة|الكلمات}} ($1)',
 'pageinfo-hidden-categories' => 'مخفية {{PLURAL:$1|فئة|فئات}} ($1)',
 'pageinfo-templates' => 'متضمنة {{PLURAL:$1|قالب|قوالب}} ($1)',
@@ -4136,7 +4137,7 @@ $5
 
 # Signatures
 'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|نقاش]])',
-'timezone-utc' => 'بالتوقيت العالمي',
+'timezone-utc' => 'ت ع م',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',

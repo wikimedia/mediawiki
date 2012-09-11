@@ -1153,7 +1153,7 @@ class SkinTemplate extends Skin {
 			if ( $revid ) {
 				$nav_urls['permalink'] = array(
 					'text' => $this->msg( 'permalink' )->text(),
-					'href' => $out->getTitle()->getLocalURL( "oldid=$revid" )
+					'href' => $this->getTitle()->getLocalURL( "oldid=$revid" )
 				);
 			}
 
@@ -1181,9 +1181,8 @@ class SkinTemplate extends Skin {
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
 			);
 
-			$logPage = SpecialPage::getTitleFor( 'Log' );
 			$nav_urls['log'] = array(
-				'href' => $logPage->getLocalUrl( array( 'user' => $rootUser ) )
+				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
 			);
 
 			if ( $this->getUser()->isAllowed( 'block' ) ) {

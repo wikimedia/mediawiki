@@ -47,55 +47,55 @@ class ApiQuery extends ApiBase {
 	private $params, $redirects, $convertTitles, $iwUrl;
 
 	private $mQueryPropModules = array(
+		'categories' => 'ApiQueryCategories',
+		'categoryinfo' => 'ApiQueryCategoryInfo',
+		'duplicatefiles' => 'ApiQueryDuplicateFiles',
+		'extlinks' => 'ApiQueryExternalLinks',
+		'images' => 'ApiQueryImages',
+		'imageinfo' => 'ApiQueryImageInfo',
 		'info' => 'ApiQueryInfo',
-		'revisions' => 'ApiQueryRevisions',
 		'links' => 'ApiQueryLinks',
 		'iwlinks' => 'ApiQueryIWLinks',
 		'langlinks' => 'ApiQueryLangLinks',
-		'images' => 'ApiQueryImages',
-		'imageinfo' => 'ApiQueryImageInfo',
+		'pageprops' => 'ApiQueryPageProps',
+		'revisions' => 'ApiQueryRevisions',
 		'stashimageinfo' => 'ApiQueryStashImageInfo',
 		'templates' => 'ApiQueryLinks',
-		'categories' => 'ApiQueryCategories',
-		'extlinks' => 'ApiQueryExternalLinks',
-		'categoryinfo' => 'ApiQueryCategoryInfo',
-		'duplicatefiles' => 'ApiQueryDuplicateFiles',
-		'pageprops' => 'ApiQueryPageProps',
 	);
 
 	private $mQueryListModules = array(
-		'allimages' => 'ApiQueryAllImages',
-		'allpages' => 'ApiQueryAllPages',
-		'alllinks' => 'ApiQueryAllLinks',
 		'allcategories' => 'ApiQueryAllCategories',
+		'allimages' => 'ApiQueryAllImages',
+		'alllinks' => 'ApiQueryAllLinks',
+		'allpages' => 'ApiQueryAllPages',
 		'allusers' => 'ApiQueryAllUsers',
 		'backlinks' => 'ApiQueryBacklinks',
 		'blocks' => 'ApiQueryBlocks',
 		'categorymembers' => 'ApiQueryCategoryMembers',
 		'deletedrevs' => 'ApiQueryDeletedrevs',
 		'embeddedin' => 'ApiQueryBacklinks',
+		'exturlusage' => 'ApiQueryExtLinksUsage',
 		'filearchive' => 'ApiQueryFilearchive',
 		'imageusage' => 'ApiQueryBacklinks',
 		'iwbacklinks' => 'ApiQueryIWBacklinks',
 		'langbacklinks' => 'ApiQueryLangBacklinks',
 		'logevents' => 'ApiQueryLogEvents',
+		'protectedtitles' => 'ApiQueryProtectedTitles',
+		'querypage' => 'ApiQueryQueryPage',
+		'random' => 'ApiQueryRandom',
 		'recentchanges' => 'ApiQueryRecentChanges',
 		'search' => 'ApiQuerySearch',
 		'tags' => 'ApiQueryTags',
 		'usercontribs' => 'ApiQueryContributions',
+		'users' => 'ApiQueryUsers',
 		'watchlist' => 'ApiQueryWatchlist',
 		'watchlistraw' => 'ApiQueryWatchlistRaw',
-		'exturlusage' => 'ApiQueryExtLinksUsage',
-		'users' => 'ApiQueryUsers',
-		'random' => 'ApiQueryRandom',
-		'protectedtitles' => 'ApiQueryProtectedTitles',
-		'querypage' => 'ApiQueryQueryPage',
 	);
 
 	private $mQueryMetaModules = array(
+		'allmessages' => 'ApiQueryAllMessages',
 		'siteinfo' => 'ApiQuerySiteinfo',
 		'userinfo' => 'ApiQueryUserInfo',
-		'allmessages' => 'ApiQueryAllMessages',
 	);
 
 	private $mSlaveDB = null;
@@ -111,7 +111,8 @@ class ApiQuery extends ApiBase {
 		parent::__construct( $main, $action );
 
 		// Allow custom modules to be added in LocalSettings.php
-		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules;
+		global $wgAPIPropModules, $wgAPIListModules, $wgAPIMetaModules,
+			$wgMemc, $wgAPICacheHelpTimeout;
 		self::appendUserModules( $this->mQueryPropModules, $wgAPIPropModules );
 		self::appendUserModules( $this->mQueryListModules, $wgAPIListModules );
 		self::appendUserModules( $this->mQueryMetaModules, $wgAPIMetaModules );
@@ -120,8 +121,22 @@ class ApiQuery extends ApiBase {
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
 
+		// Get array of query generators from cache if present
+		$key = wfMemcKey( 'apiquerygenerators', SpecialVersion::getVersion( 'nodb' ) );
+
+		if ( $wgAPICacheHelpTimeout > 0 ) {
+			$cached = $wgMemc->get( $key );
+			if ( $cached ) {
+				$this->mAllowedGenerators = $cached;
+				return;
+			}
+		}
 		$this->makeGeneratorList( $this->mQueryPropModules );
 		$this->makeGeneratorList( $this->mQueryListModules );
+
+		if ( $wgAPICacheHelpTimeout > 0 ) {
+			$wgMemc->set( $key, $this->mAllowedGenerators, $wgAPICacheHelpTimeout );
+		}
 	}
 
 	/**

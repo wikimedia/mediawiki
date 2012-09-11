@@ -2803,16 +2803,16 @@ A lassa gionté na spiegassion ant ël resumé.",
 
 # Spam protection
 'spamprotectiontitle' => 'Filtror dla rumenta',
-'spamprotectiontext' => "La pàgina che a vorìa salvé a l'é staita blocà dal filtror dla rumenta.
+'spamprotectiontext' => "Ël test che a vorìa salvé a l'é stàit blocà dal filtror dla rumenta.
 Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit estern ëd coj blocà.",
 'spamprotectionmatch' => "Cost-sì a l'é ël test che a l'é restà ciapà andrinta al filtror dla rumenta: $1",
 'spambot_username' => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
-'spam_reverting' => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
-'spam_blanking' => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
-'spam_deleting' => 'Tute le revision a contnisìo dle liure a $1, scancelament',
+'spam_reverting' => "Butà andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
+'spam_blanking' => "Pàgina dësvujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
+'spam_deleting' => 'Scancelà, dagià che tute le revision a contnisìo dle liure a $1',
 
 # Info page
-'pageinfo-title' => 'Anformassion për "$1"',
+'pageinfo-title' => 'Anformassion për «$1»',
 'pageinfo-header-basic' => 'Anformassion ëd base',
 'pageinfo-header-edits' => 'Modìfiche',
 'pageinfo-header-restrictions' => 'Protession ëd la pàgina',
@@ -2825,7 +2825,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-robot-index' => 'Indesàbil',
 'pageinfo-robot-noindex' => 'Nen indesàbil',
 'pageinfo-views' => 'Nùmer ëd vìsite',
-'pageinfo-watchers' => "Vàire ch'a ten-o sot-euj la pàgina",
+'pageinfo-watchers' => "Vàire utent ch'a ten-o sot-euj la pàgina",
 'pageinfo-redirects-name' => 'Ridiression a sta pàgina-sì',
 'pageinfo-subpages-name' => 'Sot-pàgine ëd costa pàgina',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ridiression|ridiression}}; $3 {{PLURAL:$3|nen ridiression|nen ridiression}})',
@@ -2837,25 +2837,25 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-authors' => "Nùmer d'autor diferent",
 'pageinfo-recent-edits' => "Nùmer ëd modìfiche recente (ant j'ùltim $1)",
 'pageinfo-recent-authors' => "Nùmer d'autor diferent recent",
-'pageinfo-restriction' => 'Protession ëd la pàgina (<code>{{lcfirst:$1}}</code>)',
+'pageinfo-restriction' => 'Protession ëd la pàgina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgica|Paròle màgiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
 
 # Patrolling
-'markaspatrolleddiff' => 'Marca coma verificà',
-'markaspatrolledtext' => "Marca st'artìcol-sì coma verificà",
+'markaspatrolleddiff' => 'Marché coma verificà',
+'markaspatrolledtext' => 'Marché costa pàgina coma verificà',
 'markedaspatrolled' => 'Marca dla verìfica butà',
 'markedaspatrolledtext' => "La version selessionà ëd [[:$1]] a l'é staita marcà coma verificà.",
 'rcpatroldisabled' => "Verìfica dj'ùltime modìfiche disabilità",
 'rcpatroldisabledtext' => "La possibilità ëd verifichè j'ùltime modìfiche a l'é disabilità.",
-'markedaspatrollederror' => 'As peul pa marchè verificà',
-'markedaspatrollederrortext' => 'A venta che a specìfica che version che a veul marchè verificà.',
-'markedaspatrollederror-noautopatrol' => 'A l\'ha nen ël përmess dë marchesse soe modìfiche coma "controlà".',
+'markedaspatrollederror' => 'As peul pa marché coma verificà',
+'markedaspatrollederrortext' => 'A venta che a spessìfica che version che a veul marchè coma verificà.',
+'markedaspatrollederror-noautopatrol' => "A l'ha nen ël përmess dë marchesse soe modìfiche coma «controlà».",
 
 # Patrol log
 'patrol-log-page' => 'Registr dij contròj',
-'patrol-log-header' => "Sto sì a l'é un registr ëd le revision verificà.",
+'patrol-log-header' => "Cost-sì a l'é un registr ëd le revision controlà.",
 'log-show-hide-patrol' => '$1 registr verificà',
 
 # Image deletion

@@ -969,7 +969,6 @@ Alla on viimeisin estolokin tapahtuma:',
 * '''Firefox ja Safari:''' Napsauta ''Shift''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5'' tai ''Ctrl-R'' (''⌘-R'' Macilla)
 * '''Google Chrome:''' Paina ''Ctrl-Shift-R'' (''⌘-Shift-R'' Macilla)
 * '''Internet Explorer:''' Napsauta ''Ctrl''-näppäin pohjassa ''Päivitä'' tai paina ''Ctrl-F5''
-* '''Konqueror''': Napsauta ''Päivitä'' tai paina ''F5''
 * '''Opera:''' Tyhjennä välimuisti: ''Tools→Preferences''",
 'usercssyoucanpreview' => 'Voit testata uutta CSS:ää ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
 'userjsyoucanpreview' => 'Voit testata uutta JavaScriptiä ennen tallennusta käyttämällä painiketta ”{{int:showpreview}}”.',
@@ -1119,7 +1118,7 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-comment' => '(muokkausyhteenveto poistettu)',
 'rev-deleted-user' => '(käyttäjänimi poistettu)',
 'rev-deleted-event' => '(lokitapahtuma poistettu)',
-'rev-deleted-user-contribs' => '[käyttäjänimi tai IP-osoite poistettu – muokkaus piilotettu muokkauksista]',
+'rev-deleted-user-contribs' => '[käyttäjänimi tai IP-osoite poistettu – muokkaus on piilotettu muokkausluettelosta]',
 'rev-deleted-text-permission' => "Tämä versio sivusta on '''poistettu'''.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 'rev-deleted-text-unhide' => "Tämä versio sivusta on '''poistettu'''.
@@ -2044,6 +2043,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|tavu|tavua}}',
 'ncategories' => '$1 {{PLURAL:$1|luokka|luokkaa}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki-linkki|interwiki-linkkiä}}',
 'nlinks' => '$1 {{PLURAL:$1|linkki|linkkiä}}',
 'nmembers' => '$1 {{PLURAL:$1|jäsen|jäsentä}}',
 'nrevisions' => '$1 {{PLURAL:$1|muutos|muutosta}}',
@@ -2072,6 +2072,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'mostlinkedtemplates' => 'Viitatuimmat mallineet',
 'mostcategories' => 'Luokitelluimmat sivut',
 'mostimages' => 'Viitatuimmat tiedostot',
+'mostinterwikis' => 'Sivut joilla on eniten kielilinkkejä',
 'mostrevisions' => 'Muokatuimmat sivut',
 'prefixindex' => 'Kaikki sivut katkaisuhaulla',
 'prefixindex-namespace' => 'Kaikki sivut etuliitteellä (nimiavaruus $1)',
@@ -2218,6 +2219,8 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'mailnologin' => 'Lähettäjän osoite puuttuu',
 'mailnologintext' => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]] ja [[Special:Preferences|asetuksissasi]] pitää olla toimiva ja <strong>varmennettu</strong> sähköpostiosoite, jotta voit lähettää sähköpostia muille käyttäjille.',
 'emailuser' => 'Lähetä sähköpostia tälle käyttäjälle',
+'emailuser-title-target' => 'Lähetä sähköpostia tälle {{GENDER:$1|käyttäjälle}}',
+'emailuser-title-notarget' => 'Lähetä sähköpostia käyttäjälle',
 'emailpage' => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext' => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror' => 'Postitus palautti virheen:',
@@ -3007,11 +3010,18 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 
 # Info page
 'pageinfo-title' => 'Tietoja sivusta $1',
-'pageinfo-header-edits' => 'Muokkaukset',
+'pageinfo-header-basic' => 'Perustiedot',
+'pageinfo-header-edits' => 'Muokkaushistoria',
+'pageinfo-header-restrictions' => 'Sivun suojaus',
+'pageinfo-header-properties' => 'Sivun ominaisuudet',
 'pageinfo-views' => 'Katselukertojen määrä',
-'pageinfo-watchers' => 'Tarkkailijoiden lukumäärä',
-'pageinfo-edits' => 'Muokkausten lukumäärä',
-'pageinfo-authors' => 'Eri tekijöiden lukumäärä',
+'pageinfo-watchers' => 'Sivun tarkkailijoiden lukumäärä',
+'pageinfo-redirects-name' => 'Sivulle johtavat ohjaukset',
+'pageinfo-subpages-name' => 'Sivun alasivut',
+'pageinfo-firstuser' => 'Sivun luoja',
+'pageinfo-lastuser' => 'Viimeisin muokkaaja',
+'pageinfo-edits' => 'Muokkausten kokonaismäärä',
+'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
 
 # Skin names
 'skinname-standard' => 'Perus',

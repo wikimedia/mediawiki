@@ -61,35 +61,35 @@ class UploadFromChunks extends UploadFromFile {
 		return true;
 	}
 	/**
-	 * Calls the parent stashFile and updates the uploadsession table to handle "chunks" 
+	 * Calls the parent stashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @return UploadStashFile stashed file
 	 */
 	public function stashFile() {
-		// Stash file is the called on creating a new chunk session: 
+		// Stash file is the called on creating a new chunk session:
 		$this->mChunkIndex = 0;
 		$this->mOffset = 0;
 		// Create a local stash target
 		$this->mLocalFile = parent::stashFile();
-		// Update the initial file offset ( based on file size ) 
+		// Update the initial file offset ( based on file size )
 		$this->mOffset = $this->mLocalFile->getSize();
 		$this->mFileKey = $this->mLocalFile->getFileKey();
 
 		// Output a copy of this first to chunk 0 location:
 		$status = $this->outputChunk( $this->mLocalFile->getPath() );
 
-		// Update db table to reflect initial "chunk" state 
+		// Update db table to reflect initial "chunk" state
 		$this->updateChunkStatus();
 		return $this->mLocalFile;
 	}
 
 	/**
 	 * Continue chunk uploading
-	 */	
+	 */
 	public function continueChunks( $name, $key, $webRequestUpload ) {
 		$this->mFileKey = $key;
 		$this->mUpload = $webRequestUpload;
-		// Get the chunk status form the db: 
+		// Get the chunk status form the db:
 		$this->getChunkStatus();
 
 		$metadata = $this->stash->getMetadata( $key );
@@ -105,7 +105,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * @return FileRepoStatus
 	 */
 	public function concatenateChunks() {
-		wfDebug( __METHOD__ . " concatenate {$this->mChunkIndex} chunks:" . 
+		wfDebug( __METHOD__ . " concatenate {$this->mChunkIndex} chunks:" .
 			$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
 		// Concatenate all the chunks to mVirtualTempPath
@@ -125,10 +125,10 @@ class UploadFromChunks extends UploadFromFile {
 		// Concatenate the chunks at the temp file
 		$status = $this->repo->concatenate( $fileList, $tmpPath, FileRepo::DELETE_SOURCE );
 		if( !$status->isOk() ){
-			return $status; 
+			return $status;
 		}
 		// Update the mTempPath and mLocalFile
-		// ( for FileUpload or normal Stash to take over )  
+		// ( for FileUpload or normal Stash to take over )
 		$this->mTempPath = $tmpPath; // file system path
 		$this->mLocalFile = parent::stashFile();
 
@@ -149,16 +149,16 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Returns the virtual chunk location: 	
+	 * Returns the virtual chunk location:
 	 * @param $index
 	 * @return string
 	 */
 	function getVirtualChunkLocation( $index ){
-		return $this->repo->getVirtualUrl( 'temp' ) . 
+		return $this->repo->getVirtualUrl( 'temp' ) .
 				'/' .
-				$this->repo->getHashPath( 
+				$this->repo->getHashPath(
 					$this->getChunkFileKey( $index )
-				) . 
+				) .
 				$this->getChunkFileKey( $index );
 	}
 
@@ -173,20 +173,20 @@ class UploadFromChunks extends UploadFromFile {
 	public function addChunk( $chunkPath, $chunkSize, $offset ) {
 		// Get the offset before we add the chunk to the file system
 		$preAppendOffset = $this->getOffset();
-		
+
 		if ( $preAppendOffset + $chunkSize > $this->getMaxUploadSize()) {
 			$status = Status::newFatal( 'file-too-large' );
 		} else {
 			// Make sure the client is uploading the correct chunk with a matching offset.
 			if ( $preAppendOffset == $offset ) {
-				// Update local chunk index for the current chunk   
+				// Update local chunk index for the current chunk
 				$this->mChunkIndex++;
 				$status = $this->outputChunk( $chunkPath );
 				if( $status->isGood() ){
-					// Update local offset: 
+					// Update local offset:
 					$this->mOffset = $preAppendOffset + $chunkSize;
-					// Update chunk table status db		
-					$this->updateChunkStatus();		
+					// Update chunk table status db
+					$this->updateChunkStatus();
 				}
 			} else {
 				$status = Status::newFatal( 'invalid-chunk-offset' );
@@ -196,16 +196,16 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Update the chunk db table with the current status: 
+	 * Update the chunk db table with the current status:
 	 */
 	private function updateChunkStatus(){
-		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" . 
+		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
 					$this->getOffset() . ' inx:' . $this->getChunkIndex() . "\n" );
 
 		$dbw = $this->repo->getMasterDb();
 		$dbw->update(
 			'uploadstash',
-			array( 
+			array(
 				'us_status' => 'chunks',
 				'us_chunk_inx' => $this->getChunkIndex(),
 				'us_size' => $this->getOffset()
@@ -219,12 +219,12 @@ class UploadFromChunks extends UploadFromFile {
 	 * Get the chunk db state and populate update relevant local values
 	 */
 	private function getChunkStatus(){
-		// get Master db to avoid race conditions. 
+		// get Master db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
 		$dbw = $this->repo->getMasterDb();
 		$row = $dbw->selectRow(
-			'uploadstash', 
-			array( 
+			'uploadstash',
+			array(
 				'us_chunk_inx',
 				'us_size',
 				'us_path',
@@ -241,7 +241,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Get the current Chunk index 
+	 * Get the current Chunk index
 	 * @return Integer index of the current chunk
 	 */
 	private function getChunkIndex(){
@@ -252,8 +252,8 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * Gets the current offset in fromt the stashedupload table 
-	 * @return Integer current byte offset of the chunk file set 
+	 * Gets the current offset in fromt the stashedupload table
+	 * @return Integer current byte offset of the chunk file set
 	 */
 	private function getOffset(){
 		if ( $this->mOffset !== null ){
@@ -272,11 +272,12 @@ class UploadFromChunks extends UploadFromFile {
 	private function outputChunk( $chunkPath ){
 		// Key is fileKey + chunk index
 		$fileKey = $this->getChunkFileKey();
-		
-		// Store the chunk per its indexed fileKey: 
+
+		// Store the chunk per its indexed fileKey:
 		$hashPath = $this->repo->getHashPath( $fileKey );
-		$storeStatus = $this->repo->store( $chunkPath, 'temp', "$hashPath$fileKey" );
-		
+		$storeStatus = $this->repo->quickImport( $chunkPath,
+			$this->repo->getZonePath( 'temp' ) . "/{$hashPath}{$fileKey}" );
+
 		// Check for error in stashing the chunk:
 		if ( ! $storeStatus->isOK() ) {
 			$error = $storeStatus->getErrorsArray();
