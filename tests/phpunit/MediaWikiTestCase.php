@@ -6,6 +6,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public $runDisabled = false;
 
 	/**
+	 * @var Array of TestUser
+	 */
+	public static $users;
+
+	/**
 	 * @var DatabaseBase
 	 */
 	protected $db;

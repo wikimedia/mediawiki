@@ -16,13 +16,13 @@ class UploadStashTest extends MediaWikiTestCase {
 		file_put_contents( $this->bug29408File, "\x00" );
 
 		self::$users = array(
-			'sysop' => new ApiTestUser(
+			'sysop' => new TestUser(
 				'Uploadstashtestsysop',
 				'Upload Stash Test Sysop',
 				'upload_stash_test_sysop@example.com',
 				array( 'sysop' )
 			),
-			'uploader' => new ApiTestUser(
+			'uploader' => new TestUser(
 				'Uploadstashtestuser',
 				'Upload Stash Test User',
 				'upload_stash_test_user@example.com',
