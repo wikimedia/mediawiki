@@ -319,7 +319,7 @@ td.diff-context {
  */
 table.wikitable,
 table.mw_metadata {
-	margin: 1em 1em 1em 0;
+	margin: 1em 0;
 	border: 1px #aaa solid;
 	background: white;
 	border-collapse: collapse;
