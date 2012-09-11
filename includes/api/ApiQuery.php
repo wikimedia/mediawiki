@@ -80,6 +80,7 @@ class ApiQuery extends ApiBase {
 		'iwbacklinks' => 'ApiQueryIWBacklinks',
 		'langbacklinks' => 'ApiQueryLangBacklinks',
 		'logevents' => 'ApiQueryLogEvents',
+		'newfiles' => 'ApiQueryNewFiles',
 		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 		'random' => 'ApiQueryRandom',
