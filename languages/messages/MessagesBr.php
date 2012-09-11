@@ -837,7 +837,9 @@ Gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhi]] e pajennoù a
 'noarticletext-nopermission' => 'N\'eus, evit ar mare, tamm testenn ebet war ar bajenn-mañ.
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask titl ar bajenn-mañ]] war pajennoù all,
 pe <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} klask er marilhoù kar]</span>.',
-'missing-revision' => "C'hoarvezout a ra peurliesañ pa vez heuliet ul liamm istorel dispredet war-zu ur bajenn zo bet dilamet.
+'missing-revision' => "N'eus ket eus adwel niv. $1 eus ar bajenn anvet « {{PAGENAME}} ».
+
+C'hoarvezout a ra peurliesañ pa vez heuliet ul liamm istorel dispredet war-zu ur bajenn zo bet dilamet.
 Gallout a reot kavout muioc'h a vunudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} renabl an dilamadurioù].",
 'userpage-userdoesnotexist' => 'N\'eo ket enrollet ar gont "<nowiki>$1</nowiki>". Merkit ma fell deoc\'h krouiñ/kemmañ ar bajenn-mañ.',
 'userpage-userdoesnotexist-view' => 'N\'eo ket enrollet ar gont implijer "$1".',
@@ -1091,9 +1093,10 @@ N\'oc\'h ket aotreet da vont outi.',
 'revdelete-no-change' => "'''Evezh :''' emañ an arventennoù gweluster goulennet gant an elfenn deiziataet eus an $1 da $2 dija",
 'revdelete-concurrent-change' => "Fazi p'eo bet kemmet an elfenn deiziataet eus an $1 da $2 : cheñchet eo bet e statud gant unan bennak all dres pa oac'h-chwi o kemmañ anezhi. Gwiriit ar marilhoù.",
 'revdelete-only-restricted' => "Ur fazi zo bet en ur guzhat an elfenn deiziadet eus an $1 da $2 : n'hallit ket kuzhat an elfennoù-mañ ouzh ar verourien hep dibab ivez unan eus an dibarzhioù gweluster all.",
-'revdelete-reason-dropdown' => '*Abegoù diverkañ boutin
+'revdelete-reason-dropdown' => "*Abegoù diverkañ boutin
 **Gaou ouzh ar gwirioù implijout
-** Titouroù personel dizereat',
+**Titouroù personel dizereat
+** Titouroù a c'hall bezañ gwallvrudus",
 'revdelete-otherreason' => 'Abeg all/ouzhpenn :',
 'revdelete-reasonotherlist' => 'Abeg all',
 'revdelete-edit-reasonlist' => 'Kemmañ abegoù an diverkañ',
@@ -1144,7 +1147,9 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'editundo' => 'dizober',
 'diff-multi' => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant {{PLURAL:$2|un implijer|$2 implijer}} kuzhet.)",
 'diff-multi-manyusers' => "({{PLURAL:$1|Ur reizhadenn da c'hortoz|$1 reizhadenn da c'hortoz}} gant muioc'h eget $2 {{PLURAL:$2|implijer|implijer}} kuzhet.)",
-'difference-missing-revision' => "C'hoarvezout a ra peurliesañ pa vez heuliet ul liamm disheñvel dispredet war-zu ur bajenn zo bet dilamet.
+'difference-missing-revision' => "!!{{PLURAL:$2|Un adweladur|$2 adweladurioù}} eus an disheñvelder ($1) {{PLURAL:$2|n'eo ket bet kavet|n'int ket bet adkavet}}.
+
+C'hoarvezout a ra peurliesañ pa vez heuliet ul liamm disheñvel dispredet war-zu ur bajenn zo bet dilamet.
 Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} renabl an dilamadurioù].",
 
 # Search results
@@ -1979,6 +1984,7 @@ $1 {{PLURAL:$1|rummad|rummad}}',
 'mostlinkedtemplates' => 'Patromoù implijet ar muiañ',
 'mostcategories' => 'Pennadoù rummatet ar muiañ',
 'mostimages' => 'Skeudennoù implijet ar muiañ',
+'mostinterwikis' => 'Pajennoù gant an niver brasañ a etrewikioù',
 'mostrevisions' => 'Pennadoù bet kemmet ar muiañ',
 'prefixindex' => 'An holl bajennoù a grog gant...',
 'prefixindex-namespace' => 'An holl bajennoù enno ur rakger (esaouenn anv $1)',
@@ -2276,6 +2282,8 @@ taolit evezh bras.",
 'rollback' => "disteuler ar c'hemmoù",
 'rollback_short' => 'Disteuler',
 'rollbacklink' => 'disteuler',
+'rollbacklinkcount' => 'terriñ $1 {{PLURAL:$1|kemm|kemmañ}}',
+'rollbacklinkcount-morethan' => 'terriñ ouzhpenn $1 {{PLURAL:$1|kemm|kemmoù}}',
 'rollbackfailed' => "C'hwitet eo bet an distaoladenn",
 'cantrollback' => 'Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ',
 'alreadyrolled' => "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2756,6 +2764,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'import-interwiki-templates' => 'Lakaat e-barzh an holl batromoù',
 'import-interwiki-submit' => 'Enporzhiañ',
 'import-interwiki-namespace' => 'Esaouenn anv ar pal :',
+'import-interwiki-rootpage' => 'Pennpajenn kas (war zibab)',
 'import-upload-filename' => 'Anv ar restr :',
 'import-comment' => 'Notenn :',
 'importtext' => "Ezporzhiit ar restr adal ar wiki orin en ur ober gant an arc'hwel [[Special:Export|ezporzhiañ]].
@@ -2789,6 +2798,8 @@ Enrollit ar bajenn war hoc'h urzhiataer ha kargit anezhi amañ.",
 'import-error-special' => 'Ne vez ket enporzhiet ar bajenn "$1" rak stag eo ouzh un esaouenn anv dibar na aotre ket pajennoù.',
 'import-error-invalid' => 'Ne vez ket enporzhiet ar bajenn "$1" rak direizh eo hec\'h anv.',
 'import-options-wrong' => '{{PLURAL:$2|Dibab fall|Dibaboù fall}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => "Pourchas a ra ar bennbajenn un titl n'eo ket reizh.",
+'import-rootpage-nosubpage' => 'Esaouenn anvioù "$1" eus ar bennpajenn ne aotre ket an ispajennoù.',
 
 # Import log
 'importlogpage' => 'Log an enporzhiadennoù',

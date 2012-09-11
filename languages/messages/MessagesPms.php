@@ -959,7 +959,9 @@ It peule pa vëddlo.',
 'revdelete-only-restricted' => "Eror an stërmand l'element datà $2, $1: it peule pa vieté la vista d'element a j'aministrator sensa ëdcò selessioné un-a dj'àutre opsion ëd visibilità.",
 'revdelete-reason-dropdown' => "*Rason sòlite dë scancelassion
 ** Violassion dël drit d'autor
-** Anformassion përsonaj pa aproprià",
+** Coment o anformassion përsonaj pa aproprià
+** Nòm utent pa aproprià
+** Anformassion potensialment difamatòria",
 'revdelete-otherreason' => 'Àutra rason o adissional:',
 'revdelete-reasonotherlist' => 'Àutra rason',
 'revdelete-edit-reasonlist' => 'Modifiché la rason ëd lë scancelament',
@@ -2861,10 +2863,10 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 # Image deletion
 'deletedrevision' => 'Veja version scancelà $1',
 'filedeleteerror-short' => "Eror ën scanceland l'archivi: $1",
-'filedeleteerror-long' => "A son ësta-ie dj'eror ën scanceland l'archivi:
+'filedeleteerror-long' => "A-i son ësta-ie dj'eror ën scanceland l'archivi:
 
 $1",
-'filedelete-missing' => 'L\'archivi "$1" as peul pa dëscancelesse, për via ch\'a-i é nen.',
+'filedelete-missing' => "L'archivi «$1» as peul pa dëscancelesse, për via ch'a-i é nen.",
 'filedelete-old-unregistered' => 'La revision d\'archivi specificà "$1" ant la base dat a-i é nen.',
 'filedelete-current-unregistered' => 'Ant la base dat l\'archivi "$1" ch\'a l\'é specificasse a-i é pa.',
 'filedelete-archive-read-only' => 'Ël servent dla Ragnà a peul pa scriv-ie ant ël dossié dj\'archivi "$1".',

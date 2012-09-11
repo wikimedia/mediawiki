@@ -2089,6 +2089,7 @@ Molimo obratite pozornost da druge web stranice mogu povezivati sliku izravnim U
 Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u upitu.',
 'logempty' => 'Nema pronađenih stavki.',
 'log-title-wildcard' => 'Traži stranice koje počinju s navedenim izrazom',
+'showhideselectedlogentries' => 'Otkrij/sakrij odabrane evidencije',
 
 # Special:AllPages
 'allpages' => 'Sve stranice',

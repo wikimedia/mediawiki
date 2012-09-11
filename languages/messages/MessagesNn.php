@@ -1804,7 +1804,7 @@ For best tryggleik, er img_auth.php sett ut av funksjon.',
 'listfiles_name' => 'Namn',
 'listfiles_user' => 'Brukar',
 'listfiles_size' => 'Storleik',
-'listfiles_description' => 'Beskriving',
+'listfiles_description' => 'Skildring',
 'listfiles_count' => 'Versjonar',
 
 # File description page

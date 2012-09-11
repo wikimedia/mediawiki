@@ -2253,7 +2253,7 @@ Protocoale suportate: <code>$1</code> (nu adăugați niciunul dintre acestea în
 
 # Special:ListGroupRights
 'listgrouprights' => 'Permisiuni grupuri de utilizatori',
-'listgrouprights-summary' => 'Mai jos se află o listă a grupurilor de utilizatori definită în aceast wiki, împreună cu permisiunile de acces asociate.
+'listgrouprights-summary' => 'Mai jos se află o listă a grupurilor de utilizatori definite în acest wiki, împreună cu permisiunile de acces asociate.
 Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informații suplimentare]] despre permisiuni individuale.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">Drept acordat</span>
 * <span class="listgrouprights-revoked">Drept revocat</span>',
