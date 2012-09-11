@@ -152,14 +152,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['rights'] ) ) {
-					if ( !isset( $data[$name]['rights'] ) ) {
-						$data[$name]['rights'] = User::getGroupPermissions( $user->getAutomaticGroups() );
-					}
-
-					if ( !is_null( $row->ug_group ) ) {
-						$data[$name]['rights'] = array_unique( array_merge( $data[$name]['rights'],
-							User::getGroupPermissions( array( $row->ug_group ) ) ) );
-					}
+					$data[$name]['rights'] = $user->getRights();
 				}
 				if ( $row->ipb_deleted ) {
 					$data[$name]['hidden'] = '';
