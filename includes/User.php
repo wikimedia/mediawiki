@@ -452,11 +452,12 @@ class User {
 	 * will be loaded once more from the database when accessing them.
 	 *
 	 * @param $row Array A row from the user table
+	 * @param $data Array Further data to inject into the object (like mGroups)
 	 * @return User
 	 */
-	public static function newFromRow( $row ) {
+	public static function newFromRow( $row, $data = null ) {
 		$user = new User;
-		$user->loadFromRow( $row );
+		$user->loadFromRow( $row, $data );
 		return $user;
 	}
 
@@ -1063,8 +1064,9 @@ class User {
 	 * Initialize this object from a row from the user table.
 	 *
 	 * @param $row Array Row from the user table to load.
+	 * @param $data Array Further data to inject into the object (like mGroups)
 	 */
-	public function loadFromRow( $row ) {
+	public function loadFromRow( $row, $data = null ) {
 		$all = true;
 
 		$this->mGroups = null; // deferred
@@ -1121,6 +1123,12 @@ class User {
 
 		if ( $all ) {
 			$this->mLoadedItems = true;
+		}
+
+		if ( is_array( $data ) ) {
+			foreach( $data as $key => $value ) {
+				$this->$key = $value;
+			}
 		}
 	}
 

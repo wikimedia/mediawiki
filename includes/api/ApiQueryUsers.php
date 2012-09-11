@@ -110,19 +110,39 @@ class ApiQueryUsers extends ApiQueryBase {
 			$this->addFields( User::selectFields() );
 			$this->addWhereFld( 'user_name', $goodNames );
 
-			if ( isset( $this->prop['groups'] ) || isset( $this->prop['rights'] ) ) {
-				$this->addTables( 'user_groups' );
-				$this->addJoinConds( array( 'user_groups' => array( 'LEFT JOIN', 'ug_user=user_id' ) ) );
-				$this->addFields( 'ug_group' );
-			}
-
 			$this->showHiddenUsersAddBlockInfo( isset( $this->prop['blockinfo'] ) );
 
 			$data = array();
 			$res = $this->select( __METHOD__ );
+			$this->resetQueryParams();			
+
+			// get user groups if needed
+			if ( isset( $this->prop['groups'] ) || isset( $this->prop['rights'] ) ) {
+				$userGroups = array();
+
+				$this->addTables( 'user' );
+				$this->addWhereFld( 'user_name', $goodNames );
+				$this->addTables( 'user_groups' );
+				$this->addJoinConds( array( 'user_groups' => array( 'INNER JOIN', 'ug_user=user_id' ) ) );
+				$this->addFields( array('user_name', 'ug_group') );
+				$userGroupsRes = $this->select( __METHOD__ );
+
+				foreach( $userGroupsRes as $row ) {
+					$userGroups[$row->user_name][] = $row->ug_group;
+				}
+			}
 
 			foreach ( $res as $row ) {
-				$user = User::newFromRow( $row );
+				// create user object and pass along $userGroups if set
+				// that reduces the number of database queries needed in User dramatically
+				if ( !isset( $userGroups ) ) {
+					$user = User::newFromRow( $row );
+				} else {
+					if ( !is_array( $userGroups[$row->user_name] ) ) {
+						$userGroups[$row->user_name] = array();
+					}
+					$user = User::newFromRow( $row, array( 'mGroups' => $userGroups[$row->user_name] ) );
+				}
 				$name = $user->getName();
 
 				$data[$name]['userid'] = $user->getId();
@@ -137,29 +157,15 @@ class ApiQueryUsers extends ApiQueryBase {
 				}
 
 				if ( isset( $this->prop['groups'] ) ) {
-					if ( !isset( $data[$name]['groups'] ) ) {
-						$data[$name]['groups'] = $user->getAutomaticGroups();
-					}
-
-					if ( !is_null( $row->ug_group ) ) {
-						// This row contains only one group, others will be added from other rows
-						$data[$name]['groups'][] = $row->ug_group;
-					}
+					$data[$name]['groups'] = $user->getEffectiveGroups();
 				}
 
-				if ( isset( $this->prop['implicitgroups'] ) && !isset( $data[$name]['implicitgroups'] ) ) {
+				if ( isset( $this->prop['implicitgroups'] ) ) {
 					$data[$name]['implicitgroups'] =  $user->getAutomaticGroups();
 				}
 
 				if ( isset( $this->prop['rights'] ) ) {
-					if ( !isset( $data[$name]['rights'] ) ) {
-						$data[$name]['rights'] = User::getGroupPermissions( $user->getAutomaticGroups() );
-					}
-
-					if ( !is_null( $row->ug_group ) ) {
-						$data[$name]['rights'] = array_unique( array_merge( $data[$name]['rights'],
-							User::getGroupPermissions( array( $row->ug_group ) ) ) );
-					}
+					$data[$name]['rights'] = $user->getRights();
 				}
 				if ( $row->ipb_deleted ) {
 					$data[$name]['hidden'] = '';
