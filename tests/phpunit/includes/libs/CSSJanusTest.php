@@ -179,6 +179,12 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'.foo { padding: 1px; }'
 			),
 
+			// box-shadow
+			array(
+				'.foo { box-shadow: -2px 2px 1px #999 }',
+				'.foo { box-shadow: 2px 2px 1px #999 }'
+			),
+
 			// Direction
 			// Note: This differs from the Python implementation,
 			// see also CSSJanus::fixDirection for more info.
