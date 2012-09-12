@@ -39,7 +39,7 @@
 			// Default limit to current attribute value
 			// Can't re-use 'limit' variable because it's in the higher scope
 			// that affects the next each() iteration as well.
-			elLimit = limit === undefined ? $el.prop( 'maxLength' ) : limit;
+			elLimit = limit === undefined ? el.maxLength : limit;
 	
 			// If there is no (valid) limit passed or found in the property,
 			// skip this. The < 0 check is required for Firefox, which returns
@@ -55,9 +55,13 @@
 			// the value property through JavaScript, but Safari 4 violates that rule, so
 			// we have to remove or not set the property if we have a callback.
 			if ( fn === undefined ) {
-				$el.prop( 'maxLength', elLimit );
+				el.maxLength = elLimit;
 			} else {
-				$el.removeProp( 'maxLength' );
+				// maxLength is a strange property. Removing or resetting the property directly
+				// doesn't work. Instead, it can only be unset internally by the browser when
+				// removing the associated attribute (Firefox/Chrome).
+				// http://code.google.com/p/chromium/issues/detail?id=136004
+				$el.removeAttr( 'maxlength' );
 			}
 	
 			// Save function for reference
@@ -77,13 +81,13 @@
 				// Backspace will be, so not big issue.
 	
 				if ( e.which === 0 || e.charCode === 0 || e.which === 8 ||
-					e.ctrlKey || e.altKey || e.metaKey )
-				{
+					e.ctrlKey || e.altKey || e.metaKey
+				) {
 					// A special key (backspace, etc) so don't interfere
 					return true;
 				}
 	
-				val = fn !== undefined ? fn( $( this ).val() ): $( this ).val();
+				val = fn !== undefined ? fn( this.value ) : this.value;
 				len = $.byteLength( val );
 				// Note that keypress returns a character code point, not a keycode.
 				// However, this may not be super reliable depending on how keys come in...
