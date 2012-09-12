@@ -1,6 +1,42 @@
-QUnit.module( 'mediawiki.jqueryMsg' );
+( function ( mw, $ ) {
 
-QUnit.test( 'mw.jqueryMsg Plural', 3, function ( assert ) {
+QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
+	setup: function () {
+		this.orgMwLangauge = mw.language;
+		mw.language = $.extend( true, {}, this.orgMwLangauge );
+	},
+	teardown: function () {
+		// Restore
+		mw.language = this.orgMwLangauge;
+	}
+}) );
+
+var mwLanguageCache = {};
+function getMwLanguage( langCode, cb ) {
+	if ( mwLanguageCache[langCode] !== undefined ) {
+		mwLanguageCache[langCode].add( cb );
+		return;
+	}
+	mwLanguageCache[langCode] = $.Callbacks( 'once memory' );
+	mwLanguageCache[langCode].add( cb );
+	$.ajax({
+		url: mw.util.wikiScript( 'load' ),
+		data: {
+			skin: mw.config.get( 'skin' ),
+			lang: langCode,
+			debug: mw.config.get( 'debug' ),
+			modules: 'mediawiki.language',
+			only: 'scripts'
+		},
+		dataType: 'script'
+	}).done( function () {
+		mwLanguageCache[langCode].fire( mw.language );
+	}).fail( function () {
+		mwLanguageCache[langCode].fire( false );
+	});
+}
+
+QUnit.test( 'Plural', 3, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction();
 
 	mw.messages.set( 'plural-msg', 'Found $1 {{PLURAL:$1|item|items}}' );
@@ -10,7 +46,7 @@ QUnit.test( 'mw.jqueryMsg Plural', 3, function ( assert ) {
 } );
 
 
-QUnit.test( 'mw.jqueryMsg Gender', 11, function ( assert ) {
+QUnit.test( 'Gender', 11, function ( assert ) {
 	// TODO: These tests should be for mw.msg once mw.msg integrated with mw.jqueryMsg
 	// TODO: English may not be the best language for these tests. Use a language like Arabic or Russian
 	var user = mw.user,
@@ -84,8 +120,7 @@ QUnit.test( 'mw.jqueryMsg Gender', 11, function ( assert ) {
 	);
 } );
 
-
-QUnit.test( 'mw.jqueryMsg Grammar', 2, function ( assert ) {
+QUnit.test( 'Grammar', 2, function ( assert ) {
 	var parser = mw.jqueryMsg.getMessageFunction();
 
 	// Assume the grammar form grammar_case_foo is not valid in any language
@@ -95,3 +130,25 @@ QUnit.test( 'mw.jqueryMsg Grammar', 2, function ( assert ) {
 	mw.messages.set( 'grammar-msg-wrong-syntax', 'Przeszukaj {{GRAMMAR:grammar_case_xyz}}' );
 	assert.equal( parser( 'grammar-msg-wrong-syntax' ), 'Przeszukaj ' , 'Grammar Test with wrong grammar template syntax' );
 } );
+
+QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, function ( assert ) {
+	mw.messages.set( mw.libs.phpParserData.messages );
+	$.each( mw.libs.phpParserData.tests, function ( i, test ) {
+		QUnit.stop();
+		getMwLanguage( test.lang, function ( langClass ) {
+			QUnit.start();
+			if ( !langClass ) {
+				assert.ok( false, 'Language "' + test.lang + '" failed to load' );
+				return;
+			}
+			var parser = new mw.jqueryMsg.parser( { language: langClass } );
+			assert.equal(
+				parser.parse( test.key, test.args ).html(),
+				test.result,
+				test.name
+			);
+		} );
+	} );
+});
+
+}( mediaWiki, jQuery ) );
