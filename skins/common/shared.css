@@ -250,7 +250,7 @@ tr.mw-htmlform-vertical-label td.mw-label {
 
 input#wpSummary {
 	width: 80%;
-	margin: 1em 0;
+	margin-bottom: 1em;
 }
 
 /**
