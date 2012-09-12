@@ -5,7 +5,7 @@ body {
 	padding: 0;
 	font-family: sans-serif;
 	font-size: 100%;
-	min-width: 30em;
+	min-width: 32em;
 	position: relative;
 }
 
@@ -21,11 +21,20 @@ a:visited {
 	position: absolute;
 	top: 0;
 	left: 0;
-	margin-left: 3em;
+	margin: 0.75em 0 0 3em;
+	padding: 0;
 }
-#p-logo a span {
+#p-logo a {
 	display: block;
-	margin-top: 0.5em;
+	height: 3.5em;
+	width: 230px;
+	padding-top: 1em;
+	background-position: left top;
+	background-repeat: no-repeat;
+}
+
+#p-logo a span {
+	display: none;
 	font-size: 1.5em;
 }
 
@@ -36,7 +45,7 @@ a:visited {
 #content {
 	font-size: 0.8em;
 	line-height: 1.5em;
-	padding-top: 1em;
+	padding-top: 1.5em;
 }
 
 .emptyPortlet {
@@ -52,14 +61,12 @@ a:visited {
 
 .apex-nav {
 	line-height: 1.5em;
-	top: 4em;
+	top: 5em;
 	left: 0;
 	right: 0;
 	padding: 0 3em;
 	border-top: solid 1px #d5eaed;
 	border-bottom: solid 1px #d5eaed;
-	background: #ffffff; /* Old browsers */
-	background: #ffffff; /* Old browsers */
 	background: #ffffff; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZGY4ZjkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -121,12 +128,34 @@ a:visited {
 
 .apex-tabs a:hover {
 	text-decoration: none;
-	background-color: #d5eaed;
-	background-color: rgba(213, 234, 237, 0.33);
+	background: #eff9ff; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VmZjlmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkMmVmZmMiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #eff9ff 0%, #d2effc 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eff9ff), color-stop(100%,#d2effc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #eff9ff 0%,#d2effc 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #eff9ff 0%,#d2effc 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #eff9ff 0%,#d2effc 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #eff9ff 0%,#d2effc 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eff9ff', endColorstr='#d2effc',GradientType=0 ); /* IE6-8 */
+}
+
+.apex-tabs a:active {
+	background: #d2effc; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2QyZWZmYyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlZmY5ZmYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  #d2effc 0%, #eff9ff 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d2effc), color-stop(100%,#eff9ff)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #d2effc 0%,#eff9ff 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #d2effc 0%,#eff9ff 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #d2effc 0%,#eff9ff 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #d2effc 0%,#eff9ff 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2effc', endColorstr='#eff9ff',GradientType=0 ); /* IE6-8 */
 }
 
 .apex-tabs li.selected a:hover {
 	background-color: transparent;
+	background: none;
 }
 
 .apex-menu {
@@ -149,7 +178,6 @@ a:visited {
 	-moz-border-radius: 0 0 0.25em 0.25em;
 	border-radius: 0 0 0.25em 0.25em;
 	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.98);
 	-webkit-box-shadow:  0 0.25em 1em 0 rgba(0, 0, 0, 0.25);
 	-moz-box-shadow:  0 0.25em 1em 0 rgba(0, 0, 0, 0.25);
 	box-shadow:  0 0.25em 1em 0 rgba(0, 0, 0, 0.25);
@@ -168,8 +196,7 @@ a:visited {
 }
 
 .apex-menu-popup a:hover {
-	background-color: #d5eaed;
-	background-color: rgba(213, 234, 237, 0.75);
+	background-color: #e0f4fd;
 	text-decoration: none;
 }
 
@@ -179,10 +206,10 @@ a:visited {
 
 #mw-head {
 	position: absolute;
-	top: -6em;
+	top: -6.5em;
 	left: 0;
 	right: 0;
-	height: 4em;
+	height: 5em;
 background: #ffffff; /* Old browsers */
 /* IE9 SVG, needs conditional override of 'filter' to 'none' */
 background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgzJSIgc3RvcC1jb2xvcj0iI2Y5ZjlmOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmMmY5ZjkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -199,7 +226,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #mw-panel,
 #toc {
 	position: absolute;
-	top: 0;
+	top: 0.5em;
 	margin: 0;
 	padding: 0;
 	margin-top: 1px;
@@ -235,7 +262,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	box-shadow:  0 0.25em 1em 0 rgba(0, 0, 0, 0.25);
 	border-color: #d5eaed;
 	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.98);
 }
 #mw-panel:hover {
 	-webkit-border-radius: 0 0 0.25em 0;
@@ -337,8 +363,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 
 #toc a:hover {
-	background-color: #d5eaed;
-	background-color: rgba(213, 234, 237, 0.75);
+	background-color: #e0f4fd;
 	text-decoration: none;
 }
 
@@ -376,15 +401,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 }
 
 #mw-panel a:hover {
-	background-color: #d5eaed;
-	background-color: rgba(213, 234, 237, 0.75);
+	background-color: #e0f4fd;
 	text-decoration: none;
 }
 
 #p-personal {
 	float: right;
 	margin-right: 1em;
-	margin-top: 1em;
+	margin-top: 1.5em;
 	position: relative;
 }
 #p-personal h5 {
@@ -425,13 +449,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #p-search {
 	float: right;
 	margin-right: 3em;
-	margin-top: 0.75em;
+	margin-top: 1.25em;
 }
 #p-search h5 {
 	display: none;
 }
 #searchInput{
-	width: 15em;
+	width: 8em;
 	font-size: 1em;
 }
 #searchButton {
@@ -523,7 +547,6 @@ ul#footer-icons {
 
 div#mw-js-message {
 	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.98);
 	font-size: 0.8em;
 	position: absolute;
 	margin: 0;
@@ -559,13 +582,6 @@ div#mw-js-message {
 	-moz-transition: right 250ms;
 	-webkit-transition: right 250ms;
 	-o-transition: right 250ms;
-}
-
-#searchInput {
-	transition: width 250ms;
-	-moz-transition: width 250ms;
-	-webkit-transition: width 250ms;
-	-o-transition: width 250ms;
 }
 
 .apex-content-wrapper {

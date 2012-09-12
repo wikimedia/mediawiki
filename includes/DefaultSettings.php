@@ -2708,6 +2708,14 @@ $wgVectorUseSimpleSearch = false;
 $wgVectorUseIconWatch = false;
 
 /**
+ *
+ */
+$wgApexLogo = array(
+	"1x" => false,
+	"2x" => false
+);
+
+/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;

@@ -101,7 +101,7 @@ class ApexTemplate extends BaseTemplate {
 	 * Outputs the entire contents of the (X)HTML page
 	 */
 	public function execute() {
-		global $wgSitename;
+		global $wgSitename, $wgApexLogo, $wgStylePath;
 
 		// Build additional attributes for navigation urls
 		$nav = $this->data['content_navigation'];
@@ -112,6 +112,13 @@ class ApexTemplate extends BaseTemplate {
 			$nav['views'][$mode]['primary'] = true;
 			unset( $nav['actions'][$mode] );
 		}
+
+		// TODO: Move defining the logo path to a resource loader module with media queries to add
+		// support for high DPI displays - this will also improve caching situation
+		$this->data['logopath-1x'] = $wgApexLogo['1x'] ?
+			$wgApexLogo['1x'] : "{$wgStylePath}/apex/images/logos/mediawiki-1x.png"; 
+		$this->data['logopath-2x'] = $wgApexLogo['2x'] ?
+			$wgApexLogo['2x'] : "{$wgStylePath}/apex/images/logos/mediawiki-2x.png";
 
 		$xmlID = '';
 		foreach ( $nav as $section => $links ) {
@@ -198,7 +205,7 @@ class ApexTemplate extends BaseTemplate {
 			</div>
 		</div>
 		<div id="mw-head" class="noprint">
-			<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>><span><?php echo $wgSitename ?></span></a></div>
+			<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath-1x' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo Xml::expandAttributes( Linker::tooltipAndAccesskeyAttribs( 'p-logo' ) ) ?>><span><?php echo $wgSitename ?></span></a></div>
 			<?php $this->renderNavigation( array( 'SEARCH', 'PERSONAL' ) ); ?>
 			<div class="apex-nav">
 				<div class="apex-nav-primary">
