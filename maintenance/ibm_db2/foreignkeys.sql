@@ -94,9 +94,5 @@ ALTER TABLE watchlist ADD CONSTRAINT WATCHLIST_USER_FK FOREIGN KEY (wl_user) REF
 ;
 
 -- cannot contain null values
--- ALTER TABLE protected_titles ADD CONSTRAINT PROTECTED_TITLES_USER_FK FOREIGN KEY (pt_user) REFERENCES user(user_id) ON DELETE SET NULL
---;
-
--- cannot contain null values
 -- ALTER TABLE logging ADD CONSTRAINT LOGGING_USER_FK FOREIGN KEY (log_user) REFERENCES user(user_id) ON DELETE SET NULL
 --;

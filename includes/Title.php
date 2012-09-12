@@ -64,16 +64,7 @@ class Title {
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
 	private $mEstimateRevisions;      // /< Estimated number of revisions; null of not loaded
-	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
-	var $mOldRestrictions = false;
-	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
-	var $mCascadingRestrictions;      // Caching the results of getCascadeProtectionSources
-	var $mRestrictionsExpiry = array(); ///< When do the restrictions on this page expire?
-	var $mHasCascadingRestrictions;   ///< Are cascading restrictions in effect on this page?
-	var $mCascadeSources;             ///< Where are the cascading restrictions coming from on this page?
-	var $mRestrictionsLoaded = false; ///< Boolean for initialisation on demand
 	var $mPrefixedText;               ///< Text form including namespace/interwiki, initialised on demand
-	var $mTitleProtection;            ///< Cached value for getTitleProtection (create protection)
 	# Don't change the following default, NS_MAIN is hardcoded in several
 	# places.  See bug 696.
 	var $mDefaultNamespace = NS_MAIN; // /< Namespace index when there is no namespace
@@ -1574,7 +1565,7 @@ class Title {
 	 * @param $action String action that permission needs to be checked for
 	 * @param $user User to check
 	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary
-	 *   queries by skipping checks for cascading protections and user blocks.
+	 *   queries by skipping checks for user blocks.
 	 * @param $ignoreErrors Array of Strings Set this to a list of message keys
 	 *   whose corresponding errors may be ignored.
 	 * @return Array of arguments to wfMsg to explain permissions problems.
@@ -1731,14 +1722,6 @@ class Title {
 			$errors[] = array( 'ns-specialprotected' );
 		}
 
-		# Check $wgNamespaceProtection for restricted namespaces
-		if ( $this->isNamespaceProtected( $user ) ) {
-			$ns = $this->mNamespace == NS_MAIN ?
-				wfMsg( 'nstab-main' ) : $this->getNsText();
-			$errors[] = $this->mNamespace == NS_MEDIAWIKI ?
-				array( 'protectedinterface' ) : array( 'namespaceprotected',  $ns );
-		}
-
 		return $errors;
 	}
 
@@ -1770,78 +1753,6 @@ class Title {
 	}
 
 	/**
-	 * Check against page_restrictions table requirements on this
-	 * page. The user must possess all required rights for this
-	 * action.
-	 *
-	 * @param $action String the action to check
-	 * @param $user User user to check
-	 * @param $errors Array list of current errors
-	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
-	 * @param $short Boolean short circuit on first error
-	 *
-	 * @return Array list of errors
-	 */
-	private function checkPageRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		foreach ( $this->getRestrictions( $action ) as $right ) {
-			// Backwards compatibility, rewrite sysop -> protect
-			if ( $right == 'sysop' ) {
-				$right = 'protect';
-			}
-			if ( $right != '' && !$user->isAllowed( $right ) ) {
-				// Users with 'editprotected' permission can edit protected pages
-				// without cascading option turned on.
-				if ( $action != 'edit' || !$user->isAllowed( 'editprotected' )
-					|| $this->mCascadeRestriction )
-				{
-					$errors[] = array( 'protectedpagetext', $right );
-				}
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
-	 * Check restrictions on cascading pages.
-	 *
-	 * @param $action String the action to check
-	 * @param $user User to check
-	 * @param $errors Array list of current errors
-	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
-	 * @param $short Boolean short circuit on first error
-	 *
-	 * @return Array list of errors
-	 */
-	private function checkCascadingSourcesRestrictions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		if ( $doExpensiveQueries && !$this->isCssJsSubpage() ) {
-			# We /could/ use the protection level on the source page, but it's
-			# fairly ugly as we have to establish a precedence hierarchy for pages
-			# included by multiple cascade-protected pages. So just restrict
-			# it to people with 'protect' permission, as they could remove the
-			# protection anyway.
-			list( $cascadingSources, $restrictions ) = $this->getCascadeProtectionSources();
-			# Cascading protection depends on more than this page...
-			# Several cascading protected pages may include this page...
-			# Check each cascading level
-			# This is only for protection restrictions, not for all actions
-			if ( isset( $restrictions[$action] ) ) {
-				foreach ( $restrictions[$action] as $right ) {
-					$right = ( $right == 'sysop' ) ? 'protect' : $right;
-					if ( $right != '' && !$user->isAllowed( $right ) ) {
-						$pages = '';
-						foreach ( $cascadingSources as $page )
-							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
-						$errors[] = array( 'cascadeprotected', count( $cascadingSources ), $pages );
-					}
-				}
-			}
-		}
-
-		return $errors;
-	}
-
-	/**
 	 * Check action permissions not already checked in checkQuickPermissions
 	 *
 	 * @param $action String the action to check
@@ -1855,24 +1766,7 @@ class Title {
 	private function checkActionPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		global $wgDeleteRevisionsLimit, $wgLang;
 
-		if ( $action == 'protect' ) {
-			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $doExpensiveQueries, true ) ) ) {
-				// If they can't edit, they shouldn't protect.
-				$errors[] = array( 'protect-cantedit' );
-			}
-		} elseif ( $action == 'create' ) {
-			$title_protection = $this->getTitleProtection();
-			if( $title_protection ) {
-				if( $title_protection['pt_create_perm'] == 'sysop' ) {
-					$title_protection['pt_create_perm'] = 'protect'; // B/C
-				}
-				if( $title_protection['pt_create_perm'] == '' ||
-					!$user->isAllowed( $title_protection['pt_create_perm'] ) ) 
-				{
-					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
-				}
-			}
-		} elseif ( $action == 'move' ) {
+		if ( $action == 'move' ) {
 			// Check for immobile pages
 			if ( !MWNamespace::isMovable( $this->mNamespace ) ) {
 				// Specific message for this case
@@ -1894,6 +1788,9 @@ class Title {
 				$errors[] = array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) );
 			}
 		}
+
+		wfRunHooks( 'CheckActionPermissions', array( $this, $action, $user, &$errors, $doExpensiveQueries, $short ) );
+
 		return $errors;
 	}
 
@@ -2109,8 +2006,6 @@ class Title {
 				'checkPermissionHooks',
 				'checkSpecialsAndNSPermissions',
 				'checkCSSandJSPermissions',
-				'checkPageRestrictions',
-				'checkCascadingSourcesRestrictions',
 				'checkActionPermissions',
 				'checkUserBlock'
 			);
@@ -2153,514 +2048,6 @@ class Title {
 		wfDeprecated( __METHOD__, '1.19' );
 		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
 			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
-	}
-
-	/**
-	 * Get a filtered list of all restriction types supported by this wiki.
-	 * @param bool $exists True to get all restriction types that apply to
-	 * titles that do exist, False for all restriction types that apply to
-	 * titles that do not exist
-	 * @return array
-	 */
-	public static function getFilteredRestrictionTypes( $exists = true ) {
-		global $wgRestrictionTypes;
-		$types = $wgRestrictionTypes;
-		if ( $exists ) {
-			# Remove the create restriction for existing titles
-			$types = array_diff( $types, array( 'create' ) );
-		} else {
-			# Only the create and upload restrictions apply to non-existing titles
-			$types = array_intersect( $types, array( 'create', 'upload' ) );
-		}
-		return $types;
-	}
-
-	/**
-	 * Returns restriction types for the current Title
-	 *
-	 * @return array applicable restriction types
-	 */
-	public function getRestrictionTypes() {
-		if ( $this->isSpecialPage() ) {
-			return array();
-		}
-
-		$types = self::getFilteredRestrictionTypes( $this->exists() );
-
-		if ( $this->getNamespace() != NS_FILE ) {
-			# Remove the upload restriction for non-file titles
-			$types = array_diff( $types, array( 'upload' ) );
-		}
-
-		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
-
-		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
-			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}\n" );
-
-		return $types;
-	}
-
-	/**
-	 * Is this title subject to title protection?
-	 * Title protection is the one applied against creation of such title.
-	 *
-	 * @return Mixed An associative array representing any existent title
-	 *   protection, or false if there's none.
-	 */
-	private function getTitleProtection() {
-		// Can't protect pages in special namespaces
-		if ( $this->getNamespace() < 0 ) {
-			return false;
-		}
-
-		// Can't protect pages that exist.
-		if ( $this->exists() ) {
-			return false;
-		}
-
-		if ( !isset( $this->mTitleProtection ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'protected_titles', '*',
-				array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
-				__METHOD__ );
-
-			// fetchRow returns false if there are no rows.
-			$this->mTitleProtection = $dbr->fetchRow( $res );
-		}
-		return $this->mTitleProtection;
-	}
-
-	/**
-	 * Update the title protection status
-	 *
-	 * @deprecated in 1.19; will be removed in 1.20. Use WikiPage::doUpdateRestrictions() instead.
-	 * @param $create_perm String Permission required for creation
-	 * @param $reason String Reason for protection
-	 * @param $expiry String Expiry timestamp
-	 * @return boolean true
-	 */
-	public function updateTitleProtection( $create_perm, $reason, $expiry ) {
-		wfDeprecated( __METHOD__, '1.19' );
-
-		global $wgUser;
-
-		$limit = array( 'create' => $create_perm );
-		$expiry = array( 'create' => $expiry );
-
-		$page = WikiPage::factory( $this );
-		$status = $page->doUpdateRestrictions( $limit, $expiry, false, $reason, $wgUser );
-
-		return $status->isOK();
-	}
-
-	/**
-	 * Remove any title protection due to page existing
-	 */
-	public function deleteTitleProtection() {
-		$dbw = wfGetDB( DB_MASTER );
-
-		$dbw->delete(
-			'protected_titles',
-			array( 'pt_namespace' => $this->getNamespace(), 'pt_title' => $this->getDBkey() ),
-			__METHOD__
-		);
-		$this->mTitleProtection = false;
-	}
-
-	/**
-	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
-	 *
-	 * @param $action String Action to check (default: edit)
-	 * @return Bool
-	 */
-	public function isSemiProtected( $action = 'edit' ) {
-		if ( $this->exists() ) {
-			$restrictions = $this->getRestrictions( $action );
-			if ( count( $restrictions ) > 0 ) {
-				foreach ( $restrictions as $restriction ) {
-					if ( strtolower( $restriction ) != 'autoconfirmed' ) {
-						return false;
-					}
-				}
-			} else {
-				# Not protected
-				return false;
-			}
-			return true;
-		} else {
-			# If it doesn't exist, it can't be protected
-			return false;
-		}
-	}
-
-	/**
-	 * Does the title correspond to a protected article?
-	 *
-	 * @param $action String the action the page is protected from,
-	 * by default checks all actions.
-	 * @return Bool
-	 */
-	public function isProtected( $action = '' ) {
-		global $wgRestrictionLevels;
-
-		$restrictionTypes = $this->getRestrictionTypes();
-
-		# Special pages have inherent protection
-		if( $this->isSpecialPage() ) {
-			return true;
-		}
-
-		# Check regular protection levels
-		foreach ( $restrictionTypes as $type ) {
-			if ( $action == $type || $action == '' ) {
-				$r = $this->getRestrictions( $type );
-				foreach ( $wgRestrictionLevels as $level ) {
-					if ( in_array( $level, $r ) && $level != '' ) {
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Determines if $user is unable to edit this page because it has been protected
-	 * by $wgNamespaceProtection.
-	 *
-	 * @param $user User object to check permissions
-	 * @return Bool
-	 */
-	public function isNamespaceProtected( User $user ) {
-		global $wgNamespaceProtection;
-
-		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
-			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( $right != '' && !$user->isAllowed( $right ) ) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Cascading protection: Return true if cascading restrictions apply to this page, false if not.
-	 *
-	 * @return Bool If the page is subject to cascading restrictions.
-	 */
-	public function isCascadeProtected() {
-		list( $sources, /* $restrictions */ ) = $this->getCascadeProtectionSources( false );
-		return ( $sources > 0 );
-	}
-
-	/**
-	 * Cascading protection: Get the source of any cascading restrictions on this page.
-	 *
-	 * @param $getPages Bool Whether or not to retrieve the actual pages
-	 *        that the restrictions have come from.
-	 * @return Mixed Array of Title objects of the pages from which cascading restrictions
-	 *     have come, false for none, or true if such restrictions exist, but $getPages
-	 *     was not set.  The restriction array is an array of each type, each of which
-	 *     contains a array of unique groups.
-	 */
-	public function getCascadeProtectionSources( $getPages = true ) {
-		global $wgContLang;
-		$pagerestrictions = array();
-
-		if ( isset( $this->mCascadeSources ) && $getPages ) {
-			return array( $this->mCascadeSources, $this->mCascadingRestrictions );
-		} elseif ( isset( $this->mHasCascadingRestrictions ) && !$getPages ) {
-			return array( $this->mHasCascadingRestrictions, $pagerestrictions );
-		}
-
-		wfProfileIn( __METHOD__ );
-
-		$dbr = wfGetDB( DB_SLAVE );
-
-		if ( $this->getNamespace() == NS_FILE ) {
-			$tables = array( 'imagelinks', 'page_restrictions' );
-			$where_clauses = array(
-				'il_to' => $this->getDBkey(),
-				'il_from=pr_page',
-				'pr_cascade' => 1
-			);
-		} else {
-			$tables = array( 'templatelinks', 'page_restrictions' );
-			$where_clauses = array(
-				'tl_namespace' => $this->getNamespace(),
-				'tl_title' => $this->getDBkey(),
-				'tl_from=pr_page',
-				'pr_cascade' => 1
-			);
-		}
-
-		if ( $getPages ) {
-			$cols = array( 'pr_page', 'page_namespace', 'page_title',
-						   'pr_expiry', 'pr_type', 'pr_level' );
-			$where_clauses[] = 'page_id=pr_page';
-			$tables[] = 'page';
-		} else {
-			$cols = array( 'pr_expiry' );
-		}
-
-		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__ );
-
-		$sources = $getPages ? array() : false;
-		$now = wfTimestampNow();
-		$purgeExpired = false;
-
-		foreach ( $res as $row ) {
-			$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
-			if ( $expiry > $now ) {
-				if ( $getPages ) {
-					$page_id = $row->pr_page;
-					$page_ns = $row->page_namespace;
-					$page_title = $row->page_title;
-					$sources[$page_id] = Title::makeTitle( $page_ns, $page_title );
-					# Add groups needed for each restriction type if its not already there
-					# Make sure this restriction type still exists
-
-					if ( !isset( $pagerestrictions[$row->pr_type] ) ) {
-						$pagerestrictions[$row->pr_type] = array();
-					}
-
-					if ( isset( $pagerestrictions[$row->pr_type] ) &&
-						 !in_array( $row->pr_level, $pagerestrictions[$row->pr_type] ) ) {
-						$pagerestrictions[$row->pr_type][] = $row->pr_level;
-					}
-				} else {
-					$sources = true;
-				}
-			} else {
-				// Trigger lazy purge of expired restrictions from the db
-				$purgeExpired = true;
-			}
-		}
-		if ( $purgeExpired ) {
-			Title::purgeExpiredRestrictions();
-		}
-
-		if ( $getPages ) {
-			$this->mCascadeSources = $sources;
-			$this->mCascadingRestrictions = $pagerestrictions;
-		} else {
-			$this->mHasCascadingRestrictions = $sources;
-		}
-
-		wfProfileOut( __METHOD__ );
-		return array( $sources, $pagerestrictions );
-	}
-
-	/**
-	 * Accessor/initialisation for mRestrictions
-	 *
-	 * @param $action String action that permission needs to be checked for
-	 * @return Array of Strings the array of groups allowed to edit this article
-	 */
-	public function getRestrictions( $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-		return isset( $this->mRestrictions[$action] )
-				? $this->mRestrictions[$action]
-				: array();
-	}
-
-	/**
-	 * Get the expiry time for the restriction against a given action
-	 *
-	 * @return String|Bool 14-char timestamp, or 'infinity' if the page is protected forever
-	 * 	or not protected at all, or false if the action is not recognised.
-	 */
-	public function getRestrictionExpiry( $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-		return isset( $this->mRestrictionsExpiry[$action] ) ? $this->mRestrictionsExpiry[$action] : false;
-	}
-
-	/**
-	 * Returns cascading restrictions for the current article
-	 *
-	 * @return Boolean
-	 */
-	function areRestrictionsCascading() {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
-		}
-
-		return $this->mCascadeRestriction;
-	}
-
-	/**
-	 * Loads a string into mRestrictions array
-	 *
-	 * @param $res Resource restrictions as an SQL result.
-	 * @param $oldFashionedRestrictions String comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
-	 */
-	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = null ) {
-		$rows = array();
-
-		foreach ( $res as $row ) {
-			$rows[] = $row;
-		}
-
-		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
-	}
-
-	/**
-	 * Compiles list of active page restrictions from both page table (pre 1.10)
-	 * and page_restrictions table for this existing page.
-	 * Public for usage by LiquidThreads.
-	 *
-	 * @param $rows array of db result objects
-	 * @param $oldFashionedRestrictions string comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
-	 */
-	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
-		global $wgContLang;
-		$dbr = wfGetDB( DB_SLAVE );
-
-		$restrictionTypes = $this->getRestrictionTypes();
-
-		foreach ( $restrictionTypes as $type ) {
-			$this->mRestrictions[$type] = array();
-			$this->mRestrictionsExpiry[$type] = $wgContLang->formatExpiry( '', TS_MW );
-		}
-
-		$this->mCascadeRestriction = false;
-
-		# Backwards-compatibility: also load the restrictions from the page record (old format).
-
-		if ( $oldFashionedRestrictions === null ) {
-			$oldFashionedRestrictions = $dbr->selectField( 'page', 'page_restrictions',
-				array( 'page_id' => $this->getArticleId() ), __METHOD__ );
-		}
-
-		if ( $oldFashionedRestrictions != '' ) {
-
-			foreach ( explode( ':', trim( $oldFashionedRestrictions ) ) as $restrict ) {
-				$temp = explode( '=', trim( $restrict ) );
-				if ( count( $temp ) == 1 ) {
-					// old old format should be treated as edit/move restriction
-					$this->mRestrictions['edit'] = explode( ',', trim( $temp[0] ) );
-					$this->mRestrictions['move'] = explode( ',', trim( $temp[0] ) );
-				} else {
-					$this->mRestrictions[$temp[0]] = explode( ',', trim( $temp[1] ) );
-				}
-			}
-
-			$this->mOldRestrictions = true;
-
-		}
-
-		if ( count( $rows ) ) {
-			# Current system - load second to make them override.
-			$now = wfTimestampNow();
-			$purgeExpired = false;
-
-			# Cycle through all the restrictions.
-			foreach ( $rows as $row ) {
-
-				// Don't take care of restrictions types that aren't allowed
-				if ( !in_array( $row->pr_type, $restrictionTypes ) )
-					continue;
-
-				// This code should be refactored, now that it's being used more generally,
-				// But I don't really see any harm in leaving it in Block for now -werdna
-				$expiry = $wgContLang->formatExpiry( $row->pr_expiry, TS_MW );
-
-				// Only apply the restrictions if they haven't expired!
-				if ( !$expiry || $expiry > $now ) {
-					$this->mRestrictionsExpiry[$row->pr_type] = $expiry;
-					$this->mRestrictions[$row->pr_type] = explode( ',', trim( $row->pr_level ) );
-
-					$this->mCascadeRestriction |= $row->pr_cascade;
-				} else {
-					// Trigger a lazy purge of expired restrictions
-					$purgeExpired = true;
-				}
-			}
-
-			if ( $purgeExpired ) {
-				Title::purgeExpiredRestrictions();
-			}
-		}
-
-		$this->mRestrictionsLoaded = true;
-	}
-
-	/**
-	 * Load restrictions from the page_restrictions table
-	 *
-	 * @param $oldFashionedRestrictions String comma-separated list of page
-	 *        restrictions from page table (pre 1.10)
-	 */
-	public function loadRestrictions( $oldFashionedRestrictions = null ) {
-		global $wgContLang;
-		if ( !$this->mRestrictionsLoaded ) {
-			if ( $this->exists() ) {
-				$dbr = wfGetDB( DB_SLAVE );
-
-				$res = $dbr->select(
-					'page_restrictions',
-					'*',
-					array( 'pr_page' => $this->getArticleId() ),
-					__METHOD__
-				);
-
-				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
-			} else {
-				$title_protection = $this->getTitleProtection();
-
-				if ( $title_protection ) {
-					$now = wfTimestampNow();
-					$expiry = $wgContLang->formatExpiry( $title_protection['pt_expiry'], TS_MW );
-
-					if ( !$expiry || $expiry > $now ) {
-						// Apply the restrictions
-						$this->mRestrictionsExpiry['create'] = $expiry;
-						$this->mRestrictions['create'] = explode( ',', trim( $title_protection['pt_create_perm'] ) );
-					} else { // Get rid of the old restrictions
-						Title::purgeExpiredRestrictions();
-						$this->mTitleProtection = false;
-					}
-				} else {
-					$this->mRestrictionsExpiry['create'] = $wgContLang->formatExpiry( '', TS_MW );
-				}
-				$this->mRestrictionsLoaded = true;
-			}
-		}
-	}
-
-	/**
-	 * Flush the protection cache in this object and force reload from the database.
-	 * This is used when updating protection from WikiPage::doUpdateRestrictions().
-	 */
-	public function flushRestrictions() {
-		$this->mRestrictionsLoaded = false;
-		$this->mTitleProtection = null;
-	}
-
-	/**
-	 * Purge expired restrictions from the page_restrictions table
-	 */
-	static function purgeExpiredRestrictions() {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete(
-			'page_restrictions',
-			array( 'pr_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
-			__METHOD__
-		);
-
-		$dbw->delete(
-			'protected_titles',
-			array( 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ),
-			__METHOD__
-		);
 	}
 
 	/**
@@ -3387,12 +2774,6 @@ class Title {
 			if ( !$this->isValidMoveTarget( $nt ) ) {
 				$errors[] = array( 'articleexists' );
 			}
-		} else {
-			$tp = $nt->getTitleProtection();
-			$right = ( $tp['pt_create_perm'] == 'sysop' ) ? 'protect' : $tp['pt_create_perm'];
-			if ( $tp and !$wgUser->isAllowed( $right ) ) {
-				$errors[] = array( 'cantmove-titleprotected' );
-			}
 		}
 		if ( empty( $errors ) ) {
 			return true;
@@ -3477,7 +2858,6 @@ class Title {
 
 		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
 		$pageid = $this->getArticleID( self::GAID_FOR_UPDATE );
-		$protected = $this->isProtected();
 
 		// Do the actual move
 		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
@@ -3511,31 +2891,6 @@ class Title {
 		}
 
 		$redirid = $this->getArticleID();
-
-		if ( $protected ) {
-			# Protect the redirect title as the title used to be...
-			$dbw->insertSelect( 'page_restrictions', 'page_restrictions',
-				array(
-					'pr_page'    => $redirid,
-					'pr_type'    => 'pr_type',
-					'pr_level'   => 'pr_level',
-					'pr_cascade' => 'pr_cascade',
-					'pr_user'    => 'pr_user',
-					'pr_expiry'  => 'pr_expiry'
-				),
-				array( 'pr_page' => $pageid ),
-				__METHOD__,
-				array( 'IGNORE' )
-			);
-			# Update the protection log
-			$log = new LogPage( 'protect' );
-			$comment = wfMsgForContent( 'prot_1movedto2', $this->getPrefixedText(), $nt->getPrefixedText() );
-			if ( $reason ) {
-				$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
-			}
-			// @todo FIXME: $params?
-			$log->addEntry( 'move_prot', $nt, $comment, array( $this->getPrefixedText() ) );
-		}
 
 		# Update watchlists
 		$oldnamespace = $this->getNamespace() & ~1;
