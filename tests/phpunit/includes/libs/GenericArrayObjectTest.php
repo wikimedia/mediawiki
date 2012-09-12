@@ -58,7 +58,7 @@ abstract class GenericArrayObjectTest extends MediaWikiTestCase {
 		$instances = array();
 
 		foreach ( $this->elementInstancesProvider() as $elementInstances ) {
-			$instances[] = $this->getNew( $elementInstances );
+			$instances[] = $this->getNew( $elementInstances[0] );
 		}
 
 		return $this->arrayWrap( $instances );

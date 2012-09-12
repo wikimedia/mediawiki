@@ -874,6 +874,15 @@ $wgAutoloadLocalClasses = array(
 	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
 
+	# includes/site
+	'MediaWikiSite' => 'includes/site/MediaWikiSite.php',
+	'Site' => 'includes/site/Site.php',
+	'SiteArray' => 'includes/site/SiteArray.php',
+	'SiteList' => 'includes/site/SiteList.php',
+	'SiteObject' => 'includes/site/SiteObject.php',
+	'Sites' => 'includes/site/Sites.php',
+	'SitesTable' => 'includes/site/SitesTable.php',
+
 	# includes/specials
 	'ActiveUsersPager' => 'includes/specials/SpecialActiveusers.php',
 	'AllmessagesTablePager' => 'includes/specials/SpecialAllmessages.php',
@@ -1091,6 +1100,10 @@ $wgAutoloadLocalClasses = array(
 
 	# tests/phpunit/includes/db
 	'ORMRowTest' => 'tests/phpunit/includes/db/ORMRowTest.php',
+
+	# tests/phpunit/includes/site
+	'SiteObjectTest' => 'tests/phpunit/includes/site/SiteObjectTest.php',
+	'TestSites' => 'tests/phpunit/includes/site/TestSites.php',
 
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
