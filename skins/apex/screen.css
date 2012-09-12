@@ -104,6 +104,8 @@ a:visited {
 
 .apex-tabs li {
 	float: left;
+	margin: -1px 0 -1px -1px;
+	border: solid 1px transparent;
 }
 
 .apex-tabs a {
@@ -462,17 +464,29 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	margin-right: 3em;
 	margin-top: 1.25em;
 }
+#simpleSearch {
+	text-align: right;
+}
 #p-search h5 {
 	display: none;
 }
-#searchInput{
-	width: 8em;
+#searchInput {
+	border: solid 1px #cccccc;
+	border-radius: 1em;
+	padding: 0.125em 0.75em;
+	background-color: #fff;
+	display: inline-block;
+	width: 6em;
 	font-size: 1em;
+}
+#searchInput:focus {
+	width: 12em;
+	outline: none;
 }
 #searchButton {
 	background-color: transparent;
 	border: none;
-	font-size: 1em;
+	font-size: 1.25em;
 	opacity: 0.75;
 	cursor: pointer;
 }
@@ -592,6 +606,13 @@ div#mw-js-message {
 	-moz-transition: right 250ms;
 	-webkit-transition: right 250ms;
 	-o-transition: right 250ms;
+}
+
+#searchInput {
+	transition: width 250ms;
+	-moz-transition: width 250ms;
+	-webkit-transition: width 250ms;
+	-o-transition: width 250ms;
 }
 
 .apex-content-wrapper {

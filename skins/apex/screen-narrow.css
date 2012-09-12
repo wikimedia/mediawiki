@@ -44,6 +44,10 @@
 	margin-right: 1.5em;
 }
 
+#searchInput:focus {
+	width: 6em;
+}
+
 div#mw-js-message {
 	right: 1.5em;
 }
