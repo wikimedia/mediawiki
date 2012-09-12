@@ -96,6 +96,7 @@ function wfThumbHandle404() {
  * @return void
  */
 function wfStreamThumb( array $params ) {
+	global $wgVaryOnXFP;
 	wfProfileIn( __METHOD__ );
 
 	$headers = array(); // HTTP headers to send
@@ -159,6 +160,7 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Check permissions if there are read restrictions
+	$varyHeader = array();
 	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
 		if ( !$img->getTitle() || !$img->getTitle()->userCan( 'read' ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
@@ -167,7 +169,7 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$headers[] = 'Cache-Control: private';
-		$headers[] = 'Vary: Cookie';
+		$varyHeader[] = 'Cookie';
 	}
 
 	// Check the source file storage path
@@ -232,6 +234,11 @@ function wfStreamThumb( array $params ) {
 				$response->header( 'Location: ' . wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
 				$response->header( 'Expires: ' .
 					gmdate( 'D, d M Y H:i:s', time() + 7*86400 ) . ' GMT' );
+				if ( $wgVaryOnXFP ) {
+					$varyHeader[] = 'X-Forwarded-Proto';
+				}
+				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+
 			} else {
 				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 				wfProfileOut( __METHOD__ );
@@ -240,6 +247,7 @@ function wfStreamThumb( array $params ) {
 		}
 		$thumbPath = $img->getThumbPath( $thumbName );
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+			$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
 			$img->getRepo()->streamFile( $thumbPath, $headers );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -249,6 +257,7 @@ function wfStreamThumb( array $params ) {
 		wfProfileOut( __METHOD__ );
 		return;
 	}
+	$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
 
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
