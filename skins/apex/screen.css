@@ -127,6 +127,8 @@ a:visited {
 }
 
 .apex-tabs a:hover {
+	text-shadow: 1px 1px 0px #f4fcff;
+	filter: dropshadow(color=#f4fcff, offx=1, offy=1);
 	text-decoration: none;
 	background: #eff9ff; /* Old browsers */
 	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -197,6 +199,8 @@ a:visited {
 
 .apex-menu-popup a:hover {
 	background-color: #e0f4fd;
+	text-shadow: 1px 1px 0 #f4fcff;
+	filter: dropshadow(color=#f4fcff, offx=1, offy=1);
 	text-decoration: none;
 }
 
@@ -365,6 +369,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #toc a:hover {
 	background-color: #e0f4fd;
 	text-decoration: none;
+	text-shadow: 1px 1px 0px #f4fcff;
+	filter: dropshadow(color=#f4fcff, offx=1, offy=1);
 }
 
 #mw-panel .portal {
@@ -403,6 +409,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 #mw-panel a:hover {
 	background-color: #e0f4fd;
 	text-decoration: none;
+	text-shadow: 1px 1px 0px #f4fcff;
+	filter: dropshadow(color=#f4fcff, offx=1, offy=1);
 }
 
 #p-personal {
@@ -444,6 +452,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 	background-image: url(images/icons/user.png);
 	background-position: left 40%;
 	background-repeat: no-repeat;
+}
+#pt-userpage a:hover {
+	text-decoration: none;
 }
 
 #p-search {
@@ -506,7 +517,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', end
 
 #p-cactions {
 	position: relative;
-	padding-right: 0.5em;
 }
 
 #p-cactions h5 {
