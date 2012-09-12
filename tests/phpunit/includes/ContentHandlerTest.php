@@ -10,7 +10,9 @@
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	public function setup() {
+		parent::setup();
+
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
@@ -23,7 +25,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces(); # reset namespace cache
 	}
 
-	public function tearDown() {
+	public function teardown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
 		unset( $wgExtraNamespaces[ 12312 ] );
@@ -34,6 +36,8 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
+
+		parent::teardown();
 	}
 
 	public function dataGetDefaultModelFor() {
