@@ -191,7 +191,7 @@ class DeletedContribsPager extends IndexPager {
 			$link = Linker::linkKnown(
 				$undelete,
 				$date,
-				array(),
+				array( 'class' => 'mw-changeslist-date' ),
 				array(
 					'target' => $page->getPrefixedText(),
 					'timestamp' => $rev->getTimestamp()
@@ -203,7 +203,11 @@ class DeletedContribsPager extends IndexPager {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
-		$pagelink = Linker::link( $page );
+		$pagelink = Linker::link(
+			$page,
+			null,
+			array( 'class' => 'mw-changeslist-title' )
+		);
 
 		if( $rev->isMinor() ) {
 			$mflag = ChangesList::flag( 'minor' );
@@ -222,7 +226,8 @@ class DeletedContribsPager extends IndexPager {
 				array( $last, $dellog, $reviewlink ) ) )->escaped()
 		);
 
-		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
+		$separator = '<span class="mw-changeslist-separator">. .</span>';
+		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
