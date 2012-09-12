@@ -114,6 +114,7 @@ class CSSJanus {
 		$patterns['cursor_west'] = "/{$patterns['lookbehind_not_letter']}([ns]?)w-resize/";
 		$patterns['four_notation_quantity'] = "/{$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}(\s+){$patterns['possibly_negative_quantity']}/i";
 		$patterns['four_notation_color'] = "/(-color\s*:\s*){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}(\s+){$patterns['color']}/i";
+		$patterns['box_shadow'] = "/(box-shadow\s*:\s*)(-?)({$patterns['quantity']})/";
 		// The two regexes below are parenthesized differently then in the original implementation to make the
 		// callback's job more straightforward
 		$patterns['bg_horizontal_percentage'] = "/(background(?:-position)?\s*:\s*[^%]*?)(-?{$patterns['num']})(%\s*(?:{$patterns['quantity']}|{$patterns['ident']}))/";
@@ -160,6 +161,7 @@ class CSSJanus {
 		$css = self::fixCursorProperties( $css );
 		$css = self::fixFourPartNotation( $css );
 		$css = self::fixBackgroundPosition( $css );
+		$css = self::fixBoxShadow( $css );
 
 		// Detokenize stuff we tokenized before
 		$css = $comments->detokenize( $css );
@@ -290,6 +292,21 @@ class CSSJanus {
 	 */
 	private static function calculateNewBackgroundPosition( $matches ) {
 		return $matches[1] . ( 100 - $matches[2] ) . $matches[3];
+	}
+
+	private static function fixBoxShadow( $css ) {
+		$replaced = preg_replace_callback( self::$patterns['box_shadow'],
+			array( 'self', 'calculateNewBoxShadow' ), $css );
+		if ( $replaced !== null ) {
+			// Check for null; sometimes preg_replace_callback() returns null here for some weird reason
+			$css = $replaced;
+		}
+		return $css;
+	}
+
+	private static function calculateNewBoxShadow( $matches ) {
+		$minus = $matches[2] === '-' ? '' : '-';
+		return $matches[1] . $minus . $matches[3];
 	}
 }
 
