@@ -300,6 +300,10 @@ class ApiEditPage extends ApiBase {
 		$articleObject = new Article( $titleObj );
 		$ep = new EditPage( $articleObject );
 
+		// allow editing of non-textual content.
+		//@todo: let the ContentHandler decide whether direct editing is OK
+		$ep->allowNonTextContent = true;
+
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 

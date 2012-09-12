@@ -240,6 +240,13 @@ class EditPage {
 	public $suppressIntro = false;
 
 	/**
+	 * Set to true to allow editing of non-text content types.
+	 *
+	 * @var bool
+	 */
+	public $allowNonTextContent = false;
+
+	/**
 	 * @param $article Article
 	 */
 	public function __construct( Article $article ) {
@@ -481,7 +488,7 @@ class EditPage {
 			$text = $this->textbox1;
 			$wgOut->addWikiMsg( 'viewyourtext' );
 		} else {
-			$text = $content->serialize( $this->content_format );
+			$text = $this->toEditText( $content );
 			$wgOut->addWikiMsg( 'viewsourcetext' );
 		}
 
@@ -768,7 +775,7 @@ class EditPage {
 		$this->edittime = $this->mArticle->getTimestamp();
 
 		$content = $this->getContentObject( false ); #TODO: track content object?!
-		$this->textbox1 = $content->serialize( $this->content_format );
+		$this->textbox1 = $this->toEditText( $content );
 
 		// activate checkboxes if user wants them to be always active
 		# Sort out the "watch" checkbox
@@ -805,7 +812,7 @@ class EditPage {
 		wfDeprecated( __METHOD__, '1.WD' );
 
 		if ( $def_text !== null && $def_text !== false && $def_text !== '' ) {
-			$def_content = ContentHandler::makeContent( $def_text, $this->getTitle() );
+			$def_content = $this->toEditContent( $def_text );
 		} else {
 			$def_content = false;
 		}
@@ -813,7 +820,7 @@ class EditPage {
 		$content = $this->getContentObject( $def_content );
 
 		// Note: EditPage should only be used with text based content anyway.
-		return $content->serialize( $this->content_format );
+		return $this->toEditText( $content );
 	}
 
 	private function getContentObject( $def_content = null ) {
@@ -830,7 +837,7 @@ class EditPage {
 				# If this is a system message, get the default text.
 				$msg = $this->mTitle->getDefaultMessageText();
 
-				$content = ContentHandler::makeContent( $msg, $this->mTitle );
+				$content = $this->toEditContent( $msg );
 			}
 			if ( $content === false ) {
 				# If requested, preload some text.
@@ -980,7 +987,7 @@ class EditPage {
 	public function setPreloadedText( $text ) {
 		wfDeprecated( __METHOD__, "1.WD" );
 
-		$content = ContentHandler::makeContent( $text, $this->getTitle() );
+		$content = $this->toEditContent( $text );
 
 		$this->setPreloadedContent( $content );
 	}
@@ -1010,7 +1017,7 @@ class EditPage {
 		wfDeprecated( __METHOD__, "1.WD" );
 
 		$content = $this->getPreloadedContent( $preload );
-		$text = $content->serialize( $this->content_format );
+		$text = $this->toEditText( $content );
 
 		return $text;
 	}
@@ -1203,8 +1210,7 @@ class EditPage {
 
 		try {
 			# Construct Content object
-			$textbox_content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
-															$this->content_model, $this->content_format );
+			$textbox_content = $this->toEditContent( $this->textbox1 );
 		} catch (MWContentSerializationException $ex) {
 			$status->fatal( 'content-failed-to-parse', $this->content_model, $this->content_format, $ex->getMessage() );
 			$status->value = self::AS_PARSE_ERROR;
@@ -1557,14 +1563,14 @@ class EditPage {
 			// merged the section into full text. Clear the section field
 			// so that later submission of conflict forms won't try to
 			// replace that into a duplicated mess.
-			$this->textbox1 = $content->serialize( $this->content_format );
+			$this->textbox1 = $this->toEditText( $content );
 			$this->section = '';
 
 			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
 		// Check for length errors again now that the section is merged in
-			$this->kblength = (int)( strlen( $content->serialize( $this->content_format ) ) / 1024 );
+			$this->kblength = (int)( strlen( $this->toEditText( $content ) ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
 			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
@@ -1660,13 +1666,12 @@ class EditPage {
 	function mergeChangesInto( &$editText ){
 		wfDebug( __METHOD__, "1.WD" );
 
-		$editContent = ContentHandler::makeContent( $editText, $this->getTitle(),
-													$this->content_model, $this->content_format );
+		$editContent = $this->toEditContent( $editText );
 
 		$ok = $this->mergeChangesIntoContent( $editContent );
 
 		if ( $ok ) {
-			$editText = $editContent->serialize( $this->content_format );
+			$editText = $this->toEditText( $editContent );
 			return true;
 		} else {
 			return false;
@@ -1908,6 +1913,54 @@ class EditPage {
 	}
 
 	/**
+	 * Gets an editable textual representation of the given Content object.
+	 * The textual representation can be turned by into a Content object by the
+	 * toEditContent() method.
+	 *
+	 * If the given Content object is not of a type that can be edited using the text base EditPage,
+	 * an exception will be raised. Set $this->allowNonTextContent to true to allow editing of non-textual
+	 * content.
+	 *
+	 * @param Content $content
+	 * @return String the editable text form of the content.
+	 *
+	 * @throws MWException if $content is not an instance of TextContent and $this->allowNonTextContent is not true.
+	 */
+	protected function toEditText( Content $content ) {
+		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
+			throw new MWException( "This content model can not be edited as text: "
+								. ContentHandler::getLocalizedName( $content->getModel() ) );
+		}
+
+		return $content->serialize( $this->content_format );
+	}
+
+	/**
+	 * Turns the given text into a Content object by unserializing it.
+	 *
+	 * If the resulting Content object is not of a type that can be edited using the text base EditPage,
+	 * an exception will be raised. Set $this->allowNonTextContent to true to allow editing of non-textual
+	 * content.
+	 *
+	 * @param String $text Text to unserialize
+	 * @return Content the content object created from $text
+	 *
+	 * @throws MWException if unserializing the text results in a Content object that is not an instance of TextContent
+	 *          and $this->allowNonTextContent is not true.
+	 */
+	protected function toEditContent( $text ) {
+		$content = ContentHandler::makeContent( $text, $this->getTitle(),
+			$this->content_model, $this->content_format );
+
+		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
+			throw new MWException( "This content model can not be edited as text: "
+				. ContentHandler::getLocalizedName( $content->getModel() ) );
+		}
+
+		return $content;
+	}
+
+	/**
 	 * Send the edit form and related headers to $wgOut
 	 * @param $formCallback Callback that takes an OutputPage parameter; will be called
 	 *     during form output near the top, for captchas and the like.
@@ -2043,7 +2096,7 @@ class EditPage {
 			$this->textbox2 = $this->textbox1;
 
 			$content = $this->getCurrentContent();
-			$this->textbox1 = $content->serialize( $this->content_format );
+			$this->textbox1 = $this->toEditText( $content );
 
 			$this->showTextbox1();
 		} else {
@@ -2548,7 +2601,7 @@ HTML
 			$oldtext = $this->mTitle->getDefaultMessageText();
 			if( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';
-				$oldContent = ContentHandler::makeContent( $oldtext, $this->mTitle );
+				$oldContent = $this->toEditContent( $oldtext );
 			} else {
 				$oldContent = null;
 			}
@@ -2556,8 +2609,7 @@ HTML
 			$oldContent = $this->getOriginalContent();
 		}
 
-		$textboxContent = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
-														$this->content_model, $this->content_format );
+		$textboxContent = $this->toEditContent( $this->textbox1 );
 
 		$newContent = $this->mArticle->replaceSectionContent(
 											$this->section, $textboxContent,
@@ -2692,8 +2744,8 @@ HTML
 		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
-			$content1 = ContentHandler::makeContent( $this->textbox1, $this->getTitle(), $this->content_model, $this->content_format );
-			$content2 = ContentHandler::makeContent( $this->textbox2, $this->getTitle(), $this->content_model, $this->content_format );
+			$content1 = $this->toEditContent( $this->textbox1 );
+			$content2 = $this->toEditContent( $this->textbox2 );
 
 			$handler = ContentHandler::getForModelID( $this->content_model );
 			$de = $handler->createDifferenceEngine( $this->mArticle->getContext() );
@@ -2823,8 +2875,7 @@ HTML
 		$note = '';
 
 		try {
-			$content = ContentHandler::makeContent( $this->textbox1, $this->getTitle(),
-													$this->content_model, $this->content_format );
+			$content = $this->toEditContent( $this->textbox1 );
 
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
 				if ( $this->mTokenOkExceptSuffix ) {
