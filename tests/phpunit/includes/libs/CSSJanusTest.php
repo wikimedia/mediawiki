@@ -142,6 +142,18 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'.foo { border-radius: .25em 0ex 0pt 15px; }'
 			),
 			array(
+				'.foo { -moz-border-radius: .25em 15px 0pt 0ex; }',
+				'.foo { -moz-border-radius: .25em 0ex 0pt 15px; }'
+			),
+			array(
+				'.foo { box-shadow: -2px 2px 1px #999 }',
+				'.foo { box-shadow: 2px 2px 1px #999 }'
+			),
+			array(
+				'.foo { -webkit-box-shadow: -2px 2px 1px #999 }',
+				'.foo { -webkit-box-shadow: 2px 2px 1px #999 }'
+			),
+			array(
 				'.foo { x-unknown: a b c d; }'
 			),
 			array(
