@@ -545,6 +545,10 @@ $1',
 'youhavenewmessages' => 'Máte $1 ($2).',
 'newmessageslink' => 'nové správy',
 'newmessagesdifflink' => 'posledná zmena',
+'youhavenewmessagesfromusers' => 'Máte $1 od {{PLURAL:$3|iného používateľa|$3 iných používateľov}} ($2).',
+'youhavenewmessagesmanyusers' => 'Máte $1 od viacerých ďalších používateľov ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|novú správu|nové správy|nových správ}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|posledná zmena|posledné zmeny}}',
 'youhavenewmessagesmulti' => 'Máte nové správy na $1',
 'editsection' => 'upraviť',
 'editold' => 'upraviť',
@@ -596,9 +600,9 @@ Zoznam platných špeciálnych stránok nájdete na [[Special:SpecialPages|{{int
 # General errors
 'error' => 'Chyba',
 'databaseerror' => 'Chyba v databáze',
-'dberrortext' => 'Nastala syntaktická chyba v príkaze na prehľadávanie databázy.
-To môže značiť chybu v softvéri.
-Posledná požiadavka na databázu bola:
+'dberrortext' => 'V databázovom dopyte sa vyskytla syntaktická chyba.
+Príčinou môže byť chyba v softvéri.
+Posledný dopyt bol:
 <blockquote><tt>$1</tt></blockquote>
 z funkcie „<tt>$2</tt>“.
 Databáza vrátila chybu „<tt>$3: $4</tt>“.',
@@ -1208,9 +1212,11 @@ Nemáte k nej prístup.',
 'revdelete-concurrent-change' => 'Chyba pri zmene položky s dátumom $2, $1: zdá sa, že kým ste ju menili vykonal zmenu niekto iný.
 Pozrite sa prosím do záznamov.',
 'revdelete-only-restricted' => 'Chyba pri skrývaní položky s dátumom $2, $1: nemôžete skryť položku pred správcami bez toho, aby ste vybrali aj jednu z ďalších možností viditeľnosti.',
-'revdelete-reason-dropdown' => '*Bežné dôvody zmazania
+'revdelete-reason-dropdown' => '*Obvyklé dôvody zmazania
 ** Porušenie autorských práv
-** Nevhodné osobné informácie',
+** Nevhodné komentáre alebo osobné informácie
+** Nevhodné meno používateľa
+** Potenciálne hanlivé alebo ohováračské údaje',
 'revdelete-otherreason' => 'Ďalšie dôvody:',
 'revdelete-reasonotherlist' => 'Iný dôvod',
 'revdelete-edit-reasonlist' => 'Upraviť dôvody zmazania',
@@ -1956,6 +1962,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zdieľané úložisko',
+'upload-disallowed-here' => 'Ľutujeme, tento súbor nie je možné prepísať.',
 
 # File reversion
 'filerevert' => 'Obnoviť $1',
@@ -2062,6 +2069,7 @@ Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riad
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bajt|bajty|bajtov}}',
 'ncategories' => '$1 {{PLURAL:$1|kategória|kategórie|kategórií}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki odkaz|interwiki odkazy|interwiki odkazov}}',
 'nlinks' => '$1 {{PLURAL:$1|odkaz|odkazy|odkazov}}',
 'nmembers' => '$1 {{PLURAL:$1|člen|členovia|členov}}',
 'nrevisions' => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
@@ -2090,6 +2098,7 @@ Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riad
 'mostlinkedtemplates' => 'Najčastejšie odkazované šablóny',
 'mostcategories' => 'Stránky s najväčším počtom kategórií',
 'mostimages' => 'Najčastejšie odkazované súbory',
+'mostinterwikis' => 'Stránky s najväčším počtom interwiki odkazov',
 'mostrevisions' => 'Stránky s najväčším počtom úprav',
 'prefixindex' => 'Všetky stránky s predponou',
 'prefixindex-namespace' => 'Všetky stránky s predponou (menný priestor $1)',
@@ -2236,6 +2245,8 @@ Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie inform
 'mailnologin' => 'Žiadna adresa na zaslanie',
 'mailnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený]] a mať platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]], aby ste mohli iným používateľom posielať e-maily.',
 'emailuser' => 'E-mail tomuto používateľovi',
+'emailuser-title-target' => 'E-mail {{GENDER:$1|tomuto používateľovi|tejto používateľke}}',
+'emailuser-title-notarget' => 'E-mail používateľovi',
 'emailpage' => 'E-mail používateľovi',
 'emailpagetext' => 'Ak tento používateľ zadal platnú emailovú adresu vo svojich nastaveniach,
 môžete mu pomocou nasledovného formulára poslať email.
@@ -3063,7 +3074,8 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 
 # Info page
 'pageinfo-title' => 'Informácie o „$1“',
-'pageinfo-header-edits' => 'Úpravy',
+'pageinfo-header-basic' => 'Základné údaje',
+'pageinfo-header-edits' => 'História úprav',
 'pageinfo-views' => 'Počet zobrazení',
 'pageinfo-watchers' => 'Počet sledovateľov',
 'pageinfo-edits' => 'Počet úprav',

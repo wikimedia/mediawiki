@@ -1405,8 +1405,11 @@ This is a search result (and I guess search engine) dependent messages. I do not
 
 This is a search result (and I guess search engine) dependent messages. I do not know how to trigger the feature. The message is displayed if the search result contains information that related pages can also be provided from the search engine. I assume this is "More Like This" functionality. Microsoft glossary defines MLT as "A way to refine search by identifying the right set of documents and then locating similar documents. This allows the searcher to control the direction of the search and focus on the most fruitful lines of inquiry."[http://www.microsoft.com/enterprisesearch/en/us/search-glossary.aspx]',
 'searchall' => '{{Identical|All}}',
-'showingresults' => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
-'showingresultsnum' => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
+'showingresults' => "This message is used on some special pages such as 'Wanted categories'.
+*$1 is the total number of results in the batch shown.
+*$2 is the number of the first item listed.",
+'showingresultsnum' => '*$3 is the number of results on the page.
+*$2 is the first number in the batch of results.',
 'showingresultsheader' => 'Used in search results of [[Special:Search]].',
 'nonefound' => 'This message appears on the search results page if no results are found.
 {{doc-important|Do not translate "all:".}}',

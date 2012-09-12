@@ -1105,10 +1105,11 @@ Anda tidak memiliki capaian padanya.',
 'revdelete-concurrent-change' => 'Ralat ketika mengubahsuai item bertarikh $2, $1: kelihatan statusnya telah diubah oleh orang lain ketika anda cuba untuk mengubahsuainya.
 Mohon semak log.',
 'revdelete-only-restricted' => 'Ralat menyembunyikan item bertarikh $2, $1: anda tidak boleh menyekat item-item dari pandangan pentadbir-pentadbir tanpa memilih juga salah satu pilihan pandangan lain.',
-'revdelete-reason-dropdown' => '*Sebab penghapusan biasa
+'revdelete-reason-dropdown' => '*Sebab penghapusan yang biasa
 ** Pencabulan hak cipta
-** Maklumat peribadi tidak sesuai
-** Maklumat berpotensi fitnah',
+** Ulasan atau maklumat peribadi tidak sesuai
+** Nama pengguna tidak sesuai
+** Maklumat berkemungkinan fitnah',
 'revdelete-otherreason' => 'Sebab lain/tambahan:',
 'revdelete-reasonotherlist' => 'Sebab lain',
 'revdelete-edit-reasonlist' => 'Ubah sebab-sebab hapus',

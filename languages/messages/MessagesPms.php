@@ -2867,12 +2867,12 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 
 $1",
 'filedelete-missing' => "L'archivi «$1» as peul pa dëscancelesse, për via ch'a-i é nen.",
-'filedelete-old-unregistered' => 'La revision d\'archivi specificà "$1" ant la base dat a-i é nen.',
-'filedelete-current-unregistered' => 'Ant la base dat l\'archivi "$1" ch\'a l\'é specificasse a-i é pa.',
-'filedelete-archive-read-only' => 'Ël servent dla Ragnà a peul pa scriv-ie ant ël dossié dj\'archivi "$1".',
+'filedelete-old-unregistered' => "La revision d'archivi specificà «$1» ant la base dij dat a-i é nen.",
+'filedelete-current-unregistered' => "Ant la base dij dat l'archivi «$1» ch'a l'é specificasse a-i é pa.",
+'filedelete-archive-read-only' => "Ël servent dla Ragnà a peul pa scriv-ie ant ël dossié d'archiviassion «$1».",
 
 # Browsing diffs
-'previousdiff' => '← Diferensa pì veja',
+'previousdiff' => '← Modìfica precedenta',
 'nextdiff' => 'Modìfica pì neuva →',
 
 # Media information

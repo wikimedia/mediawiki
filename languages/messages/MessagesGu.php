@@ -1360,7 +1360,7 @@ HTML નાકું ચકાસો',
 # Groups
 'group' => 'સમુહ',
 'group-user' => 'સભ્ય',
-'group-autoconfirmed' => 'સ્વયં ચલિત પરવાનગી મેળવેલ સભ્યો',
+'group-autoconfirmed' => 'સ્વયંચલિત માન્ય સભ્યો',
 'group-bot' => 'બૉટો',
 'group-sysop' => 'સાઇસૉપ/પ્રબંધકો',
 'group-bureaucrat' => 'રાજનૈતિકો',
@@ -1375,7 +1375,7 @@ HTML નાકું ચકાસો',
 'group-suppress-member' => '{{GENDER:$1|દુર્લક્ષ}}',
 
 'grouppage-user' => '{{ns:project}}:સભ્યો',
-'grouppage-autoconfirmed' => '{{ns:project}}:સ્વ્યંચલિત બહાલ  સભ્યો',
+'grouppage-autoconfirmed' => '{{ns:project}}:સ્વયંચલિત માન્ય સભ્યો',
 'grouppage-bot' => '{{ns:project}}:બૉટો',
 'grouppage-sysop' => '{{ns:project}}:પ્રબંધકો',
 'grouppage-bureaucrat' => '{{ns:project}}: રાજનૈતિક',
@@ -2082,8 +2082,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 
 # Special:ListGroupRights
 'listgrouprights' => 'સભ્ય જૂથ ના હક્કો',
-'listgrouprights-summary' => 'નીચે આ વિકિ પર પરિભાષિત સભ્ય જૂથની યાદિ આપી છે અને તેમના હક્કો પણ આપેલા છે.
-નીજી હક્કો માટે [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] માહિતી.',
+'listgrouprights-summary' => 'નીચે આ વિકિ પર વ્યાખ્યાયિત સભ્ય જૂથોની યાદી, તેમની સાથે સંકળાયેલા હક્કો સાથે આપી છે.
+વ્યક્તિગત હક્કો માટે [[{{MediaWiki:Listgrouprights-helppage}}|વધારાની માહિતી]].',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">અધિકાર અપાયા</span>
 * <span class="listgrouprights-revoked">અધિકાર હટાવાયા</span>',
 'listgrouprights-group' => 'જૂથ',

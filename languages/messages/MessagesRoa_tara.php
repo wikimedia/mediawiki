@@ -2714,6 +2714,7 @@ Tutte le aziune de 'mbortaziune 'mbrà le Uicchi sonde reggistrate jndr'à l'[[S
 'import-interwiki-templates' => 'Inglude tutte le template',
 'import-interwiki-submit' => "'Mborte",
 'import-interwiki-namespace' => 'Namespace de destinazione:',
+'import-interwiki-rootpage' => 'Pàgena prengepàale de destinazione (opzionale):',
 'import-upload-filename' => "Nome d'u file:",
 'import-comment' => 'Commende:',
 'importtext' => "Pe piacere esporte 'u file da 'a Uicchi sorgende ausanne l'[[Special:Export|utilità de esportazione]].
@@ -2751,6 +2752,7 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-error-invalid' => "'A pàgene \"\$1\" non g'ha state 'mbortate purcé 'u nome jè invalide.",
 'import-options-wrong' => '{{PLURAL:$2|opzione|opziune}} sbagliate: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => "'A pàgene radice date tène 'nu titole invalide.",
+'import-rootpage-nosubpage' => 'Namespace "$1" d\'a pàgene prengepàle non ge permette le sottopàggene.',
 
 # Import log
 'importlogpage' => "Archivie de le 'mbortaziune",
@@ -2920,6 +2922,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-redirects-name' => 'Redirezionaminde a sta pàgene',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Sottopàggene de sta pàgene',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|ridirezionate|ridirezionate}}; $3 {{PLURAL:$3|none ridirezionate|none ridirezionate}})',
 'pageinfo-firstuser' => "Ccrejatore d'a pàgene",
 'pageinfo-firsttime' => "Date d'a ccrejazione d'a pàgene",
 'pageinfo-lastuser' => 'Urteme cangiatore',
@@ -2928,7 +2931,9 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-authors' => 'Numere Totale de autore diverse',
 'pageinfo-recent-edits' => "Numere de le urteme cangiaminde ('mbonde a $1)",
 'pageinfo-recent-authors' => 'Numere de le urteme autore diverse',
+'pageinfo-restriction' => "Protezione d'a pàgene ({{lcfirst:$1}})",
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorije|Categorije}} scunnute ($1)',
 
 # Skin names
 'skinname-standard' => 'Classeche',

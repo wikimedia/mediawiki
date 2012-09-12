@@ -1226,7 +1226,9 @@ Proszę sprawdzić rejestr operacji.',
 'revdelete-only-restricted' => 'Nie można ukryć elementu z $2, $1 przed administratorami bez określenia jednej z pozostałych opcji ukrywania.',
 'revdelete-reason-dropdown' => '* Najczęstsze powody usunięcia
 ** Naruszenie praw autorskich
-** Informacja naruszająca prywatność',
+** Niestosowny komentarz lub informacja naruszająca prywatność
+** Niestosowna nazwa użytkownika
+** Potencjalnie oszczercza informacja',
 'revdelete-otherreason' => 'Inny lub dodatkowy powód:',
 'revdelete-reasonotherlist' => 'Inny powód',
 'revdelete-edit-reasonlist' => 'Edycja listy powodów usunięcia pliku',
