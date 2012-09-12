@@ -224,7 +224,7 @@ class PageArchive {
 					'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
-			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleID() ) );
+			return Revision::newFromArchiveRow( $row, array( 'title' => $this->title ) );
 		} else {
 			return null;
 		}
@@ -593,7 +593,7 @@ class PageArchive {
 			// unless we are specifically removing all restrictions...
 			$revision = Revision::newFromArchiveRow( $row,
 				array(
-					'page' => $pageId,
+					'title' => $this->title,
 					'deleted' => $unsuppress ? 0 : $row->ar_deleted
 				) );
 
@@ -851,11 +851,13 @@ class SpecialUndelete extends SpecialPage {
 
 	private function showRevision( $timestamp ) {
 		if( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
-			return 0;
+			return;
 		}
 
 		$archive = new PageArchive( $this->mTargetObj );
-		wfRunHooks( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) );
+		if ( !wfRunHooks( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) ) ) {
+			return;
+		}
 		$rev = $archive->getRevision( $timestamp );
 
 		$out = $this->getOutput();
@@ -905,7 +907,11 @@ class SpecialUndelete extends SpecialPage {
 		$t = $lang->userTime( $timestamp, $user );
 		$userLink = Linker::revUserTools( $rev );
 
-		if( $this->mPreview ) {
+		$content = $rev->getContent( Revision::FOR_THIS_USER, $user );
+
+		$isText = ( $content instanceof TextContent );
+
+		if( $this->mPreview || $isText ) {
 			$openDiv = '<div id="mw-undelete-revision" class="mw-warning">';
 		} else {
 			$openDiv = '<div id="mw-undelete-revision">';
@@ -922,26 +928,48 @@ class SpecialUndelete extends SpecialPage {
 
 		$out->addHTML( $this->msg( 'undelete-revision' )->rawParams( $link )->params(
 			$time )->rawParams( $userLink )->params( $d, $t )->parse() . '</div>' );
-		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
-		if( $this->mPreview ) {
-			// Hide [edit]s
-			//FIXME: ContentHandler will have to provide some specialized magic to do this
-			$popts = $out->parserOptions();
-			$popts->setEditSection( false );
-			$out->parserOptions( $popts );
-			$out->addWikiTextTitleTidy( $rev->getText( Revision::FOR_THIS_USER, $user ), $this->mTargetObj, true );
+		if ( !wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) ) ) {
+			return;
 		}
 
-		//FIXME: ContentHandler will have to provide some specialized magic for reviewing content before undeletion
+		if( $this->mPreview || !$isText ) {
+			// NOTE: non-text content has no source view, so always use rendered preview
+
+			// Hide [edit]s
+			$popts = $out->parserOptions();
+			$popts->setEditSection( false );
+
+			$pout = $content->getParserOutput( $this->mTargetObj, $rev->getId(), $popts, true );
+			$out->addParserOutput( $pout );
+		}
+
+		if ( $isText ) {
+			// source view for textual content
+			$sourceView = Xml::element( 'textarea', array(
+				'readonly' => 'readonly',
+				'cols' => intval( $user->getOption( 'cols' ) ),
+				'rows' => intval( $user->getOption( 'rows' ) ) ),
+				$content->getNativeData() . "\n" );
+
+			$previewButton = Xml::element( 'input', array(
+				'type' => 'submit',
+				'name' => 'preview',
+				'value' => $this->msg( 'showpreview' )->text() ) );
+		} else {
+			$sourceView = '';
+			$previewButton = '';
+		}
+
+		$diffButton = Xml::element( 'input', array(
+			'name' => 'diff',
+			'type' => 'submit',
+			'value' => $this->msg( 'showdiff' )->text() ) );
 
 		$out->addHTML(
-			Xml::element( 'textarea', array(
-					'readonly' => 'readonly',
-					'cols' => intval( $user->getOption( 'cols' ) ),
-					'rows' => intval( $user->getOption( 'rows' ) ) ),
-				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) .
-			Xml::openElement( 'div' ) .
+			$sourceView .
+			Xml::openElement( 'div', array(
+				'style' => 'clear: both' ) ) .
 			Xml::openElement( 'form', array(
 				'method' => 'post',
 				'action' => $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) ) ) ) .
@@ -957,14 +985,8 @@ class SpecialUndelete extends SpecialPage {
 				'type' => 'hidden',
 				'name' => 'wpEditToken',
 				'value' => $user->getEditToken() ) ) .
-			Xml::element( 'input', array(
-				'type' => 'submit',
-				'name' => 'preview',
-				'value' => $this->msg( 'showpreview' )->text() ) ) .
-			Xml::element( 'input', array(
-				'name' => 'diff',
-				'type' => 'submit',
-				'value' => $this->msg( 'showdiff' )->text() ) ) .
+			$previewButton .
+			$diffButton .
 			Xml::closeElement( 'form' ) .
 			Xml::closeElement( 'div' ) );
 	}
@@ -978,7 +1000,11 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML
 	 */
 	function showDiff( $previousRev, $currentRev ) {
-		$diffEngine = $currentRev->getContentHandler()->createDifferenceEngine( $this->getContext() );
+		$diffContext = clone $this->getContext();
+		$diffContext->setTitle( $currentRev->getTitle() );
+		$diffContext->setWikiPage( WikiPage::factory( $currentRev->getTitle() ) );
+
+		$diffEngine = $currentRev->getContentHandler()->createDifferenceEngine( $diffContext );
 		$diffEngine->showDiffStyle();
 		$this->getOutput()->addHTML(
 			"<div>" .
@@ -1254,7 +1280,10 @@ class SpecialUndelete extends SpecialPage {
 
 	private function formatRevisionRow( $row, $earliestLiveTime, $remaining ) {
 		$rev = Revision::newFromArchiveRow( $row,
-			array( 'page' => $this->mTargetObj->getArticleID() ) );
+			array(
+				'title' => $this->mTargetObj
+			) );
+
 		$revTextSize = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		// Build checkboxen...
