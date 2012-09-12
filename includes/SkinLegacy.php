@@ -584,34 +584,6 @@ class LegacyTemplate extends BaseTemplate {
 		return $s;
 	}
 
-	function protectThisPage() {
-		global $wgUser, $wgRequest;
-
-		$diff = $wgRequest->getVal( 'diff' );
-		$title = $this->getSkin()->getTitle();
-
-		if ( $title->getArticleId() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
-			if ( $title->isProtected() ) {
-				$text = wfMsg( 'unprotectthispage' );
-				$query = array( 'action' => 'unprotect' );
-			} else {
-				$text = wfMsg( 'protectthispage' );
-				$query = array( 'action' => 'protect' );
-			}
-
-			$s = Linker::linkKnown(
-				$title,
-				$text,
-				array(),
-				$query
-			);
-		} else {
-			$s = '';
-		}
-
-		return $s;
-	}
-
 	function watchThisPage() {
 		global $wgOut, $wgUser;
 		++$this->mWatchLinkNum;

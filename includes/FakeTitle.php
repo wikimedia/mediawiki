@@ -38,16 +38,11 @@ class FakeTitle extends Title {
 	function getEditURL() { $this->error(); }
 	function getEscapedText() { $this->error(); }
 	function isExternal() { $this->error(); }
-	function isSemiProtected( $action = 'edit' ) { $this->error(); }
-	function isProtected( $action = '' ) { $this->error(); }
 	function isConversionTable() { $this->error(); }
 	function userIsWatching() { $this->error(); }
 	function quickUserCan( $action, $user = null ) { $this->error(); }
-	function isNamespaceProtected( User $user ) { $this->error(); }
 	function userCan( $action, $user = null, $doExpensiveQueries = true ) { $this->error(); }
 	function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) { $this->error(); }
-	function updateTitleProtection( $create_perm, $reason, $expiry ) { $this->error(); }
-	function deleteTitleProtection() { $this->error(); }
 	function isMovable() { $this->error(); }
 	function userCanRead() { $this->error(); }
 	function isTalkPage() { $this->error(); }
@@ -62,13 +57,6 @@ class FakeTitle extends Title {
 	function userCanEditCssJsSubpage() { $this->error(); }
 	function userCanEditCssSubpage() { $this->error(); }
 	function userCanEditJsSubpage() { $this->error(); }
-	function isCascadeProtected() { $this->error(); }
-	function getCascadeProtectionSources( $get_pages = true ) { $this->error(); }
-	function areRestrictionsCascading() { $this->error(); }
-	function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) { $this->error(); }
-	function loadRestrictions( $res = null ) { $this->error(); }
-	function getRestrictions( $action ) { $this->error(); }
-	function getRestrictionExpiry( $action ) { $this->error(); }
 	function isDeleted() { $this->error(); }
 	function isDeletedQuick() { $this->error(); }
 	function getArticleID( $flags = 0 ) { $this->error(); }
@@ -120,5 +108,4 @@ class FakeTitle extends Title {
 	function isValidRedirectTarget() { $this->error(); }
 	function getBacklinkCache() { $this->error(); }
 	function canUseNoindex() { $this->error(); }
-	function getRestrictionTypes() { $this->error(); }
 }

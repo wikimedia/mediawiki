@@ -604,16 +604,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	* Returns the requested protection level for the current page
-	*/
-	static function protectionlevel( $parser, $type = '' ) {
-		$restrictions = $parser->mTitle->getRestrictions( strtolower( $type ) );
-		# Title::getRestrictions returns an array, its possible it may have
-		# multiple values in the future
-		return implode( $restrictions, ',' );
-	}
-
-	/**
 	 * Gives language names.
 	 * @param $parser Parser
 	 * @param $code String  Language code

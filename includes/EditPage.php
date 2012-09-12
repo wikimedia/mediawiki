@@ -462,26 +462,6 @@ class EditPage {
 	}
 
 	/**
-	 * Show a read-only error
-	 * Parameters are the same as OutputPage:readOnlyPage()
-	 * Redirect to the article page if redlink=1
-	 * @deprecated in 1.19; use displayPermissionsError() instead
-	 */
-	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
-		wfDeprecated( __METHOD__, '1.19' );
-		
-		global $wgRequest, $wgOut;
-		if ( $wgRequest->getBool( 'redlink' ) ) {
-			// The edit page was reached via a red link.
-			// Redirect to the article page and let them click the edit tab if
-			// they really want a permission error.
-			$wgOut->redirect( $this->mTitle->getFullUrl() );
-		} else {
-			$wgOut->readOnlyPage( $source, $protected, $reasons, $action );
-		}
-	}
-
-	/**
 	 * Should we show a preview when the edit form is first shown?
 	 *
 	 * @return bool
@@ -1997,38 +1977,7 @@ class EditPage {
 			}
 		}
 
-		if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
-			# Is the title semi-protected?
-			if ( $this->mTitle->isSemiProtected() ) {
-				$noticeMsg = 'semiprotectedpagewarning';
-			} else {
-				# Then it must be protected based on static groups (regular)
-				$noticeMsg = 'protectedpagewarning';
-			}
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				array( 'lim' => 1, 'msgKey' => array( $noticeMsg ) ) );
-		}
-		if ( $this->mTitle->isCascadeProtected() ) {
-			# Is this page under cascading protection from some source pages?
-			list($cascadeSources, /* $restrictions */) = $this->mTitle->getCascadeProtectionSources();
-			$notice = "<div class='mw-cascadeprotectedwarning'>\n$1\n";
-			$cascadeSourcesCount = count( $cascadeSources );
-			if ( $cascadeSourcesCount > 0 ) {
-				# Explain, and list the titles responsible
-				foreach( $cascadeSources as $page ) {
-					$notice .= '* [[:' . $page->getPrefixedText() . "]]\n";
-				}
-			}
-			$notice .= '</div>';
-			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', $cascadeSourcesCount ) );
-		}
-		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
-				array(  'lim' => 1,
-					'showIfEmpty' => false,
-					'msgKey' => array( 'titleprotectedwarning' ),
-					'wrap' => "<div class=\"mw-titleprotectedwarning\">\n$1</div>" ) );
-		}
+		wfRunHooks( 'EditPage::showRestrictions', array( $this ) );
 
 		if ( $this->kblength === false ) {
 			$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
@@ -2190,34 +2139,14 @@ HTML
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
 			$attribs = array( 'style' => 'display:none;' );
 		} else {
-			$classes = array(); // Textarea CSS
-			if ( $this->mTitle->getNamespace() != NS_MEDIAWIKI && $this->mTitle->isProtected( 'edit' ) ) {
-				# Is the title semi-protected?
-				if ( $this->mTitle->isSemiProtected() ) {
-					$classes[] = 'mw-textarea-sprotected';
-				} else {
-					# Then it must be protected based on static groups (regular)
-					$classes[] = 'mw-textarea-protected';
-				}
-				# Is the title cascade-protected?
-				if ( $this->mTitle->isCascadeProtected() ) {
-					$classes[] = 'mw-textarea-cprotected';
-				}
-			}
-
 			$attribs = array( 'tabindex' => 1 );
 
 			if ( is_array( $customAttribs ) ) {
 				$attribs += $customAttribs;
 			}
-
-			if ( count( $classes ) ) {
-				if ( isset( $attribs['class'] ) ) {
-					$classes[] = $attribs['class'];
-				}
-				$attribs['class'] = implode( ' ', $classes );
-			}
 		}
+
+		wfRunHooks( 'EditPage::showTextboxAlter', array( $this, &$attribs ) );
 
 		$this->showTextbox( $textoverride !== null ? $textoverride : $this->textbox1, 'wpTextbox1', $attribs );
 	}

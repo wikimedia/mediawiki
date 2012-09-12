@@ -3615,27 +3615,6 @@ $wgGroupsAddToSelf = array();
 $wgGroupsRemoveFromSelf = array();
 
 /**
- * Set of available actions that can be restricted via action=protect
- * You probably shouldn't change this.
- * Translated through restriction-* messages.
- * Title::getRestrictionTypes() will remove restrictions that are not
- * applicable to a specific title (create and upload)
- */
-$wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' );
-
-/**
- * Rights which can be required for each protection level (via action=protect)
- *
- * You can add a new protection level that requires a specific
- * permission by manipulating this array. The ordering of elements
- * dictates the order on the protection form's lists.
- *
- *   - '' will be ignored (i.e. unprotected)
- *   - 'sysop' is quietly rewritten to 'protect' for backwards compatibility
- */
-$wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' );
-
-/**
  * Set the minimum permissions required to edit pages in each
  * namespace.  If you list more than one permission, a user must
  * have all of them to edit pages in that namespace.
@@ -5039,7 +5018,6 @@ $wgCategoryCollation = 'uppercase';
 $wgLogTypes = array(
 	'',
 	'block',
-	'protect',
 	'rights',
 	'delete',
 	'upload',
@@ -5097,7 +5075,6 @@ $wgFilterLogTypes = array(
 $wgLogNames = array(
 	''        => 'all-logs-page',
 	'block'   => 'blocklogpage',
-	'protect' => 'protectlogpage',
 	'rights'  => 'rightslog',
 	'delete'  => 'dellogpage',
 	'upload'  => 'uploadlogpage',
@@ -5120,7 +5097,6 @@ $wgLogNames = array(
 $wgLogHeaders = array(
 	''        => 'alllogstext',
 	'block'   => 'blocklogtext',
-	'protect' => 'protectlogtext',
 	'rights'  => 'rightslogtext',
 	'delete'  => 'dellogpagetext',
 	'upload'  => 'uploadlogpagetext',
@@ -5141,10 +5117,6 @@ $wgLogActions = array(
 	'block/block'        => 'blocklogentry',
 	'block/unblock'      => 'unblocklogentry',
 	'block/reblock'      => 'reblock-logentry',
-	'protect/protect'    => 'protectedarticle',
-	'protect/modify'     => 'modifiedarticleprotection',
-	'protect/unprotect'  => 'unprotectedarticle',
-	'protect/move_prot'  => 'movedarticleprotection',
 	'rights/rights'      => 'rightslogentry',
 	'rights/autopromote' => 'rightslogentry-autopromote',
 	'upload/upload'      => 'uploadedimage',
@@ -5211,8 +5183,6 @@ $wgSpecialPageGroups = array(
 	'Uncategorizedtemplates'    => 'maintenance',
 	'Unusedcategories'          => 'maintenance',
 	'Unusedimages'              => 'maintenance',
-	'Protectedpages'            => 'maintenance',
-	'Protectedtitles'           => 'maintenance',
 	'Unusedtemplates'           => 'maintenance',
 	'Withoutinterwiki'          => 'maintenance',
 	'Longpages'                 => 'maintenance',
@@ -5344,7 +5314,6 @@ $wgActions = array(
 	'history'        => true,
 	'info'           => true,
 	'markpatrolled'  => true,
-	'protect'        => true,
 	'purge'          => true,
 	'raw'            => true,
 	'render'         => true,
@@ -5352,7 +5321,6 @@ $wgActions = array(
 	'revisiondelete' => true,
 	'rollback'       => true,
 	'submit'         => true,
-	'unprotect'      => true,
 	'unwatch'        => true,
 	'view'           => true,
 	'watch'          => true,

@@ -346,7 +346,6 @@ $magicWords = array(
 	'noindex'                => array( 1,    '__NOINDEX__'            ),
 	'numberingroup'          => array( 1,    'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
-	'protectionlevel'        => array( 1,    'PROTECTIONLEVEL'        ),
 	'formatdate'             => array( 0,    'formatdate', 'dateformat' ),
 	'url_path'               => array( 0,    'PATH' ),
 	'url_wiki'               => array( 0,    'WIKI' ),
@@ -426,8 +425,6 @@ $specialPageAliases = array(
 	'Popularpages'              => array( 'PopularPages' ),
 	'Preferences'               => array( 'Preferences' ),
 	'Prefixindex'               => array( 'PrefixIndex' ) ,
-	'Protectedpages'            => array( 'ProtectedPages' ),
-	'Protectedtitles'           => array( 'ProtectedTitles' ),
 	'Randompage'                => array( 'Random', 'RandomPage' ),
 	'Randomredirect'            => array( 'RandomRedirect' ),
 	'Recentchanges'             => array( 'RecentChanges' ),
@@ -781,9 +778,7 @@ XHTML id names.
 'vector-action-addsection'       => 'Add topic',
 'vector-action-delete'           => 'Delete',
 'vector-action-move'             => 'Move',
-'vector-action-protect'          => 'Protect',
 'vector-action-undelete'         => 'Undelete',
-'vector-action-unprotect'        => 'Change protection',
 'vector-simplesearch-preference' => 'Enable enhanced search suggestions (Vector skin only)',
 'vector-view-create'             => 'Create',
 'vector-view-edit'               => 'Edit',
@@ -817,11 +812,6 @@ XHTML id names.
 'deletethispage'    => 'Delete this page',
 'undelete_short'    => 'Undelete {{PLURAL:$1|one edit|$1 edits}}',
 'viewdeleted_short' => 'View {{PLURAL:$1|one deleted edit|$1 deleted edits}}',
-'protect'           => 'Protect',
-'protect_change'    => 'change',
-'protectthispage'   => 'Protect this page',
-'unprotect'         => 'Change protection',
-'unprotectthispage' => 'Change protection of this page',
 'newpage'           => 'New page',
 'talkpage'          => 'Discuss this page',
 'talkpagelinktext'  => 'Talk',
@@ -847,7 +837,6 @@ XHTML id names.
 'talkpageheader'    => '-', # do not translate or duplicate this message to other languages
 'lastmodifiedat'    => 'This page was last modified on $1, at $2.',
 'viewcount'         => 'This page has been accessed {{PLURAL:$1|once|$1 times}}.',
-'protectedpage'     => 'Protected page',
 'jumpto'            => 'Jump to:',
 'jumptonavigation'  => 'navigation',
 'jumptosearch'      => 'search',
@@ -1012,22 +1001,12 @@ Query: $2',
 'actionthrottled'      => 'Action throttled',
 'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
-'protectedpagetext'    => 'This page has been protected to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
 'viewyourtext'         => "You can view and copy the source of '''your edits''' to this page:",
-'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
 For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
-'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
-$2',
-'namespaceprotected'   => "You do not have permission to edit pages in the '''$1''' namespace.",
-'customcssprotected'   => "You do not have permission to edit this CSS page, because it contains another user's personal settings.",
-'customjsprotected'    => "You do not have permission to edit this JavaScript page, because it contains another user's personal settings.",
-'ns-specialprotected'  => 'Special pages cannot be edited.',
-'titleprotected'       => 'This title has been protected from creation by [[User:$1|$1]].
-The reason given is "\'\'$2\'\'".',
 
 # Virus scanner
 'virus-badscanner'     => "Bad configuration: Unknown virus scanner: ''$1''",
@@ -1404,18 +1383,9 @@ It cannot be saved.",
 You may wish to cut-n-paste the text into a text file and save it for later.
 
 The administrator who locked it offered this explanation: $1",
-'protectedpagewarning'             => "'''Warning: This page has been protected so that only users with administrator privileges can edit it.'''
-The latest log entry is provided below for reference:",
-'semiprotectedpagewarning'         => "'''Note:''' This page has been protected so that only registered users can edit it.
-The latest log entry is provided below for reference:",
-'cascadeprotectedwarning'          => "'''Warning:''' This page has been protected so that only users with administrator privileges can edit it, because it is included in the following cascade-protected {{PLURAL:$1|page|pages}}:",
-'titleprotectedwarning'            => "'''Warning: This page has been protected so that [[Special:ListGroupRights|specific rights]] are needed to create it.'''
-The latest log entry is provided below for reference:",
 'templatesused'                    => '{{PLURAL:$1|Template|Templates}} used on this page:',
 'templatesusedpreview'             => '{{PLURAL:$1|Template|Templates}} used in this preview:',
 'templatesusedsection'             => '{{PLURAL:$1|Template|Templates}} used in this section:',
-'template-protected'               => '(protected)',
-'template-semiprotected'           => '(semi-protected)',
 'hiddencategories'                 => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
 'edittools'                        => '<!-- Text here will be shown below edit and upload forms. -->', # only translate this message to other languages if you have to change it
 'edittools-upload'                 => '-', # only translate this message to other languages if you have to change it
@@ -1941,7 +1911,6 @@ Your e-mail address is not revealed when other users contact you.',
 'right-reupload-shared'       => 'Override files on the shared media repository locally',
 'right-upload_by_url'         => 'Upload files from a URL',
 'right-purge'                 => 'Purge the site cache for a page without confirmation',
-'right-autoconfirmed'         => 'Edit semi-protected pages',
 'right-bot'                   => 'Be treated as an automated process',
 'right-nominornewtalk'        => 'Not have minor edits to discussion pages trigger the new messages prompt',
 'right-apihighlimits'         => 'Use higher limits in API queries',
@@ -1961,8 +1930,6 @@ Your e-mail address is not revealed when other users contact you.',
 'right-ipblock-exempt'        => 'Bypass IP blocks, auto-blocks and range blocks',
 'right-proxyunbannable'       => 'Bypass automatic blocks of proxies',
 'right-unblockself'           => 'Unblock themselves',
-'right-protect'               => 'Change protection levels and edit protected pages',
-'right-editprotected'         => 'Edit protected pages (without cascading protection)',
 'right-editinterface'         => 'Edit the user interface',
 'right-editusercssjs'         => "Edit other users' CSS and JavaScript files",
 'right-editusercss'           => "Edit other users' CSS files",
@@ -2015,7 +1982,6 @@ Your e-mail address is not revealed when other users contact you.',
 'action-suppressrevision'     => 'review and restore this hidden revision',
 'action-suppressionlog'       => 'view this private log',
 'action-block'                => 'block this user from editing',
-'action-protect'              => 'change protection levels for this page',
 'action-rollback'             => 'quickly rollback the edits of the last user who edited a particular page',
 'action-import'               => 'import this page from another wiki',
 'action-importupload'         => 'import this page from a file upload',
@@ -2564,16 +2530,6 @@ It now redirects to [[$2]].',
 'deadendpages'                    => 'Dead-end pages',
 'deadendpages-summary'            => '', # do not translate or duplicate this message to other languages
 'deadendpagestext'                => 'The following pages do not link to other pages in {{SITENAME}}.',
-'protectedpages'                  => 'Protected pages',
-'protectedpages-indef'            => 'Indefinite protections only',
-'protectedpages-summary'          => '', # do not translate or duplicate this message to other languages
-'protectedpages-cascade'          => 'Cascading protections only',
-'protectedpagestext'              => 'The following pages are protected from moving or editing',
-'protectedpagesempty'             => 'No pages are currently protected with these parameters.',
-'protectedtitles'                 => 'Protected titles',
-'protectedtitles-summary'         => '', # do not translate or duplicate this message to other languages
-'protectedtitlestext'             => 'The following titles are protected from creation',
-'protectedtitlesempty'            => 'No titles are currently protected with these parameters.',
 'listusers'                       => 'User list',
 'listusers-summary'               => '', # do not translate or duplicate this message to other languages
 'listusers-editsonly'             => 'Show only users with edits',
@@ -2877,73 +2833,6 @@ changed back to last revision by $2.',
 'sessionfailure'       => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Go back to the previous page, reload that page and then try again.',
-
-# Protect
-'protectlogpage'              => 'Protection log',
-'protectlogtext'              => 'Below is a list of changes to page protections.
-See the [[Special:ProtectedPages|protected pages list]] for the list of currently operational page protections.',
-'protectedarticle'            => 'protected "[[$1]]"',
-'modifiedarticleprotection'   => 'changed protection level for "[[$1]]"',
-'unprotectedarticle'          => 'removed protection from "[[$1]]"',
-'movedarticleprotection'      => 'moved protection settings from "[[$2]]" to "[[$1]]"',
-'protect-title'               => 'Change protection level for "$1"',
-'protect-title-notallowed'    => 'View protection level of "$1"',
-'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
-'protect-badnamespace-title'  => 'Non-protectable namespace',
-'protect-badnamespace-text'   => 'Pages in this namespace cannot be protected.',
-'protect-legend'              => 'Confirm protection',
-'protectcomment'              => 'Reason:',
-'protectexpiry'               => 'Expires:',
-'protect_expiry_invalid'      => 'Expiry time is invalid.',
-'protect_expiry_old'          => 'Expiry time is in the past.',
-'protect-unchain-permissions' => 'Unlock further protect options',
-'protect-text'                => "Here you may view and change the protection level for the page '''$1'''.",
-'protect-locked-blocked'      => "You cannot change protection levels while blocked.
-Here are the current settings for the page '''$1''':",
-'protect-locked-dblock'       => "Protection levels cannot be changed due to an active database lock.
-Here are the current settings for the page '''$1''':",
-'protect-locked-access'       => "Your account does not have permission to change page protection levels.
-Here are the current settings for the page '''$1''':",
-'protect-cascadeon'           => "This page is currently protected because it is included in the following {{PLURAL:$1|page, which has|pages, which have}} cascading protection turned on.
-You can change this page's protection level, but it will not affect the cascading protection.",
-'protect-default'             => 'Allow all users',
-'protect-fallback'            => 'Require "$1" permission',
-'protect-level-autoconfirmed' => 'Block new and unregistered users',
-'protect-level-sysop'         => 'Administrators only',
-'protect-summary-cascade'     => 'cascading',
-'protect-expiring'            => 'expires $1 (UTC)',
-'protect-expiring-local'      => 'expires $1',
-'protect-expiry-indefinite'   => 'indefinite',
-'protect-cascade'             => 'Protect pages included in this page (cascading protection)',
-'protect-cantedit'            => 'You cannot change the protection levels of this page, because you do not have permission to edit it.',
-'protect-othertime'           => 'Other time:',
-'protect-othertime-op'        => 'other time',
-'protect-existing-expiry'     => 'Existing expiry time: $3, $2',
-'protect-otherreason'         => 'Other/additional reason:',
-'protect-otherreason-op'      => 'Other reason',
-'protect-dropdown'            => '*Common protection reasons
-** Excessive vandalism
-** Excessive spamming
-** Counter-productive edit warring
-** High traffic page',
-'protect-edit-reasonlist'     => 'Edit protection reasons',
-'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
-'restriction-type'            => 'Permission:',
-'restriction-level'           => 'Restriction level:',
-'minimum-size'                => 'Min size',
-'maximum-size'                => 'Max size:',
-'pagesize'                    => '(bytes)',
-
-# Restrictions (nouns)
-'restriction-edit'   => 'Edit',
-'restriction-move'   => 'Move',
-'restriction-create' => 'Create',
-'restriction-upload' => 'Upload',
-
-# Restriction levels
-'restriction-level-sysop'         => 'fully protected',
-'restriction-level-autoconfirmed' => 'semi protected',
-'restriction-level-all'           => 'any level',
 
 # Undelete
 'undelete'                     => 'View deleted pages',
@@ -3262,7 +3151,6 @@ In those cases, you will have to move or merge the page manually if desired.",
 'movepage-moved-noredirect'    => 'The creation of a redirect has been suppressed.',
 'articleexists'                => 'A page of that name already exists, or the name you have chosen is not valid.
 Please choose another name.',
-'cantmove-titleprotected'      => 'You cannot move a page to this location, because the new title has been protected from creation',
 'talkexists'                   => "'''The page itself was moved successfully, but the talk page could not be moved because one already exists at the new title.
 Please merge them manually.'''",
 'movedto'                      => 'moved to',
@@ -3299,10 +3187,6 @@ cannot move a page over itself.',
 'imageinvalidfilename'         => 'The target filename is invalid',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
 'move-leave-redirect'          => 'Leave a redirect behind',
-'protectedpagemovewarning'     => "'''Warning:''' This page has been protected so that only users with administrator privileges can move it.
-The latest log entry is provided below for reference:",
-'semiprotectedpagemovewarning' => "'''Note:''' This page has been protected so that only registered users can move it.
-The latest log entry is provided below for reference:",
 'move-over-sharedrepo'         => '== File exists ==
 [[:$1]] exists on a shared repository. Moving a file to this title will override the shared file.',
 'file-exists-sharedrepo'       => 'The filename chosen is already in use on a shared repository.
@@ -3446,8 +3330,6 @@ Please try again.',
 'accesskey-ca-addsection'               => '+', # do not translate or duplicate this message to other languages
 'accesskey-ca-viewsource'               => 'e', # do not translate or duplicate this message to other languages
 'accesskey-ca-history'                  => 'h', # do not translate or duplicate this message to other languages
-'accesskey-ca-protect'                  => '=', # do not translate or duplicate this message to other languages
-'accesskey-ca-unprotect'                => '=', # do not translate or duplicate this message to other languages
 'accesskey-ca-delete'                   => 'd', # do not translate or duplicate this message to other languages
 'accesskey-ca-undelete'                 => 'd', # do not translate or duplicate this message to other languages
 'accesskey-ca-move'                     => 'm', # do not translate or duplicate this message to other languages
@@ -3514,11 +3396,7 @@ Please try again.',
 'tooltip-ca-talk'                     => 'Discussion about the content page',
 'tooltip-ca-edit'                     => 'You can edit this page. Please use the preview button before saving',
 'tooltip-ca-addsection'               => 'Start a new section',
-'tooltip-ca-viewsource'               => 'This page is protected.
-You can view its source',
 'tooltip-ca-history'                  => 'Past revisions of this page',
-'tooltip-ca-protect'                  => 'Protect this page',
-'tooltip-ca-unprotect'                => 'Change protection of this page',
 'tooltip-ca-delete'                   => 'Delete this page',
 'tooltip-ca-undelete'                 => 'Restore the edits done to this page before it was deleted',
 'tooltip-ca-move'                     => 'Move this page',

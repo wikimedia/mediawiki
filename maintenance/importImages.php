@@ -46,15 +46,6 @@ if ( count( $args ) == 0 ) {
 
 $dir = $args[0];
 
-# Check Protection
-if ( isset( $options['protect'] ) && isset( $options['unprotect'] ) ) {
-	die( "Cannot specify both protect and unprotect.  Only 1 is allowed.\n" );
-}
-
-if ( isset( $options['protect'] ) && $options['protect'] == 1 ) {
-	die( "You must specify a protection option.\n" );
-}
-
 # Prepare the list of allowed extensions
 global $wgFileExtensions;
 $extensions = isset( $options['extensions'] )
@@ -237,40 +228,12 @@ if ( $count > 0 ) {
 			# We're done!
 			echo( "done.\n" );
 
-			$doProtect = false;
-
-			global $wgRestrictionLevels;
-
-			$protectLevel = isset( $options['protect'] ) ? $options['protect'] : null;
-
-			if ( $protectLevel && in_array( $protectLevel, $wgRestrictionLevels ) ) {
-				$doProtect = true;
-			}
-			if ( isset( $options['unprotect'] ) ) {
-				$protectLevel = '';
-				$doProtect = true;
-			}
-
-			if ( $doProtect ) {
-					# Protect the file
-					echo "\nWaiting for slaves...\n";
-					// Wait for slaves.
-					sleep( 2.0 ); # Why this sleep?
-					wfWaitForSlaves();
-
-					echo( "\nSetting image restrictions ... " );
-
-					$cascade = false;
-					$restrictions = array();
-					foreach( $title->getRestrictionTypes() as $type ) {
-						$restrictions[$type] = $protectLevel;
-					}
-
-					$page = WikiPage::factory( $title );
-					$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
-					echo( ( $status->isOK() ? 'done' : 'failed' ) . "\n" );
-			}
-
+			wfRunHooks( 'UpdateRestrictions', array(
+				'file' => $image,
+				'protect' => $options['protect'],
+				'unprotect' => $options['unprotect'],
+				'echo' => true,
+			) );
 		} else {
 			echo( "failed. (at recordUpload stage)\n" );
 			$svar = 'failed';
@@ -330,8 +293,6 @@ Options:
 			but the extension <ext>. If a global comment is also given, it is appended.
 --license=<code>  	Use an optional license template
 --dry			Dry run, don't import anything
---protect=<protect>     Specify the protect value (autoconfirmed,sysop)
---unprotect             Unprotects all uploaded images
 --source-wiki-url   if specified, take User and Comment data for each imported file from this URL.
 					For example, --source-wiki-url="http://en.wikipedia.org/"
 
