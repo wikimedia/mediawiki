@@ -224,7 +224,7 @@ function wfStreamThumb( array $params ) {
 		if ( isset( $params['rel404'] ) // thumbnail was handled via 404
 			&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
 		{
-			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+			wfThumbError( 404, 'The given path of the specified thumbnail is incorrect.' );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
@@ -282,51 +282,55 @@ function wfStreamThumb( array $params ) {
 function wfExtractThumbParams( $uriPath ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
+	// Zone URL might be relative ("/images") or protocol-relative ("//lang.site/image")
 	$zoneUriPath = $repo->getZoneHandlerUrl( 'thumb' )
 		? $repo->getZoneHandlerUrl( 'thumb' ) // custom URL
 		: $repo->getZoneUrl( 'thumb' ); // default to main URL
-	// URL might be relative ("/images") or protocol-relative ("//lang.site/image")
 	$bits = wfParseUrl( wfExpandUrl( $zoneUriPath, PROTO_INTERNAL ) );
 	if ( $bits && isset( $bits['path'] ) ) {
 		$zoneUriPath = $bits['path'];
 	} else {
-		return null;
+		return null; // not a valid thumbnail URL
 	}
 
-	$hashDirRegex = $subdirRegex = '';
+	$hashDirReg = $subdirReg = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
-		$subdirRegex .= '[0-9a-f]';
-		$hashDirRegex .= "$subdirRegex/";
+		$subdirReg .= '[0-9a-f]';
+		$hashDirReg .= "$subdirReg/";
+	}
+	$zoneReg = preg_quote( $zoneUriPath ); // regex for thumb zone URI
+
+	// Check if this is a thumbnail of an original in the local file repo
+	if ( preg_match( "!^$zoneReg/((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $uriPath, $m ) ) {
+		list( /*all*/, $rel, $archOrTemp, $filename, $thumbname ) = $m;
+	// Check if this is a thumbnail of an temp file in the local file repo
+	} elseif ( preg_match( "!^$zoneReg/(temp/)($hashDirReg([^/]*)/([^/]*))$!", $uriPath, $m ) ) {
+		list( /*all*/, $archOrTemp, $rel, $filename, $thumbname ) = $m;
+	} else {
+		return null; // not a valid looking thumbnail request
 	}
 
-	$thumbPathRegex = "!^" . preg_quote( $zoneUriPath ) .
-		"/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
+	$filename = urldecode( $filename );
+	$thumbname = urldecode( $thumbname );
 
-	// Check if this is a valid looking thumbnail request...
-	if ( preg_match( $thumbPathRegex, $uriPath, $matches ) ) {
-		list( /* all */, $rel, $archOrTemp, $filename, $thumbname ) = $matches;
-		$filename = urldecode( $filename );
-		$thumbname = urldecode( $thumbname );
+	$params = array( 'f' => $filename, 'rel404' => $rel );
+	if ( $archOrTemp === 'archive/' ) {
+		$params['archived'] = 1;
+	} elseif ( $archOrTemp === 'temp/' ) {
+		$params['temp'] = 1;
+	}
 
-		$params = array( 'f' => $filename, 'rel404' => $rel );
-		if ( $archOrTemp == 'archive/' ) {
-			$params['archived'] = 1;
-		} elseif ( $archOrTemp == 'temp/' ) {
-			$params['temp'] = 1;
+	// Check if the parameters can be extracted from the thumbnail name...
+	if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
+		list( /* all */, $pagefull, $pagenum, $size ) = $matches;
+		$params['width'] = $size;
+		if ( $pagenum ) {
+			$params['page'] = $pagenum;
 		}
-
-		// Check if the parameters can be extracted from the thumbnail name...
-		if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
-			list( /* all */, $pagefull, $pagenum, $size ) = $matches;
-			$params['width'] = $size;
-			if ( $pagenum ) {
-				$params['page'] = $pagenum;
-			}
-			return $params; // valid thumbnail URL
-		// Hooks return false if they manage to *resolve* the parameters
-		} elseif ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
-			return $params; // valid thumbnail URL (via extension or config)
-		}
+		return $params; // valid thumbnail URL
+	// Hooks return false if they manage to *resolve* the parameters
+	} elseif ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+		return $params; // valid thumbnail URL (via extension or config)
 	}
 
 	return null; // not a valid thumbnail URL
