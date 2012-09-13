@@ -424,7 +424,7 @@ class Article extends Page {
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-		// @todo: this isn't page content but a UI message. horrible.
+		//XXX: this isn't page content but a UI message. horrible.
 		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() ) ;
 
 		if ( $oldid ) {

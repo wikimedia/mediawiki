@@ -1548,7 +1548,6 @@ class WikiPage extends Page implements IDBAccessObject {
 	 *  Compatibility note: this function previously returned a boolean value indicating success/failure
 	 *
 	 * @deprecated since 1.WD: use doEditContent() instead.
-	 * @todo: use doEditContent() instead everywhere
 	 */
 	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
 		wfDeprecated( __METHOD__, '1.WD' );
@@ -1937,7 +1936,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public function prepareContentForEdit( Content $content, $revid = null, User $user = null, $serialization_format = null ) {
 		global $wgParser, $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
-		// @TODO fixme: check $user->getId() here???
+		//XXX: check $user->getId() here???
 
 		if ( $this->mPreparedEdit
 			&& $this->mPreparedEdit->newContent

@@ -551,9 +551,7 @@ abstract class ContentHandler {
 	 *
 	 * This default implementation just returns $wgContLang (except for pages in the MediaWiki namespace)
 	 *
-	 * Note that a page's language must be permanent and cacheable, that is, it must not depend
-	 * on user preferences, request parameters or session state. The only exception is pages in the
-	 * MediaWiki namespace.
+	 * Note that the pages language is not cacheable, since it may in some cases depend on user settings.
 	 *
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
@@ -563,7 +561,7 @@ abstract class ContentHandler {
 	 * @param Title        $title the page to determine the language for.
 	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
 	 *
-	 * @return Language the page's language code
+	 * @return Language the page's language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		global $wgContLang;
@@ -595,7 +593,7 @@ abstract class ContentHandler {
 	 * @param Title        $title the page to determine the language for.
 	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
 	 *
-	 * @return Language the page's language code for viewing
+	 * @return Language the page's language for viewing
 	 */
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		$pageLang = $this->getPageLanguage( $title, $content );

@@ -128,10 +128,9 @@ class ApiEditPage extends ApiBase {
 		{
 			$content = $pageObj->getContent();
 
+			// @todo: Add support for appending/prepending to the Content interface
+
 			if ( !( $content instanceof TextContent ) ) {
-				// @todo: ContentHandler should have an isFlat() method or some such
-				// @todo: XXX: or perhaps there should be Content::append(), Content::prepend()
-				// @todo: ...and Content::supportsConcatenation()
 				$mode = $contentHandler->getModelID();
 				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
 			}
@@ -301,7 +300,6 @@ class ApiEditPage extends ApiBase {
 		$ep = new EditPage( $articleObject );
 
 		// allow editing of non-textual content.
-		//@todo: let the ContentHandler decide whether direct editing is OK
 		$ep->allowNonTextContent = true;
 
 		$ep->setContextTitle( $titleObj );

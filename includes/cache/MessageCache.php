@@ -776,7 +776,7 @@ class MessageCache {
 				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title} ($code)" );
 				$message = null; // no negative caching
 			} else {
-				#XXX: is this the reight way to turn a Content object into a mesage?
+				#XXX: Is this the right way to turn a Content object into a message?
 				$message = $content->getWikitextForTransclusion();
 
 				if ( $message === false || $message === null ) {

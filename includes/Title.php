@@ -4591,7 +4591,7 @@ class Title {
 			return $wgLang;
 		}
 
-		//TODO: use the LinkCache to cache this!
+		//TODO: use the LinkCache to cache this! Note that this may depend on user settings, so the cache should be only per-request.
 		//NOTE: ContentHandler::getPageLanguage() may need to load the content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
 		$pageLang = $contentHandler->getPageLanguage( $this );
@@ -4623,7 +4623,7 @@ class Title {
 			return $wgLang;
 		}
 
-		//NOTE: can't be cached, depends on user settings
+		//NOTE: can't be cached persistently, depends on user settings
 		//NOTE: ContentHandler::getPageViewLanguage() may need to load the content to determine the page language!
 		$contentHandler = ContentHandler::getForTitle( $this );
 		$pageLang = $contentHandler->getPageViewLanguage( $this );
