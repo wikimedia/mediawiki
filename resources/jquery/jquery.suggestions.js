@@ -156,14 +156,14 @@ $.suggestions = {
 						for ( var i = 0; i < context.config.suggestions.length; i++ ) {
 							/*jshint loopfunc:true */
 							var text = context.config.suggestions[i];
-							var $result = $( '<div>' )
+							var $result = $( '<a>' )
 								.addClass( 'suggestions-result' )
 								.attr( 'rel', i )
 								.data( 'text', context.config.suggestions[i] )
 								.mousemove( function ( e ) {
 									context.data.selectedWithMouse = true;
 									$.suggestions.highlight(
-										context, $(this).closest( '.suggestions-results div' ), false
+										context, $(this).closest( '.suggestions-results .suggestions-result' ), false
 									);
 								} )
 								.appendTo( $results );
@@ -234,14 +234,14 @@ $.suggestions = {
 						if ( context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 							result = context.data.$container.find( '.suggestions-special' );
 						} else {
-							result = context.data.$container.find( '.suggestions-results div:last' );
+							result = context.data.$container.find( '.suggestions-results .suggestions-result:last' );
 						}
 					}
 				}
 			} else if ( result === 'next' ) {
 				if ( selected.length === 0 ) {
 					// No item selected, go to the first one
-					result = context.data.$container.find( '.suggestions-results div:first' );
+					result = context.data.$container.find( '.suggestions-results .suggestions-result:first' );
 					if ( result.length === 0 && context.data.$container.find( '.suggestions-special' ).html() !== '' ) {
 						// No suggestion exists, go to the special one directly
 						result = context.data.$container.find( '.suggestions-special' );
@@ -431,25 +431,26 @@ $.fn.suggestions = function () {
 						// Can't use click() because the container div is hidden when the textbox loses focus. Instead,
 						// listen for a mousedown followed by a mouseup on the same div
 						.mousedown( function ( e ) {
-							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results div' );
+							context.data.mouseDownOn = $( e.target ).closest( '.suggestions-results .suggestions-result' );
 						} )
 						.mouseup( function ( e ) {
-							var $result = $( e.target ).closest( '.suggestions-results div' );
+							var $result = $( e.target ).closest( '.suggestions-results .suggestions-result' );
 							var $other = context.data.mouseDownOn;
 							context.data.mouseDownOn = $( [] );
 							if ( $result.get( 0 ) !== $other.get( 0 ) ) {
 								return;
 							}
-							$.suggestions.highlight( context, $result, true );
-							context.data.$container.hide();
-							if ( typeof context.config.result.select === 'function' ) {
-								context.config.result.select.call( $result, context.data.$textbox );
-							}
-							context.data.$textbox.focus();
+							//$.suggestions.highlight( context, $result, true );
+							//context.data.$container.hide();
+							//if ( typeof context.config.result.select === 'function' ) {
+							//	context.config.result.select.call( $result, context.data.$textbox );
+							//}
+							//context.data.$textbox.focus();
+							$result.attr("href", context.config.$region.closest( 'form' ).attr( 'target' ) + '?' + $.param({ search: context.data.prevText, title:'Special:Search' }));
 						} )
 				)
 				.append(
-					$( '<div>' ).addClass( 'suggestions-special' )
+					$( '<a>' ).addClass( 'suggestions-special' )
 						// Can't use click() because the container div is hidden when the textbox loses focus. Instead,
 						// listen for a mousedown followed by a mouseup on the same div
 						.mousedown( function ( e ) {
