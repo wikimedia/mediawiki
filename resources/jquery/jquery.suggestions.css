@@ -24,7 +24,7 @@ html > body .suggestions {
 	padding: 0;
 	margin: 0;
 	margin-top: -2px;
-	display: none;
+	display: block;
 	padding: 0.25em 0.25em;
 	line-height: 1.25em;
 }
@@ -37,15 +37,20 @@ html > body .suggestions {
 	margin: 0;
 }
 .suggestions-result {
-	color: black;
+	display: block;
+	color: black !important;
 	margin: 0;
 	line-height: 1.5em;
 	padding: 0.01em 0.25em;
 	text-align: left;
 }
+.suggestions-result:hover,
+.suggestions-special:hover {
+	text-decoration: none;
+}
 .suggestions-result-current {
 	background-color: #4C59A6;
-	color: white;
+	color: white !important;
 }
 .suggestions-special .special-label {
 	font-size: 0.8em;
@@ -62,7 +67,7 @@ html > body .suggestions {
 }
 .suggestions-result-current .special-label,
 .suggestions-result-current .special-query {
-	color: white;
+	color: white !important;
 }
 .autoellipsis-matched,
 .highlight {
