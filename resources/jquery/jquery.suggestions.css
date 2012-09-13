@@ -17,7 +17,7 @@ html > body .suggestions {
 	margin: -1px 0 0 0;
 }
 
-.suggestions-special {
+a.suggestions-special {
 	position: relative;
 	background-color: white;
 	cursor: pointer;
@@ -25,7 +25,7 @@ html > body .suggestions {
 	padding: 0;
 	margin: 0;
 	margin-top: -2px;
-	display: none;
+	display: block;
 	padding: 0.25em 0.25em;
 	line-height: 1.25em;
 }
@@ -38,7 +38,8 @@ html > body .suggestions {
 	margin: 0;
 }
 
-.suggestions-result {
+a.suggestions-result {
+	display: block;
 	color: black;
 	margin: 0;
 	line-height: 1.5em;
@@ -46,28 +47,37 @@ html > body .suggestions {
 	text-align: left;
 }
 
-.suggestions-result-current {
+a.suggestions-result:hover,
+a.suggestions-special:hover,
+a.suggestions-result:active,
+a.suggestions-special:active,
+a.suggestions-result:focus,
+a.suggestions-special:focus {
+	text-decoration: none;
+}
+
+a.suggestions-result-current {
 	background-color: #4C59A6;
 	color: white;
 }
 
-.suggestions-special .special-label {
+a.suggestions-special .special-label {
 	color: gray;
 	text-align: left;
 }
 
-.suggestions-special .special-query {
+a.suggestions-special .special-query {
 	color: black;
 	font-style: italic;
 	text-align: left;
 }
 
-.suggestions-special .special-hover {
+a.suggestions-special .special-hover {
 	background-color: silver;
 }
 
-.suggestions-result-current .special-label,
-.suggestions-result-current .special-query {
+a.suggestions-result-current .special-label,
+a.suggestions-result-current .special-query {
 	color: white;
 }
 
