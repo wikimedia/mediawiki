@@ -188,7 +188,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 
 			$n = 0;
 			if( $res->numRows() > 0 ) {
-				$out = Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-prefixindex-list-table' ) );
+				$out = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-list-table' ) );
 
 				while( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::makeTitle( $s->page_namespace, $s->page_title );
@@ -227,7 +227,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 		} else {
 			$nsForm = $this->namespacePrefixForm( $namespace, $prefix, $hideredirects );
 			$self = $this->getTitle();
-			$out2 = Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-prefixindex-nav-table' ) )  .
+			$out2 = Xml::openElement( 'table', array( 'id' => 'mw-prefixindex-nav-table' ) )  .
 				'<tr>
 					<td>' .
 						$nsForm .

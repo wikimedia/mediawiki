@@ -120,7 +120,7 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>\n" .
-		  "<table border='0' cellspacing='0' width='100%'>\n<tr>\n";
+		  "<table cellspacing='0' width='100%'>\n<tr>\n";
 
 		if ( $this->getSkin()->qbSetting() == 0 ) {
 			$s .= "<td class='top' style='text-align: left; vertical-align: top;' rowspan='{$rows}'>\n" .

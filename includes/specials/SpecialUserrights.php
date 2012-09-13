@@ -449,7 +449,7 @@ class UserrightsPage extends SpecialPage {
 			$this->msg( 'userrights-groups-help', $user->getName() )->parse() .
 			$grouplist .
 			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
-			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
+			Xml::openElement( 'table', array( 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
 						Xml::label( $this->msg( 'userrights-reason' )->text(), 'wpReason' ) .
@@ -534,7 +534,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		# Build the HTML table
-		$ret .=	Xml::openElement( 'table', array( 'border' => '0', 'class' => 'mw-userrights-groups' ) ) .
+		$ret .=	Xml::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
 			"<tr>\n";
 		foreach( $columns as $name => $column ) {
 			if( $column === array() )
