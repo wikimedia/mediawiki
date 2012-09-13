@@ -1256,7 +1256,8 @@ Pogledajte istoriju.',
 'revdelete-only-restricted' => 'Greška pri sakrivanju stavke od $1, $2: ne možete sakriti stavke od administratora bez izbora drugih mogućnosti vidljivosti.',
 'revdelete-reason-dropdown' => '*Uobičajeni razlozi za brisanje
 ** Kršenje autorskog prava
-** Neodgovarajući lični podaci
+** Neprikladan komentar ili lični podaci
+** Neprikladno korisničko ime
 ** Uvredljivi podaci',
 'revdelete-otherreason' => 'Drugi/dodatni razlog:',
 'revdelete-reasonotherlist' => 'Drugi razlog',

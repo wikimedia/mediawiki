@@ -1906,7 +1906,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'backend-fail-internal' => 'Une erreur inconnue s\'est produite dans le support de stockage "$1".',
 'backend-fail-contenttype' => 'Impossible de déterminer le type de contenu du fichier à stocker en "$1".',
 'backend-fail-batchsize' => 'Le support de stockage a fourni un lot de $1 {{PLURAL:$1|opération|opérations}} de fichier; la limite est $2 {{PLURAL:$2|opération|opérations}}.',
-'backend-fail-usable' => 'Impossible d’écrire le fichier $1 en raison de droits insuffisants ou répertoires/conteneurs manquants.',
+'backend-fail-usable' => 'Impossible de lire ou d’écrire le fichier « $1 » en raison de droits insuffisants ou répertoires/conteneurs manquants.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Impossible de se connecter à la base de données du journal pour le terminal de stockage "$1".',

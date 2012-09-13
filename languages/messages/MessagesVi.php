@@ -414,11 +414,11 @@ $messages = array(
 'category-empty' => "''Thể loại này hiện không có trang hay tập tin nào.''",
 'hidden-categories' => '{{PLURAL:$1|Thể loại ẩn|Thể loại ẩn}}',
 'hidden-category-category' => 'Thể loại ẩn',
-'category-subcat-count' => 'Thể loại này có {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
-'category-subcat-count-limited' => 'Thể loại này có {{PLURAL:$1||$1}} tiểu thể loại sau.',
+'category-subcat-count' => 'Thể loại này gồm {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
+'category-subcat-count-limited' => 'Thể loại này gồm {{PLURAL:$1|tiểu thể loại|$1 tiểu thể loại}} sau.',
 'category-article-count' => '{{PLURAL:$2|Thể loại này gồm trang sau.|{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại này, trên tổng số $2 trang.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại hiện hành.',
-'category-file-count' => '{{PLURAL:$2|Thể loại này có tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}',
+'category-file-count' => '{{PLURAL:$2|Thể loại này gồm tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}',
 'category-file-count-limited' => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.',
 'listingcontinuesabbrev' => '(tiếp theo)',
 'index-category' => 'Trang được ghi chỉ mục',
@@ -1839,7 +1839,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'backend-fail-internal' => 'Lỗi không rõ xuất hiện trong phía sau lưu trữ “$1”.',
 'backend-fail-contenttype' => 'Không thể xác định kiểu nội dung của tập tin để lưu giữ tại “$1”.',
 'backend-fail-batchsize' => 'Phía sau lưu trữ đã nhận một loạt $1 thao tác tập tin; mức hạn là $2 thao tác.',
-'backend-fail-usable' => 'Không thể ghi tập tin $1 vì không có đủ quyền hoặc những thư mục hay nơi đựng bị thiếu.',
+'backend-fail-usable' => 'Không thể đọc/ghi tập tin “$1” vì không có đủ quyền hoặc những thư mục hay nơi đựng bị thiếu.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Không thể kết nối với cơ sở dữ liệu nhật ký của phía sau lưu trữ “$1”.',

@@ -1665,7 +1665,7 @@ $1',
 'backend-fail-internal' => 'W składowańskem backenźe "$1" jo njeznata zmólka nastała.',
 'backend-fail-contenttype' => 'Wopśimjeśowy typ dataje, kótaraž ma se na "$1" składowaś, njedajo se zwěsćiś.',
 'backend-fail-batchsize' => 'Štapjelowa dataja, kótaraž wopśimujo {{PLURAL:$1|jadnu operaciju|$1 operaciji|$1 operacije|$1 operacijow}},  jo se  na składowański backend pósłała; limit jo $2 {{PLURAL:$1|operaciju|operaciji|operacije|operacijow}}.',
-'backend-fail-usable' => 'Dataja $1 njedajo se dla njedosegajucych  abo felujucych zapisow pisaś.',
+'backend-fail-usable' => 'Dataja "$1" njedajo se dla njedosegajucych  pšawow abo felujucych zapisow daniž cytaś daniž pisaś.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Njejo žeden zwisk ze žurnaloweju datoweju banku za składowański backend "$1" móžno.',

@@ -1776,7 +1776,7 @@ $1',
 'backend-fail-internal' => 'Si è verificato un errore sconosciuto nel backend di memoria "$1".',
 'backend-fail-contenttype' => 'Impossibile determinare la tipologia del file da archiviare in "$1".',
 'backend-fail-batchsize' => 'Il backend di memoria ha programmato una serie di $1 {{PLURAL:$1|operazione|operazioni}} su file; il limite è di $2 {{PLURAL:$2|operazione|operazioni}}.',
-'backend-fail-usable' => 'Impossibile scrivere il file $1 a causa di autorizzazione insufficienti o directory/recipienti mancanti.',
+'backend-fail-usable' => 'Impossibile leggere o scrivere il file "$1" a causa di autorizzazione insufficienti o directory/contenitori mancanti.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Impossibile connettersi al database journal per l\'archiviazione back-end "$1".',

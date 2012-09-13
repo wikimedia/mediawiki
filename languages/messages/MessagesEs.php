@@ -1909,7 +1909,7 @@ $1',
 'backend-fail-internal' => 'Se ha producido un error desconocido en el servidor (backend) de almacenamiento "$1".',
 'backend-fail-contenttype' => 'No se pudo determinar el tipo de contenido del archivo a guardar en " $1 ".',
 'backend-fail-batchsize' => 'El servidor (back-end) de almacenamiento ha suministrado un lote de $1 {{PLURAL:$1|operación|operaciones}} de archivo; el límite es de $2 {{PLURAL:$2|operación|operaciones}}.',
-'backend-fail-usable' => 'No se pudo escribir el archivo $1 debido a permisos insuficientes o directorios/contenedores desaparecidos.',
+'backend-fail-usable' => 'No se pudo leer o escribir el archivo "$1" debido a permisos insuficientes o directorios/contenedores desaparecidos.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'No se pudo conectar a la base de datos del registro del sistema de almacenamiento "$1".',

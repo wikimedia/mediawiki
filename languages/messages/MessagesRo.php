@@ -1844,7 +1844,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-internal' => 'O eroare necunoscută s-a produs în suportul de stocare „$1”.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
 'backend-fail-batchsize' => 'Suportul de stocare a furnizat un lot de $1 {{PLURAL:$1|operațiune|operațiuni|de operațiuni}} de fișier; limita este $2 {{PLURAL:$2|operațiune|operațiuni|de operațiuni}}.',
-'backend-fail-usable' => 'Imposibil de scris fișierul $1 din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
+'backend-fail-usable' => 'Imposibil de citit sau scris fișierul „$1” din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Imposibil de conectat la baza de date a jurnalului pentru terminatul de stocare „$1”.',

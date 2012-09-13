@@ -1939,7 +1939,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-internal' => 'Im Speicher-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype' => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 'backend-fail-batchsize' => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
-'backend-fail-usable' => 'Die Datei $1 konnte, entweder aufgrund eines nicht vorhandenen Verzeichnisses oder aufgrund unzureichender Berechtigungen, nicht gespeichert werden.',
+'backend-fail-usable' => 'Die Datei „$1“ konnte, entweder aufgrund eines nicht vorhandenen Verzeichnisses oder aufgrund unzureichender Berechtigungen, weder abgerufen noch gespeichert werden.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Es konnte keine Verbindung zur Journaldatenbank des Speicher-Backends „$1“ hergestellt werden.',

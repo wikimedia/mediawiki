@@ -2096,8 +2096,8 @@ Lütfen unutmayın ki, diğer web siteleri bir dosyaya doğrudan bir URL ile ba�
 'notargettext' => 'Bu fonksiyonu uygulamak için bir hedef sayfası ya da kullanıcısı belirtmediniz.',
 'nopagetitle' => 'Böyle bir hedef sayfası yok',
 'nopagetext' => 'Belirttiğiniz hedef sayfası mevcut değil.',
-'pager-newer-n' => '{{PLURAL:$1|1 daha yeni|$1 daha yeni}}',
-'pager-older-n' => '{{PLURAL:$1|1 daha eski|$1 daha eski}}',
+'pager-newer-n' => '$1 daha yeni',
+'pager-older-n' => '$1 daha eski',
 'suppress' => 'Gözetim',
 'querypage-disabled' => 'Bu özel sayfa, performansa dayalı nedenlerle devre dışı bırakılır.',
 

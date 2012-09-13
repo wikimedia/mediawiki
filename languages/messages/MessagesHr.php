@@ -1887,7 +1887,7 @@ Kad je filtriran po korisniku, popis prikazuje samo one datoteke čiju posljednj
 'imagelinks' => 'Upotreba datoteke',
 'linkstoimage' => '{{PLURAL:$1|Sljedeća stranica povezuje|$1 sljedećih stranice povezuju}} na ovu datoteku:',
 'linkstoimage-more' => 'Više od $1 {{PLURAL:$1|stranice povezuje|stranica povezuje}} na ovu datoteku.
-Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vode na ovu datoteku.
+Sljedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vode na ovu datoteku.
 [[Special:WhatLinksHere/$2|Ovdje se nalazi]] potpuni popis.',
 'nolinkstoimage' => 'Nijedna stranica ne povezuje na ovu sliku.',
 'morelinkstoimage' => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
@@ -2042,7 +2042,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'shortpages' => 'Kratke stranice',
 'longpages' => 'Duge stranice',
 'deadendpages' => 'Slijepe ulice',
-'deadendpagestext' => 'Slijedeće stranice nemaju poveznice na druge stranice na ovom wikiju ({{SITENAME}}).',
+'deadendpagestext' => 'Sljedeće stranice nemaju poveznice na druge stranice na ovom wikiju ({{SITENAME}}).',
 'protectedpages' => 'Zaštićene stranice',
 'protectedpages-indef' => 'Samo neograničene zaštite',
 'protectedpages-cascade' => 'Samo prenosiva zaštita',
@@ -2505,7 +2505,7 @@ Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
 'istemplate' => 'kao predložak',
 'isimage' => 'poveznica na datoteku',
 'whatlinkshere-prev' => '{{PLURAL:$1|prethodna|prethodne|prethodnih}} $1',
-'whatlinkshere-next' => '{{PLURAL:$1|slijedeća|slijedeće|slijedećih}} $1',
+'whatlinkshere-next' => '{{PLURAL:$1|sljedeća|sljedeće|sljedećih}} $1',
 'whatlinkshere-links' => '← poveznice',
 'whatlinkshere-hideredirs' => '$1 preusmjeravanja',
 'whatlinkshere-hidetrans' => '$1 transkluzije',
@@ -3582,7 +3582,7 @@ Potvrdite namjeru vraćanja ovog članka.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna slika',
-'imgmultipagenext' => 'slijedeća slika →',
+'imgmultipagenext' => 'sljedeća slika →',
 'imgmultigo' => 'Kreni!',
 'imgmultigoto' => 'Idi na stranicu $1',
 

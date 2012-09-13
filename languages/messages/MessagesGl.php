@@ -1799,7 +1799,7 @@ Se o problema persiste, póñase en contacto cun [[Special:ListUsers/sysop|admin
 'backend-fail-internal' => 'Houbo un erro descoñecido no sistema de almacenamento "$1".',
 'backend-fail-contenttype' => 'Non se puido determinar o tipo de contido do ficheiro a almacenar en "$1".',
 'backend-fail-batchsize' => 'O sistema de almacenamento recibiu un feixe de $1 {{PLURAL:$1|operación|operacións}} de ficheiro; o límite está en $2 {{PLURAL:$2|operación|operacións}}.',
-'backend-fail-usable' => 'Non se puido escribir o ficheiro "$1" debido a que os permisos son insuficientes ou faltan os directorios/contenedores.',
+'backend-fail-usable' => 'Non se puido ler ou escribir o ficheiro "$1" debido a que os permisos son insuficientes ou faltan os directorios/contenedores.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non se pode conectar coa base de datos do rexistro do sistema de almacenamento "$1".',

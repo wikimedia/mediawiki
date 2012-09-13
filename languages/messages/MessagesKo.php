@@ -1931,7 +1931,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'backend-fail-internal' => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
 'backend-fail-batchsize' => '저장 백엔드에서 파일 {{PLURAL:$1|작업}} $1개가 쌓여 있습니다. 한계는 $2개입니다.',
-'backend-fail-usable' => '파일 저장 권한이 없거나 저장 위치가 빠졌기 때문에 $1 파일을 저장할 수 없습니다.',
+'backend-fail-usable' => '파일 읽기/쓰기 권한이 없거나 저장 위치가 빠졌기 때문에 "$1" 파일을 읽거나 쓸 수 없습니다.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '저장소 백엔드 "$1"에 대한 저널 데이터베이스에 연결할 수 없습니다.',

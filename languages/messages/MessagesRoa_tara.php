@@ -1627,7 +1627,7 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'backend-fail-internal' => "'N'errore scanusciute s'à verificate jndr'à l'archivije de rrete \"\$1\".",
 'backend-fail-contenttype' => 'Non ge pozze capìe \'u tipe de condenute d\'u file da reggistrà sus a "$1".',
 'backend-fail-batchsize' => "L'archivije de rrete ha date 'nu processe de $1 {{PLURAL:$1|operazione|operaziune}} sus a le file; 'u limite jè $2 {{PLURAL:$2|operazione|operaziune}}.",
-'backend-fail-usable' => 'Non ge pozze scrivere \'u file "$1" purcé mangane le permesse sufficiende o non g\'esiste \'a cartelle/contenitore.',
+'backend-fail-usable' => 'Non ge pozze leggere o scrivere \'u file "$1" purcé mangane le permesse sufficiende o non g\'esiste \'a cartelle/condenitore.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non ge pozze collegà a l\'archivije d\'u database pe memorizzà \'u rrete "$1".',
@@ -2934,6 +2934,7 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-restriction' => "Protezione d'a pàgene ({{lcfirst:$1}})",
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorije|Categorije}} scunnute ($1)',
+'pageinfo-templates' => 'Esclude {{PLURAL:$1|template|template}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Classeche',

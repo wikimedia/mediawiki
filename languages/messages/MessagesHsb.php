@@ -1668,7 +1668,7 @@ $1',
 'backend-fail-internal' => 'W składowanskim backendźe "$1" je njeznaty zmylk wustupił.',
 'backend-fail-contenttype' => 'Wobsahowy typ dataje, kotraž ma so na "$1" składować, njeda so zwěsćić.',
 'backend-fail-batchsize' => 'Staplowa dataja, kotraž {{PLURAL:$1|jednu operaciju|$1 operaciji|$1 operacije|$1 operacijow}} wobsahuje,  je so  na składowanski backend pósłała; limit je $2 {{PLURAL:$2|operaciju|operaciji|operacije|operacijow}} .',
-'backend-fail-usable' => 'Dataja $1 njeda so njedosahacych prawow  dla abo falowacych zapisow dla pisać.',
+'backend-fail-usable' => 'Dataja "$1" njeda so njedosahacych prawow  abo falowacych zapisow dla ani čitać ani pisać.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Njeje žadyn zwisk ze žurnalowej datowej banku za składowanski backend "$1" móžno.',
