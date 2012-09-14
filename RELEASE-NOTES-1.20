@@ -249,6 +249,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39941) Add missing stylesheets to the installer pages
 * In HTML5 mode, allow new input element types values (such as color, range..)
 * (bug 36151) mw.Title: Don't limit extension in title parsing.
+* (bug 38158) jquery.byteLimit sometimes causes an unexpected 0 maxLength being enforced.
+* (bug 38163) jquery.byteLimit incorrectly limits input when using methods other than
+  basic per-char typing.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
