@@ -31,5 +31,8 @@
 			<pluralRule count="twelve">n is 12</pluralRule>
 			<pluralRule count="few">n in 3..10 or n in 13..19</pluralRule>
 		</pluralRules>
+		<pluralRules locales="vi">
+			<pluralRule count="one">n is 1</pluralRule>
+		</pluralRules>
 	</plurals>
 </supplementalData>
