@@ -481,7 +481,7 @@ $messages = array(
 'namespaces' => 'Imenski prostori',
 'variants' => 'Inačice',
 
-'errorpagetitle' => 'Pogreška',
+'errorpagetitle' => 'Pogrješka',
 'returnto' => 'Vrati se na $1.',
 'tagline' => 'Izvor: {{SITENAME}}',
 'help' => 'Pomoć',
@@ -781,7 +781,7 @@ koristiti staru lozinku.',
 Prije nego što pošaljemo daljnje poruke, molimo Vas da otvorite e-mail i slijedite u njemu sadržana uputstva kako biste potvrdili da je e-mail adresa zaista Vaša.',
 'throttled-mailpassword' => 'Već Vam je poslan e-mail za promjenu lozinke, u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
 Da bi spriječili zloupotrebu, moguće je poslati samo jedan e-mail za promjenu lozinke {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
-'mailerror' => 'Pogreška pri slanju e-maila: $1',
+'mailerror' => 'Pogrješka pri slanju e-pošte: $1',
 'acct_creation_throttle_hit' => 'Posjetitelji ovog wikija koji rabe Vašu IP adresu napravili su {{PLURAL:$1|1 račun|$1 računa}} u posljednjem danu, što je najveći dopušteni broj u tom vremenskom razdoblju.
 Zbog toga posjetitelji s ove IP adrese trenutačno ne mogu otvoriti nove suradničke račune.',
 'emailauthenticated' => 'Vaša e-mail adresa je ovjerena $2 u $3.',
@@ -1019,7 +1019,8 @@ ove stranice. Ako je sačuvate, sve će promjene učinjene nakon ove inačice bi
 Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom.
 '''NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!'''",
 'copyrightwarning2' => "Molimo uočite da svi suradnici mogu mijenjati sve doprinose na {{SITENAME}}. Ako ne želite da se Vaše pisanje nemilosrdno uređuje, nemojte ga slati ovdje.<br /> Također nam obećavate da ste ovo sami napisali, ili da ste to prepisali iz nečeg što je u javnom vlasništvu ili pod sličnom slobodnom licencijom (vidi $1 za detalje). '''NE POSTAVLJAJTE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOPUŠTENJA!'''",
-'longpageerror' => "'''GREŠKA: Tekst koji ste unijeli dug je $1 kilobajta, što je više od maksimalnih $2 kilobajta. Nije ga moguće snimiti.'''",
+'longpageerror' => "'''Pogrješka: Tekst koji ste unijeli dug je {{PLURAL:$1|jedan kilobajt|$1 kilobajta}}, što je više od maksimalno {{PLURAL:$2|jednog kilobajta|$2 kilobajta}}.'''
+Nije ga moguće snimiti.",
 'readonlywarning' => "'''UPOZORENJE: Baza podataka je zaključana zbog održavanja, pa trenutačno ne možete sačuvati svoje
 promjene. Najbolje je da kopirate i zaljepite tekst u tekstualnu datoteku te je snimite za kasnije.'''
 
@@ -1834,9 +1835,9 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 'http-invalid-url' => 'Nevaljan URL: $1',
 'http-invalid-scheme' => 'URL-ovi s prefiksom "$1" nisu podržani.',
 'http-request-error' => 'HTTP zahtjev nije uspio zbog nepoznate pogreške.',
-'http-read-error' => 'Greška pri čitanju HTTP.',
+'http-read-error' => 'Pogrješka pri čitanju HTTP.',
 'http-timed-out' => 'HTTP zahtjev je istekao.',
-'http-curl-error' => 'Greška pri otvaranju URL-a: $1',
+'http-curl-error' => 'Pogrješka pri otvaranju URL-a: $1',
 'http-host-unreachable' => 'URL nije dostupan.',
 'http-bad-status' => 'Došlo je do problema tijekom HTTP zahtjeva: $1 $2',
 
@@ -2625,7 +2626,7 @@ Za popis trenutačnih zabrana i blokiranja vidi [[Special:BlockList|popis blokir
 'ipb-needreblock' => '$1 je već blokiran. Želite promijeniti postavke blokiranja?',
 'ipb-otherblocks-header' => '{{PLURAL:$1|Ostalo blokiranje|Ostala blokiranja}}',
 'unblock-hideuser' => 'Ne možete deblokirati ovog suradnika, jer je njegovo suradničko ime skriveno.',
-'ipb_cant_unblock' => 'Pogreška: blok ID $1 nije nađen. Moguće je da je suradnik već odblokiran.',
+'ipb_cant_unblock' => 'Pogrješka: blok ID $1 nije nađen. Moguće je da je suradnik već odblokiran.',
 'ipb_blocked_as_range' => 'Pogreška: IP adresa $1 nije blokirana direktno te stoga ne može biti odblokirana. Blokirana je kao dio opsega $2, koji može biti odblokiran.',
 'ip_range_invalid' => 'Raspon IP adresa nije valjan.',
 'ip_range_toolarge' => 'Opsezi blokiranja veći od /$1 nisu dozvoljeni.',

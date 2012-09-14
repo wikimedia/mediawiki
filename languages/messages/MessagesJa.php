@@ -1963,6 +1963,7 @@ $1',
 'backend-fail-internal' => 'ストレージバックエンド「$1」内で不明なエラーが発生しました。',
 'backend-fail-contenttype' => '「$1」に保存するコンテンツの種類が判断できませんでした。',
 'backend-fail-batchsize' => 'ストレージバックエンドは $1 件のファイル{{PLURAL:$1|操作}}のバッチを与えられました; 上限は $2 件の{{PLURAL:$2|操作}}です。',
+'backend-fail-usable' => '権限が不足している、またはディレクトリ/コンテナーがないため、ファイル「$1」の読み取り/書き込みができません。',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'ストレージバックエンド「$1」のジャーナルデータベースに接続できません。',

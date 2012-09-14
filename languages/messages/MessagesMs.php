@@ -1727,7 +1727,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-internal' => 'Berlakunya ralat yang tidak dikenali dalam backend storan "$1".',
 'backend-fail-contenttype' => 'Jenis kandungan fail untuk disimpan di "$1" tidak dapat ditentukan.',
 'backend-fail-batchsize' => 'Backend storan diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2 operasi.',
-'backend-fail-usable' => 'Fail $1 tidak boleh ditulis kerana kebenaran tidak memadai atau tertinggal direktori/penyimpan.',
+'backend-fail-usable' => 'Fail "$1" tidak boleh dibaca atau ditulis kerana kebenaran tidak memadai atau tertinggal direktori/penyimpan.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Tidak dapat bersambung dengan pangkalan data jurnal untuk backend storan "$1".',

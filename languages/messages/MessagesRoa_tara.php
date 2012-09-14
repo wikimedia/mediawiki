@@ -3000,6 +3000,8 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'file-info-png-looped' => 'infinite',
 'file-info-png-repeat' => 'eseguite $1 {{PLURAL:$1|vote|vote}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|frame|frame}}',
+'file-no-thumb-animation' => "'''Vide bbuène: Pe limitaziune tecniche, miniature de ste file non ge ponne essere animate.'''",
+'file-no-thumb-animation-gif' => "'''Vide bbuène: Pe limitaziune tecniche, miniature de resoluzione ierte de immaggine GIF cumme a queste non ge ponne essere animate.'''",
 
 # Special:NewFiles
 'newimages' => 'Gallerie de le fail nuève',

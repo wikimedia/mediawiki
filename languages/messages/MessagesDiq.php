@@ -1854,7 +1854,7 @@ Eke problem dewam kerd [[Special:ListUsers/sysop|serkari]] de irtibat kewe.',
 'backend-fail-internal' => 'Depo kerdışê "$1" peyni de ju xırabin vıcyê.',
 'backend-fail-contenttype' => 'Qandê depo kerdışi zerrey babeta dosya da "$1" nêvineya.',
 'backend-fail-batchsize' => 'Depo kerdışê  dosya da $1 {{PLURAL:$1|operasyon de|operasyonê}} cı groto; sinorê  {{PLURAL:$2|operasyoni|operasyona}} $2.',
-'backend-fail-usable' => 'Dosyay $1 nênusneyê çıkı ratnayışê cı racnayeyo yana kewmiyo.',
+'backend-fail-usable' => 'Dosyay $1 nênusneyê çıkı ratnayışê cı racnayeyo yana karkerdışe cı kemiyo.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Depo kerdış de "$1" qande malumatê gurweynayışi cıya irtibat nêkewiya.',
@@ -1890,7 +1890,7 @@ Kontrolê emeleyey oyo veş nêbeno.',
 'invalid-chunk-offset' => 'Ofseto nêravyarde',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Cıkewtış red biyo',
+'img-auth-accessdenied' => 'Cıresnayış vındarnayo.',
 'img-auth-nopathinfo' => 'PATH_INFO kemiyo.
 Teqdimkerê şıma seba ravurnayışê nê melumati eyar nêkerdo.
 Beno ke be CGI-bıngeyın bo u img_auth rê destek nêbeno.
@@ -2379,7 +2379,7 @@ qey hemkari u pêşniyazi:
 'deletepage' => 'Pele bıestere',
 'confirm' => 'Testiq ke',
 'excontent' => "behso kêm: '$1'",
-'excontentauthor' => "behso kêm: '$1' no/na ('[[Special:Contributions/$2|$2]]' karber/e têna paşt dayo/a)",
+'excontentauthor' => "behso kêm: '$1' no/na ('[[Special:Contributions/$2|$2]]'  teyna iştıraq kerdo)",
 'exbeforeblank' => "behsê verê esteriyayişi: '$1'",
 'exblank' => 'zerreyê peli vengo',
 'delete-confirm' => '"$1" bıestere',
@@ -2562,7 +2562,7 @@ $1',
 # Contributions
 'contributions' => 'İştiraqê karberi',
 'contributions-title' => '$1 de iştırakê karberi',
-'mycontris' => 'İştıraqê mı',
+'mycontris' => 'Dekerdeni',
 'contribsub2' => 'Qandê $1 ($2)',
 'nocontribs' => 'Ena kriteriya de vurnayîş çini yo.',
 'uctop' => '(ser)',
@@ -3149,7 +3149,7 @@ Gurênayışê nae de, beno ke sistemê şıma zerar bıvêno.",
 'file-info' => 'ebatê dosyayi: $1, MIME tip: $2',
 'file-info-size' => '$1 × $2 pixelan, ebatê dosya: $3, MIME type: $4',
 'file-info-size-pages' => '$1 × $2 pikse, dergeya dosyay: $3, MIME tipiya cı: $4, $5 {{PLURAL:$5|pela|pela}}',
-'file-nohires' => 'Rovıleşiyayışo berzêr çıniyo.',
+'file-nohires' => 'Deha berz agozney cı çıniyo',
 'svg-long-desc' => 'SVG dosya, nominalin $1 × $2 piksels, ebatê dosya: $3',
 'svg-long-desc-animated' => 'SVG dosya, nominalin $1 × $2 piksela, ebatê dosya: $3',
 'show-big-image' => 'Resolosyonê temami',

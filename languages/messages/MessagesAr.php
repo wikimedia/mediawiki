@@ -2851,7 +2851,7 @@ $1',
 'ipb-confirm' => 'أكّد المنع',
 'badipaddress' => 'عنوان أيبي غير صحيح',
 'blockipsuccesssub' => 'تم المنع بنجاح',
-'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] تم منعها.<br />
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] تم {{GENDER:$1|منعه|منعها}}.<br />
 أنظر [[Special:BlockList|قائمة منع الآيبي]] لمراجعة حالات المنع.',
 'ipb-blockingself' => 'أنت على وشك منع نفسك! أمتأكد من رغبتك في القيام بذلك؟',
 'ipb-confirmhideuser' => 'أنت على وشك منع مستخدم مع تفعيل خيار "أخف المستخدم". سوف يخفي هذا الخيار اسم المستخدم من جميل القوائم ومدخلات السجلات. أمتأكد من رغبتك في القيام بذلك؟',

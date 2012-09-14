@@ -1856,7 +1856,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit to $2 {{PLURAL:$2|operacja|operacje|operacji}}.',
-'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
+'backend-fail-usable' => 'Nie można zapisać lub czytać z pliku "$1" ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
