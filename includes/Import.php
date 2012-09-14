@@ -1017,6 +1017,7 @@ class WikiRevision {
 	var $model = null;
 	var $format = null;
 	var $text = "";
+	var $content = null;
 	var $comment = "";
 	var $minor = false;
 	var $type = "";
@@ -1209,9 +1210,30 @@ class WikiRevision {
 
 	/**
 	 * @return string
+	 *
+	 * @deprecated Since 1.WD, use getContent() instead.
 	 */
 	function getText() {
+		wfDeprecated( "Use getContent() instead." );
+
 		return $this->text;
+	}
+
+	/**
+	 * @return Content
+	 */
+	function getContent() {
+		if ( is_null( $this->content ) ) {
+			$this->content =
+				ContentHandler::makeContent(
+					$this->text,
+					$this->getTitle(),
+					$this->getModel(),
+					$this->getFormat()
+				);
+		}
+
+		return $this->content;
 	}
 
 	/**
@@ -1377,7 +1399,7 @@ class WikiRevision {
 			'page'       => $pageId,
 			'content_model'  => $this->getModel(),
 			'content_format' => $this->getFormat(),
-			'text'       => $this->getText(),
+			'text'       => $this->getContent()->serialize( $this->getFormat() ), //XXX: just set 'content' => $this->getContent()?
 			'comment'    => $this->getComment(),
 			'user'       => $userId,
 			'user_text'  => $userText,
