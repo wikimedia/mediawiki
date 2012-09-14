@@ -258,7 +258,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, $this->msg( 'move-page-legend' )->text() ) .
-			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-movepage-table' ) ) .
+			 Xml::openElement( 'table', array( 'id' => 'mw-movepage-table' ) ) .
 			 "<tr>
 				<td class='mw-label'>" .
 					$this->msg( 'movearticle' )->escaped() .
