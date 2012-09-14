@@ -124,8 +124,6 @@ class DoubleRedirectJob extends Job {
 		$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getDBkey(),
 			$currentDest->getFragment() );
 
-		$text = ContentHandler::getContentText( $content ); #FIXME: get rid of this!
-
 		# Fix the text
 		$newContent = $content->updateRedirect( $newTitle );
 
