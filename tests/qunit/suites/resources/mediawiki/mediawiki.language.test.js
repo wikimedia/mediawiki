@@ -1,12 +1,11 @@
-var liveLangData = mw.language.data.values;
 QUnit.module( 'mediawiki.language', QUnit.newMwEnvironment({
 	setup: function () {
-		// New independent copy for this test
-		mw.language.data = $.extend( {}, liveLangData, true );
+		this.liveLangData = mw.language.data.values;
+		mw.language.data.values = $.extend( true, {}, this.liveLangData );
 	},
 	teardown: function () {
-		// Restore original
-		mw.language.data = liveLangData;
+		// Restore
+		mw.language.data.values = this.iveLangData;
 	}
 }) );
 
