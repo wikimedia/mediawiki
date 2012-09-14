@@ -244,6 +244,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
 * (bug 32552) Drop unused database field cat_hidden from table category.
 * (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
+* (bug 39941) Add missing stylesheets to the installer pages
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
