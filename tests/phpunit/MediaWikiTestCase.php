@@ -502,4 +502,46 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Asserts that the provided variable is of the specified
+	 * internal type or equals the $value argument. This is useful
+	 * for testing return types of functions that return a certain
+	 * type or *value* when not set or on error.
+	 *
+	 * @since 1.20
+	 *
+	 * @param string $type
+	 * @param mixed $actual
+	 * @param mixed $value
+	 * @param string $message
+	 */
+	protected function assertTypeOrValue( $type, $actual, $value = false, $message = '' ) {
+		if ( $actual === $value ) {
+			$this->assertTrue( true, $message );
+		}
+		else {
+			$this->assertType( $type, $actual, $message );
+		}
+	}
+
+	/**
+	 * Asserts the type of the provided value. This can be either
+	 * in internal type such as boolean or integer, or a class or
+	 * interface the value extends or implements.
+	 *
+	 * @since 1.20
+	 *
+	 * @param string $type
+	 * @param mixed $actual
+	 * @param string $message
+	 */
+	protected function assertType( $type, $actual, $message = '' ) {
+		if ( is_object( $actual ) ) {
+			$this->assertInstanceOf( $type, $actual, $message );
+		}
+		else {
+			$this->assertInternalType( $type, $actual, $message );
+		}
+	}
+
 }
