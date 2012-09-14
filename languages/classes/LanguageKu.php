@@ -30,7 +30,7 @@ require_once( __DIR__ . '/LanguageKu_ku.php' );
  * @ingroup Language
  */
 class KuConverter extends LanguageConverter {
-	var $mArabicToLatin = array(
+	public $mArabicToLatin = array(
 		'ب' => 'b', 'ج' => 'c', 'چ' => 'ç', 'د' => 'd', 'ف' => 'f', 'گ' => 'g', 'ھ' => 'h',
 		'ہ' => 'h', 'ه' => 'h', 'ح' => 'h', 'ژ' => 'j', 'ك' => 'k', 'ک' => 'k', 'ل' => 'l',
 		'م' => 'm', 'ن' => 'n', 'پ' => 'p', 'ق' => 'q', 'ر' => 'r', 'س' => 's', 'ش' => 'ş',
@@ -72,7 +72,7 @@ class KuConverter extends LanguageConverter {
 		'٩' => '9', # &#x0669;
 	);
 
-	var $mLatinToArabic = array(
+	public $mLatinToArabic = array(
 		'b' => 'ب', 'c' => 'ج', 'ç' => 'چ', 'd' => 'د', 'f' => 'ف', 'g' => 'گ',
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
 		'm' => 'م', 'n' => 'ن', 'p' => 'پ', 'q' => 'ق', 'r' => 'ر', 's' => 'س', 'ş' => 'ش',

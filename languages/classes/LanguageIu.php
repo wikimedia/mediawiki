@@ -38,7 +38,7 @@ require_once( __DIR__ . '/../LanguageConverter.php' );
 class IuConverter extends LanguageConverter {
 
 	protected $mDoContentConvert;
-	var $mToLatin = array(
+	public $mToLatin = array(
 		'ᐦ' => 'h',   'ᐃ' => 'i',    'ᐄ' => 'ii',    'ᐅ' => 'u',    'ᐆ' => 'uu',    'ᐊ' => 'a',    'ᐋ' => 'aa',
 		'ᑉ' => 'p',   'ᐱ' => 'pi',   'ᐲ' => 'pii',   'ᐳ' => 'pu',   'ᐴ' => 'puu',   'ᐸ' => 'pa',   'ᐹ' => 'paa',
 		'ᑦ' => 't',   'ᑎ' => 'ti',   'ᑏ' => 'tii',   'ᑐ' => 'tu',   'ᑑ' => 'tuu',   'ᑕ' => 'ta',   'ᑖ' => 'taa',
@@ -58,7 +58,7 @@ class IuConverter extends LanguageConverter {
 		'ᖦ' => 'ɫ',   'ᖠ' => 'ɫi',    'ᖡ' => 'ɫii',   'ᖢ' => 'ɫu',    'ᖣ' => 'ɫuu',   'ᖤ' => 'ɫa',    'ᖥ' => 'ɫaa',
 	);
 
-	var $mUpperToLowerCaseLatin = array(
+	public $mUpperToLowerCaseLatin = array(
 		'A' => 'a',	'B' => 'b',	'C' => 'c',	'D' => 'd',	'E' => 'e',
 		'F' => 'f',	'G' => 'g',	'H' => 'h',	'I' => 'i',	'J' => 'j',
 		'K' => 'k',	'L' => 'l',	'M' => 'm',	'N' => 'n',	'O' => 'o',
@@ -67,7 +67,7 @@ class IuConverter extends LanguageConverter {
 		'Z' => 'z',
 	);
 
-	var $mToSyllabics = array(
+	public $mToSyllabics = array(
 		'h' => 'ᐦ',   'i' => 'ᐃ',    'ii' => 'ᐄ',    'u' => 'ᐅ',    'uu' => 'ᐆ',    'a' => 'ᐊ',    'aa' => 'ᐋ',
 		'p' => 'ᑉ',   'pi' => 'ᐱ',   'pii' => 'ᐲ',   'pu' => 'ᐳ',   'puu' => 'ᐴ',   'pa' => 'ᐸ',   'paa' => 'ᐹ',
 		't' => 'ᑦ',   'ti' => 'ᑎ',   'tii' => 'ᑏ',   'tu' => 'ᑐ',   'tuu' => 'ᑑ',   'ta' => 'ᑕ',   'taa' => 'ᑖ',

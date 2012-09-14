@@ -32,13 +32,13 @@ require_once( __DIR__ . '/Maintenance.php' );
  * @ingroup Maintenance
  */
 class BackupReader extends Maintenance {
-	var $reportingInterval = 100;
-	var $pageCount = 0;
-	var $revCount  = 0;
-	var $dryRun    = false;
-	var $uploads   = false;
-	var $imageBasePath = false;
-	var $nsFilter  = false;
+	public $reportingInterval = 100;
+	public $pageCount = 0;
+	public $revCount  = 0;
+	public $dryRun    = false;
+	public $uploads   = false;
+	public $imageBasePath = false;
+	public $nsFilter  = false;
 
 	function __construct() {
 		parent::__construct();

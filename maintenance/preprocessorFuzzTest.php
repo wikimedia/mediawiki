@@ -26,7 +26,7 @@ require_once( __DIR__ . '/commandLine.inc' );
 $wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';
 
 class PPFuzzTester {
-	var $hairs = array(
+	public $hairs = array(
 		'[[', ']]', '{{', '{{', '}}', '}}', '{{{', '}}}',
 		'<', '>', '<nowiki', '<gallery', '</nowiki>', '</gallery>', '<nOwIkI>', '</NoWiKi>',
 		'<!--' , '-->',
@@ -39,12 +39,12 @@ class PPFuzzTester {
 		// extensions
 		// '<ref>', '</ref>', '<references/>',
 	);
-	var $minLength = 0;
-	var $maxLength = 20;
-	var $maxTemplates = 5;
-	// var $outputTypes = array( 'OT_HTML', 'OT_WIKI', 'OT_PREPROCESS' );
-	var $entryPoints = array( 'testSrvus', 'testPst', 'testPreprocess' );
-	var $verbose = false;
+	public $minLength = 0;
+	public $maxLength = 20;
+	public $maxTemplates = 5;
+	// public $outputTypes = array( 'OT_HTML', 'OT_WIKI', 'OT_PREPROCESS' );
+	public $entryPoints = array( 'testSrvus', 'testPst', 'testPreprocess' );
+	public $verbose = false;
 	static $currentTest = false;
 
 	function execute() {
@@ -140,7 +140,7 @@ class PPFuzzTester {
 }
 
 class PPFuzzTest {
-	var $templates, $mainText, $title, $entryPoint, $output;
+	public $templates, $mainText, $title, $entryPoint, $output;
 
 	function __construct( $tester ) {
 		global $wgMaxSigChars;
@@ -219,7 +219,7 @@ class PPFuzzTest {
 }
 
 class PPFuzzUser extends User {
-	var $ppfz_test, $mDataLoaded;
+	public $ppfz_test, $mDataLoaded;
 
 	function load() {
 		if ( $this->mDataLoaded ) {

@@ -43,19 +43,19 @@ $job = RecompressTracked::newFromCommandLine( $args, $options );
 $job->execute();
 
 class RecompressTracked {
-	var $destClusters;
-	var $batchSize = 1000;
-	var $orphanBatchSize = 1000;
-	var $reportingInterval = 10;
-	var $numProcs = 1;
-	var $useDiff, $pageBlobClass, $orphanBlobClass;
-	var $slavePipes, $slaveProcs, $prevSlaveId;
-	var $copyOnly = false;
-	var $isChild = false;
-	var $slaveId = false;
-	var $noCount = false;
-	var $debugLog, $infoLog, $criticalLog;
-	var $store;
+	public $destClusters;
+	public $batchSize = 1000;
+	public $orphanBatchSize = 1000;
+	public $reportingInterval = 10;
+	public $numProcs = 1;
+	public $useDiff, $pageBlobClass, $orphanBlobClass;
+	public $slavePipes, $slaveProcs, $prevSlaveId;
+	public $copyOnly = false;
+	public $isChild = false;
+	public $slaveId = false;
+	public $noCount = false;
+	public $debugLog, $infoLog, $criticalLog;
+	public $store;
 
 	static $optionsWithArgs = array( 'procs', 'slave-id', 'debug-log', 'info-log', 'critical-log' );
 	static $cmdLineOptionMap = array(
@@ -670,10 +670,10 @@ class RecompressTracked {
  * Class to represent a recompression operation for a single CGZ blob
  */
 class CgzCopyTransaction {
-	var $parent;
-	var $blobClass;
-	var $cgz;
-	var $referrers;
+	public $parent;
+	public $blobClass;
+	public $cgz;
+	public $referrers;
 
 	/**
 	 * Create a transaction from a RecompressTracked object
