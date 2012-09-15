@@ -639,7 +639,7 @@
 		 * @return {String} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var count = parseInt( this.language.convertNumber( nodes[0], true ), 10 );
+			var count = parseFloat( this.language.convertNumber( nodes[0], true ) );
 			var forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},

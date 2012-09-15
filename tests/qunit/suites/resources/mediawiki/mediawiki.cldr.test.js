@@ -50,9 +50,8 @@ var pluralTestcases = {
 		[ 9999, [ "zero", "one", "two", "few", "many", "other" ], "many", "Arabic plural test - 9999 is many" ],
 		[ 100, [ "zero", "one", "two", "few", "many", "other" ], "other", "Arabic plural test - 100 is other" ],
 		[ 102, [ "zero", "one", "two", "few", "many", "other" ], "other", "Arabic plural test - 102 is other" ],
-		[ 1000, [ "zero", "one", "two", "few", "many", "other" ], "other", "Arabic plural test - 1000 is other" ]
-		// FIXME plural rules for decimal numbers does not work
-		// [ 1.7, [ "zero", "one", "two", "few", "many", "other" ], "other", "Arabic plural test - 1.7 is other" ],
+		[ 1000, [ "zero", "one", "two", "few", "many", "other" ], "other", "Arabic plural test - 1000 is other" ],
+		[ 1.7, [ "zero", "one", "two", "few", "many", "other" ], "other", "Arabic plural test - 1.7 is other" ]
 	]
 };
 
