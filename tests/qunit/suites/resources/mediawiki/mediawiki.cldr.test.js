@@ -16,6 +16,15 @@ var pluralTestcases = {
 		[ 0, [ "one", "other" ], "other", "English plural test- 0 is other" ],
 		[ 1, [ "one", "other" ], "one", "English plural test- 1 is one" ]
 	],
+	"fa": [
+		[ 0, [ "one", "other" ], "other", "Persian plural test- 0 is other" ],
+		[ 1, [ "one", "other" ], "one", "Persian plural test- 1 is one" ],
+		[ 2, [ "one", "other" ], "other", "Persian plural test- 2 is other" ]
+	],
+	"fr": [
+		[ 0, [ "one", "other" ], "other", "French plural test- 0 is other" ],
+		[ 1, [ "one", "other" ], "one", "French plural test- 1 is one" ]
+	],
 	"hi": [
 		[ 0, [ "one", "other" ], "one", "Hindi plural test- 0 is one" ],
 		[ 1, [ "one", "other" ], "one", "Hindi plural test- 1 is one" ],
@@ -26,6 +35,11 @@ var pluralTestcases = {
 		[ 1, [ "one", "other" ], "one", "Hebrew plural test- 1 is one" ],
 		[ 2, [ "one", "other" ], "other", "Hebrew plural test- 2 is other with 2 forms" ],
 		[ 2, [ "one", "dual", "other" ], "dual", "Hebrew plural test- 2 is dual with 3 forms" ]
+	],
+	"hu": [
+		[ 0, [ "one", "other" ], "other", "Hungarian plural test- 0 is other" ],
+		[ 1, [ "one", "other" ], "one", "Hungarian plural test- 1 is one" ],
+		[ 2, [ "one", "other" ], "other", "Hungarian plural test- 2 is other" ]
 	],
 	"ar": [
 		[ 0, [ "zero", "one", "two", "few", "many", "other" ], "zero", "Arabic plural test - 0 is zero" ],
