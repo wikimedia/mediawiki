@@ -56,7 +56,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
-		global $wgContLang, $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes;
+		global $wgContLang, $wgDisableCounters, $wgRCMaxAge, $wgRestrictionTypes, $wgNamespacesWithSubpages;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -157,16 +157,18 @@ class InfoAction extends FormlessAction {
 				->numParams( count( $title->getRedirectsHere() ) )->escaped()
 		);
 
-		// Subpages of this page
-		$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
-		$table = $this->addRow( $table,
-			Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
-			$this->msg( 'pageinfo-subpages-value' )
-				->numParams(
-					$pageInfo['subpages']['total'],
-					$pageInfo['subpages']['redirects'],
-					$pageInfo['subpages']['nonredirects'] )->escaped()
-		);
+		// Subpages of this page, if sub pages are enabled for the current NS
+		if ( $wgNamespacesWithSubpages[$title->getNamespace()] ) {
+			$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
+			$table = $this->addRow( $table,
+				Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
+				$this->msg( 'pageinfo-subpages-value' )
+					->numParams(
+						$pageInfo['subpages']['total'],
+						$pageInfo['subpages']['redirects'],
+						$pageInfo['subpages']['nonredirects'] )->escaped()
+			);
+		}
 
 		// Page protection
 		$content = $this->addTable( $content, $table );
