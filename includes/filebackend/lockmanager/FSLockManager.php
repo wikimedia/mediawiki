@@ -50,7 +50,7 @@ class FSLockManager extends LockManager {
 	 * Construct a new instance from configuration.
 	 *
 	 * $config includes:
-	 *     'lockDirectory' : Directory containing the lock files
+	 *   - lockDirectory : Directory containing the lock files
 	 *
 	 * @param array $config
 	 */
