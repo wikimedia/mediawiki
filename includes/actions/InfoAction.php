@@ -157,16 +157,18 @@ class InfoAction extends FormlessAction {
 				->numParams( count( $title->getRedirectsHere() ) )->escaped()
 		);
 
-		// Subpages of this page
-		$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
-		$table = $this->addRow( $table,
-			Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
-			$this->msg( 'pageinfo-subpages-value' )
-				->numParams(
-					$pageInfo['subpages']['total'],
-					$pageInfo['subpages']['redirects'],
-					$pageInfo['subpages']['nonredirects'] )->escaped()
-		);
+		// Subpages of this page, if subpages are enabled for the current NS
+		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+			$prefixIndex = SpecialPage::getTitleFor( 'Prefixindex', $title->getPrefixedText() . '/' );
+			$table = $this->addRow( $table,
+				Linker::link( $prefixIndex, $this->msg( 'pageinfo-subpages-name' )->escaped() ),
+				$this->msg( 'pageinfo-subpages-value' )
+					->numParams(
+						$pageInfo['subpages']['total'],
+						$pageInfo['subpages']['redirects'],
+						$pageInfo['subpages']['nonredirects'] )->escaped()
+			);
+		}
 
 		// Page protection
 		$content = $this->addTable( $content, $table );
@@ -404,28 +406,32 @@ class InfoAction extends FormlessAction {
 		);
 		$result['recent_authors'] = $authors;
 
-		$conds = array( 'page_namespace' => $title->getNamespace(), 'page_is_redirect' => 1 );
-		$conds[] = 'page_title ' . $dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );
+		// Subpages (if enabled)
+		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
+			$conds = array( 'page_namespace' => $title->getNamespace() );
+			$conds[] = 'page_title ' . $dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );
 
-		// Subpages of this page (redirects)
-		$result['subpages']['redirects'] = (int) $dbr->selectField(
-			'page',
-			'COUNT(page_id)',
-			$conds,
-			__METHOD__ );
+			// Subpages of this page (redirects)
+			$conds['page_is_redirect'] = 0;
+			$result['subpages']['redirects'] = (int) $dbr->selectField(
+				'page',
+				'COUNT(page_id)',
+				$conds,
+				__METHOD__ );
 
-		// Subpages of this page (non-redirects)
-		$conds['page_is_redirect'] = 0;
-		$result['subpages']['nonredirects'] = (int) $dbr->selectField(
-			'page',
-			'COUNT(page_id)',
-			$conds,
-			__METHOD__
-		);
+			// Subpages of this page (non-redirects)
+			$conds['page_is_redirect'] = 0;
+			$result['subpages']['nonredirects'] = (int) $dbr->selectField(
+				'page',
+				'COUNT(page_id)',
+				$conds,
+				__METHOD__
+			);
 
-		// Subpages of this page (total)
-		$result['subpages']['total'] = $result['subpages']['redirects']
-			+ $result['subpages']['nonredirects'];
+			// Subpages of this page (total)
+			$result['subpages']['total'] = $result['subpages']['redirects']
+				+ $result['subpages']['nonredirects'];
+		}
 
 		// Latest editor + date of latest edit
 		$options = array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 );
