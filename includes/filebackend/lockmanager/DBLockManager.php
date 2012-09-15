@@ -54,22 +54,22 @@ class DBLockManager extends QuorumLockManager {
 	 * Construct a new instance from configuration.
 	 *
 	 * $config paramaters include:
-	 *     'dbServers'   : Associative array of DB names to server configuration.
-	 *                     Configuration is an associative array that includes:
-	 *                     'host'        - DB server name
-	 *                     'dbname'      - DB name
-	 *                     'type'        - DB type (mysql,postgres,...)
-	 *                     'user'        - DB user
-	 *                     'password'    - DB user password
-	 *                     'tablePrefix' - DB table prefix
-	 *                     'flags'       - DB flags (see DatabaseBase)
-	 *     'dbsByBucket' : Array of 1-16 consecutive integer keys, starting from 0,
-	 *                     each having an odd-numbered list of DB names (peers) as values.
-	 *                     Any DB named 'localDBMaster' will automatically use the DB master
-	 *                     settings for this wiki (without the need for a dbServers entry).
-	 *     'lockExpiry'  : Lock timeout (seconds) for dropped connections. [optional]
-	 *                     This tells the DB server how long to wait before assuming
-	 *                     connection failure and releasing all the locks for a session.
+	 *   - dbServers   : Associative array of DB names to server configuration.
+	 *                   Configuration is an associative array that includes:
+	 *                     - host        : DB server name
+	 *                     - dbname      : DB name
+	 *                     - type        : DB type (mysql,postgres,...)
+	 *                     - user        : DB user
+	 *                     - password    : DB user password
+	 *                     - tablePrefix : DB table prefix
+	 *                     - flags       : DB flags (see DatabaseBase)
+	 *   - dbsByBucket : Array of 1-16 consecutive integer keys, starting from 0,
+	 *                   each having an odd-numbered list of DB names (peers) as values.
+	 *                   Any DB named 'localDBMaster' will automatically use the DB master
+	 *                   settings for this wiki (without the need for a dbServers entry).
+	 *   - lockExpiry  : Lock timeout (seconds) for dropped connections. [optional]
+	 *                   This tells the DB server how long to wait before assuming
+	 *                   connection failure and releasing all the locks for a session.
 	 *
 	 * @param Array $config
 	 */
