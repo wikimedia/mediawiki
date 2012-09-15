@@ -515,7 +515,7 @@ window.redirectToFragment = function( fragment ) {
  * Add a cute little box at the top of the screen to inform the user of
  * something, replacing any preexisting message.
  *
- * @deprecated since 1.17 Use mw.util.notify instead.
+ * @deprecated since 1.17 Use the 'mediawiki.notify' module instead.
  * @param {String|HTMLElement} message To be put inside the message box.
  */
 window.jsMsg = function () {
