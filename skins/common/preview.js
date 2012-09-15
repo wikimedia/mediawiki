@@ -101,6 +101,6 @@
 		// (mw.loader takes care of stuff if they happen to be loaded already)
 		mw.loader.load( 'mediawiki.action.history.diff' );
 
-		$( '#wpPreview, #wpDiff' ).click( doLivePreview );
+		$( '#wpPreview, #wpDiff' ).live( doLivePreview );
 	} );
 } )( mediaWiki, jQuery );
