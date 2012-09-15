@@ -1701,7 +1701,7 @@ $1',
 'backend-fail-internal' => '存儲後方“$1”發生了一個未知錯誤。',
 'backend-fail-contenttype' => '無法確定檔案的內容類型以存儲於“$1”。',
 'backend-fail-batchsize' => '存儲後端被給予了$1次檔𣗈 {{PLURAL:$1|操作|操作}} ；限制是$2次{{PLURAL:$2|操作|操作}}。',
-'backend-fail-usable' => '由於沒有足夠的權限或缺少路徑/容器，所以無法寫入檔𣗈 $1 。',
+'backend-fail-usable' => '由於沒有足夠的權限或缺少路徑/容器，所以無法讀取或寫入檔案 $1 。',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '無法連接到後端存儲的日誌資料庫" $1 "。',

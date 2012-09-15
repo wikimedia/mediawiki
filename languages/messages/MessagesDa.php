@@ -1705,7 +1705,7 @@ Informer venligst en [[Special:ListUsers/sysop|systemadministrator]].',
 'backend-fail-internal' => 'En ukendt fejl opstod i filbackend "$1".',
 'backend-fail-contenttype' => 'Kunne ikke bestemme typen af indhold i filen, der skal gemmes på "$1".',
 'backend-fail-batchsize' => 'Lagringsbackend gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; grænsen er $2 {{PLURAL:$2|operation|operationer}}.',
-'backend-fail-usable' => 'Kunne ikke skrive til filen "$1" på grund af manglende rettigheder eller manglende mapper/containere.',
+'backend-fail-usable' => 'Kunne ikke læse eller skrive til filen "$1" på grund af manglende rettigheder eller manglende mapper/containere.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kunne ikke tilslutte til journal databasen for lager backenden "$1".',

@@ -1204,16 +1204,16 @@ $1",
 'revdel-restore-visible' => 'vidljive izmjene',
 'pagehist' => 'Povijest stranice',
 'deletedhist' => 'Obrisana povijest',
-'revdelete-hide-current' => 'Greška u skrivanju stavke datirane $2, $1: ovo je trenutačna inačica. Ne može biti skrivena.',
-'revdelete-show-no-access' => 'Greška u prikazivanju stavke od $2, $1: ova stavka je označena kao "ograničeno".
+'revdelete-hide-current' => 'Pogrješka u skrivanju stavke datirane $2, $1: ovo je trenutačna inačica. Ne može biti skrivena.',
+'revdelete-show-no-access' => 'Pogrješka u prikazivanju stavke od $2, $1: ova stavka označena je kao "ograničeno".
 Nemate pristup do nje.',
-'revdelete-modify-no-access' => 'Greška pri izmjeni stavke od $2, $1: ova stavka je označena kao "ograničeno".
+'revdelete-modify-no-access' => 'Pogrješka pri izmjeni stavke od $2, $1: ova je stavka označena kao "ograničeno".
 Nemate pristup do nje.',
-'revdelete-modify-missing' => 'Greška pri izmjeni izmjene broj $1: nedostaje u bazi!',
+'revdelete-modify-missing' => 'Pogrješka pri izmjeni izmjene broj $1: nedostaje u bazi!',
 'revdelete-no-change' => "'''Upozorenje:''' stavka od $2, $1 već ima tražene postavke vidljivosti.",
-'revdelete-concurrent-change' => 'Greška pri izmjeni stavke od $2, $1: izgleda da je njen status promijenio netko drugi dok ste ju pokušavali mijenjati.
+'revdelete-concurrent-change' => 'Pogrješka pri izmjeni stavke od $2, $1: izgleda da je njen status promijenio netko drugi dok ste ju pokušavali mijenjati.
 Provjerite evidencije.',
-'revdelete-only-restricted' => 'Greška pri skrivanju stavke od dana $2, $1: ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih mogućnosti vidljivosti.',
+'revdelete-only-restricted' => 'Pogrješka pri skrivanju stavke od dana $2, $1: ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih mogućnosti vidljivosti.',
 'revdelete-reason-dropdown' => '*Uobičajeni razlozi brisanja
 ** Kršenje autorskih prava
 ** Neprimjereni osobni podaci',

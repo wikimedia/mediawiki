@@ -1197,7 +1197,7 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 
 # Diffs
 'history-title' => 'Historija izmjena stranice "$1"',
-'difference-title' => 'Razlike između iumjena na stranici "$1"',
+'difference-title' => 'Razlike između izmjena na stranici "$1"',
 'difference-title-multipage' => 'Razlika između stranica "$1" i "$2"',
 'difference-multipage' => '(Razlika između stranica)',
 'lineno' => 'Linija $1:',
@@ -1772,7 +1772,7 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'backend-fail-internal' => 'Došlo je do nepoznate greške u skladišnoj osnovi „$1“.',
 'backend-fail-contenttype' => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
 'backend-fail-batchsize' => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
-'backend-fail-usable' => 'Ne mogu snimiti datoteku $1 zbog nedovoljno dozvola ili nedostattnih direktorija/sadržaoca.',
+'backend-fail-usable' => 'Ne mogu pročitati ni snimiti datoteku $1 zbog nedovoljno dozvola ili nedostattnih direktorija/sadržaoca.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Ne mogu da se povežem s novinarskom bazom za skladišnu osnovu „$1“.',
