@@ -118,6 +118,7 @@ class WebInstallerOutput {
 		$cssFileNames = array(
 
 			// Basically the "skins.vector" ResourceLoader module styles
+			'common/shared.css',
 			'common/commonElements.css',
 			'common/commonContent.css',
 			'common/commonInterface.css',
