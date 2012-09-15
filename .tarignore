@@ -1,0 +1,13 @@
+.git
+.gitignore
+.gitreview
+.jshintignore
+.jshintrc
+.tarignore
+testsuite
+tests
+*.xcf
+*~
+#*#
+.#*
+
