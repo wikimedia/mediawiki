@@ -2409,8 +2409,13 @@ define( 'TS_ISO_8601_BASIC', 9 );
  * @return Mixed: String / false The same date in the format specified in $outputtype or false
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
-	$timestamp = new MWTimestamp( $ts );
-	return $timestamp->getTimestamp( $outputtype );
+	try {
+		$timestamp = new MWTimestamp( $ts );
+		return $timestamp->getTimestamp( $outputtype );
+	} catch( TimestampException $e ) {
+		wfDebug("wfTimestamp() fed bogus time value: TYPE=$outputtype; VALUE=$ts\n");
+		return false;
+	}
 }
 
 /**
