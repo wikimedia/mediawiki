@@ -275,7 +275,15 @@ function pluralRuleParser(rule, number) {
 
 	var condition = choice([and, or, relation]);
 
+	function isInt(n) {
+		return parseFloat(n) % 1 === 0;
+	}
+
+
 	function start() {
+		if (!isInt(number)) {
+			return false;
+		}
 		var result = condition();
 		return result;
 	}
