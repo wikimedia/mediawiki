@@ -18,8 +18,8 @@ $datePreferences = array(
 $defaultDateFormat = 'nan';
 $dateFormats = array(
 	'nan time' => 'H:i',
-	'nan date' => 'Y-"nî" n-"goe̍h" j-"jἰt" (l)',
-	'nan both' => 'Y-"nî" n-"goe̍h" j-"jἰt" (D) H:i',
+	'nan date' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (l)',
+	'nan both' => 'Y-"nî" n-"goe̍h" j-"ji̍t" (D) H:i',
 );
 
 $messages = array(
