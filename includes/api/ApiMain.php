@@ -67,7 +67,6 @@ class ApiMain extends ApiBase {
 		'rollback' => 'ApiRollback',
 		'delete' => 'ApiDelete',
 		'undelete' => 'ApiUndelete',
-		'protect' => 'ApiProtect',
 		'block' => 'ApiBlock',
 		'unblock' => 'ApiUnblock',
 		'move' => 'ApiMove',
