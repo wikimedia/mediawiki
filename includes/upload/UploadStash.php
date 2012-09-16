@@ -572,9 +572,10 @@ class UploadStashFile extends UnregisteredLocalFile {
 	 * ugly file name.
 	 *
 	 * @param $params Array: handler-specific parameters
+	 * @param $flags integer Bitfield that supports THUMB_* constants
 	 * @return String: base name for URL, like '120px-12345.jpg', or null if there is no handler
 	 */
-	function thumbName( $params ) {
+	function thumbName( $params, $flags = 0 ) {
 		return $this->generateThumbName( $this->getUrlName(), $params );
 	}
 
