@@ -199,7 +199,6 @@ $wgAutoloadLocalClasses = array(
 	'Preferences' => 'includes/Preferences.php',
 	'PreferencesForm' => 'includes/Preferences.php',
 	'PrefixSearch' => 'includes/PrefixSearch.php',
-	'ProtectionForm' => 'includes/ProtectionForm.php',
 	'QueryPage' => 'includes/QueryPage.php',
 	'QuickTemplate' => 'includes/SkinTemplate.php',
 	'RawMessage' => 'includes/Message.php',
@@ -321,7 +320,6 @@ $wgAutoloadLocalClasses = array(
 	'HistoryPager' => 'includes/actions/HistoryAction.php',
 	'InfoAction' => 'includes/actions/InfoAction.php',
 	'MarkpatrolledAction' => 'includes/actions/MarkpatrolledAction.php',
-	'ProtectAction' => 'includes/actions/ProtectAction.php',
 	'PurgeAction' => 'includes/actions/PurgeAction.php',
 	'RawAction' => 'includes/actions/RawAction.php',
 	'RawPage' => 'includes/actions/RawAction.php',
@@ -331,7 +329,6 @@ $wgAutoloadLocalClasses = array(
 	'RevisiondeleteAction' => 'includes/actions/RevisiondeleteAction.php',
 	'RollbackAction' => 'includes/actions/RollbackAction.php',
 	'SubmitAction' => 'includes/actions/EditAction.php',
-	'UnprotectAction' => 'includes/actions/ProtectAction.php',
 	'UnwatchAction' => 'includes/actions/WatchAction.php',
 	'ViewAction' => 'includes/actions/ViewAction.php',
 	'WatchAction' => 'includes/actions/WatchAction.php',
@@ -377,7 +374,6 @@ $wgAutoloadLocalClasses = array(
 	'ApiParamInfo' => 'includes/api/ApiParamInfo.php',
 	'ApiParse' => 'includes/api/ApiParse.php',
 	'ApiPatrol' => 'includes/api/ApiPatrol.php',
-	'ApiProtect' => 'includes/api/ApiProtect.php',
 	'ApiPurge' => 'includes/api/ApiPurge.php',
 	'ApiQuery' => 'includes/api/ApiQuery.php',
 	'ApiQueryAllCategories' => 'includes/api/ApiQueryAllCategories.php',
@@ -879,6 +875,9 @@ $wgAutoloadLocalClasses = array(
 	'SqliteSearchResultSet' => 'includes/search/SearchSqlite.php',
 	'SqlSearchResultSet' => 'includes/search/SearchEngine.php',
 
+	# includes/security
+	'Security' => 'includes/security/Security.php',
+
 	# includes/site
 	'MediaWikiSite' => 'includes/site/MediaWikiSite.php',
 	'Site' => 'includes/site/Site.php',
@@ -966,8 +965,6 @@ $wgAutoloadLocalClasses = array(
 	'SpecialPermanentLink' => 'includes/SpecialPage.php',
 	'SpecialPreferences' => 'includes/specials/SpecialPreferences.php',
 	'SpecialPrefixindex' => 'includes/specials/SpecialPrefixindex.php',
-	'SpecialProtectedpages' => 'includes/specials/SpecialProtectedpages.php',
-	'SpecialProtectedtitles' => 'includes/specials/SpecialProtectedtitles.php',
 	'SpecialRandomredirect' => 'includes/specials/SpecialRandomredirect.php',
 	'SpecialRecentChanges' => 'includes/specials/SpecialRecentchanges.php',
 	'SpecialRecentchangeslinked' => 'includes/specials/SpecialRecentchangeslinked.php',
@@ -1065,7 +1062,6 @@ $wgAutoloadLocalClasses = array(
 	'SevenZipStream' => 'maintenance/7zip.inc',
 	'Sqlite' => 'maintenance/sqlite.inc',
 	'UpdateCollation' => 'maintenance/updateCollation.php',
-	'UpdateRestrictions' => 'maintenance/updateRestrictions.php',
 	'UserDupes' => 'maintenance/userDupes.inc',
 
 	# maintenance/language

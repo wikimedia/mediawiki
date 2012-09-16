@@ -1394,21 +1394,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * action=protect handler
-	 */
-	public function protect() {
-		$form = new ProtectionForm( $this );
-		$form->execute();
-	}
-
-	/**
-	 * action=unprotect handler (alias)
-	 */
-	public function unprotect() {
-		$this->protect();
-	}
-
-	/**
 	 * UI entry point for page deletion
 	 */
 	public function delete() {
@@ -1955,35 +1940,6 @@ class Article implements Page {
 	}
 
 	// ****** B/C functions to work-around PHP silliness with __call and references ****** //
-
-	/**
-	 * @param $limit array
-	 * @param $expiry array
-	 * @param $cascade bool
-	 * @param $reason string
-	 * @param $user User
-	 * @return Status
-	 */
-	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
-		return $this->mPage->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user );
-	}
-
-	/**
-	 * @param $limit array
-	 * @param $reason string
-	 * @param $cascade int
-	 * @param $expiry array
-	 * @return bool
-	 */
-	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
-		return $this->mPage->doUpdateRestrictions(
-			$limit,
-			$expiry,
-			$cascade,
-			$reason,
-			$this->getContext()->getUser()
-		);
-	}
 
 	/**
 	 * @param $reason string

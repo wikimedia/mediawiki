@@ -3060,6 +3060,7 @@ $templates
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
 		}
+		//TODO
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
 		}

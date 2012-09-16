@@ -1,4 +1,5 @@
 <?php
+//TODO
 /**
  * Makes the required database updates for Special:ProtectedPages
  * to show all protected pages, even ones before the page restrictions

@@ -257,7 +257,6 @@ class WikiPage implements Page, IDBAccessObject {
 			'page_id',
 			'page_namespace',
 			'page_title',
-			'page_restrictions',
 			'page_counter',
 			'page_is_redirect',
 			'page_is_new',
@@ -384,8 +383,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$this->mTitle->loadFromRow( $data );
 
-			// Old-fashioned restrictions
-			$this->mTitle->loadRestrictions( $data->page_restrictions );
+			Security::loadPageRestrictions( $this, $data->page_restrictions );
 
 			$this->mId = intval( $data->page_id );
 			$this->mCounter = intval( $data->page_counter );
@@ -2205,277 +2203,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Update the article's restriction field, and leave a log entry.
-	 * This works for protection both existing and non-existing pages.
-	 *
-	 * @param array $limit set of restriction keys
-	 * @param $reason String
-	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
-	 * @param array $expiry per restriction type expiration
-	 * @param $user User The user updating the restrictions
-	 * @return Status
-	 */
-	public function doUpdateRestrictions( array $limit, array $expiry, &$cascade, $reason, User $user ) {
-		global $wgContLang;
-
-		if ( wfReadOnly() ) {
-			return Status::newFatal( 'readonlytext', wfReadOnlyReason() );
-		}
-
-		$restrictionTypes = $this->mTitle->getRestrictionTypes();
-
-		$id = $this->getId();
-
-		if ( !$cascade ) {
-			$cascade = false;
-		}
-
-		// Take this opportunity to purge out expired restrictions
-		Title::purgeExpiredRestrictions();
-
-		// @todo FIXME: Same limitations as described in ProtectionForm.php (line 37);
-		// we expect a single selection, but the schema allows otherwise.
-		$isProtected = false;
-		$protect = false;
-		$changed = false;
-
-		$dbw = wfGetDB( DB_MASTER );
-
-		foreach ( $restrictionTypes as $action ) {
-			if ( !isset( $expiry[$action] ) ) {
-				$expiry[$action] = $dbw->getInfinity();
-			}
-			if ( !isset( $limit[$action] ) ) {
-				$limit[$action] = '';
-			} elseif ( $limit[$action] != '' ) {
-				$protect = true;
-			}
-
-			// Get current restrictions on $action
-			$current = implode( '', $this->mTitle->getRestrictions( $action ) );
-			if ( $current != '' ) {
-				$isProtected = true;
-			}
-
-			if ( $limit[$action] != $current ) {
-				$changed = true;
-			} elseif ( $limit[$action] != '' ) {
-				// Only check expiry change if the action is actually being
-				// protected, since expiry does nothing on an not-protected
-				// action.
-				if ( $this->mTitle->getRestrictionExpiry( $action ) != $expiry[$action] ) {
-					$changed = true;
-				}
-			}
-		}
-
-		if ( !$changed && $protect && $this->mTitle->areRestrictionsCascading() != $cascade ) {
-			$changed = true;
-		}
-
-		// If nothing has changed, do nothing
-		if ( !$changed ) {
-			return Status::newGood();
-		}
-
-		if ( !$protect ) { // No protection at all means unprotection
-			$revCommentMsg = 'unprotectedarticle';
-			$logAction = 'unprotect';
-		} elseif ( $isProtected ) {
-			$revCommentMsg = 'modifiedarticleprotection';
-			$logAction = 'modify';
-		} else {
-			$revCommentMsg = 'protectedarticle';
-			$logAction = 'protect';
-		}
-
-		$encodedExpiry = array();
-		$protectDescription = '';
-		# Some bots may parse IRC lines, which are generated from log entries which contain plain
-		# protect description text. Keep them in old format to avoid breaking compatibility.
-		# TODO: Fix protection log to store structured description and format it on-the-fly.
-		$protectDescriptionLog = '';
-		foreach ( $limit as $action => $restrictions ) {
-			$encodedExpiry[$action] = $dbw->encodeExpiry( $expiry[$action] );
-			if ( $restrictions != '' ) {
-				$protectDescriptionLog .= $wgContLang->getDirMark() . "[$action=$restrictions] (";
-				# $action is one of $wgRestrictionTypes = array( 'create', 'edit', 'move', 'upload' ).
-				# All possible message keys are listed here for easier grepping:
-				# * restriction-create
-				# * restriction-edit
-				# * restriction-move
-				# * restriction-upload
-				$actionText = wfMessage( 'restriction-' . $action )->inContentLanguage()->text();
-				# $restrictions is one of $wgRestrictionLevels = array( '', 'autoconfirmed', 'sysop' ),
-				# with '' filtered out. All possible message keys are listed below:
-				# * protect-level-autoconfirmed
-				# * protect-level-sysop
-				$restrictionsText = wfMessage( 'protect-level-' . $restrictions )->inContentLanguage()->text();
-				if ( $encodedExpiry[$action] != 'infinity' ) {
-					$expiryText = wfMessage(
-						'protect-expiring',
-						$wgContLang->timeanddate( $expiry[$action], false, false ),
-						$wgContLang->date( $expiry[$action], false, false ),
-						$wgContLang->time( $expiry[$action], false, false )
-					)->inContentLanguage()->text();
-				} else {
-					$expiryText = wfMessage( 'protect-expiry-indefinite' )
-						->inContentLanguage()->text();
-				}
-
-				if ( $protectDescription !== '' ) {
-					$protectDescription .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-				}
-				$protectDescription .= wfMessage( 'protect-summary-desc' )
-					->params( $actionText, $restrictionsText, $expiryText )
-					->inContentLanguage()->text();
-				$protectDescriptionLog .= $expiryText . ') ';
-			}
-		}
-		$protectDescriptionLog = trim( $protectDescriptionLog );
-
-		if ( $id ) { // Protection of existing page
-			if ( !wfRunHooks( 'ArticleProtect', array( &$this, &$user, $limit, $reason ) ) ) {
-				return Status::newGood();
-			}
-
-			// Only restrictions with the 'protect' right can cascade...
-			// Otherwise, people who cannot normally protect can "protect" pages via transclusion
-			$editrestriction = isset( $limit['edit'] ) ? array( $limit['edit'] ) : $this->mTitle->getRestrictions( 'edit' );
-
-			// The schema allows multiple restrictions
-			if ( !in_array( 'protect', $editrestriction ) && !in_array( 'sysop', $editrestriction ) ) {
-				$cascade = false;
-			}
-
-			// Update restrictions table
-			foreach ( $limit as $action => $restrictions ) {
-				if ( $restrictions != '' ) {
-					$dbw->replace( 'page_restrictions', array( array( 'pr_page', 'pr_type' ) ),
-						array( 'pr_page' => $id,
-							'pr_type' => $action,
-							'pr_level' => $restrictions,
-							'pr_cascade' => ( $cascade && $action == 'edit' ) ? 1 : 0,
-							'pr_expiry' => $encodedExpiry[$action]
-						),
-						__METHOD__
-					);
-				} else {
-					$dbw->delete( 'page_restrictions', array( 'pr_page' => $id,
-						'pr_type' => $action ), __METHOD__ );
-				}
-			}
-
-			// Prepare a null revision to be added to the history
-			$editComment = $wgContLang->ucfirst(
-				wfMessage(
-					$revCommentMsg,
-					$this->mTitle->getPrefixedText()
-				)->inContentLanguage()->text()
-			);
-			if ( $reason ) {
-				$editComment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
-			}
-			if ( $protectDescription ) {
-				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-				$editComment .= wfMessage( 'parentheses' )->params( $protectDescription )->inContentLanguage()->text();
-			}
-			if ( $cascade ) {
-				$editComment .= wfMessage( 'word-separator' )->inContentLanguage()->text();
-				$editComment .= wfMessage( 'brackets' )->params(
-					wfMessage( 'protect-summary-cascade' )->inContentLanguage()->text()
-				)->inContentLanguage()->text();
-			}
-
-			// Insert a null revision
-			$nullRevision = Revision::newNullRevision( $dbw, $id, $editComment, true );
-			$nullRevId = $nullRevision->insertOn( $dbw );
-
-			$latest = $this->getLatest();
-			// Update page record
-			$dbw->update( 'page',
-				array( /* SET */
-					'page_touched' => $dbw->timestamp(),
-					'page_restrictions' => '',
-					'page_latest' => $nullRevId
-				), array( /* WHERE */
-					'page_id' => $id
-				), __METHOD__
-			);
-
-			wfRunHooks( 'NewRevisionFromEditComplete', array( $this, $nullRevision, $latest, $user ) );
-			wfRunHooks( 'ArticleProtectComplete', array( &$this, &$user, $limit, $reason ) );
-		} else { // Protection of non-existing page (also known as "title protection")
-			// Cascade protection is meaningless in this case
-			$cascade = false;
-
-			if ( $limit['create'] != '' ) {
-				$dbw->replace( 'protected_titles',
-					array( array( 'pt_namespace', 'pt_title' ) ),
-					array(
-						'pt_namespace' => $this->mTitle->getNamespace(),
-						'pt_title' => $this->mTitle->getDBkey(),
-						'pt_create_perm' => $limit['create'],
-						'pt_timestamp' => $dbw->encodeExpiry( wfTimestampNow() ),
-						'pt_expiry' => $encodedExpiry['create'],
-						'pt_user' => $user->getId(),
-						'pt_reason' => $reason,
-					), __METHOD__
-				);
-			} else {
-				$dbw->delete( 'protected_titles',
-					array(
-						'pt_namespace' => $this->mTitle->getNamespace(),
-						'pt_title' => $this->mTitle->getDBkey()
-					), __METHOD__
-				);
-			}
-		}
-
-		$this->mTitle->flushRestrictions();
-
-		if ( $logAction == 'unprotect' ) {
-			$logParams = array();
-		} else {
-			$logParams = array( $protectDescriptionLog, $cascade ? 'cascade' : '' );
-		}
-
-		// Update the protection log
-		$log = new LogPage( 'protect' );
-		$log->addEntry( $logAction, $this->mTitle, trim( $reason ), $logParams, $user );
-
-		return Status::newGood();
-	}
-
-	/**
-	 * Take an array of page restrictions and flatten it to a string
-	 * suitable for insertion into the page_restrictions field.
-	 * @param $limit Array
-	 * @throws MWException
-	 * @return String
-	 */
-	protected static function flattenRestrictions( $limit ) {
-		if ( !is_array( $limit ) ) {
-			throw new MWException( 'WikiPage::flattenRestrictions given non-array restriction set' );
-		}
-
-		$bits = array();
-		ksort( $limit );
-
-		foreach ( $limit as $action => $restrictions ) {
-			if ( $restrictions != '' ) {
-				$bits[] = "$action=$restrictions";
-			}
-		}
-
-		return implode( ':', $bits );
-	}
-
-	/**
-	 * Same as doDeleteArticleReal(), but returns a simple boolean. This is kept around for
-	 * backwards compatibility, if you care about error reporting you should use
-	 * doDeleteArticleReal() instead.
-	 *
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param string $reason delete reason for deletion log
@@ -2879,7 +2606,8 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$title->touchLinks();
 		$title->purgeSquid();
-		$title->deleteTitleProtection();
+
+		//XXX n.b. omitting the deleteTitleRestriction() here
 	}
 
 	/**
@@ -3084,58 +2812,6 @@ class WikiPage implements Page, IDBAccessObject {
 	}
 
 	/**
-	 * Updates cascading protections
-	 *
-	 * @param $parserOutput ParserOutput object for the current version
-	 */
-	public function doCascadeProtectionUpdates( ParserOutput $parserOutput ) {
-		if ( wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
-			return;
-		}
-
-		// templatelinks table may have become out of sync,
-		// especially if using variable-based transclusions.
-		// For paranoia, check if things have changed and if
-		// so apply updates to the database. This will ensure
-		// that cascaded protections apply as soon as the changes
-		// are visible.
-
-		// Get templates from templatelinks
-		$id = $this->getId();
-
-		$tlTemplates = array();
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$res = $dbr->select( array( 'templatelinks' ),
-			array( 'tl_namespace', 'tl_title' ),
-			array( 'tl_from' => $id ),
-			__METHOD__
-		);
-
-		foreach ( $res as $row ) {
-			$tlTemplates["{$row->tl_namespace}:{$row->tl_title}"] = true;
-		}
-
-		// Get templates from parser output.
-		$poTemplates = array();
-		foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
-			foreach ( $templates as $dbk => $id ) {
-				$poTemplates["$ns:$dbk"] = true;
-			}
-		}
-
-		// Get the diff
-		$templates_diff = array_diff_key( $poTemplates, $tlTemplates );
-
-		if ( count( $templates_diff ) > 0 ) {
-			// Whee, link updates time.
-			// Note: we are only interested in links here. We don't need to get other DataUpdate items from the parser output.
-			$u = new LinksUpdate( $this->mTitle, $parserOutput, false );
-			$u->doUpdate();
-		}
-	}
-
-	/**
 	 * Return a list of templates used by this article.
 	 * Uses the templatelinks table
 	 *
@@ -3208,27 +2884,6 @@ class WikiPage implements Page, IDBAccessObject {
 	public function estimateRevisionCount() {
 		wfDeprecated( __METHOD__, '1.19' );
 		return $this->mTitle->estimateRevisionCount();
-	}
-
-	/**
-	 * Update the article's restriction field, and leave a log entry.
-	 *
-	 * @deprecated since 1.19
-	 * @param array $limit set of restriction keys
-	 * @param $reason String
-	 * @param &$cascade Integer. Set to false if cascading protection isn't allowed.
-	 * @param array $expiry per restriction type expiration
-	 * @param $user User The user updating the restrictions
-	 * @return bool true on success
-	 */
-	public function updateRestrictions(
-		$limit = array(), $reason = '', &$cascade = 0, $expiry = array(), User $user = null
-	) {
-		global $wgUser;
-
-		$user = is_null( $user ) ? $wgUser : $user;
-
-		return $this->doUpdateRestrictions( $limit, $expiry, $cascade, $reason, $user )->isOK();
 	}
 
 	/**
@@ -3432,9 +3087,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 			$wgUseFileCache = false;
 		}
 
-		if ( $isCurrent ) {
-			$this->page->doCascadeProtectionUpdates( $this->parserOutput );
-		}
+		wfRunHooks( 'UpdateRestrictions', array( $this->page->getTitle() ) );
 
 		return true;
 	}

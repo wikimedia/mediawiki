@@ -1976,14 +1976,7 @@ class Linker {
 
 			usort( $templates, 'Title::compare' );
 			foreach ( $templates as $titleObj ) {
-				$r = $titleObj->getRestrictions( 'edit' );
-				if ( in_array( 'sysop', $r ) ) {
-					$protected = wfMessage( 'template-protected' )->parse();
-				} elseif ( in_array( 'autoconfirmed', $r ) ) {
-					$protected = wfMessage( 'template-semiprotected' )->parse();
-				} else {
-					$protected = '';
-				}
+				$protected = Security::getTitleRestrictions( $titleObj );
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
 					$editLink = self::link(
 						$titleObj,
@@ -2004,6 +1997,12 @@ class Linker {
 					. wfMessage( 'parentheses' )->rawParams( $editLink )->escaped()
 					. wfMessage( 'word-separator' )->escaped()
 					. $protected . '</li>';
+||||||| merged common ancestors
+				$outText .= '<li>' . self::link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
+=======
+				//TODO show restrictions
+				$outText .= '<li>' . self::link( $titleObj ) . ' (' . $editLink . ')</li>';
+>>>>>>> See Extension:ProtectedTitles.
 			}
 
 			if ( $more instanceof Title ) {

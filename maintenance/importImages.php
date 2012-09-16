@@ -248,40 +248,8 @@ if ( $count > 0 ) {
 			# We're done!
 			echo( "done.\n" );
 
-			$doProtect = false;
-
-			global $wgRestrictionLevels;
-
-			$protectLevel = isset( $options['protect'] ) ? $options['protect'] : null;
-
-			if ( $protectLevel && in_array( $protectLevel, $wgRestrictionLevels ) ) {
-				$doProtect = true;
-			}
-			if ( isset( $options['unprotect'] ) ) {
-				$protectLevel = '';
-				$doProtect = true;
-			}
-
-			if ( $doProtect ) {
-					# Protect the file
-					echo "\nWaiting for slaves...\n";
-					// Wait for slaves.
-					sleep( 2.0 ); # Why this sleep?
-					wfWaitForSlaves();
-
-					echo( "\nSetting image restrictions ... " );
-
-					$cascade = false;
-					$restrictions = array();
-					foreach( $title->getRestrictionTypes() as $type ) {
-						$restrictions[$type] = $protectLevel;
-					}
-
-					$page = WikiPage::factory( $title );
-					$status = $page->doUpdateRestrictions( $restrictions, array(), $cascade, '', $user );
-					echo( ( $status->isOK() ? 'done' : 'failed' ) . "\n" );
-			}
-
+			//TODO
+			doUpdateRestrictions( $image,...)
 		} else {
 			echo( "failed. (at recordUpload stage)\n" );
 			$svar = 'failed';

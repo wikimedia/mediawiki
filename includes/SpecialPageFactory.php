@@ -58,8 +58,6 @@ class SpecialPageFactory {
 		'Lonelypages'               => 'LonelypagesPage',
 		'Fewestrevisions'           => 'FewestrevisionsPage',
 		'Withoutinterwiki'          => 'WithoutinterwikiPage',
-		'Protectedpages'            => 'SpecialProtectedpages',
-		'Protectedtitles'           => 'SpecialProtectedtitles',
 		'Shortpages'                => 'ShortpagesPage',
 		'Uncategorizedcategories'   => 'UncategorizedcategoriesPage',
 		'Uncategorizedimages'       => 'UncategorizedimagesPage',

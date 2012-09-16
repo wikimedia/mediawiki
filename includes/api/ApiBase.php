@@ -1603,6 +1603,18 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Get final list of possible errors, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @return array
+	 */
+	public function getFinalPossibleErrors() {
+		$errs = $this->getPossibleErrors();
+		wfRunHooks( 'APIGetPossibleErrors', array( &$this, &$errs ) );
+		return $errs;
+	}
+
+	/**
 	 * Parses a list of errors into a standardised format
 	 * @param array $errors List of errors. Items can be in the for array( key, param1, param2, ... ) or array( 'code' => ..., 'info' => ... )
 	 * @return array Parsed list of errors with items in the form array( 'code' => ..., 'info' => ... )

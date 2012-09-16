@@ -966,15 +966,6 @@ class SkinTemplate extends Skin {
 					}
 				}
 
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $title->quickUserCan( 'protect', $user ) && $title->getRestrictionTypes() ) {
-					$mode = $title->isProtected() ? 'unprotect' : 'protect';
-					$content_navigation['actions'][$mode] = array(
-						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
-						'href' => $title->getLocalURL( "action=$mode" )
-					);
-				}
-
 				wfProfileOut( __METHOD__ . '-live' );
 
 				// Checks if the user is logged in

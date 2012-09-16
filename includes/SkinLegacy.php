@@ -604,34 +604,6 @@ class LegacyTemplate extends BaseTemplate {
 		return $s;
 	}
 
-	function protectThisPage() {
-		global $wgUser, $wgRequest;
-
-		$diff = $wgRequest->getVal( 'diff' );
-		$title = $this->getSkin()->getTitle();
-
-		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) && $title->getRestrictionTypes() ) {
-			if ( $title->isProtected() ) {
-				$text = wfMessage( 'unprotectthispage' )->text();
-				$query = array( 'action' => 'unprotect' );
-			} else {
-				$text = wfMessage( 'protectthispage' )->text();
-				$query = array( 'action' => 'protect' );
-			}
-
-			$s = Linker::linkKnown(
-				$title,
-				$text,
-				array(),
-				$query
-			);
-		} else {
-			$s = '';
-		}
-
-		return $s;
-	}
-
 	function watchThisPage() {
 		global $wgOut, $wgUser;
 		++$this->mWatchLinkNum;
