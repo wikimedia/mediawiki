@@ -97,7 +97,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'doRestrictionsUpdate' ),
 			array( 'addField', 'logging',       'log_id',           'patch-log_id.sql' ),
 			array( 'addField', 'revision',      'rev_parent_id',    'patch-rev_parent_id.sql' ),
-			array( 'addField', 'page_restrictions', 'pr_id',        'patch-page_restrictions_sortkey.sql' ),
 			array( 'addField', 'revision',      'rev_len',          'patch-rev_len.sql' ),
 			array( 'addField', 'recentchanges', 'rc_deleted',       'patch-rc_deleted.sql' ),
 			array( 'addField', 'logging',       'log_deleted',      'patch-log_deleted.sql' ),
@@ -116,9 +115,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive',       'ar_page_id',       'patch-archive-page_id.sql' ),
 			array( 'addField', 'image',         'img_sha1',         'patch-img_sha1.sql' ),
 
-			// 1.12
-			array( 'addTable', 'protected_titles',                  'patch-protected_titles.sql' ),
-
 			// 1.13
 			array( 'addField', 'ipblocks',      'ipb_by_text',      'patch-ipb_by_text.sql' ),
 			array( 'addTable', 'page_props',                        'patch-page_props.sql' ),
@@ -128,7 +124,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive',       'ar_parent_id',     'patch-ar_parent_id.sql' ),
 			array( 'addField', 'user_newtalk',  'user_last_timestamp', 'patch-user_last_timestamp.sql' ),
 			array( 'doPopulateParentId' ),
-			array( 'checkBin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 			array( 'doMaybeProfilingMemoryUpdate' ),
 			array( 'doFilearchiveIndicesUpdate' ),
 
@@ -391,7 +386,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			page_id int(8) unsigned NOT NULL auto_increment,
 			page_namespace int NOT NULL,
 			page_title varchar(255) binary NOT NULL,
-			page_restrictions tinyblob NOT NULL,
 			page_counter bigint(20) unsigned NOT NULL default '0',
 			page_is_redirect tinyint(1) unsigned NOT NULL default '0',
 			page_is_new tinyint(1) unsigned NOT NULL default '0',
@@ -462,7 +456,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		$this->output( wfTimestamp( TS_DB ) );
 		$this->output( "......Setting up page table.\n" );
-		$this->db->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_restrictions, page_counter,
+		$this->db->query( "INSERT INTO $page (page_id, page_namespace, page_title, page_counter,
 			page_is_redirect, page_is_new, page_random, page_touched, page_latest, page_len)
 			SELECT cur_id, cur_namespace, cur_title, cur_restrictions, cur_counter, cur_is_redirect, cur_is_new,
 				cur_random, cur_touched, rev_id, LENGTH(cur_text)
@@ -703,27 +697,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->applyPatch( 'patch-backlinkindexes.sql' );
 			$this->output( "...backlinking indices updated\n" );
 		}
-	}
-
-	/**
-	 * Adding page_restrictions table, obsoleting page.page_restrictions.
-	 * Migrating old restrictions to new table
-	 * -- Andrew Garrett, January 2007.
-	 */
-	protected function doRestrictionsUpdate() {
-		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
-			$this->output( "...page_restrictions table already exists.\n" );
-			return;
-		}
-
-		$this->output( "Creating page_restrictions table..." );
-		$this->applyPatch( 'patch-page_restrictions.sql' );
-		$this->applyPatch( 'patch-page_restrictions_sortkey.sql' );
-		$this->output( "done.\n" );
-
-		$this->output( "Migrating old restrictions to new table...\n" );
-		$task = $this->maintenance->runChild( 'UpdateRestrictions' );
-		$task->execute();
 	}
 
 	protected function doCategorylinksIndicesUpdate() {

@@ -228,8 +228,7 @@ class StandardTemplate extends LegacyTemplate {
 					$s .= $sep . $this->moveThisPage();
 			}
 			if ( $this->getSkin()->getUser()->isAllowed( 'delete' ) && $articleExists ) {
-				$s .= $sep . $this->deleteThisPage() .
-				$sep . $this->protectThisPage();
+				$s .= $sep . $this->deleteThisPage();
 			}
 			$s .= $sep . $this->talkLink();
 			if( $articleExists && $action != 'history' ) {

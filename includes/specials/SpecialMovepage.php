@@ -227,21 +227,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addHTML( "</div>\n" );
 		}
 
-		if ( $this->oldTitle->isProtected( 'move' ) ) {
-			# Is the title semi-protected?
-			if ( $this->oldTitle->isSemiProtected( 'move' ) ) {
-				$noticeMsg = 'semiprotectedpagemovewarning';
-				$classes[] = 'mw-textarea-sprotected';
-			} else {
-				# Then it must be protected based on static groups (regular)
-				$noticeMsg = 'protectedpagemovewarning';
-				$classes[] = 'mw-textarea-protected';
-			}
-			$out->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
-			$out->addWikiMsg( $noticeMsg );
-			LogEventsList::showLogExtract( $out, 'protect', $this->oldTitle, '', array( 'lim' => 1 ) );
-			$out->addHTML( "</div>\n" );
-		}
+		//TODO display protection logs
 
 		// Byte limit (not string length limit) for wpReason and wpNewTitleMain
 		// is enforced in the mediawiki.special.movePage module

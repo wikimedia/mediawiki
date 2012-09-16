@@ -313,9 +313,9 @@ input#wpSummary {
 	display: none;
 }
 
-/* Convenience links to edit block, delete and protect reasons */
+/* Convenience links to edit block, delete reasons */
+p.mw-conveniencelinks,
 p.mw-ipb-conveniencelinks,
-p.mw-protect-editreasons,
 p.mw-filedelete-editreasons,
 p.mw-delete-editreasons,
 p.mw-revdel-editreasons {
@@ -415,7 +415,6 @@ table.os-suggest-results {
 /**
  * Recreating deleted page warning
  * Reupload file warning
- * Page protection warning
  * incl. log entries for these warnings
  */
 div.mw-warning-with-logexcerpt {

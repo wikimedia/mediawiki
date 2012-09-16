@@ -252,7 +252,7 @@ class ApiParamInfo extends ApiBase {
 		$result->setIndexedTagName( $retval['parameters'], 'param' );
 
 		// Errors
-		$retval['errors'] = $this->parseErrors( $obj->getPossibleErrors() );
+		$retval['errors'] = $this->parseErrors( $obj->getFinalPossibleErrors() );
 		$result->setIndexedTagName( $retval['errors'], 'error' );
 
 		return $retval;

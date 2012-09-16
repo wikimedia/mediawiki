@@ -429,26 +429,6 @@ class LogEventsList {
 					'known'
 				) .
 				')';
-		// Show change protection link
-		} elseif( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
-			$revert .= ' (' .
-				Linker::link( $title,
-					$this->message['hist'],
-					array(),
-					array(
-						'action' => 'history',
-						'offset' => $row->log_timestamp
-					)
-				);
-			if( $wgUser->isAllowed( 'protect' ) ) {
-				$revert .= $this->message['pipe-separator'] .
-					Linker::link( $title,
-						$this->message['protect_change'],
-						array(),
-						array( 'action' => 'protect' ),
-						'known' );
-			}
-			$revert .= ')';
 		// Show unmerge link
 		} elseif( self::typeAction( $row, 'merge', 'merge', 'mergehistory' ) ) {
 			$revert = '(' . Linker::link(

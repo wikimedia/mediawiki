@@ -12,7 +12,6 @@ SET client_min_messages = 'ERROR';
 DROP SEQUENCE IF EXISTS user_user_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS page_page_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS revision_rev_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS page_restrictions_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
@@ -132,18 +131,6 @@ CREATE TABLE pagecontent ( -- replaces reserved word 'text'
   old_flags  TEXT
 );
 
-
-CREATE SEQUENCE page_restrictions_pr_id_seq;
-CREATE TABLE page_restrictions (
-  pr_id      INTEGER      NOT NULL  UNIQUE DEFAULT nextval('page_restrictions_pr_id_seq'),
-  pr_page    INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  pr_type    TEXT         NOT NULL,
-  pr_level   TEXT         NOT NULL,
-  pr_cascade SMALLINT     NOT NULL,
-  pr_user    INTEGER          NULL,
-  pr_expiry  TIMESTAMPTZ      NULL
-);
-ALTER TABLE page_restrictions ADD CONSTRAINT page_restrictions_pk PRIMARY KEY (pr_page,pr_type);
 
 CREATE TABLE page_props (
   pp_page      INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
@@ -583,17 +570,6 @@ CREATE TABLE profiling (
   pf_server  TEXT            NULL
 );
 CREATE UNIQUE INDEX pf_name_server ON profiling (pf_name, pf_server);
-
-CREATE TABLE protected_titles (
-  pt_namespace   SMALLINT    NOT NULL,
-  pt_title       TEXT        NOT NULL,
-  pt_user        INTEGER         NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  pt_reason      TEXT            NULL,
-  pt_timestamp   TIMESTAMPTZ NOT NULL,
-  pt_expiry      TIMESTAMPTZ     NULL,
-  pt_create_perm TEXT        NOT NULL DEFAULT ''
-);
-CREATE UNIQUE INDEX protected_titles_unique ON protected_titles(pt_namespace, pt_title);
 
 
 CREATE TABLE updatelog (

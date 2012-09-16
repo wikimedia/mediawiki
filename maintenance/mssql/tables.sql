@@ -682,37 +682,6 @@ CREATE UNIQUE INDEX /*$wgDBprefix*/qcc_title    ON /*$wgDBprefix*/querycachetwo(
 CREATE UNIQUE INDEX /*$wgDBprefix*/qcc_titletwo ON /*$wgDBprefix*/querycachetwo(qcc_type,qcc_namespacetwo,qcc_titletwo);
 
 
---- Used for storing page restrictions (i.e. protection levels)
-CREATE TABLE /*$wgDBprefix*/page_restrictions (
-   pr_page INT NOT NULL REFERENCES /*$wgDBprefix*/page(page_id) ON DELETE CASCADE,
-   pr_type NVARCHAR(200) NOT NULL,
-   pr_level NVARCHAR(200) NOT NULL,
-   pr_cascade SMALLINT NOT NULL,
-   pr_user INT NULL,
-   pr_expiry DATETIME NULL,
-   pr_id INT UNIQUE IDENTITY,
-   CONSTRAINT /*$wgDBprefix*/pr_pagetype PRIMARY KEY(pr_page,pr_type),
-);
-CREATE INDEX /*$wgDBprefix*/pr_page      ON /*$wgDBprefix*/page_restrictions(pr_page);
-CREATE INDEX /*$wgDBprefix*/pr_typelevel ON /*$wgDBprefix*/page_restrictions(pr_type,pr_level);
-CREATE INDEX /*$wgDBprefix*/pr_pagelevel ON /*$wgDBprefix*/page_restrictions(pr_level);
-CREATE INDEX /*$wgDBprefix*/pr_cascade   ON /*$wgDBprefix*/page_restrictions(pr_cascade);
-;
-
--- Protected titles - nonexistent pages that have been protected
-CREATE TABLE /*$wgDBprefix*/protected_titles (
-  pt_namespace int NOT NULL,
-  pt_title NVARCHAR(255) NOT NULL,
-  pt_user int NOT NULL,
-  pt_reason NVARCHAR(3555),
-  pt_timestamp DATETIME NOT NULL,
-  pt_expiry DATETIME NOT NULL default '',
-  pt_create_perm NVARCHAR(60) NOT NULL,
-  PRIMARY KEY (pt_namespace,pt_title),
-);
-CREATE INDEX /*$wgDBprefix*/pt_timestamp   ON /*$wgDBprefix*/protected_titles(pt_timestamp);
-;
-
 -- Name/value pairs indexed by page_id
 CREATE TABLE /*$wgDBprefix*/page_props (
   pp_page int NOT NULL,

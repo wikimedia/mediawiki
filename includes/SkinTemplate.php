@@ -263,7 +263,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'editable', ( !$title->isSpecialPage() ) );
 		$tpl->set( 'exists', $title->getArticleID() != 0 );
 		$tpl->set( 'watch', $title->userIsWatching() ? 'unwatch' : 'watch' );
-		$tpl->set( 'protect', count( $title->isProtected() ) ? 'unprotect' : 'protect' );
 		$tpl->set( 'helppage', $this->msg( 'helppage' )->text() );
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
@@ -944,15 +943,6 @@ class SkinTemplate extends Skin {
 							);
 						}
 					}
-				}
-
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $title->quickUserCan( 'protect', $user ) ) {
-					$mode = $title->isProtected() ? 'unprotect' : 'protect';
-					$content_navigation['actions'][$mode] = array(
-						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
-						'href' => $title->getLocalURL( "action=$mode" )
-					);
 				}
 
 				wfProfileOut( __METHOD__ . '-live' );
