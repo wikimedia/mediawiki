@@ -25,8 +25,6 @@ DROP TABLE IF EXISTS /*_*/ipblocks_tmp;
 DROP TABLE IF EXISTS /*_*/watchlist_tmp;
 DROP TABLE IF EXISTS /*_*/math_tmp;
 DROP TABLE IF EXISTS /*_*/interwiki_tmp;
-DROP TABLE IF EXISTS /*_*/page_restrictions_tmp;
-DROP TABLE IF EXISTS /*_*/protected_titles_tmp;
 DROP TABLE IF EXISTS /*_*/page_props_tmp;
 
 --------------------------------------------------------------------------------
@@ -234,33 +232,6 @@ CREATE TABLE /*_*/interwiki_tmp (
 CREATE UNIQUE INDEX /*i*/iw_prefix ON /*_*/interwiki_tmp (iw_prefix);
 
 
-CREATE TABLE /*_*/page_restrictions_tmp (
-  pr_page int NOT NULL,
-  pr_type varbinary(60) NOT NULL,
-  pr_level varbinary(60) NOT NULL,
-  pr_cascade tinyint NOT NULL,
-  pr_user int NULL,
-  pr_expiry varbinary(14) NULL,
-  pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT
-);
-
-CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions_tmp (pr_page,pr_type);
-CREATE UNIQUE INDEX /*i*/pr_typelevel ON /*_*/page_restrictions_tmp (pr_type,pr_level);
-CREATE UNIQUE INDEX /*i*/pr_level ON /*_*/page_restrictions_tmp (pr_level);
-CREATE UNIQUE INDEX /*i*/pr_cascade ON /*_*/page_restrictions_tmp (pr_cascade);
-
-CREATE TABLE /*_*/protected_titles_tmp (
-  pt_namespace int NOT NULL,
-  pt_title varchar(255) binary NOT NULL,
-  pt_user int unsigned NOT NULL,
-  pt_reason tinyblob,
-  pt_timestamp binary(14) NOT NULL,
-  pt_expiry varbinary(14) NOT NULL default '',
-  pt_create_perm varbinary(60) NOT NULL
-);
-CREATE UNIQUE INDEX /*i*/pt_namespace_title ON /*_*/protected_titles_tmp (pt_namespace,pt_title);
-CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles_tmp (pt_timestamp);
-
 CREATE TABLE /*_*/page_props_tmp (
   pp_page int NOT NULL,
   pp_propname varbinary(60) NOT NULL,
@@ -287,8 +258,6 @@ INSERT OR IGNORE INTO /*_*/ipblocks_tmp SELECT * FROM /*_*/ipblocks;
 INSERT OR IGNORE INTO /*_*/watchlist_tmp SELECT * FROM /*_*/watchlist;
 INSERT OR IGNORE INTO /*_*/math_tmp SELECT * FROM /*_*/math;
 INSERT OR IGNORE INTO /*_*/interwiki_tmp SELECT * FROM /*_*/interwiki;
-INSERT OR IGNORE INTO /*_*/page_restrictions_tmp SELECT * FROM /*_*/page_restrictions;
-INSERT OR IGNORE INTO /*_*/protected_titles_tmp SELECT * FROM /*_*/protected_titles;
 INSERT OR IGNORE INTO /*_*/page_props_tmp SELECT * FROM /*_*/page_props;
 
 --------------------------------------------------------------------------------
@@ -325,10 +294,6 @@ DROP TABLE /*_*/math;
 ALTER TABLE /*_*/math_tmp RENAME TO /*_*/math;
 DROP TABLE /*_*/interwiki;
 ALTER TABLE /*_*/interwiki_tmp RENAME TO /*_*/interwiki;
-DROP TABLE /*_*/page_restrictions;
-ALTER TABLE /*_*/page_restrictions_tmp RENAME TO /*_*/page_restrictions;
-DROP TABLE /*_*/protected_titles;
-ALTER TABLE /*_*/protected_titles_tmp RENAME TO /*_*/protected_titles;
 DROP TABLE /*_*/page_props;
 ALTER TABLE /*_*/page_props_tmp RENAME TO /*_*/page_props;
 

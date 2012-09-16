@@ -88,7 +88,6 @@ class ApiQuery extends ApiBase {
 		'exturlusage' => 'ApiQueryExtLinksUsage',
 		'users' => 'ApiQueryUsers',
 		'random' => 'ApiQueryRandom',
-		'protectedtitles' => 'ApiQueryProtectedTitles',
 		'querypage' => 'ApiQueryQueryPage',
 	);
 
@@ -306,6 +305,7 @@ class ApiQuery extends ApiBase {
 		foreach ( $modules as $module ) {
 			$module->requestExtraData( $pageSet );
 		}
+		wfRunHooks( 'APIQueryGeneratorExtraData', array( &$this, &$pageSet ) );
 	}
 
 	/**

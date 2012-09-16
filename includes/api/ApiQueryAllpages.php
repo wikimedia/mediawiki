@@ -105,43 +105,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			$forceNameTitleIndex = false;
 		}
 
-		// Page protection filtering
-		if ( count( $params['prtype'] ) || $params['prexpiry'] != 'all' ) {
-			$this->addTables( 'page_restrictions' );
-			$this->addWhere( 'page_id=pr_page' );
-			$this->addWhere( 'pr_expiry>' . $db->addQuotes( $db->timestamp() ) );
-
-			if ( count( $params['prtype'] ) ) {
-				$this->addWhereFld( 'pr_type', $params['prtype'] );
-
-				if ( isset( $params['prlevel'] ) ) {
-					// Remove the empty string and '*' from the prlevel array
-					$prlevel = array_diff( $params['prlevel'], array( '', '*' ) );
-
-					if ( count( $prlevel ) ) {
-						$this->addWhereFld( 'pr_level', $prlevel );
-					}
-				}
-				if ( $params['prfiltercascade'] == 'cascading' ) {
-					$this->addWhereFld( 'pr_cascade', 1 );
-				} elseif ( $params['prfiltercascade'] == 'noncascading' ) {
-					$this->addWhereFld( 'pr_cascade', 0 );
-				}
-
-				$this->addOption( 'DISTINCT' );
-			}
-			$forceNameTitleIndex = false;
-
-			if ( $params['prexpiry'] == 'indefinite' ) {
-				$this->addWhere( "pr_expiry = {$db->addQuotes( $db->getInfinity() )} OR pr_expiry IS NULL" );
-			} elseif ( $params['prexpiry'] == 'definite' ) {
-				$this->addWhere( "pr_expiry != {$db->addQuotes( $db->getInfinity() )}" );
-			}
-
-		} elseif ( isset( $params['prlevel'] ) ) {
-			$this->dieUsage( 'prlevel may not be used without prtype', 'params' );
-		}
-
 		if ( $params['filterlanglinks'] == 'withoutlanglinks' ) {
 			$this->addTables( 'langlinks' );
 			$this->addJoinConds( array( 'langlinks' => array( 'LEFT JOIN', 'page_id=ll_from' ) ) );
@@ -158,11 +121,14 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 		}
 
 		if ( $forceNameTitleIndex ) {
-			$this->addOption( 'USE INDEX', 'name_title' );
+			$this->addOption( 'USE INDEX', array( 'page' => 'name_title' ) );
 		}
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
+
+		wfRunHooks( 'APIQueryAllpages::RunAlter', array( $this, $db, $params ) );
+
 		$res = $this->select( __METHOD__ );
 
 		$count = 0;
@@ -198,8 +164,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	}
 
 	public function getAllowedParams() {
-		global $wgRestrictionLevels;
-
 		return array(
 			'from' => null,
 			'to' => null,
@@ -221,22 +185,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			),
 			'maxsize' => array(
 				ApiBase::PARAM_TYPE => 'integer',
-			),
-			'prtype' => array(
-				ApiBase::PARAM_TYPE => Title::getFilteredRestrictionTypes( true ),
-				ApiBase::PARAM_ISMULTI => true
-			),
-			'prlevel' => array(
-				ApiBase::PARAM_TYPE => $wgRestrictionLevels,
-				ApiBase::PARAM_ISMULTI => true
-			),
-			'prfiltercascade' => array(
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => array(
-					'cascading',
-					'noncascading',
-					'all'
-				),
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -260,14 +208,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 				),
 				ApiBase::PARAM_DFLT => 'all'
 			),
-			'prexpiry' => array(
-				ApiBase::PARAM_TYPE => array(
-					'indefinite',
-					'definite',
-					'all'
-				),
-				ApiBase::PARAM_DFLT => 'all'
-			),
 		);
 	}
 
@@ -282,17 +222,8 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 			'dir' => 'The direction in which to list',
 			'minsize' => 'Limit to pages with at least this many bytes',
 			'maxsize' => 'Limit to pages with at most this many bytes',
-			'prtype' => 'Limit to protected pages only',
-			'prlevel' => "The protection level (must be used with {$p}prtype= parameter)",
-			'prfiltercascade' => "Filter protections based on cascadingness (ignored when {$p}prtype isn't set)",
 			'filterlanglinks' => 'Filter based on whether a page has langlinks',
 			'limit' => 'How many total pages to return.',
-			'prexpiry' => array(
-				'Which protection expiry to filter the page on',
-				' indefinite - Get only pages with indefinite protection expiry',
-				' definite - Get only pages with a definite (specific) protection expiry',
-				' all - Get pages with any protections expiry'
-			),
 		);
 	}
 
@@ -303,7 +234,6 @@ class ApiQueryAllpages extends ApiQueryGeneratorBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gapfilterredir=nonredirects" option instead of "redirects" when using allpages as a generator' ),
-			array( 'code' => 'params', 'info' => 'prlevel may not be used without prtype' ),
 		) );
 	}
 

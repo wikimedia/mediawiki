@@ -413,7 +413,6 @@ SELECT setval('ipblocks_ipb_id_seq',   1+coalesce(max(ipb_id) ,0),false) FROM ip
 SELECT setval('job_job_id_seq',        1+coalesce(max(job_id) ,0),false) FROM job;
 SELECT setval('logging_log_id_seq',    1+coalesce(max(log_id) ,0),false) FROM logging;
 SELECT setval('page_page_id_seq',      1+coalesce(max(page_id),0),false) FROM page;
-SELECT setval('page_restrictions_pr_id_seq', 1+coalesce(max(pr_id)  ,0),false) FROM page_restrictions;
 SELECT setval('recentchanges_rc_id_seq',     1+coalesce(max(rc_id)  ,0),false) FROM recentchanges;
 SELECT setval('revision_rev_id_seq',         1+coalesce(max(rev_id) ,0),false) FROM revision;
 SELECT setval('text_old_id_seq',       1+coalesce(max(old_id) ,0),false) FROM pagecontent;
@@ -438,5 +437,5 @@ objectcache
 ## Which tables to ignore depending on the version
 VERSION 1.6: externallinks job templatelinks transcache
 VERSION 1.7: filearchive langlinks querycache_info
-VERSION 1.9: querycachetwo page_restrictions redirect
+VERSION 1.9: querycachetwo redirect
 

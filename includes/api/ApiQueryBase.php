@@ -79,7 +79,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $alias mixed Table alias, or null for no alias. Cannot be
 	 *  used with multiple tables
 	 */
-	protected function addTables( $tables, $alias = null ) {
+	function addTables( $tables, $alias = null ) {
 		if ( is_array( $tables ) ) {
 			if ( !is_null( $alias ) ) {
 				ApiBase::dieDebug( __METHOD__, 'Multiple table aliases not supported' );
@@ -147,7 +147,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * to "foo=bar AND baz='3' AND bla='foo'"
 	 * @param $value mixed String or array
 	 */
-	protected function addWhere( $value ) {
+	function addWhere( $value ) {
 		if ( is_array( $value ) ) {
 			// Sanity check: don't insert empty arrays,
 			// Database::makeList() chokes on them
@@ -178,7 +178,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $field string Field name
 	 * @param $value string Value; ignored if null or empty array;
 	 */
-	protected function addWhereFld( $field, $value ) {
+	function addWhereFld( $field, $value ) {
 		// Use count() to its full documented capabilities to simultaneously
 		// test for null, empty array or empty countable object
 		if ( count( $value ) ) {
@@ -243,7 +243,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @param $name string Option name
 	 * @param $value string Option value
 	 */
-	protected function addOption( $name, $value = null ) {
+	function addOption( $name, $value = null ) {
 		if ( is_null( $value ) ) {
 			$this->options[] = $name;
 		} else {

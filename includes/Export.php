@@ -493,11 +493,6 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		}
 		
-		if ( $row->page_restrictions != '' ) {
-			$out .= '    ' . Xml::element( 'restrictions', array(),
-				strval( $row->page_restrictions ) ) . "\n";
-		}
-
 		wfRunHooks( 'XmlDumpWriterOpenPage', array( $this, &$out, $row, $title ) );
 
 		return $out;

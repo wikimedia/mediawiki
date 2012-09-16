@@ -1329,45 +1329,6 @@ CREATE INDEX /*i*/qcc_title ON /*_*/querycachetwo (qcc_type,qcc_namespace,qcc_ti
 CREATE INDEX /*i*/qcc_titletwo ON /*_*/querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
 
--- Used for storing page restrictions (i.e. protection levels)
-CREATE TABLE /*_*/page_restrictions (
-  -- Page to apply restrictions to (Foreign Key to page).
-  pr_page int NOT NULL,
-  -- The protection type (edit, move, etc)
-  pr_type varbinary(60) NOT NULL,
-  -- The protection level (Sysop, autoconfirmed, etc)
-  pr_level varbinary(60) NOT NULL,
-  -- Whether or not to cascade the protection down to pages transcluded.
-  pr_cascade tinyint NOT NULL,
-  -- Field for future support of per-user restriction.
-  pr_user int NULL,
-  -- Field for time-limited protection.
-  pr_expiry varbinary(14) NULL,
-  -- Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)
-  pr_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/pr_pagetype ON /*_*/page_restrictions (pr_page,pr_type);
-CREATE INDEX /*i*/pr_typelevel ON /*_*/page_restrictions (pr_type,pr_level);
-CREATE INDEX /*i*/pr_level ON /*_*/page_restrictions (pr_level);
-CREATE INDEX /*i*/pr_cascade ON /*_*/page_restrictions (pr_cascade);
-
-
--- Protected titles - nonexistent pages that have been protected
-CREATE TABLE /*_*/protected_titles (
-  pt_namespace int NOT NULL,
-  pt_title varchar(255) binary NOT NULL,
-  pt_user int unsigned NOT NULL,
-  pt_reason tinyblob,
-  pt_timestamp binary(14) NOT NULL,
-  pt_expiry varbinary(14) NOT NULL default '',
-  pt_create_perm varbinary(60) NOT NULL
-) /*$wgDBTableOptions*/;
-
-CREATE UNIQUE INDEX /*i*/pt_namespace_title ON /*_*/protected_titles (pt_namespace,pt_title);
-CREATE INDEX /*i*/pt_timestamp ON /*_*/protected_titles (pt_timestamp);
-
-
 -- Name/value pairs indexed by page_id
 CREATE TABLE /*_*/page_props (
   pp_page int NOT NULL,

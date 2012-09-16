@@ -554,34 +554,6 @@ CREATE INDEX &mw_prefix.querycachetwo_i01 ON &mw_prefix.querycachetwo (qcc_type,
 CREATE INDEX &mw_prefix.querycachetwo_i02 ON &mw_prefix.querycachetwo (qcc_type,qcc_namespace,qcc_title);
 CREATE INDEX &mw_prefix.querycachetwo_i03 ON &mw_prefix.querycachetwo (qcc_type,qcc_namespacetwo,qcc_titletwo);
 
-CREATE SEQUENCE page_restrictions_pr_id_seq;
-CREATE TABLE &mw_prefix.page_restrictions (
-  pr_id      NUMBER      NOT NULL,
-  pr_page    NUMBER      NOT NULL,
-  pr_type    VARCHAR2(255)         NOT NULL,
-  pr_level   VARCHAR2(255)         NOT NULL,
-  pr_cascade NUMBER     NOT NULL,
-  pr_user    NUMBER          NULL,
-  pr_expiry  TIMESTAMP(6) WITH TIME ZONE      NULL
-);
-ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_pk PRIMARY KEY (pr_id);
-ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_fk1 FOREIGN KEY (pr_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE UNIQUE INDEX &mw_prefix.page_restrictions_u01 ON &mw_prefix.page_restrictions (pr_page,pr_type);
-CREATE INDEX &mw_prefix.page_restrictions_i01 ON &mw_prefix.page_restrictions (pr_type,pr_level);
-CREATE INDEX &mw_prefix.page_restrictions_i02 ON &mw_prefix.page_restrictions (pr_level);
-CREATE INDEX &mw_prefix.page_restrictions_i03 ON &mw_prefix.page_restrictions (pr_cascade);
-
-CREATE TABLE &mw_prefix.protected_titles (
-  pt_namespace   NUMBER           DEFAULT 0 NOT NULL,
-  pt_title       VARCHAR2(255)    NOT NULL,
-  pt_user        NUMBER	          NOT NULL,
-  pt_reason      VARCHAR2(255),
-  pt_timestamp   TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
-  pt_expiry      VARCHAR2(14) NOT NULL,
-  pt_create_perm VARCHAR2(60) NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.protected_titles_u01 ON &mw_prefix.protected_titles (pt_namespace,pt_title);
-CREATE INDEX &mw_prefix.protected_titles_i01 ON &mw_prefix.protected_titles (pt_timestamp);
 
 CREATE TABLE &mw_prefix.page_props (
   pp_page NUMBER NOT NULL,
