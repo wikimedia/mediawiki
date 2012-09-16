@@ -50,7 +50,7 @@
  * backends with virtual directories may not have this limitation. Callers should
  * store files in such a way that no files and directories are under the same path.
  *
- * Methods should avoid throwing exceptions at all costs.
+ * Methods of subclasses should avoid throwing exceptions at all costs.
  * As a corollary, external dependencies should be kept to a minimum.
  *
  * @ingroup FileBackend
@@ -676,7 +676,7 @@ abstract class FileBackend {
 	/**
 	 * Delete a storage directory if it is empty.
 	 * Backends using key/value stores may do nothing unless the directory
-	 * is that of an empty container, in which case it should be deleted.
+	 * is that of an empty container, in which case it will be deleted.
 	 *
 	 * @param $params Array
 	 * $params include:
@@ -784,15 +784,15 @@ abstract class FileBackend {
 
 	/**
 	 * Stream the file at a storage path in the backend.
-	 * If the file does not exists, a 404 error will be given.
+	 * If the file does not exists, an HTTP 404 error will be given.
 	 * Appropriate HTTP headers (Status, Content-Type, Content-Length)
-	 * must be sent if streaming began, while none should be sent otherwise.
+	 * will be sent if streaming began, while none will be sent otherwise.
 	 * Implementations should flush the output buffer before sending data.
 	 *
 	 * @param $params Array
 	 * $params include:
 	 *   - src     : source storage path
-	 *   - headers : additional HTTP headers to send on success
+	 *   - headers : list of additional HTTP headers to send on success
 	 *   - latest  : use the latest available data
 	 * @return Status
 	 */
@@ -850,10 +850,10 @@ abstract class FileBackend {
 	/**
 	 * Get an iterator to list *all* directories under a storage directory.
 	 * If the directory is of the form "mwstore://backend/container",
-	 * then all directories in the container should be listed.
+	 * then all directories in the container will be listed.
 	 * If the directory is of form "mwstore://backend/container/dir",
-	 * then all directories directly under that directory should be listed.
-	 * Results should be storage directories relative to the given directory.
+	 * then all directories directly under that directory will be listed.
+	 * Results will be storage directories relative to the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
@@ -885,10 +885,10 @@ abstract class FileBackend {
 	/**
 	 * Get an iterator to list *all* stored files under a storage directory.
 	 * If the directory is of the form "mwstore://backend/container",
-	 * then all files in the container should be listed.
+	 * then all files in the container will be listed.
 	 * If the directory is of form "mwstore://backend/container/dir",
-	 * then all files under that directory should be listed.
-	 * Results should be storage paths relative to the given directory.
+	 * then all files under that directory will be listed.
+	 * Results will be storage paths relative to the given directory.
 	 *
 	 * Storage backends with eventual consistency might return stale data.
 	 *
