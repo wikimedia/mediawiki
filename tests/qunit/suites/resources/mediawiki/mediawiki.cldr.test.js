@@ -1,16 +1,11 @@
-module( 'mediawiki.cldr' );
-
-test( '-- Initial check', function() {
-	expect( 1 );
-	ok( mw.cldr, 'mw.cldr defined' );
-} );
+QUnit.module( 'mediawiki.cldr', QUnit.newMwEnvironment() );
 
 var pluralTestcases = {
 	/*
 	 * Sample:
-	 *"languagecode" : [
-	 * 	[ number, [ "form1", "form2", ... ],  "expected", "description" ],
-	 * ]
+	 * "languagecode" : [
+	 *   [ number, [ "form1", "form2", ... ],  "expected", "description" ]
+	 * ];
 	 */
 	"en": [
 		[ 0, [ "one", "other" ], "other", "English plural test- 0 is other" ],
@@ -48,19 +43,18 @@ var pluralTestcases = {
 };
 
 function pluralTest( langCode, tests ) {
-	QUnit.test('-- Plural Test for ' + langCode, function( assert ) {
-		QUnit.expect( tests.length );
+	QUnit.test( 'Plural Test for ' + langCode, tests.length, function ( assert ) {
 		for ( var i = 0; i < tests.length; i++ ) {
 			assert.equal(
 				mw.language.convertPlural( tests[i][0], tests[i][1] ),
-				tests[i][2], // Expected plural form
-				tests[i][3] // Description
+				tests[i][2],
+				tests[i][3]
 			);
 		}
 	} );
 }
 
-$.each( pluralTestcases, function( langCode, tests ) {
+$.each( pluralTestcases, function ( langCode, tests ) {
 	if ( langCode === mw.config.get( 'wgUserLanguage' ) ) {
 		pluralTest( langCode, tests );
 	}
