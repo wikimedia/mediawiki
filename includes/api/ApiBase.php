@@ -518,6 +518,9 @@ abstract class ApiBase extends ContextSource {
 		return false;
 	}
 
+	//TODO: The hooks can be run here, in getAllowedParams and friends.
+	// Then, inheriting classes call the parent's method implementation
+	// at the tail of the overriding function.
 	/**
 	 * Returns an array of allowed parameters (parameter name) => (default
 	 * value) or (parameter name) => (array with PARAM_* constants as keys)
@@ -1414,6 +1417,18 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		return $ret;
+	}
+
+	/**
+	 * Get final list of possible errors, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @return array
+	 */
+	public function getFinalPossibleErrors() {
+		$errs = $this->getPossibleErrors();
+		wfRunHooks( 'APIGetPossibleErrors', array( &$this, &$errs ) );
+		return $errs;
 	}
 
 	/**

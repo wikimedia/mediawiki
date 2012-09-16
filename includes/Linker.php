@@ -1646,14 +1646,6 @@ class Linker {
 
 			usort( $templates, array( 'Title', 'compare' ) );
 			foreach ( $templates as $titleObj ) {
-				$r = $titleObj->getRestrictions( 'edit' );
-				if ( in_array( 'sysop', $r ) ) {
-					$protected = wfMsgExt( 'template-protected', array( 'parseinline' ) );
-				} elseif ( in_array( 'autoconfirmed', $r ) ) {
-					$protected = wfMsgExt( 'template-semiprotected', array( 'parseinline' ) );
-				} else {
-					$protected = '';
-				}
 				if ( $titleObj->quickUserCan( 'edit' ) ) {
 					$editLink = self::link(
 						$titleObj,
@@ -1669,7 +1661,8 @@ class Linker {
 						array( 'action' => 'edit' )
 					);
 				}
-				$outText .= '<li>' . self::link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
+				//TODO show restrictions
+				$outText .= '<li>' . self::link( $titleObj ) . ' (' . $editLink . ')</li>';
 			}
 			$outText .= '</ul>';
 		}

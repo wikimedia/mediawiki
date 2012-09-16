@@ -33,7 +33,6 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			# new sequences
 			array( 'addSequence', 'logging_log_id_seq'          ),
-			array( 'addSequence', 'page_restrictions_pr_id_seq' ),
 
 			# renamed sequences
 			array( 'renameSequence', 'ipblocks_ipb_id_val', 'ipblocks_ipb_id_seq'         ),
@@ -42,7 +41,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'renameSequence', 'category_id_seq',     'category_cat_id_seq'         ),
 			array( 'renameSequence', 'rc_rc_id_seq',        'recentchanges_rc_id_seq'     ),
 			array( 'renameSequence', 'log_log_id_seq',      'logging_log_id_seq'          ),
-			array( 'renameSequence', 'pr_id_val',           'page_restrictions_pr_id_seq' ),
 			array( 'renameSequence', 'us_id_seq',           'uploadstash_us_id_seq' ),
 
 			# new tables
@@ -50,9 +48,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'page',              'patch-page.sql' ),
 			array( 'addTable', 'querycachetwo',     'patch-querycachetwo.sql' ),
 			array( 'addTable', 'page_props',        'patch-page_props.sql' ),
-			array( 'addTable', 'page_restrictions', 'patch-page_restrictions.sql' ),
 			array( 'addTable', 'profiling',         'patch-profiling.sql' ),
-			array( 'addTable', 'protected_titles',  'patch-protected_titles.sql' ),
 			array( 'addTable', 'redirect',          'patch-redirect.sql' ),
 			array( 'addTable', 'updatelog',         'patch-updatelog.sql' ),
 			array( 'addTable', 'change_tag',        'patch-change_tag.sql' ),
@@ -99,7 +95,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'oldimage',      'oi_metadata',          "BYTEA NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'oldimage',      'oi_minor_mime',        "TEXT NOT NULL DEFAULT 'unknown'" ),
 			array( 'addPgField', 'oldimage',      'oi_sha1',              "TEXT NOT NULL DEFAULT ''" ),
-			array( 'addPgField', 'page_restrictions', 'pr_id',            "INTEGER NOT NULL UNIQUE DEFAULT nextval('page_restrictions_pr_id_seq')" ),
 			array( 'addPgField', 'profiling',     'pf_memory',            'NUMERIC(18,10) NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'recentchanges', 'rc_deleted',           'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'recentchanges', 'rc_log_action',        'TEXT' ),
@@ -216,8 +211,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeFkeyDeferrable', 'oldimage',         'oi_user',         'mwuser(user_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'pagelinks',        'pl_from',         'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'page_props',       'pp_page',         'page (page_id) ON DELETE CASCADE' ),
-			array( 'changeFkeyDeferrable', 'page_restrictions', 'pr_page',         'page(page_id) ON DELETE CASCADE' ),
-			array( 'changeFkeyDeferrable', 'protected_titles', 'pt_user',         'mwuser(user_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'recentchanges',    'rc_cur_id',       'page(page_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'recentchanges',    'rc_user',         'mwuser(user_id) ON DELETE SET NULL' ),
 			array( 'changeFkeyDeferrable', 'redirect',         'rd_from',         'page(page_id) ON DELETE CASCADE' ),

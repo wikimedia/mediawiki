@@ -255,12 +255,6 @@ class CologneBlueTemplate extends LegacyTemplate {
 					$s .= $sep . $dtp;
 				}
 			}
-			if ( $user->isAllowed( 'protect' ) ) {
-				$ptp = $this->protectThisPage();
-				if ( $ptp != '' ) {
-					$s .= $sep . $ptp;
-				}
-			}
 			$s .= $sep;
 
 			$s .= $this->menuHead( 'qbpageoptions' );

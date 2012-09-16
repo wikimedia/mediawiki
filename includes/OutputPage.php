@@ -2890,9 +2890,6 @@ $templates
 		if ( $lang->hasVariants() ) {
 			$vars['wgUserVariant'] = $lang->getPreferredVariant();
  		}
-		foreach ( $title->getRestrictionTypes() as $type ) {
-			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
-		}
 		if ( $wgUseAjax && $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
 			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $this->getUser() );
 		}

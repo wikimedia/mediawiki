@@ -15,6 +15,3 @@ ALTER TABLE recentchanges ALTER COLUMN rc_id SET DEFAULT nextval('recentchanges_
 
 ALTER TABLE logging RENAME log_log_id_seq TO logging_log_id_seq;
 ALTER TABLE logging ALTER COLUMN log_id SET DEFAULT nextval('logging_log_id_seq');
-
-ALTER TABLE page_restrictions RENAME pr_id_val TO page_restrictions_pr_id_seq;
-ALTER TABLE page_restrictions ALTER COLUMN pr_id SET DEFAULT nextval('page_restrictions_pr_id_seq');
