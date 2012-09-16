@@ -33,7 +33,7 @@
 		 */
 		getData: function ( langCode, dataKey ) {
 			var langData = language.data;
-			if ( langData[langCode] instanceof mw.Map ) {
+			if ( langData && langData[langCode] instanceof mw.Map ) {
 				return langData[langCode].get( dataKey );
 			}
 			return undefined;
