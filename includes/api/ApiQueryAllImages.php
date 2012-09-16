@@ -81,30 +81,87 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$this->dieUsage( 'Local file repository does not support querying all images', 'unsupportedrepo' );
 		}
 
+		$prefix = $this->getModulePrefix();
+
 		$db = $this->getDB();
 
 		$params = $this->extractRequestParams();
 
-		if ( !is_null( $params['continue'] ) ) {
-			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 1 ) {
-				$this->dieUsage( "Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue" );
+		// Table and return fields
+		$this->addTables( 'image' );
+
+		$prop = array_flip( $params['prop'] );
+		$this->addFields( LocalFile::selectFields() );
+
+		$dir = ( in_array( $params['dir'], array( 'descending', 'older' ) ) ? 'older' : 'newer' );
+
+		if ( $params['sort'] == 'name' ) {
+			// Check mutually exclusive params
+			$disallowed = array( 'start', 'end', 'user' );
+			foreach ( $disallowed as $pname ) {
+				if ( isset( $params[$pname] ) ) {
+					$this->dieUsage( "Parameter '{$prefix}{$pname}' can only be used with {$prefix}sort=timestamp", 'badparams' );
+				}
 			}
-			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$cont_from = $db->addQuotes( $cont[0] );
-			$this->addWhere( "img_name $op= $cont_from" );
+			if ( $params['filterbots'] != 'all' ) {
+					$this->dieUsage( "Parameter '{$prefix}filterbots' can only be used with {$prefix}sort=timestamp", 'badparams' );
+			}
+
+			// Pagination
+			if ( !is_null( $params['continue'] ) ) {
+				$cont = explode( '|', $params['continue'] );
+				if ( count( $cont ) != 1 ) {
+					$this->dieUsage( 'Invalid continue param. You should pass the ' .
+						'original value returned by the previous query', '_badcontinue' );
+				}
+				$op = ( $dir == 'older' ? '<' : '>' );
+				$cont_from = $db->addQuotes( $cont[0] );
+				$this->addWhere( "img_name $op= $cont_from" );
+			}
+
+			// Image filters
+			$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
+			$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
+			$this->addWhereRange( 'img_name', $dir, $from, $to );
+
+			if ( isset( $params['prefix'] ) ) {
+				$this->addWhere( 'img_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
+			}
+		} else {
+			// Check mutually exclusive params
+			$disallowed = array( 'from', 'to', 'prefix' );
+			foreach ( $disallowed as $pname ) {
+				if ( isset( $params[$pname] ) ) {
+					$this->dieUsage( "Parameter '{$prefix}{$pname}' can only be used with {$prefix}sort=name", 'badparams' );
+				}
+			}
+			if (!is_null( $params['user'] ) && $params['filterbots'] != 'all') {
+				// Since filterbots checks if each user has the bot right, it doesn't make sense to use it with user
+				$this->dieUsage( "Parameters 'user' and 'filterbots' cannot be used together", 'badparams' );
+			}
+
+			// Pagination
+			$this->addTimestampWhereRange( 'img_timestamp', $dir, $params['start'], $params['end'] );
+
+			// Image filters
+			if ( !is_null( $params['user'] ) ) {
+				$this->addWhereFld( 'img_user_text', $params['user'] );
+			}
+			if ( $params['filterbots'] != 'all' ) {
+				$this->addTables( 'user_groups' );
+				$groupCond = ( $params['filterbots'] == 'nobots' ? 'NULL': 'NOT NULL' );
+				$this->addWhere( "ug_group IS $groupCond" );
+				$this->addJoinConds( array( 'user_groups' => array(
+					'LEFT JOIN',
+					array(
+						'ug_group' => User::getGroupsWithPermission( 'bot' ),
+						'ug_user = img_user'
+					)
+				) ) );
+			}
 		}
 
-		// Image filters
-		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );
-		$from = ( is_null( $params['from'] ) ? null : $this->titlePartToKey( $params['from'] ) );
-		$to = ( is_null( $params['to'] ) ? null : $this->titlePartToKey( $params['to'] ) );
-		$this->addWhereRange( 'img_name', $dir, $from, $to );
-
-		if ( isset( $params['prefix'] ) )
-			$this->addWhere( 'img_name' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );
-
+		// Filters not depending on sort
 		if ( isset( $params['minsize'] ) ) {
 			$this->addWhere( 'img_size>=' . intval( $params['minsize'] ) );
 		}
@@ -141,15 +198,19 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$this->addWhereFld( 'img_minor_mime', $minor );
 		}
 
-		$this->addTables( 'image' );
-
-		$prop = array_flip( $params['prop'] );
-		$this->addFields( LocalFile::selectFields() );
-
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-		$this->addOption( 'ORDER BY', 'img_name' . $sort );
+		$sort = ( $dir == 'older' ? ' DESC' : '' );
+		if ( $params['sort'] == 'timestamp' ) {
+			$this->addOption( 'ORDER BY', 'img_timestamp' . $sort );
+			if ( $params['filterbots'] == 'all' ) {
+				$this->addOption( 'USE INDEX', array( 'image' => 'img_timestamp' ) );
+			} else {
+				$this->addOption( 'USE INDEX', array( 'image' => 'img_usertext_timestamp' ) );
+			}
+		} else {
+			$this->addOption( 'ORDER BY', 'img_name' . $sort );
+		}
 
 		$res = $this->select( __METHOD__ );
 
@@ -159,7 +220,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'continue', $row->img_name );
+				if ( $params['sort'] == 'name' ) {
+					$this->setContinueEnumParameter( 'continue', $row->img_name );
+				} else {
+					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->img_timestamp ) );
+				}
 				break;
 			}
 
@@ -171,7 +236,11 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $info );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'continue', $row->img_name );
+					if ( $params['sort'] == 'name' ) {
+						$this->setContinueEnumParameter( 'continue', $row->img_name );
+					} else {
+						$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->img_timestamp ) );
+					}
 					break;
 				}
 			} else {
@@ -188,9 +257,38 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 	public function getAllowedParams() {
 		return array (
+			'sort' => array(
+				ApiBase::PARAM_DFLT => 'name',
+				ApiBase::PARAM_TYPE => array(
+					'name',
+					'timestamp'
+				)
+			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					// sort=name
+					'ascending',
+					'descending',
+					// sort=timestamp
+					'newer',
+					'older',
+				)
+			),
 			'from' => null,
-			'continue' => null,
 			'to' => null,
+			'continue' => null,
+			'start' => array(
+				ApiBase::PARAM_TYPE => 'timestamp'
+			),
+			'end' => array(
+				ApiBase::PARAM_TYPE => 'timestamp'
+			),
+			'prop' => array(
+				ApiBase::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames( $this->propertyFilter ),
+				ApiBase::PARAM_DFLT => 'timestamp|url',
+				ApiBase::PARAM_ISMULTI => true
+			),
 			'prefix' => null,
 			'minsize' => array(
 				ApiBase::PARAM_TYPE => 'integer',
@@ -198,6 +296,20 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			'maxsize' => array(
 				ApiBase::PARAM_TYPE => 'integer',
 			),
+			'sha1' => null,
+			'sha1base36' => null,
+			'user' => array(
+				ApiBase::PARAM_TYPE => 'user'
+			),
+			'filterbots' => array(
+				ApiBase::PARAM_DFLT => 'all',
+				ApiBase::PARAM_TYPE => array(
+					'all',
+					'bots',
+					'nobots'
+				)
+			),
+			'mime' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -205,38 +317,29 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
 				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			),
-			'dir' => array(
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => array(
-					'ascending',
-					'descending'
-				)
-			),
-			'sha1' => null,
-			'sha1base36' => null,
-			'prop' => array(
-				ApiBase::PARAM_TYPE => ApiQueryImageInfo::getPropertyNames( $this->propertyFilter ),
-				ApiBase::PARAM_DFLT => 'timestamp|url',
-				ApiBase::PARAM_ISMULTI => true
-			),
-			'mime' => null,
 		);
 	}
 
 	public function getParamDescription() {
+		$p = $this->getModulePrefix();
 		return array(
-			'from' => 'The image title to start enumerating from',
-			'continue' => 'When more results are available, use this to continue',
-			'to' => 'The image title to stop enumerating at',
-			'prefix' => 'Search for all image titles that begin with this value',
+			'sort' => 'Property to sort by',
 			'dir' => 'The direction in which to list',
+			'from' => "The image title to start enumerating from. Can only be used with {$p}sort=name",
+			'to' => "The image title to stop enumerating at. Can only be used with {$p}sort=name",
+			'continue' => 'When more results are available, use this to continue',
+			'start' => "The timestamp to start enumerating from. Can only be used with {$p}sort=timestamp",
+			'end' => "The timestamp to end enumerating. Can only be used with {$p}sort=timestamp",
+			'prop' => ApiQueryImageInfo::getPropertyDescriptions( $this->propertyFilter ),
+			'prefix' => "Search for all image titles that begin with this value. Can only be used with {$p}sort=name",
 			'minsize' => 'Limit to images with at least this many bytes',
 			'maxsize' => 'Limit to images with at most this many bytes',
-			'limit' => 'How many images in total to return',
-			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
+			'sha1' => "SHA1 hash of image. Overrides {$p}sha1base36",
 			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
-			'prop' => ApiQueryImageInfo::getPropertyDescriptions( $this->propertyFilter ),
+			'user' => "Only return files uploaded by this user. Can only be used with {$p}sort=timestamp. Cannot be used together with {$p}filterbots",
+			'filterbots' => "How to filter files uploaded by bots. Can only be used with {$p}sort=timestamp. Cannot be used together with {$p}user",
 			'mime' => 'What MIME type to search for. e.g. image/jpeg. Disabled in Miser Mode',
+			'limit' => 'How many images in total to return',
 		);
 	}
 
@@ -260,8 +363,17 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getPossibleErrors() {
+		$p = $this->getModulePrefix();
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'params', 'info' => 'Use "gaifilterredir=nonredirects" option instead of "redirects" when using allimages as a generator' ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}start' can only be used with {$p}sort=timestamp" ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}end' can only be used with {$p}sort=timestamp" ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}user' can only be used with {$p}sort=timestamp" ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}filterbots' can only be used with {$p}sort=timestamp" ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}from' can only be used with {$p}sort=name" ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}to' can only be used with {$p}sort=name" ),
+			array( 'code' => 'badparams', 'info' => "Parameter'{$p}prefix' can only be used with {$p}sort=name" ),
+			array( 'code' => 'badparams', 'info' => "Parameters 'user' and 'filterbots' cannot be used together" ),
 			array( 'code' => 'unsupportedrepo', 'info' => 'Local file repository does not support querying all images' ),
 			array( 'code' => 'mimesearchdisabled', 'info' => 'MIME search disabled in Miser Mode' ),
 			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
@@ -274,11 +386,15 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		return array(
 			'api.php?action=query&list=allimages&aifrom=B' => array(
 				'Simple Use',
-				'Show a list of images starting at the letter "B"',
+				'Show a list of files starting at the letter "B"',
+			),
+			'api.php?action=query&list=allimages&aiprop=user|timestamp|url&aisort=timestamp&aidir=older' => array(
+				'Simple Use',
+				'Show a list of recently uploaded files similar to Special:NewFiles',
 			),
 			'api.php?action=query&generator=allimages&gailimit=4&gaifrom=T&prop=imageinfo' => array(
 				'Using as Generator',
-				'Show info about 4 images starting at the letter "T"',
+				'Show info about 4 files starting at the letter "T"',
 			),
 		);
 	}
