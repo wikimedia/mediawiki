@@ -3409,6 +3409,17 @@ class Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
+
+		// Handle explicit 0= and 1= forms
+		foreach ( $forms as $index => $form ) {
+			if ( isset( $form[1] ) && $form[1] === '=' ) {
+				if ( $form[0] === (string) $count ) {
+					return substr( $form, 2 );
+				}
+				unset( $forms[$index] );
+			}
+		}
+
 		$pluralForm = $this->getPluralForm( $count );
 		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
 		return $forms[$pluralForm];
