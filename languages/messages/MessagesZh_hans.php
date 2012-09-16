@@ -907,7 +907,6 @@ $2
 * '''火狐（Firefox）/Safari：'''按住“Shift”，同时单击“刷新”，或按“Ctrl-F5”或“Ctrl-R”（Mac为“⌘-R”）
 * '''谷歌浏览器（Google Chrome）：'''按“Ctrl-Shift-R”（Mac为“⌘-Shift-R”）
 * '''Internet Explorer：'''按住“Ctrl”，同时单击“刷新”，或按“Ctrl-F5”
-* '''Konqueror：'''点击“刷新”或按“F5”
 * '''Opera：'''在“工具→首选项”中清除缓存",
 'usercssyoucanpreview' => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
 'userjsyoucanpreview' => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
@@ -1137,7 +1136,8 @@ $1",
 'revdelete-only-restricted' => '在隐藏$1 $2的项目时发生错误：您不能在选择了另一可见性选项后废止管理员查看该项目。',
 'revdelete-reason-dropdown' => '*常用删除理由
 ** 侵犯版权
-** 不合适的个人资料',
+** 不合适的个人资料
+** 潜在毁谤性信息',
 'revdelete-otherreason' => '其他/附加原因：',
 'revdelete-reasonotherlist' => '其他原因',
 'revdelete-edit-reasonlist' => '编辑删除埋由',
@@ -1729,7 +1729,7 @@ $1',
 'backend-fail-internal' => '存储后端“$1”发生了一个未知错误。',
 'backend-fail-contenttype' => '无法判断文件的内容类型来储存于“$1”。',
 'backend-fail-batchsize' => '存储后端被给予了一批$1个文件{{PLURAL:$1|操作|操作}}；限值为$2个{{PLURAL:$2|操作|操作}}。',
-'backend-fail-usable' => '权限不足或缺少目录/贮存器，无法写入文件$1。',
+'backend-fail-usable' => '权限不足或缺少目录/贮存器，无法读取或写入文件“$1”。',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '无法连接到后端存储的日志数据库“$1”。',
@@ -2136,7 +2136,7 @@ $1',
 'mailnologin' => '无电邮地址',
 'mailnologintext' => '你必须[[Special:UserLogin|登录]]并在你的[[Special:Preferences|系统设置]]中拥有有效的电子邮件地址才能向其他用户发送电子邮件。',
 'emailuser' => '电邮联系',
-'emailuser-title-target' => '电邮联系该用户',
+'emailuser-title-target' => '电邮联系该{{GENDER:$1|用户}}',
 'emailuser-title-notarget' => '电邮联系',
 'emailpage' => '电邮联系',
 'emailpagetext' => '你可以使用下面的表格向该用户发送电子邮件信息。你在[[Special:Preferences|你的系统设置]]中输入的电子邮件地址将显示为邮件的“发件人”地址，所以该用户将可以直接回复你。',

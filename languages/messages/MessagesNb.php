@@ -1862,7 +1862,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'backend-fail-internal' => 'En ukjent feil oppsto i filbackend «$1».',
 'backend-fail-contenttype' => 'Kunne ikke avgjøre innholdstypen til filen som skal lagres på «$1».',
 'backend-fail-batchsize' => 'Bakgrunnsprosesseringen belastet med {{PLURAL:$1|en filoperasjon|en samling av $1 filoperasjoner}}; grensen er $2.',
-'backend-fail-usable' => 'Kunne ikke skrive fila $1 på grunn av utilstrekkelige tillatelser eller manglende mapper/beholdere.',
+'backend-fail-usable' => 'Kunne ikke lese eller skrive fila «$1» på grunn av utilstrekkelige tillatelser eller manglende mapper/beholdere.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kunne ikke koble til journaldatabasen for lagringssystemet «$1».',

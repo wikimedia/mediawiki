@@ -960,10 +960,9 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'blocked-notice-logextract' => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache' => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.
-* '''Mozilla / Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
+* '''Mozilla Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
 * '''Google Chrome:''' Stlačte ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Mac)
 * '''Internet Explorer:''' Držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''
-* '''Konqueror:''' Kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''
 * '''Opera:''' Vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''",
 'usercssyoucanpreview' => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'userjsyoucanpreview' => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
@@ -1833,7 +1832,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-internal' => 'Vyskytla sa neznáma chyba v úložisku „$1“.',
 'backend-fail-contenttype' => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize' => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
-'backend-fail-usable' => 'Nie je možné zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.',
+'backend-fail-usable' => 'Nie je možné čítať alebo zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',
@@ -3076,10 +3075,12 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-title' => 'Informácie o „$1“',
 'pageinfo-header-basic' => 'Základné údaje',
 'pageinfo-header-edits' => 'História úprav',
+'pageinfo-article-id' => 'ID stránky',
 'pageinfo-views' => 'Počet zobrazení',
 'pageinfo-watchers' => 'Počet sledovateľov',
-'pageinfo-edits' => 'Počet úprav',
-'pageinfo-authors' => 'Počet rôznych autorov',
+'pageinfo-lasttime' => 'Dátum poslednej úpravy',
+'pageinfo-edits' => 'Celkový počet úprav',
+'pageinfo-authors' => 'Celkový počet autorov',
 
 # Skin names
 'skinname-standard' => 'Klasický',

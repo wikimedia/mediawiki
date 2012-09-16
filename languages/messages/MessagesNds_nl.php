@@ -433,8 +433,8 @@ $messages = array(
 'category-file-count' => 'In disse kategorie {{PLURAL:$2|steet t volgende bestaand|staon de volgende $1 bestaanden, van in totaal $2}}.',
 'category-file-count-limited' => 'In disse kategorie {{PLURAL:$1|steet t volgende bestaand|staon de volgende $1 bestaanden}}.',
 'listingcontinuesabbrev' => '(vervolg)',
-'index-category' => 'Spul wat al indexeerd is',
-'noindex-category' => 'Spul wat nog niet indexeerd is',
+'index-category' => 'Te indexeren ziejen',
+'noindex-category' => 'Niet te indexeren ziejen',
 'broken-file-category' => 'Ziejen mit verkeerde bestaandsverwiezingen',
 
 'about' => 'Informasie',
@@ -1227,7 +1227,8 @@ Kiek de logboeken nao.',
 'revdelete-only-restricted' => 'Der is n fout op-etrejen bie t verbargen van t objekt van $1, $2: je kunnen gien objekten onderdrokken uut t zich van beheerders zonder oek n van de aandere zichtbaorheidsopsies te selekteren.',
 'revdelete-reason-dropdown' => '*Veulveurkoemde redens veur t vortdoon
 ** Schenden van de auteursrechten
-** Ongeschikte persoonlike informasie
+** Ongepast kommentaar of ongepaste persoonlike informasie
+** Ongepaste gebrukersnaam
 ** Meugelik lasterlike informasie',
 'revdelete-otherreason' => 'Aandere reden:',
 'revdelete-reasonotherlist' => 'Aandere reden',
@@ -1835,7 +1836,7 @@ As t probleem zo blif, neem dan kontakt op mit één van de [[Special:ListUsers/
 'backend-fail-internal' => 'Der is n onbekende fout op-etreden in t opslagbackend "$1".',
 'backend-fail-contenttype' => 'Kon t inhoudstype van t bestaand um op "$1" op te slaon niet bepaolen.',
 'backend-fail-batchsize' => 'Reeks van $1 bestaands{{PLURAL:$1|operasie|operasies}} in de opslagbackend; de limiet is $2 {{PLURAL:$2|operasie|operasies}}.',
-'backend-fail-usable' => 'Kon t bestaand $1 niet schrieven vanwegen te min rechten of niet-anwezige mappen of houwers.',
+'backend-fail-usable' => 'Kon t bestaand "$1" niet lezen of schrieven umda\'j niet genog rechten hebben of vanwegen niet-anwezige mappen of houwers.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kon gien verbiending maken mit de journaaldatabanke veur t opslagbackend "$1".',

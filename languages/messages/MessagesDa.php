@@ -855,9 +855,9 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'blocked-notice-logextract' => 'Denne bruger er i øjeblikket blokeret.
 Loggen over den seneste blokering ses nedenfor:',
 'clearyourcache' => "'''Bemærk:''' Efter at have gemt er du måske nødt til at tømme din browsers cache for at kunne se ændringerne.
-* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''⌘-R'' på en Mac).
+* '''Firefox / Safari:''' Hold ''Shift'' nede og klik på ''Reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på en Mac).
 * '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac).
-* '''Internet Explorer:''' Hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
+* '''Internet Explorer:''' Hold ''Ctrl'' nede og klik på ''Refresh'' eller tryk på ''Ctrl-F5''.
 * '''Opera:''' Tøm cachen i ''Tools → Preferences''.",
 'usercssyoucanpreview' => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye CSS inden du gemmer.",
 'userjsyoucanpreview' => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye JavaScript inden du gemmer.",

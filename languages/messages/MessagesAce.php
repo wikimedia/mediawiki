@@ -408,10 +408,12 @@ $messages = array(
 
 'versionrequired' => 'Peureulee MediaWiki versi $1',
 
+'ok' => 'Ka göt',
 'retrievedfrom' => 'Geurumpok nibak "$1"',
 'youhavenewmessages' => 'Droëneuh   na $1 ($2).',
 'newmessageslink' => 'peusan barô',
 'newmessagesdifflink' => 'neuubah keuneulheuëh',
+'youhavenewmessagesmulti' => 'Droëneuh na padum boh peusan barô bak $1',
 'editsection' => 'andam',
 'editold' => 'andam',
 'viewsourceold' => 'Eu nè',
@@ -421,6 +423,11 @@ $messages = array(
 'toc' => 'Asoë',
 'showtoc' => 'peuleumah',
 'hidetoc' => 'peusom',
+'collapsible-collapse' => 'Peuubeut',
+'collapsible-expand' => 'Peuluwaih',
+'thisisdeleted' => 'Eu atawa peuriwang $1?',
+'viewdeleted' => 'Eu $1?',
+'restorelink' => '$1 {{PLURAL:$1|neuandam|neuandam}} nyang ka geusampoh',
 'site-rss-feed' => 'Umpeuën RSS $1',
 'site-atom-feed' => 'Umpeuën Atôm $1',
 'page-rss-feed' => 'Umpeuën RSS "$1"',
@@ -448,6 +455,8 @@ Nyoë biasajih sabab hubông useuëng u geunantoë away nyang ka teusampôh.
 
 Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam software. Neutulông peugah bhah nyoë bak salah sidroë [[Special:ListUsers/sysop|Nyang urôh]], ngön neupeugah alamat URL nyang neusaweuë.',
 'missingarticle-rev' => '(revisi#: $1)',
+'internalerror' => 'Salah bak dalam',
+'internalerror_info' => 'Salah bak dalam: $1',
 'badtitle' => 'Nan hana sah',
 'badtitletext' => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
 'viewsource' => 'Eu nè',

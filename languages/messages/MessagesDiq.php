@@ -469,7 +469,7 @@ $messages = array(
 'vector-simplesearch-preference' => 'Tewsiyanê cıgeyrayışê raverberdan ake (Tenya vector skin de)',
 'vector-view-create' => 'Vıraze',
 'vector-view-edit' => 'Bıvurne',
-'vector-view-history' => 'Tarixi bımocne',
+'vector-view-history' => 'Ravêran bıvin',
 'vector-view-view' => 'Bıwanê',
 'vector-view-viewsource' => 'Çımey bıvêne',
 'actions' => 'Kerdeni',
@@ -2213,7 +2213,7 @@ hem zi bıewnê [[Special:WantedCategories|kategori yê ke waziyeni]].',
 # Special:DeletedContributions
 'deletedcontributions' => 'İştiraqê karberan de besternayına',
 'deletedcontributions-title' => 'Îştirakê karberî wederna',
-'sp-deletedcontributions-contribs' => 'pêşteni',
+'sp-deletedcontributions-contribs' => 'dekerdeni',
 
 # Special:LinkSearch
 'linksearch' => 'Gıreyê teberi cı geyrê',
@@ -2305,7 +2305,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 
 # Watchlist
 'watchlist' => 'lista mına seyr-kerdışi',
-'mywatchlist' => 'Lista mına seyrkerdışi',
+'mywatchlist' => 'Listey taqiban',
 'watchlistfor2' => 'Qandê $1 ($2)',
 'nowatchlist' => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext' => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
@@ -2457,8 +2457,8 @@ Qey malumato ziyede [[Special:ProtectedPages|Peleyê ke star biye]] bewni rê ê
 '''$1''' eyarê peli:",
 'protect-locked-dblock' => "semedê kılidê database ya aktifi şıma neeşkeni seviyeya pawıtışi buvurni.
 '''$1''' eyarê no peli:",
-'protect-locked-access' => "Hesabê tu nıeşken seviyeyê kılit-kerdışi bıvurn.
-Ser pela '''$1''', itiya dı enformasyon esta:",
+'protect-locked-access' => "Karber hesabê şıma nêşeno  staryaye sewiyey ena peler bıvurno.
+Hesıbyayê sazê pela da '''$1''' enêyê:",
 'protect-cascadeon' => 'Ena pele nıka kılit biya. Çınki ena pele zerre listeyê {{PLURAL:$1|pele, ki|peleyan, which li}} bınê "cascading protection"iyo.
 Tı eşkeno seviyeye kılit kerdışi bıvurno, feqat tı nıeşken "cascading protection"i bıvurno.',
 'protect-default' => 'Destur bıde karberan pêrune',
@@ -2520,7 +2520,7 @@ Revizyoni ya hewn a biyê ya arşiw ra veciyayê ya zi cıresayişê şımayi ş
 'undelete-nodiff' => 'revizyonê verıni nidiya',
 'undeletebtn' => 'Timar bike',
 'undeletelink' => 'bıvêne/peyser bia',
-'undeleteviewlink' => 'ra mocın',
+'undeleteviewlink' => 'bıvin',
 'undeletereset' => 'Reset kerê',
 'undeleteinvert' => 'vicnayeyi qeldaye açarn',
 'undeletecomment' => 'Sebeb:',
@@ -3666,7 +3666,7 @@ $8',
 'exif-ycbcrpositioning-1' => 'Wertekerdış',
 'exif-ycbcrpositioning-2' => 'Wayırê-site',
 
-'exif-dc-contributor' => 'Pêşteni',
+'exif-dc-contributor' => 'Dekerdeni',
 'exif-dc-coverage' => 'Heruna yana wextin grotışa medya',
 'exif-dc-date' => 'Tarix(i)',
 'exif-dc-publisher' => 'Hesrekar',
