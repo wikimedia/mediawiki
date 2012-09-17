@@ -198,8 +198,9 @@ class Xml {
 		} else {
 			$encYear = '';
 		}
+		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'type' => 'number' );
 		return Xml::label( wfMessage( 'year' )->text(), 'year' ) . ' '.
-			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) . ' '.
+			Xml::input( 'year', 7, $encYear, $inputAttribs ) . ' '.
 			Xml::label( wfMessage( 'month' )->text(), 'month' ) . ' '.
 			Xml::monthSelector( $encMonth, -1 );
 	}
