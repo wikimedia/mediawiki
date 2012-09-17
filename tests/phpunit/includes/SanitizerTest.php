@@ -140,6 +140,11 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( 'align="center"', 'td', ' style="text-align: center;"', 'align on table cells gets converted to text-align' ),
 			array( 'align="left"', 'div', ' style="float: left;"', 'align=(left|right) on non-cells gets converted to float' ),
 			array( 'align="center"', 'div', ' style="margin-left: auto; margin-right: auto;"', 'align="center" on non-cells' ),
+
+			# <tr>
+			array( 'align="right"' , 'tr', ' style="text-align: right;"' , 'align on table row get converted to text-align' ),
+			array( 'align="center"', 'tr', ' style="text-align: center;"', 'align on table row get converted to text-align' ),
+			array( 'align="left"'  , 'tr', ' style="text-align: left;"'  , 'align on table row get converted to text-align' ),
 		);
 	}
 
