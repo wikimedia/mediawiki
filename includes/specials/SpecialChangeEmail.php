@@ -151,7 +151,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$items = array(
 			array( 'wpName', 'username', 'text', $user->getName() ),
 			array( 'wpOldEmail', 'changeemail-oldemail', 'text', $oldEmailText ),
-			array( 'wpNewEmail', 'changeemail-newemail', 'input', $this->mNewEmail ),
+			array( 'wpNewEmail', 'changeemail-newemail', 'email', $this->mNewEmail ),
 		);
 		if ( $wgRequirePasswordforEmailChange ) {
 			$items[] = array( 'wpPassword', 'yourpassword', 'password', $this->mPassword );
