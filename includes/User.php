@@ -2798,9 +2798,13 @@ class User {
 	 * @param $value String Value to set
 	 * @param $exp Int Expiration time, as a UNIX time value;
 	 *                   if 0 or not specified, use the default $wgCookieExpiration
+	 * @param $secure Bool
+	 *  true: Force setting the secure attribute when setting the cookie
+	 *  false: Force NOT setting the secure attribute when setting the cookie
+	 *  null (default): Use the default ($wgCookieSecure) to set the secure attribute
 	 */
-	protected function setCookie( $name, $value, $exp = 0 ) {
-		$this->getRequest()->response()->setcookie( $name, $value, $exp );
+	protected function setCookie( $name, $value, $exp = 0, $secure = null ) {
+		$this->getRequest()->response()->setcookie( $name, $value, $exp, null, null, $secure );
 	}
 
 	/**
@@ -2859,6 +2863,15 @@ class User {
 				$this->setCookie( $name, $value );
 			}
 		}
+
+		/**
+		 * If wpStickHTTPS was selected, also set an insecure cookie that
+		 * will cause the site to redirect the user to HTTPS, if they access
+		 * it over HTTP. Bug 29898.
+		 */
+		if ( $request->getCheck( 'wpStickHTTPS' ) ) {
+			$this->setCookie( 'forceHTTPS', 'true', time() + 2592000, false ); //30 days
+		}
 	}
 
 	/**
@@ -2881,6 +2894,7 @@ class User {
 
 		$this->clearCookie( 'UserID' );
 		$this->clearCookie( 'Token' );
+		$this->clearCookie( 'forceHTTPS' );
 
 		# Remember when user logged out, to prevent seeing cached pages
 		$this->setCookie( 'LoggedOut', wfTimestampNow(), time() + 86400 );
