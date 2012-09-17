@@ -4944,4 +4944,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Interlanguage links sorting
+'interlanguage-links-sorting-order' => '-',
+
 );

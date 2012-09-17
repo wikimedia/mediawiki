@@ -6231,6 +6231,21 @@ $wgDBtestpassword = '';
 $wgRequirePasswordforEmailChange = true;
 
 /**
+ * Whether the interlanguage links should be sorted.
+ *
+ * The sorting order is determined by the system message
+ * "interlanguage-links-sorting-order" that lists the language prefixes
+ * in order from top to bottom separated by newlines.  Multiple language
+ * prefixes can occur on one row separated by commas; if these language
+ * prefixes are found in one page, their relative sorting order will be
+ * determined by document order.  Language prefixes that are not listed
+ * in the system message will be treated as if they were listed as the
+ * last line separated by commas (e. g., they will be put last in
+ * document order).
+ */
+$wgSortInterlanguageLinks = false;
+
+/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}
