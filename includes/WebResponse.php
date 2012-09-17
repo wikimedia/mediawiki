@@ -45,8 +45,12 @@ class WebResponse {
 	 * @param $expire Int: number of seconds til cookie expires
 	 * @param $prefix String: Prefix to use, if not $wgCookiePrefix (use '' for no prefix)
 	 * @param @domain String: Cookie domain to use, if not $wgCookieDomain
+	 * @param $forceSecure String:
+	 *   'secure' force the cookie to be set with the secure attribute
+	 *   'nonsecure' force the cookie to be set without the secure attribute
+	 *   all other value will use the value from $wgCookieSecure
 	 */
-	public function setcookie( $name, $value, $expire = 0, $prefix = null, $domain = null ) {
+	public function setcookie( $name, $value, $expire = 0, $prefix = null, $domain = null, $forceSecure = null ) {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure,$wgCookieExpiration, $wgCookieHttpOnly;
 		if ( $expire == 0 ) {
@@ -58,6 +62,14 @@ class WebResponse {
 		if( $domain === null ) {
 			$domain = $wgCookieDomain;
 		}
+
+		$secureCookie = $wgCookieSecure;
+		if ( $forceSecure == 'secure' ) {
+			$secureCookie = true;
+		} elseif ( $forceSecure == 'nonsecure' ) {
+			$secureCookie = false;
+		}
+
 		$httpOnlySafe = wfHttpOnlySafe() && $wgCookieHttpOnly;
 		wfDebugLog( 'cookie',
 			'setcookie: "' . implode( '", "',
@@ -67,14 +79,14 @@ class WebResponse {
 					$expire,
 					$wgCookiePath,
 					$domain,
-					$wgCookieSecure,
+					$secureCookie,
 					$httpOnlySafe ) ) . '"' );
 		setcookie( $prefix . $name,
 			$value,
 			$expire,
 			$wgCookiePath,
 			$domain,
-			$wgCookieSecure,
+			$secureCookie,
 			$httpOnlySafe );
 	}
 }
