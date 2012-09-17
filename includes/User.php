@@ -2804,6 +2804,19 @@ class User {
 	}
 
 	/**
+	 * Set a cookie (wrapper for WebResponse::setCookie), but force the cookie
+	 * to NOT set the cookie's secure attribute. Cookies set by this function
+	 * will be sent whether the user connects over HTTP or HTTPS, so it should NOT
+	 * be used to set a cookie, or cookie value, that needs to be kept private.
+	 *
+	 * Use this function do something like setting a flag to redirect the user
+	 * from http to https.
+	 */
+	protected function setNonSecureCookie( $name, $value, $exp = 0 ) {
+		$this->getRequest()->response()->setcookie( $name, $value, $exp, null, null, 'nonsecure' );
+	}
+
+	/**
 	 * Clear a cookie on the user's client
 	 * @param $name String Name of the cookie to clear
 	 */
@@ -2858,6 +2871,15 @@ class User {
 			} else {
 				$this->setCookie( $name, $value );
 			}
+		}
+
+		/**
+		 * If wpStickHTTPS was selected, also set an insecure cookie that
+		 * will cause the site to redirect the user to HTTPS, if they access
+		 * it over HTTP. Bug 29898.
+		 */
+		if ( $request->getCheck( 'wpStickHTTPS' ) ) {
+			$this->setNonSecureCookie( 'forceHTTPS', 'true', time() + 2592000 ); //30 days
 		}
 	}
 
