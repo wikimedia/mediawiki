@@ -134,6 +134,23 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	require_once( MW_CONFIG_FILE );
 }
 
+# Redirect to HTTPS if cookie is set. Doing this as early as possible, to prevent
+# doing extra work if we're going to redirect to a new context.
+if ( $wgSecureLogin ) {
+	if ( isset( $_COOKIE[$wgSitename.'-forceHTTPS'] )
+		&& !( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' )
+		&& !( isset( $_SERVER['X-Forwarded-Proto'] ) && $_SERVER['X-Forwarded-Proto'] == 'https' )
+	) {
+		$redirect = WebRequest::detectServer() . WebRequest::getRequestURL();
+		$redirect = str_replace( 'http://' , 'https://' , $redirect );
+		$redirect = Sanitizer::cleanUrl( $redirect );
+		header( 'Cache-Control: private' );
+		header( 'Vary: Accept-Encoding,Cookie' );
+		header( "Location: $redirect" );
+		die();
+	}
+}
+
 if ( $wgEnableSelenium ) {
 	require_once( MWInit::compiledPath( "includes/SeleniumWebSettings.php" ) );
 }
@@ -156,4 +173,5 @@ wfProfileOut( 'WebStart.php-ob_start' );
 if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once( MWInit::compiledPath( "includes/Setup.php" ) );
 }
+
 
