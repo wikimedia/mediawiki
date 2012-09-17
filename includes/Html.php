@@ -191,12 +191,8 @@ class Html {
 			return '';
 		}
 
-		# Remove HTML5-only attributes if we aren't doing HTML5, and disable
-		# form validation regardless (see bug 23769 and the more detailed
-		# comment in expandAttributes())
+		# Remove invalid input types
 		if ( $element == 'input' ) {
-			# Whitelist of types that don't cause validation.  All except
-			# 'search' are valid in XHTML1.
 			$validTypes = array(
 				'hidden',
 				'text',
@@ -208,9 +204,9 @@ class Html {
 				'image',
 				'reset',
 				'button',
-				'search',
 			);
 
+			# Allow more input types in HTML5 mode
 			if( $wgHtml5 ) {
 				$validTypes = array_merge( $validTypes, array(
 					'datetime',
@@ -230,11 +226,6 @@ class Html {
 			}
 			if ( isset( $attribs['type'] )
 			&& !in_array( $attribs['type'], $validTypes ) ) {
-				unset( $attribs['type'] );
-			}
-
-			if ( isset( $attribs['type'] ) && $attribs['type'] == 'search'
-			&& !$wgHtml5 ) {
 				unset( $attribs['type'] );
 			}
 		}
