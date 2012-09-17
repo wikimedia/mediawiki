@@ -14,7 +14,8 @@
 # Plus any combination of these:
 #
 # cat           add category links
-# ill           add inter-language links
+# ill           inter-language links as parsed
+# ill-out       inter-language links as output
 # subpage       enable subpages (disabled by default)
 # noxml         don't check for XML well formdness
 # title=[[XXX]] run test using article title XXX
@@ -5136,6 +5137,39 @@ ill
 [[zh:&#39135;&#21697;]]
 !! result
 es:Alimento fr:Nourriture zh:食品
+!! end
+
+!! test
+Inter-language links in document order
+!! options
+ill-out
+!! input
+[[zh:&#39135;&#21697;]]
+[[ru:Пища]]
+[[es:Alimento]]
+[[fr:Nourriture]]
+!! result
+zh:食品 ru:Пища es:Alimento fr:Nourriture
+!! end
+
+!!article
+MediaWiki:interlanguage-links-sorting-order
+!!text
+fr
+es,zh
+!!endarticle
+
+!! test
+Inter-language links sorted by fr, es/zh, rest in document order
+!! options
+ill-out
+!! input
+[[zh:&#39135;&#21697;]]
+[[ru:Пища]]
+[[es:Alimento]]
+[[fr:Nourriture]]
+!! result
+fr:Nourriture zh:食品 es:Alimento ru:Пища
 !! end
 
 ###
