@@ -3790,6 +3790,9 @@ $wgMessageStructure = array(
 		'duration-centuries',
 		'duration-millennia'
 	),
+	'interlanguage-link-sort' => array(
+		'interlanguage-links-sorting-order'
+	),
 );
 
 /** Comments for each block */
@@ -4030,4 +4033,5 @@ Variants for Chinese language",
 	'apierrors'             => 'API errors',
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',
+	'interlanguage-link-sort' => 'Interlanguage links sorting',
 );

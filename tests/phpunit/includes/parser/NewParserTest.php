@@ -574,6 +574,15 @@ class NewParserTest extends MediaWikiTestCase {
 
 			if ( isset( $opts['ill'] ) ) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
+			} elseif ( isset( $opts['ill-out'] ) ) {
+				global $wgSortInterlanguageLinks;
+
+				$savedSortInterlanguageLinks = $wgSortInterlanguageLinks;
+				$wgSortInterlanguageLinks = isset( $opts['ill-sort'] );
+				$outputPage = $context->getOutput();
+				$outputPage->addLanguageLinks( $output->getLanguageLinks() );
+				$out = $this->tidy( implode( ' ', $outputPage->getLanguageLinks() ) );
+				$wgSortInterlanguageLinks = $savedSortInterlanguageLinks;
 			} elseif ( isset( $opts['cat'] ) ) {
 				$outputPage = $context->getOutput();
 				$outputPage->addCategoryLinks( $output->getCategories() );
