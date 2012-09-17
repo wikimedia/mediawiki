@@ -569,7 +569,7 @@ $1',
 'unexpected' => '不正常值："$1"="$2"。',
 'formerror' => '錯誤：無法提交表單',
 'badarticleerror' => '無法在此頁進行該操作。',
-'cannotdelete' => '無法刪除頁面或圖片"$1"。
+'cannotdelete' => '無法刪除頁面或圖片“$1”。
 它可能已經被其他人刪除了。',
 'cannotdelete-title' => '無法刪除“$1”',
 'delete-hook-aborted' => '刪除被勾點中止。

@@ -630,7 +630,7 @@ $1',
 'unexpected' => '非正常值：“$1”=“$2”。',
 'formerror' => '错误：无法提交表单',
 'badarticleerror' => '无法在此页进行该操作。',
-'cannotdelete' => '无法删除页面或图像 "$1"。
+'cannotdelete' => '无法删除页面或图像“$1”。
 它可能已被其他人删除了。',
 'cannotdelete-title' => '无法删除“$1”',
 'delete-hook-aborted' => '删除被扩展钩子取消。钩子并没有给出解释。',

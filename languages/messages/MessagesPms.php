@@ -2894,13 +2894,13 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'file-info-gif-looped' => 'an sicl',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|quàder|quàder}}',
 'file-info-png-looped' => 'an sìrcol',
-'file-info-png-repeat' => 'sonà $1 {{PLURAL:$1|vira|vire}}',
+'file-info-png-repeat' => 'fàit andé $1 {{PLURAL:$1|vira|vire}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|quàder|quàder}}',
 'file-no-thumb-animation' => "'''Nòta: Për dle limitassion técniche, le miniadure ëd s'archivi a saran pa animà.'''",
 'file-no-thumb-animation-gif' => "'''Nòta: Për limitassion técniche, le miniadure ëd figure GIF a àuta arzolussion com costa a saran pa animà.'''",
 
 # Special:NewFiles
-'newimages' => 'Galerìa ëd figure e son neuv',
+'newimages' => 'Galarìa ëd figure e son neuv',
 'imagelisttext' => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
 'newimages-summary' => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
 'newimages-legend' => 'Filtror',
