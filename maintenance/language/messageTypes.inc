@@ -246,6 +246,7 @@ $wgIgnoredMessages = array(
 	'ipb-default-expiry',
 	'pageinfo-header',
 	'pageinfo-footer',
+	'interlanguage-links-sorting-order',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */

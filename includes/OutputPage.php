@@ -114,6 +114,12 @@ class OutputPage extends ContextSource {
 	var $mLanguageLinks = array();
 
 	/**
+	 * Associative array with interwiki prefixes as keys and sorting
+	 * weights as values.
+	 */
+	private $mInterlanguageSortingWeights;
+
+	/**
 	 * Should be private. Used for JavaScript (pre resource loader)
 	 * We should split js / css.
 	 * mScripts content is inserted as is in "<head>" by Skin. This might
@@ -1092,21 +1098,88 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add new language links
 	 *
-	 * @param $newLinkArray array Associative array mapping language code to the page
-	 *                      name
+	 * @param $newLinkArray array Array of Interwiki Prefixed (non DB key) Titles
+	 *	  (e.g. 'fr:Test page')
 	 */
 	public function addLanguageLinks( $newLinkArray ) {
-		$this->mLanguageLinks += $newLinkArray;
+		global $wgSortInterlanguageLinks;
+
+		if ( !$wgSortInterlanguageLinks ) {
+			$this->mLanguageLinks += $newLinkArray;
+
+			return;
+		}
+
+		$isoMsg = wfMessage( 'interlanguage-links-sorting-order' );
+		if ( $isoMsg->isDisabled() ) {
+			/* Same as above. */
+			$this->mLanguageLinks += $newLinkArray;
+
+			return;
+		}
+
+		/* Build sorting order array if not done yet. */
+		if ( !isset( $this->mInterlanguageSortingWeights ) ) {
+			$this->mInterlanguageSortingWeights = array();
+			$iso = $isoMsg->inContentLanguage()->plain();
+			$isoLines = explode( "\n", $iso );
+			$sortingWeight = - count( $isoLines );
+			foreach ( $isoLines as $isoLine ) {
+				foreach ( explode( ',', $isoLine ) as $languagePrefix ) {
+					$this->mInterlanguageSortingWeights[$languagePrefix] = $sortingWeight;
+				}
+				$sortingWeight++;
+			}
+		}
+
+		/**
+		 * PHP doesn't provide a stable sort function so we would have
+		 * to do a Schwartzian transform if we would use them.  Also, we
+		 * can probably assume that most $newLinkArray are coming in
+		 * pre-sorted, so instead we do something like a reverse
+		 * insertion sort.
+		 */
+		foreach ( $newLinkArray as $newLink ) {
+			/* Determine sorting weight of link to add. */
+			list ( $newLanguagePrefix ) = explode( ':', $newLink );
+			if ( isset ( $this->mInterlanguageSortingWeights[$newLanguagePrefix] ) ) {
+				$newSortingWeight = $this->mInterlanguageSortingWeights[$newLanguagePrefix];
+			} else {
+				$newSortingWeight = 0;
+			}
+
+			for ( $i = count( $this->mLanguageLinks ); $i > 0; $i-- ) {
+				/* Determine sort weight of previous element. */
+				list ( $prevLanguagePrefix ) = explode( ':', $this->mLanguageLinks[$i - 1] );
+				if ( isset ( $this->mInterlanguageSortingWeights[$prevLanguagePrefix] ) ) {
+					$prevSortingWeight = $this->mInterlanguageSortingWeights[$prevLanguagePrefix];
+				} else {
+					$prevSortingWeight = 0;
+				}
+
+				/**
+				 * Abort when we have reached the end of interlanguage
+				 * links with the same sorting weight.
+				 */
+				if ( $prevSortingWeight <= $newSortingWeight ) {
+					break;
+				}
+
+				$this->mLanguageLinks[$i] = $this->mLanguageLinks[$i - 1];
+			}
+			$this->mLanguageLinks[$i] = $newLink;
+		}
 	}
 
 	/**
 	 * Reset the language links and add new language links
 	 *
-	 * @param $newLinkArray array Associative array mapping language code to the page
-	 *                      name
+	 * @param $newLinkArray array Array of Interwiki Prefixed (non DB key) Titles
+	 *	  (e.g. 'fr:Test page')
 	 */
 	public function setLanguageLinks( $newLinkArray ) {
-		$this->mLanguageLinks = $newLinkArray;
+		$this->mLanguageLinks = array();
+		$this->addLanguageLinks( $newLinkArray );
 	}
 
 	/**
@@ -1497,7 +1570,7 @@ class OutputPage extends ContextSource {
 	 * @param $parserOutput ParserOutput object
 	 */
 	public function addParserOutputNoText( &$parserOutput ) {
-		$this->mLanguageLinks += $parserOutput->getLanguageLinks();
+		$this->addLanguageLinks( $parserOutput->getLanguageLinks() );
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
