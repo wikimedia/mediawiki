@@ -157,3 +157,15 @@ if ( !defined( 'MW_NO_SETUP' ) ) {
 	require_once( MWInit::compiledPath( "includes/Setup.php" ) );
 }
 
+/**
+ * Redirect to HTTPS if cookie is set. Doing this as early as possible, to prevent
+ * doing extra work if we're going to redirect to a new context.
+ */
+if ( isset( $_COOKIE[$wgCookiePrefix.'forceHTTPS'] ) && !$_SERVER['HTTPS'] ) {
+	$redirect = "https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+	$redirect = Sanitizer::cleanUrl( $redirect );
+	header( 'Cache-Control: private' );
+	header( 'Vary: Accept-Encoding,Cookie' );
+	header( "Location: $redirect" );
+	die();
+}
