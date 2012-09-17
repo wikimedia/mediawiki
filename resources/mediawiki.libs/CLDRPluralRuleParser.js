@@ -207,6 +207,7 @@ function pluralRuleParser(rule, number) {
 	}
 
 	function range() {
+		var i;
 		var result = sequence([digits, _range_, digits]);
 		if (result !== null) {
 			debug(" -- passed range");
