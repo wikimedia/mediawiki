@@ -692,7 +692,7 @@ class Sanitizer {
 				}
 			}
 
-			if ( $attribute === 'align' && !in_array( $element, $cells ) ) {
+			if ( $attribute === 'align' && !in_array( $element, array_merge( $cells, array( 'tr' ) ) ) ) {
 				if ( $value === 'center' ) {
 					$style .= ' margin-left: auto;';
 					$property = 'margin-right';
