@@ -144,6 +144,7 @@
 				}
 				return $( '<div>' ).prop({
 					id: 'mw-debug-' + id,
+					dir: 'ltr',
 					className: 'mw-debug-bit mw-debug-panelink'
 				})
 				.append( paneLabel( id, text ) )
@@ -171,6 +172,7 @@
 			}
 
 			bitDiv( 'mwversion' )
+				.attr( { 'dir' : 'ltr' } )
 				.append( $( '<a href="//www.mediawiki.org/">MediaWiki</a>' ) )
 				.append( document.createTextNode( ': ' + this.data.mwVersion + ' ' ) )
 				.append( gitInfo );
