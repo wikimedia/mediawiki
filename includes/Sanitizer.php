@@ -692,7 +692,9 @@ class Sanitizer {
 				}
 			}
 
-			if ( $attribute === 'align' && !in_array( $element, $cells ) ) {
+			// Table align is special, it's about block alignment instead of
+			// content align (see also bug 40306)
+			if ( $attribute === 'align' && in_array( $element, $table ) ) {
 				if ( $value === 'center' ) {
 					$style .= ' margin-left: auto;';
 					$property = 'margin-right';
