@@ -96,7 +96,7 @@
 		buildHtml: function () {
 			var $container, $bits, panes, id, gitInfo;
 
-			$container = $( '<div id="mw-debug-toolbar" class="mw-debug"></div>' );
+			$container = $( '<div id="mw-debug-toolbar" class="mw-debug" lang="en" dir="ltr"></div>' );
 
 			$bits = $( '<div class="mw-debug-bits"></div>' );
 
@@ -187,9 +187,7 @@
 				.text( 'Time: ' + this.data.time.toFixed( 5 ) );
 
 			bitDiv( 'memory' )
-				.text( 'Memory: ' + this.data.memory )
-				.append( $( '<span title="Peak usage"></span>' ).text( ' (' + this.data.memoryPeak + ')' ) );
-				
+				.text( 'Memory: ' + this.data.memory + ' (Peak: ' + this.data.memoryPeak + ')' );
 
 			$bits.appendTo( $container );
 
