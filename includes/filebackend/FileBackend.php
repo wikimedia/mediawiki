@@ -284,16 +284,6 @@ abstract class FileBackend {
 			unset( $opts['nonLocking'] );
 			unset( $opts['allowStale'] );
 		}
-		$opts['concurrency'] = 1; // off
-		if ( $this->parallelize === 'implicit' ) {
-			if ( !isset( $opts['parallelize'] ) || $opts['parallelize'] ) {
-				$opts['concurrency'] = $this->concurrency;
-			}
-		} elseif ( $this->parallelize === 'explicit' ) {
-			if ( !empty( $opts['parallelize'] ) ) {
-				$opts['concurrency'] = $this->concurrency;
-			}
-		}
 		return $this->doOperationsInternal( $ops, $opts );
 	}
 

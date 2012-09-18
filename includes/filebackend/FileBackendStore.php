@@ -1016,6 +1016,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->primeContainerCache( $performOps );
 
 		// Actually attempt the operation batch...
+		$opts = $this->setConcurrencyFlags( $opts );
 		$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
 
 		// Merge errors into status fields
@@ -1545,6 +1546,26 @@ abstract class FileBackendStore extends FileBackend {
 
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Set the 'concurrency' option from a list of operation options
+	 *
+	 * @param $opts array Map of operation options
+	 * @return Array
+	 */
+	final protected function setConcurrencyFlags( array $opts ) {
+		$opts['concurrency'] = 1; // off
+		if ( $this->parallelize === 'implicit' ) {
+			if ( !isset( $opts['parallelize'] ) || $opts['parallelize'] ) {
+				$opts['concurrency'] = $this->concurrency;
+			}
+		} elseif ( $this->parallelize === 'explicit' ) {
+			if ( !empty( $opts['parallelize'] ) ) {
+				$opts['concurrency'] = $this->concurrency;
+			}
+		}
+		return $opts;
 	}
 }
 
