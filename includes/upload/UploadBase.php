@@ -1367,6 +1367,18 @@ abstract class UploadBase {
 				);
 			}
 		}
+		
+		// Check for files with the same name but a different extension
+		$similarFiles = RepoGroup::singleton()->getLocalRepo()->findFilesByPrefix( 
+				"{$partname}.", 1 );
+		if ( count( $similarFiles ) )
+		{
+			return array(
+					'warning' => 'exists-normalized',
+					'file' => $file,
+					'normalizedFile' => $similarFiles[0],
+			);
+		}
 
 		if ( self::isThumbName( $file->getName() ) ) {
 			# Check for filenames like 50px- or 180px-, these are mostly thumbnails

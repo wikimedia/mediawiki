@@ -481,6 +481,19 @@ class FileRepo {
 		}
 		return $result;
 	}
+	
+	/**
+	 * Return an array of files where the name starts with $prefix.
+	 * 
+	 * STUB
+	 * @param string $prefix The prefix to search for
+	 * @param int $limit The maximum amount of files to return; -1 means no limit
+	 * @return array 
+	 */
+	public function findFilesByPrefix( $prefix, $limit = -1 )
+	{
+		return array();
+	}
 
 	/**
 	 * Get the public root URL of the repository
