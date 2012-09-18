@@ -27,6 +27,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   different timezone than the wiki timezone set by $wgLocaltimezone.
 * New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
   connections, if either are available for the selected DB type.
+* $wgUseCombinedLoginLink now defaults to false, making MediaWiki output separate
+  login and create account links by default.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
@@ -65,7 +67,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 35685) api.php URL and other entry point URLs are now listed on
   Special:Version
 * Edit notices can now be translated.
-* jQuery upgraded to 1.7.2
+* jQuery upgraded to 1.8.1
 * jQuery UI upgraded to 1.8.23.
 * QUnit upgraded from v1.2.0 to v1.10.0.
 * (bug 37604) jquery.cookie upgraded to 2011 version.
@@ -143,7 +145,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   with auto-hide, multi-message support, and message replacement tags.
 * jquery.messageBox which appears to be unused by both core and extensions has
   been removed.
-* (bug 34939) made link parsking insensitive ([HttP://])
+* (bug 34939) Made link parsing insensitive ([HttP://])
+* (bug 40072) Add CSS classes to items in output of ChangesList pages.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -240,6 +243,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
 * (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
 * (bug 32552) Drop unused database field cat_hidden from table category.
+* (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
+* (bug 39941) Add missing stylesheets to the installer pages
+* In HTML5 mode, allow new input element types values (such as color, range..)
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.

@@ -576,8 +576,10 @@ Pertanyaan: $2',
 'protectedpagetext' => 'Laman ini telah dikunci untuk menghalang penyuntingan.',
 'viewsourcetext' => 'Anda boleh melihat dan menyalin sumber bagi laman ini:',
 'viewyourtext' => "Anda boleh melihat dan menyalin sumber '''suntingan anda''' kepada laman ini:",
-'protectedinterface' => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.',
-'editinginterface' => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain. Untuk melakukan penterjemahan, anda boleh menggunakan [//translatewiki.net/wiki/Main_Page?setlang=ms translatewiki.net], sebuah projek penyetempatan MediaWiki.",
+'protectedinterface' => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.
+Untuk menambah atau menyunting terjemahan untuk semua wiki, sila gunakan projek penyetempatan MediaWiki, [//translatewiki.net/ translatewiki.net].',
+'editinginterface' => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain di wiki ini.
+Untuk menambah atau menyunting terjemahan untuk semua wiki, sila gunakan projek penyetempatan MediaWiki, [//translatewiki.net/ translatewiki.net].",
 'sqlhidden' => '(Pertanyaan SQL disorokkan)',
 'cascadeprotected' => 'Laman ini telah dilindungi daripada penyuntingan oleh pengguna selain penyelia, kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi dengan secara "melata": $2',
 'namespaceprotected' => "Anda tidak mempunyai keizinan untuk menyunting laman dalam ruang nama '''$1'''.",
@@ -1105,10 +1107,11 @@ Anda tidak memiliki capaian padanya.',
 'revdelete-concurrent-change' => 'Ralat ketika mengubahsuai item bertarikh $2, $1: kelihatan statusnya telah diubah oleh orang lain ketika anda cuba untuk mengubahsuainya.
 Mohon semak log.',
 'revdelete-only-restricted' => 'Ralat menyembunyikan item bertarikh $2, $1: anda tidak boleh menyekat item-item dari pandangan pentadbir-pentadbir tanpa memilih juga salah satu pilihan pandangan lain.',
-'revdelete-reason-dropdown' => '*Sebab penghapusan biasa
+'revdelete-reason-dropdown' => '*Sebab penghapusan yang biasa
 ** Pencabulan hak cipta
-** Maklumat peribadi tidak sesuai
-** Maklumat berpotensi fitnah',
+** Ulasan atau maklumat peribadi tidak sesuai
+** Nama pengguna tidak sesuai
+** Maklumat berkemungkinan fitnah',
 'revdelete-otherreason' => 'Sebab lain/tambahan:',
 'revdelete-reasonotherlist' => 'Sebab lain',
 'revdelete-edit-reasonlist' => 'Ubah sebab-sebab hapus',
@@ -1726,7 +1729,7 @@ Sila hubungi [[Special:ListUsers/sysop|pentadbir sistem]].',
 'backend-fail-internal' => 'Berlakunya ralat yang tidak dikenali dalam backend storan "$1".',
 'backend-fail-contenttype' => 'Jenis kandungan fail untuk disimpan di "$1" tidak dapat ditentukan.',
 'backend-fail-batchsize' => 'Backend storan diberi $1 operasi fail dalam satu kelompok; hadnya ialah $2 operasi.',
-'backend-fail-usable' => 'Fail $1 tidak boleh ditulis kerana kebenaran tidak memadai atau tertinggal direktori/penyimpan.',
+'backend-fail-usable' => 'Fail "$1" tidak boleh dibaca atau ditulis kerana kebenaran tidak memadai atau tertinggal direktori/penyimpan.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Tidak dapat bersambung dengan pangkalan data jurnal untuk backend storan "$1".',

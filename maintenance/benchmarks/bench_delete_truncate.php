@@ -52,7 +52,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 
 		$end = microtime( true );
 
-		echo "Delete: " . $end - $start;
+		echo "Delete: " . sprintf( "%6.3fms", ( $end - $start ) * 1000 );
 		echo "\r\n";
 
 		$this->insertData( $dbw );
@@ -63,7 +63,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 
 		$end = microtime( true );
 
-		echo "Truncate: " . $end - $start;
+		echo "Truncate: " . sprintf( "%6.3fms", ( $end - $start ) * 1000 );
 		echo "\r\n";
 
 		$dbw->dropTable( 'test' );

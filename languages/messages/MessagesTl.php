@@ -213,7 +213,7 @@ $messages = array(
 'thursday' => 'Huwebes',
 'friday' => 'Biyernes',
 'saturday' => 'Sabado',
-'sun' => 'Lin',
+'sun' => 'Ling',
 'mon' => 'Lun',
 'tue' => 'Mar',
 'wed' => 'Miy',
@@ -360,7 +360,7 @@ $messages = array(
 'projectpage' => 'Tingnan ang pahina ng proyekto',
 'imagepage' => 'Tingnan ang pahina ng talaksan',
 'mediawikipage' => 'Tingnan ang pahina ng mensahe',
-'templatepage' => 'Tingnan ang pahina ng suleras',
+'templatepage' => 'Tingnan ang pahina ng padron',
 'viewhelppage' => 'Tingnan ang pahina ng tulong',
 'categorypage' => 'Tingnan ang pahina ng kategorya',
 'viewtalkpage' => 'Tingnan ang usapan',
@@ -426,9 +426,9 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'editsection' => 'baguhin',
 'editsection-brackets' => '[$1]',
 'editold' => 'baguhin',
-'viewsourceold' => 'tingnan ang pinagmulan',
+'viewsourceold' => 'tingnan ang batayan',
 'editlink' => 'baguhin',
-'viewsourcelink' => 'tingnan ang pinagmulan',
+'viewsourcelink' => 'tingnan ang batayan',
 'editsectionhint' => 'Baguhin ang seksiyon: $1',
 'toc' => 'Mga nilalaman',
 'showtoc' => 'ipakita',
@@ -438,13 +438,13 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'thisisdeleted' => 'Tingnan o ibalik ang $1?',
 'viewdeleted' => 'Tingnan ang $1?',
 'restorelink' => '{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}',
-'feedlinks' => 'Subo/Karga:',
+'feedlinks' => 'Karga:',
 'feed-invalid' => 'Hindi tanggap na uri ng serbisyo ng pagpaparating.',
 'feed-unavailable' => 'Walang serbisyo mula sa sindikasyong pangpaglalathala',
-'site-rss-feed' => '$1 kargang RSS',
-'site-atom-feed' => '$1 kargang Atom',
-'page-rss-feed' => '"$1" kargang RSS',
-'page-atom-feed' => '"$1" kargang Atom',
+'site-rss-feed' => 'Kargang RSS ng $1',
+'site-atom-feed' => 'Kargang Atom ng $1',
+'page-rss-feed' => 'Kargang RSS ng "$1"',
+'page-atom-feed' => 'Kargang Atom ng "$1"',
 'feed-atom' => 'Atom',
 'feed-rss' => 'RSS',
 'red-link-title' => '$1 (hindi umiiral ang pahina)',
@@ -459,7 +459,7 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'nstab-project' => 'Pahina ng proyekto',
 'nstab-image' => 'Talaksan',
 'nstab-mediawiki' => 'Mensahe',
-'nstab-template' => 'Suleras',
+'nstab-template' => 'Padron',
 'nstab-help' => 'Pahina ng tulong',
 'nstab-category' => 'Kategorya',
 
@@ -608,8 +608,8 @@ Paki-andar mo po ang mga ito, pagkatapos ay lumagda na gamit ang bago mong panga
 'nocookieslogin' => "Gumagamit ang {{SITENAME}} ng mga kuki (''cookies'') para mailagda ang mga tagagamit.
 Hindi mo pinagagana ang mga kuki.
 Paki-andar mo ang mga ito at sumubok uli.",
-'nocookiesfornew' => 'Hindi nalikha ang akawnt ng tagagamit, dahil hindi namin matiyak ang pinagmulan nito.
-Tiyaking mayroon kang pinagaganang mga otap, ikargang muli ang pahinang ito at subuking muli.',
+'nocookiesfornew' => 'Hindi nalikha ang kuwenta ng tagagamit, dahil hindi namin matiyak ang pinagmulan nito.
+Tiyaking mayroon kang pinagaganang mga kuki, ikarga muli ang pahinang ito at subukan muli.',
 'nocookiesforlogin' => '{{int:nocookieslogin}}',
 'noname' => 'Hindi mo tinukoy ang isang tanggap na pangalan ng tagagamit.',
 'loginsuccesstitle' => 'Matagumpay ang paglagda',
@@ -640,19 +640,19 @@ Kung ibang tao ang humiling nito, o kung naalala mo na ang iyong hudyat,
 at hindi mo na ibig pang baguhin ito, maaari mong huwag pansinin ang mensaheng ito at
 magpatuloy sa paggamit ng iyong lumang hudyat.',
 'noemail' => 'Walang nakatalang adres ng e-liham para sa tagagamit na "$1".',
-'noemailcreate' => 'Kailangan mong magbigay ng may-bisang adres ng e-liham',
+'noemailcreate' => 'Kailangan mong magbigay ng may-bisang direksiyong e-liham',
 'passwordsent' => 'Isang bagong hudyat ang ipinadala sa adres ng e-liham na nakatala para kay "$1".
 Lumagda/Tumala lang po muli pagkaraan mong matanggap ito.',
 'blocked-mailpassword' => 'Hinarangan sa paggawa ng mga pagbabago ang iyong adres ng IP, at kaya hindi rin pinapahintulutang gumamit ng tungkuling makabawi ng hudyat para maiwasan ang pangaabuso.',
-'eauthentsent' => 'Nagpadala ng isang e-liham na pangkompirmasyon doon sa iniharap na adres ng e-liham.
+'eauthentsent' => 'Nagpadala ng isang e-liham na pangkompirmasyon doon sa iniharap na direksiyong e-liham.
 Bago magpadala ng iba pang e-liham sa kuwenta, kailangan mong sundin ang mga tagubiling nasa loob ng e-liham, para mapatunayang iyo talaga ang kuwenta.',
 'throttled-mailpassword' => 'Nagpadala na ng isang paalalang panghudyat, nitong huling {{PLURAL:$1|oras|$1 oras}}.
 Para maiwasin ang pangaabuso, isang paalalang panghudyat lang ang ipapadala bawat {{PLURAL:$1|oras|$1 oras}}.',
 'mailerror' => 'Kamalian sa pagpapadala ng liham: $1',
-'acct_creation_throttle_hit' => 'Ang mga panauhin sa wiking ito na gumagamit ng adres ng IP mo ay nakalikha na ng {{PLURAL:$1|1 kuwenta|$1 kuwenta}} sa loob ng huling araw, na siyang pinakamataas na pinapahintulutan sa loob ng sakop ng panahong ito.
-Bilang kinalabasan, ang mga panauhing gumagamit ng ganitong adres ng IP ay hindi na muna makakalikha ng anumang karagdagang kuwenta sa ngayon.',
+'acct_creation_throttle_hit' => 'Ang mga panauhin sa wiking ito na gumagamit ng direksiyong IP mo ay nakalikha na ng {{PLURAL:$1|1 kuwenta|$1 kuwenta}} sa loob ng huling araw, na siyang pinakamataas na pinapahintulutan sa loob ng sakop ng panahong ito.
+Bilang kinalabasan, ang mga panauhing gumagamit ng ganitong direksiyong IP ay hindi na muna makakalikha ng anumang karagdagang kuwenta sa ngayon.',
 'emailauthenticated' => 'Napatunayan na ang iyong direksiyong e-liham sa $2 noong $3.',
-'emailnotauthenticated' => 'Hindi pa napapatunayan ang iyong adres ng e-liham.
+'emailnotauthenticated' => 'Hindi pa napapatunayan ang iyong direksiyong e-liham.
 Walang e-liham na ipapadala para sa anumang sumusunod na tampok na kasangkapang-katangian.',
 'noemailprefs' => 'Tumukoy ng isang direksiyong e-liham sa loob ng mga nais mo upang gumana ang mga kasangkapang-katangiang ito.',
 'emailconfirmlink' => 'Pakikompirma ang iyong direksiyong e-liham.',
@@ -793,7 +793,7 @@ Maaari kang makipag-ugnayan kay $1 o sa ibang [[{{MediaWiki:Grouppage-sysop}}|ta
 Hindi mo magagamit ang kasangkapang-katangiang 'magpadala ng e-liham sa tagagamit' hangga't hindi tinutukoy ang isang tanggap na direksiyong e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka pa hinaharangan/hinahadlangan sa paggamit nito.
 Ang kasalukuyan mong direksiyong IP ay $3, at ang ID ng pagharang/paghadlang ay #$5.
 Pakisama ang lahat ng mga detalye sa anumang mga pagtatanong na ginagawa/gagawin mo.",
-'autoblockedtext' => 'Kusang hinadlangan/hinarang ang adres ng IP mo dahil ginamit ito ng ibang tagagamit, na hinadlangan/hinarang ni $1.
+'autoblockedtext' => 'Kusang hinadlangan/hinarang ang direksiyong IP mo dahil ginamit ito ng ibang tagagamit, na hinadlangan/hinarang ni $1.
 Ang ibinigay na dahilan ay:
 
 :\'\'$2\'\'
@@ -804,9 +804,9 @@ Ang ibinigay na dahilan ay:
 
 Maaari kang makipagugnayan kay $1 o sa isa sa iba pang [[{{MediaWiki:Grouppage-sysop}}|mga tagapangasiwa]] para pagusapan ang paghadlang/pagharang.
 
-Pakitandaang hindi mo maaaring gamitin ang kasangkapang-katangiang "padalhan ng e-liham ang tagagamit na ito" maliban na lamang kung mayroon kang nakatalang tanggap na adres ng e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka hinadlangan sa paggamit nito.
+Pakitandaang hindi mo maaaring gamitin ang kasangkapang-katangiang "padalhan ng e-liham ang tagagamit na ito" maliban na lamang kung mayroon kang nakatalang tanggap na direksiyong e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka hinadlangan sa paggamit nito.
 
-Ang pangkasalukuyang adres mo ng IP ay $3, at ang ID ng pagharang ay #$5.
+Ang kasalukuyan mong direksiyong IP ay $3, at ang ID ng pagharang ay #$5.
 Pakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin mo.',
 'blockednoreason' => 'walang binigay na dahilan',
 'whitelistedittext' => 'Kailangan mong $1 para makapagbago ng mga pahina.',
@@ -919,7 +919,7 @@ Ang pinakahuling entrada sa talaan ay ibinigay sa baba para sa iyong pagsasanggu
 'cascadeprotectedwarning' => "'''Babala:''' Ikinandado ang pahinang ito upang tanging mga tagagamit na may mga karapatang pang-''sysop'' lamang ang makapagbago nito, dahil kabilang ito sa sumusunod na mga {{PLURAL:$1|pahinang|mga pahinang}} may baita-baitang na panananggalang:",
 'titleprotectedwarning' => "'''Babala:  Ikinandado ang pahinang ito upang [[Special:ListGroupRights|partikular na mga karapatan]] ang kakailanganin upang mailikha ito.'''
 Ang pinakahuling entrada sa talaan ay ibinigay sa baba para sa inyong pagsasangguni:",
-'templatesused' => '{{PLURAL:$1|Suleras|Mga suleras}} na ginagamit sa pahinang ito:',
+'templatesused' => '{{PLURAL:$1|Padron|Mga padron}} na ginagamit sa pahinang ito:',
 'templatesusedpreview' => '{{PLURAL:$1|Suleras|Mga suleras}} na ginagamit sa paunang-tinging ito:',
 'templatesusedsection' => '{{PLURAL:$1|Suleras|Mga suleras}} na ginamit sa seksyong ito:',
 'template-protected' => '(nakasanggalang)',
@@ -958,11 +958,11 @@ Umiiral na ito.',
 
 Dapat na mayroon itong mas mababa sa $2 {{PLURAL:$2|tawag|mga tawag}}, mayroon {{PLURAL:$1|ngayong $1 isang tawag|ngayong $1 mga tawag}}.',
 'expensive-parserfunction-category' => "Mga pahinang may napakaraming mga mamahaling tawag na pantungkulin ng banghay (''parser'')",
-'post-expand-template-inclusion-warning' => 'Babala: Napakalaki ng sukat ng saklaw ng suleras.
-Hindi isasama ang ilang mga suleras.',
-'post-expand-template-inclusion-category' => 'Mga pahina kung saan lumabis ang sukat ng saklaw ng suleras',
-'post-expand-template-argument-warning' => 'Babala: Naglalamang ang pahinang ito ng kahit isang pagaalitan ng suleras na napakalaki ng sukat ng paglawak.  Tinanggal ang mga alitang ito.',
-'post-expand-template-argument-category' => 'Mga pahinang naglalaman ng mga tinanggal na mga alitan ng suleras',
+'post-expand-template-inclusion-warning' => "'''Babala''': Napakalaki ng sukat ng saklaw ng padron.
+Hindi isasama ang ilang mga padron.",
+'post-expand-template-inclusion-category' => 'Mga pahina kung saan lumabis ang sukat ng saklaw ng padron',
+'post-expand-template-argument-warning' => 'Babala: Naglalamang ang pahinang ito ng kahit isang pagaalitan ng padron na napakalaki ng sukat ng paglawak.  Tinanggal ang mga alitang ito.',
+'post-expand-template-argument-category' => 'Mga pahinang naglalaman ng mga tinanggal na mga alitan ng padron',
 'parser-template-loop-warning' => 'Nadiskubreng silo ng suleras: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Lumabis na sa nakatakdang lalim ng rekursyon (pormula) ng suleras ($1)',
 'language-converter-depth-warning' => 'Lumampas sa ($1) ang hangganan ng lalim ng pampalit ng wika',
@@ -2909,7 +2909,7 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-ca-nstab-project' => 'Tingnan ang pahina ng proyekto',
 'tooltip-ca-nstab-image' => 'Tingnan ang pahina ng talaksan',
 'tooltip-ca-nstab-mediawiki' => 'Tingnan ang mensahe ng sistema',
-'tooltip-ca-nstab-template' => 'Tingnan ang suleras',
+'tooltip-ca-nstab-template' => 'Tingnan ang padron',
 'tooltip-ca-nstab-help' => 'Tingnan ang pahina ng tulong',
 'tooltip-ca-nstab-category' => 'Tingnan ang pahina ng kaurian/kategorya',
 'tooltip-minoredit' => 'Tandaan ito bilang isang maliit na pagbabago',

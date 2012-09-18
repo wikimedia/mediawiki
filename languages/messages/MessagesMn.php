@@ -65,7 +65,7 @@ $messages = array(
 'tog-previewontop' => 'Засварлах талбарын өмнө урьдчилж харсан байдлыг үзүүлэх',
 'tog-previewonfirst' => 'Эхний засварын үед урьдчилж харсан байдлыг үзүүлэх',
 'tog-nocache' => 'Вэб хөтөчийн хуудасны кешингийг болиулах',
-'tog-enotifwatchlistpages' => 'Миний хянах жагсаалт дахь хуудас өөрчлөгдөхөд и-мэйл явуулах',
+'tog-enotifwatchlistpages' => 'Миний хянах жагсаалт дахь хуудас өөрчлөгдсөн бол и-мэйл явуулах',
 'tog-enotifusertalkpages' => 'Миний хэлэлцүүлгийн хуудас өөрчлөгдөхөд и-мэйл явуулах',
 'tog-enotifminoredits' => 'Хуудсууд бага зэргээр засварлагдахад ч и-мэйл явуулах',
 'tog-enotifrevealaddr' => 'Мэдэгдлийн и-мэйлд миний мэйл хаягийг илчлэх',
@@ -2864,6 +2864,15 @@ $1',
 'exif-gpsareainformation' => 'GPS бүсийн нэр',
 'exif-gpsdatestamp' => 'GPS огноо',
 'exif-gpsdifferential' => 'GPS дифференциал засвар',
+'exif-source' => 'Эх сурвалж',
+'exif-languagecode' => 'Хэл',
+'exif-iimcategory' => 'Ангилал',
+'exif-cameraownername' => 'Камерын эзэн',
+'exif-label' => 'Шошго',
+'exif-datetimemetadata' => 'метадатаг хамгийн сүүлд өөрчилсөн огноо',
+'exif-copyrighted' => 'Зохиогчийн эрхийн байдал',
+'exif-copyrightowner' => 'Зохиогчийн эрх эзэмшигч',
+'exif-originaldocumentid' => 'Ориг баримтын ID',
 
 # EXIF attributes
 'exif-compression-1' => 'Шахагдаагүй',
@@ -2986,6 +2995,8 @@ $1',
 'exif-gpsdestdistance-m' => 'Милл',
 'exif-gpsdestdistance-n' => 'бээр',
 
+'exif-objectcycle-a' => 'Зөвхөн өглөө',
+'exif-objectcycle-p' => 'Зөвхөн орой',
 'exif-objectcycle-b' => 'Өдөр ч шөнө ч',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
@@ -3178,6 +3189,7 @@ $5
 'version-parserhooks' => 'Парсер хүүкүүд',
 'version-variables' => 'Хувьсагчууд',
 'version-antispam' => 'Спамаас сэргийлэх',
+'version-skins' => 'Арьс',
 'version-other' => 'Бусад',
 'version-mediahandlers' => 'Медиа боловсруулагч',
 'version-hooks' => 'Гогцоо',
@@ -3210,6 +3222,7 @@ $5
 'fileduplicatesearch-info' => '$1 × $2 пиксэл<br />Файлын хэмжээ: $3<br />MIME төрөл: $4',
 'fileduplicatesearch-result-1' => '"$1"-тай яг ижилхэн, давхардсан файл байхгүй байна.',
 'fileduplicatesearch-result-n' => '"$1" файлтай яг ижилхэн, давхардсан {{PLURAL:$2|1 файл|$2 файл}} байна.',
+'fileduplicatesearch-noresults' => '"$1" нэртэй файл олдсонгүй.',
 
 # Special:SpecialPages
 'specialpages' => 'Тусгай хуудсууд',

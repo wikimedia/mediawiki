@@ -504,11 +504,11 @@ class CategoryViewer extends ContextSource {
 		# Split into three columns
 		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
 
-		$ret = '<table width="100%"><tr style="vertical-align: top;">';
+		$ret = '<table style="width: 100%;"><tr style="vertical-align: top;">';
 		$prevchar = null;
 
 		foreach ( $columns as $column ) {
-			$ret .= '<td width="33.3%">';
+			$ret .= '<td style="width: 33.3%;">';
 			$colContents = array();
 
 			# Kind of like array_flip() here, but we keep duplicates in an

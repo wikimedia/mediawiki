@@ -520,7 +520,9 @@ $1',
 'youhavenewmessages' => 'ଆପଣଙ୍କର $1 ($2).',
 'newmessageslink' => 'ନୂଆ ମେସେଜ',
 'newmessagesdifflink' => 'ଶେଷ ବଦଳ',
+'youhavenewmessagesfromusers' => 'ଆପଣଙ୍କର {{PLURAL:$3|another user|$3 users}} ($2)ରୁ $1 ଅଛି ।',
 'youhavenewmessagesmanyusers' => 'ଆପଣଙ୍କର ବହୁତ ବ୍ୟବହାରକାରୀ($2)ମାନଙ୍କଠାରୁ $1 ଅଛି ।',
+'newmessageslinkplural' => '{{PLURAL:$1|a new message|ନୂଆ ମେସେଜ}}',
 'newmessagesdifflinkplural' => 'ଶେଷ{{PLURAL:$1|change|changes}}',
 'youhavenewmessagesmulti' => '$1 ତାରିଖରେ ନୂଆ ଚିଠିଟିଏ ଆସିଛି',
 'editsection' => 'ସମ୍ପାଦନା',
@@ -573,12 +575,11 @@ $1',
 # General errors
 'error' => 'ଭୁଲ',
 'databaseerror' => 'ଡାଟାବେସରେ ଭୁଲ',
-'dberrortext' => 'ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜା ଭୁଲ ଟିଏ ହୋଇଅଛି ।
-ଏହା ଏହି ସଫ୍ଟବେରରେ ଭୁଲଟିଏକୁ ମଧ୍ୟ ସୂଚାଇପାରେ ।
-ଶେଷ ଥର ଖୋଜାଯାଇଥିବା ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜାଟି ଥିଲା:
-"<tt>$2</tt>" କାମ ଭିତରୁ
-<blockquote><tt>$1</tt></blockquote> ।
-ଡାଟାବେସ ଫେରନ୍ତା ଭୁଲ "<tt>$3: $4</tt>".',
+'dberrortext' => 'ଏହା ଏହି ସଫ୍ଟବେରରେ ଭୁଲଟିଏକୁ ମଧ୍ୟ ସୂଚାଇପାରେ ।
+ଶେଷଥର ଖୋଜାଯାଇଥିବା ଡାଟାବେସ ପ୍ରଶ୍ନଟି ଥିଲା:
+<blockquote><code>$1</code></blockquote>
+ ଯାହାକି "<code>$2</code>"ରୁ ଥିଲା
+ଡାଟାବେସରେ ହୋଇଥିବା ଭୁଲ ହେଉଛି "<samp>$3: $4</samp>"।',
 'dberrortextcl' => 'ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜା ଭୁଲଟିଏ ହୋଇଅଛି ।
 ଶେଷ ଖୋଜା ଡାଟାବେସ ପ୍ରଶ୍ନଟି ଥିଲା:
 "$1"
@@ -647,6 +648,11 @@ $2',
 'ns-specialprotected' => 'ବିଶେଷ ପୃଷ୍ଠାସବୁକୁ ବଦଳାଯାଇପାରିବ ନାହିଁ ।',
 'titleprotected' => 'ଏହି ନାମଟି [[User:$1|$1]]ଙ୍କ ଦେଇ ନୂଆ ତିଆରିହେବାରୁ କିଳାଯାଇଅଛି ।
 ଏହାର କାରଣ ହେଲା "\'\'$2\'\'" ।',
+'filereadonlyerror' => 'ଫାଇଲ ଧାରକ "$2"ଟି ଖାଲି ପଢିବା ହେବାଭଳି ରହିଥିବା ହେତୁ ଏଥିରେ ଥିବା $1 ପାଇଲଟିକୁ ବଦଳା ଯାଇପାରିବ ନାହିଁ ।
+
+ଯେଉଁ ପରିଚ୍ଛା ଏହାକୁ ବନ୍ଦ କରିଛନ୍ତି ସେ ଏହି ବିବରଣୀ ଦେଇଛନ୍ତି: "$3"',
+'invalidtitle-knownnamespace' => '"$2" ନେମ୍ସ୍ପେସ ଏବଂ "$3" ଲେଖାଥିବା ଅବୈଧ ଶୀର୍ଷକ ।',
+'invalidtitle-unknownnamespace' => '"$1" ନେମ୍ସ୍ପେସ ଏବଂ "$2" ଲେଖାଥିବା ଅବୈଧ ଶୀର୍ଷକ ।',
 'exception-nologin' => 'ଲଗ‌‌ ଇନ କରିନାହାନ୍ତି',
 'exception-nologin-text' => 'ଏହା କରିବାକୁ ହେଲେ ଆପଣଙ୍କୁ ଏହି ଉଇକିରେ ଲଗଇନ କରିବାକୁ ପଡିବ ।',
 
@@ -928,6 +934,10 @@ $1 ଦ୍ଵାରା ପ୍ରତିରୋଧ କରାଯାଇଛି
 ଆପଣ [[Special:Search/{{PAGENAME}}|ଏହି ଲେଖାଟିର ନାଆଁ]] ବାକି ପୃଷ୍ଠାମାନଙ୍କରେ ଖୋଜି ପାରନ୍ତି,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}ରେ ଯୋଡ଼ାଯାଇଥିବା ବାକି ପୃଷ୍ଠାସବୁକୁ ଖୋଜି ପାରନ୍ତି],
 କିମ୍ବା [{{fullurl:{{FULLPAGENAME}}|action=edit}} ଏହି ପୃଷ୍ଠାଟିକୁ ବଦଳାଇ ପାରନ୍ତି]</span> ।',
+'missing-revision' => '"{{PAGENAME}}" ନାମରେ ଥିବା ପୃଷ୍ଠାଟିର #$1 ପୁନରାବୃତ୍ତି ନାହିଁ ।
+
+ପୁରୁଣା ହୋଇଯାଇଥିବା ଇତିହାସ ଲିଙ୍କ ଯାହା ଏକ ଲିଭାଯାଇଥିବା ପୃଷ୍ଠାକୁ ଦିଆଯାଇଥିବାରୁ ଏହା ସାଧାରଣତଃ ହୋଇଥାଏ ।
+ଅଧିକ ବିବରଣୀ [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log]ରେ ମିଳିପାରିବ ।',
 'userpage-userdoesnotexist' => 'ଇଉଜର ଖାତା "$1" ଟି ତିଆରି କରାଯାଇନାହିଁ ।
 ଆପଣ ଏହି ପୃଷ୍ଠାଟିକୁ ତିଆରି କରିବାକୁ ଚାହାନ୍ତି କି ନାହିଁ ଦୟାକରି ପରଖି ନିଅନ୍ତୁ ।',
 'userpage-userdoesnotexist-view' => 'ଇଉଜର ନାମ "$1"ଟି ତିଆରି କରାଯାଇ ନାହିଁ ।',
@@ -937,7 +947,6 @@ $1 ଦ୍ଵାରା ପ୍ରତିରୋଧ କରାଯାଇଛି
 * '''Firefox / Safari:''' ''Reload'' କଲାବେଳେ ''Shift'' ଧରି, କିମ୍ବା ''Ctrl-F5'' ବା ''Ctrl-R'' (Macରେ ''⌘-R'') ଦବାନ୍ତୁ
 * '''Google Chrome:''' ''Ctrl-Shift-R'' (Macରେ ''⌘-Shift-R'') ଦବାନ୍ତୁ
 * '''Internet Explorer:'''  ''Refresh'' କଲାବେଳେ ''Ctrl'' ଦବାନ୍ତୁ, କିମ୍ବା ''Ctrl-F5'' ଦବାନ୍ତୁ
-* '''Konqueror:''' ''Reload'' ଦବାନ୍ତୁ କିମ୍ବା ''F5'' ଦବାନ୍ତୁ
 * '''Opera:''' ''Tools → Preferences''ରେ ଅସ୍ଥାୟୀ ସ୍ମୃତି ସଫା କରିଦିଅନ୍ତୁ",
 'usercssyoucanpreview' => "'''ଜାଣିବା କଥା:''' ଆପଣା ନୂଆ CSS ସାଇତିବା ଆଗରୁ \"{{int:showpreview}}\" ବ୍ୟବହାର କରି ପରଖି ନିଅନ୍ତୁ ।",
 'userjsyoucanpreview' => "'''ଜାଣିବା କଥା:''' ଆପଣା ନୂଆ ଜାଭାସ୍କ୍ରିପ୍ଟ (JavaScript) ସାଇତିବା ଆଗରୁ \"{{int:showpreview}}\" ବ୍ୟବହାର କରି ପରଖି ନିଅନ୍ତୁ ।",
@@ -1054,6 +1063,13 @@ $1 ଦ୍ଵାରା ପ୍ରତିରୋଧ କରାଯାଇଛି
 'parser-template-loop-warning' => 'ଛାଞ୍ଚ ଲୁପ (Template loop) ଦେଖିବାକୁ ମିଳିଲା: [[$1]]',
 'parser-template-recursion-depth-warning' => 'ଛାଞ୍ଚର ବାରମ୍ବାର ପ୍ରତୀତ ହେବା କ୍ଷମତା ପାର ହୋଇଅଛି ($1)',
 'language-converter-depth-warning' => 'ଭାଷା ରୂପାନ୍ତରଣ କ୍ଷମତା ସରିଯାଇଅଛି ($1)',
+'node-count-exceeded-category' => 'ପୃଷ୍ଠାଗୁଡିକ ଯେଉଁଠି ନୋଡ-ଗଣନା ଅତ୍ୟଧିକ ହୋଇଯାଇଛି',
+'node-count-exceeded-warning' => 'ପୃଷ୍ଠାଟି ନୋଡ-ଗଣନାରୁ ଅଧିକ ହୋଇଗଲା',
+'expansion-depth-exceeded-category' => 'ଯେଉଁ ପୃଷ୍ଠାଗୁଡିକରେ ବିସ୍ତ୍ରୁତ ଗଭୀରତା ଅତ୍ୟଧିକ ହୋଇଯାଇଛି',
+'expansion-depth-exceeded-warning' => 'ପୃଷ୍ଠାଟି ବିସ୍ତ୍ରୁତ ଗଭୀରତାରୁ ଅଧିକ ହୋଇଗଲା',
+'parser-unstrip-loop-warning' => 'ଅଜଣା ଲୁପ ଜଣାପଡିଲା',
+'parser-unstrip-recursion-limit' => 'ଅଜଣା ଚକ୍ରର ସୀମା ଅତ୍ୟଧିକ ହୋଇଗଲା ($1)',
+'converter-manual-rule-error' => 'ଆପେ ଆପେ ଭାଷା ପରିବର୍ତ୍ତନ ନିଯମରେ ଭୁଲ ଅଛି',
 
 # "Undo" feature
 'undo-success' => 'ଏହି ସମ୍ପାଦନା ପଛକୁ ଫେରାଯାଇପାରିବ ନାହିଁ ।

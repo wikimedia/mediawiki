@@ -17,7 +17,7 @@ $wgAutoloadClasses += array(
 	//API
 	'ApiFormatTestBase' => "$testFolder/phpunit/includes/api/format/ApiFormatTestBase.php",
 	'ApiTestCase' => "$testFolder/phpunit/includes/api/ApiTestCase.php",
-	'ApiTestUser' => "$testFolder/phpunit/includes/api/ApiTestUser.php",
+	'TestUser' => "$testFolder/phpunit/includes/TestUser.php",
 	'MockApi' => "$testFolder/phpunit/includes/api/ApiTestCase.php",
 	'RandomImageGenerator' => "$testFolder/phpunit/includes/api/RandomImageGenerator.php",
 	'UserWrapper' => "$testFolder/phpunit/includes/api/ApiTestCase.php",

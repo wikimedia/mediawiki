@@ -325,9 +325,9 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Endre avsnitt ved å høgreklikke på avsnittsoverskrift (JavaScript)',
 'tog-showtoc' => 'Vis innhaldsliste (for sider med meir enn tre bolkar)',
 'tog-rememberpassword' => 'Hugs innlogginga mi med denne nettlesaren (for høgst {{PLURAL:$1|éin dag|$1 dagar}})',
-'tog-watchcreations' => 'Legg til sidene eg opprettar på overvakingslista mi',
-'tog-watchdefault' => 'Legg til sidene eg endrar på overvakingslista mi',
-'tog-watchmoves' => 'Legg til sidene eg flyttar på overvakingslista mi',
+'tog-watchcreations' => 'Legg til sidene eg opprettar og filene eg lastar opp på overvakingslista mi',
+'tog-watchdefault' => 'Legg til sidene og filene eg endrar på overvakingslista mi',
+'tog-watchmoves' => 'Legg til sidene og filene eg flytter på overvakingslista mi',
 'tog-watchdeletion' => 'Legg til sidene eg slettar på overvakingslista mi',
 'tog-minordefault' => 'Merk endringar som «småplukk» som standard',
 'tog-previewontop' => 'Vis førehandsvisinga før endringsboksen',
@@ -335,7 +335,7 @@ $messages = array(
 'tog-nocache' => 'Deaktiver nettlesaren sitt mellomlager («cache»)',
 'tog-enotifwatchlistpages' => 'Send e-post når dei overvaka sidene mine vert endra',
 'tog-enotifusertalkpages' => 'Send e-post når brukarsida mi vert endra',
-'tog-enotifminoredits' => 'Send e-post også for småplukk',
+'tog-enotifminoredits' => 'Send meg e-post sjølv for mindre endringar på sider og filer',
 'tog-enotifrevealaddr' => 'Vis e-postadressa mi i endrings-e-post',
 'tog-shownumberswatching' => 'Vis kor mange som overvakar sida',
 'tog-oldsig' => 'Noverande signatur:',
@@ -577,6 +577,10 @@ $1',
 'youhavenewmessages' => 'Du har $1 ($2).',
 'newmessageslink' => 'nye meldingar',
 'newmessagesdifflink' => 'sjå skilnad',
+'youhavenewmessagesfromusers' => 'Du har $1 frå {{PLURAL:$3|ein annan bruker| $3 brukarar}} ($2).',
+'youhavenewmessagesmanyusers' => 'Du har $1 frå mange brukarar ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ei ny melding|nye meldingar}}',
+'newmessagesdifflinkplural' => 'siste {{PLURAL:$1|endringa|endringane}}',
 'youhavenewmessagesmulti' => 'Du har nye meldingar på $1',
 'editsection' => 'endre',
 'editold' => 'endre',
@@ -687,6 +691,7 @@ $2',
 Grunnen som er gjeven er: ''$2''.",
 'invalidtitle-knownnamespace' => 'Ugyldig tittel med namnerommet «$2» og teksten «$3»',
 'invalidtitle-unknownnamespace' => 'Ugyldig tittel med ukjend namneromstal $1 og teksten «$2»',
+'exception-nologin' => 'Ikkje innlogga',
 
 # Virus scanner
 'virus-badscanner' => "Dårleg konfigurasjon: ukjend virusskanner: ''$1''",
@@ -707,6 +712,7 @@ Hugs at du kan endre på [[Special:Preferences|innstillingane]] dine.',
 'remembermypassword' => 'Hugs innlogginga mi på denne datamaskinen (høgst {{PLURAL:$1|éin dag|$1 dagar}})',
 'securelogin-stick-https' => 'Fortset HTTPS-tilkopling etter innlogging.',
 'yourdomainname' => 'Domenet ditt',
+'password-change-forbidden' => 'Du kan ikkje endra passord på denne wikien.',
 'externaldberror' => 'Det var anten ein ekstern databasefeil i tilgjengekontrollen, eller du har ikkje løyve til å oppdatere den eksterne kontoen din.',
 'login' => 'Logg inn',
 'nav-login-createaccount' => 'Lag brukarkonto / logg inn',
@@ -863,11 +869,11 @@ Mellombels passord: $2',
 'subject' => 'Emne/overskrift:',
 'minoredit' => 'Småplukk',
 'watchthis' => 'Overvak sida',
-'savearticle' => 'Lagre',
+'savearticle' => 'Lagra sida',
 'preview' => 'Førehandsvising',
 'showpreview' => 'Førehandsvis',
 'showlivepreview' => 'Levande førehandsvising',
-'showdiff' => 'Vis skilnad',
+'showdiff' => 'Vis skilnader',
 'anoneditwarning' => "'''Åtvaring:''' Du er ikkje innlogga. IP-adressa di vert lagra i historikken for sida.",
 'anonpreviewwarning' => "''Du er ikkje innlogga. Lagrar du vil IP-adressa di verta førd opp i endringshistorikken til denne sida.''",
 'missingsummary' => "'''Påminning:''' Du har ikkje skrive noko endringssamandrag. Dersom du trykkjer «Lagre» ein gong til, vert endringa di lagra utan.",
@@ -1753,6 +1759,9 @@ $1',
 'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
 'backend-fail-alreadyexists' => 'Fila $1 finst frå før.',
 
+# Special:UploadStash
+'uploadstash-refresh' => 'Oppdater fillista',
+
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
 'img-auth-nopathinfo' => 'PATH_INFO manglar.
@@ -1804,7 +1813,7 @@ For best tryggleik, er img_auth.php sett ut av funksjon.',
 'listfiles_name' => 'Namn',
 'listfiles_user' => 'Brukar',
 'listfiles_size' => 'Storleik',
-'listfiles_description' => 'Beskriving',
+'listfiles_description' => 'Skildring',
 'listfiles_count' => 'Versjonar',
 
 # File description page
@@ -1843,6 +1852,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
 'shared-repo-from' => 'frå $1',
 'shared-repo' => 'eit sams fillager',
+'upload-disallowed-here' => 'Diverre kan du ikkje overskriva dette biletet.',
 
 # File reversion
 'filerevert' => 'Rulla attende $1',
@@ -2567,23 +2577,24 @@ IP-adresser som blir automatisk blokkerte er ikkje lista her. Sjå [[Special:Blo
 Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen. Du kan likevel flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, så lenge den sida du flytter attende til ikkje er vorten endra sidan flyttinga.
 
 <b>ÅTVARING!</b> Dette kan vera ei drastisk og uventa endring for ei populær side; ver sikker på at du skjønner konsekvensane av dette før du fortset.",
-'movepagetext-noredirectfixer' => "Ved å bruke skjemaet under kan du få omdøypt ei side og flytt heile historikken til det nye namnet. 
-Den gamle tittelen vil omdirigere til den nye tittelen. 
-Pass på å sjekke for doble eller dårlege omdirigeringar. 
-Du er ansvarleg for at alle lenkjene stadig peiker dit det er meininga at dei skal peike.
+'movepagetext-noredirectfixer' => "Nyttar ein skjemaet under får ein døypt om ei side og flytt heile historikken til det nye namnet. 
+Den gamle tittelen vil verta ei omdirigeringsside for den nye tittelen. 
+Pass på å sjå etter [[Special:DoubleRedirects|doble]] eller [[Special:BrokenRedirects|uverksame]] omdirigeringar. 
+Du er ansvarleg for at alle lenkjene stadig peikar dit det er meininga at dei skal føra.
 
-Merk at sida '''ikkje''' kan flyttast dersom det allereie finst ei side med den nye tittelen, om ho då ikkje er ei omdirigeringsside utan endringshistorikk. Dette vil seie at du kan flytte ei side attende dit ho vart flytt frå dersom du gjer ein feil, og at du ikkje kan skriva over ei side som finst.
+Merk at sida '''ikkje''' vert flytt dersom det alt finst ei side med den nye tittelen, om ho då ikkje er tom eller ei omdirigeringsside utan endringshistorikk.
+Dette vil seia at du kan døypa om ei side til det gamle namnet hennar om du gjer ein feil, og dessutan at du ikkje kan skriva over ei side som finst.
 
-<b>ÅTVARING!</b>
+'''ÅTVARING!'''
 Dette kan vera ei drastisk og uventa endring for ei populær side;
-ver sikker på at du skjøner konsekvensane av dette før du fortset.",
-'movepagetalktext' => "Den tilhøyrande diskusjonssida, om ho finst, vil automatisk bli flytt med sida '''med mindre:'''
-*Du flytter sida til eit anna namnerom, eller
-*Du fjernar merkinga i boksen nedanfor.
+ver viss på at du skjøner konsekvensane av flyttinga før du held fram.",
+'movepagetalktext' => "Den tilhøyrande diskusjonssida, om ho finst, vert automatisk flytt med sida '''minder:'''
+*ei ikkje-tom diskusjonsside alt finst under det nye namnet, eller
+*du fjernar avhakinga i boksen nedanfor.
 
-I desse falla lyt du flytte eller flette saman sida manuelt.",
+I desse falla lyt du flytta eller fletta sida manuelt, om ynskeleg.",
 'movearticle' => 'Flytt side:',
-'moveuserpage-warning' => "'''Åtvaring:''' Du er i ferd med å flytta ei brukarside. Merk at berre sida vil verta flytt og at brukarnamnet '''ikkje''' vert endra.",
+'moveuserpage-warning' => "'''Åtvaring:''' Du er i ferd med å flytta ei brukarside. Merk at berre sida vert flytt og at brukarnamnet '''ikkje''' vert endra.",
 'movenologin' => 'Ikkje innlogga',
 'movenologintext' => 'Du lyt vera registrert brukar og vera [[Special:UserLogin|innlogga]] for å flytte ei side.',
 'movenotallowed' => 'Du har ikkje tilgang til å flytte sider.',
@@ -2650,6 +2661,7 @@ Dette kan så importerast til ein annan wiki som brukar MediaWiki-programvara gj
 For å eksportere sider, skriv inn titlar i tekstboksen under, ein tittel per linje, og velg om du vil ha berre noverande versjon, eller alle versjonar i historikken.
 
 Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til dømes [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for sida «[[{{MediaWiki:Mainpage}}]]».',
+'exportall' => 'Eksporter alle sider',
 'exportcuronly' => 'Berre eksporter siste versjonen, ikkje med heile historikken.',
 'exportnohistory' => "----
 '''Merk:''' Å eksportere heile sidehistorikkar gjennom dette skjemaet er slått av grunna problem med ytinga.",
@@ -2686,6 +2698,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'thumbnail_error' => 'Feil ved oppretting av miniatyrbilete: $1',
 'djvu_page_error' => 'DjVu-sida er utanfor rekkjevidd',
 'djvu_no_xml' => 'Klarte ikkje hente inn XML for DjVu-fila',
+'thumbnail-temp-create' => 'Kan ikkje oppretta mellombels fil for miniatyrbilete',
 'thumbnail_invalid_params' => 'Ugyldige miniatyrparameterar',
 'thumbnail_dest_directory' => 'Klarte ikkje å opprette målmappe',
 'thumbnail_image-type' => 'Bilettypen er ikkje stødd',
@@ -2793,9 +2806,9 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-ca-nstab-help' => 'Vis hjelpeside',
 'tooltip-ca-nstab-category' => 'Vis kategoriside',
 'tooltip-minoredit' => 'Merk dette som småplukk',
-'tooltip-save' => 'Lagre endringane dine',
+'tooltip-save' => 'Lagra endringane dine',
 'tooltip-preview' => 'Førehandsvis endringane dine, bruk denne funksjonen før du lagrar!',
-'tooltip-diff' => 'Vis skilnaden mellom din versjon og lagra versjon, utan å lagre.',
+'tooltip-diff' => 'Sjå kva endringar du gjorde i teksten',
 'tooltip-compareselectedversions' => 'Sjå endringane mellom dei valde versjonane av denne sida.',
 'tooltip-watch' => 'Legg sida til i overvakingslista di [alt-w]',
 'tooltip-watchlistedit-raw-submit' => 'Oppdater overvakingslista',

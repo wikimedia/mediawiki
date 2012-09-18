@@ -1218,7 +1218,8 @@ Ellenőrizd a naplókat.',
 'revdelete-only-restricted' => 'Hiba a(z) $1 $2 időbélyegű elem elrejtésekor: nem rejthetsz el az adminisztrátorok elől elemeket anélkül, hogy ne választanál ki egy másik elrejtési beállítást.',
 'revdelete-reason-dropdown' => '*Általános törlési okok
 ** Jogsértő tartalom
-** Kényes személyes információk',
+** Kényes személyes információk
+** Potenciális becsületsértő információk',
 'revdelete-otherreason' => 'Más/további ok:',
 'revdelete-reasonotherlist' => 'Más ok',
 'revdelete-edit-reasonlist' => 'Törlési okok szerkesztése',

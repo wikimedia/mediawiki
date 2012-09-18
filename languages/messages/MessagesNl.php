@@ -1952,7 +1952,7 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'backend-fail-internal' => 'Er is een onbekende fout opgetreden in het opslagbackend "$1".',
 'backend-fail-contenttype' => 'Het inhoudstype van het bestand om in de opslag "$1" op te slaan kon niet bepaald worden.',
 'backend-fail-batchsize' => 'Taak met $1 {{PLURAL:$1|bestandshandeling|bestandshandelingen}} in het opslagbackend; de limiet is $2 {{PLURAL:$2|handeling|handelingen}}.',
-'backend-fail-usable' => 'Het was niet mogelijk naar het bestand $1 te schrijven vanwege onvoldoende rechten of niet-aanwezige mappen of containers.',
+'backend-fail-usable' => 'Het was niet mogelijk naar het bestand $1 te schrijven of eruit te lezen vanwege onvoldoende rechten of niet-aanwezige mappen of containers.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Het was niet mogelijk een verbinding te maken met de journaldatabase voor het opslagbackend "$1".',

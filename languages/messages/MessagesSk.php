@@ -545,6 +545,10 @@ $1',
 'youhavenewmessages' => 'Máte $1 ($2).',
 'newmessageslink' => 'nové správy',
 'newmessagesdifflink' => 'posledná zmena',
+'youhavenewmessagesfromusers' => 'Máte $1 od {{PLURAL:$3|iného používateľa|$3 iných používateľov}} ($2).',
+'youhavenewmessagesmanyusers' => 'Máte $1 od viacerých ďalších používateľov ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|novú správu|nové správy|nových správ}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|posledná zmena|posledné zmeny}}',
 'youhavenewmessagesmulti' => 'Máte nové správy na $1',
 'editsection' => 'upraviť',
 'editold' => 'upraviť',
@@ -596,9 +600,9 @@ Zoznam platných špeciálnych stránok nájdete na [[Special:SpecialPages|{{int
 # General errors
 'error' => 'Chyba',
 'databaseerror' => 'Chyba v databáze',
-'dberrortext' => 'Nastala syntaktická chyba v príkaze na prehľadávanie databázy.
-To môže značiť chybu v softvéri.
-Posledná požiadavka na databázu bola:
+'dberrortext' => 'V databázovom dopyte sa vyskytla syntaktická chyba.
+Príčinou môže byť chyba v softvéri.
+Posledný dopyt bol:
 <blockquote><tt>$1</tt></blockquote>
 z funkcie „<tt>$2</tt>“.
 Databáza vrátila chybu „<tt>$3: $4</tt>“.',
@@ -956,10 +960,9 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'blocked-notice-logextract' => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache' => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.
-* '''Mozilla / Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
+* '''Mozilla Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
 * '''Google Chrome:''' Stlačte ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Mac)
 * '''Internet Explorer:''' Držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''
-* '''Konqueror:''' Kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''
 * '''Opera:''' Vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''",
 'usercssyoucanpreview' => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'userjsyoucanpreview' => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
@@ -1208,9 +1211,11 @@ Nemáte k nej prístup.',
 'revdelete-concurrent-change' => 'Chyba pri zmene položky s dátumom $2, $1: zdá sa, že kým ste ju menili vykonal zmenu niekto iný.
 Pozrite sa prosím do záznamov.',
 'revdelete-only-restricted' => 'Chyba pri skrývaní položky s dátumom $2, $1: nemôžete skryť položku pred správcami bez toho, aby ste vybrali aj jednu z ďalších možností viditeľnosti.',
-'revdelete-reason-dropdown' => '*Bežné dôvody zmazania
+'revdelete-reason-dropdown' => '*Obvyklé dôvody zmazania
 ** Porušenie autorských práv
-** Nevhodné osobné informácie',
+** Nevhodné komentáre alebo osobné informácie
+** Nevhodné meno používateľa
+** Potenciálne hanlivé alebo ohováračské údaje',
 'revdelete-otherreason' => 'Ďalšie dôvody:',
 'revdelete-reasonotherlist' => 'Iný dôvod',
 'revdelete-edit-reasonlist' => 'Upraviť dôvody zmazania',
@@ -1827,7 +1832,7 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'backend-fail-internal' => 'Vyskytla sa neznáma chyba v úložisku „$1“.',
 'backend-fail-contenttype' => 'Nebolo možné určiť typ obsahu súboru, ktorý sa má uložiť na „$1“.',
 'backend-fail-batchsize' => 'Do úložiska bola zaslaná dávka s $1 {{PLURAL:$1|operáciou|operáciami}}; limit je $2 {{PLURAL:$2|operácia|operácie|operácií}}.',
-'backend-fail-usable' => 'Nie je možné zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.',
+'backend-fail-usable' => 'Nie je možné čítať alebo zapísať súbor  $1  kvôli nedostatočným povoleniam alebo chýbajúcim adresárom/kontajnerom.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nepodarilo sa pripojiť k žurnálovej databáze úložiska „$1“.',
@@ -1956,6 +1961,7 @@ Možno chcete upraviť popis na jeho [$2 popisnej stránke súboru] tam.',
 'uploadnewversion-linktext' => 'Nahrať novú verziu tohto súboru',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zdieľané úložisko',
+'upload-disallowed-here' => 'Ľutujeme, tento súbor nie je možné prepísať.',
 
 # File reversion
 'filerevert' => 'Obnoviť $1',
@@ -2062,6 +2068,7 @@ Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riad
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bajt|bajty|bajtov}}',
 'ncategories' => '$1 {{PLURAL:$1|kategória|kategórie|kategórií}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki odkaz|interwiki odkazy|interwiki odkazov}}',
 'nlinks' => '$1 {{PLURAL:$1|odkaz|odkazy|odkazov}}',
 'nmembers' => '$1 {{PLURAL:$1|člen|členovia|členov}}',
 'nrevisions' => '$1 {{PLURAL:$1|revízia|revízie|revízií}}',
@@ -2090,6 +2097,7 @@ Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riad
 'mostlinkedtemplates' => 'Najčastejšie odkazované šablóny',
 'mostcategories' => 'Stránky s najväčším počtom kategórií',
 'mostimages' => 'Najčastejšie odkazované súbory',
+'mostinterwikis' => 'Stránky s najväčším počtom interwiki odkazov',
 'mostrevisions' => 'Stránky s najväčším počtom úprav',
 'prefixindex' => 'Všetky stránky s predponou',
 'prefixindex-namespace' => 'Všetky stránky s predponou (menný priestor $1)',
@@ -2236,6 +2244,8 @@ Môžete si prečítať [[{{MediaWiki:Listgrouprights-helppage}}|ďalšie inform
 'mailnologin' => 'Žiadna adresa na zaslanie',
 'mailnologintext' => 'Musíte byť [[Special:UserLogin|prihlásený]] a mať platnú e-mailovú adresu vo vašich [[Special:Preferences|nastaveniach]], aby ste mohli iným používateľom posielať e-maily.',
 'emailuser' => 'E-mail tomuto používateľovi',
+'emailuser-title-target' => 'E-mail {{GENDER:$1|tomuto používateľovi|tejto používateľke}}',
+'emailuser-title-notarget' => 'E-mail používateľovi',
 'emailpage' => 'E-mail používateľovi',
 'emailpagetext' => 'Ak tento používateľ zadal platnú emailovú adresu vo svojich nastaveniach,
 môžete mu pomocou nasledovného formulára poslať email.
@@ -3063,11 +3073,14 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 
 # Info page
 'pageinfo-title' => 'Informácie o „$1“',
-'pageinfo-header-edits' => 'Úpravy',
+'pageinfo-header-basic' => 'Základné údaje',
+'pageinfo-header-edits' => 'História úprav',
+'pageinfo-article-id' => 'ID stránky',
 'pageinfo-views' => 'Počet zobrazení',
 'pageinfo-watchers' => 'Počet sledovateľov',
-'pageinfo-edits' => 'Počet úprav',
-'pageinfo-authors' => 'Počet rôznych autorov',
+'pageinfo-lasttime' => 'Dátum poslednej úpravy',
+'pageinfo-edits' => 'Celkový počet úprav',
+'pageinfo-authors' => 'Celkový počet autorov',
 
 # Skin names
 'skinname-standard' => 'Klasický',

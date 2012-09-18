@@ -1256,7 +1256,8 @@ Pogledajte istoriju.',
 'revdelete-only-restricted' => 'Greška pri sakrivanju stavke od $1, $2: ne možete sakriti stavke od administratora bez izbora drugih mogućnosti vidljivosti.',
 'revdelete-reason-dropdown' => '*Uobičajeni razlozi za brisanje
 ** Kršenje autorskog prava
-** Neodgovarajući lični podaci
+** Neprikladan komentar ili lični podaci
+** Neprikladno korisničko ime
 ** Uvredljivi podaci',
 'revdelete-otherreason' => 'Drugi/dodatni razlog:',
 'revdelete-reasonotherlist' => 'Drugi razlog',
@@ -1898,7 +1899,7 @@ Ako se problem ne reši, kontaktirajte [[Special:ListUsers/sysop|administratora]
 'backend-fail-internal' => 'Došlo je do nepoznate greške u skladišnoj osnovi „$1“.',
 'backend-fail-contenttype' => 'Ne mogu da utvrdim kakav sadržaj ima datoteka koju treba da smestim u „$1“.',
 'backend-fail-batchsize' => 'Skladišna osnova je dobila blokadu od $1 {{PLURAL:$1|operacije|operacije|operacija}}; ograničenje je $2 {{PLURAL:$2|operacija|operacije|operacija}}.',
-'backend-fail-usable' => 'Ne mogu da zapišem datoteku $1 jer nemate dovoljno dozvola ili vam nedostaju fascikle/sadržaoci.',
+'backend-fail-usable' => 'Ne mogu da pročitam ili zapišem datoteku „$1“ jer nemate dovoljno dozvola ili vam nedostaju fascikle/sadržaoci.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Ne mogu da se povežem s novinarskom bazom za skladišnu osnovu „$1“.',

@@ -557,9 +557,7 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	protected function getParserOutput( WikiPage $page, Revision $rev ) {
-		$parserOptions = ParserOptions::newFromContext( $this->getContext() );
-		$parserOptions->enableLimitReport();
-		$parserOptions->setTidy( true );
+		$parserOptions = $page->makeParserOptions( $this->getContext() );
 
 		if ( !$rev->isCurrent() || !$rev->getTitle()->quickUserCan( "edit" ) ) {
 			$parserOptions->setEditSection( false );

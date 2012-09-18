@@ -1226,7 +1226,9 @@ Proszę sprawdzić rejestr operacji.',
 'revdelete-only-restricted' => 'Nie można ukryć elementu z $2, $1 przed administratorami bez określenia jednej z pozostałych opcji ukrywania.',
 'revdelete-reason-dropdown' => '* Najczęstsze powody usunięcia
 ** Naruszenie praw autorskich
-** Informacja naruszająca prywatność',
+** Niestosowny komentarz lub informacja naruszająca prywatność
+** Niestosowna nazwa użytkownika
+** Potencjalnie oszczercza informacja',
 'revdelete-otherreason' => 'Inny lub dodatkowy powód:',
 'revdelete-reasonotherlist' => 'Inny powód',
 'revdelete-edit-reasonlist' => 'Edycja listy powodów usunięcia pliku',
@@ -1854,7 +1856,7 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'backend-fail-internal' => 'Wystąpił nieznany błąd w wewnętrznych funkcjach magazynowania "$1".',
 'backend-fail-contenttype' => 'Nie można określić typ zawartości pliku do przechowywania w "$1".',
 'backend-fail-batchsize' => 'Wewnętrzne funkcje magazynowania otrzymały $1 {{PLURAL:$1|operację|operacje|operacji}} na pliku; limit to $2 {{PLURAL:$2|operacja|operacje|operacji}}.',
-'backend-fail-usable' => 'Nie można zapisać pliku $1 ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
+'backend-fail-usable' => 'Nie można zapisać lub czytać z pliku "$1" ze względu na niewystarczające uprawnienia lub brak katalogów/kontenerów.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nie można połączyć się z bazą danych dziennika dla backendu magazynowania "$1".',
@@ -3100,11 +3102,11 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-header-edits' => 'Historia edycji',
 'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
 'pageinfo-header-properties' => 'Właściwości strony',
-'pageinfo-display-title' => 'Wyświetl tytuł',
+'pageinfo-display-title' => 'Wyświetlany tytuł',
 'pageinfo-default-sort' => 'Domyślny klucz sortowania',
 'pageinfo-length' => 'Długość strony (w bajtach)',
 'pageinfo-article-id' => 'Identyfikator strony',
-'pageinfo-robot-policy' => 'Stan wyszukiwarki',
+'pageinfo-robot-policy' => 'Status w wyszukiwarce',
 'pageinfo-robot-index' => 'Indeksowalne',
 'pageinfo-robot-noindex' => 'Nieindeksowalne',
 'pageinfo-views' => 'Odsłon',
@@ -3120,10 +3122,10 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-authors' => 'Całkowita liczba autorów',
 'pageinfo-recent-edits' => 'Liczba ostatnich edycji (w przeciągu $1)',
 'pageinfo-recent-authors' => 'Liczba ostatnich autorów',
-'pageinfo-restriction' => 'Zabezpieczenie strony ({{lcfirst:$1}})',
+'pageinfo-restriction' => 'Zabezpieczenie strony – {{lcfirst:$1}}',
 'pageinfo-magic-words' => 'Magiczne {{PLURAL:$1|słowo|słowa|słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukryte kategorie}} ($1)',
-'pageinfo-templates' => 'Transkludowan{{PLURAL:$1|y szablon|e szablony}} ($1)',
+'pageinfo-templates' => 'Wykorzystywan{{PLURAL:$1|y szablon|e szablony}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Standardowa',

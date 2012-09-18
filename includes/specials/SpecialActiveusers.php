@@ -94,8 +94,8 @@ class ActiveUsersPager extends UsersPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
-		$conds[] = "rc_log_type IS NULL OR rc_log_type != 'newusers'";
-		$conds[] = "rc_timestamp >= '{$dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 )}'";
+		$conds[] = 'rc_log_type IS NULL OR rc_log_type != ' . $dbr->addQuotes( 'newusers' );
+		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $this->RCMaxAge*24*3600 ) );
 
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
@@ -115,7 +115,11 @@ class ActiveUsersPager extends UsersPager {
 			),
 			'join_conds' => array(
 				'user' => array( 'INNER JOIN', 'rc_user_text=user_name' ),
-				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_auto=0 AND ipb_deleted=1' ),
+				'ipblocks' => array( 'LEFT JOIN', array(
+					'user_id=ipb_user',
+					'ipb_auto' => 0,
+					'ipb_deleted' => 1
+				)),
 			),
 			'conds' => $conds
 		);

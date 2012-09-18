@@ -263,6 +263,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		}
 		if ( !is_null( $params ) ) {
 			$result->setIndexedTagName( $params, 'param' );
+			$result->setIndexedTagName_recursive( $params, 'param' );
 			$vals = array_merge( $vals, $params );
 		}
 		return $vals;

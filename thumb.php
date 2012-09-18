@@ -95,6 +95,7 @@ function wfThumbHandle404() {
  * @return void
  */
 function wfStreamThumb( array $params ) {
+	global $wgVaryOnXFP;
 	wfProfileIn( __METHOD__ );
 
 	$headers = array(); // HTTP headers to send
@@ -158,6 +159,7 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Check permissions if there are read restrictions
+	$varyHeader = array();
 	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
 		if ( !$img->getTitle() || !$img->getTitle()->userCan( 'read' ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
@@ -166,7 +168,7 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$headers[] = 'Cache-Control: private';
-		$headers[] = 'Vary: Cookie';
+		$varyHeader[] = 'Cookie';
 	}
 
 	// Check the source file storage path
@@ -216,19 +218,36 @@ function wfStreamThumb( array $params ) {
 
 	// Stream the file if it exists already...
 	try {
+		$thumbName2 = $img->thumbName( $params, File::THUMB_FULL_NAME ); // b/c; "long" style
 		// For 404 handled thumbnails, we only use the the base name of the URI
 		// for the thumb params and the parent directory for the source file name.
 		// Check that the zone relative path matches up so squid caches won't pick
 		// up thumbs that would not be purged on source file deletion (bug 34231).
-		if ( isset( $params['rel404'] ) // thumbnail was handled via 404
-			&& urldecode( $params['rel404'] ) !== $img->getThumbRel( $thumbName ) )
-		{
-			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
-			wfProfileOut( __METHOD__ );
-			return;
+		if ( isset( $params['rel404'] ) ) { // thumbnail was handled via 404
+			if ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName ) ) {
+				// Request for the canonical thumbnail name
+			} elseif ( urldecode( $params['rel404'] ) === $img->getThumbRel( $thumbName2 ) ) {
+				// Request for the "long" thumbnail name; redirect to canonical name
+				$response = RequestContext::getMain()->getRequest()->response();
+				$response->header( "HTTP/1.1 301 " . HttpStatus::getMessage( 301 ) );
+				$response->header( 'Location: ' . wfExpandUrl( $img->getThumbUrl( $thumbName ), PROTO_CURRENT ) );
+				$response->header( 'Expires: ' .
+					gmdate( 'D, d M Y H:i:s', time() + 7*86400 ) . ' GMT' );
+				if ( $wgVaryOnXFP ) {
+					$varyHeader[] = 'X-Forwarded-Proto';
+				}
+				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				wfProfileOut( __METHOD__ );
+				return;
+			} else {
+				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+				wfProfileOut( __METHOD__ );
+				return;
+			}
 		}
 		$thumbPath = $img->getThumbPath( $thumbName );
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
+			$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
 			$img->getRepo()->streamFile( $thumbPath, $headers );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -238,6 +257,7 @@ function wfStreamThumb( array $params ) {
 		wfProfileOut( __METHOD__ );
 		return;
 	}
+	$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
 
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {

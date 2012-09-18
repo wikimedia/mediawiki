@@ -6,7 +6,7 @@
 			<pluralRule count="one">n is 1</pluralRule>
 			<pluralRule count="two">n is 2</pluralRule>
 		</pluralRules>
-		<pluralRules locales="dsb">
+		<pluralRules locales="dsb hsb">
 			<pluralRule count="one">n mod 100 is 1</pluralRule>
 			<pluralRule count="two">n mod 100 is 2</pluralRule>
 			<pluralRule count="few">n mod 100 in 3..4</pluralRule>
@@ -30,6 +30,10 @@
 			<pluralRule count="elevan">n is 11</pluralRule>
 			<pluralRule count="twelve">n is 12</pluralRule>
 			<pluralRule count="few">n in 3..10 or n in 13..19</pluralRule>
+		</pluralRules>
+		<!-- Hopefully temporary overrides for bug 40251 -->
+		<pluralRules locales="fa hu ja vi">
+			<pluralRule count="one">n is 1</pluralRule>
 		</pluralRules>
 	</plurals>
 </supplementalData>

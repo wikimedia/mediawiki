@@ -62,7 +62,7 @@ class StandardTemplate extends LegacyTemplate {
 
 		$s = "\n</div><br style=\"clear:both\" />\n";
 		$s .= "\n<div id='footer'>";
-		$s .= '<table border="0" cellspacing="0"><tr>';
+		$s .= '<table cellspacing="0"><tr>';
 
 		wfProfileOut( __METHOD__ . '-1' );
 		wfProfileIn( __METHOD__ . '-2' );

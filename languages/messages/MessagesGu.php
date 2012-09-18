@@ -473,11 +473,11 @@ $1',
 'error' => 'ત્રુટિ',
 'databaseerror' => 'ડેટાબેઝ ત્રુટિ',
 'dberrortext' => 'માહિતીસંચ ને અપાયેલ શોધના સૂત્રમાં ચૂક છે.
-આ સોફ્ટવેરમાં માં નાની  ત્રુટિ (bug) ને લીધે હોઇ શકે.
-માહિતીસંચ પર કરાયેલ છેલ્લામાં છેલ્લી શોધ આ પ્રમાણે હતી:
-<blockquote><tt>$1</tt></blockquote>
-આ ફંકશન થકી  "<tt>$2</tt>".
-માહિતીસંચે આપેલ ચૂકનું વિવરણ "<tt>$3: $4</tt>".',
+આ સોફ્ટવેરમાં નાની  ત્રુટિ (bug) ને લીધે હોઇ શકે.
+માહિતીસંચય પર કરાયેલ છેલ્લામાં છેલ્લી શોધ આ પ્રમાણે હતી:
+<blockquote><code>$1</code></blockquote>
+આ ફંકશન થકી  "<code>$2</code>".
+માહિતીસંચયે આપેલ ચૂકનું વિવરણ "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'માહિતીસંચ ને અપાયેલ શોધના સૂત્રમાં ચૂક છે.
 માહિતીસંચ પર કરાયેલ છેલ્લામાં છેલ્લી શોધ આ પ્રમાણે હતી:
 "$1"
@@ -544,7 +544,10 @@ $2',
 'ns-specialprotected' => 'ખાસ પાનાંમાં ફેરફાર ન થઇ શકે.',
 'titleprotected' => 'આ મથાળું (વિષય) [[User:$1|$1]] બનાવવા માટે સુરક્ષિત કરવામાં આવ્યો છે.
 આ માટેનું કારણ છે-- "\'\'$2\'\'".',
+'invalidtitle-knownnamespace' => 'નામસ્થળ "$2" અને લખાણ "$3" સાથે અમાન્ય મથાળું',
+'invalidtitle-unknownnamespace' => 'અજ્ઞાત નામસ્થળ ક્રમાંક $1 અને નામ "$2" વાળું અમાન્ય મથાળું',
 'exception-nologin' => 'પ્રવેશ કરેલ નથી',
+'exception-nologin-text' => 'આ પાનું કે ક્રિયા માટે આ વિકિ પર લોગઈન થવું જરૂરી છે.',
 
 # Virus scanner
 'virus-badscanner' => "ખરાબ રૂપરેખા: અજાણ્યું વાઇરસ સ્કેનર: ''$1''",
@@ -642,8 +645,8 @@ Please log in again after you receive it.
 નિમ્નલિખિત વિશેષતાઓમાંથી કોઇ માટે ઇ-મેઇલ મોકલવામાં આવશે નહીં.',
 'noemailprefs' => "આ વિશેષતાઓ કાર્ય કરી શકે તે માટે 'તમારી પસંદ'માં ઇ-મેઇલ સરનામું દર્શાવો.",
 'emailconfirmlink' => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
-'invalidemailaddress' => 'આ ઈ-મેલ અયોગ્ય માળખું ધરાવ્હે છે  માટે સ્વીકારી શકાશે નહીં
-કૃપયા યોગ્ય માળખામાં ઇ-મેલ લખો',
+'invalidemailaddress' => 'આ ઈ-મેલ અયોગ્ય માળખું ધરાવે છે માટે સ્વીકારી શકાશે નહીં.
+કૃપયા યોગ્ય માળખામાં ઇ-મેલ લખો અથવા આ ખાનું ખાલી કરો.',
 'cannotchangeemail' => 'એકાઉન્ટ ઈ મેલ એડ્રસ આ વીકી પર નહિ બદલી શકાય.',
 'emaildisabled' => 'આ સાઇટ ઇ-મેલ્સ મોકલી શકતી નથી.',
 'accountcreated' => 'ખાતું ખોલવામાં આવ્યું છે',
@@ -828,8 +831,7 @@ $2
 *'''ફાયરફોક્સ / સફારી:''' ''શીફ્ટ'' દબાવેલી રાખીને ''રિલોડ'' પર ક્લિક કરો, અથવા તો ''Ctrl-F5'' કે ''Ctrl-R'' દબાવો (મેક પર ''⌘-R'')
 *'''ગુગલ ક્રોમ:''' ''Ctrl-Shift-R'' દબાવો (મેક પર ''⌘-Shift-R'')
 *'''ઈન્ટરનેટ એક્સપ્લોરર:''' ''Ctrl'' દબાવેલી રાખીને ''રિફ્રેશ'' પર ક્લિક કરો, અથવા ''Ctrl-F5'' દબાવો
-*'''કોન્કરર:''' ''રિલોડ'' પર ક્લિક કરો અથવા ''F5'' દબાવો
-*'''ઓપેરા:''' ''સાધનો → પસંદગીઓ''માં જઈને કૅશ સાફ કારો",
+*'''ઓપેરા:''' ''સાધનો → પસંદગીઓ''માં જઈને કૅશ સાફ કરો",
 'usercssyoucanpreview' => "'''ટીપ:''' તમારા નવા CSSને સાચવતા પહેલા  \"{{int:showpreview}}\" બટન વાપરી ચકાસણી કરો.",
 'userjsyoucanpreview' => "'''ટીપ:''' Use the તમારી નવી JavaScript ને સાચવતા પહેલા   \"{{int:showpreview}}\" બટન વાપરી ચકાસો.",
 'usercsspreview' => "'''યાદ રહે કે તમે તમારા સભ્ય CSS નું અવલોકન કરો છે.'''
@@ -975,7 +977,7 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'last' => 'છેલ્લું',
 'page_first' => 'પહેલું',
 'page_last' => 'છેલ્લું',
-'histlegend' => "વિવિધ પસંદગી:સરખામણી માટે સુધારેલી આવૃતિઓના રેડિયો ખાનાઓ પસંદ કરો અને એન્ટર મારો અથવા નીચે આવેલું બટન દબાવો.<br />
+'histlegend' => "વિવિધ પસંદગી:સરખામણી માટે સુધારેલી આવૃતિઓના રેડિયો ખાનાઓ પસંદ કરો અને એન્ટર દબાવો અથવા નીચે આપેલું બટન દબાવો.<br />
 સમજૂતી:'''({{int:cur}})''' = વર્તમાન અને સુધારેલી આવૃતિનો તફાવત, '''({{int:last}})''' = પૂર્વવર્તી ફેરફારનો તફાવત, '''{{int:minoreditletter}}''' = નાનો ફેરફાર.",
 'history-fieldset-title' => 'ઇતિહાસ ઉખેળો',
 'history-show-deleted' => 'માત્ર હટાવાયેલા',
@@ -1081,7 +1083,8 @@ $1",
 'revdelete-only-restricted' => '$2 તારીખ, $1 વાગ્યાની વસ્તુ સંતાડવામાં ત્રુટિ : અન્ય દ્રશ્ય વિકલ્પ પસંદ કર્યા સિવાય તમે પ્રતિબંધને પ્રબંધકથી દેખતા બચાવી ન શકો.',
 'revdelete-reason-dropdown' => '* હટાવવાનાં સામાન્ય કારણો 
 ** પ્રકાશનાધિકાર ભંગ
-** અયોગ્ય અંગત માહિતી 
+** અયોગ્ય ટિપ્પણી કે અંગત માહિતી 
+** અયોગ્ય સભ્યનામ
 ** સંભવતઃ બદનક્ષી કરનારું લખાણ',
 'revdelete-otherreason' => 'અન્ય/વધારાનું કારણ:',
 'revdelete-reasonotherlist' => 'અન્ય કારણ',
@@ -1360,7 +1363,7 @@ HTML નાકું ચકાસો',
 # Groups
 'group' => 'સમુહ',
 'group-user' => 'સભ્ય',
-'group-autoconfirmed' => 'સ્વયં ચલિત પરવાનગી મેળવેલ સભ્યો',
+'group-autoconfirmed' => 'સ્વયંચલિત માન્ય સભ્યો',
 'group-bot' => 'બૉટો',
 'group-sysop' => 'સાઇસૉપ/પ્રબંધકો',
 'group-bureaucrat' => 'રાજનૈતિકો',
@@ -1375,7 +1378,7 @@ HTML નાકું ચકાસો',
 'group-suppress-member' => '{{GENDER:$1|દુર્લક્ષ}}',
 
 'grouppage-user' => '{{ns:project}}:સભ્યો',
-'grouppage-autoconfirmed' => '{{ns:project}}:સ્વ્યંચલિત બહાલ  સભ્યો',
+'grouppage-autoconfirmed' => '{{ns:project}}:સ્વયંચલિત માન્ય સભ્યો',
 'grouppage-bot' => '{{ns:project}}:બૉટો',
 'grouppage-sysop' => '{{ns:project}}:પ્રબંધકો',
 'grouppage-bureaucrat' => '{{ns:project}}: રાજનૈતિક',
@@ -2082,8 +2085,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 
 # Special:ListGroupRights
 'listgrouprights' => 'સભ્ય જૂથ ના હક્કો',
-'listgrouprights-summary' => 'નીચે આ વિકિ પર પરિભાષિત સભ્ય જૂથની યાદિ આપી છે અને તેમના હક્કો પણ આપેલા છે.
-નીજી હક્કો માટે [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] માહિતી.',
+'listgrouprights-summary' => 'નીચે આ વિકિ પર વ્યાખ્યાયિત સભ્ય જૂથોની યાદી, તેમની સાથે સંકળાયેલા હક્કો સાથે આપી છે.
+વ્યક્તિગત હક્કો માટે [[{{MediaWiki:Listgrouprights-helppage}}|વધારાની માહિતી]].',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">અધિકાર અપાયા</span>
 * <span class="listgrouprights-revoked">અધિકાર હટાવાયા</span>',
 'listgrouprights-group' => 'જૂથ',
@@ -2222,7 +2225,7 @@ $UNWATCHURL
 'delete-legend' => 'રદ કરો',
 'historywarning' => "'''ચેતવણી:''' જે પાનું તમે હટાવવા જઇ રહ્યાં છો તેને આશરે $1 {{PLURAL:$1|પુનરાવર્તન|પુનરાવર્તનો}}નો ઇતિહાસ છે:",
 'confirmdeletetext' => 'આપ આ પાનું તેના ઇતિહાસ (બધાજ પૂર્વ  ફેરફારો) સાથે હટાવી રહ્યાં છો.
-કૃપા કરી મંજૂરી આપો કે, આપ આમ કરવા ચાહો છો, આપ આના સરા-નરસા પરિણામોથી વાકેફ છો, અને આપ આ કૃત્ય [[{{MediaWiki:Policy-url}}|નીતિ]]ને અનુરૂપ જ કરી રહ્યાં છો.',
+કૃપા કરી ખાત્રી કરો કે આપ આમ કરવા ઇચ્છો છો, આપ આના સારા-નરસા પરિણામોથી વાકેફ છો, અને આપ આ કાર્ય [[{{MediaWiki:Policy-url}}|નીતિ]]ને અનુરૂપ જ કરી રહ્યાં છો.',
 'actioncomplete' => 'કામ પૂર્ણ',
 'actionfailed' => 'કાર્ય અસફળ',
 'deletedtext' => '"$1" દૂર કરવામાં આવ્યું છે.
@@ -2343,7 +2346,7 @@ Deleting it may disrupt database operations of {{SITENAME}};',
 
 # Undelete
 'undelete' => 'ભૂંસાડેલા પાના બતાવો',
-'undeletepage' => 'હટાવેલ પાના જુઓ અને પુંર્જીવીત કરો',
+'undeletepage' => 'હટાવેલ પાના જુઓ અને પુનર્જીવિત કરો',
 'undeletepagetitle' => "'''નીચે [[:$1|$1]] ના ભૂંસાડેલ સંપાદનો છે.'''.",
 'viewdeletedpage' => 'ભૂંસેલા પાના બતાવો',
 'undeletepagetext' => 'નીચેના {{PLURAL:$1|પાનું હટાવી દેવાયું છે |$1 પાના હટાવી દેવાયા છે}} તે હજી પ્રાચીન દસ્તવેજમાં છે અને પુનઃસ્થાપિત કરી શકાશે.
@@ -2362,7 +2365,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'undelete-revision' => '$1 ( $4 તારીખે , $5 વાગ્યા)  સુધી કરેલા ફેરફારો  $3 દ્વારા હટાવાયા:',
 'undeleterevision-missing' => 'અવૈધ કે ગાયબ પુનરાવર્તન.
 તમારી કડી ખરાબ હશે અથવા ઇતિહાસમાંથી તે માહિતી હટાવાઇ હશે.',
-'undelete-nodiff' => 'કોઇ પ્રાચીન સંપદનો નથી મળ્યાં',
+'undelete-nodiff' => 'કોઇ પ્રાચીન સંપાદનો નથી મળ્યાં.',
 'undeletebtn' => 'પાછું વાળો',
 'undeletelink' => 'જુઓ/પાછુ વાળો',
 'undeleteviewlink' => 'જુઓ',
@@ -2372,8 +2375,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'undeletedrevisions' => '{{PLURAL:$1|૧ સંપાદન|$1 સંપાદનો}} પુન સ્થાપિત કરાયા',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 ફેરફાર|$1 ફેરફારો}} અને {{PLURAL:$2|1 ફાઈલા|$2 ફાઈલો}} પુનઃસ્થાપિત',
 'undeletedfiles' => '{{PLURAL:$1|1 ફાઇલ|$1 ફાઇલો}} પુનઃસ્થાપિત',
-'cannotundelete' => 'પુનઃજીવિત કરવાનું કાર્ય અસફળ 
-કોઇકે  આ પાનાને પહેલેથી પુનઃજીવિત કર્યું હોઇ શકે.',
+'cannotundelete' => 'પુનર્જીવિત કરવાનું કાર્ય અસફળ; 
+કોઇકે આ પાનાને પહેલેથી પુનર્જીવિત કર્યું હોઈ શકે.',
 'undeletedpage' => "'''$1 પુનઃસ્થાપિત કરાયા'''
 
 તાજેતરમાં હટાવેલા કે પુનઃસ્થાપિત થયેલા ફેરફારની નોંધ નો સંદર્ભ અહીં ઉપ્લબ્ધ [[Special:Log/delete|deletion log]].",
@@ -2456,22 +2459,22 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'blockip' => 'સભ્ય પર પ્રતિબંધ મુકો',
 'blockip-title' => 'સભ્ય પર પ્રતિબંધ મુકો',
 'blockip-legend' => 'સભ્ય પર પ્રતિબંધ મુકો',
-'blockiptext' => 'કોઇ ચોક્કસ IP સરનામું કે સભ્ય  ના  લેખન યોગદાન પર પ્રતિબંધ મુકવા નીચેનું ફોર્મ વાપરો.
-તેનો ઉપયોગ માત્ર ભાંગફોડિયા પ્રવૃત્તિઓને રોકવા અને  [[{{MediaWiki:Policy-url}}|policy]] અનુસાર જ હોવી જોઇએ.
-કારણનું ખાનું અવશ્ય ફરશો (દા.ત. અમુક ભાંગફોડ કરાયેલ પાનું)',
+'blockiptext' => 'કોઈ ચોક્કસ IP સરનામું કે સભ્યના લેખન યોગદાન પર પ્રતિબંધ મુકવા નીચેનું ફોર્મ વાપરો.
+તેનો ઉપયોગ માત્ર ભાંગફોડિયા પ્રવૃત્તિઓને રોકવા અને  [[{{MediaWiki:Policy-url}}|નીતિ]] અનુસાર જ હોવો જોઈએ.
+કારણનું ખાનું અવશ્ય ભરશો (દા.ત. અમુક ભાંગફોડ કરાયેલા પાનાનો સંદર્ભ).',
 'ipadressorusername' => 'IP સરનામું અથવા સભ્યનામ:',
 'ipbexpiry' => 'સમાપ્તિ:',
 'ipbreason' => 'કારણ:',
 'ipbreasonotherlist' => 'અન્ય કારણ',
 'ipbreason-dropdown' => '*સામાન્ય પ્રતિબંધ કારણો
-** ખોટી  માહિતી ઉમેરાઇ  
+** ખોટી માહિતી ઉમેરાઈ  
 ** પાનામાંથી માહિતી ભૂંસી નાંખી
 ** અનાવશ્યક બાહ્ય કડીઓ ઉમેરી 
 ** પાનામાં મૂર્ખામીભરી/અર્થહીન માહિતી ઉમેરી
-**  ત્રાસદાયક વર્તન 
-** ઘણા ખાતાઓનું સાથે શોષણ 
+** ત્રાસદાયક વર્તન 
+** ઘણા ખાતાઓ અને દુરુપયોગ
 ** અસ્વીકાર્ય સભ્ય નામ
-**આત્યંતિક ભાંગફોડ',
+** આત્યંતિક ભાંગફોડ',
 'ipb-hardblock' => 'અટકાવો આ IP સરનામું માંથી ફેરફાર વપરાશકર્તાઓ માં લૉગ',
 'ipbcreateaccount' => 'ખાતા ખોલવા પર પ્રતિબંધ',
 'ipbemailban' => 'સભ્યના ઇ-મેલ મોકલવા પર પ્રતિબંધ મૂકો',
@@ -2915,11 +2918,11 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # Info page
 'pageinfo-title' => ' $1 પાના ની માહિતી નૂ મથાડૂ',
-'pageinfo-header-edits' => 'કરેલા ફેરફાર',
+'pageinfo-header-edits' => 'ઇતિહાસ સંપાદન',
 'pageinfo-views' => 'જોનારાની સંખ્યા',
-'pageinfo-watchers' => 'નીરીક્ષકોની સંખ્યા',
-'pageinfo-edits' => 'સંપાદનોની સંખ્યા',
-'pageinfo-authors' => 'ક્ષેત્રના લેખકોની સંખ્યા',
+'pageinfo-watchers' => 'પાના નીરીક્ષકોની સંખ્યા',
+'pageinfo-edits' => 'કુલ સંપાદનોની સંખ્યા',
+'pageinfo-authors' => 'ક્ષેત્રના લેખકોની કુલ સંખ્યા',
 
 # Patrolling
 'markaspatrolleddiff' => 'નિરીક્ષીત અંકિત કરો',
@@ -3630,7 +3633,7 @@ $5
 * <span class="mw-specialpagerestricted">ખાસ પાનાં પ્રતિબંધિત.</span>',
 'specialpages-group-maintenance' => 'સમારકામ અહેવાલ',
 'specialpages-group-other' => 'અન્ય ખાસ પાનાઓ',
-'specialpages-group-login' => 'પ્રવેશ / નોંધણી કરો',
+'specialpages-group-login' => 'પ્રવેશ / ખાતુ બનાવો',
 'specialpages-group-changes' => 'હાલના ફેરફારો અને લોગ',
 'specialpages-group-media' => 'મિડિયા રિપોર્ટ અને ચડાવેલી ફાઇલ',
 'specialpages-group-users' => 'સભ્યો અને અધિકારો',

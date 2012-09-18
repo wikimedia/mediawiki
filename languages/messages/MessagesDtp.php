@@ -827,7 +827,8 @@ Maai intaai tongolog.',
 'revdelete-reason-dropdown' => '*Sasabab do pugason
 ** Awu katanud kooturan kuasamonsupu
 ** Pail ahaltinan di awu kosudong
-** Kopoilaan di popinraat do wokon',
+** Ngaranmoguno di awu kosudong
+** Kopoilaan di mongindaraat do wokon',
 'revdelete-otherreason' => 'Sabab suai/poinsungku:',
 'revdelete-reasonotherlist' => 'Sabab suai',
 'revdelete-edit-reasonlist' => 'Idito sasabab pinugas',

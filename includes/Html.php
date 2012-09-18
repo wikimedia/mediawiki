@@ -191,12 +191,8 @@ class Html {
 			return '';
 		}
 
-		# Remove HTML5-only attributes if we aren't doing HTML5, and disable
-		# form validation regardless (see bug 23769 and the more detailed
-		# comment in expandAttributes())
+		# Remove invalid input types
 		if ( $element == 'input' ) {
-			# Whitelist of types that don't cause validation.  All except
-			# 'search' are valid in XHTML1.
 			$validTypes = array(
 				'hidden',
 				'text',
@@ -208,16 +204,28 @@ class Html {
 				'image',
 				'reset',
 				'button',
-				'search',
 			);
 
+			# Allow more input types in HTML5 mode
+			if( $wgHtml5 ) {
+				$validTypes = array_merge( $validTypes, array(
+					'datetime',
+					'datetime-local',
+					'date',
+					'month',
+					'time',
+					'week',
+					'number',
+					'range',
+					'email',
+					'url',
+					'search',
+					'tel',
+					'color',
+				) );
+			}
 			if ( isset( $attribs['type'] )
 			&& !in_array( $attribs['type'], $validTypes ) ) {
-				unset( $attribs['type'] );
-			}
-
-			if ( isset( $attribs['type'] ) && $attribs['type'] == 'search'
-			&& !$wgHtml5 ) {
 				unset( $attribs['type'] );
 			}
 		}
@@ -286,6 +294,8 @@ class Html {
 			return $attribs;
 		}
 
+		# Whenever altering this array, please provide a covering test case
+		# in HtmlTest::provideElementsWithAttributesHavingDefaultValues
 		static $attribDefaults = array(
 			'area' => array( 'shape' => 'rect' ),
 			'button' => array(
@@ -306,7 +316,6 @@ class Html {
 			'input' => array(
 				'formaction' => 'GET',
 				'type' => 'text',
-				'value' => '',
 			),
 			'keygen' => array( 'keytype' => 'rsa' ),
 			'link' => array( 'media' => 'all' ),
@@ -346,6 +355,29 @@ class Html {
 		if ( $element === 'link' && isset( $attribs['type'] )
 		&& strval( $attribs['type'] ) == 'text/css' ) {
 			unset( $attribs['type'] );
+		}
+		if ( $element === 'input' ) {
+			$type = isset( $attribs['type'] ) ? $attribs['type'] : null;
+			$value = isset( $attribs['value'] ) ? $attribs['value'] : null;
+			if ( $type === 'checkbox' || $type === 'radio' ) {
+				// The default value for checkboxes and radio buttons is 'on'
+				// not ''. By stripping value="" we break radio boxes that
+				// actually wants empty values.
+				if ( $value === 'on' ) {
+					unset( $attribs['value'] );
+				}
+			} elseif ( $type === 'submit' ) {
+				// The default value for submit appears to be "Submit" but
+				// let's not bother stripping out localized text that matches
+				// that.
+			} else {
+				// The default value for nearly every other field type is ''
+				// The 'range' and 'color' types use different defaults but
+				// stripping a value="" does not hurt them.
+				if ( $value === '' ) {
+					unset( $attribs['value'] );
+				}
+			}
 		}
 		if ( $element === 'select' && isset( $attribs['size'] ) ) {
 			if ( in_array( 'multiple', $attribs )

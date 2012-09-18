@@ -207,6 +207,7 @@ function pluralRuleParser(rule, number) {
 	}
 
 	function range() {
+		var i;
 		var result = sequence([digits, _range_, digits]);
 		if (result !== null) {
 			debug(" -- passed range");
@@ -275,7 +276,15 @@ function pluralRuleParser(rule, number) {
 
 	var condition = choice([and, or, relation]);
 
+	function isInt(n) {
+		return parseFloat(n) % 1 === 0;
+	}
+
+
 	function start() {
+		if (!isInt(number)) {
+			return false;
+		}
 		var result = condition();
 		return result;
 	}

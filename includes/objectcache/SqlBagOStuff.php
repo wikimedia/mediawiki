@@ -163,7 +163,7 @@ class SqlBagOStuff extends BagOStuff {
 	 */
 	public function get( $key ) {
 		$values = $this->getMulti( array( $key ) );
-		return $values[$key];
+		return array_key_exists( $key, $values ) ? $values[$key] : false;
 	}
 
 	/**

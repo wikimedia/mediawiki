@@ -959,7 +959,9 @@ It peule pa vëddlo.',
 'revdelete-only-restricted' => "Eror an stërmand l'element datà $2, $1: it peule pa vieté la vista d'element a j'aministrator sensa ëdcò selessioné un-a dj'àutre opsion ëd visibilità.",
 'revdelete-reason-dropdown' => "*Rason sòlite dë scancelassion
 ** Violassion dël drit d'autor
-** Anformassion përsonaj pa aproprià",
+** Coment o anformassion përsonaj pa aproprià
+** Nòm utent pa aproprià
+** Anformassion potensialment difamatòria",
 'revdelete-otherreason' => 'Àutra rason o adissional:',
 'revdelete-reasonotherlist' => 'Àutra rason',
 'revdelete-edit-reasonlist' => 'Modifiché la rason ëd lë scancelament',
@@ -2861,44 +2863,44 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 # Image deletion
 'deletedrevision' => 'Veja version scancelà $1',
 'filedeleteerror-short' => "Eror ën scanceland l'archivi: $1",
-'filedeleteerror-long' => "A son ësta-ie dj'eror ën scanceland l'archivi:
+'filedeleteerror-long' => "A-i son ësta-ie dj'eror ën scanceland l'archivi:
 
 $1",
-'filedelete-missing' => 'L\'archivi "$1" as peul pa dëscancelesse, për via ch\'a-i é nen.',
-'filedelete-old-unregistered' => 'La revision d\'archivi specificà "$1" ant la base dat a-i é nen.',
-'filedelete-current-unregistered' => 'Ant la base dat l\'archivi "$1" ch\'a l\'é specificasse a-i é pa.',
-'filedelete-archive-read-only' => 'Ël servent dla Ragnà a peul pa scriv-ie ant ël dossié dj\'archivi "$1".',
+'filedelete-missing' => "L'archivi «$1» as peul pa dëscancelesse, për via ch'a-i é nen.",
+'filedelete-old-unregistered' => "La revision d'archivi specificà «$1» ant la base dij dat a-i é nen.",
+'filedelete-current-unregistered' => "Ant la base dij dat l'archivi «$1» ch'a l'é specificasse a-i é pa.",
+'filedelete-archive-read-only' => "Ël servent dla Ragnà a peul pa scriv-ie ant ël dossié d'archiviassion «$1».",
 
 # Browsing diffs
-'previousdiff' => '← Diferensa pì veja',
-'nextdiff' => 'Modìfica pì neuva →',
+'previousdiff' => '← Modìfica precedenta',
+'nextdiff' => 'Modìfica apress →',
 
 # Media information
 'mediawarning' => "'''Atension!''': st'archivi-sì a podrìa avèj andrinta dël còdes butà-lì da cheidun për fé ëd darmagi.
-An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.",
-'imagemaxsize' => "Lìmit ëd la dimension ëd la figura:<br /> ''(për pàgine ëd descrission dij file)''",
+An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a sò sistema.",
+'imagemaxsize' => "Lìmit ëd la dimension ëd le plance:<br /> ''(për le pàgine ëd descrission dj'archivi)''",
 'thumbsize' => 'Amzura dle figurin-e:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|pàgina|pàgine}}',
 'file-info' => "amzura dl'archivi: $1, sòrt MIME: $2",
-'file-info-size' => '$1 × $2 pixel, amzure: $3, sòrt MIME: $4',
+'file-info-size' => '$1 × $2 pontin, amzure: $3, sòrt MIME: $4',
 'file-info-size-pages' => "$1 × $2 pontin, dimension ëd l'archivi: $3, sòrt MIME: $4, $5 {{PLURAL:$5|pàgina|pàgine}}",
 'file-nohires' => 'Gnun-a risolussion pì bela disponìbil.',
-'svg-long-desc' => "archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3",
+'svg-long-desc' => "archivi an forma SVG, amzure nominaj $1 × $2 pontin, amzura dl'archivi: $3",
 'svg-long-desc-animated' => "Archivi SVG animà, dimension $1 × $2 pontin, amzura dl'archivi: $3",
-'show-big-image' => 'Version a amzura pijn-a',
+'show-big-image' => 'Version a arzolussion pien-a',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Àutra arzolussion|Àutre arzolussion}}: $1.',
 'show-big-image-size' => '$1 × $2 pontin',
-'file-info-gif-looped' => 'ciclà',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|fnesta|fneste}}',
+'file-info-gif-looped' => 'an sicl',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|quàder|quàder}}',
 'file-info-png-looped' => 'an sìrcol',
-'file-info-png-repeat' => 'sonà $1 {{PLURAL:$1|vira|vire}}',
+'file-info-png-repeat' => 'fàit andé $1 {{PLURAL:$1|vira|vire}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|quàder|quàder}}',
 'file-no-thumb-animation' => "'''Nòta: Për dle limitassion técniche, le miniadure ëd s'archivi a saran pa animà.'''",
 'file-no-thumb-animation-gif' => "'''Nòta: Për limitassion técniche, le miniadure ëd figure GIF a àuta arzolussion com costa a saran pa animà.'''",
 
 # Special:NewFiles
-'newimages' => 'Galerìa ëd figure e son neuv',
+'newimages' => 'Galarìa ëd figure e son neuv',
 'imagelisttext' => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
 'newimages-summary' => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
 'newimages-legend' => 'Filtror',

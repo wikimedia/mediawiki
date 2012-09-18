@@ -373,8 +373,8 @@ $messages = array(
 'tog-shownumberswatching' => '주시 사용자 수 보기',
 'tog-oldsig' => '현재 서명:',
 'tog-fancysig' => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
-'tog-externaleditor' => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요. [//www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
-'tog-externaldiff' => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요. [//www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
+'tog-externaleditor' => '바깥 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요. [//www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
+'tog-externaldiff' => '바깥 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요. [//www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
 'tog-showjumplinks' => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview' => '실시간 미리 보기 사용하기 (자바스크립트 필요) (시험 기능)',
 'tog-forceeditsummary' => '편집 요약을 쓰지 않았을 때 알려주기',
@@ -611,7 +611,7 @@ $1',
 'youhavenewmessagesfromusers' => '{{PLURAL:$3|다른 사용자가|사용자 $3명이}} $1란에 글을 남겼습니다. ($2)',
 'youhavenewmessagesmanyusers' => '여러 사용자가 $1란에 글을 남겼습니다. ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|사용자 토론}}',
-'newmessagesdifflinkplural' => '최근 {{PLURAL:$1|바뀜}}',
+'newmessagesdifflinkplural' => '마지막 {{PLURAL:$1|바뀐 내용}}',
 'youhavenewmessagesmulti' => '다른 사용자가 $1란에 글을 남겼습니다.',
 'editsection' => '편집',
 'editold' => '편집',
@@ -724,10 +724,11 @@ $1',
 'protectedpagetext' => '이 문서는 편집할 수 없도록 보호되어 있습니다.',
 'viewsourcetext' => '문서의 원본을 보거나 복사할 수 있습니다:',
 'viewyourtext' => "당신은 이 문서에 남긴 '''당신의 편집''' 내용을 보거나 복사할 수 있습니다:",
-'protectedinterface' => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
-'editinginterface' => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다.
-이는 모든 사용자에게 영향을 끼칩니다.
-번역되지 않은 메시지를 번역하려는 경우에는 [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
+'protectedinterface' => '이 문서는 이 위키의 소프트웨어 인터페이스에 쓰이는 문서로, 부정 행위를 막기 위해 보호되어 있습니다.
+모든 위키에 대한 번역을 추가하거나 바꾸려면 미디어위키 지역화 프로젝트인 [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하시기 바랍니다.',
+'editinginterface' => "'''경고''': 소프트웨어 인터페이스에 쓰이는 문서를 고치고 있습니다.
+이 문서에 있는 내용을 바꾸면 이 위키에 있는 모든 사용자에게 영향을 끼칩니다.
+모든 위키에 대한 번역을 추가하거나 바꾸려면 미디어위키 지역화 프로젝트인 [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하시기 바랍니다.",
 'sqlhidden' => '(SQL 쿼리 숨겨짐)',
 'cascadeprotected' => '이 문서는 연쇄 보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
 $2',
@@ -765,7 +766,7 @@ $2',
 'securelogin-stick-https' => '로그인 후에도 HTTPS 연결 상태를 유지합니다',
 'yourdomainname' => '도메인 이름:',
 'password-change-forbidden' => '이 위키에서 비밀번호를 바꿀 수 없습니다.',
-'externaldberror' => '외부 인증 데이터베이스에 오류가 있거나 외부 계정을 새로 고칠 권한이 없습니다.',
+'externaldberror' => '바깥 인증 데이터베이스에 오류가 있거나 바깥 계정을 새로 고칠 권한이 없습니다.',
 'login' => '로그인',
 'nav-login-createaccount' => '로그인 / 계정 만들기',
 'loginprompt' => '{{SITENAME}}에 로그인하려면 쿠키를 사용할 수 있어야 합니다.',
@@ -1191,8 +1192,8 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 설명: '''({{int:cur}})''' = 최신 판과 비교, '''({{int:last}})''' = 이전 판과 비교, '''{{int:minoreditletter}}'''= 사소한 편집",
 'history-fieldset-title' => '문서의 바뀜 내역 찾기',
 'history-show-deleted' => '삭제된 것만',
-'histfirst' => '초기',
-'histlast' => '최신',
+'histfirst' => '처음',
+'histlast' => '마지막',
 'historysize' => '($1 바이트)',
 'historyempty' => '(비었음)',
 
@@ -1414,7 +1415,7 @@ $1",
 'powersearch-togglelabel' => '확인:',
 'powersearch-toggleall' => '모두 선택',
 'powersearch-togglenone' => '모두 선택하지 않음',
-'search-external' => '외부 찾기',
+'search-external' => '바깥 찾기',
 'searchdisabled' => '{{SITENAME}} 찾기 기능이 비활성화되어 있습니다.
 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 찾을 수 있습니다.
 검색 엔진의 내용은 최신이 아닐 수 있다는 점을 주의해주세요.',
@@ -1931,7 +1932,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'backend-fail-internal' => '"$1" 저장 백엔드에 알 수 없는 오류가 발생했습니다.',
 'backend-fail-contenttype' => '"$1"에 저장하기 위한 파일의 내용 유형을 판별하지 못했습니다.',
 'backend-fail-batchsize' => '저장 백엔드에서 파일 {{PLURAL:$1|작업}} $1개가 쌓여 있습니다. 한계는 $2개입니다.',
-'backend-fail-usable' => '파일 저장 권한이 없거나 저장 위치가 빠졌기 때문에 $1 파일을 저장할 수 없습니다.',
+'backend-fail-usable' => '파일 읽기/쓰기 권한이 없거나 저장 위치가 빠졌기 때문에 "$1" 파일을 읽거나 쓸 수 없습니다.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => '저장소 백엔드 "$1"에 대한 저널 데이터베이스에 연결할 수 없습니다.',
@@ -1964,7 +1965,7 @@ URL이 올바르고 접근 가능한지를 확인하고 다시 시도해주세�
 'uploadstash-nofiles' => '임시 저장한 파일이 없습니다.',
 'uploadstash-badtoken' => '이 동작을 수행하는 데 실패했습니다. 편집 토큰이 만료되었을 가능성이 있습니다. 다시 시도하세요.',
 'uploadstash-errclear' => '파일을 제거하는 데 실패했습니다.',
-'uploadstash-refresh' => '파일 목록을 새로고침',
+'uploadstash-refresh' => '파일 목록을 새로 고침',
 'invalid-chunk-offset' => '청크 오프셋이 잘못되었습니다.',
 
 # img_auth script messages
@@ -1980,7 +1981,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization 을 참고하십시오
 'img-auth-isdir' => '"$1" 디렉토리에 접근을 시도했습니다.
 파일에만 접근할 수 있습니다.',
 'img-auth-streaming' => '"$1" 파일을 전송하는 중입니다.',
-'img-auth-public' => 'img_auth.php는 개인 위키 파일을 외부 사이트로 전송하는 기능입니다.
+'img-auth-public' => 'img_auth.php는 개인 위키 파일을 바깥 사이트로 전송하는 기능입니다.
 이 기능은 기본적으로 공개적인 위키에서 사용하도록 설계되어 있습니다.
 보안적인 문제로 기본적으로 img_auth.php 기능은 비활성화되어 있습니다.',
 'img-auth-noread' => '"$1" 파일을 볼 권한이 없습니다.',
@@ -2008,13 +2009,13 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'license' => '라이선스:',
 'license-header' => '라이선스',
 'nolicense' => '선택하지 않음',
-'license-nopreview' => '(미리보기 불가능)',
+'license-nopreview' => '(미리 보기 불가능)',
 'upload_source_url' => ' (유효하고, 모든 사람이 접근 가능한 URL)',
 'upload_source_file' => ' (당신의 컴퓨터에 있는 파일)',
 
 # Special:ListFiles
 'listfiles-summary' => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
-사용자별로 필터링했을 경우에는 사용자가 올린 가장 최신 버전만이 표시됩니다.',
+사용자별로 필터링했을 경우에는 사용자가 올린 가장 최신 버전만이 보여집니다.',
 'listfiles_search_for' => '다음 이름을 가진 미디어 찾기:',
 'imgfile' => '파일',
 'listfiles' => '파일 목록',
@@ -2199,8 +2200,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'wantedpages' => '필요한 문서 목록',
 'wantedpages-badtitle' => '문서 제목이 잘못되었습니다: $1',
 'wantedfiles' => '필요한 파일 목록',
-'wantedfiletext-cat' => '다음 파일은 쓰이고는 있지만 없는 파일입니다. 외부 저장소에 있는 파일은 실제로는 있지만 여기 올라 있을 수 있습니다. 그런 오류는 <del>삭제선</del>이 그어질 것입니다. 또한 없는 파일을 포함하고 있는 문서는 [[:$1]]에 올라 있습니다.',
-'wantedfiletext-nocat' => '다음 파일은 쓰이고는 있지만 없는 파일입니다. 외부 저장소에 있는 파일은 실제로는 있지만 여기 올라 있을 수 있습니다. 그런 오류는 <del>삭제선</del>이 그어질 것입니다.',
+'wantedfiletext-cat' => '다음 파일은 쓰이고는 있지만 없는 파일입니다. 바깥 저장소에 있는 파일은 실제로는 있지만 여기 올라 있을 수 있습니다. 그런 오류는 <del>삭제선</del>이 그어질 것입니다. 또한 없는 파일을 포함하고 있는 문서는 [[:$1]]에 올라 있습니다.',
+'wantedfiletext-nocat' => '다음 파일은 쓰이고는 있지만 없는 파일입니다. 바깥 저장소에 있는 파일은 실제로는 있지만 여기 올라 있을 수 있습니다. 그런 오류는 <del>삭제선</del>이 그어질 것입니다.',
 'wantedtemplates' => '필요한 틀 목록',
 'mostlinked' => '가장 많이 연결된 문서 목록',
 'mostlinkedcategories' => '가장 많이 연결된 분류 목록',
@@ -2249,7 +2250,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'booksources' => '책 찾기',
 'booksources-search-legend' => '책 찾기',
 'booksources-go' => '찾기',
-'booksources-text' => '아래의 목록은 새 책이나 중고 책을 판매하는 외부 사이트로, 원하는 책의 정보를 얻을 수 있습니다:',
+'booksources-text' => '아래의 목록은 새 책이나 중고 책을 판매하는 바깥 사이트로, 원하는 책의 정보를 얻을 수 있습니다:',
 'booksources-invalid-isbn' => '입력한 ISBN이 잘못된 것으로 보입니다. 원본과 대조해 보세요.',
 
 # Special:Log
@@ -2275,7 +2276,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'allnotinnamespace' => '$1 이름공간을 제외한 모든 문서',
 'allpagesprev' => '이전',
 'allpagesnext' => '다음',
-'allpagessubmit' => '표시',
+'allpagessubmit' => '보기',
 'allpagesprefix' => '다음으로 시작하는 문서 보기:',
 'allpagesbadtitle' => '문서 제목이 잘못되었거나 다른 사이트로 연결되는 인터위키를 가지고 있습니다.
 문서 제목에 사용할 수 없는 문자를 사용했을 수 있습니다.',
@@ -2409,7 +2410,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchnochange' => '주어진 기간 중에 바뀐 주시문서가 없습니다.',
 'watchlist-details' => '토론을 제외하고 문서 $1개를 주시하고 있습니다.',
 'wlheader-enotif' => '* 이메일 알림 기능이 활성화되었습니다.',
-'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서는 '''굵은 글씨'''로 표시됩니다.",
+'wlheader-showupdated' => "* 마지막으로 방문한 이후에 바뀐 문서는 '''굵은 글씨'''로 보여집니다.",
 'watchmethod-recent' => '주시된 문서를 확인하고자 최근 편집을 확인',
 'watchmethod-list' => '최근 편집을 확인하고자 주시된 문서 확인',
 'watchlistcontains' => '문서 $1개를 주시하고 있습니다.',
@@ -3082,7 +3083,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'tooltip-pt-anonlogin' => '꼭 필요한 것은 아니지만, 로그인을 하면 편리한 점이 많습니다.',
 'tooltip-pt-logout' => '로그아웃',
 'tooltip-ca-talk' => '문서의 내용에 대한 토론 문서',
-'tooltip-ca-edit' => '문서를 편집할 수 있습니다. 저장하기 전에 미리보기를 해 주세요.',
+'tooltip-ca-edit' => '문서를 편집할 수 있습니다. 저장하기 전에 미리 보기를 해 주세요.',
 'tooltip-ca-addsection' => '문단 추가하기',
 'tooltip-ca-viewsource' => '문서가 잠겨 있습니다.
 문서의 내용만 볼 수 있습니다.',
@@ -3136,7 +3137,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'tooltip-recreate' => '문서를 편집하는 중 삭제되어도 새로 만들기',
 'tooltip-upload' => '파일 올리기 시작',
 'tooltip-rollback' => '"되돌리기" 기능을 사용하면 이 문서에 대한 마지막 기여자의 편집을 모두 되돌릴 수 있습니다.',
-'tooltip-undo' => '"편집 취소" 기능을 사용하면 이 편집이 되돌려지고, 차이보기 기능이 미리보기 형식으로 나타납니다. 편집 요약에 이 편집을 왜 되돌리는지에 대한 이유를 쓸 수 있습니다.',
+'tooltip-undo' => '"편집 취소" 기능을 사용하면 이 편집이 되돌려지고 차이 보기 기능이 미리 보기 형식으로 나타납니다. 편집 요약에 이 편집을 왜 되돌리는지에 대한 이유를 쓸 수 있습니다.',
 'tooltip-preferences-save' => '환경 설정 저장하기',
 'tooltip-summary' => '짧은 편집 요약을 적어주세요',
 
@@ -3368,7 +3369,7 @@ Variants for Chinese language
 'exif-ycbcrpositioning' => 'Y와 C 위치',
 'exif-xresolution' => '수평 해상도',
 'exif-yresolution' => '수직 해상도',
-'exif-stripoffsets' => '이미지 데이터 위치',
+'exif-stripoffsets' => '그림 데이터 위치',
 'exif-rowsperstrip' => '스트립당 줄의 수',
 'exif-stripbytecounts' => '압축된 스트립당 바이트 수',
 'exif-jpeginterchangeformat' => 'JPEG SOI와의 차이',
@@ -3388,7 +3389,7 @@ Variants for Chinese language
 'exif-flashpixversion' => '지원하는 플래시픽스 버전',
 'exif-colorspace' => '색 공간',
 'exif-componentsconfiguration' => '각 구성 요소의 의미',
-'exif-compressedbitsperpixel' => '이미지 압축 방식',
+'exif-compressedbitsperpixel' => '그림 압축 방식',
 'exif-pixelydimension' => '그림 너비',
 'exif-pixelxdimension' => '그림 높이',
 'exif-usercomment' => '사용자 주',
@@ -3424,7 +3425,7 @@ Variants for Chinese language
 'exif-sensingmethod' => '감지 방식',
 'exif-filesource' => '파일 출처',
 'exif-scenetype' => '촬영 모드',
-'exif-customrendered' => '이미지 처리 방식',
+'exif-customrendered' => '그림 처리 방식',
 'exif-exposuremode' => '노출 방식',
 'exif-whitebalance' => '화이트 밸런스',
 'exif-digitalzoomratio' => '디지털 줌 비율',
@@ -3436,7 +3437,7 @@ Variants for Chinese language
 'exif-sharpness' => '선명도',
 'exif-devicesettingdescription' => '장치 설정에 대한 설명',
 'exif-subjectdistancerange' => '대상과의 거리 범위',
-'exif-imageuniqueid' => '이미지 고유 ID',
+'exif-imageuniqueid' => '그림 고유 ID',
 'exif-gpsversionid' => 'GPS 태그 버전',
 'exif-gpslatituderef' => '북위 또는 남위',
 'exif-gpslatitude' => '위도',
@@ -3453,8 +3454,8 @@ Variants for Chinese language
 'exif-gpsspeed' => 'GPS 수신기 속도',
 'exif-gpstrackref' => '이동 방향에 대한 정보',
 'exif-gpstrack' => '이동 방향',
-'exif-gpsimgdirectionref' => '이미지 방향에 대한 정보',
-'exif-gpsimgdirection' => '이미지 방향',
+'exif-gpsimgdirectionref' => '그림 방향에 대한 정보',
+'exif-gpsimgdirection' => '그림 방향',
 'exif-gpsmapdatum' => '측지 조사 데이처 사용',
 'exif-gpsdestlatituderef' => '목적지의 위도 정보',
 'exif-gpsdestlatitude' => '목적지의 위도',
@@ -3508,7 +3509,7 @@ Variants for Chinese language
 'exif-cameraownername' => '카메라 소유자',
 'exif-label' => '라벨',
 'exif-datetimemetadata' => '메타데이터 최종 수정일',
-'exif-nickname' => '이미지의 비공식적 이름',
+'exif-nickname' => '그림의 비공식적 이름',
 'exif-rating' => '평가 (5점 만점)',
 'exif-rightscertificate' => '권리 관리 인증서',
 'exif-copyrighted' => '저작권 정보',
@@ -3530,8 +3531,8 @@ Variants for Chinese language
 'exif-event' => '묘사된 사건',
 'exif-organisationinimage' => '묘사된 기관',
 'exif-personinimage' => '묘사된 사람',
-'exif-originalimageheight' => '자르기 전 이미지의 세로 길이',
-'exif-originalimagewidth' => '자르기 전 이미지의 가로 길이',
+'exif-originalimageheight' => '자르기 전 그림의 세로 길이',
+'exif-originalimagewidth' => '자르기 전 그림의 가로 길이',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3625,9 +3626,9 @@ Variants for Chinese language
 'exif-sensingmethod-7' => '3선 센서',
 'exif-sensingmethod-8' => '순차적 색 공간 선형 센서',
 
-'exif-filesource-3' => '디지털 스틸 카메라',
+'exif-filesource-3' => '디지털 정지 카메라',
 
-'exif-scenetype-1' => '직접 촬영된 이미지',
+'exif-scenetype-1' => '직접 촬영한 그림',
 
 'exif-customrendered-0' => '일반',
 'exif-customrendered-1' => '사용자 정의',
@@ -3749,7 +3750,7 @@ Variants for Chinese language
 'exif-urgency-other' => '사용자 정의 ($1)',
 
 # External editor support
-'edit-externally' => '이 파일을 외부 프로그램을 사용해서 편집하기',
+'edit-externally' => '이 파일을 바깥 프로그램을 사용해서 편집하기',
 'edit-externally-help' => '(자세한 정보는 [//www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하세요)',
 
 # 'all' in various places, this might be different for inflected languages
@@ -3999,7 +4000,7 @@ $5
 # External image whitelist
 'external_image_whitelist' => ' #이 줄은 그대로 두십시오<pre>
 #정규 표현식(// 사이에 있는 부분)을 아래에 입력하세요.
-#이 목록은 외부 이미지의 URL과 대조할 것입니다.
+#이 목록은 바깥 그림의 URL과 대조할 것입니다.
 #이 목록과 일치하는 것은 그림이 직접 보여지지만, 그렇지 않은 경우 그림을 가리키는 링크만 보이게 될 것입니다.
 # "#"으로 시작하는 줄은 주석으로 간주됩니다.
 #이 목록은 대소문자를 구별하지 않습니다.
@@ -4011,7 +4012,7 @@ $5
 'tag-filter' => '[[Special:Tags|태그]] 필터:',
 'tag-filter-submit' => '필터',
 'tags-title' => '태그',
-'tags-intro' => '이 페이지는 소프트웨어에서 편집에 대해 표시하는 태그와 그 의미를 설명하는 목록입니다.',
+'tags-intro' => '이 문서는 소프트웨어에서 편집에 대해 표시하는 태그와 그 의미를 설명하는 목록입니다.',
 'tags-tag' => '태그 이름',
 'tags-display-header' => '바뀜 목록의 모양',
 'tags-description-header' => '태그에 대한 설명',

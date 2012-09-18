@@ -682,10 +682,11 @@ Vă rugăm să încercați din nou în câteva minute.',
 'protectedpagetext' => 'Această pagină este protejată împotriva modificărilor.',
 'viewsourcetext' => 'Se poate vizualiza și copia conținutul acestei pagini:',
 'viewyourtext' => "Se poate vizualiza și copia conținutul '''modificărilor dumneavoastră''' efectuate asupra acestei pagini:",
-'protectedinterface' => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.',
+'protectedinterface' => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.
+Pentru a adăuga sau modifica traduceri corespunzătoare tuturor wikiurilor, utilizați [//translatewiki.net/ translatewiki.net], proiectul MediaWiki de localizare.',
 'editinginterface' => "'''Avertizare''': Modificați o pagină care este folosită pentru a furniza textul interfeței software.
-Modificările aduse acestei pagini vor afecta aspectul interfeței pentru alți utilizatori.
-Pentru traduceri, considerați utilizarea [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
+Modificările aduse acestei pagini vor afecta aspectul interfeței pentru alți utilizatori ai acestui wiki.
+Pentru a adăuga sau modifica traduceri corespunzătoare tuturor wikiurilor, utilizați [//translatewiki.net/ translatewiki.net], proiectul MediaWiki de localizare.",
 'sqlhidden' => '(interogare SQL ascunsă)',
 'cascadeprotected' => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
@@ -1844,7 +1845,7 @@ Dacă problema persistă, contactați un [[Special:ListUsers/sysop|administrator
 'backend-fail-internal' => 'O eroare necunoscută s-a produs în suportul de stocare „$1”.',
 'backend-fail-contenttype' => 'Nu s-a putut determina tipul de conținut al fișierului de stocat la „$1”.',
 'backend-fail-batchsize' => 'Suportul de stocare a furnizat un lot de $1 {{PLURAL:$1|operațiune|operațiuni|de operațiuni}} de fișier; limita este $2 {{PLURAL:$2|operațiune|operațiuni|de operațiuni}}.',
-'backend-fail-usable' => 'Imposibil de scris fișierul $1 din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
+'backend-fail-usable' => 'Imposibil de citit sau scris fișierul „$1” din cauza permisiunilor insuficiente sau din cauza directoarelor/containerelor lipsă.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Imposibil de conectat la baza de date a jurnalului pentru terminatul de stocare „$1”.',
@@ -2253,7 +2254,7 @@ Protocoale suportate: <code>$1</code> (nu adăugați niciunul dintre acestea în
 
 # Special:ListGroupRights
 'listgrouprights' => 'Permisiuni grupuri de utilizatori',
-'listgrouprights-summary' => 'Mai jos se află o listă a grupurilor de utilizatori definită în aceast wiki, împreună cu permisiunile de acces asociate.
+'listgrouprights-summary' => 'Mai jos se află o listă a grupurilor de utilizatori definite în acest wiki, împreună cu permisiunile de acces asociate.
 Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informații suplimentare]] despre permisiuni individuale.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">Drept acordat</span>
 * <span class="listgrouprights-revoked">Drept revocat</span>',

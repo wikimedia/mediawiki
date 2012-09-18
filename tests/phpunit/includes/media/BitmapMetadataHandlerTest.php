@@ -76,7 +76,6 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	/**
 	 * File has an invalid time (+ one valid but really weird time)
 	 * that shouldn't be included
-	 * @expectedException TimestampException
 	 */
 	public function testIPTCDatesInvalid() {
 		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
