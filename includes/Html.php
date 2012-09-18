@@ -942,4 +942,22 @@ class Html {
 
 		return $s;
 	}
+
+	/**
+	 * Generate a srcset attribute value from an array mapping pixel densities
+	 * to URLs. Note that srcset supports width and height values as well, which
+	 * are not used here.
+	 *
+	 * @param array $urls
+	 * @return string
+	 */
+	static function srcSet( $urls ) {
+		$candidates = array();
+		foreach( $urls as $density => $url ) {
+			// Image candidate syntax per current whatwg live spec, 2012-09-23:
+			// http://www.whatwg.org/specs/web-apps/current-work/multipage/embedded-content-1.html#attr-img-srcset
+			$candidates[] = "{$url} {$density}x";
+		}
+		return implode( ", ", $candidates );
+	}
 }

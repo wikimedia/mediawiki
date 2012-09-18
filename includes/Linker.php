@@ -676,6 +676,7 @@ class Linker {
 		if ( !$thumb ) {
 			$s = self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
 		} else {
+			self::processResponsiveImages( $file, $thumb, $hp );
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
@@ -796,6 +797,7 @@ class Linker {
 			$hp['width'] = isset( $fp['upright'] ) ? 130 : 180;
 		}
 		$thumb = false;
+		$noscale = false;
 
 		if ( !$exists ) {
 			$outerWidth = $hp['width'] + 2;
@@ -814,6 +816,7 @@ class Linker {
 			} elseif ( isset( $fp['framed'] ) ) {
 				// Use image dimensions, don't scale
 				$thumb = $file->getUnscaledThumb( $hp );
+				$noscale = true;
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behaviour
@@ -847,6 +850,9 @@ class Linker {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
+			if ( !$noscale ) {
+				self::processResponsiveImages( $file, $thumb, $hp );
+			}
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
@@ -871,6 +877,37 @@ class Linker {
 		}
 		$s .= '  <div class="thumbcaption">' . $zoomIcon . $fp['caption'] . "</div></div></div>";
 		return str_replace( "\n", ' ', $s );
+	}
+
+	/**
+	 * Process responsive images: add 1.5x and 2x subimages to the thumbnail, where
+	 * applicable.
+	 *
+	 * @param File $file
+	 * @param MediaOutput $thumb
+	 * @param array $hp image parameters
+	 */
+	protected static function processResponsiveImages( $file, $thumb, $hp ) {
+		global $wgResponsiveImages;
+		if ( $wgResponsiveImages ) {
+			$hp15 = $hp;
+			$hp15['width'] = round( $hp['width'] * 1.5 );
+			$hp20 = $hp;
+			$hp20['width'] = $hp['width'] * 2;
+			if ( isset( $hp['height'] ) ) {
+				$hp15['height'] = round( $hp['height'] * 1.5 );
+				$hp20['height'] = $hp['height'] * 2;
+			}
+
+			$thumb15 = $file->transform( $hp15 );
+			$thumb20 = $file->transform( $hp20 );
+			if ( $thumb15->url !== $thumb->url ) {
+				$thumb->responsiveUrls['1.5'] = $thumb15->url;
+			}
+			if ( $thumb20->url !== $thumb->url ) {
+				$thumb->responsiveUrls['2'] = $thumb20->url;
+			}
+		}
 	}
 
 	/**

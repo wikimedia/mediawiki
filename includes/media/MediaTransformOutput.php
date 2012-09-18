@@ -33,6 +33,13 @@ abstract class MediaTransformOutput {
 	var $file;
 
 	var $width, $height, $url, $page, $path;
+
+	/**
+	 * @var array Associative array mapping optional supplementary image files
+	 * from pixel density (eg 1.5 or 2) to additional URLs.
+	 */
+	public $responsiveUrls = array();
+
 	protected $storagePath = false;
 
 	/**
@@ -324,13 +331,18 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt,
 			'src' => $this->url,
 			'width' => $this->width,
-			'height' => $this->height,
+			'height' => $this->height
 		);
 		if ( !empty( $options['valign'] ) ) {
 			$attribs['style'] = "vertical-align: {$options['valign']}";
 		}
 		if ( !empty( $options['img-class'] ) ) {
 			$attribs['class'] = $options['img-class'];
+		}
+
+		// Additional densities for responsive images, if specified.
+		if ( !empty( $this->responsiveUrls ) ) {
+			$attribs['srcset'] = Html::srcSet( $this->responsiveUrls );
 		}
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}

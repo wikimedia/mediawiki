@@ -2462,7 +2462,7 @@ $templates
 	 */
 	private function addDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch;
+			$wgAjaxWatch, $wgResponsiveImages;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2502,6 +2502,11 @@ $templates
 		# Crazy edit-on-double-click stuff
 		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
 			$this->addModules( 'mediawiki.action.view.dblClickEdit' );
+		}
+
+		// Support for high-density display images
+		if ( $wgResponsiveImages ) {
+			$this->addModules( 'mediawiki.hidpi' );
 		}
 	}
 
