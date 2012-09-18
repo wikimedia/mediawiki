@@ -644,7 +644,7 @@ class FSFileBackend extends FileBackendStore {
 
 	/**
 	 * @see FileBackendStore::getFileListInternal()
-	 * @return array|FSFileBackendFileList|null
+	 * @return Array|FSFileBackendFileList|null
 	 */
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
 		list( $b, $shortCont, $r ) = FileBackend::splitStoragePath( $params['dir'] );
@@ -662,44 +662,56 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackendStore::getLocalReference()
-	 * @return FSFile|null
+	 * @see FileBackendStore::doGetLocalReferenceMulti()
+	 * @return Array
 	 */
-	public function getLocalReference( array $params ) {
-		$source = $this->resolveToFSPath( $params['src'] );
-		if ( $source === null ) {
-			return null;
+	protected function doGetLocalReferenceMulti( array $params ) {
+		$fsFiles = array(); // (path => FSFile)
+
+		foreach ( $params['srcs'] as $src ) {
+			$source = $this->resolveToFSPath( $src );
+			if ( $source === null ) {
+				$fsFiles[$src] = null; // invalid path
+			} else {
+				$fsFiles[$src] = new FSFile( $source );
+			}
 		}
-		return new FSFile( $source );
+
+		return $fsFiles;
 	}
 
 	/**
-	 * @see FileBackendStore::getLocalCopy()
-	 * @return null|TempFSFile
+	 * @see FileBackendStore::doGetLocalCopyMulti()
+	 * @return Array
 	 */
-	public function getLocalCopy( array $params ) {
-		$source = $this->resolveToFSPath( $params['src'] );
-		if ( $source === null ) {
-			return null;
+	protected function doGetLocalCopyMulti( array $params ) {
+		$tmpFiles = array(); // (path => TempFSFile)
+
+		foreach ( $params['srcs'] as $src ) {
+			$source = $this->resolveToFSPath( $src );
+			if ( $source === null ) {
+				$tmpFiles[$src] = null; // invalid path
+			} else {
+				// Create a new temporary file with the same extension...
+				$ext = FileBackend::extensionFromPath( $src );
+				$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
+				if ( !$tmpFile ) {
+					$tmpFiles[$src] = null;
+				} else {
+					$tmpPath = $tmpFile->getPath();
+					// Copy the source file over the temp file
+					$ok = copy( $source, $tmpPath );
+					if ( !$ok ) {
+						$tmpFiles[$src] = null;
+					} else {
+						$this->chmod( $tmpPath );
+						$tmpFiles[$src] = $tmpFile;
+					}
+				}
+			}
 		}
 
-		// Create a new temporary file with the same extension...
-		$ext = FileBackend::extensionFromPath( $params['src'] );
-		$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
-		if ( !$tmpFile ) {
-			return null;
-		}
-		$tmpPath = $tmpFile->getPath();
-
-		// Copy the source file over the temp file
-		$ok = copy( $source, $tmpPath );
-		if ( !$ok ) {
-			return null;
-		}
-
-		$this->chmod( $tmpPath );
-
-		return $tmpFile;
+		return $tmpFiles;
 	}
 
 	/**
