@@ -554,6 +554,7 @@ class Linker {
 	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
 	{
+		global $wgResponsiveImages;
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$dummy, &$title,
@@ -664,6 +665,24 @@ class Linker {
 		if ( !$thumb ) {
 			$s = self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
 		} else {
+			if ( $wgResponsiveImages ) {
+				$hp15 = $hp;
+				$hp15['width'] = round( $hp['width'] * 1.5 );
+				$hp20 = $hp;
+				$hp20['width'] = $hp['width'] * 2;
+				if ( isset( $hp['height'] ) ) {
+					$hp15['height'] = round( $hp['height'] * 1.5 );
+					$hp20['height'] = $hp['height'] * 2;
+				}
+				$thumb15 = $file->transform( $hp15 );
+				$thumb20 = $file->transform( $hp20 );
+				if ( $thumb15->url !== $thumb->url ) {
+					$thumb->responsiveUrls['1.5'] = $thumb15->url;
+				}
+				if ( $thumb20->url !== $thumb->url ) {
+					$thumb->responsiveUrls['2'] = $thumb20->url;
+				}
+			}
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
@@ -766,7 +785,7 @@ class Linker {
 	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "" )
 	{
-		global $wgStylePath, $wgContLang;
+		global $wgStylePath, $wgContLang, $wgResponsiveImages;
 		$exists = $file && $file->exists();
 
 		# Shortcuts
@@ -835,6 +854,26 @@ class Linker {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
+			if ( $wgResponsiveImages ) {
+				$hp15 = $hp;
+				$hp15['width'] = round( $hp['width'] * 1.5 );
+				$hp20 = $hp;
+				$hp20['width'] = $hp['width'] * 2;
+				if ( isset( $hp['height'] ) ) {
+					$hp15['height'] = round( $hp['height'] * 1.5 );
+					$hp20['height'] = $hp['height'] * 2;
+				}
+			
+				$thumb15 = $file->transform( $hp15 );
+				$thumb20 = $file->transform( $hp20 );
+				if ( $thumb15->url !== $thumb->url ) {
+					$thumb->responsiveUrls['1.5'] = $thumb15->url;
+				}
+				if ( $thumb20->url !== $thumb->url ) {
+					$thumb->responsiveUrls['2'] = $thumb20->url;
+				}
+			}
+
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
