@@ -303,7 +303,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgNoFollowLinks' => true,
 			'wgNoFollowDomainExceptions' => array(),
 			'wgThumbnailScriptPath' => false,
-			'wgUseImageResize' => false,
+			'wgUseImageResize' => true,
 			'wgUseTeX' => isset( $opts['math'] ),
 			'wgMathDirectory' => $uploadDir . '/math',
 			'wgLocaltimezone' => 'UTC',
