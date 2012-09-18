@@ -720,36 +720,75 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getLocalReference()
-	 * @return TempFSFile|null
+	 * @see FileBackend::getLocalReferences()
+	 * @return Array
 	 */
-	public function getLocalReference( array $params ) {
-		$path = self::normalizeStoragePath( $params['src'] );
-		if ( $path === null ) {
-			return null; // invalid storage path
-		}
+	final public function getLocalReferences( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
+
+		$params = $this->setConcurrencyFlags( $params );
+
+		$fsFiles = array(); // (path => FSFile)
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( $this->expensiveCache->has( $path, 'localRef' ) ) {
-			$val = $this->expensiveCache->get( $path, 'localRef' );
-			// If we want the latest data, check that this cached
-			// value was in fact fetched with the latest available data.
-			if ( !$latest || $val['latest'] ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
-				return $val['object'];
+		// Reuse any files already in process cache...
+		foreach ( $params['srcs'] as $src ) {
+			$path = self::normalizeStoragePath( $src );
+			if ( $path === null ) {
+				$fsFiles[$src] = null; // invalid storage path
+			} elseif ( $this->expensiveCache->has( $path, 'localRef' ) ) {
+				$val = $this->expensiveCache->get( $path, 'localRef' );
+				// If we want the latest data, check that this cached
+				// value was in fact fetched with the latest available data.
+				if ( !$latest || $val['latest'] ) {
+					$fsFiles[$src] = $val['object'];
+				}
 			}
 		}
-		$tmpFile = $this->getLocalCopy( $params );
-		if ( $tmpFile ) { // don't cache negatives
-			$this->expensiveCache->set( $path, 'localRef',
-				array( 'object' => $tmpFile, 'latest' => $latest ) );
+		// Fetch local references of any remaning files...
+		$params['srcs'] = array_diff( $params['srcs'], array_keys( $fsFiles ) );
+		foreach ( $this->doGetLocalReferences( $params ) as $path => $fsFile ) {
+			$fsFiles[$path] = $fsFile;
+			if ( $fsFile ) { // update the process cache...
+				$this->expensiveCache->set( $path, 'localRef',
+					array( 'object' => $fsFile, 'latest' => $latest ) );
+			}
 		}
+
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
-		return $tmpFile;
+		return $fsFiles;
 	}
+
+	/**
+	 * @see FileBackendStore::getLocalReferences()
+	 * @return Array
+	 */
+	protected function doGetLocalReferences( array $params ) {
+		return $this->doGetLocalCopies( $params );
+	}
+
+	/**
+	 * @see FileBackend::getLocalCopies()
+	 * @return Array
+	 */
+	final public function getLocalCopies( array $params ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+
+		$params = $this->setConcurrencyFlags( $params );
+		$tmpFiles = $this->doGetLocalCopies( $params );
+
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+		return $tmpFiles;
+	}
+
+	/**
+	 * @see FileBackendStore::getLocalCopies()
+	 * @return Array
+	 */
+	abstract protected function doGetLocalCopies( array $params );
 
 	/**
 	 * @see FileBackend::streamFile()
