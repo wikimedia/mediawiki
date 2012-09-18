@@ -1071,6 +1071,16 @@ $wgThumbUpright = 0.75;
 $wgDirectoryMode = 0777;
 
 /**
+ * Generate and use thumbnails suitable for screens with 1.5 and 2.0 pixel densities.
+ *
+ * This means a 320x240 use of an image on the wiki will also generate 480x360 and 640x480
+ * thumbnails, output via data-src-1-5 and data-src-2-0. Runtime JavaScript switches the
+ * images in after loading the original low-resolution versions depending on the reported
+ * window.devicePixelRatio.
+ */
+$wgResponsiveImages = true;
+
+/**
  * @name DJVU settings
  * @{
  */
