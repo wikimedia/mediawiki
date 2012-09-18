@@ -204,24 +204,40 @@ class InfoAction extends FormlessAction {
 		$content = $this->addHeader( $content, $this->msg( 'pageinfo-header-edits' )->text() );
 		$table = '';
 
+		$firstRev = $this->page->getOldestRevision();
+
 		// Page creator
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firstuser' )->escaped(), $pageInfo['firstuser']
+			$this->msg( 'pageinfo-firstuser' )->escaped(),
+			$firstRev->getUserText( Revision::FOR_THIS_USER, $user )
 		);
 
 		// Date of page creation
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-firsttime' )->escaped(), $lang->userTimeAndDate( $pageInfo['firsttime'], $user )
+			$this->msg( 'pageinfo-firsttime' )->escaped(),
+			Linker::linkKnown(
+				$title,
+				$lang->userTimeAndDate( $firstRev->getTimestamp(), $user ),
+				array(),
+				array( 'oldid' => $firstRev->getId() )
+			)
 		);
 
 		// Latest editor
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lastuser' )->escaped(), $pageInfo['lastuser']
+			$this->msg( 'pageinfo-lastuser' )->escaped(),
+			$this->page->getUserText( Revision::FOR_THIS_USER, $user )
 		);
 
 		// Date of latest edit
 		$table = $this->addRow( $table,
-			$this->msg( 'pageinfo-lasttime' )->escaped(), $lang->userTimeAndDate( $pageInfo['lasttime'], $user )
+			$this->msg( 'pageinfo-lasttime' )->escaped(),
+			Linker::linkKnown(
+				$title,
+				$lang->userTimeAndDate( $this->page->getTimestamp(), $user ),
+				array(),
+				array( 'oldid' => $this->page->getLatest() )
+			)
 		);
 
 		// Total number of edits
@@ -432,32 +448,6 @@ class InfoAction extends FormlessAction {
 			$result['subpages']['total'] = $result['subpages']['redirects']
 				+ $result['subpages']['nonredirects'];
 		}
-
-		// Latest editor + date of latest edit
-		$options = array( 'ORDER BY' => 'rev_timestamp ASC', 'LIMIT' => 1 );
-		$row = $dbr->fetchRow( $dbr->select(
-			'revision',
-			array( 'rev_user_text', 'rev_timestamp' ),
-			array( 'rev_page' => $id ),
-			__METHOD__,
-			$options
-		) );
-
-		$result['firstuser'] = $row['rev_user_text'];
-		$result['firsttime'] = $row['rev_timestamp'];
-
-		// Latest editor + date of latest edit
-		$options['ORDER BY'] = 'rev_timestamp DESC';
-		$row = $dbr->fetchRow( $dbr->select(
-			'revision',
-			array( 'rev_user_text', 'rev_timestamp' ),
-			array( 'rev_page' => $id ),
-			__METHOD__,
-			$options
-		) );
-
-		$result['lastuser'] = $row['rev_user_text'];
-		$result['lasttime'] = $row['rev_timestamp'];
 
 		wfProfileOut( __METHOD__ );
 		return $result;
