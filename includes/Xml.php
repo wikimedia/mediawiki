@@ -198,10 +198,11 @@ class Xml {
 		} else {
 			$encYear = '';
 		}
-		return Xml::label( wfMessage( 'year' )->text(), 'year' ) . ' '.
-			Xml::input( 'year', 4, $encYear, array('id' => 'year', 'maxlength' => 4) ) . ' '.
-			Xml::label( wfMessage( 'month' )->text(), 'month' ) . ' '.
-			Xml::monthSelector( $encMonth, -1 );
+		$inputAttribs = array( 'id' => 'year', 'maxlength' => 4, 'size' => 7 );
+		return self::label( wfMessage( 'year' )->text(), 'year' ) . ' '.
+			Html::input( 'year', $encYear, 'number', $inputAttribs ) . ' '.
+			self::label( wfMessage( 'month' )->text(), 'month' ) . ' '.
+			self::monthSelector( $encMonth, -1 );
 	}
 
 	/**
