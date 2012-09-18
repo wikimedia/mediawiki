@@ -32,7 +32,7 @@ abstract class MediaTransformOutput {
 	 */
 	var $file;
 
-	var $width, $height, $url, $page, $path;
+	var $width, $height, $url, $url15, $url20, $page, $path;
 	protected $storagePath = false;
 
 	/**
@@ -323,13 +323,21 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt,
 			'src' => $this->url,
 			'width' => $this->width,
-			'height' => $this->height,
+			'height' => $this->height
 		);
 		if ( !empty( $options['valign'] ) ) {
 			$attribs['style'] = "vertical-align: {$options['valign']}";
 		}
 		if ( !empty( $options['img-class'] ) ) {
 			$attribs['class'] = $options['img-class'];
+		}
+
+		// Additional densities for responsive images, if specified.
+		if ( !empty( $this->url15 ) ) {
+			$attribs['data-src-1-5'] = $this->url15;
+		}
+		if ( !empty( $this->url20 ) ) {
+			$attribs['data-src-2-0'] = $this->url20;
 		}
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}

@@ -554,6 +554,7 @@ class Linker {
 	public static function makeImageLink( /*Parser*/ $parser, Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
 	{
+		global $wgResponsiveImages;
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !wfRunHooks( 'ImageBeforeProduceHTML', array( &$dummy, &$title,
@@ -664,6 +665,12 @@ class Linker {
 		if ( !$thumb ) {
 			$s = self::makeBrokenImageLinkObj( $title, $fp['title'], '', '', '', $time == true );
 		} else {
+			if ( $wgResponsiveImages ) {
+				$thumb15 = $file->transform( array( 'width' => round( $hp['width'] * 1.5 ), 'height' => round( $hp['height'] * 1.5 ) ) + $hp );
+				$thumb20 = $file->transform( array( 'width' => $hp['width'] * 2, 'height' => $hp['height'] * 2 ) + $hp );
+				$thumb->url15 = $thumb15->url;
+				$thumb->url20 = $thumb20->url;
+			}
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
@@ -766,7 +773,7 @@ class Linker {
 	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "" )
 	{
-		global $wgStylePath, $wgContLang;
+		global $wgStylePath, $wgContLang, $wgResponsiveImages;
 		$exists = $file && $file->exists();
 
 		# Shortcuts
@@ -835,6 +842,13 @@ class Linker {
 			$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			$zoomIcon = '';
 		} else {
+			if ( $wgResponsiveImages ) {
+				$thumb15 = $file->transform( array( 'width' => round( $hp['width'] * 1.5 ), 'height' => round( $hp['height'] * 1.5 ) ) + $hp );
+				$thumb20 = $file->transform( array( 'width' => $hp['width'] * 2, 'height' => $hp['height'] * 2 ) + $hp );
+				$thumb->url15 = $thumb15->url;
+				$thumb->url20 = $thumb20->url;
+			}
+
 			$params = array(
 				'alt' => $fp['alt'],
 				'title' => $fp['title'],
