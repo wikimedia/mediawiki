@@ -9935,7 +9935,7 @@ Bug 31098 Template which includes system messages which includes the template
 !! end
 
 !! test
-Deprecated presentational attributes are converted to css
+Deprecated presentational attributes are converted to css when possible
 !! input
 {|
 | valign=top align=left width=100 height=25% | Asdf
@@ -9944,7 +9944,7 @@ Deprecated presentational attributes are converted to css
 !! result
 <table>
 <tr>
-<td style="text-align: left; height: 25%; vertical-align: top; width: 100px;"> Asdf
+<td align="left" style="height: 25%; vertical-align: top; width: 100px;"> Asdf
 </td></tr></table>
 <ul style="list-style-type: disc;"></ul>
 

@@ -641,7 +641,10 @@ class Sanitizer {
 		$h = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
 
 		$presentationalAttribs = array(
-			'align' => array( 'text-align', array_merge( array( 'caption', 'hr', 'div', 'p', 'tr' ), $table, $cells, $colls, $tblocks, $h ) ),
+			// Align sanitation mostly disabled, because it was incomplete (bug 40329)
+			// This only takes care of align of inline content, we need more to take care of content block elements
+			// 'align' => array( 'text-align', array_merge( array( 'caption', 'hr', 'div', 'p', 'tr' ), $table, $cells, $colls, $tblocks, $h ) ),
+			'align' => array( 'float', $table ),
 			'clear' => array( 'clear', array( 'br' ) ),
 			'height' => array( 'height', $cells ),
 			'nowrap' => array( 'white-space', $cells ),
