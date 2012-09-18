@@ -1116,7 +1116,7 @@ Ensure you have cookies enabled, reload this page and try again.',
 'loginsuccesstitle'          => 'Login successful',
 'loginsuccess'               => "'''You are now logged in to {{SITENAME}} as \"\$1\".'''",
 'nosuchuser'                 => 'There is no user by the name "$1".
-Usernames are case sensitive.
+Usernames are case sensitive, except for the first letter.
 Check your spelling, or [[Special:UserLogin/signup|create a new account]].',
 'nosuchusershort'            => 'There is no user by the name "$1".
 Check your spelling.',
