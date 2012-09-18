@@ -178,6 +178,9 @@ return array(
 	'jquery.getAttrs' => array(
 		'scripts' => 'resources/jquery/jquery.getAttrs.js',
 	),
+	'jquery.hidpi' => array(
+		'scripts' => 'resources/jquery/jquery.hidpi.js',
+	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
 		'dependencies' => 'jquery.mwExtension',
@@ -619,6 +622,12 @@ return array(
 			'feedback-close',
 			'feedback-bugcheck',
 			'feedback-bugnew',
+		),
+	),
+	'mediawiki.hidpi' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.hidpi.js',
+		'dependencies' => array(
+			'jquery.hidpi',
 		),
 	),
 	'mediawiki.htmlform' => array(
