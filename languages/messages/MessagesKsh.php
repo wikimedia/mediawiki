@@ -3936,9 +3936,9 @@ Don de nomaale Vör-Ansich nemme.',
 'watchlistedit-noitems' => 'Ding Oppassliss es leddisch.',
 'watchlistedit-normal-title' => 'Oppassliss beärbeijde',
 'watchlistedit-normal-legend' => 'Titell uß de Oppassliss eruß lohße',
-'watchlistedit-normal-explain' => 'Dat sin de Endräch in Dinge Oppassliss.
-Om einzel Titelle loss ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
-De kanns Ding Oppassliss och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
+'watchlistedit-normal-explain' => 'Dat sin de Endräsch en Dinge Oppaßleß.
+Öm einzel Titelle loßß ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
+Do kanns Ding Oppassleß och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
 'watchlistedit-normal-submit' => 'Jangk de Titele met Hökche eruß schmieße',
 'watchlistedit-normal-done' => '{{PLURAL:$1|Eine Sigge-Tittel es|<strong>$1</strong> Sigge-Tittele sin|Keine Sigge-Tittel es}} us Dinge Opassliss erus jefloore:',
 'watchlistedit-raw-title' => 'Rüh Oppassliss beärbeide',

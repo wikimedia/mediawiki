@@ -733,10 +733,11 @@ Probeer het over een aantal minuten opnieuw.',
 Bewerken is niet mogelijk.',
 'viewsourcetext' => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'viewyourtext' => "U kunt '''uw bewerkingen''' aan de brontekst van deze pagina bekijken en kopiëren:",
-'protectedinterface' => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
+'protectedinterface' => "Deze pagina bevat tekst voor berichten van de software op deze wiki en is beveiligd om misbruik te voorkomen.
+Om vertalingen voor alle wiki's toe te voegen of te wijzigen, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
 'editinginterface' => "'''Waarschuwing:''' u bewerkt een pagina die interfacetekst voor de software bevat.
-Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
-Overweeg voor vertalingen om [//translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertaalproject voor MediaWiki.",
+Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen op deze wiki.
+Om vertalingen toe te voegen of te wijzigen voor alle wiki's, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
 'sqlhidden' => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected' => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -1764,7 +1765,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchangeslinked-toolbox' => 'Verwante wijzigingen',
 'recentchangeslinked-title' => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn in de opgegeven periode geen bewerkingen geweest op de pagina's waarheen vanaf hier verwezen wordt.",
-'recentchangeslinked-summary' => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of vanaf pagina's in een aangegeven pagina een categorie.
+'recentchangeslinked-summary' => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of op pagina's in een aangegeven categorie.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
 'recentchangeslinked-page' => 'Paginanaam:',
 'recentchangeslinked-to' => "Wijzigingen aan pagina's met verwijzingen naar deze pagina bekijken",

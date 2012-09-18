@@ -678,8 +678,11 @@ Ho kan allereie vere sletta av andre.',
 'protectedpagetext' => 'Denne sida er verna for å hindre endring.',
 'viewsourcetext' => 'Du kan sjå og kopiere kjeldekoden til denne sida:',
 'viewyourtext' => "Du kan sjå og kopiera kjelda til '''endringane dine''' på sida:",
-'protectedinterface' => 'Denne sida inneheld tekst som er brukt av brukargrensesnittet for programvara, og er difor låst for å hindre hærverk.',
-'editinginterface' => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst som er brukt av brukargrensesnittet for programvara. Endringar på denne sida påverkar utsjånaden til sida for dei andre brukarane. Dersom du ynskjer å setje om, ver venleg og vurder å bruke [//translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for omsetjing av MediaWiki.",
+'protectedinterface' => 'Denne sida inneheld tekst nytta av brukargrensesnittet for programvara på wikien, og er låst for å hindra hærverk.
+For å leggja til eller endra omsetjingar for alle wikiar, gjer vel å nytta [//translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for lokalisering av MediaWiki.',
+'editinginterface' => "'''Åtvaring:''' Du endrar på ei side som inneheld tekst nytta av brukargrensesnittet for programvara.
+Endringar på denne sida påverkar utsjånaden til brukargrensesnittet for dei andre brukarane av wikien.
+For å leggja til eller endra omsetjingar, gjer vel å nytta [//translatewiki.net/wiki/Main_Page?setlang=nn translatewiki.net], prosjektet for lokalisering av MediaWiki.",
 'sqlhidden' => '(SQL-førespurnaden er gøymd)',
 'cascadeprotected' => 'Denne sida er verna mot endring fordi ho er inkludert i {{PLURAL:$1|den opplista sida|dei opplista sidene}} som har djupvern slått på:
 $2',
@@ -692,6 +695,7 @@ Grunnen som er gjeven er: ''$2''.",
 'invalidtitle-knownnamespace' => 'Ugyldig tittel med namnerommet «$2» og teksten «$3»',
 'invalidtitle-unknownnamespace' => 'Ugyldig tittel med ukjend namneromstal $1 og teksten «$2»',
 'exception-nologin' => 'Ikkje innlogga',
+'exception-nologin-text' => 'Sida eller handlinga krev at du er innlogga på wikien.',
 
 # Virus scanner
 'virus-badscanner' => "Dårleg konfigurasjon: ukjend virusskanner: ''$1''",
@@ -1003,7 +1007,7 @@ Det siste loggelementet er oppgjeve under som referanse:",
 'titleprotectedwarning' => "'''Åtvaring: Denne sida er verna, så berre [[Special:ListGroupRights|nokre brukarar]] kan opprette henne.'''
 Det siste loggelementet er oppgjeve under som referanse:",
 'templatesused' => '{{PLURAL:$1|Mal|Malar}} som er brukte på denne sida:',
-'templatesusedpreview' => '{{PLURAL:$1|Mal|Malar}} som er brukte i denne førehandsvisinga:',
+'templatesusedpreview' => '{{PLURAL:$1|Mal som er brukt|Malar som er brukte}} i førehandsvisinga:',
 'templatesusedsection' => '{{PLURAL:$1|Mal|Malar}} som er brukte i denne bolken:',
 'template-protected' => '(verna)',
 'template-semiprotected' => '(delvis verna)',
@@ -1030,6 +1034,7 @@ Det ser ut til at ho er sletta.',
 'edit-conflict' => 'Endringskonflikt.',
 'edit-no-change' => 'Redigeringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
 'edit-already-exists' => 'Kunne ikkje opprette ny side fordi ho alt eksisterer.',
+'defaultmessagetext' => 'Standard meldingstekst',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Åtvaring: Denne sida inneheld for mange prosesskrevande parserfunksjonar.
@@ -1673,7 +1678,7 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'illegal-filename' => 'Filnamnet er ikkje tillate.',
 'overwrite' => 'Det er ikkje tillate å skriva over ei eksisterande fil.',
 'unknown-error' => 'Det oppstod ein ukjend feil.',
-'tmp-create-error' => 'Kunne ikkje opprette midlertidig fil.',
+'tmp-create-error' => 'Kunne ikkje oppretta mellombels fil.',
 'tmp-write-error' => 'Feil ved skriving av midlertidig fil.',
 'large-file' => 'Det er tilrådd at filene ikkje er større enn $1, denne fila er $2.',
 'largefileserver' => 'Denne fila er større enn det tenaren tillèt.',
@@ -1755,9 +1760,20 @@ $1',
 'upload-http-error' => 'Ein HTTP-feil oppstod: $1',
 
 # File backend
+'backend-fail-stream' => 'Kunne ikkje strøyma fila «$1».',
+'backend-fail-notexists' => 'Fila $1 finst ikkje.',
+'backend-fail-notsame' => 'Ein ikkje-identisk fil finst alt på «$1».',
 'backend-fail-invalidpath' => '$1 er ikkje ein gyldig lagringsstig.',
 'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
 'backend-fail-alreadyexists' => 'Fila $1 finst frå før.',
+'backend-fail-store' => 'Kunne ikkje lagra fila «$1» på «$2».',
+'backend-fail-copy' => 'Kunne ikkje kopiera fila «$1» til «$2».',
+'backend-fail-move' => 'Kunne ikkje flytta fila «$1» til «$2».',
+'backend-fail-opentemp' => 'Kunne ikkje opna mellombels fil.',
+'backend-fail-writetemp' => 'Kunne ikkje skriva til mellombels fil.',
+'backend-fail-closetemp' => 'Kunne ikkje lata att mellombels fil.',
+'backend-fail-read' => 'Kunne ikkje lesa fila «$1».',
+'backend-fail-create' => 'Kunne ikkje oppretta fila «$1».',
 
 # Special:UploadStash
 'uploadstash-refresh' => 'Oppdater fillista',
@@ -1931,7 +1947,9 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 
 'disambiguations' => 'Sider som lenkjer til fleirtydingssider',
 'disambiguationspage' => 'Template:Fleirtyding',
-'disambiguations-text' => "Sidene nedanfor har lenkje til ei '''fleirtydingsside'''. Dei bør ha lenkje til det rette oppslagsordet i staden for.<br />Sider vert handsama som fleirtydingssider dersom dei inneheld ein mal som har lenkje på [[MediaWiki:Disambiguationspage]].",
+'disambiguations-text' => "Dei fylgjande sidene inneheld minst éi lenkje til ei '''fleirtydingsside'''.
+Dei bør kan henda lenkja til ei meir passande side i staden.<br />
+Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja til frå [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects' => 'Doble omdirigeringar',
 'doubleredirectstext' => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på. <del>Overstrykne</del> liner har vorte retta på.',
@@ -1960,7 +1978,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'nviews' => '{{PLURAL:$1|Éi vising|$1 visingar}}',
 'nimagelinks' => 'Brukt på $1 {{PLURAL:$1|side|sider}}',
 'ntransclusions' => 'brukt på $1 {{PLURAL:$1|side|sider}}',
-'specialpage-empty' => 'Denne sida er tom.',
+'specialpage-empty' => 'Det er ingen resultat for denne rapporten.',
 'lonelypages' => 'Foreldrelause sider',
 'lonelypagestext' => 'Følgjande sider er ikkje lenkja til på andre sider på {{SITENAME}}.',
 'uncategorizedpages' => 'Ukategoriserte sider',
@@ -2004,7 +2022,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'ancientpages' => 'Eldste sider',
 'move' => 'Flytt',
 'movethispage' => 'Flytt denne sida',
-'unusedimagestext' => 'Dei fylgjande filene finst, men vert ikkje nytta på noka sida.
+'unusedimagestext' => 'Dei fylgjande filene finst, men vert ikkje nytta på noka side.
 Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan filene vera nytta aktivt trass i at dei er lista opp her.',
 'unusedcategoriestext' => 'Dei følgjande kategorisidene er oppretta, sjølv om ingen artikkel eller kategori brukar dei.',
 'notargettitle' => 'Inkje mål',
@@ -2035,7 +2053,7 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 # Special:AllPages
 'allpages' => 'Alle sider',
 'alphaindexline' => '$1 til $2',
-'nextpage' => 'Neste sida ($1)',
+'nextpage' => 'Neste side ($1)',
 'prevpage' => 'Førre sida ($1)',
 'allpagesfrom' => 'Vis sider frå:',
 'allpagesto' => 'Vis sider til og med:',
@@ -2117,6 +2135,8 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'mailnologin' => 'Inga avsendaradresse',
 'mailnologintext' => 'Du lyt vera [[Special:UserLogin|innlogga]] og ha ei gyldig e-postadresse sett i [[Special:Preferences|brukarinnstillingane]] for å sende e-post åt andre brukarar.',
 'emailuser' => 'Send e-post åt denne brukaren',
+'emailuser-title-target' => 'Send epost åt {{GENDER:$1|brukaren}}',
+'emailuser-title-notarget' => 'Send e-post åt brukar',
 'emailpage' => 'Send e-post åt brukar',
 'emailpagetext' => 'Du kan nytte skjemaet nedanfor til å sende ein e-post til denne brukaren.
 E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukke opp i «frå»-feltet på denne e-posten, så mottakaren er i stand til å svare.',
@@ -2278,6 +2298,7 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 'protect-title' => 'Vernar «$1»',
 'protect-title-notallowed' => 'Sjå vernenivået til «$1»',
 'prot_1movedto2' => '«[[$1]]» flytt til «[[$2]]»',
+'protect-badnamespace-title' => 'Namnerommet kan ikkje vernast',
 'protect-legend' => 'Stadfest vern',
 'protectcomment' => 'Grunngjeving:',
 'protectexpiry' => 'Endar:',
@@ -2868,11 +2889,19 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
-'pageinfo-header-edits' => 'Endringar',
+'pageinfo-header-basic' => 'Grunnleggjande informasjon',
+'pageinfo-header-edits' => 'Endringshistorikk',
+'pageinfo-header-restrictions' => 'Sidevern',
+'pageinfo-header-properties' => 'Sideeigenskapar',
+'pageinfo-article-id' => 'Side-ID',
 'pageinfo-views' => 'Tal på visningar',
 'pageinfo-watchers' => 'Antal overvakarar',
-'pageinfo-edits' => 'Tal på endringar',
-'pageinfo-authors' => 'Tal på forskjellege forfattarar',
+'pageinfo-firstuser' => 'Sideopprettar',
+'pageinfo-firsttime' => 'Dato for opprettinga av sida',
+'pageinfo-lastuser' => 'Siste forfattaren',
+'pageinfo-lasttime' => 'Dato for siste endringa',
+'pageinfo-edits' => 'Totalt tal på endringar',
+'pageinfo-authors' => 'Totalt tal på ulike forfattarar',
 
 # Skin names
 'skinname-standard' => 'Klassisk',
@@ -3120,6 +3149,8 @@ Andre er gøymde som standard.
 'exif-iimcategory' => 'Kategori',
 'exif-lens' => 'Objektiv',
 'exif-cameraownername' => 'Eigar av kameraet',
+'exif-label' => 'Merkelapp',
+'exif-copyrighted' => 'Opphavsrettsstode',
 'exif-pngfilecomment' => 'PNG-filkommentar',
 'exif-disclaimer' => 'Atterhald',
 'exif-contentwarning' => 'Innholdsåtvaring',
@@ -3295,11 +3326,15 @@ Andre er gøymde som standard.
 'exif-gpsdirection-t' => 'Verkeleg retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
+'exif-ycbcrpositioning-1' => 'Sentrert',
+
 'exif-dc-date' => 'Dato(ar)',
 'exif-dc-publisher' => 'Utgjevar',
 'exif-dc-rights' => 'Rettar',
 'exif-dc-source' => 'Mediakilde',
 'exif-dc-type' => 'Mediatype',
+
+'exif-rating-rejected' => 'Avvist',
 
 'exif-isospeedratings-overflow' => 'Større enn 65535',
 
@@ -3400,14 +3435,14 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 
 # Multipage image navigation
 'imgmultipageprev' => '← førre sida',
-'imgmultipagenext' => 'neste sida →',
+'imgmultipagenext' => 'neste side →',
 'imgmultigo' => 'Gå!',
 'imgmultigoto' => 'Gå til sida $1',
 
 # Table pager
 'ascending_abbrev' => 'stigande',
 'descending_abbrev' => 'synkande',
-'table_pager_next' => 'Neste sida',
+'table_pager_next' => 'Neste side',
 'table_pager_prev' => 'Førre sida',
 'table_pager_first' => 'Fyrste side',
 'table_pager_last' => 'Siste side',
@@ -3472,6 +3507,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-specialpages' => 'Spesialsider',
 'version-parserhooks' => 'Parsertillegg',
 'version-variables' => 'Variablar',
+'version-antispam' => 'Hindring av spam',
 'version-skins' => 'Draktar',
 'version-other' => 'Anna',
 'version-mediahandlers' => 'Mediahandsamarar',
@@ -3488,6 +3524,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-software' => 'Installert programvare',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versjon',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
 'filepath' => 'Filsti',

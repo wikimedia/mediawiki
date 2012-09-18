@@ -589,8 +589,11 @@ $1',
 'protectedpagetext' => '該頁面已被保護以防止編輯。',
 'viewsourcetext' => '{{GENDER:|你|妳|你}}可以檢視並複製本頁面的原始碼。',
 'viewyourtext' => "您可以查看並複製'''您對此頁面作出編輯後'''的源代碼：",
-'protectedinterface' => '該頁提供了軟體的介面文字，它已被保護以防止隨意的修改。',
-'editinginterface' => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟件本地化的計劃。",
+'protectedinterface' => '該頁提供此wiki軟體的介面文字，它已被保護以防止惡意修改。
+如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。',
+'editinginterface' => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。
+改變此頁將影響其他在此wiki上的用戶介面外觀。
+如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。",
 'sqlhidden' => '（隱藏SQL查詢）',
 'cascadeprotected' => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
 $2',

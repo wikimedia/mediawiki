@@ -987,12 +987,10 @@ Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view' => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract' => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'clearyourcache' => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
-
+'clearyourcache' => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.
 *'''Firefox / Safari:''' Pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' no Mac)
 *'''Google Chrome:''' Pressione ''Ctrl-Shift-R'' (''⌘-Shift-R'' no Mac)
 *'''Internet Explorer:''' Pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
-*'''Konqueror:''' Clique ''Recarregar'' ou pressione ''F5''
 *'''Opera:''' Limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview' => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 'userjsyoucanpreview' => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo JavaScript antes de gravar.",
@@ -1254,7 +1252,8 @@ Verifique os registos, por favor.',
 'revdelete-only-restricted' => 'Erro ao ocultar o item de $2 às $1: não pode impedir que os itens sejam vistos pelos administradores sem seleccionar também uma das outras opções de visibilidade.',
 'revdelete-reason-dropdown' => '*Razões comuns para eliminação
 ** Violação de direitos de autor
-** Informações pessoais inapropriadas
+** Comentário ou informações pessoais inapropriados
+** Nome de utilizador inapropriado
 ** Informações potencialmente difamatórias',
 'revdelete-otherreason' => 'Outro/motivo adicional:',
 'revdelete-reasonotherlist' => 'Outro motivo',
@@ -2983,6 +2982,7 @@ Não há um directório temporário.',
 'import-error-interwiki' => 'A página "$1" não pode ser importada pois seu nome está reservado para um link externo (interwiki).',
 'import-error-special' => 'A página "$1" não pode ser importada porque ela pertence a um espaço nominal especial que não permite páginas.',
 'import-error-invalid' => 'A página "$1" não pode ser importada porque seu nome é inválido.',
+'import-options-wrong' => '{{PLURAL:$2|Opção errada|Opções erradas}}: <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => 'Registo de importações',
@@ -3887,7 +3887,7 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other' => 'Outras páginas especiais',
-'specialpages-group-login' => 'Entrar / registar-se',
+'specialpages-group-login' => 'Entrar / criar conta',
 'specialpages-group-changes' => 'Mudanças e registos recentes',
 'specialpages-group-media' => 'Listas e carregamento de ficheiros',
 'specialpages-group-users' => 'Utilizadores e privilégios',

@@ -2901,10 +2901,10 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 
 # Special:NewFiles
 'newimages' => 'Galarìa ëd figure e son neuv',
-'imagelisttext' => "Ambelessì sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà për $2}}.",
+'imagelisttext' => "Ambelessì-sota a-i é {{PLURAL:$1|l'ùnica figura che a-i sia|na lista ëd '''$1''' figure, ordinà $2}}.",
 'newimages-summary' => "Sta pàgina special-sì a la smon j'ùltim archivi carià.",
 'newimages-legend' => 'Filtror',
-'newimages-label' => 'Nòm dël file (o ëd part dël file):',
+'newimages-label' => "Nòm ëd l'archivi (o na soa part):",
 'showhidebots' => '($1 trigomiro)',
 'noimages' => 'Pa gnente da vëdde.',
 'ilsubmit' => 'Sërca',

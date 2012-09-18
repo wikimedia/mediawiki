@@ -602,10 +602,11 @@ Inténteo de novo nuns minutos.",
 'protectedpagetext' => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext' => 'Pode ver e copiar o código fonte desta páxina:',
 'viewyourtext' => "Pode ver e copiar o código fonte '''das súas edicións''' nesta páxina:",
-'protectedinterface' => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
+'protectedinterface' => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.
+Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.',
 'editinginterface' => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software.
-Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
-Para realizar traducións, considere usar [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
+Os cambios nesta páxina afectarán á aparencia da interface dos outros usuarios do wiki.
+Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
 'sqlhidden' => '(Procura SQL agochada)',
 'cascadeprotected' => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
