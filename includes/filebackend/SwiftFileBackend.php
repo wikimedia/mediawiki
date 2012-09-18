@@ -1033,44 +1033,77 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackendStore::getLocalCopy()
+	 * @see FileBackendStore::doGetLocalCopies()
 	 * @return null|TempFSFile
 	 */
-	public function getLocalCopy( array $params ) {
-		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
-		if ( $srcRel === null ) {
-			return null;
-		}
+	protected function doGetLocalCopies( array $params ) {
+		$tmpFiles = array();
 
-		// Blindly create a tmp file and stream to it, catching any exception if the file does
-		// not exist. Also, doing a stat here will cause infinite loops when filling metadata.
-		$tmpFile = null;
-		try {
-			$sContObj = $this->getContainer( $srcCont );
-			$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-			// Get source file extension
-			$ext = FileBackend::extensionFromPath( $srcRel );
-			// Create a new temporary file...
-			$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
-			if ( $tmpFile ) {
-				$handle = fopen( $tmpFile->getPath(), 'wb' );
-				if ( $handle ) {
-					$obj->stream( $handle, $this->headersFromParams( $params ) );
-					fclose( $handle );
-				} else {
-					$tmpFile = null; // couldn't open temp file
+		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
+		// Blindly create tmp files and stream to them, catching any exception if the file does
+		// not exist. Doing a stat here is useless causes infinite loops in addMissingMetadata().
+		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
+			$cfOps = array(); // (path => CF_Async_Op)
+
+			$handles = array(); // open file handles for async ops
+			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
+				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+				if ( $srcRel === null ) {
+					$tmpFiles[$path] = null;
+					continue;
+				}
+				$tmpFile = null;
+				try {
+					$sContObj = $this->getContainer( $srcCont );
+					$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
+					// Get source file extension
+					$ext = FileBackend::extensionFromPath( $path );
+					// Create a new temporary file...
+					$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
+					if ( $tmpFile ) {
+						$handle = fopen( $tmpFile->getPath(), 'wb' );
+						if ( $handle ) {
+							$headers = $this->headersFromParams( $params );
+							if ( count( $pathBatch ) > 1 ) {
+								$cfOps[$path] = $obj->stream_async( $handle, $headers );
+								$handles[] = $handle; // close this later
+							} else {
+								$obj->stream( $handle, $headers );
+								fclose( $handle );
+							}
+						} else {
+							$tmpFile = null;
+						}
+					}
+				} catch ( NoSuchContainerException $e ) {
+					$tmpFile = null;
+				} catch ( NoSuchObjectException $e ) {
+					$tmpFile = null;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$tmpFile = null;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				$tmpFiles[$path] = $tmpFile;
+			}
+
+			$batch = new CF_Async_Op_Batch( $cfOps );
+			$cfOps = $batch->execute();
+			foreach ( $cfOps as $path => $cfOp ) {
+				try {
+					$cfOp->getLastResponse();
+				} catch ( NoSuchContainerException $e ) {
+					$tmpFiles[$path] = null;
+				} catch ( NoSuchObjectException $e ) {
+					$tmpFiles[$path] = null;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$tmpFiles[$path] = null;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
 				}
 			}
-		} catch ( NoSuchContainerException $e ) {
-			$tmpFile = null;
-		} catch ( NoSuchObjectException $e ) {
-			$tmpFile = null;
-		} catch ( CloudFilesException $e ) { // some other exception?
-			$tmpFile = null;
-			$this->handleException( $e, null, __METHOD__, $params );
+			array_map( 'fclose', $handles ); // close open handles
 		}
 
-		return $tmpFile;
+		return $tmpFiles;
 	}
 
 	/**

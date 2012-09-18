@@ -807,7 +807,29 @@ abstract class FileBackend {
 	 *   - latest : use the latest available data
 	 * @return FSFile|null Returns null on failure
 	 */
-	abstract public function getLocalReference( array $params );
+	final public function getLocalReference( array $params ) {
+		$fsFiles = $this->getLocalReferences(
+			array( 'srcs' => array( $params['src'] ) ) + $params );
+
+		return $fsFiles[$params['src']];
+	}
+
+	/**
+	 * Like getLocalReference() except it takes an array of storage paths
+	 * and returns a map of storage paths to FSFile objects (or null on failure).
+	 * The map keys (paths) are in the same order as the provided list of paths.
+	 *
+	 * @see FileBackend::getLocalReference()
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 *   - parallelize : try to do operations in parallel when possible
+	 * @return Array Map of (path name => FSFile or null on failure)
+	 * @since 1.20
+	 */
+	abstract public function getLocalReferences( array $params );
 
 	/**
 	 * Get a local copy on disk of the file at a storage path in the backend.
@@ -820,7 +842,29 @@ abstract class FileBackend {
 	 *   - latest : use the latest available data
 	 * @return TempFSFile|null Returns null on failure
 	 */
-	abstract public function getLocalCopy( array $params );
+	final public function getLocalCopy( array $params ) {
+		$tmpFiles = $this->getLocalCopies(
+			array( 'srcs' => array( $params['src'] ) ) + $params );
+
+		return $tmpFiles[$params['src']];
+	}
+
+	/**
+	 * Like getLocalCopy() except it takes an array of storage paths and
+	 * returns a map of storage paths to TempFSFile objects (or null on failure).
+	 * The map keys (paths) are in the same order as the provided list of paths.
+	 *
+	 * @see FileBackend::getLocalCopy()
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 *   - parallelize : try to do operations in parallel when possible
+	 * @return Array Map of (path name => TempFSFile or null on failure)
+	 * @since 1.20
+	 */
+	abstract public function getLocalCopies( array $params );
 
 	/**
 	 * Check if a directory exists at a given storage path.
