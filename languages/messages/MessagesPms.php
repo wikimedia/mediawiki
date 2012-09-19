@@ -2907,9 +2907,9 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 'newimages-label' => "Nòm ëd l'archivi (o na soa part):",
 'showhidebots' => '($1 trigomiro)',
 'noimages' => 'Pa gnente da vëdde.',
-'ilsubmit' => 'Sërca',
+'ilsubmit' => 'Arserché',
 'bydate' => 'për data',
-'sp-newimages-showfrom' => "Smon j'ùltim archivi multimojen a anandiesse da $2 dël $1",
+'sp-newimages-showfrom' => "Smon-e j'ùltim archivi multimojen a anandiesse da $2 dël $1",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds' => '{{PLURAL:$1|un second|$1 second}}',

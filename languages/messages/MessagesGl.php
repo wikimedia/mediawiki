@@ -1631,7 +1631,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'uploadnologin' => 'Non accedeu ao sistema',
 'uploadnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
 'upload_directory_missing' => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
-'upload_directory_read_only' => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
+'upload_directory_read_only' => 'O servidor web non pode escribir no directorio de carga ($1).',
 'uploaderror' => 'Erro ao cargar',
 'upload-recreate-warning' => "'''Atención: Borrouse ou trasladouse un ficheiro con ese nome.'''
 

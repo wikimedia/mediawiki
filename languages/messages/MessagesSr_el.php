@@ -692,10 +692,11 @@ Upit: $2',
 'protectedpagetext' => 'Ova stranica je zaključana za uređivanja.',
 'viewsourcetext' => 'Možete da pogledate i umnožite izvorni tekst ove stranice:',
 'viewyourtext' => "Možete da pogledate i umnožite izvor '''vaših izmena''' na ovoj stranici:",
-'protectedinterface' => 'Ova stranica je zaštićena jer sadrži tekst korisničkog sučelja programa.',
+'protectedinterface' => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom vikiju i zaštićena je radi sprečavanja zloupotrebe.
+Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/ Translejtviki], projekat za lokalizaciju Medijavikija.',
 'editinginterface' => "'''Upozorenje:''' uređujete stranicu koja se koristi za prikazivanje teksta korisničkog okruženja.
-Izmene na ovoj stranici će uticati na sve korisnike.
-Posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat namenjen za prevođenje Medijavikija.",
+Izmene na ovoj stranici će uticati na sve korisnike ovog vikija.
+Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat za lokalizaciju Medijavikija.",
 'sqlhidden' => '(SQL upit je sakriven)',
 'cascadeprotected' => 'Ova stranica je zaključana jer sadrži {{PLURAL:$1|sledeću stranicu koja je zaštićena|sledeće stranice koje su zaštićene}} „prenosivom“ zaštitom:
 $2',

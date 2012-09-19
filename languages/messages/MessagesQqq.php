@@ -797,7 +797,7 @@ $1 is the minimum number of characters in the password.',
 'mailmypassword' => 'Shown at [[Special:UserLogin]]',
 'passwordremindertitle' => 'Title of e-mail which contains temporary password',
 'passwordremindertext' => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
-* $1 is an IP addres. Example: 123.123.123.123
+* $1 is an IP address. Example: 123.123.123.123
 * $2 is a username. Example: Joe
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com

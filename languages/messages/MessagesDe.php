@@ -1056,8 +1056,7 @@ Du kannst sie <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}}
 ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten]</span>.',
 'noarticletext-nopermission' => 'Diese Seite enthält momentan noch keinen Text.
-Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
-oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
+Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]] oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span> Du bist allerdings nicht berechtigt diese Seite zu erstellen.',
 'missing-revision' => 'Die Version $1 der Seite namens „{{PAGENAME}}“ ist nicht vorhanden.
 
 Dieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.
@@ -1514,7 +1513,7 @@ Hier ein zufällig generierter Wert, den du verwenden kannst: $1',
 'timezoneregion-indian' => 'Indischer Ozean',
 'timezoneregion-pacific' => 'Pazifischer Ozean',
 'allowemail' => 'E-Mail-Empfang von anderen Benutzern ermöglichen',
-'prefs-searchoptions' => 'Suchoptionen',
+'prefs-searchoptions' => 'Suche',
 'prefs-namespaces' => 'Namensräume',
 'defaultns' => 'Anderenfalls in diesen Namensräumen suchen:',
 'default' => 'Voreinstellung',
