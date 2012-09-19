@@ -833,7 +833,7 @@ class LoginForm extends SpecialPage {
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();
 		$userLanguage = $u->getOption( 'language' );
-		$m = $this->msg( $emailText, $ip, $u->getName(), $np, $wgServer . $wgScript,
+		$m = $this->msg( $emailText, $ip, $u->getName(), $np, '<' . $wgServer . $wgScript . '>',
 			round( $wgNewPasswordExpiry / 86400 ) )->inLanguage( $userLanguage )->text();
 		$result = $u->sendMail( $this->msg( $emailTitle )->inLanguage( $userLanguage )->text(), $m );
 
