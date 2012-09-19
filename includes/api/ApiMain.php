@@ -135,6 +135,7 @@ class ApiMain extends ApiBase {
 
 	private $mCacheMode = 'private';
 	private $mCacheControl = array();
+	private $mParamsUsed = array();
 
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
@@ -168,7 +169,7 @@ class ApiMain extends ApiBase {
 			// Remove all modules other than login
 			global $wgUser;
 
-			if ( $this->getRequest()->getVal( 'callback' ) !== null ) {
+			if ( $this->getVal( 'callback' ) !== null ) {
 				// JSON callback allows cross-site reads.
 				// For safety, strip user credentials.
 				wfDebug( "API: stripping user credentials for JSON callback\n" );
@@ -365,6 +366,7 @@ class ApiMain extends ApiBase {
 		// clear the output buffer and print just the error information
 		ob_start();
 
+		$t = microtime( true );
 		try {
 			$this->executeAction();
 		} catch ( Exception $e ) {
@@ -400,6 +402,9 @@ class ApiMain extends ApiBase {
 			$this->mPrinter->safeProfileOut();
 			$this->printResult( true );
 		}
+
+		// Log the request whether or not there was an error
+		$this->logRequest( microtime( true ) - $t);
 
 		// Send cache headers after any code which might generate an error, to
 		// avoid sending public cache headers for errors.
@@ -816,12 +821,80 @@ class ApiMain extends ApiBase {
 		$module->profileOut();
 
 		if ( !$this->mInternalMode ) {
+
 			//append Debug information
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
 
 			// Print result data
 			$this->printResult( false );
 		}
+	}
+
+	/**
+	 * Log the preceding request
+	 * @param $time Time in seconds
+	 */
+	protected function logRequest( $time ) {
+		$request = $this->getRequest();
+		$milliseconds = $time === null ? '?' : round( $time * 1000 );
+		$s = 'API' . 
+			' ' . $request->getMethod() .
+			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
+			' ' . $request->getIP() .
+			' T=' . $milliseconds .'ms';
+		foreach ( $this->getParamsUsed() as $name ) {
+			$value = $request->getVal( $name );
+			if ( $value === null ) {
+				continue;
+			}
+			$s .= ' ' . $name . '=';
+			if ( strlen( $value ) > 256 ) {
+				$encValue = $this->encodeRequestLogValue( substr( $value, 0, 256 ) );
+				$s .= $encValue . '[...]';
+			} else {
+				$s .= $this->encodeRequestLogValue( $value );
+			}
+		}
+		$s .= "\n";
+		wfDebugLog( 'api', $s );
+	}
+
+	/**
+	 * Encode a value in a format suitable for a space-separated log line.
+	 */
+	protected function encodeRequestLogValue( $s ) {
+		static $table;
+		if ( !$table ) {
+			$chars = ';@$!*(),/:';
+			for ( $i = 0; $i < strlen( $chars ); $i++ ) {
+				$table[ rawurlencode( $chars[$i] ) ] = $chars[$i];
+			}
+		}
+		return strtr( rawurlencode( $s ), $table );
+	}
+
+	/**
+	 * Get the request parameters used in the course of the preceding execute() request
+	 */
+	protected function getParamsUsed() {
+		return array_keys( $this->mParamsUsed );
+	}
+
+	/**
+	 * Get a request value, and register the fact that it was used, for logging.
+	 */
+	public function getVal( $name, $default = null ) {
+		$this->mParamsUsed[$name] = true;
+		return $this->getRequest()->getVal( $name, $default );
+	}
+
+	/**
+	 * Get a boolean request value, and register the fact that the parameter
+	 * was used, for logging.
+	 */
+	public function getCheck( $name ) {
+		$this->mParamsUsed[$name] = true;
+		return $this->getRequest()->getCheck( $name );		
 	}
 
 	/**
