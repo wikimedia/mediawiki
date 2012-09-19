@@ -13,23 +13,23 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		parent::__construct( $name, $data, $dataName );
 
 		$this->tablesUsed = array_merge ( $this->tablesUsed,
-		                                  array( 'page',
-		                                       'revision',
-		                                       'text',
+										  array( 'page',
+												'revision',
+												'text',
 
-		                                       'recentchanges',
-		                                       'logging',
+												'recentchanges',
+												'logging',
 
-		                                       'page_props',
-		                                       'pagelinks',
-		                                       'categorylinks',
-		                                       'langlinks',
-		                                       'externallinks',
-		                                       'imagelinks',
-		                                       'templatelinks',
-		                                       'iwlinks' ) );
+												'page_props',
+												'pagelinks',
+												'categorylinks',
+												'langlinks',
+												'externallinks',
+												'imagelinks',
+												'templatelinks',
+												'iwlinks' ) );
 	}
-	
+
 	public function setUp() {
 		parent::setUp();
 		$this->pages_to_delete = array();
@@ -54,10 +54,13 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param Title $title
+	 * @param String $model
 	 * @return WikiPage
 	 */
-	protected function newPage( $title ) {
-		if ( is_string( $title ) ) $title = Title::newFromText( $title );
+	protected function newPage( $title, $model = null ) {
+		if ( is_string( $title ) ) {
+			$title = Title::newFromText( $title );
+		}
 
 		$p = new WikiPage( $title );
 
@@ -75,13 +78,12 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	 * @return WikiPage
 	 */
 	protected function createPage( $page, $text, $model = null ) {
-		if ( is_string( $page ) ) $page = Title::newFromText( $page );
+		if ( is_string( $page ) ) {
+			$page = Title::newFromText( $page );
+		}
 
 		if ( $page instanceof Title ) {
-			$title = $page;
-			$page = $this->newPage( $page );
-		} else {
-			$title = null;
+			$page = $this->newPage( $page, $model );
 		}
 
 		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
@@ -96,8 +98,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$page = $this->newPage( $title );
 
 		$content = ContentHandler::makeContent( "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-		                                      . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
-		                                      $title );
+											  . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+											  $title, CONTENT_MODEL_WIKITEXT );
 
 		$page->doEditContent( $content, "[[testing]] 1" );
 
@@ -124,8 +126,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$content = ContentHandler::makeContent( "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-		                                        . "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
-		                                        $title );
+												. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.",
+												$title, CONTENT_MODEL_WIKITEXT );
 
 		$page->doEditContent( $content, "testing 2" );
 
@@ -143,18 +145,19 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$this->assertEquals( 2, $n, 'pagelinks should contain two links from the page' );
 	}
-	
+
 	public function testDoEdit() {
 		$this->hideDeprecated( "WikiPage::doEdit" );
 		$this->hideDeprecated( "WikiPage::getText" );
 		$this->hideDeprecated( "Revision::getText" );
 
-		$title = Title::newFromText( "WikiPageTest_testDoEdit" );
+		//NOTE: assume help namespace will default to wikitext
+		$title = Title::newFromText( "Help:WikiPageTest_testDoEdit" );
 
 		$page = $this->newPage( $title );
 
 		$text = "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-		       . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
+				. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.";
 
 		$page->doEdit( $text, "[[testing]] 1" );
 
@@ -181,7 +184,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		# ------------------------
 		$text = "At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
-		       . "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
+				. "Stet clita kasd [[gubergren]], no sea takimata sanctus est.";
 
 		$page->doEdit( $text, "testing 2" );
 
@@ -205,7 +208,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 		$this->hideDeprecated( "WikiPage::doQuickEdit" );
 
-		$page = $this->createPage( "WikiPageTest_testDoQuickEdit", "original text" );
+		//NOTE: assume help namespace will default to wikitext
+		$page = $this->createPage( "Help:WikiPageTest_testDoQuickEdit", "original text" );
 
 		$text = "quick text";
 		$page->doQuickEdit( $text, $wgUser, "testing q" );
@@ -218,18 +222,18 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	public function testDoQuickEditContent() {
 		global $wgUser;
 
-		$page = $this->createPage( "WikiPageTest_testDoQuickEditContent", "original text" );
+		$page = $this->createPage( "WikiPageTest_testDoQuickEditContent", "original text", CONTENT_MODEL_WIKITEXT );
 
-		$content = ContentHandler::makeContent( "quick text", $page->getTitle() );
+		$content = ContentHandler::makeContent( "quick text", $page->getTitle(), CONTENT_MODEL_WIKITEXT );
 		$page->doQuickEditContent( $content, $wgUser, "testing q" );
 
 		# ---------------------
 		$page = new WikiPage( $page->getTitle() );
 		$this->assertTrue( $content->equals( $page->getContent() ) );
 	}
-	
+
 	public function testDoDeleteArticle() {
-		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
+		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo", CONTENT_MODEL_WIKITEXT );
 		$id = $page->getId();
 
 		$page->doDeleteArticle( "testing deletion" );
@@ -253,7 +257,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testDoDeleteUpdates() {
-		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo" );
+		$page = $this->createPage( "WikiPageTest_testDoDeleteArticle", "[[original text]] foo", CONTENT_MODEL_WIKITEXT );
 		$id = $page->getId();
 
 		$page->doDeleteUpdates( $id );
@@ -274,7 +278,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertNull( $rev );
 
 		# -----------------
-		$this->createPage( $page, "some text" );
+		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 
 		$rev = $page->getRevision();
 
@@ -289,7 +293,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertNull( $content );
 
 		# -----------------
-		$this->createPage( $page, "some text" );
+		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 
 		$content = $page->getContent();
 		$this->assertEquals( "some text", $content->getNativeData() );
@@ -304,7 +308,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $text );
 
 		# -----------------
-		$this->createPage( $page, "some text" );
+		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 
 		$text = $page->getText();
 		$this->assertEquals( "some text", $text );
@@ -319,7 +323,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $text );
 
 		# -----------------
-		$this->createPage( $page, "some text" );
+		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 
 		$text = $page->getRawText();
 		$this->assertEquals( "some text", $text );
@@ -356,7 +360,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $page->exists() );
 
 		# -----------------
-		$this->createPage( $page, "some text" );
+		$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 		$this->assertTrue( $page->exists() );
 
 		$page = new WikiPage( $page->getTitle() );
@@ -388,7 +392,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $viewable, $page->hasViewableContent() );
 
 		if ( $create ) {
-			$this->createPage( $page, "some text" );
+			$this->createPage( $page, "some text", CONTENT_MODEL_WIKITEXT );
 			$this->assertTrue( $page->hasViewableContent() );
 
 			$page = new WikiPage( $page->getTitle() );
@@ -398,21 +402,21 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 	public function dataGetRedirectTarget() {
 		return array(
-			array( 'WikiPageTest_testGetRedirectTarget_1', "hello world", null ),
-			array( 'WikiPageTest_testGetRedirectTarget_2', "#REDIRECT [[hello world]]", "Hello world" ),
+			array( 'WikiPageTest_testGetRedirectTarget_1', CONTENT_MODEL_WIKITEXT, "hello world", null ),
+			array( 'WikiPageTest_testGetRedirectTarget_2', CONTENT_MODEL_WIKITEXT, "#REDIRECT [[hello world]]", "Hello world" ),
 		);
 	}
 
 	/**
 	 * @dataProvider dataGetRedirectTarget
 	 */
-	public function testGetRedirectTarget( $title, $text, $target ) {
-		$page = $this->createPage( $title, $text );
+	public function testGetRedirectTarget( $title, $model, $text, $target ) {
+		$page = $this->createPage( $title, $text, $model );
 
 		# sanity check, because this test seems to fail for no reason for some people.
 		$c = $page->getContent();
 		$this->assertEquals( 'WikitextContent', get_class( $c ) );
-		
+
 		# now, test the actual redirect
 		$t = $page->getRedirectTarget();
 		$this->assertEquals( $target, is_null( $t ) ? null : $t->getPrefixedText() );
@@ -421,8 +425,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider dataGetRedirectTarget
 	 */
-	public function testIsRedirect( $title, $text, $target ) {
-		$page = $this->createPage( $title, $text );
+	public function testIsRedirect( $title, $model, $text, $target ) {
+		$page = $this->createPage( $title, $text, $model );
 		$this->assertEquals( !is_null( $target ), $page->isRedirect() );
 	}
 
@@ -431,89 +435,104 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 			// any
 			array( 'WikiPageTest_testIsCountable',
-			       '',
-			       'any',
-			       true
+					CONTENT_MODEL_WIKITEXT,
+					'',
+					'any',
+					true
 			),
 			array( 'WikiPageTest_testIsCountable',
-			       'Foo',
-			       'any',
-			       true
+					CONTENT_MODEL_WIKITEXT,
+					'Foo',
+					'any',
+					true
 			),
 
 			// comma
 			array( 'WikiPageTest_testIsCountable',
-			       'Foo',
-			       'comma',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'Foo',
+					'comma',
+					false
 			),
 			array( 'WikiPageTest_testIsCountable',
-			       'Foo, bar',
-			       'comma',
-			       true
+					CONTENT_MODEL_WIKITEXT,
+					'Foo, bar',
+					'comma',
+					true
 			),
 
 			// link
 			array( 'WikiPageTest_testIsCountable',
-			       'Foo',
-			       'link',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'Foo',
+					'link',
+					false
 			),
 			array( 'WikiPageTest_testIsCountable',
-			       'Foo [[bar]]',
-			       'link',
-			       true
+					CONTENT_MODEL_WIKITEXT,
+					'Foo [[bar]]',
+					'link',
+					true
 			),
 
 			// redirects
 			array( 'WikiPageTest_testIsCountable',
-			       '#REDIRECT [[bar]]',
-			       'any',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'#REDIRECT [[bar]]',
+					'any',
+					false
 			),
 			array( 'WikiPageTest_testIsCountable',
-			       '#REDIRECT [[bar]]',
-			       'comma',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'#REDIRECT [[bar]]',
+					'comma',
+					false
 			),
 			array( 'WikiPageTest_testIsCountable',
-			       '#REDIRECT [[bar]]',
-			       'link',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'#REDIRECT [[bar]]',
+					'link',
+					false
 			),
 
 			// not a content namespace
 			array( 'Talk:WikiPageTest_testIsCountable',
-			       'Foo',
-			       'any',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'Foo',
+					'any',
+					false
 			),
 			array( 'Talk:WikiPageTest_testIsCountable',
-			       'Foo, bar',
-			       'comma',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'Foo, bar',
+					'comma',
+					false
 			),
 			array( 'Talk:WikiPageTest_testIsCountable',
-			       'Foo [[bar]]',
-			       'link',
-			       false
+					CONTENT_MODEL_WIKITEXT,
+					'Foo [[bar]]',
+					'link',
+					false
 			),
 
 			// not a content namespace, different model
 			array( 'MediaWiki:WikiPageTest_testIsCountable.js',
-			       'Foo',
-			       'any',
-			       false
+					null,
+					'Foo',
+					'any',
+					false
 			),
 			array( 'MediaWiki:WikiPageTest_testIsCountable.js',
-			       'Foo, bar',
-			       'comma',
-			       false
+					null,
+					'Foo, bar',
+					'comma',
+					false
 			),
 			array( 'MediaWiki:WikiPageTest_testIsCountable.js',
-			       'Foo [[bar]]',
-			       'link',
-			       false
+					null,
+					'Foo [[bar]]',
+					'link',
+					false
 			),
 		);
 	}
@@ -522,13 +541,13 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider dataIsCountable
 	 */
-	public function testIsCountable( $title, $text, $mode, $expected ) {
+	public function testIsCountable( $title, $model, $text, $mode, $expected ) {
 		global $wgArticleCountMethod;
 
 		$oldArticleCountMethod = $wgArticleCountMethod;
 		$wgArticleCountMethod = $mode;
 
-		$page = $this->createPage( $title, $text );
+		$page = $this->createPage( $title, $text, $model );
 		$hasLinks = wfGetDB( DB_SLAVE )->selectField( 'pagelinks', 1,
 					array( 'pl_from' => $page->getId() ), __METHOD__ );
 
@@ -540,15 +559,15 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$wgArticleCountMethod = $oldArticleCountMethod;
 
 		$this->assertEquals( $expected, $v, "isCountable( null ) returned unexpected value " . var_export( $v, true )
-		                                    . " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
+											. " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
 
 		$this->assertEquals( $expected, $w, "isCountable( \$editInfo ) returned unexpected value " . var_export( $v, true )
-		                                    . " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
+											. " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
 	}
 
 	public function dataGetParserOutput() {
 		return array(
-			array("hello ''world''\n", "<p>hello <i>world</i></p>"),
+			array( CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i></p>"),
 			// @todo: more...?
 		);
 	}
@@ -556,8 +575,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider dataGetParserOutput
 	 */
-	public function testGetParserOutput( $text, $expectedHtml ) {
-		$page = $this->createPage( 'WikiPageTest_testGetParserOutput', $text );
+	public function testGetParserOutput( $model, $text, $expectedHtml ) {
+		$page = $this->createPage( 'WikiPageTest_testGetParserOutput', $text, $model );
 
 		$opt = new ParserOptions();
 		$po = $page->getParserOutput( $opt );
@@ -586,43 +605,49 @@ more stuff
 
 
 	public function dataReplaceSection() {
+		//NOTE: assume the Help namespace to contain wikitext
 		return array(
-			array( 'WikiPageTest_testReplaceSection',
-			       WikiPageTest::$sections,
-			       "0",
-			       "No more",
-			       null,
-			       trim( preg_replace( '/^Intro/sm', 'No more', WikiPageTest::$sections ) )
+			array( 'Help:WikiPageTest_testReplaceSection',
+					CONTENT_MODEL_WIKITEXT,
+					WikiPageTest::$sections,
+					"0",
+					"No more",
+					null,
+					trim( preg_replace( '/^Intro/sm', 'No more', WikiPageTest::$sections ) )
 			),
-			array( 'WikiPageTest_testReplaceSection',
-			       WikiPageTest::$sections,
-			       "",
-			       "No more",
-			       null,
-			       "No more"
+			array( 'Help:WikiPageTest_testReplaceSection',
+					CONTENT_MODEL_WIKITEXT,
+					WikiPageTest::$sections,
+					"",
+					"No more",
+					null,
+					"No more"
 			),
-			array( 'WikiPageTest_testReplaceSection',
-			       WikiPageTest::$sections,
-			       "2",
-			       "== TEST ==\nmore fun",
-			       null,
-			       trim( preg_replace( '/^== test ==.*== foo ==/sm',
-			                           "== TEST ==\nmore fun\n\n== foo ==",
-			                           WikiPageTest::$sections ) )
+			array( 'Help:WikiPageTest_testReplaceSection',
+					CONTENT_MODEL_WIKITEXT,
+					WikiPageTest::$sections,
+					"2",
+					"== TEST ==\nmore fun",
+					null,
+					trim( preg_replace( '/^== test ==.*== foo ==/sm',
+										"== TEST ==\nmore fun\n\n== foo ==",
+										WikiPageTest::$sections ) )
 			),
-			array( 'WikiPageTest_testReplaceSection',
-			       WikiPageTest::$sections,
-			       "8",
-			       "No more",
-			       null,
-			       trim( WikiPageTest::$sections )
+			array( 'Help:WikiPageTest_testReplaceSection',
+					CONTENT_MODEL_WIKITEXT,
+					WikiPageTest::$sections,
+					"8",
+					"No more",
+					null,
+					trim( WikiPageTest::$sections )
 			),
-			array( 'WikiPageTest_testReplaceSection',
-			       WikiPageTest::$sections,
-			       "new",
-			       "No more",
-			       "New",
-			       trim( WikiPageTest::$sections ) . "\n\n== New ==\n\nNo more"
+			array( 'Help:WikiPageTest_testReplaceSection',
+					CONTENT_MODEL_WIKITEXT,
+					WikiPageTest::$sections,
+					"new",
+					"No more",
+					"New",
+					trim( WikiPageTest::$sections ) . "\n\n== New ==\n\nNo more"
 			),
 		);
 	}
@@ -630,10 +655,10 @@ more stuff
 	/**
 	 * @dataProvider dataReplaceSection
 	 */
-	public function testReplaceSection( $title, $text, $section, $with, $sectionTitle, $expected ) {
+	public function testReplaceSection( $title, $model, $text, $section, $with, $sectionTitle, $expected ) {
 		$this->hideDeprecated( "WikiPage::replaceSection" );
 
-		$page = $this->createPage( $title, $text );
+		$page = $this->createPage( $title, $text, $model );
 		$text = $page->replaceSection( $section, $with, $sectionTitle );
 		$text = trim( $text );
 
@@ -643,15 +668,15 @@ more stuff
 	/**
 	 * @dataProvider dataReplaceSection
 	 */
-	public function testReplaceSectionContent( $title, $text, $section, $with, $sectionTitle, $expected ) {
-		$page = $this->createPage( $title, $text );
+	public function testReplaceSectionContent( $title, $model, $text, $section, $with, $sectionTitle, $expected ) {
+		$page = $this->createPage( $title, $text, $model );
 
 		$content = ContentHandler::makeContent( $with, $page->getTitle(), $page->getContentModel() );
 		$c = $page->replaceSectionContent( $section, $content, $sectionTitle );
 
 		$this->assertEquals( $expected, is_null( $c ) ? null : trim( $c->getNativeData() ) );
 	}
-	
+
 	/* @todo FIXME: fix this!
 	public function testGetUndoText() {
 		global $wgDiff3;
@@ -768,7 +793,7 @@ more stuff
 
 		$text = "one";
 		$page = $this->newPage( "WikiPageTest_testDoRollback" );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
 								"section one", EDIT_NEW, false, $admin );
 		$rev1 = $page->getRevision();
 
@@ -776,7 +801,7 @@ more stuff
 		$user1->setName( "127.0.1.11" );
 		$text .= "\n\ntwo";
 		$page = new WikiPage( $page->getTitle() );
-		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ),
+		$page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
 								"adding section two", 0, false, $user1 );
 
 		# now, try the rollback
@@ -886,10 +911,10 @@ more stuff
 			array(
 				array(
 					array( "first edit: "
-					     . "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
-					     . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. "
-					     . "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea "
-					     . "takimata sanctus est Lorem ipsum dolor sit amet.'", null ),
+						 . "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam "
+						 . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. "
+						 . "At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea "
+						 . "takimata sanctus est Lorem ipsum dolor sit amet.'", null ),
 				),
 				'/first edit:.*\.\.\."/',
 				false
@@ -913,7 +938,8 @@ more stuff
 	public function testGetAutoDeleteReason( $edits, $expectedResult, $expectedHistory ) {
 		global $wgUser;
 
-		$page = $this->newPage( "WikiPageTest_testGetAutoDeleteReason" );
+		//NOTE: assume Help namespace to contain wikitext
+		$page = $this->newPage( "Help:WikiPageTest_testGetAutoDeleteReason" );
 
 		$c = 1;
 
@@ -945,10 +971,10 @@ more stuff
 	public function dataPreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
-			       "hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
+					"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
 			),
 			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
-			       'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+					'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 			),
 		);
 	}
@@ -961,7 +987,8 @@ more stuff
 		$user = new User();
 		$user->setName("127.0.0.1");
 
-		$page = $this->newPage( "WikiPageTest_testPreloadTransform" );
+		//NOTE: assume Help namespace to contain wikitext
+		$page = $this->newPage( "Help:WikiPageTest_testPreloadTransform" );
 		$text = $page->preSaveTransform( $text, $user );
 
 		$this->assertEquals( $expected, $text );

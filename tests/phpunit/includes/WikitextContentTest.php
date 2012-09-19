@@ -27,7 +27,7 @@ class WikitextContentTest extends MediaWikiTestCase {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("WikitextContentTest_testGetParserOutput", "hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
+			array("WikitextContentTest_testGetParserOutput", CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
 			// @todo: more...?
 		);
 	}
@@ -35,9 +35,9 @@ class WikitextContentTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider dataGetParserOutput
 	 */
-	public function testGetParserOutput( $title, $text, $expectedHtml ) {
+	public function testGetParserOutput( $title, $model, $text, $expectedHtml ) {
 		$title = Title::newFromText( $title );
-		$content = ContentHandler::makeContent( $text, $title );
+		$content = ContentHandler::makeContent( $text, $title, $model );
 
 		$po = $content->getParserOutput( $title );
 
@@ -47,11 +47,13 @@ class WikitextContentTest extends MediaWikiTestCase {
 
 	public function dataGetSecondaryDataUpdates() {
 		return array(
-			array("WikitextContentTest_testGetSecondaryDataUpdates_1", "hello ''world''\n",
+			array("WikitextContentTest_testGetSecondaryDataUpdates_1",
+				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
 				array( 'LinksUpdate' => array(  'mRecursive' => true,
 				                                'mLinks' => array() ) )
 			),
-			array("WikitextContentTest_testGetSecondaryDataUpdates_2", "hello [[world test 21344]]\n",
+			array("WikitextContentTest_testGetSecondaryDataUpdates_2",
+				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
 				array( 'LinksUpdate' => array(  'mRecursive' => true,
 				                                'mLinks' => array( array( 'World_test_21344' => 0 ) ) ) )
 			),
@@ -63,12 +65,11 @@ class WikitextContentTest extends MediaWikiTestCase {
 	 * @dataProvider dataGetSecondaryDataUpdates
 	 * @group Database
 	 */
-	public function testGetSecondaryDataUpdates( $title, $text, $expectedStuff ) {
+	public function testGetSecondaryDataUpdates( $title, $model, $text, $expectedStuff ) {
 		$title = Title::newFromText( $title );
 		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
 
-		$handler = ContentHandler::getForModelID( $title->getContentModel() );
-		$content = ContentHandler::makeContent( $text, $title );
+		$content = ContentHandler::makeContent( $text, $title, $model );
 
 		$updates = $content->getSecondaryDataUpdates( $title );
 
@@ -509,10 +510,12 @@ just a test"
 
 	public function dataGetDeletionUpdates() {
 		return array(
-			array("WikitextContentTest_testGetSecondaryDataUpdates_1", "hello ''world''\n",
+			array("WikitextContentTest_testGetSecondaryDataUpdates_1",
+				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
 				array( 'LinksDeletionUpdate' => array( ) )
 			),
-			array("WikitextContentTest_testGetSecondaryDataUpdates_2", "hello [[world test 21344]]\n",
+			array("WikitextContentTest_testGetSecondaryDataUpdates_2",
+				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
 				array( 'LinksDeletionUpdate' => array( ) )
 			),
 			// @todo: more...?
@@ -522,12 +525,11 @@ just a test"
 	/**
 	 * @dataProvider dataGetDeletionUpdates
 	 */
-	public function testDeletionUpdates( $title, $text, $expectedStuff ) {
+	public function testDeletionUpdates( $title, $model, $text, $expectedStuff ) {
 		$title = Title::newFromText( $title );
 		$title->resetArticleID( 2342 ); //dummy id. fine as long as we don't try to execute the updates!
 
-		$handler = ContentHandler::getForModelID( $title->getContentModel() );
-		$content = ContentHandler::makeContent( $text, $title );
+		$content = ContentHandler::makeContent( $text, $title, $model );
 
 		$updates = $content->getDeletionUpdates( WikiPage::factory( $title ) );
 

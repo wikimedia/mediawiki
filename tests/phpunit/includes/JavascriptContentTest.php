@@ -15,7 +15,7 @@ class JavascriptContentTest extends WikitextContentTest {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("MediaWiki:Test.js", "hello <world>\n",
+			array("MediaWiki:Test.js", null, "hello <world>\n",
 					"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>\n"),
 			// @todo: more...?
 		);

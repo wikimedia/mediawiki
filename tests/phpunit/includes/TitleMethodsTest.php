@@ -2,6 +2,10 @@
 
 /**
  * @group ContentHandler
+ *
+ * @note: We don't make assumptions about the main namespace.
+ *        But we do expect the Help namespace to contain Wikitext.
+ *
  */
 class TitleMethodsTest extends MediaWikiTestCase {
 
@@ -104,9 +108,9 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function dataGetContentModel() {
 		return array(
-			array( 'Foo', CONTENT_MODEL_WIKITEXT ),
-			array( 'Foo.js', CONTENT_MODEL_WIKITEXT ),
-			array( 'Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo.js', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
@@ -145,9 +149,9 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function dataIsCssOrJsPage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.js', false ),
-			array( 'Foo/bar.js', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.js', false ),
+			array( 'Help:Foo/bar.js', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo/bar.js', false ),
@@ -176,9 +180,9 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function dataIsCssJsSubpage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.js', false ),
-			array( 'Foo/bar.js', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.js', false ),
+			array( 'Help:Foo/bar.js', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo/bar.js', true ),
@@ -204,8 +208,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function dataIsCssSubpage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.css', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.css', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo.css', false ),
@@ -224,8 +228,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function dataIsJsSubpage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.css', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.css', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo.css', false ),
@@ -244,9 +248,9 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function dataIsWikitextPage() {
 		return array(
-			array( 'Foo', true ),
-			array( 'Foo.js', true ),
-			array( 'Foo/bar.js', true ),
+			array( 'Help:Foo', true ),
+			array( 'Help:Foo.js', true ),
+			array( 'Help:Foo/bar.js', true ),
 			array( 'User:Foo', true ),
 			array( 'User:Foo.js', true ),
 			array( 'User:Foo/bar.js', false ),
