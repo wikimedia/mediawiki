@@ -72,6 +72,26 @@ class MigrateUserGroup extends Maintenance {
 			);
 			$count += $dbw->affectedRows();
 			$dbw->commit( __METHOD__ );
+
+			// Clear cache for the affected users (bug 40340)
+			// XXX: There's two problems with the below:
+			// 1) We don't know whether IDs actually exists
+			// 2) We don't know whether the users were affected by the group change
+			// As a result, we're:
+			// 1) Creating possibly many user objects and queries only to find out the user doens't exist
+			//    (cheap operation though)
+			// 2) Clearing the cache of many users that didn't have the old group
+			//    (a bit more expensive, and actually wastes cache)
+
+			// To optimize a bit for the above issues, skip if nothing in this block was affected
+			if ( $dbw->affectedRows() > 0 ) {
+				for ( $i = $blockStart; $i < $blockEnd; $i++ ) {
+					$user = User::newFromId( $i );
+					// User by this ID may or may not exist, there is a safe-guard in User::invalidateCache.
+					$user->invalidateCache();
+				}
+			}
+
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();
