@@ -929,9 +929,9 @@ abstract class ApiBase extends ContextSource {
 				ApiBase::dieDebug( __METHOD__, "Boolean param $encParamName's default is set to '$default'. Boolean parameters must default to false." );
 			}
 
-			$value = $this->getRequest()->getCheck( $encParamName );
+			$value = $this->getMain()->getCheck( $encParamName );
 		} else {
-			$value = $this->getRequest()->getVal( $encParamName, $default );
+			$value = $this->getMain()->getVal( $encParamName, $default );
 
 			if ( isset( $value ) && $type == 'namespace' ) {
 				$type = MWNamespace::getValidNamespaces();
