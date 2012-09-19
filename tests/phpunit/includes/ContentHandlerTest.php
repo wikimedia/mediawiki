@@ -41,10 +41,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function dataGetDefaultModelFor() {
+		//NOTE: assume that the Help namespace default to wikitext content
 		return array(
-			array( 'Foo', CONTENT_MODEL_WIKITEXT ),
-			array( 'Foo.js', CONTENT_MODEL_WIKITEXT ),
-			array( 'Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo.js', CONTENT_MODEL_WIKITEXT ),
 			array( 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
@@ -196,20 +197,21 @@ class ContentHandlerTest extends MediaWikiTestCase {
 	#public static function makeContent( $text, Title $title, $modelId = null, $format = null )
 
 	public function dataMakeContent() {
+		//NOTE: assume the Help namespace defaults to wikitext content
 		return array(
-			array( 'hallo', 'Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
+			array( 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', null, null, "testing", 'hallo', false ),
 
-			array( 'hallo', 'Test', null, CONTENT_FORMAT_WIKITEXT, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
+			array( 'hallo', 'Help:Test', null, CONTENT_FORMAT_WIKITEXT, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, CONTENT_FORMAT_JAVASCRIPT, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', null, "testing", "testing", 'hallo', false ),
 
-			array( 'hallo', 'Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
+			array( 'hallo', 'Help:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, 'hallo', false ),
 			array( serialize('hallo'), 'Dummy:Test', CONTENT_MODEL_CSS, null, CONTENT_MODEL_CSS, serialize('hallo'), false ),
 
-			array( 'hallo', 'Test', CONTENT_MODEL_WIKITEXT, "testing", null, null, true ),
+			array( 'hallo', 'Help:Test', CONTENT_MODEL_WIKITEXT, "testing", null, null, true ),
 			array( 'hallo', 'MediaWiki:Test.js', CONTENT_MODEL_CSS, "testing", null, null, true ),
 			array( 'hallo', 'Dummy:Test', CONTENT_MODEL_JAVASCRIPT, "testing", null, null, true ),
 		);

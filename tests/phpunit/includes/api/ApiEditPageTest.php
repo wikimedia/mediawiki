@@ -43,7 +43,7 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	function testEdit( ) {
-		$name = 'ApiEditPageTest_testEdit';
+		$name = 'Help:ApiEditPageTest_testEdit'; // assume Help namespace to default to wikitext
 
 		// -- test new page --------------------------------------------
 		$apiResult = $this->doApiRequestWithToken( array(

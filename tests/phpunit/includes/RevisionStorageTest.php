@@ -48,7 +48,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$wgContLang->resetNamespaces(); # reset namespace cache
 
 		if ( !$this->the_page ) {
-			$this->the_page = $this->createPage( 'RevisionStorageTest_the_page', "just a dummy page" );
+			$this->the_page = $this->createPage( 'RevisionStorageTest_the_page', "just a dummy page", CONTENT_MODEL_WIKITEXT );
 		}
 	}
 
@@ -150,7 +150,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testNewFromArchiveRow()
 	{
-		$page = $this->createPage( 'RevisionStorageTest_testNewFromArchiveRow', 'Lorem Ipsum' );
+		$page = $this->createPage( 'RevisionStorageTest_testNewFromArchiveRow', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
 		$orig = $page->getRevision();
 		$page->doDeleteArticle( 'test Revision::newFromArchiveRow' );
 
@@ -183,7 +183,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testFetchRevision()
 	{
-		$page = $this->createPage( 'RevisionStorageTest_testFetchRevision', 'one' );
+		$page = $this->createPage( 'RevisionStorageTest_testFetchRevision', 'one', CONTENT_MODEL_WIKITEXT );
 		$id1 = $page->getRevision()->getId();
 
 		$page->doEditContent( new WikitextContent( 'two' ), 'second rev' );
@@ -330,7 +330,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testIsCurrent()
 	{
-		$page = $this->createPage( 'RevisionStorageTest_testIsCurrent', 'Lorem Ipsum' );
+		$page = $this->createPage( 'RevisionStorageTest_testIsCurrent', 'Lorem Ipsum', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
 		# @todo: find out if this should be true
@@ -339,7 +339,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$rev1x = Revision::newFromId( $rev1->getId() );
 		$this->assertTrue( $rev1x->isCurrent() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ), 'second rev' );
+		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ), 'second rev' );
 		$rev2 = $page->getRevision();
 
 		# @todo: find out if this should be true
@@ -357,12 +357,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetPrevious()
 	{
-		$page = $this->createPage( 'RevisionStorageTest_testGetPrevious', 'Lorem Ipsum testGetPrevious' );
+		$page = $this->createPage( 'RevisionStorageTest_testGetPrevious', 'Lorem Ipsum testGetPrevious', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
 		$this->assertNull( $rev1->getPrevious() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ),
+		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
 								'second rev testGetPrevious' );
 		$rev2 = $page->getRevision();
 
@@ -375,12 +375,12 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testGetNext()
 	{
-		$page = $this->createPage( 'RevisionStorageTest_testGetNext', 'Lorem Ipsum testGetNext' );
+		$page = $this->createPage( 'RevisionStorageTest_testGetNext', 'Lorem Ipsum testGetNext', CONTENT_MODEL_WIKITEXT );
 		$rev1 = $page->getRevision();
 
 		$this->assertNull( $rev1->getNext() );
 
-		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle() ),
+		$page->doEditContent( ContentHandler::makeContent( 'Bla bla', $page->getTitle(), CONTENT_MODEL_WIKITEXT ),
 								'second rev testGetNext' );
 		$rev2 = $page->getRevision();
 
@@ -393,7 +393,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	 */
 	public function testNewNullRevision()
 	{
-		$page = $this->createPage( 'RevisionStorageTest_testNewNullRevision', 'some testing text' );
+		$page = $this->createPage( 'RevisionStorageTest_testNewNullRevision', 'some testing text', CONTENT_MODEL_WIKITEXT );
 		$orig = $page->getRevision();
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -404,5 +404,111 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertEquals( $orig->getTextId(), $rev->getTextId(),
 								'new null revision shold have the same text id as the original revision' );
 		$this->assertEquals( 'some testing text', $rev->getContent()->getNativeData() );
+	}
+
+	public function dataUserWasLastToEdit() {
+		return array(
+			array( #0
+				3, true, # actually the last edit
+			),
+			array( #1
+				2, true, # not the current edit, but still by this user
+			),
+			array( #2
+				1, false, # edit by another user
+			),
+			array( #3
+				0, false, # first edit, by this user, but another user edited in the mean time
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider dataUserWasLastToEdit
+	 */
+	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
+		$userA = \User::newFromName( "RevisionStorageTest_userA" );
+		$userB = \User::newFromName( "RevisionStorageTest_userB" );
+
+		if ( $userA->getId() === 0 ) {
+			$userA = \User::createNew( $userA->getName() );
+		}
+
+		if ( $userB->getId() === 0 ) {
+			$userB = \User::createNew( $userB->getName() );
+		}
+
+		$dbw = wfGetDB( DB_MASTER );
+		$revisions = array();
+
+		// create revisions -----------------------------
+		$page = WikiPage::factory( Title::newFromText( 'RevisionStorageTest_testUserWasLastToEdit' ) );
+
+		# zero
+		$revisions[0] = new Revision( array(
+			'page' => $page->getId(),
+			'title' => $page->getTitle(), // we need the title to determine the page's default content model
+			'timestamp' => '20120101000000',
+			'user' => $userA->getId(),
+			'text' => 'zero',
+			'content_model' => CONTENT_MODEL_WIKITEXT,
+			'summary' => 'edit zero'
+		) );
+		$revisions[0]->insertOn( $dbw );
+
+		# one
+		$revisions[1] = new Revision( array(
+			'page' => $page->getId(),
+			'title' => $page->getTitle(), // still need the title, because $page->getId() is 0 (there's no entry in the page table)
+			'timestamp' => '20120101000100',
+			'user' => $userA->getId(),
+			'text' => 'one',
+			'content_model' => CONTENT_MODEL_WIKITEXT,
+			'summary' => 'edit one'
+		) );
+		$revisions[1]->insertOn( $dbw );
+
+		# two
+		$revisions[2] = new Revision( array(
+			'page' => $page->getId(),
+			'title' => $page->getTitle(),
+			'timestamp' => '20120101000200',
+			'user' => $userB->getId(),
+			'text' => 'two',
+			'content_model' => CONTENT_MODEL_WIKITEXT,
+			'summary' => 'edit two'
+		) );
+		$revisions[2]->insertOn( $dbw );
+
+		# three
+		$revisions[3] = new Revision( array(
+			'page' => $page->getId(),
+			'title' => $page->getTitle(),
+			'timestamp' => '20120101000300',
+			'user' => $userA->getId(),
+			'text' => 'three',
+			'content_model' => CONTENT_MODEL_WIKITEXT,
+			'summary' => 'edit three'
+		) );
+		$revisions[3]->insertOn( $dbw );
+
+		# four
+		$revisions[4] = new Revision( array(
+			'page' => $page->getId(),
+			'title' => $page->getTitle(),
+			'timestamp' => '20120101000200',
+			'user' => $userA->getId(),
+			'text' => 'zero',
+			'content_model' => CONTENT_MODEL_WIKITEXT,
+			'summary' => 'edit four'
+		) );
+		$revisions[4]->insertOn( $dbw );
+
+		// test it ---------------------------------
+		$since = $revisions[ $sinceIdx ]->getTimestamp();
+
+		$wasLast = Revision::userWasLastToEdit( $dbw, $page->getId(), $userA->getId(), $since );
+
+		$this->assertEquals( $expectedLast, $wasLast );
 	}
 }
