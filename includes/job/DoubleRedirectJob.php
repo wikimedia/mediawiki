@@ -27,7 +27,7 @@
  * @ingroup JobQueue
  */
 class DoubleRedirectJob extends Job {
-	var $reason, $redirTitle, $destTitleText;
+	var $reason, $redirTitle;
 
 	/**
 	 * @var User
@@ -77,7 +77,6 @@ class DoubleRedirectJob extends Job {
 		parent::__construct( 'fixDoubleRedirect', $title, $params, $id );
 		$this->reason = $params['reason'];
 		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
-		$this->destTitleText = !empty( $params['destTitle'] ) ? $params['destTitle'] : '';
 	}
 
 	/**
@@ -122,7 +121,7 @@ class DoubleRedirectJob extends Job {
 
 		# Preserve fragment (bug 14904)
 		$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getDBkey(),
-			$currentDest->getFragment() );
+			$currentDest->getFragment(), $newTitle->getInterwiki() );
 
 		# Fix the text
 		# Remember that redirect pages can have categories, templates, etc.,
@@ -171,9 +170,17 @@ class DoubleRedirectJob extends Job {
 			}
 			$seenTitles[$titleText] = true;
 
+			if ( $title->getInterwiki() ) {
+				// If the target is interwiki, we have to break early (bug 40352).
+				// Otherwise it will look up a row in the local page table
+				// with the namespace/page of the interwiki target which can cause
+				// unexpected results (e.g. X -> foo:Bar -> Bar -> .. )
+				break;
+			}
+
 			$row = $dbw->selectRow(
 				array( 'redirect', 'page' ),
-				array( 'rd_namespace', 'rd_title' ),
+				array( 'rd_namespace', 'rd_title', 'rd_interwiki' ),
 				array(
 					'rd_from=page_id',
 					'page_namespace' => $title->getNamespace(),
@@ -183,7 +190,7 @@ class DoubleRedirectJob extends Job {
 				# No redirect from here, chain terminates
 				break;
 			} else {
-				$dest = $title = Title::makeTitle( $row->rd_namespace, $row->rd_title );
+				$dest = $title = Title::makeTitle( $row->rd_namespace, $row->rd_title, '', $row->rd_interwiki );
 			}
 		}
 		return $dest;
