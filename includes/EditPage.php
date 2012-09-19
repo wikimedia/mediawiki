@@ -2610,7 +2610,7 @@ HTML
 			$note = wfMessage( 'edit_form_incomplete' )->plain();
 		} else {
 			$note = wfMessage( 'previewnote' )->plain() .
-				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
+				' [[#' . self::EDITFORM_ID . '|' . wfMessage( 'continue-editing' )->text() . ']]';
 		}
 
 		$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
