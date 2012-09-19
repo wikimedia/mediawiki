@@ -43,25 +43,35 @@ class BrokenRedirectsPage extends QueryPage {
 
 	function getQueryInfo() {
 		return array(
-			'tables' => array( 'redirect', 'p1' => 'page',
-					'p2' => 'page' ),
-			'fields' => array( 'namespace' => 'p1.page_namespace',
-					'title' => 'p1.page_title',
-					'value' => 'p1.page_title',
-					'rd_namespace',
-					'rd_title'
+			'tables' => array(
+				'redirect',
+				'p1' => 'page',
+				'p2' => 'page',
 			),
-			'conds' => array( 'rd_namespace >= 0',
-					'p2.page_namespace IS NULL'
+			'fields' => array(
+				'namespace' => 'p1.page_namespace',
+				'title' => 'p1.page_title',
+				'value' => 'p1.page_title',
+				'rd_namespace',
+				'rd_title',
 			),
-			'join_conds' => array( 'p1' => array( 'JOIN', array(
-						'rd_from=p1.page_id',
-					) ),
-					'p2' => array( 'LEFT JOIN', array(
-						'rd_namespace=p2.page_namespace',
-						'rd_title=p2.page_title'
-					) )
-			)
+			'conds' => array(
+				// Exclude pages that don't exist locally as wiki pages,
+				// but aren't "broken" either.
+				// Special pages and interwiki links
+				'rd_namespace >= 0',
+				'(rd_interwiki IS NULL OR rd_interwiki = "")',
+				'p2.page_namespace IS NULL',
+			),
+			'join_conds' => array(
+				'p1' => array( 'JOIN', array(
+					'rd_from=p1.page_id',
+				) ),
+				'p2' => array( 'LEFT JOIN', array(
+					'rd_namespace=p2.page_namespace',
+					'rd_title=p2.page_title'
+				) ),
+			),
 		);
 	}
 
