@@ -55,6 +55,7 @@ class MigrateUserGroup extends Maintenance {
 		$blockEnd = $start + $this->mBatchSize - 1;
 		// Migrate users over in batches...
 		while ( $blockEnd <= $end ) {
+			$affected = 0;
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 			$dbw->begin( __METHOD__ );
 			$dbw->update( 'user_groups',
@@ -64,14 +65,31 @@ class MigrateUserGroup extends Maintenance {
 				__METHOD__,
 				array( 'IGNORE' )
 			);
-			$count += $dbw->affectedRows();
+			$affected += $dbw->affectedRows();
 			$dbw->delete( 'user_groups',
 				array( 'ug_group' => $oldGroup,
 					"ug_user BETWEEN $blockStart AND $blockEnd" ),
 				__METHOD__
 			);
-			$count += $dbw->affectedRows();
+			$affected += $dbw->affectedRows();
 			$dbw->commit( __METHOD__ );
+
+			// Clear cache for the affected users (bug 40340)
+			// To optimize a bit, only do this if we know there is at least 1 match
+			if ( $affected > 0 ) {
+				$res = $dbw->select( 'user_groups', 'ug_user',
+					"ug_user BETWEEN $blockStart AND $blockEnd",
+					__METHOD__
+				);
+				if ( $res !== false ) {
+					foreach ( $res as $row ) {
+						$user = User::newFromId( $row->ug_user );
+						$user->invalidateCache();
+					}
+				}
+			}
+
+			$count += $affected;
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();

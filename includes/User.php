@@ -1208,6 +1208,7 @@ class User {
 		$this->mRights = null;
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
+		$this->mGroups = null;
 		$this->mOptions = null;
 
 		if ( $reloadFrom ) {
