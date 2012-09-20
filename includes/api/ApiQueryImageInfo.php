@@ -377,7 +377,9 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta ) {
+			wfSuppressWarnings();
 			$metadata = unserialize( $file->getMetadata() );
+			wfRestoreWarnings();
 			if ( $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
