@@ -1,7 +1,7 @@
 <?php
 /**
- * Script to convert history stubs that point to an external row to direct
- * external pointers.
+ * Convert history stubs that point to an external row to direct external
+ * pointers.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

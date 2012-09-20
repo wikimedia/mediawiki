@@ -1,7 +1,6 @@
 <?php
-
 /**
- * Show some statistics on the blob_orphans table, created with trackBlobs.php
+ * Show some statistics on the blob_orphans table, created with trackBlobs.php.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,10 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance ExternalStorage
  */
+ 
 require_once( __DIR__ . '/../Maintenance.php' );
 
+/**
+ * Maintenance script that shows some statistics on the blob_orphans table,
+ * created with trackBlobs.php.
+ *
+ * @ingroup Maintenance ExternalStorage
+ */
 class OrphanStats extends Maintenance {
 	public function __construct() {
 		parent::__construct();
