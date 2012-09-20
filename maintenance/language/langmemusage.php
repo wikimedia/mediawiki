@@ -1,7 +1,6 @@
 <?php
 /**
- * Dumb program that tries to get the memory usage
- * for each language file.
+ * Dumb program that tries to get the memory usage for each language file.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup MaintenanceLanguage
  */
 
@@ -25,6 +25,11 @@
 require_once( __DIR__ . '/../Maintenance.php' );
 require_once( __DIR__ . '/languages.inc' );
 
+/**
+ * Maintenance script that tries to get the memory usage for each language file.
+ *
+ * @ingroup MaintenanceLanguage
+ */
 class LangMemUsage extends Maintenance {
 
 	public function __construct() {
