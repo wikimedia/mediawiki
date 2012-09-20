@@ -81,7 +81,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                             - levels : the number of hash levels (and digits)
 	 *                             - repeat : hash subdirectories are prefixed with all the
 	 *                                        parent hash directory names (e.g. "a/ab/abc")
-	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC/XCache.
+	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, XCache, ect.
+	 *                          If those are not available, then the main cache will be used.
 	 *                          This is probably insecure in shared hosting environments.
 	 */
 	public function __construct( array $config ) {
@@ -121,9 +122,13 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->connContainerCache = new ProcessCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
 		if ( !empty( $config['cacheAuthInfo'] ) ) {
-			try { // look for APC, XCache, WinCache, ect...
-				$this->srvCache = ObjectCache::newAccelerator( array() );
-			} catch ( Exception $e ) {}
+			if ( php_sapi_name() === 'cli' ) {
+				$this->srvCache = wfGetMainCache(); // preferrably memcached
+			} else {
+				try { // look for APC, XCache, WinCache, ect...
+					$this->srvCache = ObjectCache::newAccelerator( array() );
+				} catch ( Exception $e ) {}
+			}
 		}
 		$this->srvCache = $this->srvCache ? $this->srvCache : new EmptyBagOStuff();
 	}
