@@ -2572,7 +2572,7 @@ class WikiPage extends Page implements IDBAccessObject {
 			$dbw->commit( __METHOD__ );
 		}
 
-		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id ) );
+		wfRunHooks( 'ArticleDeleteComplete', array( &$this, &$user, $reason, $id, $content, $logEntry ) );
 		$status->value = $logid;
 		return $status;
 	}

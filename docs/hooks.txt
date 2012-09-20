@@ -468,6 +468,8 @@ $article: the WikiPage that was deleted
 $user: the user that deleted the article
 $reason: the reason the article was deleted
 $id: id of the article that was deleted
+$content: the Content of the deleted page
+$logEntry: the ManualLogEntry used to record the deletion
 
 'ArticleEditUpdateNewTalk': before updating user_newtalk when a user talk page
 was changed
