@@ -246,6 +246,15 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $delimiter = ';';
 
+	/**
+	 * Remembers the function name given for starting the most recent transaction via the begin() method.
+	 * Used to provide additional context for error reporting.
+	 *
+	 * @var String
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxFname = null;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -2875,10 +2884,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	final public function begin( $fname = 'DatabaseBase::begin' ) {
 		if ( $this->mTrxLevel ) { // implicit commit
+			wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+				" performing implicit commit!" );
 			$this->doCommit( $fname );
 			$this->runOnTransactionIdleCallbacks();
 		}
 		$this->doBegin( $fname );
+		$this->mTrxFname = $fname;
 	}
 
 	/**
@@ -2896,6 +2908,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname string
 	 */
 	final public function commit( $fname = 'DatabaseBase::commit' ) {
+		if ( !$this->mTrxLevel ) {
+			wfWarn( "$fname: No transaction to commit, something got out of sync!" );
+		}
 		$this->doCommit( $fname );
 		$this->runOnTransactionIdleCallbacks();
 	}
@@ -2918,6 +2933,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname string
 	 */
 	final public function rollback( $fname = 'DatabaseBase::rollback' ) {
+		if ( !$this->mTrxLevel ) {
+			wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
+		}
 		$this->doRollback( $fname );
 		$this->trxIdleCallbacks = array(); // cancel
 	}
