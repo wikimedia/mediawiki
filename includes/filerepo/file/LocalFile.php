@@ -1762,7 +1762,8 @@ class LocalFileDeleteBatch {
 					'fa_description'  => 'img_description',
 					'fa_user'         => 'img_user',
 					'fa_user_text'    => 'img_user_text',
-					'fa_timestamp'    => 'img_timestamp'
+					'fa_timestamp'    => 'img_timestamp',
+					'fa_sha1'         => 'img_sha1',
 				), $where, __METHOD__ );
 		}
 
@@ -1794,6 +1795,7 @@ class LocalFileDeleteBatch {
 					'fa_user'         => 'oi_user',
 					'fa_user_text'    => 'oi_user_text',
 					'fa_timestamp'    => 'oi_timestamp',
+					'fa_sha1'         => 'oi_sha1',
 				), $where, __METHOD__ );
 		}
 	}
@@ -2026,7 +2028,12 @@ class LocalFileRestoreBatch {
 			$deletedRel = $this->file->repo->getDeletedHashPath( $row->fa_storage_key ) . $row->fa_storage_key;
 			$deletedUrl = $this->file->repo->getVirtualUrl() . '/deleted/' . $deletedRel;
 
-			$sha1 = substr( $row->fa_storage_key, 0, strcspn( $row->fa_storage_key, '.' ) );
+			if( isset( $row->fa_sha1 ) ) {
+				$sha1 = $row->fa_sha1;
+			} else {
+				// old row, populate from key
+				$sha1 = LocalRepo::getHashFromKey( $row->fa_storage_key );
+			}
 
 			# Fix leading zero
 			if ( strlen( $sha1 ) == 32 && $sha1[0] == '0' ) {
