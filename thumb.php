@@ -237,7 +237,9 @@ function wfStreamThumb( array $params ) {
 				if ( $wgVaryOnXFP ) {
 					$varyHeader[] = 'X-Forwarded-Proto';
 				}
-				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				if ( count( $varyHeader ) ) {
+					$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				}
 				wfProfileOut( __METHOD__ );
 				return;
 			} else {
@@ -248,7 +250,9 @@ function wfStreamThumb( array $params ) {
 		}
 		$thumbPath = $img->getThumbPath( $thumbName );
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-			$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+			if ( count( $varyHeader ) ) {
+				$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+			}
 			$img->getRepo()->streamFile( $thumbPath, $headers );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -258,7 +262,10 @@ function wfStreamThumb( array $params ) {
 		wfProfileOut( __METHOD__ );
 		return;
 	}
-	$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+
+	if ( count( $varyHeader ) ) {
+		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+	}
 
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
