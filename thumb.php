@@ -126,7 +126,15 @@ function wfStreamThumb( array $params ) {
 	$fileName = strtr( $fileName, '\\/', '__' );
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
-	if ( $isOld ) {
+	if ( $isTemp ) {
+		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		$img = new UnregisteredLocalFile( null, $repo,
+			# Temp files are hashed based on the name without the timestamp.
+			# The thumbnails will be hashed based on the entire name however.
+			# @TODO: fix this convention to actually be reasonable.
+			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
+		);
+	} elseif ( $isOld ) {
 		// Format is <timestamp>!<name>
 		$bits = explode( '!', $fileName, 2 );
 		if ( count( $bits ) != 2 ) {
@@ -141,20 +149,6 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
-	} elseif ( $isTemp ) {
-		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
-		// Format is <timestamp>!<name> or just <name>
-		$bits = explode( '!', $fileName, 2 );
-		// Get the name without the timestamp so hash paths are correctly computed
-		$title = Title::makeTitleSafe( NS_FILE, isset( $bits[1] ) ? $bits[1] : $fileName );
-		if ( !$title ) {
-			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-		$img = new UnregisteredLocalFile( $title, $repo,
-			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
-		);
 	} else {
 		$img = wfLocalFile( $fileName );
 	}
