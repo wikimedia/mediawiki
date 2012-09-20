@@ -493,6 +493,11 @@ class Parser {
 				$PFreport;
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
 			$text .= "\n<!-- \n$limitReport-->\n";
+
+			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
+				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
+					$this->mTitle->getPrefixedDBkey() );
+			}
 		}
 		$this->mOutput->setText( $text );
 
