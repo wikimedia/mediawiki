@@ -42,6 +42,12 @@ Options:
 $job = RecompressTracked::newFromCommandLine( $args, $options );
 $job->execute();
 
+/**
+ * Maintenance script that moves blobs indexed by trackBlobs.php to a specified
+ * list of destination clusters, and recompresses them in the process.
+ *
+ * @ingroup Maintenance ExternalStorage
+ */
 class RecompressTracked {
 	var $destClusters;
 	var $batchSize = 1000;

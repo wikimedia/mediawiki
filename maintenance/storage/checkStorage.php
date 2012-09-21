@@ -38,6 +38,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // ----------------------------------------------------------------------------------
 
 /**
+ * Maintenance script to do various checks on external storage.
+ *
  * @ingroup Maintenance ExternalStorage
  */
 class CheckStorage {
