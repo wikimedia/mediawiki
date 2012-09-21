@@ -510,7 +510,7 @@ Comment test 1
 !! end
 
 !! test
-Comment test 2
+Comment test 2a
 !! input
 asdf
 <!-- comment 1 -->
@@ -518,6 +518,19 @@ jkl
 !! result
 <p>asdf
 jkl
+</p>
+!! end
+
+!! test
+Comment test 2b
+!! input
+asdf
+<!-- comment 1 -->
+
+jkl
+!! result
+<p>asdf
+</p><p>jkl
 </p>
 !! end
 
@@ -631,6 +644,74 @@ b
 <p>a
 </p><p>b
 </p>
+!! end
+
+!! test
+Comment on its own line post-expand with non-significant whitespace
+!! input
+a
+ {{blank}} <!----> 
+b
+!! result
+<p>a
+</p><p>b
+</p>
+!! end
+
+###
+### paragraph wraping tests
+###
+!! test
+No block tags
+!! input
+a
+
+b
+!! result
+<p>a
+</p><p>b
+</p>
+!! end
+!! test
+Block tag on one line
+!! input
+a <div>foo</div>
+
+b
+!! result
+a <div>foo</div>
+<p>b
+</p>
+!! end
+
+!! test
+Block tag on both lines
+!! input
+a <div>foo</div>
+
+b <div>foo</div>
+!! result
+a <div>foo</div>
+b <div>foo</div>
+
+!! end
+
+!! test
+Multiple lines without block tags
+!! input
+<div>foo</div> a
+b
+c
+d<!--foo--> e
+x <div>foo</div> z
+!! result
+<div>foo</div> a
+<p>b
+c
+d e
+</p>
+x <div>foo</div> z
+
 !! end
 
 ###
