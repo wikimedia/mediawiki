@@ -1,7 +1,4 @@
 <?php
-/**
- * @group Broken
- */
 class HttpTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider cookieDomains
