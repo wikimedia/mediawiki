@@ -1026,8 +1026,7 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otra
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
-Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
+Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienespermiso para crear esta página.',
 'missing-revision' => 'La revisión #$1 de la página «{{PAGENAME}}» no existe.
 
 Esto suele deberse a seguir un enlace obsoleto hacia el historial de una página que ya ha sido borrada.
@@ -1490,7 +1489,7 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'timezoneregion-indian' => 'Océano Índico',
 'timezoneregion-pacific' => 'Océano Pacífico',
 'allowemail' => 'Aceptar correo electrónico de otros usuarios',
-'prefs-searchoptions' => 'Opciones de búsqueda',
+'prefs-searchoptions' => 'Buscar',
 'prefs-namespaces' => 'Espacios de nombres',
 'defaultns' => 'Buscar en estos espacios de nombres por defecto:',
 'default' => 'por defecto',

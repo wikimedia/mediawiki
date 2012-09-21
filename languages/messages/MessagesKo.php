@@ -1016,13 +1016,12 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다.
 IP 주소는 여러 사용자가 공유할 수 있습니다.
 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 나중에 다른 익명 사용자에게 줄 혼란을 줄일 수 있습니다.',
-'noarticletext' => '이 문서가 존재하지 않습니다.
+'noarticletext' => '이 문서가 현재 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,
 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
-'noarticletext-nopermission' => '이 문서가 존재하지 않습니다.
-이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
-이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
+'noarticletext-nopermission' => '이 문서가 현재 존재하지 않습니다.
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]], 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span> 그러나 이 문서를 만들 수 있는 권한은 없습니다.',
 'missing-revision' => '"{{PAGENAME}}"이라는 문서의 #$1판이 존재하지 않습니다.
 
 이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 역사 링크로 인해 발생합니다.
@@ -1494,7 +1493,7 @@ $1",
 'timezoneregion-indian' => '인도양',
 'timezoneregion-pacific' => '태평양',
 'allowemail' => '다른 사용자가 보낸 이메일을 받음',
-'prefs-searchoptions' => '찾기 설정',
+'prefs-searchoptions' => '찾기',
 'prefs-namespaces' => '이름공간',
 'defaultns' => '다음 이름공간에서 찾기:',
 'default' => '기본값',
@@ -1558,7 +1557,7 @@ HTML 태그를 확인하세요.',
 'userrights-lookup-user' => '사용자 권한 관리',
 'userrights-user-editname' => '사용자 이름 입력:',
 'editusergroup' => '사용자 그룹 편집',
-'editinguser' => "사용자 '''[[User:$1|$1]]''' $2의 권한 바꿈",
+'editinguser' => "'''[[User:$1|$1]]''' $2 사용자의 권한 바꾸기",
 'userrights-editusergroup' => '사용자 그룹 편집',
 'saveusergroups' => '사용자 권한 저장',
 'userrights-groupsmember' => '현재 권한:',

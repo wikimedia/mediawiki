@@ -831,16 +831,23 @@ Du kan allereie ha byta passordet, eller ha bede om å få eit nytt mellombels p
 'passwordreset-capture-help' => 'Huk av her dersom du vil sjå eposten (med førebels passord) i tillegg til at han blir sendt til brukaren.',
 'passwordreset-email' => '↓E-postadresse:',
 'passwordreset-emailtitle' => '↓Kontodetaljar på {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Nokon (sannsynleg deg, frå IP-adresse $1) ba om ei påminning om kontodetaljane dine for {{SITENAME}} ($4). Følgjane brukar {{PLURAL:$3|brukar|brukarar}} er assosiert med denne epost-adressa:
+'passwordreset-emailtext-ip' => 'Nokon (sannsynlegvis deg, frå IP-adressa $1) bad om ei påminning for kontodetaljane dine for {{SITENAME}} ($4). {{PLURAL:$3|Den fylgjande brukarkontoen|Dei fylgjande brukarkontoane}} er assosierte med denne e-postadressa:
 
 $2
 
-{{PLURAL:$3|Dette førebelse passordet|Desse førebelse passorda}} vil løpe ut om {{PLURAL:$5|ein dag|$5 dagar}}.
-Du bør logge inn og velje eit nytt passord no. Dersom nokon andre kom med denne førespurnaden, eller dersom du hugsar ditt opprinnelege passord, og du ikkje ynskjar å endre det, kan du ignorere denne eposten, og halde fram med å bruke ditt gamle passord.',
+{{PLURAL:$3|Dette mellombels passordet|Desse mellombels passorda}} vil verta ugilde om {{PLURAL:$5|éin dag|$5 dagar}}.
+Du bør logga inn og velja eit nytt passord no. Om nokon andre enn deg bad om denne påminninga, eller du har kome i hug det opphavlege passordet og ikkje lenger ynskjer å endra det, kan du sjå bort frå denne meldinga og halda fram med å nytta det gamle passordet ditt.',
+'passwordreset-emailtext-user' => 'Brukaren $1 på {{SITENAME}} bad om ei påminning for kontodetaljane dine for {{SITENAME}} ($4). {{PLURAL:$3|Den fylgjande brukarkontoen|Dei fylgjande brukarkontoane}} er assosierte med denne e-postadressa:
+
+$2
+
+{{PLURAL:$3|Dette mellombels passordet|Desse mellombels passorda}} vil verta ugilde om {{PLURAL:$5|éin dag|$5 dagar}}.
+Du bør logga inn og velja eit nytt passord no. Om nokon andre enn deg bad om denne påminninga, eller du har kome i hug det opphavlege passordet og ikkje lenger ynskjer å endra det, kan du sjå bort frå denne meldinga og halda fram med å nytta det gamle passordet ditt.',
 'passwordreset-emailelement' => '↓Brukarnamn: $1
 Mellombels passord: $2',
 'passwordreset-emailsent' => '↓Ei påminning har vorte sendt på e-post.',
 'passwordreset-emailsent-capture' => 'Eposten under er sendt ut som ei påminning.',
+'passwordreset-emailerror-capture' => 'Ein påminnings-e-post vart oppretta, og er vist nedanfor; men det lukkast ikkje å senda han til brukaren: $1',
 
 # Special:ChangeEmail
 'changeemail' => '↓Endre e-postadresse',
@@ -937,11 +944,15 @@ Passordet for den nye kontoen kan verta endra på ''[[Special:ChangePassword|end
 'anontalkpagetext' => "----''Dette er ei diskusjonsside for ein anonym brukar som ikkje har oppretta konto eller ikkje har logga inn.
 Vi er difor nøydde til å bruke den numeriske IP-adressa til å identifisere brukaren. Same IP-adresse kan vere knytt til fleire brukarar. Om du er ein anonym brukar og meiner at du har fått irrelevante kommentarar på ei slik side, [[Special:UserLogin/signup|opprett ein brukarkonto]] eller [[Special:UserLogin|logg inn]] slik at vi unngår framtidige forvekslingar med andre anonyme brukarar.''",
 'noarticletext' => 'Det er nett no ikkje noko tekst på denne sida.
-Du kan [[Special:Search/{{PAGENAME}}|søkja etter denne sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søkja i dei relaterte loggane]
+Du kan [[Special:Search/{{PAGENAME}}|søkja etter sidetittelen]] i andre sider, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søkja i dei relaterte loggane]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} endra denne sida]</span>.',
 'noarticletext-nopermission' => 'Der er nett no ikkje noko tekst på denne sida.
-Du kan [[Special:Search/{{PAGENAME}}|søkja etter tittelen på denne sida]] på andre sider,
-eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} sjå loggføringar med tilknytting]</span>.',
+Du kan [[Special:Search/{{PAGENAME}}|søkja etter sidetittelen]] i andre sider
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søkja i dei relaterte loggane]</span>, men du har ikkje løyve til å oppretta denne sida.',
+'missing-revision' => 'Versjonen #$1 av sida med namnet «{{PAGENAME}}» finst ikkje.
+
+Dette skriv seg som oftast frå at ei forelda historikklenkje vart fylgd til ei side som er sletta.
+Detaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
 'userpage-userdoesnotexist' => 'Brukarkontoen «<nowiki>$1</nowiki>» finst ikkje. Vil du verkeleg opprette/endre denne sida?',
 'userpage-userdoesnotexist-view' => 'Brukarkontoen «$1» er ikkje oppretta.',
 'blocked-notice-logextract' => 'Denne brukaren er for tida blokkert.
@@ -1055,6 +1066,13 @@ Desse parameterane har vorte utelatne.',
 'parser-template-loop-warning' => 'Malløkka oppdaga: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Malen er inkludert for mange gonger ($1)',
 'language-converter-depth-warning' => 'Språkomformaren si djubdegrense vart overstege ($1)',
+'node-count-exceeded-category' => 'Sider der talet på knutepunkt er overskride',
+'node-count-exceeded-warning' => 'Sida har overskride talet på knutepunkt',
+'expansion-depth-exceeded-category' => 'Sider der utvidingsdjupna er overskriden',
+'expansion-depth-exceeded-warning' => 'Sida har overskride utvidingsdjupna',
+'parser-unstrip-loop-warning' => 'Det vart oppdaga ei løkke i Unstrip-funksjonen',
+'parser-unstrip-recursion-limit' => 'Rekursjonsgrensa for Unstrip-funksjonen er overskriden ($1)',
+'converter-manual-rule-error' => 'Det vart oppdaga ein feil i ein manuell språkkonverteringsregel',
 
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
@@ -1379,7 +1397,7 @@ Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'timezoneregion-indian' => 'Indiahavet',
 'timezoneregion-pacific' => 'Stillehavet',
 'allowemail' => 'Tillat e-post frå andre brukarar',
-'prefs-searchoptions' => 'Søkjealternativ',
+'prefs-searchoptions' => 'Søk',
 'prefs-namespaces' => 'Namnerom',
 'defaultns' => 'Søk elles i desse namneromma:',
 'default' => 'standard',
@@ -1682,7 +1700,7 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'filename-tooshort' => 'Filnamnet er for kort.',
 'filetype-banned' => 'Denne filtypen er ikkje tillaten.',
 'verification-error' => 'Denne fila klarde ikkje verifiseringsprossesen.',
-'hookaborted' => "Endringane du prøvde gjere blei avbrotne av ei ''extension hook''.",
+'hookaborted' => 'Endringa du freista vart avbroten av ei utviding.',
 'illegal-filename' => 'Filnamnet er ikkje tillate.',
 'overwrite' => 'Det er ikkje tillate å skriva over ei eksisterande fil.',
 'unknown-error' => 'Det oppstod ein ukjend feil.',
@@ -2528,6 +2546,7 @@ Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'unblockiptext' => 'Bruk skjemaet nedanfor for å oppheve blokkeringa av ein tidlegare blokkert brukar.',
 'ipusubmit' => 'Opphev blokkering',
 'unblocked' => 'Blokkeringa av [[User:$1|$1]] er oppheva',
+'unblocked-range' => '$1 vart avblokkert',
 'unblocked-id' => 'Blokkering $1 er oppheva',
 'blocklist' => 'Blokkerte brukarar',
 'ipblocklist' => 'Blokkerte IP-adresser og brukarnamn',
@@ -2540,6 +2559,7 @@ Sjå [[Special:BlockList|blokkeringslista]] for alle blokkeringane.',
 'blocklist-target' => 'Mål',
 'blocklist-expiry' => 'Endar',
 'blocklist-by' => 'Blokkerande admin',
+'blocklist-params' => 'Blokkeringsparametrar',
 'blocklist-reason' => 'Årsak',
 'ipblocklist-submit' => 'Søk',
 'ipblocklist-localblock' => 'Lokal blokkering',
@@ -2748,6 +2768,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'djvu_page_error' => 'DjVu-sida er utanfor rekkjevidd',
 'djvu_no_xml' => 'Klarte ikkje hente inn XML for DjVu-fila',
 'thumbnail-temp-create' => 'Kan ikkje oppretta mellombels fil for miniatyrbilete',
+'thumbnail-dest-create' => 'Kunne ikkje lagra miniatyrbiletet til lagringsmålet',
 'thumbnail_invalid_params' => 'Ugyldige miniatyrparameterar',
 'thumbnail_dest_directory' => 'Klarte ikkje å opprette målmappe',
 'thumbnail_image-type' => 'Bilettypen er ikkje stødd',
@@ -3199,6 +3220,7 @@ Andre er gøymde som standard.
 'exif-credit' => 'Opphavrettseigar/filgjevar',
 'exif-source' => 'Kjelde',
 'exif-urgency' => 'Prioritet',
+'exif-objectcycle' => 'Tid på dagen mediet er meint for',
 'exif-writer' => 'Forfattar',
 'exif-languagecode' => 'Språk',
 'exif-iimversion' => 'IIM-versjon',
@@ -3206,7 +3228,10 @@ Andre er gøymde som standard.
 'exif-lens' => 'Objektiv',
 'exif-cameraownername' => 'Eigar av kameraet',
 'exif-label' => 'Merkelapp',
+'exif-rating' => 'Vurdering (av 5)',
 'exif-copyrighted' => 'Opphavsrettsstode',
+'exif-copyrightowner' => 'Opphavsrettseigar',
+'exif-usageterms' => 'Bruksvilkår',
 'exif-pngfilecomment' => 'PNG-filkommentar',
 'exif-disclaimer' => 'Atterhald',
 'exif-contentwarning' => 'Innholdsåtvaring',
@@ -3308,6 +3333,8 @@ Andre er gøymde som standard.
 'exif-sensingmethod-7' => 'Trilinær sensor',
 'exif-sensingmethod-8' => 'Fargesekvensiell lineærsensor',
 
+'exif-filesource-3' => 'Digitalt stillbiletekamera',
+
 'exif-scenetype-1' => 'Direkte fotografert bilete',
 
 'exif-customrendered-0' => 'Normal prosess',
@@ -3381,14 +3408,20 @@ Andre er gøymde som standard.
 'exif-gpsdop-moderate' => 'Moderat ($1)',
 'exif-gpsdop-poor' => 'Dårleg ($1)',
 
+'exif-objectcycle-a' => 'Berre morgon',
+'exif-objectcycle-p' => 'Berre kveld',
+'exif-objectcycle-b' => 'Både morgon og kveld',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Verkeleg retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
 'exif-ycbcrpositioning-1' => 'Sentrert',
 
+'exif-dc-contributor' => 'Bidragsytarar',
 'exif-dc-date' => 'Dato(ar)',
 'exif-dc-publisher' => 'Utgjevar',
+'exif-dc-relation' => 'Skylde medium',
 'exif-dc-rights' => 'Rettar',
 'exif-dc-source' => 'Mediakilde',
 'exif-dc-type' => 'Mediatype',
@@ -3583,6 +3616,8 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-software' => 'Installert programvare',
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Versjon',
+'version-entrypoints' => 'URL-ar til inngangspunkt',
+'version-entrypoints-header-entrypoint' => 'Inngangspunkt',
 'version-entrypoints-header-url' => 'URL',
 
 # Special:FilePath
@@ -3732,6 +3767,7 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikkje løyve til å lasta opp filer til wikien.',
+'api-error-badtoken' => 'Intern feil: ugild token.',
 'api-error-copyuploaddisabled' => 'Opplasting etter URL er avslege på tenaren.',
 'api-error-duplicate' => 'Det finst {{PLURAL:$1|[$2 ei anna fil]|[$2 andre filer]}} på nettstaden med same innhaldet.',
 'api-error-duplicate-archive' => 'Det fanst {{PLURAL:$1|[$2 ei anna fil]|[$2 andre filer]}} på nettstaden med det same innhaldet, men {{PLURAL:$1|ho|dei}} vart sletta.',
@@ -3745,16 +3781,22 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'api-error-file-too-large' => 'Fila du sende var for stor.',
 'api-error-filename-tooshort' => 'Filnamnet er for stutt.',
 'api-error-filetype-banned' => 'Denne filtypen er ikkje tillaten.',
-'api-error-filetype-banned-type' => '$1 er ikkje ein tillaten filtype. {{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.',
+'api-error-filetype-banned-type' => '$1 er ikkje {{PLURAL:$4|ein tillaten filtype|tillatne filtypar}}. {{PLURAL:$3|Tillaten filtype|Tillatne filtypar}} er $2.',
 'api-error-filetype-missing' => 'Fila saknar ei ending.',
+'api-error-hookaborted' => 'Endringa du freista vart avbroten av ei utviding.',
 'api-error-http' => 'Intern feil: kan ikkje kopla til tenaren.',
 'api-error-illegal-filename' => 'Filnamnet er ikkje tillate.',
 'api-error-internal-error' => 'Intern feil: Noko gjekk gale med handsaminga av opplastinga di til wikien.',
 'api-error-invalid-file-key' => 'Intern feil: Fila vart ikkje funnen i mellombels lagringsplass.',
+'api-error-missingparam' => 'Intern feil: det saknar parametrar i førespurnaden.',
+'api-error-missingresult' => 'Intern feil: kunne ikkje avgjera om koperinga var vellukka.',
 'api-error-mustbeloggedin' => 'Du lyt vera innlogga for å lasta opp filer.',
+'api-error-mustbeposted' => 'Intern feil: førespurnad krev HTTP POST.',
 'api-error-noimageinfo' => 'Opplastinga gjekk greitt, men tenaren gav oss ikkje noko informasjon om fila.',
+'api-error-nomodule' => 'Intern feil: ingen opplastingsmodul er vald.',
 'api-error-ok-but-empty' => 'Intern feil: ikkje noko svar frå tenaren.',
 'api-error-overwrite' => 'Det er ikkje tillate å skriva over filer som alt finst.',
+'api-error-stashfailed' => 'Intern feil: tenaren greidde ikkje å lagra ei mellombels fil.',
 'api-error-timeout' => 'Tenaren svara ikkje innan tida svar var venta.',
 'api-error-unclassified' => 'Det oppstod ein ukjend feil.',
 'api-error-unknown-code' => 'Ukjend feil: «$1»',

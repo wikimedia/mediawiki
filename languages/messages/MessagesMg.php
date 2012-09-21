@@ -2652,7 +2652,7 @@ Efa misy ao amina petra-drakitra zaraina ny rakitra [[:$1]]. Raha ovaina anarana
 Anarana hafa omena.",
 
 # Export
-'export' => 'Hanondrana pejy',
+'export' => 'Hamoaka pejy',
 'exporttext' => "Afaka manondrana ny lahatsoratra miaraka amin'ny tantaram-panovana ny pejy na vondrom-pejy maromaro ianao.
 Aoriana dia mety hafaran'ny wiki iray mandeha amin'ny rindrankajy MediaWiki izany, na dia mbola tsy afaka
 atao aza izany amin'izao fotoana izao.

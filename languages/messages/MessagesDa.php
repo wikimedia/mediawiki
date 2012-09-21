@@ -42,6 +42,7 @@
  * @author Slomox
  * @author Svip
  * @author Søren Løvborg
+ * @author Tjernobyl
  * @author Urhixidur
  */
 
@@ -564,9 +565,10 @@ Forespørgsel: $2',
 'protectedpagetext' => 'Denne side er skrivebeskyttet.',
 'viewsourcetext' => 'Du kan se og kopiere kildekoden til siden:',
 'viewyourtext' => "Du kan se og kopiere kildekoden for '''dine redigeringer''' til denne side:",
-'protectedinterface' => 'Denne side indeholder tekst til softwarens sprog-interface og er skrivebeskyttet for at forhindre misbrug.',
-'editinginterface' => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere.
-For oversættelser bedes du venligst overveje at bruge [//translatewiki.net/wiki/Main_Page?setlang=da translatewiki.net], projektet for oversættelse af MediaWiki.",
+'protectedinterface' => 'Denne side indeholder teksten i brugergrænsefladen til softwaren på denne wiki, og er beskyttet for at forhindre misbrug.
+Hvis du vil tilføje eller ændre oversættelser til alle wiki-websteder, brug venligst [//translatewiki.net/ translatewiki.net], MediaWiki lokalisering projektet.',
+'editinginterface' => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere af denne wiki.
+For at tilføje eller ændre oversættelser på alle wikier bedes du benytte [//translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.",
 'sqlhidden' => '(SQL forespørgsel skjult)',
 'cascadeprotected' => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
@@ -843,9 +845,10 @@ Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer p�
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede logger]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
-'noarticletext-nopermission' => 'Der er i øjeblikket ikke noget tekst på denne side.
-Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
-eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
+'noarticletext-nopermission' => 'Der er i øjeblikket ikke nogen tekst på denne side.
+Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede loglister]</span>,
+men du har ikke tilladelse til at oprette denne side.',
 'missing-revision' => 'Revision #$1 af siden med navnet "{{PAGENAME}}" eksisterer ikke.
 
 Dette skyldes normalt at et forældet historik-link er fulgt til en side der er slettet.
@@ -1298,7 +1301,7 @@ Her er en tilfældig genereret værdi som du kan bruge: $1',
 'timezoneregion-indian' => 'Indiske Ocean',
 'timezoneregion-pacific' => 'Stillehavet',
 'allowemail' => 'Tillad e-mails fra andre brugere',
-'prefs-searchoptions' => 'Søgeindstillinger',
+'prefs-searchoptions' => 'Søg',
 'prefs-namespaces' => 'Navnerum',
 'defaultns' => 'Ellers søg i disse navnerum:',
 'default' => 'standard',

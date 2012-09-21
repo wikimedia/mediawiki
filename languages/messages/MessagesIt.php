@@ -645,7 +645,8 @@ Query: $2',
 'protectedpagetext' => 'Questa pagina è stata protetta per impedirne la modifica.',
 'viewsourcetext' => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'viewyourtext' => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
-'protectedinterface' => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
+'protectedinterface' => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software di questo sito ed è protetta per evitare possibili abusi.
+Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki,",
 'editinginterface' => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti su questo wiki.
 Per aggiungere o modificare le traduzioni valide su tutti i wiki, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
 'sqlhidden' => '(la query SQL è stata nascosta)',
@@ -916,7 +917,7 @@ Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella
 Se il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 'anontalkpagetext' => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea un nuovo accesso]] o [[Special:UserLogin|entra con quello che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
 'noarticletext' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificare la pagina ora]</span>.',
-'noarticletext-nopermission' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>.',
+'noarticletext-nopermission' => 'In questo momento la pagina richiesta è vuota. È possibile [[Special:Search/{{PAGENAME}}|cercare questo titolo]] nelle altre pagine del sito o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercare nei registri correlati]</span>, ma non hai i permessi per creare questa pagina.',
 'missing-revision' => 'La revisione #$1 della pagina "{{PAGENAME}}" non esiste.
 
 Questo si verifica solitamente seguendo un collegamento a una pagina cancellata, in una cronologia non aggiornata.
@@ -1363,7 +1364,7 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'timezoneregion-indian' => 'Oceano Indiano',
 'timezoneregion-pacific' => 'Oceano Pacifico',
 'allowemail' => 'Abilita la ricezione di messaggi e-mail da altri utenti',
-'prefs-searchoptions' => 'Opzioni di ricerca',
+'prefs-searchoptions' => 'Ricerca',
 'prefs-namespaces' => 'Namespace',
 'defaultns' => 'In caso contrario, cerca in questi namespace:',
 'default' => 'predefinito',

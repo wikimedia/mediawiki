@@ -2921,14 +2921,14 @@ An fasend-lo marcé ansima a sò ordinator chiel a podrìa porteje ëd dann a s�
 # Bad image list
 'bad_image_list' => "La forma a l'é costa-sì:
 
-As ten-o bon-e mach le liste pontà (cole faite ëd righe ch'as ancamin-o për *). La prima anliura ëd minca riga a l'ha da mné a n'archivi multimojen nen bon.
+As ten-o bon-e mach le liste pontà (cole fàite ëd righe ch'as ancamin-o për *). La prima anliura ëd minca riga a l'ha da mné a n'archivi multimojen nen bon.
 J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (visadì, për pàgine andova st'archivi as peul butesse).",
 
 # Metadata
 'metadata' => 'Dat adissionaj',
-'metadata-help' => "Costi-sì a son dij dat adissionaj, che a l'é belfé che a sio stait giontà da la màchina fotogràfica digital ò pura da lë scanner che a l'é stiat dovrà për creé la figura digital. Se la figura a fussa mai staita modificà da 'nt soa forma original, a podrìa ëdcò riveje che chèich detaj a fussa ancò butà coma ant l'original, donca sensa pa ten-e cont ëd le modìfiche.",
-'metadata-expand' => 'Most-me tùit ij dat',
-'metadata-collapse' => 'Stërma ij dat adissionaj',
+'metadata-help' => "St'archivi a conten dj'anformassion adissionaj, che a l'é belfé che a sio stait giontà da la màchina fotogràfica digital ò pura dal digitalisatorr che a l'é stàit dovrà për creé la figura digital. Se la figura a fussa mai stàita modificà da 'nt soa forma original, a podrìa ëdcò riveje che chèich detaj a fusso ancor butà coma ant l'original, donca sensa ten-e cont ëd le modìfiche.",
+'metadata-expand' => 'Smon-e ij dat adissionaj',
+'metadata-collapse' => 'Stërmé ij dat adissionaj',
 'metadata-fields' => "Ij camp dij metadat ëd la figura listà ant ës messagi-sì a saran ësmonù ant la visualisassion ëd la pàgina dla figura quand la tàula dij metadat a l'é stërmà.
 J'àutri a saran stërmà coma stàndard.
 * make
@@ -2950,7 +2950,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-imagelength' => 'Autëssa',
 'exif-bitspersample' => 'Bit për campion',
 'exif-compression' => 'Schema ëd compression',
-'exif-photometricinterpretation' => 'Composission dij pixel',
+'exif-photometricinterpretation' => 'Composission dij pontin',
 'exif-orientation' => 'Orientament',
 'exif-samplesperpixel' => 'Nùmer ëd component',
 'exif-planarconfiguration' => 'Sistemassion dij dat',

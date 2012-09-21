@@ -968,9 +968,9 @@ Eka tı ita semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
 Tı şenay zerreyê pelanê binan de [[Special:Search/{{PAGENAME}}|seba sernamey ena pele cı geyre]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cıkewtışê aidi rê cı geyre],
 ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurne]</span>.',
-'noarticletext-nopermission' => 'No pel nıka veng o.
-No sernuşte şıma [[Special:Search/{{PAGENAME}}|pelanê binan de eşkeni bıgeri]]
-ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara eşekeni bıgere].</span>',
+'noarticletext-nopermission' => 'Na pela dı eno metin enewke vengo
+Na sernuşteya şıma [[Special:Search/{{PAGENAME}}|pelanê binan de şeni bıgeyri]]
+ya zi <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} itara şeni bıgeyri cı].</span> feqet şıma nişeni biizın teba bıkeri.',
 'missing-revision' => 'Rewizyonê name dê pela da #$1 "{{PAGENAME}}" dı çıniyo.
 
 No normal de tarix dê pelanê besterneyan dı ena xırabin asena.
@@ -996,8 +996,8 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 Dosyanê be namey .css u .js'i de herfa werdiye bıgurêne, mesela herında {{ns:user}}:Foo/Vector.css'i de {{ns:user}}:Foo/vector.css bınuse.",
 'updated' => '(Newenyaya)',
 'note' => "'''Not:'''",
-'previewnote' => "Teme! ena teyna verqeyda.'''
-Vurnayışê tu hama qeyd nıbiyo!",
+'previewnote' => "'''Xo vira mekerê ke ena yew verqayta.'''
+Vurnayışê şıma hona qeyd nêbiyo!",
 'continue-editing' => 'Vurnayışi rê dewam ke',
 'previewconflict' => 'No seyrkerdışê verqaydi serê qutiyê nuşte tezim kerdış de yo, eke şıma qayile vurnayişê maddeyi seyino bıvini, no mocneno şıma.',
 'session_fail_preview' => 'Ma ef kere. Vindibiyayişê tayê datay ra a kerdışê hesabê şıma de ma vurnayişê şıma qayd nêkerd. Newe ra tesel (cereb) bıkere. Eke no qayde zi nêbo, [[Special:UserLogout|hesabê xo bıqefelne]] u newera a kere.',
@@ -1426,7 +1426,7 @@ Etıya şıma rê yew kılito raştameo ke şıma şenê bıgurenê/bıxebetnê:
 'timezoneregion-indian' => 'Okyanuso Hind',
 'timezoneregion-pacific' => 'Okyanuso Pasifik',
 'allowemail' => 'Karberê bini wa bışê mı rê e-posta bırışê.',
-'prefs-searchoptions' => 'Tercihê cıgeyrayışi',
+'prefs-searchoptions' => 'Cı geyre',
 'prefs-namespaces' => 'Caê namey',
 'defaultns' => 'Eke heni, enê cayanê namey de cı geyre (sae ke):',
 'default' => 'hesıbyaye',

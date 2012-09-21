@@ -859,8 +859,8 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 Če ste sem prišli po pomoti, v svojem brskalniku kliknite gumb ''Nazaj''.",
 'anontalkpagetext' => "---- ''To je pogovorna stran brezimnega uporabnika, ki si še ni ustvaril računa ali pa ga ne uporablja. Zaradi tega moramo uporabiti IP-naslov za njegovo/njeno ugotavljanje istovetnosti. Takšen IP-naslov si lahko deli več uporabnikov. Če ste brezimni uporabnik in menite, da so nepomembne pripombe namenjene vam, prosimo [[Special:UserLogin|ustvarite račun]] ali pa se [[Special:UserLogin/signup|vpišite]], da preprečite zmedo z drugimi nepodpisanimi uporabniki.''",
 'noarticletext' => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
-'noarticletext-nopermission' => 'Na tej strani ni trenutno nobenega besedila.
-Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov te strani]] v drugih straneh, ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} poiskati v povezanih dnevniških zapisih]</span>.',
+'noarticletext-nopermission' => 'Na strani trenutno ni nobenega besedila.
+Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov strani]] na drugih straneh ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v povezanih dnevniških zapisih]</span>, vendar za ustvarjanje strani nimate zadostnih dovoljenj.',
 'userpage-userdoesnotexist' => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'userpage-userdoesnotexist-view' => 'Uporabniški račun »$1« ni registriran.',
@@ -1319,7 +1319,7 @@ Tukaj je naključno ustvarjena vrednost, ki jo lahko uporabite: $1',
 'timezoneregion-indian' => 'Indijski ocean',
 'timezoneregion-pacific' => 'Tihi ocean',
 'allowemail' => 'Drugim uporabnikom omogoči pošiljanje e-pošte',
-'prefs-searchoptions' => 'Možnosti iskanja',
+'prefs-searchoptions' => 'Iskanje',
 'prefs-namespaces' => 'Imenski prostori',
 'defaultns' => 'Navadno išči v naslednjih imenskih prostorih:',
 'default' => 'privzeto',

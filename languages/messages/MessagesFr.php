@@ -55,6 +55,7 @@
  * @author Meithal
  * @author Moyg
  * @author Nicolas Raoul
+ * @author Nnemo
  * @author Od1n
  * @author Omnipaedista
  * @author Peter17
@@ -785,10 +786,10 @@ Notez que certaines pages peuvent être encore affichées comme si vous étiez t
 
 Votre compte a été créé.
 N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
-'yourname' => 'Nom d’utilisateur :',
-'yourpassword' => 'Mot de passe :',
+'yourname' => 'Nom d’utilisateur&nbsp;:',
+'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
-'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
+'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
 'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
@@ -820,7 +821,7 @@ Veuillez choisir un nom différent.',
 Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.',
 'noname' => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle' => 'Connexion réussie',
-'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
+'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser' => 'L’utilisateur « $1 » n’existe pas.
 Les noms d’utilisateurs sont sensibles à la casse.
 Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
@@ -1751,9 +1752,9 @@ Le journal des suppressions et celui des déplacements de cette page sont affich
 'uploadtext' => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
 Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L’import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
-Pour inclure un fichier dans une page, utilisez un lien de la forme :
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
+Pour inclure un fichier dans une page, utilisez un lien de la forme :
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l’afficher.",
 'upload-permitted' => 'Formats de fichiers autorisés : $1.',
 'upload-preferred' => 'Formats de fichiers préférés : $1.',

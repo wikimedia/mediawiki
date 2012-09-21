@@ -1028,8 +1028,7 @@ $2
 да ги <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате дневниците],
 или да [{{fullurl:{{FULLPAGENAME}}|action=edit}} ја создадете]</span>.',
 'noarticletext-nopermission' => 'Таква страница сè уште не постои.
-Можете да проверите [[Special:Search/{{PAGENAME}}|дали насловот се споменува]] во други статии,
-или да ги <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате дневниците]</span>.',
+Можете да проверите [[Special:Search/{{PAGENAME}}|дали насловот се споменува]] во други статии или пак да <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате поврзаните дневници]</span>, но немате дозвола да ја создадете страницата.',
 'missing-revision' => 'Не ја пронајдов ревизијата бр. $1 на страницата со наслов „{{PAGENAME}}“.
 
 Ова обично се должи на застарена врска за разлики што води кон избришана страница.
@@ -1496,7 +1495,7 @@ $1",
 'timezoneregion-indian' => 'Индиски Океан',
 'timezoneregion-pacific' => 'Тихи Океан',
 'allowemail' => 'Дозволи е-пошта од други корисници',
-'prefs-searchoptions' => 'Нагодувања на пребарувањето',
+'prefs-searchoptions' => 'Пребарување',
 'prefs-namespaces' => 'Именски простори',
 'defaultns' => 'Инаку пребарувај во овие именски простори:',
 'default' => 'по основно',

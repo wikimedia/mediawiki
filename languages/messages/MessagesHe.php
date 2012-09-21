@@ -1024,7 +1024,8 @@ $2
 או [{{fullurl:{{FULLPAGENAME}}|action=edit}} לערוך דף זה]</span>.',
 'noarticletext-nopermission' => 'אין כרגע טקסט בדף זה.
 באפשרותכם [[Special:Search/{{PAGENAME}}|לחפש את כותרת הדף]] בדפים אחרים,
-או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים].</span>',
+או <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} לחפש ביומנים הרלוונטיים]</span>,
+אך אינכם מורשים ליצור את הדף.',
 'missing-revision' => 'גרסה #$1 של הדף "{{PAGENAME}}" אינה קיימת.
 
 זה נגרם בדרך כלל על־ידי לחיצה על קישור ישן לגרסה קודמת של דף שנמחק.
@@ -1487,7 +1488,7 @@ $1",
 'timezoneregion-indian' => 'האוקיינוס ההודי',
 'timezoneregion-pacific' => 'האוקיינוס השקט',
 'allowemail' => 'קבלת דוא"ל ממשתמשים אחרים',
-'prefs-searchoptions' => 'אפשרויות חיפוש',
+'prefs-searchoptions' => 'חיפוש',
 'prefs-namespaces' => 'מרחבי שם',
 'defaultns' => 'אחרת, החיפוש יתבצע במרחבי השם הבאים:',
 'default' => 'ברירת מחדל',

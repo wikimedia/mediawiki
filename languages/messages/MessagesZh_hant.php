@@ -855,8 +855,8 @@ $2
 'noarticletext' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
-'noarticletext-nopermission' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
-或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]</span>。',
+'noarticletext-nopermission' => '此頁目前沒有內容。
+您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜尋有關日誌]</span>，但您沒有權限建立此頁。',
 'missing-revision' => '「{{PAGENAME}}」的#$1修訂版本不存在。
 
 這通常是因為過時的頁面歷史鏈接被刪除。
@@ -1300,7 +1300,7 @@ $1",
 'timezoneregion-indian' => '印度洋',
 'timezoneregion-pacific' => '太平洋',
 'allowemail' => '接受來自其他用戶的郵件',
-'prefs-searchoptions' => '搜尋選項',
+'prefs-searchoptions' => '搜尋',
 'prefs-namespaces' => '頁面名稱空間',
 'defaultns' => '否則在這些名字空間搜尋：',
 'default' => '預設',

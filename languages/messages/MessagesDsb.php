@@ -799,7 +799,7 @@ Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}
 'noarticletext' => 'Dotychměst toś ten bok hyšći njewopśimujo žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|titel togo boka pytaś]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś]</span>.',
 'noarticletext-nopermission' => 'Tuchylu njejo žeden tekst na toś tom boku.
 Móžoš [[Special:Search/{{PAGENAME}}|toś ten bokowy titel]] na drugich bokach pytaś
-abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>.',
+abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>, ale njamaš pšawo, toś ten bok napóraś.',
 'missing-revision' => 'Wersija #$1 boka z mjenim "{{PAGENAME}}" njeeksistěrujo.
 
 Pśicyna jo zwětšego zestarjony wótkaz w historiji k bokoju, kótaryž jo se wulašował.
@@ -1248,7 +1248,7 @@ How jo pśipadnje napórana gódnota, kótaruž móžoš wužywaś: $1',
 'timezoneregion-indian' => 'Indiski ocean',
 'timezoneregion-pacific' => 'Pacifiski ocean',
 'allowemail' => 'Dostawanje e-mailow drugich wužywarjow zmóžniś.',
-'prefs-searchoptions' => 'Pytańske opcije',
+'prefs-searchoptions' => 'Pytaś',
 'prefs-namespaces' => 'Mjenjowe rumy',
 'defaultns' => 'Howac w toś tych mjenjowych rumach pytaś:',
 'default' => 'Standard',

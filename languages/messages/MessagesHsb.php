@@ -791,7 +791,7 @@ Hesło za tute nowe konto da so na stronje ''[[Special:ChangePassword|hesło zm�
 'anontalkpagetext' => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:UserLogin/signup|wutwor prošu konto]] abo [[Special:UserLogin|přizjew so]], zo by přichodnu šmjatańcu z anonymnymi wužiwarjemi wobešoł.''",
 'noarticletext' => 'Tuchwilu tuta strona žadyn tekst njewobsahuje. Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
 'noarticletext-nopermission' => 'Tuchwilu žadyn tekst na tutej stronje njeje.
-Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>.',
+Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>, ale nimaš prawo, strou wutworić.',
 'missing-revision' => 'Wersija #$1 strony z mjenom "{{PAGENAME}}" njeeksistuje.
 
 Přičina je zwjetša zestarjeny wotkaz w stawiznach k stronje, kotraž je so zhašała.
@@ -1246,7 +1246,7 @@ Tu je připadnje wupłodźena hódnota, kotruž móžeš wužiwać: $1',
 'timezoneregion-indian' => 'Indiski ocean',
 'timezoneregion-pacific' => 'Pacifiski ocean',
 'allowemail' => 'Mejlki wot druhich wužiwarjow přijimować',
-'prefs-searchoptions' => 'Pytanske opcije',
+'prefs-searchoptions' => 'Pytać',
 'prefs-namespaces' => 'Mjenowe rumy',
 'defaultns' => 'Hewak w tutych mjenowych rumach pytać:',
 'default' => 'standard',

@@ -900,8 +900,7 @@ Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission' => 'Actualmente non hai ningún texto nesta páxina.
-Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
-ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
+Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>, pero non ten os permisos necesarios para crear esta páxina.',
 'missing-revision' => 'A revisión nº$1 da páxina chamada "{{PAGENAME}}" non existe.
 
 A miúdo, isto está provocado por seguir unha ligazón de historial obsoleta cara a unha páxina que foi borrada.
@@ -1369,7 +1368,7 @@ Velaquí un valor xerado ao chou que pode usar: $1',
 'timezoneregion-indian' => 'Océano Índico',
 'timezoneregion-pacific' => 'Océano Pacífico',
 'allowemail' => 'Admitir mensaxes de correo electrónico doutros usuarios',
-'prefs-searchoptions' => 'Opcións de procura',
+'prefs-searchoptions' => 'Procura',
 'prefs-namespaces' => 'Espazos de nomes',
 'defaultns' => 'Se non, procurar nestes espazos de nomes:',
 'default' => 'predeterminado',

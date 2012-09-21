@@ -785,7 +785,7 @@ $2',
 'securelogin-stick-https' => 'ログイン後にHTTPS接続を維持',
 'yourdomainname' => 'ドメイン:',
 'password-change-forbidden' => 'このウィキではパスワードを変更できません。',
-'externaldberror' => '外部の認証データベースでエラーが発生したか、または外部アカウント情報の更新が許可されていません。',
+'externaldberror' => '認証データベースでエラーが発生した、または外部アカウントの更新が許可されていません。',
 'login' => 'ログイン',
 'nav-login-createaccount' => 'ログインまたはアカウント作成',
 'loginprompt' => '{{SITENAME}}にログインするにはCookieを有効にする必要があります。',
@@ -1049,7 +1049,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
-'noarticletext-nopermission' => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができます。',
+'noarticletext-nopermission' => '現在このページには内容がありません。
+他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができますが、あなたにはこのページを作成する権限はありません。',
 'missing-revision' => '「{{PAGENAME}}」というページの版番号 $1 の版は存在しません。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
@@ -1523,7 +1524,7 @@ $1",
 'timezoneregion-indian' => 'インド洋',
 'timezoneregion-pacific' => '太平洋',
 'allowemail' => '他の利用者からのメールを受け取る',
-'prefs-searchoptions' => '検索設定',
+'prefs-searchoptions' => '検索',
 'prefs-namespaces' => '名前空間',
 'defaultns' => '指定した名前空間のみを検索:',
 'default' => '既定',
@@ -2444,7 +2445,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'watchnochange' => 'ウォッチリストに登録しているページで、指定期間内に編集されたものはありません。',
 'watchlist-details' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています（トークページを除く）。',
 'wlheader-enotif' => '* メール通知が有効になっています',
-'wlheader-showupdated' => "* 最後に訪問したあとに変更されたページは、'''太字'''で表示されます",
+'wlheader-showupdated' => "* 最終訪問以降に変更されたページは、'''太字'''で表示されます",
 'watchmethod-recent' => '最近の更新内のウォッチされているページを確認中',
 'watchmethod-list' => 'ウォッチされているページ内の最近の更新を確認中',
 'watchlistcontains' => 'ウォッチリストには {{PLURAL:$1|$1 ページ}}が登録されています。',

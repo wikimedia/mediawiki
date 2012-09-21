@@ -671,10 +671,11 @@ Zapytanie: $2',
 'protectedpagetext' => 'Wyłączono możliwość edycji tej strony.',
 'viewsourcetext' => 'Tekst źródłowy strony można podejrzeć i skopiować.',
 'viewyourtext' => "Tekst źródłowy '''zmodyfikowanej''' przez Ciebie strony możesz podejrzeć i skopiować",
-'protectedinterface' => 'Ta strona zawiera tekst interfejsu oprogramowania, dlatego możliwość jej edycji została zablokowana.',
+'protectedinterface' => 'Ta strona zawiera tekst interfejsu oprogramowania wiki i jest zabezpieczona przed nadużyciami.
+By dodać lub zmienić tłumaczenia wszystkich serwisów wiki, użyj [//translatewiki.net/ translatewiki.net], projektu lokalizacji MediaWiki.',
 'editinginterface' => "'''Ostrzeżenie:''' Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.
-Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników.
-Rozważ wykonanie tłumaczenia na [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
+Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników tej wiki.
+By dodać lub zmienić tłumaczenia wszystkich wiki, użyj [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowany projekt lokalizacji oprogramowania MediaWiki.",
 'sqlhidden' => '(ukryto zapytanie SQL)',
 'cascadeprotected' => 'Ta strona została zabezpieczona przed edycją, ponieważ jest ona zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:
 $2',
@@ -960,9 +961,9 @@ Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komenta
 'noarticletext' => 'Brak strony o tym tytule.
 Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych stronach]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać log] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.',
-'noarticletext-nopermission' => 'Na tej stronie nie ma jeszcze artykułu.
+'noarticletext-nopermission' => 'Ta strona nie posiada jeszcze zawartości.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
-lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
+lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane dzienniki]</span>, ale nie masz uprawnień do utworzenia tej strony',
 'missing-revision' => 'Wersja #$1 strony "{{PAGENAME}}" nie istnieje.
 
 Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
@@ -1425,7 +1426,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'timezoneregion-indian' => 'Ocean Indyjski',
 'timezoneregion-pacific' => 'Ocean Spokojny',
 'allowemail' => 'Zgadzam się, by inni użytkownicy mogli przesyłać do mnie e‐maile',
-'prefs-searchoptions' => 'Opcje wyszukiwania',
+'prefs-searchoptions' => 'Szukaj',
 'prefs-namespaces' => 'Przestrzenie nazw',
 'defaultns' => 'Albo przeszukuj przestrzenie nazw:',
 'default' => 'domyślnie',

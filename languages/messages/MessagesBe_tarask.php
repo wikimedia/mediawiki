@@ -913,7 +913,7 @@ $2
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтую назву]] ў іншых старонках, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць у адпаведных журналах падзеяў]
 альбо [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} рэдагаваць гэтую старонку]</span>.',
 'noarticletext-nopermission' => 'Цяпер на гэтай старонцы тэкст адсутнічае.
-Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць назву гэтай старонкі]] на іншых старонках, альбо <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць зьвязаныя запісы ў журналах]</span>.',
+Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць назву гэтай старонкі]] на іншых старонках, альбо <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць зьвязаныя запісы ў журналах]</span>, але ў вас няма дазволу ствараць гэтую старонку.',
 'missing-revision' => 'Вэрсія старонкі №$1 з назвай «{{PAGENAME}}» не існуе.
 
 Звычайна гэта здараецца з-за перахода па састарэлай спасылцы на старонку, якая была выдаленая.
@@ -1376,7 +1376,7 @@ $1",
 'timezoneregion-indian' => 'Індыйскі акіян',
 'timezoneregion-pacific' => 'Ціхі акіян',
 'allowemail' => 'Дазволіць атрыманьне лістоў ад іншых удзельнікаў і ўдзельніц',
-'prefs-searchoptions' => 'Магчымасьці пошуку',
+'prefs-searchoptions' => 'Пошук',
 'prefs-namespaces' => 'Прасторы назваў',
 'defaultns' => 'Інакш шукаць у наступных прасторах назваў:',
 'default' => 'па змоўчваньні',

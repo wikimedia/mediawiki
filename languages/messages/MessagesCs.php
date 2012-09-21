@@ -1014,7 +1014,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'noarticletext' => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'noarticletext-nopermission' => 'Tato stránka zatím neobsahuje žádný text.
-Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>.',
+Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>, ale na založení této stránky nemáte oprávnění.',
 'missing-revision' => 'Revize #$1 stránky s názvem „{{PAGENAME}}“ neexistuje.
 
 Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
@@ -1472,7 +1472,7 @@ Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
 'timezoneregion-indian' => 'Indický oceán',
 'timezoneregion-pacific' => 'Tichý oceán',
 'allowemail' => 'Povolit e-mail od ostatních uživatelů',
-'prefs-searchoptions' => 'Možnosti vyhledávání',
+'prefs-searchoptions' => 'Vyhledávání',
 'prefs-namespaces' => 'Jmenné prostory',
 'defaultns' => 'Nebo hledat v těchto jmenných prostorech:',
 'default' => 'implicitní',
