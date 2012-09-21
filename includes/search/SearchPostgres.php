@@ -111,8 +111,11 @@ class SearchPostgres extends SearchEngine {
 				elseif (strtolower($terms[2]) === 'not') {
 					$searchstring .= ' & !';
 				}
-				else {
+				elseif ( strchr( $terms[2], "'" ) === false ) {
 					$searchstring .= " & $terms[2]";
+				}
+				else {
+					$searchstring .= " & '" . str_replace( "'", "''", $terms[2] ) . "'";
 				}
 			}
 		}
@@ -130,7 +133,7 @@ class SearchPostgres extends SearchEngine {
 		$searchstring = preg_replace('/[\s\!\&\|]+$/', '', $searchstring);
 
 		## Remove unnecessary quotes around everything
-		$searchstring = preg_replace('/^[\'"](.*)[\'"]$/', "$1", $searchstring);
+		$searchstring = preg_replace( '/^"(.*)"$/', "$1", $searchstring );
 
 		## Quote the whole thing
 		$searchstring = $this->db->addQuotes($searchstring);
