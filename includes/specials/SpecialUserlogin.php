@@ -464,8 +464,7 @@ class LoginForm extends SpecialPage {
 		$u->saveSettings();
 
 		# Update user count
-		$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
-		$ssUpdate->doUpdate();
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
 		return $u;
 	}
