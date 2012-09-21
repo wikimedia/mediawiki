@@ -626,6 +626,7 @@ return array(
 		'dependencies' => array(
 			'jquery.cookie',
 			'mediawiki.api',
+			'user.tokens',
 		),
 	),
 	'mediawiki.util' => array(
@@ -660,7 +661,10 @@ return array(
 	),
 	'mediawiki.action.view.dblClickEdit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.dblClickEdit.js',
-		'dependencies' => 'mediawiki.util',
+		'dependencies' => array(
+			'mediawiki.util',
+			'mediawiki.page.startup',
+		),
 	),
 	'mediawiki.action.view.metadata' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.view.metadata.js',
