@@ -182,6 +182,12 @@ class SanitizerTest extends MediaWikiTestCase {
 	 			'Remove anything after a comment-start token' ),
 			array( '', "\\2f\\2a unifinished comment'",
 	 			'Remove anything after a backslash-escaped comment-start token' ),
+			array( '/* insecure input */', 'filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\');'),
+			array( '/* insecure input */', '-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src=\'asdf.png\',sizingMethod=\'scale\')";'),
+			array( '/* insecure input */', 'width: expression(1+1);'),
+			array( '/* insecure input */', 'background-image: image(asdf.png);'),
+			array( '/* insecure input */', 'background-image: -webkit-image(asdf.png);'),
+			array( '/* insecure input */', 'background-image: -moz-image(asdf.png);'),
 		);
 	}
 }

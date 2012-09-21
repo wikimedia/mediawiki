@@ -912,7 +912,7 @@ class Sanitizer {
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\016-\037\177]/', $value ) ) {
 			return '/* invalid control char */';
-		} elseif ( preg_match( '! expression | filter\s*: | accelerator\s*: | url\s*\( !ix', $value ) ) {
+		} elseif ( preg_match( '! expression | filter\s*: | accelerator\s*: | url\s*\( | image\s*\( !ix', $value ) ) {
 			return '/* insecure input */';
 		}
 		return $value;
