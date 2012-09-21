@@ -1,7 +1,4 @@
 <?php
-/**
- * @group Broken
- */
 class HttpTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider cookieDomains
@@ -133,7 +130,7 @@ class HttpTest extends MediaWikiTestCase {
 	 * HTTP redirects).
 	 */
 	function testRelativeRedirections() {
-		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );
+		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext' );
 		# Forge a Location header
 		$h->setRespHeaders( 'location', array(
 			'http://newsite/file.ext',
@@ -171,9 +168,13 @@ class HttpTest extends MediaWikiTestCase {
 }
 
 /**
- * Class to let us overwrite MWHttpREquest respHeaders variable
+ * Class to let us overwrite MWHttpRequest respHeaders variable
  */
 class MWHttpRequestTester extends MWHttpRequest {
+	public static function factory( $url, $options = null ) {
+		return new MWHttpRequestTester( $url, $options );
+	}
+
 	function setRespHeaders( $name, $value ) {
 		$this->respHeaders[$name] = $value ;
 	}
