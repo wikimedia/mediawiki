@@ -120,7 +120,7 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>\n" .
-		  "<table cellspacing='0' width='100%'>\n<tr>\n";
+		  "<table cellspacing='0' style='width: 100%;'>\n<tr>\n";
 
 		if ( $this->getSkin()->qbSetting() == 0 ) {
 			$s .= "<td class='top' style='text-align: left; vertical-align: top;' rowspan='{$rows}'>\n" .
@@ -553,7 +553,7 @@ class LegacyTemplate extends BaseTemplate {
 	 */
 	function getQuickbarCompensator( $rows = 1 ) {
 		wfDeprecated( __METHOD__, '1.19' );
-		return "<td width='152' rowspan='{$rows}'>&#160;</td>";
+		return "<td style='width: 152px;' rowspan='{$rows}'>&#160;</td>";
 	}
 
 	function editThisPage() {
