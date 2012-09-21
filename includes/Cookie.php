@@ -88,12 +88,14 @@ class Cookie {
 	 * @return Boolean
 	 */
 	public static function validateCookieDomain( $domain, $originDomain = null ) {
-		// Don't allow a trailing dot
-		if ( substr( $domain, -1 ) == '.' ) {
+		$dc = explode( ".", $domain );
+
+		// Don't allow a trailing dot or addresses without a or just a leading dot
+		if ( substr( $domain, -1 ) == '.' ||
+			 count( $dc ) <= 1 ||
+			 count( $dc ) == 2 && $dc[0] === '' ) {
 			return false;
 		}
-
-		$dc = explode( ".", $domain );
 
 		// Only allow full, valid IP addresses
 		if ( preg_match( '/^[0-9.]+$/', $domain ) ) {
