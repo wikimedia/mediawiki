@@ -921,7 +921,7 @@ class LoadBalancer {
 				continue;
 			}
 			foreach ( $conns2[$masterIndex] as $conn ) {
-				if ( $conn->doneWrites() ) {
+				if ( $conn->trxLevel() && $conn->doneWrites() ) {
 					$conn->commit( __METHOD__ );
 				}
 			}
