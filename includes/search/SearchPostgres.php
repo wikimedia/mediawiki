@@ -87,8 +87,10 @@ class SearchPostgres extends SearchDatabase {
 					$searchstring .= ' | ';
 				} elseif ( strtolower( $terms[2] ) === 'not' ) {
 					$searchstring .= ' & !';
-				} else {
+				} elseif ( strchr( $terms[2], "'" ) === false ) {
 					$searchstring .= " & $terms[2]";
+				} else {
+					$searchstring .= " & '" . str_replace( "'", "''", $terms[2] ) . "'";
 				}
 			}
 		}
@@ -104,9 +106,6 @@ class SearchPostgres extends SearchDatabase {
 
 		# # Remove any trailing whitespace or operators
 		$searchstring = preg_replace( '/[\s\!\&\|]+$/', '', $searchstring );
-
-		# # Remove unnecessary quotes around everything
-		$searchstring = preg_replace( '/^[\'"](.*)[\'"]$/', "$1", $searchstring );
 
 		# # Quote the whole thing
 		$searchstring = $this->db->addQuotes( $searchstring );
