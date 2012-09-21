@@ -48,6 +48,8 @@ class MWTimestamp {
 	/**
 	 * Different units for human readable timestamps.
 	 * @see MWTimestamp::getHumanTimestamp
+	 *
+	 * @since 1.20
 	 */
 	private static $units = array(
 		"milliseconds" => 1,
@@ -62,12 +64,16 @@ class MWTimestamp {
 	 * object or a string with a Unix timestamp depending on
 	 * PHP.
 	 * @var string|DateTime
+	 *
+	 * @since 1.20
 	 */
 	private $timestamp;
 
 	/**
 	 * Make a new timestamp and set it to the specified time,
 	 * or the current time if unspecified.
+	 *
+	 * @since 1.20
 	 *
 	 * @param $timestamp bool|string Timestamp to set, or false for current time
 	 */
@@ -80,6 +86,8 @@ class MWTimestamp {
 	 *
 	 * Parse the given timestamp into either a DateTime object or a Unix timestamp,
 	 * and then store it.
+	 *
+	 * @since 1.20
 	 *
 	 * @param $ts string|bool Timestamp to store, or false for now
 	 * @throws TimestampException
@@ -158,6 +166,8 @@ class MWTimestamp {
 	 * Convert the internal timestamp to the specified format and then
 	 * return it.
 	 *
+	 * @since 1.20
+	 *
 	 * @param $style int Constant Output format for timestamp
 	 * @throws TimestampException
 	 * @return string The formatted timestamp
@@ -192,6 +202,8 @@ class MWTimestamp {
 	 * generate a readable timestamp by returning "<N> <units> ago", where the
 	 * largest possible unit is used.
 	 *
+	 * @since 1.20
+	 *
 	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp() {
@@ -219,6 +231,8 @@ class MWTimestamp {
 	}
 
 	/**
+	 * @since 1.20
+	 *
 	 * @return string
 	 */
 	public function __toString() {
@@ -226,4 +240,7 @@ class MWTimestamp {
 	}
 }
 
+/**
+ * @since 1.20
+ */
 class TimestampException extends MWException {}
