@@ -851,11 +851,10 @@ class OutputPage extends ContextSource {
 		$this->getContext()->setTitle( $t );
 	}
 
-
 	/**
 	 * Replace the subtile with $str
 	 *
-	 * @param $str String|Message: new value of the subtitle
+	 * @param $str String|Message: new value of the subtitle. String should be safe HTML.
 	 */
 	public function setSubtitle( $str ) {
 		$this->clearSubtitle();
@@ -875,7 +874,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @param $str String|Message to add to the subtitle
+	 * @param $str String|Message to add to the subtitle. String should be safe HTML.
 	 */
 	public function addSubtitle( $str ) {
 		if ( $str instanceof Message ) {
