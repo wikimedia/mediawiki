@@ -667,7 +667,7 @@ class SpecialSearch extends SpecialPage {
 					return "<li>" .
 						'<table class="searchResultImage">' .
 						'<tr>' .
-						'<td width="120" style="text-align: center; vertical-align: top;">' .
+						'<td style="width: 120px; text-align: center; vertical-align: top;">' .
 						$thumb->toHtml( array( 'desc-link' => true ) ) .
 						'</td>' .
 						'<td style="vertical-align: top;">' .

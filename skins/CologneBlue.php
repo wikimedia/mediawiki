@@ -80,13 +80,13 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$mainPageObj = Title::newMainPage();
 
 		$s = "\n<div id='content'>\n<div id='topbar'>" .
-		  '<table width="100%" cellspacing="0" cellpadding="8"><tr>';
+		  '<table style="width: 100%;" cellspacing="0" cellpadding="8"><tr>';
 
 		$s .= '<td class="top" nowrap="nowrap">';
 		$s .= '<a href="' . htmlspecialchars( $mainPageObj->getLocalURL() ) . '">';
 		$s .= '<span id="sitetitle">' . wfMessage( 'sitetitle' )->escaped() . '</span></a>';
 
-		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
+		$s .= '</td><td class="top" id="top-syslinks" style="width: 100%;">';
 		$s .= $this->sysLinks();
 		$s .= '</td></tr><tr><td class="top-subheader">';
 
@@ -122,7 +122,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$s = "\n</div><br clear='all' />\n";
 
 		$s .= "\n<div id='footer'>";
-		$s .= '<table width="98%" cellspacing="0"><tr>';
+		$s .= '<table style="width: 98%;" cellspacing="0"><tr>';
 
 		$s .= '<td class="bottom">';
 
