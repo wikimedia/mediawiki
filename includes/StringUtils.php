@@ -325,7 +325,7 @@ class ReplacementArray {
 	/**
 	 * Create an object with the specified replacement array
 	 * The array should have the same form as the replacement array for strtr()
-	 * @param array $data
+	 * @param array|null $data
 	 */
 	function __construct( $data = array() ) {
 		$this->data = $data;
