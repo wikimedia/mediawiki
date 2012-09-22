@@ -57,6 +57,7 @@ class CSSJanus {
 		'lookahead_not_open_brace' => null,
 		'lookahead_not_closing_paren' => null,
 		'lookahead_for_closing_paren' => null,
+		'lookahead_not_letter' => '(?![a-zA-Z])',
 		'lookbehind_not_letter' => '(?<![a-zA-Z])',
 		'chars_within_selector' => '[^\}]*?',
 		'noflip_annotation' => '\/\*\s*@noflip\s*\*\/',
@@ -104,8 +105,8 @@ class CSSJanus {
 		$patterns['noflip_class'] = "/({$patterns['noflip_annotation']}{$patterns['chars_within_selector']}})/i";
 		$patterns['direction_ltr'] = "/({$patterns['direction']})ltr/i";
 		$patterns['direction_rtl'] = "/({$patterns['direction']})rtl/i";
-		$patterns['left'] = "/{$patterns['lookbehind_not_letter']}(left){$patterns['lookahead_not_closing_paren']}{$patterns['lookahead_not_open_brace']}/i";
-		$patterns['right'] = "/{$patterns['lookbehind_not_letter']}(right){$patterns['lookahead_not_closing_paren']}{$patterns['lookahead_not_open_brace']}/i";
+		$patterns['left'] = "/{$patterns['lookbehind_not_letter']}(left){$patterns['lookahead_not_letter']}{$patterns['lookahead_not_closing_paren']}{$patterns['lookahead_not_open_brace']}/i";
+		$patterns['right'] = "/{$patterns['lookbehind_not_letter']}(right){$patterns['lookahead_not_letter']}{$patterns['lookahead_not_closing_paren']}{$patterns['lookahead_not_open_brace']}/i";
 		$patterns['left_in_url'] = "/{$patterns['lookbehind_not_letter']}(left){$patterns['lookahead_for_closing_paren']}/i";
 		$patterns['right_in_url'] = "/{$patterns['lookbehind_not_letter']}(right){$patterns['lookahead_for_closing_paren']}/i";
 		$patterns['ltr_in_url'] = "/{$patterns['lookbehind_not_letter']}(ltr){$patterns['lookahead_for_closing_paren']}/i";
