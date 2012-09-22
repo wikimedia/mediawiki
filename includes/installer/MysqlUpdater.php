@@ -216,6 +216,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
 
 			// 1.21
+			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 		);
 	}
 
