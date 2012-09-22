@@ -73,6 +73,14 @@ class CSSMinTest extends MediaWikiTestCase {
 			array( "foo { content: '\"'; }", "foo{content:'\"'}" ),
 			// - Whitespace in string values
 			array( 'foo { content: " "; }', 'foo{content:" "}' ),
+
+			// String values should be respected
+			// - More than one space in a string value
+			array( 'foo { content: "  "; }', 'foo{content:"  "}' ),
+			// - Using a tab in a string value (turns into a space)
+			array( "foo { content: '\t'; }", "foo{content:'\t'}" ),
+			// - Using css-like syntax in string values
+			array( 'foo::after { content: "{;}"; position: absolute; }', 'foo::after{content:"{;}";position:absolute}' ),
 		);
 	}
 
@@ -115,28 +123,6 @@ class CSSMinTest extends MediaWikiTestCase {
 				array( 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ),
 				'foo { prop: url(http://wiki.example.org/w/skin/images/bar.png); }',
 			),
-		);
-	}
-
-	/**
-	 * Seperated because they are currently broken (bug 35492)
-	 *
-	 * @group Broken
-	 * @dataProvider provideStringCases
-	 */
-	function testMinifyWithCSSStringValues( $code, $expectedOutput ) {
-		$this->testMinifyOutput( $code, $expectedOutput );
-	}
-
-	function provideStringCases() {
-		return array(
-			// String values should be respected
-			// - More than one space in a string value
-			array( 'foo { content: "  "; }', 'foo{content:"  "}' ),
-			// - Using a tab in a string value (turns into a space)
-			array( "foo { content: '\t'; }", "foo{content:'\t'}" ),
-			// - Using css-like syntax in string values
-			array( 'foo::after { content: "{;}"; position: absolute; }', 'foo::after{content:"{;}";position:absolute}' ),
 		);
 	}
 }

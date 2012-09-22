@@ -223,12 +223,21 @@ class CSSMin {
 	 * @return string Minified CSS data
 	 */
 	public static function minify( $css ) {
-		return trim(
-			str_replace(
+		$r = '';
+
+		preg_match_all ( "/[^\"']+|\"(?:[^\"]|\\\\\")*(?:\"|$)|'(?:[^']|\\\\')*(?:'|$)/" , $css , $m );
+		foreach ( $m[0] as $token ) {
+			if ( substr( $token, 0, 1 ) === '"' || substr( $token, 0, 1 ) === "'" ) {
+				$r .= $token;
+			} else {
+				$r .= str_replace(
 				array( '; ', ': ', ' {', '{ ', ', ', '} ', ';}' ),
 				array( ';', ':', '{', '{', ',', '}', '}' ),
-				preg_replace( array( '/\s+/', '/\/\*.*?\*\//s' ), array( ' ', '' ), $css )
-			)
-		);
+				preg_replace( array( '/\s+/', '/\/\*.*?\*\//s' ), array( ' ', '' ), $token )
+				);
+			}
+		}
+
+		return trim( $r );
 	}
 }
