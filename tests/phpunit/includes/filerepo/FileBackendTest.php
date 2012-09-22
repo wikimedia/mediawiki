@@ -938,10 +938,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$backendName = $this->backendClass();
 
 		$srcs = (array)$source;
-		foreach ( $srcs as $src ) {
+		$content = (array)$content;
+		foreach ( $srcs as $i => $src ) {
 			$this->prepare( array( 'dir' => dirname( $src ) ) );
 			$status = $this->backend->doOperation(
-				array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
+				array( 'op' => 'create', 'content' => $content[$i], 'dst' => $src ) );
 			$this->assertGoodStatus( $status,
 				"Creation of file at $src succeeded ($backendName)." );
 		}
@@ -950,13 +951,15 @@ class FileBackendTest extends MediaWikiTestCase {
 			$contents = $this->backend->getFileContentsMulti( array( 'srcs' => $source ) );
 			foreach ( $contents as $path => $data ) {
 				$this->assertNotEquals( false, $data, "Contents of $path exists ($backendName)." );
-				$this->assertEquals( $content, $data, "Contents of $path is correct ($backendName)." );
+				$this->assertEquals( current( $content ), $data, "Contents of $path is correct ($backendName)." );
+				next( $content );
 			}
 			$this->assertEquals( $source, array_keys( $contents ), "Contents in right order ($backendName)." );
+			$this->assertEquals( count( $source ), count( $contents ), "Contents array size correct ($backendName)." );
 		} else {
 			$data = $this->backend->getFileContents( array( 'src' => $source ) );
 			$this->assertNotEquals( false, $data, "Contents of $source exists ($backendName)." );
-			$this->assertEquals( $content, $data, "Contents of $source is correct ($backendName)." );
+			$this->assertEquals( $content[0], $data, "Contents of $source is correct ($backendName)." );
 		}
 	}
 
@@ -968,8 +971,9 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array( "$base/unittest-cont1/e/b/some-other_file.txt", "more file contents" );
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
-			"$base/unittest-cont1/e/a/z.txt" ),
-			"some clone file contents" );
+				 "$base/unittest-cont1/e/a/z.txt" ),
+			array( "contents xx", "contents xy", "contents xz" )
+		);
 
 		return $cases;
 	}
@@ -993,10 +997,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$backendName = $this->backendClass();
 
 		$srcs = (array)$source;
-		foreach ( $srcs as $src ) {
+		$content = (array)$content;
+		foreach ( $srcs as $i => $src ) {
 			$this->prepare( array( 'dir' => dirname( $src ) ) );
 			$status = $this->backend->doOperation(
-				array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
+				array( 'op' => 'create', 'content' => $content[$i], 'dst' => $src ) );
 			$this->assertGoodStatus( $status,
 				"Creation of file at $src succeeded ($backendName)." );
 		}
@@ -1008,16 +1013,18 @@ class FileBackendTest extends MediaWikiTestCase {
 					"Creation of local copy of $path succeeded ($backendName)." );
 				$contents = file_get_contents( $tmpFile->getPath() );
 				$this->assertNotEquals( false, $contents, "Local copy of $path exists ($backendName)." );
-				$this->assertEquals( $content, $contents, "Local copy of $path is correct ($backendName)." );
+				$this->assertEquals( current( $content ), $contents, "Local copy of $path is correct ($backendName)." );
+				next( $content );
 			}
 			$this->assertEquals( $source, array_keys( $tmpFiles ), "Local copies in right order ($backendName)." );
+			$this->assertEquals( count( $source ), count( $tmpFiles ), "Local copies array size correct ($backendName)." );
 		} else {
 			$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
 			$this->assertNotNull( $tmpFile,
 				"Creation of local copy of $source succeeded ($backendName)." );
 			$contents = file_get_contents( $tmpFile->getPath() );
 			$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
-			$this->assertEquals( $content, $contents, "Local copy of $source is correct ($backendName)." );
+			$this->assertEquals( $content[0], $contents, "Local copy of $source is correct ($backendName)." );
 		}
 	}
 
@@ -1031,7 +1038,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
 				 "$base/unittest-cont1/e/a/z.txt" ),
-			"clone file contents" );
+			array( "contents xx", "contents xy", "contents xz" )
+		);
 
 		return $cases;
 	}
@@ -1055,10 +1063,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$backendName = $this->backendClass();
 
 		$srcs = (array)$source;
-		foreach ( $srcs as $src ) {
+		$content = (array)$content;
+		foreach ( $srcs as $i => $src ) {
 			$this->prepare( array( 'dir' => dirname( $src ) ) );
 			$status = $this->backend->doOperation(
-				array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
+				array( 'op' => 'create', 'content' => $content[$i], 'dst' => $src ) );
 			$this->assertGoodStatus( $status,
 				"Creation of file at $src succeeded ($backendName)." );
 		}
@@ -1070,16 +1079,18 @@ class FileBackendTest extends MediaWikiTestCase {
 					"Creation of local copy of $path succeeded ($backendName)." );
 				$contents = file_get_contents( $tmpFile->getPath() );
 				$this->assertNotEquals( false, $contents, "Local ref of $path exists ($backendName)." );
-				$this->assertEquals( $content, $contents, "Local ref of $path is correct ($backendName)." );
+				$this->assertEquals( current( $content ), $contents, "Local ref of $path is correct ($backendName)." );
+				next( $content );
 			}
 			$this->assertEquals( $source, array_keys( $tmpFiles ), "Local refs in right order ($backendName)." );
+			$this->assertEquals( count( $source ), count( $tmpFiles ), "Local refs array size correct ($backendName)." );
 		} else {
 			$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
 			$this->assertNotNull( $tmpFile,
 				"Creation of local copy of $source succeeded ($backendName)." );
 			$contents = file_get_contents( $tmpFile->getPath() );
 			$this->assertNotEquals( false, $contents, "Local ref of $source exists ($backendName)." );
-			$this->assertEquals( $content, $contents, "Local ref of $source is correct ($backendName)." );
+			$this->assertEquals( $content[0], $contents, "Local ref of $source is correct ($backendName)." );
 		}
 	}
 
@@ -1093,7 +1104,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$cases[] = array(
 			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
 				 "$base/unittest-cont1/e/a/z.txt" ),
-			"clone file contents" );
+			array( "contents xx", "contents xy", "contents xz" )
+		);
 
 		return $cases;
 	}

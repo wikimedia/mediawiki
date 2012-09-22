@@ -314,31 +314,41 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doConcatenate( array $params ) {
 		$status = Status::newGood();
 		$tmpPath = $params['dst']; // convenience
+		unset( $params['latest'] ); // sanity
 
 		// Check that the specified temp file is valid...
 		wfSuppressWarnings();
-		$ok = ( is_file( $tmpPath ) && !filesize( $tmpPath ) );
+		$ok = ( is_file( $tmpPath ) && filesize( $tmpPath ) == 0 );
 		wfRestoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 			return $status;
 		}
 
-		// Build up the temp file using the source chunks (in order)...
+		// Get local FS versions of the chunks needed for the concatenation...
+		$fsFiles = $this->getLocalReferenceMulti( $params );
+		foreach ( $fsFiles as $path => &$fsFile ) {
+			if ( !$fsFile ) { // chunk failed to download?
+				$fsFile = $this->getLocalReference( array( 'src' => $path ) );
+				if ( !$fsFile ) { // retry failed?
+					$status->fatal( 'backend-fail-read', $path );
+					return $status;
+				}
+			}
+		}
+		unset( $fsFile ); // unset reference so we can reuse $fsFile
+
+		// Get a handle for the destination temp file
 		$tmpHandle = fopen( $tmpPath, 'ab' );
 		if ( $tmpHandle === false ) {
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 			return $status;
 		}
-		foreach ( $params['srcs'] as $virtualSource ) {
-			// Get a local FS version of the chunk
-			$tmpFile = $this->getLocalReference( array( 'src' => $virtualSource ) );
-			if ( !$tmpFile ) {
-				$status->fatal( 'backend-fail-read', $virtualSource );
-				return $status;
-			}
+
+		// Build up the temp file using the source chunks (in order)...
+		foreach ( $fsFiles as $virtualSource => $fsFile ) {
 			// Get a handle to the local FS version
-			$sourceHandle = fopen( $tmpFile->getPath(), 'rb' );
+			$sourceHandle = fopen( $fsFile->getPath(), 'rb' );
 			if ( $sourceHandle === false ) {
 				fclose( $tmpHandle );
 				$status->fatal( 'backend-fail-read', $virtualSource );
