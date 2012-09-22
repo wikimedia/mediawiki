@@ -377,11 +377,16 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta ) {
-			$metadata = unserialize( $file->getMetadata() );
-			if ( $version !== 'latest' ) {
-				$metadata = $file->convertMetadataVersion( $metadata, $version );
+			$data = $file->getMetadata();
+			$metadata = unserialize( $data );
+			if ( $metadata === false ) {
+				$vals['metadata'] = $data;
+			} else {
+				if ( $version !== 'latest' ) {
+					$metadata = $file->convertMetadataVersion( $metadata, $version );
+				}
+				$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
 			}
-			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;
 		}
 
 		if ( $mime ) {
