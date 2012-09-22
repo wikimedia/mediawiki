@@ -191,8 +191,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 
 		if ( isset( $prop['content'] ) || !is_null( $this->difftotext ) ) {
 			// For each page we will request, the user must have read rights for that page
+			$user = $this->getUser();
 			foreach ( $pageSet->getGoodTitles() as $title ) {
-				if ( !$title->userCan( 'read' ) ) {
+				if ( !$title->userCan( 'read', $user ) ) {
 					$this->dieUsage(
 						'The current user is not allowed to read ' . $title->getPrefixedText(),
 						'accessdenied' );

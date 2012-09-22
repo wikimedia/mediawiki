@@ -513,8 +513,9 @@ class ApiQuery extends ApiBase {
 		$exportTitles = array();
 		$titles = $pageSet->getGoodTitles();
 		if ( count( $titles ) ) {
+			$user = $this->getUser();
 			foreach ( $titles as $title ) {
-				if ( $title->userCan( 'read' ) ) {
+				if ( $title->userCan( 'read', $user ) ) {
 					$exportTitles[] = $title;
 				}
 			}
