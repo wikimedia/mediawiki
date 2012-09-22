@@ -636,24 +636,33 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function doGetFileStat( array $params );
 
 	/**
-	 * @see FileBackend::getFileContents()
-	 * @return bool|string
+	 * @see FileBackend::getFileContentsMulti()
+	 * @return Array
 	 */
-	public function getFileContents( array $params ) {
+	public function getFileContentsMulti( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$tmpFile = $this->getLocalReference( $params );
-		if ( !$tmpFile ) {
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-		wfSuppressWarnings();
-		$data = file_get_contents( $tmpFile->getPath() );
-		wfRestoreWarnings();
+
+		$params = $this->setConcurrencyFlags( $params );
+		$contents = $this->doGetFileContentsMulti( $params );
+
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
-		return $data;
+		return $contents;
+	}
+
+	/**
+	 * @see FileBackendStore::getFileContentsMulti()
+	 * @return Array
+	 */
+	protected function doGetFileContentsMulti( array $params ) {
+		$contents = array();
+		wfSuppressWarnings();
+		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
+			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
+		}
+		wfRestoreWarnings();
+		return $contents;
 	}
 
 	/**

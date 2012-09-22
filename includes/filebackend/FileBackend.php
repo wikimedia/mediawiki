@@ -720,7 +720,29 @@ abstract class FileBackend {
 	 *   - latest : use the latest available data
 	 * @return string|bool Returns false on failure
 	 */
-	abstract public function getFileContents( array $params );
+	final public function getFileContents( array $params ) {
+		$contents = $this->getFileContentsMulti(
+			array( 'srcs' => array( $params['src'] ) ) + $params );
+
+		return $contents[$params['src']];
+	}
+
+	/**
+	 * Like getFileContents() except it takes an array of storage paths
+	 * and returns a map of storage paths to strings (or null on failure).
+	 * The map keys (paths) are in the same order as the provided list of paths.
+	 *
+	 * @see FileBackend::getFileContents()
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 *   - parallelize : try to do operations in parallel when possible
+	 * @return Array Map of (path name => string or false on failure)
+	 * @since 1.20
+	 */
+	abstract public function getFileContentsMulti( array $params );
 
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.

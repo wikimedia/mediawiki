@@ -572,13 +572,19 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileContents()
+	 * @see FileBackend::getFileContentsMulti()
 	 * @param $params array
 	 * @return bool|string
 	 */
-	public function getFileContents( array $params ) {
+	public function getFileContentsMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getFileContents( $realParams );
+		$contentsM = $this->backends[$this->masterIndex]->getFileContentsMulti( $realParams );
+
+		$contents = array(); // (path => FSFile) mapping using the proxy backend's name
+		foreach ( $contentsM as $path => $data ) {
+			$contents[$this->unsubstPaths( $path )] = $data;
+		}
+		return $contents;
 	}
 
 	/**
