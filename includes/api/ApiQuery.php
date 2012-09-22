@@ -520,7 +520,8 @@ class ApiQuery extends ApiBase {
 			}
 		}
 
-		$exporter = new WikiExporter( $this->getDB() );
+		$db = $this->getDB();
+		$exporter = new WikiExporter( $db ); //$db must passed by reference
 		// WikiExporter writes to stdout, so catch its
 		// output with an ob
 		ob_start();
