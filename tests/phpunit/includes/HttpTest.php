@@ -93,10 +93,8 @@ class HttpTest extends MediaWikiTestCase {
 			array( true, 'http://user:pass@host', 'Username and password provided' ),
 
 			# (\S+) - host part is made of anything not whitespaces
-			// commented these out in order to remove @group Broken
-			// @todo are these valid tests? if so, fix Http::isValidURI so it can handle them
-			//array( false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
-			//array( false, 'http://exam:ple.org/', 'hostname can not use colons!' ),
+			array( true, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
+			array( false, 'http://exam:ple.org/', 'hostname can not use colons!' ),
 
 			# (:[0-9]+)? - port number
 			array( true, 'http://example.org:80/' ),
@@ -125,7 +123,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( true, 'http://example.org/?id#anchor' ),
 			array( true, 'http://example.org/?#anchor' ),
 
-			array( false, 'http://a ¿non !!sens after', 'Allow anything after URI' ),
+			array( true, 'http://a ¿non !!sens after', 'Allow anything after URI' ),
 		);
 	}
 

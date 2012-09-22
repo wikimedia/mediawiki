@@ -172,10 +172,14 @@ class Http {
 	 * @return bool
 	 */
 	public static function isValidURI( $uri ) {
-		return preg_match(
-			'/^https?:\/\/[^\/\s]\S*$/D',
-			$uri
-		);
+		$i = wfParseUrl( $uri );
+
+		if ($i === false) {
+			return false;
+		}
+
+		return ($i ['scheme'] === 'http' || $i ['scheme'] === 'https') &&
+				$i['host'] != '';
 	}
 }
 
