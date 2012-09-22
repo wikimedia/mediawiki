@@ -689,9 +689,6 @@ CREATE TABLE /*_*/site_stats (
   -- Number of users that still edit
   ss_active_users bigint default '-1',
 
-  -- Deprecated, no longer updated as of 1.5
-  ss_admins int default '-1',
-
   -- Number of images, equivalent to SELECT COUNT(*) FROM image
   ss_images int default 0
 ) /*$wgDBTableOptions*/;
