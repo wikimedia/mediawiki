@@ -247,13 +247,21 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $delimiter = ';';
 
 	/**
-	 * Remembers the function name given for starting the most recent transaction via the begin() method.
+	 * Remembers the function name given for starting the most recent transaction via begin().
 	 * Used to provide additional context for error reporting.
 	 *
 	 * @var String
 	 * @see DatabaseBase::mTrxLevel
 	 */
 	private $mTrxFname = null;
+
+	/**
+	 * Record if possible write queries were done in the last transaction started
+	 *
+	 * @var Bool
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxDoneWrites = false;
 
 # ------------------------------------------------------------------------------
 # Accessors
@@ -845,9 +853,10 @@ abstract class DatabaseBase implements DatabaseType {
 		$commentedSql = preg_replace( '/\s/', " /* $fname $userName */ ", $sql, 1 );
 
 		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() &&
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' ) {
-			# avoid establishing transactions for SHOW and SET statements too -
+		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
+			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' )
+		{
+			# Avoid establishing transactions for SHOW and SET statements too -
 			# that would delay transaction initializations to once connection
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
@@ -858,6 +867,11 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 				$this->begin( __METHOD__ . " ($fname)" );
 			}
+		}
+
+		# Keep track of whether the transaction has write queries pending
+		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
+			$this->mTrxDoneWrites = true;
 		}
 
 		if ( $this->debug() ) {
@@ -2883,7 +2897,12 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $fname string
 	 */
 	final public function begin( $fname = 'DatabaseBase::begin' ) {
-		if ( $this->mTrxLevel ) { // implicit commit
+		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) { // implicit commit
+			// In theory, we should always warn about nesting BEGIN statements.
+			// However, it is sometimes hard to avoid so we simply warn about ones
+			// that involve write queries. This gives warnings about bad transactions
+			// that could cause partial writes but not about read queries seeing more
+			// than one DB snapshot (when in REPEATABLE-READ) due to nested BEGINs.
 			wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
 				" performing implicit commit!" );
 			$this->doCommit( $fname );
@@ -2891,6 +2910,7 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 		$this->doBegin( $fname );
 		$this->mTrxFname = $fname;
+		$this->mTrxDoneWrites = false;
 	}
 
 	/**
