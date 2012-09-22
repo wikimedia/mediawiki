@@ -458,6 +458,16 @@ class CSSJanusTest extends MediaWikiTestCase {
 				".foo\t{\tleft\t:\t0;}",
 				".foo\t{\tright\t:\t0;}"
 			),
+
+			// Guard against partial keys
+			array(
+				'.foo { leftxx: 0; }',
+				'.foo { leftxx: 0; }'
+			),
+			array(
+				'.foo { rightxx: 0; }',
+				'.foo { rightxx: 0; }'
+			),
 		);
 	}
 
@@ -534,16 +544,6 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 */
 	function provideTransformBrokenCases() {
 		return array(
-			// Guard against partial keys
-			array(
-				'.foo { leftxx: 0; }',
-				'.foo { leftxx: 0; }'
-			),
-			array(
-				'.foo { rightxx: 0; }',
-				'.foo { rightxx: 0; }'
-			),
-
 			// Guard against selectors that look flippable
 			array(
 				# <foo-left-x attr="x">
