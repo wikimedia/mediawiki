@@ -61,13 +61,19 @@ div#mw-head {
 	right: 0;
 	width: 100%;
 }
-div#mw-head h5 {
+#mw-head ul {
+	list-style-type: none;
+	list-style-image: none;
+	padding: 0;
+	margin: 0;
+}
+div#mw-head .heading {
 	margin: 0;
 	padding: 0;
 }
 /* Hide empty portlets */
-div.emptyPortlet {
-		display: none;
+.emptyPortlet {
+	display: none;
 }
 /* Personal */
 #p-personal {
@@ -75,7 +81,7 @@ div.emptyPortlet {
 	top: 0.33em;
 	right: 0.75em;
 }
-#p-personal h5 {
+#p-personal .heading {
 	display: none;
 }
 #p-personal ul {
@@ -106,17 +112,17 @@ div.emptyPortlet {
 	margin-top: 2.5em;
 }
 /* Navigation Labels */
-div.vectorTabs h5,
-div.vectorMenu h5 span {
+#mw-head .vectorTabs .heading,
+.vectorMenu .heading span {
 	display: none;
 }
 /* Namespaces and Views */
 /* @noflip */
-div.vectorTabs {
+#mw-head .vectorTabs {
 	float: left;
 	height: 2.5em;
 }
-div.vectorTabs {
+#mw-head .vectorTabs {
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-position: bottom left;
@@ -124,21 +130,21 @@ div.vectorTabs {
 	padding-left: 1px;
 }
 /* @noflip */
-div.vectorTabs ul {
+#mw-head .vectorTabs ul {
 	float: left;
 }
-div.vectorTabs ul {
+#mw-head .vectorTabs ul {
 	height: 100%;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 /* @noflip */
-div.vectorTabs ul li {
+#mw-head .vectorTabs ul li {
 	float: left;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorTabs ul li {
+#mw-head .vectorTabs ul li {
 	line-height: 1.125em;
 	display: inline-block;
 	height: 100%;
@@ -152,15 +158,15 @@ div.vectorTabs ul li {
 	white-space: nowrap;
 }
 /* IGNORED BY IE6 */
-div.vectorTabs ul > li {
+#mw-head .vectorTabs ul > li {
 	display: block;
 }
-div.vectorTabs li.selected {
+#mw-head .vectorTabs li.selected {
 	/* @embed */
 	background-image: url(images/tab-current-fade.png);
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorTabs li a {
+#mw-head .vectorTabs li a {
 	display: inline-block;
 	height: 1.9em;
 	padding-left: 0.5em;
@@ -170,43 +176,43 @@ div.vectorTabs li a {
 	font-size: 0.8em;
 }
 /* IGNORED BY IE6 */
-div.vectorTabs li > a {
+#mw-head .vectorTabs li > a {
 	display: block;
 }
-div.vectorTabs li.icon a {
+#mw-head .vectorTabs li.icon a {
 	background-position: bottom right;
 	background-repeat: no-repeat;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorTabs span a  {
+#mw-head .vectorTabs span a  {
 	display: inline-block;
 	padding-top: 1.25em;
 }
 /* IGNORED BY IE6 */
 /* @noflip */
-div.vectorTabs span > a {
+#mw-head .vectorTabs span > a {
 	float: left;
 	display: block;
 }
-div.vectorTabs span {
+#mw-head .vectorTabs span {
 	display: inline-block;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-position: bottom right;
 	background-repeat: no-repeat;
 }
-div.vectorTabs li.selected a,
-div.vectorTabs li.selected a:visited{
+#mw-head .vectorTabs li.selected a,
+#mw-head .vectorTabs li.selected a:visited{
 	color: #333;
 	text-decoration: none;
 }
-div.vectorTabs li.new a,
-div.vectorTabs li.new a:visited{
+#mw-head .vectorTabs li.new a,
+#mw-head .vectorTabs li.new a:visited{
 	color: #a55858;
 }
 /* Variants and Actions */
 /* @noflip */
-div.vectorMenu {
+.vectorMenu {
 	direction: ltr;
 	float: left;
 	/* @embed */
@@ -215,33 +221,33 @@ div.vectorMenu {
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
-div.vectorMenuFocus {
+.vectorMenuFocus {
 	/* @embed */
 	background-image: url(images/arrow-down-focus-icon.png);
 	background-position: 100% 60%;
 }
 /* @noflip */
-body.rtl div.vectorMenu {
+body.rtl .vectorMenu {
 	direction: rtl;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div#mw-head div.vectorMenu h5 {
+div#mw-head .vectorMenu .heading {
 	float: left;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div#mw-head div.vectorMenu h5 {
+div#mw-head .vectorMenu .heading {
 	background-position: bottom left;
 	margin-left: -1px;
 }
 /* IGNORED BY IE6 */
-div#mw-head div.vectorMenu > h5 {
+div#mw-head .vectorMenu > .heading {
 	background-image: none;
 }
-div#mw-head div.vectorMenu h4 {
+div#mw-head .vectorMenu #variants-status {
 	display: inline-block;
 	float: left;
 	font-size: 0.8em;
@@ -252,7 +258,7 @@ div#mw-head div.vectorMenu h4 {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div.vectorMenu h5 a {
+.vectorMenu .heading a {
 	display: inline-block;
 	width: 24px;
 	height: 2.5em;
@@ -262,14 +268,14 @@ div.vectorMenu h5 a {
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div.vectorMenu h5 a {
+.vectorMenu .heading a {
 	background-position: bottom right;
 }
 /* IGNORED BY IE6 */
-div.vectorMenu h5 > a {
+.vectorMenu .heading > a {
 	display: block;
 }
-div.vectorMenu div.menu {
+.vectorMenu div.menu {
 	position: relative;
 	display: none;
 	clear: both;
@@ -277,27 +283,27 @@ div.vectorMenu div.menu {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-body.rtl div.vectorMenu div.menu {
+body.rtl .vectorMenu div.menu {
 	margin-left: 24px;
 }
 /* IGNORED BY IE6 */
 /* @noflip */
-body.rtl div.vectorMenu > div.menu {
+body.rtl .vectorMenu > div.menu {
 	margin-left: auto;
 }
 /* IGNORED BY IE6 */
 /* Also fixes old versions of FireFox */
 /* @noflip */
-body.rtl div.vectorMenu > div.menu,
+body.rtl .vectorMenu > div.menu,
 x:-moz-any-link {
 	margin-left: 23px;
 }
 /* Enable forcing showing of the menu for accessibility */
-div.vectorMenu:hover div.menu,
-div.vectorMenu div.menuForceShow {
+.vectorMenu:hover div.menu,
+.vectorMenu div.menuForceShow {
 	display: block;
 }
-div.vectorMenu ul {
+.vectorMenu ul {
 	position: absolute;
 	background-color: white;
 	border: solid 1px silver;
@@ -311,24 +317,24 @@ div.vectorMenu ul {
 	text-align: left;
 }
 /* Fixes old versions of FireFox */
-div.vectorMenu ul,
+.vectorMenu ul,
 x:-moz-any-link {
 	min-width: 5em;
 }
 /* Returns things back to normal in modern versions of FireFox */
-div.vectorMenu ul,
+.vectorMenu ul,
 x:-moz-any-link,
 x:default {
 	min-width: 0;
 }
-div.vectorMenu li {
+.vectorMenu li {
 	padding: 0;
 	margin: 0;
 	text-align: left;
 	line-height: 1em;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
-div.vectorMenu li a {
+.vectorMenu li a {
 	display: inline-block;
 	padding: 0.5em;
 	white-space: nowrap;
@@ -337,16 +343,16 @@ div.vectorMenu li a {
 	font-size: 0.8em;
 }
 /* IGNORED BY IE6 */
-div.vectorMenu li > a {
+.vectorMenu li > a {
 	display: block;
 }
-div.vectorMenu li.selected a,
-div.vectorMenu li.selected a:visited {
+.vectorMenu li.selected a,
+.vectorMenu li.selected a:visited {
 	color: #333;
 	text-decoration: none;
 }
 /* Search */
-#p-search h5 {
+#p-search .heading {
 	display: none;
 }
 /* @noflip */
@@ -453,21 +459,29 @@ div#mw-panel {
 	width: 10em;
 	left: 0;
 }
-div#mw-panel div.portal {
+#mw-panel ul {
+	list-style-type: none;
+	list-style-image: none;
+	padding: 0;
+	margin: 0;
+}
+div#mw-panel .portal {
 	padding-bottom: 1.5em;
 	direction: ltr;
 }
-div#mw-panel div.portal h5 {
+div#mw-panel .portal .heading {
 	font-weight: normal;
 	color: #444;
 	padding: 0.25em;
 	padding-top: 0;
 	padding-left: 1.75em;
+	margin-bottom: 0.3em;
 	cursor: default;
 	border: none;
 	font-size: 0.75em;
+	line-height: normal;
 }
-div#mw-panel div.portal div.body {
+div#mw-panel .portal div.body {
 	margin: 0;
 	padding-top: 0.5em;
 	margin-left: 1.25em;
@@ -476,14 +490,14 @@ div#mw-panel div.portal div.body {
 	background-repeat: no-repeat;
 	background-position: top left;
 }
-div#mw-panel div.portal div.body ul {
+div#mw-panel .portal div.body ul {
 	list-style: none;
 	list-style-image: none;
 	list-style-type: none;
 	padding: 0;
 	margin: 0;
 }
-div#mw-panel div.portal div.body ul li {
+div#mw-panel .portal div.body ul li {
 	line-height: 1.125em;
 	padding: 0;
 	padding-bottom: 0.5em;
@@ -491,10 +505,10 @@ div#mw-panel div.portal div.body ul li {
 	font-size: 0.75em;
 	word-wrap: break-word;
 }
-div#mw-panel div.portal div.body ul li a {
+div#mw-panel .portal div.body ul li a {
 	color: #0645ad;
 }
-div#mw-panel div.portal div.body ul li a:visited {
+div#mw-panel .portal div.body ul li a:visited {
 	color: #0b0080;
 }
 /* Footer */
@@ -846,7 +860,7 @@ div#bodyContent {
 #ca-watch.icon a span {
 	display: none;
 }
-div.vectorTabs ul {
+#mw-head .vectorTabs ul {
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-position: right bottom;
