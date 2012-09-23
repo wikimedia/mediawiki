@@ -546,9 +546,9 @@ Kun pidliton mo an \"{{int:savearticle}}\" utro, an imo ginliwat in matitipig bi
 Puyde hi ikaw [[Special:Search/{{PAGENAME}}|magbiling para han ngaran hini nga pakli]] ha iba nga mga pakli,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} binga an mga nanginginlabot nga mga log],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} igliwat ini nga pakli]</span>.',
-'noarticletext-nopermission' => 'Ha yana waray surat ini nga pakli.
-Puydi nimo [[Special:Search/{{PAGENAME}}|pamilngon ini nga titulo han pakli]] ha iba nga mga pakli,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pamilngon ha mga kasumpay nga talaan]</span>.',
+'noarticletext-nopermission' => 'Waray yana nahasurat hini nga pakli
+Puyde hi ikaw [[Special:Search/{{PAGENAME}}|magbiling han ngaran hini nga pakli]] ha iba nga mga pakli,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mamiling han mga nanginginlabot nga mga talaan]</span>, kundi diri ka gintutugotan hin paghímò hini nga pakli.',
 'userpage-userdoesnotexist-view' => "An akawnt han gumaramit ni ''$1'' in diri nakarehistro.",
 'updated' => '(Ginbag-ohan)',
 'note' => "'''Pahibaro:'''",

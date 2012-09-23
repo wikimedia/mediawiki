@@ -347,7 +347,7 @@ $messages = array(
 'tog-uselivepreview' => 'Bruk levande førehandsvising (eksperimentelt JavaScript)',
 'tog-forceeditsummary' => 'Spør meg når eg ikkje har skrive noko i endringssamandraget',
 'tog-watchlisthideown' => 'Gøym endringane mine i overvakingslista',
-'tog-watchlisthidebots' => 'Gøym endringar gjort av robotar i overvakingslista',
+'tog-watchlisthidebots' => 'Gøym endringar gjorde av robotar i overvakingslista',
 'tog-watchlisthideminor' => 'Gøym småplukk i overvakingslista',
 'tog-watchlisthideliu' => 'Gøym endringar av innlogga brukarar i overvakingslista.',
 'tog-watchlisthideanons' => 'Gøym endringar av anonyme brukarar i overvakingslista.',
@@ -899,9 +899,9 @@ Dersom du trykkjer «{{int:savearticle}}» ein gong til, vert endringa di lagra 
 'summary-preview' => 'Førehandsvising av endringssamandraget:',
 'subject-preview' => 'Førehandsvising av emne/overskrift:',
 'blockedtitle' => 'Brukaren er blokkert',
-'blockedtext' => "'''Brukarnamnet ditt eller IP-adressa di er blokkert frå endring'''
+'blockedtext' => "'''Brukarnamnet ditt eller IP-adressa di er blokkert'''
 
-Blokkeringa vart gjort av $1.
+Blokkeringa vart gjord av $1.
 Denne grunnen vart gjeven: ''$2''.
 
 * Blokkeringa byrja: $8
@@ -911,7 +911,7 @@ Denne grunnen vart gjeven: ''$2''.
 Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator]] for å diskutere blokkeringa.
 Ver merksam på at du ikkje kan bruke «send e-post til brukar»-funksjonen så lenge du ikkje har ei gyldig e-postadresse registrert i [[Special:Preferences|innstillingane dine]]. Du kan heller ikkje bruke funksjonen dersom du er blokkert frå å sende e-post.
 IP-adressa di er $3, og blokkeringsnummeret er $5.
-Ver venleg og opplys om dette ved eventuelle førespurnader.",
+Tak med alle opplysningane over ved eventuelle førespurnader.",
 'autoblockedtext' => "IP-adressa di er automatisk blokkert fordi ho vart brukt av ein annan brukar som vart blokkert av $1. Grunne til dette vart gjeve som: ''$2''.
 
 * Blokkeringa byrja: $8
@@ -1076,7 +1076,7 @@ Desse parameterane har vorte utelatne.',
 
 # "Undo" feature
 'undo-success' => 'Endringa kan attenderullast. Ver venleg og sjå over skilnadene nedanfor for å vere sikker på at du vil attenderulle. Deretter kan du lagre attenderullinga.',
-'undo-failure' => 'Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjort i mellomtida.',
+'undo-failure' => 'Endringa kunne ikkje attenderullast grunna konflikt med endringar som er gjorde i mellomtida.',
 'undo-norev' => 'Endringa kunne ikkje fjernast fordi han ikkje finst eller vart sletta',
 'undo-summary' => 'Rullar attende versjon $1 av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]])',
 
@@ -1612,7 +1612,7 @@ Dette kan ikkje tilbakestillast.',
 'recentchanges-label-minor' => 'Dette er ei mindre endring',
 'recentchanges-label-bot' => 'Denne endringa vart gjort av ein bot',
 'recentchanges-label-unpatrolled' => 'Denne endringa er ikkje patruljert enno',
-'rcnote' => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
+'rcnote' => "Nedanfor er {{PLURAL:$1|den siste endringa gjord|dei siste '''$1''' endringane gjorde}} {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
 'rcnotefrom' => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom' => 'Vis nye endringar sidan $1',
 'rcshowhideminor' => '$1 småplukk',
@@ -1644,7 +1644,7 @@ Dette kan ikkje tilbakestillast.',
 'recentchangeslinked-toolbox' => 'Relaterte endringar',
 'recentchangeslinked-title' => 'Endringar relaterte til «$1»',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',
-'recentchangeslinked-summary' => "Denne spesialsida inneheld alle endringane som er gjort på sider som vert ''lenkja til'' frå denne (eller på sider i ein viss kategori). Dei av sidene du har på [[Special:Watchlist|overvakingslista]] di er '''utheva'''.",
+'recentchangeslinked-summary' => "Dette er ei liste over nylege endringar som er gjorde på sider som vert lenkja til frå ei oppgjeven side (eller på medlemer av ein oppgjeven kategori). Sider på [[Special:Watchlist|overvakingslista di]] er '''utheva'''.",
 'recentchangeslinked-page' => 'Sidenamn:',
 'recentchangeslinked-to' => 'Vis endringar på sider som lenkjer til den gitte sida i staden',
 
@@ -2321,11 +2321,11 @@ Tilbakemeldingar og anna hjelp:
 'rollbacklinkcount-morethan' => 'rulla attende meir enn {{PLURAL:$1|éi endring|$1 endringar}}',
 'rollbackfailed' => 'Kunne ikkje rulle attende',
 'cantrollback' => 'Kan ikkje rulle attende fordi den siste brukaren er den einaste forfattaren.',
-'alreadyrolled' => 'Kan ikkje rulle attende den siste endringa av [[$1]] gjort av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) fordi nokon andre alt har endra sida att eller fjerna endringa.
+'alreadyrolled' => 'Kan ikkje rulla attende den siste endringa på [[:$1]] gjord av [[User:$2|$2]] ([[User talk:$2|diskusjon]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) av di nokon andre alt har endra eller attenderulla sida.
 
-Den siste endringa vart gjort av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
+Den siste endringa vart gjord av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment' => "Samandraget for endringa var: «''$1''».",
-'revertpage' => 'Attenderulla endring gjort av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til tidlegare versjon endra av [[User:$1|$1]]',
+'revertpage' => 'Attenderulla endring gjord av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjonen av [[User:$1|$1]]',
 'revertpage-nouser' => 'Tilbakestilte endringar av (brukarnamn fjerna) til den siste versjonen av [[User:$1|$1]]',
 'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
 
@@ -2862,7 +2862,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'tooltip-n-mainpage-description' => 'Gå til hovudsida',
 'tooltip-n-portal' => 'Om prosjektet, kva du kan gjera, kvar du finn saker og ting',
 'tooltip-n-currentevents' => 'Aktuelt',
-'tooltip-n-recentchanges' => 'Liste over dei siste endringane som er gjort på wikien.',
+'tooltip-n-recentchanges' => 'Liste over dei siste endringane som er gjorde på wikien.',
 'tooltip-n-randompage' => 'Vis ei tilfeldig side',
 'tooltip-n-help' => 'Hjelp til å bruke alle funksjonane.',
 'tooltip-t-whatlinkshere' => 'Liste over alle wikisidene som har lenkjer hit',
