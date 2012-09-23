@@ -322,6 +322,12 @@ changes to languages because of Bugzilla reports.
 * Use of __DIR__ instead of dirname( __FILE__ ).
 * OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
   not used and complicated migration to Message class.
+* (bug 40448) Removed mediawiki.legacy.mwsuggest module, and removed the
+  following that has become obsolete:
+  - globals $wgEnableMWSuggest and $wgMWSuggestTemplate.
+  - mw.config.values wgMWSuggestTemplate and wgSearchNamespaces.
+  - user preference "disablesuggest".
+  - method SearchEngine::getMWSuggestTemplate().
 
 == Compatibility ==
 
