@@ -37,7 +37,7 @@ class XmlTest extends MediaWikiTestCase {
 	public function tearDown() {
 		global $wgLang, $wgContLang;
 		$wgLang = self::$oldLang;
-		
+
 		$wgContLang->setNamespaces( self::$oldNamespaces );
 	}
 
@@ -162,10 +162,9 @@ class XmlTest extends MediaWikiTestCase {
 			"Date menu year is the current one when not specified"
 		);
 
-		// @todo FIXME: next month can be in the next year
-		// test failing because it is now december
+		$wantedYear = $nextMonth == 1 ? $curYear : $prevYear;
 		$this->assertEquals(
-			Xml::dateMenu( $prevYear, $nextMonth ),
+			Xml::dateMenu( $wantedYear, $nextMonth ),
 			Xml::dateMenu( '', $nextMonth ),
 			"Date menu next month is 11 months ago"
 		);
