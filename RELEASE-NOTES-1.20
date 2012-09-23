@@ -132,11 +132,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 22749) Create Special:MostInterwikis.
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
 * (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
-* (bug 39431) SVG animated status is now shown in long description
+* (bug 39431) SVG animated status is now shown in long description.
 * (bug 39376) jquery.form upgraded to 3.14.
 * SVG files will now show the actual width in the SVG's specified units
   in the metadata box.
-* Added ResourceLoader module "jquery.jStorage".
+* Added ResourceLoader module "jquery.jStorage" (v0.3.0, http://jStorage.info/).
 * (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
 * Added ResourceLoader module "jquery.badge".
 * mw.util.$content now points to the overall content area in the skin rather than just
@@ -145,7 +145,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   with auto-hide, multi-message support, and message replacement tags.
 * jquery.messageBox which appears to be unused by both core and extensions has
   been removed.
-* (bug 34939) Made link parsing insensitive ([HttP://])
+* (bug 34939) Made link parsing insensitive ([HttP://]).
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
 
 === Bug fixes in 1.20 ===
