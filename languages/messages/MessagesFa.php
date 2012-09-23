@@ -3906,7 +3906,7 @@ $5
 'size-gigabytes' => '$1 گیگابایت',
 
 # Live preview
-'livepreview-loading' => 'در حال بارشدن…',
+'livepreview-loading' => 'در حال بارگیری…',
 'livepreview-ready' => 'بارشدن… آماده!',
 'livepreview-failed' => 'پیش‌نمایش زنده به مشکل برخورد! لطفاً از پیش‌نمایش عادی استفاده کنید',
 'livepreview-error' => 'ارتباط به مشکل برخورد: $1 "$2" از پیش‌نمایش عادی استفاده کنید.',

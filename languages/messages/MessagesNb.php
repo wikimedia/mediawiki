@@ -23,6 +23,7 @@
  * @author Haakon K
  * @author Harald Khan
  * @author Jeblad
+ * @author Jsoby
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
@@ -2282,7 +2283,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'emailpagetext' => 'Du kan bruke skjemaet nedenfor for å sende en e-post til denne brukeren.
 Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
-'defemailsubject' => '{{SITENAME}}-type e-post fra bruker "$1"',
+'defemailsubject' => 'E-post fra {{SITENAME}}-brukeren «$1»',
 'usermaildisabled' => 'Brukerepost deaktivert',
 'usermaildisabledtext' => 'Du kan ikke sende epost til andre brukere på denne wikien',
 'noemailtitle' => 'Ingen e-postadresse',

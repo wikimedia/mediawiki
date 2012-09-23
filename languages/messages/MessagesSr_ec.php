@@ -1075,7 +1075,7 @@ $2
 Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити страницу]</span>.',
 'noarticletext-nopermission' => 'На овој страници тренутно нема садржаја.
-Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје]</span>.',
+Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне дневнике]</span>, али немате дозволу да направите ову страницу.',
 'missing-revision' => 'Не могу да пронађем измену бр. $1 на страници под називом „{{PAGENAME}}“.
 
 Ово се обично дешава када пратите застарелу везу до странице која је обрисана.

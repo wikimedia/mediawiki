@@ -11,6 +11,7 @@
  * @author Justincheng12345
  * @author Omnipaedista
  * @author Shinjiman
+ * @author Super Wang
  */
 
 $specialPageAliases = array(
@@ -409,6 +410,8 @@ $1',
 'youhavenewmessages' => '子有$1（$2）',
 'newmessageslink' => '新訊',
 'newmessagesdifflink' => '變更',
+'youhavenewmessagesfromusers' => '子有 $1 自 {{PLURAL:$3|another user|$3 簿戶也}} ($2)。',
+'youhavenewmessagesmanyusers' => '子有 $1 自多簿戶 ( $2 )',
 'youhavenewmessagesmulti' => '新訊於$1',
 'editsection' => '纂',
 'editold' => '纂',
@@ -507,6 +510,8 @@ $2',
 'namespaceprotected' => "子權未逮，莫能纂'''$1'''。",
 'ns-specialprotected' => '奇頁禁纂也。',
 'titleprotected' => "緘焉自[[User:$1|$1]]防建也。因''$2''也。",
+'invalidtitle-knownnamespace' => '無效卷題，含名域"$2"與文本"$3"',
+'exception-nologin' => '尚未登簿',
 
 # Virus scanner
 'virus-badscanner' => "壞設：不明之病掃：''$1''",
@@ -581,6 +586,7 @@ $2',
 'noemailprefs' => '郵驛設而用之。',
 'emailconfirmlink' => '惠考郵驛',
 'invalidemailaddress' => '驛址不格，惠正略之。',
+'cannotchangeemail' => '電郵地址不可改于此wiki',
 'accountcreated' => '簿增矣',
 'accountcreatedtext' => '$1簿增矣',
 'createaccount-title' => '於{{SITENAME}}增簿',
@@ -614,6 +620,10 @@ $2',
 'resetpass-wrong-oldpass' => '無效之臨符或現符。
 爾或改符，或求新臨符。',
 'resetpass-temp-password' => '臨符節:',
+
+# Special:PasswordReset
+'passwordreset' => '重設符節',
+'passwordreset-legend' => '重設符節',
 
 # Edit page toolbar
 'bold_sample' => '粗體',
@@ -706,6 +716,7 @@ $2',
 'updated' => '（新）',
 'note' => "'''註'''",
 'previewnote' => "'''此乃預覽，尚未儲焉。'''",
+'continue-editing' => '續纂',
 'session_fail_preview' => "'''歉哉有變，子纂未存焉，惠再之。如復不成，[[Special:UserLogout|重登]]再試也。'''",
 'session_fail_preview_html' => "'''歉哉有變，子纂未存焉'''
 
@@ -895,7 +906,9 @@ $1",
 'revdelete-only-restricted' => '藏期於 $1 $2 之項：爾無廢有秩見之項，而無選另廢項也。',
 'revdelete-reason-dropdown' => '*常因
 ** 侵權
-** 無合之人料',
+** 無合之人料
+** 無合之簿
+** 隱謗譏',
 'revdelete-otherreason' => '它附因：',
 'revdelete-reasonotherlist' => '它因',
 'revdelete-edit-reasonlist' => '纂刪因',

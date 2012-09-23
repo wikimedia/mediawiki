@@ -17,6 +17,7 @@
  * @author KalmerE.
  * @author Ker
  * @author Kyng
+ * @author Morel
  * @author Oop
  * @author Pikne
  * @author Silvar
@@ -2823,8 +2824,8 @@ Viimasel juhul saab kasutada ka linki, näiteks lehekülje "[[{{MediaWiki:Mainpa
 'allmessagesname' => 'Nimi',
 'allmessagesdefault' => 'Vaikimisi tekst',
 'allmessagescurrent' => 'Praegune tekst',
-'allmessagestext' => 'See on loend kõikidest kättesaadavatest süsteemi sõnumitest MediaWiki: nimeruumis.
-Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [//www.mediawiki.org/wiki/Localisation MediaWiki lokaliseerimine] ja [//translatewiki.net translatewiki.net].',
+'allmessagestext' => 'See on loend kõikidest olemasolevatest süsteemisõnumitest MediaWiki nimeruumis.
+Kui soovid MediaWiki tarkvara tõlkimises osaleda, siis vaata lehti [//www.mediawiki.org/wiki/Localisation MediaWiki lokaliseerimine] ja [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => "Seda lehekülge ei saa kasutada, sest '''\$wgUseDatabaseMessages''' ei tööta.",
 'allmessages-filter-legend' => 'Filter',
 'allmessages-filter' => 'Muutmisoleku filter:',
