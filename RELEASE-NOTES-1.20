@@ -29,6 +29,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   connections, if either are available for the selected DB type.
 * $wgUseCombinedLoginLink now defaults to false, making MediaWiki output separate
   login and create account links by default.
+* (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
