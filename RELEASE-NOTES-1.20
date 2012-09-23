@@ -148,6 +148,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   been removed.
 * (bug 34939) Made link parsing insensitive ([HttP://]).
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
+* (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
+  mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -322,6 +324,11 @@ changes to languages because of Bugzilla reports.
 * Use of __DIR__ instead of dirname( __FILE__ ).
 * OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
   not used and complicated migration to Message class.
+* (bug 40448) Removed mediawiki.legacy.mwsuggest module, and removed the
+  following that has become obsolete:
+  - globals $wgEnableMWSuggest and $wgMWSuggestTemplate.
+  - mw.config.values wgMWSuggestTemplate and wgSearchNamespaces.
+  - method SearchEngine::getMWSuggestTemplate().
 
 == Compatibility ==
 
