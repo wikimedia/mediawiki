@@ -36,7 +36,11 @@
  * maxExpandFactor: Maximum suggestions box width relative to the textbox width. If set to e.g. 2, the suggestions box
  *		will never be grown beyond 2 times the width of the textbox.
  *		Type: Number, Range: 1 - infinity, Default: 3
- * positionFromLeft: Whether to position the suggestion box with the left attribute or the right
+ * expandFrom: Which direction to offset the suggestion box from.
+ *      Value 'start' and 'end' translate to left and right respectively depending on the diretionality
+ *      of the current document, according to $( 'html' ).css( 'direction' ).
+ *      Type: String, default: 'auto', options: 'left', 'right', 'start', 'end', 'auto'.
+ * positionFromLeft: Sets expandFrom=left, for backwards compatibility
  *		Type: Boolean, Default: true
  * highlightInput: Whether to hightlight matched portions of the input or not
  *		Type: Boolean, Default: false
@@ -114,6 +118,7 @@ $.suggestions = {
 	 * @param value Mixed Value to set property with
 	 */
 	configure: function ( context, property, value ) {
+		var newCSS;
 		// Validate creation using fallback values
 		switch( property ) {
 			case 'fetch':
@@ -121,6 +126,7 @@ $.suggestions = {
 			case 'special':
 			case 'result':
 			case '$region':
+			case 'expandFrom':
 				context.config[property] = value;
 				break;
 			case 'suggestions':
@@ -134,19 +140,77 @@ $.suggestions = {
 						// Rebuild the suggestions list
 						context.data.$container.show();
 						// Update the size and position of the list
-						var newCSS = {
+						newCSS = {
 							top: context.config.$region.offset().top + context.config.$region.outerHeight(),
 							bottom: 'auto',
 							width: context.config.$region.outerWidth(),
 							height: 'auto'
 						};
-						if ( context.config.positionFromLeft ) {
+
+						// Process expandFrom, after this it is set to left or right.
+						context.config.expandFrom = ( function ( expandFrom ) {
+							var regionWidth, docWidth, regionCenter, docCenter,
+								docDir = $( document.documentElement ).css( 'direction' ),
+								$region = context.config.$region;
+
+							// Backwards compatible
+							if ( context.config.positionFromLeft ) {
+								expandFrom = 'left';
+
+							// Catch invalid values, default to 'auto'
+							} else if ( $.inArray( expandFrom, ['left', 'right', 'start', 'end', 'auto'] ) === -1 ) {
+								expandFrom = 'auto';
+							}
+
+							if ( expandFrom === 'auto' ) {
+								if ( $region.data( 'searchsuggest-expand-dir' ) ) {
+									// If the markup explicitly contains a direction, use it.
+									expandFrom = $region.data( 'searchsuggest-expand-dir' );
+								} else {
+									regionWidth = $region.outerWidth();
+									docWidth = $( document ).width();
+									if ( ( regionWidth / docWidth  ) > 0.85 ) {
+										// If the input size takes up more than 85% of the document horizontally
+										// expand the suggestions to the writing direction's native end.
+										expandFrom = 'start';
+									} else {
+										// Calculate the center points of the input and document
+										regionCenter = $region.offset().left + regionWidth / 2;
+										docCenter = docWidth / 2;
+										if ( Math.abs( regionCenter - docCenter ) / docCenter < 0.10 ) {
+											// If the input's center is within 10% of the document center
+											// use the writing direction's native end.
+											expandFrom = 'start';
+										} else {
+											// Otherwise expand the input from the closest side of the page,
+											// towards the side of the page with the most free open space
+											expandFrom = regionCenter > docCenter ? 'right' : 'left';
+										}
+									}
+								}
+							}
+
+							if ( expandFrom === 'start' ) {
+								expandFrom = docDir === 'rtl' ? 'right': 'left';
+
+							} else if ( expandFrom === 'end' ) {
+								expandFrom = docDir === 'rtl' ? 'left': 'right';
+							}
+
+							return expandFrom;
+
+						}( context.config.expandFrom ) );
+
+						if ( context.config.expandFrom === 'left' ) {
+							// Expand from left
 							newCSS.left = context.config.$region.offset().left;
 							newCSS.right = 'auto';
 						} else {
+							// Expand from right
 							newCSS.left = 'auto';
 							newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
 						}
+
 						context.data.$container.css( newCSS );
 						var $results = context.data.$container.children( '.suggestions-results' );
 						$results.empty();
@@ -344,14 +408,15 @@ $.suggestions = {
 $.fn.suggestions = function () {
 
 	// Multi-context fields
-	var returnValue;
-	var args = arguments;
+	var returnValue,
+		args = arguments;
 
 	$(this).each( function () {
+		var context, key;
 
 		/* Construction / Loading */
 
-		var context = $(this).data( 'suggestions-context' );
+		context = $(this).data( 'suggestions-context' );
 		if ( context === undefined || context === null ) {
 			context = {
 				config: {
@@ -365,7 +430,7 @@ $.fn.suggestions = function () {
 					'delay': 120,
 					'submitOnClick': false,
 					'maxExpandFactor': 3,
-					'positionFromLeft': true,
+					'expandFrom': 'auto',
 					'highlightInput': false
 				}
 			};
@@ -377,7 +442,7 @@ $.fn.suggestions = function () {
 		if ( args.length > 0 ) {
 			if ( typeof args[0] === 'object' ) {
 				// Apply set of properties
-				for ( var key in args[0] ) {
+				for ( key in args[0] ) {
 					$.suggestions.configure( context, key, args[0][key] );
 				}
 			} else if ( typeof args[0] === 'string' ) {
@@ -409,22 +474,9 @@ $.fn.suggestions = function () {
 				$textbox: $(this),
 				selectedWithMouse: false
 			};
-			// Setup the css for positioning the results box
-			var newCSS = {
-				top: Math.round( context.data.$textbox.offset().top + context.data.$textbox.outerHeight() ),
-				width: context.data.$textbox.outerWidth(),
-				display: 'none'
-			};
-			if ( context.config.positionFromLeft ) {
-				newCSS.left = context.config.$region.offset().left;
-				newCSS.right = 'auto';
-			} else {
-				newCSS.left = 'auto';
-				newCSS.right = $( 'body' ).width() - ( context.config.$region.offset().left + context.config.$region.outerWidth() );
-			}
 
 			context.data.$container = $( '<div>' )
-				.css( newCSS )
+				.css( 'display', 'none' )
 				.addClass( 'suggestions' )
 				.append(
 					$( '<div>' ).addClass( 'suggestions-results' )
@@ -476,6 +528,7 @@ $.fn.suggestions = function () {
 						} )
 				)
 				.appendTo( $( 'body' ) );
+
 			$(this)
 				// Stop browser autocomplete from interfering
 				.attr( 'autocomplete', 'off')
@@ -521,6 +574,7 @@ $.fn.suggestions = function () {
 					$.suggestions.cancel( context );
 				} );
 		}
+
 		// Store the context for next time
 		$(this).data( 'suggestions-context', context );
 	} );
