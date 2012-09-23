@@ -5759,6 +5759,12 @@ $wgCountCategorizedImagesAsUsed = false;
  */
 $wgMaxRedirectLinksRetrieved = 500;
 
+/**
+ * On Special:MostLinkedCategories, Special:UnusedCategories and
+ * Special:UncategorizedCategories, should output add a prefix?
+ */
+$wgPrependCategoryInCategoriesSpecialPages = false;
+
 /** @} */ # end special pages }
 
 /*************************************************************************//**
