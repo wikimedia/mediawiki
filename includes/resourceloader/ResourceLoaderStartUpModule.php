@@ -37,8 +37,8 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	protected function getConfig( $context ) {
 		global $wgLoadScript, $wgScript, $wgStylePath, $wgScriptExtension,
 			$wgArticlePath, $wgScriptPath, $wgServer, $wgContLang,
-			$wgVariantArticlePath, $wgActionPaths, $wgUseAjax, $wgVersion,
-			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname, $wgEnableMWSuggest,
+			$wgVariantArticlePath, $wgActionPaths, $wgVersion,
+			$wgEnableAPI, $wgEnableWriteAPI, $wgDBname,
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength;
 
@@ -95,9 +95,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
 			'wgCaseSensitiveNamespaces' => $caseSensitiveNamespaces,
 		);
-		if ( $wgUseAjax && $wgEnableMWSuggest ) {
-			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
-		}
 
 		wfRunHooks( 'ResourceLoaderGetConfigVars', array( &$vars ) );
 

@@ -2450,7 +2450,7 @@ $templates
 	 */
 	private function addDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableMWSuggest;
+			$wgAjaxWatch;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2476,10 +2476,6 @@ $templates
 
 			if( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
 				$this->addModules( 'mediawiki.page.watch.ajax' );
-			}
-
-			if ( $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-				$this->addModules( 'mediawiki.legacy.mwsuggest' );
 			}
 		}
 
@@ -2903,7 +2899,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
+		global $wgUseAjax, $wgContLang;
 
 		$latestRevID = 0;
 		$pageID = 0;
@@ -2968,9 +2964,6 @@ $templates
  		}
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
-		}
-		if ( $wgUseAjax && $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $this->getUser() );
 		}
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;
