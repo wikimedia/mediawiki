@@ -799,7 +799,7 @@ XHTML id names.
 'vector-action-protect'          => 'Protect',
 'vector-action-undelete'         => 'Undelete',
 'vector-action-unprotect'        => 'Change protection',
-'vector-simplesearch-preference' => 'Enable enhanced search suggestions (Vector skin only)',
+'vector-simplesearch-preference' => 'Enable simplified search bar (Vector skin only)',
 'vector-view-create'             => 'Create',
 'vector-view-edit'               => 'Edit',
 'vector-view-history'            => 'View history',
@@ -1752,8 +1752,6 @@ Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'search-interwiki-default'         => '$1 results:',
 'search-interwiki-custom'          => '', # do not translate or duplicate this message to other languages
 'search-interwiki-more'            => '(more)',
-'search-mwsuggest-enabled'         => 'with suggestions',
-'search-mwsuggest-disabled'        => 'no suggestions',
 'search-relatedarticle'            => 'Related',
 'mwsuggest-disable'                => 'Disable AJAX suggestions',
 'searcheverything-enable'          => 'Search in all namespaces',
@@ -4889,6 +4887,10 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'feedback-close'     => 'Done',
 'feedback-bugcheck'  => 'Great! Just check that it is not already one of the [$1 known bugs].',
 'feedback-bugnew'    => 'I checked. Report a new bug',
+
+# Search suggestions
+'searchsuggest-search' => 'Search',
+'searchsuggest-containing' => 'containing...',
 
 # API errors
 'api-error-badaccess-groups'              => 'You are not permitted to upload files to this wiki.',
