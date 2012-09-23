@@ -284,6 +284,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 11142) Improve file extension blacklist error reporting in API upload.
 * (bug 39665) Cache AllowedGenerator array so it doesn't autoload all query classes
   on every request.
+* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata
 
 === Languages updated in 1.20 ===
 
