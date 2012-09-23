@@ -1244,7 +1244,7 @@ class EditPage {
 			if ( $this->section == 'new' ) {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
-					$text = wfMessage( 'newsectionheaderdefaultlevel', $this->sectiontitle )
+					$text = wfMessage( 'newsectionheaderdefaultlevel' )->rawParams( $this->sectiontitle )
 						->inContentLanguage()->text() . "\n\n" . $text;
 
 					// Jump to the new section
@@ -1260,7 +1260,7 @@ class EditPage {
 					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
-					$text = wfMessage( 'newsectionheaderdefaultlevel', $this->summary )
+					$text = wfMessage( 'newsectionheaderdefaultlevel' )->rawParams( $this->summary )
 						->inContentLanguage()->text() . "\n\n" . $text;
 
 					// Jump to the new section
