@@ -83,9 +83,9 @@ class WikiExporter {
 	 * @param $buffer Int: one of WikiExporter::BUFFER or WikiExporter::STREAM
 	 * @param $text Int: one of WikiExporter::TEXT or WikiExporter::STUB
 	 */
-	function __construct( &$db, $history = WikiExporter::CURRENT,
+	function __construct( $db, $history = WikiExporter::CURRENT,
 			$buffer = WikiExporter::BUFFER, $text = WikiExporter::TEXT ) {
-		$this->db =& $db;
+		$this->db = $db;
 		$this->history = $history;
 		$this->buffer  = $buffer;
 		$this->writer  = new XmlDumpWriter();
