@@ -614,6 +614,19 @@ return array(
 	'mediawiki.notify' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.notify.js',
 	),
+	'mediawiki.searchSuggest' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.searchSuggest.js',
+		'messages' => array(
+			'searchsuggest-search',
+			'searchsuggest-containing',
+		),
+		'dependencies' => array(
+			'jquery.autoEllipsis',
+			'jquery.client',
+			'jquery.placeholder',
+			'jquery.suggestions',
+		),
+	),
 	'mediawiki.Title' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
@@ -895,13 +908,6 @@ return array(
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 		'dependencies' => 'mediawiki.legacy.wikibits',
-	),
-	'mediawiki.legacy.mwsuggest' => array(
-		'scripts' => 'common/mwsuggest.js',
-		'remoteBasePath' => $GLOBALS['wgStylePath'],
-		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => 'mediawiki.legacy.wikibits',
-		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
 	'mediawiki.legacy.protect' => array(
 		'scripts' => 'common/protect.js',

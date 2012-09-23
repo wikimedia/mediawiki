@@ -11,14 +11,15 @@
 	padding: 0;
 	margin: -1px -1px 0 0;
 }
+
 /* IGNORED BY IE6 */
 html > body .suggestions {
 	margin: -1px 0 0 0;
 }
+
 .suggestions-special {
 	position: relative;
 	background-color: white;
-	font-size: 0.8em;
 	cursor: pointer;
 	border: solid 1px #aaaaaa;
 	padding: 0;
@@ -28,14 +29,15 @@ html > body .suggestions {
 	padding: 0.25em 0.25em;
 	line-height: 1.25em;
 }
+
 .suggestions-results {
 	background-color: white;
-	font-size: 0.8em;
 	cursor: pointer;
 	border: solid 1px #aaaaaa;
 	padding: 0;
 	margin: 0;
 }
+
 .suggestions-result {
 	color: black;
 	margin: 0;
@@ -43,27 +45,32 @@ html > body .suggestions {
 	padding: 0.01em 0.25em;
 	text-align: left;
 }
+
 .suggestions-result-current {
 	background-color: #4C59A6;
 	color: white;
 }
+
 .suggestions-special .special-label {
-	font-size: 0.8em;
 	color: gray;
 	text-align: left;
 }
+
 .suggestions-special .special-query {
 	color: black;
 	font-style: italic;
 	text-align: left;
 }
+
 .suggestions-special .special-hover {
 	background-color: silver;
 }
+
 .suggestions-result-current .special-label,
 .suggestions-result-current .special-query {
 	color: white;
 }
+
 .autoellipsis-matched,
 .highlight {
 	font-weight: bold;

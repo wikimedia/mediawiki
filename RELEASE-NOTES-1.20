@@ -149,6 +149,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
 * Added $wgCopyUploadProxy global to define which proxy to use for copy
   uploads.
+* (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
+  mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -329,6 +331,11 @@ changes to languages because of Bugzilla reports.
 * Live preview functionality has been improved and moved into the
  'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
   has been removed.
+* (bug 40448) Removed mediawiki.legacy.mwsuggest module, and removed the
+  following that has become obsolete:
+  - globals $wgEnableMWSuggest and $wgMWSuggestTemplate.
+  - mw.config.values wgMWSuggestTemplate and wgSearchNamespaces.
+  - method SearchEngine::getMWSuggestTemplate().
 
 == Compatibility ==
 
