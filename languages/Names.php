@@ -143,7 +143,7 @@
 	'gsw' => 'Alemannisch',	# Alemannic
 	'gu' => 'ગુજરાતી',	# Gujarati
 	'gv' => 'Gaelg',		# Manx
-	'ha' => 'هَوُسَ',	# Hausa
+	'ha' => 'Hausa',	# Hausa
 	'hak' => 'Hak-kâ-fa',	# Hakka
 	'haw' => 'Hawai`i',		# Hawaiian
 	'he' => 'עברית',	# Hebrew
