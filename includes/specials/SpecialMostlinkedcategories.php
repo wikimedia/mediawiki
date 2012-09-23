@@ -75,7 +75,7 @@ class MostlinkedCategoriesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgContLang;
+		global $wgContLang, $wgPrependCategoryInCategoriesSpecialPages;
 
 		$nt = Title::makeTitleSafe( NS_CATEGORY, $result->title );
 		if ( !$nt ) {
@@ -83,7 +83,13 @@ class MostlinkedCategoriesPage extends QueryPage {
 				Linker::getInvalidTitleDescription( $this->getContext(), NS_CATEGORY, $result->title ) );
 		}
 
-		$text = $wgContLang->convert( $nt->getText() );
+		if ( $wgPrependCategoryInCategoriesSpecialPages ) {
+			$text = $nt->getPrefixedText();
+		} else {
+			$text = $nt->getText();
+		}
+
+		$text = $wgContLang->convert( $text );
 
 		$plink = Linker::link( $nt, htmlspecialchars( $text ) );
 
