@@ -2718,7 +2718,7 @@ $wgUseCombinedLoginLink = false;
  *  - true = use an icon search button
  *  - false = use Go & Search buttons
  */
-$wgVectorUseSimpleSearch = false;
+$wgVectorUseSimpleSearch = true;
 
 /**
  * Watch and unwatch as an icon rather than a link for Vector skin only.
