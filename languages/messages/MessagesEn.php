@@ -118,7 +118,7 @@ $namespaceGenderAliases = array();
  * A list of date format preference keys which can be selected in user
  * preferences. New preference keys can be added, provided they are supported
  * by the language class's timeanddate(). Only the 5 keys listed below are
- * supported by the wikitext converter (DateFormatter.php).
+ * supported by the wikitext converter (parser/DateFormatter.php).
  *
  * The special key "default" is an alias for either dmy or mdy depending on
  * $wgAmericanDates
