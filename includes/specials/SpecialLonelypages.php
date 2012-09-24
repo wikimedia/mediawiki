@@ -44,7 +44,10 @@ class LonelyPagesPage extends PageQueryPage {
 	function isExpensive() {
 		return true;
 	}
-	function isSyndicated() { return false; }
+
+	function isSyndicated() {
+		return false;
+	}
 
 	function getQueryInfo() {
 		return array (

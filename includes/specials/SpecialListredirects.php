@@ -34,9 +34,17 @@ class ListredirectsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() { return true; }
-	function isSyndicated() { return false; }
-	function sortDescending() { return false; }
+	function isExpensive() {
+		return true;
+	}
+
+	function isSyndicated() {
+		return false;
+	}
+
+	function sortDescending() {
+		return false;
+	}
 
 	function getQueryInfo() {
 		return array(

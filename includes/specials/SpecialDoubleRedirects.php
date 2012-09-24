@@ -33,9 +33,17 @@ class DoubleRedirectsPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() { return true; }
-	function isSyndicated() { return false; }
-	function sortDescending() { return false; }
+	function isExpensive() {
+		return true;
+	}
+
+	function isSyndicated() {
+		return false;
+	}
+
+	function sortDescending() {
+		return false;
+	}
 
 	function getPageHeader() {
 		return $this->msg( 'doubleredirectstext' )->parseAsBlock();
