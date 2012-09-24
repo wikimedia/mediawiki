@@ -140,14 +140,10 @@ class MWTimestamp {
 			$strtime = call_user_func_array( "sprintf", $da );
 		}
 
-		if( function_exists( "date_create" ) ) {
-			try {
-				$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
-			} catch(Exception $e) {
-				throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
-			}
-		} else {
-			$final = strtotime( $strtime );
+		try {
+			$final = new DateTime( $strtime, new DateTimeZone( 'GMT' ) );
+		} catch(Exception $e) {
+			throw new TimestampException( __METHOD__ . ' Invalid timestamp format.' );
 		}
 
 		if( $final === false ) {
