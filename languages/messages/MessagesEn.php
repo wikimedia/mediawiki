@@ -442,7 +442,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'RecentChanges' ),
 	'Recentchangeslinked'       => array( 'RecentChangesLinked', 'RelatedChanges' ),
 	'Revisiondelete'            => array( 'RevisionDelete' ),
-	'RevisionMove'              => array( 'RevisionMove' ),
 	'Search'                    => array( 'Search' ),
 	'Shortpages'                => array( 'ShortPages' ),
 	'Specialpages'              => array( 'SpecialPages' ),
