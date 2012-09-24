@@ -298,14 +298,13 @@ class UsersPager extends AlphabeticPager {
 /**
  * @ingroup SpecialPage
  */
-class SpecialListUsers extends SpecialPage {
+class SpecialListUsers extends IncludableSpecialPage {
 
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		parent::__construct( 'Listusers' );
-		$this->mIncludable = true;
 	}
 
 	/**
