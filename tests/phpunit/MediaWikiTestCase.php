@@ -536,7 +536,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 * @param string $message
 	 */
 	protected function assertType( $type, $actual, $message = '' ) {
-		if ( is_object( $actual ) ) {
+		if ( class_exists( $type ) || interface_exists( $type ) ) {
 			$this->assertInstanceOf( $type, $actual, $message );
 		}
 		else {
