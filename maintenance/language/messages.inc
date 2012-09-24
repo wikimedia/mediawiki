@@ -2453,7 +2453,6 @@ $wgMessageStructure = array(
 	'javaccripttest' => array(
 		'javascripttest',
 		'javascripttest-backlink',
-		'javascripttest-disabled',
 		'javascripttest-title',
 		'javascripttest-pagetext-noframework',
 		'javascripttest-pagetext-unknownframework',

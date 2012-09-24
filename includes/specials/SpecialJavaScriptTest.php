@@ -47,12 +47,6 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$this->setHeaders();
 		$out->disallowUserJs();
 
-		// Abort early if we're disabled
-		if ( $wgEnableJavaScriptTest !== true ) {
-			$out->addWikiMsg( 'javascripttest-disabled' );
-			return;
-		}
-
 		$out->addModules( 'mediawiki.special.javaScriptTest' );
 
 		// Determine framework
@@ -164,10 +158,4 @@ HTML;
 		// $wgJavaScriptTestConfig in DefaultSettings.php
 		$out->addJsConfigVars( 'QUnitTestSwarmInjectJSPath', $wgJavaScriptTestConfig['qunit']['testswarm-injectjs'] );
 	}
-
-	public function isListed(){
-		global $wgEnableJavaScriptTest;
-		return $wgEnableJavaScriptTest === true;
-	}
-
 }
