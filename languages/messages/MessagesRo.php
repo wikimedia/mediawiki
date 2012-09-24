@@ -962,8 +962,7 @@ Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
 puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale] 
 sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
 'noarticletext-nopermission' => 'Actualmente, această pagină este lipsită de conținut.
-Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
-sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
+Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>; nu aveți însă permisiunea de a crea această pagină.',
 'missing-revision' => 'Versiunea nr. $1 a paginii „{{PAGENAME}}” nu există.
 
 Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
@@ -1430,7 +1429,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'timezoneregion-indian' => 'Oceanul Indian',
 'timezoneregion-pacific' => 'Oceanul Pacific',
 'allowemail' => 'Acceptă e-mail de la alți utilizatori',
-'prefs-searchoptions' => 'Opțiuni de căutare',
+'prefs-searchoptions' => 'Căutare',
 'prefs-namespaces' => 'Spații de nume',
 'defaultns' => 'Altfel, caută în aceste spații de nume:',
 'default' => 'standard',

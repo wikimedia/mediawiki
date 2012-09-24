@@ -1037,7 +1037,7 @@ Als u dat wilt voorkomen, [[Special:UserLogin/signup|registreer u]] of [[Special
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'noarticletext-nopermission' => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>, maar u mag de pagina niet aanmaken.',
 'missing-revision' => 'De versie #$1 van de pagina "{{PAGENAME}} bestaat niet.
 
 Dit wordt meestal veroorzaakt door het volgen van een verouderde verwijzing naar een pagina die is verwijderd.
@@ -1513,7 +1513,7 @@ Hier volgt een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'timezoneregion-indian' => 'Indische Oceaan',
 'timezoneregion-pacific' => 'Stille Oceaan',
 'allowemail' => 'E-mail van andere gebruikers toestaan',
-'prefs-searchoptions' => 'Zoekinstellingen',
+'prefs-searchoptions' => 'Zoeken',
 'prefs-namespaces' => 'Naamruimten',
 'defaultns' => 'Anders in de volgende naamruimten zoeken:',
 'default' => 'standaard',

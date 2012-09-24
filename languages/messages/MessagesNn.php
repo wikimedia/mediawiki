@@ -1692,8 +1692,8 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'filetype-bad-ie-mime' => 'Kan ikkje lasta opp fila då Internet Explorer ville merka ho som "$1", ein ikkje-tillate og potensielt farleg filtype.',
 'filetype-unwanted-type' => "«'''.$1'''» er ein uynskt filtype.
 {{PLURAL:$3|Føretrekt filtype er|Føretrekte filtypar er}} $2.",
-'filetype-banned-type' => "«'''.$1'''» er ikkje ein tillaten filtype.
-{{PLURAL:$3|Tillaten filtype er|Tillatne filtypar er}} $2.",
+'filetype-banned-type' => "'''«.$1»''' er ikkje {{PLURAL:$4|ein tillaten filtype|tillatne filtypar}}.
+{{PLURAL:$3|Tillaten filtype|Tillatne filtypar}} er $2.",
 'filetype-missing' => 'Fila har inga ending (som t.d. «.jpg»).',
 'empty-file' => 'Fila du leverte var tom.',
 'file-too-large' => 'Fila du leverte var for stor.',
@@ -2812,6 +2812,9 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'import-invalid-interwiki' => 'Kan ikkje importera frå den valde wikien.',
 'import-error-edit' => '«$1» blei ikkje importert av di du ikkje har løyve til å redigere henne.',
 'import-error-create' => 'Side $1 blei ikkje importert av di du ikkje har løyve til å redigere henne.',
+'import-error-interwiki' => 'Sida «$1» vart ikkje importert sidan namnet hennar er reservert for ekstern lenking (interwiki).',
+'import-error-special' => 'Sida «$1» vart ikkje importert sidan ho høyrer til eit spesialnamnerom som ikkje tillèt sider.',
+'import-error-invalid' => 'Sida «$1» vart ikkje importert sidan namnet er ugildt.',
 
 # Import log
 'importlogpage' => 'Importeringslogg',

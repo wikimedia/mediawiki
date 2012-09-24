@@ -1440,7 +1440,7 @@ $1",
 'powersearch' => '高度な検索',
 'powersearch-legend' => '高度な検索',
 'powersearch-ns' => '名前空間を指定して検索:',
-'powersearch-redir' => 'リダイレクトを表示',
+'powersearch-redir' => '転送ページを含める',
 'powersearch-field' => '検索対象',
 'powersearch-togglelabel' => 'チェックを入れる:',
 'powersearch-toggleall' => 'すべて',
@@ -1640,7 +1640,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-move-subpages' => '下位ページを含めてページを移動',
 'right-move-rootuserpages' => '利用者ページ本体を移動',
 'right-movefile' => 'ファイルを移動',
-'right-suppressredirect' => 'リダイレクトを残さずにページを移動',
+'right-suppressredirect' => '転送ページを作成せずにページを移動',
 'right-upload' => 'ファイルをアップロード',
 'right-reupload' => '既存のファイルに上書き',
 'right-reupload-own' => '自分自身がアップロードした既存のファイルに上書き',
@@ -2145,7 +2145,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'unwatchedpages' => 'ウォッチされていないページ',
 
 # List redirects
-'listredirects' => 'リダイレクトの一覧',
+'listredirects' => '転送ページの一覧',
 
 # Unused templates
 'unusedtemplates' => '使われていないテンプレート',
@@ -2159,7 +2159,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 
 # Random redirect
 'randomredirect' => 'おまかせリダイレクト',
-'randomredirect-nopages' => '「$1」名前空間にリダイレクトはありません。',
+'randomredirect-nopages' => '「$1」名前空間に転送ページはありません。',
 
 # Statistics
 'statistics' => '統計',
@@ -2170,7 +2170,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'statistics-header-hooks' => 'その他の統計',
 'statistics-articles' => '記事数',
 'statistics-pages' => '総ページ数',
-'statistics-pages-desc' => 'ウィキ内の、トークページ、リダイレクトなどを含むすべてのページです。',
+'statistics-pages-desc' => 'トークページ、転送ページなどを含む、ウィキ内のすべてのページです。',
 'statistics-files' => 'アップロードされたファイル数',
 'statistics-edits' => '{{SITENAME}}の開設以降の編集回数の総計',
 'statistics-edits-average' => '1ページあたりの編集回数',
@@ -2198,7 +2198,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'double-redirect-fixer' => '転送修正係',
 
 'brokenredirects' => '迷子のリダイレクト',
-'brokenredirectstext' => '以下のページは、存在しないページへのリダイレクトです：',
+'brokenredirectstext' => '以下は、存在しないページへのリダイレクトの一覧です:',
 'brokenredirects-edit' => '編集',
 'brokenredirects-delete' => '削除',
 
@@ -2231,7 +2231,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'popularpages' => '人気のページ',
 'wantedcategories' => 'カテゴリページが存在しないカテゴリ',
 'wantedpages' => 'ページが存在しないリンク',
-'wantedpages-badtitle' => '結果に正しくないページ名が含まれています：$1',
+'wantedpages-badtitle' => '結果が、無効なページ名を含んでいます: $1',
 'wantedfiles' => 'ファイル情報ページが存在しないファイル',
 'wantedfiletext-cat' => '以下のファイルは使用されていますが存在しません。外部リポジトリ由来のファイルは、存在していてもここに列挙される場合があります。その場合は<del>取り消し線</del>が付きます。さらに、存在しないファイルを埋め込んでいるページは[[:$1]]に列挙されます。',
 'wantedfiletext-nocat' => '以下のファイルは使用されていますが存在しません。外部リポジトリ由来のファイルは、存在していてもここに列挙される場合があります。その場合は<del>取り消し線</del>が付きます。',
@@ -2730,7 +2730,7 @@ $1',
 'whatlinkshere-prev' => '{{PLURAL:$1|前|前の$1件}}',
 'whatlinkshere-next' => '{{PLURAL:$1|次|次の$1件}}',
 'whatlinkshere-links' => '← リンク',
-'whatlinkshere-hideredirs' => 'リダイレクトを$1',
+'whatlinkshere-hideredirs' => '転送ページを$1',
 'whatlinkshere-hidetrans' => '参照読み込みを$1',
 'whatlinkshere-hidelinks' => 'リンクを$1',
 'whatlinkshere-hideimages' => '画像リンクを$1',
@@ -2905,10 +2905,10 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 よく閲覧されるページや、他の多くのページからリンクされているページを移動すると予期しない結果が起こるかもしれません。ページの移動に伴う影響をよく考えてから踏み切るようにしてください。",
 'movepagetext-noredirectfixer' => "下のフォームを使用すると、ページ名を変更でき、そのページの履歴も変更先に移動できます。
 移動元のページは移動先への転送ページになります。
-自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重リダイレクト]]や[[Special:BrokenRedirects|迷子のリダイレクト]]を確認する必要があります。
+自動的な修正を選択しない場合は、[[Special:DoubleRedirects|二重転送]]や[[Special:BrokenRedirects|迷子の転送ページ]]を確認する必要があります。
 つながるべき場所にリンクがつながるよう維持するのは移動した人の責任です。
 
-移動先が既に存在する場合は、そのページが空またはリダイレクトで、かつ過去の版を持たない場合を除いて移動'''できません'''。
+移動先が既に存在する場合は、そのページが空または転送ページで、かつ過去の版を持たない場合を除いて移動'''できません'''。
 つまり、間違えてページ名を変更した場合には元に戻せます。また移動によって既存のページを上書きしてしまうことはありません。
 
 '''警告！'''
@@ -2932,8 +2932,8 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'movepagebtn' => 'ページを移動',
 'pagemovedsub' => '移動に成功しました',
 'movepage-moved' => "'''「$1」は「$2」へ移動されました'''",
-'movepage-moved-redirect' => 'リダイレクトが作成されました。',
-'movepage-moved-noredirect' => 'リダイレクトは作成されませんでした。',
+'movepage-moved-redirect' => '転送ページを作成しました。',
+'movepage-moved-noredirect' => '転送ページを作成できませんでした。',
 'articleexists' => '指定された移動先には既にページが存在するか、名前が不適切です。
 別の名前を選択してください。',
 'cantmove-titleprotected' => '新しいページ名が作成保護されているため、この場所にページを移動できません',
@@ -2972,7 +2972,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'imagetypemismatch' => '新しいファイルの拡張子がファイルのタイプと一致していません',
 'imageinvalidfilename' => '対象ファイル名が無効です',
 'fix-double-redirects' => 'このページへのリダイレクトがあればそのリダイレクトを修正',
-'move-leave-redirect' => '移動元にリダイレクトを作成する',
+'move-leave-redirect' => '移動元に転送ページを作成する',
 'protectedpagemovewarning' => "'''警告：'''このページは保護されているため、管理者権限を持つ利用者のみが移動できます。
 参考として以下に最後の記録を表示します：",
 'semiprotectedpagemovewarning' => "'''注意：'''このページは保護されているため、登録利用者のみが移動できます。
@@ -3961,7 +3961,7 @@ $5
 # Auto-summaries
 'autosumm-blank' => 'ページの白紙化',
 'autosumm-replace' => '内容を「$1」で置換',
-'autoredircomment' => '[[$1]]へのリダイレクト',
+'autoredircomment' => '[[$1]]への転送ページ',
 'autosumm-new' => 'ページの作成：「$1」',
 
 # Size units
