@@ -2584,6 +2584,7 @@ It now redirects to [[$2]].',
 'ninterwikis'                     => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks'                          => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'                        => '$1 {{PLURAL:$1|member|members}}',
+'nredirects'                      => '$1 {{PLURAL:$1|redirect|redirects}}',
 'nrevisions'                      => '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews'                          => '$1 {{PLURAL:$1|view|views}}',
 'nimagelinks'                     => 'Used on $1 {{PLURAL:$1|page|pages}}',
@@ -2629,6 +2630,8 @@ It now redirects to [[$2]].',
 'mostimages-summary'              => '', # do not translate or duplicate this message to other languages
 'mostinterwikis'                  => 'Pages with the most interwikis',
 'mostinterwikis-summary'          => '', # do not translate or duplicate this message to other languages
+'mostredirects'                   => 'Pages with the most redirects',
+'mostredirects-summary'           => '', # do not translate or duplicate this message to other languages
 'mostrevisions'                   => 'Pages with the most revisions',
 'mostrevisions-summary'           => '', # do not translate or duplicate this message to other languages
 'prefixindex'                     => 'All pages with prefix',
