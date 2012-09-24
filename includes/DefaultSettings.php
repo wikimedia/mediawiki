@@ -5705,6 +5705,7 @@ $wgSpecialPageGroups = array(
 	'Mostcategories'            => 'highuse',
 	'Mostimages'                => 'highuse',
 	'Mostinterwikis'            => 'highuse',
+	'Mostredirects'             => 'highuse',
 	'Mostrevisions'             => 'highuse',
 
 	'Allpages'                  => 'pages',

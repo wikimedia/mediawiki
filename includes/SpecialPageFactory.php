@@ -139,6 +139,7 @@ class SpecialPageFactory {
 		'Mostlinkedtemplates'       => 'MostlinkedTemplatesPage',
 		'Mostcategories'            => 'MostcategoriesPage',
 		'Mostrevisions'             => 'MostrevisionsPage',
+		'Mostredirects'             => 'MostredirectsPage',
 
 		// Page tools
 		'ComparePages'              => 'SpecialComparePages',

@@ -170,6 +170,7 @@ $wgIgnoredMessages = array(
 	'mostcategories-summary',
 	'mostimages-summary',
 	'mostinterwikis-summary',
+	'mostredirects-summary',
 	'mostrevisions-summary',
 	'prefixindex-summary',
 	'shortpages-summary',

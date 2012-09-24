@@ -896,6 +896,7 @@ $wgAutoloadLocalClasses = array(
 	'MostlinkedCategoriesPage' => 'includes/specials/SpecialMostlinkedcategories.php',
 	'MostlinkedPage' => 'includes/specials/SpecialMostlinked.php',
 	'MostlinkedTemplatesPage' => 'includes/specials/SpecialMostlinkedtemplates.php',
+	'MostredirectsPage' => 'includes/specials/SpecialMostredirects.php',
 	'MostrevisionsPage' => 'includes/specials/SpecialMostrevisions.php',
 	'MovePageForm' => 'includes/specials/SpecialMovepage.php',
 	'NewFilesPager' => 'includes/specials/SpecialNewimages.php',
