@@ -290,17 +290,17 @@ $wgAutoloadLocalClasses = array(
 	'ZipDirectoryReaderError' => 'includes/ZipDirectoryReader.php',
 
 	# content handler
-	'Content' => 'includes/Content.php',
-	'AbstractContent' => 'includes/Content.php',
-	'ContentHandler' => 'includes/ContentHandler.php',
-	'CssContent' => 'includes/Content.php',
-	'TextContentHandler' => 'includes/ContentHandler.php',
-	'CssContentHandler' => 'includes/ContentHandler.php',
-	'JavaScriptContent' => 'includes/Content.php',
-	'JavaScriptContentHandler' => 'includes/ContentHandler.php',
-	'MessageContent' => 'includes/Content.php',
-	'TextContent' => 'includes/Content.php',
-	'WikitextContent' => 'includes/Content.php',
+	'Content' => 'includes/content/Content.php',
+	'AbstractContent' => 'includes/content/AbstractContent.php',
+	'ContentHandler' => 'includes/content/ContentHandler.php',
+	'CssContent' => 'includes/content/CssContent.php',
+	'TextContentHandler' => 'includes/content/ContentHandler.php',
+	'CssContentHandler' => 'includes/content/ContentHandler.php',
+	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
+	'JavaScriptContentHandler' => 'includes/content/ContentHandler.php',
+	'MessageContent' => 'includes/content/MessageContent.php',
+	'TextContent' => 'includes/content/TextContent.php',
+	'WikitextContent' => 'includes/content/WikitextContent.php',
 	'WikitextContentHandler' => 'includes/ContentHandler.php',
 
 	# includes/actions
