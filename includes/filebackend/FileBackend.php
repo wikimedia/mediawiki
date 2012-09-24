@@ -129,6 +129,16 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Get the wiki identifier used for this backend (possibly empty)
+	 *
+	 * @return string
+	 * @since 1.20
+	 */
+	final public function getWikiId() {
+		return $this->wikiId;
+	}
+
+	/**
 	 * Check if this backend is read-only
 	 *
 	 * @return bool
