@@ -49,6 +49,7 @@ $wgQueryPages = array(
 	array( 'MostlinkedCategoriesPage',      'Mostlinkedcategories'          ),
 	array( 'MostlinkedtemplatesPage',       'Mostlinkedtemplates'           ),
 	array( 'MostlinkedPage',                'Mostlinked'                    ),
+	array( 'MostredirectsPage',             'Mostredirects'                 ),
 	array( 'MostrevisionsPage',             'Mostrevisions'                 ),
 	array( 'FewestrevisionsPage',           'Fewestrevisions'               ),
 	array( 'ShortPagesPage',                'Shortpages'                    ),
