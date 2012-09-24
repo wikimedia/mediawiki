@@ -18,6 +18,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 		$wgRequest = new FauxRequest( array() );
 
+		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
+
 		self::$users = array(
 			'sysop' => new TestUser(
 				'Apitestsysop',
