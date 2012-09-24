@@ -1,0 +1,8 @@
+Code-Review+1: Daniel Friesen <daniel@nadir-seen-fire.com>
+Verified+1: jenkins-bot
+Code-Review+2: Siebrand <siebrand@wikimedia.org>
+Submitted-by: Siebrand <siebrand@wikimedia.org>
+Submitted-at: Mon, 24 Sep 2012 16:52:08 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/24809
+Project: mediawiki/core
+Branch: refs/heads/master
