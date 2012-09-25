@@ -366,88 +366,75 @@
 				$link.attr( 'title', tooltip );
 			}
 
-			// Some skins don't have any portlets
-			// just add it to the bottom of their 'sidebar' element as a fallback
-			switch ( mw.config.get( 'skin' ) ) {
-			case 'standard':
-			case 'cologneblue':
-				$( '#quickbar' ).append( $link.after( '<br/>' ) );
-				return $link[0];
-			case 'nostalgia':
-				$( '#searchform' ).before( $link ).before( ' &#124; ' );
-				return $link[0];
-			default: // Skins like chick, modern, monobook, myskin, simple, vector...
-
-				// Select the specified portlet
-				$portlet = $( '#' + portlet );
-				if ( $portlet.length === 0 ) {
-					return null;
-				}
-				// Select the first (most likely only) unordered list inside the portlet
-				$ul = $portlet.find( 'ul' ).eq( 0 );
-
-				// If it didn't have an unordered list yet, create it
-				if ( $ul.length === 0 ) {
-
-					$ul = $( '<ul>' );
-
-					// If there's no <div> inside, append it to the portlet directly
-					if ( $portlet.find( 'div:first' ).length === 0 ) {
-						$portlet.append( $ul );
-					} else {
-						// otherwise if there's a div (such as div.body or div.pBody)
-						// append the <ul> to last (most likely only) div
-						$portlet.find( 'div' ).eq( -1 ).append( $ul );
-					}
-				}
-				// Just in case..
-				if ( $ul.length === 0 ) {
-					return null;
-				}
-
-				// Unhide portlet if it was hidden before
-				$portlet.removeClass( 'emptyPortlet' );
-
-				// Wrap the anchor tag in a list item (and a span if $portlet is a Vector tab)
-				// and back up the selector to the list item
-				if ( $portlet.hasClass( 'vectorTabs' ) ) {
-					$item = $link.wrap( '<li><span></span></li>' ).parent().parent();
-				} else {
-					$item = $link.wrap( '<li></li>' ).parent();
-				}
-
-				// Implement the properties passed to the function
-				if ( id ) {
-					$item.attr( 'id', id );
-				}
-				if ( accesskey ) {
-					$link.attr( 'accesskey', accesskey );
-					tooltip += ' [' + accesskey + ']';
-					$link.attr( 'title', tooltip );
-				}
-				if ( accesskey && tooltip ) {
-					util.updateTooltipAccessKeys( $link );
-				}
-
-				// Where to put our node ?
-				// - nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
-				if ( nextnode && nextnode.parentNode === $ul[0] ) {
-					$(nextnode).before( $item );
-
-				// - nextnode is a CSS selector for jQuery
-				} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
-					$ul.find( nextnode ).eq( 0 ).before( $item );
-
-				// If the jQuery selector isn't found within the <ul>,
-				// or if nextnode was invalid or not passed at all,
-				// then just append it at the end of the <ul> (this is the default behaviour)
-				} else {
-					$ul.append( $item );
-				}
-
-
-				return $item[0];
+			// Select the specified portlet
+			$portlet = $( '#' + portlet );
+			if ( $portlet.length === 0 ) {
+				return null;
 			}
+			// Select the first (most likely only) unordered list inside the portlet
+			$ul = $portlet.find( 'ul' ).eq( 0 );
+
+			// If it didn't have an unordered list yet, create it
+			if ( $ul.length === 0 ) {
+
+				$ul = $( '<ul>' );
+
+				// If there's no <div> inside, append it to the portlet directly
+				if ( $portlet.find( 'div:first' ).length === 0 ) {
+					$portlet.append( $ul );
+				} else {
+					// otherwise if there's a div (such as div.body or div.pBody)
+					// append the <ul> to last (most likely only) div
+					$portlet.find( 'div' ).eq( -1 ).append( $ul );
+				}
+			}
+			// Just in case..
+			if ( $ul.length === 0 ) {
+				return null;
+			}
+
+			// Unhide portlet if it was hidden before
+			$portlet.removeClass( 'emptyPortlet' );
+
+			// Wrap the anchor tag in a list item (and a span if $portlet is a Vector tab)
+			// and back up the selector to the list item
+			if ( $portlet.hasClass( 'vectorTabs' ) ) {
+				$item = $link.wrap( '<li><span></span></li>' ).parent().parent();
+			} else {
+				$item = $link.wrap( '<li></li>' ).parent();
+			}
+
+			// Implement the properties passed to the function
+			if ( id ) {
+				$item.attr( 'id', id );
+			}
+			if ( accesskey ) {
+				$link.attr( 'accesskey', accesskey );
+				tooltip += ' [' + accesskey + ']';
+				$link.attr( 'title', tooltip );
+			}
+			if ( accesskey && tooltip ) {
+				util.updateTooltipAccessKeys( $link );
+			}
+
+			// Where to put our node ?
+			// - nextnode is a DOM element (was the only option before MW 1.17, in wikibits.js)
+			if ( nextnode && nextnode.parentNode === $ul[0] ) {
+				$(nextnode).before( $item );
+
+			// - nextnode is a CSS selector for jQuery
+			} else if ( typeof nextnode === 'string' && $ul.find( nextnode ).length !== 0 ) {
+				$ul.find( nextnode ).eq( 0 ).before( $item );
+
+			// If the jQuery selector isn't found within the <ul>,
+			// or if nextnode was invalid or not passed at all,
+			// then just append it at the end of the <ul> (this is the default behaviour)
+			} else {
+				$ul.append( $item );
+			}
+
+
+			return $item[0];
 		},
 
 		/**

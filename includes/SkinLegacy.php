@@ -36,46 +36,6 @@ class SkinLegacy extends SkinTemplate {
 	public function commonPrintStylesheet() {
 		return true;
 	}
-
-	/**
-	 * This was for the old skins and for users with 640x480 screen.
-	 * Please note old skins are still used and might prove useful for
-	 * users having old computers or visually impaired.
-	 */
-	var $mSuppressQuickbar = false;
-
-	/**
-	 * Suppress the quickbar from the output, only for skin supporting
-	 * the quickbar
-	 */
-	public function suppressQuickbar() {
-		$this->mSuppressQuickbar = true;
-	}
-
-	/**
-	 * Return whether the quickbar should be suppressed from the output
-	 *
-	 * @return Boolean
-	 */
-	public function isQuickbarSuppressed() {
-		return $this->mSuppressQuickbar;
-	}
-
-	function qbSetting() {
-		global $wgUser;
-		if ( $this->isQuickbarSuppressed() ) {
-			return 0;
-		}
-		$q = $wgUser->getOption( 'quickbar', 0 );
-		if( $q == 5 ) {
-			# 5 is the default, which chooses the setting
-			# depending on the directionality of your interface language
-			global $wgLang;
-			return $wgLang->isRTL() ? 2 : 1;
-		}
-		return $q;
-	}
-
 }
 
 class LegacyTemplate extends BaseTemplate {

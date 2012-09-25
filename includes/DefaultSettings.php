@@ -3557,7 +3557,6 @@ $wgDefaultUserOptions = array(
 	'numberheadings'          => 0,
 	'previewonfirst'          => 0,
 	'previewontop'            => 1,
-	'quickbar'                => 5,
 	'rcdays'                  => 7,
 	'rclimit'                 => 50,
 	'rememberpassword'        => 0,
