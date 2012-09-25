@@ -821,6 +821,8 @@ class ApiMain extends ApiBase {
 		$module->profileOut();
 
 		if ( !$this->mInternalMode ) {
+			// Report unused params
+			$this->reportUnusedParams();
 
 			//append Debug information
 			MWDebug::appendDebugInfoToApiResult( $this->getContext(), $this->getResult() );
@@ -895,6 +897,21 @@ class ApiMain extends ApiBase {
 	public function getCheck( $name ) {
 		$this->mParamsUsed[$name] = true;
 		return $this->getRequest()->getCheck( $name );		
+	}
+
+	/**
+	 * Report unused parameters, so the clients gets a hint in case it gave us parameters we don't know,
+	 * for example in case of spelling mistakes or a missing 'g' prefix for generators.
+	 */
+	protected function reportUnusedParams() {
+		$paramsUsed = $this->getParamsUsed();
+		$allParams = $this->getRequest()->getValueNames();
+
+		$unusedParams = array_diff( $allParams, $paramsUsed );
+		if( count( $unusedParams ) ) {
+			$s = count( $unusedParams ) > 1 ? 's' : '';
+			$this->setWarning( "Unrecognized parameter$s: '" . implode( $unusedParams, "', '" ) . "'" );
+		}
 	}
 
 	/**
