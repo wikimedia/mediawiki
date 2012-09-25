@@ -597,6 +597,8 @@ class LanguageConverter {
 		if ( $wgDisableLangConversion ) {
 			return $text;
 		}
+		// Reset converter state for a new converter run.
+		$this->mConvRuleTitle = false;
 		return $this->recursiveConvertTopLevel( $text, $variant );
 	}
 
