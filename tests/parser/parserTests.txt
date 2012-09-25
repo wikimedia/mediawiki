@@ -4120,6 +4120,340 @@ section=1
 !! end
 
 ###
+### Parsoid-centric tests to stress Parsoid's ability to RT them unchanged
+###
+!! article
+Template:echo
+!! text
+{{{1}}}
+!! endarticle
+
+!!test
+Templates: 1. Simple use
+!!input
+{{echo|Foo}}
+!!result
+<p>Foo
+</p>
+!!end
+
+!!test
+Templates: 2. Inside a block tag
+!!input
+<div>{{echo|Foo}}</div>
+!!result
+<div>Foo</div>
+
+!!end
+
+!!test
+Templates: P-wrapping: 1a. Templates on consecutive lines
+!!input
+{{echo|Foo}}
+{{echo|bar}}
+!!result
+<p>Foo
+bar
+</p>
+!!end
+
+!!test
+Templates: P-wrapping: 1b. Templates on consecutive lines
+!!input
+Foo
+
+{{echo|bar}}
+{{echo|baz}}
+!!result
+<p>Foo
+</p><p>bar
+baz
+</p>
+!!end
+
+!!test
+Templates: P-wrapping: 1c. Templates on consecutive lines
+!!input
+{{echo|Foo}}
+{{echo|bar}} <div>baz</div>
+!!result
+<p>Foo
+</p>
+bar <div>baz</div>
+
+!!end
+
+!!test
+Templates: Inline Text: 1. Multiple tmeplate uses
+!!input
+{{echo|Foo}}bar{{echo|baz}}
+!!result
+<p>Foobarbaz
+</p>
+!!end
+
+!!test
+Templates: Inline Text: 2. Back-to-back template uses
+!!input
+{{echo|Foo}}{{echo|bar}}
+!!result
+<p>Foobar
+</p>
+!!end
+
+!!test
+Templates: Block Tags: 1. Multiple template uses
+!!input
+{{echo|<div>Foo</div>}}<div>bar</div>{{echo|<div>baz</div>}}
+!!result
+<div>Foo</div><div>bar</div><div>baz</div>
+
+!!end
+
+!!test
+Templates: Block Tags: 2. Back-to-back template uses
+!!input
+{{echo|<div>Foo</div>}}{{echo|<div>bar</div>}}
+!!result
+<div>Foo</div><div>bar</div>
+
+!!end
+
+!!test
+Templates: Links: 1. Simple example
+!!input
+{{echo|[[Foo|bar]]}}
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 2. Generation of link href
+!!input
+[[{{echo|Foo}}|bar]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 3. Generation of part of a link href
+!!input
+[[Fo{{echo|o}}|bar]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 4. Multiple templates generating link href
+!!input
+[[{{echo|F}}{{echo|o}}ob{{echo|ar}}]]
+!!result
+<p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">Foobar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 5. Generation of link text
+!!input
+[[Foo|{{echo|bar}}]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 5. Nested templates (only outermost template should be marked)
+!!input
+{{echo|[[{{echo|Foo}}|bar]]}}
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: HTML Tag: 1. Generation of HTML attr. key
+!!input
+<div {{echo|style}}="color:red;">foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 2. Generation of HTML attr. value
+!!input
+<div style={{echo|'color:red;'}}>foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 3. Generation of HTML attr key and value
+!!input
+<div {{echo|style}}={{echo|'color:red;'}}>foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 4. Generation of starting piece of HTML attr value
+!!input
+<div title="{{echo|This is a long title}} with just one piece templated">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 5. Generation of middle piece of HTML attr value 
+!!input
+<div title="This is a long title with just {{echo|one piece}} templated">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 6. Generation of end piece of HTML attr value 
+!!input
+<div title="This is a long title with just one piece {{echo|templated}}">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: Tables: 1. Generating start of a HTML table
+!!input
+{{echo|<table><tr><td>foo</td>}}</tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 2a. Generating middle of a HTML table
+!!input
+<table><tr>{{echo|<td>foo</td>}}</tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 2b. Generating middle of a HTML table
+!!input
+<table>{{echo|<tr><td>foo</td></tr>}}</table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 3. Generating end of a HTML table
+!!input
+<table><tr>{{echo|<td>foo</td></tr></table>}}
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4a. Generating a single tag of a HTML table
+!!input
+{{echo|<table>}}<tr><td>foo</td></tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4b. Generating a single tag of a HTML table
+!!input
+<table>{{echo|<tr>}}<td>foo</td></tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4c. Generating a single tag of a HTML table
+!!input
+<table><tr>{{echo|<td>}}foo</td></tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4d. Generating a single tag of a HTML table
+!!input
+<table><tr><td>foo{{echo|</td>}}</tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4e. Generating a single tag of a HTML table
+!!input
+<table><tr><td>foo</td>{{echo|</tr>}}</table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4f. Generating a single tag of a HTML table
+!!input
+<table><tr><td>foo</td></tr>{{echo|</table>}}
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Pre: 1a. Templates that break a line should suppress <pre> 
+!!input
+ {{echo|}}
+!!result
+
+!!end
+
+!!test
+Templates: Pre: 1b. Templates that break a line should suppress <pre> 
+!!input
+ {{echo|
+foo}}
+!!result
+<p>foo
+</p>
+!!end
+
+!!test
+Parser Functions: 1. Simple example
+!!input
+{{uc:foo}}
+!!result
+<p>FOO
+</p>
+!!end
+
+!!test
+Parser Functions: 2. Nested use (only outermost should be marked up)
+!!input
+{{uc:{{lc:FOO}}}}
+!!result
+<p>FOO
+</p>
+!!end
+
+###
 ### Pre-save transform tests
 ###
 !! test
