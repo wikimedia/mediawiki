@@ -323,6 +323,9 @@ changes to languages because of Bugzilla reports.
 * Use of __DIR__ instead of dirname( __FILE__ ).
 * OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
   not used and complicated migration to Message class.
+* Live preview functionality has been improved and moved into the
+ 'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
+  has been removed.
 
 == Compatibility ==
 
