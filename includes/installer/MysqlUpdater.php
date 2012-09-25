@@ -214,6 +214,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id.sql' ),
 			array( 'addIndex', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id-index.sql' ),
 			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
+			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
+			array( 'doPopulateFilearchiveSha1Field' ),
 		);
 	}
 
@@ -834,5 +836,13 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql', false, "Making user_last_timestamp nullable" );
+	}
+
+	protected function doPopulateFilearchiveSha1Field() {
+		if ( !$this->updateRowExists( 'populate fa_sha1' ) ) {
+			$this->output( "Populating fa_sha1 field...\n" );
+			$task = $this->maintenance->runChild( 'PopulateFilearchiveSha1' );
+			$task->execute();
+		}
 	}
 }
