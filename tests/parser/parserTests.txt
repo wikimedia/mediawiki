@@ -10451,6 +10451,132 @@ HttP://MediaWiki.Org/
 </p>
 !! end
 
+###
+### Parsoid-centric template RT tests
+###
+!! article
+Template:echo
+!! text
+{{{1}}}
+!! endarticle
+
+!!test
+Templates: 1. Simple example
+!!input
+{{echo|Foo}}
+!!result
+<p>Foo
+</p>
+!!end
+
+!!test
+Templates: 2. Simple example 2
+!!input
+{{echo|[[Foo|bar]]}}
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: 3. Generation of link href
+!!input
+[[{{echo|Foo}}|bar]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: 4. Generation of link text
+!!input
+[[Foo|{{echo|bar}}]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: 5. Nested templates (only outermost template should be marked)
+!!input
+{{echo|[[{{echo|Foo}}|bar]]}}
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: 6. Generation of HTML attr. key
+!!input
+<div {{echo|style}}="color:red;">foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: 7. Generation of HTML attr. value
+!!input
+<div style={{echo|'color:red;'}}>foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: 8. Generation of HTML attr key and value
+!!input
+<div {{echo|style}}={{echo|'color:red;'}}>foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: 9. Generation of starting piece of HTML attr value
+!!input
+<div title="{{echo|This is a long title}} with just one piece templated">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: 10. Generation of middle piece of HTML attr value 
+!!input
+<div title="This is a long title with just {{echo|one piece}} templated">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: 11. Generation of end piece of HTML attr value 
+!!input
+<div title="This is a long title with just one piece {{echo|templated}}">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Parser Functions: 1. Simple example
+!!input
+{{uc:foo}}
+!!result
+<p>FOO
+</p>
+!!end
+
+!!test
+Parser Functions: 2. Nested use (only outermost should be marked up)
+!!input
+{{uc:{{lc:FOO}}}}
+!!result
+<p>FOO
+</p>
+!!end
+
 
 TODO:
 more images
