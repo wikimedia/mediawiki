@@ -556,7 +556,7 @@ Goulenn : $2",
 'protectedpagetext' => "Prennet eo bet ar bajenn-mañ. N'haller ket kemmañ anezhi ken.",
 'viewsourcetext' => 'Gallout a rit gwelet hag eilañ danvez ar bajenn-mañ',
 'viewyourtext' => "Gallout a rit gwelet hag eilañ mammenn ho '''kemmoù''' d'ar bajenn-mañ :",
-'protectedinterface' => 'Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant. Setu perak eo bet gwarezet ar bajenn.',
+'protectedinterface' => 'Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant er wiki-mañ. Setu perak eo bet gwarezet ar bajenn.',
 'editinginterface' => "'''Diwallit :''' Emaoc'h o kempenn ur bajenn a dalvez da sevel skridoù evit etrefas ar meziant. Ar c'hemmoù graet d'ar bajenn-mañ a cheñcho etrefas an holl implijerien. Mar fell deoc'h skoazellañ evit treiñ traoù, soñjit kentoc'h implijout [//translatewiki.net/wiki/Main_Page?setlang=br translatewiki.net], ar raktres evit lec'helaat MediaWiki.",
 'sqlhidden' => '(Reked SQL kuzhet)',
 'cascadeprotected' => 'Gwarezet eo ar bajenn-mañ; n\'haller ket kemmañ anezhi ken p\'he c\'haver {{PLURAL:$1|er bajenn|e-mesk ar pajennoù}} da-heul zo bet gwarezet en ur zibab an dibarzh "skalierad" :
@@ -834,9 +834,9 @@ Ma'z oc'h un implijer(ez) dizanv ha ma stadit ez eus bet kaset deoc'h kemennaden
 'noarticletext' => 'N\'eus tamm skrid ebet war ar bajenn-mañ evit poent.
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask an titl anezhi]] e pajennoù all,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} klask en oberiadennoù liammet], pe [{{fullurl:{{FULLPAGENAME}}|action=edit}} krouiñ ar bajenn]</span>.',
-'noarticletext-nopermission' => 'N\'eus, evit ar mare, tamm testenn ebet war ar bajenn-mañ.
+'noarticletext-nopermission' => "N'eus, evit ar mare, tamm testenn ebet war ar bajenn-mañ.
 Gallout a rit [[Special:Search/{{PAGENAME}}|klask titl ar bajenn-mañ]] war pajennoù all,
-pe <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} klask er marilhoù kar]</span>.',
+pe <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} klask er marilhoù kar]</span>, met n'oc'h ket aotreet da grouiñ ar bajenn-mañ.",
 'missing-revision' => "N'eus ket eus adwel niv. $1 eus ar bajenn anvet « {{PAGENAME}} ».
 
 C'hoarvezout a ra peurliesañ pa vez heuliet ul liamm istorel dispredet war-zu ur bajenn zo bet dilamet.
@@ -1290,7 +1290,7 @@ Setu aze un dalvoudenn ganet dre zegouezh hag a c'hallfec'h implijout : $1",
 'timezoneregion-indian' => 'Meurvor Indez',
 'timezoneregion-pacific' => 'Meurvor Habask',
 'allowemail' => 'Aotren ar posteloù a-berzh implijerien all',
-'prefs-searchoptions' => 'Dibarzhioù klask',
+'prefs-searchoptions' => '!Dibarzhioù klask',
 'prefs-namespaces' => 'Esaouennoù',
 'defaultns' => 'Klask en esaouennoù-anv a-hend-all :',
 'default' => 'dre ziouer',
@@ -1715,7 +1715,7 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'backend-fail-internal' => 'C\'hoarvezet ez eus ur fazi dianav e termenell stokañ ar restr "$1".',
 'backend-fail-contenttype' => 'Dibosupl termeniñ ar seurt danvez da enrollañ e "$1".',
 'backend-fail-batchsize' => 'Pourvezet he deus an dermenell stokañ ur pakad a $1 {{PLURAL:$1|oberiadenn|oberiadenn}}; sevel a ra ar vevenn da $2 {{PLURAL:$2|oberiadenn|oberiadenn}}.',
-'backend-fail-usable' => "Dibosupl skrivañ ar restr $1 rak re skort eo an aotreoù pe mankout a ra kavlec'hioù/endalc'herioù.",
+'backend-fail-usable' => 'Dibosupl skrivañ ar restr "$1" rak re skort eo an aotreoù pe mankout a ra kavlec\'hioù/endalc\'herioù.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'N\'eus ket bet gallet kevreañ ouzh diaz roadennoù ar marilh evit an dermenell stokañ "$1".',

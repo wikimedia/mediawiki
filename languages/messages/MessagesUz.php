@@ -183,11 +183,11 @@ $messages = array(
 'vector-action-undelete' => 'Tiklash',
 'vector-action-unprotect' => "Himoyani o'zgartirish",
 'vector-simplesearch-preference' => 'Kengaytirilgan qidiruv takliflarini yoqish (Faqat Vektor rasmiylashtirish uchun)',
-'vector-view-create' => 'Yarat',
+'vector-view-create' => 'Yaratish',
 'vector-view-edit' => 'Tahrirlash',
 'vector-view-history' => 'Tarix',
 'vector-view-view' => 'Mutolaa',
-'vector-view-viewsource' => 'Manbasini koʻrsat',
+'vector-view-viewsource' => 'Manbasini koʻrish',
 'actions' => 'Amallar',
 'namespaces' => 'Nomfazolar',
 'variants' => 'Variantlar',
@@ -303,7 +303,7 @@ $messages = array(
 'nstab-user' => 'Foydalanuvchi sahifasi',
 'nstab-media' => 'Media sahifasi',
 'nstab-special' => 'Maxsus sahifa',
-'nstab-project' => 'Vikipediya',
+'nstab-project' => 'Loyiha sahifasi',
 'nstab-image' => 'Fayl',
 'nstab-mediawiki' => 'Xabar',
 'nstab-template' => 'Andoza',
@@ -548,6 +548,9 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'history-feed-item-nocomment' => '$1 $2 da',
 
 # Revision deletion
+'rev-deleted-comment' => "(tahrir izohi o'chirildi)",
+'rev-deleted-user' => "(ishtirokchi ismi o'chirildi)",
+'rev-deleted-event' => "(qayd yozuvi o'chirildi)",
 'rev-delundel' => 'koʻrsatish/yashirish',
 'rev-showdeleted' => 'koʻrsatish',
 'revdelete-show-file-submit' => 'Ha',
@@ -573,7 +576,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'mergehistory-reason' => 'Sabab:',
 
 # Merge log
-'mergelog' => 'Birlashtirishlar qaydlari',
+'mergelog' => 'Birlashtirish qaydlari',
 'pagemerge-logentry' => "[[$1]] va [[$2]]lar birlashtirildi ($3 gacha bo'lgan versiyalar)",
 'revertmerge' => "Bo'lish",
 
@@ -835,7 +838,8 @@ Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini 
 'filedesc' => 'Qisqa izoh',
 'filereuploadsummary' => 'Fayldagi oʻzgarishlar:',
 'filesource' => 'Manba:',
-'uploadedimage' => '"[[$1]]" yuklandi',
+'uploadedimage' => '"[[$1]]"ni yukladi',
+'overwroteimage' => '"[[$1]]"ning yangi versiyasini yukladi',
 
 'license' => 'Litsenziyalash:',
 'license-header' => 'Litsenziyalash',
@@ -998,7 +1002,10 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # Protect
 'protectlogpage' => 'Himoyalash qaydlari',
 'protectedarticle' => '"[[$1]]" sahifasi himoyalandi',
+'modifiedarticleprotection' => '"[[$1]]" uchun himoyalash darajasini o\'zgartirdi',
+'movedarticleprotection' => 'himoyalash moslamalarini "[[$2]]"dan "[[$1]]"ga o\'tkazdi',
 'protect-level-sysop' => 'Faqat administratorlar uchun',
+'protect-expiry-indefinite' => 'muddatsiz',
 'protect-edit-reasonlist' => "Sabablar ro'yxatini tahrirlash",
 'protect-expiry-options' => '1 soat:1 hours,1 kun:1 day,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
 'restriction-type' => 'Huquqlar:',
@@ -1084,6 +1091,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'whatlinkshere-filters' => 'Filtrlar',
 
 # Block/unblock
+'autoblockid' => 'Avtochetlashtirish #$1',
 'block' => 'Foydalanuvchini muhosara qilish',
 'unblock' => "Foydalanuvchiga yo'l ochish",
 'blockip' => 'Foydalanuvchini chetlashtir',
@@ -1104,13 +1112,15 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'ipbother' => 'Boshqa vaqt:',
 'ipboptions' => '2 soat:2 hours,1 kun:1 day,3 kun:3 days,1 hafta:1 week,2 hafta:2 weeks,1 oy:1 month,3 oy:3 months,6 oy:6 months,1 yil:1 year,cheksiz:infinite',
 'ipblocklist' => 'Chetlashtirilgan IP manzillari va foydalanuvchilar',
+'emailblock' => "xatlar jo'natish taqiqlandi",
 'blocklink' => 'chetlashtir',
 'unblocklink' => "muhosarani (to'sishni) bekor qilish",
 'change-blocklink' => "Muhosarani (to'siqni) o'zgartirmoq",
 'contribslink' => 'hissasi',
 'blocklogpage' => 'Chetlashtirish qaydlari',
-'blocklogentry' => '$2 $3 davrga [[$1]]ni chetlashtirdi',
+'blocklogentry' => '$2 davrga [[$1]]ni chetlashtirdi $3',
 'block-log-flags-nocreate' => 'hisob ochish toʻxtatilgan',
+'block-log-flags-nousertalk' => "o'zining munozara sahifasini tahrirlay olmaydi",
 
 # Move page
 'movearticle' => "Sahifani ko'chirish",
@@ -1133,6 +1143,10 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'thumbnail-more' => 'Kattalashtir',
 'thumbnail_error' => 'Tasvir yaratishda xatolik: $1',
 
+# Import log
+'importlogpage' => 'Import qilish qaydlari',
+'import-logentry-upload' => '"[[$1]]"ni yuklash yo\'li bilan import qildi',
+
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Foydalanuvchi sahifangiz',
 'tooltip-pt-anonuserpage' => 'Siznig ip manzilingiz foydalanuvchi sahifasi',
@@ -1146,10 +1160,11 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'tooltip-pt-logout' => 'Chiqish',
 'tooltip-ca-talk' => 'Sahifa matni borasida munozara',
 'tooltip-ca-edit' => "Siz bu sahifani tahrirlashingiz mumkin. Iltimos, saqlashdan oldim ko'rib chiqish tugmasidan foydalaning.",
-'tooltip-ca-addsection' => 'Yangi boʻlim och',
+'tooltip-ca-addsection' => 'Yangi boʻlim ochish',
 'tooltip-ca-viewsource' => "Bu sahifa himoyalangan. Siz uning manbasini ko'rishingiz mumkin.",
 'tooltip-ca-history' => 'Bu sahifaning oldingi versiyalari.',
 'tooltip-ca-protect' => 'Bu sahifani himoyalash',
+'tooltip-ca-unprotect' => "Ushbu sahifaning himoyasini o'zgaritish",
 'tooltip-ca-delete' => 'Ushbu sahifani o‘chirib tashlash',
 'tooltip-ca-undelete' => "Bu sahifa o'chirilmasdan oldin qilingan tahrirlarni tiklash",
 'tooltip-ca-move' => 'Bu sahifani koʻchir',
@@ -1200,9 +1215,15 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # Info page
 'pageinfo-title' => '"$1" sahifasi haqida maʼlumot',
-'pageinfo-header-edits' => 'Tahrirlar',
-'pageinfo-watchers' => 'Kuzatuvchilar soni',
-'pageinfo-edits' => 'Tahrirlar soni',
+'pageinfo-header-basic' => 'Asosiy maʼlumot',
+'pageinfo-header-edits' => "O'zgarishlar tarixi",
+'pageinfo-display-title' => "Ko'rsatiladigan sarlavha",
+'pageinfo-article-id' => 'Sahifa identifikatori',
+'pageinfo-watchers' => 'Sahifa kuzatuvchilari soni',
+'pageinfo-edits' => 'Jami tahrirlar soni',
+
+# Patrol log
+'patrol-log-page' => 'Patrullash qaydlari',
 
 # Browsing diffs
 'previousdiff' => '← Avvalgi tahrir',
@@ -1214,15 +1235,16 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'file-info-size' => '$1 × $2 piksel, fayl hajmi: $3, MIME tipi: $4',
 'file-nohires' => 'Bundan kattaroq tasvir yoʻq.',
 'svg-long-desc' => 'SVG fayl, asl oʻlchamlari $1 × $2 piksel, fayl hajmi: $3',
-'show-big-image' => 'Asl hajmdagi tasvir',
+'show-big-image' => "To'liq hajmdagi tasvir",
 
 # Special:NewFiles
+'noimages' => 'Tasvir mavjud emas.',
 'ilsubmit' => 'Qidirish',
 
 # Metadata
 'metadata' => 'Metama’lumot',
-'metadata-expand' => 'Batafsil axborot koʻrsat',
-'metadata-collapse' => 'Batafsil axborotni yashir',
+'metadata-expand' => 'Batafsil axborot koʻrsatisg',
+'metadata-collapse' => 'Batafsil axborotni yashirish',
 
 # EXIF tags
 'exif-imagewidth' => 'Eni',
@@ -1311,6 +1333,8 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # New logging system
 'logentry-move-move' => '$1 $3 sahifasini $4ga koʻchirdi',
+'logentry-newusers-newusers' => '$1 ishtirokchisining hisob yozuvi yaratildi',
+'logentry-newusers-create' => '$1 ishtirokchisining hisob yozuvi yaratildi',
 
 # Feedback
 'feedback-close' => 'Bajarildi',

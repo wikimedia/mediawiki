@@ -690,7 +690,7 @@ Consulta: $2',
 'protectedpagetext' => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext' => 'Pode ver e copiar o conteúdo desta página:',
 'viewyourtext' => "Pode ver e copiar o código-fonte das '''suas edições''' desta página:",
-'protectedinterface' => 'Esta página fornece o texto da interface ao software e está protegida para prevenir abusos.',
+'protectedinterface' => 'Esta página fornece o texto da interface ao software, e está protegida para prevenir abusos.',
 'editinginterface' => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afectarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden' => '(Consulta SQL em segundo-plano)',
 'cascadeprotected' => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de protecção "em cascata" activada):
@@ -976,8 +976,7 @@ Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras p
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar registos relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Ainda não existe texto nesta página.
-Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas
-ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar registos relacionados]</span>.',
+Pode [[Special:Search/{{PAGENAME}}|pesquisar o título desta página]] noutras páginas, ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} procurar nos registos relacionados]</span>, mas não tem permissão para criar esta página.',
 'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
 
 Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.

@@ -620,6 +620,8 @@ $1',
 'youhavenewmessages' => 'Ви отримали $1 ($2).',
 'newmessageslink' => 'нові повідомлення',
 'newmessagesdifflink' => 'остання зміна',
+'youhavenewmessagesfromusers' => 'Ви отримали $1 від {{PLURAL:$3|іншого дописувача|$3 інших дописувачів}} ($2).',
+'youhavenewmessagesmanyusers' => 'Ви отримали $1 від багатьох дописувачів ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|нове повідомлення|нові повідомлення|нових повідомлень}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|остання зміна|останні зміни|останніх змін}}',
 'youhavenewmessagesmulti' => 'Ви отримали нові повідомлення на $1',
@@ -771,6 +773,7 @@ $1',
 'remembermypassword' => "Запам'ятати мій обліковий запис на цьому комп'ютері (на строк не більше $1 {{PLURAL:$1|дня|днів}})",
 'securelogin-stick-https' => 'Залишайтись підключенним через HTTPS після входу',
 'yourdomainname' => 'Ваш домен:',
+'password-change-forbidden' => 'Ви не можна змінити пароль на цій вікі.',
 'externaldberror' => 'Сталася помилка при автентифікації за допомогою зовнішньої бази даних, або у вас недостатньо прав для внесення змін до свого зовнішнього облікового запису.',
 'login' => 'Вхід до системи',
 'nav-login-createaccount' => 'Вхід / реєстрація',
@@ -1016,12 +1019,12 @@ $2
 Одна IP-адреса може використовуватися декількома користувачами.
 Якщо ви — анонімний користувач і вважаєте, що отримали коментарі, адресовані не вам, будь ласка [[Special:UserLogin/signup|зареєструйтесь]] або [[Special:UserLogin|увійдіть до системи]], щоб у майбутньому уникнути можливої плутанини з іншими анонімними користувачами.''",
 'noarticletext' => 'Зараз на цій сторінці нема тексту.
-Ви можете [[Special:Search/{{PAGENAME}}|пошукати цю назву]] в інших сторінках,
+Ви можете [[Special:Search/{{PAGENAME}}|пошукати цю назву]] на інших сторінках,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пошукати в журналах]
 або [{{fullurl:{{FULLPAGENAME}}|action=edit}} створити сторінку з такою назвою]</span>.',
-'noarticletext-nopermission' => 'Зараз на цій сторінці відсутній текст.
-Ви можете [[Special:Search/{{PAGENAME}}|пошукати такий заголовок]] серед інших сторінок,
-або <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пошукати пов\'язані записи в журналах]</span>.',
+'noarticletext-nopermission' => 'Зараз на цій сторінці немає тексту.
+Ви можете [[Special:Search/{{PAGENAME}}|пошукати цю назву]] на інших сторінках,
+або <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пошукати пов\'язані записи в журналах]</span>, але ви не маєте дозволу на створення такої сторінки.',
 'userpage-userdoesnotexist' => 'Користувач під назвою "<nowiki>$1</nowiki>" не зареєстрований. Переконайтеся, що ви хочете створити/редагувати цю сторінку.',
 'userpage-userdoesnotexist-view' => 'Обліковий запис користувача „$1“ не зареєстровано.',
 'blocked-notice-logextract' => 'Цей користувач наразі заблокований.

@@ -2887,7 +2887,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movenosubpage' => 'Diese Seite hat keine Unterseiten.',
 'movereason' => 'Grund:',
 'revertmove' => 'zurück verschieben',
-'delete_and_move' => 'Löschen und Verschieben',
+'delete_and_move' => 'Löschen und verschieben',
 'delete_and_move_text' => '== Löschung erforderlich ==
 
 Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die Seite verschieben zu können?',

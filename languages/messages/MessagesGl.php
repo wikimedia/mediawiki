@@ -593,7 +593,7 @@ Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
 'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
 Función: $1<br />
-Dúbida: $2',
+Pescuda: $2',
 'viewsource' => 'Ver o código fonte',
 'viewsource-title' => 'Ver o código fonte de "$1"',
 'actionthrottled' => 'Acción limitada',

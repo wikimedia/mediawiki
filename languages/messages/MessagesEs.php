@@ -80,6 +80,7 @@
  * @author Urhixidur
  * @author VegaDark
  * @author Vivaelcelta
+ * @author Waldir
  * @author Wilfredor
  * @author XalD
  * @author XanaG
@@ -1026,7 +1027,7 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otra
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
-Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienespermiso para crear esta página.',
+Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienes permiso para crear esta página.',
 'missing-revision' => 'La revisión #$1 de la página «{{PAGENAME}}» no existe.
 
 Esto suele deberse a seguir un enlace obsoleto hacia el historial de una página que ya ha sido borrada.

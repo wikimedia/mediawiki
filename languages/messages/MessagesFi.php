@@ -684,10 +684,11 @@ Joku muu on saattanut poistaa sen.',
 'protectedpagetext' => 'Tämä sivu on suojattu muutoksilta.',
 'viewsourcetext' => 'Voit tarkastella ja kopioida tämän sivun lähdekoodia:',
 'viewyourtext' => "Voit tarkastella ja kopioida lähdekoodin '''tekemistäsi muutoksista''' tähän sivuun:",
-'protectedinterface' => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
+'protectedinterface' => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.
+Viestien kääntäminen tulisi tehdä [//translatewiki.net/ translatewiki.netissä] – MediaWikin kotoistusprojektissa.',
 'editinginterface' => "'''Varoitus:''' Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.
-Muutokset tähän sivuun vaikuttavat muiden käyttäjien käyttöliittymän ulkoasuun.
-Viestien kääntäminen tulisi tehdä [//translatewiki.net/wiki/Main_Page?setlang=fi translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
+Muutokset tähän sivuun vaikuttavat muiden käyttäjien käyttöliittymän ulkoasuun tässä wikissä.
+Viestien kääntäminen tulisi tehdä [//translatewiki.net/ translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
 'sqlhidden' => '(SQL-kysely piilotettu)',
 'cascadeprotected' => 'Tämä sivu on suojattu muokkauksilta, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}:
 $2',
@@ -697,9 +698,9 @@ $2',
 'ns-specialprotected' => 'Toimintosivuja ei voi muokata.',
 'titleprotected' => "Käyttäjä [[User:$1|$1]] on suojannut tämän sivunimen, ja sivua ei voi luoda.
 Syynä on: ''$2''.",
-'filereadonlyerror' => 'Tiedostoa "$1" ei voi muuttaa, koska jaettu mediavarasto "$2" on "vain luku" -tilassa.
+'filereadonlyerror' => 'Tiedostoa $1 ei voi muuttaa, koska jaettu mediavarasto $2 on vain luku -tilassa.
 
-Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: "$3".',
+Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.',
 'invalidtitle-knownnamespace' => 'Virheellinen sivunimi, nimiavaruus "$2" ja teksti "$3"',
 'invalidtitle-unknownnamespace' => 'Virheellinen sivunimi, tuntematon nimiavaruus numero $1 ja teksti $2',
 'exception-nologin' => 'Et ole kirjautuneena',
@@ -955,8 +956,7 @@ Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]
 tai [{{fullurl:{{FULLPAGENAME}}|action=edit}} muokata tätä sivua]</span>.',
 'noarticletext-nopermission' => 'Tällä hetkellä tällä sivulla ei ole tekstiä.
-Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta
-tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]</span>',
+Voit [[Special:Search/{{PAGENAME}}|etsiä sivun nimellä]] muilta sivuilta tai <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hakea aiheeseen liittyviä lokeja]</span>, mutta sinulla ei ole oikeutta luoda tätä sivua.',
 'missing-revision' => 'Muutosta #$1 sivulla "{{PAGENAME}}" ei ole olemassa.
 
 Tämä yleensä johtuu vanhentuneesta historialinkistä sivulle, joka on poistettu.
@@ -1240,9 +1240,9 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'mergelogpagetext' => 'Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.',
 
 # Diffs
-'history-title' => 'Sivun "$1" muutoshistoria',
-'difference-title' => 'Ero sivun ”$1” versioiden välillä',
-'difference-title-multipage' => 'Erot sivujen "$1" ja "$2" välillä',
+'history-title' => 'Sivun $1 muutoshistoria',
+'difference-title' => 'Ero sivun $1 versioiden välillä',
+'difference-title-multipage' => 'Erot sivujen $1 ja $2 välillä',
 'difference-multipage' => '(Sivujen välinen eroavaisuus)',
 'lineno' => 'Rivi $1:',
 'compareselectedversions' => 'Vertaile valittuja versioita',
@@ -1808,7 +1808,7 @@ $1',
 'backend-fail-internal' => 'Tuntematon virhe taustajärjestelmässä "$1".',
 'backend-fail-contenttype' => 'Tiedostoa ei voitu tallentaa kohteeseen $1, koska tiedostomuotoa ei voitu määrittää.',
 'backend-fail-batchsize' => 'Taustajärjestelmälle on annettu $1 {{PLURAL:$1|tiedostotoiminto|toimintoa}}; enimmäismäärä on $2 {{PLURAL:$2|tiedostotoiminto|toimintoa}}.',
-'backend-fail-usable' => 'Ei voitu luoda tiedostoa $1, koska käyttöoikeudet eivät riittäneet tai hakemisto puuttuu.',
+'backend-fail-usable' => 'Tiedostoa $1 ei voitu lukea tai luoda, koska käyttöoikeudet eivät riittäneet tai hakemisto puuttuu.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kohteen $1 lukitusta ei voitu poistaa, koska se ei ole lukittu.',
@@ -3014,6 +3014,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-header-edits' => 'Muokkaushistoria',
 'pageinfo-header-restrictions' => 'Sivun suojaus',
 'pageinfo-header-properties' => 'Sivun ominaisuudet',
+'pageinfo-article-id' => 'Sivun tunniste',
 'pageinfo-views' => 'Katselukertojen määrä',
 'pageinfo-watchers' => 'Sivun tarkkailijoiden lukumäärä',
 'pageinfo-redirects-name' => 'Sivulle johtavat ohjaukset',
@@ -3022,6 +3023,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-lastuser' => 'Viimeisin muokkaaja',
 'pageinfo-edits' => 'Muokkausten kokonaismäärä',
 'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
+'pageinfo-restriction' => 'Sivun suojaus ({{lcfirst:$1}})',
 
 # Skin names
 'skinname-standard' => 'Perus',

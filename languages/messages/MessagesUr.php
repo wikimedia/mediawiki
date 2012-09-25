@@ -1357,6 +1357,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'anonymous' => '{{SITENAME}} گمنام صارف',
 'others' => 'دیگر',
 
+# Patrolling
+'markaspatrolledtext' => 'اس صفحہ کو بطور مراجعت شدہ نشان زد کریں',
+
 # Image deletion
 'deletedrevision' => 'حذف شدہ پرانی ترمیم $1۔',
 

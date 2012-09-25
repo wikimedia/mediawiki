@@ -8,6 +8,7 @@
  * @file
  *
  * @author Dbc334
+ * @author Eleassar
  * @author Freakolowsky
  * @author Irena Plahuta
  * @author McDutchie
@@ -468,12 +469,12 @@ $1',
 'viewdeleted' => 'Prikažem $1?',
 'restorelink' => '$1 {{PLURAL:$1|izbrisano redakcijo|izbrisani redakciji|izbrisane redakcije|izbrisanih redakcij}}',
 'feedlinks' => 'Podajanje:',
-'feed-invalid' => 'Neveljavna vrsta naročniškega dovoda.',
+'feed-invalid' => 'Neveljavna vrsta naročniškega vira.',
 'feed-unavailable' => 'Živi zaznamki niso na voljo',
-'site-rss-feed' => '$1 RSS vir',
-'site-atom-feed' => '$1 Atom vir',
-'page-rss-feed' => '»$1« RSS vir',
-'page-atom-feed' => '»$1« Atom vir',
+'site-rss-feed' => 'RSS-vir strani »$1«',
+'site-atom-feed' => 'Atom-vir strani »$1«',
+'page-rss-feed' => 'RSS-vir strani »$1«',
+'page-atom-feed' => 'Atom-vir strani »$1«',
 'red-link-title' => '$1 (stran ne obstaja)',
 'sort-descending' => 'Razvrsti padajoče',
 'sort-ascending' => 'Razvrsti naraščajoče',
@@ -1535,7 +1536,7 @@ Ko vas drugi uporabniki kontaktirajo, jim vašega e-poštnega naslova ne bomo ra
 'recentchanges' => 'Zadnje spremembe',
 'recentchanges-legend' => 'Možnosti zadnjih sprememb',
 'recentchanges-summary' => 'Na tej strani lahko spremljajte najnedavnejše spremembe wikija.',
-'recentchanges-feed-description' => 'Spremljajte najnovejše spremembe wikija prek tega vira.',
+'recentchanges-feed-description' => 'Spremljajte zadnje spremembe wikija prek tega vira.',
 'recentchanges-label-newpage' => 'S tem urejanjem je bila ustvarjena nova stran',
 'recentchanges-label-minor' => 'Manjše urejanje',
 'recentchanges-label-bot' => 'To urejanje je bilo izvedeno z botom',
@@ -2925,8 +2926,8 @@ Prosimo, poskusite znova.',
 'tooltip-n-help' => 'Kraj za pomoč',
 'tooltip-t-whatlinkshere' => 'Seznam vseh s trenutno povezanih strani',
 'tooltip-t-recentchangeslinked' => 'Zadnje spremembe na s trenutno povezanih straneh',
-'tooltip-feed-rss' => 'Dovod strani RSS',
-'tooltip-feed-atom' => 'Dovod strani Atom',
+'tooltip-feed-rss' => 'RSS-vir strani',
+'tooltip-feed-atom' => 'Atom-vir strani',
 'tooltip-t-contributions' => 'Preglejte seznam uporabnikovih prispevkov',
 'tooltip-t-emailuser' => 'Pošljite uporabniku e-pismo',
 'tooltip-t-upload' => 'Naložite slike ali predstavnostne datoteke',
