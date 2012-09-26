@@ -596,9 +596,12 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
-'dberrortext' => '发生了数据库查询语法错误，可能是由于软件自身的错误所引起。最后一次数据库查询指令是：
-<blockquote><tt>$1</tt></blockquote>
-来自函数“<tt>$2</tt>”内。数据库返回错误“<tt>$3: $4</tt>”。',
+'dberrortext' => '发生资料库查询语法错误。
+可能是由于软体自身的错误所引起。
+最后一次资料库查询指令是:
+<blockquote><code>$1</code></blockquote>
+来自于函数 "<code>$2</code>"。
+数据库返回错误 "<samp>$3: $4</samp>"。',
 'dberrortextcl' => '发生了数据库查询语法错误。最后一次数据库查询指令是：
 “$1”
 来自函数“$2”内。数据库返回错误“$3: $4”。',
@@ -649,8 +652,11 @@ $1',
 'protectedpagetext' => '该页面已被保护以防止编辑。',
 'viewsourcetext' => '您可以查看并复制此页面的源代码：',
 'viewyourtext' => "您可以查看并复制'''您对此页面作出编辑后'''的源代码：",
-'protectedinterface' => '该页提供了软件的界面文本，它已被保护以防止随意的修改。',
-'editinginterface' => "'''警告：''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
+'protectedinterface' => '该页提供此wiki软件的界面文字，它已被保护以防止恶意修改。
+如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。',
+'editinginterface' => "'''警告：'''您正在编辑的页面是用于提供软件的界面文字。
+改变此页将影响其他在此wiki上的用户界面外观。
+如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。",
 'sqlhidden' => '（SQL查询已隐藏）',
 'cascadeprotected' => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
@@ -893,8 +899,8 @@ $2
 如果您误入此页，请点击浏览器中的“返回”按钮。',
 'anontalkpagetext' => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索该页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
-'noarticletext-nopermission' => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
-或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
+'noarticletext-nopermission' => '此页目前没有内容。
+您可以在其它页[[Special:Search/{{PAGENAME}}|搜寻此页标题]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜寻有关日志]</span>，但您没有权限建立此页。',
 'missing-revision' => '“{{PAGENAME}}”的修订#$1不存在。
 
 这通常是因为进入了一个已被删除的页面的历史链接。

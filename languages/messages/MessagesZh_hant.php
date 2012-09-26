@@ -591,7 +591,7 @@ $1',
 'viewyourtext' => "您可以查看並複製'''您對此頁面作出編輯後'''的源代碼：",
 'protectedinterface' => '該頁提供此wiki軟體的介面文字，它已被保護以防止惡意修改。
 如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。',
-'editinginterface' => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。
+'editinginterface' => "'''警告：'''您正在編輯的頁面是用於提供軟體的介面文字。
 改變此頁將影響其他在此wiki上的用戶介面外觀。
 如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。",
 'sqlhidden' => '（隱藏SQL查詢）',

@@ -2241,6 +2241,7 @@ $3
 'version-hook-subscribedby' => '订阅人',
 'version-version' => '（版本 $1）',
 'version-license' => '许可证',
+'version-poweredby-credits' => "个只 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software' => '装正𠮶软件',
 'version-software-version' => '版本',
 

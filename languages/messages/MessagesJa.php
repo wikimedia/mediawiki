@@ -519,7 +519,7 @@ $messages = array(
 'vector-action-delete' => '削除',
 'vector-action-move' => '移動',
 'vector-action-protect' => '保護',
-'vector-action-undelete' => '復帰',
+'vector-action-undelete' => '復元',
 'vector-action-unprotect' => '保護再設定',
 'vector-simplesearch-preference' => '検索語の提案機能を拡張（ベクター外装のみ）',
 'vector-view-create' => '作成',
@@ -552,7 +552,7 @@ $messages = array(
 'create-this-page' => 'このページを作成',
 'delete' => '削除',
 'deletethispage' => 'このページを削除',
-'undelete_short' => '{{PLURAL:$1|$1 編集}}を復帰',
+'undelete_short' => '{{PLURAL:$1|$1 編集}}を復元',
 'viewdeleted_short' => '{{PLURAL:$1|削除された $1 編集}}を閲覧',
 'protect' => '保護',
 'protect_change' => '設定変更',
@@ -644,9 +644,9 @@ $1',
 'hidetoc' => '非表示',
 'collapsible-collapse' => '折り畳む',
 'collapsible-expand' => '展開する',
-'thisisdeleted' => '$1を閲覧または復帰しますか？',
+'thisisdeleted' => '$1を閲覧または復元しますか？',
 'viewdeleted' => '$1を閲覧しますか？',
-'restorelink' => '{{PLURAL:$1|削除された $1 編集}}',
+'restorelink' => '{{PLURAL:$1|削除された$1編集}}',
 'feedlinks' => 'フィード：',
 'feed-invalid' => 'フィード形式の指定が正しくありません。',
 'feed-unavailable' => 'フィードの配信は利用できません',
@@ -1266,7 +1266,7 @@ $3が示した理由：''$2''",
 この差分を閲覧できます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-delundel' => '表示/非表示',
 'rev-showdeleted' => '表示',
-'revisiondelete' => '版の削除と復帰',
+'revisiondelete' => '版の削除と復元',
 'revdelete-nooldid-title' => '無効な対象版',
 'revdelete-nooldid-text' => 'この操作の対象となる版を指定していないか、指定した版が存在していないか、あるいは最新版を非表示しようとしています。',
 'revdelete-nologtype-title' => '記録の種類を指定していません',
@@ -1654,12 +1654,12 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-writeapi' => '書き込みAPIを使用',
 'right-delete' => 'ページを削除',
 'right-bigdelete' => '大きな履歴があるページを削除',
-'right-deletelogentry' => '特定の記録項目を削除/復帰',
-'right-deleterevision' => 'ページの特定の版を削除/復帰',
+'right-deletelogentry' => '特定の記録項目を削除/復元',
+'right-deleterevision' => 'ページの特定の版を削除/復元',
 'right-deletedhistory' => '削除された履歴項目（関連する本文を除く）を閲覧',
 'right-deletedtext' => '削除された本文と削除された版間の差分を閲覧',
 'right-browsearchive' => '削除されたページを検索',
-'right-undelete' => 'ページを復帰',
+'right-undelete' => 'ページを復元',
 'right-suppressrevision' => '管理者から隠された版を確認/復元',
 'right-suppressionlog' => '非公開記録を閲覧',
 'right-block' => '他の利用者の編集をブロック',
@@ -1718,7 +1718,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'action-deleterevision' => 'この版の削除',
 'action-deletedhistory' => 'このページの削除履歴の閲覧',
 'action-browsearchive' => '削除されたページの検索',
-'action-undelete' => 'このページの復帰',
+'action-undelete' => 'このページの復元',
 'action-suppressrevision' => '隠された版の確認と復元',
 'action-suppressionlog' => 'この非公開記録の閲覧',
 'action-block' => 'この利用者の編集ブロック',
@@ -2131,7 +2131,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 ** 著作権侵害
 ** 重複ファイル',
 'filedelete-edit-reasonlist' => '削除理由を編集',
-'filedelete-maintenance' => 'メンテナンス中のため、ファイルの削除と復帰は一時的に無効化されています。',
+'filedelete-maintenance' => 'メンテナンス中のため、ファイルの削除と復元は一時的に無効化されています。',
 'filedelete-maintenance-title' => 'ファイルを削除できません',
 
 # MIME search
@@ -2434,7 +2434,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'watchnologintext' => 'ウォッチリストを変更するためには、[[Special:UserLogin|ログイン]]している必要があります。',
 'addwatch' => 'ウォッチリストに追加',
 'addedwatchtext' => "ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]に追加しました。
-このページと付属のトークページに変更があった際には、ウォッチリストに表示されます。また、ウォッチリストに登録されているページは[[Special:RecentChanges|最近の更新の一覧]]に'''太字'''で表示され、見つけやすくなります。",
+このページまたはそのトークページが変更されると、ウォッチリストに表示されます。また、[[Special:RecentChanges|最近の更新の一覧]]では'''太字'''で表示されます。",
 'removewatch' => 'ウォッチリストから除去',
 'removedwatchtext' => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から除去しました。',
 'watch' => 'ウォッチ',
@@ -2517,7 +2517,7 @@ $UNWATCHURL
 'deletedtext' => '「$1」は削除されました。
 最近の削除に関しては、$2を参照してください。',
 'dellogpage' => '削除記録',
-'dellogpagetext' => '以下は、最近の削除と復帰の一覧です。',
+'dellogpagetext' => '以下は最近の削除と復元の一覧です。',
 'deletionlog' => '削除記録',
 'reverted' => '以前の版への差し戻し',
 'deletecomment' => '理由：',
@@ -2629,24 +2629,24 @@ $2による直前の版へ変更されました。',
 # Undelete
 'undelete' => '削除されたページを表示',
 'undeletepage' => '削除されたページの表示と復元',
-'undeletepagetitle' => "'''以下は、[[:$1|$1]]の削除された版です'''。",
+'undeletepagetitle' => "'''以下は[[:$1|$1]]の削除された版です'''。",
 'viewdeletedpage' => '削除されたページを表示',
 'undeletepagetext' => '以下の{{PLURAL:$1|削除されたページ|&#32;$1 件の削除されたページ}}は、保存版に残っているため復元できます。
 保存版は定期的に消去される可能性があります。',
 'undelete-fieldset-title' => '削除された版の復元',
 'undeleteextrahelp' => "すべての版を復元する場合は、どのボックスにもチェックを入れていない状態で'''''{{int:undeletebtn}}'''''をクリックしてください。
-特定の版を復帰する場合は、復帰する版のボックスにチェックを入れた状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
+特定の版を復元する場合は、復元する版のボックスにチェックを入れた状態で'''''{{int:undeletebtn}}'''''をクリックしてください。",
 'undeleterevisions' => '保存版に$1{{PLURAL:$1|版}}あります',
-'undeletehistory' => 'ページの復帰を行うと、すべての版が履歴に復帰します。
-削除されたあとに同じ名前で新しくページが作成されていた場合、復帰した版はそれに先行する履歴として現れます。',
-'undeleterevdel' => '復帰した結果、版指定削除されているページまたはファイルの版が最新となる場合、復帰は実行されません。
-このような場合、版指定削除されていない版が最新となるようにチェックするか、その版の版指定削除を解除する必要があります。',
+'undeletehistory' => 'ページを復元すると、すべての版が履歴に復元されます。
+削除後に同じ名前で新しいページが作成されている場合、復元された版はそれに先行する履歴として表示されます。',
+'undeleterevdel' => '版指定削除されている版がページまたはファイルの最新版となるような復元はできません。
+この場合、版指定削除されている最新版のチェックを外すか、その版指定削除を解除する必要があります。',
 'undeletehistorynoadmin' => 'このページは削除されています。
 削除の理由は、削除前にこのページを編集していた利用者の詳細情報と共に、以下に表示されています。
 管理者以外の利用者には、削除された各版の本文への制限がかけられています。',
 'undelete-revision' => '削除されたページ「$1」の $4 $5 時点での $3 による版：',
-'undeleterevision-missing' => '正しくないまたは存在しない版です。
-間違ったリンクをたどったか、この版は既に復帰されたか、もしくは保存版から除去された可能性があります。',
+'undeleterevision-missing' => '無効または存在しない版です。
+間違ったリンクをたどったか、この版は既に復元されたか、もしくは保存版から除去された可能性があります。',
 'undelete-nodiff' => 'これより前の版はありません。',
 'undeletebtn' => '復元',
 'undeletelink' => '閲覧/復元',
@@ -2656,26 +2656,26 @@ $2による直前の版へ変更されました。',
 'undeletecomment' => '理由：',
 'undeletedrevisions' => '{{PLURAL:$1|$1版}}を復元しました',
 'undeletedrevisions-files' => '{{PLURAL:$1|$1版}}と{{PLURAL:$2|$2ファイル}}を復元しました',
-'undeletedfiles' => '{{PLURAL:$1|$1ファイル}}を復帰しました',
-'cannotundelete' => '復帰に失敗しました。
-他の誰かがこのページを既に復帰した可能性があります。',
+'undeletedfiles' => '{{PLURAL:$1|$1ファイル}}を復元しました',
+'cannotundelete' => '復元に失敗しました。
+他の誰かがこのページを既に復元した可能性があります。',
 'undeletedpage' => "'''$1を復元しました。'''
 
-最近の削除と復帰の記録については[[Special:Log/delete|削除記録]]を参照してください。",
+最近の削除と復元の記録については[[Special:Log/delete|削除記録]]を参照してください。",
 'undelete-header' => '最近削除されたページは[[Special:Log/delete|削除記録]]で確認できます。',
 'undelete-search-title' => '削除されたページの検索',
 'undelete-search-box' => '削除されたページを検索',
-'undelete-search-prefix' => '表示を開始するページ名：',
+'undelete-search-prefix' => '表示を開始するページ名:',
 'undelete-search-submit' => '検索',
 'undelete-no-results' => '削除の保存版に、一致するページが見つかりませんでした。',
-'undelete-filename-mismatch' => 'ファイルの時刻印$1の版を復帰できません：ファイル名が一致しません。',
-'undelete-bad-store-key' => 'ファイルの時刻印$1の版を復帰できません：削除前にファイルが失われています。',
+'undelete-filename-mismatch' => 'ファイルの $1 時点の版を復元できません: ファイル名が一致しません。',
+'undelete-bad-store-key' => 'ファイルの $1 時点の版を復元できません: 削除前にファイルが失われています。',
 'undelete-cleanup-error' => '未使用の保存版のファイル「$1」の削除中にエラーが発生しました。',
-'undelete-missing-filearchive' => 'データベースに存在しないため、ID $1を持つファイルの保存版を復元できません。
-既に復帰されている可能性があります。',
-'undelete-error' => 'ページの復帰エラー',
-'undelete-error-short' => 'ファイルの復帰エラー：$1',
-'undelete-error-long' => 'ファイルの復帰中にエラーが発生しました：
+'undelete-missing-filearchive' => 'データベースに存在しないため、ファイルの保存版 ID $1 を復元できません。
+既に復元されている可能性があります。',
+'undelete-error' => 'ページの復元エラー',
+'undelete-error-short' => 'ファイルの復元エラー: $1',
+'undelete-error-long' => 'ファイルの復元中にエラーが発生しました:
 
 $1',
 'undelete-show-file-confirm' => '$2$3の版からファイル「<nowiki>$1</nowiki>」の削除版を本当に表示しますか？',
@@ -2696,8 +2696,8 @@ $1',
 'contribsub2' => '利用者: $1 ($2)',
 'nocontribs' => 'これらの条件に一致する変更は見つかりませんでした。',
 'uctop' => '(最新)',
-'month' => 'これ以前の月：',
-'year' => 'これ以前の年：',
+'month' => 'これ以前の月:',
+'year' => 'これ以前の年:',
 
 'sp-contributions-newbies' => '新しい利用者からの投稿のみ表示',
 'sp-contributions-newbies-sub' => '新規利用者のみ',
@@ -3296,7 +3296,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 
 # Image deletion
 'deletedrevision' => '古い版 $1 を削除しました',
-'filedeleteerror-short' => 'ファイル削除エラー：$1',
+'filedeleteerror-short' => 'ファイルの削除エラー: $1',
 'filedeleteerror-long' => 'ファイルの削除中にエラーが発生しました：
 
 $1',
@@ -4216,7 +4216,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # New logging system
 'logentry-delete-delete' => '$1 がページ「$3」を削除しました',
-'logentry-delete-restore' => '$1 がページ「$3」を復帰しました',
+'logentry-delete-restore' => '$1 がページ「$3」を復元しました',
 'logentry-delete-event' => '$1 が$3の{{PLURAL:$5|$5件の記録項目}}の閲覧レベルを変更しました：$4',
 'logentry-delete-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを変更しました：$4',
 'logentry-delete-event-legacy' => '$1 が「$3」の記録項目の閲覧レベルを変更しました',
