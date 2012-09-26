@@ -1,7 +1,7 @@
 CREATE TABLE /*$wgDBprefix*/langlinks (
   -- page_id of the referring page
   ll_from int unsigned NOT NULL default '0',
-  
+
   -- Language code of the target
   ll_lang varbinary(20) NOT NULL default '',
 

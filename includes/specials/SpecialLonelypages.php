@@ -28,7 +28,6 @@
  * @ingroup SpecialPage
  */
 class LonelyPagesPage extends PageQueryPage {
-
 	function __construct( $name = 'Lonelypages' ) {
 		parent::__construct( $name );
 	}
@@ -50,35 +49,50 @@ class LonelyPagesPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'page', 'pagelinks',
-					'templatelinks' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
-					'title' => 'page_title',
-					'value' => 'page_title' ),
-			'conds' => array ( 'pl_namespace IS NULL',
-					'page_namespace' => MWNamespace::getContentNamespaces(),
-					'page_is_redirect' => 0,
-					'tl_namespace IS NULL' ),
-			'join_conds' => array (
-					'pagelinks' => array (
-						'LEFT JOIN', array (
+		return array(
+			'tables' => array(
+				'page', 'pagelinks',
+				'templatelinks'
+			),
+			'fields' => array(
+				'namespace' => 'page_namespace',
+				'title' => 'page_title',
+				'value' => 'page_title'
+			),
+			'conds' => array(
+				'pl_namespace IS NULL',
+				'page_namespace' => MWNamespace::getContentNamespaces(),
+				'page_is_redirect' => 0,
+				'tl_namespace IS NULL'
+			),
+			'join_conds' => array(
+				'pagelinks' => array(
+					'LEFT JOIN', array(
 						'pl_namespace = page_namespace',
-						'pl_title = page_title' ) ),
-					'templatelinks' => array (
-						'LEFT JOIN', array (
+						'pl_title = page_title'
+					)
+				),
+				'templatelinks' => array(
+					'LEFT JOIN', array(
 						'tl_namespace = page_namespace',
-						'tl_title = page_title' ) ) )
+						'tl_title = page_title'
+					)
+				)
+			)
 		);
 	}
 
 	function getOrderFields() {
 		// For some crazy reason ordering by a constant
 		// causes a filesort in MySQL 5
-		if( count( MWNamespace::getContentNamespaces() ) > 1 ) {
+		if ( count( MWNamespace::getContentNamespaces() ) > 1 ) {
 			return array( 'page_namespace', 'page_title' );
 		} else {
 			return array( 'page_title' );
 		}
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

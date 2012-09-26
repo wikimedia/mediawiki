@@ -39,8 +39,8 @@ Download the files for the new version of the software. These are available
 as a compressed "tar" archive from the Wikimedia Download Service
 (http://download.wikimedia.org/mediawiki).
 
-You can also obtain the new files directly from our Subversion source code
-repository, via a checkout or export operation.
+You can also obtain the new files directly from our Git source code
+repository.
 
 Replace the existing MediaWiki files with the new. You should preserve the
 LocalSettings.php file and the "extensions" and "images" directories.
@@ -51,10 +51,15 @@ deleted file archives, and any custom skins.
 
 === Perform the database upgrade ===
 
+As of 1.21, it is possible to separate schema changes (i.e. adding,
+dropping, or changing tables, fields, or indices) from all other
+database changes (e.g. populating fields).  If you need this
+capability, see "From the command line" below.
+
 ==== From the web ====
 
-If you browse to the web-based installation script (usually at 
-/mw-config/index.php) from your wiki installation you can follow the script and 
+If you browse to the web-based installation script (usually at
+/mw-config/index.php) from your wiki installation you can follow the script and
 upgrade your database in place.
 
 ==== From the command line ====
@@ -64,13 +69,19 @@ update.php script to check and update the schema. This will insert missing
 tables, update existing tables, and move data around as needed. In most cases,
 this is successful and nothing further needs to be done.
 
+If you need to separate out the schema changes so they can be run
+by someone with more privileges, then you can use the --schema option
+to produce a text file with the necessary commands.  You can use
+--schema, --noschema, $wgAllowSchemaUpdates as well as proper database
+permissions to enforce this separation.
+
 === Check configuration settings ===
 
 The names of configuration variables, and their default values and purposes,
 can change between release branches, e.g. $wgDisableUploads in 1.4 is replaced
 with $wgEnableUploads in later versions. When upgrading, consult the release
 notes to check for configuration changes which would alter the expected
-behaviour of MediaWiki.
+behavior of MediaWiki.
 
 === Check installed extensions ===
 
@@ -139,9 +150,13 @@ UTF-8; an experimental command-line upgrade helper script,
 'upgrade1_5.php', can do this -- run it prior to 'update.php' or
 the web upgrader.
 
+NOTE that upgrade1_5.php does not work properly with recent version
+of MediaWiki. If upgrading a 1.4.x wiki, you should upgrade to 1.5
+first.  upgrade1_5.php has been removed from MediaWiki 1.21.
+
 If you absolutely cannot make the UTF-8 upgrade work, you can try
 doing it by hand: dump your old database, convert the dump file
-using iconv as described here: 
+using iconv as described here:
 http://portal.suse.com/sdb/en/2004/05/jbartsh_utf-8.html
 and then reimport it. You can also convert filenames using convmv,
 but note that the old directory hashes will no longer be valid,
@@ -281,18 +296,3 @@ If you have a very old database (earlier than organized MediaWiki releases
 in late August 2003) you may need to manually run some of the update SQL
 scripts in maintenance/archives before the installer is able to pick up
 with remaining updates.
-
-
-== Upgrading from UseModWiki or old "phase 2" Wikipedia code ==
-
-There is a semi-maintained UseModWiki to MediaWiki conversion script at
-maintenance/importUseModWiki.php; it may require tweaking and customization
-to work for you.
-
-Install a new MediaWiki first, then use the conversion script which will
-output SQL statements; direct these to a file and then run that into your
-database.
-
-You will have to rebuild the links tables etc after importing.
-
-

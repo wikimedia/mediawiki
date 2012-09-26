@@ -1,4 +1,5 @@
 <?php
+
 /**
  * A tool for running hook functions.
  *
@@ -23,26 +24,36 @@
  * @file
  */
 
+/**
+ * @since 1.18
+ */
 class MWHookException extends MWException {}
 
 /**
  * Hooks class.
  *
  * Used to supersede $wgHooks, because globals are EVIL.
+ *
+ * @since 1.18
  */
 class Hooks {
 
+	/**
+	 * Array of events mapped to an array of callbacks to be run
+	 * when that event is triggered.
+	 */
 	protected static $handlers = array();
 
 	/**
-	 * Attach an event handler to a given hook
+	 * Attach an event handler to a given hook.
 	 *
-	 * @param $name Mixed: name of hook
-	 * @param $callback Mixed: callback function to attach
-	 * @return void
+	 * @param string $name Name of hook
+	 * @param mixed $callback Callback function to attach
+	 *
+	 * @since 1.18
 	 */
 	public static function register( $name, $callback ) {
-		if( !isset( self::$handlers[$name] ) ) {
+		if ( !isset( self::$handlers[$name] ) ) {
 			self::$handlers[$name] = array();
 		}
 
@@ -50,222 +61,185 @@ class Hooks {
 	}
 
 	/**
-	 * Returns true if a hook has a function registered to it.
+	 * Clears hooks registered via Hooks::register(). Does not touch $wgHooks.
+	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
 	 *
-	 * @param $name Mixed: name of hook
-	 * @return Boolean: true if a hook has a function registered to it
+	 * @param string $name the name of the hook to clear.
+	 *
+	 * @since 1.21
+	 * @throws MWException if not in testing mode.
 	 */
-	public static function isRegistered( $name ) {
-		if( !isset( self::$handlers[$name] ) ) {
-			self::$handlers[$name] = array();
+	public static function clear( $name ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'Cannot reset hooks in operation.' );
 		}
 
-		return ( count( self::$handlers[$name] ) != 0 );
+		unset( self::$handlers[$name] );
+	}
+
+	/**
+	 * Returns true if a hook has a function registered to it.
+	 * The function may have been registered either via Hooks::register or in $wgHooks.
+	 *
+	 * @since 1.18
+	 *
+	 * @param string $name Name of hook
+	 * @return bool True if the hook has a function registered to it
+	 */
+	public static function isRegistered( $name ) {
+		global $wgHooks;
+		return !empty( $wgHooks[$name] ) || !empty( self::$handlers[$name] );
 	}
 
 	/**
 	 * Returns an array of all the event functions attached to a hook
+	 * This combines functions registered via Hooks::register and with $wgHooks.
 	 *
-	 * @param $name Mixed: name of the hook
+	 * @since 1.18
+	 *
+	 * @param string $name Name of the hook
 	 * @return array
 	 */
 	public static function getHandlers( $name ) {
-		if( !isset( self::$handlers[$name] ) ) {
-			return array();
-		}
+		global $wgHooks;
 
-		return self::$handlers[$name];
+		if ( !self::isRegistered( $name ) ) {
+			return array();
+		} elseif ( !isset( self::$handlers[$name] ) ) {
+			return $wgHooks[$name];
+		} elseif ( !isset( $wgHooks[$name] ) ) {
+			return self::$handlers[$name];
+		} else {
+			return array_merge( self::$handlers[$name], $wgHooks[$name] );
+		}
 	}
 
 	/**
-	 * Call hook functions defined in Hooks::register
+	 * Call hook functions defined in Hooks::register and $wgHooks.
 	 *
-	 * Because programmers assign to $wgHooks, we need to be very
-	 * careful about its contents. So, there's a lot more error-checking
-	 * in here than would normally be necessary.
+	 * For a certain hook event, fetch the array of hook events and
+	 * process them. Determine the proper callback for each hook and
+	 * then call the actual hook using the appropriate arguments.
+	 * Finally, process the return value and return/throw accordingly.
 	 *
-	 * @param $event String: event name
-	 * @param $args Array: parameters passed to hook functions
-	 * @return Boolean True if no handler aborted the hook
+	 * @param string $event Event name
+	 * @param array $args  Array of parameters passed to hook functions
+	 * @return bool True if no handler aborted the hook
+	 *
+	 * @since 1.22 A hook function is not required to return a value for
+	 *   processing to continue. Not returning a value (or explicitly
+	 *   returning null) is equivalent to returning true.
+	 * @throws MWException
+	 * @throws FatalError
 	 */
-	public static function run( $event, $args = array() ) {
-		global $wgHooks;
+	public static function run( $event, array $args = array() ) {
+		wfProfileIn( 'hook: ' . $event );
+		foreach ( self::getHandlers( $event ) as $hook ) {
+			// Turn non-array values into an array. (Can't use casting because of objects.)
+			if ( !is_array( $hook ) ) {
+				$hook = array( $hook );
+			}
 
-		// Return quickly in the most common case
-		if ( !isset( self::$handlers[$event] ) && !isset( $wgHooks[$event] ) ) {
-			return true;
-		}
-
-		if ( !is_array( self::$handlers ) ) {
-			throw new MWException( "Local hooks array is not an array!\n" );
-		}
-
-		if ( !is_array( $wgHooks ) ) {
-			throw new MWException( "Global hooks array is not an array!\n" );
-		}
-
-		$new_handlers = (array) self::$handlers;
-		$old_handlers = (array) $wgHooks;
-
-		$hook_array = array_merge( $new_handlers, $old_handlers );
-
-		if ( !is_array( $hook_array[$event] ) ) {
-			throw new MWException( "Hooks array for event '$event' is not an array!\n" );
-		}
-
-		foreach ( $hook_array[$event] as $index => $hook ) {
-			$object = null;
-			$method = null;
-			$func = null;
-			$data = null;
-			$have_data = false;
-			$closure = false;
-			$badhookmsg = false;
+			if ( !array_filter( $hook ) ) {
+				// Either array is empty or it's an array filled with null/false/empty.
+				continue;
+			} elseif ( is_array( $hook[0] ) ) {
+				// First element is an array, meaning the developer intended
+				// the first element to be a callback. Merge it in so that
+				// processing can be uniform.
+				$hook = array_merge( $hook[0], array_slice( $hook, 1 ) );
+			}
 
 			/**
 			 * $hook can be: a function, an object, an array of $function and
 			 * $data, an array of just a function, an array of object and
 			 * method, or an array of object, method, and data.
 			 */
-			if ( is_array( $hook ) ) {
-				if ( count( $hook ) < 1 ) {
-					throw new MWException( 'Empty array in hooks for ' . $event . "\n" );
-				} elseif ( is_object( $hook[0] ) ) {
-					$object = $hook_array[$event][$index][0];
-					if ( $object instanceof Closure ) {
-						$closure = true;
-						if ( count( $hook ) > 1 ) {
-							$data = $hook[1];
-							$have_data = true;
-						}
-					} else {
-						if ( count( $hook ) < 2 ) {
-							$method = 'on' . $event;
-						} else {
-							$method = $hook[1];
-							if ( count( $hook ) > 2 ) {
-								$data = $hook[2];
-								$have_data = true;
-							}
-						}
-					}
-				} elseif ( is_string( $hook[0] ) ) {
-					$func = $hook[0];
-					if ( count( $hook ) > 1) {
-						$data = $hook[1];
-						$have_data = true;
-					}
-				} else {
-					throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
+			if ( $hook[0] instanceof Closure ) {
+				$func = "hook-$event-closure";
+				$callback = array_shift( $hook );
+			} elseif ( is_object( $hook[0] ) ) {
+				$object = array_shift( $hook );
+				$method = array_shift( $hook );
+
+				// If no method was specified, default to on$event.
+				if ( $method === null ) {
+					$method = "on$event";
 				}
-			} elseif ( is_string( $hook ) ) { # functions look like strings, too
-				$func = $hook;
-			} elseif ( is_object( $hook ) ) {
-				$object = $hook_array[$event][$index];
-				if ( $object instanceof Closure ) {
-					$closure = true;
-				} else {
-					$method = "on" . $event;
-				}
+
+				$func = get_class( $object ) . '::' . $method;
+				$callback = array( $object, $method );
+			} elseif ( is_string( $hook[0] ) ) {
+				$func = $callback = array_shift( $hook );
 			} else {
 				throw new MWException( 'Unknown datatype in hooks for ' . $event . "\n" );
 			}
 
-			/* We put the first data element on, if needed. */
-			if ( $have_data ) {
-				$hook_args = array_merge( array( $data ), $args );
-			} else {
-				$hook_args = $args;
-			}
-
-			if ( $closure ) {
-				$callback = $object;
-				$func = "hook-$event-closure";
-			} elseif ( isset( $object ) ) {
-				$func = get_class( $object ) . '::' . $method;
-				$callback = array( $object, $method );
-			} else {
-				$callback = $func;
-			}
-
 			// Run autoloader (workaround for call_user_func_array bug)
-			is_callable( $callback );
+			// and throw error if not callable.
+			if ( !is_callable( $callback ) ) {
+				throw new MWException( 'Invalid callback in hooks for ' . $event . "\n" );
+			}
 
-			/**
-			 * Call the hook. The documentation of call_user_func_array clearly
-			 * states that FALSE is returned on failure. However this is not
-			 * case always. In some version of PHP if the function signature
-			 * does not match the call signature, PHP will issue an warning:
-			 * Param y in x expected to be a reference, value given.
-			 *
-			 * In that case the call will also return null. The following code
-			 * catches that warning and provides better error message. The
-			 * function documentation also says that:
-			 *     In other words, it does not depend on the function signature
-			 *     whether the parameter is passed by a value or by a reference.
-			 * There is also PHP bug http://bugs.php.net/bug.php?id=47554 which
-			 * is unsurprisingly marked as bogus. In short handling of failures
-			 * with call_user_func_array is a failure, the documentation for that
-			 * function is wrong and misleading and PHP developers don't see any
-			 * problem here.
+			/*
+			 * Call the hook. The documentation of call_user_func_array says
+			 * false is returned on failure. However, if the function signature
+			 * does not match the call signature, PHP will issue an warning and
+			 * return null instead. The following code catches that warning and
+			 * provides better error message.
 			 */
 			$retval = null;
-			set_error_handler( 'Hooks::hookErrorHandler' );
+			$badhookmsg = null;
+			$hook_args = array_merge( $hook, $args );
+
+			// Profile first in case the Profiler causes errors.
 			wfProfileIn( $func );
+			set_error_handler( 'Hooks::hookErrorHandler' );
 			try {
 				$retval = call_user_func_array( $callback, $hook_args );
 			} catch ( MWHookException $e ) {
 				$badhookmsg = $e->getMessage();
 			}
-			wfProfileOut( $func );
 			restore_error_handler();
+			wfProfileOut( $func );
 
-			/* String return is an error; false return means stop processing. */
+			// Process the return value.
 			if ( is_string( $retval ) ) {
+				// String returned means error.
 				throw new FatalError( $retval );
-			} elseif( $retval === null ) {
-				if ( $closure ) {
-					$prettyFunc = "$event closure";
-				} elseif( is_array( $callback ) ) {
-					if( is_object( $callback[0] ) ) {
-						$prettyClass = get_class( $callback[0] );
-					} else {
-						$prettyClass = strval( $callback[0] );
-					}
-					$prettyFunc = $prettyClass . '::' . strval( $callback[1] );
-				} else {
-					$prettyFunc = strval( $callback );
-				}
-				if ( $badhookmsg ) {
-					throw new MWException(
-						'Detected bug in an extension! ' .
-						"Hook $prettyFunc has invalid call signature; " . $badhookmsg
-					);
-				} else {
-					throw new MWException(
-						'Detected bug in an extension! ' .
-						"Hook $prettyFunc failed to return a value; " .
-						'should return true to continue hook processing or false to abort.'
-					);
-				}
-			} elseif ( !$retval ) {
+			} elseif ( $badhookmsg !== null ) {
+				// Exception was thrown from Hooks::hookErrorHandler.
+				throw new MWException(
+					'Detected bug in an extension! ' .
+					"Hook $func has invalid call signature; " . $badhookmsg
+				);
+			} elseif ( $retval === false ) {
+				wfProfileOut( 'hook: ' . $event );
+				// False was returned. Stop processing, but no error.
 				return false;
 			}
 		}
 
+		wfProfileOut( 'hook: ' . $event );
 		return true;
 	}
 
 	/**
+	 * Handle PHP errors issued inside a hook. Catch errors that have to do with
+	 * a function expecting a reference, and let all others pass through.
+	 *
 	 * This REALLY should be protected... but it's public for compatibility
 	 *
-	 * @param $errno int Unused
-	 * @param $errstr String: error message
-	 * @return Boolean: false
+	 * @since 1.18
+	 *
+	 * @param int $errno Error number (unused)
+	 * @param string $errstr Error message
+	 * @throws MWHookException If the error has to do with the function signature
+	 * @return bool Always returns false
 	 */
 	public static function hookErrorHandler( $errno, $errstr ) {
 		if ( strpos( $errstr, 'expected to be a reference, value given' ) !== false ) {
-			throw new MWHookException( $errstr );
+			throw new MWHookException( $errstr, $errno );
 		}
 		return false;
 	}

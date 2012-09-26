@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that deletes one or more revisions by moving them
@@ -85,4 +85,4 @@ class DeleteRevision extends Maintenance {
 }
 
 $maintClass = "DeleteRevision";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

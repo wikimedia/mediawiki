@@ -29,7 +29,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/cleanupTable.inc' );
+require_once __DIR__ . '/cleanupTable.inc';
 
 /**
  * Maintenance script to clean up broken, unparseable titles.
@@ -83,8 +83,12 @@ class TitleCleanup extends TableCleanup {
 		$legalized = preg_replace_callback( "!([^$legal])!",
 			array( &$this, 'hexChar' ),
 			$row->page_title );
-		if ( $legalized == '.' ) $legalized = '(dot)';
-		if ( $legalized == '_' ) $legalized = '(space)';
+		if ( $legalized == '.' ) {
+			$legalized = '(dot)';
+		}
+		if ( $legalized == '_' ) {
+			$legalized = '(space)';
+		}
 		$legalized = 'Broken/' . $legalized;
 
 		$title = Title::newFromText( $legalized );
@@ -114,14 +118,16 @@ class TitleCleanup extends TableCleanup {
 	protected function moveInconsistentPage( $row, $title ) {
 		if ( $title->exists() || $title->getInterwiki() || !$title->canExist() ) {
 			if ( $title->getInterwiki() || !$title->canExist() ) {
-				$prior = $title->getPrefixedDbKey();
+				$prior = $title->getPrefixedDBkey();
 			} else {
 				$prior = $title->getDBkey();
 			}
 
 			# Old cleanupTitles could move articles there. See bug 23147.
 			$ns = $row->page_namespace;
-			if ( $ns < 0 ) $ns = 0;
+			if ( $ns < 0 ) {
+				$ns = 0;
+			}
 
 			$clean = 'Broken/' . $prior;
 			$verified = Title::makeTitleSafe( $ns, $clean );
@@ -156,4 +162,4 @@ class TitleCleanup extends TableCleanup {
 }
 
 $maintClass = "TitleCleanup";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

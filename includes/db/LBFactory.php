@@ -86,7 +86,7 @@ abstract class LBFactory {
 	 * Create a new load balancer object. The resulting object will be untracked,
 	 * not chronology-protected, and the caller is responsible for cleaning it up.
 	 *
-	 * @param $wiki String: wiki ID, or false for the current wiki
+	 * @param string $wiki wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function newMainLB( $wiki = false );
@@ -94,7 +94,7 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer object.
 	 *
-	 * @param $wiki String: wiki ID, or false for the current wiki
+	 * @param string $wiki wiki ID, or false for the current wiki
 	 * @return LoadBalancer
 	 */
 	abstract function getMainLB( $wiki = false );
@@ -104,8 +104,8 @@ abstract class LBFactory {
 	 * untracked, not chronology-protected, and the caller is responsible for
 	 * cleaning it up.
 	 *
-	 * @param $cluster String: external storage cluster, or false for core
-	 * @param $wiki String: wiki ID, or false for the current wiki
+	 * @param string $cluster external storage cluster, or false for core
+	 * @param string $wiki wiki ID, or false for the current wiki
 	 *
 	 * @return LoadBalancer
 	 */
@@ -114,8 +114,8 @@ abstract class LBFactory {
 	/**
 	 * Get a cached (tracked) load balancer for external storage
 	 *
-	 * @param $cluster String: external storage cluster, or false for core
-	 * @param $wiki String: wiki ID, or false for the current wiki
+	 * @param string $cluster external storage cluster, or false for core
+	 * @param string $wiki wiki ID, or false for the current wiki
 	 *
 	 * @return LoadBalancer
 	 */
@@ -134,7 +134,8 @@ abstract class LBFactory {
 	 * Prepare all tracked load balancers for shutdown
 	 * STUB
 	 */
-	function shutdown() {}
+	function shutdown() {
+	}
 
 	/**
 	 * Call a method of each tracked load balancer
@@ -201,7 +202,7 @@ class LBFactory_Simple extends LBFactory {
 				$flags |= DBO_COMPRESS;
 			}
 
-			$servers = array(array(
+			$servers = array( array(
 				'host' => $wgDBserver,
 				'user' => $wgDBuser,
 				'password' => $wgDBpassword,
@@ -240,7 +241,7 @@ class LBFactory_Simple extends LBFactory {
 	function newExternalLB( $cluster, $wiki = false ) {
 		global $wgExternalServers;
 		if ( !isset( $wgExternalServers[$cluster] ) ) {
-			throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
+			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 		return new LoadBalancer( array(
 			'servers' => $wgExternalServers[$cluster]
@@ -256,6 +257,7 @@ class LBFactory_Simple extends LBFactory {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
+			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 		return $this->extLBs[$cluster];
 	}
@@ -280,6 +282,9 @@ class LBFactory_Simple extends LBFactory {
 		if ( $this->mainLB ) {
 			$this->chronProt->shutdownLB( $this->mainLB );
 		}
+		foreach ( $this->extLBs as $extLB ) {
+			$this->chronProt->shutdownLB( $extLB );
+		}
 		$this->chronProt->shutdown();
 		$this->commitMasterChanges();
 	}
@@ -292,21 +297,27 @@ class LBFactory_Simple extends LBFactory {
  * LBFactory::enableBackend() to return to normal behavior
  */
 class LBFactory_Fake extends LBFactory {
-	function __construct( $conf ) {}
+	function __construct( $conf ) {
+	}
 
-	function newMainLB( $wiki = false) {
+	function newMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
+
 	function getMainLB( $wiki = false ) {
 		throw new DBAccessError;
 	}
+
 	function newExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
+
 	function &getExternalLB( $cluster, $wiki = false ) {
 		throw new DBAccessError;
 	}
-	function forEachLB( $callback, $params = array() ) {}
+
+	function forEachLB( $callback, $params = array() ) {
+	}
 }
 
 /**
@@ -315,78 +326,5 @@ class LBFactory_Fake extends LBFactory {
 class DBAccessError extends MWException {
 	function __construct() {
 		parent::__construct( "Mediawiki tried to access the database via wfGetDB(). This is not allowed." );
-	}
-}
-
-/**
- * Class for ensuring a consistent ordering of events as seen by the user, despite replication.
- * Kind of like Hawking's [[Chronology Protection Agency]].
- */
-class ChronologyProtector {
-	var $startupPos;
-	var $shutdownPos = array();
-
-	/**
-	 * Initialise a LoadBalancer to give it appropriate chronology protection.
-	 *
-	 * @param $lb LoadBalancer
-	 */
-	function initLB( $lb ) {
-		if ( $this->startupPos === null ) {
-			if ( !empty( $_SESSION[__CLASS__] ) ) {
-				$this->startupPos = $_SESSION[__CLASS__];
-			}
-		}
-		if ( !$this->startupPos ) {
-			return;
-		}
-		$masterName = $lb->getServerName( 0 );
-
-		if ( $lb->getServerCount() > 1 && !empty( $this->startupPos[$masterName] ) ) {
-			$info = $lb->parentInfo();
-			$pos = $this->startupPos[$masterName];
-			wfDebug( __METHOD__.": LB " . $info['id'] . " waiting for master pos $pos\n" );
-			$lb->waitFor( $this->startupPos[$masterName] );
-		}
-	}
-
-	/**
-	 * Notify the ChronologyProtector that the LoadBalancer is about to shut
-	 * down. Saves replication positions.
-	 *
-	 * @param $lb LoadBalancer
-	 */
-	function shutdownLB( $lb ) {
-		// Don't start a session, don't bother with non-replicated setups
-		if ( strval( session_id() ) == '' || $lb->getServerCount() <= 1 ) {
-			return;
-		}
-		$masterName = $lb->getServerName( 0 );
-		if ( isset( $this->shutdownPos[$masterName] ) ) {
-			// Already done
-			return;
-		}
-		// Only save the position if writes have been done on the connection
-		$db = $lb->getAnyOpenConnection( 0 );
-		$info = $lb->parentInfo();
-		if ( !$db || !$db->doneWrites() ) {
-			wfDebug( __METHOD__.": LB {$info['id']}, no writes done\n" );
-			return;
-		}
-		$pos = $db->getMasterPos();
-		wfDebug( __METHOD__.": LB {$info['id']} has master pos $pos\n" );
-		$this->shutdownPos[$masterName] = $pos;
-	}
-
-	/**
-	 * Notify the ChronologyProtector that the LBFactory is done calling shutdownLB() for now.
-	 * May commit chronology data to persistent storage.
-	 */
-	function shutdown() {
-		if ( session_id() != '' && count( $this->shutdownPos ) ) {
-			wfDebug( __METHOD__.": saving master pos for " .
-				count( $this->shutdownPos ) . " master(s)\n" );
-			$_SESSION[__CLASS__] = $this->shutdownPos;
-		}
 	}
 }

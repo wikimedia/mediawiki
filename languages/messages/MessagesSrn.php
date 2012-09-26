@@ -179,8 +179,6 @@ $messages = array(
 'tog-enotifminoredits' => 'E-mail mi fu pikin kenki fu peprewoysi opo mi sirey',
 'tog-enotifrevealaddr' => 'Sori mi e-mail nen ini den e-mail boskopu',
 'tog-shownumberswatching' => 'Sori omeni kebroikiman e tan luku a papira disi',
-'tog-externaleditor' => 'Tan kebroiki wan dorosey kenki-wrokosani (soso gi sabiman - spesrutu seti de fanowdu gi disi)',
-'tog-externaldiff' => 'Tan kebroiki wan dorosey agersi-wrokosani (soso gi sabiman - spesrutu set de fanowdu gi disi)',
 'tog-showjumplinks' => 'Sori den "go na" miti',
 'tog-uselivepreview' => 'Kebroiki "wanten sori-na-fesi" (JavaScript – ondrosuku fasi)',
 'tog-forceeditsummary' => 'Gi wan boskopu efu a "Syatu" boksu leygi',
@@ -279,7 +277,6 @@ $messages = array(
 'qbbrowse' => 'Browse',
 'qbedit' => 'Kenki',
 'qbpageoptions' => 'A papira disi',
-'qbpageinfo' => 'Abra a papira',
 'qbmyoptions' => 'Mi papira',
 'qbspecialpages' => 'Spesrutu papira',
 'faq' => 'FAQ (Sani di ben aksi furu)',
@@ -349,7 +346,6 @@ $messages = array(
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:Disclaimer gi ala',
 'edithelp' => 'Yepi nanga kenki',
-'edithelppage' => 'Help:Kenki',
 'helppage' => 'Help:San de',
 'mainpage' => 'Fesipapira',
 'mainpage-description' => 'Fesipapira',
@@ -443,9 +439,6 @@ Fu san ede: ''$2''.",
 
 Yu kan tan kebroiki {{SITENAME}} sondro nen, noso yu kan psa kon baka leki a srefi noso wan tra kebroikiman.
 Sabi taki a kan gersi leki yu psa kon ete, te leki yu leygi a cache fu yu browser.",
-'welcomecreation' => '== Welkom, $1! ==
-Yu account meki now.
-No fergiti fu kenki den seti fu yu gi {{SITENAME}}.',
 'yourname' => 'Kebroikiman nen:',
 'yourpassword' => 'Psa wortu:',
 'yourpasswordagain' => 'Psa wortu ete wan leysi:',
@@ -642,16 +635,7 @@ A kan ben trowe efu dribi.
 'prevn' => '{{PLURAL:$1|$1}} di psa',
 'nextn' => '{{PLURAL:$1|$1}} trawan',
 'viewprevnext' => 'Luku ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:San de',
 'powersearch' => 'Suku moro dipi',
-
-# Quickbar
-'qbsettings' => 'Kwikbak',
-'qbsettings-none' => 'Nowan',
-'qbsettings-fixedleft' => 'Set na ku',
-'qbsettings-fixedright' => 'Set na pe',
-'qbsettings-floatingleft' => 'Han na ku',
-'qbsettings-floatingright' => 'Han na pe',
 
 # Preferences page
 'preferences' => 'Seti',
@@ -731,7 +715,6 @@ A kan ben trowe efu dribi.
 
 # User rights log
 'rightslog' => 'Log buku fu kebroikiman leti',
-'rightsnone' => '(no)',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|kenki|kenki}}',
@@ -947,7 +930,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'listusers-submit' => 'Libi si',
 'listusers-noresult' => 'No masyin dyaso.',
 
-# E-mail user
+# Email user
 'mailnologin' => 'No stiradresi',
 'emailuser' => 'E-mail a kebroikiman disi',
 'emailpage' => 'Mayin e-mail',
@@ -1240,5 +1223,8 @@ Trawan o kibri.
 
 # Special:SpecialPages
 'specialpages' => 'Spesrutu papira',
+
+# New logging system
+'rightsnone' => '(no)',
 
 );

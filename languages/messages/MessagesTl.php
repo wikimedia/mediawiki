@@ -114,7 +114,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Mga_huling_binago', 'HulingBinago' ),
 	'Recentchangeslinked'       => array( 'Nakakawing_ng_kamakailang_pagbabago', 'Kaugnay_na_mga_pagbabago' ),
 	'Revisiondelete'            => array( 'Pagbura_ng_pagbabago' ),
-	'RevisionMove'              => array( 'Paglipat_ng_Rebisyon' ),
 	'Search'                    => array( 'Maghanap' ),
 	'Shortpages'                => array( 'Maikling_mga_pahina' ),
 	'Specialpages'              => array( 'Natatanging_mga_pahina' ),
@@ -177,8 +176,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
 'tog-oldsig' => 'Umiiral na lagda:',
 'tog-fancysig' => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
-'tog-externaleditor' => 'Gumamit ng nakatakdang panlabas na pampatnugot ayon sa likas na pagkakatakda (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Marami pang kabatiran.])',
-'tog-externaldiff' => 'Gumamit ng likas na nakatakdang panlabas na pagkakaiba (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Mas marami pang kabatiran.])',
 'tog-showjumplinks' => 'Payagan ang mga "tumalon sa" na kawing pampagamit',
 'tog-uselivepreview' => 'Gamitin ang buhay na paunang tingin (JavaScript) (Eksperimental)',
 'tog-forceeditsummary' => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
@@ -193,10 +190,11 @@ $messages = array(
 'tog-showhiddencats' => 'Ipakita ang mga nakatagong kategorya',
 'tog-noconvertlink' => 'Huwag paganahin ang pagpapalit ng pamagat na pangkawing',
 'tog-norollbackdiff' => 'Alisin ang mga pagkakaiba pagkatapos isagawa ang pagpapagulong na pabalik sa dati',
+'tog-useeditwarning' => 'Magbabala sa akin kapag umalis ako sa isang pahina ng pampatnugot na hindi pa nasasagip ang mga pagbabago',
 
 'underline-always' => 'Palagi',
 'underline-never' => 'Hindi magpakailanman',
-'underline-default' => 'Tinakda ng pambasa-basa',
+'underline-default' => 'Tinakda ng pambasa-basa o balat',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Baguhin ang estilong pantitik ng lugar:',
@@ -256,6 +254,18 @@ $messages = array(
 'oct' => 'Okt',
 'nov' => 'Nob',
 'dec' => 'Dis',
+'january-date' => '$1 Enero',
+'february-date' => '$1 Pebrero',
+'march-date' => '$1 Marso',
+'april-date' => '$1 Abril',
+'may-date' => '$1 Mayo',
+'june-date' => '$1 Hunyo',
+'july-date' => '$1 Hulyo',
+'august-date' => '$1 Agosto',
+'september-date' => '$1 Setyembre',
+'october-date' => '$1 Oktubre',
+'november-date' => '$1 Nobyembre',
+'december-date' => '$1 Disyembre',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorya|Mga kategorya}}',
@@ -285,7 +295,7 @@ $messages = array(
 'cancel' => 'Kanselahin',
 'moredotdotdot' => 'Damihan pa...',
 'mypage' => 'Pahina ko',
-'mytalk' => 'Usapan ko',
+'mytalk' => 'Usapan',
 'anontalk' => 'Usapan para sa IP na ito',
 'navigation' => 'Paglilibot (nabigasyon)',
 'and' => ',&#32;at',
@@ -295,7 +305,6 @@ $messages = array(
 'qbbrowse' => 'Basa-basahin',
 'qbedit' => 'Baguhin',
 'qbpageoptions' => 'Itong pahina',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Mga pahina ko',
 'qbspecialpages' => 'Mga natatanging pahina',
 'faq' => "Mga karaniwang itinatanong (''FAQ'')",
@@ -308,7 +317,7 @@ $messages = array(
 'vector-action-protect' => 'Ipagsanggalang',
 'vector-action-undelete' => 'Alisin ang pagbubura',
 'vector-action-unprotect' => 'Baguhin ang pagsasanggalang',
-'vector-simplesearch-preference' => 'Paganahin ang pinainam na mga mungkahi sa paghahanap (pabalat na Vector lang)',
+'vector-simplesearch-preference' => 'Paganahin ang pinainam na bar ng paghahanap (pabalat na Vector lang)',
 'vector-view-create' => 'Likhain',
 'vector-view-edit' => 'Baguhin',
 'vector-view-history' => 'Tingnan ang kasaysayan',
@@ -318,6 +327,7 @@ $messages = array(
 'namespaces' => 'Mga ngalan-espasyo',
 'variants' => 'Naiiba pa',
 
+'navigation-heading' => 'Menu ng paglilibot',
 'errorpagetitle' => 'Pagkakamali',
 'returnto' => 'Bumalik sa $1.',
 'tagline' => 'Mula sa {{SITENAME}}',
@@ -351,7 +361,7 @@ $messages = array(
 'talkpagelinktext' => 'Usapan',
 'specialpage' => 'Natatanging pahina',
 'personaltools' => 'Mga kagamitang pansarili',
-'postcomment' => 'Bagong seksyon',
+'postcomment' => 'Bagong seksiyon',
 'articlepage' => 'Tingnan ang pahina ng nilalaman',
 'talk' => 'Usapan',
 'views' => 'Mga anyo',
@@ -371,7 +381,7 @@ $messages = array(
 'viewcount' => 'Namataan na pahinang ito nang {{PLURAL:$1|isang|$1}} beses.',
 'protectedpage' => 'Pahinang nakasanggalang',
 'jumpto' => 'Tumalon sa:',
-'jumptonavigation' => 'paglilibot (nabigasyon)',
+'jumptonavigation' => 'paglilibot',
 'jumptosearch' => 'paghahanap',
 'view-pool-error' => 'Paumanhin, ngunit masyado pong abala ang mga serbidor sa sandaling ito.
 Masyadong maraming tagagamit ay sinusubukang tingnan ang pahinang ito.
@@ -392,7 +402,6 @@ $1',
 'disclaimers' => 'Mga pagtatanggi',
 'disclaimerpage' => 'Project:Pangkalahatang pagtatanggi',
 'edithelp' => 'Tulong sa pagbabago',
-'edithelppage' => 'Help:Pagbabago',
 'helppage' => 'Help:Mga nilalaman',
 'mainpage' => 'Unang Pahina',
 'mainpage-description' => 'Unang Pahina',
@@ -442,9 +451,9 @@ Tingnan ang [[Special:Version|pahina ng bersiyon]].',
 'feed-invalid' => 'Hindi tanggap na uri ng serbisyo ng pagpaparating.',
 'feed-unavailable' => 'Walang serbisyo mula sa sindikasyong pangpaglalathala',
 'site-rss-feed' => 'Kargang RSS ng $1',
-'site-atom-feed' => 'Kargang Atom ng $1',
+'site-atom-feed' => 'Sindikasyong Atom ng $1',
 'page-rss-feed' => 'Kargang RSS ng "$1"',
-'page-atom-feed' => 'Kargang Atom ng "$1"',
+'page-atom-feed' => 'Sindikasyong Atom ng "$1"',
 'feed-atom' => 'Atom',
 'feed-rss' => 'RSS',
 'red-link-title' => '$1 (hindi umiiral ang pahina)',
@@ -475,10 +484,10 @@ Matatagpuan ang isang tala ng mga tamang natatanging pahina sa [[Special:Special
 
 # General errors
 'error' => 'Kamalian',
-'databaseerror' => 'Kamalian sa kalipunan ng dato',
-'dberrortext' => 'Naganap ang isang pagkakamali sa pag-uusisa na pampalaugnayan sa kalipunan ng dato.
+'databaseerror' => 'Kamalian sa kalipunan ng datos',
+'dberrortext' => 'Naganap ang isang pagkakamali sa pag-uusisa na pampalaugnayan sa kalipunan ng datos.
 Maaaring magpahiwatig ito ng isang surot sa loob ng sopwer.
-Ang huling tinangkang pag-uusisa sa kalipunan ng dato ay:
+Ang huling tinangkang pag-uusisa sa kalipunan ng datos ay:
 <blockquote><code>$1</code></blockquote>
 magmula sa loob ng tungkuling "<code>$2</code>".
 Nagbalik ang kalipunan ng dato ng kamalian na "<samp>$3: $4</samp>".',
@@ -540,14 +549,16 @@ Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
 'viewyourtext' => "Matitingnan at makukopya mo ang pinagmulan ng '''mga pagbabago''' papunta sa pahinang ito:",
 'protectedinterface' => "Nagbibigay ang pahinang ito ng tekstong panghangganan (''interface'') para sa sopwer, at ikinandado para maiwasan ang pangaabuso.",
 'editinginterface' => "'''Babala:''' Binabago mo ang isang pahinang ginagamit sa pagbibigay ng tekstong panghangganan para sa sopwer.
-Makakaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pangtagagamit na para sa ibang mga tagagamit.
-Para sa mga salinwika, paki isang-alang-alang o konsiderahin ang paggamit ng [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyektong panglokalisasyon ng MediaWiki.",
+Makaaapekto ang mga pagbago sa pahinang ito sa anyo ng hangganang (''interface'') pantagagamit na para sa ibang mga tagagamit sa wiking ito.
+Upang magdagag o magbago ng mga salinwika, isaaalang-alang na lang po ang paggamit ng [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto para sa lokalisasyon ng MediaWiki.",
 'sqlhidden' => '(nakatago ang tanong ng SQL)',
 'cascadeprotected' => 'Nakasanggalang ang pahinang ito mula sa mga pagbabago, dahil kabilang ito sa sumusunod na {{PLURAL:$1|pahinang|mga pahinang}} nakasanggalang sa pamamagitan ng binuhay na opsyong "nahuhulog" (kumakaskada):
 $2',
 'namespaceprotected' => "Wala kang pahintulot na magbago ng mga pahinang nasa ngalan-espasyong '''$1'''.",
 'customcssprotected' => 'Wala kang pahintulot na baguhin ang pahina ng CSS na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.',
 'customjsprotected' => 'Wala kang pahintulot na baguhin ang pahina ng JavaScript na ito, dahil naglalaman ito ng mga katakdaang pansarili ng ibang tagagamit.',
+'mycustomcssprotected' => 'Wala kang pahintulot na baguhin itong pahinang CSS.',
+'mycustomjsprotected' => 'Wala kang pahintulot na baguhin itong pahinang JavaScript.',
 'ns-specialprotected' => 'Hindi pwedeng baguhin ang mga natatanging pahina.',
 'titleprotected' => "Nakasanggalang ang pamagat na ito mula sa paglikha ni [[User:$1|$1]].
 Ang ibinigay na dahilan ay ''$2''.",
@@ -567,15 +578,19 @@ Ang tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: "$3".',
 # Login and logout pages
 'logouttext' => "'''Nakaalis ka na sa pagkakalagda.'''
 
-Maaari kang tumuloy sa paggamit ng {{SITENAME}} nang hindi nakikilala (anonimo), o maaaring kang [[Special:UserLogin|lumagda/tumala muli]] bilang kapareho o ibang tagagamit.
+Maaari kang tumuloy sa paggamit ng {{SITENAME}} nang hindi nakikilala (anonimo), o maaaring kang <span class='plainlinks'>[$1 lumagda/tumala muli]</span> bilang kapareho o ibang tagagamit.
 Tandaan na may ilang pahinang maaaring magpatuloy na nagpapakitang parang nakalagda ka pa rin, hanggang sa linisin mo ang iyong baunang pambasa-basa (''browser cache'').",
-'welcomecreation' => '== Maligayang pagdating, $1! ==
-Nilikha na ang iyong kuwenta.
+'welcomeuser' => 'Mabuhay, $1!',
+'welcomecreation-msg' => 'Nilikha na ang iyong kuwenta.
 Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SITENAME}}]].',
 'yourname' => 'Bansag:',
 'yourpassword' => 'Hudyat:',
+'userlogin-yourpassword' => 'Hudyat',
+'userlogin-yourpassword-ph' => 'Ipasok ang iyong hudyat',
 'yourpasswordagain' => 'Hudyat mo uli:',
+'createacct-yourpasswordagain' => 'Tiyakin ang hudyat',
 'remembermypassword' => 'Tandaan ang paglagda ko sa kompyuter na ito (pinakamarami na ang $1 {{PLURAL:$1|araw|mga araw}})',
+'userlogin-remembermypassword' => 'Panatilihin akong nakalagda',
 'securelogin-stick-https' => 'Manatiling konektado sa HTTPS matapos lumagda',
 'yourdomainname' => 'Dominyo mo:',
 'password-change-forbidden' => 'Hindi mo maaaring palitan ang mga hudyat sa wiking ito.',
@@ -588,14 +603,19 @@ Huwag kalimutang baguhin ang iyong [[Special:Preferences|mga kagustuhan sa {{SIT
 'logout' => 'Umalis sa pagkakalagda',
 'userlogout' => 'Umalis sa pagkakalagda',
 'notloggedin' => 'Hindi nakalagda',
+'userlogin-noaccount' => 'Wala ka pa bang kuwenta?',
+'userlogin-joinproject' => 'Sumali sa {{SITENAME}}',
 'nologin' => 'Wala ka pang kuwenta? $1.',
 'nologinlink' => 'Lumikha ng kuwenta',
 'createaccount' => 'Lumikha ng kuwenta',
 'gotaccount' => 'May kuwenta ka na ba? $1.',
 'gotaccountlink' => 'Lumagda',
 'userlogin-resetlink' => 'Nakalimutan mo ang iyong mga detalyeng panglagda?',
-'createaccountmail' => 'sa pamamagitan ng e-liham',
+'createacct-emailrequired' => 'Direksiyong e-liham:',
+'createaccountmail' => 'Gumamit ng pansamantalang walang-piling hudyat at ipadala ito sa direksiyong e-liham na nakasaad sa ibaba',
+'createacct-realname' => 'Tunay na pangalan (maaaring wala)',
 'createaccountreason' => 'Dahilan:',
+'createacct-reason' => 'Dahilan',
 'badretype' => 'Hindi magkatugma ang ipinasok mong mga hudyat.',
 'userexists' => 'May gumagamit na ng ipinasok na bansag.
 Pumili po ng ibang pangalan.',
@@ -661,7 +681,7 @@ Pakipasok ang isang may mahusay na anyong adres o paki-iwang walang laman na lan
 'cannotchangeemail' => 'Hindi maaaring baguhin ang mga direksiyong e-liham sa wiking ito.',
 'emaildisabled' => 'Ang sityong ito ay hindi makapagpapadala ng mga e-liham.',
 'accountcreated' => 'Nilikha na ang kuwenta',
-'accountcreatedtext' => 'Nilikha na ang kuwentang tagagamit para kay $1.',
+'accountcreatedtext' => 'Nilikha na ang kuwenta ng tagagamit para kay [[{{ns:User}}:$1|$1]] ([[{{ns:User talk}}:$1|talk]]).',
 'createaccount-title' => 'Paglikha ng kuwenta para sa {{SITENAME}}',
 'createaccount-text' => 'May lumikha ng kuwenta para sa iyong adres ng e-liham sa {{SITENAME}} ($4) na pinangalanang "$2", na may hudyat na "$3".
 Dapat kang tumala at baguhin ang hudyat mo ngayon.
@@ -674,7 +694,7 @@ Maghintay po muna bago subukan uli.',
 'loginlanguagelabel' => 'Wika: $1',
 'suspicious-userlogout' => "Tinanggihan ang inyong kahilingang umalis sa pagkalagda dahil tila ito ay ipinadala ng sirang pambasa-basa o apoderadong pambaon (''caching proxy'')",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Hindi malamang kamalian sa tungkulin ng liham ng PHP ()',
 'user-mail-no-addy' => 'Sinubukang magpadala ng e-liham na walang tirahan na para sa e-liham.',
 
@@ -699,10 +719,8 @@ Maaaring matagumpay mo nang nabago ang iyong hudyat o nakahiling na ng isang bag
 
 # Special:PasswordReset
 'passwordreset' => 'Muling pagtatakda ng hudyat',
-'passwordreset-text' => 'Punuin ang pormularyong ito upang makatanggap ng isang pampaalalang e-liham ng iyong mga detalye ng akawnt.',
 'passwordreset-legend' => 'Itakdang muli ang hudyat',
 'passwordreset-disabled' => 'Hindi pinagagana sa wiking ito ang muling mga pagtatakda ng hudyat.',
-'passwordreset-pretext' => '{{PLURAL:$1| | Ipasok ang isa sa mga piraso ng datos sa ibaba}}',
 'passwordreset-username' => 'Pangalan ng tagagamit:',
 'passwordreset-domain' => 'Nasasakupan:',
 'passwordreset-capture' => 'Tingnan ang lumabas na e-liham?',
@@ -867,10 +885,11 @@ Tandaang gumagamit ang pinasadyang mga pahinang .css at .js ng mga pamagat na ma
 'note' => "'''Paunawa:'''",
 'previewnote' => "'''Tandaan na isa lamang itong paunang tingin.'''
 Hindi pa nasasagip ang mga binago mo!",
-'continue-editing' => 'Ipagpatuloy ang pamamatnugot',
+'continue-editing' => 'Pumunta sa pook ng pamamatnugot',
 'previewconflict' => 'Ipinamamalas ng paunang tinging ito ang teksto sa loob ng pangitaas na pook-patnugutan ng teksto ayon sa lilitaw na anyo nito kapag pinili mo ang pagsagip.',
-'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng sesyon ng datos.
-Paki ulit muli. Kung hindi ito gumana, subukang umalis sa pagkalagda at bumalik muli.'''",
+'session_fail_preview' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng datos ng sesyon.'''
+Pakiulit muli.
+Kung hindi ito gumana, subukang [[Special:UserLogout|umalis sa pagkalagda]] at bumalik muli.",
 'session_fail_preview_html' => "'''Paumanhin! Hindi namin maproseso ang iyong pagbabago hinggil sa pagkawala ng datos ng sesyon.'''
 
 ''Dahil naka-andar ang hilaw na HTML sa {{SITENAME}}, nakatago ang paunang tingin bilang pag-iingat sa mga paglusob ng JavaScript.''
@@ -908,8 +927,8 @@ Nangangako ka rin sa amin na ikaw ang mismong sumulat nito, o sinipi/kinopya mo 
 '''HUWAG MAGTALA NG AKDANG NAKAKARAPATANG-ARI (NAKAKOPIRAYT) NA HINDI MUNA HUMIHINGI NG PAHINTULOT!'''",
 'longpageerror' => "'''Kamalian: May haba na {{PLURAL:$1|isang kilobyte|$1 mga kilobyte}} ang ipinasa mong teksto, na mas mahaba kaysa sa pinakamataas na nakatakdang halaga na {{PLURAL:$2|isang kilobyte|$2 mga kilobyte}}.''' 
 Hindi ito masasagip.",
-'readonlywarning' => "'''BABALA: Ikinandado ang kalipunan ng dato para sa gawaing pampagpapanatili, kaya't hindi mo pa masasagip ang mga pagbabagong ginawa mo ngayon.
-Maaaring ibigin mong gupitin at idikit ang teksto patungo sa isang talaksang pangteksto at sagipin ito mamaya.'''
+'readonlywarning' => "'''BABALA: Ikinandado ang kalipunan ng datos para sa gawaing pampagpapanatili, kaya't hindi mo pa masasagip ang mga pagbabagong ginawa mo ngayon.'''
+Maaaring ibigin mong gupitin at idikit ang teksto patungo sa isang talaksang panteksto at sagipin ito mamaya.
 
 Nagbigay ng ganitong paliwanag ang tagapangasiwang nagkandado nito: $1",
 'protectedpagewarning' => "'''Babala: Ikinandado ang pahinang ito upang mga tagagamit lamang na may karapatan ng tagapangasiwa ang makakapagbago nito.'''
@@ -927,7 +946,6 @@ Ang pinakahuling entrada sa talaan ay ibinigay sa baba para sa inyong pagsasangg
 'hiddencategories' => 'Ang pahinang ito ay kasapi sa {{PLURAL:$1|1 nakatagong kategorya|$1 nakatagong kategorya}}:',
 'edittools' => '<!-- Ang teksto rito ay ipapakita sa ilalim ng mga pormularyo ng pagbabago at pagkarga. -->',
 'edittools-upload' => '-',
-'nocreatetitle' => 'May hangganan ang paglikha ng pahina',
 'nocreatetext' => 'Naglagay ng hangganan (restriksyon/limitasyon) ang {{SITENAME}} sa kakayahang makalikha ng bagong mga pahina.
 Maaari kang bumalik at magbago ng isang umiiral na pahina, o kaya [[Special:UserLogin|lumagda o lumikha ng kuwenta/akawnt]].',
 'nocreate-loggedin' => 'Wala kang pahintulot para lumikha ng bagong mga pahina.',
@@ -952,6 +970,12 @@ Tila binura na ito.',
 'edit-already-exists' => 'Hindi makalikha ng isang bagong pahina.
 Umiiral na ito.',
 'defaultmessagetext' => 'Nakatakdang teksto ng mensahe',
+'editwarning-warning' => 'Ang paglisan mula sa pahinang ito ay maaaring makasanhi sa iyo ng pagkawala ng anumang mga pagbabagong ginawa mo.
+Kung nakalagda ka, maaari mong huwag paganahin ang babalang ito sa loob ng seksyong "May binabago" ng mga nais mo.',
+
+# Content models
+'content-model-wikitext' => 'wikiteksto',
+'content-model-text' => 'purong teksto',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Babala: Naglalaman ang pahinang ito ng napakaraming mamahaling mga tawag na pantungkulin.
@@ -1186,7 +1210,6 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'searchmenu-legend' => 'Mga pagpipilian para sa paghahanap',
 'searchmenu-exists' => "'''Mayroong pahinang may pangalang \"[[:\$1]]\" dito sa wiking ito'''",
 'searchmenu-new' => "'''Likhain ang pahinang \"[[:\$1]]\" sa wiking ito!'''",
-'searchhelp-url' => 'Help:Nilalaman',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Tingnan-tingnan ang mga pahinang may ganitong unahan/unlapi]]',
 'searchprofile-articles' => 'Mga pahina ng nilalaman',
 'searchprofile-project' => 'Mga pahina ng Tulong at Proyekto',
@@ -1207,10 +1230,8 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'search-interwiki-caption' => 'Kapatid na mga proyekto',
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(mas marami pa)',
-'search-mwsuggest-enabled' => 'may mga mungkahi',
-'search-mwsuggest-disabled' => 'walang mga mungkahi',
 'search-relatedarticle' => 'Kaugnay',
-'mwsuggest-disable' => 'Huwag paganahin ang mga mungkahi ng AJAX',
+'mwsuggest-disable' => 'Huwag paganahin ang mga mungkahi sa paghahanap',
 'searcheverything-enable' => 'Maghanap sa lahat ng ngalan-espasyo:',
 'searchrelated' => 'kaugnay',
 'searchall' => 'lahat',
@@ -1231,18 +1252,9 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'search-external' => 'Panlabas na paghahanap',
 'searchdisabled' => 'Nakapatay ang paghahanap sa {{SITENAME}}. Maaari kang pansamantalang maghanap sa pamamagitan ng Google. Tandaan na maaaring luma na ang kanilang mga indeks sa nilalaman ng {{SITENAME}}.',
 
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Wala',
-'qbsettings-fixedleft' => 'Inayos ang kaliwa',
-'qbsettings-fixedright' => 'Inayos ang kanan',
-'qbsettings-floatingleft' => 'Kaliwa lumulutang',
-'qbsettings-floatingright' => 'Kanan lumulutang',
-'qbsettings-directionality' => 'Naayos na, ayon sa kapupuntahan ng panitik ng wika mo',
-
 # Preferences page
 'preferences' => 'Mga kagustuhan',
-'mypreferences' => 'Mga nais ko',
+'mypreferences' => 'Mga nais',
 'prefs-edits' => 'Bilang ng mga pagbabago:',
 'prefsnologin' => 'Hindi nakalagda/nakatala',
 'prefsnologintext' => 'Kailangan mong <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
@@ -1303,7 +1315,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'timezoneregion-indian' => 'Karagatang Indyano',
 'timezoneregion-pacific' => 'Karagatang Pasipiko',
 'allowemail' => 'Pahintulutan ang e-liham mula sa ibang mga tagagamit',
-'prefs-searchoptions' => 'Mga pagpipilian para sa paghahanap',
+'prefs-searchoptions' => 'Paghahanap',
 'prefs-namespaces' => 'Mga espasyo ng pangalan',
 'defaultns' => 'O kaya maghanap sa mga pangalan ng espasyong ito:',
 'default' => 'Likas na pagtatakda',
@@ -1316,9 +1328,9 @@ Hindi ito maibabalik sa dating gawi.',
 'prefs-emailconfirm-label' => 'Kumpirmasyon ng e-liham:',
 'prefs-textboxsize' => 'Sukat ng bintana ng pagbabago',
 'youremail' => 'E-liham:',
-'username' => 'Bansag:',
-'uid' => 'ID ng tagagamit:',
-'prefs-memberingroups' => 'Kasapi ng {{PLURAL:$1|na pangkat|na mga pangkat}}:',
+'username' => '{{GENDER:$1|Bansag}}:',
+'uid' => 'ID ng {{GENDER:$1|tagagamit}}:',
+'prefs-memberingroups' => '{{GENDER:$2|Kasapi}} ng {{PLURAL:$1|na pangkat|na mga pangkat}}:',
 'prefs-memberingroups-type' => '$1',
 'prefs-registration' => 'Oras ng pagtatala:',
 'prefs-registration-date-time' => '$1',
@@ -1358,7 +1370,7 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'prefs-displaywatchlist' => 'Ipakita ang mga pagpipilian',
 'prefs-diffs' => 'Mga pagkakaiba',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Mukhang katanggap-tanggap ang direkisyong e-liham',
 'email-address-validity-invalid' => 'Magpasok ng isang tanggap na direksiyong e-liham',
 
@@ -1471,12 +1483,13 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'right-sendemail' => 'Magpadala ng e-liham sa ibang mga tagagamit',
 'right-passwordreset' => 'Tingnan ang mga e-liham ng muling pagtatakda ng hudyat',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Talaan ng paglikha ng tagagamit',
+'newuserlogpagetext' => 'Isa itong talaan ng mga paglikha ng tagagamit.',
+
 # User rights log
 'rightslog' => 'Tala ng mga karapatan ng tagagamit',
 'rightslogtext' => 'Isa itong tala ng mga pagbabago sa mga karapatan ng tagagamit.',
-'rightslogentry' => 'binago ang kasapiang pampangkat para kay $1 mula sa $2 patungong $3',
-'rightslogentry-autopromote' => 'ay kusang naitaas ang ranggo mula $2 upang maging $3',
-'rightsnone' => '(wala)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basahin itong pahina',
@@ -1717,6 +1730,7 @@ Kapag nagpatuloy ang suliranin, makipagugnayan sa isang [[Special:ListUsers/syso
 'backend-fail-notsame' => 'Isang hindi kamukhang talaksan ang umiiral na sa $1.',
 'backend-fail-invalidpath' => 'Ang $1 ay hindi isang katanggap-tanggap na landas ng imbakan.',
 'backend-fail-delete' => 'Hindi mabura ang talaksang $1.',
+'backend-fail-describe' => 'Hindi mapalitan ang metadatos para sa talaksang "$1".',
 'backend-fail-alreadyexists' => 'Umiiral na ang pahinang $1.',
 'backend-fail-store' => 'Hindi maimbak ang talaksang $1 sa $2.',
 'backend-fail-copy' => 'Hindi makopya ang talaksang $1 sa $2.',
@@ -1795,7 +1809,6 @@ Para sa pinakamatatag na kaligtasan, hindi pinagana ang img_auth.php.',
 'http-read-error' => 'Kamalian sa pagbasa ng HTTP.',
 'http-timed-out' => 'Huminto ang kahilingang HTTP.',
 'http-curl-error' => 'Kamalian sa pagsalok ng URL: $1',
-'http-host-unreachable' => 'Hindi marating ang URL.',
 'http-bad-status' => 'Nagkaroon ng suliranin habang hinihiling ang HTTP na: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1924,13 +1937,13 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'randompage-nopages' => 'Walang mga pahina sa sumusunod na {{PLURAL:$2|ngalan-espasyo|mga ngalan-espasyo}}: $1.',
 
 # Random redirect
-'randomredirect' => 'Alinmang panuto',
-'randomredirect-nopages' => 'Walang mga panuto sa pangalan-espasyong "$1".',
+'randomredirect' => 'Pagkargang walang-pili',
+'randomredirect-nopages' => 'Walang mga pagkarga sa ngalan-espasyong "$1".',
 
 # Statistics
 'statistics' => 'Mga estadistika',
 'statistics-header-pages' => 'Mga estadistika ng pahina',
-'statistics-header-edits' => 'Baguhin ang mga estadistika',
+'statistics-header-edits' => 'Mga estadistika sa mga pagbabago',
 'statistics-header-views' => 'Tingnan ang mga estadistika',
 'statistics-header-users' => 'Mga estadistika sa mga tagagamit',
 'statistics-header-hooks' => 'Ibang mga estadistika',
@@ -1940,7 +1953,7 @@ Marahil ay naisa mong baguhin ang paglalarawan doon sa [$2 pahina ng paglalarawa
 'statistics-files' => 'Ikinargang mga talaksan',
 'statistics-edits' => 'Naihanda na ang mga pagbabago ng pahina mula sa {{SITENAME}}',
 'statistics-edits-average' => 'Karaniwang pagbabago sa bawat pahina',
-'statistics-views-total' => 'Kalahatang pagdayo',
+'statistics-views-total' => 'Kabuuan ng mga pagtanaw',
 'statistics-views-total-desc' => 'Hindi kabilang ang mga pagtanaw sa mga pahinang hindi umiiral at mga pahinang natatangi',
 'statistics-views-peredit' => 'Pagtingin sa bawat pagbabago',
 'statistics-users' => 'Mga nakatalang [[Special:ListUsers|tagagamit]]',
@@ -2126,10 +2139,6 @@ Sinusuportahang mga protokolo: <code>$1</code> (huwag idagdag ang anuman sa mga 
 'activeusers-hidesysops' => 'Itago ang mga tagapangasiwa',
 'activeusers-noresult' => 'Walang natagpuang mga tagagamit.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Talaan ng paglikha ng tagagamit',
-'newuserlogpagetext' => 'Isa itong talaan ng mga paglikha ng tagagamit.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Mga uri ng tagagamit',
 'listgrouprights-summary' => 'Ang sumusunod ay isang talaan ng mga pangkat ng tagagamit na binigyang kahulugang sa wiking ito, kasama ang kanilang mga kaugnay na mga karapatan.
@@ -2150,7 +2159,7 @@ Maaaring may mga [[{{MediaWiki:Listgrouprights-helppage}}|karagdagang kabatiran]
 'listgrouprights-addgroup-self-all' => 'Idagdag ang lahat ng mga pangkat sa sariling akawnt',
 'listgrouprights-removegroup-self-all' => 'Alisin ang lahat ng mga pangkat mula sa sariling akawnt',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Walang adres na mapagpapadalahan',
 'mailnologintext' => 'Kailangan mong [[Special:UserLogin|lumagda]] at magkaroon ng tanggap na e-liham sa iyong [[Special:Preferences|mga kagustuhan]] para makapagpadala ng e-liham sa ibang mga tagagamit.',
 'emailuser' => 'Padalhan ng e-liham ang tagagamit',
@@ -2178,7 +2187,7 @@ Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustu
 'emailmessage' => 'Mensahe:',
 'emailsend' => 'Ipadala',
 'emailccme' => 'Padalhan ako ng sipi ng aking mensahe sa pamamagitan ng e-liham.',
-'emailccsubject' => 'Kopya ng iyong mensahe sa $1: $2',
+'emailccsubject' => 'Kopya ng iyong mensahe kay $1: $2',
 'emailsent' => 'Naipadala na ang e-liham',
 'emailsenttext' => 'Naipadala na ang mensahe ng iyong e-liham.',
 'emailuserfooter' => 'Ipinadala ang e-liham na ito ni $1 para kay $2 sa pamamagitan ng tungkuling "Magpadala ng e-liham" na nasa {{SITENAME}}.',
@@ -2190,7 +2199,7 @@ Ang ipinasok mong direksiyong e-liham sa [[Special:Preferences|iyong mga kagustu
 
 # Watchlist
 'watchlist' => 'Mga binabantayan ko',
-'mywatchlist' => 'Bantayan ko',
+'mywatchlist' => 'Bantayan',
 'watchlistfor2' => 'Para sa $1 $2',
 'nowatchlist' => 'Wala kang pahinang binabantayan.',
 'watchlistanontext' => 'Paki $1 upang makita o mabago ang mga aytem sa iyong binabantayan.',
@@ -2209,8 +2218,8 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'notvisiblerev' => 'Nabura na ang pagbabago',
 'watchnochange' => 'Wala sa binabantayan mo ang binago sa oras na nakikita.',
 'watchlist-details' => '{{PLURAL:$1|$1 pahinang|$1 mga pahinang}} nasa iyong talaan ng mga binabantayan, hindi binibilang ang mga pahina ng usapan.',
-'wlheader-enotif' => '* Umiiral ang pagpapahayag sa pamamagitan ng e-liham.',
-'wlheader-showupdated' => "* Ipinapakitang may '''makakapal na mga panitik''' ang nabagong/binagong mga pahina mula pa noong huli mong pagdalaw sa kanila",
+'wlheader-enotif' => 'Umiiral ang pagpapahayag sa pamamagitan ng e-liham.',
+'wlheader-showupdated' => "Ipinapakitang may '''makakapal na mga panitik''' ang nabagong/binagong mga pahina mula pa noong huli mong pagdalaw sa kanila",
 'watchmethod-recent' => 'sinusuri ang kamakailan lamang na mga pagbabago para sa binabantayang mga pahina',
 'watchmethod-list' => 'sinusuri ang binabantayang mga pahina para sa mga kamakailan lamang na mga pagbabago',
 'watchlistcontains' => 'Naglalaman ng $1 {{PLURAL:$1|pahina|mga pahina}} ang iyong talaan ng mga binabantayan.',
@@ -2226,11 +2235,7 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 
 'enotif_mailer' => 'Tagapagpadala ng mga Pahayag ng {{SITENAME}}',
 'enotif_reset' => 'Tatakan ang lahat ng pahina bilang nadalaw na',
-'enotif_newpagetext' => 'Isa itong bagong pahina.',
 'enotif_impersonal_salutation' => 'Tagagamit ng {{SITENAME}}',
-'changed' => 'binago',
-'created' => 'nilikha',
-'enotif_subject' => 'Ang pahinang $PAGETITLE sa {{SITENAME}} ay $CHANGEDORCREATED ni $PAGEEDITOR',
 'enotif_lastvisited' => 'Tingnan ang $1 para sa lahat ng mga pagbabago magmula noong huling pagdalaw mo.',
 'enotif_lastdiff' => 'Tingnan ang $1 para makita ang pagbabagong ito.',
 'enotif_anon_editor' => 'hindi nakikilalang tagagamit $1',
@@ -2264,6 +2269,8 @@ $UNWATCHURL
 
 Tugon at karagdagang tulong:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'nilikha',
+'changed' => 'binago',
 
 # Delete
 'deletepage' => 'Burahin ang pahina',
@@ -2334,6 +2341,7 @@ Tingnan ang [[Special:ProtectedPages|talaan ng pinuprutektahang mga pahina]] par
 'prot_1movedto2' => 'Inilipat ang [[$1]] patungo sa [[$2]]',
 'protect-badnamespace-title' => 'Hindi mapupruteksiyunang puwang ng pangalan',
 'protect-badnamespace-text' => 'Hindi mapupruteksiyunan ang mga pahinang nasa puwang na pampangalang ito.',
+'protect-norestrictiontypes-title' => 'Pahinang hindi maipasanggalang',
 'protect-legend' => 'Tiyakin ang panananggalang',
 'protectcomment' => 'Dahilan:',
 'protectexpiry' => 'Magtatapos sa:',
@@ -2350,7 +2358,7 @@ Narito ang pangkasalukuyang mga pagtatakda para sa pahinang '''$1''':",
 'protect-cascadeon' => 'Kasalukuyang nakasanggalang na ang pahinang ito dahil kabilang/kasama ito sa sumusunod na {{PLURAL:$1|pahinang may|mga pahinang may}} buhay/umiiral na baita-baitang na mga panananggalang.
 Maaari mong baguhin ang antas ng panananggalang ng pahina, ngunit hindi ito makakaapekto sa baita-baitang na panananggalang.',
 'protect-default' => 'Pahintulutan ang lahat ng mga tagagamit',
-'protect-fallback' => 'Nangangailangan ng kapahintulutang "$1"',
+'protect-fallback' => 'Pahintulutan ang mga tagagamit lamang na may pahintulot na "$1"',
 'protect-level-autoconfirmed' => 'Hadlangan ang bago at hindi nagpapatalang mga tagagamit',
 'protect-level-sysop' => "Mga tagapangasiwa (''sysop'') lamang",
 'protect-summary-cascade' => 'baita-baitang',
@@ -2440,7 +2448,7 @@ $1',
 'undelete-revisionrow' => '$1 $2 ($3) $4 . . $5 $6 $7',
 
 # Namespace form on various pages
-'namespace' => 'Espasyo ng pangalan:',
+'namespace' => 'Ngalan-espasyo:',
 'invert' => 'Baligtarin and pinili',
 'tooltip-invert' => 'Tsekan ang kahong ito upang ikubli ang mga pagbabago sa mga pahina sa loob ng napiling mga puwang ng pangalan (at ang kaugnay na puwang ng pangalan kung may tsek)',
 'namespace_association' => 'Kaugnay na mga puwang na pampangalan',
@@ -2448,12 +2456,12 @@ $1',
 'blanknamespace' => '(Pangunahin)',
 
 # Contributions
-'contributions' => 'Mga ambag ng tagagamit',
+'contributions' => 'Mga ambag ng {{GENDER:$1|tagagamit}}',
 'contributions-title' => 'Mga ambag ng tagagamit na si $1',
-'mycontris' => 'Mga ambag ko',
+'mycontris' => 'Mga ambag',
 'contribsub2' => 'Para kay $1 ($2)',
 'nocontribs' => 'Walang pagbabagong nakita sa binigay na kondisyon.',
-'uctop' => ' (itaas)',
+'uctop' => '(kasalukuyan)',
 'month' => 'Mula sa buwan (at nauna):',
 'year' => 'Mula sa taon (at nauna):',
 
@@ -2492,7 +2500,7 @@ Ang pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa ibaba para sa pa
 'whatlinkshere-hideredirs' => '$1 mga pagturo/pagpapanuto',
 'whatlinkshere-hidetrans' => '$1 paglipat-sali (transklusyon)',
 'whatlinkshere-hidelinks' => '$1 mga kawing',
-'whatlinkshere-hideimages' => '$1 mga kawing ng/sa larawan',
+'whatlinkshere-hideimages' => '$1 kawing ng/sa talaksan',
 'whatlinkshere-filters' => 'Mga pansala',
 
 # Block/unblock
@@ -2573,8 +2581,8 @@ Tingnan ang [[Special:BlockList|talaan ng mga hinadlangan]] upang suriin ang mga
 'blocklist-nousertalk' => 'hindi mo mababago ang iyong pansariling pahina ng usapan',
 'ipblocklist-empty' => 'Walang laman ang talaan ng pagharang/paghadlang.',
 'ipblocklist-no-results' => 'Nakaharang ang hiniling na IP address o bansag.',
-'blocklink' => 'harangin/hadlangan',
-'unblocklink' => 'tanggalin ang pagharang/paghadlang',
+'blocklink' => 'harangin',
+'unblocklink' => 'tanggalin ang pagharang',
 'change-blocklink' => 'baguhin ang pagharang/paghadlang',
 'contribslink' => 'ambag',
 'emaillink' => 'ipadala ang e-liham',
@@ -2849,7 +2857,6 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 
 # JavaScriptTest
 'javascripttest' => 'Pagsubok sa JavaScript',
-'javascripttest-disabled' => 'Hindi gumagana ang tungkuling ito sa wiking ito.',
 'javascripttest-title' => 'Pinatatakbo ang mga pagsubok ng $1',
 'javascripttest-pagetext-noframework' => 'Nakalaan ang pahinang ito para sa pagpapatakbo ng mga pagsubok ng JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Hindi napag-aalamang balangkas ng pagsubok na "$1".',
@@ -2871,7 +2878,7 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-pt-logout' => 'Umalis sa pagkakalagda',
 'tooltip-ca-talk' => 'Usapan tungkol sa nilalaman ng pahinang ito',
 'tooltip-ca-edit' => 'Maaaring baguhin ang pahinang ito. Paki gamit ang buton ng paunang tingin bago itala.',
-'tooltip-ca-addsection' => 'Magsimula ng isang bagong seksyon',
+'tooltip-ca-addsection' => 'Magsimula ng isang bagong seksiyon',
 'tooltip-ca-viewsource' => 'Nakaprotekta ang pahinang ito. Makikita mo lamang ang pinagmulan (source) nito.',
 'tooltip-ca-history' => 'Nakaraang bersyon ng pahinang ito.',
 'tooltip-ca-protect' => 'Iprotekta ang pahinang ito',
@@ -2895,12 +2902,12 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 'tooltip-t-whatlinkshere' => 'Tala ng lahat ng pahina ng mga wiking nakakawing dito',
 'tooltip-t-recentchangeslinked' => 'Kamakailang mga pagbabago na nakakawing mula sa pahinang ito',
 'tooltip-feed-rss' => 'Subo/Kargang RSS para sa pahinang ito',
-'tooltip-feed-atom' => 'Subo/kargang Atom para sa pahinang ito',
+'tooltip-feed-atom' => 'Sindikasyong Atom para sa pahinang ito',
 'tooltip-t-contributions' => 'Tunghayan ang tala ng mga ambag ng tagagamit na ito',
 'tooltip-t-emailuser' => 'Magpadala ng isang e-liham sa tagagamit na ito',
 'tooltip-t-upload' => 'Magkarga ng mga talaksan',
 'tooltip-t-specialpages' => 'Tala ng lahat ng mga natatanging pahina',
-'tooltip-t-print' => 'Nalilimbag na bersyon ng pahinang ito',
+'tooltip-t-print' => 'Bersiyong maililimbag ng pahinang ito',
 'tooltip-t-permalink' => 'Palagiang kawing sa bersyong ito ng pahina',
 'tooltip-ca-nstab-main' => 'Tingnan ang pahina ng nilalaman',
 'tooltip-ca-nstab-user' => 'Tingnan ang pahina ng tagagamit',
@@ -2929,17 +2936,11 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 
 # Stylesheets
 'common.css' => '/* Ang inilagay na CSS dito ay gagamitin para sa lahat ng mga pabalat */',
-'standard.css' => '/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng Karaniwang pabalat */',
-'nostalgia.css' => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Nostalgia */',
 'cologneblue.css' => "/* Ang Cascading Style Sheets na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Bughaw na Kolown (''Cologne Blue'') */",
 'monobook.css' => '/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na Monobook */',
-'myskin.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa lahat ng mga tagagamit ng pabalat na Balatko (''MySkin'') */",
-'chick.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa mga tagagamit ng pabalat na ''Chick'' */",
-'simple.css' => "/* Ang CSS na iniligay dito ay makakaapekto sa mga tagagamit ng Payak (''Simple'') na pabalat */",
 'modern.css' => "/* Ang CSS na iniligay dito ay makakaapekto sa tagagamit ng Makabagong (''Modern'') pabalat */",
 'vector.css' => '/* Ang inilagay na CSS dito ay makakaapekto sa mga tagagamit ng pabalat na Vector */',
 'print.css' => '/* Ang CSS na inilagay dito ay makakaapekto sa kalalabasan o resulta ng paglilimbag */',
-'handheld.css' => "/* Ang CSS na inilagay dito ay makakaapekto sa mga aparatong nahahawakan (''handheld device'') batay sa itinakdang pabalat sa ''\$wgHandheldStyle'' */",
 'noscript.css' => '/* Ang inilagay na Cascading Style Sheets dito ay makakaapekto sa mga tagagamit na hindi nagpapagana ng JavaScript */',
 'group-autoconfirmed.css' => '/* Ang inilagay na Mga Pilas ng Estilong Lumalagaslas (Cascading Style Sheets o CSS) dito ay makakaapekto lamang sa mga tagagamit na kusang natiyak */',
 'group-bot.css' => '/* Ang inilagay na Mga Pilas ng Estilong Lumalagaslas (Cascading Style Sheets o CSS) dito ay makakaapekto lamang sa mga bot */',
@@ -2948,13 +2949,8 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 
 # Scripts
 'common.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa lahat ng mga tagagamit ng bawat pahinang ikinarga. */',
-'standard.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Karaniwang pabalat */',
-'nostalgia.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Nostalgia */',
 'cologneblue.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit ng pabalat na Cologne Blue o Bughaw na Kolown */',
 'monobook.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na MonoBook */',
-'myskin.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa tagagamit na gumagamit ng pabalat na MySkin o Balat Ko */',
-'chick.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Chick */',
-'simple.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Payak na pabalat */',
 'modern.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng Modernong pabalat */',
 'vector.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na gumagamit ng pabalat na Vector */',
 'group-autoconfirmed.js' => '/* Ang anumang JavaScript dito ay ikakarga para sa mga tagagamit na kusang natiyak lamang */',
@@ -2989,6 +2985,7 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 
 # Info page
 'pageinfo-title' => 'Kabatiran para sa "$1"',
+'pageinfo-not-current' => 'Maaari lamang ipakita ang impormasyon para sa kasalukuyang rebisyon.',
 'pageinfo-header-basic' => 'Saligang kabatiran',
 'pageinfo-header-edits' => 'Kasaysayan ng pamamatnugot',
 'pageinfo-header-restrictions' => 'Pruteksiyon ng pahina',
@@ -3014,19 +3011,13 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-authors' => 'Kabuuang bilang ng magkakabukod na mga may-akda',
 'pageinfo-recent-edits' => 'Kamakailang bilang ng mga pamamatnugot (sa loob ng huling $1)',
 'pageinfo-recent-authors' => 'Kamakailang bilang ng magkakabukod na mga may-akda',
-'pageinfo-restriction' => 'Pruteksiyon ng pahina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Salita|Mga salita}}ng mahiwaga ($1)',
 'pageinfo-hidden-categories' => 'Nakatagong {{PLURAL:$1|kategorya|mga kategorya}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',
 
 # Skin names
-'skinname-standard' => 'Klasiko',
-'skinname-nostalgia' => 'Nostalhiya',
 'skinname-cologneblue' => 'Bughaw na Kolown',
 'skinname-monobook' => 'MonoAklat ("isang aklat")',
-'skinname-myskin' => 'PabalatKo',
-'skinname-chick' => "\"Pambabae\" (''Chick'')",
-'skinname-simple' => 'Payak',
 'skinname-modern' => 'Makabago (Moderno)',
 'skinname-vector' => 'Vector',
 
@@ -3069,7 +3060,7 @@ Maaaring manganib ang iyong sistema kapag ipinagana mo ito.",
 'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|pahina|mga pahina}}',
 'file-info' => 'sukat ng talaksan: $1, tipo ng MIME: $2',
-'file-info-size' => '$1 × $2 piksel, sukat ng talaksan: $3, tipo ng MIME: $4',
+'file-info-size' => '$1 × $2 piksel, laki ng talaksan: $3, uri ng MIME: $4',
 'file-info-size-pages' => '$1 × $2 mga piksel, sukat ng talaksan: $3, uri ng MIME: $4, $5 {{PLURAL:$5|pahina|mga pahina}}',
 'file-nohires' => 'Walang makuhang mas mataas na resolusyon (kalinawan).',
 'svg-long-desc' => 'Talaksang SVG, nasa mga bilang na $1 × $2 mga piksel, sukat ng talaksan: $3',
@@ -3119,8 +3110,6 @@ Anumang susunod na mga kawing sa pinanggalingang linya ay tinuturing na mga ekse
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -3196,7 +3185,7 @@ Likas na nakatakdang itago ang iba pa.
 'metadata-langitem' => "'''$2:''' $1",
 'metadata-langitem-default' => '$1',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lapad',
 'exif-imagelength' => 'Taas',
 'exif-bitspersample' => 'Mga bit (piraso) ng bawat komponente (bahagi)',
@@ -3389,7 +3378,7 @@ $4, $5, $6 $7
 $8',
 'exif-subjectnewscode-value' => '$2 ($1)',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Walang kompresyon',
 'exif-compression-2' => 'CCITT Pangkat 3 1-kodigo sa haba ng pagtakbo ng Pangdimensiyong Huffman na May Bahagyang Pagbabago',
 'exif-compression-3' => 'Kodigo ng Pangkat 3 ng CCITT',
@@ -3636,7 +3625,7 @@ $8',
 'monthsall' => 'lahat',
 'limitall' => 'lahat',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Patotohanan ang adres ng e-liham',
 'confirmemail_noemail' => 'Wala kang nakatakdang tanggap na adres ng e-liham sa iyong [[Special:Preferences|mga kagustuhan ng tagagamit]].',
 'confirmemail_text' => "Pinagagawa ng {{SITENAME}} na patotohanan mo ang iyong adres ng e-liham bago gamitin ang mga kasangkapang-katangian ng e-liham.  Pindutin at buhayin ang pindutan sa ibaba para makapagpadala ng isang makapagpapatotoong e-liham (kompirmasyon) patungo sa iyong adres.
@@ -3921,13 +3910,6 @@ Dapat na nakatanggap ka ng [{{SERVER}}{{SCRIPTPATH}}/COPYING isang sipi ng Pangk
 'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Landas ng artikulo]',
 'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Landas ng panitik]',
 
-# Special:FilePath
-'filepath' => 'Lokasyon ng talaksan (file path)',
-'filepath-page' => 'Talaksan:',
-'filepath-submit' => 'Gawin',
-'filepath-summary' => 'Ibinabalik ng natatanging pahinang ito ang buong landas para sa isang talaksan.  
-Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang uri ng mga talaksan sa pamamagitan ng kaugnay nilang mga programa.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Maghanap ng kaparehong mga talaksan',
 'fileduplicatesearch-summary' => "Maghanap ng mga kaparehong mga talaksan sa baba ng kanyang halaga ng ''hash''.",
@@ -3972,7 +3954,7 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 
 # Special:Tags
 'tags' => 'Tanggap na mga tatak ng pagbabago',
-'tag-filter' => '[[Special:Tags|Tatakan]] ang pansala:',
+'tag-filter' => 'Pansala ng [[Special:Tags|tatak]]:',
 'tag-filter-submit' => 'Pansala',
 'tags-title' => 'Mga tatak',
 'tags-intro' => 'Itinatala ng pahinang ito ang mga tatak na maaaring ipantatak ng sopwer sa isang pagbabago, at ang kanilang kahulugan.',
@@ -4046,11 +4028,11 @@ Ipinapakita ang mga larawan sa buong kalinawan, tuwirang sinisimulan ang ibang u
 'logentry-move-move_redir-noredirect' => 'Inilipat ni $1 ang pahinang $3 papunta sa $4 sa ibabaw ng isang pagpapunta sa iba na hindi nag-iiwan ng isang pagpapapunta sa iba',
 'logentry-patrol-patrol' => 'Minarkahan ni $1 ang rebisyong $4 ng pahinang $3 bilang napatrolya na',
 'logentry-patrol-patrol-auto' => 'Kusang minarkahan ni $1 ang rebisyong $4 ng pahinang $3 bilang napatrolya na',
-'logentry-newusers-newusers' => 'Lumikha si $1 ng isang akawnt ng tagagamit',
-'logentry-newusers-create' => 'Lumikha si $1 ng isang akawnt ng tagagamit',
-'logentry-newusers-create2' => 'Lumikha si $1 ng isang akawnt ng tagagamit na $3',
+'logentry-newusers-newusers' => 'Nilikha ang kuwenta ng tagagamit na $1',
+'logentry-newusers-create' => 'Lumikha si $1 ng isang kuwenta ng tagagamit',
+'logentry-newusers-create2' => 'Lumikha si $1 ng isang kuwenta ng tagagamit na $3',
 'logentry-newusers-autocreate' => 'Kusang nalikha ang akawnt na $1',
-'newuserlog-byemail' => 'Ipinadala ang hudyat sa pamamagitan ng e-liham',
+'rightsnone' => '(wala)',
 
 # Feedback
 'feedback-bugornote' => 'Kung handa ka nang detalyadong maglarawan ng isang suliraning teknikal mangyaring [$1 iulat ang sira].
@@ -4067,6 +4049,10 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'feedback-close' => 'Nagawa na',
 'feedback-bugcheck' => 'Mahusay! Suriin lang na hindi pa ito isa sa [$1 nalalamang mga depekto].',
 'feedback-bugnew' => 'Sinuri ko na. Mag-ulat ng panibagong sira',
+
+# Search suggestions
+'searchsuggest-search' => 'Maghanap',
+'searchsuggest-containing' => 'naglalaman ng ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Hindi ka pinapayagang makapagkarga ng mga talaksan papunta sa wiking ito.',

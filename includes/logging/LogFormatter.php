@@ -192,18 +192,18 @@ class LogFormatter {
 		$parameters = $entry->getParameters();
 		// @see LogPage::actionText()
 		// Text of title the action is aimed at.
-		$target = $entry->getTarget()->getPrefixedText() ;
+		$target = $entry->getTarget()->getPrefixedText();
 		$text = null;
-		switch( $entry->getType() ) {
+		switch ( $entry->getType() ) {
 			case 'move':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'move':
-						$movesource =  $parameters['4::target'];
+						$movesource = $parameters['4::target'];
 						$text = wfMessage( '1movedto2' )
 							->rawParams( $target, $movesource )->inContentLanguage()->escaped();
 						break;
 					case 'move_redir':
-						$movesource =  $parameters['4::target'];
+						$movesource = $parameters['4::target'];
 						$text = wfMessage( '1movedto2_redir' )
 							->rawParams( $target, $movesource )->inContentLanguage()->escaped();
 						break;
@@ -215,7 +215,7 @@ class LogFormatter {
 				break;
 
 			case 'delete':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'delete':
 						$text = wfMessage( 'deletedarticle' )
 							->rawParams( $target )->inContentLanguage()->escaped();
@@ -246,7 +246,7 @@ class LogFormatter {
 				break;
 
 			case 'protect':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 				case 'protect':
 					$text = wfMessage( 'protectedarticle' )
 						->rawParams( $target . ' ' . $parameters[0] )->inContentLanguage()->escaped();
@@ -263,13 +263,14 @@ class LogFormatter {
 				break;
 
 			case 'newusers':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'newusers':
 					case 'create':
 						$text = wfMessage( 'newuserlog-create-entry' )
 							->inContentLanguage()->escaped();
 						break;
 					case 'create2':
+					case 'byemail':
 						$text = wfMessage( 'newuserlog-create2-entry' )
 							->rawParams( $target )->inContentLanguage()->escaped();
 						break;
@@ -281,7 +282,7 @@ class LogFormatter {
 				break;
 
 			case 'upload':
-				switch( $entry->getSubtype() ) {
+				switch ( $entry->getSubtype() ) {
 					case 'upload':
 						$text = wfMessage( 'uploadedimage' )
 							->rawParams( $target )->inContentLanguage()->escaped();
@@ -293,11 +294,33 @@ class LogFormatter {
 				}
 				break;
 
+			case 'rights':
+				if ( count( $parameters['4::oldgroups'] ) ) {
+					$oldgroups = implode( ', ', $parameters['4::oldgroups'] );
+				} else {
+					$oldgroups = wfMessage( 'rightsnone' )->inContentLanguage()->escaped();
+				}
+				if ( count( $parameters['5::newgroups'] ) ) {
+					$newgroups = implode( ', ', $parameters['5::newgroups'] );
+				} else {
+					$newgroups = wfMessage( 'rightsnone' )->inContentLanguage()->escaped();
+				}
+				switch ( $entry->getSubtype() ) {
+					case 'rights':
+						$text = wfMessage( 'rightslogentry' )
+							->rawParams( $target, $oldgroups, $newgroups )->inContentLanguage()->escaped();
+						break;
+					case 'autopromote':
+						$text = wfMessage( 'rightslogentry-autopromote' )
+							->rawParams( $target, $oldgroups, $newgroups )->inContentLanguage()->escaped();
+						break;
+				}
+				break;
 
 			// case 'suppress' --private log -- aaron  (sign your messages so we know who to blame in a few years :-D)
 			// default:
 		}
-		if( is_null( $text ) ) {
+		if ( is_null( $text ) ) {
 			$text = $this->getPlainActionText();
 		}
 
@@ -379,9 +402,11 @@ class LogFormatter {
 
 		// Filter out parameters which are not in format #:foo
 		foreach ( $entry->getParameters() as $key => $value ) {
-			if ( strpos( $key, ':' ) === false ) continue;
-			list( $index, $type, $name ) = explode( ':', $key, 3 );
-			$params[$index - 1] = $value;
+			if ( strpos( $key, ':' ) === false ) {
+				continue;
+			}
+			list( $index, $type, ) = explode( ':', $key, 3 );
+			$params[$index - 1] = $this->formatParameterValue( $type, $value );
 		}
 
 		/* Message class doesn't like non consecutive numbering.
@@ -416,7 +441,7 @@ class LogFormatter {
 		$entry = $this->entry;
 		$params = $this->extractParameters();
 		$params[0] = Message::rawParam( $this->getPerformerElement() );
-		$params[1] = $entry->getPerformer()->getName();
+		$params[1] = $this->canView( LogPage::DELETED_USER ) ? $entry->getPerformer()->getName() : '';
 		$params[2] = Message::rawParam( $this->makePageLink( $entry->getTarget() ) );
 
 		// Bad things happens if the numbers are not in correct order
@@ -425,10 +450,83 @@ class LogFormatter {
 	}
 
 	/**
+	 * Formats parameters values dependent to their type
+	 * @param string $type The type of the value.
+	 *   Valid are currently:
+	 *     * - (empty) or plain: The value is returned as-is
+	 *     * raw: The value will be added to the log message
+	 *            as raw parameter (e.g. no escaping)
+	 *            Use this only if there is no other working
+	 *            type like user-link or title-link
+	 *     * msg: The value is a message-key, the output is
+	 *            the message in user language
+	 *     * msg-content: The value is a message-key, the output
+	 *                    is the message in content language
+	 *     * user: The value is a user name, e.g. for GENDER
+	 *     * user-link: The value is a user name, returns a
+	 *                  link for the user
+	 *     * title: The value is a page title,
+	 *              returns name of page
+	 *     * title-link: The value is a page title,
+	 *                   returns link to this page
+	 *     * number: Format value as number
+	 * @param string $value The parameter value that should
+	 *                      be formated
+	 * @return string or Message::numParam or Message::rawParam
+	 *         Formated value
+	 * @since 1.21
+	 */
+	protected function formatParameterValue( $type, $value ) {
+		$saveLinkFlood = $this->linkFlood;
+
+		switch ( strtolower( trim( $type ) ) ) {
+			case 'raw':
+				$value = Message::rawParam( $value );
+				break;
+			case 'msg':
+				$value = $this->msg( $value )->text();
+				break;
+			case 'msg-content':
+				$value = $this->msg( $value )->inContentLanguage()->text();
+				break;
+			case 'number':
+				$value = Message::numParam( $value );
+				break;
+			case 'user':
+				$user = User::newFromName( $value );
+				$value = $user->getName();
+				break;
+			case 'user-link':
+				$this->setShowUserToolLinks( false );
+
+				$user = User::newFromName( $value );
+				$value = Message::rawParam( $this->makeUserLink( $user ) );
+
+				$this->setShowUserToolLinks( $saveLinkFlood );
+				break;
+			case 'title':
+				$title = Title::newFromText( $value );
+				$value = $title->getPrefixedText();
+				break;
+			case 'title-link':
+				$title = Title::newFromText( $value );
+				$value = Message::rawParam( $this->makePageLink( $title ) );
+				break;
+			case 'plain':
+				// Plain text, nothing to do
+			default:
+				// Catch other types and use the old behavior (return as-is)
+		}
+
+		return $value;
+	}
+
+	/**
 	 * Helper to make a link to the page, taking the plaintext
 	 * value in consideration.
 	 * @param $title Title the page
-	 * @param $parameters array query parameters
+	 * @param array $parameters query parameters
+	 * @throws MWException
 	 * @return String
 	 */
 	protected function makePageLink( Title $title = null, $parameters = array() ) {
@@ -492,7 +590,7 @@ class LogFormatter {
 			return $this->msg( $message )->text();
 		}
 
-		$content =  $this->msg( $message )->escaped();
+		$content = $this->msg( $message )->escaped();
 		$attribs = array( 'class' => 'history-deleted' );
 		return Html::rawElement( 'span', $attribs, $content );
 	}
@@ -545,6 +643,16 @@ class LogFormatter {
 	 */
 	public function getPreloadTitles() {
 		return array();
+	}
+
+	/**
+	 * @return Output of getMessageParameters() for testing
+	 */
+	public function getMessageParametersForTesting() {
+		// This function was added because getMessageParameters() is
+		// protected and a change from protected to public caused
+		// problems with extensions
+		return $this->getMessageParameters();
 	}
 
 }
@@ -607,7 +715,7 @@ class LegacyLogFormatter extends LogFormatter {
 
 		$performer = $this->getPerformerElement();
 		if ( !$this->irctext ) {
-			$action = $performer .  $this->msg( 'word-separator' )->text() . $action;
+			$action = $performer . $this->msg( 'word-separator' )->text() . $action;
 		}
 
 		return $action;
@@ -667,7 +775,7 @@ class LegacyLogFormatter extends LogFormatter {
 			return $this->msg( 'parentheses' )->rawParams(
 				$this->context->getLanguage()->pipeList( $links ) )->escaped();
 		// Show unmerge link
-		} elseif( $type == 'merge' && $subtype == 'merge' ) {
+		} elseif ( $type == 'merge' && $subtype == 'merge' ) {
 			if ( !$this->context->getUser()->isAllowed( 'mergehistory' ) ) {
 				return '';
 			}
@@ -706,305 +814,3 @@ class LegacyLogFormatter extends LogFormatter {
 	}
 }
 
-/**
- * This class formats move log entries.
- * @since 1.19
- */
-class MoveLogFormatter extends LogFormatter {
-	public function getPreloadTitles() {
-		$params = $this->extractParameters();
-		return array( Title::newFromText( $params[3] ) );
-	}
-
-	protected function getMessageKey() {
-		$key = parent::getMessageKey();
-		$params = $this->getMessageParameters();
-		if ( isset( $params[4] ) && $params[4] === '1' ) {
-			$key .= '-noredirect';
-		}
-		return $key;
-	}
-
-	protected function getMessageParameters() {
-		$params = parent::getMessageParameters();
-		$oldname = $this->makePageLink( $this->entry->getTarget(), array( 'redirect' => 'no' ) );
-		$newname = $this->makePageLink( Title::newFromText( $params[3] ) );
-		$params[2] = Message::rawParam( $oldname );
-		$params[3] = Message::rawParam( $newname );
-		return $params;
-	}
-
-	public function getActionLinks() {
-		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
-			|| $this->entry->getSubtype() !== 'move'
-			|| !$this->context->getUser()->isAllowed( 'move' ) )
-		{
-			return '';
-		}
-
-		$params = $this->extractParameters();
-		$destTitle = Title::newFromText( $params[3] );
-		if ( !$destTitle ) {
-			return '';
-		}
-
-		$revert = Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Movepage' ),
-			$this->msg( 'revertmove' )->escaped(),
-			array(),
-			array(
-				'wpOldTitle' => $destTitle->getPrefixedDBkey(),
-				'wpNewTitle' => $this->entry->getTarget()->getPrefixedDBkey(),
-				'wpReason'   => $this->msg( 'revertmove' )->inContentLanguage()->text(),
-				'wpMovetalk' => 0
-			)
-		);
-		return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-	}
-}
-
-/**
- * This class formats delete log entries.
- * @since 1.19
- */
-class DeleteLogFormatter extends LogFormatter {
-	protected function getMessageKey() {
-		$key = parent::getMessageKey();
-		if ( in_array( $this->entry->getSubtype(), array( 'event', 'revision' ) ) ) {
-			if ( count( $this->getMessageParameters() ) < 5 ) {
-				return "$key-legacy";
-			}
-		}
-		return $key;
-	}
-
-	protected function getMessageParameters() {
-		if ( isset( $this->parsedParametersDeleteLog ) ) {
-			return $this->parsedParametersDeleteLog;
-		}
-
-		$params = parent::getMessageParameters();
-		$subtype = $this->entry->getSubtype();
-		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
-			if (
-				($subtype === 'event' && count( $params ) === 6 ) ||
-				($subtype === 'revision' && isset( $params[3] ) && $params[3] === 'revision' )
-			) {
-				$paramStart = $subtype === 'revision' ? 4 : 3;
-
-				$old = $this->parseBitField( $params[$paramStart+1] );
-				$new = $this->parseBitField( $params[$paramStart+2] );
-				list( $hid, $unhid, $extra ) = RevisionDeleter::getChanges( $new, $old );
-				$changes = array();
-				foreach ( $hid as $v ) {
-					$changes[] = $this->msg( "$v-hid" )->plain();
-				}
-				foreach ( $unhid as $v ) {
-					$changes[] = $this->msg( "$v-unhid" )->plain();
-				}
-				foreach ( $extra as $v ) {
-					$changes[] = $this->msg( $v )->plain();
-				}
-				$changeText =  $this->context->getLanguage()->listToText( $changes );
-
-
-				$newParams = array_slice( $params, 0, 3 );
-				$newParams[3] = $changeText;
-				$count = count( explode( ',', $params[$paramStart] ) );
-				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
-				return $this->parsedParametersDeleteLog = $newParams;
-			} else {
-				return $this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
-			}
-		}
-
-		return $this->parsedParametersDeleteLog = $params;
-	}
-
-	protected function parseBitField( $string ) {
-		// Input is like ofield=2134 or just the number
-		if ( strpos( $string, 'field=' ) === 1 ) {
-			list( , $field ) = explode( '=', $string );
-			return (int) $field;
-		} else {
-			return (int) $string;
-		}
-	}
-
-	public function getActionLinks() {
-		$user = $this->context->getUser();
-		if ( !$user->isAllowed( 'deletedhistory' ) || $this->entry->isDeleted( LogPage::DELETED_ACTION ) ) {
-			return '';
-		}
-
-		switch ( $this->entry->getSubtype() ) {
-		case 'delete': // Show undelete link
-			if( $user->isAllowed( 'undelete' ) ) {
-				$message = 'undeletelink';
-			} else {
-				$message = 'undeleteviewlink';
-			}
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Undelete' ),
-				$this->msg( $message )->escaped(),
-				array(),
-				array( 'target' => $this->entry->getTarget()->getPrefixedDBkey() )
-			 );
-			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-
-		case 'revision': // If an edit was hidden from a page give a review link to the history
-			$params = $this->extractParameters();
-			if ( !isset( $params[3] ) || !isset( $params[4] ) ) {
-				return '';
-			}
-
-			// Different revision types use different URL params...
-			$key = $params[3];
-			// This is a CSV of the IDs
-			$ids = explode( ',', $params[4] );
-
-			$links = array();
-
-			// If there's only one item, we can show a diff link
-			if ( count( $ids ) == 1 ) {
-				// Live revision diffs...
-				if ( $key == 'oldid' || $key == 'revision' ) {
-					$links[] = Linker::linkKnown(
-						$this->entry->getTarget(),
-						$this->msg( 'diff' )->escaped(),
-						array(),
-						array(
-							'diff' => intval( $ids[0] ),
-							'unhide' => 1
-						)
-					);
-				// Deleted revision diffs...
-				} elseif ( $key == 'artimestamp' || $key == 'archive' ) {
-					$links[] = Linker::linkKnown(
-						SpecialPage::getTitleFor( 'Undelete' ),
-						$this->msg( 'diff' )->escaped(),
-						array(),
-						array(
-							'target'    => $this->entry->getTarget()->getPrefixedDBKey(),
-							'diff'      => 'prev',
-							'timestamp' => $ids[0]
-						)
-					);
-				}
-			}
-
-			// View/modify link...
-			$links[] = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Revisiondelete' ),
-				$this->msg( 'revdel-restore' )->escaped(),
-				array(),
-				array(
-					'target' => $this->entry->getTarget()->getPrefixedText(),
-					'type' => $key,
-					'ids' => implode( ',', $ids ),
-				)
-			);
-
-			return $this->msg( 'parentheses' )->rawParams(
-				$this->context->getLanguage()->pipeList( $links ) )->escaped();
-
-		case 'event': // Hidden log items, give review link
-			$params = $this->extractParameters();
-			if ( !isset( $params[3] ) ) {
-				return '';
-			}
-			// This is a CSV of the IDs
-			$query = $params[3];
-			// Link to each hidden object ID, $params[1] is the url param
-			$revert = Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Revisiondelete' ),
-				$this->msg( 'revdel-restore' )->escaped(),
-				array(),
-				array(
-					'target' => $this->entry->getTarget()->getPrefixedText(),
-					'type' => 'logging',
-					'ids' => $query
-				)
-			);
-			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
-		default:
-			return '';
-		}
-	}
-}
-
-/**
- * This class formats patrol log entries.
- * @since 1.19
- */
-class PatrolLogFormatter extends LogFormatter {
-	protected function getMessageKey() {
-		$key = parent::getMessageKey();
-		$params = $this->getMessageParameters();
-		if ( isset( $params[5] ) && $params[5] ) {
-			$key .= '-auto';
-		}
-		return $key;
-	}
-
-	protected function getMessageParameters() {
-		$params = parent::getMessageParameters();
-
-		$target = $this->entry->getTarget();
-		$oldid = $params[3];
-		$revision = $this->context->getLanguage()->formatNum( $oldid, true );
-
-		if ( $this->plaintext ) {
-			$revlink = $revision;
-		} elseif ( $target->exists() ) {
-			$query = array(
-				'oldid' => $oldid,
-				'diff' => 'prev'
-			);
-			$revlink = Linker::link( $target, htmlspecialchars( $revision ), array(), $query );
-		} else {
-			$revlink = htmlspecialchars( $revision );
-		}
-
-		$params[3] = Message::rawParam( $revlink );
-		return $params;
-	}
-}
-
-/**
- * This class formats new user log entries.
- * @since 1.19
- */
-class NewUsersLogFormatter extends LogFormatter {
-	protected function getMessageParameters() {
-		$params = parent::getMessageParameters();
-		if ( $this->entry->getSubtype() === 'create2' ) {
-			if ( isset( $params[3] ) ) {
-				$target = User::newFromId( $params[3] );
-			} else {
-				$target = User::newFromName( $this->entry->getTarget()->getText(), false );
-			}
-			$params[2] = Message::rawParam( $this->makeUserLink( $target ) );
-			$params[3] = $target->getName();
-		}
-		return $params;
-	}
-
-	public function getComment() {
-		$timestamp = wfTimestamp( TS_MW, $this->entry->getTimestamp() );
-		if ( $timestamp < '20080129000000' ) {
-			# Suppress $comment from old entries (before 2008-01-29),
-			# not needed and can contain incorrect links
-			return '';
-		}
-		return parent::getComment();
-	}
-
-	public function getPreloadTitles() {
-		if ( $this->entry->getSubtype() === 'create2' ) {
-			//add the user talk to LinkBatch for the userLink
-			return array( Title::makeTitle( NS_USER_TALK, $this->entry->getTarget()->getText() ) );
-		}
-		return array();
-	}
-}

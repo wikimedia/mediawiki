@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to populate the img_sha1 field.
@@ -164,4 +164,4 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "PopulateImageSha1";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

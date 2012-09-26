@@ -42,18 +42,21 @@
  */
 ( function ( $ ) {
 	$.fn.arrowSteps = function () {
-		var $steps, width, arrowWidth;
+		var $steps, width, arrowWidth,
+			paddingSide = $( 'body' ).hasClass( 'rtl' ) ? 'padding-left' : 'padding-right';
+
 		this.addClass( 'arrowSteps' );
 		$steps = this.find( 'li' );
 
 		width = parseInt( 100 / $steps.length, 10 );
 		$steps.css( 'width', width + '%' );
 
-		// every step except the last one has an arrow at the right hand side. Also add in the padding
-		// for the calculated arrow width.
+		// Every step except the last one has an arrow pointing forward:
+		// at the right hand side in LTR languages, and at the left hand side in RTL.
+		// Also add in the padding for the calculated arrow width.
 		arrowWidth = parseInt( this.outerHeight(), 10 );
 		$steps.filter( ':not(:last-child)' ).addClass( 'arrow' )
-		      .find( 'div' ).css( 'padding-right', arrowWidth.toString() + 'px' );
+		      .find( 'div' ).css( paddingSide, arrowWidth.toString() + 'px' );
 
 		this.data( 'arrowSteps', $steps );
 		return this;

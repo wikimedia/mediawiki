@@ -7,24 +7,20 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSk.php */
-class LanguageSkTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'sk' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPlural */
+class LanguageSkTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'few', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'few', 2 ),

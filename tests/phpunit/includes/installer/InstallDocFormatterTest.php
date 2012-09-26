@@ -20,21 +20,21 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 	/**
 	 * Provider for testFormat()
 	 */
-	function provideDocFormattingTests() {
+	public static function provideDocFormattingTests() {
 		# Format: (expected string, unformattedText string, optional message)
 		return array(
 			# Escape some wikitext
-			array( 'Install &lt;tag>' , 'Install <tag>', 'Escaping <' ),
-			array( 'Install &#123;&#123;template}}' , 'Install {{template}}', 'Escaping [[' ),
-			array( 'Install &#91;&#91;page]]' , 'Install [[page]]', 'Escaping {{' ),
-			array( 'Install ' , "Install \r", 'Removing \r' ),
+			array( 'Install &lt;tag>', 'Install <tag>', 'Escaping <' ),
+			array( 'Install &#123;&#123;template}}', 'Install {{template}}', 'Escaping [[' ),
+			array( 'Install &#91;&#91;page]]', 'Install [[page]]', 'Escaping {{' ),
+			array( 'Install ', "Install \r", 'Removing \r' ),
 
 			# Transform \t{1,2} into :{1,2}
 			array( ':One indentation', "\tOne indentation", 'Replacing a single \t' ),
 			array( '::Two indentations', "\t\tTwo indentations", 'Replacing 2 x \t' ),
 
 			# Transform 'bug 123' links
-			array( 
+			array(
 				'<span class="config-plainlink">[https://bugzilla.wikimedia.org/123 bug 123]</span>',
 				'bug 123', 'Testing bug 123 links' ),
 			array(
@@ -55,7 +55,7 @@ class InstallDocFormatterTest extends MediaWikiTestCase {
 			array(
 				'<span class="config-plainlink">[http://www.mediawiki.org/wiki/Manual:$wgFoo_Bar $wgFoo_Bar]</span>',
 				'$wgFoo_Bar', 'Testing $wgFoo_Bar (with underscore)' ),
-			
+
 			# Icky variables that shouldn't link
 			array( '$myAwesomeVariable', '$myAwesomeVariable', 'Testing $myAwesomeVariable (not starting with $wg)' ),
 			array( '$()not!a&Var', '$()not!a&Var', 'Testing $()not!a&Var (obviously not a variable)' ),

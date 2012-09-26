@@ -23,7 +23,7 @@
  * @ingroup LockManager Maintenance
  */
 
-if ( php_sapi_name() !== 'cli' ) {
+if ( PHP_SAPI !== 'cli' ) {
 	die( "This is not a valid entry point.\n" );
 }
 error_reporting( E_ALL );
@@ -68,6 +68,8 @@ class LockServerDaemon {
 
 	/**
 	 * @params $config Array
+	 * @param array $config
+	 * @throws Exception
 	 * @return LockServerDaemon
 	 */
 	public static function init( array $config ) {
@@ -77,9 +79,9 @@ class LockServerDaemon {
 		foreach ( array( 'address', 'port', 'authKey' ) as $par ) {
 			if ( !isset( $config[$par] ) ) {
 				die( "Usage: php LockServerDaemon.php " .
-					"--address <address> --port <port> --authkey <key> " .
+					"--address <address> --port <port> --authKey <key> " .
 					"[--lockTimeout <seconds>] " .
-					"[--maxLocks <integer>] [--maxClients <integer>] [--maxBacklog <integer>]"
+					"[--maxLocks <integer>] [--maxClients <integer>] [--maxBacklog <integer>]\n"
 				);
 			}
 		}
@@ -113,6 +115,7 @@ class LockServerDaemon {
 	}
 
 	/**
+	 * @throws Exception
 	 * @return void
 	 */
 	protected function setupServerSocket() {
@@ -239,7 +242,9 @@ class LockServerDaemon {
 		$m = explode( ':', $data ); // <session, key, command, type, values>
 		if ( count( $m ) == 5 ) {
 			list( $session, $key, $command, $type, $values ) = $m;
-			if ( sha1( $session . $command . $type . $values . $this->authKey ) !== $key ) {
+			$goodKey = hash_hmac( 'sha1',
+				"{$session}\n{$command}\n{$type}\n{$values}", $this->authKey );
+			if ( $goodKey !== $key ) {
 				return 'BAD_KEY';
 			} elseif ( strlen( $session ) !== 32 ) {
 				return 'BAD_SESSION';

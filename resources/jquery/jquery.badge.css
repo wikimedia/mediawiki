@@ -1,39 +1,39 @@
 .mw-badge {
-	min-width: 8px;
-	height: 14px;
-	border: 1px solid white;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	border-radius: 8px;
-	-moz-box-shadow: 0px 1px 4px #ccc;
-	-webkit-box-shadow: 0px 1px 4px #ccc;
-	box-shadow: 0px 1px 4px #ccc;
-	background-color: #b60a00;
-	background-image: -o-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
-	background-image: -moz-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
-	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #a70802), color-stop(1, #cf0e00));
-	background-image: -webkit-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
-	background-image: -ms-linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
-	background-image: linear-gradient(bottom, #a70802 0%, #cf0e00 100%);
-	padding: 0 3px;
+	min-width: 7px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	padding: 1px 4px;
 	text-align: center;
+	font-size: 12px;
+	line-height: 12px;
+	background-color: #d2d2d2;
+	cursor: pointer;
 }
 
 .mw-badge-content {
-	font-size: 12px;
-	line-height: 14px;
+	font-weight: bold;
 	color: white;
-	vertical-align: top;
+	vertical-align: baseline;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.4);
 }
 
 .mw-badge-inline {
-	display: inline-block;
 	margin-left: 3px;
-}
+	display: inline-block;
+	/* Hack for IE6 and IE7 (bug 47926) */
+	zoom: 1;
+	*display: inline;
 
+}
 .mw-badge-overlay {
 	position: absolute;
 	bottom: -1px;
 	right: -3px;
 	z-index: 50;
 }
+
+.mw-badge-important {
+	background-color: #cc0000;
+}
+

@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that reports the hostname of a slave server.
@@ -51,4 +51,4 @@ class GetSlaveServer extends Maintenance {
 }
 
 $maintClass = "GetSlaveServer";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

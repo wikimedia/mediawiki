@@ -10,6 +10,7 @@
  * @author Hazard-SJ
  * @author Ukabia
  * @author Yocahuna
+ * @author គីមស៊្រុន
  */
 
 $messages = array(
@@ -42,8 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Shuo di nomba a wachin yuuza',
 'tog-oldsig' => 'Priivyuu a egzisin signicha:',
 'tog-fancysig' => 'Chriit signicha az wikitex (widoutn aatamatik lingk)',
-'tog-externaleditor' => 'Yuuz extoernal edita bai difaalt (fi expoert onli, niid speshal setn pahn yu kompiuta)',
-'tog-externaldiff' => 'Yuuz extoernal dif bai difaalt (fi expoert onli, niid speshal setn pahn yu kompiuta)',
 'tog-showjumplinks' => 'Eniebl "jomp tu" aksesibiliti lingk',
 'tog-uselivepreview' => 'Yuuz laiv priivyuu (rikwaya JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Pramp mi wen entarin blangk edit somari',
@@ -156,7 +155,6 @@ Lef aaf dif afta pofaamin ruolbak',
 'qbbrowse' => 'Brouz',
 'qbedit' => 'Edit',
 'qbpageoptions' => 'Dis piej',
-'qbpageinfo' => 'Kantex',
 'qbmyoptions' => 'Mi piejdem',
 'qbspecialpages' => 'Peshal piejdem',
 'faq' => 'FAK',
@@ -245,7 +243,7 @@ $1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'Habowt {{SITENAME}}',
-'aboutpage' => 'Project: About',
+'aboutpage' => 'Project: អំពី',
 'copyright' => 'Kantent avielobl anda $1.',
 'copyrightpage' => '{{ns:project}}:Kapirait',
 'currentevents' => 'Korant ivent',
@@ -253,7 +251,6 @@ $1',
 'disclaimers' => 'Diskliema',
 'disclaimerpage' => 'Project: Jinaral diskliema',
 'edithelp' => 'Editin elp',
-'edithelppage' => 'Help: Editin',
 'helppage' => 'Help: Kantent',
 'mainpage' => 'Mien piej',
 'mainpage-description' => 'Mien piej',
@@ -403,11 +400,8 @@ Di riizn dehn gi a "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Yu nou lag out.'''
 
-Yu kiahn kantiniu yuuz {{SITENAME}} ananimosli, ar yu kiahn [[Special:UserLogin|lag iin agen]] az di siem ar az difrant yuuza.
+Yu kiahn kantiniu yuuz {{SITENAME}} ananimosli, ar yu kiahn <span class='plainlinks'>[$1 lag iin agen]</span> az di siem ar az difrant yuuza.
 Nuot se som piej maita kantiniu fi displie laik se yu stil log iin, antel yu klier yu brouza kiash.",
-'welcomecreation' => '== Welkom, $1! ==
-Yu akount don kriet.
-No figat fi chienj yu [[Special:Preferences|{{SITENAME}} prefransdem]].',
 'yourname' => 'Yuuzaniem:',
 'yourpassword' => 'Paaswod:',
 'yourpasswordagain' => 'Ritaip paaswod:',
@@ -668,7 +662,6 @@ Yu de pramis wi alzwel se a yu rait dis yuself, ar kapi'i frahn a poblik domien 
 'template-protected' => '(protek)',
 'template-semiprotected' => '(semi-protek)',
 'hiddencategories' => 'Dis piej a memb a {{PLURAL:$1|1 idn kiatigari|$1 idn kiatigari}}:',
-'nocreatetitle' => 'Piej krieshan limit',
 'permissionserrors' => 'Permishan herro',
 'permissionserrorstext-withaction' => 'Yu no ab no poermishan fi $2, fi di falarin {{PLURAL:$1|riizn|riizndem}}:',
 'edit-conflict' => 'Hedit kanflik: $1',
@@ -723,8 +716,6 @@ Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = 
 'search-interwiki-caption' => 'Sista prajek',
 'search-interwiki-default' => '$1 rizoltdem:',
 'search-interwiki-more' => '(muo)',
-'search-mwsuggest-enabled' => 'wid sojeshan',
-'search-mwsuggest-disabled' => 'nuo sojeshan',
 'nonefound' => "'''Nuot''': Onggl som niemspies saach bai difaalt.
 Chrai priifix yu kwieri wid ''all:'' fi saach aal kantent (inkluudn taak piej, templit, esechra), ar yuuz di dizaya niemspies fi priifix.",
 'powersearch' => 'Advans saach',
@@ -741,6 +732,9 @@ Chrai priifix yu kwieri wid ''all:'' fi saach aal kantent (inkluudn taak piej, t
 'group-sysop' => 'Adminischrieta',
 
 'grouppage-sysop' => '{{ns:project}}:Adminischrieta',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Yuuza krieshan lag',
 
 # User rights log
 'rightslog' => 'Yuuza raits lag',
@@ -832,13 +826,10 @@ Piej pahn [[Special:Watchlist|yu wachlis]] dem '''buol'''.",
 # Special:LinkSearch
 'linksearch' => 'Extoernal lingk',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Yuuza krieshan lag',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis a memba)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-miel dis yuuza',
 
 # Watchlist

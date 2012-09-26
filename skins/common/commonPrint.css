@@ -111,7 +111,7 @@ div#jump-to-nav,
 div.top,
 div#column-one,
 #colophon,
-.editsection,
+.mw-editsection,
 .toctoggle,
 .tochidden,
 div#f-poweredbyico,
@@ -125,7 +125,9 @@ li#privacy,
 .mw-hidden-catlinks,
 tr.mw-metadata-show-hide-extended,
 span.mw-filepage-other-resolutions,
-#filetoc {
+#filetoc,
+.usermessage,
+#mw-navigation {
 	/* Hides all the elements irrelevant for printing */
 	display: none;
 }
@@ -189,7 +191,7 @@ a:link, a:visited {
 #content a.external.text:after,
 #content a.external.autonumber:after {
 	/* Expand URLs for printing */
-	content: " (" attr(href) ") ";
+	content: " (" attr(href) ")";
 }
 
 #globalWrapper {
@@ -350,7 +352,7 @@ a.sortheader {
 .wikitable, .thumb, img {
 	page-break-inside: avoid;
 }
-h2, h3, h4, h5, h6, h7 {
+h2, h3, h4, h5, h6 {
 	page-break-after: avoid;
 }
 p {

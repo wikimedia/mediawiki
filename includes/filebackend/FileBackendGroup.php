@@ -87,21 +87,25 @@ class FileBackendGroup {
 			$thumbDir = isset( $info['thumbDir'] )
 				? $info['thumbDir']
 				: "{$directory}/thumb";
+			$transcodedDir = isset( $info['transcodedDir'] )
+				? $info['transcodedDir']
+				: "{$directory}/transcoded";
 			$fileMode = isset( $info['fileMode'] )
 				? $info['fileMode']
 				: 0644;
 			// Get the FS backend configuration
 			$autoBackends[] = array(
-				'name'           => $backendName,
-				'class'          => 'FSFileBackend',
-				'lockManager'    => 'fsLockManager',
+				'name' => $backendName,
+				'class' => 'FSFileBackend',
+				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
-					"{$repoName}-public"  => "{$directory}",
-					"{$repoName}-thumb"   => $thumbDir,
+					"{$repoName}-public" => "{$directory}",
+					"{$repoName}-thumb" => $thumbDir,
+					"{$repoName}-transcoded" => $transcodedDir,
 					"{$repoName}-deleted" => $deletedDir,
-					"{$repoName}-temp"    => "{$directory}/temp"
+					"{$repoName}-temp" => "{$directory}/temp"
 				),
-				'fileMode'       => $fileMode,
+				'fileMode' => $fileMode,
 			);
 		}
 
@@ -112,7 +116,7 @@ class FileBackendGroup {
 	/**
 	 * Register an array of file backend configurations
 	 *
-	 * @param $configs Array
+	 * @param Array $configs
 	 * @return void
 	 * @throws MWException
 	 */
@@ -122,15 +126,17 @@ class FileBackendGroup {
 				throw new MWException( "Cannot register a backend with no name." );
 			}
 			$name = $config['name'];
-			if ( !isset( $config['class'] ) ) {
+			if ( isset( $this->backends[$name] ) ) {
+				throw new MWException( "Backend with name `{$name}` already registered." );
+			} elseif ( !isset( $config['class'] ) ) {
 				throw new MWException( "Cannot register backend `{$name}` with no class." );
 			}
 			$class = $config['class'];
 
 			unset( $config['class'] ); // backend won't need this
 			$this->backends[$name] = array(
-				'class'    => $class,
-				'config'   => $config,
+				'class' => $class,
+				'config' => $config,
 				'instance' => null
 			);
 		}
@@ -139,7 +145,7 @@ class FileBackendGroup {
 	/**
 	 * Get the backend object with a given name
 	 *
-	 * @param $name string
+	 * @param string $name
 	 * @return FileBackend
 	 * @throws MWException
 	 */
@@ -159,7 +165,7 @@ class FileBackendGroup {
 	/**
 	 * Get the config array for a backend object with a given name
 	 *
-	 * @param $name string
+	 * @param string $name
 	 * @return Array
 	 * @throws MWException
 	 */
@@ -174,11 +180,11 @@ class FileBackendGroup {
 	/**
 	 * Get an appropriate backend object from a storage path
 	 *
-	 * @param $storagePath string
+	 * @param string $storagePath
 	 * @return FileBackend|null Backend or null on failure
 	 */
 	public function backendFromPath( $storagePath ) {
-		list( $backend, $c, $p ) = FileBackend::splitStoragePath( $storagePath );
+		list( $backend, , ) = FileBackend::splitStoragePath( $storagePath );
 		if ( $backend !== null && isset( $this->backends[$backend] ) ) {
 			return $this->get( $backend );
 		}

@@ -24,7 +24,7 @@
  * @author  Platonides
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 /**
  * Maintenance script that benchmarks wfIsWindows().
@@ -66,4 +66,4 @@ class bench_wfIsWindows extends Benchmarker {
 }
 
 $maintClass = 'bench_wfIsWindows';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -7,11 +7,13 @@
 class DatabaseTest extends MediaWikiTestCase {
 	var $db, $functionTest = false;
 
-	function setUp() {
+	protected function setUp() {
+		parent::setUp();
 		$this->db = wfGetDB( DB_MASTER );
 	}
 
-	function tearDown() {
+	protected function tearDown() {
+		parent::tearDown();
 		if ( $this->functionTest ) {
 			$this->dropFunctions();
 			$this->functionTest = false;
@@ -204,9 +206,13 @@ class DatabaseTest extends MediaWikiTestCase {
 
 	private function dropFunctions() {
 		$this->db->query( 'DROP FUNCTION IF EXISTS mw_test_function'
-			. ( $this->db->getType() == 'postgres'  ? '()' : '' )
+				. ( $this->db->getType() == 'postgres' ? '()' : '' )
 		);
 	}
+
+	function testUnknownTableCorruptsResults() {
+		$res = $this->db->select( 'page', '*', array( 'page_id' => 1 ) );
+		$this->assertFalse( $this->db->tableExists( 'foobarbaz' ) );
+		$this->assertInternalType( 'int', $res->numRows() );
+	}
 }
-
-

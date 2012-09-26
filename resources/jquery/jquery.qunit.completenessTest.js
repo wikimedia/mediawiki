@@ -12,10 +12,8 @@
  *
  * @author Timo Tijhof, 2011-2012
  */
-/*global jQuery, QUnit */
-/*jshint eqeqeq:false, eqnull:false, forin:false */
 ( function ( $ ) {
-	"use strict";
+	'use strict';
 
 	var util,
 		hasOwn = Object.prototype.hasOwnProperty,

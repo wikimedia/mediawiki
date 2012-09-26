@@ -22,7 +22,7 @@
  */
 
 /**
- * Date formatter, recognises dates in plain text and formats them accoding to user preferences.
+ * Date formatter, recognises dates in plain text and formats them according to user preferences.
  * @todo preferences, OutputPage
  * @ingroup Parser
  */
@@ -55,7 +55,7 @@ class DateFormatter {
 		$this->lang = $lang;
 
 		$this->monthNames = $this->getMonthRegex();
-		for ( $i=1; $i<=12; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$this->xMonths[$this->lang->lc( $this->lang->getMonthName( $i ) )] = $i;
 			$this->xMonths[$this->lang->lc( $this->lang->getMonthAbbreviation( $i ) )] = $i;
 		}
@@ -102,11 +102,11 @@ class DateFormatter {
 
 		# Rules
 		#            pref    source 	  target
-		$this->rules[self::DMY][self::MD] 	= self::DM;
-		$this->rules[self::ALL][self::MD] 	= self::MD;
-		$this->rules[self::MDY][self::DM] 	= self::MD;
-		$this->rules[self::ALL][self::DM] 	= self::DM;
-		$this->rules[self::NONE][self::ISO2] 	= self::ISO1;
+		$this->rules[self::DMY][self::MD] = self::DM;
+		$this->rules[self::ALL][self::MD] = self::MD;
+		$this->rules[self::MDY][self::DM] = self::MD;
+		$this->rules[self::ALL][self::DM] = self::DM;
+		$this->rules[self::NONE][self::ISO2] = self::ISO1;
 
 		$this->preferences = array(
 			'default' => self::NONE,
@@ -140,12 +140,12 @@ class DateFormatter {
 	}
 
 	/**
-	 * @param $preference String: User preference
-	 * @param $text String: Text to reformat
-	 * @param $options Array: can contain 'linked' and/or 'match-whole'
+	 * @param string $preference User preference
+	 * @param string $text Text to reformat
+	 * @param array $options can contain 'linked' and/or 'match-whole'
 	 * @return mixed|String
 	 */
-	function reformat( $preference, $text, $options = array('linked') ) {
+	function reformat( $preference, $text, $options = array( 'linked' ) ) {
 		$linked = in_array( 'linked', $options );
 		$match_whole = in_array( 'match-whole', $options );
 
@@ -154,12 +154,12 @@ class DateFormatter {
 		} else {
 			$preference = self::NONE;
 		}
-		for ( $i=1; $i<=self::LAST; $i++ ) {
+		for ( $i = 1; $i <= self::LAST; $i++ ) {
 			$this->mSource = $i;
-			if ( isset ( $this->rules[$preference][$i] ) ) {
+			if ( isset( $this->rules[$preference][$i] ) ) {
 				# Specific rules
 				$this->mTarget = $this->rules[$preference][$i];
-			} elseif ( isset ( $this->rules[self::ALL][$i] ) ) {
+			} elseif ( isset( $this->rules[self::ALL][$i] ) ) {
 				# General rules
 				$this->mTarget = $this->rules[self::ALL][$i];
 			} elseif ( $preference ) {
@@ -172,21 +172,21 @@ class DateFormatter {
 			$regex = $this->regexes[$i];
 
 			// Horrible hack
-			if (!$linked) {
+			if ( !$linked ) {
 				$regex = str_replace( array( '\[\[', '\]\]' ), '', $regex );
 			}
 
-			if ($match_whole) {
+			if ( $match_whole ) {
 				// Let's hope this works
 				$regex = preg_replace( '!^/!', '/^', $regex );
 				$regex = str_replace( $this->regexTrail,
-					'$'.$this->regexTrail, $regex );
+					'$' . $this->regexTrail, $regex );
 			}
 
 			// Another horrible hack
 			$this->mLinked = $linked;
 			$text = preg_replace_callback( $regex, array( &$this, 'replace' ), $text );
-			unset($this->mLinked);
+			unset( $this->mLinked );
 		}
 		return $text;
 	}
@@ -198,14 +198,15 @@ class DateFormatter {
 	function replace( $matches ) {
 		# Extract information from $matches
 		$linked = true;
-		if ( isset( $this->mLinked ) )
+		if ( isset( $this->mLinked ) ) {
 			$linked = $this->mLinked;
-		
+		}
+
 		$bits = array();
 		$key = $this->keys[$this->mSource];
-		for ( $p=0; $p < strlen($key); $p++ ) {
+		for ( $p = 0; $p < strlen( $key ); $p++ ) {
 			if ( $key[$p] != ' ' ) {
-				$bits[$key[$p]] = $matches[$p+1];
+				$bits[$key[$p]] = $matches[$p + 1];
 			}
 		}
 
@@ -219,8 +220,8 @@ class DateFormatter {
 	 */
 	function formatDate( $bits, $link = true ) {
 		$format = $this->targets[$this->mTarget];
-		
-		if (!$link) {
+
+		if ( !$link ) {
 			// strip piped links
 			$format = preg_replace( '/\[\[[^|]+\|([^\]]+)\]\]/', '$1', $format );
 			// strip remaining links
@@ -232,10 +233,12 @@ class DateFormatter {
 		$fail = false;
 
 		// Pre-generate y/Y stuff because we need the year for the <span> title.
-		if ( !isset( $bits['y'] ) && isset( $bits['Y'] ) )
+		if ( !isset( $bits['y'] ) && isset( $bits['Y'] ) ) {
 			$bits['y'] = $this->makeIsoYear( $bits['Y'] );
-		if ( !isset( $bits['Y'] ) && isset( $bits['y'] ) )
+		}
+		if ( !isset( $bits['Y'] ) && isset( $bits['y'] ) ) {
 			$bits['Y'] = $this->makeNormalYear( $bits['y'] );
+		}
 
 		if ( !isset( $bits['m'] ) ) {
 			$m = $this->makeIsoMonth( $bits['F'] );
@@ -246,11 +249,11 @@ class DateFormatter {
 			}
 		}
 
-		if ( !isset($bits['d']) ) {
+		if ( !isset( $bits['d'] ) ) {
 			$bits['d'] = sprintf( '%02d', $bits['j'] );
 		}
 
-		for ( $p=0; $p < strlen( $format ); $p++ ) {
+		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$char = $format[$p];
 			switch ( $char ) {
 				case 'd': # ISO day of month
@@ -263,7 +266,7 @@ class DateFormatter {
 					$text .= $bits['y'];
 					break;
 				case 'j': # ordinary day of month
-					if ( !isset($bits['j']) ) {
+					if ( !isset( $bits['j'] ) ) {
 						$text .= intval( $bits['d'] );
 					} else {
 						$text .= $bits['j'];
@@ -271,7 +274,7 @@ class DateFormatter {
 					break;
 				case 'F': # long month
 					if ( !isset( $bits['F'] ) ) {
-						$m = intval($bits['m']);
+						$m = intval( $bits['m'] );
 						if ( $m > 12 || $m < 1 ) {
 							$fail = true;
 						} else {
@@ -293,8 +296,9 @@ class DateFormatter {
 		}
 
 		$isoBits = array();
-		if ( isset($bits['y']) )
+		if ( isset( $bits['y'] ) ) {
 			$isoBits[] = $bits['y'];
+		}
 		$isoBits[] = $bits['m'];
 		$isoBits[] = $bits['d'];
 		$isoDate = implode( '-', $isoBits );
@@ -312,7 +316,7 @@ class DateFormatter {
 	 */
 	function getMonthRegex() {
 		$names = array();
-		for( $i = 1; $i <= 12; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$names[] = $this->lang->getMonthName( $i );
 			$names[] = $this->lang->getMonthAbbreviation( $i );
 		}
@@ -321,7 +325,7 @@ class DateFormatter {
 
 	/**
 	 * Makes an ISO month, e.g. 02, from a month name
-	 * @param $monthName String: month name
+	 * @param string $monthName month name
 	 * @return string ISO month name
 	 */
 	function makeIsoMonth( $monthName ) {
@@ -331,13 +335,13 @@ class DateFormatter {
 
 	/**
 	 * @todo document
-	 * @param $year String: Year name
+	 * @param string $year Year name
 	 * @return string ISO year name
 	 */
 	function makeIsoYear( $year ) {
 		# Assumes the year is in a nice format, as enforced by the regex
 		if ( substr( $year, -2 ) == 'BC' ) {
-			$num = intval(substr( $year, 0, -3 )) - 1;
+			$num = intval( substr( $year, 0, -3 ) ) - 1;
 			# PHP bug note: sprintf( "%04d", -1 ) fails poorly
 			$text = sprintf( '-%04d', $num );
 
@@ -353,7 +357,7 @@ class DateFormatter {
 	 */
 	function makeNormalYear( $iso ) {
 		if ( $iso[0] == '-' ) {
-			$text = (intval( substr( $iso, 1 ) ) + 1) . ' BC';
+			$text = ( intval( substr( $iso, 1 ) ) + 1 ) . ' BC';
 		} else {
 			$text = intval( $iso );
 		}

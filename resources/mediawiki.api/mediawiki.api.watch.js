@@ -1,56 +1,74 @@
 /**
- * Additional mw.Api methods to assist with (un)watching wiki pages.
+ * @class mw.Api.plugin.watch
  * @since 1.19
  */
 ( function ( mw, $ ) {
 
 	/**
-	 * @context {mw.Api}
+	 * @private
+	 * @context mw.Api
+	 *
+	 * @param {String|mw.Title} page Full page name or instance of mw.Title
+	 * @param {Function} [ok] Success callback (deprecated)
+	 * @param {Function} [err] Error callback (deprecated)
+	 * @return {jQuery.Promise}
+	 * @return {Function} return.done
+	 * @return {Object} return.done.watch
+	 * @return {string} return.done.watch.title Full pagename
+	 * @return {boolean} return.done.watch.watched
+	 * @return {string} return.done.watch.message Parsed HTML of the confirmational interface message
 	 */
-	function doWatchInternal( page, success, err, addParams ) {
-		var params = {
+	function doWatchInternal( page, ok, err, addParams ) {
+		var params,
+			d = $.Deferred(),
+			apiPromise;
+		// Backwards compatibility (< MW 1.20)
+		d.done( ok );
+		d.fail( err );
+
+		params = {
 			action: 'watch',
 			title: String( page ),
 			token: mw.user.tokens.get( 'watchToken' ),
 			uselang: mw.config.get( 'wgUserLanguage' )
 		};
-		function ok( data ) {
-			success( data.watch );
-		}
+
 		if ( addParams ) {
 			$.extend( params, addParams );
 		}
-		return this.post( params, { ok: ok, err: err } );
+
+		apiPromise = this.post( params )
+			.done( function ( data ) {
+				d.resolve( data.watch );
+			} )
+			.fail( d.reject );
+
+		return d.promise( { abort: apiPromise.abort } );
 	}
 
 	$.extend( mw.Api.prototype, {
 		/**
-		 * Convinience method for 'action=watch'.
+		 * Convenience method for `action=watch`.
 		 *
-		 * @param page {String|mw.Title} Full page name or instance of mw.Title
-		 * @param success {Function} Callback to which the watch object will be passed.
-		 * Watch object contains properties 'title' (full pagename), 'watched' (boolean) and
-		 * 'message' (parsed HTML of the 'addedwatchtext' message).
-		 * @param err {Function} Error callback (optional)
-		 * @return {jqXHR}
+		 * @inheritdoc #doWatchInternal
 		 */
-		watch: function ( page, success, err ) {
-			return doWatchInternal.call( this, page, success, err );
+		watch: function ( page, ok, err ) {
+			return doWatchInternal.call( this, page, ok, err );
 		},
 		/**
-		 * Convinience method for 'action=watch&unwatch=1'.
+		 * Convenience method for `action=watch&unwatch=1`.
 		 *
-		 * @param page {String|mw.Title} Full page name or instance of mw.Title
-		 * @param success {Function} Callback to which the watch object will be passed.
-		 * Watch object contains properties 'title' (full pagename), 'watched' (boolean) and
-		 * 'message' (parsed HTML of the 'removedwatchtext' message).
-		 * @param err {Function} Error callback (optional)
-		 * @return {jqXHR}
+		 * @inheritdoc #doWatchInternal
 		 */
-		unwatch: function ( page, success, err ) {
-			return doWatchInternal.call( this, page, success, err, { unwatch: 1 } );
+		unwatch: function ( page, ok, err ) {
+			return doWatchInternal.call( this, page, ok, err, { unwatch: 1 } );
 		}
 
 	} );
+
+	/**
+	 * @class mw.Api
+	 * @mixins mw.Api.plugin.watch
+	 */
 
 }( mediaWiki, jQuery ) );

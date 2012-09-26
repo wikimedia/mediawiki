@@ -3,10 +3,10 @@
  * @author Santhosh Thottingal
  */
 
-mediaWiki.language.convertGrammar = function( word, form ) {
-	var grammarForms = mw.language.getData( 'la', 'grammarForms' );
+mediaWiki.language.convertGrammar = function ( word, form ) {
+	var grammarForms = mediaWiki.language.getData( 'la', 'grammarForms' );
 	if ( grammarForms && grammarForms[form] ) {
-		return grammarForms[form][word] ;
+		return grammarForms[form][word];
 	}
 	switch ( form ) {
 		case 'genitive':

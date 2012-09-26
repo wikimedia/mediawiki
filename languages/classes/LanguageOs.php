@@ -81,27 +81,41 @@ class LanguageOs extends Language {
 		# Checking if $word ends on 'у'. 'У' can be either consonant 'W' or vowel 'U' in cyrillic Ossetic.
 		# Examples: {{grammar:genitive|аунеу}} = аунеуы, {{grammar:genitive|лæппу}} = лæппуйы.
 		elseif ( preg_match( "/у$/u", $word ) ) {
-			if ( !preg_match( "/[аæеёиоыэюя]$/u", mb_substr( $word, -2, 1 ) ) )
+			if ( !preg_match( "/[аæеёиоыэюя]$/u", mb_substr( $word, -2, 1 ) ) ) {
 				$jot = 'й';
+			}
 		} elseif ( !preg_match( "/[бвгджзйклмнопрстфхцчшщьъ]$/u", $word ) ) {
 			$hyphen = '-';
 		}
 
 		switch ( $case ) {
-			case 'genitive': $ending = $hyphen . $jot . 'ы'; break;
-			case 'dative': $ending = $hyphen . $jot . 'æн'; break;
-			case 'allative': $ending = $hyphen . $end_allative; break;
+			case 'genitive':
+				$ending = $hyphen . $jot . 'ы';
+				break;
+			case 'dative':
+				$ending = $hyphen . $jot . 'æн';
+				break;
+			case 'allative':
+				$ending = $hyphen . $end_allative;
+				break;
 			case 'ablative':
 				if ( $jot == 'й' ) {
-					$ending = $hyphen . $jot . 'æ'; break;
+					$ending = $hyphen . $jot . 'æ';
+				} else {
+					$ending = $hyphen . $jot . 'æй';
 				}
-				else {
-					$ending = $hyphen . $jot . 'æй'; break;
-				}
-			case 'inessive': break;
-			case 'superessive': $ending = $hyphen . $jot . 'ыл'; break;
-			case 'equative': $ending = $hyphen . $jot . 'ау'; break;
-			case 'comitative': $ending = $hyphen . 'имæ'; break;
+				break;
+			case 'inessive':
+				break;
+			case 'superessive':
+				$ending = $hyphen . $jot . 'ыл';
+				break;
+			case 'equative':
+				$ending = $hyphen . $jot . 'ау';
+				break;
+			case 'comitative':
+				$ending = $hyphen . 'имæ';
+				break;
 		}
 		return $word . $ending;
 	}

@@ -6,13 +6,13 @@ DROP TABLE IF EXISTS /*$wgDBprefix*/links;
 CREATE TABLE /*$wgDBprefix*/links (
   -- Key to the page_id of the page containing the link.
   l_from int unsigned NOT NULL default '0',
-  
+
   -- Key to the page_id of the link target.
   -- An unfortunate consequence of this is that rename
   -- operations require changing the links entries for
   -- all links to the moved page.
   l_to int unsigned NOT NULL default '0',
-  
+
   UNIQUE KEY l_from(l_from,l_to),
   KEY (l_to)
 
@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS /*$wgDBprefix*/brokenlinks;
 CREATE TABLE /*$wgDBprefix*/brokenlinks (
   -- Key to the page_id of the page containing the link.
   bl_from int unsigned NOT NULL default '0',
-  
+
   -- Text of the target page title ("namesapce:title").
   -- Unfortunately this doesn't split the namespace index
   -- key and therefore can't easily be joined to anything.
@@ -46,12 +46,12 @@ DROP TABLE IF EXISTS /*$wgDBprefix*/imagelinks;
 CREATE TABLE /*$wgDBprefix*/imagelinks (
   -- Key to page_id of the page containing the image / media link.
   il_from int unsigned NOT NULL default '0',
-  
+
   -- Filename of target image.
   -- This is also the page_title of the file's description page;
   -- all such pages are in namespace 6 (NS_FILE).
   il_to varchar(255) binary NOT NULL default '',
-  
+
   UNIQUE KEY il_from(il_from,il_to),
   KEY (il_to)
 

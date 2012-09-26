@@ -138,6 +138,8 @@ class MagicWord {
 		'numberofactiveusers',
 		'numberofpages',
 		'currentversion',
+		'rootpagename',
+		'rootpagenamee',
 		'basepagename',
 		'basepagenamee',
 		'currenttimestamp',
@@ -149,7 +151,7 @@ class MagicWord {
 	);
 
 	/* Array of caching hints for ParserCache */
-	static public $mCacheTTLs = array (
+	static public $mCacheTTLs = array(
 		'currentmonth' => 86400,
 		'currentmonth1' => 86400,
 		'currentmonthname' => 86400,
@@ -217,7 +219,7 @@ class MagicWord {
 
 	/**#@-*/
 
-	function __construct($id = 0, $syn = array(), $cs = false) {
+	function __construct( $id = 0, $syn = array(), $cs = false ) {
 		$this->mId = $id;
 		$this->mSynonyms = (array)$syn;
 		$this->mCaseSensitive = $cs;
@@ -282,6 +284,7 @@ class MagicWord {
 	 */
 	static function getDoubleUnderscoreArray() {
 		if ( is_null( self::$mDoubleUnderscoreArray ) ) {
+			wfRunHooks( 'GetDoubleUnderscoreIDs', array( &self::$mDoubleUnderscoreIDs ) );
 			self::$mDoubleUnderscoreArray = new MagicWordArray( self::$mDoubleUnderscoreIDs );
 		}
 		return self::$mDoubleUnderscoreArray;
@@ -308,6 +311,7 @@ class MagicWord {
 		$wgContLang->getMagic( $this );
 		if ( !$this->mSynonyms ) {
 			$this->mSynonyms = array( 'dkjsagfjsgashfajsh' );
+			wfProfileOut( __METHOD__ );
 			throw new MWException( "Error: invalid magic word '$id'" );
 			#wfDebugLog( 'exception', "Error: invalid magic word '$id'\n" );
 		}
@@ -325,9 +329,10 @@ class MagicWord {
 		usort( $synonyms, array( $this, 'compareStringLength' ) );
 
 		$escSyn = array();
-		foreach ( $synonyms as $synonym )
+		foreach ( $synonyms as $synonym ) {
 			// In case a magic word contains /, like that's going to happen;)
 			$escSyn[] = preg_quote( $synonym, '/' );
+		}
 		$this->mBaseRegex = implode( '|', $escSyn );
 
 		$case = $this->mCaseSensitive ? '' : 'iu';
@@ -366,7 +371,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function getRegex() {
-		if ($this->mRegex == '' ) {
+		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mRegex;
@@ -380,8 +385,9 @@ class MagicWord {
 	 * @return string
 	 */
 	function getRegexCase() {
-		if ( $this->mRegex === '' )
+		if ( $this->mRegex === '' ) {
 			$this->initRegex();
+		}
 
 		return $this->mCaseSensitive ? '' : 'iu';
 	}
@@ -392,7 +398,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function getRegexStart() {
-		if ($this->mRegex == '' ) {
+		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mRegexStart;
@@ -404,7 +410,7 @@ class MagicWord {
 	 * @return string
 	 */
 	function getBaseRegex() {
-		if ($this->mRegex == '') {
+		if ( $this->mRegex == '' ) {
 			$this->initRegex();
 		}
 		return $this->mBaseRegex;
@@ -453,16 +459,15 @@ class MagicWord {
 			# blank elements and re-sort the indices.
 			# See also bug 6526
 
-			$matches = array_values(array_filter($matches));
+			$matches = array_values( array_filter( $matches ) );
 
-			if ( count($matches) == 1 ) {
+			if ( count( $matches ) == 1 ) {
 				return $matches[0];
 			} else {
 				return $matches[1];
 			}
 		}
 	}
-
 
 	/**
 	 * Returns true if the text matches the word, and alters the
@@ -509,7 +514,7 @@ class MagicWord {
 	 */
 	function replace( $replacement, $subject, $limit = -1 ) {
 		$res = preg_replace( $this->getRegex(), StringUtils::escapeRegexReplacement( $replacement ), $subject, $limit );
-		$this->mModified = !($res === $subject);
+		$this->mModified = $res !== $subject;
 		return $res;
 	}
 
@@ -525,7 +530,7 @@ class MagicWord {
 	 */
 	function substituteCallback( $text, $callback ) {
 		$res = preg_replace_callback( $this->getVariableRegex(), $callback, $text );
-		$this->mModified = !($res === $text);
+		$this->mModified = $res !== $text;
 		return $res;
 	}
 
@@ -534,7 +539,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getVariableRegex()	{
+	function getVariableRegex() {
 		if ( $this->mVariableRegex == '' ) {
 			$this->initRegex();
 		}
@@ -577,7 +582,7 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function getWasModified(){
+	function getWasModified() {
 		return $this->mModified;
 	}
 
@@ -594,17 +599,17 @@ class MagicWord {
 	 *
 	 * @return bool
 	 */
-	function replaceMultiple( $magicarr, $subject, &$result ){
+	function replaceMultiple( $magicarr, $subject, &$result ) {
 		$search = array();
 		$replace = array();
-		foreach( $magicarr as $id => $replacement ){
+		foreach ( $magicarr as $id => $replacement ) {
 			$mw = MagicWord::get( $id );
 			$search[] = $mw->getRegex();
 			$replace[] = $replacement;
 		}
 
 		$result = preg_replace( $search, $replace, $subject );
-		return !($result === $subject);
+		return $result !== $subject;
 	}
 
 	/**
@@ -617,7 +622,7 @@ class MagicWord {
 	function addToArray( &$array, $value ) {
 		global $wgContLang;
 		foreach ( $this->mSynonyms as $syn ) {
-			$array[$wgContLang->lc($syn)] = $value;
+			$array[$wgContLang->lc( $syn )] = $value;
 		}
 	}
 
@@ -811,7 +816,7 @@ class MagicWordArray {
 			return array( $magicName, $paramValue );
 		}
 		// This shouldn't happen either
-		throw new MWException( __METHOD__.': parameter not found' );
+		throw new MWException( __METHOD__ . ': parameter not found' );
 	}
 
 	/**

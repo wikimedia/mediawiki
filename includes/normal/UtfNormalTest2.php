@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 /**
  * Other tests for the unicode normalization module.
@@ -22,7 +22,7 @@
  * @ingroup UtfNormal
  */
 
-if( php_sapi_name() != 'cli' ) {
+if( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
@@ -65,7 +65,7 @@ $f = fopen($file, "r");
      later and slow down the runtime.
  */
 
-require_once("./UtfNormal.php");
+require_once './UtfNormal.php';
 function normalize_form_c($c)      { return UtfNormal::toNFC($c);  }
 function normalize_form_d($c)      { return UtfNormal::toNFD($c);  }
 function normalize_form_kc($c)     { return UtfNormal::toNFKC($c); }

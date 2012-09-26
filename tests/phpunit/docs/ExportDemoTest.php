@@ -26,10 +26,13 @@ class ExportDemoTest extends DumpTestCase {
 		$dom = new DomDocument();
 		$dom->load( $fname );
 
+		// Ensure, the demo is for the current version
+		$this->assertEquals( $dom->documentElement->getAttribute( 'version' ), $version, 'export-demo.xml should have the current version' );
+
 		try {
 			$this->assertTrue( $dom->schemaValidate( "../../docs/export-" . $version . ".xsd" ),
 				"schemaValidate has found an error" );
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$this->fail( "xml not valid against xsd: " . $e->getMessage() );
 		}
 	}

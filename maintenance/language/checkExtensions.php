@@ -21,14 +21,14 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../commandLine.inc' );
-require_once( 'languages.inc' );
-require_once( 'checkLanguage.inc' );
+require_once __DIR__ . '/../commandLine.inc';
+require_once 'languages.inc';
+require_once 'checkLanguage.inc';
 
 if ( !class_exists( 'MessageGroups' ) || !class_exists( 'PremadeMediawikiExtensionGroups' ) ) {
 	echo <<<TEXT
 Please add the Translate extension to LocalSettings.php, and enable the extension groups:
-	require_once( 'extensions/Translate/Translate.php' );
+	require_once 'extensions/Translate/Translate.php';
 	\$wgTranslateEC = array_keys( \$wgTranslateAC );
 If you still get this message, update Translate to its latest version.
 

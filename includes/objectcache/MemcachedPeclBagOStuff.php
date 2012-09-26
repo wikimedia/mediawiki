@@ -37,6 +37,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 *   - compress_threshold:  The minimum size an object must be before it is compressed
 	 *   - timeout:             The read timeout in microseconds
 	 *   - connect_timeout:     The connect timeout in seconds
+	 *   - retry_timeout:       Time in seconds to wait before retrying a failed connect attempt
+	 *   - server_failure_limit:  Limit for server connect failures before it is removed
 	 *   - serializer:          May be either "php" or "igbinary". Igbinary produces more compact
 	 *                          values, but serialization is much slower unless the php.ini option
 	 *                          igbinary.compact_strings is off.
@@ -47,7 +49,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		if ( $params['persistent'] ) {
 			// The pool ID must be unique to the server/option combination.
 			// The Memcached object is essentially shared for each pool ID.
-			// We can only resuse a pool ID if we keep the config consistent.
+			// We can only reuse a pool ID if we keep the config consistent.
 			$this->client = new Memcached( md5( serialize( $params ) ) );
 			if ( count( $this->client->getServerList() ) ) {
 				wfDebug( __METHOD__ . ": persistent Memcached object already loaded.\n" );
@@ -59,6 +61,14 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 		if ( !isset( $params['serializer'] ) ) {
 			$params['serializer'] = 'php';
+		}
+
+		if ( isset( $params['retry_timeout'] ) ) {
+			$this->client->setOption( Memcached::OPT_RETRY_TIMEOUT, $params['retry_timeout'] );
+		}
+
+		if ( isset ( $params['server_failure_limit'] ) ) {
+			$this->client->setOption( Memcached::OPT_SERVER_FAILURE_LIMIT, $params['server_failure_limit'] );
 		}
 
 		// The compression threshold is an undocumented php.ini option for some
@@ -87,13 +97,13 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 				break;
 			case 'igbinary':
 				if ( !Memcached::HAVE_IGBINARY ) {
-					throw new MWException( __CLASS__.': the igbinary extension is not available ' .
+					throw new MWException( __CLASS__ . ': the igbinary extension is not available ' .
 						'but igbinary serialization was requested.' );
 				}
 				$this->client->setOption( Memcached::OPT_SERIALIZER, Memcached::SERIALIZER_IGBINARY );
 				break;
 			default:
-				throw new MWException( __CLASS__.': invalid value for serializer parameter' );
+				throw new MWException( __CLASS__ . ': invalid value for serializer parameter' );
 		}
 		$servers = array();
 		foreach ( $params['servers'] as $host ) {
@@ -104,11 +114,16 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] float
 	 * @return Mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
+		wfProfileIn( __METHOD__ );
 		$this->debugLog( "get($key)" );
-		return $this->checkResult( $key, parent::get( $key ) );
+		$result = $this->client->get( $this->encodeKey( $key ), null, $casToken );
+		$result = $this->checkResult( $key, $result );
+		wfProfileOut( __METHOD__ );
+		return $result;
 	}
 
 	/**
@@ -120,6 +135,18 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	public function set( $key, $value, $exptime = 0 ) {
 		$this->debugLog( "set($key)" );
 		return $this->checkResult( $key, parent::set( $key, $value, $exptime ) );
+	}
+
+	/**
+	 * @param $casToken float
+	 * @param $key string
+	 * @param $value
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		$this->debugLog( "cas($key)" );
+		return $this->checkResult( $key, parent::cas( $casToken, $key, $value, $exptime ) );
 	}
 
 	/**
@@ -189,7 +216,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * the client, but some day we might find a case where it should be
 	 * different.
 	 *
-	 * @param $key string The key used by the caller, or false if there wasn't one.
+	 * @param string $key The key used by the caller, or false if there wasn't one.
 	 * @param $result Mixed The return value
 	 * @return Mixed
 	 */
@@ -224,9 +251,11 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	 * @return Array
 	 */
 	public function getMulti( array $keys ) {
+		wfProfileIn( __METHOD__ );
 		$this->debugLog( 'getMulti(' . implode( ', ', $keys ) . ')' );
 		$callback = array( $this, 'encodeKey' );
 		$result = $this->client->getMulti( array_map( $callback, $keys ) );
+		wfProfileOut( __METHOD__ );
 		return $this->checkResult( false, $result );
 	}
 

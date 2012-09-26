@@ -58,6 +58,7 @@ body {
 	font-variant: small-caps;
 }
 
+#p-personal h3,
 #p-personal h5 {
 	display: none;
 }
@@ -125,6 +126,12 @@ body {
 	background-color: #f0f0f0;
 }
 
+/* Hide, but keep accessible for screen-readers */
+#mw_portlets h2 {
+	position: absolute;
+	top: -9999px;
+}
+
 #mw_main {
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
@@ -150,6 +157,11 @@ textarea {
 	width: 100%;
 	padding: .1em;
 }
+#editform textarea {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
 
 #searchBody {
 	text-align: center;
@@ -165,11 +177,13 @@ textarea {
 	margin-top: .4em;
 }
 
+.portlet h3,
 .portlet h5 {
 	padding: 0.1em 0 0.3em 1em;
 	margin: 0 0 0 0;
 	background-color: #dddddd;
 	font-weight: bold;
+	font-size: 0.83em;
 	border-bottom: solid 1px #3c78b5;
 	height: 1.1em;
 }
@@ -238,6 +252,7 @@ ul {
 	color: white;
 }
 
+#p-cactions h3,
 #p-cactions h5 {
 	display: none;
 }
@@ -325,10 +340,6 @@ a.new:visited {
 	color: #a55858;
 }
 
-span.editsection {
-	font-size: small;
-}
-
 h1, h2 {
 	border-bottom: solid 1px #003366;
 }
@@ -397,11 +408,6 @@ h1, h2, h3, h4, h5, h6 {
 	text-decoration: none;
 	color: white;
 }
-
-#mw-pref-clear {
-	clear: both;
-}
-
 #mw_content a.external,
 #mw_content a.external[href ^="gopher://"] {
 	/* @embed */

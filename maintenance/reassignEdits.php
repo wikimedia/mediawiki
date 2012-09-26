@@ -23,7 +23,7 @@
  * @licence GNU General Public Licence 2.0 or later
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that reassigns edits from a user or IP address
@@ -46,7 +46,7 @@ class ReassignEdits extends Maintenance {
 		if ( $this->hasArg( 0 ) && $this->hasArg( 1 ) ) {
 			# Set up the users involved
 			$from = $this->initialiseUser( $this->getArg( 0 ) );
-			$to   = $this->initialiseUser( $this->getArg( 1 ) );
+			$to = $this->initialiseUser( $this->getArg( 1 ) );
 
 			# If the target doesn't exist, and --force is not set, stop here
 			if ( $to->getId() || $this->hasOption( 'force' ) ) {
@@ -179,5 +179,4 @@ class ReassignEdits extends Maintenance {
 }
 
 $maintClass = "ReassignEdits";
-require_once( RUN_MAINTENANCE_IF_MAIN );
-
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -93,6 +93,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		}
 		if ( is_null( $matches ) ) {
 			$this->dieUsage( "{$what} search is disabled", "search-{$what}-disabled" );
+		} elseif ( $matches instanceof Status && !$matches->isGood() ) {
+			$this->dieUsage( $matches->getWikiText(), 'search-error' );
 		}
 
 		$apiResult = $this->getResult();
@@ -168,7 +170,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 					}
 				}
 				if ( isset( $prop['hasrelated'] ) && $result->hasRelated() ) {
-					$vals['hasrelated'] = "";
+					$vals['hasrelated'] = '';
 				}
 
 				// Add item to results and see whether it fits
@@ -205,7 +207,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_REQUIRED => true
 			),
 			'namespace' => array(
-				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_DFLT => NS_MAIN,
 				ApiBase::PARAM_TYPE => 'namespace',
 				ApiBase::PARAM_ISMULTI => true,
 			),
@@ -345,6 +347,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'code' => 'search-text-disabled', 'info' => 'text search is disabled' ),
 			array( 'code' => 'search-title-disabled', 'info' => 'title search is disabled' ),
+			array( 'code' => 'search-error', 'info' => 'search error has occurred' ),
 		) );
 	}
 
@@ -358,9 +361,5 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Search';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

@@ -22,9 +22,9 @@
  * @defgroup MaintenanceLanguage MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../commandLine.inc' );
-require_once( 'languages.inc' );
-require_once( 'writeMessagesArray.inc' );
+require_once __DIR__ . '/../commandLine.inc';
+require_once 'languages.inc';
+require_once 'writeMessagesArray.inc';
 
 /**
  * Rewrite a messages array.
@@ -56,13 +56,13 @@ function rebuildLanguage( $languages, $code, $write, $listUnknown, $removeUnknow
  */
 function removeDupes( $oldMsgArray, $dupeMsgSource ) {
 	if ( file_exists( $dupeMsgSource ) ) {
-		include( $dupeMsgSource );
+		include $dupeMsgSource;
 		if ( !isset( $dupeMessages ) ) {
-			echo( "There are no duplicated messages in the source file provided." );
+			echo "There are no duplicated messages in the source file provided.";
 			exit( 1 );
 		}
 	} else {
-		echo ( "The specified file $dupeMsgSource cannot be found." );
+		echo "The specified file $dupeMsgSource cannot be found.";
 		exit( 1 );
 	}
 	$newMsgArray = $oldMsgArray;

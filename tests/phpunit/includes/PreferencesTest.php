@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class PreferencesTest extends MediaWikiTestCase {
 	/** Array of User objects */
 	private $prefUsers;
@@ -7,7 +10,6 @@ class PreferencesTest extends MediaWikiTestCase {
 
 	function __construct() {
 		parent::__construct();
-		global $wgEnableEmail;
 
 		$this->prefUsers['noemail'] = new User;
 
@@ -15,17 +17,23 @@ class PreferencesTest extends MediaWikiTestCase {
 		$this->prefUsers['notauth']
 			->setEmail( 'noauth@example.org' );
 
-		$this->prefUsers['auth']    = new User;
+		$this->prefUsers['auth'] = new User;
 		$this->prefUsers['auth']
 			->setEmail( 'noauth@example.org' );
 		$this->prefUsers['auth']
 			->setEmailAuthenticationTimestamp( 1330946623 );
 
 		$this->context = new RequestContext;
-		$this->context->setTitle( Title::newFromText('PreferencesTest') );
+		$this->context->setTitle( Title::newFromText( 'PreferencesTest' ) );
+	}
 
-		//some tests depends on email setting
-		$wgEnableEmail = true;
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgEnableEmail' => true,
+			'wgEmailAuthentication' => true,
+		) );
 	}
 
 	/**
@@ -39,6 +47,7 @@ class PreferencesTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( 'mw-email-none', $prefs['emailaddress']['cssclass'] );
 	}
+
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
@@ -50,6 +59,7 @@ class PreferencesTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( 'mw-email-not-authenticated', $prefs['emailaddress']['cssclass'] );
 	}
+
 	/**
 	 * Placeholder to verify bug 34302
 	 * @covers Preferences::profilePreferences
@@ -70,6 +80,7 @@ class PreferencesTest extends MediaWikiTestCase {
 			, $this->context
 			, $preferences
 		);
+
 		return $preferences;
 	}
 }

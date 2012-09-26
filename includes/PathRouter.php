@@ -141,10 +141,10 @@ class PathRouter {
 		}
 
 		$pattern = (object)array(
-			'path'    => $path,
-			'params'  => $params,
+			'path' => $path,
+			'params' => $params,
 			'options' => $options,
-			'key'     => $key,
+			'key' => $key,
 		);
 		$pattern->weight = self::makeWeight( $pattern );
 		$this->patterns[] = $pattern;
@@ -153,9 +153,9 @@ class PathRouter {
 	/**
 	 * Add a new path pattern to the path router
 	 *
-	 * @param $path string|array The path pattern to add
-	 * @param $params array The params for this path pattern
-	 * @param $options array The options for this path pattern
+	 * @param string|array $path The path pattern to add
+	 * @param array $params The params for this path pattern
+	 * @param array $options The options for this path pattern
 	 */
 	public function add( $path, $params = array(), $options = array() ) {
 		if ( is_array( $path ) ) {
@@ -185,7 +185,7 @@ class PathRouter {
 	 */
 	protected function sortByWeight() {
 		$weights = array();
-		foreach( $this->patterns as $key => $pattern ) {
+		foreach ( $this->patterns as $key => $pattern ) {
 			$weights[$key] = $pattern->weight;
 		}
 		array_multisort( $weights, SORT_DESC, SORT_NUMERIC, $this->patterns );
@@ -203,7 +203,7 @@ class PathRouter {
 		$path = explode( '/', $pattern->path );
 
 		# For each level of the path
-		foreach( $path as $piece ) {
+		foreach ( $path as $piece ) {
 			if ( preg_match( '/^\$(\d+|key)$/u', $piece ) ) {
 				# For a piece that is only a $1 variable add 1 points of weight
 				$weight += 1;
@@ -232,7 +232,7 @@ class PathRouter {
 	/**
 	 * Parse a path and return the query matches for the path
 	 *
-	 * @param $path string The path to parse
+	 * @param string $path The path to parse
 	 * @return Array The array of matches for the path
 	 */
 	public function parse( $path ) {
@@ -293,7 +293,7 @@ class PathRouter {
 			foreach ( $m as $matchKey => $matchValue ) {
 				if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
 					$n = intval( substr( $matchKey, 3 ) );
-					$data['$'.$n] = rawurldecode( $matchValue );
+					$data['$' . $n] = rawurldecode( $matchValue );
 				}
 			}
 			// If present give our $data array a $key as well

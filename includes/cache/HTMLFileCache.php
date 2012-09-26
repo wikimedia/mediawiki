@@ -33,6 +33,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * Construct an ObjectFileCache from a Title and an action
 	 * @param $title Title|string Title object or prefixed DB key string
 	 * @param $action string
+	 * @throws MWException
 	 * @return HTMLFileCache
 	 */
 	public static function newFromTitle( $title, $action ) {
@@ -127,7 +128,7 @@ class HTMLFileCache extends FileCacheBase {
 	public function loadFromFileCache( IContextSource $context ) {
 		global $wgMimeType, $wgLanguageCode;
 
-		wfDebug( __METHOD__ . "()\n");
+		wfDebug( __METHOD__ . "()\n" );
 		$filename = $this->cachePath();
 
 		$context->getOutput()->sendCacheControl();
@@ -162,15 +163,15 @@ class HTMLFileCache extends FileCacheBase {
 			return $text;
 		}
 
-		wfDebug( __METHOD__ . "()\n", false);
+		wfDebug( __METHOD__ . "()\n", false );
 
 		$now = wfTimestampNow();
 		if ( $this->useGzip() ) {
 			$text = str_replace(
-				'</html>', '<!-- Cached/compressed '.$now." -->\n</html>", $text );
+				'</html>', '<!-- Cached/compressed ' . $now . " -->\n</html>", $text );
 		} else {
 			$text = str_replace(
-				'</html>', '<!-- Cached '.$now." -->\n</html>", $text );
+				'</html>', '<!-- Cached ' . $now . " -->\n</html>", $text );
 		}
 
 		// Store text to FS...
@@ -181,7 +182,7 @@ class HTMLFileCache extends FileCacheBase {
 
 		// gzip output to buffer as needed and set headers...
 		if ( $this->useGzip() ) {
-			// @TODO: ugly wfClientAcceptsGzip() function - use context!
+			// @todo Ugly wfClientAcceptsGzip() function - use context!
 			if ( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
 				return $compressed;

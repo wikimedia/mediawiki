@@ -6,7 +6,7 @@
  */
 class GenderCacheTest extends MediaWikiLangTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		global $wgDefaultUserOptions;
 		parent::setUp();
 		//ensure the correct default gender
@@ -15,7 +15,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 
 	function addDBData() {
 		$user = User::newFromName( 'UTMale' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTMalePassword' );
 		}
@@ -24,7 +24,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$user->saveSettings();
 
 		$user = User::newFromName( 'UTFemale' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTFemalePassword' );
 		}
@@ -33,7 +33,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$user->saveSettings();
 
 		$user = User::newFromName( 'UTDefaultGender' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTDefaultGenderPassword' );
 		}
@@ -45,7 +45,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	/**
 	 * test usernames
 	 *
-	 * @dataProvider dataUserName
+	 * @dataProvider provideUserGenders
 	 */
 	function testUserName( $username, $expectedGender ) {
 		$genderCache = GenderCache::singleton();
@@ -56,7 +56,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	/**
 	 * genderCache should work with user objects, too
 	 *
-	 * @dataProvider dataUserName
+	 * @dataProvider provideUserGenders
 	 */
 	function testUserObjects( $username, $expectedGender ) {
 		$genderCache = GenderCache::singleton();
@@ -65,7 +65,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $gender, $expectedGender, "GenderCache normal" );
 	}
 
-	function dataUserName() {
+	public static function provideUserGenders() {
 		return array(
 			array( 'UTMale', 'male' ),
 			array( 'UTFemale', 'female' ),
@@ -81,7 +81,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 	 * test strip of subpages to avoid unnecessary queries
 	 * against the never existing username
 	 *
-	 * @dataProvider dataStripSubpages
+	 * @dataProvider provideStripSubpages
 	 */
 	function testStripSubpages( $pageWithSubpage, $expectedGender ) {
 		$genderCache = GenderCache::singleton();
@@ -89,7 +89,7 @@ class GenderCacheTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $gender, $expectedGender, "GenderCache must strip of subpages" );
 	}
 
-	function dataStripSubpages() {
+	public static function provideStripSubpages() {
 		return array(
 			array( 'UTMale/subpage', 'male' ),
 			array( 'UTFemale/subpage', 'female' ),

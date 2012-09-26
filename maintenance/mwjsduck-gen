@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+JSDUCK_MWVERSION=master
+if [[ "$1" == "--version" && "$2" != "" ]]
+then
+	JSDUCK_MWVERSION="$2"
+elif [[ "$*" != "" ]]
+then
+	echo "Usage $0: [--version <mediawiki version>]"
+	echo
+	exit 1
+fi
+
+jsduck \
+--config=$(cd $(dirname $0)/..; pwd)/maintenance/jsduck/config.json \
+--footer="Documentation for MediaWiki core ($JSDUCK_MWVERSION). Generated on {DATE} by {JSDUCK} {VERSION}." \
+&& echo 'JSDuck execution finished.'

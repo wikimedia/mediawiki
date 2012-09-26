@@ -30,10 +30,6 @@
  */
 class ApiFormatPhp extends ApiFormatBase {
 
-	public function __construct( $main, $format ) {
-		parent::__construct( $main, $format );
-	}
-
 	public function getMimeType() {
 		return 'application/vnd.php.serialized';
 	}
@@ -44,9 +40,5 @@ class ApiFormatPhp extends ApiFormatBase {
 
 	public function getDescription() {
 		return 'Output data in serialized PHP format' . parent::getDescription();
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

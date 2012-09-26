@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that makes the required database updates for rev_parent_id
@@ -98,8 +98,9 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 					}
 				}
 				$previousID = intval( $previousID );
-				if ( $previousID != $row->rev_parent_id )
+				if ( $previousID != $row->rev_parent_id ) {
 					$changed++;
+				}
 				# Update the row...
 				$db->update( 'revision',
 					array( 'rev_parent_id' => $previousID ),
@@ -117,4 +118,4 @@ class PopulateParentId extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "PopulateParentId";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

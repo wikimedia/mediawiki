@@ -30,6 +30,8 @@
  * @ingroup API
  */
 class ApiQueryImageInfo extends ApiQueryBase {
+	const TRANSFORM_LIMIT = 50;
+	private static $transformCount = 0;
 
 	public function __construct( $query, $moduleName, $prefix = 'ii' ) {
 		// We allow a subclass to override the prefix, to create a related API module.
@@ -52,14 +54,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$titles = array_keys( $pageIds[NS_FILE] );
 			asort( $titles ); // Ensure the order is always the same
 
-			$skip = false;
+			$fromTitle = null;
 			if ( !is_null( $params['continue'] ) ) {
-				$skip = true;
 				$cont = explode( '|', $params['continue'] );
-				if ( count( $cont ) != 2 ) {
-					$this->dieUsage( 'Invalid continue param. You should pass the original ' .
-							'value returned by the previous query', '_badcontinue' );
-				}
+				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$fromTitle = strval( $cont[0] );
 				$fromTimestamp = $cont[1];
 				// Filter out any titles before $fromTitle
@@ -74,19 +72,39 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 			$result = $this->getResult();
 			//search only inside the local repo
-			if( $params['localonly'] ) {
+			if ( $params['localonly'] ) {
 				$images = RepoGroup::singleton()->getLocalRepo()->findFiles( $titles );
 			} else {
 				$images = RepoGroup::singleton()->findFiles( $titles );
 			}
-			foreach ( $images as $img ) {
-				// Skip redirects
-				if ( $img->getOriginalTitle()->isRedirect() ) {
+			foreach ( $titles as $title ) {
+				$pageId = $pageIds[NS_FILE][$title];
+				$start = $title === $fromTitle ? $fromTimestamp : $params['start'];
+
+				if ( !isset( $images[$title] ) ) {
+					$result->addValue(
+						array( 'query', 'pages', intval( $pageId ) ),
+						'imagerepository', ''
+					);
+					// The above can't fail because it doesn't increase the result size
 					continue;
 				}
 
-				$start = $skip ? $fromTimestamp : $params['start'];
-				$pageId = $pageIds[NS_FILE][ $img->getOriginalTitle()->getDBkey() ];
+				/** @var $img File */
+				$img = $images[$title];
+
+				if ( self::getTransformCount() >= self::TRANSFORM_LIMIT ) {
+					if ( count( $pageIds[NS_FILE] ) == 1 ) {
+						// See the 'the user is screwed' comment below
+						$this->setContinueEnumParameter( 'start',
+							$start !== null ? $start : wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
+						);
+					} else {
+						$this->setContinueEnumParameter( 'continue',
+							$this->getContinueStr( $img, $start ) );
+					}
+					break;
+				}
 
 				$fit = $result->addValue(
 					array( 'query', 'pages', intval( $pageId ) ),
@@ -100,10 +118,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						// thing again. When the violating queries have been
 						// out-continued, the result will get through
 						$this->setContinueEnumParameter( 'start',
-							wfTimestamp( TS_ISO_8601, $img->getTimestamp() ) );
+							$start !== null ? $start : wfTimestamp( TS_ISO_8601, $img->getTimestamp() )
+						);
 					} else {
 						$this->setContinueEnumParameter( 'continue',
-							$this->getContinueStr( $img ) );
+							$this->getContinueStr( $img, $start ) );
 					}
 					break;
 				}
@@ -140,6 +159,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				// Get one more to facilitate query-continue functionality
 				$count = ( $gotOne ? 1 : 0 );
 				$oldies = $img->getHistory( $params['limit'] - $count + 1, $start, $params['end'] );
+				/** @var $oldie File */
 				foreach ( $oldies as $oldie ) {
 					if ( ++$count > $params['limit'] ) {
 						// We've reached the extra one which shows that there are additional pages to be had. Stop here...
@@ -150,9 +170,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 						}
 						break;
 					}
-					$fit = $this->addPageSubItem( $pageId,
-						self::getInfo( $oldie, $prop, $result,
-							$finalThumbParams, $params['metadataversion'] ) );
+					$fit = self::getTransformCount() < self::TRANSFORM_LIMIT &&
+						$this->addPageSubItem( $pageId,
+							self::getInfo( $oldie, $prop, $result,
+								$finalThumbParams, $params['metadataversion']
+							)
+						);
 					if ( !$fit ) {
 						if ( count( $pageIds[NS_FILE] ) == 1 ) {
 							$this->setContinueEnumParameter( 'start',
@@ -167,45 +190,32 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !$fit ) {
 					break;
 				}
-				$skip = false;
-			}
-
-			$data = $this->getResultData();
-			foreach ( $data['query']['pages'] as $pageid => $arr ) {
-				if ( !isset( $arr['imagerepository'] ) ) {
-					$result->addValue(
-						array( 'query', 'pages', $pageid ),
-						'imagerepository', ''
-					);
-				}
-				// The above can't fail because it doesn't increase the result size
 			}
 		}
 	}
 
 	/**
 	 * From parameters, construct a 'scale' array
-	 * @param $params Array: Parameters passed to api.
+	 * @param array $params Parameters passed to api.
 	 * @return Array or Null: key-val array of 'width' and 'height', or null
 	 */
 	public function getScale( $params ) {
 		$p = $this->getModulePrefix();
 
-		// Height and width.
-		if ( $params['urlheight'] != -1 && $params['urlwidth'] == -1 ) {
-			$this->dieUsage( "{$p}urlheight cannot be used without {$p}urlwidth", "{$p}urlwidth" );
-		}
-
 		if ( $params['urlwidth'] != -1 ) {
 			$scale = array();
 			$scale['width'] = $params['urlwidth'];
+			$scale['height'] = $params['urlheight'];
+		} elseif ( $params['urlheight'] != -1 ) {
+			// Height is specified but width isn't
+			// Don't set $scale['width']; this signals mergeThumbParams() to fill it with the image's width
+			$scale = array();
 			$scale['height'] = $params['urlheight'];
 		} else {
 			$scale = null;
 			if ( $params['urlparam'] ) {
 				$this->dieUsage( "{$p}urlparam requires {$p}urlwidth", "urlparam_no_width" );
 			}
-			return $scale;
 		}
 
 		return $scale;
@@ -216,11 +226,25 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * We do this later than getScale, since we need the image
 	 * to know which handler, since handlers can make their own parameters.
 	 * @param File $image Image that params are for.
-	 * @param Array $thumbParams thumbnail parameters from getScale
-	 * @param String $otherParams of otherParams (iiurlparam).
+	 * @param array $thumbParams thumbnail parameters from getScale
+	 * @param string $otherParams of otherParams (iiurlparam).
 	 * @return Array of parameters for transform.
 	 */
-	protected function mergeThumbParams ( $image, $thumbParams, $otherParams ) {
+	protected function mergeThumbParams( $image, $thumbParams, $otherParams ) {
+		global $wgThumbLimits;
+
+		if ( !isset( $thumbParams['width'] ) && isset( $thumbParams['height'] ) ) {
+			// We want to limit only by height in this situation, so pass the
+			// image's full width as the limiting width. But some file types
+			// don't have a width of their own, so pick something arbitrary so
+			// thumbnailing the default icon works.
+			if ( $image->getWidth() <= 0 ) {
+				$thumbParams['width'] = max( $wgThumbLimits );
+			} else {
+				$thumbParams['width'] = $image->getWidth();
+			}
+		}
+
 		if ( !$otherParams ) {
 			return $thumbParams;
 		}
@@ -246,8 +270,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 		if ( isset( $paramList['width'] ) ) {
 			if ( intval( $paramList['width'] ) != intval( $thumbParams['width'] ) ) {
-				$this->dieUsage( "{$p}urlparam had width of {$paramList['width']} but "
-					. "{$p}urlwidth was {$thumbParams['width']}", "urlparam_urlwidth_mismatch" );
+				$this->setWarning( "Ignoring width value set in {$p}urlparam ({$paramList['width']}) "
+					. "in favor of width value derived from {$p}urlwidth/{$p}urlheight ({$thumbParams['width']})" );
 			}
 		}
 
@@ -264,10 +288,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * Get result information for an image revision
 	 *
 	 * @param $file File object
-	 * @param $prop Array of properties to get (in the keys)
+	 * @param array $prop of properties to get (in the keys)
 	 * @param $result ApiResult object
-	 * @param $thumbParams Array containing 'width' and 'height' items, or null
-	 * @param $version string Version of image metadata (for things like jpeg which have different versions).
+	 * @param array $thumbParams containing 'width' and 'height' items, or null
+	 * @param string $version Version of image metadata (for things like jpeg which have different versions).
 	 * @return Array: result array
 	 */
 	static function getInfo( $file, $prop, $result, $thumbParams = null, $version = 'latest' ) {
@@ -346,6 +370,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		if ( $url ) {
 			if ( !is_null( $thumbParams ) ) {
 				$mto = $file->transform( $thumbParams );
+				self::$transformCount++;
 				if ( $mto && !$mto->isError() ) {
 					$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_CURRENT );
 
@@ -360,7 +385,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					}
 
 					if ( isset( $prop['thumbmime'] ) && $file->getHandler() ) {
-						list( $ext, $mime ) = $file->getHandler()->getThumbType(
+						list( , $mime ) = $file->getHandler()->getThumbType(
 							$mto->getExtension(), $file->getMimeType(), $thumbParams );
 						$vals['thumbmime'] = $mime;
 					}
@@ -406,6 +431,17 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	}
 
 	/**
+	 * Get the count of image transformations performed
+	 *
+	 * If this is >= TRANSFORM_LIMIT, you should probably stop processing images.
+	 *
+	 * @return integer count
+	 */
+	static function getTransformCount() {
+		return self::$transformCount;
+	}
+
+	/**
 	 *
 	 * @param $metadata Array
 	 * @param $result ApiResult
@@ -434,11 +470,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * @param $img File
+	 * @param null|string $start
 	 * @return string
 	 */
-	protected function getContinueStr( $img ) {
-		return $img->getOriginalTitle()->getText() .
-			'|' .  $img->getTimestamp();
+	protected function getContinueStr( $img, $start = null ) {
+		if ( $start === null ) {
+			$start = $img->getTimestamp();
+		}
+		return $img->getOriginalTitle()->getText() . '|' . $start;
 	}
 
 	public function getAllowedParams() {
@@ -496,6 +535,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	/**
 	 * Returns array key value pairs of properties and their descriptions
 	 *
+	 * @param string $modulePrefix
 	 * @return array
 	 */
 	private static function getProperties( $modulePrefix = '' ) {
@@ -513,7 +553,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'thumbmime' =>      ' thumbmime     - Adds MIME type of the image thumbnail' .
 				' (requires url and param ' . $modulePrefix . 'urlwidth)',
 			'mediatype' =>      ' mediatype     - Adds the media type of the image',
-			'metadata' =>       ' metadata      - Lists EXIF metadata for the version of the image',
+			'metadata' =>       ' metadata      - Lists Exif metadata for the version of the image',
 			'archivename' =>    ' archivename   - Adds the file name of the archive version for non-latest versions',
 			'bitdepth' =>       ' bitdepth      - Adds the bit depth of the version',
 		);
@@ -523,7 +563,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * Returns the descriptions for the properties provided by getPropertyNames()
 	 *
 	 * @param array $filter List of properties to filter out
-	 *
+	 * @param string $modulePrefix
 	 * @return array
 	 */
 	public static function getPropertyDescriptions( $filter = array(), $modulePrefix = '' ) {
@@ -542,11 +582,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		return array(
 			'prop' => self::getPropertyDescriptions( array(), $p ),
 			'urlwidth' => array( "If {$p}prop=url is set, a URL to an image scaled to this width will be returned.",
-					    'Only the current version of the image can be scaled' ),
-			'urlheight' => "Similar to {$p}urlwidth. Cannot be used without {$p}urlwidth",
+				'For performance reasons if this option is used, ' .
+					'no more than ' . self::TRANSFORM_LIMIT . ' scaled images will be returned.' ),
+			'urlheight' => "Similar to {$p}urlwidth.",
 			'urlparam' => array( "A handler specific parameter string. For example, pdf's ",
 				"might use 'page15-100px'. {$p}urlwidth must be used and be consistent with {$p}urlparam" ),
-			'limit' => 'How many image revisions to return',
+			'limit' => 'How many image revisions to return per image',
 			'start' => 'Timestamp to start listing from',
 			'end' => 'Timestamp to stop listing at',
 			'metadataversion' => array( "Version of metadata to use. if 'latest' is specified, use latest version.",
@@ -572,6 +613,15 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'anon' => 'boolean'
 			),
 			'size' => array(
+				'size' => 'integer',
+				'width' => 'integer',
+				'height' => 'integer',
+				'pagecount' => array(
+					ApiBase::PROP_TYPE => 'integer',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
+			'dimensions' => array(
 				'size' => 'integer',
 				'width' => 'integer',
 				'height' => 'integer',
@@ -635,6 +685,13 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					ApiBase::PROP_NULLABLE => true
 				)
 			),
+			'thumbmime' => array(
+				'filehidden' => 'boolean',
+				'thumbmime' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				)
+			),
 			'mediatype' => array(
 				'filehidden' => 'boolean',
 				'mediatype' => array(
@@ -674,8 +731,6 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			array( 'code' => "{$p}urlwidth", 'info' => "{$p}urlheight cannot be used without {$p}urlwidth" ),
 			array( 'code' => 'urlparam', 'info' => "Invalid value for {$p}urlparam" ),
 			array( 'code' => 'urlparam_no_width', 'info' => "{$p}urlparam requires {$p}urlwidth" ),
-			array( 'code' => 'urlparam_urlwidth_mismatch', 'info' => "The width set in {$p}urlparm doesnt't " .
-				"match the one in {$p}urlwidth" ),
 		) );
 	}
 
@@ -688,9 +743,5 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#imageinfo_.2F_ii';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

@@ -53,6 +53,5 @@ class TestUser {
 			}
 		}
 		$this->user->saveSettings();
-
 	}
 }

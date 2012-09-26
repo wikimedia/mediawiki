@@ -8,9 +8,11 @@
  * @file
  *
  * @author Amire80
+ * @author Andrijko Z.
  * @author Reedy
  * @author Sapral Mikail
  * @author Tagir
+ * @author Умар
  */
 
 $fallback = 'ru';
@@ -46,8 +48,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ший теркама дагарленгах оагӀув чулаьца бола дакъалаьцархой таьрах хьахьокха',
 'tog-oldsig' => 'Дола кулгайоазув:',
 'tog-fancysig' => 'Ший кулга яздара массахоамбаккхам (ший лоӀаме Ӏинка йоацаш)',
-'tog-externaleditor' => 'Арена гӀалатнийсдарца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархIара ший-тайпара оттам эша; [//www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
-'tog-externaldiff' => 'Арена бӀасакхосса болхоагӀувца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархIара ший-тайпара оттам эша; [//www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
 'tog-showjumplinks' => '"Дехьадала" яха новкъостала Ӏинк хьахьокха',
 'tog-uselivepreview' => 'Сиха бӀарахьажар (JavaScript) (Экспериментально)',
 'tog-forceeditsummary' => 'Хоам бе, хувцамий лоацам белгал даь деце',
@@ -155,7 +155,6 @@ $messages = array(
 'qbbrowse' => 'БӀаргтасса',
 'qbedit' => 'Хувца',
 'qbpageoptions' => 'ОагӀува оттамаш',
-'qbpageinfo' => 'ОагӀува тохкам',
 'qbmyoptions' => 'Са оттамаш',
 'qbspecialpages' => 'ГӀулакхий оагӀувнаш',
 'faq' => 'Каст-каста хаттараш',
@@ -247,7 +246,6 @@ $messages = array(
 'disclaimers' => 'Бокъонах юхавалаp',
 'disclaimerpage' => 'Project:Бокъонах юхавалаp',
 'edithelp' => 'Хувцама куцтохкам',
-'edithelppage' => 'Help:ГӀалатнийсдар',
 'helppage' => 'Help:Чулоацам',
 'mainpage' => 'Кертера оагӀув',
 'mainpage-description' => 'Кертера оагӀув',
@@ -522,7 +520,6 @@ $messages = array(
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3) хьажа',
 'searchmenu-exists' => "'''Укх масса-хьахьоадайтамач ер оаг|ув \"[[:\$1]]\" я'''",
 'searchmenu-new' => "'''Укх \"[[:\$1]]\" масса-хьахоадайтамач оагIув хьае!'''",
-'searchhelp-url' => 'Help:Чулоацам',
 'searchprofile-articles' => 'Гомлен оагIувнаш',
 'searchprofile-project' => 'Дагарлеи хьахоадайтами оагIувнаш',
 'searchprofile-images' => 'Медифаг',
@@ -541,8 +538,6 @@ $messages = array(
 'search-interwiki-caption' => 'Гаргалон хьахьоадайтамаш',
 'search-interwiki-default' => '$1 толамчаш:',
 'search-interwiki-more' => '(кха)',
-'search-mwsuggest-enabled' => ' Хьехамашца',
-'search-mwsuggest-disabled' => ' Хьехамаш боацаш',
 'search-relatedarticle' => 'шоайл дола',
 'searchrelated' => 'гаргара',
 'searchall' => 'деррига',
@@ -557,9 +552,6 @@ $messages = array(
 'powersearch-field' => 'Лахар',
 'powersearch-toggleall' => 'Деррига',
 'powersearch-togglenone' => 'Цхьаккха',
-
-# Quickbar
-'qbsettings-none' => 'Цхьаккха',
 
 # Preferences page
 'preferences' => 'Оттамаш',
@@ -634,9 +626,11 @@ $messages = array(
 'right-move' => 'ОагIувний цIи хувца',
 'right-movefile' => 'Паьлий цIи хувца',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Дакъалаьцархоший дIаязбeнна таптар',
+
 # User rights log
 'rightslog' => 'Дакъалаьцархочунна бокъона тептар',
-'rightsnone' => '(а)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Укх оагIуви дешам',
@@ -793,13 +787,10 @@ $messages = array(
 'linksearch-ok' => 'Лаха',
 'linksearch-line' => '$1 тIа Iинк $2 юкъера',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Дакъалаьцархоший дIаязбeнна таптар',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(тоабий дагарче)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Дакъалаьцархочоа д-хоамни:',
 
 # Watchlist
@@ -874,7 +865,7 @@ $messages = array(
 'blanknamespace' => '(Корта)',
 
 # Contributions
-'contributions' => 'Дакъалаьцархочунна къахьегам',
+'contributions' => '{{GENDER:$1|Дакъалаьцархочунна}} къахьегам',
 'contributions-title' => '$1 дакъалаьцархочунна къахьегам',
 'mycontris' => 'Са къахьегам',
 'contribsub2' => '$1 ($2) баь болх',
@@ -1075,7 +1066,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Шерал',
 'exif-imagelength' => 'Лакхал',
 'exif-imagedescription' => 'Сурта цIи',
@@ -1135,11 +1126,6 @@ $messages = array(
 'version-version' => '(Доржам $1)',
 'version-software-version' => 'Доржам',
 
-# Special:FilePath
-'filepath' => 'Паьлачу никъ',
-'filepath-page' => 'Паьл:',
-'filepath-submit' => 'Дехьавала/яла',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'ПаьлацIи:',
 'fileduplicatesearch-submit' => 'Лаха',
@@ -1182,5 +1168,8 @@ $messages = array(
 'htmlform-submit' => 'ДIадахьийта',
 'htmlform-reset' => 'Хувцамаш юхадаккха',
 'htmlform-selectorother-other' => 'Кхыдола',
+
+# New logging system
+'rightsnone' => '(а)',
 
 );

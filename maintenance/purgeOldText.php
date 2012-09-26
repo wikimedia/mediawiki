@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that purges old text records from the database.
@@ -42,4 +42,4 @@ class PurgeOldText extends Maintenance {
 }
 
 $maintClass = "PurgeOldText";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -59,22 +59,21 @@ class GenderCache {
 
 	/**
 	 * Returns the gender for given username.
-	 * @param $username String or User: username
-	 * @param $caller String: the calling method
+	 * @param string $username or User: username
+	 * @param string $caller the calling method
 	 * @return String
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
 		global $wgUser;
 
-		if( $username instanceof User ) {
+		if ( $username instanceof User ) {
 			$username = $username->getName();
 		}
 
 		$username = self::normalizeUsername( $username );
 		if ( !isset( $this->cache[$username] ) ) {
-
 			if ( $this->misses >= $this->missLimit && $wgUser->getName() !== $username ) {
-				if( $this->misses === $this->missLimit ) {
+				if ( $this->misses === $this->missLimit ) {
 					$this->misses++;
 					wfDebug( __METHOD__ . ": too many misses, returning default onwards\n" );
 				}
@@ -84,7 +83,6 @@ class GenderCache {
 				$this->misses++;
 				$this->doQuery( $username, $caller );
 			}
-
 		}
 
 		/* Undefined if there is a valid username which for some reason doesn't
@@ -102,7 +100,9 @@ class GenderCache {
 	public function doLinkBatch( $data, $caller = '' ) {
 		$users = array();
 		foreach ( $data as $ns => $pagenames ) {
-			if ( !MWNamespace::hasGenderDistinction( $ns ) ) continue;
+			if ( !MWNamespace::hasGenderDistinction( $ns ) ) {
+				continue;
+			}
 			foreach ( array_keys( $pagenames ) as $username ) {
 				$users[$username] = true;
 			}
@@ -116,7 +116,7 @@ class GenderCache {
 	 *
 	 * @since 1.20
 	 * @param $titles List: array of Title objects or strings
-	 * @param $caller String: the calling method
+	 * @param string $caller the calling method
 	 */
 	public function doTitlesArray( $titles, $caller = '' ) {
 		$users = array();
@@ -137,7 +137,7 @@ class GenderCache {
 	/**
 	 * Preloads genders for given list of users.
 	 * @param $users List|String: usernames
-	 * @param $caller String: the calling method
+	 * @param string $caller the calling method
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();
@@ -150,7 +150,7 @@ class GenderCache {
 				// For existing users, this value will be overwritten by the correct value
 				$this->cache[$name] = $default;
 				// query only for valid names, which can be in the database
-				if( User::isValidUserName( $name ) ) {
+				if ( User::isValidUserName( $name ) ) {
 					$usersToCheck[] = $name;
 				}
 			}

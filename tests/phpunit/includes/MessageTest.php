@@ -1,6 +1,14 @@
 <?php
 
 class MessageTest extends MediaWikiLangTestCase {
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgLang' => Language::factory( 'en' ),
+			'wgForceUIMsgAsContentMsg' => array(),
+		) );
+	}
 
 	function testExists() {
 		$this->assertTrue( wfMessage( 'mainpage' )->exists() );
@@ -41,18 +49,26 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertEquals( '(Заглавная страница $1)', wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain() );
 	}
 
-	function testInContentLanguage() {
-		global $wgLang, $wgForceUIMsgAsContentMsg;
-		$oldLang = $wgLang;
-		$wgLang = Language::factory( 'fr' );
+	function testDeliciouslyManyParams() {
+		$msg = new RawMessage( '$1$2$3$4$5$6$7$8$9$10$11$12' );
+		// One less than above has placeholders
+		$params = array( 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k' );
+		$this->assertEquals( 'abcdefghijka2', $msg->params( $params )->plain(), 'Params > 9 are replaced correctly' );
+	}
+
+	function testInContentLanguageDisabled() {
+		$this->setMwGlobals( 'wgLang', Language::factory( 'fr' ) );
 
 		$this->assertEquals( 'Main Page', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg disabled' );
-		$wgForceUIMsgAsContentMsg['testInContentLanguage'] = 'mainpage';
-		$this->assertEquals( 'Accueil', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg enabled' );
+	}
 
-		/* Restore globals */
-		$wgLang = $oldLang;
-		unset( $wgForceUIMsgAsContentMsg['testInContentLanguage'] );
+	function testInContentLanguageEnabled() {
+		$this->setMwGlobals( array(
+			'wgLang' => Language::factory( 'fr' ),
+			'wgForceUIMsgAsContentMsg' => array( 'mainpage' ),
+		) );
+
+		$this->assertEquals( 'Accueil', wfMessage( 'mainpage' )->inContentLanguage()->plain(), 'ForceUIMsg enabled' );
 	}
 
 	/**

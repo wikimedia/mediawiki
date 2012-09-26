@@ -21,7 +21,7 @@
  * @ingroup Benchmark
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 /**
  * This little benchmark executes the regexp used in Language->checkTitleEncoding()
@@ -38,7 +38,7 @@ class bench_utf8_title_check extends Benchmarker {
 	public function __construct() {
 		parent::__construct();
 
-		$this->data = array (
+		$this->data = array(
 			"",
 			"United States of America", // 7bit ASCII
 			"S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e",
@@ -123,4 +123,4 @@ class bench_utf8_title_check extends Benchmarker {
 }
 
 $maintClass = 'bench_utf8_title_check';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

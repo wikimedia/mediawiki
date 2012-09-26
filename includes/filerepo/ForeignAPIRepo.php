@@ -61,21 +61,21 @@ class ForeignAPIRepo extends FileRepo {
 		// http://commons.wikimedia.org/w/api.php
 		$this->mApiBase = isset( $info['apibase'] ) ? $info['apibase'] : null;
 
-		if( isset( $info['apiThumbCacheExpiry'] ) ) {
+		if ( isset( $info['apiThumbCacheExpiry'] ) ) {
 			$this->apiThumbCacheExpiry = $info['apiThumbCacheExpiry'];
 		}
-		if( isset( $info['fileCacheExpiry'] ) ) {
+		if ( isset( $info['fileCacheExpiry'] ) ) {
 			$this->fileCacheExpiry = $info['fileCacheExpiry'];
 		}
-		if( !$this->scriptDirUrl ) {
+		if ( !$this->scriptDirUrl ) {
 			// hack for description fetches
 			$this->scriptDirUrl = dirname( $this->mApiBase );
 		}
 		// If we can cache thumbs we can guess sane defaults for these
-		if( $this->canCacheThumbs() && !$this->url ) {
+		if ( $this->canCacheThumbs() && !$this->url ) {
 			$this->url = $wgLocalFileRepo['url'];
 		}
-		if( $this->canCacheThumbs() && !$this->thumbUrl ) {
+		if ( $this->canCacheThumbs() && !$this->thumbUrl ) {
 			$this->thumbUrl = $this->url . '/thumb';
 		}
 	}
@@ -105,7 +105,7 @@ class ForeignAPIRepo extends FileRepo {
 			if ( isset( $this->mFileExists[$k] ) ) {
 				$results[$k] = true;
 				unset( $files[$k] );
-			} elseif( self::isVirtualUrl( $f ) ) {
+			} elseif ( self::isVirtualUrl( $f ) ) {
 				# @todo FIXME: We need to be able to handle virtual
 				# URLs better, at least when we know they refer to the
 				# same repo.
@@ -120,9 +120,9 @@ class ForeignAPIRepo extends FileRepo {
 
 		$data = $this->fetchImageQuery( array( 'titles' => implode( $files, '|' ),
 											'prop' => 'imageinfo' ) );
-		if( isset( $data['query']['pages'] ) ) {
+		if ( isset( $data['query']['pages'] ) ) {
 			$i = 0;
-			foreach( $files as $key => $file ) {
+			foreach ( $files as $key => $file ) {
 				$results[$key] = $this->mFileExists[$key] = !isset( $data['query']['pages'][$i]['missing'] );
 				$i++;
 			}
@@ -143,24 +143,27 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return string
 	 */
 	function fetchImageQuery( $query ) {
-		global $wgMemc;
+		global $wgMemc, $wgLanguageCode;
 
 		$query = array_merge( $query,
 			array(
-				'format'    => 'json',
-				'action'    => 'query',
+				'format' => 'json',
+				'action' => 'query',
 				'redirects' => 'true'
 			) );
+		if ( !isset( $query['uselang'] ) ) { // uselang is unset or null
+			$query['uselang'] = $wgLanguageCode;
+		}
 		if ( $this->mApiBase ) {
 			$url = wfAppendQuery( $this->mApiBase, $query );
 		} else {
 			$url = $this->makeUrl( $query, 'api' );
 		}
 
-		if( !isset( $this->mQueryCache[$url] ) ) {
+		if ( !isset( $this->mQueryCache[$url] ) ) {
 			$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
 			$data = $wgMemc->get( $key );
-			if( !$data ) {
+			if ( !$data ) {
 				$data = self::httpGet( $url );
 				if ( !$data ) {
 					return null;
@@ -168,7 +171,7 @@ class ForeignAPIRepo extends FileRepo {
 				$wgMemc->set( $key, $data, 3600 );
 			}
 
-			if( count( $this->mQueryCache ) > 100 ) {
+			if ( count( $this->mQueryCache ) > 100 ) {
 				// Keep the cache from growing infinitely
 				$this->mQueryCache = array();
 			}
@@ -182,9 +185,9 @@ class ForeignAPIRepo extends FileRepo {
 	 * @return bool|array
 	 */
 	function getImageInfo( $data ) {
-		if( $data && isset( $data['query']['pages'] ) ) {
-			foreach( $data['query']['pages'] as $info ) {
-				if( isset( $info['imageinfo'][0] ) ) {
+		if ( $data && isset( $data['query']['pages'] ) ) {
+			foreach ( $data['query']['pages'] as $info ) {
+				if ( isset( $info['imageinfo'][0] ) ) {
 					return $info['imageinfo'][0];
 				}
 			}
@@ -198,14 +201,15 @@ class ForeignAPIRepo extends FileRepo {
 	 */
 	function findBySha1( $hash ) {
 		$results = $this->fetchImageQuery( array(
-										'aisha1base36' => $hash,
-										'aiprop'       => ForeignAPIFile::getProps(),
-										'list'         => 'allimages', ) );
+			'aisha1base36' => $hash,
+			'aiprop' => ForeignAPIFile::getProps(),
+			'list' => 'allimages',
+		) );
 		$ret = array();
 		if ( isset( $results['query']['allimages'] ) ) {
 			foreach ( $results['query']['allimages'] as $img ) {
 				// 1.14 was broken, doesn't return name attribute
-				if( !isset( $img['name'] ) ) {
+				if ( !isset( $img['name'] ) ) {
 					continue;
 				}
 				$ret[] = new ForeignAPIFile( Title::makeTitle( NS_FILE, $img['name'] ), $this, $img );
@@ -228,14 +232,48 @@ class ForeignAPIRepo extends FileRepo {
 			'iiprop' => 'url|timestamp',
 			'iiurlwidth' => $width,
 			'iiurlheight' => $height,
-			'iiurlparam'  => $otherParams,
+			'iiurlparam' => $otherParams,
 			'prop' => 'imageinfo' ) );
 		$info = $this->getImageInfo( $data );
 
-		if( $data && $info && isset( $info['thumburl'] ) ) {
+		if ( $data && $info && isset( $info['thumburl'] ) ) {
 			wfDebug( __METHOD__ . " got remote thumb " . $info['thumburl'] . "\n" );
 			$result = $info;
 			return $info['thumburl'];
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @param $name string
+	 * @param $width int
+	 * @param $height int
+	 * @param $otherParams string
+	 * @return bool|MediaTransformError
+	 * @since 1.22
+	 */
+	function getThumbError( $name, $width = -1, $height = -1, $otherParams = '', $lang = null ) {
+		$data = $this->fetchImageQuery( array(
+			'titles' => 'File:' . $name,
+			'iiprop' => 'url|timestamp',
+			'iiurlwidth' => $width,
+			'iiurlheight' => $height,
+			'iiurlparam' => $otherParams,
+			'prop' => 'imageinfo',
+			'uselang' => $lang,
+		) );
+		$info = $this->getImageInfo( $data );
+
+		if( $data && $info && isset( $info['thumberror'] ) ) {
+			wfDebug( __METHOD__ . " got remote thumb error " . $info['thumberror'] . "\n" );
+			return new MediaTransformError(
+				'thumbnail_error_remote',
+				$width,
+				$height,
+				$this->getDisplayName(),
+				$info['thumberror'] // already parsed message from foreign repo
+			);
 		} else {
 			return false;
 		}
@@ -247,10 +285,10 @@ class ForeignAPIRepo extends FileRepo {
 	 * If the url has been requested today, get it from cache
 	 * Otherwise retrieve remote thumb url, check for local file.
 	 *
-	 * @param $name String is a dbkey form of a title
+	 * @param string $name is a dbkey form of a title
 	 * @param $width
 	 * @param $height
-	 * @param String $params Other rendering parameters (page number, etc) from handler's makeParamString.
+	 * @param string $params Other rendering parameters (page number, etc) from handler's makeParamString.
 	 * @return bool|string
 	 */
 	function getThumbUrlFromCache( $name, $width, $height, $params = "" ) {
@@ -267,14 +305,14 @@ class ForeignAPIRepo extends FileRepo {
 		$sizekey = "$width:$height:$params";
 
 		/* Get the array of urls that we already know */
-		$knownThumbUrls = $wgMemc->get($key);
-		if( !$knownThumbUrls ) {
+		$knownThumbUrls = $wgMemc->get( $key );
+		if ( !$knownThumbUrls ) {
 			/* No knownThumbUrls for this file */
 			$knownThumbUrls = array();
 		} else {
-			if( isset( $knownThumbUrls[$sizekey] ) ) {
+			if ( isset( $knownThumbUrls[$sizekey] ) ) {
 				wfDebug( __METHOD__ . ': Got thumburl from local cache: ' .
-					"{$knownThumbUrls[$sizekey]} \n");
+					"{$knownThumbUrls[$sizekey]} \n" );
 				return $knownThumbUrls[$sizekey];
 			}
 			/* This size is not yet known */
@@ -283,30 +321,29 @@ class ForeignAPIRepo extends FileRepo {
 		$metadata = null;
 		$foreignUrl = $this->getThumbUrl( $name, $width, $height, $metadata, $params );
 
-		if( !$foreignUrl ) {
+		if ( !$foreignUrl ) {
 			wfDebug( __METHOD__ . " Could not find thumburl\n" );
 			return false;
 		}
 
 		// We need the same filename as the remote one :)
 		$fileName = rawurldecode( pathinfo( $foreignUrl, PATHINFO_BASENAME ) );
-		if( !$this->validateFilename( $fileName ) ) {
+		if ( !$this->validateFilename( $fileName ) ) {
 			wfDebug( __METHOD__ . " The deduced filename $fileName is not safe\n" );
 			return false;
 		}
-		$localPath =  $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
+		$localPath = $this->getZonePath( 'thumb' ) . "/" . $this->getHashPath( $name ) . $name;
 		$localFilename = $localPath . "/" . $fileName;
-		$localUrl =  $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
+		$localUrl = $this->getZoneUrl( 'thumb' ) . "/" . $this->getHashPath( $name ) . rawurlencode( $name ) . "/" . rawurlencode( $fileName );
 
-		if( $backend->fileExists( array( 'src' => $localFilename ) )
-			&& isset( $metadata['timestamp'] ) )
-		{
+		if ( $backend->fileExists( array( 'src' => $localFilename ) )
+			&& isset( $metadata['timestamp'] ) ) {
 			wfDebug( __METHOD__ . " Thumbnail was already downloaded before\n" );
 			$modified = $backend->getFileTimestamp( array( 'src' => $localFilename ) );
 			$remoteModified = strtotime( $metadata['timestamp'] );
 			$current = time();
 			$diff = abs( $modified - $current );
-			if( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
+			if ( $remoteModified < $modified && $diff < $this->fileCacheExpiry ) {
 				/* Use our current and already downloaded thumbnail */
 				$knownThumbUrls[$sizekey] = $localUrl;
 				$wgMemc->set( $key, $knownThumbUrls, $this->apiThumbCacheExpiry );
@@ -315,16 +352,15 @@ class ForeignAPIRepo extends FileRepo {
 			/* There is a new Commons file, or existing thumbnail older than a month */
 		}
 		$thumb = self::httpGet( $foreignUrl );
-		if( !$thumb ) {
+		if ( !$thumb ) {
 			wfDebug( __METHOD__ . " Could not download thumb\n" );
 			return false;
 		}
 
-
 		# @todo FIXME: Delete old thumbs that aren't being used. Maintenance script?
 		$backend->prepare( array( 'dir' => dirname( $localFilename ) ) );
 		$params = array( 'dst' => $localFilename, 'content' => $thumb );
-		if( !$backend->quickCreate( $params )->isOK() ) {
+		if ( !$backend->quickCreate( $params )->isOK() ) {
 			wfDebug( __METHOD__ . " could not write to thumb path '$localFilename'\n" );
 			return $foreignUrl;
 		}
@@ -337,16 +373,17 @@ class ForeignAPIRepo extends FileRepo {
 	/**
 	 * @see FileRepo::getZoneUrl()
 	 * @param $zone String
+	 * @param string|null $ext Optional file extension
 	 * @return String
 	 */
-	function getZoneUrl( $zone ) {
+	function getZoneUrl( $zone, $ext = null ) {
 		switch ( $zone ) {
 			case 'public':
 				return $this->url;
 			case 'thumb':
 				return $this->thumbUrl;
 			default:
-				return parent::getZoneUrl( $zone );
+				return parent::getZoneUrl( $zone, $ext );
 		}
 	}
 

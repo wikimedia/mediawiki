@@ -42,8 +42,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Xuniim henadressade e-iitom notificacionde e-iitóm',
 'tog-shownumberswatching' => 'Cohuatlöx caitóm cáminotómde numberam',
 'tog-fancysig' => 'Signaturenám brazzinám (sans linkám automaticám)',
-'tog-externaleditor' => 'Usadad ticpatlöx externöx auto',
-'tog-externaldiff' => 'Usadad diff extern auto',
 'tog-showjumplinks' => 'Záj "jumpöx" accessibilitiit linkám',
 'tog-uselivepreview' => 'Usadad cuáxiit live (JavaScript) (Experimentam)',
 'tog-forceeditsummary' => 'Ixuniimticpatlöx he jan nenenterom abvuatlde ticpatlöx',
@@ -133,7 +131,6 @@ $messages = array(
 'qbbrowse' => 'Quetzexal',
 'qbedit' => 'Ticpatlöx',
 'qbpageoptions' => 'Jan páhina',
-'qbpageinfo' => 'Contextua',
 'qbmyoptions' => 'Hepáhinám',
 'qbspecialpages' => 'Páhinám extravám',
 'faq' => 'Cocmíiit cmaa',
@@ -201,7 +198,6 @@ $messages = array(
 'disclaimers' => 'Isój cacóomx',
 'disclaimerpage' => 'Project:Isoj cacóomx geniiraloj',
 'edithelp' => 'Help ticpatlöx',
-'edithelppage' => 'Help:Ticpatlöx',
 'helppage' => 'Help:Caálixötöj',
 'mainpage' => 'Caálixötöj',
 'mainpage-description' => 'Caálixötöj',
@@ -320,9 +316,6 @@ $2',
 
 Mecontinudad usadad {{SITENAME}} anon jïx me caápo dajcaitom ö jömcaitom.
 Páhinám pac continudad displayom dajme caápo, jánclearom mecachede browser.",
-'welcomecreation' => "== Q'$1! ==
-
-Mecaitom coccebj creatöx. Quiix hequáatlaácde {{SITENAME}} pos-poop.",
 'yourname' => 'Caitom ID:',
 'yourpassword' => 'Quimx canj:',
 'yourpasswordagain' => 'Vanquimx canj:',
@@ -508,7 +501,6 @@ Jan lajxepe occuram me usadad proxy service anon web-based buggy.'''",
 'templatesusedsection' => 'Automií usadad jan seccion iti:',
 'template-protected' => '(protectöx)',
 'template-semiprotected' => '(semi-protectöx)',
-'nocreatetitle' => 'Limiitde creacionde páhinám',
 'nocreatetext' => 'Jan site coccebj avlutuatl altede creatöx hun páhinám.
 Me pos-coccebj revertöx ö ticpatlöx janpáhinám jöx [[Special:UserLogin|caápo]].',
 'nocreate-loggedin' => 'Me necoccebj permiccionde creatöx hunpáhinám jan wiki iti.',
@@ -584,12 +576,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'prevn' => 'jan {{PLURAL:$1|$1}}',
 'nextn' => 'hun {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Cohuatlöx ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Caálixötöj',
 'powersearch' => 'Yahöx',
-
-# Quickbar
-'qbsettings' => 'Zuónaát',
-'qbsettings-none' => 'Nepartám',
 
 # Preferences page
 'preferences' => 'Quáatlaác',
@@ -662,9 +649,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'grouppage-bot' => '{{ns:project}}:Botam',
 'grouppage-sysop' => '{{ns:project}}:Sysopam',
 'grouppage-bureaucrat' => '{{ns:project}}:Bureaucrátam',
-
-# User rights log
-'rightsnone' => '(zéro)',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|quiix|quíix}}',
@@ -856,7 +840,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'listusers-submit' => 'Cohuatlöx',
 'listusers-noresult' => 'Necoccebj caitóm.',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nenadressade iitom',
 'mailnologintext' => 'Zo coccebj Neces [[Special:UserLogin|caápo]]
 ö coccebjöx adressade e-iitom validom [[Special:Preferences|mequáatlaác]]
@@ -890,11 +874,10 @@ iitom e-iitomde diijömde caitóm.',
 'watching' => 'Cáminot...',
 'unwatching' => 'Necáminot...',
 
-'enotif_newpagetext' => 'Jan coccebj hunpáhina.',
 'enotif_impersonal_salutation' => '{{SITENAME}} caitom',
-'changed' => 'quiixöx',
-'created' => 'creacöx',
 'enotif_anon_editor' => 'caitom anoniimom $1',
+'created' => 'creacöx',
+'changed' => 'quiixöx',
 
 # Delete
 'deletepage' => 'Delatar páhina',
@@ -1032,7 +1015,7 @@ iitom e-iitomde diijömde caitóm.',
 'ilsubmit' => 'Yahöx',
 'bydate' => 'de datum',
 
-# EXIF tags
+# Exif tags
 'exif-fnumber' => 'F Numberam',
 'exif-gpslatitude' => 'Latitudam',
 'exif-gpslongitude' => 'Longitudam',
@@ -1064,5 +1047,8 @@ iitom e-iitomde diijömde caitóm.',
 
 # Special:SpecialPages
 'specialpages' => 'Páhinám extravám',
+
+# New logging system
+'rightsnone' => '(zéro)',
 
 );

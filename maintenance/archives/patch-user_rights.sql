@@ -8,10 +8,10 @@
 CREATE TABLE /*$wgDBprefix*/user_rights (
   -- Key to user_id
   ur_user int unsigned NOT NULL,
-  
+
   -- Comma-separated list of permission keys
   ur_rights tinyblob NOT NULL,
-  
+
   UNIQUE KEY ur_user (ur_user)
 
 ) /*$wgDBTableOptions*/;

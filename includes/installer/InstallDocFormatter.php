@@ -1,6 +1,6 @@
 <?php
 /**
- * Installer-specific wikitext formating.
+ * Installer-specific wikitext formatting.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,9 +44,9 @@ class InstallDocFormatter {
 		$text = preg_replace( '/^\t\t/m', '::', $text );
 		$text = preg_replace( '/^\t/m', ':', $text );
 		// turn (bug nnnn) into links
-		$text = preg_replace_callback('/bug (\d+)/', array( $this, 'replaceBugLinks' ), $text );
+		$text = preg_replace_callback( '/bug (\d+)/', array( $this, 'replaceBugLinks' ), $text );
 		// add links to manual to every global variable mentioned
-		$text = preg_replace_callback('/(\$wg[a-z0-9_]+)/i', array( $this, 'replaceConfigLinks' ), $text );
+		$text = preg_replace_callback( '/(\$wg[a-z0-9_]+)/i', array( $this, 'replaceConfigLinks' ), $text );
 		return $text;
 	}
 

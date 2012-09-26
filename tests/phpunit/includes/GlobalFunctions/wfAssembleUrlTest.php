@@ -1,9 +1,8 @@
 <?php
 /**
- * Unit tests for wfAssembleUrl()
+ * Tests for wfAssembleUrl()
  */
-
-class wfAssembleUrl extends MediaWikiTestCase {
+class WfAssembleUrlTest extends MediaWikiTestCase {
 	/** @dataProvider provideURLParts */
 	public function testWfAssembleUrl( $parts, $output ) {
 		$partsDump = print_r( $parts, true );
@@ -19,7 +18,7 @@ class wfAssembleUrl extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	public function provideURLParts() {
+	public static function provideURLParts() {
 		$schemes = array(
 			'' => array(),
 			'//' => array(
@@ -83,11 +82,10 @@ class wfAssembleUrl extends MediaWikiTestCase {
 								$parts['query'] = $query;
 								$url .= '?' . $query;
 							}
-							if( $fragment ) {
+							if ( $fragment ) {
 								$parts['fragment'] = $fragment;
 								$url .= '#' . $fragment;
 							}
-
 
 							$cases[] = array(
 								$parts,

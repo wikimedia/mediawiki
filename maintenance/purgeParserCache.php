@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require( __DIR__ . '/Maintenance.php' );
+require __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to remove old objects from the parser cache.
@@ -30,7 +30,7 @@ require( __DIR__ . '/Maintenance.php' );
  * @ingroup Maintenance
  */
 class PurgeParserCache extends Maintenance {
-	var $lastProgress;
+	public $lastProgress;
 
 	function __construct() {
 		parent::__construct();
@@ -52,21 +52,19 @@ class PurgeParserCache extends Maintenance {
 			global $wgParserCacheExpireTime;
 			$date = wfTimestamp( TS_MW, time() + $wgParserCacheExpireTime - intval( $inputAge ) );
 		} else {
-			echo "Must specify either --expiredate or --age\n";
-			exit( 1 );
+			$this->error( "Must specify either --expiredate or --age", 1 );
 		}
 
 		$english = Language::factory( 'en' );
-		echo "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n";
+		$this->output( "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n" );
 
 		$pc = wfGetParserCacheStorage();
 		$success = $pc->deleteObjectsExpiringBefore( $date, array( $this, 'showProgress' ) );
 		if ( !$success ) {
-			echo "\nCannot purge this kind of parser cache.\n";
-			exit( 1 );
+			$this->error( "\nCannot purge this kind of parser cache.", 1 );
 		}
 		$this->showProgress( 100 );
-		echo "\nDone\n";
+		$this->output( "\nDone\n" );
 	}
 
 	function showProgress( $percent ) {
@@ -77,10 +75,10 @@ class PurgeParserCache extends Maintenance {
 		$this->lastProgress = $percentString;
 
 		$stars = floor( $percent / 2 );
-		echo '[' . str_repeat( '*', $stars ), str_repeat( '.', 50 - $stars ) . '] ' .
-			"$percentString%\r";
+		$this->output( '[' . str_repeat( '*', $stars ) . str_repeat( '.', 50 - $stars ) . '] ' .
+			"$percentString%\r" );
 
 	}
 }
 $maintClass = 'PurgeParserCache';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

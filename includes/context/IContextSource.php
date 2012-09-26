@@ -27,7 +27,6 @@
  * Interface for objects which can provide a context on request.
  */
 interface IContextSource {
-
 	/**
 	 * Get the WebRequest object
 	 *
@@ -66,7 +65,7 @@ interface IContextSource {
 	/**
 	 * Get the OutputPage object
 	 *
-	 * @return OutputPage object
+	 * @return OutputPage
 	 */
 	public function getOutput();
 
@@ -80,7 +79,7 @@ interface IContextSource {
 	/**
 	 * Get the Language object
 	 *
-	 * @deprecated 1.19 Use getLanguage instead
+	 * @deprecated since 1.19 Use getLanguage instead
 	 * @return Language
 	 */
 	public function getLang();
@@ -103,8 +102,16 @@ interface IContextSource {
 	/**
 	 * Get a Message object with context set
 	 *
-	 * @return Message object
+	 * @return Message
 	 */
 	public function msg();
-}
 
+	/**
+	 * Export the resolved user IP, HTTP headers, user ID, and session ID.
+	 * The result will be reasonably sized to allow for serialization.
+	 *
+	 * @return Array
+	 * @since 1.21
+	 */
+	public function exportSession();
+}

@@ -66,8 +66,4 @@ class ApiFormatRaw extends ApiFormatBase {
 		}
 		$this->printText( $data['text'] );
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }

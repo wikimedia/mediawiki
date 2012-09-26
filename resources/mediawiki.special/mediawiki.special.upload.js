@@ -6,12 +6,12 @@
 	/**
 	 * Add a preview to the upload form
 	 */
-	$( function ( $ ) {
+	$( document ).ready( function () {
 		/**
 		 * Is the FileAPI available with sufficient functionality?
 		 */
 		function hasFileAPI() {
-			return typeof window.FileReader !== 'undefined';
+			return window.FileReader !== undefined;
 		}
 
 		/**
@@ -25,7 +25,7 @@
 		 * @return boolean
 		 */
 		function fileIsPreviewable( file ) {
-			var	known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
+			var known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
 				tooHuge = 10 * 1024 * 1024;
 			return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 		}
@@ -43,23 +43,26 @@
 		 * @param {File} file
 		 */
 		function showPreview( file ) {
-			var	previewSize = 180,
+			var $canvas,
+				ctx,
+				meta,
+				previewSize = 180,
 				thumb = $( '<div id="mw-upload-thumbnail" class="thumb tright">' +
 							'<div class="thumbinner">' +
 								'<div class="mw-small-spinner" style="width: 180px; height: 180px"></div>' +
 								'<div class="thumbcaption"><div class="filename"></div><div class="fileinfo"></div></div>' +
 							'</div>' +
 						'</div>' );
+
 			thumb.find( '.filename' ).text( file.name ).end()
 				.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
 
-			var	$canvas = $('<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>'),
-				ctx = $canvas[0].getContext( '2d' );
+			$canvas = $('<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>');
+			ctx = $canvas[0].getContext( '2d' );
 			$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
-			var meta;
-			fetchPreview( file, function( dataURL ) {
-				var	img = new Image(),
+			fetchPreview( file, function ( dataURL ) {
+				var img = new Image(),
 					rotation = 0;
 
 				if ( meta && meta.tiff && meta.tiff.Orientation ) {
@@ -79,7 +82,8 @@
 				}
 
 				img.onload = function () {
-					var width, height, x, y, dx, dy, logicalWidth, logicalHeight;
+					var info, width, height, x, y, dx, dy, logicalWidth, logicalHeight;
+
 					// Fit the image within the previewSizexpreviewSize box
 					if ( img.width > img.height ) {
 						width = previewSize;
@@ -129,12 +133,14 @@
 					thumb.find('.mw-small-spinner').replaceWith($canvas);
 
 					// Image size
-					var info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
+					info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
 						', ' + prettySize( file.size );
+
 					$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 				};
 				img.src = dataURL;
 			}, mw.config.get( 'wgFileCanRotate' ) ? function ( data ) {
+				/*jshint camelcase: false, nomen: false */
 				try {
 					meta = mw.libs.jpegmeta( data, file.fileName );
 					meta._binary_data = null;
@@ -171,9 +177,10 @@
 				// However, our JPEG metadata library wants a string.
 				// So, this is going to be an ugly conversion.
 				reader.onload = function() {
-					var buffer = new Uint8Array( reader.result ),
+					var i,
+						buffer = new Uint8Array( reader.result ),
 						string = '';
-					for ( var i = 0; i < buffer.byteLength; i++ ) {
+					for ( i = 0; i < buffer.byteLength; i++ ) {
 						string += String.fromCharCode( buffer[i] );
 					}
 					callbackBinary( string );
@@ -196,7 +203,7 @@
 			} else {
 				// This ends up decoding the file to base-64 and back again, which
 				// feels horribly inefficient.
-				reader.onload = function() {
+				reader.onload = function () {
 					callback( reader.result );
 				};
 				reader.readAsDataURL( file );
@@ -230,22 +237,29 @@
 		 * Check if the file does not exceed the maximum size
 		 */
 		function checkMaxUploadSize( file ) {
+			var maxSize, $error;
+
 			function getMaxUploadSize( type ) {
 				var sizes = mw.config.get( 'wgMaxUploadSize' );
+
 				if ( sizes[type] !== undefined ) {
 					return sizes[type];
 				}
 				return sizes['*'];
 			}
+
 			$( '.mw-upload-source-error' ).remove();
 
-			var maxSize = getMaxUploadSize( 'file' );
+			maxSize = getMaxUploadSize( 'file' );
 			if ( file.size > maxSize ) {
-				var error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' +
-						mw.message( 'largefileserver', file.size, maxSize ).escaped() + '</p>' );
-				$( '#wpUploadFile' ).after( error );
+				$error = $( '<p class="error mw-upload-source-error" id="wpSourceTypeFile-error">' +
+					mw.message( 'largefileserver', file.size, maxSize ).escaped() + '</p>' );
+
+				$( '#wpUploadFile' ).after( $error );
+
 				return false;
 			}
+
 			return true;
 		}
 
@@ -276,23 +290,30 @@
 	/**
 	 * Disable all upload source fields except the selected one
 	 */
-	$( function ( $ ) {
-		var i, row,
-			rows = $( '.mw-htmlform-field-UploadSourceField' );
-		for ( i = rows.length; i; i-- ) {
-			row = rows[i - 1];
-			$( 'input[name="wpSourceType"]', row ).change( ( function () {
-				var currentRow = row; // Store current row in our own scope
-				return function () {
-					$( '.mw-upload-source-error' ).remove();
-					if ( this.checked ) {
-						// Disable all inputs
-						$( 'input[name!="wpSourceType"]', rows ).prop( 'disabled', true );
-						// Re-enable the current one
-						$( 'input', currentRow ).prop( 'disabled', false );
-					}
-				};
-			}() ) );
+	$( document ).ready( function () {
+		var i, $row,
+			$rows = $( '.mw-htmlform-field-UploadSourceField' );
+
+		function createHandler( $currentRow ) {
+			/**
+			 * @param {jQuery.Event}
+			 */
+			return function () {
+				$( '.mw-upload-source-error' ).remove();
+				if ( this.checked ) {
+					// Disable all inputs
+					$rows.find( 'input[name!="wpSourceType"]' ).prop( 'disabled', true );
+					// Re-enable the current one
+					$currentRow.find( 'input' ).prop( 'disabled', false );
+				}
+			};
+		}
+
+		for ( i = $rows.length; i; i-- ) {
+			$row = $rows.eq(i - 1);
+			$row
+				.find( 'input[name="wpSourceType"]' )
+				.change( createHandler( $row ) );
 		}
 	} );
 

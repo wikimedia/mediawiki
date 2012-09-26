@@ -56,15 +56,15 @@ installations.
 
 	importDump.php
 	XML dump importer
-	
+
 	importImages.php
 	Import images into the wiki
-	
+
 	importTextFile.php
 	Import the contents of a text file into a wiki page
 
 	moveBatch.php
-	Move a batch of pages 
+	Move a batch of pages
 
 	namespaceDupes.php
 	Check articles name to see if they conflict with new/existing namespaces
@@ -93,7 +93,7 @@ installations.
 	runJobs.php
 	Immediately complete all jobs in the job queue
 
-	stats.php
+	showCacheStats.php
 	Show all statistics stored in the cache
 
 	undelete.php

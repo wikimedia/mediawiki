@@ -262,9 +262,6 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 
 E lava te ke hoko atu ʻo ngāueʻaki he {{SITENAME}} tatau mo e ʻetita taʻehingoa, pe te ke kau-ki-ai mo e hingoa tatau pe hingoa kehe.
 Tokanga, mahalo pē ʻe ʻi ai ha ngaahi peesi ʻoku ʻasi ko koe kei kau-ki-ai aʻu ki he taimi te ke fakaʻatā ʻa e fafaʻo fakapalausa.",
-'welcomecreation' => '== Tali fiefia, $1! ==
-
-Kuo fakatupu hoʻo tohi kau-ki-ai. ʻOua ʻe ngalo ke liliu hoʻo faʻiteliha {{SITENAME}}.',
 'yourname' => 'Hingoa ʻetita',
 'yourpassword' => 'Leatapu',
 'yourpasswordagain' => 'Toe ʻai leatapu',
@@ -388,7 +385,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'templatesused' => 'Ngaahi sīpinga ʻoku ngāueʻaki he kupú ni:',
 'templatesusedpreview' => 'Ngaahi sīpinga ʻoku ngāueʻaki he vakaí ni:',
 'templatesusedsection' => 'Ngaahi sīpinga ʻoku ngāueʻaki he kongá ni:',
-'nocreatetitle' => 'ʻOku fakangatangata ʻa e fakatupu ʻo e peesi.',
 'nocreatetext' => 'Naʻe fakangatangata ʻe he tuʻuʻangá ni ʻa e lava ke fakatupu ha peesi foʻou. ʻOku ke lava ke foki pea fatu ha peesi tuʻu, pe [[Special:UserLogin|kau-ki-ai, pe fakatupu ha tohi-kau-ki-ai]].',
 
 # Account creation failure
@@ -438,8 +434,6 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'viewprevnext' => 'Vakai ki he ($1 {{int:pipe-separator}} $2) ($3).',
 'search-suggest' => 'Mahalo pē naʻa ke fiemaʻu: $1',
 'search-interwiki-more' => '(lahi ange)',
-'search-mwsuggest-enabled' => 'mo e fokotuʻu atu',
-'search-mwsuggest-disabled' => 'taʻe fokotuʻu atu',
 'showingresults' => "ʻOku ʻasi ʻi lalo ʻa e ngaahi fua ʻoku kamata mo e #'''$2''' (aʻu ki he '''$1''').",
 'showingresultsnum' => "ʻOku ʻasi ʻi lalo ha fua ʻe '''$3''', ʻoku kamata mo e #'''$2'''.",
 'nonefound' => "Ko e ngaahi kumi naʻe ʻikai ke siaʻa. Mahalo pē te ke fiefeinga kumi ʻi he ngaahi vā hingoa kotoa (kupu, alea, sīpinga, mo e hā fua). Tānaki ''all:'' ʻi muʻa ʻo hoʻo fehuʻi.",
@@ -501,10 +495,13 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'group-sysop-member' => 'Pule fakafounga',
 'group-bureaucrat-member' => 'Pulelahi',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Tohinoa ʻo e fakatupu kau ʻetita',
+'newuserlogpagetext' => 'Ko e tohinoa ʻeni ʻo e fakatupu kau ʻetita.',
+
 # User rights log
 'rightslog' => 'Tohinoa ʻo e kau ʻetita honau maʻu mafai',
 'rightslogtext' => 'Ko e tohinoa ʻeni ʻo e ngaah liliu ʻo e kau ʻetita ʻenau maʻu mafai',
-'rightsnone' => '(hala)',
 
 # Recent changes
 'recentchanges' => 'Ngaahi toki liliu',
@@ -733,11 +730,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusersfrom' => 'ʻAsi mai kau ʻetita mei he:',
 'listusers-submit' => 'ʻAsi mai',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Tohinoa ʻo e fakatupu kau ʻetita',
-'newuserlogpagetext' => 'Ko e tohinoa ʻeni ʻo e fakatupu kau ʻetita.',
-
-# E-mail user
+# Email user
 'mailnologin' => 'ʻOku ʻikai ha tuʻasila ke tohila ki ai',
 'emailuser' => 'Tohila ki he ʻetitá ni',
 'emailpage' => 'Ko e ʻetita ʻene tohila',
@@ -783,9 +776,8 @@ Kapau ʻaho ʻe taha, te ke fietoʻo ʻa e pēsí mei hoʻo hokohoko leʻo, lomi
 'watching' => 'ʻOku leʻo...',
 'unwatching' => 'ʻOku taʻeleʻo...',
 
-'enotif_newpagetext' => 'Ko e peesi foʻou ia.',
-'changed' => 'ʻosi liliu',
 'created' => 'kuo fakatupu',
+'changed' => 'ʻosi liliu',
 
 # Delete
 'deletepage' => 'Tāmateʻi peesi',
@@ -1051,7 +1043,7 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 'metadata-expand' => 'Fano kiʻi meʻa',
 'metadata-collapse' => 'Holo kiʻi meʻa',
 
-# EXIF tags
+# Exif tags
 'exif-xresolution' => 'Auiiki fakalava',
 'exif-yresolution' => 'Auiiki tuʻutonu',
 'exif-jpeginterchangeformatlength' => 'ʻŪ valu meʻaʻilo JPEG',
@@ -1165,7 +1157,7 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 'watchlistall2' => 'kātoa',
 'namespacesall' => 'vā kotoa',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Fakamoʻoniʻi ho tuʻasila tohila',
 'confirmemail_noemail' => 'Naʻe ʻikai te ke fakamoʻoniʻi ʻa e tohila totonu ʻi he [[Special:Preferences|faʻiteliha ʻaʻau]].',
 'confirmemail_text' => 'Kuo pau te ke fakamoʻoniʻi ho tuʻasila tohila ki muʻa ʻi hoʻo ngāueʻaki ʻa e ngaahi fōtunga tohila. Lomiʻi ʻa e meʻalolomi ʻi lalo pea ʻe ʻavea ha tohila fakamoʻoniʻi ki ho tuʻasila. ʻE ʻi ai ha fehokotaki mo ha lea fakapulipuli ʻi ai. Fafaʻo ʻa e fehokotakí ni ʻi hoʻo palausa ke fakamoʻoniʻi ʻoku sai ho tuʻasila tohila.',
@@ -1229,12 +1221,10 @@ Kātaki fakapapauʻi te ke fie toe fatu ʻa e kupu ni.",
 # Special:Version
 'version' => 'Paaki',
 
-# Special:FilePath
-'filepath' => 'Hala ki he faile',
-'filepath-page' => 'Faile:',
-'filepath-submit' => 'Ko e hala',
-
 # Special:SpecialPages
 'specialpages' => 'Ngaahi peesi makehe',
+
+# New logging system
+'rightsnone' => '(hala)',
 
 );

@@ -44,21 +44,21 @@ class WithoutInterwikiPage extends PageQueryPage {
 		global $wgScript;
 
 		# Do not show useless input form if special page is cached
-		if( $this->isCached() ) {
+		if ( $this->isCached() ) {
 			return '';
 		}
 
 		$prefix = $this->prefix;
 		$t = $this->getTitle();
 
-		return Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) .
-			Html::hidden( 'title', $t->getPrefixedText() ) .
-			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . ' ' .
-			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
+		return Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) . "\n" .
+			Html::openElement( 'fieldset' ) . "\n" .
+			Html::element( 'legend', null, $this->msg( 'withoutinterwiki-legend' )->text() ) . "\n" .
+			Html::hidden( 'title', $t->getPrefixedText() ) . "\n" .
+			Xml::inputLabel( $this->msg( 'allpagesprefix' )->text(), 'prefix', 'wiprefix', 20, $prefix ) . "\n" .
+			Xml::submitButton( $this->msg( 'withoutinterwiki-submit' )->text() ) . "\n" .
+			Html::closeElement( 'fieldset' ) . "\n" .
+			Html::closeElement( 'form' );
 	}
 
 	function sortDescending() {
@@ -78,15 +78,15 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function getQueryInfo() {
-		$query = array (
-			'tables' => array ( 'page', 'langlinks' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
+		$query = array(
+			'tables' => array( 'page', 'langlinks' ),
+			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'page_title' ),
-			'conds' => array ( 'll_title IS NULL',
+			'conds' => array( 'll_title IS NULL',
 					'page_namespace' => MWNamespace::getContentNamespaces(),
 					'page_is_redirect' => 0 ),
-			'join_conds' => array ( 'langlinks' => array (
+			'join_conds' => array( 'langlinks' => array(
 					'LEFT JOIN', 'll_from = page_id' ) )
 		);
 		if ( $this->prefix ) {
@@ -94,5 +94,9 @@ class WithoutInterwikiPage extends PageQueryPage {
 			$query['conds'][] = 'page_title ' . $dbr->buildLike( $this->prefix, $dbr->anyString() );
 		}
 		return $query;
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

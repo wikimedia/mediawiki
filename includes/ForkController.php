@@ -53,7 +53,7 @@ class ForkController {
 	const RESTART_ON_ERROR = 1;
 
 	public function __construct( $numProcs, $flags = 0 ) {
-		if ( php_sapi_name() != 'cli' ) {
+		if ( PHP_SAPI != 'cli' ) {
 			throw new MWException( "ForkController cannot be used from the web." );
 		}
 		$this->procsToStart = $numProcs;
@@ -121,7 +121,9 @@ class ForkController {
 			if ( function_exists( 'pcntl_signal_dispatch' ) ) {
 				pcntl_signal_dispatch();
 			} else {
-				declare (ticks=1) { $status = $status; }
+				declare( ticks = 1 ) {
+					$status = $status;
+				}
 			}
 			// Respond to TERM signal
 			if ( $this->termReceived ) {
@@ -140,7 +142,7 @@ class ForkController {
 		// Don't share DB, storage, or memcached connections
 		wfGetLBFactory()->destroyInstance();
 		FileBackendGroup::destroySingleton();
-		LockManagerGroup::destroySingleton();
+		LockManagerGroup::destroySingletons();
 		ObjectCache::clear();
 		$wgMemc = null;
 	}

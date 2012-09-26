@@ -3,11 +3,11 @@
 /**
  * @group API
  * @group Database
+ * @group medium
  * @todo This test suite is severly broken and need a full review
  */
 class ApiWatchTest extends ApiTestCase {
-
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
 	}
@@ -29,7 +29,7 @@ class ApiWatchTest extends ApiTestCase {
 
 		$data = $this->doApiRequest( array(
 			'action' => 'edit',
-			'title' => 'UTPage',
+			'title' => 'Help:UTPage', // Help namespace is hopefully wikitext
 			'text' => 'new text',
 			'token' => $pageinfo['edittoken'],
 			'watchlist' => 'watch' ) );
@@ -81,7 +81,7 @@ class ApiWatchTest extends ApiTestCase {
 		$data = $this->doApiRequest( array(
 			'action' => 'protect',
 			'token' => $pageinfo['protecttoken'],
-			'title' => 'UTPage',
+			'title' => 'Help:UTPage',
 			'protections' => 'edit=sysop',
 			'watchlist' => 'unwatch' ) );
 
@@ -94,17 +94,16 @@ class ApiWatchTest extends ApiTestCase {
 	/**
 	 */
 	function testGetRollbackToken() {
+		$this->getTokens();
 
-		$pageinfo = $this->getTokens();
-
-		if ( !Title::newFromText( 'UTPage' )->exists() ) {
-			$this->markTestSkipped( "The article [[UTPage]] does not exist" ); //TODO: just create it?
+		if ( !Title::newFromText( 'Help:UTPage' )->exists() ) {
+			$this->markTestSkipped( "The article [[Help:UTPage]] does not exist" ); //TODO: just create it?
 		}
 
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'prop' => 'revisions',
-			'titles' => 'UTPage',
+			'titles' => 'Help:UTPage',
 			'rvtoken' => 'rollback' ) );
 
 		$this->assertArrayHasKey( 'query', $data[0] );
@@ -113,7 +112,7 @@ class ApiWatchTest extends ApiTestCase {
 		$key = array_pop( $keys );
 
 		if ( isset( $data[0]['query']['pages'][$key]['missing'] ) ) {
-			$this->markTestSkipped( "Target page (UTPage) doesn't exist" );
+			$this->markTestSkipped( "Target page (Help:UTPage) doesn't exist" );
 		}
 
 		$this->assertArrayHasKey( 'pageid', $data[0]['query']['pages'][$key] );
@@ -139,16 +138,16 @@ class ApiWatchTest extends ApiTestCase {
 		try {
 			$data = $this->doApiRequest( array(
 				'action' => 'rollback',
-				'title' => 'UTPage',
+				'title' => 'Help:UTPage',
 				'user' => $revinfo['user'],
 				'token' => $pageinfo['rollbacktoken'],
 				'watchlist' => 'watch' ) );
 
 			$this->assertArrayHasKey( 'rollback', $data[0] );
 			$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
-		} catch( UsageException $ue ) {
-			if( $ue->getCodeString() == 'onlyauthor' ) {
-				$this->markTestIncomplete( "Only one author to 'UTPage', cannot test rollback" );
+		} catch ( UsageException $ue ) {
+			if ( $ue->getCodeString() == 'onlyauthor' ) {
+				$this->markTestIncomplete( "Only one author to 'Help:UTPage', cannot test rollback" );
 			} else {
 				$this->fail( "Received error '" . $ue->getCodeString() . "'" );
 			}
@@ -163,11 +162,11 @@ class ApiWatchTest extends ApiTestCase {
 		$data = $this->doApiRequest( array(
 			'action' => 'delete',
 			'token' => $pageinfo['deletetoken'],
-			'title' => 'UTPage' ) );
+			'title' => 'Help:UTPage' ) );
 		$this->assertArrayHasKey( 'delete', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['delete'] );
 
-		$data = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'query',
 			'list' => 'watchlist' ) );
 

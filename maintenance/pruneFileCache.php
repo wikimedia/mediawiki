@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that prunes file cache for pages, objects, resources, etc.
@@ -108,4 +108,4 @@ class PruneFileCache extends Maintenance {
 }
 
 $maintClass = "PruneFileCache";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

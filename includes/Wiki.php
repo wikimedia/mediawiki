@@ -126,7 +126,7 @@ class MediaWiki {
 	 * @return Title
 	 */
 	public function getTitle() {
-		if( $this->context->getTitle() === null ){
+		if ( $this->context->getTitle() === null ) {
 			$this->context->setTitle( $this->parseTitle() );
 		}
 		return $this->context->getTitle();
@@ -169,6 +169,7 @@ class MediaWiki {
 	 * - special pages
 	 * - normal pages
 	 *
+	 * @throws MWException|PermissionsError|BadTitleError|HttpError
 	 * @return void
 	 */
 	private function performRequest() {
@@ -177,7 +178,7 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
-		$title = $this->context->getTitle();
+		$requestTitle = $title = $this->context->getTitle();
 		$output = $this->context->getOutput();
 		$user = $this->context->getUser();
 
@@ -226,7 +227,7 @@ class MediaWiki {
 		if ( $title->getInterwiki() != '' ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
-				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
+				$url = $title->getFullURL( array( 'rdfrom' => $rdfrom ) );
 			} else {
 				$query = $request->getValues();
 				unset( $query['title'] );
@@ -246,7 +247,7 @@ class MediaWiki {
 		// Redirect loops, no title in URL, $wgUsePathInfo URLs, and URLs with a variant
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
 			&& ( $request->getVal( 'title' ) === null ||
-				$title->getPrefixedDBKey() != $request->getVal( 'title' ) )
+				$title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
 			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
 		{
@@ -301,7 +302,7 @@ class MediaWiki {
 				global $wgArticle;
 				$wgArticle = new DeprecatedGlobal( 'wgArticle', $article, '1.18' );
 
-				$this->performAction( $article );
+				$this->performAction( $article, $requestTitle );
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
@@ -330,8 +331,18 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$title = $this->context->getTitle();
-		$article = Article::newFromTitle( $title, $this->context );
-		$this->context->setWikiPage( $article->getPage() );
+		if ( $this->context->canUseWikiPage() ) {
+			// Try to use request context wiki page, as there
+			// is already data from db saved in per process
+			// cache there from this->getAction() call.
+			$page = $this->context->getWikiPage();
+			$article = Article::newFromWikiPage( $page, $this->context );
+		} else {
+			// This case should not happen, but just in case.
+			$article = Article::newFromTitle( $title, $this->context );
+			$this->context->setWikiPage( $article->getPage() );
+		}
+
 		// NS_MEDIAWIKI has no redirects.
 		// It is also used for CSS/JS, so performance matters here...
 		if ( $title->getNamespace() == NS_MEDIAWIKI ) {
@@ -345,10 +356,10 @@ class MediaWiki {
 		// Check for redirects ...
 		$action = $request->getVal( 'action', 'view' );
 		$file = ( $title->getNamespace() == NS_FILE ) ? $article->getFile() : null;
-		if ( ( $action == 'view' || $action == 'render' ) 	// ... for actions that show content
-			&& !$request->getVal( 'oldid' ) &&    // ... and are not old revisions
-			!$request->getVal( 'diff' ) &&    // ... and not when showing diff
-			$request->getVal( 'redirect' ) != 'no' &&	// ... unless explicitly told not to
+		if ( ( $action == 'view' || $action == 'render' ) // ... for actions that show content
+			&& !$request->getVal( 'oldid' ) && // ... and are not old revisions
+			!$request->getVal( 'diff' ) && // ... and not when showing diff
+			$request->getVal( 'redirect' ) != 'no' && // ... unless explicitly told not to
 			// ... and the article is not a non-redirect image page with associated file
 			!( is_object( $file ) && $file->exists() && !$file->getRedirected() ) )
 		{
@@ -395,8 +406,9 @@ class MediaWiki {
 	 * Perform one of the "standard" actions
 	 *
 	 * @param $page Page
+	 * @param $requestTitle The original title, before any redirects were applied
 	 */
-	private function performAction( Page $page ) {
+	private function performAction( Page $page, Title $requestTitle ) {
 		global $wgUseSquid, $wgSquidMaxage;
 
 		wfProfileIn( __METHOD__ );
@@ -419,7 +431,7 @@ class MediaWiki {
 		if ( $action instanceof Action ) {
 			# Let Squid cache things if we can purge them.
 			if ( $wgUseSquid &&
-				in_array( $request->getFullRequestURL(), $title->getSquidURLs() )
+				in_array( $request->getFullRequestURL(), $requestTitle->getSquidURLs() )
 			) {
 				$output->setSquidMaxage( $wgSquidMaxage );
 			}
@@ -468,7 +480,7 @@ class MediaWiki {
 				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
 				$resp->header( 'Content-Type: text/plain' );
-				if( $wgShowHostnames ) {
+				if ( $wgShowHostnames ) {
 					echo "Waiting for $host: $lag seconds lagged\n";
 				} else {
 					echo "Waiting for a database server: $lag seconds lagged\n";
@@ -489,6 +501,23 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
+
+		if ( $request->getCookie( 'forceHTTPS' )
+			&& $request->detectProtocol() == 'http'
+			&& $request->getMethod() == 'GET'
+		) {
+			$redirUrl = $request->getFullRequestURL();
+			$redirUrl = str_replace( 'http://', 'https://', $redirUrl );
+
+			// Setup dummy Title, otherwise OutputPage::redirect will fail
+			$title = Title::newFromText( NS_MAIN, 'REDIR' );
+			$this->context->setTitle( $title );
+			$output = $this->context->getOutput();
+			$output->redirect( $redirUrl );
+			$output->output();
+			wfProfileOut( __METHOD__ );
+			return;
+		}
 
 		// Send Ajax requests to the Ajax dispatcher.
 		if ( $wgUseAjax && $request->getVal( 'action', 'view' ) == 'ajax' ) {
@@ -555,9 +584,6 @@ class MediaWiki {
 		// Execute a job from the queue
 		$this->doJobs();
 
-		// Log message usage, if $wgAdaptiveMessageCache is set to true
-		MessageCache::logMessages();
-
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 
@@ -573,33 +599,59 @@ class MediaWiki {
 	 * Do a job from the job queue
 	 */
 	private function doJobs() {
-		global $wgJobRunRate;
+		global $wgJobRunRate, $wgPhpCli, $IP;
 
 		if ( $wgJobRunRate <= 0 || wfReadOnly() ) {
 			return;
 		}
+
 		if ( $wgJobRunRate < 1 ) {
 			$max = mt_getrandmax();
 			if ( mt_rand( 0, $max ) > $max * $wgJobRunRate ) {
-				return;
+				return; // the higher $wgJobRunRate, the less likely we return here
 			}
 			$n = 1;
 		} else {
 			$n = intval( $wgJobRunRate );
 		}
 
-		while ( $n-- && false != ( $job = Job::pop() ) ) {
-			$output = $job->toString() . "\n";
-			$t = - microtime( true );
-			$success = $job->run();
-			$t += microtime( true );
-			$t = round( $t * 1000 );
-			if ( !$success ) {
-				$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
-			} else {
-				$output .= "Success, Time: $t ms\n";
+		if ( !wfShellExecDisabled() && is_executable( $wgPhpCli ) ) {
+			// Start a background process to run some of the jobs.
+			// This will be asynchronous on *nix though not on Windows.
+			wfProfileIn( __METHOD__ . '-exec' );
+			$retVal = 1;
+			$cmd = wfShellWikiCmd( "$IP/maintenance/runJobs.php", array( '--maxjobs', $n ) );
+			wfShellExec( "$cmd &", $retVal );
+			wfProfileOut( __METHOD__ . '-exec' );
+		} else {
+			try {
+				// Fallback to running the jobs here while the user waits
+				$group = JobQueueGroup::singleton();
+				do {
+					$job = $group->pop( JobQueueGroup::USE_CACHE ); // job from any queue
+					if ( $job ) {
+						$output = $job->toString() . "\n";
+						$t = - microtime( true );
+						wfProfileIn( __METHOD__ . '-' . get_class( $job ) );
+						$success = $job->run();
+						wfProfileOut( __METHOD__ . '-' . get_class( $job ) );
+						$group->ack( $job ); // done
+						$t += microtime( true );
+						$t = round( $t * 1000 );
+						if ( $success === false ) {
+							$output .= "Error: " . $job->getLastError() . ", Time: $t ms\n";
+						} else {
+							$output .= "Success, Time: $t ms\n";
+						}
+						wfDebugLog( 'jobqueue', $output );
+					}
+				} while ( --$n && $job );
+			} catch ( MWException $e ) {
+				// We don't want exceptions thrown during job execution to
+				// be reported to the user since the output is already sent.
+				// Instead we just log them.
+				wfDebugLog( 'exception', $e->getLogMessage() );
 			}
-			wfDebugLog( 'jobqueue', $output );
 		}
 	}
 }

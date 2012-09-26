@@ -1,14 +1,12 @@
 <?php
 /**
- * Tests for includes/GlobalFunctions.php -> wfUrlencode()
+ * Tests for wfUrlencode()
  *
  * The function only need a string parameter and might react to IIS7.0
  */
-
-class wfUrlencodeTest extends MediaWikiTestCase {
-
+class WfUrlencodeTest extends MediaWikiTestCase {
 	#### TESTS ##############################################################
-	
+
 	/** @dataProvider provideURLS */
 	public function testEncodingUrlWith( $input, $expected ) {
 		$this->verifyEncodingFor( 'Apache', $input, $expected );
@@ -20,7 +18,7 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 	}
 
 	#### HELPERS #############################################################
-	
+
 	/**
 	 * Internal helper that actually run the test.
 	 * Called by the public methods testEncodingUrlWith...()
@@ -30,10 +28,9 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 		$expected = $this->extractExpect( $server, $expectations );
 
 		// save up global
-		$old = isset($_SERVER['SERVER_SOFTWARE'])
+		$old = isset( $_SERVER['SERVER_SOFTWARE'] )
 			? $_SERVER['SERVER_SOFTWARE']
-			: null
-		;
+			: null;
 		$_SERVER['SERVER_SOFTWARE'] = $server;
 		wfUrlencode( null );
 
@@ -45,7 +42,7 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 		);
 
 		// restore global
-		if( $old === null ) {
+		if ( $old === null ) {
 			unset( $_SERVER['SERVER_SOFTWARE'] );
 		} else {
 			$_SERVER['SERVER_SOFTWARE'] = $old;
@@ -58,19 +55,18 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 	 * the HTTP server name.
 	 */
 	private function extractExpect( $server, $expectations ) {
-		if( is_string( $expectations ) ) {
+		if ( is_string( $expectations ) ) {
 			return $expectations;
-		} elseif( is_array( $expectations ) ) {
-			if( !array_key_exists( $server, $expectations ) ) {
+		} elseif ( is_array( $expectations ) ) {
+			if ( !array_key_exists( $server, $expectations ) ) {
 				throw new MWException( __METHOD__ . " expectation does not have any value for server name $server. Check the provider array.\n" );
 			} else {
 				return $expectations[$server];
 			}
-	 	} else {
+		} else {
 			throw new MWException( __METHOD__ . " given invalid expectation for '$server'. Should be a string or an array( <http server name> => <string> ).\n" );
-	 	}
-	}  
-
+		}
+	}
 
 	#### PROVIDERS ###########################################################
 
@@ -83,11 +79,11 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 	 *       array( 'Microsoft-IIS/7', 'expected' ),
 	 *    ),
 	 * If you want to add other HTTP server name, you will have to add a new
-	 * testing method much like the testEncodingUrlWith() method above. 
+	 * testing method much like the testEncodingUrlWith() method above.
 	 */
-	public function provideURLS() {
+	public static function provideURLS() {
 		return array(
-		### RFC 1738 chars	
+			### RFC 1738 chars
 			// + is not safe
 			array( '+', '%2B' ),
 			// & and = not safe in queries
@@ -95,7 +91,7 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 			array( '=', '%3D' ),
 
 			array( ':', array(
-				'Apache'          => ':',
+				'Apache' => ':',
 				'Microsoft-IIS/7' => '%3A',
 			) ),
 
@@ -105,10 +101,10 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 				';@$-_.!*',
 			),
 
-		### Other tests
+			### Other tests
 			// slash remain unchanged. %2F seems to break things
 			array( '/', '/' ),
-	
+
 			// Other 'funnies' chars
 			array( '[]', '%5B%5D' ),
 			array( '<>', '%3C%3E' ),

@@ -53,16 +53,13 @@ class ViewCountUpdate implements DeferrableUpdate {
 		}
 
 		# Not important enough to warrant an error page in case of failure
-		$oldignore = $dbw->ignoreErrors( true );
-
-		$dbw->insert( 'hitcounter', array( 'hc_id' => $this->id ), __METHOD__ );
-
-		$checkfreq = intval( $wgHitcounterUpdateFreq / 25 + 1 );
-		if ( rand() % $checkfreq == 0 && $dbw->lastErrno() == 0 ) {
-			$this->collect();
-		}
-
-		$dbw->ignoreErrors( $oldignore );
+		try {
+			$dbw->insert( 'hitcounter', array( 'hc_id' => $this->id ), __METHOD__ );
+			$checkfreq = intval( $wgHitcounterUpdateFreq / 25 + 1 );
+			if ( rand() % $checkfreq == 0 && $dbw->lastErrno() == 0 ) {
+				$this->collect();
+			}
+		} catch ( DBError $e ) {}
 	}
 
 	protected function collect() {

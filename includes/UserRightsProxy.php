@@ -32,8 +32,8 @@ class UserRightsProxy {
 	 * @see newFromId()
 	 * @see newFromName()
 	 * @param $db DatabaseBase: db connection
-	 * @param $database String: database name
-	 * @param $name String: user name
+	 * @param string $database database name
+	 * @param string $name user name
 	 * @param $id Integer: user ID
 	 */
 	private function __construct( $db, $database, $name, $id ) {
@@ -56,7 +56,7 @@ class UserRightsProxy {
 	/**
 	 * Confirm the selected database name is a valid local interwiki database name.
 	 *
-	 * @param $database String: database name
+	 * @param string $database database name
 	 * @return Boolean
 	 */
 	public static function validDatabase( $database ) {
@@ -67,14 +67,14 @@ class UserRightsProxy {
 	/**
 	 * Same as User::whoIs()
 	 *
-	 * @param $database String: database name
+	 * @param string $database database name
 	 * @param $id Integer: user ID
 	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return String: user name or false if the user doesn't exist
 	 */
 	public static function whoIs( $database, $id, $ignoreInvalidDB = false ) {
 		$user = self::newFromId( $database, $id, $ignoreInvalidDB );
-		if( $user ) {
+		if ( $user ) {
 			return $user->name;
 		} else {
 			return false;
@@ -84,7 +84,7 @@ class UserRightsProxy {
 	/**
 	 * Factory function; get a remote user entry by ID number.
 	 *
-	 * @param $database String: database name
+	 * @param string $database database name
 	 * @param $id Integer: user ID
 	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return UserRightsProxy or null if doesn't exist
@@ -96,8 +96,8 @@ class UserRightsProxy {
 	/**
 	 * Factory function; get a remote user entry by name.
 	 *
-	 * @param $database String: database name
-	 * @param $name String: user name
+	 * @param string $database database name
+	 * @param string $name user name
 	 * @param $ignoreInvalidDB Boolean: if true, don't check if $database is in $wgLocalDatabases
 	 * @return UserRightsProxy or null if doesn't exist
 	 */
@@ -114,12 +114,12 @@ class UserRightsProxy {
 	 */
 	private static function newFromLookup( $database, $field, $value, $ignoreInvalidDB = false ) {
 		$db = self::getDB( $database, $ignoreInvalidDB );
-		if( $db ) {
+		if ( $db ) {
 			$row = $db->selectRow( 'user',
 				array( 'user_id', 'user_name' ),
 				array( $field => $value ),
 				__METHOD__ );
-			if( $row !== false ) {
+			if ( $row !== false ) {
 				return new UserRightsProxy( $db, $database,
 					$row->user_name,
 					intval( $row->user_id ) );
@@ -138,8 +138,8 @@ class UserRightsProxy {
 	 */
 	public static function getDB( $database, $ignoreInvalidDB = false ) {
 		global $wgDBname;
-		if( self::validDatabase( $database ) ) {
-			if( $database == $wgDBname ) {
+		if ( self::validDatabase( $database ) ) {
+			if ( $database == $wgDBname ) {
 				// Hmm... this shouldn't happen though. :)
 				return wfGetDB( DB_MASTER );
 			} else {

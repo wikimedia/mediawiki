@@ -22,13 +22,13 @@
 
 /**
  * Display something vaguely comprehensible in the event of a totally unrecoverable error.
- * Does not assume access to *anything*; no globals, no autloader, no database, no localisation.
+ * Does not assume access to *anything*; no globals, no autoloader, no database, no localisation.
  * Safe for PHP4 (and putting this here means that WebStart.php and GlobalSettings.php
  * no longer need to be).
  *
  * Calling this function kills execution immediately.
  *
- * @param $type String Which entry point we are protecting. One of:
+ * @param string $type Which entry point we are protecting. One of:
  *   - index.php
  *   - load.php
  *   - api.php
@@ -37,29 +37,36 @@
  * @note Since we can't rely on anything, the minimum PHP versions and MW current
  * version are hardcoded here
  */
-function wfPHPVersionError( $type ){
-	$mwVersion = '1.20';
-	$phpVersion = PHP_VERSION;
-	$message = "MediaWiki $mwVersion requires at least PHP version 5.3.2, you are using PHP $phpVersion.";
-	if( $type == 'index.php' ) {
+function wfPHPVersionError( $type ) {
+	$mwVersion = '1.22';
+	$minimumVersionPHP = '5.3.2';
+
+	$phpVersion = phpversion();
+	$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+	$message = "MediaWiki $mwVersion requires at least PHP version $minimumVersionPHP, you are using PHP $phpVersion.";
+	if ( $type == 'cli' ) {
+		$finalOutput = "You are using PHP version $phpVersion but MediaWiki $mwVersion needs PHP $minimumVersionPHP or higher. ABORTING.\n" .
+		"Check if you have a newer php executable with a different name, such as php5.\n";
+	} elseif ( $type == 'index.php' ) {
+		$pathinfo = pathinfo( $_SERVER['SCRIPT_NAME'] );
 		$encLogo = htmlspecialchars(
-			str_replace( '//', '/', pathinfo( $_SERVER['SCRIPT_NAME'], PATHINFO_DIRNAME ) . '/'
-			) . 'skins/common/images/mediawiki.png'
+			str_replace( '//', '/', $pathinfo['dirname'] . '/' ) .
+			'skins/common/images/mediawiki.png'
 		);
 
-		header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
+		header( "$protocol 500 MediaWiki configuration Error" );
 		header( 'Content-type: text/html; charset=UTF-8' );
 		// Don't cache error pages!  They cause no end of trouble...
 		header( 'Cache-control: none' );
-		header( 'Pragma: nocache' );
+		header( 'Pragma: no-cache' );
 
 		$finalOutput = <<<HTML
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns='http://www.w3.org/1999/xhtml' lang='en'>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 	<head>
+		<meta charset="UTF-8" />
 		<title>MediaWiki {$mwVersion}</title>
-		<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-		<style type='text/css' media='screen'>
+		<style media='screen'>
 			body {
 				color: #000;
 				background-color: #fff;
@@ -103,10 +110,8 @@ HTML;
 	} else {
 		// So nothing thinks this is JS or CSS
 		$finalOutput = ( $type == 'load.php' ) ? "/* $message */" : $message;
-		if( $type != 'cli' ) {
-			header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
-		}
+		header( "$protocol 500 MediaWiki configuration Error" );
 	}
-	echo( "$finalOutput\n" );
+	echo "$finalOutput\n";
 	die( 1 );
 }

@@ -68,8 +68,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pòkażë lëczba ùzérającëch brëkòwników',
 'tog-oldsig' => 'Pòdzérk wëzdrzatkù twòjegò pòdpisënka',
 'tog-fancysig' => 'Wzérôj na pòdpisënk jakno na wikikòd (bez aùtomatnych lënków)',
-'tog-externaleditor' => 'Brëkùjë domëslno bùtnowégò editora (blós dlô ekspertów, je nót ekstra nastôwów w twòjim kòmpùtrze)',
-'tog-externaldiff' => 'Brëkùjë domëslno bùtnowégò nôrzãdza diff (blós dlô ekspertów.je nót ekstra nastôwów w twòjim kòmpùtrze)',
 'tog-showjumplinks' => 'Włączë lënczi przëstãpù "òbaczë téż"',
 'tog-uselivepreview' => 'Brëkùjë wtimczasnegò pòdzérkù (JavaScript) (eksperimentalné)',
 'tog-forceeditsummary' => 'Pëtôj przed wéńdzenim do pùstégò pòdrechòwania edicëji',
@@ -177,7 +175,6 @@ $messages = array(
 'qbbrowse' => 'Przezeranié',
 'qbedit' => 'Edicëjô',
 'qbpageoptions' => 'Òptacëje starnë',
-'qbpageinfo' => 'Ò starnie',
 'qbmyoptions' => 'Mòje òptacëje',
 'qbspecialpages' => 'Specjalné starnë',
 'faq' => 'FAQ',
@@ -264,7 +261,6 @@ $messages = array(
 'disclaimers' => 'Prawné zastrzedżi',
 'disclaimerpage' => 'Project:Prawné zastrzedżi',
 'edithelp' => 'Pòmòc do edicëji',
-'edithelppage' => 'Help:Editowanié starnë',
 'helppage' => 'Help:Spisënk zamkłoscë',
 'mainpage' => 'Przédnô starna',
 'mainpage-description' => 'Przédnô starna',
@@ -354,11 +350,8 @@ Przemëszlë dolmaczënié na [//translatewiki.net/wiki/Main_Page?setlang=csb tr
 
 # Login and logout pages
 'logouttext' => "'''Jes wëlogòwóny.'''
-Mòżesz robic dali na {{SITENAME}} jakno anonimòwi brëkòwnik abò sã [[Special:UserLogin|wlogòwac]] znowa jakno równy, a bò jinszi brëkòwnik.
+Mòżesz robic dali na {{SITENAME}} jakno anonimòwi brëkòwnik abò sã <span class='plainlinks'>[$1 wlogòwac]</span> znowa jakno równy, a bò jinszi brëkòwnik.
 Bôczë, że do czasu wëczëszczenia pòdrãczny pamiãcë przezérnika, niejedné starnë bãdą wëzdrzëc jakbë të bëł wlogòwóny.",
-'welcomecreation' => ' == Witôj, $1! ==
-Twòjé kònto òstało prawie ùsôdzoné.
-Nie zbëjë zmienic swòjich nastôwów na [[Special:Preferences|{{SITENAME}}]].',
 'yourname' => 'Miono brëkòwnika',
 'yourpassword' => 'Twòja parola',
 'yourpasswordagain' => 'Pòwtórzë parolã',
@@ -578,8 +571,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'search-interwiki-caption' => 'Sosterné ùdbë',
 'search-interwiki-default' => 'Skùtczi dlô $1:',
 'search-interwiki-more' => '(wicy)',
-'search-mwsuggest-enabled' => 'z sugestëjama',
-'search-mwsuggest-disabled' => 'bez sugestëjów',
 'searchall' => 'wszëtczé',
 'nonefound' => "'''Bôczënk''':Dlô szëkbë są domëslno przistãpné blós niejedné rumë mionów.
 Spróbùjë szëkbë z przëdôwkã ''all:'' dlô całowny zamkłoscë starnów (zamëkający w se starnë diskùsëji, szablónë, ëtp), abò ùżëje przëdôwka wëbrónegò ruma mionów.",
@@ -588,9 +579,6 @@ Spróbùjë szëkbë z przëdôwkã ''all:'' dlô całowny zamkłoscë starnów 
 'powersearch-ns' => 'Szëkba w rumach mionów:',
 'powersearch-redir' => 'Lësta przeczerowaniów',
 'powersearch-field' => 'Szëkba za',
-
-# Quickbar
-'qbsettings' => 'Sztrépk chùtczégò przistãpù',
 
 # Preferences page
 'preferences' => 'Preferencëje',
@@ -715,6 +703,9 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'right-purge' => 'Czëszczenié pòdrãczny pamiãcë starnë bez pëtaniô ò pòcwierdzenié',
 'right-autoconfirmed' => 'Edicëjô dzélowò zazychrowónych starnów',
 'right-bot' => 'Nacéchòwanié edicëjó jakno aùtomatnych',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Nowi brëkòwnicë',
 
 # User rights log
 'rightslog' => 'Prawa brëkòwnika',
@@ -890,13 +881,10 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 # Special:LinkSearch
 'linksearch' => 'Bùtnowé lënczi',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Nowi brëkòwnicë',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(lësta nôlëżników karna)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Wëslë e-maila do negò brëkòwnika',
 'emailpage' => 'Sélajë e-mail do brëkòwnika',
 'defemailsubject' => 'E-mail òd {{SITENAME}}',
@@ -923,7 +911,7 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'unwatchthispage' => 'Òprzestôj ùzerac ną starnã',
 'notanarticle' => 'To nie je artikel',
 'watchlist-details' => 'Ùzérôsz {{PLURAL:$1|$1 artikel|$1 artikle/-ów}}, nie rechùjąc diskùsëjów.',
-'wlheader-showupdated' => "* Artiklë jakczé òsta zmienioné òd Twòji slédny wizytë są wëapratnioné '''pògrëbieniém'''",
+'wlheader-showupdated' => "Artiklë jakczé òsta zmienioné òd Twòji slédny wizytë są wëapratnioné '''pògrëbieniém'''",
 'watchmethod-list' => 'szëkba ùzérónëch artiklów westrzód pòslédnëch edicëjów',
 'watchlistcontains' => 'Na twòji lësce ùzérónëch artiklów {{PLURAL:$1|je 1 strana|są $1 starnë|je $1 starnów}}.',
 'wlnote' => "Niżi môsz wëskrzënioné {{PLURAL:$1|slédną zmianã|'''$1''' slédnëch zmianów}} zrobioné òb {{PLURAL:$2|gòdzënã|'''$2''' gòdzënë/gòdzënów}}.",
@@ -935,8 +923,8 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'unwatching' => 'Ju ni ùzéróm...',
 
 'enotif_reset' => 'Òznaczë wszëtczé artiklë jakno òbëzdrzóné',
-'changed' => 'zmienioné',
 'created' => 'zrobionô',
+'changed' => 'zmienioné',
 
 # Delete
 'deletepage' => 'Rëmôj starnã',
@@ -1233,7 +1221,7 @@ Jinszé pòla bãdą domëslno zataconé.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-source' => 'Zdrój',
 'exif-languagecode' => 'Jãzëk',
 
@@ -1249,7 +1237,7 @@ Jinszé pòla bãdą domëslno zataconé.
 'monthsall' => 'wszëtczé',
 'limitall' => 'wszëtczé',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_loggedin' => 'Twòjô adresa e-mail òsta pòcwierdzona.',
 
 # action=purge

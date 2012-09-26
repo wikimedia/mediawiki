@@ -1,0 +1,19 @@
+@import "../default/buttons"; // Layer Vector on top of the default settings.
+
+.mw-ui-button {
+    // Button colors determined by function.
+    // -----------------------------------------
+    &.mw-ui-primary {
+        @include buttonColors($agoraBlue);
+    }
+
+    &.mw-ui-constructive {
+        @include buttonColors($agoraGreen);
+    }
+
+    &.mw-ui-destructive {
+        @include buttonColors($agoraRed);
+    }
+
+    @include vector-type;
+}

@@ -23,7 +23,7 @@
  * @todo Make this more useful, right now just dumps $wgContLang
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that dumps an entire language, using the keys from English.
@@ -49,4 +49,4 @@ class DumpMessages extends Maintenance {
 }
 
 $maintClass = "DumpMessages";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

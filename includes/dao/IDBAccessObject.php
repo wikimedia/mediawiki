@@ -41,10 +41,12 @@
  *   - b) Determine the new row (expensive, so we don't want to hold locks now)
  *   - c) Re-read the current row with READ_LOCKING; if it changed then bail out
  *   - d) otherwise, do the updates
+ *
+ * @since 1.20
  */
 interface IDBAccessObject {
 	// Constants for object loading bitfield flags (higher => higher QoS)
-	const READ_LATEST  = 1; // read from the master
+	const READ_LATEST = 1; // read from the master
 	const READ_LOCKING = 3; // READ_LATEST and "FOR UPDATE"
 
 	// Convenience constant for callers to explicitly request slave data

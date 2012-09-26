@@ -28,9 +28,8 @@
  * @ingroup SpecialPage
  */
 class SpecialRandomredirect extends RandomPage {
-	function __construct(){
+	function __construct() {
 		parent::__construct( 'Randomredirect' );
 		$this->isRedir = true;
 	}
-
 }

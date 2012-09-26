@@ -17,21 +17,7 @@
 
 $fallback = 'ar';
 
-// (bug 16469) Override Eastern Arabic numberals, use Western
-$digitTransformTable = array(
-	'0' => '0',
-	'1' => '1',
-	'2' => '2',
-	'3' => '3',
-	'4' => '4',
-	'5' => '5',
-	'6' => '6',
-	'7' => '7',
-	'8' => '8',
-	'9' => '9',
-	'.' => '.',
-	',' => ',',
-);
+$rtl = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'ميديا',
@@ -58,6 +44,98 @@ $namespaceAliases = array(
 	'نقاش_الصورة' => NS_FILE_TALK,
 );
 
+$specialPageAliases = array(
+	'Activeusers'               => array( 'يوزرات_نشطا' ),
+	'Allmessages'               => array( 'كل_الرسايل' ),
+	'Allpages'                  => array( 'كل_الصفح' ),
+	'Ancientpages'              => array( 'صفح_قديمه' ),
+	'Blankpage'                 => array( 'صفحه_فارضيه' ),
+	'Block'                     => array( 'بلوك', 'بلوك_IP', 'بلوك_يوزر' ),
+	'Blockme'                   => array( 'بلوك_لنفسى' ),
+	'Booksources'               => array( 'مصادر_كتاب' ),
+	'BrokenRedirects'           => array( 'تحويلات_مكسوره' ),
+	'Categories'                => array( 'تصانيف' ),
+	'ChangePassword'            => array( 'تغيير_الپاسوورد', 'ظبط_الپاسوورد' ),
+	'Confirmemail'              => array( 'تأكيد_الايميل' ),
+	'Contributions'             => array( 'مساهمات' ),
+	'CreateAccount'             => array( 'ابتدى_حساب' ),
+	'Deadendpages'              => array( 'صفح_نهايه_مسدوده' ),
+	'DeletedContributions'      => array( 'مساهمات_ممسوحه' ),
+	'Disambiguations'           => array( 'توضيحات' ),
+	'DoubleRedirects'           => array( 'تحويلات_دوبل' ),
+	'Emailuser'                 => array( 'ابعت_ايميل_لليوزر' ),
+	'Export'                    => array( 'تصدير' ),
+	'Fewestrevisions'           => array( 'اقل_مراجعات' ),
+	'FileDuplicateSearch'       => array( 'تدوير_فايل_متكرر' ),
+	'Filepath'                  => array( 'مسار_ملف' ),
+	'Import'                    => array( 'استوراد' ),
+	'Invalidateemail'           => array( 'تعطيل_الايميل' ),
+	'BlockList'                 => array( 'ليستة_البلوك', 'بيّن_البلوك', 'ليستة_بلوك_IP' ),
+	'LinkSearch'                => array( 'تدوير_اللينكات' ),
+	'Listadmins'                => array( 'عرض_الاداريين' ),
+	'Listbots'                  => array( 'عرض_البوتات' ),
+	'Listfiles'                 => array( 'عرض_الفايلات', 'ليستة_الفايلات', 'ليستة_الصور' ),
+	'Listgrouprights'           => array( 'عرض_حقوق_الجروپات' ),
+	'Listredirects'             => array( 'عرض_التحويلات' ),
+	'Listusers'                 => array( 'عرض_اليوزرات', 'ليستة_اليوزرات' ),
+	'Lockdb'                    => array( 'قفل_قب' ),
+	'Log'                       => array( 'سجل', 'سجلات' ),
+	'Lonelypages'               => array( 'صفح_وحدانيه', 'صفح_يتيمه' ),
+	'Longpages'                 => array( 'صفح_طويله' ),
+	'MergeHistory'              => array( 'دمج_التاريخ' ),
+	'MIMEsearch'                => array( 'تدوير_MIME' ),
+	'Mostcategories'            => array( 'اكتر_تصانيف' ),
+	'Mostimages'                => array( 'اكتر_فايلات_معمول_ليها_لينك', 'اكتر_فايلات', 'اكتر_صور' ),
+	'Mostlinked'                => array( 'اكتر_صفح_معمول_ليها_لينك' ),
+	'Mostlinkedcategories'      => array( 'اكتر_تصانيف_معمول_ليها_لينك', 'اكتر_تصانيف_مستعمله' ),
+	'Mostlinkedtemplates'       => array( 'اكتر_قوالب_معمول_ليها_لينك', 'اكتر_قوالب_مستعمله' ),
+	'Mostrevisions'             => array( 'اكتر_مراجعات' ),
+	'Movepage'                  => array( 'نقل_صفحه' ),
+	'Mycontributions'           => array( 'مساهماتى' ),
+	'Mypage'                    => array( 'صفحتى' ),
+	'Mytalk'                    => array( 'مناقشتى' ),
+	'Newimages'                 => array( 'فايلات_جديده', 'صور_جديده' ),
+	'Newpages'                  => array( 'صفح_جديده' ),
+	'Popularpages'              => array( 'صفح_مشهوره' ),
+	'Preferences'               => array( 'تفضيلات' ),
+	'Prefixindex'               => array( 'فهرس_بدايه' ),
+	'Protectedpages'            => array( 'صفح_محميه' ),
+	'Protectedtitles'           => array( 'عناوين_محميه' ),
+	'Randompage'                => array( 'عشوائى', 'صفحه_عشوائيه' ),
+	'Randomredirect'            => array( 'تحويله_عشوائيه' ),
+	'Recentchanges'             => array( 'اخر_تعديلات' ),
+	'Recentchangeslinked'       => array( 'اجدد_التغييرات_اللى_معمول_ليها_لينك', 'تغييرات_مرتبطه' ),
+	'Revisiondelete'            => array( 'مسح_نسخه' ),
+	'Search'                    => array( 'تدوير' ),
+	'Shortpages'                => array( 'صفح_قصيره' ),
+	'Specialpages'              => array( 'صفح_مخصوصه' ),
+	'Statistics'                => array( 'احصائيات' ),
+	'Tags'                      => array( 'وسوم' ),
+	'Unblock'                   => array( 'رفع_منع' ),
+	'Uncategorizedcategories'   => array( 'تصانيف_مش_متصنفه' ),
+	'Uncategorizedimages'       => array( 'فايلات_مش_متصنفه', 'صور_مش_متصنفه' ),
+	'Uncategorizedpages'        => array( 'صفح_مش_متصنفه' ),
+	'Uncategorizedtemplates'    => array( 'قوالب_مش_متصنفه' ),
+	'Undelete'                  => array( 'استرجاع' ),
+	'Unlockdb'                  => array( 'فتح_قب' ),
+	'Unusedcategories'          => array( 'تصانيف_مش_مستعمله' ),
+	'Unusedimages'              => array( 'فايلات_مش_مستعمله', 'صور_مش_مستعمله' ),
+	'Unusedtemplates'           => array( 'قوالب_مش_مستعمله' ),
+	'Unwatchedpages'            => array( 'صفح_مش_متراقبه' ),
+	'Upload'                    => array( 'رفع' ),
+	'Userlogin'                 => array( 'دخول_اليوزر' ),
+	'Userlogout'                => array( 'خروج_اليوزر' ),
+	'Userrights'                => array( 'حقوق_اليوزر', 'ترقية_سيسوپ', 'ترقية_بوت' ),
+	'Version'                   => array( 'نسخه' ),
+	'Wantedcategories'          => array( 'تصانيف_مطلوبه' ),
+	'Wantedfiles'               => array( 'فايلات_مطلوبه' ),
+	'Wantedpages'               => array( 'صفح_مطلوبه', 'لينكات_مكسوره' ),
+	'Wantedtemplates'           => array( 'قوالب_مطلوبه' ),
+	'Watchlist'                 => array( 'ليستة_المراقبه' ),
+	'Whatlinkshere'             => array( 'ايه_بيوصل_هنا' ),
+	'Withoutinterwiki'          => array( 'من-غير_interwiki' ),
+);
+
 $magicWords = array(
 	'redirect'                  => array( '0', '#تحويل', '#REDIRECT' ),
 	'notoc'                     => array( '0', '__لافهرس__', '__NOTOC__' ),
@@ -65,7 +143,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__لصق_فهرس__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__فهرس__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__لاتحريرقسم__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', '__لاعنوان__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'شهر_حالى', 'شهر_حالي2', 'شهر_حالي', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'شهر_حالي1', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'اسم_الشهر_الحالى', 'اسم_الشهر_الحالي', 'CURRENTMONTHNAME' ),
@@ -208,96 +285,20 @@ $magicWords = array(
 	'url_query'                 => array( '0', 'استعلام', 'QUERY' ),
 );
 
-$specialPageAliases = array(
-	'Activeusers'               => array( 'يوزرات_نشطا' ),
-	'Allmessages'               => array( 'كل_الرسايل' ),
-	'Allpages'                  => array( 'كل_الصفح' ),
-	'Ancientpages'              => array( 'صفح_قديمه' ),
-	'Blankpage'                 => array( 'صفحه_فارضيه' ),
-	'Block'                     => array( 'بلوك', 'بلوك_IP', 'بلوك_يوزر' ),
-	'Blockme'                   => array( 'بلوك_لنفسى' ),
-	'Booksources'               => array( 'مصادر_كتاب' ),
-	'BrokenRedirects'           => array( 'تحويلات_مكسوره' ),
-	'Categories'                => array( 'تصانيف' ),
-	'ChangePassword'            => array( 'تغيير_الپاسوورد', 'ظبط_الپاسوورد' ),
-	'Confirmemail'              => array( 'تأكيد_الايميل' ),
-	'Contributions'             => array( 'مساهمات' ),
-	'CreateAccount'             => array( 'ابتدى_حساب' ),
-	'Deadendpages'              => array( 'صفح_نهايه_مسدوده' ),
-	'DeletedContributions'      => array( 'مساهمات_ممسوحه' ),
-	'Disambiguations'           => array( 'توضيحات' ),
-	'DoubleRedirects'           => array( 'تحويلات_دوبل' ),
-	'Emailuser'                 => array( 'ابعت_ايميل_لليوزر' ),
-	'Export'                    => array( 'تصدير' ),
-	'Fewestrevisions'           => array( 'اقل_مراجعات' ),
-	'FileDuplicateSearch'       => array( 'تدوير_فايل_متكرر' ),
-	'Filepath'                  => array( 'مسار_ملف' ),
-	'Import'                    => array( 'استوراد' ),
-	'Invalidateemail'           => array( 'تعطيل_الايميل' ),
-	'BlockList'                 => array( 'ليستة_البلوك', 'بيّن_البلوك', 'ليستة_بلوك_IP' ),
-	'LinkSearch'                => array( 'تدوير_اللينكات' ),
-	'Listadmins'                => array( 'عرض_الاداريين' ),
-	'Listbots'                  => array( 'عرض_البوتات' ),
-	'Listfiles'                 => array( 'عرض_الفايلات', 'ليستة_الفايلات', 'ليستة_الصور' ),
-	'Listgrouprights'           => array( 'عرض_حقوق_الجروپات' ),
-	'Listredirects'             => array( 'عرض_التحويلات' ),
-	'Listusers'                 => array( 'عرض_اليوزرات', 'ليستة_اليوزرات' ),
-	'Lockdb'                    => array( 'قفل_قب' ),
-	'Log'                       => array( 'سجل', 'سجلات' ),
-	'Lonelypages'               => array( 'صفح_وحدانيه', 'صفح_يتيمه' ),
-	'Longpages'                 => array( 'صفح_طويله' ),
-	'MergeHistory'              => array( 'دمج_التاريخ' ),
-	'MIMEsearch'                => array( 'تدوير_MIME' ),
-	'Mostcategories'            => array( 'اكتر_تصانيف' ),
-	'Mostimages'                => array( 'اكتر_فايلات_معمول_ليها_لينك', 'اكتر_فايلات', 'اكتر_صور' ),
-	'Mostlinked'                => array( 'اكتر_صفح_معمول_ليها_لينك' ),
-	'Mostlinkedcategories'      => array( 'اكتر_تصانيف_معمول_ليها_لينك', 'اكتر_تصانيف_مستعمله' ),
-	'Mostlinkedtemplates'       => array( 'اكتر_قوالب_معمول_ليها_لينك', 'اكتر_قوالب_مستعمله' ),
-	'Mostrevisions'             => array( 'اكتر_مراجعات' ),
-	'Movepage'                  => array( 'نقل_صفحه' ),
-	'Mycontributions'           => array( 'مساهماتى' ),
-	'Mypage'                    => array( 'صفحتى' ),
-	'Mytalk'                    => array( 'مناقشتى' ),
-	'Newimages'                 => array( 'فايلات_جديده', 'صور_جديده' ),
-	'Newpages'                  => array( 'صفح_جديده' ),
-	'Popularpages'              => array( 'صفح_مشهوره' ),
-	'Preferences'               => array( 'تفضيلات' ),
-	'Prefixindex'               => array( 'فهرس_بدايه' ),
-	'Protectedpages'            => array( 'صفح_محميه' ),
-	'Protectedtitles'           => array( 'عناوين_محميه' ),
-	'Randompage'                => array( 'عشوائى', 'صفحه_عشوائيه' ),
-	'Randomredirect'            => array( 'تحويله_عشوائيه' ),
-	'Recentchanges'             => array( 'اخر_تعديلات' ),
-	'Recentchangeslinked'       => array( 'اجدد_التغييرات_اللى_معمول_ليها_لينك', 'تغييرات_مرتبطه' ),
-	'Revisiondelete'            => array( 'مسح_نسخه' ),
-	'Search'                    => array( 'تدوير' ),
-	'Shortpages'                => array( 'صفح_قصيره' ),
-	'Specialpages'              => array( 'صفح_مخصوصه' ),
-	'Statistics'                => array( 'احصائيات' ),
-	'Tags'                      => array( 'وسوم' ),
-	'Unblock'                   => array( 'رفع_منع' ),
-	'Uncategorizedcategories'   => array( 'تصانيف_مش_متصنفه' ),
-	'Uncategorizedimages'       => array( 'فايلات_مش_متصنفه', 'صور_مش_متصنفه' ),
-	'Uncategorizedpages'        => array( 'صفح_مش_متصنفه' ),
-	'Uncategorizedtemplates'    => array( 'قوالب_مش_متصنفه' ),
-	'Undelete'                  => array( 'استرجاع' ),
-	'Unlockdb'                  => array( 'فتح_قب' ),
-	'Unusedcategories'          => array( 'تصانيف_مش_مستعمله' ),
-	'Unusedimages'              => array( 'فايلات_مش_مستعمله', 'صور_مش_مستعمله' ),
-	'Unusedtemplates'           => array( 'قوالب_مش_مستعمله' ),
-	'Unwatchedpages'            => array( 'صفح_مش_متراقبه' ),
-	'Upload'                    => array( 'رفع' ),
-	'Userlogin'                 => array( 'دخول_اليوزر' ),
-	'Userlogout'                => array( 'خروج_اليوزر' ),
-	'Userrights'                => array( 'حقوق_اليوزر', 'ترقية_سيسوپ', 'ترقية_بوت' ),
-	'Version'                   => array( 'نسخه' ),
-	'Wantedcategories'          => array( 'تصانيف_مطلوبه' ),
-	'Wantedfiles'               => array( 'فايلات_مطلوبه' ),
-	'Wantedpages'               => array( 'صفح_مطلوبه', 'لينكات_مكسوره' ),
-	'Wantedtemplates'           => array( 'قوالب_مطلوبه' ),
-	'Watchlist'                 => array( 'ليستة_المراقبه' ),
-	'Whatlinkshere'             => array( 'ايه_بيوصل_هنا' ),
-	'Withoutinterwiki'          => array( 'من-غير_interwiki' ),
+// (bug 16469) Override Eastern Arabic numberals, use Western
+$digitTransformTable = array(
+	'0' => '0',
+	'1' => '1',
+	'2' => '2',
+	'3' => '3',
+	'4' => '4',
+	'5' => '5',
+	'6' => '6',
+	'7' => '7',
+	'8' => '8',
+	'9' => '9',
+	'.' => '.',
+	',' => ',',
 );
 
 $messages = array(
@@ -316,7 +317,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'اسمح بـ تعديل الاجزاء لما تعمل right-click بـ الماوس على عناوين الاجزاء (بيحتاج JavaScript)',
 'tog-showtoc' => 'بين جدول المحتويات (بتاع الصفح اللى فيها اكتر من 3 عناوين)',
 'tog-rememberpassword' => ' (لمدة   $1 {{PLURAL:$1|يوم|يوم}})خليك فاكر دخولى على الكمبيوتر دا',
-'tog-watchcreations' => 'زوّد الصفح اللى ابتديتها على ليستة الصفح اللى باراقبها',
+'tog-watchcreations' => 'زوّد الصفح اللى ابتديتها على ليستة الصفح اللى باراقبها.',
 'tog-watchdefault' => 'زوّد الصفح اللى باعدلها على ليستة الصفح اللى باراقبها',
 'tog-watchmoves' => 'زوّد الصفح اللى بانقلها على ليستة الصفح اللى باراقبها',
 'tog-watchdeletion' => 'زوّد الصفح اللى بامسحها على ليستة الصفح اللى باراقبها',
@@ -324,15 +325,14 @@ $messages = array(
 'tog-previewontop' => 'بين الپروڤه قبل علبة التعديل',
 'tog-previewonfirst' => 'بين البروفة عند أول تعديل',
 'tog-nocache' => 'عطّل تخزين البراوزر للصفحه',
-'tog-enotifwatchlistpages' => 'ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
+'tog-enotifwatchlistpages' => '
+ابعت لى ايميل لما تتغير صفحه فى لستة الصفحات اللى باراقبها',
 'tog-enotifusertalkpages' => 'ابعتلى ايميل لما صفحة مناقشتى تتغيير',
-'tog-enotifminoredits' => 'ابعتلى ايميل للتعديلات الصغيره للصفحات',
+'tog-enotifminoredits' => 'ابعتلى ايميل  عن التعديلات الصغيره للصفحات',
 'tog-enotifrevealaddr' => 'بين الايميل بتاعى فى ايميلات الاعلام',
 'tog-shownumberswatching' => 'بين عدد اليوزرز المراقبين',
 'tog-oldsig' => 'الامضا دلوقتى:',
 'tog-fancysig' => 'امضا خام (من غير لينك أوتوماتيك)',
-'tog-externaleditor' => 'استعمل محرر خارجى افتراضيا',
-'tog-externaldiff' => 'استعمل فرق خارجى افتراضيا',
 'tog-showjumplinks' => 'خلى وصلات "روح لـ" تكون شغالة.',
 'tog-uselivepreview' => 'استخدم البروفة السريعة (جافاسكريبت) (تجريبي)',
 'tog-forceeditsummary' => 'نبهنى عند تدخيل ملخص للتعديل  فاضي',
@@ -347,6 +347,7 @@ $messages = array(
 'tog-showhiddencats' => 'بين التّصنيفات المستخبية',
 'tog-noconvertlink' => 'عطل تحويل عناوين الوصلات',
 'tog-norollbackdiff' => 'الغى الاختلافات بعد ما تعمل الرول باك',
+'tog-useeditwarning' => 'حذّرنى لما اسيب صفحة تعديل فيها تغييرات مش متسييڤه',
 
 'underline-always' => 'دايما',
 'underline-never' => 'ابدا',
@@ -434,8 +435,8 @@ $messages = array(
 'newwindow' => '(بتفتح ويندو جديده)',
 'cancel' => 'كانسل',
 'moredotdotdot' => 'اكتر...',
-'mypage' => 'صفحتى',
-'mytalk' => 'مناقشاتى',
+'mypage' => 'صفحه',
+'mytalk' => 'كلام',
 'anontalk' => 'المناقشة مع عنوان الأيبى دا',
 'navigation' => 'استكشاف',
 'and' => '&#32;و',
@@ -445,7 +446,6 @@ $messages = array(
 'qbbrowse' => 'تصفح',
 'qbedit' => 'عدل',
 'qbpageoptions' => ' الصفحه دى',
-'qbpageinfo' => 'السياق',
 'qbmyoptions' => 'صفحاتى',
 'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'اسئله بتتسئل كتير',
@@ -539,7 +539,6 @@ $1',
 'disclaimers' => 'تنازل عن مسئوليه',
 'disclaimerpage' => 'Project:تنازل عن مسئوليه عمومى',
 'edithelp' => 'مساعده فى التعديل',
-'edithelppage' => 'Help:تعديل',
 'helppage' => 'Help:محتويات',
 'mainpage' => 'الصفحه الرئيسيه',
 'mainpage-description' => 'الصفحه الرئيسيه',
@@ -682,11 +681,8 @@ $2',
 # Login and logout pages
 'logouttext' => "'''أنت دلوقتى مش مسجل دخولك.'''
 
-تقدر تكمل استعمال {{SITENAME}} على انك مجهول، أو [[Special:UserLogin|الدخول مرة تانيه]] بنفس الاسم أو باسم تاني.
+تقدر تكمل استعمال {{SITENAME}} على انك مجهول، أو <span class='plainlinks'>[$1 الدخول مرة تانيه]</span> بنفس الاسم أو باسم تاني.
 ممكن تشوف بعض الصفحات  كأنك متسجل ، و دا علشان استعمال الصفحات المتخبية فى المتصفح بتاعك.",
-'welcomecreation' => '== اهلاً و سهلا يا $1! ==
-اتفتحلك حساب.
-ما تنساش تغير [[Special:Preferences|تفضيلاتك في {{SITENAME}}]].',
 'yourname' => 'اليوزرنيم:',
 'yourpassword' => 'الباسوورد:',
 'yourpasswordagain' => 'اكتب الباسورد تاني:',
@@ -962,7 +958,6 @@ $2',
 'template-semiprotected' => '(حمايه جزئيه )',
 'hiddencategories' => 'الصفحه دى موجوده فى {{PLURAL:$1|تصنيف مخفى واحد|$1 تصنيف مخفى}}:',
 'edittools' => '<!-- النص هنا هايظهر تحت صندوق التحرير و استمارة  تحميل الصور. -->',
-'nocreatetitle' => 'إنشاء الصفحات اتحدد',
 'nocreatetext' => '{{SITENAME}} حدد القدره على انشاء صفحات جديده.
 ممكن ترجع وتحرر صفحه موجوده بالفعل، او [[Special:UserLogin|الدخول / فتح حساب]].',
 'nocreate-loggedin' => 'انت ما عندك ش صلاحية تعمل صفحات جديدة.',
@@ -983,6 +978,8 @@ $2',
 'edit-no-change' => 'تعديلك تم تجاهله، لأن ما حصلش أى تعديل للنص.',
 'edit-already-exists' => 'لم يمكن إنشاء صفحة جديدة.
 هى موجودة بالفعل.',
+'editwarning-warning' => 'لو سيبت الصفحه دى ممكن يخلّيك تضيّع اى تغييرات عملتها.
+لو انت مسجّل دخولك, ممكن تعطّل التحذير ده من الجزء بتاع "تعديل" فى تفضيلاتك.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'تحذير: الصفحه دى فيهااستدعاءات دالة محلل كثيرة مكلفة.
@@ -1203,7 +1200,6 @@ $1",
 'searchmenu-legend' => 'اختيارات التدوير',
 'searchmenu-exists' => "*الصفحة '''[[$1]]'''",
 'searchmenu-new' => "'''ابتدى الصفحه \"[[:\$1]]\" ع الويكى دا!'''",
-'searchhelp-url' => 'Help:محتويات',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|استعرض الصفحات اللى بتبتدى بالبريفيكس دا]]',
 'searchprofile-articles' => 'صفحات محتوى',
 'searchprofile-project' => 'صفحات  المساعده و المشروع',
@@ -1224,8 +1220,6 @@ $1",
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
 'search-interwiki-more' => '(اأكتر)',
-'search-mwsuggest-enabled' => 'مع اقتراحات',
-'search-mwsuggest-disabled' => 'مافيش اقتراحات',
 'search-relatedarticle' => 'مرتبطه',
 'mwsuggest-disable' => 'تعطيل اقتراحات أجاكس',
 'searcheverything-enable' => 'دور فى النطاقات كلها.',
@@ -1249,14 +1243,6 @@ $1",
 'searchdisabled' => 'التدوير فى {{SITENAME}} متعطل.
 ممكن تدور فى جوجل دلوقتي.
 لاحظ أن فهارسه لمحتوى {{SITENAME}} يمكن تكون مش متحدثة.',
-
-# Quickbar
-'qbsettings' => 'البار السريع',
-'qbsettings-none' => 'ما فى ش',
-'qbsettings-fixedleft' => 'متثبت فى الشمال',
-'qbsettings-fixedright' => 'متثبت فى اليمين',
-'qbsettings-floatingleft' => 'عايم على الشمال',
-'qbsettings-floatingright' => 'عايم على اليمين',
 
 # Preferences page
 'preferences' => 'تفضيلات',
@@ -1371,7 +1357,7 @@ $1",
 'prefs-displaywatchlist' => 'اختيارات العرض',
 'prefs-diffs' => 'التغيير',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'عنوان الإيميل صح',
 'email-address-validity-invalid' => 'عنوان الإيميل غلط',
 
@@ -1482,11 +1468,13 @@ $1",
 'right-sendemail' => 'يبعت إيميل لليوزرز التانيين',
 'right-passwordreset' => 'إعادة ضبط كلمة سر مستخدم([[Special:PasswordReset|صفحة خاصة]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'سجل اليوزرز الجداد',
+'newuserlogpagetext' => 'دا سجل لليوزرز الجداد',
+
 # User rights log
 'rightslog' => 'سجل صلاحيات اليوزرز',
 'rightslogtext' => 'ده سجل بالتغييرات ف صلاحيات اليوزرز .',
-'rightslogentry' => 'غير صلاحيات $1 من $2 ل $3',
-'rightsnone' => '(فاضى)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'قراية الصفحه دى',
@@ -1719,7 +1707,6 @@ PICT # misc.
 'http-read-error' => 'فى غلط فى قراية ال HTTP',
 'http-timed-out' => 'طلب ال HTTP خلص وقته',
 'http-curl-error' => 'حصل غلط و احنا بنجيب الURL : $1',
-'http-host-unreachable' => 'ما قدرناش نوصل لل URL.',
 'http-bad-status' => 'HTTP : حصلت مشكله وقت طلب ال $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2028,10 +2015,6 @@ PICT # misc.
 'activeusers-hidesysops' => 'خبى السيسوبات',
 'activeusers-noresult' => 'مالقيناش اى يوزر',
 
-# Special:Log/newusers
-'newuserlogpage' => 'سجل اليوزرز الجداد',
-'newuserlogpagetext' => 'دا سجل لليوزرز الجداد',
-
 # Special:ListGroupRights
 'listgrouprights' => 'حقوق مجموعات اليوزرز',
 'listgrouprights-summary' => 'دى لستة بمجموعات اليوزرز المتعرفة فى الويكى دا، بالحقوق اللى معاهم.
@@ -2051,7 +2034,7 @@ PICT # misc.
 'listgrouprights-addgroup-self-all' => 'اضافة كل المجموعات للحساب بتاعى',
 'listgrouprights-removegroup-self-all' => 'مسح كل المجموعات من الحساب بتاعى',
 
-# E-mail user
+# Email user
 'mailnologin' => 'مافيش عنوان نبعت عليه',
 'mailnologintext' => 'لازم تعمل [[Special:UserLogin|تسجيل الدخول]] و تدخل ايميل صحيح فى صفحة [[Special:Preferences|التفضيلات]] علشان تقدر تبعت ايميلات لليوزرز التانيين.',
 'emailuser' => 'ابعت ايميل لليوزر دا',
@@ -2096,7 +2079,7 @@ PICT # misc.
 'watchnochange' => 'مافيش ولا صفحة اتعدلت فى لستة مراقبتك فى الفترة الزمنية اللى حددتها.',
 'watchlist-details' => '{{PLURAL:$1|$1 صفحه|$1 صفحه}} فى قايمه مراقبتك، بدون عد صفحات المناقشه.',
 'wlheader-enotif' => '*خاصية الاعلام بالايميل متفعلة',
-'wlheader-showupdated' => "* الصفحات اللى اتغيرت  بعد زيارتك ليها اخر مرة معروضة بالخط '''العريض'''",
+'wlheader-showupdated' => "الصفحات اللى اتغيرت  بعد زيارتك ليها اخر مرة معروضة بالخط '''العريض'''",
 'watchmethod-recent' => 'التشييك على التعديلات الاخيرة للصفحات المتراقبة',
 'watchmethod-list' => 'التشييك فى الصفحات المتراقبة على التعديلات الاخيرة',
 'watchlistcontains' => 'لستة المراقبة بتاعتك فيها $1 {{PLURAL:$1|صفحة|صفحات}}.',
@@ -2111,11 +2094,7 @@ PICT # misc.
 
 'enotif_mailer' => 'نظام {{SITENAME}} البريدى للإخطارات',
 'enotif_reset' => 'علم على كل الصفحات كأنك خلاص زرتها',
-'enotif_newpagetext' => 'دى صفحه جديده.',
 'enotif_impersonal_salutation' => 'يوزر {{SITENAME}}',
-'changed' => 'اتغيرت',
-'created' => 'إتنشأت',
-'enotif_subject' => 'صفحة {{SITENAME}} $PAGETITLE تم $CHANGEDORCREATED بواسطة $PAGEEDITOR',
 'enotif_lastvisited' => 'شوف $1 لمراجعة كل التغييرات اللى حصلت من أخر زيارة ليك.',
 'enotif_lastdiff' => 'شوف $1 علشان تبص على التغيير دا.',
 'enotif_anon_editor' => 'يوزر مش معروف $1',
@@ -2147,6 +2126,8 @@ $UNWATCHURL
 
 الfeedback و مساعده اكتر:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'إتنشأت',
+'changed' => 'اتغيرت',
 
 # Delete
 'deletepage' => 'امسح الصفحه',
@@ -2327,7 +2308,7 @@ $1',
 'blanknamespace' => '(رئيسى)',
 
 # Contributions
-'contributions' => 'تعديلات اليوزر',
+'contributions' => 'تعديلات اليوزر {{GENDER:$1|اليوزر|اليوزره}}',
 'contributions-title' => 'مساهمات اليوزر ل$1',
 'mycontris' => 'تعديلاتى',
 'contribsub2' => 'لليوزر $1 ($2)',
@@ -2747,27 +2728,16 @@ $1',
 
 # Stylesheets
 'common.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على كل الواجهات */',
-'standard.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة ستاندرد */',
-'nostalgia.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة نوستالشيا */',
 'cologneblue.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة كولون بلو */',
 'monobook.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مونوبوك */',
-'myskin.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة ماى سكين */',
-'chick.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة تشيك */',
-'simple.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة سيمبل */',
 'modern.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على مستخدمى واجهة مودرن */',
 'vector.css' => '/* CSS اللى هنا حتأثر على اليوزرز اللى بيستخدموا واجهة فكتور */',
 'print.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على ناتج الطباعة */',
-'handheld.css' => '/* الأنماط المتراصة CSS المعروضة هنا ستؤثر على الأجهزة المحمولة بالاعتماد على الواجهة المضبوطة فى $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/*  أى جافاسكريبت  هناح يتحمل لكل اليوزرز مع كل تحميل للصفحة. */',
-'standard.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة ستاندرد */',
-'nostalgia.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة نوستالجيا */',
 'cologneblue.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة كولون بلو */',
 'monobook.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة مونوبوك */',
-'myskin.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة ماى سكين */',
-'chick.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة تشيك */',
-'simple.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة سيمبل */',
 'modern.js' => '/* أى جافاسكريبت هنا ح تتحمل لليوزرز اللى بيستعملو واجهة مودرن */',
 'vector.js' => '/* اى جافاسكريبت هنا حتتحمل لكل يوزر بيستخدم واجهة فكتور */',
 
@@ -2796,13 +2766,8 @@ $1',
 'spam_blanking' => 'كل النسخ فيها لينكات ل $1، فضيها',
 
 # Skin names
-'skinname-standard' => 'كلاسيك',
-'skinname-nostalgia' => 'نوستالجيا',
 'skinname-cologneblue' => 'كولون بلو',
 'skinname-monobook' => 'مونوبوك',
-'skinname-myskin' => 'ماى سكين',
-'skinname-chick' => 'تشيك',
-'skinname-simple' => 'سيمبل',
 'skinname-modern' => 'مودرن',
 
 # Patrolling
@@ -2897,7 +2862,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'العرض',
 'exif-imagelength' => 'الطول',
 'exif-bitspersample' => 'بتس لكل مكون',
@@ -3013,7 +2978,7 @@ $1',
 'exif-gpsdatestamp' => 'تاريخ GPS',
 'exif-gpsdifferential' => 'تصحيح GPS التفاضلي',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'مش مضغوط',
 'exif-compression-6' => 'جيه بى إى جي',
 
@@ -3176,7 +3141,7 @@ $1',
 'monthsall' => 'الكل',
 'limitall' => 'الكل',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'اعمل تأكيد للأيميل بتاعك',
 'confirmemail_noemail' => 'إنت ما عندكش ايميل صحيح متسجل فى [[Special:Preferences|تفضيلاتك]].',
 'confirmemail_text' => '{{SITENAME}} بيطلب انك تعمل تأكيد للأيميل قبل ما تستعمل الخصايص المرتبطة بالايميل.
@@ -3394,13 +3359,6 @@ $5
 'version-software-product' => 'المنتج',
 'version-software-version' => 'النسخه',
 
-# Special:FilePath
-'filepath' => 'مسار ملف',
-'filepath-page' => 'الملف:',
-'filepath-submit' => 'المسار',
-'filepath-summary' => 'الصفحة المخصوصة دى بتعرض المسار الكامل  بتاع ملف.
-الصور بتتعرض  بدقة كاملة، أنواع الملفات التانية ح تشتغل فى البرنامج بتاعهم مباشرة.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'دور على الملفات المتكررة',
 'fileduplicatesearch-summary' => 'دور على الملفات المتكررة على اساس قيمة الهاش بتاعتها.',
@@ -3484,6 +3442,10 @@ $5
 # New logging system
 'revdelete-restricted' => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted' => 'شيل الضوابط من على السيسوبات',
-'newuserlog-byemail' => 'الباسورد اتبعتت بالايميل',
+'rightsnone' => '(فاضى)',
+
+# Search suggestions
+'searchsuggest-search' => 'تدوير',
+'searchsuggest-containing' => 'جوّاه...',
 
 );

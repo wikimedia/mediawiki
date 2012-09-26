@@ -32,12 +32,12 @@
  */
 class JpegHandler extends ExifBitmapHandler {
 
-	function getMetadata ( $image, $filename ) {
+	function getMetadata( $image, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
 			if ( !is_array( $meta ) ) {
 				// This should never happen, but doesn't hurt to be paranoid.
-				throw new MWException('Metadata array is not an array');
+				throw new MWException( 'Metadata array is not an array' );
 			}
 			$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 			return serialize( $meta );
@@ -59,5 +59,36 @@ class JpegHandler extends ExifBitmapHandler {
 		}
 	}
 
-}
+	/**
+	 * @param $file File
+	 * @param array $params Rotate parameters.
+	 *	'rotation' clockwise rotation in degrees, allowed are multiples of 90
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function rotate( $file, $params ) {
+		global $wgJpegTran;
 
+		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
+
+		if ( $wgJpegTran && is_file( $wgJpegTran ) ) {
+			$cmd = wfEscapeShellArg( $wgJpegTran ) .
+				" -rotate " . wfEscapeShellArg( $rotation ) .
+				" -outfile " . wfEscapeShellArg( $params['dstPath'] ) .
+				" " . wfEscapeShellArg( $params['srcPath'] ) . " 2>&1";
+			wfDebug( __METHOD__ . ": running jpgtran: $cmd\n" );
+			wfProfileIn( 'jpegtran' );
+			$retval = 0;
+			$err = wfShellExec( $cmd, $retval, $env );
+			wfProfileOut( 'jpegtran' );
+			if ( $retval !== 0 ) {
+				$this->logErrorForExternalProcess( $retval, $err, $cmd );
+				return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
+			}
+			return false;
+		} else {
+			return parent::rotate( $file, $params );
+		}
+	}
+
+}

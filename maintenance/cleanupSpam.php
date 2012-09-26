@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to cleanup all spam from a given hostname.
@@ -44,7 +44,7 @@ class CleanupSpam extends Maintenance {
 		$username = wfMessage( 'spambot_username' )->text();
 		$wgUser = User::newFromName( $username );
 		if ( !$wgUser ) {
-			$this->error( "Invalid username", true );
+			$this->error( "Invalid username specified in 'spambot_username' message: $username", true );
 		}
 		// Create the user if necessary
 		if ( !$wgUser->getId() ) {
@@ -103,7 +103,8 @@ class CleanupSpam extends Maintenance {
 		$rev = Revision::newFromTitle( $title );
 		$currentRevId = $rev->getId();
 
-		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT ) || LinkFilter::matchEntry( $rev->getText() , $domain ) ) ) {
+		while ( $rev && ( $rev->isDeleted( Revision::DELETED_TEXT )
+						|| LinkFilter::matchEntry( $rev->getContent( Revision::RAW ), $domain ) ) ) {
 			$rev = $rev->getPrevious();
 		}
 
@@ -117,8 +118,10 @@ class CleanupSpam extends Maintenance {
 			$page = WikiPage::factory( $title );
 			if ( $rev ) {
 				// Revert to this revision
+				$content = $rev->getContent( Revision::RAW );
+
 				$this->output( "reverting\n" );
-				$page->doEdit( $rev->getText(), wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
+				$page->doEditContent( $content, wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
 					EDIT_UPDATE, $rev->getId() );
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
@@ -126,8 +129,11 @@ class CleanupSpam extends Maintenance {
 				$page->doDeleteArticle( wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text() );
 			} else {
 				// Didn't find a non-spammy revision, blank the page
+				$handler = ContentHandler::getForTitle( $title );
+				$content = $handler->makeEmptyContent();
+
 				$this->output( "blanking\n" );
-				$page->doEdit( '', wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text() );
+				$page->doEditContent( $content, wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text() );
 			}
 			$dbw->commit( __METHOD__ );
 		}
@@ -135,4 +141,4 @@ class CleanupSpam extends Maintenance {
 }
 
 $maintClass = "CleanupSpam";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

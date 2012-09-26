@@ -31,6 +31,12 @@
 	direction: rtl;
 }
 
+/* User-Agent styles for new HTML5 elements */
+mark {
+	background-color: yellow;
+	color: black;
+}
+
 /* Input types that should follow user direction, like buttons */
 /* TODO: What about buttons in wikipage content ? */
 input[type="submit"],
@@ -119,21 +125,6 @@ span.texhtml {
 
 #toolbar img {
 	cursor: pointer;
-}
-
-/* Edit section links */
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */
-.mw-content-ltr .editsection,
-.mw-content-rtl .mw-content-ltr .editsection {
-	float: right;
-	margin-left: 5px;
-}
-/* @noflip */
-.mw-content-rtl .editsection,
-.mw-content-ltr .mw-content-rtl .editsection {
-	float: left;
-	margin-right: 5px;
 }
 
 /**
@@ -226,6 +217,35 @@ td.mw-label {
 .prefsection table {
 	width: 100%;
 }
+.prefsection table.mw-htmlform-matrix {
+	width: auto;
+}
+
+.mw-icon-question {
+	/* @embed */
+	background: url('images/question-small.png') no-repeat;
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG)
+	 * lifted from #pt-login css rule in skins/vector/screen.css */
+	/* @embed */
+	background: -webkit-linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	/* @embed */
+	background: linear-gradient(transparent, transparent), url('images/question.svg') no-repeat;
+	background-size: 13px 13px;
+	display: inline-block;
+	height: 13px;
+	width: 13px;
+	margin-left: 4px;
+}
+
+.mw-icon-question:lang(ar),
+.mw-icon-question:lang(fa),
+.mw-icon-question:lang(ur) {
+	-webkit-transform: scaleX(-1);
+	-ms-transform: scaleX(-1);
+	transform: scaleX(-1);
+}
+
 td.mw-submit {
 	white-space: nowrap;
 }
@@ -246,6 +266,11 @@ tr.mw-htmlform-vertical-label td.mw-label {
 	display: inline;
 	margin-right: 1em;
 	white-space: nowrap;
+}
+
+.mw-htmlform-matrix td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
 }
 
 input#wpSummary {
@@ -306,6 +331,11 @@ input#wpSummary {
 .catlinks li:first-child {
 	padding-left: 0.25em;
 	border-left: none;
+}
+
+/* (bug 5346) make category redirects italic */
+.catlinks li a.mw-redirect {
+	font-style: italic;
 }
 /**
  * Hidden categories
@@ -448,6 +478,11 @@ th.mw-revdel-checkbox {
 	text-align: center;
 }
 
+/* red links; see bug 36276 */
+a.new {
+	color: #BA0000;
+}
+
 /* feed links */
 a.feedlink {
 	/* @embed */
@@ -519,9 +554,12 @@ table.collapsed tr.collapsable {
 	font-size: larger;
 	border: 2px solid;
 	padding: .5em 1em;
-	float: left;
 	margin-bottom: 2em;
 	color: #000;
+	display: -moz-inline-block;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
 }
 .errorbox {
 	border-color: red;
@@ -660,7 +698,7 @@ ul#filetoc {
 	padding-right: 2em;
 }
 
-/* Classes for EXIF data display */
+/* Classes for Exif data display */
 table.mw_metadata {
 	font-size: 0.8em;
 	margin-left: 0.5em;
@@ -815,6 +853,7 @@ div.gallerytext {
 
 /* Language specific height correction for titles. Ref Bug 29405 and Bug 30809 */
 /* Languages like hi or ml require slightly more vertical space to show diacritics properly */
+h1:lang(anp),
 h1:lang(as),
 h1:lang(bh), /* Macrolanguage, used on bh.wikipedia.org, should be removed one day */
 h1:lang(bho),
@@ -822,16 +861,22 @@ h1:lang(bn),
 h1:lang(gu),
 h1:lang(hi),
 h1:lang(kn),
+h1:lang(ks),
 h1:lang(ml),
 h1:lang(mr),
 h1:lang(my),
+h1:lang(mai),
+h1:lang(ne),
+h1:lang(new),
 h1:lang(or),
 h1:lang(pa),
+h1:lang(pi),
 h1:lang(sa),
 h1:lang(ta),
 h1:lang(te) {
 	line-height: 1.6em !important;
 }
+h2:lang(anp), h3:lang(anp), h4:lang(anp), h5:lang(anp), h6:lang(anp),
 h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as),
 h2:lang(bho), h3:lang(bho), h4:lang(bho), h5:lang(bho), h6:lang(bho),
 h2:lang(bh), h3:lang(bh), h4:lang(bh), h5:lang(bh), h6:lang(bh),
@@ -839,11 +884,16 @@ h2:lang(bn), h3:lang(bn), h4:lang(bn), h5:lang(bn), h6:lang(bn),
 h2:lang(gu), h3:lang(gu), h4:lang(gu), h5:lang(gu), h6:lang(gu),
 h2:lang(hi), h3:lang(hi), h4:lang(hi), h5:lang(hi), h6:lang(hi),
 h2:lang(kn), h3:lang(kn), h4:lang(kn), h5:lang(kn), h6:lang(kn),
+h2:lang(ks), h3:lang(ks), h4:lang(ks), h5:lang(ks), h6:lang(ks),
 h2:lang(ml), h3:lang(ml), h4:lang(ml), h5:lang(ml), h6:lang(ml),
 h2:lang(mr), h3:lang(mr), h4:lang(mr), h5:lang(mr), h6:lang(mr),
 h2:lang(my), h3:lang(my), h4:lang(my), h5:lang(my), h6:lang(my),
+h2:lang(mai), h3:lang(mai), h4:lang(mai), h5:lang(mai), h6:lang(mai),
+h2:lang(ne), h3:lang(ne), h4:lang(ne), h5:lang(ne), h6:lang(ne),
+h2:lang(new), h3:lang(new), h4:lang(new), h5:lang(new), h6:lang(new),
 h2:lang(or), h3:lang(or), h4:lang(or), h5:lang(or), h6:lang(or),
 h2:lang(pa), h3:lang(pa), h4:lang(pa), h5:lang(pa), h6:lang(pa),
+h2:lang(pi), h3:lang(pi), h4:lang(pi), h5:lang(pi), h6:lang(pi),
 h2:lang(sa), h3:lang(sa), h4:lang(sa), h5:lang(sa), h6:lang(sa),
 h2:lang(ta), h3:lang(ta), h4:lang(ta), h5:lang(ta), h6:lang(ta),
 h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
@@ -1056,9 +1106,37 @@ table.floatleft {
 	z-index: 99;
 }
 
-.editsection, .toctoggle {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.mw-editsection,
+.toctoggle {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* Display editsection links smaller and next to headings */
+.mw-editsection {
+	font-size: small;
+	font-weight: normal;
+	margin-left: 1em;
+	vertical-align: baseline;
+	/* Reset line-height; headings tend to have it set to larger values */
+	line-height: 1em;
+	/* As .mw-editsection is a <span> (inline element), it is treated as part */
+	/* of the heading content when selecting text by multiple clicks and thus */
+	/* selected together with heading content, despite the user-select: none; */
+	/* rule set above. This enforces non-selection without changing the look. */
+	display: inline-block;
+}
+
+/* Correct directionality when page dir is different from site/user dir */
+/* @noflip */
+.mw-content-ltr .mw-editsection,
+.mw-content-rtl .mw-content-ltr .mw-editsection {
+	margin-left: 1em;
+}
+/* @noflip */
+.mw-content-rtl .mw-editsection,
+.mw-content-ltr .mw-content-rtl .mw-editsection {
+	margin-right: 1em;
 }

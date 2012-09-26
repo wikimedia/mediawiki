@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that fixes the user_registration field.
@@ -58,4 +58,4 @@ class FixUserRegistration extends Maintenance {
 }
 
 $maintClass = "FixUserRegistration";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

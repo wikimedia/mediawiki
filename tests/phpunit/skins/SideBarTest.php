@@ -10,10 +10,6 @@ class SideBarTest extends MediaWikiLangTestCase {
 	/** Local cache for sidebar messages */
 	private $messages;
 
-	function __construct() {
-		parent::__construct();
-	}
-
 	/** Build $this->messages array */
 	private function initMessagesHref() {
 		# List of default messages for the sidebar:
@@ -26,20 +22,21 @@ class SideBarTest extends MediaWikiLangTestCase {
 			'helppage',
 		);
 
-		foreach( $URL_messages as $m ) {
-			$titleName = MessageCache::singleton()->get($m);
+		foreach ( $URL_messages as $m ) {
+			$titleName = MessageCache::singleton()->get( $m );
 			$title = Title::newFromText( $titleName );
 			$this->messages[$m]['href'] = $title->getLocalURL();
 		}
 	}
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();
 		$this->skin->getContext()->setLanguage( Language::factory( 'en' ) );
 	}
-	function tearDown() {
+
+	protected function tearDown() {
 		parent::tearDown();
 		$this->skin = null;
 	}
@@ -58,11 +55,11 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	function testSidebarWithOnlyTwoTitles() {
 		$this->assertSideBar(
-		array(
-			'Title1' => array(),
-			'Title2' => array(),
-		),
-'* Title1
+			array(
+				'Title1' => array(),
+				'Title2' => array(),
+			),
+			'* Title1
 * Title2
 '
 		);
@@ -70,15 +67,15 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	function testExpandMessages() {
 		$this->assertSidebar(
-		array( 'Title' => array(
-			array(
-				'text' => 'Help',
-				'href' => $this->messages['helppage']['href'],
-				'id' => 'n-help',
-				'active' => null
-			)
-		)),
-'* Title
+			array( 'Title' => array(
+				array(
+					'text' => 'Help',
+					'href' => $this->messages['helppage']['href'],
+					'id' => 'n-help',
+					'active' => null
+				)
+			) ),
+			'* Title
 ** helppage|help
 '
 		);
@@ -86,63 +83,61 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	function testExternalUrlsRequireADescription() {
 		$this->assertSidebar(
-		array( 'Title' => array(
-			# ** http://www.mediawiki.org/| Home
-			array(
-				'text'   => 'Home',
-				'href'   => 'http://www.mediawiki.org/',
-				'id'     => 'n-Home',
-				'active' => null,
-				'rel'    => 'nofollow',
-			),
-			# ** http://valid.no.desc.org/
-			# ... skipped since it is missing a pipe with a description
-		)),
-'* Title
+			array( 'Title' => array(
+				# ** http://www.mediawiki.org/| Home
+				array(
+					'text' => 'Home',
+					'href' => 'http://www.mediawiki.org/',
+					'id' => 'n-Home',
+					'active' => null,
+					'rel' => 'nofollow',
+				),
+				# ** http://valid.no.desc.org/
+				# ... skipped since it is missing a pipe with a description
+			) ),
+			'* Title
 ** http://www.mediawiki.org/| Home
 ** http://valid.no.desc.org/
 '
-
 		);
-
 	}
+
 	/**
 	 * bug 33321 - Make sure there's a | after transforming.
 	 * @group Database
 	 */
 	function testTrickyPipe() {
 		$this->assertSidebar(
-		array( 'Title' => array(
-			# The first 2 are skipped
-			# Doesn't really test the url properly
-			# because it will vary with $wgArticlePath et al.
-			# ** Baz|Fred
-			array(
-				'text'   => 'Fred',
-				'href'   => Title::newFromText( 'Baz' )->getLocalUrl(),
-				'id'     => 'n-Fred',
-				'active' => null,
-			),
-			array(
-				'text'   => 'title-to-display',
-				'href'   => Title::newFromText( 'page-to-go-to' )->getLocalUrl(),
-				'id'     => 'n-title-to-display',
-				'active' => null,
-			),
-		)),
-'* Title
+			array( 'Title' => array(
+				# The first 2 are skipped
+				# Doesn't really test the url properly
+				# because it will vary with $wgArticlePath et al.
+				# ** Baz|Fred
+				array(
+					'text' => 'Fred',
+					'href' => Title::newFromText( 'Baz' )->getLocalURL(),
+					'id' => 'n-Fred',
+					'active' => null,
+				),
+				array(
+					'text' => 'title-to-display',
+					'href' => Title::newFromText( 'page-to-go-to' )->getLocalURL(),
+					'id' => 'n-title-to-display',
+					'active' => null,
+				),
+			) ),
+			'* Title
 ** {{PAGENAME|Foo}}
 ** Bar
 ** Baz|Fred
 ** {{PLURAL:1|page-to-go-to{{int:pipe-separator/en}}title-to-display|branch not taken}}
 '
 		);
-
 	}
 
 
 	#### Attributes for external links ##########################
-	private function getAttribs( ) {
+	private function getAttribs() {
 		# Sidebar text we will use everytime
 		$text = '* Title
 ** http://www.mediawiki.org/| Home';
@@ -155,11 +150,12 @@ class SideBarTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Simple test to verify our helper assertAttribs() is functional
-	 * Please note this assume MediaWiki default settings:
-	 *   $wgNoFollowLinks = true
-	 *   $wgExternalLinkTarget = false
 	 */
 	function testTestAttributesAssertionHelper() {
+		$this->setMwGlobals( array(
+			'wgNoFollowLinks' => true,
+			'wgExternalLinkTarget' => false,
+		) );
 		$attribs = $this->getAttribs();
 
 		$this->assertArrayHasKey( 'rel', $attribs );
@@ -172,38 +168,30 @@ class SideBarTest extends MediaWikiLangTestCase {
 	 * Test $wgNoFollowLinks in sidebar
 	 */
 	function testRespectWgnofollowlinks() {
-		global $wgNoFollowLinks;
-		$saved = $wgNoFollowLinks;
-		$wgNoFollowLinks = false;
+		$this->setMwGlobals( 'wgNoFollowLinks', false );
 
 		$attribs = $this->getAttribs();
 		$this->assertArrayNotHasKey( 'rel', $attribs,
 			'External URL in sidebar do not have rel=nofollow when $wgNoFollowLinks = false'
 		);
-
-		// Restore global
-		$wgNoFollowLinks = $saved;
 	}
 
 	/**
 	 * Test $wgExternaLinkTarget in sidebar
+	 * @dataProvider dataRespectExternallinktarget
 	 */
-	function testRespectExternallinktarget() {
-		global $wgExternalLinkTarget;
-		$saved = $wgExternalLinkTarget;
+	function testRespectExternallinktarget( $externalLinkTarget ) {
+		$this->setMwGlobals( 'wgExternalLinkTarget', $externalLinkTarget );
 
-		$wgExternalLinkTarget = '_blank';
 		$attribs = $this->getAttribs();
 		$this->assertArrayHasKey( 'target', $attribs );
-		$this->assertEquals( $attribs['target'], '_blank' );
-
-		$wgExternalLinkTarget = '_self';
-		$attribs = $this->getAttribs();
-		$this->assertArrayHasKey( 'target', $attribs );
-		$this->assertEquals( $attribs['target'], '_self' );
-
-		// Restore global
-		$wgExternalLinkTarget = $saved;
+		$this->assertEquals( $attribs['target'], $externalLinkTarget );
 	}
 
+	function dataRespectExternallinktarget() {
+		return array(
+			array( '_blank' ),
+			array( '_self' ),
+		);
+	}
 }

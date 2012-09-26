@@ -34,7 +34,7 @@ class ObjectCache {
 	 *
 	 * @param $id string
 	 *
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function getInstance( $id ) {
 		if ( isset( self::$instances[$id] ) ) {
@@ -59,7 +59,7 @@ class ObjectCache {
 	 * @param $id string
 	 *
 	 * @throws MWException
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newFromId( $id ) {
 		global $wgObjectCaches;
@@ -78,7 +78,7 @@ class ObjectCache {
 	 * @param $params array
 	 *
 	 * @throws MWException
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newFromParams( $params ) {
 		if ( isset( $params['factory'] ) ) {
@@ -102,7 +102,7 @@ class ObjectCache {
 	 * If no cache choice is configured (by default $wgMainCacheType is CACHE_NONE),
 	 * then CACHE_ANYTHING will forward to CACHE_DB.
 	 * @param $params array
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newAnything( $params ) {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
@@ -120,14 +120,14 @@ class ObjectCache {
 	 *
 	 * @param $params array
 	 * @throws MWException
-	 * @return ObjectCache
+	 * @return BagOStuff
 	 */
 	static function newAccelerator( $params ) {
-		if ( function_exists( 'apc_fetch') ) {
+		if ( function_exists( 'apc_fetch' ) ) {
 			$id = 'apc';
-		} elseif( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
+		} elseif ( function_exists( 'xcache_get' ) && wfIniGetBool( 'xcache.var_size' ) ) {
 			$id = 'xcache';
-		} elseif( function_exists( 'wincache_ucache_get' ) ) {
+		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
 			$id = 'wincache';
 		} else {
 			throw new MWException( "CACHE_ACCEL requested but no suitable object " .
@@ -139,9 +139,9 @@ class ObjectCache {
 	/**
 	 * Factory function that creates a memcached client object.
 	 *
-	 * This always uses the PHP client, since the PECL client has a different 
-	 * hashing scheme and a different interpretation of the flags bitfield, so 
-	 * switching between the two clients randomly would be disasterous.
+	 * This always uses the PHP client, since the PECL client has a different
+	 * hashing scheme and a different interpretation of the flags bitfield, so
+	 * switching between the two clients randomly would be disastrous.
 	 *
 	 * @param $params array
 	 *

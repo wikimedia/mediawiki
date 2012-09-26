@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that protects or unprotects a page.
@@ -58,6 +58,7 @@ class Protect extends Maintenance {
 			$this->error( "Invalid username", true );
 		}
 
+		// @todo FIXME: This is reset 7 lines down.
 		$restrictions = array( 'edit' => $protection, 'move' => $protection );
 
 		$t = Title::newFromText( $this->getArg() );
@@ -66,7 +67,7 @@ class Protect extends Maintenance {
 		}
 
 		$restrictions = array();
-		foreach( $t->getRestrictionTypes() as $type ) {
+		foreach ( $t->getRestrictionTypes() as $type ) {
 			$restrictions[$type] = $protection;
 		}
 
@@ -85,4 +86,4 @@ class Protect extends Maintenance {
 }
 
 $maintClass = "Protect";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

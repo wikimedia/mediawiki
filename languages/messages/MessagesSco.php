@@ -51,8 +51,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Shaw ma email address in notification mails',
 'tog-shownumberswatching' => 'Shaw the nummer o watching uisers',
 'tog-fancysig' => 'Raw seignaturs (athoot automatic airtin)',
-'tog-externaleditor' => 'Uise external editor bi defaut',
-'tog-externaldiff' => 'Uise external diff bi defaut',
 'tog-showjumplinks' => 'Enable "loup til" accessibility airtins',
 'tog-uselivepreview' => 'Uise leeve preview (JavaScript) (Prattik)',
 'tog-forceeditsummary' => 'Gie me a jottin when A dinnae put in a edit summary',
@@ -159,7 +157,6 @@ $messages = array(
 'qbbrowse' => 'Brouse',
 'qbedit' => 'Edit',
 'qbpageoptions' => 'This page',
-'qbpageinfo' => 'Context',
 'qbmyoptions' => 'Ma pages',
 'qbspecialpages' => 'Byordinar pages',
 'faq' => 'ASQ',
@@ -243,7 +240,6 @@ $messages = array(
 'disclaimers' => 'Disclamation',
 'disclaimerpage' => 'Project:General_disclamation',
 'edithelp' => 'Editin help',
-'edithelppage' => 'Help:Editin',
 'helppage' => 'Help:Contents',
 'mainpage' => 'Main Page',
 'mainpage-description' => 'Main Page',
@@ -372,10 +368,6 @@ The grunds for this are: ''$2''.",
 
 Ye can continue to uise {{SITENAME}} namelessly, or ye can log in again as the same or as a different uiser.
 Mynd that some pages micht continue tae be displayed as if ye war aye loggit in, till ye clear yer brouser cache.",
-'welcomecreation' => '== Guid tae see ye, $1! ==
-
-Yer accoont haes been creatit.
-Mynd an chynge yer [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname' => 'Yer uiser name',
 'yourpassword' => 'Passwaird:',
 'yourpasswordagain' => 'Retype passwaird:',
@@ -600,7 +592,6 @@ lang, an that's langer than the maximum of $2 kilobytes. It canna be hained.'''"
 'template-protected' => '(protectit)',
 'template-semiprotected' => '(semi-protectit)',
 'hiddencategories' => 'This page is a member of {{PLURAL:$1|1 hidden category|$1 hidden categories}}:',
-'nocreatetitle' => 'Page makkin limitit',
 'nocreatetext' => 'This site haes restrictit the ability to mak new pages.
 Ye can go back an eik tae an existing page, or [[Special:UserLogin|log in or mak an accoont]].',
 'nocreate-loggedin' => 'Ye dinnae hae the richts tae mak new pages on this wiki.',
@@ -714,7 +705,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'viewprevnext' => 'View ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''There is a page named \"[[:\$1]]\" oan this wiki.'''",
 'searchmenu-new' => "'''Mak the page \"[[:\$1]]\" on this wiki!'''",
-'searchhelp-url' => 'Help:Contents',
 'searchprofile-articles' => 'Content pages',
 'searchprofile-project' => 'Help and Project pages',
 'searchprofile-images' => 'Multimedia',
@@ -731,8 +721,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'search-section' => '(section $1)',
 'search-suggest' => 'Did ye mean: $1',
 'search-interwiki-more' => '(more)',
-'search-mwsuggest-enabled' => 'wi suggestions',
-'search-mwsuggest-disabled' => 'nae propone',
 'searchrelated' => 'related',
 'searchall' => 'aw',
 'showingresults' => "Shawin ablo up tae {{PLURAL:$1|'''1''' result|'''$1''' results}} stertin wi #'''$2'''.",
@@ -745,9 +733,6 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'powersearch-field' => 'Rake for',
 'powersearch-toggleall' => 'Aw',
 'searchdisabled' => 'Rakin throu {{SITENAME}} is disabled for performance raesons. Ye can rake via Google juist nou. Mynd that thair indexes o {{SITENAME}} content micht be oot o date.',
-
-# Quickbar
-'qbsettings-none' => 'Nane',
 
 # Preferences page
 'mypreferences' => 'Ma preferences',
@@ -814,6 +799,9 @@ Yer e-mail address insae revealed whin ither uisers contact ye.",
 
 # Rights
 'right-delete' => 'Delete pages',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Uiser creation log',
 
 # User rights log
 'rightslog' => 'Uiser richts log',
@@ -1061,13 +1049,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'Shaw',
 'listusers-blocked' => '(blockit)',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Uiser creation log',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(leet o members)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nae send address',
 'mailnologintext' => 'Ye maun be [[Special:UserLogin|loggit in]] an hae a valid e-mail address in yer [[Special:Preferences|preferences]] tae send e-mail til ither uisers.',
 'emailuser' => 'E-mail this uiser',
@@ -1101,10 +1086,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatching' => 'Unwatchin...',
 
 'enotif_reset' => 'Merk aa pages visitit',
-'changed' => 'chynged',
-'created' => 'creatit',
-'enotif_subject' => '{{SITENAME}} page $PAGETITLE haes been $CHANGEDORCREATED bi $PAGEEDITOR',
 'enotif_lastvisited' => 'Hae a leuk at $1 for aa chynges sin yer last visit.',
+'created' => 'creatit',
+'changed' => 'chynged',
 
 # Delete
 'deletepage' => 'Delete page',
@@ -1460,7 +1444,7 @@ If th' file haes bin modified frae tis original state, some details kin nae full
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-copyright' => 'Copyricht hauder',
 'exif-colorspace' => 'Colour space',
 'exif-componentsconfiguration' => 'Meanin o ilka component',
@@ -1483,7 +1467,7 @@ If th' file haes bin modified frae tis original state, some details kin nae full
 'monthsall' => 'aw',
 'limitall' => 'aw',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_noemail' => 'Ye dinna hae a valid email address set in yer [[Special:Preferences|uiser preferences]].',
 'confirmemail_text' => 'This wiki requires ye tae validate yer e-mail address
 afore uisin e-mail featurs. Activate the button ablo tae send a confirmation
@@ -1542,9 +1526,6 @@ Please confirm that ye really want tae recreate this airticle.",
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Wairnin:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
-
-# Special:FilePath
-'filepath-page' => 'File:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Filename:',

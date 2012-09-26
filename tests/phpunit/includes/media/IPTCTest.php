@@ -14,6 +14,7 @@ class IPTCTest extends MediaWikiTestCase {
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( '¼' ), $res['Keywords'] );
 	}
+
 	/* This one contains a sequence that's valid iso 8859-1 but not valid utf8 */
 	/* \xC3 = Ã, \xB8 = ¸  */
 	public function testIPTCParseNoCharset88591b() {
@@ -21,6 +22,7 @@ class IPTCTest extends MediaWikiTestCase {
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( 'ÃÃÃ¸' ), $res['Keywords'] );
 	}
+
 	/* Same as testIPTCParseNoCharset88591b, but forcing the charset to utf-8.
 	 * What should happen is the first "\xC3\xC3" should be dropped as invalid,
 	 * leaving \xC3\xB8, which is ø
@@ -31,11 +33,13 @@ class IPTCTest extends MediaWikiTestCase {
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( 'ø' ), $res['Keywords'] );
 	}
+
 	public function testIPTCParseNoCharsetUTF8() {
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x07\x1c\x02\x19\x00\x02¼";
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( '¼' ), $res['Keywords'] );
 	}
+
 	// Testing something that has 2 values for keyword
 	public function testIPTCParseMulti() {
 		$iptcData = /* identifier */ "Photoshop 3.0\08BIM\4\4"
@@ -45,11 +49,11 @@ class IPTCTest extends MediaWikiTestCase {
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( '¼', '¼½' ), $res['Keywords'] );
 	}
+
 	public function testIPTCParseUTF8() {
 		// This has the magic "\x1c\x01\x5A\x00\x03\x1B\x25\x47" which marks content as UTF8.
 		$iptcData = "Photoshop 3.0\08BIM\4\4\0\0\0\0\0\x0F\x1c\x02\x19\x00\x02¼\x1c\x01\x5A\x00\x03\x1B\x25\x47";
 		$res = IPTC::Parse( $iptcData );
 		$this->assertEquals( array( '¼' ), $res['Keywords'] );
 	}
-
 }

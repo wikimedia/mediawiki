@@ -41,45 +41,44 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 	 * with.
 	 */
 	protected function setUp() {
+		parent::setUp();
 		$this->object = new FormOptionsExposed();
-		
 	}
 
 	public function testAddStringOption() {
-		$this->object->add( 'foo', 'string value' ); 
+		$this->object->add( 'foo', 'string value' );
 		$this->assertEquals(
 			array(
 				'foo' => array(
-					'default'  => 'string value',
+					'default' => 'string value',
 					'consumed' => false,
-					'type'	 => FormOptions::STRING,
-					'value'	=> null,
-					)
+					'type' => FormOptions::STRING,
+					'value' => null,
+				)
 			),
 			$this->object->getOptions()
 		);
 	}
 
 	public function testAddIntegers() {
-		$this->object->add( 'one',     1 ); 
-		$this->object->add( 'negone', -1 ); 
+		$this->object->add( 'one', 1 );
+		$this->object->add( 'negone', -1 );
 		$this->assertEquals(
 			array(
 				'negone' => array(
-					'default'  => -1, 
-					'value'	=> null,
+					'default' => -1,
+					'value' => null,
 					'consumed' => false,
-					'type'	 => FormOptions::INT,
-					),
+					'type' => FormOptions::INT,
+				),
 				'one' => array(
-					'default'  => 1,
-					'value'	=> null,
+					'default' => 1,
+					'value' => null,
 					'consumed' => false,
-					'type'	 => FormOptions::INT,
-					)
+					'type' => FormOptions::INT,
+				)
 			),
 			$this->object->getOptions()
 		);
 	}
-
 }

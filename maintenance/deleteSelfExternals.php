@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that deletes self-references to $wgServer
@@ -47,10 +47,12 @@ class DeleteSelfExternals extends Maintenance {
 				. $db->buildLike( $wgServer . '/', $db->anyString() ), $this->mBatchSize );
 			$this->output( "Deleting a batch\n" );
 			$db->query( $q );
-			if ( !$db->affectedRows() ) return;
+			if ( !$db->affectedRows() ) {
+				return;
+			}
 		}
 	}
 }
 
 $maintClass = "DeleteSelfExternals";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

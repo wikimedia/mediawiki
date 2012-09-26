@@ -9,4 +9,3 @@ $result = array( 'xmp-exif' =>
 		'GPSVersionID' => '2.2.0.0'
         )
 );
-

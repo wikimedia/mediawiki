@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ .'/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that formats RELEASE-NOTE file to wiki text or HTML markup.
@@ -75,6 +75,4 @@ class MaintenanceFormatInstallDoc extends Maintenance {
 }
 
 $maintClass = 'MaintenanceFormatInstallDoc';
-require_once( RUN_MAINTENANCE_IF_MAIN );
-
-
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -11,12 +11,11 @@
  * @author Chavash
  * @author FLAGELLVM DEI
  * @author PCode
+ * @author Salam
  * @author Александр Сигачёв
  */
 
 $fallback = 'ru';
-
-$linkPrefixExtension = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
@@ -40,6 +39,7 @@ $namespaceNames = array(
 // Remove Russian aliases
 $namespaceGenderAliases = array();
 
+$linkPrefixExtension = true;
 $linkTrail = '/^([a-zа-яĕçăӳ"»]+)(.*)$/sDu';
 
 $messages = array(
@@ -69,9 +69,8 @@ $messages = array(
 'tog-enotifminoredits' => 'Пĕчĕк улшăнусене те эл. почта урлă пĕлтермелле',
 'tog-enotifrevealaddr' => 'Асăрхаттару пĕлтерĕвĕсенче ман эл. адреса кăтартмалла',
 'tog-shownumberswatching' => 'Страницăна миçе хутшăнакан сăнав списокне кĕртнине кăтартмалла',
+'tog-oldsig' => 'Хальхи алӑ пусни:',
 'tog-fancysig' => 'Хăвăр тунă алă пуснин вики-паллисем',
-'tog-externaleditor' => 'Палăртман чухне тулашри редактора усă курмалла',
-'tog-externaldiff' => 'Палăртман чухне версисене танлаштарма тулашри программăна усă курмалла',
 'tog-showjumplinks' => '«... патне куç» хушма каçăсене усă курмалла',
 'tog-uselivepreview' => 'Хăвăрт кăтартакан малтанхи курăнăва усă курмалла (JavaScript, экспериментлă)',
 'tog-forceeditsummary' => 'Тӳрлетӳсен кĕске ăнлантарăвне кăтартман чухне асăрхаттармалла',
@@ -172,7 +171,6 @@ $messages = array(
 'qbbrowse' => 'Курăм',
 'qbedit' => 'Тӳрлет',
 'qbpageoptions' => 'Страница ĕнерлевĕсем',
-'qbpageinfo' => 'Страница çинчен',
 'qbmyoptions' => 'Сирĕн ĕнĕрлевсем',
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
 'faq' => 'ЫйХу',
@@ -253,7 +251,6 @@ $messages = array(
 'disclaimers' => 'Яваплăха тивĕçтерменни',
 'disclaimerpage' => 'Project:Яваплăха тивĕçтерменни',
 'edithelp' => 'Улшăнусене кĕртме пулăшакан пулăшу',
-'edithelppage' => 'Help:Улшăнусене кĕртме пулăшакан пулăшу',
 'helppage' => 'Help:Пулăшу',
 'mainpage' => 'Тĕп страница',
 'mainpage-description' => 'Тĕп страницă',
@@ -383,9 +380,6 @@ $1',
 Сайт сире ятпа мар, IP-адрес урлă пĕлет.
 Эсир анонимла, е малтанхи евĕрлĕ çĕнĕ сеанс уçса, е  урăх ятпа ĕçлеме пултаратăр.
 Хăш-пĕр страницăсем эсир сайта кĕнĕ пек курăнма пултараççĕ, ăна тӳрлетмешкĕн браузер кэшне çĕнетĕр.',
-'welcomecreation' => '== Ырă сунса кĕтетпĕр, $1! ==
-Эсир пирĕн патăмăрта çырăнтăр.
-[[Special:Preferences|Сайт ĕнĕрлевĕсене хăвсамăра кирлĕ пек]] лартма ан манса кайăр.',
 'yourname' => 'Сирĕн ят',
 'yourpassword' => 'Вăрттăн сăмах:',
 'yourpasswordagain' => 'Вăрттăн сăмах тепре çырăр:',
@@ -521,7 +515,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'templatesusedsection' => 'Ку пайра усă курнă шаблонсем:',
 'template-protected' => '(сыхланă)',
 'template-semiprotected' => '(пĕр пайне сыхланă)',
-'nocreatetitle' => 'Страницăсене хатĕрлессине чакарнă',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => 'Кунта эсир чылай ресурс ыйтакан функцисемпе нумай ĕçлекен страницăсене куратăр',
@@ -584,15 +577,11 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'textmatches' => 'Статьясенчи текст пĕрпеклĕхĕ',
 'prevn' => 'малтанхи {{PLURAL:$1|$1}}',
 'nextn' => 'малалли {{PLURAL:$1|$1}}',
-'searchhelp-url' => 'Help:Пулăшу',
 'search-result-size' => '$1 ({{PLURAL:$2|1 сăмах|$2 сăмах}})',
 'showingresults' => 'Аяларах эсир <b>#$2</b> пуçласа кăтартнă <b>$1</b> йĕркене куратăр.',
 'showingresultsheader' => "{{PLURAL:$5|Результат '''$1'''  '''$3''' хушшинчен|Результатсем'''$1 - $2''' '''$3''' хушшинчен}}  '''$4''' валли",
 'powersearch' => 'Анлă шырав',
 'powersearch-legend' => 'Анлă шырав',
-
-# Quickbar
-'qbsettings' => 'Навигаци хăми',
 
 # Preferences page
 'preferences' => 'Ĕнерлевсем',
@@ -664,7 +653,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 # User rights log
 'rightslogtext' => 'Ку пользовательсен прависене улăштарниссен журналě',
-'rightsnone' => '(çук)',
 
 # Recent changes
 'recentchanges' => 'Улшăнусем',
@@ -893,7 +881,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Ушкăн',
 'listgrouprights-helppage' => 'Help:Ушкăн прависем',
 
-# E-mail user
+# Email user
 'emailuser' => 'Хутшăнакана çыру яр... (Письмо участнику)',
 'usermailererror' => 'Электронлă почта урлă пĕлтерӳ янă чухне йăнăш тухрĕ:',
 'noemailtitle' => 'Электронлă почта адресĕ çук',
@@ -926,10 +914,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'unwatching' => 'Сăнав ят-йышĕнчен кăларса пăрахасси…',
 
 'enotif_reset' => 'Пур страницăсене те пăхнă пек палăрт',
-'enotif_newpagetext' => 'Ку çĕнĕ страница',
-'changed' => 'улăштарнă',
-'created' => 'хатĕрленĕ',
 'enotif_anon_editor' => '$1 анонимлă хутшăнакан',
+'created' => 'хатĕрленĕ',
+'changed' => 'улăштарнă',
 
 # Delete
 'deletepage' => 'Кăларса парахнă статьясем',
@@ -1134,7 +1121,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Metadata
 'metadata' => 'Метаданнăйсем:',
 
-# EXIF tags
+# Exif tags
 'exif-exifversion' => 'Exif версийĕ',
 'exif-flashpixversion' => 'Ĕçлеме пултаракан FlashPix версийĕ',
 'exif-gpsversionid' => 'GPS-информаци блокĕн версийĕ',
@@ -1153,7 +1140,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'watchlistall2' => 'пурте',
 'namespacesall' => 'пурте',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_sent' => 'Çирĕплетмелли ыйтуллă çырăва ятăмăр.',
 'confirmemail_success' => 'Сирĕн электронлă почтăн адресне çирĕплентĕ.',
 'confirmemail_loggedin' => 'Сирĕн электронлă почтăн адресне çирĕплетрĕмĕр.',
@@ -1199,10 +1186,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:Version
 'version' => 'MediaWiki версийĕ',
 
-# Special:FilePath
-'filepath' => 'Файл çулĕ',
-'filepath-submit' => 'Çул',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пĕр пек файлсен шыравĕ',
 'fileduplicatesearch-legend' => 'Дубликатсен шыравĕ',
@@ -1218,5 +1201,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'specialpages-group-media' => 'Медиа-материалсемпе тултарăшсем',
 'specialpages-group-users' => 'Хутшăнакансем тата правасем',
 'specialpages-group-highuse' => 'Нумай усă куракан страницăсем',
+
+# New logging system
+'rightsnone' => '(çук)',
 
 );

@@ -49,17 +49,17 @@ class LanguageHe extends Language {
 		switch ( $case ) {
 			case 'prefixed':
 			case 'תחילית':
-				# Duplicate the "Waw" if prefixed
-				if ( substr( $word, 0, 2 ) == "ו" && substr( $word, 0, 4 ) != "וו" ) {
+				# Duplicate the "Waw" if prefixed, but not if it is already double.
+				if ( substr( $word, 0, 2 ) === "ו" && substr( $word, 0, 4 ) !== "וו" ) {
 					$word = "ו" . $word;
 				}
 
-				# Remove the "He" if prefixed
-				if ( substr( $word, 0, 2 ) == "ה" ) {
+				# Remove the "He" article if prefixed.
+				if ( substr( $word, 0, 2 ) === "ה" ) {
 					$word = substr( $word, 2 );
 				}
 
-				# Add a hyphen (maqaf) if non-Hebrew letters
+				# Add a hyphen (maqaf) before non-Hebrew letters.
 				if ( substr( $word, 0, 2 ) < "א" || substr( $word, 0, 2 ) > "ת" ) {
 					$word = "־" . $word;
 				}
@@ -67,5 +67,4 @@ class LanguageHe extends Language {
 
 		return $word;
 	}
-
 }

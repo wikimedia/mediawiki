@@ -10,10 +10,10 @@
 CREATE TABLE /*_*/user_properties(
   -- Foreign key to user.user_id
   up_user int not null,
-  
+
   -- Name of the option being saved. This is indexed for bulk lookup.
   up_property varbinary(32) not null,
-  
+
   -- Property value as a string.
   up_value blob
 ) /*$wgDBTableOptions*/;

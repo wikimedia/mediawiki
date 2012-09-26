@@ -1,9 +1,8 @@
 <?php
 /**
- * Unit tests for wfRemoveDotSegments()
+ * Tests for wfRemoveDotSegments()
  */
-
-class wfRemoveDotSegments extends MediaWikiTestCase {
+class WfRemoveDotSegmentsTest extends MediaWikiTestCase {
 	/** @dataProvider providePaths */
 	public function testWfRemoveDotSegments( $inputPath, $outputPath ) {
 		$this->assertEquals(
@@ -18,7 +17,7 @@ class wfRemoveDotSegments extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	public function providePaths() {
+	public static function providePaths() {
 		return array(
 			array( '/a/b/c/./../../g', '/a/g' ),
 			array( 'mid/content=5/../6', 'mid/6' ),

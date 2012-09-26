@@ -32,18 +32,18 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 
 	function profileIn( $functionname ) {
 		parent::profileIn( $functionname );
-		$this->trace .= "         " . sprintf("%6.1f",$this->memoryDiff()) .
-				str_repeat( " ", count($this->mWorkStack)) . " > " . $functionname . "\n";
+		$this->trace .= "         " . sprintf( "%6.1f", $this->memoryDiff() ) .
+				str_repeat( " ", count( $this->mWorkStack ) ) . " > " . $functionname . "\n";
 	}
 
-	function profileOut($functionname) {
+	function profileOut( $functionname ) {
 		global $wgDebugFunctionEntry;
 
 		if ( $wgDebugFunctionEntry ) {
-			$this->debug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
+			$this->debug( str_repeat( ' ', count( $this->mWorkStack ) - 1 ) . 'Exiting ' . $functionname . "\n" );
 		}
 
-		list( $ofname, /* $ocount */ , $ortime ) = array_pop( $this->mWorkStack );
+		list( $ofname, /* $ocount */, $ortime ) = array_pop( $this->mWorkStack );
 
 		if ( !$ofname ) {
 			$this->trace .= "Profiling error: $functionname\n";
@@ -58,7 +58,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			}
 			$elapsedreal = $this->getTime() - $ortime;
 			$this->trace .= sprintf( "%03.6f %6.1f", $elapsedreal, $this->memoryDiff() ) .
-					str_repeat(" ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
+					str_repeat( " ", count( $this->mWorkStack ) + 1 ) . " < " . $functionname . "\n";
 		}
 	}
 
@@ -69,6 +69,14 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 	}
 
 	function logData() {
-		print "<!-- \n {$this->trace} \n -->";
+		if ( PHP_SAPI === 'cli' ) {
+			print "<!-- \n {$this->trace} \n -->";
+		} elseif ( $this->getContentType() === 'text/html' ) {
+			print "<!-- \n {$this->trace} \n -->";
+		} elseif ( $this->getContentType() === 'text/javascript' ) {
+			print "\n/*\n {$this->trace}\n*/";
+		} elseif ( $this->getContentType() === 'text/css' ) {
+			print "\n/*\n {$this->trace}\n*/";
+		}
 	}
 }

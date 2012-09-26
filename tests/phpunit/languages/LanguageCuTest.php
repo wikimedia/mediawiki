@@ -6,36 +6,31 @@
  */
 
 /** Tests for MediaWiki languages/LanguageCu.php */
-class LanguageCuTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'cu' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPlural */
+class LanguageCuTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
-		$forms =  array( 'one', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$forms = array( 'one', 'two', 'few', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
-			array( 'few', 2 ),
-			array( 'many', 3 ),
-			array( 'many', 4 ),
+			array( 'two', 2 ),
+			array( 'few', 3 ),
+			array( 'few', 4 ),
 			array( 'other', 5 ),
 			array( 'one', 11 ),
 			array( 'other', 20 ),
-			array( 'few', 22 ),
-			array( 'many', 223 ),
+			array( 'two', 22 ),
+			array( 'few', 223 ),
 			array( 'other', 200 ),
 		);
 	}
-
 }

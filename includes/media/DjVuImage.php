@@ -34,9 +34,19 @@
  * @ingroup Media
  */
 class DjVuImage {
+	/**
+	 * Constructor
+	 *
+	 * @param string $filename The DjVu file name.
+	 */
 	function __construct( $filename ) {
 		$this->mFilename = $filename;
 	}
+
+	/**
+	 * @const DJVUTXT_MEMORY_LIMIT Memory limit for the DjVu description software
+	 */
+	const DJVUTXT_MEMORY_LIMIT = 300000;
 
 	/**
 	 * Check if the given file is indeed a valid DjVu image file
@@ -47,7 +57,6 @@ class DjVuImage {
 		return $info !== false;
 	}
 
-
 	/**
 	 * Return data in the style of getimagesize()
 	 * @return array or false on failure
@@ -55,8 +64,8 @@ class DjVuImage {
 	public function getImageSize() {
 		$data = $this->getInfo();
 
-		if( $data !== false ) {
-			$width  = $data['width'];
+		if ( $data !== false ) {
+			$width = $data['width'];
 			$height = $data['height'];
 
 			return array( $width, $height, 'DjVu',
@@ -84,20 +93,20 @@ class DjVuImage {
 		$start = ftell( $file );
 		$secondary = fread( $file, 4 );
 		echo str_repeat( ' ', $indent * 4 ) . "($secondary)\n";
-		while( ftell( $file ) - $start < $length ) {
+		while ( ftell( $file ) - $start < $length ) {
 			$chunkHeader = fread( $file, 8 );
-			if( $chunkHeader == '' ) {
+			if ( $chunkHeader == '' ) {
 				break;
 			}
 			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( unpack( 'a4chunk/NchunkLength', $chunkHeader ) );
 			echo str_repeat( ' ', $indent * 4 ) . "$chunk $chunkLength\n";
 
-			if( $chunk == 'FORM' ) {
+			if ( $chunk == 'FORM' ) {
 				$this->dumpForm( $file, $chunkLength, $indent + 1 );
 			} else {
 				fseek( $file, $chunkLength, SEEK_CUR );
-				if( $chunkLength & 1 == 1 ) {
+				if ( $chunkLength & 1 == 1 ) {
 					// Padding byte between chunks
 					fseek( $file, 1, SEEK_CUR );
 				}
@@ -109,7 +118,7 @@ class DjVuImage {
 		wfSuppressWarnings();
 		$file = fopen( $this->mFilename, 'rb' );
 		wfRestoreWarnings();
-		if( $file === false ) {
+		if ( $file === false ) {
 			wfDebug( __METHOD__ . ": missing or failed file read\n" );
 			return false;
 		}
@@ -117,21 +126,21 @@ class DjVuImage {
 		$header = fread( $file, 16 );
 		$info = false;
 
-		if( strlen( $header ) < 16 ) {
+		if ( strlen( $header ) < 16 ) {
 			wfDebug( __METHOD__ . ": too short file header\n" );
 		} else {
 			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
 			extract( unpack( 'a4magic/a4form/NformLength/a4subtype', $header ) );
 
-			if( $magic != 'AT&T' ) {
+			if ( $magic != 'AT&T' ) {
 				wfDebug( __METHOD__ . ": not a DjVu file\n" );
-			} elseif( $subtype == 'DJVU' ) {
+			} elseif ( $subtype == 'DJVU' ) {
 				// Single-page document
 				$info = $this->getPageInfo( $file, $formLength );
-			} elseif( $subtype == 'DJVM' ) {
+			} elseif ( $subtype == 'DJVM' ) {
 				// Multi-page document
 				$info = $this->getMultiPageInfo( $file, $formLength );
-			} else  {
+			} else {
 				wfDebug( __METHOD__ . ": unrecognized DJVU file type '$formType'\n" );
 			}
 		}
@@ -141,7 +150,7 @@ class DjVuImage {
 
 	private function readChunk( $file ) {
 		$header = fread( $file, 8 );
-		if( strlen( $header ) < 8 ) {
+		if ( strlen( $header ) < 8 ) {
 			return array( false, 0 );
 		} else {
 			// @todo FIXME: Would be good to replace this extract() call with something that explicitly initializes local variables.
@@ -153,7 +162,7 @@ class DjVuImage {
 	private function skipChunk( $file, $chunkLength ) {
 		fseek( $file, $chunkLength, SEEK_CUR );
 
-		if( $chunkLength & 0x01 == 1 && !feof( $file ) ) {
+		if ( $chunkLength & 0x01 == 1 && !feof( $file ) ) {
 			// padding byte
 			fseek( $file, 1, SEEK_CUR );
 		}
@@ -165,13 +174,13 @@ class DjVuImage {
 		$start = ftell( $file );
 		do {
 			list( $chunk, $length ) = $this->readChunk( $file );
-			if( !$chunk ) {
+			if ( !$chunk ) {
 				break;
 			}
 
-			if( $chunk == 'FORM' ) {
+			if ( $chunk == 'FORM' ) {
 				$subtype = fread( $file, 4 );
-				if( $subtype == 'DJVU' ) {
+				if ( $subtype == 'DJVU' ) {
 					wfDebug( __METHOD__ . ": found first subpage\n" );
 					return $this->getPageInfo( $file, $length );
 				}
@@ -180,7 +189,7 @@ class DjVuImage {
 				wfDebug( __METHOD__ . ": skipping '$chunk' chunk\n" );
 				$this->skipChunk( $file, $length );
 			}
-		} while( $length != 0 && !feof( $file ) && ftell( $file ) - $start < $formLength );
+		} while ( $length != 0 && !feof( $file ) && ftell( $file ) - $start < $formLength );
 
 		wfDebug( __METHOD__ . ": multi-page DJVU file contained no pages\n" );
 		return false;
@@ -188,17 +197,17 @@ class DjVuImage {
 
 	private function getPageInfo( $file, $formLength ) {
 		list( $chunk, $length ) = $this->readChunk( $file );
-		if( $chunk != 'INFO' ) {
+		if ( $chunk != 'INFO' ) {
 			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'\n" );
 			return false;
 		}
 
-		if( $length < 9 ) {
+		if ( $length < 9 ) {
 			wfDebug( __METHOD__ . ": INFO should be 9 or 10 bytes, found $length\n" );
 			return false;
 		}
 		$data = fread( $file, $length );
-		if( strlen( $data ) < $length ) {
+		if ( strlen( $data ) < $length ) {
 			wfDebug( __METHOD__ . ": INFO chunk cut off\n" );
 			return false;
 		}
@@ -228,7 +237,7 @@ class DjVuImage {
 	function retrieveMetaData() {
 		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
 		wfProfileIn( __METHOD__ );
-		
+
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
 			# http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
@@ -247,20 +256,20 @@ class DjVuImage {
 			$xml = null;
 		}
 		# Text layer
-		if ( isset( $wgDjvuTxt ) ) { 
+		if ( isset( $wgDjvuTxt ) ) {
 			wfProfileIn( 'djvutxt' );
-			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
-			wfDebug( __METHOD__.": $cmd\n" );
+			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename );
+			wfDebug( __METHOD__ . ": $cmd\n" );
 			$retval = '';
-			$txt = wfShellExec( $cmd, $retval );
+			$txt = wfShellExec( $cmd, $retval, array(), array( 'memory' => self::DJVUTXT_MEMORY_LIMIT ) );
 			wfProfileOut( 'djvutxt' );
-			if( $retval == 0) {
+			if ( $retval == 0 ) {
 				# Strip some control characters
 				$txt = preg_replace( "/[\013\035\037]/", "", $txt );
 				$reg = <<<EOR
 					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
 					((?>    # Text to match is composed of atoms of either:
-					  \\\\. # - any escaped character 
+					  \\\\. # - any escaped character
 					  |     # - any character different from " and \
 					  [^"\\\\]+
 					)*?)
@@ -271,7 +280,7 @@ EOR;
 				$txt = preg_replace_callback( $reg, array( $this, 'pageTextCallback' ), $txt );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
 				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml, 1 );
-				$xml = $xml . $txt. '</mw-djvu>' ;
+				$xml = $xml . $txt . '</mw-djvu>';
 			}
 		}
 		wfProfileOut( __METHOD__ );

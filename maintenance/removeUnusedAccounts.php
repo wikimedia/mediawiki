@@ -23,7 +23,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that removes unused user accounts from the database.
@@ -77,6 +77,11 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->output( "\nDeleting inactive accounts..." );
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->delete( 'user', array( 'user_id' => $del ), __METHOD__ );
+			$dbw->delete( 'user_groups', array( 'ug_user' => $del ), __METHOD__ );
+			$dbw->delete( 'user_former_groups', array( 'ufg_user' => $del ), __METHOD__ );
+			$dbw->delete( 'user_properties', array( 'up_user' => $del ), __METHOD__ );
+			$dbw->delete( 'logging', array( 'log_user' => $del ), __METHOD__ );
+			$dbw->delete( 'recentchanges', array( 'rc_user' => $del ), __METHOD__ );
 			$this->output( "done.\n" );
 			# Update the site_stats.ss_users field
 			$users = $dbw->selectField( 'user', 'COUNT(*)', array(), __METHOD__ );
@@ -97,8 +102,13 @@ class RemoveUnusedAccounts extends Maintenance {
 	 */
 	private function isInactiveAccount( $id, $master = false ) {
 		$dbo = wfGetDB( $master ? DB_MASTER : DB_SLAVE );
-		$checks = array( 'revision' => 'rev', 'archive' => 'ar', 'logging' => 'log',
-						 'image' => 'img', 'oldimage' => 'oi', 'filearchive' => 'fa' );
+		$checks = array(
+			'revision' => 'rev',
+			'archive' => 'ar',
+			'image' => 'img',
+			'oldimage' => 'oi',
+			'filearchive' => 'fa'
+		);
 		$count = 0;
 
 		$dbo->begin( __METHOD__ );
@@ -106,6 +116,10 @@ class RemoveUnusedAccounts extends Maintenance {
 			$conds = array( $fprefix . '_user' => $id );
 			$count += (int)$dbo->selectField( $table, 'COUNT(*)', $conds, __METHOD__ );
 		}
+
+		$conds = array( 'log_user' => $id, 'log_type != ' . $dbo->addQuotes( 'newusers' ) );
+		$count += (int)$dbo->selectField( 'logging', 'COUNT(*)', $conds, __METHOD__ );
+
 		$dbo->commit( __METHOD__ );
 
 		return $count == 0;
@@ -113,4 +127,4 @@ class RemoveUnusedAccounts extends Maintenance {
 }
 
 $maintClass = "RemoveUnusedAccounts";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -61,11 +61,11 @@
 	/**
 	 * Function that's useful when constructing the URI string -- we frequently encounter the pattern of
 	 * having to add something to the URI as we go, but only if it's present, and to include a character before or after if so.
-	 * @param {String} to prepend, if value not empty
-	 * @param {String} value to include, if not empty
-	 * @param {String} to append, if value not empty
-	 * @param {Boolean} raw -- if true, do not URI encode
-	 * @return {String}
+	 * @param {string|undefined} pre To prepend.
+	 * @param {string} val To include.
+	 * @param {string} post To append.
+	 * @param {boolean} raw If true, val will not be encoded.
+	 * @return {string} Result.
 	 */
 	function cat( pre, val, post, raw ) {
 		if ( val === undefined || val === null || val === '' ) {
@@ -76,8 +76,8 @@
 
 	// Regular expressions to parse many common URIs.
 	var parser = {
-		strict: /^(?:([^:\/?#]+):)?(?:\/\/(?:(?:([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)?((?:[^?#\/]*\/)*[^?#]*)(?:\?([^#]*))?(?:#(.*))?/,
-		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?(?:(?:([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?((?:\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?[^?#\/]*)(?:\?([^#]*))?(?:#(.*))?/
+		strict: /^(?:([^:\/?#]+):)?(?:\/\/(?:(?:([^:@\/?#]*)(?::([^:@\/?#]*))?)?@)?([^:\/?#]*)(?::(\d*))?)?((?:[^?#\/]*\/)*[^?#]*)(?:\?([^#]*))?(?:#(.*))?/,
+		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?(?:(?:([^:@\/?#]*)(?::([^:@\/?#]*))?)?@)?([^:\/?#]*)(?::(\d*))?((?:\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?[^?#\/]*)(?:\?([^#]*))?(?:#(.*))?/
 	},
 
 	// The order here matches the order of captured matches in the above parser regexes.
@@ -103,14 +103,14 @@
 		/**
 		 * Constructs URI object. Throws error if arguments are illegal/impossible, or otherwise don't parse.
 		 * @constructor
-		 * @param {Object|String} URI string, or an Object with appropriate properties (especially another URI object to clone).
+		 * @param {Object|string} uri URI string, or an Object with appropriate properties (especially another URI object to clone).
 		 * Object must have non-blank 'protocol', 'host', and 'path' properties.
-		 * This parameter is optional. If omitted (or set to undefined, null or empty string), then an object will be created
-		 * for the default uri of this constructor (e.g. document.location for mw.Uri in MediaWiki core).
-		 * @param {Object|Boolean} Object with options, or (backwards compatibility) a boolean for strictMode
-		 * - strictMode {Boolean} Trigger strict mode parsing of the url. Default: false
-		 * - overrideKeys {Boolean} Wether to let duplicate query parameters override eachother (true) or automagically
-		 *   convert to an array (false, default).
+		 *  This parameter is optional. If omitted (or set to undefined, null or empty string), then an object will be created
+		 *  for the default uri of this constructor (e.g. document.location for mw.Uri in MediaWiki core).
+		 * @param {Object|boolean} Object with options, or (backwards compatibility) a boolean for strictMode
+		 *  - {boolean} strictMode Trigger strict mode parsing of the url. Default: false
+		 *  - {boolean} overrideKeys Wether to let duplicate query parameters override eachother (true) or automagically
+		 *     convert to an array (false, default).
 		 */
 		function Uri( uri, options ) {
 			options = typeof options === 'object' ? options : { strictMode: !!options };
@@ -158,7 +158,7 @@
 			}
 			if ( this.path && this.path.charAt( 0 ) !== '/' ) {
 				// A real relative URL, relative to defaultUri.path. We can't really handle that since we cannot
-				// figure out whether the last path compoennt of defaultUri.path is a directory or a file.
+				// figure out whether the last path component of defaultUri.path is a directory or a file.
 				throw new Error( 'Bad constructor arguments' );
 			}
 			if ( !( this.protocol && this.host && this.path ) ) {
@@ -169,8 +169,8 @@
 		/**
 		 * Standard encodeURIComponent, with extra stuff to make all browsers work similarly and more compliant with RFC 3986
 		 * Similar to rawurlencode from PHP and our JS library mw.util.rawurlencode, but we also replace space with a +
-		 * @param {String} string
-		 * @return {String} encoded for URI
+		 * @param {string} s String to encode.
+		 * @return {string} Encoded string for URI.
 		 */
 		Uri.encode = function ( s ) {
 			return encodeURIComponent( s )
@@ -180,9 +180,9 @@
 		};
 
 		/**
-		 * Standard decodeURIComponent, with '+' to space
-		 * @param {String} string encoded for URI
-		 * @return {String} decoded string
+		 * Standard decodeURIComponent, with '+' to space.
+		 * @param {string} s String encoded for URI.
+		 * @return {string} Decoded string.
 		 */
 		Uri.decode = function ( s ) {
 			return decodeURIComponent( s.replace( /\+/g, '%20' ) );
@@ -192,16 +192,16 @@
 
 			/**
 			 * Parse a string and set our properties accordingly.
-			 * @param {String} URI
+			 * @param {string} str URI
 			 * @param {Object} options
-			 * @return {Boolean} success
+			 * @return {boolean} Success.
 			 */
 			parse: function ( str, options ) {
 				var q,
 					uri = this,
 					matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
 				$.each( properties, function ( i, property ) {
-					uri[ property ] = matches[ i+1 ];
+					uri[ property ] = matches[ i + 1 ];
 				} );
 
 				// uri.query starts out as the query string; we will parse it into key-val pairs then make
@@ -210,7 +210,7 @@
 				q = {};
 				// using replace to iterate over a string
 				if ( uri.query ) {
-					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ($0, $1, $2, $3) {
+					uri.query.replace( /(?:^|&)([^&=]*)(?:(=)([^&]*))?/g, function ( $0, $1, $2, $3 ) {
 						var k, v;
 						if ( $1 ) {
 							k = Uri.decode( $1 );
@@ -240,7 +240,7 @@
 
 			/**
 			 * Returns user and password portion of a URI.
-			 * @return {String}
+			 * @return {string}
 			 */
 			getUserInfo: function () {
 				return cat( '', this.user, cat( ':', this.password, '' ) );
@@ -248,7 +248,7 @@
 
 			/**
 			 * Gets host and port portion of a URI.
-			 * @return {String}
+			 * @return {string}
 			 */
 			getHostPort: function () {
 				return this.host + cat( ':', this.port, '' );
@@ -257,7 +257,7 @@
 			/**
 			 * Returns the userInfo and host and port portion of the URI.
 			 * In most real-world URLs, this is simply the hostname, but it is more general.
-			 * @return {String}
+			 * @return {string}
 			 */
 			getAuthority: function () {
 				return cat( '', this.getUserInfo(), '@' ) + this.getHostPort();
@@ -266,7 +266,7 @@
 			/**
 			 * Returns the query arguments of the URL, encoded into a string
 			 * Does not preserve the order of arguments passed into the URI. Does handle escaping.
-			 * @return {String}
+			 * @return {string}
 			 */
 			getQueryString: function () {
 				var args = [];
@@ -274,7 +274,13 @@
 					var k = Uri.encode( key ),
 						vals = $.isArray( val ) ? val : [ val ];
 					$.each( vals, function ( i, v ) {
-						args.push( k + ( v === null ? '' : '=' + Uri.encode( v ) ) );
+						if ( v === null ) {
+							args.push( k );
+						} else if ( k === 'title' ) {
+							args.push( k + '=' + mw.util.wikiUrlencode( v ) );
+						} else {
+							args.push( k + '=' + Uri.encode( v ) );
+						}
 					} );
 				} );
 				return args.join( '&' );
@@ -282,7 +288,7 @@
 
 			/**
 			 * Returns everything after the authority section of the URI
-			 * @return {String}
+			 * @return {string}
 			 */
 			getRelativePath: function () {
 				return this.path + cat( '?', this.getQueryString(), '', true ) + cat( '#', this.fragment, '' );
@@ -290,7 +296,7 @@
 
 			/**
 			 * Gets the entire URI string. May not be precisely the same as input due to order of query arguments.
-			 * @return {String} the URI string
+			 * @return {string} The URI string.
 			 */
 			toString: function () {
 				return this.protocol + '://' + this.getAuthority() + this.getRelativePath();

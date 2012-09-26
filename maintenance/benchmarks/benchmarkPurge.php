@@ -21,7 +21,7 @@
  * @ingroup Benchmark
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 /**
  * Maintenance script that benchmarks Squid purge.
@@ -112,4 +112,4 @@ class BenchmarkPurge extends Benchmarker {
 }
 
 $maintClass = "BenchmarkPurge";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

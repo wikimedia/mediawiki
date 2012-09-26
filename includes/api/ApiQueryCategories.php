@@ -49,11 +49,10 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	/**
 	 * @param $resultPageSet ApiPageSet
-	 * @return
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
-			return;	// nothing to do
+			return; // nothing to do
 		}
 
 		$params = $this->extractRequestParams();
@@ -85,10 +84,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( "Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue" );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$clfrom = intval( $cont[0] );
 			$clto = $this->getDB()->addQuotes( $cont[1] );
@@ -177,7 +173,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 					break;
 				}
 
-				$titles[] = Title :: makeTitle( NS_CATEGORY, $row->cl_to );
+				$titles[] = Title::makeTitle( NS_CATEGORY, $row->cl_to );
 			}
 			$resultPageSet->populateFromTitles( $titles );
 		}
@@ -187,7 +183,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		return array(
 			'prop' => array(
 				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array (
+				ApiBase::PARAM_TYPE => array(
 					'sortkey',
 					'timestamp',
 					'hidden',
@@ -275,9 +271,5 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#categories_.2F_cl';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

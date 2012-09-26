@@ -31,10 +31,6 @@
  */
 class ApiHelp extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * Module for displaying help
 	 */
@@ -47,43 +43,62 @@ class ApiHelp extends ApiBase {
 		}
 
 		$this->getMain()->setHelp();
-
 		$result = $this->getResult();
-		$queryObj = new ApiQuery( $this->getMain(), 'query' );
-		$r = array();
+
 		if ( is_array( $params['modules'] ) ) {
-			$modArr = $this->getMain()->getModules();
-
-			foreach ( $params['modules'] as $m ) {
-				if ( !isset( $modArr[$m] ) ) {
-					$r[] = array( 'name' => $m, 'missing' => '' );
-					continue;
-				}
-				$module = new $modArr[$m]( $this->getMain(), $m );
-
-				$r[] = $this->buildModuleHelp( $module, 'action' );
-			}
+			$modules = $params['modules'];
+		} else {
+			$modules = array();
 		}
 
 		if ( is_array( $params['querymodules'] ) ) {
-			$qmodArr = $queryObj->getModules();
+			$queryModules = $params['querymodules'];
+			foreach ( $queryModules as $m ) {
+				$modules[] = 'query+' . $m;
+			}
+		} else {
+			$queryModules = array();
+		}
 
-			foreach ( $params['querymodules'] as $qm ) {
-				if ( !isset( $qmodArr[$qm] ) ) {
-					$r[] = array( 'name' => $qm, 'missing' => '' );
-					continue;
+		$r = array();
+		foreach ( $modules as $m ) {
+			// sub-modules could be given in the form of "name[+name[+name...]]"
+			$subNames = explode( '+', $m );
+			if ( count( $subNames ) === 1 ) {
+				// In case the '+' was typed into URL, it resolves as a space
+				$subNames = explode( ' ', $m );
+			}
+			$module = $this->getMain();
+			for ( $i = 0; $i < count( $subNames ); $i++ ) {
+				$subs = $module->getModuleManager();
+				if ( $subs === null ) {
+					$module = null;
+				} else {
+					$module = $subs->getModule( $subNames[$i] );
 				}
-				$module = new $qmodArr[$qm]( $this, $qm );
-				$type = $queryObj->getModuleType( $qm );
-
-				if ( $type === null ) {
-					$r[] = array( 'name' => $qm, 'missing' => '' );
-					continue;
+				if ( $module === null ) {
+					if ( count( $subNames ) === 2
+							&& $i === 1
+							&& $subNames[0] === 'query'
+							&& in_array( $subNames[1], $queryModules )
+					) {
+						// Legacy: This is one of the renamed 'querymodule=...' parameters,
+						// do not use '+' notation in the output, use submodule's name instead.
+						$name = $subNames[1];
+					} else {
+						$name = implode( '+', array_slice( $subNames, 0, $i + 1 ) );
+					}
+					$r[] = array( 'name' => $name, 'missing' => '' );
+					break;
+				} else {
+					$type = $subs->getModuleGroup( $subNames[$i] );
 				}
-
+			}
+			if ( $module !== null ) {
 				$r[] = $this->buildModuleHelp( $module, $type );
 			}
 		}
+
 		$result->setIndexedTagName( $r, 'module' );
 		$result->addValue( null, $this->getModuleName(), $r );
 	}
@@ -118,15 +133,16 @@ class ApiHelp extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true
 			),
 			'querymodules' => array(
-				ApiBase::PARAM_ISMULTI => true
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_DEPRECATED => true
 			),
 		);
 	}
 
 	public function getParamDescription() {
 		return array(
-			'modules' => 'List of module names (value of the action= parameter)',
-			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
+			'modules' => 'List of module names (value of the action= parameter). Can specify submodules with a \'+\'',
+			'querymodules' => 'Use modules=query+value instead. List of query module names (value of prop=, meta= or list= parameter)',
 		);
 	}
 
@@ -138,9 +154,8 @@ class ApiHelp extends ApiBase {
 		return array(
 			'api.php?action=help' => 'Whole help page',
 			'api.php?action=help&modules=protect' => 'Module (action) help page',
-			'api.php?action=help&querymodules=categorymembers' => 'Query (list) modules help page',
-			'api.php?action=help&querymodules=info' => 'Query (prop) modules help page',
-			'api.php?action=help&querymodules=siteinfo' => 'Query (meta) modules help page',
+			'api.php?action=help&modules=query+categorymembers' => 'Help for the query/categorymembers module',
+			'api.php?action=help&modules=login|query+info' => 'Help for the login and query/info modules',
 		);
 	}
 
@@ -150,9 +165,5 @@ class ApiHelp extends ApiBase {
 			'https://www.mediawiki.org/wiki/API:FAQ',
 			'https://www.mediawiki.org/wiki/API:Quick_start_guide',
 		);
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

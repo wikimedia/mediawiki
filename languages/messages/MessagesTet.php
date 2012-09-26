@@ -82,11 +82,15 @@ $messages = array(
 'tog-watchdefault' => "Hateke pájina sira-ne'ebé ha'u edita",
 'tog-watchmoves' => "Hateke pájina sira-ne'ebé ha'u book",
 'tog-watchdeletion' => "Hateke pájina sira-ne'ebé ha'u halakon",
+'tog-minordefault' => 'Edita hotu-hotu "ki\'ik"',
+'tog-oldsig' => 'Asinatura atuál',
 'tog-watchlisthideown' => "La hatudu ha'u-nia edita iha lista hateke",
 'tog-watchlisthidebots' => 'Hamsumik bot iha lista hateke',
 'tog-watchlisthideminor' => "Hamsumik muda ki-ki'ik iha lista hateke",
 'tog-watchlisthideliu' => 'La hatudu edita ema rejista nian iha lista hateke',
 'tog-watchlisthideanons' => 'La hatudu edita ema anónimu nian iha lista hateke',
+'tog-watchlisthidepatrolled' => 'Hamsumik muda patrolada iha lista hateke',
+'tog-ccmeonemails' => "Haruka ba ha'u kopia korreiu eletróniku nian ne'ebé ha'u korreia",
 'tog-showhiddencats' => "Hatudu kategoria sira-ne'ebé subar",
 
 'underline-always' => 'Sempre',
@@ -156,7 +160,7 @@ $messages = array(
 'cancel' => 'Para',
 'moredotdotdot' => 'Barak liu...',
 'mypage' => "Ha'u-nia pájina",
-'mytalk' => "Ha'u-nia diskusaun",
+'mytalk' => 'Diskusaun',
 'anontalk' => "Diskusaun ba IP ne'e",
 'navigation' => 'Hatudu-dalan',
 'and' => '&#32;ho',
@@ -234,7 +238,6 @@ $messages = array(
 'disclaimers' => 'Avisu legál',
 'disclaimerpage' => 'Project:Avisu legál',
 'edithelp' => 'Ajuda kona-ba edita',
-'edithelppage' => 'Help:Edita',
 'helppage' => 'Help:Konteúdu',
 'mainpage' => 'Pájina Mahuluk',
 'mainpage-description' => 'Pájina Mahuluk',
@@ -297,9 +300,6 @@ Lista ida pájina espesiál nian [[Special:SpecialPages|iha ne'e]].",
 'ns-specialprotected' => 'La ema ida bele edita pájina espesiál sira.',
 
 # Login and logout pages
-'welcomecreation' => "== Loron di'ak, $1! ==
-Agora Ita iha konta iha ne'e.
-La haluha muda Ita-nia [[Special:Preferences|preferénsia]].",
 'yourname' => "Naran uza-na'in:",
 'login' => 'Log in',
 'nav-login-createaccount' => 'Log in / kriar konta ida',
@@ -370,12 +370,13 @@ Ita-nia mudansa la armazenadu seidauk!",
 # History pages
 'currentrev' => 'Versaun atuál',
 'revisionasof' => 'Versaun $1 nian',
+'revision-info' => 'Revisaun loron $4, tempu $5, husi $2',
 'previousrevision' => '←Versaun tuan liu',
 'nextrevision' => 'Versaun foun liu→',
 'currentrevisionlink' => 'Versaun atuál',
 'cur' => 'atuál',
 'next' => 'oinmai',
-'last' => 'ikus',
+'last' => 'molok',
 'page_first' => 'uluk',
 'page_last' => 'ikus',
 'histfirst' => 'sedu liu hotu',
@@ -405,15 +406,15 @@ Ita-nia mudansa la armazenadu seidauk!",
 'nextn' => 'oinmai {{PLURAL:$1|$1}}',
 'shown-title' => 'Hatudu {{PLURAL:$1|rezultadu|rezultadu}} $1 kada pájina',
 'viewprevnext' => 'Haree ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists' => "'''Iha pájina ho naran \"[[:\$1]]\".'''",
 'searchmenu-new' => "'''Kria pájina \"[[:\$1]]\" iha wiki ne'e!'''",
 'searchprofile-everything' => 'Hotu',
 'searchprofile-articles-tooltip' => 'Buka iha $1',
 'searchprofile-project-tooltip' => 'Buka iha $1',
 'search-result-size' => '$1 ({{PLURAL:$2|liafuan ida|liafuan $2}})',
 'search-section' => '(seksaun $1)',
+'search-suggest' => 'Parese Ita buka: $1',
 'search-interwiki-caption' => 'Projetu seluseluk sira',
-'search-mwsuggest-enabled' => 'fó sujestaun',
-'search-mwsuggest-disabled' => 'la hatudu sujestaun',
 'searchall' => 'hotu',
 'powersearch' => 'Buka',
 'powersearch-field' => 'Buka',
@@ -421,7 +422,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 
 # Preferences page
 'preferences' => 'Preferénsia',
-'mypreferences' => "Ha'u-nia preferénsia",
+'mypreferences' => 'Preferénsia',
 'prefs-rc' => 'Mudansa foufoun sira',
 'prefs-watchlist' => 'Lista hateke',
 'prefs-editing' => 'Edita',
@@ -486,11 +487,13 @@ Ita-nia mudansa la armazenadu seidauk!",
 'right-userrights' => "Edita priviléjiu uza-na'in hotu",
 'right-userrights-interwiki' => "Edita priviléjiu uza-na'in iha wiki seluk sira",
 
+# Special:Log/newusers
+'newuserlogpage' => "Lista kria uza-na'in",
+'newuserlogpagetext' => "Ne'e lista kria uza-na'in.",
+
 # User rights log
 'rightslog' => "Lista mudansa priviléjiu uza-na'in",
 'rightslogtext' => "Ne'e lista mudansa priviléjiu uza-na'in sira nian.",
-'rightslogentry' => 'muda grupu "$1" nian husi "$2" ba "$3"',
-'rightsnone' => '(mamuk)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => "lee pájina ne'e",
@@ -632,16 +635,12 @@ Ita-nia mudansa la armazenadu seidauk!",
 'activeusers-hidebots' => 'Subar bot sira',
 'activeusers-hidesysops' => 'Subar administradór sira',
 
-# Special:Log/newusers
-'newuserlogpage' => "Lista kria uza-na'in",
-'newuserlogpagetext' => "Ne'e lista kria uza-na'in.",
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-rights' => 'Priviléjiu',
 'listgrouprights-members' => '(lista membru nian)',
 
-# E-mail user
+# Email user
 'emailuser' => "Haruka korreiu eletróniku ba uza-na'in ne'e",
 'defemailsubject' => '{{SITENAME}} - korreiu eletróniku husi uza-na\'in "$1"',
 'noemailtitle' => "Lá'os diresaun korreiu eletróniku",
@@ -649,8 +648,8 @@ Ita-nia mudansa la armazenadu seidauk!",
 'emailsend' => 'Haruka',
 
 # Watchlist
-'watchlist' => "Ha'u-nia lista hateke",
-'mywatchlist' => "Ha'u-nia lista hateke",
+'watchlist' => 'Lista hateke',
+'mywatchlist' => 'Lista hateke',
 'removedwatchtext' => 'La hateke pájina "[[:$1]]" ona (haree [[Special:Watchlist|"lista hateke"]]).',
 'watch' => 'Hateke',
 'watchthispage' => "Hateke pájina ne'e",
@@ -662,11 +661,9 @@ Ita-nia mudansa la armazenadu seidauk!",
 'watching' => 'Hateke...',
 'unwatching' => 'La hateke...',
 
-'enotif_newpagetext' => "Ne'e pájina foun.",
 'enotif_impersonal_salutation' => "Uza-na'in {{SITENAME}} nian",
-'changed' => 'muda ona',
 'created' => 'kria ona',
-'enotif_subject' => '$PAGEEDITOR $CHANGEDORCREATED pájina $PAGETITLE iha {{SITENAME}}',
+'changed' => 'muda ona',
 
 # Delete
 'deletepage' => 'Halakon pájina',
@@ -675,6 +672,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'exblank' => 'pájina mamuk',
 'delete-legend' => 'Halakon',
 'actioncomplete' => 'operasaun remata',
+'actionfailed' => 'Asaun la konsege',
 'deletedtext' => 'Ita foin halakon pájina "$1". Haree $2 ba "operasaun halakon" seluk.',
 'dellogpage' => 'Lista halakon',
 'deletionlog' => 'lista halakon',
@@ -721,9 +719,9 @@ Ita-nia mudansa la armazenadu seidauk!",
 'blanknamespace' => '(Prinsipál)',
 
 # Contributions
-'contributions' => "Kontribuisaun uza-na'in",
+'contributions' => "{{GENDER:$1|Kontribuisaun uza-na'in}}",
 'contributions-title' => 'Kontribuisaun "$1" nian',
-'mycontris' => "Ha'u-nia kontribuisaun",
+'mycontris' => 'Kontribuisaun',
 'contribsub2' => 'Ba $1 ($2)',
 'uctop' => '(versaun atuál)',
 'month' => 'Fulan (ho molok):',
@@ -747,14 +745,22 @@ Ita-nia mudansa la armazenadu seidauk!",
 'whatlinkshere-hidelinks' => '$1 ligasaun',
 
 # Block/unblock
+'block' => "Blokeiu uza-na'in",
 'blockip' => "Blokeiu uza-na'in",
 'blockip-legend' => "Blokeiu uza-na'in",
+'ipadressorusername' => "Diresaun IP ka naran uza-na'in:",
+'ipbexpiry' => 'Tempu:',
 'ipbreason' => 'Motivu:',
 'ipbreasonotherlist' => 'Motivu seluk',
+'ipbcreateaccount' => 'La bele kria konta foun',
+'ipbemailban' => 'La bele haruka korreiu eletróniku',
 'ipbsubmit' => "Blokeiu uza-na'in ne'e",
 'ipbother' => 'Tempu seluk:',
 'ipboptions' => '2 hours:2 hours,1 loron:1 day,3 Loron:3 days,1 semana:1 week,2 semana:2 weeks,1 fulan:1 month,3 fulan:3 months,6 fulan:6 months,1 tinan:1 year,infinite:infinite',
 'ipbotheroption' => 'seluk',
+'ipbhidename' => "Subar naran uza-na'in (iha kontribuisaun no lista seluk)",
+'ipbwatchuser' => "Hateke pájina uza-na'in nian (hamutuk ho pájina diskusaun)",
+'ipb-disableusertalk' => 'La bele edita ninia pájina diskusaun',
 'ipblocklist' => "Uza-na'in sira-ne'ebé la bele edita",
 'blocklist-reason' => 'Razaun',
 'ipblocklist-submit' => 'Buka',
@@ -762,6 +768,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'blocklink' => 'blokeiu',
 'unblocklink' => 'la blokeiu',
 'contribslink' => 'kontribuisaun',
+'blocklogentry' => 'blokeiu [[$1]] ba tempu $2 $3',
 'block-log-flags-nocreate' => 'la bele kria konta foun',
 'block-log-flags-noemail' => 'korreiu eletróniku blokeiu',
 'block-log-flags-nousertalk' => 'la bele edita pájina diskusaun rasik',
@@ -849,10 +856,7 @@ Ita-nia mudansa la armazenadu seidauk!",
 'siteusers' => "{{PLURAL:$2|uza-na'in|uza-na'in}} {{SITENAME}} nian $1",
 
 # Skin names
-'skinname-standard' => 'Klásiku',
 'skinname-cologneblue' => 'Kolónia azúl',
-'skinname-myskin' => 'MySkin',
-'skinname-chick' => 'Manu',
 
 # Browsing diffs
 'previousdiff' => '←Versaun molok',
@@ -872,7 +876,7 @@ Liña hotu tenke komesa ho *
 Ligasaun uluk iha liña tenke ligasaun bá imajen aat.
 Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.",
 
-# EXIF tags
+# Exif tags
 'exif-make' => 'Fabrikante kámara nian',
 'exif-model' => 'Kámara',
 'exif-artist' => 'Autór',
@@ -953,10 +957,6 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 'version-software-product' => 'Produtu',
 'version-software-version' => 'Versaun',
 
-# Special:FilePath
-'filepath-page' => 'Fail:',
-'filepath-submit' => 'Bá',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Buka',
 
@@ -983,5 +983,8 @@ Ligasaun seluk iha liña - ne'e pájina sira iha ne'ebé bele inklui imajen aat.
 
 # Database error messages
 'dberr-header' => "Wiki ne'e iha problema",
+
+# New logging system
+'rightsnone' => '(mamuk)',
 
 );

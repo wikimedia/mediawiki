@@ -3,16 +3,17 @@
 /**
  * @group Broken
  * @group Upload
+ * @group Database
  */
 class UploadFromUrlTest extends ApiTestCase {
-
-	public function setUp() {
-		global $wgEnableUploads, $wgAllowCopyUploads, $wgAllowAsyncCopyUploads;
+	protected function setUp() {
 		parent::setUp();
 
-		$wgEnableUploads = true;
-		$wgAllowCopyUploads = true;
-		$wgAllowAsyncCopyUploads = true;
+		$this->setMwGlobals( array(
+			'wgEnableUploads' => true,
+			'wgAllowCopyUploads' => true,
+			'wgAllowAsyncCopyUploads' => true,
+		) );
 		wfSetupSession();
 
 		if ( wfLocalFile( 'UploadFromUrlTest.png' )->exists() ) {
@@ -20,7 +21,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 	}
 
-	protected function doApiRequest( Array $params, Array $unused = null, $appendModule = false, User $user = null ) {
+	protected function doApiRequest( array $params, array $unused = null, $appendModule = false, User $user = null ) {
 		$sessionId = session_id();
 		session_write_close();
 
@@ -29,6 +30,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$module->execute();
 
 		wfSetupSession( $sessionId );
+
 		return array( $module->getResultData(), $req );
 	}
 
@@ -36,9 +38,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * Ensure that the job queue is empty before continuing
 	 */
 	public function testClearQueue() {
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		while ( $job ) {
-			$job = Job::pop();
+			$job = JobQueueGroup::singleton()->pop();
 		}
 		$this->assertFalse( $job );
 	}
@@ -141,7 +143,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertEquals( $data[0]['upload']['result'], 'Queued', 'Queued upload' );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertThat( $job, $this->isInstanceOf( 'UploadFromUrlJob' ), 'Queued upload inserted' );
 	}
 
@@ -173,7 +175,6 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->user->addGroup( 'users' );
 
-
 		$data = $this->doAsyncUpload( $token );
 
 		$this->assertEquals( $data[0]['upload']['result'], 'Warning' );
@@ -202,7 +203,7 @@ class UploadFromUrlTest extends ApiTestCase {
 	public function testSyncDownload( $data ) {
 		$token = $this->user->getEditToken();
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job, 'Starting with an empty jobqueue' );
 
 		$this->user->addGroup( 'users' );
@@ -214,7 +215,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			'token' => $token,
 		), $data );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job );
 
 		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
@@ -234,7 +235,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$this->assertFalse( (bool)$talk->getArticleID( Title::GAID_FOR_UPDATE ), 'User talk does not exist' );
 
-		$data = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
 			'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
@@ -244,7 +245,7 @@ class UploadFromUrlTest extends ApiTestCase {
 			'ignorewarnings' => 1,
 		) );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 		$job->run();
 
@@ -258,7 +259,7 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$exception = false;
 		try {
-			$data = $this->doApiRequest( array(
+			$this->doApiRequest( array(
 				'action' => 'upload',
 				'filename' => 'UploadFromUrlTest.png',
 				'url' => 'http://bits.wikimedia.org/skins-1.5/common/images/poweredby_mediawiki_88x31.png',
@@ -272,11 +273,10 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 		$this->assertTrue( $exception );
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertFalse( $job );
 
 		return;
-
 		/*
 		// Broken until using leavemessage with ignorewarnings is supported
 		$job->run();
@@ -314,7 +314,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->assertTrue( isset( $data[0]['upload']['statuskey'] ) );
 		$statusKey = $data[0]['upload']['statuskey'];
 
-		$job = Job::pop();
+		$job = JobQueueGroup::singleton()->pop();
 		$this->assertEquals( 'UploadFromUrlJob', get_class( $job ) );
 
 		$status = $job->run();
@@ -329,13 +329,12 @@ class UploadFromUrlTest extends ApiTestCase {
 		return $data;
 	}
 
-
 	/**
 	 *
 	 */
 	protected function deleteFile( $name ) {
 		$t = Title::newFromText( $name, NS_FILE );
-		$this->assertTrue($t->exists(), "File '$name' exists");
+		$this->assertTrue( $t->exists(), "File '$name' exists" );
 
 		if ( $t->exists() ) {
 			$file = wfFindFile( $name, array( 'ignoreRedirect' => true ) );
@@ -346,6 +345,6 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 		$t = Title::newFromText( $name, NS_FILE );
 
-		$this->assertFalse($t->exists(), "File '$name' was deleted");
+		$this->assertFalse( $t->exists(), "File '$name' was deleted" );
 	}
- }
+}

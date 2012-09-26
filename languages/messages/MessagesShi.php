@@ -43,8 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ml uṭṭun n Midn lli swurn ɣ tasna yad',
 'tog-oldsig' => 'Asmmaql (Tiẓṛi) n ukrraj n ufus lli illan:',
 'tog-fancysig' => 'Skr akrrag n ufus s taɣarast  n  wikitext (bla azday utumatik)',
-'tog-externaleditor' => 'Swwur s yan umẓṛg u uṭṛiṣ n brra ( i imskarn lli bahra ḥrcnin, ira mayad riglaj iẓlin ɣ urdinatur)',
-'tog-externaldiff' => 'Skr s yan umsnaḥya abrrani ( i midn lli bahra ḥrcnin, mayad ira riglaj ɣ urdinatur)',
 'tog-showjumplinks' => 'Srɣ izdayn « Amuddu » d « acnubc » niḍ « Asiǧl » ɣ uflla n tasna',
 'tog-uselivepreview' => 'Skr s umẓri amaynu izrbn (ira JavaScript) (Arm)',
 'tog-forceeditsummary' => 'Ayyit tini iɣ ur iwiɣ imsmun n imbdln',
@@ -157,7 +155,6 @@ $messages = array(
 'qbbrowse' => 'Cabba',
 'qbedit' => 'Sbadl',
 'qbpageoptions' => 'Tasnat ad',
-'qbpageinfo' => 'Context',
 'qbmyoptions' => 'Tisnatin inu',
 'qbspecialpages' => 'Tisnatin timzlay',
 'faq' => 'Isqsitn li bdda tsutulnin',
@@ -250,7 +247,6 @@ $1',
 'disclaimers' => 'Ur darssuq',
 'disclaimerpage' => 'Project: Ur illa maddar illa ssuq',
 'edithelp' => 'Aws ɣ tirra',
-'edithelppage' => 'Help:Imaratn',
 'helppage' => 'Help:Mayllan',
 'mainpage' => 'Tasana tamzwarut',
 'mainpage-description' => 'Tasna tamzwarut',
@@ -269,6 +265,8 @@ $1',
 Ẓr [[Special:Version|ayyaw tasna]].',
 
 'ok' => 'Waxxa',
+'pagetitle' => '(MediaWiki)$1 - {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => 'Yurrid z "$1"',
 'youhavenewmessages' => 'Illa dark $1 ($2).',
 'newmessageslink' => 'Tibratin timaynutin',
@@ -365,9 +363,6 @@ Akks ad iskrt kra yaḍn',
 'virus-unknownscanner' => 'antivirus oritwsan',
 
 # Login and logout pages
-'welcomecreation' => '== Brrkat,  $1! ==
-lcont nek  tuyskar .
- Adur tut atbaddlt [[Special:Preferences|{{SITENAME}} issusmen]]',
 'yourname' => 'smiyt o-msxdam:',
 'yourpassword' => 'awal iḥdan:',
 'yourpasswordagain' => 'Зawd ara awal iḥdan:',
@@ -407,7 +402,7 @@ Ussaɣ n isqdacn ḥiln hlli.
 'emailconfirmlink' => 'Als i tasna nk n tbratin izd nit nttat ayan.',
 'loginlanguagelabel' => 'Tutlayt: $1',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kra ur igadda tasɣnt btbratin() n PHP.',
 
 # Change password dialog
@@ -616,7 +611,6 @@ Tigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.',
 'searchmenu-legend' => 'Istayn ucnubc',
 'searchmenu-exists' => '"\'Tlla yat tasna lli ilan assaɣ « [[:$1]] » ɣ wiki yad',
 'searchmenu-new' => "'''Skr Tasna « [[:$1|$1]] » ɣ wiki !'''",
-'searchhelp-url' => 'Help:Mayllan',
 'searchprofile-articles' => 'Mayllan ɣ tasna',
 'searchprofile-project' => 'Tisniwin n w-aws n usnfar',
 'searchprofile-images' => 'Multimedia',
@@ -636,8 +630,6 @@ Tigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.',
 'search-interwiki-caption' => 'Tiwuriwin taytmatin',
 'search-interwiki-default' => '$1 imyakkatn',
 'search-interwiki-more' => '(Uggar)',
-'search-mwsuggest-enabled' => 'D mara ittuyskar',
-'search-mwsuggest-disabled' => 'Ur illa marayttuskar',
 'search-relatedarticle' => 'Tzdi',
 'mwsuggest-disable' => 'Asbid AJAX n maryttuynnan ayttuyskar',
 'searcheverything-enable' => 'Cabba ɣ graygat agmmaḍ',
@@ -660,14 +652,6 @@ Tigira n ujbbad ns, ar takka yat tayafut bahra imqqurn,  ɣayan afan ur ttili.',
 'searchdisabled' => '{{SITENAME}} Acnubc ibid.
 Tzdar at cabbat ɣilad ɣ Google.
 Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
-
-# Quickbar
-'qbsettings' => 'Tafeggagt izrbn',
-'qbsettings-none' => 'Ur iḥudda',
-'qbsettings-fixedleft' => 'Aẓẓugz azlmaḍ',
-'qbsettings-fixedright' => 'Azzugz afasi',
-'qbsettings-floatingleft' => 'Yaywul su uzlmad',
-'qbsettings-floatingright' => 'Yaywul su ufasi',
 
 # Preferences page
 'preferences' => 'Timssusmin',
@@ -744,9 +728,11 @@ Izdar ad urtili ɣ isbidn n mayllan ɣ {{SITENAME}} .',
 
 'grouppage-sysop' => '{{ns:project}}: Inedbalen',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Aɣmis n willi mmurzmn imiḍan amsqdac',
+
 # User rights log
 'rightslog' => 'Anɣmas n imbddlnn izrfan n umsqdac',
-'rightsnone' => '(ḥtta yan)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Ssɣr tasna yad',
@@ -910,13 +896,10 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'linksearch' => 'Izdayn n brra',
 'linksearch-line' => '$1 tmmuttid z $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Aɣmis n willi mmurzmn imiḍan amsqdac',
-
 # Special:ListGroupRights
 'listgrouprights-members' => 'Umuɣ n  midn',
 
-# E-mail user
+# Email user
 'emailuser' => 'Azn tabrat umsqdac ad',
 
 # Watchlist
@@ -1298,10 +1281,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'version-software-product' => 'lmntoj',
 'version-software-version' => 'noskha',
 
-# Special:FilePath
-'filepath-page' => 'Asdaw:',
-'filepath-submit' => 'Ftu',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'smiyt n-wasdaw:',
 'fileduplicatesearch-submit' => 'Sigl',
@@ -1357,5 +1336,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 # New logging system
 'revdelete-restricted' => 'iskr aqn i indbaln',
 'revdelete-unrestricted' => 'Aqn iḥiyd i indbaln',
+'rightsnone' => '(ḥtta yan)',
 
 );

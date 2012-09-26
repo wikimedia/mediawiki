@@ -32,10 +32,6 @@
  */
 class ApiUnblock extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * Unblocks the specified user or provides the reason the unblock failed.
 	 */
@@ -79,7 +75,7 @@ class ApiUnblock extends ApiBase {
 
 		$res['id'] = $block->getId();
 		$target = $block->getType() == Block::TYPE_AUTO ? '' : $block->getTarget();
-		$res['user'] = $target;
+		$res['user'] = $target instanceof User ? $target->getName() : $target;
 		$res['userid'] = $target instanceof User ? $target->getId() : 0;
 		$res['reason'] = $params['reason'];
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
@@ -177,9 +173,5 @@ class ApiUnblock extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Block';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

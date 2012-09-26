@@ -9,7 +9,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 	 * @dataProvider validTestCases
 	 */
 	function testValidRules( $expected, $rules, $number, $comment ) {
-		$result = CLDRPluralRuleEvaluator::evaluate( $number, (array) $rules );
+		$result = CLDRPluralRuleEvaluator::evaluate( $number, (array)$rules );
 		$this->assertEquals( $expected, $result, $comment );
 	}
 
@@ -18,7 +18,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 	 * @expectedException CLDRPluralRuleError
 	 */
 	function testInvalidRules( $rules, $comment ) {
-		CLDRPluralRuleEvaluator::evaluate( 1, (array) $rules );
+		CLDRPluralRuleEvaluator::evaluate( 1, (array)$rules );
 	}
 
 	function validTestCases() {
@@ -31,19 +31,19 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 			array( 1, 'n is 1', 1.1, 'float number and is' ),
 			array( 1, 'n is 1', 2, 'float number and is' ),
 
-			array( 0, 'n in 1,3,5',     3, '' ),
+			array( 0, 'n in 1,3,5', 3, '' ),
 			array( 1, 'n not in 1,3,5', 5, '' ),
 
-			array( 1, 'n in 1,3,5',     2, '' ),
+			array( 1, 'n in 1,3,5', 2, '' ),
 			array( 0, 'n not in 1,3,5', 4, '' ),
 
-			array( 0, 'n in 1..3',      2, '' ),
-			array( 0, 'n in 1..3',      3, 'in is inclusive' ),
-			array( 1, 'n in 1..3',      0, '' ),
+			array( 0, 'n in 1..3', 2, '' ),
+			array( 0, 'n in 1..3', 3, 'in is inclusive' ),
+			array( 1, 'n in 1..3', 0, '' ),
 
-			array( 1, 'n not in 1..3',      2, '' ),
-			array( 1, 'n not in 1..3',      3, 'in is inclusive' ),
-			array( 0, 'n not in 1..3',      0, '' ),
+			array( 1, 'n not in 1..3', 2, '' ),
+			array( 1, 'n not in 1..3', 3, 'in is inclusive' ),
+			array( 0, 'n not in 1..3', 0, '' ),
 
 			array( 1, 'n is not 1 and n is not 2 and n is not 3', 1, 'and relation' ),
 			array( 0, 'n is not 1 and n is not 2 and n is not 4', 3, 'and relation' ),
@@ -89,7 +89,7 @@ class CLDRPluralRuleEvaluatorTest extends MediaWikiTestCase {
 			array( 'n', 'just n' ),
 			array( 'n is in 5', 'is in' ),
 		);
+
 		return $tests;
 	}
-
 }

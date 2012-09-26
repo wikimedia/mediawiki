@@ -8,6 +8,7 @@
  * @file
  *
  * @author Als-Holder
+ * @author Geitost
  * @author Jens Liebenau
  * @author Jonny84
  * @author Kaganer
@@ -54,8 +55,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Oazoahl derr beobachtenden Nutzer oazäan',
 'tog-oldsig' => 'Vorschau der aktuella Signatur:',
 'tog-fancysig' => 'Signatur ols Wikitext behandeln (ohne automatische Verlinkung)',
-'tog-externaleditor' => "Extern'n Editor als Standard benutza (nur fier Experta, is missa spezielle Einstellungen uff dam eegenen Rechner vurgenumma warn)",
-'tog-externaldiff' => 'Externes Diff-Programm als Standard benutza (nur fier Experta, is missa spezielle Einstellungen uff dam eegenen Rechner vurgenumma warn)',
 'tog-showjumplinks' => '„Wechseln zu“-Verknipfunga aktiviern',
 'tog-uselivepreview' => 'Direkte Vurschau notza (beneetigt JavaScript) (vrsuchsweise)',
 'tog-forceeditsummary' => 'Warnen, wenn bem Speichern de Zsoammafassung fahln tutt',
@@ -160,7 +159,6 @@ $messages = array(
 'qbfind' => 'Fenda',
 'qbedit' => 'Ändern',
 'qbpageoptions' => 'Seytaoptiona',
-'qbpageinfo' => 'Seytadata',
 'qbmyoptions' => 'Menne Seyta',
 'qbspecialpages' => 'Spezialseyta',
 'faq' => 'FAQ',
@@ -245,7 +243,6 @@ $1",
 'disclaimers' => 'Impressum',
 'disclaimerpage' => 'Project:Impressum',
 'edithelp' => 'Bearbeitungshilfe',
-'edithelppage' => 'Help:Bearbeitungshilfe',
 'helppage' => 'Help:Hilfe',
 'mainpage' => 'Hauptseite',
 'mainpage-description' => 'Hauptseite',
@@ -363,12 +360,8 @@ De Sperre wurde durch [[User:$1|$1]] miet der Begrindung ''„$2“'' eigerichte
 # Login and logout pages
 'logouttext' => "'''Du best nun obgemeldet.'''
 
-Du koast {{SITENAME}} jitz anonym wetter nutzen, oder diech erneut under damm selba oder a'm andern Nutzernoama [[Special:UserLogin|oamelda]].
+Du koast {{SITENAME}} jitz anonym wetter nutzen, oder diech erneut under damm selba oder a'm andern Nutzernoama <span class='plainlinks'>[$1 oamelda]</span>.
 Beachte, doas einige Seyta noo oazeiga kinna, doas du oagemeldet best, sulange du ne denn Browsercache gelaart host.",
-'welcomecreation' => '== Willkumma, $1! ==
-
-Dei Benutzerkonto wurde eigerichtet.
-Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.',
 'yourname' => 'Benutzernoame:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort wiederhola:',
@@ -382,7 +375,7 @@ Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.'
 'logout' => 'Oabmelda',
 'userlogout' => 'Oabmelda',
 'notloggedin' => 'Nä oangemeldet',
-'nologin' => "Du hast keen Benutzerkonto? '''$1'''.",
+'nologin' => 'Du hast keen Benutzerkonto? $1.',
 'nologinlink' => 'Neues Benutzerkonto oanleega',
 'createaccount' => 'Benutzerkonto oanlega',
 'gotaccount' => "Du hast bereits a Benutzerkonto? '''$1'''.",
@@ -602,7 +595,6 @@ Grund fier de Sperre: $1",
 'template-protected' => '(schreibgeschietzt)',
 'template-semiprotected' => '(schreibgeschietzt fier unoagemeldete und neue Nutzer)',
 'hiddencategories' => 'Diese Seite ies Mitglied vun {{PLURAL:$1|1 versteckter Kategorie|$1 versteckta Kategoria}}:',
-'nocreatetitle' => 'De Erstellung neuer Seyta ies eengeschränkt.',
 'nocreatetext' => 'Uff {{SITENAME}} wurde doas Erstalla neuer Seyta eengeschränkt. Du koast bestiehende Seyten ändern oder diech [[Special:UserLogin|oamelda]].',
 'nocreate-loggedin' => 'Du host kenne Berechtigung, neue Seyta zu erstalla.',
 'permissionserrorstext' => 'Du best ne berechtigt, de Aksjonn auszufiehra. {{PLURAL:$1|Grund|Grinde}}:',
@@ -798,8 +790,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'search-section' => '(Obschnitt $1)',
 'search-suggest' => 'Meitest du „$1“?',
 'search-interwiki-caption' => 'Schwasterprujätte',
-'search-mwsuggest-enabled' => 'miet Vurschläga',
-'search-mwsuggest-disabled' => 'kääne Vurschläge',
 'mwsuggest-disable' => 'Vurschläge per Ajax deaktiviern',
 'searchrelated' => 'verwandt',
 'searchall' => 'olle',
@@ -814,10 +804,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'powersearch-toggleall' => 'Olle',
 'powersearch-togglenone' => 'Kenne',
 'searchdisabled' => 'De {{SITENAME}}-Suche ies deaktiviert. Du koast underdessa miet Google sucha. Bitte bedenke, doaß der Suchindex fier {{SITENAME}} veraltet sei koan.',
-
-# Quickbar
-'qbsettings' => 'Seytaleiste',
-'qbsettings-none' => 'Keene',
 
 # Preferences page
 'preferences' => 'Eenstellunga',
@@ -964,9 +950,12 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'right-siteadmin' => 'Datenbank sperra und entsperra',
 'right-sendemail' => 'E-Mails oa andere Nutzer senda',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Neuoameldungs-Logbuch',
+'newuserlogpagetext' => 'Dies ies a Logbuch fier neu erstellte Nutzerkonten.',
+
 # User rights log
 'rightslogtext' => 'Dies ies doas Logbuch dar Änderunga dar Nutzerrechte.',
-'rightslogentry' => 'änderte de Nutzerrechte fier „$1“ vu „$2“ uff „$3“',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'de Seite zu lasa',
@@ -1101,11 +1090,11 @@ Bitte gieb dar Datei an'n Noama, dar dann Inhalt besser beschreibt.",
 'upload-proto-error' => 'Foalsches Protokoll',
 'upload-proto-error-text' => 'De URL muuß miet <code>http://</code> oder <code>ftp://</code> beginna.',
 'upload-file-error-text' => "Bei dar Erstellung a'r temporären Datei uff'd Server ies a interner Fahler uffgetreta.
-Bitte informiere an'n [[Special:ListUsers/sysop|System-Administrator]].",
+Bitte informiere an'n [[Special:ListUsers/sysop|Administrator]].",
 'upload-misc-error' => 'Unbekennter Fahler beim Huchloada',
 'upload-misc-error-text' => "Beim Huchloada ies a unbekennter Fahler uffgetreta.
 Priefe de URL uff Fahler, dann Online-Status der Seite und versuche 's erneut.
-Wenn doas Problem wetter bestieht, informiere anna [[Special:ListUsers/sysop|System-Administrator]].",
+Wenn doas Problem wetter bestieht, informiere anna [[Special:ListUsers/sysop|Administrator]].",
 'upload-too-many-redirects' => 'De URL beinhaltete zu viele Wetterleitunga',
 'upload-unknown-size' => 'Unbekennte Grieße',
 'upload-http-error' => 'A HTTP-Fahler ies uffgetreta: $1',
@@ -1367,10 +1356,6 @@ Siehe au de Liste der [[Special:WantedCategories|gewinschta Kategorien]].',
 # Special:ActiveUsers
 'activeusers-noresult' => 'Kenne Benutzer gefunda.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Neuoameldungs-Logbuch',
-'newuserlogpagetext' => 'Dies ies a Logbuch fier neu erstellte Nutzerkonten.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Nutzergruppen-Rechte',
 'listgrouprights-summary' => 'Dies ies anne Liste dar ei diesem Wiki definierten Nutzergruppen und dar damit verbundenen Rechte.
@@ -1382,7 +1367,7 @@ Zusätzliche Informationen ieber einzelne Rechte kinna [[{{MediaWiki:Listgroupri
 'listgrouprights-addgroup-all' => 'Nutzer zu olla Gruppa hinzufiega',
 'listgrouprights-removegroup-all' => 'Nutzer aus olla Gruppa entferna',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Fahler beim E-Mail-Versand',
 'mailnologintext' => 'Du mußt [[Special:UserLogin|oagemeldet sei]] und anne bestätigte E-Mail-Atresse ei denn [[Special:Preferences|Einstellunga]] eingetraga hoan, im andern Nutzern E-Mails schicka zu kinna.',
 'emailuser' => 'E-Mail oa diesa Benutzer',
@@ -1425,8 +1410,8 @@ Wenn du de Seite wieder vu denner Beobachtungsliste entferna mechtest, klicke uf
 'notanarticle' => 'Keene Seite',
 'watchnochange' => 'Kenne dar vu dir beobachteta Seyta wurde während des oagezeigta Zeitraums beoarbeetet.',
 'watchlist-details' => 'Du beobachtest {{PLURAL:$1|1 Seite|$1 Seita}}.',
-'wlheader-enotif' => '* Dar E-Mail-Benoachrichtigungsdienst ies aktiviert.',
-'wlheader-showupdated' => "* Seyta miet noo ne gesehenen Änderunga waan '''fett''' dargestellt.",
+'wlheader-enotif' => 'Dar E-Mail-Benoachrichtigungsdienst ies aktiviert.',
+'wlheader-showupdated' => "Seyta miet noo ne gesehenen Änderunga waan '''fett''' dargestellt.",
 'watchmethod-recent' => 'Ieberprifa dar letzta Beoarbeetunga fier de Beobachtungsliste',
 'watchmethod-list' => 'Ieberpriefa dar Beobachtungsliste noach letzta Beoarbeetunga',
 'watchlistcontains' => 'Denne Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seita}}.',
@@ -1441,9 +1426,6 @@ Wenn du de Seite wieder vu denner Beobachtungsliste entferna mechtest, klicke uf
 
 'enotif_mailer' => '{{SITENAME}}-E-Mail-Benoachrichtigungsdienst',
 'enotif_reset' => 'Olle Seyta ols besucht markiern',
-'enotif_newpagetext' => 'Doas ies anne neue Seite.',
-'created' => 'erzeugt',
-'enotif_subject' => '[{{SITENAME}}] De Seite "$PAGETITLE" wurde vu $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => "Olle Änderunga uff a'n Blick: $1",
 'enotif_lastdiff' => 'Siehe $1 noach dieser Änderung.',
 'enotif_anon_editor' => 'Anonymer Nutzer $1',
@@ -1469,6 +1451,7 @@ Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seit
 Im de Einstellunga denner Beobachtungsliste oazupoaßa, besuche: {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Rickmeldungen und wettere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'erzeugt',
 
 # Delete
 'deletepage' => 'Seite läscha',
@@ -2057,7 +2040,7 @@ Weitere werden standardmäßig nicht angezeigt.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagelength' => 'Länge',
 'exif-bitspersample' => 'Bits pro Forbkomponente',
 'exif-compression' => 'Oart dar Kompression',
@@ -2187,7 +2170,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'monthsall' => 'olle',
 'limitall' => 'olle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'E-Mail-Atresse bestätiga (Authentifizierung)',
 'confirmemail_noemail' => 'Du host kenne giltige E-Mail-Atresse ei denn [[Special:Preferences|persenlicha Eenstallunga]] eengetraga.',
 'confirmemail_text' => "{{SITENAME}} erfordert, doß du denne E-Mail-Atresse bestätigst (authentifizieren), bevor du de erweiterten E-Mail-Funksjonna benutza koast. Klicke bitte uff de unda stehende, miet „Bestätigungscode zuschicka“ beschriftete Schaltfläche, damit anne automatisch erstellte E-Mail oa de oagegahne Atresse geschickt werd. Diese E-Mail enthält anne Web-Adresse miet a'm Bestätigungscode. Indem du diese Webseyte ei demm Webbrowser effnest, bestätigst du, doß de oagegahne E-Mail-Atresse korrekt und giltig ies.",
@@ -2309,12 +2292,6 @@ Du koast au de [[Special:EditWatchlist|Standard-Beoarbeetungsseyte]] benutza.',
 'version-hook-name' => 'Schnittstallanoame',
 'version-hook-subscribedby' => 'Uffruff vu',
 
-# Special:FilePath
-'filepath-submit' => 'Pfad sucha',
-'filepath-summary' => 'Miet dieser Spezialseyte lässt siech dar komplette Pfad dar aktuella Version einer Datei ohne Umweg obfroaga. De oagefroagte Datei werd direkt dargestallt bzw. miet der verkniepfta Oawendung gestartet.
-
-De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-summary' => 'Suche noach Dateiduplikaten uff Basis ihres Hashwertes.',
 'fileduplicatesearch-legend' => 'Suche noach Duplikata',
@@ -2373,6 +2350,5 @@ De Eengabe muuß ohne dann Zusatz „{{ns:file}}:“ erfolga.',
 # New logging system
 'revdelete-restricted' => 'Einschränkungen gelten au fier Administratorn',
 'revdelete-unrestricted' => 'Einschränkungen fier Administratorn uffgehobn',
-'newuserlog-byemail' => 'doas Passwurt wourde per E-Mail versandt',
 
 );

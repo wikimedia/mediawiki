@@ -1,0 +1,332 @@
+Security reminder: MediaWiki does not require PHP's register_globals. If you
+have it on, turn it '''off''' if you can.
+
+== MediaWiki 1.22 ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.22 is an alpha-quality branch and is not recommended for use in
+production.
+
+=== Configuration changes in 1.22 ===
+* $wgRedirectScript was removed. It was unused.
+* Removed $wgLocalMessageCacheSerialized, it is now always true.
+* $wgVectorUseIconWatch is now enabled by default.
+* $wgCascadingRestrictionLevels was added.
+* ftps, ssh, sftp, xmpp, sip, sips, tel, sms, bitcoin, magnet, urn, and geo
+  have been whitelisted inside of $wgUrlProtocols.
+* $wgDocType and $wgDTD have been removed and are no longer used for the DOCTYPE.
+* $wgHtml5 is no longer used by core. Setting it to false will no longer disable HTML5.
+  It is still set to true for extension compatibility but doing so in extensions is deprecated.
+* $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
+  xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
+* $wgHandheldStyle was removed.
+* $wgHandheldForIPhone was removed.
+* $wgJsMimeType is no longer used by core. Most usage has been removed since
+  HTML output is now exclusively HTML5.
+* $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
+* $wgLogAutopatrol added to allow disabling logging of autopatrol edits in the logging table.
+  default for $wgLogAutopatrol is true.
+* The 'edit' right no longer allows for editing a user's own CSS and JS.
+* New rights 'editmyusercss', 'editmyuserjs', 'viewmywatchlist',
+  and 'editmywatchlist' restrict actions that were formerly allowed by default.
+  They have been added to the default for $wgGroupPermissions['*'].
+
+=== New features in 1.22 ===
+* (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
+* (bug 33454) Language::sprintfDate now has a timezone parameter, and supports
+  the "eIOPTZ" formatting characters.
+* EditWarning: A warning is shown when an editor leaves the edit form without
+  saving (enabled by default, users can opt-out via the 'useeditwarning'
+  preference). This feature was moved from the Vector extension, and is now part
+  of core for all skins. Take care when upgrading that you don't use an older
+  version of the Vector extension as this feature may conflict.
+* New 'mediawiki.ui' CSS module providing mw-ui-* styles for buttons and a
+  compact vertical form layout.
+* New versions of login (Special:UserLogin) and create account
+  (Special:UserLogin/signup) forms using the "vform" compact vertical form layout.
+  These forms use new messages that assume a "Help logging in" link, see
+  https://www.mediawiki.org/wiki/Manual:Page_customizations;
+  https://www.mediawiki.org/wiki/Account_creation_user_experience/Strings lists the
+  message key changes.
+* (bug 23343) Implemented ability to apply IP blocks to the contents of X-Forwarded-For headers
+  by adding a new configuration variable $wgApplyIpBlocksToXff (disabled by default).
+* The new hook 'APIGetPossibleErrors' to modify the list of possible errors was
+  added.
+* (bug 25592) LogEventsList::showLogExtract() will now ignore various
+  Pager-related WebRequest parameters by default, as this is overwhelmingly
+  likely to be what was intended by users of the method. If any caller wishes
+  to use these parameters, the new param 'useRequestParams' may be set to true.
+* mw.util.addPortletLink: Tooltip is no longer required to be plain (without
+  an accesskey in it already). As such it now rountrips. Creating a link with a
+  message as tooltip, grabbing the title attribute and using it to create
+  another portlet will work as expected.
+* (bug 6747) {{ROOTPAGENAME}} introduced, contains the name of the topmost
+  page without namespace.
+* BREAKING CHANGE: (bug 41729) Display editsection links next to headings. Also
+  change their class name from .editsection to .mw-editsection and place them at
+  the end of the heading element instead of the beginning. Client-side code and
+  screen-scrapers will have to be adjusted to handle both cases (old HTML will
+  still be visible on cached page renders until they are purged); extensions
+  using the DoEditSectionLink or EditSectionLink hooks might need adjustments as
+  well.
+* (bug 45535) introduced the new 'LanguageLinks' hook for manipulating the
+  language links associated with a page before display.
+* Chosen (http://harvesthq.github.io/chosen/) was added as module 'jquery.chosen'
+* HTMLForm will turn multiselect checkboxes into a Chosen interface when setting cssclass 'mw-chosen'
+* rebuildLocalisationCache learned --lang option. Let you rebuild l10n caches
+  of the specified languages instead of all of them.
+* New GetNewMessagesAlert hook allowing extensions to disable or modify the new
+  messages alert
+* New wgUserNewMsgRevisionId JS global for logged in users. This will be null
+  if the user has no new talk page messages. Otherwise it will be set to the
+  revision ID of the oldest new talk page message. This will allow gadgets and
+  extensions to create their own new message alerts on the client side.
+* mediawiki.log: Added log.warn wrapper (uses console.warn and console.trace).
+* mediawiki.log: Implemented log.deprecate. This method defines a property and
+  uses ES5 getter/setter to emit a warning when they are used.
+* $wgCascadingRestrictionLevels was added, allowing one to specify restriction levels
+  which can be cascading (previously 'sysop' was hard-coded as the only one).
+* XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
+  MediaWiki will try outputting markup acording to XHTML5 rules.
+* New hook 'TitleSquidURLs' for manipulating the list of URLs to be purged from
+  HTTP caches when a page is changed.
+* Changed the patrolling system to always show the link for patrolling in case the
+  current revision is patrollable. This also removed the usage of the rcid URI parameters.
+* Oracle DB backend now supports Database Resident Connection Pooling (DRCP).
+  Can be enabled by setting $wgDBOracleDRCP=true.
+  Requires Oracle DB 11gR1 or above, enabled DRCP inside the DB itself and a
+  propper connect string.
+  More about DRCP can be found at:
+  http://www.oracle-base.com/articles/11g/database-resident-connection-pool-11gr1.php
+* Add a new parameter $patrolFooterShown to hook ArticleViewFooter so the hook
+  handlers can take further action based on the status of the patrol footer
+* LinkCache singleton can now be altered or cleared, letting one to specify
+  another instance that does not rely on a database backend.
+* MediaWiki's PHPUnit tests can now use PHPUnit installed using composer --dev.
+* New user rights have been added to increase granularity in rights management
+  for extensions such as OAuth:
+** editmyusercss controls whether a user may edit their own CSS subpages.
+** editmyuserjs controls whether a user may edit their own JS subpages.
+** viewmywatchlist controls whether a user may view their watchlist.
+** editmywatchlist controls whether a user may edit their watchlist.
+* Add new hook AbortTalkPageEmailNotification, this will be used to determine
+  whether to send the regular talk page email notification
+* (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
+* Added $wgRecentChangesFlags for defining new flags for RecentChanges and
+  watchlists.
+* (bug 40518) mw.toolbar: Implemented mw.toolbar.addButtons for adding multiple
+ button objects in one call.
+
+=== Bug fixes in 1.22 ===
+* Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
+  could still navigate to the page by entering the URL directly.
+* (bug 47138) Fixed a fatal error when a blocked user tries to automatically
+  create an account on login due external authentication in some circumstances.
+* (bug 23393) HTML <hN> headings containing line breaks are now handled
+  correctly.
+* (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
+  is now non-significant and not preserved in the HTML output.
+* (bug 47218) Special:BlockList now handles correctly user names with spaces
+  when passed as subpage.
+* Pager's properly validate which fields are allowed to be sorted on.
+* mw.util.tooltipAccessKeyRegexp: The regex now matches "option-" as well.
+  Support for Mac "option" was added in 1.16, but the regex was never updated.
+* (bug 46768) Usernames of blocking users now display correctly, even if numeric.
+* (bug 39590) {{PAGESIZE}} for the current page and self-transclusions now
+  show the most up to date result always instead of being a revision behind.
+* A bias in wfRandomString() toward digits 1-7 has been corrected. Generated
+  strings will now start with digits 0 and 8-f as often as they should.
+* (bug 45371) Removed Parser_LinkHooks and CoreLinkFunctions classes.
+* (bug 41545) Allow <kbd>, <samp>, and <var> to be nested like allowed in html.
+* PLURAL magic word no longer causes a PHP notice when no matching form exists.
+* (bug 36641) Patrol page links no longer show on non-existent revisions.
+* (bug 35810) Pages not linked from Special:RecentChanges or Special:NewPages
+  are patrollable now.
+* (bug 30213) JavaScript for search suggestions is now disabled when the API
+  is disabled, and AJAX patrolling and watching are now disabled when use of
+  the write API is not allowed.
+* (bug 48294) API: Fix chunk upload async mode.
+* (bug 46749) Broken files tracking category removed from pages if an image
+  with that name is uploaded.
+* (bug 14176) System messages that are empty were previously incorrectly treated
+  as non-existent, causing a fallback to the default. This stopped users from
+  overriding system messages to make them blank.
+* (bug 48319) action=parse no longer returns an error if passed none of 'oldid',
+  'pageid', 'page', 'title', and 'text' (e.g. if only passed 'summary'). A
+  warning will instead be issued if 'title' is non-default, unless no props are
+  requested.
+* Special:Recentchangeslinked will now include upload log entries
+* (bug 41281) Fixed ugly output if file size could not be extracted for multi-page media.
+
+=== API changes in 1.22 ===
+* (bug 25553) The JSON output formatter now leaves forward slashes unescaped
+  to improve human readability of URLs and similar strings. Also, a "utf8"
+  option is now provided to use UTF-8 encoding instead of hex escape codes
+  for most non-ASCII characters.
+* (bug 46626) xmldoublequote parameter was removed. Because of a bug, the
+  parameter has had no effect since MediaWiki 1.16, and so its removal is
+  unlikely to impact existing clients.
+* (bug 47216) action=query&meta=siteinfo&siprop=skins will now indicate which
+  skin is the default and which are unusable (e.g. listed in $wgSkipSkins).
+* (bug 25325) Added support for wlshow filtering (bots/anon/minor/patrolled)
+  to action=feedwatchlist.
+* WDDX formatted output will actually be formatted (and normal output will no
+  longer be), and will no longer choke on booleans.
+* action=opensearch no longer silently ignores the format parameter.
+* action=opensearch now supports format=jsonfm.
+* list=usercontribs&ucprop=ids will now include the parent revision id.
+* BREAKING CHANGE: action=parse no longer returns all langlinks for the page
+  with prop=langlinks by default. The new effectivelanglinks parameter will
+  request that the LanguageLinks hook be called to determine the effective
+  language links.
+* BREAKING CHANGE: list=allpages, list=langbacklinks, and prop=langlinks do not
+  apply the new LanguageLinks hook, and thus only consider language links
+  stored in the database.
+* (bug 47219) Allow specifying change type of Wikipedia feed items
+* prop=imageinfo now allows setting iiurlheight without setting iiurlwidth
+* prop=info now adds the content model and page language of the title.
+* New upload log entries will now contain information on the relevant
+  image (sha1 and timestamp).
+* (bug 49239) action=parse now can parse in preview and section preview modes.
+* (bug 49259) action=patrol now accepts revision ids.
+* (bug 48129) list=blocks&bkip= now correctly handles IPv6 CIDR ranges and
+  honors $wgBlockCIDRLimit. Note any clients passing invalid values to bkip
+  will now receive an error, rather than the previous behavior listing all
+  user blocks.
+* (bug 48201) action=parse&text=foo now assumes wikitext if no title is given,
+  rather than using the content model of the page "API".
+* action=watch may now return errors.
+
+=== Languages updated in 1.22===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+* Batak Toba (bbc-latn) added.
+* (bug 46751) Made Buryat (Russia) (буряад) (bxr) fallback to Russian.
+
+=== Other changes in 1.22 ===
+* BREAKING CHANGE: Implementation of MediaWiki's JS and JSON value encoding
+  has changed:
+** MediaWiki no longer supports PHP installations in which the native JSON
+   extension is missing or disabled.
+** XmlJsCode objects can no longer be nested inside objects or arrays.
+   (For Xml::encodeJsCall(), this individually applies to each argument.)
+** The sets of characters escaped by default, along with the precise escape
+   sequences used, have changed (except for the Xml::escapeJsString()
+   function, which is now deprecated).
+* BREAKING CHANGE: The Services_JSON class has been removed. If necessary,
+  be sure to upgrade affected extensions at the same time (e.g. Collection).
+* redirect.php was removed. It was unused.
+* ClickTracking integration was dropped from the mediaWiki.user.bucket
+  JavaScript function. The 'tracked' option is now ignored.
+* BREAKING CHANGE: Legacy skins Simple, MySkin, Chick, Standard and Nostalgia
+  were all removed. (Nostalgia was moved to an extension.) The SkinLegacy and
+  LegacyTemplate classes that supported them were removed as well and are now a
+  part of the Nostalgia extension.
+* Event namespace used by jquery.makeCollapsible has been changed from
+  'mw-collapse' to 'mw-collapsible' for consistency with the module name.
+* BREAKING CHANGE: The "ExternalAuth" authentication subsystem was removed, along
+  with its associated globals of $wgExternalAuthType, $wgExternalAuthConf,
+  $wgAutocreatePolicy and $wgAllowPrefChange. Affected users are encouraged to
+  use AuthPlugin for external authentication/authorization needs.
+* The Quickbar feature of the legacy skin model and the last remnants of it
+  throughout the code base have been removed.
+* Externaledit/externaldiff preference was removed. Very few users used this
+  feature, and improper configuration can actually prevent a user from editing
+* Calling Linker methods using a skin will now output deprecation warnings.
+* (bug 46680) "Return to" links are no longer tagged with rel="next".
+* BREAKING CHANGE: mw.util.tooltipAccessKeyRegexp: The match group for the
+  accesskey character is now $6 instead of $5.
+* HipHop compiler (hphpc) support was removed. HipHop VM support (hhvm) was
+  added.
+* A new Special:Redirect page was added, providing lookup by revision ID,
+  user ID, or file name.  The old Special:Filepath page was reimplemented
+  to redirect through Special:Redirect.
+* Monobook: Removed the old conditional stylesheets for Opera 6, 7 and 9.
+* Support for XHTML 1.0 has been removed. MediaWiki now only outputs (X)HTML5.
+* wikibits: User-agent related globals have been deprecated. The following
+  properties now default to false and emit mw.log.warn: is_gecko, is_chrome_mac,
+  is_chrome, webkit_version, is_safari_win, is_safari, webkit_match, is_ff2,
+  ff2_bugs, is_ff2_win, is_ff2_x11, opera95_bugs, opera7_bugs, opera6_bugs,
+  is_opera_95, is_opera_preseven, is_opera, and ie6_bugs.
+* (bug 48276) MediaWiki will now flash a confirmation message upon successfully
+  editing a page.
+* (bug 40785) mediawiki.legacy.ajax has been marked as deprecated. The following
+  properties now emit mw.log.warn when accessed: sajax_debug, sajax_init_object,
+  sajax_do_call and wfSupportsAjax.
+* BREAKING CHANGE: meta keywords are no longer supported. A <meta name="keywords"
+  will no longer be output and OutputPage::addKeyword no longer exists.
+* Methods Title::userCanEditCssSubpage and Title::userCanEditJsSubpage,
+  deprecated since 1.19, have been removed.
+* (bug 50134) Hook functions are no longer required to return a value. When a
+  hook function does not return a value (or when it returns an explicit null),
+  processing continues. To abort the hook, a hook function must return an
+  explicit, boolean false or a string error message. Other falsey values are
+  tantamount to a 'return true' in earlier versions of MediaWiki.
+
+== Compatibility ==
+
+MediaWiki 1.22 requires PHP 5.3.2 or later.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for
+Oracle.
+
+The supported versions are:
+
+* MySQL 5.0.2 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+
+== Upgrading ==
+
+1.22 has several database changes since 1.21, and will not work without schema
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, you should upgrade to
+1.5 first. The upgrade script maintenance/upgrade1_5.php has been removed
+with MediaWiki 1.21.
+
+Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.21.x and older releases, see HISTORY.
+
+== Online documentation ==
+
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+	https://www.mediawiki.org/wiki/Documentation
+
+== Mailing list ==
+
+A mailing list is available for MediaWiki user support and discussion:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+
+There's usually someone online in #mediawiki on irc.freenode.net.

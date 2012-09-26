@@ -1,6 +1,6 @@
--- 
+--
 -- patch-pl-tl-il-unique-index.sql
--- 
+--
 -- Make reorderings of UNIQUE indices UNIQUE as well
 
 DROP INDEX /*i*/pl_namespace ON /*_*/pagelinks;

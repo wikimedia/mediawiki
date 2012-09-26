@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that tests various language time and date functions.
@@ -79,4 +79,4 @@ class DateFormats extends Maintenance {
 }
 
 $maintClass = "DateFormats";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

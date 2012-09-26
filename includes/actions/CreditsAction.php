@@ -23,6 +23,9 @@
  * @author <evan@wikitravel.org>
  */
 
+/**
+ * @ingroup Actions
+ */
 class CreditsAction extends FormlessAction {
 
 	public function getName() {
@@ -55,8 +58,8 @@ class CreditsAction extends FormlessAction {
 	/**
 	 * Get a list of contributors
 	 *
-	 * @param $cnt Int: maximum list of contributors to show
-	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
+	 * @param int $cnt maximum list of contributors to show
+	 * @param bool $showIfMax whether to contributors if there more than $cnt
 	 * @return String: html
 	 */
 	public function getCredits( $cnt, $showIfMax = true ) {
@@ -76,17 +79,17 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get the last author with the last modification time
-	 * @param $article Article object
+	 * @param Page $page
 	 * @return String HTML
 	 */
-	protected function getAuthor( Page $article ) {
-		$user = User::newFromName( $article->getUserText(), false );
+	protected function getAuthor( Page $page ) {
+		$user = User::newFromName( $page->getUserText(), false );
 
-		$timestamp = $article->getTimestamp();
+		$timestamp = $page->getTimestamp();
 		if ( $timestamp ) {
 			$lang = $this->getLanguage();
-			$d = $lang->date( $article->getTimestamp(), true );
-			$t = $lang->time( $article->getTimestamp(), true );
+			$d = $lang->date( $page->getTimestamp(), true );
+			$t = $lang->time( $page->getTimestamp(), true );
 		} else {
 			$d = '';
 			$t = '';
@@ -97,8 +100,8 @@ class CreditsAction extends FormlessAction {
 
 	/**
 	 * Get a list of contributors of $article
-	 * @param $cnt Int: maximum list of contributors to show
-	 * @param $showIfMax Bool: whether to contributors if there more than $cnt
+	 * @param int $cnt maximum list of contributors to show
+	 * @param bool $showIfMax whether to contributors if there more than $cnt
 	 * @return String: html
 	 */
 	protected function getContributors( $cnt, $showIfMax ) {
@@ -111,9 +114,10 @@ class CreditsAction extends FormlessAction {
 		# Hmm... too many to fit!
 		if ( $cnt > 0 && $contributors->count() > $cnt ) {
 			$others_link = $this->othersLink();
-			if ( !$showIfMax )
+			if ( !$showIfMax ) {
 				return $this->msg( 'othercontribs' )->rawParams(
 					$others_link )->params( $contributors->count() )->escaped();
+			}
 		}
 
 		$real_names = array();
@@ -122,7 +126,7 @@ class CreditsAction extends FormlessAction {
 
 		# Sift for real versus user names
 		foreach ( $contributors as $user ) {
-			$cnt--; 
+			$cnt--;
 			if ( $user->isLoggedIn() ) {
 				$link = $this->link( $user );
 				if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {

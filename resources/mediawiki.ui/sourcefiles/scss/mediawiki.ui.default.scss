@@ -1,0 +1,16 @@
+/**
+ * Provide Agora appearance for mw-ui-* classes when using a skin other than
+ * Vector.
+ * Compass builds these Agora styles from source Sass files in
+ * extensions/Agora/modules/scss
+ */
+
+@charset "UTF-8";
+
+@import "compass";
+
+@import "settings/all";
+
+@import "mixins/all";
+
+@import "components/default";

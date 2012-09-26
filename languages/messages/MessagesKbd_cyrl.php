@@ -16,6 +16,43 @@
 
 # $fallback = 'ru'; // bug 27785
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Служебная',
+	NS_TALK             => 'Тепсэлъэхьыгъуэ',
+	NS_USER             => 'ЦӀыхухэт',
+	NS_USER_TALK        => 'ЦӀыхухэт_тепсэлъэхьыгъуэ',
+	NS_PROJECT_TALK     => '$1_тепсэлъэхьыгъуэ',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файл_тепсэлъэхьыгъуэ',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_тепсэлъэхьыгъуэ',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблон_тепсэлъэхьыгъуэ',
+	NS_HELP             => 'ДэӀэпыкъуэгъуэ',
+	NS_HELP_TALK        => 'ДэӀэпыкъуэгъуэ_тепсэлъэхьыгъуэ',
+	NS_CATEGORY         => 'Категориэ',
+	NS_CATEGORY_TALK    => 'Категориэ_тепсэлъэхьыгъуэ',
+);
+
+$namespaceAliases = array(
+	# Russian namespaces
+	'Обсуждение'                         => NS_TALK,
+	'Участник'                           => NS_USER,
+	'Обсуждение_участника'               => NS_USER_TALK,
+	'Обсуждение_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
+	'Обсуждение_файла'                   => NS_FILE_TALK,
+	'Обсуждение_MediaWiki'               => NS_MEDIAWIKI_TALK,
+	'Обсуждение_шаблона'                 => NS_TEMPLATE_TALK,
+	'Справка'                            => NS_HELP,
+	'Обсуждение_справки'                 => NS_HELP_TALK,
+	'Категория'                          => NS_CATEGORY,
+	'Обсуждение_категории'               => NS_CATEGORY_TALK,
+);
+
+// Remove Russian gender aliases
+$namespaceGenderAliases = array();
+
 $messages = array(
 # User preference toggles
 'tog-underline' => 'ТехьэпӀэхэр щӀэтхъэн:',
@@ -47,8 +84,6 @@ $messages = array(
 'tog-shownumberswatching' => 'НапэкӀуэцӀыр я тхылъ кӀэлъыплъыгъуэхэм хэзгъэхьахэм я бжыгъэр гъэлъэгъуэн',
 'tog-oldsig' => 'ӀэпэщӀэдз щыӀэм и япэ-еплъ',
 'tog-fancysig' => 'Викитхылъ ӀэпэщӀэдз Ӏыгъын (автоматикэ техьэпӀэншу)',
-'tog-externaleditor' => 'Хэмыт редакторыр къэгъэсэбэпын (компутырым абым теухуа тегъэпсыхьыгъуэ хуэныкъуэ)',
-'tog-externaldiff' => 'Хэмыт программэр къэгъэсэбэпын зэгъэлъытэн шъхьэкӀэ (компутырым абым теухуа тегъэпсыхьыгъуэ хуэныкъуэ)',
 'tog-showjumplinks' => 'ДэӀэпыкъуэгъу техьэпӀэ «техьэн» хэгъэнэн',
 'tog-uselivepreview' => 'Япэ-еплъ щӀэхыр къэгъэсэбэпын (JavaScript хуэныкъуэ) (эксперементалу)',
 'tog-forceeditsummary' => 'КъэӀохун, гъэтэрэзыгъуэм и тепсэлъыхьыпӀэм зыри имытхамэ',
@@ -161,7 +196,6 @@ $messages = array(
 'qbbrowse' => 'Хэплъэн',
 'qbedit' => 'Гъэтэрэзын',
 'qbpageoptions' => 'НапэкӀуэцӀым и зэгъэзэхуэгъуэр',
-'qbpageinfo' => 'НапэкIуэцIым теухуауэ',
 'qbmyoptions' => 'Уи зэгъэзэхуэгъуэхэр',
 'qbspecialpages' => 'Специал напэкӀуэцӀхэр',
 'faq' => 'FAQ',
@@ -258,7 +292,6 @@ $1',
 'disclaimers' => 'Жэуап Ӏыгъыныр зыщхьэщыхын',
 'disclaimerpage' => 'Project:Пщэрылъу къэмыштэн',
 'edithelp' => 'Гъэтэрэзыным и щӀэупщӀэ',
-'edithelppage' => 'Help:Гъэтэрэзыным и дэIэпыкъуэгъу',
 'helppage' => 'Help:ДэӀэпыкъуэгъу',
 'mainpage' => 'НапэкӀуэцӀ нэхъыщхьэ',
 'mainpage-description' => 'НапэкӀуэцӀ нэхъыщхьэ',
@@ -408,11 +441,8 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Джыпсту уикӀыжауэ щыт.'''
 
-Уихьэжьыфыну {{grammar:genitive|{{SITENAME}}}} зыкъумгъэцӀыху иэ [[Special:UserLogin|зыкъегъэцӀыхун аргуэру]] уи цӀэмкӀэ иэ нэмыщӀымкӀэ.
+Уихьэжьыфыну {{grammar:genitive|{{SITENAME}}}} зыкъумгъэцӀыху иэ <span class='plainlinks'>[$1 зыкъегъэцӀыхун аргуэру]</span> уи цӀэмкӀэ иэ нэмыщӀымкӀэ.
 НапэкӀуэцӀ гуэрэхэр япэми хуэду къикӀыфынухэ, системэм уимыкӀыжьа хуэду. Апхуэду щымытын щхьэкӀэ браузэр кэшыр къэгъэщӀырыщӀын хуэй.",
-'welcomecreation' => '== Къеблагъэ, $1! ==
-Уи аккаунтыр хьэзырщ.
-Зыщумгъэгъупшэ сайтым уи [[Special:Preferences|персонал зэгъэзэхуэгъуэ]] быщӀын.',
 'yourname' => 'Уи цӀэр:',
 'yourpassword' => 'Пэролыр:',
 'yourpasswordagain' => 'Иджыри зэ пэролыр:',
@@ -506,7 +536,7 @@ $2',
 'loginlanguagelabel' => 'Бзэ: $1',
 'suspicious-userlogout' => 'Сеанс щыгъэтын узкӀэлъэӀуар гъэзэнщӀакъым, мыкорректнэ браузэрым иэ кэш зыщӀ проксим иригъэхьа хуэду ещхьщ.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'ХэщӀыкӀыгъуэ зымыӀэ хэукъуэгъуэ PHP-функциэ mail()',
 
 # Change password dialog
@@ -690,7 +720,6 @@ $2',
 'template-protected' => '(теубыдащ)',
 'template-semiprotected' => '(иныкъуэр теубыдащ)',
 'hiddencategories' => 'Мы напэкӀуэцӀыр зхэхьэр $1 {{PLURAL:$1|1 категориэ зэхуэща|$1 категориэ зэхуэщахэр}}:',
-'nocreatetitle' => 'НапэкӀуэцӀ щӀыныр тубыдащ',
 'nocreatetext' => 'Мы сайтым деж ныпэкӀуэцӀ щӀэуэ щӀынхэм щхьэкӀэ теубыдыгъуэ щыӀэщ.
 Бгъэзэжу, напэкӀуэцӀ щыӀэр бгъэтэрэзыфынущ, [[Special:UserLogin|системэмэ зыкъегъэцӀыхун иэ щӀэуэ аккаунт щӀын]].',
 'nocreate-loggedin' => 'НапэкӀуэцӀыщӀэ пщӀыну хуитыныгъэ уиӀэкъым.',
@@ -939,8 +968,6 @@ $1",
 'search-interwiki-caption' => 'Проэкт къыдэщӀхэр',
 'search-interwiki-default' => '$1 къыхэкӀар:',
 'search-interwiki-more' => '(иджыри)',
-'search-mwsuggest-enabled' => 'чэнджэш иӀэу',
-'search-mwsuggest-disabled' => 'чэнджэщыншэу',
 'nonefound' => "'''Гулъытыгъуэ.''' Тэрэзу имытхамэ узхуэныкъуэр, лъыхъуэгъуэр лъэныкъу хъуамкӀи ирегъэкӀуэкӀ. Къэгъэсэбэп ''all:'' пыгъувэгъуэр, зэгъэзэхуэгъуэ иӀэн щхьэкӀэ (хэтхэм я тепсэлъыхьыныгъэр, щапхъэхэр, нымыщӀхэр джоуэ хиубыдэным щхьэ), иэ узхуэныкъуэ лъэныкъуэр итхэ.",
 'search-nonefound' => 'Узлъыхъуэм техуэу щыӀэкъым.',
 'powersearch' => 'Убгъуауэ лъыхъу',
@@ -981,6 +1008,9 @@ $1",
 'group-sysop' => 'Тхьэмадэхэр',
 
 'grouppage-sysop' => '{{ns:project}}:Тхьэмадэхэр',
+
+# Special:Log/newusers
+'newuserlogpage' => 'ЦӀыхухэтхэм я регистрациэ тхылъ',
 
 # User rights log
 'rightslog' => 'Хэтым пӀалъэ иӀэхэм я тхылъ',
@@ -1078,13 +1108,10 @@ $1",
 # Special:LinkSearch
 'linksearch' => 'КІуэцІ техьэпІэхэр',
 
-# Special:Log/newusers
-'newuserlogpage' => 'ЦӀыхухэтхэм я регистрациэ тхылъ',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(гупым и тхылъ)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Тхыгъэ хуэтхын',
 
 # Watchlist

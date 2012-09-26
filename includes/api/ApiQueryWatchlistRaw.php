@@ -71,11 +71,9 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 		if ( isset( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( "Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue" );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$ns = intval( $cont[0] );
+			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 			$title = $this->getDB()->addQuotes( $cont[1] );
 			$op = $params['dir'] == 'ascending' ? '>' : '<';
 			$this->addWhere(
@@ -225,7 +223,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Watchlistraw';
 	}
 }

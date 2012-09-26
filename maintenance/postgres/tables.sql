@@ -79,7 +79,8 @@ CREATE TABLE page (
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
   page_touched       TIMESTAMPTZ,
   page_latest        INTEGER        NOT NULL, -- FK?
-  page_len           INTEGER        NOT NULL
+  page_len           INTEGER        NOT NULL,
+  page_content_model TEXT
 );
 CREATE UNIQUE INDEX page_unique_name ON page (page_namespace, page_title);
 CREATE INDEX page_main_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 0;
@@ -104,18 +105,20 @@ CREATE TRIGGER page_deleted AFTER DELETE ON page
 
 CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
-  rev_id          INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
-  rev_page        INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rev_text_id     INTEGER          NULL, -- FK
-  rev_comment     TEXT,
-  rev_user        INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
-  rev_user_text   TEXT         NOT NULL,
-  rev_timestamp   TIMESTAMPTZ  NOT NULL,
-  rev_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
-  rev_deleted     SMALLINT     NOT NULL  DEFAULT 0,
-  rev_len         INTEGER          NULL,
-  rev_parent_id   INTEGER          NULL,
-  rev_sha1        TEXT         NOT NULL DEFAULT ''
+  rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
+  rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  rev_text_id        INTEGER          NULL, -- FK
+  rev_comment        TEXT,
+  rev_user           INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
+  rev_user_text      TEXT         NOT NULL,
+  rev_timestamp      TIMESTAMPTZ  NOT NULL,
+  rev_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
+  rev_deleted        SMALLINT     NOT NULL  DEFAULT 0,
+  rev_len            INTEGER          NULL,
+  rev_parent_id      INTEGER          NULL,
+  rev_sha1           TEXT         NOT NULL DEFAULT '',
+  rev_content_model  TEXT,
+  rev_content_format TEXT
 );
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
 CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
@@ -151,24 +154,27 @@ CREATE TABLE page_props (
 );
 ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
 CREATE INDEX page_props_propname ON page_props (pp_propname);
+CREATE UNIQUE INDEX pp_propname_page ON page_props (pp_propname,pp_page);
 
 CREATE TABLE archive (
-  ar_namespace   SMALLINT     NOT NULL,
-  ar_title       TEXT         NOT NULL,
-  ar_text        TEXT, -- technically should be bytea, but not used anymore
-  ar_page_id     INTEGER          NULL,
-  ar_parent_id   INTEGER          NULL,
-  ar_sha1        TEXT         NOT NULL DEFAULT '',
-  ar_comment     TEXT,
-  ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ar_user_text   TEXT         NOT NULL,
-  ar_timestamp   TIMESTAMPTZ  NOT NULL,
-  ar_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
-  ar_flags       TEXT,
-  ar_rev_id      INTEGER,
-  ar_text_id     INTEGER,
-  ar_deleted     SMALLINT     NOT NULL  DEFAULT 0,
-  ar_len         INTEGER          NULL
+  ar_namespace      SMALLINT     NOT NULL,
+  ar_title          TEXT         NOT NULL,
+  ar_text           TEXT, -- technically should be bytea, but not used anymore
+  ar_page_id        INTEGER          NULL,
+  ar_parent_id      INTEGER          NULL,
+  ar_sha1           TEXT         NOT NULL DEFAULT '',
+  ar_comment        TEXT,
+  ar_user           INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ar_user_text      TEXT         NOT NULL,
+  ar_timestamp      TIMESTAMPTZ  NOT NULL,
+  ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
+  ar_flags          TEXT,
+  ar_rev_id         INTEGER,
+  ar_text_id        INTEGER,
+  ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
+  ar_len            INTEGER          NULL,
+  ar_content_model  TEXT,
+  ar_content_format TEXT
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
@@ -225,13 +231,6 @@ CREATE TABLE externallinks (
 );
 CREATE INDEX externallinks_from_to ON externallinks (el_from,el_to);
 CREATE INDEX externallinks_index   ON externallinks (el_index);
-
-CREATE TABLE external_user (
-  eu_local_id     INTEGER  NOT NULL  PRIMARY KEY,
-  eu_external_id TEXT
-);
-
-CREATE UNIQUE INDEX eu_external_id ON external_user (eu_external_id);
 
 CREATE TABLE langlinks (
   ll_from    INTEGER  NOT NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
@@ -353,12 +352,14 @@ CREATE TABLE filearchive (
   fa_user               INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   fa_user_text          TEXT         NOT NULL,
   fa_timestamp          TIMESTAMPTZ,
-  fa_deleted            SMALLINT     NOT NULL DEFAULT 0
+  fa_deleted            SMALLINT     NOT NULL DEFAULT 0,
+  fa_sha1               TEXT         NOT NULL DEFAULT ''
 );
 CREATE INDEX fa_name_time ON filearchive (fa_name, fa_timestamp);
 CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX fa_notime    ON filearchive (fa_deleted_timestamp);
 CREATE INDEX fa_nouser    ON filearchive (fa_deleted_user);
+CREATE INDEX fa_sha1      ON filearchive (fa_sha1);
 
 CREATE SEQUENCE uploadstash_us_id_seq;
 CREATE TYPE media_type AS ENUM ('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE');
@@ -516,13 +517,21 @@ CREATE INDEX ls_log_id ON log_search (ls_log_id);
 
 CREATE SEQUENCE job_job_id_seq;
 CREATE TABLE job (
-  job_id         INTEGER   NOT NULL  PRIMARY KEY DEFAULT nextval('job_job_id_seq'),
-  job_cmd        TEXT      NOT NULL,
-  job_namespace  SMALLINT  NOT NULL,
-  job_title      TEXT      NOT NULL,
-  job_timestamp  TIMESTAMPTZ,
-  job_params     TEXT      NOT NULL
+  job_id              INTEGER   NOT NULL  PRIMARY KEY DEFAULT nextval('job_job_id_seq'),
+  job_cmd             TEXT      NOT NULL,
+  job_namespace       SMALLINT  NOT NULL,
+  job_title           TEXT      NOT NULL,
+  job_timestamp       TIMESTAMPTZ,
+  job_params          TEXT      NOT NULL,
+  job_random          INTEGER   NOT NULL DEFAULT 0,
+  job_attempts        INTEGER   NOT NULL DEFAULT 0,
+  job_token           TEXT      NOT NULL DEFAULT '',
+  job_token_timestamp TIMESTAMPTZ,
+  job_sha1            TEXT NOT NULL DEFAULT ''
 );
+CREATE INDEX job_sha1 ON job (job_sha1);
+CREATE INDEX job_cmd_token ON job (job_cmd, job_token, job_random);
+CREATE INDEX job_cmd_token_id ON job (job_cmd, job_token, job_id);
 CREATE INDEX job_cmd_namespace_title ON job (job_cmd, job_namespace, job_title);
 CREATE INDEX job_timestamp_idx ON job (job_timestamp);
 
@@ -663,6 +672,7 @@ CREATE TABLE iwlinks (
 );
 CREATE UNIQUE INDEX iwl_from ON iwlinks (iwl_from, iwl_prefix, iwl_title);
 CREATE UNIQUE INDEX iwl_prefix_title_from ON iwlinks (iwl_prefix, iwl_title, iwl_from);
+CREATE UNIQUE INDEX iwl_prefix_from_title ON iwlinks (iwl_prefix, iwl_from, iwl_title);
 
 CREATE TABLE msg_resource (
   mr_resource   TEXT         NOT NULL,
@@ -685,8 +695,34 @@ CREATE TABLE module_deps (
 );
 CREATE UNIQUE INDEX md_module_skin ON module_deps (md_module, md_skin);
 
-CREATE TABLE config (
-  cf_name   TEXT  NOT NULL  PRIMARY KEY,
-  cf_value  TEXT  NOT NULL
+CREATE SEQUENCE sites_site_id_seq;
+CREATE TABLE sites (
+  site_id           INTEGER     NOT NULL    PRIMARY KEY DEFAULT nextval('sites_site_id_seq'),
+  site_global_key   TEXT        NOT NULL,
+  site_type         TEXT        NOT NULL,
+  site_group        TEXT        NOT NULL,
+  site_source       TEXT        NOT NULL,
+  site_language     TEXT        NOT NULL,
+  site_protocol     TEXT        NOT NULL,
+  site_domain       TEXT        NOT NULL,
+  site_data         TEXT        NOT NULL,
+  site_forward      SMALLINT    NOT NULL,
+  site_config       TEXT        NOT NULL
 );
-CREATE INDEX cf_name_value ON config (cf_name, cf_value);
+CREATE UNIQUE INDEX site_global_key ON sites (site_global_key);
+CREATE INDEX site_type ON sites (site_type);
+CREATE INDEX site_group ON sites (site_group);
+CREATE INDEX site_source ON sites (site_source);
+CREATE INDEX site_language ON sites (site_language);
+CREATE INDEX site_protocol ON sites (site_protocol);
+CREATE INDEX site_domain ON sites (site_domain);
+CREATE INDEX site_forward ON sites (site_forward);
+
+CREATE TABLE site_identifiers (
+  si_site   INTEGER NOT NULL,
+  si_type   TEXT    NOT NULL,
+  si_key    TEXT    NOT NULL
+);
+CREATE UNIQUE INDEX si_type_key ON site_identifiers (si_type, si_key);
+CREATE INDEX si_site ON site_identifiers (si_site);
+CREATE INDEX si_key ON site_identifiers (si_key);

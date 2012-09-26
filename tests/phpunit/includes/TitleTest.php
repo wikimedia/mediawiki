@@ -1,6 +1,23 @@
 <?php
 
+/**
+ *
+ * @group Database
+ *        ^--- needed for language cache stuff
+ */
 class TitleTest extends MediaWikiTestCase {
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+			// User language
+			'wgLang' => Language::factory( 'en' ),
+			'wgAllowUserJs' => false,
+			'wgDefaultLanguageVariant' => false,
+		) );
+	}
 
 	function testLegalChars() {
 		$titlechars = Title::legalChars();
@@ -16,12 +33,12 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataBug31100
+	 * @dataProvider provideBug31100
 	 */
 	function testBug31100FixSpecialName( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
 		$fixed = $title->fixSpecialName();
-		$stuff = explode( '/', $fixed->getDbKey(), 2 );
+		$stuff = explode( '/', $fixed->getDBkey(), 2 );
 		if ( count( $stuff ) == 2 ) {
 			$par = $stuff[1];
 		} else {
@@ -30,22 +47,22 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedParam, $par, "Bug 31100 regression check: Title->fixSpecialName() should preserve parameter" );
 	}
 
-	function dataBug31100() {
+	public static function provideBug31100() {
 		return array(
 			array( 'Special:Version', null ),
 			array( 'Special:Version/', '' ),
 			array( 'Special:Version/param', 'param' ),
 		);
 	}
-	
+
 	/**
 	 * Auth-less test of Title::isValidMoveOperation
-	 * 
+	 *
 	 * @group Database
 	 * @param string $source
 	 * @param string $target
 	 * @param array|string|true $expected Required error
-	 * @dataProvider dataTestIsValidMoveOperation
+	 * @dataProvider provideTestIsValidMoveOperation
 	 */
 	function testIsValidMoveOperation( $source, $target, $expected ) {
 		$title = Title::newFromText( $source );
@@ -60,42 +77,149 @@ class TitleTest extends MediaWikiTestCase {
 			}
 		}
 	}
-	
+
+	/**
+	 * Provides test parameter values for testIsValidMoveOperation()
+	 */
+	function dataTestIsValidMoveOperation() {
+		return array(
+			array( 'Test', 'Test', 'selfmove' ),
+			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
+		);
+	}
+
+	/**
+	 * Auth-less test of Title::userCan
+	 *
+	 * @param array $whitelistRegexp
+	 * @param string $source
+	 * @param string $action
+	 * @param array|string|true $expected Required error
+	 *
+	 * @covers Title::checkReadPermissions
+	 * @dataProvider dataWgWhitelistReadRegexp
+	 */
+	function testWgWhitelistReadRegexp( $whitelistRegexp, $source, $action, $expected ) {
+		// $wgWhitelistReadRegexp must be an array. Since the provided test cases
+		// usually have only one regex, it is more concise to write the lonely regex
+		// as a string. Thus we cast to an array() to honor $wgWhitelistReadRegexp
+		// type requisite.
+		if ( is_string( $whitelistRegexp ) ) {
+			$whitelistRegexp = array( $whitelistRegexp );
+		}
+
+		$title = Title::newFromDBkey( $source );
+
+		global $wgGroupPermissions;
+		$oldPermissions = $wgGroupPermissions;
+		// Disallow all so we can ensure our regex works
+		$wgGroupPermissions = array();
+		$wgGroupPermissions['*']['read'] = false;
+
+		global $wgWhitelistRead;
+		$oldWhitelist = $wgWhitelistRead;
+		// Undo any LocalSettings explicite whitelists so they won't cause a
+		// failing test to succeed. Set it to some random non sense just
+		// to make sure we properly test Title::checkReadPermissions()
+		$wgWhitelistRead = array( 'some random non sense title' );
+
+		global $wgWhitelistReadRegexp;
+		$oldWhitelistRegexp = $wgWhitelistReadRegexp;
+		$wgWhitelistReadRegexp = $whitelistRegexp;
+
+		// Just use $wgUser which in test is a user object for '127.0.0.1'
+		global $wgUser;
+		// Invalidate user rights cache to take in account $wgGroupPermissions
+		// change above.
+		$wgUser->clearInstanceCache();
+		$errors = $title->userCan( $action, $wgUser );
+
+		// Restore globals
+		$wgGroupPermissions = $oldPermissions;
+		$wgWhitelistRead = $oldWhitelist;
+		$wgWhitelistReadRegexp = $oldWhitelistRegexp;
+
+		if ( is_bool( $expected ) ) {
+			# Forge the assertion message depending on the assertion expectation
+			$allowableness = $expected
+				? " should be allowed"
+				: " should NOT be allowed";
+			$this->assertEquals( $expected, $errors, "User action '$action' on [[$source]] $allowableness." );
+		} else {
+			$errors = $this->flattenErrorsArray( $errors );
+			foreach ( (array)$expected as $error ) {
+				$this->assertContains( $error, $errors );
+			}
+		}
+	}
+
+	/**
+	 * Provides test parameter values for testWgWhitelistReadRegexp()
+	 */
+	function dataWgWhitelistReadRegexp() {
+		$ALLOWED = true;
+		$DISALLOWED = false;
+
+		return array(
+			// Everything, if this doesn't work, we're really in trouble
+			array( '/.*/', 'Main_Page', 'read', $ALLOWED ),
+			array( '/.*/', 'Main_Page', 'edit', $DISALLOWED ),
+
+			// We validate against the title name, not the db key
+			array( '/^Main_Page$/', 'Main_Page', 'read', $DISALLOWED ),
+			// Main page
+			array( '/^Main/', 'Main_Page', 'read', $ALLOWED ),
+			array( '/^Main.*/', 'Main_Page', 'read', $ALLOWED ),
+			// With spaces
+			array( '/Mic\sCheck/', 'Mic Check', 'read', $ALLOWED ),
+			// Unicode multibyte
+			// ...without unicode modifier
+			array( '/Unicode Test . Yes/', 'Unicode Test Ñ Yes', 'read', $DISALLOWED ),
+			// ...with unicode modifier
+			array( '/Unicode Test . Yes/u', 'Unicode Test Ñ Yes', 'read', $ALLOWED ),
+			// Case insensitive
+			array( '/MiC ChEcK/', 'mic check', 'read', $DISALLOWED ),
+			array( '/MiC ChEcK/i', 'mic check', 'read', $ALLOWED ),
+
+			// From DefaultSettings.php:
+			array( "@^UsEr.*@i", 'User is banned', 'read', $ALLOWED ),
+			array( "@^UsEr.*@i", 'User:John Doe', 'read', $ALLOWED ),
+
+			// With namespaces:
+			array( '/^Special:NewPages$/', 'Special:NewPages', 'read', $ALLOWED ),
+			array( null, 'Special:Newpages', 'read', $DISALLOWED ),
+
+		);
+	}
+
 	function flattenErrorsArray( $errors ) {
 		$result = array();
 		foreach ( $errors as $error ) {
 			$result[] = $error[0];
 		}
+
 		return $result;
 	}
-	
-	function dataTestIsValidMoveOperation() {
-		return array( 
+
+	public static function provideTestIsValidMoveOperation() {
+		return array(
 			array( 'Test', 'Test', 'selfmove' ),
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
 		);
 	}
-	
-	
+
 	/**
 	 * @dataProvider provideCasesForGetpageviewlanguage
 	 */
-	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $variant, $msg='' ) {
-		// Save globals
-		global $wgContLang, $wgLang, $wgAllowUserJs, $wgLanguageCode, $wgDefaultLanguageVariant;
-		$save['wgContLang']               = $wgContLang;
-		$save['wgLang']                   = $wgLang;
-		$save['wgAllowUserJs']            = $wgAllowUserJs;
-		$save['wgLanguageCode']           = $wgLanguageCode;
-		$save['wgDefaultLanguageVariant'] = $wgDefaultLanguageVariant;
+	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $variant, $msg = '' ) {
+		global $wgLanguageCode, $wgContLang, $wgLang, $wgDefaultLanguageVariant, $wgAllowUserJs;
 
-		// Setup test environnement:
-		$wgContLang = Language::factory( $contLang );
-		$wgLang     = Language::factory( $lang );
-		# To test out .js titles:
-		$wgAllowUserJs = true;
+		// Setup environnement for this test
 		$wgLanguageCode = $contLang;
+		$wgContLang = Language::factory( $contLang );
+		$wgLang = Language::factory( $lang );
 		$wgDefaultLanguageVariant = $variant;
+		$wgAllowUserJs = true;
 
 		$title = Title::newFromText( $titleText );
 		$this->assertInstanceOf( 'Title', $title,
@@ -105,16 +229,9 @@ class TitleTest extends MediaWikiTestCase {
 			$title->getPageViewLanguage()->getCode(),
 			$msg
 		);
-
-		// Restore globals
-		$wgContLang               = $save['wgContLang'];
-		$wgLang                   = $save['wgLang'];
-		$wgAllowUserJs            = $save['wgAllowUserJs'];
-		$wgLanguageCode           = $save['wgLanguageCode'];
-		$wgDefaultLanguageVariant = $save['wgDefaultLanguageVariant'];
 	}
 
-	function provideCasesForGetpageviewlanguage() {
+	public static function provideCasesForGetpageviewlanguage() {
 		# Format:
 		# - expected
 		# - Title name
@@ -123,33 +240,91 @@ class TitleTest extends MediaWikiTestCase {
 		# - wgDefaultLanguageVariant
 		# - Optional message
 		return array(
-			array( 'fr', 'Main_page', 'fr', 'fr', false ),
-			array( 'es', 'Main_page', 'es', 'zh-tw', false ),
-			array( 'zh', 'Main_page', 'zh', 'zh-tw', false ),
+			array( 'fr', 'Help:I_need_somebody', 'fr', 'fr', false ),
+			array( 'es', 'Help:I_need_somebody', 'es', 'zh-tw', false ),
+			array( 'zh', 'Help:I_need_somebody', 'zh', 'zh-tw', false ),
 
-			array( 'es',    'Main_page',                 'es', 'zh-tw', 'zh-cn' ),
-			array( 'es',    'MediaWiki:About',           'es', 'zh-tw', 'zh-cn' ),
-			array( 'es',    'MediaWiki:About/',          'es', 'zh-tw', 'zh-cn' ),
-			array( 'de',    'MediaWiki:About/de',        'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.js',       'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.css',      'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Common.js',    'es', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Monobook.css', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es', 'Help:I_need_somebody', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es', 'MediaWiki:About', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'es', 'MediaWiki:About/', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'de', 'MediaWiki:About/de', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.js', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.css', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Common.js', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Monobook.css', 'es', 'zh-tw', 'zh-cn' ),
 
-			array( 'zh-cn', 'Main_page',                 'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh',    'MediaWiki:About',           'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh',    'MediaWiki:About/',          'zh', 'zh-tw', 'zh-cn' ),
-			array( 'de',    'MediaWiki:About/de',        'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh-cn', 'MediaWiki:About/zh-cn',     'zh', 'zh-tw', 'zh-cn' ),
-			array( 'zh-tw', 'MediaWiki:About/zh-tw',     'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.js',       'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'MediaWiki:Common.css',      'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Common.js',    'zh', 'zh-tw', 'zh-cn' ),
-			array( 'en',    'User:JohnDoe/Monobook.css', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-cn', 'Help:I_need_somebody', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh', 'MediaWiki:About', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh', 'MediaWiki:About/', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'de', 'MediaWiki:About/de', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-cn', 'MediaWiki:About/zh-cn', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'MediaWiki:About/zh-tw', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.js', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'MediaWiki:Common.css', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Common.js', 'zh', 'zh-tw', 'zh-cn' ),
+			array( 'en', 'User:JohnDoe/Monobook.css', 'zh', 'zh-tw', 'zh-cn' ),
 
-			array( 'zh-tw', 'Special:NewPages',       'es', 'zh-tw', 'zh-cn' ),
-			array( 'zh-tw', 'Special:NewPages',       'zh', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'Special:NewPages', 'es', 'zh-tw', 'zh-cn' ),
+			array( 'zh-tw', 'Special:NewPages', 'zh', 'zh-tw', 'zh-cn' ),
 
+		);
+	}
+
+	/**
+	 * @dataProvider provideBaseTitleCases
+	 */
+	function testExtractingBaseTextFromTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected,
+			$title->getBaseText(),
+			$msg
+		);
+	}
+
+	public static function provideBaseTitleCases() {
+		return array(
+			# Title, expected base, optional message
+			array( 'User:John_Doe/subOne/subTwo', 'John Doe/subOne' ),
+			array( 'User:Foo/Bar/Baz', 'Foo/Bar' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideRootTitleCases
+	 */
+	function testExtractingRootTextFromTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected,
+			$title->getRootText(),
+			$msg
+		);
+	}
+
+	public static function provideRootTitleCases() {
+		return array(
+			# Title, expected base, optional message
+			array( 'User:John_Doe/subOne/subTwo', 'John Doe' ),
+			array( 'User:Foo/Bar/Baz', 'Foo' ),
+		);
+	}
+
+	/**
+	 * @todo Handle $wgNamespacesWithSubpages cases
+	 * @dataProvider provideSubpageTitleCases
+	 */
+	function testExtractingSubpageTextFromTitle( $title, $expected, $msg = '' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected,
+			$title->getSubpageText(),
+			$msg
+		);
+	}
+
+	public static function provideSubpageTitleCases() {
+		return array(
+			# Title, expected base, optional message
+			array( 'User:John_Doe/subOne/subTwo', 'subTwo' ),
+			array( 'User:John_Doe/subOne', 'subOne' ),
 		);
 	}
 }

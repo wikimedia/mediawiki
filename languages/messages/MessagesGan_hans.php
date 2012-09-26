@@ -63,8 +63,6 @@ $messages = array(
 'tog-shownumberswatching' => '显示有几多人监视',
 'tog-oldsig' => '现有𠮶签名：',
 'tog-fancysig' => '搦签名以维基字对待（冇自动连结）',
-'tog-externaleditor' => '默认用外部编辑器（专家用𠮶功能，要到倷𠮶电脑上头特别𠮶设置一下）',
-'tog-externaldiff' => '默认用外部差异比较器（专家用𠮶功能，要到汝𠮶电脑上头特别𠮶设置下。[//www.mediawiki.org/wiki/Manual:External_editors 别𠮶信息]）',
 'tog-showjumplinks' => '启用“跳到”访问链接',
 'tog-uselivepreview' => '使用即时预览（JavaScript）（实验中）',
 'tog-forceeditsummary' => '冇改动注解时要同偶话',
@@ -176,7 +174,6 @@ $messages = array(
 'qbbrowse' => '查看',
 'qbedit' => '编写',
 'qbpageoptions' => '个页',
-'qbpageinfo' => '个页信息',
 'qbmyoptions' => '偶𠮶选项',
 'qbspecialpages' => '特殊页',
 'faq' => 'FAQ',
@@ -269,7 +266,6 @@ $1',
 'disclaimers' => '免责声明',
 'disclaimerpage' => 'Project:免责声明',
 'edithelp' => '编写帮助',
-'edithelppage' => 'Help:啷编写文章',
 'helppage' => 'Help:说明',
 'mainpage' => '封面',
 'mainpage-description' => '封面',
@@ -401,10 +397,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''汝退出正哩。'''
 
-接到汝得匿名使用{{SITENAME}}，或[[Special:UserLogin|登入过]]。除非汝删吥浏览器缓存，只把子页面可能会接到话汝系登入状态。",
-'welcomecreation' => '== 欢迎, $1! ==
-
-建正哩汝𠮶帐户，莫𫍧记设置 [[Special:Preferences|{{SITENAME}}𠮶个人参数]]。',
+接到汝得匿名使用{{SITENAME}}，或<span class='plainlinks'>[$1 登入过]</span>。除非汝删吥浏览器缓存，只把子页面可能会接到话汝系登入状态。",
 'yourname' => '用户名：',
 'yourpassword' => '密码：',
 'yourpasswordagain' => '输过道密码：',
@@ -608,7 +601,6 @@ $2',
 'template-semiprotected' => '（半保护）',
 'hiddencategories' => '个只版面系属于$1只隐藏类𠮶成员：',
 'edittools' => '<!--个首𠮶文本会到下底𠮶编辑同上传列表里坨显示。 -->',
-'nocreatetitle' => '新建页面拖限制',
 'nocreatetext' => '个只网站限制新建页面𠮶功能。倷可以回头去编辑有嘞𠮶页面，或者[[Special:UserLogin|登入或新开帐户]]。',
 'nocreate-loggedin' => '倷到 {{SITENAME}} 冇权新开页面。',
 'permissionserrors' => '权限错误',
@@ -748,7 +740,6 @@ $2',
 'viewprevnext' => '眵吖（$1 {{int:pipe-separator}} $2） （$3）',
 'searchmenu-exists' => "'''个只wiki已有一只叫「[[:$1]]」𠮶页。'''",
 'searchmenu-new' => "'''嘚个只wiki上建立「[[:$1]]」页！'''",
-'searchhelp-url' => 'Help:说明',
 'searchprofile-articles' => '内容页',
 'searchprofile-project' => '帮助同得计划页',
 'searchprofile-images' => '多媒体',
@@ -767,8 +758,6 @@ $2',
 'search-interwiki-caption' => '姊妹计划',
 'search-interwiki-default' => '$1只结果：',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建议',
-'search-mwsuggest-disabled' => '冇建议',
 'searchrelated' => '相关',
 'searchall' => '所有',
 'showingresults' => '底下从第<b>$2</b>条显示起先𠮶<b>$1</b>条结果:',
@@ -782,14 +771,6 @@ $2',
 'powersearch-redir' => '重定向𠮶表单',
 'powersearch-field' => '寻',
 'searchdisabled' => '{{SITENAME}}𠮶搜索功能已经关闭。倷可以用Google寻吖。但系佢𠮶索引可能系早先𠮶。',
-
-# Quickbar
-'qbsettings' => '快捷导航条',
-'qbsettings-none' => '冇',
-'qbsettings-fixedleft' => '左首固定',
-'qbsettings-fixedright' => '右首固定',
-'qbsettings-floatingleft' => '左首漂移',
-'qbsettings-floatingright' => '左首漂移',
 
 # Preferences page
 'preferences' => '参数设置',
@@ -874,11 +855,12 @@ $2',
 'grouppage-sysop' => '{{ns:project}}:操作员',
 'grouppage-bureaucrat' => '{{ns:project}}:行政员',
 
+# Special:Log/newusers
+'newuserlogpage' => '新开户𠮶人名单',
+
 # User rights log
 'rightslog' => '用户权限日志',
 'rightslogtext' => '底下记到用户权限𠮶更改记录。',
-'rightslogentry' => '拿 $1 𠮶权限从 $2 改到 $3',
-'rightsnone' => '（冇）',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => '编辑个页',
@@ -1236,13 +1218,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => '显示',
 'listusers-noresult' => '寻伓到用户。',
 
-# Special:Log/newusers
-'newuserlogpage' => '新开户𠮶人名单',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '（成员名单）',
 
-# E-mail user
+# Email user
 'mailnologin' => '冇email地址',
 'mailnologintext' => '倷要[[Special:UserLogin|登入]] 起同到倷𠮶[[Special:Preferences|参数设置]] 有只有效𠮶email才发得正email到别𠮶用户。',
 'emailuser' => '发email到个只用户',
@@ -1280,8 +1259,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'notanarticle' => '伓系文章',
 'watchnochange' => '一径到显示𠮶时间之内，倷眏到𠮶页面冇改动。',
 'watchlist-details' => '$1只页面（伓算讨论页） 拖眏到哩',
-'wlheader-enotif' => '* 启动嘞email通知功能。',
-'wlheader-showupdated' => "* 上回倷眵𠮶页面改动𠮶部分用'''粗体'''显到",
+'wlheader-enotif' => '启动嘞email通知功能。',
+'wlheader-showupdated' => "上回倷眵𠮶页面改动𠮶部分用'''粗体'''显到",
 'watchmethod-recent' => '眵吖拖眏到𠮶页面𠮶最近编辑',
 'watchmethod-list' => '望吖监视页里头最晏𠮶改动',
 'watchlistcontains' => '倷𠮶监视列表包含$1只页面。',
@@ -1296,11 +1275,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'enotif_mailer' => '{{SITENAME}}邮件报告员',
 'enotif_reset' => '拿全部文章标成已读',
-'enotif_newpagetext' => '个系新开𠮶页面。',
 'enotif_impersonal_salutation' => '{{SITENAME}}用户',
-'changed' => '改卟嘞',
-'created' => '建正嘞',
-'enotif_subject' => '{{SITENAME}}有页面 $PAGETITLE拖$PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited' => '眵倷上回访问后𠮶全部改动请去$1。',
 'enotif_lastdiff' => '想眵改动请去$1。',
 'enotif_anon_editor' => '匿名用户$1',
@@ -1317,6 +1292,8 @@ $NEWPAGE
 {{SITENAME}}通知系统 – 会改卟倷𠮶监视列表设置，请去 {{canonicalurl:{{#special:EditWatchlist}}}}
 
 回馈同到别𠮶说明: {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => '建正嘞',
+'changed' => '改卟嘞',
 
 # Delete
 'deletepage' => '删卟页面',
@@ -1869,7 +1846,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => '阔',
 'exif-imagelength' => '高',
 'exif-bitspersample' => '每像素byte数',
@@ -1983,7 +1960,7 @@ $1',
 'exif-gpsdatestamp' => 'GPS日期',
 'exif-gpsdifferential' => 'GPS差动修正',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => '冇压缩',
 
 'exif-unknowndate' => '未知𠮶日期',
@@ -2123,7 +2100,7 @@ $1',
 'namespacesall' => '全部',
 'monthsall' => '全部',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => '确认email地址',
 'confirmemail_noemail' => '倷冇到倷𠮶[[Special:Preferences|用户设置]]设正一只有效𠮶电子邮件地址。',
 'confirmemail_text' => '个只网站要求倷用email功能之前确认下倷𠮶email地址。按吖下底𠮶键来发封确认邮件到倷𠮶邮箱。佢会附带一只代码链接；请到倷𠮶浏览器打开个只链接来确认倷𠮶email地址系有效𠮶。',
@@ -2241,13 +2218,9 @@ $3
 'version-hook-subscribedby' => '订阅人',
 'version-version' => '（版本 $1）',
 'version-license' => '许可证',
+'version-poweredby-credits' => "个只 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software' => '装正𠮶软件',
 'version-software-version' => '版本',
-
-# Special:FilePath
-'filepath' => '文件路径',
-'filepath-page' => '文件：',
-'filepath-submit' => '路径',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => '文件名:',
@@ -2269,5 +2242,11 @@ $3
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|标签]]过滤器：',
+
+# New logging system
+'rightsnone' => '（冇）',
+
+# Search suggestions
+'searchsuggest-search' => '寻吖',
 
 );

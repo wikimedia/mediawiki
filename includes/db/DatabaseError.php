@@ -35,9 +35,9 @@ class DBError extends MWException {
 	/**
 	 * Construct a database error
 	 * @param $db DatabaseBase object which threw the error
-	 * @param $error String A simple error message to be used for debugging
+	 * @param string $error A simple error message to be used for debugging
 	 */
-	function __construct( DatabaseBase &$db, $error ) {
+	function __construct( DatabaseBase $db = null, $error ) {
 		$this->db = $db;
 		parent::__construct( $error );
 	}
@@ -91,7 +91,7 @@ class DBError extends MWException {
 class DBConnectionError extends DBError {
 	public $error;
 
-	function __construct( DatabaseBase &$db, $error = 'unknown error' ) {
+	function __construct( DatabaseBase $db = null, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 
 		if ( trim( $error ) != '' ) {
@@ -153,12 +153,12 @@ class DBConnectionError extends DBError {
 
 		$sorry = htmlspecialchars( $this->msg( 'dberr-problems', 'Sorry! This site is experiencing technical difficulties.' ) );
 		$again = htmlspecialchars( $this->msg( 'dberr-again', 'Try waiting a few minutes and reloading.' ) );
-		$info  = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
+		$info = htmlspecialchars( $this->msg( 'dberr-info', '(Can\'t contact the database server: $1)' ) );
 
 		# No database access
 		MessageCache::singleton()->disable();
 
-		if ( trim( $this->error ) == '' ) {
+		if ( trim( $this->error ) == '' && $this->db ) {
 			$this->error = $this->db->getProperty( 'mServer' );
 		}
 
@@ -176,7 +176,7 @@ class DBConnectionError extends DBError {
 		return "$text<hr />$extra";
 	}
 
-	public function reportHTML(){
+	public function reportHTML() {
 		global $wgUseFileCache;
 
 		# Check whether we can serve a file-cached copy of the page with the error underneath
@@ -188,7 +188,7 @@ class DBConnectionError extends DBError {
 					# Hack: extend the body for error messages
 					$cache = str_replace( array( '</html>', '</body>' ), '', $cache );
 					# Add cache notice...
-					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">'.
+					$cache .= '<div style="color:red;font-size:150%;font-weight:bold;">' .
 						htmlspecialchars( $this->msg( 'dberr-cachederror',
 							'This is a cached copy of the requested page, and may not be up to date. ' ) ) .
 						'</div>';
@@ -288,11 +288,11 @@ class DBQueryError extends DBError {
 	 * @param $sql string
 	 * @param $fname string
 	 */
-	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
-		$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
-		  "Query: $sql\n" .
-		  "Function: $fname\n" .
-		  "Error: $errno $error\n";
+	function __construct( DatabaseBase $db, $error, $errno, $sql, $fname ) {
+		$message = "A database error has occurred. Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+			"Query: $sql\n" .
+			"Function: $fname\n" .
+			"Error: $errno $error\n";
 		parent::__construct( $db, $message );
 
 		$this->error = $error;

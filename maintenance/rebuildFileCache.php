@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that builds file cache for content pages.
@@ -153,10 +153,11 @@ class RebuildFileCache extends Maintenance {
 		$this->output( "Done!\n" );
 
 		// Remove these to be safe
-		if ( isset( $wgTitle ) )
+		if ( isset( $wgTitle ) ) {
 			unset( $wgTitle );
+		}
 	}
 }
 
 $maintClass = "RebuildFileCache";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

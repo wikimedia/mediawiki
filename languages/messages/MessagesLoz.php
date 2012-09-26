@@ -35,13 +35,10 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Kamukile zwa adress di meli di xete peson kwa melina notifikasyona',
 'tog-shownumberswatching' => 'Kamukile tali di kentezi sebelu',
 'tog-fancysig' => "Ro sebu e data (dicon ling'ki auto)",
-'tog-externaleditor' => "Sebelize hloli ye ng'i ektenali dauto",
-'tog-externaldiff' => 'Sebelize petuho ektenali dauto',
 'tog-showjumplinks' => 'Nyembulisize "sinkumukezi" ling\'ki',
 'tog-uselivepreview' => 'Sebelize live PendiBe (bulukezi JavaScript) (yem nca)',
 'tog-watchlisthideown' => 'Cwankekile zwa afina di zwa mukoloko di kentezi',
 'tog-watchlisthidebots' => 'Cwankekile roboti di zwa mukoloko di kentezi',
-'tog-nolangconversion' => 'Dinyembulisize selti konfesyoni',
 'tog-ccmeonemails' => 'Afi di zwa dubina di melina a afi di xetewi sebelu',
 'tog-diffonly' => 'Ni sa kamukile petulo selt pre petuho',
 
@@ -125,7 +122,6 @@ $messages = array(
 'qbbrowse' => 'Nepile',
 'qbedit' => "Hloli ye ng'i",
 'qbpageoptions' => 'Bye petulo',
-'qbpageinfo' => 'Petulo tuto',
 'qbmyoptions' => 'Zwa petulona',
 'qbspecialpages' => 'Petulo zwenti',
 'faq' => 'Alabile',
@@ -193,7 +189,6 @@ $messages = array(
 'disclaimers' => 'Dikulemi',
 'disclaimerpage' => 'Project:Dikulemi generali',
 'edithelp' => "Hloli ye ng'i",
-'edithelppage' => "Help:Hloli ye ng'i",
 'helppage' => 'Help:Buinaneli di petulo',
 'mainpage' => 'Petulo yem efro',
 'mainpage-description' => 'Petulo yem efro',
@@ -457,14 +452,10 @@ Informasi: (bye) = petuho a nca selt,
 'prevn' => 'kona {{PLURAL:$1|$1}}',
 'nextn' => 'lila {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Kamukile ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Buinaneli di petulo',
 'searchall' => 'xete',
 'showingresults' => "Kamukile opi {{PLURAL:$1|'''1''' ekali|'''$1''' ekalina}} di #'''$2'''.",
 'showingresultsnum' => "Kamukile {{PLURAL:$3|'''1''' ekali|'''$3''' ekalina}} di #'''$2'''.",
 'powersearch' => 'Fatukile',
-
-# Quickbar
-'qbsettings-none' => 'Ni',
 
 # Preferences page
 'preferences' => 'Petohoni di sebelu',
@@ -506,7 +497,6 @@ Informasi: (bye) = petuho a nca selt,
 
 # User rights log
 'rightslog' => 'Desu di petuhoni kwa sebelu',
-'rightsnone' => '(ni)',
 
 # Recent changes
 'nchanges' => '$1 {{PLURAL:$1|petuho|petuho}}',
@@ -698,7 +688,7 @@ di uplodezi media.',
 'listusers-submit' => 'Kamukile',
 'listusers-noresult' => 'Ni-di sebelu.',
 
-# E-mail user
+# Email user
 'emailuser' => 'Imeli bye sebelu',
 'emailpage' => 'Imeli sebelu',
 'defemailsubject' => '{{SITENAME}} meli',
@@ -735,10 +725,9 @@ A sa afi kulobala di zwa mukoloko di kentezi, tampi \"ngambu kentezi\".",
 'watching' => 'Kentezi...',
 'unwatching' => 'Dikentezi...',
 
-'enotif_newpagetext' => 'Bye sa nca petulo.',
 'enotif_impersonal_salutation' => '{{SITENAME}} sebelu',
-'changed' => 'petuhoni',
 'created' => 'hlolini',
+'changed' => 'petuhoni',
 
 # Delete
 'deletepage' => 'Afi kulobala petulo',
@@ -1023,7 +1012,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagedescription' => 'Sebu di imegi',
 
 # External editor support
@@ -1082,5 +1071,8 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 
 # Special:SpecialPages
 'specialpages' => 'Petulo zwenti',
+
+# New logging system
+'rightsnone' => '(ni)',
 
 );

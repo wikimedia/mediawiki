@@ -10,13 +10,13 @@ DROP TABLE IF EXISTS /*$wgDBprefix*/searchindex;
 CREATE TABLE /*$wgDBprefix*/searchindex (
   -- Key to page_id
   si_page int unsigned NOT NULL,
-  
+
   -- Munged version of title
   si_title varchar(255) NOT NULL default '',
-  
+
   -- Munged version of body text
   si_text mediumtext NOT NULL,
-  
+
   UNIQUE KEY (si_page)
 
 ) ENGINE=MyISAM;

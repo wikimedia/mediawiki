@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that displays replication lag times.
@@ -39,7 +39,7 @@ class GetLagTimes extends Maintenance {
 
 		if ( $lb->getServerCount() == 1 ) {
 			$this->error( "This script dumps replication lag times, but you don't seem to have\n"
-						  . "a multi-host db server configuration." );
+				. "a multi-host db server configuration." );
 		} else {
 			$lags = $lb->getLagTimes();
 			foreach ( $lags as $n => $lag ) {
@@ -59,4 +59,4 @@ class GetLagTimes extends Maintenance {
 }
 
 $maintClass = "GetLagTimes";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -11,7 +11,6 @@
  */
 
 $fallback = 'ur';
-
 $rtl = true;
 
 $messages = array(
@@ -45,8 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => 'لوڑاک ممبرانن تعدادان پشاؤے',
 'tog-oldsig' => 'موجودہ دستخطو نمائش:',
 'tog-fancysig' => '(سادہ دسخط بلا خودکار ربط)',
-'tog-externaleditor' => 'ہمیشہ بیرونی تدوین کار استعمال کورے (صرفی ماہرینن بچے، ھمو بچے کمپیوٹرا خاص ترتیبات درکار بونیان)',
-'tog-externaldiff' => 'ہمیشہ بیرونی تدوین کار استعمال کورے (صرفی ماہرینن بچے، ھمو بچے کمپیوٹرا خاص ترتیبات درکار بونیان)',
 'tog-showjumplinks' => 'ھیہ ووشکی څروٹھاوے',
 'tog-uselivepreview' => 'براہِ راست نمائش استعمال کورے (JavaScript ضرورت بوی)',
 'tog-forceeditsummary' => 'کیاوتکی آوا ترمیمی خلاصو خالی پیڅھیتام تھے متے لو دیت',
@@ -141,6 +138,7 @@ $messages = array(
 'index-category' => 'نو انڈیکس صفحات',
 'noindex-category' => 'نو انڈیکس صفحات',
 'broken-file-category' => 'نس پھت صفحات',
+'categoryviewer-pagedlinks' => '($1) ($2)',
 
 'about' => 'تعارف',
 'article' => 'صفحۂ مشمول',
@@ -158,7 +156,6 @@ $messages = array(
 'qbbrowse' => 'Browse/تصفّح',
 'qbedit' => 'ترمیم',
 'qbpageoptions' => 'ھیہ صفحہ',
-'qbpageinfo' => 'مفہوم',
 'qbmyoptions' => 'مہ صفحات',
 'qbspecialpages' => 'خاص صفحات',
 'faq' => 'عام معلومات',
@@ -238,6 +235,7 @@ $messages = array(
 برائے مہربانی! صفحو لوڑیکو بچے دوبارہ کوشش کوریکاری پروشٹی پھوکرو انتظار کورے.
 
 $1',
+'pool-errorunknown' => 'نامعلوم خطا',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'تعارف {{SITENAME}}',
@@ -249,7 +247,6 @@ $1',
 'disclaimers' => 'اعلانات',
 'disclaimerpage' => 'Project:عام کھوار اعلان',
 'edithelp' => 'مدد براۓ ترمیم',
-'edithelppage' => 'Help:ترمیم',
 'helppage' => 'Help:فھرست',
 'mainpage' => 'آویلو صفحہ',
 'mainpage-description' => 'سرورق',
@@ -269,6 +266,7 @@ $1',
 [[Special:Version|version page]]',
 
 'ok' => 'ٹھیک شیر',
+'pagetitle' => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom' => '‘‘$1’’ نقل کاردو',
 'youhavenewmessages' => 'تہ بچے ای $1 شیر۔ ($2)',
@@ -276,6 +274,7 @@ $1',
 'newmessagesdifflink' => 'تـجـدیـد مـاقـبل آخـراری فـرق',
 'youhavenewmessagesmulti' => 'ء$1 تہ بچے نوغ نوغ پیغامات شینی',
 'editsection' => 'ترمیم',
+'editsection-brackets' => '[$1]',
 'editold' => 'ترمیم',
 'viewsourceold' => 'مآخذو لوڑے',
 'editlink' => 'تدوین کورے',
@@ -284,6 +283,8 @@ $1',
 'toc' => 'فہرست',
 'showtoc' => 'پشاوے',
 'hidetoc' => 'کھوشتاوے',
+'collapsible-collapse' => 'خاتمہ/Collapse',
+'collapsible-expand' => 'فراخ کورے',
 'thisisdeleted' => 'لوڑے  یا بحال کورے $1',
 'viewdeleted' => 'لوڑے $1؟',
 'restorelink' => '{{PLURAL:$1|ای ترمیم حذف ہوی|$1 ترامیم حذف ہونی}}',
@@ -291,6 +292,8 @@ $1',
 'site-atom-feed' => '$1 اٹوم فیڈ',
 'page-rss-feed' => '$1 آر ایس ایس فیڈ',
 'page-atom-feed' => '$1 آٹوم فیڈ',
+'feed-atom' => 'اٹوم',
+'feed-rss' => 'آر ایس ایس',
 'red-link-title' => '
 $1 (صفحہ موجود نیکی)',
 
@@ -386,14 +389,11 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 
 # Login and logout pages
 'logouttext' => "'''ھنیسے تو خارج بیتی آسوس'''<br />
-تو خفی الاسم {{SITENAME}}  استعمال جاری لاکھیکو بوس، یا دوبارہ ھیہ نامو یا مختلف نامان سورا داخل دی بیکو بوس۔  ھیہ یاد آوری کورے کہ ای کما صفحات ھش [[Special:UserLogin|دوباری لاگن بوس]] غیچھی گونی کہ تو ھنیسے خارج نو بیتی آسوس، کلہ پت کہ تو تان تفصحہ (براؤزرو) ابطن (cache) صاف نوکوروس۔\",",
-'welcomecreation' => '== رحمت عزیز چترالی تتے خوشان گیے ریران، $1 ! ==
-
-تہ  کھاتہ ساوزینو بیتی شیر تو تان [[Special:Preferences|{{SITENAME}} ترجیحات]]ن مرتب کوریکو مو روخڅے.',
+تو خفی الاسم {{SITENAME}}  استعمال جاری لاکھیکو بوس، یا دوبارہ ھیہ نامو یا مختلف نامان سورا داخل دی بیکو بوس۔  ھیہ یاد آوری کورے کہ ای کما صفحات ھش <span class='plainlinks'>[\$1 دوباری لاگن بوس]</span> غیچھی گونی کہ تو ھنیسے خارج نو بیتی آسوس، کلہ پت کہ تو تان تفصحہ (براؤزرو) ابطن (cache) صاف نوکوروس۔\",",
 'yourname' => 'اسمِ رکنیت',
 'yourpassword' => 'کلمۂ شناخت(پاسورڈ)',
 'yourpasswordagain' => 'کلمۂ شناخت(پاسورڈو)دوبارہ نیویشے',
-'remembermypassword' => '!!Rachitrali!!مہ یاد لاکھے (کم از کم $1 {{PLURAL:$1|بس|بس}})',
+'remembermypassword' => 'ھیہ براوزیرا مہ داخلِ نوشتگی معلوماتن یاد لاکھے (زیاتاری زیات $1 {{PLURAL:$1|بس|بسان}} بچے)',
 'yourdomainname' => 'تہ ڈومین',
 'externaldberror' => 'یا تھے توثیقی ڈیٹابیسا خطا واقع بیتی شیر یا تتے بیریو کھاتو بتاریخ کوریکو اِجازت نیکی',
 'login' => 'داخل بوس',
@@ -481,6 +481,11 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 
 # Special:PasswordReset
 'passwordreset' => 'پاسورڈو ری سیٹ کورے',
+'passwordreset-username' => 'ممبارو نم',
+
+# Special:ChangeEmail
+'changeemail-none' => '(نو)',
+'changeemail-cancel' => 'کھینسل',
 
 # Edit page toolbar
 'bold_sample' => 'بوسک متن',
@@ -557,6 +562,17 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'moveddeleted-notice' => 'ھیہ ای حذف شدہ صفحہ شیر.
 صفحو نوشتۂ حذف شدگی و منتقلی ذیلا بطورِ حوالہ دیونو بویان.',
 
+# Content models
+'content-model-javascript' => 'جاوا اسکرپٹ',
+
+# Parser/template warnings
+'post-expand-template-inclusion-warning' => "'''خبردار:''' سانچو سایز بو لوٹ شیر.
+بعضی سانچہ شامل نو بونی.",
+'post-expand-template-inclusion-category' => 'ھش صفحات کہ ھتیرا ٹمپلیٹ یعنی سانچو ناپ لوٹ بیتی شیر۔',
+'post-expand-template-argument-warning' => "'''خبردار:''' ھیہ صفحا ای سانچہ(ٹمپلیٹ) مشقولگی دیونو بیتی شیر وا ھمو سایز بولوٹ شیر۔
+ھمی لوان نیزونو بیتی شیر",
+'post-expand-template-argument-category' => 'ھش صفحات کہ ھتیرا بوغینو بیرو سانچان یعنی(ٹمپلیٹان) لو شینی۔',
+
 # History pages
 'viewpagelogs' => 'ھیہ صفحہو بچے نوشتہ جاتن لوڑے',
 'currentrev-asof' => 'حالیہ نظرثانی بمطابق $1',
@@ -566,6 +582,7 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'nextrevision' => '→پروشٹیو اعادہ',
 'currentrevisionlink' => 'حالیہ نظرثانی',
 'cur' => 'رائج',
+'next' => 'پروشٹیو',
 'last' => 'سابقہ',
 'histlegend' => "انتخاب: مختلف نسخان موازنہ کوریکو بچے ، پیامی خانان نشان زد کوری موڑا دیرو بٹنا کلک کورے۔
 
@@ -576,15 +593,22 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'history-show-deleted' => 'صرفی حذف شدہ',
 'histfirst' => 'قدیم ترین',
 'histlast' => 'تازہ ترین',
+'historyempty' => '(خالی)',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 تا $2',
 
 # Revision deletion
 'rev-delundel' => 'پشاوے/کھوشتاوے',
+'rev-showdeleted' => 'پشاوے',
+'revdelete-radio-set' => 'Yes/دی',
+'revdelete-radio-unset' => 'نو',
 'revdel-restore' => 'ظاہریتو تبدیل کورے',
 'revdel-restore-deleted' => 'حذف شدہ رویژنز',
 'revdel-restore-visible' => 'ویزیبل رویژنز',
+
+# History merging
+'mergehistory-revisionrow' => '$1 ($2) $3 . . $4 $5 $6',
 
 # Merge log
 'revertmerge' => 'غیر ضم',
@@ -631,8 +655,6 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'search-interwiki-caption' => 'ملگیری منصوبہ',
 'search-interwiki-default' => '$1 نتائج:',
 'search-interwiki-more' => '(مزید)',
-'search-mwsuggest-enabled' => 'تجویزان سوم جستہ',
-'search-mwsuggest-disabled' => 'کیہ تجویز نیکی',
 'searchrelated' => 'متعلقہ',
 'searchall' => 'کھل',
 'showingresultsheader' => "{{PLURAL:$5|نتیجہ'''$1''' of '''$3'''|نتیجہ'''$1 - $2''' of '''$3'''}} بچے'''$4'''",
@@ -644,14 +666,17 @@ MySQL جوابِ خطاء پرائے "$3: $4"',
 'powersearch-ns' => 'جائے ناما تلاش:',
 'powersearch-redir' => 'فہرستِ رجوع مکرر',
 'powersearch-field' => 'تلاش برائے',
+'powersearch-toggleall' => 'سف',
 
 # Preferences page
 'preferences' => 'ترجیحات',
 'mypreferences' => 'مہ ترجیہات',
+'skin-preview' => 'نمائش',
 'youremail' => 'بشلی کغاز',
 'username' => 'ممبارو نم',
 'uid' => 'ممبارو لمبار:',
 'prefs-memberingroups' => '{{PLURAL:$1|گروہ|گروہاں}} رُکن:',
+'prefs-registration-date-time' => '$1',
 'yourrealname' => '* اصلی نم',
 'yournick' => 'دسخط',
 'badsig' => "ناقص خام دسخط.
@@ -672,9 +697,11 @@ HTML tags لوڑے.',",
 'right-upload' => 'فائل انځاوے',
 'right-delete' => 'صفحان ضائع کورے',
 
+# Special:Log/newusers
+'newuserlogpage' => 'نوشتۂ آمد صارف',
+
 # User rights log
 'rightslog' => 'یوزروت مختص شدہ حقوق',
-'rightsnone' => '(نو)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'ھیہ صفحا ایڈیٹنگ کورے',
@@ -688,6 +715,7 @@ HTML tags لوڑے.',",
 'recentchanges-label-newpage' => 'ھیہ ترمیم نوغ صفحہ تخلیق آریر',
 'recentchanges-label-minor' => 'ھیہ ای معمولی ترمیم شیر',
 'recentchanges-label-bot' => 'ھیہ ایڈیٹو خود کار بوٹو زریعا انجام دیونو ہوی',
+'recentchanges-label-unpatrolled' => 'ھیہ ترمیمو ھمونیہ پت مراجعت(Patrolled) کورونو نو بیتی شیر',
 'rcnote' => "درج ذیل گزشتہ {{PLURAL:$2|بس|'''$2''' انوسا}} باک {{PLURAL:$1|'''ای''' تبدیلی شیر|آخری '''$1''' تبدیلی شینی}}، $5، $4.",
 'rcnotefrom' => "ھیہ موڑا '''$2''' کورونو بیرو تبدیلیان تفصیلات شینی ('''$1''' تبدیلیان پشینو بونیان)۔",
 'rclistfrom' => '$1 نوغ تبدیلیاں پشیک شروع کورے',
@@ -712,6 +740,7 @@ HTML tags لوڑے.',",
 'recentchangeslinked' => 'متعلقہ تبدیلی',
 'recentchangeslinked-toolbox' => 'موقعی تبدیلی',
 'recentchangeslinked-title' => 'متعلقہ تبدیلی "$1"',
+'recentchangeslinked-noresult' => 'ھمی صفحا موجودہ وختہ کیہ تبدیلی نیکی۔',
 'recentchangeslinked-summary' => "ھیہ ھتے تبدیلیان لسٹ شیر کہ ھیتان پھوک مدا پروشٹی ساوزینو بیتی شینی وا ھے صفحان سوم جستہ خور کیہ صفحہ چوکی شینی یا کیہ خاص زمرہ جاتو ممبرانن سوم چوکی شینی<br />
 ساوزیرو [[Special:Watchlist|موڑا صفحہ]] '''بولڈ''' شینی",
 'recentchangeslinked-page' => 'کھوار ویکیپیڈیو منصوبو صفحو لوڑے',
@@ -742,6 +771,8 @@ HTML tags لوڑے.',",
 'imagelinks' => 'مسلو روابط',
 'linkstoimage' => 'ھیہ مسلو سوم درج ذیل {{PLURAL:$1|صفحہ مربوط شیر|$1 صفحات مربوط شینی}}',
 'nolinkstoimage' => 'ھیہ کھوار ویکیپیڈیا ھش کیہ صفحات نیکی کہ ھتیت ھیہ مسل (فائلو) متعلقہ شینی',
+'sharedupload-desc-here' => 'ھیہ فائل $1 موژاری شیر وا ھیہ خور پرجیکٹہ استعمال بویان۔
+مزید معلومات ھمو [$2 فائل مشقولگی صفحہا]  دیونو بیتی شیر',
 'uploadnewversion-linktext' => 'ھیہ مسلو نوغ ورژنو اپلوڈ کورے',
 
 # Random page
@@ -749,6 +780,8 @@ HTML tags لوڑے.',",
 
 # Statistics
 'statistics' => 'اعداد و شمار',
+
+'disambiguationspage' => 'سانچہ: ڈسایمبگ',
 
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|بایٹ|بایٹس}}',
@@ -816,13 +849,10 @@ HTML tags لوڑے.',",
 'linksearch-ok' => 'Search/تلاش',
 'linksearch-line' => '$1 مربوط شیر $2 ری',
 
-# Special:Log/newusers
-'newuserlogpage' => 'نوشتۂ آمد صارف',
-
 # Special:ListGroupRights
 'listgrouprights-members' => 'ممبارانن فھرست',
 
-# E-mail user
+# Email user
 'emailuser' => 'ممباروت بشلی کغاز انڅاوے',
 
 # Watchlist
@@ -886,7 +916,7 @@ HTML tags لوڑے.',",
 'blanknamespace' => '(مرکز)',
 
 # Contributions
-'contributions' => 'صارفو حصہ',
+'contributions' => ' $1 صارفو حصہ',
 'contributions-title' => '$1 صارفو حصہ',
 'mycontris' => 'مہ حصہ',
 'contribsub2' => 'براۓ $1 ($2)',
@@ -925,6 +955,7 @@ HTML tags لوڑے.',",
 
 # Block/unblock
 'blockip' => 'داخلہ ممنوع براۓ صارف',
+'ipboptions' => '2 گھنٹہ:2 hours,1 آنوس:1 day,3 بس:3 days,1 ہفتہ:1 week,2 ہفتہ:2 weeks,1 مس:1 month,3 مس:3 months,6 مس:6 months,1 سال:1 year,لامحدود:infinite',
 'ipblocklist' => 'داخلہ ممنوع براۓ صارف',
 'blocklink' => 'پاوبندی لیگاوے',
 'unblocklink' => 'پاوبندی ختم',
@@ -1056,6 +1087,8 @@ HTML tags لوڑے.',",
 * gpslongitude
 * gpsaltitude',
 
+'exif-dc-date' => 'تاریخ',
+
 # External editor support
 'edit-externally' => 'ھیہ مسلو ایڈیٹ کورے',
 'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)
@@ -1066,6 +1099,9 @@ HTML tags لوڑے.',",
 'namespacesall' => 'تھمامو',
 'monthsall' => 'سف',
 
+# action=purge
+'confirm_purge_button' => 'OK/ٹھیک شیر',
+
 # Table pager
 'table_pager_first' => 'آویلو صفحہ',
 
@@ -1074,10 +1110,37 @@ HTML tags لوڑے.',",
 'watchlisttools-edit' => 'لوڑے یا واچ لسٹہ ترمیم کورے',
 'watchlisttools-raw' => 'نوغ واچ لسٹان ایڈیٹ کورے',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'خبردار:\'\'\' ڈیفالٹ تاڑٰ(نغڑی) "$2" پروشٹیو ڈیفالٹ تاڑا "$1" لیگی شیر۔',
+
 # Special:SpecialPages
 'specialpages' => 'اسپیشل صفحہ',
 
+# External image whitelist
+'external_image_whitelist' => ' #ھیہ لاینو ھموش تان شیکو لاکے کیچہ کہ ھیہ شیر<pre>
+#موڑا ریگولر لوان دیور((صرف ھتیتان کیاغ ھمیتان موژی شینی //) //) 
+#بیریو ھوٹوان آر ایلان سوم ھمیتان میچ کورنو بوی
+# کیاغ کہ میچ ھونی ھیتان ھوٹوان سوم پشینو بوی بصورت دیگر ھیتان لنک کیاغ کی شینی ھتیتان پشینو بوی
+#لاین کیاغ کی شروع بویان  # کومنٹ جوشونو بوی۔
+#ھیہ کیس سینسیٹو شیر۔
+
+#لینو سورا ریجیکس فریگمنٹو لاکھے. ھیہ لاینو ھموش تان شیکو لاکے کیچہ کہ ھیہ شیر۔</pre>',
+
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] filter:',
+'tag-filter-submit' => 'فلٹر',
+'tags-title' => 'Tags/ٹیگز',
+
+# Special:ComparePages
+'compare-page1' => 'صفحہ 1',
+
+# New logging system
+'rightsnone' => '(نو)',
+
+# Feedback
+'feedback-message' => 'پیغام',
+
+# Search suggestions
+'searchsuggest-search' => 'Search/تلاش',
 
 );

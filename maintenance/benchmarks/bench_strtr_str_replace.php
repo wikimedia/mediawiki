@@ -23,14 +23,14 @@
  * @ingroup Benchmark
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 function bfNormalizeTitleStrTr( $str ) {
-    return strtr( $str, '_', ' ' );
+	return strtr( $str, '_', ' ' );
 }
 
 function bfNormalizeTitleStrReplace( $str ) {
-    return str_replace( '_', ' ', $str );
+	return str_replace( '_', ' ', $str );
 }
 
 /**
@@ -75,4 +75,4 @@ class bench_strtr_str_replace extends Benchmarker {
 }
 
 $maintClass = 'bench_strtr_str_replace';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

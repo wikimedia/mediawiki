@@ -43,7 +43,7 @@ class FSLockManager extends LockManager {
 
 	protected $lockDir; // global dir for all servers
 
-	/** @var Array Map of (locked key => lock type => lock file handle) */
+	/** @var Array Map of (locked key => lock file handle) */
 	protected $handles = array();
 
 	/**
@@ -115,12 +115,16 @@ class FSLockManager extends LockManager {
 		} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
 			$this->locksHeld[$path][$type] = 1;
 		} else {
-			wfSuppressWarnings();
-			$handle = fopen( $this->getLockPath( $path ), 'a+' );
-			wfRestoreWarnings();
-			if ( !$handle ) { // lock dir missing?
-				wfMkdirParents( $this->lockDir );
-				$handle = fopen( $this->getLockPath( $path ), 'a+' ); // try again
+			if ( isset( $this->handles[$path] ) ) {
+				$handle = $this->handles[$path];
+			} else {
+				wfSuppressWarnings();
+				$handle = fopen( $this->getLockPath( $path ), 'a+' );
+				wfRestoreWarnings();
+				if ( !$handle ) { // lock dir missing?
+					wfMkdirParents( $this->lockDir );
+					$handle = fopen( $this->getLockPath( $path ), 'a+' ); // try again
+				}
 			}
 			if ( $handle ) {
 				// Either a shared or exclusive lock
@@ -128,7 +132,7 @@ class FSLockManager extends LockManager {
 				if ( flock( $handle, $lock | LOCK_NB ) ) {
 					// Record this lock as active
 					$this->locksHeld[$path][$type] = 1;
-					$this->handles[$path][$type] = $handle;
+					$this->handles[$path] = $handle;
 				} else {
 					fclose( $handle );
 					$status->fatal( 'lockmanager-fail-acquirelock', $path );
@@ -160,24 +164,13 @@ class FSLockManager extends LockManager {
 			--$this->locksHeld[$path][$type];
 			if ( $this->locksHeld[$path][$type] <= 0 ) {
 				unset( $this->locksHeld[$path][$type] );
-				// If a LOCK_SH comes in while we have a LOCK_EX, we don't
-				// actually add a handler, so check for handler existence.
-				if ( isset( $this->handles[$path][$type] ) ) {
-					if ( $type === self::LOCK_EX
-						&& isset( $this->locksHeld[$path][self::LOCK_SH] )
-						&& !isset( $this->handles[$path][self::LOCK_SH] ) )
-					{
-						// EX lock came first: move this handle to the SH one
-						$this->handles[$path][self::LOCK_SH] = $this->handles[$path][$type];
-					} else {
-						// Mark this handle to be unlocked and closed
-						$handlesToClose[] = $this->handles[$path][$type];
-					}
-					unset( $this->handles[$path][$type] );
-				}
 			}
 			if ( !count( $this->locksHeld[$path] ) ) {
 				unset( $this->locksHeld[$path] ); // no locks on this path
+				if ( isset( $this->handles[$path] ) ) {
+					$handlesToClose[] = $this->handles[$path];
+					unset( $this->handles[$path] );
+				}
 			}
 			// Unlock handles to release locks and delete
 			// any lock files that end up with no locks on them...
@@ -237,8 +230,7 @@ class FSLockManager extends LockManager {
 	 * @return string
 	 */
 	protected function getLockPath( $path ) {
-		$hash = self::sha1Base36( $path );
-		return "{$this->lockDir}/{$hash}.lock";
+		return "{$this->lockDir}/{$this->sha1Base36Absolute( $path )}.lock";
 	}
 
 	/**

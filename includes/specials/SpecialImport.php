@@ -30,12 +30,11 @@
  * @ingroup SpecialPage
  */
 class SpecialImport extends SpecialPage {
-
 	private $interwiki = false;
 	private $namespace;
 	private $rootpage = '';
 	private $frompage = '';
-	private $logcomment= false;
+	private $logcomment = false;
 	private $history = true;
 	private $includeTemplates = false;
 	private $pageLinkDepth;
@@ -108,13 +107,13 @@ class SpecialImport extends SpecialPage {
 			$source = Status::newFatal( 'import-token-mismatch' );
 		} elseif ( $sourceName == 'upload' ) {
 			$isUpload = true;
-			if( $user->isAllowed( 'importupload' ) ) {
+			if ( $user->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				throw new PermissionsError( 'importupload' );
 			}
 		} elseif ( $sourceName == "interwiki" ) {
-			if( !$user->isAllowed( 'import' ) ){
+			if ( !$user->isAllowed( 'import' ) ) {
 				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $request->getVal( 'interwiki' );
@@ -136,24 +135,40 @@ class SpecialImport extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
-		if( !$source->isGood() ) {
-			$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $source->getWikiText() ) );
+		if ( !$source->isGood() ) {
+			$out->wrapWikiMsg(
+				"<p class=\"error\">\n$1\n</p>",
+				array( 'importfailed', $source->getWikiText() )
+			);
 		} else {
 			$importer = new WikiImporter( $source->value );
-			if( !is_null( $this->namespace ) ) {
+			if ( !is_null( $this->namespace ) ) {
 				$importer->setTargetNamespace( $this->namespace );
 			}
-			if( !is_null( $this->rootpage ) ) {
+			if ( !is_null( $this->rootpage ) ) {
 				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
-				if( !$statusRootPage->isGood() ) {
-					$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'import-options-wrong', $statusRootPage->getWikiText(), count( $statusRootPage->getErrorsArray() ) ) );
+				if ( !$statusRootPage->isGood() ) {
+					$out->wrapWikiMsg(
+						"<p class=\"error\">\n$1\n</p>",
+						array(
+							'import-options-wrong',
+							$statusRootPage->getWikiText(),
+							count( $statusRootPage->getErrorsArray() )
+						)
+					);
+
 					return;
 				}
 			}
 
 			$out->addWikiMsg( "importstart" );
 
-			$reporter = new ImportReporter( $importer, $isUpload, $this->interwiki , $this->logcomment);
+			$reporter = new ImportReporter(
+				$importer,
+				$isUpload,
+				$this->interwiki,
+				$this->logcomment
+			);
 			$reporter->setContext( $this->getContext() );
 			$exception = false;
 
@@ -167,10 +182,16 @@ class SpecialImport extends SpecialPage {
 
 			if ( $exception ) {
 				# No source or XML parse error
-				$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $exception->getMessage() ) );
-			} elseif( !$result->isGood() ) {
+				$out->wrapWikiMsg(
+					"<p class=\"error\">\n$1\n</p>",
+					array( 'importfailed', $exception->getMessage() )
+				);
+			} elseif ( !$result->isGood() ) {
 				# Zero revisions
-				$out->wrapWikiMsg( "<p class=\"error\">\n$1\n</p>", array( 'importfailed', $result->getWikiText() ) );
+				$out->wrapWikiMsg(
+					"<p class=\"error\">\n$1\n</p>",
+					array( 'importfailed', $result->getWikiText() )
+				);
 			} else {
 				# Success!
 				$out->addWikiMsg( 'importsuccess' );
@@ -182,164 +203,201 @@ class SpecialImport extends SpecialPage {
 	private function showForm() {
 		global $wgImportSources, $wgExportMaxLinkDepth;
 
-		$action = $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) );
+		$action = $this->getTitle()->getLocalURL( array( 'action' => 'submit' ) );
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
-		if( $user->isAllowed( 'importupload' ) ) {
+		if ( $user->isAllowed( 'importupload' ) ) {
 			$out->addHTML(
-				Xml::fieldset( $this->msg( 'import-upload' )->text() ).
-				Xml::openElement( 'form', array( 'enctype' => 'multipart/form-data', 'method' => 'post',
-					'action' => $action, 'id' => 'mw-import-upload-form' ) ) .
-				$this->msg( 'importtext' )->parseAsBlock() .
-				Html::hidden( 'action', 'submit' ) .
-				Html::hidden( 'source', 'upload' ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
-
-				"<tr>
+				Xml::fieldset( $this->msg( 'import-upload' )->text() ) .
+					Xml::openElement(
+						'form',
+						array(
+							'enctype' => 'multipart/form-data',
+							'method' => 'post',
+							'action' => $action,
+							'id' => 'mw-import-upload-form'
+						)
+					) .
+					$this->msg( 'importtext' )->parseAsBlock() .
+					Html::hidden( 'action', 'submit' ) .
+					Html::hidden( 'source', 'upload' ) .
+					Xml::openElement( 'table', array( 'id' => 'mw-import-table-upload' ) ) .
+					"<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-upload-filename' )->text(), 'xmlimport' ) .
+					Xml::label( $this->msg( 'import-upload-filename' )->text(), 'xmlimport' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'xmlimport', 50, '', array( 'type' => 'file' ) ) . ' ' .
+					Html::input( 'xmlimport', '', 'file', array( 'id' => 'xmlimport' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-comment' )->text(), 'mw-import-comment' ) .
+					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-import-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'log-comment', 50, '',
-							array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
+					Xml::input( 'log-comment', 50, '',
+						array( 'id' => 'mw-import-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage' ) .
+					Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage-upload' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'rootpage', 50, $this->rootpage,
-							array( 'id' => 'mw-interwiki-rootpage', 'type' => 'text' ) ) . ' ' .
+					Xml::input( 'rootpage', 50, $this->rootpage,
+						array( 'id' => 'mw-interwiki-rootpage-upload', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
 					<td></td>
 					<td class='mw-submit'>" .
-						Xml::submitButton( $this->msg( 'uploadbtn' )->text() ) .
+					Xml::submitButton( $this->msg( 'uploadbtn' )->text() ) .
 					"</td>
 				</tr>" .
-				Xml::closeElement( 'table' ).
-				Html::hidden( 'editToken', $user->getEditToken() ) .
-				Xml::closeElement( 'form' ) .
-				Xml::closeElement( 'fieldset' )
+					Xml::closeElement( 'table' ) .
+					Html::hidden( 'editToken', $user->getEditToken() ) .
+					Xml::closeElement( 'form' ) .
+					Xml::closeElement( 'fieldset' )
 			);
 		} else {
-			if( empty( $wgImportSources ) ) {
+			if ( empty( $wgImportSources ) ) {
 				$out->addWikiMsg( 'importnosources' );
 			}
 		}
 
-		if( $user->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
+		if ( $user->isAllowed( 'import' ) && !empty( $wgImportSources ) ) {
 			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
 			$importDepth = '';
-			if( $wgExportMaxLinkDepth > 0 ) {
+			if ( $wgExportMaxLinkDepth > 0 ) {
 				$importDepth = "<tr>
 							<td class='mw-label'>" .
-								$this->msg( 'export-pagelinks' )->parse() .
-							"</td>
+					$this->msg( 'export-pagelinks' )->parse() .
+					"</td>
 							<td class='mw-input'>" .
-								Xml::input( 'pagelink-depth', 3, 0 ) .
-							"</td>
-						</tr>";
+					Xml::input( 'pagelink-depth', 3, 0 ) .
+					"</td>
+				</tr>";
 			}
 
 			$out->addHTML(
 				Xml::fieldset( $this->msg( 'importinterwiki' )->text() ) .
-				Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'mw-import-interwiki-form' ) ) .
-				$this->msg( 'import-interwiki-text' )->parseAsBlock() .
-				Html::hidden( 'action', 'submit' ) .
-				Html::hidden( 'source', 'interwiki' ) .
-				Html::hidden( 'editToken', $user->getEditToken() ) .
-				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
-				"<tr>
+					Xml::openElement(
+						'form',
+						array(
+							'method' => 'post',
+							'action' => $action,
+							'id' => 'mw-import-interwiki-form'
+						)
+					) .
+					$this->msg( 'import-interwiki-text' )->parseAsBlock() .
+					Html::hidden( 'action', 'submit' ) .
+					Html::hidden( 'source', 'interwiki' ) .
+					Html::hidden( 'editToken', $user->getEditToken() ) .
+					Xml::openElement( 'table', array( 'id' => 'mw-import-table-interwiki' ) ) .
+					"<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-interwiki-source' )->text(), 'interwiki' ) .
+					Xml::label( $this->msg( 'import-interwiki-source' )->text(), 'interwiki' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::openElement( 'select', array( 'name' => 'interwiki' ) )
+					Xml::openElement(
+						'select',
+						array( 'name' => 'interwiki', 'id' => 'interwiki' )
+					)
 			);
-			foreach( $wgImportSources as $prefix ) {
+
+			foreach ( $wgImportSources as $prefix ) {
 				$selected = ( $this->interwiki === $prefix ) ? ' selected="selected"' : '';
 				$out->addHTML( Xml::option( $prefix, $prefix, $selected ) );
 			}
 
 			$out->addHTML(
-						Xml::closeElement( 'select' ) .
-						Xml::input( 'frompage', 50, $this->frompage ) .
+				Xml::closeElement( 'select' ) .
+					Xml::input( 'frompage', 50, $this->frompage, array( 'id' => 'frompage' ) ) .
 					"</td>
 				</tr>
 				<tr>
 					<td>
 					</td>
 					<td class='mw-input'>" .
-						Xml::checkLabel( $this->msg( 'import-interwiki-history' )->text(), 'interwikiHistory', 'interwikiHistory', $this->history ) .
+					Xml::checkLabel(
+						$this->msg( 'import-interwiki-history' )->text(),
+						'interwikiHistory',
+						'interwikiHistory',
+						$this->history
+					) .
 					"</td>
 				</tr>
 				<tr>
 					<td>
 					</td>
 					<td class='mw-input'>" .
-						Xml::checkLabel( $this->msg( 'import-interwiki-templates' )->text(), 'interwikiTemplates', 'interwikiTemplates', $this->includeTemplates ) .
+					Xml::checkLabel(
+						$this->msg( 'import-interwiki-templates' )->text(),
+						'interwikiTemplates',
+						'interwikiTemplates',
+						$this->includeTemplates
+					) .
 					"</td>
 				</tr>
 				$importDepth
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-interwiki-namespace' )->text(), 'namespace' ) .
+					Xml::label( $this->msg( 'import-interwiki-namespace' )->text(), 'namespace' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Html::namespaceSelector(
-							array(
-								'selected' => $this->namespace,
-								'all' => '',
-							), array(
-								'name'  => 'namespace',
-								'id'    => 'namespace',
-								'class' => 'namespaceselector',
-							)
-						) .
+					Html::namespaceSelector(
+						array(
+							'selected' => $this->namespace,
+							'all' => '',
+						), array(
+							'name' => 'namespace',
+							'id' => 'namespace',
+							'class' => 'namespaceselector',
+						)
+					) .
 					"</td>
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-comment' )->text(), 'mw-interwiki-comment' ) .
+					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-interwiki-comment' ) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'log-comment', 50, '',
-							array( 'id' => 'mw-interwiki-comment', 'type' => 'text' ) ) . ' ' .
+					Xml::input( 'log-comment', 50, '',
+						array( 'id' => 'mw-interwiki-comment', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
 					<td class='mw-label'>" .
-						Xml::label( $this->msg( 'import-interwiki-rootpage' )->text(), 'mw-interwiki-rootpage' ) .
+					Xml::label(
+						$this->msg( 'import-interwiki-rootpage' )->text(),
+						'mw-interwiki-rootpage-interwiki'
+					) .
 					"</td>
 					<td class='mw-input'>" .
-						Xml::input( 'rootpage', 50, $this->rootpage,
-							array( 'id' => 'mw-interwiki-rootpage', 'type' => 'text' ) ) . ' ' .
+					Xml::input( 'rootpage', 50, $this->rootpage,
+						array( 'id' => 'mw-interwiki-rootpage-interwiki', 'type' => 'text' ) ) . ' ' .
 					"</td>
 				</tr>
 				<tr>
 					<td>
 					</td>
 					<td class='mw-submit'>" .
-						Xml::submitButton( $this->msg( 'import-interwiki-submit' )->text(), Linker::tooltipAndAccesskeyAttribs( 'import' ) ) .
+					Xml::submitButton(
+						$this->msg( 'import-interwiki-submit' )->text(),
+						Linker::tooltipAndAccesskeyAttribs( 'import' )
+					) .
 					"</td>
 				</tr>" .
-				Xml::closeElement( 'table' ).
-				Xml::closeElement( 'form' ) .
-				Xml::closeElement( 'fieldset' )
+					Xml::closeElement( 'table' ) .
+					Xml::closeElement( 'form' ) .
+					Xml::closeElement( 'fieldset' )
 			);
 		}
+	}
+
+	protected function getGroupName() {
+		return 'pagetools';
 	}
 }
 
@@ -348,14 +406,21 @@ class SpecialImport extends SpecialPage {
  * @ingroup SpecialPage
  */
 class ImportReporter extends ContextSource {
-	private $reason=false;
+	private $reason = false;
 	private $mOriginalLogCallback = null;
 	private $mOriginalPageOutCallback = null;
 	private $mLogItemCount = 0;
 
-	function __construct( $importer, $upload, $interwiki , $reason=false ) {
+
+	/**
+	 * @param WikiImporter $importer
+	 * @param $upload
+	 * @param $interwiki
+	 * @param string|bool $reason
+	 */
+	function __construct( $importer, $upload, $interwiki, $reason = false ) {
 		$this->mOriginalPageOutCallback =
-				$importer->setPageOutCallback( array( $this, 'reportPage' ) );
+			$importer->setPageOutCallback( array( $this, 'reportPage' ) );
 		$this->mOriginalLogCallback =
 			$importer->setLogItemCallback( array( $this, 'reportLogItem' ) );
 		$importer->setNoticeCallback( array( $this, 'reportNotice' ) );
@@ -399,18 +464,19 @@ class ImportReporter extends ContextSource {
 
 		$this->mPageCount++;
 
-		if( $successCount > 0 ) {
-			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
-				$this->msg( 'import-revision-count' )->numParams( $successCount )->escaped() .
-				"</li>\n"
+		if ( $successCount > 0 ) {
+			$this->getOutput()->addHTML(
+				"<li>" . Linker::linkKnown( $title ) . " " .
+					$this->msg( 'import-revision-count' )->numParams( $successCount )->escaped() .
+					"</li>\n"
 			);
 
 			$log = new LogPage( 'import' );
-			if( $this->mIsUpload ) {
+			if ( $this->mIsUpload ) {
 				$detail = $this->msg( 'import-logentry-upload-detail' )->numParams(
 					$successCount )->inContentLanguage()->text();
 				if ( $this->reason ) {
-					$detail .=  $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
+					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
@@ -419,7 +485,7 @@ class ImportReporter extends ContextSource {
 				$detail = $this->msg( 'import-logentry-interwiki-detail' )->numParams(
 					$successCount )->params( $interwiki )->inContentLanguage()->text();
 				if ( $this->reason ) {
-					$detail .=  $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
+					$detail .= $this->msg( 'colon-separator' )->inContentLanguage()->text() . $this->reason;
 				}
 				$log->addEntry( 'interwiki', $title, $detail );
 			}
@@ -428,7 +494,7 @@ class ImportReporter extends ContextSource {
 			$dbw = wfGetDB( DB_MASTER );
 			$latest = $title->getLatestRevID();
 			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleID(), $comment, true );
-			if (!is_null($nullRevision)) {
+			if ( !is_null( $nullRevision ) ) {
 				$nullRevision->insertOn( $dbw );
 				$page = WikiPage::factory( $title );
 				# Update page record
@@ -446,8 +512,9 @@ class ImportReporter extends ContextSource {
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = $this->msg( 'imported-log-entries' )->numParams( $this->mLogItemCount )->parse();
 			$out->addHTML( Xml::tags( 'li', null, $msg ) );
-		} elseif( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
+		} elseif ( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$out->addHTML( "</ul>\n" );
+
 			return Status::newFatal( 'importnopages' );
 		}
 		$out->addHTML( "</ul>\n" );

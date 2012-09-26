@@ -58,7 +58,7 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Get a cache key for the given session id.
 	 *
-	 * @param $id String: session id
+	 * @param string $id session id
 	 * @return String: cache key
 	 */
 	static function getKey( $id ) {
@@ -89,12 +89,12 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback when reading session data.
 	 *
-	 * @param $id String: session id
+	 * @param string $id session id
 	 * @return Mixed: session data
 	 */
 	static function read( $id ) {
 		$data = self::getCache()->get( self::getKey( $id ) );
-		if( $data === false ) {
+		if ( $data === false ) {
 			return '';
 		}
 		return $data;
@@ -103,7 +103,7 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback when writing session data.
 	 *
-	 * @param $id String: session id
+	 * @param string $id session id
 	 * @param $data Mixed: session data
 	 * @return Boolean: success
 	 */
@@ -116,7 +116,7 @@ class ObjectCacheSessionHandler {
 	/**
 	 * Callback to destroy a session when calling session_destroy().
 	 *
-	 * @param $id String: session id
+	 * @param string $id session id
 	 * @return Boolean: success
 	 */
 	static function destroy( $id ) {

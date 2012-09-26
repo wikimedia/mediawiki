@@ -58,7 +58,7 @@ abstract class ImageHandler extends MediaHandler {
 		} elseif ( isset( $params['width'] ) ) {
 			$width = $params['width'];
 		} else {
-			throw new MWException( 'No width specified to '.__METHOD__ );
+			throw new MWException( 'No width specified to ' . __METHOD__ );
 		}
 		# Removed for ProofreadPage
 		#$width = intval( $width );
@@ -92,7 +92,7 @@ abstract class ImageHandler extends MediaHandler {
 
 		if ( !isset( $params['page'] ) ) {
 			$params['page'] = 1;
-		} else  {
+		} else {
 			if ( $params['page'] > $image->pageCount() ) {
 				$params['page'] = $image->pageCount();
 			}
@@ -139,7 +139,6 @@ abstract class ImageHandler extends MediaHandler {
 			$params['height'] = $params['physicalHeight'];
 		}
 
-
 		if ( !$this->validateThumbParams( $params['physicalWidth'],
 				$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType ) ) {
 			return false;
@@ -161,12 +160,12 @@ abstract class ImageHandler extends MediaHandler {
 		$width = intval( $width );
 
 		# Sanity check $width
-		if( $width <= 0) {
-			wfDebug( __METHOD__.": Invalid destination width: $width\n" );
+		if ( $width <= 0 ) {
+			wfDebug( __METHOD__ . ": Invalid destination width: $width\n" );
 			return false;
 		}
 		if ( $srcWidth <= 0 ) {
-			wfDebug( __METHOD__.": Invalid source width: $srcWidth\n" );
+			wfDebug( __METHOD__ . ": Invalid source width: $srcWidth\n" );
 			return false;
 		}
 
@@ -188,9 +187,9 @@ abstract class ImageHandler extends MediaHandler {
 		if ( !$this->normaliseParams( $image, $params ) ) {
 			return false;
 		}
-		$url = $script . '&' . wfArrayToCGI( $this->getScriptParams( $params ) );
+		$url = wfAppendQuery( $script, $this->getScriptParams( $params ) );
 
-		if( $image->mustRender() || $params['width'] < $image->getWidth() ) {
+		if ( $image->mustRender() || $params['width'] < $image->getWidth() ) {
 			return new ThumbnailImage( $image, $url, false, $params );
 		}
 	}

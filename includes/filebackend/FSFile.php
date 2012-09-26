@@ -28,11 +28,12 @@
  */
 class FSFile {
 	protected $path; // path to file
+	protected $sha1Base36; // file SHA-1 in base 36
 
 	/**
 	 * Sets up the file object
 	 *
-	 * @param $path string Path to temporary file on local disk
+	 * @param string $path Path to temporary file on local disk
 	 * @throws MWException
 	 */
 	public function __construct( $path ) {
@@ -86,8 +87,8 @@ class FSFile {
 
 	/**
 	 * Guess the MIME type from the file contents alone
-	 * 
-	 * @return string 
+	 *
+	 * @return string
 	 */
 	public function getMimeType() {
 		return MimeMagic::singleton()->guessMimeType( $this->path, false );
@@ -97,14 +98,14 @@ class FSFile {
 	 * Get an associative array containing information about
 	 * a file with the given storage path.
 	 *
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 * @param Mixed $ext: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
 	 *
 	 * @return array
 	 */
 	public function getProps( $ext = true ) {
 		wfProfileIn( __METHOD__ );
-		wfDebug( __METHOD__.": Getting file info for $this->path\n" );
+		wfDebug( __METHOD__ . ": Getting file info for $this->path\n" );
 
 		$info = self::placeholderProps();
 		$info['fileExists'] = $this->exists();
@@ -131,7 +132,7 @@ class FSFile {
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
-				$tempImage = (object)array();
+				$tempImage = (object)array(); // XXX (hack for File object)
 				$info['metadata'] = $handler->getMetadata( $tempImage, $this->path );
 				$gis = $handler->getImageSize( $tempImage, $this->path, $info['metadata'] );
 				if ( is_array( $gis ) ) {
@@ -140,9 +141,9 @@ class FSFile {
 			}
 			$info['sha1'] = $this->getSha1Base36();
 
-			wfDebug(__METHOD__.": $this->path loaded, {$info['size']} bytes, {$info['mime']}.\n");
+			wfDebug( __METHOD__ . ": $this->path loaded, {$info['size']} bytes, {$info['mime']}.\n" );
 		} else {
-			wfDebug(__METHOD__.": $this->path NOT FOUND!\n");
+			wfDebug( __METHOD__ . ": $this->path NOT FOUND!\n" );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -170,7 +171,7 @@ class FSFile {
 	/**
 	 * Exract image size information
 	 *
-	 * @param $gis array
+	 * @param array $gis
 	 * @return Array
 	 */
 	protected function extractImageSizeInfo( array $gis ) {
@@ -193,26 +194,33 @@ class FSFile {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
+	 * @param bool $recache
 	 * @return bool|string False on failure
 	 */
-	public function getSha1Base36() {
+	public function getSha1Base36( $recache = false ) {
 		wfProfileIn( __METHOD__ );
 
+		if ( $this->sha1Base36 !== null && !$recache ) {
+			wfProfileOut( __METHOD__ );
+			return $this->sha1Base36;
+		}
+
 		wfSuppressWarnings();
-		$hash = sha1_file( $this->path );
+		$this->sha1Base36 = sha1_file( $this->path );
 		wfRestoreWarnings();
-		if ( $hash !== false ) {
-			$hash = wfBaseConvert( $hash, 16, 36, 31 );
+
+		if ( $this->sha1Base36 !== false ) {
+			$this->sha1Base36 = wfBaseConvert( $this->sha1Base36, 16, 36, 31 );
 		}
 
 		wfProfileOut( __METHOD__ );
-		return $hash;
+		return $this->sha1Base36;
 	}
 
 	/**
 	 * Get the final file extension from a file system path
-	 * 
-	 * @param $path string
+	 *
+	 * @param string $path
 	 * @return string
 	 */
 	public static function extensionFromPath( $path ) {
@@ -223,10 +231,9 @@ class FSFile {
 	/**
 	 * Get an associative array containing information about a file in the local filesystem.
 	 *
-	 * @param $path String: absolute local filesystem path
-	 * @param $ext Mixed: the file extension, or true to extract it from the filename.
+	 * @param string $path absolute local filesystem path
+	 * @param Mixed $ext: the file extension, or true to extract it from the filename.
 	 *             Set it to false to ignore the extension.
-	 *
 	 * @return array
 	 */
 	public static function getPropsFromPath( $path, $ext = true ) {
@@ -241,8 +248,7 @@ class FSFile {
 	 * 160 log 2 / log 36 = 30.95, so the 160-bit hash fills 31 digits in base 36
 	 * fairly neatly.
 	 *
-	 * @param $path string
-	 *
+	 * @param string $path
 	 * @return bool|string False on failure
 	 */
 	public static function getSha1Base36FromPath( $path ) {

@@ -26,15 +26,15 @@
  * @ingroup UtfNormal
  */
 
-if( php_sapi_name() != 'cli' ) {
+if( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
 /** */
-require_once( 'UtfNormal.php' );
-require_once( '../diff/DifferenceEngine.php' );
+require_once 'UtfNormal.php';
+require_once '../diff/DifferenceEngine.php';
 
-dl('php_utfnormal.so' );
+dl( 'php_utfnormal.so' );
 
 # mt_srand( 99999 );
 

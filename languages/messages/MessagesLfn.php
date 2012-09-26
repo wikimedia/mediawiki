@@ -63,7 +63,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Descovre la me adirije de eposta en postas de nota',
 'tog-shownumberswatching' => 'Mostra la numero de usores oservante',
 'tog-fancysig' => 'Sinias simple (sin lia automatica)',
-'tog-externaleditor' => 'Usa costumal editadores esterna',
 'tog-watchlisthideown' => 'Asconde me editas de la lista de pajes oservada',
 'tog-watchlisthidebots' => 'Asconde editas par bot de la lista de pajes oservada',
 'tog-watchlisthideminor' => 'Asconde editas minor de la lista de pajes oservada',
@@ -152,7 +151,6 @@ $messages = array(
 'qbbrowse' => 'Surfa',
 'qbedit' => 'Edita',
 'qbpageoptions' => 'Esta paje',
-'qbpageinfo' => 'Situa',
 'qbmyoptions' => 'Me pajes',
 'qbspecialpages' => 'Pajes spesial',
 
@@ -218,7 +216,6 @@ $messages = array(
 'disclaimers' => 'Negas de respondablia',
 'disclaimerpage' => 'Project:Nega jeneral de respondablia',
 'edithelp' => 'Aida con edita',
-'edithelppage' => 'Help:Edita',
 'helppage' => 'Help:Contenis',
 'mainpage' => 'Paje Prima',
 'mainpage-description' => 'Paje Prima',
@@ -438,13 +435,10 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'prevn' => '{{PLURAL:$1|$1}} presedente',
 'nextn' => '{{PLURAL:$1|$1}} seguente',
 'viewprevnext' => 'Vide ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Contenis',
 'search-result-size' => '$1 ({{PLURAL:$2|1 parola|$2 parolas}})',
 'search-section' => '(sesion $1)',
 'search-interwiki-default' => 'Resultas de $1:',
 'search-interwiki-more' => '(plu)',
-'search-mwsuggest-enabled' => 'con sujestes',
-'search-mwsuggest-disabled' => 'zero sujestes',
 'searchall' => 'tota',
 'powersearch' => 'Xerca avansada',
 
@@ -665,7 +659,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-group' => 'Grupo',
 'listgrouprights-members' => '(lista de membros)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Envia un eposta a esta usor',
 'emailfrom' => 'De',
 'emailto' => 'Per',
@@ -690,7 +684,6 @@ Si tu vole sutrae la paje de tu lista de pajes oservada en la futur, clica a \"n
 'watching' => 'Oserva...',
 'unwatching' => 'No oserva...',
 
-'enotif_newpagetext' => 'Esta es un paje nova',
 'created' => 'Creada',
 
 # Delete
@@ -934,7 +927,7 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-exposuretime-format' => '$1 sec. ($2)',
 
 # External editor support
@@ -957,9 +950,6 @@ Si la fix ia es cambiada de se stato orijinal, alga detalias pote no es clara en
 # Special:Version
 'version' => 'Varia',
 'version-version' => '(Varia $1)',
-
-# Special:FilePath
-'filepath-page' => 'Fix:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Xerca',

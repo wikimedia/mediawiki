@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that looks for 'orphan' revisions hooked to pages which
@@ -87,7 +87,7 @@ class Orphans extends Maintenance {
 			FROM $revision LEFT OUTER JOIN $page ON rev_page=page_id
 			WHERE page_id IS NULL
 		" );
-		$orphans = $dbw->numRows( $result );
+		$orphans = $result->numRows();
 		if ( $orphans > 0 ) {
 			global $wgContLang;
 			$this->output( "$orphans orphan revisions...\n" );
@@ -139,7 +139,7 @@ class Orphans extends Maintenance {
 			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
 			WHERE rev_id IS NULL
 		" );
-		$widows = $dbw->numRows( $result );
+		$widows = $result->numRows();
 		if ( $widows > 0 ) {
 			$this->output( "$widows childless pages...\n" );
 			$this->output( sprintf( "%10s %11s %2s %s\n", 'page_id', 'page_latest', 'ns', 'page_title' ) );
@@ -171,7 +171,7 @@ class Orphans extends Maintenance {
 	 */
 	private function checkSeparation( $fix ) {
 		$dbw = wfGetDB( DB_MASTER );
-		$page     = $dbw->tableName( 'page' );
+		$page = $dbw->tableName( 'page' );
 		$revision = $dbw->tableName( 'revision' );
 
 		if ( $fix ) {
@@ -209,7 +209,7 @@ class Orphans extends Maintenance {
 							'revision',
 							'rev_id',
 							array(
-								'rev_page'      => $row->page_id,
+								'rev_page' => $row->page_id,
 								'rev_timestamp' => $row2->max_timestamp ) );
 						$this->output( "... updating to revision $maxId\n" );
 						$maxRev = Revision::newFromId( $maxId );
@@ -239,4 +239,4 @@ class Orphans extends Maintenance {
 }
 
 $maintClass = "Orphans";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

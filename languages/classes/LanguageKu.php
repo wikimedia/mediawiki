@@ -21,8 +21,8 @@
  * @ingroup Language
  */
 
-require_once( __DIR__ . '/../LanguageConverter.php' );
-require_once( __DIR__ . '/LanguageKu_ku.php' );
+require_once __DIR__ . '/../LanguageConverter.php';
+require_once __DIR__ . '/LanguageKu_ku.php';
 
 /**
  * Kurdish converter routines
@@ -30,7 +30,7 @@ require_once( __DIR__ . '/LanguageKu_ku.php' );
  * @ingroup Language
  */
 class KuConverter extends LanguageConverter {
-	var $mArabicToLatin = array(
+	public $mArabicToLatin = array(
 		'ب' => 'b', 'ج' => 'c', 'چ' => 'ç', 'د' => 'd', 'ف' => 'f', 'گ' => 'g', 'ھ' => 'h',
 		'ہ' => 'h', 'ه' => 'h', 'ح' => 'h', 'ژ' => 'j', 'ك' => 'k', 'ک' => 'k', 'ل' => 'l',
 		'م' => 'm', 'ن' => 'n', 'پ' => 'p', 'ق' => 'q', 'ر' => 'r', 'س' => 's', 'ش' => 'ş',
@@ -41,23 +41,23 @@ class KuConverter extends LanguageConverter {
 
 		/* Doppel- und Halbvokale */
 		'ڵ' => 'll', # ll
-		'ڕ'  => 'rr', # rr
-		'ا'  => 'a',
+		'ڕ' => 'rr', # rr
+		'ا' => 'a',
 		# 'ئێ' => 'ê', # initial e
-		'ە'  => 'e',
-		'ه‌'  => 'e', # with one non-joiner
-		'ه‌‌'  => 'e', # with two non-joiner
-		'ة'  => 'e',
+		'ە' => 'e',
+		'ه‌' => 'e', # with one non-joiner
+		'ه‌‌' => 'e', # with two non-joiner
+		'ة' => 'e',
 		'ێ' => 'ê',
-		'ي'  => 'î',
-		'ی'  => 'î', # U+06CC  db 8c  ARABIC LETTER FARSI YEH
-		'ى'  => 'î', # U+0649  d9 89  ARABIC LETTER ALEF MAKSURA
-		'ۆ'  => 'o',
-		'و'  => 'w',
-		'ئ'  => '', # initial hemze should not be shown
-		'،'  => ',',
-		'ع'  => '\'', # ayn
-		'؟'  => '?',
+		'ي' => 'î',
+		'ی' => 'î', # U+06CC  db 8c  ARABIC LETTER FARSI YEH
+		'ى' => 'î', # U+0649  d9 89  ARABIC LETTER ALEF MAKSURA
+		'ۆ' => 'o',
+		'و' => 'w',
+		'ئ' => '', # initial hemze should not be shown
+		'،' => ',',
+		'ع' => '\'', # ayn
+		'؟' => '?',
 
 		# digits
 		'٠' => '0', # &#x0660;
@@ -72,7 +72,7 @@ class KuConverter extends LanguageConverter {
 		'٩' => '9', # &#x0669;
 	);
 
-	var $mLatinToArabic = array(
+	public $mLatinToArabic = array(
 		'b' => 'ب', 'c' => 'ج', 'ç' => 'چ', 'd' => 'د', 'f' => 'ف', 'g' => 'گ',
 		'h' => 'ه', 'j' => 'ژ', 'k' => 'ک', 'l' => 'ل',
 		'm' => 'م', 'n' => 'ن', 'p' => 'پ', 'q' => 'ق', 'r' => 'ر', 's' => 'س', 'ş' => 'ش',
@@ -113,13 +113,13 @@ class KuConverter extends LanguageConverter {
 		' o' => 'ئۆ ',
 		' u' => 'ئو ',
 		' û' => 'ئوو ',
-		'A'  => 'ئا',
-		'E'  => 'ئە',
-		'Ê'  => 'ئێ',
-		'Î'  => 'ئی',
-		'O'  => 'ئۆ',
-		'U'  => 'ئو',
-		'Û'  => 'ئوو',
+		'A' => 'ئا',
+		'E' => 'ئە',
+		'Ê' => 'ئێ',
+		'Î' => 'ئی',
+		'O' => 'ئۆ',
+		'U' => 'ئو',
+		'Û' => 'ئوو',
 		' A' => 'ئا ',
 		' E' => 'ئە ',
 		' Ê' => 'ئێ ',
@@ -149,7 +149,7 @@ class KuConverter extends LanguageConverter {
 		$this->mTables = array(
 			'ku-latn' => new ReplacementArray( $this->mArabicToLatin ),
 			'ku-arab' => new ReplacementArray( $this->mLatinToArabic ),
-			'ku'      => new ReplacementArray()
+			'ku' => new ReplacementArray()
 		);
 	}
 
@@ -167,29 +167,16 @@ class KuConverter extends LanguageConverter {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 				return;
+			}
 		}
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
 			$link = $oldlink;
-	}
-
-	/**
-	 * We want our external link captions to be converted in variants,
-	 * so we return the original text instead -{$text}-, except for URLs
-	 *
-	 * @param $text string
-	 * @param $noParse bool
-	 *
-	 * @return string
-	 */
-	function markNoConversion( $text, $noParse = false ) {
-		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
-		    return parent::markNoConversion( $text );
-		return $text;
+		}
 	}
 
 	/**
@@ -203,9 +190,11 @@ class KuConverter extends LanguageConverter {
 	 */
 	function autoConvert( $text, $toVariant = false ) {
 		global $wgTitle;
-		if ( is_object( $wgTitle ) && $wgTitle->getNameSpace() == NS_FILE ) {
+		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) {
+				return $text;
+			}
 		}
 		return parent::autoConvert( $text, $toVariant );
 	}
@@ -221,6 +210,7 @@ class KuConverter extends LanguageConverter {
 	 * @return string
 	 */
 	function translate( $text, $toVariant ) {
+		$this->loadTables();
 		/* From Kazakh interface, maybe we need it later
 		$breaks = '[^\w\x80-\xff]';
 		// regexp for roman numbers
@@ -267,12 +257,12 @@ class LanguageKu extends LanguageKu_ku {
 
 		$variants = array( 'ku', 'ku-arab', 'ku-latn' );
 		$variantfallbacks = array(
-			'ku'      => 'ku-latn',
+			'ku' => 'ku-latn',
 			'ku-arab' => 'ku-latn',
 			'ku-latn' => 'ku-arab',
 		);
 
 		$this->mConverter = new KuConverter( $this, 'ku', $variants, $variantfallbacks );
-		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

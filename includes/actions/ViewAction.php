@@ -23,17 +23,24 @@
  * @author Timo Tijhof
  */
 
+/**
+ * An action that views article content
+ *
+ * This is a wrapper that will call Article::render().
+ *
+ * @ingroup Actions
+ */
 class ViewAction extends FormlessAction {
 
 	public function getName() {
 		return 'view';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 		$this->page->view();
 	}
 

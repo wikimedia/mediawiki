@@ -27,6 +27,10 @@
 
 /** */
 
+if ( PHP_SAPI != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
+
 require_once 'UtfNormalDefines.php';
 require_once 'UtfNormalUtil.php';
 require_once 'UtfNormal.php';
@@ -34,9 +38,6 @@ mb_internal_encoding( "utf-8" );
 
 $verbose = false;
 #$verbose = true;
-if( php_sapi_name() != 'cli' ) {
-	die( "Run me from the command line please.\n" );
-}
 
 $in = fopen( "UTF-8-test.txt", "rt" );
 if( !$in ) {

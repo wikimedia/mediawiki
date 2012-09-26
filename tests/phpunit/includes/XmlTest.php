@@ -4,45 +4,37 @@ class XmlTest extends MediaWikiTestCase {
 	private static $oldLang;
 	private static $oldNamespaces;
 
-	public function setUp() {
-		global $wgLang, $wgContLang;
+	protected function setUp() {
+		parent::setUp();
 
-		self::$oldLang = $wgLang;
-		$wgLang = Language::factory( 'en' );
-
-		// Hardcode namespaces during test runs,
-		// so that html output based on existing namespaces
-		// can be properly evaluated.
-		self::$oldNamespaces = $wgContLang->getNamespaces();
-		$wgContLang->setNamespaces( array(
+		$langObj = Language::factory( 'en' );
+		$langObj->setNamespaces( array(
 			-2 => 'Media',
 			-1 => 'Special',
-			0  => '',
-			1  => 'Talk',
-			2  => 'User',
-			3  => 'User_talk',
-			4  => 'MyWiki',
-			5  => 'MyWiki_Talk',
-			6  => 'File',
-			7  => 'File_talk',
-			8  => 'MediaWiki',
-			9  => 'MediaWiki_talk',
-			10  => 'Template',
-			11  => 'Template_talk',
-			100  => 'Custom',
-			101  => 'Custom_talk',
+			0 => '',
+			1 => 'Talk',
+			2 => 'User',
+			3 => 'User_talk',
+			4 => 'MyWiki',
+			5 => 'MyWiki_Talk',
+			6 => 'File',
+			7 => 'File_talk',
+			8 => 'MediaWiki',
+			9 => 'MediaWiki_talk',
+			10 => 'Template',
+			11 => 'Template_talk',
+			100 => 'Custom',
+			101 => 'Custom_talk',
+		) );
+
+		$this->setMwGlobals( array(
+			'wgLang' => $langObj,
+			'wgWellFormedXml' => true,
 		) );
 	}
 
-	public function tearDown() {
-		global $wgLang, $wgContLang;
-		$wgLang = self::$oldLang;
-
-		$wgContLang->setNamespaces( self::$oldNamespaces );
-	}
-
 	public function testExpandAttributes() {
-		$this->assertNull( Xml::expandAttributes(null),
+		$this->assertNull( Xml::expandAttributes( null ),
 			'Converting a null list of attributes'
 		);
 		$this->assertEquals( '', Xml::expandAttributes( array() ),
@@ -51,8 +43,8 @@ class XmlTest extends MediaWikiTestCase {
 	}
 
 	public function testExpandAttributesException() {
-		$this->setExpectedException('MWException');
-		Xml::expandAttributes('string');
+		$this->setExpectedException( 'MWException' );
+		Xml::expandAttributes( 'string' );
 	}
 
 	function testElementOpen() {
@@ -78,6 +70,7 @@ class XmlTest extends MediaWikiTestCase {
 			'Input with a value of 0 (bug 23797)'
 		);
 	}
+
 	function testElementEscaping() {
 		$this->assertEquals(
 			'<element>hello &lt;there&gt; you &amp; you</element>',
@@ -112,53 +105,57 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertEquals( '</element>', Xml::closeElement( 'element' ), 'closeElement() shortcut' );
 	}
 
-	public function testDateMenu( ) {
-		$curYear   = intval(gmdate('Y'));
-		$prevYear  = $curYear - 1;
+	public function testDateMenu() {
+		$curYear = intval( gmdate( 'Y' ) );
+		$prevYear = $curYear - 1;
 
-		$curMonth  = intval(gmdate('n'));
+		$curMonth = intval( gmdate( 'n' ) );
 		$prevMonth = $curMonth - 1;
-		if( $prevMonth == 0 ) { $prevMonth = 12; }
+		if ( $prevMonth == 0 ) {
+			$prevMonth = 12;
+		}
 		$nextMonth = $curMonth + 1;
-		if( $nextMonth == 13 ) { $nextMonth = 1; }
+		if ( $nextMonth == 13 ) {
+			$nextMonth = 1;
+		}
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> <input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
-'<option value="1">January</option>' . "\n" .
-'<option value="2" selected="">February</option>' . "\n" .
-'<option value="3">March</option>' . "\n" .
-'<option value="4">April</option>' . "\n" .
-'<option value="5">May</option>' . "\n" .
-'<option value="6">June</option>' . "\n" .
-'<option value="7">July</option>' . "\n" .
-'<option value="8">August</option>' . "\n" .
-'<option value="9">September</option>' . "\n" .
-'<option value="10">October</option>' . "\n" .
-'<option value="11">November</option>' . "\n" .
-'<option value="12">December</option></select>',
+				'<option value="1">January</option>' . "\n" .
+				'<option value="2" selected="">February</option>' . "\n" .
+				'<option value="3">March</option>' . "\n" .
+				'<option value="4">April</option>' . "\n" .
+				'<option value="5">May</option>' . "\n" .
+				'<option value="6">June</option>' . "\n" .
+				'<option value="7">July</option>' . "\n" .
+				'<option value="8">August</option>' . "\n" .
+				'<option value="9">September</option>' . "\n" .
+				'<option value="10">October</option>' . "\n" .
+				'<option value="11">November</option>' . "\n" .
+				'<option value="12">December</option></select>',
 			Xml::dateMenu( 2011, 02 ),
 			"Date menu for february 2011"
 		);
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> <input id="year" maxlength="4" size="7" type="number" value="2011" name="year" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
-'<option value="1">January</option>' . "\n" .
-'<option value="2">February</option>' . "\n" .
-'<option value="3">March</option>' . "\n" .
-'<option value="4">April</option>' . "\n" .
-'<option value="5">May</option>' . "\n" .
-'<option value="6">June</option>' . "\n" .
-'<option value="7">July</option>' . "\n" .
-'<option value="8">August</option>' . "\n" .
-'<option value="9">September</option>' . "\n" .
-'<option value="10">October</option>' . "\n" .
-'<option value="11">November</option>' . "\n" .
-'<option value="12">December</option></select>',
-			Xml::dateMenu( 2011, -1),
+				'<option value="1">January</option>' . "\n" .
+				'<option value="2">February</option>' . "\n" .
+				'<option value="3">March</option>' . "\n" .
+				'<option value="4">April</option>' . "\n" .
+				'<option value="5">May</option>' . "\n" .
+				'<option value="6">June</option>' . "\n" .
+				'<option value="7">July</option>' . "\n" .
+				'<option value="8">August</option>' . "\n" .
+				'<option value="9">September</option>' . "\n" .
+				'<option value="10">October</option>' . "\n" .
+				'<option value="11">November</option>' . "\n" .
+				'<option value="12">December</option></select>',
+			Xml::dateMenu( 2011, -1 ),
 			"Date menu with negative month for 'All'"
 		);
 		$this->assertEquals(
 			Xml::dateMenu( $curYear, $curMonth ),
-			Xml::dateMenu( ''      , $curMonth ),
+			Xml::dateMenu( '', $curMonth ),
 			"Date menu year is the current one when not specified"
 		);
 
@@ -171,18 +168,18 @@ class XmlTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> <input id="year" maxlength="4" size="7" type="number" name="year" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
-'<option value="1">January</option>' . "\n" .
-'<option value="2">February</option>' . "\n" .
-'<option value="3">March</option>' . "\n" .
-'<option value="4">April</option>' . "\n" .
-'<option value="5">May</option>' . "\n" .
-'<option value="6">June</option>' . "\n" .
-'<option value="7">July</option>' . "\n" .
-'<option value="8">August</option>' . "\n" .
-'<option value="9">September</option>' . "\n" .
-'<option value="10">October</option>' . "\n" .
-'<option value="11">November</option>' . "\n" .
-'<option value="12">December</option></select>',
+				'<option value="1">January</option>' . "\n" .
+				'<option value="2">February</option>' . "\n" .
+				'<option value="3">March</option>' . "\n" .
+				'<option value="4">April</option>' . "\n" .
+				'<option value="5">May</option>' . "\n" .
+				'<option value="6">June</option>' . "\n" .
+				'<option value="7">July</option>' . "\n" .
+				'<option value="8">August</option>' . "\n" .
+				'<option value="9">September</option>' . "\n" .
+				'<option value="10">October</option>' . "\n" .
+				'<option value="11">November</option>' . "\n" .
+				'<option value="12">December</option></select>',
 			Xml::dateMenu( '', '' ),
 			"Date menu with neither year or month"
 		);
@@ -217,6 +214,7 @@ class XmlTest extends MediaWikiTestCase {
 			'label() with no attribs'
 		);
 	}
+
 	function testLabelAttributeCanOnlyBeClassOrTitle() {
 		$this->assertEquals(
 			'<label for="id">name</label>',
@@ -236,10 +234,10 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<label for="id" class="nice" title="nice tooltip">name</label>',
 			Xml::label( 'name', 'id', array(
-				'generated' => true,
-				'class' => 'nice',
-				'title' => 'nice tooltip',
-				'anotherattr' => 'value',
+					'generated' => true,
+					'class' => 'nice',
+					'title' => 'nice tooltip',
+					'anotherattr' => 'value',
 				)
 			),
 			'label() skip all attributes but "class" and "title"'

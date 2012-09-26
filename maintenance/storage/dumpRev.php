@@ -21,7 +21,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that gets the text of a revision,
@@ -46,7 +46,7 @@ class DumpRev extends Maintenance {
 			$this->error( "Row not found", true );
 		}
 
-		$flags = explode( ',',  $row->old_flags );
+		$flags = explode( ',', $row->old_flags );
 		$text = $row->old_text;
 		if ( in_array( 'external', $flags ) ) {
 			$this->output( "External $text\n" );
@@ -85,4 +85,4 @@ class DumpRev extends Maintenance {
 }
 
 $maintClass = "DumpRev";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

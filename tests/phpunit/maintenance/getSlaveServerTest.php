@@ -52,11 +52,11 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 
 		// The main answer
 		$output = $this->getActualOutput();
-		$firstLineEndPos = strpos( $output,"\n");
-		if ( $firstLineEndPos === FALSE ) {
+		$firstLineEndPos = strpos( $output, "\n" );
+		if ( $firstLineEndPos === false ) {
 			$this->fail( "Could not find end of first line of output" );
 		}
-		$firstLine = substr( $output, 0 , $firstLineEndPos );
+		$firstLine = substr( $output, 0, $firstLineEndPos );
 		$this->assertRegExp( "/^" . self::getServerRE() . "$/D",
 			$firstLine, "DB Server" );
 
@@ -64,6 +64,4 @@ class GetSlaveServerTest extends MediaWikiTestCase {
 		$this->expectOutputRegex( "/^[[:space:]]*\[wgDBprefix\][[:space:]]*=> "
 			. $wgDBprefix . "$/m" );
 	}
-
-
 }

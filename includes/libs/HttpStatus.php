@@ -26,7 +26,7 @@
 class HttpStatus {
 
 	/**
-	 * Get the message associed with the HTTP response code $code
+	 * Get the message associated with HTTP response code $code
 	 *
 	 * Replace OutputPage::getStatusMessage( $code )
 	 *

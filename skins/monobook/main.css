@@ -17,12 +17,17 @@ div#column-content {
 }
 div#content {
 	margin: 2.8em 0 0 12.2em;
-	padding: 0 1em 1em 1em;
+	padding: 1em;
 	position: relative;
 	z-index: 2;
 }
 div#column-one {
 	padding-top: 160px;
+}
+/* Hide, but keep accessible for screen-readers */
+#column-one h2 {
+	position: absolute;
+	top: -9999px;
 }
 div#content {
 	background: white;
@@ -71,6 +76,7 @@ a.new,
 }
 
 ul {
+	list-style-type: square;
 	/* @embed */
 	list-style-image: url(bullet.gif);
 }
@@ -87,6 +93,9 @@ pre, .mw-code {
 	line-height: 1.1em;
 }
 
+#firstHeading {
+	padding-top: 0;
+}
 /*
 ** the main content area
 */
@@ -224,30 +233,13 @@ table.rimage {
 	width: 11.6em;
 	overflow: hidden;
 }
-.portlet h4 {
-	font-size: 95%;
-	font-weight: normal;
-	white-space: nowrap;
-}
-.portlet h5 {
+.portlet h3 {
 	background: transparent;
 	padding: 0 1em 0 .5em;
 	display: inline;
 	height: 1em;
 	text-transform: lowercase;
 	font-size: 91%;
-	font-weight: normal;
-	white-space: nowrap;
-}
-.portlet h6 {
-	background: #ffae2e;
-	border: 1px solid #2f6fab;
-	border-style: solid solid none solid;
-	padding: 0 1em 0 1em;
-	text-transform: lowercase;
-	display: block;
-	font-size: 1em;
-	height: 1.2em;
 	font-weight: normal;
 	white-space: nowrap;
 }
@@ -259,18 +251,8 @@ table.rimage {
 	border: 1px solid #aaa;
 	padding: 0 .8em .3em .5em;
 }
-.portlet h1,
-.portlet h2,
-.portlet h3,
-.portlet h4 {
-	margin: 0;
-	padding: 0;
-}
 .portlet ul {
 	line-height: 1.5em;
-	list-style-type: square;
-	/* @embed */
-	list-style-image: url(bullet.gif);
 	font-size: 95%;
 }
 .portlet li {
@@ -291,7 +273,7 @@ table.rimage {
 	width: 12em;
 	overflow: visible;
 }
-#p-logo h5 {
+#p-logo h3 {
 	display: none;
 }
 #p-logo a,
@@ -340,7 +322,7 @@ input.searchButton {
 	position: absolute;
 	left: 0;
 	top: 0;
-	z-index: 0;
+	z-index: 3;
 }
 #p-personal {
 	width: 100%;
@@ -352,7 +334,7 @@ input.searchButton {
 	overflow: visible;
 	line-height: 1.2em;
 }
-#p-personal h5 {
+#p-personal h3 {
 	display: none;
 }
 #p-personal .portlet,
@@ -372,7 +354,8 @@ input.searchButton {
 	padding: 0 2em 0 3em;
 	margin: 0;
 	text-align: right;
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	z-index: 0;
 	background: none;
 	cursor: default;
@@ -401,18 +384,21 @@ input.searchButton {
 #p-personal li.active a:hover {
 	background-color: transparent;
 }
-/* the icon in front of the user name, single quotes
-in bg url to hide it from iemac */
+/* The icon in front of the username / login link */
 li#pt-userpage,
 li#pt-anonuserpage,
 li#pt-login {
 	/* @embed */
 	background: url(user.gif) top left no-repeat;
 	padding-left: 20px;
-	text-transform: none;
 }
 #p-personal ul {
 	text-transform: lowercase;
+}
+/* Don't lowercase username or IP addresses (IPv6) */
+li#pt-userpage,
+li#pt-anonuserpage {
+	text-transform: none;
 }
 #p-personal li.active {
 	font-weight: bold;
@@ -432,24 +418,23 @@ li#pt-login {
 	background: none;
 	border-collapse: collapse;
 	padding-left: 1em;
-	list-style: none;
 	font-size: 95%;
 }
 #p-cactions ul {
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 }
 #p-cactions li {
 	display: inline;
 	border: 1px solid #aaa;
 	border-bottom: none;
-	padding: 0 0 .1em 0;
+	padding: 0 0 1em 0;
 	margin: 0 .3em 0 0;
 	overflow: visible;
 	background: white;
 }
 #p-cactions li.selected {
 	border-color: #fabd23;
-	padding: 0 0 .2em 0;
 	font-weight: bold;
 }
 #p-cactions li a {
@@ -474,7 +459,7 @@ li#pt-login {
 	text-decoration: none;
 	background-color: white;
 }
-#p-cactions h5 {
+#p-cactions h3 {
 	display: none;
 }
 #p-cactions li.istalk {
@@ -515,8 +500,7 @@ li#ca-print {
 }
 
 /* Override text-transform on languages where capitalization is significant */
-.capitalize-all-nouns .portlet h5,
-.capitalize-all-nouns .portlet h6,
+.capitalize-all-nouns .portlet h3,
 .capitalize-all-nouns #p-personal ul,
 .capitalize-all-nouns #p-cactions ul li a {
 	text-transform: none;
@@ -536,7 +520,8 @@ div#footer {
 	border-top: 1px solid #fabd23;
 	border-bottom: 1px solid #fabd23;
 	margin: .6em 0 1em 0;
-	padding: .4em 0 1.2em 0;
+	overflow: hidden;
+	padding: .4em 0 .3em 0;
 	text-align: center;
 	font-size: 90%;
 }
@@ -824,7 +809,8 @@ div#searchTarget {
 }
 
 div#searchTarget ul li {
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 }
 
 div#searchTarget ul li:before {

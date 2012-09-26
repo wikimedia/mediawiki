@@ -129,8 +129,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Va ota va rupes favesik nedir !',
 'tog-oldsig' => 'Tisa sugdara',
 'tog-fancysig' => 'Krafiara va sugdaks wetce wikitext (a mivaskafi gluyasiki)',
-'tog-externaleditor' => 'Favera va divefi betasiki (anton gan aptacik, moe vusiko va yona aptafa vertara olegar)',
-'tog-externaldiff' => 'Omavafa favera va divefa "diff" xeka (anton gan aptacik, moe vusiko va yona aptafa vertara olegar)',
 'tog-showjumplinks' => 'Tutegirara va "grablera" vansarafi gluyasiki',
 'tog-uselivepreview' => 'Favera va abdiwira (JavaScript) (bagalon)',
 'tog-forceeditsummary' => 'Zo walzé viele betaravildeks tir vlardaf !',
@@ -230,7 +228,6 @@ $messages = array(
 'qbbrowse' => 'Farura',
 'qbedit' => 'Betara',
 'qbpageoptions' => 'Ikatcuksbu',
-'qbpageinfo' => 'Givabu',
 'qbmyoptions' => 'Jinaf ikatcukseem',
 'qbspecialpages' => 'Aptaf bueem',
 'faq' => 'NEB',
@@ -314,7 +311,6 @@ $messages = array(
 'disclaimers' => 'Walzera',
 'disclaimerpage' => 'Project:Jadif walzereem',
 'edithelp' => 'Pomara',
-'edithelppage' => 'Help:Tokinde bubetat',
 'helppage' => 'Help:Pomara',
 'mainpage' => 'Emudexo',
 'mainpage-description' => 'Emudexo',
@@ -445,8 +441,6 @@ Batdume : ''$2''.",
 # Login and logout pages
 'logouttext' => 'Rin daletoe til solgluyanaf.
 Rin va {{SITENAME}} yoltiskon ware rofavel oke, bifoton kan ar yolt, va int toldogluyal.',
-'welcomecreation' => '<h2>Til drumbaf, $1!</h2><p>Rinaf favesikpata su zo redur.
-Me vulkul da rupeson va "Lodamaceem" bu va intaf {{SITENAME}} rotuilkal.',
 'yourname' => 'Rinaf favesikyolt',
 'yourpassword' => 'Rinaf remravlem',
 'yourpasswordagain' => 'Va rinaf remravlem tolon bazel',
@@ -662,7 +656,6 @@ Rin dere abdiplekul da va webeks miv suteyel ike mal sangiskafa ok gundafa nuyaf
 'template-protected' => '(nendana)',
 'template-semiprotected' => '(nendamana)',
 'hiddencategories' => 'Batu bu tir bewafu gu {{PLURAL:$1|1 palsena loma|$1 palsena loma}}:',
-'nocreatetitle' => 'Irutana buredura',
 'nocreatetext' => '{{SITENAME}} va roredura va warzafu bu irutar.
 Rodimal aze va tisu bu robetal oke [[Special:UserLogin|va int rodogluyal oke ropataredul]].',
 'nocreate-loggedin' => 'Rin va warzafu bu me ronoredul.',
@@ -827,7 +820,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'viewprevnext' => 'Va ($1 {{int:pipe-separator}} $2) ik ($3) disukel.',
 'searchmenu-exists' => "'''Ixam bu yoltkirafu gu \"[[:\$1]]\" dene bati wiki.'''",
 'searchmenu-new' => "'''Redura va bu \"[[:\$1]]\" den bati wiki!'''",
-'searchhelp-url' => 'Help:Pomara',
 'searchprofile-articles' => 'Teliz',
 'searchprofile-project' => 'Pomarabu ik abdumimaksbu',
 'searchprofile-images' => 'Jonkanaca',
@@ -847,8 +839,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'search-interwiki-caption' => 'Beraf abdumimakseem',
 'search-interwiki-default' => '$1 trasiks :',
 'search-interwiki-more' => '(loon)',
-'search-mwsuggest-enabled' => 'do tiavera',
-'search-mwsuggest-disabled' => 'meka tiavera',
 'search-relatedarticle' => 'Skedaf',
 'mwsuggest-disable' => 'Gritegirara va AJAX tiavera',
 'searcheverything-enable' => 'Aneyara ko koto yoltxo',
@@ -869,14 +859,6 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'powersearch-togglenone' => 'Mek',
 'search-external' => 'Divafa aneyara',
 'searchdisabled' => "<p>La fonction de recherche sur l'intégralité du texte a été temporairement désactivée à cause de la grande charge que cela impose au serveur. Nous espérons la rétablir prochainement lorsque nous disposerons d'un serveur plus puissant. En attendant, vous pouvez faire la recherche avec Google:</p>",
-
-# Quickbar
-'qbsettings' => 'Tuweltara va xekobla',
-'qbsettings-none' => 'Mek',
-'qbsettings-fixedleft' => 'Roneon titickanaf',
-'qbsettings-fixedright' => 'Talteon titickanaf',
-'qbsettings-floatingleft' => 'Roneon ezas',
-'qbsettings-floatingright' => 'Talteon ezas',
 
 # Preferences page
 'preferences' => 'Lodamaceem',
@@ -949,7 +931,7 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 Rinafe e-mail mane me zo razdar viele ar webesik uzerar.',
 'prefs-help-email-required' => 'E-mail mane zo kucilar.',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-invalid' => 'Va enafe e-mail mane bazel',
 
 # User rights
@@ -1041,10 +1023,12 @@ Rinafe e-mail mane me zo razdar viele ar webesik uzerar.',
 'right-userrights-interwiki' => "Betara va favesikrokeem koe aro 'wiki' xo",
 'right-siteadmin' => 'Origakelekara is dimelekara',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Buredura "log"',
+
 # User rights log
 'rightslog' => '"Log" bu va favesikrokeem',
 'rightslogtext' => 'Tir "log" va betara va favesikroka.',
-'rightsnone' => '(mek)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'Redura va batu bu',
@@ -1420,9 +1404,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'Nedira',
 'listusers-noresult' => 'Mek trasiyin favesik.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Buredura "log"',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Rokeem ke favesiklospa',
 'listgrouprights-group' => 'Lospa',
@@ -1434,7 +1415,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-addgroup-all' => 'Va kota lospa roloplekur',
 'listgrouprights-removegroup-all' => 'Va kota lospa rosular',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Meke mane',
 'mailnologintext' => 'Rin gotil [[Special:UserLogin|dogluyarakiraf]]
 is bazeyes va wadafe internetmane ko rinaf [[Special:Preferences|lodamaceem]]
@@ -1479,8 +1460,8 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'notvisiblerev' => 'Betaks sulayan',
 'watchnochange' => 'Nedoyu rinafu suzdanu bu al zo betar bak bazena rekola',
 'watchlist-details' => '{{PLURAL:$1|$1 bu|$1 bu}} koe rinafi suzdasiki rade prilarabueem.',
-'wlheader-enotif' => '* Email walzera tir tegisa.',
-'wlheader-showupdated' => "* Bu betayanu vielu rin ironokon worayal tir '''sulatcalakorafu'''.",
+'wlheader-enotif' => 'Email walzera tir tegisa.',
+'wlheader-showupdated' => "Bu betayanu vielu rin ironokon worayal tir '''sulatcalakorafu'''.",
 'watchmethod-recent' => 'ageltara va noeltaf betakseem va suzdan bueem',
 'watchmethod-list' => 'ageltara va suzdan bueem icde noeltafa betara',
 'watchlistcontains' => 'Rinafi suzdasiki va $1 bu ruldar',
@@ -1495,11 +1476,7 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 
 'enotif_mailer' => '{{SITENAME}} Kowalzesi Staksasiki',
 'enotif_reset' => 'Va kotu woranu bu tcalar',
-'enotif_newpagetext' => 'Batcoba tir warzafu bu',
 'enotif_impersonal_salutation' => '{{SITENAME}} favesik',
-'changed' => 'betayan',
-'created' => 'reduyun',
-'enotif_subject' => '{{SITENAME}} bu $PAGETITLE su zo $CHANGEDORCREATED gan $PAGEEDITOR',
 'enotif_lastvisited' => 'Va $1 disukel ta da va kot betaks mali ironokafa worara wil.',
 'enotif_lastdiff' => 'Ta wira va bat betaks va $1 disukel.',
 'enotif_anon_editor' => '$1 yoltiskaf favesik',
@@ -1527,6 +1504,8 @@ To change your watchlist settings, visit
 
 Feedback and further assistance:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'reduyun',
+'changed' => 'betayan',
 
 # Delete
 'deletepage' => 'Busulara',
@@ -2055,7 +2034,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Mantuca',
 'exif-imagelength' => 'Ontinuca',
 'exif-compression' => 'Raxivaracave',
@@ -2130,7 +2109,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 'exif-gpsdestdistance' => 'Kofa soluma',
 'exif-gpsdatestamp' => 'GPS evla',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Raxivariskafa',
 
 'exif-unknowndate' => 'Megrupena evla',
@@ -2239,7 +2218,7 @@ Kotari milconyafi gluyasiki roklon zo krafiar.',
 'namespacesall' => 'koto',
 'monthsall' => 'kot',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Va e-mail gruyel',
 'confirmemail_noemail' => 'Bazene "email" mane koe rinaf [[Special:Preferences|favesikaf lodamaceem]] me tir enafe.',
 'confirmemail_text' => "Ce wiki nécessite la vérification de votre adresse email avant de pouvoir utiliser toute fonction de messagerie. Utilisez le bouton ci dessous pour envoyer un email de confirmation à votre adresse. L'email contiendra un lien contenant un code, chargez ce lien dans votre navigateur pour valider votre adresse.",
@@ -2360,11 +2339,6 @@ This confirmation code will expire at $4.',
 'version-software-product' => 'Warzeks',
 'version-software-version' => 'Siatos',
 
-# Special:FilePath
-'filepath' => 'Iyeltakkelda',
-'filepath-page' => 'Iyeltak :',
-'filepath-submit' => 'Kelda',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Aneyara va jontolaf iyeltak',
 'fileduplicatesearch-legend' => 'Aneyara va jontolaca',
@@ -2394,6 +2368,6 @@ This confirmation code will expire at $4.',
 # New logging system
 'revdelete-restricted' => 'irutara rewana pu ristusik',
 'revdelete-unrestricted' => 'irutara tiolteyena pu ristusik',
-'newuserlog-byemail' => 'remravlem staksayan kan e-mail',
+'rightsnone' => '(mek)',
 
 );

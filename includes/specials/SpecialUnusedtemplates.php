@@ -48,23 +48,23 @@ class UnusedtemplatesPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'page', 'templatelinks' ),
-			'fields' => array ( 'namespace' => 'page_namespace',
+		return array(
+			'tables' => array( 'page', 'templatelinks' ),
+			'fields' => array( 'namespace' => 'page_namespace',
 					'title' => 'page_title',
 					'value' => 'page_title' ),
-			'conds' => array ( 'page_namespace' => NS_TEMPLATE,
+			'conds' => array( 'page_namespace' => NS_TEMPLATE,
 					'tl_from IS NULL',
 					'page_is_redirect' => 0 ),
-			'join_conds' => array ( 'templatelinks' => array (
-				'LEFT JOIN', array ( 'tl_title = page_title',
+			'join_conds' => array( 'templatelinks' => array(
+				'LEFT JOIN', array( 'tl_title = page_title',
 					'tl_namespace = page_namespace' ) ) )
 		);
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param $result
+	 * @param Skin $skin
+	 * @param object $result Result row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
@@ -84,5 +84,9 @@ class UnusedtemplatesPage extends QueryPage {
 
 	function getPageHeader() {
 		return $this->msg( 'unusedtemplatestext' )->parseAsBlock();
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

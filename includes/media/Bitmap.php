@@ -29,7 +29,7 @@
 class BitmapHandler extends ImageHandler {
 	/**
 	 * @param $image File
-	 * @param $params array Transform parameters. Entries with the keys 'width'
+	 * @param array $params Transform parameters. Entries with the keys 'width'
 	 * and 'height' are the respective screen width and height, while the keys
 	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
 	 * @return bool
@@ -75,7 +75,6 @@ class BitmapHandler extends ImageHandler {
 		return true;
 	}
 
-
 	/**
 	 * Extracts the width/height if the image will be scaled before rotating
 	 *
@@ -84,8 +83,8 @@ class BitmapHandler extends ImageHandler {
 	 * stored as raw landscape with 90-degress rotation, the resulting size
 	 * will be wider than it is tall.
 	 *
-	 * @param $params array Parameters as returned by normaliseParams
-	 * @param $rotation int The rotation angle that will be applied
+	 * @param array $params Parameters as returned by normaliseParams
+	 * @param int $rotation The rotation angle that will be applied
 	 * @return array ($width, $height) array
 	 */
 	public function extractPreRotationDimensions( $params, $rotation ) {
@@ -99,7 +98,6 @@ class BitmapHandler extends ImageHandler {
 		}
 		return array( $width, $height );
 	}
-
 
 	/**
 	 * Function that returns the number of pixels to be thumbnailed.
@@ -133,7 +131,7 @@ class BitmapHandler extends ImageHandler {
 			# The size of the image on the page
 			'clientWidth' => $params['width'],
 			'clientHeight' => $params['height'],
-			# Comment as will be added to the EXIF of the thumbnail
+			# Comment as will be added to the Exif of the thumbnail
 			'comment' => isset( $params['descriptionUrl'] ) ?
 				"File source: {$params['descriptionUrl']}" : '',
 			# Properties of the original image
@@ -157,7 +155,6 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": returning unscaled image\n" );
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
-
 
 		if ( $scaler == 'client' ) {
 			# Client-side image scaling, use the source URL
@@ -264,7 +261,7 @@ class BitmapHandler extends ImageHandler {
 	 * client side
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $scalerParams array Array with scaler params
+	 * @param array $scalerParams Array with scaler params
 	 * @return ThumbnailImage
 	 *
 	 * @todo fixme: no rotation support
@@ -281,7 +278,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using ImageMagick
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -341,7 +338,7 @@ class BitmapHandler extends ImageHandler {
 		$rotation = $this->getRotation( $image );
 		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
 
-		$cmd  =
+		$cmd =
 			wfEscapeShellArg( $wgImageMagickConvertCommand ) .
 			// Specify white background color, will be used for transparent images
 			// in Internet Explorer/Windows instead of default black.
@@ -380,7 +377,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using the Imagick PHP extension
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -401,7 +398,7 @@ class BitmapHandler extends ImageHandler {
 					$im->sharpenImage( $radius, $sigma );
 				}
 				$im->setCompressionQuality( 80 );
-			} elseif( $params['mimeType'] == 'image/png' ) {
+			} elseif ( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );
 			} elseif ( $params['mimeType'] == 'image/gif' ) {
 				if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
@@ -457,7 +454,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using a custom command
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -500,8 +497,8 @@ class BitmapHandler extends ImageHandler {
 	/**
 	 * Get a MediaTransformError with error 'thumbnail_error'
 	 *
-	 * @param $params array Parameter array as passed to the transform* functions
-	 * @param $errMsg string Error message
+	 * @param array $params Parameter array as passed to the transform* functions
+	 * @param string $errMsg Error message
 	 * @return MediaTransformError
 	 */
 	public function getMediaTransformError( $params, $errMsg ) {
@@ -513,7 +510,7 @@ class BitmapHandler extends ImageHandler {
 	 * Transform an image using the built in GD library
 	 *
 	 * @param $image File File associated with this thumbnail
-	 * @param $params array Array with scaler params
+	 * @param array $params Array with scaler params
 	 *
 	 * @return MediaTransformError Error object if error occurred, false (=no error) otherwise
 	 */
@@ -622,8 +619,9 @@ class BitmapHandler extends ImageHandler {
 	 * in a directory, so we're better off escaping and waiting for the bugfix
 	 * to filter down to users.
 	 *
-	 * @param $path string The file path
-	 * @param $scene string The scene specification, or false if there is none
+	 * @param string $path The file path
+	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @throws MWException
 	 * @return string
 	 */
 	function escapeMagickInput( $path, $scene = false ) {
@@ -653,8 +651,9 @@ class BitmapHandler extends ImageHandler {
 	 * Armour a string against ImageMagick's GetPathComponent(). This is a
 	 * helper function for escapeMagickInput() and escapeMagickOutput().
 	 *
-	 * @param $path string The file path
-	 * @param $scene string The scene specification, or false if there is none
+	 * @param string $path The file path
+	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @throws MWException
 	 * @return string
 	 */
 	protected function escapeMagickPath( $path, $scene = false ) {
@@ -753,6 +752,55 @@ class BitmapHandler extends ImageHandler {
 			default:
 				# Other scalers don't support rotation
 				return false;
+		}
+	}
+
+	/**
+	 * @param $file File
+	 * @param array $params Rotate parameters.
+	 *	'rotation' clockwise rotation in degrees, allowed are multiples of 90
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function rotate( $file, $params ) {
+		global $wgImageMagickConvertCommand;
+
+		$rotation = ( $params['rotation'] + $this->getRotation( $file ) ) % 360;
+		$scene = false;
+
+		$scaler = self::getScalerType( null, false );
+		switch ( $scaler ) {
+			case 'im':
+				$cmd = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " .
+					wfEscapeShellArg( $this->escapeMagickInput( $params['srcPath'], $scene ) ) .
+					" -rotate -$rotation " .
+					wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
+				wfDebug( __METHOD__ . ": running ImageMagick: $cmd\n" );
+				wfProfileIn( 'convert' );
+				$retval = 0;
+				$err = wfShellExec( $cmd, $retval, $env );
+				wfProfileOut( 'convert' );
+				if ( $retval !== 0 ) {
+					$this->logErrorForExternalProcess( $retval, $err, $cmd );
+					return new MediaTransformError( 'thumbnail_error', 0, 0, $err );
+				}
+				return false;
+			case 'imext':
+				$im = new Imagick();
+				$im->readImage( $params['srcPath'] );
+				if ( !$im->rotateImage( new ImagickPixel( 'white' ), 360 - $rotation ) ) {
+					return new MediaTransformError( 'thumbnail_error', 0, 0,
+						"Error rotating $rotation degrees" );
+				}
+				$result = $im->writeImage( $params['dstPath'] );
+				if ( !$result ) {
+					return new MediaTransformError( 'thumbnail_error', 0, 0,
+						"Unable to write image to {$params['dstPath']}" );
+				}
+				return false;
+			default:
+				return new MediaTransformError( 'thumbnail_error', 0, 0,
+					"$scaler rotation not implemented" );
 		}
 	}
 

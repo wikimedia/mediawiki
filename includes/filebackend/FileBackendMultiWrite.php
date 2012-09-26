@@ -62,7 +62,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Additional $config params include:
 	 *   - backends       : Array of backend config and multi-backend settings.
 	 *                      Each value is the config used in the constructor of a
-	 *                          FileBackendStore class, but with these additional settings:
+	 *                      FileBackendStore class, but with these additional settings:
 	 *                        - class         : The name of the backend class
 	 *                        - isMultiMaster : This must be set for one backend.
 	 *                        - template:     : If given a backend name, this will use
@@ -75,10 +75,13 @@ class FileBackendMultiWrite extends FileBackend {
 	 *   - autoResync     : Automatically resync the clone backends to the master backend
 	 *                      when pre-operation sync checks fail. This should only be used
 	 *                      if the master backend is stable and not missing any files.
+	 *                      Use "conservative" to limit resyncing to copying newer master
+	 *                      backend files over older (or non-existing) clone backend files.
+	 *                      Cases that cannot be handled will result in operation abortion.
 	 *   - noPushQuickOps : (hack) Only apply doQuickOperations() to the master backend.
 	 *   - noPushDirConts : (hack) Only apply directory functions to the master backend.
 	 *
-	 * @param $config Array
+	 * @param Array $config
 	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
@@ -86,7 +89,9 @@ class FileBackendMultiWrite extends FileBackend {
 		$this->syncChecks = isset( $config['syncChecks'] )
 			? $config['syncChecks']
 			: self::CHECK_SIZE;
-		$this->autoResync = !empty( $config['autoResync'] );
+		$this->autoResync = isset( $config['autoResync'] )
+			? $config['autoResync']
+			: false;
 		$this->noPushQuickOps = isset( $config['noPushQuickOps'] )
 			? $config['noPushQuickOps']
 			: false;
@@ -131,10 +136,6 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 	}
 
-	/**
-	 * @see FileBackend::doOperationsInternal()
-	 * @return Status
-	 */
 	final protected function doOperationsInternal( array $ops, array $opts ) {
 		$status = Status::newGood();
 
@@ -179,10 +180,11 @@ class FileBackendMultiWrite extends FileBackend {
 		// Actually attempt the operation batch on the master backend...
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
-		// Propagate the operations to the clone backends if there were no fatal errors.
-		// If $ops only had one operation, this might avoid backend inconsistencies.
-		// This also avoids inconsistency for expected errors (like "file already exists").
-		if ( !count( $masterStatus->getErrorsArray() ) ) {
+		// Propagate the operations to the clone backends if there were no unexpected errors
+		// and if there were either no expected errors or if the 'force' option was used.
+		// However, if nothing succeeded at all, then don't replicate any of the operations.
+		// If $ops only had one operation, this might avoid backend sync inconsistencies.
+		if ( $masterStatus->isOK() && $masterStatus->successCount > 0 ) {
 			foreach ( $this->backends as $index => $backend ) {
 				if ( $index !== $this->masterIndex ) { // not done already
 					$realOps = $this->substOpBatchPaths( $ops, $backend );
@@ -203,7 +205,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of files are consistent across all internal backends
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @return Status
 	 */
 	public function consistencyCheck( array $paths ) {
@@ -269,7 +271,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Check that a set of file paths are usable across all internal backends
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @return Status
 	 */
 	public function accessibilityCheck( array $paths ) {
@@ -294,7 +296,7 @@ class FileBackendMultiWrite extends FileBackend {
 	 * Check that a set of files are consistent across all internal backends
 	 * and re-synchronize those files againt the "multi master" if needed.
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @return Status
 	 */
 	public function resyncFiles( array $paths ) {
@@ -302,12 +304,12 @@ class FileBackendMultiWrite extends FileBackend {
 
 		$mBackend = $this->backends[$this->masterIndex];
 		foreach ( $paths as $path ) {
-			$mPath  = $this->substPaths( $path, $mBackend );
-			$mSha1  = $mBackend->getFileSha1Base36( array( 'src' => $mPath ) );
-			$mExist = $mBackend->fileExists( array( 'src' => $mPath ) );
-			// Check if the master backend is available...
-			if ( $mExist === null ) {
+			$mPath = $this->substPaths( $path, $mBackend );
+			$mSha1 = $mBackend->getFileSha1Base36( array( 'src' => $mPath, 'latest' => true ) );
+			$mStat = $mBackend->getFileStat( array( 'src' => $mPath, 'latest' => true ) );
+			if ( $mStat === null || ( $mSha1 !== false && !$mStat ) ) { // sanity
 				$status->fatal( 'backend-fail-internal', $this->name );
+				continue; // file is not available on the master backend...
 			}
 			// Check of all clone backends agree with the master...
 			foreach ( $this->backends as $index => $cBackend ) {
@@ -315,15 +317,31 @@ class FileBackendMultiWrite extends FileBackend {
 					continue; // master
 				}
 				$cPath = $this->substPaths( $path, $cBackend );
-				$cSha1 = $cBackend->getFileSha1Base36( array( 'src' => $cPath ) );
+				$cSha1 = $cBackend->getFileSha1Base36( array( 'src' => $cPath, 'latest' => true ) );
+				$cStat = $cBackend->getFileStat( array( 'src' => $cPath, 'latest' => true ) );
+				if ( $cStat === null || ( $cSha1 !== false && !$cStat ) ) { // sanity
+					$status->fatal( 'backend-fail-internal', $cBackend->getName() );
+					continue; // file is not available on the clone backend...
+				}
 				if ( $mSha1 === $cSha1 ) {
 					// already synced; nothing to do
-				} elseif ( $mSha1 ) { // file is in master
-					$fsFile = $mBackend->getLocalReference( array( 'src' => $mPath ) );
+				} elseif ( $mSha1 !== false ) { // file is in master
+					if ( $this->autoResync === 'conservative'
+						&& $cStat && $cStat['mtime'] > $mStat['mtime'] )
+					{
+						$status->fatal( 'backend-fail-synced', $path );
+						continue; // don't rollback data
+					}
+					$fsFile = $mBackend->getLocalReference(
+						array( 'src' => $mPath, 'latest' => true ) );
 					$status->merge( $cBackend->quickStore(
 						array( 'src' => $fsFile->getPath(), 'dst' => $cPath )
 					) );
-				} elseif ( $mExist === false ) { // file is not in master
+				} elseif ( $mStat === false ) { // file is not in master
+					if ( $this->autoResync === 'conservative' ) {
+						$status->fatal( 'backend-fail-synced', $path );
+						continue; // don't delete data
+					}
 					$status->merge( $cBackend->quickDelete( array( 'src' => $cPath ) ) );
 				}
 			}
@@ -335,14 +353,20 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Get a list of file storage paths to read or write for a list of operations
 	 *
-	 * @param $ops Array Same format as doOperations()
+	 * @param array $ops Same format as doOperations()
 	 * @return Array List of storage paths to files (does not include directories)
 	 */
 	protected function fileStoragePathsForOps( array $ops ) {
 		$paths = array();
 		foreach ( $ops as $op ) {
 			if ( isset( $op['src'] ) ) {
-				$paths[] = $op['src'];
+				// For things like copy/move/delete with "ignoreMissingSource" and there
+				// is no source file, nothing should happen and there should be no errors.
+				if ( empty( $op['ignoreMissingSource'] )
+					|| $this->fileExists( array( 'src' => $op['src'] ) ) )
+				{
+					$paths[] = $op['src'];
+				}
 			}
 			if ( isset( $op['srcs'] ) ) {
 				$paths = array_merge( $paths, $op['srcs'] );
@@ -351,15 +375,15 @@ class FileBackendMultiWrite extends FileBackend {
 				$paths[] = $op['dst'];
 			}
 		}
-		return array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) );
+		return array_values( array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) ) );
 	}
 
 	/**
 	 * Substitute the backend name in storage path parameters
 	 * for a set of operations with that of a given internal backend.
 	 *
-	 * @param $ops Array List of file operation arrays
-	 * @param $backend FileBackendStore
+	 * @param array $ops List of file operation arrays
+	 * @param FileBackendStore $backend
 	 * @return Array
 	 */
 	protected function substOpBatchPaths( array $ops, FileBackendStore $backend ) {
@@ -379,8 +403,8 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Same as substOpBatchPaths() but for a single operation
 	 *
-	 * @param $ops array File operation array
-	 * @param $backend FileBackendStore
+	 * @param array $ops File operation array
+	 * @param FileBackendStore $backend
 	 * @return Array
 	 */
 	protected function substOpPaths( array $ops, FileBackendStore $backend ) {
@@ -391,8 +415,8 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend of storage paths with an internal backend's name
 	 *
-	 * @param $paths Array|string List of paths or single string path
-	 * @param $backend FileBackendStore
+	 * @param array|string $paths List of paths or single string path
+	 * @param FileBackendStore $backend
 	 * @return Array|string
 	 */
 	protected function substPaths( $paths, FileBackendStore $backend ) {
@@ -406,7 +430,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * Substitute the backend of internal storage paths with the proxy backend's name
 	 *
-	 * @param $paths Array|string List of paths or single string path
+	 * @param array|string $paths List of paths or single string path
 	 * @return Array|string
 	 */
 	protected function unsubstPaths( $paths ) {
@@ -417,10 +441,6 @@ class FileBackendMultiWrite extends FileBackend {
 		);
 	}
 
-	/**
-	 * @see FileBackend::doQuickOperationsInternal()
-	 * @return Status
-	 */
 	protected function doQuickOperationsInternal( array $ops ) {
 		$status = Status::newGood();
 		// Do the operations on the master backend; setting Status fields...
@@ -446,18 +466,14 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @param $path string Storage path
+	 * @param string $path Storage path
 	 * @return bool Path container should have dir changes pushed to all backends
 	 */
 	protected function replicateContainerDirChanges( $path ) {
-		list( $b, $shortCont, $r ) = self::splitStoragePath( $path );
+		list( , $shortCont, ) = self::splitStoragePath( $path );
 		return !in_array( $shortCont, $this->noPushDirConts );
 	}
 
-	/**
-	 * @see FileBackend::doPrepare()
-	 * @return Status
-	 */
 	protected function doPrepare( array $params ) {
 		$status = Status::newGood();
 		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
@@ -470,11 +486,6 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackend::doSecure()
-	 * @param $params array
-	 * @return Status
-	 */
 	protected function doSecure( array $params ) {
 		$status = Status::newGood();
 		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
@@ -487,11 +498,6 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackend::doPublish()
-	 * @param $params array
-	 * @return Status
-	 */
 	protected function doPublish( array $params ) {
 		$status = Status::newGood();
 		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
@@ -504,11 +510,6 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackend::doClean()
-	 * @param $params array
-	 * @return Status
-	 */
 	protected function doClean( array $params ) {
 		$status = Status::newGood();
 		$replicate = $this->replicateContainerDirChanges( $params['dir'] );
@@ -521,149 +522,100 @@ class FileBackendMultiWrite extends FileBackend {
 		return $status;
 	}
 
-	/**
-	 * @see FileBackend::concatenate()
-	 * @param $params array
-	 * @return Status
-	 */
 	public function concatenate( array $params ) {
 		// We are writing to an FS file, so we don't need to do this per-backend
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->concatenate( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::fileExists()
-	 * @param $params array
-	 */
 	public function fileExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->fileExists( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getFileTimestamp()
-	 * @param $params array
-	 * @return bool|string
-	 */
 	public function getFileTimestamp( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileTimestamp( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getFileSize()
-	 * @param $params array
-	 * @return bool|int
-	 */
 	public function getFileSize( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileSize( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getFileStat()
-	 * @param $params array
-	 * @return Array|bool|null
-	 */
 	public function getFileStat( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileStat( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getFileContents()
-	 * @param $params array
-	 * @return bool|string
-	 */
-	public function getFileContents( array $params ) {
+	public function getFileContentsMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getFileContents( $realParams );
+		$contentsM = $this->backends[$this->masterIndex]->getFileContentsMulti( $realParams );
+
+		$contents = array(); // (path => FSFile) mapping using the proxy backend's name
+		foreach ( $contentsM as $path => $data ) {
+			$contents[$this->unsubstPaths( $path )] = $data;
+		}
+		return $contents;
 	}
 
-	/**
-	 * @see FileBackend::getFileSha1Base36()
-	 * @param $params array
-	 * @return bool|string
-	 */
 	public function getFileSha1Base36( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileSha1Base36( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getFileProps()
-	 * @param $params array
-	 * @return Array
-	 */
 	public function getFileProps( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileProps( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::streamFile()
-	 * @param $params array
-	 * @return \Status
-	 */
 	public function streamFile( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->streamFile( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getLocalReference()
-	 * @param $params array
-	 * @return FSFile|null
-	 */
-	public function getLocalReference( array $params ) {
+	public function getLocalReferenceMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getLocalReference( $realParams );
+		$fsFilesM = $this->backends[$this->masterIndex]->getLocalReferenceMulti( $realParams );
+
+		$fsFiles = array(); // (path => FSFile) mapping using the proxy backend's name
+		foreach ( $fsFilesM as $path => $fsFile ) {
+			$fsFiles[$this->unsubstPaths( $path )] = $fsFile;
+		}
+		return $fsFiles;
 	}
 
-	/**
-	 * @see FileBackend::getLocalCopy()
-	 * @param $params array
-	 * @return null|TempFSFile
-	 */
-	public function getLocalCopy( array $params ) {
+	public function getLocalCopyMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getLocalCopy( $realParams );
+		$tempFilesM = $this->backends[$this->masterIndex]->getLocalCopyMulti( $realParams );
+
+		$tempFiles = array(); // (path => TempFSFile) mapping using the proxy backend's name
+		foreach ( $tempFilesM as $path => $tempFile ) {
+			$tempFiles[$this->unsubstPaths( $path )] = $tempFile;
+		}
+		return $tempFiles;
 	}
 
-	/**
-	 * @see FileBackend::directoryExists()
-	 * @param $params array
-	 * @return bool|null
-	 */
+	public function getFileHttpUrl( array $params ) {
+		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
+		return $this->backends[$this->masterIndex]->getFileHttpUrl( $realParams );
+	}
+
 	public function directoryExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->directoryExists( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getSubdirectoryList()
-	 * @param $params array
-	 * @return Array|null|Traversable
-	 */
 	public function getDirectoryList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getDirectoryList( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::getFileList()
-	 * @param $params array
-	 * @return Array|null|\Traversable
-	 */
 	public function getFileList( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
 		return $this->backends[$this->masterIndex]->getFileList( $realParams );
 	}
 
-	/**
-	 * @see FileBackend::clearCache()
-	 */
 	public function clearCache( array $paths = null ) {
 		foreach ( $this->backends as $backend ) {
 			$realPaths = is_array( $paths ) ? $this->substPaths( $paths, $backend ) : null;
@@ -671,9 +623,6 @@ class FileBackendMultiWrite extends FileBackend {
 		}
 	}
 
-	/**
-	 * @see FileBackend::getScopedLocksForOps()
-	 */
 	public function getScopedLocksForOps( array $ops, Status $status ) {
 		$fileOps = $this->backends[$this->masterIndex]->getOperationsInternal( $ops );
 		// Get the paths to lock from the master backend

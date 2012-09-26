@@ -58,10 +58,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 3 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$db = $this->getDB();
 			$iwlfrom = intval( $cont[0] );
@@ -84,8 +81,8 @@ class ApiQueryIWLinks extends ApiQueryBase {
 				$this->addOption( 'ORDER BY', 'iwl_from' . $sort );
 			} else {
 				$this->addOption( 'ORDER BY', array(
-						'iwl_title' . $sort,
-						'iwl_from' . $sort
+						'iwl_from' . $sort,
+						'iwl_title' . $sort
 				));
 			}
 		} else {
@@ -93,9 +90,10 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
 				$this->addOption( 'ORDER BY', 'iwl_prefix' . $sort );
 			} else {
-				$this->addOption( 'ORDER BY', array (
+				$this->addOption( 'ORDER BY', array(
 						'iwl_from' . $sort,
-						'iwl_prefix' . $sort
+						'iwl_prefix' . $sort,
+						'iwl_title' . $sort
 				));
 			}
 		}
@@ -187,7 +185,6 @@ class ApiQueryIWLinks extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'prefix' ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
@@ -197,7 +194,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		);
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Iwlinks';
 	}
 }

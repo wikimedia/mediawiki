@@ -3,10 +3,10 @@
 /**
  * @group API
  * @group Database
+ * @group medium
  */
 class ApiBlockTest extends ApiTestCase {
-
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
 	}
@@ -35,7 +35,6 @@ class ApiBlockTest extends ApiTestCase {
 	 * previously always considered valid (bug 34212).
 	 */
 	function testMakeNormalBlock() {
-
 		$data = $this->getTokens();
 
 		$user = User::newFromName( 'UTApiBlockee' );
@@ -44,7 +43,7 @@ class ApiBlockTest extends ApiTestCase {
 			$this->markTestIncomplete( "The user UTApiBlockee does not exist" );
 		}
 
-		if( !isset( $data[0]['query']['pages'] ) ) {
+		if ( !isset( $data[0]['query']['pages'] ) ) {
 			$this->markTestIncomplete( "No block token found" );
 		}
 
@@ -52,20 +51,19 @@ class ApiBlockTest extends ApiTestCase {
 		$key = array_pop( $keys );
 		$pageinfo = $data[0]['query']['pages'][$key];
 
-		$data = $this->doApiRequest( array(
+		$this->doApiRequest( array(
 			'action' => 'block',
 			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
 			'token' => $pageinfo['blocktoken'] ), null, false, self::$users['sysop']->user );
 
-		$block = Block::newFromTarget('UTApiBlockee');
+		$block = Block::newFromTarget( 'UTApiBlockee' );
 
 		$this->assertTrue( !is_null( $block ), 'Block is valid' );
 
 		$this->assertEquals( 'UTApiBlockee', (string)$block->getTarget() );
 		$this->assertEquals( 'Some reason', $block->mReason );
 		$this->assertEquals( 'infinity', $block->mExpiry );
-
 	}
 
 	/**
@@ -98,7 +96,7 @@ class ApiBlockTest extends ApiTestCase {
 				'action' => $action,
 				'user' => 'UTApiBlockee',
 				'reason' => 'Some reason',
-				),
+			),
 			null,
 			false,
 			self::$users['sysop']->user
@@ -108,9 +106,9 @@ class ApiBlockTest extends ApiTestCase {
 	/**
 	 * Just provide the 'block' and 'unblock' action to test both API calls
 	 */
-	function provideBlockUnblockAction() {
+	public static function provideBlockUnblockAction() {
 		return array(
-			array( 'block'   ),
+			array( 'block' ),
 			array( 'unblock' ),
 		);
 	}

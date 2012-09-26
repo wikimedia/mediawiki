@@ -48,7 +48,7 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 		global $wgUser;
 		return $this->modifiedTime[$hash] = wfTimestamp( TS_UNIX, $wgUser->getTouched() );
 	}
-	
+
 	/**
 	 * @param $context ResourceLoaderContext
 	 * @return array
@@ -56,40 +56,44 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		global $wgAllowUserCssPrefs, $wgUser;
 
-		if ( $wgAllowUserCssPrefs ) {
-			$options = $wgUser->getOptions();
+		if ( !$wgAllowUserCssPrefs ) {
+			return array();
+		}
 
-			// Build CSS rules
-			$rules = array();
+		$options = $wgUser->getOptions();
 
-			// Underline: 2 = browser default, 1 = always, 0 = never
-			if ( $options['underline'] < 2 ) {
-				$rules[] = "a { text-decoration: " .
-					( $options['underline'] ? 'underline' : 'none' ) . "; }";
-			} else {
-				# The scripts of these languages are very hard to read with underlines
-				$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), ' .
-				'a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }';
-			}
-			if ( $options['justify'] ) {
-				$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
-			}
-			if ( !$options['showtoc'] ) {
-				$rules[] = "#toc { display: none; }\n";
-			}
-			if ( !$options['editsection'] ) {
-				$rules[] = ".editsection { display: none; }\n";
-			}
-			if ( $options['editfont'] !== 'default' ) {
+		// Build CSS rules
+		$rules = array();
+
+		// Underline: 2 = browser default, 1 = always, 0 = never
+		if ( $options['underline'] < 2 ) {
+			$rules[] = "a { text-decoration: " .
+				( $options['underline'] ? 'underline' : 'none' ) . "; }";
+		} else {
+			# The scripts of these languages are very hard to read with underlines
+			$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), ' .
+			'a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }';
+		}
+		if ( $options['justify'] ) {
+			$rules[] = "#article, #bodyContent, #mw_content { text-align: justify; }\n";
+		}
+		if ( !$options['showtoc'] ) {
+			$rules[] = "#toc { display: none; }\n";
+		}
+		if ( !$options['editsection'] ) {
+			$rules[] = ".mw-editsection { display: none; }\n";
+		}
+		if ( $options['editfont'] !== 'default' ) {
+			// Double-check that $options['editfont'] consists of safe characters only
+			if ( preg_match( '/^[a-zA-Z0-9_, -]+$/', $options['editfont'] ) ) {
 				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
 			}
-			$style = implode( "\n", $rules );
-			if ( $this->getFlip( $context ) ) {
-				$style = CSSJanus::transform( $style, true, false );
-			}
-			return array( 'all' => $style );
 		}
-		return array();
+		$style = implode( "\n", $rules );
+		if ( $this->getFlip( $context ) ) {
+			$style = CSSJanus::transform( $style, true, false );
+		}
+		return array( 'all' => $style );
 	}
 
 	/**

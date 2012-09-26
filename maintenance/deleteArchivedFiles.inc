@@ -27,7 +27,7 @@
  * @ingroup Maintenance
  */
 class DeleteArchivedFilesImplementation {
-	static public function doDelete( $output, $force ) {
+	public static function doDelete( $output, $force ) {
 		# Data should come off the master, wrapped in a transaction
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
@@ -35,14 +35,19 @@ class DeleteArchivedFilesImplementation {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		# Get "active" revisions from the filearchive table
 		$output->handleOutput( "Searching for and deleting archived files...\n" );
-		$res = $dbw->query( "SELECT fa_id,fa_storage_group,fa_storage_key FROM $tbl_arch" );
+		$res = $dbw->query( "SELECT fa_id,fa_storage_group,fa_storage_key,fa_sha1 FROM $tbl_arch" );
 		$count = 0;
 		foreach ( $res as $row ) {
 			$key = $row->fa_storage_key;
 			$group = $row->fa_storage_group;
 			$id = $row->fa_id;
 			$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
-			$sha1 = substr( $key, 0, strcspn( $key, '.' ) );
+			if ( isset( $row->fa_sha1 ) ) {
+				$sha1 = $row->fa_sha1;
+			} else {
+				// old row, populate from key
+				$sha1 = LocalRepo::getHashFromKey( $key );
+			}
 			// Check if the file is used anywhere...
 			$inuse = $dbw->selectField( 'oldimage', '1',
 				array( 'oi_sha1' => $sha1,

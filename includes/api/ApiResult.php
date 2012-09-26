@@ -36,12 +36,25 @@
  * There are two special key values that change how XML output is generated:
  *   '_element' This key sets the tag name for the rest of the elements in the current array.
  *              It is only inserted if the formatter returned true for getNeedsRawData()
- *   '*'        This key has special meaning only to the XML formatter, and is outputed as is
- * 				for all others. In XML it becomes the content of the current element.
+ *   '*'        This key has special meaning only to the XML formatter, and is outputted as is
+ *              for all others. In XML it becomes the content of the current element.
  *
  * @ingroup API
  */
 class ApiResult extends ApiBase {
+
+	/**
+	 * override existing value in addValue() and setElement()
+	 * @since 1.21
+	 */
+	const OVERRIDE = 1;
+
+	/**
+	 * For addValue() and setElement(), if the value does not exist, add it as the first element.
+	 * In case the new value has no name (numerical index), all indexes will be renumbered.
+	 * @since 1.21
+	 */
+	const ADD_ON_TOP = 2;
 
 	private $mData, $mIsRawMode, $mSize, $mCheckingSize;
 
@@ -134,18 +147,27 @@ class ApiResult extends ApiBase {
 	/**
 	 * Add an output value to the array by name.
 	 * Verifies that value with the same name has not been added before.
-	 * @param $arr array to add $value to
-	 * @param $name string Index of $arr to add $value at
+	 * @param array $arr to add $value to
+	 * @param string $name Index of $arr to add $value at
 	 * @param $value mixed
-	 * @param $overwrite bool Whether overwriting an existing element is allowed
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
+	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
+	 *        compatible with the new method signature.
+	 *
+	 * @since 1.21 int $flags replaced boolean $override
 	 */
-	public static function setElement( &$arr, $name, $value, $overwrite = false ) {
+	public static function setElement( &$arr, $name, $value, $flags = 0 ) {
 		if ( $arr === null || $name === null || $value === null || !is_array( $arr ) || is_array( $name ) ) {
 			ApiBase::dieDebug( __METHOD__, 'Bad parameter' );
 		}
 
-		if ( !isset ( $arr[$name] ) || $overwrite ) {
-			$arr[$name] = $value;
+		$exists = isset( $arr[$name] );
+		if ( !$exists || ( $flags & ApiResult::OVERRIDE ) ) {
+			if ( !$exists && ( $flags & ApiResult::ADD_ON_TOP ) ) {
+				$arr = array( $name => $value ) + $arr;
+			} else {
+				$arr[$name] = $value;
+			}
 		} elseif ( is_array( $arr[$name] ) && is_array( $value ) ) {
 			$merged = array_intersect_key( $arr[$name], $value );
 			if ( !count( $merged ) ) {
@@ -161,9 +183,9 @@ class ApiResult extends ApiBase {
 	/**
 	 * Adds a content element to an array.
 	 * Use this function instead of hardcoding the '*' element.
-	 * @param $arr array to add the content element to
+	 * @param array $arr to add the content element to
 	 * @param $value Mixed
-	 * @param $subElemName string when present, content element is created
+	 * @param string $subElemName when present, content element is created
 	 *  as a sub item of $arr. Use this parameter to create elements in
 	 *  format "<elem>text</elem>" without attributes.
 	 */
@@ -186,7 +208,7 @@ class ApiResult extends ApiBase {
 	 * give all indexed values the given tag name. This function MUST be
 	 * called on every array that has numerical indexes.
 	 * @param $arr array
-	 * @param $tag string Tag name
+	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName( &$arr, $tag ) {
 		// In raw mode, add the '_element', otherwise just ignore
@@ -203,7 +225,7 @@ class ApiResult extends ApiBase {
 	/**
 	 * Calls setIndexedTagName() on each sub-array of $arr
 	 * @param $arr array
-	 * @param $tag string Tag name
+	 * @param string $tag Tag name
 	 */
 	public function setIndexedTagName_recursive( &$arr, $tag ) {
 		if ( !is_array( $arr ) ) {
@@ -222,7 +244,7 @@ class ApiResult extends ApiBase {
 	 * Calls setIndexedTagName() on an array already in the result.
 	 * Don't specify a path to a value that's not in the result, or
 	 * you'll get nasty errors.
-	 * @param $path array Path to the array, like addValue()'s $path
+	 * @param array $path Path to the array, like addValue()'s $path
 	 * @param $tag string
 	 */
 	public function setIndexedTagName_internal( $path, $tag ) {
@@ -249,11 +271,14 @@ class ApiResult extends ApiBase {
 	 * @param $path array|string|null
 	 * @param $name string
 	 * @param $value mixed
-	 * @param $overwrite bool
-	 *
+	 * @param int $flags Zero or more OR-ed flags like OVERRIDE | ADD_ON_TOP. This parameter used to be
+	 *        boolean, and the value of OVERRIDE=1 was specifically chosen so that it would be backwards
+	 *        compatible with the new method signature.
 	 * @return bool True if $value fits in the result, false if not
+	 *
+	 * @since 1.21 int $flags replaced boolean $override
 	 */
-	public function addValue( $path, $name, $value, $overwrite = false ) {
+	public function addValue( $path, $name, $value, $flags = 0 ) {
 		global $wgAPIMaxResultSize;
 
 		$data = &$this->mData;
@@ -268,26 +293,34 @@ class ApiResult extends ApiBase {
 			$this->mSize = $newsize;
 		}
 
-		if ( !is_null( $path ) ) {
-			if ( is_array( $path ) ) {
-				foreach ( $path as $p ) {
-					if ( !isset( $data[$p] ) ) {
+		$addOnTop = $flags & ApiResult::ADD_ON_TOP;
+		if ( $path !== null ) {
+			foreach ( (array)$path as $p ) {
+				if ( !isset( $data[$p] ) ) {
+					if ( $addOnTop ) {
+						$data = array( $p => array() ) + $data;
+						$addOnTop = false;
+					} else {
 						$data[$p] = array();
 					}
-					$data = &$data[$p];
 				}
-			} else {
-				if ( !isset( $data[$path] ) ) {
-					$data[$path] = array();
-				}
-				$data = &$data[$path];
+				$data = &$data[$p];
 			}
 		}
 
 		if ( !$name ) {
-			$data[] = $value; // Add list element
+			// Add list element
+			if ( $addOnTop ) {
+				// This element needs to be inserted in the beginning
+				// Numerical indexes will be renumbered
+				array_unshift( $data, $value );
+			} else {
+				// Add new value at the end
+				$data[] = $value;
+			}
 		} else {
-			self::setElement( $data, $name, $value, $overwrite ); // Add named element
+			// Add named element
+			self::setElement( $data, $name, $value, $flags );
 		}
 		return true;
 	}
@@ -300,19 +333,19 @@ class ApiResult extends ApiBase {
 	 */
 	public function setParsedLimit( $moduleName, $limit ) {
 		// Add value, allowing overwriting
-		$this->addValue( 'limits', $moduleName, $limit, true );
+		$this->addValue( 'limits', $moduleName, $limit, ApiResult::OVERRIDE );
 	}
 
 	/**
 	 * Unset a value previously added to the result set.
 	 * Fails silently if the value isn't found.
 	 * For parameters, see addValue()
-	 * @param $path array
+	 * @param $path array|null
 	 * @param $name string
 	 */
 	public function unsetValue( $path, $name ) {
 		$data = &$this->mData;
-		if ( !is_null( $path ) ) {
+		if ( $path !== null ) {
 			foreach ( (array)$path as $p ) {
 				if ( !isset( $data[$p] ) ) {
 					return;
@@ -366,9 +399,5 @@ class ApiResult extends ApiBase {
 
 	public function execute() {
 		ApiBase::dieDebug( __METHOD__, 'execute() is not supported on Result object' );
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

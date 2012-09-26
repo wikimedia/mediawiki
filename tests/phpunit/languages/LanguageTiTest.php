@@ -6,27 +6,23 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageTi.php */
-class LanguageTiTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'Ti' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPlural */
+class LanguageTiTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
-		$forms = array( 'one', 'many' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$forms = array( 'one', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
-			array( 'one',  0 ),
-			array( 'one',  1 ),
-			array( 'many', 2 ),
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
+			array( 'one', 0 ),
+			array( 'one', 1 ),
+			array( 'other', 2 ),
 		);
 	}
 }

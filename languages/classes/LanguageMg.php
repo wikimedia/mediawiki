@@ -36,7 +36,9 @@ class LanguageMg extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 		$forms = $this->preConvertPlural( $forms, 2 );
 
 		return ( $count <= 1 ) ? $forms[0] : $forms[1];

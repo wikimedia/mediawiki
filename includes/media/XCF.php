@@ -72,19 +72,19 @@ class XCFHandler extends BitmapHandler {
 	 * @author Hexmode
 	 * @author Hashar
 	 *
-	 * @param $filename String Full path to a XCF file
+	 * @param string $filename Full path to a XCF file
 	 * @return bool|array metadata array just like PHP getimagesize()
 	 */
 	static function getXCFMetaData( $filename ) {
 		# Decode master structure
 		$f = fopen( $filename, 'rb' );
-		if( !$f ) {
+		if ( !$f ) {
 			return false;
 		}
 		# The image structure always starts at offset 0 in the XCF file.
 		# So we just read it :-)
 		$binaryHeader = fread( $f, 26 );
-		fclose($f);
+		fclose( $f );
 
 		# Master image structure:
 		#
@@ -110,12 +110,12 @@ class XCFHandler extends BitmapHandler {
 				. "/Nbase_type" # /
 			, $binaryHeader
 			);
-		} catch( MWException $mwe ) {
+		} catch ( MWException $mwe ) {
 			return false;
 		}
 
 		# Check values
-		if( $header['magic'] !== 'gimp xcf' ) {
+		if ( $header['magic'] !== 'gimp xcf' ) {
 			wfDebug( __METHOD__ . " '$filename' has invalid magic signature.\n" );
 			return false;
 		}

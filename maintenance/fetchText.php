@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script used to fetch page text in a subprocess.
@@ -45,7 +45,7 @@ class FetchText extends Maintenance {
 	 *
 	 * note that that the text string itself is *not* followed by newline
 	 */
-	 public function execute() {
+	public function execute() {
 		$db = wfGetDB( DB_SLAVE );
 		$stdin = $this->getStdin();
 		while ( !feof( $stdin ) ) {
@@ -56,12 +56,12 @@ class FetchText extends Maintenance {
 			}
 			$textId = intval( $line );
 			$text = $this->doGetText( $db, $textId );
-			if ($text === false) {
+			if ( $text === false ) {
 				# actual error, not zero-length text
 				$textLen = "-1";
 			}
 			else {
-				$textLen = strlen($text);
+				$textLen = strlen( $text );
 			}
 			$this->output( $textId . "\n" . $textLen . "\n" . $text );
 		}
@@ -88,4 +88,4 @@ class FetchText extends Maintenance {
 }
 
 $maintClass = "FetchText";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

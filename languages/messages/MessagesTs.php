@@ -38,8 +38,6 @@ $messages = array(
 'tog-enotifminoredits' => 'ndzurhumele e-mail loko ku endleka mindzulamiso leyi ntsongo',
 'tog-enotifrevealaddr' => 'Paluxa e-mail yamina eka mapapila lawa ndzimarhumelaka',
 'tog-shownumberswatching' => 'Komba ntsengo wa vatirhisi lava hlaleleke tluka',
-'tog-externaleditor' => 'Tirhisa xilulamisi xalehandle hikukongoma (Nhlawulo lowu i wavatirhisi lavangani ntokoto ntsena, wu lava ku cinca kokarhi eka khompuyuta yawena. [//www.mediawiki.org/wiki/Manual:External_editors vuxokoxoko hi mhakaleyi.])',
-'tog-externaldiff' => 'Tirhisa phurogiremi yalehandle hikukongoma (Nhlawulo lowu i wavatirhisi lavangani ntokoto ntsena, wu lava ku cinca kokarhi eka khompuyuta yawena. [//www.mediawiki.org/wiki/Manual:External_editors vuxokoxoko hi mhakaleyi.])',
 'tog-forceeditsummary' => 'Ndzivutisisi loko ndzinga hoxi nkomiso wa ndzulamiso lowu ndzi wu endleke',
 'tog-watchlisthideown' => 'Tumbeta mindzulamiso ya mina eka leswi ndzi swi languteke',
 'tog-watchlisthidebots' => 'Tumbeta mindzulamiso ya rhobhoti eka leswi ndzi swi languteke',
@@ -138,7 +136,6 @@ $messages = array(
 'qbfind' => 'Kuma',
 'qbedit' => 'Lulamisa',
 'qbpageoptions' => 'Tluka leri',
-'qbpageinfo' => 'mongo',
 'qbmyoptions' => 'Matluka ya mina',
 'qbspecialpages' => 'Matluka yohlawuleka',
 'faq' => 'FAQ',
@@ -227,7 +224,6 @@ $messages = array(
 'disclaimers' => 'Swi alanandzu',
 'disclaimerpage' => 'Project:Swithsuxa nadzu hikuangara',
 'edithelp' => 'Mpfuno hi ta mindzulamiso',
-'edithelppage' => 'Help:Mindzulamiso',
 'helppage' => 'Help:Leswinga ndzeni',
 'mainpage' => 'Tlukankulu',
 'mainpage-description' => 'Tluka-Nkulu',
@@ -372,11 +368,8 @@ Hikwlaho ka xivangelo xa "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Uhumile eka wiki leyi.'''
 
-Ungaya emahlweni utirhisa {{SITENAME}} handle ko tipaluxa, kumbe unga [[Special:UserLogin|pfula unghena nakambe]] tani hi mutirhisa un'wana kumbe kumbe hivuxokoxoko bya wena.
+Ungaya emahlweni utirhisa {{SITENAME}} handle ko tipaluxa, kumbe unga <span class='plainlinks'>[$1 pfula unghena nakambe]</span> tani hi mutirhisa un'wana kumbe kumbe hivuxokoxoko bya wena.
 Tsundzuka leswaku matluka man'wana mangaha komba onge upfule unghena eka wiki, loko ungasi sula tluka rakhompuyuta leri tsundzukaka matluka lawa uma vhakeleke.",
-'welcomecreation' => '== Hoyohoyo, eka Wena $1 ! ==
-Akhawunti yawena yitumbuluxiwile.
-Unda rivali ku cinca [[Special:Preferences|{{SITENAME}} minhlawulo ya wena]].',
 'yourname' => 'Vito ra vutirhisi',
 'yourpassword' => 'Vito-mpfungulo:',
 'yourpasswordagain' => 'Thlela u hoxa ritompfungulo ra wena:',
@@ -518,7 +511,6 @@ Swihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '
 'viewprevnext' => 'Vona ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Tluka leri vuriwaka \"[[:\$1]]\" ikhale ririkona eka wiki leyi.'''",
 'searchmenu-new' => "'''Tumbuluxa tluka ra \"[[:\$1]]\" eka wiki leyi!'''",
-'searchhelp-url' => 'Help:Leswinga ndzeni',
 'searchprofile-articles' => 'Matluka lama tsariweke',
 'searchprofile-project' => 'Mpfuno na matluka ya phurojeki',
 'searchprofile-images' => 'Tifayili ta mfpumawulo na swifaniso',
@@ -567,6 +559,9 @@ Adiresi ya wena ya e-mail yitunberile loko van'wana va bula na wena.",
 'right-move' => "Yisa matluka lawa kun'wana",
 'right-move-subpages' => "yisa matluka lawa na matluka-ntsongo ya wona, kun'wana",
 'right-delete' => 'Sula matluka lawa',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Nghula ya nxaxamelo wa ku tumbuluxiwa ka vatirhisi',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'hlaya tluka leri',
@@ -694,13 +689,10 @@ Nhlamuselo ya yona leyi nge ndzeni ka [$2 tluka ro hlamusela] hi yona leyi kombi
 'linksearch-ok' => 'Lava',
 'linksearch-line' => '$1 yi khwekerisiwe kusuka eka $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Nghula ya nxaxamelo wa ku tumbuluxiwa ka vatirhisi',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(nxaxamelo wa valandzeri)',
 
-# E-mail user
+# Email user
 'emailuser' => 'rhumela mutirhisi loyi E-mail',
 
 # Watchlist

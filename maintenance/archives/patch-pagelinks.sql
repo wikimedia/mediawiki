@@ -1,7 +1,7 @@
 --
 -- Create the new pagelinks table to merge links and brokenlinks data,
 -- and populate it.
--- 
+--
 -- Unlike the old links and brokenlinks, these records will not need to be
 -- altered when target pages are created, deleted, or renamed. This should
 -- reduce the amount of severe database frustration that happens when widely-
@@ -19,14 +19,14 @@
 CREATE TABLE /*$wgDBprefix*/pagelinks (
   -- Key to the page_id of the page containing the link.
   pl_from int unsigned NOT NULL default '0',
-  
+
   -- Key to page_namespace/page_title of the target page.
   -- The target page may or may not exist, and due to renames
   -- and deletions may refer to different page records as time
   -- goes by.
   pl_namespace int NOT NULL default '0',
   pl_title varchar(255) binary NOT NULL default '',
-  
+
   UNIQUE KEY pl_from(pl_from,pl_namespace,pl_title),
   KEY (pl_namespace,pl_title)
 

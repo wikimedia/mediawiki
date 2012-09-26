@@ -22,7 +22,7 @@
  * @see wfWaitForSlaves()
  */
 
-require( __DIR__ . '/../commandLine.inc' );
+require __DIR__ . '/../commandLine.inc';
 
 
 if ( count( $args ) < 1 ) {
@@ -37,12 +37,12 @@ $tracker->run();
 echo "All done.\n";
 
 class TrackBlobs {
-	var $clusters, $textClause;
-	var $doBlobOrphans;
-	var $trackedBlobs = array();
+	public $clusters, $textClause;
+	public $doBlobOrphans;
+	public $trackedBlobs = array();
 
-	var $batchSize = 1000;
-	var $reportingInterval = 10;
+	public $batchSize = 1000;
+	public $reportingInterval = 10;
 
 	function __construct( $clusters ) {
 		$this->clusters = $clusters;

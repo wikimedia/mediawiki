@@ -8,7 +8,7 @@
 		// (only if a framework was found, not on error pages).
 		$( '#mw-javascripttest-summary.mw-javascripttest-frameworkfound' ).append( function () {
 
-			var	$html = $( '<p><label for="useskin">'
+			var $html = $( '<p><label for="useskin">'
 					+ mw.message( 'javascripttest-pagetext-skins' ).escaped()
 					+ ' '
 					+ '</label></p>' ),

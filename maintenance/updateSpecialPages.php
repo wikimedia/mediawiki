@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to update cached special pages.
@@ -47,10 +47,10 @@ class UpdateSpecialPages extends Maintenance {
 				$this->error( "Uncallable function $call!" );
 				continue;
 			}
+			$this->output( sprintf( '%-30s ', $special ) );
 			$t1 = explode( ' ', microtime() );
 			call_user_func( $call, $dbw );
 			$t2 = explode( ' ', microtime() );
-			$this->output( sprintf( '%-30s ', $special ) );
 			$elapsed = ( $t2[0] - $t1[0] ) + ( $t2[1] - $t1[1] );
 			$hours = intval( $elapsed / 3600 );
 			$minutes = intval( $elapsed % 3600 / 60 );
@@ -67,7 +67,7 @@ class UpdateSpecialPages extends Maintenance {
 		}
 
 		// This is needed to initialise $wgQueryPages
-		require_once( "$IP/includes/QueryPage.php" );
+		require_once "$IP/includes/QueryPage.php";
 
 		foreach ( $wgQueryPages as $page ) {
 			list( $class, $special ) = $page;
@@ -94,13 +94,13 @@ class UpdateSpecialPages extends Maintenance {
 			} else {
 				if ( !class_exists( $class ) ) {
 					$file = $specialObj->getFile();
-					require_once( $file );
+					require_once $file;
 				}
 				$queryPage = new $class;
 			}
 
 			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $queryPage->getName() ) {
-				$this->output( sprintf( '%-30s ',  $special ) );
+				$this->output( sprintf( '%-30s ', $special ) );
 				if ( $queryPage->isExpensive() ) {
 					$t1 = explode( ' ', microtime() );
 					# Do the query
@@ -124,7 +124,7 @@ class UpdateSpecialPages extends Maintenance {
 						$this->output( sprintf( "%.2fs\n", $seconds ) );
 					}
 					# Reopen any connections that have closed
-					if ( !wfGetLB()->pingAll() )  {
+					if ( !wfGetLB()->pingAll() ) {
 						$this->output( "\n" );
 						do {
 							$this->error( "Connection failed, reconnecting in 10 seconds..." );
@@ -146,4 +146,4 @@ class UpdateSpecialPages extends Maintenance {
 }
 
 $maintClass = "UpdateSpecialPages";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

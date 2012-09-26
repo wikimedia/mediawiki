@@ -79,7 +79,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	 */
 	private function run( $resultPageSet = null ) {
 		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
-			return;	// nothing to do
+			return; // nothing to do
 		}
 
 		$params = $this->extractRequestParams();
@@ -112,10 +112,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 3 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$plfrom = intval( $cont[0] );
 			$plns = intval( $cont[1] );
@@ -241,17 +238,13 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$desc = $this->description;
 		$name = $this->getModuleName();
 		return array(
-			"api.php?action=query&prop={$name}&titles=Main%20Page" => "Get {$desc}s from the [[Main Page]]:",
-			"api.php?action=query&generator={$name}&titles=Main%20Page&prop=info" => "Get information about the {$desc} pages in the [[Main Page]]:",
-			"api.php?action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10" => "Get {$desc}s from the Main Page in the User and Template namespaces:",
+			"api.php?action=query&prop={$name}&titles=Main%20Page" => "Get {$desc}s from the [[Main Page]]",
+			"api.php?action=query&generator={$name}&titles=Main%20Page&prop=info" => "Get information about the {$desc} pages in the [[Main Page]]",
+			"api.php?action=query&prop={$name}&titles=Main%20Page&{$this->prefix}namespace=2|10" => "Get {$desc}s from the Main Page in the User and Template namespaces",
 		);
 	}
 
 	public function getHelpUrls() {
 		return $this->helpUrl;
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

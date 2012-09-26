@@ -63,7 +63,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addTables( 'ipblocks' );
 		$this->addFields( 'ipb_auto' );
 
-		$this->addFieldsIf ( 'ipb_id', $fld_id );
+		$this->addFieldsIf( 'ipb_id', $fld_id );
 		$this->addFieldsIf( array( 'ipb_address', 'ipb_user' ), $fld_user || $fld_userid );
 		$this->addFieldsIf( 'ipb_by_text', $fld_by );
 		$this->addFieldsIf( 'ipb_by', $fld_byid );
@@ -91,17 +91,30 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereFld( 'ipb_auto', 0 );
 		}
 		if ( isset( $params['ip'] ) ) {
-			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
-			if ( $ip && $range ) {
-				// We got a CIDR range
-				if ( $range < 16 )
-					$this->dieUsage( 'CIDR ranges broader than /16 are not accepted', 'cidrtoobroad' );
-				$lower = wfBaseConvert( $ip, 10, 16, 8, false );
-				$upper = wfBaseConvert( $ip + pow( 2, 32 - $range ) - 1, 10, 16, 8, false );
+			global $wgBlockCIDRLimit;
+			if ( IP::isIPv4( $params['ip'] ) ) {
+				$type = 'IPv4';
+				$cidrLimit = $wgBlockCIDRLimit['IPv4'];
+				$prefixLen = 0;
+			} elseif ( IP::isIPv6( $params['ip'] ) ) {
+				$type = 'IPv6';
+				$cidrLimit = $wgBlockCIDRLimit['IPv6'];
+				$prefixLen = 3; // IP::toHex output is prefixed with "v6-"
 			} else {
-				$lower = $upper = IP::toHex( $params['ip'] );
+				$this->dieUsage( 'IP parameter is not valid', 'param_ip' );
 			}
-			$prefix = substr( $lower, 0, 4 );
+
+			# Check range validity, if it's a CIDR
+			list( $ip, $range ) = IP::parseCIDR( $params['ip'] );
+			if ( $ip !== false && $range !== false && $range < $cidrLimit ) {
+				$this->dieUsage( "$type CIDR ranges broader than /$cidrLimit are not accepted", 'cidrtoobroad' );
+			}
+
+			# Let IP::parseRange handle calculating $upper, instead of duplicating the logic here.
+			list( $lower, $upper ) = IP::parseRange( $params['ip'] );
+
+			# Extract the common prefix to any rangeblock affecting this IP/CIDR
+			$prefix = substr( $lower, 0, $prefixLen + floor( $cidrLimit / 4 ) );
 
 			# Fairly hard to make a malicious SQL statement out of hex characters,
 			# but it is good practice to add quotes
@@ -120,10 +133,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
-			if ( ( isset ( $show['account'] ) && isset ( $show['!account'] ) )
-					|| ( isset ( $show['ip'] ) && isset ( $show['!ip'] ) )
-					|| ( isset ( $show['range'] ) && isset ( $show['!range'] ) )
-					|| ( isset ( $show['temp'] ) && isset ( $show['!temp'] ) )
+			if ( ( isset( $show['account'] ) && isset( $show['!account'] ) )
+					|| ( isset( $show['ip'] ) && isset( $show['!ip'] ) )
+					|| ( isset( $show['range'] ) && isset( $show['!range'] ) )
+					|| ( isset( $show['temp'] ) && isset( $show['!temp'] ) )
 			) {
 				$this->dieUsageMsg( 'show' );
 			}
@@ -132,10 +145,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'ipb_user != 0', isset( $show['account'] ) );
 			$this->addWhereIf( 'ipb_user != 0 OR ipb_range_end > ipb_range_start', isset( $show['!ip'] ) );
 			$this->addWhereIf( 'ipb_user = 0 AND ipb_range_end = ipb_range_start', isset( $show['ip'] ) );
-			$this->addWhereIf( 'ipb_expiry =  '.$db->addQuotes($db->getInfinity()), isset( $show['!temp'] ) );
-			$this->addWhereIf( 'ipb_expiry != '.$db->addQuotes($db->getInfinity()), isset( $show['temp'] ) );
-			$this->addWhereIf( "ipb_range_end = ipb_range_start", isset( $show['!range'] ) );
-			$this->addWhereIf( "ipb_range_end > ipb_range_start", isset( $show['range'] ) );
+			$this->addWhereIf( 'ipb_expiry = ' . $db->addQuotes( $db->getInfinity() ), isset( $show['!temp'] ) );
+			$this->addWhereIf( 'ipb_expiry != ' . $db->addQuotes( $db->getInfinity() ), isset( $show['temp'] ) );
+			$this->addWhereIf( 'ipb_range_end = ipb_range_start', isset( $show['!range'] ) );
+			$this->addWhereIf( 'ipb_range_end > ipb_range_start', isset( $show['range'] ) );
 		}
 
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
@@ -182,8 +195,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['reason'] = $row->ipb_reason;
 			}
 			if ( $fld_range && !$row->ipb_auto ) {
-				$block['rangestart'] = IP::hexToQuad( $row->ipb_range_start );
-				$block['rangeend'] = IP::hexToQuad( $row->ipb_range_end );
+				$block['rangestart'] = IP::formatHex( $row->ipb_range_start );
+				$block['rangeend'] = IP::formatHex( $row->ipb_range_end );
 			}
 			if ( $fld_flags ) {
 				// For clarity, these flags use the same names as their action=block counterparts
@@ -294,6 +307,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getParamDescription() {
+		global $wgBlockCIDRLimit;
 		$p = $this->getModulePrefix();
 		return array(
 			'start' => 'The timestamp to start enumerating from',
@@ -301,8 +315,12 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'dir' => $this->getDirectionDescription( $p ),
 			'ids' => 'List of block IDs to list (optional)',
 			'users' => 'List of users to search for (optional)',
-			'ip' => array(	'Get all blocks applying to this IP or CIDR range, including range blocks.',
-					'Cannot be used together with bkusers. CIDR ranges broader than /16 are not accepted' ),
+			'ip' => array(
+				'Get all blocks applying to this IP or CIDR range, including range blocks.',
+				"Cannot be used together with bkusers. CIDR ranges broader than " .
+					"IPv4/{$wgBlockCIDRLimit['IPv4']} or IPv6/{$wgBlockCIDRLimit['IPv6']} " .
+					"are not accepted"
+			),
 			'limit' => 'The maximum amount of blocks to list',
 			'prop' => array(
 				'Which properties to get',
@@ -383,10 +401,19 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getPossibleErrors() {
+		global $wgBlockCIDRLimit;
 		return array_merge( parent::getPossibleErrors(),
 			$this->getRequireOnlyOneParameterErrorMessages( array( 'users', 'ip' ) ),
 			array(
-				array( 'code' => 'cidrtoobroad', 'info' => 'CIDR ranges broader than /16 are not accepted' ),
+				array(
+					'code' => 'cidrtoobroad',
+					'info' => "IPv4 CIDR ranges broader than /{$wgBlockCIDRLimit['IPv4']} are not accepted"
+				),
+				array(
+					'code' => 'cidrtoobroad',
+					'info' => "IPv6 CIDR ranges broader than /{$wgBlockCIDRLimit['IPv6']} are not accepted"
+				),
+				array( 'code' => 'param_ip', 'info' => 'IP parameter is not valid' ),
 				array( 'code' => 'param_user', 'info' => 'User parameter may not be empty' ),
 				array( 'code' => 'param_user', 'info' => 'User name user is not valid' ),
 				array( 'show' ),
@@ -403,9 +430,5 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Blocks';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

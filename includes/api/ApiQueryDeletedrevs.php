@@ -50,7 +50,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_user = isset( $prop['user'] );
 		$fld_userid = isset( $prop['userid'] );
 		$fld_comment = isset( $prop['comment'] );
-		$fld_parsedcomment = isset ( $prop['parsedcomment'] );
+		$fld_parsedcomment = isset( $prop['parsedcomment'] );
 		$fld_minor = isset( $prop['minor'] );
 		$fld_len = isset( $prop['len'] );
 		$fld_sha1 = isset( $prop['sha1'] );
@@ -74,15 +74,15 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $mode == 'revs' || $mode == 'user' ) {
 			// Ignore namespace and unique due to inability to know whether they were purposely set
-			foreach( array( 'from', 'to', 'prefix', /*'namespace',*/ 'continue', /*'unique'*/ ) as $p ) {
+			foreach ( array( 'from', 'to', 'prefix', /*'namespace', 'unique'*/ ) as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams');
+					$this->dieUsage( "The '{$p}' parameter cannot be used in modes 1 or 2", 'badparams' );
 				}
 			}
 		} else {
-			foreach( array( 'start', 'end' ) as $p ) {
+			foreach ( array( 'start', 'end' ) as $p ) {
 				if ( !is_null( $params[$p] ) ) {
-					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams');
+					$this->dieUsage( "The {$p} parameter cannot be used in mode 3", 'badparams' );
 				}
 			}
 		}
@@ -116,7 +116,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		}
 		// Check limits
 		$userMax = $fld_content ? ApiBase::LIMIT_SML1 : ApiBase::LIMIT_BIG1;
-		$botMax  = $fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2;
+		$botMax = $fld_content ? ApiBase::LIMIT_SML2 : ApiBase::LIMIT_BIG2;
 
 		$limit = $params['limit'];
 
@@ -160,10 +160,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( !is_null( $params['continue'] ) && ( $mode == 'all' || $mode == 'revs' ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 3 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', 'badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
 			$ns = intval( $cont[0] );
+			$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
 			$title = $db->addQuotes( $cont[1] );
 			$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
 			$op = ( $dir == 'newer' ? '>' : '<' );
@@ -307,7 +306,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			),
 			'namespace' => array(
 				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_DFLT => 0,
+				ApiBase::PARAM_DFLT => NS_MAIN,
 			),
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
@@ -362,7 +361,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
 			'excludeuser' => 'Don\'t list revisions by this user',
-			'continue' => 'When more results are available, use this to continue (3)',
+			'continue' => 'When more results are available, use this to continue (1, 3)',
 			'unique' => 'List only one revision for each page (3)',
 		);
 	}
@@ -397,11 +396,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision information' ),
 			array( 'code' => 'badparams', 'info' => 'user and excludeuser cannot be used together' ),
 			array( 'code' => 'permissiondenied', 'info' => 'You don\'t have permission to view deleted revision content' ),
-			array( 'code' => 'badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 			array( 'code' => 'badparams', 'info' => "The 'from' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'to' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'prefix' parameter cannot be used in modes 1 or 2" ),
-			array( 'code' => 'badparams', 'info' => "The 'continue' parameter cannot be used in modes 1 or 2" ),
 			array( 'code' => 'badparams', 'info' => "The 'start' parameter cannot be used in mode 3" ),
 			array( 'code' => 'badparams', 'info' => "The 'end' parameter cannot be used in mode 3" ),
 		) );
@@ -422,9 +419,5 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Deletedrevs';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

@@ -31,7 +31,7 @@ INSERT INTO &mw_prefix.mwuser
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
-  ug_group  VARCHAR2(32)     NOT NULL
+  ug_group  VARCHAR2(255)     NOT NULL
 );
 ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_fk1 FOREIGN KEY (ug_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.user_groups_u01 ON &mw_prefix.user_groups (ug_user,ug_group);
@@ -39,7 +39,7 @@ CREATE INDEX &mw_prefix.user_groups_i01 ON &mw_prefix.user_groups (ug_group);
 
 CREATE TABLE &mw_prefix.user_former_groups (
   ufg_user   NUMBER      DEFAULT 0 NOT NULL,
-  ufg_group  VARCHAR2(16)     NOT NULL
+  ufg_group  VARCHAR2(255)     NOT NULL
 );
 ALTER TABLE &mw_prefix.user_former_groups ADD CONSTRAINT &mw_prefix.user_former_groups_fk1 FOREIGN KEY (ufg_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.user_former_groups_u01 ON &mw_prefix.user_former_groups (ufg_user,ufg_group);
@@ -73,7 +73,8 @@ CREATE TABLE &mw_prefix.page (
   page_random        NUMBER(15,14) NOT NULL,
   page_touched       TIMESTAMP(6) WITH TIME ZONE,
   page_latest        NUMBER        DEFAULT 0 NOT NULL, -- FK?
-  page_len           NUMBER        DEFAULT 0 NOT NULL
+  page_len           NUMBER        DEFAULT 0 NOT NULL,
+  page_content_model VARCHAR2(32)
 );
 ALTER TABLE &mw_prefix.page ADD CONSTRAINT &mw_prefix.page_pk PRIMARY KEY (page_id);
 CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_title);
@@ -83,7 +84,7 @@ CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_name
 
 -- Create a dummy page to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.page
-  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0);
+  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0, NULL);
 
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
@@ -106,7 +107,9 @@ CREATE TABLE &mw_prefix.revision (
   rev_deleted     CHAR(1)         DEFAULT '0' NOT NULL,
   rev_len         NUMBER          NULL,
   rev_parent_id   NUMBER      	   DEFAULT NULL,
-  rev_sha1		  VARCHAR2(32)    NULL
+  rev_sha1		  VARCHAR2(32)    NULL,
+  rev_content_model VARCHAR2(32),
+  rev_content_format VARCHAR2(64)
 );
 ALTER TABLE &mw_prefix.revision ADD CONSTRAINT &mw_prefix.revision_pk PRIMARY KEY (rev_id);
 ALTER TABLE &mw_prefix.revision ADD CONSTRAINT &mw_prefix.revision_fk1 FOREIGN KEY (rev_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
@@ -142,7 +145,9 @@ CREATE TABLE &mw_prefix.archive (
   ar_len         NUMBER,
   ar_page_id     NUMBER,
   ar_parent_id   NUMBER,
-  ar_sha1		  VARCHAR2(32)    NULL
+  ar_sha1		  VARCHAR2(32),
+  ar_content_model VARCHAR2(32),
+  ar_content_format VARCHAR2(64)
 );
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk1 FOREIGN KEY (ar_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
@@ -197,8 +202,7 @@ CREATE TABLE &mw_prefix.category (
   cat_title VARCHAR2(255) NOT NULL,
   cat_pages NUMBER DEFAULT 0 NOT NULL,
   cat_subcats NUMBER DEFAULT 0 NOT NULL,
-  cat_files NUMBER DEFAULT 0 NOT NULL,
-  cat_hidden NUMBER DEFAULT 0 NOT NULL
+  cat_files NUMBER DEFAULT 0 NOT NULL
 );
 ALTER TABLE &mw_prefix.category ADD CONSTRAINT &mw_prefix.category_pk PRIMARY KEY (cat_id);
 CREATE UNIQUE INDEX &mw_prefix.category_u01 ON &mw_prefix.category (cat_title);
@@ -213,13 +217,6 @@ ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_fk1
 CREATE INDEX &mw_prefix.externallinks_i01 ON &mw_prefix.externallinks (el_from, el_to);
 CREATE INDEX &mw_prefix.externallinks_i02 ON &mw_prefix.externallinks (el_to, el_from);
 CREATE INDEX &mw_prefix.externallinks_i03 ON &mw_prefix.externallinks (el_index);
-
-CREATE TABLE &mw_prefix.external_user (
-  eu_local_id NUMBER NOT NULL,
-  eu_external_id varchar2(255) NOT NULL
-);
-ALTER TABLE &mw_prefix.external_user ADD CONSTRAINT &mw_prefix.external_user_pk PRIMARY KEY (eu_local_id);
-CREATE UNIQUE INDEX &mw_prefix.external_user_u01 ON &mw_prefix.external_user (eu_external_id);
 
 CREATE TABLE &mw_prefix.langlinks (
   ll_from    NUMBER  NOT NULL,
@@ -246,7 +243,6 @@ CREATE TABLE &mw_prefix.site_stats (
   ss_total_pages    NUMBER            DEFAULT -1,
   ss_users          NUMBER            DEFAULT -1,
   ss_active_users   NUMBER            DEFAULT -1,
-  ss_admins         NUMBER            DEFAULT -1,
   ss_images         NUMBER            DEFAULT 0
 );
 CREATE UNIQUE INDEX &mw_prefix.site_stats_u01 ON &mw_prefix.site_stats (ss_row_id);
@@ -358,7 +354,8 @@ CREATE TABLE &mw_prefix.filearchive (
   fa_user               NUMBER          DEFAULT 0 NOT NULL,
   fa_user_text          VARCHAR2(255)         NOT NULL,
   fa_timestamp          TIMESTAMP(6) WITH TIME ZONE,
-  fa_deleted            NUMBER      DEFAULT 0 NOT NULL
+  fa_deleted            NUMBER      DEFAULT 0 NOT NULL,
+  fa_sha1		VARCHAR2(32)
 );
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_pk PRIMARY KEY (fa_id);
 ALTER TABLE &mw_prefix.filearchive ADD CONSTRAINT &mw_prefix.filearchive_fk1 FOREIGN KEY (fa_deleted_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
@@ -367,6 +364,7 @@ CREATE INDEX &mw_prefix.filearchive_i01 ON &mw_prefix.filearchive (fa_name, fa_t
 CREATE INDEX &mw_prefix.filearchive_i02 ON &mw_prefix.filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX &mw_prefix.filearchive_i03 ON &mw_prefix.filearchive (fa_deleted_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i04 ON &mw_prefix.filearchive (fa_user_text,fa_timestamp);
+CREATE INDEX &mw_prefix.filearchive_i05 ON &mw_prefix.filearchive (fa_sha1);
 
 CREATE SEQUENCE uploadstash_us_id_seq;
 CREATE TABLE &mw_prefix.uploadstash (
@@ -385,7 +383,8 @@ CREATE TABLE &mw_prefix.uploadstash (
   us_media_type         VARCHAR2(32) DEFAULT NULL,
 	us_image_width				NUMBER,
 	us_image_height				NUMBER,
-	us_image_bits					NUMBER
+	us_image_bits					NUMBER,
+  us_props BLOB
 );
 ALTER TABLE &mw_prefix.uploadstash ADD CONSTRAINT &mw_prefix.uploadstash_pk PRIMARY KEY (us_id);
 ALTER TABLE &mw_prefix.uploadstash ADD CONSTRAINT &mw_prefix.uploadstash_fk1 FOREIGN KEY (us_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
@@ -523,11 +522,19 @@ CREATE TABLE &mw_prefix.job (
   job_namespace  NUMBER  DEFAULT 0 NOT NULL,
   job_title      VARCHAR2(255)      NOT NULL,
   job_timestamp	 TIMESTAMP(6) WITH TIME ZONE NULL,
-  job_params     CLOB      NOT NULL
+  job_params     CLOB      NOT NULL,
+  job_random NUMBER DEFAULT 0 NOT NULL,
+  job_token VARCHAR2(32),
+  job_token_timestamp TIMESTAMP(6) WITH TIME ZONE,
+  job_sha1 VARCHAR2(32),
+  job_attempts NUMBER DEFAULT 0 NOT NULL
 );
 ALTER TABLE &mw_prefix.job ADD CONSTRAINT &mw_prefix.job_pk PRIMARY KEY (job_id);
 CREATE INDEX &mw_prefix.job_i01 ON &mw_prefix.job (job_cmd, job_namespace, job_title);
 CREATE INDEX &mw_prefix.job_i02 ON &mw_prefix.job (job_timestamp);
+CREATE INDEX &mw_prefix.job_i03 ON &mw_prefix.job (job_sha1);
+CREATE INDEX &mw_prefix.job_i04 ON &mw_prefix.job (job_cmd,job_token,job_random);
+CREATE INDEX &mw_prefix.job_i05 ON &mw_prefix.job (job_attempts);
 
 CREATE TABLE &mw_prefix.querycache_info (
   qci_type       VARCHAR2(32) NOT NULL,
@@ -629,10 +636,11 @@ ALTER TABLE &mw_prefix.valid_tag ADD CONSTRAINT &mw_prefix.valid_tag_pk PRIMARY 
 
 -- This table is not used unless profiling is turned on
 --CREATE TABLE &mw_prefix.profiling (
---  pf_count   NUMBER         DEFAULT 0 NOT NULL,
---  pf_time    NUMERIC(18,10)  DEFAULT 0 NOT NULL,
---  pf_name    CLOB            NOT NULL,
---  pf_server  CLOB            NULL
+--  pf_count   NUMBER          DEFAULT 0 NOT NULL,
+--  pf_time    NUMBER(18,10)   DEFAULT 0 NOT NULL,
+--  pf_memory  NUMBER(18,10)   DEFAULT 0 NOT NULL,
+--  pf_name    VARCHAR2(255),
+--  pf_server  VARCHAR2(30)
 --);
 --CREATE UNIQUE INDEX &mw_prefix.profiling_u01 ON &mw_prefix.profiling (pf_name, pf_server);
 
@@ -667,12 +675,38 @@ CREATE TABLE &mw_prefix.module_deps (
 );
 CREATE UNIQUE INDEX &mw_prefix.module_deps_u01 ON &mw_prefix.module_deps (md_module, md_skin);
 
-CREATE TABLE &mw_prefix.config (
-  cf_name VARCHAR2(255) NOT NULL,
-  cf_value blob NOT NULL
+CREATE SEQUENCE sites_site_id_seq MINVALUE 0 START WITH 0;
+CREATE TABLE &mw_prefix.sites (
+  site_id NUMBER NOT NULL,
+  site_global_key VARCHAR2(32) NOT NULL,
+  site_type VARCHAR2(32) NOT NULL,
+  site_group VARCHAR2(32) NOT NULL,
+  site_source VARCHAR2(32) NOT NULL,
+  site_language VARCHAR2(32) NOT NULL,
+  site_protocol VARCHAR2(32) NOT NULL,
+  site_domain VARCHAR2(255) NOT NULL,
+  site_data BLOB NOT NULL,
+  site_forward NUMBER(1) NOT NULL,
+  site_config BLOB NOT NULL
 );
-ALTER TABLE &mw_prefix.config ADD CONSTRAINT &mw_prefix.config_pk PRIMARY KEY (cf_name);
--- leaving index out for now ...
+ALTER TABLE &mw_prefix.sites ADD CONSTRAINT &mw_prefix.sites_pk PRIMARY KEY (site_id);
+CREATE UNIQUE INDEX &mw_prefix.sites_u01 ON &mw_prefix.sites (site_global_key);
+CREATE INDEX &mw_prefix.sites_i01 ON &mw_prefix.sites (site_type);
+CREATE INDEX &mw_prefix.sites_i02 ON &mw_prefix.sites (site_group);
+CREATE INDEX &mw_prefix.sites_i03 ON &mw_prefix.sites (site_source);
+CREATE INDEX &mw_prefix.sites_i04 ON &mw_prefix.sites (site_language);
+CREATE INDEX &mw_prefix.sites_i05 ON &mw_prefix.sites (site_protocol);
+CREATE INDEX &mw_prefix.sites_i06 ON &mw_prefix.sites (site_domain);
+CREATE INDEX &mw_prefix.sites_i07 ON &mw_prefix.sites (site_forward);
+
+CREATE TABLE &mw_prefix.site_identifiers (
+  si_site NUMBER NOT NULL,
+  si_type VARCHAR2(32) NOT NULL,
+  si_key VARCHAR2(32) NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.site_identifiers_u01 ON &mw_prefix.site_identifiers (si_type, si_key);
+CREATE INDEX &mw_prefix.site_identifiers_i01 ON &mw_prefix.site_identifiers (si_site);
+CREATE INDEX &mw_prefix.site_identifiers_i02 ON &mw_prefix.site_identifiers (si_key);
 
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (

@@ -105,7 +105,7 @@ abstract class RevisionListBase extends ContextSource {
 	 * @return int
 	 */
 	public function length() {
-		if( !$this->res ) {
+		if ( !$this->res ) {
 			return 0;
 		} else {
 			return $this->res->numRows();
@@ -190,7 +190,7 @@ abstract class RevisionItemBase {
 	}
 
 	/**
-	 * Get the date, formatted in user's languae
+	 * Get the date, formatted in user's language
 	 * @return String
 	 */
 	public function formatDate() {
@@ -199,7 +199,7 @@ abstract class RevisionItemBase {
 	}
 
 	/**
-	 * Get the time, formatted in user's languae
+	 * Get the time, formatted in user's language
 	 * @return String
 	 */
 	public function formatTime() {
@@ -352,8 +352,7 @@ class RevisionItem extends RevisionItemBase {
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $this->context->msg( 'diff' )->escaped();
 		} else {
-			return
-				Linker::link(
+			return Linker::link(
 					$this->list->title,
 					$this->context->msg( 'diff' )->escaped(),
 					array(),

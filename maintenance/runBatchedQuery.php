@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to run a database query in batches and wait for slaves.
@@ -38,8 +38,9 @@ class BatchedQueryRunner extends Maintenance {
 	}
 
 	public function execute() {
-		if ( !$this->hasArg() )
+		if ( !$this->hasArg() ) {
 			$this->error( "No query specified. Specify the query as a command line parameter.", true );
+		}
 
 		$query = $this->getArg();
 		$n = 1;
@@ -61,4 +62,4 @@ class BatchedQueryRunner extends Maintenance {
 
 
 $maintClass = "BatchedQueryRunner";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

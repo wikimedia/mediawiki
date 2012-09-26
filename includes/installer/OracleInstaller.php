@@ -40,7 +40,7 @@ class OracleInstaller extends DatabaseInstaller {
 	protected $internalDefaults = array(
 		'_OracleDefTS' => 'USERS',
 		'_OracleTempTS' => 'TEMP',
-		'_InstallUser' => 'SYSDBA',
+		'_InstallUser' => 'SYSTEM',
 	);
 
 	public $minimumVersion = '9.0.1'; // 9iR1
@@ -59,16 +59,15 @@ class OracleInstaller extends DatabaseInstaller {
 		if ( $this->getVar( 'wgDBserver' ) == 'localhost' ) {
 			$this->parent->setVar( 'wgDBserver', '' );
 		}
-		return
-			$this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
+		return $this->getTextBox( 'wgDBserver', 'config-db-host-oracle', array(), $this->parent->getHelpBox( 'config-db-host-oracle-help' ) ) .
 			Html::openElement( 'fieldset' ) .
 			Html::element( 'legend', array(), wfMessage( 'config-db-wiki-settings' )->text() ) .
 			$this->getTextBox( 'wgDBprefix', 'config-db-prefix' ) .
 			$this->getTextBox( '_OracleDefTS', 'config-oracle-def-ts' ) .
 			$this->getTextBox( '_OracleTempTS', 'config-oracle-temp-ts', array(), $this->parent->getHelpBox( 'config-db-oracle-help' ) ) .
 			Html::closeElement( 'fieldset' ) .
-			$this->parent->getWarningBox( wfMessage( 'config-db-account-oracle-warn' )->text() ).
-			$this->getInstallUserBox().
+			$this->parent->getWarningBox( wfMessage( 'config-db-account-oracle-warn' )->text() ) .
+			$this->getInstallUserBox() .
 			$this->getWebUserBox();
 	}
 
@@ -87,7 +86,7 @@ class OracleInstaller extends DatabaseInstaller {
 		$status = Status::newGood();
 		if ( !strlen( $newValues['wgDBserver'] ) ) {
 			$status->fatal( 'config-missing-db-server-oracle' );
-		} elseif ( !preg_match( '/^[a-zA-Z0-9_\.]+$/', $newValues['wgDBserver'] ) ) {
+		} elseif ( !self::checkConnectStringFormat( $newValues['wgDBserver'] ) ) {
 			$status->fatal( 'config-invalid-db-server-oracle', $newValues['wgDBserver'] );
 		}
 		if ( !preg_match( '/^[a-zA-Z0-9_]*$/', $newValues['wgDBprefix'] ) ) {
@@ -119,7 +118,7 @@ class OracleInstaller extends DatabaseInstaller {
 					return $status;
 				}
 				if ( !$this->getVar( '_CreateDBAccount' ) ) {
-					$status->fatal('config-db-sys-create-oracle');
+					$status->fatal( 'config-db-sys-create-oracle' );
 				}
 			} else {
 				return $status;
@@ -202,7 +201,6 @@ class OracleInstaller extends DatabaseInstaller {
 		$this->parent->addInstallStep( $callback, 'database' );
 	}
 
-
 	public function setupDatabase() {
 		$status = Status::newGood();
 		return $status;
@@ -241,7 +239,7 @@ class OracleInstaller extends DatabaseInstaller {
 			$status->fatal( 'config-db-sys-user-exists-oracle', $this->getVar( 'wgDBuser' ) );
 		}
 
-		if ($status->isOK()) {
+		if ( $status->isOK() ) {
 			// user created or already existing, switching back to a normal connection
 			// as the new user has all needed privileges to setup the rest of the schema
 			// i will be using that user as _InstallUser from this point on
@@ -294,8 +292,28 @@ class OracleInstaller extends DatabaseInstaller {
 		$prefix = $this->getVar( 'wgDBprefix' );
 		return
 "# Oracle specific settings
-\$wgDBprefix         = \"{$prefix}\";
+\$wgDBprefix = \"{$prefix}\";
 ";
+	}
+
+	/**
+	 * Function checks the format of Oracle connect string
+	 * The actual validity of the string is checked by attempting to connect
+	 *
+	 * Regex should be able to validate all connect string formats
+	 * [//](host|tns_name)[:port][/service_name][:POOLED]
+	 * http://www.orafaq.com/wiki/EZCONNECT
+	 *
+	 * @since 1.22
+	 *
+	 * @param string $connect_string
+	 *
+	 * @return bool Whether the connection string is valid.
+	 */
+	public static function checkConnectStringFormat( $connect_string ) {
+		$isValid  = preg_match( '/^[[:alpha:]][\w\-]*(?:\.[[:alpha:]][\w\-]*){0,2}$/', $connect_string ); // TNS name
+		$isValid |= preg_match( '/^(?:\/\/)?[\w\-\.]+(?::[\d]+)?(?:\/(?:[\w\-\.]+(?::(pooled|dedicated|shared))?)?(?:\/[\w\-\.]+)?)?$/', $connect_string ); // EZConnect
+		return (bool)$isValid;
 	}
 
 }

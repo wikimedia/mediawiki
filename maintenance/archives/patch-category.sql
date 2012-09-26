@@ -8,7 +8,7 @@ CREATE TABLE /*$wgDBprefix*/category (
   cat_files int signed NOT NULL default 0,
 
   cat_hidden tinyint(1) unsigned NOT NULL default 0,
-  
+
   PRIMARY KEY (cat_id),
   UNIQUE KEY (cat_title),
 

@@ -97,8 +97,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Shfaqe numrin e përdoruesve mbikëqyrës',
 'tog-oldsig' => 'Parapamja e nënshkrimit ekzistues:',
 'tog-fancysig' => 'Trajto nënshkrimin si tekst (pa vegëz automatike)',
-'tog-externaleditor' => 'Përdor program të jashtëm për redaktim (vetëm për eksperta, lyp përcaktime speciale në kompjuterin tuej)',
-'tog-externaldiff' => 'Përdor program të jashtëm për dallime (vetëm për eksperta, lyp përcaktime speciale në kompjuterin tuej)',
 'tog-showjumplinks' => 'Lejo lidhjet é afrueshmerisë "kapërce tek"',
 'tog-uselivepreview' => 'Trego parapamjén meniheré (JavaScript) (Eksperimentale)',
 'tog-forceeditsummary' => 'Pyetem kur e le përmbledhjen e redaktimit zbrazt',
@@ -113,6 +111,7 @@ $messages = array(
 'tog-showhiddencats' => 'Trego kategoritë e mshefta',
 'tog-noconvertlink' => 'Mos lejo konvertimin e titullit vegëz',
 'tog-norollbackdiff' => 'Trego ndryshimin mbas procedurës së kthimit mbrapa',
+'tog-useeditwarning' => 'Paralajmëron mua kur unë të lë një redakto faqe me ndryshimet e para shpëtimit',
 
 'underline-always' => 'gjithmonë',
 'underline-never' => 'kurrë',
@@ -211,7 +210,6 @@ $messages = array(
 'qbbrowse' => 'Shfleto',
 'qbedit' => 'Redakto',
 'qbpageoptions' => 'Kjo faqe',
-'qbpageinfo' => 'Konteksti',
 'qbmyoptions' => 'Faqet e mija',
 'qbspecialpages' => 'Faqet speciale',
 'faq' => 'Pyetjet e shpeshta',
@@ -303,7 +301,6 @@ $1',
 'disclaimers' => 'Shfajsime',
 'disclaimerpage' => 'Project:Shfajsimet e përgjithshme',
 'edithelp' => 'Ndihmë për redaktim',
-'edithelppage' => 'Help:Redaktimi',
 'helppage' => 'Help:Përmbajtja',
 'mainpage' => 'Faqja kryesore',
 'mainpage-description' => 'Faqja Kryesore',
@@ -451,12 +448,8 @@ Arsyeja e dhânë âsht "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Jeni çlajmërue.'''
 
-Mundeni me vazhdue me shfrytëzue {{SITENAME}} në mënyrë anonime, apo mundeni [[Special:UserLogin|me u kyçë]] si përdoruesi i njêjtë apo si nji tjetër.
+Mundeni me vazhdue me shfrytëzue {{SITENAME}} në mënyrë anonime, apo mundeni <span class='plainlinks'>[$1 me u kyçë]</span> si përdoruesi i njêjtë apo si nji tjetër.
 Disa faqe mujnë me u paraqitë prap si t'kishit qenë t'kyçun, derisa ta pastroni memorizimin e shfletuesit.",
-'welcomecreation' => '== Mirësevini, $1! ==
-
-Llogaria juej âsht krijue.
-Mos harroni me i ndryshue [[Special:Preferences|parapëlqimet për {{SITENAME}}]].',
 'yourname' => 'Nofka:',
 'yourpassword' => 'Fjalëkalimi:',
 'yourpasswordagain' => 'Fjalëkalimi përsëdyti:',
@@ -738,7 +731,6 @@ Administruesi që e ka mshelë e ka dhânë këtë shpjegim: $1",
 'template-protected' => '(e mbrojtme)',
 'template-semiprotected' => '(gjysë-mbrojtun)',
 'hiddencategories' => 'Kjo faqe bân pjesë në {{PLURAL:$1|1 kategori të msheftë|$1 kategori të mshefta}}:',
-'nocreatetitle' => 'Krijimi i faqeve âsht i kufizuem.',
 'nocreatetext' => '{{SITENAME}} ka kufizue mundësinë e krijimit të faqeve të reja.
 Mundeni me u kthy mbrapa edhe me redaktue faqen ekzistuese, apo [[Special:UserLogin|me u kyçë a me krijue nji llogari]].',
 'nocreate-loggedin' => 'Nuk keni tagër me krijue faqe të reja.',
@@ -756,6 +748,7 @@ Duket se është grisur.',
 'edit-no-change' => 'Redaktimi juaj është anashkaluar pasi që asnjë ndryshim nuk u bë në tekst.',
 'edit-already-exists' => 'Faqja nuk mundej të hapet.
 Ajo tanimë ekziston.',
+'editwarning-warning' => 'Duke e lënë këtë faqe mund të bëjë që ju të humbni ndonjë ndryshim që keni bërë. Nëse ju jeni regjistruar, ju mund ta çaktivizoni këtë paralajmërim në "Tue redaktue" seksionin e preferencave tuaja.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Kujdes: Kjo faqe ka shumë kërkesa që kërkojnë analizë gramatikore të kushtueshme për sistemin.
@@ -909,7 +902,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'searchmenu-legend' => 'Opcionet e kërkimit',
 'searchmenu-exists' => "'''Në këtë wiki âsht nji faqe me titullin \"[[:\$1]]\"'''",
 'searchmenu-new' => "'''Krijo faqen \"[[:\$1]]\" në këtë wiki!'''",
-'searchhelp-url' => 'Help:Përmbajtja',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Shfleto faqet me këtë prefiks]]',
 'searchprofile-articles' => 'Faqet me përmbajtje',
 'searchprofile-project' => 'Faqet e ndihmës dhe projekteve',
@@ -929,8 +921,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-caption' => 'Projektet simotra',
 'search-interwiki-default' => '$1 rezultate:',
 'search-interwiki-more' => '(mâ shumë)',
-'search-mwsuggest-enabled' => 'me parahedhje',
-'search-mwsuggest-disabled' => "s'ka parahedhje",
 'search-relatedarticle' => 'Të ngjajshme',
 'mwsuggest-disable' => 'Deaktivizo sygjerimet me AJAX',
 'searcheverything-enable' => 'Kërko në tâna hapësinat',
@@ -954,14 +944,6 @@ Provoni me ia parashtue kërkesës tuej ''tâna:'' që me lypë tânë përmbajt
 'searchdisabled' => '{{SITENAME}} kërkimi âsht deaktivue.
 Ndërkohë mundeni me lypë me Google.
 Vini re se indeksat e tyne të përmbajtjes së {{SITENAME}} munden me qenë të vjetëruem.',
-
-# Quickbar
-'qbsettings' => 'Vegla të shpejta',
-'qbsettings-none' => 'Asnji',
-'qbsettings-fixedleft' => 'Lidhun majtas',
-'qbsettings-fixedright' => 'Lidhun djathtas',
-'qbsettings-floatingleft' => 'Pezull majtas',
-'qbsettings-floatingright' => 'Pezull djathtas',
 
 # Preferences page
 'preferences' => 'Parapëlqimet',
@@ -1138,11 +1120,12 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'right-userrights' => 'Redakto të gjitha të drejtat e përdoruesit',
 'right-passwordreset' => 'Fjalëkalimi Reset e një përdoruesi ([[Special:PasswordReset|faqe veçantë]])',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Regjistri i krijimit të përdoruesve',
+
 # User rights log
 'rightslog' => 'Regjsitri i tagrit të përdoruesve',
 'rightslogtext' => 'Ky është një regjistër për ndryshimet e titujve të përdoruesve.',
-'rightslogentry' => 'të drejtat e $1 u ndryshuan prej $2 në $3',
-'rightsnone' => '(asgjë)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lexo këtë faqe',
@@ -1280,13 +1263,10 @@ Faqet në [[Special:Watchlist|listën tuej të mbikëqyrjes]] janë '''të theks
 # Special:LinkSearch
 'linksearch' => 'Vegzat e jashtme',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Regjistri i krijimit të përdoruesve',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista e antarëve)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Çoji postel këtij përdoruesi',
 
 # Watchlist
@@ -1513,27 +1493,16 @@ Lejon dhânien e arsyes në përmbledhje.',
 
 # Stylesheets
 'common.css' => '/* CSSi i vendosun këtu ka me u zbatue në tâna dukjet */',
-'standard.css' => '/* CSSi i vendosun këtu ka me i prekë përdoruesit e dukjes standarde */',
-'nostalgia.css' => '/* CSS i vendosun këtu ka me i prekë shfrytëzuesit e dukjes Nostalgia */',
 'cologneblue.css' => '/* CSS i vendosun këtu ka me i prekë shfrytëzuesit e dukjes Cologne Blue */',
 'monobook.css' => '/* CSS i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Monobook */',
-'myskin.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes MySkin */',
-'chick.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Chick */',
-'simple.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Simple */',
 'modern.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Modern */',
 'vector.css' => '/* CSSi i vednosun këtu ka me i prekë shfrytëzuesit e dukjes Vector */',
 'print.css' => '/* CSSi i vednosun këtu ka me e prekë pamjen e shtypjes */',
-'handheld.css' => '/* CSSi i vednosun këtu ka me i prekë shfletuesit mobil (të dorës) në dukje e konfigurueme në $wgHandheldStyle */',
 
 # Scripts
 'common.js' => '/* Çdo JavaScript këtu ka me u ngarkue për të gjithë përdoruesit në secilën thirrje të faqes. */',
-'standard.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Standard */',
-'nostalgia.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Nostalgia */',
 'cologneblue.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Cologne Blue */',
 'monobook.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen MonoBook */',
-'myskin.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen MySkin */',
-'chick.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Chick */',
-'simple.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Simple */',
 'modern.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Modern */',
 'vector.js' => '/* Çdo JavaScript këtu ka me u ngarkue për shfrytëzuesit që përdorin dukjen Vector */',
 
@@ -1568,8 +1537,6 @@ Krejt vegzat tjera në të njejtin rresht do të bajnë përjashtim, d.m.th. faq
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'hans',
@@ -1620,5 +1587,10 @@ Tjerat kanë me mbetë të mshefuna.
 # New logging system
 'revdelete-restricted' => 'u vendosën kufizime për administruesit',
 'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
+'rightsnone' => '(asgjë)',
+
+# Search suggestions
+'searchsuggest-search' => 'Kërkim',
+'searchsuggest-containing' => 'përmban ...',
 
 );

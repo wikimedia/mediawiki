@@ -48,7 +48,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	public function __construct( $withTransaction = true ) {
 		global $wgAntiLockFlags;
 
-		parent::__construct( );
+		parent::__construct();
 
 		if ( $wgAntiLockFlags & ALF_NO_LINK_LOCK ) {
 			$this->mOptions = array();
@@ -56,7 +56,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 			$this->mOptions = array( 'FOR UPDATE' );
 		}
 
-		// @todo: get connection only when it's needed? make sure that doesn't break anything, especially transactions!
+		// @todo get connection only when it's needed? make sure that doesn't break anything, especially transactions!
 		$this->mDb = wfGetDB( DB_MASTER );
 
 		$this->mWithTransaction = $withTransaction;
@@ -76,7 +76,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 
 		// NOTE: nested transactions are not supported, only start a transaction if none is open
 		if ( $this->mDb->trxLevel() === 0 ) {
-			$this->mDb->begin( get_class( $this ) . '::beginTransaction'  );
+			$this->mDb->begin( get_class( $this ) . '::beginTransaction' );
 			$this->mHasTransaction = true;
 		}
 	}
@@ -95,7 +95,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * Abort the database transaction started via beginTransaction (if any).
 	 */
 	public function abortTransaction() {
-		if ( $this->mHasTransaction ) {
+		if ( $this->mHasTransaction ) { //XXX: actually... maybe always?
 			$this->mDb->rollback( get_class( $this ) . '::abortTransaction' );
 			$this->mHasTransaction = false;
 		}
@@ -108,8 +108,8 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * @param $namespace Integer
 	 * @param $dbkeys Array
 	 */
-	protected function invalidatePages( $namespace, Array $dbkeys ) {
-		if ( !count( $dbkeys ) ) {
+	protected function invalidatePages( $namespace, array $dbkeys ) {
+		if ( $dbkeys === array() ) {
 			return;
 		}
 
@@ -127,10 +127,12 @@ abstract class SqlDataUpdate extends DataUpdate {
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
 		);
+
 		foreach ( $res as $row ) {
 			$ids[] = $row->page_id;
 		}
-		if ( !count( $ids ) ) {
+
+		if ( $ids === array() ) {
 			return;
 		}
 

@@ -2,7 +2,7 @@
 
 class JavaScriptMinifierTest extends MediaWikiTestCase {
 
-	function provideCases() {
+	public static function provideCases() {
 		return array(
 
 			// Basic whitespace and comments that should be stripped entirely
@@ -14,7 +14,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			 * At some point there was a bug that caused this comment to be ended at '* /',
 			 * causing /M... to be left as the beginning of a regex.
 			 */
-			array( "/**\n * Foo\n * {\n * 'bar' : {\n * //Multiple rules with configurable operators\n * 'baz' : false\n * }\n */", ""),
+			array( "/**\n * Foo\n * {\n * 'bar' : {\n * //Multiple rules with configurable operators\n * 'baz' : false\n * }\n */", "" ),
 
 			/**
 			 * '  Foo \' bar \
@@ -80,7 +80,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			array( "switch(x){case y?z:{}/  x/g:{}/  x/g;}", "switch(x){case y?z:{}/x/g:{}/  x/g;}" ),
 			array( "function x(){}/  x/g", "function x(){}/  x/g" ),
 			array( "+function x(){}/  x/g", "+function x(){}/x/g" ),
-			
+
 			// Multiline quoted string
 			array( "var foo=\"\\\nblah\\\n\";", "var foo=\"\\\nblah\\\n\";" ),
 
@@ -96,16 +96,16 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			// Division vs. regex nastiness
 			array( "alert( (10+10) / '/'.charCodeAt( 0 ) + '//' );", "alert((10+10)/'/'.charCodeAt(0)+'//');" ),
 			array( "if(1)/a /g.exec('Pa ss');", "if(1)/a /g.exec('Pa ss');" ),
-			
+
 			// newline insertion after 1000 chars: break after the "++", not before
 			array( str_repeat( ';', 996 ) . "if(x++);", str_repeat( ';', 996 ) . "if(x++\n);" ),
 
 			// Unicode letter characters should pass through ok in identifiers (bug 31187)
-			array( "var KaŝSkatolVal = {}", 'var KaŝSkatolVal={}'),
+			array( "var KaŝSkatolVal = {}", 'var KaŝSkatolVal={}' ),
 
 			// Per spec unicode char escape values should work in identifiers,
 			// as long as it's a valid char. In future it might get normalized.
-			array( "var Ka\\u015dSkatolVal = {}", 'var Ka\\u015dSkatolVal={}'),
+			array( "var Ka\\u015dSkatolVal = {}", 'var Ka\\u015dSkatolVal={}' ),
 
 			// Some structures that might look invalid at first sight
 			array( "var a = 5.;", "var a=5.;" ),
@@ -132,12 +132,12 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedOutput, $minified, "Minified output should be in the form expected." );
 	}
 
-	function provideBug32548() {
+	public static function provideBug32548() {
 		return array(
 			array(
 				// This one gets interpreted all together by the prior code;
 				// no break at the 'E' happens.
-				'1.23456789E55',				
+				'1.23456789E55',
 			),
 			array(
 				// This one breaks under the bad code; splits between 'E' and '+'
@@ -165,6 +165,6 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 
 		$minified = JavaScriptMinifier::minify( $input );
 
-		$this->assertEquals( $expected, $minified, "Line breaks must not occur in middle of exponent");
+		$this->assertEquals( $expected, $minified, "Line breaks must not occur in middle of exponent" );
 	}
 }

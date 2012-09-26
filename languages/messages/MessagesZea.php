@@ -73,8 +73,6 @@ $messages = array(
 'tog-shownumberswatching' => "'t Antal gebrukers weerheven 't a deêze pahina volg",
 'tog-oldsig' => 'Bestaende onderteêkenienge',
 'tog-fancysig' => "As wikitekst behandel'n (zonder automaotische verwiezienge ni de gebrukersbladzie)",
-'tog-externaleditor' => 'Standard een externe tekstbewerker gebruken (alleêne vò experts - vò deêze functie ben speciaole ienstellienge nudig. [//www.mediawiki.org/wiki/Manual:External_editors Meê informaosie]).',
-'tog-externaldiff' => 'Standard een extern verheliekiengsprohramma gebruken (alleên vò experts - vò deêze functie ben speciaole ienstelliengen nudig. [//www.mediawiki.org/wiki/Manual:External_editors Meê informaosie]).',
 'tog-showjumplinks' => '“hi nae”-toehankelijkeidslienks inschaokelen',
 'tog-uselivepreview' => '“live voevertoônienge” gebruken (JavaScript vereist – experimenteêl)',
 'tog-forceeditsummary' => 'Heef me een meldieng bie een lehe saemenvattieng',
@@ -187,7 +185,6 @@ $messages = array(
 'qbbrowse' => 'Blaeren',
 'qbedit' => 'Bewerk',
 'qbpageoptions' => 'Paginaopties',
-'qbpageinfo' => 'Pagina-informaotie',
 'qbmyoptions' => 'Mien opties',
 'qbspecialpages' => 'Speciaole pahina’s',
 'faq' => 'FAQ (veehestelde vraehen)',
@@ -284,7 +281,6 @@ $1",
 'disclaimers' => 'Voebehoud',
 'disclaimerpage' => 'Project:Alhemeên voebehoud',
 'edithelp' => "Ulpe bie't bewerken",
-'edithelppage' => 'Help:Bewerken',
 'helppage' => 'Help:Inoud',
 'mainpage' => 'Vòblad',
 'mainpage-description' => 'Vòblad',
@@ -418,9 +414,6 @@ De heheven reeën is ''$2''.",
 
 Je kan {{SITENAME}} noe anoniem gebruken of wee anmelden as dezelven of een aore gebruker.
 Meuhlijk worn nog een antal pagina's weereheven asof a je anemeld bin totda je de cache van je browser leeg.",
-'welcomecreation' => '== Welkom, $1! ==
-Jen account is anemikt.
-Vergeet nie je [[Special:Preferences|vòkeuren voe {{SITENAME}}]] an te passen.',
 'yourname' => 'Gebrukersnaem',
 'yourpassword' => 'Wachtwoôrd',
 'yourpasswordagain' => 'Heef je wachtwoôrd opnieuw in:',
@@ -655,7 +648,6 @@ Opslaene is nie meuhlijk.'''",
 'template-protected' => '(beveiligd)',
 'template-semiprotected' => '(semi-beveiligd)',
 'hiddencategories' => 'Deêze pagina val in de volhende verborhen {{PLURAL:$1|categorie|categorieën}}:',
-'nocreatetitle' => "'t Anmaeken van pagina's is beperkt",
 'nocreatetext' => "{{SITENAME}} ei de meuhlijkeid om nieuwe pagina's an te maeken beperkt.
 Je kan a bestaende pagina's wiezigen, of je kan [[Special:UserLogin|jen eihen anmelden of een gebruker  anmaeken]].",
 'nocreate-loggedin' => "Je kan hin nieuwe pagina's anmaeken.",
@@ -816,7 +808,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'viewprevnext' => 'Bekiek ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => "'''Er is 'n pagina genaemd \"[[:\$1]]\" op deêze wiki.'''",
 'searchmenu-new' => "'''De pagina \"[[:\$1]]\" anmaek'n op deêze wiki.'''",
-'searchhelp-url' => 'Help:Inoud',
 'searchprofile-articles' => "Inhoudelike pagina's",
 'searchprofile-project' => "Hilp- en projectpagina's",
 'searchprofile-images' => 'Multimedia',
@@ -846,14 +837,6 @@ Zurg da je bie deêze wiezigieng de heschiedenisdeurloôpendeid van de pagina be
 'searchdisabled' => "Zoeken in {{SITENAME}} is nie meuhlijk.
 Je kan gebruuk maeken van Google.
 De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
-
-# Quickbar
-'qbsettings' => 'Menubalke',
-'qbsettings-none' => 'Uuteschaokeld',
-'qbsettings-fixedleft' => 'Lienks vast',
-'qbsettings-fixedright' => 'Rechs vast',
-'qbsettings-floatingleft' => 'Lienks zwevend',
-'qbsettings-floatingright' => 'Rechs zwevend',
 
 # Preferences page
 'preferences' => 'Vòkeuren',
@@ -947,11 +930,12 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'grouppage-bureaucrat' => "{{ns:project}}:Bureaucraot'n",
 'grouppage-suppress' => '{{ns:project}}:Toezicht',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Logboek nuwe gebrukers',
+
 # User rights log
 'rightslog' => 'Gebrukersrechtenlogboek',
 'rightslogtext' => 'Ieronder staen de wiezigiengen in gebrukersrechen.',
-'rightslogentry' => 'wiezihen de gebrukersrechen voe $1 van $2 ni $3',
-'rightsnone' => '(hin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'deêze bladzie te bewerken',
@@ -1120,13 +1104,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch-line' => "$1 ei 'n verwiezienge in $2",
 
-# Special:Log/newusers
-'newuserlogpage' => 'Logboek nuwe gebrukers',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(ledenlieste)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E-mail deêze gebruker',
 'emailpage' => 'E-mail gebruker',
 
@@ -1404,5 +1385,6 @@ Aorre veld'n worr'n verborr'n.
 # New logging system
 'revdelete-restricted' => 'ei beperkiengen an beheêrders opeleid',
 'revdelete-unrestricted' => 'ei beperkiengen voe beheêrders opeheven',
+'rightsnone' => '(hin)',
 
 );

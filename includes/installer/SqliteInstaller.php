@@ -60,7 +60,7 @@ class SqliteInstaller extends DatabaseInstaller {
 			$result->fatal( 'config-outdated-sqlite', $db->getServerVersion(), self::MINIMUM_VERSION );
 		}
 		// Check for FTS3 full-text search module
-		if( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
+		if ( DatabaseSqlite::getFulltextSearchModule() != 'FTS3' ) {
 			$result->warning( 'config-no-fts3' );
 		}
 		return $result;
@@ -113,6 +113,8 @@ class SqliteInstaller extends DatabaseInstaller {
 			$dir = self::realpath( $dir );
 			$this->setVar( 'wgSQLiteDataDir', $dir );
 		}
+		# Table prefix is not used on SQLite, keep it empty
+		$this->setVar( 'wgDBprefix', '' );
 		return $result;
 	}
 
@@ -238,7 +240,7 @@ class SqliteInstaller extends DatabaseInstaller {
 
 		$module = DatabaseSqlite::getFulltextSearchModule();
 		$fts3tTable = $this->db->checkForEnabledSearch();
-		if ( $fts3tTable &&  !$module ) {
+		if ( $fts3tTable && !$module ) {
 			$status->warning( 'config-sqlite-fts3-downgrade' );
 			$this->db->sourceFile( "$IP/maintenance/sqlite/archives/searchindex-no-fts.sql" );
 		} elseif ( !$fts3tTable && $module == 'FTS3' ) {
@@ -254,6 +256,6 @@ class SqliteInstaller extends DatabaseInstaller {
 		$dir = LocalSettingsGenerator::escapePhpString( $this->getVar( 'wgSQLiteDataDir' ) );
 		return
 "# SQLite-specific settings
-\$wgSQLiteDataDir    = \"{$dir}\";";
+\$wgSQLiteDataDir = \"{$dir}\";";
 	}
 }

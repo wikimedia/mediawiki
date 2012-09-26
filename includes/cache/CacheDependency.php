@@ -74,7 +74,7 @@ class DependencyWrapper {
 
 	/**
 	 * Get the user-defined value
-	 * @return bool|\Mixed
+	 * @return bool|Mixed
 	 */
 	function getValue() {
 		return $this->value;
@@ -98,11 +98,11 @@ class DependencyWrapper {
 	 * calculated value will be stored to the cache in a wrapper.
 	 *
 	 * @param $cache BagOStuff a cache object such as $wgMemc
-	 * @param $key String: the cache key
+	 * @param string $key the cache key
 	 * @param $expiry Integer: the expiry timestamp or interval in seconds
 	 * @param $callback Mixed: the callback for generating the value, or false
-	 * @param $callbackParams Array: the function parameters for the callback
-	 * @param $deps Array: the dependencies to store on a cache miss. Note: these
+	 * @param array $callbackParams the function parameters for the callback
+	 * @param array $deps the dependencies to store on a cache miss. Note: these
 	 *    are not the dependencies used on a cache hit! Cache hits use the stored
 	 *    dependency array.
 	 *
@@ -153,7 +153,7 @@ class FileDependency extends CacheDependency {
 	/**
 	 * Create a file dependency
 	 *
-	 * @param $filename String: the name of the file, preferably fully qualified
+	 * @param string $filename the name of the file, preferably fully qualified
 	 * @param $timestamp Mixed: the unix last modified timestamp, or false if the
 	 *        file does not exist. If omitted, the timestamp will be loaded from
 	 *        the file.
@@ -404,7 +404,7 @@ class GlobalDependency extends CacheDependency {
 	 * @return bool
 	 */
 	function isExpired() {
-		if( !isset($GLOBALS[$this->name]) ) {
+		if ( !isset( $GLOBALS[$this->name] ) ) {
 			return true;
 		}
 		return $GLOBALS[$this->name] != $this->value;

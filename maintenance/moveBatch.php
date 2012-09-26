@@ -34,7 +34,7 @@
  * e.g. immobile_namespace for namespaces which can't be moved
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to move a batch of pages.
@@ -116,4 +116,4 @@ class MoveBatch extends Maintenance {
 }
 
 $maintClass = "MoveBatch";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

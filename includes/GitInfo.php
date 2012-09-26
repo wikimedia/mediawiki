@@ -41,10 +41,18 @@ class GitInfo {
 	private static $viewers = false;
 
 	/**
-	 * @param $dir string The root directory of the repo where the .git dir can be found
+	 * @param string $dir The root directory of the repo where the .git dir can be found
 	 */
 	public function __construct( $dir ) {
-		$this->basedir = "{$dir}/.git/";
+		$this->basedir = "{$dir}/.git";
+		if ( is_readable( $this->basedir ) && !is_dir( $this->basedir ) ) {
+			$GITfile = file_get_contents( $this->basedir );
+			if ( strlen( $GITfile ) > 8 && substr( $GITfile, 0, 8 ) === 'gitdir: ' ) {
+				$path = rtrim( substr( $GITfile, 8 ), "\r\n" );
+				$isAbsolute = $path[0] === '/' || substr( $path, 1, 1 ) === ':';
+				$this->basedir = $isAbsolute ? $path : "{$dir}/{$path}";
+			}
+		}
 	}
 
 	/**
@@ -62,7 +70,7 @@ class GitInfo {
 	/**
 	 * Check if a string looks like a hex encoded SHA1 hash
 	 *
-	 * @param $str string The string to check
+	 * @param string $str The string to check
 	 * @return bool Whether or not the string looks like a SHA1
 	 */
 	public static function isSHA1( $str ) {
@@ -102,7 +110,7 @@ class GitInfo {
 		}
 
 		// If not a SHA1 it may be a ref:
-		$REFfile = "{$this->basedir}{$HEAD}";
+		$REFfile = "{$this->basedir}/{$HEAD}";
 		if ( !is_readable( $REFfile ) ) {
 			return false;
 		}
@@ -111,6 +119,32 @@ class GitInfo {
 
 		return $sha1;
 	}
+
+	/**
+	 * Return the commit date of HEAD entry of the git code repository
+	 *
+	 * @since 1.22
+	 * @return int|bool Commit date (UNIX timestamp) or false
+	 */
+	public function getHeadCommitDate() {
+		global $wgGitBin;
+
+		if ( !is_file( $wgGitBin ) || !is_executable( $wgGitBin ) ) {
+			return false;
+		}
+
+		$environment = array( "GIT_DIR" => $this->basedir );
+		$cmd = wfEscapeShellArg( $wgGitBin ) . " show -s --format=format:%ct HEAD";
+		$retc = false;
+		$commitDate = wfShellExec( $cmd, $retc, $environment );
+
+		if ( $retc !== 0 ) {
+			return false;
+		} else {
+			return (int)$commitDate;
+		}
+
+	 }
 
 	/**
 	 * Return the name of the current branch, or HEAD if not found
@@ -143,7 +177,7 @@ class GitInfo {
 		if ( isset( $configArray['remote origin'] ) ) {
 			$remote = $configArray['remote origin'];
 		} else {
-			foreach( $configArray as $sectionName => $sectionConf ) {
+			foreach ( $configArray as $sectionName => $sectionConf ) {
 				if ( substr( $sectionName, 0, 6 ) == 'remote' ) {
 					$remote = $sectionConf;
 				}
@@ -158,14 +192,15 @@ class GitInfo {
 		if ( substr( $url, -4 ) !== '.git' ) {
 			$url .= '.git';
 		}
-		foreach( self::getViewers() as $repo => $viewer ) {
+		foreach ( self::getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
-			if ( preg_match( $pattern, $url ) ) {
+			if ( preg_match( $pattern, $url, $matches ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
 				$headSHA1 = $this->getHeadSHA1();
 				$replacements = array(
 					'%h' => substr( $headSHA1, 0, 7 ),
-					'%H' => $headSHA1
+					'%H' => $headSHA1,
+					'%r' => urlencode( $matches[1] ),
 				);
 				return strtr( $viewerUrl, $replacements );
 			}
@@ -204,7 +239,7 @@ class GitInfo {
 	protected static function getViewers() {
 		global $wgGitRepositoryViewers;
 
-		if( self::$viewers === false ) {
+		if ( self::$viewers === false ) {
 			self::$viewers = $wgGitRepositoryViewers;
 			wfRunHooks( 'GitViewers', array( &self::$viewers ) );
 		}

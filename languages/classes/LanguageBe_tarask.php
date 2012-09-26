@@ -46,13 +46,17 @@ class LanguageBe_tarask extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 
 		// If the actual number is not mentioned in the expression, then just two forms are enough:
 		// singular for $count == 1
 		// plural   for $count != 1
 		// For example, "This user belongs to {{PLURAL:$1|one group|several groups}}."
-		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+		if ( count( $forms ) === 2 ) {
+			return $count == 1 ? $forms[0] : $forms[1];
+		}
 
 		// @todo FIXME: CLDR defines 4 plural forms instead of 3
 		//        http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
@@ -62,10 +66,10 @@ class LanguageBe_tarask extends Language {
 			return $forms[2];
 		} else {
 			switch ( $count % 10 ) {
-				case 1:  return $forms[0];
+				case 1: return $forms[0];
 				case 2:
 				case 3:
-				case 4:  return $forms[1];
+				case 4: return $forms[1];
 				default: return $forms[2];
 			}
 		}

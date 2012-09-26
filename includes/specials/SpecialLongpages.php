@@ -26,12 +26,15 @@
  * @ingroup SpecialPage
  */
 class LongPagesPage extends ShortPagesPage {
-
 	function __construct( $name = 'Longpages' ) {
 		parent::__construct( $name );
 	}
 
 	function sortDescending() {
 		return true;
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

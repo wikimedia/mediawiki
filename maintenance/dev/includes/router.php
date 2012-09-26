@@ -21,12 +21,12 @@
  * @file
  */
 
-if ( php_sapi_name() != 'cli-server' ) {
+if ( PHP_SAPI != 'cli-server' ) {
 	die( "This script can only be run by php's cli-server sapi." );
 }
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+ini_set( 'display_errors', 1 );
+error_reporting( E_ALL );
 
 if ( isset( $_SERVER["SCRIPT_FILENAME"] ) ) {
 	# Known resource, sometimes a script sometimes a file
@@ -58,7 +58,7 @@ if ( $ext == 'php' || $ext == 'php5' ) {
 	# We use require and return true here because when you return false
 	# the php webserver will discard post data and things like login
 	# will not function in the dev environment.
-	require( $file );
+	require $file;
 	return true;
 }
 $mime = false;
@@ -83,16 +83,16 @@ if ( $mime ) {
 	# This way we can serve things like .svg files that the built-in
 	# PHP webserver doesn't understand.
 	# ;) Nicely enough we just happen to bundle a mime.types file
-	$f = fopen($file, 'rb');
+	$f = fopen( $file, 'rb' );
 	if ( preg_match( '#^text/#', $mime ) ) {
 		# Text should have a charset=UTF-8 (php's webserver does this too)
-		header("Content-Type: $mime; charset=UTF-8");
+		header( "Content-Type: $mime; charset=UTF-8" );
 	} else {
-		header("Content-Type: $mime");
+		header( "Content-Type: $mime" );
 	}
-	header("Content-Length: " . filesize($file));
+	header( "Content-Length: " . filesize( $file ) );
 	// Stream that out to the browser
-	fpassthru($f);
+	fpassthru( $f );
 	return true;
 }
 

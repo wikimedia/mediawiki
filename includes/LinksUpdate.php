@@ -27,7 +27,7 @@
  */
 class LinksUpdate extends SqlDataUpdate {
 
-	// @todo: make members protected, but make sure extensions don't break
+	// @todo make members protected, but make sure extensions don't break
 
 	public $mId,         //!< Page ID of the article linked from
 		$mTitle,         //!< Title object of the article linked from
@@ -49,6 +49,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @param $title Title of the page we're updating
 	 * @param $parserOutput ParserOutput: output from a full parse of this page
 	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 * @throws MWException
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
 		parent::__construct( false ); // no implicit transaction
@@ -71,6 +72,7 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 
 		$this->mParserOutput = $parserOutput;
+
 		$this->mLinks = $parserOutput->getLinks();
 		$this->mImages = $parserOutput->getImages();
 		$this->mTemplates = $parserOutput->getTemplates();
@@ -211,14 +213,14 @@ class LinksUpdate extends SqlDataUpdate {
 		$existing = $this->getExistingImages();
 		$imageUpdates = array_diff_key( $existing, $this->mImages ) + array_diff_key( $this->mImages, $existing );
 
-		$this->dumbTableUpdate( 'pagelinks',     $this->getLinkInsertions(),     'pl_from' );
-		$this->dumbTableUpdate( 'imagelinks',    $this->getImageInsertions(),    'il_from' );
+		$this->dumbTableUpdate( 'pagelinks', $this->getLinkInsertions(), 'pl_from' );
+		$this->dumbTableUpdate( 'imagelinks', $this->getImageInsertions(), 'il_from' );
 		$this->dumbTableUpdate( 'categorylinks', $this->getCategoryInsertions(), 'cl_from' );
 		$this->dumbTableUpdate( 'templatelinks', $this->getTemplateInsertions(), 'tl_from' );
 		$this->dumbTableUpdate( 'externallinks', $this->getExternalInsertions(), 'el_from' );
-		$this->dumbTableUpdate( 'langlinks',     $this->getInterlangInsertions(),'ll_from' );
-		$this->dumbTableUpdate( 'iwlinks',       $this->getInterwikiInsertions(),'iwl_from' );
-		$this->dumbTableUpdate( 'page_props',    $this->getPropertyInsertions(), 'pp_page' );
+		$this->dumbTableUpdate( 'langlinks', $this->getInterlangInsertions(), 'll_from' );
+		$this->dumbTableUpdate( 'iwlinks', $this->getInterwikiInsertions(), 'iwl_from' );
+		$this->dumbTableUpdate( 'page_props', $this->getPropertyInsertions(), 'pp_page' );
 
 		# Update the cache of all the category pages and image description
 		# pages which were changed, and fix the category table count
@@ -235,28 +237,36 @@ class LinksUpdate extends SqlDataUpdate {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * Queue recursive jobs for this page
+	 *
+	 * Which means do LinksUpdate on all templates
+	 * that include the current page, using the job queue.
+	 */
 	function queueRecursiveJobs() {
-		global $wgUpdateRowsPerJob;
+		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks' );
+	}
+
+	/**
+	 * Queue a RefreshLinks job for any table.
+	 *
+	 * @param Title $title Title to do job for
+	 * @param String $table Table to use (e.g. 'templatelinks')
+	 */
+	public static function queueRecursiveJobsForTable( Title $title, $table ) {
 		wfProfileIn( __METHOD__ );
-
-		$cache = $this->mTitle->getBacklinkCache();
-		$batches = $cache->partition( 'templatelinks', $wgUpdateRowsPerJob );
-		if ( !$batches ) {
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-		$jobs = array();
-		foreach ( $batches as $batch ) {
-			list( $start, $end ) = $batch;
-			$params = array(
-				'table' => 'templatelinks',
-				'start' => $start,
-				'end' => $end,
+		if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
+			$job = new RefreshLinksJob2(
+				$title,
+				array(
+					'table' => $table,
+				) + Job::newRootJobParams( // "overall" refresh links job info
+					"refreshlinks:{$table}:{$title->getPrefixedText()}"
+				)
 			);
-			$jobs[] = new RefreshLinksJob2( $this->mTitle, $params );
+			JobQueueGroup::singleton()->push( $job );
+			JobQueueGroup::singleton()->deduplicateRootJob( $job );
 		}
-		Job::batchInsert( $jobs );
-
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -269,8 +279,8 @@ class LinksUpdate extends SqlDataUpdate {
 
 	/**
 	 * Update all the appropriate counts in the category table.
-	 * @param $added array associative array of category name => sort key
-	 * @param $deleted array associative array of category name => sort key
+	 * @param array $added associative array of category name => sort key
+	 * @param array $deleted associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = WikiPage::factory( $this->mTitle );
@@ -295,7 +305,7 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
 		if ( count( $insertions ) ) {
 			# The link array was constructed without FOR UPDATE, so there may
-			# be collisions.  This may cause minor link table inconsistencies,
+			# be collisions. This may cause minor link table inconsistencies,
 			# which is better than crippling the site with lock contention.
 			$this->mDb->insert( $table, $insertions, __METHOD__, array( 'IGNORE' ) );
 		}
@@ -346,6 +356,7 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 		if ( count( $insertions ) ) {
 			$this->mDb->insert( $table, $insertions, __METHOD__, 'IGNORE' );
+			wfRunHooks( 'LinksUpdateAfterInsert', array( $this, $table, $insertions ) );
 		}
 	}
 
@@ -357,15 +368,15 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getLinkInsertions( $existing = array() ) {
 		$arr = array();
-		foreach( $this->mLinks as $ns => $dbkeys ) {
+		foreach ( $this->mLinks as $ns => $dbkeys ) {
 			$diffs = isset( $existing[$ns] )
 				? array_diff_key( $dbkeys, $existing[$ns] )
 				: $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
-					'pl_from'      => $this->mId,
+					'pl_from' => $this->mId,
 					'pl_namespace' => $ns,
-					'pl_title'     => $dbk
+					'pl_title' => $dbk
 				);
 			}
 		}
@@ -379,13 +390,13 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getTemplateInsertions( $existing = array() ) {
 		$arr = array();
-		foreach( $this->mTemplates as $ns => $dbkeys ) {
+		foreach ( $this->mTemplates as $ns => $dbkeys ) {
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
-					'tl_from'      => $this->mId,
+					'tl_from' => $this->mId,
 					'tl_namespace' => $ns,
-					'tl_title'     => $dbk
+					'tl_title' => $dbk
 				);
 			}
 		}
@@ -401,10 +412,10 @@ class LinksUpdate extends SqlDataUpdate {
 	private function getImageInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mImages, $existing );
-		foreach( $diffs as $iname => $dummy ) {
+		foreach ( $diffs as $iname => $dummy ) {
 			$arr[] = array(
 				'il_from' => $this->mId,
-				'il_to'   => $iname
+				'il_to' => $iname
 			);
 		}
 		return $arr;
@@ -418,12 +429,12 @@ class LinksUpdate extends SqlDataUpdate {
 	private function getExternalInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mExternals, $existing );
-		foreach( $diffs as $url => $dummy ) {
-			foreach( wfMakeUrlIndexes( $url ) as $index ) {
+		foreach ( $diffs as $url => $dummy ) {
+			foreach ( wfMakeUrlIndexes( $url ) as $index ) {
 				$arr[] = array(
-					'el_from'   => $this->mId,
-					'el_to'     => $url,
-					'el_index'  => $index,
+					'el_from' => $this->mId,
+					'el_to' => $url,
+					'el_index' => $index,
 				);
 			}
 		}
@@ -433,7 +444,7 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of category insertions
 	 *
-	 * @param $existing array mapping existing category names to sort keys. If both
+	 * @param array $existing mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
 	 *
 	 * @return array
@@ -462,8 +473,8 @@ class LinksUpdate extends SqlDataUpdate {
 				$this->mTitle->getCategorySortkey( $prefix ) );
 
 			$arr[] = array(
-				'cl_from'    => $this->mId,
-				'cl_to'      => $name,
+				'cl_from' => $this->mId,
+				'cl_to' => $name,
 				'cl_sortkey' => $sortkey,
 				'cl_timestamp' => $this->mDb->timestamp(),
 				'cl_sortkey_prefix' => $prefix,
@@ -477,17 +488,17 @@ class LinksUpdate extends SqlDataUpdate {
 	/**
 	 * Get an array of interlanguage link insertions
 	 *
-	 * @param $existing Array mapping existing language codes to titles
+	 * @param array $existing mapping existing language codes to titles
 	 *
 	 * @return array
 	 */
 	private function getInterlangInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
 		$arr = array();
-		foreach( $diffs as $lang => $title ) {
+		foreach ( $diffs as $lang => $title ) {
 			$arr[] = array(
-				'll_from'  => $this->mId,
-				'll_lang'  => $lang,
+				'll_from' => $this->mId,
+				'll_lang' => $lang,
 				'll_title' => $title
 			);
 		}
@@ -504,9 +515,9 @@ class LinksUpdate extends SqlDataUpdate {
 		$arr = array();
 		foreach ( $diffs as $name => $value ) {
 			$arr[] = array(
-				'pp_page'      => $this->mId,
-				'pp_propname'  => $name,
-				'pp_value'     => $value,
+				'pp_page' => $this->mId,
+				'pp_propname' => $name,
+				'pp_value' => $value,
 			);
 		}
 		return $arr;
@@ -520,13 +531,13 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getInterwikiInsertions( $existing = array() ) {
 		$arr = array();
-		foreach( $this->mInterwikis as $prefix => $dbkeys ) {
+		foreach ( $this->mInterwikis as $prefix => $dbkeys ) {
 			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
 			foreach ( $diffs as $dbk => $id ) {
 				$arr[] = array(
-					'iwl_from'   => $this->mId,
+					'iwl_from' => $this->mId,
 					'iwl_prefix' => $prefix,
-					'iwl_title'  => $dbk
+					'iwl_title' => $dbk
 				);
 			}
 		}
@@ -823,11 +834,16 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 	 * Constructor
 	 *
 	 * @param $page WikiPage Page we are updating
+	 * @throws MWException
 	 */
 	function __construct( WikiPage $page ) {
 		parent::__construct( false ); // no implicit transaction
 
 		$this->mPage = $page;
+
+		if ( !$page->exists() ) {
+			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
+		}
 	}
 
 	/**
@@ -838,14 +854,14 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 		$id = $this->mPage->getId();
 
 		# Delete restrictions for it
-		$this->mDb->delete( 'page_restrictions', array ( 'pr_page' => $id ), __METHOD__ );
+		$this->mDb->delete( 'page_restrictions', array( 'pr_page' => $id ), __METHOD__ );
 
 		# Fix category table counts
 		$cats = array();
 		$res = $this->mDb->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
 
 		foreach ( $res as $row ) {
-			$cats [] = $row->cl_to;
+			$cats[] = $row->cl_to;
 		}
 
 		$this->mPage->updateCategoryCounts( array(), $cats );
@@ -878,5 +894,17 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 				array( 'rc_type != ' . RC_LOG, 'rc_cur_id' => $id ),
 				__METHOD__ );
 		}
+	}
+
+	/**
+	 * Update all the appropriate counts in the category table.
+	 * @param array $added associative array of category name => sort key
+	 * @param array $deleted associative array of category name => sort key
+	 */
+	function updateCategoryCounts( $added, $deleted ) {
+		$a = WikiPage::factory( $this->mTitle );
+		$a->updateCategoryCounts(
+			array_keys( $added ), array_keys( $deleted )
+		);
 	}
 }

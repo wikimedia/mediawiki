@@ -53,7 +53,10 @@ abstract class LockManager {
 	/** @var Array Map of (resource path => lock type => count) */
 	protected $locksHeld = array();
 
-	/* Lock types; stronger locks have higher values */
+	protected $domain; // string; domain (usually wiki ID)
+	protected $lockTTL; // integer; maximum time locks can be held
+
+	/** Lock types; stronger locks have higher values */
 	const LOCK_SH = 1; // shared lock (for reads)
 	const LOCK_UW = 2; // shared lock (for reads used to write elsewhere)
 	const LOCK_EX = 3; // exclusive lock (for writes)
@@ -61,20 +64,60 @@ abstract class LockManager {
 	/**
 	 * Construct a new instance from configuration
 	 *
+	 * $config paramaters include:
+	 *   - domain  : Domain (usually wiki ID) that all resources are relative to [optional]
+	 *   - lockTTL : Age (in seconds) at which resource locks should expire.
+	 *               This only applies if locks are not tied to a connection/process.
+	 *
 	 * @param $config Array
 	 */
-	public function __construct( array $config ) {}
+	public function __construct( array $config ) {
+		$this->domain = isset( $config['domain'] ) ? $config['domain'] : wfWikiID();
+		if ( isset( $config['lockTTL'] ) ) {
+			$this->lockTTL = max( 1, $config['lockTTL'] );
+		} elseif ( PHP_SAPI === 'cli' ) {
+			$this->lockTTL = 2 * 3600;
+		} else {
+			$met = ini_get( 'max_execution_time' ); // this is 0 in CLI mode
+			$this->lockTTL = max( 5 * 60, 2 * (int)$met );
+		}
+	}
 
 	/**
 	 * Lock the resources at the given abstract paths
 	 *
-	 * @param $paths Array List of resource names
+	 * @param array $paths List of resource names
 	 * @param $type integer LockManager::LOCK_* constant
+	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
 	 * @return Status
 	 */
-	final public function lock( array $paths, $type = self::LOCK_EX ) {
+	final public function lock( array $paths, $type = self::LOCK_EX, $timeout = 0 ) {
+		return $this->lockByType( array( $type => $paths ), $timeout );
+	}
+
+	/**
+	 * Lock the resources at the given abstract paths
+	 *
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @param integer $timeout Timeout in seconds (0 means non-blocking) (since 1.21)
+	 * @return Status
+	 * @since 1.22
+	 */
+	final public function lockByType( array $pathsByType, $timeout = 0 ) {
 		wfProfileIn( __METHOD__ );
-		$status = $this->doLock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		$status = Status::newGood();
+		$pathsByType = $this->normalizePathsByType( $pathsByType );
+		$msleep = array( 0, 50, 100, 300, 500 ); // retry backoff times
+		$start = microtime( true );
+		do {
+			$status = $this->doLockByType( $pathsByType );
+			$elapsed = microtime( true ) - $start;
+			if ( $status->isOK() || $elapsed >= $timeout || $elapsed < 0 ) {
+				break; // success, timeout, or clock set back
+			}
+			usleep( 1e3 * ( next( $msleep ) ?: 1000 ) ); // use 1 sec after enough times
+			$elapsed = microtime( true ) - $start;
+		} while ( $elapsed < $timeout && $elapsed >= 0 );
 		wfProfileOut( __METHOD__ );
 		return $status;
 	}
@@ -82,320 +125,124 @@ abstract class LockManager {
 	/**
 	 * Unlock the resources at the given abstract paths
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
 	 * @return Status
 	 */
 	final public function unlock( array $paths, $type = self::LOCK_EX ) {
+		return $this->unlockByType( array( $type => $paths ) );
+	}
+
+	/**
+	 * Unlock the resources at the given abstract paths
+	 *
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Status
+	 * @since 1.22
+	 */
+	final public function unlockByType( array $pathsByType ) {
 		wfProfileIn( __METHOD__ );
-		$status = $this->doUnlock( array_unique( $paths ), $this->lockTypeMap[$type] );
+		$pathsByType = $this->normalizePathsByType( $pathsByType );
+		$status = $this->doUnlockByType( $pathsByType );
 		wfProfileOut( __METHOD__ );
 		return $status;
 	}
 
 	/**
-	 * Get the base 36 SHA-1 of a string, padded to 31 digits
+	 * Get the base 36 SHA-1 of a string, padded to 31 digits.
+	 * Before hashing, the path will be prefixed with the domain ID.
+	 * This should be used interally for lock key or file names.
 	 *
 	 * @param $path string
 	 * @return string
 	 */
-	final protected static function sha1Base36( $path ) {
-		return wfBaseConvert( sha1( $path ), 16, 36, 31 );
+	final protected function sha1Base36Absolute( $path ) {
+		return wfBaseConvert( sha1( "{$this->domain}:{$path}" ), 16, 36, 31 );
+	}
+
+	/**
+	 * Get the base 16 SHA-1 of a string, padded to 31 digits.
+	 * Before hashing, the path will be prefixed with the domain ID.
+	 * This should be used interally for lock key or file names.
+	 *
+	 * @param $path string
+	 * @return string
+	 */
+	final protected function sha1Base16Absolute( $path ) {
+		return sha1( "{$this->domain}:{$path}" );
+	}
+
+	/**
+	 * Normalize the $paths array by converting LOCK_UW locks into the
+	 * appropriate type and removing any duplicated paths for each lock type.
+	 *
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Array
+	 * @since 1.22
+	 */
+	final protected function normalizePathsByType( array $pathsByType ) {
+		$res = array();
+		foreach ( $pathsByType as $type => $paths ) {
+			$res[$this->lockTypeMap[$type]] = array_unique( $paths );
+		}
+		return $res;
+	}
+
+	/**
+	 * @see LockManager::lockByType()
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Status
+	 * @since 1.22
+	 */
+	protected function doLockByType( array $pathsByType ) {
+		$status = Status::newGood();
+		$lockedByType = array(); // map of (type => paths)
+		foreach ( $pathsByType as $type => $paths ) {
+			$status->merge( $this->doLock( $paths, $type ) );
+			if ( $status->isOK() ) {
+				$lockedByType[$type] = $paths;
+			} else {
+				// Release the subset of locks that were acquired
+				foreach ( $lockedByType as $type => $paths ) {
+					$status->merge( $this->doUnlock( $paths, $type ) );
+				}
+				break;
+			}
+		}
+		return $status;
 	}
 
 	/**
 	 * Lock resources with the given keys and lock type
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
-	 * @return string
+	 * @return Status
 	 */
 	abstract protected function doLock( array $paths, $type );
 
 	/**
+	 * @see LockManager::unlockByType()
+	 * @param array $paths Map of LockManager::LOCK_* constants to lists of storage paths
+	 * @return Status
+	 * @since 1.22
+	 */
+	protected function doUnlockByType( array $pathsByType ) {
+		$status = Status::newGood();
+		foreach ( $pathsByType as $type => $paths ) {
+			$status->merge( $this->doUnlock( $paths, $type ) );
+		}
+		return $status;
+	}
+
+	/**
 	 * Unlock resources with the given keys and lock type
 	 *
-	 * @param $paths Array List of storage paths
+	 * @param array $paths List of storage paths
 	 * @param $type integer LockManager::LOCK_* constant
-	 * @return string
+	 * @return Status
 	 */
 	abstract protected function doUnlock( array $paths, $type );
-}
-
-/**
- * Self-releasing locks
- *
- * LockManager helper class to handle scoped locks, which
- * release when an object is destroyed or goes out of scope.
- *
- * @ingroup LockManager
- * @since 1.19
- */
-class ScopedLock {
-	/** @var LockManager */
-	protected $manager;
-	/** @var Status */
-	protected $status;
-	/** @var Array List of resource paths*/
-	protected $paths;
-
-	protected $type; // integer lock type
-
-	/**
-	 * @param $manager LockManager
-	 * @param $paths Array List of storage paths
-	 * @param $type integer LockManager::LOCK_* constant
-	 * @param $status Status
-	 */
-	protected function __construct(
-		LockManager $manager, array $paths, $type, Status $status
-	) {
-		$this->manager = $manager;
-		$this->paths = $paths;
-		$this->status = $status;
-		$this->type = $type;
-	}
-
-	/**
-	 * Get a ScopedLock object representing a lock on resource paths.
-	 * Any locks are released once this object goes out of scope.
-	 * The status object is updated with any errors or warnings.
-	 *
-	 * @param $manager LockManager
-	 * @param $paths Array List of storage paths
-	 * @param $type integer LockManager::LOCK_* constant
-	 * @param $status Status
-	 * @return ScopedLock|null Returns null on failure
-	 */
-	public static function factory(
-		LockManager $manager, array $paths, $type, Status $status
-	) {
-		$lockStatus = $manager->lock( $paths, $type );
-		$status->merge( $lockStatus );
-		if ( $lockStatus->isOK() ) {
-			return new self( $manager, $paths, $type, $status );
-		}
-		return null;
-	}
-
-	function __destruct() {
-		$wasOk = $this->status->isOK();
-		$this->status->merge( $this->manager->unlock( $this->paths, $this->type ) );
-		if ( $wasOk ) {
-			// Make sure status is OK, despite any unlockFiles() fatals
-			$this->status->setResult( true, $this->status->value );
-		}
-	}
-}
-
-/**
- * Version of LockManager that uses a quorum from peer servers for locks.
- * The resource space can also be sharded into separate peer groups.
- *
- * @ingroup LockManager
- * @since 1.20
- */
-abstract class QuorumLockManager extends LockManager {
-	/** @var Array Map of bucket indexes to peer server lists */
-	protected $srvsByBucket = array(); // (bucket index => (lsrv1, lsrv2, ...))
-
-	/**
-	 * @see LockManager::doLock()
-	 * @param $paths array
-	 * @param $type int
-	 * @return Status
-	 */
-	final protected function doLock( array $paths, $type ) {
-		$status = Status::newGood();
-
-		$pathsToLock = array(); // (bucket => paths)
-		// Get locks that need to be acquired (buckets => locks)...
-		foreach ( $paths as $path ) {
-			if ( isset( $this->locksHeld[$path][$type] ) ) {
-				++$this->locksHeld[$path][$type];
-			} elseif ( isset( $this->locksHeld[$path][self::LOCK_EX] ) ) {
-				$this->locksHeld[$path][$type] = 1;
-			} else {
-				$bucket = $this->getBucketFromKey( $path );
-				$pathsToLock[$bucket][] = $path;
-			}
-		}
-
-		$lockedPaths = array(); // files locked in this attempt
-		// Attempt to acquire these locks...
-		foreach ( $pathsToLock as $bucket => $paths ) {
-			// Try to acquire the locks for this bucket
-			$status->merge( $this->doLockingRequestBucket( $bucket, $paths, $type ) );
-			if ( !$status->isOK() ) {
-				$status->merge( $this->doUnlock( $lockedPaths, $type ) );
-				return $status;
-			}
-			// Record these locks as active
-			foreach ( $paths as $path ) {
-				$this->locksHeld[$path][$type] = 1; // locked
-			}
-			// Keep track of what locks were made in this attempt
-			$lockedPaths = array_merge( $lockedPaths, $paths );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * @see LockManager::doUnlock()
-	 * @param $paths array
-	 * @param $type int
-	 * @return Status
-	 */
-	final protected function doUnlock( array $paths, $type ) {
-		$status = Status::newGood();
-
-		$pathsToUnlock = array();
-		foreach ( $paths as $path ) {
-			if ( !isset( $this->locksHeld[$path][$type] ) ) {
-				$status->warning( 'lockmanager-notlocked', $path );
-			} else {
-				--$this->locksHeld[$path][$type];
-				// Reference count the locks held and release locks when zero
-				if ( $this->locksHeld[$path][$type] <= 0 ) {
-					unset( $this->locksHeld[$path][$type] );
-					$bucket = $this->getBucketFromKey( $path );
-					$pathsToUnlock[$bucket][] = $path;
-				}
-				if ( !count( $this->locksHeld[$path] ) ) {
-					unset( $this->locksHeld[$path] ); // no SH or EX locks left for key
-				}
-			}
-		}
-
-		// Remove these specific locks if possible, or at least release
-		// all locks once this process is currently not holding any locks.
-		foreach ( $pathsToUnlock as $bucket => $paths ) {
-			$status->merge( $this->doUnlockingRequestBucket( $bucket, $paths, $type ) );
-		}
-		if ( !count( $this->locksHeld ) ) {
-			$status->merge( $this->releaseAllLocks() );
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Attempt to acquire locks with the peers for a bucket.
-	 * This is all or nothing; if any key is locked then this totally fails.
-	 *
-	 * @param $bucket integer
-	 * @param $paths Array List of resource keys to lock
-	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
-	 * @return Status
-	 */
-	final protected function doLockingRequestBucket( $bucket, array $paths, $type ) {
-		$status = Status::newGood();
-
-		$yesVotes = 0; // locks made on trustable servers
-		$votesLeft = count( $this->srvsByBucket[$bucket] ); // remaining peers
-		$quorum = floor( $votesLeft/2 + 1 ); // simple majority
-		// Get votes for each peer, in order, until we have enough...
-		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
-			if ( !$this->isServerUp( $lockSrv ) ) {
-				--$votesLeft;
-				$status->warning( 'lockmanager-fail-svr-acquire', $lockSrv );
-				continue; // server down?
-			}
-			// Attempt to acquire the lock on this peer
-			$status->merge( $this->getLocksOnServer( $lockSrv, $paths, $type ) );
-			if ( !$status->isOK() ) {
-				return $status; // vetoed; resource locked
-			}
-			++$yesVotes; // success for this peer
-			if ( $yesVotes >= $quorum ) {
-				return $status; // lock obtained
-			}
-			--$votesLeft;
-			$votesNeeded = $quorum - $yesVotes;
-			if ( $votesNeeded > $votesLeft ) {
-				break; // short-circuit
-			}
-		}
-		// At this point, we must not have met the quorum
-		$status->setResult( false );
-
-		return $status;
-	}
-
-	/**
-	 * Attempt to release locks with the peers for a bucket
-	 *
-	 * @param $bucket integer
-	 * @param $paths Array List of resource keys to lock
-	 * @param $type integer LockManager::LOCK_EX or LockManager::LOCK_SH
-	 * @return Status
-	 */
-	final protected function doUnlockingRequestBucket( $bucket, array $paths, $type ) {
-		$status = Status::newGood();
-
-		foreach ( $this->srvsByBucket[$bucket] as $lockSrv ) {
-			if ( !$this->isServerUp( $lockSrv ) ) {
-				$status->fatal( 'lockmanager-fail-svr-release', $lockSrv );
-			// Attempt to release the lock on this peer
-			} else {
-				$status->merge( $this->freeLocksOnServer( $lockSrv, $paths, $type ) );
-			}
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Get the bucket for resource path.
-	 * This should avoid throwing any exceptions.
-	 *
-	 * @param $path string
-	 * @return integer
-	 */
-	protected function getBucketFromKey( $path ) {
-		$prefix = substr( sha1( $path ), 0, 2 ); // first 2 hex chars (8 bits)
-		return (int)base_convert( $prefix, 16, 10 ) % count( $this->srvsByBucket );
-	}
-
-	/**
-	 * Check if a lock server is up
-	 *
-	 * @param $lockSrv string
-	 * @return bool
-	 */
-	abstract protected function isServerUp( $lockSrv );
-
-	/**
-	 * Get a connection to a lock server and acquire locks on $paths
-	 *
-	 * @param $lockSrv string
-	 * @param $paths array
-	 * @param $type integer
-	 * @return Status
-	 */
-	abstract protected function getLocksOnServer( $lockSrv, array $paths, $type );
-
-	/**
-	 * Get a connection to a lock server and release locks on $paths.
-	 *
-	 * Subclasses must effectively implement this or releaseAllLocks().
-	 *
-	 * @param $lockSrv string
-	 * @param $paths array
-	 * @param $type integer
-	 * @return Status
-	 */
-	abstract protected function freeLocksOnServer( $lockSrv, array $paths, $type );
-
-	/**
-	 * Release all locks that this session is holding.
-	 *
-	 * Subclasses must effectively implement this or freeLocksOnServer().
-	 *
-	 * @return Status
-	 */
-	abstract protected function releaseAllLocks();
 }
 
 /**

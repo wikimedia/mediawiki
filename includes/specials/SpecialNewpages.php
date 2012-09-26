@@ -27,7 +27,6 @@
  * @ingroup SpecialPage
  */
 class SpecialNewpages extends IncludableSpecialPage {
-
 	// Stored objects
 
 	/**
@@ -53,26 +52,29 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'newpageshidepatrolled' ) );
 		$opts->add( 'hidebots', false );
 		$opts->add( 'hideredirs', true );
-		$opts->add( 'limit', (int)$this->getUser()->getOption( 'rclimit' ) );
+		$opts->add( 'limit', $this->getUser()->getIntOption( 'rclimit' ) );
 		$opts->add( 'offset', '' );
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );
 		$opts->add( 'feed', '' );
 		$opts->add( 'tagfilter', '' );
+		$opts->add( 'invert', false );
 
 		$this->customFilters = array();
 		wfRunHooks( 'SpecialNewPagesFilters', array( $this, &$this->customFilters ) );
-		foreach( $this->customFilters as $key => $params ) {
+		foreach ( $this->customFilters as $key => $params ) {
 			$opts->add( $key, $params['default'] );
 		}
 
 		// Set values
 		$opts->fetchValuesFromRequest( $this->getRequest() );
-		if ( $par ) $this->parseParams( $par );
+		if ( $par ) {
+			$this->parseParams( $par );
+		}
 
 		// Validate
 		$opts->validateIntBounds( 'limit', 0, 5000 );
-		if( !$wgEnableNewpagesUserFilter ) {
+		if ( !$wgEnableNewpagesUserFilter ) {
 			$opts->setValue( 'username', '' );
 		}
 	}
@@ -105,15 +107,15 @@ class SpecialNewpages extends IncludableSpecialPage {
 			}
 			// PG offsets not just digits!
 			if ( preg_match( '/^offset=([^=]+)$/', $bit, $m ) ) {
-				$this->opts->setValue( 'offset',  intval( $m[1] ) );
+				$this->opts->setValue( 'offset', intval( $m[1] ) );
 			}
 			if ( preg_match( '/^username=(.*)$/', $bit, $m ) ) {
 				$this->opts->setValue( 'username', $m[1] );
 			}
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
 				$ns = $this->getLanguage()->getNsIndex( $m[1] );
-				if( $ns !== false ) {
-					$this->opts->setValue( 'namespace',  $ns );
+				if ( $ns !== false ) {
+					$this->opts->setValue( 'namespace', $ns );
 				}
 			}
 		}
@@ -134,25 +136,27 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->showNavigation = !$this->including(); // Maybe changed in setup
 		$this->setup( $par );
 
-		if( !$this->including() ) {
+		if ( !$this->including() ) {
 			// Settings
 			$this->form();
 
 			$feedType = $this->opts->getValue( 'feed' );
-			if( $feedType ) {
-				return $this->feed( $feedType );
+			if ( $feedType ) {
+				$this->feed( $feedType );
+
+				return;
 			}
 
 			$allValues = $this->opts->getAllValues();
 			unset( $allValues['feed'] );
-			$out->setFeedAppendQuery( wfArrayToCGI( $allValues ) );
+			$out->setFeedAppendQuery( wfArrayToCgi( $allValues ) );
 		}
 
 		$pager = new NewPagesPager( $this, $this->opts );
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
 
-		if( $pager->getNumRows() ) {
+		if ( $pager->getNumRows() ) {
 			$navigation = '';
 			if ( $this->showNavigation ) {
 				$navigation = $pager->getNavigationBar();
@@ -164,8 +168,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function filterLinks() {
-		global $wgGroupPermissions;
-
 		// show/hide links
 		$showhide = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
 
@@ -181,8 +183,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		// Disable some if needed
-		# @todo FIXME: Throws E_NOTICEs if not set; and doesn't obey hooks etc.
-		if ( $wgGroupPermissions['*']['createpage'] !== true ) {
+		if ( !User::groupHasPermission( '*', 'createpage' ) ) {
 			unset( $filters['hideliu'] );
 		}
 		if ( !$this->getUser()->useNPPatrol() ) {
@@ -197,7 +198,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue( $key );
 			$link = Linker::link( $self, $showhide[$onoff], array(),
-					array( $key => $onoff ) + $changed
+				array( $key => $onoff ) + $changed
 			);
 			$links[$key] = $this->msg( $msg )->rawParams( $link )->escaped();
 		}
@@ -213,6 +214,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
 		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
+		$nsinvert = $this->opts->consumeValue( 'invert' );
 
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
@@ -236,48 +238,55 @@ class SpecialNewpages extends IncludableSpecialPage {
 			Xml::openElement( 'table', array( 'id' => 'mw-newpages-table' ) ) .
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
-				'</td>
-				<td class="mw-input">' .
-					Html::namespaceSelector(
-						array(
-							'selected' => $namespace,
-							'all' => 'all',
-						), array(
-							'name'  => 'namespace',
-							'id'    => 'namespace',
-							'class' => 'namespaceselector',
-						)
-					) .
-				'</td>
+			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
+			'</td>
+			<td class="mw-input">' .
+			Html::namespaceSelector(
+				array(
+					'selected' => $namespace,
+					'all' => 'all',
+				), array(
+					'name' => 'namespace',
+					'id' => 'namespace',
+					'class' => 'namespaceselector',
+				)
+			) . '&#160;' .
+			Xml::checkLabel(
+				$this->msg( 'invert' )->text(),
+				'invert',
+				'nsinvert',
+				$nsinvert,
+				array( 'title' => $this->msg( 'tooltip-invert' )->text() )
+			) .
+			'</td>
 			</tr>' . ( $tagFilter ? (
 			'<tr>
 				<td class="mw-label">' .
-					$tagFilterLabel .
+				$tagFilterLabel .
 				'</td>
 				<td class="mw-input">' .
-					$tagFilterSelector .
+				$tagFilterSelector .
 				'</td>
 			</tr>' ) : '' ) .
 			( $wgEnableNewpagesUserFilter ?
-			'<tr>
+				'<tr>
 				<td class="mw-label">' .
 					Xml::label( $this->msg( 'newpages-username' )->text(), 'mw-np-username' ) .
-				'</td>
+					'</td>
 				<td class="mw-input">' .
 					Xml::input( 'username', 30, $userText, array( 'id' => 'mw-np-username' ) ) .
-				'</td>
+					'</td>
 			</tr>' : '' ) .
 			'<tr> <td></td>
 				<td class="mw-submit">' .
-					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
-				'</td>
-			</tr>' .
+			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
+			'</td>
+		</tr>' .
 			'<tr>
 				<td></td>
 				<td class="mw-input">' .
-					$this->filterLinks() .
-				'</td>
+			$this->filterLinks() .
+			'</td>
 			</tr>' .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
@@ -288,9 +297,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Format a row, providing the timestamp, links to the page/history, size, user links, and a comment
+	 * Format a row, providing the timestamp, links to the page/history,
+	 * size, user links, and a comment
 	 *
-	 * @param $result Result row
+	 * @param object $result Result row
 	 * @return String
 	 */
 	public function formatRow( $result ) {
@@ -298,11 +308,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
-					  'comment' => $result->rc_comment,
-					  'deleted' => $result->rc_deleted,
-					  'user_text' => $result->rc_user_text,
-					  'user' => $result->rc_user,
-					);
+			'comment' => $result->rc_comment,
+			'deleted' => $result->rc_deleted,
+			'user_text' => $result->rc_user_text,
+			'user' => $result->rc_user,
+		);
 		$rev = new Revision( $row );
 		$rev->setTitle( $title );
 
@@ -324,16 +334,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$query = array( 'redirect' => 'no' );
 
-		if( $this->patrollable( $result ) ) {
-			$query['rcid'] = $result->rc_id;
-		}
-
-		$plink = Linker::linkKnown(
+		// Linker::linkKnown() uses 'known' and 'noclasses' options.
+		// This breaks the colouration for stubs.
+		$plink = Linker::link(
 			$title,
 			null,
 			array( 'class' => 'mw-newpages-pagename' ),
 			$query,
-			array( 'known' ) // Set explicitly to avoid the default of 'known','noclasses'. This breaks the colouration for stubs
+			array( 'known' )
 		);
 		$histLink = Linker::linkKnown(
 			$title,
@@ -344,8 +352,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ),
 			$this->msg( 'parentheses' )->rawParams( $histLink )->escaped() );
 
-		$length = Html::element( 'span', array( 'class' => 'mw-newpages-length' ),
-			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )->numParams( $result->length )->text() )
+		$length = Html::element(
+			'span',
+			array( 'class' => 'mw-newpages-length' ),
+			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )
+				->numParams( $result->length )->text()
+			)
 		);
 
 		$ulink = Linker::revUserTools( $rev );
@@ -361,8 +373,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		# Tags, if any.
-		if( isset( $result->ts_tags ) ) {
-			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow( $result->ts_tags, 'newpages' );
+		if ( isset( $result->ts_tags ) ) {
+			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow(
+				$result->ts_tags,
+				'newpages'
+			);
 			$classes = array_merge( $classes, $newClasses );
 		} else {
 			$tagDisplay = '';
@@ -373,8 +388,10 @@ class SpecialNewpages extends IncludableSpecialPage {
 		# Display the old title if the namespace/title has been changed
 		$oldTitleText = '';
 		$oldTitle = Title::makeTitle( $result->rc_namespace, $result->rc_title );
+
 		if ( !$title->equals( $oldTitle ) ) {
-			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitle->getPrefixedText() )->escaped();
+			$oldTitleText = $oldTitle->getPrefixedText();
+			$oldTitleText = $this->msg( 'rc-old-title' )->params( $oldTitleText )->escaped();
 		}
 
 		return "<li{$css}>{$time} {$dm}{$plink} {$hist} {$dm}{$length} {$dm}{$ulink} {$comment} {$tagDisplay} {$oldTitleText}</li>\n";
@@ -383,7 +400,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Should a specific result row provide "patrollable" links?
 	 *
-	 * @param $result Result row
+	 * @param object $result Result row
 	 * @return Boolean
 	 */
 	protected function patrollable( $result ) {
@@ -400,18 +417,20 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		if ( !$wgFeed ) {
 			$this->getOutput()->addWikiMsg( 'feed-unavailable' );
+
 			return;
 		}
 
-		if( !isset( $wgFeedClasses[$type] ) ) {
+		if ( !isset( $wgFeedClasses[$type] ) ) {
 			$this->getOutput()->addWikiMsg( 'feed-invalid' );
+
 			return;
 		}
 
 		$feed = new $wgFeedClasses[$type](
 			$this->feedTitle(),
 			$this->msg( 'tagline' )->text(),
-			$this->getTitle()->getFullUrl()
+			$this->getTitle()->getFullURL()
 		);
 
 		$pager = new NewPagesPager( $this, $this->opts );
@@ -419,7 +438,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$pager->mLimit = min( $limit, $wgFeedLimit );
 
 		$feed->outHeader();
-		if( $pager->getNumRows() > 0 ) {
+		if ( $pager->getNumRows() > 0 ) {
 			foreach ( $pager->mResult as $row ) {
 				$feed->outItem( $this->feedItem( $row ) );
 			}
@@ -430,12 +449,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 	protected function feedTitle() {
 		global $wgLanguageCode, $wgSitename;
 		$desc = $this->getDescription();
+
 		return "$wgSitename - $desc [$wgLanguageCode]";
 	}
 
 	protected function feedItem( $row ) {
 		$title = Title::makeTitle( intval( $row->rc_namespace ), $row->rc_title );
-		if( $title ) {
+		if ( $title ) {
 			$date = $row->rc_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
 
@@ -458,14 +478,20 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected function feedItemDesc( $row ) {
 		$revision = Revision::newFromId( $row->rev_id );
-		if( $revision ) {
+		if ( $revision ) {
+			//XXX: include content model/type in feed item?
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) .
 				$this->msg( 'colon-separator' )->inContentLanguage()->escaped() .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
 				"</p>\n<hr />\n<div>" .
-				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
+				nl2br( htmlspecialchars( $revision->getContent()->serialize() ) ) . "</div>";
 		}
+
 		return '';
+	}
+
+	protected function getGroupName() {
+		return 'changes';
 	}
 }
 
@@ -488,7 +514,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		global $wgEnableNewpagesUserFilter, $wgGroupPermissions;
+		global $wgEnableNewpagesUserFilter;
 		$conds = array();
 		$conds['rc_new'] = 1;
 
@@ -498,26 +524,34 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$username = $this->opts->getValue( 'username' );
 		$user = Title::makeTitleSafe( NS_USER, $username );
 
-		if( $namespace !== false ) {
-			$conds['rc_namespace'] = $namespace;
+		if ( $namespace !== false ) {
+			if ( $this->opts->getValue( 'invert' ) ) {
+				$conds[] = 'rc_namespace != ' . $this->mDb->addQuotes( $namespace );
+			} else {
+				$conds['rc_namespace'] = $namespace;
+			}
 			$rcIndexes = array( 'new_name_timestamp' );
 		} else {
 			$rcIndexes = array( 'rc_timestamp' );
 		}
 
 		# $wgEnableNewpagesUserFilter - temp WMF hack
-		if( $wgEnableNewpagesUserFilter && $user ) {
+		if ( $wgEnableNewpagesUserFilter && $user ) {
 			$conds['rc_user_text'] = $user->getText();
 			$rcIndexes = 'rc_user_text';
-		# If anons cannot make new pages, don't "exclude logged in users"!
-		} elseif( $wgGroupPermissions['*']['createpage'] && $this->opts->getValue( 'hideliu' ) ) {
+		} elseif ( User::groupHasPermission( '*', 'createpage' ) &&
+			$this->opts->getValue( 'hideliu' )
+		) {
+			# If anons cannot make new pages, don't "exclude logged in users"!
 			$conds['rc_user'] = 0;
 		}
+
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
-		if( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
+		if ( $this->opts->getValue( 'hidepatrolled' ) && $this->getUser()->useNPPatrol() ) {
 			$conds['rc_patrolled'] = 0;
 		}
-		if( $this->opts->getValue( 'hidebots' ) ) {
+
+		if ( $this->opts->getValue( 'hidebots' ) ) {
 			$conds['rc_bot'] = 0;
 		}
 
@@ -529,7 +563,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$tables = array( 'recentchanges', 'page' );
 		$fields = array(
 			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
-			'rc_comment', 'rc_timestamp', 'rc_patrolled','rc_id', 'rc_deleted',
+			'rc_comment', 'rc_timestamp', 'rc_patrolled', 'rc_id', 'rc_deleted',
 			'length' => 'page_len', 'rev_id' => 'page_latest', 'rc_this_oldid',
 			'page_namespace', 'page_title'
 		);
@@ -539,10 +573,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 			array( &$this, $this->opts, &$conds, &$tables, &$fields, &$join_conds ) );
 
 		$info = array(
-			'tables' 	 => $tables,
-			'fields' 	 => $fields,
-			'conds' 	 => $conds,
-			'options' 	 => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
+			'tables' => $tables,
+			'fields' => $fields,
+			'conds' => $conds,
+			'options' => array( 'USE INDEX' => array( 'recentchanges' => $rcIndexes ) ),
 			'join_conds' => $join_conds
 		);
 
@@ -576,6 +610,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$linkBatch->add( $row->rc_namespace, $row->rc_title );
 		}
 		$linkBatch->execute();
+
 		return '<ul>';
 	}
 

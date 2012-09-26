@@ -31,16 +31,16 @@ class RevisionDeleter {
 	 * Checks for a change in the bitfield for a certain option and updates the
 	 * provided array accordingly.
 	 *
-	 * @param $desc String: description to add to the array if the option was
+	 * @param string $desc description to add to the array if the option was
 	 * enabled / disabled.
 	 * @param $field Integer: the bitmask describing the single option.
 	 * @param $diff Integer: the xor of the old and new bitfields.
 	 * @param $new Integer: the new bitfield
-	 * @param $arr Array: the array to update.
+	 * @param array $arr the array to update.
 	 */
 	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
-		if( $diff & $field ) {
-			$arr[ ( $new & $field ) ? 0 : 1 ][] = $desc;
+		if ( $diff & $field ) {
+			$arr[( $new & $field ) ? 0 : 1][] = $desc;
 		}
 	}
 
@@ -73,11 +73,12 @@ class RevisionDeleter {
 		self::checkItem( 'revdelete-uname',
 			Revision::DELETED_USER, $diff, $n, $ret );
 		// Restriction application to sysops
-		if( $diff & Revision::DELETED_RESTRICTED ) {
-			if( $n & Revision::DELETED_RESTRICTED )
+		if ( $diff & Revision::DELETED_RESTRICTED ) {
+			if ( $n & Revision::DELETED_RESTRICTED ) {
 				$ret[2][] = 'revdelete-restricted';
-			else
+			} else {
 				$ret[2][] = 'revdelete-unrestricted';
+			}
 		}
 		return $ret;
 	}

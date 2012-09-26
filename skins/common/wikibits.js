@@ -1,67 +1,61 @@
 /**
  * MediaWiki legacy wikibits
  */
-( function ( mw ) {
+/*jshint quotmark:false, onevar:false */
+( function ( mw, $ ) {
+	var isIE6, isGecko,
+		ua = navigator.userAgent.toLowerCase(),
+		uaMsg = 'Use feature detection or module jquery.client instead.';
 
-window.clientPC = navigator.userAgent.toLowerCase(); // Get client info
-window.is_gecko = /gecko/.test( clientPC ) &&
-	!/khtml|spoofer|netscape\/7\.0/.test(clientPC);
-
-window.is_safari = window.is_safari_win = window.webkit_version =
-	window.is_chrome = window.is_chrome_mac = false;
-window.webkit_match = clientPC.match(/applewebkit\/(\d+)/);
-if (webkit_match) {
-	window.is_safari = clientPC.indexOf('applewebkit') != -1 &&
-		clientPC.indexOf('spoofer') == -1;
-	window.is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
-	window.webkit_version = parseInt(webkit_match[1]);
-	// Tests for chrome here, to avoid breaking old scripts safari left alone
-	// This is here for accesskeys
-	window.is_chrome = clientPC.indexOf('chrome') !== -1 &&
-		clientPC.indexOf('spoofer') === -1;
-	window.is_chrome_mac = is_chrome && clientPC.indexOf('mac') !== -1
+/**
+ * User-agent sniffing.
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use jquery.client instead.
+ */
+mw.log.deprecate( window, 'clientPC', ua, uaMsg );
+$.each([
+		'is_gecko',
+		'is_chrome_mac',
+		'is_chrome',
+		'webkit_version',
+		'is_safari_win',
+		'is_safari',
+		'webkit_match',
+		'is_ff2',
+		'ff2_bugs',
+		'is_ff2_win',
+		'is_ff2_x11',
+		'opera95_bugs',
+		'opera7_bugs',
+		'opera6_bugs',
+		'is_opera_95',
+		'is_opera_preseven',
+		'is_opera',
+		'ie6_bugs'
+	],
+	function ( i, key ) {
+		mw.log.deprecate( window, key, false, uaMsg );
+	}
+);
+if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( ua ) && parseFloat( RegExp.$1 ) <= 6.0 ) {
+	isIE6 = true;
 }
-
-// For accesskeys; note that FF3+ is included here!
-window.is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
-window.ff2_bugs = /firefox\/2/.test( clientPC );
-// These aren't used here, but some custom scripts rely on them
-window.is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
-window.is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
-
-window.is_opera = window.is_opera_preseven = window.is_opera_95 =
-	window.opera6_bugs = window.opera7_bugs = window.opera95_bugs = false;
-if (clientPC.indexOf('opera') != -1) {
-	window.is_opera = true;
-	window.is_opera_preseven = window.opera && !document.childNodes;
-	window.is_opera_seven = window.opera && document.childNodes;
-	window.is_opera_95 = /opera\/(9\.[5-9]|[1-9][0-9])/.test( clientPC );
-	window.opera6_bugs = is_opera_preseven;
-	window.opera7_bugs = is_opera_seven && !is_opera_95;
-	window.opera95_bugs = /opera\/(9\.5)/.test( clientPC );
-}
-// As recommended by <http://msdn.microsoft.com/en-us/library/ms537509.aspx>,
-// avoiding false positives from moronic extensions that append to the IE UA
-// string (bug 23171)
-window.ie6_bugs = false;
-if ( /msie ([0-9]{1,}[\.0-9]{0,})/.exec( clientPC ) != null
-&& parseFloat( RegExp.$1 ) <= 6.0 ) {
-	ie6_bugs = true;
-}
+isGecko = /gecko/.test( ua ) && !/khtml|spoofer|netscape\/7\.0/.test( ua );
 
 // add any onload functions in this hook (please don't hard-code any events in the xhtml source)
 window.doneOnloadHook = undefined;
 
-if (!window.onloadFuncts) {
+if ( !window.onloadFuncts ) {
 	window.onloadFuncts = [];
 }
 
 window.addOnloadHook = function( hookFunct ) {
 	// Allows add-on scripts to add onload functions
-	if( !doneOnloadHook ) {
-		onloadFuncts[onloadFuncts.length] = hookFunct;
+	if( !window.doneOnloadHook ) {
+		window.onloadFuncts[window.onloadFuncts.length] = hookFunct;
 	} else {
-		hookFunct();  // bug in MSIE script loading
+		hookFunct(); // bug in MSIE script loading
 	}
 };
 
@@ -69,15 +63,15 @@ window.importScript = function( page ) {
 	var uri = mw.config.get( 'wgScript' ) + '?title=' +
 		mw.util.wikiUrlencode( page ) +
 		'&action=raw&ctype=text/javascript';
-	return importScriptURI( uri );
+	return window.importScriptURI( uri );
 };
 
 window.loadedScripts = {}; // included-scripts tracker
 window.importScriptURI = function( url ) {
-	if ( loadedScripts[url] ) {
+	if ( window.loadedScripts[url] ) {
 		return null;
 	}
-	loadedScripts[url] = true;
+	window.loadedScripts[url] = true;
 	var s = document.createElement( 'script' );
 	s.setAttribute( 'src', url );
 	s.setAttribute( 'type', 'text/javascript' );
@@ -86,15 +80,14 @@ window.importScriptURI = function( url ) {
 };
 
 window.importStylesheet = function( page ) {
-	return importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
+	return window.importStylesheetURI( mw.config.get( 'wgScript' ) + '?action=raw&ctype=text/css&title=' + mw.util.wikiUrlencode( page ) );
 };
 
 window.importStylesheetURI = function( url, media ) {
 	var l = document.createElement( 'link' );
-	l.type = 'text/css';
 	l.rel = 'stylesheet';
 	l.href = url;
-	if( media ) {
+	if ( media ) {
 		l.media = media;
 	}
 	document.getElementsByTagName('head')[0].appendChild( l );
@@ -114,23 +107,11 @@ window.appendCSS = function( text ) {
 	return s;
 };
 
-// Special stylesheet links for Monobook only (see bug 14717)
-var skinpath = mw.config.get( 'stylepath' ) + '/' + mw.config.get( 'skin' );
-if ( mw.config.get( 'skin' ) === 'monobook' ) {
-	if ( opera6_bugs ) {
-		importStylesheetURI( skinpath + '/Opera6Fixes.css' );
-	} else if ( opera7_bugs ) {
-		importStylesheetURI( skinpath + '/Opera7Fixes.css' );
-	} else if ( opera95_bugs ) {
-		importStylesheetURI( skinpath + '/Opera9Fixes.css' );
-	} else if ( ff2_bugs ) {
-		importStylesheetURI( skinpath + '/FF2Fixes.css' );
-	}
-}
-
 if ( mw.config.get( 'wgBreakFrames' ) ) {
-	// Un-trap us from framesets
-	if ( window.top != window ) {
+	// Note: In IE < 9 strict comparison to window is non-standard (the standard didn't exist yet)
+	// it works only comparing to window.self or window.window (http://stackoverflow.com/q/4850978/319266)
+	if ( window.top !== window.self ) {
+		// Un-trap us from framesets
 		window.top.location = window.location;
 	}
 }
@@ -146,7 +127,7 @@ window.changeText = function( el, newText ) {
 
 window.killEvt = function( evt ) {
 	evt = evt || window.event || window.Event; // W3C, IE, Netscape
-	if ( typeof ( evt.preventDefault ) != 'undefined' ) {
+	if ( typeof evt.preventDefault !== 'undefined' ) {
 		evt.preventDefault(); // Don't follow the link
 		evt.stopPropagation();
 	} else {
@@ -163,7 +144,7 @@ window.escapeQuotes = function( text ) {
 	text = text.replace( re, "\\'" );
 	re = new RegExp( "\\n", "g" );
 	text = text.replace( re, "\\n" );
-	return escapeQuotesHTML( text );
+	return window.escapeQuotesHTML( text );
 };
 
 window.escapeQuotesHTML = function( text ) {
@@ -179,63 +160,14 @@ window.escapeQuotesHTML = function( text ) {
 };
 
 /**
- * Set the accesskey prefix based on browser detection.
- */
-window.tooltipAccessKeyPrefix = 'alt-';
-if ( is_opera ) {
-	tooltipAccessKeyPrefix = 'shift-esc-';
-} else if ( is_chrome ) {
-	tooltipAccessKeyPrefix = is_chrome_mac ? 'ctrl-option-' : 'alt-';
-} else if ( !is_safari_win && is_safari && webkit_version > 526 ) {
-	tooltipAccessKeyPrefix = 'ctrl-alt-';
-} else if ( !is_safari_win && ( is_safari
-		|| clientPC.indexOf('mac') != -1
-		|| clientPC.indexOf('konqueror') != -1 ) ) {
-	tooltipAccessKeyPrefix = 'ctrl-';
-} else if ( is_ff2 ) {
-	tooltipAccessKeyPrefix = 'alt-shift-';
-}
-window.tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
-
-/**
- * Add the appropriate prefix to the accesskey shown in the tooltip.
- * If the nodeList parameter is given, only those nodes are updated;
- * otherwise, all the nodes that will probably have accesskeys by
- * default are updated.
+ * Accesskey prefix utilities.
+ * To be removed in MediaWiki 1.23.
  *
- * @param nodeList Array list of elements to update
+ * @deprecated since 1.17 Use mediawiki.util instead.
  */
-window.updateTooltipAccessKeys = function( nodeList ) {
-	if ( !nodeList ) {
-		// Rather than scan all links on the whole page, we can just scan these
-		// containers which contain the relevant links. This is really just an
-		// optimization technique.
-		var linkContainers = [
-			'column-one', // Monobook and Modern
-			'mw-head', 'mw-panel', 'p-logo' // Vector
-		];
-		for ( var i in linkContainers ) {
-			var linkContainer = document.getElementById( linkContainers[i] );
-			if ( linkContainer ) {
-				updateTooltipAccessKeys( linkContainer.getElementsByTagName( 'a' ) );
-			}
-		}
-		// these are rare enough that no such optimization is needed
-		updateTooltipAccessKeys( document.getElementsByTagName( 'input' ) );
-		updateTooltipAccessKeys( document.getElementsByTagName( 'label' ) );
-		return;
-	}
-
-	for ( var i = 0; i < nodeList.length; i++ ) {
-		var element = nodeList[i];
-		var tip = element.getAttribute( 'title' );
-		if ( tip && tooltipAccessKeyRegexp.exec( tip ) ) {
-			tip = tip.replace(tooltipAccessKeyRegexp,
-					  '[' + tooltipAccessKeyPrefix + "$5]");
-			element.setAttribute( 'title', tip );
-		}
-	}
-};
+mw.log.deprecate( window, 'tooltipAccessKeyPrefix', 'alt-', 'Use mediawiki.util instead.' );
+mw.log.deprecate( window, 'tooltipAccessKeyRegexp', /\[(alt-)?(.)\]$/, 'Use mediawiki.util instead.' );
+mw.log.deprecate( window, 'updateTooltipAccessKeys', mw.util.updateTooltipAccessKeys, 'Use mediawiki.util instead.' );
 
 /**
  * Add a link to one of the portlet menus on the page, including:
@@ -278,7 +210,7 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 		node = document.createElement( 'ul' );
 		var lastElementChild = null;
 		for ( var i = 0; i < root.childNodes.length; ++i ) { /* get root.lastElementChild */
-			if ( root.childNodes[i].nodeType == 1 ) {
+			if ( root.childNodes[i].nodeType === 1 ) {
 				lastElementChild = root.childNodes[i];
 			}
 		}
@@ -318,10 +250,10 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 		link.setAttribute( 'title', tooltip );
 	}
 	if ( accesskey && tooltip ) {
-		updateTooltipAccessKeys( [link] );
+		mw.util.updateTooltipAccessKeys( [link] );
 	}
 
-	if ( nextnode && nextnode.parentNode == node ) {
+	if ( nextnode && nextnode.parentNode === node ) {
 		node.insertBefore( item, nextnode );
 	} else {
 		node.appendChild( item );  // IE compatibility (?)
@@ -331,10 +263,10 @@ window.addPortletLink = function( portlet, href, text, id, tooltip, accesskey, n
 };
 
 window.getInnerText = function( el ) {
-	if ( typeof el == 'string' ) {
+	if ( typeof el === 'string' ) {
 		return el;
 	}
-	if ( typeof el == 'undefined' ) {
+	if ( typeof el === 'undefined' ) {
 		return el;
 	}
 	// Custom sort value through 'data-sort-value' attribute
@@ -356,7 +288,7 @@ window.getInnerText = function( el ) {
 	for ( var i = 0; i < l; i++ ) {
 		switch ( cs[i].nodeType ) {
 			case 1: // ELEMENT_NODE
-				str += getInnerText( cs[i] );
+				str += window.getInnerText( cs[i] );
 				break;
 			case 3:	// TEXT_NODE
 				str += cs[i].nodeValue;
@@ -366,71 +298,21 @@ window.getInnerText = function( el ) {
 	return str;
 };
 
-window.checkboxes = undefined;
-window.lastCheckbox = undefined;
-
-window.setupCheckboxShiftClick = function() {
-	checkboxes = [];
-	lastCheckbox = null;
-	var inputs = document.getElementsByTagName( 'input' );
-	addCheckboxClickHandlers( inputs );
-};
-
-window.addCheckboxClickHandlers = function( inputs, start ) {
-	if ( !start ) {
-		start = 0;
-	}
-
-	var finish = start + 250;
-	if ( finish > inputs.length ) {
-		finish = inputs.length;
-	}
-
-	for ( var i = start; i < finish; i++ ) {
-		var cb = inputs[i];
-		if ( !cb.type || cb.type.toLowerCase() != 'checkbox' || ( ' ' + cb.className + ' ' ).indexOf( ' noshiftselect ' )  != -1 ) {
-			continue;
-		}
-		var end = checkboxes.length;
-		checkboxes[end] = cb;
-		cb.index = end;
-		addClickHandler( cb, checkboxClickHandler );
-	}
-
-	if ( finish < inputs.length ) {
-		setTimeout( function() {
-			addCheckboxClickHandlers( inputs, finish );
-		}, 200 );
-	}
-};
-
-window.checkboxClickHandler = function( e ) {
-	if ( typeof e == 'undefined' ) {
-		e = window.event;
-	}
-	if ( !e.shiftKey || lastCheckbox === null ) {
-		lastCheckbox = this.index;
-		return true;
-	}
-	var endState = this.checked;
-	var start, finish;
-	if ( this.index < lastCheckbox ) {
-		start = this.index + 1;
-		finish = lastCheckbox;
-	} else {
-		start = lastCheckbox;
-		finish = this.index - 1;
-	}
-	for ( var i = start; i <= finish; ++i ) {
-		checkboxes[i].checked = endState;
-		if( i > start && typeof checkboxes[i].onchange == 'function' ) {
-			checkboxes[i].onchange(); // fire triggers
-		}
-	}
-	lastCheckbox = this.index;
-	return true;
-};
-
+/**
+ * Toggle checkboxes with shift selection.
+ * To be removed in MediaWiki 1.23.
+ *
+ * @deprecated since 1.17 Use jquery.checkboxShiftClick instead.
+ */
+$.each({
+	checkboxes: [],
+	lastCheckbox: null,
+	setupCheckboxShiftClick: $.noop,
+	addCheckboxClickHandlers: $.noop,
+	checkboxClickHandler: $.noop
+}, function ( key, val ) {
+	mw.log.deprecate( window, key, val, 'Use jquery.checkboxShiftClick instead.' );
+} );
 
 /*
 	Written by Jonathan Snook, http://www.snook.ca/jonathan
@@ -440,22 +322,22 @@ window.checkboxClickHandler = function( e ) {
 */
 window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 	var arrReturnElements = [];
-	if ( typeof( oElm.getElementsByClassName ) == 'function' ) {
+	if ( typeof oElm.getElementsByClassName === 'function' ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
 		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
-		if ( strTagName == '*' ) {
+		if ( strTagName === '*' ) {
 			return arrNativeReturn;
 		}
 		for ( var h = 0; h < arrNativeReturn.length; h++ ) {
-			if( arrNativeReturn[h].tagName.toLowerCase() == strTagName.toLowerCase() ) {
+			if( arrNativeReturn[h].tagName.toLowerCase() === strTagName.toLowerCase() ) {
 				arrReturnElements[arrReturnElements.length] = arrNativeReturn[h];
 			}
 		}
 		return arrReturnElements;
 	}
-	var arrElements = ( strTagName == '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
+	var arrElements = ( strTagName === '*' && oElm.all ) ? oElm.all : oElm.getElementsByTagName( strTagName );
 	var arrRegExpClassNames = [];
-	if( typeof oClassNames == 'object' ) {
+	if( typeof oClassNames === 'object' ) {
 		for( var i = 0; i < oClassNames.length; i++ ) {
 			arrRegExpClassNames[arrRegExpClassNames.length] =
 				new RegExp("(^|\\s)" + oClassNames[i].replace(/\-/g, "\\-") + "(\\s|$)");
@@ -483,16 +365,17 @@ window.getElementsByClassName = function( oElm, strTagName, oClassNames ) {
 };
 
 window.redirectToFragment = function( fragment ) {
-	var match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
+	var webKitVersion,
+		match = navigator.userAgent.match(/AppleWebKit\/(\d+)/);
 	if ( match ) {
-		var webKitVersion = parseInt( match[1] );
+		webKitVersion = parseInt( match[1], 10 );
 		if ( webKitVersion < 420 ) {
 			// Released Safari w/ WebKit 418.9.1 messes up horribly
 			// Nightlies of 420+ are ok
 			return;
 		}
 	}
-	if ( window.location.hash == '' ) {
+	if ( !window.location.hash ) {
 		window.location.hash = fragment;
 
 		// Mozilla needs to wait until after load, otherwise the window doesn't
@@ -501,12 +384,12 @@ window.redirectToFragment = function( fragment ) {
 		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
 		// better twice than not at all, so make the fix hit future versions as
 		// well.
-		if ( is_gecko ) {
-			addOnloadHook(function() {
-				if ( window.location.hash == fragment ) {
+		if ( isGecko ) {
+			$( function () {
+				if ( window.location.hash === fragment ) {
 					window.location.hash = fragment;
 				}
-			});
+			} );
 		}
 	}
 };
@@ -516,11 +399,9 @@ window.redirectToFragment = function( fragment ) {
  * something, replacing any preexisting message.
  *
  * @deprecated since 1.17 Use the 'mediawiki.notify' module instead.
- * @param {String|HTMLElement} message To be put inside the message box.
+ * @param {string|HTMLElement} message To be put inside the message box.
  */
-window.jsMsg = function () {
-	return mw.util.jsMessage.apply( mw.util, arguments );
-};
+mw.log.deprecate( window, 'jsMsg', mw.util.jsMessage, 'Use mediawiki.notify instead.' );
 
 /**
  * Inject a cute little progress spinner after the specified element
@@ -554,17 +435,17 @@ window.removeSpinner = function( id ) {
 
 window.runOnloadHook = function() {
 	// don't run anything below this for non-dom browsers
-	if ( doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) ) {
+	if ( window.doneOnloadHook || !( document.getElementById && document.getElementsByTagName ) ) {
 		return;
 	}
 
 	// set this before running any hooks, since any errors below
 	// might cause the function to terminate prematurely
-	doneOnloadHook = true;
+	window.doneOnloadHook = true;
 
 	// Run any added-on functions
-	for ( var i = 0; i < onloadFuncts.length; i++ ) {
-		onloadFuncts[i]();
+	for ( var i = 0; i < window.onloadFuncts.length; i++ ) {
+		window.onloadFuncts[i]();
 	}
 };
 
@@ -584,7 +465,7 @@ window.addHandler = function( element, attach, handler ) {
 };
 
 window.hookEvent = function( hookName, hookFunct ) {
-	addHandler( window, hookName, hookFunct );
+	window.addHandler( window, hookName, hookFunct );
 };
 
 /**
@@ -594,7 +475,7 @@ window.hookEvent = function( hookName, hookFunct ) {
  * @param handler callable Event handler callback
  */
 window.addClickHandler = function( element, handler ) {
-	addHandler( element, 'click', handler );
+	window.addHandler( element, 'click', handler );
 };
 
 /**
@@ -613,10 +494,10 @@ window.removeHandler = function( element, remove, handler ) {
 };
 // note: all skins should call runOnloadHook() at the end of html output,
 //      so the below should be redundant. It's there just in case.
-hookEvent( 'load', runOnloadHook );
+window.hookEvent( 'load', window.runOnloadHook );
 
-if ( ie6_bugs ) {
-	importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
+if ( isIE6 ) {
+	window.importScriptURI( mw.config.get( 'stylepath' ) + '/common/IEFixes.js' );
 }
 
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );

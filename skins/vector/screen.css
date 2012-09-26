@@ -21,21 +21,25 @@ body {
 	font-size: 1em;
 }
 body {
-	background-color: #f3f3f3;
-	/* @embed */
-	background-image: url(images/page-base.png);
+	background-color: #f6f6f6;
 }
 /* Content */
 div#content {
 	margin-left: 10em;
 	padding: 1em;
-	/* @embed */
-	background-image: url(images/border.png);
-	background-position: top left;
-	background-repeat: repeat-y;
+	/* Border on top, left, and bottom side */
+	border: 1px solid #a7d7f9;
+	border-right-width: 0;
+	/* Merge the border with tabs' one (in their background image) */
+	margin-top: -1px;
 	background-color: white;
 	color: black;
 	direction: ltr;
+}
+/* Hide, but keep accessible for screen-readers */
+#mw-navigation h2 {
+	position: absolute;
+	top: -9999px;
 }
 /* Head */
 #mw-page-base {
@@ -50,10 +54,6 @@ div#content {
 	margin-top: -5em;
 	margin-left: 10em;
 	height: 5em;
-	/* @embed */
-	background-image: url(images/border.png);
-	background-position: bottom left;
-	background-repeat: repeat-x;
 }
 div#mw-head {
 	position: absolute;
@@ -61,6 +61,7 @@ div#mw-head {
 	right: 0;
 	width: 100%;
 }
+div#mw-head h3,
 div#mw-head h5 {
 	margin: 0;
 	padding: 0;
@@ -74,12 +75,16 @@ div.emptyPortlet {
 	position: absolute;
 	top: 0.33em;
 	right: 0.75em;
+	/* Display on top of page tabs - bugs 37158, 48078 */
+	z-index: 100;
 }
+#p-personal h3,
 #p-personal h5 {
 	display: none;
 }
 #p-personal ul {
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	margin: 0;
 	padding-left: 10em; /* Keep from overlapping logo */
 }
@@ -106,7 +111,9 @@ div.emptyPortlet {
 	margin-top: 2.5em;
 }
 /* Navigation Labels */
+div.vectorTabs h3,
 div.vectorTabs h5,
+div.vectorMenu h3 span,
 div.vectorMenu h5 span {
 	display: none;
 }
@@ -129,7 +136,8 @@ div.vectorTabs ul {
 }
 div.vectorTabs ul {
 	height: 100%;
-	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	margin: 0;
 	padding: 0;
 }
@@ -211,6 +219,12 @@ div.vectorMenu {
 	float: left;
 	/* @embed */
 	background-image: url(images/arrow-down-icon.png);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/arrow-down-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/arrow-down-icon.svg);
 	background-position: 100% 60%;
 	background-repeat: no-repeat;
 	cursor: pointer;
@@ -218,6 +232,12 @@ div.vectorMenu {
 div.vectorMenuFocus {
 	/* @embed */
 	background-image: url(images/arrow-down-focus-icon.png);
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/arrow-down-focus-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/arrow-down-focus-icon.svg);
 	background-position: 100% 60%;
 }
 /* @noflip */
@@ -226,6 +246,7 @@ body.rtl div.vectorMenu {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
+div#mw-head div.vectorMenu h3,
 div#mw-head div.vectorMenu h5 {
 	float: left;
 	/* @embed */
@@ -233,15 +254,18 @@ div#mw-head div.vectorMenu h5 {
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
+div#mw-head div.vectorMenu h3,
 div#mw-head div.vectorMenu h5 {
 	background-position: bottom left;
 	margin-left: -1px;
 }
 /* IGNORED BY IE6 */
+div#mw-head div.vectorMenu > h3,
 div#mw-head div.vectorMenu > h5 {
 	background-image: none;
 }
-div#mw-head div.vectorMenu h4 {
+div#mw-head div.vectorMenu h4,
+div.vectorMenu#p-variants #mw-vector-current-variant {
 	display: inline-block;
 	float: left;
 	font-size: 0.8em;
@@ -252,20 +276,23 @@ div#mw-head div.vectorMenu h4 {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
+div.vectorMenu h3 a,
 div.vectorMenu h5 a {
 	display: inline-block;
 	width: 24px;
-	height: 2.5em;
+	height: 1.9em;
 	text-decoration: none;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
+div.vectorMenu h3 a,
 div.vectorMenu h5 a {
 	background-position: bottom right;
 }
 /* IGNORED BY IE6 */
+div.vectorMenu h3 > a,
 div.vectorMenu h5 > a {
 	display: block;
 }
@@ -302,9 +329,8 @@ div.vectorMenu ul {
 	background-color: white;
 	border: solid 1px silver;
 	border-top-width: 0;
-	list-style: none;
-	list-style-image: none;
 	list-style-type: none;
+	list-style-image: none;
 	padding: 0;
 	margin: 0;
 	margin-left: -1px;
@@ -346,6 +372,7 @@ div.vectorMenu li.selected a:visited {
 	text-decoration: none;
 }
 /* Search */
+#p-search h3,
 #p-search h5 {
 	display: none;
 }
@@ -397,6 +424,12 @@ div#simpleSearch input.placeholder {
 	color: #999;
 }
 div#simpleSearch input::-webkit-input-placeholder {
+	color: #999;
+}
+div#simpleSearch input:-moz-placeholder {
+	color: #999;
+}
+div#simpleSearch input:-ms-input-placeholder {
 	color: #999;
 }
 div#simpleSearch input#searchInput {
@@ -457,6 +490,7 @@ div#mw-panel div.portal {
 	padding-bottom: 1.5em;
 	direction: ltr;
 }
+div#mw-panel div.portal h3,
 div#mw-panel div.portal h5 {
 	font-weight: normal;
 	color: #444;
@@ -477,9 +511,8 @@ div#mw-panel div.portal div.body {
 	background-position: top left;
 }
 div#mw-panel div.portal div.body ul {
-	list-style: none;
-	list-style-image: none;
 	list-style-type: none;
+	list-style-image: none;
 	padding: 0;
 	margin: 0;
 }
@@ -502,16 +535,11 @@ div#footer {
 	margin-left: 10em;
 	margin-top: 0;
 	padding: 0.75em;
-	/* @embed */
-	background-image: url(images/border.png);
-	background-position: top left;
-	background-repeat: repeat-x;
 	direction: ltr;
 }
 div#footer ul {
-	list-style: none;
-	list-style-image: none;
 	list-style-type: none;
+	list-style-image: none;
 	margin: 0;
 	padding: 0;
 }
@@ -629,9 +657,7 @@ div#footer #footer-places li {
 	margin-top: -2px;
 	clear: both;
 	border: solid 1px #ccc;
-	background-color: #f9f9f9;
-	/* @embed */
-	background-image: url(images/preferences-base.png);
+	background-color: #fafafa;
 }
 #preferences fieldset {
 	border: none;
@@ -674,11 +700,8 @@ div#content {
 	font-size: 0.8em;
 }
 
-.editsection {
-	float: right;
-}
-
 ul {
+	list-style-type: disc;
 	/* @embed */
 	list-style-image: url(images/bullet-icon.png);
 }
@@ -694,7 +717,6 @@ pre, .mw-code {
 #firstHeading {
 	padding-top: 0;
 	margin-top: 0;
-	padding-top: 0;
 	font-size: 1.6em;
 }
 div#content a.external,
@@ -768,8 +790,13 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 #pt-login {
 	/* @embed */
 	background: url(images/user-icon.png) left top no-repeat;
+	/* SVG support using a transparent gradient to guarantee cross-browser
+	 * compatibility (browsers able to understand gradient syntax support also SVG) */
+	/* @embed */
+	background-image: -webkit-linear-gradient(transparent, transparent), url(images/user-icon.svg);
+	/* @embed */
+	background-image: linear-gradient(transparent, transparent), url(images/user-icon.svg);
 	padding-left: 15px !important;
-	text-transform: none;
 }
 
 .redirectText {

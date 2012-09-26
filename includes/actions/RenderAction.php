@@ -23,17 +23,24 @@
  * @author Timo Tijhof
  */
 
+/**
+ * Handle action=render
+ *
+ * This is a wrapper that will call Article::render().
+ *
+ * @ingroup Actions
+ */
 class RenderAction extends FormlessAction {
 
 	public function getName() {
 		return 'render';
 	}
 
-	public function onView(){
+	public function onView() {
 		return null;
 	}
 
-	public function show(){
+	public function show() {
 
 		$this->page->render();
 

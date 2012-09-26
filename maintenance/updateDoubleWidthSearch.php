@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to normalize double-byte latin UTF-8 characters.
@@ -72,4 +72,4 @@ class UpdateDoubleWidthSearch extends Maintenance {
 }
 
 $maintClass = "UpdateDoubleWidthSearch";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

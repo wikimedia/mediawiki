@@ -1,6 +1,9 @@
-/*
-** MediaWiki style sheet for general styles on complex content
-*/
+/**
+ * MediaWiki style sheet for general styles on complex content
+ *
+ * Styles for complex things which are a standard part of page content
+ * (ie: the CSS classing built into the system), like the TOC.
+ */
 
 /* Table of Contents */
 #toc,
@@ -110,11 +113,28 @@ img.thumbborder {
 }
 
 /**
+ * Edit forms
+ */
+#editform textarea {
+	display: block;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/**
  * Basic styles for the user login and create account forms
  */
 #userlogin, #userloginForm {
 	border: solid 1px #cccccc;
 	padding: 1.2em;
-	margin: .5em;
-	float: left;
+	margin: 0.5em;
+}
+
+#loginend {
+	margin: 0.5em;
+}
+
+#loginend table {
+	width: 100%;
 }

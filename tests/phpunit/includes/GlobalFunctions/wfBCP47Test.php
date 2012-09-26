@@ -1,13 +1,13 @@
 <?php
 /**
- * Unit tests for wfBCP47()
+ * Tests for wfBCP47()
  */
-class wfBCP47 extends MediaWikiTestCase {
+class WfBCP47Test extends MediaWikiTestCase {
 	/**
 	 * test @see wfBCP47().
 	 * Please note the BCP explicitly state that language codes are case
 	 * insensitive, there are some exceptions to the rule :)
-   	 * This test is used to verify our formatting against all lower and
+	 * This test is used to verify our formatting against all lower and
 	 * all upper cases language code.
 	 *
 	 * @see http://tools.ietf.org/html/bcp47
@@ -15,12 +15,12 @@ class wfBCP47 extends MediaWikiTestCase {
 	 */
 	function testBCP47( $code, $expected ) {
 		$code = strtolower( $code );
-		$this->assertEquals( $expected, wfBCP47($code),
+		$this->assertEquals( $expected, wfBCP47( $code ),
 			"Applying BCP47 standard to lower case '$code'"
 		);
 
 		$code = strtoupper( $code );
-		$this->assertEquals( $expected, wfBCP47($code),
+		$this->assertEquals( $expected, wfBCP47( $code ),
 			"Applying BCP47 standard to upper case '$code'"
 		);
 	}
@@ -28,19 +28,19 @@ class wfBCP47 extends MediaWikiTestCase {
 	/**
 	 * Array format is ($code, $expected)
 	 */
-	function provideLanguageCodes() {
+	public static function provideLanguageCodes() {
 		return array(
 			// Extracted from BCP47 (list not exhaustive)
 			# 2.1.1
-			array( 'en-ca-x-ca'    , 'en-CA-x-ca'     ),
-			array( 'sgn-be-fr'     , 'sgn-BE-FR'      ),
+			array( 'en-ca-x-ca', 'en-CA-x-ca' ),
+			array( 'sgn-be-fr', 'sgn-BE-FR' ),
 			array( 'az-latn-x-latn', 'az-Latn-x-latn' ),
 			# 2.2
 			array( 'sr-Latn-RS', 'sr-Latn-RS' ),
 			array( 'az-arab-ir', 'az-Arab-IR' ),
 
 			# 2.2.5
-			array( 'sl-nedis'  , 'sl-nedis'   ),
+			array( 'sl-nedis', 'sl-nedis' ),
 			array( 'de-ch-1996', 'de-CH-1996' ),
 
 			# 2.2.6
@@ -56,40 +56,40 @@ class wfBCP47 extends MediaWikiTestCase {
 			array( 'ja', 'ja' ),
 
 			# Language subtag plus script subtag:
-			array( 'zh-hans', 'zh-Hans'),
-			array( 'sr-cyrl', 'sr-Cyrl'),
-			array( 'sr-latn', 'sr-Latn'),
+			array( 'zh-hans', 'zh-Hans' ),
+			array( 'sr-cyrl', 'sr-Cyrl' ),
+			array( 'sr-latn', 'sr-Latn' ),
 
 			# Extended language subtags and their primary language subtag
 			# counterparts:
 			array( 'zh-cmn-hans-cn', 'zh-cmn-Hans-CN' ),
-			array( 'cmn-hans-cn'   , 'cmn-Hans-CN'    ),
-			array( 'zh-yue-hk'     , 'zh-yue-HK'      ),
-			array( 'yue-hk'        , 'yue-HK'         ),
+			array( 'cmn-hans-cn', 'cmn-Hans-CN' ),
+			array( 'zh-yue-hk', 'zh-yue-HK' ),
+			array( 'yue-hk', 'yue-HK' ),
 
 			# Language-Script-Region:
 			array( 'zh-hans-cn', 'zh-Hans-CN' ),
 			array( 'sr-latn-RS', 'sr-Latn-RS' ),
 
 			# Language-Variant:
-			array( 'sl-rozaj'      , 'sl-rozaj'       ),
+			array( 'sl-rozaj', 'sl-rozaj' ),
 			array( 'sl-rozaj-biske', 'sl-rozaj-biske' ),
-			array( 'sl-nedis'      , 'sl-nedis'       ),
+			array( 'sl-nedis', 'sl-nedis' ),
 
 			# Language-Region-Variant:
-			array( 'de-ch-1901'  , 'de-CH-1901'  ),
-			array( 'sl-it-nedis' , 'sl-IT-nedis' ),
+			array( 'de-ch-1901', 'de-CH-1901' ),
+			array( 'sl-it-nedis', 'sl-IT-nedis' ),
 
 			# Language-Script-Region-Variant:
 			array( 'hy-latn-it-arevela', 'hy-Latn-IT-arevela' ),
 
 			# Language-Region:
-			array( 'de-de' , 'de-DE' ),
-			array( 'en-us' , 'en-US' ),
-			array( 'es-419', 'es-419'),
+			array( 'de-de', 'de-DE' ),
+			array( 'en-us', 'en-US' ),
+			array( 'es-419', 'es-419' ),
 
 			# Private use subtags:
-			array( 'de-ch-x-phonebk'      , 'de-CH-x-phonebk' ),
+			array( 'de-ch-x-phonebk', 'de-CH-x-phonebk' ),
 			array( 'az-arab-x-aze-derbend', 'az-Arab-x-aze-derbend' ),
 			/**
 			 * Previous test does not reflect the BCP which states:
@@ -102,7 +102,7 @@ class wfBCP47 extends MediaWikiTestCase {
 			# Private use registry values:
 			array( 'x-whatever', 'x-whatever' ),
 			array( 'qaa-qaaa-qm-x-southern', 'qaa-Qaaa-QM-x-southern' ),
-			array( 'de-qaaa'   , 'de-Qaaa'    ),
+			array( 'de-qaaa', 'de-Qaaa' ),
 			array( 'sr-latn-qm', 'sr-Latn-QM' ),
 			array( 'sr-qaaa-rs', 'sr-Qaaa-RS' ),
 
@@ -115,8 +115,8 @@ class wfBCP47 extends MediaWikiTestCase {
 			// de-419-DE
 			// a-DE
 			// ar-a-aaa-b-bbb-a-ccc
-	
-		/*	
+
+			/*
 			// ISO 15924 :
 			array( 'sr-Cyrl', 'sr-Cyrl' ),
 			# @todo FIXME: Fix our function?
@@ -128,6 +128,7 @@ class wfBCP47 extends MediaWikiTestCase {
 			array( 'uS', 'us' ),  # USA
 			array( 'Fr', 'fr' ),  # France
 			array( 'va', 'va' ),  # Holy See (Vatican City State)
-		 */);
+			 */
+		);
 	}
 }

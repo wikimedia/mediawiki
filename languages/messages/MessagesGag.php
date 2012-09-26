@@ -124,8 +124,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Bildirmää maillerinde e-mail adresimi göster.',
 'tog-shownumberswatching' => 'İzlään kullanıcı sayısın göster',
 'tog-fancysig' => 'Çii imza (İmzanız görüner nesoy onu yukarda belirttiniz. Sayfanıza avtomatik baalantı yaratılmaycêk)',
-'tog-externaleditor' => 'Düzmää başka editor programmasılan yap',
-'tog-externaldiff' => 'Karşılaştırmakları dış programmalan yap.',
 'tog-showjumplinks' => '"Git" baalantısın işlet',
 'tog-uselivepreview' => 'Tez cannı ön siiri kullan (JavaScript) (êksperimental)',
 'tog-forceeditsummary' => 'Bana haber ver ne zaman ani kısa annatmanı boş braacam',
@@ -218,7 +216,6 @@ $messages = array(
 'qbbrowse' => 'Taramaa',
 'qbedit' => 'Diiştir',
 'qbpageoptions' => 'Bu sayfa',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Sayfalarım',
 'qbspecialpages' => 'Maasus sayfalar',
 'faq' => 'SSS',
@@ -291,7 +288,6 @@ $messages = array(
 'disclaimers' => 'Cuvapçılık reti',
 'disclaimerpage' => 'Project:Genel cuvapçılık reti',
 'edithelp' => 'Nesoy var nicä diiştirmää?',
-'edithelppage' => 'Help:Nesoy var nicä sayfa diiştirmää',
 'helppage' => 'Help:İçindekilär',
 'mainpage' => 'Baş yaprak',
 'mainpage-description' => 'Baş yaprak',
@@ -375,11 +371,8 @@ Yalvarêrız benneyiniz URL - i hem raport ediniz bunu bir [[Special:ListUsers/s
 'viewsourcetext' => 'Var nicä görmää hem kopiya etmää bu yapraa gelinirini:',
 
 # Login and logout pages
-'logouttext' => 'Sessiyayı kapattınız.
-Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki [[Special:UserLogin|enidän sessiya açmaa]] (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.',
-'welcomecreation' => '== Hoş geldiniz $1! ==
-
-Esapınız açıldı. Unutmayın [[Special:Preferences|{{SITENAME}} preferences]] seçimnerin diiştirmää.',
+'logouttext' => "Sessiyayı kapattınız.
+Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki <span class='plainlinks'>[$1 enidän sessiya açmaa]</span> (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.",
 'yourname' => 'Kullanıcı adınız',
 'yourpassword' => 'Parol',
 'yourpasswordagain' => 'Parolu enidän yaz',
@@ -580,7 +573,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'prevn' => 'ilerki {{PLURAL:$1|$1}}',
 'nextn' => 'geeriki {{PLURAL:$1|$1}}',
 'viewprevnext' => '($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:İçindekilär',
 'search-result-size' => '$1 ({{PLURAL:$2|1 laf|$2 laf}})',
 'search-redirect' => '(göndermää $1)',
 'search-section' => '(bölüm $1)',
@@ -588,8 +580,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'search-interwiki-caption' => 'Kardaş proyektlär',
 'search-interwiki-default' => '$1 rezultatlar:',
 'search-interwiki-more' => '(taa çok)',
-'search-mwsuggest-enabled' => 'tekliflerlän',
-'search-mwsuggest-disabled' => 'tekliflersiz',
 'nonefound' => "'''Bennemäk''': Sadä kimi ad erleri sessizcä aaranêr.
 Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aaramaa deyni (sözleşmäk sayfaları, şablonlar h.b.pay alarak), yaki kullanınız beenilän prefiksi sansın er adı.",
 'powersearch' => 'Gelişmiş arama',
@@ -621,6 +611,9 @@ Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aarama
 'group-sysop' => 'Administratorlar',
 
 'grouppage-sysop' => '{{ns:project}}:Önderciler',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Eni kullanıcı bennemäkleri',
 
 # User rights log
 'rightslog' => 'Kullanıcı hakları jurnalı',
@@ -797,13 +790,10 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 # Special:LinkSearch
 'linksearch' => 'İç baalantlar',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Eni kullanıcı bennemäkleri',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(azaların listası)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Gönder bu kullanıcıya bir e-mail',
 
 # Watchlist

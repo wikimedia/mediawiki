@@ -1,9 +1,14 @@
 # Repository management
 .svn
 
+# git-deploy status file:
+/.deploy
+
 # Editors
 *.kate-swp
 *~
+\#*#
+.#*
 .*.swp
 .project
 cscope.files
@@ -11,29 +16,42 @@ cscope.out
 ## NetBeans
 nbproject*
 project.index
+## Sublime
+sublime-*
+sftp-config.json
 
 # MediaWiki install & usage
-cache
-images/[0-9a-f]
-images/archive
-images/deleted
-images/temp
-images/thumb
+/cache
+/docs/js
+/images/[0-9a-f]
+/images/archive
+/images/deleted
+/images/lockdir
+/images/temp
+/images/thumb
 ## Extension:EasyTimeline
-images/timeline
-images/tmp
-maintenance/.mweval_history
-maintenance/.mwsql_history
-maintenance/dev/data
-AdminSettings.php
-LocalSettings.php
-StartProfiler.php
+/images/timeline
+/images/tmp
+/maintenance/.mweval_history
+/maintenance/.mwsql_history
+/maintenance/dev/data
+/AdminSettings.php
+/LocalSettings.php
+/StartProfiler.php
+
+# Building & testing
+node_modules/
+
+# Composer
+/vendor
+/composer.lock
+/composer.json
 
 # Operating systems
 ## Mac OS X
 .DS_Store
 ## Windows
-thumbs.db
+Thumbs.db
 
 # Misc
 .buildpath
@@ -41,6 +59,6 @@ thumbs.db
 .idea
 .metadata*
 .settings
-favicon.ico
-static*
-tags
+/favicon.ico
+/static*
+/tags

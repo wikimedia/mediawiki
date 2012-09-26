@@ -98,7 +98,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 					$vals['user'] = $row->user_name;
 				}
 
-				if ( isset( $prop['user'] ) ) {
+				if ( isset( $prop['userid'] ) || /*B/C*/isset( $prop['user'] ) ) {
 					$vals['userid'] = $row->pt_user;
 				}
 
@@ -157,7 +157,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array_diff( $wgRestrictionLevels, array( '' ) )
 			),
-			'limit' => array (
+			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
@@ -231,6 +231,9 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				),
 				'userid' => 'integer'
 			),
+			'userid' => array(
+				'userid' => 'integer'
+			),
 			'comment' => array(
 				'comment' => 'string'
 			),
@@ -260,9 +263,5 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Protectedtitles';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

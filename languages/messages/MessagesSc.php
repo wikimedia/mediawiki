@@ -195,7 +195,6 @@ $messages = array(
 'qbbrowse' => 'Nàviga',
 'qbedit' => 'Acontza',
 'qbpageoptions' => 'Possibilidades de sa pàgina',
-'qbpageinfo' => 'Cuntestu de sa pàgina',
 'qbmyoptions' => 'Is preferèntzias meas',
 'qbspecialpages' => 'Pàginas spetziales',
 'faq' => 'Pregontas/Respostas (FAQ)',
@@ -281,7 +280,6 @@ $messages = array(
 'disclaimers' => 'Abbertimentos',
 'disclaimerpage' => 'Project:Abbertimentos generales',
 'edithelp' => "Agiudu pro s'acontzu o sa scritura",
-'edithelppage' => 'Help:Acontzare',
 'helppage' => 'Help:Agiudu',
 'mainpage' => 'Pàgina Base',
 'mainpage-description' => 'Pàgina Base',
@@ -392,11 +390,8 @@ Podet èsser stadu burradu dae calicunu àteru.',
 # Login and logout pages
 'logouttext' => "'''As acabadu sa sessione.'''
 
-Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes [[Special:UserLogin|identificare torra]] comente su de prima o comente usuàriu diferente.
+Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes <span class='plainlinks'>[$1 identificare torra]</span> comente su de prima o comente usuàriu diferente.
 Tene contu ca is pàginas ki sunt giai abertas in àteras bentanas podent sighire a pàrrer comente cando fias identificadu, fintzas a cando non ddas renfriscas.",
-'welcomecreation' => "== Benènnidu, $1! ==
-S'account tuo est istadu creadu.
-No iscaressa de personalizare sas [[Special:Preferences|preferèntzias de {{SITENAME}}]].",
 'yourname' => 'Nùmene usuàriu',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Repite sa password:',
@@ -557,7 +552,6 @@ Cun s'imbiu de custu scritu ses garantende, a responsabilidade tua, si su scritu
 'template-protected' => '(amparadu)',
 'template-semiprotected' => '(mesu-amparadu)',
 'hiddencategories' => 'Custa pàgina faghet parte de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
-'nocreatetitle' => 'Creatzione de pàginas limitada',
 'nocreate-loggedin' => 'Non tenes su permissu de creare pàginas noas.',
 'permissionserrors' => 'Faddina de permissos',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
@@ -636,7 +630,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'shown-title' => 'Ammustra $1 {{PLURAL:$1|resurtadu|resurtados}} pro pàgina',
 'viewprevnext' => 'Càstia ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Possibilidades de chirca',
-'searchhelp-url' => 'Help:Agiudu',
 'searchprofile-everything' => 'Totu',
 'searchprofile-advanced' => 'Avantzada',
 'searchprofile-articles-tooltip' => 'Chirca in $1',
@@ -650,8 +643,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'search-interwiki-caption' => 'Progetos frades',
 'search-interwiki-default' => '$1 resurtados:',
 'search-interwiki-more' => '(àteru)',
-'search-mwsuggest-enabled' => 'cun impostos',
-'search-mwsuggest-disabled' => 'chentza impostos',
 'searcheverything-enable' => 'Chirca in totu is nùmene-logos:',
 'searchall' => 'totu',
 'showingresults' => "Inoghe sighende {{PLURAL:$1|benit ammustradu '''1''' resurtadu|benint ammustrados '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",
@@ -666,14 +657,6 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'powersearch-togglelabel' => 'Seletziona:',
 'powersearch-toggleall' => 'Totu',
 'powersearch-togglenone' => 'Nudda',
-
-# Quickbar
-'qbsettings' => 'Settaggio della barra menu',
-'qbsettings-none' => 'Nessuno',
-'qbsettings-fixedleft' => 'Fisso a sinistra',
-'qbsettings-fixedright' => 'Fisso a destra',
-'qbsettings-floatingleft' => 'Fluttuante a sinistra',
-'qbsettings-floatingright' => 'Fluttuante a destra',
 
 # Preferences page
 'preferences' => 'Preferèntzias',
@@ -779,9 +762,11 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'right-undelete' => 'Restaurare una pàgina',
 'right-siteadmin' => 'Bloccare e sbloccare su database',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Usuàrios nous',
+
 # User rights log
 'rightslog' => 'Deretos de is usuàrios',
-'rightsnone' => '(nisciunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'lègher custa pàgina',
@@ -1017,14 +1002,11 @@ Dia podent essere immàgines impreadas dae àteros giassos cun unu ligàmine dir
 'activeusers-hidebots' => 'Cua bots',
 'activeusers-hidesysops' => 'Cua amministradores',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Usuàrios nous',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Grupu',
 'listgrouprights-members' => '(lista de is cumponentes)',
 
-# E-mail user
+# Email user
 'mailnologintext' => "Depes èsser [[Special:UserLogin|identificadu (login)]] e àer registradu un'indiritzu e-mail vàlidu in is [[Special:Preferences|preferèntzias tuas]] pro imbiare e-mail a àteros usuàrios.",
 'emailuser' => 'E-mail a custu usuàriu',
 'emailpage' => "Ispedi una missada a s'usuàriu",
@@ -1069,7 +1051,6 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'watching' => 'Giunghende a sa watchlist...',
 'unwatching' => 'Boghende dae sa watchlist...',
 
-'enotif_newpagetext' => 'Custa est una pàgina noa.',
 'enotif_impersonal_salutation' => 'Usuàriu de {{SITENAME}}',
 'created' => 'creada',
 
@@ -1437,14 +1418,14 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-artist' => 'Autore',
 'exif-exposuretime-format' => '$1 s ($2)',
 'exif-fnumber-format' => 'f/$1',
 'exif-flash' => 'Flash',
 'exif-focallength-format' => '$1 mm',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-6' => 'JPEG',
 
 'exif-photometricinterpretation-2' => 'RGB',
@@ -1482,7 +1463,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'monthsall' => 'totu',
 'limitall' => 'totu',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Cunfirma s'indiritzu e-mail",
 
 # action=purge
@@ -1540,10 +1521,6 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'version-license' => 'Licèntzia',
 'version-software-version' => 'Versione',
 
-# Special:FilePath
-'filepath-page' => 'Nùmene de su file:',
-'filepath-submit' => 'Bae',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Chirca',
 
@@ -1558,6 +1535,9 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'htmlform-selectorother-other' => 'Àteru',
 
 # New logging system
-'newuserlog-byemail' => 'password imbiada via e-mail',
+'rightsnone' => '(nisciunu)',
+
+# Search suggestions
+'searchsuggest-search' => 'Chirca',
 
 );

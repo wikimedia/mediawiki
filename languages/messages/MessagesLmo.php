@@ -13,6 +13,7 @@
  * @author DracoRoboter
  * @author Flavio05
  * @author GatoSelvadego
+ * @author Geitost
  * @author Insübrich
  * @author Kemmótar
  * @author Malafaya
@@ -132,8 +133,6 @@ süi titul dai sezziún (JavaScript)',
 'tog-enotifrevealaddr' => "Lassa vedè 'l mè indirizz e-mail int i messagg d'avis",
 'tog-oldsig' => 'Anteprima de la firma esistenta:',
 'tog-fancysig' => 'Trata la firma cume test wiki (senza nissön ligam utumatich)',
-'tog-externaleditor' => "Dröva semper un prugrama da redatazión estern (dumà per espert, 'l gh'ha de besogn d'impustazión speciaj ins 'l to computer)",
-'tog-externaldiff' => 'Druvá sempar un "diff" estèrnu',
 'tog-watchlisthideown' => "Sconda i me mudifich dai pagin che a ten d'ögg",
 'tog-watchlisthidebots' => "Sconda i mudifich di bot da i pagin che a ten d'ögg",
 'tog-ccmeonemails' => 'Spedissem una copia di messagg spedii a i alter druvadur',
@@ -235,7 +234,6 @@ süi titul dai sezziún (JavaScript)',
 'qbbrowse' => 'Sföja',
 'qbedit' => 'Mudifega',
 'qbpageoptions' => 'Opzión de la pagina',
-'qbpageinfo' => 'Infurmazión revard a la pagina',
 'qbmyoptions' => 'I mè paginn',
 'qbspecialpages' => 'Paginn special',
 'faq' => 'FAQ',
@@ -325,7 +323,6 @@ $1",
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project:Avertenz generaj',
 'edithelp' => 'Manual de spiegazión',
-'edithelppage' => 'Help:Scriv un articul',
 'helppage' => 'Help:Contegnüü',
 'mainpage' => 'Pagina principala',
 'mainpage-description' => 'Pagina principala',
@@ -420,10 +417,8 @@ Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota
 # Login and logout pages
 'logouttext' => "'''Adess a sii descuness.'''
 
-A pudé andà inanz a druvà la {{SITENAME}} in manera anònima, o a pudé [[Special:UserLogin|cunètev anmò]] cun l'istess suranomm o cun un suranomm diferent.
+A pudé andà inanz a druvà la {{SITENAME}} in manera anònima, o a pudé <span class='plainlinks'>[$1 cunètev anmò]</span> cun l'istess suranomm o cun un suranomm diferent.
 Tegné cünt che certi paginn pödass che i seguiten a vedess tant 'me se a füdìssuv anmò cuness, fin quand che hii nò vudaa 'l ''cache'' del voster browser.",
-'welcomecreation' => "== Benvegnüü, $1! ==
-'L to cünt l'è staa pruntaa. Desmenteghet mía de mudifegà i to [[Special:Preferences|preferenz de {{SITENAME}}]].",
 'yourname' => 'El to suranóm:',
 'yourpassword' => "Parola d'urdin",
 'yourpasswordagain' => "Mett dent ammò la parola d'urdin",
@@ -436,7 +431,7 @@ Tegné cünt che certi paginn pödass che i seguiten a vedess tant 'me se a füd
 'logout' => 'Va fö',
 'userlogout' => 'Và fö',
 'notloggedin' => 'Te seet minga dent in del sistema',
-'nologin' => "Gh'avii anmò da registrav? '''$1'''.",
+'nologin' => "Gh'avii anmò da registrav? $1.",
 'nologinlink' => 'Creé un cünt!',
 'createaccount' => 'Creá un cünt',
 'gotaccount' => "Gh'hee-t giamò un cünt? '''$1'''.",
@@ -611,7 +606,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'viewprevnext' => 'Vidé ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Upzión de ricerca',
 'searchmenu-new' => "'''Trà in pee la pagina \"[[:\$1]]\" ins quel sit chì!'''",
-'searchhelp-url' => 'Help:Contegnüü',
 'searchprofile-articles' => 'Paginn de cuntegnüü',
 'searchprofile-project' => 'Paginn de jüt e de pruget',
 'searchprofile-images' => 'Multimedia',
@@ -628,8 +622,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'search-interwiki-caption' => 'Pruget fredej',
 'search-interwiki-default' => '$1 resültaa',
 'search-interwiki-more' => '(püssee)',
-'search-mwsuggest-enabled' => 'cun sügeriment',
-'search-mwsuggest-disabled' => 'senza sügeriment',
 'nonefound' => "''''Tenzión''': la ricerca la vegn fada in utumategh dumà per un quaj namespace.
 Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespace (cumpres i discüssión, i mudel, etc...) o dupra el namespace vursüü 'me prefiss.",
 'powersearch' => 'Truvá',
@@ -728,9 +720,11 @@ Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespac
 'right-edit' => 'Edita pàgini',
 'right-createaccount' => 'Crea cünt de dovratt bej-e növ',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rrgister di druvat növ',
+
 # User rights log
 'rightslog' => 'Dirit di druvat',
-'rightslogentry' => "l'ha mudifegaa $1 dal grüp $2 al grüp $3",
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'mudifega quela pagina chì',
@@ -944,14 +938,11 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 # Special:ActiveUsers
 'activeusers-from' => 'Fàm vedè i dupradur a partì da:',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Rrgister di druvat növ',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Dirit del grüp di druvat',
 'listgrouprights-members' => '(Lista di member)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda un email a quel druvadur chì',
 'emailsent' => 'Messagg spedii',
 'emailsenttext' => "El messagg e-mail l'è staa spedii.",
@@ -977,9 +968,6 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 'watching' => "Giuntà ai pagin da ten d'ögg...",
 'unwatching' => "Eliminà dai pagin da ten d'ögg...",
 
-'enotif_newpagetext' => "Chesta-chí l'è una pàgina növa.",
-'changed' => 'cambiaa',
-'enotif_subject' => 'La pagina $PAGETITLE de {{SITENAME}} l\'è stada $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited' => 'Varda $1 per vedè tüt i mudifegh da la tua ültema vìsita.',
 'enotif_body' => 'Cara $WATCHINGUSERNAME,
 
@@ -1004,6 +992,7 @@ Per mudifegà l\'impustazión de la lista di paginn che te tegn d\'ögg, varda
 
 Per fà di cumünicazion de servizzi e per cercà jüt:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'changed' => 'cambiaa',
 
 # Delete
 'deletepage' => 'Scancela la pagina',
@@ -1346,7 +1335,7 @@ I ligam che i vegnen dopu, in sü l'istessa riga, i vegnen cónsideraa di ecezi�
 'namespacesall' => 'tücc',
 'monthsall' => 'tücc',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => "Cunferma l<nowiki>'</nowiki>''e-mail''",
 'confirmemail_text' => "Prima da pudé riçeef mesacc sül tò adrèss da pòsta letrònica l è neçessari verificál.
 Schiscjá ul butún che gh'è chi da sót par curfermá al tò adrèss.
@@ -1369,9 +1358,6 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 
 # Special:Version
 'version' => 'Versiun',
-
-# Special:FilePath
-'filepath' => 'Percuurz daj archivi',
 
 # Special:SpecialPages
 'specialpages' => 'Paginn special',

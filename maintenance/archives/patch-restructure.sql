@@ -38,7 +38,6 @@ CREATE TABLE /*$wgDBprefix*/revision (
   rev_minor_edit tinyint unsigned NOT NULL default '0',
   rev_deleted tinyint unsigned NOT NULL default '0',
 
-  
   PRIMARY KEY rev_page_id (rev_page, rev_id),
   UNIQUE INDEX rev_id (rev_id),
   INDEX rev_timestamp (rev_timestamp),
@@ -53,7 +52,7 @@ CREATE TABLE /*$wgDBprefix*/revision (
 --   old_id int(8) unsigned NOT NULL auto_increment,
 --   old_text mediumtext NOT NULL,
 --   old_flags tinyblob NOT NULL,
---   
+--
 --   PRIMARY KEY old_id (old_id)
 -- );
 

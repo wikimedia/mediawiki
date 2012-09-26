@@ -30,7 +30,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that generates a plaintext link dump.
@@ -63,17 +63,17 @@ class DumpLinks extends Maintenance {
 					$this->output( "\n" );
 				}
 				$page = Title::makeTitle( $row->page_namespace, $row->page_title );
-				$this->output( $page->getPrefixedUrl() );
+				$this->output( $page->getPrefixedURL() );
 				$lastPage = $row->page_id;
 			}
 			$link = Title::makeTitle( $row->pl_namespace, $row->pl_title );
-			$this->output( " " . $link->getPrefixedUrl() );
+			$this->output( " " . $link->getPrefixedURL() );
 		}
-		if ( isset( $lastPage ) )
+		if ( isset( $lastPage ) ) {
 			$this->output( "\n" );
+		}
 	}
 }
 
 $maintClass = "DumpLinks";
-require_once( RUN_MAINTENANCE_IF_MAIN );
-
+require_once RUN_MAINTENANCE_IF_MAIN;

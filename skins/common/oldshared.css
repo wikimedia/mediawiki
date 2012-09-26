@@ -11,23 +11,14 @@
 h1 { font-size: 2em; }
 h2 { font-size: 1.5em; }
 h3 { font-size: 1.17em; }
-h5 { font-size: .83em; }
-h6 { font-size: .75em; }
+h4 { font-size: 1.11em; }
+h5 { font-size: 1.05em; }
+h6 { font-size: 1em; }
 h1, h2, h3, h4, h5, h6 {
 	font-weight: bolder;
 }
 
 /* Now the custom parts */
-
-/* Make edit sections (which are inside h# tags) normal-sized */
-.editsection {
-	font-weight: normal;
-}
-h1 .editsection { font-size: 50%; }
-h2 .editsection { font-size: 66.7%; }
-h3 .editsection { font-size: 85.5%; }
-h5 .editsection { font-size: 120%; }
-h6 .editsection { font-size: 133%; }
 
 #footer { clear: both }
 /* images */
@@ -161,9 +152,6 @@ img { border: none; }
 }
 
 /* preference page with js-genrated toc */
-#mw-pref-clear {
-	clear: both;
-}
 #preftoc {
 	float: left;
 	margin: 1em 1em 1em 1em;
@@ -283,7 +271,7 @@ li span.deleted {
 	font-style: italic;
 }
 
-/* Classes for EXIF data display */
+/* Classes for Exif data display */
 table.mw_metadata {
 	margin-left: 0.5em;
 }

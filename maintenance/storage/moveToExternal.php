@@ -24,9 +24,9 @@
 define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
-	require_once( __DIR__ . '/../commandLine.inc' );
-	require_once( __DIR__ . '/../../includes/ExternalStoreDB.php' );
-	require_once( 'resolveStubs.php' );
+	require_once __DIR__ . '/../commandLine.inc';
+	require_once __DIR__ . '/../../includes/externalstore/ExternalStoreDB.php';
+	require_once 'resolveStubs.php';
 
 	$fname = 'moveToExternal';
 
@@ -124,5 +124,3 @@ function moveToExternal( $cluster, $maxID, $minID = 1 ) {
 		}
 	}
 }
-
-

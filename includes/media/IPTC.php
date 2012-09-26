@@ -29,27 +29,27 @@
 class IPTC {
 
 	/**
-	* This takes the results of iptcparse() and puts it into a
-	* form that can be handled by mediawiki. Generally called from
-	* BitmapMetadataHandler::doApp13.
-	*
-	* @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
-	*
-	* @param $rawData String app13 block from jpeg containing iptc/iim data
-	* @return Array iptc metadata array
-	*/
+	 * This takes the results of iptcparse() and puts it into a
+	 * form that can be handled by mediawiki. Generally called from
+	 * BitmapMetadataHandler::doApp13.
+	 *
+	 * @see http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf
+	 *
+	 * @param string $rawData app13 block from jpeg containing iptc/iim data
+	 * @return Array iptc metadata array
+	 */
 	static function parse( $rawData ) {
 		$parsed = iptcparse( $rawData );
 		$data = Array();
-		if (!is_array($parsed)) {
+		if ( !is_array( $parsed ) ) {
 				return $data;
 		}
 
 		$c = '';
 		//charset info contained in tag 1:90.
-		if (isset($parsed['1#090']) && isset($parsed['1#090'][0])) {
-			$c = self::getCharset($parsed['1#090'][0]);
-			if ($c === false) {
+		if ( isset( $parsed['1#090'] ) && isset( $parsed['1#090'][0] ) ) {
+			$c = self::getCharset( $parsed['1#090'][0] );
+			if ( $c === false ) {
 				//Unknown charset. refuse to parse.
 				//note: There is a different between
 				//unknown and no charset specified.
@@ -59,11 +59,11 @@ class IPTC {
 		}
 
 		foreach ( $parsed as $tag => $val ) {
-			if ( isset( $val[0] ) && trim($val[0]) == '' ) {
-				wfDebugLog('iptc', "IPTC tag $tag had only whitespace as its value.");
+			if ( isset( $val[0] ) && trim( $val[0] ) == '' ) {
+				wfDebugLog( 'iptc', "IPTC tag $tag had only whitespace as its value." );
 				continue;
 			}
-			switch( $tag ) {
+			switch ( $tag ) {
 				case '2#120': /*IPTC caption. mapped with exif ImageDescription*/
 					$data['ImageDescription'] = self::convIPTC( $val, $c );
 					break;
@@ -175,7 +175,7 @@ class IPTC {
 					if ( isset( $parsed['2#070'] ) ) {
 						//if a version is set for the software.
 						$softwareVersion = self::convIPTC( $parsed['2#070'], $c );
-						unset($parsed['2#070']);
+						unset( $parsed['2#070'] );
 						$data['Software'] = array( array( $software[0], $softwareVersion[0] ) );
 					} else {
 						$data['Software'] = $software;
@@ -198,7 +198,7 @@ class IPTC {
 					/* original transmission ref.
 					 * "A code representing the location of original transmission ac-
 					 * cording to practises of the provider."
-					*/
+					 */
 					$data['OriginalTransmissionRef'] = self::convIPTC( $val, $c );
 					break;
 				case '2#118': /*contact*/
@@ -227,8 +227,8 @@ class IPTC {
 					} else {
 						$time = Array();
 					}
-					$timestamp =  self::timeHelper( $val, $time, $c );
-					if ($timestamp) {
+					$timestamp = self::timeHelper( $val, $time, $c );
+					if ( $timestamp ) {
 						$data['DateTimeOriginal'] = $timestamp;
 					}
 					break;
@@ -241,8 +241,8 @@ class IPTC {
 					} else {
 						$time = Array();
 					}
-					$timestamp =  self::timeHelper( $val, $time, $c );
-					if ($timestamp) {
+					$timestamp = self::timeHelper( $val, $time, $c );
+					if ( $timestamp ) {
 						$data['DateTimeDigitized'] = $timestamp;
 					}
 					break;
@@ -254,8 +254,8 @@ class IPTC {
 					} else {
 						$time = Array();
 					}
-					$timestamp =  self::timeHelper( $val, $time, $c );
-					if ($timestamp) {
+					$timestamp = self::timeHelper( $val, $time, $c );
+					if ( $timestamp ) {
 						$data['DateTimeReleased'] = $timestamp;
 					}
 					break;
@@ -267,8 +267,8 @@ class IPTC {
 					} else {
 						$time = Array();
 					}
-					$timestamp =  self::timeHelper( $val, $time, $c );
-					if ($timestamp) {
+					$timestamp = self::timeHelper( $val, $time, $c );
+					if ( $timestamp ) {
 						$data['DateTimeExpires'] = $timestamp;
 					}
 					break;
@@ -313,7 +313,7 @@ class IPTC {
 					// describing the subject matter of the content.
 					$codes = self::convIPTC( $val, $c );
 					foreach ( $codes as $ic ) {
-						$fields = explode(':', $ic, 3 );
+						$fields = explode( ':', $ic, 3 );
 
 						if ( count( $fields ) < 2 ||
 							$fields[0] !== 'IPTC' )
@@ -350,43 +350,43 @@ class IPTC {
 	}
 
 	/**
-	* Convert an iptc date and time tags into the exif format
-	*
-	* @todo Potentially this should also capture the timezone offset.
-	* @param Array $date The date tag
-	* @param Array $time The time tag
-	* @param $c
-	* @return String Date in exif format.
-	*/
+	 * Convert an iptc date and time tags into the exif format
+	 *
+	 * @todo Potentially this should also capture the timezone offset.
+	 * @param array $date The date tag
+	 * @param array $time The time tag
+	 * @param $c
+	 * @return String Date in exif format.
+	 */
 	private static function timeHelper( $date, $time, $c ) {
 		if ( count( $date ) === 1 ) {
 			//the standard says this should always be 1
 			//just double checking.
-			list($date) = self::convIPTC( $date, $c );
+			list( $date ) = self::convIPTC( $date, $c );
 		} else {
 			return null;
 		}
 
 		if ( count( $time ) === 1 ) {
-			list($time) = self::convIPTC( $time, $c );
+			list( $time ) = self::convIPTC( $time, $c );
 			$dateOnly = false;
 		} else {
 			$time = '000000+0000'; //placeholder
 			$dateOnly = true;
 		}
 
-		if ( ! ( preg_match('/\d\d\d\d\d\d[-+]\d\d\d\d/', $time)
-			&& preg_match('/\d\d\d\d\d\d\d\d/', $date)
-			&& substr($date, 0, 4) !== '0000'
-			&& substr($date, 4, 2) !== '00'
-			&& substr($date, 6, 2) !== '00'
-		 ) ) {
+		if ( !( preg_match( '/\d\d\d\d\d\d[-+]\d\d\d\d/', $time )
+			&& preg_match( '/\d\d\d\d\d\d\d\d/', $date )
+			&& substr( $date, 0, 4 ) !== '0000'
+			&& substr( $date, 4, 2 ) !== '00'
+			&& substr( $date, 6, 2 ) !== '00'
+		) ) {
 			//something wrong.
 			// Note, this rejects some valid dates according to iptc spec
 			// for example: the date 00000400 means the photo was taken in
 			// April, but the year and day is unknown. We don't process these
 			// types of incomplete dates atm.
-			wfDebugLog( 'iptc', "IPTC: invalid time ( $time ) or date ( $date )");
+			wfDebugLog( 'iptc', "IPTC: invalid time ( $time ) or date ( $date )" );
 			return null;
 		}
 
@@ -396,7 +396,7 @@ class IPTC {
 			return null;
 		}
 
-		$tz = ( intval( substr( $time, 7, 2 ) ) *60*60 )
+		$tz = ( intval( substr( $time, 7, 2 ) ) * 60 * 60 )
 			+ ( intval( substr( $time, 9, 2 ) ) * 60 );
 
 		if ( substr( $time, 6, 1 ) === '-' ) {
@@ -417,15 +417,15 @@ class IPTC {
 	}
 
 	/**
-	* Helper function to convert charset for iptc values.
-	* @param $data string|array The iptc string
-	* @param $charset String: The charset
+	 * Helper function to convert charset for iptc values.
+	 * @param string|array $data The iptc string
+	 * @param string $charset The charset
 	 *
 	 * @return string|array
-	*/
-	private static function convIPTC ( $data, $charset ) {
+	 */
+	private static function convIPTC( $data, $charset ) {
 		if ( is_array( $data ) ) {
-			foreach ($data as &$val) {
+			foreach ( $data as &$val ) {
 				$val = self::convIPTCHelper( $val, $charset );
 			}
 		} else {
@@ -435,27 +435,27 @@ class IPTC {
 		return $data;
 	}
 	/**
-	* Helper function of a helper function to convert charset for iptc values.
-	* @param $data Mixed String or Array: The iptc string
-	* @param $charset String: The charset
-	*
-	* @return string
-	*/
-	private static function convIPTCHelper ( $data, $charset ) {
+	 * Helper function of a helper function to convert charset for iptc values.
+	 * @param $data Mixed String or Array: The iptc string
+	 * @param string $charset The charset
+	 *
+	 * @return string
+	 */
+	private static function convIPTCHelper( $data, $charset ) {
 		if ( $charset ) {
 			wfSuppressWarnings();
-			$data = iconv($charset, "UTF-8//IGNORE", $data);
+			$data = iconv( $charset, "UTF-8//IGNORE", $data );
 			wfRestoreWarnings();
-			if ($data === false) {
+			if ( $data === false ) {
 				$data = "";
-				wfDebugLog('iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8");
+				wfDebugLog( 'iptc', __METHOD__ . " Error converting iptc data charset $charset to utf-8" );
 			}
 		} else {
 			//treat as utf-8 if is valid utf-8. otherwise pretend its windows-1252
 			// most of the time if there is no 1:90 tag, it is either ascii, latin1, or utf-8
 			$oldData = $data;
 			UtfNormal::quickIsNFCVerify( $data ); //make $data valid utf-8
-			if ($data === $oldData) {
+			if ( $data === $oldData ) {
 				return $data; //if validation didn't change $data
 			} else {
 				return self::convIPTCHelper( $oldData, 'Windows-1252' );
@@ -465,14 +465,14 @@ class IPTC {
 	}
 
 	/**
-	* take the value of 1:90 tag and returns a charset
-	* @param String $tag 1:90 tag.
-	* @return string charset name or "?"
-	* Warning, this function does not (and is not intended to) detect
-	* all iso 2022 escape codes. In practise, the code for utf-8 is the
-	* only code that seems to have wide use. It does detect that code.
-	*/
-	static function getCharset($tag) {
+	 * take the value of 1:90 tag and returns a charset
+	 * @param string $tag 1:90 tag.
+	 * @return string charset name or "?"
+	 * Warning, this function does not (and is not intended to) detect
+	 * all iso 2022 escape codes. In practise, the code for utf-8 is the
+	 * only code that seems to have wide use. It does detect that code.
+	 */
+	static function getCharset( $tag ) {
 
 		//According to iim standard, charset is defined by the tag 1:90.
 		//in which there are iso 2022 escape sequences to specify the character set.
@@ -530,7 +530,7 @@ class IPTC {
 			case "\x1b(K":
 				$c = "ISO646-DE";
 				break;
-			case "\x1b(N":  //crylic
+			case "\x1b(N": //crylic
 				$c = "ISO_5427";
 				break;
 			case "\x1b(`": //iso646-NO
@@ -590,7 +590,7 @@ class IPTC {
 				$c = 'CSN_369103';
 				break;
 			default:
-				wfDebugLog('iptc', __METHOD__ . 'Unknown charset in iptc 1:90: ' . bin2hex( $tag ) );
+				wfDebugLog( 'iptc', __METHOD__ . 'Unknown charset in iptc 1:90: ' . bin2hex( $tag ) );
 				//at this point just give up and refuse to parse iptc?
 				$c = false;
 		}

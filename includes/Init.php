@@ -2,6 +2,9 @@
 /**
  * Some functions that are useful during startup.
  *
+ * This class previously contained some functionality related to a PHP compiler
+ * called hphpc. That compiler has now been discontinued.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,40 +25,35 @@
 
 /**
  * Some functions that are useful during startup.
+ *
+ * This class previously contained some functionality related to a PHP compiler
+ * called hphpc. That compiler has now been discontinued. All methods are now
+ * deprecated.
  */
 class MWInit {
 	static $compilerVersion;
 
 	/**
-	 * Get the version of HipHop used to compile, or false if MediaWiki was not
-	 * compiled. This works by having our build script insert a special function
-	 * into the compiled code.
+	 * @deprecated since 1.22
 	 */
 	static function getCompilerVersion() {
-		if ( self::$compilerVersion === null ) {
-			if ( self::functionExists( 'wfHipHopCompilerVersion' ) ) {
-				self::$compilerVersion = wfHipHopCompilerVersion();
-			} else {
-				self::$compilerVersion = false;
-			}
-		}
-		return self::$compilerVersion;
+		return false;
 	}
 
 	/**
 	 * Returns true if we are running under HipHop, whether in compiled or
 	 * interpreted mode.
 	 *
+	 * @deprecated since 1.22
 	 * @return bool
 	 */
 	static function isHipHop() {
-		return function_exists( 'hphp_thread_set_warmup_enabled' );
+		return defined( 'HPHP_VERSION' );
 	}
 
 	/**
-	 * Get a fully-qualified path for a source file relative to $IP. Including
-	 * such a path under HipHop will force the file to be interpreted. This is
-	 * useful for configuration files.
+	 * Get a fully-qualified path for a source file relative to $IP.
+	 * @deprecated since 1.22
 	 *
 	 * @param $file string
 	 *
@@ -67,117 +65,39 @@ class MWInit {
 	}
 
 	/**
-	 * If we are running code compiled by HipHop, this will pass through the
-	 * input path, assumed to be relative to $IP. If the code is interpreted,
-	 * it will converted to a fully qualified path. It is necessary to use a
-	 * path which is relative to $IP in order to make HipHop use its compiled
-	 * code.
-	 *
+	 * @deprecated since 1.22
 	 * @param $file string
-	 *
 	 * @return string
 	 */
 	static function compiledPath( $file ) {
 		global $IP;
-
-		if ( defined( 'MW_COMPILED' ) ) {
-			return "phase3/$file";
-		} else {
-			return "$IP/$file";
-		}
+		return "$IP/$file";
 	}
 
 	/**
-	 * The equivalent of MWInit::interpretedPath() but for files relative to the
-	 * extensions directory.
-	 *
-	 * @param $file string
-	 * @return string
-	 */
-	static function extInterpretedPath( $file ) {
-		return self::getExtensionsDirectory() . '/' . $file;
-	}
-
-	/**
-	 * The equivalent of MWInit::compiledPath() but for files relative to the
-	 * extensions directory. Any files referenced in this way must be registered
-	 * for compilation by including them in $wgCompiledFiles.
+	 * @deprecated since 1.22
 	 * @param $file string
 	 * @return string
 	 */
 	static function extCompiledPath( $file ) {
-		if ( defined( 'MW_COMPILED' ) ) {
-			return "extensions/$file";
-		} else {
-			return self::getExtensionsDirectory() . '/' . $file;
-		}
+		return false;
 	}
 
 	/**
-	 * Register an extension setup file and return its path for compiled
-	 * inclusion. Use this function in LocalSettings.php to add extensions
-	 * to the build. For example:
-	 *
-	 *    require( MWInit::extSetupPath( 'ParserFunctions/ParserFunctions.php' ) );
-	 *
-	 * @param $extRel string The path relative to the extensions directory, as defined by
-	 *   $wgExtensionsDirectory.
-	 *
-	 * @return string
-	 */
-	static function extSetupPath( $extRel ) {
-		$baseRel = "extensions/$extRel";
-		if ( defined( 'MW_COMPILED' ) ) {
-			return $baseRel;
-		} else {
-			global $wgCompiledFiles;
-			$wgCompiledFiles[] = $baseRel;
-			return self::getExtensionsDirectory() . '/' . $extRel;
-		}
-	}
-
-	/**
-	 * @return bool|string
-	 */
-	static function getExtensionsDirectory() {
-		global $wgExtensionsDirectory, $IP;
-		if ( $wgExtensionsDirectory === false ) {
-			$wgExtensionsDirectory = "$IP/../extensions";
-		}
-		return $wgExtensionsDirectory;
-	}
-
-	/**
-	 * Determine whether a class exists, using a method which works under HipHop.
-	 *
-	 * Note that it's not possible to implement this with any variant of
-	 * class_exists(), because class_exists() returns false for classes which
-	 * are compiled in.
-	 *
-	 * Calling class_exists() on a literal string causes the class to be made
-	 * "volatile", which means (as of March 2011) that the class is broken and
-	 * can't be used at all. So don't do that. See
-	 * https://github.com/facebook/hiphop-php/issues/314
+	 * Deprecated wrapper for class_exists()
+	 * @deprecated since 1.22
 	 *
 	 * @param $class string
 	 *
 	 * @return bool
 	 */
 	static function classExists( $class ) {
-		try {
-			$r = new ReflectionClass( $class );
-		} catch( ReflectionException $r ) {
-			$r = false;
-		}
-		return $r !== false;
+		return class_exists( $class );
 	}
 
 	/**
-	 * Determine wether a method exists within a class, using a method which works
-	 * under HipHop.
-	 *
-	 * Note that under HipHop when method_exists is given a string for it's class
-	 * such as to test for a static method has the same issues as class_exists does.
+	 * Deprecated wrapper for method_exists()
+	 * @deprecated since 1.22
 	 *
 	 * @param $class string
 	 * @param $method string
@@ -185,34 +105,25 @@ class MWInit {
 	 * @return bool
 	 */
 	static function methodExists( $class, $method ) {
-		try {
-			$r = new ReflectionMethod( $class, $method );
-		} catch( ReflectionException $r ) {
-			$r = false;
-		}
-		return $r !== false;
+		return method_exists( $class, $method );
 	}
 
 	/**
-	 * Determine whether a function exists, using a method which works under
-	 * HipHop.
+	 * Deprecated wrapper for function_exists()
+	 * @deprecated since 1.22
 	 *
 	 * @param $function string
 	 *
 	 * @return bool
 	 */
 	static function functionExists( $function ) {
-		try {
-			$r = new ReflectionFunction( $function );
-		} catch( ReflectionException $r ) {
-			$r = false;
-		}
-		return $r !== false;
+		return function_exists( $function );
 	}
 
 	/**
-	 * Call a static method of a class with variable arguments without causing
-	 * it to become volatile.
+	 * Deprecated wrapper for call_user_func_array()
+	 * @deprecated since 1.22
+	 *
 	 * @param $className string
 	 * @param $methodName string
 	 * @param $args array
@@ -220,7 +131,6 @@ class MWInit {
 	 * @return mixed
 	 */
 	static function callStaticMethod( $className, $methodName, $args ) {
-		$r = new ReflectionMethod( $className, $methodName );
-		return $r->invokeArgs( null, $args );
+		return call_user_func_array( array( $className, $methodName ), $args );
 	}
 }

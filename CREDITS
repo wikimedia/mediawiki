@@ -1,10 +1,12 @@
-MediaWiki 1.20 is a collaborative project released under the
+MediaWiki 1.22 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
+<!-- Please notice that the following can be found parsed under Special:Version/Credits -->
 == Developers ==
 * Aaron Schulz
 * Alex Z.
+* Alexander Monk
 * Alexandre Emsenhuber
 * Andrew Garrett
 * Arthur Richards
@@ -25,7 +27,7 @@ following names for their contribution to the product.
 * Derk-Jan Hartman
 * Domas Mituzas
 * Emufarmers
-* Fran McCrory
+* Fran Rogers
 * Greg Sabino Mullane
 * Guy Van den Broeck
 * Happy-melon
@@ -40,10 +42,12 @@ following names for their contribution to the product.
 * John Du Hart
 * Jon Harald Søby
 * Juliano F. Ravasi
+* Ryan Kaldari
 * Leo Koppelkamm
 * Leon Weber
 * Leslie Hoare
 * Marco Schuster
+* Marius Hoch
 * Matěj Grabovský
 * Matt Johnston
 * Max Semenik
@@ -54,6 +58,8 @@ following names for their contribution to the product.
 * Neil Kandalgaonkar
 * Nicolas Dumazet
 * Niklas Laxström
+* Ori Livneh
+* Patrick Reilly
 * Philip Tzou
 * Platonides
 * Purodha Blissenbach
@@ -70,16 +76,19 @@ following names for their contribution to the product.
 * Siebrand Mazeland
 * SQL
 * Soxred93
+* Szymon Świerkosz
 * Thomas Bleher
 * Tim Starling
 * Timo Tijhof
-* Tom Gries
+* Thomas Gries
 * Trevor Parscal
 * Victor Vasiliev
 * Yesid Carrillo
 * Yuri Astrakhan
 
 == Patch Contributors ==
+* Aaron Pramana
+* Aaron Ball
 * Agbad
 * Ahmad Sherif
 * Alejandro Mery
@@ -90,7 +99,9 @@ following names for their contribution to the product.
 * Asier Lostalé
 * Azliq7
 * Bagariavivek
+* Bartosz Dziewoński
 * Beau
+* Benny Situ
 * Bergi
 * Borislav Manolov
 * Brad Jorsch
@@ -98,6 +109,7 @@ following names for their contribution to the product.
 * Brianna Laugher
 * Carlin
 * Carsten Nielsen
+* Chris Steipp
 * Christian Neubauer
 * Christian Aistleitner
 * Conrad Irwin
@@ -106,28 +118,37 @@ following names for their contribution to the product.
 * Dan Collins
 * Dan Nessett
 * Daniel Arnold
+* Daniel Werner
 * David Baumgarten
 * Denny Vrandecic
+* Dévai Tamás
 * Edward Z. Yang
 * Elvis Stansvik
 * Erwin Dokter
+* Federico Leva
 * FunPika
 * fomafix
+* Gabriel Wicke
 * Gero Scholz
 * Gilles van den Hoven
 * Grunny
 * Harry Burt
 * Ireas
 * Jacob Block
+* Jan Gerber
+* Jan Luca Naumann
 * Jaska Zedlik
 * Jeremy Baron
 * Jidanni
 * Jimmy Xu
 * Jonathan Wiltshire
 * John N
+* JuneHyeon Bae
+* Jure Kajzer
 * Karun Dambiec
+* Katie Filbert
+* Kevin Israel
 * Kim Hyun-Joon
-* Krenair
 * Lee Worden
 * Lejonel
 * liangent
@@ -135,12 +156,16 @@ following names for their contribution to the product.
 * Lucas Garczewski
 * Luigi Corsaro
 * Lupo
+* Madman
 * Manuel Menal
 * Marcin Cieślak
 * Marcus Buck
-* Mark A. Pelletier
+* Marc-André Pelletier
+* Mark Hershberger
+* Mark Holmquist
 * Marooned
 * Mathias Ertl
+* Matthias Mullie
 * Matthew Britton
 * mati
 * Max
@@ -168,32 +193,42 @@ following names for their contribution to the product.
 * Nischay Nahata
 * Olaf Lenz
 * Olivier Finlay Beaton
+* Patricio Molina
 * Paul Copperman
 * Paul Oranje
+* Peter Gehres
+* Petr Onderka
 * PieRRoMaN
 * quietust
 * René Kijewski
 * rgcjonas
+* Rob Moen
 * Robert Treat
 * RockMFR
 * Russell Blau
 * Rusty Burchfield
+* S Page
 * Salvatore Ingala
+* Santhosh Thottingal
 * Scott Colcord
+* Sébastien Santoro
 * Simon Walker
 * Solitarius
 * Søren Løvborg
 * Srikanth Lakshmanan
 * Stefano Codari
 * Str4nd
+* Subramanya Sastry
 * svip
 * The Evil IP address
 * Tim Landscheidt
 * Tisane
+* Tyler Anthony Romeo
 * Umherirrender
 * Van de Bugger
 * Ville Stadista
 * Vitaliy Filippov
+* Waldir Pimenta
 * William Demchick
 * Yusuke Matsubara
 * Yuvaraj Pandian T
@@ -206,4 +241,4 @@ following names for their contribution to the product.
 * Meno25
 * Rotem Liss
 * Shinjiman
-* Translatewiki.net Translators https://translatewiki.net/wiki/Special:ListUsers/translator
+* [https://translatewiki.net/wiki/Special:ListUsers/translator Translatewiki.net Translators]

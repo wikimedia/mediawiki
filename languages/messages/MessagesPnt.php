@@ -160,7 +160,6 @@ $messages = array(
 'qbbrowse' => 'Πλοήγησην',
 'qbedit' => 'Άλλαξον',
 'qbpageoptions' => 'Ατή η σελίδαν',
-'qbpageinfo' => 'Συμφραζόμενα',
 'qbmyoptions' => "Τ' εμά τα σελίδας",
 'qbspecialpages' => 'Ειδικά σελίδας',
 'faq' => 'Πολλά ερωτήσεις (FAQ)',
@@ -244,7 +243,6 @@ $messages = array(
 'disclaimers' => 'Ιμπρέσουμ',
 'disclaimerpage' => 'Project:Ιμπρέσουμ',
 'edithelp' => "Βοήθεια για τ' αλλαγμαν",
-'edithelppage' => 'Help:Άλλαγμαν',
 'helppage' => 'Help:Περιεχόμενα',
 'mainpage' => 'Αρχικόν σελίδα',
 'mainpage-description' => 'Αρχικόν σελίδα',
@@ -338,9 +336,6 @@ $messages = array(
 'virus-unknownscanner' => 'αναγνώριμον αντιικόν:',
 
 # Login and logout pages
-'welcomecreation' => "== Καλώς έρθετεν, $1! ==
-Η λογαρίαν εσουν εγέντον.
-Τ' άλλαγμαν τη [[Special:Preferences|{{SITENAME}} προτιμησίων]] εσουν μη νεσπάλετε.",
 'yourname' => 'Όνεμαν χρήστε:',
 'yourpassword' => 'Σημάδι:',
 'yourpasswordagain' => "Ξαν' γράψτεν το σημάδι:",
@@ -597,7 +592,6 @@ $messages = array(
 'prevn' => '{{PLURAL:$1|$1}} προηγουμένων',
 'nextn' => '{{PLURAL:$1|$1}} επομένων',
 'viewprevnext' => 'Τέρεν ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Περιεχόμενα',
 'searchprofile-images' => 'Πολυμέσα',
 'searchprofile-everything' => 'Όλεα',
 'search-result-size' => '$1 ({{PLURAL:$2|1 λέξη|$2 λέξεις}})',
@@ -607,8 +601,6 @@ $messages = array(
 'search-interwiki-caption' => 'Αδερφικά έργα',
 'search-interwiki-default' => '$1 αποτελέσματα:',
 'search-interwiki-more' => '(πλέα)',
-'search-mwsuggest-enabled' => 'με οδηγίας',
-'search-mwsuggest-disabled' => 'θίχως οδηγίας',
 'searchall' => 'ούλαι',
 'nonefound' => "'''Σημείωση:''' Κανονικά ολίγα περιοχάς ονοματίων αραεύκουνταν μαναχόν. Βαλέστεν ''all:'' ασην λέξην εμπροστά για ίνεται το αράεμαν σ'όλεα τα σελίδας (και σελίδας καλατσεματί, πρότυπα κλπ.) ή βαλέστεν ους πρόθεμαν την περιοχήν ονοματίων π'θέλετε για να αραεύετε εκαικά.",
 'powersearch' => 'Αναλυτικόν αράεμαν',
@@ -619,9 +611,6 @@ $messages = array(
 'powersearch-toggleall' => 'Όλια',
 'powersearch-togglenone' => 'Τιδέν',
 'search-external' => 'Εύρον σα εξ μερέαν',
-
-# Quickbar
-'qbsettings-none' => 'Τιδέν',
 
 # Preferences page
 'preferences' => 'Αγαπεμένα',
@@ -710,9 +699,11 @@ $messages = array(
 'right-import' => "Έμπαζμαν σελιδίων ασ' άλλα βίκι",
 'right-siteadmin' => 'Ασπάλισον κι άνοιξον τη βάση δογμενίων',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Αρχείον ποισιματίων λογαρίων χρήστε',
+
 # User rights log
 'rightslog' => 'Αρχείον δικαιωματίων',
-'rightsnone' => '(τιδέν)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'δεάβασον αβούτεν την σελίδαν',
@@ -947,15 +938,12 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit' => 'Δείξον',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Αρχείον ποισιματίων λογαρίων χρήστε',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Ομάδαν',
 'listgrouprights-rights' => 'Δικαιώματα',
 'listgrouprights-members' => '(κατάλογον μελών)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Στείλον μένεμαν σον χρήστεν ατόν',
 'emailfrom' => 'Ασά:',
 'emailto' => 'Σο:',
@@ -983,9 +971,9 @@ $messages = array(
 'unwatching' => "'κ ωριάζω...",
 
 'enotif_impersonal_salutation' => '{{SITENAME}} χρήστες',
-'changed' => 'ελλάγεν',
-'created' => 'έντον',
 'enotif_anon_editor' => 'ανώνυμον χρήστες $1',
+'created' => 'έντον',
+'changed' => 'ελλάγεν',
 
 # Delete
 'deletepage' => 'Σβήσον τη σελίδαν',
@@ -1313,7 +1301,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Πλάτος',
 'exif-imagelength' => 'Ύψηλος',
 'exif-bitspersample' => 'Bits ανά στοιχείο',
@@ -1415,10 +1403,6 @@ $messages = array(
 'version-software' => "Λογισμικόν ντ'εθέκεν",
 'version-software-version' => 'Έκδοση',
 
-# Special:FilePath
-'filepath-page' => 'Αρχείον:',
-'filepath-submit' => 'Δέβα',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Όνεμα αρχείου:',
 'fileduplicatesearch-submit' => 'Εύρον',
@@ -1444,5 +1428,11 @@ $messages = array(
 'htmlform-submit' => 'Στείλον',
 'htmlform-reset' => "Κλώσον τ'αλλαγάς",
 'htmlform-selectorother-other' => 'Άλλον',
+
+# New logging system
+'rightsnone' => '(τιδέν)',
+
+# Search suggestions
+'searchsuggest-search' => 'Αράεμαν',
 
 );

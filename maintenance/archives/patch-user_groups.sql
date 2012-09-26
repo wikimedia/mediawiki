@@ -9,7 +9,7 @@
 CREATE TABLE /*$wgDBprefix*/user_groups (
   -- Key to user_id
   ug_user int unsigned NOT NULL default '0',
-  
+
   -- Group names are short symbolic string keys.
   -- The set of group names is open-ended, though in practice
   -- only some predefined ones are likely to be used.
@@ -19,7 +19,7 @@ CREATE TABLE /*$wgDBprefix*/user_groups (
   -- permissions of any group they're explicitly in, plus
   -- the implicit '*' and 'user' groups.
   ug_group varbinary(16) NOT NULL default '',
-  
+
   PRIMARY KEY (ug_user,ug_group),
   KEY (ug_group)
 ) /*$wgDBTableOptions*/;

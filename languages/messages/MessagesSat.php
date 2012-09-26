@@ -13,6 +13,7 @@
  * @author Joseph Mardy
  * @author Nipon087
  * @author Reedy
+ * @author Rillke
  * @author Salvator
  * @author Samar88
  * @author Srabony90
@@ -26,7 +27,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Joṛaoakanaḱko nãwã bodolaḱte danaṅkam',
 'tog-newpageshidepatrolled' => 'Biḍạakanaḱ sakamko nãwã sakamreaḱ talikare danȧkam',
 'tog-extendwatchlist' => 'Khạli nitoḱ bodolko do baṅ, joto bodolkodo ńeloḱ tạlikare phaylaomẽ.',
-'tog-usenewrc' => 'Cetan darja reaḱ nãwã bodolakanaḱko beoharme',
+'tog-usenewrc' => 'Nahaḱ bodolakanaḱko ar nojor reaḱ pahaṭare bodolaḱko mit́são ńelńam',
 'tog-numberheadings' => 'Mukhiạ kathako do actege piṛhipiṛhite sajaḱma',
 'tog-showtoolbar' => 'Joṛaoakanaḱ ṭulbar udugoḱma',
 'tog-editondblclick' => 'Bar dhao lin kate sakam torjomão reaḱ ạidari emogoḱma',
@@ -34,9 +35,9 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Pahaṭa reaḱ pahaṭa guṭkathare jojom seć lin hotete <br /> pahaṭa sompadon lạgitte ektiạr em hoyoḱma (JavaScript)',
 'tog-showtoc' => 'Ṭibilre menaḱako ńel ( sakamkore 3 khon jạti hedlayenko)',
 'tog-rememberpassword' => 'Noa sendrare amaḱ boloḱ reaḱ katha (katha cạbi) disạimẽ (jạstite $1 {{PLURAL:$1din reaḱ din reaḱ}} lạgit)',
-'tog-watchcreations' => 'Sakamko songe  Ińaḱ ńelok tạlikare benao',
-'tog-watchdefault' => 'Sakam tońgey me Iń do ińaḱ ńeloḱ tạlikare joṛaokeda',
-'tog-watchmoves' => 'Sakamko tońgeyme Ińaḱ ńelok tạlikare kulme',
+'tog-watchcreations' => 'Ińaḱ tear sakam ar rakaṕ páelko ińaḱ ńelogoḱ tạlikare ńeloḱ ma',
+'tog-watchdefault' => 'Ińaḱ purạoakanaḱ sakam ar phayelko do ińaḱ ńeloḱ tạlikare joṛaoḱma',
+'tog-watchmoves' => 'Ińaḱ ocoḱ sakam ar phayelko inyaḱ nojor sakamre joṛaḱma',
 'tog-watchdeletion' => 'Sakamko tońgeyme Ińaḱ ńeloḱ tạlika khon get́ giḍikam',
 'tog-minordefault' => 'Etohoṕre sanam joṛao purạoanaḱko do bekor unuduḱ lekate cinhạkma',
 'tog-previewontop' => 'Joṛao bakso purạo lahare unuduḱ hoyoḱma',
@@ -49,8 +50,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ńelok laṛcaṛkoaḱ songkha uduḱme',
 'tog-oldsig' => 'Menaḱ signạtar',
 'tog-fancysig' => 'Signạcar do wikiṭesk hisạbte moneyemẽ (jahan acte hoyoḱ joṛao bạgikate)',
-'tog-externaleditor' => 'Etohoṕre bahre reaḱ sompadonićaḱ beohar hoyoḱma (khali sẽṛa beoharić lạgit́te, kompeuṭare asokae seṭing jạruṛa. [//www.mediawiki.org/wiki/manual:External_editors More information.])',
-'tog-externaldiff' => 'Etohoṕre bahre reaḱ sompadonićaḱ beohar hoyoḱma (khali sẽṛa beoharić lạgit́te, kompeuṭare asokae seṭing jạruṛa. [//www.mediawiki.org/wiki/manual:External_editors More information.])',
 'tog-showjumplinks' => '"Calaḱmẽ" beohar joṛao ehop hoyoḱma',
 'tog-uselivepreview' => 'Jewet́ ńeloḱ beoharme (JavaScript jaruṛ menaḱa)',
 'tog-forceeditsummary' => 'Khạli sompadon guṭkatha em oktere iń baḍae ocoyiń hoyoḱma',
@@ -163,7 +162,6 @@ $messages = array(
 'qbbrowse' => 'Sendra',
 'qbedit' => 'Tońge',
 'qbpageoptions' => 'Noa sakam',
-'qbpageinfo' => 'Sakam reaḱ thuti',
 'qbmyoptions' => 'In̕anḱ sakamko',
 'qbspecialpages' => 'Asokay teaḱ sakamko',
 'faq' => 'Baḍae kupuliko',
@@ -259,7 +257,6 @@ $1',
 'disclaimers' => 'Dạbi bạnuḱko',
 'disclaimerpage' => 'Project: Sadharon ḍiskleimarko(General disclaimer)',
 'edithelp' => 'Tońge goṛo',
-'edithelppage' => 'Help:So̠mpado̠n',
 'helppage' => 'Help: Bhitri renaḱ',
 'mainpage' => 'Mukhiạ Sakam',
 'mainpage-description' => 'Mukhiạ sakam',
@@ -397,9 +394,6 @@ $2',
 'virus-unknownscanner' => 'Baṅ urum anṭvayras:',
 
 # Login and logout pages
-'welcomecreation' => '== Johar $1! ==
-Amaḱ ekaunṭ do tearena.
-Amaḱ [[Special:Preferance {{SITENAME}} pạsindko]] thir dohoe lạgit́te alom hiṛińa.',
 'yourname' => 'Beoboharicaḱ ńutum',
 'yourpassword' => 'Uku namber',
 'yourpasswordagain' => 'Arhõ oku namber olme',
@@ -435,7 +429,7 @@ Amaḱ sendrare kukiko bondo hoeakana. Dayakate kukiko kạmi hoe ocoemẽ ar am
 Ale do baḍae ocolem amaḱ kuki doe kạmikana, sakam do arhõ rakaṕ lạgit́te kurumuṭuemẽ.',
 'noname' => 'Am do asol beoharićaḱ ńutum ṭhikte bam emakada.',
 'loginsuccesstitle' => 'Bhitri boloḱ do moctege puraoena',
-'loginsuccess' => '\'\'\'Am do nitge "$1" ńutumte {{SITENAME}} rem bolo akana.',
+'loginsuccess' => "'''Am do nitge \"\$1\" ńutumte {{SITENAME}} rem bolo akana.'''",
 'nosuchuser' => '"$1" ńutuman jahan beoharić bạnuea.
 Beoharićaḱ ńutum do bukṛogea.
 Amaḱ bananko ńelmẽ, se [[Special:Userlogin/signup nãwã mit́ṭen ekaunṭ tearmẽ]].',
@@ -475,7 +469,7 @@ Arhõ kurumuṭue lahare dayakate thoṛagan tạṅgiemẽ.',
 'login-abort-generic' => 'Amaḱ bhitri boloḱ do baṅ hoylena - batena.',
 'loginlanguagelabel' => 'katha: $1',
 
-# E-mail sending
+# Email sending
 'user-mail-no-addy' => 'Jahan e-mail ṭhikana bạgi kate e-mail kul kurumuṭu hoena.',
 
 # Change password dialog
@@ -495,10 +489,8 @@ Nitoḱ do am bhitritem boloḱkana...',
 
 # Special:PasswordReset
 'passwordreset' => 'Nãwãte oku nambar emme',
-'passwordreset-text' => 'Amaḱ ekaunṭ reaḱ purapuri thuti e-mail hotete ńam lạgit́te latar reaḱ forom purạomẽ.',
 'passwordreset-legend' => 'Nãwãte oku nambar emme',
 'passwordreset-disabled' => 'Noa wikire amaḱ uku nambar nãwãte em lạgit subita do bando gea.',
-'passwordreset-pretext' => '{{PLURAL:$1 latar re menaḱ ḍaṭako khon mit́ṭen emmẽ}}',
 'passwordreset-username' => 'Beoharicaḱ ńutum:',
 'passwordreset-domain' => 'Ḍomen:',
 'passwordreset-capture' => 'Sendra fol reaḱ e-mail ńelmẽ?',
@@ -601,7 +593,6 @@ Amaḱ bodolaḱ kodo nit habićte bań rukhíạakana!",
 'template-protected' => 'Rukhiạ',
 'template-semiprotected' => '(Kạṭic-rukhiyạ)',
 'hiddencategories' => 'Noa sakam do {{PLURAL:$1 1 ukuakan bhag $1 uku akan bhagkorenaḱ}} gaõtarenge:',
-'nocreatetitle' => 'Sakam tear do akoṭgea',
 'nocreate-loggedin' => 'Nãwã sakam tear lạgit́te am do ạidạri em baṅ hoeakana.',
 'sectioneditnotsupported-title' => 'Pahaṭa sompadona do bae hataoeda',
 'sectioneditnotsupported-text' => 'Noa sompadona sakamre pahaṭa sompadona do bae hataoeda',
@@ -650,7 +641,7 @@ Onate noa ạrgumenṭkodo bạgi giḍi hoena.",
 'last' => 'Laha renaḱ',
 'page_first' => 'Pahilaḱ',
 'page_last' => 'Mucạt́aḱ',
-'histlegend' => "Farak bachao: oka nãwã aroeko tulạoem menet́kan, onako cinhạ em kate boloḱ se latar baṭon linmẽ.<br/>
+'histlegend' => "Farak bachao: oka nãwã aroeko tulạoem menet́kan, onako cinhạ em kate boloḱ se latar baṭon linmẽ.<br />
 Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:last}})''' = laha reaḱ nãwã aroe sãote tulạo, '''{{int:minoreditletter}}''' = huḍiń sompadon.",
 'history-fieldset-title' => 'Sendray jaṛ',
 'history-show-deleted' => 'khạli get giḍiyaḱ koge',
@@ -715,7 +706,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'viewprevnext' => 'Ńelme ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Noa wiki re do \"[[:\$1]] ńutum sakam menaḱa",
 'searchmenu-new' => 'wiki re [[:$1]]nãwã sakam tear',
-'searchhelp-url' => 'Help: Goṛawaḱ',
 'searchprofile-articles' => 'Menaḱaḱ sakamko',
 'searchprofile-project' => 'Go̠ṛo ar Project sakam',
 'searchprofile-images' => 'Multimedia',
@@ -741,9 +731,6 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'powersearch-togglelabel' => 'Sendra',
 'powersearch-toggleall' => 'Sanamaḱ',
 'powersearch-togglenone' => 'Okaṭaḱ hõ baṅ',
-
-# Quickbar
-'qbsettings-none' => 'Okaṭaḱ hõ baṅ',
 
 # Preferences page
 'preferences' => 'Pạsindko',
@@ -776,7 +763,7 @@ Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:
 'prefs-help-email-others' => 'Am são e-mail hotete jogajog dohoy lạgitte mitṭen joṛao se amaḱ katha roṛaḱ sakam bachao jońme.
 Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'E-mail ṭhikạna do jewetge ńamena',
 'email-address-validity-invalid' => 'Amaḱ jewet e-mail ṭhkạna emmẽ',
 
@@ -799,6 +786,9 @@ Amaḱ e-mail ṭhikạna do bań cabaḱa tinre onko do ko beohara',
 'right-movefile' => 'Rẽtko ocogmẽ',
 'right-upload' => 'Rẽtko rakabmẽ',
 'right-delete' => 'Sakamko get giḍiymẽ',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Laṛcaṛićaḱ tear cạbi',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'noa sakam joṛao',
@@ -939,9 +929,6 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'listusers-submit' => 'Udugmẽ',
 'listusers-blocked' => '(Esetgea)',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Laṛcaṛićaḱ tear cạbi',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Gaõta',
 'listgrouprights-rights' => 'Ạidạriko',
@@ -950,7 +937,7 @@ Noa reaḱ pasnao katha [$2 rẽt pasnao sakam] latare emena',
 'listgrouprights-addgroup-all' => 'Joto gaõtare ko soṅgekom',
 'listgrouprights-removegroup-all' => 'Joto gaõtaren ko ocoḱgiḍikom',
 
-# E-mail user
+# Email user
 'emailuser' => 'Nui beoharić e-mail emayme',
 'emailpage' => 'E-mail beoharić',
 'noemailtitle' => 'E-mail ṭhikạna do banuḱa',
@@ -1183,7 +1170,7 @@ f nombor
 isospeeddratings
 jeleń',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Ganḍe',
 'exif-imagelength' => 'Usul',
 'exif-datetime' => 'Rẽt bodol reaḱ tạrikh ar okte',

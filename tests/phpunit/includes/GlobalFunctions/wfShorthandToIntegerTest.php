@@ -1,6 +1,6 @@
 <?php
 
-class wfShorthandToIntegerTest extends MediaWikiTestCase {
+class WfShorthandToIntegerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideABunchOfShorthands
 	 */
@@ -12,7 +12,7 @@ class wfShorthandToIntegerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideABunchOfShorthands() {
+	public static function provideABunchOfShorthands() {
 		return array(
 			array( '', -1, 'Empty string' ),
 			array( '     ', -1, 'String of spaces' ),
@@ -24,5 +24,4 @@ class wfShorthandToIntegerTest extends MediaWikiTestCase {
 			array( '1k', 1024, 'One kb lowercased' ),
 		);
 	}
-	
 }

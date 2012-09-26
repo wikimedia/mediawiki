@@ -43,9 +43,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang mga numero sang mga gatan-aw nga manug-usar',
 'tog-oldsig' => 'Nagkayara nga pirma:',
 'tog-fancysig' => 'Ituring ang pirma bilang teksto sang wiki (wala sang automatik nga link)',
-'tog-externaleditor' => 'Maggamit sang panggwa nga manug-ilis paagi sa default ( para sa mga ekspeto lang, kinanglan ang espesyal nga mga setting sa imo kompyuter)',
-'tog-externaldiff' => 'Maggamit sang panggwa nga kinala-in paagi sa default ( para sa mga ekspeto lang, kinanglan ang espesyal nga setting sa imo kumpyuter.
-[//www.mediawiki.org/wiki/Manual:External_editors Mas madamu pa nga impormasyon.])',
 'tog-showjumplinks' => 'Pasugtan ang mga "tumbo sa" kadali-an nga mga link',
 'tog-uselivepreview' => 'Maggamit sang buhi nga prebyu (kinanglan ang Javascript) (Eksperimental)',
 'tog-forceeditsummary' => 'Hambalan ako kung nagapasulod sang wala unod nga pag-ilis kabilugan',
@@ -158,7 +155,6 @@ $messages = array(
 'qbbrowse' => 'Pangita-on',
 'qbedit' => 'Ilisan',
 'qbpageoptions' => 'Mini nga pahina',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Akon mga pahina',
 'qbspecialpages' => 'Pinasahi nga mga pahina',
 'faq' => 'Mga perme napamangkot ("FAQ")',
@@ -255,7 +251,6 @@ $1',
 'disclaimers' => 'Mga pagpangindi',
 'disclaimerpage' => 'Project:Pangkabilugan nga pagpangindi',
 'edithelp' => 'Bulig sa pag-ilis',
-'edithelppage' => 'Help:Pag-ilis',
 'helppage' => 'Help:Mga ka-undan',
 'mainpage' => 'Panguna nga pahina',
 'mainpage-description' => 'Panguna nga pahina',
@@ -408,11 +403,8 @@ Mini ang ginhatag nga kabangdanan "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Nakagwa ka na.'''
 
-Pwede mo mapadayon usar ang {{SITENAME}}, ukon pwede ka [[Special:UserLogin|lmagsulod liwat]] bilang pareho ukon la-in nga manug-usar.
+Pwede mo mapadayon usar ang {{SITENAME}}, ukon pwede ka <span class='plainlinks'>[$1 lmagsulod liwat]</span> bilang pareho ukon la-in nga manug-usar.
 Tandaan nga ang iban nga pahina magapadayon nga ipakita nga nakasulod ka man gyapon kuno abi, asta panason mo ang cache sang imo browser.",
-'welcomecreation' => '==Malipayon nga pag-abot, $1! ==
-Nahimo na ang imo account.
-Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENAME}}]].',
 'yourname' => 'Hayo (username):',
 'yourpassword' => 'Password:',
 'yourpasswordagain' => 'Liwata ka pindot ang password:',
@@ -591,8 +583,6 @@ Indi pag-ilakip ang pila ka mga suleras.',
 'search-interwiki-caption' => 'Mga utod nga proyekto',
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(mas damu pa)',
-'search-mwsuggest-enabled' => 'may mga suhestiyon',
-'search-mwsuggest-disabled' => 'wala suhestiyon',
 'searchall' => 'tanan',
 'showingresultsheader' => "{{PLURAL:$5|Resulta nga '''$1''' sang '''$3'''|Mga resulta nga '''$1 - $2''' sang '''$3'''}} para sa '''$4'''",
 'nonefound' => "'''Tandaan''': Ang iban lang nga mga ngalan-espasyo ang ginapangita depende sa gintakda.
@@ -612,6 +602,9 @@ Tistingan mo i-prefiks ang imo pamangkot upod sang ''tanan:'' para makita mo ang
 'group-sysop' => 'Mga manugdumala',
 
 'grouppage-sysop' => '{{ns:project}}:Mga manugdumala',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Listahan sang pag-ubra sang manug-usar',
 
 # User rights log
 'rightslog' => 'Lista sang mga karapatan sang manug-usar',
@@ -720,13 +713,10 @@ Ang paglarawan nga yara sa ibabaw sang [$2 pahina sang paglarawan sang akta] sin
 # Special:LinkSearch
 'linksearch' => 'Panggwa nga mga link',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Listahan sang pag-ubra sang manug-usar',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista sang mga myembro)',
 
-# E-mail user
+# Email user
 'emailuser' => 'I-email mini nga naga-usar',
 
 # Watchlist

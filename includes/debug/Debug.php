@@ -1,6 +1,6 @@
 <?php
 /**
- * Debug toolbar related code
+ * Debug toolbar related code.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
  */
 
 /**
- * New debugger system that outputs a toolbar on page view
+ * New debugger system that outputs a toolbar on page view.
  *
  * By default, most methods do nothing ( self::$enabled = false ). You have
  * to explicitly call MWDebug::init() to enabled them.
@@ -35,28 +35,28 @@ class MWDebug {
 	/**
 	 * Log lines
 	 *
-	 * @var array
+	 * @var array $log
 	 */
 	protected static $log = array();
 
 	/**
-	 * Debug messages from wfDebug()
+	 * Debug messages from wfDebug().
 	 *
-	 * @var array
+	 * @var array $debug
 	 */
 	protected static $debug = array();
 
 	/**
-	 * Queries
+	 * SQL statements of the databses queries.
 	 *
-	 * @var array
+	 * @var array $query
 	 */
 	protected static $query = array();
 
 	/**
 	 * Is the debugger enabled?
 	 *
-	 * @var bool
+	 * @var bool $enabled
 	 */
 	protected static $enabled = false;
 
@@ -64,7 +64,7 @@ class MWDebug {
 	 * Array of functions that have already been warned, formatted
 	 * function-caller to prevent a buttload of warnings
 	 *
-	 * @var array
+	 * @var array $deprecationWarnings
 	 */
 	protected static $deprecationWarnings = array();
 
@@ -135,9 +135,24 @@ class MWDebug {
 	 * @since 1.19
 	 * @param $msg string
 	 * @param $callerOffset int
+	 * @param $level int A PHP error level. See sendWarning()
+	 * @param $log string: 'production' will always trigger a php error, 'auto'
+	 *        will trigger an error if $wgDevelopmentWarnings is true, and 'debug'
+	 *        will only write to the debug log(s).
+	 *
 	 * @return mixed
 	 */
-	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
+	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE, $log = 'auto' ) {
+		global $wgDevelopmentWarnings;
+
+		if ( $log === 'auto' && !$wgDevelopmentWarnings ) {
+			$log = 'debug';
+		}
+
+		if ( $log === 'debug' ) {
+			$level = false;
+		}
+
 		$callerDescription = self::getCallerDescription( $callerOffset );
 
 		self::sendWarning( $msg, $callerDescription, $level );
@@ -161,9 +176,9 @@ class MWDebug {
 	 * - MediaWiki's debug log, if $wgDevelopmentWarnings is set to false.
 	 *
 	 * @since 1.19
-	 * @param $function string: Function that is deprecated.
-	 * @param $version string|bool: Version in which the function was deprecated.
-	 * @param $component string|bool: Component to which the function belongs.
+	 * @param string $function Function that is deprecated.
+	 * @param string|bool $version Version in which the function was deprecated.
+	 * @param string|bool $component Component to which the function belongs.
 	 *     If false, it is assumbed the function is in MediaWiki core.
 	 * @param $callerOffset integer: How far up the callstack is the original
 	 *    caller. 2 = function that called the function that called
@@ -211,7 +226,8 @@ class MWDebug {
 		}
 
 		if ( $sendToLog ) {
-			self::sendWarning( $msg, $callerDescription, E_USER_DEPRECATED );
+			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
+			self::sendWarning( $msg, $callerDescription, $wgDevelopmentWarnings ? E_USER_DEPRECATED : false );
 		}
 
 		if ( self::$enabled ) {
@@ -266,23 +282,21 @@ class MWDebug {
 	}
 
 	/**
-	 * Send a warning either to the debug log or by triggering an user PHP
-	 * error depending on $wgDevelopmentWarnings.
+	 * Send a warning to the debug log and optionally also trigger a PHP
+	 * error, depending on the $level argument.
 	 *
 	 * @param $msg string Message to send
 	 * @param $caller array caller description get from getCallerDescription()
-	 * @param $level error level to use if $wgDevelopmentWarnings is true
+	 * @param $level int|bool error level to use; set to false to not trigger an error
 	 */
 	private static function sendWarning( $msg, $caller, $level ) {
-		global $wgDevelopmentWarnings;
-
 		$msg .= ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
 
-		if ( $wgDevelopmentWarnings ) {
+		if ( $level !== false ) {
 			trigger_error( $msg, $level );
-		} else {
-			wfDebug( "$msg\n" );
 		}
+
+		wfDebug( "$msg\n" );
 	}
 
 	/**
@@ -296,7 +310,7 @@ class MWDebug {
 		global $wgDebugComments, $wgShowDebug;
 
 		if ( self::$enabled || $wgDebugComments || $wgShowDebug ) {
-			self::$debug[] = rtrim( $str );
+			self::$debug[] = rtrim( UtfNormal::cleanUp( $str ) );
 		}
 	}
 
@@ -470,10 +484,10 @@ class MWDebug {
 		// output errors as debug info, when display_errors is on
 		// this is necessary for all non html output of the api, because that clears all errors first
 		$obContents = ob_get_contents();
-		if( $obContents ) {
+		if ( $obContents ) {
 			$obContentArray = explode( '<br />', $obContents );
-			foreach( $obContentArray as $obContent ) {
-				if( trim( $obContent ) ) {
+			foreach ( $obContentArray as $obContent ) {
+				if ( trim( $obContent ) ) {
 					self::debugMsg( Sanitizer::stripAllTags( $obContent ) );
 				}
 			}
@@ -484,7 +498,7 @@ class MWDebug {
 
 		$result->setIndexedTagName( $debugInfo, 'debuginfo' );
 		$result->setIndexedTagName( $debugInfo['log'], 'line' );
-		foreach( $debugInfo['debugLog'] as $index => $debugLogText ) {
+		foreach ( $debugInfo['debugLog'] as $index => $debugLogText ) {
 			$vals = array();
 			ApiResult::setContent( $vals, $debugLogText );
 			$debugInfo['debugLog'][$index] = $vals; //replace

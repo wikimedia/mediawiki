@@ -23,17 +23,18 @@ class FormOptionsTest extends MediaWikiTestCase {
 	protected $object;
 
 	/**
-	 * Instanciates a FormOptions object to play with.	 
+	 * Instanciates a FormOptions object to play with.
 	 * FormOptions::add() is tested by the class FormOptionsInitializationTest
 	 * so we assume the function is well tested already an use it to create
 	 * the fixture.
 	 */
 	protected function setUp() {
+		parent::setUp();
 		$this->object = new FormOptions;
 		$this->object->add( 'string1', 'string one' );
 		$this->object->add( 'string2', 'string two' );
-		$this->object->add( 'integer',  0 );
-		$this->object->add( 'intnull',  0, FormOptions::INTNULL );
+		$this->object->add( 'integer', 0 );
+		$this->object->add( 'intnull', 0, FormOptions::INTNULL );
 	}
 
 	/** Helpers for testGuessType() */
@@ -61,30 +62,30 @@ class FormOptionsTest extends MediaWikiTestCase {
 	 * Reuse helpers above assertGuessBoolean assertGuessInt assertGuessString
 	 */
 	public function testGuessTypeDetection() {
-		$this->assertGuessBoolean( true  );
+		$this->assertGuessBoolean( true );
 		$this->assertGuessBoolean( false );
 
-		$this->assertGuessInt(    0 );
-		$this->assertGuessInt(   -5 );
-		$this->assertGuessInt(    5 );
+		$this->assertGuessInt( 0 );
+		$this->assertGuessInt( -5 );
+		$this->assertGuessInt( 5 );
 		$this->assertGuessInt( 0x0F );
 
-		$this->assertGuessString( 'true'  );
-		$this->assertGuessString( 'false' ); 
-		$this->assertGuessString( '5'     ); 
-		$this->assertGuessString( '0'     ); 
+		$this->assertGuessString( 'true' );
+		$this->assertGuessString( 'false' );
+		$this->assertGuessString( '5' );
+		$this->assertGuessString( '0' );
 	}
 
 	/**
-	 * @expectedException MWException 
+	 * @expectedException MWException
 	 */
 	public function testGuessTypeOnArrayThrowException() {
-		$this->object->guessType( array( 'foo' ) ); 
+		$this->object->guessType( array( 'foo' ) );
 	}
 	/**
-	 * @expectedException MWException 
+	 * @expectedException MWException
 	 */
 	public function testGuessTypeOnNullThrowException() {
-		$this->object->guessType( null ); 
+		$this->object->guessType( null );
 	}
 }

@@ -28,6 +28,7 @@
 class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 
 	protected $language;
+	protected $targets = array( 'desktop', 'mobile' );
 	/**
 	 * Get the grammar forms for the site content language.
 	 *
@@ -47,22 +48,33 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	}
 
 	/**
+	 * Get the digit groupin Pattern for the site content language.
+	 *
+	 * @return array
+	 */
+	protected function getDigitGroupingPattern() {
+		return $this->language->digitGroupingPattern();
+	}
+
+	/**
 	 * Get the digit transform table for the content language
-	 * Seperator transform table also required here to convert
-	 * the . and , sign to appropriate forms in content language.
 	 *
 	 * @return array
 	 */
 	protected function getDigitTransformTable() {
-		$digitTransformTable = $this->language->digitTransformTable();
-		$separatorTransformTable = $this->language->separatorTransformTable();
-		if ( $digitTransformTable ) {
-			array_merge( $digitTransformTable, (array)$separatorTransformTable );
-		} else {
-			return $separatorTransformTable;
-		}
-		return $digitTransformTable;
+		return $this->language->digitTransformTable();
 	}
+
+	/**
+	 * Get seperator transform table required for converting
+	 * the . and , sign to appropriate forms in site content language.
+	 *
+	 * @return array
+	 */
+	protected function getSeparatorTransformTable() {
+		return $this->language->separatorTransformTable();
+	}
+
 
 	/**
 	 * Get all the dynamic data for the content language to an array
@@ -72,8 +84,10 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	protected function getData() {
 		return array(
 			'digitTransformTable' => $this->getDigitTransformTable(),
+			'separatorTransformTable' => $this->getSeparatorTransformTable(),
 			'grammarForms' => $this->getSiteLangGrammarForms(),
 			'pluralRules' => $this->getPluralRules(),
+			'digitGroupingPattern' => $this->getDigitGroupingPattern(),
 		);
 	}
 
@@ -94,7 +108,7 @@ class ResourceLoaderLanguageDataModule extends ResourceLoaderModule {
 	 * @return array|int|Mixed
 	 */
 	public function getModifiedTime( ResourceLoaderContext $context ) {
-		$this->language = Language::factory( $context ->getLanguage() );
+		$this->language = Language::factory( $context->getLanguage() );
 		$cache = wfGetCache( CACHE_ANYTHING );
 		$key = wfMemcKey( 'resourceloader', 'langdatamodule', 'changeinfo' );
 

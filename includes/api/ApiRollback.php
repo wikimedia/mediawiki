@@ -29,10 +29,6 @@
  */
 class ApiRollback extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	/**
 	 * @var Title
 	 */
@@ -185,7 +181,7 @@ class ApiRollback extends ApiBase {
 
 		$this->mTitleObj = Title::newFromText( $params['title'] );
 
-		if ( !$this->mTitleObj ) {
+		if ( !$this->mTitleObj || $this->mTitleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 		if ( !$this->mTitleObj->exists() ) {
@@ -204,9 +200,5 @@ class ApiRollback extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Rollback';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

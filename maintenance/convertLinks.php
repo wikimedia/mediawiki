@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to convert from the old links schema (string->ID)
@@ -80,9 +80,9 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 
 		# --------------------------------------------------------------------
 
-		list ( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
+		list( $cur, $links, $links_temp, $links_backup ) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
 
-		if( $dbw->tableExists( 'pagelinks' ) ) {
+		if ( $dbw->tableExists( 'pagelinks' ) ) {
 			$this->output( "...have pagelinks; skipping old links table updates\n" );
 			return;
 		}
@@ -177,15 +177,16 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 				}
 				$dbw->freeResult( $res );
 				# $this->output( "rowOffset: $rowOffset\ttuplesAdded: $tuplesAdded\tnumBadLinks: $numBadLinks\n" );
-				if ( $tuplesAdded != 0  ) {
+				if ( $tuplesAdded != 0 ) {
 					if ( $reportLinksConvProgress ) {
 						$this->output( "Inserting $tuplesAdded tuples into $links_temp..." );
 					}
 					$dbw->query( implode( "", $sqlWrite ) );
 					$totalTuplesInserted += $tuplesAdded;
-					if ( $reportLinksConvProgress )
+					if ( $reportLinksConvProgress ) {
 						$this->output( " done. Total $totalTuplesInserted tuples inserted.\n" );
-						$this->performanceLog( $fh, $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n"  );
+						$this->performanceLog( $fh, $totalTuplesInserted . " " . ( $this->getMicroTime() - $baseTime ) . "\n" );
+					}
 				}
 			}
 			$this->output( "$totalTuplesInserted valid titles and $numBadLinks invalid titles were processed.\n\n" );
@@ -258,4 +259,4 @@ This gives a huge speed improvement for very large links tables which are MyISAM
 }
 
 $maintClass = "ConvertLinks";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

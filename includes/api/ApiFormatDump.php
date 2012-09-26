@@ -30,10 +30,6 @@
  */
 class ApiFormatDump extends ApiFormatBase {
 
-	public function __construct( $main, $format ) {
-		parent::__construct( $main, $format );
-	}
-
 	public function getMimeType() {
 		// This looks like it should be text/plain, but IE7 is so
 		// brain-damaged it tries to parse text/plain as HTML if it
@@ -51,9 +47,5 @@ class ApiFormatDump extends ApiFormatBase {
 
 	public function getDescription() {
 		return 'Output data in PHP\'s var_dump() format' . parent::getDescription();
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

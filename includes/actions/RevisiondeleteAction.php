@@ -23,6 +23,11 @@
  * @author Alexandre Emsenhuber
  */
 
+/**
+ * An action that just pass the request to Special:RevisionDelete
+ *
+ * @ingroup Actions
+ */
 class RevisiondeleteAction extends FormlessAction {
 
 	public function getName() {

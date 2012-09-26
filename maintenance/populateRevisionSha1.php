@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that fills the rev_sha1 and ar_sha1 columns of revision
@@ -48,6 +48,9 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->error( "revision table does not exist", true );
 		} elseif ( !$db->tableExists( 'archive' ) ) {
 			$this->error( "archive table does not exist", true );
+		} elseif ( !$db->fieldExists( 'revision', 'rev_sha1', __METHOD__ ) ) {
+			$this->output( "rev_sha1 column does not exist\n\n", true );
+			return false;
 		}
 
 		$this->output( "Populating rev_sha1 column\n" );
@@ -143,14 +146,14 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$rev = ( $table === 'archive' )
 				? Revision::newFromArchiveRow( $row )
 				: new Revision( $row );
-			$text = $rev->getRawText();
+			$text = $rev->getSerializedData();
 		} catch ( MWException $e ) {
-			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 			return false; // bug 22624?
 		}
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 			return false;
 		} else {
 			$db->update( $table,
@@ -174,10 +177,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 			return false; // bug 22624?
 		}
-		$text = $rev->getRawText();
+		$text = $rev->getSerializedData();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 			return false;
 		} else {
 			# Archive table as no PK, but (NS,title,time) should be near unique.
@@ -186,9 +189,9 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 				array( 'ar_sha1' => Revision::base36Sha1( $text ) ),
 				array(
 					'ar_namespace' => $row->ar_namespace,
-					'ar_title'     => $row->ar_title,
+					'ar_title' => $row->ar_title,
 					'ar_timestamp' => $row->ar_timestamp,
-					'ar_len'       => $row->ar_len // extra sanity
+					'ar_len' => $row->ar_len // extra sanity
 				),
 				__METHOD__
 			);
@@ -198,4 +201,4 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "PopulateRevisionSha1";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -1,8 +1,8 @@
--- 
+--
 -- patch-indexes.sql
--- 
+--
 -- Fix up table indexes; new to stable release in November 2003
--- 
+--
 
 ALTER TABLE IF EXISTS /*$wgDBprefix*/links
    DROP INDEX l_from,

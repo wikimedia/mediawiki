@@ -17,10 +17,9 @@ class CSSJanusTest extends MediaWikiTestCase {
 
 			$transformedB = CSSJanus::transform( $cssB );
 			$this->assertEquals( $transformedB, $cssA, 'Test B-A transformation' );
-
-		// If no B version is provided, it means
-		// the output should equal the input.
 		} else {
+			// If no B version is provided, it means
+			// the output should equal the input.
 			$transformedA = CSSJanus::transform( $cssA );
 			$this->assertEquals( $transformedA, $cssA, 'Nothing was flipped' );
 		}
@@ -36,10 +35,11 @@ class CSSJanusTest extends MediaWikiTestCase {
 		$flipped = CSSJanus::transform( $code, $swapLtrRtlInURL, $swapLeftRightInURL );
 
 		$this->assertEquals( $expectedOutput, $flipped,
-			'Test flipping, options: url-ltr-rtl=' . ($swapLtrRtlInURL ? 'true' : 'false')
-				. ' url-left-right=' . ($swapLeftRightInURL ? 'true' : 'false')
+			'Test flipping, options: url-ltr-rtl=' . ( $swapLtrRtlInURL ? 'true' : 'false' )
+				. ' url-left-right=' . ( $swapLeftRightInURL ? 'true' : 'false' )
 		);
 	}
+
 	/**
 	 * @dataProvider provideTransformBrokenCases
 	 * @group Broken
@@ -54,7 +54,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * These transform cases are tested *in both directions*
 	 * No need to declare a principle twice in both directions here.
 	 */
-	function provideTransformCases() {
+	public static function provideTransformCases() {
 		return array(
 			// Property keys
 			array(
@@ -151,14 +151,11 @@ class CSSJanusTest extends MediaWikiTestCase {
 				'#settings td p strong'
 			),
 			array(
-				# Not sure how 4+ values should behave,
-				# testing to make sure changes are detected
-				'.foo { x-unknown: 1 2 3 4 5; }',
-				'.foo { x-unknown: 1 4 3 2 5; }',
+				// Do not mangle 5 or more values
+				'.foo { -x-unknown: 1 2 3 4 5; }'
 			),
 			array(
-				'.foo { x-unknown: 1 2 3 4 5 6; }',
-				'.foo { x-unknown: 1 4 3 2 5 6; }',
+				'.foo { -x-unknown: 1 2 3 4 5 6; }'
 			),
 
 			// Shorthand / Three notation
@@ -458,6 +455,16 @@ class CSSJanusTest extends MediaWikiTestCase {
 				".foo\t{\tleft\t:\t0;}",
 				".foo\t{\tright\t:\t0;}"
 			),
+
+			// Guard against partial keys
+			array(
+				'.foo { leftxx: 0; }',
+				'.foo { leftxx: 0; }'
+			),
+			array(
+				'.foo { rightxx: 0; }',
+				'.foo { rightxx: 0; }'
+			),
 		);
 	}
 
@@ -466,7 +473,7 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * If both ways can be tested, either put both versions in here or move
 	 * it to provideTransformCases().
 	 */
-	function provideTransformAdvancedCases() {
+	public static function provideTransformAdvancedCases() {
 		$bgPairs = array(
 			# [ - _ . ] <-> [ left right ltr rtl ]
 			'foo.jpg' => 'foo.jpg',
@@ -532,18 +539,8 @@ class CSSJanusTest extends MediaWikiTestCase {
 	 * Cases that are currently failing, but
 	 * should be looked at in the future as enhancements and/or bug fix
 	 */
-	function provideTransformBrokenCases() {
+	public static function provideTransformBrokenCases() {
 		return array(
-			// Guard against partial keys
-			array(
-				'.foo { leftxx: 0; }',
-				'.foo { leftxx: 0; }'
-			),
-			array(
-				'.foo { rightxx: 0; }',
-				'.foo { rightxx: 0; }'
-			),
-
 			// Guard against selectors that look flippable
 			array(
 				# <foo-left-x attr="x">

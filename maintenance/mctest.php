@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that  makes several 'set', 'incr' and 'get' requests
@@ -34,20 +34,34 @@ class mcTest extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Makes several 'set', 'incr' and 'get' requests on every"
-							  . " memcached server and shows a report";
+			. " memcached server and shows a report";
 		$this->addOption( 'i', 'Number of iterations', false, true );
+		$this->addOption( 'cache', 'Use servers from this $wgObjectCaches store', false, true );
 		$this->addArg( 'server[:port]', 'Memcached server to test, with optional port', false );
 	}
 
 	public function execute() {
-		global $wgMemCachedServers, $wgMemCachedTimeout;
+		global $wgMainCacheType, $wgMemCachedTimeout, $wgObjectCaches;
 
+		$cache = $this->getOption( 'cache' );
 		$iterations = $this->getOption( 'i', 100 );
-		if ( $this->hasArg() ) {
-			$wgMemCachedServers = array( $this->getArg() );
+		if ( $cache ) {
+			if ( !isset( $wgObjectCaches[$cache] ) ) {
+				$this->error( "MediaWiki isn't configured with a cache named '$cache'", 1 );
+			}
+			$servers = $wgObjectCaches[$cache]['servers'];
+		} elseif ( $this->hasArg() ) {
+			$servers = array( $this->getArg() );
+		} elseif ( $wgMainCacheType === CACHE_MEMCACHED ) {
+			global $wgMemCachedServers;
+			$servers = $wgMemCachedServers;
+		} elseif ( isset( $wgObjectCaches[$wgMainCacheType]['servers'] ) ) {
+			$servers = $wgObjectCaches[$wgMainCacheType]['servers'];
+		} else {
+			$this->error( "MediaWiki isn't configured for Memcached usage", 1 );
 		}
 
-		foreach ( $wgMemCachedServers as $server ) {
+		foreach ( $servers as $server ) {
 			$this->output( $server . " ", $server );
 			$mcc = new MemCachedClientforWiki( array(
 				'persistant' => true,
@@ -91,4 +105,4 @@ class mcTest extends Maintenance {
 }
 
 $maintClass = "mcTest";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

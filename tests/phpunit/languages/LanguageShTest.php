@@ -6,27 +6,31 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSh.php */
-class LanguageShTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'sh' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPlural */
+class LanguageShTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
-		$forms = array( 'one', 'many' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$forms = array( 'one', 'few', 'many', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
 			array( 'many', 0 ),
-			array( 'one',  1 ),
-			array( 'many', 2 ),
+			array( 'one', 1 ),
+			array( 'few', 2 ),
+			array( 'few', 4 ),
+			array( 'many', 5 ),
+			array( 'many', 10 ),
+			array( 'many', 11 ),
+			array( 'many', 12 ),
+			array( 'one', 101 ),
+			array( 'few', 102 ),
+			array( 'many', 111 ),
 		);
 	}
 }

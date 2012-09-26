@@ -1,57 +1,59 @@
 skin.txt
 
-MediaWiki's default skin is called Vector. Vector was introduced in
-the 1.16 release (2010) and has been set as the default in MediaWiki since
-the 1.17 release (2011). This replaced the popular skin, Monobook which
-had been been the default since MediaWiki 1.3 (2004). Vector is now the
-default skin on Wikimedia Projects.
+MediaWiki includes four core skins:
 
-There are three legacy skins which were introduced before MediaWiki 1.3:
+* Vector: The default skin. Introduced in the 1.16 release (2010), it has been
+  set as the default in MediaWiki since the 1.17 release (2011), replacing
+  Monobook.
 
-* Standard (a.k.a. Classic): The old default skin written by Lee Crocker 
-during the phase 3 rewrite, in 2002.
+* Monobook: Named after the black-and-white photo of a book in the page
+  background. Introduced in the 2004 release of 1.3, it had been been the
+  default skin since then, before being replaced by Vector.
 
-* Nostalgia: A skin which looks like Wikipedia did in its first year (2001). 
-This skin is now used for the old Wikipedia snapshot at
-http://nostalgia.wikipedia.org/
+* Modern: An attractive blue/grey theme with sidebar and top bar. Derived from
+  Monobook.
 
-* Cologne Blue: A nicer-looking alternative to Standard.
+* Cologne Blue: A lightweight skin with minimal formatting. The oldest of the
+  currently bundled skins, largely rewritten in 2012 while keeping its
+  appearance.
 
-The other skin that is widely used (and is the MediaWiki default before 1.17)
-is Monobook.
 
-* Monobook: Named after the black-and-white photo of a book, in the page background.
-This was introduced in the 2004 release of 1.3
+Several legacy skins were removed in the 1.22 release, as the burden of
+supporting them became too heavy to bear. Those were:
 
-And there are four Monobook-derived skins which have been introduced since 1.3:
+* Standard (a.k.a. Classic): The old default skin written by Lee Crocker during
+  the phase 3 rewrite, in 2002.
 
-* MySkin: Monobook without the CSS. The idea is that you customise it using user
-or site CSS (see below)
+* Nostalgia: A skin which looks like Wikipedia did in its first year (2001).
+  This skin is now used for the old Wikipedia snapshot at
+  http://nostalgia.wikipedia.org/
 
-* Chick: A lightweight Monobook skin with no sidebar, the sidebar links are
-given at the bottom of the page instead, as in the unstyled MySkin.
+* Chick: A lightweight Monobook skin with no sidebar. The sidebar links were
+  given at the bottom of the page instead.
 
-* Simple: A lightweight skin with a simple white-background sidebar and no
-top bar.
+* Simple: A lightweight skin with a simple white-background sidebar and no top
+  bar.
 
-* Modern: An attractive blue/grey theme with sidebar and top bar.
+* MySkin: Essentially Monobook without the CSS. The idea was that it could be
+  customised using user-specific or site-wide CSS (see below).
+
 
 == Custom CSS/JS ==
 
 It is possible to customise the site CSS and JavaScript without editing any
-source files. This is done by editing some pages on the wiki:
+server-side source files. This is done by editing some pages on the wiki:
 
 * [[MediaWiki:Common.css]] -- for skin-independent CSS
-* [[MediaWiki:Monobook.css]], [[MediaWiki:Simple.css]], etc. -- for
-skin-dependent CSS
-* [[MediaWiki:Common.js]], [[MediaWiki:Monobook.js]], etc. -- for custom
-site JavaScript
+* [[MediaWiki:Common.js]] -- for skin-independent JavaScript
+* [[MediaWiki:Vector.css]], [[MediaWiki:Monobook.css]], etc. -- for
+  skin-dependent CSS
+* [[MediaWiki:Vector.js]], [[MediaWiki:Monobook.js]], etc. -- for
+  skin-dependent JavaScript
 
 These can also be customised on a per-user basis, by editing
-[[User:<name>/monobook.css]], [[User:<name>/monobook.js]], etc.
+[[User:<name>/vector.css]], [[User:<name>/vector.js]], etc.
 
-This feature has led to a wide variety of "user styles" becoming available,
-which change the appearance of Monobook or MySkin:
+This feature has led to a wide variety of "user styles" becoming available:
 
 http://www.mediawiki.org/wiki/Manual:Gallery_of_user_styles
 
@@ -72,7 +74,7 @@ $wgSkipSkins[] = '<name>';
 
 This technique is used by the more ambitious MediaWiki site operators, to 
 create complex custom skins for their wikis. It should be preferred over 
-editing the core Monobook skin directly. 
+editing the core Monobook skin directly.
 
 See http://www.mediawiki.org/wiki/Manual:Skinning for more information.
 

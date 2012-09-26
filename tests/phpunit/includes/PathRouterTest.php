@@ -5,9 +5,10 @@
 
 class PathRouterTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
 		$router = new PathRouter;
-		$router->add("/wiki/$1");
+		$router->add( "/wiki/$1" );
 		$this->basicRouter = $router;
 	}
 
@@ -24,17 +25,17 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testLoose() {
 		$router = new PathRouter;
-		$router->add("/"); # Should be the same as "/$1"
+		$router->add( "/" ); # Should be the same as "/$1"
 		$matches = $router->parse( "/Foo" );
 		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
 
 		$router = new PathRouter;
-		$router->add("/wiki"); # Should be the same as /wiki/$1
+		$router->add( "/wiki" ); # Should be the same as /wiki/$1
 		$matches = $router->parse( "/wiki/Foo" );
 		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
 
 		$router = new PathRouter;
-		$router->add("/wiki/"); # Should be the same as /wiki/$1
+		$router->add( "/wiki/" ); # Should be the same as /wiki/$1
 		$matches = $router->parse( "/wiki/Foo" );
 		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
 	}
@@ -44,16 +45,16 @@ class PathRouterTest extends MediaWikiTestCase {
 	 */
 	public function testOrder() {
 		$router = new PathRouter;
-		$router->add("/$1");
-		$router->add("/a/$1");
-		$router->add("/b/$1");
+		$router->add( "/$1" );
+		$router->add( "/a/$1" );
+		$router->add( "/b/$1" );
 		$matches = $router->parse( "/a/Foo" );
 		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
 
 		$router = new PathRouter;
-		$router->add("/b/$1");
-		$router->add("/a/$1");
-		$router->add("/$1");
+		$router->add( "/b/$1" );
+		$router->add( "/a/$1" );
+		$router->add( "/$1" );
 		$matches = $router->parse( "/a/Foo" );
 		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
 	}
@@ -150,18 +151,20 @@ class PathRouterTest extends MediaWikiTestCase {
 		$router->add( array( 'qwerty' => "/qwerty/$1" ), array( 'qwerty' => '$key' ) );
 		$router->add( "/$2/$1", array( 'restricted-to-y' => '$2' ), array( '$2' => 'y' ) );
 
-		foreach( array(
-			"/Foo" => array( 'title' => "Foo" ),
-			"/Bar" => array( 'ping' => 'pong' ),
-			"/Baz" => array( 'marco' => 'polo' ),
-			"/asdf-foo" => array( 'title' => "qwerty-foo" ),
-			"/qwerty-bar" => array( 'title' => "asdf-bar" ),
-			"/a/Foo" => array( 'title' => "Foo" ),
-			"/asdf/Foo" => array( 'title' => "Foo" ),
-			"/qwerty/Foo" => array( 'title' => "Foo", 'qwerty' => 'qwerty' ),
-			"/baz/Foo" => array( 'title' => "Foo", 'unrestricted' => 'baz' ),
-			"/y/Foo" => array( 'title' => "Foo", 'restricted-to-y' => 'y' ),
-		) as $path => $result ) {
+		foreach (
+			array(
+				'/Foo' => array( 'title' => 'Foo' ),
+				'/Bar' => array( 'ping' => 'pong' ),
+				'/Baz' => array( 'marco' => 'polo' ),
+				'/asdf-foo' => array( 'title' => 'qwerty-foo' ),
+				'/qwerty-bar' => array( 'title' => 'asdf-bar' ),
+				'/a/Foo' => array( 'title' => 'Foo' ),
+				'/asdf/Foo' => array( 'title' => 'Foo' ),
+				'/qwerty/Foo' => array( 'title' => 'Foo', 'qwerty' => 'qwerty' ),
+				'/baz/Foo' => array( 'title' => 'Foo', 'unrestricted' => 'baz' ),
+				'/y/Foo' => array( 'title' => 'Foo', 'restricted-to-y' => 'y' ),
+			) as $path => $result
+		) {
 			$this->assertEquals( $router->parse( $path ), $result );
 		}
 	}
@@ -182,7 +185,7 @@ class PathRouterTest extends MediaWikiTestCase {
 		$this->assertEquals( $matches, array( 'title' => "Title_With Space" ) );
 	}
 
-	public function dataRegexpChars() {
+	public static function provideRegexpChars() {
 		return array(
 			array( "$" ),
 			array( "$1" ),
@@ -193,7 +196,7 @@ class PathRouterTest extends MediaWikiTestCase {
 
 	/**
 	 * Make sure the router doesn't break on special characters like $ used in regexp replacements
-	 * @dataProvider dataRegexpChars
+	 * @dataProvider provideRegexpChars
 	 */
 	public function testRegexpChars( $char ) {
 		$matches = $this->basicRouter->parse( "/wiki/$char" );
@@ -250,5 +253,4 @@ class PathRouterTest extends MediaWikiTestCase {
 		$matches = $router->parse( "/wiki/Foo" );
 		$this->assertEquals( $matches, array( 'title' => 'bar%20$1' ) );
 	}
-
 }
