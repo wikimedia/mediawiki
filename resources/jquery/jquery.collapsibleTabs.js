@@ -70,7 +70,10 @@
 			}
 			return $settings;
 		},
-		handleResize: function ( e ) {
+		/**
+		 * @param {jQuery.Event} e
+		 */
+		handleResize: function () {
 			$.collapsibleTabs.instances.each( function () {
 				var $el = $( this ),
 					data = $.collapsibleTabs.getSettings( $el );

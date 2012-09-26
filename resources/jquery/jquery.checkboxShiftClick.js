@@ -1,14 +1,16 @@
 /**
  * jQuery checkboxShiftClick
  *
- * This will enable checkboxes to be checked or unchecked in a row by clicking one, holding shift and clicking another one
+ * This will enable checkboxes to be checked or unchecked in a row by clicking one,
+ * holding shift and clicking another one.
  *
- * @author Krinkle <krinklemail@gmail.com>
+ * @author Timo Tijhof, 2011 - 2012
  * @license GPL v2
  */
 ( function ( $ ) {
-	$.fn.checkboxShiftClick = function ( text ) {
-		var prevCheckbox = null, $box = this;
+	$.fn.checkboxShiftClick = function () {
+		var prevCheckbox = null,
+			$box = this;
 		// When our boxes are clicked..
 		$box.click( function ( e ) {
 			// And one has been clicked before...

@@ -3,7 +3,7 @@
  */
 
 var mw = ( function ( $, undefined ) {
-	"use strict";
+	'use strict';
 
 	/* Private Members */
 
@@ -290,14 +290,14 @@ var mw = ( function ( $, undefined ) {
 		 * Gets a message object, similar to wfMessage()
 		 *
 		 * @param key string Key of message to get
-		 * @param parameter_1 mixed First argument in a list of variadic arguments,
+		 * @param parameter1 mixed First argument in a list of variadic arguments,
 		 *  each a parameter for $N replacement in messages.
 		 * @return Message
 		 */
-		message: function ( key, parameter_1 /* [, parameter_2] */ ) {
+		message: function ( key, parameter1 ) {
 			var parameters;
 			// Support variadic arguments
-			if ( parameter_1 !== undefined ) {
+			if ( parameter1 !== undefined ) {
 				parameters = slice.call( arguments );
 				parameters.shift();
 			} else {
@@ -473,32 +473,14 @@ var mw = ( function ( $, undefined ) {
 				}
 			}
 
-			function compare( a, b ) {
-				var i;
-				if ( a.length !== b.length ) {
-					return false;
-				}
-				for ( i = 0; i < b.length; i += 1 ) {
-					if ( $.isArray( a[i] ) ) {
-						if ( !compare( a[i], b[i] ) ) {
-							return false;
-						}
-					}
-					if ( a[i] !== b[i] ) {
-						return false;
-					}
-				}
-				return true;
-			}
-
 			/**
 			 * Generates an ISO8601 "basic" string from a UNIX timestamp
 			 */
 			function formatVersionNumber( timestamp ) {
-				var	pad = function ( a, b, c ) {
-						return [a < 10 ? '0' + a : a, b < 10 ? '0' + b : b, c < 10 ? '0' + c : c].join( '' );
-					},
-					d = new Date();
+				var	d = new Date();
+				function pad( a, b, c ) {
+					return [a < 10 ? '0' + a : a, b < 10 ? '0' + b : b, c < 10 ? '0' + c : c].join( '' );
+				}
 				d.setTime( timestamp * 1000 );
 				return [
 					pad( d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate() ), 'T',
@@ -712,7 +694,7 @@ var mw = ( function ( $, undefined ) {
 						j -= 1;
 						try {
 							if ( hasErrors ) {
-								throw new Error ("Module " + module + " failed.");
+								throw new Error( 'Module ' + module + ' failed.');
 							} else {
 								if ( $.isFunction( job.ready ) ) {
 									job.ready();
@@ -957,7 +939,7 @@ var mw = ( function ( $, undefined ) {
 			 *  document ready has not yet occurred
 			 */
 			function request( dependencies, ready, error, async ) {
-				var regItemDeps, regItemDepLen, n;
+				var n;
 
 				// Allow calling by single module name
 				if ( typeof dependencies === 'string' ) {
@@ -1029,7 +1011,7 @@ var mw = ( function ( $, undefined ) {
 			 */
 			function doRequest( moduleMap, currReqBase, sourceLoadScript, async ) {
 				var request = $.extend(
-					{ 'modules': buildModulesString( moduleMap ) },
+					{ modules: buildModulesString( moduleMap ) },
 					currReqBase
 				);
 				request = sortQuery( request );
@@ -1126,7 +1108,7 @@ var mw = ( function ( $, undefined ) {
 
 							currReqBase = $.extend( { version: formatVersionNumber( maxVersion ) }, reqBase );
 							// For user modules append a user name to the request.
-							if ( group === "user" && mw.config.get( 'wgUserName' ) !== null ) {
+							if ( group === 'user' && mw.config.get( 'wgUserName' ) !== null ) {
 								currReqBase.user = mw.config.get( 'wgUserName' );
 							}
 							currReqBaseLength = $.param( currReqBase ).length;
@@ -1513,7 +1495,7 @@ var mw = ( function ( $, undefined ) {
 		html: ( function () {
 			function escapeCallback( s ) {
 				switch ( s ) {
-					case "'":
+					case '\'':
 						return '&#039;';
 					case '"':
 						return '&quot;';
