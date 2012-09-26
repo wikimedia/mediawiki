@@ -28,7 +28,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script for periodic off-peak updating of the search index.
@@ -60,7 +60,7 @@ class UpdateSearchIndex extends Maintenance {
 			# We can safely delete the file when we're done though.
 			$start = file_get_contents( 'searchUpdate.pos' );
 			unlink( 'searchUpdate.pos' );
-		} elseif( is_readable( $posFile ) ) {
+		} elseif ( is_readable( $posFile ) ) {
 			$start = file_get_contents( $posFile );
 		} else {
 			$start = wfTimestamp( TS_MW, time() - 86400 );
@@ -96,10 +96,9 @@ class UpdateSearchIndex extends Maintenance {
 		$end = $dbw->timestamp( $end );
 
 		$page = $dbw->tableName( 'page' );
-		$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM $recentchanges
-		  JOIN $page ON rc_cur_id=page_id AND rc_this_oldid=page_latest
-		  WHERE rc_timestamp BETWEEN '$start' AND '$end'
-		  ";
+		$sql = "SELECT rc_cur_id FROM $recentchanges
+			JOIN $page ON rc_cur_id=page_id AND rc_this_oldid=page_latest
+			WHERE rc_type != " . RC_LOG . " AND rc_timestamp BETWEEN '$start' AND '$end'";
 		$res = $dbw->query( $sql, __METHOD__ );
 
 		$this->updateSearchIndex( $maxLockTime, array( $this, 'searchIndexUpdateCallback' ), $dbw, $res );
@@ -108,19 +107,9 @@ class UpdateSearchIndex extends Maintenance {
 	}
 
 	public function searchIndexUpdateCallback( $dbw, $row ) {
-		if ( $row->rc_type == RC_MOVE || $row->rc_type == RC_MOVE_OVER_REDIRECT ) {
-			# Rename searchindex entry
-			$titleObj = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );
-			$title = $titleObj->getPrefixedDBkey();
-			$this->output( "$title..." );
-			$u = new SearchUpdate( $row->rc_cur_id, $title, false );
-			$u->doUpdate();
-			$this->output( "\n" );
-		} elseif ( $row->rc_type !== RC_LOG ) {
-			$this->updateSearchIndexForPage( $dbw, $row->rc_cur_id );
-		}
+		$this->updateSearchIndexForPage( $dbw, $row->rc_cur_id );
 	}
 }
 
 $maintClass = "UpdateSearchIndex";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

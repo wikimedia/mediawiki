@@ -6,50 +6,46 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSgs.php */
-class LanguageSgsTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'Sgs' );
-	}
-	function tearDown() {
-		unset( $this->lang );
+class LanguageSgsTest extends LanguageClassesTestCase {
+	/** @dataProvider providePluralAllForms */
+	function testPluralAllForms( $result, $value ) {
+		$forms = array( 'one', 'two', 'few', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	/** @dataProvider providePluralAllForms */
-	function testPluralAllForms( $result, $value ) {
-		$forms = array( 'one', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePluralAllForms() {
-		return array (
-			array( 'many',  0 ),
-			array( 'one',   1 ),
-			array( 'few',   2 ),
+	public static function providePluralAllForms() {
+		return array(
+			array( 'few', 0 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
 			array( 'other', 3 ),
-			array( 'many',  10 ),
-			array( 'many',  11 ),
-			array( 'many',  12 ),
-			array( 'many',  19 ),
+			array( 'few', 10 ),
+			array( 'few', 11 ),
+			array( 'few', 12 ),
+			array( 'few', 19 ),
 			array( 'other', 20 ),
-			array( 'many',  100 ),
-			array( 'one',   101 ),
-			array( 'many',  111 ),
-			array( 'many',  112 ),
+			array( 'few', 100 ),
+			array( 'one', 101 ),
+			array( 'few', 111 ),
+			array( 'few', 112 ),
 		);
 	}
 
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
-		$forms =  array( 'one', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$forms = array( 'one', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providePluralTwoForms() {
-		return array (
+	public static function providePluralTwoForms() {
+		return array(
 			array( 'other', 0 ),
-			array( 'one',   1 ),
+			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 3 ),
 			array( 'other', 10 ),
@@ -58,7 +54,7 @@ class LanguageSgsTest extends MediaWikiTestCase {
 			array( 'other', 19 ),
 			array( 'other', 20 ),
 			array( 'other', 100 ),
-			array( 'one',   101 ),
+			array( 'one', 101 ),
 			array( 'other', 111 ),
 			array( 'other', 112 ),
 		);

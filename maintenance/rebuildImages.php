@@ -30,7 +30,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to update image metadata records.
@@ -217,4 +217,4 @@ class ImageBuilder extends Maintenance {
 }
 
 $maintClass = 'ImageBuilder';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

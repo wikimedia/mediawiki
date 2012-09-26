@@ -80,7 +80,6 @@ $magicWords = array(
 	'forcetoc'                  => array( '0', '__بافهرست__', '__FORCETOC__' ),
 	'toc'                       => array( '0', '__فهرست__', '__TOC__' ),
 	'noeditsection'             => array( '0', '__بی‌بخش__', '__NOEDITSECTION__' ),
-	'noheader'                  => array( '0', 'بی‌عنوان__', '__بی‌عنوان__', '__NOHEADER__' ),
 	'currentmonth'              => array( '1', 'ماه', 'ماه‌کنونی', 'ماه_کنونی', 'ماه‌کنونی۲', 'ماه_اسایی۲', 'ماه_کنونی۲', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'             => array( '1', 'ماه۱', 'ماه‌کنونی۱', 'ماه_کنونی۱', 'CURRENTMONTH1' ),
 	'currentmonthname'          => array( '1', 'نام‌ماه', 'نام_ماه', 'نام‌ماه‌کنونی', 'نام_ماه_کنونی', 'CURRENTMONTHNAME' ),
@@ -157,8 +156,6 @@ $messages = array(
 'tog-shownumberswatching' => 'دمبالکرونِ سِراق هدائن',
 'tog-oldsig' => 'پیش نیمایش ایمضای موجود:',
 'tog-fancysig' => 'ایمضا ره ویکی متن نظر بیرین (بدون لینک هایتن)',
-'tog-externaleditor' => 'به شیکل پیش فرض خارجی ویرایشگرون جه ایستیفاده بواشه',
-'tog-externaldiff' => 'ایستیفاده از تفاوت‌گیر جه (diff) خارجی به‌طور پیش‌فرض.',
 'tog-showjumplinks' => 'فعال هکردن بپرسنی پیوندون مندرجات فهرست دله',
 'tog-uselivepreview' => 'ایستیفاده از پیش نیمایش زنده (جاوا اسکریپ) (جدیده)',
 'tog-forceeditsummary' => 'زمونی که خولاصه دچی‌ین ره ننویشتمه مه ره بائو',
@@ -198,31 +195,31 @@ $messages = array(
 'wed' => 'چارشنبه',
 'thu' => 'پنجشنبه',
 'fri' => 'جـومه',
-'sat' => 'شه‌مه',
-'january' => 'جـانـویـه',
-'february' => 'فـه‌وریـه',
-'march' => 'مـارچ',
+'sat' => 'شمبه',
+'january' => 'ژانویه',
+'february' => 'فوریه',
+'march' => 'مارس',
 'april' => 'آوریل',
 'may_long' => 'مه',
 'june' => 'ژوئن',
-'july' => 'جـولای',
+'july' => 'ژوئیه',
 'august' => 'ئـوگـه‌سـت',
 'september' => 'سـه‌پـتـه‌مـبـر',
-'october' => 'ئـوکـتـوبـر',
+'october' => 'اکتبر',
 'november' => 'نـووه‌مـبـر',
-'december' => 'ده‌سـه‌مـبـر',
-'january-gen' => 'جـانـویـه',
-'february-gen' => 'فـه‌وریـه',
+'december' => 'دسامبر',
+'january-gen' => 'ژانویه',
+'february-gen' => 'فوریه',
 'march-gen' => 'مـارس',
 'april-gen' => 'آوریـل',
 'may-gen' => 'مه',
 'june-gen' => 'جـون',
-'july-gen' => 'جـولای',
+'july-gen' => 'ژوئیه',
 'august-gen' => 'ئوگـه‌سـت',
 'september-gen' => 'سـه‌پـتـه‌مـبـر',
-'october-gen' => 'ئـوکـتـوبـر',
+'october-gen' => 'اکتبر',
 'november-gen' => 'نـووه‌مـبـر',
-'december-gen' => 'ده‌سـه‌مـبـر',
+'december-gen' => 'دسامبر',
 'jan' => 'جانویه',
 'feb' => 'فه‌وریه',
 'mar' => 'مارچ',
@@ -234,7 +231,7 @@ $messages = array(
 'sep' => 'سه‌پته‌مبر',
 'oct' => 'ئوکتوبر',
 'nov' => 'نووه‌مبر',
-'dec' => 'ده‌سه‌مبر',
+'dec' => 'دسامبر',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|رج|رج‌ئون}}',
@@ -248,6 +245,8 @@ $messages = array(
 'category-subcat-count-limited' => 'اینتا رج {{PLURAL:$1|اتا زیر رج|$1 زبررج}} ره شامل بونه.',
 'category-article-count' => '{{PLURAL:$2|این رج همینتا صفحه ره دانّه.|ای  {{PLURAL:$1صفحه|صفحه|$1 ئون}}، $2 جه اینجه دَرنه.}}',
 'category-article-count-limited' => '{{PLURAL:$1|صفحهٔ|$1 صفحهٔ}} که این بن درنه اینتا رج دله قرار هایتنه.',
+'category-file-count' => '{{PLURAL:$2|این رج دله فقط همینتا عکس دره.|{{PLURAL:$1|این اتا پرونده|این $1تا پرونده}} این رج دله {{PLURAL:$1|دره|درنه}}؛ این رج کلاً $2تا پرونده دانّه.}}',
+'category-file-count-limited' => '{{PLURAL:$1|پرونده|$1 پرونده}} این رج دله درنه.',
 'listingcontinuesabbrev' => '(دمباله)',
 'index-category' => 'صفحه‌ئون نمایه بَیی',
 'noindex-category' => 'صفحه‌ئون نمایه نَیی',
@@ -269,7 +268,6 @@ $messages = array(
 'qbbrowse' => 'چأرخه‌سه‌ن',
 'qbedit' => 'دچی‌ین',
 'qbpageoptions' => 'این صفحه',
-'qbpageinfo' => 'بافت',
 'qbmyoptions' => 'مه صفحه‌ئون',
 'qbspecialpages' => 'شا صفحه‌ئون',
 'faq' => 'معمولی سوالا',
@@ -361,7 +359,6 @@ $2، $1',
 'disclaimers' => 'تکذیب‌نومه‌ئون',
 'disclaimerpage' => 'Project:تکذیب‌نومه',
 'edithelp' => 'دچی‌ین رانما',
-'edithelppage' => 'Help:دَچی‌ین',
 'helppage' => 'Help:راهنما',
 'mainpage' => 'گت صفحه',
 'mainpage-description' => 'گت صفحه',
@@ -384,7 +381,11 @@ $2، $1',
 'youhavenewmessages' => 'شما اتا $1 دانّی ($2).',
 'newmessageslink' => 'ترنه پیغوم‌ئون',
 'newmessagesdifflink' => 'پایانی دچی‌یه',
-'youhavenewmessagesmulti' => 'شه مه وسه ترنه پیغوم بی یه موئه ای جه $1',
+'youhavenewmessagesfromusers' => 'شِما {{PLURAL:$3| کارور دیگه| $3  کارور}} $1 دارنی ($2).',
+'youhavenewmessagesmanyusers' => 'شما ات‌سری کارور جه $1 دارنی ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ترنه پیغوم|ترنه پیغوم}}',
+'newmessagesdifflinkplural' => '{{formatnum:$1}} {{PLURAL:$1|ترنه دچی‌یه|ترنه دچی‌یه‌ئون}}',
+'youhavenewmessagesmulti' => 'شِمه وسّه $1 دله، ترنه پیغوم برسی‌یه.',
 'editsection' => 'دچی‌ین',
 'editold' => 'دچی‌ین',
 'viewsourceold' => 'منبع ره هارشائن',
@@ -392,7 +393,7 @@ $2، $1',
 'viewsourcelink' => 'منبع بدی‌ین',
 'editsectionhint' => 'تیکه: $1 ره دچی‌ین',
 'toc' => 'دله',
-'showtoc' => 'نشون هاده',
+'showtoc' => 'سِراق هاده',
 'hidetoc' => 'فرو بور',
 'collapsible-collapse' => 'دوستن',
 'collapsible-expand' => 'گت هاکردن',
@@ -451,7 +452,16 @@ $2، $1',
 'laggedslavemode' => "'''هشدار:''' صفحه ممکن هسته که جدید ِبه‌روزرسانی‌ئون ره شامل نواشه.",
 'readonly' => 'پایگاه داده زلفن بزه‎بیّه',
 'enterlockreason' => 'دلیلی زلفین بزوئن وسّه بارین، که حاوی تقریبی از زمونی بائه که زلفین بَیته وانه',
-'missingarticle-rev' => '(نسخهٔ شماره: $1)',
+'readonlytext' => 'داده پایگاه هنتا دچی‌ین و صفحه‌ئون بساتن وسّه زلفن بَیی‌ئه؛ این وضعیت احتمالاً معمولی رسیدگیون وسّه هسته که این کارون په، عادی وانه.
+
+مدیری که اینان ره زلفن هاکرده این توضیح ره شمه وسّه بنویشته: $1',
+'missing-article' => 'داده پایگاه صفحه «$1» $2 بنویشته ره که وسّه پیدا هاکرد بوو، پیدا نکارده.
+
+این مشکل معمولاً اون گادِر پیش انه که شمه بخاستی چیون اتا قدیمی یا حذف بَیی تاریخچه‌ی تفاوت بوئن.
+
+اگه غیر این هسته، احتمالاً نرم‌افزار دله موشکل پیدا بیّه.
+این مشکل ره اینترنتی نشونی همراه اتا [[Special:ListUsers/sysop|مدیر]] وسّه برسِنین.',
+'missingarticle-rev' => '(نسخه‌ی شماره: $1)',
 'missingarticle-diff' => '(فرق: $1، $2)',
 'readonly_lag' => 'پایگاه داده به طور خودکار زلفین بزه‌بیّه تا پشتیبون ِنسخه‌ئون با اصلی نسخه هماهنگ بواشِن',
 'internalerror' => 'خطای دله‌یی',
@@ -469,26 +479,33 @@ $2، $1',
 'badarticleerror' => 'ننشنه این کار ره این صفحه دله هاکردن.',
 'cannotdelete' => 'صفحه یا تصویر «$1» ره ننشنه پاک هاکردن.
 ممکنه قبلاً فرد دیگری وه ره پاک هاکردبوئه.',
-'badtitle' => 'نقش عنوان',
-'perfcached' => 'داده‌ئون زیر حافظهٔ موقت جه بَییته بَینه و ممکن هسته کاملاً به‌روز نوائن. A maximum of {{PLURAL:$1|one result is|$1 results are}} available in the cache.',
+'cannotdelete-title' => 'نشنه «$1» ره پاک هاکردِن',
+'delete-hook-aborted' => 'قلاب نتونده حذف هاکنه.
+اینتا وسّه دلیل ننویشتنه.',
+'badtitle' => 'نخاشِ عنوان',
+'badtitletext' => 'بخاستی عنوان نامعتبر، خالی یا میون‌زوونی عنوان یا میون‌ویکیی غلط لینک جه بی‌یه.
+ممکنه ونه دله اتا یا چنتا چی بنویش بو که نَونه عنوان دله بئه.',
+'perfcached' => 'این چیون ثبت بَیی حافظه جه انّه و ممکنه آپدیت نَوائن. حداکثر {{PLURAL:$1|اتا نتیجه|$1تا نتیجه}} قدیمی حافظه دله دره.',
+'querypage-no-updates' => 'این صفحه فعلاً نَونه آپدیت بَواشه.
+همینسه ونه دله بنویشته‌ئون شاید قدیمی بائن.',
 'wrong_wfQuery_params' => 'پارامترون wfQuery()‎ غلطه<br />
 تابع: $1<br />
 پرس‌وجو: $2',
 'viewsource' => 'منبع ره بدی‌ین',
+'viewsource-title' => '$1 مبدأ ره سِراق هدائِن',
 'actionthrottled' => 'شمه پیش ره بیتنه',
 'protectedpagetext' => 'این صفحه دچی‌ین وسّه زلفین بزه بیّه.',
 'viewsourcetext' => 'بتونّی متن مبدأ این صفحه ره هارشین یا ونجه نسخه بَیرین:',
+'viewyourtext' => "بتونّی '''شه بنویشته چیون''' مبدأ ره این صفحه دله هارشین و کپی هاکنین:",
 'protectedinterface' => 'این صفحه ارائه‌دهندهٔ متنی واسط کارور این نرم‌افزار هسته و به منظور پیشگیری از خرابکاری زلفین بزه‌بیّه.',
 'sqlhidden' => '(دستور اس‌کیوال دپوشنی‌یه بیّه)',
 
 # Login and logout pages
-'welcomecreation' => '==$1، خِش بمونی!==
-شِمه حساب بساته بیّه.
-فراموش نکانین که [[Special:Preferences|شه ترجیحات {{SITENAME}}]] ره تنظیم هاکنین.',
 'yourname' => 'شمه کاروری‌نوم:',
 'yourpassword' => 'شمه پسورد',
 'yourpasswordagain' => 'پسورد ره دِباره بنویس',
 'remembermypassword' => 'مه رمز ره (تا حداکثر $1 {{PLURAL:$1|روز|روز}}) این مرورگر سر یاد نکان',
+'securelogin-stick-https' => 'HTTPS دله بموئن په، متصل بموند',
 'yourdomainname' => 'شمه کاروری نوم',
 'login' => 'دله بوردن',
 'nav-login-createaccount' => 'دله بوردن / عضو بیّن',
@@ -503,7 +520,8 @@ $2، $1',
 'createaccount' => 'ترنه حساب وا هکاردن',
 'gotaccount' => 'عضو هسنی؟ $1.',
 'gotaccountlink' => 'بورین دله',
-'createaccountmail' => 'ایمیل ِهمراه',
+'userlogin-resetlink' => 'دله بموئن ِجزئیات ره یاد هاکردی؟',
+'createaccountmail' => 'ایمیل جه',
 'createaccountreason' => 'دلیل:',
 'badretype' => 'دِتا پسوردی که بنویشتی اتجور نینه',
 'userexists' => 'کاروری نومی که بخاستنی وجود داشته.
@@ -523,6 +541,18 @@ $2، $1',
 # Change password dialog
 'newpassword' => 'نو پسورد:',
 
+# Special:PasswordReset
+'passwordreset-username' => 'کاروری نوم:',
+'passwordreset-domain' => 'دامنه:',
+'passwordreset-capture' => 'گت ایمیل سِراق هدائه بَواشه؟',
+
+# Special:ChangeEmail
+'changeemail-oldemail' => 'اساء ایمیل:',
+'changeemail-newemail' => 'ترنه ایمیل آدرس:',
+'changeemail-none' => '(هچّی)',
+'changeemail-submit' => 'ایمیل ره عوض هاکردن',
+'changeemail-cancel' => 'ول هاکردن',
+
 # Edit page toolbar
 'bold_sample' => 'ضخیم',
 'bold_tip' => 'ضخیم',
@@ -536,18 +566,28 @@ $2، $1',
 'headline_tip' => 'عنوان بند ۲',
 'nowiki_sample' => 'شه بی فورمت بنویشته ره اینجه دکانین',
 'nowiki_tip' => 'فورمت سر چش ره کوریک بَیره',
-'media_tip' => 'فایل لینک',
+'image_tip' => 'بنویشته‌ی دله‌ی عکس',
+'media_tip' => 'فایل ِلینک',
+'sig_tip' => 'شمه امضا و ونه په‌ی ِتاریخ',
+'hr_tip' => 'افقی خط (ونه کمته کار بکشین)',
 
 # Edit pages
-'summary' => 'گوزارش کار:',
+'summary' => 'کار ِگزارش:',
 'subject' => 'موضوع یا عنوان:',
-'minoredit' => 'اینتا ویرایش خله جزئی بیه',
-'watchthis' => 'این صفحه ره دمبال هـاکاردن',
+'minoredit' => 'اینتا دچی‌یه خله جزئی بی‌یه',
+'watchthis' => 'این صفحه ره دمبال هاکردن',
 'savearticle' => 'جادکتن ِصفحه',
-'preview' => 'پیش نمایش',
-'showpreview' => 'پیش‌نمایش ره سِراق هدائن',
-'showlivepreview' => 'پیش‌نمایش آنلاین',
-'showdiff' => 'نمایش تغییرات',
+'preview' => 'پیش‌پیش سِراق هدائن',
+'showpreview' => 'پیش‌پیش سِراق هدائن',
+'showlivepreview' => 'آنلاین پیش‌پیش سِراق هدائن',
+'showdiff' => 'تغییرات ِسراق هدائن',
+'anoneditwarning' => "'''هشدار:''' شِما هنتا عضو نَیینی.
+شمه آی‌پی آدرِس تاریخچه دله موندنه.",
+'anonpreviewwarning' => "''شما هنتا عضو نَیینی، اگه اتچی بنویسین، شمه آی‌پی ِلینگِ‌رج اینجه موندنه.''",
+'missingcommenttext' => 'ات‌چی اینجه بنویسین که شمه توضیح بوو',
+'summary-preview' => 'خلاصه‌ی پیش‌پیش سِراق هدائن:',
+'subject-preview' => 'موضوع/عنوان ِپیش‌پیش سِراق هدائن:',
+'blockedtitle' => 'کارور دَوسته بیّه',
 'blockedtext' => "'''شمه آی پی دوسته بیّه.'''
 
 این کار ره $1 انجام هدائه.
@@ -562,6 +602,13 @@ $2، $1',
  شمه یاد دواشه که اگه شه ایمیل ره ننوشت بائین نتونی مدیرا وسه ایمیل بزنین اگه ایمیل ره ننوشنی ترجیحات دله بنویسین[[Special:Preferences|اینجه ایمیل ره بنویس]]
 نشونی آی‌پی شما $3 و شماره قطع دسترسی شما $5 هسته. حتما این دِتا شوماره ره گپ بزوئن دله به کار بورین.",
 'blockednoreason' => 'معلوم نی‌یه چچی وسه اینتی بیّه!',
+'loginreqtitle' => 'ونه سامانه دله بئین',
+'loginreqlink' => 'دله بموئن',
+'loginreqpagetext' => 'بقیه‌ی صفحه‌ئون ِبدی‌ین وسّه، ونه $1.',
+'accmailtitle' => 'پسورد ره برسِنیمی.',
+'accmailtext' => "اتا تصادفی پسور بساته بیّه [[User talk:$1|$1]] وسّه $2 سَر برسِنی‌یه بیّه.
+
+این ترنه کاروری حساب ِپسور، سامانه دله بموئن په، ''[[Special:ChangePassword|ات‌تی]]'' بتونده عوض بوو.",
 'newarticle' => '(ترنه)',
 'blocked-notice-logextract' => 'دسترسی اینتا کارور الآن دوستوئه.
 آخرین مورد سیاهه قطع دسترسی زیر بموئه:',
@@ -628,8 +675,6 @@ $2، $1',
 'search-suggest' => 'شما اینتا ره نخاسنی: $1',
 'search-interwiki-caption' => 'خاخر پروژه‌ئون',
 'search-interwiki-more' => '(ویشتر)',
-'search-mwsuggest-enabled' => 'پیشنهاد همرا',
-'search-mwsuggest-disabled' => 'هیچ پیشنهادی دنیه',
 'powersearch' => 'ململ بَیی دور هایتن',
 'powersearch-legend' => 'ململ بَیی دور هایتن',
 'powersearch-ns' => 'بچرخستن اینان دله:',
@@ -663,7 +708,6 @@ $2، $1',
 # User rights log
 'rightslog' => 'سیاهه اختیارای کاروری',
 'rightslogtext' => 'اینتا سیاهه تغییرای اختیارای کاروری هسته.',
-'rightsnone' => '(هچّی)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'این صفحه ره دچی‌ین',
@@ -787,7 +831,7 @@ $2، $1',
 # Special:ListGroupRights
 'listgrouprights-members' => '(کارورون لیست)',
 
-# E-mail user
+# Email user
 'mailnologintext' => 'برای برسنی‌ین پوست الکترونیکی به کارورون دیگه ونه [[Special:UserLogin|بورین سامانه دله]] و نشونی پوست الکترونیکی معتبری تو [[Special:Preferences|ترجیحات]] خادت ره داشته بایی.',
 'emailuser' => 'این کارور وسّه ایمیل بَرسِن',
 'emailpage' => 'ئـی-مه‌یـل ای کـارور وه‌سه',
@@ -813,12 +857,10 @@ $2، $1',
 'watching' => 'ده‌مـبـال هـه‌کـارده‌ن...',
 'unwatching' => 'ده‌مـبـال نـه‌کـارده‌ن...',
 
-'enotif_newpagetext' => 'این صفحه نوبساته هسته',
-'created' => 'بساته بیّه',
-'enotif_subject' => 'صفحه‌ی «$PAGETITLE» {{SITENAME}} به‌دست $PAGEEDITOR $CHANGEDORCREATED‌هسته.',
 'enotif_lastvisited' => 'بدی‌ین همه‌ی تغییرات از آخرین باری که سر بزونی وسّه $1 ره هارشین.',
 'enotif_lastdiff' => 'هارشائن این تغییر وسّه $1 ره بزنین.',
 'enotif_anon_editor' => 'نشناسی‌یه کارور $1',
+'created' => 'بساته بیّه',
 
 # Delete
 'deletepage' => 'صفحه پاک هاکردن',
@@ -987,12 +1029,12 @@ $2، $1',
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1, $2×$3',
 
-# EXIF tags
+# Exif tags
 'exif-gpsareainformation' => 'جی پی اس ناحیه نوم',
 'exif-gpsdatestamp' => 'جی پی اس روز',
 'exif-gpsdifferential' => 'جی پی اس په‌چه‌ک درس هأکه‌ردن',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'فه‌شورده نئی',
 
 'exif-unknowndate' => 'نه‌شناسی روز',
@@ -1009,7 +1051,7 @@ $2، $1',
 'namespacesall' => 'همه',
 'monthsall' => 'همه ماه‌ئون',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_body_changed' => 'ات نفر، احتمالاً خاد شمِا، از نشونی آی‌پی $1 نشونی پوست ایلکتورونیک حیساب «$2» {{SITENAME}} ره تغییر هدائه.
 
 برای تایید این که این حیساب واقعاً شمه شه و فعال هکردن دبارهٔ ویژگی پوست ایلکتورونیک {{SITENAME}}، پیوند زیر دله ره شه مرورگر دله وا هکنین:
@@ -1041,6 +1083,7 @@ $5
 'logentry-move-move_redir-noredirect' => '$1 ، $3 ره بدون اینکه مسیر تغییری درس بوه به $4 که مسیر تغییر بیه منتقل هاکرده',
 'logentry-newusers-newusers' => '$1  بساتن اتا حساب کاروری',
 'logentry-newusers-create' => '$1  بساتن اتا حساب کاروری',
+'rightsnone' => '(هچّی)',
 
 # Feedback
 'feedback-subject' => 'موضوع:',

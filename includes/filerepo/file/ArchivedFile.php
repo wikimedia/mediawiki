@@ -47,6 +47,7 @@ class ArchivedFile {
 		$timestamp, # time of upload
 		$dataLoaded, # Whether or not all this has been loaded from the database (loadFromXxx)
 		$deleted, # Bitfield akin to rev_deleted
+		$sha1, # sha1 hash of file content
 		$pageCount,
 		$archive_name;
 
@@ -67,7 +68,7 @@ class ArchivedFile {
 	 * @param int $id
 	 * @param string $key
 	 */
-	function __construct( $title, $id=0, $key='' ) {
+	function __construct( $title, $id = 0, $key = '' ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
@@ -87,17 +88,18 @@ class ArchivedFile {
 		$this->deleted = 0;
 		$this->dataLoaded = false;
 		$this->exists = false;
+		$this->sha1 = '';
 
-		if( $title instanceof Title ) {
+		if ( $title instanceof Title ) {
 			$this->title = File::normalizeTitle( $title, 'exception' );
 			$this->name = $title->getDBkey();
 		}
 
-		if ($id) {
+		if ( $id ) {
 			$this->id = $id;
 		}
 
-		if ($key) {
+		if ( $key ) {
 			$this->key = $key;
 		}
 
@@ -108,6 +110,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
+	 * @throws MWException
 	 * @return bool|null True on success or null
 	 */
 	public function load() {
@@ -116,75 +119,41 @@ class ArchivedFile {
 		}
 		$conds = array();
 
-		if( $this->id > 0 ) {
+		if ( $this->id > 0 ) {
 			$conds['fa_id'] = $this->id;
 		}
-		if( $this->key ) {
+		if ( $this->key ) {
 			$conds['fa_storage_group'] = $this->group;
 			$conds['fa_storage_key'] = $this->key;
 		}
-		if( $this->title ) {
+		if ( $this->title ) {
 			$conds['fa_name'] = $this->title->getDBkey();
 		}
 
-		if( !count($conds)) {
+		if ( !count( $conds ) ) {
 			throw new MWException( "No specific information for retrieving archived file" );
 		}
 
-		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
+		if ( !$this->title || $this->title->getNamespace() == NS_FILE ) {
+			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'filearchive',
-				array(
-					'fa_id',
-					'fa_name',
-					'fa_archive_name',
-					'fa_storage_key',
-					'fa_storage_group',
-					'fa_size',
-					'fa_bits',
-					'fa_width',
-					'fa_height',
-					'fa_metadata',
-					'fa_media_type',
-					'fa_major_mime',
-					'fa_minor_mime',
-					'fa_description',
-					'fa_user',
-					'fa_user_text',
-					'fa_timestamp',
-					'fa_deleted' ),
+			$row = $dbr->selectRow(
+				'filearchive',
+				self::selectFields(),
 				$conds,
 				__METHOD__,
-				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
-			if ( $res == false || $dbr->numRows( $res ) == 0 ) {
-			// this revision does not exist?
+				array( 'ORDER BY' => 'fa_timestamp DESC' )
+			);
+			if ( !$row ) {
+				// this revision does not exist?
 				return null;
 			}
-			$ret = $dbr->resultObject( $res );
-			$row = $ret->fetchObject();
 
 			// initialize fields for filestore image object
-			$this->id = intval($row->fa_id);
-			$this->name = $row->fa_name;
-			$this->archive_name = $row->fa_archive_name;
-			$this->group = $row->fa_storage_group;
-			$this->key = $row->fa_storage_key;
-			$this->size = $row->fa_size;
-			$this->bits = $row->fa_bits;
-			$this->width = $row->fa_width;
-			$this->height = $row->fa_height;
-			$this->metadata = $row->fa_metadata;
-			$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
-			$this->media_type = $row->fa_media_type;
-			$this->description = $row->fa_description;
-			$this->user = $row->fa_user;
-			$this->user_text = $row->fa_user_text;
-			$this->timestamp = $row->fa_timestamp;
-			$this->deleted = $row->fa_deleted;
+			$this->loadFromRow( $row );
 		} else {
 			throw new MWException( 'This title does not correspond to an image page.' );
 		}
-		$this->dataLoaded = true;
 		$this->exists = true;
 
 		return true;
@@ -199,26 +168,68 @@ class ArchivedFile {
 	 */
 	public static function newFromRow( $row ) {
 		$file = new ArchivedFile( Title::makeTitle( NS_FILE, $row->fa_name ) );
-
-		$file->id = intval($row->fa_id);
-		$file->name = $row->fa_name;
-		$file->archive_name = $row->fa_archive_name;
-		$file->group = $row->fa_storage_group;
-		$file->key = $row->fa_storage_key;
-		$file->size = $row->fa_size;
-		$file->bits = $row->fa_bits;
-		$file->width = $row->fa_width;
-		$file->height = $row->fa_height;
-		$file->metadata = $row->fa_metadata;
-		$file->mime = "$row->fa_major_mime/$row->fa_minor_mime";
-		$file->media_type = $row->fa_media_type;
-		$file->description = $row->fa_description;
-		$file->user = $row->fa_user;
-		$file->user_text = $row->fa_user_text;
-		$file->timestamp = $row->fa_timestamp;
-		$file->deleted = $row->fa_deleted;
-
+		$file->loadFromRow( $row );
 		return $file;
+	}
+
+	/**
+	 * Fields in the filearchive table
+	 * @return array
+	 */
+	static function selectFields() {
+		return array(
+			'fa_id',
+			'fa_name',
+			'fa_archive_name',
+			'fa_storage_key',
+			'fa_storage_group',
+			'fa_size',
+			'fa_bits',
+			'fa_width',
+			'fa_height',
+			'fa_metadata',
+			'fa_media_type',
+			'fa_major_mime',
+			'fa_minor_mime',
+			'fa_description',
+			'fa_user',
+			'fa_user_text',
+			'fa_timestamp',
+			'fa_deleted',
+			'fa_sha1',
+		);
+	}
+
+	/**
+	 * Load ArchivedFile object fields from a DB row.
+	 *
+	 * @param $row Object database row
+	 * @since 1.21
+	 */
+	public function loadFromRow( $row ) {
+		$this->id = intval( $row->fa_id );
+		$this->name = $row->fa_name;
+		$this->archive_name = $row->fa_archive_name;
+		$this->group = $row->fa_storage_group;
+		$this->key = $row->fa_storage_key;
+		$this->size = $row->fa_size;
+		$this->bits = $row->fa_bits;
+		$this->width = $row->fa_width;
+		$this->height = $row->fa_height;
+		$this->metadata = $row->fa_metadata;
+		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
+		$this->media_type = $row->fa_media_type;
+		$this->description = $row->fa_description;
+		$this->user = $row->fa_user;
+		$this->user_text = $row->fa_user_text;
+		$this->timestamp = $row->fa_timestamp;
+		$this->deleted = $row->fa_deleted;
+		if ( isset( $row->fa_sha1 ) ) {
+			$this->sha1 = $row->fa_sha1;
+		} else {
+			// old row, populate from key
+			$this->sha1 = LocalRepo::getHashFromKey( $this->key );
+		}
 	}
 
 	/**
@@ -381,13 +392,24 @@ class ArchivedFile {
 	}
 
 	/**
+	 * Get the SHA-1 base 36 hash of the file
+	 *
+	 * @return string
+	 * @since 1.21
+	 */
+	function getSha1() {
+		$this->load();
+		return $this->sha1;
+	}
+
+	/**
 	 * Return the user ID of the uploader.
 	 *
 	 * @return int
 	 */
 	public function getUser() {
 		$this->load();
-		if( $this->isDeleted( File::DELETED_USER ) ) {
+		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->user;
@@ -401,7 +423,7 @@ class ArchivedFile {
 	 */
 	public function getUserText() {
 		$this->load();
-		if( $this->isDeleted( File::DELETED_USER ) ) {
+		if ( $this->isDeleted( File::DELETED_USER ) ) {
 			return 0;
 		} else {
 			return $this->user_text;
@@ -415,7 +437,7 @@ class ArchivedFile {
 	 */
 	public function getDescription() {
 		$this->load();
-		if( $this->isDeleted( File::DELETED_COMMENT ) ) {
+		if ( $this->isDeleted( File::DELETED_COMMENT ) ) {
 			return 0;
 		} else {
 			return $this->description;
@@ -469,7 +491,7 @@ class ArchivedFile {
 	 */
 	public function isDeleted( $field ) {
 		$this->load();
-		return ($this->deleted & $field) == $field;
+		return ( $this->deleted & $field ) == $field;
 	}
 
 	/**

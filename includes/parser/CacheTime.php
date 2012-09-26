@@ -93,7 +93,7 @@ class CacheTime {
 			$expire = min( $expire, $wgParserCacheExpireTime );
 		}
 
-		if( $this->containsOldMagic() ) { //compatibility hack
+		if ( $this->containsOldMagic() ) { //compatibility hack
 			$expire = min( $expire, 3600 ); # 1 hour
 		}
 
@@ -116,7 +116,7 @@ class CacheTime {
 	 * per-article cache invalidation timestamps, or if it comes from
 	 * an incompatible older version.
 	 *
-	 * @param $touched String: the affected article's last touched timestamp
+	 * @param string $touched the affected article's last touched timestamp
 	 * @return Boolean
 	 */
 	public function expired( $touched ) {

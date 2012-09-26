@@ -27,28 +27,61 @@
  * @ingroup Watchlist
  */
 class WatchedItem {
-	var $mTitle, $mUser, $id, $ns, $ti;
+	/**
+	 * Constant to specify that user rights 'editmywatchlist' and
+	 * 'viewmywatchlist' should not be checked.
+	 * @since 1.22
+	 */
+	const IGNORE_USER_RIGHTS = 0;
+
+	/**
+	 * Constant to specify that user rights 'editmywatchlist' and
+	 * 'viewmywatchlist' should be checked.
+	 * @since 1.22
+	 */
+	const CHECK_USER_RIGHTS = 1;
+
+	var $mTitle, $mUser, $mCheckRights;
 	private $loaded = false, $watched, $timestamp;
 
 	/**
 	 * Create a WatchedItem object with the given user and title
+	 * @since 1.22 $checkRights parameter added
 	 * @param $user User: the user to use for (un)watching
 	 * @param $title Title: the title we're going to (un)watch
+	 * @param $checkRights int: Whether to check the 'viewmywatchlist' and 'editmywatchlist' rights.
+	 *     Pass either WatchedItem::IGNORE_USER_RIGHTS or WatchedItem::CHECK_USER_RIGHTS.
 	 * @return WatchedItem object
 	 */
-	public static function fromUserTitle( $user, $title ) {
+	public static function fromUserTitle( $user, $title, $checkRights = WatchedItem::CHECK_USER_RIGHTS ) {
 		$wl = new WatchedItem;
 		$wl->mUser = $user;
 		$wl->mTitle = $title;
-		$wl->id = $user->getId();
-		# Patch (also) for email notification on page changes T.Gries/M.Arndt 11.09.2004
-		# TG patch: here we do not consider pages and their talk pages equivalent - why should we ?
-		# The change results in talk-pages not automatically included in watchlists, when their parent page is included
-		# $wl->ns = $title->getNamespace() & ~1;
-		$wl->ns = $title->getNamespace();
+		$wl->mCheckRights = $checkRights;
 
-		$wl->ti = $title->getDBkey();
 		return $wl;
+	}
+
+	/**
+	 * Title being watched
+	 * @return Title
+	 */
+	protected function getTitle() {
+		return $this->mTitle;
+	}
+
+	/** Helper to retrieve the title namespace */
+	protected function getTitleNs() {
+		return $this->getTitle()->getNamespace();
+	}
+
+	/** Helper to retrieve the title DBkey */
+	protected function getTitleDBkey() {
+		return $this->getTitle()->getDBkey();
+	}
+	/** Helper to retrieve the user id */
+	protected function getUserId() {
+		return $this->mUser->getId();
 	}
 
 	/**
@@ -58,7 +91,11 @@ class WatchedItem {
 	 * @return array
 	 */
 	private function dbCond() {
-		return array( 'wl_user' => $this->id, 'wl_namespace' => $this->ns, 'wl_title' => $this->ti );
+		return array(
+			'wl_user' => $this->getUserId(),
+			'wl_namespace' => $this->getTitleNs(),
+			'wl_title' => $this->getTitleDBkey(),
+		);
 	}
 
 	/**
@@ -69,6 +106,12 @@ class WatchedItem {
 			return;
 		}
 		$this->loaded = true;
+
+		// Only loggedin user can have a watchlist
+		if ( $this->mUser->isAnon() ) {
+			$this->watched = false;
+			return;
+		}
 
 		# Pages and their talk pages are considered equivalent for watching;
 		# remember that talk namespaces are numbered as page namespace+1.
@@ -86,10 +129,22 @@ class WatchedItem {
 	}
 
 	/**
+	 * Check permissions
+	 * @param $what string: 'viewmywatchlist' or 'editmywatchlist'
+	 */
+	private function isAllowed( $what ) {
+		return !$this->mCheckRights || $this->mUser->isAllowed( $what );
+	}
+
+	/**
 	 * Is mTitle being watched by mUser?
 	 * @return bool
 	 */
 	public function isWatched() {
+		if ( !$this->isAllowed( 'viewmywatchlist' ) ) {
+			return false;
+		}
+
 		$this->load();
 		return $this->watched;
 	}
@@ -101,6 +156,10 @@ class WatchedItem {
 	 *         the wl_notificationtimestamp field otherwise
 	 */
 	public function getNotificationTimestamp() {
+		if ( !$this->isAllowed( 'viewmywatchlist' ) ) {
+			return false;
+		}
+
 		$this->load();
 		if ( $this->watched ) {
 			return $this->timestamp;
@@ -116,6 +175,11 @@ class WatchedItem {
 	 *        page is not watched or the notification timestamp is already NULL.
 	 */
 	public function resetNotificationTimestamp( $force = '' ) {
+		// Only loggedin user can have a watchlist
+		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
+			return;
+		}
+
 		if ( $force != 'force' ) {
 			$this->load();
 			if ( !$this->watched || $this->timestamp === null ) {
@@ -134,31 +198,37 @@ class WatchedItem {
 	/**
 	 * Given a title and user (assumes the object is setup), add the watch to the
 	 * database.
-	 * @return bool (always true)
+	 * @return bool
 	 */
 	public function addWatch() {
 		wfProfileIn( __METHOD__ );
+
+		// Only loggedin user can have a watchlist
+		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
 
 		// Use INSERT IGNORE to avoid overwriting the notification timestamp
 		// if there's already an entry for this page
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'watchlist',
-		  array(
-			'wl_user' => $this->id,
-			'wl_namespace' => MWNamespace::getSubject($this->ns),
-			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => null
-		  ), __METHOD__, 'IGNORE' );
+			array(
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
+				'wl_title' => $this->getTitleDBkey(),
+				'wl_notificationtimestamp' => null
+			), __METHOD__, 'IGNORE' );
 
 		// Every single watched page needs now to be listed in watchlist;
 		// namespace:page and namespace_talk:page need separate entries:
 		$dbw->insert( 'watchlist',
-		  array(
-			'wl_user' => $this->id,
-			'wl_namespace' => MWNamespace::getTalk($this->ns),
-			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => null
-		  ), __METHOD__, 'IGNORE' );
+			array(
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
+				'wl_title' => $this->getTitleDBkey(),
+				'wl_notificationtimestamp' => null
+			), __METHOD__, 'IGNORE' );
 
 		$this->watched = true;
 
@@ -173,28 +243,34 @@ class WatchedItem {
 	public function removeWatch() {
 		wfProfileIn( __METHOD__ );
 
+		// Only loggedin user can have a watchlist
+		if ( wfReadOnly() || $this->mUser->isAnon() || !$this->isAllowed( 'editmywatchlist' ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
 		$success = false;
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->delete( 'watchlist',
 			array(
-				'wl_user' => $this->id,
-				'wl_namespace' => MWNamespace::getSubject($this->ns),
-				'wl_title' => $this->ti
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getSubject( $this->getTitleNs() ),
+				'wl_title' => $this->getTitleDBkey(),
 			), __METHOD__
 		);
 		if ( $dbw->affectedRows() ) {
 			$success = true;
 		}
 
-		# the following code compensates the new behaviour, introduced by the
+		# the following code compensates the new behavior, introduced by the
 		# enotif patch, that every single watched page needs now to be listed
 		# in watchlist namespace:page and namespace_talk:page had separate
 		# entries: clear them
 		$dbw->delete( 'watchlist',
 			array(
-				'wl_user' => $this->id,
-				'wl_namespace' => MWNamespace::getTalk($this->ns),
-				'wl_title' => $this->ti
+				'wl_user' => $this->getUserId(),
+				'wl_namespace' => MWNamespace::getTalk( $this->getTitleNs() ),
+				'wl_title' => $this->getTitleDBkey(),
 			), __METHOD__
 		);
 
@@ -249,7 +325,7 @@ class WatchedItem {
 			);
 		}
 
-		if( empty( $values ) ) {
+		if ( empty( $values ) ) {
 			// Nothing to do
 			return true;
 		}

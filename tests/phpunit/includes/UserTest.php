@@ -7,22 +7,25 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
-	protected $savedGroupPermissions, $savedRevokedPermissions;
-
 	/**
 	 * @var User
 	 */
 	protected $user;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
-		$this->savedGroupPermissions = $GLOBALS['wgGroupPermissions'];
-		$this->savedRevokedPermissions = $GLOBALS['wgRevokePermissions'];
+		$this->setMwGlobals( array(
+			'wgGroupPermissions' => array(),
+			'wgRevokePermissions' => array(),
+		) );
 
 		$this->setUpPermissionGlobals();
-		$this->setUpUser();
+
+		$this->user = new User;
+		$this->user->addGroup( 'unittesters' );
 	}
+
 	private function setUpPermissionGlobals() {
 		global $wgGroupPermissions, $wgRevokePermissions;
 
@@ -38,21 +41,11 @@ class UserTest extends MediaWikiTestCase {
 			'writetest' => true,
 			'modifytest' => true,
 		);
+
 		# Data for regular $wgRevokePermissions test
 		$wgRevokePermissions['formertesters'] = array(
 			'runtest' => true,
 		);
-	}
-	private function setUpUser() {
-		$this->user = new User;
-		$this->user->addGroup( 'unittesters' );
-	}
-
-	public function tearDown() {
-		parent::tearDown();
-
-		$GLOBALS['wgGroupPermissions'] = $this->savedGroupPermissions;
-		$GLOBALS['wgRevokePermissions'] = $this->savedRevokedPermissions;
 	}
 
 	public function testGroupPermissions() {
@@ -68,6 +61,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertContains( 'modifytest', $rights );
 		$this->assertNotContains( 'nukeworld', $rights );
 	}
+
 	public function testRevokePermissions() {
 		$rights = User::getGroupPermissions( array( 'unittesters', 'formertesters' ) );
 		$this->assertNotContains( 'runtest', $rights );
@@ -95,7 +89,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $result, "Groups with permission $right" );
 	}
 
-	public function provideGetGroupsWithPermission() {
+	public static function provideGetGroupsWithPermission() {
 		return array(
 			array(
 				array( 'unittesters', 'testwriters' ),
@@ -123,20 +117,20 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $this->user->isValidUserName( $username ), $result, $message );
 	}
 
-	public function provideUserNames() {
+	public static function provideUserNames() {
 		return array(
 			array( '', false, 'Empty string' ),
 			array( ' ', false, 'Blank space' ),
 			array( 'abcd', false, 'Starts with small letter' ),
-			array( 'Ab/cd', false,  'Contains slash' ),
-			array( 'Ab cd' , true, 'Whitespace' ),
-			array( '192.168.1.1', false,  'IP' ),
+			array( 'Ab/cd', false, 'Contains slash' ),
+			array( 'Ab cd', true, 'Whitespace' ),
+			array( '192.168.1.1', false, 'IP' ),
 			array( 'User:Abcd', false, 'Reserved Namespace' ),
-			array( '12abcd232' , true  , 'Starts with Numbers' ),
-			array( '?abcd' , true,  'Start with ? mark' ),
+			array( '12abcd232', true, 'Starts with Numbers' ),
+			array( '?abcd', true, 'Start with ? mark' ),
 			array( '#abcd', false, 'Start with #' ),
-			array( 'Abcdകഖഗഘ', true,  ' Mixed scripts' ),
-			array( 'ജോസ്‌തോമസ്',  false, 'ZWNJ- Format control character' ),
+			array( 'Abcdകഖഗഘ', true, ' Mixed scripts' ),
+			array( 'ജോസ്‌തോമസ്', false, 'ZWNJ- Format control character' ),
 			array( 'Ab　cd', false, ' Ideographic space' ),
 		);
 	}
@@ -167,5 +161,57 @@ class UserTest extends MediaWikiTestCase {
 			$rightsWithMessage,
 			'Each user rights (core/extensions) has a corresponding right- message.'
 		);
+	}
+
+	/**
+	 * Test User::editCount
+	 * @group medium
+	 */
+	public function testEditCount() {
+		$user = User::newFromName( 'UnitTestUser' );
+		$user->loadDefaults();
+		$user->addToDatabase();
+
+		// let the user have a few (3) edits
+		$page = WikiPage::factory( Title::newFromText( 'Help:UserTest_EditCount' ) );
+		for ( $i = 0; $i < 3; $i++ ) {
+			$page->doEdit( (string)$i, 'test', 0, false, $user );
+		}
+
+		$user->clearInstanceCache();
+		$this->assertEquals( 3, $user->getEditCount(), 'After three edits, the user edit count should be 3' );
+
+		// increase the edit count and clear the cache
+		$user->incEditCount();
+
+		$user->clearInstanceCache();
+		$this->assertEquals( 4, $user->getEditCount(), 'After increasing the edit count manually, the user edit count should be 4' );
+	}
+
+	/**
+	 * Test changing user options.
+	 */
+	public function testOptions() {
+		$user = User::newFromName( 'UnitTestUser' );
+		$user->addToDatabase();
+
+		$user->setOption( 'someoption', 'test' );
+		$user->setOption( 'cols', 200 );
+		$user->saveSettings();
+
+		$user = User::newFromName( 'UnitTestUser' );
+		$this->assertEquals( 'test', $user->getOption( 'someoption' ) );
+		$this->assertEquals( 200, $user->getOption( 'cols' ) );
+	}
+
+	/**
+	 * Bug 37963
+	 * Make sure defaults are loaded when setOption is called.
+	 */
+	public function testAnonOptions() {
+		global $wgDefaultUserOptions;
+		$this->user->setOption( 'someoption', 'test' );
+		$this->assertEquals( $wgDefaultUserOptions['cols'], $this->user->getOption( 'cols' ) );
+		$this->assertEquals( 'test', $this->user->getOption( 'someoption' ) );
 	}
 }

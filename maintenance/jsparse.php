@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to do test JavaScript validity parses using jsmin+'s parser
@@ -29,7 +29,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  * @ingroup Maintenance
  */
 class JSParseHelper extends Maintenance {
-	var $errs = 0;
+	public $errs = 0;
 
 	public function __construct() {
 		parent::__construct();
@@ -50,7 +50,7 @@ class JSParseHelper extends Maintenance {
 			wfSuppressWarnings();
 			$js = file_get_contents( $filename );
 			wfRestoreWarnings();
-			if ($js === false) {
+			if ( $js === false ) {
 				$this->output( "$filename ERROR: could not read file\n" );
 				$this->errs++;
 				continue;
@@ -58,7 +58,7 @@ class JSParseHelper extends Maintenance {
 
 			try {
 				$parser->parse( $js, $filename, 1 );
-			} catch (Exception $e) {
+			} catch ( Exception $e ) {
 				$this->errs++;
 				$this->output( "$filename ERROR: " . $e->getMessage() . "\n" );
 				continue;
@@ -67,11 +67,11 @@ class JSParseHelper extends Maintenance {
 			$this->output( "$filename OK\n" );
 		}
 
-		if ($this->errs > 0) {
-			exit(1);
+		if ( $this->errs > 0 ) {
+			exit( 1 );
 		}
 	}
 }
 
 $maintClass = "JSParseHelper";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

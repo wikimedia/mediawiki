@@ -27,7 +27,7 @@
  * @ingroup SpecialPage
  */
 class WantedPagesPage extends WantedQueryPage {
-	
+
 	function __construct( $name = 'Wantedpages' ) {
 		parent::__construct( $name );
 	}
@@ -90,5 +90,9 @@ class WantedPagesPage extends WantedQueryPage {
 		// Replacement for the WantedPages::getSQL hook
 		wfRunHooks( 'WantedPages::getQueryInfo', array( &$this, &$query ) );
 		return $query;
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

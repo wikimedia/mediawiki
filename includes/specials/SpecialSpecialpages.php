@@ -53,32 +53,37 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 
 		$pages = SpecialPageFactory::getUsablePages( $this->getUser() );
 
-		if( !count( $pages ) ) {
+		if ( !count( $pages ) ) {
 			# Yeah, that was pointless. Thanks for coming.
 			return false;
 		}
 
 		/** Put them into a sortable array */
 		$groups = array();
+		/** @var SpecialPage $page */
 		foreach ( $pages as $page ) {
 			if ( $page->isListed() ) {
-				$group = SpecialPageFactory::getGroup( $page );
-				if( !isset( $groups[$group] ) ) {
+				$group = $page->getFinalGroupName();
+				if ( !isset( $groups[$group] ) ) {
 					$groups[$group] = array();
 				}
-				$groups[$group][$page->getDescription()] = array( $page->getTitle(), $page->isRestricted(), $page->isExpensive() );
+				$groups[$group][$page->getDescription()] = array(
+					$page->getTitle(),
+					$page->isRestricted(),
+					$page->isCached()
+				);
 			}
 		}
 
 		/** Sort */
 		if ( $wgSortSpecialPages ) {
-			foreach( $groups as $group => $sortedPages ) {
+			foreach ( $groups as $group => $sortedPages ) {
 				ksort( $groups[$group] );
 			}
 		}
 
 		/** Always move "other" to end */
-		if( array_key_exists( 'other', $groups ) ) {
+		if ( array_key_exists( 'other', $groups ) ) {
 			$other = $groups['other'];
 			unset( $groups['other'] );
 			$groups['other'] = $other;
@@ -88,43 +93,42 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	private function outputPageList( $groups ) {
-		global $wgMiserMode;
 		$out = $this->getOutput();
 
 		$includesRestrictedPages = false;
 		$includesCachedPages = false;
 
 		foreach ( $groups as $group => $sortedPages ) {
-			$middle = ceil( count( $sortedPages )/2 );
 			$total = count( $sortedPages );
+			$middle = ceil( $total / 2 );
 			$count = 0;
 
 			$out->wrapWikiMsg( "<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n", "specialpages-group-$group" );
 			$out->addHTML(
-				Html::openElement( 'table', array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' ) ) ."\n" .
+				Html::openElement( 'table', array( 'style' => 'width:100%;', 'class' => 'mw-specialpages-table' ) ) . "\n" .
 				Html::openElement( 'tr' ) . "\n" .
 				Html::openElement( 'td', array( 'style' => 'width:30%;vertical-align:top' ) ) . "\n" .
 				Html::openElement( 'ul' ) . "\n"
 			);
-			foreach( $sortedPages as $desc => $specialpage ) {
-				list( $title, $restricted, $expensive) = $specialpage;
+			foreach ( $sortedPages as $desc => $specialpage ) {
+				list( $title, $restricted, $cached ) = $specialpage;
 
 				$pageClasses = array();
-				if ( $expensive && $wgMiserMode ){
+				if ( $cached ) {
 					$includesCachedPages = true;
 					$pageClasses[] = 'mw-specialpagecached';
 				}
-				if( $restricted ) {
+				if ( $restricted ) {
 					$includesRestrictedPages = true;
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
 
-				$link = Linker::linkKnown( $title , htmlspecialchars( $desc ) );
+				$link = Linker::linkKnown( $title, htmlspecialchars( $desc ) );
 				$out->addHTML( Html::rawElement( 'li', array( 'class' => implode( ' ', $pageClasses ) ), $link ) . "\n" );
 
 				# Split up the larger groups
 				$count++;
-				if( $total > 3 && $count == $middle ) {
+				if ( $total > 3 && $count == $middle ) {
 					$out->addHTML(
 						Html::closeElement( 'ul' ) . Html::closeElement( 'td' ) .
 						Html::element( 'td', array( 'style' => 'width:10%' ), '' ) .

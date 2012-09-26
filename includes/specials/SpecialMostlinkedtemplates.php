@@ -29,7 +29,6 @@
  * @ingroup SpecialPage
  */
 class MostlinkedTemplatesPage extends QueryPage {
-
 	function __construct( $name = 'Mostlinkedtemplates' ) {
 		parent::__construct( $name );
 	}
@@ -62,12 +61,14 @@ class MostlinkedTemplatesPage extends QueryPage {
 	}
 
 	public function getQueryInfo() {
-		return array (
-			'tables' => array ( 'templatelinks' ),
-			'fields' => array ( 'namespace' => 'tl_namespace',
-					'title' => 'tl_title',
-					'value' => 'COUNT(*)' ),
-			'conds' => array ( 'tl_namespace' => NS_TEMPLATE ),
+		return array(
+			'tables' => array( 'templatelinks' ),
+			'fields' => array(
+				'namespace' => 'tl_namespace',
+				'title' => 'tl_title',
+				'value' => 'COUNT(*)'
+			),
+			'conds' => array( 'tl_namespace' => NS_TEMPLATE ),
 			'options' => array( 'GROUP BY' => array( 'tl_namespace', 'tl_title' ) )
 		);
 	}
@@ -76,7 +77,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 	 * Pre-cache page existence to speed up link generation
 	 *
 	 * @param $db DatabaseBase connection
-	 * @param $res ResultWrapper
+	 * @param ResultWrapper $res
 	 */
 	public function preprocessResults( $db, $res ) {
 		if ( !$res->numRows() ) {
@@ -95,15 +96,22 @@ class MostlinkedTemplatesPage extends QueryPage {
 	/**
 	 * Format a result row
 	 *
-	 * @param $skin Skin to use for UI elements
-	 * @param $result Result row
-	 * @return String
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
-				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+			return Html::element(
+				'span',
+				array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription(
+					$this->getContext(),
+					$result->namespace,
+					$result->title
+				)
+			);
 		}
 
 		return $this->getLanguage()->specialList(
@@ -115,14 +123,18 @@ class MostlinkedTemplatesPage extends QueryPage {
 	/**
 	 * Make a "what links here" link for a given title
 	 *
-	 * @param $title Title to make the link for
-	 * @param $result Result row
+	 * @param Title $title Title to make the link for
+	 * @param object $result Result row
 	 * @return String
 	 */
 	private function makeWlhLink( $title, $result ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
 		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->escaped();
+
 		return Linker::link( $wlh, $label );
 	}
-}
 
+	protected function getGroupName() {
+		return 'highuse';
+	}
+}

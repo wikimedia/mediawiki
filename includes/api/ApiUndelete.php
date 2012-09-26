@@ -29,10 +29,6 @@
  */
 class ApiUndelete extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$params = $this->extractRequestParams();
 
@@ -45,7 +41,7 @@ class ApiUndelete extends ApiBase {
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );
-		if ( !$titleObj ) {
+		if ( !$titleObj || $titleObj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
@@ -61,7 +57,13 @@ class ApiUndelete extends ApiBase {
 		}
 
 		$pa = new PageArchive( $titleObj );
-		$retval = $pa->undelete( ( isset( $params['timestamps'] ) ? $params['timestamps'] : array() ), $params['reason'] );
+		$retval = $pa->undelete(
+			( isset( $params['timestamps'] ) ? $params['timestamps'] : array() ),
+			$params['reason'],
+			array(),
+			false,
+			$this->getUser()
+		);
 		if ( !is_array( $retval ) ) {
 			$this->dieUsageMsg( 'cannotundelete' );
 		}
@@ -169,9 +171,5 @@ class ApiUndelete extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Undelete';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

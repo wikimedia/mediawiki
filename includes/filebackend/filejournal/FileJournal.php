@@ -54,7 +54,7 @@ abstract class FileJournal {
 	 * Create an appropriate FileJournal object from config
 	 *
 	 * @param $config Array
-	 * @param $backend string A registered file backend name
+	 * @param string $backend A registered file backend name
 	 * @throws MWException
 	 * @return FileJournal
 	 */
@@ -85,13 +85,13 @@ abstract class FileJournal {
 	/**
 	 * Log changes made by a batch file operation.
 	 * $entries is an array of log entries, each of which contains:
-	 *     op      : Basic operation name (create, store, copy, delete)
+	 *     op      : Basic operation name (create, update, delete)
 	 *     path    : The storage path of the file
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 * Note that 'false' should be used as the SHA-1 for non-existing files.
 	 *
-	 * @param $entries Array List of file operations (each an array of parameters)
-	 * @param $batchId string UUID string that identifies the operation batch
+	 * @param array $entries List of file operations (each an array of parameters)
+	 * @param string $batchId UUID string that identifies the operation batch
 	 * @return Status
 	 */
 	final public function logChangeBatch( array $entries, $batchId ) {
@@ -104,11 +104,43 @@ abstract class FileJournal {
 	/**
 	 * @see FileJournal::logChangeBatch()
 	 *
-	 * @param $entries Array List of file operations (each an array of parameters)
-	 * @param $batchId string UUID string that identifies the operation batch
+	 * @param array $entries List of file operations (each an array of parameters)
+	 * @param string $batchId UUID string that identifies the operation batch
 	 * @return Status
 	 */
 	abstract protected function doLogChangeBatch( array $entries, $batchId );
+
+	/**
+	 * Get the position ID of the latest journal entry
+	 *
+	 * @return integer|false
+	 */
+	final public function getCurrentPosition() {
+		return $this->doGetCurrentPosition();
+	}
+
+	/**
+	 * @see FileJournal::getCurrentPosition()
+	 * @return integer|false
+	 */
+	abstract protected function doGetCurrentPosition();
+
+	/**
+	 * Get the position ID of the latest journal entry at some point in time
+	 *
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	final public function getPositionAtTime( $time ) {
+		return $this->doGetPositionAtTime( $time );
+	}
+
+	/**
+	 * @see FileJournal::getPositionAtTime()
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	abstract protected function doGetPositionAtTime( $time );
 
 	/**
 	 * Get an array of file change log entries.
@@ -169,13 +201,30 @@ abstract class FileJournal {
  */
 class NullFileJournal extends FileJournal {
 	/**
-	 * @see FileJournal::logChangeBatch()
+	 * @see FileJournal::doLogChangeBatch()
 	 * @param $entries array
 	 * @param $batchId string
 	 * @return Status
 	 */
 	protected function doLogChangeBatch( array $entries, $batchId ) {
 		return Status::newGood();
+	}
+
+	/**
+	 * @see FileJournal::doGetCurrentPosition()
+	 * @return integer|false
+	 */
+	protected function doGetCurrentPosition() {
+		return false;
+	}
+
+	/**
+	 * @see FileJournal::doGetPositionAtTime()
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	protected function doGetPositionAtTime( $time ) {
+		return false;
 	}
 
 	/**
@@ -187,7 +236,7 @@ class NullFileJournal extends FileJournal {
 	}
 
 	/**
-	 * @see FileJournal::purgeOldLogs()
+	 * @see FileJournal::doPurgeOldLogs()
 	 * @return Status
 	 */
 	protected function doPurgeOldLogs() {

@@ -22,20 +22,20 @@
  */
 
 /**
-* This class is just a container for a big array
-* used by XMPReader to determine which XMP items to
-* extract.
-*/
+ * This class is just a container for a big array
+ * used by XMPReader to determine which XMP items to
+ * extract.
+ */
 class XMPInfo {
 
 	/** get the items array
 	 * @return Array XMP item configuration array.
-	*/
-	public static function getItems ( ) {
-		if( !self::$ranHooks ) {
+	 */
+	public static function getItems() {
+		if ( !self::$ranHooks ) {
 			// This is for if someone makes a custom metadata extension.
 			// For example, a medical wiki might want to decode DICOM xmp properties.
-			wfRunHooks('XMPGetInfo', Array(&self::$items));
+			wfRunHooks( 'XMPGetInfo', Array( &self::$items ) );
 			self::$ranHooks = true; // Only want to do this once.
 		}
 		return self::$items;
@@ -44,26 +44,25 @@ class XMPInfo {
 	static private $ranHooks = false;
 
 	/**
-	* XMPInfo::$items keeps a list of all the items
-	* we are interested to extract, as well as
-	* information about the item like what type
-	* it is.
-	*
-	* Format is an array of namespaces,
-	* each containing an array of tags
-	* each tag is an array of information about the
-	* tag, including:
-	*       * map_group - what group (used for precedence during conflicts)
-	*       * mode - What type of item (self::MODE_SIMPLE usually, see above for all values)
-	*       * validate - method to validate input. Could also post-process the input. A string value is assumed to be a static method of XMPValidate. Can also take a array( 'className', 'methodName' ).
-	*       * choices  - array of potential values (format of 'value' => true ). Only used with validateClosed
-	*	* rangeLow and rangeHigh - alternative to choices for numeric ranges. Again for validateClosed only.
-	*       * children - for MODE_STRUCT items, allowed children.
-	*	* structPart - Indicates that this element can only appear as a member of a structure.
-	*
-	* currently this just has a bunch of exif values as this class is only half-done
-	*/
-
+	 * XMPInfo::$items keeps a list of all the items
+	 * we are interested to extract, as well as
+	 * information about the item like what type
+	 * it is.
+	 *
+	 * Format is an array of namespaces,
+	 * each containing an array of tags
+	 * each tag is an array of information about the
+	 * tag, including:
+	 *       * map_group - what group (used for precedence during conflicts)
+	 *       * mode - What type of item (self::MODE_SIMPLE usually, see above for all values)
+	 *       * validate - method to validate input. Could also post-process the input. A string value is assumed to be a static method of XMPValidate. Can also take a array( 'className', 'methodName' ).
+	 *       * choices  - array of potential values (format of 'value' => true ). Only used with validateClosed
+	 *	* rangeLow and rangeHigh - alternative to choices for numeric ranges. Again for validateClosed only.
+	 *       * children - for MODE_STRUCT items, allowed children.
+	 *	* structPart - Indicates that this element can only appear as a member of a structure.
+	 *
+	 * currently this just has a bunch of exif values as this class is only half-done
+	 */
 	static private $items = array(
 		'http://ns.adobe.com/exif/1.0/' => array(
 			'ApertureValue' => array(
@@ -260,7 +259,7 @@ class XMPInfo {
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateDate',
 			),
-			'DateTimeDigitized' => array(  /* xmp:CreateDate */
+			'DateTimeDigitized' => array( /* xmp:CreateDate */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateDate',
@@ -429,7 +428,7 @@ class XMPInfo {
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateClosed',
 				/* can't use a range, as it skips... */
-				'choices'   =>  array( '0' => true, '1' => true,
+				'choices'   => array( '0' => true, '1' => true,
 					'2' => true, '3' => true, '4' => true,
 					'9' => true, '10' => true, '11' => true,
 					'12' => true, '13' => true,
@@ -552,12 +551,12 @@ class XMPInfo {
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_LANG,
 			),
-			'DateTime'          => array(  /* proper prop is xmp:ModifyDate */
+			'DateTime'          => array( /* proper prop is xmp:ModifyDate */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateDate',
 			),
-			'ImageDescription'  => array(  /* proper one is dc:description */
+			'ImageDescription'  => array( /* proper one is dc:description */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_LANG,
 			),
@@ -622,7 +621,7 @@ class XMPInfo {
 				'mode'      => XMPReader::MODE_SIMPLE,
 				'validate'  => 'validateInteger',
 			),
-			'Software'          => array(  /* see xmp:CreatorTool */
+			'Software'          => array( /* see xmp:CreatorTool */
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 			),
@@ -669,7 +668,7 @@ class XMPInfo {
 			 *	'validate'  => 'validateClosed',
 			 *	'choices'   => array( '1' => true, '2' => true ),
 			 * ),
-			 */ 
+			 */
 		),
 		'http://ns.adobe.com/exif/1.0/aux/' => array(
 			'Lens'              => array(

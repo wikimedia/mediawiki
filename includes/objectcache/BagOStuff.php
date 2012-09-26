@@ -56,35 +56,140 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key );
+	abstract public function get( $key, &$casToken = null );
 
 	/**
 	 * Set an item.
 	 * @param $key string
 	 * @param $value mixed
-	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
 	 * @return bool success
 	 */
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
+	 * Check and set an item.
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
+
+	/**
 	 * Delete an item.
 	 * @param $key string
-	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
+	 * @param int $time Amount of time to delay the operation (mostly memcached-specific)
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	abstract public function delete( $key, $time = 0 );
 
 	/**
+	 * Merge changes into the existing cache value (possibly creating a new one).
+	 * The callback function returns the new value given the current value (possibly false),
+	 * and takes the arguments: (this BagOStuff object, cache key, current value).
+	 *
 	 * @param $key string
-	 * @param $timeout integer
+	 * @param $callback closure Callback method to be executed
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $attempts The amount of times to attempt a merge in case of failure
 	 * @return bool success
 	 */
-	public function lock( $key, $timeout = 0 ) {
-		/* stub */
-		return true;
+	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	}
+
+	/**
+	 * @see BagOStuff::merge()
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $attempts The amount of times to attempt a merge in case of failure
+	 * @return bool success
+	 */
+	protected function mergeViaCas( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		do {
+			$casToken = null; // passed by reference
+			$currentValue = $this->get( $key, $casToken ); // get the old value
+			$value = $callback( $this, $key, $currentValue ); // derive the new value
+
+			if ( $value === false ) {
+				$success = true; // do nothing
+			} elseif ( $currentValue === false ) {
+				// Try to create the key, failing if it gets created in the meantime
+				$success = $this->add( $key, $value, $exptime );
+			} else {
+				// Try to update the key, failing if it gets changed in the meantime
+				$success = $this->cas( $casToken, $key, $value, $exptime );
+			}
+		} while ( !$success && --$attempts );
+
+		return $success;
+	}
+
+	/**
+	 * @see BagOStuff::merge()
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param int $exptime Either an interval in seconds or a unix timestamp for expiry
+	 * @param int $attempts The amount of times to attempt a merge in case of failure
+	 * @return bool success
+	 */
+	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		if ( !$this->lock( $key, 60 ) ) {
+			return false;
+		}
+
+		$currentValue = $this->get( $key ); // get the old value
+		$value = $callback( $this, $key, $currentValue ); // derive the new value
+
+		if ( $value === false ) {
+			$success = true; // do nothing
+		} else {
+			$success = $this->set( $key, $value, $exptime ); // set the new value
+		}
+
+		if ( !$this->unlock( $key ) ) {
+			// this should never happen
+			trigger_error( "Could not release lock for key '$key'." );
+		}
+
+		return $success;
+	}
+
+	/**
+	 * @param $key string
+	 * @param $timeout integer [optional]
+	 * @return bool success
+	 */
+	public function lock( $key, $timeout = 60 ) {
+		$timestamp = microtime( true ); // starting UNIX timestamp
+		if ( $this->add( "{$key}:lock", 1, $timeout ) ) {
+			return true;
+		}
+
+		$uRTT = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
+		$sleep = 2 * $uRTT; // rough time to do get()+set()
+
+		$locked = false; // lock acquired
+		$attempts = 0; // failed attempts
+		do {
+			if ( ++$attempts >= 3 && $sleep <= 1e6 ) {
+				// Exponentially back off after failed attempts to avoid network spam.
+				// About 2*$uRTT*(2^n-1) us of "sleep" happen for the next n attempts.
+				$sleep *= 2;
+			}
+			usleep( $sleep ); // back off
+			$locked = $this->add( "{$key}:lock", 1, $timeout );
+		} while ( !$locked );
+
+		return $locked;
 	}
 
 	/**
@@ -92,22 +197,12 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	public function unlock( $key ) {
-		/* stub */
-		return true;
-	}
-
-	/**
-	 * @todo: what is this?
-	 * @return Array
-	 */
-	public function keys() {
-		/* stub */
-		return array();
+		return $this->delete( "{$key}:lock" );
 	}
 
 	/**
 	 * Delete all objects expiring before a certain date.
-	 * @param $date string The reference date in MW format
+	 * @param string $date The reference date in MW format
 	 * @param $progressCallback callback|bool Optional, a function which will be called
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter.
@@ -123,7 +218,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Get an associative array containing the item for each of the keys that have items.
-	 * @param $keys Array List of strings
+	 * @param array $keys List of strings
 	 * @return Array
 	 */
 	public function getMulti( array $keys ) {
@@ -165,7 +260,7 @@ abstract class BagOStuff {
 
 	/**
 	 * Increase stored value of $key by $value while preserving its TTL
-	 * @param $key String: Key to increase
+	 * @param string $key Key to increase
 	 * @param $value Integer: Value to add to $key (Default 1)
 	 * @return integer|bool New value or false on failure
 	 */

@@ -51,7 +51,8 @@ class SVGReader {
 	 * Constructor
 	 *
 	 * Creates an SVGReader drawing from the source provided
-	 * @param $source String: URI from which to read
+	 * @param string $source URI from which to read
+	 * @throws MWException|Exception
 	 */
 	function __construct( $source ) {
 		global $wgSVGMetadataCutoff;
@@ -66,7 +67,7 @@ class SVGReader {
 		if ( $size > $wgSVGMetadataCutoff ) {
 			$this->debug( "SVG is $size bytes, which is bigger than $wgSVGMetadataCutoff. Truncating." );
 			$contents = file_get_contents( $source, false, null, -1, $wgSVGMetadataCutoff );
-			if ($contents === false) {
+			if ( $contents === false ) {
 				throw new MWException( 'Error reading SVG file.' );
 			}
 			$this->reader->XML( $contents, null, LIBXML_NOERROR | LIBXML_NOWARNING );
@@ -74,10 +75,15 @@ class SVGReader {
 			$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		}
 
-		// Expand entities, since Adobe Illustrator uses them for xmlns 
-		// attributes (bug 31719). Note that libxml2 has some protection 
-		// against large recursive entity expansions so this is not as 
-		// insecure as it might appear to be.
+		// Expand entities, since Adobe Illustrator uses them for xmlns
+		// attributes (bug 31719). Note that libxml2 has some protection
+		// against large recursive entity expansions so this is not as
+		// insecure as it might appear to be. However, it is still extremely
+		// insecure. It's necessary to wrap any read() calls with
+		// libxml_disable_entity_loader() to avoid arbitrary local file
+		// inclusion, or even arbitrary code execution if the expect
+		// extension is installed (bug 46859).
+		$oldDisable = libxml_disable_entity_loader( true );
 		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 
 		$this->metadata['width'] = self::DEFAULT_WIDTH;
@@ -95,13 +101,15 @@ class SVGReader {
 		wfSuppressWarnings();
 		try {
 			$this->read();
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			// Note, if this happens, the width/height will be taken to be 0x0.
 			// Should we consider it the default 512x512 instead?
 			wfRestoreWarnings();
+			libxml_disable_entity_loader( $oldDisable );
 			throw $e;
 		}
 		wfRestoreWarnings();
+		libxml_disable_entity_loader( $oldDisable );
 	}
 
 	/**
@@ -113,29 +121,30 @@ class SVGReader {
 
 	/**
 	 * Read the SVG
+	 * @throws MWException
 	 * @return bool
 	 */
-	public function read() {
+	protected function read() {
 		$keepReading = $this->reader->read();
 
 		/* Skip until first element */
-		while( $keepReading && $this->reader->nodeType != XmlReader::ELEMENT ) {
+		while ( $keepReading && $this->reader->nodeType != XmlReader::ELEMENT ) {
 			$keepReading = $this->reader->read();
 		}
 
 		if ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
-			throw new MWException( "Expected <svg> tag, got ".
+			throw new MWException( "Expected <svg> tag, got " .
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
 		}
 		$this->debug( "<svg> tag is correct." );
 		$this->handleSVGAttribs();
 
-		$exitDepth =  $this->reader->depth;
+		$exitDepth = $this->reader->depth;
 		$keepReading = $this->reader->read();
 		while ( $keepReading ) {
 			$tag = $this->reader->localName;
 			$type = $this->reader->nodeType;
-			$isSVG = ($this->reader->namespaceURI == self::NS_SVG);
+			$isSVG = ( $this->reader->namespaceURI == self::NS_SVG );
 
 			$this->debug( "$tag" );
 
@@ -173,19 +182,19 @@ class SVGReader {
 	/**
 	 * Read a textelement from an element
 	 *
-	 * @param String $name of the element that we are reading from
-	 * @param String $metafield that we will fill with the result
+	 * @param string $name of the element that we are reading from
+	 * @param string $metafield that we will fill with the result
 	 */
-	private function readField( $name, $metafield=null ) {
-		$this->debug ( "Read field $metafield" );
-		if( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
+	private function readField( $name, $metafield = null ) {
+		$this->debug( "Read field $metafield" );
+		if ( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}
 		$keepReading = $this->reader->read();
-		while( $keepReading ) {
-			if( $this->reader->localName == $name && $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
+		while ( $keepReading ) {
+			if ( $this->reader->localName == $name && $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
-			} elseif( $this->reader->nodeType == XmlReader::TEXT ){
+			} elseif ( $this->reader->nodeType == XmlReader::TEXT ) {
 				$this->metadata[$metafield] = trim( $this->reader->value );
 			}
 			$keepReading = $this->reader->read();
@@ -195,15 +204,16 @@ class SVGReader {
 	/**
 	 * Read an XML snippet from an element
 	 *
-	 * @param String $metafield that we will fill with the result
+	 * @param string $metafield that we will fill with the result
+	 * @throws MWException
 	 */
-	private function readXml( $metafield=null ) {
-		$this->debug ( "Read top level metadata" );
-		if( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
+	private function readXml( $metafield = null ) {
+		$this->debug( "Read top level metadata" );
+		if ( !$metafield || $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}
 		// TODO: find and store type of xml snippet. metadata['metadataType'] = "rdf"
-		if( method_exists( $this->reader, 'readInnerXML' ) ) {
+		if ( method_exists( $this->reader, 'readInnerXML' ) ) {
 			$this->metadata[$metafield] = trim( $this->reader->readInnerXML() );
 		} else {
 			throw new MWException( "The PHP XMLReader extension does not come with readInnerXML() method. Your libxml is probably out of date (need 2.6.20 or later)." );
@@ -214,24 +224,24 @@ class SVGReader {
 	/**
 	 * Filter all children, looking for animate elements
 	 *
-	 * @param String $name of the element that we are reading from
+	 * @param string $name of the element that we are reading from
 	 */
 	private function animateFilter( $name ) {
-		$this->debug ( "animate filter for tag $name" );
-		if( $this->reader->nodeType != XmlReader::ELEMENT ) {
+		$this->debug( "animate filter for tag $name" );
+		if ( $this->reader->nodeType != XmlReader::ELEMENT ) {
 			return;
 		}
 		if ( $this->reader->isEmptyElement ) {
 			return;
 		}
-		$exitDepth =  $this->reader->depth;
+		$exitDepth = $this->reader->depth;
 		$keepReading = $this->reader->read();
-		while( $keepReading ) {
-			if( $this->reader->localName == $name && $this->reader->depth <= $exitDepth
+		while ( $keepReading ) {
+			if ( $this->reader->localName == $name && $this->reader->depth <= $exitDepth
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
-				switch( $this->reader->localName ) {
+				switch ( $this->reader->localName ) {
 					case 'script':
 						// Normally we disallow files with
 						// <script>, but its possible
@@ -257,7 +267,7 @@ class SVGReader {
 	}
 
 	private function debug( $data ) {
-		if( $this->mDebug ) {
+		if ( $this->mDebug ) {
 			wfDebug( "SVGReader: $data\n" );
 		}
 	}
@@ -275,44 +285,44 @@ class SVGReader {
 	 *
 	 * The parser has to be in the start element of "<svg>"
 	 */
-	private function handleSVGAttribs( ) {
+	private function handleSVGAttribs() {
 		$defaultWidth = self::DEFAULT_WIDTH;
 		$defaultHeight = self::DEFAULT_HEIGHT;
 		$aspect = 1.0;
 		$width = null;
 		$height = null;
 
-		if( $this->reader->getAttribute('viewBox') ) {
+		if ( $this->reader->getAttribute( 'viewBox' ) ) {
 			// min-x min-y width height
-			$viewBox = preg_split( '/\s+/', trim( $this->reader->getAttribute('viewBox') ) );
-			if( count( $viewBox ) == 4 ) {
+			$viewBox = preg_split( '/\s+/', trim( $this->reader->getAttribute( 'viewBox' ) ) );
+			if ( count( $viewBox ) == 4 ) {
 				$viewWidth = $this->scaleSVGUnit( $viewBox[2] );
 				$viewHeight = $this->scaleSVGUnit( $viewBox[3] );
-				if( $viewWidth > 0 && $viewHeight > 0 ) {
+				if ( $viewWidth > 0 && $viewHeight > 0 ) {
 					$aspect = $viewWidth / $viewHeight;
 					$defaultHeight = $defaultWidth / $aspect;
 				}
 			}
 		}
-		if( $this->reader->getAttribute('width') ) {
-			$width = $this->scaleSVGUnit( $this->reader->getAttribute('width'), $defaultWidth );
+		if ( $this->reader->getAttribute( 'width' ) ) {
+			$width = $this->scaleSVGUnit( $this->reader->getAttribute( 'width' ), $defaultWidth );
 			$this->metadata['originalWidth'] = $this->reader->getAttribute( 'width' );
 		}
-		if( $this->reader->getAttribute('height') ) {
-			$height = $this->scaleSVGUnit( $this->reader->getAttribute('height'), $defaultHeight );
+		if ( $this->reader->getAttribute( 'height' ) ) {
+			$height = $this->scaleSVGUnit( $this->reader->getAttribute( 'height' ), $defaultHeight );
 			$this->metadata['originalHeight'] = $this->reader->getAttribute( 'height' );
 		}
 
-		if( !isset( $width ) && !isset( $height ) ) {
+		if ( !isset( $width ) && !isset( $height ) ) {
 			$width = $defaultWidth;
 			$height = $width / $aspect;
-		} elseif( isset( $width ) && !isset( $height ) ) {
+		} elseif ( isset( $width ) && !isset( $height ) ) {
 			$height = $width / $aspect;
-		} elseif( isset( $height ) && !isset( $width ) ) {
+		} elseif ( isset( $height ) && !isset( $width ) ) {
 			$width = $height * $aspect;
 		}
 
-		if( $width > 0 && $height > 0 ) {
+		if ( $width > 0 && $height > 0 ) {
 			$this->metadata['width'] = intval( round( $width ) );
 			$this->metadata['height'] = intval( round( $height ) );
 		}
@@ -322,11 +332,11 @@ class SVGReader {
 	 * Return a rounded pixel equivalent for a labeled CSS/SVG length.
 	 * http://www.w3.org/TR/SVG11/coords.html#UnitIdentifiers
 	 *
-	 * @param $length String: CSS/SVG length.
+	 * @param string $length CSS/SVG length.
 	 * @param $viewportSize: Float optional scale for percentage units...
 	 * @return float: length in pixels
 	 */
-	static function scaleSVGUnit( $length, $viewportSize=512 ) {
+	static function scaleSVGUnit( $length, $viewportSize = 512 ) {
 		static $unitLength = array(
 			'px' => 1.0,
 			'pt' => 1.25,
@@ -336,13 +346,13 @@ class SVGReader {
 			'in' => 90.0,
 			'em' => 16.0, // fake it?
 			'ex' => 12.0, // fake it?
-			''   => 1.0, // "User units" pixels by default
+			'' => 1.0, // "User units" pixels by default
 			);
 		$matches = array();
-		if( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
+		if ( preg_match( '/^\s*(\d+(?:\.\d+)?)(em|ex|px|pt|pc|cm|mm|in|%|)\s*$/', $length, $matches ) ) {
 			$length = floatval( $matches[1] );
 			$unit = $matches[2];
-			if( $unit == '%' ) {
+			if ( $unit == '%' ) {
 				return $length * 0.01 * $viewportSize;
 			} else {
 				return $length * $unitLength[$unit];

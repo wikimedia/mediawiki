@@ -104,17 +104,17 @@ class LanguageKsh extends Language {
 			# däm WikiMaatplaz sing, dä Wikipeedija ier, däm Wikiwööterbooch sing
 			# dem/em WikiMaatplaz sing, de Wikipeedija ier, dem/em Wikiwööterbooch sing
 			$word = ( preg_match( '/ b/', $case )
-						? ( $gender=='f' ? 'dä' : 'däm' )
-						: ( $gender=='f' ? 'de' : 'dem' )
+						? ( $gender == 'f' ? 'dä' : 'däm' )
+						: ( $gender == 'f' ? 'de' : 'dem' )
 					) . ' ' . $word . ' ' .
-					( $gender=='f' ? 'ier' : 'sing' ) .
+					( $gender == 'f' ? 'ier' : 'sing' ) .
 					( preg_match( '/ m/', $case ) ? 'e' : ''
 				);
 		} elseif ( preg_match( '/ e/', $case ) ) {
 			# en dämm WikiMaatPlaz, en dä Wikipeedija, en dämm Wikiwööterbooch
 			# em WikiMaatplaz, en de Wikipeedija, em Wikiwööterbooch
 			if ( preg_match( '/ b/', $case ) ) {
-				$word = 'en '.( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
+				$word = 'en ' . ( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
 			} else {
 				$word = ( $gender == 'f' ? 'en de' : 'em' ) . ' ' . $word;
 			}
@@ -124,13 +124,13 @@ class LanguageKsh extends Language {
 			if ( preg_match( '/ b/', $case ) ) {
 				$word = 'vun ' . ( $gender == 'f' ? 'dä' : 'däm' ) . ' ' . $word;
 			} else {
-				$word = ( $gender== 'f' ? 'vun de' : 'vum' ) . ' ' . $word;
+				$word = ( $gender == 'f' ? 'vun de' : 'vum' ) . ' ' . $word;
 			}
 		} elseif ( preg_match( '/ [3d]/', $case ) ) {
 			# dämm WikiMaatPlaz, dä Wikipeedija, dämm Wikiwööterbooch
 			# dem/em WikiMaatplaz, de Wikipeedija, dem/em Wikiwööterbooch
 			if ( preg_match( '/ b/', $case ) ) {
-				$word = ( $gender == 'f' ? 'dää' : 'dämm' ) .' ' . $word;
+				$word = ( $gender == 'f' ? 'dää' : 'dämm' ) . ' ' . $word;
 			} else {
 				$word = ( $gender == 'f' ? 'de' : 'dem' ) . ' ' . $word;
 			}
@@ -141,7 +141,7 @@ class LanguageKsh extends Language {
 				switch ( $gender ) {
 					case 'm':
 						$lord = 'dä';
-						break ;
+						break;
 					case 'f':
 						$lord = 'di';
 						break;
@@ -160,7 +160,7 @@ class LanguageKsh extends Language {
 						$lord = 'et';
 				}
 			}
-			$word = $lord.' '.$word;
+			$word = $lord . ' ' . $word;
 		}
 		return $word;
 	}
@@ -189,7 +189,9 @@ class LanguageKsh extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 		$forms = $this->preConvertPlural( $forms, 3 );
 
 		if ( $count == 1 ) {

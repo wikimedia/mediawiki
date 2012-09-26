@@ -61,13 +61,13 @@ class SquidUpdate {
 			array( 'page_namespace', 'page_title' ),
 			array(
 				'pl_namespace' => $title->getNamespace(),
-				'pl_title'     => $title->getDBkey(),
+				'pl_title' => $title->getDBkey(),
 				'pl_from=page_id' ),
 			__METHOD__ );
 		$blurlArr = $title->getSquidURLs();
-		if ( $dbr->numRows( $res ) <= $wgMaxSquidPurgeTitles ) {
+		if ( $res->numRows() <= $wgMaxSquidPurgeTitles ) {
 			foreach ( $res as $BL ) {
-				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title ) ;
+				$tobj = Title::makeTitle( $BL->page_namespace, $BL->page_title );
 				$blurlArr[] = $tobj->getInternalURL();
 			}
 		}
@@ -125,9 +125,11 @@ class SquidUpdate {
 	static function purge( $urlArr ) {
 		global $wgSquidServers, $wgHTCPMulticastRouting;
 
-		if( !$urlArr ) {
+		if ( !$urlArr ) {
 			return;
 		}
+
+		wfDebug( "Squid purge: " . implode( ' ', $urlArr ) . "\n" );
 
 		if ( $wgHTCPMulticastRouting ) {
 			SquidUpdate::HTCPPurge( $urlArr );
@@ -170,7 +172,7 @@ class SquidUpdate {
 		$htcpOpCLR = 4; // HTCP CLR
 
 		// @todo FIXME: PHP doesn't support these socket constants (include/linux/in.h)
-		if( !defined( "IPPROTO_IP" ) ) {
+		if ( !defined( "IPPROTO_IP" ) ) {
 			define( "IPPROTO_IP", 0 );
 			define( "IP_MULTICAST_LOOP", 34 );
 			define( "IP_MULTICAST_TTL", 33 );
@@ -181,13 +183,15 @@ class SquidUpdate {
 		if ( $conn ) {
 			// Set socket options
 			socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_LOOP, 0 );
-			if ( $wgHTCPMulticastTTL != 1 )
+			if ( $wgHTCPMulticastTTL != 1 ) {
 				socket_set_option( $conn, IPPROTO_IP, IP_MULTICAST_TTL,
 					$wgHTCPMulticastTTL );
+			}
 
 			$urlArr = array_unique( $urlArr ); // Remove duplicates
 			foreach ( $urlArr as $url ) {
-				if( !is_string( $url ) ) {
+				if ( !is_string( $url ) ) {
+					wfProfileOut( __METHOD__ );
 					throw new MWException( 'Bad purge URL' );
 				}
 				$url = SquidUpdate::expand( $url );
@@ -197,6 +201,7 @@ class SquidUpdate {
 					continue;
 				}
 				if ( !isset( $conf['host'] ) || !isset( $conf['port'] ) ) {
+					wfProfileOut( __METHOD__ );
 					throw new MWException( "Invalid HTCP rule for URL $url\n" );
 				}
 
@@ -217,7 +222,7 @@ class SquidUpdate {
 				// implementation exists, so adapt to Squid
 				$htcpPacket = pack( 'nxxnCxNxxa*n',
 					$htcpLen, $htcpDataLen, $htcpOpCLR,
-					$htcpTransID, $htcpSpecifier, 2);
+					$htcpTransID, $htcpSpecifier, 2 );
 
 				// Send out
 				wfDebug( "Purging URL $url via HTCP\n" );
@@ -249,11 +254,11 @@ class SquidUpdate {
 	static function expand( $url ) {
 		return wfExpandUrl( $url, PROTO_INTERNAL );
 	}
-	
+
 	/**
 	 * Find the HTCP routing rule to use for a given URL.
-	 * @param $url string URL to match
-	 * @param $rules array Array of rules, see $wgHTCPMulticastRouting for format and behavior
+	 * @param string $url URL to match
+	 * @param array $rules Array of rules, see $wgHTCPMulticastRouting for format and behavior
 	 * @return mixed Element of $rules that matched, or false if nothing matched
 	 */
 	static function getRuleForURL( $url, $rules ) {
@@ -264,5 +269,4 @@ class SquidUpdate {
 		}
 		return false;
 	}
-	
 }

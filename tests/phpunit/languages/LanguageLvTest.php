@@ -6,25 +6,21 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageLv.php */
-class LanguageLvTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'lv' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPlural */
+class LanguageLvTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
-		$forms =  array( 'one', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$forms = array( 'zero', 'one', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
-			array( 'other', 0 ), #this must be zero form as per CLDR
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
+			array( 'zero', 0 ),
 			array( 'one', 1 ),
 			array( 'other', 11 ),
 			array( 'one', 21 ),
@@ -35,5 +31,4 @@ class LanguageLvTest extends MediaWikiTestCase {
 			array( 'other', 200 ),
 		);
 	}
-
 }

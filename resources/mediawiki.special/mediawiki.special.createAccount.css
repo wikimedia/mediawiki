@@ -1,0 +1,89 @@
+/* Disable the underline that Vector puts on h2 headings, and bold them. */
+.mw-ui-container h2 {
+	border: 0;
+	font-weight: bold;
+}
+
+/**** shuffled CAPTCHA ****/
+#wpCaptchaWord {
+	margin-top: 6px;
+}
+
+.mw-createacct-captcha-container {
+	background-color: #f8f8f8;
+	border: 1px solid #c9c9c9;
+	padding: 10px;
+	text-align: center;
+}
+
+.mw-createacct-captcha-assisted {
+	display: block;
+	margin-top: 0.5em;
+}
+
+/* Put a border around the fancycaptcha-image-container. */
+.mw-createacct-captcha-and-reload {
+	border: 1px solid #c9c9c9;
+	display: table-cell; /* Other display formats end up too wide */
+	width: 270px;
+	background-color: #FFF;
+}
+
+/* Make the fancycaptcha-image-container full-width within its parent.  */
+.fancycaptcha-image-container
+{
+	width: 100%;
+}
+
+/**** Benefits column CSS to the right (if it fits) of the form. ****/
+.mw-ui-container #userloginForm {
+	float: left;
+}
+
+div.mw-createacct-benefits-container {
+	/* Keeps this column compact and close to the form, but tends to squish contents. */
+	float: left;
+}
+
+div.mw-createacct-benefits-container h2 {
+	margin-bottom: 30px;
+}
+
+.mw-number-text.icon-edits {
+	/* @embed */
+	background: url(images/icon-edits.png) no-repeat left center;
+}
+
+.mw-number-text.icon-pages {
+	/* @embed */
+	background: url(images/icon-pages.png) no-repeat left center;
+}
+
+.mw-number-text.icon-contributors {
+	/* @embed */
+	background: url(images/icon-contributors.png) no-repeat left center;
+}
+
+/* Special font for numbers in benefits*/
+div.mw-number-text h3 {
+	top: 0;
+	margin: 0;
+	padding: 0;
+	color: #252525;
+	font-family: 'Georgia', serif;
+	font-weight: normal;
+	font-size: 2.2em;
+	line-height: 1.2;
+	text-align: center;
+}
+
+/* Contains a number and explanatory text, with space for an icon */
+div.mw-number-text {
+	display: block;
+	font-size: 1.2em;
+	color: #444;
+	margin-top: 1em;
+	padding: 0 0 0 95px; /* 80px wide icon plus "margin" */
+	min-height: 75px; /* matches max icon height, ensures icon emblem is visible */
+	text-align: center;
+}

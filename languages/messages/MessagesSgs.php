@@ -87,8 +87,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ruodītė keravuojantiu nauduotuoju skatliu',
 'tog-oldsig' => 'Esams parašos:',
 'tog-fancysig' => 'Parašos kāp wiki tekstos (ba autuomatėniu nūruodu)',
-'tog-externaleditor' => 'Vagol nutīliejėma nauduotė ėšuorini radaktuoriu (tėktās specam, rēk specēliū nustatīmu kompioteriō. [//www.mediawiki.org/wiki/Manual:External_editors Daugiau infuormacėjės.])',
-'tog-externaldiff' => 'Palē nutīliejėma nauduotė ėšuorinė skėrtomu ruodīma pruograma (tėktās specam, rēk specēliū nustatīmu kompioteriō. [//www.mediawiki.org/wiki/Manual:External_editors Daugiau infuormacėjės.])',
 'tog-showjumplinks' => 'Ijongtė „paršuoktė i“ pasėikiamoma nūruodas',
 'tog-uselivepreview' => 'Nauduotė tėisiogėne parvėiza (JavaScript) (Eksperimentėnis)',
 'tog-forceeditsummary' => 'Klaustė, kumet palėiku toščē pakeitėma kuomentara',
@@ -198,7 +196,6 @@ $messages = array(
 'qbbrowse' => 'Naršītė',
 'qbedit' => 'Taisītė',
 'qbpageoptions' => 'Tas poslapis',
-'qbpageinfo' => 'Konteksts',
 'qbmyoptions' => 'Mona poslapē',
 'qbspecialpages' => 'Specēlė̅jė poslapē',
 'faq' => 'DOK',
@@ -292,7 +289,6 @@ $1',
 'disclaimers' => 'Atsakuomībės aprėbuojims',
 'disclaimerpage' => 'Project:Atsakuomībės aprėbuojims',
 'edithelp' => 'Kāp redagoutė',
-'edithelppage' => 'Help:Redagavėms',
 'helppage' => 'Help:Torėnīs',
 'mainpage' => 'Pėrms poslapis',
 'mainpage-description' => 'Pėrms poslapis',
@@ -393,11 +389,8 @@ Ožklausėms: $2',
 # Login and logout pages
 'logouttext' => "'''Daba Tamsta esat atsėjongės.'''
 
-Galat ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba [[Special:UserLogin|prisėjonkat]] ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
+Galat ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba <span class='plainlinks'>[$1 prisėjonkat]</span> ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
 Pastebiejims: katruos nekatruos poslapiuos ė tuoliau gal ruodītė būktā būtomiet prisėjongės lėgė tuol, kumet ėšvalīsėt sava naršīklės dietovė (''cache'').",
-'welcomecreation' => '== Svēkė, $1! ==
-
-Tamstas paskīra bova sokorta. Neožmėrškėt pakeistė sava [[Special:Preferences|{{SITENAME}} nustatīmu]].',
 'yourname' => 'Nauduotuojė vards:',
 'yourpassword' => 'Slaptažuodis:',
 'yourpasswordagain' => 'Pakartuoket slaptažuodė:',
@@ -617,7 +610,6 @@ tudie negaliesėt ėšsauguotė sava pakeitėmu daba. Tamsta galėt nosėkopėjo
 'template-protected' => '(apsauguots)',
 'template-semiprotected' => '(posiau apsauguots)',
 'hiddencategories' => 'Tas poslapis prėklausa $1 {{PLURAL:$1|pakavuotā kateguorėjē|pakavuotoms kateguorėjėms|pakavuotu kateguorėju}}:',
-'nocreatetitle' => 'Poslapiu kūrims aprėbuots',
 'nocreatetext' => '{{SITENAME}} aprėbuojė galėmībe kortė naujus poslapius.
 Tamsta galėt grīžtė ė redagoutė nūnā esonti poslapi, a [[Special:UserLogin|prėsėjongtė a sokortė paskīra]].',
 'permissionserrors' => 'Teisiu klaida',
@@ -730,7 +722,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'searchmenu-legend' => 'Paėiškuos nustatīmā',
 'searchmenu-exists' => "'''Poslapis pavadėnts „[[$1]]“ šėtuo wiki'''",
 'searchmenu-new' => "'''Sokortė poslapi „[[:$1]]“ šėtuo wiki!'''",
-'searchhelp-url' => 'Help:Torėnīs',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Ėiškuotė poslapiu so šėtuom prīšdielio]]',
 'searchprofile-articles' => 'Torėnė poslapē',
 'searchprofile-project' => 'Pagelbas ė pruojekta poslapē',
@@ -751,8 +742,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'search-interwiki-caption' => 'Dokterėnē pruojektā',
 'search-interwiki-default' => '$1 rezoltatā:',
 'search-interwiki-more' => '(daugiau)',
-'search-mwsuggest-enabled' => 'so pasiūlīmās',
-'search-mwsuggest-disabled' => 'nie pasiūlīmu',
 'search-relatedarticle' => 'Sosėjėn',
 'mwsuggest-disable' => 'Kavuotė AJAX pasiūlīmus',
 'searchrelated' => 'sosėjėn',
@@ -768,10 +757,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'powersearch-redir' => 'Itrauktė paradresavėmus',
 'powersearch-field' => 'Ėiškoutė',
 'search-external' => 'Ėšuorėnė paėiška',
-
-# Quickbar
-'qbsettings' => 'Greitasā pasėrėnkėms',
-'qbsettings-none' => 'Neruodītė',
 
 # Preferences page
 'preferences' => 'Nustatīmā',
@@ -883,11 +868,12 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 'right-read' => 'Skaitītė poslapius',
 'right-edit' => 'Keistė poslapius',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nauduotuojė kūrėma regėstros',
+
 # User rights log
 'rightslog' => 'Nauduotuoju teisiu istuorėjė',
 'rightslogtext' => 'Pateikiams nauduotuoju teisiu pakeitėmu sārašos.',
-'rightslogentry' => 'pakeista $1 gropės narīstė ėš $2 i $3. Sveikėnam!',
-'rightsnone' => '(juokiū)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'redagoutė ta poslapi',
@@ -1232,15 +1218,12 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'Ruodītė',
 'listusers-noresult' => 'Nerast anėjuokiū nauduotuoju.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Nauduotuojė kūrėma regėstros',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Nauduotuoju gropiu teisės',
 'listgrouprights-group' => 'Gropė',
 'listgrouprights-members' => '(nariū sārošos)',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nier adresa',
 'mailnologintext' => 'Tamstā reik būtė [[Special:UserLogin|prisėjongosiam]]
 ė tor būtė ivests teisings el. pašta adresos Tamstas [[Special:Preferences|nustatīmuos]],
@@ -1279,8 +1262,8 @@ Jēgo bikumet ožsėnuorietomiet liautėis keravuotė straipsnė, spauskat \"neb
 'notanarticle' => 'Ne torėnė poslapis',
 'watchnochange' => 'Pasėrėnkto čieso nebova redagouts nė vėins keravuojams straipsnis.',
 'watchlist-details' => 'Keravuojama $1 {{PLURAL:$1|poslapis|$1 poslapē|$1 poslapiu}} neskaitlioujant aptarėmu poslapiu.',
-'wlheader-enotif' => '* El. pašta primėnėmā ijongtė īr.',
-'wlheader-showupdated' => "* Poslapē, katrėi pakeistė nu Tamstas paskotėnė apsėlonkėma čiesa anūs, īr pažīmietė '''pastuorintā'''",
+'wlheader-enotif' => 'El. pašta primėnėmā ijongtė īr.',
+'wlheader-showupdated' => "Poslapē, katrėi pakeistė nu Tamstas paskotėnė apsėlonkėma čiesa anūs, īr pažīmietė '''pastuorintā'''",
 'watchmethod-recent' => 'tėkrėnamė vielībė̅jė pakeitėmā keravuojamiems poslapiams',
 'watchmethod-list' => 'Ėiškuoma vielībūju pakeitėmu keravuojamūs poslapiūs',
 'watchlistcontains' => 'Tamstas kervuojamu sārašė īr $1 {{PLURAL:$1|poslapis|poslapē|poslapiu}}.',
@@ -1293,10 +1276,9 @@ Jēgo bikumet ožsėnuorietomiet liautėis keravuotė straipsnė, spauskat \"neb
 'unwatching' => 'Šalėnama ėš keravuojamu sāraša...',
 
 'enotif_reset' => 'Pažīmietė vėsus poslapius kāp aplonkītus',
-'enotif_newpagetext' => 'Tas īr naus poslapis.',
-'changed' => 'pakeitė',
-'created' => 'sokūrė',
 'enotif_anon_editor' => 'anuonėminis nauduotuos $1',
+'created' => 'sokūrė',
+'changed' => 'pakeitė',
 
 # Delete
 'deletepage' => 'Trintė poslapi',
@@ -1783,7 +1765,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Platoms',
 'exif-imagelength' => 'Aukštoms',
 'exif-orientation' => 'Pasokims',
@@ -1826,7 +1808,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 'namespacesall' => 'vėsas',
 'monthsall' => 'vėsė',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Patvirtėnkėt el. pašta adresa',
 'confirmemail_noemail' => 'Tamsta netorėt nuruodės teisėnga el. pašta adresa [[Special:Preferences|sava nustatīmūs]].',
 'confirmemail_text' => 'Šėtom pruojektė īr rēkalėnga patvirtėntė el. pašta adresa prīš nauduojont el. pašta funkcėjės. Spauskėt žemiau esonti mīgtoka,
@@ -1918,10 +1900,6 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'version' => 'Versėjė',
 'version-license' => 'Licenzėjė',
 
-# Special:FilePath
-'filepath' => 'Faila maršrots',
-'filepath-page' => 'Fails:',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Ėiškuotė doblikoutu failu',
 'fileduplicatesearch-legend' => 'Ėiškuotė doblėkatu',
@@ -1972,6 +1950,6 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 'logentry-newusers-newusers' => '$1 padėrba nauduotuojė paskīra',
 'logentry-newusers-create2' => '$1 padėrba nauduotuojė paskīra $3',
 'logentry-newusers-autocreate' => 'Paskīra $1 bova padėrbta autuomatėškā',
-'newuserlog-byemail' => 'slaptažuodis ėšsiōsts par el. pašta',
+'rightsnone' => '(juokiū)',
 
 );

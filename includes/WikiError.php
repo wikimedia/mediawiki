@@ -82,7 +82,7 @@ class WikiError {
  */
 class WikiErrorMsg extends WikiError {
 	/**
-	 * @param $message String: wiki message name
+	 * @param string $message wiki message name
 	 * @param ... parameters to pass to wfMsg()
 	 *
 	 * @deprecated since 1.17
@@ -143,7 +143,7 @@ class WikiXmlError extends WikiError {
 	}
 
 	function _extractContext( $context, $offset ) {
-		if( is_null( $context ) ) {
+		if ( is_null( $context ) ) {
 			return null;
 		} else {
 			// Hopefully integer overflow will be handled transparently here

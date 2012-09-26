@@ -105,7 +105,7 @@ class Licenses extends HTMLFormField {
 	protected function stackItem( &$list, $path, $item ) {
 		$position =& $list;
 		if ( $path ) {
-			foreach( $path as $key ) {
+			foreach ( $path as $key ) {
 				$position =& $position[$key];
 			}
 		}
@@ -117,7 +117,7 @@ class Licenses extends HTMLFormField {
 	 * @param $depth int
 	 */
 	protected function makeHtml( $tagset, $depth = 0 ) {
-		foreach ( $tagset as $key => $val )
+		foreach ( $tagset as $key => $val ) {
 			if ( is_array( $val ) ) {
 				$this->html .= $this->outputOption(
 					$key, '',
@@ -135,6 +135,7 @@ class Licenses extends HTMLFormField {
 					$depth
 				);
 			}
+		}
 	}
 
 	/**
@@ -148,8 +149,10 @@ class Licenses extends HTMLFormField {
 		$msgObj = $this->msg( $message );
 		$text = $msgObj->exists() ? $msgObj->text() : $message;
 		$attribs['value'] = $value;
-		if ( $value === $this->selected )
+		if ( $value === $this->selected ) {
 			$attribs['selected'] = 'selected';
+		}
+
 		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
 	}
@@ -208,7 +211,7 @@ class License {
 	/**
 	 * Constructor
 	 *
-	 * @param $str String: license name??
+	 * @param string $str license name??
 	 */
 	function __construct( $str ) {
 		list( $text, $template ) = explode( '|', strrev( $str ), 2 );

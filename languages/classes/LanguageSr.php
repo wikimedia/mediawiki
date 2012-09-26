@@ -21,9 +21,9 @@
  * @ingroup Language
  */
 
-require_once( __DIR__ . '/../LanguageConverter.php' );
-require_once( __DIR__ . '/LanguageSr_ec.php' );
-require_once( __DIR__ . '/LanguageSr_el.php' );
+require_once __DIR__ . '/../LanguageConverter.php';
+require_once __DIR__ . '/LanguageSr_ec.php';
+require_once __DIR__ . '/LanguageSr_el.php';
 
 /**
  * There are two levels of conversion for Serbian: the script level
@@ -35,7 +35,7 @@ require_once( __DIR__ . '/LanguageSr_el.php' );
  * @ingroup Language
  */
 class SrConverter extends LanguageConverter {
-	var $mToLatin = array(
+	public $mToLatin = array(
 		'а' => 'a', 'б' => 'b',  'в' => 'v', 'г' => 'g',  'д' => 'd',
 		'ђ' => 'đ', 'е' => 'e',  'ж' => 'ž', 'з' => 'z',  'и' => 'i',
 		'ј' => 'j', 'к' => 'k',  'л' => 'l', 'љ' => 'lj', 'м' => 'm',
@@ -51,7 +51,7 @@ class SrConverter extends LanguageConverter {
 		'Х' => 'H', 'Ц' => 'C',  'Ч' => 'Č', 'Џ' => 'Dž', 'Ш' => 'Š',
 	);
 
-	var $mToCyrillics = array(
+	public $mToCyrillics = array(
 		'a' => 'а', 'b'  => 'б', 'c' => 'ц', 'č' => 'ч', 'ć'  => 'ћ',
 		'd' => 'д', 'dž' => 'џ', 'đ' => 'ђ', 'e' => 'е', 'f'  => 'ф',
 		'g' => 'г', 'h'  => 'х', 'i' => 'и', 'j' => 'ј', 'k'  => 'к',
@@ -75,7 +75,7 @@ class SrConverter extends LanguageConverter {
 		$this->mTables = array(
 			'sr-ec' => new ReplacementArray( $this->mToCyrillics ),
 			'sr-el' => new ReplacementArray( $this->mToLatin ),
-			'sr'    => new ReplacementArray()
+			'sr' => new ReplacementArray()
 		);
 	}
 
@@ -118,29 +118,16 @@ class SrConverter extends LanguageConverter {
 		// check for user namespace
 		if ( is_object( $nt ) ) {
 			$ns = $nt->getNamespace();
-			if ( $ns == NS_USER || $ns == NS_USER_TALK )
+			if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
 				return;
+			}
 		}
 
 		$oldlink = $link;
 		parent::findVariantLink( $link, $nt, $ignoreOtherCond );
-		if ( $this->getPreferredVariant() == $this->mMainLanguageCode )
+		if ( $this->getPreferredVariant() == $this->mMainLanguageCode ) {
 			$link = $oldlink;
-	}
-
-	/**
-	 * We want our external link captions to be converted in variants,
-	 * so we return the original text instead -{$text}-, except for URLs
-	 *
-	 * @param $text string
-	 * @param $noParse bool
-	 *
-	 * @return string
-	 */
-	function markNoConversion( $text, $noParse = false ) {
-		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
-			return parent::markNoConversion( $text );
-		return $text;
+		}
 	}
 
 	/**
@@ -154,9 +141,11 @@ class SrConverter extends LanguageConverter {
 	 */
 	function autoConvert( $text, $toVariant = false ) {
 		global $wgTitle;
-		if ( is_object( $wgTitle ) && $wgTitle->getNameSpace() == NS_FILE ) {
+		if ( is_object( $wgTitle ) && $wgTitle->getNamespace() == NS_FILE ) {
 			$imagename = $wgTitle->getNsText();
-			if ( preg_match( "/^$imagename:/", $text ) ) return $text;
+			if ( preg_match( "/^$imagename:/", $text ) ) {
+				return $text;
+			}
 		}
 		return parent::autoConvert( $text, $toVariant );
 	}
@@ -182,6 +171,7 @@ class SrConverter extends LanguageConverter {
 		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
 		$m = array_shift( $matches );
+		$this->loadTables();
 		if ( !isset( $this->mTables[$toVariant] ) ) {
 			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
 		}
@@ -208,13 +198,13 @@ class SrConverter extends LanguageConverter {
 	 * @since 1.19
 	 */
 	public function guessVariant( $text, $variant ) {
-		$numCyrillic = preg_match_all("/[шђчћжШЂЧЋЖ]/u", $text, $dummy);
-		$numLatin = preg_match_all("/[šđčćžŠĐČĆŽ]/u", $text, $dummy);
+		$numCyrillic = preg_match_all( "/[шђчћжШЂЧЋЖ]/u", $text, $dummy );
+		$numLatin = preg_match_all( "/[šđčćžŠĐČĆŽ]/u", $text, $dummy );
 
-		if( $variant == 'sr-ec' ) {
-			return (boolean) ($numCyrillic > $numLatin);
-		} elseif( $variant == 'sr-el' ) {
-			return (boolean) ($numLatin > $numCyrillic);
+		if ( $variant == 'sr-ec' ) {
+			return (boolean) ( $numCyrillic > $numLatin );
+		} elseif ( $variant == 'sr-el' ) {
+			return (boolean) ( $numLatin > $numCyrillic );
 		} else {
 			return false;
 		}
@@ -236,17 +226,17 @@ class LanguageSr extends LanguageSr_ec {
 
 		$variants = array( 'sr', 'sr-ec', 'sr-el' );
 		$variantfallbacks = array(
-			'sr'    => 'sr-ec',
+			'sr' => 'sr-ec',
 			'sr-ec' => 'sr',
 			'sr-el' => 'sr',
 		);
 
 		$flags = array(
 			'S' => 'S', 'писмо' => 'S', 'pismo' => 'S',
-			'W' => 'W', 'реч'   => 'W', 'reč'   => 'W', 'ријеч' => 'W', 'riječ' => 'W'
+			'W' => 'W', 'реч' => 'W', 'reč' => 'W', 'ријеч' => 'W', 'riječ' => 'W'
 		);
 		$this->mConverter = new SrConverter( $this, 'sr', $variants, $variantfallbacks, $flags );
-		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**
@@ -276,10 +266,10 @@ class LanguageSr extends LanguageSr_ec {
 			return $forms[2];
 		} else {
 			switch ( $count % 10 ) {
-				case 1:  return $forms[0];
+				case 1: return $forms[0];
 				case 2:
 				case 3:
-				case 4:  return $forms[1];
+				case 4: return $forms[1];
 				default: return $forms[2];
 			}
 		}

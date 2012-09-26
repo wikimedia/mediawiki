@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Huslåke
  * @author Urhixidur
  * @author Ælsån
@@ -42,8 +43,6 @@ $messages = array(
 'tog-enotifrevealaddr' => "Ves miin e-mail-adresse i mails ve besked ændrenger'm",
 'tog-shownumberswatching' => 'Ves åntal brugere, der åvervåger',
 'tog-fancysig' => 'Signaturer uden åtåmatisk henvesnenge',
-'tog-externaleditor' => 'Brug ekstern redigærengsmåskiin åtåmatisk',
-'tog-externaldiff' => 'Brug ekstern førskelsvesnenge åtåmatisk',
 'tog-showjumplinks' => 'Ves tilgængelegheds-henvesnenger',
 'tog-uselivepreview' => 'Brug åtåmatisk førhåndsvesnenge (JavaScript) (eksperimentel)',
 'tog-forceeditsummary' => 'Advar, hves sammenfatnenge mangler ve gemnenge',
@@ -136,7 +135,6 @@ $messages = array(
 'qbbrowse' => 'Gennemse',
 'qbedit' => 'Redigær',
 'qbpageoptions' => 'Endstellenger før side',
-'qbpageinfo' => "Informåsje side'm",
 'qbmyoptions' => 'Miine endstellenger',
 'qbspecialpages' => 'Sonst sider',
 'faq' => 'VSF',
@@ -206,7 +204,6 @@ $messages = array(
 'disclaimers' => 'Førbeholt',
 'disclaimerpage' => 'Project:Huses førbeholt',
 'edithelp' => 'Hjælp til redigærenge',
-'edithelppage' => "Help:Vordan redigærer a'n side",
 'helppage' => 'Help:Hjælpførside',
 'mainpage' => 'Førsit',
 'mainpage-description' => 'Førsit',
@@ -314,7 +311,7 @@ Førespørgsel: $2',
 'userlogin' => 'Åpret æ konto æller loĝ på',
 'logout' => 'Loĝ åf',
 'userlogout' => 'Loĝ åf',
-'nologin' => "Du har engen brugerkonto? '''$1'''.",
+'nologin' => 'Du har engen brugerkonto? $1.',
 'nologinlink' => 'Åpret ny brugerkonto',
 'createaccount' => 'Åpret en ny konto',
 'gotaccount' => "Du har ålerede en brugerkonto? '''$1'''.",
@@ -441,7 +438,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'prevn' => 'førge {{PLURAL:$1|$1}}',
 'nextn' => 'nægste {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ves ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Hjælpførside',
 'searchall' => 'ål',
 'powersearch' => 'Søĝ',
 
@@ -454,6 +450,10 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'prefs-help-realname' => '* <strong>Dit rigtege navn</strong> (valgfrit): Hves du vælger at åplyse dit navn hvil dette bleve brugt til at tilskreve dig dit arbejde.',
 
 'grouppage-sysop' => '{{ns:project}}:Administråtorer',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Brugeråprettelseslog',
+'newuserlogpagetext' => "Dett'er en log åver de senest åprettede brugere.",
 
 # User rights log
 'rightslog' => 'Rettigheds-logbåĝ',
@@ -606,11 +606,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'linksearch-line' => '$2 linker til $1',
 'linksearch-error' => "Wildkårter må ken benyttes i'n stårt åf håstnavnet.",
 
-# Special:Log/newusers
-'newuserlogpage' => 'Brugeråprettelseslog',
-'newuserlogpagetext' => "Dett'er en log åver de senest åprettede brugere.",
-
-# E-mail user
+# Email user
 'emailuser' => 'E-mail til denne bruger',
 
 # Watchlist
@@ -853,8 +849,5 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 
 # Special:SpecialPages
 'specialpages' => 'Sonst sider',
-
-# New logging system
-'newuserlog-byemail' => 'kodeort tilsend via e-mail',
 
 );

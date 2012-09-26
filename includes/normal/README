@@ -48,12 +48,12 @@ grains of salt.
 
 There's an experimental PHP extension module which wraps the ICU library's
 normalization functions. This is *MUCH* faster than doing this work in pure
-PHP code. This is in the 'normal' directory in MediaWiki's CVS extensions
-module. It is known to work with PHP 4.3.8 and 5.0.2 on Linux/x86 but hasn't
-been thoroughly tested on other configurations.
+PHP code. This is at https://git.wikimedia.org/summary/mediawiki%2Fextensions%2Fnormal.git.
+It is used by the WMF, which currently runs PHP 5.3.10 on Linux.  It hasn't been
+thoroughly tested on other configurations, but may work.
 
 If the php_normal.so module is loaded in php.ini, the normalization functions
 will automatically use it. If you can't (or don't want to) load it in php.ini,
-you may be able to load it using the dl() function before include()ing or
-require()ing UtfNormal.php, and it will be picked up.
+you may be able to load it using the dl() function before the inclusion of
+UtfNormal.php, and it will be picked up.
 

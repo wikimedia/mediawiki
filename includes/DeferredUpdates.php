@@ -34,7 +34,7 @@ interface DeferrableUpdate {
 }
 
 /**
- * Class for mananging the deferred updates.
+ * Class for managing the deferred updates.
  *
  * @since 1.19
  */
@@ -66,7 +66,7 @@ class DeferredUpdates {
 	/**
 	 * Do any deferred updates and clear the list
 	 *
-	 * @param $commit String: set to 'commit' to commit after every update to
+	 * @param string $commit set to 'commit' to commit after every update to
 	 *                prevent lock contention
 	 */
 	public static function doUpdates( $commit = '' ) {
@@ -92,7 +92,7 @@ class DeferredUpdates {
 				$update->doUpdate();
 
 				if ( $doCommit && $dbw->trxLevel() ) {
-					$dbw->commit( __METHOD__ );
+					$dbw->commit( __METHOD__, 'flush' );
 				}
 			} catch ( MWException $e ) {
 				// We don't want exceptions thrown during deferred updates to

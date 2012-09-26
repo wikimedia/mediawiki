@@ -126,7 +126,6 @@ $messages = array(
 'qbfind' => 'დოგორი',
 'qbedit' => 'რედაქტირება',
 'qbpageoptions' => 'თე ხასჷლა',
-'qbpageinfo' => 'კონტექსტი',
 'qbmyoptions' => 'ჩქიმი ხასჷლეფი',
 'qbspecialpages' => 'გჷშაკერძაფილი ხასჷლეფი',
 'faq' => 'ბხშირი კითხვეფი',
@@ -191,7 +190,6 @@ $messages = array(
 'disclaimers' => 'გამამინჯალაშ ვარება',
 'disclaimerpage' => 'Project:გამამინჯალაშ ვარება',
 'edithelp' => 'მოხვარა რედაქტირაფას',
-'edithelppage' => 'Help:ტექსტიშ რედაქტირაფა',
 'helppage' => 'Help:დინორე',
 'mainpage' => 'დუდხასჷლა',
 'mainpage-description' => 'დუდხასჷლა',
@@ -412,7 +410,6 @@ $messages = array(
 'viewprevnext' => 'ქოძირ  ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists' => 'თე ვიკის "[[:$1]]" ჯოხოთ ხასჷლა რე',
 'searchmenu-new' => "''ქჷდარსხი \"[[:\$1]]\" ხასჷლა თე ვიკის'''",
-'searchhelp-url' => 'Help:მოხვარა',
 'searchprofile-articles' => 'სტატიეფი',
 'searchprofile-project' => 'მოხვარაშ დო პროექტიშ ხასჷლეფი',
 'searchprofile-images' => 'მულტიმედია',
@@ -431,8 +428,6 @@ $messages = array(
 'search-interwiki-caption' => 'ჯიმაია პროექტეფ',
 'search-interwiki-default' => 'მოღალირეფი $1-შე:',
 'search-interwiki-more' => '(უმოს)',
-'search-mwsuggest-enabled' => 'ელაჩამეფით',
-'search-mwsuggest-disabled' => 'ელაჩამეფიშ უმუშოთ',
 'searchrelated' => 'მათანგეფ',
 'searchall' => 'არძო',
 'showingresultsheader' => "{{PLURAL:$5|მოღალუ '''$1''' '''$3'''-შე|მოღალუეფ '''$1 - $2''' '''$3'''-შე}} '''$4'''-შო",
@@ -460,6 +455,9 @@ $messages = array(
 
 'grouppage-user' => '{{ns:project}}:მახვარებუეფ',
 'grouppage-sysop' => '{{ns:project}}:ხემანჯღვერეფი',
+
+# Special:Log/newusers
+'newuserlogpage' => 'მახვარებუშ რეგისტრაციაშ ჟურნალ',
 
 # User rights log
 'rightslog' => 'მახვარებუშ ნებეფიშ ჟურნალ',
@@ -603,13 +601,10 @@ $messages = array(
 'linksearch' => 'გალენ რცხიეფ',
 'linksearch-line' => '$1 მერცხიილი რე $2-შე',
 
-# Special:Log/newusers
-'newuserlogpage' => 'მახვარებუშ რეგისტრაციაშ ჟურნალ',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(მაკათურეფიშ ერკებული)',
 
-# E-mail user
+# Email user
 'emailuser' => 'მიდუჯღონით ელ.ფოშტა ათე მახვარებუს',
 
 # Watchlist
@@ -885,7 +880,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'სიგანე',
 'exif-imagelength' => 'სიმაღალე',
 
@@ -924,5 +919,8 @@ $messages = array(
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|ხინტკეფიშ]] ტკიბირი:',
+
+# Search suggestions
+'searchsuggest-search' => 'გორუა',
 
 );

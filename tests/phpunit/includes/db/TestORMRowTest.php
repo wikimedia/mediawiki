@@ -58,35 +58,62 @@ class TestORMRowTest extends ORMRowTest {
 		return TestORMTable::singleton();
 	}
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		$isSqlite = $GLOBALS['wgDBtype'] === 'sqlite';
+		$isPostgres = $GLOBALS['wgDBtype'] === 'postgres';
 
 		$idField = $isSqlite ? 'INTEGER' : 'INT unsigned';
 		$primaryKey = $isSqlite ? 'PRIMARY KEY AUTOINCREMENT' : 'auto_increment PRIMARY KEY';
 
-		$dbw->query(
-			'CREATE TABLE IF NOT EXISTS ' . $dbw->tableName( 'orm_test' ) . '(
-				test_id                    ' . $idField . '        NOT NULL ' . $primaryKey . ',
-				test_name                  VARCHAR(255)        NOT NULL,
-				test_age                   TINYINT unsigned    NOT NULL,
-				test_height                FLOAT               NOT NULL,
-				test_awesome               TINYINT unsigned    NOT NULL,
-				test_stuff                 BLOB                NOT NULL,
-				test_moarstuff             BLOB                NOT NULL,
-				test_time                  varbinary(14)       NOT NULL
-			);'
-		);
+		if ( $isPostgres ) {
+			$dbw->query(
+				'CREATE TABLE IF NOT EXISTS ' . $dbw->tableName( 'orm_test' ) . "(
+					test_id serial PRIMARY KEY,
+					test_name TEXT NOT NULL DEFAULT '',
+					test_age INTEGER NOT NULL DEFAULT 0,
+					test_height REAL NOT NULL DEFAULT 0,
+					test_awesome INTEGER NOT NULL DEFAULT 0,
+					test_stuff BYTEA,
+					test_moarstuff BYTEA,
+					test_time TIMESTAMPTZ
+					);",
+					__METHOD__
+				);
+		} else {
+			$dbw->query(
+				'CREATE TABLE IF NOT EXISTS ' . $dbw->tableName( 'orm_test' ) . '(
+					test_id                    ' . $idField . '        NOT NULL ' . $primaryKey . ',
+					test_name                  VARCHAR(255)        NOT NULL,
+					test_age                   TINYINT unsigned    NOT NULL,
+					test_height                FLOAT               NOT NULL,
+					test_awesome               TINYINT unsigned    NOT NULL,
+					test_stuff                 BLOB                NOT NULL,
+					test_moarstuff             BLOB                NOT NULL,
+					test_time                  varbinary(14)       NOT NULL
+				);',
+				__METHOD__
+			);
+		}
+	}
+
+	protected function tearDown() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->dropTable( 'orm_test', __METHOD__ );
+
+		parent::tearDown();
 	}
 
 	public function constructorTestProvider() {
+		$dbw = wfGetDB( DB_MASTER );
 		return array(
 			array(
 				array(
 					'name' => 'Foobar',
+					'time' => $dbw->timestamp( '20120101020202' ),
 					'age' => 42,
 					'height' => 9000.1,
 					'awesome' => true,
@@ -98,9 +125,25 @@ class TestORMRowTest extends ORMRowTest {
 		);
 	}
 
+	/**
+	 * @since 1.21
+	 * @return array
+	 */
+	protected function getMockValues() {
+		return array(
+			'id' => 1,
+			'str' => 'foobar4645645',
+			'int' => 42,
+			'float' => 4.2,
+			'bool' => '',
+			'array' => array( 42, 'foobar' ),
+			'blob' => new stdClass()
+		);
+	}
 }
 
-class TestORMRow extends ORMRow {}
+class TestORMRow extends ORMRow {
+}
 
 class TestORMTable extends ORMTable {
 
@@ -155,7 +198,7 @@ class TestORMTable extends ORMTable {
 			'awesome' => 'bool',
 			'stuff' => 'array',
 			'moarstuff' => 'blob',
-			'time' => 'int', // TS_MW
+			'time' => 'str', // TS_MW
 		);
 	}
 
@@ -169,6 +212,4 @@ class TestORMTable extends ORMTable {
 	protected function getFieldPrefix() {
 		return 'test_';
 	}
-
-
 }

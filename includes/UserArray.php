@@ -44,7 +44,7 @@ abstract class UserArray implements Iterator {
 		$ids = array_map( 'intval', (array)$ids ); // paranoia
 		if ( !$ids ) {
 			// Database::select() doesn't like empty arrays
-			return new ArrayIterator(array());
+			return new ArrayIterator( array() );
 		}
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'user', '*', array( 'user_id' => $ids ),

@@ -167,7 +167,6 @@ $messages = array(
 'disclaimers' => 'Disclaimers',
 'disclaimerpage' => 'Project: Disclaimer gawonoyo',
 'edithelp' => 'Editing help',
-'edithelppage' => 'Help:Mşaḥlaf',
 'helppage' => 'Help: Ḥbişoṭo',
 'mainpage' => 'Faṭo rişoyto',
 'mainpage-description' => 'Faṭo rişoyto',
@@ -400,7 +399,6 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'searchmenu-legend' => '3ayar duKruxyo',
 'searchmenu-exists' => "'''Kito Faṭo herke Işma \"[[:\$1]]\"yo'''",
 'searchmenu-new' => 'Kṭaw iFaṭaṭe "[[:$1]]" buWiki.',
-'searchhelp-url' => 'Help: Ḥbişoṭo',
 'searchprofile-articles' => 'Faṭoṭe daḤbişoṭo',
 'searchprofile-project' => 'Faṭoṭe du3udrono u daProjat',
 'searchprofile-images' => 'Multimediya',
@@ -457,12 +455,15 @@ Legend: '''({{int:cur}})''' = difference with latest revision, '''({{int:last}})
 'prefs-help-email-others' => 'Kibux mijğolat 3am Hadome ğer biFaṭo duMamlo u luglozam dumat Işmux.',
 'prefs-signature' => 'Imḍa',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'uEmail-Adresayḍux m³adlo yo.',
 
 # Groups
 'group-user' => 'Hadome',
 'group-all' => '(kulle)',
+
+# Special:Log/newusers
+'newuserlogpage' => 'User creation log',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Mşaḥlaf iFaṭaṭe',
@@ -585,16 +586,13 @@ The description on its [$2 file description page] there is shown below.',
 # Special:ListUsers
 'listusers-submit' => 'Maḥway',
 
-# Special:Log/newusers
-'newuserlogpage' => 'User creation log',
-
 # Special:ListGroupRights
 'listgrouprights-group' => 'Gudo',
 'listgrouprights-rights' => 'Ḥaqat',
 'listgrouprights-helppage' => 'Help: Ḥaqat diGudo',
 'listgrouprights-members' => '(Lista daHadome)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Kṭaw Email luHadomano.',
 'emailusername' => 'Işme duHadomo:',
 'emailfrom' => 'Men:',
@@ -802,7 +800,7 @@ Others will be hidden by default.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-writer' => 'Kaṭowo',
 'exif-languagecode' => 'Leşono',
 'exif-cameraownername' => 'uMoro diQamera',
@@ -823,9 +821,6 @@ Others will be hidden by default.
 
 # Core parser functions
 'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
-
-# Special:FilePath
-'filepath-submit' => 'Zux',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Krax',
@@ -864,6 +859,9 @@ iFaṭaṭe u3do kitla Qaṫre.',
 # Feedback
 'feedback-message' => 'Ṫebo:',
 'feedback-cancel' => 'Mbaṫel',
+
+# Search suggestions
+'searchsuggest-search' => 'Kruxyo',
 
 # API errors
 'api-error-unknownerror' => 'Fawdo nuxroyo: $1',

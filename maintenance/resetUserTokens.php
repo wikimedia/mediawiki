@@ -23,7 +23,7 @@
  * @author Daniel Friesen <mediawiki@danielfriesen.name>
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to reset the user_token for all users on the wiki.
@@ -75,4 +75,4 @@ class ResetUserTokens extends Maintenance {
 }
 
 $maintClass = "ResetUserTokens";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

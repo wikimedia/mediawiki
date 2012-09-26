@@ -119,7 +119,7 @@ jQuery( document ).ready( function ( $ ) {
 			e.preventDefault();
 			return false; // Because the submit is special, return false as well.
 		}
-		
+
 		// Continue natural browser handling other wise
 		return true;
 	} );

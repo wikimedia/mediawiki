@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to correct wrong values in the `page_latest` field
@@ -83,4 +83,4 @@ class AttachLatest extends Maintenance {
 }
 
 $maintClass = "AttachLatest";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -191,7 +191,6 @@ $messages = array(
 'qbbrowse' => 'ရှာဖွေလှန်လှောရန်',
 'qbedit' => 'ပြင်​ဆင်​ရန်​',
 'qbpageoptions' => 'ဤစာမျက်နှာ',
-'qbpageinfo' => 'မာတိကာ',
 'qbmyoptions' => 'ကျွန်ုပ် စာမျက်နှာများ',
 'qbspecialpages' => 'အ​ထူး​စာ​မျက်​နှာ​',
 'faq' => 'မေးလေ့ရှိကြသည်များ',
@@ -285,7 +284,6 @@ $1',
 'disclaimers' => 'သတိပြုစရာများ',
 'disclaimerpage' => 'Project: အထွေထွေ သတိပြုဖွယ်',
 'edithelp' => 'ပြင်​ဆင်​ရန် အ​ကူ​အ​ညီ​',
-'edithelppage' => 'Help: တည်းဖြတ်ခြင်း',
 'helppage' => 'Help: မာတိကာ',
 'mainpage' => 'ဗဟိုစာမျက်နှာ',
 'mainpage-description' => 'ဗ​ဟို​စာ​မျက်​နှာ​',
@@ -376,12 +374,9 @@ $1',
 'virus-unknownscanner' => 'အမည်မသိအန်တီဗိုင်းရပ်စ် -',
 
 # Login and logout pages
-'logouttext' => 'သင်သည် လော့ဂ်အောက် လုပ်လိုက်ပြီဖြစ်သည်။
-သင့်အနေနှင့် ဤ {{SITENAME}} ဝက်ဘ်ဆိုက်ဒ်ကို အမည်မသိ အသုံးပြုသူ အနေနှင့် ဆက်လက် အသုံးပြုနိုင်သည်။ သို့မဟုတ် ယခင် အသုံးပြုသူ အမည် သို့ အသုံးပြုသူ အခြားအမည်တစ်ခုဖြင့် [[Special:UserLogin|နောက်တစ်ကြိမ် လော့ဂ်အင်ပြန်ဝင်]] နိုင်သည်။
-သင်၏ ဘရောက်ဆာမှ cache ကို ရှင်းလင်းသည့် အချိန် အထိ အချို့သော စာမျက်နှာ များသည် သင် လော့ဂ်အင် ဝင်ထားစဉ်က အတိုင်းပင် ဆက်လက် ပြသနေမည်ဖြစ်သည်။',
-'welcomecreation' => '== မင်္ဂလာပါ $1! ==
-သင့်အကောင့်ကို ဖန်တီးပြီးပါပြီ။
-[[Special:Preferences|{{SITENAME}} စိတ်​ကြိုက်​ရွေးချယ်စရာတို့]]ကို ပြောင်းရန် မမေ့ပါနှင့်။',
+'logouttext' => "သင်သည် လော့ဂ်အောက် လုပ်လိုက်ပြီဖြစ်သည်။
+သင့်အနေနှင့် ဤ {{SITENAME}} ဝက်ဘ်ဆိုက်ဒ်ကို အမည်မသိ အသုံးပြုသူ အနေနှင့် ဆက်လက် အသုံးပြုနိုင်သည်။ သို့မဟုတ် ယခင် အသုံးပြုသူ အမည် သို့ အသုံးပြုသူ အခြားအမည်တစ်ခုဖြင့် <span class='plainlinks'>[$1 နောက်တစ်ကြိမ် လော့ဂ်အင်ပြန်ဝင်]</span> နိုင်သည်။
+သင်၏ ဘရောက်ဆာမှ cache ကို ရှင်းလင်းသည့် အချိန် အထိ အချို့သော စာမျက်နှာ များသည် သင် လော့ဂ်အင် ဝင်ထားစဉ်က အတိုင်းပင် ဆက်လက် ပြသနေမည်ဖြစ်သည်။",
 'yourname' => 'အသုံးပြုသူအမည် -',
 'yourpassword' => 'စကားဝှက် -',
 'yourpasswordagain' => 'စကားဝှက် ပြန်​ရိုက်​ပါ -',
@@ -671,7 +666,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'searchmenu-legend' => 'ရှာဖွေရန် ရွေးချယ်မှု',
 'searchmenu-exists' => "'''ဤဝီကီတွင် \"[[:\$1]]\" အမည်နှင့် စာမျက်နှာတစ်ခုရှိသည်။'''",
 'searchmenu-new' => "'''ဤဝီကီတွင် \"[[:\$1]]\" အမည်နှင့် စာမျက်နှာကို ဖန်တီးပါ။'''",
-'searchhelp-url' => 'Help: မာတိကာ',
 'searchprofile-articles' => 'မာတိကာစာမျက်နှာများ',
 'searchprofile-project' => 'အကူအညီနှင့် ပရောဂျက်စာမျက်နှာများ',
 'searchprofile-images' => 'မာလတီမီဒီယာ',
@@ -691,8 +685,6 @@ Legend: '''({{int:cur}})''' = နောက်ဆုံးမူနှင့် �
 'search-interwiki-caption' => 'ညီအစ်မ ပရောဂျက်များ',
 'search-interwiki-default' => 'ရလဒ် $1 ခု -',
 'search-interwiki-more' => '(နောက်ထပ်)',
-'search-mwsuggest-enabled' => 'အကြံပြုချက်များနှင့်တကွ',
-'search-mwsuggest-disabled' => 'အကြံပြုချက် မရှိပါ',
 'search-relatedarticle' => 'ဆက်နွယ်သော',
 'mwsuggest-disable' => 'AJAX အကြံပြုချက်များကို ပိတ်ထားရန်',
 'searcheverything-enable' => 'အမည်ညွှန်းအားလုံးတွင် ရှာရန်',
@@ -715,13 +707,6 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'powersearch-toggleall' => 'အားလုံး',
 'powersearch-togglenone' => 'အမည်ညွှန်းမရှိ',
 'search-external' => 'အပြင်တွင် ရှာရန်',
-
-# Quickbar
-'qbsettings-none' => 'အမည်ညွှန်းမရှိ',
-'qbsettings-fixedleft' => 'ဘယ်ဘက်ကို အသေထားရန်',
-'qbsettings-fixedright' => 'ညာဘက်ကို အသေထားရန်',
-'qbsettings-floatingleft' => 'ဘယ်ဘက်ကို အရှင်ထားရန်',
-'qbsettings-floatingright' => 'ညာဘက်ကို အရှင်ထားရန်',
 
 # Preferences page
 'preferences' => '​ရွေး​ချယ်​စ​ရာ​များ​',
@@ -824,7 +809,7 @@ Your e-mail address is not revealed when other users contact you.
 'prefs-displaywatchlist' => 'ပြသရန် ရွေးချယ်မှု',
 'prefs-diffs' => 'ကွဲပြားချက်',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'အီးမေးလိပ်စာ တရားဝင်ပုံပေါ်သည်',
 'email-address-validity-invalid' => 'တရားဝင်အီးမေးလိပ်စာတစ်ခု ထည့်ပါ',
 
@@ -900,11 +885,13 @@ Your e-mail address is not revealed when other users contact you.
 'right-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
 'right-sendemail' => 'အခြားအသုံးပြုသူများကို အီးမေးပို့ရန်',
 
+# Special:Log/newusers
+'newuserlogpage' => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
+'newuserlogpagetext' => 'ဤသည်မှာ အသုံးပြုသူအသစ် ဖတ်တီးမှု မှတ်တမ်း ဖြစ်သည်။',
+
 # User rights log
 'rightslog' => 'အသုံးပြုသူ၏ အခွင့်အရေးများ မှတ်တမ်း',
 'rightslogtext' => 'ဤသည်မှာ အသုံးပြုသူအခွင့်အရေးများ၏ ပြောင်းလဲမှုများမှတ်တမ်းဖြစ်သည်။',
-'rightslogentry' => '$1 အတွက် အုပ်စုအသင်ဝင်ဖြစ်မှုကို အုပ်စု $2 မှ အုပ်စု $3 သို့ ပြောင်းလဲပြီး',
-'rightsnone' => '(ဘာမှမရှိ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'ဤစာမျက်နှာကို ဖတ်ရန်',
@@ -1047,7 +1034,6 @@ Your e-mail address is not revealed when other users contact you.
 
 # HTTP errors
 'http-invalid-url' => 'တရားမဝင်သော URL လင့် - $1',
-'http-host-unreachable' => 'URL လင့်သို့ သွားမရပါ။',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL လင့်သို့ သွားမရပါ',
@@ -1267,10 +1253,6 @@ Your e-mail address is not revealed when other users contact you.
 'activeusers-hidesysops' => 'အက်ဒမင်များကို ဝှက်ရန်',
 'activeusers-noresult' => 'အသုံးပြုသူ မတွေ့ပါ။',
 
-# Special:Log/newusers
-'newuserlogpage' => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
-'newuserlogpagetext' => 'ဤသည်မှာ အသုံးပြုသူအသစ် ဖတ်တီးမှု မှတ်တမ်း ဖြစ်သည်။',
-
 # Special:ListGroupRights
 'listgrouprights' => 'အသုံးပြုသူအုပ်စု အခွင့်အရေးများ',
 'listgrouprights-group' => 'အုပ်စု',
@@ -1281,7 +1263,7 @@ Your e-mail address is not revealed when other users contact you.
 'listgrouprights-addgroup-self-all' => 'အုပ်စုအားလုံးကို မိမိ၏အကောင့်သို့ ပေါင်းထည့်ရန်',
 'listgrouprights-removegroup-self-all' => 'မိမိ၏အကောင့်မှ အုပ်စုအားလုံးကို ဖယ်ရှားရန်',
 
-# E-mail user
+# Email user
 'mailnologin' => 'ပို့ရန်လိပ်စာ မရှိပါ',
 'emailuser' => 'ဤ​အ​သုံး​ပြု​သူ​အား​အီး​မေး​ပို့​ပါ​',
 'emailpage' => 'အီးမေးအသုံးပြုသူ',
@@ -1324,11 +1306,10 @@ Your e-mail address is not revealed when other users contact you.
 'watching' => 'စောင့်ကြည့်လျက်ရှိ...',
 'unwatching' => 'စောင့်မကြည့်တော့...',
 
-'enotif_newpagetext' => 'ဤသည်မှာ စာမျက်နှာအသစ်ဖြစ်သည်။',
 'enotif_impersonal_salutation' => '{{SITENAME}} အသုံးပြုသူ',
-'changed' => 'ပြောင်းလဲလိုက်သည်',
-'created' => 'ဖန်တီးလိုက်သည်',
 'enotif_anon_editor' => 'အမည်မသိ အသုံးပြုသူ $1',
+'created' => 'ဖန်တီးလိုက်သည်',
+'changed' => 'ပြောင်းလဲလိုက်သည်',
 
 # Delete
 'deletepage' => 'စာမျက်နှာကိုဖျက်ပါ',
@@ -1716,7 +1697,7 @@ Your e-mail address is not revealed when other users contact you.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'အကျယ်',
 'exif-imagelength' => 'အမြင့်',
 'exif-bitspersample' => 'အစိတ်အပိုင်းတစ်ခုတွင်ပါဝင်သော အပိုင်းငယ်များ',
@@ -1794,7 +1775,7 @@ Your e-mail address is not revealed when other users contact you.
 'monthsall' => 'အားလုံး',
 'limitall' => 'အားလုံး',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'အီးမေးကိုအတည်ပြုပါ',
 'confirmemail_send' => 'အတည်ပြုချက်ကုတ်ကို အီးမေးပို့ပေးရန်',
 
@@ -1845,11 +1826,6 @@ Your e-mail address is not revealed when other users contact you.
 'version-software' => 'သွင်းထားသော ဆော့ဝဲ',
 'version-software-product' => 'ထုတ်ကုန်',
 'version-software-version' => 'ဗားရှင်း',
-
-# Special:FilePath
-'filepath' => 'ဖိုင်လမ်းကြောင်း',
-'filepath-page' => 'ဖိုင်:',
-'filepath-submit' => 'သွား',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'နှစ်ခုထပ်နေသောဖိုင်များကို ရှာရန်',
@@ -1917,7 +1893,7 @@ Your e-mail address is not revealed when other users contact you.
 # New logging system
 'revdelete-restricted' => 'အက်ဒမင်များသို့ ကန့်သတ်ချက်များ သက်ရောက်ရန်',
 'revdelete-unrestricted' => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
-'newuserlog-byemail' => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
+'rightsnone' => '(ဘာမှမရှိ)',
 
 # API errors
 'api-error-filename-tooshort' => 'ဖိုင်အမည်သည် တိုလွန်းသည်။',

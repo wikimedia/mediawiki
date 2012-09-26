@@ -22,8 +22,8 @@
  */
 
 /** This is a command line script */
-require_once( __DIR__ . '/../Maintenance.php' );
-require_once( __DIR__ . '/languages.inc' );
+require_once __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/languages.inc';
 
 /**
  * Maintenance script that tries to get the memory usage for each language file.
@@ -39,8 +39,9 @@ class LangMemUsage extends Maintenance {
 	}
 
 	public function execute() {
-		if ( !function_exists( 'memory_get_usage' ) )
+		if ( !function_exists( 'memory_get_usage' ) ) {
 			$this->error( "You must compile PHP with --enable-memory-limit", true );
+		}
 
 		$langtool = new languages();
 		$memlast = $memstart = memory_get_usage();
@@ -61,4 +62,4 @@ class LangMemUsage extends Maintenance {
 }
 
 $maintClass = "LangMemUsage";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

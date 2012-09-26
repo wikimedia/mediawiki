@@ -7,33 +7,39 @@
  */
 class LinksUpdateTest extends MediaWikiTestCase {
 
-	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
+	function __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
-		$this->tablesUsed = array_merge ( $this->tablesUsed,
-											array( 'interwiki',
-
-												'page_props',
-												'pagelinks',
-												'categorylinks',
-												'langlinks',
-												'externallinks',
-												'imagelinks',
-												'templatelinks',
-												'iwlinks' ) );
+		$this->tablesUsed = array_merge( $this->tablesUsed,
+			array(
+				'interwiki',
+				'page_props',
+				'pagelinks',
+				'categorylinks',
+				'langlinks',
+				'externallinks',
+				'imagelinks',
+				'templatelinks',
+				'iwlinks'
+			)
+		);
 	}
 
-	function setUp() {
+	protected function setUp() {
+		parent::setUp();
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'interwiki',
-						array('iw_prefix'),
-						array( 'iw_prefix' => 'linksupdatetest',
-						       'iw_url' => 'http://testing.com/wiki/$1',
-						       'iw_api' => 'http://testing.com/w/api.php',
-						       'iw_local' => 0,
-						       'iw_trans' => 0,
-						       'iw_wikiid' => 'linksupdatetest',
-						) );
+		$dbw->replace(
+			'interwiki',
+			array( 'iw_prefix' ),
+			array(
+				'iw_prefix' => 'linksupdatetest',
+				'iw_url' => 'http://testing.com/wiki/$1',
+				'iw_api' => 'http://testing.com/w/api.php',
+				'iw_local' => 0,
+				'iw_trans' => 0,
+				'iw_wikiid' => 'linksupdatetest',
+			)
+		);
 	}
 
 	protected function makeTitleAndParserOutput( $name, $id ) {
@@ -79,6 +85,8 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	}
 
 	public function testUpdate_categorylinks() {
+		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
 		$po->addCategory( "Foo", "FOO" );
@@ -114,7 +122,6 @@ class LinksUpdateTest extends MediaWikiTestCase {
 
 		$po->addImage( "Foo.png" );
 
-
 		$this->assertLinksUpdate( $t, $po, 'imagelinks', 'il_to', 'il_from = 111', array(
 			array( 'Foo.png' ),
 		) );
@@ -123,8 +130,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	public function testUpdate_langlinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
-		$po->addLanguageLink( Title::newFromText( "en:Foo" ) );
-
+		$po->addLanguageLink( Title::newFromText( "en:Foo" )->getFullText() );
 
 		$this->assertLinksUpdate( $t, $po, 'langlinks', 'll_lang, ll_title', 'll_from = 111', array(
 			array( 'En', 'Foo' ),
@@ -141,14 +147,16 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		) );
 	}
 
-	#@todo: test recursive, too!
+	// @todo test recursive, too!
 
-	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput, $table, $fields, $condition, Array $expectedRows ) {
+	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput, $table, $fields, $condition, array $expectedRows ) {
 		$update = new LinksUpdate( $title, $parserOutput );
 
+		//NOTE: make sure LinksUpdate does not generate warnings when called inside a transaction.
+		$update->beginTransaction();
 		$update->doUpdate();
+		$update->commitTransaction();
 
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
 	}
 }
-

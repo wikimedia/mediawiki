@@ -38,6 +38,13 @@ class PatrolLog {
 	 * @return bool
 	 */
 	public static function record( $rc, $auto = false, User $user = null ) {
+		global $wgLogAutopatrol;
+
+		// do not log autopatrolled edits if setting disables it
+		if ( $auto && !$wgLogAutopatrol ) {
+			return false;
+		}
+
 		if ( !$rc instanceof RecentChange ) {
 			$rc = RecentChange::newFromId( $rc );
 			if ( !is_object( $rc ) ) {

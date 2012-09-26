@@ -8,7 +8,7 @@ and can be queried for the others, and for other attributes of the title. This
 is intended to be an immutable "value" class, so there are no mutator functions.
 
 To get a new instance, call Title::newFromText(). Once instantiated, the
-non-static accessor methods can be used, such as getText(), getDBKey(),
+non-static accessor methods can be used, such as getText(), getDBkey(),
 getNamespace(), etc. Note that Title::newFromText() may return false if the text
 is illegal according to the rules below.
 
@@ -36,11 +36,11 @@ An initial colon in a title listed in wiki text may however suppress special
 handling for interlanguage links, image links, and category links. It is also
 used to indicate the main namespace in template inclusions.
 
-Once prefixes have been stripped, the rest of the title processed this way: 
+Once prefixes have been stripped, the rest of the title processed this way:
 
 * Spaces and underscores are treated as equivalent and each  is converted to the
   other in the appropriate context (underscore in URL and database keys, spaces
-  in plain text). 
+  in plain text).
 * Multiple consecutive spaces are converted to a single space.
 * Leading or trailing space is removed.
 * If $wgCapitalLinks is enabled (the default), the first letter is  capitalised,
@@ -58,7 +58,7 @@ UTF-8, because that is the size of the database field. Special page titles may
 be up to 512 bytes.
 
 Note that Unicode Normal Form C (NFC) is enforced by MediaWiki's user interface
-input functions, and so titles will typically be in this form. 
+input functions, and so titles will typically be in this form.
 
 getArticleID() needs some explanation: for "internal" articles, it should return
 the "page_id" field if the article exists, else it returns 0. For all external

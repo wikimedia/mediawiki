@@ -133,8 +133,7 @@ class ApiQueryTags extends ApiQueryBase {
 
 	public function getAllowedParams() {
 		return array(
-			'continue' => array(
-			),
+			'continue' => null,
 			'limit' => array(
 				ApiBase::PARAM_DFLT => 10,
 				ApiBase::PARAM_TYPE => 'limit',
@@ -162,7 +161,7 @@ class ApiQueryTags extends ApiQueryBase {
 			'prop' => array(
 				'Which properties to get',
 				' name         - Adds name of tag',
-				' displayname  - Adds system messsage for the tag',
+				' displayname  - Adds system message for the tag',
 				' description  - Adds description of the tag',
 				' hitcount     - Adds the amount of revisions that have this tag',
 			),
@@ -196,7 +195,7 @@ class ApiQueryTags extends ApiQueryBase {
 		);
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Tags';
 	}
 }

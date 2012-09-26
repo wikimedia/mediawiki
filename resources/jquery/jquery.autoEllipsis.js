@@ -1,14 +1,15 @@
 /**
- * Plugin that automatically truncates the plain text contents of an element and adds an ellipsis
+ * Plugin that automatically truncates the plain text contents of an element
+ * and adds an ellipsis.
  */
 ( function ( $ ) {
 
 var
 	// Cache ellipsed substrings for every string-width-position combination
-	cache = { },
+	cache = {},
 
 	// Use a separate cache when match highlighting is enabled
-	matchTextCache = { };
+	matchTextCache = {};
 
 $.fn.autoEllipsis = function ( options ) {
 	options = $.extend( {
@@ -18,30 +19,30 @@ $.fn.autoEllipsis = function ( options ) {
 		hasSpan: false,
 		matchText: null
 	}, options );
-	$(this).each( function () {
-		var $container, $trimmableText,
+
+	return this.each( function () {
+		var $trimmableText,
 			text, trimmableText, w, pw,
 			l, r, i, side, m,
-			$el = $(this);
+			// container element - used for measuring against
+			$container = $(this);
+
 		if ( options.restoreText ) {
-			if ( !$el.data( 'autoEllipsis.originalText' ) ) {
-				$el.data( 'autoEllipsis.originalText', $el.text() );
+			if ( !$container.data( 'autoEllipsis.originalText' ) ) {
+				$container.data( 'autoEllipsis.originalText', $container.text() );
 			} else {
-				$el.text( $el.data( 'autoEllipsis.originalText' ) );
+				$container.text( $container.data( 'autoEllipsis.originalText' ) );
 			}
 		}
 
-		// container element - used for measuring against
-		$container = $el;
-
 		// trimmable text element - only the text within this element will be trimmed
 		if ( options.hasSpan ) {
-			$trimmableText = $el.children( options.selector );
+			$trimmableText = $container.children( options.selector );
 		} else {
 			$trimmableText = $( '<span>' )
 				.css( 'whiteSpace', 'nowrap' )
-				.text( $el.text() );
-			$el
+				.text( $container.text() );
+			$container
 				.empty()
 				.append( $trimmableText );
 		}

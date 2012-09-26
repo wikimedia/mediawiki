@@ -27,7 +27,7 @@
  * i.e.: GRANT REFERENCES (user_id) ON mwuser TO hubclient;
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 class AlterSharedConstraints extends Maintenance {
 	public function __construct() {
@@ -49,11 +49,11 @@ class AlterSharedConstraints extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 		foreach ( $wgSharedTables as $table ) {
-			$stable = $dbw->tableNameInternal($table);
+			$stable = $dbw->tableNameInternal( $table );
 			if ( $wgSharedPrefix != null ) {
 				$ltable = preg_replace( "/^$wgSharedPrefix(.*)/i", "$wgDBprefix\\1", $stable );
 			} else {
-				$ltable = "{$wgDBprefix}{$stable}" ;
+				$ltable = "{$wgDBprefix}{$stable}";
 			}
 
 			$result = $dbw->query( "SELECT uc.constraint_name, uc.table_name, ucc.column_name, uccpk.table_name pk_table_name, uccpk.column_name pk_column_name, uc.delete_rule, uc.deferrable, uc.deferred
@@ -62,14 +62,14 @@ class AlterSharedConstraints extends Maintenance {
 					   AND ucc.constraint_name = uc.constraint_name
 					   AND uccpk.constraint_name = uc.r_constraint_name
 					   AND uccpk.table_name = '$ltable'" );
-			while (($row = $result->fetchRow()) !== false) {
+			while ( ( $row = $result->fetchRow() ) !== false ) {
 
-					$this->output( "Altering {$row['constraint_name']} ...");
+					$this->output( "Altering {$row['constraint_name']} ..." );
 
 					try {
 						$dbw->query( "ALTER TABLE {$row['table_name']} DROP CONSTRAINT {$wgDBprefix}{$row['constraint_name']}" );
-					} catch (DBQueryError $exdb) {
-						if ($exdb->errno != 2443) {
+					} catch ( DBQueryError $exdb ) {
+						if ( $exdb->errno != 2443 ) {
 							throw $exdb;
 						}
 					}
@@ -88,4 +88,4 @@ class AlterSharedConstraints extends Maintenance {
 }
 
 $maintClass = "AlterSharedConstraints";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

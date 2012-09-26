@@ -28,7 +28,6 @@
  * @ingroup SpecialPage
  */
 class DoubleRedirectsPage extends QueryPage {
-
 	function __construct( $name = 'DoubleRedirects' ) {
 		parent::__construct( $name );
 	}
@@ -51,8 +50,9 @@ class DoubleRedirectsPage extends QueryPage {
 
 	function reallyGetQueryInfo( $namespace = null, $title = null ) {
 		$limitToTitle = !( $namespace === null && $title === null );
-		$retval = array (
-			'tables' => array (
+		$dbr = wfGetDB( DB_SLAVE );
+		$retval = array(
+			'tables' => array(
 				'ra' => 'redirect',
 				'rb' => 'redirect',
 				'pa' => 'page',
@@ -82,7 +82,7 @@ class DoubleRedirectsPage extends QueryPage {
 
 				// Need to check both NULL and "" for some reason,
 				// apparently either can be stored for non-iw entries.
-				'(ra.rd_interwiki IS NULL OR ra.rd_interwiki = "")',
+				'ra.rd_interwiki IS NULL OR ra.rd_interwiki = ' . $dbr->addQuotes( '' ),
 
 				'pb.page_namespace = ra.rd_namespace',
 				'pb.page_title = ra.rd_title',
@@ -90,10 +90,12 @@ class DoubleRedirectsPage extends QueryPage {
 				'rb.rd_from = pb.page_id',
 			)
 		);
+
 		if ( $limitToTitle ) {
 			$retval['conds']['pa.page_namespace'] = $namespace;
 			$retval['conds']['pa.page_title'] = $title;
 		}
+
 		return $retval;
 	}
 
@@ -102,9 +104,14 @@ class DoubleRedirectsPage extends QueryPage {
 	}
 
 	function getOrderFields() {
-		return array ( 'ra.rd_namespace', 'ra.rd_title' );
+		return array( 'ra.rd_namespace', 'ra.rd_title' );
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
@@ -115,10 +122,17 @@ class DoubleRedirectsPage extends QueryPage {
 		// using the filter of reallyGetQueryInfo.
 		if ( $result && !isset( $result->nsb ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
-			$qi = $this->reallyGetQueryInfo( $result->namespace,
-					$result->title );
-			$res = $dbr->select($qi['tables'], $qi['fields'],
-					$qi['conds'], __METHOD__ );
+			$qi = $this->reallyGetQueryInfo(
+				$result->namespace,
+				$result->title
+			);
+			$res = $dbr->select(
+				$qi['tables'],
+				$qi['fields'],
+				$qi['conds'],
+				__METHOD__
+			);
+
 			if ( $res ) {
 				$result = $dbr->fetchObject( $res );
 			}
@@ -128,7 +142,7 @@ class DoubleRedirectsPage extends QueryPage {
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
-		$titleC = Title::makeTitle( $result->nsc, $result->tc, '',  $result->iwc );
+		$titleC = Title::makeTitle( $result->nsc, $result->tc, '', $result->iwc );
 
 		$linkA = Linker::linkKnown(
 			$titleA,
@@ -159,6 +173,10 @@ class DoubleRedirectsPage extends QueryPage {
 		$lang = $this->getLanguage();
 		$arr = $lang->getArrow() . $lang->getDirMark();
 
-		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+		return ( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

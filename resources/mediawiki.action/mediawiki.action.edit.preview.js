@@ -102,6 +102,12 @@
 	}
 
 	$( document ).ready( function () {
+		// Do not enable on user .js/.css pages, as there's no sane way of "previewing"
+		// the scripts or styles without reloading the page.
+		if ( $( '#mw-userjsyoucanpreview' ).length || $( '#mw-usercssyoucanpreview' ).length ) {
+			return;
+		}
+
 		// The following elements can change in a preview but are not output
 		// by the server when they're empty until the preview reponse.
 		// TODO: Make the server output these always (in a hidden state), so we don't

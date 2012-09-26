@@ -31,10 +31,6 @@
  */
 class ApiRsd extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$result = $this->getResult();
 
@@ -44,7 +40,7 @@ class ApiRsd extends ApiBase {
 		$service = array( 'apis' => $this->formatRsdApiList() );
 		ApiResult::setContent( $service, 'MediaWiki', 'engineName' );
 		ApiResult::setContent( $service, 'https://www.mediawiki.org/', 'engineLink' );
-		ApiResult::setContent( $service, Title::newMainPage()->getCanonicalUrl(), 'homePageLink' );
+		ApiResult::setContent( $service, Title::newMainPage()->getCanonicalURL(), 'homePageLink' );
 
 		$result->setIndexedTagName( $service['apis'], 'api' );
 
@@ -155,10 +151,6 @@ class ApiRsd extends ApiBase {
 		}
 		return $outputData;
 	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
-	}
 }
 
 class ApiFormatXmlRsd extends ApiFormatXml {
@@ -169,9 +161,5 @@ class ApiFormatXmlRsd extends ApiFormatXml {
 
 	public function getMimeType() {
 		return 'application/rsd+xml';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

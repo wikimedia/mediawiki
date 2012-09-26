@@ -1,9 +1,9 @@
--- Add extra option fields to the ipblocks table, add some extra indexes, 
--- convert infinity values in ipb_expiry to something that sorts better, 
--- extend ipb_address and range fields, add a unique index for block conflict 
+-- Add extra option fields to the ipblocks table, add some extra indexes,
+-- convert infinity values in ipb_expiry to something that sorts better,
+-- extend ipb_address and range fields, add a unique index for block conflict
 -- detection.
 
--- Conflicts in the new unique index can be handled by creating a new 
+-- Conflicts in the new unique index can be handled by creating a new
 -- table and inserting into it instead of doing an ALTER TABLE.
 
 
@@ -22,7 +22,7 @@ CREATE TABLE /*$wgDBprefix*/ipblocks_newunique (
   ipb_expiry varbinary(14) NOT NULL default '',
   ipb_range_start tinyblob NOT NULL,
   ipb_range_end tinyblob NOT NULL,
-  
+
   PRIMARY KEY ipb_id (ipb_id),
   UNIQUE INDEX ipb_address_unique (ipb_address(255), ipb_user, ipb_auto),
   INDEX ipb_user (ipb_user),
@@ -32,8 +32,8 @@ CREATE TABLE /*$wgDBprefix*/ipblocks_newunique (
 
 ) /*$wgDBTableOptions*/;
 
-INSERT IGNORE INTO /*$wgDBprefix*/ipblocks_newunique 
-        (ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end, ipb_anon_only, ipb_create_account) 
+INSERT IGNORE INTO /*$wgDBprefix*/ipblocks_newunique
+        (ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end, ipb_anon_only, ipb_create_account)
   SELECT ipb_id, ipb_address, ipb_user, ipb_by, ipb_reason, ipb_timestamp, ipb_auto, ipb_expiry, ipb_range_start, ipb_range_end, 0            , ipb_user=0
   FROM /*$wgDBprefix*/ipblocks;
 

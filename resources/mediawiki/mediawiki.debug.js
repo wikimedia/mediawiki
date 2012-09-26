@@ -229,7 +229,7 @@
 			$( '<colgroup>' ).css( 'width', 350 ).appendTo( $table );
 
 
-			entryTypeText = function( entryType ) {
+			entryTypeText = function ( entryType ) {
 				switch ( entryType ) {
 					case 'log':
 						return 'Log';

@@ -25,7 +25,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/dumpIterator.php' );
+require_once __DIR__ . '/dumpIterator.php';
 
 /**
  * Maintenance script that takes page text out of an XML dump file and
@@ -78,15 +78,19 @@ class PreprocessDump extends DumpIterator {
 	 * @param $rev Revision
 	 */
 	public function processRevision( $rev ) {
-		try {
-			$this->mPreprocessor->preprocessToObj( $rev->getText(), 0 );
+		$content = $rev->getContent( Revision::RAW );
+
+		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
+			return;
 		}
-		catch(Exception $e) {
-			$this->error("Caught exception " . $e->getMessage() . " in " . $rev->getTitle()->getPrefixedText() );
+
+		try {
+			$this->mPreprocessor->preprocessToObj( strval( $content->getNativeData() ), 0 );
+		} catch ( Exception $e ) {
+			$this->error( "Caught exception " . $e->getMessage() . " in " . $rev->getTitle()->getPrefixedText() );
 		}
 	}
 }
 
 $maintClass = "PreprocessDump";
-require_once( RUN_MAINTENANCE_IF_MAIN );
-
+require_once RUN_MAINTENANCE_IF_MAIN;

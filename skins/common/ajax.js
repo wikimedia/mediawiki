@@ -1,15 +1,23 @@
-// remote scripting library
-// (c) copyright 2005 modernmethod, inc
-window.sajax_debug_mode = false;
-window.sajax_request_type = 'GET';
+/**
+ * Remote Scripting Library
+ * Copyright 2005 modernmethod, inc
+ * Under the open source BSD license
+ * http://www.modernmethod.com/sajax/
+ */
+
+/*jshint camelcase:false, onevar:false */
+/*global alert */
+( function ( mw ) {
 
 /**
- * if sajax_debug_mode is true, this function outputs given the message into 
- * the element with id = sajax_debug; if no such element exists in the document, 
+ * if sajax_debug_mode is true, this function outputs given the message into
+ * the element with id = sajax_debug; if no such element exists in the document,
  * it is injected.
  */
-window.sajax_debug = function(text) {
-	if (!sajax_debug_mode) return false;
+function debug( text ) {
+	if ( !window.sajax_debug_mode ) {
+		return false;
+	}
 
 	var e = document.getElementById( 'sajax_debug' );
 
@@ -33,36 +41,36 @@ window.sajax_debug = function(text) {
 	e.appendChild( m );
 
 	return true;
-};
+}
 
 /**
  * Compatibility wrapper for creating a new XMLHttpRequest object.
  */
-window.sajax_init_object = function() {
-	sajax_debug( 'sajax_init_object() called..' );
-	var A;
+function createXhr() {
+	debug( 'sajax_init_object() called..' );
+	var a;
 	try {
 		// Try the new style before ActiveX so we don't
 		// unnecessarily trigger warnings in IE 7 when
 		// set to prompt about ActiveX usage
-		A = new XMLHttpRequest();
-	} catch ( e ) {
+		a = new XMLHttpRequest();
+	} catch ( xhrE ) {
 		try {
-			A = new ActiveXObject( 'Msxml2.XMLHTTP' );
-		} catch ( e ) {
+			a = new window.ActiveXObject( 'Msxml2.XMLHTTP' );
+		} catch ( msXmlE ) {
 			try {
-				A = new ActiveXObject( 'Microsoft.XMLHTTP' );
-			} catch ( oc ) {
-				A = null;
+				a = new window.ActiveXObject( 'Microsoft.XMLHTTP' );
+			} catch ( msXhrE ) {
+				a = null;
 			}
 		}
 	}
-	if ( !A ) {
-		sajax_debug( 'Could not create connection object.' );
+	if ( !a ) {
+		debug( 'Could not create connection object.' );
 	}
 
-	return A;
-};
+	return a;
+}
 
 /**
  * Perform an AJAX call to MediaWiki. Calls are handled by AjaxDispatcher.php
@@ -80,13 +88,13 @@ window.sajax_init_object = function() {
  * (1, 2, 3) as the parameter list, and will show the result in the element
  * with id = showFoo
  */
-window.sajax_do_call = function(func_name, args, target) {
-	var i, x, n;
+function doAjaxRequest( func_name, args, target ) {
+	var i, x;
 	var uri;
 	var post_data;
 	uri = mw.util.wikiScript() + '?action=ajax';
-	if ( sajax_request_type == 'GET' ) {
-		if ( uri.indexOf( '?' ) == -1 ) {
+	if ( window.sajax_request_type === 'GET' ) {
+		if ( uri.indexOf( '?' ) === -1 ) {
 			uri = uri + '?rs=' + encodeURIComponent( func_name );
 		} else {
 			uri = uri + '&rs=' + encodeURIComponent( func_name );
@@ -102,47 +110,47 @@ window.sajax_do_call = function(func_name, args, target) {
 			post_data = post_data + '&rsargs[]=' + encodeURIComponent( args[i] );
 		}
 	}
-	x = sajax_init_object();
+	x = createXhr();
 	if ( !x ) {
 		alert( 'AJAX not supported' );
 		return false;
 	}
 
 	try {
-		x.open( sajax_request_type, uri, true );
+		x.open( window.sajax_request_type, uri, true );
 	} catch ( e ) {
-		if ( window.location.hostname == 'localhost' ) {
-			alert( "Your browser blocks XMLHttpRequest to 'localhost', try using a real hostname for development/testing." );
+		if ( location.hostname === 'localhost' ) {
+			alert( 'Your browser blocks XMLHttpRequest to "localhost", try using a real hostname for development/testing.' );
 		}
 		throw e;
 	}
-	if ( sajax_request_type == 'POST' ) {
+	if ( window.sajax_request_type === 'POST' ) {
 		x.setRequestHeader( 'Method', 'POST ' + uri + ' HTTP/1.1' );
 		x.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 	}
 	x.setRequestHeader( 'Pragma', 'cache=yes' );
 	x.setRequestHeader( 'Cache-Control', 'no-transform' );
-	x.onreadystatechange = function() {
-		if ( x.readyState != 4 ) {
+	x.onreadystatechange = function () {
+		if ( x.readyState !== 4 ) {
 			return;
 		}
 
-		sajax_debug( 'received (' + x.status + ' ' + x.statusText + ') ' + x.responseText );
+		debug( 'received (' + x.status + ' ' + x.statusText + ') ' + x.responseText );
 
 		//if ( x.status != 200 )
 		//	alert( 'Error: ' + x.status + ' ' + x.statusText + ': ' + x.responseText );
 		//else
 
-		if ( typeof( target ) == 'function' ) {
+		if ( typeof target === 'function' ) {
 			target( x );
-		} else if ( typeof( target ) == 'object' ) {
-			if ( target.tagName == 'INPUT' ) {
-				if ( x.status == 200 ) {
+		} else if ( typeof target === 'object' ) {
+			if ( target.tagName === 'INPUT' ) {
+				if ( x.status === 200 ) {
 					target.value= x.responseText;
 				}
 				//else alert( 'Error: ' + x.status + ' ' + x.statusText + ' (' + x.responseText + ')' );
 			} else {
-				if ( x.status == 200 ) {
+				if ( x.status === 200 ) {
 					target.innerHTML = x.responseText;
 				} else {
 					target.innerHTML = '<div class="error">Error: ' + x.status +
@@ -150,24 +158,37 @@ window.sajax_do_call = function(func_name, args, target) {
 				}
 			}
 		} else {
-			alert( 'bad target for sajax_do_call: not a function or object: ' + target );
+			alert( 'Bad target for sajax_do_call: not a function or object: ' + target );
 		}
 	};
 
-	sajax_debug( func_name + ' uri = ' + uri + ' / post = ' + post_data );
+	debug( func_name + ' uri = ' + uri + ' / post = ' + post_data );
 	x.send( post_data );
-	sajax_debug( func_name + ' waiting..' );
-	delete x;
+	debug( func_name + ' waiting..' );
 
 	return true;
-};
+}
 
 /**
- * @return boolean whether the browser supports XMLHttpRequest
+ * @return {boolean} Whether the browser supports AJAX
  */
-window.wfSupportsAjax = function() {
-	var request = sajax_init_object();
+function wfSupportsAjax() {
+	var request = createXhr();
 	var supportsAjax = request ? true : false;
-	delete request;
+	request = undefined;
 	return supportsAjax;
-};
+}
+
+// Expose + Mark as deprecated
+var deprecationNotice = 'Sajax is deprecated, use jQuery.ajax or mediawiki.api instead.';
+
+// Variables
+mw.log.deprecate( window, 'sajax_debug_mode', false, deprecationNotice );
+mw.log.deprecate( window, 'sajax_request_type', 'GET', deprecationNotice );
+// Methods
+mw.log.deprecate( window, 'sajax_debug', debug, deprecationNotice );
+mw.log.deprecate( window, 'sajax_init_object', createXhr, deprecationNotice );
+mw.log.deprecate( window, 'sajax_do_call', doAjaxRequest, deprecationNotice );
+mw.log.deprecate( window, 'wfSupportsAjax', wfSupportsAjax, deprecationNotice );
+
+}( mediaWiki ) );

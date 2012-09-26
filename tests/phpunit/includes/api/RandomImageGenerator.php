@@ -27,14 +27,14 @@
 class RandomImageGenerator {
 
 	private $dictionaryFile;
-	private $minWidth     = 400 ;
-	private $maxWidth     = 800 ;
-	private $minHeight    = 400 ;
-	private $maxHeight    = 800 ;
-	private $shapesToDraw =   5 ;
+	private $minWidth = 400;
+	private $maxWidth = 800;
+	private $minHeight = 400;
+	private $maxHeight = 800;
+	private $shapesToDraw = 5;
 
 	/**
-	 * Orientations: 0th row, 0th column, EXIF orientation code, rotation 2x2 matrix that is opposite of orientation
+	 * Orientations: 0th row, 0th column, Exif orientation code, rotation 2x2 matrix that is opposite of orientation
 	 * n.b. we do not handle the 'flipped' orientations, which is why there is no entry for 2, 4, 5, or 7. Those
 	 * seem to be rare in real images anyway
 	 * (we also would need a non-symmetric shape for the images to test those, like a letter F)
@@ -76,11 +76,13 @@ class RandomImageGenerator {
 
 		// find the dictionary file, to generate random names
 		if ( !isset( $this->dictionaryFile ) ) {
-			foreach ( array(
+			foreach (
+				array(
 					'/usr/share/dict/words',
 					'/usr/dict/words',
-					__DIR__ . '/words.txt' )
-					as $dictionaryFile ) {
+					__DIR__ . '/words.txt'
+				) as $dictionaryFile
+			) {
 				if ( is_file( $dictionaryFile ) and is_readable( $dictionaryFile ) ) {
 					$this->dictionaryFile = $dictionaryFile;
 					break;
@@ -103,9 +105,10 @@ class RandomImageGenerator {
 	function writeImages( $number, $format = 'jpg', $dir = null ) {
 		$filenames = $this->getRandomFilenames( $number, $format, $dir );
 		$imageWriteMethod = $this->getImageWriteMethod( $format );
-		foreach( $filenames as $filename ) {
+		foreach ( $filenames as $filename ) {
 			$this->{$imageWriteMethod}( $this->getImageSpec(), $format, $filename );
 		}
+
 		return $filenames;
 	}
 
@@ -144,7 +147,7 @@ class RandomImageGenerator {
 			$dir = getcwd();
 		}
 		$filenames = array();
-		foreach( $this->getRandomWordPairs( $number ) as $pair ) {
+		foreach ( $this->getRandomWordPairs( $number ) as $pair ) {
 			$basename = $pair[0] . '_' . $pair[1];
 			if ( !is_null( $extension ) ) {
 				$basename .= '.' . $extension;
@@ -154,7 +157,6 @@ class RandomImageGenerator {
 		}
 
 		return $filenames;
-
 	}
 
 
@@ -181,20 +183,19 @@ class RandomImageGenerator {
 			}
 			$originX = mt_rand( -1 * $radius, $spec['width'] + $radius );
 			$originY = mt_rand( -1 * $radius, $spec['height'] + $radius );
-			$angle = mt_rand( 0, ( 3.141592/2 ) * $radius ) / $radius;
+			$angle = mt_rand( 0, ( 3.141592 / 2 ) * $radius ) / $radius;
 			$legDeltaX = round( $radius * sin( $angle ) );
 			$legDeltaY = round( $radius * cos( $angle ) );
 
 			$draw = array();
 			$draw['fill'] = $this->getRandomColor();
 			$draw['shape'] = array(
-				array( 'x' => $originX, 		'y' => $originY - $radius ),
-				array( 'x' => $originX + $legDeltaX, 	'y' => $originY + $legDeltaY ),
-				array( 'x' => $originX - $legDeltaX, 	'y' => $originY + $legDeltaY ),
-				array( 'x' => $originX, 		'y' => $originY - $radius )
+				array( 'x' => $originX, 'y' => $originY - $radius ),
+				array( 'x' => $originX + $legDeltaX, 'y' => $originY + $legDeltaY ),
+				array( 'x' => $originX - $legDeltaX, 'y' => $originY + $legDeltaY ),
+				array( 'x' => $originX, 'y' => $originY - $radius )
 			);
 			$draws[] = $draw;
-
 		}
 
 		$spec['draws'] = $draws;
@@ -214,6 +215,7 @@ class RandomImageGenerator {
 		foreach ( $shape as $point ) {
 			$points[] = $point['x'] . ',' . $point['y'];
 		}
+
 		return join( " ", $points );
 	}
 
@@ -235,12 +237,13 @@ class RandomImageGenerator {
 			$shape = $g->addChild( 'polygon' );
 			$shape->addAttribute( 'fill', $drawSpec['fill'] );
 			$shape->addAttribute( 'points', self::shapePointsToString( $drawSpec['shape'] ) );
-		};
-		if ( ! $fh = fopen( $filename, 'w' ) ) {
+		}
+
+		if ( !$fh = fopen( $filename, 'w' ) ) {
 			throw new Exception( "couldn't open $filename for writing" );
 		}
 		fwrite( $fh, $svg->asXML() );
-		if ( !fclose($fh) ) {
+		if ( !fclose( $fh ) ) {
 			throw new Exception( "couldn't close $filename" );
 		}
 	}
@@ -262,7 +265,7 @@ class RandomImageGenerator {
 		 */
 		$orientation = self::$orientations[0]; // default is normal orientation
 		if ( $format == 'jpg' ) {
-			$orientation = self::$orientations[ array_rand( self::$orientations ) ];
+			$orientation = self::$orientations[array_rand( self::$orientations )];
 			$spec = self::rotateImageSpec( $spec, $orientation['counterRotation'] );
 		}
 
@@ -301,7 +304,7 @@ class RandomImageGenerator {
 
 	/**
 	 * Given an image specification, produce rotated version
-	 * This is used when simulating a rotated image capture with EXIF orientation
+	 * This is used when simulating a rotated image capture with Exif orientation
 	 * @param $spec Object returned by getImageSpec
 	 * @param $matrix 2x2 transformation matrix
 	 * @return transformed Spec
@@ -321,12 +324,12 @@ class RandomImageGenerator {
 		$tSpec['height'] = abs( $dims['y'] );
 		$tSpec['fill'] = $spec['fill'];
 		$tSpec['draws'] = array();
-		foreach( $spec['draws'] as $draw ) {
+		foreach ( $spec['draws'] as $draw ) {
 			$tDraw = array(
 				'fill' => $draw['fill'],
 				'shape' => array()
 			);
-			foreach( $draw['shape'] as $point ) {
+			foreach ( $draw['shape'] as $point ) {
 				$tPoint = self::matrixMultiply2x2( $matrix, $point['x'], $point['y'] );
 				$tPoint['x'] += $correctionX;
 				$tPoint['y'] += $correctionY;
@@ -334,6 +337,7 @@ class RandomImageGenerator {
 			}
 			$tSpec['draws'][] = $tDraw;
 		}
+
 		return $tSpec;
 	}
 
@@ -357,7 +361,7 @@ class RandomImageGenerator {
 	 *
 	 * Sample command line:
 	 *  $ convert -size 100x60 xc:rgb(90,87,45) \
-	 * 	 -draw 'fill rgb(12,34,56)   polygon 41,39 44,57 50,57 41,39' \
+	 *      -draw 'fill rgb(12,34,56)   polygon 41,39 44,57 50,57 41,39' \
 	 *   -draw 'fill rgb(99,123,231) circle 59,39 56,57' \
 	 *   -draw 'fill rgb(240,12,32)  circle 50,21 50,3'  filename.png
 	 *
@@ -370,7 +374,7 @@ class RandomImageGenerator {
 		$args = array();
 		$args[] = "-size " . wfEscapeShellArg( $spec['width'] . 'x' . $spec['height'] );
 		$args[] = wfEscapeShellArg( "xc:" . $spec['fill'] );
-		foreach( $spec['draws'] as $draw ) {
+		foreach ( $spec['draws'] as $draw ) {
 			$fill = $draw['fill'];
 			$polygon = self::shapePointsToString( $draw['shape'] );
 			$drawCommand = "fill $fill  polygon $polygon";
@@ -381,6 +385,7 @@ class RandomImageGenerator {
 		$command = wfEscapeShellArg( $wgImageMagickConvertCommand ) . " " . implode( " ", $args );
 		$retval = null;
 		wfShellExec( $command, $retval );
+
 		return ( $retval === 0 );
 	}
 
@@ -391,10 +396,11 @@ class RandomImageGenerator {
 	 */
 	public function getRandomColor() {
 		$components = array();
-		for ($i = 0; $i <= 2; $i++ ) {
+		for ( $i = 0; $i <= 2; $i++ ) {
 			$components[] = mt_rand( 0, 255 );
 		}
-		return 'rgb(' . join(', ', $components) . ')';
+
+		return 'rgb(' . join( ', ', $components ) . ')';
 	}
 
 	/**
@@ -408,12 +414,12 @@ class RandomImageGenerator {
 		// construct pairs of words
 		$pairs = array();
 		$count = count( $lines );
-		for( $i = 0; $i < $count; $i += 2 )  {
-			$pairs[] = array( $lines[$i], $lines[$i+1] );
+		for ( $i = 0; $i < $count; $i += 2 ) {
+			$pairs[] = array( $lines[$i], $lines[$i + 1] );
 		}
+
 		return $pairs;
 	}
-
 
 	/**
 	 * Return N random lines from a file
@@ -438,17 +444,17 @@ class RandomImageGenerator {
 		 */
 		$fh = fopen( $filepath, "r" );
 		if ( !$fh ) {
-			 throw new Exception( "couldn't open $filepath" );
+			throw new Exception( "couldn't open $filepath" );
 		}
 		$line_number = 0;
 		$max_index = $number_desired - 1;
-		while( !feof( $fh ) ) {
+		while ( !feof( $fh ) ) {
 			$line = fgets( $fh );
 			if ( $line !== false ) {
 				$line_number++;
 				$line = trim( $line );
 				if ( mt_rand( 0, $line_number ) <= $max_index ) {
-					$lines[ mt_rand( 0, $max_index ) ] = $line;
+					$lines[mt_rand( 0, $max_index )] = $line;
 				}
 			}
 		}
@@ -459,5 +465,4 @@ class RandomImageGenerator {
 
 		return $lines;
 	}
-
 }

@@ -30,7 +30,6 @@
  * @ingroup SpecialPage
  */
 class MostinterwikisPage extends QueryPage {
-
 	function __construct( $name = 'Mostinterwikis' ) {
 		parent::__construct( $name );
 	}
@@ -44,24 +43,24 @@ class MostinterwikisPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array (
+		return array(
+			'tables' => array(
 				'langlinks',
 				'page'
-			), 'fields' => array (
+			), 'fields' => array(
 				'namespace' => 'page_namespace',
 				'title' => 'page_title',
 				'value' => 'COUNT(*)'
-			), 'conds' => array (
+			), 'conds' => array(
 				'page_namespace' => MWNamespace::getContentNamespaces()
-			), 'options' => array (
+			), 'options' => array(
 				'HAVING' => 'COUNT(*) > 1',
-				'GROUP BY' => array (
+				'GROUP BY' => array(
 					'page_namespace',
 					'page_title'
 				)
-			), 'join_conds' => array (
-				'page' => array (
+			), 'join_conds' => array(
+				'page' => array(
 					'LEFT JOIN',
 					'page_id = ll_from'
 				)
@@ -72,8 +71,8 @@ class MostinterwikisPage extends QueryPage {
 	/**
 	 * Pre-fill the link cache
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		# There's no point doing a batch check if we aren't caching results;
@@ -100,8 +99,15 @@ class MostinterwikisPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
-			return Html::element( 'span', array( 'class' => 'mw-invalidtitle' ),
-				Linker::getInvalidTitleDescription( $this->getContext(), $result->namespace, $result->title ) );
+			return Html::element(
+				'span',
+				array( 'class' => 'mw-invalidtitle' ),
+				Linker::getInvalidTitleDescription(
+					$this->getContext(),
+					$result->namespace,
+					$result->title
+				)
+			);
 		}
 
 		if ( $this->isCached() ) {
@@ -113,5 +119,9 @@ class MostinterwikisPage extends QueryPage {
 		$count = $this->msg( 'ninterwikis' )->numParams( $result->value )->escaped();
 
 		return $this->getLanguage()->specialList( $link, $count );
+	}
+
+	protected function getGroupName() {
+		return 'highuse';
 	}
 }

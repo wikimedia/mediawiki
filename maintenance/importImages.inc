@@ -28,9 +28,10 @@
  *
  * @param $dir string Path to directory to search
  * @param $exts Array of extensions to search for
+ * @param $recurse Bool Search subdirectories recursively
  * @return mixed Array of filenames on success, or false on failure
  */
-function findFiles( $dir, $exts ) {
+function findFiles( $dir, $exts, $recurse = false ) {
 	if ( is_dir( $dir ) ) {
 		$dhl = opendir( $dir );
 		if ( $dhl ) {
@@ -38,8 +39,11 @@ function findFiles( $dir, $exts ) {
 			while ( ( $file = readdir( $dhl ) ) !== false ) {
 				if ( is_file( $dir . '/' . $file ) ) {
 					list( /* $name */, $ext ) = splitFilename( $dir . '/' . $file );
-					if ( array_search( strtolower( $ext ), $exts ) !== false )
+					if ( array_search( strtolower( $ext ), $exts ) !== false ) {
 						$files[] = $dir . '/' . $file;
+					}
+				} elseif ( $recurse && is_dir( $dir . '/' . $file ) && $file !== '..' && $file !== '.' ) {
+					$files = array_merge( $files, findFiles( $dir . '/' . $file, $exts, true ) );
 				}
 			}
 			return $files;
@@ -95,7 +99,9 @@ function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 		}
 
 		$idx = strrpos( $n, '.' );
-		if ( !$idx ) break;
+		if ( !$idx ) {
+			break;
+		}
 
 		$n = substr( $n, 0, $idx );
 		$maxStrip -= 1;

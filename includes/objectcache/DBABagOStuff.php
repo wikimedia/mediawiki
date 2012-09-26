@@ -111,9 +111,10 @@ class DBABagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
 
@@ -138,7 +139,10 @@ class DBABagOStuff extends BagOStuff {
 			$val = false;
 		}
 
+		$casToken = $val;
+
 		wfProfileOut( __METHOD__ );
+
 		return $val;
 	}
 
@@ -156,6 +160,42 @@ class DBABagOStuff extends BagOStuff {
 
 		$handle = $this->getWriter();
 		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		$ret = dba_replace( $key, $blob, $handle );
+		dba_close( $handle );
+
+		wfProfileOut( __METHOD__ );
+		return $ret;
+	}
+
+	/**
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__ . "($key)\n" );
+
+		$blob = $this->encode( $value, $exptime );
+
+		$handle = $this->getWriter();
+		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		// DBA is locked to any other write connection, so we can safely
+		// compare the current & previous value before saving new value
+		$val = dba_fetch( $key, $handle );
+		list( $val, $exptime ) = $this->decode( $val );
+		if ( $casToken !== $val ) {
+			dba_close( $handle );
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
@@ -211,7 +251,7 @@ class DBABagOStuff extends BagOStuff {
 
 		# Insert failed, check to see if it failed due to an expired key
 		if ( !$ret ) {
-			list( $value, $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
+			list( , $expiry ) = $this->decode( dba_fetch( $key, $handle ) );
 
 			if ( $expiry && $expiry < time() ) {
 				# Yes expired, delete and try again
@@ -263,24 +303,5 @@ class DBABagOStuff extends BagOStuff {
 		wfProfileOut( __METHOD__ );
 
 		return ( $value === false ) ? false : (int)$value;
-	}
-
-	function keys() {
-		$reader = $this->getReader();
-		$k1 = dba_firstkey( $reader );
-
-		if ( !$k1 ) {
-			return array();
-		}
-
-		$result[] = $k1;
-
-		$key = dba_nextkey( $reader );
-		while ( $key ) {
-			$result[] = $key;
-			$key = dba_nextkey( $reader );
-		}
-
-		return $result;
 	}
 }

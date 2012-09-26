@@ -75,8 +75,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Манярын ӹлӹштӓшӹм вӓнгӹмӹ списокышкышты пыртенӹт, анжыкташ',
 'tog-oldsig' => 'Ылшы сирӹмӹ подписьӹм анзыцок анжен лӓктӓш',
 'tog-fancysig' => 'Вики-пӓлӹкӹн ӹшке подписьшӹ (автоматический ажедмӓш гӹц пасна)',
-'tog-externaleditor' => 'Тӱнӹш тӧрлӹшӹм кычылташ (компьютерӹн йори настройкыжы келеш)',
-'tog-externaldiff' => 'Вариантвлӓн тӓнгӓштӓрӹмӹ годым тӱнӹш программым кычылташ (компьютерӹн йори настройкыжы келеш)',
 'tog-showjumplinks' => '«ванжаш» палшышы ажедмӓшвлӓм чӱктӓш',
 'tog-uselivepreview' => 'Текстӹм пӹсӹн анзыц анжен лӓкмӹм кычылташ (эксперимент семӹнь JavaScript)',
 'tog-forceeditsummary' => 'Мам тӧрлӹмӹ тӹ «нырын» охыр ылмыжы гишӓн пӓлдӹртӓш',
@@ -371,8 +369,6 @@ $messages = array(
 'search-interwiki-caption' => 'Техеньок проектвлӓ',
 'search-interwiki-default' => '$1 результ.:',
 'search-interwiki-more' => '(эче)',
-'search-mwsuggest-enabled' => 'согоньвлӓ доно',
-'search-mwsuggest-disabled' => 'согоньвлӓдеок',
 'nonefound' => "'''Шотыш нӓлдӓ.''' Нимат ак лиӓлт гӹнь, керӓл шамакым цилӓ вӓреок кӹчӓлӓш ак тӹнгӓл. Кӹчӓлжӹ манын,   ''all:'' префиксӹм кычылтда.  Тенге тӓ лӹмвлӓм мода (кӱ тишкӹ сирӓ, нӹнӹн Кӓнгӓшӹмӓшвлӓштӹмӓт, шаблонвлӓмӓт дӓ молымат), уке гӹнь, шукырак лӹмӹм анжыктыда",
 'powersearch' => 'Кымдан кӹчӓлмӓш',
 'powersearch-legend' => 'Кымдан кӹчӓлмӓш',
@@ -388,6 +384,9 @@ $messages = array(
 'group-sysop' => 'Администраторвлӓ',
 
 'grouppage-sysop' => '{{ns:project}}:Администраторвлӓ',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Сирӹшӹвлӓм регистрируйышы журнал',
 
 # User rights log
 'rightslog' => 'Сирӹшӹн прававлӓжӹм анжыктышы журнал',
@@ -482,13 +481,10 @@ $messages = array(
 # Special:LinkSearch
 'linksearch' => 'Тӱнӹш ажедмӓшвлӓ',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Сирӹшӹвлӓм регистрируйышы журнал',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(группын списокшы)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Сирӹшӹлӓн сирмӓш',
 
 # Watchlist

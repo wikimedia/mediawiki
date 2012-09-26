@@ -24,7 +24,7 @@
  * @author  Platonides
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 /**
  * Maintenance script that benchmark if elseif... versus switch case.
@@ -93,4 +93,4 @@ class bench_if_switch extends Benchmarker {
 }
 
 $maintClass = 'bench_if_switch';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

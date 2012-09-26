@@ -39,8 +39,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 
 		if ( is_null( $params['lang'] ) ) {
-			global $wgLang;
-			$langObj = $wgLang;
+			$langObj = $this->getLanguage();
+		} elseif ( !Language::isValidCode( $params['lang'] ) ) {
+			$this->dieUsage( 'Invalid language code for parameter lang', 'invalidlang' );
 		} else {
 			$langObj = Language::factory( $params['lang'] );
 		}
@@ -48,7 +49,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		if ( $params['enableparser'] ) {
 			if ( !is_null( $params['title'] ) ) {
 				$title = Title::newFromText( $params['title'] );
-				if ( !$title ) {
+				if ( !$title || $title->isExternal() ) {
 					$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 				}
 			} else {
@@ -86,7 +87,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			foreach ( $messages_target as $message ) {
 				// === 0: must be at beginning of string (position 0)
 				if ( strpos( $message, $params['prefix'] ) === 0 ) {
-					if( !$skip ) {
+					if ( !$skip ) {
 						$skip = true;
 					}
 					$messages_filtered[] = $message;
@@ -116,7 +117,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			$lang = $langObj->getCode();
 
 			$customisedMessages = AllmessagesTablePager::getCustomisedStatuses(
-				array_map( array( $langObj, 'ucfirst'), $messages_target ), $lang, $lang != $wgContLang->getCode() );
+				array_map( array( $langObj, 'ucfirst' ), $messages_target ), $lang, $lang != $wgContLang->getCode() );
 
 			$customised = $params['customised'] === 'modified';
 		}
@@ -143,7 +144,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				}
 
 				if ( $customiseFilterEnabled ) {
-					$messageIsCustomised = isset( $customisedMessages['pages'][ $langObj->ucfirst( $message ) ] );
+					$messageIsCustomised = isset( $customisedMessages['pages'][$langObj->ucfirst( $message )] );
 					if ( $customised === $messageIsCustomised ) {
 						if ( $customised ) {
 							$a['customised'] = '';
@@ -256,6 +257,12 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		);
 	}
 
+	public function getPossibleErrors() {
+		return array_merge( parent::getPossibleErrors(), array(
+			array( 'code' => 'invalidlang', 'info' => 'Invalid language code for parameter lang' ),
+		) );
+	}
+
 	public function getResultProperties() {
 		return array(
 			'' => array(
@@ -290,9 +297,5 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Meta#allmessages_.2F_am';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

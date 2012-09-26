@@ -26,16 +26,18 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';
 
+		$ns = $this->getDefaultWikitextNS();
+
 		try {
 			// Simple page
-			$title = Title::newFromText( 'BackupDumperTestP1' );
+			$title = Title::newFromText( 'BackupDumperTestP1', $ns );
 			$page = WikiPage::factory( $title );
 			list( $this->revId1_1, $this->textId1_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP1Text1", "BackupDumperTestP1Summary1" );
 			$this->pageId1 = $page->getId();
 
 			// Page with more than one revision
-			$title = Title::newFromText( 'BackupDumperTestP2' );
+			$title = Title::newFromText( 'BackupDumperTestP2', $ns );
 			$page = WikiPage::factory( $title );
 			list( $this->revId2_1, $this->textId2_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP2Text1", "BackupDumperTestP2Summary1" );
@@ -49,7 +51,7 @@ class TextPassDumperTest extends DumpTestCase {
 			$this->pageId2 = $page->getId();
 
 			// Deleted page.
-			$title = Title::newFromText( 'BackupDumperTestP3' );
+			$title = Title::newFromText( 'BackupDumperTestP3', $ns );
 			$page = WikiPage::factory( $title );
 			list( $this->revId3_1, $this->textId3_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP3Text1", "BackupDumperTestP2Summary1" );
@@ -59,6 +61,13 @@ class TextPassDumperTest extends DumpTestCase {
 			$page->doDeleteArticle( "Testing ;)" );
 
 			// Page from non-default namespace
+
+			if ( $ns === NS_TALK ) {
+				// @todo work around this.
+				throw new MWException( "The default wikitext namespace is the talk namespace. "
+					. " We can't currently deal with that." );
+			}
+
 			$title = Title::newFromText( 'BackupDumperTestP1', NS_TALK );
 			$page = WikiPage::factory( $title );
 			list( $this->revId4_1, $this->textId4_1 ) = $this->addRevision( $page,
@@ -71,10 +80,9 @@ class TextPassDumperTest extends DumpTestCase {
 			// DumpTestCase
 			$this->exceptionFromAddDBData = $e;
 		}
-
 	}
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		// Since we will restrict dumping by page ranges (to allow
@@ -85,15 +93,14 @@ class TextPassDumperTest extends DumpTestCase {
 			array( $this->pageId2, $this->pageId3, $this->pageId4 ),
 			array( $this->pageId1 + 1, $this->pageId2 + 1, $this->pageId3 + 1 ),
 			"Page ids increasing without holes" );
-
 	}
 
 	function testPlain() {
 		// Setting up the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array ( "--stub=file:" . $nameStub,
-				"--output=file:" . $nameFull ) );
+		$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+			"--output=file:" . $nameFull ) );
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
 
@@ -147,7 +154,7 @@ class TextPassDumperTest extends DumpTestCase {
 		);
 
 		// The mock itself
-		$prefetchMock = $this->getMock( 'BaseDump', array( 'prefetch' ), array(), '', FALSE );
+		$prefetchMock = $this->getMock( 'BaseDump', array( 'prefetch' ), array(), '', false );
 		$prefetchMock->expects( $this->exactly( 6 ) )
 			->method( 'prefetch' )
 			->will( $this->returnValueMap( $prefetchMap ) );
@@ -155,8 +162,8 @@ class TextPassDumperTest extends DumpTestCase {
 		// Setting up of the dump
 		$nameStub = $this->setUpStub();
 		$nameFull = $this->getNewTempFile();
-		$dumper = new TextPassDumper( array ( "--stub=file:"
-				. $nameStub, "--output=file:" . $nameFull ) );
+		$dumper = new TextPassDumper( array( "--stub=file:"
+			. $nameStub, "--output=file:" . $nameFull ) );
 		$dumper->prefetch = $prefetchMock;
 		$dumper->reporting = false;
 		$dumper->setDb( $this->db );
@@ -205,7 +212,6 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertPageEnd();
 
 		$this->assertDumpEnd();
-
 	}
 
 	/**
@@ -221,7 +227,7 @@ class TextPassDumperTest extends DumpTestCase {
 		$nameOutputDir = $this->getNewTempDirectory();
 
 		$stderr = fopen( 'php://output', 'a' );
-		if ( $stderr === FALSE ) {
+		if ( $stderr === false ) {
 			$this->fail( "Could not open stream for stderr" );
 		}
 
@@ -229,7 +235,6 @@ class TextPassDumperTest extends DumpTestCase {
 		$lastDuration = 0;
 		$minDuration = 2; // We want the dump to take at least this many seconds
 		$checkpointAfter = 0.5; // Generate checkpoint after this many seconds
-
 
 		// Until a dump takes at least $minDuration seconds, perform a dump and check
 		// duration. If the dump did not take long enough increase the iteration
@@ -241,10 +246,10 @@ class TextPassDumperTest extends DumpTestCase {
 			$this->assertTrue( wfMkdirParents( $nameOutputDir ),
 				"Creating temporary output directory " );
 			$this->setUpStub( $nameStub, $iterations );
-			$dumper = new TextPassDumper( array ( "--stub=file:" . $nameStub,
-					"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
-					"--maxtime=1" /*This is in minutes. Fixup is below*/,
-					"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
+			$dumper = new TextPassDumper( array( "--stub=file:" . $nameStub,
+				"--output=" . $checkpointFormat . ":" . $nameOutputDir . "/full",
+				"--maxtime=1" /*This is in minutes. Fixup is below*/,
+				"--checkpointfile=checkpoint-%s-%s.xml.gz" ) );
 			$dumper->setDb( $this->db );
 			$dumper->maxTimeAllowed = $checkpointAfter; // Patching maxTime from 1 minute
 			$dumper->stderr = $stderr;
@@ -274,7 +279,7 @@ class TextPassDumperTest extends DumpTestCase {
 
 				$this->assertLessThan( 50000, $iterations,
 					"Emergency stop against infinitely increasing iteration "
-					. "count ( last duration: $lastDuration )" );
+						. "count ( last duration: $lastDuration )" );
 			}
 		}
 
@@ -291,11 +296,11 @@ class TextPassDumperTest extends DumpTestCase {
 
 		// Each run of the following loop body tries to handle exactly 1 /page/ (not
 		// iteration of stub content). $i is only increased after having treated page 4.
-		for ( $i = 0 ; $i < $iterations ; ) {
+		for ( $i = 0; $i < $iterations; ) {
 
 			// 1. Assuring a file is opened and ready. Skipping across header if
 			//    necessary.
-			if ( ! $fileOpened ) {
+			if ( !$fileOpened ) {
 				$this->assertNotEmpty( $files, "No more existing dump files, "
 					. "but not yet all pages found" );
 				$fname = array_shift( $files );
@@ -314,65 +319,65 @@ class TextPassDumperTest extends DumpTestCase {
 
 			// 2. Performing a single page check
 			switch ( $lookingForPage ) {
-			case 1:
-				// Page 1
-				$this->assertPageStart( $this->pageId1 + $i * self::$numOfPages, NS_MAIN,
-					"BackupDumperTestP1" );
-				$this->assertRevision( $this->revId1_1 + $i * self::$numOfRevs, "BackupDumperTestP1Summary1",
-					$this->textId1_1, false, "0bolhl6ol7i6x0e7yq91gxgaan39j87",
-					"BackupDumperTestP1Text1" );
-				$this->assertPageEnd();
+				case 1:
+					// Page 1
+					$this->assertPageStart( $this->pageId1 + $i * self::$numOfPages, NS_MAIN,
+						"BackupDumperTestP1" );
+					$this->assertRevision( $this->revId1_1 + $i * self::$numOfRevs, "BackupDumperTestP1Summary1",
+						$this->textId1_1, false, "0bolhl6ol7i6x0e7yq91gxgaan39j87",
+						"BackupDumperTestP1Text1" );
+					$this->assertPageEnd();
 
-				$lookingForPage = 2;
-				break;
+					$lookingForPage = 2;
+					break;
 
-			case 2:
-				// Page 2
-				$this->assertPageStart( $this->pageId2 + $i * self::$numOfPages, NS_MAIN,
-					"BackupDumperTestP2" );
-				$this->assertRevision( $this->revId2_1 + $i * self::$numOfRevs, "BackupDumperTestP2Summary1",
-					$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
-					"BackupDumperTestP2Text1" );
-				$this->assertRevision( $this->revId2_2 + $i * self::$numOfRevs, "BackupDumperTestP2Summary2",
-					$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
-					"BackupDumperTestP2Text2", $this->revId2_1 + $i * self::$numOfRevs );
-				$this->assertRevision( $this->revId2_3 + $i * self::$numOfRevs, "BackupDumperTestP2Summary3",
-					$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
-					"BackupDumperTestP2Text3", $this->revId2_2 + $i * self::$numOfRevs );
-				$this->assertRevision( $this->revId2_4 + $i * self::$numOfRevs,
-					"BackupDumperTestP2Summary4 extra",
-					$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
-					"BackupDumperTestP2Text4 some additional Text",
-					$this->revId2_3 + $i * self::$numOfRevs );
-				$this->assertPageEnd();
+				case 2:
+					// Page 2
+					$this->assertPageStart( $this->pageId2 + $i * self::$numOfPages, NS_MAIN,
+						"BackupDumperTestP2" );
+					$this->assertRevision( $this->revId2_1 + $i * self::$numOfRevs, "BackupDumperTestP2Summary1",
+						$this->textId2_1, false, "jprywrymfhysqllua29tj3sc7z39dl2",
+						"BackupDumperTestP2Text1" );
+					$this->assertRevision( $this->revId2_2 + $i * self::$numOfRevs, "BackupDumperTestP2Summary2",
+						$this->textId2_2, false, "b7vj5ks32po5m1z1t1br4o7scdwwy95",
+						"BackupDumperTestP2Text2", $this->revId2_1 + $i * self::$numOfRevs );
+					$this->assertRevision( $this->revId2_3 + $i * self::$numOfRevs, "BackupDumperTestP2Summary3",
+						$this->textId2_3, false, "jfunqmh1ssfb8rs43r19w98k28gg56r",
+						"BackupDumperTestP2Text3", $this->revId2_2 + $i * self::$numOfRevs );
+					$this->assertRevision( $this->revId2_4 + $i * self::$numOfRevs,
+						"BackupDumperTestP2Summary4 extra",
+						$this->textId2_4, false, "6o1ciaxa6pybnqprmungwofc4lv00wv",
+						"BackupDumperTestP2Text4 some additional Text",
+						$this->revId2_3 + $i * self::$numOfRevs );
+					$this->assertPageEnd();
 
-				$lookingForPage = 4;
-				break;
+					$lookingForPage = 4;
+					break;
 
-			case 4:
-				// Page 4
-				$this->assertPageStart( $this->pageId4 + $i * self::$numOfPages, NS_TALK,
-					"Talk:BackupDumperTestP1" );
-				$this->assertRevision( $this->revId4_1 + $i * self::$numOfRevs,
-					"Talk BackupDumperTestP1 Summary1",
-					$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
-					"Talk about BackupDumperTestP1 Text1" );
-				$this->assertPageEnd();
+				case 4:
+					// Page 4
+					$this->assertPageStart( $this->pageId4 + $i * self::$numOfPages, NS_TALK,
+						"Talk:BackupDumperTestP1" );
+					$this->assertRevision( $this->revId4_1 + $i * self::$numOfRevs,
+						"Talk BackupDumperTestP1 Summary1",
+						$this->textId4_1, false, "nktofwzd0tl192k3zfepmlzxoax1lpe",
+						"Talk about BackupDumperTestP1 Text1" );
+					$this->assertPageEnd();
 
-				$lookingForPage = 1;
+					$lookingForPage = 1;
 
-				// We dealt with the whole iteration.
-				$i++;
-				break;
+					// We dealt with the whole iteration.
+					$i++;
+					break;
 
-			default:
-				$this->fail( "Bad setting for lookingForPage ($lookingForPage)" );
+				default:
+					$this->fail( "Bad setting for lookingForPage ($lookingForPage)" );
 			}
 
 			// 3. Checking for the end of the current checkpoint file
 			if ( $this->xml->nodeType == XMLReader::END_ELEMENT
-				&& $this->xml->name == "mediawiki" ) {
-
+				&& $this->xml->name == "mediawiki"
+			) {
 				$this->assertDumpEnd();
 				$fileOpened = false;
 			}
@@ -383,7 +388,7 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->assertEmpty( $files, "Remaining unchecked files" );
 
 		// ... and have dealt with more than one checkpoint file
-		$this->assertGreaterThan( 1, $checkpointFiles, "# of checkpoint files" );
+		$this->assertGreaterThan( 1, $checkpointFiles, "expected more than 1 checkpoint to have been created. Checkpoint interval is $checkpointAfter seconds, maybe your computer is too fast?" );
 
 		$this->expectETAOutput();
 	}
@@ -408,6 +413,7 @@ class TextPassDumperTest extends DumpTestCase {
 	 * @group large
 	 */
 	function testCheckpointGzip() {
+		$this->checkHasGzip();
 		$this->checkpointHelper( "gzip" );
 	}
 
@@ -438,7 +444,7 @@ class TextPassDumperTest extends DumpTestCase {
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
-    <generator>MediaWiki 1.20alpha</generator>
+    <generator>MediaWiki 1.21alpha</generator>
     <case>first-letter</case>
     <namespaces>
       <namespace key="-2" case="first-letter">Media</namespace>
@@ -481,6 +487,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP1Summary1</comment>
       <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
       <text id="' . $this->textId1_1 . '" bytes="23" />
     </revision>
   </page>
@@ -497,6 +505,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary1</comment>
       <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
       <text id="' . $this->textId2_1 . '" bytes="23" />
     </revision>
     <revision>
@@ -508,6 +518,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary2</comment>
       <sha1>b7vj5ks32po5m1z1t1br4o7scdwwy95</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
       <text id="' . $this->textId2_2 . '" bytes="23" />
     </revision>
     <revision>
@@ -519,6 +531,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary3</comment>
       <sha1>jfunqmh1ssfb8rs43r19w98k28gg56r</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
       <text id="' . $this->textId2_3 . '" bytes="23" />
     </revision>
     <revision>
@@ -530,6 +544,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>BackupDumperTestP2Summary4 extra</comment>
       <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
       <text id="' . $this->textId2_4 . '" bytes="44" />
     </revision>
   </page>
@@ -548,6 +564,8 @@ class TextPassDumperTest extends DumpTestCase {
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
       <text id="' . $this->textId4_1 . '" bytes="35" />
     </revision>
   </page>
@@ -556,8 +574,8 @@ class TextPassDumperTest extends DumpTestCase {
 		}
 		$content .= $tail;
 		$this->assertEquals( strlen( $content ), file_put_contents(
-				$fname, $content ), "Length of prepared stub" );
+			$fname, $content ), "Length of prepared stub" );
+
 		return $fname;
 	}
-
 }

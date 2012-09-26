@@ -2,17 +2,18 @@
 
 <!-- colors don't work on Windows! -->
 <phpunit bootstrap="./bootstrap.php"
-         colors="true"
-         backupGlobals="false"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         stopOnFailure="false"
-		 timeoutForSmallTests="2"
-		 timeoutForMediumTests="10"
-		 timeoutForLargeTests="60"
-         strict="true"
-		 verbose="true">
+	colors="true"
+	backupGlobals="false"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	forceCoversAnnotation="true"
+	stopOnFailure="false"
+	timeoutForSmallTests="10"
+	timeoutForMediumTests="30"
+	timeoutForLargeTests="60"
+	strict="true"
+	verbose="true">
 	<testsuites>
 		<testsuite name="includes">
 			<directory>includes</directory>
@@ -29,13 +30,14 @@
 			<directory>maintenance</directory>
 		</testsuite>
 		<testsuite name="structure">
-			<file>StructureTest.php</file>
+			<directory>structure</directory>
 		</testsuite>
 		<testsuite name="uploadfromurl">
 			<file>suites/UploadFromUrlTestSuite.php</file>
 		</testsuite>
 		<testsuite name="extensions">
 			<file>suites/ExtensionsTestSuite.php</file>
+			<file>suites/ExtensionsParserTestSuite.php</file>
 		</testsuite>
 	</testsuites>
 	<groups>

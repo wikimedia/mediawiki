@@ -31,8 +31,8 @@ class ChangesFeed {
 	/**
 	 * Constructor
 	 *
-	 * @param $format String: feed's format (either 'rss' or 'atom')
-	 * @param $type String: type of feed (for cache keys)
+	 * @param string $format feed's format (either 'rss' or 'atom')
+	 * @param string $type type of feed (for cache keys)
 	 */
 	public function __construct( $format, $type ) {
 		$this->format = $format;
@@ -42,9 +42,9 @@ class ChangesFeed {
 	/**
 	 * Get a ChannelFeed subclass object to use
 	 *
-	 * @param $title String: feed's title
-	 * @param $description String: feed's description
-	 * @param $url String: url of origin page
+	 * @param string $title feed's title
+	 * @param string $description feed's description
+	 * @param string $url url of origin page
 	 * @return ChannelFeed subclass or false on failure
 	 */
 	public function getFeedObject( $title, $description, $url ) {
@@ -54,7 +54,7 @@ class ChangesFeed {
 			return false;
 		}
 
-		if( !array_key_exists( $this->format, $wgFeedClasses ) ) {
+		if ( !array_key_exists( $this->format, $wgFeedClasses ) ) {
 			// falling back to atom
 			$this->format = 'atom';
 		}
@@ -92,7 +92,7 @@ class ChangesFeed {
 		 * gets it quick too.
 		 */
 		$cachedFeed = $this->loadFromCache( $lastmod, $timekey, $key );
-		if( is_string( $cachedFeed ) ) {
+		if ( is_string( $cachedFeed ) ) {
 			wfDebug( "RC: Outputting cached feed\n" );
 			$feed->httpHeaders();
 			echo $cachedFeed;
@@ -110,9 +110,9 @@ class ChangesFeed {
 	/**
 	 * Save to feed result to $messageMemc
 	 *
-	 * @param $feed String: feed's content
-	 * @param $timekey String: memcached key of the last modification
-	 * @param $key String: memcached key of the content
+	 * @param string $feed feed's content
+	 * @param string $timekey memcached key of the last modification
+	 * @param string $key memcached key of the content
 	 */
 	public function saveToCache( $feed, $timekey, $key ) {
 		global $messageMemc;
@@ -125,8 +125,8 @@ class ChangesFeed {
 	 * Try to load the feed result from $messageMemc
 	 *
 	 * @param $lastmod Integer: timestamp of the last item in the recentchanges table
-	 * @param $timekey String: memcached key of the last modification
-	 * @param $key String: memcached key of the content
+	 * @param string $timekey memcached key of the last modification
+	 * @param string $key memcached key of the content
 	 * @return string|bool feed's content on cache hit or false on cache miss
 	 */
 	public function loadFromCache( $lastmod, $timekey, $key ) {
@@ -134,8 +134,8 @@ class ChangesFeed {
 
 		$feedLastmod = $messageMemc->get( $timekey );
 
-		if( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
-		    /**
+		if ( ( $wgFeedCacheTimeout > 0 ) && $feedLastmod ) {
+			/**
 			 * If the cached feed was rendered very recently, we may
 			 * go ahead and use it even if there have been edits made
 			 * since it was rendered. This keeps a swarm of requests
@@ -146,7 +146,7 @@ class ChangesFeed {
 			$feedLastmodUnix = wfTimestamp( TS_UNIX, $feedLastmod );
 			$lastmodUnix = wfTimestamp( TS_UNIX, $lastmod );
 
-			if( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix) {
+			if ( $feedAge < $wgFeedCacheTimeout || $feedLastmodUnix > $lastmodUnix ) {
 				wfDebug( "RC: loading feed from cache ($key; $feedLastmod; $lastmod)...\n" );
 				if ( $feedLastmodUnix < $lastmodUnix ) {
 					$wgOut->setLastModified( $feedLastmod ); // bug 21916
@@ -172,30 +172,32 @@ class ChangesFeed {
 		# Merge adjacent edits by one user
 		$sorted = array();
 		$n = 0;
-		foreach( $rows as $obj ) {
-			if( $n > 0 &&
+		foreach ( $rows as $obj ) {
+			if ( $n > 0 &&
 				$obj->rc_type == RC_EDIT &&
 				$obj->rc_namespace >= 0 &&
-				$obj->rc_cur_id == $sorted[$n-1]->rc_cur_id &&
-				$obj->rc_user_text == $sorted[$n-1]->rc_user_text ) {
-				$sorted[$n-1]->rc_last_oldid = $obj->rc_last_oldid;
+				$obj->rc_cur_id == $sorted[$n - 1]->rc_cur_id &&
+				$obj->rc_user_text == $sorted[$n - 1]->rc_user_text ) {
+				$sorted[$n - 1]->rc_last_oldid = $obj->rc_last_oldid;
 			} else {
 				$sorted[$n] = $obj;
 				$n++;
 			}
 		}
 
-		foreach( $sorted as $obj ) {
+		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
-			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullUrl() : '';
+			$talkpage = MWNamespace::canTalk( $obj->rc_namespace ) ? $title->getTalkPage()->getFullURL() : '';
 			// Skip items with deleted content (avoids partially complete/inconsistent output)
-			if( $obj->rc_deleted ) continue;
+			if ( $obj->rc_deleted ) {
+				continue;
+			}
 
 			if ( $obj->rc_this_oldid ) {
-				$url = $title->getFullURL(
-					'diff=' . $obj->rc_this_oldid .
-					'&oldid=' . $obj->rc_last_oldid
-				);
+				$url = $title->getFullURL( array(
+					'diff' => $obj->rc_this_oldid,
+					'oldid' => $obj->rc_last_oldid,
+				) );
 			} else {
 				// log entry or something like that.
 				$url = $title->getFullURL();

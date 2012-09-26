@@ -24,8 +24,8 @@
  * @author Aaron Schulz
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
-require_once( __DIR__ . '/deleteArchivedFiles.inc' );
+require_once __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/deleteArchivedFiles.inc';
 
 /**
  * Maintenance script to delete archived (non-current) files from the database.
@@ -55,4 +55,4 @@ class DeleteArchivedFiles extends Maintenance {
 }
 
 $maintClass = "DeleteArchivedFiles";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

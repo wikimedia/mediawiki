@@ -42,9 +42,6 @@ class FileOpBatch {
 	 * $opts is an array of options, including:
 	 *   - force        : Errors that would normally cause a rollback do not.
 	 *                    The remaining operations are still attempted if any fail.
-	 *   - allowStale   : Don't require the latest available data.
-	 *                    This can increase performance for non-critical writes.
-	 *                    This has no effect unless the 'force' flag is set.
 	 *   - nonJournaled : Don't log this operation batch in the file journal.
 	 *   - concurrency  : Try to do this many operations in parallel when possible.
 	 *
@@ -52,9 +49,9 @@ class FileOpBatch {
 	 *   - a) unexpected operation errors occurred (network partitions, disk full...)
 	 *   - b) significant operation errors occurred and 'force' was not set
 	 *
-	 * @param $performOps Array List of FileOp operations
-	 * @param $opts Array Batch operation options
-	 * @param $journal FileJournal Journal to log operations to
+	 * @param array $performOps List of FileOp operations
+	 * @param array $opts Batch operation options
+	 * @param FileJournal $journal Journal to log operations to
 	 * @return Status
 	 */
 	public static function attempt( array $performOps, array $opts, FileJournal $journal ) {
@@ -69,7 +66,6 @@ class FileOpBatch {
 		}
 
 		$batchId = $journal->getTimestampedUUID();
-		$allowStale = !empty( $opts['allowStale'] );
 		$ignoreErrors = !empty( $opts['force'] );
 		$journaled = empty( $opts['nonJournaled'] );
 		$maxConcurrency = isset( $opts['concurrency'] ) ? $opts['concurrency'] : 1;
@@ -84,7 +80,6 @@ class FileOpBatch {
 		foreach ( $performOps as $index => $fileOp ) {
 			$backendName = $fileOp->getBackend()->getName();
 			$fileOp->setBatchId( $batchId ); // transaction ID
-			$fileOp->allowStaleReads( $allowStale ); // consistency level
 			// Decide if this op can be done concurrently within this sub-batch
 			// or if a new concurrent sub-batch must be started after this one...
 			if ( $fileOp->dependsOn( $curBatchDeps )
@@ -136,46 +131,10 @@ class FileOpBatch {
 		}
 
 		// Attempt each operation (in parallel if allowed and possible)...
-		if ( count( $pPerformOps ) < count( $performOps ) ) {
-			self::runBatchParallel( $pPerformOps, $status );
-		} else {
-			self::runBatchSeries( $performOps, $status );
-		}
+		self::runParallelBatches( $pPerformOps, $status );
 
 		wfProfileOut( __METHOD__ );
 		return $status;
-	}
-
-	/**
-	 * Attempt a list of file operations in series.
-	 * This will abort remaining ops on failure.
-	 *
-	 * @param $performOps Array
-	 * @param $status Status
-	 * @return bool Success
-	 */
-	protected static function runBatchSeries( array $performOps, Status $status ) {
-		foreach ( $performOps as $index => $fileOp ) {
-			if ( $fileOp->failed() ) {
-				continue; // nothing to do
-			}
-			$subStatus = $fileOp->attempt();
-			$status->merge( $subStatus );
-			if ( $subStatus->isOK() ) {
-				$status->success[$index] = true;
-				++$status->successCount;
-			} else {
-				$status->success[$index] = false;
-				++$status->failCount;
-				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
-				// Log the remaining ops as failed for recovery...
-				for ( $i = ($index + 1); $i < count( $performOps ); $i++ ) {
-					$performOps[$i]->logFailure( 'attempt_aborted' );
-				}
-				return false; // bail out
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -186,12 +145,12 @@ class FileOpBatch {
 	 * within any given sub-batch do not depend on each other.
 	 * This will abort remaining ops on failure.
 	 *
-	 * @param $pPerformOps Array
-	 * @param $status Status
+	 * @param Array $pPerformOps
+	 * @param Status $status
 	 * @return bool Success
 	 */
-	protected static function runBatchParallel( array $pPerformOps, Status $status ) {
-		$aborted = false;
+	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
+		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
 			if ( $aborted ) { // check batch op abort flag...
 				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
@@ -205,11 +164,16 @@ class FileOpBatch {
 			$opHandles = array();
 			// Get the backend; all sub-batch ops belong to a single backend
 			$backend = reset( $performOpsBatch )->getBackend();
-			// If attemptAsync() returns synchronously, it was either an
-			// error Status or the backend just doesn't support async ops.
+			// Get the operation handles or actually do it if there is just one.
+			// If attemptAsync() returns a Status, it was either due to an error
+			// or the backend does not support async ops and did it synchronously.
 			foreach ( $performOpsBatch as $i => $fileOp ) {
 				if ( !$fileOp->failed() ) { // failed => already has Status
-					$subStatus = $fileOp->attemptAsync();
+					// If the batch is just one operation, it's faster to avoid
+					// pipelining as that can involve creating new TCP connections.
+					$subStatus = ( count( $performOpsBatch ) > 1 )
+						? $fileOp->attemptAsync()
+						: $fileOp->attempt();
 					if ( $subStatus->value instanceof FileBackendStoreOpHandle ) {
 						$opHandles[$i] = $subStatus->value; // deferred
 					} else {

@@ -1,0 +1,61 @@
+[
+	{
+		"name": "MediaWiki",
+		"groups": [
+			{
+				"name": "Base",
+				"classes": [
+					"mw",
+					"mw.Map",
+					"mw.Message",
+					"mw.loader",
+					"mw.log",
+					"mw.html",
+					"mw.html.Cdata",
+					"mw.html.Raw",
+					"mw.hook"
+				]
+			},
+			{
+				"name": "General",
+				"classes": [
+					"mw.Title",
+					"mw.notification",
+					"mw.user",
+					"mw.util",
+					"mw.plugin.*"
+				]
+			},
+			{
+				"name": "Actions",
+				"classes": ["mw.toolbar"]
+			},
+			{
+				"name": "API",
+				"classes": ["mw.Api*"]
+			}
+		]
+	},
+	{
+		"name": "jQuery",
+		"groups": [
+			{
+				"name": "Plugins",
+				"classes": ["jQuery.plugin.*"]
+			}
+		]
+	},
+	{
+		"name": "Upstream",
+		"groups": [
+			{
+				"name": "jQuery",
+				"classes": ["jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]
+			},
+			{
+				"name": "JavaScript",
+				"classes": ["Array", "Boolean", "Date", "Function", "Number", "Object", "RegExp", "String"]
+			}
+		]
+	}
+]

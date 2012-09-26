@@ -3,16 +3,96 @@
 * See: http://www.mediawiki.org/wiki/Extension:UploadWizard/MessageParser for docs
 *
 * @author neilk@wikimedia.org
+* @author mflaschen@wikimedia.org
 */
 ( function ( mw, $ ) {
-	var slice = Array.prototype.slice,
+	var oldParser,
+		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic : {
 				'SITENAME' : mw.config.get( 'wgSiteName' )
 			},
+			// This is a whitelist based on, but simpler than, Sanitizer.php.
+			// Self-closing tags are not currently supported.
+			allowedHtmlElements : [
+				'b',
+				'i'
+			],
+			// Key tag name, value allowed attributes for that tag.
+			// See Sanitizer::setupAttributeWhitelist
+			allowedHtmlCommonAttributes : [
+				// HTML
+				'id',
+				'class',
+				'style',
+				'lang',
+				'dir',
+				'title',
+
+				// WAI-ARIA
+				'role'
+			],
+
+			// Attributes allowed for specific elements.
+			// Key is element name in lower case
+			// Value is array of allowed attributes for that element
+			allowedHtmlAttributesByElement : {},
 			messages : mw.messages,
-			language : mw.language
+			language : mw.language,
+
+			// Same meaning as in mediawiki.js.
+			//
+			// Only 'text', 'parse', and 'escaped' are supported, and the
+			// actual escaping for 'escaped' is done by other code (generally
+			// through jqueryMsg).
+			//
+			// However, note that this default only
+			// applies to direct calls to jqueryMsg. The default for mediawiki.js itself
+			// is 'text', including when it uses jqueryMsg.
+			format: 'parse'
+
 		};
+
+	/**
+	 * Wrapper around jQuery append that converts all non-objects to TextNode so append will not
+	 * convert what it detects as an htmlString to an element.
+	 *
+	 * Object elements of children (jQuery, HTMLElement, TextNode, etc.) will be left as is.
+	 *
+	 * @param {jQuery} $parent Parent node wrapped by jQuery
+	 * @param {Object|string|Array} children What to append, with the same possible types as jQuery
+	 * @return {jQuery} $parent
+	 */
+	function appendWithoutParsing( $parent, children ) {
+		var i, len;
+
+		if ( !$.isArray( children ) ) {
+			children = [children];
+		}
+
+		for ( i = 0, len = children.length; i < len; i++ ) {
+			if ( typeof children[i] !== 'object' ) {
+				children[i] = document.createTextNode( children[i] );
+			}
+		}
+
+		return $parent.append( children );
+	}
+
+	/**
+	 * Decodes the main HTML entities, those encoded by mw.html.escape.
+	 *
+	 * @param {string} encode Encoded string
+	 * @return {string} String with those entities decoded
+	 */
+	function decodePrimaryHtmlEntities( encoded ) {
+		return encoded
+			.replace( /&#039;/g, '\'' )
+			.replace( /&quot;/g, '"' )
+			.replace( /&lt;/g, '<' )
+			.replace( /&gt;/g, '>' )
+			.replace( /&amp;/g, '&' );
+	}
 
 	/**
 	 * Given parser options, return a function that parses a key and replacements, returning jQuery object
@@ -30,12 +110,12 @@
 		 * @return {jQuery}
 		 */
 		return function ( args ) {
-			var key = args[0];
-			var argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
+			var key = args[0],
+				argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
-				return $( '<span>' ).append( key + ': ' + e.message );
+				return $( '<span>' ).text( key + ': ' + e.message );
 			}
 		};
 	}
@@ -56,19 +136,32 @@
 	 * @return {Function} function suitable for assigning to window.gM
 	 */
 	mw.jqueryMsg.getMessageFunction = function ( options ) {
-		var failableParserFn = getFailableParserFn( options );
+		var failableParserFn = getFailableParserFn( options ),
+			format;
+
+		if ( options && options.format !== undefined ) {
+			format = options.format;
+		} else {
+			format = parserDefaults.format;
+		}
+
 		/**
 		 * N.B. replacements are variadic arguments or an array in second parameter. In other words:
 		 *    somefunction(a, b, c, d)
 		 * is equivalent to
 		 *    somefunction(a, [b, c, d])
 		 *
-		 * @param {String} message key
-		 * @param {Array} optional replacements (can also specify variadically)
-		 * @return {String} rendered HTML as string
+		 * @param {string} key Message key.
+		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
+		 * @return {string} Rendered HTML.
 		 */
-		return function ( /* key, replacements */ ) {
-			return failableParserFn( arguments ).html();
+		return function () {
+			var failableResult = failableParserFn( arguments );
+			if ( format === 'text' || format === 'escaped' ) {
+				return failableResult.text();
+			} else {
+				return failableResult.html();
+			}
 		};
 	};
 
@@ -93,14 +186,16 @@
 		 *    somefunction(a, [b, c, d])
 		 *
 		 * We append to 'this', which in a jQuery plugin context will be the selected elements.
-		 * @param {String} message key
-		 * @param {Array} optional replacements (can also specify variadically)
+		 * @param {string} key Message key.
+		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
 		 * @return {jQuery} this
 		 */
-		return function ( /* key, replacements */ ) {
+		return function () {
 			var $target = this.empty();
+			// TODO: Simply appendWithoutParsing( $target, failableParserFn( arguments ).contents() )
+			// or Simply appendWithoutParsing( $target, failableParserFn( arguments ) )
 			$.each( failableParserFn( arguments ).contents(), function ( i, node ) {
-				$target.append( node );
+				appendWithoutParsing( $target, node );
 			} );
 			return $target;
 		};
@@ -113,20 +208,36 @@
 	 */
 	mw.jqueryMsg.parser = function ( options ) {
 		this.settings = $.extend( {}, parserDefaults, options );
+		this.settings.onlyCurlyBraceTransform = ( this.settings.format === 'text' || this.settings.format === 'escaped' );
+
 		this.emitter = new mw.jqueryMsg.htmlEmitter( this.settings.language, this.settings.magic );
 	};
 
 	mw.jqueryMsg.parser.prototype = {
-		// cache, map of mediaWiki message key to the AST of the message. In most cases, the message is a string so this is identical.
-		// (This is why we would like to move this functionality server-side).
+		/**
+		 * Cache mapping MediaWiki message keys and the value onlyCurlyBraceTransform, to the AST of the message.
+		 *
+		 * In most cases, the message is a string so this is identical.
+		 * (This is why we would like to move this functionality server-side).
+		 *
+		 * The two parts of the key are separated by colon.  For example:
+		 *
+		 * "message-key:true": ast
+		 *
+		 * if they key is "message-key" and onlyCurlyBraceTransform is true.
+		 *
+		 * This cache is shared by all instances of mw.jqueryMsg.parser.
+		 *
+		 * @static
+		 */
 		astCache: {},
 
 		/**
 		 * Where the magic happens.
 		 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
 		 * If an error is thrown, returns original key, and logs the error
-		 * @param {String} message key
-		 * @param {Array} replacements for $1, $2... $n
+		 * @param {String} key Message key.
+		 * @param {Array} replacements Variable replacements for $1, $2... $n
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
@@ -139,16 +250,19 @@
 		 * @return {String|Array} string of '[key]' if message missing, simple string if possible, array of arrays if needs parsing
 		 */
 		getAst: function ( key ) {
-			if ( this.astCache[ key ] === undefined ) {
-				var wikiText = this.settings.messages.get( key );
+			var cacheKey = [key, this.settings.onlyCurlyBraceTransform].join( ':' ), wikiText;
+
+			if ( this.astCache[ cacheKey ] === undefined ) {
+				wikiText = this.settings.messages.get( key );
 				if ( typeof wikiText !== 'string' ) {
-					wikiText = "\\[" + key + "\\]";
+					wikiText = '\\[' + key + '\\]';
 				}
-				this.astCache[ key ] = this.wikiTextToAst( wikiText );
+				this.astCache[ cacheKey ] = this.wikiTextToAst( wikiText );
 			}
-			return this.astCache[ key ];
+			return this.astCache[ cacheKey ];
 		},
-		/*
+
+		/**
 		 * Parses the input wikiText into an abstract syntax tree, essentially an s-expression.
 		 *
 		 * CAVEAT: This does not parse all wikitext. It could be more efficient, but it's pretty good already.
@@ -159,18 +273,29 @@
 		 * @return {Mixed} abstract syntax tree
 		 */
 		wikiTextToAst: function ( input ) {
+			var pos, settings = this.settings, concat = Array.prototype.concat,
+				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, regularLiteralWithSquareBrackets,
+				doubleQuote, singleQuote, backslash, anyCharacter, asciiAlphabetLiteral,
+				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
+				whitespace, dollar, digits, htmlDoubleQuoteAttributeValue, htmlSingleQuoteAttributeValue,
+				htmlAttributeEquals, openHtmlStartTag, optionalForwardSlash, openHtmlEndTag, closeHtmlTag,
+				openExtlink, closeExtlink, wikilinkPage, wikilinkContents, openWikilink, closeWikilink, templateName, pipe, colon,
+				templateContents, openTemplate, closeTemplate,
+				nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, result;
 
 			// Indicates current position in input as we parse through it.
 			// Shared among all parsing functions below.
-			var pos = 0;
+			pos = 0;
+
 			// =========================================================
 			// parsing combinators - could be a library on its own
 			// =========================================================
 			// Try parsers until one works, if none work return null
 			function choice( ps ) {
 				return function () {
-					for ( var i = 0; i < ps.length; i++ ) {
-						var result = ps[i]();
+					var i, result;
+					for ( i = 0; i < ps.length; i++ ) {
+						result = ps[i]();
 						if ( result !== null ) {
 							 return result;
 						}
@@ -181,10 +306,11 @@
 			// try several ps in a row, all must succeed or return null
 			// this is the only eager one
 			function sequence( ps ) {
-				var originalPos = pos;
-				var result = [];
-				for ( var i = 0; i < ps.length; i++ ) {
-					var res = ps[i]();
+				var i, res,
+					originalPos = pos,
+					result = [];
+				for ( i = 0; i < ps.length; i++ ) {
+					res = ps[i]();
 					if ( res === null ) {
 						pos = originalPos;
 						return null;
@@ -197,9 +323,9 @@
 			// must succeed a minimum of n times or return null
 			function nOrMore( n, p ) {
 				return function () {
-					var originalPos = pos;
-					var result = [];
-					var parsed = p();
+					var originalPos = pos,
+						result = [],
+						parsed = p();
 					while ( parsed !== null ) {
 						result.push( parsed );
 						parsed = p();
@@ -232,6 +358,15 @@
 					return result;
 				};
 			}
+
+			/**
+			 * Makes a regex parser, given a RegExp object.
+			 * The regex being passed in should start with a ^ to anchor it to the start
+			 * of the string.
+			 *
+			 * @param {RegExp} regex anchored regex
+			 * @return {Function} function to parse input based on the regex
+			 */
 			function makeRegexParser( regex ) {
 				return function () {
 					var matches = input.substr( pos ).match( regex );
@@ -258,11 +393,23 @@
 			// but some debuggers can't tell you exactly where they come from. Also the mutually
 			// recursive functions seem not to work in all browsers then. (Tested IE6-7, Opera, Safari, FF)
 			// This may be because, to save code, memoization was removed
-			var regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
-			var regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
-			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
-			var backslash = makeStringParser( "\\" );
-			var anyCharacter = makeRegexParser( /^./ );
+
+			regularLiteral = makeRegexParser( /^[^{}\[\]$<\\]/ );
+			regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
+			regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
+			regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
+
+			backslash = makeStringParser( '\\' );
+			doubleQuote = makeStringParser( '"' );
+			singleQuote = makeStringParser( '\'' );
+			anyCharacter = makeRegexParser( /^./ );
+
+			openHtmlStartTag = makeStringParser( '<' );
+			optionalForwardSlash = makeRegexParser( /^\/?/ );
+			openHtmlEndTag = makeStringParser( '</' );
+			htmlAttributeEquals = makeRegexParser( /^\s*=\s*/ );
+			closeHtmlTag = makeRegexParser( /^\s*>/ );
+
 			function escapedLiteral() {
 				var result = sequence( [
 					backslash,
@@ -270,36 +417,54 @@
 				] );
 				return result === null ? null : result[1];
 			}
-			var escapedOrLiteralWithoutSpace = choice( [
+			escapedOrLiteralWithoutSpace = choice( [
 				escapedLiteral,
 				regularLiteralWithoutSpace
 			] );
-			var escapedOrLiteralWithoutBar = choice( [
+			escapedOrLiteralWithoutBar = choice( [
 				escapedLiteral,
 				regularLiteralWithoutBar
 			] );
-			var escapedOrRegularLiteral = choice( [
+			escapedOrRegularLiteral = choice( [
 				escapedLiteral,
 				regularLiteral
 			] );
 			// Used to define "literals" without spaces, in space-delimited situations
 			function literalWithoutSpace() {
-				 var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
-				 return result === null ? null : result.join('');
+				var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
+				return result === null ? null : result.join('');
 			}
 			// Used to define "literals" within template parameters. The pipe character is the parameter delimeter, so by default
 			// it is not a literal in the parameter
 			function literalWithoutBar() {
-				 var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
-				 return result === null ? null : result.join('');
+				var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
+				return result === null ? null : result.join('');
 			}
+
+			// Used for wikilink page names.  Like literalWithoutBar, but
+			// without allowing escapes.
+			function unescapedLiteralWithoutBar() {
+				var result = nOrMore( 1, regularLiteralWithoutBar )();
+				return result === null ? null : result.join('');
+			}
+
 			function literal() {
-				 var result = nOrMore( 1, escapedOrRegularLiteral )();
-				 return result === null ? null : result.join('');
+				var result = nOrMore( 1, escapedOrRegularLiteral )();
+				return result === null ? null : result.join('');
 			}
-			var whitespace = makeRegexParser( /^\s+/ );
-			var dollar = makeStringParser( '$' );
-			var digits = makeRegexParser( /^\d+/ );
+
+			function curlyBraceTransformExpressionLiteral() {
+				var result = nOrMore( 1, regularLiteralWithSquareBrackets )();
+				return result === null ? null : result.join('');
+			}
+
+			asciiAlphabetLiteral = makeRegexParser( /[A-Za-z]+/ );
+			htmlDoubleQuoteAttributeValue = makeRegexParser( /^[^"]*/ );
+			htmlSingleQuoteAttributeValue = makeRegexParser( /^[^']*/ );
+
+			whitespace = makeRegexParser( /^\s+/ );
+			dollar = makeStringParser( '$' );
+			digits = makeRegexParser( /^\d+/ );
 
 			function replacement() {
 				var result = sequence( [
@@ -311,20 +476,28 @@
 				}
 				return [ 'REPLACE', parseInt( result[1], 10 ) - 1 ];
 			}
-			var openExtlink = makeStringParser( '[' );
-			var closeExtlink = makeStringParser( ']' );
-			// this extlink MUST have inner text, e.g. [foo] not allowed; [foo bar] is allowed
+			openExtlink = makeStringParser( '[' );
+			closeExtlink = makeStringParser( ']' );
+			// this extlink MUST have inner contents, e.g. [foo] not allowed; [foo bar] [foo <i>bar</i>], etc. are allowed
 			function extlink() {
-				var result = null;
-				var parsedResult = sequence( [
+				var result, parsedResult;
+				result = null;
+				parsedResult = sequence( [
 					openExtlink,
 					nonWhitespaceExpression,
 					whitespace,
-					expression,
+					nOrMore( 1, expression ),
 					closeExtlink
 				] );
 				if ( parsedResult !== null ) {
-					 result = [ 'LINK', parsedResult[1], parsedResult[3] ];
+					result = [ 'EXTLINK', parsedResult[1] ];
+					// TODO (mattflaschen, 2013-03-22): Clean this up if possible.
+					// It's avoiding CONCAT for single nodes, so they at least doesn't get the htmlEmitter span.
+					if ( parsedResult[3].length === 1 ) {
+						result.push( parsedResult[3][0] );
+					} else {
+						result.push( ['CONCAT'].concat( parsedResult[3] ) );
+					}
 				}
 				return result;
 			}
@@ -341,41 +514,212 @@
 				if ( result === null ) {
 					return null;
 				}
-				return [ 'LINKPARAM', parseInt( result[2], 10 ) - 1, result[4] ];
+				return [ 'EXTLINKPARAM', parseInt( result[2], 10 ) - 1, result[4] ];
 			}
-			var openLink = makeStringParser( '[[' );
-			var closeLink = makeStringParser( ']]' );
-			function link() {
-				var result = null;
-				var parsedResult = sequence( [
-					openLink,
-					expression,
-					closeLink
+			openWikilink = makeStringParser( '[[' );
+			closeWikilink = makeStringParser( ']]' );
+			pipe = makeStringParser( '|' );
+
+			function template() {
+				var result = sequence( [
+					openTemplate,
+					templateContents,
+					closeTemplate
+				] );
+				return result === null ? null : result[1];
+			}
+
+			wikilinkPage = choice( [
+				unescapedLiteralWithoutBar,
+				template
+			] );
+
+			function pipedWikilink() {
+				var result = sequence( [
+					wikilinkPage,
+					pipe,
+					expression
+				] );
+				return result === null ? null : [ result[0], result[2] ];
+			}
+
+			wikilinkContents = choice( [
+				pipedWikilink,
+				wikilinkPage // unpiped link
+			] );
+
+			function wikilink() {
+				var result, parsedResult, parsedLinkContents;
+				result = null;
+
+				parsedResult = sequence( [
+					openWikilink,
+					wikilinkContents,
+					closeWikilink
 				] );
 				if ( parsedResult !== null ) {
-					 result = [ 'WLINK', parsedResult[1] ];
+					parsedLinkContents = parsedResult[1];
+					result = [ 'WIKILINK' ].concat( parsedLinkContents );
 				}
 				return result;
 			}
-			var templateName = transform(
+
+			// TODO: Support data- if appropriate
+			function doubleQuotedHtmlAttributeValue() {
+				var parsedResult = sequence( [
+					doubleQuote,
+					htmlDoubleQuoteAttributeValue,
+					doubleQuote
+				] );
+				return parsedResult === null ? null : parsedResult[1];
+			}
+
+			function singleQuotedHtmlAttributeValue() {
+				var parsedResult = sequence( [
+					singleQuote,
+					htmlSingleQuoteAttributeValue,
+					singleQuote
+				] );
+				return parsedResult === null ? null : parsedResult[1];
+			}
+
+			function htmlAttribute() {
+				var parsedResult = sequence( [
+					whitespace,
+					asciiAlphabetLiteral,
+					htmlAttributeEquals,
+					choice(	[
+						doubleQuotedHtmlAttributeValue,
+						singleQuotedHtmlAttributeValue
+					] )
+				] );
+				return parsedResult === null ? null : [parsedResult[1], parsedResult[3]];
+			}
+
+			/**
+			 * Checks if HTML is allowed
+			 *
+			 * @param {string} startTagName HTML start tag name
+			 * @param {string} endTagName HTML start tag name
+			 * @param {Object} attributes array of consecutive key value pairs,
+			 *  with index 2 * n being a name and 2 * n + 1 the associated value
+			 * @return {boolean} true if this is HTML is allowed, false otherwise
+			 */
+			function isAllowedHtml( startTagName, endTagName, attributes ) {
+				var i, len, attributeName;
+
+				startTagName = startTagName.toLowerCase();
+				endTagName = endTagName.toLowerCase();
+				if ( startTagName !== endTagName || $.inArray( startTagName, settings.allowedHtmlElements ) === -1 ) {
+					return false;
+				}
+
+				for ( i = 0, len = attributes.length; i < len; i += 2 ) {
+					attributeName = attributes[i];
+					if ( $.inArray( attributeName, settings.allowedHtmlCommonAttributes ) === -1 &&
+					     $.inArray( attributeName, settings.allowedHtmlAttributesByElement[startTagName] || [] ) === -1 ) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+
+			function htmlAttributes() {
+				var parsedResult = nOrMore( 0, htmlAttribute )();
+				// Un-nest attributes array due to structure of jQueryMsg operations (see emit).
+				return concat.apply( ['HTMLATTRIBUTES'], parsedResult );
+			}
+
+			// Subset of allowed HTML markup.
+			// Most elements and many attributes allowed on the server are not supported yet.
+			function html() {
+				var result = null, parsedOpenTagResult, parsedHtmlContents,
+					parsedCloseTagResult, wrappedAttributes, attributes,
+					startTagName, endTagName, startOpenTagPos, startCloseTagPos,
+					endOpenTagPos, endCloseTagPos;
+
+				// Break into three sequence calls.  That should allow accurate reconstruction of the original HTML, and requiring an exact tag name match.
+				// 1. open through closeHtmlTag
+				// 2. expression
+				// 3. openHtmlEnd through close
+				// This will allow recording the positions to reconstruct if HTML is to be treated as text.
+
+				startOpenTagPos = pos;
+				parsedOpenTagResult = sequence( [
+					openHtmlStartTag,
+					asciiAlphabetLiteral,
+					htmlAttributes,
+					optionalForwardSlash,
+					closeHtmlTag
+				] );
+
+				if ( parsedOpenTagResult === null ) {
+					return null;
+				}
+
+				endOpenTagPos = pos;
+				startTagName = parsedOpenTagResult[1];
+
+				parsedHtmlContents = nOrMore( 0, expression )();
+
+				startCloseTagPos = pos;
+				parsedCloseTagResult = sequence( [
+					openHtmlEndTag,
+					asciiAlphabetLiteral,
+					closeHtmlTag
+				] );
+
+				if ( parsedCloseTagResult === null ) {
+					// Closing tag failed.  Return the start tag and contents.
+					return [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ].concat( parsedHtmlContents );
+				}
+
+				endCloseTagPos = pos;
+				endTagName = parsedCloseTagResult[1];
+				wrappedAttributes = parsedOpenTagResult[2];
+				attributes = wrappedAttributes.slice( 1 );
+				if ( isAllowedHtml( startTagName, endTagName, attributes) ) {
+					result = [ 'HTMLELEMENT', startTagName, wrappedAttributes ].concat( parsedHtmlContents );
+				} else {
+					// HTML is not allowed, so contents will remain how
+					// it was, while HTML markup at this level will be
+					// treated as text
+					// E.g. assuming script tags are not allowed:
+					//
+					// <script>[[Foo|bar]]</script>
+					//
+					// results in '&lt;script&gt;' and '&lt;/script&gt;'
+					// (not treated as an HTML tag), surrounding a fully
+					// parsed HTML link.
+					//
+					// Concatenate everything from the tag, flattening the contents.
+					result = [ 'CONCAT', input.substring( startOpenTagPos, endOpenTagPos ) ].concat( parsedHtmlContents, input.substring( startCloseTagPos, endCloseTagPos ) );
+				}
+
+				return result;
+			}
+
+			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
 				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
 				function ( result ) { return result.toString(); }
 			);
 			function templateParam() {
-				var result = sequence( [
+				var expr, result;
+				result = sequence( [
 					pipe,
 					nOrMore( 0, paramExpression )
 				] );
 				if ( result === null ) {
 					return null;
 				}
-				var expr = result[1];
-				// use a "CONCAT" operator if there are multiple nodes, otherwise return the first node, raw.
-				return expr.length > 1 ? [ "CONCAT" ].concat( expr ) : expr[0];
+				expr = result[1];
+				// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
+				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
 			}
-			var pipe = makeStringParser( '|' );
+
 			function templateWithReplacement() {
 				var result = sequence( [
 					templateName,
@@ -392,8 +736,8 @@
 				] );
 				return result === null ? null : [ result[0], result[2] ];
 			}
-			var colon = makeStringParser(':');
-			var templateContents = choice( [
+			colon = makeStringParser(':');
+			templateContents = choice( [
 				function () {
 					var res = sequence( [
 						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
@@ -414,59 +758,70 @@
 					return [ res[0] ].concat( res[1] );
 				}
 			] );
-			var openTemplate = makeStringParser('{{');
-			var closeTemplate = makeStringParser('}}');
-			function template() {
-				var result = sequence( [
-					openTemplate,
-					templateContents,
-					closeTemplate
-				] );
-				return result === null ? null : result[1];
-			}
-			var nonWhitespaceExpression = choice( [
+			openTemplate = makeStringParser('{{');
+			closeTemplate = makeStringParser('}}');
+			nonWhitespaceExpression = choice( [
 				template,
-				link,
+				wikilink,
 				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutSpace
 			] );
-			var paramExpression = choice( [
+			paramExpression = choice( [
 				template,
-				link,
+				wikilink,
 				extLinkParam,
 				extlink,
 				replacement,
 				literalWithoutBar
 			] );
-			var expression = choice( [
+
+			expression = choice( [
 				template,
-				link,
+				wikilink,
 				extLinkParam,
 				extlink,
 				replacement,
+				html,
 				literal
 			] );
-			function start() {
-				var result = nOrMore( 0, expression )();
+
+			// Used when only {{-transformation is wanted, for 'text'
+			// or 'escaped' formats
+			curlyBraceTransformExpression = choice( [
+				template,
+				replacement,
+				curlyBraceTransformExpressionLiteral
+			] );
+
+
+			/**
+			 * Starts the parse
+			 *
+			 * @param {Function} rootExpression root parse function
+			 */
+			function start( rootExpression ) {
+				var result = nOrMore( 0, rootExpression )();
 				if ( result === null ) {
 					return null;
 				}
-				return [ "CONCAT" ].concat( result );
+				return [ 'CONCAT' ].concat( result );
 			}
 			// everything above this point is supposed to be stateless/static, but
 			// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
 			// finally let's do some actual work...
-			var result = start();
+
+			// If you add another possible rootExpression, you must update the astCache key scheme.
+			result = start( this.settings.onlyCurlyBraceTransform ? curlyBraceTransformExpression : expression );
 
 			/*
 			 * For success, the p must have gotten to the end of the input
 			 * and returned a non-null.
 			 * n.b. This is part of language infrastructure, so we do not throw an internationalizable message.
 			 */
-			if (result === null || pos !== input.length) {
-				throw new Error( "Parse error at position " + pos.toString() + " in input: " + input );
+			if ( result === null || pos !== input.length ) {
+				throw new Error( 'Parse error at position ' + pos.toString() + ' in input: ' + input );
 			}
 			return result;
 		}
@@ -491,18 +846,20 @@
 		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
 		 */
 		this.emit = function ( node, replacements ) {
-			var ret = null;
-			var jmsg = this;
+			var ret, subnodes, operation,
+				jmsg = this;
 			switch ( typeof node ) {
 				case 'string':
 				case 'number':
 					ret = node;
 					break;
-				case 'object': // node is an array of nodes
-					var subnodes = $.map( node.slice( 1 ), function ( n ) {
+				// typeof returns object for arrays
+				case 'object':
+					// node is an array of nodes
+					subnodes = $.map( node.slice( 1 ), function ( n ) {
 						return jmsg.emit( n, replacements );
 					} );
-					var operation = node[0].toLowerCase();
+					operation = node[0].toLowerCase();
 					if ( typeof jmsg[operation] === 'function' ) {
 						ret = jmsg[ operation ]( subnodes, replacements );
 					} else {
@@ -540,11 +897,12 @@
 			$.each( nodes, function ( i, node ) {
 				if ( node instanceof jQuery && node.hasClass( 'mediaWiki_htmlEmitter' ) ) {
 					$.each( node.contents(), function ( j, childNode ) {
-						$span.append( childNode );
+						appendWithoutParsing( $span, childNode );
 					} );
 				} else {
-					// strings, integers, anything else
-					$span.append( node );
+					// Let jQuery append nodes, arrays of nodes and jQuery objects
+					// other things (strings, numbers, ..) are appended as text nodes (not as HTML strings)
+					appendWithoutParsing( $span, node );
 				}
 			} );
 			return $span;
@@ -555,7 +913,7 @@
 		 * Note that we expect the parsed parameter to be zero-based. i.e. $1 should have become [ 0 ].
 		 * if the specified parameter is not found return the same string
 		 * (e.g. "$99" -> parameter 98 -> not found -> return "$99" )
-		 * TODO throw error if nodes.length > 1 ?
+		 * TODO: Throw error if nodes.length > 1 ?
 		 * @param {Array} of one element, integer, n >= 0
 		 * @return {String} replacement
 		 */
@@ -563,13 +921,7 @@
 			var index = parseInt( nodes[0], 10 );
 
 			if ( index < replacements.length ) {
-				if ( typeof arg === 'string' ) {
-					// replacement is a string, escape it
-					return mw.html.escape( replacements[index] );
-				} else {
-					// replacement is no string, don't touch!
-					return replacements[index];
-				}
+				return replacements[index];
 			} else {
 				// index not found, fallback to displaying variable
 				return '$' + ( index + 1 );
@@ -578,10 +930,71 @@
 
 		/**
 		 * Transform wiki-link
-		 * TODO unimplemented
+		 *
+		 * TODO:
+		 * It only handles basic cases, either no pipe, or a pipe with an explicit
+		 * anchor.
+		 *
+		 * It does not attempt to handle features like the pipe trick.
+		 * However, the pipe trick should usually not be present in wikitext retrieved
+		 * from the server, since the replacement is done at save time.
+		 * It may, though, if the wikitext appears in extension-controlled content.
+		 *
+		 * @param nodes
 		 */
-		wlink: function ( nodes ) {
-			return 'unimplemented';
+		wikilink: function ( nodes ) {
+			var page, anchor, url;
+
+			page = nodes[0];
+			url = mw.util.wikiGetlink( page );
+
+			// [[Some Page]] or [[Namespace:Some Page]]
+			if ( nodes.length === 1 ) {
+				anchor = page;
+			}
+
+			/*
+			 * [[Some Page|anchor text]] or
+			 * [[Namespace:Some Page|anchor]
+			 */
+			else {
+				anchor = nodes[1];
+			}
+
+			return $( '<a />' ).attr( {
+				title: page,
+				href: url
+			} ).text( anchor );
+		},
+
+		/**
+		 * Converts array of HTML element key value pairs to object
+		 *
+		 * @param {Array} nodes array of consecutive key value pairs, with index 2 * n being a name and 2 * n + 1 the associated value
+		 * @return {Object} object mapping attribute name to attribute value
+		 */
+		htmlattributes: function ( nodes ) {
+			var i, len, mapping = {};
+			for ( i = 0, len = nodes.length; i < len; i += 2 ) {
+				mapping[nodes[i]] = decodePrimaryHtmlEntities( nodes[i + 1] );
+			}
+			return mapping;
+		},
+
+		/**
+		 * Handles an (already-validated) HTML element.
+		 *
+		 * @param {Array} nodes nodes to process when creating element
+		 * @return {jQuery|Array} jQuery node for valid HTML or array for disallowed element
+		 */
+		htmlelement: function ( nodes ) {
+			var tagName, attributes, contents, $element;
+
+			tagName = nodes.shift();
+			attributes = nodes.shift();
+			contents = nodes;
+			$element = $( document.createElement( tagName ) ).attr( attributes );
+			return appendWithoutParsing( $element, contents );
 		},
 
 		/**
@@ -593,10 +1006,10 @@
 		 * @param {Array} of two elements, {jQuery|Function|String} and {String}
 		 * @return {jQuery}
 		 */
-		link: function ( nodes ) {
-			var arg = nodes[0];
-			var contents = nodes[1];
-			var $el;
+		extlink: function ( nodes ) {
+			var $el,
+				arg = nodes[0],
+				contents = nodes[1];
 			if ( arg instanceof jQuery ) {
 				$el = arg;
 			} else {
@@ -607,12 +1020,11 @@
 					$el.attr( 'href', arg.toString() );
 				}
 			}
-			$el.append( contents );
-			return $el;
+			return appendWithoutParsing( $el, contents );
 		},
 
 		/**
-		 * This is basically use a combination of replace + link (link with parameter
+		 * This is basically use a combination of replace + external link (link with parameter
 		 * as url), but we don't want to run the regular replace here-on: inserting a
 		 * url as href-attribute of a link will automatically escape it already, so
 		 * we don't want replace to (manually) escape it as well.
@@ -620,7 +1032,7 @@
 		 * @param {Array} of one element, integer, n >= 0
 		 * @return {String} replacement
 		 */
-		linkparam: function ( nodes, replacements ) {
+		extlinkparam: function ( nodes, replacements ) {
 			var replacement,
 				index = parseInt( nodes[0], 10 );
 			if ( index < replacements.length) {
@@ -628,7 +1040,7 @@
 			} else {
 				replacement = '$' + ( index + 1 );
 			}
-			return this.link( [ replacement, nodes[1] ] );
+			return this.extlink( [ replacement, nodes[1] ] );
 		},
 
 		/**
@@ -639,25 +1051,32 @@
 		 * @return {String} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var count = parseFloat( this.language.convertNumber( nodes[0], true ) );
-			var forms = nodes.slice(1);
+			var forms, count;
+			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
+			forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
 		/**
-		 * Transform parsed structure into gender
-		 * Usage {{gender:[gender| mw.user object ] | masculine|feminine|neutral}}.
-		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String} , {String} ]
+		 * Transform parsed structure according to gender.
+		 * Usage {{gender:[ gender | mw.user object ] | masculine form|feminine form|neutral form}}.
+		 * The first node is either a string, which can be "male" or "female",
+		 * or a User object (not a username).
+		 *
+		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String}, {String} ]
 		 * @return {String} selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
-			var gender;
-			if  ( nodes[0] && nodes[0].options instanceof mw.Map ){
+			var gender, forms;
+
+			if  ( nodes[0] && nodes[0].options instanceof mw.Map ) {
 				gender = nodes[0].options.get( 'gender' );
 			} else {
 				gender = nodes[0];
 			}
-			var forms = nodes.slice(1);
+
+			forms = nodes.slice( 1 );
+
 			return this.language.gender( gender, forms );
 		},
 
@@ -668,9 +1087,33 @@
 		 * @return {String} selected grammatical form according to current language
 		 */
 		grammar: function ( nodes ) {
-			var form = nodes[0];
-			var word = nodes[1];
+			var form = nodes[0],
+				word = nodes[1];
 			return word && form && this.language.convertGrammar( word, form );
+		},
+
+		/**
+		 * Tranform parsed structure into a int: (interface language) message include
+		 * Invoked by putting {{int:othermessage}} into a message
+		 * @param {Array} of nodes
+		 * @return {string} Other message
+		 */
+		int: function ( nodes ) {
+			return mw.jqueryMsg.getMessageFunction()( nodes[0].toLowerCase() );
+		},
+
+		/**
+		 * Takes an unformatted number (arab, no group separators and . as decimal separator)
+		 * and outputs it in the localized digit script and formatted with decimal
+		 * separator, according to the current language
+		 * @param {Array} of nodes
+		 * @return {Number|String} formatted number
+		 */
+		formatnum: function ( nodes ) {
+			var isInteger = ( nodes[1] && nodes[1] === 'R' ) ? true : false,
+				number = nodes[0];
+
+			return this.language.convertNumber( number, isInteger );
 		}
 	};
 	// Deprecated! don't rely on gM existing.
@@ -681,17 +1124,24 @@
 	$.fn.msg = mw.jqueryMsg.getPlugin();
 
 	// Replace the default message parser with jqueryMsg
-	var oldParser = mw.Message.prototype.parser;
+	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
+		var messageFunction;
+
 		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
 		// Caching is somewhat problematic, because we do need different message functions for different maps, so
 		// we'd have to cache the parser as a member of this.map, which sounds a bit ugly.
 		// Do not use mw.jqueryMsg unless required
-		if ( this.map.get( this.key ).indexOf( '{{' ) < 0 ) {
+		if ( this.format === 'plain' || !/\{\{|[\[<>]/.test(this.map.get( this.key ) ) ) {
 			// Fall back to mw.msg's simple parser
 			return oldParser.apply( this );
 		}
-		var messageFunction = mw.jqueryMsg.getMessageFunction( { 'messages': this.map } );
+
+		messageFunction = mw.jqueryMsg.getMessageFunction( {
+			'messages': this.map,
+			// For format 'escaped', escaping part is handled by mediawiki.js
+			'format': this.format
+		} );
 		return messageFunction( this.key, this.parameters );
 	};
 

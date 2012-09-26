@@ -55,8 +55,8 @@ class IEUrlExtension {
 	 *
 	 * If the a variable is unset in $_SERVER, it should be unset in $vars.
 	 *
-	 * @param $vars array A subset of $_SERVER.
-	 * @param $extWhitelist array Extensions which are allowed, assumed harmless.
+	 * @param array $vars A subset of $_SERVER.
+	 * @param array $extWhitelist Extensions which are allowed, assumed harmless.
 	 * @return bool
 	 */
 	public static function areServerVarsBad( $vars, $extWhitelist = array() ) {
@@ -92,8 +92,8 @@ class IEUrlExtension {
 	 * Given a right-hand portion of a URL, determine whether IE would detect
 	 * a potentially harmful file extension.
 	 *
-	 * @param $urlPart string The right-hand portion of a URL
-	 * @param $extWhitelist array An array of file extensions which may occur in this
+	 * @param string $urlPart The right-hand portion of a URL
+	 * @param array $extWhitelist An array of file extensions which may occur in this
 	 *    URL, and which should be allowed.
 	 * @return bool
 	 */
@@ -187,7 +187,7 @@ class IEUrlExtension {
 	 * - if we find a possible extension followed by a dot or another illegal
 	 *   character, we ignore it and continue searching
 	 *
-	 * @param $url string URL
+	 * @param string $url URL
 	 * @return mixed Detected extension (string), or false if none found
 	 */
 	public static function findIE6Extension( $url ) {
@@ -245,7 +245,7 @@ class IEUrlExtension {
 	 * whether the script filename has been obscured.
 	 *
 	 * The function returns false if the server is not known to have this
-	 * behaviour. Microsoft IIS in particular is known to decode escaped script
+	 * behavior. Microsoft IIS in particular is known to decode escaped script
 	 * filenames.
 	 *
 	 * SERVER_SOFTWARE typically contains either a plain string such as "Zeus",

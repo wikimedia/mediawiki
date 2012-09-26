@@ -17,7 +17,7 @@ CREATE TABLE /*_*/searchindex (
 
   -- Munged version of title
   si_title TEXT,
-  
+
   -- Munged version of body text
   si_text TEXT
 );

@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that performs some operations specific to SQLite database backend.
@@ -137,4 +137,4 @@ class SqliteMaintenance extends Maintenance {
 }
 
 $maintClass = "SqliteMaintenance";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

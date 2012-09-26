@@ -44,8 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => "Fam' avdè e' nòmar d'j utent ch'j tèn sta pàgina sot occ",
 'tog-oldsig' => 'Anteprèma dla fírma bona',
 'tog-fancysig' => "Tràta la firma cumpagna e' test int'la wiki (senza nissön ligam automatich)",
-'tog-externaleditor' => "Drova sempar un prugràma d'scritura esteran (editor testuale)",
-'tog-externaldiff' => 'Drova sempar un prugràma comparator esteran (sol par j utent espert)',
 'tog-showjumplinks' => "Fa' funzionè j leghèm d'acesibilitè tipo \"Va' a\"",
 'tog-uselivepreview' => 'Drova la funziòn "Anteprèma dal viv" (u j vo Javascript; sperimentêl)',
 'tog-forceeditsummary' => "Dam la vos quènd l'ugèt dla mudèfica l'è vut",
@@ -157,7 +155,6 @@ $messages = array(
 'qbbrowse' => 'Sföja',
 'qbedit' => 'Mudèfica',
 'qbpageoptions' => 'Upziòn dla pàgina',
-'qbpageinfo' => 'Infurmaziòn sora la pàgina',
 'qbmyoptions' => 'Al mi pàgin',
 'qbspecialpages' => 'Pàgin particulèri',
 'faq' => 'Question frequenti',
@@ -364,8 +361,6 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 'search-interwiki-caption' => 'I prugèt fradel',
 'search-interwiki-default' => 'Arsultèd da $1:',
 'search-interwiki-more' => '(ad piò)',
-'search-mwsuggest-enabled' => 'cun j sugeriment',
-'search-mwsuggest-disabled' => "'nciòn sugeriment",
 'nonefound' => "'''Oci''': la rizerca l'a vèn fata in automatico sol in zert spàzi di nòm. S't'vù zirchè fra tot al pàgin (cumpresi al pàgin d'cunversaziòn, i template, ecc) próva a metar \"all:\", in inglés, dadnenz a é nòm ch't'é scrètt, piotòst scriv é spàzi di nòm, s't'al sé, e pu é nòm.",
 'powersearch' => 'Scandaja a fònd',
 'powersearch-legend' => 'Scandaja a fònd',
@@ -381,6 +376,9 @@ Lezenda: '''({{int:cur}})''' = difarenzi cun la versiòn d'adès; '''({{int:last
 'group-sysop' => 'Aministradór',
 
 'grouppage-sysop' => '{{ns:project}}:Aministradór',
+
+# Special:Log/newusers
+'newuserlogpage' => "Regèstar d'j nov",
 
 # User rights log
 'rightslog' => "Dirètt d'j navigador",
@@ -473,13 +471,10 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 # Special:LinkSearch
 'linksearch' => 'Ghènz int ê web',
 
-# Special:Log/newusers
-'newuserlogpage' => "Regèstar d'j nov",
-
 # Special:ListGroupRights
 'listgrouprights-members' => "(Lèsta d'j mèmbar)",
 
-# E-mail user
+# Email user
 'emailuser' => 'Manda un scrètt a ste patàca',
 
 # Watchlist

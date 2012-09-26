@@ -5,7 +5,7 @@
  */
 class IEUrlExtensionTest extends MediaWikiTestCase {
 	function testSimple() {
-		$this->assertEquals( 
+		$this->assertEquals(
 			'y',
 			IEUrlExtension::findIE6Extension( 'x.y' ),
 			'Simple extension'

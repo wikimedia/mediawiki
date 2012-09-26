@@ -64,7 +64,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addTables( 'filearchive' );
 
 		$this->addFields( array( 'fa_name', 'fa_deleted' ) );
-		$this->addFieldsIf( 'fa_storage_key', $fld_sha1 );
+		$this->addFieldsIf( 'fa_sha1', $fld_sha1 );
 		$this->addFieldsIf( 'fa_timestamp', $fld_timestamp );
 		$this->addFieldsIf( array( 'fa_user', 'fa_user_text' ), $fld_user );
 		$this->addFieldsIf( array( 'fa_height', 'fa_width', 'fa_size' ), $fld_dimensions || $fld_size );
@@ -77,10 +77,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 1 ) {
-				$this->dieUsage( "Invalid continue param. You should pass the " .
-					"original value returned by the previous query", "_badcontinue" );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 1 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$cont_from = $db->addQuotes( $cont[0] );
 			$this->addWhere( "fa_name $op= $cont_from" );
@@ -101,25 +98,21 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$sha1Set = isset( $params['sha1'] );
 		$sha1base36Set = isset( $params['sha1base36'] );
 		if ( $sha1Set || $sha1base36Set ) {
-			global $wgMiserMode;
-			if ( $wgMiserMode  ) {
-				$this->dieUsage( 'Search by hash disabled in Miser Mode', 'hashsearchdisabled' );
-			}
-
 			$sha1 = false;
 			if ( $sha1Set ) {
-				if ( !$this->validateSha1Hash( $params['sha1'] ) ) {
+				$sha1 = strtolower( $params['sha1'] );
+				if ( !$this->validateSha1Hash( $sha1 ) ) {
 					$this->dieUsage( 'The SHA1 hash provided is not valid', 'invalidsha1hash' );
 				}
-				$sha1 = wfBaseConvert( $params['sha1'], 16, 36, 31 );
+				$sha1 = wfBaseConvert( $sha1, 16, 36, 31 );
 			} elseif ( $sha1base36Set ) {
-				if ( !$this->validateSha1Base36Hash( $params['sha1base36'] ) ) {
+				$sha1 = strtolower( $params['sha1base36'] );
+				if ( !$this->validateSha1Base36Hash( $sha1 ) ) {
 					$this->dieUsage( 'The SHA1Base36 hash provided is not valid', 'invalidsha1base36hash' );
 				}
-				$sha1 = $params['sha1base36'];
 			}
 			if ( $sha1 ) {
-				$this->addWhere( 'fa_storage_key ' . $db->buildLike( "{$sha1}.", $db->anyString() ) );
+				$this->addWhereFld( 'fa_sha1', $sha1 );
 			}
 		}
 
@@ -155,7 +148,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			self::addTitleInfo( $file, $title );
 
 			if ( $fld_sha1 ) {
-				$file['sha1'] = wfBaseConvert( LocalRepo::getHashFromKey( $row->fa_storage_key ), 36, 16, 40 );
+				$file['sha1'] = wfBaseConvert( $row->fa_sha1, 36, 16, 40 );
 			}
 			if ( $fld_timestamp ) {
 				$file['timestamp'] = wfTimestamp( TS_ISO_8601, $row->fa_timestamp );
@@ -214,7 +207,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				$file['suppressed'] = '';
 			}
 
-
 			$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $file );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $row->fa_name );
@@ -226,7 +218,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'from' => null,
 			'continue' => null,
 			'to' => null,
@@ -276,8 +268,8 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			'prefix' => 'Search for all image titles that begin with this value',
 			'dir' => 'The direction in which to list',
 			'limit' => 'How many images to return in total',
-			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36. Disabled in Miser Mode",
-			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki). Disabled in Miser Mode',
+			'sha1' => "SHA1 hash of image. Overrides {$this->getModulePrefix()}sha1base36",
+			'sha1base36' => 'SHA1 hash of image in base 36 (used in MediaWiki)',
 			'prop' => array(
 				'What image information to get:',
 				' sha1              - Adds SHA-1 hash for the image',
@@ -289,7 +281,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 				' parseddescription - Parse the description on the version',
 				' mime              - Adds MIME of the image',
 				' mediatype         - Adds the media type of the image',
-				' metadata          - Lists EXIF metadata for the version of the image',
+				' metadata          - Lists Exif metadata for the version of the image',
 				' bitdepth          - Adds the bit depth of the version',
 				' archivename       - Adds the file name of the archive version for non-latest versions'
 			),
@@ -370,7 +362,6 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			array( 'code' => 'hashsearchdisabled', 'info' => 'Search by hash disabled in Miser Mode' ),
 			array( 'code' => 'invalidsha1hash', 'info' => 'The SHA1 hash provided is not valid' ),
 			array( 'code' => 'invalidsha1base36hash', 'info' => 'The SHA1Base36 hash provided is not valid' ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
@@ -383,7 +374,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		);
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Filearchive';
 	}
 }

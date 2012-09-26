@@ -36,7 +36,6 @@ class BaseDumpTest extends MediaWikiTestCase {
 	private function assertPrefetchEquals( $expected, $page, $revision ) {
 		$this->assertEquals( $expected, $this->dump->prefetch( $page, $revision ),
 			"Prefetch of page $page revision $revision" );
-
 	}
 
 	function testSequential() {
@@ -156,7 +155,7 @@ class BaseDumpTest extends MediaWikiTestCase {
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
-    <generator>MediaWiki 1.20alpha</generator>
+    <generator>MediaWiki 1.21alpha</generator>
     <case>first-letter</case>
     <namespaces>
       <namespace key="-2" case="first-letter">Media</namespace>
@@ -181,7 +180,6 @@ class BaseDumpTest extends MediaWikiTestCase {
   </siteinfo>
 ';
 
-
 		// An array holding the pages that are available for prefetch
 		$available_pages = array();
 
@@ -199,6 +197,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       <comment>BackupDumperTestP1Summary1</comment>
       <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
       <text xml:space="preserve">BackupDumperTestP1Text1</text>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
     </revision>
   </page>
 ';
@@ -216,6 +216,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       <comment>BackupDumperTestP2Summary1</comment>
       <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
       <text xml:space="preserve">BackupDumperTestP2Text1</text>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
     </revision>
     <revision>
       <id>5</id>
@@ -227,6 +229,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       <comment>BackupDumperTestP2Summary4 extra</comment>
       <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
       <text xml:space="preserve">BackupDumperTestP2Text4 some additional Text</text>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
     </revision>
   </page>
 ';
@@ -243,6 +247,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text xml:space="preserve">Talk about BackupDumperTestP1 Text1</text>
     </revision>
   </page>
@@ -257,14 +263,13 @@ class BaseDumpTest extends MediaWikiTestCase {
 		foreach ( $requested_pages as $i ) {
 			$this->assertTrue( array_key_exists( $i, $available_pages ),
 				"Check for availability of requested page " . $i );
-			$content .= $available_pages[ $i ];
+			$content .= $available_pages[$i];
 		}
 		$content .= $tail;
 
 		$this->assertEquals( strlen( $content ), file_put_contents(
-				$fname, $content ), "Length of prepared prefetch" );
+			$fname, $content ), "Length of prepared prefetch" );
 
 		return $fname;
 	}
-
 }

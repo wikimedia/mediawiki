@@ -53,18 +53,18 @@ class SpecialStatistics extends SpecialPage {
 
 		# Staticic - views
 		$viewsStats = '';
-		if( !$wgDisableCounters ) {
+		if ( !$wgDisableCounters ) {
 			$viewsStats = $this->getViewsStats();
 		}
 
 		# Set active user count
-		if( !$wgMiserMode ) {
+		if ( !$wgMiserMode ) {
 			$key = wfMemcKey( 'sitestats', 'activeusers-updated' );
 			// Re-calculate the count if the last tally is old...
-			if( !$wgMemc->get($key) ) {
+			if ( !$wgMemc->get( $key ) ) {
 				$dbw = wfGetDB( DB_MASTER );
 				SiteStatsUpdate::cacheUpdate( $dbw );
-				$wgMemc->set( $key, '1', 24*3600 ); // don't update for 1 day
+				$wgMemc->set( $key, '1', 24 * 3600 ); // don't update for 1 day
 			}
 		}
 
@@ -84,13 +84,13 @@ class SpecialStatistics extends SpecialPage {
 		$text .= $viewsStats;
 
 		# Statistic - popular pages
-		if( !$wgDisableCounters && !$wgMiserMode ) {
+		if ( !$wgDisableCounters && !$wgMiserMode ) {
 			$text .= $this->getMostViewedPages();
 		}
 
 		# Statistic - other
 		$extraStats = array();
-		if( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
+		if ( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
 			$text .= $this->getOtherStats( $extraStats );
 		}
 
@@ -111,15 +111,15 @@ class SpecialStatistics extends SpecialPage {
 	 * @param $number  Float: a statistical number
 	 * @param $trExtraParams  Array: params to table row, see Html::elememt
 	 * @param $descMsg  String: message key
-	 * @param $descMsgParam  Array: message params
+	 * @param array|string $descMsgParam Message parameters
 	 * @return string table row in HTML format
 	 */
 	private function formatRow( $text, $number, $trExtraParams = array(), $descMsg = '', $descMsgParam = '' ) {
-		if( $descMsg ) {
+		if ( $descMsg ) {
 			$msg = $this->msg( $descMsg, $descMsgParam );
 			if ( $msg->exists() ) {
 				$descriptionText = $this->msg( 'parentheses' )->rawParams( $msg->parse() )->escaped();
-				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc'),
+				$text .= "<br />" . Xml::element( 'small', array( 'class' => 'mw-statistic-desc' ),
 					" $descriptionText" );
 			}
 		}
@@ -185,7 +185,7 @@ class SpecialStatistics extends SpecialPage {
 	private function getGroupStats() {
 		global $wgGroupPermissions, $wgImplicitGroups;
 		$text = '';
-		foreach( $wgGroupPermissions as $group => $permissions ) {
+		foreach ( $wgGroupPermissions as $group => $permissions ) {
 			# Skip generic * and implicit groups
 			if ( in_array( $group, $wgImplicitGroups ) || $group == '*' ) {
 				continue;
@@ -217,12 +217,12 @@ class SpecialStatistics extends SpecialPage {
 			# Add a class when a usergroup contains no members to allow hiding these rows
 			$classZero = '';
 			$countUsers = SiteStats::numberingroup( $groupname );
-			if( $countUsers == 0 ) {
+			if ( $countUsers == 0 ) {
 				$classZero = ' statistics-group-zero';
 			}
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
 				$this->getLanguage()->formatNum( $countUsers ),
-				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero )  );
+				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero ) );
 		}
 		return $text;
 	}
@@ -233,11 +233,11 @@ class SpecialStatistics extends SpecialPage {
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( $this->msg( 'statistics-views-total' )->parse(),
 					$this->getLanguage()->formatNum( $this->views ),
-						array ( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
+						array( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
 				$this->formatRow( $this->msg( 'statistics-views-peredit' )->parse(),
 					$this->getLanguage()->formatNum( sprintf( '%.2f', $this->edits ?
 						$this->views / $this->edits : 0 ) ),
-						array ( 'class' => 'mw-statistics-views-peredit' ) );
+						array( 'class' => 'mw-statistics-views-peredit' ) );
 	}
 
 	private function getMostViewedPages() {
@@ -260,13 +260,13 @@ class SpecialStatistics extends SpecialPage {
 					'LIMIT' => 10,
 				)
 			);
-			if( $res->numRows() > 0 ) {
+			if ( $res->numRows() > 0 ) {
 				$text .= Xml::openElement( 'tr' );
 				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-mostpopular' )->parse() );
 				$text .= Xml::closeElement( 'tr' );
 				foreach ( $res as $row ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-					if( $title instanceof Title ) {
+					if ( $title instanceof Title ) {
 						$text .= $this->formatRow( Linker::link( $title ),
 								$this->getLanguage()->formatNum( $row->page_counter ) );
 
@@ -277,21 +277,59 @@ class SpecialStatistics extends SpecialPage {
 		return $text;
 	}
 
-	private function getOtherStats( $stats ) {
-		if ( !count( $stats ) )
-			return '';
+	/**
+	 * Conversion of external statistics into an internal representation
+	 * Following a ([<header-message>][<item-message>] = number) pattern
+	 *
+	 * @param array $stats
+	 * @return string
+	 */
+	private function getOtherStats( array $stats ) {
+		$return = '';
 
-		$return = Xml::openElement( 'tr' ) .
-			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( 'statistics-header-hooks' )->parse() ) .
-			Xml::closeElement( 'tr' );
+		foreach ( $stats as $header => $items ) {
+			// Identify the structure used
+			if ( is_array( $items ) ) {
 
-		foreach( $stats as $name => $number ) {
-			$name = htmlspecialchars( $name );
-			$number = htmlspecialchars( $number );
+				// Ignore headers that are recursively set as legacy header
+				if ( $header !== 'statistics-header-hooks' ) {
+					$return .= $this->formatRowHeader( $header );
+				}
 
-			$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+				// Collect all items that belong to the same header
+				foreach ( $items as $key => $value ) {
+					$name = $this->msg( $key )->parse();
+					$number = htmlspecialchars( $value );
+
+					$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+				}
+			} else {
+				// Create the legacy header only once
+				if ( $return === '' ) {
+					$return .= $this->formatRowHeader( 'statistics-header-hooks' );
+				}
+
+				// Recursively remap the legacy structure
+				$return .= $this->getOtherStats( array( 'statistics-header-hooks' => array( $header => $items ) ) );
+			}
 		}
 
 		return $return;
+	}
+
+	/**
+	 * Format row header
+	 *
+	 * @param string $header
+	 * @return string
+	 */
+	private function formatRowHeader( $header ) {
+		return Xml::openElement( 'tr' ) .
+			Xml::tags( 'th', array( 'colspan' => '2' ), $this->msg( $header )->parse() ) .
+			Xml::closeElement( 'tr' );
+	}
+
+	protected function getGroupName() {
+		return 'wiki';
 	}
 }

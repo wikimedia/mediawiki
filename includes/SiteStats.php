@@ -61,13 +61,13 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from slave\n" );
 		$row = self::doLoad( wfGetDB( DB_SLAVE ) );
 
-		if( !self::isSane( $row ) ) {
+		if ( !self::isSane( $row ) ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on slave\n" );
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 
-		if( !self::isSane( $row ) ) {
+		if ( !self::isSane( $row ) ) {
 			// Normally the site_stats table is initialized at install time.
 			// Some manual construction scenarios may leave the table empty or
 			// broken, however, for instance when importing from a dump into a
@@ -79,7 +79,7 @@ class SiteStats {
 			$row = self::doLoad( wfGetDB( DB_MASTER ) );
 		}
 
-		if( !self::isSane( $row ) ) {
+		if ( !self::isSane( $row ) ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O\n" );
 		}
 		return $row;
@@ -160,7 +160,7 @@ class SiteStats {
 
 	/**
 	 * Find the number of users in a given user group.
-	 * @param $group String: name of group
+	 * @param string $group name of group
 	 * @return Integer
 	 */
 	static function numberingroup( $group ) {
@@ -205,7 +205,7 @@ class SiteStats {
 	 */
 	static function pagesInNs( $ns ) {
 		wfProfileIn( __METHOD__ );
-		if( !isset( self::$pageCount[$ns] ) ) {
+		if ( !isset( self::$pageCount[$ns] ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			self::$pageCount[$ns] = (int)$dbr->selectField(
 				'page',
@@ -226,20 +226,24 @@ class SiteStats {
 	 * @return bool
 	 */
 	private static function isSane( $row ) {
-		if(
-			$row === false
+		if ( $row === false
 			|| $row->ss_total_pages < $row->ss_good_articles
 			|| $row->ss_total_edits < $row->ss_total_pages
+			|| $row->ss_users < $row->ss_active_users
 		) {
 			return false;
 		}
 		// Now check for underflow/overflow
-		foreach( array( 'total_views', 'total_edits', 'good_articles',
-		'total_pages', 'users', 'images' ) as $member ) {
-			if(
-				$row->{"ss_$member"} > 2000000000
-				|| $row->{"ss_$member"} < 0
-			) {
+		foreach ( array(
+			'ss_total_views',
+			'ss_total_edits',
+			'ss_good_articles',
+			'ss_total_pages',
+			'ss_users',
+			'ss_active_users',
+			'ss_images',
+		) as $member ) {
+			if ( $row->$member > 2000000000 || $row->$member < 0 ) {
 				return false;
 			}
 		}
@@ -258,7 +262,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 	protected $users = 0;
 	protected $images = 0;
 
-	// @TODO: deprecate this constructor
+	// @todo deprecate this constructor
 	function __construct( $views, $edits, $good, $pages = 0, $users = 0 ) {
 		$this->views = $views;
 		$this->edits = $edits;
@@ -294,8 +298,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			$this->doUpdatePendingDeltas();
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
-			// Need a separate transaction because this a global lock
-			$dbw->begin( __METHOD__ );
 
 			$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
 			if ( $rate ) {
@@ -308,13 +310,16 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				}
 				$pd = $this->getPendingDeltas();
 				// Piggy-back the async deltas onto those of this stats update....
-				$this->views    += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
-				$this->edits    += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
+				$this->views += ( $pd['ss_total_views']['+'] - $pd['ss_total_views']['-'] );
+				$this->edits += ( $pd['ss_total_edits']['+'] - $pd['ss_total_edits']['-'] );
 				$this->articles += ( $pd['ss_good_articles']['+'] - $pd['ss_good_articles']['-'] );
-				$this->pages    += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
-				$this->users    += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
-				$this->images   += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
+				$this->pages += ( $pd['ss_total_pages']['+'] - $pd['ss_total_pages']['-'] );
+				$this->users += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
+				$this->images += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
 			}
+
+			// Need a separate transaction because this a global lock
+			$dbw->begin( __METHOD__ );
 
 			// Build up an SQL query of deltas and apply them...
 			$updates = '';
@@ -355,7 +360,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				'rc_user != 0',
 				'rc_bot' => 0,
 				'rc_log_type != ' . $dbr->addQuotes( 'newusers' ) . ' OR rc_log_type IS NULL',
-				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays*24*3600 ) ),
+				'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( wfTimestamp( TS_UNIX ) - $wgActiveUserDays * 24 * 3600 ) ),
 			),
 			__METHOD__
 		);
@@ -397,7 +402,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * @param $type string
-	 * @param $sign string ('+' or '-')
+	 * @param string $sign ('+' or '-')
 	 * @return string
 	 */
 	private function getTypeCacheKey( $type, $sign ) {
@@ -450,7 +455,7 @@ class SiteStatsUpdate implements DeferrableUpdate {
 
 	/**
 	 * Reduce pending delta counters after updates have been applied
-	 * @param Array $pd Result of getPendingDeltas(), used for DB update
+	 * @param array $pd Result of getPendingDeltas(), used for DB update
 	 * @return void
 	 */
 	protected function removePendingDeltas( array $pd ) {
@@ -573,7 +578,7 @@ class SiteStatsInit {
 	 * @param $database DatabaseBase|bool
 	 * - Boolean: whether to use the master DB
 	 * - DatabaseBase: database connection to use
-	 * @param $options Array of options, may contain the following values
+	 * @param array $options of options, may contain the following values
 	 * - update Boolean: whether to update the current stats (true) or write fresh (false) (default: false)
 	 * - views Boolean: when true, do not update the number of page views (default: true)
 	 * - activeUsers Boolean: whether to update the number of active users (default: false)
@@ -591,19 +596,19 @@ class SiteStatsInit {
 		$counter->files();
 
 		// Only do views if we don't want to not count them
-		if( $options['views'] ) {
+		if ( $options['views'] ) {
 			$counter->views();
 		}
 
 		// Update/refresh
-		if( $options['update'] ) {
+		if ( $options['update'] ) {
 			$counter->update();
 		} else {
 			$counter->refresh();
 		}
 
 		// Count active users if need be
-		if( $options['activeUsers'] ) {
+		if ( $options['activeUsers'] ) {
 			SiteStatsUpdate::cacheUpdate( wfGetDB( DB_MASTER ) );
 		}
 	}

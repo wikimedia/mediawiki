@@ -127,17 +127,17 @@ Wiki configuration for testing:
   $wgEnableWriteAPI = true;   // enable API.
 
   // Install & enable Parser Hook extensions to increase code coverage. E.g.:
-  require_once("extensions/ParserFunctions/ParserFunctions.php");
-  require_once("extensions/Cite/Cite.php");
-  require_once("extensions/inputbox/inputbox.php");
-  require_once("extensions/Sort/Sort.php");
-  require_once("extensions/wikihiero/wikihiero.php");
-  require_once("extensions/CharInsert/CharInsert.php");
-  require_once("extensions/FixedImage/FixedImage.php");
+  require_once "extensions/ParserFunctions/ParserFunctions.php";
+  require_once "extensions/Cite/Cite.php";
+  require_once "extensions/inputbox/inputbox.php";
+  require_once "extensions/Sort/Sort.php";
+  require_once "extensions/wikihiero/wikihiero.php";
+  require_once "extensions/CharInsert/CharInsert.php";
+  require_once "extensions/FixedImage/FixedImage.php";
 
   // Install & enable Special Page extensions to increase code coverage. E.g.:
-  require_once("extensions/Cite/SpecialCite.php");
-  require_once("extensions/Renameuser/SpecialRenameuser.php");
+  require_once "extensions/Cite/SpecialCite.php";
+  require_once "extensions/Renameuser/SpecialRenameuser.php";
   // --------- End ---------
 
   If you want to try E_STRICT error logging, add this to the above:
@@ -181,7 +181,7 @@ TODO:
 // ///////////////////////// COMMAND LINE HELP ////////////////////////////////////
 
 // This is a command line script, load MediaWiki env (gives command line options);
-require_once( __DIR__ . '/commandLine.inc' );
+require_once __DIR__ . '/commandLine.inc';
 
 // if the user asked for an explanation of command line options.
 if ( isset( $options["help"] ) ) {
@@ -657,6 +657,7 @@ class wikiFuzz {
 			"}}",
 			"{{INT:googlesearch|",
 			"}}",
+                        "{{ROOTPAGENAME}}",
 			"{{BASEPAGENAME}}",
 			"{{CONTENTLANGUAGE}}",
 			"{{PAGESINNAMESPACE:}}",
@@ -747,7 +748,7 @@ class wikiFuzz {
 	/**
 	 ** Randomly returns one element of the input array.
 	 */
-	static public function chooseInput( array $input ) {
+	public static function chooseInput( array $input ) {
 		$randindex = wikiFuzz::randnum( count( $input ) - 1 );
 		return $input[$randindex];
 	}
@@ -761,7 +762,7 @@ class wikiFuzz {
 	 * @param $start int
 	 * @return int
 	 */
-	static public function randnum( $finish, $start = 0 ) {
+	public static function randnum( $finish, $start = 0 ) {
 		return mt_rand( $start, $finish );
 	}
 
@@ -769,7 +770,7 @@ class wikiFuzz {
 	 * Returns a mix of random text and random wiki syntax.
 	 * @return string
 	 */
-	static private function randstring() {
+	private static function randstring() {
 		$thestring = "";
 
 		for ( $i = 0; $i < 40; $i++ ) {
@@ -801,7 +802,7 @@ class wikiFuzz {
 	 *        or random data from "other".
 	 * @return string
 	 */
-	static private function makestring() {
+	private static function makestring() {
 		$what = wikiFuzz::randnum( 2 );
 		if ( $what == 0 ) {
 			return wikiFuzz::randstring();
@@ -818,7 +819,7 @@ class wikiFuzz {
 	 * @param $matches
 	 * @return string
 	 */
-	static private function stringEscape( $matches ) {
+	private static function stringEscape( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
 	}
 
@@ -828,7 +829,7 @@ class wikiFuzz {
 	 * @param $str string
 	 * @return string
 	 */
-	static public function makeTitleSafe( $str ) {
+	public static function makeTitleSafe( $str ) {
 		$legalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
 		return preg_replace_callback(
 				"/([^$legalTitleChars])/", 'wikiFuzz::stringEscape',
@@ -839,7 +840,7 @@ class wikiFuzz {
 	 ** Returns a string of fuzz text.
 	 * @return string
 	 */
-	static private function loop() {
+	private static function loop() {
 		switch ( wikiFuzz::randnum( 3 ) ) {
 			case 1: // an opening tag, with parameters.
 				$string = "";
@@ -868,7 +869,7 @@ class wikiFuzz {
 	 * Returns one of the three styles of random quote: ', ", and nothing.
 	 * @return string
 	 */
-	static private function getRandQuote() {
+	private static function getRandQuote() {
 		switch ( wikiFuzz::randnum( 3 ) ) {
 			case 1 : return "'";
 			case 2 : return "\"";
@@ -881,7 +882,7 @@ class wikiFuzz {
 	 * @param $maxtypes int
 	 * @return string
 	 */
-	static public function makeFuzz( $maxtypes = 2 ) {
+	public static function makeFuzz( $maxtypes = 2 ) {
 		$page = "";
 		for ( $k = 0; $k < $maxtypes; $k++ ) {
 			$page .= wikiFuzz::loop();
@@ -1490,7 +1491,7 @@ class specialBlockmeTest extends pageTest {
 	function __construct() {
 		$this->pagePath = "index.php?title=Special:Blockme";
 
-		$this->params = array ( );
+		$this->params = array ();
 
 		// sometimes we specify "ip", and sometimes we don't.
 		if ( wikiFuzz::randnum( 1 ) == 0 ) {
@@ -1972,7 +1973,7 @@ class specialChemicalsourcesTest extends pageTest {
  ** returns the help screen - so currently a lot of the tests aren't actually doing much
  ** because something wasn't right in the query.
  **
- ** @todo: Incomplete / unfinished; Runs too fast (suggests not much testing going on).
+ ** @todo Incomplete / unfinished; Runs too fast (suggests not much testing going on).
  */
 class api extends pageTest {
 
@@ -2041,7 +2042,7 @@ class api extends pageTest {
 	}
 
 	// Adds all the elements to the array, using the specified prefix.
-	private static function addListParams( &$array, $prefix, $elements )  {
+	private static function addListParams( &$array, $prefix, $elements ) {
 		foreach ( $elements as $element ) {
 			$array[$prefix . $element] = self::getParamDetails( $element );
 		}
@@ -2542,7 +2543,7 @@ function runWikiTest( pageTest $test, &$testname, $can_overwrite = false ) {
 		if ( !$valid ) print "\nW3C web validation failed - view details with: html2text " . DIRECTORY . "/" . $testname . ".validator_output.html";
 	}
 
-	// Get tidy to check the page, unless we already know it produces non-XHTML output.
+	// Get tidy to check the page, unless we already know it produces non-(X)HTML output.
 	if ( $test->tidyValidate() ) {
 		$valid = tidyCheckFile( $testname . HTML_FILE ) && $valid;
 	}
@@ -2709,5 +2710,3 @@ for ( $count = 0; true; $count++ ) {
 		break;
 	}
 }
-
-

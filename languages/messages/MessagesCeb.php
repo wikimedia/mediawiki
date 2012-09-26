@@ -9,6 +9,7 @@
  *
  * @author Abastillas
  * @author Dosmiin Barsbold
+ * @author Harvzsf
  * @author Jordz
  * @author Mirzali
  * @author Palang hernan
@@ -96,8 +97,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Ipakita ang gidaghanon sa mga gumagamit nga nagbantay usab',
 'tog-oldsig' => 'Paunang tan-aw sa eksisting nga pirma:',
 'tog-fancysig' => 'Hilaw nga pirma (walay awtomatikong sumpay)',
-'tog-externaleditor' => 'Gamita ang eksternal nga editor isip default (para sa mga eksperto lamang, kinahanglan og espesyal nga setting sa imong kompyuter)',
-'tog-externaldiff' => 'Gamita ang eksternal nga diff isip default (para sa mga eksperto lamang, kinahanglan og espesyal nga setting sa imong kompyuter)',
 'tog-showjumplinks' => 'I-enable ang "ambak sa" nga sumpay sa aksesibilidad',
 'tog-uselivepreview' => 'Gamita ang live nga paunang tan-aw (JavaScript kinahanglan) (Eksperimental)',
 'tog-forceeditsummary' => 'Pahibaloi ako kon blangko ang mubong sugid alang sa pag-usab',
@@ -207,7 +206,6 @@ $messages = array(
 'qbbrowse' => 'Browse',
 'qbedit' => 'Usba',
 'qbpageoptions' => 'Kini nga panid',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Akong mga panid',
 'qbspecialpages' => 'Mga espesyal nga panid',
 'faq' => 'FAQ',
@@ -298,7 +296,6 @@ $1',
 'disclaimers' => 'Mga pagpasabot',
 'disclaimerpage' => 'Project:Mga pagpasabot',
 'edithelp' => 'Tabang sa pag-usab',
-'edithelppage' => 'Help:Pag-usab',
 'helppage' => 'Help:Mga sulod',
 'mainpage' => 'Unang Panid',
 'mainpage-description' => 'Unang Panid',
@@ -442,10 +439,7 @@ Ang rason nga gihatag mao ang "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Nakabiya ka na.'''
 
-Mahimo kang magpadayon sa paggamit sa {{SITENAME}} bisan wala ka magpaila o puyde usab nga [[Special:UserLogin|mag-log in ka'g usab]] o isip laing gumagamit. Palihog hinumdomi nga may ubang mga panid nga magpakita sama nga ikaw naka-log in pa; kini tungod kay wala pa nimo malimpiyohi ang cache sa imong brawser.",
-'welcomecreation' => '== Maayong pag-abot, $1! ==
-Nahimo na ang imong akawnt.
-Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga preperensiya]].',
+Mahimo kang magpadayon sa paggamit sa {{SITENAME}} bisan wala ka magpaila o puyde usab nga <span class='plainlinks'>[$1 mag-log in ka'g usab]</span> o isip laing gumagamit. Palihog hinumdomi nga may ubang mga panid nga magpakita sama nga ikaw naka-log in pa; kini tungod kay wala pa nimo malimpiyohi ang cache sa imong brawser.",
 'yourname' => 'Ngalan sa tiggamit:',
 'yourpassword' => 'Pasword:',
 'yourpasswordagain' => 'Itayp og usab ang pasword:',
@@ -714,7 +708,6 @@ Hinumdomi nga ang paggamit sa mga sumpay sa nabigasyon mo-reset sa column.',
 'prevn' => 'miaging {{PLURAL:$1|$1}}',
 'nextn' => 'sunod {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Tan-awa sa ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Mga sulod',
 'searchprofile-everything' => 'Tanan ng bagay',
 'search-result-size' => '$1 ({{PLURAL:$2|1 pulong|$2 ka mga pulong}})',
 'search-redirect' => '(redirek $1)',
@@ -723,8 +716,6 @@ Hinumdomi nga ang paggamit sa mga sumpay sa nabigasyon mo-reset sa column.',
 'search-interwiki-caption' => 'Mga kaubang proyekto',
 'search-interwiki-default' => '$1 ka mga resulta:',
 'search-interwiki-more' => '(dugang pa)',
-'search-mwsuggest-enabled' => 'may mga sugyot',
-'search-mwsuggest-disabled' => 'walay mga sugyot',
 'showingresultsheader' => "{{PLURAL:$5|Resulta '''$1''' sa '''$3'''|Mga resulta '''$1 - $2''' of '''$3'''}} sa '''$4'''",
 'nonefound' => "'''Bantayi''': Dili tanang ngalang espasyo (namespaces) ang gipangita by default.
 Sulayi'g prefix ang imong gipangita gamit ang ''all:'' alang mangita sa tanang sulod (apil ang mga panid sa hisgot, plantilya, ubp), o gamita ang gikinahanglang ngalang espasyo isip prefix.",
@@ -741,14 +732,6 @@ Sulayi'g prefix ang imong gipangita gamit ang ''all:'' alang mangita sa tanang s
 'searchdisabled' => 'Pagpangita sa {{SITENAME}} naka-disable.
 Puyde ka mangita gamit ang Google sa kasamtangan.
 Hinumdomi nga ang ilang indeks sa sulod sa {{SITENAME}} mahimong dugay-dugay na.',
-
-# Quickbar
-'qbsettings' => 'Quickbar',
-'qbsettings-none' => 'Wala',
-'qbsettings-fixedleft' => 'Naka-fix sa wala',
-'qbsettings-fixedright' => 'Naka-fix sa tuo',
-'qbsettings-floatingleft' => 'Floating sa wala',
-'qbsettings-floatingright' => 'Floating sa tuo',
 
 # Preferences page
 'preferences' => 'Mga preperensiya',
@@ -849,9 +832,12 @@ Kon gipili nimo nga ihatag kini, gamiton kini aron pasidunggan ka sa imong mga t
 
 'grouppage-sysop' => '{{ns:project}}:Mga tigdumala',
 
+# Special:Log/newusers
+'newuserlogpage' => "Log sa paghimo'g gumagamit",
+'newuserlogpagetext' => "Kini mao ang ''log'' sa bag-ong namugnang mga gumagamit.",
+
 # User rights log
 'rightslog' => 'Log sa mga katungod sa gumagamit',
-'rightsnone' => '(wala)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'basaha kining panid',
@@ -977,14 +963,10 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch' => 'Mga sumpay sa gawas',
 
-# Special:Log/newusers
-'newuserlogpage' => "Log sa paghimo'g gumagamit",
-'newuserlogpagetext' => "Kini mao ang ''log'' sa bag-ong namugnang mga gumagamit.",
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(talaan sa mga miyembro)',
 
-# E-mail user
+# Email user
 'emailuser' => 'I-email kaning gumagamit',
 
 # Watchlist
@@ -1076,7 +1058,7 @@ Puyde nimo usbon ang level sa proteksyon ning panid, pero dili kini makaapekto s
 'linkshere' => "Ang mosunod nga mga panid misumpay sa '''[[:$1]]''':",
 'isredirect' => 'panid sa redirekta',
 'istemplate' => 'transklusyon',
-'isimage' => 'sumpay nga imahen',
+'isimage' => 'sumpay sa payl',
 'whatlinkshere-prev' => '{{PLURAL:$1|miaging|miaging $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|sunod|sunod $1}}',
 'whatlinkshere-links' => '← mga sumpay',
@@ -1254,6 +1236,6 @@ Ang uban default nga nakatago.
 # New logging system
 'revdelete-restricted' => 'mga na-aplay nga restriksyon sa mga tagdumala',
 'revdelete-unrestricted' => 'gitangtang ang mga restriksyon alang sa mga tagdumala',
-'newuserlog-byemail' => "ang pasword gipadala na pinaagi sa ''e-mail''",
+'rightsnone' => '(wala)',
 
 );

@@ -56,10 +56,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 3 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 3 );
 
 			$db = $this->getDB();
 			$op = $params['dir'] == 'descending' ? '<' : '>';
@@ -198,7 +195,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			'prop' => array(
 				'Which properties to get',
 				' lllang         - Adds the language code of the language link',
-				' lltitle        - Adds the title of the language ink',
+				' lltitle        - Adds the title of the language link',
 			),
 			'limit' => 'How many total pages to return',
 			'dir' => 'The direction in which to list',
@@ -226,14 +223,14 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		return array( 'Find all pages that link to the given language link.',
 			'Can be used to find all links with a language code, or',
 			'all links to a title (with a given language).',
-			'Using neither parameter is effectively "All Language Links"',
+			'Using neither parameter is effectively "All Language Links".',
+			'Note that this may not consider language links added by extensions.',
 		);
 	}
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'lang' ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
@@ -244,7 +241,7 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 		);
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Langbacklinks';
 	}
 }

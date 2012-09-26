@@ -21,7 +21,7 @@
  * @ingroup Language
  */
 
-require_once( __DIR__ . '/../LanguageConverter.php' );
+require_once __DIR__ . '/../LanguageConverter.php';
 
 /**
  * Converts Tajiki to latin orthography
@@ -108,7 +108,7 @@ class TgConverter extends LanguageConverter {
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'tg-latn' => new ReplacementArray( $this->table ),
-			'tg'      => new ReplacementArray()
+			'tg' => new ReplacementArray()
 		);
 	}
 

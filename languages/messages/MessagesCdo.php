@@ -156,7 +156,6 @@ $messages = array(
 'disclaimers' => 'Mò̤ hô-cáik sĭng-mìng',
 'disclaimerpage' => 'Project:Mò̤ hô-cáik sĭng-mìng',
 'edithelp' => 'Siŭ-gāi bŏng-cô',
-'edithelppage' => 'Help:Siŭ-gāi',
 'helppage' => 'Help:Mŭk-liŏh',
 'mainpage' => 'Tàu Hiĕk',
 'mainpage-description' => 'Tàu Hiĕk',
@@ -215,9 +214,6 @@ For translations, please consider using [//translatewiki.net/wiki/Main_Page?setl
 # Login and logout pages
 'logouttext' => "'''Nṳ̄ hiêng-câi láuk-chók lāu.'''
 Nṳ̄ â̤-sāi sāi mò̤-miàng huŏng-sék gié-sṳ̆k găk {{SITENAME}} gè̤-dēng láuk, nṳ̄ iâ â̤-sāi sāi dè̤ng-iông gì dióng-hô̤ hĕ̤k-ciā bĕk-nó̤h bĭk dióng-hô̤ gái láuk-diē. Diŏh gé lā̤, nṳ̄ báuk-lāng-ké ká̤-chṳ̄ (''browser cache'') nâ mò̤ tĕ̤ng táh gó̤ uâ, ô gì hiĕk giăng â̤ hiēng-sê nṳ̄ gó muôi láuk-chók.",
-'welcomecreation' => '== Huăng-ngìng guŏng-lìng, $1! ==
-
-Nṳ̄ gì dióng-hô̤ ī-gĭng kŭi hō̤ lāu. Dāng nṳ̄ â̤-sāi siŭ-gāi nṳ̄ găk {{SITENAME}} gì siék-diâng.',
 'yourname' => 'Ê̤ṳng-hô-miàng',
 'yourpassword' => 'Mĭk-mā',
 'yourpasswordagain' => 'Dṳ̀ng-sĭng páh diē mĭk-mā',
@@ -362,7 +358,6 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'prevn' => 'sèng {{PLURAL:$1|$1}} hâung',
 'nextn' => 'â {{PLURAL:$1|$1}} hâung',
 'viewprevnext' => 'Káng ($1 {{int:pipe-separator}} $2) ($3).',
-'searchhelp-url' => 'Help:Mŭk-liŏh',
 'showingresults' => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$1|'''1'''|'''$1'''}} bĭk giék-guō.",
 'showingresultsnum' => "Hiēng-sê téng #<b>$2</b> kăi-sṳ̄ gì {{PLURAL:$3|'''1'''|'''$3'''}} bĭk giék-guō.",
 
@@ -411,6 +406,9 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'group-bot-member' => 'Gĭ-ké-nè̤ng',
 'group-sysop-member' => 'Guāng-lī-uòng',
 'group-bureaucrat-member' => 'Guăng-lièu-cū',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Kŭi dióng-hô̤ nĭk-cé',
 
 # Recent changes
 'recentchanges' => 'Cī-bŏng gì gāi-biéng',
@@ -570,10 +568,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Special:LinkSearch
 'linksearch-ok' => 'Sìng-tō̤',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Kŭi dióng-hô̤ nĭk-cé',
-
-# E-mail user
+# Email user
 'emailuser' => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'emailpage' => 'Gié diêng-piĕ ké̤ṳk ĭ',
 'defemailsubject' => '{{SITENAME}} diêng-piĕ',
@@ -604,8 +599,6 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'Gáng-sê...',
-
-'enotif_newpagetext' => 'Cuòi sê sĭng hiĕk.',
 
 # Delete
 'deletepage' => 'Chēng hiĕk',
@@ -835,7 +828,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'namespacesall' => 'sū-iū',
 'monthsall' => 'gó̤-lòng nièng',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Káuk-nêng diêng-piĕ dê-cī',
 'confirmemail_invalid' => 'Káuk-nêng mā mò̤-hâu, kō̤-nèng ī-gĭng guó-gĭ lāu.',
 'confirmemail_needlogin' => 'Chiāng nṳ̄ sĕng $1 nṳ̄ gì diêng-piĕ dê-cī.',
@@ -892,9 +885,6 @@ Nâ-sāi ĭ *ng-sê* nṳ̄, chiāng mŏ̤h chák ĭ. Gáu $4, káuk-nêng-mā �
 'watchlisttools-view' => 'Káng siŏng-guăng gāi-biéng',
 'watchlisttools-edit' => 'Káng gâe̤ng siŭ-gāi gáng-sê-dăng',
 'watchlisttools-raw' => 'Siŭ-gāi nguòng-sṳ̄ gáng-sê-dăng',
-
-# Special:FilePath
-'filepath-page' => 'Ùng-giông:',
 
 # Special:SpecialPages
 'specialpages' => 'Dĕk-sṳ̀ hiĕk',

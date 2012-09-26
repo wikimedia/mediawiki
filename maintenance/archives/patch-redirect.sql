@@ -1,7 +1,7 @@
 --
 -- Create the new redirect table.
 -- For each redirect, this table contains exactly one row defining its target
--- 
+--
 CREATE TABLE /*$wgDBprefix*/redirect (
   -- Key to the page_id of the redirect page
   rd_from int unsigned NOT NULL default '0',

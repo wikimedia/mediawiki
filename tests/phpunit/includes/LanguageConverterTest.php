@@ -4,24 +4,29 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	protected $lang = null;
 	protected $lc = null;
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
-		global $wgMemc, $wgRequest, $wgUser, $wgContLang;
 
-		$wgUser = new User;
-		$wgRequest = new FauxRequest( array() );
-		$wgMemc = new EmptyBagOStuff;
-		$wgContLang = Language::factory( 'tg' );
+		$this->setMwGlobals( array(
+			'wgContLang' => Language::factory( 'tg' ),
+			'wgLanguageCode' => 'tg',
+			'wgDefaultLanguageVariant' => false,
+			'wgMemc' => new EmptyBagOStuff,
+			'wgRequest' => new FauxRequest( array() ),
+			'wgUser' => new User,
+		) );
+
 		$this->lang = new LanguageToTest();
-		$this->lc = new TestConverter( $this->lang, 'tg',
-									   array( 'tg', 'tg-latn' ) );
+		$this->lc = new TestConverter(
+			$this->lang, 'tg',
+			array( 'tg', 'tg-latn' )
+		);
 	}
 
-	function tearDown() {
-		global $wgMemc;
-		unset( $wgMemc );
+	protected function tearDown() {
 		unset( $this->lc );
 		unset( $this->lang );
+
 		parent::tearDown();
 	}
 
@@ -71,7 +76,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	function testGetPreferredVariantHeaderUserVsUrl() {
-		global $wgRequest, $wgUser, $wgContLang;
+		global $wgContLang, $wgRequest, $wgUser;
 
 		$wgContLang = Language::factory( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
@@ -79,8 +84,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$wgUser->setId( 1 );
 		$wgUser->mFrom = 'defaults';
 		$wgUser->mOptionsLoaded = true;
-		$wgUser->setOption( 'variant', 'tg-latn' ); // The user's data is ignored
-												  // because the variant is set in the URL.
+		// The user's data is ignored because the variant is set in the URL.
+		$wgUser->setOption( 'variant', 'tg-latn' );
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
@@ -115,10 +120,9 @@ class TestConverter extends LanguageConverter {
 	function loadDefaultTables() {
 		$this->mTables = array(
 			'tg-latn' => new ReplacementArray( $this->table ),
-			'tg'      => new ReplacementArray()
+			'tg' => new ReplacementArray()
 		);
 	}
-
 }
 
 class LanguageToTest extends Language {

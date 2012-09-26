@@ -33,10 +33,13 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 	 * @return array
 	 */
 	protected function getPages( ResourceLoaderContext $context ) {
-		global $wgUser;
+		global $wgUser, $wgUseSiteJs, $wgUseSiteCss;
 
 		$userName = $context->getUser();
 		if ( $userName === null ) {
+			return array();
+		}
+		if ( !$wgUseSiteJs && !$wgUseSiteCss ) {
 			return array();
 		}
 
@@ -51,12 +54,16 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 		}
 
 		$pages = array();
-		foreach( $user->getEffectiveGroups() as $group ) {
+		foreach ( $user->getEffectiveGroups() as $group ) {
 			if ( in_array( $group, array( '*', 'user' ) ) ) {
 				continue;
 			}
-			$pages["MediaWiki:Group-$group.js"] = array( 'type' => 'script' );
-			$pages["MediaWiki:Group-$group.css"] = array( 'type' => 'style' );
+			if ( $wgUseSiteJs ) {
+				$pages["MediaWiki:Group-$group.js"] = array( 'type' => 'script' );
+			}
+			if ( $wgUseSiteCss ) {
+				$pages["MediaWiki:Group-$group.css"] = array( 'type' => 'style' );
+			}
 		}
 		return $pages;
 	}

@@ -104,7 +104,7 @@ class WebInstallerOutput {
 
 	/**
 	 * Get the raw vector CSS, flipping if needed
-	 * @param $dir String 'ltr' or 'rtl'
+	 * @param string $dir 'ltr' or 'rtl'
 	 * @return String
 	 */
 	public function getCSS( $dir ) {
@@ -146,7 +146,7 @@ class WebInstallerOutput {
 		}
 		wfRestoreWarnings();
 
-		if( $dir == 'rtl' ) {
+		if ( $dir == 'rtl' ) {
 			$css = CSSJanus::transform( $css, true );
 		}
 
@@ -157,7 +157,7 @@ class WebInstallerOutput {
 	 * "<link>" to index.php?css=foobar for the "<head>"
 	 * @return String
 	 */
-	private function getCssUrl( ) {
+	private function getCssUrl() {
 		return Html::linkedStyle( $_SERVER['PHP_SELF'] . '?css=' . $this->getDir() );
 	}
 
@@ -219,11 +219,11 @@ class WebInstallerOutput {
 		$dbTypes = $this->parent->getDBTypes();
 
 		$this->parent->request->response()->header( 'Content-Type: text/html; charset=utf-8' );
-		if (!$this->allowFrames) {
+		if ( !$this->allowFrames ) {
 			$this->parent->request->response()->header( 'X-Frame-Options: DENY' );
 		}
 		if ( $this->redirectTarget ) {
-			$this->parent->request->response()->header( 'Location: '.$this->redirectTarget );
+			$this->parent->request->response()->header( 'Location: ' . $this->redirectTarget );
 			return;
 		}
 
@@ -239,7 +239,7 @@ class WebInstallerOutput {
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<title><?php $this->outputTitle(); ?></title>
 	<?php echo $this->getCssUrl() . "\n"; ?>
-	<?php echo Html::inlineScript(  "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
+	<?php echo Html::inlineScript( "var dbTypes = " . Xml::encodeJsVar( $dbTypes ) ) . "\n"; ?>
 	<?php echo $this->getJQuery() . "\n"; ?>
 	<?php echo Html::linkedScript( '../skins/common/config.js' ) . "\n"; ?>
 </head>

@@ -12,9 +12,9 @@ class RecentChangeTest extends MediaWikiTestCase {
 	function __construct() {
 		parent::__construct();
 
-		$this->title  = Title::newFromText( 'SomeTitle' );
+		$this->title = Title::newFromText( 'SomeTitle' );
 		$this->target = Title::newFromText( 'TestTarget' );
-		$this->user   = User::newFromName( 'UserName' );
+		$this->user = User::newFromName( 'UserName' );
 
 		$this->user_comment = '<User comment about action>';
 		$this->context = RequestContext::newExtraneousContext( $this->title );
@@ -57,16 +57,18 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @covers LogFormatter::getIRCActionText
 	 */
 	function testIrcMsgForLogTypeBlock() {
+		$sep = $this->context->msg( 'colon-separator' )->text();
+
 		# block/block
 		$this->assertIRCComment(
-			$this->context->msg( 'blocklogentry', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'blocklogentry', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'block', 'block',
 			array(),
 			$this->user_comment
 		);
 		# block/unblock
 		$this->assertIRCComment(
-			$this->context->msg( 'unblocklogentry', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'unblocklogentry', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'block', 'unblock',
 			array(),
 			$this->user_comment
@@ -77,9 +79,11 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @covers LogFormatter::getIRCActionText
 	 */
 	function testIrcMsgForLogTypeDelete() {
+		$sep = $this->context->msg( 'colon-separator' )->text();
+
 		# delete/delete
 		$this->assertIRCComment(
-			$this->context->msg( 'deletedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'deletedarticle', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'delete', 'delete',
 			array(),
 			$this->user_comment
@@ -87,7 +91,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# delete/restore
 		$this->assertIRCComment(
-			$this->context->msg( 'undeletedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'undeletedarticle', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'delete', 'restore',
 			array(),
 			$this->user_comment
@@ -125,13 +129,14 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 */
 	function testIrcMsgForLogTypeMove() {
 		$move_params = array(
-			'4::target'  => $this->target->getPrefixedText(),
+			'4::target' => $this->target->getPrefixedText(),
 			'5::noredir' => 0,
 		);
+		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# move/move
 		$this->assertIRCComment(
-			$this->context->msg( '1movedto2', 'SomeTitle', 'TestTarget' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( '1movedto2', 'SomeTitle', 'TestTarget' )->plain() . $sep . $this->user_comment,
 			'move', 'move',
 			$move_params,
 			$this->user_comment
@@ -139,7 +144,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# move/move_redir
 		$this->assertIRCComment(
-			$this->context->msg( '1movedto2_redir', 'SomeTitle', 'TestTarget' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( '1movedto2_redir', 'SomeTitle', 'TestTarget' )->plain() . $sep . $this->user_comment,
 			'move', 'move_redir',
 			$move_params,
 			$this->user_comment
@@ -155,9 +160,9 @@ class RecentChangeTest extends MediaWikiTestCase {
 			$this->context->msg( 'patrol-log-line', 'revision 777', '[[SomeTitle]]', '' )->plain(),
 			'patrol', 'patrol',
 			array(
-				'4::curid'  => '777',
+				'4::curid' => '777',
 				'5::previd' => '666',
-				'6::auto'   => 0,
+				'6::auto' => 0,
 			)
 		);
 	}
@@ -169,10 +174,11 @@ class RecentChangeTest extends MediaWikiTestCase {
 		$protectParams = array(
 			'[edit=sysop] (indefinite) ‎[move=sysop] (indefinite)'
 		);
+		$sep = $this->context->msg( 'colon-separator' )->text();
 
 		# protect/protect
 		$this->assertIRCComment(
-			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'protectedarticle', 'SomeTitle ' . $protectParams[0] )->plain() . $sep . $this->user_comment,
 			'protect', 'protect',
 			$protectParams,
 			$this->user_comment
@@ -180,7 +186,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/unprotect
 		$this->assertIRCComment(
-			$this->context->msg( 'unprotectedarticle', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'unprotectedarticle', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'protect', 'unprotect',
 			array(),
 			$this->user_comment
@@ -188,7 +194,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# protect/modify
 		$this->assertIRCComment(
-			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'modifiedarticleprotection', 'SomeTitle ' . $protectParams[0] )->plain() . $sep . $this->user_comment,
 			'protect', 'modify',
 			$protectParams,
 			$this->user_comment
@@ -199,9 +205,11 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @covers LogFormatter::getIRCActionText
 	 */
 	function testIrcMsgForLogTypeUpload() {
+		$sep = $this->context->msg( 'colon-separator' )->text();
+
 		# upload/upload
 		$this->assertIRCComment(
-			$this->context->msg( 'uploadedimage', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'uploadedimage', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'upload', 'upload',
 			array(),
 			$this->user_comment
@@ -209,7 +217,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 
 		# upload/overwrite
 		$this->assertIRCComment(
-			$this->context->msg( 'overwroteimage', 'SomeTitle' )->plain() . ': ' .  $this->user_comment,
+			$this->context->msg( 'overwroteimage', 'SomeTitle' )->plain() . $sep . $this->user_comment,
 			'upload', 'overwrite',
 			array(),
 			$this->user_comment
@@ -217,10 +225,11 @@ class RecentChangeTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @todo: Emulate these edits somehow and extract
+	 * @todo Emulate these edits somehow and extract
 	 * raw edit summary from RecentChange object
 	 * --
-
+	 */
+	/*
 	function testIrcMsgForBlankingAES() {
 		// $this->context->msg( 'autosumm-blank', .. );
 	}
@@ -236,9 +245,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 	function testIrcMsgForUndoAES() {
 		// $this->context->msg( 'undo-summary', .. );
 	}
-
-	 * --
-	 */
+	*/
 
 	/**
 	 * @param $expected String Expected IRC text without colors codes
@@ -269,5 +276,4 @@ class RecentChangeTest extends MediaWikiTestCase {
 			$msg
 		);
 	}
-
 }

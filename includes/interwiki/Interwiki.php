@@ -27,14 +27,15 @@
  * schema updates etc, which aren't wiki-related)
  */
 class Interwiki {
-
 	// Cache - removes oldest entry when it hits limit
 	protected static $smCache = array();
 	const CACHE_LIMIT = 100; // 0 means unlimited, any other value is max number of entries.
 
 	protected $mPrefix, $mURL, $mAPI, $mWikiID, $mLocal, $mTrans;
 
-	public function __construct( $prefix = null, $url = '', $api = '', $wikiId = '', $local = 0, $trans = 0 ) {
+	public function __construct( $prefix = null, $url = '', $api = '', $wikiId = '', $local = 0,
+		$trans = 0
+	) {
 		$this->mPrefix = $prefix;
 		$this->mURL = $url;
 		$this->mAPI = $api;
@@ -46,10 +47,10 @@ class Interwiki {
 	/**
 	 * Check whether an interwiki prefix exists
 	 *
-	 * @param $prefix String: interwiki prefix to use
-	 * @return Boolean: whether it exists
+	 * @param string $prefix Interwiki prefix to use
+	 * @return bool Whether it exists
 	 */
-	static public function isValidInterwiki( $prefix ) {
+	public static function isValidInterwiki( $prefix ) {
 		$result = self::fetch( $prefix );
 		return (bool)$result;
 	}
@@ -57,28 +58,28 @@ class Interwiki {
 	/**
 	 * Fetch an Interwiki object
 	 *
-	 * @param $prefix String: interwiki prefix to use
+	 * @param string $prefix Interwiki prefix to use
 	 * @return Interwiki|null|bool
 	 */
-	static public function fetch( $prefix ) {
+	public static function fetch( $prefix ) {
 		global $wgContLang;
-		if( $prefix == '' ) {
+		if ( $prefix == '' ) {
 			return null;
 		}
 		$prefix = $wgContLang->lc( $prefix );
-		if( isset( self::$smCache[$prefix] ) ) {
+		if ( isset( self::$smCache[$prefix] ) ) {
 			return self::$smCache[$prefix];
 		}
 		global $wgInterwikiCache;
-		if( $wgInterwikiCache ) {
+		if ( $wgInterwikiCache ) {
 			$iw = Interwiki::getInterwikiCached( $prefix );
 		} else {
 			$iw = Interwiki::load( $prefix );
-			if( !$iw ) {
+			if ( !$iw ) {
 				$iw = false;
 			}
 		}
-		if( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ) {
+		if ( self::CACHE_LIMIT && count( self::$smCache ) >= self::CACHE_LIMIT ) {
 			reset( self::$smCache );
 			unset( self::$smCache[key( self::$smCache )] );
 		}
@@ -91,7 +92,7 @@ class Interwiki {
 	 *
 	 * @note More logic is explained in DefaultSettings.
 	 *
-	 * @param $prefix String: interwiki prefix
+	 * @param string $prefix Interwiki prefix
 	 * @return Interwiki object
 	 */
 	protected static function getInterwikiCached( $prefix ) {
@@ -114,19 +115,19 @@ class Interwiki {
 	 *
 	 * @note More logic is explained in DefaultSettings.
 	 *
-	 * @param $prefix String: database key
-	 * @return String: the entry
+	 * @param string $prefix Database key
+	 * @return string The interwiki entry
 	 */
 	protected static function getInterwikiCacheEntry( $prefix ) {
 		global $wgInterwikiCache, $wgInterwikiScopes, $wgInterwikiFallbackSite;
 		static $db, $site;
 
 		wfDebug( __METHOD__ . "( $prefix )\n" );
-		if( !$db ) {
+		if ( !$db ) {
 			$db = CdbReader::open( $wgInterwikiCache );
 		}
 		/* Resolve site name */
-		if( $wgInterwikiScopes >= 3 && !$site ) {
+		if ( $wgInterwikiScopes >= 3 && !$site ) {
 			$site = $db->get( '__sites:' . wfWikiID() );
 			if ( $site == '' ) {
 				$site = $wgInterwikiFallbackSite;
@@ -146,15 +147,14 @@ class Interwiki {
 			$value = '';
 		}
 
-
 		return $value;
 	}
 
 	/**
 	 * Load the interwiki, trying first memcached then the DB
 	 *
-	 * @param $prefix string The interwiki prefix
-	 * @return Boolean: the prefix is valid
+	 * @param string $prefix The interwiki prefix
+	 * @return bool If $prefix is valid
 	 */
 	protected static function load( $prefix ) {
 		global $wgMemc, $wgInterwikiExpiry;
@@ -172,9 +172,9 @@ class Interwiki {
 			}
 		}
 
-		if( $iwData && is_array( $iwData ) ) { // is_array is hack for old keys
+		if ( $iwData && is_array( $iwData ) ) { // is_array is hack for old keys
 			$iw = Interwiki::loadFromArray( $iwData );
-			if( $iw ) {
+			if ( $iw ) {
 				return $iw;
 			}
 		}
@@ -203,11 +203,11 @@ class Interwiki {
 	/**
 	 * Fill in member variables from an array (e.g. memcached result, Database::fetchRow, etc)
 	 *
-	 * @param $mc array Associative array: row from the interwiki table
-	 * @return Boolean|Interwiki whether everything was there
+	 * @param array $mc Associative array: row from the interwiki table
+	 * @return Interwiki|bool Interwiki object or false if $mc['iw_url'] is not set
 	 */
 	protected static function loadFromArray( $mc ) {
-		if( isset( $mc['iw_url'] ) ) {
+		if ( isset( $mc['iw_url'] ) ) {
 			$iw = new Interwiki();
 			$iw->mURL = $mc['iw_url'];
 			$iw->mLocal = isset( $mc['iw_local'] ) ? $mc['iw_local'] : 0;
@@ -223,8 +223,8 @@ class Interwiki {
 	/**
 	 * Fetch all interwiki prefixes from interwiki cache
 	 *
-	 * @param $local null|string If not null, limits output to local/non-local interwikis
-	 * @return Array List of prefixes
+	 * @param null|string $local If not null, limits output to local/non-local interwikis
+	 * @return array List of prefixes
 	 * @since 1.19
 	 */
 	protected static function getAllPrefixesCached( $local ) {
@@ -232,11 +232,11 @@ class Interwiki {
 		static $db, $site;
 
 		wfDebug( __METHOD__ . "()\n" );
-		if( !$db ) {
+		if ( !$db ) {
 			$db = CdbReader::open( $wgInterwikiCache );
 		}
 		/* Resolve site name */
-		if( $wgInterwikiScopes >= 3 && !$site ) {
+		if ( $wgInterwikiScopes >= 3 && !$site ) {
 			$site = $db->get( '__sites:' . wfWikiID() );
 			if ( $site == '' ) {
 				$site = $wgInterwikiFallbackSite;
@@ -257,11 +257,11 @@ class Interwiki {
 
 		$data = array();
 
-		foreach( $sources as $source ) {
+		foreach ( $sources as $source ) {
 			$list = $db->get( "__list:{$source}" );
 			foreach ( explode( ' ', $list ) as $iw_prefix ) {
 				$row = $db->get( "{$source}:{$iw_prefix}" );
-				if( !$row ) {
+				if ( !$row ) {
 					continue;
 				}
 
@@ -273,8 +273,8 @@ class Interwiki {
 
 				$data[$iw_prefix] = array(
 					'iw_prefix' => $iw_prefix,
-					'iw_url'    => $iw_url,
-					'iw_local'  => $iw_local,
+					'iw_url' => $iw_url,
+					'iw_local' => $iw_local,
 				);
 			}
 		}
@@ -287,8 +287,8 @@ class Interwiki {
 	/**
 	 * Fetch all interwiki prefixes from DB
 	 *
-	 * @param $local string|null If not null, limits output to local/non-local interwikis
-	 * @return Array List of prefixes
+	 * @param string|null $local If not null, limits output to local/non-local interwikis
+	 * @return array List of prefixes
 	 * @since 1.19
 	 */
 	protected static function getAllPrefixesDB( $local ) {
@@ -318,8 +318,8 @@ class Interwiki {
 	/**
 	 * Returns all interwiki prefixes
 	 *
-	 * @param $local string|null If set, limits output to local/non-local interwikis
-	 * @return Array List of prefixes
+	 * @param string|null $local If set, limits output to local/non-local interwikis
+	 * @return array List of prefixes
 	 * @since 1.19
 	 */
 	public static function getAllPrefixes( $local = null ) {
@@ -335,15 +335,15 @@ class Interwiki {
 	/**
 	 * Get the URL for a particular title (or with $1 if no title given)
 	 *
-	 * @param $title String: what text to put for the article name
-	 * @return String: the URL
+	 * @param string $title What text to put for the article name
+	 * @return string The URL
 	 * @note Prior to 1.19 The getURL with an argument was broken.
 	 *       If you if you use this arg in an extension that supports MW earlier
 	 *       than 1.19 please wfUrlencode and substitute $1 on your own.
 	 */
 	public function getURL( $title = null ) {
 		$url = $this->mURL;
-		if( $title !== null ) {
+		if ( $title !== null ) {
 			$url = str_replace( "$1", wfUrlencode( $title ), $url );
 		}
 		return $url;
@@ -352,7 +352,7 @@ class Interwiki {
 	/**
 	 * Get the API URL for this wiki
 	 *
-	 * @return String: the URL
+	 * @return string The URL
 	 */
 	public function getAPI() {
 		return $this->mAPI;
@@ -361,7 +361,7 @@ class Interwiki {
 	/**
 	 * Get the DB name for this wiki
 	 *
-	 * @return String: the DB name
+	 * @return string The DB name
 	 */
 	public function getWikiID() {
 		return $this->mWikiID;
@@ -371,7 +371,7 @@ class Interwiki {
 	 * Is this a local link from a sister project, or is
 	 * it something outside, like Google
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isLocal() {
 		return $this->mLocal;
@@ -381,7 +381,7 @@ class Interwiki {
 	 * Can pages from this wiki be transcluded?
 	 * Still requires $wgEnableScaryTransclusion
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
 	public function isTranscludable() {
 		return $this->mTrans;
@@ -390,7 +390,7 @@ class Interwiki {
 	/**
 	 * Get the name for the interwiki site
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getName() {
 		$msg = wfMessage( 'interwiki-name-' . $this->mPrefix )->inContentLanguage();
@@ -400,7 +400,7 @@ class Interwiki {
 	/**
 	 * Get a description for this interwiki
 	 *
-	 * @return String
+	 * @return string
 	 */
 	public function getDescription() {
 		$msg = wfMessage( 'interwiki-desc-' . $this->mPrefix )->inContentLanguage();
@@ -409,8 +409,8 @@ class Interwiki {
 
 	/**
 	 * Return the list of interwiki fields that should be selected to create
-	 * a new interwiki object.
-	 * @return array
+	 * a new Interwiki object.
+	 * @return string[]
 	 */
 	public static function selectFields() {
 		return array(

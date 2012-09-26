@@ -124,7 +124,7 @@ class PNGMetadataExtractor {
 					case 0:
 						$colorType = 'greyscale';
 						break;
-					case 2: 
+					case 2:
 						$colorType = 'truecolour';
 						break;
 					case 3:
@@ -142,7 +142,7 @@ class PNGMetadataExtractor {
 				}
 			} elseif ( $chunk_type == "acTL" ) {
 				$buf = fread( $fh, $chunk_size );
-				if( !$buf || strlen( $buf ) < $chunk_size || $chunk_size < 4 ) {
+				if ( !$buf || strlen( $buf ) < $chunk_size || $chunk_size < 4 ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 
@@ -202,21 +202,21 @@ class PNGMetadataExtractor {
 
 							if ( $items[5] === false ) {
 								// decompression failed
-								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] );
+								wfDebug( __METHOD__ . ' Error decompressing iTxt chunk - ' . $items[1] . "\n");
 								fseek( $fh, self::$CRC_size, SEEK_CUR );
 								continue;
 							}
 
 						} else {
 							wfDebug( __METHOD__ . ' Skipping compressed png iTXt chunk due to lack of zlib,'
-								. ' or potentially invalid compression method' );
+								. " or potentially invalid compression method\n" );
 							fseek( $fh, self::$CRC_size, SEEK_CUR );
 							continue;
 						}
 					}
-					$finalKeyword = self::$text_chunks[ $items[1] ];
-					$text[ $finalKeyword ][ $items[3] ] = $items[5];
-					$text[ $finalKeyword ]['_type'] = 'lang';
+					$finalKeyword = self::$text_chunks[$items[1]];
+					$text[$finalKeyword][$items[3]] = $items[5];
+					$text[$finalKeyword]['_type'] = 'lang';
 
 				} else {
 					// Error reading iTXt chunk
@@ -251,9 +251,9 @@ class PNGMetadataExtractor {
 					throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
 				}
 
-				$finalKeyword = self::$text_chunks[ $keyword ];
-				$text[ $finalKeyword ][ 'x-default' ] = $content;
-				$text[ $finalKeyword ]['_type'] = 'lang';
+				$finalKeyword = self::$text_chunks[$keyword];
+				$text[$finalKeyword]['x-default'] = $content;
+				$text[$finalKeyword]['_type'] = 'lang';
 
 			} elseif ( $chunk_type == 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
@@ -279,7 +279,7 @@ class PNGMetadataExtractor {
 					$compression = substr( $postKeyword, 0, 1 );
 					$content = substr( $postKeyword, 1 );
 					if ( $compression !== "\x00" ) {
-						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping." );
+						wfDebug( __METHOD__ . " Unrecognized compression method in zTXt ($keyword). Skipping.\n" );
 						fseek( $fh, self::$CRC_size, SEEK_CUR );
 						continue;
 					}
@@ -290,7 +290,7 @@ class PNGMetadataExtractor {
 
 					if ( $content === false ) {
 						// decompression failed
-						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword );
+						wfDebug( __METHOD__ . ' Error decompressing zTXt chunk - ' . $keyword . "\n");
 						fseek( $fh, self::$CRC_size, SEEK_CUR );
 						continue;
 					}
@@ -303,12 +303,12 @@ class PNGMetadataExtractor {
 						throw new Exception( __METHOD__ . ": Read error (error with iconv)" );
 					}
 
-					$finalKeyword = self::$text_chunks[ $keyword ];
-					$text[ $finalKeyword ][ 'x-default' ] = $content;
-					$text[ $finalKeyword ]['_type'] = 'lang';
+					$finalKeyword = self::$text_chunks[$keyword];
+					$text[$finalKeyword]['x-default'] = $content;
+					$text[$finalKeyword]['_type'] = 'lang';
 
 				} else {
-					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping." );
+					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping.\n" );
 					fseek( $fh, $chunk_size, SEEK_CUR );
 				}
 			} elseif ( $chunk_type == 'tIME' ) {
@@ -417,7 +417,7 @@ class PNGMetadataExtractor {
 	 * @throws Exception if too big.
 	 * @return String The chunk.
 	 */
-	static private function read( $fh, $size ) {
+	private static function read( $fh, $size ) {
 		if ( $size > self::MAX_CHUNK_SIZE ) {
 			throw new Exception( __METHOD__ . ': Chunk size of ' . $size .
 				' too big. Max size is: ' . self::MAX_CHUNK_SIZE );

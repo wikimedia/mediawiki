@@ -321,7 +321,6 @@ $messages = array(
 'disclaimers' => 'غيرجوابداريناما',
 'disclaimerpage' => 'Project:عام غيرجوابدارينامو',
 'edithelp' => 'مدد براءِ ترميم',
-'edithelppage' => 'Help:سنوارڻ',
 'helppage' => 'Help:فهرست',
 'mainpage' => 'مُک صفحو',
 'mainpage-description' => 'مُک صفحو',
@@ -524,7 +523,6 @@ You cannot use the 'e-mail this user' feature unless a valid e-mail address is s
 'prevn' => 'پويان {{PLURAL:$1|$1}}',
 'nextn' => 'اڳيان {{PLURAL:$1|$1}}',
 'viewprevnext' => 'ڏسو ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:فهرست',
 'powersearch' => 'نفيس ڳولا',
 'powersearch-redir' => 'چورڻن جي فهرست ڏيکاريو',
 
@@ -694,7 +692,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 # Special:Categories
 'categories' => 'زمرا',
 
-# E-mail user
+# Email user
 'emailuser' => 'هن يوزر کي برق ٽپال اماڻيو',
 
 # Watchlist
@@ -713,9 +711,8 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'watching' => 'ٽيٽيندي...',
 'unwatching' => 'اڻ ٽيٽيندي...',
 
-'enotif_newpagetext' => 'هيءُ هڪ نئون صفحو آهي.',
-'changed' => 'تبديل ٿي ويو',
 'created' => 'ٺهي چڪو',
+'changed' => 'تبديل ٿي ويو',
 
 # Delete
 'deletepage' => 'صفحو ڊاهيو',
@@ -913,7 +910,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'metadata-expand' => 'توسيعي تفصيل ڏيکاريو',
 'metadata-collapse' => 'توسيعي تفصيل لڪايو',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'ويڪر',
 'exif-imagelength' => 'اوچائي',
 'exif-bitspersample' => 'ٻٽڻيون في جُز',
@@ -967,7 +964,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'namespacesall' => 'سڀ',
 'monthsall' => 'سڀ',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail_success' => 'توھان جي برق ٽپال جي پڪ ڪئي وئي آھي. ھاڻِ توھان لاگ ان ٿي وڪيءَ جو مزو وٺي سگھو ٿا',
 
 # Delete conflict

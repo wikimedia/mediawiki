@@ -29,7 +29,7 @@
  * (http://citeseer.ist.psu.edu/myers86ond.html) with range compression (see Wu et al.'s
  * "An O(NP) Sequence Comparison Algorithm").
  *
- * This implementation supports an upper bound on the excution time.
+ * This implementation supports an upper bound on the execution time.
  *
  * Complexity: O((M + N)D) worst case time, O(M + N + D^2) expected time, O(M + N) space
  *
@@ -64,7 +64,7 @@ class WikiDiff3 {
 
 	public function diff( /*array*/ $from, /*array*/ $to ) {
 		// remember initial lengths
-		$m = sizeof( $from );
+		$m = count( $from );
 		$n = count( $to );
 
 		$this->heuristicUsed = false;
@@ -489,7 +489,6 @@ class WikiDiff3 {
 		$backward_end_diag = -min( $M, $limit );
 
 		$temp = array( 0, 0, 0 );
-
 
 		$max_progress = array_fill( 0, ceil( max( $forward_end_diag - $forward_start_diag,
 				$backward_end_diag - $backward_start_diag ) / 2 ), $temp );

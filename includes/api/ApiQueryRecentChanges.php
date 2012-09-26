@@ -39,7 +39,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 			$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
 			$fld_sizes = false, $fld_redirect = false, $fld_patrolled = false, $fld_loginfo = false,
-			$fld_tags = false, $token = array();
+			$fld_tags = false, $fld_sha1 = false, $token = array();
 
 	private $tokenFunctions;
 
@@ -105,7 +105,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	/**
 	 * Sets internal state to include the desired properties in the output.
-	 * @param $prop Array associative array of properties, only keys are used here
+	 * @param array $prop associative array of properties, only keys are used here
 	 */
 	public function initProperties( $prop ) {
 		$this->fld_comment = isset( $prop['comment'] );
@@ -121,6 +121,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->fld_patrolled = isset( $prop['patrolled'] );
 		$this->fld_loginfo = isset( $prop['loginfo'] );
 		$this->fld_tags = isset( $prop['tags'] );
+		$this->fld_sha1 = isset( $prop['sha1'] );
 	}
 
 	public function execute() {
@@ -149,6 +150,31 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->addTables( 'recentchanges' );
 		$index = array( 'recentchanges' => 'rc_timestamp' ); // May change
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
+
+		if ( !is_null( $params['continue'] ) ) {
+			$cont = explode( '|', $params['continue'] );
+			if ( count( $cont ) != 2 ) {
+				$this->dieUsage( 'Invalid continue param. You should pass the ' .
+								'original value returned by the previous query', '_badcontinue' );
+			}
+
+			$timestamp = $this->getDB()->addQuotes( wfTimestamp( TS_MW, $cont[0] ) );
+			$id = intval( $cont[1] );
+			$op = $params['dir'] === 'older' ? '<' : '>';
+
+			$this->addWhere(
+				"rc_timestamp $op $timestamp OR " .
+				"(rc_timestamp = $timestamp AND " .
+				"rc_id $op= $id)"
+			);
+		}
+
+		$order = $params['dir'] === 'older' ? 'DESC' : 'ASC';
+		$this->addOption( 'ORDER BY', array(
+			"rc_timestamp $order",
+			"rc_id $order",
+		) );
+
 		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 		$this->addWhereFld( 'rc_deleted', 0 );
 
@@ -214,8 +240,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_title',
 			'rc_cur_id',
 			'rc_type',
-			'rc_moved_to_ns',
-			'rc_moved_to_title',
 			'rc_deleted'
 		) );
 
@@ -231,12 +255,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}
 
+			$this->addFields( 'rc_id' );
 			/* Add fields to our query if they are specified as a needed parameter. */
-			$this->addFieldsIf( array( 'rc_id', 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
+			$this->addFieldsIf( array( 'rc_this_oldid', 'rc_last_oldid' ), $this->fld_ids );
 			$this->addFieldsIf( 'rc_comment', $this->fld_comment || $this->fld_parsedcomment );
 			$this->addFieldsIf( 'rc_user', $this->fld_user );
 			$this->addFieldsIf( 'rc_user_text', $this->fld_user || $this->fld_userid );
-			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ) , $this->fld_flags );
+			$this->addFieldsIf( array( 'rc_minor', 'rc_type', 'rc_bot' ), $this->fld_flags );
 			$this->addFieldsIf( array( 'rc_old_len', 'rc_new_len' ), $this->fld_sizes );
 			$this->addFieldsIf( 'rc_patrolled', $this->fld_patrolled );
 			$this->addFieldsIf( array( 'rc_logid', 'rc_log_type', 'rc_log_action', 'rc_params' ), $this->fld_loginfo );
@@ -247,6 +272,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addTables( 'tag_summary' );
 			$this->addJoinConds( array( 'tag_summary' => array( 'LEFT JOIN', array( 'rc_id=ts_rc_id' ) ) ) );
 			$this->addFields( 'ts_tags' );
+		}
+
+		if ( $this->fld_sha1 ) {
+			$this->addTables( 'revision' );
+			$this->addJoinConds( array( 'revision' => array( 'LEFT JOIN', array( 'rc_this_oldid=rev_id' ) ) ) );
+			$this->addFields( array( 'rev_sha1', 'rev_deleted' ) );
 		}
 
 		if ( $params['toponly'] || $showRedirects ) {
@@ -262,7 +293,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( !is_null( $params['tag'] ) ) {
 			$this->addTables( 'change_tag' );
 			$this->addJoinConds( array( 'change_tag' => array( 'INNER JOIN', array( 'rc_id=ct_rc_id' ) ) ) );
-			$this->addWhereFld( 'ct_tag' , $params['tag'] );
+			$this->addWhereFld( 'ct_tag', $params['tag'] );
 			global $wgOldChangeTagsIndex;
 			$index['change_tag'] = $wgOldChangeTagsIndex ? 'ct_tag' : 'change_tag_tag_id';
 		}
@@ -283,7 +314,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		foreach ( $res as $row ) {
 			if ( ++ $count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
-				$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
+				$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
 				break;
 			}
 
@@ -297,7 +328,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				}
 				$fit = $result->addValue( array( 'query', $this->getModuleName() ), null, $vals );
 				if ( !$fit ) {
-					$this->setContinueEnumParameter( 'start', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) );
+					$this->setContinueEnumParameter( 'continue', wfTimestamp( TS_ISO_8601, $row->rc_timestamp ) . '|' . $row->rc_id );
 					break;
 				}
 			} else {
@@ -316,17 +347,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	/**
 	 * Extracts from a single sql row the data needed to describe one recent change.
 	 *
-	 * @param $row The row from which to extract the data.
+	 * @param mixed $row The row from which to extract the data.
 	 * @return array An array mapping strings (descriptors) to their respective string values.
 	 * @access public
 	 */
 	public function extractRowInfo( $row ) {
-		/* If page was moved somewhere, get the title of the move target. */
-		$movedToTitle = false;
-		if ( isset( $row->rc_moved_to_title ) && $row->rc_moved_to_title !== '' ) {
-			$movedToTitle = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );
-		}
-
 		/* Determine the title of the page that has been changed. */
 		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 
@@ -349,6 +374,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			case RC_LOG:
 				$vals['type'] = 'log';
 				break;
+			case RC_EXTERNAL:
+				$vals['type'] = 'external';
+				break;
 			case RC_MOVE_OVER_REDIRECT:
 				$vals['type'] = 'move over redirect';
 				break;
@@ -359,9 +387,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Create a new entry in the result for the title. */
 		if ( $this->fld_title ) {
 			ApiQueryBase::addTitleInfo( $vals, $title );
-			if ( $movedToTitle ) {
-				ApiQueryBase::addTitleInfo( $vals, $movedToTitle, 'new_' );
-			}
 		}
 
 		/* Add ids, such as rcid, pageid, revid, and oldid to the change's info. */
@@ -457,6 +482,19 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 		}
 
+		if ( $this->fld_sha1 && $row->rev_sha1 !== null ) {
+			// The RevDel check should currently never pass due to the
+			// rc_deleted = 0 condition in the WHERE clause, but in case that
+			// ever changes we check it here too.
+			if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
+				$vals['sha1hidden'] = '';
+			} elseif ( $row->rev_sha1 !== '' ) {
+				$vals['sha1'] = wfBaseConvert( $row->rev_sha1, 36, 16, 40 );
+			} else {
+				$vals['sha1'] = '';
+			}
+		}
+
 		if ( !is_null( $this->token ) ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
@@ -481,13 +519,15 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 			return $retval;
 		}
-		switch( $type ) {
+		switch ( $type ) {
 			case 'edit':
 				return RC_EDIT;
 			case 'new':
 				return RC_NEW;
 			case 'log':
 				return RC_LOG;
+			case 'external':
+				return RC_EXTERNAL;
 		}
 	}
 
@@ -551,7 +591,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					'redirect',
 					'patrolled',
 					'loginfo',
-					'tags'
+					'tags',
+					'sha1',
 				)
 			),
 			'token' => array(
@@ -584,11 +625,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => array(
 					'edit',
+					'external',
 					'new',
 					'log'
 				)
 			),
 			'toponly' => false,
+			'continue' => null,
 		);
 	}
 
@@ -616,6 +659,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 				' patrolled      - Tags edits that have been patrolled',
 				' loginfo        - Adds log information (logid, logtype, etc) to log entries',
 				' tags           - Lists tags for the entry',
+				' sha1           - Adds the content checksum for entries associated with a revision',
 			),
 			'token' => 'Which tokens to obtain for each change',
 			'show' => array(
@@ -626,6 +670,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'limit' => 'How many total changes to return',
 			'tag' => 'Only list changes tagged with this tag',
 			'toponly' => 'Only list changes which are the latest revision',
+			'continue' => 'When more results are available, use this to continue',
 		);
 	}
 
@@ -712,7 +757,17 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 					ApiBase::PROP_TYPE => 'string',
 					ApiBase::PROP_NULLABLE => true
 				)
-			)
+			),
+			'sha1' => array(
+				'sha1' => array(
+					ApiBase::PROP_TYPE => 'string',
+					ApiBase::PROP_NULLABLE => true
+				),
+				'sha1hidden' => array(
+					ApiBase::PROP_TYPE => 'boolean',
+					ApiBase::PROP_NULLABLE => true
+				),
+			),
 		);
 
 		self::addTokenProperties( $props, $this->getTokenFunctions() );
@@ -740,9 +795,5 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Recentchanges';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

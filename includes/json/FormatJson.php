@@ -1,6 +1,6 @@
 <?php
 /**
- * Simple wrapper for json_econde and json_decode that falls back on Services_JSON class.
+ * Wrapper for json_encode and json_decode.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,55 +20,192 @@
  * @file
  */
 
-require_once __DIR__ . '/Services_JSON.php';
-
 /**
  * JSON formatter wrapper class
  */
 class FormatJson {
 
 	/**
+	 * Skip escaping most characters above U+007F for readability and compactness.
+	 * This encoding option saves 3 to 8 bytes (uncompressed) for each such character;
+	 * however, it could break compatibility with systems that incorrectly handle UTF-8.
+	 *
+	 * @since 1.22
+	 */
+	const UTF8_OK = 1;
+
+	/**
+	 * Skip escaping the characters '<', '>', and '&', which have special meanings in
+	 * HTML and XML.
+	 *
+	 * @warning Do not use this option for JSON that could end up in inline scripts.
+	 * - HTML5, §4.3.1.2 Restrictions for contents of script elements
+	 * - XML 1.0 (5th Ed.), §2.4 Character Data and Markup
+	 *
+	 * @since 1.22
+	 */
+	const XMLMETA_OK = 2;
+
+	/**
+	 * Skip escaping as many characters as reasonably possible.
+	 *
+	 * @warning When generating inline script blocks, use FormatJson::UTF8_OK instead.
+	 *
+	 * @since 1.22
+	 */
+	const ALL_OK = 3;
+
+	/**
+	 * Characters problematic in JavaScript.
+	 *
+	 * @note These are listed in ECMA-262 (5.1 Ed.), §7.3 Line Terminators along with U+000A (LF)
+	 *       and U+000D (CR). However, PHP already escapes LF and CR according to RFC 4627.
+	 */
+	private static $badChars = array(
+		"\xe2\x80\xa8", // U+2028 LINE SEPARATOR
+		"\xe2\x80\xa9", // U+2029 PARAGRAPH SEPARATOR
+	);
+
+	/**
+	 * Escape sequences for characters listed in FormatJson::$badChars.
+	 */
+	private static $badCharsEscaped = array(
+		'\u2028', // U+2028 LINE SEPARATOR
+		'\u2029', // U+2029 PARAGRAPH SEPARATOR
+	);
+
+	/**
 	 * Returns the JSON representation of a value.
 	 *
-	 * @param $value Mixed: the value being encoded. Can be any type except a resource.
-	 * @param $isHtml Boolean
+	 * @note Empty arrays are encoded as numeric arrays, not as objects, so cast any associative
+	 *       array that might be empty to an object before encoding it.
 	 *
-	 * @todo FIXME: "$isHtml" parameter's purpose is not documented. It appears to
-	 *        map to a parameter labeled "pretty-print output with indents and
-	 *        newlines" in Services_JSON::encode(), which has no string relation
-	 *        to HTML output.
+	 * @note In pre-1.22 versions of MediaWiki, using this function for generating inline script
+	 *       blocks may result in an XSS vulnerability, and quite likely will in XML documents
+	 *       (cf. FormatJson::XMLMETA_OK). Use Xml::encodeJsVar() instead in such cases.
 	 *
-	 * @return string
+	 * @param mixed $value The value to encode. Can be any type except a resource.
+	 * @param bool $pretty If true, add non-significant whitespace to improve readability.
+	 * @param int $escaping Bitfield consisting of _OK class constants
+	 * @return string|bool: String if successful; false upon failure
 	 */
-	public static function encode( $value, $isHtml = false ) {
-		if ( !function_exists( 'json_encode' ) || ( $isHtml && version_compare( PHP_VERSION, '5.4.0', '<' ) ) ) {
-			$json = new Services_JSON();
-			return $json->encode( $value, $isHtml );
-		} else {
-			return json_encode( $value, $isHtml ? JSON_PRETTY_PRINT : 0 );
+	public static function encode( $value, $pretty = false, $escaping = 0 ) {
+		if ( version_compare( PHP_VERSION, '5.4.0', '<' ) ) {
+			return self::encode53( $value, $pretty, $escaping );
 		}
+		return self::encode54( $value, $pretty, $escaping );
 	}
 
 	/**
 	 * Decodes a JSON string.
 	 *
-	 * @param $value String: the json string being decoded.
-	 * @param $assoc Boolean: when true, returned objects will be converted into associative arrays.
+	 * @param string $value The JSON string being decoded
+	 * @param bool $assoc When true, returned objects will be converted into associative arrays.
 	 *
-	 * @return Mixed: the value encoded in json in appropriate PHP type.
-	 * Values true, false and null (case-insensitive) are returned as true, false
-	 * and "&null;" respectively. "&null;" is returned if the json cannot be
+	 * @return mixed: the value encoded in JSON in appropriate PHP type.
+	 * Values `"true"`, `"false"`, and `"null"` (case-insensitive) are returned as `true`, `false`
+	 * and `null` respectively. `null` is returned if the JSON cannot be
 	 * decoded or if the encoded data is deeper than the recursion limit.
 	 */
 	public static function decode( $value, $assoc = false ) {
-		if ( !function_exists( 'json_decode' ) ) {
-			$json = $assoc ? new Services_JSON( SERVICES_JSON_LOOSE_TYPE ) :
-				new Services_JSON();
-			$jsonDec = $json->decode( $value );
-			return $jsonDec;
-		} else {
-			return json_decode( $value, $assoc );
-		}
+		return json_decode( $value, $assoc );
 	}
 
+	/**
+	 * JSON encoder wrapper for PHP >= 5.4, which supports useful encoding options.
+	 *
+	 * @param mixed $value
+	 * @param bool $pretty
+	 * @param int $escaping
+	 * @return string|bool
+	 */
+	private static function encode54( $value, $pretty, $escaping ) {
+		// PHP escapes '/' to prevent breaking out of inline script blocks using '</script>',
+		// which is hardly useful when '<' and '>' are escaped, and such escaping negatively
+		// impacts the human readability of URLs and similar strings.
+		$options = JSON_UNESCAPED_SLASHES;
+		$options |= $pretty ? JSON_PRETTY_PRINT : 0;
+		$options |= ( $escaping & self::UTF8_OK ) ? JSON_UNESCAPED_UNICODE : 0;
+		$options |= ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
+		$json = json_encode( $value, $options );
+		if ( $json === false ) {
+			return false;
+		}
+		if ( $escaping & self::UTF8_OK ) {
+			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
+		}
+		return $json;
+	}
+
+	/**
+	 * JSON encoder wrapper for PHP 5.3, which lacks native support for some encoding options.
+	 * Therefore, the missing options are implemented here purely in PHP code.
+	 *
+	 * @param mixed $value
+	 * @param bool $pretty
+	 * @param int $escaping
+	 * @return string|bool
+	 */
+	private static function encode53( $value, $pretty, $escaping ) {
+		$options = ( $escaping & self::XMLMETA_OK ) ? 0 : ( JSON_HEX_TAG | JSON_HEX_AMP );
+		$json = json_encode( $value, $options );
+		if ( $json === false ) {
+			return false;
+		}
+		$json = str_replace( '\\/', '/', $json ); // emulate JSON_UNESCAPED_SLASHES
+		if ( $escaping & self::UTF8_OK ) {
+			// JSON hex escape sequences follow the format \uDDDD, where DDDD is four hex digits
+			// indicating the equivalent UTF-16 code unit's value. To most efficiently unescape
+			// them, we exploit the JSON extension's built-in decoder.
+			// * We escape the input a second time, so any such sequence becomes \\uDDDD.
+			// * To avoid interpreting escape sequences that were in the original input,
+			//   each double-escaped backslash (\\\\) is replaced with \\\u005c.
+			// * We strip one of the backslashes from each of the escape sequences to unescape.
+			// * Then the JSON decoder can perform the actual unescaping.
+			$json = str_replace( "\\\\\\\\", "\\\\\\u005c", addcslashes( $json, '\"' ) );
+			$json = json_decode( preg_replace( "/\\\\\\\\u(?!00[0-7])/", "\\\\u", "\"$json\"" ) );
+			$json = str_replace( self::$badChars, self::$badCharsEscaped, $json );
+		}
+		return $pretty ? self::prettyPrint( $json ) : $json;
+	}
+
+	/**
+	 * Adds non-significant whitespace to an existing JSON representation of an object.
+	 * Only needed for PHP < 5.4, which lacks the JSON_PRETTY_PRINT option.
+	 *
+	 * @param string $json
+	 * @return string
+	 */
+	private static function prettyPrint( $json ) {
+		$buf = '';
+		$indent = 0;
+		$json = strtr( $json, array( '\\\\' => '\\\\', '\"' => "\x01" ) );
+		for ( $i = 0, $n = strlen( $json ); $i < $n; $i += $skip ) {
+			$skip = 1;
+			switch ( $json[$i] ) {
+				case ':':
+					$buf .= ': ';
+					break;
+				case '[':
+				case '{':
+					$indent++; // falls through
+				case ',':
+					$buf .= $json[$i] . "\n" . str_repeat( '    ', $indent );
+					break;
+				case ']':
+				case '}':
+					$indent--;
+					$buf .= "\n" . str_repeat( '    ', $indent ) . $json[$i];
+					break;
+				case '"':
+					$skip = strcspn( $json, '"', $i + 1 ) + 2;
+					$buf .= substr( $json, $i, $skip );
+					break;
+				default:
+					$skip = strcspn( $json, ',]}"', $i + 1 ) + 1;
+					$buf .= substr( $json, $i, $skip );
+			}
+		}
+		return str_replace( "\x01", '\"', preg_replace( '/ +$/m', '', $buf ) );
+	}
 }

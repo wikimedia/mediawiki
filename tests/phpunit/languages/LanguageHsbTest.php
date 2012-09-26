@@ -6,24 +6,20 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageHsb.php */
-class LanguageHsbTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'hsb' );
-	}
-	function tearDown() {
-		unset( $this->lang );
+class LanguageHsbTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
+		$forms = array( 'one', 'two', 'few', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	/** @dataProvider providePlural */
-	function testPlural( $result, $value ) {
-		$forms =  array( 'one', 'two', 'few', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
 	}
 
-	function providePlural() {
-		return array (
+	public static function providePlural() {
+		return array(
 			array( 'other', 0 ),
 			array( 'one', 1 ),
 			array( 'one', 101 ),
@@ -36,5 +32,4 @@ class LanguageHsbTest extends MediaWikiTestCase {
 			array( 'other', 555 ),
 		);
 	}
-
 }

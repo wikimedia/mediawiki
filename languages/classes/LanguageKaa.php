@@ -41,7 +41,7 @@ class LanguageKaa extends Language {
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kaa'][$case][$word] ) ) {
-		     return $wgGrammarForms['kaa'][$case][$word];
+			return $wgGrammarForms['kaa'][$case][$word];
 		}
 		/* Full code of function convertGrammar() is in development. Updates coming soon. */
 		return $word;
@@ -54,7 +54,7 @@ class LanguageKaa extends Language {
 	 *
 	 * @return string
 	 */
-	function ucfirst ( $string ) {
+	function ucfirst( $string ) {
 		if ( substr( $string, 0, 1 ) === 'i' ) {
 			return 'İ' . substr( $string, 1 );
 		} else {
@@ -69,7 +69,7 @@ class LanguageKaa extends Language {
 	 *
 	 * @return mixed|string
 	 */
-	function lcfirst ( $string ) {
+	function lcfirst( $string ) {
 		if ( substr( $string, 0, 1 ) === 'I' ) {
 			return 'ı' . substr( $string, 1 );
 		} else {

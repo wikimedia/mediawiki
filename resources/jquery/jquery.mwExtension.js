@@ -15,12 +15,13 @@
 			return str.charAt( 0 ).toUpperCase() + str.substr( 1 );
 		},
 		escapeRE: function ( str ) {
-			return str.replace ( /([\\{}()|.?*+\-\^$\[\]])/g, "\\$1" );
+			return str.replace ( /([\\{}()|.?*+\-\^$\[\]])/g, '\\$1' );
 		},
 		isDomElement: function ( el ) {
 			return !!el && !!el.nodeType;
 		},
 		isEmpty: function ( v ) {
+			var key;
 			if ( v === '' || v === 0 || v === '0' || v === null
 				|| v === false || v === undefined )
 			{
@@ -32,7 +33,7 @@
 				return true;
 			}
 			if ( typeof v === 'object' ) {
-				for ( var key in v ) {
+				for ( key in v ) {
 					return false;
 				}
 				return true;

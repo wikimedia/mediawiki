@@ -20,7 +20,7 @@
  * @file
  * @ingroup Maintenance
  */
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to check images to see if they exist, are readable, etc.
@@ -87,4 +87,4 @@ class CheckImages extends Maintenance {
 }
 
 $maintClass = "CheckImages";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

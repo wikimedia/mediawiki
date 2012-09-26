@@ -155,7 +155,6 @@ $messages = array(
 'disclaimers' => 'Мийö сöстöмöсь йöз одзын',
 'disclaimerpage' => 'Project:Мийö сöстöмöсь йöз одзын',
 'edithelp' => 'Уджкерись понда отсöт',
-'edithelppage' => 'Help:Уджкерись понда отсöт',
 'helppage' => 'Help:Отсöт',
 'mainpage' => 'Пондöтчан листбок',
 'mainpage-description' => 'Пондöтчан листбок',
@@ -343,8 +342,6 @@ $messages = array(
 'search-interwiki-caption' => 'Вачкисян проекттэз',
 'search-interwiki-default' => '$1 результат:',
 'search-interwiki-more' => '(унажык)',
-'search-mwsuggest-enabled' => 'öтсöттэзöн',
-'search-mwsuggest-disabled' => 'öтсöттэзтöг',
 'searchall' => 'быдöс',
 'nonefound' => "'''Пасйöт.''' Он кö нагладь шуан,  кытiсь кошшыны,  шедасö не быдöс тексттэз, кытöн пантасьö колан кылыс. Мед кошшыны быдöс тексттэзiсь (уджкериссез листбоккезiсь,  шаболоннэзiсь дмд.), гиж ''all:'',  нето утлянно мыччав,  кытiсь кошшыны.",
 'powersearch' => 'Паськытжыка кошшан',
@@ -386,6 +383,9 @@ $messages = array(
 'group-all' => '(быдöс)',
 
 'grouppage-sysop' => '{{ns:project}}:Веськöтлiссез',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Уджкерисьö гижöтчан журнал',
 
 # User rights log
 'rightslog' => 'Уджкерисьлö позяннэз сьöртi журнал',
@@ -491,13 +491,10 @@ $messages = array(
 # Special:LinkSearch
 'linksearch' => 'Вики сайöдз ыстöттэз',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Уджкерисьö гижöтчан журнал',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(уджкериссезлöн нимлёдз)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Этiя ужкерисьлö гижöт',
 'emailfrom' => 'Кинсянь:',
 'emailto' => 'Кинлö:',
@@ -739,7 +736,7 @@ $messages = array(
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Пасьта',
 'exif-imagelength' => 'Вылына',
 

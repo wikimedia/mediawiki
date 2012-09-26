@@ -21,6 +21,10 @@
  * @ingroup MaintenanceLanguage
  */
 
+if ( PHP_SAPI != 'cli' ) {
+	die( "Run me from the command line please.\n" );
+}
+
 if ( !isset( $argv[1] ) ) {
 	print "Usage: php {$argv[0]} <filename>\n";
 	exit( 1 );
@@ -32,8 +36,8 @@ define( 'NOT_REALLY_MEDIAWIKI', 1 );
 
 $IP = __DIR__ . '/../..';
 
-require_once( "$IP/includes/Defines.php" );
-require_once( "$IP/languages/Language.php" );
+require_once "$IP/includes/Defines.php";
+require_once "$IP/languages/Language.php";
 
 $files = array();
 foreach ( $argv as $arg ) {
@@ -53,7 +57,7 @@ foreach ( $files as $filename ) {
 }
 
 function getVars( $filename ) {
-	require( $filename );
+	require $filename;
 	$vars = get_defined_vars();
 	unset( $vars['filename'] );
 	return $vars;

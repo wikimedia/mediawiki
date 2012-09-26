@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cesco
+ * @author Geitost
  * @author Jim-by
  * @author Kaganer
  * @author LexArt
@@ -24,6 +25,42 @@
  * @author Чаховіч Уладзіслаў
  * @author לערי ריינהארט
  */
+
+$namespaceNames = array(
+	NS_MEDIA            => 'Мультымедыя',
+	NS_SPECIAL          => 'Адмысловае',
+	NS_TALK             => 'Размовы',
+	NS_USER             => 'Удзельнік',
+	NS_USER_TALK        => 'Размовы_з_удзельнікам',
+	NS_PROJECT_TALK     => 'Размовы_пра_{{GRAMMAR:вінавальны|$1}}',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Размовы_пра_файл',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Размовы_пра_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Размовы_пра_шаблон',
+	NS_HELP             => 'Даведка',
+	NS_HELP_TALK        => 'Размовы_пра_даведку',
+	NS_CATEGORY         => 'Катэгорыя',
+	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
+);
+
+$namespaceAliases = array(
+	'$1_размовы' => NS_PROJECT_TALK,
+	'Выява' => NS_FILE,
+	'Размовы_пра_выяву' => NS_FILE_TALK,
+);
+
+$magicWords = array(
+	'img_thumbnail'             => array( '1', 'міні', 'мініяцюра', 'thumbnail', 'thumb' ),
+	'img_manualthumb'           => array( '1', 'міні=$1', 'мініяцюра=$1', 'thumbnail=$1', 'thumb=$1' ),
+	'img_right'                 => array( '1', 'справа', 'right' ),
+	'img_left'                  => array( '1', 'злева', 'left' ),
+	'img_none'                  => array( '1', 'няма', 'none' ),
+	'img_width'                 => array( '1', '$1пкс', '$1px' ),
+	'img_center'                => array( '1', 'цэнтр', 'center', 'centre' ),
+	'img_framed'                => array( '1', 'безрамкі', 'framed', 'enframed', 'frame' ),
+);
 
 $bookstoreList = array(
 	'OZ.by' => 'http://oz.by/search.phtml?what=books&isbn=$1',
@@ -44,40 +81,6 @@ $dateFormats = array(
 	'dmy both' => 'H:i, j xg Y',
 );
 
-$namespaceNames = array(
-	NS_MEDIA            => 'Мультымедыя',
-	NS_SPECIAL          => 'Адмысловае',
-	NS_TALK             => 'Размовы',
-	NS_USER             => 'Удзельнік',
-	NS_USER_TALK        => 'Размовы_з_удзельнікам',
-	NS_PROJECT_TALK     => 'Размовы_пра_{{GRAMMAR:вінавальны|$1}}',
-	NS_FILE             => 'Выява',
-	NS_FILE_TALK        => 'Размовы_пра_выяву',
-	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Размовы_пра_MediaWiki',
-	NS_TEMPLATE         => 'Шаблон',
-	NS_TEMPLATE_TALK    => 'Размовы_пра_шаблон',
-	NS_HELP             => 'Даведка',
-	NS_HELP_TALK        => 'Размовы_пра_даведку',
-	NS_CATEGORY         => 'Катэгорыя',
-	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
-);
-
-$namespaceAliases = array(
-	'$1_размовы' => NS_PROJECT_TALK,
-);
-
-$magicWords = array(
-	'img_thumbnail'             => array( '1', 'міні', 'мініяцюра', 'thumbnail', 'thumb' ),
-	'img_manualthumb'           => array( '1', 'міні=$1', 'мініяцюра=$1', 'thumbnail=$1', 'thumb=$1' ),
-	'img_right'                 => array( '1', 'справа', 'right' ),
-	'img_left'                  => array( '1', 'злева', 'left' ),
-	'img_none'                  => array( '1', 'няма', 'none' ),
-	'img_width'                 => array( '1', '$1пкс', '$1px' ),
-	'img_center'                => array( '1', 'цэнтр', 'center', 'centre' ),
-	'img_framed'                => array( '1', 'безрамкі', 'framed', 'enframed', 'frame' ),
-);
-
 # Per discussion on http://translatewiki.net/wiki/Thread:Support/Customization_of number format
 $separatorTransformTable = array(
 	',' => "\xc2\xa0", # nbsp
@@ -94,7 +97,7 @@ $messages = array(
 'tog-hidepatrolled' => 'Без паказу ўхваленых правак у нядаўніх змяненнях',
 'tog-newpageshidepatrolled' => 'Без паказу ўхваленых правак у пераліку новых старонак',
 'tog-extendwatchlist' => 'Паказваць усе змяненні, а не толькі апошнія',
-'tog-usenewrc' => 'Удасканалены выгляд (патрабуе Яваскрыпт)',
+'tog-usenewrc' => 'Групаваць змены старонкі ў спісах апошніх зменаў і назіранняў (патрабуе JavaScript)',
 'tog-numberheadings' => 'Аўта-нумараваць падзагалоўкі',
 'tog-showtoolbar' => 'Паказваць рэдактарскую стужку (Яваскрыпт)',
 'tog-editondblclick' => 'Праўка старонак па падвойным пстрыку (Яваскрыпт)',
@@ -102,10 +105,10 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Праўка падраздзелаў па правым пстрыку на загалоўку (Яваскрыпт)',
 'tog-showtoc' => 'Паказваць змест (для старонак, дзе больш за 3 падзагалоўкі)',
 'tog-rememberpassword' => 'Памятаць уваходныя даныя ў гэтым браўзеры (не даўжэй за $1 {{PLURAL:$1|дзень|дні|дзён}})',
-'tog-watchcreations' => 'Старонкі, створаныя мной, дадаюцца да назіранага',
-'tog-watchdefault' => 'Старонкі, праўленыя мной, дадаюцца да назіранага',
-'tog-watchmoves' => 'Старонкі, перанесеныя мной, дадаюцца да назіранага',
-'tog-watchdeletion' => 'Старонкі, сцёртыя мной, дадаюцца да назіранага',
+'tog-watchcreations' => 'Старонкі і файлы, створаныя мной, дадаюцца да назіранага',
+'tog-watchdefault' => 'Старонкі і файлы пасля маіх правак дадаюцца да назіранага',
+'tog-watchmoves' => 'Старонкі і файлы, перанесеныя мной пад іншую назву, дадаюцца да назіранага',
+'tog-watchdeletion' => 'Старонкі і файлы, сцёртыя мной, дадаюцца да назіранага',
 'tog-minordefault' => 'Пачынаць кожную праўку як дробную',
 'tog-previewontop' => 'Папярэдні паказ — над рэдактарскім полем',
 'tog-previewonfirst' => 'Папярэдні паказ пры першай праўцы',
@@ -117,8 +120,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Паказваць колькасць назіральнікаў',
 'tog-oldsig' => 'Існуючы подпіс:',
 'tog-fancysig' => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor' => "Карыстацца вонкавай праграмай для праўкі (edit); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [//www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
-'tog-externaldiff' => "Карыстацца вонкавай праграмай для параўнання (diff); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [//www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
 'tog-showjumplinks' => 'Дазволіць дапаможныя спасылкі "jump to"',
 'tog-uselivepreview' => 'Жывы перадпаказ (Яваскрыпт, эксперыментальн.)',
 'tog-forceeditsummary' => 'Папярэджваць пра пустое поле тлумачэння праўкі',
@@ -132,6 +133,7 @@ $messages = array(
 'tog-diffonly' => 'Не паказваць рэшты старонкі пад розніцай',
 'tog-showhiddencats' => 'Паказаць схаваныя катэгорыі',
 'tog-norollbackdiff' => 'Не паказваць розніцу ў выніку адкату',
+'tog-useeditwarning' => 'Папярэдзіць мяне, калі я пакідаю старонку з незахаванымі праўкамі',
 
 'underline-always' => 'Заўсёды',
 'underline-never' => 'Ніколі',
@@ -195,6 +197,18 @@ $messages = array(
 'oct' => 'Кас',
 'nov' => 'Ліс',
 'dec' => 'Сне',
+'january-date' => '$1 студзеня',
+'february-date' => '$1 лютага',
+'march-date' => '$1 сакавіка',
+'april-date' => '$1 красавіка',
+'may-date' => '$1 мая',
+'june-date' => '$1 чэрвеня',
+'july-date' => '$1 ліпеня',
+'august-date' => '$1 жніўня',
+'september-date' => '$1 верасня',
+'october-date' => '$1 кастрычніка',
+'november-date' => '$1 лістапада',
+'december-date' => '$1 снежня',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Катэгорыя|Катэгорыі}}',
@@ -220,6 +234,7 @@ $messages = array(
 'newwindow' => '(адкрыецца ў новым акне)',
 'cancel' => 'Нічога',
 'moredotdotdot' => 'Яшчэ...',
+'morenotlisted' => 'Больш нічога няма...',
 'mypage' => 'Уласная старонка',
 'mytalk' => 'Размовы',
 'anontalk' => 'Размова для гэтага IP',
@@ -231,7 +246,6 @@ $messages = array(
 'qbbrowse' => 'Выбраць',
 'qbedit' => 'Правіць',
 'qbpageoptions' => 'Гэтая старонка',
-'qbpageinfo' => 'Кантэкст',
 'qbmyoptions' => 'Свае старонкі',
 'qbspecialpages' => 'Адмысловыя старонкі',
 'faq' => 'ЧАПЫ',
@@ -254,6 +268,7 @@ $messages = array(
 'namespaces' => 'Прасторы імёнаў',
 'variants' => 'Варыянты',
 
+'navigation-heading' => 'Навігацыя',
 'errorpagetitle' => 'Памылка',
 'returnto' => 'Вярнуцца да $1.',
 'tagline' => 'З пляцоўкі {{SITENAME}}.',
@@ -275,6 +290,7 @@ $messages = array(
 'create-this-page' => 'Стварыць старонку',
 'delete' => 'сцерці',
 'deletethispage' => 'Сцерці гэту старонку',
+'undeletethispage' => 'Аднавіць гэту старонку',
 'undelete_short' => 'Аднавіць {{PLURAL:$1|адну праўку|$1 правак}}',
 'viewdeleted_short' => 'Паказаць {{PLURAL:$1|адну сцёртую праўку|$1 сцёртыя праўкі}}',
 'protect' => 'Ахова',
@@ -328,9 +344,8 @@ $1',
 'disclaimers' => 'Адмова ад адказнасці',
 'disclaimerpage' => 'Project:Агульная адмова ад адказнасці',
 'edithelp' => 'Даведка рэдактарскага акна',
-'edithelppage' => 'Help:Праўка',
 'helppage' => 'Help:Змест',
-'mainpage' => 'Першая старонка',
+'mainpage' => 'Галоўная старонка',
 'mainpage-description' => 'Першая старонка',
 'policy-url' => 'Project:Арганізацыйная палітыка',
 'portal' => 'Супольнасць',
@@ -351,6 +366,8 @@ $1',
 'youhavenewmessages' => 'Вы маеце $1 ($2).',
 'newmessageslink' => 'новыя паведамленні',
 'newmessagesdifflink' => 'розн. з найноўшай версіяй',
+'youhavenewmessagesfromusers' => 'Вы атрымалі $1 ад {{PLURAL:$3|$3 ўдзельніка|$3 удзельнікаў}} ($2).',
+'youhavenewmessagesmanyusers' => 'Вы атрымалі $1 ад мноства карыстальнікаў ($2).',
 'youhavenewmessagesmulti' => 'У вас ёсць новыя паведамленні на $1',
 'editsection' => 'правіць',
 'editold' => 'правіць',
@@ -481,12 +498,23 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Вы выйшлі з сістэмы.'''
 
-Можна працягваць працу на {{SITENAME}} ананімна, або можна [[Special:UserLogin|ўвайсці ў сістэму ізноў]], пад тым самым або пад іншым удзельніцкім імем. Заўважце, што некаторыя старонкі могуць паказвацца так, быццам вы яшчэ не выйшлі; у такім разе трэба ачысціць кэш вашага браўзера.",
-'welcomecreation' => '== Вітаем, $1! == Ваш  рахунак быў створаны. Не забудзьцеся дапасаваць свае [[Special:Preferences|{{SITENAME}} настáўленні]].',
+Можна працягваць працу на {{SITENAME}} ананімна, або можна <span class='plainlinks'>[$1 ўвайсці ў сістэму ізноў]</span>, пад тым самым або пад іншым удзельніцкім імем. Заўважце, што некаторыя старонкі могуць паказвацца так, быццам вы яшчэ не выйшлі; у такім разе трэба ачысціць кэш вашага браўзера.",
+'welcomeuser' => 'Вітаем, $1!',
+'welcomecreation-msg' => 'Ваш рахунак быў створаны.
+Не забудзьцеся дапасаваць [[Special:Preferences|персанальныя настаўленні]] для {{SITENAME}}.',
 'yourname' => 'Імя ўдзельніка',
+'userlogin-yourname' => 'Імя ўліковага запісу',
+'userlogin-yourname-ph' => 'Увядзіце імя вашага ўліковага запісу',
 'yourpassword' => 'Пароль',
+'userlogin-yourpassword' => 'Пароль',
+'userlogin-yourpassword-ph' => 'Увядзіце ваш пароль',
+'createacct-yourpassword-ph' => 'Увядзіце пароль',
 'yourpasswordagain' => 'Паўтарыце пароль',
+'createacct-yourpasswordagain' => 'Пацвердзіце пароль',
+'createacct-yourpasswordagain-ph' => 'Увядзіце пароль яшчэ раз',
 'remembermypassword' => "Памятаць мяне на гэтым камп'ютары (не даўжэй за $1 {{PLURAL:$1|дзень|дзён}})",
+'userlogin-remembermypassword' => 'Заставацца ў сістэме',
+'userlogin-signwithsecure' => 'Выкарыстоўваць абароненае злучэнне',
 'securelogin-stick-https' => 'Працягваць злучэнне па HTTPS пасля ўвахода',
 'yourdomainname' => 'Ваш дамен',
 'externaldberror' => 'Або памылка вонкавай аўтэнтыкацыі ў базе дадзеных, або вам не дазволена абнаўляць свой вонкавы рахунак.',
@@ -498,7 +526,7 @@ $2',
 'logout' => 'Выйсці з сістэмы',
 'userlogout' => 'Выйсці з сістэмы',
 'notloggedin' => 'Не ўвайшоў',
-'nologin' => "Не маеце рахунку? '''$1'''.",
+'nologin' => 'Не маеце рахунку? $1.',
 'nologinlink' => 'Завесці рахунак',
 'createaccount' => 'Стварыць рахунак',
 'gotaccount' => "Ужо маеце рахунак? '''$1'''.",
@@ -562,7 +590,7 @@ $2',
 'loginlanguagelabel' => 'Мова: $1',
 'suspicious-userlogout' => 'Ваш запыт на выхад быў адмоўлены, паколькі ён выглядае як накіраваны са зламанага браўзера або кэшаванне проксі-сервераў.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Невядомая памылка ў функцыі PHP-пошты',
 'user-mail-no-addy' => 'Паспрабаваў адправіць электронны ліст без адрасу электроннай пошты',
 
@@ -585,10 +613,8 @@ $2',
 
 # Special:PasswordReset
 'passwordreset' => 'Выслаць мне новы пароль',
-'passwordreset-text' => 'Запоўніце гэтую форму, каб атрымаць па электроннай пошце напамін вашага акаўнта.',
 'passwordreset-legend' => 'Пераўстанавіць пароль',
 'passwordreset-disabled' => 'Функцыя пераўсталёўкі пароля адключаная на гэтай вікі.',
-'passwordreset-pretext' => '{{PLURAL:$1||Калі ласка, увядзіце адзін з фрагментаў дадзеных ніжэй}}',
 'passwordreset-username' => 'Імя ўдзельніка',
 'passwordreset-domain' => 'Дамен:',
 'passwordreset-capture' => 'Праглядзець напісаны ліст?',
@@ -718,7 +744,7 @@ $2
 або [{{fullurl:{{FULLPAGENAME}}|action=edit}} папрацаваць з гэтай старонкай]</span>.',
 'noarticletext-nopermission' => 'Старонка не ўтрымлівае тэксту.
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэткую назву]] ў іншых старонках,
-ці <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ў журналах]</span>.',
+ці <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ў журналах]</span>, але вы не маеце дазволу на стварэнне гэтай старонкі.',
 'userpage-userdoesnotexist' => 'Рахунак удзельніка "<nowiki>$1</nowiki>" не зарэгістраваны. Праверце, ці вы жадаеце стварыць або паправіць гэтую старонку.',
 'userpage-userdoesnotexist-view' => 'Уліковы запіс удзельніка " $1 "не зарэгістраваны.',
 'blocked-notice-logextract' => 'Гэты карыстальнік у дадзены момант заблакаваны. 
@@ -739,7 +765,8 @@ $2
 'userinvalidcssjstitle' => "'''Увага:''' Няма вокладкі з назвай \"\$1\". Памятайце, што свае старонкі .css і .js называюцца толькі малымі літарамі, такім чынам, напр., {{ns:user}}:Foo/vector.css, а не {{ns:user}}:Foo/Vector.css.",
 'updated' => '(абноўлена)',
 'note' => "'''Заўвага:'''",
-'previewnote' => "'''Гэта папярэдні паказ; праўкі яшчэ не замацаваныя!'''",
+'previewnote' => "'''Памятайце, гэта папярэдні паказ; праўкі яшчэ не замацаваныя!'''",
+'continue-editing' => 'Працягнуць рэдагаванне',
 'previewconflict' => 'Гэта папярэдні паказ магчымага выніку замацоўвання актуальнага стану крынічнага тэксту ў верхнім тэкставым полі.',
 'session_fail_preview' => "'''Не ўдалося апрацаваць вашую праўку, таму што сервер згубіў звесткі аб вашым сеансе.
 Паспрабуйце, калі ласка, ізноў. Калі і тады не атрымаецца, паспрабуйце [[Special:UserLogout|выйсці з сістэмы]] і зайсці ізноў.'''",
@@ -789,7 +816,6 @@ $2
 'template-protected' => '(ахоўваецца)',
 'template-semiprotected' => '(часткова ахоўвацца)',
 'hiddencategories' => 'Старонка належыць да {{PLURAL:$1|1 схаванай катэгорыі|$1 схаваных катэгорый}}:',
-'nocreatetitle' => 'Стварэнне старонак абмежавана',
 'nocreatetext' => 'На пляцоўцы {{SITENAME}} магчымасці стварэння новых старонак абмежаваныя.
 Вы можаце папрацаваць з існуючай старонкай, або [[Special:UserLogin|увайсці ў сістэму, або завесці сабе рахунак]].',
 'nocreate-loggedin' => 'Вам не дазволена ствараць новых старонак.',
@@ -811,8 +837,17 @@ $2
 Здаецца, што яна была сцёртая.',
 'edit-conflict' => 'Канфлікт правак.',
 'edit-no-change' => 'Вашая праўка была праігнараваная, таму што не мяняўся тэкст.',
+'postedit-confirmation' => 'Вашая праўка была захаваная.',
 'edit-already-exists' => 'Не ўдалося стварыць новую старонку.
 Такая ўжо існуе.',
+'editwarning-warning' => 'Выхад з гэтай старонкі прывядзе да страты правак, якія вы зрабілі. 
+Калі Вы зарэгістраваныя ў сістэме, Вы можаце адключыць гэта папярэджанне ў закладцы "Праца" Вашых настаўленняў.',
+
+# Content models
+'content-model-wikitext' => 'вікі-тэкст',
+'content-model-text' => 'звычайны тэкст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Увага: На старонцы занадта шмат працаёмістых зваротаў да парсера.
@@ -1031,7 +1066,6 @@ $1",
 'searchmenu-legend' => 'Настаўленні пошуку',
 'searchmenu-exists' => "'''На вікі ёсць старонка \"[[:\$1]]\"'''",
 'searchmenu-new' => "'''Стварыць на гэтай вікі старонку \"[[:\$1]]\"'''",
-'searchhelp-url' => 'Help:Змест',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Паказаць старонкі з гэтым прэфіксам]]',
 'searchprofile-articles' => 'Артыкулы',
 'searchprofile-project' => 'Старонкі даведкі і праекта',
@@ -1052,8 +1086,6 @@ $1",
 'search-interwiki-caption' => 'Сумежныя праекты',
 'search-interwiki-default' => 'вынікі з $1:',
 'search-interwiki-more' => '(яшчэ)',
-'search-mwsuggest-enabled' => 'з прапановамі',
-'search-mwsuggest-disabled' => 'без прапановаў',
 'search-relatedarticle' => 'Дачыняюцца*',
 'mwsuggest-disable' => 'Не паказваць прапановаў AJAX',
 'searcheverything-enable' => 'Пошук ва ўсіх прасторах назваў',
@@ -1074,15 +1106,6 @@ $1",
 'powersearch-togglenone' => 'Няма',
 'search-external' => 'Вонкавы пошук',
 'searchdisabled' => 'Функцыя пошуку {{SITENAME}} не працуе. Тымчасова можна шукаць з дапамогай Google. Заўважце, што тамтэйшыя індэксы зместу {{SITENAME}} могуць не быць актуальнымі.',
-
-# Quickbar
-'qbsettings' => 'Хуткая стужка',
-'qbsettings-none' => 'Няма',
-'qbsettings-fixedleft' => 'Прымацавана злева',
-'qbsettings-fixedright' => 'Прымацавана справа',
-'qbsettings-floatingleft' => 'Плавае злева',
-'qbsettings-floatingright' => 'Плавае справа',
-'qbsettings-directionality' => 'Фіксаваная, у залежнасці ад накіравання вашай мовы',
 
 # Preferences page
 'preferences' => 'Настаўленні',
@@ -1125,7 +1148,7 @@ $1",
 'recentchangesdays' => 'За колькі дзён паказваць {{lc:{{:{{ns:mediawiki}}:recentchanges/be}}}}:',
 'recentchangesdays-max' => '(найбольш $1 {{PLURAL:$1|дзень|дзён}})',
 'recentchangescount' => 'Прадвызначаная колькасць правак дзеля паказу:',
-'prefs-help-recentchangescount' => 'Гэта ўключае ў сябе нядаўнія змяненні, гісторыі старонак, журналы.',
+'prefs-help-recentchangescount' => 'Гэта ўключае ў сябе апошнія змены, гісторыі старонак, журналы.',
 'prefs-help-watchlist-token' => 'Упісанне сакрэтнага ключа ў гэтае поле створыць RSS-струмень з вашага спісу назіранага. 
 Кожны, каму вядомы гэты ключ, зможа чытаць ваш спіс назіранага, таму выбірайце бяспечныя ключы. 
 Вось аўта-згенераваны ключ, які можна выкарыстаць: $1',
@@ -1198,7 +1221,7 @@ $1",
 'prefs-displaywatchlist' => 'Паказ',
 'prefs-diffs' => 'Розніцы',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "Адрас электроннай пошты з'яўляецца сапраўдным",
 'email-address-validity-invalid' => 'Увядзіце слушны адрас электроннай пошты',
 
@@ -1309,12 +1332,13 @@ $1",
 'right-sendemail' => 'Адправіць па электроннай пошце іншым карыстальнікам',
 'right-passwordreset' => 'прагляд электронных лістоў са змяненнем пароля',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Журнал рэгістрацыі ўдзельнікаў',
+'newuserlogpagetext' => 'Гэта журнал рэгістрацыі новых удзельнікаў.',
+
 # User rights log
 'rightslog' => 'Журнал правоў удзельнікаў',
 'rightslogtext' => 'Журнал змяненняў у дазволах, прыпісаных удзельнікам.',
-'rightslogentry' => 'зменена групавая прыналежнасць $1 з $2 на $3',
-'rightslogentry-autopromote' => 'быў аўтаматычна перакладзены з $2 да $3',
-'rightsnone' => '(няма)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'чытаць гэтую старонку',
@@ -1354,8 +1378,8 @@ $1",
 'action-sendemail' => 'адпраўка электронных пісем',
 
 # Recent changes
-'nchanges' => '$1 {{PLURAL:$1|мена|менаў}}',
-'recentchanges' => 'Нядаўнія змяненні',
+'nchanges' => '$1 {{PLURAL:$1|змена|змены|зменаў}}',
+'recentchanges' => 'Апошнія змены',
 'recentchanges-legend' => 'Магчымасці паказу',
 'recentchanges-summary' => 'Гэта апошнія мены на пляцоўцы {{SITENAME}}.',
 'recentchanges-feed-description' => 'Сачыць за найбольш актуальнымі змяненнямі ў віксе праз гэты струмень навін.',
@@ -1371,7 +1395,7 @@ $1",
 'rcshowhideliu' => '$1 пазнаных удзельнікаў',
 'rcshowhideanons' => '$1 ананімных удзельнікаў',
 'rcshowhidepatr' => '$1 ухваленых правак',
-'rcshowhidemine' => '$1 уласных правак',
+'rcshowhidemine' => '$1 ўласных правак',
 'rclinks' => 'Паказаць апошнія $1 зменаў за мінулыя $2 дзён<br />$3',
 'diff' => 'розн.',
 'hist' => 'гіст.',
@@ -1515,9 +1539,9 @@ $1',
 'upload-proto-error' => 'Няправільны пратакол',
 'upload-proto-error-text' => 'Укладанне файла зводдаль патрабуе URL, які пачынаецца з <code>http://</code> або <code>ftp://</code>.',
 'upload-file-error' => 'Унутраная памылка',
-'upload-file-error-text' => 'Унутраная памылка пры спробе стварыць на серверы тымчасовы файл. Звярніцеся да аднаго з [[Special:ListUsers/sysop|сістэмных адміністратараў]].',
+'upload-file-error-text' => 'Унутраная памылка пры спробе стварыць на серверы тымчасовы файл. Звярніцеся да аднаго з [[Special:ListUsers/sysop|адміністратараў]].',
 'upload-misc-error' => 'Нявызначаная памылка пры ўкладанні',
-'upload-misc-error-text' => 'Нявызначаная памылка пры ўкладанні. Праверце правільнасць і даступнасць URL і паспрабуйце ізноў. Калі праблема трывалая, звярніцеся да аднаго з [[Special:ListUsers/sysop|сістэмных адміністратараў]].',
+'upload-misc-error-text' => 'Нявызначаная памылка пры ўкладанні. Праверце правільнасць і даступнасць URL і паспрабуйце ізноў. Калі праблема трывалая, звярніцеся да аднаго з [[Special:ListUsers/sysop|адміністратараў]].',
 'upload-too-many-redirects' => 'Занадта шмат перасылак за гэтым адрасам (URL)',
 'upload-unknown-size' => 'Невядомы памер',
 'upload-http-error' => 'Памылка HTTP: $1',
@@ -1599,7 +1623,6 @@ $1',
 'http-read-error' => 'Памылка чытання HTTP',
 'http-timed-out' => 'Мінуў час чакання HTTP-запыту.',
 'http-curl-error' => 'Памылка звароту да URL: $1',
-'http-host-unreachable' => 'Не ўдалося адкрыць URL',
 'http-bad-status' => 'Пад час апрацоўкі HTTP-запыту выяўлена праблема: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1909,10 +1932,6 @@ $1',
 'activeusers-hidesysops' => 'Без адміністратараў',
 'activeusers-noresult' => 'Няма такіх удзельнікаў.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Журнал рэгістрацыі ўдзельнікаў',
-'newuserlogpagetext' => 'Гэта журнал рэгістрацыі новых удзельнікаў.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Дазволы для груп удзельнікаў',
 'listgrouprights-summary' => 'Гэты пералік вызначаных у гэтай вікі груп удзельнікаў, разам з прыпісанымі ім дазволамі.
@@ -1932,10 +1951,11 @@ $1',
 'listgrouprights-addgroup-self-all' => 'Дадаць усе групы да свайго акаунта',
 'listgrouprights-removegroup-self-all' => 'Выдаліць усе групы са свайго акаунта',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Няма эл.адрасу',
 'mailnologintext' => 'Трэба [[Special:UserLogin|ўвайсці ў сістэму]] і мець пацверджаны адрас эл.пошты ў сваіх [[Special:Preferences|настáўленнях]], каб слаць эл.пошту іншым удзельнікам.',
 'emailuser' => 'Эл.пошта ўдзельніка',
+'emailuser-title-notarget' => 'Напісанне электроннага ліста ўдзельніку',
 'emailpage' => 'Зварот да ўдзельніка праз эл.пошту',
 'emailpagetext' => 'Тут можна выслаць эл.пошту гэтаму ўдзельніку.
 Адрас эл.пошты, уведзены вамі ў [[Special:Preferences|сваіх настаўленнях]], з\'явіцца ў полі "From" вашага ліста, і атрымальнік зможа адказаць на ваш ліст.',
@@ -1969,7 +1989,7 @@ $1',
 
 # Watchlist
 'watchlist' => 'Мой спіс назіранага',
-'mywatchlist' => 'Назіранае',
+'mywatchlist' => 'Спіс назіранага',
 'watchlistfor2' => 'Для $1 $2',
 'nowatchlist' => 'Ваш спіс назіранага зараз пусты.',
 'watchlistanontext' => 'Каб бачыць або правіць складнікі назіранага, трэба $1.',
@@ -1990,8 +2010,8 @@ $1',
 'notvisiblerev' => 'Версія сцёртая',
 'watchnochange' => 'Ніводзін з назіраных складнікаў не быў зменены за паказаны перыяд.',
 'watchlist-details' => 'Назіраю {{PLURAL:$1|$1 старонку|$1 старонак}} без уліку размоўных.',
-'wlheader-enotif' => '* Працуе апавяшчанне праз эл.пошту.',
-'wlheader-showupdated' => "* Старонкі, якія былі зменены пасля вашага апошняга іх наведвання, паказаны '''абрысам шрыфту'''.",
+'wlheader-enotif' => 'Працуе апавяшчанне праз эл.пошту.',
+'wlheader-showupdated' => "Старонкі, якія былі зменены пасля вашага апошняга іх наведвання, паказаны '''абрысам шрыфту'''.",
 'watchmethod-recent' => 'правяраем нядаўнія праўкі ў назіраных старонках',
 'watchmethod-list' => 'правяраем наяўнасць нядаўніх правак ў назіраных старонках',
 'watchlistcontains' => 'У вашым спісе назіранага $1 {{PLURAL:$1|старонка|старонак}}.',
@@ -2007,11 +2027,7 @@ $1',
 
 'enotif_mailer' => 'Апавяшчальнік {{SITENAME}}',
 'enotif_reset' => 'Пазначыць усе старонкі як наведаныя',
-'enotif_newpagetext' => 'Гэта новая старонка.',
 'enotif_impersonal_salutation' => 'Шаноўны ўдзельнік {{SITENAME}}',
-'changed' => 'зменена',
-'created' => 'створана',
-'enotif_subject' => 'Старонка {{SITENAME}} з назвай $PAGETITLE была $CHANGEDORCREATED удзельнікам $PAGEEDITOR',
 'enotif_lastvisited' => 'Гл. $1 каб бачыць усе мены пасля вашага апошняга наведвання.',
 'enotif_lastdiff' => 'Гл. $1 каб бачыць гэтую мену.',
 'enotif_anon_editor' => 'ананімны ўдзельнік $1',
@@ -2044,6 +2060,8 @@ $UNWATCHURL
 
 Зваротная сувязь і дапамога
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'створана',
+'changed' => 'зменена',
 
 # Delete
 'deletepage' => 'Сцерці старонку',
@@ -2221,7 +2239,7 @@ $1',
 'contributions-title' => 'Уклад удзельніка $1',
 'mycontris' => 'Уклад',
 'contribsub2' => 'Для $1 ($2)',
-'nocontribs' => 'Не знойдзена менаў, адпаведных зададзеным параметрам.',
+'nocontribs' => 'Не знойдзена зменаў, адпаведных зададзеным параметрам.',
 'uctop' => '(апошн.)',
 'month' => 'Ад месяцу (і раней):',
 'year' => 'Ад году (і раней):',
@@ -2229,7 +2247,7 @@ $1',
 'sp-contributions-newbies' => 'Паказваць толькі ўклады з новых рахункаў',
 'sp-contributions-newbies-sub' => 'З новых рахункаў',
 'sp-contributions-newbies-title' => 'Уклады ўдзельнікаў з новых рахункаў',
-'sp-contributions-blocklog' => 'Журнал забаронаў',
+'sp-contributions-blocklog' => 'блакіроўкі',
 'sp-contributions-deleted' => 'сцёрты ўклад удзельніка',
 'sp-contributions-uploads' => 'Загрузкі',
 'sp-contributions-logs' => 'журналы',
@@ -2605,7 +2623,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-тэсты',
-'javascripttest-disabled' => 'Гэта функцыя выключаная.',
 'javascripttest-title' => 'Праводзіцца тэставанне $1',
 'javascripttest-pagetext-noframework' => 'Гэта старонка зарэзервавана для запуску тэстаў JavaScript',
 'javascripttest-pagetext-unknownframework' => 'Невядомая бібліятэка тэставання «$1».',
@@ -2716,20 +2733,20 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Інфармацыя для "$1"',
-'pageinfo-header-edits' => 'Змены',
+'pageinfo-header-basic' => 'Агульныя звесткі',
+'pageinfo-header-edits' => 'Гісторыя правак',
+'pageinfo-robot-index' => 'Індэксуюцца',
+'pageinfo-robot-noindex' => 'Не індэксуюцца',
 'pageinfo-views' => 'Колькасць праглядаў',
 'pageinfo-watchers' => 'Колькасць назіральнікаў',
-'pageinfo-edits' => 'Колькасць правак:',
-'pageinfo-authors' => 'Колькасць розных аўтараў',
+'pageinfo-lastuser' => 'Апошні рэдактар',
+'pageinfo-lasttime' => 'Дата апошняй праўкі',
+'pageinfo-edits' => 'Агульная колькасць правак',
+'pageinfo-authors' => 'Агульная колькасць розных аўтараў',
 
 # Skin names
-'skinname-standard' => 'Класіка',
-'skinname-nostalgia' => 'Настальгія',
 'skinname-cologneblue' => 'Сіні Кёльн',
 'skinname-monobook' => 'Манабук',
-'skinname-myskin' => 'Майскін',
-'skinname-chick' => 'Чык',
-'skinname-simple' => 'Проста',
 'skinname-modern' => 'Сучаснасць',
 
 # Patrolling
@@ -2829,7 +2846,7 @@ $1',
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Шырыня',
 'exif-imagelength' => 'Вышыня',
 'exif-bitspersample' => 'Бітаў на кампанент',
@@ -3008,7 +3025,7 @@ $1',
 'exif-originalimageheight' => 'Вышыня малюнка да кадравання',
 'exif-originalimagewidth' => 'Шырыня малюнка да кадравання',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Нясціснута',
 'exif-compression-2' => 'CCITT Group 3, 1-мерная мадыфікацыя кадзіравання даўжынь серый Хафмана',
 'exif-compression-3' => 'CCITT Group 3, факсавае кадзіраванне',
@@ -3229,7 +3246,7 @@ $1',
 'monthsall' => 'усе',
 'limitall' => 'усе',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Пацвердзіць адрас эл.пошты',
 'confirmemail_noemail' => 'У [[Special:Preferences|вашых настаўленнях]] няма дапушчальнага адрасу эл.пошты.',
 'confirmemail_text' => 'На пляцоўцы {{SITENAME}} патрабуецца праверка адрасу эл.пошты перад тым, як карыстацца магчымасцямі эл.пошты. Націсніце кнопку, што ніжэй, каб адаслаць сабе пацвярджальны ліст. У лісце будзе спасылка на спецыяльную пацвярджальную старонку, якую трэба будзе адкрыць у браўзеры, каб пацвердзіць правільнасць свайго адрасу эл.пошты.',
@@ -3401,13 +3418,8 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'version-software' => 'Устаноўленыя праграмныя прадукты',
 'version-software-product' => 'Прадукт',
 'version-software-version' => 'Версія',
-
-# Special:FilePath
-'filepath' => 'Шлях да файла',
-'filepath-page' => 'Файл:',
-'filepath-submit' => 'Пуск',
-'filepath-summary' => 'Гэтая адмысловая старонка вяртае поўны шлях да файла.
-Выявы паказваюцца ў поўным памеры, іншыя тыпы файлаў адкрываюцца ў прыпісаных да іх праграмах.',
+'version-entrypoints-header-entrypoint' => 'Кропка ўваходу',
+'version-entrypoints-header-url' => 'URL',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Пошук дублікатных файлаў',
@@ -3429,7 +3441,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'specialpages-group-maintenance' => 'Звесткі аб працы',
 'specialpages-group-other' => 'Іншыя адмысловыя старонкі',
 'specialpages-group-login' => 'Прадстаўленне / рэгістрацыя',
-'specialpages-group-changes' => 'Нядаўнія змяненні і журналы',
+'specialpages-group-changes' => 'Апошнія змены і журналы',
 'specialpages-group-media' => 'Укладзеныя файлы і звесткі пра іх',
 'specialpages-group-users' => 'Удзельнікі і дазволы',
 'specialpages-group-highuse' => 'Старонкі частага карыстання',
@@ -3464,7 +3476,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'tags-description-header' => 'Поўнае апісанне значэння',
 'tags-hitcount-header' => 'Пазначаных правак',
 'tags-edit' => 'правіць',
-'tags-hitcount' => '$1 {{PLURAL:$1|мена|менаў}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|змена|змены|зменаў}}',
 
 # Special:ComparePages
 'comparepages' => 'Параўнанне старонак',
@@ -3533,7 +3545,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'logentry-newusers-create' => '$1 стварыў уліковы запіс удзельніка',
 'logentry-newusers-create2' => '$1 стварыў уліковы запіс удзельніка $3',
 'logentry-newusers-autocreate' => 'Аўтаматычна створаны ўліковы запіс $1',
-'newuserlog-byemail' => 'пароль адасланы эл.поштай',
+'rightsnone' => '(няма)',
 
 # Feedback
 'feedback-bugornote' => 'Калі вы гатовыя падрабязна апісаць тэхнічную праблему, калі ласка, [$1 паведаміце пра памылку].
@@ -3550,6 +3562,10 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'feedback-close' => 'Зроблена.',
 'feedback-bugcheck' => 'Выдатна! Толькі праверце, што ў спісе [$1 вядомых памылак] яе няма падобнага запісу.',
 'feedback-bugnew' => 'Я праверыў. Паведаміць пра новую памылку',
+
+# Search suggestions
+'searchsuggest-search' => 'Знайсці',
+'searchsuggest-containing' => 'змяшчае...',
 
 # API errors
 'api-error-badaccess-groups' => 'У Вас няма дазволу загружаць файлы ў гэтую вікі.',

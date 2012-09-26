@@ -21,7 +21,6 @@
  * @ingroup Database
  */
 
-
 /**
  * A multi-wiki, multi-master factory for Wikimedia and similar installations.
  * Ignores the old configuration globals
@@ -70,6 +69,7 @@ class LBFactory_Multi extends LBFactory {
 
 	/**
 	 * @param $conf array
+	 * @throws MWException
 	 */
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
@@ -82,7 +82,7 @@ class LBFactory_Multi extends LBFactory {
 
 		foreach ( $required as $key ) {
 			if ( !isset( $conf[$key] ) ) {
-				throw new MWException( __CLASS__.": $key is required in configuration" );
+				throw new MWException( __CLASS__ . ": $key is required in configuration" );
 			}
 			$this->$key = $conf[$key];
 		}
@@ -145,21 +145,22 @@ class LBFactory_Multi extends LBFactory {
 		$section = $this->getSectionForWiki( $wiki );
 		if ( !isset( $this->mainLBs[$section] ) ) {
 			$lb = $this->newMainLB( $wiki, $section );
-			$this->chronProt->initLB( $lb );
 			$lb->parentInfo( array( 'id' => "main-$section" ) );
+			$this->chronProt->initLB( $lb );
 			$this->mainLBs[$section] = $lb;
 		}
 		return $this->mainLBs[$section];
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki
+	 * @param string $cluster
+	 * @param bool $wiki
+	 * @throws MWException
 	 * @return LoadBalancer
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {
 		if ( !isset( $this->externalLoads[$cluster] ) ) {
-			throw new MWException( __METHOD__.": Unknown cluster \"$cluster\"" );
+			throw new MWException( __METHOD__ . ": Unknown cluster \"$cluster\"" );
 		}
 		$template = $this->serverTemplate;
 		if ( isset( $this->externalTemplateOverrides ) ) {
@@ -180,6 +181,7 @@ class LBFactory_Multi extends LBFactory {
 		if ( !isset( $this->extLBs[$cluster] ) ) {
 			$this->extLBs[$cluster] = $this->newExternalLB( $cluster, $wiki );
 			$this->extLBs[$cluster]->parentInfo( array( 'id' => "ext-$cluster" ) );
+			$this->chronProt->initLB( $this->extLBs[$cluster] );
 		}
 		return $this->extLBs[$cluster];
 	}
@@ -294,6 +296,9 @@ class LBFactory_Multi extends LBFactory {
 	function shutdown() {
 		foreach ( $this->mainLBs as $lb ) {
 			$this->chronProt->shutdownLB( $lb );
+		}
+		foreach ( $this->extLBs as $extLB ) {
+			$this->chronProt->shutdownLB( $extLB );
 		}
 		$this->chronProt->shutdown();
 		$this->commitMasterChanges();

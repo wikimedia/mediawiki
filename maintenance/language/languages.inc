@@ -43,10 +43,10 @@ class languages {
 	 * Load the list of languages: all the Messages*.php
 	 * files in the languages directory.
 	 *
-	 * @param $exif bool Treat the EXIF messages?
+	 * @param $exif bool Treat the Exif messages?
 	 */
 	function __construct( $exif = true ) {
-		require( __DIR__ . '/messageTypes.inc' );
+		require __DIR__ . '/messageTypes.inc';
 		$this->mIgnoredMessages = $wgIgnoredMessages;
 		if ( $exif ) {
 			$this->mOptionalMessages = array_merge( $wgOptionalMessages );
@@ -107,7 +107,7 @@ class languages {
 		$this->mSpecialPageAliases[$code] = array();
 		$filename = Language::getMessagesFileName( $code );
 		if ( file_exists( $filename ) ) {
-			require( $filename );
+			require $filename;
 			if ( isset( $messages ) ) {
 				$this->mRawMessages[$code] = $messages;
 			}
@@ -154,7 +154,7 @@ class languages {
 			if ( isset( $this->mGeneralMessages['required'][$key] ) ) {
 				$this->mMessages[$code]['required'][$key] = $value;
 				$this->mMessages[$code]['translated'][$key] = $value;
-			} else if ( isset( $this->mGeneralMessages['optional'][$key] ) ) {
+			} elseif ( isset( $this->mGeneralMessages['optional'][$key] ) ) {
 				$this->mMessages[$code]['optional'][$key] = $value;
 				$this->mMessages[$code]['translated'][$key] = $value;
 			} else {
@@ -184,7 +184,7 @@ class languages {
 		foreach ( $this->mGeneralMessages['all'] as $key => $value ) {
 			if ( in_array( $key, $this->mIgnoredMessages ) ) {
 				$this->mGeneralMessages['ignored'][$key] = $value;
-			} else if ( in_array( $key, $this->mOptionalMessages ) ) {
+			} elseif ( in_array( $key, $this->mOptionalMessages ) ) {
 				$this->mGeneralMessages['optional'][$key] = $value;
 				$this->mGeneralMessages['translatable'][$key] = $value;
 			} else {
@@ -466,11 +466,11 @@ class languages {
 			'[POP]' => "\xE2\x80\xAC",
 			'[LRO]' => "\xE2\x80\xAD",
 			'[RLO]' => "\xE2\x80\xAB",
-			'[ZWSP]'=> "\xE2\x80\x8B",
-			'[NBSP]'=> "\xC2\xA0",
-			'[WJ]'  => "\xE2\x81\xA0",
+			'[ZWSP]' => "\xE2\x80\x8B",
+			'[NBSP]' => "\xC2\xA0",
+			'[WJ]' => "\xE2\x81\xA0",
 			'[BOM]' => "\xEF\xBB\xBF",
-			'[FFFD]'=> "\xEF\xBF\xBD",
+			'[FFFD]' => "\xEF\xBF\xBD",
 		);
 		$wrongRegExp = '/(' . implode( '|', array_values( $wrongChars ) ) . ')/sDu';
 		$wrongCharsMessages = array();
@@ -500,15 +500,15 @@ class languages {
 		foreach ( $this->mMessages[$code]['translated'] as $key => $value ) {
 			$matches = array();
 			preg_match_all( "/\[\[([{$tc}]+)(?:\\|(.+?))?]]/sDu", $value, $matches );
-			for ($i = 0; $i < count($matches[0]); $i++ ) {
-				if ( preg_match( "/.*project.*/isDu",  $matches[1][$i] ) ) {
+			for ( $i = 0; $i < count( $matches[0] ); $i++ ) {
+				if ( preg_match( "/.*project.*/isDu", $matches[1][$i] ) ) {
 					$messages[$key][] = $matches[0][$i];
 				}
 			}
 
 
 			if ( isset( $messages[$key] ) ) {
-				$messages[$key] = implode( $messages[$key],", " );
+				$messages[$key] = implode( $messages[$key], ", " );
 			}
 		}
 		return $messages;
@@ -563,7 +563,9 @@ class languages {
 		$this->loadFile( 'en' );
 		$this->loadFile( $code );
 		$namespacesDiff = array_diff_key( $this->mNamespaceNames['en'], $this->mNamespaceNames[$code] );
-		if ( isset( $namespacesDiff[NS_MAIN] ) ) unset( $namespacesDiff[NS_MAIN] );
+		if ( isset( $namespacesDiff[NS_MAIN] ) ) {
+			unset( $namespacesDiff[NS_MAIN] );
+		}
 		return $namespacesDiff;
 	}
 
@@ -579,16 +581,16 @@ class languages {
 		$namespaces = array();
 
 		# Check default namespace name
-		if( isset( $this->mNamespaceNames[$code][NS_PROJECT_TALK] ) ) {
+		if ( isset( $this->mNamespaceNames[$code][NS_PROJECT_TALK] ) ) {
 			$default = $this->mNamespaceNames[$code][NS_PROJECT_TALK];
-			if ( strpos( $default, '$1' ) === FALSE ) {
+			if ( strpos( $default, '$1' ) === false ) {
 				$namespaces[$default] = 'default';
 			}
 		}
 
 		# Check namespace aliases
-		foreach( $this->mNamespaceAliases[$code] as $key => $value ) {
-			if ( $value == NS_PROJECT_TALK && strpos( $key, '$1' ) === FALSE ) {
+		foreach ( $this->mNamespaceAliases[$code] as $key => $value ) {
+			if ( $value == NS_PROJECT_TALK && strpos( $key, '$1' ) === false ) {
 				$namespaces[$key] = '';
 			}
 		}
@@ -739,9 +741,8 @@ class extensionLanguages extends languages {
 	function __construct( MessageGroup $group ) {
 		$this->mMessageGroup = $group;
 
-		$bools = $this->mMessageGroup->getBools();
-		$this->mIgnoredMessages = $bools['ignored'];
-		$this->mOptionalMessages = $bools['optional'];
+		$this->mIgnoredMessages = $this->mMessageGroup->getIgnored();
+		$this->mOptionalMessages = $this->mMessageGroup->getOptional();
 	}
 
 	/**
@@ -759,9 +760,9 @@ class extensionLanguages extends languages {
 	 * @param $code string The language code.
 	 */
 	protected function loadFile( $code ) {
-		if( !isset( $this->mRawMessages[$code] ) ) {
+		if ( !isset( $this->mRawMessages[$code] ) ) {
 			$this->mRawMessages[$code] = $this->mMessageGroup->load( $code );
-			if( empty( $this->mRawMessages[$code] ) ) {
+			if ( empty( $this->mRawMessages[$code] ) ) {
 				$this->mRawMessages[$code] = array();
 			}
 		}

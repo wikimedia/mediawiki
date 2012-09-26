@@ -49,8 +49,6 @@ $messages = array(
 'tog-shownumberswatching' => "Muestral el númeru d'usuárius que la vehilan",
 'tog-oldsig' => 'Firma dessistenti:',
 'tog-fancysig' => 'Tratal la firma cumu testu wiki (sin atiju automáticu)',
-'tog-externaleditor' => 'Gastal eitol esternu pol defeutu (solu pa sabihondus, es mestel una configuración especial nel ordinaol)',
-'tog-externaldiff' => 'Gastal def esternu pol defeutu (solu pa sabihondus, es mestel una configuración especial nel ordinaol)',
 'tog-showjumplinks' => 'Premitil los atihus d\'acesibiliá "sartal a"',
 'tog-uselivepreview' => 'Gastal "live preview" (JavaScript) (en prebas)',
 'tog-forceeditsummary' => 'Avisalmi cuandu nu escreba una síntesis dun chambu',
@@ -153,7 +151,6 @@ $messages = array(
 'qbbrowse' => 'Escrucal',
 'qbedit' => 'Eital',
 'qbpageoptions' => 'Esta páhina',
-'qbpageinfo' => 'Contestu',
 'qbmyoptions' => 'Las mis páhinas',
 'qbspecialpages' => 'Páhinas especialis',
 'faq' => 'FAQ',
@@ -239,7 +236,6 @@ $messages = array(
 'disclaimers' => 'Avissu legal',
 'disclaimerpage' => 'Project:Arrayu heneral de responsabiliá',
 'edithelp' => "Ayua d'eición",
-'edithelppage' => 'Help:Eitandu',
 'helppage' => 'Help:Continius',
 'mainpage' => 'Página prencipal',
 'mainpage-description' => 'Páhina prencipal',
@@ -377,12 +373,8 @@ La razón es la siguienti: ''$2''.",
 
 # Login and logout pages
 'logouttext' => "'''Cuenta afechá corretamenti.'''<br />
-Pueis acontinal gastandu {{SITENAME}} de holma anónima, u [[Special:UserLogin|entral ena tu cuenta]] con el mesmu ussuáriu, u con otru.
+Pueis acontinal gastandu {{SITENAME}} de holma anónima, u <span class='plainlinks'>[$1 entral ena tu cuenta]</span> con el mesmu ussuáriu, u con otru.
 Dati cuenta que hata que nu esborris el caché del tu escrucaol pué paecel que la tu cuenta acontina abierta n'angunas páginas.",
-'welcomecreation' => "== Bienviniu, $1! ==
-
-La tu cuenta d'ussuáriu á siu criá.
-Alcuerdati de chambal las tus [[Special:Preferences|preferéncias de {{SITENAME}}]].",
 'yourname' => "Nombri d'usuáriu:",
 'yourpassword' => 'Consínia:',
 'yourpasswordagain' => 'Escrebi e nuevu la consínia:',
@@ -616,7 +608,6 @@ Embaju se muestra el rustriju d'acessu cumu referéncia:",
 'template-semiprotected' => '(abati-protehiu)',
 'hiddencategories' => 'Esta páhina preteneci a {{PLURAL:$1|1 categoria açonchá|$1 categorias açonchás}}:',
 'edittools' => '<!-- Esti testu apaicirá embahu los hormulárius d´eición i empuntu. -->',
-'nocreatetitle' => 'Criaeru e páhinas enlimitau',
 'nocreatetext' => 'Nu se premiti crial páhinas nuevas a usuárius anónimus.
 Pueis gorvel i eital anguna páhina ya desistenti, u [[Special:UserLogin|rustrilti]].',
 'nocreate-loggedin' => 'Nu tiés premissu pa crial nuevas páginas.',
@@ -774,7 +765,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'viewprevnext' => 'Vel ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend' => 'Ocionis de landeu',
 'searchmenu-new' => "'''Crial el artículu \"[[:\$1]]\"'''",
-'searchhelp-url' => 'Help:Continius',
 'searchprofile-images' => 'Murtimeya',
 'searchprofile-everything' => 'Tó',
 'searchprofile-advanced' => 'Avançau',
@@ -790,8 +780,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'search-interwiki-caption' => 'Proyeutus helmanus',
 'search-interwiki-default' => '$1 resurtaus:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'muestral sugeréncias',
-'search-mwsuggest-disabled' => 'nu muestral sugeréncias',
 'searchrelated' => 'relacionau',
 'searchall' => 'tó',
 'showingresults' => "Embahu se {{PLURAL:$1|muestra '''1''' resurtau qu'esmiença|muestran hata '''$1''' resurtaus qu'esmiençan}} pol #'''$2'''.",
@@ -804,14 +792,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'powersearch-field' => 'Landeal',
 'search-external' => 'Landeu estelnu',
 'searchdisabled' => 'Los landeus en {{SITENAME}} están temporalmenti desativaus. Mentris tantu, pueis landeal meyanti landerus esternus, inque ten en cuenta que los sus éndicis concernientis a {{SITENAME}} puein nu estal atualizaus.',
-
-# Quickbar
-'qbsettings' => 'Preferéncias la "Quickbar"',
-'qbsettings-none' => 'Dengunu',
-'qbsettings-fixedleft' => 'Asiahau a la gocha',
-'qbsettings-fixedright' => 'Asiahau a la derecha',
-'qbsettings-floatingleft' => 'Frotanti ena gocha',
-'qbsettings-floatingright' => 'Frotanti ena derecha',
 
 # Preferences page
 'preferences' => 'Preferéncias',
@@ -956,11 +936,12 @@ Amás premiti qu'otrus ussuárius contatin contigu pol mé la tu página d'ussu�
 'right-userrights' => 'Eital los derechus de tolos usuárius',
 'right-siteadmin' => 'Atarugal i desatarugal la basi e datus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rustrihu de nuevus usuárius',
+
 # User rights log
 'rightslog' => 'Rustrihu e derechus de los usuárius',
 'rightslogtext' => 'Esti es un rustrihu e chambus enus derechus los usuárius.',
-'rightslogentry' => 'chambó el grupu al que preteneci $1: de $2 a $3',
-'rightsnone' => '(dengunu)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leyel esta página',
@@ -1347,9 +1328,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'Muestral',
 'listusers-noresult' => 'Nu s´alcuentró dengún usuáriu.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Rustrihu de nuevus usuárius',
-
 # Special:ListGroupRights
 'listgrouprights' => "Derechus del grupu d'usuárius",
 'listgrouprights-group' => 'Grupu',
@@ -1361,7 +1339,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-addgroup-all' => 'Añiil tolos grupus',
 'listgrouprights-removegroup-all' => 'Esborral tolos grupus',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Nu envial direción',
 'mailnologintext' => 'Ebis estal [[Special:UserLogin|rutrau]]
 i tenel una direción d´email correta enas tus [[Special:Preferences|preferéncias]]
@@ -1408,8 +1386,8 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'notvisiblerev' => 'La revisión á siu esborrá',
 'watchnochange' => 'Nu s´eitó denguna e las tus páhinas vehilás nel períu lihiu.',
 'watchlist-details' => '{{PLURAL:$1|$1 artículu|$1 artículus}} vehilaus (sin contal las carabas).',
-'wlheader-enotif' => '* Se premitin notificacionis pol email.',
-'wlheader-showupdated' => "* Las páhinas que s'án emburacau dendi la úrtima vezi que las visoreasti son muestrás en '''negrina'''",
+'wlheader-enotif' => 'Se premitin notificacionis pol email.',
+'wlheader-showupdated' => "Las páhinas que s'án emburacau dendi la úrtima vezi que las visoreasti son muestrás en '''negrina'''",
 'watchmethod-recent' => 'comprebandu las úrtimas eicionis en páhinas vehilás',
 'watchmethod-list' => 'Revisandu las páhinas vehilás en cata los úrtimus chambus',
 'watchlistcontains' => 'Ai $1 {{PLURAL:$1|páhina|páhinas}} ena tu lista e seguimientu.',
@@ -1424,11 +1402,7 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 
 'enotif_mailer' => 'Notificaeru pol correu e {{SITENAME}}',
 'enotif_reset' => 'Aseñalal tolas páhinas vesitás',
-'enotif_newpagetext' => 'Esta páhina es nueva.',
 'enotif_impersonal_salutation' => 'usuáriu e {{SITENAME}}',
-'changed' => 'chambau',
-'created' => 'criá',
-'enotif_subject' => '{{SITENAME}}: la páhina $PAGETITLE á siu $CHANGEDORCREATED pol $PAGEEDITOR',
 'enotif_lastvisited' => 'Vai pa $1 pa visoreal tolos chambus hechus dendi la tu úrtima vesita.',
 'enotif_lastdiff' => 'Vai pa $1 pa visoreal esti chambu.',
 'enotif_anon_editor' => 'usuáriu anónimu $1',
@@ -1455,6 +1429,8 @@ Pa hazel chambus ena tu lista e seguimientu, vesita
 
 Ayua la Güiquipeya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'criá',
+'changed' => 'chambau',
 
 # Delete
 'deletepage' => 'Esborral páhina',
@@ -2021,7 +1997,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Anchón',
 'exif-imagelength' => 'Artura',
 'exif-bitspersample' => 'Bits pol componenti',
@@ -2105,7 +2081,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'exif-gpsdatestamp' => 'Fecha el GPS',
 'exif-gpsdifferential' => 'Correción diferencial de GPS',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Descomprimiu',
 
 'exif-unknowndate' => 'Fecha andarria',
@@ -2234,7 +2210,7 @@ Cualisquiel otru atihu ena mesma línia se consierará ececión, p.s. páhinas o
 'namespacesall' => 'tó',
 'monthsall' => 'tó',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmal email',
 'confirmemail_noemail' => 'Nu as escrebiu una direción d´email correta enas tus [[Special:Preferences|preferéncias]].',
 'confirmemail_text' => "{{SITENAME}} requieri que confirmis la tu direción d'email enantis de gastal las huncionis de correu. Ativa el botón d'embahu pa envial un correu e confirmación a la tu direción. El correu incluirá un atihu con un cóigu; sigui el atihu pa confirmal la tu direción d'email.",
@@ -2376,13 +2352,6 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'version-software-product' => 'Proutu',
 'version-software-version' => 'Velsión',
 
-# Special:FilePath
-'filepath' => "Ruta d'archivu",
-'filepath-page' => 'Archivu:',
-'filepath-submit' => 'Ruta',
-'filepath-summary' => "Esta páhina especial degüervi la ruta compreta dun archivu.
-Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehecutan diretamenti con el su pograma asociau.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Landeal archivus dupricaus',
 'fileduplicatesearch-legend' => 'Landeal dupricaus',
@@ -2416,6 +2385,6 @@ Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehec
 # New logging system
 'revdelete-restricted' => 'las restricionis a los çahorilis án siu apricás',
 'revdelete-unrestricted' => 'las restricionis a los çahorilis án siu esborrás',
-'newuserlog-byemail' => 'consínia enviá pol e-mail',
+'rightsnone' => '(dengunu)',
 
 );

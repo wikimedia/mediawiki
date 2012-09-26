@@ -1,6 +1,10 @@
-/*
-** MediaWiki style sheet for common core styles on interfaces
-*/
+/**
+ * MediaWiki style sheet for common core styles on interfaces
+ *
+ * Styles for the Monobook/Vector pattern of laying out common interfaces.
+ * These ids/classes are not built into the system,
+ * they are outputted by the actual MonoBook/Vector code by convention.
+ */
 
 /* Categories */
 .catlinks {

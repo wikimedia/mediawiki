@@ -25,7 +25,7 @@
  */
 
 /**
- * A query module to list all langlinks (links to correspanding foreign language pages).
+ * A query module to list all langlinks (links to corresponding foreign language pages).
  *
  * @ingroup API
  */
@@ -56,10 +56,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$this->addWhereFld( 'll_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
 		if ( !is_null( $params['continue'] ) ) {
 			$cont = explode( '|', $params['continue'] );
-			if ( count( $cont ) != 2 ) {
-				$this->dieUsage( 'Invalid continue param. You should pass the ' .
-					'original value returned by the previous query', '_badcontinue' );
-			}
+			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$op = $params['dir'] == 'descending' ? '<' : '>';
 			$llfrom = intval( $cont[0] );
 			$lllang = $this->getDB()->addQuotes( $cont[1] );
@@ -70,18 +67,19 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
-			$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
-			if ( isset( $params['lang'] ) ) {
+		//FIXME: (follow-up) To allow extensions to add to the language links, we need
+		//       to load them all, add the extra links, then apply paging.
+		//       Should not be terrible, it's not going to be more than a few hundred links.
+
+		// Note that, since (ll_from, ll_lang) is a unique key, we don't need
+		// to sort by ll_title to ensure deterministic ordering.
+		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
+		if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'll_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'll_from' . $sort );
-			} else {
-				$this->addOption( 'ORDER BY', array(
-							'll_title' . $sort,
-							'll_from' . $sort
-				));
 			}
+			$this->addOption( 'ORDER BY', 'll_from' . $sort );
 		} else {
 			// Don't order by ll_from if it's constant in the WHERE clause
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
@@ -179,7 +177,6 @@ class ApiQueryLangLinks extends ApiQueryBase {
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
 			array( 'missingparam', 'lang' ),
-			array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 		) );
 	}
 
@@ -191,9 +188,5 @@ class ApiQueryLangLinks extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Properties#langlinks_.2F_ll';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

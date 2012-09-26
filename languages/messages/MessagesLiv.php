@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Andrijko Z.
  * @author Erdemaslancan
  * @author Ohpuu
  * @author Warbola
@@ -146,7 +147,6 @@ $messages = array(
 'disclaimers' => 'Kūondõkst',
 'disclaimerpage' => 'Project:Kūondõkst',
 'edithelp' => 'Redigīerimiz opātõks',
-'edithelppage' => 'Help:Redigīerimiz_opātõks',
 'helppage' => 'Help:Sižāli',
 'mainpage' => 'Eḑḑilēḑ',
 'mainpage-description' => 'Eḑḑilēḑ',
@@ -348,8 +348,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'search-interwiki-caption' => 'Sõzār-projektõd',
 'search-interwiki-default' => '$1 rezultātõd:',
 'search-interwiki-more' => ' (vel)',
-'search-mwsuggest-enabled' => 'jeddõpandõkstõks',
-'search-mwsuggest-disabled' => 'jeddõpandõkši äb ūo',
 'searchrelated' => 'sidtõd',
 'searchall' => 'tikkiž',
 'showingresultsheader' => "{{PLURAL:$5|'''$1''' '''$3'''-st rezultātõst|Rezultātõd '''$1–$2''' '''$3'''-st}} kizzimizõn '''$4'''",
@@ -373,6 +371,9 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'group-sysop' => 'Administrātord',
 
 'grouppage-sysop' => '{{ns:project}}:Administrātord',
+
+# Special:Log/newusers
+'newuserlogpage' => 'Kȭlbatijizt lūomiz log',
 
 # User rights log
 'rightslog' => 'Kȭlbatijiz õigõmt log',
@@ -490,13 +491,10 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'linksearch' => 'Uļļizt siḑīmõd',
 'linksearch-line' => '$1 um sidtõd līedst $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Kȭlbatijizt lūomiz log',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(nõtkõmd nimkēra)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Sōtõgid sīen kȭlbatijizõn e-kēra',
 
 # Watchlist
@@ -562,7 +560,7 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'blanknamespace' => '(Kēratõkst)',
 
 # Contributions
-'contributions' => 'Kȭlbatijiz kubsõtīe',
+'contributions' => '{{GENDER:$1|Kȭlbatijiz}} kubsõtīe',
 'contributions-title' => 'Kȭlbatijiz $1 kubsõtīe',
 'mycontris' => 'Min kubsõtīed',
 'contribsub2' => 'Kȭlbatiji $1 ($2) pierāst',

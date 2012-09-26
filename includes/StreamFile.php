@@ -32,15 +32,17 @@ class StreamFile {
 	 * Headers sent include: Content-type, Content-Length, Last-Modified,
 	 * and Content-Disposition.
 	 *
-	 * @param $fname string Full name and path of the file to stream
-	 * @param $headers array Any additional headers to send
-	 * @param $sendErrors bool Send error messages if errors occur (like 404)
+	 * @param string $fname Full name and path of the file to stream
+	 * @param array $headers Any additional headers to send
+	 * @param bool $sendErrors Send error messages if errors occur (like 404)
+	 * @throws MWException
 	 * @return bool Success
 	 */
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( FileBackend::isStoragePath( $fname ) ) { // sanity
+			wfProfileOut( __METHOD__ );
 			throw new MWException( __FUNCTION__ . " given storage path '$fname'." );
 		}
 
@@ -70,10 +72,10 @@ class StreamFile {
 	 * (b) cancels any PHP output buffering and automatic gzipping of output
 	 * (c) sends Content-Length header based on HTTP_IF_MODIFIED_SINCE check
 	 *
-	 * @param $path string Storage path or file system path
-	 * @param $info Array|bool File stat info with 'mtime' and 'size' fields
-	 * @param $headers Array Additional headers to send
-	 * @param $sendErrors bool Send error messages if errors occur (like 404)
+	 * @param string $path Storage path or file system path
+	 * @param array|bool $info File stat info with 'mtime' and 'size' fields
+	 * @param array $headers Additional headers to send
+	 * @param bool $sendErrors Send error messages if errors occur (like 404)
 	 * @return int|bool READY_STREAM, NOT_MODIFIED, or false on failure
 	 */
 	public static function prepareForStream(
@@ -142,8 +144,8 @@ class StreamFile {
 	/**
 	 * Determine the file type of a file based on the path
 	 *
-	 * @param $filename string Storage path or file system path
-	 * @param $safe bool Whether to do retroactive upload blacklist checks
+	 * @param string $filename Storage path or file system path
+	 * @param bool $safe Whether to do retroactive upload blacklist checks
 	 * @return null|string
 	 */
 	public static function contentTypeFromPath( $filename, $safe = true ) {

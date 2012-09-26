@@ -44,43 +44,61 @@ class LanguageRu extends Language {
 			return $wgGrammarForms['ru'][$case][$word];
 		}
 
-		# These rules are not perfect, but they are currently only used for site names so it doesn't
+		# These rules are not perfect, but they are currently only used for Wikimedia site names so it doesn't
 		# matter if they are wrong sometimes. Just add a special case for your site name if necessary.
 
-		# join and array_slice instead mb_substr
-		$ar = array();
-		preg_match_all( '/./us', $word, $ar );
-		if ( !preg_match( "/[a-zA-Z_]/us", $word ) )
+		# substr doesn't support Unicode and mb_substr has issues,
+		# so break it to characters using preg_match_all and then use array_slice and join
+		$chars = array();
+		preg_match_all( '/./us', $word, $chars );
+		if ( !preg_match( "/[a-zA-Z_]/us", $word ) ) {
 			switch ( $case ) {
 				case 'genitive': # родительный падеж
-					if ( ( join( '', array_slice( $ar[0], -4 ) ) == 'вики' ) || ( join( '', array_slice( $ar[0], -4 ) ) == 'Вики' ) )
-						{ }
-					elseif ( join( '', array_slice( $ar[0], -1 ) ) == 'ь' )
-						$word = join( '', array_slice( $ar[0], 0, -1 ) ) . 'я';
-					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ия' )
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ии';
-					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ка' )
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'ки';
-					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ти' )
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'тей';
-					elseif ( join( '', array_slice( $ar[0], -2 ) ) == 'ды' )
-						$word = join( '', array_slice( $ar[0], 0, -2 ) ) . 'дов';
-					elseif ( join( '', array_slice( $ar[0], -3 ) ) == 'ник' )
-						$word = join( '', array_slice( $ar[0], 0, -3 ) ) . 'ника';
+					if ( join( '', array_slice( $chars[0], -1 ) ) === 'ь' ) {
+						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'я';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ия' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ии';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ка' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ки';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ти' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'тей';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ды' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'дов';
+					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ник' ) {
+						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ника';
+					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
+						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ных';
+					}
 					break;
-				case 'dative':  # дательный падеж
+				case 'dative': # дательный падеж
 					# stub
 					break;
 				case 'accusative': # винительный падеж
 					# stub
 					break;
-				case 'instrumental':  # творительный падеж
+				case 'instrumental': # творительный падеж
 					# stub
 					break;
 				case 'prepositional': # предложный падеж
-					# stub
+					if ( join( '', array_slice( $chars[0], -1 ) ) === 'ь' ) {
+						$word = join( '', array_slice( $chars[0], 0, -1 ) ) . 'е';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ия' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ии';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ка' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'ке';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ти' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'тях';
+					} elseif ( join( '', array_slice( $chars[0], -2 ) ) === 'ды' ) {
+						$word = join( '', array_slice( $chars[0], 0, -2 ) ) . 'дах';
+					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ник' ) {
+						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'нике';
+					} elseif ( join( '', array_slice( $chars[0], -3 ) ) === 'ные' ) {
+						$word = join( '', array_slice( $chars[0], 0, -3 ) ) . 'ных';
+					}
 					break;
 			}
+		}
+
 		return $word;
 	}
 
@@ -104,28 +122,35 @@ class LanguageRu extends Language {
 	 * @return string
 	 */
 	function convertPlural( $count, $forms ) {
-		if ( !count( $forms ) ) { return ''; }
+		if ( !count( $forms ) ) {
+			return '';
+		}
 
 		// If the actual number is not mentioned in the expression, then just two forms are enough:
-		// singular for $count == 1
-		// plural   for $count != 1
+		// singular for $count === 1
+		// plural   for $count !== 1
 		// For example, "This user belongs to {{PLURAL:$1|one group|several groups}}."
-		if ( count( $forms ) === 2 ) return $count == 1 ? $forms[0] : $forms[1];
+		if ( count( $forms ) === 2 ) {
+			return $count === 1 ? $forms[0] : $forms[1];
+		}
 
 		// @todo FIXME: CLDR defines 4 plural forms. Form with decimals missing.
 		// See http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html#ru
 		$forms = $this->preConvertPlural( $forms, 3 );
 
-		if ( $count > 10 && floor( ( $count % 100 ) / 10 ) == 1 ) {
+		if ( $count > 10 && (int)floor( ( $count % 100 ) / 10 ) === 1 ) {
 			return $forms[2];
-		} else {
-			switch ( $count % 10 ) {
-				case 1:  return $forms[0];
-				case 2:
-				case 3:
-				case 4:  return $forms[1];
-				default: return $forms[2];
-			}
+		}
+
+		switch ( $count % 10 ) {
+			case 1:
+				return $forms[0];
+			case 2:
+			case 3:
+			case 4:
+				return $forms[1];
+			default:
+				return $forms[2];
 		}
 	}
 

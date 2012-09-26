@@ -8,19 +8,23 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	/**
 	 * Fixture -- run before every test
 	 */
-	public function setUp() {
-		global $wgEnableUploads, $wgEnableAPI;
+	protected function setUp() {
 		parent::setUp();
 
-		$wgEnableUploads = true;
-		$wgEnableAPI = true;
+		$this->setMwGlobals( array(
+			'wgEnableUploads' => true,
+			'wgEnableAPI' => true,
+		) );
+
 		wfSetupSession();
 
 		$this->clearFakeUploads();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		$this->clearTempUpload();
+
+		parent::tearDown();
 	}
 
 	/**
@@ -43,7 +47,8 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			// see if it now doesn't exist; reload
 			$title = Title::newFromText( $title->getText(), NS_FILE );
 		}
-		return ! ( $title && $title instanceof Title && $title->exists() );
+
+		return !( $title && $title instanceof Title && $title->exists() );
 	}
 
 	/**
@@ -53,7 +58,6 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	public function deleteFileByFileName( $fileName ) {
 		return $this->deleteFileByTitle( Title::newFromText( $fileName, NS_FILE ) );
 	}
-
 
 	/**
 	 * Helper function -- given a file on the filesystem, find matching content in the db (and associated articles) and remove them.
@@ -66,6 +70,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		foreach ( $dupes as $dupe ) {
 			$success &= $this->deleteFileByTitle( $dupe->getTitle() );
 		}
+
 		return $success;
 	}
 
@@ -81,7 +86,7 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		$tmpName = tempnam( wfTempDir(), "" );
 		if ( !file_exists( $filePath ) ) {
 			throw new Exception( "$filePath doesn't exist!" );
-		};
+		}
 
 		if ( !copy( $filePath, $tmpName ) ) {
 			throw new Exception( "couldn't copy $filePath to $tmpName" );
@@ -93,43 +98,43 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
 
-		$_FILES[ $fieldName ] = array(
-			'name'		=> $fileName,
-			'type'		=> $type,
-			'tmp_name' 	=> $tmpName,
-			'size' 		=> $size,
-			'error'		=> null
+		$_FILES[$fieldName] = array(
+			'name' => $fileName,
+			'type' => $type,
+			'tmp_name' => $tmpName,
+			'size' => $size,
+			'error' => null
 		);
 
 		return true;
-
 	}
-	function fakeUploadChunk(  $fieldName, $fileName, $type, & $chunkData ){
+
+	function fakeUploadChunk( $fieldName, $fileName, $type, & $chunkData ) {
 		$tmpName = tempnam( wfTempDir(), "" );
-		// copy the chunk data to temp location: 
+		// copy the chunk data to temp location:
 		if ( !file_put_contents( $tmpName, $chunkData ) ) {
 			throw new Exception( "couldn't copy chunk data to $tmpName" );
 		}
-		
+
 		clearstatcache();
 		$size = filesize( $tmpName );
 		if ( $size === false ) {
 			throw new Exception( "couldn't stat $tmpName" );
 		}
-		
-		$_FILES[ $fieldName ] = array(
-			'name'		=> $fileName,
-			'type'		=> $type,
-			'tmp_name' 	=> $tmpName,
-			'size' 		=> $size,
-			'error'		=> null
+
+		$_FILES[$fieldName] = array(
+			'name' => $fileName,
+			'type' => $type,
+			'tmp_name' => $tmpName,
+			'size' => $size,
+			'error' => null
 		);
 	}
 
 	function clearTempUpload() {
-		if( isset( $_FILES['file']['tmp_name'] ) ) {
+		if ( isset( $_FILES['file']['tmp_name'] ) ) {
 			$tmp = $_FILES['file']['tmp_name'];
-			if( file_exists( $tmp ) ) {
+			if ( file_exists( $tmp ) ) {
 				unlink( $tmp );
 			}
 		}
@@ -141,8 +146,4 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 	function clearFakeUploads() {
 		$_FILES = array();
 	}
-
-
-
-
 }

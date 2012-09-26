@@ -36,10 +36,6 @@
  */
 class ApiDisabled extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$this->dieUsage( "The \"{$this->getModuleName()}\" module has been disabled.", 'moduledisabled' );
 	}
@@ -62,9 +58,5 @@ class ApiDisabled extends ApiBase {
 
 	public function getExamples() {
 		return array();
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

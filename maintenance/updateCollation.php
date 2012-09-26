@@ -26,7 +26,7 @@
 
 #$optionsWithArgs = array( 'begin', 'max-slave-lag' );
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that will find all rows in the categorylinks table
@@ -35,10 +35,10 @@ require_once( __DIR__ . '/Maintenance.php' );
  * @ingroup Maintenance
  */
 class UpdateCollation extends Maintenance {
-	const BATCH_SIZE = 50; // Number of rows to process in one batch
+	const BATCH_SIZE = 10000; // Number of rows to process in one batch
 	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
 
-	var $sizeHistogram = array();
+	public $sizeHistogram = array();
 
 	public function __construct() {
 		parent::__construct();
@@ -68,7 +68,7 @@ TEXT;
 	}
 
 	public function execute() {
-		global $wgCategoryCollation, $wgMiserMode;
+		global $wgCategoryCollation;
 
 		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
@@ -82,10 +82,13 @@ TEXT;
 			$collation = Collation::singleton();
 		}
 
-		$options = array( 'LIMIT' => self::BATCH_SIZE, 'STRAIGHT_JOIN' );
+		$options = array(
+			'LIMIT' => self::BATCH_SIZE,
+			'ORDER BY' => 'cl_to, cl_type, cl_from',
+			'STRAIGHT_JOIN',
+		);
 
 		if ( $force || $dryRun ) {
-			$options['ORDER BY'] = 'cl_from, cl_to';
 			$collationConds = array();
 		} else {
 			if ( $this->hasOption( 'previous-collation' ) ) {
@@ -96,17 +99,17 @@ TEXT;
 				);
 			}
 
-			if ( !$wgMiserMode ) {
+			$count = $dbw->estimateRowCount(
+				'categorylinks',
+				'*',
+				$collationConds,
+				__METHOD__
+			);
+			// Improve estimate if feasible
+			if ( $count < 1000000 ) {
 				$count = $dbw->selectField(
 					'categorylinks',
 					'COUNT(*)',
-					$collationConds,
-					__METHOD__
-				);
-			} else {
-				$count = $dbw->estimateRowCount(
-					'categorylinks',
-					'*',
 					$collationConds,
 					__METHOD__
 				);
@@ -126,7 +129,7 @@ TEXT;
 			$res = $dbw->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
-					'cl_sortkey', 'page_namespace', 'page_title'
+					'cl_sortkey', 'cl_type', 'page_namespace', 'page_title'
 				),
 				array_merge( $collationConds, $batchConds, array( 'cl_from = page_id' ) ),
 				__METHOD__,
@@ -186,12 +189,8 @@ TEXT;
 				$dbw->commit( __METHOD__ );
 			}
 
-			if ( ( $force || $dryRun ) && $row ) {
-				$encFrom = $dbw->addQuotes( $row->cl_from );
-				$encTo = $dbw->addQuotes( $row->cl_to );
-				$batchConds = array(
-					"(cl_from = $encFrom AND cl_to > $encTo) " .
-					" OR cl_from > $encFrom" );
+			if ( $row ) {
+				$batchConds = array( $this->getBatchCondition( $row ) );
 			}
 
 			$count += $res->numRows();
@@ -210,6 +209,32 @@ TEXT;
 			$this->output( "\n" );
 			$this->showSortKeySizeHistogram();
 		}
+	}
+
+	/**
+	 * Return an SQL expression selecting rows which sort above the given row,
+	 * assuming an ordering of cl_to, cl_type, cl_from
+	 */
+	function getBatchCondition( $row ) {
+		$dbw = $this->getDB( DB_MASTER );
+		$fields = array( 'cl_to', 'cl_type', 'cl_from' );
+		$first = true;
+		$cond = false;
+		$prefix = false;
+		foreach ( $fields as $field ) {
+			$encValue = $dbw->addQuotes( $row->$field );
+			$inequality = "$field > $encValue";
+			$equality = "$field = $encValue";
+			if ( $first ) {
+				$cond = $inequality;
+				$prefix = $equality;
+				$first = false;
+			} else {
+				$cond .= " OR ($prefix AND $inequality)";
+				$prefix .= " AND $equality";
+			}
+		}
+		return $cond;
 	}
 
 	function updateSortKeySizeHistogram( $key ) {
@@ -278,4 +303,4 @@ TEXT;
 }
 
 $maintClass = "UpdateCollation";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

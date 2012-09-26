@@ -84,9 +84,9 @@ interface PPFrame {
 	/**
 	 * Create a child frame
 	 *
-	 * @param $args array
-	 * @param $title Title
-	 * @param $indexOffset A number subtracted from the index attributes of the arguments
+	 * @param array $args
+	 * @param Title $title
+	 * @param int $indexOffset A number subtracted from the index attributes of the arguments
 	 *
 	 * @return PPFrame
 	 */
@@ -204,7 +204,6 @@ interface PPNode {
 	 * Returns an array-type node, or false if this is not a tree node.
 	 */
 	function getChildrenOfType( $type );
-
 
 	/**
 	 * Returns the length of the array, or false if this is not an array-type node

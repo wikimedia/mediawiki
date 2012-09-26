@@ -15,7 +15,7 @@ subdirectories, all of which have unique purposes.
 level /maintenance directory.
 
 Example:
-  php clear_stats.php
+  php clearCacheStats.php
   
 The following parameters are available to all maintenance scripts
 --help   : Print a help message
@@ -34,7 +34,7 @@ In it, write the following:
 
 <?php
 
-require_once( "Maintenance.php" );
+require_once 'Maintenance.php';
 
 class DemoMaint extends Maintenance {
 
@@ -47,7 +47,7 @@ class DemoMaint extends Maintenance {
 }
 
 $maintClass = "DemoMaint";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
 
 ==END==
 

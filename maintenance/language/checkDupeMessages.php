@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../commandLine.inc' );
+require_once __DIR__ . '/../commandLine.inc';
 $messagesDir = __DIR__ . '/../../languages/messages/';
 $runTest = false;
 $run = false;
@@ -80,35 +80,37 @@ if ( $run ) {
 	} elseif ( !strcmp( $runMode, 'raw' ) ) {
 		$runMode = 'raw';
 	}
-	include( $messagesFile );
+	include $messagesFile;
 	$messageExist = isset( $messages );
-	if ( $messageExist )
+	if ( $messageExist ) {
 		$wgMessages[$langCode] = $messages;
-	include( $messagesFileC );
+	}
+	include $messagesFileC;
 	$messageCExist = isset( $messages );
-	if ( $messageCExist )
+	if ( $messageCExist ) {
 		$wgMessages[$langCodeC] = $messages;
+	}
 	$count = 0;
 
 	if ( ( $messageExist ) && ( $messageCExist ) ) {
 
 		if ( !strcmp( $runMode, 'php' ) ) {
-			print( "<?php\n" );
-			print( '$dupeMessages = array(' . "\n" );
+			print "<?php\n";
+			print '$dupeMessages = array(' . "\n";
 		}
 		foreach ( $wgMessages[$langCodeC] as $key => $value ) {
 			foreach ( $wgMessages[$langCode] as $ckey => $cvalue ) {
 				if ( !strcmp( $key, $ckey ) ) {
 					if ( ( !strcmp( $key, $ckey ) ) && ( !strcmp( $value, $cvalue ) ) ) {
 						if ( !strcmp( $runMode, 'raw' ) ) {
-							print( "$key\n" );
+							print "$key\n";
 						} elseif ( !strcmp( $runMode, 'php' ) ) {
-							print( "'$key' => '',\n" );
+							print "'$key' => '',\n";
 						} elseif ( !strcmp( $runMode, 'wiki' ) ) {
 							$uKey = ucfirst( $key );
-							print( "* MediaWiki:$uKey/$langCode\n" );
+							print "* MediaWiki:$uKey/$langCode\n";
 						} else {
-							print( "* $key\n" );
+							print "* $key\n";
 						}
 						$count++;
 					}
@@ -116,7 +118,7 @@ if ( $run ) {
 			}
 		}
 		if ( !strcmp( $runMode, 'php' ) ) {
-			print( ");\n" );
+			print ");\n";
 		}
 		if ( !strcmp( $runMode, 'text' ) ) {
 			if ( $count == 1 ) {
@@ -126,9 +128,11 @@ if ( $run ) {
 			}
 		}
 	} else {
-		if ( !$messageExist )
+		if ( !$messageExist ) {
 			echo "There are no messages defined in $langCode.\n";
-		if ( !$messageCExist )
+		}
+		if ( !$messageCExist ) {
 			echo "There are no messages defined in $langCodeC.\n";
+		}
 	}
 }

@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that manually runs an SQL patch outside of the general updaters.
@@ -62,4 +62,4 @@ class PatchSql extends Maintenance {
 }
 
 $maintClass = "PatchSql";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

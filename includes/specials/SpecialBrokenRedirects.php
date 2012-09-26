@@ -50,26 +50,38 @@ class BrokenRedirectsPage extends QueryPage {
 	}
 
 	function getQueryInfo() {
+		$dbr = wfGetDB( DB_SLAVE );
+
 		return array(
-			'tables' => array( 'redirect', 'p1' => 'page',
-					'p2' => 'page' ),
-			'fields' => array( 'namespace' => 'p1.page_namespace',
-					'title' => 'p1.page_title',
-					'value' => 'p1.page_title',
-					'rd_namespace',
-					'rd_title'
+			'tables' => array(
+				'redirect',
+				'p1' => 'page',
+				'p2' => 'page',
 			),
-			'conds' => array( 'rd_namespace >= 0',
-					'p2.page_namespace IS NULL'
+			'fields' => array(
+				'namespace' => 'p1.page_namespace',
+				'title' => 'p1.page_title',
+				'value' => 'p1.page_title',
+				'rd_namespace',
+				'rd_title',
 			),
-			'join_conds' => array( 'p1' => array( 'JOIN', array(
-						'rd_from=p1.page_id',
-					) ),
-					'p2' => array( 'LEFT JOIN', array(
-						'rd_namespace=p2.page_namespace',
-						'rd_title=p2.page_title'
-					) )
-			)
+			'conds' => array(
+				// Exclude pages that don't exist locally as wiki pages,
+				// but aren't "broken" either.
+				// Special pages and interwiki links
+				'rd_namespace >= 0',
+				'rd_interwiki IS NULL OR rd_interwiki = ' . $dbr->addQuotes( '' ),
+				'p2.page_namespace IS NULL',
+			),
+			'join_conds' => array(
+				'p1' => array( 'JOIN', array(
+					'rd_from=p1.page_id',
+				) ),
+				'p2' => array( 'LEFT JOIN', array(
+					'rd_namespace=p2.page_namespace',
+					'rd_title=p2.page_title'
+				) ),
+			),
 		);
 	}
 
@@ -77,13 +89,13 @@ class BrokenRedirectsPage extends QueryPage {
 	 * @return array
 	 */
 	function getOrderFields() {
-		return array ( 'rd_namespace', 'rd_title', 'rd_from' );
+		return array( 'rd_namespace', 'rd_title', 'rd_from' );
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param $result
-	 * @return String
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
@@ -127,7 +139,7 @@ class BrokenRedirectsPage extends QueryPage {
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
-		if( $this->getUser()->isAllowed( 'delete' ) ) {
+		if ( $this->getUser()->isAllowed( 'delete' ) ) {
 			$links[] = Linker::linkKnown(
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->escaped(),
@@ -138,6 +150,11 @@ class BrokenRedirectsPage extends QueryPage {
 
 		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $links ) )->escaped();
 		$out .= " {$arr} {$to}";
+
 		return $out;
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

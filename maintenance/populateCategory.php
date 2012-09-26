@@ -22,7 +22,7 @@
  * @author Simetrical
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Mainteance script to populate the category table.
@@ -142,4 +142,4 @@ TEXT;
 }
 
 $maintClass = "PopulateCategory";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -48,10 +48,10 @@ class BaseDump {
 	var $infiles = null;
 
 	function BaseDump( $infile ) {
-		$this->infiles = explode(';',$infile);
+		$this->infiles = explode( ';', $infile );
 		$this->reader = new XMLReader();
-		$infile = array_shift($this->infiles);
-		if (defined( 'LIBXML_PARSEHUGE' ) ) {
+		$infile = array_shift( $this->infiles );
+		if ( defined( 'LIBXML_PARSEHUGE' ) ) {
 			$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
 		}
 		else {
@@ -110,8 +110,8 @@ class BaseDump {
 			}
 		} else {
 			$this->close();
-			if (count($this->infiles)) {
-				$infile = array_shift($this->infiles);
+			if ( count( $this->infiles ) ) {
+				$infile = array_shift( $this->infiles );
 				$this->reader->open( $infile );
 				$this->atEnd = false;
 			}
@@ -181,7 +181,7 @@ class BaseDump {
 		}
 		$buffer = "";
 		while ( $this->reader->read() ) {
-			switch( $this->reader->nodeType ) {
+			switch ( $this->reader->nodeType ) {
 			case XMLReader::TEXT:
 //			case XMLReader::WHITESPACE:
 			case XMLReader::SIGNIFICANT_WHITESPACE:

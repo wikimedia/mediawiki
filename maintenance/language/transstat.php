@@ -28,9 +28,9 @@
  */
 $optionsWithArgs = array( 'output' );
 
-require_once( __DIR__ . '/../commandLine.inc' );
-require_once( 'languages.inc' );
-require_once( __DIR__ . '/StatOutputs.php' );
+require_once __DIR__ . '/../commandLine.inc';
+require_once 'languages.inc';
+require_once __DIR__ . '/StatOutputs.php';
 
 
 if ( isset( $options['help'] ) ) {
@@ -96,7 +96,7 @@ $wgRequiredMessagesNumber = count( $wgGeneralMessages['required'] );
 
 foreach ( $wgLanguages->getLanguages() as $code ) {
 	# Don't check English, RTL English or dummy language codes
-	if ( $code == 'en' || $code == 'enRTL' || (is_array( $wgDummyLanguageCodes ) &&
+	if ( $code == 'en' || $code == 'enRTL' || ( is_array( $wgDummyLanguageCodes ) &&
 		isset( $wgDummyLanguageCodes[$code] ) ) ) {
 		continue;
 	}

@@ -81,7 +81,7 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 	public function unlock( $key ) {
 		return $this->client->unlock( $this->encodeKey( $key ) );
 	}
-	
+
 	/**
 	 * @param $key string
 	 * @param $value int
@@ -100,4 +100,3 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $this->client->decr( $this->encodeKey( $key ), $value );
 	}
 }
-

@@ -29,7 +29,6 @@
  * @ingroup SpecialPage
  */
 class ListredirectsPage extends QueryPage {
-
 	function __construct( $name = 'Listredirects' ) {
 		parent::__construct( $name );
 	}
@@ -50,16 +49,16 @@ class ListredirectsPage extends QueryPage {
 		return array(
 			'tables' => array( 'p1' => 'page', 'redirect', 'p2' => 'page' ),
 			'fields' => array( 'namespace' => 'p1.page_namespace',
-					'title' => 'p1.page_title',
-					'value' => 'p1.page_title',
-					'rd_namespace',
-					'rd_title',
-					'rd_fragment',
-					'rd_interwiki',
-					'redirid' => 'p2.page_id' ),
+				'title' => 'p1.page_title',
+				'value' => 'p1.page_title',
+				'rd_namespace',
+				'rd_title',
+				'rd_fragment',
+				'rd_interwiki',
+				'redirid' => 'p2.page_id' ),
 			'conds' => array( 'p1.page_is_redirect' => 1 ),
 			'join_conds' => array( 'redirect' => array(
-					'LEFT JOIN', 'rd_from=p1.page_id' ),
+				'LEFT JOIN', 'rd_from=p1.page_id' ),
 				'p2' => array( 'LEFT JOIN', array(
 					'p2.page_namespace=rd_namespace',
 					'p2.page_title=rd_title' ) ) )
@@ -67,25 +66,27 @@ class ListredirectsPage extends QueryPage {
 	}
 
 	function getOrderFields() {
-		return array ( 'p1.page_namespace', 'p1.page_title' );
+		return array( 'p1.page_namespace', 'p1.page_title' );
 	}
 
 	/**
 	 * Cache page existence for performance
 	 *
-	 * @param $db DatabaseBase
-	 * @param $res ResultWrapper
+	 * @param DatabaseBase $db
+	 * @param ResultWrapper $res
 	 */
 	function preprocessResults( $db, $res ) {
 		$batch = new LinkBatch;
+
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			$batch->addObj( $this->getRedirectTarget( $row ) );
 		}
+
 		$batch->execute();
 
 		// Back to start for display
-		if ( $db->numRows( $res ) > 0 ) {
+		if ( $res->numRows() > 0 ) {
 			// If there are no rows we get an error seeking.
 			$db->dataSeek( $res, 0 );
 		}
@@ -100,10 +101,16 @@ class ListredirectsPage extends QueryPage {
 		} else {
 			$title = Title::makeTitle( $row->namespace, $row->title );
 			$article = WikiPage::factory( $title );
+
 			return $article->getRedirectTarget();
 		}
 	}
 
+	/**
+	 * @param Skin $skin
+	 * @param object $result Result row
+	 * @return string
+	 */
 	function formatResult( $skin, $result ) {
 		# Make a link to the redirect itself
 		$rd_title = Title::makeTitle( $result->namespace, $result->title );
@@ -116,14 +123,19 @@ class ListredirectsPage extends QueryPage {
 
 		# Find out where the redirect leads
 		$target = $this->getRedirectTarget( $result );
-		if( $target ) {
+		if ( $target ) {
 			# Make a link to the destination page
 			$lang = $this->getLanguage();
 			$arr = $lang->getArrow() . $lang->getDirMark();
 			$targetLink = Linker::link( $target );
+
 			return "$rd_link $arr $targetLink";
 		} else {
 			return "<del>$rd_link</del>";
 		}
+	}
+
+	protected function getGroupName() {
+		return 'pages';
 	}
 }

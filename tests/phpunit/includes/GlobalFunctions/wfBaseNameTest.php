@@ -2,16 +2,16 @@
 /**
  * Tests for wfBaseName()
  */
-class wfBaseName extends MediaWikiTestCase {
+class WfBaseNameTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider providePaths
 	 */
 	function testBaseName( $fullpath, $basename ) {
 		$this->assertEquals( $basename, wfBaseName( $fullpath ),
-				"wfBaseName('$fullpath') => '$basename'" );
+			"wfBaseName('$fullpath') => '$basename'" );
 	}
-	
-	function providePaths() {
+
+	public static function providePaths() {
 		return array(
 			array( '', '' ),
 			array( '/', '' ),

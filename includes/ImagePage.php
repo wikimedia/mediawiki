@@ -50,7 +50,7 @@ class ImagePage extends Article {
 
 	/**
 	 * Constructor from a page id
-	 * @param $id Int article ID to load
+	 * @param int $id article ID to load
 	 * @return ImagePage|null
 	 */
 	public static function newFromID( $id ) {
@@ -108,7 +108,7 @@ class ImagePage extends Article {
 		$diff = $request->getVal( 'diff' );
 		$diffOnly = $request->getBool( 'diffonly', $this->getContext()->getUser()->getOption( 'diffonly' ) );
 
-		if ( $this->getTitle()->getNamespace() != NS_FILE || ( isset( $diff ) && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() != NS_FILE || ( $diff !== null && $diffOnly ) ) {
 			parent::view();
 			return;
 		}
@@ -116,7 +116,7 @@ class ImagePage extends Article {
 		$this->loadFile();
 
 		if ( $this->getTitle()->getNamespace() == NS_FILE && $this->mPage->getFile()->getRedirected() ) {
-			if ( $this->getTitle()->getDBkey() == $this->mPage->getFile()->getName() || isset( $diff ) ) {
+			if ( $this->getTitle()->getDBkey() == $this->mPage->getFile()->getName() || $diff !== null ) {
 				// mTitle is the same as the redirect target so ask Article
 				// to perform the redirect for us.
 				$request->setVal( 'diffonly', 'true' );
@@ -156,8 +156,10 @@ class ImagePage extends Article {
 			$pageLang = $this->getTitle()->getPageViewLanguage();
 			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
-				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
+				'class' => 'mw-content-' . $pageLang->getDir() ) ) );
+
 			parent::view();
+
 			$out->addHTML( Xml::closeElement( 'div' ) );
 		} else {
 			# Just need to set the right headers
@@ -204,7 +206,7 @@ class ImagePage extends Article {
 		}
 
 		// Add remote Filepage.css
-		if( !$this->repo->isLocal() ) {
+		if ( !$this->repo->isLocal() ) {
 			$css = $this->repo->getDescriptionStylesheetUrl();
 			if ( $css ) {
 				$out->addStyle( $css );
@@ -248,7 +250,7 @@ class ImagePage extends Article {
 	 *
 	 * @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 	 *
-	 * @param $metadata Array: the array containing the EXIF data
+	 * @param array $metadata the array containing the Exif data
 	 * @return String The metadata table. This is treated as Wikitext (!)
 	 */
 	protected function makeMetadataTable( $metadata ) {
@@ -260,7 +262,7 @@ class ImagePage extends Article {
 				# @todo FIXME: Why is this using escapeId for a class?!
 				$class = Sanitizer::escapeId( $v['id'] );
 				if ( $type == 'collapsed' ) {
-					$class .= ' collapsable';
+					$class .= ' collapsable'; // sic
 				}
 				$r .= "<tr class=\"$class\">\n";
 				$r .= "<th>{$v['name']}</th>\n";
@@ -272,18 +274,18 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Overloading Article's getContent method.
+	 * Overloading Article's getContentObject method.
 	 *
 	 * Omit noarticletext if sharedupload; text will be fetched from the
 	 * shared upload server if possible.
 	 * @return string
 	 */
-	public function getContent() {
+	public function getContentObject() {
 		$this->loadFile();
 		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
-			return '';
+			return null;
 		}
-		return parent::getContent();
+		return parent::getContentObject();
 	}
 
 	protected function openShowImage() {
@@ -296,18 +298,7 @@ class ImagePage extends Article {
 		$dirmark = $lang->getDirMarkEntity();
 		$request = $this->getContext()->getRequest();
 
-		$sizeSel = intval( $user->getOption( 'imagesize' ) );
-		if ( !isset( $wgImageLimits[$sizeSel] ) ) {
-			$sizeSel = User::getDefaultOption( 'imagesize' );
-
-			// The user offset might still be incorrect, specially if
-			// $wgImageLimits got changed (see bug #8858).
-			if ( !isset( $wgImageLimits[$sizeSel] ) ) {
-				// Default to the first offset in $wgImageLimits
-				$sizeSel = 0;
-			}
-		}
-		$max = $wgImageLimits[$sizeSel];
+		$max = $this->getImageLimitsFromOption( $user, 'imagesize' );
 		$maxWidth = $max[0];
 		$maxHeight = $max[1];
 
@@ -320,12 +311,19 @@ class ImagePage extends Article {
 			} else {
 				$params = array( 'page' => $page );
 			}
+
+			$renderLang = $request->getVal( 'lang' );
+			if ( !is_null( $renderLang ) ) {
+				$params['lang'] = $renderLang;
+			}
+
 			$width_orig = $this->displayImg->getWidth( $page );
 			$width = $width_orig;
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
 
-			$longDesc = wfMessage( 'parentheses', $this->displayImg->getLongDesc() )->text();
+			$filename = wfEscapeWikiText( $this->displayImg->getName() );
+			$linktext = $filename;
 
 			wfRunHooks( 'ImageOpenShowImageInlineBefore', array( &$this, &$out ) );
 
@@ -338,27 +336,24 @@ class ImagePage extends Article {
 				if ( $width > $maxWidth || $height > $maxHeight ) {
 					# Calculate the thumbnail size.
 					# First case, the limiting factor is the width, not the height.
-					if ( $width / $height >= $maxWidth / $maxHeight ) {
-						$height = round( $height * $maxWidth / $width );
+					if ( $width / $height >= $maxWidth / $maxHeight ) { // FIXME: Possible division by 0. bug 36911
+						$height = round( $height * $maxWidth / $width ); // FIXME: Possible division by 0. bug 36911
 						$width = $maxWidth;
 						# Note that $height <= $maxHeight now.
 					} else {
-						$newwidth = floor( $width * $maxHeight / $height );
-						$height = round( $height * $newwidth / $width );
+						$newwidth = floor( $width * $maxHeight / $height ); // FIXME: Possible division by 0. bug 36911
+						$height = round( $height * $newwidth / $width ); // FIXME: Possible division by 0. bug 36911
 						$width = $newwidth;
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$msgbig = wfMessage( 'show-big-image' )->escaped();
+					$linktext = wfMessage( 'show-big-image' )->escaped();
 					if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 						$thumbSizes = $wgImageLimits;
 					} else {
 						# Creating thumb links triggers thumbnail generation.
 						# Just generate the thumb for the current users prefs.
-						$thumbOption = $user->getOption( 'thumbsize' );
-						$thumbSizes = array( isset( $wgImageLimits[$thumbOption] )
-							? $wgImageLimits[$thumbOption]
-							: $wgImageLimits[User::getDefaultOption( 'thumbsize' )] );
+						$thumbSizes = array( $this->getImageLimitsFromOption( $user, 'thumbsize' ) );
 					}
 					# Generate thumbnails or thumbnail links as needed...
 					$otherSizes = array();
@@ -366,12 +361,19 @@ class ImagePage extends Article {
 						if ( $size[0] < $width_orig && $size[1] < $height_orig
 							&& $size[0] != $width && $size[1] != $height )
 						{
-							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );
+							$sizeLink = $this->makeSizeLink( $params, $size[0], $size[1] );
+							if ( $sizeLink ) {
+								$otherSizes[] = $sizeLink;
+							}
 						}
 					}
-					$msgsmall = wfMessage( 'show-big-image-preview' )->
-						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
-						parse();
+					$msgsmall = '';
+					$sizeLinkBigImagePreview = $this->makeSizeLink( $params, $width, $height );
+					if ( $sizeLinkBigImagePreview ) {
+						$msgsmall .= wfMessage( 'show-big-image-preview' )->
+							rawParams( $sizeLinkBigImagePreview )->
+							parse();
+					}
 					if ( count( $otherSizes ) ) {
 						$msgsmall .= ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
@@ -379,7 +381,7 @@ class ImagePage extends Article {
 							params( count( $otherSizes ) )->parse()
 						);
 					}
-				} elseif ( $width == 0 && $height == 0 ){
+				} elseif ( $width == 0 && $height == 0 ) {
 					# Some sort of audio file that doesn't have dimensions
 					# Don't output a no hi res message for such a file
 					$msgsmall = '';
@@ -395,7 +397,6 @@ class ImagePage extends Article {
 				$params['height'] = $height;
 				$thumbnail = $this->displayImg->transform( $params );
 
-				$showLink = true;
 				$anchorclose = Html::rawElement( 'div', array( 'class' => 'mw-filepage-resolutioninfo' ), $msgsmall );
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
@@ -469,48 +470,39 @@ class ImagePage extends Article {
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
 				}
-			} else {
+			} elseif ( $this->displayImg->isSafeFile() ) {
 				# if direct link is allowed but it's not a renderable image, show an icon.
-				if ( $this->displayImg->isSafeFile() ) {
-					$icon = $this->displayImg->iconThumb();
+				$icon = $this->displayImg->iconThumb();
 
-					$out->addHTML( '<div class="fullImageLink" id="file">' .
-						$icon->toHtml( array( 'file-link' => true ) ) .
-						"</div>\n" );
-				}
-
-				$showLink = true;
+				$out->addHTML( '<div class="fullImageLink" id="file">' .
+					$icon->toHtml( array( 'file-link' => true ) ) .
+					"</div>\n" );
 			}
 
-			if ( $showLink ) {
-				$filename = wfEscapeWikiText( $this->displayImg->getName() );
-				$linktext = $filename;
-				if ( isset( $msgbig ) ) {
-					$linktext = wfEscapeWikiText( $msgbig );
-				}
-				$medialink = "[[Media:$filename|$linktext]]";
+			$longDesc = wfMessage( 'parentheses', $this->displayImg->getLongDesc() )->text();
 
-				if ( !$this->displayImg->isSafeFile() ) {
-					$warning = wfMessage( 'mediawarning' )->plain();
-					// dirmark is needed here to separate the file name, which
-					// most likely ends in Latin characters, from the description,
-					// which may begin with the file type. In RTL environment
-					// this will get messy.
-					// The dirmark, however, must not be immediately adjacent
-					// to the filename, because it can get copied with it.
-					// See bug 25277.
-					$out->addWikiText( <<<EOT
+			$medialink = "[[Media:$filename|$linktext]]";
+
+			if ( !$this->displayImg->isSafeFile() ) {
+				$warning = wfMessage( 'mediawarning' )->plain();
+				// dirmark is needed here to separate the file name, which
+				// most likely ends in Latin characters, from the description,
+				// which may begin with the file type. In RTL environment
+				// this will get messy.
+				// The dirmark, however, must not be immediately adjacent
+				// to the filename, because it can get copied with it.
+				// See bug 25277.
+				$out->addWikiText( <<<EOT
 <div class="fullMedia"><span class="dangerousLink">{$medialink}</span> $dirmark<span class="fileInfo">$longDesc</span></div>
 <div class="mediaWarning">$warning</div>
 EOT
-						);
-				} else {
-					$out->addWikiText( <<<EOT
+					);
+			} else {
+				$out->addWikiText( <<<EOT
 <div class="fullMedia">{$medialink} {$dirmark}<span class="fileInfo">$longDesc</span>
 </div>
 EOT
-					);
-				}
+				);
 			}
 
 			// Add cannot animate thumbnail warning
@@ -545,7 +537,7 @@ EOT
 					array( 'delete', 'move' ),
 					$this->getTitle()->getPrefixedText(),
 					'',
-					array(  'lim' => 10,
+					array( 'lim' => 10,
 						'conds' => array( "log_action != 'revision'" ),
 						'showIfEmpty' => false,
 						'msgKey' => array( 'moveddeleted-notice' )
@@ -564,7 +556,7 @@ EOT
 				$nofile = 'filepage-nofile';
 			}
 			// Note, if there is an image description page, but
-			// no image, then this setRobotPolicy is overriden
+			// no image, then this setRobotPolicy is overridden
 			// by Article::View().
 			$out->setRobotPolicy( 'noindex,nofollow' );
 			$out->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
@@ -579,7 +571,7 @@ EOT
 
 	/**
 	 * Creates an thumbnail of specified size and returns an HTML link to it
-	 * @param $params array Scaler parameters
+	 * @param array $params Scaler parameters
 	 * @param $width int
 	 * @param $height int
 	 * @return string
@@ -611,14 +603,14 @@ EOT
 		$descText = $this->mPage->getFile()->getDescriptionText();
 
 		/* Add canonical to head if there is no local page for this shared file */
-		if( $descUrl && $this->mPage->getID() == 0 ) {
-			$out->addLink( array( 'rel' => 'canonical', 'href' => $descUrl ) );
+		if ( $descUrl && $this->mPage->getID() == 0 ) {
+			$out->setCanonicalUrl( $descUrl );
 		}
 
 		$wrap = "<div class=\"sharedUploadNotice\">\n$1\n</div>\n";
 		$repo = $this->mPage->getFile()->getRepo()->getDisplayName();
 
-		if ( $descUrl && $descText && wfMessage( 'sharedupload-desc-here' )->plain() !== '-'  ) {
+		if ( $descUrl && $descText && wfMessage( 'sharedupload-desc-here' )->plain() !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-here', $repo, $descUrl ) );
 		} elseif ( $descUrl && wfMessage( 'sharedupload-desc-there' )->plain() !== '-' ) {
 			$out->wrapWikiMsg( $wrap, array( 'sharedupload-desc-there', $repo, $descUrl ) );
@@ -637,7 +629,7 @@ EOT
 		return $uploadTitle->getFullURL( array(
 			'wpDestFile' => $this->mPage->getFile()->getName(),
 			'wpForReUpload' => 1
-		 ) );
+		) );
 	}
 
 	/**
@@ -645,7 +637,7 @@ EOT
 	 * external editing (and instructions link) etc.
 	 */
 	protected function uploadLinksBox() {
-		global $wgEnableUploads, $wgUseExternalEditor;
+		global $wgEnableUploads;
 
 		if ( !$wgEnableUploads ) {
 			return;
@@ -666,25 +658,6 @@ EOT
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		} else {
 			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->getContext()->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
-		}
-
-		# External editing link
-		if ( $wgUseExternalEditor ) {
-			$elink = Linker::linkKnown(
-				$this->getTitle(),
-				wfMessage( 'edit-externally' )->escaped(),
-				array(),
-				array(
-					'action' => 'edit',
-					'externaledit' => 'true',
-					'mode' => 'file'
-				)
-			);
-			$out->addHTML(
-				'<li id="mw-imagepage-edit-external">' . $elink . ' <small>' .
-					wfMessage( 'edit-externally-help' )->parse() .
-					"</small></li>\n"
-			);
 		}
 
 		$out->addHTML( "</ul>\n" );
@@ -733,7 +706,7 @@ EOT
 		$limit = 100;
 
 		$out = $this->getContext()->getOutput();
-		$res = $this->queryImageLinks( $this->getTitle()->getDbKey(), $limit + 1);
+		$res = $this->queryImageLinks( $this->getTitle()->getDBkey(), $limit + 1 );
 		$rows = array();
 		$redirects = array();
 		foreach ( $res as $row ) {
@@ -786,7 +759,7 @@ EOT
 
 		// Create links for every element
 		$currentCount = 0;
-		foreach( $rows as $element ) {
+		foreach ( $rows as $element ) {
 			$currentCount++;
 			if ( $currentCount > $limit ) {
 				break;
@@ -794,9 +767,14 @@ EOT
 
 			$link = Linker::linkKnown( Title::makeTitle( $element->page_namespace, $element->page_title ) );
 			if ( !isset( $redirects[$element->page_title] ) ) {
+				# No redirects
 				$liContents = $link;
+			} elseif ( count( $redirects[$element->page_title] ) === 0 ) {
+				# Redirect without usages
+				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams( $link, '' )->parse();
 			} else {
-				$ul = "<ul class='mw-imagepage-redirectstofile'>\n";
+				# Redirect with usages
+				$li = '';
 				foreach ( $redirects[$element->page_title] as $row ) {
 					$currentCount++;
 					if ( $currentCount > $limit ) {
@@ -804,13 +782,18 @@ EOT
 					}
 
 					$link2 = Linker::linkKnown( Title::makeTitle( $row->page_namespace, $row->page_title ) );
-					$ul .= Html::rawElement(
+					$li .= Html::rawElement(
 						'li',
 						array( 'class' => 'mw-imagepage-linkstoimage-ns' . $element->page_namespace ),
 						$link2
 						) . "\n";
 				}
-				$ul .= '</ul>';
+
+				$ul = Html::rawElement(
+					'ul',
+					array( 'class' => 'mw-imagepage-redirectstofile' ),
+					$li
+					) . "\n";
 				$liContents = wfMessage( 'linkstoimage-redirect' )->rawParams(
 					$link, $ul )->parse();
 			}
@@ -907,6 +890,34 @@ EOT
 		} else {
 			return $a->page_namespace - $b->page_namespace;
 		}
+	}
+
+	/**
+	 * Returns the corresponding $wgImageLimits entry for the selected user option
+	 *
+	 * @param $user User
+	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
+	 * @return array
+	 * @since 1.21
+	 */
+	public function getImageLimitsFromOption( $user, $optionName ) {
+		global $wgImageLimits;
+
+		$option = $user->getIntOption( $optionName );
+		if ( !isset( $wgImageLimits[$option] ) ) {
+			$option = User::getDefaultOption( $optionName );
+		}
+
+		// The user offset might still be incorrect, specially if
+		// $wgImageLimits got changed (see bug #8858).
+		if ( !isset( $wgImageLimits[$option] ) ) {
+			// Default to the first offset in $wgImageLimits
+			$option = 0;
+		}
+
+		return isset( $wgImageLimits[$option] )
+			? $wgImageLimits[$option]
+			: array( 800, 600 ); // if nothing is set, fallback to a hardcoded default
 	}
 }
 
@@ -1041,9 +1052,9 @@ class ImageHistoryList extends ContextSource {
 				} else {
 					list( $ts, ) = explode( '!', $img, 2 );
 					$query = array(
-						'type'   => 'oldimage',
+						'type' => 'oldimage',
 						'target' => $this->title->getPrefixedText(),
-						'ids'    => $ts,
+						'ids' => $ts,
 					);
 					$del = Linker::revDeleteLink( $query,
 						$file->isDeleted( File::DELETED_RESTRICTED ), $canHide );
@@ -1163,7 +1174,7 @@ class ImageHistoryList extends ContextSource {
 	protected function getThumbForLine( $file ) {
 		$lang = $this->getLanguage();
 		$user = $this->getUser();
-		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE,$user )
+		if ( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE, $user )
 			&& !$file->isDeleted( File::DELETED_FILE ) )
 		{
 			$params = array(
@@ -1223,7 +1234,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 	 * @param ImagePage $imagePage
 	 */
 	function __construct( $imagePage ) {
-		parent::__construct();
+		parent::__construct( $imagePage->getContext() );
 		$this->mImagePage = $imagePage;
 		$this->mTitle = clone ( $imagePage->getTitle() );
 		$this->mTitle->setFragment( '#filehistory' );

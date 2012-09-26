@@ -25,7 +25,7 @@
  * @ingroup MaintenanceLanguage
  */
 class CheckLanguageCLI {
-	protected $code  = null;
+	protected $code = null;
 	protected $level = 2;
 	protected $doLinks = false;
 	protected $linksPrefix = '';
@@ -43,10 +43,10 @@ class CheckLanguageCLI {
 	 * Constructor.
 	 * @param $options array Options for script.
 	 */
-	public function __construct( Array $options ) {
+	public function __construct( array $options ) {
 		if ( isset( $options['help'] ) ) {
 			echo $this->help();
-			exit(1);
+			exit( 1 );
 		}
 
 		if ( isset( $options['lang'] ) ) {
@@ -222,7 +222,7 @@ Parameters:
 	--links: Link the message values (default off).
 	--prefix: prefix to add to links.
 	--wikilang: For the links, what is the content language of the wiki to display the output in (default en).
-	--noexif: Do not check for EXIF messages (a bit hard and boring to translate), if you know
+	--noexif: Do not check for Exif messages (a bit hard and boring to translate), if you know
 		that they are currently not translated and want to focus on other problems (default off).
 	--whitelist: Do only the following checks (form: code,code).
 	--blacklist: Do not do the following checks (form: code,code).
@@ -305,6 +305,7 @@ ENDS;
 	/**
 	 * Check a language.
 	 * @param $code string The language code.
+	 * @throws MWException
 	 * @return array The results.
 	 */
 	protected function checkLanguage( $code ) {
@@ -383,7 +384,7 @@ ENDS;
 						echo "[messages are hidden]\n";
 					} else {
 						foreach ( $messages as $key => $value ) {
-							if( !in_array( $check, $this->nonMessageChecks() ) ) {
+							if ( !in_array( $check, $this->nonMessageChecks() ) ) {
 								$key = $this->formatKey( $key, $code );
 							}
 							if ( $this->level == 2 || empty( $value ) ) {
@@ -410,7 +411,7 @@ ENDS;
 			$problems = 0;
 			$detailTextForLangChecks = array();
 			foreach ( $results as $check => $messages ) {
-				if( in_array( $check, $this->nonMessageChecks() ) ) {
+				if ( in_array( $check, $this->nonMessageChecks() ) ) {
 					continue;
 				}
 				$count = count( $messages );
@@ -462,9 +463,9 @@ EOL;
 	 * @return bool True if there are any results, false if not.
 	 */
 	protected function isEmpty() {
-		foreach( $this->results as $results ) {
-			foreach( $results as $messages ) {
-				if( !empty( $messages ) ) {
+		foreach ( $this->results as $results ) {
+			foreach ( $results as $messages ) {
+				if ( !empty( $messages ) ) {
 					return false;
 				}
 			}
@@ -484,10 +485,10 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 	 * @param $options array Options for script.
 	 * @param $extension string The extension name (or names).
 	 */
-	public function __construct( Array $options, $extension ) {
+	public function __construct( array $options, $extension ) {
 		if ( isset( $options['help'] ) ) {
 			echo $this->help();
-			exit(1);
+			exit( 1 );
 		}
 
 		if ( isset( $options['lang'] ) ) {
@@ -641,18 +642,19 @@ ENDS;
 	/**
 	 * Check a language and show the results.
 	 * @param $code string The language code.
+	 * @throws MWException
 	 */
 	protected function checkLanguage( $code ) {
-		foreach( $this->extensions as $extension ) {
+		foreach ( $this->extensions as $extension ) {
 			$this->L = $extension;
 			$this->results = array();
 			$this->results[$code] = parent::checkLanguage( $code );
 
-			if( !$this->isEmpty() ) {
+			if ( !$this->isEmpty() ) {
 				echo $extension->name() . ":\n";
 
-				if( $this->level > 0 ) {
-					switch( $this->output ) {
+				if ( $this->level > 0 ) {
+					switch ( $this->output ) {
 						case 'plain':
 							$this->outputText();
 							break;

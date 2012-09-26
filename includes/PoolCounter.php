@@ -22,69 +22,55 @@
  */
 
 /**
- *  When you have many workers (threads/servers) giving service, and a
+ * When you have many workers (threads/servers) giving service, and a
  * cached item expensive to produce expires, you may get several workers
  * doing the job at the same time.
  *
- *  Given enough requests and the item expiring fast (non-cacheable,
+ * Given enough requests and the item expiring fast (non-cacheable,
  * lots of edits...) that single work can end up unfairly using most (all)
  * of the cpu of the pool. This is also known as 'Michael Jackson effect'
  * since this effect triggered on the english wikipedia on the day Michael
  * Jackson died, the biographical article got hit with several edits per
  * minutes and hundreds of read hits.
  *
- *  The PoolCounter provides semaphore semantics for restricting the number
+ * The PoolCounter provides semaphore semantics for restricting the number
  * of workers that may be concurrently performing such single task.
  *
- *  By default PoolCounter_Stub is used, which provides no locking. You
+ * By default PoolCounter_Stub is used, which provides no locking. You
  * can get a useful one in the PoolCounter extension.
  */
 abstract class PoolCounter {
-
 	/* Return codes */
-	const LOCKED   = 1; /* Lock acquired */
+	const LOCKED = 1; /* Lock acquired */
 	const RELEASED = 2; /* Lock released */
-	const DONE     = 3; /* Another worker did the work for you */
+	const DONE = 3; /* Another worker did the work for you */
 
-	const ERROR      = -1; /* Indeterminate error */
+	const ERROR = -1; /* Indeterminate error */
 	const NOT_LOCKED = -2; /* Called release() with no lock held */
 	const QUEUE_FULL = -3; /* There are already maxqueue workers on this lock */
-	const TIMEOUT    = -4; /* Timeout exceeded */
-	const LOCK_HELD  = -5; /* Cannot acquire another lock while you have one lock held */
+	const TIMEOUT = -4; /* Timeout exceeded */
+	const LOCK_HELD = -5; /* Cannot acquire another lock while you have one lock held */
+
+	/** @var string All workers with the same key share the lock */
+	protected $key;
+	/** @var integer Maximum number of workers doing the task simultaneously */
+	protected $workers;
+	/** @var integer If this number of workers are already working/waiting, fail instead of wait */
+	protected $maxqueue;
+	/** @var float Maximum time in seconds to wait for the lock */
+	protected $timeout;
 
 	/**
-	 * I want to do this task and I need to do it myself.
-	 *
-	 * @return Locked/Error
+	 * @param array $conf
+	 * @param string $type
+	 * @param string $key
 	 */
-	abstract function acquireForMe();
-
-	/**
-	 * I want to do this task, but if anyone else does it
-	 * instead, it's also fine for me. I will read its cached data.
-	 *
-	 * @return Locked/Done/Error
-	 */
-	abstract function acquireForAnyone();
-
-	/**
-	 * I have successfully finished my task.
-	 * Lets another one grab the lock, and returns the workers
-	 * waiting on acquireForAnyone()
-	 *
-	 * @return Released/NotLocked/Error
-	 */
-	abstract function release();
-
-	/**
-	 *  $key: All workers with the same key share the lock.
-	 *  $workers: It wouldn't be a good idea to have more than this number of
-	 * workers doing the task simultaneously.
-	 *  $maxqueue: If this number of workers are already working/waiting,
-	 * fail instead of wait.
-	 *  $timeout: Maximum time in seconds to wait for the lock.
-	 */
-	protected $key, $workers, $maxqueue, $timeout;
+	protected function __construct( $conf, $type, $key ) {
+		$this->key = $key;
+		$this->workers = $conf['workers'];
+		$this->maxqueue = $conf['maxqueue'];
+		$this->timeout = $conf['timeout'];
+	}
 
 	/**
 	 * Create a Pool counter. This should only be called from the PoolWorks.
@@ -105,58 +91,74 @@ abstract class PoolCounter {
 		return new $class( $conf, $type, $key );
 	}
 
-	protected function __construct( $conf, $type, $key ) {
-		$this->key = $key;
-		$this->workers  = $conf['workers'];
-		$this->maxqueue = $conf['maxqueue'];
-		$this->timeout  = $conf['timeout'];
-	}
+	/**
+	 * I want to do this task and I need to do it myself.
+	 *
+	 * @return Status Value is one of Locked/Error
+	 */
+	abstract public function acquireForMe();
+
+	/**
+	 * I want to do this task, but if anyone else does it
+	 * instead, it's also fine for me. I will read its cached data.
+	 *
+	 * @return Status Value is one of Locked/Done/Error
+	 */
+	abstract public function acquireForAnyone();
+
+	/**
+	 * I have successfully finished my task.
+	 * Lets another one grab the lock, and returns the workers
+	 * waiting on acquireForAnyone()
+	 *
+	 * @return Status value is one of Released/NotLocked/Error
+	 */
+	abstract public function release();
 }
 
 class PoolCounter_Stub extends PoolCounter {
-
-	/**
-	 * @return Status
-	 */
-	function acquireForMe() {
-		return Status::newGood( PoolCounter::LOCKED );
-	}
-
-	/**
-	 * @return Status
-	 */
-	function acquireForAnyone() {
-		return Status::newGood( PoolCounter::LOCKED );
-	}
-
-	/**
-	 * @return Status
-	 */
-	function release() {
-		return Status::newGood( PoolCounter::RELEASED );
-	}
-
 	public function __construct() {
 		/* No parameters needed */
+	}
+
+	public function acquireForMe() {
+		return Status::newGood( PoolCounter::LOCKED );
+	}
+
+	public function acquireForAnyone() {
+		return Status::newGood( PoolCounter::LOCKED );
+	}
+
+	public function release() {
+		return Status::newGood( PoolCounter::RELEASED );
 	}
 }
 
 /**
- * Handy class for dealing with PoolCounters using class members instead of callbacks.
+ * Class for dealing with PoolCounters using class members
  */
 abstract class PoolCounterWork {
 	protected $cacheable = false; //Does this override getCachedWork() ?
 
 	/**
-	 * Actually perform the work, caching it if needed.
+	 * @param string $type The type of PoolCounter to use
+	 * @param string $key Key that identifies the queue this work is placed on
 	 */
-	abstract function doWork();
+	public function __construct( $type, $key ) {
+		$this->poolCounter = PoolCounter::factory( $type, $key );
+	}
+
+	/**
+	 * Actually perform the work, caching it if needed
+	 * @return mixed work result or false
+	 */
+	abstract public function doWork();
 
 	/**
 	 * Retrieve the work from cache
 	 * @return mixed work result or false
 	 */
-	function getCachedWork() {
+	public function getCachedWork() {
 		return false;
 	}
 
@@ -165,7 +167,7 @@ abstract class PoolCounterWork {
 	 * message.
 	 * @return mixed work result or false
 	 */
-	function fallback() {
+	public function fallback() {
 		return false;
 	}
 
@@ -181,17 +183,28 @@ abstract class PoolCounterWork {
 	 * Log an error
 	 *
 	 * @param $status Status
+	 * @return void
 	 */
 	function logError( $status ) {
 		wfDebugLog( 'poolcounter', $status->getWikiText() );
 	}
 
 	/**
-	 * Get the result of the work (whatever it is), or false.
+	 * Get the result of the work (whatever it is), or the result of the error() function.
+	 * This returns the result of the first applicable method that returns a non-false value,
+	 * where the methods are checked in the following order:
+	 *   - a) doWork()       : Applies if the work is exclusive or no another process
+	 *                         is doing it, and on the condition that either this process
+	 *                         successfully entered the pool or the pool counter is down.
+	 *   - b) doCachedWork() : Applies if the work is cacheable and this blocked on another
+	 *                         process which finished the work.
+	 *   - c) fallback()     : Applies for all remaining cases.
+	 * If these all fall through (by returning false), then the result of error() is returned.
+	 *
 	 * @param $skipcache bool
-	 * @return bool|mixed
+	 * @return mixed
 	 */
-	function execute( $skipcache = false ) {
+	public function execute( $skipcache = false ) {
 		if ( $this->cacheable && !$skipcache ) {
 			$status = $this->poolCounter->acquireForAnyone();
 		} else {
@@ -232,15 +245,85 @@ abstract class PoolCounterWork {
 			/* These two cases should never be hit... */
 			case PoolCounter::ERROR:
 			default:
-				$errors = array( PoolCounter::QUEUE_FULL => 'pool-queuefull', PoolCounter::TIMEOUT => 'pool-timeout' );
+				$errors = array(
+					PoolCounter::QUEUE_FULL => 'pool-queuefull',
+					PoolCounter::TIMEOUT => 'pool-timeout' );
 
-				$status = Status::newFatal( isset( $errors[$status->value] ) ? $errors[$status->value] : 'pool-errorunknown' );
+				$status = Status::newFatal( isset( $errors[$status->value] )
+					? $errors[$status->value]
+					: 'pool-errorunknown' );
 				$this->logError( $status );
 				return $this->error( $status );
 		}
 	}
+}
 
-	function __construct( $type, $key ) {
-		$this->poolCounter = PoolCounter::factory( $type, $key );
+/**
+ * Convenience class for dealing with PoolCounters using callbacks
+ * @since 1.22
+ */
+class PoolCounterWorkViaCallback extends PoolCounterWork {
+	/** @var callable */
+	protected $doWork;
+	/** @var callable|null */
+	protected $doCachedWork;
+	/** @var callable|null */
+	protected $fallback;
+	/** @var callable|null */
+	protected $error;
+
+	/**
+	 * Build a PoolCounterWork class from a type, key, and callback map.
+	 *
+	 * The callback map must at least have a callback for the 'doWork' method.
+	 * Additionally, callbacks can be provided for the 'doCachedWork', 'fallback',
+	 * and 'error' methods. Methods without callbacks will be no-ops that return false.
+	 * If a 'doCachedWork' callback is provided, then execute() may wait for any prior
+	 * process in the pool to finish and reuse its cached result.
+	 *
+	 * @param string $type
+	 * @param string $key
+	 * @param array $callbacks Map of callbacks
+	 * @throws MWException
+	 */
+	public function __construct( $type, $key, array $callbacks ) {
+		parent::__construct( $type, $key );
+		foreach ( array( 'doWork', 'doCachedWork', 'fallback', 'error' ) as $name ) {
+			if ( isset( $callbacks[$name] ) ) {
+				if ( !is_callable( $callbacks[$name] ) ) {
+					throw new MWException( "Invalid callback provided for '$name' function." );
+				}
+				$this->$name = $callbacks[$name];
+			}
+		}
+		if ( !isset( $this->doWork ) ) {
+			throw new MWException( "No callback provided for 'doWork' function." );
+		}
+		$this->cacheable = isset( $this->doCachedWork );
+	}
+
+	public function doWork() {
+		return call_user_func_array( $this->doWork, array() );
+	}
+
+	public function getCachedWork() {
+		if ( $this->doCachedWork ) {
+			return call_user_func_array( $this->doCachedWork, array() );
+		}
+		return false;
+	}
+
+	function fallback() {
+		if ( $this->fallback ) {
+			return call_user_func_array( $this->fallback, array() );
+		}
+		return false;
+	}
+
+	function error( $status ) {
+		if ( $this->error ) {
+			return call_user_func_array( $this->error, array( $status ) );
+		}
+		return false;
 	}
 }

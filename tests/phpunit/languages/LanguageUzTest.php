@@ -12,19 +12,8 @@
  * @file
  */
 
-require_once dirname( __DIR__ ) . '/bootstrap.php';
-
 /** Tests for MediaWiki languages/LanguageUz.php */
-class LanguageUzTest extends MediaWikiTestCase {
-	/* Language object. Initialized before each test */
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'uz' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageUzTest extends LanguageClassesTestCase {
 
 	/**
 	 * @author Nikola Smolenski
@@ -73,6 +62,7 @@ class LanguageUzTest extends MediaWikiTestCase {
 			$msg
 		);
 	}
+
 	/**
 	 * Wrapper to verify a text is different once converted to a variant.
 	 * @param $text string Text to convert
@@ -96,6 +86,7 @@ class LanguageUzTest extends MediaWikiTestCase {
 		$this->assertUnConverted( $text, 'uz-cyrl', $msg );
 		$this->assertConverted( $text, 'uz-latn', $msg );
 	}
+
 	/**
 	 * Verifiy the given Latin text is not converted when using
 	 * using the Latin variant and converted to Cyrillic when using
@@ -109,11 +100,13 @@ class LanguageUzTest extends MediaWikiTestCase {
 
 	/** Wrapper for converter::convertTo() method*/
 	function convertTo( $text, $variant ) {
-		return $this->lang->mConverter->convertTo( $text, $variant );
+		return $this->getLang()->mConverter->convertTo( $text, $variant );
 	}
+
 	function convertToCyrillic( $text ) {
 		return $this->convertTo( $text, 'uz-cyrl' );
 	}
+
 	function convertToLatin( $text ) {
 		return $this->convertTo( $text, 'uz-latn' );
 	}

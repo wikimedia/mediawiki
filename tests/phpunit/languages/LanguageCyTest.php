@@ -6,24 +6,20 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageCy.php */
-class LanguageCyTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'cy' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPlural */
+class LanguageCyTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
-		$forms =  array( 'zero', 'one', 'two', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$forms = array( 'zero', 'one', 'two', 'few', 'many', 'other' );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
 			array( 'zero', 0 ),
 			array( 'one', 1 ),
 			array( 'two', 2 ),
@@ -38,5 +34,4 @@ class LanguageCyTest extends MediaWikiTestCase {
 			array( 'other', 200.00 ),
 		);
 	}
-
 }

@@ -6,41 +6,37 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSma.php */
-class LanguageSmaTest extends MediaWikiTestCase {
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'sma' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
-	/** @dataProvider providerPluralThreeForms */
-	function testPluralThreeForms( $result, $value ) {
+class LanguageSmaTest extends LanguageClassesTestCase {
+	/** @dataProvider providePlural */
+	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPluralThreeForms() {
-		return array (
+	/** @dataProvider providePlural */
+	function testGetPluralRuleType( $result, $value ) {
+		$this->assertEquals( $result, $this->getLang()->getPluralRuleType( $value ) );
+	}
+
+	public static function providePlural() {
+		return array(
 			array( 'other', 0 ),
-			array( 'one',   1 ),
-			array( 'two',   2 ),
+			array( 'one', 1 ),
+			array( 'two', 2 ),
 			array( 'other', 3 ),
 		);
 	}
 
-	/** @dataProvider providerPlural */
-	function testPlural( $result, $value ) {
+	/** @dataProvider providerPluralTwoForms */
+	function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
-	function providerPlural() {
-		return array (
+	public static function providerPluralTwoForms() {
+		return array(
 			array( 'other', 0 ),
-			array( 'one',   1 ),
+			array( 'one', 1 ),
 			array( 'other', 2 ),
 			array( 'other', 3 ),
 		);

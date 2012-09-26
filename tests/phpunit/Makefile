@@ -2,7 +2,7 @@
 .DEFAULT: warning
 
 SHELL = /bin/sh
-CONFIG_FILE = $(shell pwd)/suite.xml
+CONFIG_FILE = ${PWD}/suite.xml
 PHP = php
 PU = ${PHP} phpunit.php --configuration ${CONFIG_FILE} ${FLAGS}
 

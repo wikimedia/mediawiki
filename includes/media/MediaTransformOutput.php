@@ -32,7 +32,14 @@ abstract class MediaTransformOutput {
 	 */
 	var $file;
 
-	var $width, $height, $url, $page, $path;
+	var $width, $height, $url, $page, $path, $lang;
+
+	/**
+	 * @var array Associative array mapping optional supplementary image files
+	 * from pixel density (eg 1.5 or 2) to additional URLs.
+	 */
+	public $responsiveUrls = array();
+
 	protected $storagePath = false;
 
 	/**
@@ -73,7 +80,7 @@ abstract class MediaTransformOutput {
 	}
 
 	/**
-	 * @param $storagePath string The permanent storage path
+	 * @param string $storagePath The permanent storage path
 	 * @return void
 	 */
 	public function setStoragePath( $storagePath ) {
@@ -83,7 +90,7 @@ abstract class MediaTransformOutput {
 	/**
 	 * Fetch HTML for this transform output
 	 *
-	 * @param $options array Associative array of options. Boolean options
+	 * @param array $options Associative array of options. Boolean options
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
@@ -144,7 +151,12 @@ abstract class MediaTransformOutput {
 		if ( $this->isError() ) {
 			return false;
 		} elseif ( $this->path === null ) {
-			return $this->file->getLocalRefPath();
+			return $this->file->getLocalRefPath(); // assume thumb was not scaled
+		} elseif ( FileBackend::isStoragePath( $this->path ) ) {
+			$be = $this->file->getRepo()->getBackend();
+			// The temp file will be process cached by FileBackend
+			$fsFile = $be->getLocalReference( array( 'src' => $this->path ) );
+			return $fsFile ? $fsFile->getPath() : false;
 		} else {
 			return $this->path; // may return false
 		}
@@ -153,7 +165,7 @@ abstract class MediaTransformOutput {
 	/**
 	 * Stream the file if there were no errors
 	 *
-	 * @param $headers Array Additional HTTP headers to send on success
+	 * @param array $headers Additional HTTP headers to send on success
 	 * @return Bool success
 	 */
 	public function streamFile( $headers = array() ) {
@@ -185,14 +197,26 @@ abstract class MediaTransformOutput {
 
 	/**
 	 * @param $title string
-	 * @param $params array
+	 * @param $params string|array Query parameters to add
 	 * @return array
 	 */
-	public function getDescLinkAttribs( $title = null, $params = '' ) {
-		$query = $this->page ? ( 'page=' . urlencode( $this->page ) ) : '';
-		if( $params ) {
-			$query .= $query ? '&'.$params : $params;
+	public function getDescLinkAttribs( $title = null, $params = array() ) {
+		if ( is_array( $params ) ) {
+			$query = $params;
+		} else {
+			$query = array();
 		}
+		if ( $this->page && $this->page !== 1 ) {
+			$query['page'] = $this->page;
+		}
+		if( $this->lang ) {
+			$query['lang'] = $this->lang;
+		}
+
+		if ( is_string( $params ) && $params !== '' ) {
+			$query = $params . '&' . wfArrayToCgi( $query );
+		}
+
 		$attribs = array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
@@ -218,19 +242,21 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * It may also include a 'page' parameter for multipage files.
 	 *
 	 * @param $file File object
-	 * @param $url String: URL path to the thumb
+	 * @param string $url URL path to the thumb
 	 * @param $path String|bool|null: filesystem path to the thumb
-	 * @param $parameters Array: Associative array of parameters
+	 * @param array $parameters Associative array of parameters
 	 * @private
 	 */
 	function __construct( $file, $url, $path = false, $parameters = array() ) {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
-		if( is_array( $parameters ) ){
-			$defaults = array(
-				'page' => false
-			);
+		$defaults = array(
+			'page' => false,
+			'lang' => false
+		);
+
+		if ( is_array( $parameters ) ) {
 			$actualParams = $parameters + $defaults;
 		} else {
 			# Using old format, should convert. Later a warning could be added here.
@@ -239,7 +265,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				'width' => $path,
 				'height' => $parameters,
 				'page' => ( $numArgs > 5 ) ? func_get_arg( 5 ) : false
-			);
+			) + $defaults;
 			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
 		}
 
@@ -254,13 +280,14 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->height = round( $actualParams['height'] );
 
 		$this->page = $actualParams['page'];
+		$this->lang = $actualParams['lang'];
 	}
 
 	/**
 	 * Return HTML <img ... /> tag for the thumbnail, will include
 	 * width and height attributes and a blank alt text (as required).
 	 *
-	 * @param $options array Associative array of options. Boolean options
+	 * @param array $options Associative array of options. Boolean options
 	 *     should be indicated with a value of true for true, and false or
 	 *     absent for false.
 	 *
@@ -281,16 +308,17 @@ class ThumbnailImage extends MediaTransformOutput {
 	 * For images, desc-link and file-link are implemented as a click-through. For
 	 * sounds and videos, they may be displayed in other ways.
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function toHtml( $options = array() ) {
 		if ( count( func_get_args() ) == 2 ) {
-			throw new MWException( __METHOD__ .' called in the old style' );
+			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
 
 		$alt = empty( $options['alt'] ) ? '' : $options['alt'];
 
-		$query = empty( $options['desc-query'] )  ? '' : $options['desc-query'];
+		$query = empty( $options['desc-query'] ) ? '' : $options['desc-query'];
 
 		if ( !empty( $options['custom-url-link'] ) ) {
 			$linkAttribs = array( 'href' => $options['custom-url-link'] );
@@ -323,7 +351,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			'alt' => $alt,
 			'src' => $this->url,
 			'width' => $this->width,
-			'height' => $this->height,
+			'height' => $this->height
 		);
 		if ( !empty( $options['valign'] ) ) {
 			$attribs['style'] = "vertical-align: {$options['valign']}";
@@ -331,6 +359,14 @@ class ThumbnailImage extends MediaTransformOutput {
 		if ( !empty( $options['img-class'] ) ) {
 			$attribs['class'] = $options['img-class'];
 		}
+
+		// Additional densities for responsive images, if specified.
+		if ( !empty( $this->responsiveUrls ) ) {
+			$attribs['srcset'] = Html::srcSet( $this->responsiveUrls );
+		}
+
+		wfRunHooks( 'ThumbnailBeforeProduceHTML', array( $this, &$attribs, &$linkAttribs ) );
+
 		return $this->linkWrap( $linkAttribs, Xml::element( 'img', $attribs ) );
 	}
 
@@ -385,7 +421,7 @@ class MediaTransformError extends MediaTransformOutput {
 class TransformParameterError extends MediaTransformError {
 	function __construct( $params ) {
 		parent::__construct( 'thumbnail_error',
-			max( isset( $params['width']  ) ? $params['width']  : 0, 120 ),
+			max( isset( $params['width'] ) ? $params['width'] : 0, 120 ),
 			max( isset( $params['height'] ) ? $params['height'] : 0, 120 ),
 			wfMessage( 'thumbnail_invalid_params' )->text() );
 	}

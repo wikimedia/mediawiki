@@ -102,7 +102,6 @@ $specialPageAliases = array(
 	'Recentchanges'             => array( 'Nov_changes' ),
 	'Recentchangeslinked'       => array( 'Changes_referet', 'Changes_relatet' ),
 	'Revisiondelete'            => array( 'Deleter_revision' ),
-	'RevisionMove'              => array( 'Mover_revision' ),
 	'Search'                    => array( 'Serchar' ),
 	'Shortpages'                => array( 'Págines_curt' ),
 	'Specialpages'              => array( 'Págines_special' ),
@@ -162,8 +161,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Monstrar li númere de usatores vigilant',
 'tog-oldsig' => 'Prevision de signature in existentie:',
 'tog-fancysig' => 'Tractar signature quam textu wiki (sin un catenun auto-crate)',
-'tog-externaleditor' => 'Usar redactor extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [//www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
-'tog-externaldiff' => 'Usar diferentie extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [//www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
 'tog-showjumplinks' => 'Permisser catenunes de accessebilitá "saltar a"',
 'tog-uselivepreview' => 'Usar prevision in vivi (exige JavaScript) (experimental)',
 'tog-forceeditsummary' => 'Suggester me quande intrar un redaction che summarium in blanc',
@@ -263,7 +260,6 @@ $messages = array(
 'qbfind' => 'Constatar',
 'qbedit' => 'Redacter',
 'qbpageoptions' => 'Págine de optiones',
-'qbpageinfo' => 'Págine de information',
 'qbmyoptions' => 'Mi optiones',
 'qbspecialpages' => 'Págines special',
 'faq' => 'FAQ',
@@ -350,7 +346,6 @@ $1',
 'disclaimers' => 'Advertimentes',
 'disclaimerpage' => 'Project:Advertimentes comun',
 'edithelp' => 'Redacter auxilie',
-'edithelppage' => 'Help:Redactant',
 'helppage' => 'Help:Contenete',
 'mainpage' => 'Págine principal',
 'mainpage-description' => 'Págine principal',
@@ -422,11 +417,8 @@ Li motive dat es "\'\'$2\'\'".',
 
 # Login and logout pages
 'logouttext' => "'''Vu ha terminat vor session.'''
-Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse [[Special:UserLogin|aperter un session denov]] quam li sam usator o quam un diferent usator.
+Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse <span class='plainlinks'>[$1 aperter un session denov]</span> quam li sam usator o quam un diferent usator.
 Nota que alcun págines posse continuar esser monstrat quam si vu esset registrat, til que vu vacua li cache de tui navigator.",
-'welcomecreation' => '== Benevenit, $1! == 
-Tui conto hat esset creat. 
-Ne oblivia de mutar tui [[Special:Preferences|preferenties de {{SITENAME}}]].',
 'yourname' => 'Nómine de usator:',
 'yourpassword' => 'Parol-clave:',
 'yourpasswordagain' => 'Parol-clave denov:',
@@ -631,7 +623,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'viewprevnext' => 'Vider ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists' => "'''Vi un págine nominat \"[[:\$1]]\" in ti wiki.'''",
 'searchmenu-new' => "'''Crear li págine \"[[:\$1]]\" in ti wiki!'''",
-'searchhelp-url' => 'Help:Contenete',
 'searchprofile-articles' => 'Págines de contenete',
 'searchprofile-project' => 'Auxilie e Págines de projecte',
 'searchprofile-images' => 'Multimedia',
@@ -652,9 +643,6 @@ Vider li [[Special:IPBlockList|liste de bloc de IP]] por li liste de bloces e ba
 'showingresultsheader' => "{{PLURAL:$5|Resultate '''$1''' de '''$3'''|Resultates '''$1 - $2''' de '''$3'''}} por '''$4'''",
 'search-nonefound' => 'Ne esset constatat resultates por li question.',
 'powersearch' => 'Serchar avansat',
-
-# Quickbar
-'qbsettings' => 'Personalisation del barre de utensiles',
 
 # Preferences page
 'preferences' => 'Preferenties',
@@ -720,9 +708,11 @@ Tui adresse de e-mail ne es revelat quande altri usatores contacter vu.',
 'grouppage-bureaucrat' => '{{ns:project}}:Burócrates',
 'grouppage-suppress' => '{{ns:project}}:Vigilatores',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Diarium de creation de usator',
+
 # User rights log
 'rightslog' => 'Diarium de jures de usator',
-'rightsnone' => '(null)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'redacter ti págine',
@@ -972,13 +962,10 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'linksearch-ns' => 'Spacie de nómine:',
 'linksearch-line' => '$1 es ligat de $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Diarium de creation de usator',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(liste de membres)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Parlar che ti usator',
 'usermailererror' => 'Objecte de postage retornat errore:',
 'usermaildisabled' => 'E-mail de usator desvalidat',
@@ -1002,8 +989,8 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'unwatch' => 'Desvigilar',
 'watchnochange' => 'Nequant de tui tui partes vigilat esset redactet in li periode de témpor monstrat.',
 'watchlist-details' => '{{PLURAL:$1|$1 págine|$1 págines}} in tui liste de págines vigilat, sin págines de discussion.',
-'wlheader-enotif' => '* Li notification de e-mail es permisset.',
-'wlheader-showupdated' => "* Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
+'wlheader-enotif' => 'Li notification de e-mail es permisset.',
+'wlheader-showupdated' => "Págines quel hat esset mutat desde tui ultim visitation es monstrat in '''nigri'''",
 'watchmethod-recent' => 'controlant nov redactiones por págines vigilat',
 'watchmethod-list' => 'controlant págines vigilat por nov redactiones',
 'watchlistcontains' => 'Tui liste de págines vigilat contene $1 {{PLURAL:$1|págine|págines}}.',
@@ -1378,9 +1365,6 @@ Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
 'version-software-product' => 'Producte',
 'version-software-version' => 'Version',
 
-# Special:FilePath
-'filepath-page' => 'Figura:',
-
 # Special:SpecialPages
 'specialpages' => 'Págines special',
 'specialpages-group-maintenance' => 'Raportes de conservation',
@@ -1418,5 +1402,8 @@ Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
 'tags-hitcount-header' => 'Changes nómiat',
 'tags-edit' => 'redacter',
 'tags-hitcount' => '$1 {{PLURAL:$1|change|changes}}',
+
+# New logging system
+'rightsnone' => '(null)',
 
 );

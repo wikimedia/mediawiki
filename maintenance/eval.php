@@ -34,7 +34,7 @@
 $optionsWithArgs = array( 'd' );
 
 /** */
-require_once( __DIR__ . "/commandLine.inc" );
+require_once __DIR__ . "/commandLine.inc";
 
 if ( isset( $options['d'] ) ) {
 	$d = $options['d'];
@@ -43,7 +43,7 @@ if ( isset( $options['d'] ) ) {
 	}
 	if ( $d > 1 ) {
 		$lb = wfGetLB();
-		$serverCount = $lb->getServerCount(); 
+		$serverCount = $lb->getServerCount();
 		for ( $i = 0; $i < $serverCount; $i++ ) {
 			$server = $lb->getServerInfo( $i );
 			$server['flags'] |= DBO_DEBUG;
@@ -80,5 +80,3 @@ while ( ( $line = Maintenance::readconsole() ) !== false ) {
 }
 
 print "\n";
-
-

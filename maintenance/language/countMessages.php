@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that counts how many messages we have defined
@@ -59,7 +59,7 @@ class CountMessages extends Maintenance {
 
 	private function getNumMessages( $file ) {
 		// Separate function to limit scope
-		require( $file );
+		require $file;
 		if ( isset( $messages ) ) {
 			return count( $messages );
 		} else {
@@ -69,4 +69,4 @@ class CountMessages extends Maintenance {
 }
 
 $maintClass = "CountMessages";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

@@ -24,7 +24,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	 */
 	function fillCache( &$cache, $numEntries ) {
 		// Fill cache with three values
-		for( $i=1; $i<=$numEntries; $i++) {
+		for ( $i = 1; $i <= $numEntries; $i++ ) {
 			$cache->set( "cache-key-$i", "prop-$i", "value-$i" );
 		}
 	}
@@ -36,10 +36,10 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	function getExpectedCache( $cacheMaxEntries, $entryToFill ) {
 		$expected = array();
 
-		if( $entryToFill === 0 ) {
+		if ( $entryToFill === 0 ) {
 			# The cache is empty!
 			return array();
-		} elseif( $entryToFill <= $cacheMaxEntries ) {
+		} elseif ( $entryToFill <= $cacheMaxEntries ) {
 			# Cache is not fully filled
 			$firstKey = 1;
 		} else {
@@ -47,11 +47,12 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 			$firstKey = 1 + $entryToFill - $cacheMaxEntries;
 		}
 
-		$lastKey  = $entryToFill;
+		$lastKey = $entryToFill;
 
-		for( $i=$firstKey; $i<=$lastKey; $i++ ) {
+		for ( $i = $firstKey; $i <= $lastKey; $i++ ) {
 			$expected["cache-key-$i"] = array( "prop-$i" => "value-$i" );
 		}
+
 		return $expected;
 	}
 
@@ -61,7 +62,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	function testPhpUnitArrayEquality() {
 		$one = array( 'A' => 1, 'B' => 2 );
 		$two = array( 'B' => 2, 'A' => 1 );
-		$this->assertEquals( $one, $two );  // ==
+		$this->assertEquals( $one, $two ); // ==
 		$this->assertNotSame( $one, $two ); // ===
 	}
 
@@ -70,13 +71,13 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	 * @expectedException MWException
 	 */
 	function testConstructorGivenInvalidValue( $maxSize ) {
-		$c = new ProcessCacheLRUTestable( $maxSize );
+		new ProcessCacheLRUTestable( $maxSize );
 	}
 
 	/**
 	 * Value which are forbidden by the constructor
 	 */
-	function provideInvalidConstructorArg() {
+	public static function provideInvalidConstructorArg() {
 		return array(
 			array( null ),
 			array( array() ),
@@ -118,28 +119,26 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	 */
 	function testFillingCache( $cacheMaxEntries, $entryToFill, $msg = '' ) {
 		$cache = new ProcessCacheLRUTestable( $cacheMaxEntries );
-		$this->fillCache( $cache, $entryToFill);
+		$this->fillCache( $cache, $entryToFill );
 
 		$this->assertSame(
 			$this->getExpectedCache( $cacheMaxEntries, $entryToFill ),
 			$cache->getCache(),
 			"Filling a $cacheMaxEntries entries cache with $entryToFill entries"
 		);
-
 	}
 
 	/**
 	 * Provider for testFillingCache
 	 */
-	function provideCacheFilling() {
+	public static function provideCacheFilling() {
 		// ($cacheMaxEntries, $entryToFill, $msg='')
 		return array(
-			array( 1,  0 ),
-			array( 1,  1 ),
-			array( 1,  2 ), # overflow
+			array( 1, 0 ),
+			array( 1, 1 ),
+			array( 1, 2 ), # overflow
 			array( 5, 33 ), # overflow
 		);
-
 	}
 
 	/**
@@ -167,7 +166,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 
 	function testRecentlyAccessedKeyStickIn() {
 		$cache = new ProcessCacheLRUTestable( 2 );
-		$cache->set( 'first' , 'prop1', 'value1' );
+		$cache->set( 'first', 'prop1', 'value1' );
 		$cache->set( 'second', 'prop2', 'value2' );
 
 		// Get first
@@ -219,9 +218,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 			),
 			$cache->getCache()
 		);
-
 	}
-
 }
 
 /**
@@ -233,6 +230,7 @@ class ProcessCacheLRUTestable extends ProcessCacheLRU {
 	public function getCache() {
 		return $this->cache;
 	}
+
 	public function getEntriesCount() {
 		return count( $this->cache );
 	}

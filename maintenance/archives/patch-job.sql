@@ -1,7 +1,7 @@
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*_*/job (
   job_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  
+
   -- Command name
   -- Limited to 60 to prevent key length overflow
   job_cmd varbinary(60) NOT NULL default '',

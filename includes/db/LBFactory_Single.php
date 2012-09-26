@@ -28,7 +28,7 @@ class LBFactory_Single extends LBFactory {
 	protected $lb;
 
 	/**
-	 * @param $conf array An associative array with one member:
+	 * @param array $conf An associative array with one member:
 	 *  - connection: The DatabaseBase connection object
 	 */
 	function __construct( $conf ) {

@@ -57,7 +57,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Execute page -- can output a file directly or show a listing of them.
 	 *
-	 * @param $subPage String: subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
+	 * @param string $subPage subpage, e.g. in http://example.com/wiki/Special:UploadStash/foo.jpg, the "foo.jpg" part
 	 * @return Boolean: success
 	 */
 	public function execute( $subPage ) {
@@ -73,7 +73,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * If file available in stash, cats it out to the client as a simple HTTP response.
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
 	 *
-	 * @param $key String: the key of a particular requested file
+	 * @param string $key the key of a particular requested file
+	 * @throws HttpError
 	 * @return bool
 	 */
 	public function showUpload( $key ) {
@@ -87,19 +88,19 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			} else {
 				return $this->outputLocalFile( $params['file'] );
 			}
-		} catch( UploadStashFileNotFoundException $e ) {
+		} catch ( UploadStashFileNotFoundException $e ) {
 			$code = 404;
 			$message = $e->getMessage();
-		} catch( UploadStashZeroLengthFileException $e ) {
+		} catch ( UploadStashZeroLengthFileException $e ) {
 			$code = 500;
 			$message = $e->getMessage();
-		} catch( UploadStashBadPathException $e ) {
+		} catch ( UploadStashBadPathException $e ) {
 			$code = 500;
 			$message = $e->getMessage();
-		} catch( SpecialUploadStashTooLargeException $e ) {
+		} catch ( SpecialUploadStashTooLargeException $e ) {
 			$code = 500;
 			$message = 'Cannot serve a file larger than ' . self::MAX_SERVE_BYTES . ' bytes. ' . $e->getMessage();
-		} catch( Exception $e ) {
+		} catch ( Exception $e ) {
 			$code = 500;
 			$message = $e->getMessage();
 		}
@@ -113,6 +114,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * application the transform parameters
 	 *
 	 * @param string $key
+	 * @throws UploadStashBadPathException
 	 * @return array
 	 */
 	private function parseKey( $key ) {
@@ -164,10 +166,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	/**
 	 * Scale a file (probably with a locally installed imagemagick, or similar) and output it to STDOUT.
-	 * @param $file: File object
-	 * @param $params: scaling parameters ( e.g. array( width => '50' ) );
-	 * @param $flags: scaling flags ( see File:: constants )
+	 * @param $file File
+	 * @param array $params Scaling parameters ( e.g. array( width => '50' ) );
+	 * @param int $flags Scaling flags ( see File:: constants )
 	 * @throws MWException
+	 * @throws UploadStashFileNotFoundException
 	 * @return boolean success
 	 */
 	private function outputLocallyScaledThumb( $file, $params, $flags ) {
@@ -189,7 +192,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		// now we should construct a File, so we can get mime and other such info in a standard way
 		// n.b. mimetype may be different from original (ogx original -> jpeg thumb)
-		$thumbFile = new UnregisteredLocalFile( false, 
+		$thumbFile = new UnregisteredLocalFile( false,
 			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
 		if ( !$thumbFile ) {
 			throw new UploadStashFileNotFoundException( "couldn't create local file object for thumbnail" );
@@ -219,7 +222,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		global $wgUploadStashScalerBaseUrl;
 		$scalerBaseUrl = $wgUploadStashScalerBaseUrl;
 
-		if( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
+		if ( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
 			// this is apparently a protocol-relative URL, which makes no sense in this context,
 			// since this is used for communication that's internal to the application.
 			// default to http.
@@ -258,6 +261,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Side effect: writes HTTP response to STDOUT.
 	 *
 	 * @param $file File object with a local path (e.g. UnregisteredLocalFile, LocalFile. Oddly these don't share an ancestor!)
+	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */
 	private function outputLocalFile( File $file ) {
@@ -273,8 +277,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Output HTTP response of raw content
 	 * Side effect: writes HTTP response to STDOUT.
-	 * @param $content String content
-	 * @param $contentType String mime type
+	 * @param string $content content
+	 * @param string $contentType mime type
+	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */
 	private function outputContents( $content, $contentType ) {
@@ -291,8 +296,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Output headers for streaming
 	 * XXX unsure about encoding as binary; if we received from HTTP perhaps we should use that encoding, concatted with semicolon to mimeType as it usually is.
 	 * Side effect: preps PHP to write headers to STDOUT.
-	 * @param String $contentType : string suitable for content-type header
-	 * @param String $size: length in bytes
+	 * @param string $contentType : string suitable for content-type header
+	 * @param string $size: length in bytes
 	 */
 	private static function outputFileHeaders( $contentType, $size ) {
 		header( "Content-Type: $contentType", true );
@@ -306,6 +311,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Note the stash has to be recreated since this is being called in a static context.
 	 * This works, because there really is only one stash per logged-in user, despite appearances.
 	 *
+	 * @param array $formData
 	 * @return Status
 	 */
 	public static function tryClearStashedUploads( $formData ) {
@@ -322,14 +328,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * Default action when we don't have a subpage -- just show links to the uploads we have,
 	 * Also show a button to clear stashed files
-	 * @param $status [optional] Status: the result of processRequest
 	 * @return bool
 	 */
-	private function showUploads( $status = null ) {
-		if ( $status === null ) {
-			$status = Status::newGood();
-		}
-
+	private function showUploads() {
 		// sets the title, etc.
 		$this->setHeaders();
 		$this->outputHeader();
@@ -344,7 +345,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				'name' => 'clear',
 			)
 		), $this->getContext(), 'clearStashedUploads' );
-		$form->setSubmitCallback( array( __CLASS__ , 'tryClearStashedUploads' ) );
+		$form->setSubmitCallback( array( __CLASS__, 'tryClearStashedUploads' ) );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitTextMsg( 'uploadstash-clear' );
 

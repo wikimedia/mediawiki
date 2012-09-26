@@ -24,7 +24,7 @@
  * @author  Platonides
  */
 
-require_once( __DIR__ . '/Benchmarker.php' );
+require_once __DIR__ . '/Benchmarker.php';
 
 /**
  * Maintenance script that benchmarks HTTP request vs HTTPS request.
@@ -62,4 +62,4 @@ class bench_HTTP_HTTPS extends Benchmarker {
 }
 
 $maintClass = 'bench_HTTP_HTTPS';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

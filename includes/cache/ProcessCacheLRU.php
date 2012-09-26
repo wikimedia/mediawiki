@@ -28,6 +28,8 @@
 class ProcessCacheLRU {
 	/** @var Array */
 	protected $cache = array(); // (key => prop => value)
+	/** @var Array */
+	protected $cacheTimes = array(); // (key => prop => UNIX timestamp)
 
 	protected $maxCacheKeys; // integer; max entries
 
@@ -44,7 +46,7 @@ class ProcessCacheLRU {
 
 	/**
 	 * Set a property field for a cache entry.
-	 * This will prune the cache if it gets too large.
+	 * This will prune the cache if it gets too large based on LRU.
 	 * If the item is already set, it will be pushed to the top of the cache.
 	 *
 	 * @param $key string
@@ -57,9 +59,12 @@ class ProcessCacheLRU {
 			$this->ping( $key ); // push to top
 		} elseif ( count( $this->cache ) >= $this->maxCacheKeys ) {
 			reset( $this->cache );
-			unset( $this->cache[key( $this->cache )] );
+			$evictKey = key( $this->cache );
+			unset( $this->cache[$evictKey] );
+			unset( $this->cacheTimes[$evictKey] );
 		}
 		$this->cache[$key][$prop] = $value;
+		$this->cacheTimes[$key][$prop] = time();
 	}
 
 	/**
@@ -67,10 +72,14 @@ class ProcessCacheLRU {
 	 *
 	 * @param $key string
 	 * @param $prop string
+	 * @param $maxAge integer Ignore items older than this many seconds (since 1.21)
 	 * @return bool
 	 */
-	public function has( $key, $prop ) {
-		return isset( $this->cache[$key][$prop] );
+	public function has( $key, $prop, $maxAge = 0 ) {
+		if ( isset( $this->cache[$key][$prop] ) ) {
+			return ( $maxAge <= 0 || ( time() - $this->cacheTimes[$key][$prop] ) <= $maxAge );
+		}
+		return false;
 	}
 
 	/**
@@ -100,9 +109,11 @@ class ProcessCacheLRU {
 	public function clear( $keys = null ) {
 		if ( $keys === null ) {
 			$this->cache = array();
+			$this->cacheTimes = array();
 		} else {
 			foreach ( (array)$keys as $key ) {
 				unset( $this->cache[$key] );
+				unset( $this->cacheTimes[$key] );
 			}
 		}
 	}

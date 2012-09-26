@@ -40,17 +40,17 @@ class BackupDumper {
 	var $reportingInterval = 100;
 	var $reporting = true;
 	var $pageCount = 0;
-	var $revCount  = 0;
-	var $server    = null; // use default
-	var $pages     = null; // all pages
+	var $revCount = 0;
+	var $server = null; // use default
+	var $pages = null; // all pages
 	var $skipHeader = false; // don't output <mediawiki> and <siteinfo>
 	var $skipFooter = false; // don't output </mediawiki>
-	var $startId    = 0;
-	var $endId      = 0;
+	var $startId = 0;
+	var $endId = 0;
 	var $revStartId = 0;
-	var $revEndId   = 0;
-	var $sink       = null; // Output filters
-	var $stubText   = false; // include rev_text_id instead of text; for 2-pass dump
+	var $revEndId = 0;
+	var $sink = null; // Output filters
+	var $stubText = false; // include rev_text_id instead of text; for 2-pass dump
 	var $dumpUploads = false;
 	var $dumpUploadFileContents = false;
 	var $lastTime = 0;
@@ -116,7 +116,7 @@ class BackupDumper {
 	 */
 	function loadPlugin( $class, $file ) {
 		if ( $file != '' ) {
-			require_once( $file );
+			require_once $file;
 		}
 		$register = array( $class, 'register' );
 		call_user_func_array( $register, array( &$this ) );
@@ -133,7 +133,7 @@ class BackupDumper {
 			$matches = array();
 			if ( preg_match( '/^--(.+?)(?:=(.+?)(?::(.+?))?)?$/', $arg, $matches ) ) {
 				@list( /* $full */ , $opt, $val, $param ) = $matches;
-				switch( $opt ) {
+				switch ( $opt ) {
 				case "plugin":
 					$this->loadPlugin( $val, $param );
 					break;
@@ -202,8 +202,9 @@ class BackupDumper {
 	function dump( $history, $text = WikiExporter::TEXT ) {
 		# Notice messages will foul up your XML output even if they're
 		# relatively harmless.
-		if ( ini_get( 'display_errors' ) )
+		if ( ini_get( 'display_errors' ) ) {
 			ini_set( 'display_errors', 'stderr' );
+		}
 
 		$this->initProgress( $history );
 
@@ -215,8 +216,9 @@ class BackupDumper {
 		$wrapper = new ExportProgressFilter( $this->sink, $this );
 		$exporter->setOutputSink( $wrapper );
 
-		if ( !$this->skipHeader )
+		if ( !$this->skipHeader ) {
 			$exporter->openStream();
+		}
 		# Log item dumps: all or by range
 		if ( $history & WikiExporter::LOGS ) {
 			if ( $this->startId || $this->endId ) {
@@ -225,7 +227,7 @@ class BackupDumper {
 				$exporter->allLogs();
 			}
 		# Page dumps: all or by page ID range
-		} else if ( is_null( $this->pages ) ) {
+		} elseif ( is_null( $this->pages ) ) {
 			if ( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId );
 			} elseif ( $this->revStartId || $this->revEndId ) {
@@ -238,8 +240,9 @@ class BackupDumper {
 			$exporter->pagesByName( $this->pages );
 		}
 
-		if ( !$this->skipFooter )
+		if ( !$this->skipFooter ) {
 			$exporter->closeStream();
+		}
 
 		$this->report( true );
 	}
@@ -365,7 +368,7 @@ class BackupDumper {
 
 	function fatalError( $msg ) {
 		$this->progress( "$msg\n" );
-		die(1);
+		die( 1 );
 	}
 }
 

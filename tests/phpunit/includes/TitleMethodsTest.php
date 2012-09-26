@@ -1,8 +1,49 @@
 <?php
 
+/**
+ * @group ContentHandler
+ * @group Database
+ *
+ * @note: We don't make assumptions about the main namespace.
+ *        But we do expect the Help namespace to contain Wikitext.
+ *
+ */
 class TitleMethodsTest extends MediaWikiTestCase {
 
-	public function dataEquals() {
+	public function setUp() {
+		global $wgContLang;
+
+		parent::setUp();
+
+		$this->mergeMwGlobalArrayValue(
+			'wgExtraNamespaces',
+			array(
+				12302 => 'TEST-JS',
+				12303 => 'TEST-JS_TALK',
+			)
+		);
+
+		$this->mergeMwGlobalArrayValue(
+			'wgNamespaceContentModels',
+			array(
+				12302 => CONTENT_MODEL_JAVASCRIPT,
+			)
+		);
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
+	public function tearDown() {
+		global $wgContLang;
+
+		parent::tearDown();
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+	}
+
+	public static function provideEquals() {
 		return array(
 			array( 'Main Page', 'Main Page', true ),
 			array( 'Main Page', 'Not The Main Page', false ),
@@ -15,7 +56,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataEquals
+	 * @dataProvider provideEquals
 	 */
 	public function testEquals( $titleA, $titleB, $expectedBool ) {
 		$titleA = Title::newFromText( $titleA );
@@ -25,7 +66,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedBool, $titleB->equals( $titleA ) );
 	}
 
-	public function dataInNamespace() {
+	public static function provideInNamespace() {
 		return array(
 			array( 'Main Page', NS_MAIN, true ),
 			array( 'Main Page', NS_TALK, false ),
@@ -39,7 +80,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataInNamespace
+	 * @dataProvider provideInNamespace
 	 */
 	public function testInNamespace( $title, $ns, $expectedBool ) {
 		$title = Title::newFromText( $title );
@@ -54,7 +95,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$this->assertFalse( $mainpage->inNamespaces( array( NS_PROJECT, NS_TEMPLATE ) ) );
 	}
 
-	public function dataHasSubjectNamespace() {
+	public static function provideHasSubjectNamespace() {
 		return array(
 			array( 'Main Page', NS_MAIN, true ),
 			array( 'Main Page', NS_TALK, true ),
@@ -68,18 +109,59 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataHasSubjectNamespace
+	 * @dataProvider provideHasSubjectNamespace
 	 */
 	public function testHasSubjectNamespace( $title, $ns, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
-	public function dataIsCssOrJsPage() {
+	public function dataGetContentModel() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.js', false ),
-			array( 'Foo/bar.js', false ),
+			array( 'Help:Foo', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'Help:Foo/bar.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo.js', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'User:Foo/bar.css', CONTENT_MODEL_CSS ),
+			array( 'User talk:Foo/bar.css', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.js.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'User:Foo/bar.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'MediaWiki:Foo.css', CONTENT_MODEL_CSS ),
+			array( 'MediaWiki:Foo/bar.css', CONTENT_MODEL_CSS ),
+			array( 'MediaWiki:Foo.JS', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.CSS', CONTENT_MODEL_WIKITEXT ),
+			array( 'MediaWiki:Foo.css.xxx', CONTENT_MODEL_WIKITEXT ),
+			array( 'TEST-JS:Foo', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'TEST-JS:Foo.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'TEST-JS:Foo/bar.js', CONTENT_MODEL_JAVASCRIPT ),
+			array( 'TEST-JS_TALK:Foo.js', CONTENT_MODEL_WIKITEXT ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataGetContentModel
+	 */
+	public function testGetContentModel( $title, $expectedModelId ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expectedModelId, $title->getContentModel() );
+	}
+
+	/**
+	 * @dataProvider dataGetContentModel
+	 */
+	public function testHasContentModel( $title, $expectedModelId ) {
+		$title = Title::newFromText( $title );
+		$this->assertTrue( $title->hasContentModel( $expectedModelId ) );
+	}
+
+	public static function provideIsCssOrJsPage() {
+		return array(
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.js', false ),
+			array( 'Help:Foo/bar.js', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo/bar.js', false ),
@@ -92,11 +174,13 @@ class TitleMethodsTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo.JS', false ),
 			array( 'MediaWiki:Foo.CSS', false ),
 			array( 'MediaWiki:Foo.css.xxx', false ),
+			array( 'TEST-JS:Foo', false ),
+			array( 'TEST-JS:Foo.js', false ),
 		);
 	}
 
 	/**
-	 * @dataProvider dataIsCssOrJsPage
+	 * @dataProvider provideIsCssOrJsPage
 	 */
 	public function testIsCssOrJsPage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
@@ -104,11 +188,11 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 
-	public function dataIsCssJsSubpage() {
+	public static function provideIsCssJsSubpage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.js', false ),
-			array( 'Foo/bar.js', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.js', false ),
+			array( 'Help:Foo/bar.js', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo/bar.js', true ),
@@ -119,21 +203,23 @@ class TitleMethodsTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo.js', false ),
 			array( 'User:Foo/bar.JS', false ),
 			array( 'User:Foo/bar.CSS', false ),
+			array( 'TEST-JS:Foo', false ),
+			array( 'TEST-JS:Foo.js', false ),
 		);
 	}
 
 	/**
-	 * @dataProvider dataIsCssJsSubpage
+	 * @dataProvider provideIsCssJsSubpage
 	 */
 	public function testIsCssJsSubpage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isCssJsSubpage() );
 	}
 
-	public function dataIsCssSubpage() {
+	public static function provideIsCssSubpage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.css', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.css', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo.css', false ),
@@ -143,17 +229,17 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsCssSubpage
+	 * @dataProvider provideIsCssSubpage
 	 */
 	public function testIsCssSubpage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isCssSubpage() );
 	}
 
-	public function dataIsJsSubpage() {
+	public static function provideIsJsSubpage() {
 		return array(
-			array( 'Foo', false ),
-			array( 'Foo.css', false ),
+			array( 'Help:Foo', false ),
+			array( 'Help:Foo.css', false ),
 			array( 'User:Foo', false ),
 			array( 'User:Foo.js', false ),
 			array( 'User:Foo.css', false ),
@@ -163,18 +249,18 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsJsSubpage
+	 * @dataProvider provideIsJsSubpage
 	 */
 	public function testIsJsSubpage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isJsSubpage() );
 	}
 
-	public function dataIsWikitextPage() {
+	public static function provideIsWikitextPage() {
 		return array(
-			array( 'Foo', true ),
-			array( 'Foo.js', true ),
-			array( 'Foo/bar.js', true ),
+			array( 'Help:Foo', true ),
+			array( 'Help:Foo.js', true ),
+			array( 'Help:Foo/bar.js', true ),
 			array( 'User:Foo', true ),
 			array( 'User:Foo.js', true ),
 			array( 'User:Foo/bar.js', false ),
@@ -187,15 +273,17 @@ class TitleMethodsTest extends MediaWikiTestCase {
 			array( 'MediaWiki:Foo/bar.css', false ),
 			array( 'User:Foo/bar.JS', true ),
 			array( 'User:Foo/bar.CSS', true ),
+			array( 'TEST-JS:Foo', false ),
+			array( 'TEST-JS:Foo.js', false ),
+			array( 'TEST-JS_TALK:Foo.js', true ),
 		);
 	}
 
 	/**
-	 * @dataProvider dataIsWikitextPage
+	 * @dataProvider provideIsWikitextPage
 	 */
 	public function testIsWikitextPage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isWikitextPage() );
 	}
-
 }

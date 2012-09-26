@@ -33,6 +33,8 @@
 
 class ApiQueryRandom extends ApiQueryGeneratorBase {
 
+	private $pageIDs;
+
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rn' );
 	}
@@ -184,7 +186,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		return 'api.php?action=query&list=random&rnnamespace=0&rnlimit=2';
 	}
 
-	public function getVersion() {
-		return __CLASS__ . ': $Id: ApiQueryRandom.php overlordq$';
+	public function getHelpUrls() {
+		return 'https://www.mediawiki.org/wiki/API:Random';
 	}
 }

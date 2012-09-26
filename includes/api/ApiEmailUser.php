@@ -30,10 +30,6 @@
  */
 class ApiEmailUser extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$params = $this->extractRequestParams();
 
@@ -158,10 +154,6 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'https://www.mediawiki.org/wiki/API:E-mail';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
+		return 'https://www.mediawiki.org/wiki/API:Email';
 	}
 }

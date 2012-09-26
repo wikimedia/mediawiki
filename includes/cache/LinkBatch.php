@@ -39,7 +39,7 @@ class LinkBatch {
 	protected $caller;
 
 	function __construct( $arr = array() ) {
-		foreach( $arr as $item ) {
+		foreach ( $arr as $item ) {
 			$this->addObj( $item );
 		}
 	}
@@ -98,7 +98,7 @@ class LinkBatch {
 	 * @return bool
 	 */
 	public function isEmpty() {
-		return ($this->getSize() == 0);
+		return $this->getSize() == 0;
 	}
 
 	/**
@@ -223,7 +223,7 @@ class LinkBatch {
 	/**
 	 * Construct a WHERE clause which will match all the given titles.
 	 *
-	 * @param $prefix String: the appropriate table's field name prefix ('page', 'pl', etc)
+	 * @param string $prefix the appropriate table's field name prefix ('page', 'pl', etc)
 	 * @param $db DatabaseBase object to use
 	 * @return mixed string with SQL where clause fragment, or false if no items.
 	 */

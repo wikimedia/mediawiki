@@ -50,25 +50,27 @@ class MessageWriter {
 		$sortedMessages = $messages[1];
 
 		# Write to the file
-		if ( $messagesFolder )
+		if ( $messagesFolder ) {
 			$filename = Language::getFileName( "$messagesFolder/Messages", $code );
-		else
+		} else {
 			$filename = Language::getMessagesFileName( $code );
+		}
 
-		if ( file_exists( $filename ) )
+		if ( file_exists( $filename ) ) {
 			$contents = file_get_contents( $filename );
-		else
+		} else {
 			$contents = '<?php
 $messages = array(
 );
 ';
+		}
 
-		if( strpos( $contents, '$messages' ) !== false ) {
+		if ( strpos( $contents, '$messages' ) !== false ) {
 			$contents = explode( '$messages', $contents );
-			if( $messagesText == '$messages' . $contents[1] ) {
+			if ( $messagesText == '$messages' . $contents[1] ) {
 				echo "Generated messages for language $code. Same as the current file.\n";
 			} else {
-				if( $write ) {
+				if ( $write ) {
 					$new = $contents[0];
 					$new .= $messagesText;
 					file_put_contents( $filename, $new );
@@ -77,12 +79,13 @@ $messages = array(
 					echo "Generated messages for language $code. Please run the script again (without the parameter \"dry-run\") to write the array to the file.\n";
 				}
 			}
-			if( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
-				if ( $removeUnknown )
+			if ( $listUnknown && isset( $sortedMessages['unknown'] ) && !empty( $sortedMessages['unknown'] ) ) {
+				if ( $removeUnknown ) {
 					echo "\nThe following " . count( $sortedMessages['unknown'] ) . " unknown messages have been removed:\n";
-				else
+				} else {
 					echo "\nThere are " . count( $sortedMessages['unknown'] ) . " unknown messages, please check them:\n";
-				foreach( $sortedMessages['unknown'] as $key => $value ) {
+				}
+				foreach ( $sortedMessages['unknown'] as $key => $value ) {
 					echo "* " . $key . "\n";
 				}
 			}
@@ -107,22 +110,22 @@ $messages = array(
 		# Load messages
 		$dir = $prefix ? $prefix : __DIR__;
 
-		require( $dir . '/messages.inc' );
+		require $dir . '/messages.inc';
 		self::$messageStructure = $wgMessageStructure;
 		self::$blockComments = $wgBlockComments;
 
-		require( $dir . '/messageTypes.inc' );
+		require $dir . '/messageTypes.inc';
 		self::$ignoredMessages = $wgIgnoredMessages;
 		self::$optionalMessages = $wgOptionalMessages;
 
 		# Sort messages to blocks
 		$sortedMessages['unknown'] = $messages;
-		foreach( self::$messageStructure as $blockName => $block ) {
+		foreach ( self::$messageStructure as $blockName => $block ) {
 			/**
 			 * @var $block array
 			 */
-			foreach( $block as $key ) {
-				if( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
+			foreach ( $block as $key ) {
+				if ( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
 					$sortedMessages[$blockName][$key] = $sortedMessages['unknown'][$key];
 					unset( $sortedMessages['unknown'][$key] );
 				}
@@ -132,13 +135,13 @@ $messages = array(
 		# Write all the messages
 		$messagesText = "\$messages = array(
 ";
-		foreach( $sortedMessages as $block => $messages ) {
+		foreach ( $sortedMessages as $block => $messages ) {
 			# Skip if it's the block of unknown messages - handle that in the end of file
-			if( $block == 'unknown' ) {
+			if ( $block == 'unknown' ) {
 				continue;
 			}
 
-			if( $ignoredComments ) {
+			if ( $ignoredComments ) {
 				$ignored = self::$ignoredMessages;
 				$optional = self::$optionalMessages;
 			} else {
@@ -175,10 +178,10 @@ $messages = array(
 		$commentArray = array();
 
 		# List of keys only
-		foreach( $messages as $key ) {
-			if( in_array( $key, $ignored ) ) {
+		foreach ( $messages as $key ) {
+			if ( in_array( $key, $ignored ) ) {
 				$commentArray[$key] = ' # ' . self::$ignoredComment;
-			} elseif( in_array( $key, $optional ) ) {
+			} elseif ( in_array( $key, $optional ) ) {
 				$commentArray[$key] = ' # ' . self::$optionalComment;
 			}
 		}
@@ -202,13 +205,13 @@ $messages = array(
 		$blockText = '';
 
 		# Skip the block if it includes no messages
-		if( empty( $messages ) ) {
+		if ( empty( $messages ) ) {
 			return '';
 		}
 
 		# Format the block comment (if exists); check for multiple lines comments
-		if( !empty( $blockComment ) ) {
-			if( strpos( $blockComment, "\n" ) === false ) {
+		if ( !empty( $blockComment ) ) {
+			if ( strpos( $blockComment, "\n" ) === false ) {
 				$blockText .= "$prefix# $blockComment
 ";
 			} else {
@@ -223,7 +226,7 @@ $blockComment
 		$maxKeyLength = max( array_map( 'strlen', array_keys( $messages ) ) );
 
 		# Format the messages
-		foreach( $messages as $key => $value ) {
+		foreach ( $messages as $key => $value ) {
 			# Add the key name
 			$blockText .= "$prefix'$key'";
 
@@ -241,16 +244,16 @@ $blockComment
 			$single = "'";
 			$double = '"';
 
-			if( strpos( $value, $single ) === false ) {
+			if ( strpos( $value, $single ) === false ) {
 				# Nothing ugly, just use '
-				$blockText .= $single.$value.$single;
-			} elseif( strpos( $value, $double ) === false && !preg_match('/\$[a-zA-Z_\x7f-\xff]/', $value) ) {
+				$blockText .= $single . $value . $single;
+			} elseif ( strpos( $value, $double ) === false && !preg_match( '/\$[a-zA-Z_\x7f-\xff]/', $value ) ) {
 				# No "-quotes, no variables that need quoting, use "
-				$blockText .= $double.$value.$double;
+				$blockText .= $double . $value . $double;
 			} else {
 				# Something needs quoting, pick the quote which causes less quoting
 				$quote = substr_count( $value, $double ) + substr_count( $value, '$' ) >= substr_count( $value, $single ) ? $single : $double;
-				if( $quote === $double ) {
+				if ( $quote === $double ) {
 					$extra = '$';
 				} else {
 					$extra = '';
@@ -262,7 +265,7 @@ $blockComment
 			$blockText .= ',';
 
 			# Add comments, if there is any
-			if( array_key_exists( $key, $messageComments ) ) {
+			if ( array_key_exists( $key, $messageComments ) ) {
 				$blockText .= $messageComments[$key];
 			}
 

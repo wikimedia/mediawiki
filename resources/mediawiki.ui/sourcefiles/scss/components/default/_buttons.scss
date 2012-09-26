@@ -1,0 +1,69 @@
+$buttonBorderRadius: 3px;
+
+// Button styling
+.mw-ui-button {
+    // Container layout
+    @include inline-block;
+    padding: 0.4em 1em 0.4em 1em;
+    margin: 0;
+
+    // Container styling
+    @include buttonColors($agoraGray);
+    @include border-radius($buttonBorderRadius);
+
+    // Content styling
+    vertical-align: middle;
+
+    text: {
+        align: center;
+        decoration: none;
+    }
+
+    font: {
+        weight: bold;
+    }
+
+    // Interaction styling
+    cursor: pointer;
+
+    &:disabled,
+    &.mw-ui-disabled {
+        cursor: default;
+    }
+
+    // Button sizes and displays
+    // -----------------------------------------
+    &.mw-ui-big {
+        font: {
+            size: $baseFontSize * 1.3;
+        }
+    }
+    &.mw-ui-block {
+        display: block;
+        width: 100%;
+    }
+}
+
+// This overrides an underline declaration on a:hover and a:focus in commonElements.css, which the
+// class alone isn't specific enough to do
+a.mw-ui-button {
+    text: {
+        decoration: none;
+    }
+}
+
+// Button groups
+.mw-ui-button-group > * {
+  @include border-radius(0);
+  float: left;
+
+  &:first-child{
+    @include border-top-left-radius($buttonBorderRadius);
+    @include border-bottom-left-radius($buttonBorderRadius);
+  }
+
+  &:last-child{
+    @include border-top-right-radius($buttonBorderRadius);
+    @include border-bottom-right-radius($buttonBorderRadius);
+  }
+}

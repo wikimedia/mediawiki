@@ -54,7 +54,7 @@ class Autopromote {
 	 * Does not return groups the user already belongs to or has once belonged.
 	 *
 	 * @param $user User The user to get the groups for
-	 * @param $event String key in $wgAutopromoteOnce (each one has groups/criteria)
+	 * @param string $event key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
 	 * @return array Groups the user should be promoted to.
 	 *
@@ -140,8 +140,8 @@ class Autopromote {
 				return true;
 			}
 		}
-		# If we got here, the array presumably does not contain other condi-
-		# tions; it's not recursive.  Pass it off to self::checkCondition.
+		// If we got here, the array presumably does not contain other conditions;
+		// it's not recursive.  Pass it off to self::checkCondition.
 		if ( !is_array( $cond ) ) {
 			$cond = array( $cond );
 		}
@@ -152,11 +152,11 @@ class Autopromote {
 	/**
 	 * As recCheckCondition, but *not* recursive.  The only valid conditions
 	 * are those whose first element is APCOND_EMAILCONFIRMED/APCOND_EDITCOUNT/
-	 * APCOND_AGE.  Other types will throw an exception if no extension evalu-
-	 * ates them.
+	 * APCOND_AGE.  Other types will throw an exception if no extension evaluates them.
 	 *
-	 * @param $cond Array: A condition, which must not contain other conditions
+	 * @param array $cond A condition, which must not contain other conditions
 	 * @param $user User The user to check the condition against
+	 * @throws MWException
 	 * @return bool Whether the condition is true for the user
 	 */
 	private static function checkCondition( $cond, User $user ) {
@@ -165,7 +165,7 @@ class Autopromote {
 			return false;
 		}
 
-		switch( $cond[0] ) {
+		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
 					if ( $wgEmailAuthentication ) {

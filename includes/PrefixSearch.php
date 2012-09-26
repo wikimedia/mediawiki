@@ -32,21 +32,21 @@ class PrefixSearch {
 	 *
 	 * @param $search String
 	 * @param $limit Integer
-	 * @param $namespaces Array: used if query is not explicitely prefixed
+	 * @param array $namespaces used if query is not explicitly prefixed
 	 * @return Array of strings
 	 */
 	public static function titleSearch( $search, $limit, $namespaces = array() ) {
 		$search = trim( $search );
-		if( $search == '' ) {
+		if ( $search == '' ) {
 			return array(); // Return empty result
 		}
 		$namespaces = self::validateNamespaces( $namespaces );
 
 		// Find a Title which is not an interwiki and is in NS_MAIN
 		$title = Title::newFromText( $search );
-		if( $title && $title->getInterwiki() == '' ) {
-			$ns = array($title->getNamespace());
-			if( $ns[0] == NS_MAIN ) {
+		if ( $title && $title->getInterwiki() == '' ) {
+			$ns = array( $title->getNamespace() );
+			if ( $ns[0] == NS_MAIN ) {
 				$ns = $namespaces; // no explicit prefix, use default namespaces
 			}
 			return self::searchBackend(
@@ -55,7 +55,7 @@ class PrefixSearch {
 
 		// Is this a namespace prefix?
 		$title = Title::newFromText( $search . 'Dummy' );
-		if( $title && $title->getText() == 'Dummy'
+		if ( $title && $title->getText() == 'Dummy'
 			&& $title->getNamespace() != NS_MAIN
 			&& $title->getInterwiki() == '' ) {
 			return self::searchBackend(
@@ -73,16 +73,16 @@ class PrefixSearch {
 	 * @return Array of strings
 	 */
 	protected static function searchBackend( $namespaces, $search, $limit ) {
-		if( count( $namespaces ) == 1 ) {
+		if ( count( $namespaces ) == 1 ) {
 			$ns = $namespaces[0];
-			if( $ns == NS_MEDIA ) {
+			if ( $ns == NS_MEDIA ) {
 				$namespaces = array( NS_FILE );
-			} elseif( $ns == NS_SPECIAL ) {
+			} elseif ( $ns == NS_SPECIAL ) {
 				return self::specialSearch( $search, $limit );
 			}
 		}
 		$srchres = array();
-		if( wfRunHooks( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres ) ) ) {
+		if ( wfRunHooks( 'PrefixSearchBackend', array( $namespaces, $search, $limit, &$srchres ) ) ) {
 			return self::defaultSearchBackend( $namespaces, $search, $limit );
 		}
 		return $srchres;
@@ -91,7 +91,7 @@ class PrefixSearch {
 	/**
 	 * Prefix search special-case for Special: namespace.
 	 *
-	 * @param $search String: term
+	 * @param string $search term
 	 * @param $limit Integer: max number of items to return
 	 * @return Array
 	 */
@@ -106,24 +106,24 @@ class PrefixSearch {
 		// Unlike SpecialPage itself, we want the canonical forms of both
 		// canonical and alias title forms...
 		$keys = array();
-		foreach( SpecialPageFactory::getList() as $page => $class ) {
+		foreach ( SpecialPageFactory::getList() as $page => $class ) {
 			$keys[$wgContLang->caseFold( $page )] = $page;
 		}
 
-		foreach( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
-			if( !array_key_exists( $page, SpecialPageFactory::getList() ) ) {# bug 20885
+		foreach ( $wgContLang->getSpecialPageAliases() as $page => $aliases ) {
+			if ( !array_key_exists( $page, SpecialPageFactory::getList() ) ) {# bug 20885
 				continue;
 			}
 
-			foreach( $aliases as $alias ) {
+			foreach ( $aliases as $alias ) {
 				$keys[$wgContLang->caseFold( $alias )] = $alias;
 			}
 		}
 		ksort( $keys );
 
 		$srchres = array();
-		foreach( $keys as $pageKey => $page ) {
-			if( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
+		foreach ( $keys as $pageKey => $page ) {
+			if ( $searchKey === '' || strpos( $pageKey, $searchKey ) === 0 ) {
 				wfSuppressWarnings();
 				// bug 27671: Don't use SpecialPage::getTitleFor() here because it
 				// localizes its input leading to searches for e.g. Special:All
@@ -133,7 +133,7 @@ class PrefixSearch {
 				wfRestoreWarnings();
 			}
 
-			if( count( $srchres ) >= $limit ) {
+			if ( count( $srchres ) >= $limit ) {
 				break;
 			}
 		}
@@ -147,14 +147,14 @@ class PrefixSearch {
 	 * be automatically capitalized by Title::secureAndSpit()
 	 * later on depending on $wgCapitalLinks)
 	 *
-	 * @param $namespaces Array: namespaces to search in
-	 * @param $search String: term
+	 * @param array $namespaces namespaces to search in
+	 * @param string $search term
 	 * @param $limit Integer: max number of items to return
 	 * @return Array of title strings
 	 */
 	protected static function defaultSearchBackend( $namespaces, $search, $limit ) {
 		$ns = array_shift( $namespaces ); // support only one namespace
-		if( in_array( NS_MAIN, $namespaces ) ) {
+		if ( in_array( NS_MAIN, $namespaces ) ) {
 			$ns = NS_MAIN; // if searching on many always default to main
 		}
 
@@ -175,7 +175,7 @@ class PrefixSearch {
 		$data = $module->getResultData();
 
 		// Reformat useful data for future printing by JSON engine
-		$srchres = array ();
+		$srchres = array();
 		foreach ( (array)$data['query']['allpages'] as $pageinfo ) {
 			// Note: this data will no be printable by the xml engine
 			// because it does not support lists of unnamed items
@@ -196,14 +196,14 @@ class PrefixSearch {
 
 		// We will look at each given namespace against wgContLang namespaces
 		$validNamespaces = $wgContLang->getNamespaces();
-		if( is_array( $namespaces ) && count( $namespaces ) > 0 ) {
+		if ( is_array( $namespaces ) && count( $namespaces ) > 0 ) {
 			$valid = array();
 			foreach ( $namespaces as $ns ) {
-				if( is_numeric( $ns ) && array_key_exists( $ns, $validNamespaces ) ) {
+				if ( is_numeric( $ns ) && array_key_exists( $ns, $validNamespaces ) ) {
 					$valid[] = $ns;
 				}
 			}
-			if( count( $valid ) > 0 ) {
+			if ( count( $valid ) > 0 ) {
 				return $valid;
 			}
 		}

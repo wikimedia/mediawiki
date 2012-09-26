@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that scans the deletion log and purges affected files
@@ -53,8 +53,8 @@ class PurgeDeletedFiles extends Maintenance {
 
 		$conds = array(
 			'log_namespace' => NS_FILE,
-			'log_type'      => $logType,
-			'log_action'    => array( 'delete', 'revision' )
+			'log_type' => $logType,
+			'log_action' => array( 'delete', 'revision' )
 		);
 		$start = $this->getOption( 'starttime' );
 		if ( $start ) {
@@ -68,29 +68,55 @@ class PurgeDeletedFiles extends Maintenance {
 		$res = $db->select( 'logging', array( 'log_title', 'log_timestamp' ), $conds, __METHOD__ );
 		foreach ( $res as $row ) {
 			$file = $repo->newFile( Title::makeTitle( NS_FILE, $row->log_title ) );
-
+			// If there is an orphaned storage file still there...delete it
+			if ( !$file->exists() && $repo->fileExists( $file->getPath() ) ) {
+				$dpath = $this->getDeletedPath( $repo, $file );
+				if ( $repo->fileExists( $dpath ) ) { // sanity check to avoid data loss
+					$repo->getBackend()->delete( array( 'src' => $file->getPath() ) );
+					$this->output( "Deleted orphan file: {$file->getPath()}.\n" );
+				} else {
+					$this->error( "File was not deleted: {$file->getPath()}.\n" );
+				}
+			}
 			// Purge current version and any versions in oldimage table
 			$file->purgeCache();
 			$file->purgeHistory();
 			// Purge items from fileachive table (rows are likely here)
-			$this->purgeFromArchiveTable( $file );
+			$this->purgeFromArchiveTable( $repo, $file );
 
 			$this->output( "Purged file {$row->log_title}; deleted on {$row->log_timestamp}.\n" );
 		}
 	}
 
-	protected function purgeFromArchiveTable( LocalFile $file ) {
-		$db = $file->getRepo()->getSlaveDB();
+	protected function purgeFromArchiveTable( LocalRepo $repo, LocalFile $file ) {
+		$db = $repo->getSlaveDB();
 		$res = $db->select( 'filearchive',
 			array( 'fa_archive_name' ),
 			array( 'fa_name' => $file->getName() ),
 			__METHOD__
 		);
 		foreach ( $res as $row ) {
+			$ofile = $repo->newFromArchiveName( $file->getTitle(), $row->fa_archive_name );
+			// If there is an orphaned storage file still there...delete it
+			if ( !$file->exists() && $repo->fileExists( $ofile->getPath() ) ) {
+				$dpath = $this->getDeletedPath( $repo, $ofile );
+				if ( $repo->fileExists( $dpath ) ) { // sanity check to avoid data loss
+					$repo->getBackend()->delete( array( 'src' => $ofile->getPath() ) );
+					$this->output( "Deleted orphan file: {$ofile->getPath()}.\n" );
+				} else {
+					$this->error( "File was not deleted: {$ofile->getPath()}.\n" );
+				}
+			}
 			$file->purgeOldThumbnails( $row->fa_archive_name );
 		}
+	}
+
+	protected function getDeletedPath( LocalRepo $repo, LocalFile $file ) {
+		$hash = $repo->getFileSha1( $file->getPath() );
+		$key = "{$hash}.{$file->getExtension()}";
+		return $repo->getDeletedHashPath( $key ) . $key;
 	}
 }
 
 $maintClass = "PurgeDeletedFiles";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

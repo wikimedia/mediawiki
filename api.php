@@ -8,7 +8,7 @@
  * as an argument in the URL ('?action=') and with write-enabled set to the
  * value of $wgEnableWriteAPI as specified in LocalSettings.php.
  * It then invokes "execute()" on the ApiMain object instance, which
- * produces output in the format sepecified in the URL.
+ * produces output in the format specified in the URL.
  *
  * Copyright © 2006 Yuri Astrakhan <Firstname><Lastname>@gmail.com
  *
@@ -36,16 +36,12 @@ define( 'MW_API', true );
 // Bail if PHP is too low
 if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.3.2' ) < 0 ) {
 	// We need to use dirname( __FILE__ ) here cause __DIR__ is PHP5.3+
-	require( dirname( __FILE__ ) . '/includes/PHPVersionError.php' );
+	require dirname( __FILE__ ) . '/includes/PHPVersionError.php';
 	wfPHPVersionError( 'api.php' );
 }
 
 // Initialise common code.
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
-} else {
-	require ( __DIR__ . '/includes/WebStart.php' );
-}
+require __DIR__ . '/includes/WebStart.php';
 
 wfProfileIn( 'api.php' );
 $starttime = microtime( true );
@@ -58,9 +54,9 @@ if ( !$wgRequest->checkUrlExtension() ) {
 // Verify that the API has not been disabled
 if ( !$wgEnableAPI ) {
 	header( $_SERVER['SERVER_PROTOCOL'] . ' 500 MediaWiki configuration Error', true, 500 );
-	echo( 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
-		. '<pre><b>$wgEnableAPI=true;</b></pre>' );
-	die(1);
+	echo 'MediaWiki API is not enabled for this site. Add the following line to your LocalSettings.php'
+		. '<pre><b>$wgEnableAPI=true;</b></pre>';
+	die( 1 );
 }
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
@@ -87,17 +83,17 @@ wfLogProfilingData();
 // Log the request
 if ( $wgAPIRequestLog ) {
 	$items = array(
-			wfTimestamp( TS_MW ),
-			$endtime - $starttime,
-			$wgRequest->getIP(),
-			$_SERVER['HTTP_USER_AGENT']
+		wfTimestamp( TS_MW ),
+		$endtime - $starttime,
+		$wgRequest->getIP(),
+		$_SERVER['HTTP_USER_AGENT']
 	);
 	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
 	$module = $processor->getModule();
 	if ( $module->mustBePosted() ) {
 		$items[] = "action=" . $wgRequest->getVal( 'action' );
 	} else {
-		$items[] = wfArrayToCGI( $wgRequest->getValues() );
+		$items[] = wfArrayToCgi( $wgRequest->getValues() );
 	}
 	wfErrorLog( implode( ',', $items ) . "\n", $wgAPIRequestLog );
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
@@ -107,4 +103,3 @@ if ( $wgAPIRequestLog ) {
 // get here to worry about whether this should be = or =&, but the file has to parse properly.
 $lb = wfGetLBFactory();
 $lb->shutdown();
-

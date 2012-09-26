@@ -161,8 +161,6 @@ $messages = array(
 'tog-shownumberswatching' => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig' => 'Sinyadura actual',
 'tog-fancysig' => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-externaleditor' => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
-'tog-externaldiff' => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
 'tog-showjumplinks' => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview' => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary' => 'Avisar-me quan o campo de resumen siga buedo.',
@@ -177,6 +175,7 @@ $messages = array(
 'tog-showhiddencats' => 'Amostrar categorías amagatas',
 'tog-noconvertlink' => 'Desactivar a conversión de titol de vinclo',
 'tog-norollbackdiff' => 'No amostrar as diferencias dimpués de revertir',
+'tog-useeditwarning' => "Alvertir-me quan salga d'una pachina d'edición sin alzar os cambios",
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -276,7 +275,6 @@ $messages = array(
 'qbbrowse' => 'Navegar',
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Ista pachina',
-'qbpageinfo' => 'Contexto',
 'qbmyoptions' => 'Pachinas propias',
 'qbspecialpages' => 'Pachinas especials',
 'faq' => 'Preguntas freqüents (FAQ)',
@@ -373,7 +371,6 @@ $1",
 'disclaimers' => 'Alvertencias chenerals',
 'disclaimerpage' => 'Project:Alvertencias chenerals',
 'edithelp' => 'Aduya ta editar pachinas',
-'edithelppage' => "Help:Cómo s'edita una pachina",
 'helppage' => 'Help:Aduya',
 'mainpage' => 'Portalada',
 'mainpage-description' => 'Portalada',
@@ -522,10 +519,7 @@ A razón data ye ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Ha rematato a sesión.'''
 
-Puede continar navegando por {{SITENAME}} anonimament, u puede [[Special:UserLogin|encetar]] una nueva sesión con o mesmo nombre d'usuario u bell atro diferent. Pare cuenta que, entre que se limpia a caché d'o navegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
-'welcomecreation' => "== ¡Bienveniu(da), $1! ==
-S'ha creyato a suya cuenta.
-No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITENAME}}]].",
+Puede continar navegando por {{SITENAME}} anonimament, u puede <span class='plainlinks'>[$1 encetar]</span> una nueva sesión con o mesmo nombre d'usuario u bell atro diferent. Pare cuenta que, entre que se limpia a caché d'o navegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
 'yourname' => "Nombre d'usuario:",
 'yourpassword' => "Clau d'acceso:",
 'yourpasswordagain' => 'Torne a escribir a clau:',
@@ -606,7 +600,7 @@ Si a cuenta s\'ha creyato por error, simplament ignore iste mensache.',
 'loginlanguagelabel' => 'Idioma: $1',
 'suspicious-userlogout' => "S'ha denegau a suya demanda de zarrar a sesión ya que pareix que la ninvió un navegador defectuoso u bell proxy amagau.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Error desconoixito en a función mail() de PHP',
 'user-mail-no-addy' => 'Ha mirau de ninviar un mensache de correu sin una adreza de correu electronico.',
 
@@ -630,10 +624,8 @@ Talment ya ha cambiato a suya clau u ha demandato una nueva clau temporal.',
 
 # Special:PasswordReset
 'passwordreset' => "Restablir a clau d'acceso",
-'passwordreset-text' => "Completar ista forma ta recibir un recordatorio por correu con os detalles d'a suya cuenta.",
 'passwordreset-legend' => "Restablir a clau d'acceso",
 'passwordreset-disabled' => "S'ha desactivau o restablimiento de claus en ista wiki.",
-'passwordreset-pretext' => "{{PLURAL:$1||Introduzca uno d'os siguients datos}}",
 'passwordreset-username' => "Nombre d'usuario:",
 'passwordreset-domain' => 'Dominio:',
 'passwordreset-capture' => 'Veyer o mensache resultant?',
@@ -822,7 +814,6 @@ Como información adicional s'amuestra contino a zaguera dentrada en o rechistro
 'hiddencategories' => 'Ista pachina fa parte de {{PLURAL:$1|1 categoría amagata|$1 categorías amagatas}}:',
 'edittools' => "<!-- Iste testo amanixerá baxo os formularios d'edizión y carga. -->",
 'edittools-upload' => '-',
-'nocreatetitle' => "S'ha restrinchito a creyación de pachinas",
 'nocreatetext' => '{{SITENAME}} ha restrinchito a creyación de nuevas pachinas. Puede tornar enta zaga y editar una pachina ya existent, [[Special:UserLogin|identificarse u creyar una cuenta]].',
 'nocreate-loggedin' => 'No tiene premiso ta creyar nuevas pachinas.',
 'sectioneditnotsupported-title' => 'A edición por seccions no ye suportada',
@@ -845,6 +836,7 @@ Pareix que la hesen borrau.",
 'edit-no-change' => "S'ha ignorato a suya edición, pos no s'ha feito garra cambeo ta o texto.",
 'edit-already-exists' => "No s'ha puesto creyar una pachina nueva.
 Ya existe.",
+'editwarning-warning' => "Si sale d'ista pachina perderá totz os cambios que haiga feito. Si tiene una cuenta d'usuario, puet eliminar ista alvertencia en a sección «Caixa d'edición» d'as suyas preferencies.",
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Pare cuenta: Ista pachina tiene masiadas cridas ta funcions de preproceso (parser functions) costosas.
@@ -1064,7 +1056,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'searchmenu-legend' => 'Opcions de busca',
 'searchmenu-exists' => "'''Bi ha una pachina clamada \"[[\$1]]\" en ista wiki'''",
 'searchmenu-new' => "'''Creyar a pachina \"[[:\$1]]\" en ista wiki!'''",
-'searchhelp-url' => 'Help:Aduya',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Veyer pachinas con iste prefixo]]',
 'searchprofile-articles' => 'Pachinas de conteniu',
 'searchprofile-project' => "Pachinas d'aduya y d'o prochecto",
@@ -1085,8 +1076,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'search-interwiki-caption' => 'Prochectos chermans',
 'search-interwiki-default' => '$1 resultaus:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con socherencias',
-'search-mwsuggest-disabled' => 'garra socherencia',
 'search-relatedarticle' => 'Relacionato',
 'mwsuggest-disable' => "Desactivar as socherencias d'AJAX",
 'searcheverything-enable' => 'Mirar en totz os espacios de nombres',
@@ -1107,15 +1096,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'powersearch-togglenone' => 'Garra',
 'search-external' => 'Busca externa',
 'searchdisabled' => 'A busca en {{SITENAME}} ye temporalment desactivata. Entremistanto, puede mirar en {{SITENAME}} fendo servir buscadors externos, pero pare cuenta que os suyos endices de {{SITENAME}} puede no estar esviellatos.',
-
-# Quickbar
-'qbsettings' => 'Preferencias de "Quickbar"',
-'qbsettings-none' => 'Garra',
-'qbsettings-fixedleft' => 'Fixa a la zurda',
-'qbsettings-fixedright' => 'Fixa a la dreita',
-'qbsettings-floatingleft' => 'Flotant a la zurda',
-'qbsettings-floatingright' => 'Flotant a la dreita',
-'qbsettings-directionality' => "Fixato, pendendo en a direccionalidat d'o suyo script y o suyo luengache",
 
 # Preferences page
 'preferences' => 'Preferencias',
@@ -1234,7 +1214,7 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'prefs-displaywatchlist' => 'Opcions de visualización',
 'prefs-diffs' => 'Diferencias',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => "L'adreza de correu electronico pareix valida",
 'email-address-validity-invalid' => 'Escriba una adreza valida de correu electronico',
 
@@ -1345,12 +1325,13 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-sendemail' => 'Ninviar un correu electronico a atros usuarios',
 'right-passwordreset' => 'Veyer os correus electronicos de restabimiento de claus',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Rechistro de nuevos usuarios',
+'newuserlogpagetext' => "Isto ye un rechistro de creyación d'usuarios.",
+
 # User rights log
 'rightslog' => "Rechistro de cambios en os dreitos d'os usuarios",
 'rightslogtext' => "Iste ye un rechistro d'os cambios en os dreitos d'os usuarios",
-'rightslogentry' => "ha cambiato os dreitos d'usuario de $1: de $2 a $3",
-'rightslogentry-autopromote' => "S'ha promovito automaticament dende $2 ta $3",
-'rightsnone' => '(garra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'leyer ista pachina',
@@ -1652,7 +1633,6 @@ Por seguridat, s'ha desactivau img_auth.php.",
 'http-read-error' => 'Error de lectura HTTP.',
 'http-timed-out' => 'A requesta HTTP ha circumducito.',
 'http-curl-error' => 'Error en recuperar a URL: $1',
-'http-host-unreachable' => "No s'ha puesto acceder t'a URL.",
 'http-bad-status' => 'Ha habiu un problema en a requesta HTTP: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1963,10 +1943,6 @@ Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'activeusers-hidesysops' => 'Amagar administradors',
 'activeusers-noresult' => "No s'han trobato usuarios.",
 
-# Special:Log/newusers
-'newuserlogpage' => 'Rechistro de nuevos usuarios',
-'newuserlogpagetext' => "Isto ye un rechistro de creyación d'usuarios.",
-
 # Special:ListGroupRights
 'listgrouprights' => "Dreitos d'a colla d'usuarios",
 'listgrouprights-summary' => "Contino trobará a lista de collas d'usuario definitas en iste wiki, con os suyos dreitos d'acceso asociatos. Tamién puet trobar aquí [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] sobre os dreitos individuals.",
@@ -1985,7 +1961,7 @@ Protocolos suportados: <code>$1</code> (no los adhiba en a suya busca).',
 'listgrouprights-addgroup-self-all' => 'Adhibir-se a todas as collas',
 'listgrouprights-removegroup-self-all' => 'Salir de todas as collas',
 
-# E-mail user
+# Email user
 'mailnologin' => "No ninviar l'adreza",
 'mailnologintext' => "Ha d'haber [[Special:UserLogin|encetato una sesión]] y tener una adreza conforme de correu-e en as suyas [[Special:Preferences|preferencias]] ta ninviar un correu electronico ta atros usuarios.",
 'emailuser' => 'Ninviar un correu electronico ta iste usuario',
@@ -2040,8 +2016,8 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 'notvisiblerev' => "S'ha borrato a revisión",
 'watchnochange' => "Dengún d'os articlos d'a suya lista de seguimiento no s'ha editato en o periodo de tiempo amostrato.",
 'watchlist-details' => '{{PLURAL:$1|$1 pachina|$1 pachinas}} en a suya lista de seguimiento, sin contar-ie as pachinas de descusión.',
-'wlheader-enotif' => '* A notificación por correu electronico ye activata',
-'wlheader-showupdated' => "* Las pachinas cambiadas dende a suya zaguer vesita s'amuestran en '''negreta'''",
+'wlheader-enotif' => 'A notificación por correu electronico ye activata',
+'wlheader-showupdated' => "Las pachinas cambiadas dende a suya zaguer vesita s'amuestran en '''negreta'''",
 'watchmethod-recent' => 'Mirando pachinas cosiratas en os zaguers cambeos',
 'watchmethod-list' => 'mirando edicions recients en as pachinas cosiratas',
 'watchlistcontains' => 'A suya lista de seguimiento tiene $1 {{PLURAL:$1|pachina|pachinas}}.',
@@ -2057,19 +2033,13 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferencias
 
 'enotif_mailer' => 'Sistema de notificación por correu de {{SITENAME}}',
 'enotif_reset' => 'Marcar todas as pachinas como vesitatas',
-'enotif_newpagetext' => 'Ista ye una nueva pachina.',
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
-'changed' => 'editata',
-'created' => 'creyata',
-'enotif_subject' => 'A pachina $PAGETITLE de {{SITENAME}} ha estato $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited' => 'Vaiga ta $1 ta veyer totz os cambeos dende a suya zaguer vesita.',
 'enotif_lastdiff' => 'Vaiga ta $1 ta veyer iste cambeo.',
 'enotif_anon_editor' => 'usuario anonimo $1',
 'enotif_body' => 'Queriu/ida $WATCHINGUSERNAME,
 
-A pachina $PAGETITLE d\'o prochecto {{SITENAME}} s\'ha $CHANGEDORCREATED o día $PAGEEDITDATE por $PAGEEDITOR, veiga a versión actual en $PAGETITLE_URL.
-
-$NEWPAGE
+$PAGEINTRO $NEWPAGE
 
 Resumen de l\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
@@ -2077,8 +2047,9 @@ Contacto con l\'editor:
 correu-e: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Si no visita a pachina, no recibirá mas notificacions de futuros cambios cambios. 
+Si no visita a pachina, no recibirá mas notificacions de futuros cambios. 
 Tamién puet cambiar o modo de notificación d\'as pachinas que cosira en a suya lista de seguimiento.
+
 Atentament,
 O servicio de notificacions d\'o prochecto {{SITENAME}}
 
@@ -2093,6 +2064,8 @@ Ta eliminar a pachina d\'a suya lista de seguimiento, vaiga ta $UNWATCHURL
 
 Sucherencias y aduya:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'creyata',
+'changed' => 'editata',
 
 # Delete
 'deletepage' => 'Borrar ista pachina',
@@ -2651,7 +2624,6 @@ Alce-lo en o suyo ordenador y cargue-lo aquí.",
 
 # JavaScriptTest
 'javascripttest' => 'Prebatinas de JavaScript',
-'javascripttest-disabled' => 'Ista función ye desactivata.',
 'javascripttest-title' => 'Fendo as prebas de $1',
 'javascripttest-pagetext-noframework' => 'Ista pachina ye reservada ta fer as prebas de JavaScrip.',
 'javascripttest-pagetext-unknownframework' => 'Bastida de prebas "$1" desconoixida.',
@@ -2732,17 +2704,11 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 
 # Stylesheets
 'common.css' => '/* Os estilos CSS definius aquí aplicarán a todas as apariencias (skins) */',
-'standard.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Standard */",
-'nostalgia.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Nostalgia */",
 'cologneblue.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Cologne Blue */",
 'monobook.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Monobook */",
-'myskin.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que que faigan servir l'apariencia MySkin */",
-'chick.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Chick */",
-'simple.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Simpla */",
 'modern.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Modern */",
 'vector.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que faigan servir l'apariencia Vector */",
 'print.css' => '/* Os estilos CSS colocaus aquí afectarán a la impresión */',
-'handheld.css' => '/* Os estilos CSS colocaus aquí afectarán a os dispositivos mobils basaus en as apariencias configuradas en $wgHandheldStyle */',
 'noscript.css' => "/* Os estilos CSS colocaus aquí s'aplicarán ta totz os usuarios que tiengan desactivato JavaScript */",
 'group-autoconfirmed.css' => "/* Os estilos CSS colocaus aquí s'aplicarán nomás a os usuarios autoconfirmatos*/",
 'group-bot.css' => "/* Os estilos CSS colocaus aquí s'aplicarán nomás a os bots*/",
@@ -2751,13 +2717,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 
 # Scripts
 'common.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios en cada carga de pachina */',
-'standard.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Estandar */",
-'nostalgia.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Nostalgia. */",
 'cologneblue.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Colonia azul */",
 'monobook.js' => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia MonoBook */",
-'myskin.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia MySkin */",
-'chick.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Chick */",
-'simple.js' => "/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que faigan servir l'apariencia Simple */",
 'modern.js' => "/* O codigo Javascript que se meta aquí será cargau por os usuarios faigan servir l'apariencia Modern */",
 'vector.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará ta totz os usuarios que usen a piel Vector */',
 'group-autoconfirmed.js' => '/* Qualsiquier codigo Javascript escrito aquí se cargará nomás ta os usuarios autoconfirmatos */',
@@ -2797,13 +2758,8 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 'pageinfo-authors' => "Numero d'autors diferents",
 
 # Skin names
-'skinname-standard' => 'Clasica (Classic)',
-'skinname-nostalgia' => 'Recosiros (Nostalgia)',
 'skinname-cologneblue' => 'Colonia Azul (Cologne Blue)',
 'skinname-monobook' => 'MonoBook',
-'skinname-myskin' => 'A mía aparencia (MySkin)',
-'skinname-chick' => 'Chick',
-'skinname-simple' => 'Simpla (Simple)',
 'skinname-modern' => 'Moderna',
 'skinname-vector' => 'Vector',
 
@@ -2904,7 +2860,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 * gpslongitude
 * gpsaltitude",
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Amplaria',
 'exif-imagelength' => 'Altaria',
 'exif-bitspersample' => 'Bits por component',
@@ -3082,7 +3038,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'exif-originalimageheight' => "Altaria d'a imachen antes d'estar retallada",
 'exif-originalimagewidth' => "Amplaria d'a imachen antes d'estar retallada",
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'Sin de compresión',
 'exif-compression-2' => 'CCITT Group 3 1-Dimensional Modified Huffman run length encoding',
 'exif-compression-3' => 'Codificación de fax CCITT grupo 3',
@@ -3303,7 +3259,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 'monthsall' => 'totz',
 'limitall' => 'Totz',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Confirmar adreza de correu-e',
 'confirmemail_noemail' => "No tiene una adreza de correu-e conforme en as suyas [[Special:Preferences|preferencias d'usuario]].",
 'confirmemail_text' => "{{SITENAME}} requiere que confirme a suya adreza de correu-e antis de poder usar as funcions de correu-e. Punche o botón de baxo ta ninviar un mensache de confirmación t'a suya adreza. O mensache incluirá un vinclo con un codigo. Escriba-lo ta confirmar que a suya adreza ye conforme.",
@@ -3484,13 +3440,6 @@ Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia
 'version-software-product' => 'Producto',
 'version-software-version' => 'Versión',
 
-# Special:FilePath
-'filepath' => "Camín d'o fichero",
-'filepath-page' => 'Fichero:',
-'filepath-submit' => 'Ir-ie',
-'filepath-summary' => "Ista pachina especial le retorna o camín completo d'un fichero.
-As imachens s'amuestran en resolución completa, a resta de fichers fan encetar dreitament os suyos programas asociatos.",
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Mirar fichers duplicatos',
 'fileduplicatesearch-summary' => 'Mirar archivos duplicatos basatos en a suya valura hash.',
@@ -3614,7 +3563,7 @@ As imachens s'amuestran en resolución completa, a resta de fichers fan encetar 
 'logentry-newusers-create' => "$1 creyó una cuenta d'usuario",
 'logentry-newusers-create2' => "$1 creyó una cuenta d'usuario $3",
 'logentry-newusers-autocreate' => "S'ha creyau automaticament a cuenta $1",
-'newuserlog-byemail' => 'Clau ninviata por correu electronico',
+'rightsnone' => '(garra)',
 
 # Feedback
 'feedback-bugornote' => "Si creye que puede describir en detalle un problema tecnico, [$1 informe d'un bug] por favor.
@@ -3632,6 +3581,10 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfecto! Comprebe nomás que no sía un [$1 fallo conoixiu].',
 'feedback-bugnew' => "L'he comprebau. Informar d'un nuevo fallo.",
+
+# Search suggestions
+'searchsuggest-search' => 'Mirar',
+'searchsuggest-containing' => 'que contién...',
 
 # API errors
 'api-error-badaccess-groups' => 'No puetz cargar fichers en iste wiki.',

@@ -11,13 +11,13 @@ class IPTest extends MediaWikiTestCase {
 	 */
 	public function testisIPAddress() {
 		$this->assertFalse( IP::isIPAddress( false ), 'Boolean false is not an IP' );
-		$this->assertFalse( IP::isIPAddress( true  ), 'Boolean true is not an IP' );
+		$this->assertFalse( IP::isIPAddress( true ), 'Boolean true is not an IP' );
 		$this->assertFalse( IP::isIPAddress( "" ), 'Empty string is not an IP' );
 		$this->assertFalse( IP::isIPAddress( 'abc' ), 'Garbage IP string' );
 		$this->assertFalse( IP::isIPAddress( ':' ), 'Single ":" is not an IP' );
-		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1'), 'IPv6 with a double :: occurrence' );
-		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::'), 'IPv6 with a double :: occurrence, last at end' );
-		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1'), 'IPv6 with a double :: occurrence, firt at beginning' );
+		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::1' ), 'IPv6 with a double :: occurrence' );
+		$this->assertFalse( IP::isIPAddress( '2001:0DB8::A:1::' ), 'IPv6 with a double :: occurrence, last at end' );
+		$this->assertFalse( IP::isIPAddress( '::2001:0DB8::5:1' ), 'IPv6 with a double :: occurrence, firt at beginning' );
 		$this->assertFalse( IP::isIPAddress( '124.24.52' ), 'IPv4 not enough quads' );
 		$this->assertFalse( IP::isIPAddress( '24.324.52.13' ), 'IPv4 out of range' );
 		$this->assertFalse( IP::isIPAddress( '.24.52.13' ), 'IPv4 starts with period' );
@@ -81,9 +81,9 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1' ), 'IPv6 with "::" and 5 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e' ), 'IPv6 with "::" and 6 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d:1:e:ac' ), 'IPv6 with "::" and 7 words' );
-		$this->assertTrue( IP::isIPv6( '2001::df'), 'IPv6 with "::" and 2 words' );
-		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df'), 'IPv6 with "::" and 5 words' );
-		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df:2'), 'IPv6 with "::" and 6 words' );
+		$this->assertTrue( IP::isIPv6( '2001::df' ), 'IPv6 with "::" and 2 words' );
+		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df' ), 'IPv6 with "::" and 5 words' );
+		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df:2' ), 'IPv6 with "::" and 6 words' );
 
 		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
 		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
@@ -96,7 +96,7 @@ class IPTest extends MediaWikiTestCase {
 	 */
 	public function testisIPv4() {
 		$this->assertFalse( IP::isIPv4( false ), 'Boolean false is not an IP' );
-		$this->assertFalse( IP::isIPv4( true  ), 'Boolean true is not an IP' );
+		$this->assertFalse( IP::isIPv4( true ), 'Boolean true is not an IP' );
 		$this->assertFalse( IP::isIPv4( "" ), 'Empty string is not an IP' );
 		$this->assertFalse( IP::isIPv4( 'abc' ) );
 		$this->assertFalse( IP::isIPv4( ':' ) );
@@ -119,7 +119,7 @@ class IPTest extends MediaWikiTestCase {
 			$c = sprintf( "%01d", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f.$f.$f.$f";
-				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv4 address" );
+				$this->assertTrue( IP::isValid( $ip ), "$ip is a valid IPv4 address" );
 			}
 		}
 		foreach ( range( 0x0, 0xFFFF, 0xF ) as $i ) {
@@ -128,7 +128,7 @@ class IPTest extends MediaWikiTestCase {
 			$c = sprintf( "%02x", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
-				$this->assertTrue( IP::isValid( $ip ) , "$ip is a valid IPv6 address" );
+				$this->assertTrue( IP::isValid( $ip ), "$ip is a valid IPv6 address" );
 			}
 		}
 		// test with some abbreviations
@@ -143,9 +143,9 @@ class IPTest extends MediaWikiTestCase {
 
 		$this->assertTrue( IP::isValid( 'fc::100' ), 'IPv6 with "::" and 2 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a' ), 'IPv6 with "::" and 3 words' );
-		$this->assertTrue( IP::isValid( '2001::df'), 'IPv6 with "::" and 2 words' );
-		$this->assertTrue( IP::isValid( '2001:5c0:1400:a::df'), 'IPv6 with "::" and 5 words' );
-		$this->assertTrue( IP::isValid( '2001:5c0:1400:a::df:2'), 'IPv6 with "::" and 6 words' );
+		$this->assertTrue( IP::isValid( '2001::df' ), 'IPv6 with "::" and 2 words' );
+		$this->assertTrue( IP::isValid( '2001:5c0:1400:a::df' ), 'IPv6 with "::" and 5 words' );
+		$this->assertTrue( IP::isValid( '2001:5c0:1400:a::df:2' ), 'IPv6 with "::" and 6 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a:d:1' ), 'IPv6 with "::" and 5 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a:d:1:e:ac' ), 'IPv6 with "::" and 7 words' );
 
@@ -173,7 +173,7 @@ class IPTest extends MediaWikiTestCase {
 			$c = sprintf( "%02s", $i );
 			foreach ( array_unique( array( $a, $b, $c ) ) as $f ) {
 				$ip = "$f:$f:$f:$f:$f:$f:$f:$f";
-				$this->assertFalse( IP::isValid( $ip ) , "$ip is not a valid IPv6 address" );
+				$this->assertFalse( IP::isValid( $ip ), "$ip is not a valid IPv6 address" );
 			}
 		}
 		// Have CIDR
@@ -254,8 +254,8 @@ class IPTest extends MediaWikiTestCase {
 	 * @todo Most probably incomplete
 	 */
 	public function testSanitizeIP() {
-		$this->assertNull( IP::sanitizeIP('')  );
-		$this->assertNull( IP::sanitizeIP(' ') );
+		$this->assertNull( IP::sanitizeIP( '' ) );
+		$this->assertNull( IP::sanitizeIP( ' ' ) );
 	}
 
 	/**
@@ -264,7 +264,7 @@ class IPTest extends MediaWikiTestCase {
 	 */
 	public function testip2longWrapper() {
 		// @todo FIXME: Add more tests ?
-		$this->assertEquals( pow(2,32) - 1, IP::toUnsigned( '255.255.255.255' ));
+		$this->assertEquals( pow( 2, 32 ) - 1, IP::toUnsigned( '255.255.255.255' ) );
 		$i = 'IN.VA.LI.D';
 		$this->assertFalse( IP::toUnSigned( $i ) );
 	}
@@ -284,7 +284,7 @@ class IPTest extends MediaWikiTestCase {
 	}
 
 	// Private wrapper used to test CIDR Parsing.
-	private function assertFalseCIDR( $CIDR, $msg='' ) {
+	private function assertFalseCIDR( $CIDR, $msg = '' ) {
 		$ff = array( false, false );
 		$this->assertEquals( $ff, IP::parseCIDR( $CIDR ), $msg );
 	}
@@ -299,15 +299,15 @@ class IPTest extends MediaWikiTestCase {
 	 * @covers IP::hexToQuad
 	 */
 	public function testHexToQuad() {
-		$this->assertEquals( '0.0.0.1'        , IP::hexToQuad( '00000001' ) );
-		$this->assertEquals( '255.0.0.0'      , IP::hexToQuad( 'FF000000' ) );
+		$this->assertEquals( '0.0.0.1', IP::hexToQuad( '00000001' ) );
+		$this->assertEquals( '255.0.0.0', IP::hexToQuad( 'FF000000' ) );
 		$this->assertEquals( '255.255.255.255', IP::hexToQuad( 'FFFFFFFF' ) );
-		$this->assertEquals( '10.188.222.255' , IP::hexToQuad( '0ABCDEFF' ) );
+		$this->assertEquals( '10.188.222.255', IP::hexToQuad( '0ABCDEFF' ) );
 		// hex not left-padded...
-		$this->assertEquals( '0.0.0.0'     , IP::hexToQuad( '0' ) );
-		$this->assertEquals( '0.0.0.1'     , IP::hexToQuad( '1' ) );
-		$this->assertEquals( '0.0.0.255'   , IP::hexToQuad( 'FF' ) );
-		$this->assertEquals( '0.0.255.0'   , IP::hexToQuad( 'FF00' ) );
+		$this->assertEquals( '0.0.0.0', IP::hexToQuad( '0' ) );
+		$this->assertEquals( '0.0.0.1', IP::hexToQuad( '1' ) );
+		$this->assertEquals( '0.0.0.255', IP::hexToQuad( 'FF' ) );
+		$this->assertEquals( '0.0.255.0', IP::hexToQuad( 'FF00' ) );
 	}
 
 	/**
@@ -325,11 +325,11 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertEquals( 'FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF',
 			IP::hexToOctet( 'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF' ) );
 		// hex not left-padded...
-		$this->assertEquals( '0:0:0:0:0:0:0:0'	 	, IP::hexToOctet( '0' ) );
-		$this->assertEquals( '0:0:0:0:0:0:0:1'	 	, IP::hexToOctet( '1' ) );
-		$this->assertEquals( '0:0:0:0:0:0:0:FF'  	, IP::hexToOctet( 'FF' ) );
-		$this->assertEquals( '0:0:0:0:0:0:0:FFD0'	, IP::hexToOctet( 'FFD0' ) );
-		$this->assertEquals( '0:0:0:0:0:0:FA00:0'	, IP::hexToOctet( 'FA000000' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:0', IP::hexToOctet( '0' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:1', IP::hexToOctet( '1' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:FF', IP::hexToOctet( 'FF' ) );
+		$this->assertEquals( '0:0:0:0:0:0:0:FFD0', IP::hexToOctet( 'FFD0' ) );
+		$this->assertEquals( '0:0:0:0:0:0:FA00:0', IP::hexToOctet( 'FA000000' ) );
 		$this->assertEquals( '0:0:0:0:0:0:FCCF:FAFF', IP::hexToOctet( 'FCCFFAFF' ) );
 	}
 
@@ -339,42 +339,41 @@ class IPTest extends MediaWikiTestCase {
 	 * @covers IP::parseCIDR
 	 */
 	function testCIDRParsing() {
-		$this->assertFalseCIDR( '192.0.2.0' , "missing mask"    );
+		$this->assertFalseCIDR( '192.0.2.0', "missing mask" );
 		$this->assertFalseCIDR( '192.0.2.0/', "missing bitmask" );
 
 		// Verify if statement
-		$this->assertFalseCIDR( '256.0.0.0/32', "invalid net"      );
+		$this->assertFalseCIDR( '256.0.0.0/32', "invalid net" );
 		$this->assertFalseCIDR( '192.0.2.0/AA', "mask not numeric" );
-		$this->assertFalseCIDR( '192.0.2.0/-1', "mask < 0"         );
-		$this->assertFalseCIDR( '192.0.2.0/33', "mask > 32"        );
+		$this->assertFalseCIDR( '192.0.2.0/-1', "mask < 0" );
+		$this->assertFalseCIDR( '192.0.2.0/33', "mask > 32" );
 
 		// Check internal logic
 		# 0 mask always result in array(0,0)
-		$this->assertEquals( array( 0, 0 ), IP::parseCIDR('192.0.0.2/0') );
-		$this->assertEquals( array( 0, 0 ), IP::parseCIDR('0.0.0.0/0') );
-		$this->assertEquals( array( 0, 0 ), IP::parseCIDR('255.255.255.255/0') );
+		$this->assertEquals( array( 0, 0 ), IP::parseCIDR( '192.0.0.2/0' ) );
+		$this->assertEquals( array( 0, 0 ), IP::parseCIDR( '0.0.0.0/0' ) );
+		$this->assertEquals( array( 0, 0 ), IP::parseCIDR( '255.255.255.255/0' ) );
 
 		// @todo FIXME: Add more tests.
 
 		# This part test network shifting
-		$this->assertNet( '192.0.0.0'  , '192.0.0.2/24'   );
-		$this->assertNet( '192.168.5.0', '192.168.5.13/24');
-		$this->assertNet( '10.0.0.160' , '10.0.0.161/28'  );
-		$this->assertNet( '10.0.0.0'   , '10.0.0.3/28'  );
-		$this->assertNet( '10.0.0.0'   , '10.0.0.3/30'  );
-		$this->assertNet( '10.0.0.4'   , '10.0.0.4/30'  );
+		$this->assertNet( '192.0.0.0', '192.0.0.2/24' );
+		$this->assertNet( '192.168.5.0', '192.168.5.13/24' );
+		$this->assertNet( '10.0.0.160', '10.0.0.161/28' );
+		$this->assertNet( '10.0.0.0', '10.0.0.3/28' );
+		$this->assertNet( '10.0.0.0', '10.0.0.3/30' );
+		$this->assertNet( '10.0.0.4', '10.0.0.4/30' );
 		$this->assertNet( '172.17.32.0', '172.17.35.48/21' );
-		$this->assertNet( '10.128.0.0' , '10.135.0.0/9' );
-		$this->assertNet( '134.0.0.0'  , '134.0.5.1/8'  );
+		$this->assertNet( '10.128.0.0', '10.135.0.0/9' );
+		$this->assertNet( '134.0.0.0', '134.0.5.1/8' );
 	}
-
 
 	/**
 	 * @covers IP::canonicalize
 	 */
 	public function testIPCanonicalizeOnValidIp() {
 		$this->assertEquals( '192.0.2.152', IP::canonicalize( '192.0.2.152' ),
-	   	'Canonicalization of a valid IP returns it unchanged' );
+			'Canonicalization of a valid IP returns it unchanged' );
 	}
 
 	/**
@@ -405,27 +404,27 @@ class IPTest extends MediaWikiTestCase {
 	}
 
 	/** Provider for testIPIsInRange() */
-	function provideIPsAndRanges() {
-			# Format: (expected boolean, address, range, optional message)
+	public static function provideIPsAndRanges() {
+		# Format: (expected boolean, address, range, optional message)
 		return array(
 			# IPv4
-			array( true , '192.0.2.0'   , '192.0.2.0/24', 'Network address' ),
-			array( true , '192.0.2.77'  , '192.0.2.0/24', 'Simple address' ),
-			array( true , '192.0.2.255' , '192.0.2.0/24', 'Broadcast address' ),
+			array( true, '192.0.2.0', '192.0.2.0/24', 'Network address' ),
+			array( true, '192.0.2.77', '192.0.2.0/24', 'Simple address' ),
+			array( true, '192.0.2.255', '192.0.2.0/24', 'Broadcast address' ),
 
-			array( false, '0.0.0.0'     , '192.0.2.0/24' ),
-			array( false, '255.255.255' , '192.0.2.0/24' ),
+			array( false, '0.0.0.0', '192.0.2.0/24' ),
+			array( false, '255.255.255', '192.0.2.0/24' ),
 
 			# IPv6
-			array( false, '::1'    , '2001:DB8::/32' ),
-			array( false, '::'     , '2001:DB8::/32' ),
+			array( false, '::1', '2001:DB8::/32' ),
+			array( false, '::', '2001:DB8::/32' ),
 			array( false, 'FE80::1', '2001:DB8::/32' ),
 
-			array( true , '2001:DB8::'  , '2001:DB8::/32' ),
-			array( true , '2001:0DB8::' , '2001:DB8::/32' ),
-			array( true , '2001:DB8::1' , '2001:DB8::/32' ),
-			array( true , '2001:0DB8::1', '2001:DB8::/32' ),
-			array( true , '2001:0DB8:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF',
+			array( true, '2001:DB8::', '2001:DB8::/32' ),
+			array( true, '2001:0DB8::', '2001:DB8::/32' ),
+			array( true, '2001:DB8::1', '2001:DB8::/32' ),
+			array( true, '2001:0DB8::1', '2001:DB8::/32' ),
+			array( true, '2001:0DB8:FFFF:FFFF:FFFF:FFFF:FFFF:FFFF',
 				'2001:DB8::/32' ),
 
 			array( false, '2001:0DB8:F::', '2001:DB8::/96' ),
@@ -443,7 +442,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::splitHostAndPort()
 	 */
-	function provideSplitHostAndPort() {
+	public static function provideSplitHostAndPort() {
 		return array(
 			array( false, '[', 'Unclosed square bracket' ),
 			array( false, '[::', 'Unclosed square bracket 2' ),
@@ -474,7 +473,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::combineHostAndPort()
 	 */
-	function provideCombineHostAndPort() {
+	public static function provideCombineHostAndPort() {
 		return array(
 			array( '[::1]', array( '::1', 2, 2 ), 'IPv6 default port' ),
 			array( '[::1]:2', array( '::1', 2, 3 ), 'IPv6 non-default port' ),
@@ -494,7 +493,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::testSanitizeRange()
 	 */
-	function provideIPCIDRs() {
+	public static function provideIPCIDRs() {
 		return array(
 			array( '35.56.31.252/16', '35.56.0.0/16', 'IPv4 range' ),
 			array( '135.16.21.252/24', '135.16.21.0/24', 'IPv4 range' ),
@@ -518,7 +517,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::testPrettifyIP()
 	 */
-	function provideIPsToPrettify() {
+	public static function provideIPsToPrettify() {
 		return array(
 			array( '0:0:0:0:0:0:0:0', '::' ),
 			array( '0:0:0::0:0:0', '::' ),

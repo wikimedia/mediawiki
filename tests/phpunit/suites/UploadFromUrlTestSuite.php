@@ -1,6 +1,6 @@
 <?php
 
-require_once( dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php' );
+require_once dirname( __DIR__ ) . '/includes/upload/UploadFromUrlTest.php';
 
 class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 	public $savedGlobals = array();
@@ -15,32 +15,32 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		return true;
 	}
 
-	function setUp() {
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
-			  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
-			  $wgNamespaceAliases, $wgNamespaceProtection, $parserMemc;
+	protected function setUp() {
+		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgUser,
+			$wgLang, $wgOut, $wgRequest, $wgStyleDirectory,
+			$wgEnableParserCache, $wgNamespaceAliases, $wgNamespaceProtection,
+			$parserMemc;
 
 		$tmpGlobals = array();
 
 		$tmpGlobals['wgScript'] = '/index.php';
 		$tmpGlobals['wgScriptPath'] = '/';
 		$tmpGlobals['wgArticlePath'] = '/wiki/$1';
-		$tmpGlobals['wgStyleSheetPath'] = '/skins';
 		$tmpGlobals['wgStylePath'] = '/skins';
 		$tmpGlobals['wgThumbnailScriptPath'] = false;
 		$tmpGlobals['wgLocalFileRepo'] = array(
-			'class'           => 'LocalRepo',
-			'name'            => 'local',
-			'url'             => 'http://example.com/images',
-			'hashLevels'      => 2,
+			'class' => 'LocalRepo',
+			'name' => 'local',
+			'url' => 'http://example.com/images',
+			'hashLevels' => 2,
 			'transformVia404' => false,
-			'backend'         => new FSFileBackend( array(
-				'name'        => 'local-backend',
+			'backend' => new FSFileBackend( array(
+				'name' => 'local-backend',
 				'lockManager' => 'fsLockManager',
 				'containerPaths' => array(
-					'local-public'  => wfTempDir() . '/test-repo/public',
-					'local-thumb'   => wfTempDir() . '/test-repo/thumb',
-					'local-temp'    => wfTempDir() . '/test-repo/temp',
+					'local-public' => wfTempDir() . '/test-repo/public',
+					'local-thumb' => wfTempDir() . '/test-repo/thumb',
+					'local-temp' => wfTempDir() . '/test-repo/temp',
 					'local-deleted' => wfTempDir() . '/test-repo/delete',
 				)
 			) ),
@@ -55,7 +55,6 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
-
 
 		$wgEnableParserCache = false;
 		DeferredUpdates::clearPendingUpdates();
@@ -72,14 +71,14 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		$wgRequest = $context->getRequest();
 
 		if ( $wgStyleDirectory === false ) {
-			$wgStyleDirectory   = "$IP/skins";
+			$wgStyleDirectory = "$IP/skins";
 		}
 
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}
@@ -88,6 +87,8 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		FileBackendGroup::destroySingleton();
 
 		$this->teardownUploadDir( $this->uploadDir );
+
+		parent::tearDown();
 	}
 
 	private $uploadDir;
@@ -103,7 +104,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		// delete the files first, then the dirs.
 		self::deleteFiles(
-			array (
+			array(
 				"$dir/3/3a/Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg",
 				"$dir/thumb/3/3a/Foobar.jpg/200px-Foobar.jpg",
@@ -115,7 +116,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		);
 
 		self::deleteDirs(
-			array (
+			array(
 				"$dir/3/3a",
 				"$dir/3",
 				"$dir/thumb/6/65",
@@ -182,6 +183,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 
 		if ( file_exists( $dir ) ) {
 			wfDebug( "Already exists!\n" );
+
 			return $dir;
 		}
 
@@ -199,6 +201,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		// the UploadFromUrlTest class
 		class_exists( 'UploadFromUrlTest' );
 		$suite = new UploadFromUrlTestSuite( 'UploadFromUrlTest' );
+
 		return $suite;
 	}
 }

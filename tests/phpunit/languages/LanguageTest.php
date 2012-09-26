@@ -1,23 +1,10 @@
 <?php
 
-class LanguageTest extends MediaWikiTestCase {
-
-	/**
-	 * @var Language
-	 */
-	private $lang;
-
-	function setUp() {
-		$this->lang = Language::factory( 'en' );
-	}
-	function tearDown() {
-		unset( $this->lang );
-	}
-
+class LanguageTest extends LanguageClassesTestCase {
 	function testLanguageConvertDoubleWidthToSingleWidth() {
 		$this->assertEquals(
 			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-			$this->lang->normalizeForSearch(
+			$this->getLang()->normalizeForSearch(
 				"０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"
 			),
 			'convertDoubleWidth() with the full alphabet and digits'
@@ -28,15 +15,15 @@ class LanguageTest extends MediaWikiTestCase {
 	 * @dataProvider provideFormattableTimes
 	 */
 	function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
-		$this->assertEquals( $expected, $this->lang->formatTimePeriod( $seconds, $format ), $desc );
+		$this->assertEquals( $expected, $this->getLang()->formatTimePeriod( $seconds, $format ), $desc );
 	}
 
-	function provideFormattableTimes() {
+	public static function provideFormattableTimes() {
 		return array(
 			array(
 				9.45,
 				array(),
-				'9.5s',
+				'9.5 s',
 				'formatTimePeriod() rounding (<10s)'
 			),
 			array(
@@ -48,7 +35,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				9.95,
 				array(),
-				'10s',
+				'10 s',
 				'formatTimePeriod() rounding (<10s)'
 			),
 			array(
@@ -60,7 +47,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				59.55,
 				array(),
-				'1m 0s',
+				'1 min 0 s',
 				'formatTimePeriod() rounding (<60s)'
 			),
 			array(
@@ -72,7 +59,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				119.55,
 				array(),
-				'2m 0s',
+				'2 min 0 s',
 				'formatTimePeriod() rounding (<1h)'
 			),
 			array(
@@ -84,7 +71,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				3599.55,
 				array(),
-				'1h 0m 0s',
+				'1 h 0 min 0 s',
 				'formatTimePeriod() rounding (<1h)'
 			),
 			array(
@@ -96,7 +83,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				7199.55,
 				array(),
-				'2h 0m 0s',
+				'2 h 0 min 0 s',
 				'formatTimePeriod() rounding (>=1h)'
 			),
 			array(
@@ -108,7 +95,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				7199.55,
 				'avoidseconds',
-				'2h 0m',
+				'2 h 0 min',
 				'formatTimePeriod() rounding (>=1h), avoidseconds'
 			),
 			array(
@@ -120,7 +107,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				7199.55,
 				'avoidminutes',
-				'2h 0m',
+				'2 h 0 min',
 				'formatTimePeriod() rounding (>=1h), avoidminutes'
 			),
 			array(
@@ -132,7 +119,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				172799.55,
 				'avoidseconds',
-				'48h 0m',
+				'48 h 0 min',
 				'formatTimePeriod() rounding (=48h), avoidseconds'
 			),
 			array(
@@ -144,7 +131,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				259199.55,
 				'avoidminutes',
-				'3d 0h',
+				'3 d 0 h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
 			),
 			array(
@@ -156,7 +143,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				176399.55,
 				'avoidseconds',
-				'2d 1h 0m',
+				'2 d 1 h 0 min',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
 			),
 			array(
@@ -168,7 +155,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				176399.55,
 				'avoidminutes',
-				'2d 1h',
+				'2 d 1 h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
 			),
 			array(
@@ -180,7 +167,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				259199.55,
 				'avoidseconds',
-				'3d 0h 0m',
+				'3 d 0 h 0 min',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
 			),
 			array(
@@ -192,7 +179,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				172801.55,
 				'avoidseconds',
-				'2d 0h 0m',
+				'2 d 0 h 0 min',
 				'formatTimePeriod() rounding, (>48h), avoidseconds'
 			),
 			array(
@@ -204,7 +191,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				176460.55,
 				array(),
-				'2d 1h 1m 1s',
+				'2 d 1 h 1 min 1 s',
 				'formatTimePeriod() rounding, recursion, (>48h)'
 			),
 			array(
@@ -214,37 +201,36 @@ class LanguageTest extends MediaWikiTestCase {
 				'formatTimePeriod() rounding, recursion, (>48h)'
 			),
 		);
-
 	}
 
 	function testTruncate() {
 		$this->assertEquals(
 			"XXX",
-			$this->lang->truncate( "1234567890", 0, 'XXX' ),
+			$this->getLang()->truncate( "1234567890", 0, 'XXX' ),
 			'truncate prefix, len 0, small ellipsis'
 		);
 
 		$this->assertEquals(
 			"12345XXX",
-			$this->lang->truncate( "1234567890", 8, 'XXX' ),
+			$this->getLang()->truncate( "1234567890", 8, 'XXX' ),
 			'truncate prefix, small ellipsis'
 		);
 
 		$this->assertEquals(
 			"123456789",
-			$this->lang->truncate( "123456789", 5, 'XXXXXXXXXXXXXXX' ),
+			$this->getLang()->truncate( "123456789", 5, 'XXXXXXXXXXXXXXX' ),
 			'truncate prefix, large ellipsis'
 		);
 
 		$this->assertEquals(
 			"XXX67890",
-			$this->lang->truncate( "1234567890", -8, 'XXX' ),
+			$this->getLang()->truncate( "1234567890", -8, 'XXX' ),
 			'truncate suffix, small ellipsis'
 		);
 
 		$this->assertEquals(
 			"123456789",
-			$this->lang->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
+			$this->getLang()->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
 			'truncate suffix, large ellipsis'
 		);
 	}
@@ -256,14 +242,14 @@ class LanguageTest extends MediaWikiTestCase {
 		// Actual HTML...
 		$this->assertEquals(
 			$expected,
-			$this->lang->truncateHTML( $input, $len, $ellipsis )
+			$this->getLang()->truncateHTML( $input, $len, $ellipsis )
 		);
 	}
 
 	/**
 	 * Array format is ($len, $ellipsis, $input, $expected)
 	 */
-	function provideHTMLTruncateData() {
+	public static function provideHTMLTruncateData() {
 		return array(
 			array( 0, 'XXX', "1234567890", "XXX" ),
 			array( 8, 'XXX', "1234567890", "12345XXX" ),
@@ -320,33 +306,220 @@ class LanguageTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Test Language::isWellFormedLanguageTag()
+	 * @dataProvider provideWellFormedLanguageTags
+	 */
+	function testWellFormedLanguageTag( $code, $message = '' ) {
+		$this->assertTrue(
+			Language::isWellFormedLanguageTag( $code ),
+			"validating code $code $message"
+		);
+	}
+
+	/**
+	 * The test cases are based on the tests in the GaBuZoMeu parser
+	 * written by Stéphane Bortzmeyer <bortzmeyer@nic.fr>
+	 * and distributed as free software, under the GNU General Public Licence.
+	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
+	 */
+	public static function provideWellFormedLanguageTags() {
+		return array(
+			array( 'fr', 'two-letter code' ),
+			array( 'fr-latn', 'two-letter code with lower case script code' ),
+			array( 'fr-Latn-FR', 'two-letter code with title case script code and uppercase country code' ),
+			array( 'fr-Latn-419', 'two-letter code with title case script code and region number' ),
+			array( 'fr-FR', 'two-letter code with uppercase' ),
+			array( 'ax-TZ', 'Not in the registry, but well-formed' ),
+			array( 'fr-shadok', 'two-letter code with variant' ),
+			array( 'fr-y-myext-myext2', 'non-x singleton' ),
+			array( 'fra-Latn', 'ISO 639 can be 3-letters' ),
+			array( 'fra', 'three-letter language code' ),
+			array( 'fra-FX', 'three-letter language code with country code' ),
+			array( 'i-klingon', 'grandfathered with singleton' ),
+			array( 'I-kLINgon', 'tags are case-insensitive...' ),
+			array( 'no-bok', 'grandfathered without singleton' ),
+			array( 'i-enochian', 'Grandfathered' ),
+			array( 'x-fr-CH', 'private use' ),
+			array( 'es-419', 'two-letter code with region number' ),
+			array( 'en-Latn-GB-boont-r-extended-sequence-x-private', 'weird, but well-formed' ),
+			array( 'ab-x-abc-x-abc', 'anything goes after x' ),
+			array( 'ab-x-abc-a-a', 'anything goes after x, including several non-x singletons' ),
+			array( 'i-default', 'grandfathered' ),
+			array( 'abcd-Latn', 'Language of 4 chars reserved for future use' ),
+			array( 'AaBbCcDd-x-y-any-x', 'Language of 5-8 chars, registered' ),
+			array( 'de-CH-1901', 'with country and year' ),
+			array( 'en-US-x-twain', 'with country and singleton' ),
+			array( 'zh-cmn', 'three-letter variant' ),
+			array( 'zh-cmn-Hant', 'three-letter variant and script' ),
+			array( 'zh-cmn-Hant-HK', 'three-letter variant, script and country' ),
+			array( 'xr-p-lze', 'Extension' ),
+		);
+	}
+
+	/**
+	 * Negative test for Language::isWellFormedLanguageTag()
+	 * @dataProvider provideMalformedLanguageTags
+	 */
+	function testMalformedLanguageTag( $code, $message = '' ) {
+		$this->assertFalse(
+			Language::isWellFormedLanguageTag( $code ),
+			"validating that code $code is a malformed language tag - $message"
+		);
+	}
+
+	/**
+	 * The test cases are based on the tests in the GaBuZoMeu parser
+	 * written by Stéphane Bortzmeyer <bortzmeyer@nic.fr>
+	 * and distributed as free software, under the GNU General Public Licence.
+	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
+	 */
+	public static function provideMalformedLanguageTags() {
+		return array(
+			array( 'f', 'language too short' ),
+			array( 'f-Latn', 'language too short with script' ),
+			array( 'xr-lxs-qut', 'variants too short' ), # extlangS
+			array( 'fr-Latn-F', 'region too short' ),
+			array( 'a-value', 'language too short with region' ),
+			array( 'tlh-a-b-foo', 'valid three-letter with wrong variant' ),
+			array( 'i-notexist', 'grandfathered but not registered: invalid, even if we only test well-formedness' ),
+			array( 'abcdefghi-012345678', 'numbers too long' ),
+			array( 'ab-abc-abc-abc-abc', 'invalid extensions' ),
+			array( 'ab-abcd-abc', 'invalid extensions' ),
+			array( 'ab-ab-abc', 'invalid extensions' ),
+			array( 'ab-123-abc', 'invalid extensions' ),
+			array( 'a-Hant-ZH', 'short language with valid extensions' ),
+			array( 'a1-Hant-ZH', 'invalid character in language' ),
+			array( 'ab-abcde-abc', 'invalid extensions' ),
+			array( 'ab-1abc-abc', 'invalid characters in extensions' ),
+			array( 'ab-ab-abcd', 'invalid order of extensions' ),
+			array( 'ab-123-abcd', 'invalid order of extensions' ),
+			array( 'ab-abcde-abcd', 'invalid extensions' ),
+			array( 'ab-1abc-abcd', 'invalid characters in extensions' ),
+			array( 'ab-a-b', 'extensions too short' ),
+			array( 'ab-a-x', 'extensions too short, even with singleton' ),
+			array( 'ab--ab', 'two separators' ),
+			array( 'ab-abc-', 'separator in the end' ),
+			array( '-ab-abc', 'separator in the beginning' ),
+			array( 'abcd-efg', 'language too long' ),
+			array( 'aabbccddE', 'tag too long' ),
+			array( 'pa_guru', 'A tag with underscore is invalid in strict mode' ),
+			array( 'de-f', 'subtag too short' ),
+		);
+	}
+
+	/**
+	 * Negative test for Language::isWellFormedLanguageTag()
+	 */
+	function testLenientLanguageTag() {
+		$this->assertTrue(
+			Language::isWellFormedLanguageTag( 'pa_guru', true ),
+			'pa_guru is a well-formed language tag in lenient mode'
+		);
+	}
+
+	/**
 	 * Test Language::isValidBuiltInCode()
 	 * @dataProvider provideLanguageCodes
 	 */
 	function testBuiltInCodeValidation( $code, $message = '' ) {
 		$this->assertTrue(
-			(bool) Language::isValidBuiltInCode( $code ),
+			(bool)Language::isValidBuiltInCode( $code ),
 			"validating code $code $message"
 		);
 	}
 
 	function testBuiltInCodeValidationRejectUnderscore() {
 		$this->assertFalse(
-			(bool) Language::isValidBuiltInCode( 'be_tarask' ),
+			(bool)Language::isValidBuiltInCode( 'be_tarask' ),
 			"reject underscore in language code"
 		);
 	}
 
-	function provideLanguageCodes() {
+	public static function provideLanguageCodes() {
 		return array(
-			array( 'fr'       , 'Two letters, minor case' ),
-			array( 'EN'       , 'Two letters, upper case' ),
-			array( 'tyv'      , 'Three letters' ),
-			array( 'tokipona'   , 'long language code' ),
+			array( 'fr', 'Two letters, minor case' ),
+			array( 'EN', 'Two letters, upper case' ),
+			array( 'tyv', 'Three letters' ),
+			array( 'tokipona', 'long language code' ),
 			array( 'be-tarask', 'With dash' ),
 			array( 'Zh-classical', 'Begin with upper case, dash' ),
 			array( 'Be-x-old', 'With extension (two dashes)' ),
 		);
+	}
+
+	/**
+	 * Test Language::isKnownLanguageTag()
+	 * @dataProvider provideKnownLanguageTags
+	 */
+	function testKnownLanguageTag( $code, $message = '' ) {
+		$this->assertTrue(
+			(bool)Language::isKnownLanguageTag( $code ),
+			"validating code $code - $message"
+		);
+	}
+
+	public static function provideKnownLanguageTags() {
+		return array(
+			array( 'fr', 'simple code' ),
+			array( 'bat-smg', 'an MW legacy tag' ),
+			array( 'sgs', 'an internal standard MW name, for which a legacy tag is used externally' ),
+		);
+	}
+
+	/**
+	 * Test Language::isKnownLanguageTag()
+	 */
+	function testKnownCldrLanguageTag() {
+		if ( !class_exists( 'LanguageNames' ) ) {
+			$this->markTestSkipped( 'The LanguageNames class is not available. The cldr extension is probably not installed.' );
+		}
+
+		$this->assertTrue(
+			(bool)Language::isKnownLanguageTag( 'pal' ),
+			'validating code "pal" an ancient language, which probably will not appear in Names.php, but appears in CLDR in English'
+		);
+	}
+
+	/**
+	 * Negative tests for Language::isKnownLanguageTag()
+	 * @dataProvider provideUnKnownLanguageTags
+	 */
+	function testUnknownLanguageTag( $code, $message = '' ) {
+		$this->assertFalse(
+			(bool)Language::isKnownLanguageTag( $code ),
+			"checking that code $code is invalid - $message"
+		);
+	}
+
+	public static function provideUnknownLanguageTags() {
+		return array(
+			array( 'mw', 'non-existent two-letter code' ),
+			array( 'foo"<bar', 'very invalid language code' ),
+		);
+	}
+
+	/**
+	 * Test too short timestamp
+	 * @expectedException MWException
+	 */
+	function testSprintfDateTooShortTimestamp() {
+		$this->getLang()->sprintfDate( 'xiY', '1234567890123' );
+	}
+
+	/**
+	 * Test too long timestamp
+	 * @expectedException MWException
+	 */
+	function testSprintfDateTooLongTimestamp() {
+		$this->getLang()->sprintfDate( 'xiY', '123456789012345' );
+	}
+
+	/**
+	 * Test too short timestamp
+	 * @expectedException MWException
+	 */
+	function testSprintfDateNotAllDigitTimestamp() {
+		$this->getLang()->sprintfDate( 'xiY', '-1234567890123' );
 	}
 
 	/**
@@ -355,15 +528,16 @@ class LanguageTest extends MediaWikiTestCase {
 	function testSprintfDate( $format, $ts, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->sprintfDate( $format, $ts ),
+			$this->getLang()->sprintfDate( $format, $ts ),
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 	}
+
 	/**
-	 * bug 33454. sprintfDate should always use UTC.
+	 * sprintfDate should always use UTC when no zone is given.
 	 * @dataProvider provideSprintfDateSamples
 	 */
-	function testSprintfDateTZ( $format, $ts, $expected, $msg ) {
+	function testSprintfDateNoZone( $format, $ts, $expected, $ignore, $msg ) {
 		$oldTZ = date_default_timezone_get();
 		$res = date_default_timezone_set( 'Asia/Seoul' );
 		if ( !$res ) {
@@ -372,24 +546,43 @@ class LanguageTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			$expected,
-			$this->lang->sprintfDate( $format, $ts ),
+			$this->getLang()->sprintfDate( $format, $ts ),
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 
 		date_default_timezone_set( $oldTZ );
 	}
 
-	function provideSprintfDateSamples() {
+	/**
+	 * sprintfDate should use passed timezone
+	 * @dataProvider provideSprintfDateSamples
+	 */
+	function testSprintfDateTZ( $format, $ts, $ignore, $expected, $msg ) {
+		$tz = new DateTimeZone( 'Asia/Seoul' );
+		if ( !$tz ) {
+			$this->markTestSkipped( "Error getting Timezone" );
+		}
+
+		$this->assertEquals(
+			$expected,
+			$this->getLang()->sprintfDate( $format, $ts, $tz ),
+			"sprintfDate('$format', '$ts', 'Asia/Seoul'): $msg"
+		);
+	}
+
+	public static function provideSprintfDateSamples() {
 		return array(
 			array(
 				'xiY',
 				'20111212000000',
 				'1390', // note because we're testing English locale we get Latin-standard digits
+				'1390',
 				'Iranian calendar full year'
 			),
 			array(
 				'xiy',
 				'20111212000000',
+				'90',
 				'90',
 				'Iranian calendar short year'
 			),
@@ -397,11 +590,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'o',
 				'20120101235000',
 				'2011',
+				'2011',
 				'ISO 8601 (week) year'
 			),
 			array(
 				'W',
 				'20120101235000',
+				'52',
 				'52',
 				'Week number'
 			),
@@ -409,11 +604,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'W',
 				'20120102235000',
 				'1',
+				'1',
 				'Week number'
 			),
 			array(
 				'o-\\WW-N',
 				'20091231235000',
+				'2009-W53-4',
 				'2009-W53-4',
 				'leap week'
 			),
@@ -422,11 +619,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'Y',
 				'20120102090705',
 				'2012',
+				'2012',
 				'Full year'
 			),
 			array(
 				'y',
 				'20120102090705',
+				'12',
 				'12',
 				'2 digit year'
 			),
@@ -434,11 +633,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'L',
 				'20120102090705',
 				'1',
+				'1',
 				'Leap year'
 			),
 			array(
 				'n',
 				'20120102090705',
+				'1',
 				'1',
 				'Month index, not zero pad'
 			),
@@ -446,11 +647,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'N',
 				'20120102090705',
 				'01',
+				'01',
 				'Month index. Zero pad'
 			),
 			array(
 				'M',
 				'20120102090705',
+				'Jan',
 				'Jan',
 				'Month abbrev'
 			),
@@ -458,11 +661,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'F',
 				'20120102090705',
 				'January',
+				'January',
 				'Full month'
 			),
 			array(
 				'xg',
 				'20120102090705',
+				'January',
 				'January',
 				'Genitive month name (same in EN)'
 			),
@@ -470,11 +675,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'j',
 				'20120102090705',
 				'2',
+				'2',
 				'Day of month (not zero pad)'
 			),
 			array(
 				'd',
 				'20120102090705',
+				'02',
 				'02',
 				'Day of month (zero-pad)'
 			),
@@ -482,11 +689,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'z',
 				'20120102090705',
 				'1',
+				'1',
 				'Day of year (zero-indexed)'
 			),
 			array(
 				'D',
 				'20120102090705',
+				'Mon',
 				'Mon',
 				'Day of week (abbrev)'
 			),
@@ -494,11 +703,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'l',
 				'20120102090705',
 				'Monday',
+				'Monday',
 				'Full day of week'
 			),
 			array(
 				'N',
 				'20120101090705',
+				'7',
 				'7',
 				'Day of week (Mon=1, Sun=7)'
 			),
@@ -506,11 +717,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'w',
 				'20120101090705',
 				'0',
+				'0',
 				'Day of week (Sun=0, Sat=6)'
 			),
 			array(
 				'N',
 				'20120102090705',
+				'1',
 				'1',
 				'Day of week'
 			),
@@ -518,11 +731,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'a',
 				'20120102090705',
 				'am',
+				'am',
 				'am vs pm'
 			),
 			array(
 				'A',
 				'20120102120000',
+				'PM',
 				'PM',
 				'AM vs PM'
 			),
@@ -530,11 +745,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'a',
 				'20120102000000',
 				'am',
+				'am',
 				'AM vs PM'
 			),
 			array(
 				'g',
 				'20120102090705',
+				'9',
 				'9',
 				'12 hour, not Zero'
 			),
@@ -542,11 +759,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'h',
 				'20120102090705',
 				'09',
+				'09',
 				'12 hour, zero padded'
 			),
 			array(
 				'G',
 				'20120102090705',
+				'9',
 				'9',
 				'24 hour, not zero'
 			),
@@ -554,11 +773,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'H',
 				'20120102090705',
 				'09',
+				'09',
 				'24 hour, zero'
 			),
 			array(
 				'H',
 				'20120102110705',
+				'11',
 				'11',
 				'24 hour, zero'
 			),
@@ -566,11 +787,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'i',
 				'20120102090705',
 				'07',
+				'07',
 				'Minutes'
 			),
 			array(
 				's',
 				'20120102090705',
+				'05',
 				'05',
 				'seconds'
 			),
@@ -578,11 +801,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'U',
 				'20120102090705',
 				'1325495225',
+				'1325462825',
 				'unix time'
 			),
 			array(
 				't',
 				'20120102090705',
+				'31',
 				'31',
 				'Days in current month'
 			),
@@ -590,17 +815,62 @@ class LanguageTest extends MediaWikiTestCase {
 				'c',
 				'20120102090705',
 				'2012-01-02T09:07:05+00:00',
+				'2012-01-02T09:07:05+09:00',
 				'ISO 8601 timestamp'
 			),
 			array(
 				'r',
 				'20120102090705',
 				'Mon, 02 Jan 2012 09:07:05 +0000',
+				'Mon, 02 Jan 2012 09:07:05 +0900',
 				'RFC 5322'
+			),
+			array(
+				'e',
+				'20120102090705',
+				'UTC',
+				'Asia/Seoul',
+				'Timezone identifier'
+			),
+			array(
+				'I',
+				'19880602090705',
+				'0',
+				'1',
+				'DST indicator'
+			),
+			array(
+				'O',
+				'20120102090705',
+				'+0000',
+				'+0900',
+				'Timezone offset'
+			),
+			array(
+				'P',
+				'20120102090705',
+				'+00:00',
+				'+09:00',
+				'Timezone offset with colon'
+			),
+			array(
+				'T',
+				'20120102090705',
+				'UTC',
+				'KST',
+				'Timezone abbreviation'
+			),
+			array(
+				'Z',
+				'20120102090705',
+				'0',
+				'32400',
+				'Timezone offset in seconds'
 			),
 			array(
 				'xmj xmF xmn xmY',
 				'20120102090705',
+				'7 Safar 2 1433',
 				'7 Safar 2 1433',
 				'Islamic'
 			),
@@ -608,11 +878,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'xij xiF xin xiY',
 				'20120102090705',
 				'12 Dey 10 1390',
+				'12 Dey 10 1390',
 				'Iranian'
 			),
 			array(
 				'xjj xjF xjn xjY',
 				'20120102090705',
+				'7 Tevet 4 5772',
 				'7 Tevet 4 5772',
 				'Hebrew'
 			),
@@ -620,11 +892,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'xjt',
 				'20120102090705',
 				'29',
+				'29',
 				'Hebrew number of days in month'
 			),
 			array(
 				'xjx',
 				'20120102090705',
+				'Tevet',
 				'Tevet',
 				'Hebrew genitive month name (No difference in EN)'
 			),
@@ -632,11 +906,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'xkY',
 				'20120102090705',
 				'2555',
+				'2555',
 				'Thai year'
 			),
 			array(
 				'xoY',
 				'20120102090705',
+				'101',
 				'101',
 				'Minguo'
 			),
@@ -644,11 +920,13 @@ class LanguageTest extends MediaWikiTestCase {
 				'xtY',
 				'20120102090705',
 				'平成24',
+				'平成24',
 				'nengo'
 			),
 			array(
 				'xrxkYY',
 				'20120102090705',
+				'MMDLV2012',
 				'MMDLV2012',
 				'Roman numerals'
 			),
@@ -656,17 +934,20 @@ class LanguageTest extends MediaWikiTestCase {
 				'xhxjYY',
 				'20120102090705',
 				'ה\'תשע"ב2012',
+				'ה\'תשע"ב2012',
 				'Hebrew numberals'
 			),
 			array(
 				'xnY',
 				'20120102090705',
 				'2012',
+				'2012',
 				'Raw numerals (doesn\'t mean much in EN)'
 			),
 			array(
 				'[[Y "(yea"\\r)]] \\"xx\\"',
 				'20120102090705',
+				'[[2012 (year)]] "x"',
 				'[[2012 (year)]] "x"',
 				'Various escaping'
 			),
@@ -680,12 +961,12 @@ class LanguageTest extends MediaWikiTestCase {
 	function testFormatSize( $size, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatSize( $size ),
+			$this->getLang()->formatSize( $size ),
 			"formatSize('$size'): $msg"
 		);
 	}
 
-	function provideFormatSizes() {
+	public static function provideFormatSizes() {
 		return array(
 			array(
 				0,
@@ -742,71 +1023,70 @@ class LanguageTest extends MediaWikiTestCase {
 	function testFormatBitrate( $bps, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatBitrate( $bps ),
+			$this->getLang()->formatBitrate( $bps ),
 			"formatBitrate('$bps'): $msg"
 		);
 	}
 
-	function provideFormatBitrate() {
+	public static function provideFormatBitrate() {
 		return array(
 			array(
 				0,
-				"0bps",
+				"0 bps",
 				"0 bits per second"
 			),
 			array(
 				999,
-				"999bps",
+				"999 bps",
 				"999 bits per second"
 			),
 			array(
 				1000,
-				"1kbps",
+				"1 kbps",
 				"1 kilobit per second"
 			),
 			array(
 				1000 * 1000,
-				"1Mbps",
+				"1 Mbps",
 				"1 megabit per second"
 			),
 			array(
 				pow( 10, 9 ),
-				"1Gbps",
+				"1 Gbps",
 				"1 gigabit per second"
 			),
 			array(
 				pow( 10, 12 ),
-				"1Tbps",
+				"1 Tbps",
 				"1 terabit per second"
 			),
 			array(
 				pow( 10, 15 ),
-				"1Pbps",
+				"1 Pbps",
 				"1 petabit per second"
 			),
 			array(
 				pow( 10, 18 ),
-				"1Ebps",
+				"1 Ebps",
 				"1 exabit per second"
 			),
 			array(
 				pow( 10, 21 ),
-				"1Zbps",
+				"1 Zbps",
 				"1 zetabit per second"
 			),
 			array(
 				pow( 10, 24 ),
-				"1Ybps",
+				"1 Ybps",
 				"1 yottabit per second"
 			),
 			array(
 				pow( 10, 27 ),
-				"1,000Ybps",
+				"1,000 Ybps",
 				"1,000 yottabits per second"
 			),
 		);
 	}
-
 
 
 	/**
@@ -815,12 +1095,12 @@ class LanguageTest extends MediaWikiTestCase {
 	function testFormatDuration( $duration, $expected, $intervals = array() ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatDuration( $duration, $intervals ),
+			$this->getLang()->formatDuration( $duration, $intervals ),
 			"formatDuration('$duration'): $expected"
 		);
 	}
 
-	function provideFormatDuration() {
+	public static function provideFormatDuration() {
 		return array(
 			array(
 				0,
@@ -859,35 +1139,36 @@ class LanguageTest extends MediaWikiTestCase {
 				'2 days',
 			),
 			array(
-				365.25 * 86400, // 365.25 * 86400 = 31557600
+				// ( 365 + ( 24 * 3 + 25 ) / 400 ) * 86400 = 31556952
+				( 365 + ( 24 * 3 + 25 ) / 400.0 ) * 86400,
 				'1 year',
 			),
 			array(
-				2 * 31557600,
+				2 * 31556952,
 				'2 years',
 			),
 			array(
-				10 * 31557600,
+				10 * 31556952,
 				'1 decade',
 			),
 			array(
-				20 * 31557600,
+				20 * 31556952,
 				'2 decades',
 			),
 			array(
-				100 * 31557600,
+				100 * 31556952,
 				'1 century',
 			),
 			array(
-				200 * 31557600,
+				200 * 31556952,
 				'2 centuries',
 			),
 			array(
-				1000 * 31557600,
+				1000 * 31556952,
 				'1 millennium',
 			),
 			array(
-				2000 * 31557600,
+				2000 * 31556952,
 				'2 millennia',
 			),
 			array(
@@ -899,11 +1180,11 @@ class LanguageTest extends MediaWikiTestCase {
 				'1 hour and 1 second'
 			),
 			array(
-				31557600 + 2 * 86400 + 9000,
+				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days, 2 hours and 30 minutes'
 			),
 			array(
-				42 * 1000 * 31557600 + 42,
+				42 * 1000 * 31556952 + 42,
 				'42 millennia and 42 seconds'
 			),
 			array(
@@ -922,7 +1203,7 @@ class LanguageTest extends MediaWikiTestCase {
 				array( 'seconds' ),
 			),
 			array(
-				31557600 + 2 * 86400 + 9000,
+				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days and 150 minutes',
 				array( 'years', 'days', 'minutes' ),
 			),
@@ -932,7 +1213,7 @@ class LanguageTest extends MediaWikiTestCase {
 				array( 'years', 'days' ),
 			),
 			array(
-				31557600 + 2 * 86400 + 9000,
+				31556952 + 2 * 86400 + 9000,
 				'1 year, 2 days and 150 minutes',
 				array( 'minutes', 'days', 'years' ),
 			),
@@ -950,13 +1231,13 @@ class LanguageTest extends MediaWikiTestCase {
 	function testCheckTitleEncoding( $s ) {
 		$this->assertEquals(
 			$s,
-			$this->lang->checkTitleEncoding($s),
+			$this->getLang()->checkTitleEncoding( $s ),
 			"checkTitleEncoding('$s')"
 		);
 	}
 
-	function provideCheckTitleEncodingData() {
-		return array (
+	public static function provideCheckTitleEncodingData() {
+		return array(
 			array( "" ),
 			array( "United States of America" ), // 7bit ASCII
 			array( rawurldecode( "S%C3%A9rie%20t%C3%A9l%C3%A9vis%C3%A9e" ) ),
@@ -1019,7 +1300,7 @@ class LanguageTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideRomanNumeralsData() {
+	public static function provideRomanNumeralsData() {
 		return array(
 			array( 1, 'I' ),
 			array( 2, 'II' ),
@@ -1061,9 +1342,166 @@ class LanguageTest extends MediaWikiTestCase {
 			array( 7000, 'MMMMMMM' ),
 			array( 8000, 'MMMMMMMM' ),
 			array( 9000, 'MMMMMMMMM' ),
-			array( 9999, 'MMMMMMMMMCMXCIX'),
+			array( 9999, 'MMMMMMMMMCMXCIX' ),
 			array( 10000, 'MMMMMMMMMM' ),
 		);
 	}
-}
 
+	/**
+	 * @dataProvider providePluralData
+	 */
+	function testConvertPlural( $expected, $number, $forms ) {
+		$chosen = $this->getLang()->convertPlural( $number, $forms );
+		$this->assertEquals( $expected, $chosen );
+	}
+
+	public static function providePluralData() {
+		// Params are: [expected text, number given, [the plural forms]]
+		return array(
+			array( 'plural', 0, array(
+				'singular', 'plural'
+			) ),
+			array( 'explicit zero', 0, array(
+				'0=explicit zero', 'singular', 'plural'
+			) ),
+			array( 'explicit one', 1, array(
+				'singular', 'plural', '1=explicit one',
+			) ),
+			array( 'singular', 1, array(
+				'singular', 'plural', '0=explicit zero',
+			) ),
+			array( 'plural', 3, array(
+				'0=explicit zero', '1=explicit one', 'singular', 'plural'
+			) ),
+			array( 'explicit eleven', 11, array(
+				'singular', 'plural', '11=explicit eleven',
+			) ),
+			array( 'plural', 12, array(
+				'singular', 'plural', '11=explicit twelve',
+			) ),
+			array( 'plural', 12, array(
+				'singular', 'plural', '=explicit form',
+			) ),
+			array( 'other', 2, array(
+				'kissa=kala', '1=2=3', 'other',
+			) ),
+			array( '', 2, array(
+				'0=explicit zero', '1=explicit one',
+			) ),
+		);
+	}
+
+	/**
+	 * @covers Language::translateBlockExpiry()
+	 * @dataProvider provideTranslateBlockExpiry
+	 */
+	function testTranslateBlockExpiry( $expectedData, $str, $desc ) {
+		$lang = $this->getLang();
+		if ( is_array( $expectedData ) ) {
+			list( $func, $arg ) = $expectedData;
+			$expected = $lang->$func( $arg );
+		} else {
+			$expected = $expectedData;
+		}
+		$this->assertEquals( $expected, $lang->translateBlockExpiry( $str ), $desc );
+	}
+
+	public static function provideTranslateBlockExpiry() {
+		return array(
+			array( '2 hours', '2 hours', 'simple data from ipboptions' ),
+			array( 'indefinite', 'infinite', 'infinite from ipboptions' ),
+			array( 'indefinite', 'infinity', 'alternative infinite from ipboptions' ),
+			array( 'indefinite', 'indefinite', 'another alternative infinite from ipboptions' ),
+			array( array( 'formatDuration', 1023 * 60 * 60 ), '1023 hours', 'relative' ),
+			array( array( 'formatDuration', -1023 ), '-1023 seconds', 'negative relative' ),
+			array( array( 'formatDuration', 0 ), 'now', 'now' ),
+			array( array( 'timeanddate', '20120102070000' ), '2012-1-1 7:00 +1 day', 'mixed, handled as absolute' ),
+			array( array( 'timeanddate', '19910203040506' ), '1991-2-3 4:05:06', 'absolute' ),
+			array( array( 'timeanddate', '19700101000000' ), '1970-1-1 0:00:00', 'absolute at epoch' ),
+			array( array( 'timeanddate', '19691231235959' ), '1969-12-31 23:59:59', 'time before epoch' ),
+			array( 'dummy', 'dummy', 'return garbage as is' ),
+		);
+	}
+
+	/**
+	 * @covers Language::commafy()
+	 * @dataProvider provideCommafyData
+	 */
+	function testCommafy( $number, $numbersWithCommas ) {
+		$this->assertEquals(
+			$numbersWithCommas,
+			$this->getLang()->commafy( $number ),
+			"commafy('$number')"
+		);
+	}
+
+	public static function provideCommafyData() {
+		return array(
+			array( 1, '1' ),
+			array( 10, '10' ),
+			array( 100, '100' ),
+			array( 1000, '1,000' ),
+			array( 10000, '10,000' ),
+			array( 100000, '100,000' ),
+			array( 1000000, '1,000,000' ),
+			array( 1.0001, '1.0001' ),
+			array( 10.0001, '10.0001' ),
+			array( 100.0001, '100.0001' ),
+			array( 1000.0001, '1,000.0001' ),
+			array( 10000.0001, '10,000.0001' ),
+			array( 100000.0001, '100,000.0001' ),
+			array( 1000000.0001, '1,000,000.0001' ),
+		);
+	}
+
+	function testListToText() {
+		$lang = $this->getLang();
+		$and = $lang->getMessageFromDB( 'and' );
+		$s = $lang->getMessageFromDB( 'word-separator' );
+		$c = $lang->getMessageFromDB( 'comma-separator' );
+
+		$this->assertEquals( '', $lang->listToText( array() ) );
+		$this->assertEquals( 'a', $lang->listToText( array( 'a' ) ) );
+		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( array( 'a', 'b' ) ) );
+		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( array( 'a', 'b', 'c' ) ) );
+		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( array( 'a', 'b', 'c', 'd' ) ) );
+	}
+
+	/**
+	 * @dataProvider provideIsSupportedLanguage
+	 */
+	function testIsSupportedLanguage( $code, $expected, $comment ) {
+		$this->assertEquals( $expected, Language::isSupportedLanguage( $code ), $comment );
+	}
+
+	public static function provideIsSupportedLanguage() {
+		return array(
+			array( 'en', true, 'is supported language' ),
+			array( 'fi', true, 'is supported language' ),
+			array( 'bunny', false, 'is not supported language' ),
+			array( 'FI', false, 'is not supported language, input should be in lower case' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideGetParentLanguage
+	 */
+	function testGetParentLanguage( $code, $expected, $comment ) {
+		$lang = Language::factory( $code );
+		if ( is_null( $expected ) ) {
+			$this->assertNull( $lang->getParentLanguage(), $comment );
+		} else {
+			$this->assertEquals( $expected, $lang->getParentLanguage()->getCode(), $comment );
+		}
+	}
+
+	public static function provideGetParentLanguage() {
+		return array(
+			array( 'zh-cn', 'zh', 'zh is the parent language of zh-cn' ),
+			array( 'zh', 'zh', 'zh is defined as the parent language of zh, because zh converter can convert zh-cn to zh' ),
+			array( 'zh-invalid', null, 'do not be fooled by arbitrarily composed language codes' ),
+			array( 'en-gb', null, 'en does not have converter' ),
+			array( 'en', null, 'en does not have converter. Although FakeConverter handles en -> en conversion but it is useless' ),
+		);
+	}
+}

@@ -25,7 +25,7 @@
  * @ingroup UtfNormal
  */
 
-if( php_sapi_name() != 'cli' ) {
+if( PHP_SAPI != 'cli' ) {
 	die( "Run me from the command line please.\n" );
 }
 
@@ -49,7 +49,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 	$name = $columns[1];
 	$simpleUpper = $columns[12];
 	$simpleLower = $columns[13];
-	
+
 	$source = codepointToUtf8( hexdec( $codepoint ) );
 	if( $simpleUpper ) {
 		$wikiUpperChars[$source] = codepointToUtf8( hexdec( $simpleUpper ) );
@@ -60,7 +60,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 }
 fclose( $in );
 
-$out = fopen("Utf8Case.php", "wt");
+$out = fopen( "Utf8Case.php", "wt" );
 if( $out ) {
 	$outUpperChars = escapeArray( $wikiUpperChars );
 	$outLowerChars = escapeArray( $wikiLowerChars );

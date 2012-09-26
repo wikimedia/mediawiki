@@ -43,7 +43,7 @@ class TiffHandler extends ExifBitmapHandler {
 	function canRender( $file ) {
 		global $wgTiffThumbnailType;
 		return (bool)$wgTiffThumbnailType
-			|| ($file->getRepo() instanceof ForeignAPIRepo);
+			|| $file->getRepo() instanceof ForeignAPIRepo;
 	}
 
 	/**
@@ -70,8 +70,9 @@ class TiffHandler extends ExifBitmapHandler {
 	}
 
 	/**
-	 * @param $image
-	 * @param $filename
+	 * @param File $image
+	 * @param string $filename
+	 * @throws MWException
 	 * @return string
 	 */
 	function getMetadata( $image, $filename ) {
@@ -81,7 +82,7 @@ class TiffHandler extends ExifBitmapHandler {
 				$meta = BitmapMetadataHandler::Tiff( $filename );
 				if ( !is_array( $meta ) ) {
 					// This should never happen, but doesn't hurt to be paranoid.
-					throw new MWException('Metadata array is not an array');
+					throw new MWException( 'Metadata array is not an array' );
 				}
 				$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 				return serialize( $meta );

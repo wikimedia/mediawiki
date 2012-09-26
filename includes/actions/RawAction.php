@@ -29,6 +29,8 @@
 /**
  * A simple method to retrieve the plain source of an article,
  * using "action=raw" in the GET request string.
+ *
+ * @ingroup Actions
  */
 class RawAction extends FormlessAction {
 	private $mGen;
@@ -46,7 +48,7 @@ class RawAction extends FormlessAction {
 	}
 
 	function onView() {
-		global $wgGroupPermissions, $wgSquidMaxage, $wgForcedRawSMaxage, $wgJsMimeType;
+		global $wgSquidMaxage, $wgForcedRawSMaxage;
 
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
@@ -77,7 +79,7 @@ class RawAction extends FormlessAction {
 
 		# Force caching for CSS and JS raw content, default: 5 minutes
 		if ( $smaxage === null ) {
-			if ( $contentType == 'text/css' || $contentType == $wgJsMimeType ) {
+			if ( $contentType == 'text/css' || $contentType == 'text/javascript' ) {
 				$smaxage = intval( $wgForcedRawSMaxage );
 			} else {
 				$smaxage = 0;
@@ -91,7 +93,7 @@ class RawAction extends FormlessAction {
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis
-		$privateCache = !$wgGroupPermissions['*']['read'] && ( $smaxage == 0 || session_id() != '' );
+		$privateCache = !User::groupHasPermission( '*', 'read' ) && ( $smaxage == 0 || session_id() != '' );
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
@@ -123,7 +125,7 @@ class RawAction extends FormlessAction {
 		global $wgParser;
 
 		# No longer used
-		if( $this->mGen ) {
+		if ( $this->mGen ) {
 			return '';
 		}
 
@@ -148,10 +150,29 @@ class RawAction extends FormlessAction {
 				$request->response()->header( "Last-modified: $lastmod" );
 
 				// Public-only due to cache headers
-				$text = $rev->getText();
-				$section = $request->getIntOrNull( 'section' );
-				if ( $section !== null ) {
-					$text = $wgParser->getSection( $text, $section );
+				$content = $rev->getContent();
+
+				if ( $content === null ) {
+					// revision not found (or suppressed)
+					$text = false;
+				} elseif ( !$content instanceof TextContent ) {
+					// non-text content
+					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
+										. $content->getModel() . "` which is not supported via this interface." );
+					die();
+				} else {
+					// want a section?
+					$section = $request->getIntOrNull( 'section' );
+					if ( $section !== null ) {
+						$content = $content->getSection( $section );
+					}
+
+					if ( $content === null || $content === false ) {
+						// section not found (or section not supported, e.g. for JS and CSS)
+						$text = false;
+					} else {
+						$text = $content->getNativeData();
+					}
 				}
 			}
 		}
@@ -173,19 +194,19 @@ class RawAction extends FormlessAction {
 		switch ( $this->getRequest()->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
-				if( $oldid ) {
-					$oldid = $this->getTitle()->getNextRevisionId( $oldid );
+				if ( $oldid ) {
+					$oldid = $this->getTitle()->getNextRevisionID( $oldid );
 				}
 				$oldid = $oldid ? $oldid : -1;
 				break;
 			case 'prev':
 				# output previous revision, or nothing if there isn't one
-				if( !$oldid ) {
+				if ( !$oldid ) {
 					# get the current revision so we can get the penultimate one
 					$oldid = $this->page->getLatest();
 				}
-				$prev = $this->getTitle()->getPreviousRevisionId( $oldid );
-				$oldid = $prev ? $prev : -1 ;
+				$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
+				$oldid = $prev ? $prev : -1;
 				break;
 			case 'cur':
 				$oldid = 0;
@@ -200,20 +221,18 @@ class RawAction extends FormlessAction {
 	 * @return String
 	 */
 	public function getContentType() {
-		global $wgJsMimeType;
-
 		$ctype = $this->getRequest()->getVal( 'ctype' );
 
 		if ( $ctype == '' ) {
 			$gen = $this->getRequest()->getVal( 'gen' );
 			if ( $gen == 'js' ) {
-				$ctype = $wgJsMimeType;
+				$ctype = 'text/javascript';
 			} elseif ( $gen == 'css' ) {
 				$ctype = 'text/css';
 			}
 		}
 
-		$allowedCTypes = array( 'text/x-wiki', $wgJsMimeType, 'text/css', 'application/x-zope-edit' );
+		$allowedCTypes = array( 'text/x-wiki', 'text/javascript', 'text/css', 'application/x-zope-edit' );
 		if ( $ctype == '' || !in_array( $ctype, $allowedCTypes ) ) {
 			$ctype = 'text/x-wiki';
 		}
@@ -230,6 +249,10 @@ class RawAction extends FormlessAction {
 class RawPage extends RawAction {
 	public $mOldId;
 
+	/**
+	 * @param Page $page
+	 * @param WebRequest|bool $request The WebRequest (default: false).
+	 */
 	function __construct( Page $page, $request = false ) {
 		wfDeprecated( __CLASS__, '1.19' );
 		parent::__construct( $page );

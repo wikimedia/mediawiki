@@ -114,7 +114,7 @@ class CliInstaller extends Installer {
 	 */
 	public function execute() {
 		$vars = Installer::getExistingLocalSettings();
-		if( $vars ) {
+		if ( $vars ) {
 			$this->showStatusMessage(
 				Status::newFatal( "config-localsettings-cli-upgrade" )
 			);
@@ -129,7 +129,7 @@ class CliInstaller extends Installer {
 	/**
 	 * Write LocalSettings.php to a given path
 	 *
-	 * @param $path String Full path to write LocalSettings.php to
+	 * @param string $path Full path to write LocalSettings.php to
 	 */
 	public function writeConfigurationFile( $path ) {
 		$ls = InstallerOverrides::getLocalSettingsGenerator( $this );
@@ -191,9 +191,9 @@ class CliInstaller extends Installer {
 		}
 	}
 
-	public function envCheckPath( ) {
+	public function envCheckPath() {
 		if ( !$this->specifiedScriptPath ) {
-			$this->showMessage( 'config-no-cli-uri', $this->getVar("wgScriptPath") );
+			$this->showMessage( 'config-no-cli-uri', $this->getVar( "wgScriptPath" ) );
 		}
 		return parent::envCheckPath();
 	}

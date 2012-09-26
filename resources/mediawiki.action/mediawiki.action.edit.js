@@ -1,11 +1,20 @@
 ( function ( mw, $ ) {
-	var isReady, toolbar, currentFocused, queue, $toolbar, slice;
+<<<<<<< Updated upstream
+	var isReady, toolbar, $currentFocused, queue, $toolbar, slice;
 
 	isReady = false;
+	/**
+	 * @var {Array}
+	 * Contains button objects (and for backwards compatibilty, it can
+	 * also contains an arguments array for insertButton).
+	 */
 	queue = [];
 	$toolbar = false;
 	slice = Array.prototype.slice;
 
+=======
+	var toolbar, isReady, $toolbar, queue, slice, $currentFocused;
+>>>>>>> Stashed changes
 	/**
 	 * Internal helper that does the actual insertion
 	 * of the button into the toolbar.
@@ -24,7 +33,7 @@
 				selectText: selectText
 			};
 		}
-		var $image = $( '<img>', {
+		var $image = $( '<img>' ).attr( {
 			width : 23,
 			height: 22,
 			src   : b.imageFile,
@@ -47,6 +56,9 @@
 		 * Takes care of race conditions and time-based dependencies
 		 * by placing buttons in a queue if this method is called before
 		 * the toolbar is created.
+		 * @example addButton( .., .. );
+		 * @example addButton( { .., .. } );
+		 *
 		 * @param {Object} button: Object with the following properties:
 		 * - imageFile
 		 * - speedTip
@@ -56,14 +68,33 @@
 		 * - imageId
 		 * - selectText
 		 * For compatiblity, passing the above as separate arguments
-		 * (in the listed order) is also supported.
+		 * (in the above order) is also supported.
 		 */
 		addButton: function () {
 			if ( isReady ) {
 				insertButton.apply( toolbar, arguments );
 			} else {
-				// Convert arguments list to array
 				queue.push( slice.call( arguments ) );
+			}
+		},
+		/**
+		 * @example addButtons([ { .. }, { .. }, { .. } ]);
+		 * @example addButtons( { .. }, { .. } );
+		 *
+		 * @param {Object|Array} [buttons...] An array of button objects or the first
+		 *  button object in a list of variadic arguments.
+		 */
+		addButtons: function ( buttons ) {
+			if ( !$.isArray( buttons ) ) {
+				buttons = slice.call( arguments );
+			}
+			if ( isReady ) {
+				$.each( buttons, function () {
+					insertButton( this );
+				} );
+			} else {
+				// Push each button into the queue
+				queue.push.apply( queue, buttons );
 			}
 		},
 
@@ -72,12 +103,12 @@
 		 * use sampleText instead of selection if there is none.
 		 */
 		insertTags: function ( tagOpen, tagClose, sampleText, selectText ) {
-			if ( currentFocused && currentFocused.length ) {
-				currentFocused.textSelection(
+			if ( $currentFocused && $currentFocused.length ) {
+				$currentFocused.textSelection(
 					'encapsulateSelection', {
-						'pre': tagOpen,
-						'peri': sampleText,
-						'post': tagClose
+						pre: tagOpen,
+						peri: sampleText,
+						post: tagClose
 					}
 				);
 			}
@@ -99,7 +130,7 @@
 		var buttons, i, b, $iframe;
 
 		// currentFocus is used to determine where to insert tags
-		currentFocused = $( '#wpTextbox1' );
+		$currentFocused = $( '#wpTextbox1' );
 
 		// Populate the selector cache for $toolbar
 		$toolbar = $( '#toolbar' );
@@ -108,21 +139,22 @@
 		buttons = [].concat( queue, window.mwCustomEditButtons );
 		// Clear queue
 		queue.length = 0;
+
 		for ( i = 0; i < buttons.length; i++ ) {
 			b = buttons[i];
 			if ( $.isArray( b ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
 				insertButton.apply( toolbar, b );
 			} else {
-				// Raw object from legacy mwCustomEditButtons
+				// Raw object from mw.toolbar.addButtons or mwCustomEditButtons
 				insertButton( b );
 			}
 		}
 
 		// This causes further calls to addButton to go to insertion directly
-		// instead of to the toolbar.buttons queue.
+		// instead of to the queue.
 		// It is important that this is after the one and only loop through
-		// the the toolbar.buttons queue
+		// the the queue
 		isReady = true;
 
 		// Make sure edit summary does not exceed byte limit
@@ -132,7 +164,7 @@
 		 * Restore the edit box scroll state following a preview operation,
 		 * and set up a form submission handler to remember this state
 		 */
-		( function scrollEditBox() {
+		( function () {
 			var editBox, scrollTop, $editForm;
 
 			editBox = document.getElementById( 'wpTextbox1' );
@@ -149,7 +181,7 @@
 		}() );
 
 		$( 'textarea, input:text' ).focus( function () {
-			currentFocused = $(this);
+			$currentFocused = $(this);
 		});
 
 		// HACK: make currentFocused work with the usability iframe
@@ -161,7 +193,7 @@
 				// for IE
 				.add( $iframe.get( 0 ).contentWindow.document.body )
 				.focus( function () {
-					currentFocused = $iframe;
+					$currentFocused = $iframe;
 				} );
 		}
 	});

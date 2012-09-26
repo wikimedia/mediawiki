@@ -1,6 +1,56 @@
 <?php
+/**
+ * Recording for passing/failing tests.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Testing
+ */
 
-class TestRecorder {
+/**
+ * Interface to record parser test results.
+ *
+ * The ITestRecorder is a very simple interface to record the result of
+ * MediaWiki parser tests. One should call start() before running the
+ * full parser tests and end() once all the tests have been finished.
+ * After each test, you should use record() to keep track of your tests
+ * results. Finally, report() is used to generate a summary of your
+ * test run, one could dump it to the console for human consumption or
+ * register the result in a database for tracking purposes.
+ *
+ * @since 1.22
+ */
+interface ITestRecorder {
+
+	/** Called at beginning of the parser test run */
+	public function start();
+
+	/** Called after each test */
+	public function record( $test, $result );
+
+	/** Called before finishing the test run */
+	public function report();
+
+	/** Called at the end of the parser test run */
+	public function end();
+
+}
+
+class TestRecorder implements ITestRecorder {
 	var $parent;
 	var $term;
 
@@ -38,7 +88,7 @@ class TestRecorder {
 		if ( $success == $total ) {
 			print $this->term->color( 32 ) . "ALL TESTS PASSED!";
 		} else {
-			$failed = $total - $success ;
+			$failed = $total - $success;
 			print $this->term->color( 31 ) . "$failed tests failed!";
 		}
 
@@ -48,10 +98,10 @@ class TestRecorder {
 	}
 }
 
-class DbTestPreviewer extends TestRecorder  {
-	protected $lb;      // /< Database load balancer
-	protected $db;      // /< Database connection to the main DB
-	protected $curRun;  // /< run ID number for the current run
+class DbTestPreviewer extends TestRecorder {
+	protected $lb; // /< Database load balancer
+	protected $db; // /< Database connection to the main DB
+	protected $curRun; // /< run ID number for the current run
 	protected $prevRun; // /< run ID number for the previous run, if any
 	protected $results; // /< Result array
 
@@ -73,9 +123,9 @@ class DbTestPreviewer extends TestRecorder  {
 	function start() {
 		parent::start();
 
-		if ( ! $this->db->tableExists( 'testrun', __METHOD__ )
-			|| ! $this->db->tableExists( 'testitem', __METHOD__ ) )
-		{
+		if ( !$this->db->tableExists( 'testrun', __METHOD__ )
+			|| !$this->db->tableExists( 'testitem', __METHOD__ )
+		) {
 			print "WARNING> `testrun` table not found in database.\n";
 			$this->prevRun = false;
 		} else {
@@ -113,8 +163,8 @@ class DbTestPreviewer extends TestRecorder  {
 
 			foreach ( $res as $row ) {
 				if ( !$this->parent->regex
-					|| preg_match( "/{$this->parent->regex}/i", $row->ti_name ) )
-				{
+					|| preg_match( "/{$this->parent->regex}/i", $row->ti_name )
+				) {
 					$prevResults[$row->ti_name] = $row->ti_success;
 				}
 			}
@@ -174,34 +224,34 @@ class DbTestPreviewer extends TestRecorder  {
 	private function getTestStatusInfo( $testname, $after ) {
 		// If we're looking at a test that has just been removed, then say when it first appeared.
 		if ( $after == 'n' ) {
-			$changedRun = $this->db->selectField ( 'testitem',
+			$changedRun = $this->db->selectField( 'testitem',
 				'MIN(ti_run)',
 				array( 'ti_name' => $testname ),
 				__METHOD__ );
-			$appear = $this->db->selectRow ( 'testrun',
+			$appear = $this->db->selectRow( 'testrun',
 				array( 'tr_date', 'tr_mw_version' ),
 				array( 'tr_id' => $changedRun ),
 				__METHOD__ );
 
 			return "First recorded appearance: "
-				   . date( "d-M-Y H:i:s",  strtotime ( $appear->tr_date ) )
-				   .  ", " . $appear->tr_mw_version;
+				. date( "d-M-Y H:i:s", strtotime( $appear->tr_date ) )
+				. ", " . $appear->tr_mw_version;
 		}
 
 		// Otherwise, this test has previous recorded results.
 		// See when this test last had a different result to what we're seeing now.
 		$conds = array(
-			'ti_name'    => $testname,
+			'ti_name' => $testname,
 			'ti_success' => ( $after == 'f' ? "1" : "0" ) );
 
 		if ( $this->curRun ) {
-			$conds[] = "ti_run != " . $this->db->addQuotes ( $this->curRun );
+			$conds[] = "ti_run != " . $this->db->addQuotes( $this->curRun );
 		}
 
-		$changedRun = $this->db->selectField ( 'testitem', 'MAX(ti_run)', $conds, __METHOD__ );
+		$changedRun = $this->db->selectField( 'testitem', 'MAX(ti_run)', $conds, __METHOD__ );
 
 		// If no record of ever having had a different result.
-		if ( is_null ( $changedRun ) ) {
+		if ( is_null( $changedRun ) ) {
 			if ( $after == "f" ) {
 				return "Has never passed";
 			} else {
@@ -212,27 +262,26 @@ class DbTestPreviewer extends TestRecorder  {
 		// Otherwise, we're looking at a test whose status has changed.
 		// (i.e. it used to work, but now doesn't; or used to fail, but is now fixed.)
 		// In this situation, give as much info as we can as to when it changed status.
-		$pre  = $this->db->selectRow ( 'testrun',
+		$pre = $this->db->selectRow( 'testrun',
 			array( 'tr_date', 'tr_mw_version' ),
 			array( 'tr_id' => $changedRun ),
 			__METHOD__ );
-		$post = $this->db->selectRow ( 'testrun',
+		$post = $this->db->selectRow( 'testrun',
 			array( 'tr_date', 'tr_mw_version' ),
-			array( "tr_id > " . $this->db->addQuotes ( $changedRun ) ),
+			array( "tr_id > " . $this->db->addQuotes( $changedRun ) ),
 			__METHOD__,
 			array( "LIMIT" => 1, "ORDER BY" => 'tr_id' )
 		);
 
 		if ( $post ) {
-			$postDate = date( "d-M-Y H:i:s",  strtotime ( $post->tr_date  ) ) . ", {$post->tr_mw_version}";
+			$postDate = date( "d-M-Y H:i:s", strtotime( $post->tr_date ) ) . ", {$post->tr_mw_version}";
 		} else {
 			$postDate = 'now';
 		}
 
 		return ( $after == "f" ? "Introduced" : "Fixed" ) . " between "
-				. date( "d-M-Y H:i:s",  strtotime ( $pre->tr_date ) ) .  ", " . $pre->tr_mw_version
-				. " and $postDate";
-
+			. date( "d-M-Y H:i:s", strtotime( $pre->tr_date ) ) . ", " . $pre->tr_mw_version
+			. " and $postDate";
 	}
 
 	/**
@@ -243,10 +292,9 @@ class DbTestPreviewer extends TestRecorder  {
 		$this->lb->closeAll();
 		parent::end();
 	}
-
 }
 
-class DbTestRecorder extends DbTestPreviewer  {
+class DbTestRecorder extends DbTestPreviewer {
 	var $version;
 
 	/**
@@ -254,11 +302,11 @@ class DbTestRecorder extends DbTestPreviewer  {
 	 * and all that fun stuff
 	 */
 	function start() {
-		$this->db->begin();
+		$this->db->begin( __METHOD__ );
 
-		if ( ! $this->db->tableExists( 'testrun' )
-			|| ! $this->db->tableExists( 'testitem' ) )
-		{
+		if ( !$this->db->tableExists( 'testrun' )
+			|| !$this->db->tableExists( 'testitem' )
+		) {
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
 			$this->db->sourceFile( $this->db->patchPath( 'patch-testrun.sql' ) );
 			echo "OK, resuming.\n";
@@ -268,18 +316,18 @@ class DbTestRecorder extends DbTestPreviewer  {
 
 		$this->db->insert( 'testrun',
 			array(
-				'tr_date'        => $this->db->timestamp(),
-				'tr_mw_version'  => $this->version,
+				'tr_date' => $this->db->timestamp(),
+				'tr_mw_version' => $this->version,
 				'tr_php_version' => phpversion(),
-				'tr_db_version'  => $this->db->getServerVersion(),
-				'tr_uname'       => php_uname()
+				'tr_db_version' => $this->db->getServerVersion(),
+				'tr_uname' => php_uname()
 			),
 			__METHOD__ );
-			if ( $this->db->getType() === 'postgres' ) {
-				$this->curRun = $this->db->currentSequenceValue( 'testrun_id_seq' );
-			} else {
-				$this->curRun = $this->db->insertId();
-			}
+		if ( $this->db->getType() === 'postgres' ) {
+			$this->curRun = $this->db->currentSequenceValue( 'testrun_id_seq' );
+		} else {
+			$this->curRun = $this->db->insertId();
+		}
 	}
 
 	/**
@@ -293,8 +341,8 @@ class DbTestRecorder extends DbTestPreviewer  {
 
 		$this->db->insert( 'testitem',
 			array(
-				'ti_run'     => $this->curRun,
-				'ti_name'    => $test,
+				'ti_run' => $this->curRun,
+				'ti_name' => $test,
 				'ti_success' => $result ? 1 : 0,
 			),
 			__METHOD__ );
@@ -307,7 +355,8 @@ class TestFileIterator implements Iterator {
 	private $parserTest; /* An instance of ParserTest (parserTests.php) or MediaWikiParserTest (phpunit) */
 	private $index = 0;
 	private $test;
-	private $section = null; /** String|null: current test section being analyzed */
+	private $section = null;
+	/** String|null: current test section being analyzed */
 	private $sectionData = array();
 	private $lineNum;
 	private $eof;
@@ -374,7 +423,7 @@ class TestFileIterator implements Iterator {
 				$this->section = strtolower( $matches[1] );
 
 				if ( $this->section == 'endarticle' ) {
-					$this->checkSection( 'text'    );
+					$this->checkSection( 'text' );
 					$this->checkSection( 'article' );
 
 					$this->parserTest->addArticle( ParserTest::chomp( $this->sectionData['article'] ), $this->sectionData['text'], $this->lineNum );
@@ -417,8 +466,8 @@ class TestFileIterator implements Iterator {
 				}
 
 				if ( $this->section == 'end' ) {
-					$this->checkSection( 'test'   );
-					$this->checkSection( 'input'  );
+					$this->checkSection( 'test' );
+					$this->checkSection( 'input' );
 					$this->checkSection( 'result' );
 
 					if ( !isset( $this->sectionData['options'] ) ) {
@@ -430,7 +479,9 @@ class TestFileIterator implements Iterator {
 					}
 
 					if ( ( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled )
-							 || !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )  ) {
+						|| ( preg_match( '/\\bparsoid\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runParsoid )
+						|| !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )
+					) {
 						# disabled test
 						$this->clearSection();
 
@@ -443,23 +494,23 @@ class TestFileIterator implements Iterator {
 					# We are really going to run the test, run pending hooks and hooks function
 					wfDebug( __METHOD__ . " unleashing delayed test for: {$this->sectionData['test']}" );
 					$hooksResult = $delayedParserTest->unleash( $this->parserTest );
-					if( !$hooksResult ) {
+					if ( !$hooksResult ) {
 						# Some hook reported an issue. Abort.
 						return false;
 					}
 
 					$this->test = array(
-						'test'    => ParserTest::chomp( $this->sectionData['test']    ),
-						'input'   => ParserTest::chomp( $this->sectionData['input']   ),
-						'result'  => ParserTest::chomp( $this->sectionData['result']  ),
+						'test' => ParserTest::chomp( $this->sectionData['test'] ),
+						'input' => ParserTest::chomp( $this->sectionData['input'] ),
+						'result' => ParserTest::chomp( $this->sectionData['result'] ),
 						'options' => ParserTest::chomp( $this->sectionData['options'] ),
-						'config'  => ParserTest::chomp( $this->sectionData['config']  ),
+						'config' => ParserTest::chomp( $this->sectionData['config'] ),
 					);
 
 					return true;
 				}
 
-				if ( isset ( $this->sectionData[$this->section] ) ) {
+				if ( isset( $this->sectionData[$this->section] ) ) {
 					throw new MWException( "duplicate section '$this->section' at line {$this->lineNum} of $this->file\n" );
 				}
 
@@ -483,7 +534,7 @@ class TestFileIterator implements Iterator {
 	private function clearSection() {
 		$this->sectionData = array();
 		$this->section = null;
-		
+
 	}
 
 	/**
@@ -492,21 +543,21 @@ class TestFileIterator implements Iterator {
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $token String: expected token that should have been mentionned before closing this section 
+	 * @param $token String: expected token that should have been mentionned before closing this section
 	 */
 	private function checkSection( $token ) {
-		if( is_null( $this->section ) ) {
+		if ( is_null( $this->section ) ) {
 			throw new MWException( __METHOD__ . " can not verify a null section!\n" );
 		}
 
-		if( !isset($this->sectionData[$token]) ) {
+		if ( !isset( $this->sectionData[$token] ) ) {
 			throw new MWException( sprintf(
 				"'%s' without '%s' at line %s of %s\n",
 				$this->section,
 				$token,
 				$this->lineNum,
 				$this->file
-			));
+			) );
 		}
 		return true;
 	}
@@ -530,32 +581,31 @@ class DelayedParserTest {
 	 * Call to this will erase any hooks function that were pending.
 	 */
 	public function reset() {
-		$this->hooks   = array();
+		$this->hooks = array();
 		$this->fnHooks = array();
 	}
 
 	/**
 	 * Called whenever we actually want to run the hook.
-	 * Should be the case if we found the parserTest is not disabled 
+	 * Should be the case if we found the parserTest is not disabled
 	 */
 	public function unleash( &$parserTest ) {
-		if( !($parserTest instanceof ParserTest || $parserTest instanceof NewParserTest
-		) ) {
+		if ( !( $parserTest instanceof ParserTest || $parserTest instanceof NewParserTest )	) {
 			throw new MWException( __METHOD__ . " must be passed an instance of ParserTest or NewParserTest classes\n" );
 		}
 
 		# Trigger delayed hooks. Any failure will make us abort
-		foreach( $this->hooks as $hook ) {
+		foreach ( $this->hooks as $hook ) {
 			$ret = $parserTest->requireHook( $hook );
-			if( !$ret ) {
+			if ( !$ret ) {
 				return false;
 			}
 		}
 
 		# Trigger delayed function hooks. Any failure will make us abort
-		foreach( $this->fnHooks as $fnHook ) {
+		foreach ( $this->fnHooks as $fnHook ) {
 			$ret = $parserTest->requireFunctionHook( $fnHook );
-			if( !$ret ) {
+			if ( !$ret ) {
 				return false;
 			}
 		}
@@ -571,6 +621,7 @@ class DelayedParserTest {
 	public function requireHook( $hook ) {
 		$this->hooks[] = $hook;
 	}
+
 	/**
 	 * Similar to ParserTest object but does not run anything
 	 * Use unleash() to really execute the hook function

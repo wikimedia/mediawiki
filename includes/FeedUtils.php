@@ -33,13 +33,13 @@ class FeedUtils {
 	 * If the feed should be purged; $timekey and $key will be removed from
 	 * $messageMemc
 	 *
-	 * @param $timekey String: cache key of the timestamp of the last item
-	 * @param $key String: cache key of feed's content
+	 * @param string $timekey cache key of the timestamp of the last item
+	 * @param string $key cache key of feed's content
 	 */
 	public static function checkPurge( $timekey, $key ) {
 		global $wgRequest, $wgUser, $messageMemc;
 		$purge = $wgRequest->getVal( 'action' ) === 'purge';
-		if ( $purge && $wgUser->isAllowed('purge') ) {
+		if ( $purge && $wgUser->isAllowed( 'purge' ) ) {
 			$messageMemc->delete( $timekey );
 			$messageMemc->delete( $key );
 		}
@@ -48,7 +48,7 @@ class FeedUtils {
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
 	 *
-	 * @param $type String: feed type, as requested by the user
+	 * @param string $type feed type, as requested by the user
 	 * @return Boolean
 	 */
 	public static function checkFeedOutput( $type ) {
@@ -59,7 +59,7 @@ class FeedUtils {
 			return false;
 		}
 
-		if( !isset( $wgFeedClasses[$type] ) ) {
+		if ( !isset( $wgFeedClasses[$type] ) ) {
 			$wgOut->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
@@ -77,17 +77,17 @@ class FeedUtils {
 		$titleObj = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 		$timestamp = wfTimestamp( TS_MW, $row->rc_timestamp );
 		$actiontext = '';
-		if( $row->rc_type == RC_LOG ) {
+		if ( $row->rc_type == RC_LOG ) {
 			$rcRow = (array)$row; // newFromRow() only accepts arrays for RC rows
 			$actiontext = LogFormatter::newFromRow( $rcRow )->getActionText();
 		}
 		return self::formatDiffRow( $titleObj,
 			$row->rc_last_oldid, $row->rc_this_oldid,
 			$timestamp,
-			($row->rc_deleted & Revision::DELETED_COMMENT)
-				? wfMessage('rev-deleted-comment')->escaped()
+			$row->rc_deleted & Revision::DELETED_COMMENT
+				? wfMessage( 'rev-deleted-comment' )->escaped()
 				: $row->rc_comment,
-			$actiontext 
+			$actiontext
 		);
 	}
 
@@ -98,15 +98,15 @@ class FeedUtils {
 	 * @param $oldid Integer: old revision's id
 	 * @param $newid Integer: new revision's id
 	 * @param $timestamp Integer: new revision's timestamp
-	 * @param $comment String: new revision's comment
-	 * @param $actiontext String: text of the action; in case of log event
+	 * @param string $comment new revision's comment
+	 * @param string $actiontext text of the action; in case of log event
 	 * @return String
 	 */
-	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext='' ) {
+	public static function formatDiffRow( $title, $oldid, $newid, $timestamp, $comment, $actiontext = '' ) {
 		global $wgFeedDiffCutoff, $wgLang;
 		wfProfileIn( __METHOD__ );
 
-		# log enties
+		// log entries
 		$completeText = '<p>' . implode( ' ',
 			array_filter(
 				array(
@@ -115,19 +115,19 @@ class FeedUtils {
 
 		// NOTE: Check permissions for anonymous users, not current user.
 		//       No "privileged" version should end up in the cache.
-		//       Most feed readers will not log in anway.
+		//       Most feed readers will not log in anyway.
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
 		// Can't diff special pages, unreadable pages or pages with no new revision
 		// to compare against: just return the text.
-		if( $title->getNamespace() < 0 || $accErrors || !$newid ) {
+		if ( $title->getNamespace() < 0 || $accErrors || !$newid ) {
 			wfProfileOut( __METHOD__ );
 			return $completeText;
 		}
 
-		if( $oldid ) {
-			wfProfileIn( __METHOD__."-dodiff" );
+		if ( $oldid ) {
+			wfProfileIn( __METHOD__ . "-dodiff" );
 
 			#$diffText = $de->getDiff( wfMessage( 'revisionasof',
 			#	$wgLang->timeanddate( $timestamp ),
@@ -138,13 +138,23 @@ class FeedUtils {
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
-				$de = new DifferenceEngine( $title, $oldid, $newid );
-				$diffText = $de->getDiff(
-					wfMessage( 'previousrevision' )->text(), // hack
-					wfMessage( 'revisionasof',
-					$wgLang->timeanddate( $timestamp ),
-					$wgLang->date( $timestamp ),
-					$wgLang->time( $timestamp ) )->text() );
+				$rev = Revision::newFromId( $oldid );
+
+				if ( !$rev ) {
+					$diffText = false;
+				} else {
+					$context = clone RequestContext::getMain();
+					$context->setTitle( $title );
+
+					$contentHandler = $rev->getContentHandler();
+					$de = $contentHandler->createDifferenceEngine( $context, $oldid, $newid );
+					$diffText = $de->getDiff(
+						wfMessage( 'previousrevision' )->text(), // hack
+						wfMessage( 'revisionasof',
+							$wgLang->timeanddate( $timestamp ),
+							$wgLang->date( $timestamp ),
+							$wgLang->time( $timestamp ) )->text() );
+				}
 			}
 
 			if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
@@ -158,20 +168,40 @@ class FeedUtils {
 				$diffText = UtfNormal::cleanUp( $diffText );
 				$diffText = self::applyDiffStyle( $diffText );
 			}
-			wfProfileOut( __METHOD__."-dodiff" );
+			wfProfileOut( __METHOD__ . "-dodiff" );
 		} else {
 			$rev = Revision::newFromId( $newid );
-			if( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
-				$newtext = '';
+			if ( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
+				$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
 			} else {
-				$newtext = $rev->getText();
+				$newContent = $rev->getContent();
 			}
-			if ( $wgFeedDiffCutoff <= 0 || strlen( $newtext ) > $wgFeedDiffCutoff ) {
+
+			if ( $newContent instanceof TextContent ) {
+				// only textual content has a "source view".
+				$text = $newContent->getNativeData();
+
+				if ( $wgFeedDiffCutoff <= 0 || strlen( $text ) > $wgFeedDiffCutoff ) {
+					$html = null;
+				} else {
+					$html = nl2br( htmlspecialchars( $text ) );
+				}
+			} else {
+				//XXX: we could get an HTML representation of the content via getParserOutput, but that may
+				//     contain JS magic and generally may not be suitable for inclusion in a feed.
+				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
+				//Compare also ApiFeedContributions::feedItemDesc
+				$html = null;
+			}
+
+			if ( $html === null ) {
+
 				// Omit large new page diffs, bug 29110
+				// Also use diff link for non-textual content
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {
 				$diffText = '<p><b>' . wfMessage( 'newpage' )->text() . '</b></p>' .
-					'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
+					'<div>' . $html . '</div>';
 			}
 		}
 		$completeText .= $diffText;
@@ -190,10 +220,11 @@ class FeedUtils {
 	 * @return string
 	 */
 	protected static function getDiffLink( Title $title, $newid, $oldid = null ) {
-		$queryParameters = ($oldid == null)
-			? "diff={$newid}"
-			: "diff={$newid}&oldid={$oldid}" ;
-		$diffUrl = $title->getFullUrl( $queryParameters );
+		$queryParameters = array( 'diff' => $newid );
+		if ( $oldid != null ) {
+			$queryParameters['oldid'] = $oldid;
+		}
+		$diffUrl = $title->getFullURL( $queryParameters );
 
 		$diffLink = Html::element( 'a', array( 'href' => $diffUrl ),
 			wfMessage( 'showdiff' )->inContentLanguage()->text() );
@@ -206,21 +237,21 @@ class FeedUtils {
 	 * Might be 'cleaner' to use DOM or XSLT or something,
 	 * but *gack* it's a pain in the ass.
 	 *
-	 * @param $text String: diff's HTML output
+	 * @param string $text diff's HTML output
 	 * @return String: modified HTML
 	 */
 	public static function applyDiffStyle( $text ) {
 		$styles = array(
 			'diff'             => 'background-color: white; color:black;',
-			'diff-otitle'      => 'background-color: white; color:black;',
-			'diff-ntitle'      => 'background-color: white; color:black;',
-			'diff-addedline'   => 'background: #cfc; color:black; font-size: smaller;',
-			'diff-deletedline' => 'background: #ffa; color:black; font-size: smaller;',
-			'diff-context'     => 'background: #eee; color:black; font-size: smaller;',
-			'diffchange'       => 'color: red; font-weight: bold; text-decoration: none;',
+			'diff-otitle'      => 'background-color: white; color:black; text-align: center;',
+			'diff-ntitle'      => 'background-color: white; color:black; text-align: center;',
+			'diff-addedline'   => 'color:black; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #a3d3ff; vertical-align: top; white-space: pre-wrap;',
+			'diff-deletedline' => 'color:black; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #ffe49c; vertical-align: top; white-space: pre-wrap;',
+			'diff-context'     => 'background-color: #f9f9f9; color: #333333; font-size: 88%; border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #e6e6e6; vertical-align: top; white-space: pre-wrap;',
+			'diffchange'       => 'font-weight: bold; text-decoration: none;',
 		);
 
-		foreach( $styles as $class => $style ) {
+		foreach ( $styles as $class => $style ) {
 			$text = preg_replace( "/(<[^>]+)class=(['\"])$class\\2([^>]*>)/",
 				"\\1style=\"$style\"\\3", $text );
 		}

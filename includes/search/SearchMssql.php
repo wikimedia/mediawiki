@@ -38,7 +38,7 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return MssqlSearchResultSet
 	 * @access public
 	 */
@@ -50,7 +50,7 @@ class SearchMssql extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return MssqlSearchResultSet
 	 * @access public
 	 */
@@ -58,7 +58,6 @@ class SearchMssql extends SearchEngine {
 		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
 		return new MssqlSearchResultSet( $resultSet, $this->searchTerms );
 	}
-
 
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
@@ -78,7 +77,7 @@ class SearchMssql extends SearchEngine {
 	 * Return a partial WHERE clause to limit the search to the given namespaces
 	 *
 	 * @return String
-	 * @private                           
+	 * @private
 	 */
 	function queryNamespaces() {
 		$namespaces = implode( ',', $this->namespaces );
@@ -144,9 +143,9 @@ class SearchMssql extends SearchEngine {
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
+		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
-		
+
 		return 'SELECT page_id, page_namespace, page_title, ftindex.[RANK]' .
 			"FROM $page,FREETEXTTABLE($searchindex , $match, LANGUAGE 'English') as ftindex " .
 			'WHERE page_id=ftindex.[KEY] ';
@@ -171,8 +170,9 @@ class SearchMssql extends SearchEngine {
 
 				if ( !empty( $terms[3] ) ) {
 					$regexp = preg_quote( $terms[3], '/' );
-					if ( $terms[4] )
+					if ( $terms[4] ) {
 						$regexp .= "[0-9A-Za-z_]+";
+					}
 				} else {
 					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
 				}
@@ -192,11 +192,11 @@ class SearchMssql extends SearchEngine {
 	 * @param $id Integer
 	 * @param $title String
 	 * @param $text String
-	 * @return bool|\ResultWrapper
+	 * @return bool|ResultWrapper
 	 */
 	function update( $id, $title, $text ) {
 		// We store the column data as UTF-8 byte order marked binary stream
-		// because we are invoking the plain text IFilter on it so that, and we want it 
+		// because we are invoking the plain text IFilter on it so that, and we want it
 		// to properly decode the stream as UTF-8.  SQL doesn't support UTF8 as a data type
 		// but the indexer will correctly handle it by this method.  Since all we are doing
 		// is passing this data to the indexer and never retrieving it via PHP, this will save space
@@ -215,7 +215,7 @@ class SearchMssql extends SearchEngine {
 	 *
 	 * @param $id Integer
 	 * @param $title String
-	 * @return bool|\ResultWrapper
+	 * @return bool|ResultWrapper
 	 */
 	function updateTitle( $id, $title ) {
 		$table = $this->db->tableName( 'searchindex' );
@@ -248,10 +248,9 @@ class MssqlSearchResultSet extends SearchResultSet {
 
 	function next() {
 		$row = $this->mResultSet->fetchObject();
-		if ( $row === false )
+		if ( $row === false ) {
 			return false;
+		}
 		return new SearchResult( $row );
 	}
 }
-
-

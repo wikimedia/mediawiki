@@ -1,24 +1,24 @@
-/**
- * Implements mediaWiki.notification library
- */
 ( function ( mw, $ ) {
 	'use strict';
 
-	var isPageReady = false,
-		isInitialized = false,
+	var notification,
+		isPageReady = false,
 		preReadyNotifQueue = [],
-		/**
-		 * @var {jQuery}
-		 * The #mw-notification-area div that all notifications are contained inside.
-		 */
+		// The #mw-notification-area div that all notifications are contained inside.
 		$area = null;
 
 	/**
 	 * Creates a Notification object for 1 message.
-	 * Does not insert anything into the document (see .start()).
+	 * Does not insert anything into the document (see #start).
+	 *
+	 * The "_" in the name is to avoid a bug (http://github.com/senchalabs/jsduck/issues/304)
+	 * It is not part of the actual class name.
+	 *
+	 * @class mw.Notification_
+	 * @alternateClassName mw.Notification
+	 * @private
 	 *
 	 * @constructor
-	 * @see mw.notification.notify
 	 */
 	function Notification( message, options ) {
 		var $notification, $notificationTitle, $notificationContent;
@@ -88,7 +88,9 @@
 			// Other notification elements matching the same tag
 			$tagMatches,
 			outerHeight,
-			placeholderHeight;
+			placeholderHeight,
+			autohideCount,
+			notif;
 
 		if ( this.isOpen ) {
 			return;
@@ -164,10 +166,11 @@
 						}
 					} );
 
+			notif = this;
+
 			// Create a clear placeholder we can use to make the notifications around the notification that is being
 			// replaced expand or contract gracefully to fit the height of the new notification.
-			var self = this;
-			self.$replacementPlaceholder = $( '<div>' )
+			notif.$replacementPlaceholder = $( '<div>' )
 				// Set the height to the space the previous notification or placeholder took
 				.css( 'height', outerHeight )
 				// Make sure that this placeholder is at the very end of this tagged notification group
@@ -181,7 +184,7 @@
 							// Reset the notification position after we've finished the space animation
 							// However do not do it if the placeholder was removed because another tagged
 							// notification went and closed this one.
-							if ( self.$replacementPlaceholder ) {
+							if ( notif.$replacementPlaceholder ) {
 								$notification.css( 'position', '' );
 							}
 							// Finally, remove the placeholder from the DOM
@@ -206,7 +209,7 @@
 		// By default a notification is paused.
 		// If this notification is within the first {autoHideLimit} notifications then
 		// start the auto-hide timer as soon as it's created.
-		var autohideCount = $area.find( '.mw-notification-autohide' ).length;
+		autohideCount = $area.find( '.mw-notification-autohide' ).length;
 		if ( autohideCount <= notification.autoHideLimit ) {
 			this.resume();
 		}
@@ -253,6 +256,7 @@
 	 *
 	 * @param {Object} options An object containing options for the closing of the notification.
 	 *  These are typically only used internally.
+	 *
 	 *  - speed: Use a close speed different than the default 'slow'.
 	 *  - placeholder: Set to false to disable the placeholder transition.
 	 */
@@ -291,8 +295,19 @@
 			} )
 			// Fix the top/left position to the current computed position from which we
 			// can animate upwards.
-			.css( this.$notification.position() )
-			// Animate opacity and top to create fade upwards animation for notification closing
+			.css( this.$notification.position() );
+
+		// This needs to be done *after* notification's position has been made absolute.
+		if ( options.placeholder ) {
+			// Insert a placeholder with a height equal to the height of the
+			// notification plus it's vertical margins in place of the notification
+			var $placeholder = $( '<div>' )
+				.css( 'height', this.$notification.outerHeight( true ) )
+				.insertBefore( this.$notification );
+		}
+
+		// Animate opacity and top to create fade upwards animation for notification closing
+		this.$notification
 			.animate( {
 				opacity: 0,
 				top: '-=35'
@@ -311,19 +326,11 @@
 					}
 				}
 			} );
-
-		if ( options.placeholder ) {
-			// Insert a placeholder with a height equal to the height of the
-			// notification plus it's vertical margins in place of the notification
-			var $placeholder = $( '<div>' )
-				.css( 'height', this.$notification.outerHeight( true ) )
-				.insertBefore( this.$notification );
-		}
 	};
 
 	/**
 	 * Helper function, take a list of notification divs and call
-	 * a function on the Notification instance attached to them
+	 * a function on the Notification instance attached to them.
 	 *
 	 * @param {jQuery} $notifications A jQuery object containing notification divs
 	 * @param {string} fn The name of the function to call on the Notification instance
@@ -338,40 +345,43 @@
 	}
 
 	/**
-	 * Initialisation
-	 * (don't call before document ready)
+	 * Initialisation.
+	 * Must only be called once, and not before the document is ready.
+	 * @ignore
 	 */
 	function init() {
-		if ( !isInitialized ) {
-			isInitialized = true;
-			$area = $( '<div id="mw-notification-area"></div>' )
-				// Pause auto-hide timers when the mouse is in the notification area.
-				.on( {
-					mouseenter: notification.pause,
-					mouseleave: notification.resume
-				} )
-				// When clicking on a notification close it.
-				.on( 'click', '.mw-notification', function () {
-					var notif = $( this ).data( 'mw.notification' );
-					if ( notif ) {
-						notif.close();
-					}
-				} )
-				// Stop click events from <a> tags from propogating to prevent clicking.
-				// on links from hiding a notification.
-				.on( 'click', 'a', function ( e ) {
-					e.stopPropagation();
-				} );
+		$area = $( '<div id="mw-notification-area"></div>' )
+			// Pause auto-hide timers when the mouse is in the notification area.
+			.on( {
+				mouseenter: notification.pause,
+				mouseleave: notification.resume
+			} )
+			// When clicking on a notification close it.
+			.on( 'click', '.mw-notification', function () {
+				var notif = $( this ).data( 'mw.notification' );
+				if ( notif ) {
+					notif.close();
+				}
+			} )
+			// Stop click events from <a> tags from propogating to prevent clicking.
+			// on links from hiding a notification.
+			.on( 'click', 'a', function ( e ) {
+				e.stopPropagation();
+			} );
 
-			// Prepend the notification area to the content area and save it's object.
-			mw.util.$content.prepend( $area );
-		}
+		// Prepend the notification area to the content area and save it's object.
+		mw.util.$content.prepend( $area );
 	}
 
-	var notification = {
+	/**
+	 * @class mw.notification
+	 * @singleton
+	 */
+	notification = {
 		/**
 		 * Pause auto-hide timers for all notifications.
 		 * Notifications will not auto-hide until resume is called.
+		 * @see mw.Notification#pause
 		 */
 		pause: function () {
 			callEachNotification(
@@ -382,13 +392,13 @@
 
 		/**
 		 * Resume any paused auto-hide timers from the beginning.
-		 * Only the first {autoHideLimit} timers will be resumed.
+		 * Only the first #autoHideLimit timers will be resumed.
 		 */
 		resume: function () {
 			callEachNotification(
-				// Only call resume on the first {autoHideLimit} notifications.
-				// Exclude noautohide notifications to avoid bugs where {autoHideLimit}
-				// { autoHide: false } notifications are at the start preventing any
+				// Only call resume on the first #autoHideLimit notifications.
+				// Exclude noautohide notifications to avoid bugs where #autoHideLimit
+				// `{ autoHide: false }` notifications are at the start preventing any
 				// auto-hide notifications from being autohidden.
 				$area.children( '.mw-notification-autohide' ).slice( 0, notification.autoHideLimit ),
 				'resume'
@@ -398,10 +408,9 @@
 		/**
 		 * Display a notification message to the user.
 		 *
-		 * @param {mixed} message The DOM-element, jQuery object, mw.Message instance,
-		 *  or plaintext string to be used as the message.
+		 * @param {HTMLElement|jQuery|mw.Message|string} message
 		 * @param {Object} options The options to use for the notification.
-		 *  See mw.notification.defaults for details.
+		 *  See #defaults for details.
 		 */
 		notify: function ( message, options ) {
 			var notif;
@@ -417,22 +426,23 @@
 		},
 
 		/**
-		 * @var {Object}
-		 * The defaults for mw.notification.notify's options parameter
-		 *   autoHide:
-		 *     A boolean indicating whether the notifification should automatically
-		 *     be hidden after shown. Or if it should persist.
+		 * @property {Object}
+		 * The defaults for #notify options parameter.
 		 *
-		 *   tag:
-		 *     An optional string. When a notification is tagged only one message
-		 *     with that tag will be displayed. Trying to display a new notification
-		 *     with the same tag as one already being displayed will cause the other
-		 *     notification to be closed and this new notification to open up inside
-		 *     the same place as the previous notification.
+		 * - autoHide:
+		 *   A boolean indicating whether the notifification should automatically
+		 *   be hidden after shown. Or if it should persist.
 		 *
-		 *   title:
-		 *     An optional title for the notification. Will be displayed above the
-		 *     content. Usually in bold.
+		 * - tag:
+		 *   An optional string. When a notification is tagged only one message
+		 *   with that tag will be displayed. Trying to display a new notification
+		 *   with the same tag as one already being displayed will cause the other
+		 *   notification to be closed and this new notification to open up inside
+		 *   the same place as the previous notification.
+		 *
+		 * - title:
+		 *   An optional title for the notification. Will be displayed above the
+		 *   content. Usually in bold.
 		 */
 		defaults: {
 			autoHide: true,
@@ -441,20 +451,20 @@
 		},
 
 		/**
-		 * @var {number}
+		 * @property {number}
 		 * Number of seconds to wait before auto-hiding notifications.
 		 */
 		autoHideSeconds: 5,
 
 		/**
-		 * @var {number}
+		 * @property {number}
 		 * Maximum number of notifications to count down auto-hide timers for.
-		 * Only the first {autoHideLimit} notifications being displayed will
+		 * Only the first #autoHideLimit notifications being displayed will
 		 * auto-hide. Any notifications further down in the list will only start
 		 * counting down to auto-hide after the first few messages have closed.
 		 *
 		 * This basically represents the number of notifications the user should
-		 * be able to process in {autoHideSeconds} time.
+		 * be able to process in #autoHideSeconds time.
 		 */
 		autoHideLimit: 3
 	};

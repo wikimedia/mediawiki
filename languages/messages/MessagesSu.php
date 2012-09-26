@@ -159,8 +159,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Témbongkeun jumlah nu ngawaskeun',
 'tog-oldsig' => 'Paraf nu geus aya:',
 'tog-fancysig' => 'Témbongkeun paraf salaku wikitext (tanpa tumbu otomatis)',
-'tog-externaleditor' => 'Paké éditor éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff' => 'Paké diff éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [//www.mediawiki.org/wiki/Manual:External_editors Émbaran lengkep.])',
 'tog-showjumplinks' => 'Aktifkeun tumbu panyambung "luncat ka"',
 'tog-uselivepreview' => 'Paké pramidang saharita (JavaScript) (ujicoba)',
 'tog-forceeditsummary' => 'Mun kotak ringkesan éditan masih kosong, béjaan!',
@@ -175,6 +173,7 @@ $messages = array(
 'tog-showhiddencats' => 'Témbongkeun kategori nyumput',
 'tog-noconvertlink' => 'Non-aktifkeun konvérsi judul tumbu',
 'tog-norollbackdiff' => 'Liwat béda sanggeus malikkeun révisi',
+'tog-useeditwarning' => 'Béjaan kuring lamun ninggalkeun kaca édit anu parobahanana can disimpen',
 
 'underline-always' => 'Salawasna',
 'underline-never' => 'Ulah',
@@ -264,7 +263,7 @@ $messages = array(
 'cancel' => 'Bolay',
 'moredotdotdot' => 'Deui...',
 'mypage' => 'Kaca kuring',
-'mytalk' => 'Obrolan kuring',
+'mytalk' => 'Obrolan',
 'anontalk' => 'Obrolan pikeun IP ieu',
 'navigation' => 'Pituduh',
 'and' => '&#32;jeung',
@@ -274,7 +273,6 @@ $messages = array(
 'qbbrowse' => 'Sungsi',
 'qbedit' => 'Édit',
 'qbpageoptions' => 'Kaca ieu',
-'qbpageinfo' => 'Kontéks',
 'qbmyoptions' => 'Kaca kuring',
 'qbspecialpages' => 'Kaca husus',
 'faq' => 'NLD',
@@ -371,7 +369,6 @@ $1',
 'disclaimers' => 'Bantahan',
 'disclaimerpage' => 'Project:Bantahan_umum',
 'edithelp' => 'Pitulung ngédit',
-'edithelppage' => 'Help:Ngédit',
 'helppage' => 'Help:Pitulung',
 'mainpage' => 'Tepas',
 'mainpage-description' => 'Tepas',
@@ -518,11 +515,8 @@ Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=e
 # Login and logout pages
 'logouttext' => "'''Anjeun ayeuna geus kaluar log.'''
 
-Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa [[Special:UserLogin|asup log deui]] salaku pamaké nu sarua atawa nu séjén deui.
+Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa <span class='plainlinks'>[$1 asup log deui]</span> salaku pamaké nu sarua atawa nu séjén deui.
 Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun ''cache'' panyungsi anjeun.",
-'welcomecreation' => '==Wilujeng sumping, $1!==
-Rekening anjeun geus dijieun.
-Tong hilap ngarobih [[Special:Preferences|{{SITENAME}} préferénsi]] anjeun.',
 'yourname' => 'Sandiasma:',
 'yourpassword' => 'Sandi anjeun',
 'yourpasswordagain' => 'Ketik deui sandi anjeun',
@@ -605,7 +599,7 @@ Tungguan heula sakeudeung, laju cobaan deui.',
 'loginlanguagelabel' => 'Basa: $1',
 'suspicious-userlogout' => "Pamundut anjeun pikeun kaluar log ditolak ku sabab sigana dikirim ku pangaprak buntu atawa ''cache'' proxi.",
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Kasalahan nu teu kanyahoan dina fungsi PHP surélék().',
 'user-mail-no-addy' => 'Nyobaan ngirim surélék tanpa alamat.',
 
@@ -629,10 +623,8 @@ Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.
 
 # Special:PasswordReset
 'passwordreset' => 'Setél ulang sandi',
-'passwordreset-text' => 'Lengkepan ieu formulir pikeun nampa surélék pangéling ngeunaan wincikan akun anjeun.',
 'passwordreset-legend' => 'Setél ulang sandi',
 'passwordreset-disabled' => 'Dina ieu wiki, sandi teu bisa disetél ulang.',
-'passwordreset-pretext' => '{{PLURAL:$1||Asupkeun salah sahiji data di handap ieu}}',
 'passwordreset-username' => 'Sandiasma:',
 'passwordreset-domain' => 'Domain:',
 'passwordreset-capture' => 'Témbongkeun surat-é hasilna?',
@@ -759,9 +751,8 @@ Mun anjeun ka dieu teu ngahaja, klik baé tombol '''back''' na panyungsi anjeun.
 Anjeun bisa [[Special:Search/{{PAGENAME}}|nyusud judul ieu kaca]] dina kaca séjén,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nyusud log nu tumali],
 atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngédit ieu kaca]</span>.',
-'noarticletext-nopermission' => 'Kiwari ieu kaca euweuh eusian.
-Anjeun bisa [[Special:Search/{{PAGENAME}}|milari judul ieu kaca]] di kaca séjén,
-atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pilari log nu tumali]</span>.',
+'noarticletext-nopermission' => 'Kiwari can aya téks dina ieu kaca.
+Anjeun bisa [[Special:Search/{{PAGENAME}}|nyusud judul ieu kaca]] dina kaca séjén,atawa <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} nyusud log nu tumali]</span>, tapi teu wenang pikeun nyieun ieu kaca.',
 'userpage-userdoesnotexist' => 'Rekening pamaké "<nowiki>$1</nowiki>" tacan kadaptar. Mangga tilikan lamun anjeun hoyong ngadamel/ngédit kaca ieu.',
 'userpage-userdoesnotexist-view' => 'Rekening pamaké "$1" teu aya dina daptar.',
 'blocked-notice-logextract' => 'Ieu pamaké keur dipeungpeuk.
@@ -826,7 +817,6 @@ kuncén nu ngonci pangkalan data mikeun kajelasan : $1",
 'template-semiprotected' => '(semi-dikonci)',
 'hiddencategories' => 'Ieu kaca kaasup {{PLURAL:$1|1 kategori nyumput|$1 kategori nyumput}}:',
 'edittools' => '<!-- Téks di dieu bakal némbongan di handapeun formulir édit jeung muat.-->',
-'nocreatetitle' => 'Nyieun kaca kakara diwatesan',
 'nocreatetext' => '{{SITENAME}} nutup kabisa nyieun kaca anyar.
 Mangga édit artikel nu geus aya, atawa [[Special:UserLogin|asup log/daptar heula]].',
 'nocreate-loggedin' => 'Anjeun teu diwenangkeun pikeun nyieun kaca anyar.',
@@ -1052,7 +1042,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'searchmenu-legend' => 'Pilihan nyungsi',
 'searchmenu-exists' => "'''Dina wiki ieu geus aya kaca nu ngaranna \"[[:\$1]]\"'''",
 'searchmenu-new' => "'''Jieun kaca \"[[:\$1]]\" dina ieu wiki!'''",
-'searchhelp-url' => 'Help:Pitulung',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Sungsi kaca-kaca nu dimimitian ku ieu awalan]]',
 'searchprofile-articles' => 'Kaca eusi',
 'searchprofile-project' => 'Kaca Pitulung jeung Proyék',
@@ -1073,8 +1062,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'search-interwiki-caption' => 'Proyék sawargi',
 'search-interwiki-default' => '$1 hasil:',
 'search-interwiki-more' => '(saterusna)',
-'search-mwsuggest-enabled' => 'jeung bongbolongan',
-'search-mwsuggest-disabled' => 'euweuh bongbolongan',
 'search-relatedarticle' => 'Patula-patali',
 'mwsuggest-disable' => 'Tumpurkeun usulan AJAX',
 'searcheverything-enable' => 'Pilari di sakabéh rohangaran',
@@ -1097,17 +1084,9 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'search-external' => 'Panéangan luar',
 'searchdisabled' => 'Punten! Néangan téks lengkep di {{SITENAME}} kanggo samentawis ditumpurkeun pikeun alesan kinerja. Jalaran kitu, saheulaanan anjeun bisa nyungsi di Google di handap ieu. Catet yén indéxna ngeunaan eusi {{SITENAME}} bisa jadi teu mutahir.',
 
-# Quickbar
-'qbsettings' => 'Bar gancang',
-'qbsettings-none' => 'Henteu aya',
-'qbsettings-fixedleft' => 'Angger beulah kenca',
-'qbsettings-fixedright' => 'Angger beulah katuhu',
-'qbsettings-floatingleft' => 'Ngambang ka kenca',
-'qbsettings-floatingright' => 'Ngambang ka katuhu',
-
 # Preferences page
 'preferences' => 'Préferénsi',
-'mypreferences' => 'Préferénsi',
+'mypreferences' => 'Préferéns',
 'prefs-edits' => 'Jumlah éditan:',
 'prefsnologin' => 'Can asup log',
 'prefsnologintext' => 'Anjeun kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} asup log]</span> pikeun ngatur préferénsi pamaké.',
@@ -1213,7 +1192,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'prefs-displaywatchlist' => 'Pilihan pidangan',
 'prefs-diffs' => 'Béda',
 
-# User preference: e-mail validation using jQuery
+# User preference: email validation using jQuery
 'email-address-validity-valid' => 'Alamat surélék sigana bener',
 'email-address-validity-invalid' => 'Asupkeun alamat ratron nu bener',
 
@@ -1317,12 +1296,13 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'right-siteadmin' => 'Ngonci jeung muka konci databés',
 'right-sendemail' => 'Kirim surélék ka pamaké séjén',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Log akun anyar',
+'newuserlogpagetext' => 'Di handap ieu béréndélan log pamaké anyar.',
+
 # User rights log
 'rightslog' => 'Log hak pamaké',
 'rightslogtext' => 'Ieu mangrupa log parobahan hak-hak pamaké.',
-'rightslogentry' => 'ngarobah kaanggotaan grup pikeun $1 tina $2 jadi $3',
-'rightslogentry-autopromote' => 'geus sacara otomatis dipromosikeun ti $2 ka $3',
-'rightsnone' => '(euweuh)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'maca ieu kaca',
@@ -1540,7 +1520,6 @@ Pariksa heula jujutan hapusanana saméméh neruskeun ngamuat deui éta berkas.',
 # HTTP errors
 'http-invalid-url' => 'URL teu bener: $1',
 'http-invalid-scheme' => 'URL anu skémana "$1" teu karojong',
-'http-host-unreachable' => 'URL teu kahontal.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6' => 'URL teu kahontal',
@@ -1823,10 +1802,6 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'activeusers-hidesysops' => 'Sumputkeun kuncén',
 'activeusers-noresult' => 'Teu kapendak.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Log akun anyar',
-'newuserlogpagetext' => 'Di handap ieu béréndélan log pamaké anyar.',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Hak-hak grup pamaké',
 'listgrouprights-summary' => 'Ieu mangrupa daptar jumplukan pamaké anu aya di wiki ieu, kalawan daptar hak aksés maranéhanana.
@@ -1846,7 +1821,7 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'listgrouprights-addgroup-self-all' => 'Tambahkeun sakabéh grup ka akun sorangan',
 'listgrouprights-removegroup-self-all' => 'Piceun sakabéh grup ti akun sorangan',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Euweuh alamat ngirim',
 'mailnologintext' => "Anjeun kudu '''[[Special:UserLogin|asup log]]''' sarta boga alamat surélék nu sah na [[Special:Preferences|préferénsi]] anjeun sangkan bisa nyurélékan pamaké séjén.",
 'emailuser' => 'Surélékan pamaké ieu',
@@ -1894,8 +1869,8 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 'notvisiblerev' => 'Révisi geus dihapus',
 'watchnochange' => 'Sadaya awaseun anjeun taya nu diédit dina jangka wanci nu ditémbongkeun.',
 'watchlist-details' => 'Aya {{PLURAL:$1|$1 kaca|$1 kaca}} nu ku anjeun diawaskeun, teu kaasup kaca obrolan/sawala.',
-'wlheader-enotif' => '* Pangémbar surélék difungsikeun.',
-'wlheader-showupdated' => "* Kaca nu robah ti panungtungan anjeun sindang ditémbongkeun kalawan '''kandel'''",
+'wlheader-enotif' => 'Pangémbar surélék difungsikeun.',
+'wlheader-showupdated' => "Kaca nu robah ti panungtungan anjeun sindang ditémbongkeun kalawan '''kandel'''",
 'watchmethod-recent' => 'mariksa nu anyar robah na kaca nu diawaskeun',
 'watchmethod-list' => 'mariksa nu anyar robah na kaca nu diawaskeun',
 'watchlistcontains' => 'Anjeun ngawaskeun $1 {{PLURAL:$1|kaca|kaca}}.',
@@ -1910,11 +1885,7 @@ Jaga, parobahan na kaca ieu katut kaca obrolanana bakal dibéréndélkeun di din
 
 'enotif_mailer' => 'Surat Émbaran {{SITENAME}}',
 'enotif_reset' => 'Tandaan sadaya kaca nu geus dilongok',
-'enotif_newpagetext' => 'Kaca ieu anyar.',
 'enotif_impersonal_salutation' => 'Pamaké {{SITENAME}}',
-'changed' => 'geus robah',
-'created' => 'geus dijieun',
-'enotif_subject' => 'Kaca $PAGETITLE {{SITENAME}} geus $CHANGEDORCREATED ku $PAGEEDITOR',
 'enotif_lastvisited' => 'Tempo $1 pikeun sadaya parobahan ti saprak anjeun ninggalkeun ieu kaca.',
 'enotif_lastdiff' => 'Buka $1 pikeun nempo ieu parobahan.',
 'enotif_anon_editor' => 'pamaké anonim $1',
@@ -1939,6 +1910,8 @@ Pikeun ngarobah setélan dabtar awaseun anjeun, sindang ka {{SERVER}}{{localurl:
 
 Asupan jeung bantuan salajengna:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'geus dijieun',
+'changed' => 'geus robah',
 
 # Delete
 'deletepage' => 'Hapus kaca',
@@ -2088,7 +2061,7 @@ $1',
 # Contributions
 'contributions' => 'Kontribusi ti kontributor',
 'contributions-title' => 'Sumbangan tulisan ti $1',
-'mycontris' => 'Tulisan kuring',
+'mycontris' => 'Kontribusi',
 'contribsub2' => 'Pikeun $1 ($2)',
 'nocontribs' => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
 'uctop' => '(pangluhurna)',
@@ -2126,7 +2099,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 'whatlinkshere-hideredirs' => '$1 alihan',
 'whatlinkshere-hidetrans' => '$1 transklusi',
 'whatlinkshere-hidelinks' => '$1 tutumbu',
-'whatlinkshere-hideimages' => '$1 tutumbu gambar',
+'whatlinkshere-hideimages' => '$1 tutumbu berkas',
 'whatlinkshere-filters' => 'Saringan',
 
 # Block/unblock
@@ -2564,7 +2537,7 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Lega',
 'exif-imagelength' => 'Luhur',
 'exif-compression' => 'Skéma komprési',
@@ -2854,7 +2827,7 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 'monthsall' => 'kabéh',
 'limitall' => 'kabéh',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Konfirmasi alamat surélék',
 'confirmemail_noemail' => 'Alamat surélék anu didaptarkeun dina [[Special:Preferences|préferénsi pamaké]] anjeun teu sah.',
 'confirmemail_text' => 'Wiki ieu merlukeun anjeun sangkan méré konfirmasi alamat surélék saméméh migunakeun fitur surélék. Aktifkeun tombol di handap pikeun ngirimkeun surat konfirmasi ka alamat anjeun. Suratna ngandung tumbu nu ngandung sandina; muatkeun tumbuna kana panyungsi anjeun pikeun ngonfirmasi yén alamat surélék anjeun sah.',
@@ -2976,11 +2949,6 @@ Coba ku sawangan normal.',
 'version-software-product' => 'Produk',
 'version-software-version' => 'Vérsi',
 
-# Special:FilePath
-'filepath' => 'Jalur koropak',
-'filepath-page' => 'Koropak:',
-'filepath-submit' => 'Jalur',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Sungsi gambar duplikat',
 'fileduplicatesearch-legend' => 'Sungsi duplikat',
@@ -3055,12 +3023,16 @@ Coba ku sawangan normal.',
 # New logging system
 'revdelete-restricted' => 'akses geus dibatesan ukur keur kuncén',
 'revdelete-unrestricted' => 'Watesan akses kuncén dihapuskeun',
-'newuserlog-byemail' => 'Sandi geus dikirim maké surélék.',
+'rightsnone' => '(euweuh)',
 
 # Feedback
 'feedback-subject' => 'Ngeunaan:',
 'feedback-message' => 'Surat:',
 'feedback-cancel' => 'Bolay',
+
+# Search suggestions
+'searchsuggest-search' => 'Sungsi',
+'searchsuggest-containing' => 'ngandung...',
 
 # API errors
 'api-error-file-too-large' => 'Berkas nu dikirim gedé teuing.',

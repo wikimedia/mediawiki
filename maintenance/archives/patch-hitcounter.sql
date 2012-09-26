@@ -1,5 +1,5 @@
 --
--- hitcounter table is used to buffer page hits before they are periodically 
+-- hitcounter table is used to buffer page hits before they are periodically
 -- counted and added to the cur_counter column in the cur table.
 -- December 2003
 --

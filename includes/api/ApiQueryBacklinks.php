@@ -188,6 +188,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$titleWhere = array();
 		$allRedirNs = array();
 		$allRedirDBkey = array();
+		/** @var $t Title */
 		foreach ( $this->redirTitles as $t ) {
 			$redirNs = $t->getNamespace();
 			$redirDBkey = $t->getDBkey();
@@ -201,6 +202,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 		if ( !is_null( $this->redirID ) ) {
 			$op = $this->params['dir'] == 'descending' ? '<' : '>';
+			/** @var $first Title */
 			$first = $this->redirTitles[0];
 			$title = $db->addQuotes( $first->getDBkey() );
 			$ns = $first->getNamespace();
@@ -227,10 +229,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$orderBy = array();
 		$sort = ( $this->params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by namespace/title if it's constant in the WHERE clause
-		if( $this->hasNS && count( array_unique( $allRedirNs ) ) != 1 ) {
+		if ( $this->hasNS && count( array_unique( $allRedirNs ) ) != 1 ) {
 			$orderBy[] = $this->bl_ns . $sort;
 		}
-		if( count( array_unique( $allRedirDBkey ) ) != 1 ) {
+		if ( count( array_unique( $allRedirDBkey ) ) != 1 ) {
 			$orderBy[] = $this->bl_title . $sort;
 		}
 		$orderBy[] = $this->bl_from . $sort;
@@ -246,7 +248,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->params = $this->extractRequestParams( false );
 		$this->redirect = isset( $this->params['redirect'] ) && $this->params['redirect'];
 		$userMax = ( $this->redirect ? ApiBase::LIMIT_BIG1 / 2 : ApiBase::LIMIT_BIG1 );
-		$botMax  = ( $this->redirect ? ApiBase::LIMIT_BIG2 / 2 : ApiBase::LIMIT_BIG2 );
+		$botMax = ( $this->redirect ? ApiBase::LIMIT_BIG2 / 2 : ApiBase::LIMIT_BIG2 );
 
 		$result = $this->getResult();
 
@@ -292,9 +294,9 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 					// We need to keep the parent page of this redir in
 					if ( $this->hasNS ) {
-						$parentID = $this->pageMap[$row-> { $this->bl_ns } ][$row-> { $this->bl_title } ];
+						$parentID = $this->pageMap[$row->{$this->bl_ns}][$row->{$this->bl_title}];
 					} else {
-						$parentID = $this->pageMap[NS_FILE][$row-> { $this->bl_title } ];
+						$parentID = $this->pageMap[NS_FILE][$row->{$this->bl_title}];
 					}
 					$this->continueStr = $this->getContinueRedirStr( $parentID, $row->page_id );
 					break;
@@ -375,8 +377,8 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $row->page_is_redirect ) {
 			$a['redirect'] = '';
 		}
-		$ns = $this->hasNS ? $row-> { $this->bl_ns } : NS_FILE;
-		$parentID = $this->pageMap[$ns][$row-> { $this->bl_title } ];
+		$ns = $this->hasNS ? $row->{$this->bl_ns} : NS_FILE;
+		$parentID = $this->pageMap[$ns][$row->{$this->bl_title}];
 		// Put all the results in an array first
 		$this->resultArr[$parentID]['redirlinks'][] = $a;
 		$this->getResult()->setIndexedTagName( $this->resultArr[$parentID]['redirlinks'], $this->bl_code );
@@ -406,20 +408,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// null stuff out now so we know what's set and what isn't
 		$this->rootTitle = $this->contID = $this->redirID = null;
 		$rootNs = intval( $continueList[0] );
-		if ( $rootNs === 0 && $continueList[0] !== '0' ) {
-			// Illegal continue parameter
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
-		}
+		$this->dieContinueUsageIf( $rootNs === 0 && $continueList[0] !== '0' );
+
 		$this->rootTitle = Title::makeTitleSafe( $rootNs, $continueList[1] );
+		$this->dieContinueUsageIf( !$this->rootTitle );
 
-		if ( !$this->rootTitle ) {
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
-		}
 		$contID = intval( $continueList[2] );
+		$this->dieContinueUsageIf( $contID === 0 && $continueList[2] !== '0' );
 
-		if ( $contID === 0 && $continueList[2] !== '0' ) {
-			$this->dieUsage( 'Invalid continue param. You should pass the original value returned by the previous query', '_badcontinue' );
-		}
 		$this->contID = $contID;
 		$id2 = isset( $continueList[3] ) ? $continueList[3] : null;
 		$redirID = intval( $id2 );
@@ -535,7 +531,6 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->getTitleOrPageIdErrorMessage(),
 			array(
 				array( 'code' => 'bad_image_title', 'info' => "The title for {$this->getModuleName()} query must be an image" ),
-				array( 'code' => '_badcontinue', 'info' => 'Invalid continue param. You should pass the original value returned by the previous query' ),
 			)
 		);
 	}
@@ -561,9 +556,5 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 
 	public function getHelpUrls() {
 		return $this->helpUrl;
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

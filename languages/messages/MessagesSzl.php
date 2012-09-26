@@ -94,8 +94,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Pokoż, wjela sprowjorzy dowo pozůr',
 'tog-oldsig' => 'Teroźni wyglůnd Twojygo szrajbowańo',
 'tog-fancysig' => 'Szrajbńij s kodůma wiki (bez autůmatycznygo linka)',
-'tog-externaleditor' => 'Sztandardowo używej zewnyntrzny edytor (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
-'tog-externaldiff' => 'Sztandardowo używej zewnyntrzny program do filowańo we pomjyńańach (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
 'tog-showjumplinks' => 'Zapńij cajchnůndzki "przyńdź do"',
 'tog-uselivepreview' => 'Używej dynamiczne uobźyrańy (JavaScript) (eksperymentalny)',
 'tog-forceeditsummary' => 'Pedź, kejbych ńic ńy naszkryfloł we uopiśe pomjyńań',
@@ -208,7 +206,6 @@ $messages = array(
 'qbbrowse' => 'Uoglůndańy',
 'qbedit' => 'Sprowjej',
 'qbpageoptions' => 'Ta zajta',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Moje zajty',
 'qbspecialpages' => 'Szpecyjalne zajty',
 'faq' => 'FAQ',
@@ -303,7 +300,6 @@ $1',
 'disclaimers' => 'Prawne informacyje',
 'disclaimerpage' => 'Project:Prawne informacyje',
 'edithelp' => 'Půmoc we půmjyńańy',
-'edithelppage' => 'Help:Jak půmjyńać zajta',
 'helppage' => 'Help:Treść',
 'mainpage' => 'Przodńo zajta',
 'mainpage-description' => 'Przodńo zajta',
@@ -451,11 +447,8 @@ Administrator kery zawarł wćepał kůmyntorz: "$3".',
 # Login and logout pages
 'logouttext' => "'''Terozki ježeś wylůgowany'''.
 
-Možeš dali sam sprowjać zajty we {{SITENAME}} kej ńyzalůgowany užytkowńik, abo [[Special:UserLogin|zalůgować śe nazod]] kej tyn som abo inkšy užytkowńik.
+Možeš dali sam sprowjać zajty we {{SITENAME}} kej ńyzalůgowany užytkowńik, abo <span class='plainlinks'>[$1 zalůgować śe nazod]</span> kej tyn som abo inkšy užytkowńik.
 Dej pozůr, co na ńykerych zajtach přeglůndarka može dali pokozywać co ježeś zalůgowany, a bydźe tak aže uodśwjyžyš jeij cache.",
-'welcomecreation' => '== Witej, $1! ==
-Uotwarli my sam lo Ćebje kůnto.
-Ńy zapomńij poštalować [[Special:Preferences|preferencyji lo {{GRAMMAR:D.lp|{{SITENAME}}}}]].',
 'yourname' => 'Mjano użytkowńika:',
 'yourpassword' => 'Hasło:',
 'yourpasswordagain' => 'Naszkryflej ausdruk zaś',
@@ -537,7 +530,7 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'loginlanguagelabel' => 'Godka: $1',
 'suspicious-userlogout' => 'Żądanie wylogowania zostało odrzucone ponieważ wygląda na to, że zostało wysłane przez uszkodzoną przeglądarkę lub buforujący serwer proxy.',
 
-# E-mail sending
+# Email sending
 'php-mail-error-unknown' => 'Ńyznany feler we funkcyji mail()',
 'user-mail-no-addy' => 'Próba wysłania e‐maila bez adresu odbiorcy',
 
@@ -560,10 +553,8 @@ Możliwe co właśńy zmjyńiłżeś swoje hasło abo poprosiłżeś uo nowe tym
 
 # Special:PasswordReset
 'passwordreset' => 'Wyczyść hasło',
-'passwordreset-text' => 'Wypełnij formularz, aby otrzymać e‐mail z przypomnieniem danych Twojego konta.',
 'passwordreset-legend' => 'Wyczyść hasło',
 'passwordreset-disabled' => 'No tyj wiki zamkńynto resytowańy hasył.',
-'passwordreset-pretext' => '{{PLURAL:$1||Wćep jydną z danych}}',
 'passwordreset-username' => 'Mjano używacza:',
 'passwordreset-domain' => 'Domyna:',
 'passwordreset-capture' => 'Czy pokazywać treść wiadomości e‐mail?',
@@ -741,7 +732,6 @@ Uostatńy wpis z rejera je ńyżej.",
 'template-protected' => '(zawrzity uod sprowjańo)',
 'template-semiprotected' => '(tajlowo zawarte)',
 'hiddencategories' => 'Ta zajta je {{PLURAL:$1|w jednyj schrůńunyj katygoryji|we $1 schrůńunych katygoryjach}}:',
-'nocreatetitle' => 'Uograńičůno wćepywańy zajtůw',
 'nocreatetext' => 'Na {{GRAMMAR:MS.lp|{{SITENAME}}}} twořyńy nowych zajtůw uograńičůno.
 Možeš sprowjać te co juž sům, abo [[Special:UserLogin|zalogować śe, abo zauožyć konto]].',
 'nocreate-loggedin' => 'Ńy moš uprowńyń do twořyńo nowych zajtůw.',
@@ -946,7 +936,6 @@ $1',
 'searchmenu-legend' => 'Uopcyje sznupańo',
 'searchmenu-exists' => "'''Ńy ma zajty uo mjańy \"[[:\$1]]\" na tyj wiki'''",
 'searchmenu-new' => "'''Stwůrz zajta „[[:$1|$1]]” na tyj wiki!'''",
-'searchhelp-url' => 'Help:Pomoc',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Przeglůndej zajty kere s anfanga majům tyn przedrostek]]',
 'searchprofile-articles' => 'Zajty',
 'searchprofile-project' => 'Zajty půmocy a projektu',
@@ -967,8 +956,6 @@ $1',
 'search-interwiki-caption' => 'Śostřane projekty',
 'search-interwiki-default' => '$1 wyńiki:',
 'search-interwiki-more' => '(wjyncyj)',
-'search-mwsuggest-enabled' => 'ze sůgestyjůma',
-'search-mwsuggest-disabled' => 'ńy mo sůgestyji',
 'search-relatedarticle' => 'Podane',
 'mwsuggest-disable' => 'Wyuůnč sůgestyje AJAX',
 'searcheverything-enable' => 'Sznupej we wszech mjan',
@@ -989,14 +976,6 @@ $1',
 'powersearch-togglenone' => 'żodno',
 'search-external' => 'Šnupańy zewnyntřne',
 'searchdisabled' => 'Šnupańy we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostouo zawarte. Zańim go zouůnčům, možeš sprůbować šnupańo bez Google. Ino zauwaž, co informacyje uo treśći {{GRAMMAR:MS.lp|{{SITENAME}}}} můgům być we Google ńyakuratne.',
-
-# Quickbar
-'qbsettings' => 'Gurt šybkigo dostympu',
-'qbsettings-none' => 'Brak',
-'qbsettings-fixedleft' => 'Stouy, s lewyj',
-'qbsettings-fixedright' => 'Stouy, s prawyj',
-'qbsettings-floatingleft' => 'Unošůncy śe, s lewyj',
-'qbsettings-floatingright' => 'Unošůncy śe, s prawyj',
 
 # Preferences page
 'preferences' => 'Preferyncyje',
@@ -1187,11 +1166,13 @@ $1',
 'right-userrights-interwiki' => 'Sprowjej uprawńyńo užytkowńikůw na zajtach inkšych Wiki',
 'right-siteadmin' => 'Zawjerańy i uodmykańy bazy danych',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Nowe użytkowniki',
+'newuserlogpagetext' => 'To je rejer uostatńo utworzůnych kůnt użytkowńikůw',
+
 # User rights log
 'rightslog' => 'Uprawńyńa',
 'rightslogtext' => 'Rejer půmjyńań uprawńyń užytkowńikůw.',
-'rightslogentry' => 'půmjyńiu/a uprawńyńo užytkowńika $1 ($2 → $3)',
-'rightsnone' => 'podstawowo',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'přeglůndańo tyj zajty',
@@ -1634,10 +1615,6 @@ Uobsůgiwane protokoły: <code>$1</code>',
 'activeusers-hidesysops' => 'Schrůń adminy',
 'activeusers-noresult' => 'Ńy sům używacze.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Nowe użytkowniki',
-'newuserlogpagetext' => 'To je rejer uostatńo utworzůnych kůnt użytkowńikůw',
-
 # Special:ListGroupRights
 'listgrouprights' => 'Uprawńyńo grup użytkowńikůw',
 'listgrouprights-summary' => 'Půńiży znojdowo śe spis grup użytkowńikůw zdefińjowanych na tyj wiki, s wyszczygůlńyńym przidźelůnych im prow dostympu.
@@ -1654,7 +1631,7 @@ Sprowdź zajta [[{{MediaWiki:Listgrouprights-helppage}}|s dodatkowymi informacja
 'listgrouprights-removegroup-all' => 'Idźe wyćepać s wszyjstkich grup',
 'listgrouprights-addgroup-self' => 'Je mogebny dać swe konto do {{PLURAL:$2|grupy|grup:}} $1',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Brak adresu',
 'mailnologintext' => 'Muśyš śe [[Special:UserLogin|zalůgować]] i mjeć wpisany aktualny adres e-brif w swojich [[Special:Preferences|preferyncyjach]], coby můc wysuać e-brif do inkšygo užytkowńika.',
 'emailuser' => 'Poślij tymu używoczowi e-brif',
@@ -1702,8 +1679,8 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 'notvisiblerev' => 'Wersyja zostoua wyćepano',
 'watchnochange' => 'Žodno ze zajtůw, na kere dowoš pozůr, ńy bůua sprowjano w podanym uokreśe.',
 'watchlist-details' => 'Na pozorliśće {{PLURAL:$1|je 1 artikel|sům $1 artikle|je $1 artikli}} ńy rachujůnc zajtůw godek.',
-'wlheader-enotif' => '* Wysůuańy powjadůmjyń na adres e-brif je zouůnčůne',
-'wlheader-showupdated' => "* Zajty, kere bouy sprowjane uod Twoi uostatńi wizyty na ńych zostoy naškryflane '''tuustym'''",
+'wlheader-enotif' => 'Wysůuańy powjadůmjyń na adres e-brif je zouůnčůne',
+'wlheader-showupdated' => "Zajty, kere bouy sprowjane uod Twoi uostatńi wizyty na ńych zostoy naškryflane '''tuustym'''",
 'watchmethod-recent' => 'šnupańy za půmjyńanymi na uostatku w zajtach, na kere dowoš pozůr',
 'watchmethod-list' => 'šnupańy w zajtach, na kere dowoš pozůr pośrůd půmjyńanych na uostatku',
 'watchlistcontains' => 'Lista zajtůw, na kere dowoš pozůr mo {{PLURAL:$1|jedna pozycja|$1 pozycje|$1 pozycyji}}.',
@@ -1718,11 +1695,7 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 
 'enotif_mailer' => 'Powjadomjyńe s {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'enotif_reset' => 'Uoznoč wšyjstke zajty kej uodwjydzůne',
-'enotif_newpagetext' => 'To je nowo zajta.',
 'enotif_impersonal_salutation' => 'užytkowńik {{GRAMMAR:D.lp|{{SITENAME}}}}',
-'changed' => 'pomjyńono',
-'created' => 'utwořono',
-'enotif_subject' => 'Zajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED bez užytkowńika $PAGEEDITOR',
 'enotif_lastvisited' => 'Uobejřij na zajće $1 wšyjstke půmjyńańo uod Twojej uostatńij wizyty.',
 'enotif_lastdiff' => 'Uobejřij na zajće $1 te pomjyńeńe.',
 'enotif_anon_editor' => 'užytkowńik anůnimowy $1',
@@ -1749,6 +1722,8 @@ Kejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš poz�
 
 Pomoc:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'utwořono',
+'changed' => 'pomjyńono',
 
 # Delete
 'deletepage' => 'Wyćep artikel',
@@ -2391,7 +2366,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'Šyrokość',
 'exif-imagelength' => 'Wysokość',
 'exif-bitspersample' => 'Bitůw na průbka',
@@ -2505,7 +2480,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 'exif-gpsdatestamp' => 'Data GPS',
 'exif-gpsdifferential' => 'Korekcyjo růžńicy GPS',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'ńyskůmpresowany',
 
 'exif-unknowndate' => 'ńyznano data',
@@ -2657,7 +2632,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 'namespacesall' => 'wszyjske',
 'monthsall' => 'wšyskie',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Potwjerdź adres e-brif',
 'confirmemail_noemail' => 'Ńy podoužeś prawiduowygo adresa e-brifa we [[Special:Preferences|preferencyjach]].',
 'confirmemail_text' => 'Projekt {{SITENAME}} wymago weryfikacyji adresa e-brif před užyćym fůnkcyji kořistajůncych s počty.
@@ -2797,15 +2772,6 @@ Možeš tyž [[Special:EditWatchlist|užyć standardowygo edytora]].',
 'version-software-product' => 'Mjano',
 'version-software-version' => 'Wersjo',
 
-# Special:FilePath
-'filepath' => 'Śćežka do plika',
-'filepath-page' => 'Plik:',
-'filepath-submit' => 'Śćežka',
-'filepath-summary' => 'Ta ekstra zajta zwraco peuno śćyžka do plika.
-Grafiki sům pokazywane w peunyj rozdźelčośći, inkše typy plikůw sům uodmykane we skojařůnym ś ńimi průgramje.
-
-Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Šnupej za duplikatym plika',
 'fileduplicatesearch-summary' => 'Šnupej za duplikatůma plika na podstawje wartośći fůnkcyji skrůtu.',
@@ -2853,6 +2819,6 @@ Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 # New logging system
 'revdelete-restricted' => 'naštaluj uograničyńo do administratorůw',
 'revdelete-unrestricted' => 'wycofej uograničyńo do administratorůw',
-'newuserlog-byemail' => 'hasło uostało wysłane e-brifym',
+'rightsnone' => 'podstawowo',
 
 );

@@ -1,5 +1,5 @@
 --
--- parsercache table, for cacheing complete parsed articles 
+-- parsercache table, for cacheing complete parsed articles
 -- before they are imbedded in the skin.
 --
 

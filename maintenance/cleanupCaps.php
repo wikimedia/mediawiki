@@ -29,7 +29,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/cleanupTable.inc' );
+require_once __DIR__ . '/cleanupTable.inc';
 
 /**
  * Maintenance script to clean up broken page links when somebody turns on $wgCapitalLinks.
@@ -103,4 +103,4 @@ class CapsCleanup extends TableCleanup {
 }
 
 $maintClass = "CapsCleanup";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

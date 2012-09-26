@@ -31,4 +31,17 @@ class UncategorizedCategoriesPage extends UncategorizedPagesPage {
 		parent::__construct( $name );
 		$this->requestedNamespace = NS_CATEGORY;
 	}
+
+	/**
+	 * Formats the result
+	 * @param Skin $skin The current skin
+	 * @param object $result The query result
+	 * @return string The category link
+	 */
+	function formatResult( $skin, $result ) {
+		$title = Title::makeTitle( NS_CATEGORY, $result->title );
+		$text = $title->getText();
+
+		return Linker::linkKnown( $title, htmlspecialchars( $text ) );
+	}
 }

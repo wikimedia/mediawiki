@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Geitost
  * @author Maartenvdbent
  * @author Purodha
  * @author Pyt
@@ -171,8 +172,6 @@ $messages = array(
 'tog-shownumberswatching' => 'It tal brûkers sjen litte dat dizze side folget',
 'tog-oldsig' => 'Hûdige sinjatuerprintallyk:',
 'tog-fancysig' => 'Sinjatuer as wikitekst behannelje (sûnder automatyske keppeling)',
-'tog-externaleditor' => 'Standert in eksterne tekstbewurker brûke (allinne foar experts - foar dizze funksje binne spesjale ynstellings nedich)',
-'tog-externaldiff' => 'Standert in ekstern ferlikingsprogramma brûke (allinne foar experts - foar dizze funksje binne spesjale ynstellings nedich)',
 'tog-showjumplinks' => '"gean nei"-tapaslikens-links ynskeakelje',
 'tog-uselivepreview' => '"live proefbyld" brûke (JavaScript nedich - eksperimenteel)',
 'tog-forceeditsummary' => 'Warskôgje at ik de gearfetting leech lit.',
@@ -281,7 +280,6 @@ $messages = array(
 'qbbrowse' => 'Blêdzje',
 'qbedit' => 'Bewurkje',
 'qbpageoptions' => 'Side-opsjes',
-'qbpageinfo' => 'Side-ynfo',
 'qbmyoptions' => 'Myn Opsjes',
 'qbspecialpages' => 'Bysûndere siden',
 'faq' => 'FAQ (faak stelde fragen)',
@@ -370,7 +368,6 @@ $1",
 'disclaimers' => 'Foarbehâld',
 'disclaimerpage' => 'Project:Algemien foarbehâld',
 'edithelp' => 'Bewurk-help',
-'edithelppage' => 'Help:Bewurk-rie',
 'helppage' => 'Help:Help',
 'mainpage' => 'Haadside',
 'mainpage-description' => 'Haadside',
@@ -504,10 +501,8 @@ De oanfierde reden is ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Jo binne no ôfmeld.'''
 
-Jo kinne de {{SITENAME}} fierders anonym brûke, of jo op 'e [[Special:UserLogin|nij oanmelde]] ûnder deselde of in oare namme.
+Jo kinne de {{SITENAME}} fierders anonym brûke, of jo op 'e <span class='plainlinks'>[$1 nij oanmelde]</span> ûnder deselde of in oare namme.
 Mûglik wurdt noch in tal siden werjûn as wiene Jo oanmeld, oant Jo de cache fan Jo browser leegje.",
-'welcomecreation' => '<h2>Wolkom, $1!</h2><p>Jo ynstellings binne oanmakke.
-Ferjit net se oan jo foarkar oan te passen.',
 'yourname' => 'Jo meidochnamme:',
 'yourpassword' => 'Jo wachtwurd',
 'yourpasswordagain' => 'Jo wachtwurd (nochris)',
@@ -521,7 +516,7 @@ Ferjit net se oan jo foarkar oan te passen.',
 'logout' => 'Ofmelde',
 'userlogout' => 'Ofmelde',
 'notloggedin' => 'Net oanmelde',
-'nologin' => "Noch net oanmelden as meidogger? '''$1'''.",
+'nologin' => 'Noch net oanmelden as meidogger? $1.',
 'nologinlink' => 'Meitsje in brûker oan',
 'createaccount' => 'Nije ynstellings oanmeitsje',
 'gotaccount' => "Hawwe jo jo al as meidogger oanmelde? '''$1'''.",
@@ -740,7 +735,6 @@ In  behearder hat de database blokkearre om de folgjende reden: $1",
 'hiddencategories' => 'Dizze side falt yn de folgjende ferburgen
 {{PLURAL:$1|kategory|kategoryen}}:',
 'edittools' => '<!-- Tekst hjir stiet ûnder bewurkingsfjilden en oanbringfjilden.  -->',
-'nocreatetitle' => 'It oanmeitsjen fan siden is beheind',
 'nocreatetext' => '{{SITENAME}} hat de mûglikheid beheind om nije siden te meitsjen.
 Jo kinne al besteande siden feroarje of jo kinne [[Special:UserLogin|jo oanmelde of in brûker oanmeitsje]].',
 'nocreate-loggedin' => 'Jo meie gjin nije siden meitsje',
@@ -922,7 +916,6 @@ Prebearje in oare sykopdracht.',
 'searchmenu-legend' => 'Sykopsjes',
 'searchmenu-exists' => "'''Der is in side mei namme \"[[:\$1]]\" yn dizze wiki'''",
 'searchmenu-new' => "'''Meitsje de side \"[[:\$1]]\" yn dizze wiki!'''",
-'searchhelp-url' => 'Help:Help',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|Sidenammen mei dit foarheaksel werjaan]]',
 'searchprofile-articles' => 'Ynhâldlike siden',
 'searchprofile-project' => 'Projektsiden',
@@ -942,8 +935,6 @@ Prebearje in oare sykopdracht.',
 'search-interwiki-caption' => 'Susterprojekten',
 'search-interwiki-default' => '$1 resultaten:',
 'search-interwiki-more' => '(mear)',
-'search-mwsuggest-enabled' => 'mei suggestjes',
-'search-mwsuggest-disabled' => 'gjin suggestjes',
 'search-relatedarticle' => 'Besibbe',
 'mwsuggest-disable' => 'Suggestjes fia AJAX útskeakelje',
 'searcheverything-enable' => 'Sykje op alle nammeromten',
@@ -965,14 +956,6 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'powersearch-togglenone' => 'Gjin',
 'search-external' => 'Utwindich sykje',
 'searchdisabled' => '<p>Op it stuit stiet it trochsykjen fan tekst út omdat dizze funksje tefolle kompjûterkapasiteit ferget. As we nije apparatuer krije, en dy is ûnderweis, dan wurdt dizze funksje wer aktyf. Oant salang kinne jo sykje fia Google:</p>',
-
-# Quickbar
-'qbsettings' => 'Menu',
-'qbsettings-none' => 'Ut',
-'qbsettings-fixedleft' => 'Lofts fêst',
-'qbsettings-fixedright' => 'Rjochts fêst',
-'qbsettings-floatingleft' => 'Lofts sweevjend',
-'qbsettings-floatingright' => 'Rjochts sweevjend',
 
 # Preferences page
 'preferences' => 'Ynstellings',
@@ -1160,11 +1143,13 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'right-siteadmin' => 'De database blokkearje en wer frij jaan',
 'right-override-export-depth' => 'Alle siden oant en mei in keppelingsdjipte fan fiif fuortskriuwe',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Ynskriuwingsloch',
+'newuserlogpagetext' => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
+
 # User rights log
 'rightslog' => 'Rjochten-loch',
 'rightslogtext' => 'Dit is in loch fan feroarings fan meidoggerrjochten.',
-'rightslogentry' => 'groep foar $1 feroare fan $2 yn $3',
-'rightsnone' => '(gjin)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'dizze side besjen',
@@ -1354,12 +1339,12 @@ PICT # ferskaat
 'upload-proto-error-text' => "Oanbieden mei dizze metoade freget URL's dy't begjinne mei <code>http://</code> of <code>ftp://</code>.",
 'upload-file-error' => 'Ynterne fout',
 'upload-file-error-text' => "Der wie in ynterne fout doe't in tydlike triem op'e server oanmakke waard.
-Nim kontakt op mei in [[Special:ListUsers/sysop|systeembehearder]].",
+Nim kontakt op mei in [[Special:ListUsers/sysop|behearder]].",
 'upload-misc-error' => 'Unbekende oanbiedfout',
 'upload-misc-error-text' => 'Der is by it oanbieden in ûnbekende fout optreden.
 Kontrolearje of de URL krekt en beskikber is en besykje it nochris.
 As it probleem oanhâldt, nim dan kontakt op mei in
-[[Special:ListUsers/sysop|systeembehearder]].',
+[[Special:ListUsers/sysop|behearder]].',
 'upload-unknown-size' => 'Unbekinde grutte',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1649,10 +1634,6 @@ Stipe protokollen: <code>$1</code>',
 'activeusers' => 'Aktive meidoggers',
 'activeusers-noresult' => 'Gjin meidoggers fûn.',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Ynskriuwingsloch',
-'newuserlogpagetext' => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
-
 # Special:ListGroupRights
 'listgrouprights' => 'Rjochten fan brûkersgroepen',
 'listgrouprights-summary' => 'Op dizze side steane de brûkersgroepen yn dizze wiki beskreaun, mei har derby hearrende rjochten.
@@ -1666,7 +1647,7 @@ Der kin [[{{MediaWiki:Listgrouprights-helppage}}|ekstra ynformaasje]] oer yndivi
 'listgrouprights-addgroup-all' => 'Kin brûkers oan alle groepen tafoegje',
 'listgrouprights-removegroup-all' => 'Kin brûkers út alle groepen fuorthelje',
 
-# E-mail user
+# Email user
 'mailnologin' => 'Gjin adres beskikber',
 'mailnologintext' => 'Jo moatte [[Special:UserLogin|oanmelden]] wêze, en in jildich e-postadres [[Special:Preferences|ynsteld]] hawwe, om oan oare meidoggers e-post stjoere te kinnen.',
 'emailuser' => 'Skriuw meidogger',
@@ -1717,10 +1698,7 @@ At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppelin
 'watching' => "Dwaande mei op'e folchlist te setten ...",
 'unwatching' => "Dwaande mei fan'e folchlist ôf te heljen ...",
 
-'enotif_newpagetext' => 'Dit is in nije side.',
 'enotif_impersonal_salutation' => 'meidogger fan {{SITENAME}}',
-'changed' => 'feroare',
-'created' => 'oanmakke',
 'enotif_body' => 'Bêste $WATCHINGUSERNAME,
 
 De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATE $CHANGEDORCREATED troch meidogger $PAGEEDITOR;
@@ -1744,6 +1722,8 @@ om jo folchlistynstellings te feroarjen.
 
 Reaksjes en fierdere help:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'oanmakke',
+'changed' => 'feroare',
 
 # Delete
 'deletepage' => 'Wisk side',
@@ -2126,10 +2106,6 @@ Sjoch: [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [//transl
 'spamprotectiontext' => "De side dy't jo fêstlizze woene is blokkearre troch in spam filter. Dit wurdt wierskynlik feroarsake troch in ferwizing nei in ekstern webstee.",
 'spamprotectionmatch' => 'De neikommende tekst hat it spam filter aktivearre: $1',
 
-# Skin names
-'skinname-standard' => 'Standert',
-'skinname-nostalgia' => 'Nostalgy',
-
 # Patrolling
 'markaspatrolleddiff' => 'Markearje as kontroleare',
 'markaspatrolledtext' => 'Markearje dizze side as kontrolearre',
@@ -2187,7 +2163,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-samplesperpixel' => 'Oantal komponinten',
 'exif-xresolution' => 'Horizontale resolúsje',
 'exif-yresolution' => 'Fertikale resolúsje',
@@ -2246,7 +2222,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 'namespacesall' => 'alles',
 'monthsall' => 'alle',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'Befêstigjen netpostadres',
 'confirmemail_text' => '{{SITENAME}} freget dat jo jo netpostadres befêstigje eart jo hjir netpost brûke. Brûk de knop hjirûnder om josels in befêstigingskoade ta te stjoeren op it adres dat jo opjûn hawwe. Iepenje de koade dan yn jo blêder om te befêstigjen dat jo netpostadres jildich is.',
 'confirmemail_send' => 'Stjoer in befêstigingskoade',
@@ -2325,11 +2301,6 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'version-software-product' => 'Produkt',
 'version-software-version' => 'Ferzje',
 
-# Special:FilePath
-'filepath' => 'Triempad',
-'filepath-page' => 'Triem:',
-'filepath-submit' => 'Pad',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Sykje op duplikaten',
 'fileduplicatesearch-legend' => 'Sykje op duplikaten',
@@ -2364,6 +2335,6 @@ Wolle jo de side wier op 'e nij skriuwe?",
 # New logging system
 'revdelete-restricted' => 'hat beheinings oplein oan behearders',
 'revdelete-unrestricted' => 'hat beheinings foar behearders goedmakke',
-'newuserlog-byemail' => 'wachtwurd is ferstjoerd oer e-mail',
+'rightsnone' => '(gjin)',
 
 );

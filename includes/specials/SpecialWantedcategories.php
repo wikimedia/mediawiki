@@ -35,22 +35,22 @@ class WantedCategoriesPage extends WantedQueryPage {
 	}
 
 	function getQueryInfo() {
-		return array (
-			'tables' => array ( 'categorylinks', 'page' ),
-			'fields' => array ( 'namespace' => NS_CATEGORY,
+		return array(
+			'tables' => array( 'categorylinks', 'page' ),
+			'fields' => array( 'namespace' => NS_CATEGORY,
 					'title' => 'cl_to',
 					'value' => 'COUNT(*)' ),
-			'conds' => array ( 'page_title IS NULL' ),
-			'options' => array ( 'GROUP BY' => 'cl_to' ),
-			'join_conds' => array ( 'page' => array ( 'LEFT JOIN',
-				array ( 'page_title = cl_to',
+			'conds' => array( 'page_title IS NULL' ),
+			'options' => array( 'GROUP BY' => 'cl_to' ),
+			'join_conds' => array( 'page' => array( 'LEFT JOIN',
+				array( 'page_title = cl_to',
 					'page_namespace' => NS_CATEGORY ) ) )
 		);
 	}
 
 	/**
-	 * @param $skin Skin
-	 * @param $result
+	 * @param Skin $skin
+	 * @param object $result Result row
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
@@ -71,5 +71,9 @@ class WantedCategoriesPage extends WantedQueryPage {
 
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
 		return $this->getLanguage()->specialList( $plink, $nlinks );
+	}
+
+	protected function getGroupName() {
+		return 'maintenance';
 	}
 }

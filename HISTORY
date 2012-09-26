@@ -1,10 +1,1148 @@
-Change notes from older releases. For current info see RELEASE-NOTES-1.20.
+Change notes from older releases. For current info see RELEASE-NOTES-1.22.
+
+== MediaWiki 1.21 ==
+
+MediaWiki 1.21 is an alpha-quality branch and is not recommended for use in
+production.
+
+=== Configuration changes in 1.21 ===
+* (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
+* Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname'
+  instead.
+* (bug 39957) Added $wgUnwatchedPageThreshold, specifying minimum count
+  of page watchers required for the number to be accessible to users
+  without the unwatchedpages permission.
+* $wgBug34832TransitionalRollback has been removed.
+* (bug 29472) $wgUseDynamicDates has been removed and its functionality
+  disabled.
+
+=== New features in 1.21 ===
+* (bug 38110) Schema changes (adding or dropping tables, indices and
+  fields) can be now be done separately from from other changes that
+  update.php makes.  This is useful in environments that use database
+  permissions to restrict schema changes but allow the DB user that
+  MediaWiki normally runs as to perform other changes that update.php
+  makes.  Schema changes can be run separately.  See the file UPGRADE
+  for more information.
+* (bug 34876) jquery.makeCollapsible has been improved in performance.
+* Added ContentHandler facility to allow extensions to support other content
+  than wikitext. See docs/contenthandler.txt for details.
+* New feature was developed for showing high-DPI thumbnails for high-DPI mobile
+  and desktop displays (configurable with $wgResponsiveImages).
+* Added new backend to represent and store information about sites and site
+  specific configuration.
+* jQuery upgraded from 1.8.2 to 1.8.3.
+* jQuery UI upgraded from 1.8.23 to 1.8.24.
+* Added separate fa_sha1 field to filearchive table. This allows sha1
+  searches with the api in miser mode for deleted files.
+* Add initial and programmatic sorting for tablesorter.
+* Add the event "sortEnd.tablesorter", triggered after sorting has completed.
+* The Job system was refactored to allow for different backing stores for
+  queues as well as cross-wiki access to queues, among other things. The schema
+  for the DB queue was changed to support better concurrency and reduce
+  deadlock errors.
+* Added ApiQueryORM class to facilitate creation of query API modules based on
+  tables that have a corresponding ORMTable class.
+* (bug 40876) Icon for PSD (Adobe Photoshop) file types.
+* (bug 40641) Implemented Special:Version/Credits with a list of contributors.
+* (bug 7851) Implemented one-click AJAX patrolling.
+* The <data>, <time>, <meta>, and <link> elements are allowed within WikiText
+  for use with Microdata.
+* The HTML5 <mark> tag has been whitelisted.
+* Added ParserCloned hook for when the Parser object is cloned.
+* Added AlternateEditPreview hook to allow extensions to replace the page
+  preview from the edit page.
+* Added EditPage::showStandardInputs:options hook to allow extensions to add
+  new fields to the "editOptions" area of the edit form.
+* Upload stash DB schema altered to improve upload performance.
+* The following global functions are now reporting deprecated warnings in
+  debug mode: wfMsg, wfMsgNoTrans, wfMsgForContent, wfMsgForContentNoTrans,
+  wfMsgReal, wfMsgGetKey, wfMsgHtml, wfMsgWikiHtml, wfMsgExt, wfEmptyMsg. Use
+  the Message class, or the global method wfMessage.
+* Added $wgEnableCanonicalServerLink, off by default. If enabled, a
+  <link rel=canonical> tag is added to every page indicating the correct server
+  to use.
+* Debug message emitted by wfDebugLog() will now be prefixed with the group
+  name when its logged to the default log file. That is the case whenever the
+  group has no key in wgDebugLogGroups, that will help triage the default log.
+* (bug 24620) Add types to LogFormatter.
+* jQuery JSON upgraded from 2.3 to 2.4.0.
+* Added GetDoubleUnderscoreIDs hook, for modifying the list of magic words.
+* DatabaseUpdater class has two new methods to ease extensions schema changes:
+  dropExtensionIndex and renameExtensionIndex.
+* New preference type - 'api'. Preferences of this type are not shown on
+  Special:Preferences, but are still available via the action=options API.
+* (bug 39397) Hide rollback link if a user is the only contributor of the page.
+* $wgPageInfoTransclusionLimit limits the list size of transcluded articles
+  on the info action. Default is 50.
+* Added action=createaccount to allow user account creation.
+* (bug 40124) action=options API also allows for setting of arbitrary
+  preferences, provided that their names are prefixed with 'userjs-'. This
+  officially reenables the feature that was undocumented and defective
+  in MW 1.20 (saving preferences using Special:Preferences cleared any
+  additional fields) and which has been disabled in 1.20.1 as a part of
+  a security fix (bug 42202).
+* Added option to specify "others" as author in extension credits using
+  "..." as author name.
+* Added the ability to limit the wall clock time used by shell processes,
+  as well as the CPU time. Configurable with $wgMaxShellWallClockTime.
+* Allow memory of shell subprocesses to be limited using Linux cgroups
+  instead of ulimit -v, which tends to cause deadlocks in recent versions
+  of ImageMagick. Configurable with $wgShellCgroup.
+* Added $wgWhitelistReadRegexp for regex whitelisting.
+* (bug 5346) Categories that are redirects will be displayed italic in
+  the category links section at the bottom of a page.
+* (bug 43915) New maintenance script deleteEqualMessages.php.
+* You can now create checkbox option matrices through the HTMLCheckMatrix
+  subclass in HTMLForm.
+* WikiText now permits the use of WAI-ARIA's role="presentation" inside of
+  html elements and tables. This allows presentational markup, especially
+  tables. To be marked up as such.
+* maintenance/sql.php learned the --cluster option. Let you run the script
+  on some external cluster instead of the primary cluster for a given wiki.
+* (bug 20281) test the parsing of inline URLs.
+* Added Special:PagesWithProp, which lists pages using a particular page property.
+* Implemented language-specific collations for category sorting for 67 languages
+  based in latin, greek and cyrillic alphabets. This allows one to *finally* get
+  articles to be correctly sorted on category pages. They are named
+  'uca-<langcode>', where <langcode> is one of: af, ast, az, be, bg, br, bs, ca,
+  co, cs, cy, da, de, dsb, el, en, eo, es, et, eu, fi, fo, fr, fur, fy, ga, gd,
+  gl, hr, hsb, hu, is, it, kk, kl, ku, ky, la, lb, lt, lv, mk, mo, mt, nl, no,
+  oc, pl, pt, rm, ro, ru, rup, sco, sk, sl, smn, sq, sr, sv, tk, tl, tr, tt, uk,
+  uz, vi.
+* Added 'CategoryAfterPageAdded' and 'CategoryAfterPageRemoved' hooks.
+* Added 'HistoryRevisionTools' and 'DiffRevisionTools' hooks.
+* Added 'SpecialSearchResultsPrepend' and 'SpecialSearchResultsAppend' hooks.
+* (bug 33186) Add image rotation api "imagerotate"
+* (bug 34040) Add "User rights management" link on user page toolbox.
+* (bug 45526) Add QUnit assertion helper "QUnit.assert.htmlEqual" for asserting
+  structual equality of HTML (ignoring insignificant differences like
+  quotmarks, order and whitespace in the attribute list).
+* (bug 23393) HTML <hN> headings containing line breaks are now handled
+  correctly.
+* (bug 45803) Whitespace within == Headline == syntax and within <hN> headings
+  is now non-significant and not preserved in the HTML output.
+
+=== Bug fixes in 1.21 ===
+* (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
+* (bug 40352) fixDoubleRedirects.php should support interwiki redirects.
+* (bug 9237) SpecialBrokenRedirect should not list interwiki redirects.
+* (bug 34960) Drop unused fields rc_moved_to_ns and rc_moved_to_title from
+  recentchanges table.
+* (bug 32951) Do not register internal externals with absolute protocol,
+  when server has relative protocol.
+* (bug 39005) When purging proxies listed in $wgSquidServers using HTTP PURGE
+  method requests, we now send a Host header by default, for Varnish
+  compatibility. This also works with Squid in reverse-proxy mode. If you wish
+  to support Squid configured in forward-proxy mode, set
+  $wgSquidPurgeUseHostHeader to false.
+* (bug 37020) sql.php with readline eats semicolon.
+* (bug 11748) Properly handle optionally-closed HTML tags when Tidy is
+  disabled, and don't wrap HTML-syntax definition lists in paragraphs.
+* (bug 41409) Diffs while editing an old revision should again diff against the
+  current revision.
+* (bug 41494) Honor $wgLogExceptionBacktrace when logging non-API exceptions
+  caught during API execution.
+* (bug 37963) Fixed loading process for user options.
+* (bug 26995) Update filename field on Upload page after having sanitized it.
+* (bug 41793) Contribution links to users with 0 edits on Special:ListUsers
+  didn't show up red.
+* (bug 41899) A PHP notice no longer occurs when using the "rvcontinue" API
+  parameter.
+* (bug 42036) Account creation emails now contain canonical (not
+  protocol-relative) URLs.
+* (bug 41990) Fix regression: API edit with redirect=true and lacking
+  starttimestamp and basetimestamp should not cause an edit conflict.
+* (bug 41706) EditPage: Preloaded page should be converted if possible and
+  needed.
+* (bug 41886) Rowspans are no longer exploded by tablesorter until the table is
+  actually sorted.
+* (bug 2865)  User interface HTML elements don't use lang attribute.
+  (completed the fix by adding the lang attribute to firstHeading).
+* (bug 42173) Removed namespace prefixes on Special:UncategorizedCategories.
+* (bug 36053) Log in "returnto" feature forgets query parameters if no
+  title parameter was specified.
+* (bug 42410) API action=edit now returns correct timestamp for the new edit.
+* (bug 14901) Email notification mistakes log action for new page creation.
+  Enotif no longer sends "page has been created" notifications for some log
+  actions. The following events now have a correct message: page creation,
+  deletion, move, restore (undeletion), change (edit). Parameter
+  $CHANGEDORCREATED is deprecated in 'enotif_body' and scheduled for removal in
+  MediaWiki 1.23.
+* (bug 457) In the sidebar of Vector, CologneBlue, Monobook, and Monobook-based
+  skins, the heading levels have been changed from (variously per skin)
+  <h4>, <h5> or <h6> to only <h3>s, with a <h2> hidden heading above them.
+  If you are styling or scripting the headings in a custom way, this change
+  will require updates to your site's CSS or JS.
+* (bug 41342) jquery.suggestions should cancel any active (async) fetches
+  before it triggers another fetch.
+* (bug 42184) $wgUploadSizeWarning missing second variable.
+* (bug 34581) removeUnusedAccounts.php maintenance script now ignores newuser
+  log when determining whether an account is used.
+* (bug 43379) Gracefully fail if rev_len is unavailable for a revision on the
+  History page.
+* (bug 42949) API no longer assumes all exceptions are MWException.
+* (bug 41733) Hide "New user message" (.usermessage) element from printable view.
+* (bug 39062) Special:Contributions will display changes that don't have
+  a parent id instead of just an empty bullet item.
+* (bug 37209) "LinkCache doesn't currently know about this title" error fixed.
+* wfMerge() now works if $wgDiff3 contains spaces
+* (bug 43052) mediawiki.action.view.dblClickEdit.dblClickEdit should trigger
+  ca-edit click instead opening URL directly.
+* (bug 43964) Invalid value of "link" parameter in <gallery> no longer produces
+  a fatal error.
+* (bug 44775) The username field is not pre-filled when creating an account.
+* (bug 45069) wfParseUrl() no longer produces a PHP notice if passed a "mailto:"
+  URL without address
+* (bug 45012) Creating an account by e-mail can no longer show a
+  "password mismatch" error.
+* (bug 44599) On Special:Version, HEADs for submodule checkouts (e.g. for
+  extensions) performed using Git 1.7.8+ should now appear.
+* (bug 42184) $wgUploadSizeWarning missing second variable
+* (bug 40326) Check if files exist with a different extension during uploading
+* (bug 34798) Updated CSS for Atom/RSS recent changes feeds to match on-wiki diffs.
+* (bug 42430) Calling numRows on MySQL no longer propagates unrelated errors.
+* (bug 44719) Removed mention of non-existing maintenance/migrateCurStubs.php
+  script in includes/DefaultSettings.php
+* (bug 45143) jquery.badge: Treat non-Latin variants of zero as zero as well.
+* (bug 46151) mwdocgen.php should not ignore exit code of doxygen command.
+* (bug 41889) Fix $.tablesorter rowspan exploding for complex cases.
+
+=== API changes in 1.21 ===
+* prop=revisions can now report the contentmodel and contentformat.
+  See docs/contenthandler.txt.
+* action=edit and action=parse now support contentmodel and contentformat
+  parameters to control the interpretation of page content.
+  See docs/contenthandler.txt for details.
+* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
+* (bug 40111) Disable minor edit for page/section creation by API.
+* (bug 41042) Revert change to action=parse&page=... behavior when the page
+  does not exist.
+* (bug 27202) Add timestamp sort to list=allimages.
+* (bug 43137) Don't return the sha1 of revisions through the API if the content is
+  revision-deleted.
+* ApiQueryImageInfo now also returns imageinfo for redirects.
+* list=alltransclusions added to enumerate every instance of page embedding
+* list=alllinks & alltransclusions now allow both 'from' and 'continue' in
+  the same query. When both are present, 'from' is simply ignored.
+* list=alllinks & alltransclusions now allow 'unique' in generators, to yield
+  a list of all link/template target pages instead of source pages.
+* BREAKING CHANGE: list=logevents output format changed for details of some log
+  types. Specifically, details that were formerly reported under a key like
+  "4::foo" will now be reported under a key of simply "foo".
+* BREAKING CHANGE: '??_badcontinue' error code was changed to '??badcontinue'
+  for all query modules.
+* ApiQueryBase adds 'badcontinue' error code if module has 'continue' parameter.
+* (bug 35885) Removed version parameter and all getVersion() methods.
+* action=options now takes a "resetkinds" option, which allows only resetting
+  certain types of preferences when the "reset" option is set.
+* (bug 36751) ApiQueryImageInfo now returns imageinfo for the redirect target
+  when queried with &redirects=.
+* (bug 31849) ApiQueryImageInfo no longer gets confused when asked for info on
+  a redirect and its target.
+* (bug 43849) ApiQueryImageInfo no longer throws exceptions with ForeignDBRepo
+  redirects.
+* On error, any warnings generated before that error will be shown in the result.
+* action=help supports generalized submodules (modules=query+value), querymodules obsolete
+* ApiQueryImageInfo continuation is more reliable. The only major change is
+  that the imagerepository property will no longer be set on page objects not
+  processed in the current query (i.e. non-images or those skipped due to
+  iicontinue).
+* Add supports for all pageset capabilities - generators, redirects, converttitles to
+  action=purge and action=setnotificationtimestamp.
+* (bug 43251) prop=pageprops&ppprop= now accepts multiple props to query.
+* ApiQueryImageInfo will now limit the number of calls to File::transform made
+  in any one query. If there are too many, iicontinue will be returned.
+* action=query&meta=siteinfo&siprop=general will now return the regexes used for
+  link trails and link prefixes. Added for Parsoid support.
+* Added an API query module list=pageswithprop, which lists pages using a
+  particular page property.
+* Added an API query module list=pagepropnames, which lists all page prop names
+  currently in use on the wiki.
+* (bug 44921) ApiMain::execute() will now return after the CORS check for an
+  HTTP OPTIONS request.
+* (bug 44923) action=upload works correctly if the entire file is uploaded in
+  the first chunk.
+* Added 'continue=' parameter to streamline client iteration over complex query results
+* (bug 44909) API parameters may now be marked as type "upload", which is now
+  used for action=upload's 'file' and 'chunk' parameters. This type will raise
+  an error during parameter validation if the parameter is given but not
+  recognized as an uploaded file.
+* (bug 44244) prop=info may now return the number of people watching each page.
+* (bug 33304) list=allpages will no longer return duplicate entries when
+  querying protection.
+* (bug 33304) list=allpages will now find really old indefinite protections.
+* (bug 45937) meta=allmessages will report a syntactically invalid lang as a
+  proper error instead of as an uncaught exception.
+* (bug 25325) added support for wlshow filtering (bots/anon/minor/patrolled)
+  to action=feedwatchlist
+* WDDX formatted output will actually be formatted (and normal output will no
+  longer be), and will no longer choke on booleans.
+
+=== API internal changes in 1.21 ===
+* For debugging only, a new global $wgDebugAPI removes many API restrictions when true.
+  Never use on the production servers, as this flag introduces security holes.
+  Whenever enabled, a warning will also be added to all output.
+* ApiModuleManager now handles all submodules (actions,props,lists) and instantiation
+* Query stores prop/list/meta as submodules
+* ApiPageSet can now be used in any action to process titles/pageids/revids or any generator.
+* BREAKING CHANGE: ApiPageSet constructor now has two params instead of three, with only the
+  first one keeping its meaning. ApiPageSet is now derived from ApiBase.
+* BREAKING CHANGE: ApiQuery::newGenerator() and executeGeneratorModule() were deleted.
+* ApiQueryGeneratorBase::setGeneratorMode() now requires a pageset param.
+* $wgAPIGeneratorModules is now obsolete and will be ignored.
+* Added flags ApiResult::OVERRIDE and ADD_ON_TOP to setElement() and addValue()
+* Internal API calls will now include <warnings> in case of unused parameters
+
+=== Languages updated in 1.21 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+* South Azerbaijani (azb) added.
+* (bug 30040) Autonym for nds-nl is now 'Nedersaksies' (was 'Nedersaksisch').
+* (bug 45436) Autonym for pi (Pali) is now 'पालि' (was ''पाळि').
+* (bug 34977) Now formatted numbers in Spanish use space as separator
+  for thousands, as mandated by the Real Academia Española.
+* (bug 35031) Kurdish formatted numbers now use period and comma
+  as separators for thousands and decimals respectively.
+
+=== Other changes in 1.21 ===
+* BREAKING CHANGE: (bug 44385) Removed the jquery.collapsibleTabs module and
+  moved it to the Vector extension. It was entirely Vector-extension-specific,
+  deeply interconnected with the extension, and this functionality really
+  belongs to the extension instead of the skin anyway. In the unlikely case you
+  were using it, you have to either copy it to your extension, or install the
+  Vector extension (and possibly disable its features using config settings if
+  you don't want them).
+* Experimental IBM DB2 support was removed due to lack of interest and maintainership
+* BREAKING CHANGE: Filenames of maintenance scripts were standardized into
+  lowerCamelCase format, and made more explicit:
+  - clear_stats.php -> clearCacheStats.php
+  - clear_interwiki_cache.php -> clearInterwikiCache.php
+  - initStats.php -> initSiteStats.php
+  - proxy_check.php -> proxyCheck.php
+  - stats.php -> showCacheStats.php
+  - showStats.php -> showSiteStats.php.
+  Class names were renamed accordingly:
+  - clear_stats -> ClearCacheStats
+  - InitStats -> InitSiteStats
+  - CacheStats -> ShowCacheStats
+  - ShowStats -> ShowSiteStats.
+* BREAKING CHANGE: (bug 38244) Removed the mediawiki.api.titleblacklist module
+  and moved it to the TitleBlacklist extension.
+
+== MediaWiki 1.20 ==
+
+=== PHP 5.3 now required ===
+Since 1.20, the lowest supported version of PHP is now 5.3.2. Please
+upgrade PHP if you have not done so prior to upgrading MediaWiki.
+
+=== Configuration changes in 1.20 ===
+* $wgGitRepositoryViewers defines a mapping from Git remote repository to the
+  Gitweb instance URL used in Special:Version.
+* `$wgUsePathInfo = true;` is no longer needed to make $wgArticlePath work on servers
+  using like nginx, lighttpd, and apache over fastcgi. MediaWiki now always extracts
+  path info from REQUEST_URI if it's available.
+* The user right 'upload_by_url' is no longer given to sysops by default.
+  This only affects installations which have $wgAllowCopyUploads set to true.
+* Removed f-prot support from $wgAntivirusSetup.
+* New variable $wgDBerrorLogTZ to provide dates in the error log in a
+  different timezone than the wiki timezone set by $wgLocaltimezone.
+* New variables $wgDBssl and $wgDBcompress to enable SSL and compression for database
+  connections, if either are available for the selected DB type.
+* $wgUseCombinedLoginLink now defaults to false, making MediaWiki output separate
+  login and create account links by default.
+
+=== New features in 1.20 ===
+* Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
+* Added NamespaceIsMovable hook which gets called when determining if pages in a
+  certain namespace can be moved.
+* Added SpecialPageBeforeExecute hook which gets called before SpecialPage::execute.
+* Added SpecialPageAfterExecute hook which gets called after SpecialPage::execute.
+* Added ORMTable, ORMRow and ORMResult classes for additional abstraction of
+  database interaction.
+* Added CacheHelper and associated SpecialCachedPage and CachedAction helper classes.
+* (bug 32341) Add upload by URL domain limitation.
+* &useskin=default will now always display the default skin. Useful for users with a
+  preference for the non-default skin to look at something using the default skin.
+* (bug 27619) Remove preference option to display broken links as link?
+* (bug 34896) jQuery JSON plugin upgraded to v2.3 (2011-09-17).
+* (bug 34302) Add CSS classes to email fields in user preferences.
+* Introduced $wgDebugDBTransactions to trace transaction status (currently PostgreSQL only).
+* (bug 23795) Add parser itself to ParserMakeImageParams hook.
+* Introduce a cryptographic random number generator source api for use when
+  generating various tokens.
+* (bug 30963) Option on Special:Prefixindex and Special:Allpages to not show redirects.
+* (bug 18062) New message when edit or create the local page of a shared file.
+* (bug 22870) Separate interface message when creating a page.
+* (bug 17615) nosummary option should be reassigned on preview/captcha.
+* (bug 34355) Add a variable and parser function for the namespace number.
+* (bug 35649) Special:Version now shows hashes of extensions checked out from git.
+* (bug 35728) Git revisions are now linked on Special:Version.
+* "Show Changes" on default messages shows now diff against default message text
+* (bug 23006) create #speciale parser function.
+* generateSitemap can now optionally skip redirect pages.
+* (bug 27757) New API command just for retrieving tokens (not page-based).
+* Added GitViewers hook for extensions using external git repositories to have a web-based
+  repository viewer linked to from Special:Version.
+* Memcached debug logs can now be sent to their own file logs by setting
+  $wgDebugLogFile['memcached'] to some filepath.
+* (bug 35685) api.php URL and other entry point URLs are now listed on
+  Special:Version
+* Edit notices can now be translated.
+* jQuery upgraded to 1.8.2.
+* jQuery UI upgraded to 1.8.23.
+* QUnit upgraded from v1.2.0 to v1.10.0.
+* (bug 37604) jquery.cookie upgraded to 2011 version.
+* (bug 22887) Add warning and tracking category for preprocessor errors
+* (bug 31704) Allow selection of associated namespace on the watchlist
+* (bug 5445) Now remove autoblocks when a user is unblocked.
+* Added $wgLogExceptionBacktrace, on by default, to allow logging of exception
+  backtraces.
+* Added device detection for determining device capabilities.
+* QUnit.newMwEnvironment now supports passing a custom setup and/or teardown function.
+  Arguments signature has changed. First arguments is now an options object of which
+  'config' can be a property. Previously 'config' itself was the first and only argument.
+* New getCreator and getOldestRevision methods added to WikiPage class
+* (bug 4220) the XML dump format schema now have unique identity constraints
+  for page and revision identifiers. Patch by Elvis Stansvik.
+* cleanupSpam.php now can delete spam pages if --delete was specified instead of blanking
+  them.
+* Added new hook ChangePasswordForm to allow adding of additional fields in Special:ChangePassword
+* Added new function getDomain to AuthPlugin for getting a user's domain
+* (bug 23427) New magic word {{PAGEID}} which gives the current page ID.
+  Will be null on previewing a page being created.
+* (bug 37627) UserNotLoggedIn() exception to show a generic error page whenever
+  a user is not logged in.
+* Watched status in changes lists are no longer indicated by <strong></strong>
+  tags with class "mw-watched". Instead, each line now has a class
+  "mw-changeslist-line-watched" or "mw-changeslist-line-not-watched", and the
+  title itself is surrounded by <span></span> tags with class "mw-title".
+* Added ContribsPager::reallyDoQuery hook allowing extensions to data to MyContribs
+* Added new hook ParserAfterParse to allow extensions to affect parsed output
+  after the parse is complete but before block level processing, link holder
+  replacement, and so on.
+* (bug 34678) Added InternalParseBeforeSanitize hook which gets called during Parser's
+  internalParse method just before the parser removes unwanted/dangerous HTML tags.
+* Added new hook AfterFinalPageOutput to allow modifications to buffered page output before sent
+  to the client.
+* (bug 36783) Implement jQuery Promise interface in mediawiki.api module.
+* Make dates in sortable tables sort according to the page content language
+  instead of the site content language
+* (bug 37926) Deleterevision will no longer allow users to delete log entries,
+  the new deletelogentry permission is required for this.
+* (bug 14237) Allow PAGESINCATEGORY to distinguish between 'all', 'pages', 'files'
+  and 'subcats'
+* (bug 38362) Make Special:Listuser includeable on wiki pages.
+* Added support in jquery.localize for placeholder attributes.
+* (bug 38151) Implemented mw.user.getRights for getting and caching the current
+  user's user rights.
+* Session storage can now configured independently of general object cache
+  storage, by using $wgSessionCacheType. $wgSessionsInMemcached has been
+  renamed to $wgSessionsInObjectCache, with the old name retained for backwards
+  compatibility. When this feature is enabled, the expiry time can now be
+  configured with $wgObjectCacheSessionExpiry.
+* Added a Redis client for object caching.
+* Implemented mw.user.getGroups for getting and caching user groups.
+* (bug 37830) Added $wgRequirePasswordforEmailChange to control whether password
+  confirmation is required for changing an email address or not.
+* HTMLForm mutators can now be chained (they return $this)
+* A new message, "api-error-filetype-banned-type", is available for formatting
+  API upload errors due to the file extension blacklist.
+* New hook 'ParserTestGlobals' allows to set globals before running parser tests.
+* Allow importing pages as subpage.
+* Add lang and hreflang attributes to language links on Login page.
+* (bug 22749) Create Special:MostInterwikis.
+* Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
+* (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
+* (bug 39431) SVG animated status is now shown in long description.
+* (bug 39376) jquery.form upgraded to 3.14.
+* SVG files will now show the actual width in the SVG's specified units
+  in the metadata box.
+* Added ResourceLoader module "jquery.jStorage" (v0.3.0, http://jStorage.info/).
+* (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
+* Added ResourceLoader module "jquery.badge".
+* mw.util.$content now points to the overall content area in the skin rather than just
+  page text content area. If you need the old behavior please use $( '#mw-content-text').
+* jsMessage has been replaced with a floating bubble notification system complete
+  with auto-hide, multi-message support, and message replacement tags.
+* jquery.messageBox which appears to be unused by both core and extensions has
+  been removed.
+* (bug 34939) Made link parsing insensitive ([HttP://]).
+* (bug 40072) Add CSS classes to items in output of ChangesList pages.
+* Added $wgCopyUploadProxy global to define which proxy to use for copy
+  uploads.
+* (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
+  mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
+
+=== Known issues in 1.20.0 ===
+These are issues that we're targeting to be fixed in a later release
+in the 1.20 series.  Issues may be added or removed from this list as
+we see fit.  For now, it is comprised of those bugs on the 1.20.0
+milestone in Bugzilla.
+
+* (bug 35894): Reports of secret key generation "hanging" on windows
+    This is probably a bug that has been fixed in PHP.  If you run
+    into this, try upgrading your PHP.
+* (bug 38334): PHP Notice:  Undefined index: href in /www/w/skins/Vector.php on line 416
+    We think this is a problem in some extension.  If you see this,
+    try disabling your extensions and check out the logging patch on
+    this bug.  Or try this patch:
+    <https://gerrit.wikimedia.org/r/#/c/27937/1/skins/Vector.php>
+* (bug 39268): [Regression] Toolbar inserts in main textarea only (instead of the focussed textarea)
+    This should only be an issue if you are using the ProofreadPage
+    extension.
+* (bug 40641): Clicking "others" in Special:Version asks to download a file
+    If you encounter this, you can tell your webserver to serve the
+    CREDITS file with text/plain MIME type to fix it.
+
+=== Bug fixes in 1.20 ===
+* (bug 40939): [Regression] InfoAction: Call to a member function getUserText() on a non-object
+* (bug 40780): searchsuggest-containing line ("containing...") doesn't include the entered text
+* (bug 37714): [Regression] Incomplete log entries
+* (bug 27202): API: Add timestamp sort to list=allimages
+* (bug 30245) Use the correct way to construct a log page title.
+* (bug 34237) Regenerate an empty user_token and save to the database
+  when we try to set the user's cookies for login.
+* (bug 32210) New edit emails for watched pages always provide a link to the
+  edit which triggered the mail.
+* (bug 12021) Added user talk link on Special:Listusers.
+* (bug 34445) section edit and TOC hide/show links are excluded from selection and
+  copy/paste on supporting browsers.
+* (bug 34428) Fixed incorrect hash mismatch errors in the DiffHistoryBlob
+  history compression method.
+* (bug 34702) Localised parentheses are now used in more special pages.
+* (bug 34723) When editing a script page on a RTL wiki the textbox should be LTR.
+* (bug 34762) Calling close() on a DatabaseBase object now clears the connection.
+* (bug 34863) Show deletion log extract on non-existent file pages if applicable.
+* (bug 28019) Let ?preloadtitle=foo be passed on to target of
+  Special:MyPage and Special:MyTalk.
+* (bug 34929) Show the correct diff when a section edit is rejected by the spam
+  filter.
+* (bug 15816) Add a switch for SETting the search_path (Postgres).
+* (bug 34521) Returning to the previous page after logging in loses any array-
+  valued parameters in the query string.
+* (bug 34735) Updated compressOld.php documentation to mention the different
+  usages of -s and -n parameters depending on compression type.
+* (bug 13896) Rendering of devanagari numbers in automatic '#' number lists.
+* (bug 33689) Upgrade to 1.19 on Postgres fails due to incomplete query when.
+  trying to defer foreign key for externallinks.
+* (bug 32748) Printer friendly version of article decode Unicode chars as a
+  pretty IRI in footer.
+* Removed white border around thumbnails in galleries.
+* (bug 31236) "Next" and "Previous" buttons are shown incorrectly in
+  an RTL environment.
+* (bug 35749) Updated maintenance/checkSyntax.php to use Git instead of
+  Subversion when invoked with the --modified option.
+* (bug 35069) On history pages, the " . . " separator after the number of
+  characters changed in a revision is now suppressed if no text would follow.
+* (bug 18704) Add a unique CSS class or ID to the tagfilter table row at RecentChanges
+* (bug 33564) transwiki import sometimes result in invalid title.
+* (bug 35572) Blocks appear to succeed even if query fails due to wrong DB structure
+* (bug 31757) Add a word-separator between help-messages in HTMLForm
+* (bug 30410) Removed deprecated $wgFilterCallback and the 'filtered' API error.
+* (bug 32604) Some messages needs escaping of wikitext inside username.
+* (bug 36537) Rename wfArrayToCGI to wfArrayToCgi for consistency with wfCgiToArray.
+* (bug 25946) The message on the top of Special:RecentChanges is now displayed.
+  in user language instead of content language.
+* (bug 35264) Wrong type used for <ns> in export.xsd
+* (bug 24985) Use $wgTmpDirectory as the default temp directory so that people
+  who don't have access to /tmp can specify an alternative.
+* (bug 27283) SqlBagOStuff breaks PostgreSQL transactions.
+* (bug 35727) mw.Api ajax() should put token parameter last.
+* (bug 37708) mw.Uri.clone() should make a deep copy.
+* (bug 38024) ResourceLoader should not create empty stylesheets for modules
+  that don't have stylesheets.
+* (bug 36812) Special:ActiveUsers "Hide bots" should hide users from any group
+  having the "bot" user right, instead of just the default "bot" user group.
+* (bug 35082) mw.util.addPortletLink incorrectly adds link to mutiple <ul> tags.
+* (bug 36991) jquery.tablesorter should extract date sort format from date
+  string instead of global config. Dates like "April 1 2012" and "1 April 2012"
+  now sort correctly regardless of the content language's DefaultDateFormat.
+* (bug 31895) mw.loader mode now correct when triggered from a $.fn.ready
+  handler that is bound before mediawiki.js's handler (e.g. browser-userscripts
+  like greasemonkey).
+* (bug 38152) jquery.tablesorter: Use .data() instead of .attr(), so that live
+  values are used instead of just the fixed values from when the tablesorter
+  was initialized.
+* (bug 38093) Gender of changed user groups missing in Special:Log/rights
+* (bug 35893) Special:Block needs to load mediawiki.special.block.js.
+* (bug 37331) ResourceLoader modules sometimes execute twice in Firefox
+* (bug 31644) GlobalUsage, CentralAuth and AbuseLog extensions should not use
+  insecure links to foreign wikis in the WikiMap.
+* (bug 36073) Avoid duplicate element IDs on File pages.
+* (bug 25095) Special:Categories should also include the first relevant item
+  when "from" is filled.
+* (bug 35526) jquery.tablesorter now uses a stable sort.
+* (bug 38953) --memory-limit switch not working for runJobs.php.
+* (bug 33037) Make subpage of Special:newfiles control how many files
+  are returned, like in previous versions.
+* (bug 36524) "Show" options on Special:RecentChanges and Special:RecentChangesLinked
+  are now remembered between successive clicks.
+* (bug 26069) Page title is no longer "Error" for all error pages.
+* (bug 39297) Show warning if thumbnail of animated image will not be animated.
+* (bug 38249) Parser will throw an exception instead of outputting gibberish if
+  PCRE is compiled without support for unicode properties.
+* (bug 30390) Suggested file name on Special:Upload should not contain
+  illegal characters.
+* EXIF below sea level GPS altitude data is now shown correctly.
+* (bug 39284) jquery.tablesorter should not consider "."" or "?"" to be a currency.
+* (bug 39273) "Show changes" should not be incorrectly displayed in the Live Preview state.
+* Made body-content lang attribute honor the variant language when it is set.
+* (bug 36761) "Mark pages as visited" now submits previously established filter options.
+* (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
+* (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
+* (bug 32552) Drop unused database field cat_hidden from table category.
+* (bug 24502) Do not allow multiple language links to the same language.
+* (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
+* (bug 39941) Add missing stylesheets to the installer pages
+* In HTML5 mode, allow new input element types values (such as color, range..)
+* (bug 36151) mw.Title: Don't limit extension in title parsing.
+* (bug 38158) jquery.byteLimit sometimes causes an unexpected 0 maxLength being enforced.
+* (bug 38163) jquery.byteLimit incorrectly limits input when using methods other than
+  basic per-char typing.
+* (bug 34495) patrol log now credit the user patrolling (instead of patrolled
+  user).
+* (bug 31676) ResourceLoader should work around IE stylesheet limit.
+* (bug 40498) ResourceLoader should not output an empty "@media print { }" block.
+* (bug 40500) ResourceLoader should not ignore media-type for urls in debug mode.
+* (bug 40660) ResourceLoaderWikiModule should not convert "&nbsp;" to a space
+  for pages from the MediaWiki-namespace.
+* (bug 40329) (bug 40632) Removed CleanupPresentationalAttributes feature.
+
+=== API changes in 1.20 ===
+* (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
+* (bug 34313) MediaWiki API intro message about "HTML format" should mention
+  the format parameter.
+* (bug 32384) Allow descending order for list=watchlistraw.
+* (bug 31883) Limit of bkusers of list=blocks and titles of action=query is
+  not documented in API help.
+* (bug 32492) API now allows editing using pageid.
+* (bug 32497) API now allows changing of protection level using pageid.
+* (bug 32498) API now allows comparing pages using pageids.
+* (bug 30975) API import of pages with invalid characters in this wiki leads to Fatal Error.
+* (bug 30488) API now allows listing of backlinks/embeddedin/imageusage per pageid.
+* (bug 34927) Output media_type for list=filearchive.
+* (bug 28814) add properties to output of action=parse.
+* (bug 33224) add variants of content language to meta=siteinfo.
+* (bug 32643) action=purge with forcelinkupdate no longer crashes when ratelimit is reached.
+* The paraminfo module now also contains result properties for most modules.
+* (bug 32348) Allow descending order for list=alllinks.
+* (bug 31777) Upload unknown error ``fileexists-forbidden''.
+* (bug 32382) Allow descending order for list=iwbacklinks.
+* (bug 32381) Allow descending order for list=backlinks, list=embeddedin and list=imageusage.
+* (bug 32383) Allow descending order for list=langbacklinks.
+* API meta=siteinfo can now return the list of known variable IDs.
+* (bug 35980) list=deletedrevs now honors drdir correctly in "all" mode (mode #3).
+* (bug 29290) API avoids mangling fields in continuation parameters
+* (bug 36987) API avoids mangling fields in continuation parameters
+* (bug 30836) siteinfo prop=specialpagealiases will no longer return nonexistent special pages
+* (bug 38190) Add "required" flag to some token params for hint in api docs.
+* (bug 27567) Add file repo support to prop=duplicatefiles.
+* (bug 27610) Add archivename for non-latest image version to list=filearchive
+* (bug 38231) Add xml parse tree to action=parse.
+* Watchlist notification timestamp may be queried by page and may be updated via the API.
+* (bug 38904) prop=revisions&rvstart=... no longer blows up when continuing.
+* (bug 39032) ApiQuery generates help in constructor.
+* (bug 11142) Improve file extension blacklist error reporting in API upload.
+* (bug 39665) List of query generators is now not built using reflection, instead it is
+  defined in code.
+* (bug 35993) Deprecated gettoken parameter - support will be removed in 1.22.
+
+=== Languages updated in 1.20 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+* Emilian (egl) added.
+* Tornedalen Finnish (fit) added.
+* Mizo (lus) added.
+* Santali (sat) added.
+* (bug 34192) Namespace gender aliases for Albanian languages (sq & aln).
+* (bug 35541) Namespace gender aliases for Croatian (hr).
+* (bug 36012) Space in $separatorTransformTable should be non-breaking in
+  Portuguese, Esperanto and Udmurt.
+* Turoyo (tru) added.
+* Cyrillic-Latin language converter added for Uzbek (uz).
+
+=== Other changes in 1.20 ===
+* The user_token field is now left empty until a user attempts to login and
+  cookies need to be set. It is also now possible to reset every user's
+  user_token simply by clearing the values in the user_token column.
+* Removed ./tests/qunit/index.html from core. It wasn't actively maintained and
+  has been made obsolete when [[Special:JavaScriptTest/qunit]] was introduced,
+  which actually uses ResourceLoader, LocalSettings and the Skin.
+* Removed $wgDBtransactions global. This was only checked in one class
+  and only applies to MyISAM or similar DBs. Those should only be used
+  for archived sites anyway. We can't get edit conflicts on such sites,
+  so the WikiPage code wasn't useful there either.
+* Deprecated mw.user.name in favour of mw.user.getName.
+* Deprecated mw.user.anonymous in favour of mw.user.isAnon.
+* Deprecated DatabaseBase functions newFromParams(), newFromType(), set(),
+  quote_ident(), and escapeLike() were removed.
+* Use of __DIR__ instead of dirname( __FILE__ ).
+* OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
+  not used and complicated migration to Message class.
+* Live preview functionality has been improved and moved into the
+ 'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
+  has been removed.
+* (bug 40448) Removed mediawiki.legacy.mwsuggest module, and removed the
+  following that has become obsolete:
+  - globals $wgEnableMWSuggest and $wgMWSuggestTemplate.
+  - mw.config.values wgMWSuggestTemplate and wgSearchNamespaces.
+  - method SearchEngine::getMWSuggestTemplate().
+
+== MediaWiki 1.19 ==
+
+== MediaWiki 1.19.2 ==
+
+This is a security release of the MediaWiki 1.19 branch
+
+=== Changes since 1.19.1 ===
+* (bug 39700) File: link to non-existing file can inject html
+* (bug 39823) Hidden block text leaking to admins
+* (bug 39184) LDAP password leakage
+* (bug 39180) Disallow framing of api results
+* (bug 37587) Enforce language codes to be html safe
+* (bug 39824) Check global blocks on account creation
+
+== MediaWiki 1.19 ==
+
+MediaWiki 1.19 is a large release that contains many new features and bug
+fixes. This is a summary of the major changes of interest to users.
+You can consult the RELEASE-NOTES-1.19 file for the full list of changes in
+this version.
+
+Our thanks go to everyone who helped to improve MediaWiki by testing the beta
+release and submitting bug reports.
+
+=== Changes since 1.19.1 ===
+* (bug 38406) Properly quote table names in DatabaseBase::tableName()
+* (bug 38249) Parser will throw an exception instead of outputting gibberish if
+  PCRE is compiled without support for unicode properties.
+
+=== Changes since 1.19.0 ===
+* (bug 36568) Fixed "Illegal string offset 'LIMIT'" warnings in updater
+* (bug 36938) Correctly escape uselang attribute to prevent xss
+* Expanded Blacklist for SVG Files
+
+=== Changes since 1.19 beta 2 ===
+* Special:Watchlist no longer sets links to feed when the user is anonymous.
+* (bug 35961) Hash comparison should always be strict.
+* Fix broken email confirmation expiration caused by MWCryptRand changes.
+* (bug 35671) PHP Notice: Undefined index: gettoken in includes/api/ApiMain.php
+  on line 598.
+* (bug 36042) 'show' causes a fatal in blocks API.
+
+=== Changes since 1.19 beta 1 ===
+* (bug 35014) Including a special page no longer sets the page's title to the
+  included page
+* (bug 35019) Edit summaries are no longer transformed in notification e-mails
+* (bug 35152) Help message for e-mail is shown again in user preferences
+* (bug 34887) $3 and $4 parameters are now substituted correctly in message
+  "movepage-moved"
+* (bug 34841) Edit links are no longer displayed when display old page versions
+* (bug 34889) User name should be normalized on Special:Contributions
+* (bug 35051) If heading has a trailing space after == then its name is not
+  preloaded into edit summary on section edit
+* (bug 31417) New ID mw-content-text around the actual page text, without categories,
+  contentSub, ... The same div often also contains the class mw-content-ltr/rtl.
+* (bug 35303) Proxy and DNS blacklist blocking works again
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
+  core parser functions which operate on strings, such as padleft.
+* (bug 18295) Don't expose strip markers when a tag appears inside a link
+  inside a heading.
+* (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
+  parameter present.
+* (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
+  CSRF attacks.
+* (bug 35317) CSRF in Special:Upload.
+
+=== Configuration changes in 1.19 ===
+* Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
+* (bug 27132) movefile right granted by default to registered users.
+* Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
+* (bug 31204) Removed old user.user_options.
+* $wgMaxImageArea now applies to jpeg files if they are not scaled with
+  ImageMagick.
+* Introduced $wgQueryPageDefaultLimit (defaults to 50) for the number of
+  items to show by default on query pages (special pages such as Whatlinkshere).
+* (bug 32470) Increase the length of ug_group.
+* (bug 32239) Removed $wgEnableTooltipsAndAccesskeys.
+* Removed $wgVectorShowVariantName.
+* Removed $wgExtensionAliasesFiles. Use $wgExtensionMessagesFiles.
+* Removed $wgResourceLoaderInlinePrivateModules , now always enabled.
+
+=== New features in 1.19 ===
+* (bug 19838) Add ability to get all interwiki prefixes also if the interwiki
+  cache is used.
+* $wgDnsBlacklistUrls now accepts an array with url and key as the
+  elements to work with DNSBLs that require keys, such as
+  Project Honeypot.
+* (bug 30022) Add support for custom loadScript sources to ResourceLoader.
+* (bug 19052) Unicode space separator characters (Zs) now terminates external
+  links and images links.
+* (bug 30160) Add public method to mw.loader to get module names from registry.
+* (bug 15558) Parameters to special pages included in wikitext can now be passed
+  as with templates.
+* Installer now issues a warning if mod_security is present.
+* (bug 29455) Add support for a filter callback function in jQuery byteLimit
+  plugin.
+* Added two new GetLocalURL hooks to better serve extensions working on a
+  limited type of titles.
+* Added a --no-updates flag to importDump.php that skips updating the links
+  tables.
+* Most presentational html attributes like valign are now converted to inline
+  css style rules. These attributes were removed from html5 and so we clean
+  them up when $wgHtml5 is enabled. This can be disabled using
+  $wgCleanupPresentationalAttributes.
+* Magic words (time and number-formatting ones, plus DIRECTIONMARK, but not
+  NAMESPACE) now depend on the page content language instead of the site
+  language. In theory this sets the right magic words in system messages,
+  although they are not used there.
+* (bug 30451) Add page_props to RefreshLinks::deleteLinksFromNonexistent.
+* (bug 30450) Clear page_props table on page deletion.
+* Hook added to check for exempt from account creation throttle.
+* (bug 30344) Add configuration variable for setting custom priorities when
+  generating sitemaps.
+* (bug 96170) Add array support for space-separated list attributes (like
+  'class') in the Html helper class.
+* (bug 26470) Add checkered background image on hover on files pages.
+* (bug 30774) mediawiki.html: Add support for numbers and booleans in the
+  attribute values and element contents.
+* Conversion script between Tifinagh and Latin for the Tachelhit language.
+* (bug 16755) Add options 'noreplace' and 'noerror' to {{DEFAULTSORT:...}}
+  to stop it from replace an already existing default sort, and suppress error.
+* (bug 18578) Rewrote revision delete related messages to allow better
+  localisation.
+* (bug 30364) LanguageConverter now depends on the page content language
+  instead of the wiki content language.
+* Jump links will now be usable in CSS-capable browsers instead of only
+  in outdated text browsers.
+* New common*.css files usable by skins instead of having to copy piles
+  of generic styles from MonoBook or Vector's css.
+* Some deprecated presentational html attributes will now be automatically
+  converted to css.
+* (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter
+  syntax.
+* The default user signature now contains a talk link in addition to the user link.
+* (bug 25306) Add link of old page title to MediaWiki:Delete_and_move_reason.
+* Added hook BitmapHandlerCheckImageArea.
+* (bug 30062) Add $wgDBprefix option to cli installer.
+* getUserPermissionsErrors and getUserPermissionsErrorsExpensive hooks are now
+  also called when checking for 'read' permission.
+* Introduce $wgEnableSearchContributorsByIP which controls whether searching
+  for an IP address redirects to the contributions list for that IP.
+* (bug 8859) Database::update should take array of tables too.
+* (bug 19698) Add "Inverse namespaces" option to Special:Contributions.
+* (bug 24037) Add byte length of revision to Special:Contributions.
+* (bug 1672) Added $wgDisableUploadScriptChecks to allow uploading of files
+  containing HTML or JS. DISABLING THESE CHECKS IS VERY DANGEROUS.
+* New path mappings can be added using the WebRequestPathInfoRouter hook
+  and adding paths to the PathRouter.
+* (bug 32666) Special:ActiveUsers now allows a subpage to be used as value for the
+  "target" query parameter (eg. Special:ActiveUsers/Username).
+* New JavaScript variable wgPageContentLanguage.
+* Added new debugging toolbar, enabled with $wgDebugToolbar.
+* Differences in the history page now uses slightly better colors for people
+  perceiving colors differently.
+* (bug 32879) Upgrade jQuery to 1.7.1.
+* jQuery UI upgraded to 1.8.17.
+* Extensions can use the 'Language::getMessagesFileName' hook to define new
+  languages using messages files outside of core.
+* (bug 32512) Add 'Associated namespace' checkbox to Special:Contributions.
+* Added $wgSend404Code, true by default, which can be set to false to send a
+  200 status code instead of 404 for nonexistent articles.
+* (bug 33447) Link to the broken image tracking category from Special:Wantedfiles.
+* (bug 27724) Add timestamp to job queue.
+* (bug 30339) Implement SpecialPage for running javascript tests. Disabled by default, due to
+  tests potentially being harmful, not to be run on a production wiki.
+  Enable by setting $wgEnableJavaScriptTest to true.
+* Extensions can use the RequestContextCreateSkin hook to override what skin is
+  loaded in some contexts.
+* (bug 33456) Show $wgQueryCacheLimit on cached query pages.
+* (bug 10574) Add an option to allow all pages to be exported by Special:Export.
+* mediawiki.js Message object constructor is now publicly available as mw.Message.
+* (bug 29309) Allow CSS class per tooltip (tipsy).
+* (bug 33565) Add accesskey/tooltip to submit buttons on Special:EditWatchlist.
+* (bug 17959) Inline rendering/thumbnailing for Gimp XCF images.
+* (bug 27775) Namespace has it's own XML tag in the XML dump file.
+* (bug 30513) Redirect tag is now resolved in XML dump file.
+* sha1 xml tag added to XML dump file.
+* (bug 33646) Badtitle error page now emits a 400 HTTP status.
+* Special:MovePage now has a dropdown menu for namespaces.
+* (bug 34420) Special:Version now shows git HEAD sha1 when available.
+* (bug 33952) Refactor mw.toolbar to allow dynamic additions at any time.
+
+=== Bug fixes in 1.19 ===
+* $wgUploadNavigationUrl should be used for file redlinks if.
+  $wgUploadMissingFileUrl is not set. The first was used for this
+  until the second was introduced in 1.17.
+* BREAKING CHANGE:  Style rules for wikitable are now more specific and prevent
+  inheritance to nested tables which caused various issues (bug 30485 and bug
+  33434). If your wiki has overriden rules for ".wikitable", please revise them and
+  adjust where neccecary. For comparison, use the "table.wikitable" section in
+  skins/common/shared.css as base.
+* $wgUploadNavigationUrl is now used for file redlinks if
+  $wgUploadMissingFileUrl is not set. The former was used for this until the
+  second was introduced in 1.17.
+* (bug 27894) Move 'editondblclick' event listener down from body to
+  div#bodyContent.
+* (bug 30172) The check for posix_isatty() in maintenance scripts did not detect
+  when the function exists but is disabled. Introduced
+  Maintenance::posix_isatty().
+* (bug 30264) Changed installer-generated LocalSettings.php to use
+  require_once() instead require() for included extensions.
+* Do not convert text in the user interface language to another script.
+* (bug 26283) Previewing user JS/CSS pages didn't load other user JS/CSS pages.
+* (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
+  warnings/notices to be thrown.
+* (bug 30335) Fix for HTMLForms using GET that were breaking when non-friendly
+  URLs are used.
+* (bug 28649) Preventing half truncated multi-byte unicode characters when
+  truncating log comments.
+* Show --batch-size option in help of maintenance scripts that support it.
+* (bug 4381) Magic quotes cleaning was not comprehensive, key strings were not
+  unescaped.
+* (bug 23057) Importers no longer can 'edit' or 'create' a fully-protected page by
+  importing a new revision into it.
+* Allow moving the associated talk pages of subpages even if the base page
+  has no subpage.
+* Per page edit-notices now work in namespaces without subpages enabled.
+* (bug 31081) $wgEnotifUseJobQ is no longer unconditionally enqueueing jobs.
+* (bug 30202) File names are now restricted on upload to 240 bytes, because of
+  restrictions on some of the database fields.
+* Timezones are now recognised in user preferences when offset is different
+  due to DST.
+* (bug 31692) "summary" parameter now also works when undoing revisions.
+* (bug 18823) "move succeeded" text displayed bluelinks even when redirect was
+  suppressed.
+* (bug 19186) Special:UserLogin's title on Special:SpecialPages now says
+  "create account" when the user cannot create an account.
+* (bug 31818) 'usercreated' message now supports GENDER.
+* (bug 32022) Our phpunit.php script can now be executed from another directory.
+* (bug 26020) Setting $wgEmailConfirmToEdit to true no longer removes diffs.
+  from recent changes feeds.
+* (bug 30232) add current time to message wlnote on Special:Watchlist.
+* (bug 29110) $wgFeedDiffCutoff did not affect new pages.
+* (bug 32168) Add wfRemoveDotSegments for use in wfExpandUrl.
+* (bug 32358) Do not display "No higher resolution available" for dimensionless
+  files (like audio files).
+* (bug 32168) Add wfAssembleUrl for use in wfExpandUrl.
+* (bug 32168) fixed - wfExpandUrl expands dot segments now.
+* (bug 31535) Upload comments now truncated properly, and don't have brackets.
+* (bug 32086) Special:PermanentLink now show an error message when no subpage
+  was specified.
+* (bug 30368) Special:Newpages now shows the new page name for moved pages.
+* (bug 1697) The way to search blocked usernames in block log should be clearer.
+* (bug 29747) eAccelerator shared memory caching has been removed since it is
+  now disabled by default and is buggy. APC, XCache and WinCache are not affected.
+* Installer now refuses to install if php was not compiled with Ctype support.
+* (bug 29475) Remove "trackback" feature entirely from core.
+* (bug 32665) Special:BlockList prefills the username in the input field if
+  using the Special:BlockList/username URL.
+* (bug 27721) Make JavaScript variables wgSeparatorTransformTable and
+  wgDigitTransformTable depend on page content language so the sort script
+  sorts correctly more often.
+* (bug 32230) Expose wgRedirectedFrom in JavaScript.
+* (bug 31212) History tab not collapsed when the screen is narrow.
+* (bug 15521) Use new section summary when the action of adding a new section
+  also happens to create the page.
+* (bug 32960) Remove EmailAuthenticationTimestamp from database when a
+  email address is removed.
+* (bug 32414) Empty page get a empty bytes attribute in Export/Dump.
+* (bug 33101) Viewing a User or User talk of username resembling IP ending
+  with .xxx causes Internal error.
+* Warning about undefined index in certain situations when $wgLogRestrictions
+  causes the first log type requested to be removed but not the others.
+* Use separate message ('prefixindex-namespace') for title of
+  Special:PrefixIndex rather then re-using Special:AllPages's allinnamespace.
+* (bug 33156) Special:Block now allows you to confirm you want to block yourself
+  when using non-normalized username.
+* (bug 33246) News icon shown for news:// URLs but not for news: URLs.
+* (bug 33305) Make mw.util.addCSS resistant to IE's @font-face bug by setting
+  cssText after DOM insertion.
+* (bug 30711) When adding a new section to a page with section=new, the text is
+  now always added to the current version of the page.
+* (bug 31719) Fix uploads of SVGs exported by Adobe Illustrator by expanding
+  XML entities correctly.
+* (bug 30914) Embeddable ResourceLoader modules (user.options, user.tokens)
+  should be loaded in <head> for proper dependency resolution.
+* (bug 32702) Removed method Skin::makeGlobalVariablesScript() has been readded
+  for backward compatibility.
+* (bug 31469) Make sure tracking category messages expand variables like
+  {{NAMESPACE}} relative to correct title.
+* (bug 33454) ISO-8601 week-based year number (format character 'o') is now
+  calculated correctly with respect to timezone.
+* (bug 32219) InstantCommons now fetches content from Wikimedia Commons using
+  HTTPS when the local wiki is served over HTTPS.
+* (bug 33525) clearTagHooks doesn't clear function hooks.
+* (bug 33523) Function tag hooks don't appear on Special:Version.
+* Files with IPTC blocks we can't read no longer prevent extraction of exif
+  or other metadata.
+* (bug 33587) Remove action "historysubmit" from history pages.
+* (bug 25800) mw.config wgAction should contain the actually performed action instead
+  of whatever the query value contains.
+* (bug 4438) Add CSS hook for current WikiPage action.
+* (bug 33703) Common border-bottom color for <abbr> should inherit default (text) color.
+* (bug 33819) Display file sizes in appropriate units.
+* (bug 32948) {{REVISIONID}} and related variables are no longer blank after doing
+  a null edit.
+* (bug 33880) $wgUsersNotifiedOnAllChanges should not send e-mail to user who made
+  the edit.
+* (bug 33902) Decoding %2B with mw.Uri.decode results in ' ' instead of +.
+* (bug 33762) QueryPage-based special pages no longer misses *-summary message.
+* Other sizes links are no longer generated for wikis without a 404 thumbnail handler.
+* (bug 29454) Enforce byteLimit for page title input on Special:MovePage.
+* (bug 34114) CSSMin::remap() doesn't respect its $embed parameter.
+* Special:Contributions/newbies now shows the contributions for the user "newbies".
+  New user contributions are obtained using the form or using ?contribs=newbie in URL.
+* It is now possible to delete images that have no corresponding description pages.
+* (bug 33165) GlobalFunctions.php line 1312: Call to a member function
+  getText() on a non-object.
+* (bug 31676) Group dynamically inserted CSS into a single <style> tag, to work
+  around a bug where not all styles were applied in Internet Explorer.
+* (bug 28936, bug 5280) Broken or invalid titles can't be removed from watchlist.
+* (bug 34600) Older skins using useHeadElement=false were broken in 1.18.
+* (bug 34604) [mw.config] wgActionPaths should be an object instead of a numeral
+  array.* (bug 12262) Indents and lists are now aligned
+* (bug 29753) mw.util.tooltipAccessKeyPrefix should be alt-shift for Chrome
+   on Windows
+* (bug 25095) Special:Categories should also include the first relevant item
+   when "from" is filled.
+* (bug 34972) An error occurred while changing your watchlist settings for
+  [[Special:WhatLinksHere/Example]]
+
+=== API changes in 1.19 ===
+* Made action=edit less likely to return "unknownerror", by returning the actual error
+  message (which may have come from a hook call or similar).
+* (bug 19838) siprop=interwikimap can now use the interwiki cache.
+* (bug 29748) Add API search prefix support.
+* (bug 29684) Set forgotten parameter types in ApiQueryIWLinks.
+* (bug 29685) do not output NULL parentid with list=deletedrevs&drprop=parentid.
+* siprop=interwikimap and siprop=languages can use silanguagecode to have
+  a best effort language name translation. Use CLDR extension for best result.
+* (bug 30230) action=expandtemplates should not silently override invalid title
+  inputs.
+* (bug 18634) Create API to fetch MediaWiki's language fallback tree structure.
+* (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP
+  address blocks for list=blocks.
+* (bug 30591) Add support to only return keys in ApiAllMessages.
+* The API now respects $wgShowHostnames and won't share the hostname in
+  severedby if it's set to false.
+* wlexcludeuser parameter added to ApiFeedWatchlist.
+* (bug 7304) Links on redirect pages no longer cause the redirect page to show
+  up as a redirect to the linked page on Special:Whatlinkshere.
+* (bug 32609) API: Move captchaid/captchaword of action=edit from core
+  to Captcha extension(s).
+* Added 'APIGetDescription' hook.
+* (bug 32688) Paraminfo for parameter "generator" of the query module shows too
+  many types.
+* (bug 32415) Empty page get no size attribute in API output.
+* (bug 31759) Undefined property notice in querypages API.
+* (bug 32495) API should allow purge by pageids.
+* (bug 33147) API examples should explain what they do.
+* (bug 33482) Api incorrectly calls ApiBase::parseMultiValue if allowed
+  values is given as an array.
+* (bug 32948) {{REVISIONID}} and related variables are no longer blank after
+  calling action=purge&forcelinkupdate.
+* (bug 34377) action=watch now parses messages using the correct title instead
+  of "API".
+* (bug 35036) WikiLove messages were not automatically updated in JavaScript
+  after having been changed on-wiki due to a bug in core
+
+=== Languages updated in 1.19 ===
+
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
+
+* Canadian English (en-ca) (new).
+* Norwegian (bokmål) (nb) (renamed from no).
+* Uighur (Latin) (ug-latn) was incorrectly marked as right-to-left language.
+* (bug 30217) Make pt-br a fallback of pt.
+* (bug 31193) Set fallback language of Assamese from Bengali to English.
+* Update date format for dsb and hsb: month names need the genitive.
+* (bug 28643) Serbian variant conversion improvements (Nikola Smolenski).
+* (bug 29405, bug 30809) Lower diacritics are invisible in titles in Indic
+  languages Assamese, Bengali, Hindi, Malyalam and Odiya.
+* (bug 32826) Titles in indic languages are partially cut.
+* (bug 33367) Gendered namespaces for Czech.
+* (bug 33014) Language::formatSize()/formatBitrate() should be able to deal
+  with larger numbers (tera-yotta).
+
+=== Other changes in 1.19 ===
+* BREAKING CHANGE: Legacy global array 'ta' and global function 'akeytt' have
+  been removed from wikibits.js.
+* jquery.mwPrototypes module was renamed to jquery.mwExtension.
+* The maintenance script populateSha1.php was renamed to the more concise
+  populateImageSha1.php.
+* The Client-IP header is no longer checked for when trying to resolve a client's
+  real IP address.
+* (bug 22096) Although IE5.x and below was already unsupported officially, stylesheets
+  existing exclusively for IE5.0 and IE5.5 have now been removed (which were in skins
+  'chick' and 'monobook').
+* The constructor for CategoryView has changed, the second parameter is now a
+  Context source and is required.
+* The Title::escape{Local,Full,Canonical}URL methods are deprecated, please use
+  proper html building methods to escape the normal get{...}URL methods instead.
+* The $variant arguments in the Title::get{Local,Full,Link,Canonical}URL methods
+  have been replaced with a secondary query argument.
+* The $variant argument in the hooks for the Title::get{Local,Full,Link,Canonical}URL
+  methods have been removed, the variant is now part of the $query argument.
+* Removed Title::isValidCssJsSubpage(), deprecated since 1.17 in favor of
+  using Title::isCssJsSubpage() or checking Title::isWrongCaseCssJsPage().
+* Support for the deprecated hook MagicWordMagicWords was removed.
+* The Xml::namespaceSelector method has been deprecated, please use
+  Html::namespaceSelector instead (note that the parameters have changed also).
+* (bug 33746) Preload popular ResourceLoader modules (mediawiki.util) as stop-gap
+  for scripts missing dependencies.
+  New configuration variable $wgPreloadJavaScriptMwUtil has been introduced for this
+  (set to false by default for new installations). Set to true if your wiki has a large
+  amount of user/site scripts that are lacking dependency information. In the short to
+  medium term these user/site scripts should be fixed by adding the used modules to the
+  dependencies in the module registry and/or wrapping them in a callback to mw.loader.using.
 
 == MediaWiki 1.18 ==
+
+== MediaWiki 1.18.5 ==
+2012-08-30
+
+This is a security release of the MediaWiki 1.18 branch
+
+=== Changes since 1.18.4 ===
+* (bug 39700) File: link to non-existing file can inject html
+* (bug 39823) Hidden block text leaking to admins
+* (bug 39184) LDAP password leakage
+* (bug 39180) Disallow framing of api results
+* (bug 37587) Enforce language codes to be html safe
+* (bug 39824) Check global blocks on account creation
+
+== MediaWiki 1.18.4 ==
+2012-06-12
+
+This is a security release of the MediaWiki 1.18 branch.
+
+=== Changes since 1.18.3 ===
+* (bug 36938) Correctly escape uselang attribute to prevent xss
+* Expanded Blacklist for SVG Files
+
+== MediaWiki 1.18.3 ==
+2012-04-25
+
+This is a maintenance release of the MediaWiki 1.18 branch.
+
 === Changes since 1.18.2 ===
 * (bug 35446) Using "{{nse:}}" with an invalid namespace name no longer throws
   a PHP warning.
 * (bug 35567) The whole password reminder e-mail is now sent in the same language.
+* (bug 35961) Hash comparison should always be strict.
+* (bug 35671) PHP Notice: Undefined index: gettoken in includes/api/ApiMain.php
+  on line 598.
+* Fix broken email confirmation expiration caused by MWCryptRand changes.
 
 == MediaWiki 1.18.2 ==
 2012-03-21
@@ -330,7 +1468,7 @@ Selected changes since MediaWiki 1.17 that may be of interest:
 * New maintenance script to refresh image metadata (maintenance/refreshImageMetadata.php).
 * (bug 16428) Include permalink in printable version.
 * (bug 30722) Add an identity collation that sorts things based on what the
-  unicode code point is (aka pre-1.17 behaviour).
+  unicode code point is (aka pre-1.17 behavior).
 * (bug 30940) Add a hook in User:getDefaultOptions.
   To give extensions a better and more flexible way of providing default
   values for preferences a hook has been introdiced in User:getDefaultOptions().
@@ -793,97 +1931,219 @@ changes to languages because of Bugzilla reports.
 
 == MediaWiki 1.17 ==
 
-=== PHP 5.2 now required ==
-Since 1.17, the lowest supported version of MediaWiki is now 5.2.3. Please
-upgrade PHP if you have not done so prior to upgrading MediaWiki.
+== MediaWiki 1.17.5 ==
+2012-06-12
 
-=== New installer in 1.17 ===
-MediaWiki 1.17 is shipping with a completely redesigned installer to fix
-a lot of outstanding bugs, cleanup the code quality, and make it easier to
-use. Notably, you can now run upgrades from the web without having to move
-LocalSettings.php. Also, configuration script directory has been renamed
-from config/ to mw-config/. The specific bugs are listed below in the
-general notes.
+This is a security release of the MediaWiki 1.17 branch.
 
-=== New ResourceLoader in 1.17 ===
-MediaWiki 1.17 ships with a ResourceLoader which combines and minifies css and
-javascript attached to the page. They are served from the new entry point load.php
-If the page is served with the &debug=true parameter, the non-minified files
-are used instead.
+=== Summary of selected changes in 1.17 ===
+
+Selected changes since MediaWiki 1.16 that may be of interest:
+
+* A new installer has been introduced. It has a wizard-style interface which is
+  translated into many languages. Many shortcomings in the old installer were
+  addressed with this rewrite. Note that it is no longer required for the config
+  directory to be made writable by the webserver. Instead the generated
+  LocalSettings.php file is offered as a download, which you must then upload
+  to the wiki's base directory.
+
+* ResourceLoader, a new framework for delivering client-side resources such as
+  JavaScript and CSS, has been introduced. These resources are now delivered
+  through the new entry point script "load.php", instead of as static files
+  served directly by the web server. This allows minification, compression and
+  client-side caching to be used more effectively, which should provide a net
+  performance improvement for most users.
+
+* Category sorting has been improved.
+** Sorting is now case insensitive.
+** Sub-categories, pages and files can now be paged separately.
+** When several pages are given the same sort key, they sort by their
+   names instead of randomly.
+
+* The lowest supported version of PHP is now 5.2.3. If necessary, please
+  upgrade PHP prior to upgrading MediaWiki.
+
+=== Changes since 1.17.4 ===
+
+* (bug 36938) Correctly escape uselang attribute to prevent xss
+* Expanded Blacklist for SVG Files
+
+=== Changes since 1.17.3 ===
+
+* (bug 35961) Hash comparison should always be strict.
+* Fix broken email confirmation expiration caused by MWCryptRand changes.
+* (bug 35671) PHP Notice: Undefined index: gettoken in includes/api/ApiMain.php
+  on line 598.
+
+=== Changes since 1.17.2 ===
+
+* (bug 22555) Remove or skip strip markers from tag hooks like &lt;nowiki&gt; in
+  core parser functions which operate on strings, such as padleft.
+* (bug 34212) ApiBlock/ApiUnblock allow action to take place without a token
+  parameter present.
+* (bug 34907) Fixed exposure of tokens through load.php that could have facilitated
+  CSRF attacks.
+* (bug 35317) CSRF in Special:Upload.
+
+=== Changes since 1.17.1 ===
+* (bug 33117) prop=revisions allows deleted text to be exposed through cache pollution.
+* (bug 32709) Private Wiki users were always taken to Special:Badtitle on login.
+
+=== Changes since 1.17.0 ===
+
+* (bug 29535) Added missing Creative Commons CC0 icon.
+* (bug 29726) Fixed failure to load internationalization messages in
+  client-side scripts on WebKit-based browsers.
+* Fixed a bug in message transformation where the previous language could leak
+  into later transformations in the UI language.
+* (bug 29091) Fixed form of native name for Ossetic language (Иронау -> Ирон)
+* Fixed maintenance scripts upgrade1_5.php and rebuildImages.php, they did not
+  work at all since 1.17 beta 1.
+* (bug 29531) Fixed img_auth.php for thumbnails and other filenames with
+  multiple dots, was broken by the fix for bug 28840.
+* In the maintenance script purgeList.php, fixed a fatal error when a page
+  title is given, instead of a URL.
+* (bug 19514) Unordered list list-style-image should be IE6-compatible (8-bit).
+* Installer checked for magic_quotes_runtime instead of register_globals.
+* $wgSVGMaxSize is now applied to the smaller of width or height, making very
+  wide pano/timeline/diagram SVGs renderable at saner sizes.
+* (bug 29959) Installer fatal when cURL and allow_url_fopen is disabled and user
+  tries to subsribe to mediawiki-announce.
+* Installer checked for magic_quotes_runtime instead of register_globals
+* (bug 30131) XCache with variable caching disabled no longer used for variable
+  caching (CACHE_ACCEL)
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
+  instead require() for included extensions.
+* (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
+  warnings/notices to be thrown
+* (bug 30907) Special:Unusedcategories should sort ascendingly.
+* (bug 30219) The page shown when LocalSettings.php does not exist was broken on
+  Windows servers.
+* Hardcoded NLS_NUMERIC_CHARACTERS for Oracle DB to prevent type conversion errors.
+* Fixed recentchanges FK violation on page delete and cache purge error in updater
+  for Oracle DB.
+* (bug 32276) Skins were generating output using the internal page title which
+  would allow anonymous users to determine wheter a page exists, potentially
+  leaking private data. In fact, the curid and oldid request parameters would
+  allow page titles to be enumerated even when they are not guessable.
+* (bug 32616) action=ajax requests were dispatched to the relevant internal
+  functions without any read permission checks being done. This could lead to
+  data leakage on private wikis.
+
+=== Changes since 1.17.0rc1 ===
+
+* Fixed syntax error in generated LocalSettings.php when a non-default user
+  rights profile is chosen.
+* (bug 29399) Fixed PostgreSQL installation when the DB user for installation
+  is the same as the one for web access.
+* (bug 29233) Fixed failover for DB slave servers. When a DB slave went down,
+  an error was immediately shown to the user, instead of trying another slave.
+  Was broken since 1.17 beta 1.
+* (bug 29278) Fixed PHP fatal error when attempting to add text to a page via a
+  redirect.
+* (bug 29408) Fixed uploads of files with MIME types that aren't detected by
+  MediaWiki.
+* Removed DEFAULT '' NOT NULL field definitions from Oracle DB schema because
+  using the DEFAULT value ('') in DML broke Oracle backend as it treats an
+  empty VARCHAR2 value as NULL. Indexes on Oracle do not require NOT NULL
+  fields.
+
+=== Changes since 1.17 beta 1 ===
+
+* Fixed warning about missing file "password.js".
+* When installing on MySQL, don't attempt to create a new database user if the
+  same user is used for installation and web access.
+* Fixed SQL query errors in queries with table aliases.
+* (bug 27891) Fixed the "chronology protector", broken since 1.17beta1, which
+  ensures that when database replication is used, the new version is seen by
+  the user immediately after they create or edit an article.
+* (bug 28845) Allow PostgreSQL installation using a non-root user account which
+  has role creation abilities.
+* When installing on PostgreSQL and the install account is the same as the web
+  account, check to make sure that the account has suitable privileges in the
+  mediawiki schema.
+* (bug 28172) Fixed error in PostgreSQL installation when creating the wiki
+  sysop account.
+* Fixed an issue with the Oracle installer in cases where the user is different
+  to the database name.
+* Added "unblockself" to the list of available rights.
+* In the installer, fixed the "user rights profile" option, it never worked.
+* (bug 29117) Fixed Hebrew localisation of the installer.
+* (bug 28840) Reduce the collateral damage caused by the fix for bug 28235 (XSS
+  on Internet Explorer 6 due to a file extension in the query string) by
+  reducing the number of URLs that are blocked, and by redirecting the request
+  to a safer URL where possible instead of blocking it.
+* (bug 28812) Fixed documentation of API action=parse.
+* (bug 28979) Fixed styling of <abbr> and <acronym>.
+* Fixed the error message displayed when you try to create an account by email,
+  but an email address is not given.
+* Fixed JS error due to missing dependency for jquery.suggestions.
+* Exposed $wgExtensionAssetsPath in JavaScript.
+* (bug 28738) Made ResourceLoader support environments with small URL length
+  limits. The length limit can be configured via $wgResourceLoaderMaxQueryLength,
+  and this is set automatically in the generated LocalSettings.php when the
+  php.ini variable "suhosin.get.max_value_length" is set. When a URL exceeds
+  this limit, the request is split up. Also, reduced the average length of
+  load.php URLs by using a more compact parameter format.
+* (bug 25262) Fix for minification of hardcoded data: URIs in CSS.
+* (bug 25124) Respect $wgStyleDirectory in ResourceLoader.
+* Allow installation when no HTTP client is available, don't throw an exception.
+* (bug 27465) Fix metadata extraction for SVG files using unusual namespace
+  names.
+* (bug 29174) Fix regression in upload-by-URL: uploading files larger than the
+  PHP memory limit should work again.
+* Fixed the display of comments in the new user log.
+* (bug 28237) When installing extensions using the web-based installer, create
+  any necessary database tables.
+* (bug 28983) Fixed automated installation of extensions that overwrite $path.
+* Fixed error caused by missing magic words.
+* Fixed breakage of article editing in PostgreSQL due to text search
+  configuration errors.
+* Fixed the HTTPS client used when Curl is not available. This avoids an error
+  during install about failure of the mediawiki-announce subscription.
+* (bug 28162) When installing to PostgreSQL, respect the "database port" input,
+  it was ignored.
 
 === Configuration changes in 1.17 ===
-* DatabaseFunctions.php that was needed for compatibility with pre-1.3
-  extensions has been removed.
-* $wgAllowImageTag can be set to true to whitelist the <img> tag in wikitext.
-* (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
-  options.
-* $wgAllowUserCssPrefs option allows disabling CSS-based preferences; which can
-  improve page loading speed.
+
+* $wgLogAutocreatedAccounts controls whether autocreation of accounts is logged
+  to new users log.
 * (bug 22858) $wgLocalStylePath is by default set to the same value as
   $wgStylePath but should never point to a different domain than the site is
   on, allowing skins to use .htc files which are not cross-domain friendly.
-* (bug 20193) Added $wgVectorShowVariantName global configuration variable
-  which causes Vector to render the variants drop-down menu with a label
-  showing the current variant name. This is off by default, pending further
-  research into its user experience implications.
-* XmlFunctions.php has been removed. Use the Xml or Html classes as appropriate.
-* Added $wgSQLMode for setting database SQL modes - either performance (null)
-  or other reasons (such as enabling stricter checks)
 * $wgFileStore has been deprecated. The only usage $wgFileStore['deleted'] has
   been turned into $wgDeletedDirectory.
 * $wgDeletedDirectory has been added to specify what directory to place deleted
   uploads in.
 * IBM DB2 database no longer uses the db specific $wgDBport_db2 variable but the
   normal $wgDBport.
-* The upload link for missing files can now be set separately from the
-  navigation link with $wgUploadMissingFileUrl.
 * $wgCategoryPrefixedDefaultSortkey was removed and is now always false.  This
   provides more sensible sorting behavior for categories.
 * Removed unused globals: $wgEnableSerializedMessages, $wgCheckSerialized,
-  $wgUseMemCached, $wgDisableSearchContext, $wgColorErrors,
-  $wgUseZhdaemon, $wgZhdaemonHost and $wgZhdaemonPort.
+  $wgUseMemCached, $wgDisableSearchContext, $wgColorErrors, $wgUseZhdaemon,
+  $wgZhdaemonHost and $wgZhdaemonPort.
 * (bug 24408) The include_path is not modified in the default LocalSettings.php
 * $wgVectorExtraStyles was removed, and is no longer in use.
-* $wgLoadScript was added to specify alternative locations for ResourceLoader
-  requests.
-* $wgResourceLoaderMaxage was added to specify maxage and smaxage times for
-  responses from ResourceLoader based on whether the request's URL contained a
-  version parameter or not.
-* $wgResourceLoaderDebug was added to specify the default state of debug mode;
-  this will still be overridden with the debug URL parameter a la
-  $wgLanguageCode.
-* $wgResourceLoaderInlinePrivateModules was added to specify whether private
-  modules such as user.options should be embedded in the HTML output or
-  delivered through a resource loader request, which bypasses server cache (like
-  squid) and checks the user parameter against $wgUser. The former adds more
-  data to all pages, while the latter adds a request which cannot be cached
-  server side.
-* Removed $wgUpdates for database updates; extension should use
-  DatabaseUpdater::addExtensionUpdate().
+* Removed $wgUpdates for database updates; extensions should use
+  DatabaseUpdater::addExtensionUpdate() via the LoadExtensionSchemaUpdates hook.
 * Removed $wgServerName. It doesn't need to be set anymore and is no longer
   available as input for other configuration items, either.
-* Remove $wgRemoteUploads. It was not well supported and superseded by
-  $wgUploadNavigationUrl.
-* (bug 198) $wgUpgradeKey allows unlocking the web installer for upgrades
-  without having to move LocalSettings.php
-* The FailFunction "error handling" method has now been removed
-* $wgAdditionalMailParams added to allow setting extra options to mail() calls.
-* $wgSecureLogin to optionaly login using HTTPS
-* (bug 25728) Added $wgPasswordSenderName to allow customise the name associed
-  with $wgPasswordSender
-* Sysops now have the "suppressredirect" right by default
-* (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
-  the footers of skins.
-* $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy
-  used for the file cache. Default value is 2, which matches former behavior
 * It's no longer necessary for LocalSettings.php to include DefaultSettings.php.
 * It's no longer necessary to set $wgCacheEpoch to the file modification time
   of LocalSettings.php, in LocalSettings.php itself. Instead, this is done
   automatically if $wgInvalidateCacheOnLocalSettingsChange is true (which is
   the default).
-* (bug 26253) $wgPostCommitUpdateList has been removed
+* $wgCopyrightIcon is deprecated and $wgFooterIcons['copyright']['copyright']
+  should be used instead.
+* $wgSysopUserBans is deprecated, and will be made permanently true in 1.18.
+  If you need this functionality, you should use the BlockIp hook to filter and
+  reject such blocks.
+* $wgSysopRangeBans is deprecated, you should set $wgBlockCIDRLimit to maximum
+  (32 for IPv4, 128 for IPv6), equivalent to allowing rangeblocks of only 1
+  address at a time.
 
 === New features in 1.17 ===
+
 * (bug 10183) Users can now add personal styles and scripts to all skins via
   User:<name>/common.css and /common.js (if user css/js is enabled).
 * (bug 22748) Add anchors on Special:ListGroupRights.
@@ -898,7 +2158,7 @@ are used instead.
   changes list.
 * (bug 22925) "sp-contributions-blocked-notice-anon" message now displayed when
   viewing contributions of a blocked IP address.
-* (bug 22474) {{urlencode:}} now takes an optional second paramter for type of
+* (bug 22474) {{urlencode:}} now takes an optional second parameter for type of
   escaping.
 * Special:Listfiles now supports a username parameter.
 * Special:Random carries over query string parameters.
@@ -915,16 +2175,13 @@ are used instead.
 * (bug 20976) "searchmenu-new-nocreate" message now displayed when when there
   is no title match in search and the user has no rights to create pages.
 * (bug 23429) Added new hook WatchlistEditorBuildRemoveLine.
-* (bug 22844) Added support for WinCache object caching.
-* (bug 23580) Add two new events to LivePreview so that scripts can be
-  notified about the beginning and finishing of LivePreview actions.
+* (bug 22844) Added support for WinCache object caching (for IIS).
+* (bug 23580) Add two new events to LivePreview so that scripts can be notified
+  about the beginning and finishing of LivePreview actions.
 * (bug 21278) Now the sidebar allows inclusion of wiki markup.
-* (bug 23733) Add IDs to messages used on CSS/JS pages
-* (bug 21312) RevisionMove allows moving individual revisions of a page to
-  another page. Introducing 'revisionmove' user right; disabled by default;
-  experimental feature.
+* (bug 23733) Add IDs to messages used on CSS/JS pages.
 * Show validity period of the login cookie in Special:UserLogin and
-  Special:Preferences
+  Special:Preferences.
 * Interlanguage links display the page title in their tooltip.
 * (bug 23621) New Special:ComparePages to compare (diff) two articles.
 * (bug 4597) Provide support in Special:Contributions to show only "current"
@@ -935,12 +2192,12 @@ are used instead.
 * (bug 21475) \mathtt and \textsf can now be used in <math>
 * texvc is now run via ulimit4.sh, to limit execution time.
 * SQLite now supports $wgSharedDB.
-* (bug 8507) Group file links by namespace:title on image pages
+* (bug 8507) Group file links by namespace:title on image pages.
 * Stop emitting named entities, so we can use <!DOCTYPE html> while still being
-  well-formed XML
+  well-formed XML.
 * texvc now supports \bcancel and \xcancel in addition to \cancel and \cancelto
-* Added scriptExtension setting to $wgForeignFileRepos
-* ForeignApiRepo uses scriptDirUrl if apiBase not set
+* Added scriptExtension setting to $wgForeignFileRepos.
+* ForeignApiRepo uses scriptDirUrl if apiBase not set.
 * (bug 24212) Added MediaWiki:Filepage.css which is also included on foreign
   client wikis.
 * (bug 14685) Double underscore magic word usage is now tracked in the
@@ -950,71 +2207,100 @@ are used instead.
   "mw-ipb-needreblock"
 * Non-file pages can no longer be moved to the file namespace, nor vice versa.
 * (bug 671) The <dfn>, <kbd> and <samp> elements have been whitelisted in user
-  input
-* (bug 24563) Entries on Special:WhatLinksHere now have a link to their history
-* (bug 21503) There's now a "reason" field when creating account for other users
-* (bug 24418) action=markpatrolled now requires a token
+  input.
+* (bug 21503) There's now a "reason" field when creating account for other users.
+* (bug 24418) action=markpatrolled now requires a token.
 * A variety of category sort-related fixes, including:
 ** (bug 164) In English, lowercase and uppercase letters now sort the same.
-   (This should be expanded to proper sorting for other languages before the
-   1.17 release.)
 ** (bug 1211) Subcategories, ordinary pages, and files now page separately.
 ** When several pages are given the same sort key, they sort by their names
    instead of randomly.
 * (bug 23848) Add {{ARTICLEPATH}} Magic Word.
-* JavaScript-based password complexity checker on account creation and
-  password change.
-* (bug 8140) Add dedicated CSS classes to Special:Newpages elements
-* (bug 11005) Add CSS class to empty pages in Special:Newpages
+* (bug 8140) Add dedicated CSS classes to Special:Newpages elements.
+* (bug 11005) Add CSS class to empty pages in Special:Newpages.
 * The parser cache is now shared amongst users whose different settings aren't
   used in the page.
 * Any attribute beginning with "data-" can now be used in wikitext, per HTML5.
 * (bug 24007) Diff pages now mention the number of users having edited
-  intermediate revisions
-* Added new hook GetIP
+  intermediate revisions.
+* Added new hook GetIP.
 * Special:Version now displays whether a SQLite database supports full-text
   search.
 * TS_ISO_8691_BASIC was added as a time format, which is used by ResourceLoader
-  for versioning
+  for versioning.
 * Maintenance scripts get a --memory-limit option to override defaults (which
-  is usually to set it to -1 to disable the limit)
+  is usually to set it to -1 to disable the limit).
 * (bug 25397) Allow uploading (not displaying) of WebP images, disabled
-  by default
-* (bug 23194) Special:ListFiles now has thumbnails
+  by default.
+* (bug 23194) Special:ListFiles now has thumbnails.
 * Use hreflang to specify canonical and alternate links, search engine friendly
   when a wiki has multiple variant languages.
-* (bug 19593) Specifying --server in now works for all maintenance scripts
+* (bug 19593) Specifying --server in now works for all maintenance scripts.
 * Now rebuildtextindex.php warns if SQLite doesn't support full-text search.
-* (bug 10541) Front/backend separation of installation/upgrade code
-* (bug 10596) Allow installer to enable extensions already in extensions folder
-* (bug 17394) Make installer check for latest version against MediaWiki.org
-* (bug 20627) Installer should be in languages other than English
+* (bug 10541) Front/backend separation of installation/upgrade code.
+* (bug 10596) Allow installer to enable extensions already in extensions folder.
+* (bug 20627) Installer should be in languages other than English.
 * Support for metadata in SVG files (title, description).
-* Special:Search: Add CSS classes to 'none found' and 'create link' messages
+* Special:Search: Add CSS classes to 'none found' and 'create link' messages.
 * Add CSS classes (including namespace and pagename) to the enhanced recent
-  changes/watchlist entries
+  changes/watchlist entries.
 * (bug 22463) Add hook 'SkinGetPoweredBy' to make 'powered by' icon/text
-  customizable
-* Added CSS print pagination to the print stylesheets
+  customizable.
+* Added CSS print pagination to the print stylesheets.
 * (bug 25960) Add <link rel=canonical"> for File pages of shared/foreign
   file repositories.
 * When viewing a redirect, the redirect arrow and redirection target are both
   wrapped in a div that has the class "redirectMsg" so that the redirection
-  arrow can be customized with CSS
+  arrow can be customized with CSS.
 * (bug 21911) Hard coded limit for long page warning removed. New message
   [[MediaWiki:Longpage-hint]] (empty per default) can be used instead.
   Parameters: $1 shows the formatted textsize in Byte/KB/MB, $2 is the raw
-  number of the textsize in Byte
-* (bug 3276) Give image <gallery>s fluid width
-* Added uploads link to page subtitle in Special:Contributions
-* Added Special:Myuploads special page that redirects to Special:Listfiles
+  number of the textsize in Byte.
+* (bug 3276) Give image <gallery>s fluid width.
+* Added uploads link to page subtitle in Special:Contributions.
+* Added Special:Myuploads special page that redirects to Special:Listfiles.
 * The footerlinks used in Monobook/Vector/Modern are now part of common skin
   code, SkinTemplateOutputPageBeforeExec can be used to customize the list.
 * Special wrapping setups can now define MW_CONFIG_FILE to load a config file
   other than LocalSettings.php. This is like MW_CONFIG_CALLBACK but works in
   some cases where MW_CONFIG_CALLBACK will not work.
+* (bug 26574) Added 'upload' to $wgRestrictionTypes, allowing upload protected
+  pages to be queried via the API and Special:ProtectedPages, and allowing
+  disabling upload protection by removing it from $wgRestrictionTypes.
+* The name attribute of HTMLForm fields can now be overridden by passing a
+  'name' key in the descriptor array.  Hidden field names are now treated
+  consistently with other fields and, by default, prefixed with 'wp'.
+* (bug 27402) Add support for disabling MWSuggest.
+* (bug 26563) Add bytes changed per revision for stub and full article dumps.
+* (bug 27508) Add $wgSVGMetadataCutoff to limit the maximum amount of an svg we
+  look at when finding metadata to prevent excessive resource usage.
+* (bug 198) $wgUpgradeKey allows unlocking the web installer for upgrades
+  without having to move LocalSettings.php
+* Added $wgAllowImageTag, which can be set to true to whitelist the <img> tag
+  in wikitext.
+* (bug 12797) Add $wgGalleryOptions for adjusting of default gallery display
+  options.
+* Added the $wgAllowUserCssPrefs option which allows disabling CSS-based
+  preferences; which can improve page loading speed.
+* Added $wgSQLMode for setting database SQL modes - either performance (null)
+  or other reasons (such as enabling stricter checks).
+* (bug 20193) Added $wgVectorShowVariantName global configuration variable
+  which causes Vector to render the variants drop-down menu with a label
+  showing the current variant name. This is off by default, pending further
+  research into its user experience implications.
+* The upload link for missing files can now be set separately from the
+  navigation link with $wgUploadMissingFileUrl.
+* $wgAdditionalMailParams added to allow setting extra options to mail() calls.
+* Added $wgSecureLogin to optionally login using HTTPS.
+* (bug 25728) Added $wgPasswordSenderName to make the name associated
+  with $wgPasswordSender configurable.
+* (bug 22463) $wgFooterIcons added to allow configuration of the icons shown in
+  the footers of skins.
+* $wgFileCacheDepth can be used to set the depth of the subdirectory hierarchy.
+  used for the file cache. Default value is 2, which matches former behavior.
 
 === Bug fixes in 1.17 ===
+
 * (bug 17560) Half-broken deletion moved image files to deletion archive
   without updating database.
 * (bug 22666) Submitting user block form with an invalid user name no longer
@@ -1061,7 +2347,7 @@ are used instead.
 * (bug 20049) Fixed PHP notice in search highlighter that occurs in some cases.
 * (bug 23017) Special:Disambiguations now list pages in content namespaces
   rather than only main namespace.
-* (bug 23063) $wgMaxAnimatedGifArea is checked against the total size of all
+* (bug 23063) $wgMaxAnimatedGifArea is checked against the total size of all.
   frames, and $wgMaxImageArea against the size of the first frame, rather than
   the other way around.  Both now default to 12.5 megapixels.  Also, images
   exceeding $wgMaxImageArea can still be embedded at original size.
@@ -1091,12 +2377,12 @@ are used instead.
   correct link.
 * (bug 23284) Times are now rounded correctly.
 * (bug 23375) Added ogv, oga, spx as extensions for ogg files.
-* (bug 18408) All required permissions for uploading (upload, edit, create)
+* (bug 18408) All required permissions for uploading (upload, edit, create).
   are now checked when loading Special:Upload. Toolbar link for Special:Upload
   is no longer shown if the user does not have the required permissions.
-* (Bug 23397) texvc in html mode renders \sim as &tilde; not &sim;
-* (Bug 23241) Remove License selector, because it is not used when uploading a
-  new version.
+* (bug 23397) texvc in html mode renders \sim as &tilde; not &sim;
+* (bug 23241) License selector should be disabled during upload of a new
+  version.
 * (bug 23240) Add ID to namespace selector form on Special:Watchlist.
 * The pipe | character in urls is now escaped.
 * (bug 23422) mp3 files can now be moved.
@@ -1116,145 +2402,240 @@ are used instead.
 * (bug 16573) Render \epsilon in math using images, in order to create
   consistent and correct render results.
 * (bug 22541) Support image redirects when using ForeignAPIRepo.
-* (bug 22967) Make edit summary length cut-off behave correctly for
-  multibyte characters.
-* (bug 8689) Long numeric lines no longer  kill the parser.
+* (bug 22967) Make edit summary length cut-off behave correctly for multibyte
+  characters.
+* (bug 8689) Long numeric lines no longer kill the parser.
 * (bug 23740) Article::doRedirect() now use $extraQuery parameter correctly if
-  the $noRedir parameter is set to true
+  the $noRedir parameter is set to true.
 * (bug 23688) Correct mime types for Office 2007 OpenXML documents.
-* (bug 23787) Corrected $wgDefaultSkin's comment in DefaultSettings.php
-* (bug 23797) Xml::input() now allows '0' for the value parameter
+* (bug 23787) Corrected $wgDefaultSkin's comment in DefaultSettings.php.
+* (bug 23797) Xml::input() now allows '0' for the value parameter.
 * (bug 23747) Make sure that on History pages, the RevDel button is not
-  accidently activated when hitting enter.
-* (bug 23845) Special:ListFiles now uses correct file names without underscores
-* Ask for permanent login in Special:Preferences only if $wgCookieExpiration > 0
+  accidentally activated when hitting enter.
+* (bug 23845) Special:ListFiles now uses correct file names without underscores.
+* Ask for permanent login in Special:Preferences only if $wgCookieExpiration > 0.
 * (bug 16356) Repair dumpInterwiki.inc to use proper normalization.
 * (bug 24006) deleteArchivedRevisions.php maintenance script now longer throws
-  a fatal error
+  a fatal error.
 * (bug 23465) Don't ignore the predefined destination filename on
-  Special:Upload after following a red link
+  Special:Upload after following a red link.
 * (bug 23642) Recognize mime types of MS OpenXML documents.
 * (bug 22784) Normalise underscores and spaces in autocomments.
-* (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings
+* (bug 19910) Headings of the form ===+\s+ are now displayed as valid headings.
 * (bug 24022) Only check file extensions on the uploadpage when needed.
-* (bug 24076) Recognize Office 2003 files with OpenXML trailers
-* (bug 24244) Updated comments in DefaultSettings.php to reflect
+* (bug 24076) Recognize Office 2003 files with OpenXML trailers.
+* (bug 24244) Updated comments in DefaultSettings.php to reflect.
   Image: --> File: namespace rename.
 * Make wfTimestamp recognize negative unix timestamp values.
 * (bug 24401) SimpleSearch: No button/text indicating 'Search' if image is
-  disabled
-* (bug 23293) Do not show change tags when special:recentchanges(linked)
-  or special:newpages is transcluded into another page as it messes up the
-  page.
+  disabled.
+* (bug 23293) Do not show change tags when Special:RecentChanges(linked) or
+  Special:Newpages is transcluded into another page as it messes up the page.
 * (bug 24517) LocalFile::newFromKey() and OldLocalFile::newFromKey() no longer
-  throw fatal errors
+  throw fatal errors.
 * (bug 23380) Uploaded files that are larger than allowed by PHP now show a
   useful error message.
 * Uploading to a protected title will allow the user to choose a new name
-  instead of showing an error page
+  instead of showing an error page.
 * (bug 24425) Use Database::replace instead of delete/insert in
   SqlBagOStuff::set to avoid query errors about duplicate keynames.
 * (bug 15470) First letters of filenames are always capitalized by upload JS.
-* (bug 21215) NoLocalSettings.php doesn't tolerate rewrite rules
-* (bug 21052) Fix link color for stubs in NewPages
+* (bug 21215) NoLocalSettings.php doesn't tolerate rewrite rules.
+* (bug 21052) Fix link color for stubs in NewPages.
 * (bug 24714) Usage of {{#dateformat: }} in wikis without $wgUseDynamicDates no
   longer pollutes the parser cache.
 * (bug 17031) Correct which characters the parser allows in tag attributes (a
   letter, colon or underscore followed by 0 or more letters, numbers, colons,
   underscores, hyphens, and/or periods).
-* Save 200 useless queries on each category page view
-* Shell commands will now work on Linux in filesystems mounted noexec
-* (bug 24804) Corrected commafying in Polish and Ukrainian
+* Save 200 useless queries on each category page view.
+* Shell commands will now work on Linux in filesystems mounted noexec.
+* (bug 24804) Corrected commafying in Polish and Ukrainian.
 * "Difference between pages" is now displayed instead of "Difference between
-   revisions" on diffs when appropriate.
+  revisions" on diffs when appropriate.
 * (bug 23703) ForeignAPIRepo fails on findBySha1() when using a 1.14 install as
-  a repository due to missing 'name' attribute from the API list=allimages
+  a repository due to missing 'name' attribute from the API list=allimages.
 * (bug 24898) MediaWiki uses /tmp even if a vHost-specific tempdir is set, also
-  make wfTempDir() return a sane value for Windows on worst-case
+  make wfTempDir() return a sane value for Windows on worst-case.
 * (bug 24824) Support ImageMagick 6.5.6-2+ JPEG decoder size hint, to reduce
   memory usage when such an ImageMagick is used for scaling.
-* Disable multithreaded behaviour in recent ImageMagick, to avoid a deadlock
+* Disable multithreaded behavior in recent ImageMagick, to avoid a deadlock
   when a resource limit such as $wgMaxShellMemory is hit.
-* (bug 24981) Allow extensions to access SpecialUpload variables again
-* (bug 20744) Wiki forgets about an uploaded file
-* (bug 17913) Don't show "older edit" when no older edit available
-* (bug 6204) TOC not properly rendered when using $wgMaxTocLevel
-* (bug 24977) The accesskey in history page now lead directly to the diff
-  instead of alterning focus between the two buttons.
-* (bug 24987) Special:ListUsers does not take external groups into account
-* (bug 20633) update.php has mixed language output
+* (bug 24981) Allow extensions to access SpecialUpload variables again.
+* (bug 20744) Wiki forgets about an uploaded file.
+* (bug 17913) Don't show "older edit" when no older edit available.
+* (bug 6204) TOC not properly rendered when using $wgMaxTocLevel.
+* (bug 24977) The accesskey in history page now lead directly to the diff.
+  instead of alternating focus between the two buttons.
+* (bug 24987) Special:ListUsers does not take external groups into account.
+* (bug 20633) update.php has mixed language output.
 * SQLite system table names are now never prefixed.
 * (bug 25292) SkinSubPageSubtitle hook now passes the Skin object as second
-  parameter
-* (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16)
+  parameter.
+* (bug 25167) Correctly load JS fixes for IE6 (fixing a regression in 1.16).
 * (bug 25367) wfShellExec() is more explicit when failing due to disabled
-  passthru()
-* (bug 25462) Fix double-escaping for section edit link tooltips
+  passthru().
+* (bug 25462) Fix double-escaping for section edit link tooltips.
 * action=raw was removed for Special:Statistics. This information is still
-  available via the API
+  available via the API.
 * (bug 23934) Groups defined in $wgRevokePermissions but not in
-  $wgGroupPermissions now appear on Special:ListGroupRights
+  $wgGroupPermissions now appear on Special:ListGroupRights.
 * (bug 23923) Special:Prefixindex no longer shows results if nothing was
   requested.
-* (bug 22308) Search now finds text in default main page immediately after setup
+* (bug 22308) Search now finds text in default main page immediately after setup.
 * (bug 25697) Make sure empty lines render in diff view.
 * Use an actual minus sign in diff views, instead of a hyphen.
-* (bug 23732) Clarified "n links" message on Special:MostLinkedFiles
-* (bug 23731) Clarified "n links" message on Special:MostLinkedTemplates
+* (bug 23732) Clarified "n links" message on Special:MostLinkedFiles.
+* (bug 23731) Clarified "n links" message on Special:MostLinkedTemplates.
 * (bug 25642) A exception is now thrown instead of a fatal error when using
-  $wgSMTP without PEAR mail package
+  $wgSMTP without PEAR mail package.
 * (bug 19633) When possible, Upscale small SVGs when creating thumbnails.
-* (bug 11013) Database driver detection needs rewriting for robustness
-* (bug 13409) Installer prompts could use clarification--now has help boxes
-* (bug 16902) Installer spews warnings when exec() and dl() are not available
-* (bug 19129) Only show MyISAM/InnoDB when supported
-* (bug 17762) Only show other e-mail options when e-mail is globally enabled
-* Cache multiple sizes of InstantCommons thumbnails
+* (bug 11013) Database driver detection needs rewriting for robustness.
+* (bug 13409) Installer prompts could use clarification--now has help boxes.
+* (bug 16902) Installer spews warnings when exec() and dl() are not available.
+* (bug 19129) Only show MyISAM/InnoDB when supported.
+* (bug 17762) Only show other e-mail options when e-mail is globally enabled.
+* Cache multiple sizes of InstantCommons thumbnails.
 * (bug 25488) Disallowing anonymous users to read pages no longer throws error
-  on discussion pages with vector as default skin
-* (bug 24833) Files name in includes/diff/ are now less confusing
-* (bug 25713) SpecialPage::resolveAlias() now normalise spaces to underscores
+  on discussion pages with vector as default skin.
+* (bug 24833) Files name in includes/diff/ are now less confusing.
+* (bug 25713) SpecialPage::resolveAlias() now normalise spaces to underscores.
 * (bug 25829) Special:Mypage and Special:Mytalk now forward oldid, diff and dir
-  parameters
+  parameters.
 * (bug 25175) HTML file cache now honor $wgCacheDirectory if
-  $wgFileCacheDirectory is not set
-* (bug 13353) Diff3 version checks were too strict, did not detect working diff3
-* (bug 25843) Links to special pages using link= attribute on images are now
-  normalised like normal links to special pages
+  $wgFileCacheDirectory is not set.
+* (bug 13353) Diff3 version checks were too strict, did not detect working diff3.
+* (bug 25843) Links to special pages using link= attribute on images are now.
+  normalised like normal links to special pages.
 * (bug 21364) External links using link= attribute on images now respect
-  $wgExternalLinkTarget
+  $wgExternalLinkTarget.
 * (bug 17789) Added a note to the total views on Special:Statistics saying that
-  is doesn't count non-existing pages and special pages
-* (bug 17996) HTTP redirects are now combined when requesting a special page
+  is doesn't count non-existing pages and special pages.
+* (bug 17996) HTTP redirects are now combined when requesting a special page.
 * (bug 19944) Link on image thumbnails no longer link to "Media:" namespace in
-  some cases
+  some cases.
 * (bug 25670) wfFindFile() now checks the namespace of the given title, only
-  "File" and "Media" are allowed now
+  "File" and "Media" are allowed now.
 * (bug 25872) Rename the HttpRequest class to MWHttpRequest to avoid conflict
   with php extension that defines same class.
 * (bug 20591) There's now a different message on Special:MovePage when
   $wgFixDoubleRedirects is set to false.
 * Fixed PHP warnings when updating a broken MySQL database.
-* (bug 26023) Corrected deleteBacth.php's documentation
+* (bug 26023) Corrected deleteBacth.php's documentation.
 * (bug 25451) Improved datetime representation in 32 bit php >= 5.2.
 * Show "skin does not exist error" only when the skin is inputted in the wrong
   case.
-* (bug 26164) Potential html injection when the database server isn't available
-* (bug 26160) Upload description set by extensions are not propagated
+* (bug 26164) Potential html injection when the database server isn't available.
+* (bug 26160) Upload description set by extensions are not propagated.
 * (bug 9675) generateSitemap.php now takes an --urlpath parameter to allow
-  absolute URLs in the sitemap index (as required e.g. by Google)
+  absolute URLs in the sitemap index (as required e.g. by Google).
 * Partial workaround for bug 6220: at least make files on shared repositories
-  show up as (struck-out) bluelinks instead of redlinks on Special:WantedFiles
-* rebuildFileCache.php no longer creates inappropriate cache files for redirects
-* (bug 18372) $wgFileExtensions will now override $wgFileBlacklist
+  show up as (struck-out) bluelinks instead of redlinks on Special:WantedFiles.
+* rebuildFileCache.php no longer creates inappropriate cache files for redirects.
 * (bug 25512) Subcategory list should not include category prefix for members.
-* (bug 20244) Installer does not validate SQLite database directory for stable path
+* (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer
+  treated as wikitext on preview.
+* Page existence is now not revealed (in the colour of the tabs) to users who
+  cannot read the page in question.
+* (bug 22753) Output from update.php is more clear when things changed, entries
+  indicating nothing changed are now all prefixed by "..."
+* (bug 16019) $wgArticlePath = "/$1" no longer breaks API edit/watch actions.
+* (bug 18372) File types blacklisted by $wgFileBlacklist will no longer be shown as
+  "Permitted file types" on the upload form.
+* (bug 26540) Fixed wrong call to applyPatch in MysqlUpdater.
+* (bug 26034) Make the "View / Read" tab in content_navigation style tabs remain
+  selected when the action is "purge".
+* (bug 26733) Wrap initial table creation in transaction.
+* (bug 26208) Mark directionality of some interlanguage links.
+* (bug 26716) Provide link to instructions for external editor related preferences.
+* (bug 26961) Hide anon edits in watchlist preference now actually works.
 * (bug 1379) Installer directory conflicts with some hosts' configuration panel.
-* (bug 12070) After Installation MySQL was blocked
-* Fix XML well-formedness on a few pages when $wgHtml5 is true (the default)
-* (bug 28568) Entries in the iwlinks table are now removed on page deletion
+* (bug 27781) Installer does not warn about 5.1.x. Added a compatibility function
+  for array_key_exists().
+* Fix XML well-formedness on a few pages when $wgHtml5 is true (the default).
+* (bug 28069) MediaWiki fails streaming files when mod_deflate and ob_gzhandler
+  are also set.
+* (bug 26223) Concurrently moving an article to different titles leaks a
+  redirect revision with no page.
+* (bug 15641) Fixed permissions checks in Special:Import which allowed users
+  without the 'import' permission to import pages from configured import sources.
+* (bug 26449) Keep underlines from headings outside of tables and thumbs by
+  adding overflow:hidden to h1,h2,h3,h4,h5,h6 (also fixes editsection bunching).
+* (bug 26708) Remove background-color:white from tables in Monobook and Vector.
+* (bug 26781) {{PAGENAME}} and related parser functions escape their output better.
+* (bug 26716) Provide link to instructions for external editor related preferences
+  and add a comment to the ini control file explaining what is going on.
+* (bug 28422) Remove color:black from tables in Monobook and Vector. And add it
+  to table.wikitable instead.
+* (bug 27560) Search queries no longer fail in walloon language.
+* (bug 27700) The upload protection can now also be set for files that do not
+  exist.
+* (bug 28034) uploading file to local wiki when file exists on shared repository
+  (commons) gives spurious info in the warning message.
+* Usernames get lost when selecting different sorts on Special:listfiles.
+* (bug 28166) UploadBase assumes that 'edit' and 'upload' rights are not per
+  page restrictions.
+* (bug 28242) Make redirects generated by urls containing a local interwiki
+  prefix be a 301 instead of a 302.
+* (bug 28568) Entries in the iwlinks table are now removed on page deletion.
+* (bug 28306) Fix exposure of suppressed usernames in ForeignDBRepo.
+* (bug 28444) Fix regression: edit-on-doubleclick retains revision id again.
+* UtfNormal::cleanUp on an invalid utf-8 sequence no longer returns false if
+  intl installed.
+* (bug 26729) Category pages should return 404 if they do not exist and have no
+  members.
+* (bug 28214) When page not found, sends malformed HTTP/1.x instead of HTTP/1.1
+  in header of response.
+* (bug 27634) TOC title appears in wrong language.
+* (bug 27761) Fix regression: pages with Esperanto titles containing convertible
+  character sequences became unreachable.
+* (bug 27508) SVGMetadataExtractor takes too much resources on huge svgs.
+* (bug 27465) SVG thumbnail generation.
+* (bug 27467) preload can leave UNIQ.
+* (bug 27539) Allow attributes beginning with a digit in wiktext tag parameters.
+* (bug 27328) using relative paths in CSS imports in MediaWiki:Common.css broken
+  in 1.17.
+* (bug 27333) Fix repetitive last-seen time queries on page history.
+* (bug 26250, bug 23817) Fix wfObjectToArray() to descend into arrays; fixes
+  processing of JSON return values for ForeignAPIRepo when native json module
+  not present.
+* (bug 25675) Fix search suggestions for Special: pages with spaces.
+* (bug 25571) Xml::encodeJsVar now passes floats natively instead of converting
+  to strings.
+* (bug 27338) Gallery in 1.17 breaks for audio/video + ogghandler.
+* (bug 27302) Don't append the current timestamp for user/site modules when no
+  user/site JS/CSS is present.
+* (bug 27016) dumpTextPass.php now consider the "output" parameter.
+* (bug 22606) don't send the "someone registred an account" message when setting
+  email address (i.e. old one empty) in user preferences.
+* (bug 26458) Section edit links appear on pages that user does not have right
+  to edit.
+* (bug 28611) Don't die in SqlBagOStuff::incr() if there's a race condition.
+* (bug 16886) Sister projects box moves down the extract of the first result
+  in IE 7.
+* (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame"
+  parameter.
 
 === API changes in 1.17 ===
+
+* BREAKING CHANGE: action=patrol now requires POST.
+* BREAKING CHANGE: patrol token is no longer the same as edit token.
+* BREAKING CHANGE: Session keys returned by ApiUpload are now strings instead
+  of integers.
+* BREAKING CHANGE: (bug 25303) Fix API parameter integer validation to actually
+  enforce validation on the input values in addition to giving a warning.
+  Also add flag to enforce (die) if integer out of range.
+* (bug 24650) Fix API to work with categorylinks changes.
+* action=parse now correctly returns an error for nonexistent pages.
+* (bug 27201) Special:WhatLinksHere output no longer contains duplicate IDs.
+* (bug 26560) On allusers if limit < total number of users, last user gets
+  duplicated.
+* (bug 27715) imageinfo didn't respect revdelete.
+* (bug 27479) API error when using both prop=pageprops and
+  prop=info&inprop=displaytitle.
+* (bug 27862) Useremail module didn't properly return success on success.
+* (bug 27590) prop=imageinfo now allows querying the media type.
+* (bug 27587) list=filearchive now outputs full title info.
+* (bug 27897) list=allusers and list=users list hidden users.
 * (bug 22738) Allow filtering by action type on query=logevent.
 * (bug 22764) uselang parameter for action=parse.
 * (bug 22944) API: watchlist options are inconsistent.
@@ -1272,106 +2653,106 @@ are used instead.
 * (bug 23524) Api Modules as followup to bug 14473 (Add iwlinks table to
   track inline interwiki link usage).
 * Add pltitles and tltemplates to prop=links and prop=templates respectively,
-  similar to prop=categories's clcategorie
+  similar to prop=categories's clcategorie.
 * (bug 23834) Invalid "thumbwidth" and "thumbheight" in "imageinfo" query when
-  thumbnailing larger than original image
-* (bug 23835) Need "thumbmime" result in "imageinfo" query
-* (bug 23851) Repair diff for file redirect pages
-* (bug 24009) Include implicit groups in action=query&list=users&usprop=groups
+  thumbnailing larger than original image.
+* (bug 23835) Need "thumbmime" result in "imageinfo" query.
+* (bug 23851) Repair diff for file redirect pages.
+* (bug 24009) Include implicit groups in action=query&list=users&usprop=groups.
 * (bug 24016) API: Handle parameters specified in simple string syntax
-  ( 'paramname' => 'defaultval' ) correctly when outputting help
-* (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied
-* (bug 23473) Give description of properties on all modules
+  ( 'paramname' => 'defaultval' ) correctly when outputting help.
+* (bug 24089) Logevents causes PHP Notice if leprop=title isn't supplied.
+* (bug 23473) Give description of properties on all modules.
 * (bug 24136) unknownerror when adding new section without summary, but
-  forceditsummary
-* (bug 16886) Sister projects box moves down the extract of the first result
-  in IE 7.
-* (bug 22339) Added srwhat=nearmatch to list=search to get a "go" result
+  forceditsummary.
+* (bug 22339) Added srwhat=nearmatch to list=search to get a "go" result.
 * (bug 24303) Added new &servedby parameter to all actions which adds the
   hostname that served the request to the result. It is also added
-  unconditionally on error
+  unconditionally on error.
 * (bug 24185) Titles in the Media and Special namespace are now supported for
   title normalization in action=query. Special pages have their name resolved
   to the local alias.
 * (bug 24296) Added converttitles parameter to convert titles to their
   canonical language variant.
-* (bug 17398) Fixed "link" parameter in image links with "thumb" or "frame"
-  parameter.
-* (bug 23936) Add "displaytitle" to query/info API
+* (bug 23936) Add "displaytitle" to query/info API.
 * (bug 24485) Make iwbacklinks a generator, optionally display iwprefix and
-  iwtitle
+  iwtitle.
 * (bug 24564) Fix fatal errors when using list=deletedrevs, prop=revisions or
   one of the backlinks generators with limit=max.
-* (bug 24656) API's parse module needs option to disable PP report
+* (bug 24656) API's parse module needs option to disable PP report.
 * PARAM_REQUIRED parameter flag added. If this flag is set, and the end user
   does not set the parameter, the API will automatically throw an error.
 * (bug 24665) When starttimestamp is not specified, fake it by setting it to
-  NOW, not to the timestamp of the last edit
+  NOW, not to the timestamp of the last edit.
 * (bug 24677) axto= parameters added to allcategories, allimages, alllinks,
-  allmessages, allpages, and allusers
+  allmessages, allpages, and allusers.
 * (bug 24236) Add add, remove, add-self, remove-self tags to
-  meta=siteinfo&siprop=usergroups
-* (bug 24484) Add prop=pageprops module
-* (bug 24330) Add &redirect parameter to ?action=edit
+  meta=siteinfo&siprop=usergroups.
+* (bug 24484) Add prop=pageprops module.
+* (bug 24330) Add &redirect parameter to ?action=edit.
 * (bug 24722) For list=allusers&auprop=blockinfo, only show blockedby and
   blockreason if the user is actually blocked.
-* Add format=dump and format=dumpfm, outputs results in PHP's var_dump() format
+* Add format=dump and format=dumpfm, outputs results in PHP's var_dump() format.
 * For required string parameters, if '' is provided, this is now classed as
-  missing
-* (bug 24724) list=allusers is out by 1 (shows total users - 1)
-* (bug 24166) API error when using rvprop=tags
+  missing.
+* (bug 24724) list=allusers is out by 1 (shows total users - 1).
+* (bug 24166) API error when using rvprop=tags.
 * Introduced "asynchronous download" mode for upload-by-url. Requires
   $wgAllowAsyncCopyUploads to be true.
 * sinumberingroup correctly gives size of 'user' group, and omits size of
   implicit groups rather than showing 0.
-* (bug 25248) API: paraminfo errors with certain modules
-* (bug 25303) Fix API parameter integer validation to actually enforce
-  validation on the input values in addition to giving a warning. Also add flag
-  to enforce (die) if integer out of range (breaking change!)
+* (bug 25248) API: paraminfo errors with certain modules.
 * (bug 24792) API help for action=purge sometimes wrongly stated whether a
-  POST request was needed due to cache pollution
-* Added iiprop=parsedcomment to prop=imageinfo, similar to prop=revisions
+  POST request was needed due to cache pollution.
+* Added iiprop=parsedcomment to prop=imageinfo, similar to prop=revisions.
 * Added rvparse to parse revisions. For performance reasons if this option is
   used, rvlimit is enforced to 1.
 * (bug 25748) If a action=parse request provides an oldid that is actually the
-  current revision id, try the parser cache, and save it to it if necessary
+  current revision id, try the parser cache, and save it to it if necessary.
 * (bug 25463) Export header should not be shown if no pages were requested, to
-  reduce confusion
-* (bug 25648) API discovery information has been added as RSD link in page
+  reduce confusion.
+* (bug 25648) API discovery information has been added as RSD link in page.
   <head> and by providing an API module action=rsd. Added hook
   ApiRsdServiceApis for extensions to add their own service to the services
   list.
 * The HTML of diff output markers has changed. Hyphens are now minus signs,
-  empty markers are now filled with non-breaking-space characters
-* (bug 25741) Add more data to list=search's srprop
+  empty markers are now filled with non-breaking-space characters.
+* (bug 25741) Add more data to list=search's srprop.
 * (bug 25760) counter property still reported by the API when
-  $wgDisableCounters enabled
-* (bug 25987) prop=info&inprop=watched now also works for missing pages
-* (bug 26006) prop=langlinks now allows obtaining full URL
-* (bug 26075) ApiDelete.php now calls correctly ArticleDelete hook
-* (bug 26089) add block expiration to blockinfo
+  $wgDisableCounters enabled.
+* (bug 25987) prop=info&inprop=watched now also works for missing pages.
+* (bug 26006) prop=langlinks now allows obtaining full URL.
+* (bug 26075) ApiDelete.php now calls correctly ArticleDelete hook.
+* (bug 26089) add block expiration to blockinfo.
 * (bug 26125) prop=imageinfo&iiprop=size now returns the page count if the
-  file is a multi-page file
-* (bug 10268) Added linktodiffs parameter on action=feedwatchlist
-* (bug 26219) Show API limits for multi values in description
+  file is a multi-page file.
+* (bug 10268) Added linktodiffs parameter on action=feedwatchlist.
+* (bug 26219) Show API limits for multi values in description.
+* (bug 28070) Fix watchlist RSS for databases that store timestamps in a
+  real timestamp field.
+* (bug 27722) list=filearchive now supports revdel.
 
-=== Languages updated in 1.17 ===
+=== Language support changes in 1.17 ===
 
-MediaWiki supports over 330 languages. Many localisations are updated
-regularly. Below only new and removed languages are listed, as well as
-changes to languages because of Bugzilla reports.
+MediaWiki supports over 330 languages. Many localizations are updated regularly.
 
-* Moroccan Spoken Arabic (ary) (new)
-* Banjar (bjn) (new)
-* Danish (dk) (removed deprecated language code)
-* Fiji Hindi (Devangari script) (removed)
-* Kabardian (kdb) (new, dummy)
-* Kabardian (Cyrillic) (kbd-cyrl) (new)
-* Latgalian (ltg) (new)
-* Minangkabau (min) (new)
-* Dutch (informal) (nl-informal) (new)
-* Rusyn (rue) (new)
+The following languages were added:
 
+* Moroccan Spoken Arabic (ary)
+* Banjar (bjn)
+* Kabardian (kdb)
+* Kabardian (Cyrillic) (kbd-cyrl)
+* Latgalian (ltg)
+* Minangkabau (min)
+* Dutch (informal) (nl-informal)
+* Rusyn (rue)
+
+Other significant changes to MediaWiki's language support:
+
+* Fiji Hindi (Devangari script) was removed.
+* Removed deprecated language code "dk" (Danish), use "da" instead.
+* Link trail added for sl and sh.
+* (bug 27633) Add characters to linkTrail for Portuguese (pt and pt-br).
 * (bug 23156) Commafy and search normalization updated for Belarusian
   (Taraškievica).
 * (bug 23283) Native name for Old English -> Ænglisc.
@@ -1381,6 +2762,27 @@ changes to languages because of Bugzilla reports.
 * (bug 24917) Polish as fallback for Kashubia.
 * (bug 24794) Tatar link trail updated.
 * Esperanto date format corrected.
+* (bug 28159) Change interwiki name of language kbd to Къэбэрдеибзэ /
+  Qabardjajəbza.
+* (bug 28184) Namespaces for the Latgalian Wikipedia.
+* (bug 25010) Bashkir-language interwikis: linktext change from Башҡорт
+  to Башҡортса.
+* (bug 26395) Change name of Cornish language to Kernowek.
+
+=== Other changes in 1.17 ===
+
+* DatabaseFunctions.php that was needed for compatibility with pre-1.3
+  extensions has been removed.
+* XmlFunctions.php has been removed. Use the Xml or Html classes as appropriate.
+* The FailFunction "error handling" method has now been removed
+* Sysops now have the "suppressredirect" right by default
+* Removed $wgRemoteUploads. It was not well supported and superseded by
+  $wgUploadNavigationUrl.
+* (bug 26253) $wgPostCommitUpdateList has been removed
+* The PHPUnit test suite has been removed from this release due to serious issues
+  which should be resolved by the 1.18 release.
+* Oracle DB now uses the __destruct fuction to commit/close connection as it
+  doesn't commit on close if transation is triggered in OCI.
 
 == MediaWiki 1.16 ==
 
@@ -1449,8 +2851,8 @@ changes to languages because of Bugzilla reports.
   exist. In that case the URL will get (?|&)wpDestFile=<filename> appended to
   it as appropriate.
 * If $wgLocaltimezone is null, use the server's timezone as the default for
-  signatures. This was always the behaviour documented in DefaultSettings.php
-  but has not been the actual behaviour for some time: instead, UTC was used
+  signatures. This was always the behavior documented in DefaultSettings.php
+  but has not been the actual behavior for some time: instead, UTC was used
   by default.
 * Added $wgExtensionAssetsPath, to decouple assets serving from $wgScriptPath.
   If not specified it will default to $wgScriptPath/extensions
@@ -3647,7 +5049,7 @@ Other changes in this release:
 * (bug 12644) Template list on edit page now sorted on preview
 * (bug 14058) Support pipe trick for namespaces and interwikis with "-"
 * Message name filter on Special:Allmessages now case-insensitive
-* (bug 13943) Fix image redirect behaviour on image pages
+* (bug 13943) Fix image redirect behavior on image pages
 * (bug 14093) Do 'sysop' => 'protect' magic in Title::isValidMoveOperation
 * (bug 14063) Power search form missing <label> for redirects check
 * (bug 14111) Similar filename warning links now lead to correct page
@@ -3870,7 +5272,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to not check and assume they are always up to date)
 * The rollback permission can now be rate-limited using the normal mechanism.
 * New configuration variable $wgExtraLanguageNames
-* Behaviour of $wgAddGroups and $wgRemoveGroups changed. New behaviour:
+* Behavior of $wgAddGroups and $wgRemoveGroups changed. New behavior:
 * * Granting the userrights privilege allows arbitrary changing of rights.
 * * Without the userrights privilege, a user will be able to add and/or
      remove the groups specified in $wgAddGroups and $wgRemoveGroups for
@@ -4282,7 +5684,7 @@ the removal of this double-parse. Please see the wiki page for examples.
 
 Message transformation mode has been removed, and replaced with "preprocess"
 mode. This means that some MediaWiki namespace messages may need to be updated,
-especially ones which took advantage of the terribly counterintuitive behaviour
+especially ones which took advantage of the terribly counterintuitive behavior
 of the former message mode.
 
 The header identification routines for section edit and for numbering section
@@ -4292,7 +5694,7 @@ template expansion will still be rendered into a heading tag, and will get an
 entry in the TOC, but will not have a section edit link. HTML-style headings
 will also not have a section edit link. Valid wikitext headings present in the
 template source text will get a template section edit link. This is a major
-break from previous behaviour, but I believe the effects are almost entirely
+break from previous behavior, but I believe the effects are almost entirely
 beneficial.
 
 The main motivation for making these changes was performance. The new two-pass
@@ -4499,7 +5901,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   enabled by default.
 * Added option to install to MyISAM
 * (bug 9250) Remove hardcoded minimum image name length of three characters
-* Fixed DISPLAYTITLE behaviour to reject titles which don't normalise to the
+* Fixed DISPLAYTITLE behavior to reject titles which don't normalise to the
   same title as the current page, and enabled per default
 * Wrap site CSS and JavaScript in a <pre> tag, like user JS/CSS
 * (bug 10196) Add classes and dir="ltr" to the <pre>s on CSS and JS pages (new
@@ -4781,7 +6183,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix upload form display in right-to-left languages
 * Fixed regression in blocking of username '0'
 * (bug 9437) Don't overwrite edit form submission handler when setting up
-  edit box scroll position preserve/restore behaviour
+  edit box scroll position preserve/restore behavior
 * (bug 10805) Fix "undo" link when viewing the diff of the most recent
   change to a page using "diff=0"
 * (bug 10765) img_auth.php will now refuse logged-out requests where
@@ -5327,7 +6729,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to image/svg+xml after loading from the database.
 * Workaround for djvutoxml bug #1704049 (poor performance). Use djvudump
   instead.
-* Fixed odd behaviour in ImagePage on DjVu thumbnailing errors
+* Fixed odd behavior in ImagePage on DjVu thumbnailing errors
 * (bug 5439) "Go" title search will now jump to shared/foreign Image: and
   MediaWiki: pages that have not been locally edited.
 * (bug 9630) Limits links in Whatlinkshere forgot about namespace filter
@@ -5933,7 +7335,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 * New maintenance script to show the cached statistics : showStats.php.
 * Count deleted edits when regenerating total edits in maintenance/initStats.php
 * (bug 3706) Allow users to be exempted from IP blocks. The ipblock-exempt permission
-  key has been added to enable this behaviour, by default assigned to sysops.
+  key has been added to enable this behavior, by default assigned to sysops.
 * (bug 7948) importDump.php now warn that Recentchanges need to be rebuild.
 * (bug 7667) allow XHTML namespaces customization
 * (bug 8531) Correct local name of Lingála (patch by Raymond)
@@ -6212,7 +7614,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 6642) Don't offer to unlock the database when it isn't locked
 * cleanupTitles.php changed from --dry-run option to --fix, so default
   behavior is now a non-invasive check as with namespaceDupes.php
-* (bug 6660) Fix behaviour of EditPage::blockedPage() when the article does
+* (bug 6660) Fix behavior of EditPage::blockedPage() when the article does
   not exist; now doesn't show the source box if the user hasn't provided it
   (blocked mid-edit) and the page doesn't exist
 * Improve default value of "blockedtext"
@@ -6373,7 +7775,7 @@ they will be run along with the main tests by maintenance/parserTests.php
 * (bug 6023) Fixed mismatch of 0/NULL for wl_notificationtimestamp; now notification
   mails are working after 'Mark all pages visited' button on Special:Watchlist is clicked
 * Made {{INT:}} a core parser function instead of a special case. The syntax
-  and behaviour is largely unchanged.
+  and behavior is largely unchanged.
 * (bug 7448) Fixing the native name for Ewe (ee)
 * (bug 6864) Replace message 'editing' with new message 'editinguser' in Special:Userrights
   to allow better localisation
@@ -9251,7 +10653,7 @@ pages for purposes of page relevancy ranking.
 * (bug 1283) Use underlining and borders to highlight additions/deletions
   in diff-view
 * Use user's local timezone in Special:Log display
-* Show filename for images in gallery by default (restore beta 3 behaviour)
+* Show filename for images in gallery by default (restore beta 3 behavior)
 * (bug 1201) Double-escaping in brokenlinks, imagelinks, categorylinks, searchindex
 * When using squid reverse proxy, cache the redirect to the Main_Page
 * (bug 1302) Fix Norwegian language file

@@ -192,7 +192,6 @@ $messages = array(
 'qbfind' => 'Loa‘a',
 'qbedit' => 'E ho‘ololi',
 'qbpageoptions' => 'Kēia ‘ao‘ao',
-'qbpageinfo' => 'Pō‘aiapili',
 'qbmyoptions' => 'Ka‘u mau ‘ao‘ao',
 'qbspecialpages' => 'Nā ‘ao‘ao kūikawā',
 
@@ -263,7 +262,6 @@ $messages = array(
 'disclaimers' => 'Palapala hoʻokuʻu kuleana',
 'disclaimerpage' => 'Project:Palapala hoʻokuʻu kuleana',
 'edithelp' => 'Kōkua me ka ho‘ololi ‘ana',
-'edithelppage' => 'Help:Ho‘ololi',
 'helppage' => 'Help:Papa kuhikuhi',
 'mainpage' => "Kahua pa'a",
 'mainpage-description' => 'Ka papa kinohi',
@@ -324,9 +322,6 @@ $2',
 'ns-specialprotected' => '‘A‘ole hiki ke ho‘opololei i nā ‘ao‘ao kūikawā',
 
 # Login and logout pages
-'welcomecreation' => '== E komo mai, $1! ==
-Ua hoʻokumu ʻia kāu moʻokāki.
-Mai poina e hoʻololi i [[Special:Preferences|kāu makemake ma {{SITENAME}}]].',
 'yourname' => "Inoa mea ho'ohana",
 'yourpassword' => 'ʻŌlelo hūnā:',
 'yourpasswordagain' => "Hua'ōlelo huna hou",
@@ -468,13 +463,10 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'prevn' => '{{PLURAL:$1|$1}} ma mua',
 'nextn' => '{{PLURAL:$1|$1}} ma hope',
 'viewprevnext' => 'Nānā i nā ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url' => 'Help:Papa kuhikuhi',
 'search-result-size' => '$1 ({{PLURAL:$2|1 huaʻōlelo|$2 huaʻōlelo}})',
 'search-section' => '(māhele $1)',
 'search-suggest' => 'ʻO kēia paha kou manaʻo: $1',
 'search-interwiki-caption' => 'Nā pāhana ʻē aʻe',
-'search-mwsuggest-enabled' => 'me nā manaʻo kōkua',
-'search-mwsuggest-disabled' => 'ʻaʻohe manaʻo kōkua',
 'searchall' => 'apau',
 'powersearch' => 'Hulina kūlana kiʻekiʻe',
 'powersearch-legend' => 'Hulina kūlana kiʻekiʻe',
@@ -647,7 +639,7 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Special:ListGroupRights
 'listgrouprights-members' => '(papa o nā lālā)',
 
-# E-mail user
+# Email user
 'emailuser' => 'E leka uila i kēia mea ho‘ohana',
 'emailmessage' => 'Memo:',
 

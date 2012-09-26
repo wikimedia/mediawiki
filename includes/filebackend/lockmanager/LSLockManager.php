@@ -66,7 +66,7 @@ class LSLockManager extends QuorumLockManager {
 	 *                    each having an odd-numbered list of server names (peers) as values.
 	 *   - connTimeout  : Lock server connection attempt timeout. [optional]
 	 *
-	 * @param Array $config
+	 * @param array $config
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );
@@ -94,7 +94,7 @@ class LSLockManager extends QuorumLockManager {
 
 		// Send out the command and get the response...
 		$type = ( $type == self::LOCK_SH ) ? 'SH' : 'EX';
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
 		$response = $this->sendCommand( $lockSrv, 'ACQUIRE', $type, $keys );
 
 		if ( $response !== 'ACQUIRED' ) {
@@ -115,7 +115,7 @@ class LSLockManager extends QuorumLockManager {
 
 		// Send out the command and get the response...
 		$type = ( $type == self::LOCK_SH ) ? 'SH' : 'EX';
-		$keys = array_unique( array_map( 'LockManager::sha1Base36', $paths ) );
+		$keys = array_unique( array_map( array( $this, 'sha1Base36Absolute' ), $paths ) );
 		$response = $this->sendCommand( $lockSrv, 'RELEASE', $type, $keys );
 
 		if ( $response !== 'RELEASED' ) {
@@ -169,7 +169,7 @@ class LSLockManager extends QuorumLockManager {
 		$authKey = $this->lockServers[$lockSrv]['authKey'];
 		// Build of the command as a flat string...
 		$values = implode( '|', $values );
-		$key = sha1( $this->session . $action . $type . $values . $authKey );
+		$key = hash_hmac( 'sha1', "{$this->session}\n{$action}\n{$type}\n{$values}", $authKey );
 		// Send out the command...
 		if ( fwrite( $conn, "{$this->session}:$key:$action:$type:$values\n" ) === false ) {
 			return false;

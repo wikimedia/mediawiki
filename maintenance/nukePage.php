@@ -23,7 +23,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that erases a page record from the database.
@@ -54,7 +54,7 @@ class NukePage extends Maintenance {
 		$this->output( "Searching for \"$name\"..." );
 		$title = Title::newFromText( $name );
 		if ( $title ) {
-			$id   = $title->getArticleID();
+			$id = $title->getArticleID();
 			$real = $title->getPrefixedText();
 			$isGoodArticle = $title->isContentPage();
 			$this->output( "found \"$real\" with ID $id.\n" );
@@ -117,4 +117,4 @@ class NukePage extends Maintenance {
 }
 
 $maintClass = "NukePage";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

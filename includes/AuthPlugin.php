@@ -46,7 +46,7 @@ class AuthPlugin {
 	 * you might need to munge it (for instance, for lowercase initial
 	 * letters).
 	 *
-	 * @param $username String: username.
+	 * @param string $username username.
 	 * @return bool
 	 */
 	public function userExists( $username ) {
@@ -60,8 +60,8 @@ class AuthPlugin {
 	 * you might need to munge it (for instance, for lowercase initial
 	 * letters).
 	 *
-	 * @param $username String: username.
-	 * @param $password String: user password.
+	 * @param string $username username.
+	 * @param string $password user password.
 	 * @return bool
 	 */
 	public function authenticate( $username, $password ) {
@@ -73,7 +73,7 @@ class AuthPlugin {
 	 * Modify options in the login template.
 	 *
 	 * @param $template UserLoginTemplate object.
-	 * @param $type String 'signup' or 'login'. Added in 1.16.
+	 * @param string $type 'signup' or 'login'. Added in 1.16.
 	 */
 	public function modifyUITemplate( &$template, &$type ) {
 		# Override this!
@@ -83,7 +83,7 @@ class AuthPlugin {
 	/**
 	 * Set the domain this plugin is supposed to use when authenticating.
 	 *
-	 * @param $domain String: authentication domain.
+	 * @param string $domain authentication domain.
 	 */
 	public function setDomain( $domain ) {
 		$this->domain = $domain;
@@ -105,7 +105,7 @@ class AuthPlugin {
 	/**
 	 * Check to see if the specific domain is a valid domain.
 	 *
-	 * @param $domain String: authentication domain.
+	 * @param string $domain authentication domain.
 	 * @return bool
 	 */
 	public function validDomain( $domain ) {
@@ -194,7 +194,7 @@ class AuthPlugin {
 	 * Return true if successful.
 	 *
 	 * @param $user User object.
-	 * @param $password String: password.
+	 * @param string $password password.
 	 * @return bool
 	 */
 	public function setPassword( $user, $password ) {
@@ -251,7 +251,7 @@ class AuthPlugin {
 	 * Check if a user should authenticate locally if the global authentication fails.
 	 * If either this or strict() returns true, local authentication is not used.
 	 *
-	 * @param $username String: username.
+	 * @param string $username username.
 	 * @return Boolean
 	 */
 	public function strictUserAuth( $username ) {

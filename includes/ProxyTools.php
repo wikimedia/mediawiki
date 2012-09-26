@@ -60,8 +60,8 @@ function wfGetIP() {
 }
 
 /**
- * Checks if an IP is a trusted proxy providor.
- * Useful to tell if X-Fowarded-For data is possibly bogus.
+ * Checks if an IP is a trusted proxy provider.
+ * Useful to tell if X-Forwarded-For data is possibly bogus.
  * Squid cache servers for the site are whitelisted.
  *
  * @param $ip String
@@ -109,7 +109,7 @@ function wfProxyCheck() {
 	if ( !$skip ) {
 		$title = SpecialPage::getTitleFor( 'Blockme' );
 		$iphash = md5( $ip . $wgProxyKey );
-		$url = wfExpandUrl( $title->getFullURL( 'ip='.$iphash ), PROTO_HTTP );
+		$url = wfExpandUrl( $title->getFullURL( 'ip=' . $iphash ), PROTO_HTTP );
 
 		foreach ( $wgProxyPorts as $port ) {
 			$params = implode( ' ', array(

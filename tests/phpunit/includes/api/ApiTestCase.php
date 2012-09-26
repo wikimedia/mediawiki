@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
@@ -8,15 +8,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $apiContext;
 
-	function setUp() {
-		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser, $wgServer;
+	protected function setUp() {
+		global $wgServer;
 
 		parent::setUp();
 		self::$apiUrl = $wgServer . wfScript( 'api' );
-		$wgMemc = new EmptyBagOStuff();
-		$wgContLang = Language::factory( 'en' );
-		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
-		$wgRequest = new FauxRequest( array() );
 
 		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
 
@@ -35,21 +31,56 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			)
 		);
 
-		$wgUser = self::$users['sysop']->user;
+		$this->setMwGlobals( array(
+			'wgMemc' => new EmptyBagOStuff(),
+			'wgAuth' => new StubObject( 'wgAuth', 'AuthPlugin' ),
+			'wgRequest' => new FauxRequest( array() ),
+			'wgUser' => self::$users['sysop']->user,
+		) );
 
 		$this->apiContext = new ApiTestContext();
-
 	}
 
-	protected function doApiRequest( Array $params, Array $session = null, $appendModule = false, User $user = null ) {
+	/**
+	 * Edits or creates a page/revision
+	 * @param $pageName string page title
+	 * @param $text string content of the page
+	 * @param $summary string optional summary string for the revision
+	 * @param $defaultNs int optional namespace id
+	 * @return array as returned by WikiPage::doEditContent()
+	 */
+	protected function editPage( $pageName, $text, $summary = '', $defaultNs = NS_MAIN ) {
+		$title = Title::newFromText( $pageName, $defaultNs );
+		$page = WikiPage::factory( $title );
+
+		return $page->doEditContent( ContentHandler::makeContent( $text, $title ), $summary );
+	}
+
+	/**
+	 * Does the API request and returns the result.
+	 *
+	 * The returned value is an array containing
+	 * - the result data (array)
+	 * - the request (WebRequest)
+	 * - the session data of the request (array)
+	 * - if $appendModule is true, the Api module $module
+	 *
+	 * @param array $params
+	 * @param array|null $session
+	 * @param bool $appendModule
+	 * @param User|null $user
+	 *
+	 * @return array
+	 */
+	protected function doApiRequest( array $params, array $session = null, $appendModule = false, User $user = null ) {
 		global $wgRequest, $wgUser;
 
 		if ( is_null( $session ) ) {
-			# re-use existing global session by default
+			// re-use existing global session by default
 			$session = $wgRequest->getSessionArray();
 		}
 
-		# set up global environment
+		// set up global environment
 		if ( $user ) {
 			$wgUser = $user;
 		}
@@ -57,21 +88,22 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgRequest = new FauxRequest( $params, true, $session );
 		RequestContext::getMain()->setRequest( $wgRequest );
 
-		# set up local environment
+		// set up local environment
 		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
 
 		$module = new ApiMain( $context, true );
 
-		# run it!
+		// run it!
 		$module->execute();
 
-		# construct result
+		// construct result
 		$results = array(
 			$module->getResultData(),
 			$context->getRequest(),
 			$context->getRequest()->getSessionArray()
 		);
-		if( $appendModule ) {
+
+		if ( $appendModule ) {
 			$results[] = $module;
 		}
 
@@ -85,8 +117,10 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param $params Array: key-value API params
 	 * @param $session Array|null: session array
 	 * @param $user User|null A User object for the context
+	 * @return result of the API call
+	 * @throws Exception in case wsToken is not set in the session
 	 */
-	protected function doApiRequestWithToken( Array $params, Array $session = null, User $user = null ) {
+	protected function doApiRequestWithToken( array $params, array $session = null, User $user = null ) {
 		global $wgRequest;
 
 		if ( $session === null ) {
@@ -98,6 +132,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$session['wsEditToken'] = $session['wsToken'];
 			// add token to request parameters
 			$params['token'] = md5( $session['wsToken'] ) . User::EDIT_TOKEN_SUFFIX;
+
 			return $this->doApiRequest( $params, $session, false, $user );
 		} else {
 			throw new Exception( "request data not in right format" );
@@ -112,12 +147,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		$token = $data[0]['login']['token'];
 
-		$data = $this->doApiRequest( array(
-			'action' => 'login',
-			'lgtoken' => $token,
-			'lgname' => self::$users['sysop']->username,
-			'lgpassword' => self::$users['sysop']->password
-			), $data[2] );
+		$data = $this->doApiRequest(
+			array(
+				'action' => 'login',
+				'lgtoken' => $token,
+				'lgname' => self::$users['sysop']->username,
+				'lgpassword' => self::$users['sysop']->password,
+			),
+			$data[2]
+		);
 
 		return $data;
 	}
@@ -128,12 +166,26 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'titles' => 'Main Page',
 			'intoken' => 'edit|delete|protect|move|block|unblock|watch',
 			'prop' => 'info' ), $session, false, $user->user );
+
 		return $data;
+	}
+
+	public function testApiTestGroup() {
+		$groups = PHPUnit_Util_Test::getGroups( get_class( $this ) );
+		$constraint = PHPUnit_Framework_Assert::logicalOr(
+			$this->contains( 'medium' ),
+			$this->contains( 'large' )
+		);
+		$this->assertThat( $groups, $constraint,
+			'ApiTestCase::setUp can be slow, tests must be "medium" or "large"'
+		);
 	}
 }
 
 class UserWrapper {
-	public $userName, $password, $user;
+	public $userName;
+	public $password;
+	public $user;
 
 	public function __construct( $userName, $password, $group = '' ) {
 		$this->userName = $userName;
@@ -155,10 +207,14 @@ class UserWrapper {
 }
 
 class MockApi extends ApiBase {
-	public function execute() { }
-	public function getVersion() { }
+	public function execute() {
+	}
 
-	public function __construct() { }
+	public function getVersion() {
+	}
+
+	public function __construct() {
+	}
 
 	public function getAllowedParams() {
 		return array(
@@ -184,6 +240,7 @@ class ApiTestContext extends RequestContext {
 		if ( $user !== null ) {
 			$context->setUser( $user );
 		}
+
 		return $context;
 	}
 }

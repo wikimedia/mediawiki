@@ -35,7 +35,7 @@ abstract class FileCacheBase {
 	/* lazy loaded */
 	protected $mCached;
 
-	/* @TODO: configurable? */
+	/* @todo configurable? */
 	const MISS_FACTOR = 15; // log 1 every MISS_FACTOR cache misses
 	const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
 
@@ -107,7 +107,7 @@ abstract class FileCacheBase {
 
 	/**
 	 * Check if up to date cache file exists
-	 * @param $timestamp string MW_TS timestamp
+	 * @param string $timestamp MW_TS timestamp
 	 *
 	 * @return bool
 	 */
@@ -138,7 +138,7 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	public function fetchText() {
-		if( $this->useGzip() ) {
+		if ( $this->useGzip() ) {
 			$fh = gzopen( $this->cachePath(), 'rb' );
 			return stream_get_contents( $fh );
 		} else {
@@ -163,7 +163,7 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
-			wfDebug( __METHOD__ . "() failed saving ". $this->cachePath() . "\n");
+			wfDebug( __METHOD__ . "() failed saving " . $this->cachePath() . "\n" );
 			$this->mCached = null;
 			return false;
 		}
@@ -229,7 +229,7 @@ abstract class FileCacheBase {
 	public function incrMissesRecent( WebRequest $request ) {
 		global $wgMemc;
 		if ( mt_rand( 0, self::MISS_FACTOR - 1 ) == 0 ) {
-			# Get a large IP range that should include the user  even if that 
+			# Get a large IP range that should include the user  even if that
 			# person's IP address changes
 			$ip = $request->getIP();
 			if ( !IP::isValid( $ip ) ) {

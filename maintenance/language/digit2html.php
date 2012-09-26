@@ -21,7 +21,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that check digit transformation.
@@ -49,7 +49,7 @@ class Digit2Html extends Maintenance {
 			$filename = Language::getMessagesFileName( $code );
 			$this->output( "Loading language [$code] ... " );
 			unset( $digitTransformTable );
-			require_once( $filename );
+			require_once $filename;
 			if ( !isset( $digitTransformTable ) ) {
 				$this->error( "\$digitTransformTable not found for lang: $code" );
 				continue;
@@ -66,4 +66,4 @@ class Digit2Html extends Maintenance {
 }
 
 $maintClass = "Digit2Html";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

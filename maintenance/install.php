@@ -22,15 +22,14 @@
  */
 
 if ( !function_exists( 'version_compare' ) || ( version_compare( phpversion(), '5.3.2' ) < 0 ) ) {
-	echo "You are using PHP version " . phpversion() . " but MediaWiki needs PHP 5.3.2 or higher. ABORTING.\n" .
-	"Check if you have a newer php executable with a different name, such as php5.\n";
-	die( 1 );
+	require_once dirname( __FILE__ ) . '/../includes/PHPVersionError.php';
+	wfPHPVersionError( 'cli' );
 }
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
-require_once( dirname( __DIR__ )."/maintenance/Maintenance.php" );
+require_once dirname( __DIR__ ) . "/maintenance/Maintenance.php";
 
 /**
  * Maintenance script to install and configure MediaWiki
@@ -42,10 +41,11 @@ class CommandLineInstaller extends Maintenance {
 		parent::__construct();
 		global $IP;
 
-		$this->addArg( 'name', 'The name of the wiki', true);
+		$this->addArg( 'name', 'The name of the wiki', true );
 
 		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
-		$this->addOption( 'pass', 'The password for the wiki administrator.', true, true );
+		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
+		$this->addOption( 'passfile', 'An alternative way to provide pass option, as the contents of this file', false, true );
 		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
 		$this->addOption( 'scriptpath', 'The relative path of the wiki in the web server (/wiki)', false, true );
 
@@ -77,6 +77,9 @@ class CommandLineInstaller extends Maintenance {
 
 		$dbpassfile = $this->getOption( 'dbpassfile', false );
 		if ( $dbpassfile !== false ) {
+			if ( $this->getOption( 'dbpass', false ) !== false ) {
+				$this->error( 'WARNING: You provide the options "dbpass" and "dbpassfile". The content of "dbpassfile" overwrites "dbpass".' );
+			}
 			wfSuppressWarnings();
 			$dbpass = file_get_contents( $dbpassfile );
 			wfRestoreWarnings();
@@ -86,17 +89,33 @@ class CommandLineInstaller extends Maintenance {
 			$this->mOptions['dbpass'] = trim( $dbpass, "\r\n" );
 		}
 
+		$passfile = $this->getOption( 'passfile', false );
+		if ( $passfile !== false ) {
+			if ( $this->getOption( 'pass', false ) !== false ) {
+				$this->error( 'WARNING: You provide the options "pass" and "passfile". The content of "passfile" overwrites "pass".' );
+			}
+			wfSuppressWarnings();
+			$pass = file_get_contents( $passfile );
+			wfRestoreWarnings();
+			if ( $pass === false ) {
+				$this->error( "Couldn't open $passfile", true );
+			}
+			$this->mOptions['pass'] = str_replace( array( "\n", "\r" ), "", $pass );
+		} elseif ( $this->getOption( 'pass', false ) === false ) {
+			$this->error( 'You need to provide the option "pass" or "passfile"', true );
+		}
+
 		$installer =
 			InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
 
 		$status = $installer->doEnvironmentChecks();
-		if( $status->isGood() ) {
+		if ( $status->isGood() ) {
 			$installer->showMessage( 'config-env-good' );
 		} else {
 			$installer->showStatusMessage( $status );
 			return;
 		}
-		if( !$this->hasOption( 'env-checks' ) ) {
+		if ( !$this->hasOption( 'env-checks' ) ) {
 			$installer->execute();
 			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
 		}
@@ -111,4 +130,4 @@ class CommandLineInstaller extends Maintenance {
 
 $maintClass = "CommandLineInstaller";
 
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

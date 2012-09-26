@@ -59,8 +59,8 @@ class CSSMin {
 	/**
 	 * Gets a list of local file paths which are referenced in a CSS style sheet
 	 *
-	 * @param $source string CSS data to remap
-	 * @param $path string File path where the source was read from (optional)
+	 * @param string $source CSS data to remap
+	 * @param string $path File path where the source was read from (optional)
 	 * @return array List of local file references
 	 */
 	public static function getLocalFileReferences( $source, $path = null ) {
@@ -115,10 +115,10 @@ class CSSMin {
 	 * Remaps CSS URL paths and automatically embeds data URIs for URL rules
 	 * preceded by an /* @embed * / comment
 	 *
-	 * @param $source string CSS data to remap
-	 * @param $local string File path where the source was read from
-	 * @param $remote string URL path to the file
-	 * @param $embedData bool If false, never do any data URI embedding, even if / * @embed * / is found
+	 * @param string $source CSS data to remap
+	 * @param string $local File path where the source was read from
+	 * @param string $remote URL path to the file
+	 * @param bool $embedData If false, never do any data URI embedding, even if / * @embed * / is found
 	 * @return string Remapped CSS data
 	 */
 	public static function remap( $source, $local, $remote, $embedData = true ) {
@@ -219,7 +219,7 @@ class CSSMin {
 	/**
 	 * Removes whitespace from CSS data
 	 *
-	 * @param $css string CSS data to minify
+	 * @param string $css CSS data to minify
 	 * @return string Minified CSS data
 	 */
 	public static function minify( $css ) {

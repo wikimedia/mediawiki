@@ -43,7 +43,7 @@ class MemcachedBagOStuff extends BagOStuff {
 		if ( !isset( $params['persistent'] ) ) {
 			$params['persistent'] = $GLOBALS['wgMemCachedPersistent'];
 		}
-		if  ( !isset( $params['compress_threshold'] ) ) {
+		if ( !isset( $params['compress_threshold'] ) ) {
 			$params['compress_threshold'] = 1500;
 		}
 		if ( !isset( $params['timeout'] ) ) {
@@ -57,10 +57,11 @@ class MemcachedBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return Mixed
 	 */
-	public function get( $key ) {
-		return $this->client->get( $this->encodeKey( $key ) );
+	public function get( $key, &$casToken = null ) {
+		return $this->client->get( $this->encodeKey( $key ), $casToken );
 	}
 
 	/**
@@ -76,6 +77,18 @@ class MemcachedBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken mixed
+	 * @param $value
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		return $this->client->cas( $casToken, $this->encodeKey( $key ),
+			$value, $this->fixExpiry( $exptime ) );
+	}
+
+	/**
+	 * @param $key string
 	 * @param $time int
 	 * @return bool
 	 */
@@ -86,7 +99,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	/**
 	 * @param $key string
 	 * @param $value int
-	 * @param $exptime int (default 0)
+	 * @param int $exptime (default 0)
 	 * @return Mixed
 	 */
 	public function add( $key, $value, $exptime = 0 ) {
@@ -101,7 +114,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @return Mixed
 	 */
 	public function replace( $key, $value, $exptime = 0 ) {
-		return $this->client->replace( $this->encodeKey( $key ), $value, 
+		return $this->client->replace( $this->encodeKey( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 
@@ -166,15 +179,9 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * Send a debug message to the log
 	 */
 	protected function debugLog( $text ) {
-		global $wgDebugLogGroups;
-		if( !isset( $wgDebugLogGroups['memcached'] ) ) {
-			# Prefix message since it will end up in main debug log file
-			$text = "memcached: $text";
-		}
 		if ( substr( $text, -1 ) !== "\n" ) {
 			$text .= "\n";
 		}
 		wfDebugLog( 'memcached', $text );
 	}
 }
-

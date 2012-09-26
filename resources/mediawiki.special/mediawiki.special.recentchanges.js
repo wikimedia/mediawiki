@@ -1,39 +1,34 @@
-/* JavaScript for Special:RecentChanges */
+/**
+ * JavaScript for Special:RecentChanges
+ */
 ( function ( mw, $ ) {
+	var rc, $checkboxes, $select;
 
-	var checkboxes = [ 'nsassociated', 'nsinvert' ];
-
-	/**
-	 * @var select {jQuery}
-	 */
-	var $select = null;
-
-	var rc = mw.special.recentchanges = {
-
+	rc = {
 		/**
 		 * Handler to disable/enable the namespace selector checkboxes when the
 		 * special 'all' namespace is selected/unselected respectively.
 		 */
 		updateCheckboxes: function () {
 			// The option element for the 'all' namespace has an empty value
-			var isAllNS = $select.find('option:selected').val() === '';
+			var isAllNS = $select.val() === '';
 
 			// Iterates over checkboxes and propagate the selected option
-			$.each( checkboxes, function ( i, id ) {
-				$( '#' + id ).prop( 'disabled', isAllNS );
-			});
+			$checkboxes.prop( 'disabled', isAllNS );
 		},
 
 		init: function () {
-			// Populate
 			$select = $( '#namespace' );
+			$checkboxes = $( '#nsassociated, #nsinvert' );
 
 			// Bind to change event, and trigger once to set the initial state of the checkboxes.
-			$select.change( rc.updateCheckboxes ).change();
+			rc.updateCheckboxes();
+			$select.change( rc.updateCheckboxes );
 		}
 	};
 
-	// Run when document is ready
-	$( rc.init );
+	$( document ).ready( rc.init );
+
+	mw.special.recentchanges = rc;
 
 }( mediaWiki, jQuery ) );

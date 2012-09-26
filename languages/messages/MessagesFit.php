@@ -44,7 +44,6 @@ $messages = array(
 'tog-shownumberswatching' => 'Näytä kuinka moni käyttäjä valvoo sivua',
 'tog-oldsig' => 'Nykynen allekirjotus',
 'tog-fancysig' => 'Mookkaamaton allekirjotus ilman auttomaattista linkkiä',
-'tog-externaleditor' => 'Käytä ekterniä tekstiedituuria stantartina. Vain kokenheile käyttäjile, vaatii taattorin asetuksitten muuttamista. Käytä eksterniä tekstiedituuria oletuksena. Vain kokeneille käyttäjille, vaatii selaimen asetusten muuttamista. (<span class="plainlinks">[[//www.mediawiki.org/wiki/Manual:External_editors Ohje]</span>)',
 
 # Dates
 'sunday' => 'pyhä',
@@ -120,7 +119,6 @@ $messages = array(
 # Cologne Blue skin
 'qbedit' => 'Mookkaa',
 'qbpageoptions' => 'Tämä sivu',
-'qbpageinfo' => 'Sisältö',
 'qbmyoptions' => 'Minun inställninkit',
 'qbspecialpages' => 'Spesiaali sivut',
 'faq' => 'Useasti kysytyt kysymykset',
@@ -379,6 +377,9 @@ Merkinät: (nyk.) = eroavaisuuet nykyisheen versuunhiin, (eel.) = eroavaisuuet e
 'prefs-help-email' => 'E-postin atressi on vapa, mutta tekkee maholiseks ette lähättää sulle salasanan meilissä, jos unhoutat sen.',
 'prefs-help-email-others' => 'Saatat kans antaa muitten käyttäjitten ottaa ottaa yhteyttä sinhuun sähköpostila. Sin atressi ei näy toisen käyttäjän ottaessa sinhuun yhteyttä.',
 
+# Special:Log/newusers
+'newuserlogpage' => 'Uuitten käyttäjitten loki',
+
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'mookkaa tätä sivua',
 
@@ -487,13 +488,10 @@ Tiot [$2 fiilin kuvvaussivulta] näkyvät tässä alla.',
 # Special:LinkSearch
 'linksearch-line' => '$1 on linkattu sivulta $2',
 
-# Special:Log/newusers
-'newuserlogpage' => 'Uuitten käyttäjitten loki',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(jäsenlista)',
 
-# E-mail user
+# Email user
 'emailuser' => 'Lähätä e-posti tälle käyttäjälle',
 
 # Watchlist

@@ -11,11 +11,12 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	 */
 	public static function resourceLoaderRegisterModules( &$resourceLoader ) {
 		self::$resourceLoaderRegisterModulesHook = true;
+
 		return true;
 	}
 
 	/* Provider Methods */
-	public function provideValidModules() {
+	public static function provideValidModules() {
 		return array(
 			array( 'TEST.validModule1', new ResourceLoaderTestModule() ),
 		);
@@ -31,6 +32,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 		self::$resourceLoaderRegisterModulesHook = false;
 		$resourceLoader = new ResourceLoader();
 		$this->assertTrue( self::$resourceLoaderRegisterModulesHook );
+
 		return $resourceLoader;
 	}
 
@@ -61,7 +63,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
 	}
 
-	public function providePackedModules() {
+	public static function providePackedModules() {
 		return array(
 			array(
 				'Example from makePackedModulesString doc comment',
@@ -77,14 +79,20 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 				'Regression fixed in r88706 with dotless names',
 				array( 'foo', 'bar', 'baz' ),
 				'foo,bar,baz',
-			)
+			),
+			array(
+				'Prefixless modules after a prefixed module',
+				array( 'single.module', 'foobar', 'foobaz' ),
+				'single.module|foobar,foobaz',
+			),
 		);
 	}
 }
 
 /* Stubs */
 
-class ResourceLoaderTestModule extends ResourceLoaderModule { }
+class ResourceLoaderTestModule extends ResourceLoaderModule {
+}
 
 /* Hooks */
 global $wgHooks;

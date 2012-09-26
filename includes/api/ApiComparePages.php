@@ -25,17 +25,21 @@
 
 class ApiComparePages extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		$params = $this->extractRequestParams();
 
 		$rev1 = $this->revisionOrTitleOrId( $params['fromrev'], $params['fromtitle'], $params['fromid'] );
 		$rev2 = $this->revisionOrTitleOrId( $params['torev'], $params['totitle'], $params['toid'] );
 
-		$de = new DifferenceEngine( $this->getContext(),
+		$revision = Revision::newFromId( $rev1 );
+
+		if ( !$revision ) {
+			$this->dieUsage( 'The diff cannot be retrieved, ' .
+				'one revision does not exist or you do not have permission to view it.', 'baddiff' );
+		}
+
+		$contentHandler = $revision->getContentHandler();
+		$de = $contentHandler->createDifferenceEngine( $this->getContext(),
 			$rev1,
 			$rev2,
 			null, // rcid
@@ -77,17 +81,17 @@ class ApiComparePages extends ApiBase {
 	 * @return int
 	 */
 	private function revisionOrTitleOrId( $revision, $titleText, $titleId ) {
-		if( $revision ){
+		if ( $revision ) {
 			return $revision;
-		} elseif( $titleText ) {
+		} elseif ( $titleText ) {
 			$title = Title::newFromText( $titleText );
-			if( !$title ){
+			if ( !$title || $title->isExternal() ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $titleText ) );
 			}
 			return $title->getLatestRevID();
 		} elseif ( $titleId ) {
 			$title = Title::newFromID( $titleId );
-			if( !$title ) {
+			if ( !$title ) {
 				$this->dieUsageMsg( array( 'nosuchpageid', $titleId ) );
 			}
 			return $title->getLatestRevID();
@@ -163,9 +167,5 @@ class ApiComparePages extends ApiBase {
 		return array(
 			'api.php?action=compare&fromrev=1&torev=2' => 'Create a diff between revision 1 and 2',
 		);
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

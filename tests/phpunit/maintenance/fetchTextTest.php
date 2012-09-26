@@ -18,7 +18,7 @@ class SemiMockedFetchText extends FetchText {
 	/**
 	 * @var bool Whether or not a text for stdin has been provided
 	 */
-	private $mockSetUp = False;
+	private $mockSetUp = false;
 
 	/**
 	 * @var Array Invocation counters for the mocked aspects
@@ -26,16 +26,14 @@ class SemiMockedFetchText extends FetchText {
 	private $mockInvocations = array( 'getStdin' => 0 );
 
 
-
 	/**
 	 * Data for the fake stdin
 	 *
 	 * @param $stdin String The string to be used instead of stdin
 	 */
-	function mockStdin( $stdin )
-	{
+	function mockStdin( $stdin ) {
 		$this->mockStdinText = $stdin;
-		$this->mockSetUp = True;
+		$this->mockSetUp = true;
 	}
 
 	/**
@@ -44,30 +42,27 @@ class SemiMockedFetchText extends FetchText {
 	 * @return Array An array, whose keys are function names. The corresponding values
 	 * denote the number of times the function has been invoked.
 	 */
-	function mockGetInvocations()
-	{
+	function mockGetInvocations() {
 		return $this->mockInvocations;
 	}
 
 	// -----------------------------------------------------------------
 	// Mocked functions from FetchText follow.
 
-	function getStdin( $len = null )
-	{
+	function getStdin( $len = null ) {
 		$this->mockInvocations['getStdin']++;
 		if ( $len !== null ) {
 			throw new PHPUnit_Framework_ExpectationFailedException(
 				"Tried to get stdin with non null parameter" );
 		}
 
-		if ( ! $this->mockSetUp ) {
+		if ( !$this->mockSetUp ) {
 			throw new PHPUnit_Framework_ExpectationFailedException(
 				"Tried to get stdin before setting up rerouting" );
 		}
 
 		return fopen( 'data://text/plain,' . $this->mockStdinText, 'r' );
 	}
-
 }
 
 /**
@@ -111,7 +106,7 @@ class FetchTextTest extends MediaWikiTestCase {
 	 * @throws MWExcepion
 	 */
 	private function addRevision( $page, $text, $summary ) {
-		$status = $page->doEdit( $text, $summary );
+		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
 			$revision = $value['revision'];
@@ -129,12 +124,14 @@ class FetchTextTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';
 
+		$wikitextNamespace = $this->getDefaultWikitextNS();
+
 		try {
-			$title = Title::newFromText( 'FetchTextTestPage1' );
+			$title = Title::newFromText( 'FetchTextTestPage1', $wikitextNamespace );
 			$page = WikiPage::factory( $title );
 			$this->textId1 = $this->addRevision( $page, "FetchTextTestPage1Text1", "FetchTextTestPage1Summary1" );
 
-			$title = Title::newFromText( 'FetchTextTestPage2' );
+			$title = Title::newFromText( 'FetchTextTestPage2', $wikitextNamespace );
 			$page = WikiPage::factory( $title );
 			$this->textId2 = $this->addRevision( $page, "FetchTextTestPage2Text1", "FetchTextTestPage2Summary1" );
 			$this->textId3 = $this->addRevision( $page, "FetchTextTestPage2Text2", "FetchTextTestPage2Summary2" );
@@ -173,7 +170,6 @@ class FetchTextTest extends MediaWikiTestCase {
 	}
 
 
-
 	// Instead of the following functions, a data provider would be great.
 	// However, as data providers are evaluated /before/ addDBData, a data
 	// provider would not know the required ids.
@@ -190,14 +186,14 @@ class FetchTextTest extends MediaWikiTestCase {
 
 	function testExistingSeveral() {
 		$this->assertFilter( "$this->textId1\n$this->textId5\n"
-			. "$this->textId3\n$this->textId3",
+				. "$this->textId3\n$this->textId3",
 			implode( "", array(
-					$this->textId1 . "\n23\nFetchTextTestPage1Text1",
-					$this->textId5 . "\n44\nFetchTextTestPage2Text4 "
+				$this->textId1 . "\n23\nFetchTextTestPage1Text1",
+				$this->textId5 . "\n44\nFetchTextTestPage2Text4 "
 					. "some additional Text",
-					$this->textId3 . "\n23\nFetchTextTestPage2Text2",
-					$this->textId3 . "\n23\nFetchTextTestPage2Text2"
-				) ) );
+				$this->textId3 . "\n23\nFetchTextTestPage2Text2",
+				$this->textId3 . "\n23\nFetchTextTestPage2Text2"
+			) ) );
 	}
 
 	function testEmpty() {
@@ -229,15 +225,14 @@ class FetchTextTest extends MediaWikiTestCase {
 
 	function testMix() {
 		$this->assertFilter( "ab\n" . $this->textId4 . ".5cd\n\nefg\n" . $this->textId2
-			. "\n" . $this->textId3,
+				. "\n" . $this->textId3,
 			implode( "", array(
-					"0\n-1\n",
-					$this->textId4 . "\n23\nFetchTextTestPage2Text3",
-					"0\n-1\n",
-					"0\n-1\n",
-					$this->textId2 . "\n23\nFetchTextTestPage2Text1",
-					$this->textId3 . "\n23\nFetchTextTestPage2Text2"
-				) ) );
+				"0\n-1\n",
+				$this->textId4 . "\n23\nFetchTextTestPage2Text3",
+				"0\n-1\n",
+				"0\n-1\n",
+				$this->textId2 . "\n23\nFetchTextTestPage2Text1",
+				$this->textId3 . "\n23\nFetchTextTestPage2Text2"
+			) ) );
 	}
-
 }

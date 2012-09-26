@@ -41,7 +41,7 @@
  * @ingroup Maintenance ExternalStorage
  */
 
-require_once( __DIR__ . '/../Maintenance.php' );
+require_once __DIR__ . '/../Maintenance.php';
 
 /**
  * Maintenance script that compress the text of a wiki.
@@ -53,7 +53,7 @@ class CompressOld extends Maintenance {
 	 * @todo document
 	 */
 	const LS_INDIVIDUAL = 0;
-	const LS_CHUNKED    = 1;
+	const LS_CHUNKED = 1;
 
 	public function __construct() {
 		parent::__construct();
@@ -113,9 +113,9 @@ class CompressOld extends Maintenance {
 		$this->output( "Starting from old_id $start...\n" );
 		$dbw = wfGetDB( DB_MASTER );
 		do {
-			$res = $dbw->select( 'text', array( 'old_id','old_flags','old_text' ),
+			$res = $dbw->select( 'text', array( 'old_id', 'old_flags', 'old_text' ),
 				"old_id>=$start", __METHOD__, array( 'ORDER BY' => 'old_id', 'LIMIT' => $chunksize, 'FOR UPDATE' ) );
-			if( $dbw->numRows( $res ) == 0 ) {
+			if ( $res->numRows() == 0 ) {
 				break;
 			}
 			$last = $start;
@@ -126,7 +126,7 @@ class CompressOld extends Maintenance {
 			}
 			$start = $last + 1; # Deletion may leave long empty stretches
 			$this->output( "$start...\n" );
-		} while( true );
+		} while ( true );
 	}
 
 	/**
@@ -223,7 +223,7 @@ class CompressOld extends Maintenance {
 			}
 			$conds[] = "rev_timestamp>'" . $beginDate . "'";
 		}
-		if ( $endDate )  {
+		if ( $endDate ) {
 			if ( !preg_match( '/^\d{14}$/', $endDate ) ) {
 				$this->error( "Invalid end date \"$endDate\"\n" );
 				return false;
@@ -254,9 +254,9 @@ class CompressOld extends Maintenance {
 
 			# Get the page row
 			$pageRes = $dbr->select( 'page',
-				array('page_id', 'page_namespace', 'page_title','page_latest'),
-				$pageConds + array('page_id' => $pageId), __METHOD__ );
-			if ( $dbr->numRows( $pageRes ) == 0 ) {
+				array( 'page_id', 'page_namespace', 'page_title', 'page_latest' ),
+				$pageConds + array( 'page_id' => $pageId ), __METHOD__ );
+			if ( $pageRes->numRows() == 0 ) {
 				continue;
 			}
 			$pageRow = $dbr->fetchObject( $pageRes );
@@ -282,7 +282,7 @@ class CompressOld extends Maintenance {
 				$revs[] = $revRow;
 			}
 
-			if ( count( $revs ) < 2) {
+			if ( count( $revs ) < 2 ) {
 				# No revisions matching, no further processing
 				$this->output( "\n" );
 				continue;
@@ -351,21 +351,22 @@ class CompressOld extends Maintenance {
 					if ( $extdb != "" ) {
 						# Move blob objects to External Storage
 						$stored = $storeObj->store( $extdb, serialize( $chunk ));
-						if ($stored === false) {
-							$this->error(  "Unable to store object" );
+						if ( $stored === false ) {
+							$this->error( "Unable to store object" );
 							return false;
 						}
 						# Store External Storage URLs instead of Stub placeholders
-						foreach ($stubs as $stub) {
-							if ($stub===false)
+						foreach ( $stubs as $stub ) {
+							if ( $stub === false ) {
 								continue;
+							}
 							# $stored should provide base path to a BLOB
-							$url = $stored."/".$stub->getHash();
+							$url = $stored . "/" . $stub->getHash();
 							$dbw->update( 'text',
 								array( /* SET */
 									'old_text' => $url,
 									'old_flags' => 'external,utf-8',
-								), array ( /* WHERE */
+								), array( /* WHERE */
 									'old_id' => $stub->getReferrer(),
 								)
 							);
@@ -387,7 +388,7 @@ class CompressOld extends Maintenance {
 							if ( $stubs[$j] !== false && $revs[$i + $j]->rev_text_id != $primaryOldid ) {
 								$dbw->update( 'text',
 									array( /* SET */
-										'old_text' => serialize($stubs[$j]),
+										'old_text' => serialize( $stubs[$j] ),
 										'old_flags' => 'object,utf-8',
 									), array( /* WHERE */
 										'old_id' => $revs[$i + $j]->rev_text_id
@@ -411,4 +412,4 @@ class CompressOld extends Maintenance {
 }
 
 $maintClass = 'CompressOld';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

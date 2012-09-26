@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to refresh link tables.
@@ -105,7 +105,7 @@ class RefreshLinks extends Maintenance {
 				array(),
 				array( 'redirect' => array( "LEFT JOIN", "page_id=rd_from" ) )
 			);
-			$num = $dbr->numRows( $res );
+			$num = $res->numRows();
 			$this->output( "Refreshing $num old redirects from $start...\n" );
 
 			$i = 0;
@@ -126,7 +126,7 @@ class RefreshLinks extends Maintenance {
 					"page_id >= $start" ),
 				__METHOD__
 			);
-			$num = $dbr->numRows( $res );
+			$num = $res->numRows();
 			$this->output( "$num new articles...\n" );
 
 			$i = 0;
@@ -176,8 +176,16 @@ class RefreshLinks extends Maintenance {
 	}
 
 	/**
-	 * Update the redirect entry for a given page
-	 * @param $id int The page_id of the redirect
+	 * Update the redirect entry for a given page.
+	 *
+	 * This methods bypasses the "redirect" table to get the redirect target,
+	 * and parses the page's content to fetch it. This allows to be sure that
+	 * the redirect target is up to date and valid.
+	 * This is particularly useful when modifying namespaces to be sure the
+	 * entry in the "redirect" table points to the correct page and not to an
+	 * invalid one.
+	 *
+	 * @param $id int The page ID to check
 	 */
 	private function fixRedirect( $id ) {
 		$page = WikiPage::newFromID( $id );
@@ -191,14 +199,25 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$rt = $page->getRedirectTarget();
+		$rt = null;
+		$content = $page->getContent( Revision::RAW );
+		if ( $content !== null ) {
+			$rt = $content->getUltimateRedirectTarget();
+		}
 
 		if ( $rt === null ) {
 			// The page is not a redirect
 			// Delete any redirect table entry for it
-			$dbw->delete( 'redirect', array( 'rd_from' => $id ),
-				__METHOD__ );
+			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
+			$fieldValue = 0;
+		} else {
+			$page->insertRedirectEntry( $rt );
+			$fieldValue = 1;
 		}
+
+		// Update the page table to be sure it is an a consistent state
+		$dbw->update( 'page', array( 'page_is_redirect' => $fieldValue ),
+			array( 'page_id' => $id ), __METHOD__ );
 	}
 
 	/**
@@ -206,8 +225,6 @@ class RefreshLinks extends Maintenance {
 	 * @param $id int The page_id
 	 */
 	public static function fixLinksFromArticle( $id ) {
-		global $wgParser, $wgContLang;
-
 		$page = WikiPage::newFromID( $id );
 
 		LinkCache::singleton()->clear();
@@ -216,18 +233,16 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$text = $page->getRawText();
-		if ( $text === false ) {
+		$content = $page->getContent( Revision::RAW );
+		if ( $content === null ) {
 			return;
 		}
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 
-		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		$parserOutput = $wgParser->parse( $text, $page->getTitle(), $options, true, true, $page->getLatest() );
-		$update = new LinksUpdate( $page->getTitle(), $parserOutput, false );
-		$update->doUpdate();
+		$updates = $content->getSecondaryDataUpdates( $page->getTitle() );
+		DataUpdate::runUpdates( $updates );
 
 		$dbw->commit( __METHOD__ );
 	}
@@ -266,12 +281,13 @@ class RefreshLinks extends Maintenance {
 			$this->output( "Retrieving illegal entries from $table... " );
 
 			// SELECT DISTINCT( $field ) FROM $table LEFT JOIN page ON $field=page_id WHERE page_id IS NULL;
-			$results = $dbr->select( array( $table, 'page' ),
-						  $field,
-						  array( 'page_id' => null ),
-						  __METHOD__,
-						  'DISTINCT',
-						  array( 'page' => array( 'LEFT JOIN', "$field=page_id" ) )
+			$results = $dbr->select(
+				array( $table, 'page' ),
+				$field,
+				array( 'page_id' => null ),
+				__METHOD__,
+				'DISTINCT',
+				array( 'page' => array( 'LEFT JOIN', "$field=page_id" ) )
 			);
 
 			$counter = 0;
@@ -300,4 +316,4 @@ class RefreshLinks extends Maintenance {
 }
 
 $maintClass = 'RefreshLinks';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

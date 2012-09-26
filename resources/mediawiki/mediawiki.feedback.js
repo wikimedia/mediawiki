@@ -1,5 +1,5 @@
 /**
- * mediawiki.Feedback
+ * mediawiki.feedback
  *
  * @author Ryan Kaldari, 2010
  * @author Neil Kandalgaonkar, 2010-11
@@ -68,17 +68,28 @@
 
 	mw.Feedback.prototype = {
 		setup: function () {
-			var fb = this;
+			var $feedbackPageLink,
+				$bugNoteLink,
+				$bugsListLink,
+				fb = this;
 
-			var $feedbackPageLink = $( '<a>' )
-				.attr( { 'href': fb.title.getUrl(), 'target': '_blank' } )
-				.css( { 'white-space': 'nowrap' } );
+			$feedbackPageLink = $( '<a>' )
+				.attr( {
+					href: fb.title.getUrl(),
+					target: '_blank'
+				} )
+				.css( {
+					whiteSpace: 'nowrap'
+				} );
 
-			var $bugNoteLink = $( '<a>' ).attr( { 'href': '#' } ).click( function () {
+			$bugNoteLink = $( '<a>' ).attr( { href: '#' } ).click( function () {
 				fb.displayBugs();
 			} );
 
-			var $bugsListLink = $( '<a>' ).attr( { 'href': fb.bugsListLink, 'target': '_blank' } );
+			$bugsListLink = $( '<a>' ).attr( {
+				href: fb.bugsListLink,
+				target: '_blank'
+			} );
 
 			// TODO: Use a stylesheet instead of these inline styles
 			this.$dialog =
@@ -108,7 +119,7 @@
 					),
 					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' ).append(
 						mw.msg( 'feedback-adding' ),
-						$( '<br/>' ),
+						$( '<br>' ),
 						$( '<span class="feedback-spinner"></span>' )
 					),
 					$( '<div class="feedback-mode feedback-thanks" style="text-align: center; margin:1em"></div>' ).msg(
@@ -148,9 +159,9 @@
 		},
 
 		displayBugs: function () {
-			var fb = this;
+			var fb = this,
+				bugsButtons = {};
 			this.display( 'bugs' );
-			var bugsButtons = {};
 			bugsButtons[ mw.msg( 'feedback-bugnew' ) ] = function () {
 				window.open( fb.bugsLink, '_blank' );
 			};
@@ -163,9 +174,9 @@
 		},
 
 		displayThanks: function () {
-			var fb = this;
+			var fb = this,
+				closeButton = {};
 			this.display( 'thanks' );
-			var closeButton = {};
 			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
 				fb.$dialog.dialog( 'close' );
 			};
@@ -181,14 +192,14 @@
 		 *	message: {String}
 		 */
 		displayForm: function ( contents ) {
-			var fb = this;
+			var fb = this,
+				formButtons = {};
 			this.subjectInput.value = ( contents && contents.subject ) ? contents.subject : '';
 			this.messageInput.value = ( contents && contents.message ) ? contents.message : '';
 
 			this.display( 'form' );
 
 			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
-			var formButtons = {};
 			formButtons[ mw.msg( 'feedback-submit' ) ] = function () {
 				fb.submit();
 			};
@@ -199,10 +210,10 @@
 		},
 
 		displayError: function ( message ) {
-			var fb = this;
+			var fb = this,
+				closeButton = {};
 			this.display( 'error' );
 			this.$dialog.find( '.feedback-error-msg' ).msg( message );
-			var closeButton = {};
 			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
 				fb.$dialog.dialog( 'close' );
 			};
@@ -214,20 +225,10 @@
 		},
 
 		submit: function () {
-			var fb = this;
+			var subject, message,
+				fb = this;
 
-			// get the values to submit
-			var subject = this.subjectInput.value;
-
-			var message = '<small>User agent: ' + mw.html.escape( navigator.userAgent ) + '</small>\n\n'
-				 + this.messageInput.value;
-			if ( message.indexOf( '~~~' ) === -1 ) {
-				message += ' ~~~~';
-			}
-
-			this.displaySubmitting();
-
-			var ok = function ( result ) {
+			function ok( result ) {
 				if ( result.edit !== undefined ) {
 					if ( result.edit.result === 'Success' ) {
 						fb.displayThanks();
@@ -239,15 +240,27 @@
 					// edit failed
 					fb.displayError( 'feedback-error2' );
 				}
-			};
+			}
 
-			var err = function ( code, info ) {
+			function err() {
 				// ajax request failed
 				fb.displayError( 'feedback-error3' );
-			};
+			}
+
+			// Get the values to submit.
+			subject = this.subjectInput.value;
+
+			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
+			// with posting this without their explicit consent
+			message = this.messageInput.value;
+			if ( message.indexOf( '~~~' ) === -1 ) {
+				message += ' ~~~~';
+			}
+
+			this.displaySubmitting();
 
 			this.api.newSection( this.title, subject, message, ok, err );
-		}, // close submit button function
+		},
 
 		/**
 		 * Modify the display form, and then open it, focusing interface on the subject.

@@ -3,8 +3,8 @@
  * Classes to walk into a list of Title objects.
  *
  * Note: this entire file is a byte-for-byte copy of UserArray.php with
- * s/User/Title/.  If anyone can figure out how to do this nicely with inheri-
- * tance or something, please do so.
+ * s/User/Title/.  If anyone can figure out how to do this nicely with
+ * inheritance or something, please do so.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

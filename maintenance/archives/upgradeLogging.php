@@ -21,7 +21,7 @@
  * @ingroup MaintenanceArchive
  */
 
-require( __DIR__ . '/../commandLine.inc' );
+require __DIR__ . '/../commandLine.inc';
 
 /**
  * Maintenance script that upgrade for log_id/log_deleted fields in a
@@ -34,9 +34,9 @@ class UpdateLogging {
 	/**
 	 * @var DatabaseBase
 	 */
-	var $dbw;
-	var $batchSize = 1000;
-	var $minTs = false;
+	public $dbw;
+	public $batchSize = 1000;
+	public $minTs = false;
 
 	function execute() {
 		$this->dbw = wfGetDB( DB_MASTER );
@@ -211,4 +211,3 @@ EOT;
 
 $ul = new UpdateLogging;
 $ul->execute();
-

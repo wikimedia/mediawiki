@@ -40,15 +40,11 @@
  */
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
-if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'core/includes/WebStart.php' );
-} else {
-	require ( __DIR__ . '/includes/WebStart.php' );
-}
+require __DIR__ . '/includes/WebStart.php';
 wfProfileIn( 'img_auth.php' );
 
 # Set action base paths so that WebRequest::getPathInfo()
-# recognizes the "X" as the 'title' in ../image_auth/X urls.
+# recognizes the "X" as the 'title' in ../img_auth.php/X urls.
 $wgArticlePath = false; # Don't let a "/*" article path clober our action path
 $wgActionPaths = array( "$wgUploadPath/" );
 
@@ -60,8 +56,8 @@ function wfImageAuthMain() {
 
 	// See if this is a public Wiki (no protections).
 	if ( $wgImgAuthPublicTest
-		&& in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) )
-	{
+		&& in_array( 'read', User::getGroupPermissions( array( '*' ) ), true )
+	) {
 		// This is a public wiki, so disable this script (for private wikis only)
 		wfForbidden( 'img-auth-accessdenied', 'img-auth-public' );
 		return;
@@ -106,7 +102,7 @@ function wfImageAuthMain() {
 
 	// Check to see if the file exists
 	if ( !$repo->fileExists( $filename ) ) {
-		wfForbidden( 'img-auth-accessdenied','img-auth-nofile', $filename );
+		wfForbidden( 'img-auth-accessdenied', 'img-auth-nofile', $filename );
 		return;
 	}
 
@@ -117,6 +113,8 @@ function wfImageAuthMain() {
 	}
 
 	// Run hook for extension authorization plugins
+	/** @var $result array */
+	$result = null;
 	if ( !wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
 		wfForbidden( $result[0], $result[1], array_slice( $result, 2 ) );
 		return;
@@ -130,7 +128,7 @@ function wfImageAuthMain() {
 	}
 
 	// Stream the requested file
-	wfDebugLog( 'img_auth', "Streaming `".$filename."`." );
+	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
 	$repo->streamFile( $filename, array( 'Cache-Control: private', 'Vary: Cookie' ) );
 }
 
@@ -153,8 +151,8 @@ function wfForbidden( $msg1, $msg2 ) {
 	$detailMsg = wfMessage( $detailMsgKey, $args )->escaped();
 
 	wfDebugLog( 'img_auth',
-		"wfForbidden Hdr:" . wfMessage( $msg1 )->inLanguage( 'en' )->text() . " Msg: ".
-		wfMessage( $msg2, $args )->inLanguage( 'en' )->text()
+		"wfForbidden Hdr: " . wfMessage( $msg1 )->inLanguage( 'en' )->text() . " Msg: " .
+			wfMessage( $msg2, $args )->inLanguage( 'en' )->text()
 	);
 
 	header( 'HTTP/1.0 403 Forbidden' );

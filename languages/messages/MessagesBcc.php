@@ -16,6 +16,7 @@
 
 $fallback = 'fa';
 
+$rtl = true;
 
 $namespaceNames = array(
 	NS_MEDIA            => 'مدیا',
@@ -170,8 +171,6 @@ $messages = array(
 'tog-enotifrevealaddr' => 'منی ایمیل پیش دار ته ایمیل أن هوژاری',
 'tog-shownumberswatching' => 'پیش دار تعداد کاربرانی که چارگتن',
 'tog-fancysig' => 'امضاءَ په داب ویکی متنی بزان(بی اتوماتیکی لینک)',
-'tog-externaleditor' => 'به طور پیش فرض اصلاح کنوک حارجی استفاده کن',
-'tog-externaldiff' => 'به طور پیش فرض چه حارجی تمایز استفاده کن',
 'tog-showjumplinks' => 'فعال کن "jump to" لینکان دست رسی آ',
 'tog-uselivepreview' => 'چه زنده این بازبین استفاده کن(جاوا)(تجربی)',
 'tog-forceeditsummary' => 'من آ هال دی وهدی وارد کتن یک هالیکین خلاصه ی اصلاح',
@@ -274,7 +273,6 @@ $messages = array(
 'qbbrowse' => 'بروز',
 'qbedit' => 'اصلاح',
 'qbpageoptions' => 'صفحه',
-'qbpageinfo' => 'متن',
 'qbmyoptions' => 'منی صفحات',
 'qbspecialpages' => 'حاصین صفحات',
 'faq' => 'ب.ج.س',
@@ -365,7 +363,6 @@ $1',
 'disclaimers' => 'بی میاری گیان',
 'disclaimerpage' => 'Project:عمومی بی میاریگان',
 'edithelp' => 'کمک اصلاح',
-'edithelppage' => 'Help:اصلاح',
 'helppage' => 'Help:محتوا',
 'mainpage' => 'صفحه اصلی',
 'mainpage-description' => 'صفحه اصلی',
@@ -511,9 +508,6 @@ $2',
 
 شما تونیت چه {{SITENAME}} ناشناس استفاده کنیت یا شما تونیت دگه وراد بیت گون دگه یا هما کاربر.
 توجه بیت که لهتی صفحات شاید په داب هما وهدی که شما وراد بوتتیت پیش درگ بند تا وهدی که ذخیره بروزر وتی پاک کنیت.",
-'welcomecreation' => '== وش آتکی،$1! ==
-شمی حساب شر بیت.
- مه شموشیت وتی [[Special:Preferences|{{SITENAME}} ترجیحات]] ترجیحات عوض کنیت',
 'yourname' => 'نام کاربری',
 'yourpassword' => 'کلمه رمز',
 'yourpasswordagain' => 'کلمه رمز دگه نویس',
@@ -760,7 +754,6 @@ $2',
 'template-semiprotected' => '(نیم محافظتی)',
 'hiddencategories' => 'ای صفحه عضوی چه {{PLURAL:$1|1 hidden category|$1 پناهین دسته جات}}:',
 'edittools' => '<!-- <strong>په کپی و پست کتن چه CTRL+V , CTRL+C استفاده کنیت.</strong> -->',
-'nocreatetitle' => 'شرکتن صفحه محدودنت',
 'nocreatetext' => '{{SITENAME}} شما را چه شرکتن نوکین صفحه منه کته.
 شما تونیت برگردیت و یک پیشگین صفحه ای اصلاح کنیت، یا [[Special:UserLogin|وارد بیت یان یک حسابی شرکنیت]].',
 'nocreate-loggedin' => 'شما را اجازت په شرکتن نوکین صفحات نیست.',
@@ -962,7 +955,6 @@ $1",
 'searchmenu-legend' => 'گزینه یان گردگ',
 'searchmenu-exists' => "'''صفحه گون نام \"[[\$1]]\" ته ای ویکی نیستن'''",
 'searchmenu-new' => "'''شر کن صفحه ای \"[[:\$1]]\" ته ای ویکی!'''",
-'searchhelp-url' => 'Help:محتوا',
 'searchmenu-prefix' => '[[Special:PrefixIndex/$1|بروز صفحات گون پیش وند]]',
 'searchprofile-articles' => 'صفحات محتوا',
 'searchprofile-project' => 'کمک و صفحات پروژه ای',
@@ -982,8 +974,6 @@ $1",
 'search-interwiki-caption' => 'پروژه آن گوهار',
 'search-interwiki-default' => '$1 نتایج:',
 'search-interwiki-more' => '(گیشتر)',
-'search-mwsuggest-enabled' => 'گون پیشنهاد',
-'search-mwsuggest-disabled' => 'هچ پیشنهاد',
 'search-relatedarticle' => 'مربوطین',
 'mwsuggest-disable' => 'پیشنهادات آژاکسیء غیر فعال کن',
 'searcheverything-enable' => 'گردگ ته کل فضانامان',
@@ -1006,14 +996,6 @@ $1",
 'searchdisabled' => '{{SITENAME}} گردگ غیر فعالنت.
 شما نونیت بگردیت چه طرق گوگل هم زمان.
 توجه که اندیکس آن {{SITENAME}} محتوا شاید تاریح گوستگین بنت.',
-
-# Quickbar
-'qbsettings' => 'میله سریع',
-'qbsettings-none' => 'هچ یک',
-'qbsettings-fixedleft' => 'چپ ثابت',
-'qbsettings-fixedright' => 'راست ثابت',
-'qbsettings-floatingleft' => 'چپ شناور',
-'qbsettings-floatingright' => 'راست شناور',
 
 # Preferences page
 'preferences' => 'ترجیحات',
@@ -1217,11 +1199,13 @@ $1",
 'right-siteadmin' => 'کبل و پچ دیتابیس',
 'right-override-export-depth' => 'درگیزگ صفحات گون صفحاتی لینک بوتگین ته سطح ۵',
 
+# Special:Log/newusers
+'newuserlogpage' => 'ورود شرکتن کاربر',
+'newuserlogpagetext' => '.شی یک ورودی چه شرکتن کاربر',
+
 # User rights log
 'rightslog' => 'ورودان حقوق کاربر',
 'rightslogtext' => 'شی یک آماری چه تغییرات په حقوق کاربری انت.',
-'rightslogentry' => 'عوض بوت عضویت گروهی په $1  چه $2 په $3',
-'rightsnone' => '(هچ یک)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'وانگ این صفحه',
@@ -1709,10 +1693,6 @@ PICT # misc.
 'activeusers-from' => 'پیشدار کاربرانی که شروع بنت گون :‌',
 'activeusers-noresult' => 'هچ کاربری درگیزگ نه بیت',
 
-# Special:Log/newusers
-'newuserlogpage' => 'ورود شرکتن کاربر',
-'newuserlogpagetext' => '.شی یک ورودی چه شرکتن کاربر',
-
 # Special:ListGroupRights
 'listgrouprights' => 'حقوق گروه کاربر',
 'listgrouprights-summary' => 'جهلیگین یک لیستی چه گروهان کاربری تعریف بوتگین ته ای ویکی انت گون آیانی حق دسترسی آن همراهنت.
@@ -1732,7 +1712,7 @@ PICT # misc.
 'listgrouprights-addgroup-self-all' => 'نونیت کل گروهان په وتی حساب هور کنت',
 'listgrouprights-removegroup-self-all' => 'تونیت کل گروه ان چه وتی حساب بزوریت',
 
-# E-mail user
+# Email user
 'mailnologin' => 'هچ آدرس دیم دهگ',
 'mailnologintext' => 'شما بایدن [[Special:UserLogin|وارد بیت]] و یک معتبرین آدرس ایمیلی داشته بیت ته وتی [[Special:Preferences|ترجیحات]] په دیم داتن ایمیل په دگه کاربران',
 'emailuser' => 'په ای کابر ایمیل دیم دی',
@@ -1775,8 +1755,8 @@ PICT # misc.
 'notvisiblerev' => 'بازبینی حذف بوتت',
 'watchnochange' => 'هچ یک چه شمی چارتگین آیتم اصلاح نه بوتت ته ای دوره زمانی که پیش دارگ بیت.',
 'watchlist-details' => '{{PLURAL:$1|$1 صفحه|$1 صفحات}} چارتگ بیت صفحات گپ حساب نه بیگن',
-'wlheader-enotif' => '* اخطار ایمیل فعالنت.',
-'wlheader-showupdated' => "* صفحات که عوض بوتگنت چه شمی آهری چارتن '''پررنگ''' پیش دراگ بنت.",
+'wlheader-enotif' => 'اخطار ایمیل فعالنت.',
+'wlheader-showupdated' => "صفحات که عوض بوتگنت چه شمی آهری چارتن '''پررنگ''' پیش دراگ بنت.",
 'watchmethod-recent' => 'کنترل نوکین اصلاحات په صفحاتی که چارگ بنت',
 'watchmethod-list' => 'کنترل صفحاتی که چارگ بنت په نوکین اصلاحات',
 'watchlistcontains' => 'شمی لیست چارگ شامل  $1 {{PLURAL:$1|صفحه|صفحات}}.',
@@ -1791,11 +1771,7 @@ PICT # misc.
 
 'enotif_mailer' => '{{SITENAME}} ایمیل دیم دهوک اخطاری',
 'enotif_reset' => 'نشان کن کل صفحات په داب چارتگین',
-'enotif_newpagetext' => 'شی یک نوکین صفحه ایت.',
 'enotif_impersonal_salutation' => '{{SITENAME}} کاربر',
-'changed' => 'عوض بوت.',
-'created' => 'شربوتت',
-'enotif_subject' => '{{SITENAME}} صفحه $PAGETITLE بوتت $CHANGEDORCREATED گون $PAGEEDITOR',
 'enotif_lastvisited' => 'بچار  $1 په کلین تغییرات چه شمی آهری چارگ.',
 'enotif_lastdiff' => 'بچار $1 په گندگ ای تغییر.',
 'enotif_anon_editor' => 'ناشناس کاربر $1',
@@ -1822,6 +1798,8 @@ $NEWPAGE
 
 نظرات و گیشترین کمک:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
+'created' => 'شربوتت',
+'changed' => 'عوض بوت.',
 
 # Delete
 'deletepage' => 'حذف صفحه',
@@ -2419,13 +2397,8 @@ $1',
 'spam_blanking' => 'کل بازبینی آن شامل لینکان په $1, بوتت  هالیکی',
 
 # Skin names
-'skinname-standard' => 'کلاسیک',
-'skinname-nostalgia' => 'نوستالجیک',
 'skinname-cologneblue' => 'نیلی کولاجن',
 'skinname-monobook' => 'منوبوک',
-'skinname-myskin' => 'منی جلد',
-'skinname-chick' => 'شیک',
-'skinname-simple' => 'ساده',
 'skinname-modern' => 'مدرن',
 
 # Patrolling
@@ -2496,8 +2469,6 @@ $1',
 
 /*
 Short names for language variants used for language conversion links.
-To disable showing a particular link, set it to 'disable', e.g.
-'variantname-zh-sg' => 'disable',
 Variants for Chinese language
 */
 'variantname-zh-hans' => 'هانس',
@@ -2554,7 +2525,7 @@ Variants for Chinese language
 * gpslongitude
 * gpsaltitude',
 
-# EXIF tags
+# Exif tags
 'exif-imagewidth' => 'پهنات',
 'exif-imagelength' => 'بلندی',
 'exif-bitspersample' => 'بیت ته جز',
@@ -2670,7 +2641,7 @@ Variants for Chinese language
 'exif-gpsdatestamp' => 'تاریح جی پی اس',
 'exif-gpsdifferential' => 'اصلاح متفاوت جی پی اس',
 
-# EXIF attributes
+# Exif attributes
 'exif-compression-1' => 'کمپرس نه بوتت',
 'exif-compression-6' => 'جیی پی ای جی',
 
@@ -2848,7 +2819,7 @@ Variants for Chinese language
 'namespacesall' => 'کل',
 'monthsall' => 'کل',
 
-# E-mail address confirmation
+# Email address confirmation
 'confirmemail' => 'آدرس ایمیل تایید کن',
 'confirmemail_noemail' => 'شما یک معتبرین آدرس ایمیل تنظیم نه کتت نه وتی [[Special:Preferences|ترجیحات کاربر]].',
 'confirmemail_text' => '{{SITENAME}} لوٹیت که شما وتی آدرس ایمیلء تایید کنید پیش چه شی که سرویسان ایمیلی استفاده کنیت.
@@ -3048,13 +3019,6 @@ $5
 'version-software-product' => 'محصول',
 'version-software-version' => 'نسخه',
 
-# Special:FilePath
-'filepath' => 'مسیر فایل',
-'filepath-page' => 'فایل:',
-'filepath-submit' => 'مسیر',
-'filepath-summary' => 'ای حاصین صفحه مسیر کامل په یک فایل پیش داریت.
-تصاویر گون وضوح کامل پیش دارگ بنت و دگه نوع فایلان گون وتی برنامه یانش مستقیما پچ بنت.',
-
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'گردگ په کپی  فایلان',
 'fileduplicatesearch-summary' => 'گردگ په کپی فایلان په اساس درهمین ارزش.',
@@ -3132,6 +3096,6 @@ $5
 # New logging system
 'revdelete-restricted' => 'محدودیت آن په مدیران سیستم بوت',
 'revdelete-unrestricted' => 'به زور چه مدیران سیستم محدودیتان',
-'newuserlog-byemail' => 'کلمه رمز گون ایمیل دیم دهگ بوت',
+'rightsnone' => '(هچ یک)',
 
 );

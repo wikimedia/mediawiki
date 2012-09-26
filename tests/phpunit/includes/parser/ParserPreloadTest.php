@@ -8,8 +8,11 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	private $testParserOptions;
 	private $title;
 
-	function setUp() {
-		$this->testParserOptions = new ParserOptions();
+	protected function setUp() {
+		global $wgContLang;
+
+		parent::setUp();
+		$this->testParserOptions = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 
 		$this->testParser = new Parser();
 		$this->testParser->Options( $this->testParserOptions );
@@ -18,7 +21,9 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		$this->title = Title::newFromText( 'Preload Test' );
 	}
 
-	function tearDown() {
+	protected function tearDown() {
+		parent::tearDown();
+
 		unset( $this->testParser );
 		unset( $this->title );
 	}
@@ -52,7 +57,7 @@ class ParserPreloadTest extends MediaWikiTestCase {
 		);
 	}
 
-	function assertPreloaded( $expected, $text, $msg='') {
+	function assertPreloaded( $expected, $text, $msg = '' ) {
 		$this->assertEquals(
 			$expected,
 			$this->testParser->getPreloadText(
@@ -63,5 +68,4 @@ class ParserPreloadTest extends MediaWikiTestCase {
 			$msg
 		);
 	}
-
 }

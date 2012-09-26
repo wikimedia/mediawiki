@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to change the password of a given user.
@@ -46,7 +46,7 @@ class ChangePassword extends Maintenance {
 		} elseif ( $this->hasOption( "userid" ) ) {
 			$user = User::newFromId( $this->getOption( 'userid' ) );
 		} else {
-			$this->error( "A \"user\" or \"userid\" must be set to change the password for" , true );
+			$this->error( "A \"user\" or \"userid\" must be set to change the password for", true );
 		}
 		if ( !$user || !$user->getId() ) {
 			$this->error( "No such user: " . $this->getOption( 'user' ), true );
@@ -62,4 +62,4 @@ class ChangePassword extends Maintenance {
 }
 
 $maintClass = "ChangePassword";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

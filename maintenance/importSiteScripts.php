@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to import all scripts in the MediaWiki namespace from a
@@ -62,7 +62,8 @@ class ImportSiteScripts extends Maintenance {
 			$text = Http::get( $url );
 
 			$wikiPage = WikiPage::factory( $title );
-			$wikiPage->doEdit( $text, "Importing from $url", 0, false, $user );
+			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
+			$wikiPage->doEditContent( $content, "Importing from $url", 0, false, $user );
 		}
 
 	}
@@ -104,4 +105,4 @@ class ImportSiteScripts extends Maintenance {
 }
 
 $maintClass = 'ImportSiteScripts';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

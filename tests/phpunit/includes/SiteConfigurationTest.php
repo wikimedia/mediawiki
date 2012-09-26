@@ -10,6 +10,7 @@ function getSiteParams( $conf, $wiki ) {
 			break;
 		}
 	}
+
 	return array(
 		'suffix' => $site,
 		'lang' => $lang,
@@ -25,7 +26,9 @@ function getSiteParams( $conf, $wiki ) {
 class SiteConfigurationTest extends MediaWikiTestCase {
 	var $mConf;
 
-	function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->mConf = new SiteConfiguration;
 
 		$this->mConf->suffixes = array( 'wiki' );
@@ -91,7 +94,6 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 
 		$GLOBALS['global'] = array( 'global' => 'global' );
 	}
-
 
 	function testSiteFromDb() {
 		$this->assertEquals(
@@ -305,7 +307,7 @@ class SiteConfigurationTest extends MediaWikiTestCase {
 		$this->assertEquals( $getall['simple'], $GLOBALS['simple'], 'extractAllGlobals(): simple setting' );
 		$this->assertEquals( $getall['fallback'], $GLOBALS['fallback'], 'extractAllGlobals(): fallback setting' );
 		$this->assertEquals( $getall['params'], $GLOBALS['params'], 'extractAllGlobals(): parameter replacement' );
-		$this->assertEquals( $getall['global'], $GLOBALS['global'],  'extractAllGlobals(): merging with global' );
-		$this->assertEquals( $getall['merge'], $GLOBALS['merge'],  'extractAllGlobals(): merging setting' );
+		$this->assertEquals( $getall['global'], $GLOBALS['global'], 'extractAllGlobals(): merging with global' );
+		$this->assertEquals( $getall['merge'], $GLOBALS['merge'], 'extractAllGlobals(): merging setting' );
 	}
 }

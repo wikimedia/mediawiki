@@ -65,22 +65,54 @@ class DBFileJournal extends FileJournal {
 		foreach ( $entries as $entry ) {
 			$data[] = array(
 				'fj_batch_uuid' => $batchId,
-				'fj_backend'    => $this->backend,
-				'fj_op'         => $entry['op'],
-				'fj_path'       => $entry['path'],
-				'fj_new_sha1'   => $entry['newSha1'],
-				'fj_timestamp'  => $dbw->timestamp( $now )
+				'fj_backend' => $this->backend,
+				'fj_op' => $entry['op'],
+				'fj_path' => $entry['path'],
+				'fj_new_sha1' => $entry['newSha1'],
+				'fj_timestamp' => $dbw->timestamp( $now )
 			);
 		}
 
 		try {
 			$dbw->insert( 'filejournal', $data, __METHOD__ );
+			if ( mt_rand( 0, 99 ) == 0 ) {
+				$this->purgeOldLogs(); // occasionally delete old logs
+			}
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
 			return $status;
 		}
 
 		return $status;
+	}
+
+	/**
+	 * @see FileJournal::doGetCurrentPosition()
+	 * @return integer|false
+	 */
+	protected function doGetCurrentPosition() {
+		$dbw = $this->getMasterDB();
+
+		return $dbw->selectField( 'filejournal', 'MAX(fj_id)',
+			array( 'fj_backend' => $this->backend ),
+			__METHOD__
+		);
+	}
+
+	/**
+	 * @see FileJournal::doGetPositionAtTime()
+	 * @param $time integer|string timestamp
+	 * @return integer|false
+	 */
+	protected function doGetPositionAtTime( $time ) {
+		$dbw = $this->getMasterDB();
+
+		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $time ) );
+		return $dbw->selectField( 'filejournal', 'fj_id',
+			array( 'fj_backend' => $this->backend, "fj_timestamp <= $encTimestamp" ),
+			__METHOD__,
+			array( 'ORDER BY' => 'fj_timestamp DESC' )
+		);
 	}
 
 	/**

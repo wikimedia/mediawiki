@@ -26,13 +26,17 @@
 
 /**
  * Look for duplicate user table entries and optionally prune them.
+ *
+ * This is still used by our MysqlUpdater at:
+ * includes/installer/MysqlUpdater.php
+ *
  * @ingroup Maintenance
  */
 class UserDupes {
-	var $db;
-	var $reassigned;
-	var $trimmed;
-	var $failed;
+	private $db;
+	private $reassigned;
+	private $trimmed;
+	private $failed;
 	private $outputCallback;
 
 	function __construct( &$database, $outputCallback ) {
@@ -108,9 +112,9 @@ class UserDupes {
 		$count = count( $dupes );
 
 		$this->out( "Found $count accounts with duplicate records on " . wfWikiID() . ".\n" );
-		$this->trimmed    = 0;
+		$this->trimmed = 0;
 		$this->reassigned = 0;
-		$this->failed     = 0;
+		$this->failed = 0;
 		foreach ( $dupes as $name ) {
 			$this->examine( $name, $doDelete );
 		}
@@ -219,7 +223,7 @@ class UserDupes {
 			__METHOD__ );
 
 		$firstRow = $this->db->fetchObject( $result );
-		$firstId  = $firstRow->user_id;
+		$firstId = $firstRow->user_id;
 		$this->out( "Record that will be used for '$name' is user_id=$firstId\n" );
 
 		foreach ( $result as $row ) {

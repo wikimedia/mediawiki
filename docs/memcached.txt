@@ -198,7 +198,7 @@ Revision text:
 	expriry: $wgRevisionCacheExpiry
 
 Sessions:
-	controlled by: $wgSessionsInMemcached
+	controlled by: $wgSessionsInObjectCache
 	key: $wgBDname:session:$id
 	ex: wikidb:session:38d7c5b8d3bfc51egf40c69bc40f8be3
 	stores: $SESSION, useful when using a multi-sever wiki
@@ -237,9 +237,9 @@ Statistics:
 	controlled by: $wgStatsMethod
 	key: $wgDBname:stats:$key
 	ex: wikibd:stats:request_with_session
-	stores: counter for statistics (see maintenance/stats.php script)
+	stores: counter for statistics (see maintenance/showCacheStats.php script)
 	expiry: none (?)
-	cleared by: maintenance/clear_stats.php script
+	cleared by: maintenance/clearCacheStats.php script
 
 User:
 	key: $wgDBname:user:id:$sId

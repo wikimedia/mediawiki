@@ -29,52 +29,108 @@
  * @ingroup Search
  */
 class SearchUpdate implements DeferrableUpdate {
+	/**
+	 * Page id being updated
+	 * @var int
+	 */
+	private $id = 0;
 
-	private $mId = 0, $mNamespace, $mTitle, $mText;
-	private $mTitleWords;
+	/**
+	 * Title we're updating
+	 * @var Title
+	 */
+	private $title;
 
-	function __construct( $id, $title, $text = false ) {
-		$nt = Title::newFromText( $title );
-		if( $nt ) {
-			$this->mId = $id;
-			$this->mText = $text;
+	/**
+	 * Content of the page (not text)
+	 * @var Content|false
+	 */
+	private $content;
 
-			$this->mNamespace = $nt->getNamespace();
-			$this->mTitle = $nt->getText(); # Discard namespace
+	/**
+	 * Constructor
+	 *
+	 * @param int $id Page id to update
+	 * @param Title|string $title Title of page to update
+	 * @param Content|string|false $c Content of the page to update.
+	 *  If a Content object, text will be gotten from it. String is for back-compat.
+	 *  Passing false tells the backend to just update the title, not the content
+	 */
+	public function __construct( $id, $title, $c = false ) {
+		if ( is_string( $title ) ) {
+			$nt = Title::newFromText( $title );
+		} else {
+			$nt = $title;
+		}
 
-			$this->mTitleWords = $this->mTextWords = array();
+		if ( $nt ) {
+			$this->id = $id;
+			// is_string() check is back-compat for ApprovedRevs
+			if( is_string( $c ) ) {
+				$this->content = new TextContent( $c );
+			} else {
+				$this->content = $c ?: false;
+			}
+			$this->title = $nt;
 		} else {
 			wfDebug( "SearchUpdate object created with invalid title '$title'\n" );
 		}
 	}
 
-	function doUpdate() {
-		global $wgContLang, $wgDisableSearchUpdate;
+	/**
+	 * Perform actual update for the entry
+	 */
+	public function doUpdate() {
+		global $wgDisableSearchUpdate;
 
-		if( $wgDisableSearchUpdate || !$this->mId ) {
+		if ( $wgDisableSearchUpdate || !$this->id ) {
 			return;
 		}
 
 		wfProfileIn( __METHOD__ );
 
 		$search = SearchEngine::create();
-		$lc = SearchEngine::legalSearchChars() . '&#;';
+		$normalTitle = $search->normalizeText(
+			Title::indexTitle( $this->title->getNamespace(), $this->title->getText() ) );
 
-		if( $this->mText === false ) {
-			$search->updateTitle($this->mId,
-				$search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ) );
+		if ( WikiPage::newFromId( $this->id ) === null ) {
+			$search->delete( $this->id, $normalTitle );
+			wfProfileOut( __METHOD__ );
+			return;
+		} elseif ( $this->content === false ) {
+			$search->updateTitle( $this->id, $normalTitle );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 
+		$text = $search->getTextFromContent( $this->title, $this->content );
+		if( wfRunHooks( 'SearchUpdate', array( $this->id, $this->title, &$text, $this->content ) ) ) {
+			$text = self::updateText( $text );
+		}
+
+		# Perform the actual update
+		$search->update( $this->id, $normalTitle, $search->normalizeText( $text ) );
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Clean text for indexing. Only really suitable for indexing in databases.
+	 * If you're using a real search engine, you'll probably want to override
+	 * this behavior and do something nicer with the original wikitext.
+	 */
+	public static function updateText( $text ) {
+		global $wgContLang;
+
 		# Language-specific strip/conversion
-		$text = $wgContLang->normalizeForSearch( $this->mText );
+		$text = $wgContLang->normalizeForSearch( $text );
+		$lc = SearchEngine::legalSearchChars() . '&#;';
 
 		wfProfileIn( __METHOD__ . '-regexps' );
 		$text = preg_replace( "/<\\/?\\s*[A-Za-z][^>]*?>/",
 			' ', $wgContLang->lc( " " . $text . " " ) ); # Strip HTML markup
 		$text = preg_replace( "/(^|\\n)==\\s*([^\\n]+)\\s*==(\\s)/sD",
-		  "\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
+			"\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
 
 		# Strip external URLs
 		$uc = "A-Za-z0-9_\\/:.,~%\\-+&;#?!=()@\\x80-\\xFF";
@@ -92,7 +148,7 @@ class SearchUpdate implements DeferrableUpdate {
 		$text = preg_replace( $pat2, " \\1 \\3", $text );
 
 		$text = preg_replace( "/([^{$lc}])([{$lc}]+)]]([a-z]+)/",
-		  "\\1\\2 \\2\\3", $text ); # Handle [[game]]s
+			"\\1\\2 \\2\\3", $text ); # Handle [[game]]s
 
 		# Strip all remaining non-search characters
 		$text = preg_replace( "/[^{$lc}]+/", " ", $text );
@@ -118,22 +174,6 @@ class SearchUpdate implements DeferrableUpdate {
 		# Strip wiki '' and '''
 		$text = preg_replace( "/''[']*/", " ", $text );
 		wfProfileOut( __METHOD__ . '-regexps' );
-
-		wfRunHooks( 'SearchUpdate', array( $this->mId, $this->mNamespace, $this->mTitle, &$text ) );
-
-		# Perform the actual update
-		$search->update($this->mId, $search->normalizeText( Title::indexTitle( $this->mNamespace, $this->mTitle ) ),
-				$search->normalizeText( $text ) );
-
-		wfProfileOut( __METHOD__ );
+		return $text;
 	}
-}
-
-/**
- * Placeholder class
- *
- * @ingroup Search
- */
-class SearchUpdateMyISAM extends SearchUpdate {
-	# Inherits everything
 }

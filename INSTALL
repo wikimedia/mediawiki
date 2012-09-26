@@ -18,9 +18,10 @@ work on Windows as well.
 
 If your PHP is configured as a CGI plug-in rather than an Apache module you may
 experience problems, as this configuration is not well tested. safe_mode is also
-not tested and unlikely to work. 
+not tested and unlikely to work.
 
-If you want math support see the instructions in math/README
+Support for rendering mathematical formulas requires installing the Math extension,
+see http://www.mediawiki.org/wiki/Extension:Math
 
 Don't forget to check the RELEASE-NOTES file...
 
@@ -34,7 +35,7 @@ http://www.mediawiki.org/wiki/Manual:Installation_guide
 
 ******************* WARNING *******************
 
-REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE 
+REMEMBER: ALWAYS BACK UP YOUR DATABASE BEFORE
 ATTEMPTING TO INSTALL OR UPGRADE!!!
 
 ******************* WARNING *******************
@@ -45,12 +46,15 @@ In-place web install
 
 Decompress the MediaWiki installation archive either on your server, or on your
 local machine and upload the directory tree. Rename it from "mediawiki-1.x.x" to
-something nice, like "wiki", since it'll be in your URL.
+something nice, like "wiki", since it will be appearing in your URL,
+ie. /wiki/index.php/Article.
 
   +--------------------------------------------------------------------------+
-  |  Hint: If you plan to use a fancy URL-rewriting scheme to prettify your  |
-  |  URLs, you should put the files in a *different* directory from the      |
-  |  virtual path where page names will appear.                              |
+  |  Note: If you plan to use a fancy URL-rewriting scheme to prettify your  |
+  |  URLs, such as http://www.example.com/wiki/Article, you should put the   |
+  |  files in a *different* directory from the virtual path where page names |
+  |  will appear. It is common in this case to use w as the folder name and  |
+  |  /wiki/ as the virtual article path where your articles pretend to be.   |
   |                                                                          |
   |    See: http://www.mediawiki.org/wiki/Manual:Short_URL                   |
   +--------------------------------------------------------------------------+

@@ -10,9 +10,6 @@
 class SpecialSearchTest extends MediaWikiTestCase {
 	private $search;
 
-	function setUp() { }
-	function tearDown() { }
-
 	/**
 	 * @covers SpecialSearch::load
 	 * @dataProvider provideSearchOptionsTests
@@ -35,7 +32,7 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			'ns6'=>true,
 		) ));
 		 */
-		$context->setRequest( new FauxRequest( $requested ));
+		$context->setRequest( new FauxRequest( $requested ) );
 		$search = new SpecialSearch();
 		$search->setContext( $context );
 		$search->load();
@@ -48,28 +45,27 @@ class SpecialSearchTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			array( /** Expected: */
 				'ProfileName' => $expectedProfile,
-				'Namespaces'  => $expectedNS,
+				'Namespaces' => $expectedNS,
 			)
 			, array( /** Actual: */
 				'ProfileName' => $search->getProfile(),
-				'Namespaces'  => $search->getNamespaces(),
+				'Namespaces' => $search->getNamespaces(),
 			)
 			, $message
 		);
-
 	}
 
-	function provideSearchOptionsTests() {
+	public static function provideSearchOptionsTests() {
 		$defaultNS = SearchEngine::defaultNamespaces();
 		$EMPTY_REQUEST = array();
-		$NO_USER_PREF  = null;
+		$NO_USER_PREF = null;
 
 		return array(
 			/**
 			 * Parameters:
-			 * 	<Web Request>, <User options>
+			 *     <Web Request>, <User options>
 			 * Followed by expected values:
-			 * 	<ProfileName>, <NSList>
+			 *     <ProfileName>, <NSList>
 			 * Then an optional message.
 			 */
 			array(
@@ -79,21 +75,19 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			),
 			array(
 				array( 'ns5' => 1 ), $NO_USER_PREF,
-				'advanced', array(  5),
+				'advanced', array( 5 ),
 				'Web request with specific NS should override user preference'
 			),
 			array(
-				$EMPTY_REQUEST, array( 'searchNs2' => 1, 'searchNs14' => 1 ),
+				$EMPTY_REQUEST, array(
+				'searchNs2' => 1,
+				'searchNs14' => 1,
+			) + array_fill_keys( array_map( function ( $ns ) {
+				return "searchNs$ns";
+			}, $defaultNS ), 0 ),
 				'advanced', array( 2, 14 ),
 				'Bug 33583: search with no option should honor User search preferences'
-			),
-			array(
-				$EMPTY_REQUEST, array_fill_keys( array_map( function( $ns ) {
-					return "searchNs$ns";
-				}, $defaultNS ), 0 ) + array( 'searchNs2' => 1, 'searchNs14' => 1 ),
-				'advanced', array( 2, 14 ),
-				'Bug 33583: search with no option should honor User search preferences'
-				. 'and have all other namespace disabled'
+					. ' and have all other namespace disabled'
 			),
 		);
 	}
@@ -103,14 +97,43 @@ class SpecialSearchTest extends MediaWikiTestCase {
 	 * User remains anonymous though
 	 */
 	function newUserWithSearchNS( $opt = null ) {
-		$u = User::newFromId(0);
-		if( $opt === null ) {
+		$u = User::newFromId( 0 );
+		if ( $opt === null ) {
 			return $u;
 		}
-		foreach($opt as $name => $value) {
+		foreach ( $opt as $name => $value ) {
 			$u->setOption( $name, $value );
 		}
+
 		return $u;
 	}
-}
 
+	/**
+	 * Verify we do not expand search term in <title> on search result page
+	 * https://gerrit.wikimedia.org/r/4841
+	 */
+	function testSearchTermIsNotExpanded() {
+
+		# Initialize [[Special::Search]]
+		$search = new SpecialSearch();
+		$search->getContext()->setTitle( Title::newFromText( 'Special:Search' ) );
+		$search->load();
+
+		# Simulate a user searching for a given term
+		$term = '{{SITENAME}}';
+		$search->showResults( $term );
+
+		# Lookup the HTML page title set for that page
+		$pageTitle = $search
+			->getContext()
+			->getOutput()
+			->getHTMLTitle();
+
+		# Compare :-]
+		$this->assertRegExp(
+			'/' . preg_quote( $term ) . '/',
+			$pageTitle,
+			"Search term '{$term}' should not be expanded in Special:Search <title>"
+		);
+	}
+}

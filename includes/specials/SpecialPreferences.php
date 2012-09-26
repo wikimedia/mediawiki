@@ -35,16 +35,21 @@ class SpecialPreferences extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
+		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
 
 		$user = $this->getUser();
 		if ( $user->isAnon() ) {
-			throw new ErrorPageError( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
+			throw new ErrorPageError(
+				'prefsnologin',
+				'prefsnologintext',
+				array( $this->getTitle()->getPrefixedDBkey() )
+			);
 		}
 		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
 			$this->showResetForm();
+
 			return;
 		}
 
@@ -52,7 +57,7 @@ class SpecialPreferences extends SpecialPage {
 
 		if ( $this->getRequest()->getCheck( 'success' ) ) {
 			$out->wrapWikiMsg(
-				"<div class=\"successbox\"><strong>\n$1\n</strong></div><div id=\"mw-pref-clear\"></div>",
+				"<div class=\"successbox mw-sp-pref-successbox\">\n$1\n</div>",
 				'savedprefs'
 			);
 		}
@@ -78,7 +83,7 @@ class SpecialPreferences extends SpecialPage {
 
 	public function submitReset( $formData ) {
 		$user = $this->getUser();
-		$user->resetOptions();
+		$user->resetOptions( 'all' );
 		$user->saveSettings();
 
 		$url = $this->getTitle()->getFullURL( 'success' );
@@ -86,5 +91,9 @@ class SpecialPreferences extends SpecialPage {
 		$this->getOutput()->redirect( $url );
 
 		return true;
+	}
+
+	protected function getGroupName() {
+		return 'users';
 	}
 }

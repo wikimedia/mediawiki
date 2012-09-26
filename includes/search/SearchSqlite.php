@@ -61,12 +61,12 @@ class SearchSqlite extends SearchEngine {
 		$this->searchTerms = array();
 
 		$m = array();
-		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-			  $filteredText, $m, PREG_SET_ORDER ) ) {
-			foreach( $m as $bits ) {
+		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
+				$filteredText, $m, PREG_SET_ORDER ) ) {
+			foreach ( $m as $bits ) {
 				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
 
-				if( $nonQuoted != '' ) {
+				if ( $nonQuoted != '' ) {
 					$term = $nonQuoted;
 					$quote = '';
 				} else {
@@ -74,14 +74,14 @@ class SearchSqlite extends SearchEngine {
 					$quote = '"';
 				}
 
-				if( $searchon !== '' ) {
+				if ( $searchon !== '' ) {
 					$searchon .= ' ';
 				}
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
 				$convertedVariants = $wgContLang->autoConvertToAllVariants( $term );
-				if( is_array( $convertedVariants ) ) {
+				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
 					$variants = array( $term );
@@ -101,10 +101,11 @@ class SearchSqlite extends SearchEngine {
 				$strippedVariants = array_unique( $strippedVariants );
 
 				$searchon .= $modifier;
-				if( count( $strippedVariants) > 1 )
+				if ( count( $strippedVariants ) > 1 ) {
 					$searchon .= '(';
-				foreach( $strippedVariants as $stripped ) {
-					if( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
+				}
+				foreach ( $strippedVariants as $stripped ) {
+					if ( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
 						// Hack for Chinese: we need to toss in quotes for
 						// multiple-character phrases since normalizeForSearch()
 						// added spaces between them to make word breaks.
@@ -112,8 +113,9 @@ class SearchSqlite extends SearchEngine {
 					}
 					$searchon .= "$quote$stripped$quote$wildcard ";
 				}
-				if( count( $strippedVariants) > 1 )
+				if ( count( $strippedVariants ) > 1 ) {
 					$searchon .= ')';
+				}
 
 				// Match individual terms or quoted phrase in result highlighting...
 				// Note that variants will be introduced in a later stage for highlighting!
@@ -134,8 +136,8 @@ class SearchSqlite extends SearchEngine {
 		global $wgContLang;
 
 		$regex = preg_quote( $string, '/' );
-		if( $wgContLang->hasWordBreaks() ) {
-			if( $wildcard ) {
+		if ( $wgContLang->hasWordBreaks() ) {
+			if ( $wildcard ) {
 				// Don't cut off the final bit!
 				$regex = "\b$regex";
 			} else {
@@ -156,7 +158,7 @@ class SearchSqlite extends SearchEngine {
 	/**
 	 * Perform a full text search query and return a result set.
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return SqliteSearchResultSet
 	 */
 	function searchText( $term ) {
@@ -166,7 +168,7 @@ class SearchSqlite extends SearchEngine {
 	/**
 	 * Perform a title-only search query and return a result set.
 	 *
-	 * @param $term String: raw search term
+	 * @param string $term raw search term
 	 * @return SqliteSearchResultSet
 	 */
 	function searchTitle( $term ) {
@@ -184,10 +186,10 @@ class SearchSqlite extends SearchEngine {
 		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
 
 		$total = null;
-		if( $wgCountTotalSearchHits ) {
+		if ( $wgCountTotalSearchHits ) {
 			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 			$row = $totalResult->fetchObject();
-			if( $row ) {
+			if ( $row ) {
 				$total = intval( $row->c );
 			}
 			$totalResult->free();
@@ -196,13 +198,12 @@ class SearchSqlite extends SearchEngine {
 		return new SqliteSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
-
 	/**
 	 * Return a partial WHERE clause to exclude redirects, if so set
 	 * @return String
 	 */
 	function queryRedirect() {
-		if( $this->showRedirects ) {
+		if ( $this->showRedirects ) {
 			return '';
 		} else {
 			return 'AND page_is_redirect=0';
@@ -214,8 +215,9 @@ class SearchSqlite extends SearchEngine {
 	 * @return String
 	 */
 	function queryNamespaces() {
-		if( is_null($this->namespaces) )
+		if ( is_null( $this->namespaces ) ) {
 			return '';  # search all
+		}
 		if ( !count( $this->namespaces ) ) {
 			$namespaces = '0';
 		} else {
@@ -266,7 +268,7 @@ class SearchSqlite extends SearchEngine {
 	 */
 	function queryMain( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
+		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return "SELECT $searchindex.rowid, page_namespace, page_title " .
 			"FROM $page,$searchindex " .
@@ -275,7 +277,7 @@ class SearchSqlite extends SearchEngine {
 
 	function getCountQuery( $filteredTerm, $fulltext ) {
 		$match = $this->parseQuery( $filteredTerm, $fulltext );
-		$page        = $this->db->tableName( 'page' );
+		$page = $this->db->tableName( 'page' );
 		$searchindex = $this->db->tableName( 'searchindex' );
 		return "SELECT COUNT(*) AS c " .
 			"FROM $page,$searchindex " .
@@ -296,7 +298,7 @@ class SearchSqlite extends SearchEngine {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}
-		// @todo: find a method to do it in a single request,
+		// @todo find a method to do it in a single request,
 		// couldn't do it so far due to typelessness of FTS3 tables.
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -317,7 +319,7 @@ class SearchSqlite extends SearchEngine {
 	 * @param $id Integer
 	 * @param $title String
 	 */
-    function updateTitle( $id, $title ) {
+	function updateTitle( $id, $title ) {
 		if ( !$this->fulltextSearchSupported() ) {
 			return;
 		}
@@ -325,7 +327,7 @@ class SearchSqlite extends SearchEngine {
 
 		$dbw->update( 'searchindex',
 			array( 'si_title' => $title ),
-			array( 'rowid'  => $id ),
+			array( 'rowid' => $id ),
 			__METHOD__ );
 	}
 }
@@ -334,7 +336,7 @@ class SearchSqlite extends SearchEngine {
  * @ingroup Search
  */
 class SqliteSearchResultSet extends SqlSearchResultSet {
-	function __construct( $resultSet, $terms, $totalHits=null ) {
+	function __construct( $resultSet, $terms, $totalHits = null ) {
 		parent::__construct( $resultSet, $terms );
 		$this->mTotalHits = $totalHits;
 	}

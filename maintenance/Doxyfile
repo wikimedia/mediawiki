@@ -1,11 +1,12 @@
-# Doxyfile 1.7.5.1
+# Doxyfile 1.7.6.1
 
+# This file describes the settings to be used by the documentation system
+# doxygen (www.doxygen.org) for MediaWiki.
 #
 # Some placeholders have been added for MediaWiki usage:
 # {{OUTPUT_DIRECTORY}}
 # {{CURRENT_VERSION}}
 # {{STRIP_FROM_PATH}}
-# {{SVNSTAT}}
 # {{INPUT}}
 #
 # To generate documentation run: php mwdocgen.php --no-extensions
@@ -45,7 +46,7 @@ QT_AUTOBRIEF           = NO
 MULTILINE_CPP_IS_BRIEF = NO
 INHERIT_DOCS           = YES
 SEPARATE_MEMBER_PAGES  = NO
-TAB_SIZE               = 8
+TAB_SIZE               = 4
 ALIASES =	"type{1}=<b> \1 </b>:" \
 		"types{2}=<b> \1 </b> or <b> \2 </b>:" \
 		"types{3}=<b> \1 </b>, <b> \2 </b>, or <b> \3 </b>:" \
@@ -63,7 +64,9 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"protected=\access protected" \
 		"public=\access public" \
 		"copyright=\note" \
-		"license=\note"
+		"license=\note" \
+		"codeCoverageIgnore="
+TCL_SUBST              =
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_FOR_FORTRAN   = NO
@@ -72,13 +75,14 @@ EXTENSION_MAPPING      =
 BUILTIN_STL_SUPPORT    = NO
 CPP_CLI_SUPPORT        = NO
 SIP_SUPPORT            = NO
-IDL_PROPERTY_SUPPORT   = NO
+IDL_PROPERTY_SUPPORT   = YES
 DISTRIBUTE_GROUP_DOC   = YES
 SUBGROUPING            = YES
 INLINE_GROUPED_CLASSES = NO
 INLINE_SIMPLE_STRUCTS  = NO
 TYPEDEF_HIDES_STRUCT   = NO
 SYMBOL_CACHE_SIZE      = 0
+LOOKUP_CACHE_SIZE      = 1
 #---------------------------------------------------------------------------
 # Build related configuration options
 #---------------------------------------------------------------------------
@@ -114,7 +118,7 @@ SHOW_USED_FILES        = YES
 SHOW_DIRECTORIES       = YES
 SHOW_FILES             = YES
 SHOW_NAMESPACES        = NO
-FILE_VERSION_FILTER    = {{SVNSTAT}}
+FILE_VERSION_FILTER    =
 LAYOUT_FILE            =
 CITE_BIB_FILES         =
 #---------------------------------------------------------------------------
@@ -172,7 +176,9 @@ FILE_PATTERNS          = *.c \
                          *.PHP5 \
                          *.M \
                          *.MM \
-                         *.PY
+                         *.PY \
+                         *.txt \
+                         README
 RECURSIVE              = YES
 EXCLUDE                = {{EXCLUDE}}
 EXCLUDE_SYMLINKS       = YES
@@ -215,7 +221,7 @@ HTML_STYLESHEET        =
 HTML_EXTRA_FILES       =
 HTML_COLORSTYLE_HUE    = 220
 HTML_COLORSTYLE_SAT    = 100
-HTML_COLORSTYLE_GAMMA  =  80
+HTML_COLORSTYLE_GAMMA  = 80
 HTML_TIMESTAMP         = YES
 HTML_ALIGN_MEMBERS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
@@ -357,7 +363,7 @@ MSCFILE_DIRS           =
 DOT_GRAPH_MAX_NODES    = 50
 MAX_DOT_GRAPH_DEPTH    = 1000
 DOT_TRANSPARENT        = NO
-DOT_MULTI_TARGETS      = NO
+DOT_MULTI_TARGETS      = YES
 GENERATE_LEGEND        = YES
 DOT_CLEANUP            = YES
 

@@ -112,7 +112,7 @@ class StripState {
 	 * @return mixed
 	 */
 	protected function unstripType( $type, $text ) {
-		// Shortcut 
+		// Shortcut
 		if ( !count( $this->data[$type] ) ) {
 			return $text;
 		}
@@ -139,7 +139,7 @@ class StripState {
 					. '</span>';
 			}
 			if ( $this->recursionLevel >= self::UNSTRIP_RECURSION_LIMIT ) {
-				return '<span class="error">' . 
+				return '<span class="error">' .
 					wfMessage( 'parser-unstrip-recursion-limit' )
 						->numParams( self::UNSTRIP_RECURSION_LIMIT )->inContentLanguage()->text() .
 					'</span>';
@@ -156,7 +156,7 @@ class StripState {
 	}
 
 	/**
-	 * Get a StripState object which is sufficient to unstrip the given text. 
+	 * Get a StripState object which is sufficient to unstrip the given text.
 	 * It will contain the minimum subset of strip items necessary.
 	 *
 	 * @param $text string
@@ -233,4 +233,3 @@ class StripState {
 		return preg_replace( $this->regex, '', $text );
 	}
 }
-

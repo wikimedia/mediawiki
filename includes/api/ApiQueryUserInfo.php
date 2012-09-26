@@ -77,18 +77,18 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		if ( isset( $this->prop['groups'] ) ) {
 			$vals['groups'] = $user->getEffectiveGroups();
-			$result->setIndexedTagName( $vals['groups'], 'g' );	// even if empty
+			$result->setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
 			$vals['implicitgroups'] = $user->getAutomaticGroups();
-			$result->setIndexedTagName( $vals['implicitgroups'], 'g' );	// even if empty
+			$result->setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
 			$vals['rights'] = array_values( array_unique( $user->getRights() ) );
-			$result->setIndexedTagName( $vals['rights'], 'r' );	// even if empty
+			$result->setIndexedTagName( $vals['rights'], 'r' ); // even if empty
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {
@@ -167,8 +167,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( $user->isNewbie() ) {
 			$categories[] = 'ip';
 			$categories[] = 'subnet';
-			if ( !$user->isAnon() )
+			if ( !$user->isAnon() ) {
 				$categories[] = 'newbie';
+			}
 		}
 		$categories = array_merge( $categories, $user->getGroups() );
 
@@ -302,9 +303,5 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Meta#userinfo_.2F_ui';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

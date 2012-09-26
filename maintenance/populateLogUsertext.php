@@ -24,7 +24,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that makes the required database updates for
@@ -82,5 +82,4 @@ class PopulateLogUsertext extends LoggedUpdateMaintenance {
 }
 
 $maintClass = "PopulateLogUsertext";
-require_once( RUN_MAINTENANCE_IF_MAIN );
-
+require_once RUN_MAINTENANCE_IF_MAIN;

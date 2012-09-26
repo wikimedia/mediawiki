@@ -21,7 +21,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script to convert user options to the new `user_properties` table.
@@ -56,7 +56,7 @@ class ConvertUserOptions extends Maintenance {
 				array( 'LIMIT' => 50, 'FOR UPDATE' )
 			);
 			$id = $this->convertOptionBatch( $res, $dbw );
-			$dbw->commit();
+			$dbw->commit( __METHOD__ );
 
 			wfWaitForSlaves();
 
@@ -96,4 +96,4 @@ class ConvertUserOptions extends Maintenance {
 }
 
 $maintClass = "ConvertUserOptions";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

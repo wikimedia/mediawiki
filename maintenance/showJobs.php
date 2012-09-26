@@ -25,7 +25,7 @@
  * @author Antoine Musso
  */
 
-require_once( __DIR__ . '/Maintenance.php' );
+require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Maintenance script that reports the number of jobs currently waiting
@@ -39,24 +39,32 @@ class ShowJobs extends Maintenance {
 		$this->mDescription = "Show number of jobs waiting in master database";
 		$this->addOption( 'group', 'Show number of jobs per job type' );
 	}
+
 	public function execute() {
-		$dbw = wfGetDB( DB_MASTER );
+		$group = JobQueueGroup::singleton();
 		if ( $this->hasOption( 'group' ) ) {
-			$res = $dbw->select(
-				'job',
-				array( 'job_cmd', 'count(*) as count' ),
-				array(),
-				__METHOD__,
-				array( 'GROUP BY' => 'job_cmd' )
-			);
-			foreach ( $res as $row ) {
-				$this->output( $row->job_cmd . ': ' . $row->count . "\n" );
+			foreach ( $group->getQueueTypes() as $type ) {
+				$queue = $group->get( $type );
+				$pending = $queue->getSize();
+				$claimed = $queue->getAcquiredCount();
+				$abandoned = $queue->getAbandonedCount();
+				$active = ( $claimed - $abandoned );
+				if ( ( $pending + $claimed ) > 0 ) {
+					$this->output(
+						"{$type}: $pending queued; " .
+						"$claimed claimed ($active active, $abandoned abandoned)\n"
+					);
+				}
 			}
 		} else {
-			$this->output( $dbw->selectField( 'job', 'count(*)', '', __METHOD__ ) . "\n" );
+			$count = 0;
+			foreach ( $group->getQueueTypes() as $type ) {
+				$count += $group->get( $type )->getSize();
+			}
+			$this->output( "$count\n" );
 		}
 	}
 }
 
 $maintClass = "ShowJobs";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

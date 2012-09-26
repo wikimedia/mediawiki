@@ -1,42 +1,45 @@
 /**
- * mw.Api methods for parsing wikitext.
+ * @class mw.Api.plugin.parse
  */
 ( function ( mw, $ ) {
 
 	$.extend( mw.Api.prototype, {
 		/**
-		 * Convinience method for 'action=parse'. Parses wikitext into HTML.
+		 * Convinience method for 'action=parse'.
 		 *
-		 * @param wikiText {String}
-		 * @param ok {Function} [optional] deprecated (success callback)
-		 * @param err {Function} [optional] deprecated (error callback)
+		 * @param {string} wikitext
+		 * @param {Function} [ok] Success callback (deprecated)
+		 * @param {Function} [err] Error callback (deprecated)
 		 * @return {jQuery.Promise}
+		 * @return {Function} return.done
+		 * @return {string} return.done.data Parsed HTML of `wikitext`.
 		 */
-		parse: function ( wikiText, ok, err ) {
-			var apiDeferred = $.Deferred();
-
+		parse: function ( wikitext, ok, err ) {
+			var d = $.Deferred(),
+				apiPromise;
 			// Backwards compatibility (< MW 1.20)
-			if ( ok ) {
-				apiDeferred.done( ok );
-			}
-			if ( err ) {
-				apiDeferred.fail( err );
-			}
+			d.done( ok );
+			d.fail( err );
 
-			this.get( {
+			apiPromise = this.get( {
 					action: 'parse',
-					text: wikiText
+					contentmodel: 'wikitext',
+					text: wikitext
 				} )
 				.done( function ( data ) {
 					if ( data.parse && data.parse.text && data.parse.text['*'] ) {
-						apiDeferred.resolve( data.parse.text['*'] );
+						d.resolve( data.parse.text['*'] );
 					}
 				} )
-				.fail( apiDeferred.reject );
+				.fail( d.reject );
 
-			// Return the promise
-			return apiDeferred.promise();
+			return d.promise( { abort: apiPromise.abort } );
 		}
 	} );
+
+	/**
+	 * @class mw.Api
+	 * @mixins mw.Api.plugin.parse
+	 */
 
 }( mediaWiki, jQuery ) );

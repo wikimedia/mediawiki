@@ -1,5 +1,5 @@
 <?php
-/** Abkhazian (Аҧсуа)
+/** Abkhazian (Аҧсшәа)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -81,142 +81,142 @@ $magicWords = array(
 
 $messages = array(
 # Dates
-'sunday'        => 'амҽыш',
-'monday'        => 'ашәахь',
-'tuesday'       => 'аҩаш',
-'wednesday'     => 'ахаш',
-'thursday'      => 'аҧшьаш',
-'friday'        => 'ахәуаш',
-'saturday'      => 'асабш',
-'january'       => 'ажьырныҳәа',
-'february'      => 'жәабран',
-'march'         => 'хәажәкыр',
-'april'         => 'мшаҧы',
-'may_long'      => 'лаҵара',
-'june'          => 'рашәара',
-'july'          => 'ҧхынгәы',
-'august'        => 'нанҳәа',
-'september'     => 'цәыббра',
-'october'       => 'жьҭаара',
-'november'      => 'абҵара',
-'december'      => 'ҧхынҷкәын',
-'january-gen'   => 'ажьырныҳәа',
-'february-gen'  => 'жәабран',
-'march-gen'     => 'хәажәкыра',
-'april-gen'     => 'мшаҧы',
-'may-gen'       => 'лаҵара',
-'june-gen'      => 'рашәара',
-'july-gen'      => 'ҧхынгәы',
-'august-gen'    => 'нанҳәа',
+'sunday' => 'амҽыш',
+'monday' => 'ашәахь',
+'tuesday' => 'аҩаш',
+'wednesday' => 'ахаш',
+'thursday' => 'аҧшьаш',
+'friday' => 'ахәуаш',
+'saturday' => 'асабш',
+'january' => 'ажьырныҳәа',
+'february' => 'жәабран',
+'march' => 'хәажәкыр',
+'april' => 'мшаҧы',
+'may_long' => 'лаҵара',
+'june' => 'рашәара',
+'july' => 'ҧхынгәы',
+'august' => 'нанҳәа',
+'september' => 'цәыббра',
+'october' => 'жьҭаара',
+'november' => 'абҵара',
+'december' => 'ҧхынҷкәын',
+'january-gen' => 'ажьырныҳәа',
+'february-gen' => 'жәабран',
+'march-gen' => 'хәажәкыра',
+'april-gen' => 'мшаҧы',
+'may-gen' => 'лаҵара',
+'june-gen' => 'рашәара',
+'july-gen' => 'ҧхынгәы',
+'august-gen' => 'нанҳәа',
 'september-gen' => 'цәыббра',
-'october-gen'   => 'жьҭаара',
-'november-gen'  => 'абҵара',
-'december-gen'  => 'ҧхынҷкәын',
-'jan'           => 'ажь',
-'feb'           => 'жәа',
-'mar'           => 'хәа',
-'apr'           => 'мша',
-'may'           => 'лаҵ',
-'jun'           => 'раш',
-'jul'           => 'ҧхг',
-'aug'           => 'нан',
-'sep'           => 'цәы',
-'oct'           => 'жьҭ',
-'nov'           => 'абҵ',
-'dec'           => 'ҧхҷ',
+'october-gen' => 'жьҭаара',
+'november-gen' => 'абҵара',
+'december-gen' => 'ҧхынҷкәын',
+'jan' => 'ажь',
+'feb' => 'жәа',
+'mar' => 'хәа',
+'apr' => 'мша',
+'may' => 'лаҵ',
+'jun' => 'раш',
+'jul' => 'ҧхг',
+'aug' => 'нан',
+'sep' => 'цәы',
+'oct' => 'жьҭ',
+'nov' => 'абҵ',
+'dec' => 'ҧхҷ',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Акатегориа|Акатегориақәа}}',
 
-'article'    => 'Адаҟьа',
-'mytalk'     => 'Сахцәажәара',
+'article' => 'Адаҟьа',
+'mytalk' => 'Сахцәажәара',
 'navigation' => 'Анавигациа',
 
 # Cologne Blue skin
-'qbfind'         => 'Аҧшаара',
-'qbedit'         => 'Ариашара',
-'qbpageoptions'  => 'Ари адаҟьа',
+'qbfind' => 'Аҧшаара',
+'qbedit' => 'Ариашара',
+'qbpageoptions' => 'Ари адаҟьа',
 'qbspecialpages' => 'Цастәи адаҟьақәа',
 
 # Vector skin
-'vector-action-move'     => 'Ахьӡ аҧсахра',
-'vector-view-create'     => 'Арҿиара',
-'vector-view-edit'       => 'Ариашамҭа',
-'vector-view-history'    => 'Аҭоурых',
-'vector-view-view'       => 'Аҧхьара',
+'vector-action-move' => 'Ахьӡ аҧсахра',
+'vector-view-create' => 'Арҿиара',
+'vector-view-edit' => 'Ариашамҭа',
+'vector-view-history' => 'Аҭоурых',
+'vector-view-view' => 'Аҧхьара',
 'vector-view-viewsource' => 'Ахәаҧшра',
 
-'help'             => 'Ацхыраара',
-'search'           => 'Аҧшаара',
-'searchbutton'     => 'Аҧшаара',
-'searcharticle'    => 'Адаҟьа',
-'history'          => 'Аҭоурых',
-'history_short'    => 'Аҭоурых',
+'help' => 'Ацхыраара',
+'search' => 'Аҧшаара',
+'searchbutton' => 'Аҧшаара',
+'searcharticle' => 'Адаҟьа',
+'history' => 'Аҭоурых',
+'history_short' => 'Аҭоурых',
 'printableversion' => 'Акьыҧхьразы аверсиа',
-'permalink'        => 'Еисымшатәи ахьарҧш',
-'edit'             => 'Ариашамҭа',
-'create'           => 'Арҿиара',
+'permalink' => 'Еисымшатәи ахьарҧш',
+'edit' => 'Ариашамҭа',
+'create' => 'Арҿиара',
 'create-this-page' => 'Ариашара ари адаҟьа',
-'newpage'          => 'Адаҟьа Ҿыц',
+'newpage' => 'Адаҟьа Ҿыц',
 'talkpagelinktext' => 'Ахцәажәара',
-'specialpage'      => 'Цастәи адаҟьа',
-'talk'             => 'Ахцәажәара',
-'toolbox'          => 'Амаҵыругақәа',
-'otherlanguages'   => 'Абызшәақәа',
-'lastmodifiedat'   => 'Ацыхәтәантәи аҧсахрақәа абри адаҟьа аҟны: $2, $1.',
+'specialpage' => 'Цастәи адаҟьа',
+'talk' => 'Ахцәажәара',
+'toolbox' => 'Амаҵыругақәа',
+'otherlanguages' => 'Абызшәақәа',
+'lastmodifiedat' => 'Ацыхәтәантәи аҧсахрақәа абри адаҟьа аҟны: $2, $1.',
 'jumptonavigation' => 'Анавигациа',
-'jumptosearch'     => 'Аҧшаара',
+'jumptosearch' => 'Аҧшаара',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}} иазкны',
-'currentevents'        => 'Ииасуа ахҭысқәа',
-'mainpage'             => 'Ихадоу Адаҟьа',
+'aboutsite' => '{{SITENAME}} иазкны',
+'currentevents' => 'Ииасуа ахҭысқәа',
+'mainpage' => 'Ихадоу Адаҟьа',
 'mainpage-description' => 'Ихадоу адаҟьа',
-'privacy'              => 'Аконфиденциалтә аполитика',
-'privacypage'          => 'Project: Аконфиденциалтә аполитика',
+'privacy' => 'Аконфиденциалтә аполитика',
+'privacypage' => 'Project: Аконфиденциалтә аполитика',
 
-'youhavenewmessages'  => 'Уара $1 уауит ($2).',
-'newmessageslink'     => 'адырра ҿыцқәа',
+'youhavenewmessages' => 'Уара $1 уауит ($2).',
+'newmessageslink' => 'адырра ҿыцқәа',
 'newmessagesdifflink' => 'аҵыхәтәатәи аҽеиҭакра',
-'editsection'         => 'ариашамҭа',
-'editold'             => 'ариашара',
-'editlink'            => 'ариашара',
+'editsection' => 'ариашамҭа',
+'editold' => 'ариашара',
+'editlink' => 'ариашара',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Адаҟьа',
-'nstab-user'     => 'Алахәыла',
-'nstab-special'  => 'Цастәи адаҟьа',
-'nstab-image'    => 'Афаил',
+'nstab-main' => 'Адаҟьа',
+'nstab-user' => 'Алахәыла',
+'nstab-special' => 'Цастәи адаҟьа',
+'nstab-image' => 'Афаил',
 'nstab-template' => 'Ашаблон',
-'nstab-help'     => 'Ацхыраара',
+'nstab-help' => 'Ацхыраара',
 'nstab-category' => 'Акатегориа',
 
 # General errors
 'viewsource' => 'Ахәаҧшра',
 
 # Login and logout pages
-'login'                   => 'Урдырра',
+'login' => 'Урдырра',
 'nav-login-createaccount' => 'Урдырра / Арегистрациара',
-'userlogin'               => 'Урдырра/Арегистрациара',
-'logout'                  => 'Асеанс дәылҵра',
-'userlogout'              => 'Асеанс дәылҵра',
-'loginlanguagelabel'      => 'Абызшәа: $1',
+'userlogin' => 'Урдырра/Арегистрациара',
+'logout' => 'Асеанс дәылҵра',
+'userlogout' => 'Асеанс дәылҵра',
+'loginlanguagelabel' => 'Абызшәа: $1',
 
 # Edit pages
-'summary'     => 'Описание изменений:',
+'summary' => 'Описание изменений:',
 'savearticle' => 'Адаҟьа ахьчара',
-'editing'     => 'Ариашамҭа: $1',
+'editing' => 'Ариашамҭа: $1',
 
 # Search results
 'searchresults-title' => 'Аҧшаара «$1»',
 
 # Preferences page
-'preferences'       => 'Архиарақәа',
-'mypreferences'     => 'Архиарақәа',
+'preferences' => 'Архиарақәа',
+'mypreferences' => 'Архиарақәа',
 'searchresultshead' => 'Аҧшаара',
-'uid'               => 'Алахәыла ID:',
-'yourlanguage'      => 'Абызшәа:',
-'prefs-signature'   => 'Анапынҵамҭа',
+'uid' => 'Алахәыла ID:',
+'yourlanguage' => 'Абызшәа:',
+'prefs-signature' => 'Анапынҵамҭа',
 
 # Groups
 'group-user' => 'Алахәылацәа',
@@ -230,8 +230,8 @@ $messages = array(
 'newpageletter' => 'Ҿ',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Еимадоу ариашарақәа',
-'recentchangeslinked-feed'    => 'Еимадоу ариашарақәа',
+'recentchangeslinked' => 'Еимадоу ариашарақәа',
+'recentchangeslinked-feed' => 'Еимадоу ариашарақәа',
 'recentchangeslinked-toolbox' => 'Еимадоу ариашарақәа',
 
 # Upload
@@ -247,8 +247,8 @@ $messages = array(
 
 # Miscellaneous special pages
 'newpages-username' => 'Алахәыла:',
-'move'              => 'Ахьӡ аҧсахра',
-'movethispage'      => 'Ахьӡ аҧсахра ари адаҟьа',
+'move' => 'Ахьӡ аҧсахра',
+'movethispage' => 'Ахьӡ аҧсахра ари адаҟьа',
 
 # Special:Log
 'specialloguserlabel' => 'Алахәыла:',
@@ -260,21 +260,21 @@ $messages = array(
 'linksearch-ok' => 'Аҧшаара',
 
 # Watchlist
-'watchlist'   => 'Ашклаҧшра асна',
+'watchlist' => 'Ашклаҧшра асна',
 'mywatchlist' => 'Ашклаҧшра асна',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Ариашамҭа',
 
 # Contributions
-'mycontris'   => 'Салагала',
+'mycontris' => 'Салагала',
 'contribsub2' => 'Алагала $1 ($2)',
 
-'sp-contributions-talk'   => 'ахцәажәара',
+'sp-contributions-talk' => 'ахцәажәара',
 'sp-contributions-submit' => 'Аҧшаара',
 
 # What links here
-'whatlinkshere'      => 'Арахьтәи ахьарҧшқәа',
+'whatlinkshere' => 'Арахьтәи ахьарҧшқәа',
 'whatlinkshere-page' => 'Адаҟьа:',
 
 # Block/unblock
@@ -292,13 +292,13 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'зегьы',
 'namespacesall' => 'зегьы',
-'monthsall'     => 'зегьы',
+'monthsall' => 'зегьы',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Аҧшаара',
 
 # Special:SpecialPages
-'specialpages'             => 'Цастәи адаҟьақәа',
+'specialpages' => 'Цастәи адаҟьақәа',
 'specialpages-group-login' => 'Урдырра / Арегистрациара',
 
 );

@@ -33,10 +33,6 @@
  */
 class ApiExpandTemplates extends ApiBase {
 
-	public function __construct( $main, $action ) {
-		parent::__construct( $main, $action );
-	}
-
 	public function execute() {
 		// Cache may vary on $wgUser because ParserOptions gets data from it
 		$this->getMain()->setCacheMode( 'anon-public-user-private' );
@@ -46,7 +42,7 @@ class ApiExpandTemplates extends ApiBase {
 
 		// Create title for parser
 		$title_obj = Title::newFromText( $params['title'] );
-		if ( !$title_obj ) {
+		if ( !$title_obj || $title_obj->isExternal() ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
@@ -69,14 +65,14 @@ class ApiExpandTemplates extends ApiBase {
 				$xml = $dom->__toString();
 			}
 			$xml_result = array();
-			$result->setContent( $xml_result, $xml );
+			ApiResult::setContent( $xml_result, $xml );
 			$result->addValue( null, 'parsetree', $xml_result );
 		}
 		$retval = $wgParser->preprocess( $params['text'], $title_obj, $options );
 
 		// Return result
 		$retval_array = array();
-		$result->setContent( $retval_array, $retval );
+		ApiResult::setContent( $retval_array, $retval );
 		$result->addValue( null, $this->getModuleName(), $retval_array );
 	}
 
@@ -129,9 +125,5 @@ class ApiExpandTemplates extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Parsing_wikitext#expandtemplates';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

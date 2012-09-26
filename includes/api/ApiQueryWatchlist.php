@@ -68,7 +68,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->fld_user = isset( $prop['user'] );
 			$this->fld_userid = isset( $prop['userid'] );
 			$this->fld_comment = isset( $prop['comment'] );
-			$this->fld_parsedcomment = isset ( $prop['parsedcomment'] );
+			$this->fld_parsedcomment = isset( $prop['parsedcomment'] );
 			$this->fld_timestamp = isset( $prop['timestamp'] );
 			$this->fld_sizes = isset( $prop['sizes'] );
 			$this->fld_patrol = isset( $prop['patrol'] );
@@ -116,7 +116,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		) );
 
 		$userId = $user->getId();
-		$this->addJoinConds( array( 'watchlist' => array('INNER JOIN',
+		$this->addJoinConds( array( 'watchlist' => array( 'INNER JOIN',
 			array(
 				'wl_user' => $userId,
 				'wl_namespace=rc_namespace',
@@ -135,7 +135,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( !$params['allrev'] ) {
 			$this->addTables( 'page' );
-			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN','rc_cur_id=page_id' ) ) );
+			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN', 'rc_cur_id=page_id' ) ) );
 			$this->addWhere( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG );
 		}
 
@@ -143,12 +143,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$show = array_flip( $params['show'] );
 
 			/* Check for conflicting parameters. */
-			if ( ( isset ( $show['minor'] ) && isset ( $show['!minor'] ) )
-					|| ( isset ( $show['bot'] ) && isset ( $show['!bot'] ) )
-					|| ( isset ( $show['anon'] ) && isset ( $show['!anon'] ) )
-					|| ( isset ( $show['patrolled'] ) && isset ( $show['!patrolled'] ) )
-			)
-			{
+			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
+					|| ( isset( $show['bot'] ) && isset( $show['!bot'] ) )
+					|| ( isset( $show['anon'] ) && isset( $show['!anon'] ) )
+					|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )
+			) {
 				$this->dieUsageMsg( 'show' );
 			}
 
@@ -169,6 +168,10 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_user != 0', isset( $show['!anon'] ) );
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
 			$this->addWhereIf( 'rc_patrolled != 0', isset( $show['patrolled'] ) );
+		}
+
+		if ( !is_null( $params['type'] ) ) {
+			$this->addWhereFld( 'rc_type', $this->parseRCType( $params['type'] ) );
 		}
 
 		if ( !is_null( $params['user'] ) && !is_null( $params['excludeuser'] ) ) {
@@ -226,6 +229,32 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	private function extractRowInfo( $row ) {
 		$vals = array();
 
+		$type = intval( $row->rc_type );
+
+		/* Determine what kind of change this was. */
+		switch ( $type ) {
+			case RC_EDIT:
+				$vals['type'] = 'edit';
+				break;
+			case RC_NEW:
+				$vals['type'] = 'new';
+				break;
+			case RC_MOVE:
+				$vals['type'] = 'move';
+				break;
+			case RC_LOG:
+				$vals['type'] = 'log';
+				break;
+			case RC_EXTERNAL:
+				$vals['type'] = 'external';
+				break;
+			case RC_MOVE_OVER_REDIRECT:
+				$vals['type'] = 'move over redirect';
+				break;
+			default:
+				$vals['type'] = $type;
+		}
+
 		if ( $this->fld_ids ) {
 			$vals['pageid'] = intval( $row->rc_cur_id );
 			$vals['revid'] = intval( $row->rc_this_oldid );
@@ -240,12 +269,14 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_user || $this->fld_userid ) {
 
-			if ( $this->fld_user ) {
-				$vals['user'] = $row->rc_user_text;
+			if ( $this->fld_userid ) {
+				$vals['userid'] = $row->rc_user;
+				// for backwards compatibility
+				$vals['user'] = $row->rc_user;
 			}
 
-			if ( $this->fld_userid ) {
-				$vals['user'] = $row->rc_user;
+			if ( $this->fld_user ) {
+				$vals['user'] = $row->rc_user_text;
 			}
 
 			if ( !$row->rc_user ) {
@@ -310,6 +341,27 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		return $vals;
 	}
 
+	/* Copied from ApiQueryRecentChanges. */
+	private function parseRCType( $type ) {
+		if ( is_array( $type ) ) {
+			$retval = array();
+			foreach ( $type as $t ) {
+				$retval[] = $this->parseRCType( $t );
+			}
+			return $retval;
+		}
+		switch ( $type ) {
+			case 'edit':
+				return RC_EDIT;
+			case 'new':
+				return RC_NEW;
+			case 'log':
+				return RC_LOG;
+			case 'external':
+				return RC_EXTERNAL;
+		}
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'allrev' => false,
@@ -319,7 +371,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'end' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
 			),
-			'namespace' => array (
+			'namespace' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_TYPE => 'namespace'
 			),
@@ -374,6 +426,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'!patrolled',
 				)
 			),
+			'type' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array(
+					'edit',
+					'external',
+					'new',
+					'log',
+				)
+			),
 			'owner' => array(
 				ApiBase::PARAM_TYPE => 'user'
 			),
@@ -413,6 +474,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				'Show only items that meet this criteria.',
 				"For example, to see only minor edits done by logged-in users, set {$p}show=minor|!anon"
 			),
+			'type' => array(
+				'Which types of changes to show',
+				' edit           - Regular page edits',
+				' external       - External changes',
+				' new            - Page creations',
+				' log            - Log entries',
+			),
 			'owner' => 'The name of the user whose watchlist you\'d like to access',
 			'token' => 'Give a security token (settable in preferences) to allow access to another user\'s watchlist'
 		);
@@ -421,6 +489,17 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	public function getResultProperties() {
 		global $wgLogTypes;
 		return array(
+			'' => array(
+				'type' => array(
+					ApiBase::PROP_TYPE => array(
+						'edit',
+						'new',
+						'move',
+						'log',
+						'move over redirect'
+					)
+				)
+			),
 			'ids' => array(
 				'pageid' => 'integer',
 				'revid' => 'integer',
@@ -511,15 +590,11 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'api.php?action=query&list=watchlist&wlallrev=&wlprop=ids|title|timestamp|user|comment',
 			'api.php?action=query&generator=watchlist&prop=info',
 			'api.php?action=query&generator=watchlist&gwlallrev=&prop=revisions&rvprop=timestamp|user',
-			'api.php?action=query&list=watchlist&wlowner=Bob_Smith&wltoken=d8d562e9725ea1512894cdab28e5ceebc7f20237'
+			'api.php?action=query&list=watchlist&wlowner=Bob_Smith&wltoken=123ABC'
 		);
 	}
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/API:Watchlist';
-	}
-
-	public function getVersion() {
-		return __CLASS__ . ': $Id$';
 	}
 }

@@ -28,9 +28,8 @@
  * @since 1.20
  *
  * @file
- * @ingroup Diff
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 abstract class GenericArrayObject extends ArrayObject {
@@ -42,7 +41,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	 *
 	 * @return string
 	 */
-	public abstract function getObjectType();
+	abstract public function getObjectType();
 
 	/**
 	 * @see SiteList::getNewOffset()
@@ -61,13 +60,11 @@ abstract class GenericArrayObject extends ArrayObject {
 	 * @return integer
 	 */
 	protected function getNewOffset() {
-		while ( true ) {
-			if ( !$this->offsetExists( $this->indexOffset ) ) {
-				return $this->indexOffset;
-			}
-
+		while ( $this->offsetExists( $this->indexOffset ) ) {
 			$this->indexOffset++;
 		}
+
+		return $this->indexOffset;
 	}
 
 	/**
@@ -194,7 +191,7 @@ abstract class GenericArrayObject extends ArrayObject {
 	/**
 	 * Returns an array holding all the data that should go into serialization calls.
 	 * This is intended to allow overloading without having to reimplement the
-	 * behaviour of this base class.
+	 * behavior of this base class.
 	 *
 	 * @since 1.20
 	 *

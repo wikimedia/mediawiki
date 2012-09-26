@@ -29,7 +29,7 @@
  * @ingroup Maintenance
  */
 
-require_once( __DIR__ . '/cleanupTable.inc' );
+require_once __DIR__ . '/cleanupTable.inc';
 
 /**
  * Maintenance script to clean up broken, unparseable upload filenames.
@@ -213,4 +213,4 @@ class ImageCleanup extends TableCleanup {
 }
 
 $maintClass = "ImageCleanup";
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;

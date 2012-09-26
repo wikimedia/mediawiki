@@ -25,7 +25,7 @@
  *
  * This maintains WikiPage functions for backwards compatibility.
  *
- * @todo move and rewrite code to an Action class
+ * @todo Move and rewrite code to an Action class
  *
  * See design.txt for an overview.
  * Note: edit user interface and cache support functions have been
@@ -33,7 +33,7 @@
  *
  * @internal documentation reviewed 15 Mar 2010
  */
-class Article extends Page {
+class Article implements Page {
 	/**@{{
 	 * @private
 	 */
@@ -57,10 +57,17 @@ class Article extends Page {
 	public $mParserOptions;
 
 	/**
-	 * Content of the revision we are working on
+	 * Text of the revision we are working on
 	 * @var string $mContent
 	 */
-	var $mContent;                    // !<
+	var $mContent;                    // !< #BC cruft
+
+	/**
+	 * Content of the revision we are working on
+	 * @var Content
+	 * @since 1.21
+	 */
+	var $mContentObject;              // !<
 
 	/**
 	 * Is the content ($mContent) already loaded?
@@ -127,7 +134,7 @@ class Article extends Page {
 
 	/**
 	 * Constructor from a page id
-	 * @param $id Int article ID to load
+	 * @param int $id article ID to load
 	 * @return Article|null
 	 */
 	public static function newFromID( $id ) {
@@ -153,7 +160,7 @@ class Article extends Page {
 		$page = null;
 		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page ) );
 		if ( !$page ) {
-			switch( $title->getNamespace() ) {
+			switch ( $title->getNamespace() ) {
 				case NS_FILE:
 					$page = new ImagePage( $title );
 					break;
@@ -231,9 +238,32 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
+	 * @deprecated in 1.21; use WikiPage::getContent() instead
+	 *
 	 * @return string Return the text of this revision
 	 */
 	public function getContent() {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+		$content = $this->getContentObject();
+		return ContentHandler::getContentText( $content );
+	}
+
+	/**
+	 * Returns a Content object representing the pages effective display content,
+	 * not necessarily the revision's content!
+	 *
+	 * Note that getContent/loadContent do not follow redirects anymore.
+	 * If you need to fetch redirectable content easily, try
+	 * the shortcut in WikiPage::getRedirectTarget()
+	 *
+	 * This function has side effects! Do not use this function if you
+	 * only want the real revision text if any.
+	 *
+	 * @return Content Return the content of this revision
+	 *
+	 * @since 1.21
+	 */
+	protected function getContentObject() {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->mPage->getID() === 0 ) {
@@ -244,19 +274,19 @@ class Article extends Page {
 				if ( $text === false ) {
 					$text = '';
 				}
+
+				$content = ContentHandler::makeContent( $text, $this->getTitle() );
 			} else {
 				$message = $this->getContext()->getUser()->isLoggedIn() ? 'noarticletext' : 'noarticletextanon';
-				$text = wfMessage( $message )->text();
+				$content = new MessageContent( $message, null, 'parsemag' );
 			}
-			wfProfileOut( __METHOD__ );
-
-			return $text;
 		} else {
-			$this->fetchContent();
-			wfProfileOut( __METHOD__ );
-
-			return $this->mContent;
+			$this->fetchContentObject();
+			$content = $this->mContentObject;
 		}
+
+		wfProfileOut( __METHOD__ );
+		return $content;
 	}
 
 	/**
@@ -336,22 +366,61 @@ class Article extends Page {
 	 * Get text of an article from database
 	 * Does *NOT* follow redirects.
 	 *
+	 * @protected
+	 * @note this is really internal functionality that should really NOT be used by other functions. For accessing
+	 *       article content, use the WikiPage class, especially WikiBase::getContent(). However, a lot of legacy code
+	 *       uses this method to retrieve page text from the database, so the function has to remain public for now.
+	 *
 	 * @return mixed string containing article contents, or false if null
+	 * @deprecated in 1.21, use WikiPage::getContent() instead
 	 */
-	function fetchContent() {
-		if ( $this->mContentLoaded ) {
+	function fetchContent() { #BC cruft!
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+
+		if ( $this->mContentLoaded && $this->mContent ) {
 			return $this->mContent;
 		}
 
 		wfProfileIn( __METHOD__ );
 
+		$content = $this->fetchContentObject();
+
+		// @todo Get rid of mContent everywhere!
+		$this->mContent = ContentHandler::getContentText( $content );
+		ContentHandler::runLegacyHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
+
+		wfProfileOut( __METHOD__ );
+
+		return $this->mContent;
+	}
+
+	/**
+	 * Get text content object
+	 * Does *NOT* follow redirects.
+	 * TODO: when is this null?
+	 *
+	 * @note code that wants to retrieve page content from the database should use WikiPage::getContent().
+	 *
+	 * @return Content|null|boolean false
+	 *
+	 * @since 1.21
+	 */
+	protected function fetchContentObject() {
+		if ( $this->mContentLoaded ) {
+			return $this->mContentObject;
+		}
+
+		wfProfileIn( __METHOD__ );
+
 		$this->mContentLoaded = true;
+		$this->mContent = null;
 
 		$oldid = $this->getOldID();
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
-		$this->mContent = wfMessage( 'missing-revision', $oldid )->plain();
+		//XXX: this isn't page content but a UI message. horrible.
+		$this->mContentObject = new MessageContent( 'missing-revision', array( $oldid ), array() );
 
 		if ( $oldid ) {
 			# $this->mRevision might already be fetched by getOldIDFromRequest()
@@ -371,6 +440,7 @@ class Article extends Page {
 			}
 
 			$this->mRevision = $this->mPage->getRevision();
+
 			if ( !$this->mRevision ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
 				wfProfileOut( __METHOD__ );
@@ -380,14 +450,14 @@ class Article extends Page {
 
 		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
-		$this->mContent = $this->mRevision->getText( Revision::FOR_THIS_USER ); // Loads if user is allowed
+		$this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER, $this->getContext()->getUser() ); // Loads if user is allowed
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
+		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
 
 		wfProfileOut( __METHOD__ );
 
-		return $this->mContent;
+		return $this->mContentObject;
 	}
 
 	/**
@@ -420,7 +490,7 @@ class Article extends Page {
 	 * @return Revision|null
 	 */
 	public function getRevisionFetched() {
-		$this->fetchContent();
+		$this->fetchContentObject();
 
 		return $this->mRevision;
 	}
@@ -443,7 +513,7 @@ class Article extends Page {
 	 * page of the given title.
 	 */
 	public function view() {
-		global $wgParser, $wgUseFileCache, $wgUseETag, $wgDebugToolbar;
+		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar;
 
 		wfProfileIn( __METHOD__ );
 
@@ -540,7 +610,7 @@ class Article extends Page {
 		$this->mParserOutput = false;
 
 		while ( !$outputDone && ++$pass ) {
-			switch( $pass ) {
+			switch ( $pass ) {
 				case 1:
 					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
 					break;
@@ -580,7 +650,7 @@ class Article extends Page {
 					break;
 				case 3:
 					# This will set $this->mRevision if needed
-					$this->fetchContent();
+					$this->fetchContentObject();
 
 					# Are we looking at an old revision
 					if ( $oldid && $this->mRevision ) {
@@ -604,18 +674,25 @@ class Article extends Page {
 						wfDebug( __METHOD__ . ": showing CSS/JS source\n" );
 						$this->showCssOrJsPage();
 						$outputDone = true;
-					} elseif( !wfRunHooks( 'ArticleViewCustom', array( $this->mContent, $this->getTitle(), $outputPage ) ) ) {
+					} elseif ( !wfRunHooks( 'ArticleContentViewCustom',
+							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
+
+						# Allow extensions do their own custom view for certain pages
+						$outputDone = true;
+					} elseif ( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
+							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
+
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
-						$text = $this->getContent();
-						$rt = Title::newFromRedirectArray( $text );
+						$content = $this->getContentObject();
+						$rt = $content ? $content->getRedirectChain() : null;
 						if ( $rt ) {
 							wfDebug( __METHOD__ . ": showing redirect=no page\n" );
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$outputPage->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $wgParser->parse( $text, $this->getTitle(), $parserOptions );
+							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions, false );
 							$outputPage->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
@@ -625,8 +702,8 @@ class Article extends Page {
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
-					$poolArticleView = new PoolWorkArticleView( $this, $parserOptions,
-						$this->getRevIdFetched(), $useParserCache, $this->getContent() );
+					$poolArticleView = new PoolWorkArticleView( $this->getPage(), $parserOptions,
+						$this->getRevIdFetched(), $useParserCache, $this->getContentObject() );
 
 					if ( !$poolArticleView->execute() ) {
 						$error = $poolArticleView->getError();
@@ -690,6 +767,8 @@ class Article extends Page {
 		$this->showViewFooter();
 		$this->mPage->doViewUpdates( $user );
 
+		$outputPage->addModules( 'mediawiki.action.view.postEdit' );
+
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -708,6 +787,8 @@ class Article extends Page {
 	/**
 	 * Show a diff page according to current request variables. For use within
 	 * Article::view() only, other callers should use the DifferenceEngine class.
+	 *
+	 * @todo Make protected
 	 */
 	public function showDiffPage() {
 		$request = $this->getContext()->getRequest();
@@ -719,7 +800,17 @@ class Article extends Page {
 		$unhide = $request->getInt( 'unhide' ) == 1;
 		$oldid = $this->getOldID();
 
-		$de = new DifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
+		$rev = $this->getRevisionFetched();
+
+		if ( !$rev ) {
+			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
+			$this->getContext()->getOutput()->addWikiMsg( 'difference-missing-revision', $oldid, 1 );
+			return;
+		}
+
+		$contentHandler = $rev->getContentHandler();
+		$de = $contentHandler->createDifferenceEngine( $this->getContext(), $oldid, $diff, $rcid, $purge, $unhide );
+
 		// DifferenceEngine directly fetched the revision:
 		$this->mRevIdFetched = $de->mNewid;
 		$de->showDiffPage( $diffOnly );
@@ -736,66 +827,77 @@ class Article extends Page {
 	 *
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
+	 *
+	 * @param bool $showCacheHint whether to show a message telling the user to clear the browser cache (default: true).
 	 */
-	protected function showCssOrJsPage() {
-		$dir = $this->getContext()->getLanguage()->getDir();
-		$lang = $this->getContext()->getLanguage()->getCode();
-
+	protected function showCssOrJsPage( $showCacheHint = true ) {
 		$outputPage = $this->getContext()->getOutput();
-		$outputPage->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
-			'clearyourcache' );
 
-		// Give hooks a chance to customise the output
-		if ( wfRunHooks( 'ShowRawCssJs', array( $this->mContent, $this->getTitle(), $outputPage ) ) ) {
-			// Wrap the whole lot in a <pre> and don't parse
-			$m = array();
-			preg_match( '!\.(css|js)$!u', $this->getTitle()->getText(), $m );
-			$outputPage->addHTML( "<pre class=\"mw-code mw-{$m[1]}\" dir=\"ltr\">\n" );
-			$outputPage->addHTML( htmlspecialchars( $this->mContent ) );
-			$outputPage->addHTML( "\n</pre>\n" );
+		if ( $showCacheHint ) {
+			$dir = $this->getContext()->getLanguage()->getDir();
+			$lang = $this->getContext()->getLanguage()->getCode();
+
+			$outputPage->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
+				'clearyourcache' );
+		}
+
+		$this->fetchContentObject();
+
+		if ( $this->mContentObject ) {
+			// Give hooks a chance to customise the output
+			if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mContentObject, $this->getTitle(), $outputPage ) ) ) {
+				$po = $this->mContentObject->getParserOutput( $this->getTitle() );
+				$outputPage->addHTML( $po->getText() );
+			}
 		}
 	}
 
 	/**
 	 * Get the robot policy to be used for the current view
-	 * @param $action String the action= GET parameter
-	 * @param $pOutput ParserOutput
+	 * @param string $action the action= GET parameter
+	 * @param $pOutput ParserOutput|null
 	 * @return Array the policy that should be set
 	 * TODO: actions other than 'view'
 	 */
-	public function getRobotPolicy( $action, $pOutput ) {
+	public function getRobotPolicy( $action, $pOutput = null ) {
 		global $wgArticleRobotPolicies, $wgNamespaceRobotPolicies, $wgDefaultRobotPolicy;
 
 		$ns = $this->getTitle()->getNamespace();
 
-		if ( $ns == NS_USER || $ns == NS_USER_TALK ) {
-			# Don't index user and user talk pages for blocked users (bug 11443)
-			if ( !$this->getTitle()->isSubpage() ) {
-				if ( Block::newFromTarget( null, $this->getTitle()->getText() ) instanceof Block ) {
-					return array(
-						'index'  => 'noindex',
-						'follow' => 'nofollow'
-					);
-				}
+		# Don't index user and user talk pages for blocked users (bug 11443)
+		if ( ( $ns == NS_USER || $ns == NS_USER_TALK ) && !$this->getTitle()->isSubpage() ) {
+			$specificTarget = null;
+			$vagueTarget = null;
+			$titleText = $this->getTitle()->getText();
+			if ( IP::isValid( $titleText ) ) {
+				$vagueTarget = $titleText;
+			} else {
+				$specificTarget = $titleText;
+			}
+			if ( Block::newFromTarget( $specificTarget, $vagueTarget ) instanceof Block ) {
+				return array(
+					'index' => 'noindex',
+					'follow' => 'nofollow'
+				);
 			}
 		}
 
 		if ( $this->mPage->getID() === 0 || $this->getOldID() ) {
 			# Non-articles (special pages etc), and old revisions
 			return array(
-				'index'  => 'noindex',
+				'index' => 'noindex',
 				'follow' => 'nofollow'
 			);
 		} elseif ( $this->getContext()->getOutput()->isPrintable() ) {
 			# Discourage indexing of printable versions, but encourage following
 			return array(
-				'index'  => 'noindex',
+				'index' => 'noindex',
 				'follow' => 'follow'
 			);
 		} elseif ( $this->getContext()->getRequest()->getInt( 'curid' ) ) {
 			# For ?curid=x urls, disallow indexing
 			return array(
-				'index'  => 'noindex',
+				'index' => 'noindex',
 				'follow' => 'follow'
 			);
 		}
@@ -887,14 +989,13 @@ class Article extends Page {
 
 				// Set the fragment if one was specified in the redirect
 				if ( strval( $this->getTitle()->getFragment() ) != '' ) {
-					$fragment = Xml::escapeJsString( $this->getTitle()->getFragmentForURL() );
-					$outputPage->addInlineScript( "redirectToFragment(\"$fragment\");" );
+					$outputPage->addInlineScript( Xml::encodeJsCall(
+						'redirectToFragment', array( $this->getTitle()->getFragmentForURL() )
+					) );
 				}
 
 				// Add a <link rel="canonical"> tag
-				$outputPage->addLink( array( 'rel' => 'canonical',
-					'href' => $this->getTitle()->getLocalURL() )
-				);
+				$outputPage->setCanonicalUrl( $this->getTitle()->getLocalURL() );
 
 				// Tell the output object that the user arrived at this article through a redirect
 				$outputPage->setRedirectedFrom( $this->mRedirectedFrom );
@@ -936,11 +1037,10 @@ class Article extends Page {
 			$this->getContext()->getOutput()->addWikiMsg( 'anontalkpagetext' );
 		}
 
-		# If we have been passed an &rcid= parameter, we want to give the user a
-		# chance to mark this new article as patrolled.
-		$this->showPatrolFooter();
+		// Show a footer allowing the user to patrol the shown revision or page if possible
+		$patrolFooterShown = $this->showPatrolFooter();
 
-		wfRunHooks( 'ArticleViewFooter', array( $this ) );
+		wfRunHooks( 'ArticleViewFooter', array( $this, $patrolFooterShown ) );
 
 	}
 
@@ -948,19 +1048,87 @@ class Article extends Page {
 	 * If patrol is possible, output a patrol UI box. This is called from the
 	 * footer section of ordinary page views. If patrol is not possible or not
 	 * desired, does nothing.
+	 * Side effect: When the patrol link is build, this method will call
+	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
+	 *
+	 * @return bool
 	 */
 	public function showPatrolFooter() {
-		$request = $this->getContext()->getRequest();
+		global $wgUseNPPatrol, $wgUseRCPatrol, $wgEnableAPI, $wgEnableWriteAPI;
+
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
-		$rcid = $request->getVal( 'rcid' );
+		$cache = wfGetMainCache();
+		$rc = false;
 
-		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
-			return;
+		if ( !$this->getTitle()->quickUserCan( 'patrol', $user ) || !( $wgUseRCPatrol || $wgUseNPPatrol ) ) {
+			// Patrolling is disabled or the user isn't allowed to
+			return false;
 		}
 
+		wfProfileIn( __METHOD__ );
+
+		// New page patrol: Get the timestamp of the oldest revison which
+		// the revision table holds for the given page. Then we look
+		// whether it's within the RC lifespan and if it is, we try
+		// to get the recentchanges row belonging to that entry
+		// (with rc_new = 1).
+
+		// Check for cached results
+		if ( $cache->get( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ) ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		if ( $this->mRevision && !RecentChange::isInRCLifespan( $this->mRevision->getTimestamp(), 21600 ) ) {
+			// The current revision is already older than what could be in the RC table
+			// 6h tolerance because the RC might not be cleaned out regularly
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$oldestRevisionTimestamp = $dbr->selectField(
+			'revision',
+			'MIN( rev_timestamp )',
+			array( 'rev_page' => $this->getTitle()->getArticleID() ),
+			__METHOD__
+		);
+
+		if ( $oldestRevisionTimestamp && RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 ) ) {
+			// 6h tolerance because the RC might not be cleaned out regularly
+			$rc = RecentChange::newFromConds(
+				array(
+					'rc_new' => 1,
+					'rc_timestamp' => $oldestRevisionTimestamp,
+					'rc_namespace' => $this->getTitle()->getNamespace(),
+					'rc_cur_id' => $this->getTitle()->getArticleID(),
+					'rc_patrolled' => 0
+				),
+				__METHOD__,
+				array( 'USE INDEX' => 'new_name_timestamp' )
+			);
+		}
+
+		if ( !$rc ) {
+			// No RC entry around
+
+			// Cache the information we gathered above in case we can't patrol
+			// Don't cache in case we can patrol as this could change
+			$cache->set( wfMemcKey( 'NotPatrollablePage', $this->getTitle()->getArticleID() ), '1' );
+
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		$rcid = $rc->getAttribute( 'rc_id' );
+
 		$token = $user->getEditToken( $rcid );
+
 		$outputPage->preventClickjacking();
+		if ( $wgEnableAPI && $wgEnableWriteAPI && $user->isAllowed( 'writeapi' ) ) {
+			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
+		}
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),
@@ -978,6 +1146,9 @@ class Article extends Page {
 				wfMessage( 'markaspatrolledlink' )->rawParams( $link )->escaped() .
 			'</div>'
 		);
+
+		wfProfileOut( __METHOD__ );
+		return true;
 	}
 
 	/**
@@ -987,6 +1158,8 @@ class Article extends Page {
 	public function showMissingArticle() {
 		global $wgSend404Code;
 		$outputPage = $this->getContext()->getOutput();
+		// Whether the page is a root user page of an existing user (but not a subpage)
+		$validUserPage = false;
 
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $this->getTitle()->getNamespace() == NS_USER || $this->getTitle()->getNamespace() == NS_USER_TALK ) {
@@ -995,7 +1168,7 @@ class Article extends Page {
 			$user = User::newFromName( $rootPart, false /* allow IP users*/ );
 			$ip = User::isIP( $rootPart );
 
-			if ( !($user && $user->isLoggedIn()) && !$ip ) { # User does not exist
+			if ( !( $user && $user->isLoggedIn() ) && !$ip ) { # User does not exist
 				$outputPage->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					array( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) ) );
 			} elseif ( $user->isBlocked() ) { # Show log extract if the user is currently blocked
@@ -1013,6 +1186,9 @@ class Article extends Page {
 						)
 					)
 				);
+				$validUserPage = !$this->getTitle()->isSubpage();
+			} else {
+				$validUserPage = !$this->getTitle()->isSubpage();
 			}
 		}
 
@@ -1020,16 +1196,23 @@ class Article extends Page {
 
 		# Show delete and move logs
 		LogEventsList::showLogExtract( $outputPage, array( 'delete', 'move' ), $this->getTitle(), '',
-			array(  'lim' => 10,
+			array( 'lim' => 10,
 				'conds' => array( "log_action != 'revision'" ),
 				'showIfEmpty' => false,
 				'msgKey' => array( 'moveddeleted-notice' ) )
 		);
 
-		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
+		if ( !$this->mPage->hasViewableContent() && $wgSend404Code && !$validUserPage ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
 			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
+		}
+
+		if ( $validUserPage ) {
+			// Also apply the robot policy for nonexisting user pages (as those aren't served as 404)
+			$policy = $this->getRobotPolicy( 'view' );
+			$outputPage->setIndexPolicy( $policy['index'] );
+			$outputPage->setFollowPolicy( $policy['follow'] );
 		}
 
 		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
@@ -1081,7 +1264,7 @@ class Article extends Page {
 		} elseif ( $this->getContext()->getRequest()->getInt( 'unhide' ) != 1 ) {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
-			$link = $this->getTitle()->getFullUrl( "oldid={$oldid}&unhide=1" );
+			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
 			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
@@ -1104,7 +1287,7 @@ class Article extends Page {
 	 *   Revision as of \<date\>; view current revision
 	 *   \<- Previous version | Next Version -\>
 	 *
-	 * @param $oldid int: revision ID of this article revision
+	 * @param int $oldid revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
 		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
@@ -1166,7 +1349,7 @@ class Article extends Page {
 					'oldid' => $oldid
 				) + $extraParams
 			);
-		$prev = $this->getTitle()->getPreviousRevisionID( $oldid ) ;
+		$prev = $this->getTitle()->getPreviousRevisionID( $oldid );
 		$prevlink = $prev
 			? Linker::linkKnown(
 				$this->getTitle(),
@@ -1363,13 +1546,7 @@ class Article extends Page {
 
 			$this->doDelete( $reason, $suppress );
 
-			if ( $user->isLoggedIn() && $request->getCheck( 'wpWatch' ) != $user->isWatched( $title ) ) {
-				if ( $request->getCheck( 'wpWatch' ) ) {
-					WatchAction::doWatch( $title, $user );
-				} else {
-					WatchAction::doUnwatch( $title, $user );
-				}
-			}
+			WatchAction::doWatchOrUnwatch( $request->getCheck( 'wpWatch' ), $title, $user );
 
 			return;
 		}
@@ -1377,7 +1554,13 @@ class Article extends Page {
 		// Generate deletion reason
 		$hasHistory = false;
 		if ( !$reason ) {
-			$reason = $this->generateReason( $hasHistory );
+			try {
+				$reason = $this->generateReason( $hasHistory );
+			} catch ( MWException $e ) {
+				# if a page is horribly broken, we still want to be able to delete it. so be lenient about errors here.
+				wfDebug( "Error while building auto delete summary: $e" );
+				$reason = '';
+			}
 		}
 
 		// If the page has a history, insert a warning
@@ -1406,7 +1589,7 @@ class Article extends Page {
 	/**
 	 * Output deletion confirmation dialog
 	 * @todo FIXME: Move to another file?
-	 * @param $reason String: prefilled reason
+	 * @param string $reason prefilled reason
 	 */
 	public function confirmDelete( $reason ) {
 		wfDebug( "Article::confirmDelete\n" );
@@ -1614,9 +1797,11 @@ class Article extends Page {
 	 *
 	 * @param $oldid mixed integer Revision ID or null
 	 * @param $user User The relevant user
-	 * @return ParserOutput or false if the given revsion ID is not found
+	 * @return ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
+		//XXX: bypasses mParserOptions and thus setParserOptions()
+
 		if ( $user === null ) {
 			$parserOptions = $this->getParserOptions();
 		} else {
@@ -1624,6 +1809,21 @@ class Article extends Page {
 		}
 
 		return $this->mPage->getParserOutput( $parserOptions, $oldid );
+	}
+
+	/**
+	 * Override the ParserOptions used to render the primary article wikitext.
+	 *
+	 * @param ParserOptions $options
+	 * @throws MWException if the parser options where already initialized.
+	 */
+	public function setParserOptions( ParserOptions $options ) {
+		if ( $this->mParserOptions ) {
+			throw new MWException( "can't change parser options after they have already been set" );
+		}
+
+		// clone, so if $options is modified later, it doesn't confuse the parser cache.
+		$this->mParserOptions = clone $options;
 	}
 
 	/**
@@ -1757,15 +1957,16 @@ class Article extends Page {
 	 *
 	 * @deprecated in 1.18; call OutputPage::redirect() directly
 	 * @param $noRedir Boolean: add redirect=no
-	 * @param $sectionAnchor String: section to redirect to, including "#"
-	 * @param $extraQuery String: extra query params
+	 * @param string $sectionAnchor section to redirect to, including "#"
+	 * @param string $extraQuery extra query params
 	 */
 	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
 		wfDeprecated( __METHOD__, '1.18' );
 		if ( $noRedir ) {
 			$query = 'redirect=no';
-			if ( $extraQuery )
+			if ( $extraQuery ) {
 				$query .= "&$extraQuery";
+			}
 		} else {
 			$query = $extraQuery;
 		}
@@ -1777,7 +1978,7 @@ class Article extends Page {
 	 * Use PHP's magic __get handler to handle accessing of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
-	 * @param $fname String Field name
+	 * @param string $fname Field name
 	 */
 	public function __get( $fname ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
@@ -1791,7 +1992,7 @@ class Article extends Page {
 	 * Use PHP's magic __set handler to handle setting of
 	 * raw WikiPage fields for backwards compatibility.
 	 *
-	 * @param $fname String Field name
+	 * @param string $fname Field name
 	 * @param $fvalue mixed New value
 	 */
 	public function __set( $fname, $fvalue ) {
@@ -1810,8 +2011,8 @@ class Article extends Page {
 	 * Use PHP's magic __call handler to transform instance calls to
 	 * WikiPage functions for backwards compatibility.
 	 *
-	 * @param $fname String Name of called method
-	 * @param $args Array Arguments to the method
+	 * @param string $fname Name of called method
+	 * @param array $args Arguments to the method
 	 * @return mixed
 	 */
 	public function __call( $fname, $args ) {
@@ -1844,7 +2045,13 @@ class Article extends Page {
 	 * @return bool
 	 */
 	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
-		return $this->mPage->updateRestrictions( $limit, $reason, $cascade, $expiry );
+		return $this->mPage->doUpdateRestrictions(
+			$limit,
+			$expiry,
+			$cascade,
+			$reason,
+			$this->getContext()->getUser()
+		);
 	}
 
 	/**
@@ -1891,7 +2098,9 @@ class Article extends Page {
 	 * @return mixed
 	 */
 	public function generateReason( &$hasHistory ) {
-		return $this->mPage->getAutoDeleteReason( $hasHistory );
+		$title = $this->mPage->getTitle();
+		$handler = ContentHandler::getForTitle( $title );
+		return $handler->getAutoDeleteReason( $title, $hasHistory );
 	}
 
 	// ****** B/C functions for static methods ( __callStatic is PHP>=5.3 ) ****** //
@@ -1929,6 +2138,7 @@ class Article extends Page {
 	 * @param $newtext
 	 * @param $flags
 	 * @return string
+	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
 	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );

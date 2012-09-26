@@ -17,12 +17,12 @@ class HttpTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $ok, $msg );
 	}
 
-	function cookieDomains() {
+	public static function cookieDomains() {
 		return array(
-			array( false, "org"),
-			array( false, ".org"),
-			array( true, "wikipedia.org"),
-			array( true, ".wikipedia.org"),
+			array( false, "org" ),
+			array( false, ".org" ),
+			array( true, "wikipedia.org" ),
+			array( true, ".wikipedia.org" ),
 			array( false, "co.uk" ),
 			array( false, ".co.uk" ),
 			array( false, "gov.uk" ),
@@ -54,7 +54,7 @@ class HttpTest extends MediaWikiTestCase {
 	function testIsValidUri( $expect, $URI, $message = '' ) {
 		$this->assertEquals(
 			$expect,
-			(bool) Http::isValidURI( $URI ),
+			(bool)Http::isValidURI( $URI ),
 			$message
 		);
 	}
@@ -62,32 +62,32 @@ class HttpTest extends MediaWikiTestCase {
 	/**
 	 * Feeds URI to test a long regular expression in Http::isValidURI
 	 */
-	function provideURI() {
+	public static function provideURI() {
 		/** Format: 'boolean expectation', 'URI to test', 'Optional message' */
 		return array(
 			array( false, '¿non sens before!! http://a', 'Allow anything before URI' ),
 
 			# (http|https) - only two schemes allowed
-			array( true,  'http://www.example.org/' ),
-			array( true,  'https://www.example.org/' ),
-			array( true,  'http://www.example.org', 'URI without directory' ),
-			array( true,  'http://a', 'Short name' ),
-			array( true, 'http://étoile', 'Allow UTF-8 in hostname' ),  # 'étoile' is french for 'star'
+			array( true, 'http://www.example.org/' ),
+			array( true, 'https://www.example.org/' ),
+			array( true, 'http://www.example.org', 'URI without directory' ),
+			array( true, 'http://a', 'Short name' ),
+			array( true, 'http://étoile', 'Allow UTF-8 in hostname' ), # 'étoile' is french for 'star'
 			array( false, '\\host\directory', 'CIFS share' ),
 			array( false, 'gopher://host/dir', 'Reject gopher scheme' ),
 			array( false, 'telnet://host', 'Reject telnet scheme' ),
 
 			# :\/\/ - double slashes
-			array( false,  'http//example.org', 'Reject missing colon in protocol' ),
-			array( false,  'http:/example.org', 'Reject missing slash in protocol' ),
-			array( false,  'http:example.org', 'Must have two slashes' ),
+			array( false, 'http//example.org', 'Reject missing colon in protocol' ),
+			array( false, 'http:/example.org', 'Reject missing slash in protocol' ),
+			array( false, 'http:example.org', 'Must have two slashes' ),
 			# Following fail since hostname can be made of anything
-			array( false,  'http:///example.org', 'Must have exactly two slashes, not three' ),
+			array( false, 'http:///example.org', 'Must have exactly two slashes, not three' ),
 
 			# (\w+:{0,1}\w*@)? - optional user:pass
-			array( true,  'http://user@host', 'Username provided' ),
-			array( true,  'http://user:@host', 'Username provided, no password' ),
-			array( true,  'http://user:pass@host', 'Username and password provided' ),
+			array( true, 'http://user@host', 'Username provided' ),
+			array( true, 'http://user:@host', 'Username provided, no password' ),
+			array( true, 'http://user:pass@host', 'Username and password provided' ),
 
 			# (\S+) - host part is made of anything not whitespaces
 			array( false, 'http://!"èèè¿¿¿~~\'', 'hostname is made of any non whitespace' ),
@@ -115,7 +115,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( true, 'http://example/&' ),
 
 			# Fragment
-			array( true, 'http://exam#ple.org', ),  # This one is valid, really!
+			array( true, 'http://exam#ple.org', ), # This one is valid, really!
 			array( true, 'http://example.org:80#anchor' ),
 			array( true, 'http://example.org/?id#anchor' ),
 			array( true, 'http://example.org/?#anchor' ),
@@ -126,18 +126,19 @@ class HttpTest extends MediaWikiTestCase {
 
 	/**
 	 * Warning:
-	 * 
+	 *
 	 * These tests are for code that makes use of an artifact of how CURL
 	 * handles header reporting on redirect pages, and will need to be
 	 * rewritten when bug 29232 is taken care of (high-level handling of
 	 * HTTP redirects).
 	 */
 	function testRelativeRedirections() {
-		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );
+		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext' );
+
 		# Forge a Location header
 		$h->setRespHeaders( 'location', array(
-			'http://newsite/file.ext',
-			'/newfile.ext',
+				'http://newsite/file.ext',
+				'/newfile.ext',
 			)
 		);
 		# Verify we correctly fix the Location
@@ -148,7 +149,7 @@ class HttpTest extends MediaWikiTestCase {
 		);
 
 		$h->setRespHeaders( 'location', array(
-			'https://oldsite/file.ext'
+				'https://oldsite/file.ext'
 			)
 		);
 		$this->assertEquals(
@@ -158,23 +159,56 @@ class HttpTest extends MediaWikiTestCase {
 		);
 
 		$h->setRespHeaders( 'location', array(
-			'/anotherfile.ext',
-			'http://anotherfile/hoster.ext',
-			'https://anotherfile/hoster.ext'
+				'/anotherfile.ext',
+				'http://anotherfile/hoster.ext',
+				'https://anotherfile/hoster.ext'
 			)
 		);
 		$this->assertEquals(
 			'https://anotherfile/hoster.ext',
-			$h->getFinalUrl( "Relative file path Location: should keep the latest host and scheme!")
+			$h->getFinalUrl( "Relative file path Location: should keep the latest host and scheme!" )
 		);
 	}
 }
 
 /**
- * Class to let us overwrite MWHttpREquest respHeaders variable
+ * Class to let us overwrite MWHttpRequest respHeaders variable
  */
 class MWHttpRequestTester extends MWHttpRequest {
+
+	// function derived from the MWHttpRequest factory function but 
+	// returns appropriate tester class here
+	public static function factory( $url, $options = null ) {
+		if ( !Http::$httpEngine ) {
+			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
+			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
+				'Http::$httpEngine is set to "curl"' );
+		}
+
+		switch ( Http::$httpEngine ) {
+			case 'curl':
+				return new CurlHttpRequestTester( $url, $options );
+			case 'php':
+				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
+					throw new MWException( __METHOD__ . ': allow_url_fopen needs to be enabled for pure PHP' .
+						' http requests to work. If possible, curl should be used instead. See http://php.net/curl.' );
+				}
+
+				return new PhpHttpRequestTester( $url, $options );
+			default:
+		}
+	}
+}
+
+class CurlHttpRequestTester extends CurlHttpRequest {
 	function setRespHeaders( $name, $value ) {
-		$this->respHeaders[$name] = $value ;
+		$this->respHeaders[$name] = $value;
+	}
+}
+
+class PhpHttpRequestTester extends PhpHttpRequest {
+	function setRespHeaders( $name, $value ) {
+		$this->respHeaders[$name] = $value;
 	}
 }
