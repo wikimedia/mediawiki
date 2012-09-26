@@ -5576,6 +5576,26 @@ PAGESINCATEGORY invalid title fatal (r33546 fix)
 </p>
 !! end
 
+!! test
+Category with different sort key
+!! options
+cat
+!! input
+[[Category:MediaWiki User's Guide|Foo]]
+!! result
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+!! end
+
+!! test
+Category with identical sort key
+!! options
+cat
+!! input
+[[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
+!! result
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+!! end
+
 ###
 ### Inter-language links
 ###
