@@ -47,13 +47,22 @@ abstract class ORMTable implements IORMTable {
 	protected static $instanceCache = array();
 
 	/**
-	 * The database connection to use for read operations.
+	 * ID of the database connection to use for read operations.
 	 * Can be changed via @see setReadDb.
 	 *
 	 * @since 1.20
 	 * @var integer DB_ enum
 	 */
 	protected $readDb = DB_SLAVE;
+
+	/**
+	 * The ID of any foreign wiki to use as a target for database operations,
+	 * or false to use the local wiki.
+	 *
+	 * @since 1.20
+	 * @var String|bool
+	 */
+	protected $wiki = false;
 
 	/**
 	 * Returns a list of default field values.
@@ -145,13 +154,17 @@ abstract class ORMTable implements IORMTable {
 			$fields = (array)$fields;
 		}
 
-		return wfGetDB( $this->getReadDb() )->select(
+		$dbr = $this->getReadDbConnection();
+		$result = $dbr->select(
 			$this->getName(),
 			$this->getPrefixedFields( $fields ),
 			$this->getPrefixedValues( $conditions ),
 			is_null( $functionName ) ? __METHOD__ : $functionName,
 			$options
 		);
+
+		$this->releaseConnection( $dbr );
+		return $result;
 	}
 
 	/**
@@ -241,15 +254,18 @@ abstract class ORMTable implements IORMTable {
 	 */
 	public function rawSelectRow( array $fields, array $conditions = array(),
 								  array $options = array(), $functionName = null ) {
-		$dbr = wfGetDB( $this->getReadDb() );
+		$dbr = $this->getReadDbConnection();
 
-		return $dbr->selectRow(
+		$result = $dbr->selectRow(
 			$this->getName(),
 			$fields,
 			$conditions,
 			is_null( $functionName ) ? __METHOD__ : $functionName,
 			$options
 		);
+
+		$this->releaseConnection( $dbr );
+		return $result;
 	}
 
 	/**
@@ -327,11 +343,16 @@ abstract class ORMTable implements IORMTable {
 	 * @return boolean Success indicator
 	 */
 	public function delete( array $conditions, $functionName = null ) {
-		return wfGetDB( DB_MASTER )->delete(
+		$dbw = $this->getWriteDbConnection();
+
+		$result = $dbw->delete(
 			$this->getName(),
 			$conditions === array() ? '*' : $this->getPrefixedValues( $conditions ),
 			$functionName
 		) !== false; // DatabaseBase::delete does not always return true for success as documented...
+
+		$this->releaseConnection( $dbw );
+		return $result;
 	}
 	
 	/**
@@ -397,7 +418,7 @@ abstract class ORMTable implements IORMTable {
 	}
 
 	/**
-	 * Get the database type used for read operations.
+	 * Get the database ID used for read operations.
 	 *
 	 * @since 1.20
 	 *
@@ -408,7 +429,7 @@ abstract class ORMTable implements IORMTable {
 	}
 
 	/**
-	 * Set the database type to use for read operations.
+	 * Set the database ID to use for read operations, use DB_XXX constants or an index to the load balancer setup.
 	 *
 	 * @param integer $db
 	 *
@@ -416,6 +437,86 @@ abstract class ORMTable implements IORMTable {
 	 */
 	public function setReadDb( $db ) {
 		$this->readDb = $db;
+	}
+
+	/**
+	 * Get the ID of the any foreign wiki to use as a target for database operations
+	 *
+	 * @since 1.20
+	 *
+	 * @return String|bool The target wiki, in a form that  LBFactory understands (or false if the local wiki is used)
+	 */
+	public function getTargetWiki() {
+		return $this->wiki;
+	}
+
+	/**
+	 * Set the ID of the any foreign wiki to use as a target for database operations
+	 *
+	 * @param String|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
+	 *
+	 * @since 1.20
+	 */
+	public function setTargetWiki( $wiki ) {
+		$this->wiki = $wiki;
+	}
+
+	/**
+	 * Get the database type used for read operations.
+	 * This is to be used instead of wfGetDB.
+	 *
+	 * @see LoadBalancer::getConnection
+	 *
+	 * @since 1.20
+	 *
+	 * @return DatabaseBase The database object
+	 */
+	public function getReadDbConnection() {
+		return $this->getLoadBalancer()->getConnection( $this->getReadDb(), array(), $this->getTargetWiki() );
+	}
+
+	/**
+	 * Get the database type used for read operations.
+	 * This is to be used instead of wfGetDB.
+	 *
+	 * @see LoadBalancer::getConnection
+	 *
+	 * @since 1.20
+	 *
+	 * @return DatabaseBase The database object
+	 */
+	public function getWriteDbConnection() {
+		return $this->getLoadBalancer()->getConnection( DB_MASTER, array(), $this->getTargetWiki() );
+	}
+
+	/**
+	 * Get the database type used for read operations.
+	 *
+	 * @see wfGetLB
+	 *
+	 * @since 1.20
+	 *
+	 * @return LoadBalancer The database load balancer object
+	 */
+	public function getLoadBalancer() {
+		return wfGetLB( $this->getTargetWiki() );
+	}
+
+	/**
+	 * Releases the lease on the given database connection. This is useful mainly
+	 * for connections to a foreign wiki. It does nothing for connections to the local wiki.
+	 *
+	 * @see LoadBalancer::reuseConnection
+	 *
+	 * @param DatabaseBase $db the database
+	 *
+	 * @since 1.20
+	 */
+	public function releaseConnection( DatabaseBase $db ) {
+		if ( $this->wiki !== false ) {
+			// recycle connection to foreign wiki
+			$this->getLoadBalancer()->reuseConnection( $db );
+		}
 	}
 
 	/**
@@ -431,14 +532,17 @@ abstract class ORMTable implements IORMTable {
 	 * @return boolean Success indicator
 	 */
 	public function update( array $values, array $conditions = array() ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->getWriteDbConnection();
 
-		return $dbw->update(
+		$result = $dbw->update(
 			$this->getName(),
 			$this->getPrefixedValues( $values ),
 			$this->getPrefixedValues( $conditions ),
 			__METHOD__
 		) !== false; // DatabaseBase::update does not always return true for success as documented...
+
+		$this->releaseConnection( $dbw );
+		return $result;
 	}
 
 	/**
@@ -450,6 +554,7 @@ abstract class ORMTable implements IORMTable {
 	 * @param array $conditions
 	 */
 	public function updateSummaryFields( $summaryFields = null, array $conditions = array() ) {
+		$slave = $this->getReadDb();
 		$this->setReadDb( DB_MASTER );
 
 		/**
@@ -461,7 +566,7 @@ abstract class ORMTable implements IORMTable {
 			$item->save();
 		}
 
-		$this->setReadDb( DB_SLAVE );
+		$this->setReadDb( $slave );
 	}
 
 	/**
