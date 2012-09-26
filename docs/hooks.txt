@@ -487,7 +487,7 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to Article::doEdit()
+$flags: Flags passed to WikiPage::doEdit()
 $revision: New Revision of the article
 
 'ArticleMergeComplete': after merging to article using Special:Mergehistory
@@ -555,7 +555,7 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to Article::doEdit()
+$flags: Flags passed to WikiPage::doEdit()
 $revision: New Revision of the article
 $status: Status object about to be returned by doEdit()
 $baseRevId: the rev ID (or false) this edit was based on
@@ -811,7 +811,7 @@ pages
 $editPage: EditPage	object
 
 'EditPage::attemptSave': called before an article is
-saved, that is before Article::doEdit() is called
+saved, that is before WikiPage::doEdit() is called
 $editpage_Obj: the current EditPage object
 
 'EditPage::importFormData': allow extensions to read additional data
