@@ -38,9 +38,11 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 header( 'Content-Type: text/html; charset=utf-8' );
 
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Profiling data</title>
+<meta charset="UTF-8" />
 <style type="text/css">
 	th {
 		text-align: left;
@@ -87,8 +89,8 @@ $dbr = wfGetDB( DB_SLAVE );
 if( !$dbr->tableExists( 'profiling' ) ) {
 	echo "<p>No 'profiling' table exists, so we can't show you anything.</p>\n";
 	echo "<p>If you want to log profiling data, create the table using "
-		. "<tt>maintenance/archives/patch-profiling.sql</tt> and enable "
-		. "<tt>\$wgProfileToDatabase</tt>.</p>\n";
+		. "<code>maintenance/archives/patch-profiling.sql</code> and enable "
+		. "<code>\$wgProfileToDatabase</code>.</p>\n";
 	echo "</body></html>";
 	exit( 1 );
 }
@@ -173,27 +175,27 @@ class profile_point {
 	function time() {
 		return $this->time;
 	}
-	
+
 	function memory() {
 		return $this->memory;
 	}
-	
+
 	function timePerCall() {
 		return @( $this->time / $this->count );
 	}
-	
+
 	function memoryPerCall() {
 		return @( $this->memory / $this->count );
 	}
-	
+
 	function callsPerRequest() {
 		return @( $this->count / self::$totalcount );
 	}
-	
+
 	function timePerRequest() {
 		return @( $this->time / self::$totalcount );
 	}
-	
+
 	function memoryPerRequest() {
 		return @( $this->memory / self::$totalcount );
 	}
@@ -250,7 +252,7 @@ else
 </p>
 </form>
 
-<table cellspacing="0" border="1">
+<table border="1" style="border-spacing: 0;">
 <tr id="top">
 <th><a href="<?php echo getEscapedProfileUrl( false, 'name' ) ?>">Name</a></th>
 <th><a href="<?php echo getEscapedProfileUrl( false, 'time' ) ?>">Time (%)</a></th>
@@ -274,11 +276,11 @@ function getEscapedProfileUrl( $_filter = false, $_sort = false, $_expand = fals
 		$_expand = $expand;
 
 	return htmlspecialchars(
-		'?' . 
+		'?' .
 		wfArrayToCGI( array(
 			'filter' => $_filter ? $_filter : $filter,
 			'sort' => $_sort ? $_sort : $sort,
-			'expand' => implode( ',', array_keys( $_expand ) ) 
+			'expand' => implode( ',', array_keys( $_expand ) )
 		) )
 	);
 }
@@ -326,7 +328,7 @@ foreach ( $points as $point ) {
 ?>
 </table>
 
-<p>Total time: <tt><?php printf("%5.02f", profile_point::$totaltime) ?></tt></p>
-<p>Total memory: <tt><?php printf("%5.02f", profile_point::$totalmemory / 1024 ) ?></tt></p>
+<p>Total time: <code><?php printf("%5.02f", profile_point::$totaltime) ?></code></p>
+<p>Total memory: <code><?php printf("%5.02f", profile_point::$totalmemory / 1024 ) ?></code></p>
 </body>
 </html>
