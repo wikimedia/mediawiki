@@ -2892,28 +2892,52 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Begin a transaction
+	 * Begin a transaction. If a transaction is already in progress, that transaction will be committed before the
+	 * new transaction is started.
+	 *
+	 * Note that when the DBO_TRX flag is set (which is usually the case for web requests, but not for maintenance scripts),
+	 * any previous database query will have started a transaction automatically.
+	 *
+	 * Nesting of transactions is not supported. Attempts to nest transactions will cause warnings if DBO_TRX is not set
+	 * or the extsting transaction contained write operations.
 	 *
 	 * @param $fname string
 	 */
 	final public function begin( $fname = 'DatabaseBase::begin' ) {
-		if ( $this->mTrxLevel && $this->mTrxDoneWrites ) { // implicit commit
-			// In theory, we should always warn about nesting BEGIN statements.
-			// However, it is sometimes hard to avoid so we simply warn about ones
-			// that involve write queries. This gives warnings about bad transactions
-			// that could cause partial writes but not about read queries seeing more
-			// than one DB snapshot (when in REPEATABLE-READ) due to nested BEGINs.
-			wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-				" performing implicit commit!" );
+		global $wgDebugDBTransactions;
+
+		if ( $this->mTrxLevel ) { // implicit commit
+			if ( $this->mTrxDoneWrites || ( $this->mFlags & DBO_TRX ) === 0 ) {
+				// In theory, we should always warn about nesting BEGIN statements.
+				// However, it is sometimes hard to avoid so we only warn if:
+				//
+				// a) the transaction has done writes. This gives warnings about bad transactions
+				// that could cause partial writes but not about read queries seeing more
+				// than one DB snapshot (when in REPEATABLE-READ) due to nested BEGINs.
+				//
+				// b) the DBO_TRX flag is not set. Explicit transactions should always be properly
+				//    started and comitted.
+				wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+					" performing implicit commit!" );
+			} else {
+				if ( $wgDebugDBTransactions ) {
+					wfDebug( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+						" performing implicit commit!\n" );
+				}
+			}
+
 			$this->doCommit( $fname );
 			$this->runOnTransactionIdleCallbacks();
 		}
+
 		$this->doBegin( $fname );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
 	}
 
 	/**
+	 * Issues the BEGIN command to the database server.
+	 *
 	 * @see DatabaseBase::begin()
 	 * @param type $fname
 	 */
@@ -2923,7 +2947,10 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * End a transaction
+	 * Commits a transaction previously started using begin().
+	 * If no transaction is in progress, a warning is issued.
+	 *
+	 * Nesting of transactions is not supported.
 	 *
 	 * @param $fname string
 	 */
@@ -2936,6 +2963,8 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Issues the COMMIT command to the database server.
+	 *
 	 * @see DatabaseBase::commit()
 	 * @param type $fname
 	 */
@@ -2947,7 +2976,9 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Rollback a transaction.
+	 * Rollback a transaction previously started using begin().
+	 * If no transaction is in progress, a warning is issued.
+	 *
 	 * No-op on non-transactional databases.
 	 *
 	 * @param $fname string
@@ -2961,6 +2992,8 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Issues the ROLLBACK command to the database server.
+	 *
 	 * @see DatabaseBase::rollback()
 	 * @param type $fname
 	 */
