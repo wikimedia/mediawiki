@@ -249,6 +249,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * In HTML5 mode, allow new input element types values (such as color, range..)
 * (bug 40353) SpecialDoubleRedirect should support for interwiki redirects.
 * (bug 40352) fixDoubleRedirects.php should support for interwiki redirects.
+* (bug 32951) Do not register internal externals with absolute protocol,
+  when server has relative protocol.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
