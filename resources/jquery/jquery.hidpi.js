@@ -105,9 +105,7 @@ $.matchSrcSet = function ( devicePixelRatio, srcset ) {
 		if ( bits.length > 1 && bits[1].charAt( bits[1].length - 1 ) === 'x' ) {
 			ratioStr = bits[1].substr( 0, bits[1].length - 1 );
 			ratio = parseFloat( ratioStr );
-			if ( ratio > devicePixelRatio ) {
-				// Too big, skip!
-			} else if ( ratio > selectedRatio ) {
+			if ( ratio <= devicePixelRatio && ratio > selectedRatio ) {
 				selectedRatio = ratio;
 				selectedSrc = src;
 			}

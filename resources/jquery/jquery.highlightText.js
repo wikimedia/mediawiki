@@ -29,7 +29,7 @@
 				// non latin characters can make regex think a new word has begun: do not use \b
 				// http://stackoverflow.com/questions/3787072/regex-wordwrap-with-utf8-characters-in-js
 				// look for an occurrence of our pattern and store the starting position
-				match = node.data.match( new RegExp( "(^|\\s)" + $.escapeRE( pat ), "i" ) );
+				match = node.data.match( new RegExp( '(^|\\s)' + $.escapeRE( pat ), 'i' ) );
 				if ( match ) {
 					pos = match.index + match[1].length; // include length of any matched spaces
 					// create the span wrapper for the matched text
