@@ -448,7 +448,13 @@ class EmailNotification {
 			if ( $watchers ) {
 				// Update wl_notificationtimestamp for all watching users except
 				// the editor
-				$dbw->begin( __METHOD__ );
+
+				$useTransaction = !$dbw->trxLevel();
+
+				if ( $useTransaction ) {
+					$dbw->begin( __METHOD__ );
+				}
+
 				$dbw->update( 'watchlist',
 					array( /* SET */
 						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
@@ -458,7 +464,10 @@ class EmailNotification {
 						'wl_title' => $title->getDBkey(),
 					), __METHOD__
 				);
-				$dbw->commit( __METHOD__ );
+
+				if ( $useTransaction ) {
+					$dbw->commit( __METHOD__ );
+				}
 			}
 		}
 
