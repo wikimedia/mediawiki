@@ -201,6 +201,13 @@ class Parser {
 	var $mUniqPrefix;
 
 	/**
+	 * @var Array with the language name of each language link (i.e. the 
+	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending 
+	 * duplicate language links to the ParserOutput.
+	 */
+	var $mLangLinkLanguages;
+
+	/**
 	 * Constructor
 	 *
 	 * @param $conf array
@@ -282,6 +289,7 @@ class Parser {
 			$this->mRevisionId = $this->mRevisionUser = null;
 		$this->mVarCache = array();
 		$this->mUser = null;
+		$this->mLangLinkLanguages = array();
 
 		/**
 		 * Prefix for temporary replacement strings for the multipass parser.
@@ -1953,7 +1961,11 @@ class Parser {
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
 				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
-					$this->mOutput->addLanguageLink( $nt->getFullText() );
+					# Bug 24502: filter duplicates
+					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
+						$this->mLangLinkLanguages[$iw] = true;
+						$this->mOutput->addLanguageLink( $nt->getFullText() );
+					}
 					$s = rtrim( $s . $prefix );
 					$s .= trim( $trail, "\n" ) == '' ? '': $prefix . $trail;
 					wfProfileOut( __METHOD__."-interwiki" );
