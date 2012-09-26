@@ -4435,6 +4435,39 @@ foo}}
 </p>
 !!end
 
+!! article
+Template:quote
+!! text
+{{{quote|{{{1}}} }}}
+!! endarticle
+
+!!test
+Templates: Template Name/Arg clash: 1. Use of positional param 
+!!input
+{{quote|foo}}
+!!result
+<p>foo 
+</p>
+!!end
+
+!!test
+Templates: Template Name/Arg clash: 2. Use of named param 
+!!input
+{{quote|quote=foo}}
+!!result
+<p>foo
+</p>
+!!end
+
+!!test
+Templates: Template Name/Arg clash: 3. Use of named param with empty input
+!!input
+{{quote|quote}}
+!!result
+<p>quote 
+</p>
+!!end
+
 !!test
 Parser Functions: 1. Simple example
 !!input
