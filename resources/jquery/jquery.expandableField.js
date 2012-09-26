@@ -67,16 +67,16 @@
 				context = {
 					config: {
 						// callback function for before collapse
-						beforeCondense: function ( context ) {},
+						beforeCondense: function () {},
 
 						// callback function for before expand
-						beforeExpand: function ( context ) {},
+						beforeExpand: function () {},
 
 						// callback function for after collapse
-						afterCondense: function ( context ) {},
+						afterCondense: function () {},
 
 						// callback function for after expand
-						afterExpand: function ( context ) {},
+						afterExpand: function () {},
 
 						// Whether the field should expand to the left or the right -- defaults to left
 						expandToLeft: true

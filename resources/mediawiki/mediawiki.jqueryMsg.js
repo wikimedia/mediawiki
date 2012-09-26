@@ -5,7 +5,8 @@
 * @author neilk@wikimedia.org
 */
 ( function ( mw, $ ) {
-	var slice = Array.prototype.slice,
+	var oldParser,
+		slice = Array.prototype.slice,
 		parserDefaults = {
 			magic : {
 				'SITENAME' : mw.config.get( 'wgSiteName' )
@@ -30,8 +31,8 @@
 		 * @return {jQuery}
 		 */
 		return function ( args ) {
-			var key = args[0];
-			var argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
+			var key = args[0],
+				argsArray = $.isArray( args[1] ) ? args[1] : slice.call( args, 1 );
 			try {
 				return parser.parse( key, argsArray );
 			} catch ( e ) {
@@ -63,11 +64,11 @@
 		 * is equivalent to
 		 *    somefunction(a, [b, c, d])
 		 *
-		 * @param {String} message key
-		 * @param {Array} optional replacements (can also specify variadically)
-		 * @return {String} rendered HTML as string
+		 * @param {string} key Message key.
+		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
+		 * @return {string} Rendered HTML.
 		 */
-		return function ( /* key, replacements */ ) {
+		return function () {
 			return failableParserFn( arguments ).html();
 		};
 	};
@@ -93,11 +94,11 @@
 		 *    somefunction(a, [b, c, d])
 		 *
 		 * We append to 'this', which in a jQuery plugin context will be the selected elements.
-		 * @param {String} message key
-		 * @param {Array} optional replacements (can also specify variadically)
+		 * @param {string} key Message key.
+		 * @param {Array|mixed} replacements Optional variable replacements (variadically or an array).
 		 * @return {jQuery} this
 		 */
-		return function ( /* key, replacements */ ) {
+		return function () {
 			var $target = this.empty();
 			$.each( failableParserFn( arguments ).contents(), function ( i, node ) {
 				$target.append( node );
@@ -125,8 +126,8 @@
 		 * Where the magic happens.
 		 * Parses a message from the key, and swaps in replacements as necessary, wraps in jQuery
 		 * If an error is thrown, returns original key, and logs the error
-		 * @param {String} message key
-		 * @param {Array} replacements for $1, $2... $n
+		 * @param {String} key Message key.
+		 * @param {Array} replacements Variable replacements for $1, $2... $n
 		 * @return {jQuery}
 		 */
 		parse: function ( key, replacements ) {
@@ -142,7 +143,7 @@
 			if ( this.astCache[ key ] === undefined ) {
 				var wikiText = this.settings.messages.get( key );
 				if ( typeof wikiText !== 'string' ) {
-					wikiText = "\\[" + key + "\\]";
+					wikiText = '\\[' + key + '\\]';
 				}
 				this.astCache[ key ] = this.wikiTextToAst( wikiText );
 			}
@@ -159,18 +160,27 @@
 		 * @return {Mixed} abstract syntax tree
 		 */
 		wikiTextToAst: function ( input ) {
+			var pos,
+				regularLiteral, regularLiteralWithoutBar, regularLiteralWithoutSpace, backslash, anyCharacter,
+				escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
+				whitespace, dollar, digits,
+				openExtlink, closeExtlink, openLink, closeLink, templateName, pipe, colon,
+				templateContents, openTemplate, closeTemplate,
+				nonWhitespaceExpression, paramExpression, expression, result;
 
 			// Indicates current position in input as we parse through it.
 			// Shared among all parsing functions below.
-			var pos = 0;
+			pos = 0;
+
 			// =========================================================
 			// parsing combinators - could be a library on its own
 			// =========================================================
 			// Try parsers until one works, if none work return null
 			function choice( ps ) {
 				return function () {
-					for ( var i = 0; i < ps.length; i++ ) {
-						var result = ps[i]();
+					var i, result;
+					for ( i = 0; i < ps.length; i++ ) {
+						result = ps[i]();
 						if ( result !== null ) {
 							 return result;
 						}
@@ -181,10 +191,11 @@
 			// try several ps in a row, all must succeed or return null
 			// this is the only eager one
 			function sequence( ps ) {
-				var originalPos = pos;
-				var result = [];
-				for ( var i = 0; i < ps.length; i++ ) {
-					var res = ps[i]();
+				var i, res,
+					originalPos = pos,
+					result = [];
+				for ( i = 0; i < ps.length; i++ ) {
+					res = ps[i]();
 					if ( res === null ) {
 						pos = originalPos;
 						return null;
@@ -197,9 +208,9 @@
 			// must succeed a minimum of n times or return null
 			function nOrMore( n, p ) {
 				return function () {
-					var originalPos = pos;
-					var result = [];
-					var parsed = p();
+					var originalPos = pos,
+						result = [],
+						parsed = p();
 					while ( parsed !== null ) {
 						result.push( parsed );
 						parsed = p();
@@ -258,11 +269,11 @@
 			// but some debuggers can't tell you exactly where they come from. Also the mutually
 			// recursive functions seem not to work in all browsers then. (Tested IE6-7, Opera, Safari, FF)
 			// This may be because, to save code, memoization was removed
-			var regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
-			var regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
-			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
-			var backslash = makeStringParser( "\\" );
-			var anyCharacter = makeRegexParser( /^./ );
+			regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
+			regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
+			regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
+			backslash = makeStringParser( '\\' );
+			anyCharacter = makeRegexParser( /^./ );
 			function escapedLiteral() {
 				var result = sequence( [
 					backslash,
@@ -270,15 +281,15 @@
 				] );
 				return result === null ? null : result[1];
 			}
-			var escapedOrLiteralWithoutSpace = choice( [
+			escapedOrLiteralWithoutSpace = choice( [
 				escapedLiteral,
 				regularLiteralWithoutSpace
 			] );
-			var escapedOrLiteralWithoutBar = choice( [
+			escapedOrLiteralWithoutBar = choice( [
 				escapedLiteral,
 				regularLiteralWithoutBar
 			] );
-			var escapedOrRegularLiteral = choice( [
+			escapedOrRegularLiteral = choice( [
 				escapedLiteral,
 				regularLiteral
 			] );
@@ -297,9 +308,9 @@
 				 var result = nOrMore( 1, escapedOrRegularLiteral )();
 				 return result === null ? null : result.join('');
 			}
-			var whitespace = makeRegexParser( /^\s+/ );
-			var dollar = makeStringParser( '$' );
-			var digits = makeRegexParser( /^\d+/ );
+			whitespace = makeRegexParser( /^\s+/ );
+			dollar = makeStringParser( '$' );
+			digits = makeRegexParser( /^\d+/ );
 
 			function replacement() {
 				var result = sequence( [
@@ -311,12 +322,13 @@
 				}
 				return [ 'REPLACE', parseInt( result[1], 10 ) - 1 ];
 			}
-			var openExtlink = makeStringParser( '[' );
-			var closeExtlink = makeStringParser( ']' );
+			openExtlink = makeStringParser( '[' );
+			closeExtlink = makeStringParser( ']' );
 			// this extlink MUST have inner text, e.g. [foo] not allowed; [foo bar] is allowed
 			function extlink() {
-				var result = null;
-				var parsedResult = sequence( [
+				var result, parsedResult;
+				result = null;
+				parsedResult = sequence( [
 					openExtlink,
 					nonWhitespaceExpression,
 					whitespace,
@@ -343,11 +355,12 @@
 				}
 				return [ 'LINKPARAM', parseInt( result[2], 10 ) - 1, result[4] ];
 			}
-			var openLink = makeStringParser( '[[' );
-			var closeLink = makeStringParser( ']]' );
+			openLink = makeStringParser( '[[' );
+			closeLink = makeStringParser( ']]' );
 			function link() {
-				var result = null;
-				var parsedResult = sequence( [
+				var result, parsedResult;
+				result = null;
+				parsedResult = sequence( [
 					openLink,
 					expression,
 					closeLink
@@ -357,25 +370,26 @@
 				}
 				return result;
 			}
-			var templateName = transform(
+			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
 				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
 				function ( result ) { return result.toString(); }
 			);
 			function templateParam() {
-				var result = sequence( [
+				var expr, result;
+				result = sequence( [
 					pipe,
 					nOrMore( 0, paramExpression )
 				] );
 				if ( result === null ) {
 					return null;
 				}
-				var expr = result[1];
-				// use a "CONCAT" operator if there are multiple nodes, otherwise return the first node, raw.
-				return expr.length > 1 ? [ "CONCAT" ].concat( expr ) : expr[0];
+				expr = result[1];
+				// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
+				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
 			}
-			var pipe = makeStringParser( '|' );
+			pipe = makeStringParser( '|' );
 			function templateWithReplacement() {
 				var result = sequence( [
 					templateName,
@@ -392,8 +406,8 @@
 				] );
 				return result === null ? null : [ result[0], result[2] ];
 			}
-			var colon = makeStringParser(':');
-			var templateContents = choice( [
+			colon = makeStringParser(':');
+			templateContents = choice( [
 				function () {
 					var res = sequence( [
 						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
@@ -414,8 +428,8 @@
 					return [ res[0] ].concat( res[1] );
 				}
 			] );
-			var openTemplate = makeStringParser('{{');
-			var closeTemplate = makeStringParser('}}');
+			openTemplate = makeStringParser('{{');
+			closeTemplate = makeStringParser('}}');
 			function template() {
 				var result = sequence( [
 					openTemplate,
@@ -424,7 +438,7 @@
 				] );
 				return result === null ? null : result[1];
 			}
-			var nonWhitespaceExpression = choice( [
+			nonWhitespaceExpression = choice( [
 				template,
 				link,
 				extLinkParam,
@@ -432,7 +446,7 @@
 				replacement,
 				literalWithoutSpace
 			] );
-			var paramExpression = choice( [
+			paramExpression = choice( [
 				template,
 				link,
 				extLinkParam,
@@ -440,7 +454,7 @@
 				replacement,
 				literalWithoutBar
 			] );
-			var expression = choice( [
+			expression = choice( [
 				template,
 				link,
 				extLinkParam,
@@ -453,20 +467,20 @@
 				if ( result === null ) {
 					return null;
 				}
-				return [ "CONCAT" ].concat( result );
+				return [ 'CONCAT' ].concat( result );
 			}
 			// everything above this point is supposed to be stateless/static, but
 			// I am deferring the work of turning it into prototypes & objects. It's quite fast enough
 			// finally let's do some actual work...
-			var result = start();
+			result = start();
 
 			/*
 			 * For success, the p must have gotten to the end of the input
 			 * and returned a non-null.
 			 * n.b. This is part of language infrastructure, so we do not throw an internationalizable message.
 			 */
-			if (result === null || pos !== input.length) {
-				throw new Error( "Parse error at position " + pos.toString() + " in input: " + input );
+			if ( result === null || pos !== input.length ) {
+				throw new Error( 'Parse error at position ' + pos.toString() + ' in input: ' + input );
 			}
 			return result;
 		}
@@ -491,18 +505,20 @@
 		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
 		 */
 		this.emit = function ( node, replacements ) {
-			var ret = null;
-			var jmsg = this;
+			var ret, subnodes, operation,
+				jmsg = this;
 			switch ( typeof node ) {
 				case 'string':
 				case 'number':
 					ret = node;
 					break;
-				case 'object': // node is an array of nodes
-					var subnodes = $.map( node.slice( 1 ), function ( n ) {
+				// typeof returns object for arrays
+				case 'object':
+					// node is an array of nodes
+					subnodes = $.map( node.slice( 1 ), function ( n ) {
 						return jmsg.emit( n, replacements );
 					} );
-					var operation = node[0].toLowerCase();
+					operation = node[0].toLowerCase();
 					if ( typeof jmsg[operation] === 'function' ) {
 						ret = jmsg[ operation ]( subnodes, replacements );
 					} else {
@@ -579,8 +595,9 @@
 		/**
 		 * Transform wiki-link
 		 * TODO unimplemented
+		 * @param nodes
 		 */
-		wlink: function ( nodes ) {
+		wlink: function () {
 			return 'unimplemented';
 		},
 
@@ -594,9 +611,9 @@
 		 * @return {jQuery}
 		 */
 		link: function ( nodes ) {
-			var arg = nodes[0];
-			var contents = nodes[1];
-			var $el;
+			var $el,
+				arg = nodes[0],
+				contents = nodes[1];
 			if ( arg instanceof jQuery ) {
 				$el = arg;
 			} else {
@@ -639,8 +656,9 @@
 		 * @return {String} selected pluralized form according to current language
 		 */
 		plural: function ( nodes ) {
-			var count = parseFloat( this.language.convertNumber( nodes[0], true ) );
-			var forms = nodes.slice(1);
+			var forms, count;
+			count = parseFloat( this.language.convertNumber( nodes[0], true ) );
+			forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
@@ -674,8 +692,8 @@
 		 * @return {String} selected grammatical form according to current language
 		 */
 		grammar: function ( nodes ) {
-			var form = nodes[0];
-			var word = nodes[1];
+			var form = nodes[0],
+				word = nodes[1];
 			return word && form && this.language.convertGrammar( word, form );
 		}
 	};
@@ -687,7 +705,7 @@
 	$.fn.msg = mw.jqueryMsg.getPlugin();
 
 	// Replace the default message parser with jqueryMsg
-	var oldParser = mw.Message.prototype.parser;
+	oldParser = mw.Message.prototype.parser;
 	mw.Message.prototype.parser = function () {
 		// TODO: should we cache the message function so we don't create a new one every time? Benchmark this maybe?
 		// Caching is somewhat problematic, because we do need different message functions for different maps, so

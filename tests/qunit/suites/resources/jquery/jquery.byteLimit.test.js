@@ -15,12 +15,13 @@
 	// Basic sendkey-implementation
 	function addChars( $input, charstr ) {
 		var c, len;
+		function x( $input, i ) {
+			// Add character to the value
+			return $input.val() + charstr.charAt( i );
+		}
 		for ( c = 0, len = charstr.length; c < len; c += 1 ) {
 			$input
-				.val( function ( i, val ) {
-					// Add character to the value
-					return val + charstr.charAt( c );
-				} )
+				.val( x( $input, c ) )
 				.trigger( 'change' );
 		}
 	}

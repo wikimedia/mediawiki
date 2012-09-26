@@ -71,7 +71,7 @@
 		 * Apply tagOpen/tagClose to selection in textarea,
 		 * use sampleText instead of selection if there is none.
 		 */
-		insertTags: function ( tagOpen, tagClose, sampleText, selectText ) {
+		insertTags: function ( tagOpen, tagClose, sampleText ) {
 			if ( currentFocused && currentFocused.length ) {
 				currentFocused.textSelection(
 					'encapsulateSelection', {

@@ -31,6 +31,9 @@ AdminSettings.php
 LocalSettings.php
 StartProfiler.php
 
+# Building & testing
+node_modules/
+
 # Operating systems
 ## Mac OS X
 .DS_Store

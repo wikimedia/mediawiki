@@ -133,11 +133,11 @@ var
 		// In normal browsers the match-array contains null/undefined if there's no match,
 		// IE returns an empty string.
 		var matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w+))?$/ ),
-			ns_match = getNsIdByName( matches[1] );
+			nsMatch = getNsIdByName( matches[1] );
 
 		// Namespace must be valid, and title must be a non-empty string.
-		if ( ns_match && typeof matches[2] === 'string' && matches[2] !== '' ) {
-			title.ns = ns_match;
+		if ( nsMatch && typeof matches[2] === 'string' && matches[2] !== '' ) {
+			title.ns = nsMatch;
 			title.name = fixName( matches[2] );
 			if ( typeof matches[3] === 'string' && matches[3] !== '' ) {
 				title.ext = fixExt( matches[3] );

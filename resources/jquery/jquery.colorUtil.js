@@ -113,17 +113,20 @@
 		 * @return	Array			The HSL representation
 		 */
 		rgbToHsl: function ( R, G, B ) {
-			var r = R / 255,
+			var d,
+				r = R / 255,
 				g = G / 255,
-				b = B / 255;
-			var max = Math.max( r, g, b ), min = Math.min( r, g, b );
-			var h, s, l = (max + min) / 2;
+				b = B / 255,
+				max = Math.max( r, g, b ), min = Math.min( r, g, b ),
+				h,
+				s,
+				l = (max + min) / 2;
 
 			if ( max === min ) {
 				// achromatic
 				h = s = 0;
 			} else {
-				var d = max - min;
+				d = max - min;
 				s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
 				switch ( max ) {
 					case r:
@@ -155,12 +158,12 @@
 		 * @return	Array			The RGB representation
 		 */
 		hslToRgb: function ( h, s, l ) {
-			var r, g, b;
+			var r, g, b, hue2rgb, q, p;
 
 			if ( s === 0 ) {
 				r = g = b = l; // achromatic
 			} else {
-				var hue2rgb = function ( p, q, t ) {
+				hue2rgb = function ( p, q, t ) {
 					if ( t < 0 ) {
 						t += 1;
 					}
@@ -179,8 +182,8 @@
 					return p;
 				};
 
-				var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-				var p = 2 * l - q;
+				q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+				p = 2 * l - q;
 				r = hue2rgb( p, q, h + 1/3 );
 				g = hue2rgb( p, q, h );
 				b = hue2rgb( p, q, h - 1/3 );

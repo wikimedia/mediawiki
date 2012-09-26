@@ -1,7 +1,8 @@
 // This file stores the output from the PHP parser for various messages, arguments,
 // languages, and parser modes. Intended for use by a unit test framework by looping
 // through the object and comparing its parser return value with the 'result' property.
-// Last generated with generateJqueryMsgData.php at Sun, 07 Oct 2012 07:30:16 +0000
+// Last generated with generateJqueryMsgData.php at Sat, 03 Nov 2012 21:32:01 +0000
+/*jshint quotmark: double */
 
 mediaWiki.libs.phpParserData = {
 	"messages": {

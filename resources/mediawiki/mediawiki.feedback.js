@@ -1,5 +1,5 @@
 /**
- * mediawiki.Feedback
+ * mediawiki.feedback
  *
  * @author Ryan Kaldari, 2010
  * @author Neil Kandalgaonkar, 2010-11
@@ -68,17 +68,28 @@
 
 	mw.Feedback.prototype = {
 		setup: function () {
-			var fb = this;
+			var $feedbackPageLink,
+				$bugNoteLink,
+				$bugsListLink,
+				fb = this;
 
-			var $feedbackPageLink = $( '<a>' )
-				.attr( { 'href': fb.title.getUrl(), 'target': '_blank' } )
-				.css( { 'white-space': 'nowrap' } );
+			$feedbackPageLink = $( '<a>' )
+				.attr( {
+					href: fb.title.getUrl(),
+					target: '_blank'
+				} )
+				.css( {
+					whiteSpace: 'nowrap'
+				} );
 
-			var $bugNoteLink = $( '<a>' ).attr( { 'href': '#' } ).click( function () {
+			$bugNoteLink = $( '<a>' ).attr( { href: '#' } ).click( function () {
 				fb.displayBugs();
 			} );
 
-			var $bugsListLink = $( '<a>' ).attr( { 'href': fb.bugsListLink, 'target': '_blank' } );
+			$bugsListLink = $( '<a>' ).attr( {
+				href: fb.bugsListLink,
+				target: '_blank'
+			} );
 
 			// TODO: Use a stylesheet instead of these inline styles
 			this.$dialog =
@@ -108,7 +119,7 @@
 					),
 					$( '<div class="feedback-mode feedback-submitting" style="text-align: center; margin: 3em 0;"></div>' ).append(
 						mw.msg( 'feedback-adding' ),
-						$( '<br/>' ),
+						$( '<br>' ),
 						$( '<span class="feedback-spinner"></span>' )
 					),
 					$( '<div class="feedback-mode feedback-thanks" style="text-align: center; margin:1em"></div>' ).msg(
@@ -148,9 +159,9 @@
 		},
 
 		displayBugs: function () {
-			var fb = this;
+			var fb = this,
+				bugsButtons = {};
 			this.display( 'bugs' );
-			var bugsButtons = {};
 			bugsButtons[ mw.msg( 'feedback-bugnew' ) ] = function () {
 				window.open( fb.bugsLink, '_blank' );
 			};
@@ -163,9 +174,9 @@
 		},
 
 		displayThanks: function () {
-			var fb = this;
+			var fb = this,
+				closeButton = {};
 			this.display( 'thanks' );
-			var closeButton = {};
 			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
 				fb.$dialog.dialog( 'close' );
 			};
@@ -181,14 +192,14 @@
 		 *	message: {String}
 		 */
 		displayForm: function ( contents ) {
-			var fb = this;
+			var fb = this,
+				formButtons = {};
 			this.subjectInput.value = ( contents && contents.subject ) ? contents.subject : '';
 			this.messageInput.value = ( contents && contents.message ) ? contents.message : '';
 
 			this.display( 'form' );
 
 			// Set up buttons for dialog box. We have to do it the hard way since the json keys are localized
-			var formButtons = {};
 			formButtons[ mw.msg( 'feedback-submit' ) ] = function () {
 				fb.submit();
 			};
@@ -199,10 +210,10 @@
 		},
 
 		displayError: function ( message ) {
-			var fb = this;
+			var fb = this,
+				closeButton = {};
 			this.display( 'error' );
 			this.$dialog.find( '.feedback-error-msg' ).msg( message );
-			var closeButton = {};
 			closeButton[ mw.msg( 'feedback-close' ) ] = function () {
 				fb.$dialog.dialog( 'close' );
 			};
@@ -231,7 +242,7 @@
 				}
 			}
 
-			function err( code, info ) {
+			function err() {
 				// ajax request failed
 				fb.displayError( 'feedback-error3' );
 			}

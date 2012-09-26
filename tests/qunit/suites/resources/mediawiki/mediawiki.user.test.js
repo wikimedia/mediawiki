@@ -1,4 +1,4 @@
-( function ( mw ) {
+( function ( mw, $ ) {
 
 QUnit.module( 'mediawiki.user', QUnit.newMwEnvironment() );
 
@@ -47,10 +47,9 @@ QUnit.asyncTest( 'getGroups', 3, function ( assert ) {
 
 QUnit.asyncTest( 'getRights', 1, function ( assert ) {
 	mw.user.getRights( function ( rights ) {
-		// First group should always be '*'
 		assert.equal( $.type( rights ), 'array', 'Callback gets an array' );
 		QUnit.start();
 	});
 });
 
-}( mediaWiki ) );
+}( mediaWiki, jQuery ) );
