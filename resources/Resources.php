@@ -647,6 +647,7 @@ return array(
 	'mediawiki.action.edit' => array(
 		'scripts' => 'resources/mediawiki.action/mediawiki.action.edit.js',
 		'dependencies' => array(
+			'mediawiki.legacy.wikibits',
 			'jquery.textSelection',
 			'jquery.byteLimit',
 		),
