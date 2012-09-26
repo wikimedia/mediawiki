@@ -161,29 +161,17 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $s;
 	}
 
+	// @fixed
 	function pageTitleLinks() {
-		global $wgOut, $wgUser, $wgRequest, $wgLang;
-
-		$oldid = $wgRequest->getVal( 'oldid' );
-		$diff = $wgRequest->getVal( 'diff' );
-		$action = $wgRequest->getText( 'action' );
-
-		$skin = $this->getSkin();
-		$title = $skin->getTitle();
-
-		$s[] = $this->printableLink();
-		$disclaimer = $skin->disclaimerLink(); # may be empty
-
-		if ( $disclaimer ) {
-			$s[] = $disclaimer;
+		global $wgLang;
+		
+		$s = array();
+		$footlinks = $this->getFooterLinks();
+		
+		foreach ( $footlinks['places'] as $item ) {
+			$s[] = $this->data[$item];
 		}
-
-		$privacy = $skin->privacyLink(); # may be empty too
-
-		if ( $privacy ) {
-			$s[] = $privacy;
-		}
-
+		
 		return $wgLang->pipeList( $s );
 	}
 
@@ -517,23 +505,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		return $s;
 	}
-
-	function pageStats() {
-		$ret = array();
-		$items = array( 'viewcount', 'credits', 'lastmod', 'numberofwatchingusers', 'copyright' );
-
-		foreach( $items as $item ) {
-			if ( $this->data[$item] !== false ) {
-				$ret[] = $this->data[$item];
-			}
-		}
-
-		return implode( ' ', $ret );
-	}
-
-
-
-
 	
 	/**
 	 * @return string
@@ -597,8 +568,14 @@ class CologneBlueTemplate extends BaseTemplate {
 			$this->getSkin()->aboutLink(),
 			$this->searchForm( 'afterContent' )
 		) );
-
-		$s .= "\n<br />" . $this->pageStats();
+		
+		$s .= "\n<br />";
+		$footlinks = $this->getFooterLinks();
+		if ( $footlinks['info'] ) {
+			foreach ( $footlinks['info'] as $item ) {
+				$s .= $this->data[$item] . ' ';
+			}
+		}
 
 		$s .= "\n</div>\n</div>\n";
 
