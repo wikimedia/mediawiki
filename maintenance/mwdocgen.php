@@ -60,9 +60,6 @@ $doxygenTemplate = $mwPath . 'maintenance/Doxyfile';
 /** doxygen input filter to tweak source file before they are parsed */
 $doxygenInputFilter = "php {$mwPath}maintenance/mwdoc-filter.php";
 
-/** svnstat command, used to get the version of each file */
-$svnstat = $mwPath . 'bin/svnstat';
-
 /** where Phpdoc should output documentation */
 $doxyOutput = $mwPath . 'docs' . DIRECTORY_SEPARATOR ;
 
@@ -105,30 +102,11 @@ function readaline( $prompt = '' ) {
 }
 
 /**
- * Copied from SpecialVersion::getSvnRevision()
- * @param $dir String
- * @return Mixed: string or false
- */
-function getSvnRevision( $dir ) {
-	// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
-	$entries = $dir . '/.svn/entries';
-
-	if ( !file_exists( $entries ) ) {
-		return false;
-	}
-
-	$content = file( $entries );
-
-	return intval( $content[3] );
-}
-
-/**
  * Generate a configuration file given user parameters and return the temporary filename.
  * @param $doxygenTemplate String: full path for the template.
  * @param $outputDirectory String: directory where the stuff will be output.
  * @param $stripFromPath String: path that should be stripped out (usually mediawiki base path).
  * @param $currentVersion String: Version number of the software
- * @param $svnstat String: path to the svnstat file
  * @param $input String: Path to analyze.
  * @param $exclude String: Additionals path regex to exclude
  * @param $excludePatterns String: Additionals path regex to exclude
@@ -136,7 +114,7 @@ function getSvnRevision( $dir ) {
  * @param $doxyGenerateMan Boolean
  * @return string
  */
-function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude, $excludePatterns, $doxyGenerateMan ) {
+function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $input, $exclude, $excludePatterns, $doxyGenerateMan ) {
 	global $doxygenInputFilter;
 
 	$template = file_get_contents( $doxygenTemplate );
@@ -145,7 +123,6 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 		'{{OUTPUT_DIRECTORY}}' => $outputDirectory,
 		'{{STRIP_FROM_PATH}}'  => $stripFromPath,
 		'{{CURRENT_VERSION}}'  => $currentVersion,
-		'{{SVNSTAT}}'          => $svnstat,
 		'{{INPUT}}'            => $input,
 		'{{EXCLUDE}}'          => $exclude,
 		'{{EXCLUDE_PATTERNS}}' => $excludePatterns,
@@ -258,20 +235,14 @@ case 6:
 	$excludePatterns = 'extensions';
 }
 
-$versionNumber = getSvnRevision( $input );
-if ( $versionNumber === false ) { # Not using subversion ?
-	$svnstat = ''; # Not really useful if subversion not available
-	# @todo FIXME
-	$version = 'trunk';
-} else {
-	$version = "trunk (r$versionNumber)";
-}
+// todo FIXME to work on git
+$version = 'trunk';
 
 // Generate path exclusions
 $excludedPaths = $mwPath . join( " $mwPath", $mwExcludePaths );
 print "EXCLUDE: $excludedPaths\n\n";
 
-$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $svnstat, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan );
+$generatedConf = generateConfigFile( $doxygenTemplate, $doxyOutput, $mwPath, $version, $input, $excludedPaths, $excludePatterns, $doxyGenerateMan );
 $command = $doxygenBin . ' ' . $generatedConf;
 
 echo <<<TEXT
