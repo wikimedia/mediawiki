@@ -571,48 +571,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $s;
 	}
 
-	function commentLink() {
-		global $wgOut;
-
-		$title = $this->getSkin()->getTitle();
-		if ( $title->isSpecialPage() ) {
-			return '';
-		}
-
-		# __NEWSECTIONLINK___ changes behaviour here
-		# If it is present, the link points to this page, otherwise
-		# it points to the talk page
-		if ( !$title->isTalkPage() && !$wgOut->showNewSectionLink() ) {
-			$title = $title->getTalkPage();
-		}
-
-		return Linker::linkKnown(
-			$title,
-			wfMessage( 'postcomment' )->text(),
-			array(),
-			array(
-				'action' => 'edit',
-				'section' => 'new'
-			)
-		);
-	}
-
-	function getUploadLink() {
-		global $wgUploadNavigationUrl;
-
-		if ( $wgUploadNavigationUrl ) {
-			# Using an empty class attribute to avoid automatic setting of "external" class
-			return Linker::makeExternalLink( $wgUploadNavigationUrl,
-				wfMessage( 'upload' )->escaped(),
-				false, null, array( 'class' => '' ) );
-		} else {
-			return Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Upload' ),
-				wfMessage( 'upload' )->escaped()
-			);
-		}
-	}
-
 	function pageStats() {
 		$ret = array();
 		$items = array( 'viewcount', 'credits', 'lastmod', 'numberofwatchingusers', 'copyright' );
@@ -778,36 +736,40 @@ class CologneBlueTemplate extends BaseTemplate {
 	function quickBar(){
 		$s = "\n<div id='quickbar'>";
 
-		$sep = '<br />';
+		$sep = "<br />\n";
 		
 		$bar = $this->data['sidebar'];
 		
 		// Always display search on top
 		$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
 		$s .= $this->searchForm( 'sidebar' );
+		
+		// Populate the toolbox
+		if ( isset( $bar['TOOLBOX'] ) ) {
+			$bar['TOOLBOX'] = $this->getToolbox();
+		}
 
 		foreach ( $bar as $heading => $browseLinks ) {
-			if ( $heading == 'SEARCH' ) {
-				// discard
-			} elseif ( $heading == 'LANGUAGES' ) {
-				// discard
-			} elseif ( $heading == 'TOOLBOX' ) {
-				// discard
+			if ( $heading == 'SEARCH' || $heading == 'LANGUAGES' ) {
+				// discard these:
+				// * we display search unconditionally, on top
+				// * we display languages below page content
 			} else {
 				// Use the navigation heading from standard sidebar as the "browse" section
 				if ( $heading == 'navigation' ) {
 					$heading = 'qbbrowse';
 				}
 				
+				if ( $heading == 'TOOLBOX' ) {
+					$heading = 'toolbox';
+				}
+				
 				$headingMsg = wfMessage( $heading );
 				$s .= $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : $heading );
 				
 				if( is_array( $browseLinks ) ) {
-					foreach ( $browseLinks as $link ) {
-						if ( $link['text'] != '-' ) {
-							$s .= "<a href=\"{$link['href']}\">" .
-								htmlspecialchars( $link['text'] ) . '</a>' . $sep;
-						}
+					foreach ( $browseLinks as $key => $link ) {
+						$s .= $this->makeLink( $key, $link ) . $sep;
 					}
 				}
 			}
@@ -843,31 +805,14 @@ class CologneBlueTemplate extends BaseTemplate {
 
 			$s .= $this->menuHead( wfMessage( 'qbpageoptions' )->text() );
 			$s .= $this->talkLink()
-					. $sep . $this->commentLink()
+					. $sep . $this->historyLink()
 					. $sep . $this->printableLink();
 			if ( $this->data['loggedin'] ) {
 				$s .= $sep . $this->watchThisPage();
 			}
 
 			$s .= $sep;
-
-			$s .= $this->menuHead( wfMessage( 'qbpageinfo' )->text() )
-					. $this->historyLink()
-					. $sep . $this->whatLinksHere()
-					. $sep . $this->watchPageLinksLink();
-
-			$title = $this->getSkin()->getTitle();
-			$tns = $title->getNamespace();
-			if ( $tns == NS_USER || $tns == NS_USER_TALK ) {
-				$id = User::idFromName( $title->getText() );
-				if( $id != 0 ) {
-					$s .= $sep . $this->userContribsLink();
-					if( $this->getSkin()->showEmailUser( $id ) ) {
-						$s .= $sep . $this->emailUserLink();
-					}
-				}
-			}
-			$s .= $sep;
+			
 		}
 
 		$s .= $this->menuHead( wfMessage( 'qbmyoptions' )->text() );
@@ -893,26 +838,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		} else {
 			$s .= Linker::specialLink( 'Userlogin' );
 		}
-
-		$s .= $this->menuHead( wfMessage( 'qbspecialpages' )->text() )
-			. Linker::specialLink( 'Newpages' )
-			. $sep . Linker::specialLink( 'Listfiles' )
-			. $sep . Linker::specialLink( 'Statistics' );
-		if( UploadBase::isEnabled() && UploadBase::isAllowed( $user ) === true ) {
-			$s .= $sep . $this->getUploadLink();
-		}
-
-		global $wgSiteSupportPage;
-
-		if( $wgSiteSupportPage ) {
-			$s .= $sep . '<a href="' . htmlspecialchars( $wgSiteSupportPage ) . '" class="internal">'
-					. wfMessage( 'sitesupport' )->escaped() . '</a>';
-		}
-
-		$s .= $sep . Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Specialpages' ),
-			wfMessage( 'moredotdotdot' )->text()
-		);
 
 		$s .= $sep . "\n</div>\n";
 		return $s;
