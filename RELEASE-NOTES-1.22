@@ -115,6 +115,8 @@ production.
 * (bug 46513) Vector: Add the collapsibleTabs script from the Vector extension.
 * Added $wgRecentChangesFlags for defining new flags for RecentChanges and
   watchlists.
+* (bug 40518) mw.toolbar: Implemented mw.toolbar.addButtons for adding multiple
+ button objects in one call.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
