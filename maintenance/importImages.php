@@ -31,7 +31,10 @@
  * @author Mij <mij@bitchx.it>
  */
 
-$optionsWithArgs = array( 'extensions', 'comment', 'comment-file', 'comment-ext', 'user', 'license', 'sleep', 'limit', 'from', 'source-wiki-url' );
+$optionsWithArgs = array(
+	'extensions', 'comment', 'comment-file', 'comment-ext', 'summary', 'user',
+	'license', 'sleep', 'limit', 'from', 'source-wiki-url', 'timestamp',
+);
 require_once( __DIR__ . '/commandLine.inc' );
 require_once( __DIR__ . '/importImages.inc' );
 $processed = $added = $ignored = $skipped = $overwritten = $failed = 0;
@@ -98,6 +101,8 @@ if ( $limit ) {
 	$limit = (int)$limit;
 }
 
+$timestamp = isset( $options['timestamp'] ) ? $options['timestamp'] : false;
+
 # Get the upload comment. Provide a default one in case there's no comment given.
 $comment = 'Importing image file';
 
@@ -111,6 +116,8 @@ if ( isset( $options['comment-file'] ) ) {
 }
 
 $commentExt = isset( $options['comment-ext'] ) ? $options['comment-ext'] : false;
+
+$summary = isset( $options['summary'] ) ? $options['summary'] : '';
 
 # Get the license specifier
 $license = isset( $options['license'] ) ? $options['license'] : '';
@@ -230,9 +237,14 @@ if ( $count > 0 ) {
 			}
 		}
 
+		$commentText = SpecialUpload::getInitialPageText( $commentText, $license );
+		if ( !$summary ) {
+			$summary = $commentText;
+		}
+
 		if ( isset( $options['dry'] ) ) {
 			echo( "done.\n" );
-		} elseif ( $image->recordUpload( $archive->value, $commentText, $license ) ) {
+		} elseif ( $image->recordUpload2( $archive->value, $summary, $commentText, false, $timestamp ) ) {
 			# We're done!
 			echo( "done.\n" );
 
@@ -315,24 +327,26 @@ USAGE: php importImages.php [options] <dir>
 
 Options:
 --extensions=<exts>	Comma-separated list of allowable extensions, defaults to \$wgFileExtensions
---overwrite		Overwrite existing images with the same name (default is to skip them)
---limit=<num>		Limit the number of images to process. Ignored or skipped images are not counted.
---from=<name>		Ignore all files until the one with the given name. Useful for resuming
-						aborted imports. <name> should be the file's canonical database form.
---skip-dupes		Skip images that were already uploaded under a different name (check SHA1)
---sleep=<sec> 		Sleep between files. Useful mostly for debugging.
---user=<username> 	Set username of uploader, default 'Maintenance script'
---check-userblock 	Check if the user got blocked during import.
---comment=<text>  	Set upload summary comment, default 'Importing image file'.
---comment-file=<file>  	Set upload summary comment the the content of <file>.
---comment-ext=<ext>  	Causes the comment for each file to be loaded from a file with the same name
-			but the extension <ext>. If a global comment is also given, it is appended.
---license=<code>  	Use an optional license template
---dry			Dry run, don't import anything
+--overwrite             Overwrite existing images with the same name (default is to skip them)
+--limit=<num>           Limit the number of images to process. Ignored or skipped images are not counted.
+--from=<name>           Ignore all files until the one with the given name. Useful for resuming
+                        aborted imports. <name> should be the file's canonical database form.
+--skip-dupes            Skip images that were already uploaded under a different name (check SHA1)
+--sleep=<sec>           Sleep between files. Useful mostly for debugging.
+--user=<username>       Set username of uploader, default 'Maintenance script'
+--check-userblock       Check if the user got blocked during import.
+--comment=<text>        Set file description, default 'Importing image file'.
+--comment-file=<file>   Set description to the content of <file>.
+--comment-ext=<ext>     Causes the description for each file to be loaded from a file with the same name
+                        but the extension <ext>. If a global description is also given, it is appended.
+--license=<code>        Use an optional license template
+--dry                   Dry run, don't import anything
 --protect=<protect>     Specify the protect value (autoconfirmed,sysop)
+--summary=<summary>     Upload summary, description will be used if not provided
+--timestamp=<timestamp> Override upload time/date, all MediaWiki timestamp formats are accepted
 --unprotect             Unprotects all uploaded images
---source-wiki-url   if specified, take User and Comment data for each imported file from this URL.
-					For example, --source-wiki-url="http://en.wikipedia.org/"
+--source-wiki-url       If specified, take User and Comment data for each imported file from this URL.
+                        For example, --source-wiki-url="http://en.wikipedia.org/"
 
 TEXT;
 	exit( 1 );
