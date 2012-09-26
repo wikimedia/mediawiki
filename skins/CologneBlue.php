@@ -689,7 +689,7 @@ class CologneBlueTemplate extends BaseTemplate {
 				Title::newMainPage()
 			),
 			$this->getSkin()->aboutLink(),
-			$this->searchForm( wfMessage( 'qbfind' )->text() )
+			$this->searchForm( 'afterContent' )
 		) );
 
 		$s .= "\n<br />" . $this->pageStats();
@@ -758,6 +758,9 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
+
+
+
 	/**
 	 * Compute the sidebar
 	 * @access private
@@ -769,12 +772,12 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		$sep = '<br />';
 		$s .= $this->menuHead( 'qbfind' );
-		$s .= $this->searchForm();
+		$s .= $this->searchForm( 'sidebar' );
 
 		$s .= $this->menuHead( 'qbbrowse' );
 
 		# Use the first heading from the Monobook sidebar as the "browse" section
-		$bar = $this->getSkin()->buildSidebar();
+		$bar = $this->data['sidebar'];
 		unset( $bar['SEARCH'] );
 		unset( $bar['LANGUAGES'] );
 		unset( $bar['TOOLBOX'] );
@@ -905,7 +908,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		$s .= $sep . "\n</div>\n";
 		return $s;
 	}
-
+	
 	/**
 	 * @param $key string
 	 * @return string
@@ -918,31 +921,31 @@ class CologneBlueTemplate extends BaseTemplate {
 	/**
 	 * @param $label string
 	 * @return string
+	 * 
+	 * @fixed
 	 */
-	function searchForm( $label = '' ) {
+	function searchForm( $which ) {
 		global $wgUseTwoButtonsSearchForm;
 
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
-		$s = "<form id=\"searchform{$this->searchboxes}\" method=\"get\" class=\"inline\" action=\"$action\">";
-		if( $label != '' ) {
-			$s .= "{$label}: ";
+		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
+		if( $which == 'afterContent' ) {
+			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
-		$s .= "<input type='text' id=\"searchInput{$this->searchboxes}\" class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
-			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" /><br />"
-			. "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
+		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
+			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
+			. ($which == 'afterContent' ? " " : "<br />")
+			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
-			$s .= "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
+			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
 		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
 		}
 
 		$s .= '</form>';
-
-		// Ensure unique id's for search boxes made after the first
-		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;
 
 		return $s;
 	}
