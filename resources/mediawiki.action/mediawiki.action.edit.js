@@ -5,7 +5,7 @@
  * @singleton
  */
 ( function ( mw, $ ) {
-	var toolbar, isReady, $toolbar, queue, slice, currentFocused;
+	var toolbar, isReady, $toolbar, queue, slice, $currentFocused;
 
 	/**
 	 * Internal helper that does the actual insertion of the button into the toolbar.
@@ -44,6 +44,11 @@
 
 	isReady = false;
 	$toolbar = false;
+	/**
+	 * @var {Array}
+	 * Contains button objects (and for backwards compatibilty, it can
+	 * also contains an arguments array for insertButton).
+	 */
 	queue = [];
 	slice = queue.slice;
 
@@ -75,6 +80,27 @@
 				queue.push( slice.call( arguments ) );
 			}
 		},
+		/**
+		 * Example usage:
+		 *     addButtons( [ { .. }, { .. }, { .. } ] );
+		 *     addButtons( { .. }, { .. } );
+		 *
+		 * @param {Object|Array} [buttons...] An array of button objects or the first
+		 *  button object in a list of variadic arguments.
+		 */
+		addButtons: function ( buttons ) {
+			if ( !$.isArray( buttons ) ) {
+				buttons = slice.call( arguments );
+			}
+			if ( isReady ) {
+				$.each( buttons, function () {
+					insertButton( this );
+				} );
+			} else {
+				// Push each button into the queue
+				queue.push.apply( queue, buttons );
+			}
+		},
 
 		/**
 		 * Apply tagOpen/tagClose to selection in currently focused textarea.
@@ -86,12 +112,12 @@
 		 * @param {string} sampleText
 		 */
 		insertTags: function ( tagOpen, tagClose, sampleText ) {
-			if ( currentFocused && currentFocused.length ) {
-				currentFocused.textSelection(
+			if ( $currentFocused && $currentFocused.length ) {
+				$currentFocused.textSelection(
 					'encapsulateSelection', {
-						'pre': tagOpen,
-						'peri': sampleText,
-						'post': tagClose
+						pre: tagOpen,
+						peri: sampleText,
+						post: tagClose
 					}
 				);
 			}
@@ -113,7 +139,7 @@
 		var buttons, i, b, $iframe, editBox, scrollTop, $editForm;
 
 		// currentFocus is used to determine where to insert tags
-		currentFocused = $( '#wpTextbox1' );
+		$currentFocused = $( '#wpTextbox1' );
 
 		// Populate the selector cache for $toolbar
 		$toolbar = $( '#toolbar' );
@@ -122,21 +148,22 @@
 		buttons = [].concat( queue, window.mwCustomEditButtons );
 		// Clear queue
 		queue.length = 0;
+
 		for ( i = 0; i < buttons.length; i++ ) {
 			b = buttons[i];
 			if ( $.isArray( b ) ) {
 				// Forwarded arguments array from mw.toolbar.addButton
 				insertButton.apply( toolbar, b );
 			} else {
-				// Raw object from legacy mwCustomEditButtons
+				// Raw object from mw.toolbar.addButtons or mwCustomEditButtons
 				insertButton( b );
 			}
 		}
 
 		// This causes further calls to addButton to go to insertion directly
-		// instead of to the toolbar.buttons queue.
+		// instead of to the queue.
 		// It is important that this is after the one and only loop through
-		// the the toolbar.buttons queue
+		// the the queue
 		isReady = true;
 
 		// Make sure edit summary does not exceed byte limit
@@ -158,10 +185,10 @@
 
 		// Apply to dynamically created textboxes as well as normal ones
 		$( document ).on( 'focus', 'textarea, input:text', function () {
-			currentFocused = $( this );
+			$currentFocused = $( this );
 		} );
 
-		// HACK: make currentFocused work with the usability iframe
+		// HACK: make $currentFocused work with the usability iframe
 		// With proper focus detection support (HTML 5!) this'll be much cleaner
 		// TODO: Get rid of this WikiEditor code from MediaWiki core!
 		$iframe = $( '.wikiEditor-ui-text iframe' );
@@ -170,7 +197,7 @@
 				// for IE
 				.add( $iframe.get( 0 ).contentWindow.document.body )
 				.focus( function () {
-					currentFocused = $iframe;
+					$currentFocused = $iframe;
 				} );
 		}
 	});
