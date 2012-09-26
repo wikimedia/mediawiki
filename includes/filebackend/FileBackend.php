@@ -129,7 +129,8 @@ abstract class FileBackend {
 	}
 
 	/**
-	 * Get the wiki identifier used for this backend (possibly empty)
+	 * Get the wiki identifier used for this backend (possibly empty).
+	 * Note that this might *not* be in the same format as wfWikiID().
 	 *
 	 * @return string
 	 * @since 1.20
