@@ -175,55 +175,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $wgLang->pipeList( $s );
 	}
 
-	function printableLink() {
-		global $wgOut, $wgRequest, $wgLang;
-
-		$s = array();
-
-		if ( !$wgOut->isPrintable() ) {
-			$printurl = htmlspecialchars( $this->getSkin()->getTitle()->getLocalUrl(
-				$wgRequest->appendQueryValue( 'printable', 'yes', true ) ) );
-			$s[] = "<a href=\"$printurl\" rel=\"alternate\">"
-				. wfMessage( 'printableversion' )->text() . '</a>';
-		}
-
-		if ( $wgOut->isSyndicated() ) {
-			foreach ( $wgOut->getSyndicationLinks() as $format => $link ) {
-				$feedurl = htmlspecialchars( $link );
-				$s[] = "<a href=\"$feedurl\" rel=\"alternate\" type=\"application/{$format}+xml\""
-						. " class=\"feedlink\">" . wfMessage( "feed-$format" )->escaped() . "</a>";
-			}
-		}
-		return $wgLang->pipeList( $s );
-	}
-
-	/**
-	 * Gets the h1 element with the page title.
-	 * @return string
-	 */
-	function pageTitle() {
-		global $wgOut;
-		$s = '<h1 class="pagetitle"><span dir="auto">' . $wgOut->getPageTitle() . '</span></h1>';
-		return $s;
-		}
-
-	function pageSubtitle() {
-		global $wgOut;
-
-		$sub = $wgOut->getSubtitle();
-
-		if ( $sub == '' ) {
-			global $wgExtraSubtitle;
-			$sub = wfMessage( 'tagline' )->parse() . $wgExtraSubtitle;
-		}
-
-		$subpages = $this->getSkin()->subPageSubtitle();
-		$sub .= !empty( $subpages ) ? "</p><p class='subpages'>$subpages" : '';
-		$s = "<p class='subtitle'>{$sub}</p>\n";
-
-		return $s;
-	}
-
 	function bottomLinks() {
 		global $wgOut, $wgUser;
 		$sep = wfMessage( 'pipe-separator' )->escaped() . "\n";
@@ -547,8 +498,19 @@ class CologneBlueTemplate extends BaseTemplate {
 		if( $notice ) {
 			$s .= "\n<div id='siteNotice'>$notice</div>\n";
 		}
-		$s .= $this->pageTitle();
-		$s .= $this->pageSubtitle() . "\n";
+
+		$s .= '<h1 id="firstHeading"><span dir="auto">' . $this->data['title'] . '</span></h1>';
+
+		if ( $this->translator->translate( 'tagline' ) ) {
+			$s .= "<p class='tagline'>" . htmlspecialchars( $this->translator->translate( 'tagline' ) ) . "</p>";
+		}
+		if ( $this->getSkin()->getOutput()->getSubtitle() ) {
+			$s .= "<p class='subtitle'>" . $this->getSkin()->getOutput()->getSubtitle() . "</p>";
+		}
+		if ( $this->getSkin()->subPageSubtitle() ) {
+			$s .= "<p class='subpages'>" . $this->getSkin()->subPageSubtitle() . "</p>";
+		}
+		
 		return $s;
 	}
 

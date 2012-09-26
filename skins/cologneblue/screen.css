@@ -120,12 +120,12 @@ h1 .editsection {
 	font-size: 55.6%;
 }
 
-h1.pagetitle {
+h1#firstHeading {
 	padding-bottom: 0;
 	margin-bottom: 0;
 }
 
-#article p.subtitle {
+#article p.subtitle, #article p.subpages, #article p.tagline {
 	color: #666666;
 	font-size: 11pt;
 	font-weight: bold;
