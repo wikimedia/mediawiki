@@ -227,3 +227,8 @@ small {
 input.mw-searchInput {
 	width: 106px;
 }
+
+/* Directionality-specific styles */
+#quickbar { position: absolute; left: 4px; }
+#article { margin-left: 148px; margin-right: 4px; }
+#footer { margin-left: 152px; }
