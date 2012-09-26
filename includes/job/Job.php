@@ -151,16 +151,21 @@ abstract class Job {
 
 		// Try to delete it from the master
 		$dbw = wfGetDB( DB_MASTER );
+		$dbw->begin( __METHOD__ );
 		$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 		$affected = $dbw->affectedRows();
+		$dbw->commit( __METHOD__ );
 
 		if ( !$affected ) {
+			$dbw->begin( __METHOD__ );
+
 			// Failed, someone else beat us to it
 			// Try getting a random row
 			$row = $dbw->selectRow( 'job', array( 'minjob' => 'MIN(job_id)',
 				'maxjob' => 'MAX(job_id)' ), '1=1', __METHOD__ );
 			if ( $row === false || is_null( $row->minjob ) || is_null( $row->maxjob ) ) {
 				// No jobs to get
+				$dbw->rollback( __METHOD__ );
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
@@ -170,12 +175,14 @@ abstract class Job {
 			if ( $row === false ) {
 				// Random job gone before we got the chance to select it
 				// Give up
+				$dbw->rollback( __METHOD__ );
 				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			// Delete the random row
 			$dbw->delete( 'job', array( 'job_id' => $row->job_id ), __METHOD__ );
 			$affected = $dbw->affectedRows();
+			$dbw->commit( __METHOD__ );
 
 			if ( !$affected ) {
 				// Random job gone before we exclusively deleted it
