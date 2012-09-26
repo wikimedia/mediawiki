@@ -36,13 +36,13 @@ Main Page
 blah blah
 !! endarticle
 
-!!article 
+!!article
 Template:Foo
 !!text
 FOO
 !!endarticle
 
-!! article 
+!! article
 Template:Blank
 !! text
 !! endarticle
@@ -1123,7 +1123,7 @@ Definition Lists: Indentation: Multi-level indent
 ##
 ## All Parsoid only definition list tests have this difference.
 ##
-## See also: https://bugzilla.wikimedia.org/show_bug.cgi?id=6569 
+## See also: https://bugzilla.wikimedia.org/show_bug.cgi?id=6569
 ## and http://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
 
 !! test
@@ -2076,7 +2076,7 @@ A table with no data.
 # this as <p>caption</p>
 !! test
 A table with nothing but a caption
-!! input 
+!! input
 {|
 |+ caption
 |}
@@ -2839,7 +2839,7 @@ Incorrecly removing closing slashes from correctly formed XHTML
 </p>
 !! end
 
-!! test 
+!! test
 Failing to transform badly formed HTML into correct XHTML
 !! input
 <br style="clear: left;">
@@ -4348,7 +4348,7 @@ Templates: HTML Tag: 4. Generation of starting piece of HTML attr value
 !!end
 
 !!test
-Templates: HTML Tag: 5. Generation of middle piece of HTML attr value 
+Templates: HTML Tag: 5. Generation of middle piece of HTML attr value
 !!input
 <div title="This is a long title with just {{echo|one piece}} templated">foo</div>
 !!result
@@ -4357,7 +4357,7 @@ Templates: HTML Tag: 5. Generation of middle piece of HTML attr value
 !!end
 
 !!test
-Templates: HTML Tag: 6. Generation of end piece of HTML attr value 
+Templates: HTML Tag: 6. Generation of end piece of HTML attr value
 !!input
 <div title="This is a long title with just one piece {{echo|templated}}">foo</div>
 !!result
@@ -4456,7 +4456,7 @@ Templates: Tables: 4f. Generating a single tag of a HTML table
 !!end
 
 !!test
-Templates: Pre: 1a. Templates that break a line should suppress <pre> 
+Templates: Pre: 1a. Templates that break a line should suppress <pre>
 !!input
  {{echo|}}
 !!result
@@ -4464,7 +4464,7 @@ Templates: Pre: 1a. Templates that break a line should suppress <pre>
 !!end
 
 !!test
-Templates: Pre: 1b. Templates that break a line should suppress <pre> 
+Templates: Pre: 1b. Templates that break a line should suppress <pre>
 !!input
  {{echo|
 foo}}
@@ -5461,7 +5461,7 @@ Custom class
 </p>
 !! end
 
-!! article 
+!! article
 File:Barfoo.jpg
 !! text
 #REDIRECT [[File:Barfoo.jpg]]
@@ -5664,7 +5664,7 @@ Some text
 # perl -e 'print "="x$_," Level $_ heading","="x$_,"\n" for 1..10'
 !! test
 Handling of sections up to level 6 and beyond
-!! input 
+!! input
 = Level 1 Heading=
 == Level 2 Heading==
 === Level 3 Heading===
@@ -7873,7 +7873,7 @@ section=2
 !! end
 
 
-# Formerly testing for bug 2587, now resolved by the use of unmarked sections 
+# Formerly testing for bug 2587, now resolved by the use of unmarked sections
 # instead of respecting commented sections
 !! test
 Section extraction prefixed by comment (section 1)
@@ -7898,7 +7898,7 @@ section=2
 !!end
 
 
-# Formerly testing for bug 2607, now resolved by the use of unmarked sections 
+# Formerly testing for bug 2607, now resolved by the use of unmarked sections
 # instead of respecting HTML-style headings
 !! test
 Section extraction, mixed wiki and html (section 1)
@@ -8681,7 +8681,7 @@ HTML Hex character encoding mixed case
 
 !! test
 __FORCETOC__ override
-!! input 
+!! input
 __NEWSECTIONLINK__
 __FORCETOC__
 !! result
@@ -8735,7 +8735,7 @@ RFC RFC 1234
 !! end
 
 !! test
-Double RFC with a wiki link 
+Double RFC with a wiki link
 !! input
 RFC [[RFC 1234]]
 !! result
@@ -9455,7 +9455,7 @@ Fridrih IV je car.
 
 !! test
 Unclosed language converter markup "-{"
-!! options 
+!! options
 language=sr
 !! input
 -{T|hello
@@ -9470,12 +9470,12 @@ Don't convert raw rule "-{R|=&gt;}-" to "=>"
 language=sr
 !! input
 -{R|=&gt;}-
-!! result 
+!! result
 <p>=&gt;
 </p>
 !!end
 
-!!article 
+!!article
 Template:Bullet
 !!text
 * Bar
@@ -10225,7 +10225,7 @@ Screen
 <p>this is not the the title
 </p>
 !! end
- 
+
 !! test
 preload: check <noinclude> and <includeonly>
 !! options
@@ -10235,7 +10235,7 @@ Hello <noinclude>cruel</noinclude><includeonly>kind</includeonly> world.
 !! result
 Hello kind world.
 !! end
- 
+
 !! test
 preload: check <onlyinclude>
 !! options
@@ -10267,7 +10267,7 @@ preload
 !! end
 
 !! test
-Play a bit with r67090 and bug 3158 
+Play a bit with r67090 and bug 3158
 !! options
 disabled
 !! input
@@ -10476,7 +10476,7 @@ __TOC__
 !! end
 
 !! test
-Bug 26375: TOC with bold 
+Bug 26375: TOC with bold
 !! options
 title=[[Main Page]]
 !! input
