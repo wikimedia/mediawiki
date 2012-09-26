@@ -2853,6 +2853,47 @@ Failing to transform badly formed HTML into correct XHTML
 !!end
 
 !! test
+Handling html with a div self-closing tag
+!! input
+<div title />
+<div title/>
+<div title/ >
+<div title=bar />
+<div title=bar/>
+<div title=bar/ >
+!! result
+<p>&lt;div title /&gt;
+&lt;div title/&gt;
+</p>
+<div>
+<p>&lt;div title=bar /&gt;
+&lt;div title=bar/&gt;
+</p>
+<div title="bar/"></div>
+</div>
+
+!! end
+
+!! test
+Handling html with a br self-closing tag
+!! input
+<br title />
+<br title/>
+<br title/ >
+<br title=bar />
+<br title=bar/>
+<br title=bar/ >
+!! result
+<p><br title="title" />
+<br title="title" />
+<br />
+<br title="bar" />
+<br title="bar" />
+<br title="bar/" />
+</p>
+!! end
+
+!! test
 Horizontal ruler (should it add that extra space?)
 !! input
 <hr>
