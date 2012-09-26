@@ -184,56 +184,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s[] = $privacy;
 		}
 
-		if ( $wgOut->isArticleRelated() ) {
-			if ( $title->getNamespace() == NS_FILE ) {
-				$image = wfFindFile( $title );
-
-				if ( $image ) {
-					$href = $image->getURL();
-					$s[] = Html::element( 'a', array( 'href' => $href,
-						'title' => $href ), $title->getText() );
-
-				}
-			}
-		}
-
-		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s[] .= Linker::linkKnown(
-				$title,
-				wfMessage( 'currentrev' )->text()
-			);
-		}
-
-		if ( $wgUser->getNewtalk() ) {
-			# do not show "You have new messages" text when we are viewing our
-			# own talk page
-			if ( !$title->equals( $wgUser->getTalkPage() ) ) {
-				$tl = Linker::linkKnown(
-					$wgUser->getTalkPage(),
-					wfMessage( 'newmessageslink' )->escaped(),
-					array(),
-					array( 'redirect' => 'no' )
-				);
-
-				$dl = Linker::linkKnown(
-					$wgUser->getTalkPage(),
-					wfMessage( 'newmessagesdifflink' )->escaped(),
-					array(),
-					array( 'diff' => 'cur' )
-				);
-				$s[] = '<strong>' . wfMessage( 'youhavenewmessages', $tl, $dl )->text() . '</strong>';
-				# disable caching
-				$wgOut->setSquidMaxage( 0 );
-				$wgOut->enableClientCache( false );
-			}
-		}
-
-		$undelete = $skin->getUndeleteLink();
-
-		if ( !empty( $undelete ) ) {
-			$s[] = $undelete;
-		}
-
 		return $wgLang->pipeList( $s );
 	}
 
@@ -611,6 +561,9 @@ class CologneBlueTemplate extends BaseTemplate {
 		<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
 		<?php echo $this->getSkin()->getCategories() ?>
 		<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
+		<?php if ( $this->data['newtalk'] ) { ?>
+		<div class="usermessage"><strong><?php echo $this->data['newtalk'] ?></strong></div>
+		<?php } ?>
 	</div>
 </div>
 <?php
