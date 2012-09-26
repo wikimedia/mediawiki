@@ -417,6 +417,8 @@ $1',
 'youhavenewmessages' => 'تاسې $1 لری  ($2).',
 'newmessageslink' => 'نوي پيغامونه',
 'newmessagesdifflink' => 'وروستی بدلون',
+'youhavenewmessagesfromusers' => 'تاسې د {{PLURAL:$3|يو بل کارن|$3 کارنانو}} لخوا $1 لرۍ ($2).',
+'youhavenewmessagesmanyusers' => 'تاسې د يو شمېر کارنانو لخوا $1 لرۍ ($2).',
 'newmessageslinkplural' => '{{PLURAL:$1|يو نوی پيغام|نوي پيغامونه}}',
 'newmessagesdifflinkplural' => 'وروستي {{PLURAL:$1|بدلون|بدلونونه}}',
 'youhavenewmessagesmulti' => 'تاسې په $1 کې نوي پېغامونه لرۍ',
@@ -507,7 +509,8 @@ $1',
 'actionthrottled' => 'د دې کړنې مخنيوی وشو',
 'protectedpagetext' => 'دا مخ د بدلون او سمون د مخنيوي په تکل تړل شوی دی.',
 'viewsourcetext' => 'تاسې د دې مخ سرچينه کتلی او لمېسلی شی:',
-'protectedinterface' => 'په همدې مخ کې د پوستکالي د ليدنمخ متن دی او دا متن د ناسمو کارولو د مخنيوي په تکل تړل شوی.',
+'protectedinterface' => 'دا مخ د دې ويکي د ساوترې د ليدنمخ متن لري، او د ورانکارۍ په خاطر ژغورل شوی.
+په ټولو ويکي ګانو کې د ژباړې د ورګډولو او يا هم د ژباړې د سمون او بدلون لپاره د مېډياويکي د ځايتابه پروژه [//translatewiki.net/ translatewiki.net] وکاروۍ.',
 'editinginterface' => "'''ګواښنه:''' تاسو په يوه داسې مخ کې بدلون راولی کوم چې د يوې پوستکالی د ليدنمخ متن په توګه کارېږي.
 په همدې مخ کې بدلون راوستل به د نورو کارنانو د ليدنمخ بڼه اغېزمنه کړي.
 د ژباړې لپاره، مهرباني وکړی د [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، وېبځي ته ولاړ شی. دا وېبځی د ميډياويکي د ځايتابه پروژه ده او د همدې پر کارولو غور وکړی.",
@@ -518,6 +521,7 @@ $1',
 'ns-specialprotected' => 'ځانګړي مخونو کې سمون او بدلون نه شی راوستلای.',
 'titleprotected' => 'د [[User:$1|$1]] لخوا د دې سرليک د جوړېدلو مخنيوی شوی.
 او د دې کړنې سبب "\'\'$2\'\'" ورکړ شوی.',
+'exception-nologin' => 'غونډال کې نه ياست ننوتي',
 
 # Virus scanner
 'virus-badscanner' => "بده سازېدنه: د ويروس ناڅرګنده ځيرڅار: ''$1''",
@@ -606,6 +610,7 @@ $1',
 'invalidemailaddress' => 'دا برېښليک پته نه منل کېږي، دا ځکه چې دا پته يوه ناکره بڼه لري.
 لطفاً د يوې کره بڼې پته وليکۍ او يا هم دا ځای تش پرېږدۍ.',
 'cannotchangeemail' => 'پدې ويکي کې د ګڼون برېښليک پتې نشي بدلېدلی.',
+'emaildisabled' => 'دا وېبځی د برېښليک لېږلو چارو څخه برخمن نه دی.',
 'accountcreated' => 'ګڼون مو جوړ شو.',
 'accountcreatedtext' => 'د $1 لپاره يو ګڼون جوړ شو.',
 'createaccount-title' => 'د {{SITENAME}} د ګڼون جوړېدنه',
@@ -614,7 +619,13 @@ $1',
 
 که چېرته دا کړنه په تېروتنه کې شوی وي نو تاسې کولای شی چې دا پيغام بابېزه وګڼۍ.',
 'usernamehasherror' => 'کارن-نوم نشي کېدلای چې کرښکې لوښې ولري',
+'login-throttled' => 'تاسې څو واره هڅه کړې چې غونډال ته ورننوځۍ.
+لطفاً د بيا هڅې نه مخکې يو څو شېبې تم شۍ.',
+'login-abort-generic' => 'غونډال کې مو ننوتل نابريالی شو - ناڅاپي بند شو',
 'loginlanguagelabel' => 'ژبه: $1',
+
+# E-mail sending
+'user-mail-no-addy' => 'د يوې برېښليک پتې پرته د برېښليک لېږلو هڅه شوې.',
 
 # Change password dialog
 'resetpass' => 'پټنوم بدلول',
@@ -626,7 +637,7 @@ $1',
 'resetpass_success' => 'ستاسې پټنوم په برياليتوب سره بدل شو!
 اوس غونډال کې د ورننوتلو په حال کې يو ...',
 'resetpass_forbidden' => 'پټنومونه مو نه شي بدلېدلای',
-'resetpass-no-info' => 'همدې مخ ته د لاسرسي موندلو پخاطر تاسې ته پکار ده چې لومړی غونډال ته ورننوځۍ.',
+'resetpass-no-info' => 'دې مخ ته د لاسرسي لپاره بايد غونډال کې ورننوځۍ.',
 'resetpass-submit-loggedin' => 'پټنوم بدلول',
 'resetpass-submit-cancel' => 'ناګارل',
 'resetpass-wrong-oldpass' => 'لنډمهال او يا هم اوسنی پټنوم مو ناسم دی',
@@ -636,6 +647,7 @@ $1',
 'passwordreset' => 'پټنوم بياپرځايول',
 'passwordreset-text' => 'د دې لپاره چې ستاسې د ګڼون بشپړې څرګندنې دربرېښليک شي نو دا فورمه ډکه کړۍ.',
 'passwordreset-legend' => 'پټنوم بياپرځايول',
+'passwordreset-disabled' => 'په دې ويکي پټنوم بياپرځای کولو کړنه ناچارنه شوې.',
 'passwordreset-pretext' => '{{PLURAL:$1||د لاندې اومتوک يوه برخه مالومات وليکۍ}}',
 'passwordreset-username' => 'کارن-نوم:',
 'passwordreset-domain' => 'شپول:',
@@ -650,6 +662,7 @@ $1',
 # Special:ChangeEmail
 'changeemail' => 'برېښليک پته بدلول',
 'changeemail-header' => 'د ګڼون برېښليک پته بدلول',
+'changeemail-no-info' => 'دې مخ ته د لاسرسي لپاره بايد غونډال کې ورننوځۍ.',
 'changeemail-oldemail' => 'اوسنۍ برېښليک پته:',
 'changeemail-newemail' => 'نوې برېښليک پته:',
 'changeemail-none' => '(هېڅ)',
@@ -734,9 +747,8 @@ $1',
 تاسې کولای شی چې په نورو مخونو کې [[Special:Search/{{PAGENAME}}|د دې مخ د سرليک پلټنه]] يا
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} د اړوندو يادښتونو پلټنه] وکړی.
 او يا [{{fullurl:{{FULLPAGENAME}}|action=edit}} همدا مخ سم کړی]</span>.',
-'noarticletext-nopermission' => 'دم مهال په دې مخ کې څه نشته.
-تاسې کولای شی چې [[Special:Search/{{PAGENAME}}|همدا سرليک په نورو مخونو کې وپلټۍ]],
-يا هم <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} اړونده يادښتونه وپلټۍ]</span>.',
+'noarticletext-nopermission' => 'دم مهال په دې مخ کې متن نشته.
+تاسې کولای شی چې [[Special:Search/{{PAGENAME}}|همدا سرليک په نورو مخونو کې وپلټۍ]], يا هم <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} اړونده يادښتونه وپلټۍ]</span>، خو تاسې د دې مخ د جوړولو اجازه نه لرۍ.',
 'userpage-userdoesnotexist' => 'د "<nowiki>$1</nowiki>" ګڼون نه دی ثبت شوی.
 لطفاً ځان ډاډه کړۍ چې آيا تاسې په رښتيا همدا مخ جوړول که سمول غواړۍ.',
 'userpage-userdoesnotexist-view' => 'د "$1" ګڼون نه دی ثبت شوی.',
@@ -1036,7 +1048,7 @@ $1',
 'timezoneregion-indian' => 'هندی سمندر',
 'timezoneregion-pacific' => 'غلی سمندر',
 'allowemail' => 'د نورو کارنانو لخوا د برېښليک رالېږل چارن کړه',
-'prefs-searchoptions' => 'د پلټلو خوښنې',
+'prefs-searchoptions' => 'پلټنه',
 'prefs-namespaces' => 'نوم-تشيالونه',
 'defaultns' => 'او يا هم په دغو نوم-تشيالونو کې پلټل:',
 'default' => 'تلواليز',

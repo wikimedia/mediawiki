@@ -61,6 +61,7 @@ $messages = array(
 'tog-newpageshidepatrolled' => "Yangi sahifalar ro'yxatida patrullangan sahifalarni yashirish",
 'tog-numberheadings' => 'Sarlavhalarni avtomatik tarzda raqamlash',
 'tog-showtoolbar' => "Tahrirlash vaqtida yuqorigi unsurlar darchasini ko'rsatish (JavaScript)",
+'tog-showtoc' => "Mundarijani ko'rsatish (3 ta sarlavhadan ko'p bo'lgan sahifalar uchun)",
 'tog-rememberpassword' => 'Hisob ma’lumotlarini ushbu kompyuterda eslab qolish (eng ko‘pi bilan $1 {{PLURAL:$1|kunga|kunga}})',
 'tog-watchcreations' => 'Men yaratgan sahifalarni va yuklagan fayllarni kuzatuv roʻyxatimga qoʻsh',
 'tog-watchdefault' => 'Men tahrirlagan sahifa va fayllarni kuzatuv roʻyxatimga qoʻsh',
@@ -68,12 +69,15 @@ $messages = array(
 'tog-watchdeletion' => 'Men yoʻqotgan sahifa va fayllarni kuzatuv roʻyxatimga qoʻsh',
 'tog-minordefault' => "Boshlang'ich holatga barcha tahrirlarni kamahamiyatli qilib belgilash",
 'tog-previewontop' => "Oldindan ko'rishni tahrirlash oynasi oldiga joylashtirish",
+'tog-previewonfirst' => "Tahrirlashga o'tishda batafsil ko'rinishni ko'rsatish",
+'tog-nocache' => "Brauzerda sahifalarni keshda saqlashni o'chirish",
 'tog-enotifwatchlistpages' => 'Kuzatuv roʻyxatimdagi sahifa yoki fayllar oʻzgartirilsa, e-pochtamga bu haqda xat yuborilsin',
 'tog-enotifusertalkpages' => 'Munozara sahifam oʻzgartirilsa, e-pochtamga bu haqda xat yuborilsin',
 'tog-oldsig' => 'Joriy imzo:',
 'tog-fancysig' => 'Imzoni wikimatn sifatida qara (avtomatik ishoratsiz)',
+'tog-showjumplinks' => '"ga o\'tish" yordamchi havolalarini yoqish',
 'tog-ccmeonemails' => 'Men boshqa foydalanuvchilarga yuborayotgan xatnig nusxasi oʻzimning e-pochtamga ham yuborilsin',
-'tog-showhiddencats' => 'Yashirin turkumlarni koʻrsat',
+'tog-showhiddencats' => 'Yashirin turkumlarni koʻrsatish',
 'tog-noconvertlink' => "Sarlavhaga aylantirish dastagini o'chirib qo'yish",
 
 'underline-always' => 'Har doim',
@@ -81,7 +85,11 @@ $messages = array(
 'underline-default' => 'Brauzer moslamari boʻyicha',
 
 # Font style option in Special:Preferences
+'editfont-style' => 'Tahrirlash maydoni bosma harflari turi',
 'editfont-default' => 'Brauzer moslamari boʻyicha',
+'editfont-monospace' => 'Monoenli bosma harflar',
+'editfont-sansserif' => 'Sans-serif bosma harflari',
+'editfont-serif' => 'Serif bosma harflari',
 
 # Dates
 'sunday' => 'Yakshanba',
@@ -182,7 +190,7 @@ $messages = array(
 'vector-action-protect' => 'Himoyalash',
 'vector-action-undelete' => 'Tiklash',
 'vector-action-unprotect' => "Himoyani o'zgartirish",
-'vector-simplesearch-preference' => 'Kengaytirilgan qidiruv takliflarini yoqish (Faqat Vektor rasmiylashtirish uchun)',
+'vector-simplesearch-preference' => 'Kengaytirilgan qidiruv takliflarini yoqish (faqat "Vektor" tashqi ko\'rinishi uchun)',
 'vector-view-create' => 'Yaratish',
 'vector-view-edit' => 'Tahrirlash',
 'vector-view-history' => 'Tarix',
@@ -214,7 +222,7 @@ $messages = array(
 'delete' => 'O‘chirish',
 'deletethispage' => 'Bu sahifani oʻchir',
 'undelete_short' => '{{PLURAL:$1|tahrir|$1 tahrirlar}}ni tiklash',
-'viewdeleted_short' => "{{PLURAL:$1|o'chirilgan tahrir|$1 o'chirilgan tahrirlar}}ni ko'rish",
+'viewdeleted_short' => "{{PLURAL:$1|o'chirilgan tahrir|$1 ta o'chirilgan tahrirlar}}ni ko'rish",
 'protect' => 'Himoyalash',
 'protect_change' => 'o‘zgartirish',
 'protectthispage' => 'Ushbu sahifani himoyalash',
@@ -272,13 +280,21 @@ $messages = array(
 'privacypage' => 'Project:Konfidensiallik siyosati',
 
 'badaccess' => 'Ruxsatlilik xatosi',
+'badaccess-group0' => "Siz so'ralgan amallarni bajara olmaysiz",
 'badaccess-groups' => "So'ralgan amallarni kamida $1 {{PLURAL:$2|guruhi|guruhlari}} foydalanuvchilarigina amalga oshirishi mumkin.",
+
+'versionrequired' => '$1 versiyasidagi MediaWiki talab etiladi',
+'versionrequiredtext' => "Ushbu sahifani bilan ishlash uchun $1 versiyasidagi MediaWiki talab etiladi.
+[[Special:Version|Dasturiy ta'minot haqida axborot]]ni ko'ring.",
 
 'ok' => 'OK',
 'retrievedfrom' => ' "$1" dan olindi',
 'youhavenewmessages' => 'Sizga $1 keldi ($2).',
 'newmessageslink' => 'yangi xabarlar',
 'newmessagesdifflink' => 'soʻnggi oʻzgarish',
+'youhavenewmessagesfromusers' => 'Siz {{PLURAL:$3|$3 ta foydalanuvchidan}} $1 oldingiz ($2).',
+'youhavenewmessagesmanyusers' => "Siz ko'p foydalanuvchilardan $1 oldingiz ($2).",
+'newmessageslinkplural' => '{{PLURAL:$1|yangi xabar|yangi xabarlar}}',
 'newmessagesdifflinkplural' => "oxirgi {{PLURAL:$1|o'zgarish|o'zgarishlar}}",
 'youhavenewmessagesmulti' => 'Siz $1ga yangi xat oldingiz',
 'editsection' => 'tahrirlash',
@@ -292,7 +308,15 @@ $messages = array(
 'hidetoc' => 'yashirish',
 'collapsible-collapse' => "Yig'ish",
 'collapsible-expand' => 'Yoyish',
+'thisisdeleted' => "$1ni ko'rib chiqasizmi yoki tiklaysizmi?",
+'viewdeleted' => "$1ni ko'rib chiqasizmi?",
+'restorelink' => "{{PLURAL:$1|o'chirilgan tahrir|$1 ta o'chirilgan tahrirlar}}ni",
+'feedlinks' => "Ko'rinishida:",
+'feed-invalid' => "Obuna uchun no'tog'ri turdagi kanal",
+'feed-unavailable' => "Sindikatsiya tasmalariga yo'lashning imkoni yo'q",
+'site-rss-feed' => '$1 — RSS-tasmasi',
 'site-atom-feed' => '$1 — Atom-tasma',
+'page-rss-feed' => '"$1" — RSS-tasmasi',
 'page-atom-feed' => '«$1» — Atom-lenta',
 'red-link-title' => '$1 (sahifa yaratilmagan)',
 'sort-descending' => "Kamayish bo'yicha tartiblash",
@@ -319,6 +343,7 @@ $messages = array(
 'laggedslavemode' => "'''Diqqat:''' sahifa oxirgi yangilashlarga ega bo'lmasligi mumkin.",
 'readonly' => "Ma'lumotlar bazasiga yozish to'sildi",
 'missingarticle-rev' => '(versiya №: $1)',
+'missingarticle-diff' => '(Farq: $1, $2)',
 'internalerror' => 'Ichki xato',
 'internalerror_info' => 'Ichki xato: $1',
 'badtitle' => 'Notoʻgʻri sarlavha',
@@ -421,8 +446,8 @@ Vaqtinchalik maxfiy so'z: $2",
 # Edit page toolbar
 'bold_sample' => 'Qalin matn',
 'bold_tip' => 'Qalin matn',
-'italic_sample' => 'Kursiv',
-'italic_tip' => 'Kursiv',
+'italic_sample' => 'Yotiq matn',
+'italic_tip' => 'Yotiq matn',
 'link_sample' => 'Ishorat nomi',
 'link_tip' => 'Ichki ishorat',
 'extlink_sample' => 'http://www.example.com ishorat nomi',
@@ -447,13 +472,16 @@ Vaqtinchalik maxfiy so'z: $2",
 'showlivepreview' => "Tezkor ko'rib chiqish",
 'showdiff' => 'O‘zgarishlarni ko‘rsatish',
 'anoneditwarning' => "'''Diqqat:''' Siz tizimga kirmagansiz. Ushbu sahifa tarixida Sizning IP manzilingiz yozib qolinadi.",
-'blockedtitle' => 'Foydalanuvchi muhosara qilindi',
+'summary-preview' => "Tavsif shunday bo'ladi:",
+'subject-preview' => "Sarlavha shunday bo'ladi:",
+'blockedtitle' => 'Foydalanuvchi chetlashtirildi',
 'blockedtext' => "'''Siz (foydalanuvchi ismingiz yoki IP manzilingiz) tahrir qilishdan chetlashtirildingiz.'''
 
 Sizni $1 chetlashtirdi. Bunga sabab: ''$2''.
 
 * Chetlashtirish muddati boshi: $8
 * Chetlashtirish muddati yakuni: $6
+* Chetlashtirish maqsadi: $7
 
 Siz $1 yoki boshqa [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilan bogʻlanib, arz qilishingiz mumkin.
 You cannot use the 'e-mail this user' feature unless a valid e-mail address is specified in your [[Special:Preferences|account preferences]] and you have not been blocked from using it.
@@ -693,6 +721,8 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'rows' => 'Qatorlar soni:',
 'columns' => 'Ustunlar soni:',
 'searchresultshead' => 'Qidiruv',
+'resultsperpage' => 'Sahifaga topilgan yozuvlar miqdori',
+'stub-threshold' => '<a href="#" class="stub">Tayyorlanmaga havolalar</a>ni rasmiylashtirish uchun boshlash ostonasi (baytlarda).',
 'stub-threshold-disabled' => "O'chirib qo'yilgan",
 'recentchangesdays-max' => 'Eng koʻpi $1 kun',
 'recentchangescount' => 'Sukut boʻyicha koʻrsatiladigan tahrirlar soni',
@@ -719,6 +749,9 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'defaultns' => 'Aks holda quyidagi nomfazolardan qidirish:',
 'default' => "boshlang'ich",
 'prefs-files' => 'Fayllar',
+'prefs-custom-css' => 'Shaxsiy CSS',
+'prefs-custom-js' => 'Shaxsiy JavaScript',
+'prefs-common-css-js' => "Barcha tashqi ko'rinishlar uchun umumiy CSS/JavaScript:",
 'prefs-emailconfirm-label' => 'Elektron pochta manzilini tasdiqlash:',
 'prefs-textboxsize' => 'Tahrir oynasining oʻlchami',
 'youremail' => 'E-mail:',
@@ -729,6 +762,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'yourrealname' => 'Haqiqiy ism *:',
 'yourlanguage' => 'Til:',
 'yourvariant' => 'Tarkib tili varianti',
+'prefs-help-variant' => "Viki sahifalari matnini tasvirlash uchun ma'qul ko'rilgan til varianti",
 'yournick' => 'Yangi imzo',
 'prefs-help-signature' => 'Munozara sahifalarida imzo "<nowiki>~~~~</nowiki>" orqali qoʻyiladi (u sizning imzoingiz va joriy vaqtga aylantiriladi).',
 'yourgender' => 'Jinsi:',
@@ -741,6 +775,7 @@ Ushbu axborot ommaviy xususiyatga ega bo'ladi.",
 'prefs-help-realname' => "Haqiqiy ism (ixtiyoriy maydon).
 Agar siz uni ko'rsatsangiz, undan sahifa tahriri kim tomonidan kiritilganligini ko'rsatish uchun foydalaniladi.",
 'prefs-help-email' => "Elektron pochta manzilini ko'rsatish majburiy emas, lekin u siz maxfiy so'zni unutib qo'ysangiz kerak bo'lishi mumkin.",
+'prefs-help-email-others' => "U shuningdek, sizning elektron pochtangiz manzilini oshkora qilmasdan, boshqa ishtirokchilar bilan shaxsiy sahifangiz orqali bog'lanish imkonini ham beradi.",
 'prefs-help-email-required' => 'E-mail manzilni koʻrsatish shart emas',
 'prefs-info' => 'Asosiy maʼlumot',
 'prefs-i18n' => 'Internatsionallashtirish',
@@ -985,6 +1020,36 @@ Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmasl
 'wlshowlast' => 'Oxirgi $1 soatdagi $2 kundagi tahrirlarni ko‘rsatish. $3 tahrirlarni ko‘rsatish',
 'watchlist-options' => "Kuzatuv ro'yxati moslamalari",
 
+'enotif_body' => "Hurmatli \$WATCHINGUSERNAME,
+
+\$PAGEEDITDATE kuni \"{{SITENAME}}\" loyihasining \$PAGETITLE sahifasi foydalanuvchi \$PAGEEDITOR tomonidan \$CHANGEDORCREATED, joriy versiyani ko'rish uchun \$PAGETITLE_URL havolasi bo'yicha o'ting.
+
+\$NEWPAGE
+
+O'zgarish bo'yicha qisqacha izoh: \$PAGESUMMARY \$PAGEMINOREDIT
+
+Tahrirlovchiga murojaat qilish:
+el. pochta: \$PAGEEDITOR_EMAIL
+viki: \$PAGEEDITOR_WIKI
+
+Agar siz sahifaga o'tib ko'rmasangiz, u holda uning keyingi o'zgarishlari bo'yicha boshqa bildirish xabarlari kelmaydi.
+Siz shuningdek o'zingizning kuzatuv ro'yxatingizda barcha sahifalar uchun bildirish moslamasini o'chirishingiz mumkin.
+
+             {{grammar:genitive|{{SITENAME}}}}ning axborot berish tizimi
+
+--
+Bildirishlar moslamalarini o'zgartirish
+{{canonicalurl:{{#special:Preferences}}}}
+
+O'zingizning kuzatuv ro'yxatingiz moslamalarini o'zgartirish
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+Sizning kuzatuv ro'yxatingizdagi sahifalarni o'chirish
+\$UNWATCHURL
+
+Qayta aloqa va yordam
+{{canonicalurl:{{MediaWiki:Helppage}}}}",
+
 # Delete
 'actioncomplete' => 'Bajarildi',
 'actionfailed' => 'Jarayon amalga oshmadi',
@@ -1222,6 +1287,16 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'pageinfo-watchers' => 'Sahifa kuzatuvchilari soni',
 'pageinfo-edits' => 'Jami tahrirlar soni',
 
+# Skin names
+'skinname-standard' => 'Klassik',
+'skinname-nostalgia' => "Sog'inch",
+'skinname-cologneblue' => "Kyolncha sog'inch",
+'skinname-myskin' => "O'zimniki",
+'skinname-chick' => "Jo'ja",
+'skinname-simple' => 'Oddiy',
+'skinname-modern' => 'Zamonaviy',
+'skinname-vector' => 'Vektor',
+
 # Patrol log
 'patrol-log-page' => 'Patrullash qaydlari',
 
@@ -1288,7 +1363,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'namespacesall' => 'Barchasi',
 'monthsall' => 'barchasi',
 
-'unit-pixel' => 'piksel',
+'unit-pixel' => ' piksel',
 
 # Multipage image navigation
 'imgmultipageprev' => '← oldingi sahifa',
@@ -1330,6 +1405,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # HTML forms
 'htmlform-reset' => 'Oʻzgarishlarni bekor qilish',
+'htmlform-selectorother-other' => 'Boshqa',
 
 # New logging system
 'logentry-move-move' => '$1 $3 sahifasini $4ga koʻchirdi',

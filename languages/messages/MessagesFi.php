@@ -981,7 +981,8 @@ Alla on viimeisin estolokin tapahtuma:',
 'userinvalidcssjstitle' => "'''Varoitus:''' Tyyliä nimeltä ”$1” ei ole olemassa. Muista, että käyttäjän määrittelemät .css- ja .js-sivut alkavat pienellä alkukirjaimella, esim. {{ns:user}}:Matti Meikäläinen/vector.css eikä {{ns:user}}:Matti Meikäläinen/Vector.css.",
 'updated' => '(Päivitetty)',
 'note' => "'''Huomautus:'''",
-'previewnote' => "'''Tämä on vasta sivun esikatselu. Tekemiäsi muokkauksia ei ole vielä tallennettu!'''",
+'previewnote' => "'''Tämä on vasta sivun esikatselu.'''
+Tekemiäsi muutoksia ei ole vielä tallennettu.",
 'continue-editing' => 'Jatka muokkaamista',
 'previewconflict' => 'Tämä esikatselu näyttää miltä muokkausalueella oleva teksti näyttää tallennettuna.',
 'session_fail_preview' => "'''Muokkaustasi ei voitu tallentaa, koska istuntosi tiedot ovat kadonneet.''' Yritä uudelleen. Jos ongelma ei katoa, yritä [[Special:UserLogout|kirjautua ulos]] ja takaisin sisään.",
@@ -1199,7 +1200,9 @@ Sinulla ei ole oikeutta siihen.',
 'revdelete-only-restricted' => 'Virhe piilotettaessa $1 kello $2 päivättyä kohdetta: Et voi poistaa kohteita ylläpitäjien näkyviltä valitsematta myös jotain muuta näkyvyysasetusta.',
 'revdelete-reason-dropdown' => '*Yleiset poistosyyt
 ** Tekijänoikeusrikkomus
-** Sopimattomat henkilötiedot',
+** Sopimattomat henkilötiedot
+** Sopimaton käyttäjätunnus
+** Mahdollisesti herjaavaa tietoa',
 'revdelete-otherreason' => 'Muu syy tai tarkennus',
 'revdelete-reasonotherlist' => 'Muu syy',
 'revdelete-edit-reasonlist' => 'Muokkaa poistosyitä',
@@ -1318,7 +1321,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'powersearch-field' => 'Etsi',
 'powersearch-togglelabel' => 'Muuta valintaa',
 'powersearch-toggleall' => 'Valitse kaikki',
-'powersearch-togglenone' => 'Valitse ei mitään',
+'powersearch-togglenone' => 'Poista valinnat',
 'search-external' => 'Ulkoinen haku',
 'searchdisabled' => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 
@@ -2043,7 +2046,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|tavu|tavua}}',
 'ncategories' => '$1 {{PLURAL:$1|luokka|luokkaa}}',
-'ninterwikis' => '$1 {{PLURAL:$1|interwiki-linkki|interwiki-linkkiä}}',
+'ninterwikis' => '$1 {{PLURAL:$1|kielilinkki|kielilinkkiä}}',
 'nlinks' => '$1 {{PLURAL:$1|linkki|linkkiä}}',
 'nmembers' => '$1 {{PLURAL:$1|jäsen|jäsentä}}',
 'nrevisions' => '$1 {{PLURAL:$1|muutos|muutosta}}',
@@ -2072,7 +2075,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'mostlinkedtemplates' => 'Viitatuimmat mallineet',
 'mostcategories' => 'Luokitelluimmat sivut',
 'mostimages' => 'Viitatuimmat tiedostot',
-'mostinterwikis' => 'Sivut joilla on eniten kielilinkkejä',
+'mostinterwikis' => 'Sivut, joilla on eniten kielilinkkejä',
 'mostrevisions' => 'Muokatuimmat sivut',
 'prefixindex' => 'Kaikki sivut katkaisuhaulla',
 'prefixindex-namespace' => 'Kaikki sivut etuliitteellä (nimiavaruus $1)',
@@ -2145,11 +2148,11 @@ Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muut
 'allpagesprefix' => 'Katkaisuhaku',
 'allpagesbadtitle' => 'Annettu otsikko oli kelvoton tai siinä oli wikien välinen etuliite.',
 'allpages-bad-ns' => '{{GRAMMAR:inessive|{{SITENAME}}}} ei ole nimiavaruutta ”$1”.',
-'allpages-hide-redirects' => 'Piilota ohjaussivut',
+'allpages-hide-redirects' => 'Piilota ohjaukset',
 
 # SpecialCachedPage
-'cachedspecial-viewing-cached-ttl' => 'Katselet arkistoitua versiota tästä sivusta, joka voi olla jopa $1 vanha.',
-'cachedspecial-viewing-cached-ts' => 'Katselet arkistoitua versiota tästä sivusta, joka ei välttämättä ole sivun viimeisin versio.',
+'cachedspecial-viewing-cached-ttl' => 'Tarkastelet arkistoitua versiota tästä sivusta, joka voi olla jopa $1 vanha.',
+'cachedspecial-viewing-cached-ts' => 'Tarkastelet arkistoitua versiota tästä sivusta, joka ei välttämättä ole sivun viimeisin versio.',
 'cachedspecial-refresh-now' => 'Näytä uusin versio.',
 
 # Special:Categories
@@ -2576,7 +2579,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'ipb-confirm' => 'Vahvista esto',
 'badipaddress' => 'IP-osoite on väärin muotoiltu.',
 'blockipsuccesssub' => 'Esto onnistui',
-'blockipsuccesstext' => 'Käyttäjä tai IP-osoite [[Special:Contributions/$1|$1]] on estetty.<br />
+'blockipsuccesstext' => '[[Special:Contributions/$1|$1]] on estetty.<br />
 Voimassa olevat estot näkyvät [[Special:BlockList|estolistasta]].',
 'ipb-blockingself' => 'Olet estämässä itseäsi. Oletko varma, että haluat tehdä niin?',
 'ipb-confirmhideuser' => 'Olet estämässä käyttäjää ”piilota käyttäjä” -toiminnon kanssa.  Tämä piilottaa käyttäjän nimen kaikissa luetteloissa ja lokitapahtumissa.  Oletko varma, että haluat tehdä näin?',
@@ -3014,6 +3017,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-header-edits' => 'Muokkaushistoria',
 'pageinfo-header-restrictions' => 'Sivun suojaus',
 'pageinfo-header-properties' => 'Sivun ominaisuudet',
+'pageinfo-default-sort' => 'Oletuslajitteluavain',
 'pageinfo-article-id' => 'Sivun tunniste',
 'pageinfo-views' => 'Katselukertojen määrä',
 'pageinfo-watchers' => 'Sivun tarkkailijoiden lukumäärä',
