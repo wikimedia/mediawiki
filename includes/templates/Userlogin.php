@@ -25,8 +25,6 @@
  * @defgroup Templates Templates
  */
 
-if( !defined( 'MEDIAWIKI' ) ) die( -1 );
-
 /**
  * HTML template for Special:Userlogin form
  * @ingroup Templates
