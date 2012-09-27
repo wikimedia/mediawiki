@@ -549,16 +549,8 @@ class CologneBlueTemplate extends BaseTemplate {
 	 * @return string
 	 */
 	function sysLinks() {
-		$li = SpecialPage::getTitleFor( 'Userlogin' );
-		$lo = SpecialPage::getTitleFor( 'Userlogout' );
-
-		$rt = $this->getSkin()->getTitle()->getPrefixedURL();
-		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
-			$q = array();
-		} else {
-			$q = array( 'returnto' => $rt );
-		}
-
+		$personalUrls = $this->data['personal_urls'];
+		
 		$s = array(
 			$this->getSkin()->mainPageLink(),
 			Linker::linkKnown(
@@ -584,19 +576,12 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s[] = $this->extensionTabLinks();
 		}
 		if ( $this->data['loggedin'] ) {
-			$s[] = Linker::linkKnown(
-				$lo,
-				wfMessage( 'logout' )->text(),
-				array(),
-				$q
-			);
+			$s[] = $this->makeLink( 'logout', $personalUrls['logout'] );
 		} else {
-			$s[] = Linker::linkKnown(
-				$li,
-				wfMessage( 'login' )->text(),
-				array(),
-				$q
-			);
+			if ( $personalUrls['createaccount'] ) { // Controlled by $wgUseCombinedLoginLink
+				$s[] = $this->makeLink( 'createaccount', $personalUrls['createaccount'] );
+			}
+			$s[] = $this->makeLink( 'login', $personalUrls['login'] );
 		}
 
 		return $this->getSkin()->getLanguage()->pipeList( $s );
@@ -676,6 +661,9 @@ class CologneBlueTemplate extends BaseTemplate {
 					
 					// Personal tools ("My pages")
 					$bar['qbmyoptions'] = $this->getPersonalTools();
+					$bar['qbmyoptions']['login'] = false;
+					$bar['qbmyoptions']['logout'] = false;
+					$bar['qbmyoptions']['createaccount'] = false;
 					
 					$additions_done = true;
 				}
