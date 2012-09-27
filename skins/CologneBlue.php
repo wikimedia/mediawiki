@@ -90,34 +90,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		return $s;
 	}
-
-	/**
-	 * Compatibility for extensions adding functionality through tabs.
-	 * Eventually these old skins should be replaced with SkinTemplate-based
-	 * versions, sigh...
-	 * @return string
-	 * @todo Exterminate! ...that, and replace it with normal SkinTemplate stuff
-	 */
-	function extensionTabLinks() {
-		$tabs = array();
-		$out = '';
-		$s = array();
-		wfRunHooks( 'SkinTemplateTabs', array( $this->getSkin(), &$tabs ) );
-		foreach ( $tabs as $tab ) {
-			$s[] = Xml::element( 'a',
-				array( 'href' => $tab['href'] ),
-				$tab['text'] );
-		}
-
-		if ( count( $s ) ) {
-			global $wgLang;
-
-			$out = wfMessage( 'pipe-separator' )->escaped();
-			$out .= $wgLang->pipeList( $s );
-		}
-
-		return $out;
-	}
 	
 	function otherLanguages() {
 		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
@@ -476,8 +448,9 @@ class CologneBlueTemplate extends BaseTemplate {
 		<?php echo wfMessage( 'sitesubtitle' )->escaped() ?>
 	</p>
 	
-	<p id="syslinks">
-		<span><?php echo $this->sysLinks() ?></span>
+	<p id="toplinks">
+		<span id="syslinks"><?php echo $this->sysLinks() ?></span>
+		<span id="variantlinks"><?php echo $this->variantLinks() ?></span>
 	</p>
 	<div id="linkcollection">
 		<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
@@ -547,10 +520,10 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	/**
 	 * @return string
+	 * 
+	 * @fixed
 	 */
 	function sysLinks() {
-		$personalUrls = $this->data['personal_urls'];
-		
 		$s = array(
 			$this->getSkin()->mainPageLink(),
 			Linker::linkKnown(
@@ -565,16 +538,9 @@ class CologneBlueTemplate extends BaseTemplate {
 				Title::newFromText( wfMessage( 'faqpage' )->inContentLanguage()->text() ),
 				wfMessage( 'faq' )->text()
 			),
-			Linker::specialLink( 'Specialpages' )
 		);
 
-		/* show links to different language variants */
-		if( $this->variantLinks() ) {
-			$s[] = $this->variantLinks();
-		}
-		if( $this->extensionTabLinks() ) {
-			$s[] = $this->extensionTabLinks();
-		}
+		$personalUrls = $this->data['personal_urls'];
 		if ( $this->data['loggedin'] ) {
 			$s[] = $this->makeLink( 'logout', $personalUrls['logout'] );
 		} else {
