@@ -36,7 +36,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				9.45,
 				array(),
-				'9.5s',
+				'9.5&#160;s',
 				'formatTimePeriod() rounding (<10s)'
 			),
 			array(
@@ -48,7 +48,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				9.95,
 				array(),
-				'10s',
+				'10&#160;s',
 				'formatTimePeriod() rounding (<10s)'
 			),
 			array(
@@ -60,7 +60,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				59.55,
 				array(),
-				'1m 0s',
+				'1&#160;min 0&#160;s',
 				'formatTimePeriod() rounding (<60s)'
 			),
 			array(
@@ -72,7 +72,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				119.55,
 				array(),
-				'2m 0s',
+				'2&#160;min 0&#160;s',
 				'formatTimePeriod() rounding (<1h)'
 			),
 			array(
@@ -84,7 +84,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				3599.55,
 				array(),
-				'1h 0m 0s',
+				'1&#160;h 0&#160;min 0&#160;s',
 				'formatTimePeriod() rounding (<1h)'
 			),
 			array(
@@ -96,7 +96,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				7199.55,
 				array(),
-				'2h 0m 0s',
+				'2&#160;h 0&#160;min 0&#160;s',
 				'formatTimePeriod() rounding (>=1h)'
 			),
 			array(
@@ -108,7 +108,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				7199.55,
 				'avoidseconds',
-				'2h 0m',
+				'2&#160;h 0&#160;min',
 				'formatTimePeriod() rounding (>=1h), avoidseconds'
 			),
 			array(
@@ -120,7 +120,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				7199.55,
 				'avoidminutes',
-				'2h 0m',
+				'2&#160;h 0&#160;min',
 				'formatTimePeriod() rounding (>=1h), avoidminutes'
 			),
 			array(
@@ -132,7 +132,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				172799.55,
 				'avoidseconds',
-				'48h 0m',
+				'48&#160;h 0&#160;min',
 				'formatTimePeriod() rounding (=48h), avoidseconds'
 			),
 			array(
@@ -144,19 +144,19 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				259199.55,
 				'avoidminutes',
-				'3d 0h',
+				'3&#160;d 0&#160;h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
 			),
 			array(
 				259199.55,
 				array( 'avoid' => 'avoidminutes', 'noabbrevs' => true ),
-				'3 days 0 hours',
+				'3&#160;days 0&#160;hours',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
 			),
 			array(
 				176399.55,
 				'avoidseconds',
-				'2d 1h 0m',
+				'2&#160;d 1&#160;h 0&#160;min',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
 			),
 			array(
@@ -168,7 +168,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				176399.55,
 				'avoidminutes',
-				'2d 1h',
+				'2&#160;d 1&#160;h',
 				'formatTimePeriod() rounding (>48h), avoidminutes'
 			),
 			array(
@@ -180,7 +180,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				259199.55,
 				'avoidseconds',
-				'3d 0h 0m',
+				'3&#160;d 0&#160;h 0&#160;min',
 				'formatTimePeriod() rounding (>48h), avoidseconds'
 			),
 			array(
@@ -192,7 +192,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				172801.55,
 				'avoidseconds',
-				'2d 0h 0m',
+				'2&#160;d 0&#160;h 0&#160;min',
 				'formatTimePeriod() rounding, (>48h), avoidseconds'
 			),
 			array(
@@ -204,7 +204,7 @@ class LanguageTest extends MediaWikiTestCase {
 			array(
 				176460.55,
 				array(),
-				'2d 1h 1m 1s',
+				'2&#160;d 1&#160;h 1&#160;min 1&#160;s',
 				'formatTimePeriod() rounding, recursion, (>48h)'
 			),
 			array(
