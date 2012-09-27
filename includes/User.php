@@ -2853,6 +2853,9 @@ class User {
 
 		wfRunHooks( 'UserSetCookies', array( $this, &$session, &$cookies ) );
 
+		$stickHttps = $request->getCheck( 'wpStickHTTPS' );
+		$setSecureCookies = ( $wgSecureLogin && !$stickHttps ) ? false : null;
+
 		foreach ( $session as $name => $value ) {
 			$request->setSessionData( $name, $value );
 		}
@@ -2860,7 +2863,7 @@ class User {
 			if ( $value === false ) {
 				$this->clearCookie( $name );
 			} else {
-				$this->setCookie( $name, $value );
+				$this->setCookie( $name, $value, 0, $setSecureCookies );
 			}
 		}
 
@@ -2869,7 +2872,7 @@ class User {
 		 * will cause the site to redirect the user to HTTPS, if they access
 		 * it over HTTP. Bug 29898.
 		 */
-		if ( $request->getCheck( 'wpStickHTTPS' ) ) {
+		if ( $stickHttps ) {
 			$this->setCookie( 'forceHTTPS', 'true', time() + 2592000, false ); //30 days
 		}
 	}
