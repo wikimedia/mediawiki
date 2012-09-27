@@ -1396,13 +1396,14 @@ class Title {
 	 *
 	 * See getLocalURL for the arguments.
 	 *
+	 * @param $proto Protocol to use; setting this will cause a full URL to be used
 	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
-	public function getLinkURL( $query = '', $query2 = false ) {
+	public function getLinkURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		wfProfileIn( __METHOD__ );
-		if ( $this->isExternal() ) {
-			$ret = $this->getFullURL( $query, $query2 );
+		if ( $this->isExternal() || $proto != PROTO_RELATIVE ) {
+			$ret = $this->getFullURL( $query, $query2, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->getFragment() !== '' ) {
 			$ret = $this->getFragmentForURL();
 		} else {
