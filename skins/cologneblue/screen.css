@@ -216,19 +216,18 @@ input.mw-searchInput {
 #toplinks a {
 	font-size: 10pt;
 }
-#toplinks #syslinks {
+#toplinks p {
 	position: absolute;
-	right: 0; 
-	bottom: 0;
+	right: 0;
+	margin: 0;
 	width: 100%;
 	text-align: right;
 }
+#toplinks #syslinks {
+	bottom: 0;
+}
 #toplinks #variantlinks {
-	position: absolute;
-	right: 0; 
 	bottom: 12pt;
-	width: 100%;
-	text-align: right;
 }
 
 #sitesub {

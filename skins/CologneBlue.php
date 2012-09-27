@@ -433,10 +433,10 @@ class CologneBlueTemplate extends BaseTemplate {
 		</p>
 		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
 		
-		<p id="toplinks">
-			<span id="syslinks"><?php echo $this->sysLinks() ?></span>
-			<span id="variantlinks"><?php echo $this->variantLinks() ?></span>
-		</p>
+		<div id="toplinks">
+			<p id="syslinks"><?php echo $this->sysLinks() ?></p>
+			<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
+		</div>
 		<div id="linkcollection">
 			<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
 			<?php echo $this->getSkin()->getCategories() ?>
@@ -530,18 +530,10 @@ class CologneBlueTemplate extends BaseTemplate {
 			),
 		);
 
-		$personalUrls = $this->data['personal_urls'];
-		if ( $this->data['loggedin'] ) {
-			$s[] = $this->makeLink( 'logout', $personalUrls['logout'] );
-		} else {
-			if ( $personalUrls['createaccount'] ) { // Controlled by $wgUseCombinedLoginLink
-				$s[] = $this->makeLink( 'createaccount', $personalUrls['createaccount'] );
-			}
-			if ( $personalUrls['login'] ) {
-				$s[] = $this->makeLink( 'login', $personalUrls['login'] );
-			}
-			if ( $personalUrls['anonlogin'] ) {
-				$s[] = $this->makeLink( 'anonlogin', $personalUrls['anonlogin'] );
+		$personalUrls = $this->getPersonalTools();
+		foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+			if ( $personalUrls[$key] ) {
+				$s[] = $this->makeListItem( $key, $personalUrls[$key], array( 'tag' => 'span' ) );
 			}
 		}
 
@@ -622,10 +614,9 @@ class CologneBlueTemplate extends BaseTemplate {
 					
 					// Personal tools ("My pages")
 					$bar['qbmyoptions'] = $this->getPersonalTools();
-					$bar['qbmyoptions']['login'] = false;
-					$bar['qbmyoptions']['anonlogin'] = false;
-					$bar['qbmyoptions']['logout'] = false;
-					$bar['qbmyoptions']['createaccount'] = false;
+					foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+						$bar['qbmyoptions'][$key] = false;
+					}
 					
 					$additions_done = true;
 				}
