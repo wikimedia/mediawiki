@@ -33,7 +33,7 @@ StartProfiler.php
 ## Mac OS X
 .DS_Store
 ## Windows
-thumbs.db
+Thumbs.db
 
 # Misc
 .buildpath
