@@ -1728,7 +1728,7 @@ Prosimo, obrnite se na [[Special:ListUsers/sysop|administratorja]].',
 Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 Če se težava ponavlja, kontaktirajte [[Special:ListUsers/sysop|administratorja]].',
 'upload-too-many-redirects' => 'URL vsebuje preveč preusmeritev',
-'upload-unknown-size' => 'Neznana velikost',
+'upload-unknown-size' => 'neznana velikost',
 'upload-http-error' => 'Prišlo je do napake HTTP: $1',
 'upload-copy-upload-invalid-domain' => 'Nalaganje kopij s te domene ni na voljo.',
 
@@ -3309,7 +3309,7 @@ Druga bodo po privzetem skrita.
 'exif-copyrighted-true' => 'Avtorsko zaščiteno',
 'exif-copyrighted-false' => 'Javna last',
 
-'exif-unknowndate' => 'Neznan datum',
+'exif-unknowndate' => 'neznan datum',
 
 'exif-orientation-1' => 'Navadna',
 'exif-orientation-2' => 'Vodoravno zrcaljeno',

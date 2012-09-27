@@ -2713,7 +2713,7 @@ $1',
 'sp-contributions-blocked-notice-anon' => 'このIPアドレスは現在ブロックされています。
 参考のために最近のブロック記録項目を以下に表示します：',
 'sp-contributions-search' => '投稿の検索',
-'sp-contributions-username' => 'IPアドレスまたは利用者名：',
+'sp-contributions-username' => 'IPアドレスまたは利用者名:',
 'sp-contributions-toponly' => '最新版の編集のみを表示',
 'sp-contributions-submit' => '検索',
 
@@ -2746,7 +2746,7 @@ $1',
 'blockiptext' => '以下のフォームを使用して、指定した利用者やIPアドレスからの書き込みアクセスをブロックできます。
 このような措置は、荒らしからの防御のためにのみ行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。
 以下にブロックの理由を具体的に書いてください（例えば、荒らされたページへの言及など）。',
-'ipadressorusername' => 'IPアドレスまたは利用者名：',
+'ipadressorusername' => 'IPアドレスまたは利用者名:',
 'ipbexpiry' => '有効期限：',
 'ipbreason' => '理由：',
 'ipbreasonotherlist' => 'その他の理由',

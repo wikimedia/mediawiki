@@ -2864,6 +2864,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-error-interwiki' => 'Sivua $1 ei voitu tuoda, koska sen nimi on varattu ulkoisen linkittämisen (interwiki).',
 'import-error-special' => 'Sivua $1 ei tuoda, koska se kuuluu nimitilaan, joka ei salli sivuja.',
 'import-error-invalid' => 'Sivua $1 ei tuoda, koska sen nimi ei kelpaa.',
+'import-options-wrong' => '{{PLURAL:$2|Väärä asetus|Väärät asetukset}}: <nowiki>$1</nowiki>',
 
 # Import log
 'importlogpage' => 'Tuontiloki',

@@ -16,6 +16,7 @@
  * @author Filzstift
  * @author Geitost
  * @author Giftpflanze
+ * @author Hoo
  * @author Imre
  * @author Inkowik
  * @author Jan Luca
