@@ -177,12 +177,12 @@ input.mw-searchInput {
 #footer { margin-left: 152px; }
 
 
-#sitetitle, #sitesub, #syslinks, #linkcollection {
+#sitetitle, #sitesub, #toplinks, #linkcollection {
 	margin-top: 0; 
 	margin-bottom: 0; 
 }
 
-#sitetitle, #syslinks {
+#sitetitle, #toplinks {
 	color: white;
 	text-transform: uppercase;
 	height: 32pt;
@@ -195,12 +195,12 @@ input.mw-searchInput {
 	line-height: 32pt;
 	background-color: #6688AA;
 }
-#sitetitle a, #syslinks a {
+#sitetitle a, #toplinks a {
 	color: white;
 	text-decoration: none; 
 }
 
-#syslinks {
+#toplinks {
 	font-family: Verdana, Arial, sans-serif;
 	position: absolute;
 	top: 0;
@@ -208,13 +208,20 @@ input.mw-searchInput {
 	width: 100%;
 	font-size: 8pt;
 }
-#syslinks a {
+#toplinks a {
 	font-size: 10pt;
 }
-#syslinks span {
+#toplinks #syslinks {
 	position: absolute;
 	right: 0; 
 	bottom: 0;
+	width: 100%;
+	text-align: right;
+}
+#toplinks #variantlinks {
+	position: absolute;
+	right: 0; 
+	bottom: 12pt;
 	width: 100%;
 	text-align: right;
 }
