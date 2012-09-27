@@ -431,90 +431,93 @@ class CologneBlueTemplate extends BaseTemplate {
 	
 	/**
 	 * @return string
+	 * 
+	 * @fixed
 	 */
 	function beforeContent() {
-		$mainPageObj = Title::newMainPage();
-
-		$s = "\n<div id='content'>\n";
 		ob_start();
 ?>
-<div id="topbar">
-	<p id="sitetitle">
-		<a href="<?php echo htmlspecialchars( $mainPageObj->getLocalURL() ) ?>">
-			<?php echo wfMessage( 'sitetitle' )->escaped() ?>
-		</a>
-	</p>
-	<p id="sitesub">
-		<?php echo wfMessage( 'sitesubtitle' )->escaped() ?>
-	</p>
-	
-	<p id="toplinks">
-		<span id="syslinks"><?php echo $this->sysLinks() ?></span>
-		<span id="variantlinks"><?php echo $this->variantLinks() ?></span>
-	</p>
-	<div id="linkcollection">
-		<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
-		<?php echo $this->getSkin()->getCategories() ?>
-		<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
-		<?php if ( $this->data['newtalk'] ) { ?>
-		<div class="usermessage"><strong><?php echo $this->data['newtalk'] ?></strong></div>
-		<?php } ?>
-	</div>
-</div>
-<?php
-		$s .= ob_get_contents();
-		ob_end_clean();
+<div id="content">
+	<div id="topbar">
+		<p id="sitetitle">
+			<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">
+				<?php echo wfMessage( 'sitetitle' )->escaped() ?>
+			</a>
+		</p>
+		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
 		
-		$s .= "\n<div id='article'>";
-
-		$notice = $this->getSkin()->getSiteNotice();
-		if( $notice ) {
-			$s .= "\n<div id='siteNotice'>$notice</div>\n";
-		}
-
-		$s .= '<h1 id="firstHeading"><span dir="auto">' . $this->data['title'] . '</span></h1>';
-
-		if ( $this->translator->translate( 'tagline' ) ) {
-			$s .= "<p class='tagline'>" . htmlspecialchars( $this->translator->translate( 'tagline' ) ) . "</p>";
-		}
-		if ( $this->getSkin()->getOutput()->getSubtitle() ) {
-			$s .= "<p class='subtitle'>" . $this->getSkin()->getOutput()->getSubtitle() . "</p>";
-		}
-		if ( $this->getSkin()->subPageSubtitle() ) {
-			$s .= "<p class='subpages'>" . $this->getSkin()->subPageSubtitle() . "</p>";
-		}
+		<p id="toplinks">
+			<span id="syslinks"><?php echo $this->sysLinks() ?></span>
+			<span id="variantlinks"><?php echo $this->variantLinks() ?></span>
+		</p>
+		<div id="linkcollection">
+			<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
+			<?php echo $this->getSkin()->getCategories() ?>
+			<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
+			<?php if ( $this->data['newtalk'] ) { ?>
+			<div class="usermessage"><strong><?php echo $this->data['newtalk'] ?></strong></div>
+			<?php } ?>
+		</div>
+	</div>
+	<div id="article">
+		<?php if ( $this->getSkin()->getSiteNotice() ) { ?>
+		<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
+		<?php } ?>
+		<h1 id="firstHeading"><span dir="auto"><?php echo $this->data['title'] ?></span></h1>
+		<?php if ( $this->translator->translate( 'tagline' ) ) { ?>
+		<p class="tagline"><?php echo htmlspecialchars( $this->translator->translate( 'tagline' ) ) ?></p>
+		<?php } ?>
+		<?php if ( $this->getSkin()->getOutput()->getSubtitle() ) { ?>
+		<p class="subtitle"><?php echo $this->getSkin()->getOutput()->getSubtitle() ?></p>
+		<?php } ?>
+		<?php if ( $this->getSkin()->subPageSubtitle() ) { ?>
+		<p class="subpages"><?php echo $this->getSkin()->subPageSubtitle() ?></p>
+		<?php } ?>
+<?php
+		$s = ob_get_contents();
+		ob_end_clean();
 		
 		return $s;
 	}
 
 	/**
 	 * @return string
+	 * 
+	 * @fixed
 	 */
-	function afterContent(){
-		$s = "\n</div>\n";
-
-		$s .= "\n<div id='footer'>";
-
-		$s .= $this->bottomLinks();
-		$s .= $this->getSkin()->getLanguage()->pipeList( array(
-			"\n<br />" . Linker::linkKnown(
-				Title::newMainPage()
-			),
-			$this->getSkin()->aboutLink(),
-			$this->searchForm( 'afterContent' )
-		) );
+	function afterContent() {
+		ob_start();
+?>
+	</div>
+	<div id='footer'>
+<?php
+		// Page-related links
+		echo $this->bottomLinks();
+		echo "\n<br />";
 		
-		$s .= "\n<br />";
+		// Footer and second searchbox
+		echo $this->getSkin()->getLanguage()->pipeList( array(
+			$this->getSkin()->mainPageLink(),
+			$this->getSkin()->aboutLink(),
+			$this->searchForm( 'footer' )
+		) );
+		echo "\n<br />";
+		
+		// Standard footer info
 		$footlinks = $this->getFooterLinks();
 		if ( $footlinks['info'] ) {
 			foreach ( $footlinks['info'] as $item ) {
-				$s .= $this->data[$item] . ' ';
+				echo $this->data[$item] . ' ';
 			}
 		}
+?>
+	</div>
+</div>
+<?php echo $this->quickBar() ?>
+<?php
+		$s = ob_get_contents();
+		ob_end_clean();
 
-		$s .= "\n</div>\n</div>\n";
-
-		$s .= $this->quickBar();
 		return $s;
 	}
 
@@ -703,13 +706,13 @@ class CologneBlueTemplate extends BaseTemplate {
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
 		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
-		if( $which == 'afterContent' ) {
+		if( $which == 'footer' ) {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
 		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
 			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
-			. ($which == 'afterContent' ? " " : "<br />")
+			. ($which == 'footer' ? " " : "<br />")
 			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
