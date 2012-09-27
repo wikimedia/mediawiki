@@ -332,8 +332,9 @@ abstract class ResourceLoaderModule {
 	 */
 	public function getMsgBlobMtime( $lang ) {
 		if ( !isset( $this->msgBlobMtime[$lang] ) ) {
-			if ( !count( $this->getMessages() ) )
+			if ( !count( $this->getMessages() ) ) {
 				return 0;
+			}
 
 			$dbr = wfGetDB( DB_SLAVE );
 			$msgBlobMtime = $dbr->selectField( 'msg_resource', 'mr_timestamp', array(
