@@ -50,8 +50,9 @@ class ExternalStore {
 	static function fetchFromURL( $url, $params = array() ) {
 		global $wgExternalStores;
 
-		if( !$wgExternalStores )
+		if( !$wgExternalStores ) {
 			return false;
+		}
 
 		$parts = explode( '://', $url, 2 );
 
@@ -66,8 +67,10 @@ class ExternalStore {
 		}
 
 		$store = self::getStoreObject( $proto, $params );
-		if ( $store === false )
+		if ( $store === false ) {
 			return false;
+		}
+
 		return $store->fetchFromURL( $url );
 	}
 
@@ -80,11 +83,14 @@ class ExternalStore {
 	 */
 	static function getStoreObject( $proto, $params = array() ) {
 		global $wgExternalStores;
-		if( !$wgExternalStores )
+		if( !$wgExternalStores ) {
 			return false;
+		}
+
 		/* Protocol not enabled */
-		if( !in_array( $proto, $wgExternalStores ) )
+		if( !in_array( $proto, $wgExternalStores ) ) {
 			return false;
+		}
 
 		$class = 'ExternalStore' . ucfirst( $proto );
 		/* Any custom modules should be added to $wgAutoLoadClasses for on-demand loading */

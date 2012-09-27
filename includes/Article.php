@@ -1764,8 +1764,9 @@ class Article extends Page {
 		wfDeprecated( __METHOD__, '1.18' );
 		if ( $noRedir ) {
 			$query = 'redirect=no';
-			if ( $extraQuery )
+			if ( $extraQuery ) {
 				$query .= "&$extraQuery";
+			}
 		} else {
 			$query = $extraQuery;
 		}

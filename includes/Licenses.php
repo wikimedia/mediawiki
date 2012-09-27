@@ -117,7 +117,7 @@ class Licenses extends HTMLFormField {
 	 * @param $depth int
 	 */
 	protected function makeHtml( $tagset, $depth = 0 ) {
-		foreach ( $tagset as $key => $val )
+		foreach ( $tagset as $key => $val ) {
 			if ( is_array( $val ) ) {
 				$this->html .= $this->outputOption(
 					$key, '',
@@ -135,6 +135,7 @@ class Licenses extends HTMLFormField {
 					$depth
 				);
 			}
+		}
 	}
 
 	/**
@@ -148,8 +149,10 @@ class Licenses extends HTMLFormField {
 		$msgObj = $this->msg( $message );
 		$text = $msgObj->exists() ? $msgObj->text() : $message;
 		$attribs['value'] = $value;
-		if ( $value === $this->selected )
+		if ( $value === $this->selected ) {
 			$attribs['selected'] = 'selected';
+		}
+
 		$val = str_repeat( /* &nbsp */ "\xc2\xa0", $depth * 2 ) . $text;
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
 	}
