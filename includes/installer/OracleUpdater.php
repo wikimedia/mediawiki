@@ -71,6 +71,8 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ),
 			array( 'addIndex', 'revision', 'i05', 'patch-revision_i05_index.sql' ),
 
+			// 1.21
+
 			// KEEP THIS AT THE BOTTOM!!
 			array( 'doRebuildDuplicateFunction' ),
 
