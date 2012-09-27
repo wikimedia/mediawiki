@@ -11,6 +11,13 @@
 			<pluralRule count="two">n mod 100 is 2</pluralRule>
 			<pluralRule count="few">n mod 100 in 3..4</pluralRule>
 		</pluralRules>
+		<!-- Copied from "be" -->
+        <pluralRules locales="be-tarask">
+            <pluralRule count="one">n mod 10 is 1 and n mod 100 is not 11</pluralRule>
+            <pluralRule count="few">n mod 10 in 2..4 and n mod 100 not in 12..14</pluralRule>
+            <pluralRule count="many">n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14</pluralRule>
+            <!-- others are fractions -->
+        </pluralRules>
 		<pluralRules locales="cu">
 			<pluralRule count="one">n mod 10 is 1</pluralRule>
 			<pluralRule count="two">n mod 10 is 2</pluralRule>
