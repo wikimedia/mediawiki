@@ -369,7 +369,7 @@ if ( $wgNewUserLog ) {
 }
 
 if ( $wgCookieSecure === 'detect' ) {
-	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https:' );
+	$wgCookieSecure = ( WebRequest::detectProtocol() === 'https' );
 }
 
 // Disable MWDebug for command line mode, this prevents MWDebug from eating up
