@@ -87,6 +87,8 @@ class Ibm_db2Updater extends DatabaseUpdater {
 
 			// 1.20
 			array( 'addTable', 'config',                            'patch-config.sql' ),
+
+			// 1.21
 		);
 	}
 }
