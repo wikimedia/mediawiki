@@ -489,22 +489,27 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	/**
 	 * @return string
+	 * 
+	 * @fixed
 	 */
-	function afterContent(){
+	function afterContent() {
 		$s = "\n</div>\n";
 
 		$s .= "\n<div id='footer'>";
-
-		$s .= $this->bottomLinks();
-		$s .= $this->getSkin()->getLanguage()->pipeList( array(
-			"\n<br />" . Linker::linkKnown(
-				Title::newMainPage()
-			),
-			$this->getSkin()->aboutLink(),
-			$this->searchForm( 'afterContent' )
-		) );
 		
+		// Page-related links
+		$s .= $this->bottomLinks();
 		$s .= "\n<br />";
+		
+		// Footer and second searchbox
+		$s .= $this->getSkin()->getLanguage()->pipeList( array(
+			$this->getSkin()->mainPageLink(),
+			$this->getSkin()->aboutLink(),
+			$this->searchForm( 'footer' )
+		) );
+		$s .= "\n<br />";
+		
+		// Standard footer info
 		$footlinks = $this->getFooterLinks();
 		if ( $footlinks['info'] ) {
 			foreach ( $footlinks['info'] as $item ) {
@@ -697,13 +702,13 @@ class CologneBlueTemplate extends BaseTemplate {
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
 		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
-		if( $which == 'afterContent' ) {
+		if( $which == 'footer' ) {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
 		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
 			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
-			. ($which == 'afterContent' ? " " : "<br />")
+			. ($which == 'footer' ? " " : "<br />")
 			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
