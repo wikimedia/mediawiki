@@ -1001,28 +1001,60 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # E-mail user
 'emailuser' => 'Bu foydalanuvchiga e-maktub joʻnat',
 'noemailtext' => "Bu foydalanuvchi e-mail manzil ko'rsatgani yo'q.",
+'emailtarget' => 'Oluvchi ishtirokchining ismini kiriting',
+'emailusername' => 'Ishtirokchi nomi:',
+'emailusernamesubmit' => "Jo'natish",
+'email-legend' => "Boshqa {{SITENAME}} ishtirokchisiga xat jo'natish",
+'emailfrom' => 'Kimdan:',
+'emailto' => 'Kimga:',
+'emailsubject' => 'Sarlavha:',
+'emailmessage' => 'Xabar',
 'emailsend' => 'Joʻnatish',
+'emailsent' => "Xat jo'natildi",
+
+# User Messenger
+'usermessage-summary' => 'Tizimli xabar qoldirish.',
+'usermessage-editor' => 'Tizimli etkazish',
 
 # Watchlist
 'watchlist' => 'Kuzatuv roʻyxatim',
 'mywatchlist' => 'Kuzatuv roʻyxatim',
 'watchlistfor2' => '$1 $2 uchun',
 'nowatchlist' => "Kuzatuv ro'yxatingizda hech narsa yo'q.",
+'watchnologin' => "Siz tizimda o'zingizni tanishtirmadingiz",
+'addwatch' => "Kuzatuv ro'yxatiga qo'shish",
 'addedwatchtext' => "\"[[:\$1]]\" sahifasi sizning [[Special:Watchlist|kuzatuv ro'yxatingizga]] qo'shildi. Bu sahifada va unga mos munozara sahifasida bo'ladigan kelajakdagi o'zgarishlar bu yerda ro'yxatga olinadi, hamda bu sahifa topish qulay bo'lishi uchun [[Special:RecentChanges|yangi o'zgarishlar ro'yxati]]da '''qalin''' harflar bilan ko'rsatiladi.
 
 Agar siz bu sahifani kuzatuv ro'yxatingizdan o'chirmoqchi bo'lsangiz \"Kuzatmaslik\" yozuvini bosing.",
+'removewatch' => "Kuzatuv ro'yxatidan o'chirish",
 'removedwatchtext' => '"[[:$1]]" sahifasi kuzatuv ro\'yxatingizdan o\'chirildi.',
 'watch' => 'kuzatish',
 'watchthispage' => 'Sahifani kuzatish',
 'unwatch' => 'kuzatmaslik',
+'unwatchthispage' => "Kuzatuvni to'xtatish",
+'notanarticle' => 'Maqola emas',
 'watchlist-details' => "Sizning kuzatuv ro'yxatingizda $1 {{PLURAL:$1|ta sahifa}} (munozara sahifalarini hisobga olmaganda)",
 'wlnote' => "Below {{PLURAL:$1|is the last change|are the last '''$1''' changes}} in the last {{PLURAL:$2|hour|'''$2''' hours}}, as of $3, $4.",
 'wlshowlast' => 'Oxirgi $1 soatdagi $2 kundagi tahrirlarni ko‘rsatish. $3 tahrirlarni ko‘rsatish',
 'watchlist-options' => "Kuzatuv ro'yxati moslamalari",
 
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching' => 'Kuzatish...',
+'unwatching' => "Kuzatuv ro'yxatidan o'chirish...",
+
+'enotif_mailer' => "{{SITENAME}} Pochta orqali e'lon qilish xizmati",
+'enotif_reset' => "Hamma sahifalarni ko'rib chiqilgan deb belgilash",
+'enotif_newpagetext' => 'Bu yangi sahifa',
+'enotif_impersonal_salutation' => '{{SITENAME}} ishtirokchisi',
+'changed' => 'o‘zgartirildi',
+'created' => 'yaratildi',
+'enotif_subject' => '"{{SITENAME}}" loyihasining $PAGETITLE sahifasi $PAGEEDITOR tomonidan $CHANGEDORCREATED',
+'enotif_lastvisited' => "Oxirgi tashrifingizdan buyon sodir bo'lgan barcha o'zgarishlarni ko'rish uchun $1 ga qarang.",
+'enotif_lastdiff' => "O'zgarishlar bilan tanishish uchun $1 ga qarang.",
+'enotif_anon_editor' => 'anonim ishtirokchi $1',
 'enotif_body' => "Hurmatli \$WATCHINGUSERNAME,
 
-\$PAGEEDITDATE kuni \"{{SITENAME}}\" loyihasining \$PAGETITLE sahifasi foydalanuvchi \$PAGEEDITOR tomonidan \$CHANGEDORCREATED, joriy versiyani ko'rish uchun \$PAGETITLE_URL havolasi bo'yicha o'ting.
+\$PAGEEDITDATE kuni \"{{SITENAME}}\" loyihasining \$PAGETITLE sahifasi ishtirokchi \$PAGEEDITOR tomonidan \$CHANGEDORCREATED, joriy versiyani ko'rish uchun \$PAGETITLE_URL havolasi bo'yicha o'ting.
 
 \$NEWPAGE
 
@@ -1051,11 +1083,13 @@ Qayta aloqa va yordam
 {{canonicalurl:{{MediaWiki:Helppage}}}}",
 
 # Delete
+'deletepage' => "Sahifani o'chirish",
 'actioncomplete' => 'Bajarildi',
 'actionfailed' => 'Jarayon amalga oshmadi',
 'deletedtext' => '"$1" yoʻqotildi.
 Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'dellogpage' => 'Yoʻqotish qaydlari',
+'deletionlog' => 'yoʻqotish qaydlari',
 'deletecomment' => 'Sabab:',
 'deleteotherreason' => 'Boshqa/qoʻshimcha sabab:',
 'deletereasonotherlist' => 'Boshqa sabab',
@@ -1198,6 +1232,13 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # Export
 'export' => 'Sahifalar eksporti',
+'export-submit' => 'Eksport',
+'export-addcattext' => "Shu turkumdan sahifalarni qo'shish:",
+'export-addcat' => "Qo'shish",
+'export-addnstext' => "Shu nomfazodan sahifalarni qo'shish:",
+'export-addns' => "Qo'shish",
+'export-download' => 'Fayl sifatida saqlash',
+'export-templates' => 'Andozalarni kiritish',
 
 # Namespace 8 related
 'allmessagesname' => 'Ism',

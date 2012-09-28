@@ -2193,7 +2193,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_anon_editor' => 'ónefndur notandi $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} $PAGETITLE.
+Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} síðunni $PAGETITLE.
 Hún hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
 $PAGEEDITOR. Breytingarágripið var:
 
@@ -2205,7 +2205,7 @@ $PAGEEDITOR. Breytingarágripið var:
 
 $NEWPAGE
 
-Til þess að hafa samband við $PAGEEDITOR, heimsóttu:
+Til þess að hafa samband við $PAGEEDITOR, smelltu á:
 
    $PAGEEDITOR_WIKI
 
@@ -2217,12 +2217,12 @@ Kveðja,
 
 --
 
-Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, heimsóttu:
+Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smelltu á:
 
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Til þess að hætta að fylgjast með $PAGETITLE, heimsóttu:
+Til þess að hætta að fylgjast með $PAGETITLE, smelltu á:
 
 $UNWATCHURL',
 

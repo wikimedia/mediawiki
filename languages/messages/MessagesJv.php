@@ -9,6 +9,7 @@
  *
  * @author Anggoro
  * @author Helix84
+ * @author Hoo
  * @author Kaganer
  * @author Meursault2004
  * @author NoiX180
@@ -3340,7 +3341,7 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'version-version' => '(Vèrsi $1)',
 'version-license' => 'Lisènsi',
 'version-poweredby-credits' => "Wiki iki disengkuyung déning '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
-'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/KRÈDIT liyané]',
+'version-poweredby-others' => 'liyané',
 'version-software' => "''Software'' wis diinstalasi",
 'version-software-product' => 'Prodhuk',
 'version-software-version' => 'Vèrsi',
