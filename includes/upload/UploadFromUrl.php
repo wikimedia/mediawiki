@@ -207,9 +207,14 @@ class UploadFromUrl extends UploadBase {
 		$this->mRemoveTempFile = true;
 		$this->mFileSize = 0;
 
-		$req = MWHttpRequest::factory( $this->mUrl, array(
+		$options = array(
 			'followRedirects' => true
-		) );
+		);
+		global $wgCopyUploadProxy;
+		if ( $wgCopyUploadProxy !== false ) {
+			$options['proxy'] = $wgCopyUploadProxy;
+		}
+		$req = MWHttpRequest::factory( $this->mUrl, $options );
 		$req->setCallback( array( $this, 'saveTempFileChunk' ) );
 		$status = $req->execute();
 
