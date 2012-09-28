@@ -27,7 +27,7 @@ require_once( __DIR__ . '/../LanguageConverter.php' );
  * @ingroup Language
  */
 class UzConverter extends LanguageConverter {
-	var $toLatin = array(
+	public $toLatin = array(
 		'а' => 'a', 'А' => 'A',
 		'б' => 'b', 'Б' => 'B',
 		'д' => 'd', 'Д' => 'D',
@@ -65,7 +65,7 @@ class UzConverter extends LanguageConverter {
 		'ъ' => 'ʼ',
 	);
 
-	var $toCyrillic = array(
+	public $toCyrillic = array(
 		'a' => 'а', 'A' => 'А',
 		'b' => 'б', 'B' => 'Б',
 		'd' => 'д', 'D' => 'Д',

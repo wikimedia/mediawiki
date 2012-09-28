@@ -38,7 +38,7 @@ class UpdateCollation extends Maintenance {
 	const BATCH_SIZE = 50; // Number of rows to process in one batch
 	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
 
-	var $sizeHistogram = array();
+	public $sizeHistogram = array();
 
 	public function __construct() {
 		parent::__construct();

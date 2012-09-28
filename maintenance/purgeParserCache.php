@@ -30,7 +30,7 @@ require( __DIR__ . '/Maintenance.php' );
  * @ingroup Maintenance
  */
 class PurgeParserCache extends Maintenance {
-	var $lastProgress;
+	public $lastProgress;
 
 	function __construct() {
 		parent::__construct();

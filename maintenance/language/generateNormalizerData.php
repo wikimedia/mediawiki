@@ -32,7 +32,7 @@ require_once( __DIR__ . '/../../includes/normal/UtfNormalUtil.php' );
  * @ingroup MaintenanceLanguage
  */
 class GenerateNormalizerData extends Maintenance {
-	var $dataFile;
+	public $dataFile;
 
 	public function __construct() {
 		parent::__construct();

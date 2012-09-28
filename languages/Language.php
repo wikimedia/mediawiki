@@ -48,7 +48,7 @@ class FakeConverter {
 	/**
 	 * @var Language
 	 */
-	var $mLang;
+	public $mLang;
 	function __construct( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
@@ -77,21 +77,21 @@ class Language {
 	/**
 	 * @var LanguageConverter
 	 */
-	var $mConverter;
+	public $mConverter;
 
-	var $mVariants, $mCode, $mLoaded = false;
-	var $mMagicExtensions = array(), $mMagicHookDone = false;
+	public $mVariants, $mCode, $mLoaded = false;
+	public $mMagicExtensions = array(), $mMagicHookDone = false;
 	private $mHtmlCode = null;
 
-	var $dateFormatStrings = array();
-	var $mExtendedSpecialPageAliases;
+	public $dateFormatStrings = array();
+	public $mExtendedSpecialPageAliases;
 
 	protected $namespaceNames, $mNamespaceIds, $namespaceAliases;
 
 	/**
 	 * ReplacementArray object caches
 	 */
-	var $transformData = array();
+	public $transformData = array();
 
 	/**
 	 * @var LocalisationCache

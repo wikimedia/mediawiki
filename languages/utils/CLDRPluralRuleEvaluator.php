@@ -131,7 +131,7 @@ class CLDRPluralRuleEvaluator {
  * Evaluator helper class representing a range list.
  */
 class CLDRPluralRuleEvaluator_Range {
-	var $parts = array();
+	public $parts = array();
 
 	function __construct( $start, $end = false ) {
 		if ( $end === false ) {
@@ -208,9 +208,9 @@ class CLDRPluralRuleEvaluator_Range {
  * Helper class for converting rules to reverse polish notation (RPN).
  */
 class CLDRPluralRuleConverter {
-	var $rule, $pos, $end;
-	var $operators = array();
-	var $operands = array();
+	public $rule, $pos, $end;
+	public $operators = array();
+	public $operands = array();
 
 	/**
 	 * Precedence levels. Note that there's no need to worry about associativity
@@ -447,7 +447,7 @@ class CLDRPluralRuleConverter {
  * The base class for operators and expressions, describing a region of the input string.
  */
 class CLDRPluralRuleConverter_Fragment {
-	var $parser, $pos, $length, $end;
+	public $parser, $pos, $length, $end;
 
 	function __construct( $parser, $pos, $length ) {
 		$this->parser = $parser;
@@ -473,7 +473,7 @@ class CLDRPluralRuleConverter_Fragment {
  * validation.
  */
 class CLDRPluralRuleConverter_Expression extends CLDRPluralRuleConverter_Fragment {
-	var $type, $rpn;
+	public $type, $rpn;
 
 	function __construct( $parser, $type, $rpn, $pos, $length ) {
 		parent::__construct( $parser, $pos, $length );
@@ -498,7 +498,7 @@ class CLDRPluralRuleConverter_Expression extends CLDRPluralRuleConverter_Fragmen
  * messages), and the binary operator at that location.
  */
 class CLDRPluralRuleConverter_Operator extends CLDRPluralRuleConverter_Fragment {
-	var $name;
+	public $name;
 
 	/**
 	 * Each op type has three characters: left operand type, right operand type and result type

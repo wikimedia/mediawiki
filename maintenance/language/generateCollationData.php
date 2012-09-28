@@ -30,19 +30,19 @@ require_once( __DIR__ .'/../Maintenance.php' );
  */
 class GenerateCollationData extends Maintenance {
 	/** The directory with source data files in it */
-	var $dataDir;
+	public $dataDir;
 
 	/** The primary weights, indexed by codepoint */
-	var $weights;
+	public $weights;
 
 	/**
 	 * A hashtable keyed by codepoint, where presence indicates that a character
 	 * has a decomposition mapping. This makes it non-preferred for group header
 	 * selection.
 	 */
-	var $mappedChars;
+	public $mappedChars;
 
-	var $debugOutFile;
+	public $debugOutFile;
 
 	/**
 	 * Important tertiary weights from UTS #10 section 7.2
@@ -285,12 +285,12 @@ class GenerateCollationData extends Maintenance {
 }
 
 class UcdXmlReader {
-	var $fileName;
-	var $callback;
-	var $groupAttrs;
-	var $xml;
-	var $blocks = array();
-	var $currentBlock;
+	public $fileName;
+	public $callback;
+	public $groupAttrs;
+	public $xml;
+	public $blocks = array();
+	public $currentBlock;
 
 	function __construct( $fileName ) {
 		$this->fileName = $fileName;

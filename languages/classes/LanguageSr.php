@@ -35,7 +35,7 @@ require_once( __DIR__ . '/LanguageSr_el.php' );
  * @ingroup Language
  */
 class SrConverter extends LanguageConverter {
-	var $mToLatin = array(
+	public $mToLatin = array(
 		'а' => 'a', 'б' => 'b',  'в' => 'v', 'г' => 'g',  'д' => 'd',
 		'ђ' => 'đ', 'е' => 'e',  'ж' => 'ž', 'з' => 'z',  'и' => 'i',
 		'ј' => 'j', 'к' => 'k',  'л' => 'l', 'љ' => 'lj', 'м' => 'm',
@@ -51,7 +51,7 @@ class SrConverter extends LanguageConverter {
 		'Х' => 'H', 'Ц' => 'C',  'Ч' => 'Č', 'Џ' => 'Dž', 'Ш' => 'Š',
 	);
 
-	var $mToCyrillics = array(
+	public $mToCyrillics = array(
 		'a' => 'а', 'b'  => 'б', 'c' => 'ц', 'č' => 'ч', 'ć'  => 'ћ',
 		'd' => 'д', 'dž' => 'џ', 'đ' => 'ђ', 'e' => 'е', 'f'  => 'ф',
 		'g' => 'г', 'h'  => 'х', 'i' => 'и', 'j' => 'ј', 'k'  => 'к',
