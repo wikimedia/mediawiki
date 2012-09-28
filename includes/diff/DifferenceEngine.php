@@ -544,8 +544,23 @@ class DifferenceEngine extends ContextSource {
 
 				$parserOutput = $this->getParserOutput( $wikiPage, $this->mNewRev );
 
-				# WikiPage::getParserOutput() should not return false, but just in case
-				if( $parserOutput ) {
+				# Also try to parse it as a redirect
+				if ( $this->mNewContent instanceof TextContent ) {
+					$rt = Title::newFromRedirect( $this->mNewContent->serialize() );
+				} else {
+					$rt = null;
+				}
+
+				if ( $rt ) {
+					$article = Article::newFromTitle( $this->mNewPage, $this->getContext() );
+					$out->addHTML( $article->viewRedirect( $rt ) );
+
+					# WikiPage::getParserOutput() should not return false, but just in case
+					if ( $parserOutput ) {
+						# Show categories etc.
+						$out->addParserOutputNoText( $parserOutput );
+					}
+				} else if ( $parserOutput ) {
 					$out->addParserOutput( $parserOutput );
 				}
 			}
