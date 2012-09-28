@@ -67,7 +67,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		$s = '';
 
 		/* show links to different language variants */
-		global $wgDisableLangConversion, $wgLang;
+		global $wgDisableLangConversion;
 
 		$title = $this->getSkin()->getTitle();
 		$lang = $title->getPageLanguage();
@@ -81,7 +81,7 @@ class CologneBlueTemplate extends BaseTemplate {
 				if ( $varname == 'disable' ) {
 					continue;
 				}
-				$s = $wgLang->pipeList( array(
+				$s = $this->getSkin()->getLanguage()->pipeList( array(
 					$s,
 					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code .  '">' . htmlspecialchars( $varname ) . '</a>'
 				) );
@@ -92,13 +92,13 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 	
 	function otherLanguages() {
-		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
+		global $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
 		}
 
-		$a = $wgOut->getLanguageLinks();
+		$a = $this->getSkin()->getOutput()->getLanguageLinks();
 
 		if ( 0 == count( $a ) ) {
 			return '';
@@ -107,7 +107,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		$s = wfMessage( 'otherlanguages' )->text() . wfMessage( 'colon-separator' )->text();
 		$first = true;
 
-		if ( $wgLang->isRTL() ) {
+		if ( $this->getSkin()->getLanguage()->isRTL() ) {
 			$s .= '<span dir="ltr">';
 		}
 
@@ -126,7 +126,7 @@ class CologneBlueTemplate extends BaseTemplate {
 				$text == '' ? $l : $text );
 		}
 
-		if ( $wgLang->isRTL() ) {
+		if ( $this->getSkin()->getLanguage()->isRTL() ) {
 			$s .= '</span>';
 		}
 
@@ -135,8 +135,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	// @fixed
 	function pageTitleLinks() {
-		global $wgLang;
-		
 		$s = array();
 		$footlinks = $this->getFooterLinks();
 		
@@ -144,18 +142,17 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s[] = $this->data[$item];
 		}
 		
-		return $wgLang->pipeList( $s );
+		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
 	function bottomLinks() {
-		global $wgOut, $wgUser;
 		$sep = wfMessage( 'pipe-separator' )->escaped() . "\n";
 
 		$s = '';
-		if ( $wgOut->isArticleRelated() ) {
+		if ( $this->getSkin()->getOutput()->isArticleRelated() ) {
 			$element[] = '<strong>' . $this->editThisPage() . '</strong>';
 
-			if ( $wgUser->isLoggedIn() ) {
+			if ( $this->getSkin()->getUser()->isLoggedIn() ) {
 				$element[] = $this->watchThisPage();
 			}
 
@@ -189,15 +186,15 @@ class CologneBlueTemplate extends BaseTemplate {
 				$s .= "\n<br />";
 
 				// Delete/protect/move links for privileged users
-				if ( $wgUser->isAllowed( 'delete' ) ) {
+				if ( $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
 					$s .= $this->deleteThisPage();
 				}
 
-				if ( $wgUser->isAllowed( 'protect' ) ) {
+				if ( $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
 					$s .= $sep . $this->protectThisPage();
 				}
 
-				if ( $wgUser->isAllowed( 'move' ) ) {
+				if ( $this->getSkin()->getUser()->isAllowed( 'move' ) ) {
 					$s .= $sep . $this->moveThisPage();
 				}
 			}
@@ -209,9 +206,7 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 
 	function editThisPage() {
-		global $wgOut;
-
-		if ( !$wgOut->isArticleRelated() ) {
+		if ( !$this->getSkin()->getOutput()->isArticleRelated() ) {
 			$s = wfMessage( 'protectedpage' )->text();
 		} else {
 			$title = $this->getSkin()->getTitle();
@@ -235,12 +230,10 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 
 	function deleteThisPage() {
-		global $wgUser, $wgRequest;
-
-		$diff = $wgRequest->getVal( 'diff' );
+		$diff = $this->getSkin()->getRequest()->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleID() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
+		if ( $title->getArticleID() && ( !$diff ) && $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
 			$t = wfMessage( 'deletethispage' )->text();
 
 			$s = Linker::linkKnown(
@@ -257,12 +250,10 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 
 	function protectThisPage() {
-		global $wgUser, $wgRequest;
-
-		$diff = $wgRequest->getVal( 'diff' );
+		$diff = $this->getSkin()->getRequest()->getVal( 'diff' );
 		$title = $this->getSkin()->getTitle();
 
-		if ( $title->getArticleID() && ( ! $diff ) && $wgUser->isAllowed( 'protect' ) ) {
+		if ( $title->getArticleID() && ( ! $diff ) && $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
 			if ( $title->isProtected() ) {
 				$text = wfMessage( 'unprotectthispage' )->text();
 				$query = array( 'action' => 'unprotect' );
@@ -285,24 +276,22 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 
 	function watchThisPage() {
-		global $wgOut, $wgUser;
-
 		// Cache
 		$title = $this->getSkin()->getTitle();
 
-		if ( $wgOut->isArticleRelated() ) {
-			if ( $wgUser->isWatched( $title ) ) {
+		if ( $this->getSkin()->getOutput()->isArticleRelated() ) {
+			if ( $this->getSkin()->getUser()->isWatched( $title ) ) {
 				$text = wfMessage( 'unwatchthispage' )->text();
 				$query = array(
 					'action' => 'unwatch',
-					'token' => UnwatchAction::getUnwatchToken( $title, $wgUser ),
+					'token' => UnwatchAction::getUnwatchToken( $title, $this->getSkin()->getUser() ),
 				);
 				$id = 'mw-unwatch-link';
 			} else {
 				$text = wfMessage( 'watchthispage' )->text();
 				$query = array(
 					'action' => 'watch',
-					'token' => WatchAction::getWatchToken( $title, $wgUser ),
+					'token' => WatchAction::getWatchToken( $title, $this->getSkin()->getUser() ),
 				);
 				$id = 'mw-watch-link';
 			}
@@ -365,9 +354,7 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 
 	function watchPageLinksLink() {
-		global $wgOut;
-
-		if ( !$wgOut->isArticleRelated() ) {
+		if ( !$this->getSkin()->getOutput()->isArticleRelated() ) {
 			return wfMessage( 'parentheses', wfMessage( 'notanarticle' )->text() )->escaped();
 		} else {
 			return Linker::linkKnown(
