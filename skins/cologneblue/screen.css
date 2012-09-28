@@ -199,6 +199,11 @@ input.mw-searchInput {
 	color: white;
 	text-decoration: none; 
 }
+/* Bring #sitetitle to top. Otherwise #toplinks is overlaid over it, making the link unclickable. */
+#sitetitle a {
+	position: relative;
+	z-index: 10
+}
 
 #toplinks {
 	font-family: Verdana, Arial, sans-serif;
