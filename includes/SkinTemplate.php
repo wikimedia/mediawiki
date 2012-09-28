@@ -1783,11 +1783,15 @@ abstract class BaseTemplate extends QuickTemplate {
 				);
 				unset( $buttonAttrs['src'] );
 				unset( $buttonAttrs['alt'] );
+				unset( $buttonAttrs['width'] );
+				unset( $buttonAttrs['height'] );
 				$imgAttrs = array(
 					'src' => $attrs['src'],
 					'alt' => isset( $attrs['alt'] )
 						? $attrs['alt']
 						: $this->translator->translate( 'searchbutton' ),
+					'width' => isset( $attrs['width'] ) ? $attrs['width'] : null,
+					'height' => isset( $attrs['height'] ) ? $attrs['height'] : null,
 				);
 				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
 			default:
