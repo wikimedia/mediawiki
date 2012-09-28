@@ -531,6 +531,12 @@ $wgAllowAsyncCopyUploads = false;
 $wgCopyUploadsDomains = array();
 
 /**
+ * Proxy to use for copy upload requests.
+ * @since 1.20
+ */
+$wgCopyUploadProxy = false;
+
+/**
  * Max size for uploads, in bytes. If not set to an array, applies to all
  * uploads. If set to an array, per upload type maximums can be set, using the
  * file and url keys. If the * key is set this value will be used as maximum
