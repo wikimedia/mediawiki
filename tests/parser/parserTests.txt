@@ -4168,7 +4168,7 @@ section=1
 !! article
 Template:quote
 !! text
-{{{quote|{{{1}}} }}}
+{{{quote|{{{1}}}}}}
 !! endarticle
 
 !!test
@@ -4176,7 +4176,7 @@ Templates: Template Name/Arg clash: 1. Use of positional param
 !!input
 {{quote|foo}}
 !!result
-<p>foo 
+<p>foo
 </p>
 !!end
 
@@ -4194,7 +4194,7 @@ Templates: Template Name/Arg clash: 3. Use of named param with empty input
 !!input
 {{quote|quote}}
 !!result
-<p>quote 
+<p>quote
 </p>
 !!end
 
