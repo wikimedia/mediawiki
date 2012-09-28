@@ -529,6 +529,8 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildPersonalUrls() {
+		global $wgSecureLogin;
+
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
@@ -551,6 +553,11 @@ class SkinTemplate extends Skin {
 				$a['returntoquery'] = $query;
 			}
 		}
+
+		if ( $wgSecureLogin && $request->detectProtocol() == 'https' ) {
+			$a['wpStickHTTPS'] = true;
+		}
+
 		$returnto = wfArrayToCGI( $a );
 		if( $this->loggedin ) {
 			$personal_urls['userpage'] = array(

@@ -2815,8 +2815,9 @@ class User {
 	 *
 	 * @param $request WebRequest object to use; $wgRequest will be used if null
 	 *        is passed.
+	 * @param $secure Whether to force secure/insecure cookies or use default
 	 */
-	public function setCookies( $request = null ) {
+	public function setCookies( $request = null, $secure = null ) {
 		if ( $request === null ) {
 			$request = $this->getRequest();
 		}
@@ -2855,7 +2856,7 @@ class User {
 			if ( $value === false ) {
 				$this->clearCookie( $name );
 			} else {
-				$this->setCookie( $name, $value );
+				$this->setCookie( $name, $value, 0, $secure );
 			}
 		}
 
