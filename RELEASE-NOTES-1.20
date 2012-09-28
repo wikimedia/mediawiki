@@ -147,6 +147,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   been removed.
 * (bug 34939) Made link parsing insensitive ([HttP://])
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
+* Added $wgCopyUploadProxy global to define which proxy to use for copy
+  uploads.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
