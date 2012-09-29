@@ -3570,7 +3570,6 @@ $wgDefaultUserOptions = array(
 	'rows'                    => 25,
 	'searchlimit'             => 20,
 	'showhiddencats'          => 0,
-	'showjumplinks'           => 1,
 	'shownumberswatching'     => 1,
 	'showtoc'                 => 1,
 	'showtoolbar'             => 1,

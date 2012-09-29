@@ -33,6 +33,7 @@ changes to languages because of Bugzilla reports.
 * Live preview functionality has been improved and moved into the
  'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
   has been removed.
+* The showjumplinks user preference has been removed, jump links are now always visible.
 
 == Compatibility ==
 
