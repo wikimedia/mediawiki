@@ -146,7 +146,26 @@ QUnit.test( 'toString / toText', 2, function ( assert ) {
 	assert.equal( title.toText(), title.getPrefixedText() );
 });
 
-QUnit.test( 'Exists', 3, function ( assert ) {
+QUnit.test( 'getExtension', 7, function ( assert ) {
+
+	function extTest( pagename, ext, description ) {
+		var title = new mw.Title( pagename );
+		assert.equal( title.getExtension(), ext, description || pagename );
+	}
+
+	extTest( 'MediaWiki:Vector.js', 'js' );
+	extTest( 'User:Example/common.css', 'css' );
+	extTest( 'File:Example.longextension', 'longextension', 'Extension parsing not limited (bug 36151)' );
+	extTest( 'Example/information.json', 'json', 'Extension parsing not restricted from any namespace' );
+	extTest( 'Foo.', null, 'Trailing dot is not an extension' );
+	extTest( 'Foo..', null, 'Trailing dots are not an extension' );
+	extTest( 'Foo.a.', null, 'Page name with dots and ending in a dot does not have an extension' );
+
+	// @broken: Throws an exception
+	// extTest( '.NET', null, 'Leading dot is (or is not?) an extension' );
+});
+
+QUnit.test( 'exists', 3, function ( assert ) {
 	var title;
 
 	// Empty registry, checks default to null
@@ -165,7 +184,7 @@ QUnit.test( 'Exists', 3, function ( assert ) {
 
 });
 
-QUnit.test( 'Url', 2, function ( assert ) {
+QUnit.test( 'getUrl', 2, function ( assert ) {
 	var title;
 
 	// Config
