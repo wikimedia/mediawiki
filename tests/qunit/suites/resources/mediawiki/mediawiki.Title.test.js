@@ -178,4 +178,9 @@ QUnit.test( 'Url', 2, function ( assert ) {
 	assert.equal( title.getUrl(), '/wiki/User_talk:John_Doe', 'Escaping in title and namespace for urls' );
 });
 
+QUnit.test( 'Make sure unlimited extension length is allowed (bug 36151)', 1, function ( assert ) {
+	var title = new mw.Title( 'File:MediaWiki.properties' );
+	assert.equal( title.getExtension(), 'properties' );
+});
+
 }() );
