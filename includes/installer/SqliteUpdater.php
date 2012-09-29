@@ -95,6 +95,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
 
 			// 1.21
+			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 		);
 	}
 
