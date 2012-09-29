@@ -11,12 +11,17 @@ MediaWiki 1.21 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.21 ===
+* (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 
 === New features in 1.21 ===
 
 === Bug fixes in 1.21 ===
+* (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
+* (bug 40352) fixDoubleRedirects.php should support interwiki redirects.
+* (bug 9237) SpecialBrokenRedirect should not list interwiki redirects.
 
 === API changes in 1.21 ===
+* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 
 === Languages updated in 1.21 ===
 
@@ -25,6 +30,9 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.21 ===
+* Live preview functionality has been improved and moved into the
+ 'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
+  has been removed.
 
 == Compatibility ==
 
