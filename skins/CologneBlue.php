@@ -62,33 +62,19 @@ class CologneBlueTemplate extends BaseTemplate {
 	/**
 	 * Language/charset variant links for classic-style skins
 	 * @return string
+	 *
+	 * @fixed
 	 */
 	function variantLinks() {
-		$s = '';
+		$s = array();
 
-		/* show links to different language variants */
-		global $wgDisableLangConversion;
+		$variants = $this->data['content_navigation']['variants'];
 
-		$title = $this->getSkin()->getTitle();
-		$lang = $title->getPageLanguage();
-		$variants = $lang->getVariants();
-
-		if ( !$wgDisableLangConversion && sizeof( $variants ) > 1
-			&& !$title->isSpecialPage() ) {
-			foreach ( $variants as $code ) {
-				$varname = $lang->getVariantname( $code );
-
-				if ( $varname == 'disable' ) {
-					continue;
-				}
-				$s = $this->getSkin()->getLanguage()->pipeList( array(
-					$s,
-					'<a href="' . htmlspecialchars( $title->getLocalURL( 'variant=' . $code ) ) . '" lang="' . $code . '" hreflang="' . $code .  '">' . htmlspecialchars( $varname ) . '</a>'
-				) );
-			}
+		foreach ( $variants as $key => $link ) {
+			$s[] = $this->makeListItem( $key, $link, array( 'tag' => 'span' ) );
 		}
 
-		return $s;
+		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 	
 	function otherLanguages() {
