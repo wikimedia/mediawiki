@@ -248,6 +248,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
 * (bug 39941) Add missing stylesheets to the installer pages
 * In HTML5 mode, allow new input element types values (such as color, range..)
+* (bug 36151) mw.Title: Don't limit extension in title parsing.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
