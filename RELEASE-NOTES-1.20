@@ -29,6 +29,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   connections, if either are available for the selected DB type.
 * $wgUseCombinedLoginLink now defaults to false, making MediaWiki output separate
   login and create account links by default.
+* (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 
 === New features in 1.20 ===
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
@@ -132,11 +133,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 22749) Create Special:MostInterwikis.
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
 * (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
-* (bug 39431) SVG animated status is now shown in long description
+* (bug 39431) SVG animated status is now shown in long description.
 * (bug 39376) jquery.form upgraded to 3.14.
 * SVG files will now show the actual width in the SVG's specified units
   in the metadata box.
-* Added ResourceLoader module "jquery.jStorage".
+* Added ResourceLoader module "jquery.jStorage" (v0.3.0, http://jStorage.info/).
 * (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
 * Added ResourceLoader module "jquery.badge".
 * mw.util.$content now points to the overall content area in the skin rather than just
@@ -145,7 +146,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   with auto-hide, multi-message support, and message replacement tags.
 * jquery.messageBox which appears to be unused by both core and extensions has
   been removed.
-* (bug 34939) Made link parsing insensitive ([HttP://])
+* (bug 34939) Made link parsing insensitive ([HttP://]).
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
 * Added $wgCopyUploadProxy global to define which proxy to use for copy
   uploads.
@@ -248,6 +249,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
 * (bug 39941) Add missing stylesheets to the installer pages
 * In HTML5 mode, allow new input element types values (such as color, range..)
+* (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
+* (bug 40352) fixDoubleRedirects.php should support interwiki redirects.
+* (bug 9237) SpecialBrokenRedirect should not list interwiki redirects.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -286,6 +290,7 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 11142) Improve file extension blacklist error reporting in API upload.
 * (bug 39665) Cache AllowedGenerator array so it doesn't autoload all query classes
   on every request.
+* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 
 === Languages updated in 1.20 ===
 
@@ -322,6 +327,9 @@ changes to languages because of Bugzilla reports.
 * Use of __DIR__ instead of dirname( __FILE__ ).
 * OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
   not used and complicated migration to Message class.
+* Live preview functionality has been improved and moved into the
+ 'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
+  has been removed.
 
 == Compatibility ==
 
