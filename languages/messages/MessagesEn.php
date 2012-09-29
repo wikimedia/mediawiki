@@ -675,7 +675,6 @@ future releases. Also note that since each list value is wrapped in a unique
 'tog-shownumberswatching'     => 'Show the number of watching users',
 'tog-oldsig'                  => 'Existing signature:',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',
-'tog-showjumplinks'           => 'Enable "jump to" accessibility links',
 'tog-uselivepreview'          => 'Use live preview (requires JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Prompt me when entering a blank edit summary',
 'tog-watchlisthideown'        => 'Hide my edits from the watchlist',

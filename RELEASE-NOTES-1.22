@@ -365,6 +365,8 @@ changes to languages because of Bugzilla reports.
   jobs to the job table to update pages which use the edited page as a template.
 * The LivePreviewPrepare and LivePreviewDone events triggered on "jQuery( mw )"
   have been deprecated in favour of using mw.hook.
+* The 'showjumplinks' user preference has been removed, jump links are now
+  always visible.
 
 == Compatibility ==
 
