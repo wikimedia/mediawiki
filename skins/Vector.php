@@ -187,7 +187,6 @@ class VectorTemplate extends BaseTemplate {
 				<div class="usermessage"><?php $this->html( 'newtalk' )  ?></div>
 				<!-- /newtalk -->
 				<?php endif; ?>
-				<?php if ( $this->data['showjumplinks'] ): ?>
 				<!-- jumpto -->
 				<div id="jump-to-nav" class="mw-jump">
 					<?php $this->msg( 'jumpto' ) ?>
@@ -195,7 +194,6 @@ class VectorTemplate extends BaseTemplate {
 					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
 				</div>
 				<!-- /jumpto -->
-				<?php endif; ?>
 				<!-- bodycontent -->
 				<?php $this->html( 'bodycontent' ) ?>
 				<!-- /bodycontent -->

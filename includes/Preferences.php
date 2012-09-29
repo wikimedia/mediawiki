@@ -686,11 +686,6 @@ class Preferences {
 			'section' => 'rendering/advancedrendering',
 			'label-message' => 'tog-showhiddencats'
 		);
-		$defaultPreferences['showjumplinks'] = array(
-			'type' => 'toggle',
-			'section' => 'rendering/advancedrendering',
-			'label-message' => 'tog-showjumplinks',
-		);
 
 		if ( $wgAllowUserCssPrefs ) {
 			$defaultPreferences['justify'] = array(
