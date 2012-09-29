@@ -925,7 +925,11 @@ class LanguageConverter {
 			if ( $title && $title->exists() ) {
 				$revision = Revision::newFromTitle( $title );
 				if ( $revision ) {
-					$txt = $revision->getRawText();
+					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
+						$txt = $revision->getContent( Revision::RAW )->getNativeData();
+					}
+
+					//@todo: in the future, use a specialized content model, perhaps based on json!
 				}
 			}
 		}

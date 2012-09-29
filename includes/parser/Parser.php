@@ -1948,6 +1948,7 @@ class Parser {
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
 				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
+					// FIXME: the above check prevents links to sites with identifiers that are not language codes
 					$this->mOutput->addLanguageLink( $nt->getFullText() );
 					$s = rtrim( $s . $prefix );
 					$s .= trim( $trail, "\n" ) == '' ? '': $prefix . $trail;
@@ -3588,7 +3589,13 @@ class Parser {
 			}
 
 			if ( $rev ) {
-				$text = $rev->getText();
+				$content = $rev->getContent();
+				$text = $content->getWikitextForTransclusion();
+
+				if ( $text === false || $text === null ) {
+					$text = false;
+					break;
+				}
 			} elseif ( $title->getNamespace() == NS_MEDIAWIKI ) {
 				global $wgContLang;
 				$message = wfMessage( $wgContLang->lcfirst( $title->getText() ) )->inContentLanguage();
@@ -3596,16 +3603,17 @@ class Parser {
 					$text = false;
 					break;
 				}
+				$content = $message->content();
 				$text = $message->plain();
 			} else {
 				break;
 			}
-			if ( $text === false ) {
+			if ( !$content ) {
 				break;
 			}
 			# Redirect?
 			$finalTitle = $title;
-			$title = Title::newFromRedirect( $text );
+			$title = $content->getRedirectTarget();
 		}
 		return array(
 			'text' => $text,

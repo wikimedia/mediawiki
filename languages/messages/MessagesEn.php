@@ -895,6 +895,7 @@ $1',
 'portal-url'           => 'Project:Community portal',
 'privacy'              => 'Privacy policy',
 'privacypage'          => 'Project:Privacy policy',
+'content-failed-to-parse' => "Failed to parse $2 content for $1 model: $3",
 
 'badaccess'        => 'Permission error',
 'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
@@ -1430,7 +1431,7 @@ If you save it, any changes made since this revision will be lost.",
 'yourdiff'                         => 'Differences',
 'copyrightwarning'                 => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details).
 If you do not want your writing to be edited mercilessly and redistributed at will, then do not submit it here.<br />
-You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
+You are also promising us that you wrote this yourself, or copied editpageit from a public domain or similar free resource.
 '''Do not submit copyrighted work without permission!'''",
 'copyrightwarning2'                => "Please note that all contributions to {{SITENAME}} may be edited, altered, or removed by other contributors.
 If you do not want your writing to be edited mercilessly, then do not submit it here.<br />
@@ -1487,6 +1488,8 @@ It already exists.',
 'addsection-preload'               => '', # do not translate or duplicate this message to other languages
 'addsection-editintro'             => '', # do not translate or duplicate this message to other languages
 'defaultmessagetext'               => 'Default message text',
+'invalid-content-data'             => 'Invalid content data',
+'content-not-allowed-here'         => '"$1" content is not allowed on page [[$2]]',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.
@@ -3070,8 +3073,8 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisions}} restored',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisions}} and {{PLURAL:$2|1 file|$2 files}} restored',
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restored',
-'cannotundelete'               => 'Undelete failed;
-someone else may have undeleted the page first.',
+'cannotundelete'               => 'Undelete failed:
+$1',
 'undeletedpage'                => "'''$1 has been restored'''
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
@@ -4943,5 +4946,11 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-decades'   => '$1 {{PLURAL:$1|decade|decades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
+
+# Content model IDs for the ContentHandler facility; used by ContentHandler::getContentModel()
+'content-model-wikitext' => 'wikitext',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+'content-model-text' => 'plain text',
 
 );

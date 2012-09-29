@@ -419,6 +419,16 @@ class Language {
 	 */
 	public function setNamespaces( array $namespaces ) {
 		$this->namespaceNames = $namespaces;
+		$this->mNamespaceIds = null;
+	}
+
+	/**
+	 * Resets all of the namespace caches. Mainly used for testing
+	 */
+	public function resetNamespaces( ) {
+		$this->namespaceNames = null;
+		$this->mNamespaceIds = null;
+		$this->namespaceAliases = null;
 	}
 
 	/**

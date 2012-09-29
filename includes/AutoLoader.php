@@ -253,6 +253,7 @@ $wgAutoloadLocalClasses = array(
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
+	'Uri' => 'includes/Uri.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
@@ -287,6 +288,20 @@ $wgAutoloadLocalClasses = array(
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => 'includes/ZipDirectoryReader.php',
+
+	# content handler
+	'Content' => 'includes/Content.php',
+	'AbstractContent' => 'includes/Content.php',
+	'ContentHandler' => 'includes/ContentHandler.php',
+	'CssContent' => 'includes/Content.php',
+	'TextContentHandler' => 'includes/ContentHandler.php',
+	'CssContentHandler' => 'includes/ContentHandler.php',
+	'JavaScriptContent' => 'includes/Content.php',
+	'JavaScriptContentHandler' => 'includes/ContentHandler.php',
+	'MessageContent' => 'includes/Content.php',
+	'TextContent' => 'includes/Content.php',
+	'WikitextContent' => 'includes/Content.php',
+	'WikitextContentHandler' => 'includes/ContentHandler.php',
 
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
@@ -330,6 +345,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiFormatDump' => 'includes/api/ApiFormatDump.php',
 	'ApiFormatFeedWrapper' => 'includes/api/ApiFormatBase.php',
 	'ApiFormatJson' => 'includes/api/ApiFormatJson.php',
+	'ApiFormatNone' => 'includes/api/ApiFormatNone.php',
 	'ApiFormatPhp' => 'includes/api/ApiFormatPhp.php',
 	'ApiFormatRaw' => 'includes/api/ApiFormatRaw.php',
 	'ApiFormatTxt' => 'includes/api/ApiFormatTxt.php',
@@ -1057,6 +1073,13 @@ $wgAutoloadLocalClasses = array(
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
 
+	# tests/phpunit
+	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
+	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
+	'WikitextContentTest' => 'tests/phpunit/includes/WikitextContentTest.php',
+	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
+	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
 

@@ -1994,7 +1994,11 @@ class OutputPage extends ContextSource {
 		wfRunHooks( 'AfterFinalPageOutput', array( $this ) );
 
 		$this->sendCacheControl();
+
+		wfRunHooks( 'AfterFinalPageOutput', array( &$this ) );
+
 		ob_end_flush();
+
 		wfProfileOut( __METHOD__ );
 	}
 

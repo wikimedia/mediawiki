@@ -1053,6 +1053,10 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
+'invalid-content-data'             => 'Error message indicating that the page\'s content can not be saved because it is invalid. This may occurr for some non-text content types.',
+'content-not-allowed-here'         => 'Error message indicating that the desired content model is not supported in given localtion.
+* $1 is the human readable name of the content model
+* $1 is the title of the page in question.',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -2882,6 +2886,8 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 {{Identical|Reset}}',
 'undeleteinvert' => '{{Identical|Invert selection}}',
 'undeletecomment' => '{{Identical|Reason}}',
+'cannotundelete' => 'Message shown when undeletion failed for some reason.
+* <code>$1</code> is the combined wikitext of messages for all errors that caused the failure.',
 'undelete-search-title' => 'Page title when showing the search form in Special:Undelete',
 'undelete-search-submit' => '{{Identical|Search}}',
 'undelete-error' => 'Page title when a page could not be undeleted',
@@ -4882,5 +4888,11 @@ $4 is the gender of the target user.',
 * $1 is an unknown warning.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
+
+# Content model IDs for the ContentHandler facility; used by ContentHandler::getContentModel()
+'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.',
+'content-model-javascript' => 'Name for the JavaScript content model, used when decribing what type of content a page contains.',
+'content-model-css' => 'Name for the CSS content model, used when decribing what type of content a page contains.',
+'content-model-text' => 'Name for the plain text content model, used when decribing what type of content a page contains.',
 
 );

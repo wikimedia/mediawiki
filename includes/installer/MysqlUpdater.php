@@ -206,6 +206,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase.sql' ),
 			array( 'addField',	'uploadstash',	'us_chunk_inx',		'patch-uploadstash_chunk.sql' ),
 			array( 'addfield', 'job',           'job_timestamp',    'patch-jobs-add-timestamp.sql' ),
+
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase.sql' ),
 
 			// 1.20
@@ -214,6 +215,13 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addField', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id.sql' ),
 			array( 'addIndex', 'ipblocks',      'ipb_parent_block_id',           'patch-ipb-parent-block-id-index.sql' ),
 			array( 'dropField', 'category',     'cat_hidden',       'patch-cat_hidden.sql' ),
+
+			// 1.WD
+			array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
+			array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
+			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
+			array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
+			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 		);
 	}
 

@@ -203,6 +203,11 @@ class Message {
 	protected $title = null;
 
 	/**
+	 * Content object representing the message
+	 */
+	protected $content = null;
+
+	/**
 	 * @var string
 	 */
 	protected $message;
@@ -402,6 +407,18 @@ class Message {
 	public function title( $title ) {
 		$this->title = $title;
 		return $this;
+	}
+
+	/**
+	 * Returns the message as a Content object.
+	 * @return Content
+	 */
+	public function content() {
+		if ( !$this->content ) {
+			$this->content = new MessageContent( $this->key );
+		}
+
+		return $this->content;
 	}
 
 	/**

@@ -105,6 +105,7 @@ class ApiMain extends ApiBase {
 		'dbgfm' => 'ApiFormatDbg',
 		'dump' => 'ApiFormatDump',
 		'dumpfm' => 'ApiFormatDump',
+		'none' => 'ApiFormatNone',
 	);
 
 	/**
