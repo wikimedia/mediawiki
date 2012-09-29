@@ -514,7 +514,7 @@ function wfAppendQuery( $url, $query ) {
  *                no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	global $wgServer, $wgCanonicalServer, $wgInternalServer;
+	global $wgServer, $wgCanonicalServer, $wgInternalServer, $wgSecureLogin;
 	$serverUrl = $wgServer;
 	if ( $defaultProto === PROTO_CANONICAL ) {
 		$serverUrl = $wgCanonicalServer;
@@ -551,6 +551,11 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	}
 
 	$bits = wfParseUrl( $url );
+
+	if ( $wgSecureLogin && $bits['scheme'] === substr(PROTO_HTTP, 0, -3) && $defaultProto === PROTO_HTTPS ) {
+		$bits['scheme'] = substr(PROTO_HTTPS, 0, -3);
+	}
+
 	if ( $bits && isset( $bits['path'] ) ) {
 		$bits['path'] = wfRemoveDotSegments( $bits['path'] );
 		return wfAssembleUrl( $bits );
