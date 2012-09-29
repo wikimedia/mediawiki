@@ -175,13 +175,11 @@ class VectorTemplate extends BaseTemplate {
 				<?php if ( $this->data['newtalk'] ) { ?>
 				<div class="usermessage"><?php $this->html( 'newtalk' ) ?></div>
 				<?php } ?>
-				<?php if ( $this->data['showjumplinks'] ) { ?>
 				<div id="jump-to-nav" class="mw-jump">
 					<?php $this->msg( 'jumpto' ) ?>
 					<a href="#mw-navigation"><?php $this->msg( 'jumptonavigation' ) ?></a><?php $this->msg( 'comma-separator' ) ?>
 					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
 				</div>
-				<?php } ?>
 				<?php $this->html( 'bodycontent' ) ?>
 				<?php if ( $this->data['printfooter'] ) { ?>
 				<div class="printfooter">
