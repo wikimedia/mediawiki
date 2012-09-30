@@ -9,6 +9,7 @@
  *
  * @author Abastillas
  * @author Dosmiin Barsbold
+ * @author Harvzsf
  * @author Jordz
  * @author Mirzali
  * @author Palang hernan
@@ -1076,7 +1077,7 @@ Puyde nimo usbon ang level sa proteksyon ning panid, pero dili kini makaapekto s
 'linkshere' => "Ang mosunod nga mga panid misumpay sa '''[[:$1]]''':",
 'isredirect' => 'panid sa redirekta',
 'istemplate' => 'transklusyon',
-'isimage' => 'sumpay nga imahen',
+'isimage' => 'sumpay sa payl',
 'whatlinkshere-prev' => '{{PLURAL:$1|miaging|miaging $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|sunod|sunod $1}}',
 'whatlinkshere-links' => '← mga sumpay',

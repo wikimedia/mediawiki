@@ -401,8 +401,8 @@ Awan ti intedna a palawag.',
 'badtitle' => 'Madi a titulo',
 'badtitletext' => 'Ti nakiddaw a titulo ti panid ket imbalido, blanko, wenno maysa a saan nga husto a naisilpo a titulo nga inter-lengguahe wenno inter-wiki a titulo.
 Adda ngata nagyan a maysa wenno ad-adu pay a kababalin a saan a mausar iti titulo.',
-'perfcached' => 'Ti sumaganad a data ket naidulin ken mabalin a saan a napabaro. Ti kaadu {{PLURAL:$1|iti maysa a nagbanagan|dagiti $1 a nagbanagan}} ket magun-od idiay nagidulinan.',
-'perfcachedts' => 'Ti sumaganad a data ket naidulin, ken naudi a napabaro idi $1. Ti kaadu a {{PLURAL:$4|iti maysa a nagbanagan |dagiti $4 nagbanagan}} ket magun-od idiay pagidulinan.',
+'perfcached' => 'Ti sumaganad a datos ket naidulin ken mabalin a saan a napabaro. Ti kaadu {{PLURAL:$1|iti maysa a nagbanagan|dagiti $1 a nagbanagan}} ket magun-od idiay nagidulinan.',
+'perfcachedts' => 'Ti sumaganad a datos ket naidulin, ken naudi a napabaro idi $1. Ti kaadu a {{PLURAL:$4|iti maysa a nagbanagan |dagiti $4 nagbanagan}} ket magun-od idiay pagidulinan.',
 'querypage-no-updates' => 'Dagiti panangpabaro iti daytoy a panid ket agdama a nabaldado. 
 Saan a mipasaradiwa ita dagiti datos ditoy.',
 'wrong_wfQuery_params' => 'Kamali a parametro iti wfQuery()<br />
@@ -1788,7 +1788,7 @@ Baka kayatmo nga urnosen ti bukodna a deskripsionna idiay [$2 deskripsion ti pap
 
 # MIME search
 'mimesearch' => 'Pagbiruk ti MIME',
-'mimesearch-summary' => 'Daytoy a panid ket pakabaelan na ti panagsagat ti papeles iti kita da a MIME.
+'mimesearch-summary' => 'Daytoy a panid ket pakabaelanna ti panagsagat ti papeles iti MIME a kitada.
 Ikabil: kita ti nagyan/apo a kita, a kas ti <code>image/jpeg</code>.',
 'mimetype' => 'Kita ti MIME:',
 'download' => 'Ikarga nga agpababa',
@@ -2379,10 +2379,10 @@ Ti naudi a listaan ti panakaserra ket adda dita baba ta usaren a reperensia:',
 'whatlinkshere-prev' => '{{PLURAL:$1|kallabes|kallabes $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|sumaruno|sumaruno $1}}',
 'whatlinkshere-links' => '← silsilpo',
-'whatlinkshere-hideredirs' => '$1 a panangibaw-ing',
-'whatlinkshere-hidetrans' => '$1 a mairamraman',
-'whatlinkshere-hidelinks' => '$1 a pampanilpo',
-'whatlinkshere-hideimages' => '$1 a pampanilpo ti imahen',
+'whatlinkshere-hideredirs' => '$1 dagiti baw-ing',
+'whatlinkshere-hidetrans' => '$1 dagiti mailaklak-am',
+'whatlinkshere-hidelinks' => '$1 dagiti silpo',
+'whatlinkshere-hideimages' => '$1 dagiti silpo ti imahen',
 'whatlinkshere-filters' => 'Dagiti sagat',
 
 # Block/unblock
@@ -3061,9 +3061,9 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-gaincontrol' => 'Scene control',
 'exif-contrast' => 'Contrast',
 'exif-saturation' => 'Saturation',
-'exif-sharpness' => 'Sharpness',
+'exif-sharpness' => 'Kalawag',
 'exif-subjectdistancerange' => 'Nasakup a kaadayo ti suheto',
-'exif-imageuniqueid' => 'Unique image ID',
+'exif-imageuniqueid' => 'Naisangsangayan nga ID ti imahen',
 'exif-gpsversionid' => 'Etiketa a bersion ti GPS',
 'exif-gpslatituderef' => 'Amianan wenno Abagatan a Latitude',
 'exif-gpslatitude' => 'Latitude',
@@ -3071,11 +3071,11 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-gpslongitude' => 'Longitude',
 'exif-gpsaltituderef' => 'Reperensia ti kangato',
 'exif-gpsaltitude' => 'Kangato',
-'exif-gpstimestamp' => 'GPS time (atomic clock)',
-'exif-gpssatellites' => 'Dagiti satellites a naaramat iti measurement',
+'exif-gpstimestamp' => 'GPS nga oras (atomiko a pagurasan)',
+'exif-gpssatellites' => 'Dagiti satelite a naaramat para iti panagrukod',
 'exif-gpsstatus' => 'Receiver status',
 'exif-gpsmeasuremode' => 'Panagrukod a moda',
-'exif-gpsdop' => 'Measurement precision',
+'exif-gpsdop' => 'Kasayaat ti panagrukod',
 'exif-gpsspeedref' => 'Speed unit',
 'exif-gpsspeed' => 'Kapaspas ti GPS receiver',
 'exif-gpstrackref' => 'Reperensia iti direksion ti panaggunay',
@@ -3148,7 +3148,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-attributionurl' => 'No usaren manen daytoy nga obra, pangngaasi nga agisilpo idiay',
 'exif-preferredattributionname' => 'No usaren manen daytoy nga obra, pangngaasi a padayawen ni',
 'exif-pngfilecomment' => 'Komentario ti PNG a papeles',
-'exif-disclaimer' => 'Dagiti karbengan ken rebbeng',
+'exif-disclaimer' => 'Renunsia',
 'exif-contentwarning' => 'Ballaag ti nagyan',
 'exif-giffilecomment' => 'Komentario ti GIF a papeles',
 'exif-intellectualgenre' => 'Kita ti banag',
@@ -3389,7 +3389,7 @@ no kadamdama ka a nangaramid ti pakabilangam, aguray ka pay ti mano a minutos a 
 'confirmemail_sent' => 'Naipatuloden ti pammasingked nga e-surat.',
 'confirmemail_oncreate' => 'Ti pakasingkedan a kodigo ket naipatulod dita e-surat a pagtaengam.
 Daytoy a kodigo ket saan a masapul ti sumrek, ngem masapulmo nga ited sakbay ka nga agpabalin kadagiti e-surat a langa ti wiki.',
-'confirmemail_sendfailed' => 'Ti {{SITENAME}} ket saan a makaipatulod ti pammasingke a surat.
+'confirmemail_sendfailed' => 'Ti {{SITENAME}} ket saan a makaipatulod ti pammasingked a surat.
 Pangngaasi a kitaem ti e-surat a pagtaengam para kadagiti imbalido a karakter.
 
 Insubli ti nangisurat: $1',
@@ -3559,9 +3559,9 @@ Mabalinmo pay nga [[Special:EditWatchlist|usaren ti dati a panagurnos]].',
 'version-license' => 'Lisensia',
 'version-poweredby-credits' => "Daytoy a wiki ket pinaandar ti '''[//www.mediawiki.org/ MediaWiki]''', karbengan a kopia © 2001-$1 $2.",
 'version-poweredby-others' => 'dadduma pay',
-'version-license-info' => 'Ti MediaWiki ket nawaya a software; maiwaras mo ken/wenno mabaliwam babaen ti banag iti GNU General Public License a naipablaak babaen ti Free Software Foundation; nupay iti bersion 2 iti Lisensia, wenno (ti panagpilim) ti  ania man a bersion.
+'version-license-info' => 'Ti MediaWiki ket nawaya a software; maiwarasmo ken/wenno mabaliwam babaen ti banag iti GNU General Public License a naipablaak babaen ti Free Software Foundation; nupay iti bersion 2 iti Lisensia, wenno (ti panagpilim) ti  ania man a bersion.
 
-Ti MediaWiki ket naiwarwaras nga addaan ti namnama a makatulong, ngem AWAN TI ANIA MAN A GARANTIA; nga awan pay ti naibagbaga a PANAKAILAKO wenno KALAINGAN NA ITI DAYTOY A PANGGEP. Kitaen ti GNU Sapasap a  Publiko a Lisensia para kadagiti adu pay a salaysay.
+Ti MediaWiki ket naiwarwaras nga adda ti namnama a makatulong, ngem AWAN TI ANIA MAN A GARANTIA; nga awan pay ti naibagbaga a PANAKAILAKO wenno KALAINGAN NA ITI DAYTOY A PANGGEP. Kitaen ti GNU Sapasap a  Publiko a Lisensia para kadagiti adu pay a salaysay.
 
 Naka-awat ka kuman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a  Publiko a Lisensia] a nairaman iti daytoy a programa; no saan, agsurat ka idiay Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA wenno [//www.gnu.org/licenses/old-licenses/gpl-2.0.html basaem idiay online].',
 'version-software' => 'Naikabil a software',
@@ -3576,7 +3576,7 @@ Naka-awat ka kuman ti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopia iti GNU Sapasap a 
 'filepath-page' => 'Papeles:',
 'filepath-submit' => 'Inkan',
 'filepath-summary' => 'Daytoy nga espesial a panid ket agisubli ti kompleto a dalan ti papeles.
-Dagiti imahen ket agparang iti kadakkelan a resolusion, dagiti sabali a kita ti papeles ket mangrugi da a idiay nakairamanan da a programa.',
+Dagiti imahen ket agparang iti kadakkelan a resolusion, dagiti sabali a kita ti papeles ket dagus a mangrugida idiay nakairamananda a programa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch' => 'Agbiruk kadagiti duplikado a papeles',
@@ -3627,7 +3627,7 @@ Dagiti imahen ket agparang iti kadakkelan a resolusion, dagiti sabali a kita ti 
 'tag-filter' => '[[Special:Tags|Ti etiketa]] a sagat:',
 'tag-filter-submit' => 'Sagat',
 'tags-title' => 'Dagiti etiketa',
-'tags-intro' => 'Daytoy a panid ket ilista na dagiti etiketa nga usaren ti software nga agmarka ti panag-urnos, ken dagiti kayat da a saoen.',
+'tags-intro' => 'Daytoy a panid ket ilistana dagiti etiketa nga usaren ti software nga agmarka ti panag-urnos, ken dagiti kayatda a saoen.',
 'tags-tag' => 'Nagan ti etiketa',
 'tags-display-header' => 'Tabas dagiti listaan ti panagsukat',
 'tags-description-header' => 'Napno a panangipalpalawag iti kayatna a saoen.',

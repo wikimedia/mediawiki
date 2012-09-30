@@ -696,9 +696,11 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'protectedpagetext' => 'Den här sidan har skrivskyddats för att förhindra redigering.',
 'viewsourcetext' => 'Du kan se och kopiera denna sidas källtext:',
 'viewyourtext' => "Du kan se och kopiera källan för '''dina redigeringar''' på denna sida:",
-'protectedinterface' => 'Denna sida innehåller text för mjukvarans gränssnitt, och är skrivskyddad för att förebygga missbruk.',
-'editinginterface' => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet. Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare.
-För översättningar, använd gärna [//translatewiki.net/wiki/Main_Page?setlang=sv translatewiki.net], översättningsprojektet för MediaWiki.",
+'protectedinterface' => 'Denna sida innehåller text för mjukvarans gränssnitt på denna wiki, och är skrivskyddad för att förebygga missbruk.
+För att lägga till eller ändra översättningar för alla wikis, var god använd [//translatewiki.net/ translatewiki.net], lokaliseringsprojektet för MediaWiki.',
+'editinginterface' => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet.
+Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare på denna wiki.
+För att lägga till eller ändra översättningar för alla wikis, var god använd [//translatewiki.net/ translatewiki.net], översättningsprojektet för MediaWiki.",
 'sqlhidden' => '(gömd SQL-förfrågan)',
 'cascadeprotected' => 'Den här sidan har skyddats från redigering eftersom den inkluderas på följande {{PLURAL:$1|sida|sidor}} som skrivskyddats med "kaskaderande skydd":
 $2',
@@ -773,7 +775,7 @@ Användarnamn är skiftlägeskänsliga.
 Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]].',
 'nosuchusershort' => 'Det finns ingen användare som heter "$1". Kontrollera att du stavat rätt.',
 'nouserspecified' => 'Du måste ange ett användarnamn.',
-'login-userblocked' => 'Denna användare är blockerad. Login inte tillåtet.',
+'login-userblocked' => 'Denna användare är blockerad. Inloggning är inte tillåtet.',
 'wrongpassword' => 'Lösenordet du angav är felaktigt. Försök igen.',
 'wrongpasswordempty' => 'Lösenordet som angavs var blankt. Var god försök igen.',
 'passwordtooshort' => 'Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
@@ -972,8 +974,8 @@ Om du är en anonym användare och känner att irrelevanta kommentarer har rikta
 'noarticletext' => 'Det finns just nu ingen text på denna sida.
 Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidtitel]] på andra sidor, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i loggarna], eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} redigera denna sida]</span>.',
 'noarticletext-nopermission' => 'Det finns för tillfället ingen text på denna sida.
-Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] i andra sidor,
-eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relevanta loggar]</span>.',
+Du kan [[Special:Search/{{PAGENAME}}|söka efter denna sidas titel]] på andra sidor,
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} söka i relaterade loggar]</span>.',
 'missing-revision' => 'Revisionen #$1 av sidan med namnet "{{PAGENAME}}" finns inte.
 
 Detta orsakas vanligen av efter en gammal historiklänk till en sida som har raderats.
@@ -1865,7 +1867,7 @@ Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].'
 'backend-fail-internal' => 'Ett okänt fel uppstod i lagringssystemet "$1".',
 'backend-fail-contenttype' => 'Kunde inte bestämma innehållstypen för filen att spara på "$1".',
 'backend-fail-batchsize' => 'Lagringssystemet gav en batch på $1 fil{{PLURAL:$1|operation|operationer}}; gränsen är $2 {{PLURAL:$2|operation|operationer}}.',
-'backend-fail-usable' => 'Kunde inte skriva filen $1 beroende på otillräckliga behörigheter eller saknade kataloger/containrar.',
+'backend-fail-usable' => 'Kunde inte läsa eller skriva filen "$1" på grund av otillräckliga behörigheter eller saknade kataloger/containrar.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kunde inte ansluta till journaldatabasen för lagringssystemet "$1".',
@@ -2615,8 +2617,8 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 
 # Block/unblock
 'autoblockid' => 'Autoblockera #$1',
-'block' => 'Blockera användaren',
-'unblock' => 'Avblockera användaren',
+'block' => 'Blockera användare',
+'unblock' => 'Upphäv blockering av användare',
 'blockip' => 'Blockera användare',
 'blockip-title' => 'Blockera användare',
 'blockip-legend' => 'Blockera användare',
@@ -3134,6 +3136,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-restriction' => 'Sidskydd ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiskt|Magiska}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Dold kategori|Dolda kategorier}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Inkluderad mall|Inkluderade mallar}} ($1)',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3188,7 +3191,7 @@ Om du kör den kan din dator skadas.",
 'file-info-size-pages' => '$1 × $2 pixlar, filstorlek: $3, MIME-typ: $4, $5 {{PLURAL:$5|sida|sidor}}',
 'file-nohires' => 'Det finns ingen version med högre upplösning.',
 'svg-long-desc' => 'SVG-fil, grundstorlek: $1 × $2 pixlar, filstorlek: $3',
-'svg-long-desc-animated' => 'animerad SVG-fil, nominellt $1 × $2 pixlar, filstorlek: $3',
+'svg-long-desc-animated' => 'Animerad SVG-fil, standardstorlek $1 × $2 pixlar, filstorlek: $3',
 'show-big-image' => 'Högupplöst version',
 'show-big-image-preview' => 'Storlek på förhandsvisningen: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Annan upplösning|Andra upplösningar}}: $1.',

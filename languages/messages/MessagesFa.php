@@ -2686,7 +2686,7 @@ $NEWPAGE
 'undeleterevision-missing' => 'نسخه نامعتبر یا مفقود است.
 ممکن است پیوندتان نادرست باشد یا اینکه نسخه از بایگانی حذف یا بازیابی شده باشد .',
 'undelete-nodiff' => 'نسخهٔ قدیمی‌تری یافت نشد.',
-'undeletebtn' => 'احیا شود',
+'undeletebtn' => 'احیا',
 'undeletelink' => 'نمایش/احیا',
 'undeleteviewlink' => 'نمایش',
 'undeletereset' => 'از نو',
