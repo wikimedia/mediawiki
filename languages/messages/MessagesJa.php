@@ -580,7 +580,7 @@ $messages = array(
 'otherlanguages' => '他言語版',
 'redirectedfrom' => '($1から転送)',
 'redirectpagesub' => '転送ページ',
-'lastmodifiedat' => 'このページが最後に更新されたのは $1 $2 です。',
+'lastmodifiedat' => 'このページの最終更新日時は $1 $2 です。',
 'viewcount' => 'このページは {{PLURAL:$1|$1 回}}アクセスされました。',
 'protectedpage' => '保護されたページ',
 'jumpto' => '移動:',
@@ -764,6 +764,8 @@ $2',
 'filereadonlyerror' => 'ファイルリポジトリ「$2」が読み取り専用の状態にあるため、ファイル「$1」を変更できません。
 
 読み取り専用に設定した管理者からの説明：「$3」',
+'invalidtitle-knownnamespace' => '名前空間名「$2」と名前「$3」の組み合わせはページ名として無効です',
+'invalidtitle-unknownnamespace' => '不明な名前空間番号 $1 と名前「$2」の組み合わせはページ名として無効です',
 'exception-nologin' => 'ログインしていません',
 'exception-nologin-text' => 'このページまたは操作には、このウィキへのログインが必要です。',
 
@@ -1010,7 +1012,7 @@ $2
 ただし、[[Special:Preferences|個人設定]]で有効なメールアドレスが登録されていない場合、またはメール送信機能の使用がブロックされている場合、「この利用者にメールを送信」の機能は使えません。
 現在ご使用中のIPアドレスは$3、このブロックIDは#$5です。
 お問い合わせの際には、上記の情報を必ず書いてください。",
-'autoblockedtext' => "ご使用中のIPアドレスは、$1によって投稿をブロックされた利用者によって使用されたために自動的にブロックされています。
+'autoblockedtext' => "このIPアドレスは、$1によりブロックされた利用者によって使用されたため、自動的にブロックされています。
 理由は次の通りです。
 
 :''$2''
@@ -1019,12 +1021,12 @@ $2
 * ブロック解除予定：$6
 * 意図されているブロック対象者：$7
 
-$1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件について問い合わせることができます。
+$1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロックについて問い合わせることができます。
 
 ただし、[[Special:Preferences|個人設定]]に正しいメールアドレスが登録されていない場合、またはメール送信がブロックされている場合、メール送信機能が使えないことに注意してください。
 
 現在ご使用中のIPアドレスは$3 、このブロックIDは#$5です。
-お問い合わせの際には、この情報を必ず書いてください。",
+お問い合わせの際は、上記の情報を必ず書いてください。",
 'blockednoreason' => '理由が設定されていません',
 'whitelistedittext' => 'このページを編集するには$1する必要があります。',
 'confirmedittext' => 'ページの編集を始める前にメールアドレスの確認をする必要があります。
@@ -1151,7 +1153,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'sectioneditnotsupported-text' => 'このページでは節単位編集はサポートされません。',
 'permissionserrors' => '認証エラー',
 'permissionserrorstext' => 'あなたにはこの操作を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです：',
-'permissionserrorstext-withaction' => 'あなたには「$2」を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです：',
+'permissionserrorstext-withaction' => 'あなたには「$2」を行う権限はありません。{{PLURAL:$1|理由}}は以下の通りです:',
 'recreate-moveddeleted-warn' => "'''警告：以前削除されたページを再作成しようとしています。'''
 
 このページの編集を続行するのが適切かどうかご確認ください。
@@ -1205,7 +1207,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 $3が示した理由：''$2''",
 
 # History pages
-'viewpagelogs' => 'このページに関する記録を閲覧',
+'viewpagelogs' => 'このページの記録を閲覧',
 'nohistory' => 'このページには編集履歴がありません。',
 'currentrev' => '最新版',
 'currentrev-asof' => '$1時点における最新版',
@@ -1274,13 +1276,13 @@ $3が示した理由：''$2''",
 'revdelete-nologtype-title' => '記録の種類を指定していません',
 'revdelete-nologtype-text' => 'この操作を実行する記録の種類を指定していません。',
 'revdelete-nologid-title' => '無効な記録項目',
-'revdelete-nologid-text' => 'この操作の対象となる記録の項目を指定していないか、あるいは指定した項目が存在しません。',
+'revdelete-nologid-text' => 'この操作の対象となる記録項目を指定していないか、あるいは指定した項目が存在しません。',
 'revdelete-no-file' => '指定されたファイルは存在しません。',
 'revdelete-show-file-confirm' => '本当にファイル「<nowiki>$1</nowiki>」の削除された$2$3の版を閲覧しますか？',
 'revdelete-show-file-submit' => 'はい',
 'revdelete-selected' => "'''[[:$1]] の{{PLURAL:$2|選択された版}}：'''",
-'logdelete-selected' => "'''{{PLURAL:$1|選択された記録の項目}}：'''",
-'revdelete-text' => "'''削除された版や記録は引き続きページの履歴や記録に表示されますが、一般利用者はその内容の一部を取得できなくなります。'''
+'logdelete-selected' => "'''{{PLURAL:$1|選択された記録項目}}：'''",
+'revdelete-text' => "'''削除された版や記録項目は引き続きページの履歴や記録に表示されますが、一般利用者はその内容の一部を取得できなくなります。'''
 追加の制限がかけられない限り、{{SITENAME}}の他の管理者は同じインターフェイスを使って非表示の内容の取得や復元ができます。",
 'revdelete-confirm' => 'この操作を行おうとしていること、その結果を理解していること、[[{{MediaWiki:Policy-url}}|方針]]に従っていること、を確認してください。',
 'revdelete-suppress-text' => "秘匿は、'''以下の場合に限って'''使用すべきです：
@@ -1618,7 +1620,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'group-sysop' => '管理者',
 'group-bureaucrat' => 'ビューロクラット',
 'group-suppress' => '秘匿者',
-'group-all' => '（全員）',
+'group-all' => '(全員)',
 
 'group-user-member' => '{{GENDER:$1|登録利用者}}',
 'group-autoconfirmed-member' => '{{GENDER:$1|自動承認された利用者}}',
@@ -1699,9 +1701,9 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 # User rights log
 'rightslog' => '利用者権限変更記録',
 'rightslogtext' => '以下は利用者権限の変更記録です。',
-'rightslogentry' => '$1の所属グループを $2 から $3 に変更しました',
+'rightslogentry' => '$1 の所属グループを $2 から $3 に変更しました',
 'rightslogentry-autopromote' => '$2 から $3 に自動的に昇格しました',
-'rightsnone' => '（なし）',
+'rightsnone' => '(なし)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read' => 'このページの閲覧',
@@ -1759,7 +1761,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'rcshowhideanons' => '匿名利用者を$1',
 'rcshowhidepatr' => '巡回された編集を$1',
 'rcshowhidemine' => '自分の編集を$1',
-'rclinks' => '最近$2日間の更新$1件以内を表示<br />$3',
+'rclinks' => '最近 $2 日間の更新を最大 $1 件表示<br />$3',
 'diff' => '差分',
 'hist' => '履歴',
 'hide' => '非表示',
@@ -2302,7 +2304,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 記録の種類、実行した利用者（大文字小文字は区別）、影響を受けたページ（大文字小文字は区別）による絞り込みができます。',
 'logempty' => '該当する記録はありません。',
 'log-title-wildcard' => 'この文字列で始まるページ名を検索',
-'showhideselectedlogentries' => '選択した記録の項目を表示/非表示',
+'showhideselectedlogentries' => '選択した記録項目を表示/非表示',
 
 # Special:AllPages
 'allpages' => '全ページ',
@@ -2705,11 +2707,11 @@ $1',
 'month' => 'これ以前の月:',
 'year' => 'これ以前の年:',
 
-'sp-contributions-newbies' => '新しい利用者からの投稿のみ表示',
+'sp-contributions-newbies' => '新規利用者の投稿のみ表示',
 'sp-contributions-newbies-sub' => '新規利用者のみ',
 'sp-contributions-newbies-title' => '新規利用者の投稿記録',
 'sp-contributions-blocklog' => 'ブロック記録',
-'sp-contributions-deleted' => '利用者の削除された投稿記録',
+'sp-contributions-deleted' => '削除された投稿の一覧',
 'sp-contributions-uploads' => 'アップロード',
 'sp-contributions-logs' => '記録',
 'sp-contributions-talk' => 'トーク',
@@ -2749,9 +2751,9 @@ $1',
 'blockip' => '利用者をブロック',
 'blockip-title' => '利用者のブロック',
 'blockip-legend' => '利用者をブロック',
-'blockiptext' => '以下のフォームを使用して、指定した利用者やIPアドレスからの書き込みアクセスをブロックできます。
-このような措置は、荒らしからの防御のためにのみ行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。
-以下にブロックの理由を具体的に書いてください（例えば、荒らされたページへの言及など）。',
+'blockiptext' => '以下のフォームを使用して、指定したIPアドレスまたは利用者からの書き込みアクセスをブロックできます。
+このような措置は、荒らしからの防御の目的のみに行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。
+以下にブロックの理由を具体的に書いてください (例えば、荒らされたページへの言及など)。',
 'ipadressorusername' => 'IPアドレスまたは利用者名:',
 'ipbexpiry' => '有効期限：',
 'ipbreason' => '理由：',
@@ -2790,8 +2792,8 @@ $1',
 'ipb-blocklist' => '現在有効なブロックを表示',
 'ipb-blocklist-contribs' => '$1の投稿の一覧',
 'unblockip' => 'ブロックを解除',
-'unblockiptext' => '以下のフォームで利用者またはIPアドレスの投稿ブロックを解除できます。',
-'ipusubmit' => 'この投稿ブロックを解除',
+'unblockiptext' => '以下のフォームを使用して、以前ブロックしたIPアドレスまたは利用者からの書き込みアクセスをブロック解除できます。',
+'ipusubmit' => 'このブロックを解除',
 'unblocked' => '[[User:$1|$1]]のブロックを解除しました',
 'unblocked-range' => '$1のブロックは解除されています',
 'unblocked-id' => 'ブロック$1は除去されました',
@@ -2861,16 +2863,16 @@ $1のブロックの理由は「''$2''」です。",
 'blockme' => '自分をブロック',
 'proxyblocker' => 'プロキシブロック係',
 'proxyblocker-disabled' => 'この機能は無効になっています。',
-'proxyblockreason' => 'ご使用中のIPアドレスは公開プロキシであるため投稿ブロックされています。
-使用中のインターネットサービスプロバイダー、または所属組織の技術担当者に連絡して、これが深刻なセキュリティ問題であることを伝えてください。',
+'proxyblockreason' => 'このIPアドレスは公開プロキシであるためブロックされています。
+ご使用中のインターネットサービスプロバイダーまたは所属組織の技術担当者に連絡して、これが深刻なセキュリティ問題であることを伝えてください。',
 'proxyblocksuccess' => '完了。',
 'sorbs' => 'DNSBL',
 'sorbsreason' => 'ご使用中のIPアドレスが、{{SITENAME}}の使用しているDNSBLに公開プロキシとして記載されています。',
 'sorbs_create_account_reason' => 'ご使用中のIPアドレスが、{{SITENAME}}の使用しているDNSBLに公開プロキシとして記載されています。
 アカウント作成はできません',
 'cant-block-while-blocked' => 'ブロックされている間は、他の利用者をブロックできません。',
-'cant-see-hidden-user' => '投稿ブロックしようとした利用者は、既にブロックされ隠されています。
-hideuser権限を持っていないため、この利用者のブロックを閲覧または編集できません。',
+'cant-see-hidden-user' => 'ブロックしようとしている利用者は、既にブロックされ隠されています。
+あなたには hideuser 権限がないため、この利用者のブロックの閲覧/編集はできません。',
 'ipbblocked' => '自分自身をブロックしているため、他の利用者のブロックやブロック解除はできません',
 'ipbnounblockself' => '自分自身のブロックは解除できません',
 
@@ -4224,12 +4226,12 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # New logging system
 'logentry-delete-delete' => '$1 がページ「$3」を削除しました',
 'logentry-delete-restore' => '$1 がページ「$3」を復元しました',
-'logentry-delete-event' => '$1 が$3の{{PLURAL:$5|$5件の記録項目}}の閲覧レベルを変更しました：$4',
+'logentry-delete-event' => '$1 が$3の{{PLURAL:$5|記録項目$5件}}の閲覧レベルを変更しました：$4',
 'logentry-delete-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを変更しました：$4',
 'logentry-delete-event-legacy' => '$1 が「$3」の記録項目の閲覧レベルを変更しました',
 'logentry-delete-revision-legacy' => '$1 がページ「$3」の版の閲覧レベルを変更しました',
 'logentry-suppress-delete' => '$1 がページ「$3」を隠蔽しました',
-'logentry-suppress-event' => '$1 が$3の{{PLURAL:$5|$5件の記録項目}}の閲覧レベルを見えない形で変更しました：$4',
+'logentry-suppress-event' => '$1 が$3の{{PLURAL:$5|記録項目$5件}}の閲覧レベルを見えない形で変更しました：$4',
 'logentry-suppress-revision' => '$1 がページ「$3」の{{PLURAL:$5|$5版}}の閲覧レベルを見えない形で変更しました：$4',
 'logentry-suppress-event-legacy' => '$1 が$3で記録項目の閲覧レベルを見えない形で変更しました',
 'logentry-suppress-revision-legacy' => '$1 がページ「$3」の版の閲覧レベルを見えない形で変更しました',

@@ -854,8 +854,8 @@ $2
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} მოძებნოთ შესაბამისი ჟურნალები],
 ან [{{fullurl:{{FULLPAGENAME}}|action=edit}} დაიწყოთ ამ გვერდის რედაქტირება]</span>.',
 'noarticletext-nopermission' => 'ამ დროისთვის ეს გვერდი ცარიელია.
-ქვენ შეგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ეს სიტყვა]] სხვა გვერდებზე,
-ან <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} შესაბამის ჟურნალებში]</span>',
+თქვენ შეგიძლიათ [[Special:Search/{{PAGENAME}}|მოძებნოთ ეს სათაური]] სხვა გვერდებზე,
+ან <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} მოძებნოთ ჟურნალების შესაბამისი ჩანაწერები].</span> თქვენ არ გაქვთ ამ გვერდის შექმნის ნებართვა.',
 'userpage-userdoesnotexist' => 'ანგარიში «<nowiki>$1</nowiki>» არ არსებობს. დარწმუნდით, რომ მართლაც გსურთ ამ ანგარიშის შექმნა ან შესწორება.Убедитесь, что вы действительно желаете создать или изменить эту страницу.',
 'userpage-userdoesnotexist-view' => 'მომხმარებელი „$1“ არ არის დარეგისტრირებული.',
 'blocked-notice-logextract' => 'ეს მომხმარებელი უკვე დაიბლოკა.

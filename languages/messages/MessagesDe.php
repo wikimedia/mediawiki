@@ -828,7 +828,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'login' => 'Anmelden',
 'nav-login-createaccount' => 'Anmelden / Benutzerkonto erstellen',
 'loginprompt' => 'Zur Anmeldung müssen Cookies aktiviert sein.',
-'userlogin' => 'Anmelden / Erstellen',
+'userlogin' => 'Anmelden / Benutzerkonto anlegen',
 'userloginnocreate' => 'Anmelden',
 'logout' => 'Abmelden',
 'userlogout' => 'Abmelden',

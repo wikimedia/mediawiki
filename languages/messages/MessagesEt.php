@@ -668,8 +668,11 @@ Palun proovi mõne minuti pärast uuesti.',
 'protectedpagetext' => 'See lehekülg on lukustatud, et muudatusi ei tehtaks.',
 'viewsourcetext' => 'Saad vaadata ja kopeerida lehekülje lähteteksti:',
 'viewyourtext' => "Saad vaadata ja kopeerida sellel leheküljel tehtud '''enda muudatuste '''lähteteksti:",
-'protectedinterface' => 'Sellel leheküljel on tarkvara kasutajaliidese tekst. Kuritahtliku muutmise vältimiseks on lehekülg lukustatud.',
-'editinginterface' => "'''Hoiatus:''' Redigeerid tarkvara kasutajaliidese tekstiga lehekülge. Muudatused siin mõjutavad kõikide kasutajate kasutajaliidest. Tõlkijad, palun kaaluge MediaWiki lokaliseerimisprojekti [//translatewiki.net/wiki/Main_Page?setlang=et translatewiki.net] kasutamist.",
+'protectedinterface' => 'Sellel leheküljel on selle viki tarkvara kasutajaliidese tekst. Väärtarvituse vältimiseks on lehekülg kaitstud.
+Et lisada ja muuta tõlkeid kõigi vikide jaoks, kasuta palun MediaWiki lokaliseerimisprojekti [//translatewiki.net/ translatewiki.net].',
+'editinginterface' => "'''Hoiatus:''' Redigeerid tarkvara kasutajaliidese tekstiga lehekülge.
+Muudatused siin mõjutavad kõikide selle viki kasutajate kasutajaliidest.
+Et lisada ja muuta tõlkeid kõigi vikide jaoks, kasuta palun MediaWiki lokaliseerimisprojekti [//translatewiki.net/ translatewiki.net].",
 'sqlhidden' => '(SQL päring peidetud)',
 'cascadeprotected' => 'See lehekülg on muutmise eest kaitstud, sest see on osa {{PLURAL:$1|järgmisest leheküljest|järgmistest lehekülgedest}}, mis on kaskaadkaitse all:
 $2',
@@ -940,9 +943,8 @@ Kui sattusid siia kogemata, klõpsa võrgulehitseja ''tagasi''-nupule.",
 'noarticletext' => 'Käesoleval leheküljel hetkel teksti ei ole.
 Võid [[Special:Search/{{PAGENAME}}|otsida pealkirjaks olevat fraasi]] teistelt lehtedelt,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} uurida asjassepuutuvaid logisid] või [{{fullurl:{{FULLPAGENAME}}|action=edit}} puuduva lehekülje ise luua]</span>.',
-'noarticletext-nopermission' => 'Sellel leheküljel ei ole teksti.
-Sa võid [[Special:Search/{{PAGENAME}}|otsida lehekülje nime]] teistelt lehekülgedelt
-või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} otsida lehekülje nime logidest]</span>.',
+'noarticletext-nopermission' => 'Sellel leheküljel pole praegu teksti.
+Saad [[Special:Search/{{PAGENAME}}|otsida selle lehekülje pealkirja]] teistelt lehekülgedelt või <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} otsida seonduvatest logidest]</span>, aga sul pole õigust seda lehekülge alustada.',
 'missing-revision' => 'Lehekülje "{{PAGENAME}}" redaktsiooni $1 pole.
 
 Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin asunud lehekülg on kustutatud.
@@ -1811,7 +1813,7 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'backend-fail-create' => 'Faili $1 ei saa kirjutada.',
 'backend-fail-maxsize' => 'Faili $1 ei saa kirjutada, sest see on {{PLURAL:$2|ühest baidist|$2 baidist}} suurem.',
 'backend-fail-contenttype' => 'Faili, mida soovitakse talletada asukohas "$1", sisutüüpi saanud kindlaks teha.',
-'backend-fail-usable' => 'Faili $1 ei saa ebapiisavate õiguste või puuduvate kataloogide/konteinerite tõttu kirjutada.',
+'backend-fail-usable' => 'Faili $1 ei saa ebapiisavate õiguste või puuduvate kataloogide/konteinerite tõttu lugeda ega kirjutada.',
 
 # Lock manager
 'lockmanager-notlocked' => 'Rada "$1" ei saa lukust lahti teha, sest see pole lukus.',

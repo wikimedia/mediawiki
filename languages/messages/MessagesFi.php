@@ -1202,7 +1202,7 @@ Sinulla ei ole oikeutta siihen.',
 ** Tekijänoikeusrikkomus
 ** Sopimattomat henkilötiedot
 ** Sopimaton käyttäjätunnus
-** Mahdollisesti herjaavaa tietoa',
+** Mahdollinen kunnianloukkaus',
 'revdelete-otherreason' => 'Muu syy tai tarkennus',
 'revdelete-reasonotherlist' => 'Muu syy',
 'revdelete-edit-reasonlist' => 'Muokkaa poistosyitä',
@@ -2362,7 +2362,7 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'rollback' => 'palauta aiempaan versioon',
 'rollback_short' => 'Palautus',
 'rollbacklink' => 'palauta',
-'rollbacklinkcount' => 'palauta {{PLURAL:$1|muokkaus|$1 muokkausta}}',
+'rollbacklinkcount' => 'palauta {{PLURAL:$1|muutos|$1 muutosta}}',
 'rollbacklinkcount-morethan' => 'palauta yli $1 {{PLURAL:$1|muutos|muutosta}}',
 'rollbackfailed' => 'Palautus epäonnistui',
 'cantrollback' => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',

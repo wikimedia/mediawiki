@@ -692,9 +692,9 @@ Spørring: $2',
 'protectedpagetext' => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext' => 'Du kan se og kopiere kilden til denne siden:',
 'viewyourtext' => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
-'protectedinterface' => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
-'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren.
-Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut.
+'protectedinterface' => 'Denne siden fremskaffer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
+'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes for å fremskaffe grensesnittekst for programvaren.
+Endringer av denne siden vil påvirke hvordan grensesnittet vil se ut for andre brukere.
 For oversettelser er det best om du bruker [//translatewiki.net/wiki/Main_Page?setlang=nb translatewiki.net], prosjektet for oversettelse av MediaWiki.",
 'sqlhidden' => '(SQL-spørring skjult)',
 'cascadeprotected' => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
@@ -980,8 +980,8 @@ Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentare
 Du kan [[Special:Search/{{PAGENAME}}|søke etter denne sidetittelen]] på andre sider,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relaterte logger],
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
-'noarticletext-nopermission' => 'Det er ingen tekst på denne siden.
-Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
+'noarticletext-nopermission' => 'Det er for tiden ingen tekst på denne siden.
+Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] blant andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
 'missing-revision' => 'Revisjonen #$1 av siden med navnet "{{PAGENAME}}" eksisterer ikke.
 
 Dette skyldes som regel at en gammel historikklenke er fulgt til en side som er slettet.
