@@ -214,8 +214,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			'rc_title',
 			'rc_cur_id',
 			'rc_type',
-			'rc_moved_to_ns',
-			'rc_moved_to_title',
 			'rc_deleted'
 		) );
 
@@ -321,12 +319,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @access public
 	 */
 	public function extractRowInfo( $row ) {
-		/* If page was moved somewhere, get the title of the move target. */
-		$movedToTitle = false;
-		if ( isset( $row->rc_moved_to_title ) && $row->rc_moved_to_title !== '' ) {
-			$movedToTitle = Title::makeTitle( $row->rc_moved_to_ns, $row->rc_moved_to_title );
-		}
-
 		/* Determine the title of the page that has been changed. */
 		$title = Title::makeTitle( $row->rc_namespace, $row->rc_title );
 
@@ -359,9 +351,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		/* Create a new entry in the result for the title. */
 		if ( $this->fld_title ) {
 			ApiQueryBase::addTitleInfo( $vals, $title );
-			if ( $movedToTitle ) {
-				ApiQueryBase::addTitleInfo( $vals, $movedToTitle, 'new_' );
-			}
 		}
 
 		/* Add ids, such as rcid, pageid, revid, and oldid to the change's info. */
