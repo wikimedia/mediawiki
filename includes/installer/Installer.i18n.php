@@ -460,6 +460,8 @@ Ideally, this should not be accessible from the web.',
 	'config-logo-help'                => "MediaWiki's default skin includes space for a 135x160 pixel logo above the sidebar menu.
 Upload an image of the appropriate size, and enter the URL here.
 
+You can use \$wgStylePath or \$wgScriptPath if your logo is relative to those paths.
+
 If you do not want a logo, leave this box blank.",
 	'config-instantcommons'           => 'Enable Instant Commons',
 	'config-instantcommons-help'      => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [//commons.wikimedia.org/ Wikimedia Commons] site.
