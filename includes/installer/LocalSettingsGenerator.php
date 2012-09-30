@@ -62,12 +62,12 @@ class LocalSettingsGenerator {
 				'wgRightsText', 'wgMainCacheType', 'wgEnableUploads',
 				'wgMainCacheType', '_MemCachedServers', 'wgDBserver', 'wgDBuser',
 				'wgDBpassword', 'wgUseInstantCommons', 'wgUpgradeKey', 'wgDefaultSkin',
-				'wgMetaNamespace', 'wgResourceLoaderMaxQueryLength'
+				'wgMetaNamespace', 'wgResourceLoaderMaxQueryLength', 'wgLogo',
 			),
 			$db->getGlobalNames()
 		);
 
-		$unescaped = array( 'wgRightsIcon' );
+		$unescaped = array( 'wgRightsIcon', 'wgLogo' );
 		$boolItems = array(
 			'wgEnableEmail', 'wgEnableUserEmail', 'wgEnotifUserTalk',
 			'wgEnotifWatchlist', 'wgEmailAuthentication', 'wgEnableUploads', 'wgUseInstantCommons'
@@ -273,7 +273,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 ## The relative URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-\$wgLogo             = \"\$wgStylePath/common/images/wiki.png\";
+\$wgLogo             = \"{$this->values['wgLogo']}\";
 
 ## UPO means: this is also a user preference option
 
