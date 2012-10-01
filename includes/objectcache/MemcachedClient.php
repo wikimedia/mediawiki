@@ -408,10 +408,11 @@ class MWMemcached {
 	 * Retrieves the value associated with the key from the memcache server
 	 *
 	 * @param $key array|string key to retrieve
+	 * @param $cas_token[optional] Mixed
 	 *
 	 * @return Mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$cas_token = null ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->_debug ) {
@@ -436,6 +437,8 @@ class MWMemcached {
 		} else {
 			$this->stats['get'] = 1;
 		}
+
+		// @todo: to properly implement cas, use gets (http://code.google.com/p/memcached/wiki/NewCommands#gets)
 
 		$cmd = "get $key\r\n";
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
@@ -615,6 +618,29 @@ class MWMemcached {
 	 */
 	public function set( $key, $value, $exp = 0 ) {
 		return $this->_set( 'set', $key, $value, $exp );
+	}
+
+	// }}}
+	// {{{ cas()
+
+	/**
+	 * Sets a key to a given value in the memcache if the current value still corresponds
+	 * to a known, given value.  Returns true if set successfully.
+	 *
+	 * @param $cas_token Mixed: current known value
+	 * @param $key String: key to set value as
+	 * @param $value Mixed: value to set
+	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
+	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
+	 * longer must be the timestamp of the time at which the mapping should expire. It
+	 * is safe to use timestamps in all cases, regardless of exipration
+	 * eg: strtotime("+3 hour")
+	 *
+	 * @return Boolean: TRUE on success
+	 */
+	public function cas( $cas_token, $key, $value, $exp = 0 ) {
+		// @todo: implement - see http://ehcache.org/documentation/get-started/consistency-options#cas-cache-operations
+		return false;
 	}
 
 	// }}}

@@ -90,7 +90,7 @@ class RedisBagOStuff extends BagOStuff {
 		}
 	}
 
-	public function get( $key ) {
+	public function get( $key, &$cas_token = null ) {
 		wfProfileIn( __METHOD__ );
 		list( $server, $conn ) = $this->getConnection( $key );
 		if ( !$conn ) {
@@ -103,6 +103,7 @@ class RedisBagOStuff extends BagOStuff {
 			$result = false;
 			$this->handleException( $server, $e );
 		}
+		$cas_token = $result;
 		$this->logRequest( 'get', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
 		return $result;
@@ -129,6 +130,42 @@ class RedisBagOStuff extends BagOStuff {
 		}
 
 		$this->logRequest( 'set', $key, $server, $result );
+		wfProfileOut( __METHOD__ );
+		return $result;
+	}
+
+	public function cas( $cas_token, $key, $value, $expiry = 0 ) {
+		wfProfileIn( __METHOD__ );
+		list( $server, $conn ) = $this->getConnection( $key );
+		if ( !$conn ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+		$expiry = $this->convertToRelative( $expiry );
+		try {
+			$conn->watch( $key );
+
+			if ( $this->get( $key ) !== $cas_token ) {
+				wfProfileOut( __METHOD__ );
+				return false;
+			}
+
+			$conn->multi();
+
+			if ( !$expiry ) {
+				// No expiry, that is very different from zero expiry in Redis
+				$conn->set( $key, $value );
+			} else {
+				$conn->setex( $key, $expiry, $value );
+			}
+
+			$result = $conn->exec();
+		} catch ( RedisException $e ) {
+			$result = false;
+			$this->handleException( $server, $e );
+		}
+
+		$this->logRequest( 'cas', $key, $server, $result );
 		wfProfileOut( __METHOD__ );
 		return $result;
 	}

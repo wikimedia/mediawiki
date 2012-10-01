@@ -104,11 +104,12 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $cas_token[optional] float
 	 * @return Mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$cas_token = null ) {
 		$this->debugLog( "get($key)" );
-		return $this->checkResult( $key, parent::get( $key ) );
+		return $this->checkResult( $key, parent::get( $key, $cas_token ) );
 	}
 
 	/**
@@ -120,6 +121,18 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 	public function set( $key, $value, $exptime = 0 ) {
 		$this->debugLog( "set($key)" );
 		return $this->checkResult( $key, parent::set( $key, $value, $exptime ) );
+	}
+
+	/**
+	 * @param $cas_token float
+	 * @param $key string
+	 * @param $value
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $cas_token, $key, $value, $exptime = 0 ) {
+		$this->debugLog( "cas($key)" );
+		return $this->checkResult( $key, parent::cas( $cas_token, $key, $value, $exptime ) );
 	}
 
 	/**
