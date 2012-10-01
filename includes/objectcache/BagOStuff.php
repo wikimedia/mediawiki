@@ -56,9 +56,10 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key );
+	abstract public function get( $key, &$casToken = null );
 
 	/**
 	 * Set an item.
@@ -70,6 +71,16 @@ abstract class BagOStuff {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
+	 * Check and set an item.
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
+
+	/**
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
@@ -78,13 +89,67 @@ abstract class BagOStuff {
 	abstract public function delete( $key, $time = 0 );
 
 	/**
+	 * Merge an item.
+	 * This is pretty much equivalent to performing get+cas, wrapped in 1 go,
+	 * thus making it possible to perform CAS or CAS-like functionality in
+	 * another way.
 	 * @param $key string
-	 * @param $timeout integer
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	public function merge( $key, closure $callback, $exptime = 0 ) {
+		$currentValue = $this->get( $key, $casToken );
+
+		$value = $callback( $this, $key, $currentValue );
+
+		if ( $value !== false ) {
+			// if no current value set, we can't cas
+			if ( $currentValue === false ) {
+				return $this->set( $key, $value, $exptime );
+			}
+
+			return $this->cas( $casToken, $key, $value, $exptime );
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param $key string
+	 * @param $timeout[optional] integer
 	 * @return bool success
 	 */
 	public function lock( $key, $timeout = 0 ) {
-		/* stub */
-		return true;
+		$lock = @fopen( $this->getLockfilePath( $key ), 'c+' );
+
+		while ( !flock( $lock, LOCK_EX | LOCK_NB ) ) {
+			// waiting for lock to release...
+		}
+
+		$expiry = fgets( $lock );
+
+		if ( $expiry ) {
+			fclose( $lock );
+
+			/*
+			 * if "locked":
+			 * - doublecheck expiry and
+			 * - unlock if lock expired and
+			 * - re-attempt locking
+			 */
+			if ( $expiry <= time() ) {
+				$this->unlock( $key );
+				return $this->lock( $key, $timeout );
+			}
+
+			return false;
+		} else {
+			// write expiration time to lock file
+			fputs( $lock, time() + $timeout );
+			fclose( $lock );
+			return true;
+		}
 	}
 
 	/**
@@ -92,8 +157,15 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	public function unlock( $key ) {
-		/* stub */
-		return true;
+		return @unlink( $this->getLockfilePath( $key ) );
+	}
+
+	/**
+	 * @param string $key
+	 * @return string
+	 */
+	protected function getLockfilePath( $key ) {
+		return sys_get_temp_dir() . '/' . md5( $key ) . '.lock';
 	}
 
 	/**
