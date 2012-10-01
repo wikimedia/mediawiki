@@ -151,7 +151,7 @@ class LoginForm extends SpecialPage {
 
 		global $wgSecureLogin;
 		if (
-			$this->mType != 'signup' &&
+			$this->mType !== 'signup' &&
 			$wgSecureLogin &&
 			WebRequest::detectProtocol() !== 'https'
 		) {
@@ -747,7 +747,12 @@ class LoginForm extends SpecialPage {
 				} else {
 					$user->invalidateCache();
 				}
-				$user->setCookies( null, $wgSecureLogin && !$this->mStickHTTPS ? false : null );
+
+				if( $wgSecureLogin && !$this->mStickHTTPS ) {
+					$user->setCookies( null, false );
+				} else {
+					$user->setCookies();
+				}
 				self::clearLoginToken();
 
 				// Reset the throttle
@@ -980,7 +985,7 @@ class LoginForm extends SpecialPage {
 			$returnToTitle = Title::newMainPage();
 		}
 
-		if( $wgSecureLogin && !$this->mStickHTTPS ) {
+		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
 			$options = array( 'http' );
 			$proto = PROTO_HTTP;
 		} else {

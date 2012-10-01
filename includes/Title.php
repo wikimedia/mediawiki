@@ -1402,7 +1402,7 @@ class Title {
 	 */
 	public function getLinkURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		wfProfileIn( __METHOD__ );
-		if ( $this->isExternal() || $proto != PROTO_RELATIVE ) {
+		if ( $this->isExternal() || $proto !== PROTO_RELATIVE ) {
 			$ret = $this->getFullURL( $query, $query2, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->getFragment() !== '' ) {
 			$ret = $this->getFragmentForURL();

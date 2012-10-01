@@ -554,7 +554,7 @@ class SkinTemplate extends Skin {
 			}
 		}
 
-		if ( $wgSecureLogin && $request->detectProtocol() == 'https' ) {
+		if ( $wgSecureLogin && $request->detectProtocol() === 'https' ) {
 			$a['wpStickHTTPS'] = true;
 		}
 
