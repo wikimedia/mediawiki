@@ -32,6 +32,15 @@ class MultiWriteBagOStuff extends BagOStuff {
 	var $caches;
 
 	/**
+	 * This will contain a mapping of 1 cas-token (that's returned to
+	 * the feature implementing this class) to all cas tokens of the
+	 * real caches
+	 *
+	 * @var array
+	 */
+	var $cas = array();
+
+	/**
 	 * Constructor. Parameters are:
 	 *
 	 *   - caches:   This should have a numbered array of cache parameter
@@ -61,16 +70,33 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $cas_token[optional] mixed
 	 * @return bool|mixed
 	 */
-	public function get( $key ) {
-		foreach ( $this->caches as $cache ) {
-			$value = $cache->get( $key );
+	public function get( $key, &$cas_token = null ) {
+		/*
+		 * if cas-parameter is actually passed along, we need to loop
+		 * all caches, just to get the cache token for all of them
+		 */
+		$args = func_get_args();
+		if ( array_key_exists( 1, $args ) ) {
+			$cas_token = uniqid();
+		}
+
+		$value = false;
+
+		foreach ( $this->caches as $i => $cache ) {
+			$value = $cache->get( $key, $token );
 			if ( $value !== false ) {
-				return $value;
+				$this->cas[$cas_token][$i] = $token;
+
+				// stop at first result unless we need to collect all cas tokens
+				if ( $cas_token === null ) {
+					break;
+				}
 			}
 		}
-		return false;
+		return $value;
 	}
 
 	/**
@@ -81,6 +107,24 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
 		return $this->doWrite( 'set', $key, $value, $exptime );
+	}
+
+	/**
+	 * @param $cas_token mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $cas_token, $key, $value, $exptime = 0 ) {
+		$ret = true;
+
+		foreach ( $this->caches as $i => $cache ) {
+			if ( !call_user_func_array( array( $cache, 'cas' ), array( $this->cas[$cas_token][$i], $key, $value, $exptime ) ) ) {
+				$ret = false;
+			}
+		}
+		return $ret;
 	}
 
 	/**

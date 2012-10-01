@@ -56,9 +56,10 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 * @param $cas_token[optional] mixed
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key );
+	abstract public function get( $key, &$cas_token = null );
 
 	/**
 	 * Set an item.
@@ -68,6 +69,16 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	abstract public function set( $key, $value, $exptime = 0 );
+
+	/**
+	 * Check and set an item.
+	 * @param $cas_token mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	abstract public function cas( $cas_token, $key, $value, $exptime = 0 );
 
 	/**
 	 * Delete an item.
