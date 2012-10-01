@@ -75,8 +75,7 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
 		);
 	}
-	
-	
+
 	/**
 	 * @dataProvider provideCasesForGetpageviewlanguage
 	 */
@@ -152,4 +151,63 @@ class TitleTest extends MediaWikiTestCase {
 
 		);
 	}
+
+	/**
+	 * @dataProvider provideBaseTitleCases
+	 */
+	function testExtractingBaseTextFromTitle( $title, $expected, $msg='' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected,
+			$title->getBaseText(),
+			$msg
+		);
+	}
+
+	function provideBaseTitleCases() {
+		return array(
+			# Title, expected base, optional message
+			array('User:John_Doe/subOne/subTwo', 'John Doe/subOne' ),
+			array('User:Foo/Bar/Baz', 'Foo/Bar' ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideRootTitleCases
+	 */
+	function testExtractingRootTextFromTitle( $title, $expected, $msg='' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected,
+			$title->getRootText(),
+			$msg
+		);
+	}
+
+	function provideRootTitleCases() {
+		return array(
+			# Title, expected base, optional message
+			array('User:John_Doe/subOne/subTwo', 'John Doe' ),
+			array('User:Foo/Bar/Baz', 'Foo' ),
+		);
+	}
+
+	/**
+	 * @todo Handle $wgNamespacesWithSubpages cases
+	 * @dataProvider provideSubpageTitleCases
+	 */
+	function testExtractingSubpageTextFromTitle( $title, $expected, $msg='' ) {
+		$title = Title::newFromText( $title );
+		$this->assertEquals( $expected,
+			$title->getSubpageText(),
+			$msg
+		);
+	}
+
+	function provideSubpageTitleCases() {
+		return array(
+			# Title, expected base, optional message
+			array('User:John_Doe/subOne/subTwo', 'subTwo' ),
+			array('User:John_Doe/subOne', 'subOne' ),
+		);
+	}
+
 }
