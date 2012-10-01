@@ -111,9 +111,10 @@ class DBABagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $cas_token[optional] mixed
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$cas_token = null ) {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__ . "($key)\n" );
 
@@ -138,7 +139,10 @@ class DBABagOStuff extends BagOStuff {
 			$val = false;
 		}
 
+		$cas_token = $val;
+
 		wfProfileOut( __METHOD__ );
+
 		return $val;
 	}
 
@@ -157,6 +161,41 @@ class DBABagOStuff extends BagOStuff {
 		$handle = $this->getWriter();
 		if ( !$handle ) {
 			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		$ret = dba_replace( $key, $blob, $handle );
+		dba_close( $handle );
+
+		wfProfileOut( __METHOD__ );
+		return $ret;
+	}
+
+	/**
+	 * @param $cas_token mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	function cas( $cas_token, $key, $value, $exptime = 0 ) {
+		wfProfileIn( __METHOD__ );
+		wfDebug( __METHOD__ . "($key)\n" );
+
+		$blob = $this->encode( $value, $exptime );
+
+		$handle = $this->getWriter();
+		if ( !$handle ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+
+		// DBA is locked to any other write connection, so we can safely
+		// compare the current & previous value before saving new value
+		$val = dba_fetch( $key, $handle );
+		list( $val, $exptime ) = $this->decode( $val );
+		if ( $cas_token !== $val ) {
+			dba_close( $handle );
 			return false;
 		}
 
