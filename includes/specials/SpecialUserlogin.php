@@ -970,7 +970,7 @@ class LoginForm extends SpecialPage {
 			}
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
-			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery );
+			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );
 		}
 	}
 
