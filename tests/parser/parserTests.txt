@@ -2825,6 +2825,16 @@ Blah blah blah
 </p>
 !! end
 
+!! test
+Parsoid-specific test: Wikilinks with &nbsp; should RT properly
+!! options
+language=ln
+!! input
+[[WW&nbsp;II]]
+!!result
+<p><a href="/index.php?title=WW_II&amp;action=edit&amp;redlink=1" class="new" title="WW II (lonkásá  ezalí tɛ̂)">WW&#160;II</a>
+</p>
+!! end
 
 ##
 ## XHTML tidiness
