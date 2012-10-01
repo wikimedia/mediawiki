@@ -402,6 +402,12 @@ if ( $wgTmpDirectory === false ) {
 	$wgTmpDirectory = wfTempDir();
 }
 
+// $wgServer starting with http:// indicates no SSL, but $wgSecureLogin indicates to use
+// SSL. Prefer the more secure option, and set $wgServer to be protocol-relative
+if ( $wgSecureLogin === true && substr( $wgServer, 0, 7 ) === 'http://' ) {
+	$wgServer = substr( $wgServer, 5 );
+}
+
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
