@@ -65,9 +65,10 @@ class EhcacheBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return bool|mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		wfProfileIn( __METHOD__ );
 		$response = $this->doItemRequest( $key );
 		if ( !$response || $response['http_code'] == 404 ) {
@@ -96,6 +97,8 @@ class EhcacheBagOStuff extends BagOStuff {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
+
+		$casToken = $body;
 
 		wfProfileOut( __METHOD__ );
 		return $data;
@@ -145,6 +148,20 @@ class EhcacheBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		// Not sure if we can implement CAS for ehcache. There appears to be CAS-support per
+		// http://ehcache.org/documentation/get-started/consistency-options#cas-cache-operations,
+		// but I can't find any docs for our current implementation.
+		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+	}
+
+	/**
 	 * @param $key string
 	 * @param $time int
 	 * @return bool
@@ -162,6 +179,14 @@ class EhcacheBagOStuff extends BagOStuff {
 		}
 		wfProfileOut( __METHOD__ );
 		return $result;
+	}
+
+	/**
+	 * @see BagOStuff::merge()
+	 * @return bool success
+	 */
+	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		return $this->mergeViaLock( $key, $callback, $exptime, $attempts );
 	}
 
 	/**
