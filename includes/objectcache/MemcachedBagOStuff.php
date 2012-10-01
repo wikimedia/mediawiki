@@ -57,10 +57,11 @@ class MemcachedBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $cas_token[optional] mixed
 	 * @return Mixed
 	 */
-	public function get( $key ) {
-		return $this->client->get( $this->encodeKey( $key ) );
+	public function get( $key, &$cas_token = null ) {
+		return $this->client->get( $this->encodeKey( $key ), null, $cas_token );
 	}
 
 	/**
@@ -72,6 +73,18 @@ class MemcachedBagOStuff extends BagOStuff {
 	public function set( $key, $value, $exptime = 0 ) {
 		return $this->client->set( $this->encodeKey( $key ), $value,
 			$this->fixExpiry( $exptime ) );
+	}
+
+	/**
+	 * @param $key string
+	 * @param $cas_token mixed
+	 * @param $value
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $cas_token, $key, $value, $exptime = 0 ) {
+		return $this->client->cas( $cas_token, $this->encodeKey( $key ),
+			$value, $this->fixExpiry( $exptime ) );
 	}
 
 	/**
