@@ -1506,6 +1506,15 @@ second]
 !!end
 
 !! test
+External links: Pipe char between url and text
+!! input
+[http://example.com | link]
+!! result
+<p><a rel="nofollow" class="external text" href="http://example.com">| link</a>
+</p>
+!!end
+
+!! test
 External links: protocol-relative URL in brackets
 !! input
 [//example.com/ Test]
