@@ -29,10 +29,13 @@
 class APCBagOStuff extends BagOStuff {
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] int
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		$val = apc_fetch( $key );
+
+		$casToken = $val;
 
 		if ( is_string( $val ) ) {
 			if ( $this->isInteger( $val ) ) {
@@ -62,6 +65,17 @@ class APCBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param $casToken int
+	 * @param $key string
+	 * @param $value int
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		return apc_cas( $key, serialize( $value ), $casToken );
+	}
+
+	/**
 	 * @param $key string
 	 * @param $time int
 	 * @return bool
@@ -70,6 +84,34 @@ class APCBagOStuff extends BagOStuff {
 		apc_delete( $key );
 
 		return true;
+	}
+
+	/**
+	 * Merge an item.
+	 * APC's CAS functions only do integer, so this will use another method to achieve
+	 * CAS-like functionality.
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @return bool success
+	 */
+	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		while ( !$this->lock( $key, $exptime ) ) {
+			// waiting for lock to be released
+		}
+
+		$currentValue = $this->get( $key, $casToken );
+		$value = $callback( $this, $key, $currentValue );
+		$success = $this->set( $key, $value, $exptime );
+
+		if ( !$this->unlock( $key ) ) {
+			// this should never happen
+			throw new MWException( "Couldn't release lock $key." );
+		}
+
+		return $success;
 	}
 
 	public function incr( $key, $value = 1 ) {

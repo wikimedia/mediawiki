@@ -56,9 +56,10 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key );
+	abstract public function get( $key, &$casToken = null );
 
 	/**
 	 * Set an item.
@@ -70,6 +71,16 @@ abstract class BagOStuff {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
+	 * Check and set an item.
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
+
+	/**
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
@@ -78,13 +89,46 @@ abstract class BagOStuff {
 	abstract public function delete( $key, $time = 0 );
 
 	/**
+	 * Merge an item.
+	 * This is pretty much equivalent to performing get+cas, wrapped in 1 go,
+	 * thus making it possible to perform CAS or CAS-like functionality in
+	 * another way.
 	 * @param $key string
-	 * @param $timeout integer
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param $attempts int The amount of times to attempt a merge in case of failure
 	 * @return bool success
 	 */
-	public function lock( $key, $timeout = 0 ) {
-		/* stub */
-		return true;
+	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		while ( $attempts-- ) {
+			$currentValue = $this->get( $key, $casToken );
+
+			$value = $callback( $this, $key, $currentValue );
+
+			if ( $value !== false ) {
+				// if no current value set, we can't cas
+				if ( $currentValue === false ) {
+					$success = $this->set( $key, $value, $exptime );
+				} else {
+					$success = $this->cas( $casToken, $key, $value, $exptime );
+				}
+
+				if ( $success ) {
+					return $success;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * @param $key string
+	 * @param $timeout[optional] integer
+	 * @return bool success
+	 */
+	public function lock( $key, $timeout = 60 ) {
+		return $this->add( $key.':lock', $timeout );
 	}
 
 	/**
@@ -92,8 +136,7 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	public function unlock( $key ) {
-		/* stub */
-		return true;
+		return $this->delete( $key.':lock' );
 	}
 
 	/**
