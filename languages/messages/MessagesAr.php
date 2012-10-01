@@ -3177,7 +3177,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'اختبار جافاسكربت',
-'javascripttest-disabled' => 'هذه الخاصية معطلة.',
 'javascripttest-title' => 'تشغيل أختبارات $1',
 'javascripttest-pagetext-noframework' => 'هذه الصفحة محجوزة لإجراء أختبارات الجافا سكريبت.',
 'javascripttest-pagetext-unknownframework' => 'إطار اختبار غير معروف "$1".',

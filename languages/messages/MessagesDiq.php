@@ -2961,7 +2961,6 @@ dosyaya emaneti vindbiyo',
 
 # JavaScriptTest
 'javascripttest' => 'Cerbnayışê JavaScripti',
-'javascripttest-disabled' => 'Na kerdin, na wiki sero aktiv nêbiya.',
 'javascripttest-title' => 'Testê $1 gurweyênê',
 'javascripttest-pagetext-noframework' => 'Na pela testanê JavaScripta gurweynayışi re abıryaya.',
 'javascripttest-pagetext-unknownframework' => 'Çerçeweyê "$1" cerbnayışi xırabo.',

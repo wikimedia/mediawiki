@@ -2950,7 +2950,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'ജാവാസ്ക്രിപ്റ്റ് പരീക്ഷണം',
-'javascripttest-disabled' => 'ഈ വിക്കിയിൽ ഈ പ്രക്രിയ സജ്ജമാക്കിയിട്ടില്ല.',
 'javascripttest-title' => '$1 പരീക്ഷണങ്ങൾ നടക്കുന്നുണ്ട്',
 'javascripttest-pagetext-noframework' => 'ഈ താൾ ജാവാസ്ക്രിപ്റ്റ് പരീക്ഷണങ്ങൾ നടത്താനായി മാറ്റിവെച്ചിരിക്കുന്നതാണ്.',
 'javascripttest-pagetext-unknownframework' => 'അപരിചിതമായ പരീക്ഷണ ചട്ടക്കൂട് "$1".',

@@ -3134,7 +3134,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'آزمایش جاوا اسکریپت',
-'javascripttest-disabled' => 'این عملکرد در این ویکی فعال نشده‌است.',
 'javascripttest-title' => 'در حال اجرای آزمایش‌های $1',
 'javascripttest-pagetext-noframework' => 'این صفحه برای اجرای آزمایش‌های جاوا اسکریپت کنار گذاشته شده‌است.',
 'javascripttest-pagetext-unknownframework' => 'چارچوب آزمایشی ناشناخته «$1».',

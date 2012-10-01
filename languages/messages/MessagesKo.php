@@ -3059,7 +3059,6 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # JavaScriptTest
 'javascripttest' => '자바스크립트 테스트',
-'javascripttest-disabled' => '이 기능은 비활성되어 있습니다.',
 'javascripttest-title' => '$1 테스트 실행',
 'javascripttest-pagetext-noframework' => '이 페이지는 자바스크립트 테스트를 실행하기 위한 용도로 할당되어 있습니다.',
 'javascripttest-pagetext-unknownframework' => '실험용 프레임워크 "$1"를 알 수 없습니다.',

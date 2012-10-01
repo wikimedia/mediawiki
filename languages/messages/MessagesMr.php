@@ -2829,7 +2829,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'जावा स्क्रिप्ट तपासणी',
-'javascripttest-disabled' => 'हे कार्य अवरूद्ध केले आहे.',
 'javascripttest-title' => '$1 टेस्ट चालू आहेत',
 'javascripttest-pagetext-noframework' => 'हे पान जावा स्क्रिप्ट तपासणी साठी सुरक्षित केले आहे',
 'javascripttest-pagetext-unknownframework' => 'अज्ञात तपासणीचे ठिकाण $1',

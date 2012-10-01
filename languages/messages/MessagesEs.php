@@ -3012,7 +3012,6 @@ No hay un directorio temporal.',
 
 # JavaScriptTest
 'javascripttest' => 'Pruebas de JavaScript',
-'javascripttest-disabled' => 'Esta función no ha sido activada en este wiki.',
 'javascripttest-title' => 'Pruebas de $1 en ejecución',
 'javascripttest-pagetext-noframework' => 'Esta página está reservada para ejecutar pruebas de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Marco de pruebas desconocido "$1".',

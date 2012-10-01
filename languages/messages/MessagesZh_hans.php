@@ -2806,7 +2806,6 @@ $1被封禁的理由是：“$2”',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript测试',
-'javascripttest-disabled' => '该wiki站点上尚未启用此功能。',
 'javascripttest-title' => '运行$1测试',
 'javascripttest-pagetext-noframework' => '此页面被保留用于运行JavaScript测试。',
 'javascripttest-pagetext-unknownframework' => '未知的框架“$1”。',

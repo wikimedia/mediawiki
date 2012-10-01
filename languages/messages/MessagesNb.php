@@ -2954,7 +2954,6 @@ Lagre den på din egen datamaskin og last den opp her.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-testing',
-'javascripttest-disabled' => 'Denne funksjonen er ikke aktivert på denne wikien.',
 'javascripttest-title' => 'Kjører $1 tester',
 'javascripttest-pagetext-noframework' => 'Denne siden er reservert for å kjøre JavaScript-tester.',
 'javascripttest-pagetext-unknownframework' => 'Ukjent testerammeverk "$1".',

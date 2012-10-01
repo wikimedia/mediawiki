@@ -3016,7 +3016,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Тестування JavaScript',
-'javascripttest-disabled' => 'Цю функцію відключено.',
 'javascripttest-title' => 'Працює  $1  випробувань',
 'javascripttest-pagetext-noframework' => 'Ця сторінка призначений для тестування JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Невідоме середовище тестування " $1 ".',

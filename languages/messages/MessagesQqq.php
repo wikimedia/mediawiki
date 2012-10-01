@@ -2104,7 +2104,7 @@ Used on [[Special:UploadWizard]].',
 'img-auth-accessdenied' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied
 {{Identical|Access denied}}',
 'img-auth-nopathinfo' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description
-* This is plain text. Do not use any wiki syntax.',
+{{Doc-important|This is plain text. Do not use any wiki syntax.}}',
 'img-auth-notindir' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: When the specified path is not in upload directory.',
 'img-auth-badtitle' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Bad title, $1 is the invalid title',
 'img-auth-nologinnWL' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Logged in and file not whitelisted. $1 is the file not in whitelist.',
@@ -3287,7 +3287,6 @@ See also:
 
 # JavaScriptTest
 'javascripttest' => 'Title of [[Special:JavaScriptTest|the special page]]',
-'javascripttest-disabled' => 'Message displayed on [[Special:JavaScriptTest]] if this feature is disabled (it is disabled by default).',
 'javascripttest-title' => 'Title of the special page when running a test suite. Parameters:
 * $1 is the name of the framework, for example QUnit.',
 'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',

@@ -2967,7 +2967,6 @@ Spara den på din dator och ladda upp den här.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-testning',
-'javascripttest-disabled' => 'Denna funktion har inte aktiverats på denna wiki.',
 'javascripttest-title' => 'Kör $1 tester',
 'javascripttest-pagetext-noframework' => 'Denna sida är reserverat för att köra JavaScript-tester.',
 'javascripttest-pagetext-unknownframework' => 'Okänd testmiljö "$1".',

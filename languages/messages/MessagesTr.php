@@ -2872,7 +2872,6 @@ Geçici dosya kayıp.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
-'javascripttest-disabled' => 'Bu işlev, bu viki üzerinde etkinleştirilmedi.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Kullanıcı sayfanız',

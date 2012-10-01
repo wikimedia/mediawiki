@@ -12,6 +12,7 @@
  * @author ChrisiPK
  * @author Church of emacs
  * @author DaSch
+ * @author Das Schäfchen
  * @author Duesentrieb
  * @author Filzstift
  * @author Geitost
@@ -536,8 +537,8 @@ $messages = array(
 'newwindow' => '(wird in einem neuen Fenster geöffnet)',
 'cancel' => 'Abbrechen',
 'moredotdotdot' => 'Mehr …',
-'mypage' => 'Eigene Seite',
-'mytalk' => 'Eigene Diskussion',
+'mypage' => 'Meine Seite',
+'mytalk' => 'Meine Diskussion',
 'anontalk' => 'Diskussionsseite dieser IP',
 'navigation' => 'Navigation',
 'and' => '&#32;und',
@@ -547,14 +548,14 @@ $messages = array(
 'qbbrowse' => 'Durchsuchen',
 'qbedit' => 'Bearbeiten',
 'qbpageoptions' => 'Seitenoptionen',
-'qbpageinfo' => 'Seitendaten',
+'qbpageinfo' => 'Kontext',
 'qbmyoptions' => 'Meine Seiten',
 'qbspecialpages' => 'Spezialseiten',
-'faq' => 'Häufige Fragen',
+'faq' => 'Häufig gestellte Fragen',
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Abschnitt hinzufügen',
+'vector-action-addsection' => 'Thema hinzufügen',
 'vector-action-delete' => 'Löschen',
 'vector-action-move' => 'Verschieben',
 'vector-action-protect' => 'Schützen',
@@ -654,8 +655,8 @@ $1',
 'privacy' => 'Datenschutz',
 'privacypage' => 'Project:Datenschutz',
 
-'badaccess' => 'Keine ausreichenden Rechte',
-'badaccess-group0' => 'Du hast nicht die erforderliche Berechtigung für diese Aktion.',
+'badaccess' => 'Keine ausreichenden Benutzerrechte',
+'badaccess-group0' => 'Du hast nicht die erforderlichen Benutzerrechte für diese Aktion.',
 'badaccess-groups' => 'Diese Aktion ist auf Benutzer beschränkt, die {{PLURAL:$2|der Gruppe|einer der Gruppen}} „$1“ angehören.',
 
 'versionrequired' => 'Version $1 von MediaWiki ist erforderlich.',
@@ -791,7 +792,7 @@ Nutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt 
 $2',
 'namespaceprotected' => "Du hast nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
 'customcssprotected' => 'Du hast nicht die Berechtigung, diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
-'customjsprotected' => 'Du hast nicht die Berechtigung diese JavaScript enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
+'customjsprotected' => 'Du hast nicht die Berechtigung, diese JavaScript enthaltende Seite zu bearbeiten, da es sich hierbei um die persönlichen Einstellungen eines anderen Benutzers handelt.',
 'ns-specialprotected' => 'Spezialseiten können nicht bearbeitet werden.',
 'titleprotected' => "Eine Seite mit diesem Namen kann nicht angelegt werden.
 Die Sperre wurde durch [[User:$1|$1]] mit der Begründung ''„$2“'' eingerichtet.",
@@ -811,12 +812,12 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 # Login and logout pages
 'logouttext' => "'''Du bist nun abgemeldet.'''
 
-Du kannst {{SITENAME}} jetzt anonym weiternutzen, oder dich erneut unter demselben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
 Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomecreation' => '== Willkommen, $1! ==
 
-Dein Benutzerkonto wurde eingerichtet.
-Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupassen.',
+Dein Benutzerkonto wurde soeben eingerichtet.
+Vergiss nicht, deine [[Special:Preferences|Einstellungen]] für dieses Wiki anzupassen.',
 'yourname' => 'Benutzername:',
 'yourpassword' => 'Passwort:',
 'yourpasswordagain' => 'Passwort wiederholen:',
@@ -908,7 +909,7 @@ Bitte warte, bevor du es erneut probierst.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Unbekannter Fehler mit der Funktion mail() von PHP',
-'user-mail-no-addy' => 'Versuchte eine E-Mail ohne Angabe einer E-Mail-Adresse zu versenden',
+'user-mail-no-addy' => 'Versuchte, eine E-Mail ohne Angabe einer E-Mail-Adresse zu versenden.',
 
 # Change password dialog
 'resetpass' => 'Passwort ändern',
@@ -998,7 +999,7 @@ Temporäres Passwort: $2',
 'showpreview' => 'Vorschau zeigen',
 'showlivepreview' => 'Sofortige Vorschau',
 'showdiff' => 'Änderungen zeigen',
-'anoneditwarning' => "Du bearbeitest diese Seite unangemeldet. Wenn du speicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
+'anoneditwarning' => "Du bearbeitest diese Seite unangemeldet. Wenn du sie speicherst, wird deine aktuelle IP-Adresse in der Versionsgeschichte aufgezeichnet und ist damit unwiderruflich '''öffentlich''' einsehbar.",
 'anonpreviewwarning' => "''Du bist nicht angemeldet. Beim Speichern wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.''",
 'missingsummary' => "'''Hinweis:''' Du hast keine Zusammenfassung angegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Änderung ohne Zusammenfassung übernommen.",
 'missingcommenttext' => 'Dein Abschnitt enthält keinen Text.',
@@ -1008,7 +1009,7 @@ Temporäres Passwort: $2',
 'blockedtitle' => 'Benutzer ist gesperrt',
 'blockedtext' => "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''
 
-Die Sperrung wurde von $1 durchgeführt.
+Die Sperrung wurde vom Administrator $1 durchgeführt.
 Als Grund wurde ''$2'' angegeben.
 
 * Beginn der Sperre: $8
@@ -1017,7 +1018,7 @@ Als Grund wurde ''$2'' angegeben.
 
 Du kannst $1 oder einen der anderen [[{{MediaWiki:Grouppage-sysop}}|Administratoren]] kontaktieren, um über die Sperre zu diskutieren.
 Du kannst die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange keine gültige E-Mail-Adresse in deinen [[Special:Preferences|Benutzerkonto-Einstellungen]] eingetragen ist oder diese Funktion für dich gesperrt wurde.
-Deine aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.
+Deine aktuelle IP-Adresse ist $3 und die Sperrkennung lautet $5.
 Bitte füge alle Informationen jeder Anfrage hinzu, die du stellst.",
 'autoblockedtext' => "Deine IP-Adresse wurde automatisch gesperrt, da sie von einem anderen Benutzer genutzt wurde, der von $1 gesperrt wurde.
 Als Grund wurde angegeben:
@@ -1105,7 +1106,7 @@ Eine Speicherung kann den Seiteninhalt zerstören. Dies geschieht bisweilen durc
 'editingsection' => 'Bearbeiten von „$1“ (Abschnitt)',
 'editingcomment' => 'Bearbeiten von „$1“ (Neuer Abschnitt)',
 'editconflict' => 'Bearbeitungskonflikt: $1',
-'explainconflict' => "Jemand anders hat diese Seite geändert, nachdem du angefangen hast sie zu bearbeiten.
+'explainconflict' => "Jemand anders hat diese Seite geändert, nachdem du angefangen hast, sie zu bearbeiten.
 Das obere Textfeld enthält den aktuellen Bearbeitungsstand der Seite.
 Das untere Textfeld enthält deine Änderungen.
 Bitte füge deine Änderungen in das obere Textfeld ein.
@@ -1188,7 +1189,7 @@ Sie darf nicht mehr als $2 {{PLURAL:$2|Aufruf|Aufrufe}} haben, es {{PLURAL:$1|is
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.
-Bitte prüfe den Vergleich unten um sicherzustellen, dass du dies tun möchtest, und speichere dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.',
+Bitte prüfe den Vergleich unten, um sicherzustellen, dass du dies tun möchtest, und speichere dann unten deine Änderungen, um die Bearbeitung rückgängig zu machen.',
 'undo-failure' => 'Die Änderung konnte nicht rückgängig gemacht werden, da der betroffene Abschnitt zwischenzeitlich verändert wurde.',
 'undo-norev' => 'Die Bearbeitung konnte nicht rückgängig gemacht werden, da sie nicht vorhanden ist oder gelöscht wurde.',
 'undo-summary' => 'Änderung $1 von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht.',
@@ -1498,7 +1499,7 @@ Hier ein zufällig generierter Wert, den du verwenden kannst: $1',
 'savedprefs' => 'Deine Einstellungen wurden gespeichert.',
 'timezonelegend' => 'Zeitzone:',
 'localtime' => 'Ortszeit:',
-'timezoneuseserverdefault' => 'Standardzeit des Wikis nutzen ($1)',
+'timezoneuseserverdefault' => 'Standardzeit dieses Wikis nutzen ($1)',
 'timezoneuseoffset' => 'Andere (Unterschied angeben)',
 'timezoneoffset' => 'Unterschied¹:',
 'servertime' => 'Aktuelle Zeit auf dem Server:',
@@ -1807,7 +1808,7 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'ignorewarning' => 'Warnung ignorieren und Datei speichern',
 'ignorewarnings' => 'Warnungen ignorieren',
 'minlength1' => 'Dateinamen müssen mindestens einen Buchstaben lang sein.',
-'illegalfilename' => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benenne die Datei um und versuche sie erneut hochzuladen.',
+'illegalfilename' => 'Der Dateiname „$1“ enthält mindestens ein nicht erlaubtes Zeichen. Bitte benenne die Datei um und versuche, sie erneut hochzuladen.',
 'filename-toolong' => 'Dateinamen dürfen nicht größer als 240 Byte sein.',
 'badfilename' => 'Der Dateiname wurde in „$1“ geändert.',
 'filetype-mime-mismatch' => 'Dateierweiterung „.$1“ stimmt nicht mit dem MIME-Typ ($2) überein.',
@@ -1817,14 +1818,14 @@ Um ein '''Bild''' in einer Seite zu verwenden, nutze einen Link in der folgenden
 'filetype-banned-type' => "'''„.$1“''' {{PLURAL:$4|ist ein nicht erlaubter Dateityp|sind nicht erlaubte Dateitypen}}.
 {{PLURAL:$3|Erlaubter Dateityp ist|Erlaubte Dateitypen sind}} $2.",
 'filetype-missing' => 'Die hochzuladende Datei hat keine Erweiterung (z. B. „.jpg“).',
-'empty-file' => 'Die übertragene Datei ist leer',
-'file-too-large' => 'Die übertragene Datei ist zu groß',
-'filename-tooshort' => 'Der Dateiname ist zu kurz',
+'empty-file' => 'Die von dir übertragene Datei hat keinen Inhalt.',
+'file-too-large' => 'Die hochgeladene Datei war zu groß.',
+'filename-tooshort' => 'Der Dateiname ist zu kurz.',
 'filetype-banned' => 'Diese Dateiendung ist gesperrt.',
 'verification-error' => 'Diese Datei hat die Dateiprüfung nicht bestanden.',
-'hookaborted' => 'Der Versuch, die Änderung durchzuführen, ist aufgrund eines Extension-Hooks fehlgeschlagen',
-'illegal-filename' => 'Der Dateiname ist nicht erlaubt',
-'overwrite' => 'Das Überschreiben einer existierenden Datei ist nicht erlaubt',
+'hookaborted' => 'Der Versuch, die Änderung durchzuführen, wurde von einer Parsererweiterung abgebrochen.',
+'illegal-filename' => 'Der Dateiname ist nicht zulässig.',
+'overwrite' => 'Das Überschreiben einer bereits vorhandenen Datei ist nicht erlaubt.',
 'unknown-error' => 'Ein unbekannter Fehler ist aufgetreten.',
 'tmp-create-error' => 'Temporäre Datei konnte nicht erstellt werden',
 'tmp-write-error' => 'Fehler beim Schreiben der temporären Datei',
@@ -1840,7 +1841,7 @@ Die Beschreibungsseite musst du nach dem Hochladen der Datei noch manuell bearbe
 [[$1|thumb]]',
 'fileexists-extension' => 'Eine Datei ähnlichen Namens ist bereits vorhanden: [[$2|thumb]]
 * Name der hochzuladenden Datei: <strong>[[:$1]]</strong>
-* Name der vorhandenen Datei: <strong>[[:$2]]</strong>
+* Name der bereits vorhandenen Datei: <strong>[[:$2]]</strong>
 Bitte wähle einen anderen Namen.',
 'fileexists-thumbnail-yes' => "Bei der Datei scheint es sich um ein Bild verringerter Größe ''(Miniatur)'' zu handeln. [[$1|thumb]]
 Bitte prüfe die Datei <strong>[[:$1]]</strong>.
@@ -1940,7 +1941,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'backend-fail-internal' => 'Im Speicher-Backend „$1“ ist ein unbekannter Fehler aufgetreten.',
 'backend-fail-contenttype' => 'Der Inhaltstyp, der im Pfad „$1“ zu speichernden Datei, konnte nicht bestimmt werden.',
 'backend-fail-batchsize' => 'Eine Stapelverarbeitungsdatei, die {{PLURAL:$1|eine Operation|$1 Operationen}} enthält, wurde an das Speicher-Backend gesandt. Die Begrenzung liegt allerdings bei {{PLURAL:$2|einer Operation|$2 Operationen}}.',
-'backend-fail-usable' => 'Die Datei „$1“ konnte, entweder aufgrund eines nicht vorhandenen Verzeichnisses oder aufgrund unzureichender Berechtigungen, weder abgerufen noch gespeichert werden.',
+'backend-fail-usable' => 'Die Datei „$1“ konnte entweder aufgrund eines nicht vorhandenen Verzeichnisses oder wegen unzureichender Berechtigungen weder abgerufen noch gespeichert werden.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Es konnte keine Verbindung zur Journaldatenbank des Speicher-Backends „$1“ hergestellt werden.',
@@ -1971,17 +1972,17 @@ Sie kann daher keiner ordnungsgemäßen Sicherheitsüberprüfung unterzogen werd
 'uploadstash-summary' => 'Diese Seite ermöglicht den Zugriff auf Dateien, die hochgeladen wurden, bzw. gerade hochgeladen werden, aber noch nicht auf dem Wiki publiziert wurden. Diese Dateien sind, der hochladende Benutzer ausgenommen, noch nicht öffentlich einsehbar.',
 'uploadstash-clear' => 'Die vorab gespeicherten Dateien entfernen',
 'uploadstash-nofiles' => 'Es sind keine vorab gespeicherten Dateien vorhanden.',
-'uploadstash-badtoken' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil die Sitzungsdaten abgelaufen sind. Bitte erneut versuchen.',
+'uploadstash-badtoken' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos, vielleicht weil deine Sitzungsdaten abgelaufen sind. Bitte versuche es erneut.',
 'uploadstash-errclear' => 'Das Entfernen der vorab gespeicherten Dateien war erfolglos.',
 'uploadstash-refresh' => 'Liste der Dateien aktualisieren',
 'invalid-chunk-offset' => 'Ungültiger Startpunkt',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Zugriff verweigert',
-'img-auth-nopathinfo' => 'PATH_INFO fehlt.
+'img-auth-nopathinfo' => 'Die Angabe PATH_INFO fehlt.
 Der Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Sie könnte CGI-gestützt sein und kann daher img_auth nicht ermöglichen.
-Siehe hierzu die Seite https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Sie könnte CGI-gestützt sein und kann daher „img_auth“ (Authentifizierung des Dateiaufrufs) nicht unterstützen.
+Siehe hierzu die Seite https://www.mediawiki.org/wiki/Manual:Image_Authorization (englisch) für weitere Informationen.',
 'img-auth-notindir' => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
 'img-auth-badtitle' => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
 'img-auth-nologinnWL' => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
@@ -2009,11 +2010,11 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'upload-curl-error6' => 'URL ist nicht erreichbar',
 'upload-curl-error6-text' => 'Die angegebene URL ist nicht erreichbar. Prüfe sowohl die URL auf Fehler als auch den Online-Status der Seite.',
 'upload-curl-error28' => 'Zeitüberschreitung beim Hochladen',
-'upload-curl-error28-text' => 'Die Seite braucht zu lange für eine Antwort. Prüfe, ob die Seite online ist, warte einen kurzen Moment und versuche es dann erneut. Es kann sinnvoll sein, einen erneuten Versuch zu einem anderen Zeitpunkt zu probieren.',
+'upload-curl-error28-text' => 'Die Seite braucht zu lange, um zu antworten. Prüfe, ob die Seite online ist, warte einen kurzen Moment und versuche es dann erneut. Es kann sinnvoll sein, es zu einem anderen Zeitpunkt erneut zu versuchen.',
 
 'license' => 'Lizenz:',
 'license-header' => 'Lizenz',
-'nolicense' => 'keine Vorauswahl',
+'nolicense' => 'Keine Vorauswahl',
 'license-nopreview' => '(es ist keine Vorschau verfügbar)',
 'upload_source_url' => ' (gültige, öffentlich zugängliche URL)',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
@@ -2143,7 +2144,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'statistics-edits' => 'Seitenbearbeitungen',
 'statistics-edits-average' => 'Bearbeitungen pro Seite im Durchschnitt',
 'statistics-views-total' => 'Seitenaufrufe gesamt',
-'statistics-views-total-desc' => 'Aufrufe nicht vorhandener Seiten und von Spezialseiten werden nicht berücksichtigt',
+'statistics-views-total-desc' => 'Aufrufe nicht vorhandener Seiten und von Spezialseiten werden nicht berücksichtigt.',
 'statistics-views-peredit' => 'Seitenaufrufe pro Bearbeitung',
 'statistics-users' => 'Registrierte [[Special:ListUsers|Benutzer]]',
 'statistics-users-active' => 'Aktive Benutzer',
@@ -2506,9 +2507,9 @@ Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int
 
 # Edit tokens
 'sessionfailure-title' => 'Sitzungsfehler',
-'sessionfailure' => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
+'sessionfailure' => 'Es gab ein Problem bei der Übertragung deiner Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
-Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
+Bitte gehe zurück zu vorherigen Seite, lade sie erneut und versuche den Vorgang erneut auszuführen.',
 
 # Protect
 'protectlogpage' => 'Seitenschutz-Logbuch',
@@ -2720,7 +2721,7 @@ Bitte gib den Grund für die Sperre an.',
 'blockipsuccesstext' => 'Der Benutzer / die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
 Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].',
 'ipb-blockingself' => 'Du bist gerade dabei, dich selbst zu sperren! Möchtest du das wirklich tun?',
-'ipb-confirmhideuser' => 'Du bist gerade dabei einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?',
+'ipb-confirmhideuser' => 'Du bist gerade dabei, einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?',
 'ipb-edit-dropdown' => 'Sperrgründe bearbeiten',
 'ipb-unblock-addr' => '„$1“ freigeben',
 'ipb-unblock' => 'IP-Adresse/Benutzer freigeben',
@@ -3027,7 +3028,6 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-Test',
-'javascripttest-disabled' => 'Diese Funktion wurde in diesem Wiki nicht aktiviert.',
 'javascripttest-title' => '$1-Tests werden durchgeführt',
 'javascripttest-pagetext-noframework' => 'Diese Seite ist JavaSkript-Tests vorbehalten.',
 'javascripttest-pagetext-unknownframework' => 'Unbekanntes Framework „$1“.',
@@ -3050,7 +3050,7 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'tooltip-ca-talk' => 'Diskussion zum Seiteninhalt',
 'tooltip-ca-edit' => 'Seite bearbeiten. Bitte vor dem Speichern die Vorschaufunktion benutzen.',
 'tooltip-ca-addsection' => 'Neuen Abschnitt beginnen',
-'tooltip-ca-viewsource' => 'Diese Seite ist geschützt. Der Quelltext kann angesehen werden.',
+'tooltip-ca-viewsource' => 'Diese Seite ist geschützt. Ihr Quelltext kann dennoch angesehen und kopiert werden.',
 'tooltip-ca-history' => 'Frühere Versionen dieser Seite',
 'tooltip-ca-protect' => 'Diese Seite schützen',
 'tooltip-ca-unprotect' => 'Seitenschutz ändern',
@@ -4041,7 +4041,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'revdelete-restricted' => 'Einschränkungen gelten auch für Administratoren',
 'revdelete-unrestricted' => 'Einschränkungen für Administratoren aufgehoben',
 'logentry-move-move' => '$1 verschob Seite $3 nach $4',
-'logentry-move-move-noredirect' => '$1 verschob Seite $3 nach $4 ohne dabei eine Weiterleitung anzulegen',
+'logentry-move-move-noredirect' => '$1 verschob Seite $3 nach $4, ohne dabei eine Weiterleitung anzulegen',
 'logentry-move-move_redir' => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
 'logentry-move-move_redir-noredirect' => '$1 verschob Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
 'logentry-patrol-patrol' => '$1 markierte Version $4 von Seite $3 als kontrolliert',
@@ -4053,8 +4053,8 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'newuserlog-byemail' => 'das Passwort wurde per E-Mail versandt',
 
 # Feedback
-'feedback-bugornote' => 'Sofern Du detailliert ein technisches Problem beschreiben möchtest, melde bitte [$1 einen Fehler].
-Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kommentar wird, zusammen mit deinem Benutzernamen und der Version des von Dir verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.',
+'feedback-bugornote' => 'Sofern du detailliert ein technisches Problem beschreiben möchtest, melde bitte [$1 einen Fehler].
+Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kommentar wird, zusammen mit deinem Benutzernamen und der Version des von dir verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.',
 'feedback-subject' => 'Betreff:',
 'feedback-message' => 'Nachricht:',
 'feedback-cancel' => 'Abbrechen',
@@ -4086,7 +4086,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'api-error-filetype-banned' => 'Diese Dateiendung ist gesperrt.',
 'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|ist ein nicht zulässiger Dateityp|sind nicht zulässige Dateitypen}}. {{PLURAL:$3|Ein zulässiger Dateityp ist|Zulässige Dateitypen sind}} $2.',
 'api-error-filetype-missing' => 'Die hochzuladende Datei hat keine Dateiendung.',
-'api-error-hookaborted' => 'Die von dir vorgesehene Anpassung kann nicht durchgeführt werden (Unterbrechung durch eine Programmschnittstelle).',
+'api-error-hookaborted' => 'Der Versuch, die Änderung durchzuführen, wurde von einer Parsererweiterung (API) abgebrochen.',
 'api-error-http' => 'Interner Fehler: Es konnte keine Verbindung zum Server hergestellt werden.',
 'api-error-illegal-filename' => 'Der Dateiname ist nicht erlaubt.',
 'api-error-internal-error' => 'Interner Fehler: Ein unbekannter Fehler ist beim Hochladen der Datei ins Wiki aufgetreten.',

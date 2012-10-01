@@ -3066,7 +3066,6 @@ Bes esu joot, un versök et noch ens.',
 
 # JavaScriptTest
 'javascripttest' => ' JavaSkrepte ußprobeere.',
-'javascripttest-disabled' => 'Di Funxjon es en heh dämm Wiki ußjeschalldt.',
 'javascripttest-title' => 'De Prööfunge „$1“ loufe.',
 'javascripttest-pagetext-noframework' => 'Heh di Sigg es för JavaSkrepte ußzeprobeere.',
 'javascripttest-pagetext-unknownframework' => 'Dä Prööfrahme „$1“ es onbikannt.',

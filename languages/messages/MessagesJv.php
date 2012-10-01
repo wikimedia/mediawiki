@@ -2592,7 +2592,6 @@ Simpen nèng komputer Sampéyan lan unggaha nèng kéné.',
 
 # JavaScriptTest
 'javascripttest' => 'Panjajalan JavaScript',
-'javascripttest-disabled' => 'Fungsi iki durung diurubaké nèng wiki iki.',
 'javascripttest-title' => 'Nglakokaké pangujian $1',
 'javascripttest-pagetext-noframework' => 'Kaca iki disadhiyakaké kanggo nglakokaké panjajalan JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Rangka kerja panjajalan ora dingertèni "$1".',

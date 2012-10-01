@@ -2859,7 +2859,6 @@ Snimite je na svoje računalo i postavite je ovdje.',
 
 # JavaScriptTest
 'javascripttest' => 'Testiranje JavaScripta',
-'javascripttest-disabled' => 'Ova funkcija nije omogućena na ovom wikiprojektu.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Moja suradnička stranica',

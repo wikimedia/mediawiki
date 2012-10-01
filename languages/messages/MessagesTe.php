@@ -789,8 +789,7 @@ $2
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలు చూడవచ్చు],
 లేదా [{{fullurl:{{FULLPAGENAME}}|action=edit}} ఈ పేజీని మార్చవచ్చు]</span>.',
 'noarticletext-nopermission' => 'ప్రస్తుతం ఈ పేజీలో పాఠ్యమేమీ లేదు.
-మీరు ఇతర పేజీలలో [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక కోసం వెతకవచ్చు]],
-లేదా <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలలో వెతకండి]</span>.',
+మీరు ఇతర పేజీలలో [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక కోసం వెతకవచ్చు]], లేదా <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలలో వెతకవచ్చు]</span>, కానీ ఈ పేజీని సృష్టించడానికి మీకు అనుమతి లేదు.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" అనే వాడుకరి ఖాతా నమోదయిలేదు. మీరు ఈ పేజీని సృష్టించ/సరిదిద్దాలనుకుంటే, సరిచూసుకోండి.',
 'userpage-userdoesnotexist-view' => 'వాడుకరి ఖాతా "$1" నమోదుకాలేదు.',
 'blocked-notice-logextract' => 'ప్రస్తుతం ఈ వాడుకరిని నిరోధించారు.

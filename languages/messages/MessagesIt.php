@@ -2856,7 +2856,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # JavaScriptTest
 'javascripttest' => 'Sperimentazione JavaScript',
-'javascripttest-disabled' => 'Questa funzione non è abilitata su questo wiki.',
 'javascripttest-title' => 'In esecuzione test per $1',
 'javascripttest-pagetext-noframework' => "Questa pagina è riservata all'esecuzione di test di JavaScript.",
 'javascripttest-pagetext-unknownframework' => 'Framework di test sconosciuto "$1".',

@@ -2914,7 +2914,6 @@ Palun ürita uuesti.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScripti katsetamine',
-'javascripttest-disabled' => 'See funktsioon pole selles vikis lubatud.',
 'javascripttest-title' => '$1-katse käitus',
 'javascripttest-pagetext-noframework' => 'Seda lehekülge hoitakse JavaScripti katsete jaoks.',
 'javascripttest-pagetext-unknownframework' => 'Tundmatu katseraamistik "$1".',

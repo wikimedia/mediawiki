@@ -2822,7 +2822,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-ის ტესტირება',
-'javascripttest-disabled' => 'ეს ფუნქცია ამ ვიკიში არ ჩართულა.',
 'javascripttest-title' => 'მიმდინარეობს $1-ის ტესტირება',
 'javascripttest-pagetext-noframework' => 'ეს გვერდი დარეგისტრირებულია JavaScript-ის ტესტების გასაშვებად.',
 'javascripttest-pagetext-unknownframework' => '„$1-ის“ ტესტირების უცნობი გარემო.',

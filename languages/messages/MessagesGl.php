@@ -2910,7 +2910,6 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 
 # JavaScriptTest
 'javascripttest' => 'Proba de JavaScript',
-'javascripttest-disabled' => 'Esta función está desactivada neste wiki.',
 'javascripttest-title' => 'Executando probas de $1',
 'javascripttest-pagetext-noframework' => 'Esta páxina está reservada para executar probas do JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Descoñécese a infraestrutura dixital "$1" de probas.',

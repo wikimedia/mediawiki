@@ -2746,7 +2746,6 @@ Pangngaasi ta padasem manen.',
 
 # JavaScriptTest
 'javascripttest' => 'Subsubokan ti JavaScript',
-'javascripttest-disabled' => 'Daytoy a pamay-an ket saan pay a napakabaelan iti daytoy a wiki.',
 'javascripttest-title' => 'Agpatpataray ti $1 a subsubokan',
 'javascripttest-pagetext-noframework' => 'Daytoy a panid ket nailasin para iti panagpataray ti subsubokan a JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Di amamo a pagsubsubokan a tabas "$1".',

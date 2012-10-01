@@ -2993,7 +2993,6 @@ Não há um directório temporário.',
 
 # JavaScriptTest
 'javascripttest' => 'Teste de JavaScript',
-'javascripttest-disabled' => 'Esta função está desabilitada neste wiki.',
 'javascripttest-title' => 'Executando os testes $1',
 'javascripttest-pagetext-noframework' => 'Esta página é reservada para a execução de testes de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Estrutura de testes "$1" desconhecido.',

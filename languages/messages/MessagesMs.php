@@ -1475,7 +1475,7 @@ Tindakan ini tidak boleh dibatalkan.',
 
 # User rights log
 'rightslog' => 'Log hak pengguna',
-'rightslogtext' => 'Ini ialah log bagi perubahan hak pengguna.',
+'rightslogtext' => 'Ini ialah log perubahan terhadap hak pengguna.',
 'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
 'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
 'rightsnone' => '(tiada)',
@@ -2839,7 +2839,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # JavaScriptTest
 'javascripttest' => 'Ujian JavaScript',
-'javascripttest-disabled' => 'Fungsi ini belum dapat dihidupkan di wki ini.',
 'javascripttest-title' => 'Ujian $1 sedang dijalankan',
 'javascripttest-pagetext-noframework' => 'Laman ini ditempah untuk menjalankan ujian JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Kerangka "$1" tidak dikenali.',

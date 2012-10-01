@@ -2003,6 +2003,7 @@ Denkt w.e.g. drunn datt aner Internetsäiten dëse Fichier mat enger direkter UR
 Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisitive) oder déi gefrote Säit (och case-senisitive) agitt.",
 'logempty' => 'Näischt fonnt.',
 'log-title-wildcard' => 'Titel fänkt mat dësem Text un',
+'showhideselectedlogentries' => 'Déi erausgesichte Entréeën am Logbuch weisen/verstoppen',
 
 # Special:AllPages
 'allpages' => 'All Säiten',
@@ -2780,7 +2781,6 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-Test',
-'javascripttest-disabled' => 'Dës Funktioun gouf an dëser Wiki net aktivéiert.',
 'javascripttest-title' => '$1-Tester ginn elo gemaach',
 'javascripttest-pagetext-noframework' => 'Dës Säit ass fir Java-Script-Tester reservéiert.',
 'javascripttest-pagetext-unknownframework' => 'Onbekannten Test-Framework "$1".',
@@ -2902,6 +2902,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-header-restrictions' => 'Spär vun der Säit',
 'pageinfo-header-properties' => 'Eegeschafte vun der Säit',
 'pageinfo-display-title' => 'Titel dee gewise gëtt',
+'pageinfo-default-sort' => 'Standard-Zortéierschlëssel',
 'pageinfo-length' => 'Gréisst vun der Säit (a Bytes)',
 'pageinfo-article-id' => 'ID (Nummer) vun der Säit',
 'pageinfo-views' => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
@@ -3176,6 +3177,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-iimsupplementalcategory' => 'Zousätzlech Kategorien',
 'exif-datetimeexpires' => 'Net benotzen nom',
 'exif-datetimereleased' => 'Erausginn den',
+'exif-originaltransmissionref' => "Geo-Code vun der Plaz vu wou d'Foto iwwermëttelt gouf",
 'exif-identifier' => 'Identifiant',
 'exif-lens' => 'Objektiv dat benotzt gouf',
 'exif-serialnumber' => 'Seriennummer vun der Kamera',

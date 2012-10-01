@@ -2905,7 +2905,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Тэставаньне JavaScript',
-'javascripttest-disabled' => 'Гэтая функцыя не была ўключаная ў гэтай вікі.',
 'javascripttest-title' => 'Праводзіцца тэставаньне $1',
 'javascripttest-pagetext-noframework' => 'Гэтая старонка трымаецца для правядзеньня тэстаў JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Невядомая бібліятэка тэставаньня «$1».',

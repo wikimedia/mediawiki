@@ -3027,7 +3027,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'בדיקת JavaScript',
-'javascripttest-disabled' => 'תכונה זו לא הופעלה באתר הוויקי הזה.',
 'javascripttest-title' => 'הרצת בדיקות $1',
 'javascripttest-pagetext-noframework' => 'דף זה שמור להרצת בדיקות JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'סביבת הבדיקות "$1" אינה ידועה.',

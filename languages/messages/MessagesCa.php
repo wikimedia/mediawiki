@@ -2810,7 +2810,6 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 
 # JavaScriptTest
 'javascripttest' => 'Proves de JavaScript',
-'javascripttest-disabled' => "No s'ha inhabilitat la funció en el wiki.",
 'javascripttest-title' => "S'estan executant $1 proves",
 'javascripttest-pagetext-noframework' => "Es reserva la pàgina per a l'execució de tests amb JavaScript.",
 'javascripttest-pagetext-unknownframework' => "L'entorn de proves «$1» és desconegut.",

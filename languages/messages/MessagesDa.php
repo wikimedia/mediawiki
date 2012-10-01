@@ -2791,7 +2791,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 
 # JavaScriptTest
 'javascripttest' => 'Test af JavaScript',
-'javascripttest-disabled' => 'Denne funktion er ikke aktiveret på denne wiki.',
 'javascripttest-title' => 'Kører $1 test',
 'javascripttest-pagetext-noframework' => 'Denne side er reserveret til at teste JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Ukendt testmiljø "$1".',

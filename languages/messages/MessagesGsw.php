@@ -719,7 +719,7 @@ Temporär Passwort: $2',
 'hr_tip' => 'Horizontali Linie (sparsam verwende)',
 
 # Edit pages
-'summary' => 'Zämefassig:',
+'summary' => 'Zämmefassig:',
 'subject' => 'Beträff:',
 'minoredit' => 'Numen es birebitzeli gänderet',
 'watchthis' => 'Dä Artikel beobachte',
@@ -2721,7 +2721,6 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-Tescht',
-'javascripttest-disabled' => 'Die Funktion isch in däm Wiki nit aktiviert wore.',
 'javascripttest-title' => '$1-Tescht wäre durgfiert',
 'javascripttest-pagetext-noframework' => 'Die Syte isch reserviert fir JavaSkript-Tescht.',
 'javascripttest-pagetext-unknownframework' => 'Nit bekannt Framework „$1“.',

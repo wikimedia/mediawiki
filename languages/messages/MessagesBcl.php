@@ -2632,7 +2632,6 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 
 # JavaScriptTest
 'javascripttest' => 'Testing sa JavaScript',
-'javascripttest-disabled' => 'Ining punksyon dae pinagpagana sa wiki na ini.',
 'javascripttest-title' => 'Pinapadalagan na $1 na mga pagtesting',
 'javascripttest-pagetext-noframework' => 'An pahinang ini reserbado para sa pagpapadalagan kan mga pagtesting sa JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Bakong bistadong modelo para sa pagtesting kan "$1".',
