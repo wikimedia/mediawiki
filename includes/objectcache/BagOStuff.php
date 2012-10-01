@@ -56,9 +56,10 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key );
+	abstract public function get( $key, &$casToken = null );
 
 	/**
 	 * Set an item.
@@ -70,6 +71,16 @@ abstract class BagOStuff {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
+	 * Check and set an item.
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
+
+	/**
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
@@ -78,13 +89,105 @@ abstract class BagOStuff {
 	abstract public function delete( $key, $time = 0 );
 
 	/**
+	 * Merge changes into the existing cache value (possibly creating a new one)
+	 *
 	 * @param $key string
-	 * @param $timeout integer
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param $attempts int The amount of times to attempt a merge in case of failure
 	 * @return bool success
 	 */
-	public function lock( $key, $timeout = 0 ) {
-		/* stub */
-		return true;
+	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		return $this->mergeViaCas( $key, $callback, $exptime, $attempts );
+	}
+
+	/**
+	 * @see BagOStuff::merge()
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @return bool success
+	 */
+	protected function mergeViaCas( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		do {
+			$casToken = null; // passed by reference
+			$currentValue = $this->get( $key, $casToken ); // get the old value
+			$value = $callback( $this, $key, $currentValue ); // derive the new value
+
+			if ( $value === false ) {
+				$success = true; // do nothing
+			} elseif ( $currentValue === false ) {
+				// Try to create the key, failing if it gets created in the meantime
+				$success = $this->add( $key, $value, $exptime );
+			} else {
+				// Try to update the key, failing if it gets changed in the meantime
+				$success = $this->cas( $casToken, $key, $value, $exptime );
+			}
+		} while ( !$success && --$attempts );
+
+		return $success;
+	}
+
+	/**
+	 * @see BagOStuff::merge()
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @return bool success
+	 */
+	protected function mergeViaLock( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		if ( !$this->lock( $key, 60 ) ) {
+			return false;
+		}
+
+		$currentValue = $this->get( $key ); // get the old value
+		$value = $callback( $this, $key, $currentValue ); // derive the new value
+
+		if ( $value === false ) {
+			$success = true; // do nothing
+		} else {
+			$success = $this->set( $key, $value, $exptime ); // set the new value
+		}
+
+		if ( !$this->unlock( $key ) ) {
+			// this should never happen
+			trigger_error( "Could not release lock for key '$key'." );
+		}
+
+		return $success;
+	}
+
+	/**
+	 * @param $key string
+	 * @param $timeout integer [optional]
+	 * @return bool success
+	 */
+	public function lock( $key, $timeout = 60 ) {
+		$timestamp = microtime( true ); // starting UNIX timestamp
+		if ( $this->add( "{$key}:lock", $timeout ) ) {
+			return true;
+		}
+
+		$uRTT  = ceil( 1e6 * ( microtime( true ) - $timestamp ) ); // estimate RTT (us)
+		$sleep = 2*$uRTT; // rough time to do get()+set()
+
+		$locked   = false; // lock acquired
+		$attempts = 0; // failed attempts
+		do {
+			if ( ++$attempts >= 3 && $sleep <= 1e6 ) {
+				// Exponentially back off after failed attempts to avoid network spam.
+				// About 2*$uRTT*(2^n-1) us of "sleep" happen for the next n attempts.
+				$sleep *= 2;
+			}
+			usleep( $sleep ); // back off
+			$locked = $this->add( "{$key}:lock", $timeout );
+		} while( !$locked );
+
+		return $locked;
 	}
 
 	/**
@@ -92,8 +195,7 @@ abstract class BagOStuff {
 	 * @return bool success
 	 */
 	public function unlock( $key ) {
-		/* stub */
-		return true;
+		return $this->delete( "{$key}:lock" );
 	}
 
 	/**
