@@ -32,9 +32,10 @@ class XCacheBagOStuff extends BagOStuff {
 	 * Get a value from the XCache object cache
 	 *
 	 * @param $key String: cache key
+	 * @param $casToken mixed: cas token
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		$val = xcache_get( $key );
 
 		if ( is_string( $val ) ) {
@@ -63,6 +64,20 @@ class XCacheBagOStuff extends BagOStuff {
 
 		xcache_set( $key, $value, $expire );
 		return true;
+	}
+
+	/**
+	 * Store a value in the XCache object cache
+	 *
+	 * @param $casToken mixed: cache token
+	 * @param $key String: cache key
+	 * @param $value Mixed: object to store
+	 * @param $expire Int: expiration time
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $expire = 0 ) {
+		// can't find any documentation on xcache cas
+		return false;
 	}
 
 	/**

@@ -56,9 +56,10 @@ abstract class BagOStuff {
 	/**
 	 * Get an item with the given key. Returns false if it does not exist.
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed Returns false on failure
 	 */
-	abstract public function get( $key );
+	abstract public function get( $key, &$casToken = null );
 
 	/**
 	 * Set an item.
@@ -70,12 +71,50 @@ abstract class BagOStuff {
 	abstract public function set( $key, $value, $exptime = 0 );
 
 	/**
+	 * Check and set an item.
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	abstract public function cas( $casToken, $key, $value, $exptime = 0 );
+
+	/**
 	 * Delete an item.
 	 * @param $key string
 	 * @param $time int Amount of time to delay the operation (mostly memcached-specific)
 	 * @return bool True if the item was deleted or not found, false on failure
 	 */
 	abstract public function delete( $key, $time = 0 );
+
+	/**
+	 * Merge an item.
+	 * This is pretty much equivalent to performing get+cas, wrapped in 1 go,
+	 * thus making it possible to perform cas or cas-like functionality in
+	 * another way.
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	public function merge( $key, closure $callback, $exptime = 0 ) {
+		$currentValue = $this->get( $key, $casToken );
+
+		$value = $callback( $this, $key, $currentValue );
+
+		if ( $value !== false ) {
+			// if no current value set, we can't cas
+			if ( $currentValue === false ) {
+				return $this->set( $key, $value, $exptime );
+			}
+
+			return $this->cas( $casToken, $key, $value, $exptime );
+		}
+
+		return false;
+	}
 
 	/**
 	 * @param $key string
