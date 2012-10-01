@@ -33,10 +33,13 @@ class WinCacheBagOStuff extends BagOStuff {
 	 * Get a value from the WinCache object cache
 	 *
 	 * @param $key String: cache key
+	 * @param $casToken[optional] int: cas token
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		$val = wincache_ucache_get( $key );
+
+		$casToken = $val;
 
 		if ( is_string( $val ) ) {
 			$val = unserialize( $val );
@@ -59,6 +62,19 @@ class WinCacheBagOStuff extends BagOStuff {
 		/* wincache_ucache_set returns an empty array on success if $value
 		   was an array, bool otherwise */
 		return ( is_array( $result ) && $result === array() ) || $result;
+	}
+
+	/**
+	 * Store a value in the WinCache object cache, race condition-safe
+	 *
+	 * @param $casToken int: cas token
+	 * @param $key String: cache key
+	 * @param $value int: object to store
+	 * @param $exptime Int: expiration time
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		return wincache_ucache_cas( $key, $casToken, serialize( $value ) );
 	}
 
 	/**
