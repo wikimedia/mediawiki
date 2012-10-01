@@ -64,9 +64,10 @@ class EhcacheBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return bool|mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		wfProfileIn( __METHOD__ );
 		$response = $this->doItemRequest( $key );
 		if ( !$response || $response['http_code'] == 404 ) {
@@ -95,6 +96,8 @@ class EhcacheBagOStuff extends BagOStuff {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
+
+		$casToken = $body;
 
 		wfProfileOut( __METHOD__ );
 		return $data;
@@ -141,6 +144,19 @@ class EhcacheBagOStuff extends BagOStuff {
 
 		wfProfileOut( __METHOD__ );
 		return $result;
+	}
+
+	/**
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $expiry int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $expiry = 0 ) {
+		// @todo: implement - see http://ehcache.org/documentation/get-started/consistency-options#cas-cache-operations
+		throw new MWException( "Cas has not yet been implemented in ".__CLASS__ );
+		return false;
 	}
 
 	/**

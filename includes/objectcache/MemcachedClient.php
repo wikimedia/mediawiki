@@ -408,10 +408,11 @@ class MWMemcached {
 	 * Retrieves the value associated with the key from the memcache server
 	 *
 	 * @param $key array|string key to retrieve
+	 * @param $casToken[optional] Float
 	 *
 	 * @return Mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->_debug ) {
@@ -437,14 +438,14 @@ class MWMemcached {
 			$this->stats['get'] = 1;
 		}
 
-		$cmd = "get $key\r\n";
+		$cmd = "gets $key\r\n";
 		if ( !$this->_fwrite( $sock, $cmd ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
 
 		$val = array();
-		$this->_load_items( $sock, $val );
+		$this->_load_items( $sock, $val, $casToken );
 
 		if ( $this->_debug ) {
 			foreach ( $val as $k => $v ) {
@@ -498,7 +499,7 @@ class MWMemcached {
 		$gather = array();
 		// Send out the requests
 		foreach ( $socks as $sock ) {
-			$cmd = 'get';
+			$cmd = 'gets';
 			foreach ( $sock_keys[ intval( $sock ) ] as $key ) {
 				$cmd .= ' ' . $key;
 			}
@@ -512,7 +513,7 @@ class MWMemcached {
 		// Parse responses
 		$val = array();
 		foreach ( $gather as $sock ) {
-			$this->_load_items( $sock, $val );
+			$this->_load_items( $sock, $val, $casToken );
 		}
 
 		if ( $this->_debug ) {
@@ -615,6 +616,28 @@ class MWMemcached {
 	 */
 	public function set( $key, $value, $exp = 0 ) {
 		return $this->_set( 'set', $key, $value, $exp );
+	}
+
+	// }}}
+	// {{{ cas()
+
+	/**
+	 * Sets a key to a given value in the memcache if the current value still corresponds
+	 * to a known, given value.  Returns true if set successfully.
+	 *
+	 * @param $casToken Float: current known value
+	 * @param $key String: key to set value as
+	 * @param $value Mixed: value to set
+	 * @param $exp Integer: (optional) Expiration time. This can be a number of seconds
+	 * to cache for (up to 30 days inclusive).  Any timespans of 30 days + 1 second or
+	 * longer must be the timestamp of the time at which the mapping should expire. It
+	 * is safe to use timestamps in all cases, regardless of exipration
+	 * eg: strtotime("+3 hour")
+	 *
+	 * @return Boolean: TRUE on success
+	 */
+	public function cas( $casToken, $key, $value, $exp = 0 ) {
+		return $this->_set( 'cas', $key, $value, $exp, $casToken );
 	}
 
 	// }}}
@@ -879,19 +902,20 @@ class MWMemcached {
 	 *
 	 * @param $sock Resource: socket to read from
 	 * @param $ret Array: returned values
+	 * @param $casToken[optional] Float
 	 * @return boolean True for success, false for failure
 	 *
 	 * @access private
 	 */
-	function _load_items( $sock, &$ret ) {
+	function _load_items( $sock, &$ret, &$casToken = null ) {
 		while ( 1 ) {
 			$decl = $this->_fgets( $sock );
 			if( $decl === false ) {
 				return false;
 			} elseif ( $decl == "END" ) {
 				return true;
-			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+)$/', $decl, $match ) ) {
-				list( $rkey, $flags, $len ) = array( $match[1], $match[2], $match[3] );
+			} elseif ( preg_match( '/^VALUE (\S+) (\d+) (\d+) (\d+)$/', $decl, $match ) ) {
+				list( $rkey, $flags, $len, $casToken ) = array( $match[1], $match[2], $match[3], $match[4] );
 				$data = $this->_fread( $sock, $len + 2 );
 				if ( $data === false ) {
 					return false;
@@ -933,11 +957,12 @@ class MWMemcached {
 	 * longer must be the timestamp of the time at which the mapping should expire. It
 	 * is safe to use timestamps in all cases, regardless of exipration
 	 * eg: strtotime("+3 hour")
+	 * @param $casToken[optional] Float
 	 *
 	 * @return Boolean
 	 * @access private
 	 */
-	function _set( $cmd, $key, $val, $exp ) {
+	function _set( $cmd, $key, $val, $exp, $casToken = null ) {
 		if ( !$this->_active ) {
 			return false;
 		}
@@ -980,7 +1005,7 @@ class MWMemcached {
 				$flags |= self::COMPRESSED;
 			}
 		}
-		if ( !$this->_fwrite( $sock, "$cmd $key $flags $exp $len\r\n$val\r\n" ) ) {
+		if ( !$this->_fwrite( $sock, "$cmd $key $flags $exp $len $casToken\r\n$val\r\n" ) ) {
 			return false;
 		}
 

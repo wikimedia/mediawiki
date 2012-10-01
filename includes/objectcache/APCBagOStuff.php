@@ -29,10 +29,13 @@
 class APCBagOStuff extends BagOStuff {
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] int
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		$val = apc_fetch( $key );
+
+		$casToken = $val;
 
 		if ( is_string( $val ) ) {
 			if ( $this->isInteger( $val ) ) {
@@ -59,6 +62,17 @@ class APCBagOStuff extends BagOStuff {
 		apc_store( $key, $value, $exptime );
 
 		return true;
+	}
+
+	/**
+	 * @param $casToken int
+	 * @param $key string
+	 * @param $value int
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		return apc_cas( $key, serialize( $value ), $casToken );
 	}
 
 	/**

@@ -32,6 +32,15 @@ class MultiWriteBagOStuff extends BagOStuff {
 	var $caches;
 
 	/**
+	 * This will contain a mapping of 1 cas-token (that's returned to
+	 * the feature implementing this class) to all cas tokens of the
+	 * real caches
+	 *
+	 * @var array
+	 */
+	var $cas = array();
+
+	/**
 	 * Constructor. Parameters are:
 	 *
 	 *   - caches:   This should have a numbered array of cache parameter
@@ -61,16 +70,34 @@ class MultiWriteBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return bool|mixed
 	 */
-	public function get( $key ) {
-		foreach ( $this->caches as $cache ) {
-			$value = $cache->get( $key );
+	public function get( $key, &$casToken = null ) {
+		/*
+		 * if cas-parameter is actually passed along, we need to loop
+		 * all caches, just to get the cache token for all of them
+		 */
+		$args = func_get_args();
+		if ( array_key_exists( 1, $args ) ) {
+			$casToken = uniqid();
+		}
+
+		$value = false;
+
+		foreach ( $this->caches as $i => $cache ) {
+			$value = $cache->get( $key, $token );
 			if ( $value !== false ) {
-				return $value;
+				// stop at first result unless we need to collect all cas tokens
+				if ( $casToken === null ) {
+					break;
+				} else {
+					// @todo: sanity check to make sure $token is set for a certain cache
+					$this->cas[$casToken][$i] = $token;
+				}
 			}
 		}
-		return false;
+		return $value;
 	}
 
 	/**
@@ -81,6 +108,39 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 */
 	public function set( $key, $value, $exptime = 0 ) {
 		return $this->doWrite( 'set', $key, $value, $exptime );
+	}
+
+	/**
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		$ret = true;
+		$backup = array();
+
+		// try cas'ing all caches (unless one fails)
+		foreach ( $this->caches as $i => $cache ) {
+			$backup[$i] = $cache->get( $key );
+			if ( !$cache->cas( $this->cas[$casToken][$i], $key, $value, $exptime ) ) {
+				$ret = false;
+				break;
+			}
+		}
+
+		// cas failed on some cache, reset values we cas'ed on other cache instances
+		if ( $ret === false ) {
+			foreach ( $backup as $i => $value ) {
+				$this->caches[$i]->set( $key, $value );
+			}
+		}
+
+		// cas tokens are no longer valid
+		unset( $this->cas[$casToken] );
+
+		return $ret;
 	}
 
 	/**

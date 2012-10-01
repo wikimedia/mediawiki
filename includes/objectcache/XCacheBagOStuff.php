@@ -32,9 +32,10 @@ class XCacheBagOStuff extends BagOStuff {
 	 * Get a value from the XCache object cache
 	 *
 	 * @param $key String: cache key
+	 * @param $casToken mixed: cas token
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		$val = xcache_get( $key );
 
 		if ( is_string( $val ) ) {
@@ -66,6 +67,20 @@ class XCacheBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * Store a value in the XCache object cache
+	 *
+	 * @param $casToken mixed: cache token
+	 * @param $key String: cache key
+	 * @param $value Mixed: object to store
+	 * @param $expire Int: expiration time
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $expire = 0 ) {
+		// can't find any documentation on xcache cas
+		return false;
+	}
+
+	/**
 	 * Remove a value from the XCache object cache
 	 *
 	 * @param $key String: cache key
@@ -75,6 +90,39 @@ class XCacheBagOStuff extends BagOStuff {
 	public function delete( $key, $time = 0 ) {
 		xcache_unset( $key );
 		return true;
+	}
+
+	/**
+	 * Merge an item.
+	 * XCache does not seem to support any way of performing CAS - this however will
+	 * provide a way to perform CAS-like functionality.
+	 *
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @return bool success
+	 */
+	public function merge( $key, closure $callback, $exptime = 0 ) {
+		/*
+		 * Use file locking to make sure no 2 merges against the same key can be
+		 * performed at the same time. If we are unable to get the lock, it means
+		 * a concurrent merge is happening for this cache key.
+		 */
+		$lock = @fopen( sys_get_temp_dir() . '/' . md5( $key ) . '.lock', 'w' );
+		if ( !$lock && !flock( $lock, LOCK_EX ) ) {
+			return false;
+		}
+
+		$currentValue = $this->get( $key, $casToken );
+		$value = $callback( $this, $key, $currentValue );
+		$success = $this->set( $key, $value, $exptime );
+
+		// release lock
+		flock( $lock, LOCK_UN );
+		fclose( $lock );
+		unlink( $lock );
+
+		return $success;
 	}
 
 	public function incr( $key, $value = 1 ) {
