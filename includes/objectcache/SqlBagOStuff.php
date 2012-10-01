@@ -159,11 +159,16 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $key string
+	 * @param $casToken[optional] mixed
 	 * @return mixed
 	 */
-	public function get( $key ) {
+	public function get( $key, &$casToken = null ) {
 		$values = $this->getMulti( array( $key ) );
-		return array_key_exists( $key, $values ) ? $values[$key] : false;
+		if ( array_key_exists( $key, $values ) ) {
+			$casToken = $values[$key];
+			return $values[$key];
+		}
+		return false;
 	}
 
 	/**
@@ -272,6 +277,55 @@ class SqlBagOStuff extends BagOStuff {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		$db = $this->getDB();
+		$exptime = intval( $exptime );
+
+		if ( $exptime < 0 ) {
+			$exptime = 0;
+		}
+
+		if ( $exptime == 0 ) {
+			$encExpiry = $this->getMaxDateTime();
+		} else {
+			if ( $exptime < 3.16e8 ) { # ~10 years
+				$exptime += time();
+			}
+
+			$encExpiry = $db->timestamp( $exptime );
+		}
+		try {
+			$db->begin( __METHOD__ );
+			// (bug 24425) use a replace if the db supports it instead of
+			// delete/insert to avoid clashes with conflicting keynames
+			$db->update(
+				$this->getTableByKey( $key ),
+				array(
+					'keyname' => $key,
+					'value' => $db->encodeBlob( $this->serialize( $value ) ),
+					'exptime' => $encExpiry
+				),
+				array(
+					'keyname' => $key,
+					'value' => $db->encodeBlob( $this->serialize( $casToken ) )
+				), __METHOD__ );
+			$db->commit( __METHOD__ );
+		} catch ( DBQueryError $e ) {
+			$this->handleWriteError( $e );
+
+			return false;
+		}
+
+		return (bool) $db->affectedRows();
 	}
 
 	/**

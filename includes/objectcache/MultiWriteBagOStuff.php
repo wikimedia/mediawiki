@@ -74,6 +74,17 @@ class MultiWriteBagOStuff extends BagOStuff {
 	}
 
 	/**
+	 * @param $casToken mixed
+	 * @param $key string
+	 * @param $value mixed
+	 * @param $exptime int
+	 * @return bool
+	 */
+	public function cas( $casToken, $key, $value, $exptime = 0 ) {
+		throw new MWException( "CAS is not implemented in " . __CLASS__ );
+	}
+
+	/**
 	 * @param $key string
 	 * @param $value mixed
 	 * @param $exptime int
@@ -154,6 +165,17 @@ class MultiWriteBagOStuff extends BagOStuff {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * @param $key string
+	 * @param $callback closure Callback method to be executed
+	 * @param $exptime int Either an interval in seconds or a unix timestamp for expiry
+	 * @param $attempts int The amount of times to attempt a merge in case of failure
+	 * @return bool success
+	 */
+	public function merge( $key, closure $callback, $exptime = 0, $attempts = 10 ) {
+		return $this->doWrite( 'merge', $key, $callback, $exptime );
 	}
 
 	/**
