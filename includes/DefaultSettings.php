@@ -4276,8 +4276,18 @@ $wgProxyScriptPath = "$IP/maintenance/proxy_check.php";
 $wgProxyMemcExpiry = 86400;
 /** This should always be customised in LocalSettings.php */
 $wgSecretKey = false;
-/** big list of banned IP addresses, in the keys not the values */
+
+/**
+ * Big list of banned IP addresses.
+ *
+ * This can have the following formats:
+ * - An array of addresses, either in the values
+ *   or the keys (for backward compatibility)
+ * - A string, in that case this is the path to a file
+ *   containing the list of IP addresses, one per line
+ */
 $wgProxyList = array();
+
 /** deprecated */
 $wgProxyKey = false;
 
