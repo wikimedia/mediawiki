@@ -401,6 +401,7 @@ abstract class Job {
 
 		$fields = $this->insertFields();
 		unset( $fields['job_id'] );
+		unset( $fields['job_timestamp'] );
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
 		$dbw->delete( 'job', $fields, __METHOD__ );
