@@ -218,24 +218,17 @@ class RebuildRecentchanges extends Maintenance {
 	 * DOCUMENT ME!
 	 */
 	private function rebuildRecentChangesTablePass4() {
-		global $wgGroupPermissions, $wgUseRCPatrol;
+		global $wgUseRCPatrol;
 
 		$dbw = wfGetDB( DB_MASTER );
 
 		list( $recentchanges, $usergroups, $user ) = $dbw->tableNamesN( 'recentchanges', 'user_groups', 'user' );
 
-		$botgroups = $autopatrolgroups = array();
-		foreach ( $wgGroupPermissions as $group => $rights ) {
-			if ( isset( $rights['bot'] ) && $rights['bot'] ) {
-				$botgroups[] = $dbw->addQuotes( $group );
-			}
-			if ( $wgUseRCPatrol && isset( $rights['autopatrol'] ) && $rights['autopatrol'] ) {
-				$autopatrolgroups[] = $dbw->addQuotes( $group );
-			}
-		}
+		$botgroups = User::getGroupsWithPermission( 'bot' );
+		$autopatrolgroups = $wgUseRCPatrol ? User::getGroupsWithPermission( 'autopatrol' ) : array();
 		# Flag our recent bot edits
 		if ( !empty( $botgroups ) ) {
-			$botwhere = implode( ',', $botgroups );
+			$botwhere = $dbw->makeList( $botgroups );
 			$botusers = array();
 
 			$this->output( "Flagging bot account edits...\n" );
@@ -259,7 +252,7 @@ class RebuildRecentchanges extends Maintenance {
 		global $wgMiserMode;
 		# Flag our recent autopatrolled edits
 		if ( !$wgMiserMode && !empty( $autopatrolgroups ) ) {
-			$patrolwhere = implode( ',', $autopatrolgroups );
+			$patrolwhere = $dbw->makeList( $autopatrolgroups );
 			$patrolusers = array();
 
 			$this->output( "Flagging auto-patrolled edits...\n" );
