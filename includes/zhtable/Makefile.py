@@ -30,10 +30,10 @@ def unichr3( *args ):
     return [unichr( int( i[2:7], 16 ) ) for i in args if i[2:7]]
 
 # DEFINE
-UNIHAN_VER = '5.2.0'
+UNIHAN_VER = '6.2.0'
 SF_MIRROR = 'dfn'
-SCIM_TABLES_VER = '0.5.10'
-SCIM_PINYIN_VER = '0.5.91'
+SCIM_TABLES_VER = '0.5.11'
+SCIM_PINYIN_VER = '0.5.92'
 LIBTABE_VER = '0.2.3'
 # END OF DEFINE
 
