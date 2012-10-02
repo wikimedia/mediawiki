@@ -893,7 +893,7 @@ foo}}
 !!end
 
 !! test
-Templates: Pre: 1c: Wrapping should be based one expanded content
+Templates: Pre: 1c: Wrapping should be based on expanded content
 !! input
  {{echo|a
 b}}
@@ -905,7 +905,7 @@ b}}
 !!end
 
 !! test
-Templates: Pre: 1d: Wrapping should be based one expanded content
+Templates: Pre: 1d: Wrapping should be based on expanded content
 !! input
  {{echo|a
 b
@@ -923,6 +923,33 @@ c
 </pre>
 <p>e
 </p>
+!!end
+
+!!test
+Templates: Pre: 1e. Wrapping should be based on expanded content
+!!input
+{{echo| foo}}
+
+{{echo| foo}}
+{{echo| bar}}
+
+{{echo|<!--cmt--> foo}}
+
+<!--cmt-->{{echo| foo}}
+
+{{echo|{{echo| }}bar}}
+!!result
+<pre>foo
+</pre>
+<pre>foo
+bar
+</pre>
+<pre>foo
+</pre>
+<pre>foo
+</pre>
+<pre>bar
+</pre>
 !!end
 
 ###
