@@ -207,7 +207,6 @@ $magicWords = array(
 	'forcetoc'                => array( 0,    '__FORCETOC__' ),
 	'toc'                     => array( 0,    '__TOC__' ),
 	'noeditsection'           => array( 0,    '__NOEDITSECTION__' ),
-	'noheader'                => array( 0,    '__NOHEADER__' ),
 	'currentmonth'            => array( 1,    'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonth1'           => array( 1,    'CURRENTMONTH1' ),
 	'currentmonthname'        => array( 1,    'CURRENTMONTHNAME' ),
