@@ -1211,8 +1211,6 @@ $1",
 'search-interwiki-caption' => 'שוועסטער פראיעקטן',
 'search-interwiki-default' => '$1 רעזולטאטן:',
 'search-interwiki-more' => '(נאך)',
-'search-mwsuggest-enabled' => 'מיט פארשלאגן',
-'search-mwsuggest-disabled' => 'אן פארשלאגן',
 'search-relatedarticle' => 'פארבינדן',
 'mwsuggest-disable' => 'בטל מאכן פארשלאגן AJAX',
 'searcheverything-enable' => 'זוכן אין אלע נאמענטיילן',
@@ -2734,7 +2732,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript טעסט',
-'javascripttest-disabled' => 'די  פֿונקציע איז אומאַקטיווירט אין דער דאזיקער וויקי.',
 'javascripttest-title' => 'דורכפירנדיק $1 בדיקות',
 'javascripttest-pagetext-skins' => 'קלויבט א באניצער־אייבערפלאך מיט וואס דורכצופירן די בדיקות:',
 'javascripttest-qunit-intro' => 'זעט [$1 דאקומענטאציע פאר טעסטן] בײַ mediawiki.org.',
@@ -3693,4 +3690,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
 'duration-millennia' => '$1 {{PLURAL:$1|יארטויזנט|יארטויזנטער}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'כולל…',
+'searchsuggest-search' => 'זוכן',
 );

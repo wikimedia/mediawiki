@@ -1130,8 +1130,6 @@ An mga detalye mapuwedeng matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Tugang na mga proyekto',
 'search-interwiki-default' => '$1 na mga resulta:',
 'search-interwiki-more' => '(dakol pa)',
-'search-mwsuggest-enabled' => 'igwang mga suhestyon',
-'search-mwsuggest-disabled' => 'mayong suhestyon',
 'search-relatedarticle' => 'Kauyon',
 'mwsuggest-disable' => 'Pundohon an AJAX na mga suhestiyon',
 'searcheverything-enable' => 'Maghanap sa gabos na mga espasyong-ngaran',

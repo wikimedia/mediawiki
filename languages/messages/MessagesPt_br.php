@@ -1336,8 +1336,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Projetos irmãos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
-'search-mwsuggest-enabled' => 'com sugestões',
-'search-mwsuggest-disabled' => 'sem sugestões',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desativar sugestões AJAX',
 'searcheverything-enable' => 'Procurar em todos os espaços nominais',
@@ -2964,7 +2962,6 @@ Salve o arquivo no seu computador e importe-o aqui.',
 
 # JavaScriptTest
 'javascripttest' => 'Teste de JavaScript',
-'javascripttest-disabled' => 'Essa função não foi habilitada neste wiki.',
 'javascripttest-title' => 'Executando testes para $1',
 'javascripttest-pagetext-noframework' => 'Esta página é exclusiva para testes de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'A estrutura de testes "$1" é desconhecida.',
@@ -4016,4 +4013,7 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'contendo...',
+'searchsuggest-search' => 'Pesquisa',
 );

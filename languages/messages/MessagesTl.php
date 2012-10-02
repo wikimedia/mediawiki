@@ -1207,8 +1207,6 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'search-interwiki-caption' => 'Kapatid na mga proyekto',
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(mas marami pa)',
-'search-mwsuggest-enabled' => 'may mga mungkahi',
-'search-mwsuggest-disabled' => 'walang mga mungkahi',
 'search-relatedarticle' => 'Kaugnay',
 'mwsuggest-disable' => 'Huwag paganahin ang mga mungkahi ng AJAX',
 'searcheverything-enable' => 'Maghanap sa lahat ng ngalan-espasyo:',
@@ -2849,7 +2847,6 @@ Sagipin mo ito sa iyong kompyuter at papaitaas na ikarga ito rito.',
 
 # JavaScriptTest
 'javascripttest' => 'Pagsubok sa JavaScript',
-'javascripttest-disabled' => 'Hindi gumagana ang tungkuling ito sa wiking ito.',
 'javascripttest-title' => 'Pinatatakbo ang mga pagsubok ng $1',
 'javascripttest-pagetext-noframework' => 'Nakalaan ang pahinang ito para sa pagpapatakbo ng mga pagsubok ng JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Hindi napag-aalamang balangkas ng pagsubok na "$1".',
@@ -4120,4 +4117,7 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'naglalaman ng ...',
+'searchsuggest-search' => 'Maghanap',
 );

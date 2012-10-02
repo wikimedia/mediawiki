@@ -1193,8 +1193,6 @@ Gallout a reot kavout munudoù e [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-caption' => 'Raktresoù kar',
 'search-interwiki-default' => "$1 disoc'h :",
 'search-interwiki-more' => "(muioc'h)",
-'search-mwsuggest-enabled' => 'gant kinnigoù',
-'search-mwsuggest-disabled' => 'hep kinnigoù',
 'search-relatedarticle' => "Disoc'hoù kar",
 'mwsuggest-disable' => 'Diweredekaat kinnigoù AJAX',
 'searcheverything-enable' => 'Klask en holl esaouennoù anv',
@@ -3897,4 +3895,7 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ennañ...',
+'searchsuggest-search' => 'Klask',
 );

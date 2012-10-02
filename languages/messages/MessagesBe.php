@@ -1052,8 +1052,6 @@ $1",
 'search-interwiki-caption' => 'Сумежныя праекты',
 'search-interwiki-default' => 'вынікі з $1:',
 'search-interwiki-more' => '(яшчэ)',
-'search-mwsuggest-enabled' => 'з прапановамі',
-'search-mwsuggest-disabled' => 'без прапановаў',
 'search-relatedarticle' => 'Дачыняюцца*',
 'mwsuggest-disable' => 'Не паказваць прапановаў AJAX',
 'searcheverything-enable' => 'Пошук ва ўсіх прасторах назваў',
@@ -2605,7 +2603,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-тэсты',
-'javascripttest-disabled' => 'Гэта функцыя выключаная.',
 'javascripttest-title' => 'Праводзіцца тэставанне $1',
 'javascripttest-pagetext-noframework' => 'Гэта старонка зарэзервавана для запуску тэстаў JavaScript',
 'javascripttest-pagetext-unknownframework' => 'Невядомая бібліятэка тэставання «$1».',
@@ -3590,4 +3587,7 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'api-error-uploaddisabled' => 'Загрузка ў гэтую вікі адключаная.',
 'api-error-verification-error' => 'Гэты файл можа быць пашкоджаны, ці мае няслушнае пашырэнне.',
 
+# Unknown messages
+'searchsuggest-containing' => 'змяшчае...',
+'searchsuggest-search' => 'Знайсці',
 );

@@ -1023,8 +1023,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-caption' => 'Proyèk-proyèk kagandhèng',
 'search-interwiki-default' => 'Pituwas $1:',
 'search-interwiki-more' => '(luwih akèh)',
-'search-mwsuggest-enabled' => 'mawa sugèsti',
-'search-mwsuggest-disabled' => 'ora ana sugèsti',
 'search-relatedarticle' => 'Kagandhèng',
 'mwsuggest-disable' => 'Patènana sugèsti AJAX',
 'searcheverything-enable' => 'Golèki ing kabèh bilik-jeneng',
@@ -3547,4 +3545,7 @@ Utawa, Sampéyan bisa nganggo pormulir gampang ngisor. Tanggepan Sampéyan bakal
 'duration-centuries' => '$1 {{PLURAL:$1|abad|abad}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénium|milénium}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ngisi...',
+'searchsuggest-search' => 'Golèk',
 );

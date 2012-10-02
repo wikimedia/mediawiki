@@ -844,8 +844,6 @@ oba ku gano agali ku lupapula luno.<br />
 'search-interwiki-caption' => "Pulojekiti ezikolagana n'eno",
 'search-interwiki-default' => 'ebizuulidwa ku $1:',
 'search-interwiki-more' => '(ebikyaliyo)',
-'search-mwsuggest-enabled' => 'mpeeraako amagezi',
-'search-mwsuggest-disabled' => "sisitemu ereme okuteebereza ky'onoonya",
 'searchall' => '',
 'nonefound' => "'''Wekkaanye''': Okunoonya kuno kukoma mu makuŋaanyizo amalondemu okugyako nga okulagidde okweyonera awalala.
 W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipediya yonna. Bw'obanga olina ekkuŋaanyizo limu lyokka lyoyagala okunoonyezamu, soosawo erinnya lyalyo w'owandikira by'onoonya.",

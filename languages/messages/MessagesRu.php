@@ -1434,8 +1434,6 @@ $1",
 'search-interwiki-caption' => 'Родственные проекты',
 'search-interwiki-default' => '$1 результ.:',
 'search-interwiki-more' => '(ещё)',
-'search-mwsuggest-enabled' => 'с советами',
-'search-mwsuggest-disabled' => 'без советов',
 'search-relatedarticle' => 'Связанный',
 'mwsuggest-disable' => 'Отключить AJAX-подсказки',
 'searcheverything-enable' => 'Поиск по всем пространствам имён',
@@ -3062,7 +3060,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Проверка JavaScript',
-'javascripttest-disabled' => 'Эта функция отключена в этой вики.',
 'javascripttest-title' => 'Проводится проверка $1',
 'javascripttest-pagetext-noframework' => 'Эта страница зарезервирована для запуска JavaScript-тестов.',
 'javascripttest-pagetext-unknownframework' => 'Неизвестная среда тестирования «$1».',
@@ -4225,4 +4222,7 @@ MediaWiki распространяется в надежде, что она бу
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'содержащие…',
+'searchsuggest-search' => 'Поиск',
 );

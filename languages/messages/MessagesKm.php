@@ -1300,8 +1300,6 @@ $1",
 'search-interwiki-caption' => 'គម្រោងជាបងប្អូន',
 'search-interwiki-default' => 'លទ្ធផលពី$1៖',
 'search-interwiki-more' => '(បន្ថែមទៀត)',
-'search-mwsuggest-enabled' => 'មានសំណើ',
-'search-mwsuggest-disabled' => 'គ្មានសំណើ',
 'search-relatedarticle' => 'ទាក់ទិន',
 'mwsuggest-disable' => 'មិនប្រើសំនើAJAX',
 'searcheverything-enable' => 'ស្វែងរកនៅក្នុងលំហឈ្មោះទាំងអស់',
@@ -3666,4 +3664,7 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|ទសវត្សរ៍|ទសវត្សរ៍}}',
 'duration-centuries' => '$1 {{PLURAL:$1|សតវត្សរ៍|សតវត្សរ៍}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ដែលមានពាក្យ...',
+'searchsuggest-search' => 'ស្វែងរក​',
 );

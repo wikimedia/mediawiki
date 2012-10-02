@@ -1241,8 +1241,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'search-interwiki-caption' => 'Ñaña ruraykamaykuna',
 'search-interwiki-default' => '$1 taripasqakuna:',
 'search-interwiki-more' => '(aswan)',
-'search-mwsuggest-enabled' => 'rimapusqakunawan',
-'search-mwsuggest-disabled' => 'mana rimapusqakunawanchu',
 'search-relatedarticle' => 'Apanakuq',
 'mwsuggest-disable' => 'AJAX rimapuykunaman ama niy',
 'searcheverything-enable' => "Tukuy suti k'itikunapi maskay",
@@ -2797,7 +2795,6 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript llanchiy',
-'javascripttest-disabled' => 'Kay ruranaqa kay wikipi manam atichisqachu.',
 'javascripttest-title' => '$1 llanchiykunam richkan',
 'javascripttest-pagetext-noframework' => "Kay p'anqaqa JavaScript llanchina purichinallapaqmi kachun.",
 'javascripttest-pagetext-unknownframework' => 'Mana riqsisqa "$1" nisqa llanchina inchu ruray',
@@ -3801,4 +3798,7 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'duration-centuries' => '{{PLURAL:$1|pachakwata|pachakwatakuna}}',
 'duration-millennia' => '{{PLURAL:$1|waranqawata|waranqawatakuna}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'kaykunayuq: ...',
+'searchsuggest-search' => 'Maskay',
 );

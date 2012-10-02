@@ -862,6 +862,10 @@ Da bi stran ustvarili, vnesite v spodnji obrazec besedilo
 'noarticletext' => 'Na tej strani ni trenutno nobenega besedila. Naslov strani lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati]] na drugih straneh, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v dnevniških zapisih] ali pa [{{fullurl:{{FULLPAGENAME}}|action=edit}} stran uredite]</span>.',
 'noarticletext-nopermission' => 'Na strani trenutno ni nobenega besedila.
 Lahko poskusite [[Special:Search/{{PAGENAME}}|poiskati naslov strani]] na drugih straneh ali <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} v povezanih dnevniških zapisih]</span>, vendar za ustvarjanje strani nimate zadostnih dovoljenj.',
+'missing-revision' => 'Redakcija št. $1 strani »{{PAGENAME}}« ne obstaja.
+
+Po navadi se to zgodi, ko sledite zastareli povezavi na zgodovino strani, ki jo je nekdo izbrisal.
+Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
 'userpage-userdoesnotexist' => 'Uporabniški račun »<nowiki>$1</nowiki>« ni registriran.
 Prosimo preverite, ali res želite ustvariti/urediti to stran.',
 'userpage-userdoesnotexist-view' => 'Uporabniški račun »$1« ni registriran.',
@@ -1179,6 +1183,10 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'editundo' => 'razveljavi',
 'diff-multi' => '({{PLURAL:$1|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} {{PLURAL:$2|$2 uporabnika|$2 uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|$1 vmesna redakcija|$1 vmesni redakciji|$1 vmesne redakcije|$1 vmesnih redakcij}} več kot $2 {{PLURAL:$2|uporabnika|uporabnikov}} {{PLURAL:$1|ni prikazana|nista prikazani|niso prikazane|ni prikazanih}})',
+'difference-missing-revision' => '{{PLURAL:$2|Ene redakcije|$2 redakcij}} razlike ($1) {{PLURAL:$2|nisem}} našel.
+
+Po navadi se to zgodi, ko sledite zastareli povezavi na razliko redakcij strani, ki jo je nekdo izbrisal.
+Podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
 
 # Search results
 'searchresults' => 'Izid iskanja',
@@ -1221,8 +1229,6 @@ Upoštevajte, da bo uporaba navigacijskih gumbov ponastavila ta stolpec.',
 'search-interwiki-caption' => 'Sorodni projekti',
 'search-interwiki-default' => '$1 zadetkov:',
 'search-interwiki-more' => '(več)',
-'search-mwsuggest-enabled' => 's predlogi',
-'search-mwsuggest-disabled' => 'brez predlogov',
 'search-relatedarticle' => 'Podobno',
 'mwsuggest-disable' => 'Onemogoči predloge Ajax',
 'searcheverything-enable' => 'Iskanje po vseh imenskih prostorih',
@@ -1869,7 +1875,7 @@ Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri kateri
 'filehist-comment' => 'Komentar',
 'filehist-missing' => 'Datoteka manjka',
 'imagelinks' => 'Uporaba datoteke',
-'linkstoimage' => 'Datoteka je del {{PLURAL:$1|naslednje $1 strani|naslednjih $1 strani|naslednjih $1 strani|naslednjih $1 strani}} {{GRAMMAR:rodilnik|{{SITENAME}}}}:',
+'linkstoimage' => 'Datoteka je del {{PLURAL:$1|naslednje $1 strani|naslednjih $1 strani}} {{GRAMMAR:rodilnik|{{SITENAME}}}}:',
 'linkstoimage-more' => 'Na to datoteko se {{PLURAL:$1|povezuje več kot $1 stran|povezujeta več kot $1 strani|povezujejo več kot $1 strani|povezuje več kot $1 strani}}.
 Naslednji seznam obsega samo {{PLURAL:$1|prvo stran, ki se povezuje|prvi $1 strani, ki se povezujeta|prve $1 strani, ki se povezujejo|prvih $1 strani, ki se povezujejo}} na to datoteko.
 Na razpolago je tudi [[Special:WhatLinksHere/$2|celotni seznam]].',
@@ -3010,6 +3016,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'pageinfo-recent-edits' => 'Nedavno število urejanj (zadnjih $1)',
 'pageinfo-recent-authors' => 'Nedavno število različnih avtorjev',
 'pageinfo-restriction' => 'Zaščita strani ({{lcfirst:$1}})',
+'pageinfo-magic-words' => '{{PLURAL:$1|Čarobna beseda|Čarobni besedi|Čarobne besede}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrita kategorija|Skriti kategoriji|Skrite kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Vključena predloga|Vključeni predlogi|Vključene predloge}} ($1)',
 
@@ -3922,4 +3929,7 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'vsebujoč ...',
+'searchsuggest-search' => 'Iskanje',
 );

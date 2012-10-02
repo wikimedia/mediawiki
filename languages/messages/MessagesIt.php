@@ -1269,8 +1269,6 @@ I dettagli possono essere trovati nel [{{fullurl:{{#Special:Log}}/delete|page={{
 'search-interwiki-caption' => 'Progetti fratelli',
 'search-interwiki-default' => 'Risultati da $1:',
 'search-interwiki-more' => '(altro)',
-'search-mwsuggest-enabled' => 'con suggerimenti',
-'search-mwsuggest-disabled' => 'senza suggerimenti',
 'search-relatedarticle' => 'Risultati correlati',
 'mwsuggest-disable' => 'Disattiva suggerimenti AJAX',
 'searcheverything-enable' => 'Cerca in tutti i namespace',
@@ -3931,4 +3929,7 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'contenente...',
+'searchsuggest-search' => 'Ricerca',
 );

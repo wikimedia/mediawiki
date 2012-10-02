@@ -1448,8 +1448,6 @@ $1",
 'search-interwiki-caption' => 'Братски пројекти',
 'search-interwiki-default' => '$1 резултати:',
 'search-interwiki-more' => '(више)',
-'search-mwsuggest-enabled' => 'са предлозима',
-'search-mwsuggest-disabled' => 'без предлога',
 'search-relatedarticle' => 'Повезано',
 'mwsuggest-disable' => 'Онемогући предлоге AJAX',
 'searcheverything-enable' => 'сви именски простори',
@@ -3126,7 +3124,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Јаваскрипт тест',
-'javascripttest-disabled' => 'Ова функција није омогућена на овом викију.',
 'javascripttest-title' => 'Извршавање тестова за $1',
 'javascripttest-pagetext-noframework' => 'Ова страница је резервисана за извршавање јаваскрипт тестова.',
 'javascripttest-pagetext-unknownframework' => 'Непознати радни оквир „$1“.',
@@ -4379,4 +4376,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|векова}}',
 'duration-millennia' => '$1 {{PLURAL:$1|миленијум|миленијума|миленијума}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'садржи...',
+'searchsuggest-search' => 'Претрага',
 );

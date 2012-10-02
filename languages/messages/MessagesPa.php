@@ -932,8 +932,6 @@ page={{FULLPAGENAMEE}}}} ਜ਼ਬਤੀ ਦੇ ਚਿੱਠੇ] ਵਿਚ ਵ�
 'search-interwiki-caption' => 'ਸਾਥੀ ਪ੍ਰੋਜੈਕਟ',
 'search-interwiki-default' => '$1 ਨਤੀਜੇ:',
 'search-interwiki-more' => '(ਹੋਰ)',
-'search-mwsuggest-enabled' => 'ਸੁਝਾਆਵਾਂ ਨਾਲ',
-'search-mwsuggest-disabled' => 'ਕੋਈ ਸੁਝਾਅ ਨਹੀਂ',
 'search-relatedarticle' => 'ਸਬੰਧਿਤ',
 'mwsuggest-disable' => 'AJAX ਸਲਾਹਾਂ ਬੰਦ ਕਰੋ',
 'searcheverything-enable' => 'ਸਾਰੇ ਥਾਂ-ਨਾਂਵਾਂ ਵਿਚ ਖੋਜੋ',
@@ -2073,4 +2071,6 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'htmlform-reset' => 'ਬਦਲਾਅ ਵਾਪਸ ਲਵੋ',
 'htmlform-selectorother-other' => 'ਹੋਰ',
 
+# Unknown messages
+'searchsuggest-search' => 'ਖੋਜ',
 );

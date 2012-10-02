@@ -871,8 +871,6 @@ $3 мына бу себепни бильдирди: ''$2''",
 'search-interwiki-caption' => 'Къардаш лейхалар',
 'search-interwiki-default' => '$1 нетидже:',
 'search-interwiki-more' => '(даа чокъ)',
-'search-mwsuggest-enabled' => 'тевсиелернен',
-'search-mwsuggest-disabled' => 'тевсие ёкъ',
 'search-relatedarticle' => 'Багълы',
 'mwsuggest-disable' => 'AJAX тевсиелерини ишлетме',
 'searcheverything-enable' => 'Бутюн исим фезаларында къыдыр',
@@ -2112,4 +2110,6 @@ $5
 # New logging system
 'newuserlog-byemail' => 'пароль e-mail вастасынен йиберильген',
 
+# Unknown messages
+'searchsuggest-containing' => 'ичинде бу олгъан...',
 );

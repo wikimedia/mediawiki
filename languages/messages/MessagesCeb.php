@@ -724,8 +724,6 @@ Hinumdomi nga ang paggamit sa mga sumpay sa nabigasyon mo-reset sa column.',
 'search-interwiki-caption' => 'Mga kaubang proyekto',
 'search-interwiki-default' => '$1 ka mga resulta:',
 'search-interwiki-more' => '(dugang pa)',
-'search-mwsuggest-enabled' => 'may mga sugyot',
-'search-mwsuggest-disabled' => 'walay mga sugyot',
 'showingresultsheader' => "{{PLURAL:$5|Resulta '''$1''' sa '''$3'''|Mga resulta '''$1 - $2''' of '''$3'''}} sa '''$4'''",
 'nonefound' => "'''Bantayi''': Dili tanang ngalang espasyo (namespaces) ang gipangita by default.
 Sulayi'g prefix ang imong gipangita gamit ang ''all:'' alang mangita sa tanang sulod (apil ang mga panid sa hisgot, plantilya, ubp), o gamita ang gikinahanglang ngalang espasyo isip prefix.",

@@ -1210,8 +1210,6 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'search-interwiki-caption' => 'Projek-projek lain',
 'search-interwiki-default' => 'Keputusan daripada $1:',
 'search-interwiki-more' => '(lagi)',
-'search-mwsuggest-enabled' => 'berserta cadangan',
-'search-mwsuggest-disabled' => 'tiada cadangan',
 'search-relatedarticle' => 'Berkaitan',
 'mwsuggest-disable' => 'Matikan ciri cadangan AJAX',
 'searcheverything-enable' => 'Cari dalam semua ruang nama',
@@ -3898,4 +3896,7 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
+# Unknown messages
+'searchsuggest-containing' => 'mengandungi...',
+'searchsuggest-search' => 'Cari',
 );

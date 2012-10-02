@@ -1385,8 +1385,6 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Projets frères',
 'search-interwiki-default' => 'Résultats sur $1 :',
 'search-interwiki-more' => '(plus)',
-'search-mwsuggest-enabled' => 'avec suggestions',
-'search-mwsuggest-disabled' => 'sans suggestions',
 'search-relatedarticle' => 'Relaté',
 'mwsuggest-disable' => 'Désactiver les suggestions AJAX',
 'searcheverything-enable' => 'Rechercher dans tous les espaces de noms',
@@ -4166,4 +4164,7 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'contenant...',
+'searchsuggest-search' => 'Rechercher',
 );

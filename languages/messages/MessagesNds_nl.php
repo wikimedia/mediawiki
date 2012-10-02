@@ -1326,8 +1326,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'search-interwiki-caption' => 'Zusterprojekten',
 'search-interwiki-default' => '$1 resultaoten:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'mit anbevelingen',
-'search-mwsuggest-disabled' => 'gien anbevelingen',
 'search-relatedarticle' => 'Verwaant',
 'mwsuggest-disable' => 'Anbevelingen via AJAX uutschakelen',
 'searcheverything-enable' => 'In alle naamruumten zeuken',
@@ -2935,7 +2933,6 @@ De tiedelike map is niet anwezig.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript testen',
-'javascripttest-disabled' => 'Disse funksie steet niet an op disse wiki.',
 'javascripttest-title' => 'Tests uutvoeren veur $1',
 'javascripttest-pagetext-noframework' => 'Disse zied is ereserveerd veur t uutvoeren van JavaScript-testen.',
 'javascripttest-pagetext-unknownframework' => 'Onbekend testraamwark "$1".',
@@ -3969,4 +3966,7 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'bevat...',
+'searchsuggest-search' => 'Zeuken / zuken / zuiken',
 );

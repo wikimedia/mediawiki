@@ -508,7 +508,18 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'accountcreated' => 'Isem n wemseqdac yettwaxleq',
 'accountcreatedtext' => 'Isem n wemseqdac i $1 yettwaxleq.',
 'createaccount-title' => 'Asnulfu n umiḍan i {{SITENAME}}',
+'createaccount-text' => 'Albeɛḍ yesnulfu-d amiḍan i tansa e-amil inek/inem ɣef {{SITENAME}} ($4) s-isem n-useqdac « $2 », s awal n uɛaddi « $3 ».
+Ilaq tura ad lldiḍ taɣimit dɣa ad beddeleḍ awal ik/im n uɛaddi.',
+'usernamehasherror' => 'Isem n useqdac ur yezmer ara ad i sɛu  isekkilen n ugeddeḥ',
+'login-throttled' => 'Tɛerdeḍ ad qqeneḍ aṭas tiqwal deg dqiqat agi iɛddan.
+Ilaq ad rǧuḍ ciṭaḥ uqbel ad ɛerdeḍ tikkelt nniḍen.',
+'login-abort-generic' => 'Taremt ik/im n tuqqna tebrir',
 'loginlanguagelabel' => 'Tutlayt: $1',
+'suspicious-userlogout' => 'Asuter n usenser yugwi acku yella ugur s iminig naɣ s tazarkatut n uqeddac proxy.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'anezri warisem deg tawuri mail() n PHP',
+'user-mail-no-addy' => 'Ɛred ad icegaɛ e-mail war tansa e-mail',
 
 # Change password dialog
 'resetpass' => 'Beddel awal n uɛaddi',
@@ -521,14 +532,26 @@ iwakken ad tbeyyneḍ belli tansa n email inek.',
 'resetpass_submit' => 'Eg awal n tbaḍnit u kcem',
 'resetpass_success' => 'Awal n tbaḍnit yettubeddel! Qrib ad tkecmeḍ...',
 'resetpass_forbidden' => 'Ur zemreḍ ara ad beddeleḍ awalen n uɛaddi',
+'resetpass-no-info' => 'Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.',
 'resetpass-submit-loggedin' => 'Beddel awal n uɛaddi',
 'resetpass-submit-cancel' => 'Semmewet',
+'resetpass-wrong-oldpass' => 'Awal n uɛaddi ur i seɣbel ara.
+Ahat ilaq ad beddeleḍ awal ik/im n uɛaddi naɣ ad ssutereḍ awal n uɛaddi amaynut.',
+'resetpass-temp-password' => 'Awal n uɛaddi amakud',
 
 # Special:PasswordReset
+'passwordreset' => 'Awennez tikkelt nniḍen n awal uɛaddi',
+'passwordreset-text' => 'Ččur tiferkit agi iwakken ad eṭṭfeḍ tirawt n usmekti  deg-es tilɣa n umiḍan inek/inem.',
+'passwordreset-legend' => 'Awennez tikkelt nniḍen n awal uɛaddi',
+'passwordreset-disabled' => 'Awennez n awal uɛaddi yensa deg uwiki agi.',
+'passwordreset-pretext' => '{{PLURAL:$1||Sekcem aferdis n isefka ddaw agi}}',
 'passwordreset-username' => 'Isem n useqdac',
+'passwordreset-domain' => 'Talɣut :',
+'passwordreset-capture' => 'Ẓeṛ tirawt ?',
 'passwordreset-email' => 'Tansa e-mail :',
 
 # Special:ChangeEmail
+'changeemail-no-info' => 'Ilaq ad qqeneḍ iwakken ad ẓṛeḍ asebter agi.',
 'changeemail-newemail' => 'Tansa e-mail tamaynut :',
 'changeemail-none' => '(ulac)',
 'changeemail-submit' => 'Beddel tansa e-mail',

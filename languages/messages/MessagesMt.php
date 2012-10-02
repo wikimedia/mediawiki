@@ -1253,8 +1253,6 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'search-interwiki-caption' => 'Proġetti kuġini',
 'search-interwiki-default' => "Riżultati ta' $1:",
 'search-interwiki-more' => '(aktar)',
-'search-mwsuggest-enabled' => 'bis-suġġerimenti',
-'search-mwsuggest-disabled' => 'l-ebda suġġeriment',
 'search-relatedarticle' => 'Relatati',
 'mwsuggest-disable' => 'Neħħi suġġeriment tal-AJAX',
 'searcheverything-enable' => 'Fittex fl-ispazji tal-isem kollha',
@@ -2793,7 +2791,6 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 
 # JavaScriptTest
 'javascripttest' => 'Testjar tal-JavaScript',
-'javascripttest-disabled' => 'Din il-funzjoni ma ġietx abilitata fuq din il-wiki.',
 'javascripttest-pagetext-noframework' => 'Din il-paġna hi riservata għall-eżekuzzjoni tat-testijiet tal-JavaScript.',
 'javascripttest-pagetext-frameworks' => 'Jekk jogħġbok agħżel wieħed mill-oqsma tal-ittestjar: $1',
 'javascripttest-pagetext-skins' => 'Agħżel aspett grafiku fuq liema tesegwixxi testijiet:',
@@ -3783,4 +3780,7 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'duration-centuries' => '$1 {{PLURAL:$1|seklu|sekli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennju|millennji}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'li tinkludi...',
+'searchsuggest-search' => 'Fittex',
 );

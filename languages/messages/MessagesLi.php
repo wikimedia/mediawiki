@@ -1147,8 +1147,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'search-interwiki-caption' => 'Zösterprojecte',
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'mit suggesties',
-'search-mwsuggest-disabled' => 'gein suggesties',
 'search-relatedarticle' => 'Gerelateerd',
 'mwsuggest-disable' => 'Suggesties via AJAX oetsjakele',
 'searcheverything-enable' => 'Zeuke in alle naamruumdes',
@@ -2730,7 +2728,6 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 
 # JavaScriptTest
 'javascripttest' => 'Tes JavaScript',
-'javascripttest-disabled' => 'Dees funksje steit oet op deze wiki.',
 'javascripttest-title' => 'Veur tes oet veur $1',
 'javascripttest-pagetext-noframework' => "Dees pagina is gerizzerveerd veur 't oetveure van JavaScriptteste.",
 'javascripttest-pagetext-unknownframework' => 'Ónbekèndje testframework "$1".',
@@ -3730,4 +3727,7 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'duration-centuries' => '$1 {{PLURAL:$1|ieëf|ieëf}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'bevat...',
+'searchsuggest-search' => 'Zeuke',
 );

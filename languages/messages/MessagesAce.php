@@ -693,8 +693,6 @@ Alasan-alasan nyan hana geupeureumeuen.",
 'search-interwiki-caption' => 'Buët la’én',
 'search-interwiki-default' => 'Hasé $1:',
 'search-interwiki-more' => '(lom)',
-'search-mwsuggest-enabled' => 'ngon saran',
-'search-mwsuggest-disabled' => 'hana saran',
 'searchrelated' => 'meusambat',
 'searchall' => 'ban dum',
 'showingresultsheader' => "{{PLURAL:$5|Hase '''$1''' nibak '''$3'''|Hase '''$1 - $2''' nibak '''$3'''}} keu '''$4'''",
@@ -1208,4 +1206,6 @@ Data nyang la'én eunteuk teupeusom keudroë.
 # Special:Tags
 'tag-filter' => 'Filter [[Special:Tags|tag]]:',
 
+# Unknown messages
+'searchsuggest-search' => 'Mita',
 );

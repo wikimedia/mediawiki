@@ -933,8 +933,6 @@ $1",
 'search-interwiki-caption' => 'Citi projekti',
 'search-interwiki-default' => 'Rezultāti no $1:',
 'search-interwiki-more' => '(vairāk)',
-'search-mwsuggest-enabled' => 'ar ieteikumiem',
-'search-mwsuggest-disabled' => 'bez ieteikumiem',
 'search-relatedarticle' => 'Saistītais',
 'mwsuggest-disable' => 'Atslēgt AJAX ieteikumus',
 'searcheverything-enable' => 'Meklēt visās nosaukumvietās',
@@ -3110,4 +3108,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'api-error-unknown-warning' => 'Nezināms brīdinājums: $1',
 'api-error-uploaddisabled' => 'Augšupielāde šajā wiki  ir atslēgta.',
 
+# Unknown messages
+'searchsuggest-containing' => 'Meklējamā frāze:',
+'searchsuggest-search' => 'Meklēt',
 );

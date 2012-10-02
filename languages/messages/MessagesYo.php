@@ -1062,8 +1062,6 @@ Kò ṣe é bòmọ́lẹ̀.',
 'search-interwiki-caption' => 'Àwọn iṣẹ́-ọwọ́ mìràn',
 'search-interwiki-default' => 'èsì $1',
 'search-interwiki-more' => '(tókù)',
-'search-mwsuggest-enabled' => 'pẹ̀lú àbá',
-'search-mwsuggest-disabled' => 'láìsí àbá',
 'search-relatedarticle' => 'Tóbáramu',
 'mwsuggest-disable' => 'Ìdálẹ́kun àwọn àbá AJAX',
 'searcheverything-enable' => 'Àwárí nínú gbogbo orúkọàyè:',
@@ -3005,4 +3003,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'duration-weeks' => '{{PLURAL:$1|ọ̀sẹ̀|ọ̀sẹ̀}} $1',
 'duration-years' => '{{PLURAL:$1|ọdún|ọdún}} $1',
 
+# Unknown messages
+'searchsuggest-containing' => 'tó ní...',
+'searchsuggest-search' => 'Ṣàwárí',
 );

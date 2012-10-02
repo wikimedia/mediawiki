@@ -767,8 +767,6 @@ $2',
 'search-interwiki-caption' => '姊妹计划',
 'search-interwiki-default' => '$1只结果：',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建议',
-'search-mwsuggest-disabled' => '冇建议',
 'searchrelated' => '相关',
 'searchall' => '所有',
 'showingresults' => '底下从第<b>$2</b>条显示起先𠮶<b>$1</b>条结果:',
@@ -2271,4 +2269,6 @@ $3
 # Special:Tags
 'tag-filter' => '[[Special:Tags|标签]]过滤器：',
 
+# Unknown messages
+'searchsuggest-search' => '寻吖',
 );

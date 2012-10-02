@@ -1114,8 +1114,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-interwiki-caption' => 'Proyeutos hermanos',
 'search-interwiki-default' => '$1 resultaos:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con suxerencies',
-'search-mwsuggest-disabled' => 'ensin suxerencies',
 'search-relatedarticle' => 'Rellacionáu',
 'mwsuggest-disable' => 'Desactivar les suxerencies AJAX',
 'searcheverything-enable' => 'Buscar en tolos espacios de nome',
@@ -2753,7 +2751,6 @@ Guárdalu nel ordenador y xúbilu equí.",
 
 # JavaScriptTest
 'javascripttest' => 'Prueba de JavaScript',
-'javascripttest-disabled' => 'Esta función ta desactivada.',
 'javascripttest-title' => 'Executando pruebes de $1',
 'javascripttest-pagetext-noframework' => 'Esta páxina ta acutada pa executar pruebes de javascript.',
 'javascripttest-pagetext-unknownframework' => "L'entornu de pruebes «$1» ye desconocíu.",
@@ -3832,4 +3829,7 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'que contién...',
+'searchsuggest-search' => 'Guetar',
 );

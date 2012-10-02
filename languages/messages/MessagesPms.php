@@ -1061,8 +1061,6 @@ Sòn a l'é normalment causà da l'andèje dapress a na veja liura stòrica a na
 'search-interwiki-caption' => 'Proget frej',
 'search-interwiki-default' => 'Arzultà da $1:',
 'search-interwiki-more' => '(ëd pì)',
-'search-mwsuggest-enabled' => 'con sugeriment',
-'search-mwsuggest-disabled' => 'gnun sugeriment',
 'search-relatedarticle' => 'Corelà',
 'mwsuggest-disable' => 'Disabilité ij sugeriment AJAX',
 'searcheverything-enable' => 'Sërché ant tùit jë spassi nominaj',
@@ -3021,11 +3019,11 @@ J'àutri a saran stërmà coma stàndard.
 'exif-digitalzoomratio' => "Rapòrt ëd l'avzinament digital",
 'exif-focallengthin35mmfilm' => 'Longheur focal an na pelìcola da 35 mm',
 'exif-scenecapturetype' => 'Sistema ëd campionament',
-'exif-gaincontrol' => 'Contròl ëd sienari',
+'exif-gaincontrol' => 'Contròl dël senari',
 'exif-contrast' => 'Contrast',
 'exif-saturation' => 'Saturassion',
 'exif-sharpness' => 'Definission dij bòrd',
-'exif-devicesettingdescription' => "Nòm dla configurassion dl'aparechiatura",
+'exif-devicesettingdescription' => "Descrission dla configurassion dl'angign",
 'exif-subjectdistancerange' => 'Ragg ëd distansa dël soget',
 'exif-imageuniqueid' => 'Identificator ùnich dla figura',
 'exif-gpsversionid' => 'Version dël GPS',
@@ -3767,4 +3765,6 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
+# Unknown messages
+'searchsuggest-search' => 'Arserca',
 );

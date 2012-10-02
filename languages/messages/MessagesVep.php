@@ -954,8 +954,6 @@ Tö ei voigoi kävutada sidä.',
 'search-interwiki-caption' => 'Heimolaižed projektad',
 'search-interwiki-default' => "$1 rezul'tatad:",
 'search-interwiki-more' => '(völ)',
-'search-mwsuggest-enabled' => 'ozuta taričendad',
-'search-mwsuggest-disabled' => 'taričendoita',
 'search-relatedarticle' => 'Sidotud lehtpoled',
 'mwsuggest-disable' => 'Ala ozuta AJAX-taričendoid',
 'searcheverything-enable' => 'Ectä kaikiš nimiavarusiš',
@@ -2282,7 +2280,6 @@ Ei ole pordaigašt failhodrad.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptan kodvmine',
-'javascripttest-disabled' => 'Nece funkcii ei ole kävutamas neciš vikiš.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => "Teiden kävutajan lehtpol'",
@@ -3072,4 +3069,7 @@ Kävutagat normaline ezikacund.',
 'api-error-unknown-warning' => 'Tadmatoi varutuz: $1',
 'api-error-unknownerror' => 'Tundmatoi petuz: "$1"',
 
+# Unknown messages
+'searchsuggest-containing' => 'mülütajad...',
+'searchsuggest-search' => 'Ectä',
 );

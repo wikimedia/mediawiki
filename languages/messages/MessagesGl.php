@@ -1268,8 +1268,6 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'search-interwiki-caption' => 'Proxectos irmáns',
 'search-interwiki-default' => 'Resultados en $1:',
 'search-interwiki-more' => '(máis)',
-'search-mwsuggest-enabled' => 'con suxestións',
-'search-mwsuggest-disabled' => 'sen suxestións',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Deshabilitar as suxestións AJAX',
 'searcheverything-enable' => 'Procurar en todos os espazos de nomes',
@@ -3992,4 +3990,6 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'que conteña...',
 );

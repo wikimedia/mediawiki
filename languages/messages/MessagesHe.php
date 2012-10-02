@@ -511,7 +511,7 @@ $messages = array(
 'vector-action-protect' => 'הגנה',
 'vector-action-undelete' => 'ביטול מחיקה',
 'vector-action-unprotect' => 'שינוי הגנה',
-'vector-simplesearch-preference' => 'הפעלת הצעות החיפוש המשופרות (בעיצוב וקטור בלבד)',
+'vector-simplesearch-preference' => 'הפעלת סרגל חיפוש מפושט (בעיצוב וקטור בלבד)',
 'vector-view-create' => 'יצירה',
 'vector-view-edit' => 'עריכה',
 'vector-view-history' => 'הצגת היסטוריה',
@@ -1390,8 +1390,6 @@ $1",
 'search-interwiki-caption' => 'מיזמי אחות',
 'search-interwiki-default' => 'תוצאות ב{{GRAMMAR:תחילית|$1}}:',
 'search-interwiki-more' => '(עוד)',
-'search-mwsuggest-enabled' => 'עם הצעות',
-'search-mwsuggest-disabled' => 'ללא הצעות',
 'search-relatedarticle' => 'קשור',
 'mwsuggest-disable' => 'ביטול הצעות AJAX',
 'searcheverything-enable' => 'חיפוש בכל מרחבי השם',
@@ -4162,4 +4160,7 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'כולל...',
+'searchsuggest-search' => 'חיפוש',
 );

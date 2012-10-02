@@ -1314,8 +1314,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-interwiki-caption' => 'Các dự án liên quan',
 'search-interwiki-default' => '$1 kết quả:',
 'search-interwiki-more' => '(thêm)',
-'search-mwsuggest-enabled' => 'có gợi ý',
-'search-mwsuggest-disabled' => 'không có gợi ý',
 'search-relatedarticle' => 'Liên quan',
 'mwsuggest-disable' => 'Tắt gợi ý bằng AJAX',
 'searcheverything-enable' => 'Tìm trong tất cả không gian tên',
@@ -2938,7 +2936,6 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # JavaScriptTest
 'javascripttest' => 'Kiểm thử JavaScript',
-'javascripttest-disabled' => 'Chức năng này chưa được kích hoạt trên wiki này.',
 'javascripttest-title' => 'Đang chạy $1 ca kiểm thử',
 'javascripttest-pagetext-noframework' => 'Trang này dành cho việc chạy các ca kiểm thử JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nền tảng kiểm thử không rõ “$1”.',
@@ -4129,4 +4126,7 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
+# Unknown messages
+'searchsuggest-containing' => 'có chứa…',
+'searchsuggest-search' => 'Tìm kiếm',
 );

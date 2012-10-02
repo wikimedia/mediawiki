@@ -1342,8 +1342,6 @@ Detaljer kan hittas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Systerprojekt',
 'search-interwiki-default' => 'Resultat i $1:',
 'search-interwiki-more' => '(mer)',
-'search-mwsuggest-enabled' => 'med förslag',
-'search-mwsuggest-disabled' => 'inga förslag',
 'search-relatedarticle' => 'Relaterad',
 'mwsuggest-disable' => 'Avaktivera AJAX-förslag',
 'searcheverything-enable' => 'Sök i alla namnrymder',
@@ -4045,4 +4043,7 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'innehåller...',
+'searchsuggest-search' => 'Sök',
 );

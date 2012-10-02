@@ -1274,8 +1274,6 @@ $3 келтірілген себебі: ''$2''",
 'search-interwiki-caption' => 'Бауырлас жобалар',
 'search-interwiki-default' => '$1 нәтиже:',
 'search-interwiki-more' => '(көбірек)',
-'search-mwsuggest-enabled' => 'ұсынымдармен',
-'search-mwsuggest-disabled' => 'ұсынымдарсыз',
 'search-relatedarticle' => 'Қатысты',
 'mwsuggest-disable' => 'AJAX ұсынымдарын өшір',
 'searcheverything-enable' => 'Белгіленген есім кеңістігінен іздеу',
@@ -3193,4 +3191,6 @@ $5
 'logentry-newusers-autocreate' => '$1 аккаунты автоматты түрде тіркелді',
 'newuserlog-byemail' => 'Құпия сөз e-mail арқылы жіберілді',
 
+# Unknown messages
+'searchsuggest-search' => 'Іздеу',
 );

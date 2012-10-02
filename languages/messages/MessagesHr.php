@@ -1310,8 +1310,6 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'search-interwiki-caption' => 'Sestrinski projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 's prijedlozima',
-'search-mwsuggest-disabled' => 'nema prijedloga',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Isključi AJAX prijedloge',
 'searcheverything-enable' => 'Traži u svim imenskim prostorima',
@@ -3921,4 +3919,7 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde|sekundi}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'sadrži....',
+'searchsuggest-search' => 'Traži',
 );

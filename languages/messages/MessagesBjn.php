@@ -1148,8 +1148,6 @@ Catatan bahwasa mamuruk tautan napigasi akan mambulikakan setelan kolum ngini.',
 'search-interwiki-caption' => 'Dingsanak rangka gawian',
 'search-interwiki-default' => 'Kulihan $1',
 'search-interwiki-more' => '(lagi)',
-'search-mwsuggest-enabled' => 'awan saran',
-'search-mwsuggest-disabled' => 'kadada saran',
 'search-relatedarticle' => 'Bakulaan',
 'mwsuggest-disable' => "Kada kawa'akan sasaran AJAX",
 'searcheverything-enable' => 'Panggagaian pada samunyaan ngaran kakamar',
@@ -3708,4 +3706,7 @@ Salain ngitu, Pian kawa mamuruk prmulir nyaman di bawah ngini. Kumintar Pian aka
 'api-error-uploaddisabled' => 'Paunggahan dinunaktipakan di wiki naya.',
 'api-error-verification-error' => 'Barakas naya kira-kira rusak atawa baisi ikstinsi nang salah.',
 
+# Unknown messages
+'searchsuggest-containing' => 'isian ...',
+'searchsuggest-search' => 'Gagai',
 );

@@ -960,8 +960,6 @@ $1',
 'search-interwiki-caption' => 'خورلڼې پروژې',
 'search-interwiki-default' => '$1 پايلې:',
 'search-interwiki-more' => '(نور)',
-'search-mwsuggest-enabled' => 'د وړانديزونو سره',
-'search-mwsuggest-disabled' => 'له وړانديزونو نه پرته',
 'search-relatedarticle' => 'اړونده',
 'mwsuggest-disable' => 'د AJAX وړانديزونه ناچارن کول',
 'searcheverything-enable' => 'په ټولو نوم-تشيالونو کې پلټل',
@@ -2668,4 +2666,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|پېړۍ|پېړۍ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|زرمه|زرمې}}',
 
+# Unknown messages
+'searchsuggest-search' => 'پلټل',
 );

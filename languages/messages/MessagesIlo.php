@@ -1094,8 +1094,6 @@ Dagiti salaysay ket mabalin a mabirukan idiay [{{fullurl:{{#Special:Log}}/delete
 'search-interwiki-caption' => 'Dagiti kakabsat a gandat',
 'search-interwiki-default' => '$1 dagiti nagbanagan:',
 'search-interwiki-more' => '(adu pay)',
-'search-mwsuggest-enabled' => 'addaan dagiti singasing',
-'search-mwsuggest-disabled' => 'awanan dagiti singasing',
 'search-relatedarticle' => 'Mainaig',
 'mwsuggest-disable' => 'Pagsardengen dagiti AJAX a naisingasing',
 'searcheverything-enable' => 'Agbirukka kadagiti amin a nagan ti lugar',
@@ -3772,4 +3770,7 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'naglaon ti...',
+'searchsuggest-search' => 'Biruken',
 );

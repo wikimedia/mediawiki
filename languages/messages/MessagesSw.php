@@ -1098,8 +1098,6 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'search-interwiki-caption' => 'Miradi ya jumuia',
 'search-interwiki-default' => 'Matokeo toka $1:',
 'search-interwiki-more' => '(zaidi)',
-'search-mwsuggest-enabled' => 'na mapendekezo',
-'search-mwsuggest-disabled' => 'bila makendekezo',
 'search-relatedarticle' => 'Zingine zinazofanana',
 'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya AJAX',
 'searcheverything-enable' => 'Tafuta katika maeneo yote ya wiki',
@@ -3177,4 +3175,7 @@ Tovuti hii inapata matatatizo wakati huu.',
 'duration-years' => '$1 {{PLURAL:$1|year|miaka}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|karne}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ya maneno...',
+'searchsuggest-search' => 'Kutafuta',
 );

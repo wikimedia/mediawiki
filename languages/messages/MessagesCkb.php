@@ -1132,8 +1132,6 @@ $1",
 'search-interwiki-caption' => 'پرۆژە خوشکەکان',
 'search-interwiki-default' => '$1 ئەنجام:',
 'search-interwiki-more' => '(زیاتر)',
-'search-mwsuggest-enabled' => 'بە پێشنیارەکانەوە',
-'search-mwsuggest-disabled' => 'بێ پێشنیار',
 'search-relatedarticle' => 'پەیوەست',
 'mwsuggest-disable' => 'پێشنیارەکانی AJAX نیشان مەدە',
 'searcheverything-enable' => 'لە ھەموو بۆشایی‌‌ناوەکان دا بگەڕێ',
@@ -3331,4 +3329,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|سەدە|سەدە}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ھەزارە|ھەزارە}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'بە لەبەرگرتنەوەی ...',
+'searchsuggest-search' => 'گەڕان',
 );

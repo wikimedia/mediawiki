@@ -997,8 +997,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'search-interwiki-caption' => 'Pruggetti frati',
 'search-interwiki-default' => 'Risultati da $1:',
 'search-interwiki-more' => '(cchiù)',
-'search-mwsuggest-enabled' => 'cu suggirimenti',
-'search-mwsuggest-disabled' => 'senza suggirimenti',
 'search-relatedarticle' => 'Risultati currilati',
 'mwsuggest-disable' => 'Astuta suggirimenti AJAX',
 'searcheverything-enable' => 'Cerca ni tutti li namespace',
@@ -2996,4 +2994,6 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'api-error-unclassified' => "S'avvirificau n'erruri scanusciutu",
 'api-error-unknown-code' => 'Erruri scanusciuti: "$1$".',
 
+# Unknown messages
+'searchsuggest-search' => 'Ricerca',
 );

@@ -1332,8 +1332,6 @@ $1",
 'search-interwiki-caption' => 'സഹോദര സംരംഭങ്ങൾ',
 'search-interwiki-default' => '$1 ഫലങ്ങൾ:',
 'search-interwiki-more' => '(കൂടുതൽ)',
-'search-mwsuggest-enabled' => 'നിർദ്ദേശങ്ങൾ വേണം',
-'search-mwsuggest-disabled' => 'നിർദ്ദേശങ്ങൾ വേണ്ട',
 'search-relatedarticle' => 'ബന്ധപ്പെട്ടവ',
 'mwsuggest-disable' => 'അജാക്സ് നിർദ്ദേശങ്ങൾ വേണ്ട',
 'searcheverything-enable' => 'എല്ലാ നാമമേഖലകളും തിരയുക',
@@ -4013,4 +4011,7 @@ $5
 'duration-centuries' => '{{PLURAL:$1|ഒരു നൂറ്റാണ്ട്|$1 നൂറ്റാണ്ട്}}',
 'duration-millennia' => '{{PLURAL:$1|ഒരു സഹസ്രാബ്ദം|$1 സഹസ്രാബ്ദം}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ഉൾപ്പെടുന്നവ...',
+'searchsuggest-search' => 'തിരയുക',
 );

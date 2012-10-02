@@ -790,8 +790,6 @@ $1",
 'search-interwiki-caption' => 'ساتھی منصوبے',
 'search-interwiki-default' => '$1 نتائج:',
 'search-interwiki-more' => '(مزید)',
-'search-mwsuggest-enabled' => 'بمع تجاویز',
-'search-mwsuggest-disabled' => 'تجاویز نہیں',
 'search-relatedarticle' => 'متعلقہ',
 'mwsuggest-disable' => 'AJAX تجاویز غیرفعال',
 'searchrelated' => 'متعلقہ',
@@ -1488,4 +1486,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:SpecialPages
 'specialpages' => 'خصوصی صفحات',
 
+# Unknown messages
+'searchsuggest-search' => 'تلاش',
 );

@@ -965,8 +965,6 @@ Intaai [[Special:BlockList|lis nantaban]] montok lis kawawagu karaja mogoduh om 
 'search-interwiki-caption' => 'Taka do purujik',
 'search-interwiki-default' => 'Kootuson $1:',
 'search-interwiki-more' => '(lobi)',
-'search-mwsuggest-enabled' => 'miampai tua do tutok',
-'search-mwsuggest-disabled' => 'ingaa tua do tutok',
 'search-relatedarticle' => 'Kompinaian',
 'searcheverything-enable' => 'Pogihum momoguno oinsanan ngaran:',
 'searchrelated' => 'kompinaian',

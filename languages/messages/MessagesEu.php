@@ -1076,8 +1076,6 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'search-interwiki-caption' => 'Beste proiektuak',
 'search-interwiki-default' => '$1(r)en emaitzak:',
 'search-interwiki-more' => '(gehiago)',
-'search-mwsuggest-enabled' => 'iradokizunekin',
-'search-mwsuggest-disabled' => 'ez dago gomendiorik',
 'search-relatedarticle' => 'Erlazionatua',
 'mwsuggest-disable' => 'AJAX gomendioak ezgaitu',
 'searcheverything-enable' => 'Bilatu izen-tarte guztietan',
@@ -3295,4 +3293,7 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'feedback-cancel' => 'Utzi',
 'feedback-submit' => 'Feedbacka bidali',
 
+# Unknown messages
+'searchsuggest-containing' => 'edukian...',
+'searchsuggest-search' => 'Bilatu',
 );

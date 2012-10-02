@@ -1346,8 +1346,6 @@ Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'search-interwiki-caption' => 'Schwesterprojekte',
 'search-interwiki-default' => '$1 hät heh di Träffer jefonge:',
 'search-interwiki-more' => '(mieh)',
-'search-mwsuggest-enabled' => 'met Vürschläsh',
-'search-mwsuggest-disabled' => 'ohne Vürschläsh',
 'search-relatedarticle' => 'Ähnlesch',
 'mwsuggest-disable' => 'Kein automatische Hölp-Liss per Ajax beim Tippe em Feld för et Söke',
 'searcheverything-enable' => 'En alle Appachtemangs söhke',
@@ -4221,4 +4219,7 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-centuries' => '{{PLURAL:$1|e Johrhondert|$1 Johrhonderte|kei Johrhondert}}',
 'duration-millennia' => '{{PLURAL:$1|e Johrdousend|$1 Johrdousende|kei Johrdousend}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'dren änthallde…',
+'searchsuggest-search' => 'Söhke',
 );

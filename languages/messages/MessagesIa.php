@@ -1199,8 +1199,6 @@ Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Projectos fratres',
 'search-interwiki-default' => 'Resultatos de $1:',
 'search-interwiki-more' => '(plus)',
-'search-mwsuggest-enabled' => 'con suggestiones',
-'search-mwsuggest-disabled' => 'sin suggestiones',
 'search-relatedarticle' => 'Connexe',
 'mwsuggest-disable' => 'Disactivar suggestiones via AJAX',
 'searcheverything-enable' => 'Cercar in tote le spatios de nomines',
@@ -2866,7 +2864,6 @@ Salveguarda lo in tu computator e incarga lo hic.',
 
 # JavaScriptTest
 'javascripttest' => 'Test de JavaScript',
-'javascripttest-disabled' => 'Iste function non ha essite activate in iste wiki.',
 'javascripttest-title' => 'Execution de $1 tests',
 'javascripttest-pagetext-noframework' => 'Iste pagina es reservate pro le execution de tests de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Structura de test "$1" incognite.',
@@ -3937,4 +3934,7 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'continente...',
+'searchsuggest-search' => 'Cercar',
 );

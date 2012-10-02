@@ -1374,8 +1374,6 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-caption' => 'Sesterské projekty',
 'search-interwiki-default' => 'Výsledky z $1:',
 'search-interwiki-more' => '(více)',
-'search-mwsuggest-enabled' => 's návrhy',
-'search-mwsuggest-disabled' => 'bez návrhů',
 'search-relatedarticle' => 'Související',
 'mwsuggest-disable' => 'Vypnout ajaxové napovídání',
 'searcheverything-enable' => 'Hledat ve všech jmenných prostorech',
@@ -2973,7 +2971,6 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # JavaScriptTest
 'javascripttest' => 'Testování JavaScriptu',
-'javascripttest-disabled' => 'Tato funkce nebyla na této wiki povolena.',
 'javascripttest-title' => 'Spouštějí se testy v $1',
 'javascripttest-pagetext-noframework' => 'Tato stránka je vyhrazena pro spouštění testů JavaScriptu.',
 'javascripttest-pagetext-unknownframework' => 'Neznámá testovací knihovna „$1“.',
@@ -4101,4 +4098,6 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'obsahující…',
 );

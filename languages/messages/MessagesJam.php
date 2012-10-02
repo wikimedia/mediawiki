@@ -723,8 +723,6 @@ Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = 
 'search-interwiki-caption' => 'Sista prajek',
 'search-interwiki-default' => '$1 rizoltdem:',
 'search-interwiki-more' => '(muo)',
-'search-mwsuggest-enabled' => 'wid sojeshan',
-'search-mwsuggest-disabled' => 'nuo sojeshan',
 'nonefound' => "'''Nuot''': Onggl som niemspies saach bai difaalt.
 Chrai priifix yu kwieri wid ''all:'' fi saach aal kantent (inkluudn taak piej, templit, esechra), ar yuuz di dizaya niemspies fi priifix.",
 'powersearch' => 'Advans saach',

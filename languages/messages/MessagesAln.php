@@ -929,8 +929,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-caption' => 'Projektet simotra',
 'search-interwiki-default' => '$1 rezultate:',
 'search-interwiki-more' => '(mâ shumë)',
-'search-mwsuggest-enabled' => 'me parahedhje',
-'search-mwsuggest-disabled' => "s'ka parahedhje",
 'search-relatedarticle' => 'Të ngjajshme',
 'mwsuggest-disable' => 'Deaktivizo sygjerimet me AJAX',
 'searcheverything-enable' => 'Kërko në tâna hapësinat',
@@ -1621,4 +1619,7 @@ Tjerat kanë me mbetë të mshefuna.
 'revdelete-restricted' => 'u vendosën kufizime për administruesit',
 'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
 
+# Unknown messages
+'searchsuggest-containing' => 'përmban ...',
+'searchsuggest-search' => 'Kërkim',
 );

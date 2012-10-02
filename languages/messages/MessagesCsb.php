@@ -578,8 +578,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'search-interwiki-caption' => 'Sosterné ùdbë',
 'search-interwiki-default' => 'Skùtczi dlô $1:',
 'search-interwiki-more' => '(wicy)',
-'search-mwsuggest-enabled' => 'z sugestëjama',
-'search-mwsuggest-disabled' => 'bez sugestëjów',
 'searchall' => 'wszëtczé',
 'nonefound' => "'''Bôczënk''':Dlô szëkbë są domëslno przistãpné blós niejedné rumë mionów.
 Spróbùjë szëkbë z przëdôwkã ''all:'' dlô całowny zamkłoscë starnów (zamëkający w se starnë diskùsëji, szablónë, ëtp), abò ùżëje przëdôwka wëbrónegò ruma mionów.",

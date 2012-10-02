@@ -737,8 +737,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-suggest' => 'Waxaa ka waday miyaa: $1',
 'search-interwiki-default' => '$1 natiijooyinka:',
 'search-interwiki-more' => '(wax kale)',
-'search-mwsuggest-enabled' => 'soojeedin',
-'search-mwsuggest-disabled' => 'soojeedin malahan',
 'search-relatedarticle' => 'La xiriiro',
 'searchrelated' => 'La xiriiro',
 'searchall' => 'Dhamaan',
@@ -1405,4 +1403,6 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'api-error-unknown-warning' => 'Digniin la aqoon: $1',
 'api-error-uploaddisabled' => 'Soo gelinta waa laga xiray wikigaan.',
 
+# Unknown messages
+'searchsuggest-search' => 'Raadi',
 );

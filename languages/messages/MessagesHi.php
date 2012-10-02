@@ -1197,8 +1197,6 @@ $1",
 'search-interwiki-caption' => 'अन्य प्रकल्प',
 'search-interwiki-default' => '$1 के परिणाम:',
 'search-interwiki-more' => '(और)',
-'search-mwsuggest-enabled' => 'सुझाव सहित',
-'search-mwsuggest-disabled' => 'सुझाव नहीं',
 'search-relatedarticle' => 'सम्बंधित',
 'mwsuggest-disable' => 'AJAX सुझाव बंद करें',
 'searcheverything-enable' => 'सभी नामस्थानों में खोजें',
@@ -3861,4 +3859,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|शताब्दी}}',
 'duration-millennia' => '$1 {{PLURAL:$1|सहस्राब्दी}}',
 
+# Unknown messages
+'searchsuggest-search' => 'खोज',
 );

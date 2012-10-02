@@ -1071,8 +1071,6 @@ Tú hevur ikki atgongd til hann.',
 'search-interwiki-caption' => 'Líknandi verkætlanir',
 'search-interwiki-default' => '$1 úrslit:',
 'search-interwiki-more' => '(meira)',
-'search-mwsuggest-enabled' => 'við uppskotum',
-'search-mwsuggest-disabled' => 'ongi uppskot',
 'search-relatedarticle' => 'Líknandi',
 'mwsuggest-disable' => 'Slá AJAX uppskot frá',
 'searcheverything-enable' => 'Leita í øllum navnaøkjum',
@@ -2262,4 +2260,6 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'api-error-unclassified' => 'Ein ókendur feilur hendi.',
 'api-error-unknown-code' => 'Ókendur feilur: "$1"',
 
+# Unknown messages
+'searchsuggest-search' => 'Leita',
 );

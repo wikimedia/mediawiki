@@ -731,8 +731,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 'search-interwiki-caption' => 'Hmachhawppuite',
 'search-interwiki-default' => 'Chhuak $1:',
 'search-interwiki-more' => '(tam)',
-'search-mwsuggest-enabled' => 'rawtna telin',
-'search-mwsuggest-disabled' => 'rawtna tel lovin',
 'search-relatedarticle' => 'Laichin',
 'mwsuggest-disable' => 'AJAX rawtna tithi rawh',
 'searcheverything-enable' => 'Hminghmun zawng zawngah zawng rawh',
@@ -1934,4 +1932,7 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'feedback-message' => 'Thu',
 'feedback-cancel' => 'Sûtna',
 
+# Unknown messages
+'searchsuggest-containing' => 'hemi thu telna hi...',
+'searchsuggest-search' => 'Zawnna',
 );

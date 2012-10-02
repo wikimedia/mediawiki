@@ -1311,8 +1311,6 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'search-interwiki-caption' => 'Társlapok',
 'search-interwiki-default' => '$1 találat',
 'search-interwiki-more' => '(több)',
-'search-mwsuggest-enabled' => 'javaslatokkal',
-'search-mwsuggest-disabled' => 'javaslatok nélkül',
 'search-relatedarticle' => 'Kapcsolódó',
 'mwsuggest-disable' => 'AJAX-alapú keresési javaslatok letiltása',
 'searcheverything-enable' => 'Keresés az összes névtérben',
@@ -2917,7 +2915,6 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript tesztelés',
-'javascripttest-disabled' => 'Ez a funkció nincs engedélyezve ebben a wikiben.',
 'javascripttest-title' => '$1 tesztek futtatása',
 'javascripttest-pagetext-noframework' => 'Ez az oldal JavaStript tesztek futtatására van fenntartva.',
 'javascripttest-pagetext-unknownframework' => 'Ismeretlen teszt keretrendszer: $1.',
@@ -3959,4 +3956,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
+# Unknown messages
+'searchsuggest-containing' => 'tartalmazza…',
+'searchsuggest-search' => 'Keresés',
 );

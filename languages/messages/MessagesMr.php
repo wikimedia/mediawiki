@@ -1273,8 +1273,6 @@ $1",
 'search-interwiki-caption' => 'इतर प्रकल्प',
 'search-interwiki-default' => '$1चे निकाल:',
 'search-interwiki-more' => '(आणखी)',
-'search-mwsuggest-enabled' => 'सजेशन्स सहित',
-'search-mwsuggest-disabled' => 'सजेशन्स नाहीत',
 'search-relatedarticle' => 'जवळील',
 'mwsuggest-disable' => 'AJAX सजेशन्स रद्द करा',
 'searcheverything-enable' => 'सर्वनामविश्वांमध्ये शोधा:',
@@ -3828,4 +3826,7 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|दशकापूर्वी|दशकांपूर्वी }}',
 'duration-centuries' => '$1 {{PLURAL:$1|शतकापूर्वी|शतकांपूर्वी }}',
 
+# Unknown messages
+'searchsuggest-containing' => '.......हे असलेले',
+'searchsuggest-search' => 'शोधा',
 );

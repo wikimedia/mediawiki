@@ -310,7 +310,7 @@ $messages = array(
 'vector-action-protect' => 'škitać',
 'vector-action-undelete' => 'Wobnowić',
 'vector-action-unprotect' => 'Škit wotstronić',
-'vector-simplesearch-preference' => 'Polěpšene pytanske namjety zmóžnić (jenož šat Vector)',
+'vector-simplesearch-preference' => 'Zjednorjenu pytansku lajstu zmóžnić (jenož drasta Vector)',
 'vector-view-create' => 'Wutworić',
 'vector-view-edit' => 'Wobdźěłać',
 'vector-view-history' => 'Stawizny',
@@ -1148,8 +1148,6 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Sotrowske projekty',
 'search-interwiki-default' => '$1 wuslědki:',
 'search-interwiki-more' => '(dalše)',
-'search-mwsuggest-enabled' => 'z namjetami',
-'search-mwsuggest-disabled' => 'žane namjety',
 'search-relatedarticle' => 'Přiwuzne',
 'mwsuggest-disable' => 'Namjety AJAX znjemóžnić',
 'searcheverything-enable' => 'We wšěch mjenowych rumach pytać',
@@ -2736,7 +2734,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptowy test',
-'javascripttest-disabled' => 'Tuta funkcija njeje na tutym wikiju zmóžnjena.',
 'javascripttest-title' => 'Testy $1 so přewjedu',
 'javascripttest-pagetext-noframework' => 'Tuta strona je za přewjedźenje javascriptowych testow přewostajena.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
@@ -3773,4 +3770,7 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'wobsahuje...',
+'searchsuggest-search' => 'Pytać',
 );

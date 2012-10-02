@@ -987,8 +987,6 @@ $1",
 'search-interwiki-caption' => 'Джууукъ проектле',
 'search-interwiki-default' => '$1 эсеблери:',
 'search-interwiki-more' => '(дагъыда)',
-'search-mwsuggest-enabled' => 'юретиуле бла',
-'search-mwsuggest-disabled' => 'юретиулесиз',
 'search-relatedarticle' => 'Байламлы',
 'mwsuggest-disable' => 'AJAX юретиулени джукълатыгъыз',
 'searcheverything-enable' => 'Атланы бютёу аламларында изле',
@@ -3470,4 +3468,7 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 'duration-centuries' => '$1 {{PLURAL:$1|ёмюр}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мингджыллыкъ}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ичиндегиси…',
+'searchsuggest-search' => 'Излеу',
 );

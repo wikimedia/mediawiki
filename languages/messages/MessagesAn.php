@@ -1085,8 +1085,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'search-interwiki-caption' => 'Prochectos chermans',
 'search-interwiki-default' => '$1 resultaus:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con socherencias',
-'search-mwsuggest-disabled' => 'garra socherencia',
 'search-relatedarticle' => 'Relacionato',
 'mwsuggest-disable' => "Desactivar as socherencias d'AJAX",
 'searcheverything-enable' => 'Mirar en totz os espacios de nombres',
@@ -2651,7 +2649,6 @@ Alce-lo en o suyo ordenador y cargue-lo aquí.",
 
 # JavaScriptTest
 'javascripttest' => 'Prebatinas de JavaScript',
-'javascripttest-disabled' => 'Ista función ye desactivata.',
 'javascripttest-title' => 'Fendo as prebas de $1',
 'javascripttest-pagetext-noframework' => 'Ista pachina ye reservada ta fer as prebas de JavaScrip.',
 'javascripttest-pagetext-unknownframework' => 'Bastida de prebas "$1" desconoixida.',
@@ -3672,4 +3669,7 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'api-error-uploaddisabled' => 'As cargas de fichers son desactivadas en iste wiki.',
 'api-error-verification-error' => 'Iste fichero puede estar danyau, u tiene una extensión incorrecta.',
 
+# Unknown messages
+'searchsuggest-containing' => 'que contién...',
+'searchsuggest-search' => 'Mirar',
 );

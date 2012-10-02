@@ -1342,8 +1342,6 @@ Detaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Søsterprosjekter',
 'search-interwiki-default' => '$1-resultater:',
 'search-interwiki-more' => '(mer)',
-'search-mwsuggest-enabled' => 'med forslag',
-'search-mwsuggest-disabled' => 'ingen forslag',
 'search-relatedarticle' => 'Relatert',
 'mwsuggest-disable' => 'Slå av AJAX-forslag',
 'searcheverything-enable' => 'Søk i alle navnerom',
@@ -4034,4 +4032,7 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'inneholder …',
+'searchsuggest-search' => 'Søk',
 );

@@ -766,8 +766,6 @@ Eke şertê ilawekerdey ke niyê ro, idarekerê bini {{SITENAME}} de nêşikinê
 'search-interwiki-caption' => 'Procê bıray',
 'search-interwiki-default' => '$1 neticey:',
 'search-interwiki-more' => '(zafêr)',
-'search-mwsuggest-enabled' => 'ebe teklifu',
-'search-mwsuggest-disabled' => 'teklifi çinê',
 'search-relatedarticle' => 'alaqedar',
 'searchrelated' => 'alaqedar',
 'searchall' => 'pêro',

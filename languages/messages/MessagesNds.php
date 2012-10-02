@@ -1102,8 +1102,6 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'search-interwiki-caption' => 'Süsterprojekten',
 'search-interwiki-default' => '$1 Resultaten:',
 'search-interwiki-more' => '(mehr)',
-'search-mwsuggest-enabled' => 'mit Vörslääg',
-'search-mwsuggest-disabled' => 'kene Vörslääg',
 'search-relatedarticle' => 'Verwandt',
 'mwsuggest-disable' => 'Vörslääg per Ajax utstellen',
 'searcheverything-enable' => 'In all Naamrüüm söken',

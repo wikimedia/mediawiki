@@ -1203,8 +1203,6 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Søsterprojekter',
 'search-interwiki-default' => '{{PLURAL:$1|et resultat|$1 resultater}}:',
 'search-interwiki-more' => '(mere)',
-'search-mwsuggest-enabled' => 'med forslag',
-'search-mwsuggest-disabled' => 'ingen forslag',
 'search-relatedarticle' => 'Relateret',
 'mwsuggest-disable' => 'Slå AJAX-forslag fra',
 'searcheverything-enable' => 'Søg i alle navnerum',
@@ -3828,4 +3826,6 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'indeholder...',
 );

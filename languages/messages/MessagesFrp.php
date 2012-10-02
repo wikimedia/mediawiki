@@ -1345,8 +1345,6 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'search-interwiki-caption' => 'Projèts frâres',
 'search-interwiki-default' => 'Rèsultats dessus $1 :',
 'search-interwiki-more' => '(més)',
-'search-mwsuggest-enabled' => 'avouéc consèlys',
-'search-mwsuggest-disabled' => 'sen consèlys',
 'search-relatedarticle' => 'Raportâ',
 'mwsuggest-disable' => 'Dèsactivar los consèlys AJAX',
 'searcheverything-enable' => 'Rechèrchiér dens tôs los èspâços de noms',
@@ -2985,7 +2983,6 @@ Volyéd tornar èprovar.',
 
 # JavaScriptTest
 'javascripttest' => 'Èprôva de JavaScript',
-'javascripttest-disabled' => 'Cela fonccion-que est pas étâye activâye sur ceti vouiqui.',
 'javascripttest-title' => 'Èprôves de $1 en cors',
 'javascripttest-qunit-intro' => 'Vêde la [$1 documentacion de les èprôves] dessus mediawiki.org.',
 'javascripttest-qunit-heading' => 'Suita d’èprôva QUnit de JavaScript dessus MediaWiki',
@@ -4113,4 +4110,7 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'duration-centuries' => '$1 sièclo{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 milènèro{{PLURAL:$1||s}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'que contint...',
+'searchsuggest-search' => 'Rechèrchiér',
 );

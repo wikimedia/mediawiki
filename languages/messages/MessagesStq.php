@@ -1007,8 +1007,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'search-interwiki-caption' => 'Susterprojekte',
 'search-interwiki-default' => '$1 Resultoate:',
 'search-interwiki-more' => '(wiedere)',
-'search-mwsuggest-enabled' => 'mäd Foarsleeke',
-'search-mwsuggest-disabled' => 'neen Foarsleeke',
 'search-relatedarticle' => 'Früünde',
 'mwsuggest-disable' => 'Foarsleeke truch Ajax deaktivierje',
 'searcheverything-enable' => 'Säik in aal Noomensruume',
@@ -3301,4 +3299,7 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 'revdelete-unrestricted' => 'Ienskränkengen foar Administratore wächhoald',
 'newuserlog-byemail' => 'dät Paaswoud wuud uur E-Mail fersoand',
 
+# Unknown messages
+'searchsuggest-containing' => 'Fultextsäike ätter ...',
+'searchsuggest-search' => 'Säik',
 );

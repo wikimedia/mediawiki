@@ -568,8 +568,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'search-interwiki-caption' => 'Sƿeostorƿeorc',
 'search-interwiki-default' => '$1 becymas:',
 'search-interwiki-more' => '(mā)',
-'search-mwsuggest-enabled' => 'mid teohhungum',
-'search-mwsuggest-disabled' => 'nān teohhunga',
 'searchrelated' => 'ȝesibbed',
 'searchall' => 'eall',
 'showingresults' => 'Īewan under oþ <b>$1</b> tōhīgunga onginnenda mid #<b>$2</b>.',

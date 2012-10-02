@@ -516,7 +516,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protección',
-'vector-simplesearch-preference' => 'Activar sugerencias de búsqueda mejoradas (piel Vector solamente)',
+'vector-simplesearch-preference' => 'Activar la barra de búsqueda simplificada (sólo con la apariencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver historial',
@@ -1392,8 +1392,6 @@ Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{
 'search-interwiki-caption' => 'Proyectos hermanos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con sugerencias',
-'search-mwsuggest-disabled' => 'sin sugerencias',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desactivar AJAX al realizar búsquedas',
 'searcheverything-enable' => 'Buscar en todos los espacios de nombres',
@@ -4092,4 +4090,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'conteniendo...',
+'searchsuggest-search' => 'Buscar',
 );

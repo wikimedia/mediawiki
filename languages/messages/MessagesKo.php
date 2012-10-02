@@ -1395,8 +1395,6 @@ $1",
 'search-interwiki-caption' => '자매 프로젝트',
 'search-interwiki-default' => '$1 결과:',
 'search-interwiki-more' => '(더 보기)',
-'search-mwsuggest-enabled' => '검색어 제안 있음',
-'search-mwsuggest-disabled' => '검색어 제안 없음',
 'search-relatedarticle' => '관련',
 'mwsuggest-disable' => 'AJAX 검색어 제안 끄기',
 'searcheverything-enable' => '모든 이름공간에서 찾기',
@@ -4154,4 +4152,7 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
+# Unknown messages
+'searchsuggest-containing' => '다음의 어구가 들어간 문서 찾기',
+'searchsuggest-search' => '찾기',
 );

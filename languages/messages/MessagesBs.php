@@ -1300,8 +1300,6 @@ Korištenje navigacionih linkova će resetovati ovaj stupac.',
 'search-interwiki-caption' => 'Srodni projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 'sa sugestijama',
-'search-mwsuggest-disabled' => 'bez sugestija',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Onemogući AJAX prijedloge',
 'searcheverything-enable' => 'Traži u svim imenskim prostorima',
@@ -2895,7 +2893,6 @@ Nedostaje privremeni folder.',
 
 # JavaScriptTest
 'javascripttest' => 'Testiranje JavaScript-e',
-'javascripttest-disabled' => 'Ova funkcija je onemogućena na ovom wikiju.',
 'javascripttest-title' => 'Pokretanje $1 testova',
 'javascripttest-pagetext-noframework' => 'Ova stranica je određena za pokretanje JavaScript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznat radni okvir testiranja"$1".',
@@ -3968,4 +3965,7 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
 'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'sadrži...',
+'searchsuggest-search' => 'Traži',
 );

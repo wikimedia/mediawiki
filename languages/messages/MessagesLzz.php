@@ -368,8 +368,6 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'search-interwiki-caption' => 'Cuma projepe',
 'search-interwiki-default' => '$1 sonucepe:',
 'search-interwiki-more' => '(çkva)',
-'search-mwsuggest-enabled' => 'okʼvandupete',
-'search-mwsuggest-disabled' => 'okʼvandu varen',
 'searchall' => 'mteli',
 'nonefound' => "'''Notʼi''': Xvala, namtini svacoxope maartani oqʼopinot igoren.
 Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (oğarğaluşi butʼkʼape, şablonepe, doçkva şeyepeti iqʼvasen) mgori varna pʼrefiksi oqʼopinot na igoren svacoxo ixmarit.",

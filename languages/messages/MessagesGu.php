@@ -1180,8 +1180,6 @@ $1",
 'search-interwiki-caption' => 'બંધુ પ્રકલ્પ',
 'search-interwiki-default' => '$1 પરીણામો:',
 'search-interwiki-more' => '(વધુ)',
-'search-mwsuggest-enabled' => 'સુઝાવ સહિત',
-'search-mwsuggest-disabled' => 'સુઝાવ વિના',
 'search-relatedarticle' => 'શોધ સંબંધિત',
 'mwsuggest-disable' => 'AJAX સુઝાવો નિષ્ક્રીય કરો',
 'searcheverything-enable' => 'નામસ્થળોમાં શોધો:',
@@ -2813,7 +2811,6 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # JavaScriptTest
 'javascripttest' => 'જાવા સ્ક્રીપ્ટ પરીક્ષણ',
-'javascripttest-disabled' => 'આ સૂત્ર (ફંકશન) આ વિકિ પર કાર્યરત કરાયેલું નથી.',
 'javascripttest-title' => '$1 પરીક્ષણ જારી',
 'javascripttest-pagetext-noframework' => 'આ પાનું જાવા સ્ક્રીપ્ટ ચલાવવા આરક્ષિત છે.',
 'javascripttest-pagetext-unknownframework' => 'અજાણ ચકાસણી ફ્રેમવર્ક "$1".',
@@ -3807,4 +3804,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|શતાબ્દી|શતાબ્દીઓ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ધરાવતી...',
+'searchsuggest-search' => 'શોધો',
 );

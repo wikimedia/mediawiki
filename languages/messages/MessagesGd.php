@@ -908,8 +908,6 @@ Feuch is [[Special:Search|lorg duilleagan ùra iomachaidh air an uici]]",
 'search-interwiki-caption' => 'Pròiseactan co-cheangailte',
 'search-interwiki-default' => 'Toraidhean $1:',
 'search-interwiki-more' => '(barrachd)',
-'search-mwsuggest-enabled' => 'le molaidhean',
-'search-mwsuggest-disabled' => 'gun mholaidhean',
 'search-relatedarticle' => 'Co-cheangailte',
 'searchrelated' => 'co-cheangailte',
 'searchall' => 'a h-uile',
@@ -1534,4 +1532,6 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 # Special:Tags
 'tag-filter' => 'Criathrag [[Special:Tags|Tag]]:',
 
+# Unknown messages
+'searchsuggest-containing' => 'anns a bheil...',
 );

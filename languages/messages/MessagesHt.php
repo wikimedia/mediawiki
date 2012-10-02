@@ -905,8 +905,6 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'search-interwiki-caption' => 'Pwojè frè, ki ansanm oubyen ki ap deplwaye ansanm',
 'search-interwiki-default' => 'Rezilta yo pou $1 :',
 'search-interwiki-more' => '(plis)',
-'search-mwsuggest-enabled' => 'ak sijesyon, kèk lide',
-'search-mwsuggest-disabled' => 'san lide, san endikasyon',
 'nonefound' => "'''Remak''' : sèl kèk espas non chache nan sityasyon nòmal.
 Eseye mete prefiks ''all:'' devan tèm rechèche ou an pou chache nan tout kontni a (sa conprann paj diskisyon yo, modèl yo, etc.) oubyen itilize espas non ou ta renmen pou prefiks.",
 'powersearch' => 'Fouye fon',

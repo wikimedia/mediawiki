@@ -1520,8 +1520,6 @@ $1",
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
 'search-interwiki-more' => '(المزيد)',
-'search-mwsuggest-enabled' => 'مع اقتراحات',
-'search-mwsuggest-disabled' => 'لا اقتراحات',
 'search-relatedarticle' => 'مرتبطة',
 'mwsuggest-disable' => 'عطل اقتراحات أجاكس',
 'searcheverything-enable' => 'ابحث في جميع النطاقات',
@@ -4381,4 +4379,7 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'يحتوي...',
+'searchsuggest-search' => 'بحث',
 );

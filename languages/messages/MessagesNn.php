@@ -1297,8 +1297,6 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'search-interwiki-caption' => 'Systerprosjekt',
 'search-interwiki-default' => '$1-resultat:',
 'search-interwiki-more' => '(meir)',
-'search-mwsuggest-enabled' => 'med forslag',
-'search-mwsuggest-disabled' => 'ingen forslag',
 'search-relatedarticle' => 'Relatert',
 'mwsuggest-disable' => 'Slå av AJAX-forslag',
 'searcheverything-enable' => 'Søk i alle namneroma',
@@ -2826,7 +2824,6 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-utrøyning',
-'javascripttest-disabled' => 'Funksjonen er ikkje påslegen på wikien.',
 'javascripttest-title' => 'Køyrer $1-utrøyningar',
 'javascripttest-pagetext-noframework' => 'Sida er reservert for køyring av JavaScript-utrøyningar.',
 'javascripttest-pagetext-unknownframework' => 'Ukjent utrøyningsrammeverk: «$1».',
@@ -3820,4 +3817,6 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
+# Unknown messages
+'searchsuggest-search' => 'Søk',
 );

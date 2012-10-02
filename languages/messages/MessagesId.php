@@ -1340,8 +1340,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'search-interwiki-caption' => 'Proyek lain',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(selanjutnya)',
-'search-mwsuggest-enabled' => 'dengan saran',
-'search-mwsuggest-disabled' => 'tidak ada saran',
 'search-relatedarticle' => 'Berkaitan',
 'mwsuggest-disable' => 'Non-aktifkan saran AJAX',
 'searcheverything-enable' => 'Cari di semua ruang nama',
@@ -2919,7 +2917,6 @@ Simpan ke komputer Anda dan unggah ke sini.',
 
 # JavaScriptTest
 'javascripttest' => 'Pengujian JavaScript',
-'javascripttest-disabled' => 'Fungsi ini belum diaktifkan di wiki ini.',
 'javascripttest-title' => '$1 pengujian sedang berjalan',
 'javascripttest-pagetext-noframework' => 'Halaman ini disediakan untuk pengujian JavaScript yang sedang berjalan.',
 'javascripttest-pagetext-unknownframework' => 'Pengujian kerangka kerja "$1" tidak diketahui',
@@ -3989,4 +3986,7 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'duration-centuries' => '{{PLURAL:$1||}}$1 abad',
 'duration-millennia' => '{{PLURAL:$1||}}$1 milenium',
 
+# Unknown messages
+'searchsuggest-containing' => 'isian ...',
+'searchsuggest-search' => 'Cari',
 );

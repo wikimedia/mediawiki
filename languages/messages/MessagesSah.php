@@ -1059,8 +1059,6 @@ $1",
 'search-interwiki-caption' => 'Уруулуу бырайыактар',
 'search-interwiki-default' => '$1 түмүгэ:',
 'search-interwiki-more' => '(өссө)',
-'search-mwsuggest-enabled' => 'этиилэрдээх',
-'search-mwsuggest-disabled' => 'этиилэрэ суох',
 'search-relatedarticle' => 'Сигэнэр',
 'mwsuggest-disable' => 'AJAX этэн биэриилэрин араар',
 'searcheverything-enable' => 'Туох баар аат далларыгар көрдөөһүн',
@@ -2666,7 +2664,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript тургутуу',
-'javascripttest-disabled' => 'Дьайыы бу биикигэ араарыллыбат эбит.',
 'javascripttest-title' => '$1 тургутуу бара турар',
 'javascripttest-pagetext-noframework' => 'Бу сирэй JavaScript тургутууларга анаммыт.',
 'javascripttest-pagetext-unknownframework' => '"$1" тургутуу биллибэт эйгэтэ.',
@@ -3683,4 +3680,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'duration-centuries' => '$1 үйэ',
 'duration-millennia' => '$1 тыһыынча сыл',
 
+# Unknown messages
+'searchsuggest-containing' => 'тыл баар ыстатыйалара...',
+'searchsuggest-search' => 'Көрдөөһүн',
 );

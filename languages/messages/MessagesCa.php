@@ -1208,8 +1208,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Projectes germans',
 'search-interwiki-default' => '$1 resultats:',
 'search-interwiki-more' => '(més)',
-'search-mwsuggest-enabled' => 'amb suggeriments',
-'search-mwsuggest-disabled' => 'cap suggeriment',
 'search-relatedarticle' => 'Relacionat',
 'mwsuggest-disable' => 'Inhabilita els suggeriments en AJAX',
 'searcheverything-enable' => 'Cerca a tots els espais de noms',
@@ -3828,4 +3826,7 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'que conté ...',
+'searchsuggest-search' => 'Cerca',
 );

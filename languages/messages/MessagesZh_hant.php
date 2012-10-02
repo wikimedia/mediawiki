@@ -1203,8 +1203,6 @@ $1",
 'search-interwiki-caption' => '姊妹計劃',
 'search-interwiki-default' => '$1項結果:',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建議',
-'search-mwsuggest-disabled' => '無建議',
 'search-relatedarticle' => '相關',
 'mwsuggest-disable' => '停用AJAX建議',
 'searcheverything-enable' => '在所有名字空間中搜尋',
@@ -3895,4 +3893,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'searchsuggest-containing' => '包含...',
+'searchsuggest-search' => '搜尋',
 );

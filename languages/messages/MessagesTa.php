@@ -1070,8 +1070,6 @@ $1",
 'search-interwiki-caption' => 'உறவுத் திட்டங்கள்',
 'search-interwiki-default' => '$1 தளத்தின் முடிவுகள்:',
 'search-interwiki-more' => '(மேலும்)',
-'search-mwsuggest-enabled' => 'பரிந்துரைகளுடன்',
-'search-mwsuggest-disabled' => 'பரிந்துரைகளில்லை',
 'search-relatedarticle' => 'தொடர்புடையவை',
 'mwsuggest-disable' => 'AJAX பரிந்துரைகளை முடக்கு',
 'searcheverything-enable' => 'அனைத்துப் பெயர்வெளிகளிலும் தேடவும்',
@@ -2612,7 +2610,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'சாவாநிரல் சோதனை நடக்கின்றது',
-'javascripttest-disabled' => 'இந்தச் செயல்பாடு முடக்கப்பட்டுள்ளது.',
 'javascripttest-title' => '$1 சோதனைகள் நடக்கின்றன',
 'javascripttest-pagetext-noframework' => 'இந்த பக்கம் JavaScript பரிசோதனை ஓட்டத்திற்காக ஒதுக்கப்பட்டுள்ளது',
 'javascripttest-pagetext-skins' => 'சோதனைகளை நடத்த முகப்புறை ஒன்றைத் தேர்வுசெய்:',
@@ -3593,4 +3590,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|நூற்றாண்டு|நூற்றாண்டுகள்}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ஆயிரம் ஆண்டு|ஆயிரம் ஆண்டுகள்}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'கொண்டுள்ளது...',
+'searchsuggest-search' => 'தேடு',
 );

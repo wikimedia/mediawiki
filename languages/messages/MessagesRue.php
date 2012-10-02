@@ -1128,8 +1128,6 @@ $1",
 'search-interwiki-caption' => 'Сестерьскы проєкты',
 'search-interwiki-default' => '$1 резултаты:',
 'search-interwiki-more' => '(веце)',
-'search-mwsuggest-enabled' => 'з порадами',
-'search-mwsuggest-disabled' => 'без порад',
 'search-relatedarticle' => 'Звязаный',
 'mwsuggest-disable' => 'Выпнути пораду AJAX',
 'searcheverything-enable' => 'Глядати во вшыткых просторах назв',
@@ -3714,4 +3712,7 @@ MediaWiki є дістрібуована в надїї, же буде хосно�
 'duration-centuries' => '$1 {{PLURAL:$1|стороча|стороча|стороч}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тісячроча|тісячроча|тісячроч}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'обсягуючій...',
+'searchsuggest-search' => 'Глядати',
 );

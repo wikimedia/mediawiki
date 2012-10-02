@@ -923,8 +923,6 @@ $1",
 'search-interwiki-caption' => 'Qardaş layihələr',
 'search-interwiki-default' => '$1 nəticə:',
 'search-interwiki-more' => '(yenə)',
-'search-mwsuggest-enabled' => 'təkliflərlə',
-'search-mwsuggest-disabled' => 'təklif yoxdur',
 'search-relatedarticle' => 'əlaqədar',
 'mwsuggest-disable' => 'AJAX təkliflərini rədd et',
 'searcheverything-enable' => 'Ad aralığında axtar:',
@@ -3012,4 +3010,6 @@ Bu saytda texniki problemlər var.',
 'duration-centuries' => '$1 {{PLURAL:$1|əsr|əsr}}',
 'duration-millennia' => '$1 {{PLURAL:$1|minillik|minillik}}',
 
+# Unknown messages
+'searchsuggest-search' => 'Axtar',
 );

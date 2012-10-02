@@ -1383,8 +1383,6 @@ $1",
 'search-interwiki-caption' => 'Братні проекти',
 'search-interwiki-default' => '$1 результати:',
 'search-interwiki-more' => '(більше)',
-'search-mwsuggest-enabled' => 'з порадами',
-'search-mwsuggest-disabled' => 'без порад',
 'search-relatedarticle' => "Пов'язаний",
 'mwsuggest-disable' => 'Вимкнути поради AJAX',
 'searcheverything-enable' => 'Пошук у всіх просторах назв',
@@ -4249,4 +4247,7 @@ MediaWiki поширюється в надії, що вона буде кори�
 'duration-centuries' => '$1 {{PLURAL:$1|століття|століття|століть}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тисячоліття|тисячоліття|тисячоліть}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'що містять...',
+'searchsuggest-search' => 'Пошук',
 );

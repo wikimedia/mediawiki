@@ -1146,8 +1146,6 @@ Einzelheite chasch im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Schweschterprojäkt',
 'search-interwiki-default' => '$1 Ergebniss:',
 'search-interwiki-more' => '(meh)',
-'search-mwsuggest-enabled' => 'mit Vorschleg',
-'search-mwsuggest-disabled' => 'kei Vorschleg',
 'search-relatedarticle' => 'Verwandti',
 'mwsuggest-disable' => 'Vorschleg per Ajax deaktiviere',
 'searcheverything-enable' => 'In alle Namensryym sueche',
@@ -3740,4 +3738,7 @@ Sunscht chasch au s eifach Formular unte nutze. Dyy Kommentar wird, zämme mit D
 'duration-centuries' => '$1 {{PLURAL:$1|Johrhundert|Johrhundert}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtöusert|Jahrtöusert}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'din het s …',
+'searchsuggest-search' => 'Suechi',
 );

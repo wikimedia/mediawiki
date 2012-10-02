@@ -1311,8 +1311,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'search-interwiki-caption' => 'Sesterské projekty',
 'search-interwiki-default' => '$1 výsledkov:',
 'search-interwiki-more' => '(viac)',
-'search-mwsuggest-enabled' => 's návrhmi',
-'search-mwsuggest-disabled' => 'bez návrhov',
 'search-relatedarticle' => 'Súvisiace',
 'mwsuggest-disable' => 'Vypnúť AJAX návrhy',
 'searcheverything-enable' => 'Vyhľadať vo všetkých menných priestoroch',
@@ -2932,7 +2930,6 @@ Uložte ho na svoj disk a nahrajte sem.',
 
 # JavaScriptTest
 'javascripttest' => 'Testovanie JavaScriptu',
-'javascripttest-disabled' => 'Táto funkcia je vypnutá.',
 'javascripttest-title' => 'Beží $1 testov',
 'javascripttest-pagetext-noframework' => 'Táto stránka je vyhradená pre testy JavaScriptu.',
 'javascripttest-pagetext-unknownframework' => 'Neznáma testovacia platfoma „$1“.',
@@ -3990,4 +3987,7 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'obsahuje...',
+'searchsuggest-search' => 'Hľadať',
 );

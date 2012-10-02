@@ -688,8 +688,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'search-interwiki-caption' => 'Schwesterprojekte',
 'search-interwiki-default' => '$1 Eagebnisse:',
 'search-interwiki-more' => '(mea)',
-'search-mwsuggest-enabled' => 'mid Vurschleg',
-'search-mwsuggest-disabled' => 'koane Vurschleg',
 'searchrelated' => 'vawåndt',
 'searchall' => 'olle',
 'showingresultsheader' => "{{PLURAL:$5|Ergebnis '''$1''' voh '''$3'''|Ergebniss '''$1–$2''' voh '''$3'''}} fyr '''$4'''",
@@ -1722,4 +1720,7 @@ Bittscheh d' noraale Vurschau bnutzen.",
 'htmlform-reset' => 'Änderrungen ryckgängég mochen',
 'htmlform-selectorother-other' => 'Åndre',
 
+# Unknown messages
+'searchsuggest-containing' => 'Voitextsuach noch ...',
+'searchsuggest-search' => 'Suach',
 );

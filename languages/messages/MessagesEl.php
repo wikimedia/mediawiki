@@ -1334,8 +1334,6 @@ $1",
 'search-interwiki-caption' => 'Αδελφικά εγχειρήματα',
 'search-interwiki-default' => '$1 αποτελέσματα:',
 'search-interwiki-more' => '(περισσότερα)',
-'search-mwsuggest-enabled' => 'με υποδείξεις',
-'search-mwsuggest-disabled' => 'χωρίς υποδείξεις',
 'search-relatedarticle' => 'Σχετικά',
 'mwsuggest-disable' => 'Απενεργοποίηση των προτάσεων AJAX',
 'searcheverything-enable' => 'Αναζήτηση σε όλες τις περιοχές ονομάτων',
@@ -2924,7 +2922,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Δοκιμή JavaScript',
-'javascripttest-disabled' => 'Αυτή η λειτουργία έχει απενεργοποιηθεί.',
 'javascripttest-title' => 'Εκτελούνται  $1  δοκιμές',
 'javascripttest-pagetext-noframework' => 'Αυτή η σελίδα είναι δεσμευμένη για την εκτέλεση δοκιμών σε JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Άγνωστο πλαίσιο δοκιμών " $1 ".',
@@ -3946,4 +3943,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|Αιώνα|αιώνες}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Χιλιετία|Χιλιετίες}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'περιέχει...',
+'searchsuggest-search' => 'Αναζήτηση',
 );

@@ -504,7 +504,7 @@ $messages = array(
 'vector-action-protect' => 'Заштити',
 'vector-action-undelete' => 'Врати',
 'vector-action-unprotect' => 'Измени заштита',
-'vector-simplesearch-preference' => 'Овозможи збогатени предлози при пребарување (само за рувото „Векторско“)',
+'vector-simplesearch-preference' => 'Овозможи упростено поле за пребарување (само за рувото „Векторско“)',
 'vector-view-create' => 'Создај',
 'vector-view-edit' => 'Уреди',
 'vector-view-history' => 'Историја',
@@ -1395,8 +1395,6 @@ $1",
 'search-interwiki-caption' => 'Збратимени проекти',
 'search-interwiki-default' => 'Најдено на $1:',
 'search-interwiki-more' => '(уште)',
-'search-mwsuggest-enabled' => 'со предлози',
-'search-mwsuggest-disabled' => 'без предлози',
 'search-relatedarticle' => 'Поврзано',
 'mwsuggest-disable' => 'Оневозможи AJAX-предлози',
 'searcheverything-enable' => 'Барај во сите именски простори',
@@ -4123,7 +4121,7 @@ $5
 'specialpages-group-highuse' => 'Најкористени страници',
 'specialpages-group-pages' => 'Списоци на страници',
 'specialpages-group-pagetools' => 'Алатки за страници',
-'specialpages-group-wiki' => 'Википодатоци и алатки',
+'specialpages-group-wiki' => 'Вики-податоци и алатки',
 'specialpages-group-redirects' => 'Пренасочување на специјални страници',
 'specialpages-group-spam' => 'Алатки против спам',
 
@@ -4290,4 +4288,7 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'содржи...',
+'searchsuggest-search' => 'Пребарување',
 );

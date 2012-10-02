@@ -1120,8 +1120,6 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'search-interwiki-caption' => 'Chwaer-brosiectau',
 'search-interwiki-default' => 'Y canlyniadau o $1:',
 'search-interwiki-more' => '(rhagor)',
-'search-mwsuggest-enabled' => 'gydag awgrymiadau',
-'search-mwsuggest-disabled' => 'dim awgrymiadau',
 'search-relatedarticle' => 'Erthyglau eraill tebyg',
 'mwsuggest-disable' => 'Analluogi awgrymiadau AJAX',
 'searcheverything-enable' => 'Chwilio pob parth',
@@ -2742,7 +2740,6 @@ Mae ffolder dros dro yn eisiau.',
 
 # JavaScriptTest
 'javascripttest' => 'Profi JavaScript',
-'javascripttest-disabled' => 'Ni alluogwyd y swyddogaeth hon ar y wici hwn.',
 'javascripttest-title' => 'Yn cynnal profion $1',
 'javascripttest-pagetext-noframework' => 'Neilltuwyd y dudalen hon at gynnal profion JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Ni nabyddwyd y fframwaith profi "$1".',
@@ -3754,4 +3751,6 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'yn cynnwys...',
 );

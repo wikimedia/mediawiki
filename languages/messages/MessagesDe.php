@@ -555,13 +555,13 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Thema hinzufügen',
+'vector-action-addsection' => 'Abschnitt hinzufügen',
 'vector-action-delete' => 'Löschen',
 'vector-action-move' => 'Verschieben',
 'vector-action-protect' => 'Schützen',
 'vector-action-undelete' => 'Wiederherstellen',
 'vector-action-unprotect' => 'Seitenschutz ändern',
-'vector-simplesearch-preference' => 'Erweiterte Suchvorschläge aktivieren (nur Vector)',
+'vector-simplesearch-preference' => 'Vereinfachte Suchleiste aktivieren (nur Vector)',
 'vector-view-create' => 'Erstellen',
 'vector-view-edit' => 'Bearbeiten',
 'vector-view-history' => 'Versionsgeschichte',
@@ -1418,8 +1418,6 @@ Einzelheiten sind im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-interwiki-caption' => 'Schwesterprojekte',
 'search-interwiki-default' => '$1 Ergebnisse:',
 'search-interwiki-more' => '(weitere)',
-'search-mwsuggest-enabled' => 'mit Vorschlägen',
-'search-mwsuggest-disabled' => 'keine Vorschläge',
 'search-relatedarticle' => 'Verwandte',
 'mwsuggest-disable' => 'Vorschläge per Ajax deaktivieren',
 'searcheverything-enable' => 'In allen Namensräumen suchen',
@@ -1742,7 +1740,7 @@ Stand: $4, $5 Uhr.",
 'rcshowhideliu' => 'Angemeldete Benutzer $1',
 'rcshowhideanons' => 'Unangemeldete Benutzer $1',
 'rcshowhidepatr' => 'Kontrollierte Änderungen $1',
-'rcshowhidemine' => 'Eigene Beiträge $1',
+'rcshowhidemine' => 'Meine Beiträge $1',
 'rclinks' => 'Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3',
 'diff' => 'Unterschied',
 'hist' => 'Versionen',
@@ -2509,7 +2507,7 @@ Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int
 'sessionfailure-title' => 'Sitzungsfehler',
 'sessionfailure' => 'Es gab ein Problem bei der Übertragung deiner Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
-Bitte gehe zurück zu vorherigen Seite, lade sie erneut und versuche den Vorgang erneut auszuführen.',
+Bitte gehe zurück zur vorherigen Seite, lade sie erneut und versuche, den Vorgang erneut auszuführen.',
 
 # Protect
 'protectlogpage' => 'Seitenschutz-Logbuch',
@@ -2637,7 +2635,7 @@ $1',
 # Contributions
 'contributions' => 'Benutzerbeiträge',
 'contributions-title' => 'Benutzerbeiträge von „$1“',
-'mycontris' => 'Eigene Beiträge',
+'mycontris' => 'Meine Beiträge',
 'contribsub2' => 'Von $1 ($2)',
 'nocontribs' => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'uctop' => '(aktuell)',
@@ -4120,4 +4118,7 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'enthält …',
+'searchsuggest-search' => 'Suchen',
 );

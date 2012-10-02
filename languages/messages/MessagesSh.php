@@ -1252,8 +1252,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Srodni projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 'sa sugestijama',
-'search-mwsuggest-disabled' => 'bez sugestija',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Onemogući AJAX prijedloge',
 'searcheverything-enable' => 'Pretraga u svim imenskim prostorima',
@@ -2898,7 +2896,6 @@ Molimo pokušajte ponovno.',
 
 # JavaScriptTest
 'javascripttest' => 'Javaskript test',
-'javascripttest-disabled' => 'Ova funkcija je onemogućena na ovom wikiju.',
 'javascripttest-title' => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework' => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',

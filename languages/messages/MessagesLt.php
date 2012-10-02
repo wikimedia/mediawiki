@@ -1178,8 +1178,6 @@ Prašome patikrinti sąrašus.',
 'search-interwiki-caption' => 'Dukteriniai projektai',
 'search-interwiki-default' => '$1 rezultatai:',
 'search-interwiki-more' => '(daugiau)',
-'search-mwsuggest-enabled' => 'su pasiūlymais',
-'search-mwsuggest-disabled' => 'nėra pasiūlymų',
 'search-relatedarticle' => 'Susiję',
 'mwsuggest-disable' => 'Slėpti AJAX pasiūlymus',
 'searcheverything-enable' => 'Ieškoti visose vardų srityse',
@@ -2778,7 +2776,6 @@ Išsaugokite jį savo kompiuteryje ir įkelkite jį čia.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript testavimas',
-'javascripttest-disabled' => 'Ši funkcija šiame wiki projekte neįjungta.',
 'javascripttest-title' => 'Vykdomas $1 testavimas',
 'javascripttest-pagetext-noframework' => 'Šis puslapis yra skirtas vykdyti JavaScript testavimus.',
 'javascripttest-pagetext-unknownframework' => 'Nežinoma "$1" testavimo struktūra.',
@@ -3803,4 +3800,6 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'duration-centuries' => '$1 {{PLURAL:$1|amžius|amžiai|amžių}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tūkstantmetis|tūkstantmečiai|tūkstantmečių}}',
 
+# Unknown messages
+'searchsuggest-search' => 'Ieškoti',
 );

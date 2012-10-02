@@ -1150,8 +1150,6 @@ $1",
 'search-interwiki-caption' => 'Тугандаш проектлар',
 'search-interwiki-default' => '$1 нәтиҗә:',
 'search-interwiki-more' => '(тагын)',
-'search-mwsuggest-enabled' => 'киңәшләр белән',
-'search-mwsuggest-disabled' => 'киңәшсез',
 'search-relatedarticle' => 'Бәйләнгән',
 'mwsuggest-disable' => 'AJAX-ярдәмне ябу',
 'searcheverything-enable' => 'Барлык исемнәр мәйданында эзләү',
@@ -2573,4 +2571,7 @@ $1',
 'api-error-uploaddisabled' => 'Бу викидә файллар йөкләү мөмкинлеге сүндерелгән.',
 'api-error-verification-error' => 'Бәлки, бу файл бозылгандыр яки дөрес түгел киңәйтелмәгә ия.',
 
+# Unknown messages
+'searchsuggest-containing' => 'эчтәлек...',
+'searchsuggest-search' => 'Эзләү',
 );

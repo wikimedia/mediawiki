@@ -1300,8 +1300,6 @@ Harilikult tähendab see seda, et sind siia juhatanud link on vananenud ja siin 
 'search-interwiki-caption' => 'Sõsarprojektid',
 'search-interwiki-default' => '$1 tulemused:',
 'search-interwiki-more' => '(veel)',
-'search-mwsuggest-enabled' => 'ettepanekutega',
-'search-mwsuggest-disabled' => 'ettepanekuid ei ole',
 'search-relatedarticle' => 'Seotud',
 'mwsuggest-disable' => 'Ära näita otsinguvihjeid',
 'searcheverything-enable' => 'Otsi kõigist nimeruumidest',
@@ -3925,4 +3923,7 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'sisalduv...',
+'searchsuggest-search' => 'Otsi',
 );

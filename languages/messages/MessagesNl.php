@@ -1412,8 +1412,6 @@ Probeer een andere zoekopdracht.',
 'search-interwiki-caption' => 'Zusterprojecten',
 'search-interwiki-default' => '$1 resultaten:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'met suggesties',
-'search-mwsuggest-disabled' => 'geen suggesties',
 'search-relatedarticle' => 'Gerelateerd',
 'mwsuggest-disable' => 'Suggesties via AJAX uitschakelen',
 'searcheverything-enable' => 'In alle naamruimten zoeken',
@@ -3083,7 +3081,6 @@ Een tijdelijke map is niet aanwezig.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript testen',
-'javascripttest-disabled' => 'Deze functie is uitgeschakeld in deze wiki.',
 'javascripttest-title' => 'Tests uitvoeren voor $1',
 'javascripttest-pagetext-noframework' => 'Deze pagina is gereserveerd voor het uitvoeren van JavaScripttesten.',
 'javascripttest-pagetext-unknownframework' => 'Onbekend testframework "$1".',
@@ -4180,4 +4177,7 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'bevat...',
+'searchsuggest-search' => 'Zoeken',
 );

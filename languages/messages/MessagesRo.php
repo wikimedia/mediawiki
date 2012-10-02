@@ -1331,8 +1331,6 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'search-interwiki-caption' => 'Proiecte înrudite',
 'search-interwiki-default' => '$1 rezultate:',
 'search-interwiki-more' => '(mai mult)',
-'search-mwsuggest-enabled' => 'cu sugestii',
-'search-mwsuggest-disabled' => 'fără sugestii',
 'search-relatedarticle' => 'Relaționat',
 'mwsuggest-disable' => 'Dezactivează sugestiile AJAX',
 'searcheverything-enable' => 'Caută în toate spațiile de nume',
@@ -2969,7 +2967,6 @@ Un dosar temporar lipsește.',
 
 # JavaScriptTest
 'javascripttest' => 'Testare JavaScript',
-'javascripttest-disabled' => 'Această funcție nu a fost activată pe acest wiki.',
 'javascripttest-title' => 'Rulare teste pentru $1',
 'javascripttest-pagetext-noframework' => 'Această pagină este rezervată rulării testelor JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Cadru de testare „$1” necunoscut.',
@@ -4016,4 +4013,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'conținând...',
+'searchsuggest-search' => 'Căutare',
 );

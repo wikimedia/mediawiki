@@ -1182,8 +1182,6 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'search-interwiki-caption' => 'Schwësterprojeten',
 'search-interwiki-default' => '$1 Resultater:',
 'search-interwiki-more' => '(méi)',
-'search-mwsuggest-enabled' => 'mat Virschléi',
-'search-mwsuggest-disabled' => 'keng Virschléi',
 'search-relatedarticle' => 'A Verbindung',
 'mwsuggest-disable' => 'Ajax-Virschléi ausschalten',
 'searcheverything-enable' => 'An allen Nummraim sichen',
@@ -3798,4 +3796,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'mat ...',
+'searchsuggest-search' => 'Sichen',
 );

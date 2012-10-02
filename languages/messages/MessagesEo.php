@@ -1344,8 +1344,6 @@ Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Kunprojektoj',
 'search-interwiki-default' => '$1 rezultoj:',
 'search-interwiki-more' => '(plu)',
-'search-mwsuggest-enabled' => 'kun sugestoj',
-'search-mwsuggest-disabled' => 'sen sugestoj',
 'search-relatedarticle' => 'Relataj',
 'mwsuggest-disable' => 'Malŝalti AJAX-sugestojn',
 'searcheverything-enable' => 'Traserĉi ĉiujn nomspacojn',
@@ -2954,7 +2952,6 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # JavaScriptTest
 'javascripttest' => 'Ĝavoskripta testado',
-'javascripttest-disabled' => 'Ĉi tiu funkcio estas malŝaltita en ĉi tiu vikio.',
 'javascripttest-title' => 'Irigante $1 testoj',
 'javascripttest-pagetext-noframework' => 'Ĉi tiu paĝo estas konservita por funkciigi testojn de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nekonta test-framo "$1".',
@@ -4003,4 +4000,7 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'enhavas...',
+'searchsuggest-search' => 'Serĉi',
 );

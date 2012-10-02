@@ -412,7 +412,7 @@ $messages = array(
 'vector-action-protect' => 'Абараніць',
 'vector-action-undelete' => 'Аднавіць',
 'vector-action-unprotect' => 'Зьмяніць абарону',
-'vector-simplesearch-preference' => 'Уключыць палепшаныя пошукавыя падказкі (толькі для афармленьня «Вэктар»)',
+'vector-simplesearch-preference' => 'Уключыць спрошчанае поле пошуку (толькі для афармленьня «Вэктар»)',
 'vector-view-create' => 'Стварыць',
 'vector-view-edit' => 'Рэдагаваць',
 'vector-view-history' => 'Паказаць гісторыю',
@@ -423,7 +423,7 @@ $messages = array(
 'variants' => 'Варыянты',
 
 'errorpagetitle' => 'Памылка',
-'returnto' => 'Вярнуцца да старонкі $1.',
+'returnto' => 'Вярнуцца да старонкі «$1».',
 'tagline' => 'Зьвесткі з {{GRAMMAR:родны|{{SITENAME}}}}',
 'help' => 'Дапамога',
 'search' => 'Пошук',
@@ -1279,8 +1279,6 @@ $1",
 'search-interwiki-caption' => 'Сумежныя праекты',
 'search-interwiki-default' => 'вынікі з $1:',
 'search-interwiki-more' => '(яшчэ)',
-'search-mwsuggest-enabled' => 'з парадамі',
-'search-mwsuggest-disabled' => 'без парад',
 'search-relatedarticle' => 'Зьвязаны',
 'mwsuggest-disable' => 'Адключыць AJAX-падказкі',
 'searcheverything-enable' => 'Шукаць ва ўсіх прасторах назваў',
@@ -3950,4 +3948,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'duration-centuries' => '$1 {{PLURAL:$1|стагодзьдзе|стагодзьдзі|стагодзьдзяў}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячагодзьдзе|тысячагодзьдзі|тысячагодзьдзяў}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'утрымлівае...',
+'searchsuggest-search' => 'Пошук',
 );

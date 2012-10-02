@@ -1239,8 +1239,6 @@ $1",
 'search-interwiki-caption' => '姊妹项目',
 'search-interwiki-default' => '$1项结果：',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建议',
-'search-mwsuggest-disabled' => '无建议',
 'search-relatedarticle' => '相关',
 'mwsuggest-disable' => '禁用AJAX建议',
 'searcheverything-enable' => '在所有名字空间中搜索',
@@ -3892,4 +3890,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'searchsuggest-containing' => '含有...',
+'searchsuggest-search' => '搜索',
 );

@@ -1126,8 +1126,6 @@ $1",
 'search-interwiki-caption' => 'సోదర ప్రాజెక్టులు',
 'search-interwiki-default' => '$1 ఫలితాలు:',
 'search-interwiki-more' => '(మరిన్ని)',
-'search-mwsuggest-enabled' => 'సూచనలతో',
-'search-mwsuggest-disabled' => 'సూచనలు వద్దు',
 'search-relatedarticle' => 'సంబంధించినవి',
 'mwsuggest-disable' => 'AJAX సూచనలను అచేతనంచేయి',
 'searcheverything-enable' => 'అన్ని పేరుబరుల్లో వెతుకు',
@@ -3560,4 +3558,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|శతాబ్దం|శతాబ్దాలు}}',
 'duration-millennia' => '$1 {{PLURAL:$1|సహస్రాబ్దం|సహస్రాబ్దాలు}}',
 
+# Unknown messages
+'searchsuggest-search' => 'వెతుకు',
 );

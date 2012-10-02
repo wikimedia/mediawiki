@@ -975,8 +975,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'search-interwiki-caption' => 'Dogan taslamalar',
 'search-interwiki-default' => '$1 netijeler:',
 'search-interwiki-more' => '(has-da köp)',
-'search-mwsuggest-enabled' => 'teklipler bilen',
-'search-mwsuggest-disabled' => 'teklip ýok',
 'search-relatedarticle' => 'Baglanyşykly',
 'mwsuggest-disable' => 'AJAX tekliplerini ýap',
 'searcheverything-enable' => 'Ähli at giňişliklerinde gözle',
@@ -3146,4 +3144,7 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
 'newuserlog-byemail' => 'parol e-poçta bilen iberildi',
 
+# Unknown messages
+'searchsuggest-containing' => 'öz içine alýar...',
+'searchsuggest-search' => 'Gözleg',
 );

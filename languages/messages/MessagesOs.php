@@ -878,8 +878,6 @@ $2
 'search-suggest' => 'Кæд мыййаг агурыс: $1',
 'search-interwiki-caption' => 'Æфсымæрон проекттæ',
 'search-interwiki-more' => '(нодзы)',
-'search-mwsuggest-enabled' => 'æмбарынгæнæнтимæ',
-'search-mwsuggest-disabled' => 'æнæ æмбарынгæнæнтæ',
 'searchrelated' => 'хæстæг',
 'searchall' => 'иууылдæр',
 'showingresultsheader' => "{{PLURAL:$5|Фæстиуæг '''$1''' '''$3'''-йæ|Фæстиуджытæ '''$1 - $2''' '''$3'''-йæ}} '''{{grammar:dative|$4}}'''",

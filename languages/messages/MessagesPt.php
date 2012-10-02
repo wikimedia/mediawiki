@@ -1352,8 +1352,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Projectos associados',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
-'search-mwsuggest-enabled' => 'com sugestões',
-'search-mwsuggest-disabled' => 'sem sugestões',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desactivar sugestões AJAX',
 'searcheverything-enable' => 'Pesquisar em todos os espaços nominais',
@@ -4060,4 +4058,7 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'contendo...',
+'searchsuggest-search' => 'Pesquisa',
 );

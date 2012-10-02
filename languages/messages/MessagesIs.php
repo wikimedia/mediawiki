@@ -1209,8 +1209,6 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'search-interwiki-caption' => 'Systurverkefni',
 'search-interwiki-default' => '$1 útkomur:',
 'search-interwiki-more' => '(fleiri)',
-'search-mwsuggest-enabled' => 'með uppástungum',
-'search-mwsuggest-disabled' => 'engar uppástungur',
 'search-relatedarticle' => 'Tengt',
 'mwsuggest-disable' => 'Gera AJAX-uppástungur óvirkar',
 'searcheverything-enable' => 'Leita í öllum nafnrýmum',
@@ -3722,4 +3720,7 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'duration-centuries' => '$1 {{PLURAL:$1|öld|aldir}}',
 'duration-millennia' => '$1 {{PLURAL:$1|árþúsund}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'sem innihalda ...',
+'searchsuggest-search' => 'Leita',
 );

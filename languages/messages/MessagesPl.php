@@ -1327,8 +1327,6 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'search-interwiki-caption' => 'Projekty siostrzane',
 'search-interwiki-default' => 'Wyniki dla $1:',
 'search-interwiki-more' => '(więcej)',
-'search-mwsuggest-enabled' => 'z dynamicznymi propozycjami',
-'search-mwsuggest-disabled' => 'bez dynamicznych propozycji',
 'search-relatedarticle' => 'Pokrewne',
 'mwsuggest-disable' => 'Wyłącz dynamiczne podpowiedzi',
 'searcheverything-enable' => 'Szukaj we wszystkich przestrzeniach nazw',
@@ -1671,9 +1669,9 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rc-old-title' => 'oryginalnie utworzono jako "$1"',
 
 # Recent changes linked
-'recentchangeslinked' => 'Zmiany w dolinkowanych',
-'recentchangeslinked-feed' => 'Zmiany w dolinkowanych',
-'recentchangeslinked-toolbox' => 'Zmiany w dolinkowanych',
+'recentchangeslinked' => 'Zmiany w linkowanych',
+'recentchangeslinked-feed' => 'Zmiany w linkowanych',
+'recentchangeslinked-toolbox' => 'Zmiany w linkowanych',
 'recentchangeslinked-title' => 'Zmiany w linkowanych z „$1”',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na (zależnie od ustawień) linkowanych lub linkujących stronach w wybranym okresie.',
 'recentchangeslinked-summary' => "Poniżej znajduje się lista ostatnich zmian na stronach linkowanych z podanej strony (lub we wszystkich stronach należących do podanej kategorii).
@@ -2966,7 +2964,6 @@ Brak katalogu dla plików tymczasowych.',
 
 # JavaScriptTest
 'javascripttest' => 'Testowanie JavaScript',
-'javascripttest-disabled' => 'Ta funkcja nie została włączona na tej wiki.',
 'javascripttest-title' => 'Uruchamianie testów $1',
 'javascripttest-pagetext-noframework' => 'Ta strona jest zarezerwowana dla wykonywania testów JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nieznany framework testowania „$1”.',
@@ -4091,4 +4088,6 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
+# Unknown messages
+'searchsuggest-search' => 'Szukaj',
 );

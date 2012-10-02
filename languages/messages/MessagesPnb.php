@@ -1002,8 +1002,6 @@ $1",
 'search-interwiki-caption' => 'رلدے ویونت',
 'search-interwiki-default' => '$1 نتارے:',
 'search-interwiki-more' => '(اور)',
-'search-mwsuggest-enabled' => 'صلاع دے نال',
-'search-mwsuggest-disabled' => 'کوئی صلاع نئیں',
 'search-relatedarticle' => 'جڑیاں',
 'mwsuggest-disable' => 'اجاکس مشورے نکارہ کرو',
 'searcheverything-enable' => 'ہر ناں چ لبو',
@@ -2616,7 +2614,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript ٹیسٹنگ',
-'javascripttest-disabled' => 'ایس وکی تے ایہ کم نئیں چلدا۔',
 'javascripttest-title' => 'ٹیسٹ  $1 چلدا اے۔',
 'javascripttest-pagetext-noframework' => 'ایہ صفہ JavaScript  ٹیسٹاں لئی بچایا گیا اے۔',
 'javascripttest-pagetext-unknownframework' => '"$1" انجانا ٹیسٹنگ فریمورک۔',
@@ -3600,4 +3597,7 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'api-error-uploaddisabled' => 'فائل جڑھانا ایس وکی تے بند اے۔',
 'api-error-verification-error' => 'اے فائل کرپٹ ہو سکدی یا فیر ایدا فارمیٹ غلط اے۔',
 
+# Unknown messages
+'searchsuggest-containing' => 'بند کر ریا اے۔۔۔',
+'searchsuggest-search' => 'کھوج',
 );

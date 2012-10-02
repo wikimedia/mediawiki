@@ -316,7 +316,7 @@ $messages = array(
 'vector-action-protect' => 'Šćitaś',
 'vector-action-undelete' => 'Wótnowiś',
 'vector-action-unprotect' => 'Šćit změniś',
-'vector-simplesearch-preference' => 'Pólěpšone pytańske naraźenja zmóžniś (jano suknja Vector)',
+'vector-simplesearch-preference' => 'Zjadnorjonu pytańsku lejstwu zmóžniś (jano drastwa Vector)',
 'vector-view-create' => 'Napóraś',
 'vector-view-edit' => 'Wobźěłaś',
 'vector-view-history' => 'Wersije a awtory',
@@ -1151,8 +1151,6 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Sotšine projekty',
 'search-interwiki-default' => '$1 wuslědki:',
 'search-interwiki-more' => '(wěcej)',
-'search-mwsuggest-enabled' => 'z naraźenjami',
-'search-mwsuggest-disabled' => 'žedne naraźenja',
 'search-relatedarticle' => 'swójźbne',
 'mwsuggest-disable' => 'Naraźenja pśez AJAX znjemóžniś',
 'searcheverything-enable' => 'We wšych mjenjowych rumach pytaś',
@@ -2740,7 +2738,6 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptowy test',
-'javascripttest-disabled' => 'Toś ta funkcija njejo na toś tom wikiju zmóžnjona.',
 'javascripttest-title' => 'Testy $1 se pśewjeduju',
 'javascripttest-pagetext-noframework' => 'Toś ten bok jo pśewjedowanjeju javascriptowych testow pśewóstajony.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
@@ -3783,4 +3780,7 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'wopśimujo...',
+'searchsuggest-search' => 'Pytaś',
 );

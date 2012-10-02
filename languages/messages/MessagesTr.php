@@ -1319,8 +1319,6 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'search-interwiki-caption' => 'Kardeş projeler',
 'search-interwiki-default' => '$1 sonuçlar:',
 'search-interwiki-more' => '(daha çok)',
-'search-mwsuggest-enabled' => 'önerilerle',
-'search-mwsuggest-disabled' => 'öneri yok',
 'search-relatedarticle' => 'ilgili',
 'mwsuggest-disable' => 'AJAX önerilerini devre dışı bırak',
 'searcheverything-enable' => 'Tüm ad alanlarında ara',
@@ -3847,4 +3845,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-uploaddisabled' => 'Yükleme bu vikide devre dışı bırakılmıştır.',
 'api-error-verification-error' => 'Dosya bozuk veya yanlış uzantıya sahip olabilir.',
 
+# Unknown messages
+'searchsuggest-containing' => 'içeren...',
+'searchsuggest-search' => 'Ara',
 );

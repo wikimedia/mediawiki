@@ -1229,8 +1229,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-caption' => 'Projekte simotra',
 'search-interwiki-default' => '$1 përfundime:',
 'search-interwiki-more' => '(më shumë)',
-'search-mwsuggest-enabled' => 'me këshilla',
-'search-mwsuggest-disabled' => 'pa këshilla',
 'search-relatedarticle' => 'Të ngjashme',
 'mwsuggest-disable' => 'Çmundësoi sugjerimet AJAX',
 'searcheverything-enable' => 'Kërko në të gjitha hapësirat',
@@ -2853,7 +2851,6 @@ Ju lutemi provoni përsëri.',
 
 # JavaScriptTest
 'javascripttest' => 'Duke testuar JavaScript',
-'javascripttest-disabled' => 'Ky funksion nuk është mundësuar në këtë wiki.',
 'javascripttest-title' => 'Duke kryer testet $1',
 'javascripttest-pagetext-noframework' => 'Kjo faqe është rezervuar për kryerjen e testimeve JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Kornizë pune e panjohur testuese "$1".',
@@ -3855,4 +3852,7 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'duration-centuries' => '$1 {{PLURAL:$1|shekull|shekuj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milennium|mileniume}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'përmban ...',
+'searchsuggest-search' => 'Kërko',
 );

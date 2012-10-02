@@ -1484,8 +1484,6 @@ $1",
 'search-interwiki-caption' => 'پروژه‌های خواهر',
 'search-interwiki-default' => '$1 نتیجه:',
 'search-interwiki-more' => '(بیشتر)',
-'search-mwsuggest-enabled' => 'با پیشنهاد',
-'search-mwsuggest-disabled' => 'هیچ پیشنهادی وجود ندارد',
 'search-relatedarticle' => 'مرتبط',
 'mwsuggest-disable' => 'پیشنهادهای مبتنی بر AJAX را غیرفعال کن',
 'searcheverything-enable' => 'جستجو در تمام فضاهای نام',
@@ -4240,4 +4238,7 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'صفحه‌های دربردارنده...',
+'searchsuggest-search' => 'جستجو',
 );

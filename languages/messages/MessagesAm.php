@@ -736,8 +736,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'search-interwiki-caption' => 'ተዛማጅ ስራዎች',
 'search-interwiki-default' => '$1 ውጤቶች፦',
 'search-interwiki-more' => '(ተጨማሪ)',
-'search-mwsuggest-enabled' => 'ከ አማራጮች ጋር',
-'search-mwsuggest-disabled' => 'አማራጭ አልተገኘለትም',
 'search-relatedarticle' => 'የተዛመደ',
 'searchrelated' => 'የተዛመደ',
 'searchall' => 'ሁሉ',
@@ -2296,4 +2294,7 @@ $3
 'api-error-uploaddisabled' => 'ፋይል መላክ በዚህ ውኪ ላይ አልተፈቀደም።',
 'api-error-verification-error' => 'ይህ ፋይል የተበላሸ ወይም ትክክል ያልሆነ ቅጥያ ያለው ሊሆን ይችላል።',
 
+# Unknown messages
+'searchsuggest-containing' => 'በመጣጥፎች ይዘት ለመፈልግ...',
+'searchsuggest-search' => 'ፈልግ',
 );

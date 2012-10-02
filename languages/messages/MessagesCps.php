@@ -591,8 +591,6 @@ Indi pag-ilakip ang pila ka mga suleras.',
 'search-interwiki-caption' => 'Mga utod nga proyekto',
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(mas damu pa)',
-'search-mwsuggest-enabled' => 'may mga suhestiyon',
-'search-mwsuggest-disabled' => 'wala suhestiyon',
 'searchall' => 'tanan',
 'showingresultsheader' => "{{PLURAL:$5|Resulta nga '''$1''' sang '''$3'''|Mga resulta nga '''$1 - $2''' sang '''$3'''}} para sa '''$4'''",
 'nonefound' => "'''Tandaan''': Ang iban lang nga mga ngalan-espasyo ang ginapangita depende sa gintakda.

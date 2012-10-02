@@ -2409,4 +2409,7 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'duration-centuries' => '$1 sieke{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 meynaire{{PLURAL:$1||s}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ki contént...',
+'searchsuggest-search' => 'Cweri',
 );

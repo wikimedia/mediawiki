@@ -1301,8 +1301,6 @@ $1 {{int:pipe-separator}} $2',
 'search-interwiki-caption' => 'Sisarprojektit',
 'search-interwiki-default' => 'Tulokset osoitteesta $1:',
 'search-interwiki-more' => '(lisää)',
-'search-mwsuggest-enabled' => 'näytä ehdotukset',
-'search-mwsuggest-disabled' => 'ilman ehdotuksia',
 'search-relatedarticle' => 'Hae samankaltaisia sivuja',
 'mwsuggest-disable' => 'Älä näytä ehdotuksia AJAXilla',
 'searcheverything-enable' => 'Hae kaikista nimiavaruuksista',
@@ -3928,4 +3926,7 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'sisältää...',
+'searchsuggest-search' => 'Hae',
 );

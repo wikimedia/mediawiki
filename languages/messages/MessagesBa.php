@@ -1078,8 +1078,6 @@ $1",
 'search-interwiki-caption' => 'Туғандаш проекттар',
 'search-interwiki-default' => '$1 һөҙөмтә:',
 'search-interwiki-more' => '(тағы)',
-'search-mwsuggest-enabled' => 'кәңәштәр менән',
-'search-mwsuggest-disabled' => 'кәңәшһеҙ',
 'search-relatedarticle' => 'Ҡағылышлы',
 'mwsuggest-disable' => 'AJAX-тәҡдимдәрен ябырға',
 'searcheverything-enable' => 'Бар исем арауыҡтарында эҙләргә',
@@ -2707,7 +2705,6 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 # JavaScriptTest
 'javascripttest' => '
 JavaScript тикшереү',
-'javascripttest-disabled' => 'Был мөмкинлек был Википроектта ғәмәлгә индерелмәгән.',
 'javascripttest-title' => '$1 тикшеренеү үткәрелә',
 'javascripttest-pagetext-noframework' => 'Был бит JavaScript тикшеренеүҙәре үткәреү өсөн  резервланған.',
 'javascripttest-pagetext-unknownframework' => 'Билдәһеҙ тикшеренеүҙәр мөхитнамәһе "$1".',
@@ -3720,4 +3717,7 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
 'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'эстәлегендә...',
+'searchsuggest-search' => 'Эҙләү',
 );

@@ -1229,8 +1229,6 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'search-interwiki-caption' => 'Suster projekte',
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'met voorstelle',
-'search-mwsuggest-disabled' => 'geen voorstelle',
 'search-relatedarticle' => 'Verwante',
 'mwsuggest-disable' => 'Deaktiveer AJAX-voorstelle',
 'searcheverything-enable' => 'Soek in alle naamruimtes',
@@ -2866,7 +2864,6 @@ Die lêer is slegs gedeeltelik opgelaai.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript toetsing',
-'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
 'javascripttest-title' => 'Voer toetse uit vir $1',
 'javascripttest-pagetext-noframework' => 'Hierdie bladsy is gereserveer vir die uitvoer van JavaScript-toetse.',
 'javascripttest-pagetext-unknownframework' => 'Onbekende toetsraamwerk "$1".',
@@ -3876,4 +3873,7 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'bevat...',
+'searchsuggest-search' => 'Soek',
 );

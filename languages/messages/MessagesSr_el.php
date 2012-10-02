@@ -1357,8 +1357,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Bratski projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 'sa predlozima',
-'search-mwsuggest-disabled' => 'bez predloga',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Onemogući predloge AJAX',
 'searcheverything-enable' => 'svi imenski prostori',
@@ -3035,7 +3033,6 @@ Pokušajte ponovo.',
 
 # JavaScriptTest
 'javascripttest' => 'Javaskript test',
-'javascripttest-disabled' => 'Ova funkcija nije omogućena na ovom vikiju.',
 'javascripttest-title' => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework' => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',
@@ -4288,4 +4285,7 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'duration-centuries' => '$1 {{PLURAL:$1|vek|veka|vekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma|milenijuma}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'sadrži...',
+'searchsuggest-search' => 'Pretraga',
 );

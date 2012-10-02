@@ -1089,8 +1089,6 @@ Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={
 'search-interwiki-caption' => 'Pruggette sorelle',
 'search-interwiki-default' => '$1 resultete:',
 'search-interwiki-more' => '(de cchiù)',
-'search-mwsuggest-enabled' => 'cu le consiglie',
-'search-mwsuggest-disabled' => 'senza consiglie',
 'search-relatedarticle' => 'Colleghete',
 'mwsuggest-disable' => 'Disabbilete le conziglie in AJAX',
 'searcheverything-enable' => "Cirche jndr'à tutte le namespace",
@@ -2765,7 +2763,6 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 
 # JavaScriptTest
 'javascripttest' => 'Test de JavaScript',
-'javascripttest-disabled' => "Sta funzione non g'à state abbilitate sus a sta Uicchi.",
 'javascripttest-title' => 'Stoche a esegue $1 test',
 'javascripttest-pagetext-noframework' => 'Sta pàgene jè riservate pe le esecuziune de le test de Javascript.',
 'javascripttest-pagetext-unknownframework' => 'Ambiende de teste scanusciute "$1".',
@@ -4041,4 +4038,7 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'duration-centuries' => '$1 {{PLURAL:$1|sechele|sechele}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennie|millennie}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'tène...',
+'searchsuggest-search' => 'Cirche',
 );

@@ -1073,8 +1073,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'search-interwiki-caption' => 'Proyék sawargi',
 'search-interwiki-default' => '$1 hasil:',
 'search-interwiki-more' => '(saterusna)',
-'search-mwsuggest-enabled' => 'jeung bongbolongan',
-'search-mwsuggest-disabled' => 'euweuh bongbolongan',
 'search-relatedarticle' => 'Patula-patali',
 'mwsuggest-disable' => 'Tumpurkeun usulan AJAX',
 'searcheverything-enable' => 'Pilari di sakabéh rohangaran',
@@ -3082,4 +3080,7 @@ Coba ku sawangan normal.',
 'duration-centuries' => '$1 {{PLURAL:$1|abad|abad}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénium|milénium}}',
 
+# Unknown messages
+'searchsuggest-containing' => 'ngandung...',
+'searchsuggest-search' => 'Sungsi',
 );
