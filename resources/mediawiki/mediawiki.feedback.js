@@ -219,8 +219,10 @@
 			// get the values to submit
 			var subject = this.subjectInput.value;
 
-			var message = '<small>User agent: ' + mw.html.escape( navigator.userAgent ) + '</small>\n\n'
-				 + this.messageInput.value;
+
+			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
+			// with posting this without their explicit consent
+			var message = this.messageInput.value;
 			if ( message.indexOf( '~~~' ) === -1 ) {
 				message += ' ~~~~';
 			}
