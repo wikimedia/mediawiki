@@ -1,4 +1,25 @@
 <?php
+/**
+ * Recording for passing/failing tests.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ * @ingroup Testing
+ */
 
 class TestRecorder {
 	var $parent;
@@ -483,7 +504,7 @@ class TestFileIterator implements Iterator {
 	private function clearSection() {
 		$this->sectionData = array();
 		$this->section = null;
-		
+
 	}
 
 	/**
@@ -492,7 +513,7 @@ class TestFileIterator implements Iterator {
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $token String: expected token that should have been mentionned before closing this section 
+	 * @param $token String: expected token that should have been mentionned before closing this section
 	 */
 	private function checkSection( $token ) {
 		if( is_null( $this->section ) ) {
@@ -536,7 +557,7 @@ class DelayedParserTest {
 
 	/**
 	 * Called whenever we actually want to run the hook.
-	 * Should be the case if we found the parserTest is not disabled 
+	 * Should be the case if we found the parserTest is not disabled
 	 */
 	public function unleash( &$parserTest ) {
 		if( !($parserTest instanceof ParserTest || $parserTest instanceof NewParserTest
