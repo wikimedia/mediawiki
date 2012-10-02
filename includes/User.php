@@ -3648,6 +3648,18 @@ class User {
 	}
 
 	/**
+	 * Check, if the given group has the given permission
+	 *
+	 * @param $group String Group to check
+	 * @param $role String Role to check
+	 * @return bool
+	 */
+	public static function isGroupWithPermission( $group, $role ) {
+		global $wgGroupPermissions;
+		return isset( $wgGroupPermissions[$group][$role] ) && $wgGroupPermissions[$group][$role];
+	}
+
+	/**
 	 * Get the localized descriptive name for a group, if it exists
 	 *
 	 * @param $group String Internal group name

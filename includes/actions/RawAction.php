@@ -46,7 +46,7 @@ class RawAction extends FormlessAction {
 	}
 
 	function onView() {
-		global $wgGroupPermissions, $wgSquidMaxage, $wgForcedRawSMaxage, $wgJsMimeType;
+		global $wgSquidMaxage, $wgForcedRawSMaxage, $wgJsMimeType;
 
 		$this->getOutput()->disable();
 		$request = $this->getRequest();
@@ -91,7 +91,7 @@ class RawAction extends FormlessAction {
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis
-		$privateCache = !$wgGroupPermissions['*']['read'] && ( $smaxage == 0 || session_id() != '' );
+		$privateCache = !User::isGroupWithPermission( '*', 'read' ) && ( $smaxage == 0 || session_id() != '' );
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
