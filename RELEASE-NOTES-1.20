@@ -254,6 +254,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 38158) jquery.byteLimit sometimes causes an unexpected 0 maxLength being enforced.
 * (bug 38163) jquery.byteLimit incorrectly limits input when using methods other than
   basic per-char typing.
+* (bug 34495) patrol log now credit the user patrolling (instead of patrolled
+  user).
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
