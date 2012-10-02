@@ -31,9 +31,6 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.21 ===
-* Live preview functionality has been improved and moved into the
- 'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
-  has been removed.
 
 == Compatibility ==
 
