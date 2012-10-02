@@ -1,6 +1,8 @@
+( function ( mw ) {
+
 QUnit.module( 'mediawiki', QUnit.newMwEnvironment() );
 
-QUnit.test( '-- Initial check', 8, function ( assert ) {
+QUnit.test( 'Initial check', 8, function ( assert ) {
 	assert.ok( window.jQuery, 'jQuery defined' );
 	assert.ok( window.$, '$j defined' );
 	assert.ok( window.$j, '$j defined' );
@@ -137,6 +139,67 @@ QUnit.test( 'mw.msg', 11, function ( assert ) {
 
 });
 
+/**
+ * The sync style load test (for @import). This is, in a way, also an open bug for
+ * ResourceLoader ("execute js after styles are loaded"), but browsers don't offer a
+ * way to get a callback from when a stylesheet is loaded (that is, including any
+ * @import rules inside). To work around this, we'll have a little time loop to check
+ * if the styles apply.
+ * Note: This test originally used new Image() and onerror to get a callback
+ * when the url is loaded, but that is fragile since it doesn't monitor the
+ * same request as the css @import, and Safari 4 has issues with
+ * onerror/onload not being fired at all in weird cases like this.
+ */
+function assertStyleAsync( assert, $element, prop, val, fn ) {
+	var styleTestStart,
+		el = $element.get( 0 ),
+		styleTestTimeout = ( QUnit.config.testTimeout - 200 ) || 5000;
+
+	function isCssImportApplied() {
+		// Trigger reflow, repaint, redraw, whatever (cross-browser)
+		var x = $element.css( 'height' );
+		x = el.innerHTML;
+		el.className = el.className;
+		x = document.documentElement.clientHeight;
+
+		return $element.css( prop ) === val;
+	}
+
+	function styleTestLoop() {
+		var styleTestSince = new Date().getTime() - styleTestStart;
+		// If it is passing or if we timed out, run the real test and stop the loop
+		if ( isCssImportApplied() || styleTestSince > styleTestTimeout ) {
+			assert.equal( $element.css( prop ), val,
+				'style from url is applied (after ' + styleTestSince + 'ms)'
+			);
+
+			if ( fn ) {
+				fn();
+			}
+
+			return;
+		}
+		// Otherwise, keep polling
+		setTimeout( styleTestLoop, 150 );
+	}
+
+	// Start the loop
+	styleTestStart = new Date().getTime();
+	styleTestLoop();
+}
+
+function urlStyleTest( selector, prop, val ) {
+	return QUnit.fixurl(
+		mw.config.get( 'wgScriptPath' ) +
+			'/tests/qunit/data/styleTest.css.php?' +
+			$.param( {
+				selector: selector,
+				prop: prop,
+				val: val
+			} )
+	);
+}
+
 QUnit.asyncTest( 'mw.loader', 2, function ( assert ) {
 	var isAwesomeDone;
 
@@ -161,88 +224,194 @@ QUnit.asyncTest( 'mw.loader', 2, function ( assert ) {
 	});
 });
 
-QUnit.asyncTest( 'mw.loader.implement', 5, function ( assert ) {
-	var isJsExecuted, $element, styleTestUrl;
+QUnit.test( 'mw.loader.implement( styles={ "css": [text, ..] } )', 2, function ( assert ) {
+	var $element = $( '<div class="mw-test-implement-a"></div>' ).appendTo( '#qunit-fixture' );
 
-	styleTestUrl = QUnit.fixurl(
-		mw.config.get( 'wgScriptPath' )
-		+ '/tests/qunit/data/styleTest.css.php?'
-		+ $.param({
-			selector: '.mw-test-loaderimplement',
-			prop: 'float',
-			val: 'right'
-		})
+	assert.notEqual(
+		$element.css( 'float' ),
+		'right',
+		'style is clear'
 	);
 
 	mw.loader.implement(
-		'test.implement',
+		'test.implement.a',
 		function () {
-			var styleTestTimeout, styleTestStart, styleTestSince;
+			assert.equal(
+				$element.css( 'float' ),
+				'right',
+				'style is applied'
+			);
+		},
+		{
+			'all': '.mw-test-implement-a { float: right; }'
+		},
+		{}
+	);
 
+	mw.loader.load([
+		'test.implement.a'
+	]);
+} );
+
+QUnit.asyncTest( 'mw.loader.implement( styles={ "url": { <media>: [url, ..] } } )', 4, function ( assert ) {
+	var $element = $( '<div class="mw-test-implement-b"></div>' ).appendTo( '#qunit-fixture' ),
+		$element2 = $( '<div class="mw-test-implement-b2"></div>' ).appendTo( '#qunit-fixture' );
+
+	assert.notEqual(
+		$element.css( 'float' ),
+		'right',
+		'style is clear'
+	);
+	assert.notEqual(
+		$element2.css( 'text-align' ),
+		'center',
+		'style is clear'
+	);
+
+	mw.loader.implement(
+		'test.implement.b',
+		function () {
+			assertStyleAsync( assert, $element, 'float', 'right', function () {
+
+				assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied' );
+
+				QUnit.start();
+			} );
+		},
+		{
+			'url': {
+				'screen': [urlStyleTest( '.mw-test-implement-b', 'float', 'right' )],
+				'print': [urlStyleTest( '.mw-test-implement-b2', 'text-align', 'center' )]
+			}
+		},
+		{}
+	);
+
+	mw.loader.load([
+		'test.implement.b'
+	]);
+} );
+
+// Backwards compatibility
+QUnit.test( 'mw.loader.implement( styles={ <media>: text } ) (back-compat)', 2, function ( assert ) {
+	var $element = $( '<div class="mw-test-implement-c"></div>' ).appendTo( '#qunit-fixture' );
+
+	assert.notEqual(
+		$element.css( 'float' ),
+		'right',
+		'style is clear'
+	);
+
+	mw.loader.implement(
+		'test.implement.c',
+		function () {
+			assert.equal(
+				$element.css( 'float' ),
+				'right',
+				'style is applied'
+			);
+		},
+		{
+			'all': '.mw-test-implement-c { float: right; }'
+		},
+		{}
+	);
+
+	mw.loader.load([
+		'test.implement.c'
+	]);
+} );
+
+// Backwards compatibility
+QUnit.asyncTest( 'mw.loader.implement( styles={ <media>: [url, ..] } ) (back-compat)', 4, function ( assert ) {
+	var $element = $( '<div class="mw-test-implement-d"></div>' ).appendTo( '#qunit-fixture' ),
+		$element2 = $( '<div class="mw-test-implement-d2"></div>' ).appendTo( '#qunit-fixture' );
+
+	assert.notEqual(
+		$element.css( 'float' ),
+		'right',
+		'style is clear'
+	);
+	assert.notEqual(
+		$element2.css( 'text-align' ),
+		'center',
+		'style is clear'
+	);
+
+	mw.loader.implement(
+		'test.implement.d',
+		function () {
+			assertStyleAsync( assert, $element, 'float', 'right', function () {
+
+				assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied (bug 40500)' );
+
+				QUnit.start();
+			} );
+		},
+		{
+			'all': [urlStyleTest( '.mw-test-implement-d', 'float', 'right' )],
+			'print': [urlStyleTest( '.mw-test-implement-d2', 'text-align', 'center' )]
+		},
+		{}
+	);
+
+	mw.loader.load([
+		'test.implement.d'
+	]);
+} );
+
+// @import (bug 31676)
+QUnit.asyncTest( 'mw.loader.implement( styles has @import)', 5, function ( assert ) {
+	var isJsExecuted, $element;
+
+	mw.loader.implement(
+		'test.implement.import',
+		function () {
 			assert.strictEqual( isJsExecuted, undefined, 'javascript not executed multiple times' );
 			isJsExecuted = true;
 
-			assert.equal( mw.loader.getState( 'test.implement' ), 'ready', 'module state is "ready" while implement() is executing javascript' );
+			assert.equal( mw.loader.getState( 'test.implement.import' ), 'ready', 'module state is "ready" while implement() is executing javascript' );
 
-			$element = $( '<div class="mw-test-loaderimplement">Foo bar</div>' ).appendTo( '#qunit-fixture' );
+			$element = $( '<div class="mw-test-implement-import">Foo bar</div>' ).appendTo( '#qunit-fixture' );
 
 			assert.equal( mw.msg( 'test-foobar' ), 'Hello Foobar, $1!', 'Messages are loaded before javascript execution' );
 
-			// The @import test. This is, in a way, also an open bug for ResourceLoader
-			// ("execute js after styles are loaded"), but browsers don't offer a way to
-			// get a callback from when a stylesheet is loaded (that is, including any
-			// @import rules inside).
-			// To work around this, we'll have a little time loop to check if the styles
-			// apply.
-			// Note: This test originally used new Image() and onerror to get a callback
-			// when the url is loaded, but that is fragile since it doesn't monitor the
-			// same request as the css @import, and Safari 4 has issues with
-			// onerror/onload not being fired at all in weird cases like this.
+			assertStyleAsync( assert, $element, 'float', 'right', function () {
+				assert.equal( $element.css( 'text-align' ),'center',
+					'CSS styles after the @import rule are working'
+				);
 
-			styleTestTimeout = QUnit.config.testTimeout || 5000; // milliseconds
-
-			function isCssImportApplied() {
-				return $element.css( 'float' ) === 'right';
-			}
-
-			function styleTestLoop() {
-				styleTestSince = new Date().getTime() - styleTestStart;
-				// If it is passing or if we timed out, run the real test and stop the loop
-				if ( isCssImportApplied() || styleTestSince > styleTestTimeout ) {
-					assert.equal( $element.css( 'float' ), 'right',
-						'CSS stylesheet via @import was applied (after ' + styleTestSince + 'ms) (bug 34669). ("float: right")'
-					);
-
-					assert.equal( $element.css( 'text-align' ),'center',
-						'CSS styles after the @import are working ("text-align: center")'
-					);
-
-					// Async done
-					QUnit.start();
-
-					return;
-				}
-				// Otherwise, keep polling
-				setTimeout( styleTestLoop, 100 );
-			}
-
-			// Start the loop
-			styleTestStart = new Date().getTime();
-			styleTestLoop();
+				QUnit.start();
+			} );
 		},
 		{
-			"all": "@import url('"
-				+ styleTestUrl
-				+ "');\n"
-				+ '.mw-test-loaderimplement { text-align: center; }'
+			'css': [
+				'@import url(\''
+				+ urlStyleTest( '.mw-test-implement-import', 'float', 'right' )
+				+ '\');\n'
+				+ '.mw-test-implement-import { text-align: center; }'
+			]
 		},
 		{
-			"test-foobar": "Hello Foobar, $1!"
+			'test-foobar': 'Hello Foobar, $1!'
 		}
 	);
 
 	mw.loader.load( 'test.implement' );
 
+});
+
+QUnit.asyncTest( 'mw.loader.implement( only messages )' , 2, function ( assert ) {
+	assert.assertFalse( mw.messages.exists( 'bug_29107' ), 'Verify that the test message doesn\'t exist yet' );
+
+	mw.loader.implement( 'test.implement.msgs', [], {}, { 'bug_29107': 'loaded' } );
+	mw.loader.using( 'test.implement.msgs', function() {
+		QUnit.start();
+		assert.ok( mw.messages.exists( 'bug_29107' ), 'Bug 29107: messages-only module should implement ok' );
+	}, function() {
+		QUnit.start();
+		assert.ok( false, 'Error callback fired while implementing "test.implement.msgs" module' );
+	});
 });
 
 QUnit.test( 'mw.loader erroneous indirect dependency', 3, function ( assert ) {
@@ -368,21 +537,7 @@ QUnit.asyncTest( 'mw.loader dependency handling', 5, function ( assert ) {
 	);
 } );
 
-QUnit.asyncTest( 'mw.loader bug29107' , 2, function ( assert ) {
-	// Message doesn't exist already
-	assert.ok( !mw.messages.exists( 'bug29107' ) );
-
-	mw.loader.implement( 'bug29107.messages-only', [], {}, {'bug29107': 'loaded'} );
-	mw.loader.using( 'bug29107.messages-only', function() {
-		QUnit.start();
-		assert.ok( mw.messages.exists( 'bug29107' ), 'Bug 29107: messages-only module should implement ok' );
-	}, function() {
-		QUnit.start();
-		assert.ok( false, 'Error callback fired while implementing "bug29107.messages-only" module' );
-	});
-});
-
-QUnit.asyncTest( 'mw.loader.bug30825', 2, function ( assert ) {
+QUnit.asyncTest( 'mw.loader( "//protocol-relative" ) (bug 30825)', 2, function ( assert ) {
 	// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
 	// Test is for regressions!
 
@@ -476,3 +631,5 @@ QUnit.test( 'mw.html', 13, function ( assert ) {
 		'html.element DIV (attribs + content)' );
 
 });
+
+}( mediaWiki ) );
