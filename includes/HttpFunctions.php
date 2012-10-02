@@ -50,11 +50,13 @@ class Http {
 	 *    - caInfo              (curl only) Provide CA information
 	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
 	 *    - followRedirects     Whether to follow redirects (defaults to false).
-	 *		                    Note: this should only be used when the target URL is trusted,
-	 *		                    to avoid attacks on intranet services accessible by HTTP.
+	 *                          Note: this should only be used when the target URL is trusted,
+	 *                          to avoid attacks on intranet services accessible by HTTP.
 	 *    - userAgent           A user agent, if you want to override the default
 	 *                          MediaWiki/$wgVersion
+	 *    - raiseException      Raise an exception on error, instead of returning false.
 	 * @return Mixed: (bool)false on failure or a string on success
+	 * @throws MWException on failure if $options['raiseException'] is true.
 	 */
 	public static function request( $method, $url, $options = array() ) {
 		wfDebug( "HTTP: $method: $url\n" );
@@ -69,6 +71,8 @@ class Http {
 
 		if ( $status->isOK() ) {
 			return $req->getContent();
+		} else if ( $options['raiseException'] === true) {
+			throw new MWException( $status->getMessage() );
 		} else {
 			return false;
 		}
