@@ -65,6 +65,12 @@ Template:inner list
 * item 1
 !! endarticle
 
+!! article
+Template:echo
+!! text
+{{{1}}}
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -868,6 +874,56 @@ Bug 6200: Preformatted in <blockquote>
 </p>
 !! end
 
+!!test
+Templates: Pre: 1a. Templates that break a line should suppress <pre>
+!!input
+ {{echo|}}
+!!result
+
+!!end
+
+!!test
+Templates: Pre: 1b. Templates that break a line should suppress <pre>
+!!input
+ {{echo|
+foo}}
+!!result
+<p>foo
+</p>
+!!end
+
+!! test
+Templates: Pre: 1c: Wrapping should be based one expanded content
+!! input
+ {{echo|a
+b}}
+!!result
+<pre>a
+</pre>
+<p>b
+</p>
+!!end
+
+!! test
+Templates: Pre: 1d: Wrapping should be based one expanded content
+!! input
+ {{echo|a
+b
+c
+ d
+e
+}}
+!!result
+<pre>a
+</pre>
+<p>b
+c
+</p>
+<pre>d
+</pre>
+<p>e
+</p>
+!!end
 
 ###
 ### Definition lists
@@ -4220,11 +4276,6 @@ Templates: Template Name/Arg clash: 3. Use of named param with empty input
 ###
 ### Parsoid-centric tests to stress Parsoid's ability to RT them unchanged
 ###
-!! article
-Template:echo
-!! text
-{{{1}}}
-!! endarticle
 
 !!test
 Templates: 1. Simple use
@@ -4513,24 +4564,6 @@ Templates: Tables: 4f. Generating a single tag of a HTML table
 !!result
 <table><tr><td>foo</td></tr></table>
 
-!!end
-
-!!test
-Templates: Pre: 1a. Templates that break a line should suppress <pre>
-!!input
- {{echo|}}
-!!result
-
-!!end
-
-!!test
-Templates: Pre: 1b. Templates that break a line should suppress <pre>
-!!input
- {{echo|
-foo}}
-!!result
-<p>foo
-</p>
 !!end
 
 !!test
