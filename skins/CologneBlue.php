@@ -77,46 +77,51 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 	
+	// @fixed
 	function otherLanguages() {
 		global $wgHideInterlanguageLinks;
-
 		if ( $wgHideInterlanguageLinks ) {
-			return '';
+			return "";
 		}
-
-		$a = $this->getSkin()->getOutput()->getLanguageLinks();
-
-		if ( 0 == count( $a ) ) {
-			return '';
-		}
-
-		$s = wfMessage( 'otherlanguages' )->text() . wfMessage( 'colon-separator' )->text();
-		$first = true;
-
-		if ( $this->getSkin()->getLanguage()->isRTL() ) {
-			$s .= '<span dir="ltr">';
-		}
-
-		foreach ( $a as $l ) {
-			if ( !$first ) {
-				$s .= wfMessage( 'pipe-separator' )->escaped();
-			}
-
-			$first = false;
-
+		
+		// This is mostly copied from SkinTemplate.
+		// Unfortunately all links in $this->data['language_urls'] are always ucfirsted,
+		// and we do not want this (it's only good if the links are placed in the sidebar).
+		// TODO: remove this.
+		$language_urls = array();
+		foreach ( $this->getSkin()->getOutput()->getLanguageLinks() as $l ) {
+			$tmp = explode( ':', $l, 2 );
+			$class = 'interwiki-' . $tmp[0];
+			unset( $tmp );
 			$nt = Title::newFromText( $l );
-			$text = Language::fetchLanguageName( $nt->getInterwiki() );
-
-			$s .= Html::element( 'a',
-				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
-				$text == '' ? $l : $text );
+			if ( $nt ) {
+				$ilLangName = Language::fetchLanguageName( $nt->getInterwiki() );
+				if ( strval( $ilLangName ) === '' ) {
+					$ilLangName = $l;
+				}
+				$language_urls[] = array(
+					'href' => $nt->getFullURL(),
+					'text' => $ilLangName,
+					'title' => $nt->getText(),
+					'class' => $class,
+					'lang' => $nt->getInterwiki(),
+					'hreflang' => $nt->getInterwiki(),
+				);
+			}
 		}
 
-		if ( $this->getSkin()->getLanguage()->isRTL() ) {
-			$s .= '</span>';
+		$s = array();
+		foreach ( $language_urls as $key => $data ) {
+			$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
 		}
-
-		return $s;
+		
+		if ( empty( $s ) ) {
+			return "";
+		} else {
+			return wfMessage( 'otherlanguages' )->text()
+				. wfMessage( 'colon-separator' )->text()
+				. $this->getSkin()->getLanguage()->pipeList( $s );
+		}
 	}
 
 	// @fixed
