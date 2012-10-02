@@ -1048,6 +1048,9 @@ class LoginForm extends SpecialPage {
 			$linkmsg = 'nologin';
 		}
 
+		// Allow extensions to modify the login/signup forms
+		wfRunHooks( 'SpecialUserloginTemplate', array( $this, $this->mType, &$template ) );
+
 		if ( $this->mReturnTo !== '' ) {
 			$returnto = '&returnto=' . wfUrlencode( $this->mReturnTo );
 			if ( $this->mReturnToQuery !== '' ) {

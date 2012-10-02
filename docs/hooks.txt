@@ -1983,6 +1983,11 @@ $term: string of search term
 Special:Upload
 $form: The SpecialUpload object
 
+'SpecialUserloginTemplate': allows to alter/override user login/signup forms.
+$userlogin: Calling SpecialUserlogin instance.
+$type: If 'signup', user requests a signup form.
+&$template: QuickTemplate instance that will be used by the form.
+
 'SpecialVersionExtensionTypes': called when generating the extensions credits,
 use this to change the tables headers
 $extTypes: associative array of extensions types
