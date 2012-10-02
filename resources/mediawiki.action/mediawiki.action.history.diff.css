@@ -1,8 +1,36 @@
 /*
 ** Diff rendering
 */
-table.diff, td.diff-otitle, td.diff-ntitle {
+table.diff {
 	background-color: white;
+	border: none;
+	border-spacing: 4px;
+	margin: 0;
+	width: 100%;
+	/* Ensure that colums are of equal width */
+	table-layout: fixed;
+}
+
+table.diff td {
+	padding: 0.33em 0.5em;
+}
+
+table.diff td.diff-marker {
+	/* Compensate padding for increased font-size */
+	padding: 0.25em;
+}
+
+table.diff col.diff-marker {
+	width: 2%;
+}
+
+table.diff col.diff-content {
+	width: 48%;
+}
+
+table.diff td div {
+	/* Force-wrap very long lines such as URLs or page-widening char strings */
+	word-wrap: break-word;
 }
 
 td.diff-otitle,
@@ -10,14 +38,14 @@ td.diff-ntitle {
 	text-align: center;
 }
 
+td.diff-lineno {
+	font-weight: bold;
+}
+
 td.diff-marker {
 	text-align: right;
 	font-weight: bold;
 	font-size: 1.25em;
-}
-
-td.diff-lineno {
-	font-weight: bold;
 }
 
 td.diff-addedline,
@@ -27,10 +55,6 @@ td.diff-context {
 	vertical-align: top;
 	white-space: -moz-pre-wrap;
 	white-space: pre-wrap;
-}
-
-td.diff-addedline,
-td.diff-deletedline {
 	border-style: solid;
 	border-width: 1px 1px 1px 4px;
 	border-radius: 0.33em;
@@ -45,26 +69,14 @@ td.diff-deletedline {
 }
 
 td.diff-context {
-	background: #f3f3f3;
-	color: #333333;
-	border-style: solid;
-	border-width: 1px 1px 1px 4px;
+	background: #f9f9f9;
 	border-color: #e6e6e6;
-	border-radius: 0.33em;
+	color: #333333;
 }
 
 .diffchange {
 	font-weight: bold;
 	text-decoration: none;
-}
-
-table.diff {
-	border: none;
-	width: 98%;
-	border-spacing: 4px;
-
-	/* Ensure that colums are of equal width */
-	table-layout: fixed;
 }
 
 td.diff-addedline .diffchange,
@@ -79,26 +91,4 @@ td.diff-addedline .diffchange {
 
 td.diff-deletedline .diffchange {
 	background: #feeec8;
-}
-
-table.diff td {
-	padding: 0.33em 0.66em;
-}
-
-table.diff col.diff-marker {
-	width: 2%;
-}
-
-table.diff col.diff-content {
-	width: 48%;
-}
-
-table.diff td div {
-	/* Force-wrap very long lines such as URLs or page-widening char strings.*/
-	word-wrap: break-word;
-
-	/* As fallback (FF<3.5, Opera <10.5), scrollbars will be added for very wide cells
-	   instead of text overflowing or widening
-	*/
-	overflow: auto;
 }
