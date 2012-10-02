@@ -2720,7 +2720,7 @@ $wgFooterIcons = array(
 $wgUseCombinedLoginLink = false;
 
 /**
- * Search form behavior for Vector skin only.
+ * Search form look for Vector skin only.
  *  - true = use an icon search button
  *  - false = use Go & Search buttons
  */
@@ -4695,16 +4695,10 @@ $wgCountTotalSearchHits = false;
 $wgOpenSearchTemplate = false;
 
 /**
- * Enable suggestions while typing in search boxes
- * (results are passed around in OpenSearch format)
- * Requires $wgEnableOpenSearchSuggest = true;
- */
-$wgEnableMWSuggest = false;
-
-/**
  * Enable OpenSearch suggestions requested by MediaWiki. Set this to
- * false if you've disabled MWSuggest or another suggestion script and
- * want reduce load caused by cached scripts pulling suggestions.
+ * false if you've disabled scripts that use api?action=opensearch and
+ * want reduce load caused by cached scripts still pulling suggestions.
+ * It will let the API fallback by responding with an empty array.
  */
 $wgEnableOpenSearchSuggest = true;
 
@@ -4712,14 +4706,6 @@ $wgEnableOpenSearchSuggest = true;
  * Expiry time for search suggestion responses
  */
 $wgSearchSuggestCacheExpiry = 1200;
-
-/**
- *  Template for internal MediaWiki suggestion engine, defaults to API action=opensearch
- *
- *  Placeholders: {searchTerms}, {namespaces}, {dbname}
- *
- */
-$wgMWSuggestTemplate = false;
 
 /**
  * If you've disabled search semi-permanently, this also disables updates to the
