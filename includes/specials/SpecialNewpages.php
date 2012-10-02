@@ -164,8 +164,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function filterLinks() {
-		global $wgGroupPermissions;
-
 		// show/hide links
 		$showhide = array( $this->msg( 'show' )->escaped(), $this->msg( 'hide' )->escaped() );
 
@@ -181,8 +179,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		}
 
 		// Disable some if needed
-		# @todo FIXME: Throws E_NOTICEs if not set; and doesn't obey hooks etc.
-		if ( $wgGroupPermissions['*']['createpage'] !== true ) {
+		if ( !User::isGroupWithPermission( '*', 'createpage' ) ) {
 			unset( $filters['hideliu'] );
 		}
 		if ( !$this->getUser()->useNPPatrol() ) {
@@ -488,7 +485,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		global $wgEnableNewpagesUserFilter, $wgGroupPermissions;
+		global $wgEnableNewpagesUserFilter;
 		$conds = array();
 		$conds['rc_new'] = 1;
 
@@ -510,7 +507,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 			$conds['rc_user_text'] = $user->getText();
 			$rcIndexes = 'rc_user_text';
 		# If anons cannot make new pages, don't "exclude logged in users"!
-		} elseif( $wgGroupPermissions['*']['createpage'] && $this->opts->getValue( 'hideliu' ) ) {
+		} elseif( User::isGroupWithPermission( '*', 'createpage' ) && $this->opts->getValue( 'hideliu' ) ) {
 			$conds['rc_user'] = 0;
 		}
 		# If this user cannot see patrolled edits or they are off, don't do dumb queries!
