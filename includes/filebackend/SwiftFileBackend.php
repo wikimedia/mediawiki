@@ -814,7 +814,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
 		// Blindly create tmp files and stream to them, catching any exception if the file does
-		// not exist. Doing a stat here is useless causes infinite loops in addMissingMetadata().
+		// not exist. Doing stats here is useless and will loop infinitely in addMissingMetadata().
 		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
 			$cfOps = array(); // (path => CF_Async_Op)
 
