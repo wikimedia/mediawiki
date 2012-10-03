@@ -1371,6 +1371,13 @@ abstract class QuickTemplate {
 	}
 
 	/**
+	 * Get data from the private array.
+	 */
+	function getData( $str ) {
+		return $this->data[$str];
+	}
+
+	/**
 	 * @private
 	 * @return bool
 	 */
