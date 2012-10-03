@@ -776,6 +776,22 @@ return array(
 		),
 		'position' => 'top',
 	),
+	'mediawiki.page.patrol.ajax' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.patrol.ajax.js',
+		'styles' => 'resources/mediawiki.page/mediawiki.page.patrol.ajax.css',
+		'dependencies' => array(
+			'mediawiki.page.startup',
+			'mediawiki.api',
+			'mediawiki.util',
+			'jquery.spinner',
+			'user.tokens'
+		),
+		'messages' => array(
+			'markedaspatrolled',
+			'markedaspatrollederror',
+			'markedaspatrollederror-noautopatrol'
+		),
+	),
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.watch.ajax.js',
 		'dependencies' => array(

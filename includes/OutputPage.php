@@ -2459,7 +2459,7 @@ $templates
 	 */
 	private function addDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch;
+			$wgAjaxWatch, $wgAjaxPatrol;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2486,7 +2486,11 @@ $templates
 			if( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
 				$this->addModules( 'mediawiki.page.watch.ajax' );
 			}
-
+			
+			if( $wgAjaxPatrol && $this->getUser()->isAllowed( 'patrol' ) ) {
+				$this->addModules( 'mediawiki.page.patrol.ajax' );
+			}
+			
 			if ( !$this->getUser()->getOption( 'disablesuggest', false ) ) {
 				$this->addModules( 'mediawiki.searchSuggest' );
 			}
