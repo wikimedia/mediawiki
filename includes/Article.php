@@ -950,6 +950,7 @@ class Article extends Page {
 	 * desired, does nothing.
 	 */
 	public function showPatrolFooter() {
+		global $wgAjaxPatrol;
 		$request = $this->getContext()->getRequest();
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
@@ -961,7 +962,9 @@ class Article extends Page {
 
 		$token = $user->getEditToken( $rcid );
 		$outputPage->preventClickjacking();
-
+		if ( $wgAjaxPatrol ) {
+			$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
+		}
 		$link = Linker::linkKnown(
 			$this->getTitle(),
 			wfMessage( 'markaspatrolledtext' )->escaped(),

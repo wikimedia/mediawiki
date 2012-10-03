@@ -423,7 +423,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return String
 	 */
 	protected function markPatrolledLink() {
-		global $wgUseRCPatrol;
+		global $wgUseRCPatrol,	$wgAjaxPatrol;
 
 		if ( $this->mMarkPatrolledLink === null ) {
 			// Prepare a change patrol link, if applicable
@@ -459,6 +459,9 @@ class DifferenceEngine extends ContextSource {
 				// Build the link
 				if ( $rcid ) {
 					$this->getOutput()->preventClickjacking();
+					if ( $wgAjaxPatrol ) {
+						$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+					}
 					$token = $this->getUser()->getEditToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 						$this->mNewPage,
