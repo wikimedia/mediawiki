@@ -1110,9 +1110,14 @@ class SpecialListBots extends SpecialRedirectToSpecial {
  * CreateAccount --> UserLogin/signup
  * @todo FIXME: This (and the rest of the login frontend) needs to die a horrible painful death
  */
-class SpecialCreateAccount extends SpecialRedirectToSpecial {
+class SpecialCreateAccount extends LoginForm {
 	function __construct() {
-		parent::__construct( 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) );
+		SpecialPage::__construct( 'CreateAccount' );
+	}
+
+	function load() {
+		parent::load();
+		$this->mType = 'signup';
 	}
 }
 /**
