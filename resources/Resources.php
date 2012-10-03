@@ -810,6 +810,22 @@ return array(
 		),
 		'position' => 'top',
 	),
+	'mediawiki.page.patrol.ajax' => array(
+		'scripts' => 'resources/mediawiki.page/mediawiki.page.patrol.ajax.js',
+		'dependencies' => array(
+			'mediawiki.page.startup',
+			'mediawiki.api',
+			'mediawiki.util',
+			'mediawiki.notify',
+			'jquery.spinner',
+			'user.tokens'
+		),
+		'messages' => array(
+			'markedaspatrollednotify',
+			'markedaspatrollederrornotify',
+			'markedaspatrollederror-noautopatrol'
+		),
+	),
 	'mediawiki.page.watch.ajax' => array(
 		'scripts' => 'resources/mediawiki.page/mediawiki.page.watch.ajax.js',
 		'dependencies' => array(
