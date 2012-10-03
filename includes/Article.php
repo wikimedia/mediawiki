@@ -1044,6 +1044,8 @@ class Article extends Page {
 	 * If patrol is possible, output a patrol UI box. This is called from the
 	 * footer section of ordinary page views. If patrol is not possible or not
 	 * desired, does nothing.
+	 * Side effect: When the patrol link is build, this method will call
+	 * OutputPage::preventClickjacking() and load mediawiki.page.patrol.ajax.
 	 */
 	public function showPatrolFooter() {
 		$request = $this->getContext()->getRequest();
@@ -1056,7 +1058,9 @@ class Article extends Page {
 		}
 
 		$token = $user->getEditToken( $rcid );
+
 		$outputPage->preventClickjacking();
+		$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),
