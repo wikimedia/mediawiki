@@ -1,5 +1,5 @@
 <?php
-/** Latvian (Latviešu)
+/** Latvian (latviešu)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -57,7 +57,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Slēpt apstiprinātās izmaņas pēdējo izmaiņu sarakstā',
 'tog-newpageshidepatrolled'   => 'Paslēpt pārbaudītās lapas jauno lapu sarakstā',
 'tog-extendwatchlist'         => 'Izvērst uzraugāmo lapu sarakstu, lai parādītu visas veiktās izmaiņas (ne tikai pašas svaigākās)',
-'tog-usenewrc'                => "Lietot uzlaboto pēdējo izmaiņu lapu (izmanto ''JavaScript'')",
+'tog-usenewrc'                => "Grupēt izmaiņas pēc lapas pēdējās izmaiņās un uzraugāmo lapu sarakstā  (izmanto ''JavaScript'')",
 'tog-numberheadings'          => 'Automātiski numurēt virsrakstus',
 'tog-showtoolbar'             => 'Rādīt rediģēšanas rīkjoslu',
 'tog-editondblclick'          => "Atvērt rediģēšanas lapu ar dubultklikšķi (izmanto ''JavaScript'')",
@@ -308,7 +308,7 @@ $1',
 
 'ok'                      => 'Labi',
 'retrievedfrom'           => 'Saturs iegūts no "$1"',
-'youhavenewmessages'      => 'Tev ir $1 (skat. $2).',
+'youhavenewmessages'      => 'Tev ir $1 (skatīt $2).',
 'newmessageslink'         => 'jauns vēstījums',
 'newmessagesdifflink'     => 'pēdējā izmaiņa',
 'youhavenewmessagesmulti' => 'Tev ir jauns ziņojums: $1',
@@ -316,7 +316,7 @@ $1',
 'editold'                 => 'labot',
 'viewsourceold'           => 'aplūkot kodu',
 'editlink'                => 'labot',
-'viewsourcelink'          => 'Skatīt pirmkodu',
+'viewsourcelink'          => 'aplūkot kodu',
 'editsectionhint'         => 'Rediģēt sadaļu: $1',
 'toc'                     => 'Satura rādītājs',
 'showtoc'                 => 'parādīt',
@@ -440,11 +440,11 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'securelogin-stick-https'    => 'Saglabāt HTTPS savienojumu pēc pieslēgšanās',
 'yourdomainname'             => 'Tavs domēns',
 'externaldberror'            => 'Notikusi vai nu ārējās autentifikācijas datubāzes kļūda, vai arī tev nav atļauts izmainīt savu ārējo kontu.',
-'login'                      => 'Ieiet',
+'login'                      => 'Pieslēgties',
 'nav-login-createaccount'    => 'Izveidot jaunu lietotāju vai doties iekšā',
 'loginprompt'                => 'Lai ieietu {{grammar:lokatīvs|{{SITENAME}}}}, tavam datoram ir jāpieņem sīkdatnes (<i>cookies</i>).',
 'userlogin'                  => 'Izveidot jaunu lietotāju vai doties iekšā',
-'userloginnocreate'          => 'Ieiet',
+'userloginnocreate'          => 'Pieslēgties',
 'logout'                     => 'Iziet',
 'userlogout'                 => 'Iziet',
 'notloggedin'                => 'Neesi iegājis',
@@ -657,7 +657,7 @@ Pēdējais bloķēšanas reģistra ieraksts ir apskatāms zemāk:',
 '''Tas vēl nav saglabāts!'''",
 'updated'                          => '(Atjaunots)',
 'note'                             => "'''Piezīme: '''",
-'previewnote'                      => "'''Atceries, ka šis ir tikai pirmskats un vēl nav saglabāts!'''",
+'previewnote'                      => "'''Atceries, ka šis ir tikai pirmskats un teksts vēl nav saglabāts!'''",
 'session_fail_preview'             => "'''Neizdevās apstrādāt tavas izmaiņas, jo tika pazaudēti sesijas dati.
 Lūdzu mēģini vēlreiz.
 Ja tas joprojām nedarbojas, mēģini [[Special:UserLogout|izlogoties ārā]] un ielogoties no jauna.'''",
@@ -1337,13 +1337,13 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 'largefileserver'            => 'Šis fails ir lielāks nekā serveris ņem pretī.',
 'emptyfile'                  => 'Šķiet, ka tu esi augšuplādējis tukšu failu. Iespējams, faila nosaukumā esi pieļāvis kļūdu. Lūdzu, pārbaudi, vai tiešām tu vēlies augšuplādēt tieši šo failu.',
 'windows-nonascii-filename'  => 'Šī viki neatbalsta failu nosaukumus ar īpašām rakstzīmēm.',
-'fileexists'                 => "Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi '''<tt>[[:$1]]</tt>''', ja neesi drošs, ka vēlies to mainīt.
-[[$1|thumb]]",
-'fileexists-extension'       => "Pastāv fails ar līdzīgu nosaukumu: [[$2|thumb]]
-* Augšupielādējamā faila nosaukums: '''<tt>[[:$1]]</tt>'''
-* Esošā faila nosaukums: '''<tt>[[:$2]]</tt>'''
-Lūdzu, izvēlieties citu nosaukumu.",
-'file-thumbnail-no'          => "Faila vārds sākas ar '''<tt>$1</tt>'''.
+'fileexists'                 => 'Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi <strong>[[:$1]]</strong>, ja neesi drošs, ka vēlies to mainīt.
+[[$1|thumb]]',
+'fileexists-extension'       => 'Pastāv fails ar līdzīgu nosaukumu: [[$2|thumb]]
+* Augšupielādējamā faila nosaukums: <strong>[[:$1]]</strong>
+* Esošā faila nosaukums: <strong>[[:$2]]</strong>
+Lūdzu, izvēlieties citu nosaukumu.',
+'file-thumbnail-no'          => "Faila vārds sākas ar <strong>$1</strong>.
 Izskatās, ka šis ir samazināts attēls ''(thumbnail)''.
 Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomaini faila vārdu.",
 'fileexists-forbidden'       => 'Fails ar šādu nosaukumu jau eksistē un to nevar aizvietot ar jaunu.
@@ -1419,7 +1419,8 @@ Atļauta ir tikai failu piekļuve.',
 'http-host-unreachable' => 'URL nevarēja sasniegt.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6' => 'URL nevarēja sasniegt',
+'upload-curl-error6'  => 'URL nevarēja sasniegt',
+'upload-curl-error28' => 'Augšupielādes noildze',
 
 'license'            => 'Licence:',
 'license-header'     => 'Licence',
@@ -1635,7 +1636,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 
 # Special:Log
 'specialloguserlabel'  => 'Izpildītājs:',
-'speciallogtitlelabel' => 'Nosaukums:',
+'speciallogtitlelabel' => 'Mērķis (nosaukums vai lietotājs):',
 'log'                  => 'Reģistri',
 'all-logs-page'        => 'Visi publiski pieejamie reģistri',
 'alllogstext'          => 'Visi pieejamie {{grammar:akuzatīvs{{SITENAME}}}} reģistri.
@@ -1678,7 +1679,8 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'linksearch-pat'  => 'Meklēt:',
 'linksearch-ns'   => 'Vārdtelpas:',
 'linksearch-ok'   => 'Meklēt',
-'linksearch-text' => 'Atbalstītie protokoli: <tt>$1</tt>',
+'linksearch-text' => 'Atbalstītie protokoli: <code>$1</code>',
+'linksearch-line' => '$1 ir izveidota saite no $2',
 
 # Special:ListUsers
 'listusersfrom'      => 'Parādīt lietotājus sākot ar:',
@@ -1893,7 +1895,7 @@ Pašreizējie lapas '''$1''' iestatījumi ir:",
 'protect-default'             => 'Atļaut visiem lietotājiem',
 'protect-fallback'            => 'Nepieciešama atļauja "$1"',
 'protect-level-autoconfirmed' => 'Bloķēt jauniem un nereģistrētiem lietotājiem',
-'protect-level-sysop'         => 'Tikai adminiem',
+'protect-level-sysop'         => 'Tikai administratoriem',
 'protect-summary-cascade'     => 'kaskāde',
 'protect-expiring'            => 'līdz $1 (UTC)',
 'protect-expiry-indefinite'   => 'bezgalīgs',
@@ -2081,6 +2083,8 @@ Visus blokus var apskatīties [[Special:BlockList|IP bloku sarakstā]].',
 'blocklist-userblocks'        => 'Paslēpt kontu bloķējumus',
 'blocklist-tempblocks'        => 'Paslēpt pagaidu bloķējumus',
 'blocklist-addressblocks'     => 'Paslēpt vienas IP adreses bloķējumus',
+'blocklist-timestamp'         => 'Laiks',
+'blocklist-target'            => 'Mērķis',
 'blocklist-params'            => 'Bloķēšanas parametri',
 'blocklist-reason'            => 'Iemesls',
 'ipblocklist-submit'          => 'Meklēt',
@@ -2249,7 +2253,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 # Namespace 8 related
 'allmessages'                   => 'Visi sistēmas paziņojumi',
 'allmessagesname'               => 'Nosaukums',
-'allmessagesdefault'            => 'Sākotnējais teksts',
+'allmessagesdefault'            => 'Noklusētais ziņojuma teksts',
 'allmessagescurrent'            => 'Pašreizējais teksts',
 'allmessagestext'               => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
 Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [//translatewiki.net translatewiki.net].",
@@ -2618,6 +2622,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-specialinstructions'         => 'Īpašas norādes',
 'exif-headline'                    => 'Virsraksts',
 'exif-source'                      => 'Avots',
+'exif-contact'                     => 'Kontaktinformācija',
 'exif-languagecode'                => 'Valoda',
 'exif-iimversion'                  => 'IIM versija',
 'exif-iimcategory'                 => 'Kategorija',
@@ -2626,6 +2631,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-lens'                        => 'Izmantotais objektīvs',
 'exif-serialnumber'                => 'Fotoaparāta sērijas numurs',
 'exif-cameraownername'             => 'Fotoaparāta īpašnieks',
+'exif-nickname'                    => 'Neformāls attēla nosaukums',
 'exif-rating'                      => 'Vērtējums (no 5)',
 'exif-copyrighted'                 => 'Autortiesību statuss',
 'exif-copyrightowner'              => 'Autortiesību īpašnieks',
@@ -2640,6 +2646,8 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 'exif-contentwarning'              => 'Brīdinājums par saturu',
 'exif-giffilecomment'              => 'GIF faila komentārs',
 'exif-event'                       => 'Attēlotais notikums',
+'exif-organisationinimage'         => 'Attēlotā organizācija',
+'exif-personinimage'               => 'Attēlotā persona',
 
 # EXIF attributes
 'exif-compression-1' => 'Nekompresēts',

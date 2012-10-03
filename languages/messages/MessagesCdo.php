@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Xqt
  */
 
 $datePreferences = array(
@@ -208,7 +209,9 @@ Sō̤ kī só-gé̤ṳ-kó gì guāng-lī-uòng cūng-kuāng gāi-sék: $1',
 'viewsourcefor'        => '$1 gì',
 'protectedpagetext'    => 'Cī hiĕk ī-gĭng ké̤ṳk sō̤ kī lāu, mâ̤-sāi siŭ-gāi.',
 'viewsourcetext'       => 'Nṳ̄ â̤-sāi káng gâe̤ng hók-cié ciā hiĕk gì nguòng-dâi-mā:',
-'editinginterface'     => "'''Gīng-gó̤:''' Nṳ̄ hiêng-câi lā̤ siŭ-gāi hiê-tūng gái-miêng gì hiĕk. Dó̤i ciā hiĕk gì gāi-biéng â̤ īng-hiōng gì-tă ê̤ṳng-hô gì gái-miêng.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 
 # Login and logout pages
 'logouttext'                 => "'''Nṳ̄ hiêng-câi láuk-chók lāu.'''
@@ -452,8 +455,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'uploadedfiles'       => 'Siông-duòng ùng-giông',
 'ignorewarning'       => 'Mò̤ sê̤ṳ gīng-gó̤ bō̤-còng ùng-giông.',
 'ignorewarnings'      => 'Mò̤ sê̤ṳ gīng-gó̤',
-'fileexists'          => "Ī-gĭng ô siŏh bĭk dè̤ng miàng ùng-giông, nṳ̄ nâ mâ̤ káuk-dêng nṳ̄ sê-ng-sê dŏng-cĭng páh-sáung gāi-biéng ĭ, chiāng giēng-chă '''<tt>[[:$1]]</tt>'''.
-[[$1|thumb]]",
+'fileexists'          => 'Ī-gĭng ô siŏh bĭk dè̤ng miàng ùng-giông, nṳ̄ nâ mâ̤ káuk-dêng nṳ̄ sê-ng-sê dŏng-cĭng páh-sáung gāi-biéng ĭ, chiāng giēng-chă <strong>[[:$1]]</strong>.
+[[$1|thumb]]',
 'uploadwarning'       => 'Siông-duòng gīng-gó̤',
 'savefile'            => 'Bō̤-còng ùng-giông',
 'uploadedimage'       => 'siông-duòng "[[$1]]"',
@@ -499,6 +502,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 # Statistics
 'statistics'              => 'Só-gé̤ṳ',
 'statistics-header-users' => 'Ê̤ṳng-hô só-gé̤ṳ',
+
+'disambiguationspage' => 'Template:Gì-ngiê',
 
 'brokenredirects-edit'   => 'gāi',
 'brokenredirects-delete' => 'chēng',

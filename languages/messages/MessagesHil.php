@@ -11,7 +11,9 @@
  * @author Erythrii
  * @author Jose77
  * @author Kguirnela
+ * @author Oxyzen
  * @author Tagimata
+ * @author Taylortheturtle
  */
 
 $messages = array(
@@ -23,7 +25,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Taguon ang mga nabantayan nga na islan na nga bag-o lang gin obra',
 'tog-newpageshidepatrolled'   => 'Taguon ang mga nabantayan  nga pahina sa bag-ong lista sang mga pahina',
 'tog-extendwatchlist'         => 'Palaparon ang watchlist para makita ang tanan nga mga na-islan, indi lang man sa pinaka bag-o',
-'tog-usenewrc'                => 'Gamiton ang ginpanami nga bag-o lang gid nga na-islan (nagakilanlan JavaScript)',
+'tog-usenewrc'                => 'Grupohon ang mga pagbag-o kada panid sa bag-o lang gid na ilisan kag sa ginabantayan (nagakilanlan sang JavaScript)',
 'tog-numberheadings'          => 'Auto-numero heading',
 'tog-showtoolbar'             => 'Ipakita ang edit toolbar (nagakilanlan JavaScript)',
 'tog-editondblclick'          => 'Islan ang pahina kung i-doble klik mo (nagakilanlan JavaScript)',
@@ -31,17 +33,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Sugtan ang pag-ilis sang seksyon paagi sa pagtum-ok sang natoo sa mouse sa titulo sang seksyon (nagakinahanglan sang JavaScript)',
 'tog-showtoc'                 => 'Ipakita ang sinulatan sang nagabug-os (para sang mga panid nga may yara sang masobra sa 3 nga pangolohan)',
 'tog-rememberpassword'        => 'Dumdumon ang akon password sa sini nga brawser (para sa indi magsobra $1 {{PLURAL:$1|nga adlaw|nga mga adlaw}})',
-'tog-watchcreations'          => 'Idugang ang mga panid nga akon pagahimoon sa akon ginabantayan',
-'tog-watchdefault'            => 'Idugang ang mga panid nga akon gina-ilisan sa akon ginabantayan',
-'tog-watchmoves'              => 'Idugang ang mga panid nga akon pagasaylohon sa akon ginabantayan',
-'tog-watchdeletion'           => 'Idugang ang mga panid nga akon pagadulaon sa akon ginabantayan',
+'tog-watchcreations'          => 'Magdugang sang mga panid nga akon buhaton kag mga hilera nga akon igapasaka sa akon mga ginabantayan',
+'tog-watchdefault'            => 'Idugang ang mga panid kag hilera nga akon ginbag-o sa akon mga ginabantayan',
+'tog-watchmoves'              => 'Idugang ang mga panid kag hilera nga akon ginsaylo sa akon mga ginabantayan',
+'tog-watchdeletion'           => 'Idugang ang mga panid kag hilera nga akon dulaon sa akon mga ginabantayan',
 'tog-minordefault'            => 'Markahan dayon ang tanan nga diyutay nga pag-ilis',
 'tog-previewontop'            => 'Ipakita ang preview bag-o ang kahon sang pag-ilis',
 'tog-previewonfirst'          => 'Ipakita ang preview sa pinaka-una nga pag-ilis',
 'tog-nocache'                 => 'Untaton ang kina-iya sang brawser nga magtago sang panid',
-'tog-enotifwatchlistpages'    => 'Padal-i ako sang e-mail kon ang panid nga akon ginabantayan paga-ilisan',
+'tog-enotifwatchlistpages'    => 'Padal-i ako sang e-mail kon ang panid kag hilera nga akon ginabantayan paga-ilisan',
 'tog-enotifusertalkpages'     => 'Padal-i ako sang e-mail kon paga-ilisan ang akon panid sang pag-hisayranay',
-'tog-enotifminoredits'        => 'Padal-i man ako sang e-mail kon may diyutay nga pag-ilis sa akon mga panid',
+'tog-enotifminoredits'        => 'Padal-i man ako sang e-mail kon may diyutay nga pag-ilis sa akon mga panid kag hilera',
 'tog-enotifrevealaddr'        => 'Ipakita ang akon e-mail adres sa mga e-mail nga nagapahibalo',
 'tog-shownumberswatching'     => 'Ipakita ang numero sang mga nagalantaw nga manug-gamit',
 'tog-oldsig'                  => 'Nagapabilin nga pirma:',
@@ -332,11 +334,11 @@ May lista sang mga nagaka-igo nga mga espesyal nga mga panid sa [[Special:Specia
 'error'                => 'Sala/Eror',
 'databaseerror'        => 'May sala sa database',
 'dberrortext'          => 'May sala sa syntax sang pagpangita sa database.
-Ini nagakahulogan nga basi may sapat-sapat sa software.
-Ang pinaka-ulihe nga pamilit sa pagpangita sa database amo ang:
-<blockquote><tt>$1</tt></blockquote>
-nga halin sa buluhaton nga "<tt>$2</tt>".
-Ang database nagbalik sang sala/eror nga "<tt>$3: $4</tt>".',
+Ini nagakahulogan nga basi may sapat-sapat/bug sa software.
+Ang pinaka-ulihe nga pagtilaw sa pagpangita sa database amo ang:
+<blockquote><code>$1</code></blockquote>
+nga halin sa buluhaton nga "<code>$2</code>".
+Ang database nagbalik sang sala/eror nga "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'May sala sa syntax sang pagpangita sa database.
 Ang pinaka-ulihe nga pamilit sa pagpangita sa database amo ang:
 "$1"
@@ -674,11 +676,10 @@ Palihog tsek kon luyag mo nga himuon/ilisan ang ini nga panid.',
 'blocked-notice-logextract'        => 'Ang ini nga manuggamit ginapunggan karon.
 Ang pinaka-ulihi nga log sa pagpuggong yara sa idalom para mahibaluan nimo:',
 'clearyourcache'                   => "'''Tandaan:''' Pagkatapos nga tiponon, mahimo nga kinahanglan mo pa nga i-baipas ang cache sang imo brawser agod makita ang mga pagbag-o.
-* '''Firefox / Safari:''' pinduton sing madugay ang ''Shift'' samtang ginapitik ang ''Reload'', ukon pinduton ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''Command-R'' sa Mac)
-* '''Google Chrome:''' pinduton ang ''Ctrl-Shift-R'' (''Command-Shift-R'' sa Mac)
+* '''Firefox / Safari:''' pinduton sing madugay ang ''Shift'' samtang ginapitik ang ''Reload'', ukon pinduton ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''⌘-R'' sa Mac)
+* '''Google Chrome:''' pinduton ang ''Ctrl-Shift-R'' (''⌘-Shift-R'' sa Mac)
 * '''Internet Explorer:''' pinduton sing madugay ang ''Ctrl'' samtang ginapitik ''Refresh'', ukon pinduton ang ''Ctrl-F5''
-* '''Konqueror:''' pitikon ang ''Reload'' ukon pinduton ang ''F5''
-* '''Opera:''' hawanon ang  cache sa ''Tools → Preferences''",
+* '''Opera:''' Tan-awon ang  cache sa ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Pagbulig:''' Gamiton ang \"{{int:showpreview}}\" nga tulom-ukon agod matilawan ang imo bag-o nga CSS bag-o magtipon.",
 'userjsyoucanpreview'              => "'''Pagbulig:''' Gamiton ang \"{{int:showpreview}}\" nga tulom-ukon agod matilawan ang imo bag-o nga JavaScript bag-o magtipon.",
 'usercsspreview'                   => "'''Tandai nga ginalantaw mo pa lang ang imo CSS sang manuggamit.'''
@@ -940,6 +941,7 @@ Palihog sekyar sang mga logs.',
 'revdelete-reason-dropdown'   => '*Masami nga rason sang pagdula
 ** Paglapas sang kinamatarong-kontra-pagkopya
 ** Indi nagakadapat nga impormasyon pangkaugalingon
+** Indi nagakadapat nga gamit-pangalan
 ** Mahimo nagapangguba-kinamatarong nga impormasyon',
 'revdelete-otherreason'       => 'Iban/dugang nga rason:',
 'revdelete-reasonotherlist'   => 'Iban nga rason',
@@ -949,7 +951,7 @@ Palihog sekyar sang mga logs.',
 # Suppression log
 'suppressionlog'     => 'Log sang pagkakas',
 'suppressionlogtext' => 'Sa idalom isa ka lista sang mga gindula kag pagpugong nga naga-dala sang mga unod nga gintago halin sa mga administrador.
-Lantawa ang [[Special:BlockList|lista sang mga ginpunggan nga IP]] para sa lista sang mga naga-eksister nga pagdula kag pagpugong.',
+Lantawa ang [[Special:BlockList|lista sang mga ginpunggan]] para sa lista sang mga naga-eksister nga pagdula kag pagpugong.',
 
 # History merging
 'mergehistory'                     => 'Isugpon ang mga kasaysayan sang panid',
@@ -983,7 +985,7 @@ Tandai nga ang paggamit sang mga link sa pagnabigar magaliwat sining hilera.',
 'mergelogpagetext'   => 'Sa dalom isa ka lista sang mga pinaka-ulihe nga pagsugpon sang isa ka kasaysayan sang panid sa isa pa gid.',
 
 # Diffs
-'history-title'            => 'Rebisyon sang historya sa "$1"',
+'history-title'            => 'Rebisyon sang hisayranay sa "$1"',
 'difference'               => '(Naglain sa tunga sang mga rebisyon)',
 'difference-multipage'     => '(Kinala-in sang mga panid)',
 'lineno'                   => 'Linya $1:',
@@ -1163,6 +1165,11 @@ Ini indi dapat nga magsobra sa $1 {{PLURAL:$1|ka karakter|ka mga karakter}} ang 
 'gender-female'                 => 'Babayi',
 'prefs-help-gender'             => '',
 'email'                         => 'E-mail',
+'prefs-help-realname'           => 'Ang matood-tood nga pangalan mahimo nga indi gamiton.
+Kon imo ini luyag nga ihatag, ini gamiton sa paghatag sing pagkilala sa imo nga gin-ubra.',
+'prefs-help-email'              => 'Ang adres sang e-mail mahimo nga indi ihatag, apang kinahanglan ini sa pagliwat sang paswod, kon matabo nga imo ini malipatan.',
+'prefs-help-email-others'       => 'Mahimo mo man pilion nga ma-kontak ka sang iban paagi sa e-mail paagi sa isa ka link sa imo manuggamit ukon gina-hisayranay nga panid.
+Ang imo adres sang e-mail wala ginapakita kon kontakon ka sang iban.',
 'prefs-help-email-required'     => 'Kinahanglan ang imo e-mail',
 'prefs-signature'               => 'pirma',
 
@@ -1230,6 +1237,8 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'filetype-banned'   => 'Ini sari ni dokumento madumili.',
 'uploadedimage'     => 'na-uplod "[[$1]]"',
 'watchthisupload'   => 'Bantayan ining panid',
+
+'license-header' => 'Pagpanglisensya',
 
 # File description page
 'filehist'                  => 'Historya file',
@@ -1414,7 +1423,7 @@ Pwede mo mabag-o ang lebel sang proteksiyon sang pahina, pero indi ini ma apektu
 'blockip'                  => 'i-Pugong ang naga-usar',
 'ipbreason'                => 'Rason:',
 'ipboptions'               => '2 oras:2 hours,1 adlaw:1 day,3 adlaw:3 days,1 semana:1 week,2 semana:2 weeks,1 bulan:1 month,3 bulan:3 months,6 bulan:6 months,1 tu-ig:1 year,wala katapusan:infinite',
-'ipblocklist'              => 'Napugong nga mga IP adres kag mga ngalan ka naga-usar',
+'ipblocklist'              => 'Napunggan nga mga manug-usar',
 'ipblocklist-submit'       => 'Pangita-a',
 'blocklink'                => 'harang',
 'unblocklink'              => 'di pagpugong',
@@ -1529,6 +1538,7 @@ Pwede mo matan-aw ang iya ginhalinan',
 'tooltip-rollback'                => '"Panumbalik" ginabalik ang (mga) na-islan sa sini nga pahina sa pinaka ulihi nga kontributor sa isa lang ka klik',
 'tooltip-undo'                    => '"Indi pag-obrahon" ginabalik ang gin-islan kag gabukas sa isaln form sa may prebyu mode.
 Gapasugot sa pagdugang sang rason sa kabilugan.',
+'tooltip-summary'                 => 'Maghatag sing diutay nga eksplikasyon',
 
 # Browsing diffs
 'previousdiff' => '← Mas daan nga na-islan',

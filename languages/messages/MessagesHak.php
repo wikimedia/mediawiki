@@ -318,7 +318,9 @@ Chhà-khon: $2',
 'protectedpagetext'    => 'Pún-chông yí-kîn pûn fûng-só put yún-chún phiên-cho.',
 'viewsourcetext'       => 'Ngì khó-yî chhà-khon pin fuk-chṳ pún vùn-chông ke kîn-ngièn.',
 'protectedinterface'   => 'Ke-chông thì-kiûng liáu ngiôn-thí ke kie-mien vùn-sṳ, kí yí-kîn pûn fûng-só fòng-chṳ́ sùi-yi ke siû-kói.',
-'editinginterface'     => "'''Kín-ko:''' Ngì chang-chhai phiên-siá ke vùn-chông he yung chhai-yî thì-kiûng ngiôn-thí ke kie-mien vùn-sṳ. Kói-pien chhṳ́-chông chiông-voi yáng-hióng khì-thâ yung-fu-chá ke kie-mien ngoi-kôn.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '（Yún-chhòng SQL ke chhà-chhìm）',
 'cascadeprotected'     => 'Liá-ke vùn-chông yí-kîn pûn pó-fu, yîn-vi liá-ke hong-mien pûn yî-ha phêu-chu "lièn-só pó-fu" ke {{PLURAL:$1|yit-ke|tô-ke}} pûn pó-fu vùn-chông pâu-hàm:',
 'ns-specialprotected'  => 'Chhai thi̍t-sû miàng-sṳ khúng-kiên tsûng ke vùn-thí he vù-nèn piên-sip ke.',
@@ -812,16 +814,16 @@ Chhai [[Special:Watchlist|ngì-ke kam-sṳ lie̍t-péu]] chûng ke ya̍p fi hié
 'large-file'                  => 'Kien-ngi tóng-on thai-séu put-nèn chhêu-ko $1; pún tóng-on thai-séu he $2.',
 'largefileserver'             => 'Liá-ke tóng-on ke thai-séu fu̍k-chhiùng-hi fûn-phi yún-chún ke thai-séu hàn-yeu thai.',
 'emptyfile'                   => 'Ngì só song-chhòn ke tóng-on put chhùn-chhai. Liá khó-nèn he chhut-yì tóng-on miàng chho-ngu. Chhiáng kiám-chhà ngì he-feu chṳ̂n yeu song-chhòn chhṳ́ tóng-on.',
-'fileexists'                  => "Yí-kîn chhùn-chhai siông-thùng miàng-chhṳ̂n ke tóng-on, kó-yèn ngì mò-fap khok-thin ngì he-feu yeu kói-pien kì, chhiáng kiám-chhà '''<tt>[[:$1]]</tt>'''.
-[[$1|thumb]]",
-'fileexists-extension'        => "Yit-ke siông-sṳ tóng-miàng ke tóng-on yí-kîn chhùn-chhai: [[$2|thumb]]
-* Song-chhòn tóng-on ke tóng-miàng: '''<tt>[[:$1]]</tt>'''
-* Hien-chhai yû tóng-on ke tóng-miàng: '''<tt>[[:$2]]</tt>'''
-Chhiáng sién-chet yit-ke put-thùng ke miàng-sṳ.",
+'fileexists'                  => 'Yí-kîn chhùn-chhai siông-thùng miàng-chhṳ̂n ke tóng-on, kó-yèn ngì mò-fap khok-thin ngì he-feu yeu kói-pien kì, chhiáng kiám-chhà <strong>[[:$1]]</strong>.
+[[$1|thumb]]',
+'fileexists-extension'        => 'Yit-ke siông-sṳ tóng-miàng ke tóng-on yí-kîn chhùn-chhai: [[$2|thumb]]
+* Song-chhòn tóng-on ke tóng-miàng: <strong>[[:$1]]</strong>
+* Hien-chhai yû tóng-on ke tóng-miàng: <strong>[[:$2]]</strong>
+Chhiáng sién-chet yit-ke put-thùng ke miàng-sṳ.',
 'fileexists-thumbnail-yes'    => "Liá-ke tóng-on chhin-chhiong he yit-pu thù-hìn ke suk-thù pán-pún ''（suk-thù）''. [[$1|thumb]]
-Chhiáng kiám-chhà chhîn-chhú ke tóng-on '''<tt>[[:$1]]</tt>'''.
+Chhiáng kiám-chhà chhîn-chhú ke tóng-on <strong>[[:$1]]</strong>.
 Kó-yèn kiám-chhà heu ke tóng-on he khiung-thùng ngièn-pún thù-hiong ke thai-séu he yit-yong, chhiu put-yung song-chhòn tô yit-puk suk-thù.",
-'file-thumbnail-no'           => "Ke tóng-on he yî '''<tt>$1</tt>''' khôi-sṳ́.
+'file-thumbnail-no'           => "Ke tóng-on he yî <strong>$1</strong> khôi-sṳ́.
 Hó-chhiong yit-puk thù-hìn ke suk-thù pán-pún ''（thù-hìn）''.
 Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'fileexists-forbidden'        => 'Yí-kîn chhùn-chhai ke siông-thùng miàng-chhṳ̂n ke tóng-on; chhiáng fì-chón pin yung yit-ke sîn-ke  miàng-chhṳ̂n lòi song-chhòn chhṳ́ tóng-on.[[File:$1|thumb|center|$1]]',
@@ -891,7 +893,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 
 # MIME search
 'mimesearch'         => 'MIME chhà-chhìm',
-'mimesearch-summary' => 'Pún vùn-chông sṳ-yung tóng-on MIME lui-hìn ko-li-hi. Sû-ngi̍p: nui-yùng lui-hìn yì-yi <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Pún vùn-chông sṳ-yung tóng-on MIME lui-hìn ko-li-hi. Sû-ngi̍p: nui-yùng lui-hìn yì-yi <code>image/jpeg</code>.',
 'mimetype'           => 'MIME lui-hìn:',
 'download'           => 'hâ-chai',
 

@@ -10,6 +10,7 @@
  * @author Arslan
  * @author Khalid Mahmood
  * @author Rachitrali
+ * @author Reedy
  * @author ZaDiak
  */
 
@@ -132,7 +133,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|گٹھ|گٹھیاں}}',
-'category_header'                => '"$1" کیٹاگری وچ صفحے',
+'category_header'                => '"$1" کیٹاگری وچ صفے',
 'subcategories'                  => 'تھلے آلی کیٹاگری',
 'category-media-header'          => 'اس "$1" کیٹاگری وچ میڈيا',
 'category-empty'                 => "''اس کیٹاگری وچ کوئی صفحہ یا میڈیا موجود نہیں۔''",
@@ -154,7 +155,7 @@ $messages = array(
 'newwindow'     => '(نئی ونڈو چ کھولو)',
 'cancel'        => 'ختم',
 'moredotdotdot' => 'مزید۔۔۔۔',
-'mypage'        => 'میرا صفحہ',
+'mypage'        => 'میرا صفہ',
 'mytalk'        => 'میریاں گلاں',
 'anontalk'      => 'اس آئی پی آسطے گل کرو',
 'navigation'    => 'کھوج',
@@ -190,7 +191,7 @@ $messages = array(
 
 'errorpagetitle'    => 'مسئلہ',
 'returnto'          => 'واپس $1 چلو',
-'tagline'           => 'سے {{SITENAME}}',
+'tagline'           => ' {{SITENAME}} توں',
 'help'              => 'مدد',
 'search'            => 'کھوج',
 'searchbutton'      => 'کھوج',
@@ -224,11 +225,11 @@ $messages = array(
 'postcomment'       => 'نویں ونڈ',
 'articlepage'       => 'مضمون آلا صفحہ',
 'talk'              => 'گل بات',
-'views'             => 'منظر',
-'toolbox'           => 'اوزار',
-'userpage'          => 'ورتن آلے دا صفحہ ویکھو',
-'projectpage'       => 'منصوبے آلا صفحہ ویکھو',
-'imagepage'         => 'فائل آلا صفحہ ویکھو',
+'views'             => 'وکھالے',
+'toolbox'           => 'اوزار ڈبہ',
+'userpage'          => 'ورتن آلے دا صفہ ویکھو',
+'projectpage'       => 'ویونت والا صفہ ویکھو',
+'imagepage'         => 'فائل آلا صفہ ویکھو',
 'mediawikipage'     => 'سنیعا آلا صفحہ ویکھو',
 'templatepage'      => 'سچے آلا صفحہ ویکھو',
 'viewhelppage'      => 'مدد آلا صفحہ ویکھو',
@@ -245,7 +246,7 @@ $messages = array(
 'jumptonavigation'  => 'مدد',
 'jumptosearch'      => 'کھوج',
 'view-pool-error'   => '$1',
-'pool-timeout'      => 'تالے لئی انتضار',
+'pool-timeout'      => 'تالے لئی انتظار',
 'pool-queuefull'    => 'چنوتی کرن ل‏ئی بندے پورے نیں۔',
 'pool-errorunknown' => 'انجان غلطی',
 
@@ -260,7 +261,7 @@ $messages = array(
 'disclaimerpage'       => 'Project:عام منکرنا',
 'edithelp'             => 'لکھن وچ مدد',
 'edithelppage'         => 'Help:لکھنا',
-'helppage'             => 'Help:فہرست',
+'helppage'             => 'Help:لسٹ',
 'mainpage'             => 'پہلا صفہ',
 'mainpage-description' => 'پہلا صفہ',
 'policy-url'           => 'Project:پالیسی',
@@ -278,7 +279,7 @@ $messages = array(
 [[Special:Version|ورژن آلا صفحہ]] وکیھو',
 
 'ok'                      => 'ٹھیک اے',
-'retrievedfrom'           => 'توں لیا "$1"',
+'retrievedfrom'           => '"$1" توں لیا',
 'youhavenewmessages'      => 'تواڈے لئی $1 ($2).',
 'newmessageslink'         => 'نواں سنیآ',
 'newmessagesdifflink'     => 'آخری تبدیلی',
@@ -291,12 +292,12 @@ $messages = array(
 'editsectionhint'         => 'حصہ لکھو: $1',
 'toc'                     => 'حصے',
 'showtoc'                 => 'کھولو',
-'hidetoc'                 => 'چپھاؤ',
+'hidetoc'                 => 'چھپاؤ',
 'collapsible-collapse'    => 'ڈگنا',
 'collapsible-expand'      => 'ودھاؤ',
 'thisisdeleted'           => '$1 ویکھو یا واپس لاؤ',
-'viewdeleted'             => 'ویکھو $1 ؟',
-'restorelink'             => '{{PLURAL:$1|اک مٹائی گئی تبدیلی|$1 مٹائیاں گئیاں تبدیلیاں}}',
+'viewdeleted'             => 'ویکھو 1$ ؟',
+'restorelink'             => '{{PLURAL:$1|اک مٹائی گئی تبدیلی|1$ مٹائیاں گئیاں تبدیلیاں}}',
 'feedlinks'               => 'دسو:',
 'feed-invalid'            => 'ناں منی جان والی سبسکرپشن فیڈ ٹائپ',
 'feed-unavailable'        => 'سنڈیکیشن فیڈز کوئی نیں۔',
@@ -372,7 +373,7 @@ $messages = array(
 'cannotdelete'         => 'صفحہ یا فائل "$1" نوں مٹایا نا جاسکیا۔
 اینوں پہلاں توں ای کسے نے مٹایا ہوۓ گا۔',
 'badtitle'             => 'پیڑا عنوان',
-'badtitletext'         => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔<div/>
+'badtitletext'         => 'منگیا گۓ صفحہ دا ناں غلط اے، خالی اے یا غلط تریقے نال جوڑیا گیا اے۔
 ہوسکدا اے ایدے چ اک دو ھندسے ایسے ہون جیڑے عنوان وچ استعمال نہیں کیتے جاسکدے۔',
 'perfcached'           => 'اے ڈیٹا پرانا بچایا ہویا اے تے ایدے چ نویاں گلاں نئیں ہون گیاں۔',
 'perfcachedts'         => 'اے ڈیپا پرانا اے تے اینوں آخری آری $1 نوں نواں کیتا گیا سی۔',
@@ -577,7 +578,7 @@ $2
 'showpreview'                      => 'کچا کم ویکھو',
 'showlivepreview'                  => 'جیندا کچا کم',
 'showdiff'                         => 'تبدیلیاں وکھاؤ',
-'anoneditwarning'                  => "<div/>'''خبردار''' تسی اندر نہیں آۓ
+'anoneditwarning'                  => "'''خبردار''' تسی اندر نہیں آۓ
 تواڈا ''آئی پی'' پتہ فائل فائل وچ لکھیا جاۓ گا۔",
 'anonpreviewwarning'               => "''تسی ہلے لاگ ان نئیں ہوۓ،۔ کم بچاؤ گے تے تواڈا IP پتہ صفحے دی تریخ چ لکھ لیا جاۓ گا۔''",
 'missingsummary'                   => "'''یادکرائی:''' تساں تبدیلی دی سمری نئیں دتی۔  اگر تسیں \"{{int:savearticle}}\" نوں کلک کروگے تواڈیاں تبدیلیاں اک دے بنا بچ جان گیاں۔",
@@ -733,7 +734,7 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'permissionserrorstext-withaction' => 'تواڈے کول $2 کرن دی اجازت نئیں اے۔ اس دی {{PLURAL:$1|وجہ|وجوہات}} نیں۔',
 'recreate-moveddeleted-warn'       => "'''خبردار: تسی اک پہلاں توں مٹایا ہویا صفحہ دوبارا لکھ رہے او۔'''
 
-توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔<div/>
+توانوں اے گل سوچنی چائیدی اے کہ اینو لکھنا کوئی عقلمنداں دا کم اے۔
 تواڈی سہولت آسطے مٹان دا لاگ ایتھے موجود اے۔",
 'moveddeleted-notice'              => 'اس صفحے نوں مٹا دتا گیا اے۔
 مٹان دا لاگ تھلے دتا گیا اے۔',
@@ -916,7 +917,7 @@ $1",
 ایہ گل پکی کرو جے تبدیلی رکارڈ دی لکاتاری نوں رکھے گی۔',
 'mergehistory-box'                 => 'دوصفیاں دیاں رلیاں ریویني',
 'mergehistory-from'                => 'ذریعے آلا صفحہ:',
-'mergehistory-into'                => 'اصلی صفحہ:',
+'mergehistory-into'                => 'اصلی صفہ:',
 'mergehistory-list'                => 'رلنوالا لکھت رکارڈ',
 'mergehistory-merge'               => 'تھلے دتیاں گیاں ریویناں [[:$1]] نوں [[:$2]] چ رلایا جاسادا اے۔
 ریڈیو بٹن کالم نوں ورتو، رلان لئی صرف ریویناں بناں لئی خاص ویلے توں پہلے یا اوس ویلے۔
@@ -1035,7 +1036,7 @@ $1",
 'prefsnologin'                  => 'لاگ ان نئیں او',
 'prefsnologintext'              => 'تسیں لازمی <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} لاگ ان]</span> ورتن تانگاں سیٹ کرنا.',
 'changepassword'                => 'کنجی بدلو',
-'prefs-skin'                    => 'کھل',
+'prefs-skin'                    => 'چھاڑ',
 'skin-preview'                  => 'کچا کم',
 'datedefault'                   => 'خاص پسند نئیں',
 'prefs-beta'                    => 'بیٹا فیچرز',
@@ -1361,9 +1362,9 @@ $1",
 
 اک فائل نوں اک صفے تے لیان لئی تھلے دتے گۓ فارم ورتو:
 
-*'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' فائل دا پورا ورین ورتن لئی
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' 200 پکسل چوڑا ورتنا
-*'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' سدا سدا فائل جوڑنا بنا فائل دسے",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' فائل دا پورا ورین ورتن لئی
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' 200 پکسل چوڑا ورتنا
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' سدا سدا فائل جوڑنا بنا فائل دسے",
 'upload-permitted'            => 'جناں فائلاں دی اجازت اے: $1۔',
 'upload-preferred'            => 'جیہڑیاں فائلاں دوجیاں نالوں ودیا: $1۔',
 'upload-prohibited'           => 'روکیاں گیاں فائلاں: $1',
@@ -1410,22 +1411,22 @@ $1",
 اے ہوسکدا اے فائل ناں چ کسے ٹائپو توں ہووے۔
 مہربانی کرکے چیک کرو تسیں اصل چ ایس فائل نون چڑھاناں جاندے او؟',
 'windows-nonascii-filename'   => 'اے وکی فائل ناں جناں چ کوئی خاص کیریکٹر ہووے سپورٹ نئیں کردا۔',
-'fileexists'                  => "اک فائل ایس ناں نال پہلے ای ہے مہربانی کرکے '''<tt>[[:$1]]</tt>'''  ویکھو
+'fileexists'                  => 'اک فائل ایس ناں نال پہلے ای ہے مہربانی کرکے <strong>[[:$1]]</strong>  ویکھو
 اگر تھانوں یقین نئیں اگ تسیں اینون بدلنا چاندے اوہ۔
-[[$1|thumb]]",
-'filepageexists'              => "ایس فائل دا دسن والا صفہ پہلے ای '''<tt>[[:$1]]</tt>''' تے بنایا جاچکیا اے، پر این ناں دی کوئی فائل ایس ویلے نئیں ہیگی۔
+[[$1|thumb]]',
+'filepageexists'              => 'ایس فائل دا دسن والا صفہ پہلے ای <strong>[[:$1]]</strong> تے بنایا جاچکیا اے، پر این ناں دی کوئی فائل ایس ویلے نئیں ہیگی۔
 سمری جیہڑی تسیں لکھو گے اوہ دسن والے صفے تے نئیں دسے گی۔
 اپنی سموری اوتھے دیکھن لئی توانوں اپنے ہتھیں اینون تبدیل کرنا پوے گا۔
-[[$1|thumb]]",
-'fileexists-extension'        => "ایس ناں دی شائل ہیگی اے: [[$2|thumb]]
-* چڑھائی گئی فائل دا ناں: '''<tt>[[:$1]]</tt>'''
-* ہیگی فائل دا ناں: '''<tt>[[:$2]]</tt>'''
-مہربانی کرکے وکھرا ناں چنو.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'ایس ناں دی شائل ہیگی اے: [[$2|thumb]]
+* چڑھائی گئی فائل دا ناں: <strong>[[:$1]]</strong>
+* ہیگی فائل دا ناں: <strong>[[:$2]]</strong>
+مہربانی کرکے وکھرا ناں چنو.',
 'fileexists-thumbnail-yes'    => "ایہ اک ناپ دی مورت دی فائل دسدی اے ''(تھمبنیل)''.
 [[$1|thumb]]
-مہربانی کرکے فائل ویکھو '''<tt>[[:$1]]</tt>'''.
+مہربانی کرکے فائل ویکھو <strong>[[:$1]]</strong>.
 اگر ویکھی فائل اوسے مورت دے اصل ناپ دی اے تے فیر ایہ ضروری نئیں جے اک فالتو تھمبنیل چڑھائی جاۓ۔.",
-'file-thumbnail-no'           => "فائل ناں '''<tt>$1</tt>''' توں شروع ہوندا اے۔
+'file-thumbnail-no'           => "فائل ناں <strong>$1</strong> توں شروع ہوندا اے۔
 اے اک نکے ناپ دی مورت لگدی اے ''(تھمبنیل)''۔
 اگر تواڈے کول ایہ مورت پورے وڈے ناپ چ اے تسیں اینوں چڑھا سکدے او، نئیں تے فیر ایس فائل دا ناں بدلو۔",
 'fileexists-forbidden'        => 'ایس ناں دی فائل پہلے ای ہیگی اے تے اودے اتے نئیں لکھیا جاسکدا۔
@@ -1629,7 +1630,7 @@ $1",
 # MIME search
 'mimesearch'         => 'MIME کھوج',
 'mimesearch-summary' => 'ایہ صفہ فاغلاں نوں اوناں دی مائم ٹائپ  لئی نتارا قابل کردا اے.
-انپٹ: contenttype/subtype, e.g. <tt>مورت/jpeg</tt>.',
+انپٹ: contenttype/subtype, e.g. <code>مورت/jpeg</code>.',
 'mimetype'           => 'مائم ٹائپ',
 'download'           => 'فائل کاپی کرو',
 
@@ -1653,9 +1654,9 @@ $1",
 'randomredirect-nopages' => '"$1" ناں نال کوئی ریڈائرکٹ نئیں۔',
 
 # Statistics
-'statistics'                   => 'سعاب کتاب',
-'statistics-header-pages'      => 'صفے دا سعاب کتاب',
-'statistics-header-edits'      => 'تبدیلیاں دا سعاب کتاب',
+'statistics'                   => 'آنکڑے',
+'statistics-header-pages'      => 'صفے دے آنکڑے',
+'statistics-header-edits'      => 'تبدیلیاں دا آنکڑہ',
 'statistics-header-views'      => 'ویکھن دا سعاب کتاب',
 'statistics-header-users'      => 'ورتن آلیاں دا سعاب کتاب',
 'statistics-header-hooks'      => 'دوجے سعاب کتاب',
@@ -1821,7 +1822,7 @@ $1",
 'linksearch-ok'    => 'کھوج',
 'linksearch-text'  => 'وائلڈکارڈز جیویں کہ "*.wikipedia.org" ورتے جاسکدے نیں۔
 "*.org".<br /> دی لوڑ
-منے گۓ پروٹوکول: <tt>$1</tt>',
+منے گۓ پروٹوکول: <code>$1</code>',
 'linksearch-line'  => '$1 نوں $2 نال جوڑیا',
 'linksearch-error' => 'وکیکارڈو میزبان دے ناں دے شروع چ دس سکدے نیں۔',
 
@@ -2154,7 +2155,7 @@ $2 نے آخری ریوین تک واپس کیتا۔',
 'undelete-error-short'         => 'فاغل واپس کرن چ غلطی: $1',
 'undelete-error-long'          => 'فائل واپس کرن  لگیاں غلطیاں ہوئیاں:
 $1',
-'undelete-show-file-confirm'   => 'تساں نوں کیا پک اے جے تسیں فائل "<نوکی>$1</نوکی>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
+'undelete-show-file-confirm'   => 'تساں نوں کیا پک اے جے تسیں فائل "<nowiki>$1</nowiki>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
 'undelete-show-file-submit'    => 'ہاں جی',
 
 # Namespace form on various pages
@@ -2395,7 +2396,7 @@ $1',
 'movenotallowedfile'           => 'تواڈے کول صفحے لے چلن دی اجازت نئیں اے۔',
 'cant-move-user-page'          => 'تھواڈے کول ورتن والے صفے (نکیاں نوں چھڈ کے) نوں دوجے تھاں لجان دی اجازت نئیں۔',
 'cant-move-to-user-page'       => 'تھوانوں اک صفے نوں ورتن والے صفے ول لجان دی اجازت نئیں (سواے نکے ورتن والے صفے دے)',
-'newtitle'                     => 'نوے عنوان ول:',
+'newtitle'                     => 'نویں ناں ول:',
 'move-watch'                   => 'صفحے اکھ تھلے رکھو',
 'movepagebtn'                  => 'صفحہ لے جاؤ',
 'pagemovedsub'                 => 'لے جانا کامیاب ریا',
@@ -2507,7 +2508,7 @@ $1',
 سارے وکیاں وشکار لیان کم [[Special:Log/import|لیان لاگ]] تے لاگڈ نیں۔',
 'import-interwiki-source'    => 'سورس وکی/صفہ:',
 'import-interwiki-history'   => 'ایس صفے لئی سارا ریرین ریکارڈ کاپی کرو۔',
-'import-interwiki-templates' => 'سارے سخے رلاؤ',
+'import-interwiki-templates' => 'سارے سچے رلاؤ',
 'import-interwiki-submit'    => 'لے آؤ',
 'import-interwiki-namespace' => 'انت ناں',
 'import-upload-filename'     => 'فائل دا ناں',
@@ -2517,7 +2518,7 @@ $1',
 'import-revision-count'      => '$1 {{PLURAL:$1|ریوین}}',
 'importnopages'              => 'لانے آسطے کوئی صفحہ نئیں۔',
 'imported-log-entries'       => '{{PLURAL:$1|لاگ انٹریلاگ انٹریاں}}!!لیاندی گئی $1 {{PLURAL:$1|لاگ انٹری}}.',
-'importfailed'               => 'لیانا فیل: <نوکی>$1</نوکی>',
+'importfailed'               => 'لیانا فیل: <nowiki>$1</nowiki>',
 'importunknownsource'        => 'انجان لیان سورس ٹائپ',
 'importcantopen'             => 'لیاندی گئی فائل نئیں کھولی جاسکی',
 'importbadinterwiki'         => 'پیڑا انٹروکی لنک',
@@ -2550,14 +2551,14 @@ $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|ریوین|ریویناں }} $2 توں',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'میرا صفحہ',
+'tooltip-pt-userpage'             => 'میرا صفہ',
 'tooltip-pt-anonuserpage'         => 'ورتن صفہ IP  پتے لئی تسی تبدیل کر رۓ او۔۔۔',
 'tooltip-pt-mytalk'               => 'میریاں گلاں',
 'tooltip-pt-anontalk'             => 'ایس IP  پتے دیاں تبدیلیاں تے گل بات',
 'tooltip-pt-preferences'          => 'میریاں تانگاں',
 'tooltip-pt-watchlist'            => 'او صفحے جنہاں وچ تبدیلیاں تسی ویکھ رہے او',
 'tooltip-pt-mycontris'            => 'میرے کم',
-'tooltip-pt-login'                => 'جی صدقے اندر آؤ، پر اے لازمی نہیں۔',
+'tooltip-pt-login'                => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-anonlogin'            => 'اے بہتر اے کہ لاگ ان ہو جاؤ، لیکن فیر وی اے لازمی نئیں۔',
 'tooltip-pt-logout'               => 'باہر آؤ',
 'tooltip-ca-talk'                 => 'اس صفحے دے بار وچ گل بات',
@@ -2727,7 +2728,7 @@ $1',
 
 # Metadata
 'metadata'          => 'میٹا ڈیٹا',
-'metadata-help'     => 'اس فائل وچ ہور وی معلومات نے، شاید او ڈیجیٹل کیمرے یا سکینر نے پائیاں گئیاں نے جس نال اینو کچھیا یا ڈیجیٹل بنایا گیا اے۔<div/>
+'metadata-help'     => 'اس فائل وچ ہور وی معلومات نے، شاید او ڈیجیٹل کیمرے یا سکینر نے پائیاں گئیاں نے جس نال اینو کچھیا یا ڈیجیٹل بنایا گیا اے۔
 اگر فائل نو ایدی اصلی حالت توں تبدیل کیتا گیا اے تے کجھ تفصیلات تبدیل ہوئی فائل دے بارے چ نئیں دسن گیاں۔',
 'metadata-expand'   => 'ہور تفصیلات دسو',
 'metadata-collapse' => 'تفصیلات چھپاؤ',
@@ -2749,7 +2750,7 @@ $1',
 # EXIF tags
 'exif-imagewidth'                  => 'چوڑائی',
 'exif-imagelength'                 => 'اچائی',
-'exif-bitspersample'               => 'بٹو اک کمپوننٹ چ',
+'exif-bitspersample'               => 'اک کمپوننٹ وچ بٹ',
 'exif-compression'                 => 'کمپریشن سکیم',
 'exif-photometricinterpretation'   => 'پکسل کمپوزیشن',
 'exif-orientation'                 => 'اورینٹیشن',
@@ -2793,7 +2794,7 @@ $1',
 'exif-exposuretime-format'         => '$1 سکنٹ ($2)',
 'exif-fnumber'                     => 'ایف نمبر',
 'exif-exposureprogram'             => 'ایکسپویر پروگرام',
-'exif-spectralsensitivity'         => 'سحیکٹرل سنسیٹیوٹی',
+'exif-spectralsensitivity'         => 'سپیکٹرل سنسیٹیوٹی',
 'exif-isospeedratings'             => 'ISO  سپیڈ ریٹنگ',
 'exif-shutterspeedvalue'           => '!!!!شٹر دی تیزی',
 'exif-aperturevalue'               => '!!اپیکس!!اپرچر',
@@ -3249,7 +3250,7 @@ $1',
 'ascending_abbrev'         => 'اے ایس سی',
 'descending_abbrev'        => 'ڈی ایایس سی',
 'table_pager_next'         => 'اگلا صفہ',
-'table_pager_prev'         => 'پچھلا صفحہ',
+'table_pager_prev'         => 'پچھلا صفہ',
 'table_pager_first'        => 'پہلا صفہ',
 'table_pager_last'         => 'آخری صفہ',
 'table_pager_limit'        => '$1 وکھاؤ ہر صفے تے',
@@ -3310,7 +3311,7 @@ $1',
 # Special:Version
 'version'                       => 'ورژن',
 'version-extensions'            => 'انسٹالڈ کیتیاں گیاں ایکسٹنشن',
-'version-specialpages'          => 'خاص صفحے',
+'version-specialpages'          => 'خاص صفے',
 'version-parserhooks'           => 'پارسر ہکز',
 'version-variables'             => 'ویریایبلز',
 'version-antispam'              => 'سپام بچاؤ',

@@ -358,7 +358,9 @@ Aks: $2',
 'protectedpagetext'    => "Sairy, this page haes been '''lockit''' tae hinder vandalism.",
 'viewsourcetext'       => 'Ye can leuk at an copy the soorce o this page:',
 'protectedinterface'   => 'Sairy, but this page provides interface text for the saftware, an is lockit to hinder abuise.',
-'editinginterface'     => "'''Warnin:''' Ye'r editin a page that's uised tae provide interface text for the saftware. Chynges tae this page will affect the appearance o the uiser interface for ither uisers.",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page haes been protectit fra editin, acause it is includit in the followin {{PLURAL:$1|page|pages}}, that are protectit wi the "cascading" option turnit on:
 $2',
@@ -901,7 +903,7 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'illegalfilename'             => 'The filename "$1" haes characters that isna alloud in page teitles. Please rename the file an gie uplaidin it anither shot.',
 'badfilename'                 => 'Eimage name haes been chynged tae "$1".',
 'largefileserver'             => 'This file is bigger nor the server is confeigurt tae allou.',
-'fileexists'                  => "A file wi this name exists aareadies, please check '''<tt>[[:$1]]</tt>''' gin ye'r no siccar that ye want tae chynge it.
+'fileexists'                  => "A file wi this name exists aareadies, please check <strong>[[:$1]]</strong> gin ye'r no siccar that ye want tae chynge it.
 [[$1|thumb]]",
 'fileexists-forbidden'        => 'A file wi this name aareadies exists; please gang back an uplaid this file unner a new name. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'A file wi this name aareadies exists in the shared file depose; please gang back an uplaid this file unner a new name. [[File:$1|thumb|center|$1]]',

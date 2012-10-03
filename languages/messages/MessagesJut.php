@@ -1,5 +1,5 @@
 <?php
-/** Jutish (Jysk)
+/** Jutish (jysk)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -605,7 +605,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'linksearch-pat'   => 'Søĝ æfter links til:',
 'linksearch-ns'    => 'Navnerum:',
 'linksearch-ok'    => 'Søĝ',
-'linksearch-text'  => 'Wildkårter søm "*.wikipedia.org" ken benyttes.<br />Understøttede pråtåkoller: <tt>$1</tt>',
+'linksearch-text'  => 'Wildkårter søm "*.wikipedia.org" ken benyttes.<br />Understøttede pråtåkoller: <code>$1</code>',
 'linksearch-line'  => '$2 linker til $1',
 'linksearch-error' => "Wildkårter må ken benyttes i'n stårt åf håstnavnet.",
 

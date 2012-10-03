@@ -1,5 +1,5 @@
 <?php
-/** Araucanian (Mapudungun)
+/** Mapuche (mapudungun)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -107,7 +107,9 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Kintupe',
+'qbbrowse'       => 'Kintun',
 'qbedit'         => 'Pepikape',
+'qbpageoptions'  => 'Tüfachi wülngiñ',
 'qbpageinfo'     => 'Trokiñdungu',
 'qbmyoptions'    => 'tañi nütramkawe',
 'qbspecialpages' => 'Kangelu',
@@ -180,6 +182,7 @@ $messages = array(
 'jumpto'            => 'Amulün:',
 'jumptonavigation'  => 'miyawün',
 'jumptosearch'      => 'kintun',
+'pool-errorunknown' => 'Kimnoelchi welulkan',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ñi dungu',
@@ -214,15 +217,22 @@ $messages = array(
 'toc'                     => 'Trokiñdungu',
 'showtoc'                 => 'pegelpe',
 'hidetoc'                 => 'ellkangepe',
+'thisisdeleted'           => 'Pen kam kümeeltun $1?',
 'viewdeleted'             => 'Küpaadkintuymi $1 am?',
 'restorelink'             => '{{PLURAL:$1|kiñe wirin ñamümgün|$1 wirin ñamümün}}',
+'feedlinks'               => 'Amuldungu:',
+'site-rss-feed'           => '$1 RSS ñi amuldungu',
 'site-atom-feed'          => '$1 ñi Atom ñi amuldungu',
+'page-rss-feed'           => '«$1» RSS ñi amuldungu',
 'page-atom-feed'          => '$1 ñi Atom ñi amuldungu',
 'red-link-title'          => '$1 (ngelay tichi adtapül)',
+'sort-descending'         => 'Kümeelngen minche püle',
+'sort-ascending'          => 'Kümeelngen püra püle',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Wülngiñ',
 'nstab-user'      => 'Kellufe',
+'nstab-media'     => 'Ad ñi wülngiñ',
 'nstab-special'   => 'Wichu wülngiñ',
 'nstab-project'   => 'Deumandungu wülngiñ',
 'nstab-image'     => 'Eltukawün',
@@ -230,6 +240,9 @@ $messages = array(
 'nstab-template'  => 'Adtükupeyüm',
 'nstab-help'      => 'Kelluwe',
 'nstab-category'  => 'Trokiñ',
+
+# Main script and global functions
+'nosuchaction' => 'Mülelay feychi femün',
 
 # General errors
 'error'              => 'Welulkan',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Gan script (‪贛語(繁體)‬)
+/** Traditional Gan script (贛語（繁體）‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -411,7 +411,9 @@ MySQL回到錯誤“$3: $4”。',
 'protectedpagetext'    => '箇頁鎖到嘞，改伓正。',
 'viewsourcetext'       => '倷可以眵吖或複製箇頁嗰原始碼：',
 'protectedinterface'   => '箇頁給正嘞軟件嗰界面文本，佢拕鎖到怕人亂扤。',
-'editinginterface'     => "!!糊糊涂涂!!'''警告'''：倷編寫嗰頁面係用來提供軟件嗰界面文本，改動箇頁會礙到別嗰用戶嗰界面外觀。",
+'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
+Changes to this page will affect the appearance of the user interface for other users.
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '（SQL 弆到嗰查詢）',
 'cascadeprotected'     => '箇頁已拕保護，因為佢拕「聯鎖保護」嗰{{PLURAL:$1|一隻|幾隻}}拕保護頁包到：
 $2',
@@ -996,15 +998,15 @@ $2',
 'large-file'                  => '建議檔案嗰大小伓要超吥$1；本檔案大小係$2。',
 'largefileserver'             => '箇隻檔案要大過服務器配置容允嗰大小。',
 'emptyfile'                   => '倷上傳嗰檔案伓存在。箇可能係因為檔案名按錯嘞。請檢查倷係否真嗰要上傳箇隻檔案。',
-'fileexists'                  => "箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
-'fileexists-extension'        => "有嘞隻飛像嗰檔名: [[$2|thumb]]
-* 上載文檔嗰檔名: '''<tt>[[:$1]]</tt>'''
-* 目前檔嗰檔名: '''<tt>[[:$2]]</tt>'''
-請揀隻伓同嗰名字。",
+'fileexists'                  => '箇隻檔案名已存在。如果倷確定伓正倷係否要改佢，請檢查<strong>[[:$1]]</strong>。 [[$1|thumb]]',
+'fileexists-extension'        => '有嘞隻飛像嗰檔名: [[$2|thumb]]
+* 上載文檔嗰檔名: <strong>[[:$1]]</strong>
+* 目前檔嗰檔名: <strong>[[:$2]]</strong>
+請揀隻伓同嗰名字。',
 'fileexists-thumbnail-yes'    => "箇隻檔案好像係一隻圖像嗰縮小版''（縮圖）''。 [[$1|thumb]]
-請檢查清楚箇隻檔案'''<tt>[[:$1]]</tt>'''。
+請檢查清楚箇隻檔案<strong>[[:$1]]</strong>。
 如果檢查後嗰檔同原先圖像嗰大小係一樣嗰話，就嫑再上傳多一隻縮圖。",
-'file-thumbnail-no'           => "箇隻檔案名係以'''<tt>$1</tt>'''開頭。佢好像一隻圖像嗰縮小版''（縮圖）''。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。",
+'file-thumbnail-no'           => "箇隻檔案名係以<strong>$1</strong>開頭。佢好像一隻圖像嗰縮小版''（縮圖）''。如果倷有箇隻圖像嗰完整版，伓然請再改過隻檔名。",
 'fileexists-forbidden'        => '箇隻檔案名已存在；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '到共用檔案庫裡度有嘞同名嗰檔案；請回頭並換過隻新嗰名稱來上傳箇隻檔案。[[File:$1|thumb|center|$1]]',
 'uploadwarning'               => '上傳警告',
@@ -1106,7 +1108,7 @@ $2',
 
 # MIME search
 'mimesearch'         => 'MIME 搜尋',
-'mimesearch-summary' => '箇隻頁面啟用檔案MIME類型篩檢程式。輸入：內容類型/子類型，像 <tt>image/jpeg</tt>。',
+'mimesearch-summary' => '箇隻頁面啟用檔案MIME類型篩檢程式。輸入：內容類型/子類型，像 <code>image/jpeg</code>。',
 'mimetype'           => 'MIME 類型:',
 'download'           => '下載',
 

@@ -375,7 +375,7 @@ Posible nga ginpanas na ini sang wala makilal-an.',
 'badtitletext'         => 'Ang ginapangayo nga titulo sang pahina sala, wala unod, ukon may indi insakto nga koneksyon sa inter-language ukon sa titulo sang interwiki.
 Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede gamiton sa mga titulo.',
 'perfcached'           => '',
-'perfcachedts'         => '',
+'perfcachedts'         => 'The following data is cached, and was last updated $1.',
 'querypage-no-updates' => 'Ginbawalan yanda ang mga update sa mini nga pahina .
 Ang data diya wala napreskuhan sang aktwal.',
 'wrong_wfQuery_params' => 'Sala nga mga parametro sa wfQuery()<br />
@@ -433,8 +433,8 @@ Indi pagkalimtan nga islan ang imo [[Special:Preferences|mga uyon mo sa {{SITENA
 'gotaccountlink'          => 'Magsulod',
 'createaccountmail'       => 'Paagi sa email',
 'badretype'               => 'Wala gasanto ang password nga imo ginsulod',
-'userexists'              => 'May nagagamit na sang mina nga ngalan sang manug-usar.
-Magpili sang iban nga pangalan.',
+'userexists'              => 'May naga-usar na sang ginpasulod nga ngalan manug-usar.
+Magpili sang iban nga ngalan.',
 'loginerror'              => 'Sala sa pagsulod',
 'createaccounterror'      => 'Indi mahimo ang acount nga: $1',
 'noname'                  => 'Wala mo nahatag ang tsakto nga ngalan sang manug-usar.',

@@ -1,5 +1,5 @@
 <?php
-/** Azerbaijani (Azərbaycanca)
+/** Azerbaijani (azərbaycanca)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -91,7 +91,7 @@ $messages = array(
 'tog-editsection'             => 'Hər bir bölmə üçün [redaktə]ni mümkün et',
 'tog-editsectiononrightclick' => 'Bölmələrin redaktəsini başlıqların üzərində sağ klik etməklə mümkün et (JavaScript)',
 'tog-showtoc'                 => 'Mündəricat siyahısını göstər (3 başlıqdan artıq olan səhifələrdə)',
-'tog-rememberpassword'        => 'Məni bu kompüterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
+'tog-rememberpassword'        => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'tog-watchcreations'          => 'Yaratdığım səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchdefault'            => 'Redaktə etdiyim səhifələri izlədiyim səhifələrə əlavə et',
 'tog-watchmoves'              => 'Adlarını dəyişdiyim səhifələri izlədiyim səhifələrə əlavə et',
@@ -207,7 +207,7 @@ $messages = array(
 
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
-'about'         => 'İzah',
+'about'         => 'Haqqında',
 'article'       => 'Mündəricat',
 'newwindow'     => '(yeni pəncərədə açılır)',
 'cancel'        => 'Ləğv et',
@@ -480,7 +480,7 @@ Hesabınız yaradıldı.
 'yourname'                   => 'İstifadəçi adı',
 'yourpassword'               => 'Parol:',
 'yourpasswordagain'          => 'Parolu təkrar yazın:',
-'remembermypassword'         => 'Məni bu kompüterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
+'remembermypassword'         => 'Məni bu kompyuterdə xatırla (maksimum $1 {{PLURAL:$1|gün|gün}})',
 'securelogin-stick-https'    => 'Daxil olduqdan sonra HTTPS-lə əlaqədə qal',
 'yourdomainname'             => 'Sizin domain',
 'externaldberror'            => 'Verilənlər bazasının doğruluğunu yoxlamada xəta baş verib və yaxud sizin xarici istifadəçi qeydiyyatını yeniləmək hüququnuz yoxdur.',
@@ -760,8 +760,11 @@ $3 tərəfindən verilən səbəb ''$2''",
 'last'                   => 'son',
 'page_first'             => 'birinci',
 'page_last'              => 'sonuncu',
-'histlegend'             => "Fərqə bax: müqayisə etmək istədiyiniz versiyaların yanındakı dairələri işarələyin və \"Enter\"ə və ya \"müqayisə et\" düyməsinə basın.<br />
-Açıqlama: '''(hh)''' — hal-hazırkı versiya ilə aradakı fərq, '''(son)''' — əvvəlki versiya ilə aradakı fərq, '''k''' — kiçik redaktə.",
+'histlegend'             => "<div id=\"histlegend\"><span style=\"white-space:nowrap;\">Aşağıda sadalanan hər hansı bir versiyası görmək üçün, tarixinin üzərinə tıklayın.</span> <span style=\"white-space:nowrap;\">Daha çox kömək üçün, [[Kömək:Səhifə keçmişi|səhifə keçmişi]] səhifəsinə baxın.</span><br /><span style=\"white-space:nowrap;\">Xarici vasitələr: <!-- [http://toolserver.org/~tparis/articleinfo/index.php?article={{FULLPAGENAMEE}}&lang=tr&wiki=wikipedia Təftiş keçmişinin statistikası] '''·'''</span> <span style=\"white-space:nowrap;\"> -->[http://wikipedia.ramselehof.de/wikiblame.php?lang=tr&article={{FULLPAGENAMEE}} Təftiş keçmişini axtarmaq] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~daniel/WikiSense/Contributors.php?wikilang=tr&wikifam=.wikipedia.org&grouped=on&page={{FULLPAGENAMEE}} Töhfəsi olanlar] '''·'''</span> <span style=\"white-space:nowrap;\">[http://toolserver.org/~mzmcbride/cgi-bin/watcher.py?db=trwiki_p&titles={{FULLPAGENAMEE}} İzləyənlərin sayı] '''·'''</span> <span style=\"white-space:nowrap;\">[http://stats.grok.se/tr/latest/{{FULLPAGENAMEE}} Səhifəyə baxılma statistikası]</span></div>
+----
+Fərqləri seçmə və göstərmə: müqayisə etmək istədiyiniz versiyaların yanındakı radio qutularına işarə qoyun və daxil etmə düyməsinə (enter+a) və ya \"müqayisə et\" düyməsinə vurun.
+
+Açıqlama: '''(hh)''' = hal-hazırkı versiya ilə olan fərqlər, '''(son)''' = əvvəlki versiya ilə olan fərqlər, '''k''' = kiçik redaktələr.</span>",
 'history-fieldset-title' => 'Tarixçəni nəzərdən keçir',
 'history-show-deleted'   => 'Yalnız silinənlər',
 'histfirst'              => 'Ən əvvəlki',
@@ -968,6 +971,7 @@ $1",
 'datedefault'                   => 'Seçim yoxdur',
 'prefs-beta'                    => 'Beta xüsusiyyətlər',
 'prefs-datetime'                => 'Tarix və vaxt',
+'prefs-labs'                    => 'eksperimental imkanlar',
 'prefs-personal'                => 'İstifadəçi profili',
 'prefs-rc'                      => 'Son dəyişikliklər',
 'prefs-watchlist'               => 'İzləmə siyahısı',
@@ -1276,9 +1280,9 @@ Bu səhifənin silinmə və addəyişmə jurnalı aşağıda göstərilmişdir:"
 Əvvəllər yüklənmiş fayllara baxmaq üçün [[Special:FileList|yüklənmiş fayllar siyahısına]] keçin, həmçinin (təkrar) yüklənmiş fayllara [[Special:Log/upload|yükləmə jurnalında]], silinmiş fayllara [[Special:Log/delete|silinmə jurnalında]] baxa bilərsiniz.
 
 Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifadə edin:
-* Faylın tam versiyasını yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''';
-* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></tt>''';
-* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
+* Faylın tam versiyasını yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''';
+* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></code>''';
+* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>'''.",
 'upload-permitted'           => 'İcazə verilən fayl tipləri: $1.',
 'upload-preferred'           => 'İcazə verilən fayl tipləri: $1.',
 'upload-prohibited'          => 'İcazə verilməyən fayl tipləri: $1.',
@@ -1311,9 +1315,9 @@ Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifad
 'tmp-write-error'            => 'Müvəqqəti fayl yazılarkən xəta.',
 'largefileserver'            => 'Faylın ölçüsü yol verilən həddi aşır.',
 'emptyfile'                  => 'Yüklədiyiniz fayl boşdur. Bu faylın adında olan hərf səhvi ilə bağlı ola bilər. Xahiş olunur ki, doğurdan da bu faylı yükləmək istədiyinizi yoxlayasınız.',
-'fileexists'                 => "Yükləmək istədiyiniz adda fayl mövcuddur.
-Lütfən '''<tt>[[:$1]]</tt>''' keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
-[[$1|thumb]]",
+'fileexists'                 => 'Yükləmək istədiyiniz adda fayl mövcuddur.
+Lütfən <strong>[[:$1]]</strong> keçidini yoxlayın və bu faylı yükləmək istədiyinizdən əmin olun.
+[[$1|thumb]]',
 'uploadwarning'              => 'Yükləmə xəbərdarlığı',
 'savefile'                   => 'Faylı qeyd et',
 'uploadedimage'              => 'yükləndi "[[$1]]"',
@@ -1366,16 +1370,19 @@ $1',
 'uploadstash-refresh' => 'Fayl siyahısını yenilə',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Giriş qadağandır',
-'img-auth-nofile'       => 'Fayl "$1" mövcud deyil.',
-'img-auth-streaming'    => '"$1" axını.',
-'img-auth-noread'       => 'İstifadəçinin "$1"i oxumaq hüququ yoxdur.',
+'img-auth-accessdenied'     => 'Giriş qadağandır',
+'img-auth-nofile'           => 'Fayl "$1" mövcud deyil.',
+'img-auth-streaming'        => '"$1" axını.',
+'img-auth-noread'           => 'İstifadəçinin "$1"i oxumaq hüququ yoxdur.',
+'img-auth-bad-query-string' => 'URL ünvanda yanlış axtarış sətri var.',
 
 # HTTP errors
 'http-invalid-url'      => 'Səhv URL: $1',
 'http-read-error'       => 'HTTP oxuma xətası',
 'http-timed-out'        => 'HTTP istəyinin vaxtı bitdi.',
+'http-curl-error'       => 'URL-ə yanlış müraciət: $1',
 'http-host-unreachable' => 'URL-ə çatmaq olmadı.',
+'http-bad-status'       => 'HTTP müraciətin yoxlanması zamanı problem aşkarlanmışdır: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'URL-ə çatmaq olmadı',
@@ -1423,6 +1430,7 @@ $1',
 'sharedupload'                      => 'Bu fayl $1-dandır və ola bilsin ki, başqa layihələrdə də istifadə edilir.',
 'uploadnewversion-linktext'         => 'Bu faylın yeni versiyasını yüklə',
 'shared-repo-from'                  => '$1-dən',
+'shared-repo'                       => 'ümumi anbar',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 
 # File reversion
@@ -1446,7 +1454,13 @@ $1',
 'filedelete-reason-otherlist' => 'Başqa səbəb',
 'filedelete-reason-dropdown'  => '*Əsas silmə səbəbi
 ** Müəllif hüququ pozuntusu
-** Dublikat fayl',
+** Dublikat fayl
+** Keyfiyyətsiz şəkil
+** İstifadəsiz fayl
+** Qeyri-ensiklopedik şəxs
+** Lisenziyasız fayl
+** Azad şəkillə əvəz olundu
+** Müəllif istəyi',
 'filedelete-edit-reasonlist'  => 'Silmə səbəblərini redaktə et',
 
 # MIME search
@@ -1651,8 +1665,8 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'listgrouprights-rights'               => 'Hüquqlar',
 'listgrouprights-helppage'             => 'Help:Qrup hüquqları',
 'listgrouprights-members'              => '(üzvləri)',
-'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
-'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <code>($2)</code></span>',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup'             => '{{PLURAL:$2|Qrupu}} əlavə et: $1',
 'listgrouprights-removegroup'          => '{{PLURAL:$2|Qrupu}} sil: $1',
 'listgrouprights-addgroup-all'         => 'Bütün qrupları əlavə et',
@@ -1701,6 +1715,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'watchnologintext'     => 'İzləmə siyahınızda dəyişiklik aparmaq üçün [[Special:UserLogin|daxil olmalısınız]].',
 'addwatch'             => 'İzləmə siyahısına əlavə et',
 'addedwatchtext'       => '"[[:$1]]" səhifəsi [[Special:Watchlist|izlədiyiniz səhifələr]] siyahısına əlavə edildi. Bu səhifədə və əlaqəli müzakirə səhifəsindəki bütün dəyişikliklər orada göstəriləcək və səhifə asanlıqla seçiləbilmək üçün [[Special:RecentChanges|son dəyişikliklərdə]] qalın şriftlərlə görünəcəkdir. <p> Səhifəni izləmə siyahınızdan çıxarmaq üçün yan lövhədəki "izləmə" düyməsinə vurun.',
+'removewatch'          => 'Bu səhifəni İzlədiyim səhifələr siyahısından çıxar',
 'removedwatchtext'     => '"[[:$1]]" səhifəsi [[Special:Watchlist|izləmə siyahınızdan]] çıxarıldı.',
 'watch'                => 'İzlə',
 'watchthispage'        => 'Bu səhifəni izlə',
@@ -2143,6 +2158,7 @@ Zəhmət olmasa başqa ad seçin.',
 'export-addnstext'  => 'Səhifələri adlar fəzasından əlavə et:',
 'export-addns'      => 'Əlavə et',
 'export-download'   => 'Faylı qeyd et',
+'export-templates'  => 'Şablonları daxil et',
 
 # Namespace 8 related
 'allmessages'                   => 'Sistem məlumatları',
@@ -2320,6 +2336,7 @@ Zəhmət olmasa başqa ad seçin.',
 'pageinfo-talkpage'         => 'Müzakirə səhifəsi',
 'pageinfo-watchers'         => 'Baxış sayı',
 'pageinfo-edits'            => 'Redaktələrin sayı',
+'pageinfo-authors'          => 'Fərqli müəlliflərin sayı',
 'pageinfo-views'            => 'Göstərmə səhifəsi',
 'pageinfo-viewsperedit'     => 'Redaktə başına göstərmə',
 

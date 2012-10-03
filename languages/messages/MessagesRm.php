@@ -1,5 +1,5 @@
 <?php
-/** Romansh (Rumantsch)
+/** Romansh (rumantsch)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -930,7 +930,7 @@ Fa stim che navigar cun agid da las coalliziuns reinizialisescha tia tscherna.',
 'mergelogpagetext'   => "Sutvart è ina glista da las ultimas cronologias ch'èn vegnidas unidas cun autras.",
 
 # Diffs
-'history-title'            => 'Cronica da versiuns da "$1"',
+'history-title'            => '$1: Cronologia da las versiuns',
 'difference'               => '(differenza tranter versiuns)',
 'difference-multipage'     => '(Differenzas tranter las paginas)',
 'lineno'                   => 'Lingia $1:',
@@ -1103,6 +1103,8 @@ Questa infurmaziun è publica.',
 'email'                       => 'E-mail',
 'prefs-help-realname'         => "Opziun: Qua pos inditgar in surnum che vegn inditga empè da tes num d'utilisader en tias suttascripziuns cun '''<nowiki>--~~~~</nowiki>'''.",
 'prefs-help-email'            => "L'adressa dad e-mail è opziunala, pussibilitescha dentant da trametter in nov pled-clav en cass da sperdita.",
+'prefs-help-email-others'     => 'Ti pos era decider che auters ta pon contactar per e-mail entras in link sin tia pagina da discussion.
+Tia adressa dad e-mail na vegn betg mussada sche auters utilisaders ta contacteschan.',
 'prefs-help-email-required'   => "Inditgar in'adressa dad e-mail è obligatoric.",
 'prefs-info'                  => 'Infurmaziuns da basa',
 'prefs-i18n'                  => 'Internaziunalisaziun',
@@ -1141,7 +1143,7 @@ Questa infurmaziun è publica.',
 'userrights-no-interwiki'      => "Ti n'has betg la permissiun da midar dretgs d'utilisaders sin autras wikis.",
 'userrights-nodatabase'        => "La banca da datas $1 n'exista betg u n'è betg locala.",
 'userrights-nologin'           => "Ti stos [[Special:UserLogin|t'annunziar]] cun in conto d'aministratur per modifitgar ils dretgs d'utilisader.",
-'userrights-notallowed'        => "Tes conto d'utilisader n'ha betg la permissiun dad agiuntar dretgs d'utilisaders.",
+'userrights-notallowed'        => "Tes conto d'utilisader n'ha betg la permissiun dad agiuntar u allontanar dretgs d'utilisaders.",
 'userrights-changeable-col'    => 'Gruppas che ti pos modifitgar',
 'userrights-unchangeable-col'  => 'Gruppas che ti nas pos betg modifitgar',
 
@@ -1152,7 +1154,7 @@ Questa infurmaziun è publica.',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administraturs',
 'group-bureaucrat'    => 'Birocrat',
-'group-suppress'      => 'Oversights',
+'group-suppress'      => 'Supervisurs',
 'group-all'           => '(tuts)',
 
 'group-user-member'          => 'Utilisader',
@@ -1333,9 +1335,9 @@ Il log da stizzar e spustar vegn mussà sutvart:",
 Per contemplar u tschertgar datotecas gia chargiada si, visita la pagina [[Special:FileList|glista da datotecas chargiadas si]]. Tut las datotecas che vegnan chargiadas si èn era notads en il [[Special:Log/upload|log da chargiar si]], quellas ch'èn vegnidas stizzadas en il [[Special:Log/delete|log dal stizzar]].
 
 Per integrar ina datoteca en in artitgel pos ti per exempel duvrar in dals suandants cumonds:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' per utilisar la versiun cumplaina da la datoteca
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' per utilisar in maletg da la ladezza da 200 pixels en in champ da la vart sanestra cun la descripziun 'alt text'
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' per directamain far ina colliaziun a la datoteca senza integrar la datoteca",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></code>''' per utilisar la versiun cumplaina da la datoteca
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></code>''' per utilisar in maletg da la ladezza da 200 pixels en in champ da la vart sanestra cun la descripziun 'alt text'
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></code>''' per directamain far ina colliaziun a la datoteca senza integrar la datoteca",
 'upload-permitted'            => 'Tips da datotecas lubids: $1.',
 'upload-preferred'            => 'Tips da datotecas preferids: $1.',
 'upload-prohibited'           => 'Tips da datotecas betg lubids: $1.',
@@ -1379,21 +1381,21 @@ questa datoteca è $2 gronda.",
 'emptyfile'                   => "La datoteca che ti has chargià si para dad esser vida.
 Quai po esser pervia d'in sbagl da tippar en il num da datoteca.
 Controllescha sche ti vuls propi chargiar si questa datoteca.",
-'fileexists'                  => "Ina datoteca cun quest num exista gia. Controllescha '''<tt>[[:$1]]</tt>''' sche ti n'es betg segir sche ti vuls midar ella.
+'fileexists'                  => "Ina datoteca cun quest num exista gia. Controllescha <strong>[[:$1]]</strong> sche ti n'es betg segir sche ti vuls midar ella.
 [[$1|thumb]]",
-'filepageexists'              => "La pagina da descripziun per questa datoteca è vegnida creada ils '''<tt>[[:$1]]</tt>''' ma i n'exista anc nagina datoteca cun quest num. 
+'filepageexists'              => "La pagina da descripziun per questa datoteca è vegnida creada ils <strong>[[:$1]]</strong> ma i n'exista anc nagina datoteca cun quest num. 
 La resumaziun che ti endatescha na vegn betg a cumparair sin la pagina da descripziun.
 Per che tia resumaziun cumpara là, stos ti modifitar manualmain la pagina da descripziun.
 [[$1|thumb]]",
 'fileexists-extension'        => "I exista gia ina datoteca cun in num sumegliant: [[$2|thumb]]
-* Num da la datoteca che duai vegnir chargiada si: '''<tt>[[:$1]]</tt>'''
-* Num da la datoteca ch'exista gia: '''<tt>[[:$2]]</tt>'''
+* Num da la datoteca che duai vegnir chargiada si: <strong>[[:$1]]</strong>
+* Num da la datoteca ch'exista gia: <strong>[[:$2]]</strong>
 Tscherna per plaschair in auter num.",
 'fileexists-thumbnail-yes'    => "Quest maletg para dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
 [[$1|thumb]]
-Controllescha per plaschair la datoteca ''<tt>[[:$1]]</tt>'''.
+Controllescha per plaschair la datoteca ''<strong>[[:$1]]</strong>.
 Sche la datoteca menziunada survart è il medem maletg en grondezza originala n'èsi betg necessari da chargiar si in maletg da pervista.",
-'file-thumbnail-no'           => "Il num da la datoteca cumenza cun '''<tt>$1</tt>''', perquai para quai dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
+'file-thumbnail-no'           => "Il num da la datoteca cumenza cun <strong>$1</strong>, perquai para quai dad esser in maletg da grondezza reducida ''(Maletg da prevista)''.
 Controllescha sche ti has era il maletg en grondezza originala e chargia si quel sut il num original.",
 'fileexists-forbidden'        => 'I exista gia ina datoteca cun quest num che na po betg vegnir recuvrida. 
 Sche ti vuls anc adina chargiar si tia datoteca, turna per plaschair anavos e tscherna in auter nu. 
@@ -1423,8 +1425,23 @@ Controllescha per plaschair l'opziun <code>file_uploads</code>.",
 'upload-description'          => 'Descripziun da la datoteca',
 'upload-options'              => 'Opziuns per chargiar si',
 'watchthisupload'             => 'Observar questa datoteca',
+'upload-success-subj'         => 'Transferì cun success',
+'upload-success-msg'          => 'Tes transfer da [$2] è stà cun success. La datoteca è disponibla qua: [[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => 'Probelm cun transferir',
+'upload-failure-msg'          => 'I è capitada ina errur durant transferir da [$2]:
+$1',
+'upload-warning-subj'         => 'Avertiment da transferir',
+'upload-warning-msg'          => 'Ina errur è capitada cun tes transfer da [$2]. Ti pos returnar al [[Special:Upload/stash/$1|formular per transferir]] per curreger quest problem.',
 
 'upload-proto-error'        => 'Protocol nuncorrect',
+'upload-proto-error-text'   => 'Il transfer da servers externs basegna URLs che cumenzan cun <code>http://</code> u <code>ftp://</code>.',
+'upload-file-error'         => 'Errur interna',
+'upload-file-error-text'    => 'Ina errur interna è capitada durant empruvar da crear ina datoteca temporara sin il server. 
+Contactescha per plaschair in [[Special:ListUsers/sysop|administratur]].',
+'upload-misc-error'         => 'Errur da transferir nunenconuschenta',
+'upload-misc-error-text'    => "Ina errur nunenconuschenta è capitada durant transferir. 
+Controllescha per plaschair che l'URL è valida ed accessibla ed emprova anc ina giada.
+Sch'il problem exista anc adina, contactescha in [[Special:ListUsers/sysop|administratur]].",
 'upload-too-many-redirects' => 'La URL ha cuntegnì memia blers renviaments',
 'upload-unknown-size'       => 'Grondezza nunenconuschenta',
 'upload-http-error'         => 'In sbagl da HTTP è capità: $1',
@@ -1433,7 +1450,7 @@ Controllescha per plaschair l'opziun <code>file_uploads</code>.",
 'img-auth-accessdenied' => "Refusà l'access",
 'img-auth-nopathinfo'   => "PATH_INFO manca.
 Tes server n'è betg configurà per surdar questa infurmaziun.
-I basa forsa sin CGI è na sustegna betg img_auth.
+El basa forsa sin CGI è na sustegna betg img_auth.
 Consultescha https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-nologinnWL'   => 'Ti n\'ès betg t\'annunzia ed "$1" n\'è betg sin la glista alva.',
 'img-auth-nofile'       => 'Datoteca "$1" n\'exista betg.',
@@ -1538,7 +1555,7 @@ La descripziun da sia [$2 pagina da descripziun da datotecas] vegn mussada sutva
 # MIME search
 'mimesearch'         => 'tschertgar tenor tip da MIME',
 'mimesearch-summary' => 'Questa pagina permetta da filtrar datotecas tenor lur tip MIME.
-Endatar il term da tschertgar en la furma tip/suttip, p.ex. <tt>image/jpeg</tt>.',
+Endatar il term da tschertgar en la furma tip/suttip, p.ex. <code>image/jpeg</code>.',
 'mimetype'           => 'Tip MIME:',
 'download'           => 'telechargiar',
 
@@ -1583,7 +1600,7 @@ Betg emblida da controllar sche autras colliaziuns mainan als models avant ch'al
 'statistics-users-active-desc' => "Utilisaders che han fatg almain ina acziun {{PLURAL:$1|l'ultim di|ils ultims $1 dis}}",
 'statistics-mostpopular'       => 'Paginas visitadas il pli savens',
 
-'disambiguations'     => 'Paginas per la decleraziun da noziuns',
+'disambiguations'     => 'Paginas cun colliaziuns sin paginas per la decleraziun da noziuns',
 'disambiguationspage' => 'Template:disambiguiziun',
 
 'doubleredirects'            => 'Renviaments dubels',
@@ -1664,7 +1681,7 @@ I renviescha uss a [[$2]].',
 'booksources-go'            => 'Leger',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilisader:',
+'specialloguserlabel'  => 'Acziun exequida da:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'logs / cudesch da navigaziun',
 'all-logs-page'        => 'Tut ils logs publics',
@@ -1694,13 +1711,13 @@ I renviescha uss a [[$2]].',
 'sp-deletedcontributions-contribs' => 'contribuziuns',
 
 # Special:LinkSearch
-'linksearch'       => 'Colliaziuns externas',
+'linksearch'       => 'Tschertgar colliaziuns externas',
 'linksearch-pat'   => 'Muster da tschertgar:',
 'linksearch-ns'    => 'Tip da pagina:',
 'linksearch-ok'    => 'Tschertgar',
 'linksearch-text'  => 'Sin questa pagina pos ti tschertgar paginas che cuntegnan colliaziuns a tschertas websites. 
 Uschenumnadas wildcards sco p.ex. "*.wikipedia.org" pon vegnir utilisadas.<br />
-Protocols sustegnids: <tt>$1</tt>',
+Protocols sustegnids: <code>$1</code>',
 'linksearch-line'  => '$1 è collià davent da la pagina $2',
 'linksearch-error' => "Wildcards pon esser be a l'entschatta dal num da host.",
 
@@ -2755,9 +2772,9 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-orientation-3' => 'Rotà per 180°',
 'exif-orientation-4' => 'Reflectà verticalmain',
 'exif-orientation-5' => "Rotà 90° en senn cuntrari a l'ura e reflectà verticalmain",
-'exif-orientation-6' => "Rotà 90° en senn da l'ura",
+'exif-orientation-6' => "Rotà 90° en senn cuntrari a l'ura",
 'exif-orientation-7' => "Rotà 90° en senn da l'ura e reflectà verticalmain",
-'exif-orientation-8' => "Rotà 90° en senn cuntrari a l'ura",
+'exif-orientation-8' => "Rotà 90° en senn da l'ura",
 
 'exif-planarconfiguration-1' => 'Format grop (chunky)',
 'exif-planarconfiguration-2' => 'Format planar',

@@ -215,7 +215,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Versteek gepatrolleerde wysigings in onlangse wysigingslys',
 'tog-newpageshidepatrolled'   => 'Versteek gepatrolleerde wysigings van nuwe bladsy lys',
 'tog-extendwatchlist'         => 'Brei dophoulys uit om alle wysigings te wys, nie slegs die nuutste nie',
-'tog-usenewrc'                => 'Verbeterde onlangse wysigingslys (benodig JavaScript)',
+'tog-usenewrc'                => 'Groepeer wysigings per bladsy in onlangse wysigings en dophoulys (benodig JavaScript)',
 'tog-numberheadings'          => 'Nommer opskrifte outomaties',
 'tog-showtoolbar'             => 'Wys redigeergereedskap (benodig JavaScript)',
 'tog-editondblclick'          => 'Dubbelkliek om blaaie te wysig (benodig JavaScript)',
@@ -223,17 +223,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Wysig afdeling met regskliek op afdeling se titel (JavaScript)',
 'tog-showtoc'                 => 'Wys inhoudsopgawe (by bladsye met meer as drie opskrifte)',
 'tog-rememberpassword'        => "Onthou dat ek op hierdie rekenaar ingeteken het (vir 'n maksimum van $1 {{PLURAL:$|dag|dae}})",
-'tog-watchcreations'          => 'Voeg bladsye wat ek skep by my dophoulys',
-'tog-watchdefault'            => 'Lys nuwe en gewysigde bladsye.',
-'tog-watchmoves'              => 'Voeg die bladsye wat ek skuif by my dophoulys',
-'tog-watchdeletion'           => 'Voeg bladsye wat ek verwyder by my dophoulys',
+'tog-watchcreations'          => 'Voeg bladsye wat ek skep en lêers wat ek oplaai by my dophoulys',
+'tog-watchdefault'            => 'Voeg bladsye en lêers wat ek wysig by my dophoulys',
+'tog-watchmoves'              => 'Voeg bladsye en lêers wat ek skuif by my dophoulys',
+'tog-watchdeletion'           => 'Voeg bladsye en lêers wat ek skrap by my dophoulys',
 'tog-minordefault'            => 'Merk alle wysigings automaties as klein by verstek.',
 'tog-previewontop'            => 'Wys voorskou bo wysigingsboks.',
 'tog-previewonfirst'          => 'Wys voorskou met eerste wysiging',
 'tog-nocache'                 => 'Deaktiveer blaaier se bladsykas',
-'tog-enotifwatchlistpages'    => 'Stuur vir my e-pos met bladsyveranderings',
+'tog-enotifwatchlistpages'    => "Stuur my e-pos as 'n bladsye of lêer op my dophoulys verander",
 'tog-enotifusertalkpages'     => 'Stuur vir my e-pos as my eie besprekingsblad verander word',
-'tog-enotifminoredits'        => 'Stuur ook e-pos vir klein bladsywysigings',
+'tog-enotifminoredits'        => 'Stuur my ook e-pos vir klein wysigings aan bladsye en lêers',
 'tog-enotifrevealaddr'        => 'Stel my e-posadres bloot in kennisgewingspos',
 'tog-shownumberswatching'     => 'Wys die aantal gebruikers wat dophou',
 'tog-oldsig'                  => 'Bestaande handtekening:',
@@ -522,12 +522,12 @@ Dit kan ook dui op 'n fout in die sagteware van {{SITENAME}}.",
 # General errors
 'error'                => 'Fout',
 'databaseerror'        => 'Databasisfout',
-'dberrortext'          => 'Sintaksisfout in databasisnavraag.
+'dberrortext'          => 'Daar was \'n sintaksisfout in die databasisnavraag.
 Dit kan moontlik dui op \'n fout in die sagteware.
 Die laaste navraag was:
-<blockquote><tt>$1</tt></blockquote>
-vanuit funksie "<tt>$2</tt>".
-Databasis gee foutboodskap "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+vanuit funksie "<code>$2</code>".
+Databasis gee foutboodskap "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 "$1"
@@ -842,10 +842,9 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'blocked-notice-logextract'        => 'Hierdie gebruiker is tans geblokkeer.
 Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien:
-* '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'n Mac)
-* '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'n Mac)
+* '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op 'n Mac)
+* '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''⌘-Shift-R'' op 'n Mac)
 * '''Internet Explorer:''' hou ''Ctrl'' en kliek ''Refresh'', of druk ''Ctrl-F5''
-* '''Konqueror:''' kliek ''Reload'' of druk ''F5''
 * '''Opera:''' maak die kas skoon by ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe CSS te toets voor u dit stoor.",
 'userjsyoucanpreview'              => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe JS te toets voor u dit stoor.",
@@ -860,7 +859,8 @@ Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
 Onthou dat u eie .css- en .js-bladsye met 'n kleinletter begin, byvoorbeeld {{ns:user}}:Naam/vector.css in plaas van {{ns:user}}:Naam/Vector.css.",
 'updated'                          => '(Gewysig)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Onthou dat hierdie slegs 'n voorskou is en nog nie gestoor is nie!'''",
+'previewnote'                      => "'''Onthou dat hierdie slegs 'n voorskou is.'''
+U teks is nog nie gestoor nie!",
 'previewconflict'                  => 'Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk indien u die bladsy stoor.',
 'session_fail_preview'             => "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.
 Probeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te teken.'''",
@@ -1008,28 +1008,26 @@ Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{F
 'rev-deleted-text-unhide'     => "Hierdie weergawe van die bladsy is '''verwyder'''.
 Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.
 U kan steeds na [$1 die weergawe kyk] as u wil voortgaan.",
-'rev-suppressed-text-unhide'  => "Hierdie weergawe van die blad word '''onderdruk'''.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.
-As administrateur kan u, as u wil, na [$1 die verskille kyk].",
+'rev-suppressed-text-unhide'  => "Hierdie weergawe van die bladsy word '''onderdruk'''.
+Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gevind word.
+As u wil voortgaan kan u steeds [$1 die weergawe sien].",
 'rev-deleted-text-view'       => "Hierdie weergawe is '''verwyder'''.
-As administrateur kan u dit wel sien.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
+U dit wel sien. Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.",
 'rev-suppressed-text-view'    => "Hierdie weergawe van die bladsy word '''onderdruk'''.
-As administrateur kan u dit sien.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.",
+U kan dit wel sien. Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gevind word.",
 'rev-deleted-no-diff'         => "U kan nie die verskille sien nie omdat een van die weergawes '''verwyder''' is.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.",
 'rev-suppressed-no-diff'      => "U kan nie hierdie verskil sien nie omdat een van die weergawes '''geskrap''' is.",
-'rev-deleted-unhide-diff'     => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''verwyder'''.
-Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] aanwesig wees.
-As administrateur kan u steeds [$1 die verskille sien] as u wil voortgaan.",
-'rev-suppressed-unhide-diff'  => "Een van die weergawes vir hierdie verskil wat u aangevra het is '''onderdruk'''.
-Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] aanwesig wees.
-As administrateur kan u steeds [$1 hierdie weergawe sien] as u wil voortgaan.",
+'rev-deleted-unhide-diff'     => "Een van die weergawes vir die verskil wat u aangevra het is '''verwyder'''.
+Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.
+U kan steeds [$1 die verskille sien] as u wil voortgaan.",
+'rev-suppressed-unhide-diff'  => "Een van die weergawes vir die verskil wat u aangevra het is '''onderdruk'''.
+Details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] gesien word.
+U kan steeds [$1 hierdie weergawe sien] as u wil voortgaan.",
 'rev-deleted-diff-view'       => "Een van die weergawes van die verskil wat u aangevra het is '''verwyder'''.
-As administrateur kan u hierdie verskil sien. Meer details mag moontlik is die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwyderingslogboek] beskikbaar wees.",
+U kan steeds hierdie verskil sien. Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.",
 'rev-suppressed-diff-view'    => "Een van die weergawes vir die verskil wat u aangevra het is '''onderdruk'''.
-As administrateur kan u hierdie verskil sien. Meer details mag moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] beskikbaar wees.",
+U kan wel hierdie verskil sien. Meer details kan in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek] gevind word.",
 'rev-delundel'                => 'wys/versteek',
 'rev-showdeleted'             => 'wys',
 'revisiondelete'              => 'Verwyder/herstel weergawes',
@@ -1106,8 +1104,8 @@ Kontroleer asseblief die logboeke.",
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',
-'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs verborge is.
-Kyk na die [[Special:IPBlockList|IP-blokkeerlys]] om die huidige blokkades te sien.',
+'suppressionlogtext' => 'Die onderstaande lys bevat verwyderings en blokkades wat vir administrateurs versteek is.
+Kyk na die [[Special:BlockList|blokkeerlys]] om die huidige blokkades te sien.',
 
 # History merging
 'mergehistory'                     => 'Geskiedenis van bladsy samesmeltings',
@@ -1141,7 +1139,7 @@ Let op dat die gebruik van navigasieskakels hierdie kolom se waardes sal herstel
 'mergelogpagetext'   => "Hieronder is 'n lys van die mees onlangse versmeltings van een bladsy se geskiedenis na 'n ander.",
 
 # Diffs
-'history-title'            => 'Weergawegeskiedenis van "$1"',
+'history-title'            => '$1: weergawegeskiedenis',
 'difference'               => '(Verskil tussen weergawes)',
 'difference-multipage'     => '(Verskil tussen bladsye)',
 'lineno'                   => 'Lyn $1:',
@@ -1362,7 +1360,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'userrights-no-interwiki'      => 'U het nie toestemming om gebruikersregte op ander wikis te verander nie.',
 'userrights-nodatabase'        => 'Databasis $1 bestaan nie of is nie hier beskikbaar nie.',
 'userrights-nologin'           => "U moet [[Special:UserLogin|aanteken]] as 'n administrateur om gebruikersregte te mag toeken.",
-'userrights-notallowed'        => 'U het nie die toestemming om gebruikersregte toe te ken nie.',
+'userrights-notallowed'        => 'U het nie magtiging om gebruikersregte by te sit of weg te neem nie.',
 'userrights-changeable-col'    => 'Groepe wat u kan verander',
 'userrights-unchangeable-col'  => 'Groepe wat u nie kan verander nie',
 
@@ -1610,21 +1608,21 @@ die lêer is $2.',
 'largefileserver'             => 'Hierdie lêer is groter as wat die bediener se opstelling toelaat.',
 'emptyfile'                   => "Die lêer wat u probeer oplaai het blyk leeg te wees. Dit mag wees omdat u 'n tikfout in die lêernaam gemaak het. Gaan asseblief na en probeer weer.",
 'windows-nonascii-filename'   => 'Hierdie wiki ondersteun nie lêername met spesiale karakters nie.',
-'fileexists'                  => "'n Lêer met die naam bestaan reeds, kyk na '''<tt>[[:$1]]</tt>''' as u nie seker is dat u dit wil wysig nie.
+'fileexists'                  => "'n Lêer met die naam bestaan reeds, kyk na <strong>[[:$1]]</strong> as u nie seker is dat u dit wil wysig nie.
 [[$1|thumb]]",
-'filepageexists'              => "Die beskrywingsbladsy vir hierdie lêer bestaan reeds by '''<tt>[[:$1]]</tt>''', maar daar is nie 'n lêer met hierdie naam nie.
+'filepageexists'              => "Die beskrywingsbladsy vir hierdie lêer bestaan reeds by <strong>[[:$1]]</strong>, maar daar is nie 'n lêer met hierdie naam nie.
 Die opsomming wat u verskaf het sal nie op die beskrywingsblad geplaas word nie.
 Wysig asseblief die bladsy handmatig om u beskrywing by te werk.
 [[$1|duimnael]]",
 'fileexists-extension'        => "'n Lêer met hierdie naam bestaan al reeds: [[$2|thumb]]
-* Naam van die opgelaaide lêer: '''<tt>[[:$1]]</tt>'''
-* Naam van die bestaande lêer: '''<tt>[[:$2]]</tt>'''
+* Naam van die opgelaaide lêer: <strong>[[:$1]]</strong>
+* Naam van die bestaande lêer: <strong>[[:$2]]</strong>
 Kies asseblief 'n ander naam.",
 'fileexists-thumbnail-yes'    => "Die lêer lyk na 'n verkleinde weergawe ''(duimnael)''.
 [[$1|thumb]]
-Kontroleer asseblief die lêer '''<tt>[[:$1]]</tt>'''.
+Kontroleer asseblief die lêer <strong>[[:$1]]</strong>.
 As die gekontroleerde lêer dieselfde beeld van oorspronklike grootte is, is dit nie nodig om 'n ekstra miniatuurafbeelding daarvan op te laai nie.",
-'file-thumbnail-no'           => "Die lêernaam begin met '''<tt>$1</tt>'''.
+'file-thumbnail-no'           => "Die lêernaam begin met <strong>$1</strong>.
 Dit lyk na 'n verkleinde beeld ''(duimnael)''.
 As u hierdie beeld in volle resolusie het, laai dit asseblief op.
 Indien nie, verander asseblief die lêernaam.",
@@ -1709,7 +1707,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-[https://www.mediawiki.org/wiki/Manual:Image_Authorization Sien regte vir beelde] vir meer inligting.',
+Sien https://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
 'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
@@ -1832,7 +1830,7 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 
 # MIME search
 'mimesearch'         => 'MIME-soek',
-'mimesearch-summary' => 'Hierdie bladsy maak dit moontlik om lêers te filtreer volgens hulle MIME-tipe. Invoer: inhoudtipe/subtipe, byvoorbeeld <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Hierdie bladsy maak dit moontlik om lêers te filtreer volgens hulle MIME-tipe. Invoer: inhoudtipe/subtipe, byvoorbeeld <code>image/jpeg</code>.',
 'mimetype'           => 'MIME-tipe:',
 'download'           => 'laai af',
 
@@ -1878,8 +1876,8 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 
 'disambiguations'      => 'Bladsye wat na dubbelsinnigheidsbladsye skakel',
 'disambiguationspage'  => 'Template:Dubbelsinnig',
-'disambiguations-text' => "Die volgende bladsye skakel na '''dubbelsinnigheidsbladsye'''.
-Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
+'disambiguations-text' => "Die volgende bladsye het ten minste een skakel na 'n '''dubbelsinnigheidsbladsy'''.
+Hulle moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
 'n Bladsy word beskou as 'n dubbelsinnigheidsbladsy as dit 'n sjabloon bevat wat geskakel is vanaf [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'                   => 'Dubbele aansture',
@@ -2022,8 +2020,9 @@ Sie ook [[Special:WantedCategories|nie-bestaande kategorieë met verwysings]].',
 'linksearch-pat'   => 'Soekpatroon:',
 'linksearch-ns'    => 'Naamruimte:',
 'linksearch-ok'    => 'Soek',
-'linksearch-text'  => 'Patrone soos "*.wikipedia.org" of "*.org" kan gebruik word.<br />
-Ondersteunde protokolle: <tt>$1</tt>',
+'linksearch-text'  => 'Patrone soos "*.wikipedia.org" kan gebruik word.<br />
+Benodig ten minste een topvlakdomein, soos byvoorbeeld "*.org".<br />
+Ondersteunde protokolle: <code>$1</code> (moenie hierdie in u soektog gebruik nie)',
 'linksearch-line'  => '$1 geskakel vanaf $2',
 'linksearch-error' => 'Patrone kan slegs aan die begin van die rekenaarnaam geplaas word.',
 
@@ -2444,8 +2443,8 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipb-confirm'                     => 'Bevestig blokkade',
 'badipaddress'                    => 'Die IP-adres is nie in die regte formaat nie.',
 'blockipsuccesssub'               => 'Blokkering het geslaag',
-'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
-Sien die [[Special:BlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] is geblokkeer.<br />
+Sien die [[Special:BlockList|bloklys]] vir onlangse blokkades.',
 'ipb-blockingself'                => 'U is besig om uself te blokkeer! Is u seker u wil dit doen?',
 'ipb-confirmhideuser'             => 'U staan op die punt om \'n "versteekte gebruiker" te blokkeer. Dit sal die gebruiker se naam vanaf alle lyste en logboeke onderdruk. Is u seker u wil om dit te doen?',
 'ipb-edit-dropdown'               => 'Werk lys van redes by',
@@ -2495,8 +2494,9 @@ Die blokkeerlogboek word hieronder ter verwysing weergegee:',
 Die verbergingslogboek word hieronder ter verwysing weergegee:',
 'blocklogentry'                   => '"[[$1]]" is vir \'n periode van $2 $3 geblok',
 'reblock-logentry'                => 'het die instellings vir die blokkade vir [[$1]] gewysig. Dit verval nou op $2 om $3',
-'blocklogtext'                    => "Hier is 'n lys van onlangse blokkeer en deblokkeer aksies. Outomaties geblokkeerde IP-adresse word nie vertoon nie.
-Sien die [[Special:BlockList|IP-bloklys]] vir geblokkeerde adresse.",
+'blocklogtext'                    => "Hierdie is 'n lys van onlangse blokkeer- en deblokkeer-aksies.
+Outomaties geblokkeerde IP-adresse word nie vertoon nie.
+Sien die [[Special:BlockList|bloklys]] vir tans geblokkeerde adresse.",
 'unblocklogentry'                 => 'blokkade van $1 is opgehef:',
 'block-log-flags-anononly'        => 'anonieme gebruikers alleenlik',
 'block-log-flags-nocreate'        => 'registrasie van gebruikers geblokkeer',
@@ -2845,14 +2845,14 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 
 # Info page
 'pageinfo-title'            => 'Inligting oor "$1"',
-'pageinfo-header-edits'     => 'Wysigings',
+'pageinfo-header-edits'     => 'Wysigingsgeskiedenis',
 'pageinfo-header-watchlist' => 'Dophoulys',
 'pageinfo-header-views'     => 'Kere gewys',
 'pageinfo-subjectpage'      => 'Bladsy',
 'pageinfo-talkpage'         => 'Besprekingsblad',
 'pageinfo-watchers'         => 'Aantal dophouers',
 'pageinfo-edits'            => 'Aantal wysigings',
-'pageinfo-authors'          => 'Aantal verskillende outeurs',
+'pageinfo-authors'          => 'Totale aantal verskillende outeurs',
 'pageinfo-views'            => 'Aantal kere gewys',
 'pageinfo-viewsperedit'     => 'Kere gewys per wysiging',
 
@@ -3573,7 +3573,7 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 * <span class="mw-specialpagecached">Spesiale bladsye met gegewens uit die kas (kan verouderd wees).</span>',
 'specialpages-group-maintenance' => 'Onderhoud verslae',
 'specialpages-group-other'       => 'Ander spesiale bladsye',
-'specialpages-group-login'       => 'Inteken / aansluit',
+'specialpages-group-login'       => 'Meld aan / registreer',
 'specialpages-group-changes'     => 'Onlangse wysigings en boekstawings',
 'specialpages-group-media'       => 'Media verslae en oplaai',
 'specialpages-group-users'       => 'Gebruikers en regte',

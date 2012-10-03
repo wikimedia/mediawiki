@@ -140,7 +140,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sedön obe penedi leäktronik igo pö padavotükams pülik',
 'tog-enotifrevealaddr'        => 'Jonön ladeti leäktronik oba in nunapeneds.',
 'tog-shownumberswatching'     => 'Jonön numi gebanas galädöl',
-'tog-oldsig'                  => 'Büologed dispenäda dabinöl:',
+'tog-oldsig'                  => 'Dispenäd dabinöl:',
 'tog-fancysig'                => 'Dispenäd balugik (nen yüms lü gebanapad)',
 'tog-externaleditor'          => 'Gebön nomiko redakömi plödik (te pro jäfüdisevans; paramets patik paneodons su nünöm olik)',
 'tog-externaldiff'            => 'Gebön nomiko difi plödik (te pro jäfüdisevans; paramets patik paneodons su nünöm olik)',
@@ -1011,7 +1011,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'savedprefs'                => 'Buükams olik pedakipons.',
 'timezonelegend'            => 'Timatopäd:',
 'localtime'                 => 'Tim topik:',
-'timezoneuseserverdefault'  => 'Gebön parametemi kösömik dünanünöma',
+'timezoneuseserverdefault'  => 'Gebön parametemi kösömik vüka ($1)',
 'timezoneuseoffset'         => 'Votik (nunolös difi)',
 'timezoneoffset'            => 'Näedot¹:',
 'servertime'                => 'Tim dünanünöma:',
@@ -1258,9 +1258,9 @@ Pads [[Special:Watchlist|galädaliseda olik]] '''pakazetons'''.",
 Ad logön u sukön ragivis ya pelöpükölis, gebolös [[Special:FileList|lisedi ragivas pelöpüköl]]; (dönu)löpukams palisedons i su [[Special:Log/upload|jenotalised löpükamas]], moükams su [[Special:Log/delete|jenotalised moükamas]].
 
 Ad pladön ragivi ini pad semik, gebolös yümi fomätü:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ragiv.jpg]]</nowiki></tt>''' ad pladön ragivi in fomät lölöfik;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ragiv.png|200px|thumb|left|vödem]]</nowiki></tt>''' ad pladön ragivi in fomät smalik (vidotü pixels 200) in bügil nedeto labü „vödem“ as bepenam;
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ragiv.ogg]]</nowiki></tt>''' ad yümön nemediko ad ragiv nes jonön oni.",
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ragiv.jpg]]</nowiki></code>''' ad pladön ragivi in fomät lölöfik;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Ragiv.png|200px|thumb|left|vödem]]</nowiki></code>''' ad pladön ragivi in fomät smalik (vidotü pixels 200) in bügil nedeto labü „vödem“ as bepenam;
+* '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Ragiv.ogg]]</nowiki></code>''' ad yümön nemediko ad ragiv nes jonön oni.",
 'upload-permitted'            => 'Ragivasots pedälöl: $1.',
 'upload-preferred'            => 'Ragivasots buik: $1.',
 'upload-prohibited'           => 'Ragivasots peproiböl: $1.',
@@ -1289,20 +1289,20 @@ Ad pladön ragivi ini pad semik, gebolös yümi fomätü:
 'large-file'                  => 'Pakomandos, das ragivs no binons gretikums ka mö $1; ragiv at binon mö $2.',
 'largefileserver'             => 'Ragiv at binon tu gretik: dünanünöm no kanon dälon oni.',
 'emptyfile'                   => 'Ragiv fa ol pelöpüköl binon jiniko vägik. Kod atosa äbinon ba pöl pö ragivanem. Vilol-li jenöfo löpükön ragivi at?',
-'fileexists'                  => "Ragiv labü nem at ya dabinon, logolös, begö! '''<tt>[[:$1]]</tt>''' üf no sevol fümiko, va vilol votükön oni.
-[[$1|thumb]]",
-'filepageexists'              => "Bepenamapad ragiva at ya pejafon ('''<tt>[[:$1]]</tt>'''), ab ragiv nonik labü nem at dabinon anu.
+'fileexists'                  => 'Ragiv labü nem at ya dabinon, logolös, begö! <strong>[[:$1]]</strong> üf no sevol fümiko, va vilol votükön oni.
+[[$1|thumb]]',
+'filepageexists'              => 'Bepenamapad ragiva at ya pejafon (<strong>[[:$1]]</strong>), ab ragiv nonik labü nem at dabinon anu.
 Naböfodönuam olik no opubon su bepenamapad.
 Ad pübön oni us, onedol redakön oni ol it.
-[[$1|thumb]]",
-'fileexists-extension'        => "Ragiv labü nem sümik ya dabinon: [[$2|thumb]]
-* Nem ragiva palöpüköl: '''<tt>[[:$1]]</tt>'''
-* Nem ragiva dabinöl: '''<tt>[[:$2]]</tt>'''
-Välolös, begö! nemi difik.",
+[[$1|thumb]]',
+'fileexists-extension'        => 'Ragiv labü nem sümik ya dabinon: [[$2|thumb]]
+* Nem ragiva palöpüköl: <strong>[[:$1]]</strong>
+* Nem ragiva dabinöl: <strong>[[:$2]]</strong>
+Välolös, begö! nemi difik.',
 'fileexists-thumbnail-yes'    => "Ragiv at binon jiniko magoda gretota smalik ''(magodil)''. [[$1|thumb]]
-Logolös, begö! ragivi ya dabinöli: '''<tt>[[:$1]]</tt>'''.
+Logolös, begö! ragivi ya dabinöli: <strong>[[:$1]]</strong>.
 If ragiv ya dabinöli binon magod ot gretota rigik, no zesüdos ad löpükön magodili pluik.",
-'file-thumbnail-no'           => "Ragivanem primon me '''<tt>$1</tt>'''. Binon jiniko magod gretota smalik ''(magodil)''.
+'file-thumbnail-no'           => "Ragivanem primon me <strong>$1</strong>. Binon jiniko magod gretota smalik ''(magodil)''.
 Üf labol magodi at gretota rigik, löpükölos oni, pläo votükolös ragivanemi.",
 'fileexists-forbidden'        => 'Ragiv labü nem at ya dabinon e no dalon paplaädön.
 If nog vilol lopükön ragivi olik, geikolös e gebolös nemi votik. [[File:$1|thumb|center|$1]]',
@@ -1321,6 +1321,7 @@ If nog vilol lopükön ragivi olik, geikolös e gebolös nemi votik. [[File:$1|t
 'sourcefilename'              => 'Ragivanem rigik:',
 'destfilename'                => 'Ragivanem nulik:',
 'upload-maxfilesize'          => 'Ragivagretot gretikün: $1',
+'upload-description'          => 'Ragivabepenam',
 'watchthisupload'             => 'Galädolöd ragivi at',
 'filewasdeleted'              => 'Ragiv labü nem at büo pelöpükon e poso pemoükon. Kontrololös eli $1 büä olöpükol oni dönu.',
 'filename-bad-prefix'         => "Nem ragiva fa ol palöpüköl primon me '''\"\$1\"''': nem no bepenöl nomiko pagevöl itjäfidiko fa käms nulädik. Välolös, begö! nemi bepenöl pro ragiv olik.",
@@ -1428,7 +1429,7 @@ Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv 
 # MIME search
 'mimesearch'         => 'Sukön (MIME)',
 'mimesearch-summary' => 'Pad at mögükon ragivisulami ma MIME-sot.
-Primanünods: ninädasot/donasot, a.s. <tt>image/jpeg</tt>.',
+Primanünods: ninädasot/donasot, a.s. <code>image/jpeg</code>.',
 'mimetype'           => 'Klad ela MIME:',
 'download'           => 'donükön',
 
@@ -1471,7 +1472,7 @@ Primanünods: ninädasot/donasot, a.s. <tt>image/jpeg</tt>.',
 'statistics-users-active-desc' => 'Gebans, kels edunons bosi ün {{PLURAL:$1|del lätik|dels lätik $1}}',
 'statistics-mostpopular'       => 'Pads suvüno palogöls:',
 
-'disambiguations'      => 'Telplänovapads',
+'disambiguations'      => 'Pads lü telplänovapads yümöls',
 'disambiguationspage'  => 'Template:Telplänov',
 'disambiguations-text' => "Pads sököl payümons ad '''telplanövapad'''.
 Sötons plao payümon lü yeged pötik.<br />
@@ -1564,7 +1565,7 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 
 # Special:Log
 'specialloguserlabel'  => 'Geban:',
-'speciallogtitlelabel' => 'Tiäd:',
+'speciallogtitlelabel' => 'Lükömöp (tiäd u geban):',
 'log'                  => 'Jenotaliseds',
 'all-logs-page'        => 'Jenotaliseds valik',
 'alllogstext'          => 'Kobojonam jenotalisedas gebidik valik in {{SITENAME}}.
@@ -1609,7 +1610,7 @@ Logolös i [[Special:WantedCategories|klads pevilöl]].',
 'linksearch-ns'    => 'Nemaspad:',
 'linksearch-ok'    => 'Suk',
 'linksearch-text'  => 'WilStelüls kanons pagebön, a.s. „*.wikipedia.org“.<br />
-Protoks pestütöl: <tt>$1</tt>',
+Protoks pestütöl: <code>$1</code>',
 'linksearch-line'  => '$1 labon yümi se $2',
 'linksearch-error' => 'Stelüls kanons pubön te lä prim lotidiananema.',
 
@@ -2330,7 +2331,7 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 'markaspatrolleddiff'                 => 'Zepön',
 'markaspatrolledtext'                 => 'Zepön padi at',
 'markedaspatrolled'                   => 'Pezepon',
-'markedaspatrolledtext'               => 'Fomam pevälöl pezepon.',
+'markedaspatrolledtext'               => 'Fomam pevälöl ela "[[:$1]]" pezepon.',
 'rcpatroldisabled'                    => 'Patrul Votükamas Nulik penegebidükon',
 'rcpatroldisabledtext'                => 'Patrul Votükamas Nulik binon anu negebidik.',
 'markedaspatrollederror'              => 'No kanon pezepön',
