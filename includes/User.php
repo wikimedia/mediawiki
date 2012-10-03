@@ -816,39 +816,16 @@ class User {
 
 	/**
 	 * Count the number of edits of a user
-	 * @todo It should not be static and some day should be merged as proper member function / deprecated -- domas
 	 *
 	 * @param $uid Int User ID to check
 	 * @return Int the user's edit count
+	 *
+	 * @deprecated since 1.21 in favour of User::getEditCount
 	 */
 	public static function edits( $uid ) {
-		wfProfileIn( __METHOD__ );
-		$dbr = wfGetDB( DB_SLAVE );
-		// check if the user_editcount field has been initialized
-		$field = $dbr->selectField(
-			'user', 'user_editcount',
-			array( 'user_id' => $uid ),
-			__METHOD__
-		);
-
-		if( $field === null ) { // it has not been initialized. do so.
-			$dbw = wfGetDB( DB_MASTER );
-			$count = $dbr->selectField(
-				'revision', 'count(*)',
-				array( 'rev_user' => $uid ),
-				__METHOD__
-			);
-			$dbw->update(
-				'user',
-				array( 'user_editcount' => $count ),
-				array( 'user_id' => $uid ),
-				__METHOD__
-			);
-		} else {
-			$count = $field;
-		}
-		wfProfileOut( __METHOD__ );
-		return $count;
+		wfDeprecated( __METHOD__, '1.21' );
+		$user = self::newFromId( $uid );
+		return $user->getEditCount();
 	}
 
 	/**
@@ -2465,7 +2442,32 @@ class User {
 		if( $this->getId() ) {
 			if ( !isset( $this->mEditCount ) ) {
 				/* Populate the count, if it has not been populated yet */
-				$this->mEditCount = User::edits( $this->mId );
+				wfProfileIn( __METHOD__ );
+				$dbr = wfGetDB( DB_SLAVE );
+				// check if the user_editcount field has been initialized
+				$count = $dbr->selectField(
+					'user', 'user_editcount',
+					array( 'user_id' => $this->mId ),
+					__METHOD__
+				);
+
+				if( $count === null ) {
+					// it has not been initialized. do so.
+					$dbw = wfGetDB( DB_MASTER );
+					$count = $dbr->selectField(
+						'revision', 'count(*)',
+						array( 'rev_user' => $this->mId ),
+						__METHOD__
+					);
+					$dbw->update(
+						'user',
+						array( 'user_editcount' => $count ),
+						array( 'user_id' => $this->mId ),
+						__METHOD__
+					);
+				}
+				wfProfileOut( __METHOD__ );
+				$this->mEditCount = $count;
 			}
 			return $this->mEditCount;
 		} else {

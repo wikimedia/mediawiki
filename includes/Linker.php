@@ -1066,6 +1066,7 @@ class Linker {
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
+		$user = User::newFromId( $userId );
 
 		$items = array();
 		if ( $talkable ) {
@@ -1075,7 +1076,7 @@ class Linker {
 			// check if the user has an edit
 			$attribs = array();
 			if ( $redContribsWhenNoEdits ) {
-				$count = !is_null( $edits ) ? $edits : User::edits( $userId );
+				$count = !is_null( $edits ) ? $edits : $user->getEditCount();
 				if ( $count == 0 ) {
 					$attribs['class'] = 'new';
 				}
