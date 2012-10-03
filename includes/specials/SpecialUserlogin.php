@@ -1064,7 +1064,7 @@ class LoginForm extends SpecialPage {
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
 		global $wgSecureLogin, $wgSecureLoginDefaultHTTPS, $wgPasswordResetRoutes;
 
-		$titleObj = $this->getTitle();
+		$titleObj = SpecialPage::getTitleFor( 'Userlogin' );
 		$user = $this->getUser();
 		$out = $this->getOutput();
 
@@ -1179,7 +1179,7 @@ class LoginForm extends SpecialPage {
 		$template->set( 'domain', $this->mDomain );
 		$template->set( 'reason', $this->mReason );
 
-		$template->set( 'action', $titleObj->getLocalURL( $q ) );
+		$template->set( 'action', $this->getTitle()->getLocalURL( $q ) );
 		$template->set( 'message', $msg );
 		$template->set( 'messagetype', $msgtype );
 		$template->set( 'createemail', $wgEnableEmail && $user->isLoggedIn() );
