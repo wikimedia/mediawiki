@@ -667,11 +667,11 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	protected function doGetFileContentsMulti( array $params ) {
 		$contents = array();
-		wfSuppressWarnings();
 		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
+			wfSuppressWarnings();
 			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
+			wfRestoreWarnings();
 		}
-		wfRestoreWarnings();
 		return $contents;
 	}
 
