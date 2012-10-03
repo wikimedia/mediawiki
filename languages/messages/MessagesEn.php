@@ -1007,10 +1007,11 @@ Query: $2',
 Please try again in a few minutes.',
 'protectedpagetext'    => 'This page has been protected to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
-'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
+'protectedinterface'   => 'This page provides interface text for the software on this wiki, and is protected to prevent abuse.
+To add or change translations for all wikis, please use [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
-Changes to this page will affect the appearance of the user interface for other users.
-For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
+Changes to this page will affect the appearance of the user interface for other users on this wiki.
+To add or change translations for all wikis, please use [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
@@ -1307,8 +1308,7 @@ You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other page
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
 'noarticletext-nopermission'       => 'There is currently no text in this page.
-You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
-or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
+You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages, or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, but you do not have permission to create this page.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
@@ -1361,7 +1361,7 @@ You will have to merge your changes into the existing text.
 '''Only''' the text in the upper text area will be saved when you press \"{{int:savearticle}}\".",
 'yourtext'                         => 'Your text',
 'storedversion'                    => 'Stored revision',
-'nonunicodebrowser'                => "'''Warning: Your browser is not unicode compliant.'''
+'nonunicodebrowser'                => "'''Warning: Your browser is not Unicode compliant.'''
 A workaround is in place to allow you to safely edit pages: Non-ASCII characters will appear in the edit box as hexadecimal codes.",
 'editingold'                       => "'''Warning: You are editing an out-of-date revision of this page.'''
 If you save it, any changes made since this revision will be lost.",
@@ -3558,14 +3558,14 @@ This is probably caused by a link to a blacklisted external site.',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',
-'pageinfo-header-edits'     => 'Edits',
+'pageinfo-header-edits'     => 'Edit history',
 'pageinfo-header-watchlist' => 'Watchlist',
 'pageinfo-header-views'     => 'Views',
 'pageinfo-subjectpage'      => 'Page',
 'pageinfo-talkpage'         => 'Talk page',
-'pageinfo-watchers'         => 'Number of watchers',
+'pageinfo-watchers'         => 'Number of page watchers',
 'pageinfo-edits'            => 'Number of edits',
-'pageinfo-authors'          => 'Number of distinct authors',
+'pageinfo-authors'          => 'Total number of distinct authors',
 'pageinfo-views'            => 'Number of views',
 'pageinfo-viewsperedit'     => 'Views per edit',
 
@@ -4515,7 +4515,7 @@ Images are shown in full resolution, other file types are started with their ass
 * <span class="mw-specialpagecached">Cached special pages (might be obsolete).</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
-'specialpages-group-login'       => 'Login / sign up',
+'specialpages-group-login'       => 'Login / create account',
 'specialpages-group-changes'     => 'Recent changes and logs',
 'specialpages-group-media'       => 'Media reports and uploads',
 'specialpages-group-users'       => 'Users and rights',
