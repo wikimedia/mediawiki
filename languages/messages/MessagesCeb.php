@@ -9,7 +9,9 @@
  *
  * @author Abastillas
  * @author Dosmiin Barsbold
+ * @author Harvzsf
  * @author Jordz
+ * @author Mirzali
  * @author Palang hernan
  * @author Reedy
  * @author לערי ריינהארט
@@ -457,7 +459,7 @@ Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga prepere
 'loginprompt'             => 'Kinahanglang naka-enable ang mga koki aron ikaw maka-log-in sa {{SITENAME}}.',
 'userlogin'               => 'Rehistro / Dayon',
 'logout'                  => 'Biya',
-'userlogout'              => 'Biya',
+'userlogout'              => 'Bıveciye',
 'notloggedin'             => 'Wala ka pa masulod',
 'nologin'                 => "Wala pay akawnt? '''$1'''.",
 'nologinlink'             => 'Paghimo og akawnt',
@@ -1077,7 +1079,7 @@ Puyde nimo usbon ang level sa proteksyon ning panid, pero dili kini makaapekto s
 'linkshere'                => "Ang mosunod nga mga panid misumpay sa '''[[:$1]]''':",
 'isredirect'               => 'panid sa redirekta',
 'istemplate'               => 'transklusyon',
-'isimage'                  => 'sumpay nga imahen',
+'isimage'                  => 'sumpay sa payl',
 'whatlinkshere-prev'       => '{{PLURAL:$1|miaging|miaging $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|sunod|sunod $1}}',
 'whatlinkshere-links'      => '← mga sumpay',

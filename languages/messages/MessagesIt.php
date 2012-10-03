@@ -420,7 +420,7 @@ $messages = array(
 'vector-action-protect'          => 'Proteggi',
 'vector-action-undelete'         => 'Recupera',
 'vector-action-unprotect'        => 'Cambia la protezione',
-'vector-simplesearch-preference' => 'Abilita i suggerimenti di ricerca avanzata (solo per la skin Vector)',
+'vector-simplesearch-preference' => 'Abilita la barra per la ricerca semplificata (solo per la skin Vector)',
 'vector-view-create'             => 'Crea',
 'vector-view-edit'               => 'Modifica',
 'vector-view-history'            => 'Visualizza cronologia',
@@ -634,9 +634,10 @@ Query: $2',
 'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',
 'viewsourcetext'       => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
 'viewyourtext'         => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
-'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
-'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.
-Per le traduzioni, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
+'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software di questo sito ed è protetta per evitare possibili abusi.
+Per aggiungere o modificare traduzioni per tutti i wiki usare [//translatewiki.net/ translatewiki.net], il progetto di localizzazione di MediaWiki,",
+'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti su questo wiki.
+Per aggiungere o modificare le traduzioni valide su tutti i wiki, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
 'sqlhidden'            => '(la query SQL è stata nascosta)',
 'cascadeprotected'     => 'Su questa pagina non è possibile effettuare modifiche perché è stata inclusa {{PLURAL:$1|nella pagina indicata di seguito, che è stata protetta|nelle pagine indicate di seguito, che sono state protette}} selezionando la protezione "ricorsiva":
 $2',
@@ -673,7 +674,7 @@ L'account è stato creato correttamente. Non dimenticare di personalizzare le [[
 'userlogin'                  => 'Entra / registrati',
 'userloginnocreate'          => 'Entra',
 'logout'                     => 'Esci',
-'userlogout'                 => 'Esci',
+'userlogout'                 => 'esci',
 'notloggedin'                => 'Accesso non effettuato',
 'nologin'                    => "Non hai ancora un accesso? '''$1'''.",
 'nologinlink'                => 'Registrati',
@@ -841,7 +842,7 @@ Password temporanea: $2',
 'showlivepreview'                  => "Funzione ''Live preview''",
 'showdiff'                         => 'Mostra cambiamenti',
 'anoneditwarning'                  => "'''Attenzione:''' Accesso non effettuato. Nella cronologia della pagina verrà registrato l'indirizzo IP.",
-'anonpreviewwarning'               => "''Non hai eseguito il login. Salvando il tuo indirizzo IP sarà registrato nella cronologia di questa voce.''",
+'anonpreviewwarning'               => "''Non è stato eseguito il login. Salvando la pagina, il proprio indirizzo IP sarà registrato nella cronologia.''",
 'missingsummary'                   => "'''Attenzione:''' non è stato specificato l'oggetto di questa modifica. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata con l'oggetto vuoto.",
 'missingcommenttext'               => 'Inserire un commento qui sotto.',
 'missingcommentheader'             => "'''Attenzione:''' non è stata specificato l'oggetto/l'intestazione di questo commento. Premendo di nuovo \"{{int:savearticle}}\" la modifica verrà salvata senza intestazione.",
@@ -1133,9 +1134,10 @@ $1",
 'revdelete-no-change'         => "'''Attenzione:''' l'oggetto con data $1 $2 aveva già le impostazioni di visibilità richieste.",
 'revdelete-concurrent-change' => "Impossibile modificare l'oggetto con data $1 $2 in quanto il suo stato è stato modificato da un altro utente mentre se ne tentava la modifica.",
 'revdelete-only-restricted'   => "Errore nel nascondere l'oggetto datato $1, $2: non è possibile nascondere gli oggetti alla vista degli amministratori senza selezionare almeno un'altra delle opzioni di rimozione.",
-'revdelete-reason-dropdown'   => '*Motivazioni più comuni per la cancellazione
+'revdelete-reason-dropdown'   => '* Motivazioni più comuni per la cancellazione
 ** Violazione di copyright
-** Informazioni personali inappropriate
+** Commenti o informazioni personali inappropriate
+** Nome utente inappropriato
 ** Informazione potenzialmente diffamatoria',
 'revdelete-otherreason'       => 'Altra motivazione o motivazione aggiuntiva:',
 'revdelete-reasonotherlist'   => 'Altra motivazione',
@@ -1322,7 +1324,7 @@ Vedi l'[[Special:BlockList|elenco dei blocchi]] per l'elenco dei bandi e dei blo
 'timezoneregion-indian'         => 'Oceano Indiano',
 'timezoneregion-pacific'        => 'Oceano Pacifico',
 'allowemail'                    => 'Abilita la ricezione di messaggi e-mail da altri utenti',
-'prefs-searchoptions'           => 'Opzioni di ricerca',
+'prefs-searchoptions'           => 'Ricerca',
 'prefs-namespaces'              => 'Namespace',
 'defaultns'                     => 'In caso contrario, cerca in questi namespace:',
 'default'                       => 'predefinito',
@@ -1971,7 +1973,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'lonelypages'             => 'Pagine orfane',
 'lonelypagestext'         => 'Le pagine indicate di seguito sono prive di collegamenti provenienti da altre pagine di {{SITENAME}} e non sono incluse in nessuna pagina del sito.',
 'uncategorizedpages'      => 'Pagine prive di categorie',
-'uncategorizedcategories' => 'Categorie non categorizzate',
+'uncategorizedcategories' => 'Categorie prive di categorie',
 'uncategorizedimages'     => 'File privi di categorie',
 'uncategorizedtemplates'  => 'Template privi di categorie',
 'unusedcategories'        => 'Categorie vuote',
@@ -1990,7 +1992,7 @@ I redirect <del>cancellati</del> sono stati corretti.',
 'mostcategories'          => 'Pagine con più categorie',
 'mostimages'              => 'File più richiamati',
 'mostrevisions'           => 'Pagine con più versioni',
-'prefixindex'             => 'Indice delle voci per lettere iniziali',
+'prefixindex'             => 'Indice delle pagine per lettere iniziali',
 'prefixindex-namespace'   => 'Tutte le pagine con il prefisso del namespace $1',
 'shortpages'              => 'Pagine più corte',
 'longpages'               => 'Pagine più lunghe',
@@ -2093,7 +2095,7 @@ Protocolli supportati: <code>$1</code> (non aggiungere nessuno di questi nella t
 'listusers-blocked'  => '(bloccato)',
 
 # Special:ActiveUsers
-'activeusers'            => 'Lista degli utenti attivi',
+'activeusers'            => 'Elenco degli utenti attivi',
 'activeusers-intro'      => 'Questo è un elenco di utenti che hanno avuto qualche tipo di attività da $1 {{PLURAL:$1|giorno|giorni}} a questa parte.',
 'activeusers-count'      => "$1 {{PLURAL:$1|modifica|modifiche}} {{PLURAL:$3|nell'ultimo giorno|negli ultimi $3 giorni}}",
 'activeusers-from'       => 'Mostra gli utenti a partire da:',
@@ -2921,14 +2923,14 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Info page
 'pageinfo-title'            => 'Informazioni per "$1"',
-'pageinfo-header-edits'     => 'Edit',
+'pageinfo-header-edits'     => 'Cronologia delle modifiche',
 'pageinfo-header-watchlist' => 'Osservati speciali',
 'pageinfo-header-views'     => 'Visualizzazioni',
 'pageinfo-subjectpage'      => 'Pagina',
 'pageinfo-talkpage'         => 'Pagina di discussione',
 'pageinfo-watchers'         => 'Numero di utenti che hanno la pagina nei loro Osservati Speciali',
 'pageinfo-edits'            => 'Numero di edit',
-'pageinfo-authors'          => 'Numero di autori diversi',
+'pageinfo-authors'          => 'Numero totale di autori diversi',
 'pageinfo-views'            => 'Numero di visualizzazioni',
 'pageinfo-viewsperedit'     => 'Visualizzazioni per modifica',
 
@@ -3555,7 +3557,7 @@ Per favore, conferma che desideri veramente ricreare questa pagina.",
 'size-bytes' => '$1 byte',
 
 # Live preview
-'livepreview-loading' => 'Caricamento in corso…',
+'livepreview-loading' => 'Caricamento in corso...',
 'livepreview-ready'   => 'Caricamento in corso… Pronto.',
 'livepreview-failed'  => "Errore nella funzione Live preview.
 Usare l'anteprima standard.",

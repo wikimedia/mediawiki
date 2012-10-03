@@ -3026,7 +3026,7 @@ $1',
 
 # Info page
 'pageinfo-title'            => 'Πληροφορίες για "$1"',
-'pageinfo-header-edits'     => 'Επεξεργασίες',
+'pageinfo-header-edits'     => 'Ιστορικό επεξεργασίας',
 'pageinfo-header-watchlist' => 'Λίστα παρακολούθησης',
 'pageinfo-header-views'     => 'Προβολές',
 'pageinfo-subjectpage'      => 'Σελίδα',

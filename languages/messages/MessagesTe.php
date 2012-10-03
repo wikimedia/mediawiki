@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Arjunaraoc
  * @author Chaduvari
  * @author Jprmvnvijay5
  * @author Kaganer
@@ -301,7 +302,7 @@ $messages = array(
 'vector-action-protect'          => 'సంరక్షించు',
 'vector-action-undelete'         => 'తిరిగి చేర్చు',
 'vector-action-unprotect'        => 'సంరక్షణను మార్చు',
-'vector-simplesearch-preference' => 'మెరుగైన అన్వేషణ సలహాలని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
+'vector-simplesearch-preference' => 'సరళమైన వెతుకుడు పట్టీని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
 'vector-view-create'             => 'సృష్టించు',
 'vector-view-edit'               => 'సవరించు',
 'vector-view-history'            => 'చరిత్రను చూడండి',
@@ -686,6 +687,7 @@ $2
 # Special:ChangeEmail
 'changeemail'          => 'ఈ-మెయిలు చిరునామా మార్పు',
 'changeemail-header'   => 'ఖాతా ఈ-మెయిల్ చిరునామాని మార్చండి',
+'changeemail-text'     => 'మీ ఈమెయిలు చిరునామాని మార్చుకోడానికి ఈ ఫారాన్ని నింపండి. ఈ మార్పుని నిర్ధారించడానికి మీ సంకేతపదాన్ని ఇవ్వాల్సివస్తుంది.',
 'changeemail-no-info'  => 'ఈ పేజీని నేరుగా చూడటానికి మీరు లోనికి ప్రవేశించివుండాలి.',
 'changeemail-oldemail' => 'ప్రస్తుత ఈ-మెయిలు చిరునామా:',
 'changeemail-newemail' => 'కొత్త ఈ-మెయిలు చిరునామా:',
@@ -1246,7 +1248,7 @@ $1",
 'prefs-help-email-others'       => 'మీ వాడుకరి లేదా చర్చా పేజీలలో ఉండే లంకె ద్వారా ఇతరులు మిమ్మల్ని ఈ-మెయిలు ద్వారా సంప్రదించే వీలుకల్పించవచ్చు.
 ఇతరులు మిమ్మల్ని సంప్రదించినప్పుడు మీ ఈ-మెయిలు చిరునామా బహిర్గతమవదు.',
 'prefs-help-email-required'     => 'ఈ-మెయిలు చిరునామా తప్పనిసరి.',
-'prefs-info'                    => 'ప్రాధమిక సమాచారం',
+'prefs-info'                    => 'ప్రాథమిక సమాచారం',
 'prefs-i18n'                    => 'అంతర్జాతీయీకరణ',
 'prefs-signature'               => 'సంతకం',
 'prefs-dateformat'              => 'తేదీ ఆకృతి',
@@ -2003,7 +2005,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'mywatchlist'          => 'నా వీక్షణ జాబితా',
 'watchlistfor2'        => '$1 కొరకు $2',
 'nowatchlist'          => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
-'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1 ఉండాలి.',
+'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1.',
 'watchnologin'         => 'లాగిన్‌ అయిలేరు',
 'watchnologintext'     => 'మీ వీక్షణ జాబితాను మార్చడానికి మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి.',
 'addwatch'             => 'వీక్షణ జాబితాలో చేర్చు',
@@ -2715,12 +2717,12 @@ $UNWATCHURL కి వెళ్ళండి.
 
 # Info page
 'pageinfo-title'            => '"$1" గురించి సమాచారం',
-'pageinfo-header-edits'     => 'మార్పులు',
+'pageinfo-header-edits'     => 'మార్పుల చరిత్ర',
 'pageinfo-header-watchlist' => 'వీక్షణ జాబితా',
 'pageinfo-header-views'     => 'వీక్షణలు',
 'pageinfo-subjectpage'      => 'పుట',
 'pageinfo-talkpage'         => 'చర్చా పేజీ',
-'pageinfo-watchers'         => 'వీక్షకుల సంఖ్య',
+'pageinfo-watchers'         => 'పేజీ వీక్షకుల సంఖ్య',
 'pageinfo-edits'            => 'మార్పుల సంఖ్య',
 'pageinfo-views'            => 'వీక్షణల సంఖ్య',
 'pageinfo-viewsperedit'     => 'ఒక మార్పుకి వీక్షణలు',

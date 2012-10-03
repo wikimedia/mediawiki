@@ -325,17 +325,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Recordar os meus dados neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
-'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de páginas vigiadas',
-'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de páginas vigiadas',
-'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de páginas vigiadas',
-'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de páginas vigiadas',
+'tog-watchcreations'          => 'Adicionar as páginas e arquivos que eu criar às minhas páginas vigiadas',
+'tog-watchdefault'            => 'Adicionar as páginas e arquivos que eu editar às minhas páginas vigiadas',
+'tog-watchmoves'              => 'Adicionar as páginas e arquivos que eu mover às minhas páginas vigiadas',
+'tog-watchdeletion'           => 'Adicionar as páginas e arquivos que eu eliminar às minhas páginas vigiadas',
 'tog-minordefault'            => 'Marcar todas as edições como secundárias, por padrão',
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desativar o cache de páginas do navegador',
-'tog-enotifwatchlistpages'    => 'Receber e-mail quando uma página da minha lista de páginas vigiadas for alterada',
+'tog-enotifwatchlistpages'    => 'Notificar-me por e-mail quando uma página ou arquivo vigiado for alterado',
 'tog-enotifusertalkpages'     => 'Receber e-mail quando a minha página de discussão for editada',
-'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
+'tog-enotifminoredits'        => 'Notificar-me por e-mail também sobre edições menores de páginas ou arquivos',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários que estão vigiando',
 'tog-oldsig'                  => 'Assinatura existente:',
@@ -960,11 +960,10 @@ Verifique se deseja mesmo criar/editar esta página.',
 'userpage-userdoesnotexist-view'   => 'A conta de usuário "$1" não está registrada.',
 'blocked-notice-logextract'        => 'Este usuário está atualmente bloqueado.
 O registro de bloqueio mais recente é fornecido abaixo, para referência:',
-'clearyourcache'                   => "'''Nota:''' Depois de salvar, você terá de limpar o ''cache'' do seu navegador para ver as alterações.
+'clearyourcache'                   => "Nota:''' Depois de salvar, você terá de limpar o ''cache'' do seu navegador para ver as alterações.
 * '''Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Mac);
 * '''Google Chrome:''' pressione ''Ctrl-Shift-R'' (''Command-Shift-R'' em um Mac)
 * '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';
-* '''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
 * '''Opera:''' limpe o ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo CSS antes de salvar.",
 'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"{{int:showpreview}}\" para testar seu novo JavaScript antes de salvar.",
@@ -1205,9 +1204,10 @@ Você não tem acesso a ele.',
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registros.',
 'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2 às $1: você não pode impedir que itens sejam visualizados por administradores sem também selecionar uma das outras opções de visibilidade.',
-'revdelete-reason-dropdown'   => '*Motivos comuns para eliminação
-** Violação de direitos autorais
-** Informação pessoal inapropriada
+'revdelete-reason-dropdown'   => '*Razões comuns para eliminação
+** Violação de direitos de autor
+** Comentário ou informação pessoal inapropriada
+** Nome de usuário impróprio
 ** Informação potencialmente difamatória',
 'revdelete-otherreason'       => 'Outro motivo/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
@@ -1862,6 +1862,7 @@ A sua segurança não pode ser devidamente verificada.',
 'uploadstash-badtoken' => 'Não foi possível executar essa operação, talvez porque as suas credenciais de edição expiraram. Tente novamente.',
 'uploadstash-errclear' => 'Não foi possível apagar os arquivos.',
 'uploadstash-refresh'  => 'Atualizar a lista de arquivos',
+'invalid-chunk-offset' => 'Deslocamento de fragmento inválido',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acesso negado',
@@ -2423,7 +2424,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-summary-cascade'     => 'p. progressiva',
 'protect-expiring'            => 'expira em $1 (UTC)',
 'protect-expiring-local'      => 'expira $1',
-'protect-expiry-indefinite'   => 'indefinido',
+'protect-expiry-indefinite'   => 'tempo indefinido',
 'protect-cascade'             => '"Proteção progressiva" - proteja quaisquer páginas que estejam incluídas nesta.',
 'protect-cantedit'            => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
 'protect-othertime'           => 'Outra duração:',
@@ -3021,14 +3022,14 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 
 # Info page
 'pageinfo-title'            => 'Informações sobre "$1"',
-'pageinfo-header-edits'     => 'Edições',
+'pageinfo-header-edits'     => 'Histórico de edições',
 'pageinfo-header-watchlist' => 'Páginas vigiadas',
 'pageinfo-header-views'     => 'Visitas',
 'pageinfo-subjectpage'      => 'Página',
 'pageinfo-talkpage'         => 'Página de discussão',
-'pageinfo-watchers'         => 'Número de pessoas vigiando',
+'pageinfo-watchers'         => 'Número de vigilantes da página',
 'pageinfo-edits'            => 'Número de edições',
-'pageinfo-authors'          => 'Número de autores individuais',
+'pageinfo-authors'          => 'Número total de autores distintos',
 'pageinfo-views'            => 'Número de visitas',
 'pageinfo-viewsperedit'     => 'Visitas por edição',
 
@@ -3758,7 +3759,7 @@ As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos 
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
-'specialpages-group-login'       => 'Entrar / registrar-se',
+'specialpages-group-login'       => 'Entrar / Criar conta',
 'specialpages-group-changes'     => 'Mudanças e registros recentes',
 'specialpages-group-media'       => 'Relatórios de mídias e uploads',
 'specialpages-group-users'       => 'Usuários e privilégios',

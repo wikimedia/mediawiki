@@ -757,7 +757,6 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 *'''Firefox / Safari:''' Pwyswch ar ''Shift'' tra'n clicio ''Ail-lwytho/Reload'', neu gwasgwch ''Ctrl-F5'' neu ''Ctrl-R'' (''⌘-R'' ar Mac);
 *'''Google Chrome:'''Pwyswch ar Ctrl-Shift-R'' (''⌘-Shift-R'' ar Mac)
 *'''Internet Explorer:''' Pwyswch ar ''Ctrl'' tra'n clicio ''Adnewyddu/Refresh'', neu gwasgwch ''Ctrl-F5''. 
-*'''Konqueror:''' Cliciwch y botwm ''Ail-lwytho/Reload'', neu gwasgwch ''F5''; 
 *'''Opera:''' gwacewch y celc yn llwyr trwy ''Offer → Dewisiadau / Tools→Preferences'';",
 'usercssyoucanpreview'             => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich CSS newydd cyn ei gadw.",
 'userjsyoucanpreview'              => "'''Tip:''' Defnyddiwch y botwm \"{{int:showpreview}}\" er mwyn profi eich JS newydd cyn ei gadw.",
@@ -998,7 +997,9 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 'revdelete-only-restricted'   => "Cafwyd gwall wrth guddio'r eitem dyddiedig $2, $1: ni allwch guddio eitemau o olwg gweinyddwyr heb ar yr un pryd ddewis un o'r opsiynau eraill i gyfyngu ar y gallu i weld.",
 'revdelete-reason-dropdown'   => '*Rhesymau cyffredin dros ddileu
 ** Torri hawlfraint
-** Gwybodaeth bersonol anaddas',
+** Gwybodaeth bersonol anaddas neu sylw anaddas
+** Enw defnydiwr anaddas
+** Gwybodaeth a allai fod yn enllibus',
 'revdelete-otherreason'       => 'Rheswm arall:',
 'revdelete-reasonotherlist'   => 'Rheswm arall',
 'revdelete-edit-reasonlist'   => 'Golygu rhestr y rhesymau dros ddileu',
@@ -1640,7 +1641,7 @@ Gweler https://www.mediawiki.org/wiki/Manual:Image_Authorization.",
 'img-auth-nofile'           => 'Nid oes ffeil a\'r enw "$1" ar gael.',
 'img-auth-isdir'            => 'Rydych yn ceisio cyrchu cyfeiriadur o\'r enw "$1".
 Dim ond ffeiliau y cewch eu cyrchu.',
-'img-auth-streaming'        => 'Wrthi\'n llifo "$1".',
+'img-auth-streaming'        => 'Wrthi\'n ffrydio "$1".',
 'img-auth-public'           => "Gwaith img_auth.php yw allbynnu ffeiliau o wici preifat.
 Mae'r wici hwn wedi ei osod yn wici gyhoeddus.
 Er mwyn sicrhau'r diogelwch gorau posib, analluogwyd img_auth.php.",
@@ -2141,7 +2142,7 @@ Gallai dileu tudalen, gyda hanes golygu cymaint â hyn iddi, beri dryswch i weit
 # Rollback
 'rollback'          => 'Gwrthdroi golygiadau',
 'rollback_short'    => 'Gwrthdroi',
-'rollbacklink'      => 'gwrthdroi',
+'rollbacklink'      => 'gwrthdröer',
 'rollbackfailed'    => 'Methodd y gwrthdroi',
 'cantrollback'      => "Wedi methu gwrthdroi'r golygiad; y cyfrannwr diwethaf oedd unig awdur y dudalen hon.",
 'alreadyrolled'     => "Nid yw'n bosib dadwneud y golygiad diwethaf i'r dudalen [[:$1|$1]] gan [[User:$2|$2]] ([[User talk:$2|Sgwrs]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
@@ -2787,14 +2788,14 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr wahardd
 
 # Info page
 'pageinfo-title'            => 'Manylion "$1"',
-'pageinfo-header-edits'     => 'Golygiadau',
+'pageinfo-header-edits'     => 'Hanes golygu',
 'pageinfo-header-watchlist' => 'Rhestr wylio',
 'pageinfo-header-views'     => 'Ymweliadau',
 'pageinfo-subjectpage'      => 'Tudalen',
 'pageinfo-talkpage'         => 'Tudalen sgwrs',
-'pageinfo-watchers'         => 'Nifer y gwylwyr',
+'pageinfo-watchers'         => 'Nifer gwylwyr y dudalen',
 'pageinfo-edits'            => 'Nifer y golygiadau',
-'pageinfo-authors'          => 'Nifer yr awduron gwahanol',
+'pageinfo-authors'          => 'Cyfanswm yr awduron gwahanol',
 'pageinfo-views'            => 'Nifer yr ymweliadau',
 'pageinfo-viewsperedit'     => 'Ymweliadau wrth y golygiad',
 

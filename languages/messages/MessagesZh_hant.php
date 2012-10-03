@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文（繁體）‬)
+/** Traditional Chinese (中文（繁體）‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -252,7 +252,7 @@ $messages = array(
 'tog-watchlisthideanons'      => '監視列表中隱藏匿名用戶',
 'tog-watchlisthidepatrolled'  => '監視清單中隱藏已巡查的編輯',
 'tog-nolangconversion'        => '不進行用字轉換',
-'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
+'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱',
 'tog-diffonly'                => '比較版本差異時不顯示頁面內容',
 'tog-showhiddencats'          => '顯示隱藏分類',
 'tog-noconvertlink'           => '不轉換連結標題',
@@ -369,7 +369,7 @@ $messages = array(
 'vector-action-protect'          => '保護',
 'vector-action-undelete'         => '恢復被刪頁面',
 'vector-action-unprotect'        => '更改保護',
-'vector-simplesearch-preference' => '啟用加強搜尋建議（僅限 Vector 外觀）',
+'vector-simplesearch-preference' => '啟用簡化搜尋欄（僅限 Vector 外觀）',
 'vector-view-create'             => '建立',
 'vector-view-edit'               => '編輯',
 'vector-view-history'            => '檢視歷史',
@@ -566,7 +566,7 @@ $1',
 'unexpected'           => '不正常值："$1"="$2"。',
 'formerror'            => '錯誤：無法提交表單',
 'badarticleerror'      => '無法在此頁進行該操作。',
-'cannotdelete'         => '無法刪除頁面或圖片"$1"。
+'cannotdelete'         => '無法刪除頁面或圖片“$1”。
 它可能已經被其他人刪除了。',
 'cannotdelete-title'   => '無法刪除“$1”',
 'badtitle'             => '錯誤的標題',
@@ -584,8 +584,11 @@ $1',
 'protectedpagetext'    => '該頁面已被保護以防止編輯。',
 'viewsourcetext'       => '{{GENDER:|你|妳|你}}可以檢視並複製本頁面的原始碼。',
 'viewyourtext'         => "您可以查看並複製'''您對此頁面作出編輯後'''的源代碼：",
-'protectedinterface'   => '該頁提供了軟體的介面文字，它已被保護以防止隨意的修改。',
-'editinginterface'     => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟件本地化的計劃。",
+'protectedinterface'   => '該頁提供此wiki軟體的介面文字，它已被保護以防止惡意修改。
+如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。',
+'editinginterface'     => "'''警告：'''您正在編輯的頁面是用於提供軟體的介面文字。
+改變此頁將影響其他在此wiki上的用戶介面外觀。
+如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。",
 'sqlhidden'            => '（隱藏SQL查詢）',
 'cascadeprotected'     => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
 $2',
@@ -845,12 +848,11 @@ $2
 'userpage-userdoesnotexist-view'   => '未曾建立用戶名「$1」。',
 'blocked-notice-logextract'        => '這位用戶現正被封鎖。
 下面有最近的封鎖紀錄以供參考：',
-'clearyourcache'                   => "'''注意：在保存以後，您必須繞過瀏覽器緩存才能看到所作出的改變。'''
-* '''火狐（Firefox）／Safari'''：按住“Shift”鍵再點擊“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上為“⌘-R”）
-* '''谷歌瀏覽器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上為“⌘-Shift-R”）
-* '''Internet Explorer'''：按住“Ctrl”鍵再點擊“刷新”，或按下“Ctrl-F5”
-* '''Konqueror'''：點擊“刷新”或按下“F5”
-* '''Opera'''：在“工具→首選項”中清除緩存",
+'clearyourcache'                   => "'''注意：'''在保存以後，您必須繞過瀏覽器緩存才能看到所作出的改變。
+* '''火狐（Firefox）／Safari：'''按住“Shift”鍵再點擊“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上為“⌘-R”）
+* '''谷歌瀏覽器（Google Chrome）：'''按下“Ctrl-Shift-R”（Mac上為“⌘-Shift-R”）
+* '''Internet Explorer：'''按住“Ctrl”鍵再點擊“刷新”，或按下“Ctrl-F5”
+* '''Opera：'''在“工具→首選項”中清除緩存",
 'usercssyoucanpreview'             => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 CSS 。",
 'userjsyoucanpreview'              => "'''提示:''' 在保存前請用「{{int:showpreview}}」按鈕來測試您新的 JavaScript 。",
 'usercsspreview'                   => "'''記住您只是在預覽您的個人 CSS。'''
@@ -1076,7 +1078,9 @@ $1",
 'revdelete-only-restricted'   => '在隱藏$1 $2的項目時發生錯誤：您不能在選擇了另一可見性選項後廢止管理員查看該項目。',
 'revdelete-reason-dropdown'   => '*常用刪除理由
 ** 侵犯版權
-** 不合適的個人資料',
+** 不合適的評論或個人資料
+** 不當的用戶名
+** 潛在誹謗的資料',
 'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-reasonotherlist'   => '其它理由',
 'revdelete-edit-reasonlist'   => '編輯刪除埋由',
@@ -1263,7 +1267,7 @@ $1",
 'timezoneregion-indian'         => '印度洋',
 'timezoneregion-pacific'        => '太平洋',
 'allowemail'                    => '接受來自其他用戶的郵件',
-'prefs-searchoptions'           => '搜尋選項',
+'prefs-searchoptions'           => '搜尋',
 'prefs-namespaces'              => '頁面名稱空間',
 'defaultns'                     => '否則在這些名字空間搜尋：',
 'default'                       => '預設',
@@ -2138,8 +2142,8 @@ Template:消除歧義',
 'changed'                      => '更改',
 'created'                      => '建立了',
 'enotif_subject'               => '{{SITENAME}}頁面“$PAGETITLE”已被$PAGEEDITOR$CHANGEDORCREATED',
-'enotif_lastvisited'           => '檢視您上次訪問後的所有更改請參閱$1。',
-'enotif_lastdiff'              => '檢視更改請參閱$1。',
+'enotif_lastvisited'           => '請參閱 $1 檢視你上次訪問後的所有更改。',
+'enotif_lastdiff'              => '請參閱 $1 檢視該更改。',
 'enotif_anon_editor'           => '匿名用戶$1',
 'enotif_body'                  => '親愛的$WATCHINGUSERNAME：
 
@@ -2877,14 +2881,14 @@ $1被封禁的理由是“$2”',
 
 # Info page
 'pageinfo-title'            => '" $1 "的信息',
-'pageinfo-header-edits'     => '編輯',
+'pageinfo-header-edits'     => '編輯歷史',
 'pageinfo-header-watchlist' => '監視列表',
 'pageinfo-header-views'     => '檢視',
 'pageinfo-subjectpage'      => '頁',
 'pageinfo-talkpage'         => '討論頁',
-'pageinfo-watchers'         => '監視者數目',
+'pageinfo-watchers'         => '頁面監視者數目',
 'pageinfo-edits'            => '編輯次數',
-'pageinfo-authors'          => '作者數',
+'pageinfo-authors'          => '作者總數',
 'pageinfo-views'            => '觀看次數',
 'pageinfo-viewsperedit'     => '每次編輯檢視數',
 

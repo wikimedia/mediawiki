@@ -613,9 +613,9 @@ Listę dostępnych stron specjalnych znajdziesz [[Special:SpecialPages|tutaj]].'
 'dberrortext'          => 'Wystąpił błąd składni w zapytaniu do bazy danych.
 Może to oznaczać błąd w oprogramowaniu.
 Ostatnie, nieudane zapytanie to:
-<blockquote><tt>$1</tt></blockquote>
-wysłane przez funkcję „<tt>$2</tt>”.
-Baza danych zgłosiła błąd „<tt>$3: $4</tt>”.',
+<blockquote><code>$1</code></blockquote>
+wysłane przez funkcję „<code>$2</code>”.
+Baza danych zgłosiła błąd „<samp>$3: $4</samp>”.',
 'dberrortextcl'        => 'Wystąpił błąd składni w zapytaniu do bazy danych.
 Ostatnie, nieudane zapytanie to:
 „$1”
@@ -667,10 +667,11 @@ Zapytanie: $2',
 'protectedpagetext'    => 'Wyłączono możliwość edycji tej strony.',
 'viewsourcetext'       => 'Tekst źródłowy strony można podejrzeć i skopiować.',
 'viewyourtext'         => "Tekst źródłowy '''zmodyfikowanej''' przez Ciebie strony możesz podejrzeć i skopiować",
-'protectedinterface'   => 'Ta strona zawiera tekst interfejsu oprogramowania, dlatego możliwość jej edycji została zablokowana.',
+'protectedinterface'   => 'Ta strona zawiera tekst interfejsu oprogramowania wiki i jest zabezpieczona przed nadużyciami.
+By dodać lub zmienić tłumaczenia wszystkich serwisów wiki, użyj [//translatewiki.net/ translatewiki.net], projektu lokalizacji MediaWiki.',
 'editinginterface'     => "'''Ostrzeżenie:''' Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.
-Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników.
-Rozważ wykonanie tłumaczenia na [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
+Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników tej wiki.
+By dodać lub zmienić tłumaczenia wszystkich wiki, użyj [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowany projekt lokalizacji oprogramowania MediaWiki.",
 'sqlhidden'            => '(ukryto zapytanie SQL)',
 'cascadeprotected'     => 'Ta strona została zabezpieczona przed edycją, ponieważ jest ona zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:
 $2',
@@ -959,7 +960,6 @@ Ostatni wpis rejestru blokad jest pokazany poniżej.',
 * '''Firefox / Safari:''' Przytrzymaj ''Shift'' podczas klikania ''Odśwież bieżącą stronę'', lub naciśnij klawisze ''Ctrl+F5'' lub ''Ctrl+R'' (''⌘-R'' na komputerze Mac)
 * '''Google Chrome:''' Naciśnij ''Ctrl-Shift-R'' (''⌘-Shift-R'' na komputerze Mac)
 * '''Internet Explorer:''' Przytrzymaj ''Ctrl'' jednocześnie klikając ''Odśwież'' lub naciśnij klawisze ''Ctrl+F5''
-* '''Konqueror:''' Kliknij polecenie ''Odśwież'' lub naciśnij klawisz ''F5''
 * '''Opera:''' Wyczyść pamięć podręczną w ''Narzędzia → Preferencje''",
 'usercssyoucanpreview'             => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy arkusz stylów CSS przed jego zapisaniem.",
 'userjsyoucanpreview'              => "'''Podpowiedź:''' Użyj przycisku „Podgląd”, aby przetestować nowy kod JavaScript przed jego zapisaniem.",
@@ -1201,7 +1201,9 @@ Proszę sprawdzić rejestr operacji.',
 'revdelete-only-restricted'   => 'Nie można ukryć elementu z $2, $1 przed administratorami bez określenia jednej z pozostałych opcji ukrywania.',
 'revdelete-reason-dropdown'   => '* Najczęstsze powody usunięcia
 ** Naruszenie praw autorskich
-** Informacja naruszająca prywatność',
+** Niestosowny komentarz lub informacja naruszająca prywatność
+** Niestosowna nazwa użytkownika
+** Potencjalnie oszczercza informacja',
 'revdelete-otherreason'       => 'Inny lub dodatkowy powód:',
 'revdelete-reasonotherlist'   => 'Inny powód',
 'revdelete-edit-reasonlist'   => 'Edycja listy powodów usunięcia pliku',
@@ -1393,7 +1395,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'timezoneregion-indian'         => 'Ocean Indyjski',
 'timezoneregion-pacific'        => 'Ocean Spokojny',
 'allowemail'                    => 'Zgadzam się, by inni użytkownicy mogli przesyłać do mnie e‐maile',
-'prefs-searchoptions'           => 'Opcje wyszukiwania',
+'prefs-searchoptions'           => 'Szukaj',
 'prefs-namespaces'              => 'Przestrzenie nazw',
 'defaultns'                     => 'Albo przeszukuj przestrzenie nazw:',
 'default'                       => 'domyślnie',
@@ -1409,7 +1411,7 @@ Tej operacji nie można później cofnąć.',
 'username'                      => 'Nazwa użytkownika',
 'uid'                           => 'ID użytkownika',
 'prefs-memberingroups'          => 'Należy do {{PLURAL:$1|grupy|grup}}',
-'prefs-registration'            => 'Moment rejestracji',
+'prefs-registration'            => 'Data rejestracji',
 'yourrealname'                  => 'Imię i nazwisko',
 'yourlanguage'                  => 'Język interfejsu',
 'yourvariant'                   => 'Wariant języka treści',
@@ -1637,9 +1639,9 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rc-old-title'                      => 'oryginalnie utworzono jako "$1"',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Zmiany w dolinkowanych',
-'recentchangeslinked-feed'     => 'Zmiany w dolinkowanych',
-'recentchangeslinked-toolbox'  => 'Zmiany w dolinkowanych',
+'recentchangeslinked'          => 'Zmiany w linkowanych',
+'recentchangeslinked-feed'     => 'Zmiany w linkowanych',
+'recentchangeslinked-toolbox'  => 'Zmiany w linkowanych',
 'recentchangeslinked-title'    => 'Zmiany w linkowanych z „$1”',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na (zależnie od ustawień) linkowanych lub linkujących stronach w wybranym okresie.',
 'recentchangeslinked-summary'  => "Poniżej znajduje się lista ostatnich zmian na stronach linkowanych z podanej strony (lub we wszystkich stronach należących do podanej kategorii).
@@ -3034,14 +3036,14 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'pageinfo-title'            => 'Informacje o „$1“',
-'pageinfo-header-edits'     => 'Edycje',
+'pageinfo-header-edits'     => 'Historia edycji',
 'pageinfo-header-watchlist' => 'Obserwowane',
 'pageinfo-header-views'     => 'Odsłon',
 'pageinfo-subjectpage'      => 'Strona',
 'pageinfo-talkpage'         => 'Strona dyskusji',
-'pageinfo-watchers'         => 'Obserwujących',
+'pageinfo-watchers'         => 'Liczba obserwujących',
 'pageinfo-edits'            => 'Edycji',
-'pageinfo-authors'          => 'Autorów',
+'pageinfo-authors'          => 'Całkowita liczba autorów',
 'pageinfo-views'            => 'Odsłon',
 'pageinfo-viewsperedit'     => 'Odsłon na edycję',
 

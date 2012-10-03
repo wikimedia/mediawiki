@@ -1,5 +1,5 @@
 <?php
-/** ‪Nederlands (informeel)‬ (‪Nederlands (informeel)‬)
+/** Nederlands (informeel)‎ (Nederlands (informeel)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -178,12 +178,11 @@ Je kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
 Controleer of je deze pagina wel wilt aanmaken/bewerken.',
-'clearyourcache'                   => "'''Let op! Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.'''
-
-'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMac);
-'''Konqueror: '''klik ''Reload'' of typ ''F5;''
-'''Opera:''' leeg je cache in ''Extra → Voorkeuren;''
-'''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Let op!''' Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.
+* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-Shift-R'' op een Mac)
+* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op een Mac)
+* '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
+* '''Opera:''' leeg je cache in ''Extra → Voorkeuren''",
 'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om je nieuwe CSS te testen alvorens op te slaan.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om je nieuwe JavaScript te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van je persoonlijke CSS.
@@ -334,13 +333,13 @@ Pagina's die op [[Special:Watchlist|je volglijst]] staan worden '''vet''' weerge
 'emptyfile'                   => 'Het bestand dat je hebt geüpload lijkt leeg te zijn.
 Dit zou kunnen komen door een typefout in de bestandsnaam.
 Ga na of je dit bestand werkelijk bedoelde te uploaden.',
-'fileexists'                  => "Er bestaat al een bestand met deze naam.
-Controleer '''<tt>[[:$1]]</tt>''' als je niet zeker weet of je het huidige bestand wilt overschrijven.
-[[$1|thumb]]",
-'filepageexists'              => "De beschrijvingspagina voor dit bestand bestaat al op '''<tt>[[:$1]]</tt>''', maar er bestaat geen bestand met deze naam.
+'fileexists'                  => 'Er bestaat al een bestand met deze naam.
+Controleer <strong>[[:$1]]</strong> als je niet zeker weet of je het huidige bestand wilt overschrijven.
+[[$1|thumb]]',
+'filepageexists'              => 'De beschrijvingspagina voor dit bestand bestaat al op <strong>[[:$1]]</strong>, maar er bestaat geen bestand met deze naam.
 De samenvatting die je hebt opgegeven zal niet op de beschrijvingspagina verschijnen.
-Bewerk de pagina handmatig om je beschrijving daar weer te geven. [[$1|miniatuur]]",
-'file-thumbnail-no'           => "De bestandsnaam begint met '''<tt>$1</tt>'''.
+Bewerk de pagina handmatig om je beschrijving daar weer te geven. [[$1|miniatuur]]',
+'file-thumbnail-no'           => "De bestandsnaam begint met <strong>$1</strong>.
 Het lijkt een verkleinde afbeelding te zijn ''(miniatuurafbeelding)''.
 Als je deze afbeelding in volledige resolutie hebt, upload die afbeelding dan.
 Wijzig anders de bestandsnaam.",

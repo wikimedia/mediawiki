@@ -505,7 +505,7 @@ $messages = array(
 'vector-action-protect'          => 'Beveiligen',
 'vector-action-undelete'         => 'Terugplaatsen',
 'vector-action-unprotect'        => 'Beveiliging wijzigen',
-'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
+'vector-simplesearch-preference' => 'Vereenvoudigd zoeken inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create'             => 'Aanmaken',
 'vector-view-edit'               => 'Bewerken',
 'vector-view-history'            => 'Geschiedenis weergeven',
@@ -725,10 +725,11 @@ Probeer het over een aantal minuten opnieuw.',
 Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'viewyourtext'         => "U kunt '''uw bewerkingen''' aan de brontekst van deze pagina bekijken en kopiëren:",
-'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
+'protectedinterface'   => "Deze pagina bevat tekst voor berichten van de software op deze wiki en is beveiligd om misbruik te voorkomen.
+Om vertalingen voor alle wiki's toe te voegen of te wijzigen, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
 'editinginterface'     => "'''Waarschuwing:''' u bewerkt een pagina die interfacetekst voor de software bevat.
-Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
-Overweeg voor vertalingen om [//translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertaalproject voor MediaWiki.",
+Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen op deze wiki.
+Om vertalingen toe te voegen of te wijzigen voor alle wiki's, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
 'sqlhidden'            => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -1278,7 +1279,8 @@ Controleer de logboeken.',
 'revdelete-only-restricted'   => 'Er is een fout opgetreden bij het verbergen van het item van $1, $2: u kunt geen items onderdrukken uit het zicht van beheerders zonder ook een van de andere zichtbaarheidsopties te selecteren.',
 'revdelete-reason-dropdown'   => '* Veel voorkomende redenen voor verwijderen
 ** Auteursrechtenschending
-** Onbetamelijke persoonlijke gegevens
+** Onbetamelijke reactie of persoonlijke gegevens
+** Onbetamelijke gebruikersnaam
 ** Potentieel lasterlijke gegevens',
 'revdelete-otherreason'       => 'Andere reden:',
 'revdelete-reasonotherlist'   => 'Andere reden',
@@ -1474,7 +1476,7 @@ Hier volgt een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'timezoneregion-indian'         => 'Indische Oceaan',
 'timezoneregion-pacific'        => 'Stille Oceaan',
 'allowemail'                    => 'E-mail van andere gebruikers toestaan',
-'prefs-searchoptions'           => 'Zoekinstellingen',
+'prefs-searchoptions'           => 'Zoeken',
 'prefs-namespaces'              => 'Naamruimten',
 'defaultns'                     => 'Anders in de volgende naamruimten zoeken:',
 'default'                       => 'standaard',
@@ -1725,7 +1727,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchangeslinked-toolbox'  => 'Verwante wijzigingen',
 'recentchangeslinked-title'    => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn in de opgegeven periode geen bewerkingen geweest op de pagina's waarheen vanaf hier verwezen wordt.",
-'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of vanaf pagina's in een aangegeven pagina een categorie.
+'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of op pagina's in een aangegeven categorie.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
 'recentchangeslinked-page'     => 'Paginanaam:',
 'recentchangeslinked-to'       => "Wijzigingen aan pagina's met verwijzingen naar deze pagina bekijken",
@@ -2735,7 +2737,7 @@ Zie de [[Special:BlockList|blokkadelijst]] voor recente blokkades.',
 'ipblocklist-empty'               => 'De blokkeerlijst is leeg.',
 'ipblocklist-no-results'          => 'Dit IP-adres of deze gebruikersnaam is niet geblokkeerd.',
 'blocklink'                       => 'blokkeren',
-'unblocklink'                     => 'deblokkeren',
+'unblocklink'                     => 'blokkade opheffen',
 'change-blocklink'                => 'blokkade wijzigen',
 'contribslink'                    => 'bijdragen',
 'emaillink'                       => 'e-mail verzenden',
@@ -3153,14 +3155,14 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 
 # Info page
 'pageinfo-title'            => 'Informatie over "$1"',
-'pageinfo-header-edits'     => 'Bewerkingen',
+'pageinfo-header-edits'     => 'Bewerkingsgeschiedenis',
 'pageinfo-header-watchlist' => 'Volglijst',
 'pageinfo-header-views'     => 'Weergaven',
 'pageinfo-subjectpage'      => 'Pagina',
 'pageinfo-talkpage'         => 'Overlegpagina',
-'pageinfo-watchers'         => 'Aantal volgers',
+'pageinfo-watchers'         => 'Aantal paginavolgers',
 'pageinfo-edits'            => 'Aantal bewerkingen',
-'pageinfo-authors'          => 'Aantal verschillende auteurs',
+'pageinfo-authors'          => 'Totaal aantal verschillende auteurs',
 'pageinfo-views'            => 'Aantal weergaven',
 'pageinfo-viewsperedit'     => 'Weergaven per bewerking',
 

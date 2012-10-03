@@ -598,9 +598,9 @@ Zoznam platných špeciálnych stránok nájdete na [[Special:SpecialPages|{{int
 # General errors
 'error'                => 'Chyba',
 'databaseerror'        => 'Chyba v databáze',
-'dberrortext'          => 'Nastala syntaktická chyba v príkaze na prehľadávanie databázy.
-To môže značiť chybu v softvéri.
-Posledná požiadavka na databázu bola:
+'dberrortext'          => 'V databázovom dopyte sa vyskytla syntaktická chyba.
+Príčinou môže byť chyba v softvéri.
+Posledný dopyt bol:
 <blockquote><tt>$1</tt></blockquote>
 z funkcie „<tt>$2</tt>“.
 Databáza vrátila chybu „<tt>$3: $4</tt>“.',
@@ -943,10 +943,9 @@ alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
 'clearyourcache'                   => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.
-* '''Mozilla / Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
+* '''Mozilla Firefox / Safari:''' Držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''⌘-R'' na Mac)
 * '''Google Chrome:''' Stlačte ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Mac)
 * '''Internet Explorer:''' Držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''
-* '''Konqueror:''' Kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''
 * '''Opera:''' Vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
@@ -1186,9 +1185,11 @@ Nemáte k nej prístup.',
 'revdelete-concurrent-change' => 'Chyba pri zmene položky s dátumom $2, $1: zdá sa, že kým ste ju menili vykonal zmenu niekto iný.
 Pozrite sa prosím do záznamov.',
 'revdelete-only-restricted'   => 'Chyba pri skrývaní položky s dátumom $2, $1: nemôžete skryť položku pred správcami bez toho, aby ste vybrali aj jednu z ďalších možností viditeľnosti.',
-'revdelete-reason-dropdown'   => '*Bežné dôvody zmazania
+'revdelete-reason-dropdown'   => '*Obvyklé dôvody zmazania
 ** Porušenie autorských práv
-** Nevhodné osobné informácie',
+** Nevhodné komentáre alebo osobné informácie
+** Nevhodné meno používateľa
+** Potenciálne hanlivé alebo ohováračské údaje',
 'revdelete-otherreason'       => 'Ďalšie dôvody:',
 'revdelete-reasonotherlist'   => 'Iný dôvod',
 'revdelete-edit-reasonlist'   => 'Upraviť dôvody zmazania',
@@ -3012,14 +3013,14 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 
 # Info page
 'pageinfo-title'            => 'Informácie o „$1“',
-'pageinfo-header-edits'     => 'Úpravy',
+'pageinfo-header-edits'     => 'História úprav',
 'pageinfo-header-watchlist' => 'Sledované stránky',
 'pageinfo-header-views'     => 'Zobrazení',
 'pageinfo-subjectpage'      => 'Stránka',
 'pageinfo-talkpage'         => 'Diskusná stránka',
 'pageinfo-watchers'         => 'Počet sledovateľov',
 'pageinfo-edits'            => 'Počet úprav',
-'pageinfo-authors'          => 'Počet rôznych autorov',
+'pageinfo-authors'          => 'Celkový počet autorov',
 'pageinfo-views'            => 'Počet zobrazení',
 'pageinfo-viewsperedit'     => 'Zobrazení na úpravu',
 

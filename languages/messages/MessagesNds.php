@@ -829,7 +829,7 @@ De jüngste Indrag in dat Sperr-Logbook wart ünnen wiest:',
 'userinvalidcssjstitle'            => "'''Wohrschau:''' Dat gifft keen Skin „$1“. Denk dor an, dat .css- un .js-Sieden  för Brukers mit en lütten Bookstaven anfangen mööt, to’n Bispeel ''{{ns:user}}:Brukernaam/vector.css'' un nich ''{{ns:user}}:Brukernaam/Vector.css''.",
 'updated'                          => '(Ännert)',
 'note'                             => "'''Wohrschau:'''",
-'previewnote'                      => "'''Dit is blots en Vörschau, de Siet is noch nich spiekert!'''",
+'previewnote'                      => "Dit is bloots en Vörschau, de Sied is noch nich spiekert!'''",
 'previewconflict'                  => 'Disse Vörschau wiest den Inholt vun dat Textfeld baven; so warrt de Siet utseihn, wenn du nu spiekerst.',
 'session_fail_preview'             => "'''Deit uns leed! Wi kunnen dien Ännern nich spiekern. Diene Sitzungsdaten weren weg.
 Versöök dat noch wedder. Wenn dat noch jümmer nich geiht, denn versöök di [[Special:UserLogout|aftomellen]] un denn wedder antomellen.'''",
@@ -929,9 +929,7 @@ De Grund weer: ''$2''",
 'currentrev'             => 'Aktuelle Version',
 'currentrev-asof'        => 'Aktuelle Version vun’n $1',
 'revisionasof'           => 'Version vun $1',
-'revision-info'          => '<div id="viewingold-warning" style="background: #ffbdbd; border: 1px solid #BB7979; font-weight: bold; padding: .5em 1em;">
-Dit is en ole Version vun disse Siet, so as $2 de $1 ännert hett. De Version kann temlich stark vun de <a href="{{FULLURL:{{FULLPAGENAME}}}}" title="{{FULLPAGENAME}}">aktuelle Version</a> afwieken.
-</div>',
+'revision-info'          => "Verschoon vun'n $4, Klock $5 vun $2",
 'previousrevision'       => 'Nächstöllere Version→',
 'nextrevision'           => 'Ne’ere Version →',
 'currentrevisionlink'    => 'aktuelle Version',
@@ -1057,7 +1055,7 @@ Seh to, dat de Versionsgeschicht vun’n Artikel vun de Historie her bi de Reeg 
 'mergelogpagetext'   => 'Dit is dat Logbook över de tohoopföhrten Versionshistorien.',
 
 # Diffs
-'history-title'            => 'Versionshistorie vun „$1“',
+'history-title'            => 'Verschoonsgeschicht vun „$1“',
 'difference'               => '(Ünnerscheed twischen de Versionen)',
 'lineno'                   => 'Reeg $1:',
 'compareselectedversions'  => 'Ünnerscheed twischen den utwählten Versionen wiesen',
@@ -1568,7 +1566,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'filehist-filesize'         => 'Dateigrött',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Datei fehlt',
-'imagelinks'                => 'Dateiverwiesen',
+'imagelinks'                => 'Dateibruuk',
 'linkstoimage'              => 'Disse {{PLURAL:$1|Sied|Sieden}} bruukt dit Bild:',
 'linkstoimage-more'         => 'Mehr as {{PLURAL:$1|ene Sied|$1 Sieden}} wiest na disse Datei.
 Disse List wiest blot {{PLURAL:$1|den eersten Lenk|de eersten $1 Lenken}} op disse Datei.
@@ -1729,7 +1727,7 @@ to den vun den tweeten Wiederleiden wiest warrt, un to den de eerste Wiederleide
 'listusers-editsonly'     => 'Blot Brukers mit Bidrääg wiesen',
 'listusers-creationsort'  => 'Na Opstelldatum sorteren',
 'usereditcount'           => '$1 {{PLURAL:$1|Ännern|Ännern}}',
-'usercreated'             => 'Opstellt an’n $1 üm $2',
+'usercreated'             => "{{GENDER:$3|Opstellt}} an'n $1 üm Klock $2",
 'newpages'                => 'Ne’e Sieden',
 'newpages-username'       => 'Brukernaam:',
 'ancientpages'            => 'Öllste Sieden',

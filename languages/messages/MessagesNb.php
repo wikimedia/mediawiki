@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Bokmål (‪norsk (bokmål)‬)
+/** Norwegian Bokmål (norsk (bokmål)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -22,6 +22,7 @@
  * @author H92
  * @author Haakon K
  * @author Harald Khan
+ * @author Jsoby
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
@@ -682,9 +683,9 @@ Spørring: $2',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext'       => 'Du kan se og kopiere kilden til denne siden:',
 'viewyourtext'         => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
-'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
-'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren.
-Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut.
+'protectedinterface'   => 'Denne siden fremskaffer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
+'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes for å fremskaffe grensesnittekst for programvaren.
+Endringer av denne siden vil påvirke hvordan grensesnittet vil se ut for andre brukere.
 For oversettelser er det best om du bruker [//translatewiki.net/wiki/Main_Page?setlang=nb translatewiki.net], prosjektet for oversettelse av MediaWiki.",
 'sqlhidden'            => '(SQL-spørring skjult)',
 'cascadeprotected'     => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
@@ -972,7 +973,6 @@ Siste blokkeringsloggelement kan sees nedenfor.',
 * '''Firefox / Safari:''' Hold ''Shift'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på en Mac)
 * '''Google Chrome:''' Trykk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac)
 * '''Internet Explorer:''' Hold ''Ctrl'' mens du klikker på ''Oppdater'' eller trykk ''Ctrl-F5''
-* '''Konqueror:''' Klikk ''Oppdater'' eller trykk ''F5''
 * '''Opera:''' Tøm hurtiglageret i ''Verktøy → Innstillinger''",
 'usercssyoucanpreview'             => "'''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste din nye CSS før du lagrer.",
 'userjsyoucanpreview'              => "'''Tips:''' Bruk «{{int:showpreview}}»-knappen for å teste ditt nye JS før du lagrer.",
@@ -1402,7 +1402,7 @@ Her er et tilfeldig tall du kan bruke: $1',
 'timezoneregion-indian'         => 'Indiahavet',
 'timezoneregion-pacific'        => 'Stillehavet',
 'allowemail'                    => 'Tillat andre å sende meg e-post',
-'prefs-searchoptions'           => 'Søkealternativ',
+'prefs-searchoptions'           => 'Søk',
 'prefs-namespaces'              => 'Navnerom',
 'defaultns'                     => 'Søk ellers i disse navnerommene:',
 'default'                       => 'standard',
@@ -1670,12 +1670,12 @@ Sider på [[Special:Watchlist|overvåkningslisten din]] er i '''fet skrift'''.",
 
 Slette- og flytteloggen for denne siden gjengis her:",
 'uploadtext'                  => "Bruk skjemaet nedenfor for å laste opp filer.
-For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]].
+For å se eller søke i eksisterende filer, gå til [[Special:FileList|listen over filer]]. Opplastinger lagres også i [[Special:Log/upload|opplastingsloggen]] og slettinger i [[Special:Log/delete|sletteloggen]].
 
 For å inkludere en fil på en side, bruk en slik lenke:
-*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.jpg<nowiki>]]</nowiki></code>''' for å bruke bildet i opprinnelig form
-*'''<code><nowiki>[[</nowiki>{{ns:file}}:Filnavn.png|200px|thumb|left|Alternativ tekst<nowiki>]]</nowiki></code>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
-*'''<code><nowiki>[[</nowiki>{{ns:media}}:Filnavn.ogg<nowiki>]]</nowiki></code>''' for å lenke direkte til filen uten å vise den",
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filnavn.jpg]]</nowiki></code>''' for å bruke bildet i opprinnelig form
+*'''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Filnavn.png|200px|thumb|left|Alternativ tekst]]</nowiki></code>''' for å bruke bildet med en bredde på 200&nbsp;piksler, venstrestilt og med «Alternativ tekst» som beskrivelse
+*'''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Filnavn.ogg]]</nowiki></code>''' for å lenke direkte til filen uten å vise den",
 'upload-permitted'            => 'Tillatte filtyper: $1.',
 'upload-preferred'            => 'Foretrukne filtyper: $1',
 'upload-prohibited'           => 'Forbudte filtyper: $1.',
@@ -2025,7 +2025,7 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'disambiguationspage'  => 'Template:Peker',
 'disambiguations-text' => "Følgende sider lenker til en '''pekerside'''.
 De burde i stedet lenke til en passende innholdsside.<br />
-En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]]",
+En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Doble omdirigeringer',
 'doubleredirectstext'               => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
@@ -2220,7 +2220,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'emailpagetext'        => 'Du kan bruke skjemaet nedenfor for å sende en e-post til denne brukeren.
 Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror'      => 'E-postobjekt returnerte feilen:',
-'defemailsubject'      => '{{SITENAME}}-type e-post fra bruker "$1"',
+'defemailsubject'      => 'E-post fra {{SITENAME}}-brukeren «$1»',
 'usermaildisabled'     => 'Brukerepost deaktivert',
 'usermaildisabledtext' => 'Du kan ikke sende epost til andre brukere på denne wikien',
 'noemailtitle'         => 'Ingen e-postadresse',
@@ -3012,14 +3012,14 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 
 # Info page
 'pageinfo-title'            => 'Informasjon om «$1»',
-'pageinfo-header-edits'     => 'Redigeringer',
+'pageinfo-header-edits'     => 'Redigeringshistorikk',
 'pageinfo-header-watchlist' => 'Overvåkningsliste',
 'pageinfo-header-views'     => 'Visninger',
 'pageinfo-subjectpage'      => 'Side',
 'pageinfo-talkpage'         => 'Diskusjonsside',
-'pageinfo-watchers'         => 'Antall overvåkere',
+'pageinfo-watchers'         => 'Antall overvåkere av siden',
 'pageinfo-edits'            => 'Antall redigeringer',
-'pageinfo-authors'          => 'Antall forskjellige forfattere',
+'pageinfo-authors'          => 'Totalt antall forskjellige forfattere',
 'pageinfo-views'            => 'Antall visninger',
 'pageinfo-viewsperedit'     => 'Visninger per redigering',
 
@@ -3073,7 +3073,7 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'file-info-size'         => '$1 × $2 piksler, filstørrelse: $3, MIME-type: $4',
 'file-info-size-pages'   => '$1 × $2 piksler, filstørrelse: $3, MIME-type: $4, $5 {{PLURAL:$5|side|sider}}',
 'file-nohires'           => 'Ingen høyere oppløsning tilgjengelig.',
-'svg-long-desc'          => 'SVG-fil, standardoppløsning $1 × $2 piksler, filstørrelse: $3',
+'svg-long-desc'          => 'SVG-fil, standardstørrelse $1 × $2 piksler, filstørrelse: $3',
 'show-big-image'         => 'Full oppløsning',
 'show-big-image-preview' => 'Størrelse på denne forhåndsvisningen: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Annen oppløsning|Andre oppløsninger}}: $1.',
@@ -3766,7 +3766,7 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 * <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk (kan være foreldede).</span>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
-'specialpages-group-login'       => 'Innlogging / registrering',
+'specialpages-group-login'       => 'Innlogging / opprette bruker',
 'specialpages-group-changes'     => 'Siste endringer og logger',
 'specialpages-group-media'       => 'Medierapporter og opplastinger',
 'specialpages-group-users'       => 'Brukere og rettigheter',

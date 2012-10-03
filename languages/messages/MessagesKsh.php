@@ -371,7 +371,7 @@ $messages = array(
 'vector-action-protect'          => 'Schöze!',
 'vector-action-undelete'         => 'Zerökholle!',
 'vector-action-unprotect'        => 'Schoz ändere!',
-'vector-simplesearch-preference' => 'Donn de verbäßerte Vörschlääsch beim Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
+'vector-simplesearch-preference' => 'Donn et eijfachere Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
 'vector-view-create'             => 'Neu Schriive!',
 'vector-view-edit'               => 'Ändere!',
 'vector-view-history'            => 'Versione zeije!',
@@ -530,12 +530,12 @@ Et künnt sesch och öm ene Fäähler en dä Sofware fum Wiki handelle.',
 # General errors
 'error'                => 'Fähler',
 'databaseerror'        => 'Fähler en de Daatebank',
-'dberrortext'          => 'Enne Fääler es opjefalle en dä Süntax vun ennem Befääl för de Datebank.
-Dat künnd_enne Fääler em Wikki-Projamm sin.
-De läzde Date_Bank_Befääl eß jewääse:
+'dberrortext'          => 'Enne Fähler es opjefalle en dä Süntax vun ennem Befähl för de Daatebangk.
+Dat künnd_enne Fähler em Wikki-Projamm sin.
+De läzde Befähl för de Daatebangk eß jewääse:
 <blockquote><code>$1</code></blockquote>
-uß dä Funkzjohn: „<code>$2</code>“.
-De Datebank mälldt dä Fääler: „<code>$3: $4</code>“.',
+uß dä Fongxjohn: „<code>$2</code>“.
+De Daatebangk mälldt dä Fähler: „<code>$3: $4</code>“.',
 'dberrortextcl'        => 'En dä Syntax vun enem Befähl för de Daatebank es
 ene Fähler es opjefalle.
 Dä letzte Befähl för de Daatebank es jewäse:
@@ -1221,7 +1221,8 @@ $1",
 Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, der oohne noch en Zoot Verschteijsche dobei ußzewähle.',
 'revdelete-reason-dropdown'   => '*Jewöhnlijje Jrönd för et Fottschmiiße
 ** Vershtüß jääje et Uerhävverrääsch.
-** Esu en päsöönlesche Enfomazjuhne sin nit aanjebraach, udder esujaa jääje der Dateschoz.',
+** Esu en päsöönlesche Enfomazjuhne sin nit aanjebraach, udder esujaa jääje der Dateschoz.
+** Künnd en Verleundong sin',
 'revdelete-otherreason'       => 'Ene andere ov zohsäzlejje Jrund:',
 'revdelete-reasonotherlist'   => 'Ene andere Jrund',
 'revdelete-edit-reasonlist'   => 'De Jrönde för et Fottschmieße beärbeide',
@@ -1289,7 +1290,7 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'nextn-title'                      => '{{PLURAL:$1|Et näähßte|De nähßte $1|Kütt nix mieh}}',
 'shown-title'                      => 'Zeisch {{PLURAL:$1|ein|$1|nix}} pro Sigg',
 'viewprevnext'                     => 'Bläddere: ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-legend'                => 'Enstellunge för et Söhke',
+'searchmenu-legend'                => 'Enschtällonge för et Söhke',
 'searchmenu-exists'                => "*Sigg '''[[$1]]'''",
 'searchmenu-new'                   => "'''Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje'''",
 'searchhelp-url'                   => 'Help:Hölp',
@@ -1403,7 +1404,7 @@ dat dänne ihr Daate topaktuell sin,
 Wä dä Schlößel weiß, kann ding Oppaßleß lesse. Donn alsu ene seschere un jeheime Wäät doför nämme.
 Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <code>$1</code>',
 'savedprefs'                    => 'Ding Enstellunge sin jetz jesechert.',
-'timezonelegend'                => 'Ziggzon:',
+'timezonelegend'                => 'Ziggzohn:',
 'localtime'                     => 'De Zigg op Dingem Kompjuter:',
 'timezoneuseserverdefault'      => 'Nemm däm Server sing Zigg ($1)',
 'timezoneuseoffset'             => 'Söns jet, jiff dä Ungerscheid aan',
@@ -1421,7 +1422,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'timezoneregion-indian'         => 'De indesche Ozejan',
 'timezoneregion-pacific'        => 'De shtelle Ozejan',
 'allowemail'                    => 'E-Mail vun andere Metmaacher zolooße',
-'prefs-searchoptions'           => 'Enstellunge för et Sööke',
+'prefs-searchoptions'           => 'Enschtällonge för et Söhke',
 'prefs-namespaces'              => 'Appachtemangs',
 'defaultns'                     => 'Söns don en hee dä Appachtemengs söhke:',
 'default'                       => 'Standaad',
@@ -1628,7 +1629,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-sendemail'            => '<i lang="en">e-mails</i> ze verschecke',
 
 # Recent changes
-'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
+'nchanges'                          => '{{PLURAL:$1|Ein Änderong|$1 Änderonge|Kein Änderong}}',
 'recentchanges'                     => 'Neuste Änderunge',
 'recentchanges-legend'              => 'Enstellunge',
 'recentchangestext'                 => 'Op dä Sigg hee sin de neuste Änderunge am Wiki opjeliss.',
@@ -1875,7 +1876,7 @@ Als Jrond es aanjejovve: „$2“',
 'lockmanager-fail-acquirelock' => 'Mer kunnte kein Schpärr för „$1“ krijje.',
 'lockmanager-fail-openlock'    => 'Mer kunnte di Schpärdatei för „$1“ nit opmaache.',
 'lockmanager-fail-releaselock' => 'Mer kunnte di Schpärr för „$1“ nit ophävve.',
-'lockmanager-fail-db-bucket'   => 'Mer kunnet nit met jenooch  <i lang="en">lock databases in bucket$1</i> en Verbendong opnämme.',
+'lockmanager-fail-db-bucket'   => 'Mer kunnte nit met jenooch Datebangke för Schpärre pä Sammeloproof „$1“ en Verbendong opnämme.',
 'lockmanager-fail-db-release'  => 'Mer kunnte di Schpärre för de Daatebangk „$1“ nit ophävve.',
 'lockmanager-fail-svr-release' => 'Mer kunnte di Schpärre för dä ẞööver „$1“ nit ophävve.',
 
@@ -2079,10 +2080,10 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 
 'disambiguations'      => 'Sigge met Lengks dren op „(Wat ėß dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
-'disambiguations-text' => 'En de Sigge hee noh sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
+'disambiguations-text' => 'En dä Sigge onge sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
 Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 
-Ene Atikel jelld als en „(Watt ėßß datt?)“-Sigg, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren es. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt.',
+Ene Atikel weed als en „(Watt ėßß datt?)“-Sigg jezallt, wann dä en Schablohn opröhf, op di ene Lenk en dä Sigg [[MediaWiki:Disambiguationspage]] dren es.',
 
 'doubleredirects'                   => 'Ömleitunge op Ömleitunge',
 'doubleredirectstext'               => 'Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de
@@ -2324,7 +2325,7 @@ Alles klor?',
 'email-legend'         => 'Scheck en<i lang="en"> e-mail</i> aan ene andere Metmaacher fum Wiki',
 'emailfrom'            => 'Vun:',
 'emailto'              => 'Aan:',
-'emailsubject'         => 'Üvverschreff:',
+'emailsubject'         => 'Övverschreff:',
 'emailmessage'         => 'Dä Tex fun Dinge Nohreesch:',
 'emailsend'            => 'Avschecke',
 'emailccme'            => 'Scheck mer en Kopie vun dä E-Mail.',
@@ -3146,9 +3147,9 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-header-views'     => 'De Affroofe',
 'pageinfo-subjectpage'      => 'För de Sigg selver',
 'pageinfo-talkpage'         => 'För de Klaafsigg',
-'pageinfo-watchers'         => 'De Aanzahl Oppaßer',
+'pageinfo-watchers'         => 'De Aanzahl Oppaßer för di Sigg',
 'pageinfo-edits'            => 'De Aanzahl Änderonge',
-'pageinfo-authors'          => 'De Aanzahl ongerscheidlije Schriever',
+'pageinfo-authors'          => 'De Aanzahl ongerscheidleje Schriever',
 'pageinfo-views'            => 'De Aanzahl Affroofe',
 'pageinfo-viewsperedit'     => 'De Aanzahl Affroofe pro Änderong',
 
@@ -3203,7 +3204,7 @@ $1',
 'file-info-size'         => '{{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, de Datei hät $3, dä MIME-Typ es: <code>$4</code>',
 'file-info-size-pages'   => '{{PLURAL:$1|Ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|Ei Pixel|$2 Pixelle}} huh, Ömfang:&nbsp;$3, <i lang="en">MIME</i> Zoot: $4, met {{PLURAL:$5|ein Sigg|$5 Sigge|kein Sigge}}',
 'file-nohires'           => 'Mer han kein hüütere Oplösung vun däm Beld.',
-'svg-long-desc'          => 'SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle}} huh, dä Dateiömfang es $3',
+'svg-long-desc'          => 'SVG-Datei, de Basis es {{PLURAL:$1|ei Pixel|$1 Pixelle|kei Pixel}} breed × {{PLURAL:$2|ei Pixel|$2 Pixelle|kei Pixel}} huh, dä Dateiömfang es $3',
 'show-big-image'         => 'Jröößer Oplöösung',
 'show-big-image-preview' => 'Heh di Vör_Aanseesch es $1 jruuß.',
 'show-big-image-other'   => '{{PLURAL:$2|Ander Oplühsung|Ander Oplühsunge|kein ander Oplühsunge}}: $1.',
@@ -3849,9 +3850,9 @@ Don de nomaale Vör-Ansich nemme.',
 'watchlistedit-noitems'        => 'Ding Oppassliss es leddisch.',
 'watchlistedit-normal-title'   => 'Oppassliss beärbeijde',
 'watchlistedit-normal-legend'  => 'Titell uß de Oppassliss eruß lohße',
-'watchlistedit-normal-explain' => 'Dat sin de Endräch in Dinge Oppassliss.
-Om einzel Titelle loss ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
-De kanns Ding Oppassliss och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
+'watchlistedit-normal-explain' => 'Dat sin de Endräsch en Dinge Oppaßleß.
+Öm einzel Titelle loßß ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
+Do kanns Ding Oppassleß och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
 'watchlistedit-normal-submit'  => 'Jangk de Titele met Hökche eruß schmieße',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Eine Sigge-Tittel es|<strong>$1</strong> Sigge-Tittele sin|Keine Sigge-Tittel es}} us Dinge Opassliss erus jefloore:',
 'watchlistedit-raw-title'      => 'Rüh Oppassliss beärbeide',
@@ -3954,7 +3955,7 @@ Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.",
 * <span class="mw-specialpagecached">Em Zwescheshpeisher jehallde {{int:nstab-special}}e. Di künnte ovverhollt sind.</span>',
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander {{int:nstab-special}}e',
-'specialpages-group-login'       => 'Aamelde',
+'specialpages-group-login'       => 'Enlogge udder Aanmälde',
 'specialpages-group-changes'     => 'Letzte Änderunge un Logböcher',
 'specialpages-group-media'       => 'Dateie — Huhlaade un Opliste',
 'specialpages-group-users'       => 'Metmaacher un denne ier Rääschte',
@@ -3991,7 +3992,7 @@ Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.",
 'tags-description-header' => 'Bedüggtening',
 'tags-hitcount-header'    => 'Makeete Änderunge',
 'tags-edit'               => 'ändere',
-'tags-hitcount'           => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|kein Änderunge}}',
+'tags-hitcount'           => '{{PLURAL:$1|Ein Änderong|$1 Änderonge|kein Änderonge}}',
 
 # Special:ComparePages
 'comparepages'                => 'Sigge verjliesche',

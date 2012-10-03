@@ -627,12 +627,12 @@ Listo de validaj specialaj paĝoj estas trovebla ĉe [[Special:SpecialPages|{{in
 # General errors
 'error'                => 'Eraro',
 'databaseerror'        => 'Datumbaza eraro',
-'dberrortext'          => 'Sintakseraro okazis dum informpeto al la datumaro.
-Ĝi eble indikas cimon en la programaro.
+'dberrortext'          => 'Sintakseraro okazis dum informpeto al la datenbazo.
+Ĝi eble indikas misaĵeton en la programaro.
 Jen la plej laste provita informpeto:
-<blockquote><tt>$1</tt></blockquote>
-el la funkcio "<tt>$2</tt>".
-MySQL liveris eraron "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+el la funkcio "<code>$2</code>".
+La datenbazo liveris eraron "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Sintaksa eraro de la datumbaza informmendo okazis.
 La lasta provita datumbaza informmendo estis:
 "$1"
@@ -971,12 +971,10 @@ aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view'   => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract'        => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
 La lasta protokolero estas jene montrata por via referenco:',
-'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn. 
-* '''Firefox / Safari:''' Premu majuskligan klavon klakante ''Reŝarĝi'', aŭ premu ''Stir-F5'', aŭ premu ''Stir-R'' aŭ ''⌘-R'' kun Makintoŝo
-* '''Google Chrome:''' Premu ''Stir-majuskligklavon'' aŭ ⌘-Majuskligklavo-R'' kun Makintoŝo
+'clearyourcache'                   => "Notu:''' Post konservado, vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn. 
+* '''Firefox / Safari:''' Premu majuskligan klavon klakante ''Reŝarĝi'', aŭ premu aŭ ''Stir-F5'' aŭ ''Stir-R'' (''⌘-R'' kun Makintoŝo)
+* '''Google Chrome:''' Premu ''Stir-majuskligklavon-R'' (''⌘-Majuskligklavo-R'' kun Makintoŝo)
 * '''Interreta Esplorilo''': Premu ''Stir'' klakante ''Refreŝu'', aŭ premu ''Stir-F5'' 
-* '''Safari:''' ''Cmd-R''
-* '''Konqueror:''' Klaku ''Reŝarĝu'' aŭ premu ''F5''
 * '''Opera:''' Nuligi la kaŝmemoro en ''Iloj → Preferoj''",
 'usercssyoucanpreview'             => "'''Konsileto:''' Uzu la butonon \"Antaŭrigardi\" por provi vian novan CSS-kodon antaŭ konservado.",
 'userjsyoucanpreview'              => "'''Konsileto:''' Uzu la butonon \"Antaŭrigard\" por provi vian novan JS-kodon antaŭ konservado.",
@@ -3032,14 +3030,14 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # Info page
 'pageinfo-title'            => 'Informoj por "$1"',
-'pageinfo-header-edits'     => 'Redaktoj',
+'pageinfo-header-edits'     => 'Historio de redaktoj',
 'pageinfo-header-watchlist' => 'Atentaro',
 'pageinfo-header-views'     => 'Rigardoj',
 'pageinfo-subjectpage'      => 'Paĝo',
 'pageinfo-talkpage'         => 'Diskuto-paĝo',
-'pageinfo-watchers'         => 'Nombro de atentantoj',
+'pageinfo-watchers'         => 'Nombro de paĝatentantoj',
 'pageinfo-edits'            => 'Nombro de redaktoj',
-'pageinfo-authors'          => 'Nombro de distingaj aŭtoroj',
+'pageinfo-authors'          => 'Tuta nombro de malsamaj aŭtoroj',
 'pageinfo-views'            => 'Nombro de rigardoj',
 'pageinfo-viewsperedit'     => 'Po rigardoj por redakto',
 

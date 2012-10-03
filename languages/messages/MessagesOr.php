@@ -327,7 +327,7 @@ $messages = array(
 'fri'           => 'ଶୁକ୍ରବାର',
 'sat'           => 'ଶନିବାର',
 'january'       => 'ଜାନୁଆରୀ',
-'february'      => 'ଫେବୃଆରୀ',
+'february'      => 'ଫେବ୍ରୁଆରୀ',
 'march'         => 'ମାର୍ଚ୍ଚ',
 'april'         => 'ଅପ୍ରେଲ',
 'may_long'      => 'ମଇ',
@@ -339,7 +339,7 @@ $messages = array(
 'november'      => 'ନଭେମ୍ବର',
 'december'      => 'ଡିସେମ୍ବର',
 'january-gen'   => 'ଜାନୁଆରୀ',
-'february-gen'  => 'ଫେବୃଆରୀ',
+'february-gen'  => 'ଫେବ୍ରୁଆରୀ',
 'march-gen'     => 'ମାର୍ଚ୍ଚ',
 'april-gen'     => 'ଅପ୍ରେଲ',
 'may-gen'       => 'ମଇ',
@@ -351,7 +351,7 @@ $messages = array(
 'november-gen'  => 'ନଭେମ୍ବର',
 'december-gen'  => 'ଡିସେମ୍ବର',
 'jan'           => 'ଜାନୁଆରୀ',
-'feb'           => 'ଫେବୃଆରୀ',
+'feb'           => 'ଫେବ୍ରୁଆରୀ',
 'mar'           => 'ମାର୍ଚ୍ଚ',
 'apr'           => 'ଅପ୍ରେଲ',
 'may'           => 'ମଇ',
@@ -568,12 +568,11 @@ $1',
 # General errors
 'error'                => 'ଭୁଲ',
 'databaseerror'        => 'ଡାଟାବେସରେ ଭୁଲ',
-'dberrortext'          => 'ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜା ଭୁଲ ଟିଏ ହୋଇଅଛି ।
-ଏହା ଏହି ସଫ୍ଟବେରରେ ଭୁଲଟିଏକୁ ମଧ୍ୟ ସୂଚାଇପାରେ ।
-ଶେଷ ଥର ଖୋଜାଯାଇଥିବା ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜାଟି ଥିଲା:
-"<tt>$2</tt>" କାମ ଭିତରୁ
-<blockquote><tt>$1</tt></blockquote> ।
-ଡାଟାବେସ ଫେରନ୍ତା ଭୁଲ "<tt>$3: $4</tt>".',
+'dberrortext'          => 'ଏହା ଏହି ସଫ୍ଟବେରରେ ଭୁଲଟିଏକୁ ମଧ୍ୟ ସୂଚାଇପାରେ ।
+ଶେଷଥର ଖୋଜାଯାଇଥିବା ଡାଟାବେସ ପ୍ରଶ୍ନଟି ଥିଲା:
+<blockquote><code>$1</code></blockquote>
+ ଯାହାକି "<code>$2</code>"ରୁ ଥିଲା
+ଡାଟାବେସରେ ହୋଇଥିବା ଭୁଲ ହେଉଛି "<samp>$3: $4</samp>"।',
 'dberrortextcl'        => 'ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜା ଭୁଲଟିଏ ହୋଇଅଛି ।
 ଶେଷ ଖୋଜା ଡାଟାବେସ ପ୍ରଶ୍ନଟି ଥିଲା:
 "$1"
@@ -926,7 +925,6 @@ $1 ଦ୍ଵାରା ପ୍ରତିରୋଧ କରାଯାଇଛି
 * '''Firefox / Safari:''' ''Reload'' କଲାବେଳେ ''Shift'' ଧରି, କିମ୍ବା ''Ctrl-F5'' ବା ''Ctrl-R'' (Macରେ ''⌘-R'') ଦବାନ୍ତୁ
 * '''Google Chrome:''' ''Ctrl-Shift-R'' (Macରେ ''⌘-Shift-R'') ଦବାନ୍ତୁ
 * '''Internet Explorer:'''  ''Refresh'' କଲାବେଳେ ''Ctrl'' ଦବାନ୍ତୁ, କିମ୍ବା ''Ctrl-F5'' ଦବାନ୍ତୁ
-* '''Konqueror:''' ''Reload'' ଦବାନ୍ତୁ କିମ୍ବା ''F5'' ଦବାନ୍ତୁ
 * '''Opera:''' ''Tools → Preferences''ରେ ଅସ୍ଥାୟୀ ସ୍ମୃତି ସଫା କରିଦିଅନ୍ତୁ",
 'usercssyoucanpreview'             => "'''ଜାଣିବା କଥା:''' ଆପଣା ନୂଆ CSS ସାଇତିବା ଆଗରୁ \"{{int:showpreview}}\" ବ୍ୟବହାର କରି ପରଖି ନିଅନ୍ତୁ ।",
 'userjsyoucanpreview'              => "'''ଜାଣିବା କଥା:''' ଆପଣା ନୂଆ ଜାଭାସ୍କ୍ରିପ୍ଟ (JavaScript) ସାଇତିବା ଆଗରୁ \"{{int:showpreview}}\" ବ୍ୟବହାର କରି ପରଖି ନିଅନ୍ତୁ ।",

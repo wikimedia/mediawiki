@@ -228,7 +228,7 @@ $messages = array(
 'namespaces'                     => 'Espacios de nome',
 'variants'                       => 'Variantes',
 
-'errorpagetitle'    => 'Fallu',
+'errorpagetitle'    => 'Error',
 'returnto'          => 'Tornar a $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ayuda',
@@ -373,7 +373,7 @@ Tamién podría ser un bug nel software usáu por {{SITENAME}}.",
 Pues atopar una llista de les páxines especiales válides en [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
-'error'                => 'Fallu',
+'error'                => 'Error',
 'databaseerror'        => 'Fallu na base de datos',
 'dberrortext'          => "Hebo un fallu de sintaxis nuna consulta a la base de datos.
 Esti fallu pue ser por un problema del software.
@@ -986,10 +986,11 @@ Nun tienes accesu al mesmu.',
 'revdelete-concurrent-change' => "Error al camudar l'elementu con data $2, $1: paez que'l so estáu camudólu otra persona mientres tentabes camudalu tu.
 Comprueba los rexistros, por favor.",
 'revdelete-only-restricted'   => "Fallu al anubrir l'elementu con data $1, $2: nun se puen quitar elementos de la vista de los alministradores ensin escoyer tamién una de les otres opciones de visibilidá.",
-'revdelete-reason-dropdown'   => '*Razones comúnes de desaniciu 
+'revdelete-reason-dropdown'   => "*Razones comúnes de desaniciu 
 ** Violación del Copyright
-** Información personal non apropiada
-** Información potencialmente bilordiosa',
+** Información personal o comentariu non apropiáu
+** Nome d'usuariu non apropiáu
+** Información potencialmente bilordiosa",
 'revdelete-otherreason'       => 'Motivu distintu/adicional:',
 'revdelete-reasonotherlist'   => 'Otru motivu',
 'revdelete-edit-reasonlist'   => 'Editar motivos del desaniciu',
@@ -2006,7 +2007,7 @@ Pue haber [[{{MediaWiki:Listgrouprights-helppage}}|información adicional]] toca
 y tener una direición de corréu válida nes tos [[Special:Preferences|preferencies]]
 pa poder unviar correos a otros usuarios.',
 'emailuser'            => 'Manda-y un corréu a esti usuariu',
-'emailpage'            => "Corréu d'usuariu",
+'emailpage'            => 'Envigar un corréu electrónicu a un usuariu',
 'emailpagetext'        => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
 La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
 'usermailererror'      => "L'operador de corréu devolvió un error:",
@@ -2828,14 +2829,14 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 
 # Info page
 'pageinfo-title'            => 'Información sobro "$1"',
-'pageinfo-header-edits'     => 'Ediciones',
+'pageinfo-header-edits'     => "Historial d'ediciones",
 'pageinfo-header-watchlist' => 'Llista de vixilancia',
 'pageinfo-header-views'     => 'Vistes',
 'pageinfo-subjectpage'      => 'Páxina',
 'pageinfo-talkpage'         => "Páxina d'alderique",
-'pageinfo-watchers'         => 'Númberu de vixilantes',
+'pageinfo-watchers'         => 'Númberu de vixilantes de la páxina',
 'pageinfo-edits'            => "Númberu d'ediciones",
-'pageinfo-authors'          => "Númberu d'autores distintos",
+'pageinfo-authors'          => "Númberu total d'autores distintos",
 'pageinfo-views'            => 'Númberu de visites',
 'pageinfo-viewsperedit'     => 'Visites por edición',
 

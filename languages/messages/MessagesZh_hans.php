@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -420,7 +420,7 @@ $messages = array(
 'vector-action-protect'          => '保护',
 'vector-action-undelete'         => '恢复',
 'vector-action-unprotect'        => '更改保护',
-'vector-simplesearch-preference' => '启用增强搜索建议（仅限Vector皮肤）',
+'vector-simplesearch-preference' => '启用简化搜索栏（仅适用Vector皮肤）',
 'vector-view-create'             => '创建',
 'vector-view-edit'               => '编辑',
 'vector-view-history'            => '查看历史',
@@ -576,9 +576,12 @@ $1',
 # General errors
 'error'                => '错误',
 'databaseerror'        => '数据库错误',
-'dberrortext'          => '发生了数据库查询语法错误，可能是由于软件自身的错误所引起。最后一次数据库查询指令是：
-<blockquote><tt>$1</tt></blockquote>
-来自函数“<tt>$2</tt>”内。数据库返回错误“<tt>$3: $4</tt>”。',
+'dberrortext'          => '发生资料库查询语法错误。
+可能是由于软体自身的错误所引起。
+最后一次资料库查询指令是:
+<blockquote><code>$1</code></blockquote>
+来自于函数 "<code>$2</code>"。
+数据库返回错误 "<samp>$3: $4</samp>"。',
 'dberrortextcl'        => '发生了数据库查询语法错误。最后一次数据库查询指令是：
 “$1”
 来自函数“$2”内。数据库返回错误“$3: $4”。',
@@ -610,7 +613,7 @@ $1',
 'unexpected'           => '非正常值：“$1”=“$2”。',
 'formerror'            => '错误：无法提交表单',
 'badarticleerror'      => '无法在此页进行该操作。',
-'cannotdelete'         => '无法删除页面或图像 "$1"。
+'cannotdelete'         => '无法删除页面或图像“$1”。
 它可能已被其他人删除了。',
 'cannotdelete-title'   => '无法删除“$1”',
 'badtitle'             => '错误的标题',
@@ -628,8 +631,11 @@ $1',
 'protectedpagetext'    => '该页面已被保护以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源代码：',
 'viewyourtext'         => "您可以查看并复制'''您对此页面作出编辑后'''的源代码：",
-'protectedinterface'   => '该页提供了软件的界面文本，它已被保护以防止随意的修改。',
-'editinginterface'     => "'''警告：''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
+'protectedinterface'   => '该页提供此wiki软件的界面文字，它已被保护以防止恶意修改。
+如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。',
+'editinginterface'     => "'''警告：'''您正在编辑的页面是用于提供软件的界面文字。
+改变此页将影响其他在此wiki上的用户界面外观。
+如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。",
 'sqlhidden'            => '（SQL查询已隐藏）',
 'cascadeprotected'     => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
@@ -873,7 +879,6 @@ $2
 * '''火狐（Firefox）/Safari：'''按住“Shift”，同时单击“刷新”，或按“Ctrl-F5”或“Ctrl-R”（Mac为“⌘-R”）
 * '''谷歌浏览器（Google Chrome）：'''按“Ctrl-Shift-R”（Mac为“⌘-Shift-R”）
 * '''Internet Explorer：'''按住“Ctrl”，同时单击“刷新”，或按“Ctrl-F5”
-* '''Konqueror：'''点击“刷新”或按“F5”
 * '''Opera：'''在“工具→首选项”中清除缓存",
 'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 CSS 。",
 'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“{{int:showpreview}}”按钮来测试您新的 JavaScript 。",
@@ -1093,7 +1098,8 @@ $1",
 'revdelete-only-restricted'   => '在隐藏$1 $2的项目时发生错误：您不能在选择了另一可见性选项后废止管理员查看该项目。',
 'revdelete-reason-dropdown'   => '*常用删除理由
 ** 侵犯版权
-** 不合适的个人资料',
+** 不合适的个人资料
+** 潜在毁谤性信息',
 'revdelete-otherreason'       => '其他/附加原因：',
 'revdelete-reasonotherlist'   => '其他原因',
 'revdelete-edit-reasonlist'   => '编辑删除埋由',
@@ -2135,14 +2141,14 @@ $1',
 'changed'                      => '更改',
 'created'                      => '创建',
 'enotif_subject'               => '{{SITENAME}}页面“$PAGETITLE”已被$PAGEEDITOR$CHANGEDORCREATED',
-'enotif_lastvisited'           => '请浏览$1查看你上次访问后的所有更改。',
-'enotif_lastdiff'              => '请浏览$1查看该更改。',
+'enotif_lastvisited'           => '请浏览 $1 查看你上次访问后的所有更改。',
+'enotif_lastdiff'              => '请浏览 $1 查看该更改。',
 'enotif_anon_editor'           => '匿名用户$1',
 'enotif_body'                  => '亲爱的$WATCHINGUSERNAME：
 
 你好！
 
-{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR$CHANGEDORCREATED，请浏览$PAGETITLE_URL查看当前版本。
+{{SITENAME}}页面$PAGETITLE已于$PAGEEDITDATE被$PAGEEDITOR $CHANGEDORCREATED，请浏览 $PAGETITLE_URL 查看当前版本。
 $NEWPAGE
 编辑摘要：$PAGESUMMARY $PAGEMINOREDIT
 
@@ -2220,7 +2226,7 @@ $UNWATCHURL
 'protectlogtext'              => '下面是页面保护更改的列表。请见[[Special:ProtectedPages|受保护页面列表]]查看目前正在进行的页面保护的列表。',
 'protectedarticle'            => '保护“[[$1]]”',
 'modifiedarticleprotection'   => '更改“[[$1]]”的保护等级',
-'unprotectedarticle'          => '删除“[[$1]]”的保护',
+'unprotectedarticle'          => '解除“[[$1]]”的保护',
 'movedarticleprotection'      => '移动保护设置自“[[$2]]”至“[[$1]]”',
 'protect-title'               => '更改“$1”的保护等级',
 'protect-title-notallowed'    => '查看“$1”的保护等级',
@@ -2854,14 +2860,14 @@ $1被封禁的理由是：“$2”',
 
 # Info page
 'pageinfo-title'            => '"$1" 的信息',
-'pageinfo-header-edits'     => '编辑',
+'pageinfo-header-edits'     => '编辑历史',
 'pageinfo-header-watchlist' => '监视列表',
 'pageinfo-header-views'     => '视图',
 'pageinfo-subjectpage'      => '页面',
 'pageinfo-talkpage'         => '讨论页',
-'pageinfo-watchers'         => '监视者数目',
+'pageinfo-watchers'         => '页面监视者人数',
 'pageinfo-edits'            => '编辑数量',
-'pageinfo-authors'          => '作者数量',
+'pageinfo-authors'          => '不同编者总计',
 'pageinfo-views'            => '视图的数量',
 'pageinfo-viewsperedit'     => '每个编辑视图',
 
@@ -2906,7 +2912,7 @@ $1',
 # Media information
 'mediawarning'           => "'''警告'''：该文件类型可能包含恶意代码。
 运行它可能对您的系统带来危险。",
-'imagemaxsize'           => "图像大小限制：<br />''（文件说明页面）''",
+'imagemaxsize'           => '图像大小限制：<br /><u>（文件描述页）</u>',
 'thumbsize'              => '缩略图大小：',
 'widthheightpage'        => '$1×$2，$3页',
 'file-info'              => '文件大小：$1，MIME类型：$2',

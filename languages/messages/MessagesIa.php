@@ -519,10 +519,10 @@ Per favor reprova post alcun minutas.',
 'protectedpagetext'    => 'Iste pagina ha essite protegite contra modificationes.',
 'viewsourcetext'       => 'Tu pote vider e copiar le codice-fonte de iste pagina:',
 'viewyourtext'         => "Tu pote vider e copiar le fonte de '''tu modificationes''' de iste pagina:",
-'protectedinterface'   => 'Iste pagina contine texto pro le interfacie del software, e es protegite pro impedir le abuso.',
+'protectedinterface'   => 'Iste pagina contine texto pro le interfacie del software de iste wiki, e es protegite pro impedir le abuso. Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.',
 'editinginterface'     => "'''Attention:''' Le texto de iste pagina face parte del interfacie pro le software.
-Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores.
-Pro traductiones, per favor considera usar [//translatewiki.net/wiki/Main_Page?setlang=ia translatewiki.net], le projecto pro localisar MediaWiki.",
+Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores de iste wiki.
+Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.",
 'sqlhidden'            => '(Consulta SQL non monstrate)',
 'cascadeprotected'     => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
 $2',
@@ -823,7 +823,6 @@ Le ultime entrata del registro de blocadas es reproducite ci infra pro informati
 * '''Firefox / Safari:''' Tenente ''Shift'' clicca ''Reload (Recargar)'', o preme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sur Mac)
 * '''Google Chrome:''' Preme ''Ctrl-Shift-R'' (''⌘-Shift-R'' sur Mac)
 * '''Internet Explorer:''' Tenente ''Ctrl'' clicca ''Refresh (Refrescar)'', o preme ''Ctrl-F5'' 
-* '''Konqueror:''' Clicca ''Reload (Recargar)'' o preme ''F5''
 * '''Opera:''' Vacua le ''cache'' in ''Tools → Preferences (Utensiles → Preferentias)''",
 'usercssyoucanpreview'             => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove CSS ante de salveguardar lo.",
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button \"{{int:showpreview}}\" pro testar tu nove JavaScript ante de salveguardar lo.",
@@ -2935,14 +2934,14 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 
 # Info page
 'pageinfo-title'            => 'Informationes pro "$1"',
-'pageinfo-header-edits'     => 'Modificationes',
+'pageinfo-header-edits'     => 'Historia de modificationes',
 'pageinfo-header-watchlist' => 'Observatorio',
 'pageinfo-header-views'     => 'Visitas',
 'pageinfo-subjectpage'      => 'Pagina',
 'pageinfo-talkpage'         => 'Discussion',
-'pageinfo-watchers'         => 'Numero de observatores',
+'pageinfo-watchers'         => 'Numero de observatores del pagina',
 'pageinfo-edits'            => 'Numero de modificationes',
-'pageinfo-authors'          => 'Numero de autores distincte',
+'pageinfo-authors'          => 'Numero total de autores distincte',
 'pageinfo-views'            => 'Numero de visitas',
 'pageinfo-viewsperedit'     => 'Visitas per modification',
 
@@ -3337,7 +3336,7 @@ Le alteres essera initialmente celate.
 'exif-whitebalance-1' => 'Balancia de blanc manual',
 
 'exif-scenecapturetype-0' => 'Standard',
-'exif-scenecapturetype-1' => 'Panorama',
+'exif-scenecapturetype-1' => 'Paisage',
 'exif-scenecapturetype-2' => 'Portrait',
 'exif-scenecapturetype-3' => 'Scena nocturne',
 

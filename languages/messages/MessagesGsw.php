@@ -131,7 +131,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',
 'tog-newpageshidepatrolled'   => 'Aagluegti Syten uf dr Lischt „Neiji Syte“ verstecke',
 'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
-'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (brucht JavaScript)',
+'tog-usenewrc'                => 'Sytebezogeni Gruppierig bi dr «letschte Änderige» un uf dr Beobachtigslischte  (brucht JavaScript)',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
 'tog-editondblclick'          => 'Syte ändere mit Doppelklick i d Syte (JavaScript)',
@@ -139,17 +139,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick (Javascript)',
 'tog-showtoc'                 => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword'        => 'Mit däm Browser duurhaft aamälde (Maximal fir $1 {{PLURAL:$1|Tag|Täg}})',
-'tog-watchcreations'          => 'Sälber gmachti Sytene beobachte',
-'tog-watchdefault'            => 'Vo dir nöi gmachti oder verändereti Syte beobachte',
-'tog-watchmoves'              => 'Sälber verschobeni Sytene beobachte',
-'tog-watchdeletion'           => 'Sälber glöschti Sytene beobachte',
+'tog-watchcreations'          => 'Sälber gmachti Sytene un uffegladeni Dateie automatisch  beobachte',
+'tog-watchdefault'            => 'Sälber gändereti Syte un Dateie automatisch beobachte',
+'tog-watchmoves'              => 'Sälber verschobeni Sytene un Dateie automatisch beobachte',
+'tog-watchdeletion'           => 'Sälber gleschti Sytene un Dateie automatisch beobachte',
 'tog-minordefault'            => 'Alli dyni Änderigen als «chlyni Änderige» markiere',
 'tog-previewontop'            => 'Vorschou vor em Editierfänschter aazeige',
 'tog-previewonfirst'          => 'Vorschou aazeige bim erschten Editiere',
 'tog-nocache'                 => 'Syte-Cache vum Browser deaktiviere',
-'tog-enotifwatchlistpages'    => 'Benachrichtigungsmails by Änderigen a Wiki-Syte',
+'tog-enotifwatchlistpages'    => 'Schick mer e Mail, wänn e Syte oder e Datei gänderet wird, wun i beobachte due',
 'tog-enotifusertalkpages'     => 'Benachrichtigungsmails bi Änderigen a dyne Benutzersyte',
-'tog-enotifminoredits'        => 'Benachrichtigungsmail ou bi chlyne Sytenänderige',
+'tog-enotifminoredits'        => 'Au bi chlaine Änderige an Syte oder Dateie ne Mail schicke',
 'tog-enotifrevealaddr'        => 'Dyni E-Mail-Adrässe wird i Benachrichtigungsmails zeigt',
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
 'tog-oldsig'                  => 'Vorschau vu dr Unterschrift:',
@@ -444,9 +444,9 @@ Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezials
 'dberrortext'          => 'S isch e Datebankfähler ufträtte.
 Dr Grund cha ne e Programmierfähler syy.
 Di letscht Datebankabfrog isch
-<blockquote><tt>$1</tt></blockquote>
-us dr Funktion „<tt>$2</tt>“ gsi.
-D Datebank het dr Fähler „<tt>$3: $4</tt>“ gmäldet.',
+<blockquote><code>$1</code></blockquote>
+us dr Funktion „<code>$2</code>“ gsi.
+D Datebank het dr Fähler „<samp>$3: $4</samp>“ gmäldet.',
 'dberrortextcl'        => 'S het e Syntaxfähler gee in dr Abfrog vu dr Datebank.
 Di letscht Datebankabfrog isch
 „$1“
@@ -497,7 +497,7 @@ Abfrog: $2',
 'viewsourcetext'       => 'Quelltext vo dere Syte:',
 'viewyourtext'         => "Du chasch dr Quälltext vu '''Dyre Bearbeitig''' vu däre Syte aaluege un kopiere:",
 'protectedinterface'   => 'In däre Syte het s Text fir s Sproch-Interface vu dr Software un si isch gsperrt, zum Missbruch z verhindre.',
-'editinginterface'     => "'''Obacht:''' Du bisch e Syten am Verändere, wu zum User.Interface ghert. Wänn Du die Syte veränderesch, no änderet sich s User-Interface au fir di andere Benutzer. Fir Ibersetzige lueg bitte, eb Du doodefir s [//translatewiki.net/wiki/Main_Page?setlang=gsw Translatewiki] witt bruuche, s MediaWiki-Lokalisierigsprojäkt.",
+'editinginterface'     => "'''Obacht:''' Du bisch e Syten am Verändere, wu zum User.Interface ghert. Wänn Du die Syte veränderesch, no änderet sich s User-Interface au fir di andere Benutzer vu däm Wiki. Fir Ibersetzige lueg bitte, eb Du doodefir s [//translatewiki.net/wiki/Main_Page?setlang=gsw Translatewiki] witt bruuche, s MediaWiki-Lokalisierigsprojäkt.",
 'sqlhidden'            => '(SQL-Abfrog verschteckt)',
 'cascadeprotected'     => 'Die Syte isch fir s Bearbeite gsperrt. Si isch yybunde in {{PLURAL:$1|die Syte, wu do chunnt|die Syte, wu do chemme}} , wu mit ere Kaskadesperroption gschitzt {{PLURAL:$1|isch|sin}}:
 $2',
@@ -530,7 +530,7 @@ Vergiss nid, dyni [[Special:Preferences|{{SITENAME}}-Yystellige]] aazpasse.',
 'yourdomainname'             => 'Dyyni Domäne',
 'externaldberror'            => 'Entwäder s lit e Fähler bi dr externe Authentifizierung vor, oder Du derfsch Dyy extern Benutzerkonto nid aktualisiere.',
 'login'                      => 'Aamälde',
-'nav-login-createaccount'    => 'Aamälde / Konto aaleege',
+'nav-login-createaccount'    => 'Aamälde / Konto aalege',
 'loginprompt'                => '<small>Für di bir {{SITENAME}} aazmälde, muesch Cookies erloube!</small>',
 'userlogin'                  => 'Aamälde/Konto aalege',
 'userloginnocreate'          => 'Aamälde',
@@ -697,7 +697,7 @@ Temporär Passwort: $2',
 'hr_tip'          => 'Horizontali Linie (sparsam verwende)',
 
 # Edit pages
-'summary'                          => 'Zämefassig:',
+'summary'                          => 'Zämmefassig:',
 'subject'                          => 'Beträff:',
 'minoredit'                        => 'Numen es birebitzeli gänderet',
 'watchthis'                        => 'Dä Artikel beobachte',
@@ -769,12 +769,11 @@ oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page=
 'userpage-userdoesnotexist-view'   => 'S Benutzerkonto „$1“ isch nit registriert.',
 'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
 As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
-'clearyourcache'                   => "'''Hinweis:''' Noch em Spycheremuesch no dr Browser-Zwischespycher lääre go d Änderige sää.
+'clearyourcache'                   => "'''Hiiwys:''' Noch em Spycheremuesch no dr Browser-Zwischespycher lääre go d Änderige sää.
 * '''Firefox/ Safari:''' ''Umschaltig'' drucken un glychzytig ''Aktualisiere'' aaklicken oder entwäder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' uf em Mac) drucke
 * '''Google Chrome:''' ''Umschaltig+Strg+R'' (''Befählstaschte-R'' uf em Mac) drucke
 * '''Internet Explorer:''' ''Strg+F5'' drucken oder ''Strg'' drucken un glychzytig ''Aktualisiere'' aaklicke
-* '''Opera:''' ''Extra → Internetspure lesche … → Individuäll Uuswahl → Dr komplett Cache lesche''
-* '''Konqueror:''' ''Aktualisiere'' aaklicken oder ''F5'' drucke",
+* '''Opera:''' ''Extra → Internetspure lesche … → Individuäll Uuswahl → Dr komplett Cache lesche''",
 'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr „{{int:showpreview}}”-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
 'userjsyoucanpreview'              => "'''Tipp:''' „Nimm dr {{int:showpreview}}”-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
 'usercsspreview'                   => "== Vorschau vu Dyynem Benutzer-CSS. ==
@@ -1013,7 +1012,8 @@ Bitte prief d Logbiecher.',
 'revdelete-only-restricted'   => 'Fähler bim Uusblände vum Byytrag vum $2, $1: Du chasch kei Yyträg vor Adminischtratore unterdrucke, ohni ass Du au eini vu dr andere Unterdruckigsoptione uusgwehlt hesch.',
 'revdelete-reason-dropdown'   => '*Gängigi Leschgrind
 **Urheberrächtsverletzig
-**Falschi Information iber Persone',
+**Falschi Information iber Persone
+**Informatione, wu villicht anderi belaidige',
 'revdelete-otherreason'       => 'Andere/Zuesätzlige Grund:',
 'revdelete-reasonotherlist'   => 'Andere Grund',
 'revdelete-edit-reasonlist'   => 'Leschgrind bearbeite',
@@ -1338,7 +1338,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-ipblock-exempt'        => 'Uusnahm vu IP-Sperrine, Autoblock und Rangesperre',
 'right-proxyunbannable'       => 'Uusnahm vu automatische Proxysperrine',
 'right-unblockself'           => 'Sich sälber entsperre',
-'right-protect'               => 'Syteschutzstatus ändere',
+'right-protect'               => 'Syteschutzstatus änderen un gschitzti Syte bearbeite',
 'right-editprotected'         => 'Gschitzti Syte bearbeite (ohni Kaskadeschutz)',
 'right-editinterface'         => 'Benutzerinterface bearbeite',
 'right-editusercssjs'         => 'Bearbeite vu CSS- und JS-Dateie vu andere Benutzer',
@@ -1807,7 +1807,9 @@ Iberprief anderi Link zue dr Vorlage, voreb Du die leschesch.',
 
 'disambiguations'      => 'Syte, wu uf Begriffsklärigssyte verlinke',
 'disambiguationspage'  => 'Template:Begriffsklärig',
-'disambiguations-text' => 'Die Syte verwyyse uf e Begriffsklärigs-Syte. Sie sotte aber besser uf d Syte verwyyse, wu eigetli gmeint sin.<br />E Syte wird as Begriffsklärigs-Syte behandlet, wänn [[MediaWiki:Disambiguationspage]] uf si verwyyst.<br />Link us Namensryym wäre do nit ufglischtet.',
+'disambiguations-text' => 'Die Syte verwyyse uf e Begriffsklärigs-Syte. Sie sotte aber besser uf d Syte verwyyse, wu eigetli gmeint sin.
+
+E Syte wird as Begriffsklärigs-Syte behandlet, wänn [[MediaWiki:Disambiguationspage]] uf si verwyyst.',
 
 'doubleredirects'                   => 'Doppleti Wyterleitige (Redirects)',
 'doubleredirectstext'               => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige verwyyse.
@@ -2749,7 +2751,7 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 
 # Info page
 'pageinfo-title'            => 'Informatione zue „$1“',
-'pageinfo-header-edits'     => 'Bearbeitunge',
+'pageinfo-header-edits'     => 'Bearbeitige',
 'pageinfo-header-watchlist' => 'Beobachtigslischte',
 'pageinfo-header-views'     => 'Ufruef',
 'pageinfo-subjectpage'      => 'Syte',
@@ -3466,7 +3468,7 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 * <span class="mw-specialpagecached">Gecachti Spezialsyte (dr Inhalt ist villicht veraltet.)</span>',
 'specialpages-group-maintenance' => 'Wartigslischte',
 'specialpages-group-other'       => 'Andri Spezialsyte',
-'specialpages-group-login'       => 'Aamälde',
+'specialpages-group-login'       => 'Aamälde/Konto aalege',
 'specialpages-group-changes'     => 'D letschte Änderige un Logbüecher',
 'specialpages-group-media'       => 'Medie',
 'specialpages-group-users'       => 'Benutzer un Rächt',

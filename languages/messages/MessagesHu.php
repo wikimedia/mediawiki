@@ -384,7 +384,7 @@ $messages = array(
 'tue'           => 'kedd',
 'wed'           => 'sze',
 'thu'           => 'csü',
-'fri'           => 'pé',
+'fri'           => 'pén',
 'sat'           => 'szo',
 'january'       => 'január',
 'february'      => 'február',
@@ -575,9 +575,9 @@ További információkat a [[Special:Version|verzióinformációs lapon]] talál
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'A lap eredeti címe: „$1”',
-'youhavenewmessages'      => 'Új üzenet vár $1! (Az üzenetet $2.)',
-'newmessageslink'         => 'a vitalapodon',
-'newmessagesdifflink'     => 'külön is megtekintheted',
+'youhavenewmessages'      => '$1 a vitalapodon! ($2 külön is megtekintheted.)',
+'newmessageslink'         => 'új üzenet vár',
+'newmessagesdifflink'     => 'az utolsó üzenetet',
 'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 wikin',
 'editsection'             => 'szerkesztés',
 'editold'                 => 'szerkesztés',
@@ -632,9 +632,9 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|{{int:special
 'databaseerror'        => 'Adatbázishiba',
 'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
 Ezt szoftverhiba okozhatta.
-Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
-<blockquote><tt>$1</tt></blockquote>
-Az adatbázis ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+Az utolsó adatbázis-lekérdezés a(z) „<code>$2</code>” függvényből történt, és a következő volt:
+<blockquote><code>$1</code></blockquote>
+Az adatbázis ezzel a hibával tért vissza: „<samp>$3: $4</samp>”.',
 'dberrortextcl'        => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
 Az utolsó adatbázis-lekérdezés a(z) „$2” függvényből történt, és a következő volt:
 „$1”
@@ -686,7 +686,7 @@ Lekérdezés: $2',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
 'viewyourtext'         => "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
-'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéhez tartozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
+'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéhez tartozik. A lap megváltoztatása hatással lesz a kinézetre, ahogy más szerkesztők látják a lapot. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
 'sqlhidden'            => '(rejtett SQL lekérdezés)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
@@ -965,7 +965,6 @@ A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
 '''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra a címsorban, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
 '''Google Chrome:''' használd a ''Ctrl–Shift–R'' billentyűkombinációt (Mac-en ''Command–Shift–R'');
 '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt;
-'''Konqueror: '''kattints a ''Frissítés'' gombra vagy nyomj ''F5''-öt;
 '''Opera:''' ürítsd ki a gyorsítótárat a ''Beállítások / Haladó / Előzmények→Törlés most'' gombbal, majd frissítsd az oldalt.",
 'usercssyoucanpreview'             => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új CSS-ed teszteléséhez.",
 'userjsyoucanpreview'              => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új JavaScipted teszteléséhez.",
@@ -1202,7 +1201,8 @@ Ellenőrizd a naplókat.',
 'revdelete-only-restricted'   => 'Hiba a(z) $1 $2 időbélyegű elem elrejtésekor: nem rejthetsz el az adminisztrátorok elől elemeket anélkül, hogy ne választanál ki egy másik elrejtési beállítást.',
 'revdelete-reason-dropdown'   => '*Általános törlési okok
 ** Jogsértő tartalom
-** Kényes személyes információk',
+** Kényes személyes információk
+** Potenciális becsületsértő információk',
 'revdelete-otherreason'       => 'Más/további ok:',
 'revdelete-reasonotherlist'   => 'Más ok',
 'revdelete-edit-reasonlist'   => 'Törlési okok szerkesztése',
@@ -2755,7 +2755,7 @@ Kérlek, válassz egy másik nevet.',
 
 Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik.  Ha az átnevezést végre akarod hajtani, ezt a lapot törölni kell.  Valóban ezt szeretnéd?',
 'delete_and_move_confirm'      => 'Igen, töröld a lapot',
-'delete_and_move_reason'       => 'Törölve, hogy legyen hely átmozgatni [[$1]] lapot.',
+'delete_and_move_reason'       => 'átnevezendő lap célneve felszabadítva „[[$1]]” számára',
 'selfmove'                     => 'A cikk jelenlegi címe megegyezik azzal, amire át szeretnéd mozgatni. Egy szócikket saját magára mozgatni nem lehet.',
 'immobile-source-namespace'    => 'A(z) „$1” névtér lapjai nem nevezhetőek át',
 'immobile-target-namespace'    => 'A(z) „$1” névtérbe nem mozgathatsz át lapokat',
@@ -3027,14 +3027,14 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 
 # Info page
 'pageinfo-title'            => 'Információk a(z) „$1” lapról',
-'pageinfo-header-edits'     => 'Szerkesztések',
+'pageinfo-header-edits'     => 'Szerkesztések története',
 'pageinfo-header-watchlist' => 'Figyelőlista',
 'pageinfo-header-views'     => 'Megtekintések',
 'pageinfo-subjectpage'      => 'Lap',
 'pageinfo-talkpage'         => 'Vitalap',
 'pageinfo-watchers'         => 'Figyelők száma',
 'pageinfo-edits'            => 'Szerkesztések száma',
-'pageinfo-authors'          => 'Egyedi szerkesztők száma',
+'pageinfo-authors'          => 'Egyedi szerkesztők teljes száma',
 'pageinfo-views'            => 'Megtekintések száma',
 'pageinfo-viewsperedit'     => 'Megtekintés/szerkesztés',
 
@@ -3855,8 +3855,8 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'revdelete-unrestricted'              => 'felfedett az adminisztrátoroknak',
 'logentry-move-move'                  => '$1 átnevezte a(z) $3 lapot a következő névre: $4',
 'logentry-move-move-noredirect'       => '$1 átnevezte a(z) $3 lapot $4 lapra átirányítás nélkül',
-'logentry-move-move_redir'            => '$1 átnevezte a(z) $3 lapot $4 lapra átirányítással',
-'logentry-move-move_redir-noredirect' => '$1 átnevezte a(z) $3 lapot $4 lapra átirányítás nélkül',
+'logentry-move-move_redir'            => '$1 átnevezte a(z) $3 lapot $4 lapra az átirányítást felülírva',
+'logentry-move-move_redir-noredirect' => '$1 átnevezte a(z) $3 lapot $4 lapra az átirányítást felülírva, átirányítás nélkül',
 'logentry-patrol-patrol'              => '$1 a(z) $3 lap $4 változatát ellenőrzöttnek jelölte',
 'logentry-patrol-patrol-auto'         => '$1 a(z) $3 lap $4 változatát automatikusan ellenőrzöttnek jelölte',
 'logentry-newusers-newusers'          => '$1 létrehozott egy felhasználói fiókot',

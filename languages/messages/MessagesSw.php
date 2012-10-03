@@ -1487,7 +1487,7 @@ Tafadhali uhakikishe kwamba ni kweli unataka kupakia faili hili.',
 'windows-nonascii-filename'   => 'Wiki hii haiwezi kutumia majina ya mafaili yenye herufi maalumu.',
 'fileexists'                  => 'Faili lenye jina hili lipo tayari, tafadhali tazama <strong>[[:$1]]</strong> ikiwa una mashaka kuhusu kulibadilisha.
 [[$1|thumb]]',
-'filepageexists'              => 'Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika <strong>[[:$1]]</strong>, lakini bado hakuna faili lenye jina hili kwa sasa.
+'filepageexists'              => 'Ukurasa wa maelezo kwa ajili ya faili hili tayari umeshaanzishwa katika <strong>[[:$1]]</strong>, lakini hakuna faili lenye jina hili kwa sasa.
 Muhtasari utakaoandika hautaonekana katika ukurasa wa maelezo.
 Kufanya muhtasari wako uonekana pale, utahitajika uhariri ukurasa kwa mikono.
 [[$1|thumb]]',
@@ -1499,7 +1499,7 @@ Tafadhali chagua jina lingine.',
 [[$1|thumb]]
 Tafadhali tazama faili la <strong>[[:$1]]</strong>.
 Ikiwa faili hili linaonyesha picha ile ile kwa ukubwa wa kawaida hakuna haja ya kupakia faili lingine la picha ndogo.",
-'file-thumbnail-no'           => "Jina la faili linaloanza na <strong>$1</strong>.
+'file-thumbnail-no'           => "Jina la faili linaanza na <strong>$1</strong>.
 Inaonekana kuwa ni picha iliyopunguzwa ukubwa''(thumbnail)''.
 Ikiwa unaoyo picha hii kwa ukubwa wa kawaida tafadhali pakia picha hii, vinginevyo tafadhali badilisha jina la faili.",
 'fileexists-forbidden'        => 'Faili lenye jina hili lipo tayari, na haliwezi kuandikizwa.
@@ -1587,7 +1587,9 @@ Haliwezi kukaguliwa vilivyo kwa sababu za kiusalama.',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Ruksa imekataliwa',
+'img-auth-nologinnWL'   => '',
 'img-auth-nofile'       => 'Hakuna faili la "$1".',
+'img-auth-isdir'        => '',
 'img-auth-noread'       => 'Mtumiaji hana fursa ya kusoma "$1".',
 
 # HTTP errors
@@ -2105,7 +2107,7 @@ ukurasa huu una mhariri mmoja tu.',
 'protect-unchain-permissions' => 'Fungua chaguzi zingine za ulindaji',
 'protect-text'                => "Unaweza kutazama na kubadilisha kiwango cha ulindaji hapa kwa ukurasa '''$1'''.",
 'protect-locked-dblock'       => "Viwango vya ulindaji haviwezi kubadilishwa kwa sababu hifadhidata imefungwa.
-Hapo panaandikwa viwango vya ulindaji wa ukurasa '''$1''':",
+Hii hapa ni mipangilio iliyopo kwa ajili ya ukurasa '''$1''':",
 'protect-locked-access'       => "Akaunti yako hairuhusiwi kubadilisha viwango vya ulindaji.
 Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-cascadeon'           => 'Ukurasa huu umelindwa kwa sababu umezingatiwa katika {{PLURAL:$1|ukurasa $1 unaolinda kurasa chini yake|kurasa $1 zinazolinda kurasa chini yake}}. Unaweza kubadilisha kiwango cha ulindaji wa ukurasa huu, lakini hutaathirika ulindaji kutoka kurasa juu yake.',
@@ -2115,13 +2117,13 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-level-sysop'         => 'Wakabidhi tu',
 'protect-summary-cascade'     => 'ulindaji kwa kurasa chini yake',
 'protect-expiring'            => 'itakwisha $1 (UTC)',
-'protect-expiring-local'      => 'inaishia saa $1',
+'protect-expiring-local'      => 'inaisha $1',
 'protect-expiry-indefinite'   => 'bila mwisho',
 'protect-cascade'             => 'Linda kurasa zinazozingatiwa chini ya ukurasa huu',
 'protect-cantedit'            => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
 'protect-othertime'           => 'Kipindi kingine:',
 'protect-othertime-op'        => 'kipindi kingine',
-'protect-existing-expiry'     => 'Kipindi cha ulindaji uliowekwa unaishia: $3, $2',
+'protect-existing-expiry'     => 'Muda wa kwisha uliopo: $3, $2',
 'protect-otherreason'         => 'Sababu nyingine:',
 'protect-otherreason-op'      => 'Sababu nyingine',
 'protect-dropdown'            => '*Sababu za kawaida za ulindaji
@@ -2133,8 +2135,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'restriction-type'            => 'Ruhusa:',
 'restriction-level'           => 'Kiwango cha kizuia:',
-'minimum-size'                => 'Saizi ndogo mno',
-'maximum-size'                => 'Saizi kubwa mno:',
+'minimum-size'                => 'Saizi ndogo',
+'maximum-size'                => 'Saizi kubwa:',
 'pagesize'                    => '(baiti)',
 
 # Restrictions (nouns)
@@ -2145,8 +2147,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Restriction levels
 'restriction-level-sysop'         => 'umelindwa kabisa',
-'restriction-level-autoconfirmed' => 'umelindwa kwa kiasi',
-'restriction-level-all'           => 'chochote',
+'restriction-level-autoconfirmed' => 'umelindwa kiasi',
+'restriction-level-all'           => 'kiasi chochote',
 
 # Undelete
 'undelete'                  => 'Kuzitazama kurasa zilizofutwa',
@@ -2265,7 +2267,7 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'blockipsuccesssub'          => 'Kulifaulu kumzuia',
 'ipb-edit-dropdown'          => 'Hariri sababu za kuzuia',
 'ipb-unblock-addr'           => 'Acha kumzuia $1',
-'ipb-unblock'                => 'Acha kumzuia mtumiaji au anwani wa IP',
+'ipb-unblock'                => 'Acha kumzuia mtumiaji au anwani ya IP',
 'ipb-blocklist-contribs'     => 'Michango ya $1',
 'unblockip'                  => 'Acha kuzuia mtumiaji',
 'blocklist'                  => 'Watumiaji waliozuiliwa',
@@ -2276,7 +2278,7 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'blocklist-expiry'           => 'Itakwisha',
 'blocklist-reason'           => 'Sababu',
 'ipblocklist-submit'         => 'Tafuta',
-'ipblocklist-otherblocks'    => ' {{PLURAL:$1|Uzuio mwingine|Zuio zingine}}',
+'ipblocklist-otherblocks'    => '{{PLURAL:$1|Uzuio mwingine|Zuio zingine}}',
 'infiniteblock'              => 'milele',
 'expiringblock'              => 'inakwisha tarehe $1 saa $2',
 'emailblock'                 => 'barua pepe imezuiliwa',
@@ -2459,7 +2461,7 @@ Ulihafadhie katika tarakalishi yako, halafu ulipakie hapa.',
 'importbadinterwiki'         => 'Kiungo kibovu kati za wiki',
 'importnotext'               => 'Tupu au bila maandishi',
 'importsuccess'              => 'Kuleta kumekamilishwa!',
-'import-noarticle'           => 'Hakuna kurasa za kuleta!',
+'import-noarticle'           => 'Hakuna kurasa ya kuingiza!',
 'import-token-mismatch'      => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
 

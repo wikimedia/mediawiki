@@ -198,7 +198,7 @@ $messages = array(
 'vector-action-unprotect'  => 'አለመቆለፍ',
 'vector-view-create'       => 'አዲስ ፍጠር',
 'vector-view-edit'         => 'አርም',
-'vector-view-history'      => ' ታሪኩን አሳይ',
+'vector-view-history'      => 'ታሪኩን አሳይ',
 'vector-view-view'         => 'ለማንበብ',
 'vector-view-viewsource'   => 'ጥሬ ኮድ ለመመልከት',
 
@@ -948,6 +948,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'recentchanges-legend'              => 'የቅርብ ለውጥ አማራጮች፦',
 'recentchangestext'                 => 'በዚሁ ገጽ ላይ በቅርብ ጊዜ የወጡ አዳዲስ ለውጦች ለመከታተል ይችላሉ።',
 'recentchanges-feed-description'    => 'በዚህ ዊኪ ላይ በቅርብ ግዜ የተለወጠውን በዚሁ feed መከታተል ይችላሉ',
+'recentchanges-label-minor'         => 'ይህ ለውጥ ጥቃቅን ነው።',
 'rcnote'                            => "ከ$5 $4 እ.ኤ.አ. {{PLURAL:$2|ባለፈው 1 ቀን|ባለፉት '''$2''' ቀኖች}} {{PLURAL:$1|የተደረገው '''1''' ለውጥ እታች ይገኛል|የተደረጉት '''$1''' መጨረሻ ለውጦች እታች ይገኛሉ}}።",
 'rcnotefrom'                        => "ከ'''$2''' ጀምሮ የተቀየሩት ገጾች (እስከ '''$1''' ድረስ) ክዚህ በታች ይታያሉ።",
 'rclistfrom'                        => '(ከ $1 ጀምሮ አዲስ ለውጦቹን ለማየት)',

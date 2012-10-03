@@ -686,7 +686,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Pode ver e copiar o conteúdo desta página:',
 'viewyourtext'         => "Pode ver e copiar o código-fonte das '''suas edições''' desta página:",
-'protectedinterface'   => 'Esta página fornece o texto da interface ao software e está protegida para prevenir abusos.',
+'protectedinterface'   => 'Esta página fornece o texto da interface ao software, e está protegida para prevenir abusos.',
 'editinginterface'     => "'''Aviso:''' Está a editar uma página usada para fornecer texto de interface ao software. Alterações a esta página afectarão a aparência da interface de utilizador para os outros utilizadores. Para traduções, considere utilizar a [//translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de protecção "em cascata" activada):
@@ -970,12 +970,10 @@ Verifique se deseja realmente criar ou editar esta página, por favor.',
 'userpage-userdoesnotexist-view'   => 'A conta de utilizador "$1" não está registada.',
 'blocked-notice-logextract'        => 'Este utilizador encontra-se actualmente bloqueado.
 Para referência, o último registo de bloqueio é apresentado abaixo:',
-'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.'''
-
+'clearyourcache'                   => "'''Nota:''' Após gravar, terá de limpar a ''cache'' do seu browser para ver as alterações.
 *'''Firefox / Safari:''' Pressione ''Shift'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''⌘-R'' no Mac)
 *'''Google Chrome:''' Pressione ''Ctrl-Shift-R'' (''⌘-Shift-R'' no Mac)
 *'''Internet Explorer:''' Pressione ''Ctrl'' enquanto clica ''Recarregar'', ou pressione ''Ctrl-F5''
-*'''Konqueror:''' Clique ''Recarregar'' ou pressione ''F5''
 *'''Opera:''' Limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo CSS antes de gravar.",
 'userjsyoucanpreview'              => "'''Dica:''' Use o botão \"{{int:showpreview}}\" para testar o seu novo JavaScript antes de gravar.",
@@ -1227,7 +1225,8 @@ Verifique os registos, por favor.',
 'revdelete-only-restricted'   => 'Erro ao ocultar o item de $2 às $1: não pode impedir que os itens sejam vistos pelos administradores sem seleccionar também uma das outras opções de visibilidade.',
 'revdelete-reason-dropdown'   => '*Razões comuns para eliminação
 ** Violação de direitos de autor
-** Informações pessoais inapropriadas
+** Comentário ou informações pessoais inapropriados
+** Nome de utilizador inapropriado
 ** Informações potencialmente difamatórias',
 'revdelete-otherreason'       => 'Outro/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
@@ -2449,7 +2448,7 @@ Pode alterar o nível de protecção desta página, mas isso não afectará a pr
 'protect-summary-cascade'     => 'em cascata',
 'protect-expiring'            => 'expira a $1 (UTC)',
 'protect-expiring-local'      => 'expira a $1',
-'protect-expiry-indefinite'   => 'infinito',
+'protect-expiry-indefinite'   => 'tempo indefinido',
 'protect-cascade'             => 'Proteja quaisquer páginas que estejam incluídas nesta (protecção em cascata)',
 'protect-cantedit'            => 'Não pode alterar o nível de protecção desta página, porque não tem permissão para editá-la.',
 'protect-othertime'           => 'Outra duração:',
@@ -3068,14 +3067,14 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 
 # Info page
 'pageinfo-title'            => 'Informações sobre "$1"',
-'pageinfo-header-edits'     => 'Edições',
+'pageinfo-header-edits'     => 'Histórico de edições',
 'pageinfo-header-watchlist' => 'Páginas vigiadas',
 'pageinfo-header-views'     => 'Visitas',
 'pageinfo-subjectpage'      => 'Página',
 'pageinfo-talkpage'         => 'Página de discussão',
-'pageinfo-watchers'         => 'Número de vigilantes',
+'pageinfo-watchers'         => 'Número de vigilantes da página',
 'pageinfo-edits'            => 'Número de edições',
-'pageinfo-authors'          => 'Número de autores individuais',
+'pageinfo-authors'          => 'Número total de autores distintos',
 'pageinfo-views'            => 'Número de visitas',
 'pageinfo-viewsperedit'     => 'Visitas por edição',
 
@@ -3809,7 +3808,7 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
-'specialpages-group-login'       => 'Entrar / registar-se',
+'specialpages-group-login'       => 'Entrar / criar conta',
 'specialpages-group-changes'     => 'Mudanças e registos recentes',
 'specialpages-group-media'       => 'Listas e carregamento de ficheiros',
 'specialpages-group-users'       => 'Utilizadores e privilégios',

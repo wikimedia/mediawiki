@@ -308,7 +308,7 @@ $1',
 
 'ok'                      => 'Labi',
 'retrievedfrom'           => 'Saturs iegūts no "$1"',
-'youhavenewmessages'      => 'Tev ir $1 (skat. $2).',
+'youhavenewmessages'      => 'Tev ir $1 (skatīt $2).',
 'newmessageslink'         => 'jauns vēstījums',
 'newmessagesdifflink'     => 'pēdējā izmaiņa',
 'youhavenewmessagesmulti' => 'Tev ir jauns ziņojums: $1',
@@ -1251,6 +1251,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'newsectionsummary'                 => '/* $1 */ jauna sadaļa',
 'rc-enhanced-expand'                => 'Rādīt informāciju (nepieciešams JavaScript)',
 'rc-enhanced-hide'                  => 'Paslēpt detaļas',
+'rc-old-title'                      => 'sākotnēji izveidota kā "$1 "',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saistītās izmaiņas',

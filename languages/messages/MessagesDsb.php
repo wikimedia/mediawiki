@@ -318,7 +318,7 @@ $messages = array(
 'vector-action-protect'          => 'Šćitaś',
 'vector-action-undelete'         => 'Wótnowiś',
 'vector-action-unprotect'        => 'Šćit změniś',
-'vector-simplesearch-preference' => 'Pólěpšone pytańske naraźenja zmóžniś (jano suknja Vector)',
+'vector-simplesearch-preference' => 'Zjadnorjonu pytańsku lejstwu zmóžniś (jano drastwa Vector)',
 'vector-view-create'             => 'Napóraś',
 'vector-view-edit'               => 'Wobźěłaś',
 'vector-view-history'            => 'Wersije a awtory',
@@ -531,8 +531,10 @@ Wótpšašanje: $2',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext'       => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'viewyourtext'         => "Móžoš se žrědłowy tekst '''swójich změnow''' woglědaś a do toś togo bok kopěrowaś:",
-'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
-'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [//translatewiki.net/wiki/Main_Page?setlang=dsb translatewiki.net], projekt MediaWiki za lokalizacije.",
+'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary na toś tom wikiju a šćita se, aby se znjewužywanjeju zadorało.
+Aby pśełožki za wšykne wikije pśidał abo změnił, wužyj pšosym [//translatewiki.net/ translatewiki.net], lokalizěrowański projekt MediaWiki.',
+'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow na toś tom wikiju wobwliwowaś.
+Aby pśełožki za wšykne wikije pśidał abo změnił, wužywaj pšosym [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizacije.",
 'sqlhidden'            => '(Wótpšašanje SQL schowane)',
 'cascadeprotected'     => 'Za toś ten bok jo se wobźěłowanje znjemóžniło, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo|kótarejž stej|kótarež su}} pśez kaskadowu opciju {{PLURAL:$1|šćitany|šćitanej|šćitane}}: $2',
 'namespaceprotected'   => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
@@ -793,7 +795,6 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 * '''Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš na ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''⌘-R'' na Makintošu)
 * '''Google Chrome:''' Tłoc na ''Strg-Umsch-R'' ('⌘-Umsch-R'' na Makintošu)
 * '''Internet Explorer:''' Źarź ''Strg'' tłocony, mjaztym až kliknjoš na ''Aktualisieren'' abo tłoc ''Strg-F5''
-* '''Konqueror:''' Klikni na ''Aktualisieren'' abo tłoc ''F5''
 * '''Opera:''' Wuprozni cache w ''Extras → Einstellungen''",
 'usercssyoucanpreview'             => "'''Pokazka:''' Wužywaj tłocašk '{{int:showpreview}}', aby swój nowy css testował, nježli až jen składujoš.",
 'userjsyoucanpreview'              => "'''Pokazka:''' Wužywaj tłocašk \"{{int:showpreview}}\", aby swój nowy JavaScript testował, nježli až jen składujoš.",
@@ -1025,7 +1026,9 @@ Pšosym pśeglědaj protokole.',
 'revdelete-only-restricted'   => 'Zmólka pśi chowanju zapiska wót $2, $1; njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich wiźobnosćowych opcijow.',
 'revdelete-reason-dropdown'   => '*Zwucone pśicyny za wulašowanje
 ** Pśestupjenje awtorskego pšawa
-** Njegóźece se wósobinske informacije',
+** Njegóźece se komentary abo wósobinske informacije
+** Njegóźece se wužywarske mě
+** Potencielnje kśiwźece informacije',
 'revdelete-otherreason'       => 'Druga/pśidatna pśicyna:',
 'revdelete-reasonotherlist'   => 'Druga pśicyna',
 'revdelete-edit-reasonlist'   => 'Pśicyny za lašowanje wobźěłaś',
@@ -1212,7 +1215,7 @@ How jo pśipadnje napórana gódnota, kótaruž móžoš wužywaś: $1',
 'timezoneregion-indian'         => 'Indiski ocean',
 'timezoneregion-pacific'        => 'Pacifiski ocean',
 'allowemail'                    => 'Dostawanje e-mailow drugich wužywarjow zmóžniś.',
-'prefs-searchoptions'           => 'Pytańske opcije',
+'prefs-searchoptions'           => 'Pytaś',
 'prefs-namespaces'              => 'Mjenjowe rumy',
 'defaultns'                     => 'Howac w toś tych mjenjowych rumach pytaś:',
 'default'                       => 'Standard',
@@ -2785,14 +2788,14 @@ W zespominanju dajo se pśicyna pódaś.',
 
 # Info page
 'pageinfo-title'            => 'Informacije za bok "$1"',
-'pageinfo-header-edits'     => 'Změny',
+'pageinfo-header-edits'     => 'Historiju wobźěłaś',
 'pageinfo-header-watchlist' => 'Wobglědowańka',
 'pageinfo-header-views'     => 'Zwobraznjenja',
 'pageinfo-subjectpage'      => 'Bok',
 'pageinfo-talkpage'         => 'Diskusijny bok',
-'pageinfo-watchers'         => 'Licba  wobglědowarjow',
+'pageinfo-watchers'         => 'Licba  wobglědowarjow boka',
 'pageinfo-edits'            => 'Licba wobźěłanjow:',
-'pageinfo-authors'          => 'Licba wšakich awtorow',
+'pageinfo-authors'          => 'Cełkowna licba wšakich awtorow',
 'pageinfo-views'            => 'Licba zwobraznjenjow',
 'pageinfo-viewsperedit'     => 'Zwobraznjenja na změnu',
 

@@ -411,11 +411,11 @@ $messages = array(
 'category-empty'                 => "''Thể loại này hiện không có trang hay tập tin nào.''",
 'hidden-categories'              => '{{PLURAL:$1|Thể loại ẩn|Thể loại ẩn}}',
 'hidden-category-category'       => 'Thể loại ẩn',
-'category-subcat-count'          => 'Thể loại này có {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
-'category-subcat-count-limited'  => 'Thể loại này có {{PLURAL:$1||$1}} tiểu thể loại sau.',
+'category-subcat-count'          => 'Thể loại này gồm {{PLURAL:$2|tiểu thể loại sau|{{PLURAL:$1||$1}} tiểu thể loại sau, trên tổng số $2 tiểu thể loại}}.',
+'category-subcat-count-limited'  => 'Thể loại này gồm {{PLURAL:$1|tiểu thể loại|$1 tiểu thể loại}} sau.',
 'category-article-count'         => '{{PLURAL:$2|Thể loại này gồm trang sau.|{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại này, trên tổng số $2 trang.}}',
 'category-article-count-limited' => '{{PLURAL:$1|Trang|$1 trang}} sau nằm trong thể loại hiện hành.',
-'category-file-count'            => '{{PLURAL:$2|Thể loại này có tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}',
+'category-file-count'            => '{{PLURAL:$2|Thể loại này gồm tập tin sau.|{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại này, trong tổng số $2 tập tin.}}',
 'category-file-count-limited'    => '{{PLURAL:$1|Tập tin|$1 tập tin}} sau nằm trong thể loại hiện hành.',
 'listingcontinuesabbrev'         => '(tiếp theo)',
 'index-category'                 => 'Trang được ghi chỉ mục',
@@ -612,9 +612,9 @@ Có danh sách trang đặc biệt tại [[Special:SpecialPages|{{int:specialpag
 'dberrortext'          => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
 Có vẻ như nguyên nhân của vấn đề này xuất phát từ một lỗi trong phần mềm.
 Truy vấn vừa rồi là:
-<blockquote><tt>$1</tt></blockquote>
-từ hàm “<tt>$2</tt>”.
-Cơ sở dữ liệu  báo lỗi “<tt>$3: $4</tt>”.',
+<blockquote><code>$1</code></blockquote>
+từ hàm “<code>$2</code>”.
+Cơ sở dữ liệu  báo lỗi “<samp>$3: $4</samp>”.',
 'dberrortextcl'        => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
 Truy vấn vừa rồi là:
 “$1”
@@ -665,8 +665,8 @@ Truy vấn: $2',
 'protectedpagetext'    => 'Trang này đã bị khóa không cho sửa đổi.',
 'viewsourcetext'       => 'Bạn vẫn có thể xem và chép xuống mã nguồn của trang này:',
 'viewyourtext'         => "Bạn vẫn có thể xem và chép xuống mã nguồn '''các sửa đổi của bạn''' tại trang này:",
-'protectedinterface'   => 'Trang này cung cấp một thông báo trong giao diện phần mềm, và bị khóa để tránh phá hoại.',
-'editinginterface'     => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng website này. Để dịch thuật, hãy xem xét sử dụng [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
+'protectedinterface'   => 'Trang này cung cấp một thông báo trong giao diện phần mềm, và bị khóa để tránh phá hoại. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.',
+'editinginterface'     => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng wiki này. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
 'sqlhidden'            => '(đã giấu truy vấn SQL)',
 'cascadeprotected'     => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
@@ -942,7 +942,6 @@ hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE
 * '''Firefox / Safari:''' Giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (⌘R trên Mac)
 * '''Google Chrome:''' Nhấn tổ hợp ''Ctrl-Shift-R'' (⇧⌘R trên Mac)
 * '''Internet Explorer:''' Giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
-* '''Konqueror:''' Nhấn nút ''Reload'' hoặc nhấn ''F5''
 * '''Opera:''' Xóa bộ nhớ đệm trong ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
@@ -1185,7 +1184,9 @@ Xin hãy kiểm tra nhật trình.',
 'revdelete-only-restricted'   => 'Có lỗi khi ẩn mục vào $2, $1: nếu ẩn mục để cho bảo quản viên khỏi nhìn thấy được thì cũng cần chọn một trong những tùy chọn ẩn khác.',
 'revdelete-reason-dropdown'   => '*Các lý do thường gặp khi xóa
 ** Vi phạm bản quyền
-** Thông tin cá nhân không thích hợp',
+** Bình luận hoặc thông tin cá nhân không thích hợp
+** Tên người dùng không thích hợp
+** Thông tin có thể bôi nhọ người khác',
 'revdelete-otherreason'       => 'Lý do khác/bổ sung:',
 'revdelete-reasonotherlist'   => 'Lý do khác',
 'revdelete-edit-reasonlist'   => 'Sửa lý do xóa',
@@ -2824,7 +2825,7 @@ Tất cả những lần nhập trang từ wiki khác được ghi lại ở [[S
 'import-interwiki-source'    => 'Wiki/trang mã nguồn:',
 'import-interwiki-history'   => 'Sao chép tất cả các phiên bản cũ của trang này',
 'import-interwiki-templates' => 'Gồm tất cả các bản mẫu',
-'import-interwiki-submit'    => 'Nhập trang',
+'import-interwiki-submit'    => 'Nhập',
 'import-interwiki-namespace' => 'Không gian tên đích:',
 'import-upload-filename'     => 'Tên tập tin:',
 'import-comment'             => 'Lý do:',
@@ -3008,14 +3009,14 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Info page
 'pageinfo-title'            => 'Thông tin về “$1”',
-'pageinfo-header-edits'     => 'Lần sửa',
+'pageinfo-header-edits'     => 'Lịch sử sửa đổi',
 'pageinfo-header-watchlist' => 'Danh sách theo dõi',
 'pageinfo-header-views'     => 'Lần xem',
 'pageinfo-subjectpage'      => 'Trang',
 'pageinfo-talkpage'         => 'Trang thảo luận',
-'pageinfo-watchers'         => 'Số người theo dõi',
+'pageinfo-watchers'         => 'Số người theo dõi trang',
 'pageinfo-edits'            => 'Số lần sửa đổi',
-'pageinfo-authors'          => 'Số tác giả riêng',
+'pageinfo-authors'          => 'Tổng số tác giả riêng',
 'pageinfo-views'            => 'Số lần xem',
 'pageinfo-viewsperedit'     => 'Số lần xem mỗi sửa đổi',
 
@@ -3064,16 +3065,17 @@ $1',
 Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'imagemaxsize'           => "Giới hạn cỡ hình:<br />''(trên trang miêu tả tập tin)''",
 'thumbsize'              => 'Cỡ hình thu nhỏ:',
+'widthheight'            => '$1×$2',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|trang|trang}}',
 'file-info'              => 'kích thước tập tin: $1, kiểu MIME: $2',
-'file-info-size'         => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
-'file-info-size-pages'   => '$1 × $2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
+'file-info-size'         => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4',
+'file-info-size-pages'   => '$1×$2 điểm ảnh, kích thước tập tin: $3, kiểu MIME: $4, $5 trang',
 'file-nohires'           => 'Không có độ phân giải cao hơn.',
-'svg-long-desc'          => 'tập tin SVG, $1 × $2 điểm ảnh trên danh nghĩa, kích thước: $3',
+'svg-long-desc'          => 'tập tin SVG, $1×$2 điểm ảnh trên danh nghĩa, kích thước: $3',
 'show-big-image'         => 'Độ phân giải tối đa',
 'show-big-image-preview' => 'Kích thước của ảnh xem thử: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Độ phân giải|Các độ phân giải}} khác: $1.',
-'show-big-image-size'    => '$1 × $2 điểm ảnh',
+'show-big-image-size'    => '$1×$2 điểm ảnh',
 'file-info-gif-looped'   => 'có lặp',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|khung ảnh|khung ảnh}}',
 'file-info-png-looped'   => 'có lặp',
@@ -3093,6 +3095,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ lúc $2, ngày $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2×$3',
 'seconds-abbrev' => '$1s',
 'minutes-abbrev' => '$1m',
 'hours-abbrev'   => '$1h',
@@ -3669,7 +3672,8 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 'confirm-unwatch-top'    => 'Bạn có muốn gỡ trang này khỏi danh sách theo dõi của bạn?',
 
 # Separators for various lists, etc.
-'ellipsis' => '…',
+'autocomment-prefix' => '–&#32;',
+'ellipsis'           => '…',
 
 # Multipage image navigation
 'imgmultipageprev' => '← trang trước',
@@ -3697,6 +3701,17 @@ Xin hãy xác nhận bạn thực sự muốn tạo lại trang này.",
 
 # Size units
 'size-kilobytes' => '$1 kB',
+
+# Bitrate units
+'bitrate-bits'      => '$1 bps',
+'bitrate-kilobits'  => '$1 kbps',
+'bitrate-megabits'  => '$1 Mbps',
+'bitrate-gigabits'  => '$1 Gbps',
+'bitrate-terabits'  => '$1 Tbps',
+'bitrate-petabits'  => '$1 Pbps',
+'bitrate-exabits'   => '$1 Ebps',
+'bitrate-zetabits'  => '$1 Zbps',
+'bitrate-yottabits' => '$1 Ybps',
 
 # Live preview
 'livepreview-loading' => 'Đang tải…',
@@ -3830,7 +3845,7 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'fileduplicatesearch-legend'    => 'Tìm kiếm tập tin trùng lắp',
 'fileduplicatesearch-filename'  => 'Tên tập tin:',
 'fileduplicatesearch-submit'    => 'Tìm kiếm',
-'fileduplicatesearch-info'      => '$1 × $2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
+'fileduplicatesearch-info'      => '$1×$2 điểm ảnh<br />Kích thước tập tin: $3<br />Kiểu MIME: $4',
 'fileduplicatesearch-result-1'  => 'Không có bản sao y hệt với tập tin “$1”.',
 'fileduplicatesearch-result-n'  => 'Có {{PLURAL:$2|1 bản sao|$2 bản sao}} y hệt với tập tin “$1”.',
 'fileduplicatesearch-noresults' => 'Không tìm thấy tập tin nào tên “$1”.',

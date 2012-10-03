@@ -328,7 +328,7 @@ $messages = array(
 'vector-action-protect'          => 'Spären',
 'vector-action-undelete'         => 'Restauréieren',
 'vector-action-unprotect'        => 'Spär änneren',
-'vector-simplesearch-preference' => 'Verbessert Sichvirschléi aktiviéieren (nëmme beim Ausgesinn Vector)',
+'vector-simplesearch-preference' => 'Vereinfacht Sichleescht aktivéieren (nëmme beim Ausgesinn Vector)',
 'vector-view-create'             => 'Uleeën',
 'vector-view-edit'               => 'Änneren',
 'vector-view-history'            => 'Versioune weisen',
@@ -543,8 +543,12 @@ Ufro: $2',
 'protectedpagetext'    => 'Dës Säit ass fir Ännerunge gespaart.',
 'viewsourcetext'       => 'Dir kënnt de Quelltext vun dëser Säit kucken a kopéieren:',
 'viewyourtext'         => "Dir kënnt de Quelltext vun '''Ären Ännerungen''' op dëser Säit kucken a kopéieren:",
-'protectedinterface'   => 'Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software an dofir ass si gespaart fir Mëssbrauch ze verhënneren.',
-'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, jee no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer gesi ginn. Fir d'Iwwersetzungen z'änneren invitéiere mir Iech de [//translatewiki.net/wiki/Main_Page?setlang=lb Projet translatewiki.net] vun den internationale Messagen ze benotzen.",
+'protectedinterface'   => "Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software op dëser Wiki an dofir ass si gespaart fir Mëssbrauch ze verhënneren.
+
+Fir Iwwersetzungen fir all Wikien bäizesetzen oder z'änneren gitt w.e.g. op [//translatewiki.net/ translatewiki.net], de MediaWiki-Lokalisatiouns-Projet.",
+'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. 
+Ännerungen op dëser Säit änneren den Interface-Text, jee no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer op dëser Wiki gesi ginn. 
+Fir d'Iwwersetzungen fir all Wikien derbäizesetzen oder z'änneren gitt w.e.g. op [//translatewiki.net translatewiki.net], de MediaWiki-Lokalisatiouns-Projet.",
 'sqlhidden'            => '(SQL-Offro verstoppt)',
 'cascadeprotected'     => 'Dës Säit gouf fir Ännerunge gespaart, well se duerch Cascadeprotectioun vun {{PLURAL:$1|dëser Säit|dëse Säite}} gespaart ass mat der Cascadenoptioun:
 $2',
@@ -1053,8 +1057,10 @@ Dir hutt keen Zougang dozou.',
 Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted'   => 'Feler beim verstoppe vum Objet vum $2, $1: Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den aneren Optiounen vum weisen erauszesichen.',
 'revdelete-reason-dropdown'   => "* Generell Läschgrënn
-**Verletzung vun den Droits d'Auteur
-**Net ubruechte perséinlech Informatioun",
+** Verletzung vun den Droits d'Auteur
+** Net ubruechte perséinlech Informatioun
+** Inadequate Benotzernumm
+** Informatioun déi beleidege kann",
 'revdelete-otherreason'       => 'Aneren/zousätzleche Grond:',
 'revdelete-reasonotherlist'   => 'Anere Grond:',
 'revdelete-edit-reasonlist'   => 'Läschgrënn änneren',
@@ -1246,7 +1252,7 @@ Hei ass een zoufälleg generéierte Wäert deen Dir benotze kënnt: $1',
 'timezoneregion-indian'         => 'Indeschen Ozean',
 'timezoneregion-pacific'        => 'Pazifeschen Ozean',
 'allowemail'                    => 'E-Maile vun anere Benotzer kréien.',
-'prefs-searchoptions'           => 'Sichoptiounen',
+'prefs-searchoptions'           => 'Sichen',
 'prefs-namespaces'              => 'Nummraim',
 'defaultns'                     => 'Soss an dësen Nummraim sichen:',
 'default'                       => 'Standard',
@@ -2842,14 +2848,14 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 
 # Info page
 'pageinfo-title'            => 'Informatioun iwwer "$1"',
-'pageinfo-header-edits'     => 'Ännerungen',
+'pageinfo-header-edits'     => 'Historique vun den Ännerungen',
 'pageinfo-header-watchlist' => 'Iwwerwaachungslëscht',
 'pageinfo-header-views'     => 'Affichagen',
 'pageinfo-subjectpage'      => 'Säit',
 'pageinfo-talkpage'         => 'Diskussiounssäit',
-'pageinfo-watchers'         => 'Zuel vun de Benotzer déi iwwerwaachen',
+'pageinfo-watchers'         => "Zuel vun de Benotzer déi d'Säit iwwerwaachen",
 'pageinfo-edits'            => 'Zuel vun den Ännerungen',
-'pageinfo-authors'          => 'Zuel vun de verschiddenen Auteuren',
+'pageinfo-authors'          => 'Gesamtzuel vun de verschiddenen Auteuren',
 'pageinfo-views'            => 'Zuel vun de Kéieren déi dës Säit gekuckt gouf',
 'pageinfo-viewsperedit'     => 'Affichage pro Ännerung',
 
@@ -3106,6 +3112,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-iimsupplementalcategory'     => 'Zousätzlech Kategorien',
 'exif-datetimeexpires'             => 'Net benotzen nom',
 'exif-datetimereleased'            => 'Erausginn den',
+'exif-originaltransmissionref'     => "Geo-Code vun der Plaz vu wou d'Foto iwwermëttelt gouf",
 'exif-identifier'                  => 'Identifiant',
 'exif-lens'                        => 'Objektiv dat benotzt gouf',
 'exif-serialnumber'                => 'Seriennummer vun der Kamera',
@@ -3676,6 +3683,7 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'api-error-badtoken'                      => 'Interne Feeler: falschen Token.',
 'api-error-copyuploaddisabled'            => "D'Eroplueden iwwer eng URL ass op dësem Server desaktivéiert.",
 'api-error-duplicate'                     => 'Et gëtt schonn {{PLURAL:$1|[$2 en anere Fichier]|[$2 aner Fichiere]}} mat dem selwechten Inhalt op dem Site',
+'api-error-duplicate-archive'             => 'Et gouf schonn {{PLURAL:$1| [een anere Fichier]|[$2 aner Fichieren]}} op dem Site mat deemselwechten Inhalt, {{PLURAL:$1|e gouf was|se goufen}} awer geläscht.',
 'api-error-duplicate-archive-popup-title' => '{{PLURAL:$1|Duebele Fichier, dee scho geläscht gouf|Duebel Fichieren, déi scho geläscht goufen}}',
 'api-error-duplicate-popup-title'         => '{{PLURAL:$1|Duebele Fichier|Duebel Fichieren}}',
 'api-error-empty-file'                    => 'De Fichier deen Dir geschéckt hutt war eidel.',

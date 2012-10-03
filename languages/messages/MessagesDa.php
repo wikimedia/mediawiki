@@ -42,6 +42,7 @@
  * @author Slomox
  * @author Svip
  * @author Søren Løvborg
+ * @author Tjernobyl
  * @author Urhixidur
  */
 
@@ -406,7 +407,7 @@ $messages = array(
 'redirectedfrom'    => '(Omdirigeret fra $1)',
 'redirectpagesub'   => 'Omdirigering',
 'lastmodifiedat'    => 'Denne side blev senest ændret $1 kl. $2.',
-'viewcount'         => 'Siden er vist i {{PLURAL:$1|en gang|$1 gange}}.',
+'viewcount'         => 'Siden er vist {{PLURAL:$1|en gang|$1 gange}}.',
 'protectedpage'     => 'Beskyttet side',
 'jumpto'            => 'Skift til:',
 'jumptonavigation'  => 'Navigation',
@@ -438,7 +439,7 @@ $1',
 'portal'               => 'Forside for skribenter',
 'portal-url'           => 'Project:Forside',
 'privacy'              => 'Behandling af personlige oplysninger',
-'privacypage'          => 'Project:Behandling_af_personlige_oplysninger',
+'privacypage'          => 'Project:Behandling af personlige oplysninger',
 
 'badaccess'        => 'Manglende rettigheder',
 'badaccess-group0' => 'Du har ikke de nødvendige rettigheder til denne handling.',
@@ -529,15 +530,15 @@ Gør venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på det, o
 'missingarticle-diff'  => '(Forskel: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen',
 'internalerror'        => 'Intern fejl',
-'internalerror_info'   => 'Internal fejl: $1',
-'fileappenderrorread'  => 'Kunne ikke læse "$1" under tilføjelsen.',
+'internalerror_info'   => 'Intern fejl: $1',
+'fileappenderrorread'  => 'Kunne ikke læse "$1" mens der blev tilføjet data.',
 'fileappenderror'      => 'Kunne ikke tilføje "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikke kopiere filen "$1" til "$2".',
 'filerenameerror'      => 'Kunne ikke omdøbe filen "$1" til "$2".',
 'filedeleteerror'      => 'Kunne ikke slette filen "$1".',
-'directorycreateerror' => 'Kunne ikke oprette kataloget "$1".',
+'directorycreateerror' => 'Kunne ikke oprette mappen "$1".',
 'filenotfound'         => 'Kunne ikke finde filen "$1".',
-'fileexistserror'      => 'Kunne ikke oprette "$1": filen findes allerede',
+'fileexistserror'      => 'Kunne ikke oprette "$1": filen findes allerede.',
 'unexpected'           => 'Uventet værdi: "$1"="$2".',
 'formerror'            => 'Fejl: Kunne ikke afsende formular',
 'badarticleerror'      => 'Denne funktion kan ikke udføres på denne side.',
@@ -560,9 +561,10 @@ Forespørgsel: $2',
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',
 'viewsourcetext'       => 'Du kan se og kopiere kildekoden til siden:',
 'viewyourtext'         => "Du kan se og kopiere kildekoden for '''dine redigeringer''' til denne side:",
-'protectedinterface'   => 'Denne side indeholder tekst til softwarens sprog-interface og er skrivebeskyttet for at forhindre misbrug.',
-'editinginterface'     => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere.
-For oversættelser bedes du venligst overveje at bruge [//translatewiki.net/wiki/Main_Page?setlang=da translatewiki.net], projektet for oversættelse af MediaWiki.",
+'protectedinterface'   => 'Denne side indeholder teksten i brugergrænsefladen til softwaren på denne wiki, og er beskyttet for at forhindre misbrug.
+Hvis du vil tilføje eller ændre oversættelser til alle wiki-websteder, brug venligst [//translatewiki.net/ translatewiki.net], MediaWiki lokalisering projektet.',
+'editinginterface'     => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere af denne wiki.
+For at tilføje eller ændre oversættelser på alle wikier bedes du benytte [//translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.",
 'sqlhidden'            => '(SQL forespørgsel skjult)',
 'cascadeprotected'     => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
@@ -588,9 +590,9 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'yourname'                   => 'Dit brugernavn:',
 'yourpassword'               => 'Din adgangskode:',
 'yourpasswordagain'          => 'Gentag adgangskode',
-'remembermypassword'         => 'Husk mit brugernavn på denne computer (højst $1 {{PLURAL:$1|dag|dage}})',
+'remembermypassword'         => 'Husk mit brugernavn i denne browser (højst $1 {{PLURAL:$1|dag|dage}})',
 'securelogin-stick-https'    => 'Behold forbindelsen til HTTPS efter login',
-'yourdomainname'             => 'Dit domænenavn',
+'yourdomainname'             => 'Dit domænenavn:',
 'externaldberror'            => 'Der er opstået en fejl i en ekstern adgangsdatabase, eller du har ikke rettigheder til at opdatere denne.',
 'login'                      => 'Log på',
 'nav-login-createaccount'    => 'Opret en konto eller log på',
@@ -600,10 +602,10 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'logout'                     => 'Log af',
 'userlogout'                 => 'Log af',
 'notloggedin'                => 'Ikke logget på',
-'nologin'                    => "Du har ingen brugerkonto? '''$1'''.",
-'nologinlink'                => 'Opret ny brugerkonto',
-'createaccount'              => 'Opret en ny konto',
-'gotaccount'                 => "Du har allerede en brugerkonto? '''$1'''.",
+'nologin'                    => 'Har du ingen konto? $1.',
+'nologinlink'                => 'Opret en ny brugerkonto',
+'createaccount'              => 'Opret en ny brugerkonto',
+'gotaccount'                 => 'Har du allerede en konto? $1.',
 'gotaccountlink'             => 'Log på',
 'userlogin-resetlink'        => 'Har du glemt dine login oplysninger?',
 'createaccountmail'          => 'via e-mail',
@@ -612,14 +614,14 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'userexists'                 => 'Det brugernavn, du har valgt, er allerede i brug.
 Vælg venligst et andet brugernavn.',
 'loginerror'                 => 'Logon mislykket',
-'createaccounterror'         => 'Kunne ikke oprette konto: $1',
+'createaccounterror'         => 'Kunne ikke oprette brugerkonto: $1',
 'nocookiesnew'               => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
 'nocookieslogin'             => '{{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Slå dem venligst til og prøv igen.',
 'nocookiesfornew'            => 'Denne brugerkonto er ikke oprettet, da vi ikke kunne bekræfte dens kilde.
 Sørg for, at du har aktivereret cookies, genindlæs siden og prøv igen.',
 'noname'                     => 'Du har ikke angivet et gyldigt brugernavn.',
 'loginsuccesstitle'          => 'Du er nu logget på',
-'loginsuccess'               => 'Du er nu logget på {{SITENAME}} som "$1".',
+'loginsuccess'               => "'''Du er nu logget på {{SITENAME}} som \"\$1\".'''",
 'nosuchuser'                 => 'Der er ingen bruger med navnet "$1".
 Der skelnes mellem store og bogstaver i brugernavne.
 Kontrollér stavemåden, eller [[Special:UserLogin/signup|opret en ny konto]].',
@@ -838,10 +840,9 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Denne bruger er i øjeblikket blokeret.
 Loggen over den seneste blokering ses nedenfor:',
 'clearyourcache'                   => "'''Bemærk:''' Efter at have gemt er du måske nødt til at tømme din browsers cache for at kunne se ændringerne.
-* '''Firefox / Safari:''' Hold ''shifttasten'' nede og klik på ''reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-Shift-r'' (''⌘-R'' på en Mac).
+* '''Firefox / Safari:''' Hold ''Shift'' nede og klik på ''Reload'', eller tryk enten ''Ctrl-F5'' eller ''Ctrl-R'' (''⌘-R'' på en Mac).
 * '''Google Chrome:''' Tryk ''Ctrl-Shift-R'' (''⌘-Shift-R'' på en Mac).
-* '''Internet Explorer:''' Hold ''controltasten'' nede og klik på ''refresh'' eller tryk på ''Ctrl-F5''.
-* '''Konqueror:''' Klik på ''reload'' eller tryk på ''F5''.
+* '''Internet Explorer:''' Hold ''Ctrl'' nede og klik på ''Refresh'' eller tryk på ''Ctrl-F5''.
 * '''Opera:''' Tøm cachen i ''Tools → Preferences''.",
 'usercssyoucanpreview'             => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye CSS inden du gemmer.",
 'userjsyoucanpreview'              => "'''Tip:''' Brug \"{{int:showpreview}}\"-knappen for at teste dit nye JavaScript inden du gemmer.",
@@ -1071,9 +1072,11 @@ Du har ikke adgang til det.',
 'revdelete-concurrent-change' => 'Fejl under modificering af objekt dateret $1 klokken $2: Dens status ser ud til at være blevet ændret af en, imens du prøvede at modificere den.
 Se venligst loglisterne.',
 'revdelete-only-restricted'   => 'Fejl under skjulning af objekt dateret $2, $1: Du kan ikke skjule objekter for administratorerne uden at vælge en alternativ indstilling.',
-'revdelete-reason-dropdown'   => '* Almindelige sletningsårsager
-** Overtrædelse af ophavsret
-** Upassende personlige oplysninger',
+'revdelete-reason-dropdown'   => '* Almindelige begrundelser for sletning
+** Overtrædelse af ophavsretten
+** Upassende kommentar eller personlige oplysninger
+** Upassende brugernavn
+** Oplysninger, der muligvis er injuriende',
 'revdelete-otherreason'       => 'Anden/yderligere årsag:',
 'revdelete-reasonotherlist'   => 'Anden årsag',
 'revdelete-edit-reasonlist'   => 'Rediger sletningsårsager',
@@ -1264,7 +1267,7 @@ Her er en tilfældig genereret værdi som du kan bruge: $1',
 'timezoneregion-indian'         => 'Indiske Ocean',
 'timezoneregion-pacific'        => 'Stillehavet',
 'allowemail'                    => 'Tillad e-mails fra andre brugere',
-'prefs-searchoptions'           => 'Søgeindstillinger',
+'prefs-searchoptions'           => 'Søg',
 'prefs-namespaces'              => 'Navnerum',
 'defaultns'                     => 'Ellers søg i disse navnerum:',
 'default'                       => 'standard',
@@ -2837,14 +2840,14 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 
 # Info page
 'pageinfo-title'            => 'Information om "$1"',
-'pageinfo-header-edits'     => 'Redigeringer',
+'pageinfo-header-edits'     => 'Redigeringshistorik',
 'pageinfo-header-watchlist' => 'Overvågningsliste',
 'pageinfo-header-views'     => 'Visninger',
 'pageinfo-subjectpage'      => 'Side',
 'pageinfo-talkpage'         => 'Diskussionsside',
 'pageinfo-watchers'         => 'Antal brugere, der overvåger siden',
 'pageinfo-edits'            => 'Antal redigeringer',
-'pageinfo-authors'          => 'Antal forskellige forfattere',
+'pageinfo-authors'          => 'Det samlede antal forskellige forfattere',
 'pageinfo-views'            => 'Antal visninger',
 'pageinfo-viewsperedit'     => 'Visninger per redigering',
 

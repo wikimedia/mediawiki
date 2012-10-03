@@ -11,6 +11,7 @@
  * @author Justincheng12345
  * @author Omnipaedista
  * @author Shinjiman
+ * @author Super Wang
  */
 
 /**
@@ -506,6 +507,7 @@ $2',
 'noemailprefs'               => '郵驛設而用之。',
 'emailconfirmlink'           => '惠考郵驛',
 'invalidemailaddress'        => '驛址不格，惠正略之。',
+'cannotchangeemail'          => '電郵地址不可改于此wiki',
 'accountcreated'             => '簿增矣',
 'accountcreatedtext'         => '$1簿增矣',
 'createaccount-title'        => '於{{SITENAME}}增簿',
@@ -539,6 +541,10 @@ $2',
 'resetpass-wrong-oldpass'   => '無效之臨符或現符。
 爾或改符，或求新臨符。',
 'resetpass-temp-password'   => '臨符節:',
+
+# Special:PasswordReset
+'passwordreset'        => '重設符節',
+'passwordreset-legend' => '重設符節',
 
 # Edit page toolbar
 'bold_sample'     => '粗體',
@@ -819,7 +825,9 @@ $1",
 'revdelete-only-restricted'   => '藏期於 $1 $2 之項：爾無廢有秩見之項，而無選另廢項也。',
 'revdelete-reason-dropdown'   => '*常因
 ** 侵權
-** 無合之人料',
+** 無合之人料
+** 無合之簿
+** 隱謗譏',
 'revdelete-otherreason'       => '它附因：',
 'revdelete-reasonotherlist'   => '它因',
 'revdelete-edit-reasonlist'   => '纂刪因',

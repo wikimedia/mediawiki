@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Latin script) (‪srpski (latinica)‬)
+/** Serbian (Latin script) (srpski (latinica)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -632,9 +632,9 @@ Spisak svih posebnih stranica nalazi se [[Special:SpecialPages|ovde]].',
 'dberrortext'          => 'Došlo je do sintaktičke greške u bazi.
 Možda se radi o grešci u softveru.
 Poslednji pokušaj upita je glasio:
-<blockquote><tt>$1</tt></blockquote>
-unutar funkcije „<tt>$2</tt>“.
-Baza podataka je prijavila grešku „<tt>$3: $4</tt>“.',
+<blockquote><code>$1</code></blockquote>
+unutar funkcije „<code>$2</code>“.
+Baza podataka je prijavila grešku „<samp>$3: $4</samp>“.',
 'dberrortextcl'        => 'Došlo je do sintaktičke greške u bazi.
 Poslednji pokušaj upita je glasio:
 „$1“
@@ -688,10 +688,11 @@ Upit: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana za uređivanja.',
 'viewsourcetext'       => 'Možete da pogledate i umnožite izvorni tekst ove stranice:',
 'viewyourtext'         => "Možete da pogledate i umnožite izvor '''vaših izmena''' na ovoj stranici:",
-'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst korisničkog sučelja programa.',
+'protectedinterface'   => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom vikiju i zaštićena je radi sprečavanja zloupotrebe.
+Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/ Translejtviki], projekat za lokalizaciju Medijavikija.',
 'editinginterface'     => "'''Upozorenje:''' uređujete stranicu koja se koristi za prikazivanje teksta korisničkog okruženja.
-Izmene na ovoj stranici će uticati na sve korisnike.
-Posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat namenjen za prevođenje Medijavikija.",
+Izmene na ovoj stranici će uticati na sve korisnike ovog vikija.
+Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat za lokalizaciju Medijavikija.",
 'sqlhidden'            => '(SQL upit je sakriven)',
 'cascadeprotected'     => 'Ova stranica je zaključana jer sadrži {{PLURAL:$1|sledeću stranicu koja je zaštićena|sledeće stranice koje su zaštićene}} „prenosivom“ zaštitom:
 $2',
@@ -980,7 +981,6 @@ Izveštaj o poslednjem blokiranju možete pogledati ispod:',
 *'''Fajerfoks i Safari:''' držite ''Shift'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5'' ili Ctrl-R (''⌘-R'' na Makintošu)
 *'''Gugl kroum:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Makintošu)
 *'''Internet eksplorer: '''držite ''Ctrl'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5''
-*'''K-osvajač: '''kliknite na ''Osveži'' ili pritisnite ''F5''
 *'''Opera:''' očistite privremenu memoriju preko menija ''Alatke → Postavke''.",
 'usercssyoucanpreview'             => "'''Savet:''' korisitite dugme „{{int:showpreview}}“ da isprobate svoj novi CSS pre nego što ga sačuvate.",
 'userjsyoucanpreview'              => "'''Savet:''' korisitite dugme „{{int:showpreview}}“ da isprobate svoj novi javaskript pre nego što ga sačuvate.",
@@ -1063,7 +1063,7 @@ Možete se vratiti i urediti postojeću stranicu, ili se [[Special:UserLogin|pri
 'sectioneditnotsupported-text'     => 'Uređivanje odeljka nije podržano na ovoj stranici.',
 'permissionserrors'                => 'Greške u dozvolama',
 'permissionserrorstext'            => 'Nemate ovlašćenje za tu radnju iz {{PLURAL:$1|sledećeg|sledećih}} razloga:',
-'permissionserrorstext-withaction' => 'Nemate ovlašćenja za $2 zbog {{PLURAL:$1|sledećeg|sledećih}} razloga:',
+'permissionserrorstext-withaction' => 'Nemate dozvolu da $2 iz {{PLURAL:$1|sledećeg|sledećih}} razloga:',
 'recreate-moveddeleted-warn'       => "'''Upozorenje: ponovo pravite stranicu koja je prethodno obrisana.'''
 
 Razmotrite da li je prikladno da nastavite s uređivanjem ove stranice.
@@ -1230,7 +1230,8 @@ Pogledajte istoriju.',
 'revdelete-only-restricted'   => 'Greška pri sakrivanju stavke od $1, $2: ne možete sakriti stavke od administratora bez izbora drugih mogućnosti vidljivosti.',
 'revdelete-reason-dropdown'   => '*Uobičajeni razlozi za brisanje
 ** Kršenje autorskog prava
-** Neodgovarajući lični podaci
+** Neprikladan komentar ili lični podaci
+** Neprikladno korisničko ime
 ** Uvredljivi podaci',
 'revdelete-otherreason'       => 'Drugi/dodatni razlog:',
 'revdelete-reasonotherlist'   => 'Drugi razlog',
@@ -3109,14 +3110,14 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 
 # Info page
 'pageinfo-title'            => 'Podaci o „$1“',
-'pageinfo-header-edits'     => 'Izmena',
+'pageinfo-header-edits'     => 'Istorija izmena',
 'pageinfo-header-watchlist' => 'Spisak nadgledanja',
 'pageinfo-header-views'     => 'Pregleda',
 'pageinfo-subjectpage'      => 'Stranica',
 'pageinfo-talkpage'         => 'Stranica za razgovor',
-'pageinfo-watchers'         => 'Broj pregledača',
+'pageinfo-watchers'         => 'Broj nadgledača stranica',
 'pageinfo-edits'            => 'Broj izmena',
-'pageinfo-authors'          => 'Broj različitih autora',
+'pageinfo-authors'          => 'Broj zasebnih autora',
 'pageinfo-views'            => 'Broj pregleda',
 'pageinfo-viewsperedit'     => 'Pregleda po izmeni',
 

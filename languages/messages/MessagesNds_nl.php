@@ -321,7 +321,7 @@ $messages = array(
 'tog-numberheadings'          => 'Koppen vanzelf nummeren',
 'tog-showtoolbar'             => 'Laot de warkbalke zien',
 'tog-editondblclick'          => 'Mit dubbelklik bewarken (JavaScript)',
-'tog-editsection'             => 'Mit bewarkgedeeltes',
+'tog-editsection'             => 'Mit bewarkgedeelten',
 'tog-editsectiononrightclick' => 'Bewarkgedeelte mit rechtermuusknoppe bewarken (JavaScript)',
 'tog-showtoc'                 => 'Samenvatting laoten zien van de zaken die an bod koemen (mit meer as dree onderwarpen)',
 'tog-rememberpassword'        => 'Vanzelf anmelden (hooguut $1 {{PLURAL:$1|dag|dagen}})',
@@ -436,8 +436,8 @@ $messages = array(
 'category-file-count'            => 'In disse kategorie {{PLURAL:$2|steet t volgende bestaand|staon de volgende $1 bestaanden, van in totaal $2}}.',
 'category-file-count-limited'    => 'In disse kategorie {{PLURAL:$1|steet t volgende bestaand|staon de volgende $1 bestaanden}}.',
 'listingcontinuesabbrev'         => '(vervolg)',
-'index-category'                 => 'Spul wat al indexeerd is',
-'noindex-category'               => 'Spul wat nog niet indexeerd is',
+'index-category'                 => 'Te indexeren ziejen',
+'noindex-category'               => 'Niet te indexeren ziejen',
 'broken-file-category'           => 'Ziejen mit verkeerde bestaandsverwiezingen',
 
 'about'         => 'Informasie',
@@ -631,9 +631,9 @@ De oorzake hiervan kan dujen op n fout in de programmatuur.
 Der is n syntaxisfout in t databankeverzeuk op-etrejen.
 t Kan ween dat der n fout in de programmatuur zit.
 De leste zeukpoging in de databanke was:
-<blockquote><tt>$1</tt></blockquote>
-vanuut de funksie "<tt>$2</tt>".
-De databanke gaf de volgende foutmelding "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+vanuut de funksie "<code>$2</code>".
+De databanke gaf de volgende foutmelding "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Der is n syntaxisfout in t databankeverzeuk op-etrejen.
 t Leste veurzeuk an de databanke was:
 "$1"
@@ -683,8 +683,9 @@ Zeukopdrachte: $2',
 'protectedpagetext'    => 'Disse zied is beveiligd um bewarkingen te veurkoemen.',
 'viewsourcetext'       => 'Je kunnen de brontekste van disse zied bewarken en bekieken:',
 'viewyourtext'         => "Je kunnen '''joew bewarkingen''' an de brontekste van disse zied bekieken en kopiëren:",
-'protectedinterface'   => 'Op disse zied steet n tekste die gebruukt wörden veur systeemteksten van de wiki. Allinnig beheerders kunnen disse zied bewarken.',
-'editinginterface'     => "'''Waorschuwing:''' je bewarken n zied die gebruukt wörden deur de programmatuur. Wa'j hier wiezigen, is van invleud op de hele wiki. Overweeg veur vertalingen um [//translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net] te gebruken, t vertalingsprojekt veur MediaWiki.",
+'protectedinterface'   => "Op disse zied steet tekste die gebruukt wörden veur systeemteksten van disse wiki. Allinnig beheerders kunnen disse zied bewarken.
+Um vertalingen veur alle wiki's derbie te zetten of te wiezigen, gebruuk [//translatewiki.net/ translatewiki.net], t vertaalprojekt veur MediaWiki.",
+'editinginterface'     => "'''Waorschuwing:''' je bewarken n zied die gebruukt wörden deur de programmatuur. Wa'j hier wiezigen, is van invleud op de hele wiki. Um vertalingen derbie te zetten of te wiezigen veur alle wiki's, gebruuk [//translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net], t vertalingsprojekt veur MediaWiki.",
 'sqlhidden'            => '(SQL-zeukopdrachte verbörgen)',
 'cascadeprotected'     => 'Disse zied is beveiligd umdat t veurkömp in de volgende {{PLURAL:$1|zied|ziejen}}, die beveiligd {{PLURAL:$1|is|bin}} mit de "kaskade"-opsie:
 $2',
@@ -966,7 +967,6 @@ De leste regel uut t blokkeerlogboek steet hieronder as referensie:',
 *'''Firefox / Safari:''' drok op ''Shift'' terwiel je op ''verniejen'' klikken, of gebruuk ''Ctrl-F5'' of ''Ctrl-R'' (''⌘-R'' op n knipperkiste van Mac)
 * '''Google Chrome:''' drok op ''Ctrl-Shift-R'' (''⌘-Shift-R'' op n knipperkiste van Mac)
 *'''Internet Explorer:''' drok op ''Ctrl'' terwiel je op ''verniejen'' klikken of drok op ''Ctrl-F5''
-*'''Konqueror: '''klik op ''verniejen'' of drok op ''F5''
 *'''Opera:''' leeg t tussengeheugen in ''Extra → Voorkeuren\"",
 'usercssyoucanpreview'             => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda'j t opslaon.",
 'userjsyoucanpreview'              => "'''Tip:''' gebruuk de knoppe \"{{int:showpreview}}\" um joew nieje css/js nao te kieken veurda'j t opslaon.",
@@ -1202,7 +1202,8 @@ Kiek de logboeken nao.',
 'revdelete-only-restricted'   => 'Der is n fout op-etrejen bie t verbargen van t objekt van $1, $2: je kunnen gien objekten onderdrokken uut t zich van beheerders zonder oek n van de aandere zichtbaorheidsopsies te selekteren.',
 'revdelete-reason-dropdown'   => '*Veulveurkoemde redens veur t vortdoon
 ** Schenden van de auteursrechten
-** Ongeschikte persoonlike informasie
+** Ongepast kommentaar of ongepaste persoonlike informasie
+** Ongepaste gebrukersnaam
 ** Meugelik lasterlike informasie',
 'revdelete-otherreason'       => 'Aandere reden:',
 'revdelete-reasonotherlist'   => 'Aandere reden',
@@ -1607,7 +1608,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'recentchanges-label-minor'         => 'Dit is n kleine wieziging',
 'recentchanges-label-bot'           => 'Disse bewarking is uutevoerd deur n bot',
 'recentchanges-label-unpatrolled'   => 'Disse bewarking is nog niet nao-ekeken',
-'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de aofeleupen {{PLURAL:$2|dag|'''$2''' dagen}} (stand: $5, $4).",
+'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de aofgeleupen {{PLURAL:$2|dag|'''$2''' dagen}} (per: $5, $4).",
 'rcnotefrom'                        => 'Dit bin de wiezigingen sinds <b>$2</b> (maximum van <b>$1</b> wiezigingen).',
 'rclistfrom'                        => 'Bekiek wiezigingen vanaof $1',
 'rcshowhideminor'                   => '$1 kleine wiezigingen',
@@ -1616,7 +1617,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'rcshowhideanons'                   => '$1 anonieme gebrukers',
 'rcshowhidepatr'                    => '$1 nao-ekeken bewarkingen',
 'rcshowhidemine'                    => '$1 mien bewarkingen',
-'rclinks'                           => 'Bekiek de leste $1 wiezigingen van de aofeleupen $2 dagen<br />$3',
+'rclinks'                           => 'Bekiek de leste $1 wiezigingen van de aofgeleupen $2 dagen<br />$3',
 'diff'                              => 'wiezig',
 'hist'                              => 'gesch',
 'hide'                              => 'verbarg',
@@ -1663,7 +1664,7 @@ Bestaanden en media die nao t vortdoon opniej op-estuurd wörden ku'j in de smie
 
 Um t bestaand in te voegen in n zied ku'j één van de volgende kodes gebruken:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.png|alternetieve tekste]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.png|alternatieve tekste]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestaand.ogg]]</nowiki>''' drekte verwiezing naor n bestaand.",
 'upload-permitted'            => 'Toe-estaone bestaandstypes: $1.',
 'upload-preferred'            => 'An-ewezen bestaandstypes: $1.',
@@ -2001,9 +2002,9 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 
 'disambiguations'      => 'Ziejen die verwiezen naor deurverwiesziejen',
 'disambiguationspage'  => 'Template:Dv',
-'disambiguations-text' => "De onderstaonde ziejen verwiezen naor n '''deurverwieszied'''. Disse verwiezingen mutten eigenliks rechtstreeks verwiezen naor t juuste onderwarp.
-
-Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]]",
+'disambiguations-text' => "Hieronder staon ziejen mit tenminsten één verwiezing naor n '''deurverwieszied'''. 
+Feitelik mutten ze rechtstreeks verwiezen naor t juuste onderwarp.<br />
+Ziejen wörden ezien as n deurverwieszied, as de mal gebruukt wörden die vermeld steet op [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'                   => 'Dubbele deurverwiezingen',
 'doubleredirectstext'               => 'Op disse lieste staon alle ziejen die deurverwiezen naor aandere deurverwiezingen.
@@ -2163,8 +2164,8 @@ Ondersteunde protokollen: <code>$1</code> (zet t niet in joew zeukopdrachte).',
 
 # Special:ActiveUsers
 'activeusers'            => 'Aktieve gebrukers',
-'activeusers-intro'      => 'Dit is n lieste van gebrukers die de aofeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewes bin.',
-'activeusers-count'      => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofeleupen {{PLURAL:$3|dag|$3 dagen}}',
+'activeusers-intro'      => 'Dit is n lieste van gebrukers die de aofgeleupen $1 {{PLURAL:$1|dag|dagen}} enigszins aktief ewest hebben.',
+'activeusers-count'      => '$1 leste {{PLURAL:$1|bewarking|bewarkingen}} in de aofgeleupen {{PLURAL:$3|dag|$3 dagen}}',
 'activeusers-from'       => 'Laot gebrukers zien vanaof:',
 'activeusers-hidebots'   => 'Bots verbargen',
 'activeusers-hidesysops' => 'Beheerders verbargen',
@@ -2256,7 +2257,7 @@ Toekomstige wiezigingen op disse zied en de overlegzied zullen hier vermeld wör
 'watchmethod-list'     => 'Kik joew nao volglieste veur de leste wiezigingen',
 'watchlistcontains'    => 'Der {{PLURAL:$1|steet 1 zied|staon $1 ziejen}} op joew volglieste.',
 'iteminvalidname'      => "Verkeerde naam '$1'",
-'wlnote'               => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofeleupen ure|de leste $2 uren}} vanaof $3 um $4.',
+'wlnote'               => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofgeleupen ure|de leste $2 uren}} vanaof $3 um $4.',
 'wlshowlast'           => 'Laot de veurbieje $1 uur $2 dagen $3 zien',
 'watchlist-options'    => 'Opsies veur de volglieste',
 
@@ -2540,7 +2541,7 @@ De leste regel uut t blokkeerlogboek steet as referensie',
 'ipbreason'                       => 'Reden:',
 'ipbreasonotherlist'              => 'aandere reden',
 'ipbreason-dropdown'              => '*Algemene redens veur t blokkeren
-** valse informasie invoeren
+** verkeerde informasie invoeren
 ** ziejen leegmaken
 ** ongewunste verwiezingen plaotsen
 ** onzinteksten schrieven
@@ -2976,14 +2977,14 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 
 # Info page
 'pageinfo-title'            => 'Informasie over "$1"',
-'pageinfo-header-edits'     => 'Bewarkingen',
+'pageinfo-header-edits'     => 'Bewarkingsgeschiedenisse',
 'pageinfo-header-watchlist' => 'Volglieste',
 'pageinfo-header-views'     => 'Bekeken',
 'pageinfo-subjectpage'      => 'Zied:',
 'pageinfo-talkpage'         => 'Overlegzied',
-'pageinfo-watchers'         => 'Antal volgers',
+'pageinfo-watchers'         => 'Antal ziedvolgers',
 'pageinfo-edits'            => 'Antal bewarkingen',
-'pageinfo-authors'          => 'Antal verschillende auteurs',
+'pageinfo-authors'          => 'Totaal antal verschillende auteurs',
 'pageinfo-views'            => 'Antal keer bekeken',
 'pageinfo-viewsperedit'     => 'Antal keer bekeken per bewarking',
 

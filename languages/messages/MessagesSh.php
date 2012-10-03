@@ -216,7 +216,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Sakrij patrolirane izmjene u nedavnim promjenama',
 'tog-newpageshidepatrolled'   => 'Sakrij patrolirane stranice sa spiska novih stranica',
 'tog-extendwatchlist'         => 'Proširi spisak praćenja za pogled svih izmjena, ne samo nedavnih',
-'tog-usenewrc'                => 'Korištenje poboljšanog spiska nedavnih izmjena (zahtijeva JavaScript)',
+'tog-usenewrc'                => 'Promene u grupi po stranici u spisku nedavnih izmhena i nadgledanih stranica (zahtijeva JavaScript)',
 'tog-numberheadings'          => 'Automatski numeriši podnaslove',
 'tog-showtoolbar'             => 'Pokaži alatnu traku (potreban JavaScript)',
 'tog-editondblclick'          => 'Izmijeni stranice dvostrukim klikom (potreban JavaScript)',
@@ -224,17 +224,17 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Uključite uređivanje odjeljka sa pritiskom na desno dugme miša u naslovu odjeljka (JavaScript)',
 'tog-showtoc'                 => 'Prikaži sadržaj (u svim stranicama sa više od tri podnaslova)',
 'tog-rememberpassword'        => 'Upamti moju prijavu za ovaj preglednik (za maksimum od $1 {{PLURAL:$1|dan|dana}})',
-'tog-watchcreations'          => 'Dodaj stranice koje sam napravio u moj spisak praćenja',
-'tog-watchdefault'            => 'Dodaj stranice koje uređujem u moj spisak praćenja',
-'tog-watchmoves'              => 'Dodaj stranice koje premještam u moj spisak praćenja',
-'tog-watchdeletion'           => 'Stranice koje brišem dodaj na moj spisak praćenja',
+'tog-watchcreations'          => 'Dodaj stranice koje sam stvorio i dadtoteke koje sam poslao u moj spisak praćenih stranica',
+'tog-watchdefault'            => 'Dodaj stranice i datoteke koje izmijenim u spisak praćenja',
+'tog-watchmoves'              => 'Dodaj stranice i datoteke koje premjestim na moj spisak praćenja',
+'tog-watchdeletion'           => 'Dodaj stranice i datoteke koje izbrišem na moj spisak praćenja',
 'tog-minordefault'            => 'Označi da su sve izmjene u pravilu manje',
 'tog-previewontop'            => 'Prikaži pretpregled prije kutije za uređivanje',
 'tog-previewonfirst'          => 'Prikaži pretpregled na prvoj izmjeni',
 'tog-nocache'                 => 'Onemogući keš (cache) stranica u pregledniku',
-'tog-enotifwatchlistpages'    => 'Pošalji mi e-poštu kad se promijeni stranica na mom spisku praćenja',
+'tog-enotifwatchlistpages'    => 'Pošalji mi e-mail kada se promijeni stranica ili datoteka na mom spisku praćenja',
 'tog-enotifusertalkpages'     => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
-'tog-enotifminoredits'        => 'Pošalji mi e-poštu takođe za male izmjene stranica',
+'tog-enotifminoredits'        => 'Pošalji mi e-mail i kod manjih izmjena stranica i datoteka',
 'tog-enotifrevealaddr'        => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
 'tog-oldsig'                  => 'Postojeći potpis:',
@@ -523,12 +523,12 @@ Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:
 # General errors
 'error'                => 'Greška',
 'databaseerror'        => 'Greška u bazi podataka',
-'dberrortext'          => 'Desila se sintaksna greška upita baze.
-Ovo se desilo zbog moguće greške u softveru.
-Posljednji pokušani upit je bio:
-<blockquote><tt>$1</tt></blockquote>
-iz funkcije "<tt>$2</tt>".
-MySQL je vratio grešku "<tt>$3: $4</tt>".',
+'dberrortext'          => 'Došlo je do sintaktičke greške u bazi.
+Možda se radi o grešci u softveru.
+Posljednji pokušaj upita je glasio:
+<blockquote><code>$1</code></blockquote>
+unutar funkcije „<code>$2</code>“.
+Baza podataka je prijavila grešku „<samp>$3: $4</samp>“.',
 'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
 Posljednji pokušani upit je bio:
 "$1"
@@ -582,10 +582,10 @@ Pretraga: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječilo uređivanje.',
 'viewsourcetext'       => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
 'viewyourtext'         => "Možete da pogledate i kopirate izvor '''vaših izmjena''' na ovoj stranici:",
-'protectedinterface'   => 'Ova stranica sadrži tekst interfejsa za softver, pa je zaključana kako bi se spriječile zloupotrebe.',
+'protectedinterface'   => 'Ova stranica sadrži tekst interfejsa za softver na ovoj wiki, pa je zaključana kako bi se spriječile zloupotrebe. Kako bi dodali ili promijenili prijevode za sve wikije, molimo koristite [//translatewiki.net/ translatewiki.net], projekt lokalizacije MediaWikija.',
 'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja se koristi za tekst interfejsa za softver.
-Promjene na ovoj stranici dovode i do promjena interfejsa za druge korisnike.
-Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
+Promjene na ovoj stranici će izazvati promjene korisničkog interfejsa za druge korisnike na ovoj wiki.
+Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt lokalizacije MediaWiki.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 'cascadeprotected'     => 'Ova stranica je zaštićena od uređivanja, jer je uključena u {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja sa uključenom kaskadnom opcijom:
 $2',
@@ -874,12 +874,11 @@ Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke evidencije blokiranja možete pogledati ispod:',
-'clearyourcache'                   => "'''Napomena:''' nakon čuvanja, možda ćete morati da očistite keš pregledača.
-*'''Firefox / Safari::''' držite ''Shift'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5'' ili Ctrl-R (''⌘-R'' na Makintošu)
-*'''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Makintošu)
-*'''Internet Explorer: '''držite ''Ctrl'' i kliknite na ''Osveži'', ili pritisnite ''Ctrl-F5''
-*'''Konqueror: '''kliknite na ''Osveži'' ili pritisnite ''F5''
-*'''Opera:''' očistite privremenu memoriju preko menija ''Alatke → Postavke''.",
+'clearyourcache'                   => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti cache svog preglednika kako biste vidjeli promjene.
+* '''Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
+* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
+* '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
+* '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što ga snimite.",
 'userjsyoucanpreview'              => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što ga snimite.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
@@ -1125,7 +1124,8 @@ Molimo provjerite zapise.',
 'revdelete-only-restricted'   => 'Greška pri sakrivanju stavke od dana $2, $1: ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih opcija za uklanjanje.',
 'revdelete-reason-dropdown'   => '*Uobičajeni razlozi brisanja
 ** Kršenje autorskih prava
-** Neadekvatni lični podaci
+** Neprimjereni komentari ili lični podaci
+** Neprimjereno korisničko ime
 ** Potencijalno klevetničke informacije',
 'revdelete-otherreason'       => 'Ostali/dodatni razlog:',
 'revdelete-reasonotherlist'   => 'Ostali razlozi',
@@ -1728,7 +1728,7 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'backend-fail-writetemp'     => 'Ne mogu da pišem u privremenoj datoteci.',
 'backend-fail-closetemp'     => 'Ne mogu da zatvorim privremenu datoteku.',
 'backend-fail-read'          => 'Ne mogu da pročitam datoteku $1.',
-'backend-fail-create'        => 'Ne mogu da napravim datoteku $1.',
+'backend-fail-create'        => 'Ne mogu snimiti datoteku $1.',
 'backend-fail-readonly'      => 'Skladišna osnova „$1“ trenutno ne može da se zapisuje. Navedeni razlog glasi: „$2“',
 'backend-fail-synced'        => 'Datoteka „$1“ je nedosledna između unutrašnjih skladišnih osnova',
 'backend-fail-connect'       => 'Ne mogu da se povežem sa skladišnom osnovom „$1“.',
@@ -1942,7 +1942,7 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 'disambiguations'      => 'Stranice do višeznačnih odrednica',
 'disambiguationspage'  => 'Template:Višeznačna odrednica',
 'disambiguations-text' => "Slijedeće stranice su povezane sa '''stranicom za razvrstavanje'''.
-Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
+One se možda moraju povezati sa konkretnim člankom.<br />
 Stranica se smatra stranicom za razvrstavanje, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|stranica za razvrstavanje]]",
 
 'doubleredirects'                   => 'Dvostruka preusmjerenja',
@@ -2513,8 +2513,8 @@ Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su
 'ipb-confirm'                     => 'Potvrdite blokiranje',
 'badipaddress'                    => 'Nevaljana IP adresa',
 'blockipsuccesssub'               => 'Blokiranje je uspjelo',
-'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je blokiran.
-<br />Pogledajte [[Special:BlockList|IP spisak blokiranih korisnika]] za pregled blokiranja.',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] je {{GENDER:$1|blokiran|blokirana|blokiran}}.<br />
+Blokiranja možete da pogledate [[Special:BlockList|ovde]].',
 'ipb-blockingself'                => 'Ovom akcijom ćete blokirati sebe! Da li ste sigurni da to želite?',
 'ipb-confirmhideuser'             => "Upravo ćete blokirati korisnika sa uključenom opcijom ''sakrij korisnika''. Ovim će korisničko ime biti sakriveno u svim spiskovima i stavkama zapisnika. Da li ste sigurni da to želite?",
 'ipb-edit-dropdown'               => 'Uredi razloge blokiranja',
@@ -2940,14 +2940,14 @@ Ovo je vjerovatno izazvano vezom ka vanjskoj nepoželjnoj stranici.',
 
 # Info page
 'pageinfo-title'            => 'Informacije za "$1"',
-'pageinfo-header-edits'     => 'Izmjene',
+'pageinfo-header-edits'     => 'Historija izmjena',
 'pageinfo-header-watchlist' => 'Praćene stranice',
 'pageinfo-header-views'     => 'Pregledi',
 'pageinfo-subjectpage'      => 'Stranica',
 'pageinfo-talkpage'         => 'Stranica za razgovor',
-'pageinfo-watchers'         => 'Broj onih koji pregledaju',
+'pageinfo-watchers'         => 'Broj pratitelja stranice',
 'pageinfo-edits'            => 'Broj izmjena',
-'pageinfo-authors'          => 'Broj specifičnih autora',
+'pageinfo-authors'          => 'Ukupni broj specifičnih autora',
 'pageinfo-views'            => 'Broj pregleda',
 'pageinfo-viewsperedit'     => 'Pregleda po izmjeni',
 

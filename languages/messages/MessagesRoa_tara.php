@@ -354,9 +354,9 @@ Pe 'na liste de le pàggene speciele cirche aqquà [[Special:SpecialPages|{{int:
 'dberrortext'          => "Ha assute n'errore de sindassi de 'na inderrogazione sus a 'u database.
 Quiste pò indicà 'nu bochere jndr'à 'u software.
 L'urteme tendative de inderrogazione sus a 'u database ha state:
-<blockquote><tt>\$1</tt></blockquote>
-cu 'a funzione \"<tt>\$2</tt>\".
-'U database ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
+<blockquote><code>\$1</code></blockquote>
+cu 'a funzione \"<code>\$2</code>\".
+'U database ha returnate l'errore \"<samp>\$3: \$4</samp>\".",
 'dberrortextcl'        => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
 L\'urteme tendative de inderrogazione sus a \'u database ha state:
 "$1"
@@ -411,7 +411,8 @@ Pe piacere prueve cchiù tarde.",
 'protectedpagetext'    => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'viewyourtext'         => "Tu puè vedè e copià 'a sorgende de '''le cangiaminde tune''' a sta pàgene:",
-'protectedinterface'   => "Sta pàgene te dè l'inderfacce de teste pìu software e jè blocchete pe prevenì l'abbuse.",
+'protectedinterface'   => "Sta pàgene dèje 'nu teste de l'inderfacce pu software de sta uicchi, e jè prutette pe prevenìe l'abbuse.
+Pe aggiungere o cangià le traduziune pe tutte le uicchi, pe piacere ause [//translatewiki.net/ translatewiki.net], 'u proggette de localizzazzione de MediaUicchi.",
 'editinginterface'     => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà 'n'inderfacce de teste p'u software.
 Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde.
 Pe traduziune, pe piacere vide ce ause [//translatewiki.net/wiki/Main_Page?setlang=roa-tara translatewiki.net], 'u pruggette de localizzazione de MediaUicchi.",
@@ -704,12 +705,11 @@ Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'userpage-userdoesnotexist-view'   => '\'U cunde utende "$1" non g\'è reggistrate.',
 'blocked-notice-logextract'        => "Stu utende jè correndemende bloccate.<br />
 L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
-'clearyourcache'                   => "''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tune pe vedè le cangiaminde.'''
-*'''Mozilla / Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sus a 'nu Mac);
+'clearyourcache'                   => "'''Vide Bbuene''' - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tune pe vedè le cangiaminde.
+*'''Firefox / Safari:''' cazze 'u ''Shift'' e condemboraneamende cazze 'u buttone ''Aggiorna'', o cazze 'nzieme ''Ctrl-F5'' o ''Ctrl-R'' (''⌘-R'' sus a 'nu Mac);
 *'''Google Chrome:''' cazze ''Ctrl-Shift-R'' (''⌘-Shift-R'' sus a 'nu Mac)
 *'''Internet Explorer:''' cazze ''Ctrl'' e condemboraneamende cazze ''Aggiorna,'' o cazze ''Ctrl-F5''.
-*'''Konqueror: '''cazze ''Aggiorna'' o cazze ''F5'';
-*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tagliàne);",
+*'''Opera:''' pulizze 'a cache da ''Tools → Preferences'' (in inglese) (Struminde - Preferenze in tarandine);",
 'usercssyoucanpreview'             => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u CSS nuève apprime de reggistrà.",
 'userjsyoucanpreview'              => "'''Conziglie:''' Ause 'u buttone \"{{int:showpreview}}\" pe condrollà 'u JavaScript nuève apprime de reggistrà.",
 'usercsspreview'                   => "'''Arrecuerdete ca tu ste vide sulamende in andeprime 'u CSS tue.'''
@@ -959,7 +959,9 @@ Pe piacere condrolle l'archivije.",
 'revdelete-only-restricted'   => "Errore scunnènne l'artichele datate $2, $1: tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opziune de soppressione.",
 'revdelete-reason-dropdown'   => "*Mutive comune pa scangellazzione
 ** Violazione d'u copyright
-** 'Mbormaziune personale inappropriate",
+** 'Mbormaziune personale o commende inappropriate
+** Nome utende inappropriate
+** 'Mbormaziune potenzialmende diffamatorie",
 'revdelete-otherreason'       => 'Otre/addizionale mutive:',
 'revdelete-reasonotherlist'   => 'Otre mutive',
 'revdelete-edit-reasonlist'   => "Mutive d'a scangellazione d'u cangiamende",
@@ -1152,7 +1154,7 @@ Aqquà ste 'nu valore generate a uecchije ca tu puè ausà: $1",
 'timezoneregion-indian'         => 'Oceano Indiane',
 'timezoneregion-pacific'        => 'Oceano Pacifiche',
 'allowemail'                    => "Abbilite l'e-mail da l'otre utinde",
-'prefs-searchoptions'           => 'Opzione de ricerche',
+'prefs-searchoptions'           => 'Cirche',
 'prefs-namespaces'              => 'Namespaces',
 'defaultns'                     => "Cirche jndr'à chiste namespace:",
 'default'                       => 'defolt',
@@ -2837,14 +2839,14 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 
 # Info page
 'pageinfo-title'            => '\'Mbormaziune pe "$1"',
-'pageinfo-header-edits'     => 'Cangiaminde',
+'pageinfo-header-edits'     => 'Cunde de le cangiaminde',
 'pageinfo-header-watchlist' => 'Pàggene condrollate',
 'pageinfo-header-views'     => 'Visite',
 'pageinfo-subjectpage'      => 'Pàgene',
 'pageinfo-talkpage'         => "Pàgene de le 'ngazzaminde",
-'pageinfo-watchers'         => 'Numere de visitature',
+'pageinfo-watchers'         => "Numere de visitature d'a pàgene",
 'pageinfo-edits'            => 'Numere de cangiaminde',
-'pageinfo-authors'          => 'Numere de autore diverse',
+'pageinfo-authors'          => 'Numere Totale de autore diverse',
 'pageinfo-views'            => 'Numere de visite',
 'pageinfo-viewsperedit'     => 'Visite pe cangiaminde',
 
@@ -3588,10 +3590,26 @@ Pe piacere conferme ca tu vuè avveramende reccrejà sta pàgene.",
 'autosumm-new'     => "Pàgena ccrejete cu '$1'",
 
 # Size units
-'size-bytes'     => '$1 B',
-'size-kilobytes' => '$1 KB',
-'size-megabytes' => '$1 MB',
-'size-gigabytes' => '$1 GB',
+'size-bytes'      => '$1 B',
+'size-kilobytes'  => '$1 KB',
+'size-megabytes'  => '$1 MB',
+'size-gigabytes'  => '$1 GB',
+'size-terabytes'  => '$1 TB',
+'size-petabytes'  => '$1 PB',
+'size-exabytes'   => '$1 EB',
+'size-zetabytes'  => '$1 ZB',
+'size-yottabytes' => '$1 YB',
+
+# Bitrate units
+'bitrate-bits'      => '$1bps',
+'bitrate-kilobits'  => '$1kbps',
+'bitrate-megabits'  => '$1Mbps',
+'bitrate-gigabits'  => '$1Gbps',
+'bitrate-terabits'  => '$1Tbps',
+'bitrate-petabits'  => '$1Pbps',
+'bitrate-exabits'   => '$1Ebps',
+'bitrate-zetabits'  => '$1Zbps',
+'bitrate-yottabits' => '$1Ybps',
 
 # Live preview
 'livepreview-loading' => 'Stoche a careche…',

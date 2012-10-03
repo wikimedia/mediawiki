@@ -259,7 +259,7 @@ $messages = array(
 'thursday'      => 'Khamis',
 'friday'        => 'Jumaat',
 'saturday'      => 'Sabtu',
-'sun'           => 'Aha',
+'sun'           => 'Ahd',
 'mon'           => 'Isn',
 'tue'           => 'Sel',
 'wed'           => 'Rab',
@@ -297,7 +297,7 @@ $messages = array(
 'may'           => 'Mei',
 'jun'           => 'Jun',
 'jul'           => 'Jul',
-'aug'           => 'Ogo',
+'aug'           => 'Ogs',
 'sep'           => 'Sep',
 'oct'           => 'Okt',
 'nov'           => 'Nov',
@@ -353,7 +353,7 @@ $messages = array(
 'vector-action-protect'          => 'Lindungi',
 'vector-action-undelete'         => 'Batal hapus',
 'vector-action-unprotect'        => 'Ubah perlindungan',
-'vector-simplesearch-preference' => 'Bolehkan cadangan carian lanjutan (kulit Vector sahaja)',
+'vector-simplesearch-preference' => 'Bolehkan bar carian ringkas (kulit Vector sahaja)',
 'vector-view-create'             => 'Cipta',
 'vector-view-edit'               => 'Sunting',
 'vector-view-history'            => 'Lihat sejarah',
@@ -513,12 +513,12 @@ Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].',
 # General errors
 'error'                => 'Ralat',
 'databaseerror'        => 'Ralat pangkalan data',
-'dberrortext'          => 'Ralat sintaks pertanyaan pangkalan data telah terjadi.
-Ini mungkin menandakan pepijat dalam perisian wiki ini.
-Pertanyaan pangkalan data yang terakhir ialah:
-<blockquote><tt>$1</tt></blockquote>
-daripada fungsi "<tt>$2</tt>".
-Pangkalan data memulangkan ralat "<tt>$3: $4</tt>".',
+'dberrortext'          => 'Terjadinya ralat sintaks pertanyaan pangkalan data.
+Ini mungkin menandakan adanya pepijat dalam perisian ini.
+Pertanyaan pangkalan data terakhir yang dicuba ialah:
+<blockquote><code>$1</code></blockquote>
+daripada dalam fungsi "<samp>$2</samp>".
+Pangkalan data memulangkan ralat "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Terdapat ralat sintaks pertanyaan pangkalan data.
 Pertanyaan terakhir ialah:
 "$1"
@@ -572,8 +572,10 @@ Pertanyaan: $2',
 'protectedpagetext'    => 'Laman ini telah dikunci untuk menghalang penyuntingan.',
 'viewsourcetext'       => 'Anda boleh melihat dan menyalin sumber bagi laman ini:',
 'viewyourtext'         => "Anda boleh melihat dan menyalin sumber '''suntingan anda''' kepada laman ini:",
-'protectedinterface'   => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.',
-'editinginterface'     => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain. Untuk melakukan penterjemahan, anda boleh menggunakan [//translatewiki.net/wiki/Main_Page?setlang=ms translatewiki.net], sebuah projek penyetempatan MediaWiki.",
+'protectedinterface'   => 'Laman ini menyediakan teks antara muka bagi perisian ini, akan tetapi dikunci untuk menghalang penyalahgunaan.
+Untuk menambah atau menyunting terjemahan untuk semua wiki, sila gunakan projek penyetempatan MediaWiki, [//translatewiki.net/ translatewiki.net].',
+'editinginterface'     => "'''Amaran:''' Anda sedang menyunting laman yang digunakan untuk menghasilkan teks antara muka bagi perisian ini. Sebarang perubahan terhadap laman ini akan menjejaskan rupa antara muka bagi pengguna-pengguna lain di wiki ini.
+Untuk menambah atau menyunting terjemahan untuk semua wiki, sila gunakan projek penyetempatan MediaWiki, [//translatewiki.net/ translatewiki.net].",
 'sqlhidden'            => '(Pertanyaan SQL disorokkan)',
 'cascadeprotected'     => 'Laman ini telah dilindungi daripada penyuntingan oleh pengguna selain penyelia, kerana ia termasuk dalam {{PLURAL:$1|laman|laman-laman}} berikut, yang dilindungi dengan secara "melata": $2',
 'namespaceprotected'   => "Anda tidak mempunyai keizinan untuk menyunting laman dalam ruang nama '''$1'''.",
@@ -837,11 +839,10 @@ atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}
 'userpage-userdoesnotexist-view'   => 'Akaun pengguna "$1" tidak berdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang disekat.
 Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
-'clearyourcache'                   => "'''Catatan: Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.'''
+'clearyourcache'                   => "'''Catatan:''' Selepas menyimpan laman ini, anda mungkin perlu membersihkan cache pelayar web anda terlebih dahulu untuk mengenakan perubahan.
 *'''Firefox/Safari:''' Tekan terus ''Shift'' sambil klik ''Reload'', atau tekan ''Ctrl+F5'' atau tekan ''Ctrl+R''  (''⌘+R'' bagi Mac)
 *'''Google Chrome:''' Tekan ''Ctrl+Shift+R''  (''⌘+Shift+R'' bagi Mac)
 *'''Internet Explorer:''' Tekan terus ''Ctrl'' sambil klik ''Refresh'', atau tekan ''Ctrl+F5''
-*'''Konqueror:''' Klik butang ''Reload'', atau tekan ''F5''
 *'''Opera:''' Kosongkan cache di menu ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji CSS baru anda sebelum menyimpan.",
 'userjsyoucanpreview'              => "'''Petua:''' Gunakan butang \"{{int:showpreview}}\" untuk menguji JavaScript baru anda sebelum menyimpan.",
@@ -1079,10 +1080,11 @@ Anda tidak memiliki capaian padanya.',
 'revdelete-concurrent-change' => 'Ralat ketika mengubahsuai item bertarikh $2, $1: kelihatan statusnya telah diubah oleh orang lain ketika anda cuba untuk mengubahsuainya.
 Mohon semak log.',
 'revdelete-only-restricted'   => 'Ralat menyembunyikan item bertarikh $2, $1: anda tidak boleh menyekat item-item dari pandangan pentadbir-pentadbir tanpa memilih juga salah satu pilihan pandangan lain.',
-'revdelete-reason-dropdown'   => '*Sebab penghapusan biasa
+'revdelete-reason-dropdown'   => '*Sebab penghapusan yang biasa
 ** Pencabulan hak cipta
-** Maklumat peribadi tidak sesuai
-** Maklumat berpotensi fitnah',
+** Ulasan atau maklumat peribadi tidak sesuai
+** Nama pengguna tidak sesuai
+** Maklumat berkemungkinan fitnah',
 'revdelete-otherreason'       => 'Sebab lain/tambahan:',
 'revdelete-reasonotherlist'   => 'Sebab lain',
 'revdelete-edit-reasonlist'   => 'Ubah sebab-sebab hapus',
@@ -1273,7 +1275,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'timezoneregion-indian'         => 'Lautan Hindi',
 'timezoneregion-pacific'        => 'Lautan Pasifik',
 'allowemail'                    => 'Benarkan e-mel daripada pengguna lain',
-'prefs-searchoptions'           => 'Pilihan carian',
+'prefs-searchoptions'           => 'Cari',
 'prefs-namespaces'              => 'Ruang nama',
 'defaultns'                     => 'Jika tidak cari dalam ruang nama ini:',
 'default'                       => 'asali',
@@ -1439,7 +1441,7 @@ Tindakan ini tidak boleh dibatalkan.',
 
 # User rights log
 'rightslog'                  => 'Log hak pengguna',
-'rightslogtext'              => 'Ini ialah log bagi perubahan hak pengguna.',
+'rightslogtext'              => 'Ini ialah log perubahan terhadap hak pengguna.',
 'rightslogentry'             => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
 'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
 'rightsnone'                 => '(tiada)',
@@ -2888,14 +2890,14 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # Info page
 'pageinfo-title'            => 'Maklumat untuk "$1"',
-'pageinfo-header-edits'     => 'Suntingan',
+'pageinfo-header-edits'     => 'Sunting sejarah',
 'pageinfo-header-watchlist' => 'Senarai pantau',
 'pageinfo-header-views'     => 'Kunjungan',
 'pageinfo-subjectpage'      => 'Laman',
 'pageinfo-talkpage'         => 'Laman perbincangan',
-'pageinfo-watchers'         => 'Bilangan pemantau',
+'pageinfo-watchers'         => 'Bilangan pemantau halaman',
 'pageinfo-edits'            => 'Bilangan suntingan',
-'pageinfo-authors'          => 'Bilangan pengarang yang berlainan',
+'pageinfo-authors'          => 'Jumlah pengarang yang berlainan',
 'pageinfo-views'            => 'Bilangan kunjungan',
 'pageinfo-viewsperedit'     => 'Kunjungan sesuntingan',
 

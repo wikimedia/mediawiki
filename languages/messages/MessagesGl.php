@@ -381,7 +381,7 @@ $messages = array(
 'vector-action-protect'          => 'Protexer',
 'vector-action-undelete'         => 'Restaurar',
 'vector-action-unprotect'        => 'Cambiar a protección',
-'vector-simplesearch-preference' => 'Activar as suxestións de procura melloradas (soamente na aparencia Vector)',
+'vector-simplesearch-preference' => 'Activar a barra de procuras simplificada (soamente na aparencia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver o historial',
@@ -588,7 +588,7 @@ Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
 'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
 Función: $1<br />
-Dúbida: $2',
+Pescuda: $2',
 'viewsource'           => 'Ver o código fonte',
 'viewsource-title'     => 'Ver o código fonte de "$1"',
 'actionthrottled'      => 'Acción limitada',
@@ -597,10 +597,11 @@ Inténteo de novo nuns minutos.",
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
 'viewyourtext'         => "Pode ver e copiar o código fonte '''das súas edicións''' nesta páxina:",
-'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
+'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.
+Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.',
 'editinginterface'     => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software.
-Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
-Para realizar traducións, considere usar [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
+Os cambios nesta páxina afectarán á aparencia da interface dos outros usuarios do wiki.
+Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
@@ -1140,8 +1141,10 @@ Non ten acceso a el.',
 Por favor, comprobe os rexistros.',
 'revdelete-only-restricted'   => 'Erro ao agochar o elemento con data do $1 ás $2: Non pode eliminar elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de visibilidade.',
 'revdelete-reason-dropdown'   => '* Motivos frecuentes para borrar
-** Violación dos dereitos de autor
-** Información persoal inapropiada',
+** Violación dos dereitos de autoría
+** Comentario inapropiado ou información persoal
+** Nome de usuario inapropiado
+** Información potencialmente difamatoria',
 'revdelete-otherreason'       => 'Outro motivo:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
 'revdelete-edit-reasonlist'   => 'Editar os motivos de borrado',
@@ -1199,7 +1202,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchsubtitle'                   => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
 'searchsubtitleinvalid'            => "A súa busca de \"'''\$1'''\"",
 'toomanymatches'                   => 'Devolvéronse demasiadas coincidencias; inténteo cunha consulta diferente',
-'titlematches'                     => 'O título do artigo coincide',
+'titlematches'                     => 'O título da páxina coincide',
 'notitlematches'                   => 'Non coincide ningún título de páxina',
 'textmatches'                      => 'O texto da páxina coincide',
 'notextmatches'                    => 'Non se atopou o texto en ningunha páxina',
@@ -1332,7 +1335,7 @@ Velaquí un valor xerado ao chou que pode usar: $1',
 'timezoneregion-indian'         => 'Océano Índico',
 'timezoneregion-pacific'        => 'Océano Pacífico',
 'allowemail'                    => 'Admitir mensaxes de correo electrónico doutros usuarios',
-'prefs-searchoptions'           => 'Opcións de procura',
+'prefs-searchoptions'           => 'Procura',
 'prefs-namespaces'              => 'Espazos de nomes',
 'defaultns'                     => 'Se non, procurar nestes espazos de nomes:',
 'default'                       => 'predeterminado',
@@ -1350,7 +1353,7 @@ Este cambio non se poderá desfacer.',
 'prefs-memberingroups'          => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration'            => 'Data e hora de rexistro:',
 'yourrealname'                  => 'Nome real:',
-'yourlanguage'                  => 'Lingua da interface:',
+'yourlanguage'                  => 'Lingua:',
 'yourvariant'                   => 'Variante de lingua para os contidos:',
 'prefs-help-variant'            => 'A variante ou ortografía preferida na que mostrar o contido das páxinas deste wiki.',
 'yournick'                      => 'Sinatura:',
@@ -1593,7 +1596,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'uploadnologin'               => 'Non accedeu ao sistema',
 'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
-'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
+'upload_directory_read_only'  => 'O servidor web non pode escribir no directorio de carga ($1).',
 'uploaderror'                 => 'Erro ao cargar',
 'upload-recreate-warning'     => "'''Atención: Borrouse ou trasladouse un ficheiro con ese nome.'''
 
@@ -1651,7 +1654,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
 'windows-nonascii-filename'   => 'Este wiki non soporta os nomes de ficheiros con caracteres especiais.',
-'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, comprobe <strong>[[:$1]]</strong> se non está seguro de querer cambialo.
+'fileexists'                  => 'Xa existe un ficheiro con ese nome. Por favor, comprobe "<strong>[[:$1]]</strong>" se non está seguro de querer cambialo.
 [[$1|thumb]]',
 'filepageexists'              => 'A páxina de descrición deste ficheiro xa foi creada en <strong>[[:$1]]</strong>, pero polo de agora non existe ningún ficheiro con este nome.
 O resumo que escribiu non aparecerá na páxina de descrición.
@@ -2983,14 +2986,14 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 
 # Info page
 'pageinfo-title'            => 'Información sobre "$1"',
-'pageinfo-header-edits'     => 'Edicións',
+'pageinfo-header-edits'     => 'Historial de edicións',
 'pageinfo-header-watchlist' => 'Lista de vixilancia',
 'pageinfo-header-views'     => 'Visitas',
 'pageinfo-subjectpage'      => 'Páxina',
 'pageinfo-talkpage'         => 'Páxina de conversa',
-'pageinfo-watchers'         => 'Número de vixiantes',
+'pageinfo-watchers'         => 'Número de vixiantes da páxina',
 'pageinfo-edits'            => 'Número de edicións',
-'pageinfo-authors'          => 'Número de autores distintos',
+'pageinfo-authors'          => 'Número total de autores distintos',
 'pageinfo-views'            => 'Número de visitas',
 'pageinfo-viewsperedit'     => 'Visitas por edición',
 
@@ -3041,11 +3044,11 @@ O seu sistema pode quedar comprometido se o executa.",
 'imagemaxsize'           => "Límite de tamaño das imaxes:<br />''(nas páxinas de descrición de ficheiros)''",
 'thumbsize'              => 'Tamaño da miniatura:',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|páxina|páxinas}}',
-'file-info'              => 'Tamaño do ficheiro: $1, tipo MIME: $2',
-'file-info-size'         => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4',
-'file-info-size-pages'   => '$1 × $2 píxeles, tamaño do ficheiro: $3, tipo MIME: $4, $5 {{PLURAL:$5|páxina|páxinas}}',
+'file-info'              => 'tamaño do ficheiro: $1; tipo MIME: $2',
+'file-info-size'         => '$1 × $2 píxeles; tamaño do ficheiro: $3; tipo MIME: $4',
+'file-info-size-pages'   => '$1 × $2 píxeles; tamaño do ficheiro: $3; tipo MIME: $4; $5 {{PLURAL:$5|páxina|páxinas}}',
 'file-nohires'           => 'Non se dispón dunha resolución máis grande.',
-'svg-long-desc'          => 'ficheiro SVG, nominalmente $1 × $2 píxeles, tamaño do ficheiro: $3',
+'svg-long-desc'          => 'ficheiro SVG; resolución de $1 × $2 píxeles; tamaño do ficheiro: $3',
 'show-big-image'         => 'Imaxe na máxima resolución',
 'show-big-image-preview' => 'Tamaño desta vista previa: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Outra resolución|Outras resolucións}}: $1.',
@@ -3579,7 +3582,7 @@ O código de confirmación caduca o $6 ás $7.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Aviso:''' Esta páxina foi borrada despois de que comezase a editala!",
-'confirmrecreate'          => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou este artigo despois de que vostede comezara a editalo, dando o seguinte motivo:
+'confirmrecreate'          => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou esta páxina despois de que vostede comezara a editala, dando o seguinte motivo:
 : ''$2''
 Por favor, confirme que realmente quere recrear esta páxina.",
 'confirmrecreate-noreason' => 'O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou esta páxina despois de que vostede comezara a editala. Por favor, confirme que realmente quere recrear esta páxina.',
@@ -3689,7 +3692,7 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licenza',
 'version-poweredby-credits'     => "Este wiki está desenvolvido por '''[//www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
-'version-poweredby-others'      => 'outros',
+'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS outros]',
 'version-license-info'          => 'MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 
 MediaWiki distribúese coa esperanza de que poida ser útil, pero SEN GARANTÍA NINGUNHA; nin sequera a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN A UNHA FINALIDADE ESPECÍFICA. Olle a licenza pública xeral GNU para obter máis detalles.
