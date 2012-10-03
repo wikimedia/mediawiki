@@ -5949,6 +5949,12 @@ $wgAjaxExportList = array();
 $wgAjaxWatch = true;
 
 /**
+ * Enable patrolling pages using AJAX.
+ * Requires $wgUseAjax to be true too.
+ */
+$wgAjaxPatrol = true;
+
+/**
  * Enable AJAX check for file overwrite, pre-upload
  */
 $wgAjaxUploadDestCheck = true;
