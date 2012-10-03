@@ -912,8 +912,8 @@ See [[Special:Version|version page]].',
 'newmessagesdifflink'          => 'last change',
 'youhavenewmessagesfromusers'  => 'You have $1 from {{PLURAL:$3|another user|$3 users}} ($2).',
 'youhavenewmessagesmanyusers'  => 'You have $1 from many users ($2).',
-'newmessageslinkplural'        => '{{PLURAL:$1|a new message|new messages}}', # don't rely on the value of $1, it's 1 for singular and 2 for "more than one"
-'newmessagesdifflinkplural'    => 'last {{PLURAL:$1|change|changes}}', # don't rely on the value of $1, it's 1 for singular and 2 for "more than one"
+'newmessageslinkplural'        => '{{PLURAL:$1|a new message|new messages}}',
+'newmessagesdifflinkplural'    => 'last {{PLURAL:$1|change|changes}}',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
 'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
@@ -2203,16 +2203,16 @@ this file is $2.',
 This might be due to a typo in the filename.
 Please check whether you really want to upload this file.',
 'windows-nonascii-filename'   => 'This wiki does not support filenames with special characters.',
-'fileexists'                  => "A file with this name exists already, please check <strong>[[:$1]]</strong> if you are not sure if you want to change it.
-[[$1|thumb]]",
-'filepageexists'              => "The description page for this file has already been created at <strong>[[:$1]]</strong>, but no file with this name currently exists.
+'fileexists'                  => 'A file with this name exists already, please check <strong>[[:$1]]</strong> if you are not sure if you want to change it.
+[[$1|thumb]]',
+'filepageexists'              => 'The description page for this file has already been created at <strong>[[:$1]]</strong>, but no file with this name currently exists.
 The summary you enter will not appear on the description page.
 To make your summary appear there, you will need to manually edit it.
-[[$1|thumb]]",
-'fileexists-extension'        => "A file with a similar name exists: [[$2|thumb]]
+[[$1|thumb]]',
+'fileexists-extension'        => 'A file with a similar name exists: [[$2|thumb]]
 * Name of the uploading file: <strong>[[:$1]]</strong>
 * Name of the existing file: <strong>[[:$2]]</strong>
-Please choose a different name.",
+Please choose a different name.',
 'fileexists-thumbnail-yes'    => "The file seems to be an image of reduced size ''(thumbnail)''.
 [[$1|thumb]]
 Please check the file <strong>[[:$1]]</strong>.
@@ -2791,38 +2791,38 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'listgrouprights-removegroup-self-all' => 'Remove all groups from own account',
 
 # E-mail user
-'mailnologin'          => 'No send address',
-'mailnologintext'      => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
-'emailuser'            => 'E-mail this user',
-'emailuser-title-target' => 'E-mail this {{GENDER:$1|user}}',
+'mailnologin'              => 'No send address',
+'mailnologintext'          => 'You must be [[Special:UserLogin|logged in]] and have a valid e-mail address in your [[Special:Preferences|preferences]] to send e-mail to other users.',
+'emailuser'                => 'E-mail this user',
+'emailuser-title-target'   => 'E-mail this {{GENDER:$1|user}}',
 'emailuser-title-notarget' => 'E-mail user',
-'emailuser-summary'    => '', # do not translate or duplicate this message to other languages
-'emailpage'            => 'E-mail user',
-'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
+'emailuser-summary'        => '', # do not translate or duplicate this message to other languages
+'emailpage'                => 'E-mail user',
+'emailpagetext'            => 'You can use the form below to send an e-mail message to this user.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
-'usermailererror'      => 'Mail object returned error:',
-'defemailsubject'      => '{{SITENAME}} e-mail from user "$1"',
-'usermaildisabled'     => 'User e-mail disabled',
-'usermaildisabledtext' => 'You cannot send e-mail to other users on this wiki',
-'noemailtitle'         => 'No e-mail address',
-'noemailtext'          => 'This user has not specified a valid e-mail address.',
-'nowikiemailtitle'     => 'No e-mail allowed',
-'nowikiemailtext'      => 'This user has chosen not to receive e-mail from other users.',
-'emailnotarget'        => 'Non-existent or invalid username for recipient.',
-'emailtarget'          => 'Enter username of recipient',
-'emailusername'        => 'Username:',
-'emailusernamesubmit'  => 'Submit',
-'email-legend'         => 'Send an e-mail to another {{SITENAME}} user',
-'emailfrom'            => 'From:',
-'emailto'              => 'To:',
-'emailsubject'         => 'Subject:',
-'emailmessage'         => 'Message:',
-'emailsend'            => 'Send',
-'emailccme'            => 'E-mail me a copy of my message.',
-'emailccsubject'       => 'Copy of your message to $1: $2',
-'emailsent'            => 'E-mail sent',
-'emailsenttext'        => 'Your e-mail message has been sent.',
-'emailuserfooter'      => 'This e-mail was sent by $1 to $2 by the "E-mail user" function at {{SITENAME}}.',
+'usermailererror'          => 'Mail object returned error:',
+'defemailsubject'          => '{{SITENAME}} e-mail from user "$1"',
+'usermaildisabled'         => 'User e-mail disabled',
+'usermaildisabledtext'     => 'You cannot send e-mail to other users on this wiki',
+'noemailtitle'             => 'No e-mail address',
+'noemailtext'              => 'This user has not specified a valid e-mail address.',
+'nowikiemailtitle'         => 'No e-mail allowed',
+'nowikiemailtext'          => 'This user has chosen not to receive e-mail from other users.',
+'emailnotarget'            => 'Non-existent or invalid username for recipient.',
+'emailtarget'              => 'Enter username of recipient',
+'emailusername'            => 'Username:',
+'emailusernamesubmit'      => 'Submit',
+'email-legend'             => 'Send an e-mail to another {{SITENAME}} user',
+'emailfrom'                => 'From:',
+'emailto'                  => 'To:',
+'emailsubject'             => 'Subject:',
+'emailmessage'             => 'Message:',
+'emailsend'                => 'Send',
+'emailccme'                => 'E-mail me a copy of my message.',
+'emailccsubject'           => 'Copy of your message to $1: $2',
+'emailsent'                => 'E-mail sent',
+'emailsenttext'            => 'Your e-mail message has been sent.',
+'emailuserfooter'          => 'This e-mail was sent by $1 to $2 by the "E-mail user" function at {{SITENAME}}.',
 
 # User Messenger
 'usermessage-summary'  => 'Leaving system message.',
@@ -3747,7 +3747,7 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-views'               => 'Number of views',
 'pageinfo-watchers'            => 'Number of page watchers',
 'pageinfo-redirects-name'      => 'Redirects to this page',
-'pageinfo-redirects-value'     => '$1',
+'pageinfo-redirects-value'     => '$1', # only translate this message to other languages if you have to change it
 'pageinfo-subpages-name'       => 'Subpages of this page',
 'pageinfo-subpages-value'      => '$1 ($2 {{PLURAL:$2|redirect|redirects}}; $3 {{PLURAL:$3|non-redirect|non-redirects}})',
 'pageinfo-firstuser'           => 'Page creator',
@@ -3808,29 +3808,29 @@ $1',
 'nextdiff'     => 'Newer edit →',
 
 # Media information
-'mediawarning'           => "'''Warning''': This file type may contain malicious code.
+'mediawarning'                => "'''Warning''': This file type may contain malicious code.
 By executing it, your system may be compromised.",
-'imagemaxsize'           => "Image size limit:<br />''(for file description pages)''",
-'thumbsize'              => 'Thumbnail size:',
-'widthheight'            => '$1 × $2', # only translate this message to other languages if you have to change it
-'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|page|pages}}',
-'file-info'              => 'file size: $1, MIME type: $2',
-'file-info-size'         => '$1 × $2 pixels, file size: $3, MIME type: $4',
-'file-info-size-pages'   => '$1 × $2 pixels, file size: $3, MIME type: $4, $5 {{PLURAL:$5|page|pages}}',
-'file-nohires'           => 'No higher resolution available.',
-'svg-long-desc'          => 'SVG file, nominally $1 × $2 pixels, file size: $3',
-'svg-long-desc-animated' => 'Animated SVG file, nominally $1 × $2 pixels, file size: $3',
-'show-big-image'         => 'Full resolution',
-'show-big-image-preview' => 'Size of this preview: $1.',
-'show-big-image-other'   => 'Other {{PLURAL:$2|resolution|resolutions}}: $1.',
-'show-big-image-size'    => '$1 × $2 pixels',
-'file-info-gif-looped'   => 'looped',
-'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|frames}}',
-'file-info-png-looped'   => 'looped',
-'file-info-png-repeat'   => 'played $1 {{PLURAL:$1|time|times}}',
-'file-info-png-frames'   => '$1 {{PLURAL:$1|frame|frames}}',
-'file-no-thumb-animation'=> '\'\'\'Note: Due to technical limitations, thumbnails of this file will not be animated.\'\'\'',
-'file-no-thumb-animation-gif' => '\'\'\'Note: Due to technical limitations, thumbnails of high resolution GIF images such as this one will not be animated.\'\'\'',
+'imagemaxsize'                => "Image size limit:<br />''(for file description pages)''",
+'thumbsize'                   => 'Thumbnail size:',
+'widthheight'                 => '$1 × $2', # only translate this message to other languages if you have to change it
+'widthheightpage'             => '$1 × $2, $3 {{PLURAL:$3|page|pages}}',
+'file-info'                   => 'file size: $1, MIME type: $2',
+'file-info-size'              => '$1 × $2 pixels, file size: $3, MIME type: $4',
+'file-info-size-pages'        => '$1 × $2 pixels, file size: $3, MIME type: $4, $5 {{PLURAL:$5|page|pages}}',
+'file-nohires'                => 'No higher resolution available.',
+'svg-long-desc'               => 'SVG file, nominally $1 × $2 pixels, file size: $3',
+'svg-long-desc-animated'      => 'Animated SVG file, nominally $1 × $2 pixels, file size: $3',
+'show-big-image'              => 'Full resolution',
+'show-big-image-preview'      => 'Size of this preview: $1.',
+'show-big-image-other'        => 'Other {{PLURAL:$2|resolution|resolutions}}: $1.',
+'show-big-image-size'         => '$1 × $2 pixels',
+'file-info-gif-looped'        => 'looped',
+'file-info-gif-frames'        => '$1 {{PLURAL:$1|frame|frames}}',
+'file-info-png-looped'        => 'looped',
+'file-info-png-repeat'        => 'played $1 {{PLURAL:$1|time|times}}',
+'file-info-png-frames'        => '$1 {{PLURAL:$1|frame|frames}}',
+'file-no-thumb-animation'     => "'''Note: Due to technical limitations, thumbnails of this file will not be animated.'''",
+'file-no-thumb-animation-gif' => "'''Note: Due to technical limitations, thumbnails of high resolution GIF images such as this one will not be animated.'''",
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',
@@ -4887,7 +4887,7 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'feedback-bugnew'    => 'I checked. Report a new bug',
 
 # Search suggestions
-'searchsuggest-search' => 'Search',
+'searchsuggest-search'     => 'Search',
 'searchsuggest-containing' => 'containing...',
 
 # API errors
