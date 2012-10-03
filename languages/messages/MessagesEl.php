@@ -1334,8 +1334,6 @@ $1",
 'search-interwiki-caption' => 'Αδελφικά εγχειρήματα',
 'search-interwiki-default' => '$1 αποτελέσματα:',
 'search-interwiki-more' => '(περισσότερα)',
-'search-mwsuggest-enabled' => 'με υποδείξεις',
-'search-mwsuggest-disabled' => 'χωρίς υποδείξεις',
 'search-relatedarticle' => 'Σχετικά',
 'mwsuggest-disable' => 'Απενεργοποίηση των προτάσεων AJAX',
 'searcheverything-enable' => 'Αναζήτηση σε όλες τις περιοχές ονομάτων',
@@ -3895,6 +3893,10 @@ $5
 'feedback-close' => 'Ολοκληρώθηκε',
 'feedback-bugcheck' => 'Ωραία! Ελέγξτε μόνο ότι δεν είναι ήδη ένα από τα [ $1  γνωστά σφάλματα].',
 'feedback-bugnew' => 'Έλεγξα. Αναφέρετε ένα νέο σφάλμα',
+
+# Search suggestions
+'searchsuggest-search' => 'Αναζήτηση',
+'searchsuggest-containing' => 'περιέχει...',
 
 # API errors
 'api-error-badaccess-groups' => 'Δεν επιτρέπεται να ανεβάσετε αρχεία σε αυτό το wiki.',

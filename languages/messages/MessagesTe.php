@@ -300,7 +300,7 @@ $messages = array(
 'vector-action-protect' => 'సంరక్షించు',
 'vector-action-undelete' => 'తిరిగి చేర్చు',
 'vector-action-unprotect' => 'సంరక్షణను మార్చు',
-'vector-simplesearch-preference' => 'మెరుగైన అన్వేషణ సలహాలని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
+'vector-simplesearch-preference' => 'సరళమైన వెతుకుడు పట్టీని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
 'vector-view-create' => 'సృష్టించు',
 'vector-view-edit' => 'సవరించు',
 'vector-view-history' => 'చరిత్రను చూడండి',
@@ -789,8 +789,7 @@ $2
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలు చూడవచ్చు],
 లేదా [{{fullurl:{{FULLPAGENAME}}|action=edit}} ఈ పేజీని మార్చవచ్చు]</span>.',
 'noarticletext-nopermission' => 'ప్రస్తుతం ఈ పేజీలో పాఠ్యమేమీ లేదు.
-మీరు ఇతర పేజీలలో [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక కోసం వెతకవచ్చు]],
-లేదా <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలలో వెతకండి]</span>.',
+మీరు ఇతర పేజీలలో [[Special:Search/{{PAGENAME}}|ఈ పేజీ శీర్షిక కోసం వెతకవచ్చు]], లేదా <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} సంబంధిత చిట్టాలలో వెతకవచ్చు]</span>, కానీ ఈ పేజీని సృష్టించడానికి మీకు అనుమతి లేదు.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" అనే వాడుకరి ఖాతా నమోదయిలేదు. మీరు ఈ పేజీని సృష్టించ/సరిదిద్దాలనుకుంటే, సరిచూసుకోండి.',
 'userpage-userdoesnotexist-view' => 'వాడుకరి ఖాతా "$1" నమోదుకాలేదు.',
 'blocked-notice-logextract' => 'ప్రస్తుతం ఈ వాడుకరిని నిరోధించారు.
@@ -1127,8 +1126,6 @@ $1",
 'search-interwiki-caption' => 'సోదర ప్రాజెక్టులు',
 'search-interwiki-default' => '$1 ఫలితాలు:',
 'search-interwiki-more' => '(మరిన్ని)',
-'search-mwsuggest-enabled' => 'సూచనలతో',
-'search-mwsuggest-disabled' => 'సూచనలు వద్దు',
 'search-relatedarticle' => 'సంబంధించినవి',
 'mwsuggest-disable' => 'AJAX సూచనలను అచేతనంచేయి',
 'searcheverything-enable' => 'అన్ని పేరుబరుల్లో వెతుకు',
@@ -1259,7 +1256,7 @@ $1",
 'prefs-help-email-others' => 'మీ వాడుకరి లేదా చర్చా పేజీలలో ఉండే లంకె ద్వారా ఇతరులు మిమ్మల్ని ఈ-మెయిలు ద్వారా సంప్రదించే వీలుకల్పించవచ్చు.
 ఇతరులు మిమ్మల్ని సంప్రదించినప్పుడు మీ ఈ-మెయిలు చిరునామా బహిర్గతమవదు.',
 'prefs-help-email-required' => 'ఈ-మెయిలు చిరునామా తప్పనిసరి.',
-'prefs-info' => 'ప్రాధమిక సమాచారం',
+'prefs-info' => 'ప్రాథమిక సమాచారం',
 'prefs-i18n' => 'అంతర్జాతీయీకరణ',
 'prefs-signature' => 'సంతకం',
 'prefs-dateformat' => 'తేదీ ఆకృతి',
@@ -2021,7 +2018,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'mywatchlist' => 'నా వీక్షణ జాబితా',
 'watchlistfor2' => '$1 కొరకు $2',
 'nowatchlist' => 'మీ వీక్షణ జాబితా ఖాళీగా ఉంది.',
-'watchlistanontext' => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1 ఉండాలి.',
+'watchlistanontext' => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1.',
 'watchnologin' => 'లాగిన్‌ అయిలేరు',
 'watchnologintext' => 'మీ వీక్షణ జాబితాను మార్చడానికి మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి.',
 'addwatch' => 'వీక్షణ జాబితాలో చేర్చు',
@@ -2735,6 +2732,7 @@ $UNWATCHURL కి వెళ్ళండి.
 
 # Info page
 'pageinfo-title' => '"$1" గురించి సమాచారం',
+'pageinfo-header-basic' => 'ప్రాథమిక సమాచారం',
 'pageinfo-header-edits' => 'మార్పుల చరిత్ర',
 'pageinfo-views' => 'వీక్షణల సంఖ్య',
 'pageinfo-watchers' => 'పేజీ వీక్షకుల సంఖ్య',
@@ -3523,6 +3521,9 @@ $5
 'feedback-close' => 'పూర్తయ్యింది',
 'feedback-bugcheck' => 'అద్భుతం! ఇది ఇప్పటికే [$1 తెలిసిన బగ్గుల]లో లేదని సరిచూసుకోండి.',
 'feedback-bugnew' => 'చూసాను. కొత్త బగ్గును నివేదించు',
+
+# Search suggestions
+'searchsuggest-search' => 'వెతుకు',
 
 # API errors
 'api-error-badaccess-groups' => 'ఈ వికీ లోనికి దస్త్రాలను ఎక్కించే అనుమతి మీకు లేదు.',

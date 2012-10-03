@@ -865,8 +865,6 @@ $2',
 'search-interwiki-caption' => 'বনক প্রকল্পহানি',
 'search-interwiki-default' => '$1 ফলাফলহানি:',
 'search-interwiki-more' => '(আরাকউ)',
-'search-mwsuggest-enabled' => 'পরামর্শল',
-'search-mwsuggest-disabled' => 'পরামর্শ নেই',
 'search-relatedarticle' => 'সাকেই আসে',
 'mwsuggest-disable' => 'AJAXরে থা নাদি',
 'searcheverything-enable' => 'হাব্বি নাঙথাকে বিসারা',
@@ -1736,5 +1734,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'revdelete-restricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি ফলা',
 'revdelete-unrestricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
 'newuserlog-byemail' => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
+
+# Search suggestions
+'searchsuggest-search' => 'বিসারা',
+'searchsuggest-containing' => 'আসেতা...',
 
 );

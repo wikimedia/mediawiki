@@ -1241,8 +1241,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'search-interwiki-caption' => 'Ñaña ruraykamaykuna',
 'search-interwiki-default' => '$1 taripasqakuna:',
 'search-interwiki-more' => '(aswan)',
-'search-mwsuggest-enabled' => 'rimapusqakunawan',
-'search-mwsuggest-disabled' => 'mana rimapusqakunawanchu',
 'search-relatedarticle' => 'Apanakuq',
 'mwsuggest-disable' => 'AJAX rimapuykunaman ama niy',
 'searcheverything-enable' => "Tukuy suti k'itikunapi maskay",
@@ -3750,6 +3748,10 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'feedback-close' => 'Rurasqañam',
 'feedback-bugcheck' => 'Allillanmi! Llanchirillay [$1 riqsisqapura huk pantasqañachu] mana kanmanchu.',
 'feedback-bugnew' => 'Llanchisqañam. Musuq pantasqamanta willay',
+
+# Search suggestions
+'searchsuggest-search' => 'Maskay',
+'searchsuggest-containing' => 'kaykunayuq: ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Kay wikipiqa willañiqikunata manam churkuyta atinkichu.',

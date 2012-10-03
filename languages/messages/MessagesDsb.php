@@ -316,7 +316,7 @@ $messages = array(
 'vector-action-protect' => 'Šćitaś',
 'vector-action-undelete' => 'Wótnowiś',
 'vector-action-unprotect' => 'Šćit změniś',
-'vector-simplesearch-preference' => 'Pólěpšone pytańske naraźenja zmóžniś (jano suknja Vector)',
+'vector-simplesearch-preference' => 'Zjadnorjonu pytańsku lejstwu zmóžniś (jano drastwa Vector)',
 'vector-view-create' => 'Napóraś',
 'vector-view-edit' => 'Wobźěłaś',
 'vector-view-history' => 'Wersije a awtory',
@@ -535,8 +535,10 @@ Wótpšašanje: $2',
 'protectedpagetext' => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext' => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
 'viewyourtext' => "Móžoš se žrědłowy tekst '''swójich změnow''' woglědaś a do toś togo bok kopěrowaś:",
-'protectedinterface' => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
-'editinginterface' => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [//translatewiki.net/wiki/Main_Page?setlang=dsb translatewiki.net], projekt MediaWiki za lokalizacije.",
+'protectedinterface' => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary na toś tom wikiju a šćita se, aby se znjewužywanjeju zadorało.
+Aby pśełožki za wšykne wikije pśidał abo změnił, wužyj pšosym [//translatewiki.net/ translatewiki.net], lokalizěrowański projekt MediaWiki.',
+'editinginterface' => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow na toś tom wikiju wobwliwowaś.
+Aby pśełožki za wšykne wikije pśidał abo změnił, wužywaj pšosym [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizacije.",
 'sqlhidden' => '(Wótpšašanje SQL schowane)',
 'cascadeprotected' => 'Za toś ten bok jo se wobźěłowanje znjemóžniło, dokulaž jo zawězany do {{PLURAL:$1|slědujucego boka|slědujuceju bokowu|slědujucych bokow}}, {{PLURAL:$1|kótaryž jo|kótarejž stej|kótarež su}} pśez kaskadowu opciju {{PLURAL:$1|šćitany|šćitanej|šćitane}}: $2',
 'namespaceprotected' => "Njejsy wopšawnjony, boki w rumje: '''$1''' wobźěłaś.",
@@ -797,7 +799,7 @@ Aby bok napórał, zapiš do kašćika dołojce (glědaj [[{{MediaWiki:Helppage}
 'noarticletext' => 'Dotychměst toś ten bok hyšći njewopśimujo žeden tekst. Móžoš w drugich bokach [[Special:Search/{{PAGENAME}}|titel togo boka pytaś]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} toś ten bok wobźěłaś]</span>.',
 'noarticletext-nopermission' => 'Tuchylu njejo žeden tekst na toś tom boku.
 Móžoš [[Special:Search/{{PAGENAME}}|toś ten bokowy titel]] na drugich bokach pytaś
-abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>.',
+abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wótpowědne protokole pytaś]</span>, ale njamaš pšawo, toś ten bok napóraś.',
 'missing-revision' => 'Wersija #$1 boka z mjenim "{{PAGENAME}}" njeeksistěrujo.
 
 Pśicyna jo zwětšego zestarjony wótkaz w historiji k bokoju, kótaryž jo se wulašował.
@@ -1149,8 +1151,6 @@ Drobnostki móžoš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Sotšine projekty',
 'search-interwiki-default' => '$1 wuslědki:',
 'search-interwiki-more' => '(wěcej)',
-'search-mwsuggest-enabled' => 'z naraźenjami',
-'search-mwsuggest-disabled' => 'žedne naraźenja',
 'search-relatedarticle' => 'swójźbne',
 'mwsuggest-disable' => 'Naraźenja pśez AJAX znjemóžniś',
 'searcheverything-enable' => 'We wšych mjenjowych rumach pytaś',
@@ -1246,7 +1246,7 @@ How jo pśipadnje napórana gódnota, kótaruž móžoš wužywaś: $1',
 'timezoneregion-indian' => 'Indiski ocean',
 'timezoneregion-pacific' => 'Pacifiski ocean',
 'allowemail' => 'Dostawanje e-mailow drugich wužywarjow zmóžniś.',
-'prefs-searchoptions' => 'Pytańske opcije',
+'prefs-searchoptions' => 'Pytaś',
 'prefs-namespaces' => 'Mjenjowe rumy',
 'defaultns' => 'Howac w toś tych mjenjowych rumach pytaś:',
 'default' => 'Standard',
@@ -3728,6 +3728,10 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'feedback-close' => 'Dokóńcony',
 'feedback-bugcheck' => 'Wjelicnje! Pśekontrolěruj jano, lěc to njejo jadna z [$1 znatych zmólkow].',
 'feedback-bugnew' => 'Som pśekontrolěrował. Nowu zmólku k wěsći daś',
+
+# Search suggestions
+'searchsuggest-search' => 'Pytaś',
+'searchsuggest-containing' => 'wopśimujo...',
 
 # API errors
 'api-error-badaccess-groups' => 'Njamaš pšawo dataje do toś togo wikija nagraś.',

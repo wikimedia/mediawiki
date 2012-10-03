@@ -9,6 +9,7 @@
  *
  * @author Abastillas
  * @author Dosmiin Barsbold
+ * @author Harvzsf
  * @author Jordz
  * @author Mirzali
  * @author Palang hernan
@@ -723,8 +724,6 @@ Hinumdomi nga ang paggamit sa mga sumpay sa nabigasyon mo-reset sa column.',
 'search-interwiki-caption' => 'Mga kaubang proyekto',
 'search-interwiki-default' => '$1 ka mga resulta:',
 'search-interwiki-more' => '(dugang pa)',
-'search-mwsuggest-enabled' => 'may mga sugyot',
-'search-mwsuggest-disabled' => 'walay mga sugyot',
 'showingresultsheader' => "{{PLURAL:$5|Resulta '''$1''' sa '''$3'''|Mga resulta '''$1 - $2''' of '''$3'''}} sa '''$4'''",
 'nonefound' => "'''Bantayi''': Dili tanang ngalang espasyo (namespaces) ang gipangita by default.
 Sulayi'g prefix ang imong gipangita gamit ang ''all:'' alang mangita sa tanang sulod (apil ang mga panid sa hisgot, plantilya, ubp), o gamita ang gikinahanglang ngalang espasyo isip prefix.",
@@ -1076,7 +1075,7 @@ Puyde nimo usbon ang level sa proteksyon ning panid, pero dili kini makaapekto s
 'linkshere' => "Ang mosunod nga mga panid misumpay sa '''[[:$1]]''':",
 'isredirect' => 'panid sa redirekta',
 'istemplate' => 'transklusyon',
-'isimage' => 'sumpay nga imahen',
+'isimage' => 'sumpay sa payl',
 'whatlinkshere-prev' => '{{PLURAL:$1|miaging|miaging $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|sunod|sunod $1}}',
 'whatlinkshere-links' => '← mga sumpay',

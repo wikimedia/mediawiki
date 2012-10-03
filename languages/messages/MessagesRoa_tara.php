@@ -416,7 +416,8 @@ Pe piacere prueve cchiù tarde.",
 'protectedpagetext' => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
 'viewsourcetext' => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
 'viewyourtext' => "Tu puè vedè e copià 'a sorgende de '''le cangiaminde tune''' a sta pàgene:",
-'protectedinterface' => "Sta pàgene te dè l'inderfacce de teste pìu software e jè blocchete pe prevenì l'abbuse.",
+'protectedinterface' => "Sta pàgene dèje 'nu teste de l'inderfacce pu software de sta uicchi, e jè prutette pe prevenìe l'abbuse.
+Pe aggiungere o cangià le traduziune pe tutte le uicchi, pe piacere ause [//translatewiki.net/ translatewiki.net], 'u proggette de localizzazzione de MediaUicchi.",
 'editinginterface' => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà 'n'inderfacce de teste p'u software.
 Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde.
 Pe traduziune, pe piacere vide ce ause [//translatewiki.net/wiki/Main_Page?setlang=roa-tara translatewiki.net], 'u pruggette de localizzazione de MediaUicchi.",
@@ -1088,8 +1089,6 @@ Le dettaglie le puè acchià jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={
 'search-interwiki-caption' => 'Pruggette sorelle',
 'search-interwiki-default' => '$1 resultete:',
 'search-interwiki-more' => '(de cchiù)',
-'search-mwsuggest-enabled' => 'cu le consiglie',
-'search-mwsuggest-disabled' => 'senza consiglie',
 'search-relatedarticle' => 'Colleghete',
 'mwsuggest-disable' => 'Disabbilete le conziglie in AJAX',
 'searcheverything-enable' => "Cirche jndr'à tutte le namespace",
@@ -1188,7 +1187,7 @@ Aqquà ste 'nu valore generate a uecchije ca tu puè ausà: $1",
 'timezoneregion-indian' => 'Oceano Indiane',
 'timezoneregion-pacific' => 'Oceano Pacifiche',
 'allowemail' => "Abbilite l'e-mail da l'otre utinde",
-'prefs-searchoptions' => 'Opzione de ricerche',
+'prefs-searchoptions' => 'Cirche',
 'prefs-namespaces' => 'Namespaces',
 'defaultns' => "Cirche jndr'à chiste namespace:",
 'default' => 'defolt',
@@ -3987,6 +3986,10 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'feedback-close' => 'Fatte',
 'feedback-bugcheck' => "Granne! Appene verificate ca non g'è une de le [$1 bug canusciute].",
 'feedback-bugnew' => "Agghie verificate. Manne 'nu bug nuève",
+
+# Search suggestions
+'searchsuggest-search' => 'Cirche',
+'searchsuggest-containing' => 'tène...',
 
 # API errors
 'api-error-badaccess-groups' => 'Tu non ge puè carecà file sus a sta Uicchi.',

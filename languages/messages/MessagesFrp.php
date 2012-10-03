@@ -1345,8 +1345,6 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'search-interwiki-caption' => 'Projèts frâres',
 'search-interwiki-default' => 'Rèsultats dessus $1 :',
 'search-interwiki-more' => '(més)',
-'search-mwsuggest-enabled' => 'avouéc consèlys',
-'search-mwsuggest-disabled' => 'sen consèlys',
 'search-relatedarticle' => 'Raportâ',
 'mwsuggest-disable' => 'Dèsactivar los consèlys AJAX',
 'searcheverything-enable' => 'Rechèrchiér dens tôs los èspâços de noms',
@@ -4062,6 +4060,10 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'feedback-close' => 'Fêt',
 'feedback-bugcheck' => 'Formidâblo ! Controlâd simplament qu’o est pas yona de les [$1 cofieries ja cognues].',
 'feedback-bugnew' => 'J’é controlâ. Signalar una cofierie novèla',
+
+# Search suggestions
+'searchsuggest-search' => 'Rechèrchiér',
+'searchsuggest-containing' => 'que contint...',
 
 # API errors
 'api-error-badaccess-groups' => 'Vos éte pas ôtorisâ a tèlèchargiér des fichiérs sur ceti vouiqui.',

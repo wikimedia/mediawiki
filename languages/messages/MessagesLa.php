@@ -849,8 +849,6 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'search-interwiki-caption' => 'Alia incepta',
 'search-interwiki-default' => '$1 eventus:',
 'search-interwiki-more' => '(plus)',
-'search-mwsuggest-enabled' => 'cum suggestionibus',
-'search-mwsuggest-disabled' => 'sine suggestionibus',
 'search-relatedarticle' => 'Relata',
 'mwsuggest-disable' => 'Prohibere suggestiones AJAX',
 'searcheverything-enable' => 'Quaerere in omnibus spatiis nominalibus',
@@ -2383,5 +2381,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'logentry-newusers-create2' => '$1 creavit rationem usoris $3',
 'logentry-newusers-autocreate' => 'Ratio $1 automatice creata est',
 'newuserlog-byemail' => 'tessera missa litteris electronicis',
+
+# Search suggestions
+'searchsuggest-search' => 'Quaerere',
 
 );

@@ -80,6 +80,7 @@
  * @author Urhixidur
  * @author VegaDark
  * @author Vivaelcelta
+ * @author Waldir
  * @author Wilfredor
  * @author XalD
  * @author XanaG
@@ -515,7 +516,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protección',
-'vector-simplesearch-preference' => 'Activar sugerencias de búsqueda mejoradas (piel Vector solamente)',
+'vector-simplesearch-preference' => 'Activar la barra de búsqueda simplificada (sólo con la apariencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver historial',
@@ -735,8 +736,11 @@ Consulta: $2',
 'protectedpagetext' => 'Esta página ha sido protegida para evitar su edición.',
 'viewsourcetext' => 'Puedes ver y copiar el código fuente de esta página:',
 'viewyourtext' => "Puedes ver y copiar el código de '''tus ediciones''' a esta página:",
-'protectedinterface' => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
-'editinginterface' => "'''Aviso:''' Estás editando una página usada para proporcionar texto de interfaz para el software. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios. Para traducciones, por favor considera usar [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyecto de regionalización de MediaWiki.",
+'protectedinterface' => 'Esta página proporciona el texto de la interfaz del software en este wiki, y está protegida para prevenir el abuso.
+Para agregar o cambiar las traducciones para todos los wikis, por favor use [//translatewiki.net/translatewiki.net], el proyecto de localización de MediaWiki.',
+'editinginterface' => "'''Aviso:''' Estás editando una página usada para proporcionar el texto de la interfaz para el software. 
+Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios de este wiki. 
+Para añadir o cambiar las traducciones, por favor considera usar [//translatewiki.net/ translatewiki.net], el proyecto de localización de MediaWiki.",
 'sqlhidden' => '(Consulta SQL oculta)',
 'cascadeprotected' => 'Esta página ha sido protegida para su edición, porque está incluida en {{PLURAL:$1|la siguiente página|las siguientes páginas}}, que están protegidas con la opción de «cascada»:
 $2',
@@ -1023,8 +1027,7 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otra
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
-Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
+Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienes permiso para crear esta página.',
 'missing-revision' => 'La revisión #$1 de la página «{{PAGENAME}}» no existe.
 
 Esto suele deberse a seguir un enlace obsoleto hacia el historial de una página que ya ha sido borrada.
@@ -1389,8 +1392,6 @@ Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{
 'search-interwiki-caption' => 'Proyectos hermanos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con sugerencias',
-'search-mwsuggest-disabled' => 'sin sugerencias',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desactivar AJAX al realizar búsquedas',
 'searcheverything-enable' => 'Buscar en todos los espacios de nombres',
@@ -1487,7 +1488,7 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'timezoneregion-indian' => 'Océano Índico',
 'timezoneregion-pacific' => 'Océano Pacífico',
 'allowemail' => 'Aceptar correo electrónico de otros usuarios',
-'prefs-searchoptions' => 'Opciones de búsqueda',
+'prefs-searchoptions' => 'Buscar',
 'prefs-namespaces' => 'Espacios de nombres',
 'defaultns' => 'Buscar en estos espacios de nombres por defecto:',
 'default' => 'por defecto',
@@ -4037,6 +4038,10 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'feedback-close' => 'Hecho',
 'feedback-bugcheck' => '¡Perfecto! Únicamente comprueba que no sea un [$1 fallo conocido].',
 'feedback-bugnew' => 'Lo he comprobado. Informar de un nuevo fallo.',
+
+# Search suggestions
+'searchsuggest-search' => 'Buscar',
+'searchsuggest-containing' => 'conteniendo...',
 
 # API errors
 'api-error-badaccess-groups' => 'No puedes cargar archivos en este wiki.',

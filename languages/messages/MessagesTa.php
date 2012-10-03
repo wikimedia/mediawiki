@@ -1070,8 +1070,6 @@ $1",
 'search-interwiki-caption' => 'உறவுத் திட்டங்கள்',
 'search-interwiki-default' => '$1 தளத்தின் முடிவுகள்:',
 'search-interwiki-more' => '(மேலும்)',
-'search-mwsuggest-enabled' => 'பரிந்துரைகளுடன்',
-'search-mwsuggest-disabled' => 'பரிந்துரைகளில்லை',
 'search-relatedarticle' => 'தொடர்புடையவை',
 'mwsuggest-disable' => 'AJAX பரிந்துரைகளை முடக்கு',
 'searcheverything-enable' => 'அனைத்துப் பெயர்வெளிகளிலும் தேடவும்',
@@ -3540,6 +3538,10 @@ $5
 'feedback-close' => 'முடிந்தது',
 'feedback-bugcheck' => 'சிறப்பு! அது ஏற்கனவே  [ $1 தெரிந்த  bugs ] என்பதை மட்டும்  சரிபார்க்கவும்,',
 'feedback-bugnew' => 'நான் சரிபார்த்தாயிற்று. புதிய bug பற்றி கூறு.',
+
+# Search suggestions
+'searchsuggest-search' => 'தேடு',
+'searchsuggest-containing' => 'கொண்டுள்ளது...',
 
 # API errors
 'api-error-badaccess-groups' => 'இந்த விக்கிக்குக் கோப்புகளைப் பதிவேற்றுவதற்கு நீங்கள் அனுமதிக்கப்படவில்லை.',

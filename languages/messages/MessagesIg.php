@@ -732,8 +732,6 @@ Okwu ụmà: '''({{int:cur}})''' = gbánwe na nké orü mbu, '''({{int:last}})''
 'search-interwiki-caption' => 'Orürü nwanne nwanyị',
 'search-interwiki-default' => '$1 nke ziri:',
 'search-interwiki-more' => '(dikarírí)',
-'search-mwsuggest-enabled' => 'ma okwu',
-'search-mwsuggest-disabled' => 'adighi okwu',
 'search-relatedarticle' => 'Nwanne',
 'searcheverything-enable' => 'Chọwa na ébé nílé',
 'searchrelated' => 'nke kọlu',
@@ -1683,5 +1681,8 @@ Nke ozor gí zonari na áká onwe ha.
 'htmlform-submit' => 'Dànyé',
 'htmlform-reset' => 'Emekwàlà gbanwere',
 'htmlform-selectorother-other' => 'Nke ozor',
+
+# Search suggestions
+'searchsuggest-search' => 'Chọwa',
 
 );

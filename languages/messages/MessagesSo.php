@@ -737,8 +737,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-suggest' => 'Waxaa ka waday miyaa: $1',
 'search-interwiki-default' => '$1 natiijooyinka:',
 'search-interwiki-more' => '(wax kale)',
-'search-mwsuggest-enabled' => 'soojeedin',
-'search-mwsuggest-disabled' => 'soojeedin malahan',
 'search-relatedarticle' => 'La xiriiro',
 'searchrelated' => 'La xiriiro',
 'searchall' => 'Dhamaan',
@@ -1391,6 +1389,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 # HTML forms
 'htmlform-reset' => 'Ka noqo wax bedelka',
 'htmlform-selectorother-other' => 'kuwa kale',
+
+# Search suggestions
+'searchsuggest-search' => 'Raadi',
 
 # API errors
 'api-error-copyuploaddisabled' => 'Soo gelinta dhinaca URL-ka waa laga damiyay kombiyuutarkaan',

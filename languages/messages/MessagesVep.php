@@ -954,8 +954,6 @@ Tö ei voigoi kävutada sidä.',
 'search-interwiki-caption' => 'Heimolaižed projektad',
 'search-interwiki-default' => "$1 rezul'tatad:",
 'search-interwiki-more' => '(völ)',
-'search-mwsuggest-enabled' => 'ozuta taričendad',
-'search-mwsuggest-disabled' => 'taričendoita',
 'search-relatedarticle' => 'Sidotud lehtpoled',
 'mwsuggest-disable' => 'Ala ozuta AJAX-taričendoid',
 'searcheverything-enable' => 'Ectä kaikiš nimiavarusiš',
@@ -3060,6 +3058,10 @@ Kävutagat normaline ezikacund.',
 'feedback-error2' => 'Petuz. Ei voi redaktiruida',
 'feedback-error3' => 'Petuz. API ei anda vastust',
 'feedback-close' => 'Vaumiž',
+
+# Search suggestions
+'searchsuggest-search' => 'Ectä',
+'searchsuggest-containing' => 'mülütajad...',
 
 # API errors
 'api-error-empty-file' => "Teil oigetud fail om pall'az.",

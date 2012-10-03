@@ -1178,8 +1178,6 @@ Prašome patikrinti sąrašus.',
 'search-interwiki-caption' => 'Dukteriniai projektai',
 'search-interwiki-default' => '$1 rezultatai:',
 'search-interwiki-more' => '(daugiau)',
-'search-mwsuggest-enabled' => 'su pasiūlymais',
-'search-mwsuggest-disabled' => 'nėra pasiūlymų',
 'search-relatedarticle' => 'Susiję',
 'mwsuggest-disable' => 'Slėpti AJAX pasiūlymus',
 'searcheverything-enable' => 'Ieškoti visose vardų srityse',
@@ -3750,6 +3748,9 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'feedback-close' => 'Atlikta',
 'feedback-bugcheck' => 'Puiku! Tiesiog patikrinkite, ar tai ne viena [$1 jau žinomų klaidų].',
 'feedback-bugnew' => 'Patikrinau. Pranešti apie naują klaidą',
+
+# Search suggestions
+'searchsuggest-search' => 'Ieškoti',
 
 # API errors
 'api-error-badaccess-groups' => 'Jums neleidžiama įkelti failus į šią wiki.',

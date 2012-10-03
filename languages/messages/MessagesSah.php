@@ -1059,8 +1059,6 @@ $1",
 'search-interwiki-caption' => 'Уруулуу бырайыактар',
 'search-interwiki-default' => '$1 түмүгэ:',
 'search-interwiki-more' => '(өссө)',
-'search-mwsuggest-enabled' => 'этиилэрдээх',
-'search-mwsuggest-disabled' => 'этиилэрэ суох',
 'search-relatedarticle' => 'Сигэнэр',
 'mwsuggest-disable' => 'AJAX этэн биэриилэрин араар',
 'searcheverything-enable' => 'Туох баар аат далларыгар көрдөөһүн',
@@ -3630,6 +3628,10 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'feedback-close' => 'Сатанна',
 'feedback-bugcheck' => 'Бэрт! Ол гынан баран [$1 биллэр алҕастарын] тиһилигэр майгынныыр сурук суоҕун тургут.',
 'feedback-bugnew' => 'Мин тургуттум. Атын алҕас туһунан',
+
+# Search suggestions
+'searchsuggest-search' => 'Көрдөөһүн',
+'searchsuggest-containing' => 'тыл баар ыстатыйалара...',
 
 # API errors
 'api-error-badaccess-groups' => 'Эн бу биикигэ билэ киллэрэриҥ хааччахтаммыт.',

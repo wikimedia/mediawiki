@@ -1336,8 +1336,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Projetos irmãos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
-'search-mwsuggest-enabled' => 'com sugestões',
-'search-mwsuggest-disabled' => 'sem sugestões',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desativar sugestões AJAX',
 'searcheverything-enable' => 'Procurar em todos os espaços nominais',
@@ -2486,7 +2484,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-summary-cascade' => 'p. progressiva',
 'protect-expiring' => 'expira em $1 (UTC)',
 'protect-expiring-local' => 'expira $1',
-'protect-expiry-indefinite' => 'indefinido',
+'protect-expiry-indefinite' => 'tempo indefinido',
 'protect-cascade' => '"Proteção progressiva" - proteja quaisquer páginas que estejam incluídas nesta.',
 'protect-cantedit' => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
 'protect-othertime' => 'Outra duração:',
@@ -3963,6 +3961,10 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfeito! Apenas verifique se não é um dos [$1 bugs já conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Relatar um bug novo',
+
+# Search suggestions
+'searchsuggest-search' => 'Pesquisa',
+'searchsuggest-containing' => 'contendo...',
 
 # API errors
 'api-error-badaccess-groups' => 'Você não tem permissão para enviar arquivos para este wiki.',

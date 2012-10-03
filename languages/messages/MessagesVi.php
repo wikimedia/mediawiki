@@ -674,8 +674,8 @@ Truy vấn: $2',
 'protectedpagetext' => 'Trang này đã bị khóa không cho sửa đổi.',
 'viewsourcetext' => 'Bạn vẫn có thể xem và chép xuống mã nguồn của trang này:',
 'viewyourtext' => "Bạn vẫn có thể xem và chép xuống mã nguồn '''các sửa đổi của bạn''' tại trang này:",
-'protectedinterface' => 'Trang này cung cấp một thông báo trong giao diện phần mềm, và bị khóa để tránh phá hoại.',
-'editinginterface' => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng website này. Để dịch thuật, hãy xem xét sử dụng [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
+'protectedinterface' => 'Trang này cung cấp một thông báo trong giao diện phần mềm, và bị khóa để tránh phá hoại. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.',
+'editinginterface' => "'''Lưu ý:''' Bạn đang sửa chữa một trang dùng để cung cấp thông báo giao diện cho phần mềm. Những thay đổi tại trang này sẽ ảnh hưởng đến giao diện của rất nhiều người dùng wiki này. Để bổ sung hoặc thay đổi bản dịch ở bất cứ wiki nào, xin vui lòng đóng góp vào [//translatewiki.net/wiki/Main_Page?setlang=vi translatewiki.net], dự án bản địa hóa của MediaWiki.",
 'sqlhidden' => '(đã giấu truy vấn SQL)',
 'cascadeprotected' => 'Trang này đã bị khóa không cho sửa đổi, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} đã bị khóa với tùy chọn “khóa theo tầng” được kích hoạt:
 $2',
@@ -951,8 +951,7 @@ Nếu bạn là một thành viên vô danh và cảm thấy rằng có những 
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] trong các trang khác, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm trong các nhật trình liên quan],
 hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>.',
 'noarticletext-nopermission' => 'Trang này hiện đang trống.
-Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
-hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>.',
+Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác, hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>, nhưng bạn không có phép tạo trang này.',
 'missing-revision' => 'Phiên bản #$1 của trang có tên “{{PAGENAME}}” không tồn tại.
 
 Lỗi này thường xuất hiện đối khi theo dõi liên kết lỗi thời đến phiên bản cũ của một trang đã bị xóa.
@@ -1315,8 +1314,6 @@ Xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}
 'search-interwiki-caption' => 'Các dự án liên quan',
 'search-interwiki-default' => '$1 kết quả:',
 'search-interwiki-more' => '(thêm)',
-'search-mwsuggest-enabled' => 'có gợi ý',
-'search-mwsuggest-disabled' => 'không có gợi ý',
 'search-relatedarticle' => 'Liên quan',
 'mwsuggest-disable' => 'Tắt gợi ý bằng AJAX',
 'searcheverything-enable' => 'Tìm trong tất cả không gian tên',
@@ -4077,6 +4074,10 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'feedback-close' => 'Xong',
 'feedback-bugcheck' => 'Tuyệt! Chỉ cần kiểm tra nó chưa được [$1 báo cáo trước đây].',
 'feedback-bugnew' => 'Tôi đã kiểm tra – báo cáo lỗi mới',
+
+# Search suggestions
+'searchsuggest-search' => 'Tìm kiếm',
+'searchsuggest-containing' => 'có chứa…',
 
 # API errors
 'api-error-badaccess-groups' => 'Bạn không được phép tải tập tin lên wiki này.',

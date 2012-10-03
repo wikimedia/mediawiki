@@ -810,8 +810,6 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'search-interwiki-caption' => 'Proyek badunsanak',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(selanjutnyo)',
-'search-mwsuggest-enabled' => 'dengan saran',
-'search-mwsuggest-disabled' => 'indak ado saran',
 'searchrelated' => 'bakaitan',
 'searchall' => 'Sadonyo',
 'showingresultsheader' => "{{PLURAL:$5|Hasil '''$1''' dari '''$3'''|Hasil '''$1 - $2''' dari '''$3'''}} untuak '''$4'''",
@@ -1258,5 +1256,9 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] bateh:',
+
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'Barisi...',
 
 );

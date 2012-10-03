@@ -1,5 +1,5 @@
 <?php
-/** Simplified Gan script (‪赣语（简体）‬)
+/** Simplified Gan script (赣语（简体）‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -767,8 +767,6 @@ $2',
 'search-interwiki-caption' => '姊妹计划',
 'search-interwiki-default' => '$1只结果：',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建议',
-'search-mwsuggest-disabled' => '冇建议',
 'searchrelated' => '相关',
 'searchall' => '所有',
 'showingresults' => '底下从第<b>$2</b>条显示起先𠮶<b>$1</b>条结果:',
@@ -2241,6 +2239,7 @@ $3
 'version-hook-subscribedby' => '订阅人',
 'version-version' => '（版本 $1）',
 'version-license' => '许可证',
+'version-poweredby-credits' => "个只 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 'version-software' => '装正𠮶软件',
 'version-software-version' => '版本',
 
@@ -2269,5 +2268,8 @@ $3
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|标签]]过滤器：',
+
+# Search suggestions
+'searchsuggest-search' => '寻吖',
 
 );

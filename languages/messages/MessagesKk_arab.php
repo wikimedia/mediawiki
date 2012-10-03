@@ -1,5 +1,5 @@
 <?php
-/** Kazakh (Arabic script) (‫قازاقشا (تٴوتە)‬)
+/** Kazakh (Arabic script) (قازاقشا (تٴوتە)‏)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1128,8 +1128,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'search-interwiki-caption' => 'باۋىرلاس جوبالار',
 'search-interwiki-default' => '$1 ناتىيجە:',
 'search-interwiki-more' => '(كوبىرەك)',
-'search-mwsuggest-enabled' => 'ۇسىنىمدارمەن',
-'search-mwsuggest-disabled' => 'ۇسىنىمدارسىز',
 'search-relatedarticle' => 'قاتىستى',
 'mwsuggest-disable' => 'AJAX ۇسىنىمدارىن ٴوشىر',
 'searchrelated' => 'قاتىستى',

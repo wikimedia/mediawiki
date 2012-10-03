@@ -1114,8 +1114,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-interwiki-caption' => 'Proyeutos hermanos',
 'search-interwiki-default' => '$1 resultaos:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con suxerencies',
-'search-mwsuggest-disabled' => 'ensin suxerencies',
 'search-relatedarticle' => 'Rellacionáu',
 'mwsuggest-disable' => 'Desactivar les suxerencies AJAX',
 'searcheverything-enable' => 'Buscar en tolos espacios de nome',
@@ -3779,6 +3777,10 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'feedback-close' => 'Fecho',
 'feedback-bugcheck' => '¡Perfeuto! Comprueba que nun tea yá ente los [$1 fallos conocíos].',
 'feedback-bugnew' => "Yá lo comprobé. Informar d'esti fallu nuevu",
+
+# Search suggestions
+'searchsuggest-search' => 'Guetar',
+'searchsuggest-containing' => 'que contién...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nun tienes permisu pa xubir ficheros a esta wiki.',

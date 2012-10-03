@@ -1344,8 +1344,6 @@ Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Kunprojektoj',
 'search-interwiki-default' => '$1 rezultoj:',
 'search-interwiki-more' => '(plu)',
-'search-mwsuggest-enabled' => 'kun sugestoj',
-'search-mwsuggest-disabled' => 'sen sugestoj',
 'search-relatedarticle' => 'Relataj',
 'mwsuggest-disable' => 'Malŝalti AJAX-sugestojn',
 'searcheverything-enable' => 'Traserĉi ĉiujn nomspacojn',
@@ -3950,6 +3948,10 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'feedback-close' => 'Farita',
 'feedback-bugcheck' => 'Bonega! Nur konfirmu ke ĝi ne jam ekzistas inter la [$1 konataj cimoj].',
 'feedback-bugnew' => 'Mi konfirmis. Raportu novan cimon.',
+
+# Search suggestions
+'searchsuggest-search' => 'Serĉi',
+'searchsuggest-containing' => 'enhavas...',
 
 # API errors
 'api-error-badaccess-groups' => 'Vi ne havas permeson alŝuti dosierojn al tiu ĉi vikio.',

@@ -1147,8 +1147,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'search-interwiki-caption' => 'Zösterprojecte',
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'mit suggesties',
-'search-mwsuggest-disabled' => 'gein suggesties',
 'search-relatedarticle' => 'Gerelateerd',
 'mwsuggest-disable' => 'Suggesties via AJAX oetsjakele',
 'searcheverything-enable' => 'Zeuke in alle naamruumdes',
@@ -3677,6 +3675,10 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'feedback-close' => 'Gedaon',
 'feedback-bugcheck' => "Good! Kónterleer ef of 't neet al ein vanne [$1 bekèndje bugs] is.",
 'feedback-bugnew' => "Gekónterleerdj. Mèlj 'ne nuuj bug.",
+
+# Search suggestions
+'searchsuggest-search' => 'Zeuke',
+'searchsuggest-containing' => 'bevat...',
 
 # API errors
 'api-error-badaccess-groups' => 'Doe moogs gein bestenj uploade óp deze wiki.',

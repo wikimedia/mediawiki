@@ -9,6 +9,7 @@
  *
  * @author Anggoro
  * @author Helix84
+ * @author Hoo
  * @author Kaganer
  * @author Meursault2004
  * @author NoiX180
@@ -1022,8 +1023,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-caption' => 'Proyèk-proyèk kagandhèng',
 'search-interwiki-default' => 'Pituwas $1:',
 'search-interwiki-more' => '(luwih akèh)',
-'search-mwsuggest-enabled' => 'mawa sugèsti',
-'search-mwsuggest-disabled' => 'ora ana sugèsti',
 'search-relatedarticle' => 'Kagandhèng',
 'mwsuggest-disable' => 'Patènana sugèsti AJAX',
 'searcheverything-enable' => 'Golèki ing kabèh bilik-jeneng',
@@ -3340,7 +3339,7 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'version-version' => '(Vèrsi $1)',
 'version-license' => 'Lisènsi',
 'version-poweredby-credits' => "Wiki iki disengkuyung déning '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
-'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/KRÈDIT liyané]',
+'version-poweredby-others' => 'liyané',
 'version-software' => "''Software'' wis diinstalasi",
 'version-software-product' => 'Prodhuk',
 'version-software-version' => 'Vèrsi',
@@ -3494,6 +3493,10 @@ Utawa, Sampéyan bisa nganggo pormulir gampang ngisor. Tanggepan Sampéyan bakal
 'feedback-close' => 'Rampung',
 'feedback-bugcheck' => 'Apik! Pesthèké kuwi dudu sawijining [$1 bug sing dingertèni].',
 'feedback-bugnew' => 'Aku wis mriksa. Kandakaké bug anyar',
+
+# Search suggestions
+'searchsuggest-search' => 'Golèk',
+'searchsuggest-containing' => 'ngisi...',
 
 # API errors
 'api-error-badaccess-groups' => 'Sampéyan ora dililakaké ngunggah berkas nèng wiki iki.',

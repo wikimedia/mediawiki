@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文（繁體）‬)
+/** Traditional Chinese (中文（繁體）‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -368,7 +368,7 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '恢復被刪頁面',
 'vector-action-unprotect' => '更改保護',
-'vector-simplesearch-preference' => '啟用加強搜尋建議（僅限 Vector 外觀）',
+'vector-simplesearch-preference' => '啟用簡化搜尋欄（僅限 Vector 外觀）',
 'vector-view-create' => '建立',
 'vector-view-edit' => '編輯',
 'vector-view-history' => '檢視歷史',
@@ -569,7 +569,7 @@ $1',
 'unexpected' => '不正常值："$1"="$2"。',
 'formerror' => '錯誤：無法提交表單',
 'badarticleerror' => '無法在此頁進行該操作。',
-'cannotdelete' => '無法刪除頁面或圖片"$1"。
+'cannotdelete' => '無法刪除頁面或圖片“$1”。
 它可能已經被其他人刪除了。',
 'cannotdelete-title' => '無法刪除“$1”',
 'delete-hook-aborted' => '刪除被勾點中止。
@@ -589,8 +589,11 @@ $1',
 'protectedpagetext' => '該頁面已被保護以防止編輯。',
 'viewsourcetext' => '{{GENDER:|你|妳|你}}可以檢視並複製本頁面的原始碼。',
 'viewyourtext' => "您可以查看並複製'''您對此頁面作出編輯後'''的源代碼：",
-'protectedinterface' => '該頁提供了軟體的介面文字，它已被保護以防止隨意的修改。',
-'editinginterface' => "'''警告:''' 您正在編輯的頁面是用於提供軟體的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟件本地化的計劃。",
+'protectedinterface' => '該頁提供此wiki軟體的介面文字，它已被保護以防止惡意修改。
+如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。',
+'editinginterface' => "'''警告：'''您正在編輯的頁面是用於提供軟體的介面文字。
+改變此頁將影響其他在此wiki上的用戶介面外觀。
+如欲修改所有wiki的翻譯，請到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化計畫。",
 'sqlhidden' => '（隱藏SQL查詢）',
 'cascadeprotected' => '這個頁面已經被保護，因為這個頁面被以下已標註"聯鎖保護"的{{PLURAL:$1|一個|多個}}被保護頁面包含:
 $2',
@@ -852,8 +855,8 @@ $2
 'noarticletext' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
-'noarticletext-nopermission' => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
-或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有關日誌]</span>。',
+'noarticletext-nopermission' => '此頁目前沒有內容。
+您可以在其它頁[[Special:Search/{{PAGENAME}}|搜尋此頁標題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜尋有關日誌]</span>，但您沒有權限建立此頁。',
 'missing-revision' => '「{{PAGENAME}}」的#$1修訂版本不存在。
 
 這通常是因為過時的頁面歷史鏈接被刪除。
@@ -1200,8 +1203,6 @@ $1",
 'search-interwiki-caption' => '姊妹計劃',
 'search-interwiki-default' => '$1項結果:',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建議',
-'search-mwsuggest-disabled' => '無建議',
 'search-relatedarticle' => '相關',
 'mwsuggest-disable' => '停用AJAX建議',
 'searcheverything-enable' => '在所有名字空間中搜尋',
@@ -1297,7 +1298,7 @@ $1",
 'timezoneregion-indian' => '印度洋',
 'timezoneregion-pacific' => '太平洋',
 'allowemail' => '接受來自其他用戶的郵件',
-'prefs-searchoptions' => '搜尋選項',
+'prefs-searchoptions' => '搜尋',
 'prefs-namespaces' => '頁面名稱空間',
 'defaultns' => '否則在這些名字空間搜尋：',
 'default' => '預設',
@@ -3840,6 +3841,10 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'feedback-close' => '完成',
 'feedback-bugcheck' => '請檢查此bug是否為[$1 已知bug]。',
 'feedback-bugnew' => '我已經檢查過。報告一個新的bug',
+
+# Search suggestions
+'searchsuggest-search' => '搜尋',
+'searchsuggest-containing' => '包含...',
 
 # API errors
 'api-error-badaccess-groups' => '您沒有權限在此維基項目上傳文件。',

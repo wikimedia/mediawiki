@@ -1,5 +1,5 @@
 <?php
-/** Crimean Turkish (Cyrillic script) (‪къырымтатарджа (Кирилл)‬)
+/** Crimean Turkish (Cyrillic script) (къырымтатарджа (Кирилл)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -871,8 +871,6 @@ $3 мына бу себепни бильдирди: ''$2''",
 'search-interwiki-caption' => 'Къардаш лейхалар',
 'search-interwiki-default' => '$1 нетидже:',
 'search-interwiki-more' => '(даа чокъ)',
-'search-mwsuggest-enabled' => 'тевсиелернен',
-'search-mwsuggest-disabled' => 'тевсие ёкъ',
 'search-relatedarticle' => 'Багълы',
 'mwsuggest-disable' => 'AJAX тевсиелерини ишлетме',
 'searcheverything-enable' => 'Бутюн исим фезаларында къыдыр',
@@ -2111,5 +2109,8 @@ $5
 
 # New logging system
 'newuserlog-byemail' => 'пароль e-mail вастасынен йиберильген',
+
+# Search suggestions
+'searchsuggest-containing' => 'ичинде бу олгъан...',
 
 );

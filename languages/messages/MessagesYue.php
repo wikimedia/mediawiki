@@ -1147,8 +1147,6 @@ $1",
 'search-interwiki-caption' => '姊妹計劃',
 'search-interwiki-default' => '$1項結果:',
 'search-interwiki-more' => '(更多)',
-'search-mwsuggest-enabled' => '有建議',
-'search-mwsuggest-disabled' => '無建議',
 'search-relatedarticle' => '有關',
 'mwsuggest-disable' => '停用AJAX建議',
 'searcheverything-enable' => '搵全部空間名',
@@ -3375,5 +3373,9 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 'revdelete-restricted' => '已經應用限制到操作員',
 'revdelete-unrestricted' => '已經拎走對於操作員嘅限制',
 'newuserlog-byemail' => '密碼已由電郵寄出',
+
+# Search suggestions
+'searchsuggest-search' => '搵嘢',
+'searchsuggest-containing' => '名單傳送緊...',
 
 );

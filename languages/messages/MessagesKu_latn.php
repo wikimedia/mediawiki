@@ -1,5 +1,5 @@
 <?php
-/** Kurdish (Latin script) (‪Kurdî (latînî)‬)
+/** Kurdish (Latin script) (Kurdî (latînî)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -838,8 +838,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'search-interwiki-caption' => 'Projeyên hevçeng',
 'search-interwiki-default' => '$1 encam:',
 'search-interwiki-more' => '(bêhtir)',
-'search-mwsuggest-enabled' => 'bi pêşniyazan',
-'search-mwsuggest-disabled' => 'pêşniyaz tune',
 'search-relatedarticle' => 'Pêwendîdar',
 'searchrelated' => 'pêwendîdar',
 'searchall' => 'hemû',
@@ -1052,7 +1050,7 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|bikarhênerek|$1 bikarhêner}} vê rûpelê {{PLURAL:$1|dişopîne|dişopînin}}.]',
 'rc_categories_any' => 'Hîç',
 'newsectionsummary' => '/* $1 */ beşeke nû',
-'rc-enhanced-expand' => 'Kitûmatan nîşan bide (JavaScript pêdivî ye)',
+'rc-enhanced-expand' => 'Hûragahiyan nîşan bide (JavaScript pêdivî ye)',
 'rc-enhanced-hide' => 'Kitûmatan veşêre',
 
 # Recent changes linked
@@ -1079,8 +1077,8 @@ anjî ji bo file'ên dengî '''<nowiki>[[</nowiki>{{ns:media}}:File.ogg<nowiki>]
 'upload-permitted' => 'Cureyên pelan yên tên qebûlkirin: $1.',
 'upload-preferred' => 'Cureyên pelan yên tên xwestin: $1.',
 'upload-prohibited' => 'Cureyên pelan yên qedexekirî: $1.',
-'uploadlog' => 'Têketina barkirinê',
-'uploadlogpage' => 'Têketina barkirinê',
+'uploadlog' => 'barkirina belgeyan',
+'uploadlogpage' => 'barkirina belgeyan',
 'filename' => 'Navê pelê',
 'filedesc' => 'Danasîn',
 'fileuploadsummary' => 'Kurte:',
@@ -1554,6 +1552,7 @@ Ger rûpeleke nû di dema jêbirinê de hatibe çêkirin, ew guherto wê were p�
 
 Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/delete|Jêbirina têketinê]] binêre.",
 'undelete-header' => 'Ji bo rûpelên dawî hatine jêbirin, li [[Special:Log/delete|Jêbirina têketinê]] binêre.',
+'undelete-search-title' => 'Li rûpelên jêbirî bigere',
 'undelete-search-box' => 'Li rûpelên jêbirî bigere',
 'undelete-search-prefix' => 'Rûpela nîşandanê bi vê destpêdike:',
 'undelete-search-submit' => 'Lêgerîn',
@@ -2147,5 +2146,9 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'feedback-subject' => 'Mijar:',
 'feedback-message' => 'Peyam:',
 'feedback-cancel' => 'Betal bike',
+
+# Search suggestions
+'searchsuggest-search' => 'Lêgerîn',
+'searchsuggest-containing' => 'dihundirîne...',
 
 );

@@ -1310,8 +1310,6 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'search-interwiki-caption' => 'Sestrinski projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 's prijedlozima',
-'search-mwsuggest-disabled' => 'nema prijedloga',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Isključi AJAX prijedloge',
 'searcheverything-enable' => 'Traži u svim imenskim prostorima',
@@ -3885,6 +3883,10 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'feedback-close' => 'Gotovo',
 'feedback-bugcheck' => 'Izvrsno! Molimo provjerite da se ne radi o nekom [$1 poznatom "bugu"].',
 'feedback-bugnew' => 'Provjereno. Prijavi novi "bug"',
+
+# Search suggestions
+'searchsuggest-search' => 'Traži',
+'searchsuggest-containing' => 'sadrži....',
 
 # API errors
 'api-error-badaccess-groups' => 'Nemate ovlasti za postavljanje datoteka na ovu wiki.',

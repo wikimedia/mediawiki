@@ -1207,8 +1207,6 @@ Matatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={
 'search-interwiki-caption' => 'Kapatid na mga proyekto',
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(mas marami pa)',
-'search-mwsuggest-enabled' => 'may mga mungkahi',
-'search-mwsuggest-disabled' => 'walang mga mungkahi',
 'search-relatedarticle' => 'Kaugnay',
 'mwsuggest-disable' => 'Huwag paganahin ang mga mungkahi ng AJAX',
 'searcheverything-enable' => 'Maghanap sa lahat ng ngalan-espasyo:',
@@ -4067,6 +4065,10 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'feedback-close' => 'Nagawa na',
 'feedback-bugcheck' => 'Mahusay! Suriin lang na hindi pa ito isa sa [$1 nalalamang mga depekto].',
 'feedback-bugnew' => 'Sinuri ko na. Mag-ulat ng panibagong sira',
+
+# Search suggestions
+'searchsuggest-search' => 'Maghanap',
+'searchsuggest-containing' => 'naglalaman ng ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Hindi ka pinapayagang makapagkarga ng mga talaksan papunta sa wiking ito.',

@@ -587,10 +587,10 @@ Pretraga: $2',
 'protectedpagetext' => 'Ova stranica je zaključana da bi se spriječilo uređivanje.',
 'viewsourcetext' => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
 'viewyourtext' => "Možete da pogledate i kopirate izvor '''vaših izmjena''' na ovoj stranici:",
-'protectedinterface' => 'Ova stranica sadrži tekst interfejsa za softver, pa je zaključana kako bi se spriječile zloupotrebe.',
+'protectedinterface' => 'Ova stranica sadrži tekst interfejsa za softver na ovoj wiki, pa je zaključana kako bi se spriječile zloupotrebe. Kako bi dodali ili promijenili prijevode za sve wikije, molimo koristite [//translatewiki.net/ translatewiki.net], projekt lokalizacije MediaWikija.',
 'editinginterface' => "'''Upozorenje:''' Mijenjate stranicu koja se koristi za tekst interfejsa za softver.
-Promjene na ovoj stranici dovode i do promjena interfejsa za druge korisnike.
-Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
+Promjene na ovoj stranici će izazvati promjene korisničkog interfejsa za druge korisnike na ovoj wiki.
+Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt lokalizacije MediaWiki.",
 'sqlhidden' => '(SQL pretraga sakrivena)',
 'cascadeprotected' => 'Ova stranica je zaštićena od uređivanja, jer je uključena u {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja sa uključenom kaskadnom opcijom:
 $2',
@@ -1252,8 +1252,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Srodni projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 'sa sugestijama',
-'search-mwsuggest-disabled' => 'bez sugestija',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Onemogući AJAX prijedloge',
 'searcheverything-enable' => 'Pretraga u svim imenskim prostorima',

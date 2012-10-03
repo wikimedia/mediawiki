@@ -1300,8 +1300,6 @@ $1",
 'search-interwiki-caption' => 'គម្រោងជាបងប្អូន',
 'search-interwiki-default' => 'លទ្ធផលពី$1៖',
 'search-interwiki-more' => '(បន្ថែមទៀត)',
-'search-mwsuggest-enabled' => 'មានសំណើ',
-'search-mwsuggest-disabled' => 'គ្មានសំណើ',
 'search-relatedarticle' => 'ទាក់ទិន',
 'mwsuggest-disable' => 'មិនប្រើសំនើAJAX',
 'searcheverything-enable' => 'ស្វែងរកនៅក្នុងលំហឈ្មោះទាំងអស់',
@@ -3627,6 +3625,10 @@ $5
 'feedback-adding' => 'កំពុងបន្ថែមមតិយោបល់ទៅលើទំព័រ...',
 'feedback-thanks' => 'សូមអរគុណ! មតិយោបល់របស់អ្នកត្រូវបានដាក់ផ្សាយនៅលើទំព័រ "[$2 $1]"។',
 'feedback-close' => 'រួចរាល់',
+
+# Search suggestions
+'searchsuggest-search' => 'ស្វែងរក​',
+'searchsuggest-containing' => 'ដែលមានពាក្យ...',
 
 # API errors
 'api-error-badaccess-groups' => 'អ្នកគ្មានការអនុញ្ញាតអោយផ្ទុកឯកសារឡើងទៅក្នុងវិគីនេះទេ។',

@@ -1031,8 +1031,6 @@ $1",
 'search-interwiki-caption' => 'Ах дүү төслүүд',
 'search-interwiki-default' => '$1 үр дүн:',
 'search-interwiki-more' => '（илүү их）',
-'search-mwsuggest-enabled' => 'санаачлагатай',
-'search-mwsuggest-disabled' => 'санаачлага байхгүй',
 'search-relatedarticle' => 'Холбоотой',
 'mwsuggest-disable' => 'AJAX саналуудыг болиулах',
 'searcheverything-enable' => 'Бүх нэрний зайнуудад хайх',
@@ -3308,5 +3306,8 @@ $5
 'revdelete-restricted' => 'системийн операторуудад тавигдсан хязгаарлалтууд',
 'revdelete-unrestricted' => 'системийн операторуудаас авч хаясан хязгаарлалтууд',
 'newuserlog-byemail' => 'мэйлээр явуулсан нууц үг',
+
+# Search suggestions
+'searchsuggest-search' => 'Хайх',
 
 );

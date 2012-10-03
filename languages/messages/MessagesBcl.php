@@ -9,6 +9,7 @@
  *
  * @author Filipinayzd
  * @author Geopoet
+ * @author Hoo
  * @author Kaganer
  * @author Steven*fung
  * @author Urhixidur
@@ -1129,8 +1130,6 @@ An mga detalye mapuwedeng matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Tugang na mga proyekto',
 'search-interwiki-default' => '$1 na mga resulta:',
 'search-interwiki-more' => '(dakol pa)',
-'search-mwsuggest-enabled' => 'igwang mga suhestyon',
-'search-mwsuggest-disabled' => 'mayong suhestyon',
 'search-relatedarticle' => 'Kauyon',
 'mwsuggest-disable' => 'Pundohon an AJAX na mga suhestiyon',
 'searcheverything-enable' => 'Maghanap sa gabos na mga espasyong-ngaran',
@@ -3373,7 +3372,7 @@ Pwede mo man [[Special:EditWatchlist|gamiton an standard editor]].',
 'version-version' => '(Bersyon na $1)',
 'version-license' => 'Lisensiya',
 'version-poweredby-credits' => "An wiking ini pinagpagana kan '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS mga iba pa]',
+'version-poweredby-others' => 'mga iba pa',
 'version-license-info' => 'An MediaWiki sarong libreng kasungatan; puwede mong ipanao ini asin/o baguhon ini sa irarom kan termino nin HNU (Heneral na Pampublikong Lisensiya) bilang publisado kan Free Software Foundation; maski sa arin na bersyon 2 kan lisensiya, o (saimong pansadireng pagpipilian) arinman na huring bersyon.
 
 An MediaWiki ipinagpanao sa paglaom na ini magigin kapakinabangan, pero MAYO NIN ANUMAN NA WARANTIYA; mayo dawa ngani nin pinaghuhurot na warantiya kan MERKANTIBILIDAD o KAUYUGAN PARA SA SARONG PARTIKULAR NA KATUYUHAN. Hilngon an HNU (Heneral na Pampublikong Lisensiya) para sa kadagdagang mga detalye.

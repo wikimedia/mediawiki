@@ -987,8 +987,6 @@ $1",
 'search-interwiki-caption' => 'Джууукъ проектле',
 'search-interwiki-default' => '$1 эсеблери:',
 'search-interwiki-more' => '(дагъыда)',
-'search-mwsuggest-enabled' => 'юретиуле бла',
-'search-mwsuggest-disabled' => 'юретиулесиз',
 'search-relatedarticle' => 'Байламлы',
 'mwsuggest-disable' => 'AJAX юретиулени джукълатыгъыз',
 'searcheverything-enable' => 'Атланы бютёу аламларында изле',
@@ -3434,6 +3432,10 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 'feedback-submit' => 'Оюмунгу джибер',
 'feedback-error2' => 'Халат. Тюзетиу ётмеди',
 'feedback-close' => 'Тындырылды',
+
+# Search suggestions
+'searchsuggest-search' => 'Излеу',
+'searchsuggest-containing' => 'ичиндегиси…',
 
 # API errors
 'api-error-badtoken' => 'Ич халат: терс токен.',

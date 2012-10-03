@@ -1253,8 +1253,6 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'search-interwiki-caption' => 'Proġetti kuġini',
 'search-interwiki-default' => "Riżultati ta' $1:",
 'search-interwiki-more' => '(aktar)',
-'search-mwsuggest-enabled' => 'bis-suġġerimenti',
-'search-mwsuggest-disabled' => 'l-ebda suġġeriment',
 'search-relatedarticle' => 'Relatati',
 'mwsuggest-disable' => 'Neħħi suġġeriment tal-AJAX',
 'searcheverything-enable' => 'Fittex fl-ispazji tal-isem kollha',
@@ -3760,6 +3758,10 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'feedback-close' => 'Lest',
 'feedback-bugcheck' => 'Tajjeb ħafna! Ivverifika li mhux diġà fost id-[$1 difetti magħrufa].',
 'feedback-bugnew' => 'Ikkontrollajt. Irrapporta d-difett',
+
+# Search suggestions
+'searchsuggest-search' => 'Fittex',
+'searchsuggest-containing' => 'li tinkludi...',
 
 # API errors
 'api-error-fileexists-forbidden' => 'Fajl bl-isem "$1" diġà jeżisti, u ma jistax jiġi miktub fuqu.',

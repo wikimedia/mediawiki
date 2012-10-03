@@ -671,10 +671,11 @@ Zapytanie: $2',
 'protectedpagetext' => 'Wyłączono możliwość edycji tej strony.',
 'viewsourcetext' => 'Tekst źródłowy strony można podejrzeć i skopiować.',
 'viewyourtext' => "Tekst źródłowy '''zmodyfikowanej''' przez Ciebie strony możesz podejrzeć i skopiować",
-'protectedinterface' => 'Ta strona zawiera tekst interfejsu oprogramowania, dlatego możliwość jej edycji została zablokowana.',
+'protectedinterface' => 'Ta strona zawiera tekst interfejsu oprogramowania wiki i jest zabezpieczona przed nadużyciami.
+By dodać lub zmienić tłumaczenia wszystkich serwisów wiki, użyj [//translatewiki.net/ translatewiki.net], projektu lokalizacji MediaWiki.',
 'editinginterface' => "'''Ostrzeżenie:''' Edytujesz stronę, która zawiera tekst interfejsu oprogramowania.
-Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników.
-Rozważ wykonanie tłumaczenia na [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowanym projekcie lokalizacji oprogramowania MediaWiki.",
+Zmiany na tej stronie zmienią wygląd interfejsu dla innych użytkowników tej wiki.
+By dodać lub zmienić tłumaczenia wszystkich wiki, użyj [//translatewiki.net/wiki/Main_Page?setlang=pl translatewiki.net], specjalizowany projekt lokalizacji oprogramowania MediaWiki.",
 'sqlhidden' => '(ukryto zapytanie SQL)',
 'cascadeprotected' => 'Ta strona została zabezpieczona przed edycją, ponieważ jest ona zawarta na {{PLURAL:$1|następującej stronie, która została zabezpieczona|następujących stronach, które zostały zabezpieczone}} z włączoną opcją dziedziczenia:
 $2',
@@ -960,9 +961,9 @@ Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komenta
 'noarticletext' => 'Brak strony o tym tytule.
 Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych stronach]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać log] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.',
-'noarticletext-nopermission' => 'Na tej stronie nie ma jeszcze artykułu.
+'noarticletext-nopermission' => 'Ta strona nie posiada jeszcze zawartości.
 Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
-lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane logi].</span>',
+lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} przeszukać powiązane dzienniki]</span>, ale nie masz uprawnień do utworzenia tej strony',
 'missing-revision' => 'Wersja #$1 strony "{{PAGENAME}}" nie istnieje.
 
 Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powód usunięcia znajduje się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze].',
@@ -1326,8 +1327,6 @@ Zazwyczaj jest to spowodowane przestarzałym linkiem do usuniętej strony. Powó
 'search-interwiki-caption' => 'Projekty siostrzane',
 'search-interwiki-default' => 'Wyniki dla $1:',
 'search-interwiki-more' => '(więcej)',
-'search-mwsuggest-enabled' => 'z dynamicznymi propozycjami',
-'search-mwsuggest-disabled' => 'bez dynamicznych propozycji',
 'search-relatedarticle' => 'Pokrewne',
 'mwsuggest-disable' => 'Wyłącz dynamiczne podpowiedzi',
 'searcheverything-enable' => 'Szukaj we wszystkich przestrzeniach nazw',
@@ -1425,7 +1424,7 @@ Wygenerowany losowo klucz, którego możesz użyć to $1',
 'timezoneregion-indian' => 'Ocean Indyjski',
 'timezoneregion-pacific' => 'Ocean Spokojny',
 'allowemail' => 'Zgadzam się, by inni użytkownicy mogli przesyłać do mnie e‐maile',
-'prefs-searchoptions' => 'Opcje wyszukiwania',
+'prefs-searchoptions' => 'Szukaj',
 'prefs-namespaces' => 'Przestrzenie nazw',
 'defaultns' => 'Albo przeszukuj przestrzenie nazw:',
 'default' => 'domyślnie',
@@ -1670,9 +1669,9 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'rc-old-title' => 'oryginalnie utworzono jako "$1"',
 
 # Recent changes linked
-'recentchangeslinked' => 'Zmiany w dolinkowanych',
-'recentchangeslinked-feed' => 'Zmiany w dolinkowanych',
-'recentchangeslinked-toolbox' => 'Zmiany w dolinkowanych',
+'recentchangeslinked' => 'Zmiany w linkowanych',
+'recentchangeslinked-feed' => 'Zmiany w linkowanych',
+'recentchangeslinked-toolbox' => 'Zmiany w linkowanych',
 'recentchangeslinked-title' => 'Zmiany w linkowanych z „$1”',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na (zależnie od ustawień) linkowanych lub linkujących stronach w wybranym okresie.',
 'recentchangeslinked-summary' => "Poniżej znajduje się lista ostatnich zmian na stronach linkowanych z podanej strony (lub we wszystkich stronach należących do podanej kategorii).
@@ -4037,6 +4036,9 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'feedback-close' => 'Gotowe',
 'feedback-bugcheck' => 'Świetnie! Tylko sprawdź, czy nie jest już jednym ze [$1 znanych błędów].',
 'feedback-bugnew' => '{{GENDER:|Sprawdziłem|Sprawdziłam}}. Zgłoś nowy błąd',
+
+# Search suggestions
+'searchsuggest-search' => 'Szukaj',
 
 # API errors
 'api-error-badaccess-groups' => 'Nie masz uprawnień aby przesyłać pliki do tej wiki.',

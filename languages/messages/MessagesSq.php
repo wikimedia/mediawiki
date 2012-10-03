@@ -1229,8 +1229,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-caption' => 'Projekte simotra',
 'search-interwiki-default' => '$1 përfundime:',
 'search-interwiki-more' => '(më shumë)',
-'search-mwsuggest-enabled' => 'me këshilla',
-'search-mwsuggest-disabled' => 'pa këshilla',
 'search-relatedarticle' => 'Të ngjashme',
 'mwsuggest-disable' => 'Çmundësoi sugjerimet AJAX',
 'searcheverything-enable' => 'Kërko në të gjitha hapësirat',
@@ -3802,6 +3800,10 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'feedback-close' => 'Përfunduar',
 'feedback-bugcheck' => 'Shumë mirë! Thjesht kontrolloni që nuk është një nga [$1 problemet e njohura].',
 'feedback-bugnew' => 'E kontrollova. Raporto një problem të ri',
+
+# Search suggestions
+'searchsuggest-search' => 'Kërko',
+'searchsuggest-containing' => 'përmban ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Ju nuk lejoheni të ngarkoni skeda në këtë wiki.',

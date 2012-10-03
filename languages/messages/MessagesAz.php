@@ -923,8 +923,6 @@ $1",
 'search-interwiki-caption' => 'Qardaş layihələr',
 'search-interwiki-default' => '$1 nəticə:',
 'search-interwiki-more' => '(yenə)',
-'search-mwsuggest-enabled' => 'təkliflərlə',
-'search-mwsuggest-disabled' => 'təklif yoxdur',
 'search-relatedarticle' => 'əlaqədar',
 'mwsuggest-disable' => 'AJAX təkliflərini rədd et',
 'searcheverything-enable' => 'Ad aralığında axtar:',
@@ -2991,6 +2989,9 @@ Bu saytda texniki problemlər var.',
 'feedback-error2' => 'Xəta: Redaktə qeydə alınmadı',
 'feedback-close' => 'Oldu',
 'feedback-bugnew' => 'Mən yoxladım. Yeni xəta barədə xəbər ver',
+
+# Search suggestions
+'searchsuggest-search' => 'Axtar',
 
 # API errors
 'api-error-filename-tooshort' => 'Fayl adı qısadır.',

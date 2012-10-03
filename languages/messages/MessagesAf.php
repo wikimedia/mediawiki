@@ -1229,8 +1229,6 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'search-interwiki-caption' => 'Suster projekte',
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'met voorstelle',
-'search-mwsuggest-disabled' => 'geen voorstelle',
 'search-relatedarticle' => 'Verwante',
 'mwsuggest-disable' => 'Deaktiveer AJAX-voorstelle',
 'searcheverything-enable' => 'Soek in alle naamruimtes',
@@ -3823,6 +3821,10 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'feedback-close' => 'Gedoen',
 'feedback-bugcheck' => 'Gaaf! Kontroleer of dit nie dalk een van die [$1 bekende foute] is nie.',
 'feedback-bugnew' => "Ek het gekontroleer. Rapporteer 'n nuwe fout.",
+
+# Search suggestions
+'searchsuggest-search' => 'Soek',
+'searchsuggest-containing' => 'bevat...',
 
 # API errors
 'api-error-badaccess-groups' => 'U word nie toegelaat om lêers te laai op hierdie wiki.',

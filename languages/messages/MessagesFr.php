@@ -55,6 +55,7 @@
  * @author Meithal
  * @author Moyg
  * @author Nicolas Raoul
+ * @author Nnemo
  * @author Od1n
  * @author Omnipaedista
  * @author Peter17
@@ -529,7 +530,7 @@ $messages = array(
 'vector-action-protect' => 'Protéger',
 'vector-action-undelete' => 'Rétablir',
 'vector-action-unprotect' => 'Changer la protection',
-'vector-simplesearch-preference' => 'Activer les suggestions de recherche améliorées (seulement pour Vector)',
+'vector-simplesearch-preference' => "Activer la barre de recherche simplifiée (seulement pour l'habillage Vector)",
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Modifier',
 'vector-view-history' => 'Afficher l’historique',
@@ -750,8 +751,10 @@ Essayez à nouveau dans quelques minutes.',
 'protectedpagetext' => 'Cette page a été protégée pour empêcher sa modification.',
 'viewsourcetext' => 'Vous pouvez voir et copier le contenu de la page :',
 'viewyourtext' => "Vous pouvez voir et copier le contenu de '''vos modifications''' à cette page :",
-'protectedinterface' => 'Cette page fournit du texte d’interface pour le logiciel et est protégée pour éviter les abus.',
-'editinginterface' => "'''Attention :''' vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements se répercuteront, selon le contexte, sur toutes ou certaines pages visibles par les autres utilisateurs. Pour les traductions, nous vous invitons à utiliser le projet MediaWiki d’internationalisation des messages [//translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
+'protectedinterface' => 'Cette page fournit du texte d’interface pour le logiciel sur ce wiki, et est protégée pour éviter les abus.
+Pour ajouter ou modifier des traductions sur tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet de localisation de MediaWiki.',
+'editinginterface' => "'''Attention''': Vous êtes en train de modifier une page utilisée pour créer le texte de l’interface du logiciel. Les changements sur cette page se répercuteront dur l'apparence de l'interface utilisateur pour les autres utilisateurs de ce wiki.
+Pour ajouter ou modifier des traductions pour tous les wikis, veuillez utiliser [//translatewiki.net/ translatewiki.net], le projet d’internationalisation de MediaWiki.",
 'sqlhidden' => '(Requête SQL cachée)',
 'cascadeprotected' => 'Cette page est protégée car elle est incluse par {{PLURAL:$1|la page suivante, qui a été protégée|les pages suivantes, qui ont été protégées}} avec l’option « protection en cascade » activée :
 $2',
@@ -783,10 +786,10 @@ Notez que certaines pages peuvent être encore affichées comme si vous étiez t
 
 Votre compte a été créé.
 N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
-'yourname' => 'Nom d’utilisateur :',
-'yourpassword' => 'Mot de passe :',
+'yourname' => 'Nom d’utilisateur&nbsp;:',
+'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
-'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
+'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
 'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
@@ -818,7 +821,7 @@ Veuillez choisir un nom différent.',
 Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.',
 'noname' => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle' => 'Connexion réussie',
-'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
+'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser' => 'L’utilisateur « $1 » n’existe pas.
 Les noms d’utilisateurs sont sensibles à la casse.
 Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
@@ -1382,8 +1385,6 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Projets frères',
 'search-interwiki-default' => 'Résultats sur $1 :',
 'search-interwiki-more' => '(plus)',
-'search-mwsuggest-enabled' => 'avec suggestions',
-'search-mwsuggest-disabled' => 'sans suggestions',
 'search-relatedarticle' => 'Relaté',
 'mwsuggest-disable' => 'Désactiver les suggestions AJAX',
 'searcheverything-enable' => 'Rechercher dans tous les espaces de noms',
@@ -1749,9 +1750,9 @@ Le journal des suppressions et celui des déplacements de cette page sont affich
 'uploadtext' => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
 Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L’import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
-Pour inclure un fichier dans une page, utilisez un lien de la forme :
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
+Pour inclure un fichier dans une page, utilisez un lien de la forme :
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l’afficher.",
 'upload-permitted' => 'Formats de fichiers autorisés : $1.',
 'upload-preferred' => 'Formats de fichiers préférés : $1.',
@@ -4076,10 +4077,10 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-suppress-revision' => "$1 a secrètement modifié la visibilité {{PLURAL:$5|d'une révision|de $5 révisions}} sur la page $3: $4",
 'logentry-suppress-event-legacy' => '$1 a secrètement modifié la visibilité des événements du journal sur $3',
 'logentry-suppress-revision-legacy' => '$1 a secrètement modifié la visibilité des révisions sur la page $3',
-'revdelete-content-hid' => 'contenu caché',
+'revdelete-content-hid' => 'contenu masqué',
 'revdelete-summary-hid' => 'résumé de modification caché',
 'revdelete-uname-hid' => "nom d'utilisateur caché",
-'revdelete-content-unhid' => 'contenu démasqué',
+'revdelete-content-unhid' => 'contenu révélé',
 'revdelete-summary-unhid' => 'résumé de modification démasqué',
 'revdelete-uname-unhid' => "nom d'utilisateur démasqué",
 'revdelete-restricted' => 'restrictions appliquées aux administrateurs',
@@ -4111,6 +4112,10 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-close' => 'Fait',
 'feedback-bugcheck' => 'Formidable ! Vérifiez simplement que ce n’est pas un des [$1 bogues déjà connus].',
 'feedback-bugnew' => "J'ai vérifié. Signaler un nouveau bogue",
+
+# Search suggestions
+'searchsuggest-search' => 'Rechercher',
+'searchsuggest-containing' => 'contenant...',
 
 # API errors
 'api-error-badaccess-groups' => 'Vous n’êtes pas autorisé à verser des fichiers sur ce wiki.',

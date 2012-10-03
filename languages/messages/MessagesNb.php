@@ -1,5 +1,5 @@
 <?php
-/** Norwegian Bokmål (‪norsk (bokmål)‬)
+/** Norwegian Bokmål (norsk (bokmål)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -23,6 +23,7 @@
  * @author Haakon K
  * @author Harald Khan
  * @author Jeblad
+ * @author Jsoby
  * @author Jóna Þórunn
  * @author Kph
  * @author Kph-no
@@ -691,9 +692,9 @@ Spørring: $2',
 'protectedpagetext' => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext' => 'Du kan se og kopiere kilden til denne siden:',
 'viewyourtext' => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
-'protectedinterface' => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
-'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren.
-Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut.
+'protectedinterface' => 'Denne siden fremskaffer brukergrensesnittekst for programvaren, og er låst for å hindre misbruk.',
+'editinginterface' => "'''Advarsel:''' Du redigerer en side som brukes for å fremskaffe grensesnittekst for programvaren.
+Endringer av denne siden vil påvirke hvordan grensesnittet vil se ut for andre brukere.
 For oversettelser er det best om du bruker [//translatewiki.net/wiki/Main_Page?setlang=nb translatewiki.net], prosjektet for oversettelse av MediaWiki.",
 'sqlhidden' => '(SQL-spørring skjult)',
 'cascadeprotected' => 'Denne siden er låst for redigering fordi den inkluderes på følgende sider som har dypbeskyttelse slått på:<!--{{PLURAL:$1}}-->
@@ -979,8 +980,8 @@ Hvis du er en uregistrert bruker og synes at du har fått irrelevante kommentare
 Du kan [[Special:Search/{{PAGENAME}}|søke etter denne sidetittelen]] på andre sider,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relaterte logger],
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} opprette siden]</span>.',
-'noarticletext-nopermission' => 'Det er ingen tekst på denne siden.
-Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] i andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
+'noarticletext-nopermission' => 'Det er for tiden ingen tekst på denne siden.
+Du kan [[Special:Search/{{PAGENAME}}|søke etter sidens tittel]] blant andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søke i relevante logger]</span>.',
 'missing-revision' => 'Revisjonen #$1 av siden med navnet "{{PAGENAME}}" eksisterer ikke.
 
 Dette skyldes som regel at en gammel historikklenke er fulgt til en side som er slettet.
@@ -1341,8 +1342,6 @@ Detaljer kan finnes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Søsterprosjekter',
 'search-interwiki-default' => '$1-resultater:',
 'search-interwiki-more' => '(mer)',
-'search-mwsuggest-enabled' => 'med forslag',
-'search-mwsuggest-disabled' => 'ingen forslag',
 'search-relatedarticle' => 'Relatert',
 'mwsuggest-disable' => 'Slå av AJAX-forslag',
 'searcheverything-enable' => 'Søk i alle navnerom',
@@ -1439,7 +1438,7 @@ Her er et tilfeldig tall du kan bruke: $1',
 'timezoneregion-indian' => 'Indiahavet',
 'timezoneregion-pacific' => 'Stillehavet',
 'allowemail' => 'Tillat andre å sende meg e-post',
-'prefs-searchoptions' => 'Søkealternativ',
+'prefs-searchoptions' => 'Søk',
 'prefs-namespaces' => 'Navnerom',
 'defaultns' => 'Søk ellers i disse navnerommene:',
 'default' => 'standard',
@@ -2282,7 +2281,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'emailpagetext' => 'Du kan bruke skjemaet nedenfor for å sende en e-post til denne brukeren.
 Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror' => 'E-postobjekt returnerte feilen:',
-'defemailsubject' => '{{SITENAME}}-type e-post fra bruker "$1"',
+'defemailsubject' => 'E-post fra {{SITENAME}}-brukeren «$1»',
 'usermaildisabled' => 'Brukerepost deaktivert',
 'usermaildisabledtext' => 'Du kan ikke sende epost til andre brukere på denne wikien',
 'noemailtitle' => 'Ingen e-postadresse',
@@ -3981,6 +3980,10 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'feedback-close' => 'Utført',
 'feedback-bugcheck' => 'Suprert! Bare sjekk at den ikke er en av de [$1 kjente feilene]',
 'feedback-bugnew' => 'Jeg sjekket. Rapporter en ny bug.',
+
+# Search suggestions
+'searchsuggest-search' => 'Søk',
+'searchsuggest-containing' => 'inneholder …',
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikke tillatelse til å laste opp filer til denne wikien.',

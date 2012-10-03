@@ -1071,8 +1071,6 @@ Tú hevur ikki atgongd til hann.',
 'search-interwiki-caption' => 'Líknandi verkætlanir',
 'search-interwiki-default' => '$1 úrslit:',
 'search-interwiki-more' => '(meira)',
-'search-mwsuggest-enabled' => 'við uppskotum',
-'search-mwsuggest-disabled' => 'ongi uppskot',
 'search-relatedarticle' => 'Líknandi',
 'mwsuggest-disable' => 'Slá AJAX uppskot frá',
 'searcheverything-enable' => 'Leita í øllum navnaøkjum',
@@ -2252,6 +2250,9 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 # Special:ComparePages
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
+
+# Search suggestions
+'searchsuggest-search' => 'Leita',
 
 # API errors
 'api-error-empty-file' => 'Fílan sum tú sendi inn var tóm.',

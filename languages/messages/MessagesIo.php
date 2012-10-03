@@ -672,8 +672,6 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'search-interwiki-caption' => 'Altra projekti',
 'search-interwiki-default' => 'Rezultaji di $1:',
 'search-interwiki-more' => '(plusa)',
-'search-mwsuggest-enabled' => 'kun sugestaji',
-'search-mwsuggest-disabled' => 'sen sugestaji',
 'searchall' => 'omna',
 'showingresults' => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'showingresultsnum' => "Montrante infre {{PLURAL:$3|'''1''' rezulto|'''$3''' rezulti}}, qui komencas kun numero #'''$2'''.",
@@ -1555,5 +1553,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 # HTML forms
 'htmlform-reset' => 'Desfacar chanji',
 'htmlform-selectorother-other' => 'Altra',
+
+# Search suggestions
+'searchsuggest-search' => 'Serchez',
+'searchsuggest-containing' => 'quan kontenas...',
 
 );

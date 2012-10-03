@@ -1056,8 +1056,6 @@ Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset
 'search-interwiki-caption' => 'Saathe ke project',
 'search-interwiki-default' => '$1 ke result:',
 'search-interwiki-more' => '(aur)',
-'search-mwsuggest-enabled' => 'bichar ke saathe',
-'search-mwsuggest-disabled' => 'koi bichar nai hae',
 'search-relatedarticle' => 'sambandh rakkhe hai',
 'mwsuggest-disable' => 'AJAX sughao ke beasar karo',
 'searcheverything-enable' => 'Sab namespaces me khojo',
@@ -3026,5 +3024,8 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'revdelete-restricted' => 'sysops pe llabu restrictions',
 'revdelete-unrestricted' => 'sysops se hatawa gae rukawat',
 'newuserlog-byemail' => 'password ke e-mail se bheja gais hai',
+
+# Search suggestions
+'searchsuggest-search' => 'Khojo',
 
 );

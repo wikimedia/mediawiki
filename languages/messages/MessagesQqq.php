@@ -82,6 +82,8 @@
  * @author Nemo bis
  * @author Niels
  * @author Nike
+ * @author Njardarlogar
+ * @author Nnemo
  * @author Node ue
  * @author Octahedron80
  * @author Od1n
@@ -705,8 +707,12 @@ $1 is a filename, I think.',
 * $1: the protection type, e.g. "protect" for fully protected pages',
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'viewyourtext' => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
-'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.',
-'editinginterface' => "A message shown when editing pages in the namespace MediaWiki:. In the [http://translatewiki.net/wiki/Main_Page?setlang=en URL], '''change \"setlang=en\" to your own language code.'''",
+'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.
+
+See also {{msg-mw|editinginterface}}.',
+'editinginterface' => 'A message shown when editing pages in the namespace MediaWiki:.
+
+See also {{msg-mw|protectedinterface}}.',
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
 'invalidtitle-knownnamespace' => 'Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.
@@ -793,7 +799,7 @@ $1 is the minimum number of characters in the password.',
 'mailmypassword' => 'Shown at [[Special:UserLogin]]',
 'passwordremindertitle' => 'Title of e-mail which contains temporary password',
 'passwordremindertext' => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
-* $1 is an IP addres. Example: 123.123.123.123
+* $1 is an IP address. Example: 123.123.123.123
 * $2 is a username. Example: Joe
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com
@@ -1930,7 +1936,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 
 {{Identical|Upload file}}',
 'uploadnologin' => '{{Identical|Not logged in}}',
-'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave it untranslated!}}
+'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave them untranslated!}}
 Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted' => 'Used in [[Special:Upload]].',
 'upload-preferred' => 'Used in [[Special:Upload]].',
@@ -2098,7 +2104,7 @@ Used on [[Special:UploadWizard]].',
 'img-auth-accessdenied' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied
 {{Identical|Access denied}}',
 'img-auth-nopathinfo' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description
-* This is plain text. Do not use any wiki syntax.',
+{{Doc-important|This is plain text. Do not use any wiki syntax.}}',
 'img-auth-notindir' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: When the specified path is not in upload directory.',
 'img-auth-badtitle' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Bad title, $1 is the invalid title',
 'img-auth-nologinnWL' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Logged in and file not whitelisted. $1 is the file not in whitelist.',
@@ -3556,7 +3562,10 @@ Parameters:
 'svg-long-desc' => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:File:Yes check.svg]].
 
 Start with a lowercase letter, unless the first word is “SVG”.',
-'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}. $1 is width, $2 is height, and $3 is file size, including unit (for example "10 KB").
+'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
+* $1 is the width in pixels
+* $2 is the height in pixels, and 
+* $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
@@ -4611,7 +4620,8 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
-'version-entrypoints-header-entrypoint' => 'ପ୍ରବେଶ ବିନ୍ଦୁ',
+'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
+See also {{msg-mw|Version-entrypoints}}',
 'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
@@ -4828,11 +4838,11 @@ $4 is the gender of the target user.',
 'feedback-bugcheck' => 'Message that appears before the user submits a bug, reminding them to check for known bugs.',
 'feedback-bugnew' => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
 
-# SimpleSearch
-'simplesearch-search' => 'Greyed out default text in the simple search box (it disappears and lets the user enter the requested search terms when the search box receives focus.)
+# Search suggestions
+'searchsuggest-search' => 'Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)
 
 {{Identical|Search}}',
-'simplesearch-containing' => 'Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.',
+'searchsuggest-containing' => 'Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.',
 
 # API errors
 'api-error-badaccess-groups' => 'API error message that can be used for client side localisation of API errors.',

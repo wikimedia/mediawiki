@@ -1139,8 +1139,6 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'search-interwiki-caption' => 'Projeti fradei',
 'search-interwiki-default' => 'Risultati da $1:',
 'search-interwiki-more' => '(altro)',
-'search-mwsuggest-enabled' => 'con sujerimenti',
-'search-mwsuggest-disabled' => 'sensa sujerimenti',
 'search-relatedarticle' => 'Ligà',
 'mwsuggest-disable' => 'Disabilita sugerimenti AJAX',
 'searcheverything-enable' => 'Serca in tuti quanti i namespace',
@@ -3377,5 +3375,9 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-newusers-create2' => '$1 ga creà na utensa $3',
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
 'newuserlog-byemail' => 'password spedìa par e-mail',
+
+# Search suggestions
+'searchsuggest-search' => 'Serca',
+'searchsuggest-containing' => 'che contien...',
 
 );

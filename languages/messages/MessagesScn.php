@@ -950,6 +950,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 
 # Diffs
 'history-title' => 'Crunoluggìa dî canciamenti di "$1"',
+'difference-title' => '$1: diffirenzi ntra li virsiuni',
 'lineno' => 'Lìnia $1:',
 'compareselectedversions' => 'Fari lu paraguni',
 'showhideselectedversions' => 'Ammustra/ammuccia virsioni silizziunati',
@@ -996,8 +997,6 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'search-interwiki-caption' => 'Pruggetti frati',
 'search-interwiki-default' => 'Risultati da $1:',
 'search-interwiki-more' => '(cchiù)',
-'search-mwsuggest-enabled' => 'cu suggirimenti',
-'search-mwsuggest-disabled' => 'senza suggirimenti',
 'search-relatedarticle' => 'Risultati currilati',
 'mwsuggest-disable' => 'Astuta suggirimenti AJAX',
 'searcheverything-enable' => 'Cerca ni tutti li namespace',
@@ -2985,6 +2984,9 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'logentry-move-move' => '$1 spustau la pàggina $3 a $4',
 'logentry-newusers-create' => '$1 criau na utenza',
 'newuserlog-byemail' => 'password mannata via mail',
+
+# Search suggestions
+'searchsuggest-search' => 'Ricerca',
 
 # API errors
 'api-error-nomodule' => 'Erruri nternu: nun fu mpustatu lu mòdulu di carricamentu',

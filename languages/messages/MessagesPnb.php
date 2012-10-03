@@ -1002,8 +1002,6 @@ $1",
 'search-interwiki-caption' => 'رلدے ویونت',
 'search-interwiki-default' => '$1 نتارے:',
 'search-interwiki-more' => '(اور)',
-'search-mwsuggest-enabled' => 'صلاع دے نال',
-'search-mwsuggest-disabled' => 'کوئی صلاع نئیں',
 'search-relatedarticle' => 'جڑیاں',
 'mwsuggest-disable' => 'اجاکس مشورے نکارہ کرو',
 'searcheverything-enable' => 'ہر ناں چ لبو',
@@ -3560,6 +3558,10 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'feedback-close' => 'ہوگیا۔',
 'feedback-bugcheck' => 'بعوت ودیا ! صرف ایہ ویکھو جے کیا ایہ پہلے لبے ہوۓ [$1 known bugs] چو اک تے نئیں۔',
 'feedback-bugnew' => 'میں ویکھیا اے۔ نویں بگ دی رپورٹ کرو۔',
+
+# Search suggestions
+'searchsuggest-search' => 'کھوج',
+'searchsuggest-containing' => 'بند کر ریا اے۔۔۔',
 
 # API errors
 'api-error-badaccess-groups' => 'تھوانوں ایس وکی تے فائلاں چڑھان دی اجازت نئیں۔',

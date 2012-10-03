@@ -15,56 +15,56 @@
 
 $messages = array(
 # Dates
-'sunday'    => 'Dilbata',
-'monday'    => 'Wiixata',
-'tuesday'   => 'Qibxata',
+'sunday' => 'Dilbata',
+'monday' => 'Wiixata',
+'tuesday' => 'Qibxata',
 'wednesday' => 'Roobii',
-'thursday'  => 'Kamiisa',
-'friday'    => 'Jimaata',
-'saturday'  => 'Sanbata',
-'sun'       => 'Dil',
-'mon'       => 'Wix',
-'tue'       => 'Qib',
-'wed'       => 'Rob',
-'thu'       => 'Kam',
-'fri'       => 'Jim',
-'sat'       => 'San',
-'january'   => 'Amajjii',
-'february'  => 'Guraandhala',
-'march'     => 'Bitooteessa',
-'april'     => 'Elba',
-'may_long'  => 'Caamsa',
-'june'      => 'Waxabajjii',
-'july'      => 'Adooleessa',
-'august'    => 'Hagayya',
+'thursday' => 'Kamiisa',
+'friday' => 'Jimaata',
+'saturday' => 'Sanbata',
+'sun' => 'Dil',
+'mon' => 'Wix',
+'tue' => 'Qib',
+'wed' => 'Rob',
+'thu' => 'Kam',
+'fri' => 'Jim',
+'sat' => 'San',
+'january' => 'Amajjii',
+'february' => 'Guraandhala',
+'march' => 'Bitooteessa',
+'april' => 'Elba',
+'may_long' => 'Caamsa',
+'june' => 'Waxabajjii',
+'july' => 'Adooleessa',
+'august' => 'Hagayya',
 'september' => 'Fuulbana',
-'october'   => 'Onkololeessa',
-'november'  => 'Sadaasa',
-'december'  => 'Muddee',
+'october' => 'Onkololeessa',
+'november' => 'Sadaasa',
+'december' => 'Muddee',
 
-'about'   => "Wa'ee",
+'about' => "Wa'ee",
 'article' => 'Kutaa',
-'and'     => '&#32;fi',
+'and' => '&#32;fi',
 
-'help'          => 'Qarqarsa',
-'go'            => 'Fufi',
-'history'       => 'Seena',
+'help' => 'Qarqarsa',
+'go' => 'Fufi',
+'history' => 'Seena',
 'history_short' => 'Seena',
-'edit'          => 'Barressu',
+'edit' => 'Barressu',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => "Wa'ee {{SITENAME}}",
-'aboutpage'            => "Project:Wa'ee",
-'currentevents'        => 'Gocha amma',
-'edithelp'             => 'Qarqarsa Barressu',
-'mainpage'             => 'Fuula Dura',
+'aboutsite' => "Wa'ee {{SITENAME}}",
+'aboutpage' => "Project:Wa'ee",
+'currentevents' => 'Gocha amma',
+'edithelp' => 'Qarqarsa Barressu',
+'mainpage' => 'Fuula Dura',
 'mainpage-description' => 'Fuula Dura',
 
 # Login and logout pages
-'yourname'           => 'Maqaa-Tajajilamma:',
-'yourdomainname'     => 'Maqaa domain kankee:',
-'gotaccountlink'     => 'Seenu',
-'accountcreated'     => 'Accountiin banamerra',
+'yourname' => 'Maqaa-Tajajilamma:',
+'yourdomainname' => 'Maqaa domain kankee:',
+'gotaccountlink' => 'Seenu',
+'accountcreated' => 'Accountiin banamerra',
 'loginlanguagelabel' => 'Afaan: $1',
 
 # Edit pages
@@ -74,7 +74,7 @@ $messages = array(
 # Preferences page
 'yourrealname' => 'Maqaa Dhugaa:',
 'yourlanguage' => 'Afaan:',
-'yourvariant'  => 'Jijjirama:',
+'yourvariant' => 'Jijjirama:',
 
 # Upload
 'upload' => 'File Galchu',
@@ -90,7 +90,7 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'Gochaan dhumattera',
-'deletecomment'  => 'Sababa:',
+'deletecomment' => 'Sababa:',
 
 # Block/unblock
 'ipbreason' => 'Sababa:',
@@ -99,7 +99,7 @@ $messages = array(
 'movereason' => 'Sababa:',
 
 # Namespace 8 related
-'allmessagesname'      => 'Maqaa',
+'allmessagesname' => 'Maqaa',
 'allmessages-language' => 'Afaan:',
 
 );

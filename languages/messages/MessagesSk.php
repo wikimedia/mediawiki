@@ -1311,8 +1311,6 @@ Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}
 'search-interwiki-caption' => 'Sesterské projekty',
 'search-interwiki-default' => '$1 výsledkov:',
 'search-interwiki-more' => '(viac)',
-'search-mwsuggest-enabled' => 's návrhmi',
-'search-mwsuggest-disabled' => 'bez návrhov',
 'search-relatedarticle' => 'Súvisiace',
 'mwsuggest-disable' => 'Vypnúť AJAX návrhy',
 'searcheverything-enable' => 'Vyhľadať vo všetkých menných priestoroch',
@@ -3937,6 +3935,10 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'feedback-close' => 'Hotovo',
 'feedback-bugcheck' => 'Skvelé! Teraz len skontrolujte, či to nie je jedna z už [$1 známych chýb].',
 'feedback-bugnew' => 'Skontroloval som. Poslať nové hlásenie o chybe.',
+
+# Search suggestions
+'searchsuggest-search' => 'Hľadať',
+'searchsuggest-containing' => 'obsahuje...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nemáte oprávnenie nahrávať súbory na tejto wiki.',

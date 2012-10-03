@@ -1340,8 +1340,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'search-interwiki-caption' => 'Proyek lain',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(selanjutnya)',
-'search-mwsuggest-enabled' => 'dengan saran',
-'search-mwsuggest-disabled' => 'tidak ada saran',
 'search-relatedarticle' => 'Berkaitan',
 'mwsuggest-disable' => 'Non-aktifkan saran AJAX',
 'searcheverything-enable' => 'Cari di semua ruang nama',
@@ -3938,6 +3936,10 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'feedback-close' => 'Selesai',
 'feedback-bugcheck' => 'Hebat! Hanya periksa bahwa itu bukan satu di antara [$1 bug yang telah dikenal].',
 'feedback-bugnew' => 'Saya telah memeriksa. Laporkan bug baru',
+
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'isian ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Anda tidak diizinkan mengunggah berkas ke wiki ini.',

@@ -1085,8 +1085,6 @@ Asegure-se que iste cambio no trencará a continidat de l'historial d'a pachina.
 'search-interwiki-caption' => 'Prochectos chermans',
 'search-interwiki-default' => '$1 resultaus:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con socherencias',
-'search-mwsuggest-disabled' => 'garra socherencia',
 'search-relatedarticle' => 'Relacionato',
 'mwsuggest-disable' => "Desactivar as socherencias d'AJAX",
 'searcheverything-enable' => 'Mirar en totz os espacios de nombres',
@@ -3632,6 +3630,10 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfecto! Comprebe nomás que no sía un [$1 fallo conoixiu].',
 'feedback-bugnew' => "L'he comprebau. Informar d'un nuevo fallo.",
+
+# Search suggestions
+'searchsuggest-search' => 'Mirar',
+'searchsuggest-containing' => 'que contién...',
 
 # API errors
 'api-error-badaccess-groups' => 'No puetz cargar fichers en iste wiki.',

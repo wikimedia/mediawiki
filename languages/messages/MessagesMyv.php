@@ -857,8 +857,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'search-interwiki-caption' => 'Дугакс проектт',
 'search-interwiki-default' => '$1 савкс:',
 'search-interwiki-more' => '(седе ламо)',
-'search-mwsuggest-enabled' => 'ушодкс марто',
-'search-mwsuggest-disabled' => 'ушодкстомо',
 'search-relatedarticle' => 'Малавикс',
 'searcheverything-enable' => 'Вешнемс весе лем потмотнестэ',
 'searchrelated' => 'малавикс',

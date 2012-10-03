@@ -310,7 +310,7 @@ $messages = array(
 'vector-action-protect' => 'škitać',
 'vector-action-undelete' => 'Wobnowić',
 'vector-action-unprotect' => 'Škit wotstronić',
-'vector-simplesearch-preference' => 'Polěpšene pytanske namjety zmóžnić (jenož šat Vector)',
+'vector-simplesearch-preference' => 'Zjednorjenu pytansku lajstu zmóžnić (jenož drasta Vector)',
 'vector-view-create' => 'Wutworić',
 'vector-view-edit' => 'Wobdźěłać',
 'vector-view-history' => 'Stawizny',
@@ -529,8 +529,9 @@ Wotprašenje: $2',
 'protectedpagetext' => 'Strona je přećiwo wobdźěłowanju škitana.',
 'viewsourcetext' => 'Móžeš sej žórłowy tekst tuteje strony wobhladać a jón kopěrować:',
 'viewyourtext' => "Móžeš sej žórłowy tekst '''swojich změnow''' wobhladać a do slědowaceje strony kopěrować:",
-'protectedinterface' => 'Tuta strona wobsahuje tekst za wužiwarski powjerch softwary a je škitana, zo by so znjewužiwanje zadźěwało.',
-'editinginterface' => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za wužiwarski powjerch softwary k dispoziciji stajiła. Změny na stronje  wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow. Hlej za přełožki [//translatewiki.net/wiki/Main_Page?setlang=hsb translatewiki.net], projekt lokalizacije MediaWiki.",
+'protectedinterface' => 'Tuta strona wobsahuje tekst za wužiwarski powjerch softwary na tutym wikiju a je škitana, zo by so znjewužiwanje zadźěwało.
+Zo by přełožki za wšě wikije přidał abo změnił, wužij prošu [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizaciju.',
+'editinginterface' => "'''Warnowanje:''' Wobdźěłuješ stronu, kotraž so wužiwa, zo by tekst za wužiwarski powjerch softwary k dispoziciji stajiła. Změny na stronje  wuskutkuja so na napohlad wužiwarskeho powjercha za druhich wužiwarjow na tutym wikiju. Zo by přełožki za wšě wikije přidał abo změnił, wužij prošu [//translatewiki.net/ translatewiki.net], projekt MediaWiki za lokalizaciju.",
 'sqlhidden' => '(SQL wotprašenje schowane)',
 'cascadeprotected' => 'Tuta strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane|škitane}}:
 $2',
@@ -790,7 +791,7 @@ Hesło za tute nowe konto da so na stronje ''[[Special:ChangePassword|hesło zm�
 'anontalkpagetext' => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:UserLogin/signup|wutwor prošu konto]] abo [[Special:UserLogin|přizjew so]], zo by přichodnu šmjatańcu z anonymnymi wužiwarjemi wobešoł.''",
 'noarticletext' => 'Tuchwilu tuta strona žadyn tekst njewobsahuje. Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
 'noarticletext-nopermission' => 'Tuchwilu žadyn tekst na tutej stronje njeje.
-Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>.',
+Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>, ale nimaš prawo, strou wutworić.',
 'missing-revision' => 'Wersija #$1 strony z mjenom "{{PAGENAME}}" njeeksistuje.
 
 Přičina je zwjetša zestarjeny wotkaz w stawiznach k stronje, kotraž je so zhašała.
@@ -1147,8 +1148,6 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Sotrowske projekty',
 'search-interwiki-default' => '$1 wuslědki:',
 'search-interwiki-more' => '(dalše)',
-'search-mwsuggest-enabled' => 'z namjetami',
-'search-mwsuggest-disabled' => 'žane namjety',
 'search-relatedarticle' => 'Přiwuzne',
 'mwsuggest-disable' => 'Namjety AJAX znjemóžnić',
 'searcheverything-enable' => 'We wšěch mjenowych rumach pytać',
@@ -1245,7 +1244,7 @@ Tu je připadnje wupłodźena hódnota, kotruž móžeš wužiwać: $1',
 'timezoneregion-indian' => 'Indiski ocean',
 'timezoneregion-pacific' => 'Pacifiski ocean',
 'allowemail' => 'Mejlki wot druhich wužiwarjow přijimować',
-'prefs-searchoptions' => 'Pytanske opcije',
+'prefs-searchoptions' => 'Pytać',
 'prefs-namespaces' => 'Mjenowe rumy',
 'defaultns' => 'Hewak w tutych mjenowych rumach pytać:',
 'default' => 'standard',
@@ -3719,6 +3718,10 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'feedback-close' => 'Dokónčeny',
 'feedback-bugcheck' => 'Wulkotnje! Skontroluj jenož, hač to jedyn z [$1 znatych zmylkow] njeje.',
 'feedback-bugnew' => 'Sym to skontrolował. Nowy zmylk zdźělić',
+
+# Search suggestions
+'searchsuggest-search' => 'Pytać',
+'searchsuggest-containing' => 'wobsahuje...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nimaš prawo dataje do tutoho wikija nahrać.',

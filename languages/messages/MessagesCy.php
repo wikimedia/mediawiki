@@ -1120,8 +1120,6 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'search-interwiki-caption' => 'Chwaer-brosiectau',
 'search-interwiki-default' => 'Y canlyniadau o $1:',
 'search-interwiki-more' => '(rhagor)',
-'search-mwsuggest-enabled' => 'gydag awgrymiadau',
-'search-mwsuggest-disabled' => 'dim awgrymiadau',
 'search-relatedarticle' => 'Erthyglau eraill tebyg',
 'mwsuggest-disable' => 'Analluogi awgrymiadau AJAX',
 'searcheverything-enable' => 'Chwilio pob parth',
@@ -3701,6 +3699,9 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'feedback-close' => 'Yn barod',
 'feedback-bugcheck' => "Iawn! Gwnewch yn siwr yn gyntaf nag ydy hwn yn un o'r [$1 bygiau hysbys].",
 'feedback-bugnew' => "Edrychais ar y bygiau hysbys. Mae byg newydd gennyf i'w adrodd",
+
+# Search suggestions
+'searchsuggest-containing' => 'yn cynnwys...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nid oes caniatad gennych i uwchlwytho ffeiliau ar y wici hwn.',

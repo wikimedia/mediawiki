@@ -1099,8 +1099,6 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'search-interwiki-caption' => 'Կից նախագծեր',
 'search-interwiki-default' => '$1 արդյունք.',
 'search-interwiki-more' => '(էլի)',
-'search-mwsuggest-enabled' => 'առաջարկներով',
-'search-mwsuggest-disabled' => 'առանց առաջարկների',
 'search-relatedarticle' => 'Հարակից',
 'mwsuggest-disable' => 'Անջատել AJAX հուշումներ',
 'searcheverything-enable' => 'Որոնել բոլոր անվանատարածքներում',
@@ -2573,5 +2571,8 @@ $3
 'logentry-newusers-newusers' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create' => '$1 մասնակիցը ստեղծեց նոր հաշիվ',
 'logentry-newusers-create2' => '$1 Ստեղծեց նոր հաշիվ $3',
+
+# Search suggestions
+'searchsuggest-search' => 'Որոնել',
 
 );

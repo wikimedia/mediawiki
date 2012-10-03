@@ -523,10 +523,10 @@ Per favor reprova post alcun minutas.',
 'protectedpagetext' => 'Iste pagina ha essite protegite contra modificationes.',
 'viewsourcetext' => 'Tu pote vider e copiar le codice-fonte de iste pagina:',
 'viewyourtext' => "Tu pote vider e copiar le fonte de '''tu modificationes''' de iste pagina:",
-'protectedinterface' => 'Iste pagina contine texto pro le interfacie del software, e es protegite pro impedir le abuso.',
+'protectedinterface' => 'Iste pagina contine texto pro le interfacie del software de iste wiki, e es protegite pro impedir le abuso. Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.',
 'editinginterface' => "'''Attention:''' Le texto de iste pagina face parte del interfacie pro le software.
-Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores.
-Pro traductiones, per favor considera usar [//translatewiki.net/wiki/Main_Page?setlang=ia translatewiki.net], le projecto pro localisar MediaWiki.",
+Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores de iste wiki.
+Pro adder o modificar traductiones pro tote le wikis, per favor usa [//translatewiki.net/ translatewiki.net], le projecto de traduction de MediaWiki.",
 'sqlhidden' => '(Consulta SQL non monstrate)',
 'cascadeprotected' => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
 $2',
@@ -1199,8 +1199,6 @@ Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Projectos fratres',
 'search-interwiki-default' => 'Resultatos de $1:',
 'search-interwiki-more' => '(plus)',
-'search-mwsuggest-enabled' => 'con suggestiones',
-'search-mwsuggest-disabled' => 'sin suggestiones',
 'search-relatedarticle' => 'Connexe',
 'mwsuggest-disable' => 'Disactivar suggestiones via AJAX',
 'searcheverything-enable' => 'Cercar in tote le spatios de nomines',
@@ -3884,6 +3882,10 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'feedback-close' => 'Finite',
 'feedback-bugcheck' => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
 'feedback-bugnew' => 'Si, io lo ha verificate; reportar un nove falta',
+
+# Search suggestions
+'searchsuggest-search' => 'Cercar',
+'searchsuggest-containing' => 'continente...',
 
 # API errors
 'api-error-badaccess-groups' => 'Tu non ha le permission de incargar files in iste wiki.',

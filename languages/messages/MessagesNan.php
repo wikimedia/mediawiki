@@ -499,6 +499,7 @@ Lîm-sî ê bi̍t-bé: $2',
 'subject-preview' => 'Ū-lám tê-bo̍k/piau-tê:',
 'blockednoreason' => '無寫理由',
 'whitelistedittext' => 'Lí ài $1 chiah ē-sái siu-kái.',
+'nosuchsectiontitle' => 'Chhoé bô toān-lo̍h',
 'loginreqtitle' => 'Su-iàu Teng-ji̍p',
 'loginreqlink' => 'Teng-ji̍p',
 'loginreqpagetext' => 'Lí ài $1 chiah thang khoàⁿ pat ia̍h.',
@@ -570,6 +571,9 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'histfirst' => 'Tùi thâu-chêng',
 'histlast' => 'Tùi āu-piah',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 tī $2',
+
 # Diffs
 'lineno' => 'Tē $1 chōa:',
 'compareselectedversions' => 'Pí-phēng soán-te̍k ê pán-pún',
@@ -594,6 +598,7 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 'searchprofile-advanced' => 'chìn-chi̍t-pō͘',
 'searchprofile-articles-tooltip' => 'Tī $1 chhoé',
 'searchprofile-images-tooltip' => 'Chhoé tóng-àn',
+'search-result-size' => '$1 ({{PLURAL:$2|1 jī-goân|$2 jī-goân}})',
 'search-section' => '(toān-lo̍h $1)',
 'searchall' => 'choân-pō·',
 'showingresults' => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
@@ -680,6 +685,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'recentchangeslinked-feed' => 'Siong-koan ê kái-piàn',
 'recentchangeslinked-toolbox' => 'Siong-koan ê kái-piàn',
 'recentchangeslinked-noresult' => 'Lí chí-tēng ê tiâu-kiaⁿ lāi-té chhōe bô jīn-hô kái-piàn.',
+'recentchangeslinked-page' => 'Ia̍h ê miâ:',
 
 # Upload
 'upload' => 'Kā tóng-àn chiūⁿ-bāng',
@@ -725,6 +731,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'filehist' => 'Tóng-àn ê le̍k-sú',
 'filehist-current' => 'hiān-chāi',
 'filehist-datetime' => 'Ji̍t-kî/ Sî-kan',
+'filehist-user' => 'Iōng-chiá',
 'imagelinks' => 'Iáⁿ-siōng liân-kiat',
 'linkstoimage' => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
 'nolinkstoimage' => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
@@ -816,6 +823,7 @@ Template:Khu-pia̍t-ia̍h',
 'allpages' => 'Só·-ū ê ia̍h',
 'alphaindexline' => '$1 kàu $2',
 'nextpage' => 'Āu 1 ia̍h ($1)',
+'prevpage' => '前一頁（$1）',
 'allpagesfrom' => 'Tùi chit ia̍h khai-sí hián-sī:',
 'allarticles' => 'Só·-ū ê bûn-chiuⁿ',
 'allinnamespace' => 'Só·-ū ê ia̍h ($1 miâ-khong-kan)',
@@ -857,6 +865,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist' => 'Kàm-sī-toaⁿ',
 'mywatchlist' => 'Góa ê kàm-sī-toaⁿ',
+'watchlistfor2' => '予$1 $2',
 'nowatchlist' => 'Lí ê kàm-sī-toaⁿ bô pòaⁿ hāng.',
 'watchnologin' => 'Bô teng-ji̍p',
 'watchnologintext' => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] chiah ē-tàng siu-kái lí ê kàm-sī-toaⁿ.',
@@ -1028,6 +1037,7 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'tooltip-ca-viewsource' => 'Chit ia̍h pó-hō͘ tiâu leh.
 Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-ca-history' => 'Chit ia̍h ê chá-chêng pán-pún',
+'tooltip-ca-delete' => 'Thâi chit ia̍h',
 'tooltip-ca-unwatch' => 'Lí ê kàm-sī-toaⁿ soá tiàu chit ia̍h.',
 'tooltip-search' => 'Chhoé {{SITENAME}}',
 'tooltip-search-fulltext' => 'Chhoé ū chia-ê jī ê ia̍h',
@@ -1096,6 +1106,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'watchlistall2' => 'choân-pō͘',
 'namespacesall' => 'choân-pō·',
 'monthsall' => 'choân-pō͘',
+'limitall' => '全部',
 
 # E-mail address confirmation
 'confirmemail' => 'Khak-jīn e-mail chū-chí',

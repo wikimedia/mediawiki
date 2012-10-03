@@ -844,7 +844,7 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres]
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear-la ara]</span>.',
 'noarticletext-nopermission' => 'Actualment no hi ha text en aquesta pàgina.
-Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>.',
+Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o bé <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar en els registres relacionats]</span>, però no teniu permisos per crear la pàgina.',
 'missing-revision' => 'La revisió # $1  de la pàgina anomenada "{{PAGENAME}}" no existeix.
 
 Això és normalment provocat per després d\'un enllaç d\'història antiquat a una pàgina que s\'ha suprimit.
@@ -1208,8 +1208,6 @@ Es pot trobar més informació en el [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Projectes germans',
 'search-interwiki-default' => '$1 resultats:',
 'search-interwiki-more' => '(més)',
-'search-mwsuggest-enabled' => 'amb suggeriments',
-'search-mwsuggest-disabled' => 'cap suggeriment',
 'search-relatedarticle' => 'Relacionat',
 'mwsuggest-disable' => 'Inhabilita els suggeriments en AJAX',
 'searcheverything-enable' => 'Cerca a tots els espais de noms',
@@ -2384,7 +2382,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 
 Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
 'undelete-header' => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
-'undelete-search-title' => 'Pàgines de cerca suprimit',
+'undelete-search-title' => 'Cerca de pàgines esborrades',
 'undelete-search-box' => 'Cerca pàgines esborrades',
 'undelete-search-prefix' => 'Mostra pàgines que comencin:',
 'undelete-search-submit' => 'Cerca',
@@ -2680,7 +2678,7 @@ Incorporeu-les manualment, si us plau.",
 
 La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer lloc al trasllat?",
 'delete_and_move_confirm' => 'Sí, esborra la pàgina',
-'delete_and_move_reason' => 'Suprimit per donar pas a pas de " [[$1]] "',
+'delete_and_move_reason' => 'S\'ha eliminat per a permetre el reanomenament de " [[$1]] "',
 'selfmove' => "Els títols d'origen i de destinació coincideixen: no és possible de reanomenar una pàgina a si mateixa.",
 'immobile-source-namespace' => 'No es poden moure pàgines de l\'espai de noms "$1"',
 'immobile-target-namespace' => 'No es poden moure pàgines cap a l\'espai de noms "$1"',
@@ -3776,6 +3774,10 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'feedback-close' => 'Fet',
 'feedback-bugcheck' => 'Fantàstic! Comproveu que no sigui un dels [$1 problemes ja coneguts].',
 'feedback-bugnew' => "Ja ho he comprovat. Informeu d'un nou problema",
+
+# Search suggestions
+'searchsuggest-search' => 'Cerca',
+'searchsuggest-containing' => 'que conté ...',
 
 # API errors
 'api-error-badaccess-groups' => 'No teniu permís per a carregar fitxers en aquest wiki.',

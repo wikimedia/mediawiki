@@ -1222,8 +1222,6 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'search-interwiki-caption' => 'Projèctes fraires',
 'search-interwiki-default' => '$1 resultats :',
 'search-interwiki-more' => '(mai)',
-'search-mwsuggest-enabled' => 'amb suggestions',
-'search-mwsuggest-disabled' => 'sens suggestion',
 'search-relatedarticle' => 'Relatat',
 'mwsuggest-disable' => 'Desactivar las suggestions AJAX',
 'searcheverything-enable' => 'Recercar dins totes los espacis de noms',
@@ -3448,5 +3446,9 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 'revdelete-restricted' => 'aplicar las restriccions als administrators',
 'revdelete-unrestricted' => 'restriccions levadas pels administrators',
 'newuserlog-byemail' => 'senhal mandat per corrièr electronic',
+
+# Search suggestions
+'searchsuggest-search' => 'Recercar',
+'searchsuggest-containing' => 'que conten...',
 
 );

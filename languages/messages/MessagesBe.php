@@ -1052,8 +1052,6 @@ $1",
 'search-interwiki-caption' => 'Сумежныя праекты',
 'search-interwiki-default' => 'вынікі з $1:',
 'search-interwiki-more' => '(яшчэ)',
-'search-mwsuggest-enabled' => 'з прапановамі',
-'search-mwsuggest-disabled' => 'без прапановаў',
 'search-relatedarticle' => 'Дачыняюцца*',
 'mwsuggest-disable' => 'Не паказваць прапановаў AJAX',
 'searcheverything-enable' => 'Пошук ва ўсіх прасторах назваў',
@@ -3550,6 +3548,10 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'feedback-close' => 'Зроблена.',
 'feedback-bugcheck' => 'Выдатна! Толькі праверце, што ў спісе [$1 вядомых памылак] яе няма падобнага запісу.',
 'feedback-bugnew' => 'Я праверыў. Паведаміць пра новую памылку',
+
+# Search suggestions
+'searchsuggest-search' => 'Знайсці',
+'searchsuggest-containing' => 'змяшчае...',
 
 # API errors
 'api-error-badaccess-groups' => 'У Вас няма дазволу загружаць файлы ў гэтую вікі.',

@@ -459,7 +459,7 @@ pe titlul secțiunii (JavaScript)',
 'vector-action-protect' => 'Protejare',
 'vector-action-undelete' => 'Recuperare',
 'vector-action-unprotect' => 'Modificare protecție',
-'vector-simplesearch-preference' => 'Permite sugestii de căutare superioară (numai interfața Vector)',
+'vector-simplesearch-preference' => 'Activează bara de căutare simplificată (exclusiv pentru interfața Vector)',
 'vector-view-create' => 'Creare',
 'vector-view-edit' => 'Modificare',
 'vector-view-history' => 'Istoric',
@@ -682,10 +682,11 @@ Vă rugăm să încercați din nou în câteva minute.',
 'protectedpagetext' => 'Această pagină este protejată împotriva modificărilor.',
 'viewsourcetext' => 'Se poate vizualiza și copia conținutul acestei pagini:',
 'viewyourtext' => "Se poate vizualiza și copia conținutul '''modificărilor dumneavoastră''' efectuate asupra acestei pagini:",
-'protectedinterface' => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.',
+'protectedinterface' => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.
+Pentru a adăuga sau modifica traduceri corespunzătoare tuturor wikiurilor, utilizați [//translatewiki.net/ translatewiki.net], proiectul MediaWiki de localizare.',
 'editinginterface' => "'''Avertizare''': Modificați o pagină care este folosită pentru a furniza textul interfeței software.
-Modificările aduse acestei pagini vor afecta aspectul interfeței pentru alți utilizatori.
-Pentru traduceri, considerați utilizarea [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
+Modificările aduse acestei pagini vor afecta aspectul interfeței pentru alți utilizatori ai acestui wiki.
+Pentru a adăuga sau modifica traduceri corespunzătoare tuturor wikiurilor, utilizați [//translatewiki.net/ translatewiki.net], proiectul MediaWiki de localizare.",
 'sqlhidden' => '(interogare SQL ascunsă)',
 'cascadeprotected' => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
@@ -961,8 +962,7 @@ Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini,
 puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale] 
 sau puteți [{{fullurl:{{FULLPAGENAME}}|action=edit}} crea această pagină]</span>.',
 'noarticletext-nopermission' => 'Actualmente, această pagină este lipsită de conținut.
-Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini
-sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>.',
+Puteți [[Special:Search/{{PAGENAME}}|căuta acest titlu]] în alte pagini sau puteți <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} căuta înregistrări în jurnale]</span>; nu aveți însă permisiunea de a crea această pagină.',
 'missing-revision' => 'Versiunea nr. $1 a paginii „{{PAGENAME}}” nu există.
 
 Acest lucru se întâmplă de obicei atunci când se accesează o legătură expirată către istoricul unei pagini șterse.
@@ -1331,8 +1331,6 @@ Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'search-interwiki-caption' => 'Proiecte înrudite',
 'search-interwiki-default' => '$1 rezultate:',
 'search-interwiki-more' => '(mai mult)',
-'search-mwsuggest-enabled' => 'cu sugestii',
-'search-mwsuggest-disabled' => 'fără sugestii',
 'search-relatedarticle' => 'Relaționat',
 'mwsuggest-disable' => 'Dezactivează sugestiile AJAX',
 'searcheverything-enable' => 'Caută în toate spațiile de nume',
@@ -1429,7 +1427,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'timezoneregion-indian' => 'Oceanul Indian',
 'timezoneregion-pacific' => 'Oceanul Pacific',
 'allowemail' => 'Acceptă e-mail de la alți utilizatori',
-'prefs-searchoptions' => 'Opțiuni de căutare',
+'prefs-searchoptions' => 'Căutare',
 'prefs-namespaces' => 'Spații de nume',
 'defaultns' => 'Altfel, caută în aceste spații de nume:',
 'default' => 'standard',
@@ -1491,15 +1489,15 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'userrights-lookup-user' => 'Administrare grupuri de utilizatori',
 'userrights-user-editname' => 'Introduceți un nume de utilizator:',
 'editusergroup' => 'Modificare grup de utilizatori',
-'editinguser' => "Modificare permisiuni de utilizator pentru '''[[User:$1|$1]]''' $2",
+'editinguser' => "Modificarea permisiunilor de utilizator pentru '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Modificare grup de utilizatori',
 'saveusergroups' => 'Salvează grupul de utilizatori',
 'userrights-groupsmember' => 'Membru al:',
 'userrights-groupsmember-auto' => 'Membru, implicit, al:',
 'userrights-groups-help' => 'Puteți schimba grupul căruia îi aparține utilizatorul:
-*Căsuța bifată înseamnă că utilizatorul este în acel grup.
-*Căsuța nebifată înseamnă că utilizatorul nu este în acel grup.
-*Steluța (*) indică faptul că utilizatorul nu poate fi eliminat din grup odată adăugat, sau invers',
+*Căsuța bifată înseamnă că utilizatorul aparține grupului respectiv.
+*Căsuța nebifată înseamnă că utilizatorul nu aparține grupului respectiv.
+*Steluța (*) indică faptul că utilizatorul nu poate fi eliminat din grup odată adăugat, sau invers.',
 'userrights-reason' => 'Motiv:',
 'userrights-no-interwiki' => 'Nu aveți permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
 'userrights-nodatabase' => 'Baza de date $1 nu există sau nu este locală.',
@@ -2144,7 +2142,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'protectedtitles' => 'Titluri protejate',
 'protectedtitlestext' => 'Următoarele titluri sunt protejate la creare',
 'protectedtitlesempty' => 'Nu există titluri protejate cu acești parametri.',
-'listusers' => 'Lista de utilizatori',
+'listusers' => 'Listă utilizatori',
 'listusers-editsonly' => 'Arată doar utilizatorii cu modificări',
 'listusers-creationsort' => 'Sortează după data creării',
 'usereditcount' => '$1 {{PLURAL:$1|editare|editări}}',
@@ -2859,7 +2857,7 @@ Ultima intrare în jurnal este afișată mai jos pentru referință:",
 Alegeți un alt nume.',
 
 # Export
-'export' => 'Exportare de pagini',
+'export' => 'Exportare pagini',
 'exporttext' => 'Puteți exporta textul și istoricul unei pagini anume sau ale unui grup de pagini în XML.
 Acesta poate fi apoi importate în alt wiki care rulează software MediaWiki prin [[Special:Import|pagina de importare]].
 
@@ -2911,7 +2909,7 @@ Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Locali
 'thumbnail_image-missing' => 'Fișierul următor nu poate fi găsit: $1',
 
 # Special:Import
-'import' => 'Importă pagini',
+'import' => 'Importare pagini',
 'importinterwiki' => 'Import transwiki',
 'import-interwiki-text' => 'Selectează un wiki și titlul paginii care trebuie importate. Datele reviziilor și numele editorilor vor fi salvate. Toate acțiunile de import transwiki pot fi găsite la [[Special:Log/import|log import]]',
 'import-interwiki-source' => 'Wiki/pagină sursă:',
@@ -3963,6 +3961,10 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'feedback-close' => 'Gata',
 'feedback-bugcheck' => 'Minunat! Trebuie doar să verificați dacă nu cumva problema a fost [$1 deja înregistrată].',
 'feedback-bugnew' => 'Am verificat. O raportez drept o problemă nouă',
+
+# Search suggestions
+'searchsuggest-search' => 'Căutare',
+'searchsuggest-containing' => 'conținând...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nu aveți dreptul să încărcați fișiere pe acest wiki.',

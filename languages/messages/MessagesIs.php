@@ -256,7 +256,7 @@ $messages = array(
 'tog-nocache' => 'Slökkva á flýtiminni vafrans',
 'tog-enotifwatchlistpages' => 'Senda mér tölvupóst þegar síðu eða skrá á vaktlistanum mínu er breytt',
 'tog-enotifusertalkpages' => 'Senda mér tölvupóst þegar notandaspjallinu mínu er breytt',
-'tog-enotifminoredits' => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum',
+'tog-enotifminoredits' => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum og skrám',
 'tog-enotifrevealaddr' => 'Gefa upp netfang mitt í tilkynningarpóstum',
 'tog-shownumberswatching' => 'Sýna fjölda vaktandi notenda',
 'tog-oldsig' => 'Núverandi undirskrift:',
@@ -496,6 +496,10 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'youhavenewmessages' => 'Þú hefur fengið $1 ($2).',
 'newmessageslink' => 'ný skilaboð',
 'newmessagesdifflink' => 'síðasta breyting',
+'youhavenewmessagesfromusers' => 'Þú hefur $1 frá {{PLURAL:$3|öðrum notanda|$3 notendum}} ($2)',
+'youhavenewmessagesmanyusers' => 'Þú hefur $1 frá mörgum notendum ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ein|}} ný skilaboð',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|síðasta breyting|síðustu breytingar}} spjallsíðunnar',
 'youhavenewmessagesmulti' => 'Þín bíða ný skilaboð á $1',
 'editsection' => 'breyta',
 'editold' => 'breyta',
@@ -548,9 +552,9 @@ Sjá [[Special:Version|útgáfusíðuna]].',
 'dberrortext' => 'Málfræðivilla kom upp í gangagrnunsfyrirspurninni.
 Þetta gæti verið vegna villu í hugbúnaðinum.
 Síðasta gagnagrunnsfyrirspurnin var:
-<blockquote><tt>$1</tt></blockquote>
-úr aðgerðinni: „<tt>$2</tt>“.
-MySQL skilar villuboðanum „<tt>$3: $4</tt>“.',
+<blockquote><code>$1</code></blockquote>
+úr aðgerðinni: „<code>$2</code>".
+MySQL skilar villuboðunum „<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Málfræðivilla kom upp í gangagrnunsfyrirspurninni.
 Síðasta gagnagrunnsfyrirspurnin var:
 „$1“
@@ -603,10 +607,11 @@ Spurn: $2',
 'protectedpagetext' => 'Þessari síðu hefur verið læst til að koma í veg fyrir breytingar.',
 'viewsourcetext' => 'Þú getur skoðað og afritað kóða þessarar síðu:',
 'viewyourtext' => "Þú getur skoðað og afritað kóða '''breytinganna þinna''' yfir á þessa síðu:",
-'protectedinterface' => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er læst til að koma í veg fyrir misnotkun.',
+'protectedinterface' => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins sem keyrir þessa síðu, og er læst til að koma í veg fyrir misnotkun.
+Til þess að bæta við eða breyta þýðingum fyrir öll wiki verkefni, vinsamlegast notaðu [//translatewiki.net/ translatewiki.net], staðfæringaverkefni MediaWiki',
 'editinginterface' => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins.
-Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda.
-Fyrir þýðingar, gjörðu svo vel að nota [//translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringverkefni MediaWiki.",
+Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda á þessu vefsvæði.
+Til þess að bæta við eða breyta þýðingum fyrir öll wiki verkefni, vinsamlegast notaðu [//translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringaverkefni MediaWiki.",
 'sqlhidden' => '(SQL-fyrirspurn falin)',
 'cascadeprotected' => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
@@ -888,9 +893,11 @@ Ef þú ert óþekktur notandi og finnst að óviðkomandi athugasemdum hafa ver
 'noarticletext' => 'Enginn texti er á þessari síðu enn sem komið er.
 Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám], eða [{{fullurl:{{FULLPAGENAME}}|action=edit}} breytt henni sjálfur]</span>.',
-'noarticletext-nopermission' => 'Enginn texti er á þessari síðu enn sem komið er.
-Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
-eða <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám]</span>.',
+'noarticletext-nopermission' => 'Það er enginn texti á þessari síðu eins og er.
+Þú getur [[Special:Search/{{PAGENAME}}|leitað að þessum titli]] í öðrum síðum, eða <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám]</span>, en þú hefur ekki réttindi til þess að stofna þessa síðu.',
+'missing-revision' => 'Útgáfa #$1 síðunnar „{{PAGENAME}}" er ekki til.
+
+Þetta gerist oftast þegar úreld breytingarskrá tengir á síðu sem hefur verið eytt. Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingarskránni].',
 'userpage-userdoesnotexist' => 'Notandaaðgangurinn „<nowiki>$1</nowiki>“ er ekki skráður.
 Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu.',
 'userpage-userdoesnotexist-view' => 'Notandinn "$1" er ekki skráður.',
@@ -1202,8 +1209,6 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'search-interwiki-caption' => 'Systurverkefni',
 'search-interwiki-default' => '$1 útkomur:',
 'search-interwiki-more' => '(fleiri)',
-'search-mwsuggest-enabled' => 'með uppástungum',
-'search-mwsuggest-disabled' => 'engar uppástungur',
 'search-relatedarticle' => 'Tengt',
 'mwsuggest-disable' => 'Gera AJAX-uppástungur óvirkar',
 'searcheverything-enable' => 'Leita í öllum nafnrýmum',
@@ -2186,7 +2191,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_anon_editor' => 'ónefndur notandi $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} $PAGETITLE.
+Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} síðunni $PAGETITLE.
 Hún hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
 $PAGEEDITOR. Breytingarágripið var:
 
@@ -2198,7 +2203,7 @@ $PAGEEDITOR. Breytingarágripið var:
 
 $NEWPAGE
 
-Til þess að hafa samband við $PAGEEDITOR, heimsóttu:
+Til þess að hafa samband við $PAGEEDITOR, smelltu á:
 
    $PAGEEDITOR_WIKI
 
@@ -2210,12 +2215,12 @@ Kveðja,
 
 --
 
-Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, heimsóttu:
+Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smelltu á:
 
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Til þess að hætta að fylgjast með $PAGETITLE, heimsóttu:
+Til þess að hætta að fylgjast með $PAGETITLE, smelltu á:
 
 $UNWATCHURL',
 
@@ -2888,14 +2893,15 @@ Vinsamlegast reyndu aftur.',
 'spambot_username' => 'MediaWiki amapósts hreinsun',
 'spam_reverting' => 'Tek aftur síðustu breytingu sem inniheldur ekki tengil á $1',
 'spam_blanking' => 'Allar útgáfur innihéldu tengla á $1, tæmi síðuna',
+'spam_deleting' => 'Allar útgáfur innihéldu tengla á $1, eyði síðunni',
 
 # Info page
 'pageinfo-title' => 'Upplýsingar um $1',
-'pageinfo-header-edits' => 'Breytingar',
+'pageinfo-header-edits' => 'Breytingarskrá',
 'pageinfo-views' => 'Fjöldi innlita',
-'pageinfo-watchers' => 'Fjöldi notenda',
-'pageinfo-edits' => 'Fjöldi breytinga',
-'pageinfo-authors' => 'Fjöldi einstakra höfunda',
+'pageinfo-watchers' => 'Fjöldi notenda, sem vakta síðuna',
+'pageinfo-edits' => 'Heildarfjöldi breytinga',
+'pageinfo-authors' => 'Heildarfjöldi einstakra höfunda',
 
 # Skin names
 'skinname-standard' => 'Sígilt',
@@ -3512,6 +3518,7 @@ MediaWiki er útgefin í þeirri von að hann sé gagnlegur, en ÁN ALLRAR ÁBYR
 'version-software' => 'Uppsettur hugbúnaður',
 'version-software-product' => 'Vara',
 'version-software-version' => 'Útgáfa',
+'version-entrypoints-header-url' => 'vefslóð',
 
 # Special:FilePath
 'filepath' => 'Slóð skráar',
@@ -3662,6 +3669,10 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'feedback-bugcheck' => 'Frábært! Athugaðu hvort þessi villa hafi verið [$1 tilkynnt áður].',
 'feedback-bugnew' => 'Ég athugaði það. Tilkynna nýja villu.',
 
+# Search suggestions
+'searchsuggest-search' => 'Leita',
+'searchsuggest-containing' => 'sem innihalda ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Þú hefur ekki leyfi til að hlaða inn skrám.',
 'api-error-badtoken' => 'Innri villa: Skemmdur tóki.',
@@ -3674,10 +3685,11 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'api-error-emptypage' => 'Stofnun nýrra, tómra síðna er óheimil.',
 'api-error-fetchfileerror' => 'Innri villa: Mistókst að sækja skránna.',
 'api-error-fileexists-forbidden' => 'Skrá með nafninu "$1" er þegar til og ekki er hægt að yfirskrifa hana.',
+'api-error-fileexists-shared-forbidden' => 'Skrá með nafninu "$1" er þegar til á miðlæga gagnaþjóninum og ekki er hægt að yfirskrifa hana.',
 'api-error-file-too-large' => 'Skráin sem þú valdir er of stór.',
 'api-error-filename-tooshort' => 'Skráarnafnið er of stutt',
 'api-error-filetype-banned' => 'Þessi gerð skráar er bönnuð.',
-'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|er ekki leifileg skráargerð|eru ekki leifilegar skráargerðir}}. {{PLURAL:$3|Leyfileg skráargerð er|Leyfilegar skráargerðir eru}} $2.',
+'api-error-filetype-banned-type' => '$1 {{PLURAL:$4|er óleyfileg skráargerð|eru óleyfilegar skráargerðir}}. {{PLURAL:$3|Leyfð skráargerð er|Leyfðar skráargerðir eru}} $2.',
 'api-error-filetype-missing' => 'Skráin hefur enga skráarendingu.',
 'api-error-hookaborted' => 'Hætt var við breytinguna sem þú reyndir að gera með viðbót.',
 'api-error-http' => 'Innri villa: Get ekki tengst vefþjón.',
