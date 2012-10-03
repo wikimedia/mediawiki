@@ -612,23 +612,35 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getLocalReference()
+	 * @see FileBackend::getLocalReferenceMulti()
 	 * @param $params array
 	 * @return FSFile|null
 	 */
-	public function getLocalReference( array $params ) {
+	public function getLocalReferenceMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getLocalReference( $realParams );
+		$fsFilesM = $this->backends[$this->masterIndex]->getLocalReferenceMulti( $realParams );
+
+		$fsFiles = array(); // (path => FSFile) mapping using the proxy backend's name
+		foreach ( $fsFilesM as $path => $fsFile ) {
+			$fsFiles[$this->unsubstPaths( $path )] = $fsFile;
+		}
+		return $fsFiles;
 	}
 
 	/**
-	 * @see FileBackend::getLocalCopy()
+	 * @see FileBackend::getLocalCopyMulti()
 	 * @param $params array
 	 * @return null|TempFSFile
 	 */
-	public function getLocalCopy( array $params ) {
+	public function getLocalCopyMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getLocalCopy( $realParams );
+		$tempFilesM = $this->backends[$this->masterIndex]->getLocalCopyMulti( $realParams );
+
+		$tempFiles = array(); // (path => TempFSFile) mapping using the proxy backend's name
+		foreach ( $tempFilesM as $path => $tempFile ) {
+			$tempFiles[$this->unsubstPaths( $path )] = $tempFile;
+		}
+		return $tempFiles;
 	}
 
 	/**
