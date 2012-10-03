@@ -3594,6 +3594,8 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 
 # Patrolling
 'markedaspatrolledtext' => '{{Identical|Markedaspatrolled}}',
+'markedaspatrollednotify' => 'Notification shown after a change has been marked as patrolled, $1 is the page title',
+'markedaspatrollederrornotify' => 'Notification shown after marking a change as patrolled failed',
 
 # Patrol log
 'patrol-log-page' => '{{doc-logpage}}',

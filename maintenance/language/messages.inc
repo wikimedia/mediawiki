@@ -2733,6 +2733,8 @@ $wgMessageStructure = array(
 		'markedaspatrollederror',
 		'markedaspatrollederrortext',
 		'markedaspatrollederror-noautopatrol',
+		'markedaspatrollednotify',
+		'markedaspatrollederrornotify',
 	),
 	'patrol-log' => array(
 		'patrol-log-page',
