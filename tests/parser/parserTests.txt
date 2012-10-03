@@ -969,6 +969,50 @@ bar
 !!end
 
 ###
+### Parsoid-centric tests for testing RT edge cases
+### around comments and white-space inside pre blocks
+###
+
+!!test
+1a. Pre and Comments
+!!input
+ a
+<!--a-->
+c
+!!result
+<pre>a
+</pre>
+<p>c
+</p>
+!!end
+
+!!test
+1b. Pre and Comments
+!!input
+ a
+ <!--a-->
+c
+!!result
+<pre>a
+</pre>
+<p>c
+</p>
+!!end
+
+!!test
+1c. Pre and Comments
+!!input
+<!--a-->  a
+
+ <!--a--> a
+!!result
+<pre> a
+</pre>
+<pre> a
+</pre>
+!!end
+
+###
 ### Definition lists
 ###
 !! test
