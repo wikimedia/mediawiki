@@ -3817,6 +3817,10 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'feedback-bugcheck' => 'Harika! Sadece [bilinen $1 hatalarından] olmadığını kontrol et.',
 'feedback-bugnew' => 'Kontrol ettim. Yeni hata bildir',
 
+# Search suggestions
+'searchsuggest-search' => 'Ara',
+'searchsuggest-containing' => 'içeren...',
+
 # API errors
 'api-error-badaccess-groups' => 'Bu wiki için dosya yüklemenize izin verilmiyor.',
 'api-error-badtoken' => 'İç hata: Bozuk simge.',
@@ -3845,7 +3849,4 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'api-error-uploaddisabled' => 'Yükleme bu vikide devre dışı bırakılmıştır.',
 'api-error-verification-error' => 'Dosya bozuk veya yanlış uzantıya sahip olabilir.',
 
-# Unknown messages
-'searchsuggest-containing' => 'içeren...',
-'searchsuggest-search' => 'Ara',
 );

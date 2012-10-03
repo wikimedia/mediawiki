@@ -507,7 +507,7 @@ $messages = array(
 'vector-action-protect' => 'Beveiligen',
 'vector-action-undelete' => 'Terugplaatsen',
 'vector-action-unprotect' => 'Beveiliging wijzigen',
-'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
+'vector-simplesearch-preference' => 'Vereenvoudigd zoeken inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create' => 'Aanmaken',
 'vector-view-edit' => 'Bewerken',
 'vector-view-history' => 'Geschiedenis weergeven',
@@ -4125,6 +4125,10 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'feedback-bugcheck' => 'Geweldig! Controleer even of het niet al één van de [$1 bekende problemen] is.',
 'feedback-bugnew' => 'Heb ik gecontroleerd; nieuw probleem melden',
 
+# Search suggestions
+'searchsuggest-search' => 'Zoeken',
+'searchsuggest-containing' => 'bevat...',
+
 # API errors
 'api-error-badaccess-groups' => 'U mag geen bestanden uploaden in deze wiki.',
 'api-error-badtoken' => 'Interne fout: het token klopt niet.',
@@ -4177,7 +4181,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'bevat...',
-'searchsuggest-search' => 'Zoeken',
 );

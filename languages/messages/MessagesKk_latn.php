@@ -1091,8 +1091,6 @@ Añğartpa: bağıttaw siltemelerin qoldanğanda bul bağan qaýta qoýıladı.'
 'search-interwiki-caption' => 'Bawırlas jobalar',
 'search-interwiki-default' => '$1 nätïje:',
 'search-interwiki-more' => '(köbirek)',
-'search-mwsuggest-enabled' => 'usınımdarmen',
-'search-mwsuggest-disabled' => 'usınımdarsız',
 'search-relatedarticle' => 'Qatıstı',
 'mwsuggest-disable' => 'AJAX usınımdarın öşir',
 'searchrelated' => 'qatıstı',

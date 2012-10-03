@@ -2266,6 +2266,10 @@ $3
 # New logging system
 'newuserlog-byemail' => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
 
+# Search suggestions
+'searchsuggest-search' => 'ፈልግ',
+'searchsuggest-containing' => 'በመጣጥፎች ይዘት ለመፈልግ...',
+
 # API errors
 'api-error-badaccess-groups' => 'እርስዎ በዚህ ውኪ ላይ ፋይል እንድሊኩ አልተፈቀደም።',
 'api-error-badtoken' => 'የውስጥ ስህተት: መጥፎ ጥቅል።',
@@ -2294,7 +2298,4 @@ $3
 'api-error-uploaddisabled' => 'ፋይል መላክ በዚህ ውኪ ላይ አልተፈቀደም።',
 'api-error-verification-error' => 'ይህ ፋይል የተበላሸ ወይም ትክክል ያልሆነ ቅጥያ ያለው ሊሆን ይችላል።',
 
-# Unknown messages
-'searchsuggest-containing' => 'በመጣጥፎች ይዘት ለመፈልግ...',
-'searchsuggest-search' => 'ፈልግ',
 );

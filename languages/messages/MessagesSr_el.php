@@ -4233,6 +4233,10 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'feedback-bugcheck' => 'Odlično! Proverite da li je greška [$1 poznata od pre].',
 'feedback-bugnew' => 'Provereno. Prijavi novu grešku',
 
+# Search suggestions
+'searchsuggest-search' => 'Pretraga',
+'searchsuggest-containing' => 'sadrži...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nije vam dozvoljeno da otpremate datoteke na ovaj viki.',
 'api-error-badtoken' => 'Unutrašnja greška: neispravan žeton.',
@@ -4285,7 +4289,4 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'duration-centuries' => '$1 {{PLURAL:$1|vek|veka|vekova}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenijum|milenijuma|milenijuma}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'sadrži...',
-'searchsuggest-search' => 'Pretraga',
 );

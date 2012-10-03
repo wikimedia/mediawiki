@@ -4038,6 +4038,10 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'feedback-bugcheck' => '¡Perfecto! Únicamente comprueba que no sea un [$1 fallo conocido].',
 'feedback-bugnew' => 'Lo he comprobado. Informar de un nuevo fallo.',
 
+# Search suggestions
+'searchsuggest-search' => 'Buscar',
+'searchsuggest-containing' => 'conteniendo...',
+
 # API errors
 'api-error-badaccess-groups' => 'No puedes cargar archivos en este wiki.',
 'api-error-badtoken' => 'Error interno: Símbolo incorrecto.',
@@ -4090,7 +4094,4 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|siglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'conteniendo...',
-'searchsuggest-search' => 'Buscar',
 );

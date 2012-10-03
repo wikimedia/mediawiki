@@ -3538,6 +3538,10 @@ $5
 'feedback-bugcheck' => 'சிறப்பு! அது ஏற்கனவே  [ $1 தெரிந்த  bugs ] என்பதை மட்டும்  சரிபார்க்கவும்,',
 'feedback-bugnew' => 'நான் சரிபார்த்தாயிற்று. புதிய bug பற்றி கூறு.',
 
+# Search suggestions
+'searchsuggest-search' => 'தேடு',
+'searchsuggest-containing' => 'கொண்டுள்ளது...',
+
 # API errors
 'api-error-badaccess-groups' => 'இந்த விக்கிக்குக் கோப்புகளைப் பதிவேற்றுவதற்கு நீங்கள் அனுமதிக்கப்படவில்லை.',
 'api-error-badtoken' => 'உள்ளகப் பிழை: தவறான அடையாளம்.',
@@ -3590,7 +3594,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|நூற்றாண்டு|நூற்றாண்டுகள்}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ஆயிரம் ஆண்டு|ஆயிரம் ஆண்டுகள்}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'கொண்டுள்ளது...',
-'searchsuggest-search' => 'தேடு',
 );

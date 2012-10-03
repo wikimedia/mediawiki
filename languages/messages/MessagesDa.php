@@ -3774,6 +3774,9 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'feedback-bugcheck' => 'Skønt! Men tjek venligst, at det ikke er en af de [$1 kendte fejl].',
 'feedback-bugnew' => 'Jeg har kontrolleret. Rapporter en ny fejl.',
 
+# Search suggestions
+'searchsuggest-containing' => 'indeholder...',
+
 # API errors
 'api-error-badaccess-groups' => 'Du har ikke tilladelse til at overføre filer til denne wiki.',
 'api-error-badtoken' => 'Intern fejl: ugyldigt mærke.',
@@ -3826,6 +3829,4 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'duration-centuries' => '$1 {{PLURAL:$1|århundrede|århundreder}}',
 'duration-millennia' => '$1 {{PLURAL:$1|årtusind|årtusinder}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'indeholder...',
 );

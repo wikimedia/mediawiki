@@ -2269,6 +2269,7 @@ $3
 # Special:Tags
 'tag-filter' => '[[Special:Tags|标签]]过滤器：',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => '寻吖',
+
 );

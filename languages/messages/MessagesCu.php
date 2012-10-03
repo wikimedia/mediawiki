@@ -795,6 +795,9 @@ $messages = array(
 'logentry-move-move-noredirect' => '$1 нарєчє страницѫ ⁖ $3 ⁖ имєньмь ⁖ $4 ⁖ бєꙁ прѣнаправлєниꙗ сътворѥниꙗ',
 'logentry-newusers-create' => '$1 сътворихъ польꙃєватєльско мѣсто',
 
+# Search suggestions
+'searchsuggest-containing' => 'сѥ дрьжащи···',
+
 # API errors
 'api-error-unknownerror' => 'нєвѣдома блаꙁна : ⁖ $1 ⁖',
 

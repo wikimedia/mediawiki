@@ -3843,6 +3843,10 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'feedback-bugcheck' => "Eus ar c'hentañ ! Gwiriit mat n'emañ ket e-touez an [$1 draen diskoachet c'hoazh].",
 'feedback-bugnew' => 'Gwiriet em eus. Kemenn un draen nevez',
 
+# Search suggestions
+'searchsuggest-search' => 'Klask',
+'searchsuggest-containing' => 'ennañ...',
+
 # API errors
 'api-error-badaccess-groups' => "N'oc'h ket aotreet da enporzhiañ restroù war ar wiki-mañ.",
 'api-error-badtoken' => 'Fazi diabarzh : "jedouer" fall.',
@@ -3895,7 +3899,4 @@ A-hend-all e c'hallit ober gant ar furmskrid eeunaet dindan. Ouzhpennet e vo hoc
 'duration-centuries' => "$1 {{PLURAL:$1|c'hantved|kantved}}",
 'duration-millennia' => '$1 {{PLURAL:$1|milvloaz|milvoaz}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ennañ...',
-'searchsuggest-search' => 'Klask',
 );

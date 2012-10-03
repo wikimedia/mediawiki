@@ -462,8 +462,6 @@ Hirmid sagsd, das Du den dhägsd '''selbâr gschriim''' hasd, das däär dhägsd
 'search-interwiki-caption' => 'Schwesder-brojägd',
 'search-interwiki-default' => 'Af $1 gfundn:',
 'search-interwiki-more' => '(noch mäa´)',
-'search-mwsuggest-enabled' => 'mid foorschleech',
-'search-mwsuggest-disabled' => 'ghane foorschlääch',
 'search-relatedarticle' => 'Fârwande',
 'mwsuggest-disable' => 'Foorschlääch iwâr AJAX abschdelâ',
 'searcheverything-enable' => 'In aln naamsrajm suuchn',

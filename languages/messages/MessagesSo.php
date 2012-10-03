@@ -1390,6 +1390,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'htmlform-reset' => 'Ka noqo wax bedelka',
 'htmlform-selectorother-other' => 'kuwa kale',
 
+# Search suggestions
+'searchsuggest-search' => 'Raadi',
+
 # API errors
 'api-error-copyuploaddisabled' => 'Soo gelinta dhinaca URL-ka waa laga damiyay kombiyuutarkaan',
 'api-error-filename-tooshort' => 'Magaca faylka aad oo u gaabanyahay',
@@ -1403,6 +1406,4 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'api-error-unknown-warning' => 'Digniin la aqoon: $1',
 'api-error-uploaddisabled' => 'Soo gelinta waa laga xiray wikigaan.',
 
-# Unknown messages
-'searchsuggest-search' => 'Raadi',
 );

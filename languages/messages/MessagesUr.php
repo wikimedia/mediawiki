@@ -1486,6 +1486,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:SpecialPages
 'specialpages' => 'خصوصی صفحات',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'تلاش',
+
 );

@@ -692,8 +692,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'search-interwiki-caption' => 'Progjets fradis',
 'search-interwiki-default' => 'Risultâts di $1:',
 'search-interwiki-more' => '(altri)',
-'search-mwsuggest-enabled' => 'cui sugjeriments',
-'search-mwsuggest-disabled' => 'cence i sugjeriments',
 'mwsuggest-disable' => 'Disative i sugjeriments AJAX',
 'searchrelated' => 'leâts',
 'searchall' => 'ducj',
@@ -1700,6 +1698,10 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # New logging system
 'newuserlog-byemail' => 'peraule clâf mandade par pueste eletroniche',
+
+# Search suggestions
+'searchsuggest-search' => 'Ricercje',
+'searchsuggest-containing' => 'che al à dentri...',
 
 # API errors
 'api-error-unclassified' => 'Al è capitât un erôr no cognossût',

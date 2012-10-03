@@ -3493,6 +3493,10 @@ Utawa, Sampéyan bisa nganggo pormulir gampang ngisor. Tanggepan Sampéyan bakal
 'feedback-bugcheck' => 'Apik! Pesthèké kuwi dudu sawijining [$1 bug sing dingertèni].',
 'feedback-bugnew' => 'Aku wis mriksa. Kandakaké bug anyar',
 
+# Search suggestions
+'searchsuggest-search' => 'Golèk',
+'searchsuggest-containing' => 'ngisi...',
+
 # API errors
 'api-error-badaccess-groups' => 'Sampéyan ora dililakaké ngunggah berkas nèng wiki iki.',
 'api-error-badtoken' => 'Kasalahan njero: Token èlèk.',
@@ -3545,7 +3549,4 @@ Utawa, Sampéyan bisa nganggo pormulir gampang ngisor. Tanggepan Sampéyan bakal
 'duration-centuries' => '$1 {{PLURAL:$1|abad|abad}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénium|milénium}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ngisi...',
-'searchsuggest-search' => 'Golèk',
 );

@@ -1446,4 +1446,7 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'logentry-newusers-create' => '$1 ráhkadii dovddaldaga',
 'logentry-newusers-autocreate' => 'Dovddaldat $1 ráhkaduvvui automáhtalaččat',
 
+# Search suggestions
+'searchsuggest-search' => 'Oza',
+
 );

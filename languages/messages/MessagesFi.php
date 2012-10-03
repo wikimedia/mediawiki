@@ -470,7 +470,7 @@ $messages = array(
 'vector-action-protect' => 'Suojaa',
 'vector-action-undelete' => 'Palauta',
 'vector-action-unprotect' => 'Muuta suojausta',
-'vector-simplesearch-preference' => 'Ota käyttöön parannetut hakuehdotukset (vain Vector-ulkoasu)',
+'vector-simplesearch-preference' => 'Ota käyttöön yksinkertaistettu hakupalkki (vain Vector-ulkoasu)',
 'vector-view-create' => 'Luo',
 'vector-view-edit' => 'Muokkaa',
 'vector-view-history' => 'Näytä historia',
@@ -3874,6 +3874,10 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'feedback-bugcheck' => 'Hyvä! Varmista, että ohjelmointivirhe ei vielä löydy [$1 tästä listasta].',
 'feedback-bugnew' => 'Varmistin. Ilmoitan uuden ohjelmointivirheen',
 
+# Search suggestions
+'searchsuggest-search' => 'Hae',
+'searchsuggest-containing' => 'sisältää...',
+
 # API errors
 'api-error-badaccess-groups' => 'Sinulla ei ole oikeutta tallentaa tiedostoja tähän wikiin.',
 'api-error-badtoken' => 'Sisäinen virhe: virheellinen tarkistussumma.',
@@ -3926,7 +3930,4 @@ Muussa tapauksessa voit käyttää alla olevaa helpompaa lomaketta. Kommenttisi 
 'duration-centuries' => '$1 {{PLURAL:$1|vuosisata|vuosisataa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|vuosituhat|vuosituhatta}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'sisältää...',
-'searchsuggest-search' => 'Hae',
 );

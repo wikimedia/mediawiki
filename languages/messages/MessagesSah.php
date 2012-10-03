@@ -3628,6 +3628,10 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'feedback-bugcheck' => 'Бэрт! Ол гынан баран [$1 биллэр алҕастарын] тиһилигэр майгынныыр сурук суоҕун тургут.',
 'feedback-bugnew' => 'Мин тургуттум. Атын алҕас туһунан',
 
+# Search suggestions
+'searchsuggest-search' => 'Көрдөөһүн',
+'searchsuggest-containing' => 'тыл баар ыстатыйалара...',
+
 # API errors
 'api-error-badaccess-groups' => 'Эн бу биикигэ билэ киллэрэриҥ хааччахтаммыт.',
 'api-error-badtoken' => 'Ис алҕас: Омсолоох токен.',
@@ -3680,7 +3684,4 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'duration-centuries' => '$1 үйэ',
 'duration-millennia' => '$1 тыһыынча сыл',
 
-# Unknown messages
-'searchsuggest-containing' => 'тыл баар ыстатыйалара...',
-'searchsuggest-search' => 'Көрдөөһүн',
 );

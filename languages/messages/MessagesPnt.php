@@ -607,8 +607,6 @@ $messages = array(
 'search-interwiki-caption' => 'Αδερφικά έργα',
 'search-interwiki-default' => '$1 αποτελέσματα:',
 'search-interwiki-more' => '(πλέα)',
-'search-mwsuggest-enabled' => 'με οδηγίας',
-'search-mwsuggest-disabled' => 'θίχως οδηγίας',
 'searchall' => 'ούλαι',
 'nonefound' => "'''Σημείωση:''' Κανονικά ολίγα περιοχάς ονοματίων αραεύκουνταν μαναχόν. Βαλέστεν ''all:'' ασην λέξην εμπροστά για ίνεται το αράεμαν σ'όλεα τα σελίδας (και σελίδας καλατσεματί, πρότυπα κλπ.) ή βαλέστεν ους πρόθεμαν την περιοχήν ονοματίων π'θέλετε για να αραεύετε εκαικά.",
 'powersearch' => 'Αναλυτικόν αράεμαν',
@@ -1444,5 +1442,8 @@ $messages = array(
 'htmlform-submit' => 'Στείλον',
 'htmlform-reset' => "Κλώσον τ'αλλαγάς",
 'htmlform-selectorother-other' => 'Άλλον',
+
+# Search suggestions
+'searchsuggest-search' => 'Αράεμαν',
 
 );

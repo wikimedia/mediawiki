@@ -1206,6 +1206,7 @@ Data nyang la'én eunteuk teupeusom keudroë.
 # Special:Tags
 'tag-filter' => 'Filter [[Special:Tags|tag]]:',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'Mita',
+
 );

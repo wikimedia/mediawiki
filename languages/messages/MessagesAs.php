@@ -3796,6 +3796,10 @@ $5
 'feedback-bugcheck' => 'অতি উত্তম! কেৱল পৰীক্ষা কৰক যে ই ইতিমধ্যে [$1 জ্ঞাত বাগসমূহ]ৰ এটা নহয়।',
 'feedback-bugnew' => 'মই পৰীক্ষা কৰিলো। এটা নতুন বাগ সংবাদন কৰক',
 
+# Search suggestions
+'searchsuggest-search' => 'সন্ধান কৰক',
+'searchsuggest-containing' => 'যি আছে...',
+
 # API errors
 'api-error-badaccess-groups' => "এই ৱিকিত ফাইল আপল'ড কৰিবলৈ আপোনাৰ অনুমতি নাই।",
 'api-error-badtoken' => 'আভ্যন্তৰীণ ত্ৰুটি: ভুল টোকেন।',
@@ -3848,7 +3852,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|শতাব্দী|শতাব্দী}}',
 'duration-millennia' => '$1 {{PLURAL:$1|সহস্ৰাব্দ|সহস্ৰাব্দ}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'যি আছে...',
-'searchsuggest-search' => 'সন্ধান কৰক',
 );

@@ -4327,6 +4327,10 @@ $5
 'feedback-bugcheck' => 'رائع! تحقق من أن هذه ليست إحدى [$1 العلل المعروفة].',
 'feedback-bugnew' => 'لقد تحققت. بلّغ عن علة جديدة.',
 
+# Search suggestions
+'searchsuggest-search' => 'بحث',
+'searchsuggest-containing' => 'يحتوي...',
+
 # API errors
 'api-error-badaccess-groups' => 'لا يسمح لك بتحميل الملفات إلى هذه الويكي.',
 'api-error-badtoken' => 'خطأ داخلي: رمز مميز غير صحيح.',
@@ -4379,7 +4383,4 @@ $5
 'duration-centuries' => '{{PLURAL: $1||قرن واحد|قرنان|$1 قرون|$1 قرنًا|$1 قرن}}',
 'duration-millennia' => '{{PLURAL: $1||ألفية واحدة|ألفيتان|$1 ألفيات|$1 ألفية}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'يحتوي...',
-'searchsuggest-search' => 'بحث',
 );

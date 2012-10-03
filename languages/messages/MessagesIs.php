@@ -3668,6 +3668,10 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'feedback-bugcheck' => 'Frábært! Athugaðu hvort þessi villa hafi verið [$1 tilkynnt áður].',
 'feedback-bugnew' => 'Ég athugaði það. Tilkynna nýja villu.',
 
+# Search suggestions
+'searchsuggest-search' => 'Leita',
+'searchsuggest-containing' => 'sem innihalda ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Þú hefur ekki leyfi til að hlaða inn skrám.',
 'api-error-badtoken' => 'Innri villa: Skemmdur tóki.',
@@ -3720,7 +3724,4 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'duration-centuries' => '$1 {{PLURAL:$1|öld|aldir}}',
 'duration-millennia' => '$1 {{PLURAL:$1|árþúsund}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'sem innihalda ...',
-'searchsuggest-search' => 'Leita',
 );

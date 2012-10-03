@@ -3433,6 +3433,10 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 'feedback-error2' => 'Халат. Тюзетиу ётмеди',
 'feedback-close' => 'Тындырылды',
 
+# Search suggestions
+'searchsuggest-search' => 'Излеу',
+'searchsuggest-containing' => 'ичиндегиси…',
+
 # API errors
 'api-error-badtoken' => 'Ич халат: терс токен.',
 'api-error-duplicate-popup-title' => ' {{PLURAL:$1|Файлны|Файлны}} дубликаты',
@@ -3468,7 +3472,4 @@ MediaWiki хайырлы боллукъду деген умут бла джай�
 'duration-centuries' => '$1 {{PLURAL:$1|ёмюр}}',
 'duration-millennia' => '$1 {{PLURAL:$1|мингджыллыкъ}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ичиндегиси…',
-'searchsuggest-search' => 'Излеу',
 );

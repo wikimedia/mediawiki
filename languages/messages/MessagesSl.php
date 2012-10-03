@@ -342,7 +342,7 @@ $messages = array(
 'vector-action-protect' => 'Zaščiti',
 'vector-action-undelete' => 'Vrni',
 'vector-action-unprotect' => 'Spremeni zaščito',
-'vector-simplesearch-preference' => 'Omogoči izboljšane predloge iskanja (samo koža Vector)',
+'vector-simplesearch-preference' => 'Omogoči poenostavljeno vrstico za iskanje (samo koža Vector)',
 'vector-view-create' => 'Ustvari',
 'vector-view-edit' => 'Uredi',
 'vector-view-history' => 'Zgodovina',
@@ -3877,6 +3877,10 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'feedback-bugcheck' => 'Izvrstno! Samo preverite, da ne gre za enega od [$1 že znanih hroščev].',
 'feedback-bugnew' => 'Sem preveril. Prijavi nov hrošč',
 
+# Search suggestions
+'searchsuggest-search' => 'Iskanje',
+'searchsuggest-containing' => 'vsebujoč ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nalaganje datotek na ta wiki vam ni dovoljeno.',
 'api-error-badtoken' => 'Notranja napaka: slab žeton.',
@@ -3929,7 +3933,4 @@ V nasprotnem primeru lahko uporabite preprost obrazec spodaj. Vašo pripombo bom
 'duration-centuries' => '$1 {{PLURAL:$1|stoletje|stoletji|stoletja|stoletij}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisočletje|tisočletji|tisočletja|tisočletij}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'vsebujoč ...',
-'searchsuggest-search' => 'Iskanje',
 );

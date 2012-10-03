@@ -452,7 +452,7 @@ $messages = array(
 
 'underline-always' => 'immer',
 'underline-never' => 'nie',
-'underline-default' => 'abhängig von Browsereinstellung',
+'underline-default' => 'abhängig von der Browsereinstellung',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Schriftart für den Text im Bearbeitungsfenster:',
@@ -538,7 +538,7 @@ $messages = array(
 'cancel' => 'Abbrechen',
 'moredotdotdot' => 'Mehr …',
 'mypage' => 'Meine Seite',
-'mytalk' => 'Meine Diskussion',
+'mytalk' => 'Eigene Diskussion',
 'anontalk' => 'Diskussionsseite dieser IP',
 'navigation' => 'Navigation',
 'and' => '&#32;und',
@@ -1740,7 +1740,7 @@ Stand: $4, $5 Uhr.",
 'rcshowhideliu' => 'Angemeldete Benutzer $1',
 'rcshowhideanons' => 'Unangemeldete Benutzer $1',
 'rcshowhidepatr' => 'Kontrollierte Änderungen $1',
-'rcshowhidemine' => 'Meine Beiträge $1',
+'rcshowhidemine' => 'Eigene Beiträge $1',
 'rclinks' => 'Zeige die letzten $1 Änderungen der letzten $2 Tage.<br />$3',
 'diff' => 'Unterschied',
 'hist' => 'Versionen',
@@ -2635,7 +2635,7 @@ $1',
 # Contributions
 'contributions' => 'Benutzerbeiträge',
 'contributions-title' => 'Benutzerbeiträge von „$1“',
-'mycontris' => 'Meine Beiträge',
+'mycontris' => 'Eigene Beiträge',
 'contribsub2' => 'Von $1 ($2)',
 'nocontribs' => 'Es wurden keine Benutzerbeiträge mit diesen Kriterien gefunden.',
 'uctop' => '(aktuell)',
@@ -4066,6 +4066,10 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'feedback-bugcheck' => 'Super! Bitte überprüfe noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.',
 'feedback-bugnew' => 'Ich habe es überprüft. Den neuen Fehler melden.',
 
+# Search suggestions
+'searchsuggest-search' => 'Suchen',
+'searchsuggest-containing' => 'enthält …',
+
 # API errors
 'api-error-badaccess-groups' => 'Du hast nicht die Berechtigung Dateien in dieses Wiki hochzuladen.',
 'api-error-badtoken' => 'Interner Fehler: Der Token ist fehlerhaft.',
@@ -4118,7 +4122,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'enthält …',
-'searchsuggest-search' => 'Suchen',
 );

@@ -3758,6 +3758,10 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'feedback-bugcheck' => 'Tajjeb ħafna! Ivverifika li mhux diġà fost id-[$1 difetti magħrufa].',
 'feedback-bugnew' => 'Ikkontrollajt. Irrapporta d-difett',
 
+# Search suggestions
+'searchsuggest-search' => 'Fittex',
+'searchsuggest-containing' => 'li tinkludi...',
+
 # API errors
 'api-error-fileexists-forbidden' => 'Fajl bl-isem "$1" diġà jeżisti, u ma jistax jiġi miktub fuqu.',
 'api-error-fileexists-shared-forbidden' => 'Fajl bl-isem "$1" diġà jeżisti fir-repożitorju maqsum u ma jistax jiġi miktub fuqu.',
@@ -3780,7 +3784,4 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'duration-centuries' => '$1 {{PLURAL:$1|seklu|sekli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennju|millennji}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'li tinkludi...',
-'searchsuggest-search' => 'Fittex',
 );

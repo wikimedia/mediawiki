@@ -4006,6 +4006,10 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'feedback-bugcheck' => 'Perfeito! Verifique apenas que não é já um dos [$1 defeitos conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Comunicar um novo defeito.',
 
+# Search suggestions
+'searchsuggest-search' => 'Pesquisa',
+'searchsuggest-containing' => 'contendo...',
+
 # API errors
 'api-error-badaccess-groups' => 'Não tem permissão para enviar ficheiros para esta wiki.',
 'api-error-badtoken' => 'Erro interno: Chave incorrecta.',
@@ -4058,7 +4062,4 @@ Caso contrário, pode facilmente usar o formulário abaixo. O seu comentário se
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénio|milénios}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'contendo...',
-'searchsuggest-search' => 'Pesquisa',
 );

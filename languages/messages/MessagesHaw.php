@@ -473,8 +473,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'search-section' => '(māhele $1)',
 'search-suggest' => 'ʻO kēia paha kou manaʻo: $1',
 'search-interwiki-caption' => 'Nā pāhana ʻē aʻe',
-'search-mwsuggest-enabled' => 'me nā manaʻo kōkua',
-'search-mwsuggest-disabled' => 'ʻaʻohe manaʻo kōkua',
 'searchall' => 'apau',
 'powersearch' => 'Hulina kūlana kiʻekiʻe',
 'powersearch-legend' => 'Hulina kūlana kiʻekiʻe',

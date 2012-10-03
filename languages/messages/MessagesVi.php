@@ -4074,6 +4074,10 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'feedback-bugcheck' => 'Tuyệt! Chỉ cần kiểm tra nó chưa được [$1 báo cáo trước đây].',
 'feedback-bugnew' => 'Tôi đã kiểm tra – báo cáo lỗi mới',
 
+# Search suggestions
+'searchsuggest-search' => 'Tìm kiếm',
+'searchsuggest-containing' => 'có chứa…',
+
 # API errors
 'api-error-badaccess-groups' => 'Bạn không được phép tải tập tin lên wiki này.',
 'api-error-badtoken' => 'Lỗi nội bộ: Dấu hiệu bị hỏng.',
@@ -4126,7 +4130,4 @@ Nếu không thì bạn có thể điền biểu mẫu đơn giản ở dưới.
 'duration-centuries' => '$1 thế kỷ',
 'duration-millennia' => '$1 thiên niên kỷ',
 
-# Unknown messages
-'searchsuggest-containing' => 'có chứa…',
-'searchsuggest-search' => 'Tìm kiếm',
 );

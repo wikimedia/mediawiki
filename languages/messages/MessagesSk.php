@@ -3935,6 +3935,10 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'feedback-bugcheck' => 'Skvelé! Teraz len skontrolujte, či to nie je jedna z už [$1 známych chýb].',
 'feedback-bugnew' => 'Skontroloval som. Poslať nové hlásenie o chybe.',
 
+# Search suggestions
+'searchsuggest-search' => 'Hľadať',
+'searchsuggest-containing' => 'obsahuje...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nemáte oprávnenie nahrávať súbory na tejto wiki.',
 'api-error-badtoken' => 'Vnútorná chyba: Zlý token.',
@@ -3987,7 +3991,4 @@ V opačnom prípade môžete použiť zjednodušený formulár nižšie. Váš k
 'duration-centuries' => '$1 {{PLURAL:$1|storočie|storočia|storočí}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisícročie|tisícročia|tisícročí}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'obsahuje...',
-'searchsuggest-search' => 'Hľadať',
 );

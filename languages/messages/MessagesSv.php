@@ -477,7 +477,7 @@ $messages = array(
 'vector-action-protect' => 'Skrivskydda',
 'vector-action-undelete' => 'Återställ',
 'vector-action-unprotect' => 'Ändra skydd',
-'vector-simplesearch-preference' => 'Aktivera utökade sökförslag (endast Vector-utseendet)',
+'vector-simplesearch-preference' => 'Aktivera förenklat sökfält (endast Vector-utseendet)',
 'vector-view-create' => 'Skapa',
 'vector-view-edit' => 'Redigera',
 'vector-view-history' => 'Visa historik',
@@ -3991,6 +3991,10 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'feedback-bugcheck' => 'Jättebra! Bara kontrollera att det inte är en av de [$1 kända buggarna].',
 'feedback-bugnew' => 'Jag kontrollerade. Rapportera ett nytt fel',
 
+# Search suggestions
+'searchsuggest-search' => 'Sök',
+'searchsuggest-containing' => 'innehåller...',
+
 # API errors
 'api-error-badaccess-groups' => 'Du får inte ladda upp filer till denna wiki.',
 'api-error-badtoken' => 'Internt fel: felaktig token.',
@@ -4043,7 +4047,4 @@ Annars kan du använda det enkla formuläret nedan. Din kommentar kommer att lä
 'duration-centuries' => '$1 {{PLURAL:$1|sekel|sekel}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'innehåller...',
-'searchsuggest-search' => 'Sök',
 );

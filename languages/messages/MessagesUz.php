@@ -1492,10 +1492,11 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 # Feedback
 'feedback-close' => 'Bajarildi',
 
+# Search suggestions
+'searchsuggest-search' => 'Qidiruv',
+
 # API errors
 'api-error-unknown-code' => 'Noaniq xato: "$1".',
 'api-error-unknownerror' => 'Noaniq xato: "$1".',
 
-# Unknown messages
-'searchsuggest-search' => 'Qidiruv',
 );

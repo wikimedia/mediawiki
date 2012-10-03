@@ -3191,6 +3191,7 @@ $5
 'logentry-newusers-autocreate' => '$1 аккаунты автоматты түрде тіркелді',
 'newuserlog-byemail' => 'Құпия сөз e-mail арқылы жіберілді',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'Іздеу',
+
 );

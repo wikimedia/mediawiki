@@ -3914,6 +3914,10 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'feedback-bugcheck' => 'Mooi! Kiek nao of t niet al één van de [$1 bekende problemen] is.',
 'feedback-bugnew' => 'Ik heb t nao-ekeken. Meld n nieje programmafout',
 
+# Search suggestions
+'searchsuggest-search' => 'Zeuken / zuken / zuiken',
+'searchsuggest-containing' => 'bevat...',
+
 # API errors
 'api-error-badaccess-groups' => 'Je maggen gien bestaanden in disse wiki inlaojen.',
 'api-error-badtoken' => 'Interne fout: t token klopt niet.',
@@ -3966,7 +3970,4 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'bevat...',
-'searchsuggest-search' => 'Zeuken / zuken / zuiken',
 );

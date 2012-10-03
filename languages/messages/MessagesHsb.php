@@ -3718,6 +3718,10 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'feedback-bugcheck' => 'Wulkotnje! Skontroluj jenož, hač to jedyn z [$1 znatych zmylkow] njeje.',
 'feedback-bugnew' => 'Sym to skontrolował. Nowy zmylk zdźělić',
 
+# Search suggestions
+'searchsuggest-search' => 'Pytać',
+'searchsuggest-containing' => 'wobsahuje...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nimaš prawo dataje do tutoho wikija nahrać.',
 'api-error-badtoken' => 'Nutřkowny zmylk: Wopačny token.',
@@ -3770,7 +3774,4 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'duration-centuries' => '$1 {{PLURAL:$1|lětstotk|lětstotkaj|lětstotki|lětstotkow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysacaj|lěttysacy|lěttysacow}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'wobsahuje...',
-'searchsuggest-search' => 'Pytać',
 );

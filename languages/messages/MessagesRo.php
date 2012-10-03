@@ -459,7 +459,7 @@ pe titlul secțiunii (JavaScript)',
 'vector-action-protect' => 'Protejare',
 'vector-action-undelete' => 'Recuperare',
 'vector-action-unprotect' => 'Modificare protecție',
-'vector-simplesearch-preference' => 'Permite sugestii de căutare superioară (numai interfața Vector)',
+'vector-simplesearch-preference' => 'Activează bara de căutare simplificată (exclusiv pentru interfața Vector)',
 'vector-view-create' => 'Creare',
 'vector-view-edit' => 'Modificare',
 'vector-view-history' => 'Istoric',
@@ -1489,15 +1489,15 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'userrights-lookup-user' => 'Administrare grupuri de utilizatori',
 'userrights-user-editname' => 'Introduceți un nume de utilizator:',
 'editusergroup' => 'Modificare grup de utilizatori',
-'editinguser' => "Modificare permisiuni de utilizator pentru '''[[User:$1|$1]]''' $2",
+'editinguser' => "Modificarea permisiunilor de utilizator pentru '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'Modificare grup de utilizatori',
 'saveusergroups' => 'Salvează grupul de utilizatori',
 'userrights-groupsmember' => 'Membru al:',
 'userrights-groupsmember-auto' => 'Membru, implicit, al:',
 'userrights-groups-help' => 'Puteți schimba grupul căruia îi aparține utilizatorul:
-*Căsuța bifată înseamnă că utilizatorul este în acel grup.
-*Căsuța nebifată înseamnă că utilizatorul nu este în acel grup.
-*Steluța (*) indică faptul că utilizatorul nu poate fi eliminat din grup odată adăugat, sau invers',
+*Căsuța bifată înseamnă că utilizatorul aparține grupului respectiv.
+*Căsuța nebifată înseamnă că utilizatorul nu aparține grupului respectiv.
+*Steluța (*) indică faptul că utilizatorul nu poate fi eliminat din grup odată adăugat, sau invers.',
 'userrights-reason' => 'Motiv:',
 'userrights-no-interwiki' => 'Nu aveți permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
 'userrights-nodatabase' => 'Baza de date $1 nu există sau nu este locală.',
@@ -2142,7 +2142,7 @@ Intrările <del>tăiate</del> au fost rezolvate.',
 'protectedtitles' => 'Titluri protejate',
 'protectedtitlestext' => 'Următoarele titluri sunt protejate la creare',
 'protectedtitlesempty' => 'Nu există titluri protejate cu acești parametri.',
-'listusers' => 'Lista de utilizatori',
+'listusers' => 'Listă utilizatori',
 'listusers-editsonly' => 'Arată doar utilizatorii cu modificări',
 'listusers-creationsort' => 'Sortează după data creării',
 'usereditcount' => '$1 {{PLURAL:$1|editare|editări}}',
@@ -2857,7 +2857,7 @@ Ultima intrare în jurnal este afișată mai jos pentru referință:",
 Alegeți un alt nume.',
 
 # Export
-'export' => 'Exportare de pagini',
+'export' => 'Exportare pagini',
 'exporttext' => 'Puteți exporta textul și istoricul unei pagini anume sau ale unui grup de pagini în XML.
 Acesta poate fi apoi importate în alt wiki care rulează software MediaWiki prin [[Special:Import|pagina de importare]].
 
@@ -2909,7 +2909,7 @@ Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Locali
 'thumbnail_image-missing' => 'Fișierul următor nu poate fi găsit: $1',
 
 # Special:Import
-'import' => 'Importă pagini',
+'import' => 'Importare pagini',
 'importinterwiki' => 'Import transwiki',
 'import-interwiki-text' => 'Selectează un wiki și titlul paginii care trebuie importate. Datele reviziilor și numele editorilor vor fi salvate. Toate acțiunile de import transwiki pot fi găsite la [[Special:Log/import|log import]]',
 'import-interwiki-source' => 'Wiki/pagină sursă:',
@@ -3961,6 +3961,10 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'feedback-bugcheck' => 'Minunat! Trebuie doar să verificați dacă nu cumva problema a fost [$1 deja înregistrată].',
 'feedback-bugnew' => 'Am verificat. O raportez drept o problemă nouă',
 
+# Search suggestions
+'searchsuggest-search' => 'Căutare',
+'searchsuggest-containing' => 'conținând...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nu aveți dreptul să încărcați fișiere pe acest wiki.',
 'api-error-badtoken' => 'Eroare internă: jeton greșit.',
@@ -4013,7 +4017,4 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'conținând...',
-'searchsuggest-search' => 'Căutare',
 );

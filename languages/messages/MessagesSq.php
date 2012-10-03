@@ -3800,6 +3800,10 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'feedback-bugcheck' => 'Shumë mirë! Thjesht kontrolloni që nuk është një nga [$1 problemet e njohura].',
 'feedback-bugnew' => 'E kontrollova. Raporto një problem të ri',
 
+# Search suggestions
+'searchsuggest-search' => 'Kërko',
+'searchsuggest-containing' => 'përmban ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Ju nuk lejoheni të ngarkoni skeda në këtë wiki.',
 'api-error-badtoken' => 'Gabim i brendshëm: Shenjë e keqe.',
@@ -3852,7 +3856,4 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'duration-centuries' => '$1 {{PLURAL:$1|shekull|shekuj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milennium|mileniume}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'përmban ...',
-'searchsuggest-search' => 'Kërko',
 );

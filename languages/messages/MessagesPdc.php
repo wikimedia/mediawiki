@@ -412,8 +412,6 @@ Paesswatt fer nau: $2',
 'search-interwiki-caption' => 'Schweschder Projects',
 'search-interwiki-default' => '$1 Results:',
 'search-interwiki-more' => '(weidere)',
-'search-mwsuggest-enabled' => 'mit Vorschläch',
-'search-mwsuggest-disabled' => 'kee Vorschläch',
 'searchall' => 'all',
 'powersearch' => 'Guck uff',
 'powersearch-ns' => 'Guck uff in Blatznaame:',
@@ -1019,5 +1017,8 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Feedback
 'feedback-message' => 'Melding:',
+
+# Search suggestions
+'searchsuggest-search' => 'Uffgucke',
 
 );

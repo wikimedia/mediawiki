@@ -2990,6 +2990,9 @@ Bu saytda texniki problemlər var.',
 'feedback-close' => 'Oldu',
 'feedback-bugnew' => 'Mən yoxladım. Yeni xəta barədə xəbər ver',
 
+# Search suggestions
+'searchsuggest-search' => 'Axtar',
+
 # API errors
 'api-error-filename-tooshort' => 'Fayl adı qısadır.',
 'api-error-filetype-banned' => 'Bu tip fayllar qadağandır.',
@@ -3010,6 +3013,4 @@ Bu saytda texniki problemlər var.',
 'duration-centuries' => '$1 {{PLURAL:$1|əsr|əsr}}',
 'duration-millennia' => '$1 {{PLURAL:$1|minillik|minillik}}',
 
-# Unknown messages
-'searchsuggest-search' => 'Axtar',
 );

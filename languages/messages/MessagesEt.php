@@ -3871,6 +3871,10 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'feedback-bugcheck' => 'Hästi! Kontrolli vaid, ega tegu pole juba [$1 teada oleva veaga].',
 'feedback-bugnew' => 'Kontrollisin. Teata uuest veast',
 
+# Search suggestions
+'searchsuggest-search' => 'Otsi',
+'searchsuggest-containing' => 'sisalduv...',
+
 # API errors
 'api-error-badaccess-groups' => 'Sul pole selles vikis üleslaadimisõigust.',
 'api-error-badtoken' => 'Sisemine tõrge: Sobimatu nimi.',
@@ -3923,7 +3927,4 @@ Kui ei, kasuta allolevat lihtsat vormi. Sinu kommentaar lisatakse koos kasutajan
 'duration-centuries' => '$1 {{PLURAL:$1|sajandi}}',
 'duration-millennia' => '$1 {{PLURAL:$1|aastatuhande}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'sisalduv...',
-'searchsuggest-search' => 'Otsi',
 );

@@ -369,7 +369,7 @@ $messages = array(
 'vector-action-protect' => 'Schöze!',
 'vector-action-undelete' => 'Zerökholle!',
 'vector-action-unprotect' => 'Schoz ändere!',
-'vector-simplesearch-preference' => 'Donn de verbäßerte Vörschlääsch beim Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
+'vector-simplesearch-preference' => 'Donn et eijfachere Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
 'vector-view-create' => 'Neu Schriive!',
 'vector-view-edit' => 'Ändere!',
 'vector-view-history' => 'Versione zeije!',
@@ -4167,6 +4167,10 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'feedback-bugcheck' => 'Joot. Donn op jeede Vall nohlooer, dat dat bes jäz noch nit [$1 bikannt wohr].',
 'feedback-bugnew' => 'Hann esch nohjelooert. Esch jävven ene neue Fähler enn.',
 
+# Search suggestions
+'searchsuggest-search' => 'Söhke',
+'searchsuggest-containing' => 'dren änthallde…',
+
 # API errors
 'api-error-badaccess-groups' => 'Do häs nit et Rääsch, Datteije en heh dat Wiki huhzelaade.',
 'api-error-badtoken' => 'Fähler: et Kännzeijsche (<i lang="en">token</i>) es kappott.',
@@ -4219,7 +4223,4 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-centuries' => '{{PLURAL:$1|e Johrhondert|$1 Johrhonderte|kei Johrhondert}}',
 'duration-millennia' => '{{PLURAL:$1|e Johrdousend|$1 Johrdousende|kei Johrdousend}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'dren änthallde…',
-'searchsuggest-search' => 'Söhke',
 );

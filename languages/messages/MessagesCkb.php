@@ -3310,6 +3310,10 @@ $5
 'feedback-submit' => 'تێبینییەکان بنێرە',
 'feedback-close' => 'ئەنجام درا',
 
+# Search suggestions
+'searchsuggest-search' => 'گەڕان',
+'searchsuggest-containing' => 'بە لەبەرگرتنەوەی ...',
+
 # API errors
 'api-error-filename-tooshort' => 'ناوی پەڕگەکە زۆر کورتە.',
 'api-error-filetype-banned' => 'ئەم جۆرە پەڕگەیە قەدەغەیە.',
@@ -3329,7 +3333,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|سەدە|سەدە}}',
 'duration-millennia' => '$1 {{PLURAL:$1|ھەزارە|ھەزارە}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'بە لەبەرگرتنەوەی ...',
-'searchsuggest-search' => 'گەڕان',
 );

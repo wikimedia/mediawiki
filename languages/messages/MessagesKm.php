@@ -3626,6 +3626,10 @@ $5
 'feedback-thanks' => 'សូមអរគុណ! មតិយោបល់របស់អ្នកត្រូវបានដាក់ផ្សាយនៅលើទំព័រ "[$2 $1]"។',
 'feedback-close' => 'រួចរាល់',
 
+# Search suggestions
+'searchsuggest-search' => 'ស្វែងរក​',
+'searchsuggest-containing' => 'ដែលមានពាក្យ...',
+
 # API errors
 'api-error-badaccess-groups' => 'អ្នកគ្មានការអនុញ្ញាតអោយផ្ទុកឯកសារឡើងទៅក្នុងវិគីនេះទេ។',
 'api-error-empty-file' => 'ឯកសារដែលអ្នកបានដាក់ស្នើគឺទទេ។',
@@ -3664,7 +3668,4 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|ទសវត្សរ៍|ទសវត្សរ៍}}',
 'duration-centuries' => '$1 {{PLURAL:$1|សតវត្សរ៍|សតវត្សរ៍}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ដែលមានពាក្យ...',
-'searchsuggest-search' => 'ស្វែងរក​',
 );

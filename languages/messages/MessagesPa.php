@@ -2071,6 +2071,7 @@ delete|ਮਿਟਾਉਣਾਂ ਦਾ ਚਿੱਠਾ]] ਵੇਖੋ।',
 'htmlform-reset' => 'ਬਦਲਾਅ ਵਾਪਸ ਲਵੋ',
 'htmlform-selectorother-other' => 'ਹੋਰ',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'ਖੋਜ',
+
 );

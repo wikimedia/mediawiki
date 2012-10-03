@@ -3675,6 +3675,10 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'feedback-bugcheck' => "Good! Kónterleer ef of 't neet al ein vanne [$1 bekèndje bugs] is.",
 'feedback-bugnew' => "Gekónterleerdj. Mèlj 'ne nuuj bug.",
 
+# Search suggestions
+'searchsuggest-search' => 'Zeuke',
+'searchsuggest-containing' => 'bevat...',
+
 # API errors
 'api-error-badaccess-groups' => 'Doe moogs gein bestenj uploade óp deze wiki.',
 'api-error-badtoken' => 'Intern fout: toke is slech.',
@@ -3727,7 +3731,4 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'duration-centuries' => '$1 {{PLURAL:$1|ieëf|ieëf}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'bevat...',
-'searchsuggest-search' => 'Zeuke',
 );

@@ -1224,8 +1224,6 @@ $1",
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
 'search-interwiki-more' => '(اأكتر)',
-'search-mwsuggest-enabled' => 'مع اقتراحات',
-'search-mwsuggest-disabled' => 'مافيش اقتراحات',
 'search-relatedarticle' => 'مرتبطه',
 'mwsuggest-disable' => 'تعطيل اقتراحات أجاكس',
 'searcheverything-enable' => 'دور فى النطاقات كلها.',
@@ -3485,5 +3483,9 @@ $5
 'revdelete-restricted' => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted' => 'شيل الضوابط من على السيسوبات',
 'newuserlog-byemail' => 'الباسورد اتبعتت بالايميل',
+
+# Search suggestions
+'searchsuggest-search' => 'تدوير',
+'searchsuggest-containing' => 'جوّاه...',
 
 );

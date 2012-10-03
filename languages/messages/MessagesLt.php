@@ -3748,6 +3748,9 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'feedback-bugcheck' => 'Puiku! Tiesiog patikrinkite, ar tai ne viena [$1 jau žinomų klaidų].',
 'feedback-bugnew' => 'Patikrinau. Pranešti apie naują klaidą',
 
+# Search suggestions
+'searchsuggest-search' => 'Ieškoti',
+
 # API errors
 'api-error-badaccess-groups' => 'Jums neleidžiama įkelti failus į šią wiki.',
 'api-error-badtoken' => 'Vidinė klaida: blogai atpažinimo ženklas.',
@@ -3800,6 +3803,4 @@ Kitu atveju, galite naudotis žemiau esančia paprastesne forma. Jūsų komentar
 'duration-centuries' => '$1 {{PLURAL:$1|amžius|amžiai|amžių}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tūkstantmetis|tūkstantmečiai|tūkstantmečių}}',
 
-# Unknown messages
-'searchsuggest-search' => 'Ieškoti',
 );

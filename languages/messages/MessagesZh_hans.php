@@ -436,7 +436,7 @@ $messages = array(
 'vector-action-protect' => '保护',
 'vector-action-undelete' => '恢复',
 'vector-action-unprotect' => '更改保护',
-'vector-simplesearch-preference' => '启用增强搜索建议（仅限Vector皮肤）',
+'vector-simplesearch-preference' => '启用简化搜索栏（仅适用Vector皮肤）',
 'vector-view-create' => '创建',
 'vector-view-edit' => '编辑',
 'vector-view-history' => '查看历史',
@@ -3838,6 +3838,10 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'feedback-bugcheck' => '请检查本bug是否为[$1 已知bug]。',
 'feedback-bugnew' => '我检查了。报告新bug',
 
+# Search suggestions
+'searchsuggest-search' => '搜索',
+'searchsuggest-containing' => '含有...',
+
 # API errors
 'api-error-badaccess-groups' => '你没有将文件上传到此wiki的权限。',
 'api-error-badtoken' => '内部错误：会话无效。',
@@ -3890,7 +3894,4 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'duration-centuries' => '$1个世纪',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'searchsuggest-containing' => '含有...',
-'searchsuggest-search' => '搜索',
 );

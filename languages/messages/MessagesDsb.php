@@ -3728,6 +3728,10 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'feedback-bugcheck' => 'Wjelicnje! Pśekontrolěruj jano, lěc to njejo jadna z [$1 znatych zmólkow].',
 'feedback-bugnew' => 'Som pśekontrolěrował. Nowu zmólku k wěsći daś',
 
+# Search suggestions
+'searchsuggest-search' => 'Pytaś',
+'searchsuggest-containing' => 'wopśimujo...',
+
 # API errors
 'api-error-badaccess-groups' => 'Njamaš pšawo dataje do toś togo wikija nagraś.',
 'api-error-badtoken' => 'Nutśikowna zmólka: Wopacny token',
@@ -3780,7 +3784,4 @@ Hować móžoš slědujucy jadnory formular wužywaś. Twój komentar pśidajo s
 'duration-centuries' => '$1 {{PLURAL:$1|stolěśe|stolěśi|stolěśa|stolěśow}}',
 'duration-millennia' => '$1 {{PLURAL:$1|lěttysac|lěttysaca|lěttysace|lěttysacow}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'wopśimujo...',
-'searchsuggest-search' => 'Pytaś',
 );

@@ -3299,7 +3299,8 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 'revdelete-unrestricted' => 'Ienskränkengen foar Administratore wächhoald',
 'newuserlog-byemail' => 'dät Paaswoud wuud uur E-Mail fersoand',
 
-# Unknown messages
-'searchsuggest-containing' => 'Fultextsäike ätter ...',
+# Search suggestions
 'searchsuggest-search' => 'Säik',
+'searchsuggest-containing' => 'Fultextsäike ätter ...',
+
 );

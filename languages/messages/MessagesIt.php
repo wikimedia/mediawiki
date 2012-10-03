@@ -425,7 +425,7 @@ $messages = array(
 'vector-action-protect' => 'Proteggi',
 'vector-action-undelete' => 'Recupera',
 'vector-action-unprotect' => 'Cambia la protezione',
-'vector-simplesearch-preference' => 'Abilita i suggerimenti di ricerca avanzata (solo per la skin Vector)',
+'vector-simplesearch-preference' => 'Abilita la barra per la ricerca semplificata (solo per la skin Vector)',
 'vector-view-create' => 'Crea',
 'vector-view-edit' => 'Modifica',
 'vector-view-history' => 'Visualizza cronologia',
@@ -3877,6 +3877,10 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'feedback-bugcheck' => 'Ottimo! Verifica che non sia già fra i [$1 bug conosciuti].',
 'feedback-bugnew' => 'Controllo effettuato. Segnala un nuovo bug',
 
+# Search suggestions
+'searchsuggest-search' => 'Ricerca',
+'searchsuggest-containing' => 'contenente...',
+
 # API errors
 'api-error-badaccess-groups' => 'Non sei autorizzato a caricare documenti su questa wiki.',
 'api-error-badtoken' => 'Errore interno: token errato.',
@@ -3929,7 +3933,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'contenente...',
-'searchsuggest-search' => 'Ricerca',
 );

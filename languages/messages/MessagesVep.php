@@ -3058,6 +3058,10 @@ Kävutagat normaline ezikacund.',
 'feedback-error3' => 'Petuz. API ei anda vastust',
 'feedback-close' => 'Vaumiž',
 
+# Search suggestions
+'searchsuggest-search' => 'Ectä',
+'searchsuggest-containing' => 'mülütajad...',
+
 # API errors
 'api-error-empty-file' => "Teil oigetud fail om pall'az.",
 'api-error-filename-tooshort' => 'Lühudahk failannimi.',
@@ -3069,7 +3073,4 @@ Kävutagat normaline ezikacund.',
 'api-error-unknown-warning' => 'Tadmatoi varutuz: $1',
 'api-error-unknownerror' => 'Tundmatoi petuz: "$1"',
 
-# Unknown messages
-'searchsuggest-containing' => 'mülütajad...',
-'searchsuggest-search' => 'Ectä',
 );

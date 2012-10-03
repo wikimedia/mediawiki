@@ -3665,6 +3665,11 @@ $5
 'size-kilobytes' => '$1 кб',
 'size-megabytes' => '$1 Мб',
 'size-gigabytes' => '$1 Гб',
+'size-terabytes' => '$1 ТБ',
+'size-petabytes' => '$1 ПБ',
+'size-exabytes' => '$1 ЭБ',
+'size-zetabytes' => '$1 ЗБ',
+'size-yottabytes' => '$1 ЁБ',
 
 # Live preview
 'livepreview-loading' => 'Загрузка…',
@@ -3896,6 +3901,10 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'feedback-bugcheck' => 'Выдатна! Толькі праверце, магчыма гэтыя памылкі ўжо [$1 вядомыя].',
 'feedback-bugnew' => 'Я праверыў. Гэта новая памылка',
 
+# Search suggestions
+'searchsuggest-search' => 'Пошук',
+'searchsuggest-containing' => 'утрымлівае...',
+
 # API errors
 'api-error-badaccess-groups' => 'У Вас няма дазволу загружаць файлы ў гэтую вікі.',
 'api-error-badtoken' => 'Унутраная памылка: няслушны ключ.',
@@ -3948,7 +3957,4 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'duration-centuries' => '$1 {{PLURAL:$1|стагодзьдзе|стагодзьдзі|стагодзьдзяў}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячагодзьдзе|тысячагодзьдзі|тысячагодзьдзяў}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'утрымлівае...',
-'searchsuggest-search' => 'Пошук',
 );

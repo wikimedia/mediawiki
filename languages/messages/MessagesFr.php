@@ -530,7 +530,7 @@ $messages = array(
 'vector-action-protect' => 'Protéger',
 'vector-action-undelete' => 'Rétablir',
 'vector-action-unprotect' => 'Changer la protection',
-'vector-simplesearch-preference' => 'Activer les suggestions de recherche améliorées (seulement pour Vector)',
+'vector-simplesearch-preference' => "Activer la barre de recherche simplifiée (seulement pour l'habillage Vector)",
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Modifier',
 'vector-view-history' => 'Afficher l’historique',
@@ -4112,6 +4112,10 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-bugcheck' => 'Formidable ! Vérifiez simplement que ce n’est pas un des [$1 bogues déjà connus].',
 'feedback-bugnew' => "J'ai vérifié. Signaler un nouveau bogue",
 
+# Search suggestions
+'searchsuggest-search' => 'Rechercher',
+'searchsuggest-containing' => 'contenant...',
+
 # API errors
 'api-error-badaccess-groups' => 'Vous n’êtes pas autorisé à verser des fichiers sur ce wiki.',
 'api-error-badtoken' => 'Erreur interne : mauvais « jeton ».',
@@ -4164,7 +4168,4 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'contenant...',
-'searchsuggest-search' => 'Rechercher',
 );

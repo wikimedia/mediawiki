@@ -516,7 +516,7 @@ $messages = array(
 'vector-action-protect' => 'Zamknout',
 'vector-action-undelete' => 'Obnovit',
 'vector-action-unprotect' => 'Změnit zámek',
-'vector-simplesearch-preference' => 'Zapnout rozšířené návrhy hledání (pouze vzhled Vektor)',
+'vector-simplesearch-preference' => 'Zapnout zjednodušené vyhledávání (pouze vzhled Vektor)',
 'vector-view-create' => 'Založit',
 'vector-view-edit' => 'Editovat',
 'vector-view-history' => 'Zobrazit historii',
@@ -1445,7 +1445,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'stub-threshold' => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'stub-threshold-disabled' => 'Vypnuto',
 'recentchangesdays' => 'Počet dní zobrazených v posledních změnách:',
-'recentchangesdays-max' => '(maximálně $1 {{PLURAL:$1|den|dny|dní}})',
+'recentchangesdays-max' => 'Maximálně $1 {{PLURAL:$1|den|dny|dní}}',
 'recentchangescount' => 'Počet implicitně zobrazovaných záznamů:',
 'prefs-help-recentchangescount' => 'Týká se posledních změn, historie stránek a protokolovacích záznamů.',
 'prefs-help-watchlist-token' => 'Pokud do tohoto pole vyplníte tajný klíč, bude vytvořen RSS kanál vašich sledovaných stránek.
@@ -4046,6 +4046,10 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'feedback-bugcheck' => 'Skvělé! Jen zkontrolujte, zda se nejedná o jednu z [$1 už známých chyb].',
 'feedback-bugnew' => 'Zkontroloval(a) jsem to. Chci ohlásit novou chybu.',
 
+# Search suggestions
+'searchsuggest-search' => 'Hledat',
+'searchsuggest-containing' => 'obsahující…',
+
 # API errors
 'api-error-badaccess-groups' => 'Nemáte povoleno nahrávat soubory na tuto wiki.',
 'api-error-badtoken' => 'Vnitřní chyba: špatný token.',
@@ -4098,6 +4102,4 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'obsahující…',
 );

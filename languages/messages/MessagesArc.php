@@ -633,8 +633,6 @@ $1',
 'search-interwiki-caption' => 'ܬܪ̈ܡܝܬܐ ܐܚܘܬ̈ܐ',
 'search-interwiki-default' => 'ܦܠܛ̈ܐ ܕ $1:',
 'search-interwiki-more' => '(ܝܬܝܪ)',
-'search-mwsuggest-enabled' => 'ܥܡ ܡܚܫܚܬ̈ܐ',
-'search-mwsuggest-disabled' => 'ܠܐ ܡܚܫܚܬ̈ܐ',
 'search-relatedarticle' => 'ܐܚܝܢܝ̈ܐ',
 'searcheverything-enable' => 'ܒܨܝ ܒܟܠ ܚܩܠܬ̈ܐ',
 'searchrelated' => 'ܐܚܝܢܝ̈ܐ',
@@ -1686,5 +1684,9 @@ $1',
 'feedback-subject' => 'ܡܠܘܐܐ:',
 'feedback-message' => 'ܐܓܪܬܐ:',
 'feedback-cancel' => 'ܒܛܘܠ',
+
+# Search suggestions
+'searchsuggest-search' => 'ܒܨܝ',
+'searchsuggest-containing' => 'ܬܚܒܘܫ...',
 
 );

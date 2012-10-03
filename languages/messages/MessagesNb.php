@@ -3980,6 +3980,10 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'feedback-bugcheck' => 'Suprert! Bare sjekk at den ikke er en av de [$1 kjente feilene]',
 'feedback-bugnew' => 'Jeg sjekket. Rapporter en ny bug.',
 
+# Search suggestions
+'searchsuggest-search' => 'Søk',
+'searchsuggest-containing' => 'inneholder …',
+
 # API errors
 'api-error-badaccess-groups' => 'Du har ikke tillatelse til å laste opp filer til denne wikien.',
 'api-error-badtoken' => 'Intern feil: Ugyldig token.',
@@ -4032,7 +4036,4 @@ Om det ikke er tilfellet, kan du bruke det enkle skjemaet som du finner under. K
 'duration-centuries' => '$1 {{PLURAL:$1|århundre|århundrer}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennier}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'inneholder …',
-'searchsuggest-search' => 'Søk',
 );

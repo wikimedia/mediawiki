@@ -338,7 +338,7 @@ $messages = array(
 'vector-action-protect' => 'Spären',
 'vector-action-undelete' => 'Restauréieren',
 'vector-action-unprotect' => 'Spär änneren',
-'vector-simplesearch-preference' => 'Verbessert Sichvirschléi aktiviéieren (nëmme beim Ausgesinn Vector)',
+'vector-simplesearch-preference' => 'Vereinfacht Sichleescht aktivéieren (nëmme beim Ausgesinn Vector)',
 'vector-view-create' => 'Uleeën',
 'vector-view-edit' => 'Änneren',
 'vector-view-history' => 'Versioune weisen',
@@ -3744,6 +3744,10 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'feedback-bugcheck' => 'Super! Kuckt just no ob et net ee vun de schonns [$1 bekannte Feeler] ass.',
 'feedback-bugnew' => 'Ech hunn et nogekuckt. Den neie Bug mellen',
 
+# Search suggestions
+'searchsuggest-search' => 'Sichen',
+'searchsuggest-containing' => 'mat ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Et ass Iech net erlaabt fir Fichieren op dës Wiki eropzelueden.',
 'api-error-badtoken' => 'Interne Feeler: falschen Token.',
@@ -3796,7 +3800,4 @@ Soss kënnt Dir den einfache Formulär hei drënner benotzen. Är Bemierkung gë
 'duration-centuries' => '$1 {{PLURAL:$1|Joerhonnert|Joerhonnerten}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Millenaire|Millenairen}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'mat ...',
-'searchsuggest-search' => 'Sichen',
 );

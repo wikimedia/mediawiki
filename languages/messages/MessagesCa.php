@@ -3774,6 +3774,10 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'feedback-bugcheck' => 'Fantàstic! Comproveu que no sigui un dels [$1 problemes ja coneguts].',
 'feedback-bugnew' => "Ja ho he comprovat. Informeu d'un nou problema",
 
+# Search suggestions
+'searchsuggest-search' => 'Cerca',
+'searchsuggest-containing' => 'que conté ...',
+
 # API errors
 'api-error-badaccess-groups' => 'No teniu permís per a carregar fitxers en aquest wiki.',
 'api-error-badtoken' => 'Error intern: argument incorrecte.',
@@ -3826,7 +3830,4 @@ Altrament, podeu fer servir un senzill formulari a continuació. El vostre comen
 'duration-centuries' => '$1 {{PLURAL:$1|segle|segles}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mil·leni|mil·lenis}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'que conté ...',
-'searchsuggest-search' => 'Cerca',
 );

@@ -3821,6 +3821,10 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'feedback-bugcheck' => 'Gaaf! Kontroleer of dit nie dalk een van die [$1 bekende foute] is nie.',
 'feedback-bugnew' => "Ek het gekontroleer. Rapporteer 'n nuwe fout.",
 
+# Search suggestions
+'searchsuggest-search' => 'Soek',
+'searchsuggest-containing' => 'bevat...',
+
 # API errors
 'api-error-badaccess-groups' => 'U word nie toegelaat om lêers te laai op hierdie wiki.',
 'api-error-badtoken' => 'Interne fout: slegte teken.',
@@ -3873,7 +3877,4 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'duration-centuries' => '$1 {{PLURAL:$1|eeu|eeue}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'bevat...',
-'searchsuggest-search' => 'Soek',
 );

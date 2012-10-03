@@ -3025,6 +3025,7 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'revdelete-unrestricted' => 'sysops se hatawa gae rukawat',
 'newuserlog-byemail' => 'password ke e-mail se bheja gais hai',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'Khojo',
+
 );

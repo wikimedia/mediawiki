@@ -1257,7 +1257,8 @@ Nan lainnyo akan tasuruak sacaro default.
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] bateh:',
 
-# Unknown messages
-'searchsuggest-containing' => 'Barisi...',
+# Search suggestions
 'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'Barisi...',
+
 );

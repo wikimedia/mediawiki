@@ -4186,6 +4186,10 @@ $5
 'feedback-bugcheck' => 'عالی‌است! فقط بررسی کنید که از [$1 ایرادهای شناخته‌شده] نباشد.',
 'feedback-bugnew' => 'بررسی کردم. ایرادی جدید را گزارش بده',
 
+# Search suggestions
+'searchsuggest-search' => 'جستجو',
+'searchsuggest-containing' => 'صفحه‌های دربردارنده...',
+
 # API errors
 'api-error-badaccess-groups' => 'شما اجازهٔ بارگذاری پرونده‌ها را در این ویکی ندارید.',
 'api-error-badtoken' => 'خطای داخلی: کد امنیتی اشتباه (Bad token).',
@@ -4238,7 +4242,4 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'صفحه‌های دربردارنده...',
-'searchsuggest-search' => 'جستجو',
 );

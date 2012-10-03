@@ -1,5 +1,5 @@
 <?php
-/** Avaric (Авар)
+/** Avaric (авар)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -18,35 +18,35 @@ $fallback = 'ru';
 
 $messages = array(
 # Dates
-'sunday'    => 'ГьатӀан',
-'monday'    => 'Итни',
-'tuesday'   => 'Талат',
+'sunday' => 'ГьатӀан',
+'monday' => 'Итни',
+'tuesday' => 'Талат',
 'wednesday' => 'АрбагӀ',
-'thursday'  => 'Хамиз',
-'friday'    => 'Рузман',
-'saturday'  => 'Шаммат',
+'thursday' => 'Хамиз',
+'friday' => 'Рузман',
+'saturday' => 'Шаммат',
 
 'mytalk' => 'Дур бахlс',
-'and'    => '&#32;ва',
+'and' => '&#32;ва',
 
-'errorpagetitle'   => 'Гъалатl',
-'help'             => 'Кумек',
-'history'          => 'Хиса-басазул тарих',
+'errorpagetitle' => 'Гъалатl',
+'help' => 'Кумек',
+'history' => 'Хиса-басазул тарих',
 'printableversion' => 'КутӀизе версия',
-'permalink'        => 'Кидаго букӀунеб рехсей',
-'edit'             => 'Хисизабе',
-'talkpage'         => 'Гьумералда тlасан бахlс',
-'talk'             => 'Бахlс',
-'toolbox'          => 'Алатал',
-'userpage'         => 'ГӀахьалчиясул гьумер',
-'otherlanguages'   => 'Цойги мацӀазда',
+'permalink' => 'Кидаго букӀунеб рехсей',
+'edit' => 'Хисизабе',
+'talkpage' => 'Гьумералда тlасан бахlс',
+'talk' => 'Бахlс',
+'toolbox' => 'Алатал',
+'userpage' => 'ГӀахьалчиясул гьумер',
+'otherlanguages' => 'Цойги мацӀазда',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'        => 'Жакъасел лъугьа-бахъинал',
-'mainpage'             => 'БетӀераб гьумер',
+'currentevents' => 'Жакъасел лъугьа-бахъинал',
+'mainpage' => 'БетӀераб гьумер',
 'mainpage-description' => 'БетӀераб гьумер',
-'portal'               => 'Майдан',
-'portal-url'           => 'Project:Майдан',
+'portal' => 'Майдан',
+'portal-url' => 'Project:Майдан',
 
 'editsection' => 'хисизабизе',
 
@@ -54,12 +54,12 @@ $messages = array(
 'nstab-help' => 'Кумек',
 
 # General errors
-'error'         => 'Гъалатl',
+'error' => 'Гъалатl',
 'internalerror' => 'Жанисеб гъалатl',
-'viewsource'    => 'Код бихьи',
+'viewsource' => 'Код бихьи',
 
 # Login and logout pages
-'userlogin'  => 'ЦIар бице',
+'userlogin' => 'ЦIар бице',
 'userlogout' => 'Къватlиве лъугьине',
 
 # Edit pages
@@ -67,27 +67,27 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Рекъезаби',
-'localtime'   => 'Бакlалъул заман',
+'localtime' => 'Бакlалъул заман',
 
 # User rights
 'userrights-user-editname' => 'ГӀахьалчиясул цӀар хъвай:',
 
 # Recent changes
-'recentchanges'   => 'ЦӀиял хиса-басал',
+'recentchanges' => 'ЦӀиял хиса-басал',
 'rcshowhideminor' => '$1 гӀиси-микъинал хиса-басал',
-'rcshowhidebots'  => '$1 бот',
-'rcshowhideliu'   => '$1 цӀар рагьарал гӀахьалчагӀи',
+'rcshowhidebots' => '$1 бот',
+'rcshowhideliu' => '$1 цӀар рагьарал гӀахьалчагӀи',
 'rcshowhideanons' => '$1 цӀаргьечӀ',
-'rcshowhidemine'  => '$1 дир хиса-басал',
-'diff'            => 'батӀалъи',
-'hide'            => 'Бахчизе',
-'show'            => 'Бихьизабизе',
+'rcshowhidemine' => '$1 дир хиса-басал',
+'diff' => 'батӀалъи',
+'hide' => 'Бахчизе',
+'show' => 'Бихьизабизе',
 'minoreditletter' => 'гӀ.-м.',
-'newpageletter'   => 'ЦӀ',
+'newpageletter' => 'ЦӀ',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Рухьарал хиса-басиял',
-'recentchangeslinked-feed'    => 'Рухьарал хиса-басиял',
+'recentchangeslinked' => 'Рухьарал хиса-басиял',
+'recentchangeslinked-feed' => 'Рухьарал хиса-басиял',
 'recentchangeslinked-toolbox' => 'Рухьарал хиса-басиял',
 
 # Upload
@@ -98,8 +98,8 @@ $messages = array(
 
 # Miscellaneous special pages
 'shortpages' => 'Къокъал макъалаби',
-'longpages'  => 'Кlудиял гьумерал',
-'listusers'  => 'Гlахьалчагlазул сияхl',
+'longpages' => 'Кlудиял гьумерал',
+'listusers' => 'Гlахьалчагlазул сияхl',
 
 # Special:Log
 'specialloguserlabel' => 'ГӀахьалчи:',
@@ -109,19 +109,19 @@ $messages = array(
 
 # Watchlist
 'watchlist' => 'Дур халгьабиялъул сияхl',
-'watch'     => 'хал гьабизе',
+'watch' => 'хал гьабизе',
 
 # Contributions
 'contributions' => 'ГӀахьалчиясул хӀалтӀи',
-'mycontris'     => 'Дур гlахьаллъи',
+'mycontris' => 'Дур гlахьаллъи',
 
 # What links here
 'whatlinkshere' => 'Рехсей гьанибе',
 
 # Move page
 'move-page-legend' => 'Гьумералъул цlар хисизе',
-'movearticle'      => 'Гьумералъул цӀар хисизе',
-'movepagebtn'      => 'Гьумералъул цlар хисизе',
+'movearticle' => 'Гьумералъул цӀар хисизе',
+'movepagebtn' => 'Гьумералъул цlар хисизе',
 
 # Special:SpecialPages
 'specialpages' => 'Хассал гьумерал',

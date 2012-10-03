@@ -2554,6 +2554,10 @@ $1',
 'feedback-close' => 'Әзер',
 'feedback-bugnew' => 'Мин тикшердем. Яңа хата турында хәбәр итү',
 
+# Search suggestions
+'searchsuggest-search' => 'Эзләү',
+'searchsuggest-containing' => 'эчтәлек...',
+
 # API errors
 'api-error-badaccess-groups' => 'Сезгә бу викигә файллар өстәү рөхсәт ителмәгән',
 'api-error-badtoken' => 'Эчке хата: дөрес булмаган токен.',
@@ -2571,7 +2575,4 @@ $1',
 'api-error-uploaddisabled' => 'Бу викидә файллар йөкләү мөмкинлеге сүндерелгән.',
 'api-error-verification-error' => 'Бәлки, бу файл бозылгандыр яки дөрес түгел киңәйтелмәгә ия.',
 
-# Unknown messages
-'searchsuggest-containing' => 'эчтәлек...',
-'searchsuggest-search' => 'Эзләү',
 );

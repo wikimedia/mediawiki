@@ -3376,7 +3376,8 @@ Le imagini le vien mostrà a la risoluzion pi granda che se pol, par i altri tip
 'logentry-newusers-autocreate' => "L'utensa $1 xè stà creà automategamente",
 'newuserlog-byemail' => 'password spedìa par e-mail',
 
-# Unknown messages
-'searchsuggest-containing' => 'che contien...',
+# Search suggestions
 'searchsuggest-search' => 'Serca',
+'searchsuggest-containing' => 'che contien...',
+
 );

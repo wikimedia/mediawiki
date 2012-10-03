@@ -3293,7 +3293,8 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'feedback-cancel' => 'Utzi',
 'feedback-submit' => 'Feedbacka bidali',
 
-# Unknown messages
-'searchsuggest-containing' => 'edukian...',
+# Search suggestions
 'searchsuggest-search' => 'Bilatu',
+'searchsuggest-containing' => 'edukian...',
+
 );

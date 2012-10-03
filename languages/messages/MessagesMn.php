@@ -3307,6 +3307,7 @@ $5
 'revdelete-unrestricted' => 'системийн операторуудаас авч хаясан хязгаарлалтууд',
 'newuserlog-byemail' => 'мэйлээр явуулсан нууц үг',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'Хайх',
+
 );

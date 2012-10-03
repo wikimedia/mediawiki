@@ -3548,6 +3548,10 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'feedback-bugcheck' => 'Выдатна! Толькі праверце, што ў спісе [$1 вядомых памылак] яе няма падобнага запісу.',
 'feedback-bugnew' => 'Я праверыў. Паведаміць пра новую памылку',
 
+# Search suggestions
+'searchsuggest-search' => 'Знайсці',
+'searchsuggest-containing' => 'змяшчае...',
+
 # API errors
 'api-error-badaccess-groups' => 'У Вас няма дазволу загружаць файлы ў гэтую вікі.',
 'api-error-badtoken' => 'Унутраная памылка: няслушны ключ.',
@@ -3587,7 +3591,4 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'api-error-uploaddisabled' => 'Загрузка ў гэтую вікі адключаная.',
 'api-error-verification-error' => 'Гэты файл можа быць пашкоджаны, ці мае няслушнае пашырэнне.',
 
-# Unknown messages
-'searchsuggest-containing' => 'змяшчае...',
-'searchsuggest-search' => 'Знайсці',
 );

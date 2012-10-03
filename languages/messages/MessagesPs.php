@@ -2643,6 +2643,9 @@ $5
 'feedback-cancel' => 'ناګارل',
 'feedback-close' => 'ترسره شو',
 
+# Search suggestions
+'searchsuggest-search' => 'پلټل',
+
 # API errors
 'api-error-duplicate-popup-title' => 'غبرګونې {{PLURAL:$1|دوتنه|دوتنې}}.',
 'api-error-empty-file' => 'کومه دوتنه چې تاسې دلته سپارلې هغه تشه ده.',
@@ -2666,6 +2669,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|پېړۍ|پېړۍ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|زرمه|زرمې}}',
 
-# Unknown messages
-'searchsuggest-search' => 'پلټل',
 );

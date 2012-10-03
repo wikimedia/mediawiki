@@ -3686,6 +3686,10 @@ Sunscht chasch au s eifach Formular unte nutze. Dyy Kommentar wird, zämme mit D
 'feedback-bugcheck' => 'Schen! Bitte iberprief no, eb s sich doderby nit um e scho [$1 bekannte Fähler] handlet.',
 'feedback-bugnew' => 'Ich haa s iberprieft. Dr nej Fähler mälde.',
 
+# Search suggestions
+'searchsuggest-search' => 'Suechi',
+'searchsuggest-containing' => 'din het s …',
+
 # API errors
 'api-error-badaccess-groups' => 'Du derfsch keini Dateie in des Wiki uffelade.',
 'api-error-badtoken' => 'Intärne Fähler: Dr Token isch fählerhaft.',
@@ -3738,7 +3742,4 @@ Sunscht chasch au s eifach Formular unte nutze. Dyy Kommentar wird, zämme mit D
 'duration-centuries' => '$1 {{PLURAL:$1|Johrhundert|Johrhundert}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtöusert|Jahrtöusert}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'din het s …',
-'searchsuggest-search' => 'Suechi',
 );

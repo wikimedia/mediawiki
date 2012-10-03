@@ -1735,7 +1735,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'revdelete-unrestricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
 'newuserlog-byemail' => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
 
-# Unknown messages
-'searchsuggest-containing' => 'আসেতা...',
+# Search suggestions
 'searchsuggest-search' => 'বিসারা',
+'searchsuggest-containing' => 'আসেতা...',
+
 );

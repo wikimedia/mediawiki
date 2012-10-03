@@ -300,7 +300,7 @@ $messages = array(
 'vector-action-protect' => 'సంరక్షించు',
 'vector-action-undelete' => 'తిరిగి చేర్చు',
 'vector-action-unprotect' => 'సంరక్షణను మార్చు',
-'vector-simplesearch-preference' => 'మెరుగైన అన్వేషణ సలహాలని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
+'vector-simplesearch-preference' => 'సరళమైన వెతుకుడు పట్టీని చేతనంచేయి (వెక్టర్ అలంకారానికి మాత్రమే)',
 'vector-view-create' => 'సృష్టించు',
 'vector-view-edit' => 'సవరించు',
 'vector-view-history' => 'చరిత్రను చూడండి',
@@ -3522,6 +3522,9 @@ $5
 'feedback-bugcheck' => 'అద్భుతం! ఇది ఇప్పటికే [$1 తెలిసిన బగ్గుల]లో లేదని సరిచూసుకోండి.',
 'feedback-bugnew' => 'చూసాను. కొత్త బగ్గును నివేదించు',
 
+# Search suggestions
+'searchsuggest-search' => 'వెతుకు',
+
 # API errors
 'api-error-badaccess-groups' => 'ఈ వికీ లోనికి దస్త్రాలను ఎక్కించే అనుమతి మీకు లేదు.',
 'api-error-duplicate-archive-popup-title' => 'నకిలీ {{PLURAL:$1|దస్త్రాన్ని|దస్త్రాలను}} ఇప్పటికే తొలగించారు.',
@@ -3558,6 +3561,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|శతాబ్దం|శతాబ్దాలు}}',
 'duration-millennia' => '$1 {{PLURAL:$1|సహస్రాబ్దం|సహస్రాబ్దాలు}}',
 
-# Unknown messages
-'searchsuggest-search' => 'వెతుకు',
 );
