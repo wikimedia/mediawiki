@@ -628,8 +628,6 @@ Per infurmazion, varda ind el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGE
 'search-interwiki-caption' => 'Pruget fredej',
 'search-interwiki-default' => '$1 resültaa',
 'search-interwiki-more' => '(püssee)',
-'search-mwsuggest-enabled' => 'cun sügeriment',
-'search-mwsuggest-disabled' => 'senza sügeriment',
 'nonefound' => "''''Tenzión''': la ricerca la vegn fada in utumategh dumà per un quaj namespace.
 Pröa a giuntagh denanz a la tò ricerca ''all:'' per cercà in tücc i namespace (cumpres i discüssión, i mudel, etc...) o dupra el namespace vursüü 'me prefiss.",
 'powersearch' => 'Truvá',

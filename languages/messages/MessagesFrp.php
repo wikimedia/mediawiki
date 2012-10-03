@@ -4060,6 +4060,10 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'feedback-bugcheck' => 'Formidâblo ! Controlâd simplament qu’o est pas yona de les [$1 cofieries ja cognues].',
 'feedback-bugnew' => 'J’é controlâ. Signalar una cofierie novèla',
 
+# Search suggestions
+'searchsuggest-search' => 'Rechèrchiér',
+'searchsuggest-containing' => 'que contint...',
+
 # API errors
 'api-error-badaccess-groups' => 'Vos éte pas ôtorisâ a tèlèchargiér des fichiérs sur ceti vouiqui.',
 'api-error-badtoken' => 'Èrror de dedens : crouyo « jeton ».',
@@ -4110,7 +4114,4 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'duration-centuries' => '$1 sièclo{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 milènèro{{PLURAL:$1||s}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'que contint...',
-'searchsuggest-search' => 'Rechèrchiér',
 );

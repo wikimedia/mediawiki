@@ -340,8 +340,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'search-suggest' => 'Ómeka na lokomá : $1',
 'search-interwiki-default' => 'Bozwi bwa $1 :',
 'search-interwiki-more' => '(elekí)',
-'search-mwsuggest-enabled' => 'na bokáni',
-'search-mwsuggest-disabled' => 'na bokáni tɛ́',
 'searchall' => 'nyɔ́nsɔ',
 'nonefound' => "'''Notí''' : Boluki bwa likwá bosálí na ndámbo ya ntáká ya nkómbó.
 Ómeka kobakisa ''all:'' o libóso lya esɛ́ngi mpɔ̂ na koluka maloba ma nkomá mánsɔ (ekɔ́tí ntembe, bimekisele, b.n.b.), tǒ kobakisa ntáka ya nkómbó eye olingí o libóso.",

@@ -3893,6 +3893,10 @@ $5
 'feedback-bugcheck' => 'Ωραία! Ελέγξτε μόνο ότι δεν είναι ήδη ένα από τα [ $1  γνωστά σφάλματα].',
 'feedback-bugnew' => 'Έλεγξα. Αναφέρετε ένα νέο σφάλμα',
 
+# Search suggestions
+'searchsuggest-search' => 'Αναζήτηση',
+'searchsuggest-containing' => 'περιέχει...',
+
 # API errors
 'api-error-badaccess-groups' => 'Δεν επιτρέπεται να ανεβάσετε αρχεία σε αυτό το wiki.',
 'api-error-badtoken' => 'Εσωτερικό σφάλμα: εσφαλμένο διακριτικό.',
@@ -3943,7 +3947,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|Αιώνα|αιώνες}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Χιλιετία|Χιλιετίες}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'περιέχει...',
-'searchsuggest-search' => 'Αναζήτηση',
 );

@@ -3558,6 +3558,10 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'feedback-bugcheck' => 'بعوت ودیا ! صرف ایہ ویکھو جے کیا ایہ پہلے لبے ہوۓ [$1 known bugs] چو اک تے نئیں۔',
 'feedback-bugnew' => 'میں ویکھیا اے۔ نویں بگ دی رپورٹ کرو۔',
 
+# Search suggestions
+'searchsuggest-search' => 'کھوج',
+'searchsuggest-containing' => 'بند کر ریا اے۔۔۔',
+
 # API errors
 'api-error-badaccess-groups' => 'تھوانوں ایس وکی تے فائلاں چڑھان دی اجازت نئیں۔',
 'api-error-badtoken' => 'اندر دی غلطی: برا ٹوکن',
@@ -3597,7 +3601,4 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'api-error-uploaddisabled' => 'فائل جڑھانا ایس وکی تے بند اے۔',
 'api-error-verification-error' => 'اے فائل کرپٹ ہو سکدی یا فیر ایدا فارمیٹ غلط اے۔',
 
-# Unknown messages
-'searchsuggest-containing' => 'بند کر ریا اے۔۔۔',
-'searchsuggest-search' => 'کھوج',
 );

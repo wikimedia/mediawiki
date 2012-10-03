@@ -3961,6 +3961,10 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'feedback-bugcheck' => 'Perfeito! Apenas verifique se não é um dos [$1 bugs já conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Relatar um bug novo',
 
+# Search suggestions
+'searchsuggest-search' => 'Pesquisa',
+'searchsuggest-containing' => 'contendo...',
+
 # API errors
 'api-error-badaccess-groups' => 'Você não tem permissão para enviar arquivos para este wiki.',
 'api-error-badtoken' => 'Erro interno: token inválido.',
@@ -4013,7 +4017,4 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milênio|milênios}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'contendo...',
-'searchsuggest-search' => 'Pesquisa',
 );

@@ -3922,6 +3922,10 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'feedback-bugcheck' => 'Odlično! Molimo provjerite da se ne radi o nekom [$1 poznatom "bugu"].',
 'feedback-bugnew' => 'Provjereno. Prijavi novu grešku',
 
+# Search suggestions
+'searchsuggest-search' => 'Traži',
+'searchsuggest-containing' => 'sadrži...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nemate ovlasti da postavljate datoteke na ovoj wiki.',
 'api-error-badtoken' => 'Unutrašnja greška: token nije ispravan.',
@@ -3965,7 +3969,4 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
 'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'sadrži...',
-'searchsuggest-search' => 'Traži',
 );

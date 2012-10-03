@@ -588,8 +588,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'search-interwiki-caption' => 'Kardaş proyektlär',
 'search-interwiki-default' => '$1 rezultatlar:',
 'search-interwiki-more' => '(taa çok)',
-'search-mwsuggest-enabled' => 'tekliflerlän',
-'search-mwsuggest-disabled' => 'tekliflersiz',
 'nonefound' => "'''Bennemäk''': Sadä kimi ad erleri sessizcä aaranêr.
 Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aaramaa deyni (sözleşmäk sayfaları, şablonlar h.b.pay alarak), yaki kullanınız beenilän prefiksi sansın er adı.",
 'powersearch' => 'Gelişmiş arama',

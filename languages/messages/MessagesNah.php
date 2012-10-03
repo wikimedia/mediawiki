@@ -1501,6 +1501,9 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 # HTML forms
 'htmlform-selectorother-other' => 'Occē',
 
+# Search suggestions
+'searchsuggest-search' => 'Tlatēmoliztli',
+
 # API errors
 'api-error-ok-but-empty' => 'Tlâtek îtlakawilistli: Âmò tènankilia in tlatèmakani.',
 'api-error-overwrite' => 'Awel motlâkuilnepanòltis sè èwalli tlèn yi katki.',

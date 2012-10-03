@@ -3713,6 +3713,9 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'feedback-bugcheck' => "Bin fàit! Ch'a contròla mach ch'a sia pa già un dij [$1 bigat conossù].",
 'feedback-bugnew' => "I l'heu controlà. Arpòrta n'eror neuv.",
 
+# Search suggestions
+'searchsuggest-search' => 'Arserca',
+
 # API errors
 'api-error-badaccess-groups' => "Chiel a peul pa carié d'archivi su sta wiki.",
 'api-error-badtoken' => 'Eror antern: sìmbol pa bon.',
@@ -3765,6 +3768,4 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 'duration-centuries' => '$1 {{PLURAL:$1|sécol|sécoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenari|milenari}}',
 
-# Unknown messages
-'searchsuggest-search' => 'Arserca',
 );

@@ -3777,6 +3777,10 @@ $5
 'feedback-bugcheck' => 'उत्तम! फक्त एकदा खात्री करा की हा [$1 अगोदरच माहिती असलेला बग] तर नाहीये.',
 'feedback-bugnew' => 'मी तपासले आहे. हा एक नवीन बग म्हणून नोंद करावी',
 
+# Search suggestions
+'searchsuggest-search' => 'शोधा',
+'searchsuggest-containing' => '.......हे असलेले',
+
 # API errors
 'api-error-badaccess-groups' => 'आपणास ह्या विकीवर संचिका चढवण्याची परवानगी नाही',
 'api-error-badtoken' => 'अंतर्गत चूक: अयोग्य टोकन',
@@ -3826,7 +3830,4 @@ $5
 'duration-decades' => '$1 {{PLURAL:$1|दशकापूर्वी|दशकांपूर्वी }}',
 'duration-centuries' => '$1 {{PLURAL:$1|शतकापूर्वी|शतकांपूर्वी }}',
 
-# Unknown messages
-'searchsuggest-containing' => '.......हे असलेले',
-'searchsuggest-search' => 'शोधा',
 );

@@ -1682,6 +1682,7 @@ Nke ozor gí zonari na áká onwe ha.
 'htmlform-reset' => 'Emekwàlà gbanwere',
 'htmlform-selectorother-other' => 'Nke ozor',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-search' => 'Chọwa',
+
 );

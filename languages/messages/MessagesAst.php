@@ -3777,6 +3777,10 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'feedback-bugcheck' => '¡Perfeuto! Comprueba que nun tea yá ente los [$1 fallos conocíos].',
 'feedback-bugnew' => "Yá lo comprobé. Informar d'esti fallu nuevu",
 
+# Search suggestions
+'searchsuggest-search' => 'Guetar',
+'searchsuggest-containing' => 'que contién...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nun tienes permisu pa xubir ficheros a esta wiki.',
 'api-error-badtoken' => 'Fallu internu: token incorreutu.',
@@ -3829,7 +3833,4 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'duration-centuries' => '$1 {{PLURAL:$1|sieglu|sieglos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenios}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'que contién...',
-'searchsuggest-search' => 'Guetar',
 );

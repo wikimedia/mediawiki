@@ -3748,6 +3748,10 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'feedback-bugcheck' => 'Allillanmi! Llanchirillay [$1 riqsisqapura huk pantasqañachu] mana kanmanchu.',
 'feedback-bugnew' => 'Llanchisqañam. Musuq pantasqamanta willay',
 
+# Search suggestions
+'searchsuggest-search' => 'Maskay',
+'searchsuggest-containing' => 'kaykunayuq: ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Kay wikipiqa willañiqikunata manam churkuyta atinkichu.',
 'api-error-badtoken' => 'Ukhupi pantasqa: Mana allinta sananchasqa.',
@@ -3798,7 +3802,4 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'duration-centuries' => '{{PLURAL:$1|pachakwata|pachakwatakuna}}',
 'duration-millennia' => '{{PLURAL:$1|waranqawata|waranqawatakuna}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'kaykunayuq: ...',
-'searchsuggest-search' => 'Maskay',
 );

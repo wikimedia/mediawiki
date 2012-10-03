@@ -4837,6 +4837,12 @@ $4 is the gender of the target user.',
 'feedback-bugcheck' => 'Message that appears before the user submits a bug, reminding them to check for known bugs.',
 'feedback-bugnew' => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
 
+# Search suggestions
+'searchsuggest-search' => 'Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)
+
+{{Identical|Search}}',
+'searchsuggest-containing' => 'Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.',
+
 # API errors
 'api-error-badaccess-groups' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-badtoken' => 'API error message that can be used for client side localisation of API errors.',
@@ -4889,9 +4895,4 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
-# Unknown messages
-'searchsuggest-containing' => 'Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.',
-'searchsuggest-search' => 'Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)
-
-{{Identical|Search}}',
 );

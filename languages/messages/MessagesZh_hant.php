@@ -368,7 +368,7 @@ $messages = array(
 'vector-action-protect' => '保護',
 'vector-action-undelete' => '恢復被刪頁面',
 'vector-action-unprotect' => '更改保護',
-'vector-simplesearch-preference' => '啟用加強搜尋建議（僅限 Vector 外觀）',
+'vector-simplesearch-preference' => '啟用簡化搜尋欄（僅限 Vector 外觀）',
 'vector-view-create' => '建立',
 'vector-view-edit' => '編輯',
 'vector-view-history' => '檢視歷史',
@@ -3841,6 +3841,10 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'feedback-bugcheck' => '請檢查此bug是否為[$1 已知bug]。',
 'feedback-bugnew' => '我已經檢查過。報告一個新的bug',
 
+# Search suggestions
+'searchsuggest-search' => '搜尋',
+'searchsuggest-containing' => '包含...',
+
 # API errors
 'api-error-badaccess-groups' => '您沒有權限在此維基項目上傳文件。',
 'api-error-badtoken' => '內部錯誤：標記無效。',
@@ -3893,7 +3897,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'searchsuggest-containing' => '包含...',
-'searchsuggest-search' => '搜尋',
 );

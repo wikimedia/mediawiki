@@ -485,7 +485,7 @@ $messages = array(
 'vector-action-protect' => 'സം‌രക്ഷിക്കുക',
 'vector-action-undelete' => 'മായ്ക്കപ്പെട്ടത് പുനഃസ്ഥാപിക്കുക',
 'vector-action-unprotect' => 'സംരക്ഷണത്തിൽ മാറ്റംവരുത്തുക',
-'vector-simplesearch-preference' => 'മെച്ചപ്പെട്ട തിരച്ചിൽ നിർദ്ദേശങ്ങൾ തരിക (വെക്റ്റർ ദൃശ്യരൂപത്തിൽ മാത്രം)',
+'vector-simplesearch-preference' => 'ലളിതമായ തിരച്ചിൽ സൗകര്യം സജ്ജമാക്കുക (വെക്റ്റർ ദൃശ്യരൂപത്തിൽ മാത്രം)',
 'vector-view-create' => 'സൃഷ്ടിക്കുക',
 'vector-view-edit' => 'തിരുത്തുക',
 'vector-view-history' => 'നാൾവഴി കാണുക',
@@ -3959,6 +3959,10 @@ $5
 'feedback-bugcheck' => 'കൊള്ളാം! [$1 അറിയാവുന്ന ബഗുകളിൽ] ഒന്നല്ല എന്ന് ഒന്നു പരിശോധിച്ചേക്കുക.',
 'feedback-bugnew' => 'ഞാൻ പരിശോധിച്ചു. പുതിയൊരു ബഗ് ചേർക്കുക',
 
+# Search suggestions
+'searchsuggest-search' => 'തിരയുക',
+'searchsuggest-containing' => 'ഉൾപ്പെടുന്നവ...',
+
 # API errors
 'api-error-badaccess-groups' => 'ഈ വിക്കിയിൽ പ്രമാണങ്ങൾ അപ്‌ലോഡ് ചെയ്യാൻ താങ്കൾക്കനുവാദമില്ല.',
 'api-error-badtoken' => 'ആന്തരിക പിഴവ്: ഗുണകരമല്ലാത്ത ചീട്ട്.',
@@ -4011,7 +4015,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|ഒരു നൂറ്റാണ്ട്|$1 നൂറ്റാണ്ട്}}',
 'duration-millennia' => '{{PLURAL:$1|ഒരു സഹസ്രാബ്ദം|$1 സഹസ്രാബ്ദം}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ഉൾപ്പെടുന്നവ...',
-'searchsuggest-search' => 'തിരയുക',
 );

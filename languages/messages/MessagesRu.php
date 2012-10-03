@@ -4170,6 +4170,10 @@ MediaWiki распространяется в надежде, что она бу
 'feedback-bugcheck' => 'Прекрасно! Только проверьте, что в списке [$1 известных ошибок] её нет подобной записи.',
 'feedback-bugnew' => 'Я проверил. Сообщить о новой ошибке',
 
+# Search suggestions
+'searchsuggest-search' => 'Поиск',
+'searchsuggest-containing' => 'содержащие…',
+
 # API errors
 'api-error-badaccess-groups' => 'Вам не разрешено загружать файлы в эту вики.',
 'api-error-badtoken' => 'Внутренняя ошибка:  некорректный токен.',
@@ -4222,7 +4226,4 @@ MediaWiki распространяется в надежде, что она бу
 'duration-centuries' => '$1 {{PLURAL:$1|век|века|веков}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'содержащие…',
-'searchsuggest-search' => 'Поиск',
 );

@@ -3986,6 +3986,10 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'feedback-bugcheck' => "Granne! Appene verificate ca non g'è une de le [$1 bug canusciute].",
 'feedback-bugnew' => "Agghie verificate. Manne 'nu bug nuève",
 
+# Search suggestions
+'searchsuggest-search' => 'Cirche',
+'searchsuggest-containing' => 'tène...',
+
 # API errors
 'api-error-badaccess-groups' => 'Tu non ge puè carecà file sus a sta Uicchi.',
 'api-error-badtoken' => 'Errore inderne: Gettone errate.',
@@ -4038,7 +4042,4 @@ Ce nò, tu puè ausà 'u module facile aqquà sotte. 'U commende tune avène agg
 'duration-centuries' => '$1 {{PLURAL:$1|sechele|sechele}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennie|millennie}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'tène...',
-'searchsuggest-search' => 'Cirche',
 );

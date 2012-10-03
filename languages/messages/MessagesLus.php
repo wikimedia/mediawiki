@@ -1932,7 +1932,8 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'feedback-message' => 'Thu',
 'feedback-cancel' => 'Sûtna',
 
-# Unknown messages
-'searchsuggest-containing' => 'hemi thu telna hi...',
+# Search suggestions
 'searchsuggest-search' => 'Zawnna',
+'searchsuggest-containing' => 'hemi thu telna hi...',
+
 );

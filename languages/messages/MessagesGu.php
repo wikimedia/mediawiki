@@ -3754,6 +3754,10 @@ $5
 'feedback-bugcheck' => 'સરસ! જરા જોઈ લેશો કે આ  પહેલેથી જ હાજર [$1 known bugs] નથીને?',
 'feedback-bugnew' => 'મેં તપાસ્યું.  નવી ત્રુટીની જાણ કરો.',
 
+# Search suggestions
+'searchsuggest-search' => 'શોધો',
+'searchsuggest-containing' => 'ધરાવતી...',
+
 # API errors
 'api-error-badaccess-groups' => 'આ વિકિ પર ફાઈલ ચઢાવવાની પરવાનગી તમને નથી.',
 'api-error-badtoken' => 'આંતરીક ત્રુટી: ખરાબ ટોકન',
@@ -3804,7 +3808,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|શતાબ્દી|શતાબ્દીઓ}}',
 'duration-millennia' => '$1 {{PLURAL:$1|સહસ્ત્રાબ્દી|સહસ્ત્રાબ્દીઓ}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ધરાવતી...',
-'searchsuggest-search' => 'શોધો',
 );

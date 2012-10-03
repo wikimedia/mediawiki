@@ -2105,6 +2105,7 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 # New logging system
 'newuserlog-byemail' => 'parol e-mail vastasınen yiberilgen',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-containing' => 'içinde bu olğan...',
+
 );

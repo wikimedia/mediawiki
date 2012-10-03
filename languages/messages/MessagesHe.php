@@ -4108,6 +4108,10 @@ $5
 'feedback-bugcheck' => 'מצוין! נא לבדוק שזה לא אחד מה[$1 באגים הידועים].',
 'feedback-bugnew' => 'בדקתי. נא לדווח כבאג חדש',
 
+# Search suggestions
+'searchsuggest-search' => 'חיפוש',
+'searchsuggest-containing' => 'כולל...',
+
 # API errors
 'api-error-badaccess-groups' => 'אינכם מורשים להעלות קבצים לאתר הוויקי הזה.',
 'api-error-badtoken' => 'שגיאה פנימית: אסימון רע.',
@@ -4160,7 +4164,4 @@ $5
 'duration-centuries' => '{{PLURAL:$1|מאה שנה|מאתיים שנה|$1 מאות שנים}}',
 'duration-millennia' => '{{PLURAL:$1|אלף שנה|אלפיים שנה|$1 אלפי שנים}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'כולל...',
-'searchsuggest-search' => 'חיפוש',
 );

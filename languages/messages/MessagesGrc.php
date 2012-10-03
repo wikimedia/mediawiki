@@ -823,8 +823,6 @@ $1",
 'search-interwiki-caption' => 'Ἀδελφὰ σχέδια',
 'search-interwiki-default' => '$1 ἀποτελέσματα:',
 'search-interwiki-more' => '(πλείω)',
-'search-mwsuggest-enabled' => "μεθ'ὑποδείξεων",
-'search-mwsuggest-disabled' => 'οὐκ αἵτινες ὑποδείξεις',
 'search-relatedarticle' => 'Σχετικά',
 'mwsuggest-disable' => 'Μὴ ἐνεργαὶ αἱ ὑποδείξεις AJAX',
 'searcheverything-enable' => 'Ζήτησις ἐν πᾶσι τοῖς ὀνοματοχώροις',
@@ -2716,5 +2714,9 @@ $5
 
 # Feedback
 'feedback-cancel' => 'Ἀκυροῦν',
+
+# Search suggestions
+'searchsuggest-search' => 'Ζητεῖν',
+'searchsuggest-containing' => 'περιέχον...',
 
 );

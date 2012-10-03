@@ -305,8 +305,6 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'search-interwiki-caption' => 'Schweschterprojekt',
 'search-interwiki-default' => '$1 Ergebnis:',
 'search-interwiki-more' => '(meh)',
-'search-mwsuggest-enabled' => 'mid Vorschläch',
-'search-mwsuggest-disabled' => 'kää Vorschläch',
 'nonefound' => "'''Hiiwais:''' S werre standardmäßich numme e Dail Namensraim durchsucht. Setz ''all:'' vor Dai Suchbegriff zum alle Saide (mit Dischbediersaide, Voalaache usw.) durchsuche odder direkt de Name vum Namensraum, wu durchsucht werre sell.",
 'powersearch' => 'Erwaiterte Such',
 'powersearch-legend' => 'Erwaiterte Such',
@@ -764,5 +762,8 @@ Annere Metadate sinn standardmäßig versteckelt.
 
 # Feedback
 'feedback-close' => 'Erledischd',
+
+# Search suggestions
+'searchsuggest-search' => 'Suche',
 
 );

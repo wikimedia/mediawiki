@@ -2110,6 +2110,7 @@ $5
 # New logging system
 'newuserlog-byemail' => 'пароль e-mail вастасынен йиберильген',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-containing' => 'ичинде бу олгъан...',
+
 );

@@ -3718,6 +3718,10 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'feedback-bugcheck' => 'Nasayaaten! Kitaem tapno saan a dagiti adda idin a [$1 nga amammo a kitkiteb].',
 'feedback-bugnew' => 'Kinitak. Ireporta ti baro a kiteb',
 
+# Search suggestions
+'searchsuggest-search' => 'Biruken',
+'searchsuggest-containing' => 'naglaon ti...',
+
 # API errors
 'api-error-badaccess-groups' => 'Saan mo a mabalin ti agipan kadagiti papeles iti daytoy a wiki.',
 'api-error-badtoken' => 'Kinauneg a biddut: Dakes a tandaan.',
@@ -3770,7 +3774,4 @@ Nupay kasta, mau-sarmo ti nakabuklan dita baba. Ti komentario nga itedmo ket mai
 'duration-centuries' => '$1 {{PLURAL:$1|siglo|sig-siglo}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|mil-milenio}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'naglaon ti...',
-'searchsuggest-search' => 'Biruken',
 );

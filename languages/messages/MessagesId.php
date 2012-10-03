@@ -3936,6 +3936,10 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'feedback-bugcheck' => 'Hebat! Hanya periksa bahwa itu bukan satu di antara [$1 bug yang telah dikenal].',
 'feedback-bugnew' => 'Saya telah memeriksa. Laporkan bug baru',
 
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'isian ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Anda tidak diizinkan mengunggah berkas ke wiki ini.',
 'api-error-badtoken' => 'Kesalahan internal: token buruk.',
@@ -3986,7 +3990,4 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'duration-centuries' => '{{PLURAL:$1||}}$1 abad',
 'duration-millennia' => '{{PLURAL:$1||}}$1 milenium',
 
-# Unknown messages
-'searchsuggest-containing' => 'isian ...',
-'searchsuggest-search' => 'Cari',
 );

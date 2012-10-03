@@ -3060,6 +3060,10 @@ Coba ku sawangan normal.',
 'feedback-message' => 'Surat:',
 'feedback-cancel' => 'Bolay',
 
+# Search suggestions
+'searchsuggest-search' => 'Sungsi',
+'searchsuggest-containing' => 'ngandung...',
+
 # API errors
 'api-error-file-too-large' => 'Berkas nu dikirim gedé teuing.',
 'api-error-filename-tooshort' => 'Ngaran berkas pondok teuing.',
@@ -3080,7 +3084,4 @@ Coba ku sawangan normal.',
 'duration-centuries' => '$1 {{PLURAL:$1|abad|abad}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milénium|milénium}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ngandung...',
-'searchsuggest-search' => 'Sungsi',
 );

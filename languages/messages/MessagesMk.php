@@ -4236,6 +4236,10 @@ $5
 'feedback-bugcheck' => 'Одлично! Само проверете да не е една од [$1 веќе познатите грешки].',
 'feedback-bugnew' => 'Проверив. Пријави ја како нова грешка.',
 
+# Search suggestions
+'searchsuggest-search' => 'Пребарување',
+'searchsuggest-containing' => 'содржи...',
+
 # API errors
 'api-error-badaccess-groups' => 'Не ви е дозволено да подигате податотеки на ова вики.',
 'api-error-badtoken' => 'Внатрешна грешка: неисправен жетон.',
@@ -4288,7 +4292,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'содржи...',
-'searchsuggest-search' => 'Пребарување',
 );

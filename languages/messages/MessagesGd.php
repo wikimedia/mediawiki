@@ -1532,6 +1532,7 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 # Special:Tags
 'tag-filter' => 'Criathrag [[Special:Tags|Tag]]:',
 
-# Unknown messages
+# Search suggestions
 'searchsuggest-containing' => 'anns a bheil...',
+
 );

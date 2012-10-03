@@ -2990,6 +2990,10 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'feedback-error3' => 'Àsìṣe: Kò sí ìdáhùn látọ̀dọ̀ API',
 'feedback-close' => 'Ṣetán',
 
+# Search suggestions
+'searchsuggest-search' => 'Ṣàwárí',
+'searchsuggest-containing' => 'tó ní...',
+
 # API errors
 'api-error-filename-tooshort' => 'Orúkọ fáílì kéréjú bó ṣe yẹ lọ.',
 'api-error-unknown-code' => 'Àsìṣe aláìlójúùtú: "$1".',
@@ -3003,7 +3007,4 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'duration-weeks' => '{{PLURAL:$1|ọ̀sẹ̀|ọ̀sẹ̀}} $1',
 'duration-years' => '{{PLURAL:$1|ọdún|ọdún}} $1',
 
-# Unknown messages
-'searchsuggest-containing' => 'tó ní...',
-'searchsuggest-search' => 'Ṣàwárí',
 );

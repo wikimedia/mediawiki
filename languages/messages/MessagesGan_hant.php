@@ -789,8 +789,6 @@ $2',
 'search-interwiki-caption' => '姊妹計劃',
 'search-interwiki-default' => '$1隻結果：',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建議',
-'search-mwsuggest-disabled' => '冇建議',
 'searchrelated' => '相關',
 'searchall' => '所有',
 'showingresults' => '底下從第<b>$2</b>條顯示起先嗰<b>$1</b>條結果:',
@@ -2292,5 +2290,8 @@ $3
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|標籤]]過濾器：',
+
+# Search suggestions
+'searchsuggest-search' => '尋吖',
 
 );

@@ -3807,6 +3807,9 @@ $5
 'feedback-bugcheck' => 'शानदार! जांच ले कहीं ये [ $1 known bugs] पहले से ही न हो ।',
 'feedback-bugnew' => 'मैं जाँच कीया। एक नया बग रिपोर्ट करें',
 
+# Search suggestions
+'searchsuggest-search' => 'खोज',
+
 # API errors
 'api-error-badaccess-groups' => 'आपको इस विकि के लिए फ़ाइलें अपलोड करने की अनुमति नहीं है.',
 'api-error-badtoken' => 'आंतरिक त्रुटि: बुरी टोकन।',
@@ -3859,6 +3862,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|शताब्दी}}',
 'duration-millennia' => '$1 {{PLURAL:$1|सहस्राब्दी}}',
 
-# Unknown messages
-'searchsuggest-search' => 'खोज',
 );

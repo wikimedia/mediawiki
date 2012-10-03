@@ -1619,7 +1619,8 @@ Tjerat kanë me mbetë të mshefuna.
 'revdelete-restricted' => 'u vendosën kufizime për administruesit',
 'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
 
-# Unknown messages
-'searchsuggest-containing' => 'përmban ...',
+# Search suggestions
 'searchsuggest-search' => 'Kërkim',
+'searchsuggest-containing' => 'përmban ...',
+
 );

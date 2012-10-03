@@ -388,8 +388,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'search-suggest' => 'Yu laik tok: $1',
 'search-interwiki-default' => '$1 ol painim:',
 'search-interwiki-more' => '(moa)',
-'search-mwsuggest-enabled' => 'halivim mi',
-'search-mwsuggest-disabled' => 'nogat halivim mi',
 'searchall' => 'olgeta',
 'powersearch' => 'Mobeta Painim',
 'powersearch-legend' => 'Mobeta Painim',
@@ -886,5 +884,8 @@ Yu inap lukim as tok bilong em',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Narapela',
+
+# Search suggestions
+'searchsuggest-search' => 'Painim',
 
 );

@@ -2985,6 +2985,9 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'logentry-newusers-create' => '$1 criau na utenza',
 'newuserlog-byemail' => 'password mannata via mail',
 
+# Search suggestions
+'searchsuggest-search' => 'Ricerca',
+
 # API errors
 'api-error-nomodule' => 'Erruri nternu: nun fu mpustatu lu mòdulu di carricamentu',
 'api-error-ok-but-empty' => 'Erruri ntenru: nudda risposta dû server',
@@ -2994,6 +2997,4 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 'api-error-unclassified' => "S'avvirificau n'erruri scanusciutu",
 'api-error-unknown-code' => 'Erruri scanusciuti: "$1$".',
 
-# Unknown messages
-'searchsuggest-search' => 'Ricerca',
 );

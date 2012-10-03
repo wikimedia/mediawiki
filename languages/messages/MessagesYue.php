@@ -3374,7 +3374,8 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 'revdelete-unrestricted' => '已經拎走對於操作員嘅限制',
 'newuserlog-byemail' => '密碼已由電郵寄出',
 
-# Unknown messages
-'searchsuggest-containing' => '名單傳送緊...',
+# Search suggestions
 'searchsuggest-search' => '搵嘢',
+'searchsuggest-containing' => '名單傳送緊...',
+
 );

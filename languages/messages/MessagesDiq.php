@@ -4661,6 +4661,10 @@ Ena sita dı newke xırabiya teknik esta.',
 'feedback-bugcheck' => 'Harika! Sadece [xırabina ke $1 ] çınyayışê cı kontrol keno.',
 'feedback-bugnew' => 'Mı qontrol ke. Xetaya newi xeber ke',
 
+# Search suggestions
+'searchsuggest-search' => 'Cı geyre',
+'searchsuggest-containing' => 'Estên...',
+
 # API errors
 'api-error-badaccess-groups' => 'Ena wiki de dosya barkerdışi rê mısade nêdeyêno.',
 'api-error-badtoken' => 'Xirabiya zerrek:Xırab resim.',
@@ -4713,7 +4717,4 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'Estên...',
-'searchsuggest-search' => 'Cı geyre',
 );

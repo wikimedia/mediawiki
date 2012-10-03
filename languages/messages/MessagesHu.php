@@ -3904,6 +3904,10 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'feedback-bugcheck' => 'Nagyszerű! Ellenőrizd, hogy ez nem egy [$1 ismert hiba].',
 'feedback-bugnew' => 'Ellenőriztem. Új hiba jelentése',
 
+# Search suggestions
+'searchsuggest-search' => 'Keresés',
+'searchsuggest-containing' => 'tartalmazza…',
+
 # API errors
 'api-error-badaccess-groups' => 'Nincs jogod fájlokat feltölteni erre a wikire.',
 'api-error-badtoken' => 'Belső hiba: hibás token.',
@@ -3956,7 +3960,4 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'duration-centuries' => '{{PLURAL:$1|egy|$1}} évszázad',
 'duration-millennia' => '{{PLURAL:$1|egy|$1}} évezred',
 
-# Unknown messages
-'searchsuggest-containing' => 'tartalmazza…',
-'searchsuggest-search' => 'Keresés',
 );

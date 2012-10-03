@@ -3688,6 +3688,10 @@ Salain ngitu, Pian kawa mamuruk prmulir nyaman di bawah ngini. Kumintar Pian aka
 'feedback-bugcheck' => 'Harat! hanyar dipariksa bahwasa ngini lainan salah asa [$1 bug nang dipinandui].',
 'feedback-bugnew' => 'Ulun mamariksa. Malapurakan sabuah bug hanyar',
 
+# Search suggestions
+'searchsuggest-search' => 'Gagai',
+'searchsuggest-containing' => 'isian ...',
+
 # API errors
 'api-error-missingresult' => 'Kasalahan intarnal: kada kawa manantuakan napakah panyalinan tuntung.',
 'api-error-mustbeloggedin' => 'Pian harus babuat ka log gasan maunggah barakas.',
@@ -3706,7 +3710,4 @@ Salain ngitu, Pian kawa mamuruk prmulir nyaman di bawah ngini. Kumintar Pian aka
 'api-error-uploaddisabled' => 'Paunggahan dinunaktipakan di wiki naya.',
 'api-error-verification-error' => 'Barakas naya kira-kira rusak atawa baisi ikstinsi nang salah.',
 
-# Unknown messages
-'searchsuggest-containing' => 'isian ...',
-'searchsuggest-search' => 'Gagai',
 );

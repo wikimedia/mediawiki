@@ -3630,6 +3630,10 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'feedback-bugcheck' => 'Perfecto! Comprebe nomás que no sía un [$1 fallo conoixiu].',
 'feedback-bugnew' => "L'he comprebau. Informar d'un nuevo fallo.",
 
+# Search suggestions
+'searchsuggest-search' => 'Mirar',
+'searchsuggest-containing' => 'que contién...',
+
 # API errors
 'api-error-badaccess-groups' => 'No puetz cargar fichers en iste wiki.',
 'api-error-badtoken' => 'Error interna: Simbolo incorrecto.',
@@ -3669,7 +3673,4 @@ Si no, puet usar o siguient formulario. O suyo comentario será adhibiu a la pac
 'api-error-uploaddisabled' => 'As cargas de fichers son desactivadas en iste wiki.',
 'api-error-verification-error' => 'Iste fichero puede estar danyau, u tiene una extensión incorrecta.',
 
-# Unknown messages
-'searchsuggest-containing' => 'que contién...',
-'searchsuggest-search' => 'Mirar',
 );

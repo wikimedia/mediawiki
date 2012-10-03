@@ -3144,7 +3144,8 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
 'newuserlog-byemail' => 'parol e-poçta bilen iberildi',
 
-# Unknown messages
-'searchsuggest-containing' => 'öz içine alýar...',
+# Search suggestions
 'searchsuggest-search' => 'Gözleg',
+'searchsuggest-containing' => 'öz içine alýar...',
+
 );

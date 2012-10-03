@@ -838,8 +838,6 @@ Sedema qedexekirina $3 ev e: ''$2''",
 'search-interwiki-caption' => 'Projeyên hevçeng',
 'search-interwiki-default' => '$1 encam:',
 'search-interwiki-more' => '(bêhtir)',
-'search-mwsuggest-enabled' => 'bi pêşniyazan',
-'search-mwsuggest-disabled' => 'pêşniyaz tune',
 'search-relatedarticle' => 'Pêwendîdar',
 'searchrelated' => 'pêwendîdar',
 'searchall' => 'hemû',
@@ -2148,5 +2146,9 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 'feedback-subject' => 'Mijar:',
 'feedback-message' => 'Peyam:',
 'feedback-cancel' => 'Betal bike',
+
+# Search suggestions
+'searchsuggest-search' => 'Lêgerîn',
+'searchsuggest-containing' => 'dihundirîne...',
 
 );

@@ -3948,6 +3948,10 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'feedback-bugcheck' => 'Bonega! Nur konfirmu ke ĝi ne jam ekzistas inter la [$1 konataj cimoj].',
 'feedback-bugnew' => 'Mi konfirmis. Raportu novan cimon.',
 
+# Search suggestions
+'searchsuggest-search' => 'Serĉi',
+'searchsuggest-containing' => 'enhavas...',
+
 # API errors
 'api-error-badaccess-groups' => 'Vi ne havas permeson alŝuti dosierojn al tiu ĉi vikio.',
 'api-error-badtoken' => 'Interna eraro: fuŝaĵo.',
@@ -4000,7 +4004,4 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'duration-centuries' => '$1 {{PLURAL:$1|jarcento|jarcentoj}}',
 'duration-millennia' => '$1 {{PLURAL:$1|jarmilo|jarmiloj}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'enhavas...',
-'searchsuggest-search' => 'Serĉi',
 );

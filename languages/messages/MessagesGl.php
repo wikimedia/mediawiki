@@ -380,7 +380,7 @@ $messages = array(
 'vector-action-protect' => 'Protexer',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar a protección',
-'vector-simplesearch-preference' => 'Activar as suxestións de procura melloradas (soamente na aparencia Vector)',
+'vector-simplesearch-preference' => 'Activar a barra de procuras simplificada (soamente na aparencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver o historial',
@@ -1384,7 +1384,7 @@ Este cambio non se poderá desfacer.',
 'prefs-memberingroups' => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration' => 'Data e hora de rexistro:',
 'yourrealname' => 'Nome real:',
-'yourlanguage' => 'Lingua da interface:',
+'yourlanguage' => 'Lingua:',
 'yourvariant' => 'Variante de lingua para os contidos:',
 'prefs-help-variant' => 'A variante ou ortografía preferida na que mostrar o contido das páxinas deste wiki.',
 'yournick' => 'Sinatura:',
@@ -3938,6 +3938,10 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'feedback-bugcheck' => 'Perfecto! Comprobe que aínda non está entre os [$1 erros coñecidos].',
 'feedback-bugnew' => 'Comprobeino. Informar deste novo erro',
 
+# Search suggestions
+'searchsuggest-search' => 'Procurar',
+'searchsuggest-containing' => 'que conteña...',
+
 # API errors
 'api-error-badaccess-groups' => 'Non ten os permisos necesarios para cargar ficheiros neste wiki.',
 'api-error-badtoken' => 'Erro interno: Pase incorrecto.',
@@ -3990,6 +3994,4 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'duration-centuries' => '$1 {{PLURAL:$1|século|séculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenio|milenios}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'que conteña...',
 );

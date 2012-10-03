@@ -1,5 +1,5 @@
 <?php
-/** Hausa (هَوُسَ)
+/** Hausa (Hausa)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -351,8 +351,6 @@ Fasali: '''({{int:cur}})''' = bambanci da zubi na yanzu, '''({{int:last}})''' = 
 'search-interwiki-caption' => 'Shire-shire masu dangantaka',
 'search-interwiki-default' => 'Sakamakon $1:',
 'search-interwiki-more' => '(ƙari)',
-'search-mwsuggest-enabled' => 'Tare da shawarwari',
-'search-mwsuggest-disabled' => 'Banda shawarwari',
 'searchall' => 'duka',
 'nonefound' => "'''Hattara''': Galibi wasu sararen suna ƙalilan kawai ake nemowa.
 Ku gwada tare da amfani da \"all:\" don bincikar duka shafunan (har da shafunan muhawara, mulaye, d.s.), ko kuma ku yi amfani da sararin sunan da kuke so.",

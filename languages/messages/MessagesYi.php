@@ -3638,6 +3638,10 @@ $5
 'feedback-bugcheck' => 'געוואלדיק! אבער זייט בודק אז עס איז נישט איינער פון די [$1 באוואוסטע באגן].',
 'feedback-bugnew' => "כ'האב בודק געווען. רעפארטירט א נייעם באג.",
 
+# Search suggestions
+'searchsuggest-search' => 'זוכן',
+'searchsuggest-containing' => 'כולל…',
+
 # API errors
 'api-error-badaccess-groups' => 'איר האט נישט קיין רעכטן אַרויפֿלאָדן טעקעס אויף דער וויקי.',
 'api-error-badtoken' => 'אינערלעכער גרײַז: סימן טויג נישט.',
@@ -3690,7 +3694,4 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|יארהונדערט|יארהונדערטער}}',
 'duration-millennia' => '$1 {{PLURAL:$1|יארטויזנט|יארטויזנטער}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'כולל…',
-'searchsuggest-search' => 'זוכן',
 );

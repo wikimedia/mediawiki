@@ -1720,7 +1720,8 @@ Bittscheh d' noraale Vurschau bnutzen.",
 'htmlform-reset' => 'Änderrungen ryckgängég mochen',
 'htmlform-selectorother-other' => 'Åndre',
 
-# Unknown messages
-'searchsuggest-containing' => 'Voitextsuach noch ...',
+# Search suggestions
 'searchsuggest-search' => 'Suach',
+'searchsuggest-containing' => 'Voitextsuach noch ...',
+
 );

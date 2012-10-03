@@ -3155,6 +3155,10 @@ Tovuti hii inapata matatatizo wakati huu.',
 'feedback-thanks' => 'Ahsante! Maoni yako yamewekwa kwenye ukurasa wa "[$2 $1]".',
 'feedback-close' => 'Tayari',
 
+# Search suggestions
+'searchsuggest-search' => 'Kutafuta',
+'searchsuggest-containing' => 'ya maneno...',
+
 # API errors
 'api-error-empty-file' => 'Faili ulilowasilisha ni tupu.',
 'api-error-emptypage' => 'Kutengeneza mpya, kurasa tupu hazikubaliwi',
@@ -3175,7 +3179,4 @@ Tovuti hii inapata matatatizo wakati huu.',
 'duration-years' => '$1 {{PLURAL:$1|year|miaka}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|karne}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ya maneno...',
-'searchsuggest-search' => 'Kutafuta',
 );

@@ -2361,6 +2361,10 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'feedback-error2' => "Aroke : Li candjaedje n' a nén stî",
 'feedback-close' => 'Fwait',
 
+# Search suggestions
+'searchsuggest-search' => 'Cweri',
+'searchsuggest-containing' => 'ki contént...',
+
 # API errors
 'api-error-badaccess-groups' => "Vos n' avoz nén l' droet d' eberweter des fitchîs so ç' wiki cial",
 'api-error-copyuploaddisabled' => "Les eberwetaedjes pa URL ni vont nén so ç' sierveu cial.",
@@ -2409,7 +2413,4 @@ Acertinez s' i vs plait ki vos vloz vormint rifé cisse pådje ci.",
 'duration-centuries' => '$1 sieke{{PLURAL:$1||s}}',
 'duration-millennia' => '$1 meynaire{{PLURAL:$1||s}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'ki contént...',
-'searchsuggest-search' => 'Cweri',
 );

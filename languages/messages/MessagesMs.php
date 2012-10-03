@@ -351,7 +351,7 @@ $messages = array(
 'vector-action-protect' => 'Lindungi',
 'vector-action-undelete' => 'Batal hapus',
 'vector-action-unprotect' => 'Ubah perlindungan',
-'vector-simplesearch-preference' => 'Bolehkan cadangan carian lanjutan (kulit Vector sahaja)',
+'vector-simplesearch-preference' => 'Bolehkan bar carian ringkas (kulit Vector sahaja)',
 'vector-view-create' => 'Cipta',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Lihat sejarah',
@@ -3844,6 +3844,10 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'feedback-bugcheck' => 'Bagus! Cuma pastikan itu bukan salah satu [$1 pepijat] yang sedia diketahui.',
 'feedback-bugnew' => 'Saya dah semak. Laporkan pepijat baru',
 
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'mengandungi...',
+
 # API errors
 'api-error-badaccess-groups' => 'Anda tidak dibenarkan memuat naik fail di wiki ini.',
 'api-error-badtoken' => 'Ralat dalaman: token tak elok.',
@@ -3896,7 +3900,4 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'duration-centuries' => '$1 abad',
 'duration-millennia' => '$1 alaf',
 
-# Unknown messages
-'searchsuggest-containing' => 'mengandungi...',
-'searchsuggest-search' => 'Cari',
 );

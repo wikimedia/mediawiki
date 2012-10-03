@@ -4065,6 +4065,10 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'feedback-bugcheck' => 'Mahusay! Suriin lang na hindi pa ito isa sa [$1 nalalamang mga depekto].',
 'feedback-bugnew' => 'Sinuri ko na. Mag-ulat ng panibagong sira',
 
+# Search suggestions
+'searchsuggest-search' => 'Maghanap',
+'searchsuggest-containing' => 'naglalaman ng ...',
+
 # API errors
 'api-error-badaccess-groups' => 'Hindi ka pinapayagang makapagkarga ng mga talaksan papunta sa wiking ito.',
 'api-error-badtoken' => 'Panloob na kamalian: masamang kahalip.',
@@ -4117,7 +4121,4 @@ O kaya, maaari mong gamitin ang maginhawang pormularyo sa ibaba. Ang iyong pagpu
 'duration-centuries' => '$1 {{PLURAL:$1|daantaon|mga daantaon}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyo|mga milenyo}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'naglalaman ng ...',
-'searchsuggest-search' => 'Maghanap',
 );

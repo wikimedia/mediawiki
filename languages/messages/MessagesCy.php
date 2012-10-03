@@ -3699,6 +3699,9 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'feedback-bugcheck' => "Iawn! Gwnewch yn siwr yn gyntaf nag ydy hwn yn un o'r [$1 bygiau hysbys].",
 'feedback-bugnew' => "Edrychais ar y bygiau hysbys. Mae byg newydd gennyf i'w adrodd",
 
+# Search suggestions
+'searchsuggest-containing' => 'yn cynnwys...',
+
 # API errors
 'api-error-badaccess-groups' => 'Nid oes caniatad gennych i uwchlwytho ffeiliau ar y wici hwn.',
 'api-error-badtoken' => 'Gwall mewnol: tocyn gwael.',
@@ -3751,6 +3754,4 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'duration-centuries' => '$1 {{PLURAL:$1|canmlwydd|ganmlwydd|ganmlwydd|canmlwydd|chanmlwydd|canmlwydd}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milflwydd|filflwydd|filflwydd|milflwydd|milflwydd|milflwydd}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'yn cynnwys...',
 );

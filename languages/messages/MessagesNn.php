@@ -3765,6 +3765,9 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'feedback-bugcheck' => 'Bra! No lyt du berre sjå etter om han er ein av dei [$1 kjende feila].',
 'feedback-bugnew' => 'Eg såg etter. Rapporter ein ny feil',
 
+# Search suggestions
+'searchsuggest-search' => 'Søk',
+
 # API errors
 'api-error-badaccess-groups' => 'Du har ikkje løyve til å lasta opp filer til wikien.',
 'api-error-badtoken' => 'Intern feil: ugild token.',
@@ -3817,6 +3820,4 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 'duration-centuries' => '$1 {{PLURAL:$1|hundreår|hundreår}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tusenår|tusenår}}',
 
-# Unknown messages
-'searchsuggest-search' => 'Søk',
 );

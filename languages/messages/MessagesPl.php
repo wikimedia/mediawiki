@@ -4036,6 +4036,9 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'feedback-bugcheck' => 'Świetnie! Tylko sprawdź, czy nie jest już jednym ze [$1 znanych błędów].',
 'feedback-bugnew' => '{{GENDER:|Sprawdziłem|Sprawdziłam}}. Zgłoś nowy błąd',
 
+# Search suggestions
+'searchsuggest-search' => 'Szukaj',
+
 # API errors
 'api-error-badaccess-groups' => 'Nie masz uprawnień aby przesyłać pliki do tej wiki.',
 'api-error-badtoken' => 'Błąd wewnętrzny – żeton wykorzystywany do identyfikacji użytkownika jest nieprawidłowy.',
@@ -4088,6 +4091,4 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 'duration-centuries' => '$1 {{PLURAL:$1|stulecie|stulecia|stuleci}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tysiąclecie|tysiąclecia|tysiącleci}}',
 
-# Unknown messages
-'searchsuggest-search' => 'Szukaj',
 );

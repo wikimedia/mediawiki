@@ -502,7 +502,7 @@ $messages = array(
 'vector-action-protect' => '보호',
 'vector-action-undelete' => '되살리기',
 'vector-action-unprotect' => '보호 설정 바꾸기',
-'vector-simplesearch-preference' => '향상된 검색어 제안 사용하기 (벡터 스킨 전용)',
+'vector-simplesearch-preference' => '단순한 찾기 막대 사용하기 (벡터 스킨 전용)',
 'vector-view-create' => '만들기',
 'vector-view-edit' => '편집',
 'vector-view-history' => '역사',
@@ -2385,6 +2385,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # User Messenger
 'usermessage-summary' => '시스템 메시지 남기기',
 'usermessage-editor' => '시스템 메신저',
+'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist' => '주시문서 목록',
@@ -2500,8 +2501,8 @@ $UNWATCHURL
 'rollback' => '편집 되돌리기',
 'rollback_short' => '되돌리기',
 'rollbacklink' => '되돌리기',
-'rollbacklinkcount' => '되돌리기 편집 $1회',
-'rollbacklinkcount-morethan' => '되돌리기 편집 $1회 이상',
+'rollbacklinkcount' => '편집 $1회 되돌리기',
+'rollbacklinkcount-morethan' => '편집 $1회 이상 되돌리기',
 'rollbackfailed' => '되돌리기 실패',
 'cantrollback' => '편집을 되돌릴 수 없습니다.
 문서를 편집한 사용자가 한명뿐입니다.',
@@ -2677,6 +2678,7 @@ $1',
 'sp-contributions-username' => 'IP 주소 또는 사용자 이름:',
 'sp-contributions-toponly' => '최신판만 보기',
 'sp-contributions-submit' => '찾기',
+'sp-contributions-explain' => '',
 
 # What links here
 'whatlinkshere' => '여기를 가리키는 문서',
@@ -4100,6 +4102,10 @@ $5
 'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 보고서]에 올라와 있는지 확인해주세요.',
 'feedback-bugnew' => '확인했습니다. 새로운 버그 보고서를 작성합니다.',
 
+# Search suggestions
+'searchsuggest-search' => '찾기',
+'searchsuggest-containing' => '다음의 어구가 들어간 문서 찾기',
+
 # API errors
 'api-error-badaccess-groups' => '당신은 이 위키에 파일을 올릴 권한이 없습니다.',
 'api-error-badtoken' => '내부 오류: 토큰이 잘못되었습니다.',
@@ -4152,7 +4158,4 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
-# Unknown messages
-'searchsuggest-containing' => '다음의 어구가 들어간 문서 찾기',
-'searchsuggest-search' => '찾기',
 );

@@ -751,8 +751,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'search-interwiki-caption' => 'Dokterėnē pruojektā',
 'search-interwiki-default' => '$1 rezoltatā:',
 'search-interwiki-more' => '(daugiau)',
-'search-mwsuggest-enabled' => 'so pasiūlīmās',
-'search-mwsuggest-disabled' => 'nie pasiūlīmu',
 'search-relatedarticle' => 'Sosėjėn',
 'mwsuggest-disable' => 'Kavuotė AJAX pasiūlīmus',
 'searchrelated' => 'sosėjėn',

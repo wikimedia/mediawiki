@@ -323,6 +323,7 @@ $1',
 'versionrequiredtext' => 'Был бит менән эшләү өсөн MediaWiki-ның $1 версияһы кәрәк. [[Special:Version|Ҡулланылған версия тураһында мәғлүмәт битен]] ҡара.',
 
 'ok' => 'Тамам',
+'pagetitle' => '{{SITENAME}} проектынан',
 'retrievedfrom' => 'Сығанағы — «$1»',
 'youhavenewmessages' => 'Яңы $1 бар ($2).',
 'newmessageslink' => 'яңы хәбәр',
@@ -3665,6 +3666,10 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'feedback-bugcheck' => 'Шәп! Тик [$1 билдәле хаталар] исемлегендә оҡшаш белдереүҙең булмауына иғтибар итегеҙ.',
 'feedback-bugnew' => 'Тикшерҙем. Яңы хата тураһында белдерергә',
 
+# Search suggestions
+'searchsuggest-search' => 'Эҙләү',
+'searchsuggest-containing' => 'эстәлегендә...',
+
 # API errors
 'api-error-badaccess-groups' => 'Һеҙгә был викиға файлдар күсереү рөхсәт ителмәй',
 'api-error-badtoken' => 'Эске хата: дөрөҫ булмаған токен',
@@ -3717,7 +3722,4 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'duration-centuries' => '$1 {{PLURAL:$1|быуат|быуаттар}}',
 'duration-millennia' => '$1 {{PLURAL:$1|меңйыллыҡ|меңйыллыҡтар}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'эстәлегендә...',
-'searchsuggest-search' => 'Эҙләү',
 );

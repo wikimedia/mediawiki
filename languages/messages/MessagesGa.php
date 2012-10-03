@@ -802,8 +802,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'search-interwiki-caption' => 'Comhthionscadail',
 'search-interwiki-default' => '$1 torthaí:',
 'search-interwiki-more' => '(níos mó)',
-'search-mwsuggest-enabled' => 'le moltaí',
-'search-mwsuggest-disabled' => 'gan mholtaí',
 'search-relatedarticle' => 'Gaolmhar',
 'mwsuggest-disable' => 'Díchumasaigh moltaí AJAX',
 'searchrelated' => 'gaolmhara',
@@ -2233,5 +2231,8 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 # Feedback
 'feedback-message' => 'Teachtaireacht:',
 'feedback-cancel' => 'Cealaigh',
+
+# Search suggestions
+'searchsuggest-search' => 'Cuardaigh',
 
 );

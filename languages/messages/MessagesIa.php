@@ -3882,6 +3882,10 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'feedback-bugcheck' => 'Bon! Ma per favor verifica que iste falta non es [$1 jam cognoscite].',
 'feedback-bugnew' => 'Si, io lo ha verificate; reportar un nove falta',
 
+# Search suggestions
+'searchsuggest-search' => 'Cercar',
+'searchsuggest-containing' => 'continente...',
+
 # API errors
 'api-error-badaccess-groups' => 'Tu non ha le permission de incargar files in iste wiki.',
 'api-error-badtoken' => 'Error interne: indicio invalide.',
@@ -3934,7 +3938,4 @@ Si non, tu pote usar le formulario facile hic infra. Tu commento essera addite a
 'duration-centuries' => '$1 {{PLURAL:$1|seculo|seculos}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millennios}}',
 
-# Unknown messages
-'searchsuggest-containing' => 'continente...',
-'searchsuggest-search' => 'Cercar',
 );

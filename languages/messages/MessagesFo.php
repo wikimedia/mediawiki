@@ -2251,6 +2251,9 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
 
+# Search suggestions
+'searchsuggest-search' => 'Leita',
+
 # API errors
 'api-error-empty-file' => 'Fílan sum tú sendi inn var tóm.',
 'api-error-file-too-large' => 'Fílan sum tú sendi inn var óv stór.',
@@ -2260,6 +2263,4 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 'api-error-unclassified' => 'Ein ókendur feilur hendi.',
 'api-error-unknown-code' => 'Ókendur feilur: "$1"',
 
-# Unknown messages
-'searchsuggest-search' => 'Leita',
 );

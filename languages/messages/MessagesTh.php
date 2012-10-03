@@ -3469,10 +3469,11 @@ $5
 'feedback-adding' => 'เพิ่มคำติชมเข้าไปที่หน้า...',
 'feedback-close' => 'เสร็จสิ้น',
 
+# Search suggestions
+'searchsuggest-search' => 'ค้นหา',
+'searchsuggest-containing' => 'ประกอบไปด้วย...',
+
 # API errors
 'api-error-mustbeloggedin' => 'กรุณาลงชื่อเข้าใช้เพื่ออัปโหลดไฟล์',
 
-# Unknown messages
-'searchsuggest-containing' => 'ประกอบไปด้วย...',
-'searchsuggest-search' => 'ค้นหา',
 );
