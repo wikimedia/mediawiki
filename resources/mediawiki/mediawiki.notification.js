@@ -291,8 +291,19 @@
 			} )
 			// Fix the top/left position to the current computed position from which we
 			// can animate upwards.
-			.css( this.$notification.position() )
-			// Animate opacity and top to create fade upwards animation for notification closing
+			.css( this.$notification.position() );
+			
+		// This needs to be done *after* notification's position has been made absolute.
+		if ( options.placeholder ) {
+			// Insert a placeholder with a height equal to the height of the
+			// notification plus it's vertical margins in place of the notification
+			var $placeholder = $( '<div>' )
+				.css( 'height', this.$notification.outerHeight( true ) )
+				.insertBefore( this.$notification );
+		}
+		
+		// Animate opacity and top to create fade upwards animation for notification closing
+		this.$notification
 			.animate( {
 				opacity: 0,
 				top: '-=35'
@@ -311,14 +322,6 @@
 					}
 				}
 			} );
-
-		if ( options.placeholder ) {
-			// Insert a placeholder with a height equal to the height of the
-			// notification plus it's vertical margins in place of the notification
-			var $placeholder = $( '<div>' )
-				.css( 'height', this.$notification.outerHeight( true ) )
-				.insertBefore( this.$notification );
-		}
 	};
 
 	/**
