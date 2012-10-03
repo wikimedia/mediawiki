@@ -14,6 +14,7 @@ production.
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 
 === New features in 1.21 ===
+* Added one click AJAX patrolling. This can be disabled using $wgAjaxPatrol.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
