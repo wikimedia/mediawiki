@@ -806,27 +806,77 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackend::getFileContents()
-	 * @return bool|string
+	 * @see FileBackendStore::doGetFileContentsMulti()
+	 * @return Array
 	 */
-	public function getFileContents( array $params ) {
-		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
-		if ( $srcRel === null ) {
-			return false; // invalid storage path
+	protected function doGetFileContentsMulti( array $params ) {
+		$contents = array();
+
+		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
+		// Blindly create tmp files and stream to them, catching any exception if the file does
+		// not exist. Doing a stat here is useless causes infinite loops in addMissingMetadata().
+		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
+			$cfOps = array(); // (path => CF_Async_Op)
+
+			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
+				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+				if ( $srcRel === null ) {
+					$contents[$path] = false;
+					continue;
+				}
+				$data = false;
+				try {
+					$sContObj = $this->getContainer( $srcCont );
+					$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
+					// Get source file extension
+					$ext = FileBackend::extensionFromPath( $path );
+					// Create a new temporary memory file...
+					$handle = fopen( 'php://temp', 'wb' );
+					if ( $handle ) {
+						$headers = $this->headersFromParams( $params );
+						if ( count( $pathBatch ) > 1 ) {
+							$cfOps[$path] = $obj->stream_async( $handle, $headers );
+							$cfOps[$path]->_file_handle = $handle; // close this later
+						} else {
+							$obj->stream( $handle, $headers );
+							rewind( $handle ); // start from the beginning
+							$data = stream_get_contents( $handle );
+							fclose( $handle );
+						}
+					} else {
+						$data = false;
+					}
+				} catch ( NoSuchContainerException $e ) {
+					$data = false;
+				} catch ( NoSuchObjectException $e ) {
+					$data = false;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$data = false;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				$contents[$path] = $data;
+			}
+
+			$batch = new CF_Async_Op_Batch( $cfOps );
+			$cfOps = $batch->execute();
+			foreach ( $cfOps as $path => $cfOp ) {
+				try {
+					$cfOp->getLastResponse();
+					rewind( $cfOp->_file_handle ); // start from the beginning
+					$contents[$path] = stream_get_contents( $cfOp->_file_handle );
+				} catch ( NoSuchContainerException $e ) {
+					$contents[$path] = false;
+				} catch ( NoSuchObjectException $e ) {
+					$contents[$path] = false;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$contents[$path] = false;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				fclose( $cfOp->_file_handle ); // close open handle
+			}
 		}
 
-		$data = false;
-		try {
-			$sContObj = $this->getContainer( $srcCont );
-			$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-			$data = $obj->read( $this->headersFromParams( $params ) );
-		} catch ( NoSuchContainerException $e ) {
-		} catch ( NoSuchObjectException $e ) {
-		} catch ( CloudFilesException $e ) { // some other exception?
-			$this->handleException( $e, null, __METHOD__, $params );
-		}
-
-		return $data;
+		return $contents;
 	}
 
 	/**
@@ -1046,7 +1096,6 @@ class SwiftFileBackend extends FileBackendStore {
 		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
 			$cfOps = array(); // (path => CF_Async_Op)
 
-			$handles = array(); // open file handles for async ops
 			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
 				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
 				if ( $srcRel === null ) {
@@ -1067,7 +1116,7 @@ class SwiftFileBackend extends FileBackendStore {
 							$headers = $this->headersFromParams( $params );
 							if ( count( $pathBatch ) > 1 ) {
 								$cfOps[$path] = $obj->stream_async( $handle, $headers );
-								$handles[] = $handle; // close this later
+								$cfOps[$path]->_file_handle = $handle; // close this later
 							} else {
 								$obj->stream( $handle, $headers );
 								fclose( $handle );
@@ -1100,8 +1149,8 @@ class SwiftFileBackend extends FileBackendStore {
 					$tmpFiles[$path] = null;
 					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
 				}
+				fclose( $cfOp->_file_handle ); // close open handle
 			}
-			array_map( 'fclose', $handles ); // close open handles
 		}
 
 		return $tmpFiles;

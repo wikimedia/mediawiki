@@ -937,21 +937,27 @@ class FileBackendTest extends MediaWikiTestCase {
 	private function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$srcs = (array)$source;
+		foreach ( $srcs as $src ) {
+			$this->prepare( array( 'dir' => dirname( $src ) ) );
+			$status = $this->backend->doOperation(
+				array( 'op' => 'create', 'content' => $content, 'dst' => $src ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $src succeeded ($backendName)." );
+		}
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertGoodStatus( $status,
-			"Creation of file at $source succeeded ($backendName)." );
-		$this->assertEquals( true, $status->isOK(),
-			"Creation of file at $source succeeded with OK status ($backendName)." );
-
-		$newContents = $this->backend->getFileContents( array( 'src' => $source, 'latest' => 1 ) );
-		$this->assertNotEquals( false, $newContents,
-			"Read of file at $source succeeded ($backendName)." );
-
-		$this->assertEquals( $content, $newContents,
-			"Contents read match data at $source ($backendName)." );
+		if ( is_array( $source ) ) {
+			$contents = $this->backend->getFileContentsMulti( array( 'srcs' => $source ) );
+			foreach ( $contents as $path => $data ) {
+				$this->assertNotEquals( false, $data, "Contents of $path exists ($backendName)." );
+				$this->assertEquals( $content, $data, "Contents of $path is correct ($backendName)." );
+			}
+			$this->assertEquals( $source, array_keys( $contents ), "Contents in right order ($backendName)." );
+		} else {
+			$data = $this->backend->getFileContents( array( 'src' => $source ) );
+			$this->assertNotEquals( false, $data, "Contents of $source exists ($backendName)." );
+			$this->assertEquals( $content, $data, "Contents of $source is correct ($backendName)." );
+		}
 	}
 
 	function provider_testGetFileContents() {
@@ -960,6 +966,10 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = $this->baseStorePath();
 		$cases[] = array( "$base/unittest-cont1/e/b/z/some_file.txt", "some file contents" );
 		$cases[] = array( "$base/unittest-cont1/e/b/some-other_file.txt", "more file contents" );
+		$cases[] = array(
+			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
+			"$base/unittest-cont1/e/a/z.txt" ),
+			"some clone file contents" );
 
 		return $cases;
 	}
