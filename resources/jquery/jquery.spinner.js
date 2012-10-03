@@ -45,6 +45,7 @@
 		 *
 		 * @param {Object|String} opts [optional] ID string or options:
 		 *  - id: If given, spinner will be given an id of "mw-spinner-<id>"
+		 *  - className: If given, spinner will be given an additional class of "mw-spinner-<className>"
 		 *  - size: 'small' (default) or 'large' for a 20-pixel or 32-pixel spinner
 		 *  - type: 'inline' (default) or 'block'. Inline creates an inline-block with width and
 		 *    height equal to spinner size. Block is a block-level element with width 100%, height
@@ -63,6 +64,9 @@
 			var $spinner = $( '<div>', { 'class': 'mw-spinner', 'title': '...' } );
 			if ( opts.id !== undefined ) {
 				$spinner.attr( 'id', 'mw-spinner-' + opts.id );
+			}
+			if ( opts.className !== undefined ) {
+				$spinner.addClass( 'mw-spinner-' + opts.className );
 			}
 
 			$spinner.addClass( opts.size === 'large' ? 'mw-spinner-large' : 'mw-spinner-small' );
