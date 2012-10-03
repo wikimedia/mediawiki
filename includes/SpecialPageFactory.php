@@ -83,7 +83,7 @@ class SpecialPageFactory {
 		'PagesWithProp'             => 'SpecialPagesWithProp',
 
 		// Login/create account
-		'Userlogin'                 => 'LoginForm',
+		'Userlogin'                 => 'SpecialUserlogin',
 		'CreateAccount'             => 'SpecialCreateAccount',
 
 		// Users and rights
