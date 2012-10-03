@@ -505,14 +505,30 @@ nowiki 3
 ### Comments
 ###
 !! test
-Comment test 1
+Comments and Pre
 !! input
 <!-- comment 1 --> asdf
+
+<!-- comment 1 --> asdf
 <!-- comment 2 -->
+
+<!-- comment 1 --> asdf
+<!-- comment 2 -->xyz
+
+<!-- comment 1 --> asdf
+<!-- comment 2 --> xyz
 !! result
 <pre>asdf
 </pre>
-
+<pre>asdf
+</pre>
+<pre>asdf
+</pre>
+<p>xyz
+</p>
+<pre>asdf
+xyz
+</pre>
 !! end
 
 !! test
