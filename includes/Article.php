@@ -961,6 +961,7 @@ class Article extends Page {
 
 		$token = $user->getEditToken( $rcid );
 		$outputPage->preventClickjacking();
+		$outputPage->addModules( 'mediawiki.page.patrol.ajax' );
 
 		$link = Linker::linkKnown(
 			$this->getTitle(),
