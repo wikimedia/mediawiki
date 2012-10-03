@@ -228,7 +228,10 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mConn = null;
 	protected $mOpened = false;
 
-	/** @var Array */
+	/**
+	 * @since 1.20
+	 * @var array of callable
+	 */
 	protected $trxIdleCallbacks = array();
 
 	protected $mTablePrefix;
@@ -2860,8 +2863,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * This is useful for updates to different systems or separate transactions are needed.
 	 *
+	 * @since 1.20
+	 *
 	 * @param Closure $callback
-	 * @return void
 	 */
 	final public function onTransactionIdle( Closure $callback ) {
 		if ( $this->mTrxLevel ) {
@@ -2872,7 +2876,9 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Actually run the "on transaction idle" callbacks
+	 * Actually run the "on transaction idle" callbacks.
+	 *
+	 * @since 1.20
 	 */
 	protected function runOnTransactionIdleCallbacks() {
 		$e = null; // last exception
