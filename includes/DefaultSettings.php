@@ -6023,6 +6023,11 @@ $wgAjaxExportList = array();
 $wgAjaxWatch = true;
 
 /**
+ * Enable patrolling pages using AJAX.
+ */
+$wgAjaxPatrol = true;
+
+/**
  * Enable AJAX check for file overwrite, pre-upload
  */
 $wgAjaxUploadDestCheck = true;
