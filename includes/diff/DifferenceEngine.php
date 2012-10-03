@@ -422,7 +422,7 @@ class DifferenceEngine extends ContextSource {
 	 * Get a link to mark the change as patrolled, or '' if there's either no
 	 * revision to patrol or the user is not allowed to to it.
 	 * Side effect: this method will call OutputPage::preventClickjacking()
-	 * when a link is builded.
+	 * and add the mediawiki.page.patrol.ajax module when a link is build.
 	 *
 	 * @return String
 	 */
@@ -463,6 +463,8 @@ class DifferenceEngine extends ContextSource {
 				// Build the link
 				if ( $rcid ) {
 					$this->getOutput()->preventClickjacking();
+					$this->getOutput()->addModules( 'mediawiki.page.patrol.ajax' );
+
 					$token = $this->getUser()->getEditToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 						$this->mNewPage,
