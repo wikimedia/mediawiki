@@ -194,7 +194,7 @@ class UserMailer {
 		#  NOTE: To: is for presentation, the actual recipient is specified
 		#  by the mailer using the Rcpt-To: header.
 		#
-		# Subject: 
+		# Subject:
 		#  PHP mail() second argument to pass the subject, passing a Subject
 		#  as an additional header will result in a duplicate header.
 		#
@@ -228,7 +228,7 @@ class UserMailer {
 		if ( is_array( $wgSMTP ) ) {
 			#
 			# PEAR MAILER
-			# 
+			#
 
 			if ( function_exists( 'stream_resolve_include_path' ) ) {
 				$found = stream_resolve_include_path( 'Mail.php' );
@@ -260,7 +260,7 @@ class UserMailer {
 			}
 
 			# Split jobs since SMTP servers tends to limit the maximum
-			# number of possible recipients.	
+			# number of possible recipients.
 			$chunks = array_chunk( $to, $wgEnotifMaxRecips );
 			foreach ( $chunks as $chunk ) {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
@@ -273,7 +273,7 @@ class UserMailer {
 			wfRestoreWarnings();
 			return Status::newGood();
 		} else	{
-			# 
+			#
 			# PHP mail()
 			#
 
@@ -446,19 +446,23 @@ class EmailNotification {
 				$watchers[] = intval( $row->wl_user );
 			}
 			if ( $watchers ) {
-				// Update wl_notificationtimestamp for all watching users except
-				// the editor
-				$dbw->begin( __METHOD__ );
-				$dbw->update( 'watchlist',
-					array( /* SET */
-						'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
-					), array( /* WHERE */
-						'wl_user' => $watchers,
-						'wl_namespace' => $title->getNamespace(),
-						'wl_title' => $title->getDBkey(),
-					), __METHOD__
+				// Update wl_notificationtimestamp for all watching users except the editor
+				$fname = __METHOD__;
+				$dbw->onTransactionIdle(
+					function() use ( $dbw, $timestamp, $watchers, $title, $fname ) {
+						$dbw->begin( $fname );
+						$dbw->update( 'watchlist',
+							array( /* SET */
+								'wl_notificationtimestamp' => $dbw->timestamp( $timestamp )
+							), array( /* WHERE */
+								'wl_user'      => $watchers,
+								'wl_namespace' => $title->getNamespace(),
+								'wl_title'     => $title->getDBkey(),
+							), $fname
+						);
+						$dbw->commit( $fname );
+					}
 				);
-				$dbw->commit( __METHOD__ );
 			}
 		}
 
