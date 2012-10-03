@@ -3633,14 +3633,14 @@ This is probably caused by a link to a blacklisted external site.',
 
 # Info page
 'pageinfo-title'            => 'Information for "$1"',
-'pageinfo-header-edits'     => 'Edits',
+'pageinfo-header-edits'     => 'Edit history',
 'pageinfo-header-watchlist' => 'Watchlist',
 'pageinfo-header-views'     => 'Views',
 'pageinfo-subjectpage'      => 'Page',
 'pageinfo-talkpage'         => 'Talk page',
-'pageinfo-watchers'         => 'Number of watchers',
+'pageinfo-watchers'         => 'Number of page watchers',
 'pageinfo-edits'            => 'Number of edits',
-'pageinfo-authors'          => 'Number of distinct authors',
+'pageinfo-authors'          => 'Total number of distinct authors',
 'pageinfo-views'            => 'Number of views',
 'pageinfo-viewsperedit'     => 'Views per edit',
 
