@@ -120,6 +120,7 @@ class HTMLForm extends ContextSource {
 	);
 
 	protected $mMessagePrefix;
+	protected $mFormId;
 
 	/** @var HTMLFormField[] */
 	protected $mFlatFields;
@@ -187,6 +188,18 @@ class HTMLForm extends ContextSource {
 	);
 
 	/**
+	 * Keys and options for throttling.
+	 */
+	protected $mThrottleKey = null;
+	protected $mThrottleSuccessReset = false;
+	protected $mThrottleExpiry = 0;
+	protected $mThrottleLimit = 0;
+
+	const THROTTLE_PERUSER = 1;
+	const THROTTLE_PERIP = 2;
+	const THROTTLE_CLEARONSUCCESS = 4;
+
+	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param $descriptor Array of Field constructs, as described above
 	 * @param $context IContextSource available since 1.18, will become compulsory in 1.18.
@@ -194,6 +207,8 @@ class HTMLForm extends ContextSource {
 	 * @param $messagePrefix String a prefix to go in front of default messages
 	 */
 	public function __construct( $descriptor, /*IContextSource*/ $context = null, $messagePrefix = '' ) {
+		$this->mFormId = wfGetCaller();
+
 		if ( $context instanceof IContextSource ) {
 			$this->setContext( $context );
 			$this->mTitle = false; // We don't need them to set a title
@@ -380,6 +395,15 @@ class HTMLForm extends ContextSource {
 	 *	 display.
 	 */
 	function trySubmit() {
+		global $wgMemc;
+		// First check for throttling.
+		if ( $this->mThrottleKey !== null ) {
+			$throttle = $wgMemc->get( $this->mThrottleKey );
+			if ( $throttle !== false && $throttle > $this->mThrottleLimit ) {
+				return array( 'actionthrottled' );
+			}
+		}
+
 		# Check for validation
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( !empty( $field->mParams['nodata'] ) ) {
@@ -404,6 +428,17 @@ class HTMLForm extends ContextSource {
 		$data = $this->filterDataForSubmit( $this->mFieldData );
 
 		$res = call_user_func( $callback, $data, $this );
+
+		// Either reset or increment throttle key if necessary.
+		if ( $this->mThrottleKey !== null ) {
+			if ( $this->mThrottleSuccessReset && $res === true ) {
+				$wgMemc->delete( $this->mThrottleKey );
+			} elseif ( $throttle ) {
+				$wgMemc->incr( $this->mThrottleKey );
+			} else {
+				$wgMemc->set( $this->mThrottleKey, 1, $this->mThrottleExpiry );
+			}
+		}
 
 		return $res;
 	}
@@ -1020,6 +1055,39 @@ class HTMLForm extends ContextSource {
 		}
 
 		$this->mFieldData = $fieldData;
+	}
+
+	/**
+	 * Set a throttle limit on submissions of this form.
+	 *
+	 * How the form is throttled is determined based on the flags
+	 * If THROTTLE_PERUSER is set, the throttle will be applied
+	 * per user. If THROTTLE_PERIP is set, the throttle will be
+	 * applied per IP address. Finally, if THROTTLE_CLEARONSUCCESS
+	 * is set, once the form is successfully submitted, the throttle
+	 * will be reset.
+	 *
+	 * @param int $limit Maximum number of form submissions
+	 * @param int $expiry Time in seconds of when throttle should reset
+	 * @param int $flags Flags for throttling (see description)
+	 *
+	 * @since 1.21
+	 * @return HTMLForm $this for chaining calls
+	 */
+	function setThrottle( $limit, $expiry, $flags = 7 ) {
+		$throttleKey = array( 'htmlform', 'throttle', $this->mFormId );
+		if( $flags & self::THROTTLE_PERIP ) {
+			$throttleKey[] = $this->getRequest()->getIP();
+		}
+		if( $flags & self::THROTTLE_PERUSER ) {
+			$throttleKey[] = $this->getUser()->getID();
+		}
+
+		$this->mThrottleKey = call_user_func_array( 'wfMemcKey', $throttleKey );
+		$this->mThrottleLimit = $limit;
+		$this->mThrottleExpiry = $expiry;
+		$this->mThrottleSuccessReset = (bool) ( $flags & self::THROTTLE_CLEARONSUCCESS );
+		return $this;
 	}
 
 	/**
