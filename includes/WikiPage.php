@@ -1894,6 +1894,8 @@ class WikiPage extends Page implements IDBAccessObject {
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
 	 *
+	 * @see ContentHandler::makeParserOptions
+	 *
 	 * @param IContextSource|User|string $context One of the following:
 	 *        - IContextSource: Use the User and the Language of the provided
 	 *          context
@@ -1904,23 +1906,12 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @return ParserOptions
 	 */
 	public function makeParserOptions( $context ) {
-		global $wgContLang;
-
-		if ( $context instanceof IContextSource ) {
-			$options = ParserOptions::newFromContext( $context );
-		} elseif ( $context instanceof User ) { // settings per user (even anons)
-			$options = ParserOptions::newFromUser( $context );
-		} else { // canonical settings
-			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		}
+		$options = $this->getContentHandler()->makeParserOptions( $context );
 
 		if ( $this->getTitle()->isConversionTable() ) {
-			//@todo: ConversionTable should become a separate content model.
+			//@todo: ConversionTable should become a separate content model, so we don't need special cases like this one.
 			$options->disableContentConversion();
 		}
-
-		$options->enableLimitReport(); // show inclusion/loop reports
-		$options->setTidy( true ); // fix bad HTML
 
 		return $options;
 	}
