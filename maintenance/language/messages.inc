@@ -3343,6 +3343,7 @@ $wgMessageStructure = array(
 	'scarytransclusion' => array(
 		'scarytranscludedisabled',
 		'scarytranscludefailed',
+		'scarytranscludefailed-httpstatus',
 		'scarytranscludetoolong',
 	),
 	'deleteconflict' => array(
