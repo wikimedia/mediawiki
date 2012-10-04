@@ -339,56 +339,50 @@ class CologneBlueTemplate extends BaseTemplate {
 		}
 	}
 
+	// @fixed
 	function talkLink() {
 		$title = $this->getSkin()->getTitle();
-		if ( NS_SPECIAL == $title->getNamespace() ) {
-			# No discussion links for special pages
-			return '';
+		$companionTitle = $title->isTalkPage() ? $title->getSubjectPage() : $title->getTalkPage();
+		
+		if ( $title->getNamespace() == NS_SPECIAL ) {
+			// No discussion links for special pages
+			return "";
 		}
-
-		$linkOptions = array();
-
-		if ( $title->isTalkPage() ) {
-			$link = $title->getSubjectPage();
-			switch( $link->getNamespace() ) {
-				case NS_MAIN:
-					$text = wfMessage( 'articlepage' );
-					break;
-				case NS_USER:
-					$text = wfMessage( 'userpage' );
-					break;
-				case NS_PROJECT:
-					$text = wfMessage( 'projectpage' );
-					break;
-				case NS_FILE:
-					$text = wfMessage( 'imagepage' );
-					# Make link known if image exists, even if the desc. page doesn't.
-					if ( wfFindFile( $link ) )
-						$linkOptions[] = 'known';
-					break;
-				case NS_MEDIAWIKI:
-					$text = wfMessage( 'mediawikipage' );
-					break;
-				case NS_TEMPLATE:
-					$text = wfMessage( 'templatepage' );
-					break;
-				case NS_HELP:
-					$text = wfMessage( 'viewhelppage' );
-					break;
-				case NS_CATEGORY:
-					$text = wfMessage( 'categorypage' );
-					break;
-				default:
-					$text = wfMessage( 'articlepage' );
-			}
-		} else {
-			$link = $title->getTalkPage();
-			$text = wfMessage( 'talkpage' );
+		
+		// TODO these messages appear to only be used by CologneBlue, kill and replace with something more sensibly named?
+		$nsToMessage = array(
+			NS_MAIN => 'articlepage',
+			NS_USER => 'userpage',
+			NS_PROJECT => 'projectpage',
+			NS_FILE => 'imagepage',
+			NS_MEDIAWIKI => 'mediawikipage',
+			NS_TEMPLATE => 'templatepage',
+			NS_HELP => 'viewhelppage',
+			NS_CATEGORY => 'categorypage',
+			NS_FILE => 'imagepage',
+		);
+		
+		// Find out the message to use for link text. Use either the array above or,
+		// for non-talk pages, a generic "discuss this" message.
+		// Default is the same as for main namespace.
+		$message = $nsToMessage[ $companionTitle->getNamespace() ];
+		if ( !$message ) {
+			$message = $companionTitle->isTalkPage() ? 'talkpage' : 'articlepage';
 		}
-
-		$s = Linker::link( $link, $text->text(), array(), array(), $linkOptions );
-
-		return $s;
+		
+		// Obviously this can't be reasonable and just return the key for talk namespace, only for content ones.
+		// Thus we have to mangle it in exactly the same way SkinTemplate does. (bug 40805)
+		$key = $companionTitle->getNamespaceKey( '' );
+		if ( $companionTitle->isTalkPage() ) {
+			$key = ( $key == 'main' ? 'talk' : $key . "_talk" );
+		}
+		
+		// Use the regular navigational link, but replace its text. Everything else stays unmodified.
+		$namespacesLinks = $this->data['content_navigation']['namespaces'];
+		$link = $this->processNavlinkForDocument( $namespacesLinks[ $key ] );
+		$link['text'] = wfMessage( $message )->text();
+		
+		return $this->makeListItem( $message, $link, array( 'tag' => 'span' ) );
 	}
 	
 	/**
