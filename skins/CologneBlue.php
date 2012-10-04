@@ -591,32 +591,33 @@ class CologneBlueTemplate extends BaseTemplate {
 	function beforeContent() {
 		$mainPageObj = Title::newMainPage();
 
-		$s = "\n<div id='content'>\n<div id='topbar'>" .
-		  '<table style="width: 100%;" cellspacing="0" cellpadding="8"><tr>';
-
-		$s .= '<td class="top" nowrap="nowrap">';
-		$s .= '<a href="' . htmlspecialchars( $mainPageObj->getLocalURL() ) . '">';
-		$s .= '<span id="sitetitle">' . wfMessage( 'sitetitle' )->escaped() . '</span></a>';
-
-		$s .= '</td><td class="top" id="top-syslinks" style="width: 100%;">';
-		$s .= $this->sysLinks();
-		$s .= '</td></tr><tr><td class="top-subheader">';
-
-		$s .= '<font size="-1"><span id="sitesub">';
-		$s .= wfMessage( 'sitesubtitle' )->escaped() . '</span></font>';
-		$s .= '</td><td class="top-linkcollection">';
-
-		$s .= '<font size="-1"><span id="langlinks">';
-		$s .= str_replace( '<br />', '', $this->otherLanguages() );
-
-		$s .= $this->getSkin()->getCategories();
-
-		$s .= '<br />' . $this->pageTitleLinks();
-		$s .= '</span></font>';
-
-		$s .= "</td></tr></table>\n";
-
-		$s .= "\n</div>\n<div id='article'>";
+		$s = "\n<div id='content'>\n";
+		ob_start();
+?>
+<div id="topbar">
+	<p id="sitetitle">
+		<a href="<?php echo htmlspecialchars( $mainPageObj->getLocalURL() ) ?>">
+			<?php echo wfMessage( 'sitetitle' )->escaped() ?>
+		</a>
+	</p>
+	<p id="sitesub">
+		<?php echo wfMessage( 'sitesubtitle' )->escaped() ?>
+	</p>
+	
+	<p id="syslinks">
+		<span><?php echo $this->sysLinks() ?></span>
+	</p>
+	<div id="linkcollection">
+		<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
+		<?php echo $this->getSkin()->getCategories() ?>
+		<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
+	</div>
+</div>
+<?php
+		$s .= ob_get_contents();
+		ob_end_clean();
+		
+		$s .= "\n<div id='article'>";
 
 		$notice = $this->getSkin()->getSiteNotice();
 		if( $notice ) {
@@ -631,12 +632,9 @@ class CologneBlueTemplate extends BaseTemplate {
 	 * @return string
 	 */
 	function afterContent(){
-		$s = "\n</div><br clear='all' />\n";
+		$s = "\n</div>\n";
 
 		$s .= "\n<div id='footer'>";
-		$s .= '<table style="width: 98%;" cellspacing="0"><tr>';
-
-		$s .= '<td class="bottom">';
 
 		$s .= $this->bottomLinks();
 		$s .= $this->getSkin()->getLanguage()->pipeList( array(
@@ -649,8 +647,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		$s .= "\n<br />" . $this->pageStats();
 
-		$s .= '</td>';
-		$s .= "</tr></table>\n</div>\n</div>\n";
+		$s .= "\n</div>\n</div>\n";
 
 		$s .= $this->quickBar();
 		return $s;
