@@ -1723,15 +1723,8 @@ class Title {
 
 			if ( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
-				global $wgGroupPermissions;
-				$userCanMove = false;
-				if ( isset( $wgGroupPermissions['user']['move'] ) ) {
-					$userCanMove = $wgGroupPermissions['user']['move'];
-				}
-				$autoconfirmedCanMove = false;
-				if ( isset( $wgGroupPermissions['autoconfirmed']['move'] ) ) {
-					$autoconfirmedCanMove = $wgGroupPermissions['autoconfirmed']['move'];
-				}
+				$userCanMove = User::groupHasPermission( 'user', 'move' );
+				$autoconfirmedCanMove = User::groupHasPermission( 'autoconfirmed', 'move' );
 				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
 					// custom message if logged-in users without any special rights can move
 					$errors[] = array( 'movenologintext' );
@@ -2072,13 +2065,13 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		global $wgWhitelistRead, $wgGroupPermissions, $wgRevokePermissions;
+		global $wgWhitelistRead, $wgRevokePermissions;
 		static $useShortcut = null;
 
 		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
 		if ( is_null( $useShortcut ) ) {
 			$useShortcut = true;
-			if ( empty( $wgGroupPermissions['*']['read'] ) ) {
+			if ( !User::groupHasPermission( '*', 'read' ) ) {
 				# Not a public wiki, so no shortcut
 				$useShortcut = false;
 			} elseif ( !empty( $wgRevokePermissions ) ) {
