@@ -3640,12 +3640,25 @@ class User {
 	public static function getGroupsWithPermission( $role ) {
 		global $wgGroupPermissions;
 		$allowedGroups = array();
-		foreach ( $wgGroupPermissions as $group => $rights ) {
-			if ( isset( $rights[$role] ) && $rights[$role] ) {
+		foreach ( array_keys( $wgGroupPermissions ) as $group ) {
+			if ( self::groupHasPermission( $group, $role ) ) {
 				$allowedGroups[] = $group;
 			}
 		}
 		return $allowedGroups;
+	}
+
+	/**
+	 * Check, if the given group has the given permission
+	 *
+	 * @param $group String Group to check
+	 * @param $role String Role to check
+	 * @return bool
+	 */
+	public static function groupHasPermission( $group, $role ) {
+		global $wgGroupPermissions, $wgRevokePermissions;
+		return isset( $wgGroupPermissions[$group][$role] ) && $wgGroupPermissions[$group][$role]
+			&& !( isset( $wgRevokePermissions[$group][$role] ) && $wgRevokePermissions[$group][$role] );
 	}
 
 	/**
