@@ -1,0 +1,88 @@
+= MediaWiki release notes =
+
+Security reminder: MediaWiki does not require PHP's register_globals
+setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
+
+== MediaWiki 1.21 ==
+
+THIS IS NOT A RELEASE YET
+
+MediaWiki 1.21 is an alpha-quality branch and is not recommended for use in
+production.
+
+=== Configuration changes in 1.21 ===
+
+=== New features in 1.21 ===
+* Added ContentHandler facility to allow extensions to support other content than wikitext.
+  See docs/contenthandler.txt for details.
+
+=== Bug fixes in 1.21 ===
+
+=== API changes in 1.21 ===
+* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
+* action=edit and action=parse now support contentmodel and contentformat parameters to controll the interpretation of
+  page content; See docs/contenthandler.txt for details.
+
+=== Languages updated in 1.21 ===
+
+=== Other changes in 1.21 ===
+
+== Compatibility ==
+
+Since version 1.20, MediaWiki requires PHP 5.3.2. PHP 4 is no longer supported.
+
+MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
+support for them is somewhat less mature. There is experimental support for IBM
+DB2 and Oracle.
+
+The supported versions are:
+
+* MySQL 5.0.2 or later
+* PostgreSQL 8.3 or later
+* SQLite 3.3.7 or later
+* Oracle 9.0.1 or later
+
+== Upgrading ==
+
+1.21 has several database changes since 1.20, and will not work without schema
+updates.
+
+If upgrading from before 1.11, and you are using a wiki as a commons
+repository, make sure that it is updated as well. Otherwise, errors may arise
+due to database schema changes.
+
+If upgrading from before 1.7, you may want to run refreshLinks.php to ensure
+new database fields are filled with data.
+
+If you are upgrading from MediaWiki 1.4.x or earlier, some major database
+changes are made, and there is a slightly higher chance that things could
+break. Don't forget to always back up your database before upgrading!
+
+See the file UPGRADE for more detailed upgrade instructions.
+
+For notes on 1.19.x and older releases, see HISTORY.
+
+== Online documentation ==
+
+Documentation for both end-users and site administrators is available on
+MediaWiki.org, and is covered under the GNU Free Documentation License (except
+for pages that explicitly state that their contents are in the public domain):
+
+	https://www.mediawiki.org/wiki/Documentation
+
+== Mailing list ==
+
+A mailing list is available for MediaWiki user support and discussion:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+
+A low-traffic announcements-only list is also available:
+
+	https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+
+It's highly recommended that you sign up for one of these lists if you're
+going to run a public MediaWiki, so you can be notified of security fixes.
+
+== IRC help ==
+
+There's usually someone online in #mediawiki on irc.freenode.net.
