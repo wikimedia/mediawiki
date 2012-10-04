@@ -26,6 +26,9 @@
  */
 class ExternalStoreDB {
 
+	/**
+	 * @param $params array
+	 */
 	function __construct( $params = array() ) {
 		$this->mParams = $params;
 	}
@@ -165,6 +168,7 @@ class ExternalStoreDB {
 	 *
 	 * @param $cluster String: the cluster name
 	 * @param $data String: the data item
+	 * @throws MWException
 	 * @return string URL
 	 */
 	function store( $cluster, $data ) {

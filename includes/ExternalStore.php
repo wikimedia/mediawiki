@@ -35,11 +35,14 @@
  */
 class ExternalStore {
 	var $mParams;
-	
+
+	/**
+	 * @param $params array
+	 */
 	function __construct( $params = array() ) {
 		$this->mParams = $params;
 	}
-	
+
 	/**
 	 * Fetch data from given URL
 	 *
@@ -79,7 +82,7 @@ class ExternalStore {
 	 *
 	 * @param $proto String: type of external storage, should be a value in $wgExternalStores
 	 * @param $params Array: associative array of parameters for the ExternalStore object.
-	 * @return ExternalStore subclass or false on error
+	 * @return ExternalStore|bool ExternalStore class or false on error
 	 */
 	static function getStoreObject( $proto, $params = array() ) {
 		global $wgExternalStores;
@@ -119,7 +122,7 @@ class ExternalStore {
 			return $store->store( $params, $data );
 		}
 	}
-	
+
 	/**
 	 * Like insert() above, but does more of the work for us.
 	 * This function does not need a url param, it builds it by
@@ -127,6 +130,7 @@ class ExternalStore {
 	 *
 	 * @param $data String
 	 * @param $storageParams Array: associative array of parameters for the ExternalStore object.
+	 * @throws DBConnectionError|DBQueryError|MWException
 	 * @return string The URL of the stored data item, or false on error
 	 */
 	public static function insertToDefault( $data, $storageParams = array() ) {
@@ -165,7 +169,7 @@ class ExternalStore {
 			throw new MWException( "Unable to store text to external storage" );
 		}
 	}
-	
+
 	/**
 	 * @param $data
 	 * @param $wiki
