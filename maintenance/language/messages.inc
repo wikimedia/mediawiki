@@ -2693,6 +2693,7 @@ $wgMessageStructure = array(
 		'pageinfo-hidden-categories',
 		'pageinfo-templates',
 		'pageinfo-footer',
+		'pageinfo-toolboxlink',
 	),
 	'skin' => array(
 		'skinname-standard',
