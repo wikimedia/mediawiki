@@ -212,9 +212,11 @@ class InfoAction extends FormlessAction {
 		$firstRev = $this->page->getOldestRevision();
 
 		// Page creator
+		$firstUserId = $firstRev->getUser( Revision::FOR_THIS_USER, $user );
+		$firstUserName = $firstRev->getUserText( Revision::FOR_THIS_USER, $user );
 		$table = $this->addRow( $table,
 		$this->msg( 'pageinfo-firstuser' )->escaped(),
-			Linker::userLink( $firstRev->getUser( Revision::FOR_THIS_USER, $user ), $firstRev->getUserText( Revision::FOR_THIS_USER, $user ) )
+			Linker::userLink( $firstUserId, $firstUserName ) . Linker::userToolLinks( $firstUserId, $firstUserName )
 		);
 
 		// Date of page creation
@@ -229,9 +231,11 @@ class InfoAction extends FormlessAction {
 		);
 
 		// Latest editor
+		$lastUserId = $this->page->getUser( Revision::FOR_THIS_USER, $user );
+		$lastUserName = $this->page->getUserText( Revision::FOR_THIS_USER, $user );
 		$table = $this->addRow( $table,
 		$this->msg( 'pageinfo-lastuser' )->escaped(),
-			Linker::userLink( $this->page->getUser( Revision::FOR_THIS_USER, $user ), $this->page->getUserText( Revision::FOR_THIS_USER, $user ) )
+			Linker::userLink( $lastUserId, $lastUserName ) . Linker::userToolLinks( $lastUserId, $lastUserName )
 		);
 
 		// Date of latest edit
