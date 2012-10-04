@@ -41,6 +41,8 @@
  *   - b) Determine the new row (expensive, so we don't want to hold locks now)
  *   - c) Re-read the current row with READ_LOCKING; if it changed then bail out
  *   - d) otherwise, do the updates
+ *
+ * @since 1.20
  */
 interface IDBAccessObject {
 	// Constants for object loading bitfield flags (higher => higher QoS)
