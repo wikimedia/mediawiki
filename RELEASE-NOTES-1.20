@@ -31,6 +31,8 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   login and create account links by default.
 
 === New features in 1.20 ===
+* Added ContentHandler facility to allow extensions to support other content than wikitext.
+  See docs/contenthandler.txt for details.
 * Added TitleIsAlwaysKnown hook which gets called when determining if a page exists.
 * Added NamespaceIsMovable hook which gets called when determining if pages in a
   certain namespace can be moved.
@@ -284,6 +286,9 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 11142) Improve file extension blacklist error reporting in API upload.
 * (bug 39665) Cache AllowedGenerator array so it doesn't autoload all query classes
   on every request.
+* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
+* action=edit and action=parse now support contentmodel and contentformat parameters to controll the interpretation of
+  page content; See docs/contenthandler.txt for details.
 
 === Languages updated in 1.20 ===
 
