@@ -47,8 +47,6 @@ class SkinCologneBlue extends SkinTemplate {
 }
 
 class CologneBlueTemplate extends BaseTemplate {
-	protected $mWatchLinkNum = 0; // Appended to end of watch link id's
-	
 	function execute() {
 		$this->html( 'headelement' );
 		echo $this->beforeContent();
@@ -427,7 +425,6 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	function watchThisPage() {
 		global $wgOut, $wgUser;
-		++$this->mWatchLinkNum;
 
 		// Cache
 		$title = $this->getSkin()->getTitle();
@@ -439,14 +436,14 @@ class CologneBlueTemplate extends BaseTemplate {
 					'action' => 'unwatch',
 					'token' => UnwatchAction::getUnwatchToken( $title, $wgUser ),
 				);
-				$id = 'mw-unwatch-link' . $this->mWatchLinkNum;
+				$id = 'mw-unwatch-link';
 			} else {
 				$text = wfMessage( 'watchthispage' )->text();
 				$query = array(
 					'action' => 'watch',
 					'token' => WatchAction::getWatchToken( $title, $wgUser ),
 				);
-				$id = 'mw-watch-link' . $this->mWatchLinkNum;
+				$id = 'mw-watch-link';
 			}
 
 			$s = Linker::linkKnown(
