@@ -237,7 +237,6 @@ class WikitextContent extends TextContent {
 		return $truncatedtext;
 	}
 
-
 	/**
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
@@ -260,7 +259,8 @@ class WikitextContent extends TextContent {
 		global $wgParser;
 
 		if ( !$options ) {
-			$options = new ParserOptions();
+			//NOTE: use canonical options per default to produce cacheable output
+			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
 		}
 
 		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
