@@ -84,6 +84,19 @@ class DBFileJournal extends FileJournal {
 	}
 
 	/**
+	 * @see FileJournal::doGetCurrentPosition()
+	 * @return integer|false
+	 */
+	protected function doGetCurrentPosition() {
+		$dbw = $this->getMasterDB();
+
+		return $dbw->selectField( 'filejournal', 'MAX(fj_id)',
+			array( 'fj_backend' => $this->backend ),
+			__METHOD__
+		);
+	}
+
+	/**
 	 * @see FileJournal::doGetChangeEntries()
 	 * @return Array
 	 * @throws DBError
