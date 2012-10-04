@@ -87,6 +87,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$groups = array_merge( $groups, User::getGroupsWithPermission( $r ) );
 			}
 
+			// no group with this right exist, no need for a query
+			if( !count( $groups ) ) {
+				$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), '' );
+				return;
+			}
+
 			$groups = array_unique( $groups );
 
 			if ( is_null( $params['group'] ) ) {
