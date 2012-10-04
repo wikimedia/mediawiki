@@ -760,6 +760,14 @@ class CologneBlueTemplate extends BaseTemplate {
 
 
 
+	
+	/**
+	 * @param $heading string
+	 * @return string
+	 */
+	function menuHead( $heading ) {
+		return "\n<h6>" . htmlspecialchars( $heading ) . "</h6>";
+	}
 
 	/**
 	 * Compute the sidebar
@@ -771,43 +779,44 @@ class CologneBlueTemplate extends BaseTemplate {
 		$s = "\n<div id='quickbar'>";
 
 		$sep = '<br />';
-		$s .= $this->menuHead( 'qbfind' );
+		
+		$bar = $this->data['sidebar'];
+		
+		// Always display search on top
+		$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
 		$s .= $this->searchForm( 'sidebar' );
 
-		$s .= $this->menuHead( 'qbbrowse' );
-
-		# Use the first heading from the Monobook sidebar as the "browse" section
-		$bar = $this->data['sidebar'];
-		unset( $bar['SEARCH'] );
-		unset( $bar['LANGUAGES'] );
-		unset( $bar['TOOLBOX'] );
-
-		$barnumber = 1;
 		foreach ( $bar as $heading => $browseLinks ) {
-			if ( $barnumber > 1 ) {
-				$headingMsg = wfMessage( $heading );
-				if ( $headingMsg->exists() ) {
-					$h = $headingMsg->text();
-				} else {
-					$h = $heading;
+			if ( $heading == 'SEARCH' ) {
+				// discard
+			} elseif ( $heading == 'LANGUAGES' ) {
+				// discard
+			} elseif ( $heading == 'TOOLBOX' ) {
+				// discard
+			} else {
+				// Use the navigation heading from standard sidebar as the "browse" section
+				if ( $heading == 'navigation' ) {
+					$heading = 'qbbrowse';
 				}
-				$s .= "\n<h6>" . htmlspecialchars( $h ) . "</h6>";
-			}
-			if( is_array( $browseLinks ) ) {
-				foreach ( $browseLinks as $link ) {
-					if ( $link['text'] != '-' ) {
-						$s .= "<a href=\"{$link['href']}\">" .
-							htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+				
+				$headingMsg = wfMessage( $heading );
+				$s .= $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : $heading );
+				
+				if( is_array( $browseLinks ) ) {
+					foreach ( $browseLinks as $link ) {
+						if ( $link['text'] != '-' ) {
+							$s .= "<a href=\"{$link['href']}\">" .
+								htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+						}
 					}
 				}
 			}
-			$barnumber++;
 		}
 
 		$user = $this->getSkin()->getUser();
 
 		if ( $this->data['isarticle'] ) {
-			$s .= $this->menuHead( 'qbedit' );
+			$s .= $this->menuHead( wfMessage( 'qbedit' )->text() );
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
 
 			$s .= $sep . Linker::linkKnown(
@@ -832,7 +841,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			}
 			$s .= $sep;
 
-			$s .= $this->menuHead( 'qbpageoptions' );
+			$s .= $this->menuHead( wfMessage( 'qbpageoptions' )->text() );
 			$s .= $this->talkLink()
 					. $sep . $this->commentLink()
 					. $sep . $this->printableLink();
@@ -842,7 +851,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 			$s .= $sep;
 
-			$s .= $this->menuHead( 'qbpageinfo' )
+			$s .= $this->menuHead( wfMessage( 'qbpageinfo' )->text() )
 					. $this->historyLink()
 					. $sep . $this->whatLinksHere()
 					. $sep . $this->watchPageLinksLink();
@@ -861,7 +870,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s .= $sep;
 		}
 
-		$s .= $this->menuHead( 'qbmyoptions' );
+		$s .= $this->menuHead( wfMessage( 'qbmyoptions' )->text() );
 		if ( $this->data['loggedin'] ) {
 			$tl = Linker::linkKnown(
 				$user->getTalkPage(),
@@ -885,7 +894,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s .= Linker::specialLink( 'Userlogin' );
 		}
 
-		$s .= $this->menuHead( 'qbspecialpages' )
+		$s .= $this->menuHead( wfMessage( 'qbspecialpages' )->text() )
 			. Linker::specialLink( 'Newpages' )
 			. $sep . Linker::specialLink( 'Listfiles' )
 			. $sep . Linker::specialLink( 'Statistics' );
@@ -906,15 +915,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		);
 
 		$s .= $sep . "\n</div>\n";
-		return $s;
-	}
-	
-	/**
-	 * @param $key string
-	 * @return string
-	 */
-	function menuHead( $key ) {
-		$s = "\n<h6>" . wfMessage( $key )->text() . "</h6>";
 		return $s;
 	}
 
