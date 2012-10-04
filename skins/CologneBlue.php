@@ -722,6 +722,8 @@ class CologneBlueTemplate extends BaseTemplate {
 	/**
 	 * @param $heading string
 	 * @return string
+	 * 
+	 * @fixed
 	 */
 	function menuHead( $heading ) {
 		return "\n<h6>" . htmlspecialchars( $heading ) . "</h6>";
@@ -732,111 +734,111 @@ class CologneBlueTemplate extends BaseTemplate {
 	 * @access private
 	 *
 	 * @return string
+	 * 
+	 * @fixed
 	 */
 	function quickBar(){
 		$s = "\n<div id='quickbar'>";
 
 		$sep = "<br />\n";
 		
-		$bar = $this->data['sidebar'];
+		$plain_bar = $this->data['sidebar'];
+		$bar = array();
 		
-		// Always display search on top
-		$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
-		$s .= $this->searchForm( 'sidebar' );
-		
-		// Populate the toolbox
-		if ( isset( $bar['TOOLBOX'] ) ) {
-			$bar['TOOLBOX'] = $this->getToolbox();
-		}
-
-		foreach ( $bar as $heading => $browseLinks ) {
-			if ( $heading == 'SEARCH' || $heading == 'LANGUAGES' ) {
-				// discard these:
-				// * we display search unconditionally, on top
-				// * we display languages below page content
-			} else {
-				// Use the navigation heading from standard sidebar as the "browse" section
-				if ( $heading == 'navigation' ) {
-					$heading = 'qbbrowse';
-				}
+		// Massage the sidebar
+		// We want to place SEARCH at the beginning and a lot of stuff before TOOLBOX (or at the end, if it's missing)
+		$additions_done = false;
+		while ( !$additions_done ) {
+			$bar = array(); // Empty it out
+			
+			// Always display search on top
+			$bar['SEARCH'] = true;
 				
+			foreach ( $plain_bar as $heading => $links ) {
 				if ( $heading == 'TOOLBOX' ) {
-					$heading = 'toolbox';
+					if( $links !== NULL ) {
+						// If this is not a toolbox prosthetic we inserted outselves, fill it out
+						$plain_bar['TOOLBOX'] = $this->getToolbox();
+					}
+					
+					// And insert the stuff
+					
+					// "This page" and "Edit" menus
+					// We need to do some massaging here... we reuse all of the items, except for $...['views']['view'],
+					// as $...['namespaces']['main'] and $...['namespaces']['talk'] together serve the same purpose.
+					// We also don't use $...['variants'], these are displayed in the top menu.
+					$content_navigation = $this->data['content_navigation'];
+					$qbpageoptions = array_merge(
+						$content_navigation['namespaces'],
+						array(
+							'history' => $content_navigation['views']['history'],
+							'watch' => $content_navigation['actions']['watch'],
+							'unwatch' => $content_navigation['actions']['unwatch'],
+						)
+					);
+					$content_navigation['actions']['watch'] = null;
+					$content_navigation['actions']['unwatch'] = null;
+					$qbedit = array_merge(
+						array(
+							'edit' => $content_navigation['views']['edit'],
+							'addsection' => $content_navigation['views']['addsection'],
+						),
+						$content_navigation['actions']
+					);
+					$bar['qbedit'] = $qbedit;
+					$bar['qbpageoptions'] = $qbpageoptions;
+					
+					// Personal tools ("My pages")
+					$bar['qbmyoptions'] = $this->getPersonalTools();
+					
+					$additions_done = true;
 				}
 				
-				$headingMsg = wfMessage( $heading );
-				$s .= $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : $heading );
-				
-				if( is_array( $browseLinks ) ) {
-					foreach ( $browseLinks as $key => $link ) {
-						$s .= $this->makeLink( $key, $link ) . $sep;
+				// Re-insert current heading, unless it's SEARCH
+				if ( $heading != 'SEARCH' ) {
+					$bar[$heading] = $plain_bar[$heading];
+				}
+			}
+			
+			// If TOOLBOX is missing, $additions_done is still false
+			if ( !$additions_done ) {
+				$plain_bar['TOOLBOX'] = false;
+			}
+		}
+		
+		foreach ( $bar as $heading => $links ) {
+			if ( $heading == 'SEARCH' ) {
+				$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
+				$s .= $this->searchForm( 'sidebar' );
+			} elseif ( $heading == 'LANGUAGES' ) {
+				// discard these; we display languages below page content
+			} else {
+				if ( $links ) {
+					// Use the navigation heading from standard sidebar as the "browse" section
+					if ( $heading == 'navigation' ) {
+						$heading = 'qbbrowse';
+					}
+					if ( $heading == 'TOOLBOX' ) {
+						$heading = 'toolbox';
+					}
+					
+					$headingMsg = wfMessage( $heading );
+					$any_link = false;
+					$t = $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : $heading );
+					
+					foreach ( $links as $key => $link ) {
+						// Can be empty due to rampant sidebar massaging we're doing above
+						if ( $link ) {
+							$any_link = true;
+							$t .= $this->makeListItem( $key, $link, array( 'tag' => 'span' ) ) . $sep;
+						}
+					}
+					
+					if ( $any_link ) {
+						$s .= $t;
 					}
 				}
 			}
-		}
-
-		$user = $this->getSkin()->getUser();
-
-		if ( $this->data['isarticle'] ) {
-			$s .= $this->menuHead( wfMessage( 'qbedit' )->text() );
-			$s .= '<strong>' . $this->editThisPage() . '</strong>';
-
-			$s .= $sep . Linker::linkKnown(
-				Title::newFromText( wfMessage( 'edithelppage' )->inContentLanguage()->text() ),
-				wfMessage( 'edithelp' )->text()
-			);
-
-			if( $this->data['loggedin'] ) {
-				$s .= $sep . $this->moveThisPage();
-			}
-			if ( $user->isAllowed( 'delete' ) ) {
-				$dtp = $this->deleteThisPage();
-				if ( $dtp != '' ) {
-					$s .= $sep . $dtp;
-				}
-			}
-			if ( $user->isAllowed( 'protect' ) ) {
-				$ptp = $this->protectThisPage();
-				if ( $ptp != '' ) {
-					$s .= $sep . $ptp;
-				}
-			}
-			$s .= $sep;
-
-			$s .= $this->menuHead( wfMessage( 'qbpageoptions' )->text() );
-			$s .= $this->talkLink()
-					. $sep . $this->historyLink()
-					. $sep . $this->printableLink();
-			if ( $this->data['loggedin'] ) {
-				$s .= $sep . $this->watchThisPage();
-			}
-
-			$s .= $sep;
-			
-		}
-
-		$s .= $this->menuHead( wfMessage( 'qbmyoptions' )->text() );
-		if ( $this->data['loggedin'] ) {
-			$tl = Linker::linkKnown(
-				$user->getTalkPage(),
-				wfMessage( 'mytalk' )->escaped()
-			);
-			if ( $user->getNewtalk() ) {
-				$tl .= ' *';
-			}
-
-			$s .= Linker::linkKnown(
-					$user->getUserPage(),
-					wfMessage( 'mypage' )->escaped()
-				) . $sep . $tl . $sep . Linker::specialLink( 'Watchlist' )
-					. $sep .
-				Linker::linkKnown(
-					SpecialPage::getSafeTitleFor( 'Contributions', $user->getName() ),
-					wfMessage( 'mycontris' )->escaped()
-				) . $sep . Linker::specialLink( 'Preferences' )
-				. $sep . Linker::specialLink( 'Userlogout' );
-		} else {
-			$s .= Linker::specialLink( 'Userlogin' );
 		}
 
 		$s .= $sep . "\n</div>\n";
