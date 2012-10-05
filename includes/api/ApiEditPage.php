@@ -63,7 +63,7 @@ class ApiEditPage extends ApiBase {
 				$titles = Title::newFromRedirectArray(
 					Revision::newFromTitle(
 						$oldTitle, false, Revision::READ_LATEST
-					)->getText( Revision::FOR_THIS_USER )
+					)->getText( Revision::FOR_THIS_USER, $user )
 				);
 				// array_shift( $titles );
 
