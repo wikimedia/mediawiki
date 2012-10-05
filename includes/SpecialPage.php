@@ -106,19 +106,6 @@ class SpecialPage {
 	}
 
 	/**
-	 * Add a page to the list of valid special pages. This used to be the preferred
-	 * method for adding special pages in extensions. It's now suggested that you add
-	 * an associative record to $wgSpecialPages. This avoids autoloading SpecialPage.
-	 *
-	 * @param $page SpecialPage
-	 * @deprecated since 1.7, warnings in 1.17, might be removed in 1.20
-	 */
-	static function addPage( &$page ) {
-		wfDeprecated( __METHOD__, '1.7' );
-		SpecialPageFactory::getList()->{$page->mName} = $page;
-	}
-
-	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
 	 * @param $page Mixed: SpecialPage or string
