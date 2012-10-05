@@ -1082,13 +1082,13 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 		if ( $this->mOldRev ) {
-			$this->mOldtext = $this->mOldRev->getText( Revision::FOR_THIS_USER );
+			$this->mOldtext = $this->mOldRev->getText( Revision::FOR_THIS_USER, $this->getUser() );
 			if ( $this->mOldtext === false ) {
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
-			$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
+			$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER, $this->getUser() );
 			if ( $this->mNewtext === false ) {
 				return false;
 			}
@@ -1110,7 +1110,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
-		$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER );
+		$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER, $this->getUser() );
 		return true;
 	}
 }

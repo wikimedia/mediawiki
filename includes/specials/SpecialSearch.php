@@ -423,7 +423,7 @@ class SpecialSearch extends SpecialPage {
 
 		if( $t->isKnown() ) {
 			$messageName = 'searchmenu-exists';
-		} elseif( $t->userCan( 'create' ) ) {
+		} elseif( $t->userCan( 'create', $this->getUser() ) ) {
 			$messageName = 'searchmenu-new';
 		} else {
 			$messageName = 'searchmenu-new-nocreate';
@@ -559,7 +559,7 @@ class SpecialSearch extends SpecialPage {
 		//If page content is not readable, just return the title.
 		//This is not quite safe, but better than showing excerpts from non-readable pages
 		//Note that hiding the entry entirely would screw up paging.
-		if( !$t->userCan( 'read' ) ) {
+		if( !$t->userCan( 'read', $this->getUser() ) ) {
 			wfProfileOut( __METHOD__ );
 			return "<li>{$link}</li>\n";
 		}
