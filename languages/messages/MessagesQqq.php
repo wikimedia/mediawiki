@@ -3191,6 +3191,10 @@ Parameters:
 'immobile-target-namespace-iw' => "This message appears when attempting to move a page, if a person has typed an interwiki link as a namespace prefix in the input box labelled 'To new title'.  The special page 'Movepage' cannot be used to move a page to another wiki.
 
 'Destination' can be used instead of 'target' in this message.",
+'bad-target-model'             => "This message is shown when attempting to move a page, but the move would change the page's content model.
+This may be the case when \$wgContentHandlerUseDB is set to false, because then a page's content model is derived from the page's title.
+* $1: The localized name of the original page's content model.
+* $2: The localized name of the content model used by the destination title.",
 'fix-double-redirects' => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
 'protectedpagemovewarning' => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
 {{Related|Semiprotectedpagewarning}}',

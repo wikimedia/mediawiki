@@ -3375,7 +3375,7 @@ class Title {
 	 * @return Mixed True on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function isValidMoveOperation( &$nt, $auth = true, $reason = '' ) {
-		global $wgUser;
+		global $wgUser, $wgContentHandlerUseDB;
 
 		$errors = array();
 		if ( !$nt ) {
@@ -3406,6 +3406,15 @@ class Title {
 			 ( !$oldid ) ||
 			 ( $nt->getDBkey() == '' ) ) {
 			$errors[] = array( 'badarticleerror' );
+		}
+
+		// Content model checks
+		if ( !$wgContentHandlerUseDB &&
+				$this->getContentModel() !== $nt->getContentModel() ) {
+			// can't move a page if that would change the page's content model
+			$errors[] = array( 'bad-target-model',
+							ContentHandler::getLocalizedName( $this->getContentModel() ),
+							ContentHandler::getLocalizedName( $nt->getContentModel() ) );
 		}
 
 		// Image-specific checks
