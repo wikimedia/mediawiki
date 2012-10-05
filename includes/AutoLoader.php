@@ -246,6 +246,7 @@ $wgAutoloadLocalClasses = array(
 	'StubUserLang' => 'includes/StubObject.php',
 	'TablePager' => 'includes/Pager.php',
 	'MWTimestamp' => 'includes/Timestamp.php',
+	'TimestampException' => 'includes/Timestamp.php',
 	'Title' => 'includes/Title.php',
 	'TitleArray' => 'includes/TitleArray.php',
 	'TitleArrayFromResult' => 'includes/TitleArray.php',
@@ -1007,7 +1008,12 @@ $wgAutoloadLocalClasses = array(
 	'FakeConverter' => 'languages/Language.php',
 	'Language' => 'languages/Language.php',
 	'LanguageConverter' => 'languages/LanguageConverter.php',
+	'CLDRPluralRuleConverter' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleConverter_Expression' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleConverter_Fragment' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleConverter_Operator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 	'CLDRPluralRuleEvaluator' => 'languages/utils/CLDRPluralRuleEvaluator.php',
+	'CLDRPluralRuleEvaluator_Range' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 	'CLDRPluralRuleError' => 'languages/utils/CLDRPluralRuleEvaluator.php',
 
 	# maintenance
