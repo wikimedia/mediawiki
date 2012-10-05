@@ -952,13 +952,6 @@ class DatabaseMysql extends DatabaseBase {
 }
 
 /**
- * Legacy support: Database == DatabaseMysql
- *
- * @deprecated in 1.16
- */
-class Database extends DatabaseMysql {}
-
-/**
  * Utility class.
  * @ingroup Database
  */
