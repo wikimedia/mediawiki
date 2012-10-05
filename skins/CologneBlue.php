@@ -43,7 +43,14 @@ class SkinCologneBlue extends SkinTemplate {
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );
 	}
-
+	
+	/**
+	 * Override langlink formatting behavior not to uppercase the language names.
+	 * See otherLanguages() in CologneBlueTemplate.
+	 */
+	function formatLanguageName( $name ) {
+		return $name;
+	}
 }
 
 class CologneBlueTemplate extends BaseTemplate {
@@ -77,46 +84,28 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 	
+	// @fixed
 	function otherLanguages() {
 		global $wgHideInterlanguageLinks;
-
 		if ( $wgHideInterlanguageLinks ) {
-			return '';
+			return "";
 		}
 
-		$a = $this->getSkin()->getOutput()->getLanguageLinks();
-
-		if ( 0 == count( $a ) ) {
-			return '';
+		// We override SkinTemplate->formatLanguageName() in SkinCologneBlue
+		// not to capitalize the language names.
+		$language_urls = $this->data['language_urls'];
+		if ( empty( $language_urls ) ) {
+			return "";
 		}
 
-		$s = wfMessage( 'otherlanguages' )->text() . wfMessage( 'colon-separator' )->text();
-		$first = true;
-
-		if ( $this->getSkin()->getLanguage()->isRTL() ) {
-			$s .= '<span dir="ltr">';
+		$s = array();
+		foreach ( $language_urls as $key => $data ) {
+			$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
 		}
 
-		foreach ( $a as $l ) {
-			if ( !$first ) {
-				$s .= wfMessage( 'pipe-separator' )->escaped();
-			}
-
-			$first = false;
-
-			$nt = Title::newFromText( $l );
-			$text = Language::fetchLanguageName( $nt->getInterwiki() );
-
-			$s .= Html::element( 'a',
-				array( 'href' => $nt->getFullURL(), 'title' => $nt->getText(), 'class' => "external" ),
-				$text == '' ? $l : $text );
-		}
-
-		if ( $this->getSkin()->getLanguage()->isRTL() ) {
-			$s .= '</span>';
-		}
-
-		return $s;
+		return wfMessage( 'otherlanguages' )->text()
+			. wfMessage( 'colon-separator' )->text()
+			. $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
 	// @fixed
