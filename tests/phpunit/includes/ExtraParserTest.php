@@ -18,7 +18,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 			'wgCleanSignatures' => true,
 		) );
 		
-		$this->options = new ParserOptions;
+		$this->options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		$this->options->setTemplateCallback( array( __CLASS__, 'statelessFetchTemplate' ) );
 		$this->parser = new Parser;
 
