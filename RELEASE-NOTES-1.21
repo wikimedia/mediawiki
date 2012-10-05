@@ -12,6 +12,7 @@ production.
 
 === Configuration changes in 1.21 ===
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
+* Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname' instead
 
 === New features in 1.21 ===
 
