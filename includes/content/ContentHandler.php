@@ -913,14 +913,14 @@ abstract class ContentHandler {
 
 	/**
 	 * Returns true for content models that support caching using the
-	 * ParserCache mechanism. See WikiPage::isParserCacheUser().
+	 * ParserCache mechanism. See WikiPage::isParserCacheUsed().
 	 *
 	 * @since 1.21
 	 *
 	 * @return bool
 	 */
 	public function isParserCacheSupported() {
-		return true;
+		return false;
 	}
 
 	/**
@@ -1083,6 +1083,17 @@ class WikitextContentHandler extends TextContentHandler {
 	 * @return boolean whether sections are supported.
 	 */
 	public function supportsSections() {
+		return true;
+	}
+
+	/**
+	 * Returns true, because wikitext supports caching using the
+	 * ParserCache mechanism.
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function isParserCacheSupported() {
 		return true;
 	}
 }
