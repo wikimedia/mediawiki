@@ -368,7 +368,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *         or list the tables under testing in $this->tablesUsed, or override the
 	 *         needsDB() method.
 	 */
-	protected function assertSelect( $table, $fields, $condition, Array $expectedRows ) {
+	protected function assertSelect( $table, $fields, $condition, array $expectedRows ) {
 		if ( !$this->needsDB() ) {
 			throw new MWException( 'When testing database state, the test cases\'s needDB()' .
 				' method should return true. Use @group Database or $this->tablesUsed.');
