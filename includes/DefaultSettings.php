@@ -1758,7 +1758,7 @@ $wgDBAhandler = 'db3';
 /**
  * Deprecated alias for $wgSessionsInObjectCache.
  *
- * @deprecated Use $wgSessionsInObjectCache
+ * @deprecated since 1.20; Use $wgSessionsInObjectCache
  */
 $wgSessionsInMemcached = false;
 
@@ -2073,13 +2073,13 @@ $wgHTCPMulticastRouting = array();
  * setting is ignored. If $wgHTCPMulticastRouting is not set and this setting
  * is, it is used to populate $wgHTCPMulticastRouting.
  *
- * @deprecated in favor of $wgHTCPMulticastRouting
+ * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting
  */
 $wgHTCPMulticastAddress = false;
 
 /**
  * HTCP multicast port.
- * @deprecated in favor of $wgHTCPMulticastRouting
+ * @deprecated since 1.20 in favor of $wgHTCPMulticastRouting
  * @see $wgHTCPMulticastAddress
  */
 $wgHTCPPort = 4827;
@@ -4281,7 +4281,7 @@ $wgSecretKey = false;
  */
 $wgProxyList = array();
 
-/** deprecated */
+/** @deprecated before 1.20 */
 $wgProxyKey = false;
 
 /** @} */ # end of proxy scanner settings
