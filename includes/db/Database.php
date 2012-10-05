@@ -2925,11 +2925,9 @@ abstract class DatabaseBase implements DatabaseType {
 				//    started and comitted.
 				wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
 					" performing implicit commit!" );
-			} else {
-				if ( $wgDebugDBTransactions ) {
-					wfDebug( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-						" performing implicit commit!\n" );
-				}
+			} elseif ( $wgDebugDBTransactions ) {
+				wfDebug( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+					" performing implicit commit!\n" );
 			}
 
 			$this->doCommit( $fname );
