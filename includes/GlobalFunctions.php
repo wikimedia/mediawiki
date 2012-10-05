@@ -3552,16 +3552,6 @@ function wfBoolToStr( $value ) {
 }
 
 /**
- * Load an extension messages file
- *
- * @deprecated since 1.16, warnings in 1.18, remove in 1.20
- * @codeCoverageIgnore
- */
-function wfLoadExtensionMessages() {
-	wfDeprecated( __FUNCTION__, '1.16' );
-}
-
-/**
  * Get a platform-independent path to the null file, e.g. /dev/null
  *
  * @return string
