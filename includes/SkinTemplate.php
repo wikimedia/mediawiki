@@ -1748,7 +1748,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			foreach ( array( 'id', 'class', 'active', 'tag' ) as $k ) {
 				unset( $link[$k] );
 			}
-			if ( isset( $item['id'] ) ) {
+			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
 				// The id goes on the <li> not on the <a> for single links
 				// but makeSidebarLink still needs to know what id to use when
 				// generating tooltips and accesskeys.
