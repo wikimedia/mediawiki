@@ -40,11 +40,30 @@ class Hooks {
 	protected static $handlers = array();
 
 	/**
+	 * Clears hooks registered via Hooks::register(). Does not touch $wgHooks.
+	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
+	 *
+	 * @since 1.21
+	 *
+	 * @param $name String: the name of the hook to clear.
+	 *
+	 * @throws MWException if not in testing mode.
+	 */
+	public static function clear( $name ) {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new MWException( 'can not reset hooks in operation.' );
+		}
+
+		unset( self::$handlers[$name] );
+	}
+
+
+	/**
 	 * Attach an event handler to a given hook
 	 *
 	 * @since 1.18
 	 *
-	 * @param $name Mixed: name of hook
+	 * @param $name String: name of hook
 	 * @param $callback Mixed: callback function to attach
 	 */
 	public static function register( $name, $callback ) {
@@ -57,57 +76,36 @@ class Hooks {
 
 	/**
 	 * Returns true if a hook has a function registered to it.
+	 * The function may have been registered either via Hooks::register or in $wgHooks.
 	 *
 	 * @since 1.18
 	 *
-	 * @param $name Mixed: name of hook
-	 * @return Boolean: true if a hook has a function registered to it
+	 * @param $name String: name of hook
+	 * @return Boolean: true if the hook has a function registered to it
 	 */
 	public static function isRegistered( $name ) {
-		if( !isset( self::$handlers[$name] ) ) {
-			self::$handlers[$name] = array();
-		}
+		global $wgHooks;
 
-		return ( count( self::$handlers[$name] ) != 0 );
+		return !empty( $wgHooks[$name] ) || !empty( self::$handlers[$name] );
 	}
 
 	/**
 	 * Returns an array of all the event functions attached to a hook
-	 *
+	 * This combines functions registered via Hooks::register and with $wgHooks.
 	 * @since 1.18
 	 *
-	 * @param $name Mixed: name of the hook
+	 * @throws MWException
+	 * @throws FatalError
+	 * @param $name String: name of the hook
+	 *
 	 * @return array
 	 */
 	public static function getHandlers( $name ) {
-		if( !isset( self::$handlers[$name] ) ) {
-			return array();
-		}
-
-		return self::$handlers[$name];
-	}
-
-	/**
-	 * Call hook functions defined in Hooks::register
-	 *
-	 * Because programmers assign to $wgHooks, we need to be very
-	 * careful about its contents. So, there's a lot more error-checking
-	 * in here than would normally be necessary.
-	 *
-	 * @since 1.18
-	 *
-	 * @param $event String: event name
-	 * @param $args Array: parameters passed to hook functions
-	 * @throws MWException
-	 * @throws FatalError
-	 * @return Boolean True if no handler aborted the hook
-	 */
-	public static function run( $event, $args = array() ) {
 		global $wgHooks;
 
 		// Return quickly in the most common case
-		if ( !isset( self::$handlers[$event] ) && !isset( $wgHooks[$event] ) ) {
-			return true;
+		if ( empty( self::$handlers[$name] ) && empty( $wgHooks[$name] ) ) {
+			return array();
 		}
 
 		if ( !is_array( self::$handlers ) ) {
@@ -118,16 +116,41 @@ class Hooks {
 			throw new MWException( "Global hooks array is not an array!\n" );
 		}
 
-		$new_handlers = (array) self::$handlers;
-		$old_handlers = (array) $wgHooks;
-
-		$hook_array = array_merge( $new_handlers, $old_handlers );
-
-		if ( !is_array( $hook_array[$event] ) ) {
-			throw new MWException( "Hooks array for event '$event' is not an array!\n" );
+		if ( empty( Hooks::$handlers[$name] ) ) {
+			$hooks = $wgHooks[$name];
+		} elseif ( empty( $wgHooks[$name] ) ) {
+			$hooks = Hooks::$handlers[$name];
+		} else {
+			// so they are both not empty...
+			$hooks = array_merge( Hooks::$handlers[$name], $wgHooks[$name] );
 		}
 
-		foreach ( $hook_array[$event] as $index => $hook ) {
+		if ( !is_array( $hooks ) ) {
+			throw new MWException( "Hooks array for event '$name' is not an array!\n" );
+		}
+
+		return $hooks;
+	}
+
+	/**
+	 * Call hook functions defined in Hooks::register
+	 *
+	 * @param $event String: event name
+	 * @param $args  Array: parameters passed to hook functions
+	 *
+	 * @return Boolean True if no handler aborted the hook
+	 */
+	public static function run( $event, $args = array() ) {
+		global $wgHooks;
+
+		// Return quickly in the most common case
+		if ( empty( self::$handlers[$event] ) && empty( $wgHooks[$event] ) ) {
+			return true;
+		}
+
+		$hooks = self::getHandlers( $event );
+
+		foreach ( $hooks as $index => $hook ) {
 			$object = null;
 			$method = null;
 			$func = null;
@@ -145,7 +168,7 @@ class Hooks {
 				if ( count( $hook ) < 1 ) {
 					throw new MWException( 'Empty array in hooks for ' . $event . "\n" );
 				} elseif ( is_object( $hook[0] ) ) {
-					$object = $hook_array[$event][$index][0];
+					$object = $hook[0];
 					if ( $object instanceof Closure ) {
 						$closure = true;
 						if ( count( $hook ) > 1 ) {
@@ -175,7 +198,7 @@ class Hooks {
 			} elseif ( is_string( $hook ) ) { # functions look like strings, too
 				$func = $hook;
 			} elseif ( is_object( $hook ) ) {
-				$object = $hook_array[$event][$index];
+				$object = $hook;
 				if ( $object instanceof Closure ) {
 					$closure = true;
 				} else {
