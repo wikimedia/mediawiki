@@ -805,11 +805,11 @@ class EditPage {
 	 * @param $def_text string
 	 * @return mixed string on success, $def_text for invalid sections
 	 * @private
-	 * @deprecated since 1.WD
+	 * @deprecated since 1.21
 	 * @todo: deprecated, replace usage everywhere
 	 */
 	function getContent( $def_text = false ) {
-		wfDeprecated( __METHOD__, '1.WD' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		if ( $def_text !== null && $def_text !== false && $def_text !== '' ) {
 			$def_content = $this->toEditContent( $def_text );
@@ -956,7 +956,7 @@ class EditPage {
 	 * WikiPage::getContent( Revision::RAW ) except that when the page doesn't exist an empty
 	 * content object is returned instead of null.
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 * @return string
 	 */
 	private function getCurrentContent() {
@@ -982,10 +982,10 @@ class EditPage {
 	 * Use this method before edit() to preload some text into the edit box
 	 *
 	 * @param $text string
-	 * @deprecated since 1.WD
+	 * @deprecated since 1.21
 	 */
 	public function setPreloadedText( $text ) {
-		wfDeprecated( __METHOD__, "1.WD" );
+		wfDeprecated( __METHOD__, "1.21" );
 
 		$content = $this->toEditContent( $text );
 
@@ -997,7 +997,7 @@ class EditPage {
 	 *
 	 * @param $content Content
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 */
 	public function setPreloadedContent( Content $content ) {
 		$this->mPreloadedContent = $content;
@@ -1011,10 +1011,10 @@ class EditPage {
 	 *
 	 * @return String
 	 *
-	 * @deprecated since 1.WD, use getPreloadedContent() instead
+	 * @deprecated since 1.21, use getPreloadedContent() instead
 	 */
 	protected function getPreloadedText( $preload ) { #NOTE: B/C only, replace usage!
-		wfDeprecated( __METHOD__, "1.WD" );
+		wfDeprecated( __METHOD__, "1.21" );
 
 		$content = $this->getPreloadedContent( $preload );
 		$text = $this->toEditText( $content );
@@ -1030,7 +1030,7 @@ class EditPage {
 	 *
 	 * @return Content
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 */
 	protected function getPreloadedContent( $preload ) { #@todo: use this!
 		global $wgUser;
@@ -1632,10 +1632,10 @@ class EditPage {
 	 * @param $editText string
 	 *
 	 * @return bool
-	 * @deprecated since 1.WD, use mergeChangesIntoContent() instead
+	 * @deprecated since 1.21, use mergeChangesIntoContent() instead
 	 */
 	function mergeChangesInto( &$editText ){
-		wfDebug( __METHOD__, "1.WD" );
+		wfDebug( __METHOD__, "1.21" );
 
 		$editContent = $this->toEditContent( $editText );
 
@@ -1656,7 +1656,7 @@ class EditPage {
 	 * @parma $editText string
 	 *
 	 * @return bool
-	 * @since since 1.WD
+	 * @since since 1.21
 	 */
 	private function mergeChangesIntoContent( &$editContent ){
 		wfProfileIn( __METHOD__ );

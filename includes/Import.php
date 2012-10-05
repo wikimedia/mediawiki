@@ -1211,7 +1211,7 @@ class WikiRevision {
 	/**
 	 * @return string
 	 *
-	 * @deprecated Since 1.WD, use getContent() instead.
+	 * @deprecated Since 1.21, use getContent() instead.
 	 */
 	function getText() {
 		wfDeprecated( "Use getContent() instead." );

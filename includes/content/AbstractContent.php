@@ -3,7 +3,7 @@
  * A content object represents page content, e.g. the text to show on a page.
  * Content objects have no knowledge about how they relate to Wiki pages.
  *
- * @since 1.WD
+ * @since 1.21
  */
 abstract class AbstractContent implements Content {
 
@@ -158,7 +158,7 @@ abstract class AbstractContent implements Content {
 	 * @return Array. A list of DataUpdate objects for putting information
 	 *    about this content object somewhere.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 */
 	public function getSecondaryDataUpdates( Title $title,
 		Content $old = null,
@@ -223,7 +223,7 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @see Content::isRedirect()
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return bool
 	 */
@@ -236,7 +236,7 @@ abstract class AbstractContent implements Content {
 	 *
 	 * This default implementation always returns $this.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Content $this
 	 */
@@ -293,7 +293,7 @@ abstract class AbstractContent implements Content {
 	/**
 	 * @see  Content::getDeletionUpdates()
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $page \WikiPage the deleted page
 	 * @param $parserOutput null|\ParserOutput optional parser output object

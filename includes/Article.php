@@ -65,7 +65,7 @@ class Article extends Page {
 	/**
 	 * Content of the revision we are working on
 	 * @var Content
-	 * @since 1.WD
+	 * @since 1.21
 	 */
 	var $mContentObject;              // !<
 
@@ -238,12 +238,12 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @deprecated in 1.WD; use getContentObject() instead
+	 * @deprecated in 1.21; use getContentObject() instead
 	 *
 	 * @return string Return the text of this revision
 	 */
 	public function getContent() {
-		wfDeprecated( __METHOD__, '1.WD' );
+		wfDeprecated( __METHOD__, '1.21' );
 		$content = $this->getContentObject();
 		return ContentHandler::getContentText( $content );
 	}
@@ -261,7 +261,7 @@ class Article extends Page {
 	 *
 	 * @return Content Return the content of this revision
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 *
 	 * @todo: FIXME: this should really be protected, all callers should be changed to use WikiPage::getContent() instead.
 	 */
@@ -377,10 +377,10 @@ class Article extends Page {
 	 *       uses this method to retrieve page text from the database, so the function has to remain public for now.
 	 *
 	 * @return mixed string containing article contents, or false if null
-	 * @deprecated in 1.WD, use WikiPage::getContent() instead
+	 * @deprecated in 1.21, use WikiPage::getContent() instead
 	 */
 	function fetchContent() { #BC cruft!
-		wfDeprecated( __METHOD__, '1.WD' );
+		wfDeprecated( __METHOD__, '1.21' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {
 			return $this->mContent;
@@ -408,7 +408,7 @@ class Article extends Page {
 	 *
 	 * @return Content|null
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 */
 	protected function fetchContentObject() {
 		if ( $this->mContentLoaded ) {
@@ -2051,7 +2051,7 @@ class Article extends Page {
 	 * @param $newtext
 	 * @param $flags
 	 * @return string
-	 * @deprecated since 1.WD, use ContentHandler::getAutosummary() instead
+	 * @deprecated since 1.21, use ContentHandler::getAutosummary() instead
 	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );

@@ -71,7 +71,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'ipblocks', 'i05', 'patch-ipblocks_i05_index.sql' ),
 			array( 'addIndex', 'revision', 'i05', 'patch-revision_i05_index.sql' ),
 
-			//1.WD
+			//1.21
 			array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
 			array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
 			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),

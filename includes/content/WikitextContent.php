@@ -1,6 +1,6 @@
 <?php
 /**
- * @since WD.1
+ * @since 1.21
  */
 class WikitextContent extends TextContent {
 
@@ -160,7 +160,7 @@ class WikitextContent extends TextContent {
 	 * This implementation replaces the first link on the page with the given new target
 	 * if this Content object is a redirect. Otherwise, this method returns $this.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param Title $target
 	 *
@@ -241,7 +241,7 @@ class WikitextContent extends TextContent {
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
 	 *
-	 * @since    WD.1
+	 * @since    1.21
 	 *
 	 * @param $content Content the content to render
 	 * @param $title \Title

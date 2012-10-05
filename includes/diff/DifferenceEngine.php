@@ -708,7 +708,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param $old Content: old content
 	 * @param $new Content: new content
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 */
 	function generateContentDiffBody( Content $old, Content $new ) {
 		if ( !( $old instanceof TextContent ) ) {
@@ -732,10 +732,10 @@ class DifferenceEngine extends ContextSource {
 	 *
 	 * @param $otext String: old text, must be already segmented
 	 * @param $ntext String: new text, must be already segmented
-	 * @deprecated since 1.WD, use generateContentDiffBody() instead!
+	 * @deprecated since 1.21, use generateContentDiffBody() instead!
 	 */
 	function generateDiffBody( $otext, $ntext ) {
-		wfDeprecated( __METHOD__, "1.WD" );
+		wfDeprecated( __METHOD__, "1.21" );
 
 		return $this->generateTextDiffBody( $otext, $ntext );
 	}
@@ -1004,10 +1004,10 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
-	 * @deprecated since 1.WD, use setContent() instead.
+	 * @deprecated since 1.21, use setContent() instead.
 	 */
 	function setText( $oldText, $newText ) {
-		wfDeprecated( __METHOD__, "1.WD" );
+		wfDeprecated( __METHOD__, "1.21" );
 
 		$oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
 		$newContent = ContentHandler::makeContent( $newText, $this->getTitle() );
@@ -1017,7 +1017,7 @@ class DifferenceEngine extends ContextSource {
 
 	/**
 	 * Use specified text instead of loading from the database
-	 * @since 1.WD
+	 * @since 1.21
 	 */
 	function setContent( Content $oldContent, Content $newContent ) {
 		$this->mOldContent = $oldContent;

@@ -1,6 +1,6 @@
 <?php
 /**
- * @since WD.1
+ * @since 1.21
  */
 class CssContent extends TextContent {
 	public function __construct( $text ) {

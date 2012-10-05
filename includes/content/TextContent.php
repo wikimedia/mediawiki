@@ -5,7 +5,7 @@
  *
  * TextContent instances are immutable
  *
- * @since WD.1
+ * @since 1.21
  */
 abstract class TextContent extends AbstractContent {
 
@@ -95,7 +95,7 @@ abstract class TextContent extends AbstractContent {
 	/**
 	 * Diff this content object with another content object..
 	 *
-	 * @since WD.diff
+	 * @since 1.21diff
 	 *
 	 * @param $that Content the other content object to compare this content object to
 	 * @param $lang Language the language object to use for text segmentation.

@@ -24,7 +24,7 @@ class MWContentSerializationException extends MWException {
  * type), but wikitext content may be represented by a DOM or AST structure in
  * the future.
  *
- * @since 1.WD
+ * @since 1.21
  */
 abstract class ContentHandler {
 
@@ -49,8 +49,8 @@ abstract class ContentHandler {
 	 *   TextContent object, this method returns null.
 	 * - otherwise, the behaviour is undefined.
 	 *
-	 * @since WD.1
-	 * @deprecated since WD.1. Always try to use the content object.
+	 * @since 1.21
+	 * @deprecated since 1.21. Always try to use the content object.
 	 *
 	 * @static
 	 * @param $content Content|null
@@ -91,7 +91,7 @@ abstract class ContentHandler {
 	 * by $modelId (or, if that is not given, $title->getContentModel()) using
 	 * the given format.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @static
 	 *
@@ -152,7 +152,7 @@ abstract class ContentHandler {
 	 *
 	 * Note: this is used by, and may thus not use, Title::getContentModel()
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @static
 	 * @param $title Title
@@ -224,7 +224,7 @@ abstract class ContentHandler {
 	/**
 	 * Returns the appropriate ContentHandler singleton for the given title.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @static
 	 * @param $title Title
@@ -239,7 +239,7 @@ abstract class ContentHandler {
 	 * Returns the appropriate ContentHandler singleton for the given Content
 	 * object.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @static
 	 * @param $content Content
@@ -272,7 +272,7 @@ abstract class ContentHandler {
 	 * ContentHandler may be provided by the ContentHandlerForModelID hook.
 	 * If no ContentHandler can be determined, an MWException is raised.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @static
 	 * @param $modelId String The ID of the content model for which to get a
@@ -379,7 +379,7 @@ abstract class ContentHandler {
 	/**
 	 * Serializes a Content object of the type supported by this ContentHandler.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @abstract
 	 * @param $content Content The Content object to serialize
@@ -391,7 +391,7 @@ abstract class ContentHandler {
 	/**
 	 * Unserializes a Content object of the type supported by this ContentHandler.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @abstract
 	 * @param $blob string serialized form of the content
@@ -404,7 +404,7 @@ abstract class ContentHandler {
 	 * Creates an empty Content object of the type supported by this
 	 * ContentHandler.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Content
 	 */
@@ -414,7 +414,7 @@ abstract class ContentHandler {
 	 * Returns the model id that identifies the content model this
 	 * ContentHandler can handle. Use with the CONTENT_MODEL_XXX constants.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return String The model ID
 	 */
@@ -426,7 +426,7 @@ abstract class ContentHandler {
 	 * Throws an MWException if $model_id is not the ID of the content model
 	 * supported by this ContentHandler.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param String $model_id The model to check
 	 *
@@ -445,7 +445,7 @@ abstract class ContentHandler {
 	 * serializeContent() and unserializeContent() methods of this
 	 * ContentHandler.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return array of serialization formats as MIME type like strings
 	 */
@@ -460,7 +460,7 @@ abstract class ContentHandler {
 	 * This default implementation will return the first element of the array
 	 * of formats that was passed to the constructor.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return string the name of the default serialization format as a MIME type
 	 */
@@ -475,7 +475,7 @@ abstract class ContentHandler {
 	 * Note that if $format is null, this method always returns true, because
 	 * null means "use the default format".
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $format string the serialization format to check
 	 * @return bool
@@ -513,7 +513,7 @@ abstract class ContentHandler {
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
 	 * to override the default action handlers.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Array
 	 */
@@ -524,7 +524,7 @@ abstract class ContentHandler {
 	/**
 	 * Factory for creating an appropriate DifferenceEngine for this content model.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $context IContextSource context to use, anything else will be
 	 *    ignored
@@ -558,7 +558,7 @@ abstract class ContentHandler {
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 *
 	 * @param Title        $title the page to determine the language for.
 	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
@@ -590,7 +590,7 @@ abstract class ContentHandler {
 	 * Also note that the page language may or may not depend on the actual content of the page,
 	 * that is, this method may load the content in order to determine the language.
 	 *
-	 * @since 1.WD
+	 * @since 1.21
 	 *
 	 * @param Title        $title the page to determine the language for.
 	 * @param Content|null $content the page's content, if you have it handy, to avoid reloading it.
@@ -632,7 +632,7 @@ abstract class ContentHandler {
 	/**
 	 * Returns the name of the diff engine to use.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -647,7 +647,7 @@ abstract class ContentHandler {
 	 *
 	 * This default implementation always returns false.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $oldContent Content|string  String
 	 * @param $myContent Content|string   String
@@ -662,7 +662,7 @@ abstract class ContentHandler {
 	/**
 	 * Return an applicable auto-summary if one exists for the given edit.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $oldContent Content|null: the previous text of the page.
 	 * @param $newContent Content|null: The submitted text of the page.
@@ -736,7 +736,7 @@ abstract class ContentHandler {
 	/**
 	 * Auto-generates a deletion reason
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $title Title: the page's title
 	 * @param &$hasHistory Boolean: whether the page has a history
@@ -843,7 +843,7 @@ abstract class ContentHandler {
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $current Revision The current text
 	 * @param $undo Revision The revision to undo
@@ -914,7 +914,7 @@ abstract class ContentHandler {
 	 * Returns true for content models that support caching using the
 	 * ParserCache mechanism. See WikiPage::isParserCacheUser().
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return bool
 	 */
@@ -995,7 +995,7 @@ abstract class ContentHandler {
 }
 
 /**
- * @since WD.1
+ * @since 1.21
  */
 abstract class TextContentHandler extends ContentHandler {
 
@@ -1058,7 +1058,7 @@ abstract class TextContentHandler extends ContentHandler {
 }
 
 /**
- * @since WD.1
+ * @since 1.21
  */
 class WikitextContentHandler extends TextContentHandler {
 
@@ -1089,7 +1089,7 @@ class WikitextContentHandler extends TextContentHandler {
 # XXX: make ScriptContentHandler base class, do highlighting stuff there?
 
 /**
- * @since WD.1
+ * @since 1.21
  */
 class JavaScriptContentHandler extends TextContentHandler {
 
@@ -1131,7 +1131,7 @@ class JavaScriptContentHandler extends TextContentHandler {
 }
 
 /**
- * @since WD.1
+ * @since 1.21
  */
 class CssContentHandler extends TextContentHandler {
 

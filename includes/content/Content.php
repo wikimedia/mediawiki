@@ -3,12 +3,12 @@
  * A content object represents page content, e.g. the text to show on a page.
  * Content objects have no knowledge about how they relate to wiki pages.
  *
- * @since 1.WD
+ * @since 1.21
  */
 interface Content {
 
 	/**
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return string A string representing the content in a way useful for
 	 *   building a full text search index. If no useful representation exists,
@@ -20,7 +20,7 @@ interface Content {
 	public function getTextForSearchIndex( );
 
 	/**
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return string The wikitext to include when another page includes this
 	 * content, or false if the content is not includable in a wikitext page.
@@ -37,7 +37,7 @@ interface Content {
 	 * Returns a textual representation of the content suitable for use in edit
 	 * summaries and log messages.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $maxlength int Maximum length of the summary text
 	 * @return   The summary text
@@ -48,7 +48,7 @@ interface Content {
 	 * Returns native representation of the data. Interpretation depends on
 	 * the data model used, as given by getDataModel().
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return mixed The native representation of the content. Could be a
 	 *    string, a nested array structure, an object, a binary blob...
@@ -69,7 +69,7 @@ interface Content {
 	 * Returns the ID of the content model used by this Content object.
 	 * Corresponds to the CONTENT_MODEL_XXX constants.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return String The model id
 	 */
@@ -81,7 +81,7 @@ interface Content {
 	 *
 	 * Shorthand for ContentHandler::getForContent( $this )
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return ContentHandler
 	 */
@@ -93,7 +93,7 @@ interface Content {
 	 *
 	 * Shorthand for $this->getContentHandler()->getDefaultFormat()
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return String
 	 */
@@ -105,7 +105,7 @@ interface Content {
 	 *
 	 * Shorthand for $this->getContentHandler()->getSupportedFormats()
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Array of supported serialization formats
 	 */
@@ -120,7 +120,7 @@ interface Content {
 	 *
 	 * Shorthand for $this->getContentHandler()->isSupportedFormat( $format )
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $format string The format to check
 	 * @return bool Whether the format is supported
@@ -132,7 +132,7 @@ interface Content {
 	 *
 	 * Shorthand for $this->getContentHandler()->serializeContent( $this, $format )
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $format null|string The desired serialization format (or null for
 	 *    the default format).
@@ -143,7 +143,7 @@ interface Content {
 	/**
 	 * Returns true if this Content object represents empty content.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return bool Whether this Content object is empty
 	 */
@@ -157,7 +157,7 @@ interface Content {
 	 *
 	 * This default implementation always returns true.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return boolean
 	 */
@@ -180,7 +180,7 @@ interface Content {
 	 * - $a->equals( $b ) <=> $b->equals( $a )
 	 * - $a->equals( $b ) &&  $b->equals( $c ) ==> $a->equals( $c )
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $that Content The Content object to compare to
 	 * @return bool True if this Content object is equal to $that, false otherwise.
@@ -201,7 +201,7 @@ interface Content {
 	 * should return $this. That is,  $copy === $original may be true, but only
 	 * for immutable content objects.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Content. A copy of this object
 	 */
@@ -212,7 +212,7 @@ interface Content {
 	 * that it's also in a countable location (e.g. a current revision in the
 	 * main namespace).
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $hasLinks Bool: If it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
@@ -235,7 +235,7 @@ interface Content {
 	 *        the result of calling getText() on the ParserOutput object returned by
 	 *        this method is undefined.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return ParserOutput
 	 */
@@ -271,7 +271,7 @@ interface Content {
 	 * @return Array. A list of DataUpdate objects for putting information
 	 *    about this content object somewhere.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 */
 	public function getSecondaryDataUpdates( Title $title,
 		Content $old = null,
@@ -284,7 +284,7 @@ interface Content {
 	 * The last element in the array is the final destination after all redirects
 	 * have been resolved (up to $wgMaxRedirects times).
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Array of Titles, with the destination last
 	 */
@@ -296,7 +296,7 @@ interface Content {
 	 * This will only return the immediate redirect target, useful for
 	 * the redirect table and other checks that don't need full recursion.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Title: The corresponding Title
 	 */
@@ -313,7 +313,7 @@ interface Content {
 	 * There is usually no need to override the default behaviour, subclasses that
 	 * want to implement redirects should override getRedirectTarget().
 	 * 
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return Title
 	 */
@@ -323,7 +323,7 @@ interface Content {
 	 * Returns whether this Content represents a redirect.
 	 * Shorthand for getRedirectTarget() !== null.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @return bool
 	 */
@@ -333,7 +333,7 @@ interface Content {
 	 * If this Content object is a redirect, this method updates the redirect target.
 	 * Otherwise, it does nothing.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param Title $target the new redirect target
 	 *
@@ -344,7 +344,7 @@ interface Content {
 	/**
 	 * Returns the section with the given ID.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $sectionId string The section's ID, given as a numeric string.
 	 *    The ID "0" retrieves the section before the first heading, "1" the
@@ -359,7 +359,7 @@ interface Content {
 	 * Replaces a section of the content and returns a Content object with the
 	 * section replaced.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $section Empty/null/false or a section number (0, 1, 2, T1, T2...), or "new"
 	 * @param $with Content: new content of the section
@@ -372,7 +372,7 @@ interface Content {
 	 * Returns a Content object with pre-save transformations applied (or this
 	 * object if no transformations apply).
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $title Title
 	 * @param $user User
@@ -386,7 +386,7 @@ interface Content {
 	 * prepended, if supported. The default implementation just returns this
 	 * Content object unmodified, ignoring the section header.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $header string
 	 * @return Content
@@ -397,7 +397,7 @@ interface Content {
 	 * Returns a Content object with preload transformations applied (or this
 	 * object if no transformations apply).
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $title Title
 	 * @param $popts null|ParserOptions
@@ -436,7 +436,7 @@ interface Content {
 	 * The necessary updates may be taken from the Content object, or depend on
 	 * the current state of the database.
 	 *
-	 * @since WD.1
+	 * @since 1.21
 	 *
 	 * @param $page \WikiPage the deleted page
 	 * @param $parserOutput null|\ParserOutput optional parser output object

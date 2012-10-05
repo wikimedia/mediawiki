@@ -384,7 +384,7 @@ class Title {
 	 *
 	 * @param $text String: Text with possible redirect
 	 * @return Title: The corresponding Title
-	 * @deprecated since 1.WD, use Content::getRedirectTarget instead.
+	 * @deprecated since 1.21, use Content::getRedirectTarget instead.
 	 */
 	public static function newFromRedirect( $text ) {
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
@@ -399,7 +399,7 @@ class Title {
 	 *
 	 * @param $text String Text with possible redirect
 	 * @return Title
-	 * @deprecated since 1.WD, use Content::getUltimateRedirectTarget instead.
+	 * @deprecated since 1.21, use Content::getUltimateRedirectTarget instead.
 	 */
 	public static function newFromRedirectRecurse( $text ) {
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
@@ -414,7 +414,7 @@ class Title {
 	 *
 	 * @param $text String Text with possible redirect
 	 * @return Array of Titles, with the destination last
-	 * @deprecated since 1.WD, use Content::getRedirectChain instead.
+	 * @deprecated since 1.21, use Content::getRedirectChain instead.
 	 */
 	public static function newFromRedirectArray( $text ) {
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );

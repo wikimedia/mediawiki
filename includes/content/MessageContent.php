@@ -5,7 +5,7 @@
  * to represent content from the MediaWiki namespace, and that there is no MessageContentHandler. MessageContent
  * is just intended as glue for wrapping a message programatically.
  *
- * @since WD.1
+ * @since 1.21
  */
 class MessageContent extends AbstractContent {
 
