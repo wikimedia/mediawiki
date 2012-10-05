@@ -50,7 +50,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'parallelize' => 'implicit',
 			'backends'    => array(
 				array(
-					'name'          => 'localmutlitesting1',
+					'name'          => 'localmultitesting1',
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
@@ -59,7 +59,7 @@ class FileBackendTest extends MediaWikiTestCase {
 					'isMultiMaster' => false
 				),
 				array(
-					'name'          => 'localmutlitesting2',
+					'name'          => 'localmultitesting2',
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
@@ -1893,7 +1893,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $this->filesToPrune as $file ) {
 			@unlink( $file );
 		}
-		$containers = array( 'unittest-cont1', 'unittest-cont2', 'unittest-cont3' );
+		$containers = array( 'unittest-cont1', 'unittest-cont2' );
 		foreach ( $containers as $container ) {
 			$this->deleteFiles( $container );
 		}
@@ -1905,8 +1905,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/$container" ) );
 		if ( $iter ) {
 			foreach ( $iter as $file ) {
-				$this->backend->delete( array( 'src' => "$base/$container/$file" ),
-					array( 'force' => 1, 'nonLocking' => 1 ) );
+				$this->backend->quickDelete( array( 'src' => "$base/$container/$file" ) );
 			}
 		}
 		$this->backend->clean( array( 'dir' => "$base/$container", 'recursive' => 1 ) );
