@@ -63,7 +63,7 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return "0.7"; #FIXME: bump this when pushing ContentHandler additions.
+		return "0.8";
 	}
 
 	/**
