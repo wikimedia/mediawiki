@@ -949,7 +949,9 @@ abstract class ContentHandler {
 	 * @return Boolean True if no handler aborted the hook
 	 */
 	public static function runLegacyHooks( $event, $args = array(), $warn = true ) {
-		if ( !Hooks::isRegistered( $event ) ) {
+		global $wgHooks; //@todo: once I39bd5de2 is merged, direct access to $wgHooks is no longer needed.
+
+		if ( !Hooks::isRegistered( $event ) && empty( $wgHooks[$event] ) ) {
 			return true; // nothing to do here
 		}
 
