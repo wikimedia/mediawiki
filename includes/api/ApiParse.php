@@ -104,9 +104,8 @@ class ApiParse extends ApiBase {
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $rev->isCurrent() )  {
 					// May get from/save to parser cache
-					$pageObj = WikiPage::factory( $titleObj );
-					$p_result = $this->getParsedContent( $pageObj, $popts, $pageid, 
-						isset( $prop['wikitext'] ) ) ;
+					$p_result = $this->getParsedContent( $pageObj, $popts,
+						$pageid, isset( $prop['wikitext'] ) ) ;
 				} else { // This is an old revision, so get the text differently
 					$this->content = $rev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
 
