@@ -2067,32 +2067,6 @@ class Linker {
 	/**
 	 * @deprecated since 1.16 Use link()
 	 *
-	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
-	 *
-	 * @param $title String: The text of the title
-	 * @param $text String: Link text
-	 * @param $query String: Optional query part
-	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
-	 *               be included in the link text. Other characters will be appended after
-	 *               the end of the link.
-	 * @return string
-	 */
-	static function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfDeprecated( __METHOD__, '1.16' );
-		
-		$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			return self::makeBrokenLinkObj( $nt, $text, $query, $trail );
-		} else {
-			wfDebug( 'Invalid title passed to self::makeBrokenLink(): "' . $title . "\"\n" );
-			return $text == '' ? $title : $text;
-		}
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link()
-	 *
 	 * Make a link for a title which may or may not be in the database. If you need to
 	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
 	 * call to this will result in a DB query.
@@ -2161,63 +2135,6 @@ class Linker {
 
 		wfProfileOut( __METHOD__ );
 		return $ret;
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link()
-	 *
-	 * Make a red link to the edit page of a given title.
-	 *
-	 * @param $title Title object of the target page
-	 * @param $text  String: Link text
-	 * @param $query String: Optional query part
-	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 * @param $prefix String: Optional prefix
-	 * @return string
-	 */
-	static function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__, '1.16' );
-		
-		wfProfileIn( __METHOD__ );
-
-		list( $inside, $trail ) = self::splitTrail( $trail );
-		if ( $text === '' ) {
-			$text = self::linkText( $title );
-		}
-
-		$ret = self::link( $title, "$prefix$text$inside", array(),
-			wfCgiToArray( $query ), 'broken' ) . $trail;
-
-		wfProfileOut( __METHOD__ );
-		return $ret;
-	}
-
-	/**
-	 * @deprecated since 1.16 Use link()
-	 *
-	 * Make a coloured link.
-	 *
-	 * @param $nt Title object of the target page
-	 * @param $colour Integer: colour of the link
-	 * @param $text   String:  link text
-	 * @param $query  String:  optional query part
-	 * @param $trail  String:  optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 * @param $prefix String: Optional prefix
-	 * @return string
-	 */
-	static function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__, '1.16' );
-		
-		if ( $colour != '' ) {
-			$style = self::getInternalLinkAttributesObj( $nt, $text, $colour );
-		} else {
-			$style = '';
-		}
-		return self::makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
 	}
 
 	/**
