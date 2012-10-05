@@ -3634,7 +3634,14 @@ class Title {
 			$logType = 'move';
 		}
 
-		$redirectSuppressed = !$createRedirect;
+		if ( $createRedirect ) {
+			$contentHandler = ContentHandler::getForTitle( $this );
+			$redirectContent = $contentHandler->makeRedirectContent( $nt );
+
+			// NOTE: If this page's content model does not support redirects, $redirectContent will be null.
+		} else {
+			$redirectContent = null;
+		}
 
 		$logEntry = new ManualLogEntry( 'move', $logType );
 		$logEntry->setPerformer( $wgUser );
@@ -3642,7 +3649,7 @@ class Title {
 		$logEntry->setComment( $reason );
 		$logEntry->setParameters( array(
 			'4::target' => $nt->getPrefixedText(),
-			'5::noredir' => $redirectSuppressed ? '1': '0',
+			'5::noredir' => $redirectContent ? '0': '1',
 		) );
 
 		$formatter = LogFormatter::newFromEntry( $logEntry );
@@ -3704,18 +3711,16 @@ class Title {
 		}
 
 		# Recreate the redirect, this time in the other direction.
-		if ( $redirectSuppressed ) {
+		if ( !$redirectContent ) {
 			WikiPage::onArticleDelete( $this );
 		} else {
-			$mwRedir = MagicWord::get( 'redirect' );
-			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
 			$redirectArticle = WikiPage::factory( $this );
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$redirectRevision = new Revision( array(
 					'page'    => $newid,
 					'comment' => $comment,
-					'text'    => $redirectText ) );
+					'content'    => $redirectContent ) );
 				$redirectRevision->insertOn( $dbw );
 				$redirectArticle->updateRevisionOn( $dbw, $redirectRevision, 0 );
 

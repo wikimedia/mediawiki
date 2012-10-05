@@ -412,6 +412,23 @@ abstract class ContentHandler {
 	public abstract function makeEmptyContent();
 
 	/**
+	 * Creates a new Content object that acts as a redirect to the given page,
+	 * or null of redirects are not supported by this content model.
+	 *
+	 * This default implementation always returns null. Subclasses supporting redirects
+	 * must override this method.
+	 *
+	 * @since 1.21
+	 *
+	 * @param Title $destination the page to redirect to.
+	 *
+	 * @return Content
+	 */
+	public function makeRedirectContent( Title $destination ) {
+		return null;
+	}
+
+	/**
 	 * Returns the model id that identifies the content model this
 	 * ContentHandler can handle. Use with the CONTENT_MODEL_XXX constants.
 	 *
@@ -1073,8 +1090,30 @@ class WikitextContentHandler extends TextContentHandler {
 		return new WikitextContent( $text );
 	}
 
+	/**
+	 * @see ContentHandler::makeEmptyContent
+	 *
+	 * @return Content
+	 */
 	public function makeEmptyContent() {
 		return new WikitextContent( '' );
+	}
+
+
+	/**
+	 * Returns a WikitextContent object representing a redirect to the given destination page.
+	 *
+	 * @see ContentHandler::makeRedirectContent
+	 *
+	 * @param Title $destination the page to redirect to.
+	 *
+	 * @return Content
+	 */
+	public function makeRedirectContent( Title $destination ) {
+		$mwRedir = MagicWord::get( 'redirect' );
+		$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destination->getPrefixedText() . "]]\n";
+
+		return new WikitextContent( $redirectText );
 	}
 
 	/**
