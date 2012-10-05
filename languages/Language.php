@@ -356,7 +356,7 @@ class Language {
 	 * @deprecated in 1.19
 	 */
 	function getFallbackLanguageCode() {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
 		return self::getFallbackFor( $this->mCode );
 	}
 

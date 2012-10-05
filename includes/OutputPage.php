@@ -255,7 +255,7 @@ class OutputPage extends ContextSource {
 	function __construct( IContextSource $context = null ) {
 		if ( $context === null ) {
 			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
-			wfDeprecated( __METHOD__ );
+			wfDeprecated( __METHOD__, '1.18' );
 		} else {
 			$this->setContext( $context );
 		}
@@ -1902,7 +1902,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.18 Use HttpStatus::getMessage() instead.
 	 */
 	public static function getStatusMessage( $code ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		return HttpStatus::getMessage( $code );
 	}
 
