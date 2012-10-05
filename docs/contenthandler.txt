@@ -32,17 +32,17 @@ revisions of a page will all have the same content model. Use Revision::getConte
 
 == Architecture ==
 
-Two class hierarchies are used to provide the functionality associated with the different content models: 
+Two class hierarchies are used to provide the functionality associated with the different content models:
 
 * Content interface (and AbstractContent base class) define functionality that acts on the concrete content of a page, and
-* ContentHandler base class provides functionality specific to a content model, but not acting on concrete content. 
+* ContentHandler base class provides functionality specific to a content model, but not acting on concrete content.
 
 The most important function of ContentHandler is to act as a factory for the appropriate implementation of Content. These
 Content objects are to be used by MediaWiki everywhere, instead of passing page content around as text. All manipulation
 and analysis of page content must be done via the appropriate methods of the Content object.
 
 For each content model, a subclass of ContentHandler has to be registered with $wgContentHandlers. The ContentHandler
-object for a given content model can be optained using ContentHandler::getForModelID( $id ). Also Title, WikiPage and
+object for a given content model can be obtained using ContentHandler::getForModelID( $id ). Also Title, WikiPage and
 Revision now have getContentHandler() methods for convenience.
 
 ContentHandler objects are singletons that provide functionality specific to the content type, but not directly acting
@@ -138,7 +138,7 @@ Note however that the content model and format is only stored if it differs from
 ContentHandler::getDefaultModelFor( $title ). The default values are represented as NULL in the database, to preserve
 space.
 
-Storage of content model and format can be disabled alltogether by setting $wgContentHandlerUseDB = false. In that case,
+Storage of content model and format can be disabled altogether by setting $wgContentHandlerUseDB = false. In that case,
 the page's default model (and the model's default format) will be used everywhere. Attempts to store a revision of a page
 using a model or format different from the default will result in an error.
 
