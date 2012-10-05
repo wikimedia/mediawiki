@@ -9,7 +9,8 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	private $title;
 
 	function setUp() {
-		$this->testParserOptions = new ParserOptions();
+		global $wgContLang;
+		$this->testParserOptions = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 
 		$this->testParser = new Parser();
 		$this->testParser->Options( $this->testParserOptions );

@@ -401,7 +401,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	public function testGetParserOutput( $text, $expectedHtml ) {
 		$page = $this->createPage( 'WikiPageTest_testGetParserOutput', $text );
 
-		$opt = new ParserOptions();
+		$opt = $page->makeParserOptions( 'canonical' );
 		$po = $page->getParserOutput( $opt );
 		$text = $po->getText();
 
