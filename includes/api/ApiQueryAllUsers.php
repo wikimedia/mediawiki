@@ -81,10 +81,16 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$db->buildLike( $this->getCanonicalUserName( $params['prefix'] ), $db->anyString() ) );
 		}
 
-		if ( !is_null( $params['rights'] ) ) {
+		if ( !is_null( $params['rights'] ) && count( $params['rights'] ) ) {
 			$groups = array();
 			foreach( $params['rights'] as $r ) {
 				$groups = array_merge( $groups, User::getGroupsWithPermission( $r ) );
+			}
+
+			// no group with the given right(s) exists, no need for a query
+			if( !count( $groups ) ) {
+				$this->getResult()->setIndexedTagName_internal( array( 'query', $this->getModuleName() ), '' );
+				return;
 			}
 
 			$groups = array_unique( $groups );
