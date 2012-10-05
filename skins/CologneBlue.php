@@ -120,223 +120,77 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
+	/**
+	 * Used in bottomLinks() to elliminate repetitive code.
+	 *
+	 * @param $key string Key to be passed to makeListItem()
+	 * @param $navlink array Navlink suitable for processNavlinkForDocument()
+	 * @param $message string Key of the message to use in place of standard text
+	 *
+	 * @return string
+	 * @fixed
+	 */
+	function processBottomLink( $key, $navlink, $message=null ) {
+		if ( !$navlink ) {
+			return null; // empty navlinks might be passed
+		}
+
+		if ( $message ) {
+			$navlink['text'] = wfMessage( $message )->escaped();
+		}
+
+		return $this->makeListItem( $key, $this->processNavlinkForDocument( $navlink ), array( 'tag' => 'span' ) );
+	}
+
+	// @fixed
 	function bottomLinks() {
-		$sep = wfMessage( 'pipe-separator' )->escaped() . "\n";
+		$toolbox = $this->getToolbox();
+		$content_nav = $this->data['content_navigation'];
 
-		$s = '';
+		$lines = array();
+
 		if ( $this->getSkin()->getOutput()->isArticleRelated() ) {
-			$element[] = '<strong>' . $this->editThisPage() . '</strong>';
+			// First row. Regular actions.
+			$element = array();
 
-			if ( $this->getSkin()->getUser()->isLoggedIn() ) {
-				$element[] = $this->watchThisPage();
-			}
+			$editLinkMessage = $this->getSkin()->getTitle()->exists() ? 'editthispage' : 'create-this-page';
+			$element[] = $this->processBottomLink( 'edit', $content_nav['views']['edit'], $editLinkMessage );
+			$element[] = $this->processBottomLink( 'viewsource', $content_nav['views']['viewsource'], 'viewsource' );
+
+			$element[] = $this->processBottomLink( 'watch', $content_nav['actions']['watch'], 'watchthispage' );
+			$element[] = $this->processBottomLink( 'unwatch', $content_nav['actions']['unwatch'], 'unwatchthispage' );
 
 			$element[] = $this->talkLink();
-			$element[] = $this->historyLink();
-			$element[] = $this->whatLinksHere();
-			$element[] = $this->watchPageLinksLink();
 
-			$title = $this->getSkin()->getTitle();
+			$element[] = $this->processBottomLink( 'history', $content_nav['views']['history'], 'history' );
+			$element[] = $this->processBottomLink( 'whatlinkshere', $toolbox['whatlinkshere'] );
+			$element[] = $this->processBottomLink( 'recentchangeslinked', $toolbox['recentchangeslinked'] );
 
-			if (
-				$title->getNamespace() == NS_USER ||
-				$title->getNamespace() == NS_USER_TALK
-			) {
-				$id = User::idFromName( $title->getText() );
-				$ip = User::isIP( $title->getText() );
+			$element[] = $this->processBottomLink( 'contributions', $toolbox['contributions'] );
+			$element[] = $this->processBottomLink( 'emailuser', $toolbox['emailuser'] );
 
-				# Both anons and non-anons have contributions list
-				if ( $id || $ip ) {
-					$element[] = $this->userContribsLink();
-				}
+			$lines[] = $this->getSkin()->getLanguage()->pipeList( array_filter( $element ) );
 
-				if ( $this->getSkin()->showEmailUser( $id ) ) {
-					$element[] = $this->emailUserLink();
-				}
-			}
 
-			$s = implode( $element, $sep );
+			// Second row. Privileged actions.
+			$element = array();
 
-			if ( $title->getArticleID() ) {
-				$s .= "\n<br />";
+			$element[] = $this->processBottomLink( 'delete', $content_nav['actions']['delete'], 'deletethispage' );
+			$element[] = $this->processBottomLink( 'undelete', $content_nav['actions']['undelete'], 'undeletethispage' );
 
-				// Delete/protect/move links for privileged users
-				if ( $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
-					$s .= $this->deleteThisPage();
-				}
+			$element[] = $this->processBottomLink( 'protect', $content_nav['actions']['protect'], 'protectthispage' );
+			$element[] = $this->processBottomLink( 'unprotect', $content_nav['actions']['unprotect'], 'unprotectthispage' );
 
-				if ( $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
-					$s .= $sep . $this->protectThisPage();
-				}
+			$element[] = $this->processBottomLink( 'move', $content_nav['actions']['move'], 'movethispage' );
 
-				if ( $this->getSkin()->getUser()->isAllowed( 'move' ) ) {
-					$s .= $sep . $this->moveThisPage();
-				}
-			}
+			$lines[] = $this->getSkin()->getLanguage()->pipeList( array_filter( $element ) );
 
-			$s .= "<br />\n" . $this->otherLanguages();
+
+			// Third row. Language links.
+			$lines[] = $this->otherLanguages();
 		}
 
-		return $s;
-	}
-
-	function editThisPage() {
-		if ( !$this->getSkin()->getOutput()->isArticleRelated() ) {
-			$s = wfMessage( 'protectedpage' )->text();
-		} else {
-			$title = $this->getSkin()->getTitle();
-			if ( $title->quickUserCan( 'edit' ) && $title->exists() ) {
-				$t = wfMessage( 'editthispage' )->text();
-			} elseif ( $title->quickUserCan( 'create' ) && !$title->exists() ) {
-				$t = wfMessage( 'create-this-page' )->text();
-			} else {
-				$t = wfMessage( 'viewsource' )->text();
-			}
-
-			$s = Linker::linkKnown(
-				$title,
-				$t,
-				array(),
-				$this->getSkin()->editUrlOptions()
-			);
-		}
-
-		return $s;
-	}
-
-	function deleteThisPage() {
-		$diff = $this->getSkin()->getRequest()->getVal( 'diff' );
-		$title = $this->getSkin()->getTitle();
-
-		if ( $title->getArticleID() && ( !$diff ) && $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
-			$t = wfMessage( 'deletethispage' )->text();
-
-			$s = Linker::linkKnown(
-				$title,
-				$t,
-				array(),
-				array( 'action' => 'delete' )
-			);
-		} else {
-			$s = '';
-		}
-
-		return $s;
-	}
-
-	function protectThisPage() {
-		$diff = $this->getSkin()->getRequest()->getVal( 'diff' );
-		$title = $this->getSkin()->getTitle();
-
-		if ( $title->getArticleID() && ( ! $diff ) && $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
-			if ( $title->isProtected() ) {
-				$text = wfMessage( 'unprotectthispage' )->text();
-				$query = array( 'action' => 'unprotect' );
-			} else {
-				$text = wfMessage( 'protectthispage' )->text();
-				$query = array( 'action' => 'protect' );
-			}
-
-			$s = Linker::linkKnown(
-				$title,
-				$text,
-				array(),
-				$query
-			);
-		} else {
-			$s = '';
-		}
-
-		return $s;
-	}
-
-	function watchThisPage() {
-		// Cache
-		$title = $this->getSkin()->getTitle();
-
-		if ( $this->getSkin()->getOutput()->isArticleRelated() ) {
-			if ( $this->getSkin()->getUser()->isWatched( $title ) ) {
-				$text = wfMessage( 'unwatchthispage' )->text();
-				$query = array(
-					'action' => 'unwatch',
-					'token' => UnwatchAction::getUnwatchToken( $title, $this->getSkin()->getUser() ),
-				);
-				$id = 'mw-unwatch-link';
-			} else {
-				$text = wfMessage( 'watchthispage' )->text();
-				$query = array(
-					'action' => 'watch',
-					'token' => WatchAction::getWatchToken( $title, $this->getSkin()->getUser() ),
-				);
-				$id = 'mw-watch-link';
-			}
-
-			$s = Linker::linkKnown(
-				$title,
-				$text,
-				array( 'id' => $id ),
-				$query
-			);
-		} else {
-			$s = wfMessage( 'notanarticle' )->text();
-		}
-
-		return $s;
-	}
-
-	function moveThisPage() {
-		if ( $this->getSkin()->getTitle()->quickUserCan( 'move' ) ) {
-			return Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Movepage' ),
-				wfMessage( 'movethispage' )->text(),
-				array(),
-				array( 'target' => $this->getSkin()->getTitle()->getPrefixedDBkey() )
-			);
-		} else {
-			// no message if page is protected - would be redundant
-			return '';
-		}
-	}
-
-	function historyLink() {
-		return Linker::link(
-			$this->getSkin()->getTitle(),
-			wfMessage( 'history' )->escaped(),
-			array( 'rel' => 'archives' ),
-			array( 'action' => 'history' )
-		);
-	}
-
-	function whatLinksHere() {
-		return Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Whatlinkshere', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
-			wfMessage( 'whatlinkshere' )->escaped()
-		);
-	}
-
-	function userContribsLink() {
-		return Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Contributions', $this->getSkin()->getTitle()->getDBkey() ),
-			wfMessage( 'contributions' )->escaped()
-		);
-	}
-
-	function emailUserLink() {
-		return Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Emailuser', $this->getSkin()->getTitle()->getDBkey() ),
-			wfMessage( 'emailuser' )->escaped()
-		);
-	}
-
-	function watchPageLinksLink() {
-		if ( !$this->getSkin()->getOutput()->isArticleRelated() ) {
-			return wfMessage( 'parentheses', wfMessage( 'notanarticle' )->text() )->escaped();
-		} else {
-			return Linker::linkKnown(
-				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
-				wfMessage( 'recentchangeslinked-toolbox' )->escaped()
-			);
-		}
+		return implode( array_filter( $lines ), "<br />\n" ) . "<br />\n";
 	}
 
 	// @fixed
@@ -381,10 +235,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		// Use the regular navigational link, but replace its text. Everything else stays unmodified.
 		$namespacesLinks = $this->data['content_navigation']['namespaces'];
-		$link = $this->processNavlinkForDocument( $namespacesLinks[ $key ] );
-		$link['text'] = wfMessage( $message )->text();
-
-		return $this->makeListItem( $message, $link, array( 'tag' => 'span' ) );
+		return $this->processBottomLink( $message,  $namespacesLinks[$key], $message );
 	}
 
 	/**
