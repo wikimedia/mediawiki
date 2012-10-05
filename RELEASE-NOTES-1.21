@@ -20,7 +20,7 @@ production.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
-* action=edit and action=parse now support contentmodel and contentformat parameters to controll the interpretation of
+* action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
   page content; See docs/contenthandler.txt for details.
 
 === Languages updated in 1.21 ===
