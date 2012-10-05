@@ -329,8 +329,9 @@ abstract class ContentHandler {
 	public static function getLocalizedName( $name ) {
 		$key = "content-model-$name";
 
-		if ( wfEmptyMsg( $key ) ) return $name;
-		else return wfMsg( $key );
+		$msg = wfMessage( $key );
+
+		return $msg->exists() ? $msg->plain() : $name;
 	}
 
 	public static function getContentModels() {
