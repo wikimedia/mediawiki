@@ -108,7 +108,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * @param $namespace Integer
 	 * @param $dbkeys Array
 	 */
-	protected function invalidatePages( $namespace, Array $dbkeys ) {
+	protected function invalidatePages( $namespace, array $dbkeys ) {
 		if ( !count( $dbkeys ) ) {
 			return;
 		}

@@ -43,7 +43,7 @@ class CheckLanguageCLI {
 	 * Constructor.
 	 * @param $options array Options for script.
 	 */
-	public function __construct( Array $options ) {
+	public function __construct( array $options ) {
 		if ( isset( $options['help'] ) ) {
 			echo $this->help();
 			exit(1);
@@ -484,7 +484,7 @@ class CheckExtensionsCLI extends CheckLanguageCLI {
 	 * @param $options array Options for script.
 	 * @param $extension string The extension name (or names).
 	 */
-	public function __construct( Array $options, $extension ) {
+	public function __construct( array $options, $extension ) {
 		if ( isset( $options['help'] ) ) {
 			echo $this->help();
 			exit(1);
