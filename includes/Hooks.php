@@ -23,12 +23,17 @@
  * @file
  */
 
+/**
+ * @since 1.18
+ */
 class MWHookException extends MWException {}
 
 /**
  * Hooks class.
  *
  * Used to supersede $wgHooks, because globals are EVIL.
+ *
+ * @since 1.18
  */
 class Hooks {
 
@@ -37,9 +42,10 @@ class Hooks {
 	/**
 	 * Attach an event handler to a given hook
 	 *
+	 * @since 1.18
+	 *
 	 * @param $name Mixed: name of hook
 	 * @param $callback Mixed: callback function to attach
-	 * @return void
 	 */
 	public static function register( $name, $callback ) {
 		if( !isset( self::$handlers[$name] ) ) {
@@ -51,6 +57,8 @@ class Hooks {
 
 	/**
 	 * Returns true if a hook has a function registered to it.
+	 *
+	 * @since 1.18
 	 *
 	 * @param $name Mixed: name of hook
 	 * @return Boolean: true if a hook has a function registered to it
@@ -65,6 +73,8 @@ class Hooks {
 
 	/**
 	 * Returns an array of all the event functions attached to a hook
+	 *
+	 * @since 1.18
 	 *
 	 * @param $name Mixed: name of the hook
 	 * @return array
@@ -84,8 +94,12 @@ class Hooks {
 	 * careful about its contents. So, there's a lot more error-checking
 	 * in here than would normally be necessary.
 	 *
+	 * @since 1.18
+	 *
 	 * @param $event String: event name
 	 * @param $args Array: parameters passed to hook functions
+	 * @throws MWException
+	 * @throws FatalError
 	 * @return Boolean True if no handler aborted the hook
 	 */
 	public static function run( $event, $args = array() ) {
@@ -259,8 +273,11 @@ class Hooks {
 	/**
 	 * This REALLY should be protected... but it's public for compatibility
 	 *
+	 * @since 1.18
+	 *
 	 * @param $errno int Unused
 	 * @param $errstr String: error message
+	 * @throws MWHookException
 	 * @return Boolean: false
 	 */
 	public static function hookErrorHandler( $errno, $errstr ) {
