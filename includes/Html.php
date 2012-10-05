@@ -753,7 +753,7 @@ class Html {
 	 * - name: [optional], default: 'namespace'
 	 * @return string HTML code to select a namespace.
 	 */
-	public static function namespaceSelector( Array $params = array(), Array $selectAttribs = array() ) {
+	public static function namespaceSelector( array $params = array(), array $selectAttribs = array() ) {
 		global $wgContLang;
 
 		ksort( $selectAttribs );
