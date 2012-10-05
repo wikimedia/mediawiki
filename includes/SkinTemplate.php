@@ -423,7 +423,7 @@ class SkinTemplate extends Skin {
 					if ( strval( $ilLangName ) === '' ) {
 						$ilLangName = $l;
 					} else {
-						$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
+						$ilLangName = $this->formatLanguageName( $ilLangName );
 					}
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
@@ -496,6 +496,17 @@ class SkinTemplate extends Skin {
 			$this->setContext( $oldContext );
 		}
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Format language name for use in sidebar interlanguage links list.
+	 * By default it is capitalized.
+	 *
+	 * @param $name string Language name, e.g. "English" or "español"
+	 * @private
+	 */
+	function formatLanguageName( $name ) {
+		return $this->getLanguage()->ucfirst( $name );
 	}
 
 	/**
