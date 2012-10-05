@@ -2923,8 +2923,8 @@ abstract class DatabaseBase implements DatabaseType {
 				//
 				// b) the DBO_TRX flag is not set. Explicit transactions should always be properly
 				//    started and comitted.
-				wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-					" performing implicit commit!" );
+				/*wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+					" performing implicit commit!" );*/
 			} elseif ( $wgDebugDBTransactions ) {
 				wfDebug( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
 					" performing implicit commit!\n" );
