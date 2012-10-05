@@ -4323,6 +4323,47 @@ section=1
 !! end
 
 ###
+### <includeonly> and <noinclude> in attributes
+###
+!!test
+1. includeonly around the entire attribute
+!!input
+<span <includeonly>id="v1"</includeonly><noinclude>id="v2"</noinclude>>bar</span>
+!!result
+<p><span id="v2">bar</span>
+</p>
+!!end
+
+!!test
+2. includeonly in html attr key
+!!input
+<span <noinclude>id</noinclude><includeonly>about</includeonly>="foo">bar</span>
+!!result
+<p><span id="foo">bar</span>
+</p>
+!!end
+
+!!test
+3. includeonly in html attr value
+!!input
+<span id="<noinclude>v1</noinclude><includeonly>v2</includeonly>">bar</span>
+<span id=<noinclude>"v1"</noinclude><includeonly>"v2"</includeonly>>bar</span>
+!!result
+<p><span id="v1">bar</span>
+<span id="v1">bar</span>
+</p>
+!!end
+
+!!test
+4. includeonly in part of an attr value
+!!input
+<span style="color:<noinclude>red</noinclude><includeonly>blue</includeonly>;">bar</span>
+!!result
+<p><span style="color:red;">bar</span>
+</p>
+!!end
+
+###
 ### Testing parsing of templates where a template arg
 ### has the same name as the template itself.
 ###
