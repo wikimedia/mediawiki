@@ -5854,6 +5854,19 @@ ill
 es:Alimento fr:Nourriture zh:食品
 !! end
 
+!! test
+Duplicate interlanguage links (bug 24502)
+!! options
+ill
+!! input
+[[es:1]]
+[[es:2]]
+[[fr:1]]
+[[fr:2]]
+!! result
+es:1 fr:1
+!! end
+
 ###
 ### Sections
 ###
