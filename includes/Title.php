@@ -232,7 +232,7 @@ class Title {
 	 * @return Array of Titles
 	 */
 	public static function newFromIDs( $ids ) {
-		if ( !count( $ids ) ) {
+		if ( $ids === array() ) {
 			return array();
 		}
 		$dbr = wfGetDB( DB_SLAVE );
