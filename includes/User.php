@@ -1204,6 +1204,7 @@ class User {
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mOptions = null;
+		$this->mEditCount = null;
 
 		if ( $reloadFrom ) {
 			$this->mLoadedItems = array();
