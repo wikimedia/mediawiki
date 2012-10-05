@@ -239,7 +239,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testNamespaceSelector() {
 		$this->assertEquals(
-			'<select>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
 '<option value="0">(Main)</option>' . "\n" .
 '<option value="1">Talk</option>' . "\n" .
 '<option value="2">User</option>' . "\n" .
@@ -318,7 +318,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testCanFilterOutNamespaces() {
 		$this->assertEquals(
-'<select>' . "\n" .
+'<select id="namespace" name="namespace">' . "\n" .
 '<option value="2">User</option>' . "\n" .
 '<option value="4">MyWiki</option>' . "\n" .
 '<option value="5">MyWiki Talk</option>' . "\n" .
@@ -340,7 +340,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testCanDisableANamespaces() {
 		$this->assertEquals(
-'<select>' . "\n" .
+'<select id="namespace" name="namespace">' . "\n" .
 '<option disabled="" value="0">(Main)</option>' . "\n" .
 '<option disabled="" value="1">Talk</option>' . "\n" .
 '<option disabled="" value="2">User</option>' . "\n" .
