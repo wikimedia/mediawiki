@@ -78,6 +78,9 @@ class CommandLineInstaller extends Maintenance {
 
 		$dbpassfile = $this->getOption( 'dbpassfile', false );
 		if ( $dbpassfile !== false ) {
+			if ( $this->getOption( 'dbpass', false ) !== false ) {
+				$this->error( "WARNING: You provide the options \"dbpass\" and \"dbpassfile\". The content of \"dbpassfile\" overwrites \"dbpass\".", false );
+			}
 			wfSuppressWarnings();
 			$dbpass = file_get_contents( $dbpassfile );
 			wfRestoreWarnings();
@@ -89,6 +92,9 @@ class CommandLineInstaller extends Maintenance {
 
 		$passfile = $this->getOption( 'passfile', false );
 		if ( $passfile !== false ) {
+			if ( $this->getOption( 'pass', false ) !== false ) {
+				$this->error( "WARNING: You provide the options \"pass\" and \"passfile\". The content of \"passfile\" overwrites \"pass\".", false );
+			}
 			wfSuppressWarnings();
 			$pass = file_get_contents( $passfile );
 			wfRestoreWarnings();
@@ -97,7 +103,7 @@ class CommandLineInstaller extends Maintenance {
 			}
 			$this->mOptions['pass'] = str_replace( array( "\r\n", "\n", "\r" ), "", $pass );
 		} elseif ( $this->getOption( 'pass', false ) === false ) {
-			$this->error( "You need to provide the option pass or passfile", true );
+			$this->error( "You need to provide the option \"pass\" or \"passfile\"", true );
 		}
 
 		$installer =
