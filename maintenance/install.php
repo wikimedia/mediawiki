@@ -45,7 +45,8 @@ class CommandLineInstaller extends Maintenance {
 		$this->addArg( 'name', 'The name of the wiki', true);
 
 		$this->addArg( 'admin', 'The username of the wiki administrator (WikiSysop)', true );
-		$this->addOption( 'pass', 'The password for the wiki administrator.', true, true );
+		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
+		$this->addOption( 'passfile', 'An alternative way to provide pass option, as the contents of this file', false, true );
 		/* $this->addOption( 'email', 'The email for the wiki administrator', false, true ); */
 		$this->addOption( 'scriptpath', 'The relative path of the wiki in the web server (/wiki)', false, true );
 
@@ -84,6 +85,19 @@ class CommandLineInstaller extends Maintenance {
 				$this->error( "Couldn't open $dbpassfile", true );
 			}
 			$this->mOptions['dbpass'] = trim( $dbpass, "\r\n" );
+		}
+
+		$passfile = $this->getOption( 'passfile', false );
+		if ( $passfile !== false ) {
+			wfSuppressWarnings();
+			$pass = file_get_contents( $passfile );
+			wfRestoreWarnings();
+			if ( $pass === false ) {
+				$this->error( "Couldn't open $passfile", true );
+			}
+			$this->mOptions['pass'] = str_replace( array( "\n", "\r" ), "", $pass );
+		} elseif ( $this->getOption( 'pass', false ) === false ) {
+			$this->error( "You need to provide the option pass or passfile", true );
 		}
 
 		$installer =
