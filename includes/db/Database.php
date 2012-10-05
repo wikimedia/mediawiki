@@ -266,6 +266,14 @@ abstract class DatabaseBase implements DatabaseType {
 	 */
 	private $mTrxDoneWrites = false;
 
+	/**
+	 * Record if the current transaction was started implicitly due to DBO_TRX being set.
+	 *
+	 * @var Bool
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxAutomatic = false;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -745,8 +753,17 @@ abstract class DatabaseBase implements DatabaseType {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
+				if ( $this->mTrxAutomatic ) {
+					// clear flag, so commit() doesn't complain about an explicit commit of an implicit transaction.
+					$this->mTrxAutomatic = false;
+				} else {
+					wfWarn( "Transaction still in progress (from {$this->mTrxFname}), " .
+						" performing implicit commit before closing connection!" );
+				}
+
 				$this->commit( __METHOD__ );
 			}
+
 			$ret = $this->closeConnection();
 			$this->mConn = false;
 			return $ret;
@@ -869,6 +886,7 @@ abstract class DatabaseBase implements DatabaseType {
 					wfDebug("Implicit transaction start.\n");
 				}
 				$this->begin( __METHOD__ . " ($fname)" );
+				$this->mTrxAutomatic = true;
 			}
 		}
 
@@ -903,6 +921,7 @@ abstract class DatabaseBase implements DatabaseType {
 		if ( false === $ret && $this->wasErrorReissuable() ) {
 			# Transaction is gone, like it or not
 			$this->mTrxLevel = 0;
+			$this->trxIdleCallbacks = array(); // cancel
 			wfDebug( "Connection lost, reconnecting...\n" );
 
 			if ( $this->ping() ) {
@@ -2904,8 +2923,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Note that when the DBO_TRX flag is set (which is usually the case for web requests, but not for maintenance scripts),
 	 * any previous database query will have started a transaction automatically.
 	 *
-	 * Nesting of transactions is not supported. Attempts to nest transactions will cause warnings if DBO_TRX is not set
-	 * or the extsting transaction contained write operations.
+	 * Nesting of transactions is not supported. Attempts to nest transactions will cause a warning, unless the current
+	 * transaction was started automatically because of the DBO_TRX flag.
 	 *
 	 * @param $fname string
 	 */
@@ -2913,21 +2932,20 @@ abstract class DatabaseBase implements DatabaseType {
 		global $wgDebugDBTransactions;
 
 		if ( $this->mTrxLevel ) { // implicit commit
-			if ( $this->mTrxDoneWrites || ( $this->mFlags & DBO_TRX ) === 0 ) {
-				// In theory, we should always warn about nesting BEGIN statements.
-				// However, it is sometimes hard to avoid so we only warn if:
-				//
-				// a) the transaction has done writes. This gives warnings about bad transactions
-				// that could cause partial writes but not about read queries seeing more
-				// than one DB snapshot (when in REPEATABLE-READ) due to nested BEGINs.
-				//
-				// b) the DBO_TRX flag is not set. Explicit transactions should always be properly
-				//    started and comitted.
+			if ( !$this->mTrxAutomatic ) {
+				// We want to warn about inadvertently nested begin/commit pairs, but not about auto-committing
+				// implicit transactions that were started by query() because DBO_TRX was set.
+
 				wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
 					" performing implicit commit!" );
-			} elseif ( $wgDebugDBTransactions ) {
-				wfDebug( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
-					" performing implicit commit!\n" );
+			} else {
+				// if the transaction was automatic and has done write operations,
+				// log it if $wgDebugDBTransactions is enabled.
+
+				if ( $this->mTrxDoneWrites && $wgDebugDBTransactions ) {
+					wfDebug( "$fname: Automatic transaction with writes in progress (from {$this->mTrxFname}), " .
+						" performing implicit commit!\n" );
+				}
 			}
 
 			$this->doCommit( $fname );
@@ -2937,6 +2955,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$this->doBegin( $fname );
 		$this->mTrxFname = $fname;
 		$this->mTrxDoneWrites = false;
+		$this->mTrxAutomatic = false;
 	}
 
 	/**
@@ -2961,7 +2980,10 @@ abstract class DatabaseBase implements DatabaseType {
 	final public function commit( $fname = 'DatabaseBase::commit' ) {
 		if ( !$this->mTrxLevel ) {
 			wfWarn( "$fname: No transaction to commit, something got out of sync!" );
+		} elseif( $this->mTrxAutomatic ) {
+			wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
 		}
+
 		$this->doCommit( $fname );
 		$this->runOnTransactionIdleCallbacks();
 	}

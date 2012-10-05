@@ -39,7 +39,7 @@ define( 'MW_SPECIALPAGE_VERSION', 2 );
 define( 'DBO_DEBUG', 1 );
 define( 'DBO_NOBUFFER', 2 );
 define( 'DBO_IGNORE', 4 );
-define( 'DBO_TRX', 8 );
+define( 'DBO_TRX', 8 ); // automatically start transaction on first query
 define( 'DBO_DEFAULT', 16 );
 define( 'DBO_PERSISTENT', 32 );
 define( 'DBO_SYSDBA', 64 ); //for oracle maintenance
