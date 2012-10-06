@@ -2693,6 +2693,9 @@ $wgMessageStructure = array(
 		'pageinfo-templates',
 		'pageinfo-footer',
 		'pageinfo-toolboxlink',
+		'pageinfo-protect-cascading',
+		'pageinfo-protect-cascading-yes',
+		'pageinfo-protect-cascading-from',
 	),
 	'skin' => array(
 		'skinname-standard',
