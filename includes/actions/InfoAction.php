@@ -260,6 +260,28 @@ class InfoAction extends FormlessAction {
 		// Page protection
 		$pageInfo['header-restrictions'] = array();
 
+		// Is this page effected by the cascading protection of something which includes it?
+		if ( $title->isCascadeProtected() ) {
+			$cascadingFrom = '';
+			$sources = $title->getCascadeProtectionSources(); // Array deferencing is in PHP 5.4 :(
+
+			foreach ( $sources[0] as $sourceTitle ) {
+				$cascadingFrom .= Html::element( 'li', array(), $sourceTitle->getFullText() );
+			}
+
+			$cascadingFrom = Html::rawElement( 'ul', array(), $cascadingFrom );
+			$pageInfo['header-restrictions'][] = array( wfMessage( 'pageinfo-protect-cascading-from' ), $cascadingFrom );
+		}
+
+		// Is out protection set to cascade to other pages?
+		if ( $title->areRestrictionsCascading() ) {
+			$cascadingFromHere = wfMessage( 'pageinfo-protect-cascading-yes' );
+		} else {
+			$cascadingFromHere = wfMessage( 'pageinfo-protect-cascading-no' );
+		}
+
+		$pageInfo['header-restrictions'][] = array( wfMessage( 'pageinfo-protect-cascading' ), $cascadingFromHere );
+
 		// Page protection
 		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
 			$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
