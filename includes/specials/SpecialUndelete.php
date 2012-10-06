@@ -329,8 +329,6 @@ class PageArchive {
 	 * on success, false on failure
 	 */
 	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false, User $user = null ) {
-		global $wgUser;
-
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -379,6 +377,7 @@ class PageArchive {
 		}
 
 		if ( $user === null ) {
+			global $wgUser;
 			$user = $wgUser;
 		}
 

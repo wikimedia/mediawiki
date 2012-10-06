@@ -115,7 +115,7 @@ class RevertFileAction extends FormAction {
 		$source = $this->page->getFile()->getArchiveVirtualUrl( $this->getRequest()->getText( 'oldimage' ) );
 		$comment = $data['comment'];
 		// TODO: Preserve file properties from database instead of reloading from file
-		return $this->page->getFile()->upload( $source, $comment, $comment );
+		return $this->page->getFile()->upload( $source, $comment, $comment, 0, false, false, $this->getUser() );
 	}
 
 	public function onSuccess() {
