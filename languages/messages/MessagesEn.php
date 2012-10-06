@@ -3777,6 +3777,9 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-redirectsto-info'    => 'info',
 'pageinfo-contentpage'         => 'Counted as a content page',
 'pageinfo-contentpage-yes'     => 'Yes',
+'pageinfo-protect-cascading'      => 'Protections are cascading from here',
+'pageinfo-protect-cascading-yes'  => 'Yes',
+'pageinfo-protect-cascading-from' => 'Protections are cascading from',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it

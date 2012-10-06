@@ -3552,6 +3552,9 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.',
 'pageinfo-contentpage' => 'Key for the row shown if this page is counted as a content page',
 'pageinfo-contentpage-yes' => 'Yes, this page is a content page',
+'pageinfo-protect-cascading'      => 'Key for the row which shows whether this page has cascading protection enabled',
+'pageinfo-protect-cascading-yes'  => 'Yes, protections are cascading from here',
+'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
 
 # Skin names
 'skinname-standard' => '{{optional}}

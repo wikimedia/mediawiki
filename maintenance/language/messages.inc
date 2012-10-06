@@ -2707,6 +2707,9 @@ $wgMessageStructure = array(
 		'pageinfo-redirectsto-info',
 		'pageinfo-contentpage',
 		'pageinfo-contentpage-yes',
+		'pageinfo-protect-cascading',
+		'pageinfo-protect-cascading-yes',
+		'pageinfo-protect-cascading-from',
 	),
 	'skin' => array(
 		'skinname-standard',
