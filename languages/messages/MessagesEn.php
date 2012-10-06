@@ -3763,6 +3763,9 @@ This is probably caused by a link to a blacklisted external site.',
 'pageinfo-templates'           => 'Transcluded {{PLURAL:$1|template|templates}} ($1)',
 'pageinfo-footer'              => '-', # do not translate or duplicate this message to other languages
 'pageinfo-toolboxlink'         => 'Page information',
+'pageinfo-protect-cascading'      => 'Protections are cascading from here',
+'pageinfo-protect-cascading-yes'  => 'Yes',
+'pageinfo-protect-cascading-from' => 'Protections are cascading from',
 
 # Skin names
 'skinname-standard'    => 'Classic', # only translate this message to other languages if you have to change it

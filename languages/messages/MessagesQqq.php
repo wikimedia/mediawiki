@@ -3506,6 +3506,9 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
 'pageinfo-toolboxlink' => 'Information link for the page (like \'What links here\', but to action=info for the current page instead)',
+'pageinfo-protect-cascading'      => 'Key for the row which shows whether this page has cascading protection enabled',
+'pageinfo-protect-cascading-yes'  => 'Yes, protections are cascading from here',
+'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
 
 # Skin names
 'skinname-standard' => '{{optional}}
