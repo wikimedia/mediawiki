@@ -726,7 +726,8 @@ See also {{msg-mw|protectedinterface}}.',
 'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
 
 # Login and logout pages
-'logouttext' => 'Log out message',
+'logouttext' => 'Log out message
+* $1 is an URL to [[Special:Userlogin]] containing returnto and returntoquery parameters',
 'welcomecreation' => 'The welcome message users see after registering a user account. $1 is the username of the new user.',
 'yourname' => "In user preferences
 
@@ -3562,7 +3563,7 @@ Parameters:
 Start with a lowercase letter, unless the first word is “SVG”.',
 'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
 * $1 is the width in pixels
-* $2 is the height in pixels, and 
+* $2 is the height in pixels, and
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
