@@ -49,8 +49,15 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 		$oldName = $user->getName();
 		$user->logout();
 
+		$loginLink = Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Userlogin' ),
+			$this->msg( 'logouttext-link' )->escaped(),
+			array(),
+			$this->getRequest()->getValues( 'returnto', 'returntoquery' )
+		);
+
 		$out = $this->getOutput();
-		$out->addWikiMsg( 'logouttext' );
+		$out->addHTML( $this->msg( 'logouttext' )->rawParams( $loginLink )->parseAsBlock() );
 
 		// Hook.
 		$injected_html = '';
