@@ -828,7 +828,7 @@ var mw = ( function ( $, undefined ) {
 			 * @param module string module name to execute
 			 */
 			function execute( module ) {
-				var key, value, media, i, script, markModuleReady, nestedAddScript;
+				var key, value, media, i, urls, script, markModuleReady, nestedAddScript;
 
 				if ( registry[module] === undefined ) {
 					throw new Error( 'Module has not been registered yet: ' + module );
@@ -896,7 +896,12 @@ var mw = ( function ( $, undefined ) {
 						// Array of urls inside media-type key
 						} else if ( typeof value === 'object' ) {
 							// { "url": { <media>: [url, ..] } }
-							$.each( value, addLink );
+							for ( media in value ) {
+								urls = value[media];
+								for ( i = 0; i < urls.length; i += 1 ) {
+									addLink( media, urls[i] );
+								}
+							}
 						}
 					}
 				}

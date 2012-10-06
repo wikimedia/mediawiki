@@ -170,7 +170,7 @@ function assertStyleAsync( assert, $element, prop, val, fn ) {
 		// If it is passing or if we timed out, run the real test and stop the loop
 		if ( isCssImportApplied() || styleTestSince > styleTestTimeout ) {
 			assert.equal( $element.css( prop ), val,
-				'style from url is applied (after ' + styleTestSince + 'ms)'
+				'style "' + prop + ': ' + val + '" from url is applied (after ' + styleTestSince + 'ms)'
 			);
 
 			if ( fn ) {
@@ -253,35 +253,49 @@ QUnit.test( 'mw.loader.implement( styles={ "css": [text, ..] } )', 2, function (
 	]);
 } );
 
-QUnit.asyncTest( 'mw.loader.implement( styles={ "url": { <media>: [url, ..] } } )', 4, function ( assert ) {
-	var $element = $( '<div class="mw-test-implement-b"></div>' ).appendTo( '#qunit-fixture' ),
-		$element2 = $( '<div class="mw-test-implement-b2"></div>' ).appendTo( '#qunit-fixture' );
+QUnit.asyncTest( 'mw.loader.implement( styles={ "url": { <media>: [url, ..] } } )', 7, function ( assert ) {
+	var $element1 = $( '<div class="mw-test-implement-b1"></div>' ).appendTo( '#qunit-fixture' ),
+		$element2 = $( '<div class="mw-test-implement-b2"></div>' ).appendTo( '#qunit-fixture' ),
+		$element3 = $( '<div class="mw-test-implement-b3"></div>' ).appendTo( '#qunit-fixture' );
 
 	assert.notEqual(
-		$element.css( 'float' ),
-		'right',
+		$element1.css( 'text-align' ),
+		'center',
 		'style is clear'
 	);
 	assert.notEqual(
-		$element2.css( 'text-align' ),
-		'center',
+		$element2.css( 'float' ),
+		'left',
+		'style is clear'
+	);
+	assert.notEqual(
+		$element3.css( 'text-align' ),
+		'right',
 		'style is clear'
 	);
 
 	mw.loader.implement(
 		'test.implement.b',
 		function () {
-			assertStyleAsync( assert, $element, 'float', 'right', function () {
+			assertStyleAsync( assert, $element2, 'float', 'left', function () {
+				assert.notEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
 
-				assert.notEqual( $element2.css( 'text-align' ), 'center', 'print style is not applied' );
+				QUnit.start();
+			} );
+			assertStyleAsync( assert, $element3, 'float', 'right', function () {
+				assert.notEqual( $element1.css( 'text-align' ), 'center', 'print style is not applied' );
 
 				QUnit.start();
 			} );
 		},
 		{
 			'url': {
-				'screen': [urlStyleTest( '.mw-test-implement-b', 'float', 'right' )],
-				'print': [urlStyleTest( '.mw-test-implement-b2', 'text-align', 'center' )]
+				'print': [urlStyleTest( '.mw-test-implement-b1', 'text-align', 'center' )],
+				'screen': [
+					// bug 40834: Make sure it actually works with more than 1 stylesheet reference
+					urlStyleTest( '.mw-test-implement-b2', 'float', 'left' ),
+					urlStyleTest( '.mw-test-implement-b3', 'float', 'right' )
+				]
 			}
 		},
 		{}
