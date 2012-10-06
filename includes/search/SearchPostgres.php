@@ -164,7 +164,11 @@ class SearchPostgres extends SearchEngine {
 
 		if ($top === "") { ## e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score ".
-				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
+				"FROM " .
+				$this->db->tableName( "page" ) . " p, " .
+				$this->db->tableName( "revision" ) . " r, " .
+				$this->db->tableName( "pagecontent" ) . " c " .
+				"WHERE p.page_latest = r.rev_id " .
 				"AND r.rev_text_id = c.old_id AND 1=0";
 		}
 		else {
@@ -177,7 +181,11 @@ class SearchPostgres extends SearchEngine {
 
 			$query = "SELECT page_id, page_namespace, page_title, ".
 			"ts_rank($fulltext, to_tsquery($searchstring), 5) AS score ".
-			"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
+			"FROM " .
+			$this->db->tableName( "page" ) . " p, " .
+			$this->db->tableName( "revision" ) . " r, " .
+			$this->db->tableName( "pagecontent" ) . " c " .
+			"WHERE p.page_latest = r.rev_id " .
 			"AND r.rev_text_id = c.old_id AND $fulltext @@ to_tsquery($searchstring)";
 		}
 
@@ -208,8 +216,8 @@ class SearchPostgres extends SearchEngine {
 
 	function update( $pageid, $title, $text ) {
 		## We don't want to index older revisions
-		$SQL = "UPDATE pagecontent SET textvector = NULL WHERE old_id IN ".
-				"(SELECT rev_text_id FROM revision WHERE rev_page = " . intval( $pageid ) .
+		$SQL = "UPDATE " . $this->tableName( "pagecontent" ) . " SET textvector = NULL WHERE old_id IN " .
+				"(SELECT rev_text_id FROM " . $this->tableName( "revision" ) . " WHERE rev_page = " . intval( $pageid ) .
 				" ORDER BY rev_text_id DESC OFFSET 1)";
 		$this->db->query($SQL);
 		return true;
