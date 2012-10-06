@@ -90,9 +90,9 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Credits
-		if ( $title->exists() ) {
+		/*if ( $title->exists() ) {
 			$content .= Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $this->getContributors() );
-		}
+		}*/
 
 		// Basic information
 		$content .= $this->makeHeader( $this->msg( 'pageinfo-header-basic' )->plain() );
