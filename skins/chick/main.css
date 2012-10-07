@@ -203,6 +203,11 @@ span.subpages { display: block; }
 }
 .catlinks { margin: 0; padding: 0; }
 
+/* Uppercase first letter in language links in sidebar. */
+.portlet#p-lang li:first-letter {
+	text-transform: uppercase;
+}
+
 /* emulate center */
 .center {
 	width: 100%;
