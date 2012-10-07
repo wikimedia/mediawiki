@@ -86,7 +86,7 @@ html .thumbimage {
 }
 html .thumbcaption {
 	border: none;
-	line-height: 1.4em;
+	line-height: 1.4;
 	padding: 3px !important;
 	font-size: 94%;
 }

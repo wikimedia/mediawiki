@@ -32,7 +32,7 @@ body {
 td, h3, p, h1, pre {
 	margin: 0 20px 20px 20px;
 	font-size: 11px;
-	line-height: 140%;
+	line-height: 1.4;
 }
 
 .header {

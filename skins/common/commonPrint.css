@@ -64,7 +64,7 @@ html .thumbimage {
 html .thumbcaption {
 	border: none;
 	text-align: left;
-	line-height: 1.4em;
+	line-height: 1.4;
 	padding: 3px !important;
 	font-size: 94%;
 }
@@ -155,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
 	margin: 1em 0;
-	line-height: 1.2em;
+	line-height: 1.2;
 }
 
 pre, .mw-code {
@@ -373,7 +373,7 @@ p {
 
 .catlinks li {
 	display: inline-block;
-	line-height: 1.15em;
+	line-height: 1.15;
 	padding: 0 .4em;
 	border-left: 1px solid #AAA;
 	margin: 0.1em 0;

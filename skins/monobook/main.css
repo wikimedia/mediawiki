@@ -29,7 +29,7 @@ div#content {
 	color: black;
 	border: 1px solid #aaa;
 	border-right: none;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 /* the left column width is specified in class .portlet */
 
@@ -84,7 +84,7 @@ input.historysubmit {
 }
 
 pre, .mw-code {
-	line-height: 1.1em;
+	line-height: 1.1;
 }
 
 /*
@@ -124,7 +124,7 @@ table.rimage {
 ** edit views etc
 */
 .special li {
-	line-height: 1.4em;
+	line-height: 1.4;
 	margin: 0;
 	padding: 0;
 }
@@ -267,7 +267,7 @@ table.rimage {
 	padding: 0;
 }
 .portlet ul {
-	line-height: 1.5em;
+	line-height: 1.5;
 	list-style-type: square;
 	/* @embed */
 	list-style-image: url(bullet.gif);
@@ -350,7 +350,7 @@ input.searchButton {
 	border: none;
 	background: none;
 	overflow: visible;
-	line-height: 1.2em;
+	line-height: 1.2;
 }
 #p-personal h5 {
 	display: none;
@@ -367,7 +367,7 @@ input.searchButton {
 /* this is the ul contained in the portlet */
 #p-personal ul {
 	border: none;
-	line-height: 1.4em;
+	line-height: 1.4;
 	color: #2f6fab;
 	padding: 0 2em 0 3em;
 	margin: 0;
@@ -384,7 +384,7 @@ input.searchButton {
 	display: inline;
 	color: #2f6fab;
 	margin-left: 1em;
-	line-height: 1.2em;
+	line-height: 1.2;
 	background: none;
 }
 #p-personal li a {
@@ -427,7 +427,7 @@ li#pt-login {
 	margin: 0;
 	white-space: nowrap;
 	width: 76%;
-	line-height: 1.1em;
+	line-height: 1.1;
 	overflow: visible;
 	background: none;
 	border-collapse: collapse;

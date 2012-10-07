@@ -38,7 +38,7 @@
 	margin-bottom: .1em;
 	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
 	 * When bug 2013 is fixed properly, they should be removed. */
-	line-height: 1.2em;
+	line-height: 1.2;
 	padding-bottom: 0;
 }
 
@@ -53,7 +53,7 @@
 }
 #contentSub, #contentSub2 {
 	font-size: 84%;
-	line-height: 1.2em;
+	line-height: 1.2;
 	margin: 0 0 1.4em 1em;
 	color: #7d7d7d;
 	width: auto;

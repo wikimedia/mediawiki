@@ -21,7 +21,7 @@ rss, feed {
 	color: black;
 	margin: 1em;
 	font-family: "Verdana", "Tahoma", "Arial", "Helvetica", sans-serif;
-	line-height: 1.5em;
+	line-height: 1.5;
 	font-size: 76%;
 }
 
@@ -35,7 +35,7 @@ feed:before {
 rss:before, feed:before {
 	color: red;
 	text-align: center;
-	line-height: 2em;
+	line-height: 2;
 }
 
 channel>title,

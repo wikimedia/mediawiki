@@ -139,20 +139,20 @@ h5 {
 
 p {
 	margin: .4em 0 .5em 0;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 p img {
 	margin: 0;
 }
 
 ul {
-	line-height: 1.5em;
+	line-height: 1.5;
 	list-style-type: square;
 	margin: .3em 0 0 1.6em;
 	padding: 0;
 }
 ol {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
@@ -169,7 +169,7 @@ dl {
 	margin-bottom: .5em;
 }
 dd {
-	line-height: 1.5em;
+	line-height: 1.5;
 	margin-left: 1.6em;
 	margin-bottom: .1em;
 }
@@ -210,7 +210,7 @@ fieldset {
 	border: 1px solid #2f6fab;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 fieldset.nested {
 	margin: 0 0 0.5em 0;

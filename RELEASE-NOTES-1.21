@@ -23,6 +23,8 @@ production.
 * (bug 34960) Drop unused fields rc_moved_to_ns and rc_moved_to_title from recentchanges table.
 * (bug 32951) Do not register internal externals with absolute protocol,
   when server has relative protocol.
+* (bug 17297) Use unitless line-heights so that sub elements are not potentially
+  clipped or masked.
 
 === API changes in 1.21 ===
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.

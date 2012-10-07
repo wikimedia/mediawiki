@@ -85,7 +85,7 @@ div.emptyPortlet {
 }
 /* @noflip */
 #p-personal li {
-	line-height: 1.125em;
+	line-height: 1.125;
 	float: left;
 }
 /* This one flips! */
@@ -139,7 +139,7 @@ div.vectorTabs ul li {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 div.vectorTabs ul li {
-	line-height: 1.125em;
+	line-height: 1.125;
 	display: inline-block;
 	height: 100%;
 	margin: 0;
@@ -325,7 +325,7 @@ div.vectorMenu li {
 	padding: 0;
 	margin: 0;
 	text-align: left;
-	line-height: 1em;
+	line-height: 1;
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 div.vectorMenu li a {
@@ -490,7 +490,7 @@ div#mw-panel div.portal div.body ul {
 	margin: 0;
 }
 div#mw-panel div.portal div.body ul li {
-	line-height: 1.125em;
+	line-height: 1.125;
 	padding: 0;
 	padding-bottom: 0.5em;
 	margin: 0;
@@ -537,18 +537,18 @@ body.ltr div#footer #footer-places {
 	float: left;
 }
 div#footer #footer-info li {
-	line-height: 1.4em;
+	line-height: 1.4;
 }
 div#footer #footer-icons li {
 	float: left;
 	margin-left: 0.5em;
-	line-height: 2em;
+	line-height: 2;
 	text-align: right;
 }
 div#footer #footer-places li {
 	float: left;
 	margin-right: 1em;
-	line-height: 2em;
+	line-height: 2;
 }
 /* Logo */
 #p-logo {
@@ -674,7 +674,7 @@ div#footer #footer-places li {
  * The following code is slightly modified from monobook
  */
 div#content {
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 #bodyContent {
 	font-size: 0.8em;
@@ -690,7 +690,7 @@ ul {
 }
 
 pre, .mw-code {
-	line-height: 1.3em;
+	line-height: 1.3;
 }
 
 /* Site Notice (includes notices from CentralNotice extension) */
@@ -791,7 +791,7 @@ div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 	width: 100%;
 }
 div#bodyContent {
-	line-height: 1.5em;
+	line-height: 1.5;
 }
 
 /* mediawiki.notification */
