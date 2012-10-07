@@ -118,6 +118,11 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	MWFunction::call( MW_CONFIG_CALLBACK );
 } else {
+	$configFile = getenv( 'MW_CONFIG_FILE' );
+	if ( $configFile !== false ) {
+		define('MW_CONFIG_FILE', $configFile );
+	}
+
 	if ( !defined( 'MW_CONFIG_FILE' ) ) {
 		define('MW_CONFIG_FILE', MWInit::interpretedPath( 'LocalSettings.php' ) );
 	}
