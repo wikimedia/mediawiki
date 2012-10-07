@@ -3507,6 +3507,9 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
+'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect.',
+'pageinfo-contentpage' => 'Key for the row shown if this page is counted as a content page',
+'pageinfo-contentpage-yes' => 'Yes, this page is a content page',
 
 # Skin names
 'skinname-standard' => '{{optional}}
