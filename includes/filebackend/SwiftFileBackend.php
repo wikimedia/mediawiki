@@ -1345,13 +1345,6 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackendStore::doClearCache()
-	 */
-	protected function doClearCache( array $paths = null ) {
-		$this->connContainerCache->clear(); // clear container object cache
-	}
-
-	/**
 	 * Get a Swift container object, possibly from process cache.
 	 * Use $reCache if the file count or byte count is needed.
 	 *
