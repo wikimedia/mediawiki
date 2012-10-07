@@ -105,6 +105,7 @@ class Preprocessor_Hash implements Preprocessor {
 	 * cache may be implemented at a later date which takes further advantage of these strict
 	 * dependency requirements.
 	 *
+	 * @throws MWException
 	 * @return PPNode_Hash_Tree
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
@@ -884,9 +885,11 @@ class PPFrame_Hash implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param $args PPNode_Hash_Array|array
+	 * @param array|bool|\PPNode_Hash_Array $args PPNode_Hash_Array|array
 	 * @param $title Title|bool
 	 *
+	 * @param int $indexOffset
+	 * @throws MWException
 	 * @return PPTemplateFrame_Hash
 	 */
 	function newChild( $args = false, $title = false, $indexOffset = 0 ) {
@@ -1609,6 +1612,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 *  - index         String index
 	 *  - value         PPNode value
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitArg() {
@@ -1642,6 +1646,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitExt() {
@@ -1669,6 +1674,7 @@ class PPNode_Hash_Tree implements PPNode {
 	/**
 	 * Split an "<h>" node
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitHeading() {
@@ -1695,6 +1701,7 @@ class PPNode_Hash_Tree implements PPNode {
 	/**
 	 * Split a "<template>" or "<tplarg>" node
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitTemplate() {

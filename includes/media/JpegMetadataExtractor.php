@@ -165,10 +165,11 @@ class JpegMetadataExtractor {
 	}
 
 	/**
-	* Helper function for jpegSegmentSplitter
-	* @param &$fh FileHandle for jpeg file
-	* @return string data content of segment.
-	*/
+	 * Helper function for jpegSegmentSplitter
+	 * @param &$fh FileHandle for jpeg file
+	 * @throws MWException
+	 * @return string data content of segment.
+	 */
 	private static function jpegExtractMarker( &$fh ) {
 		$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
 		if ( $size['int'] <= 2 ) {

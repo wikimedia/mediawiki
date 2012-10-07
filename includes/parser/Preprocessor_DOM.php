@@ -126,6 +126,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 * cache may be implemented at a later date which takes further advantage of these strict
 	 * dependency requirements.
 	 *
+	 * @throws MWException
 	 * @return PPNode_DOM
 	 */
 	function preprocessToObj( $text, $flags = 0 ) {
@@ -1673,6 +1674,7 @@ class PPNode_DOM implements PPNode {
 	 *  - index         String index
 	 *  - value         PPNode value
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitArg() {
@@ -1694,6 +1696,7 @@ class PPNode_DOM implements PPNode {
 	 * Split an "<ext>" node into an associative array containing name, attr, inner and close
 	 * All values in the resulting array are PPNodes. Inner and close are optional.
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitExt() {
@@ -1719,6 +1722,7 @@ class PPNode_DOM implements PPNode {
 
 	/**
 	 * Split a "<h>" node
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitHeading() {

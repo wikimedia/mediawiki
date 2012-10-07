@@ -97,6 +97,7 @@ abstract class Conf {
 	 * Initialize a new child class based on a configuration array
 	 * @param $conf Array of configuration settings, see $wgConfiguration
 	 *   for details
+	 * @throws MWException
 	 * @return Conf
 	 */
 	private static function newFromSettings( $conf ) {
@@ -109,7 +110,8 @@ abstract class Conf {
 
 	/**
 	 * Get the singleton if we don't want a specific wiki
-	 * @param $wiki String An id for a remote wiki
+	 * @param bool|string $wiki An id for a remote wiki
+	 * @throws MWException
 	 * @return Conf child
 	 */
 	public static function load( $wiki = false ) {

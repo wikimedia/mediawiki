@@ -309,6 +309,7 @@ class ResourceLoader {
 	 *
 	 * @param $id Mixed: source ID (string), or array( id1 => props1, id2 => props2, ... )
 	 * @param $properties Array: source properties
+	 * @throws MWException
 	 */
 	public function addSource( $id, $properties = null) {
 		// Allow multiple sources to be registered in one call
@@ -832,6 +833,7 @@ class ResourceLoader {
 	 *     associative array mapping message key to value, or a JSON-encoded message blob containing
 	 *     the same data, wrapped in an XmlJsCode object.
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	public static function makeLoaderImplementScript( $name, $scripts, $styles, $messages ) {

@@ -152,6 +152,7 @@ class UserMailer {
 	 * @param $body String: email's text.
 	 * @param $replyto MailAddress: optional reply-to email (default: null).
 	 * @param $contentType String: optional custom Content-Type (default: text/plain; charset=UTF-8)
+	 * @throws MWException
 	 * @return Status object
 	 */
 	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8' ) {

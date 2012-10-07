@@ -74,6 +74,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * n.b. Most sanity checking done in UploadStashLocalFile, so this is straightforward.
 	 *
 	 * @param $key String: the key of a particular requested file
+	 * @throws HttpError
 	 * @return bool
 	 */
 	public function showUpload( $key ) {
@@ -113,6 +114,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * application the transform parameters
 	 *
 	 * @param string $key
+	 * @throws UploadStashBadPathException
 	 * @return array
 	 */
 	private function parseKey( $key ) {
@@ -164,10 +166,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 	/**
 	 * Scale a file (probably with a locally installed imagemagick, or similar) and output it to STDOUT.
-	 * @param $file: File object
-	 * @param $params: scaling parameters ( e.g. array( width => '50' ) );
-	 * @param $flags: scaling flags ( see File:: constants )
+	 * @param $file File
+	 * @param $params array Scaling parameters ( e.g. array( width => '50' ) );
+	 * @param $flags int Scaling flags ( see File:: constants )
 	 * @throws MWException
+	 * @throws UploadStashFileNotFoundException
 	 * @return boolean success
 	 */
 	private function outputLocallyScaledThumb( $file, $params, $flags ) {
@@ -258,6 +261,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Side effect: writes HTTP response to STDOUT.
 	 *
 	 * @param $file File object with a local path (e.g. UnregisteredLocalFile, LocalFile. Oddly these don't share an ancestor!)
+	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */
 	private function outputLocalFile( File $file ) {
@@ -275,6 +279,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * Side effect: writes HTTP response to STDOUT.
 	 * @param $content String content
 	 * @param $contentType String mime type
+	 * @throws SpecialUploadStashTooLargeException
 	 * @return bool
 	 */
 	private function outputContents( $content, $contentType ) {

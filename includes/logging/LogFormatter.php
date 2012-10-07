@@ -429,6 +429,7 @@ class LogFormatter {
 	 * value in consideration.
 	 * @param $title Title the page
 	 * @param $parameters array query parameters
+	 * @throws MWException
 	 * @return String
 	 */
 	protected function makePageLink( Title $title = null, $parameters = array() ) {

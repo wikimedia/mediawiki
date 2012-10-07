@@ -49,6 +49,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @param $title Title of the page we're updating
 	 * @param $parserOutput ParserOutput: output from a full parse of this page
 	 * @param $recursive Boolean: queue jobs for recursive updates?
+	 * @throws MWException
 	 */
 	function __construct( $title, $parserOutput, $recursive = true ) {
 		parent::__construct( false ); // no implicit transaction

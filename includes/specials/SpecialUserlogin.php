@@ -286,6 +286,7 @@ class LoginForm extends SpecialPage {
 
 	/**
 	 * @private
+	 * @throws PermissionsError|ReadOnlyError
 	 * @return bool|User
 	 */
 	function addNewAccountInternal() {

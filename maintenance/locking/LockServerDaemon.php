@@ -68,6 +68,8 @@ class LockServerDaemon {
 
 	/**
 	 * @params $config Array
+	 * @param array $config
+	 * @throws Exception
 	 * @return LockServerDaemon
 	 */
 	public static function init( array $config ) {
@@ -113,6 +115,7 @@ class LockServerDaemon {
 	}
 
 	/**
+	 * @throws Exception
 	 * @return void
 	 */
 	protected function setupServerSocket() {

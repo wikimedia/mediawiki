@@ -1884,6 +1884,7 @@ class PPNode_HipHop_Tree implements PPNode {
 	/**
 	 * Split a <template> or <tplarg> node
 	 *
+	 * @throws MWException
 	 * @return array
 	 */
 	function splitTemplate() {

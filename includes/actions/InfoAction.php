@@ -145,6 +145,8 @@ class InfoAction extends FormlessAction {
 	 * Returns page information in an easily-manipulated format. Array keys are used so extensions
 	 * may add additional information in arbitrary positions. Array values are arrays with one
 	 * element to be rendered as a header, arrays with two elements to be rendered as a table row.
+	 *
+	 * @return array
 	 */
 	protected function pageInfo() {
 		global $wgContLang, $wgDisableCounters, $wgRCMaxAge;

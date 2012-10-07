@@ -81,6 +81,7 @@ class ChangeTags {
 	 * @param $log_id int: log_id of the change to add the tags to
 	 * @param $params String: params to put in the ct_params field of tabel 'change_tag'
 	 *
+	 * @throws MWException
 	 * @return bool: false if no changes are made, otherwise true
 	 *
 	 * @exception MWException when $rc_id, $rev_id and $log_id are all null
@@ -164,10 +165,9 @@ class ChangeTags {
 	 * @param $conds String|Array: conditions used in query, see DatabaseBase::select
 	 * @param $join_conds Array: join conditions, see DatabaseBase::select
 	 * @param $options Array: options, see Database::select
-	 * @param $filter_tag String: tag to select on
+	 * @param bool|string $filter_tag Tag to select on
 	 *
-	 * @exception MWException when unable to determine appropriate JOIN condition for tagging
-	 *
+	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	static function modifyDisplayQuery( &$tables, &$fields,  &$conds,
 										&$join_conds, &$options, $filter_tag = false ) {

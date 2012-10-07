@@ -805,7 +805,8 @@ class DatabaseMysql extends DatabaseBase {
 	 * @param $delVar string
 	 * @param $joinVar string
 	 * @param $conds array|string
-	 * @param $fname bool
+	 * @param bool|string $fname bool
+	 * @throws DBUnexpectedError
 	 * @return bool|ResultWrapper
 	 */
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseBase::deleteJoin' ) {

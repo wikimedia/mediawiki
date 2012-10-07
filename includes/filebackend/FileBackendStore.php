@@ -1176,6 +1176,8 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::executeOpHandlesInternal()
+	 * @param array $fileOpHandles
+	 * @throws MWException
 	 * @return Array List of corresponding Status objects
 	 */
 	protected function doExecuteOpHandlesInternal( array $fileOpHandles ) {

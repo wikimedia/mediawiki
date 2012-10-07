@@ -108,6 +108,7 @@ class StubObject {
 	 * @param $name String: name of the method called in this object.
 	 * @param $level Integer: level to go in the stact trace to get the function
 	 *               who called this function.
+	 * @throws MWException
 	 */
 	function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;

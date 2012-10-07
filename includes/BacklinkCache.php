@@ -217,6 +217,7 @@ class BacklinkCache {
 	/**
 	 * Get the field name prefix for a given table
 	 * @param $table String
+	 * @throws MWException
 	 * @return null|string
 	 */
 	protected function getPrefix( $table ) {
@@ -245,6 +246,7 @@ class BacklinkCache {
 	 * Get the SQL condition array for selecting backlinks, with a join
 	 * on the page table.
 	 * @param $table String
+	 * @throws MWException
 	 * @return array|null
 	 */
 	protected function getConditions( $table ) {
@@ -381,6 +383,7 @@ class BacklinkCache {
 	 * Partition a DB result with backlinks in it into batches
 	 * @param $res ResultWrapper database result
 	 * @param $batchSize integer
+	 * @throws MWException
 	 * @return array @see
 	 */
 	protected function partitionResult( $res, $batchSize ) {

@@ -1318,6 +1318,7 @@ class FileRepo {
 	 * e.g. s/z/a/ for sza251lrxrc1jad41h5mgilp8nysje52.jpg
 	 *
 	 * @param $key string
+	 * @throws MWException
 	 * @return string
 	 */
 	public function getDeletedHashPath( $key ) {
