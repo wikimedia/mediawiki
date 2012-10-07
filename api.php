@@ -40,11 +40,16 @@ if ( !function_exists( 'version_compare' ) || version_compare( phpversion(), '5.
 	wfPHPVersionError( 'api.php' );
 }
 
+$IP = getenv( 'MW_INSTALL_PATH' );
+if ( $IP === false ) {
+	$IP = __DIR__;
+}
+
 // Initialise common code.
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( 'core/includes/WebStart.php' );
 } else {
-	require ( __DIR__ . '/includes/WebStart.php' );
+	require ( $IP . '/includes/WebStart.php' );
 }
 
 wfProfileIn( 'api.php' );
