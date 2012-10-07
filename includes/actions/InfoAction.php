@@ -96,9 +96,9 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Page credits
-		if ( $title->exists() ) {
+		/*if ( $title->exists() ) {
 			$content .= Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $this->getContributors() );
-		}
+		}*/
 
 		return $content;
 	}
