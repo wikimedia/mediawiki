@@ -109,7 +109,7 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof',
-			'[{{SERVER}}{{SCRIPTPATH}}/CREDITS ' .
+			'[{{SERVER}}{{SCRIPTPATH}}/CREDITS.mediawiki ' .
 			wfMessage( 'version-poweredby-others' )->text() .
 			']'
 		);
