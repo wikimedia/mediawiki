@@ -162,6 +162,7 @@ class SearchPostgres extends SearchEngine {
 		$top = $res->fetchRow();
 		$top = $top[0];
 
+		$this->searchTerms = array();
 		if ($top === "") { ## e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score ".
 				"FROM page p, revision r, pagecontent c WHERE p.page_latest = r.rev_id " .
