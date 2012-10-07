@@ -106,6 +106,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
 			array( 'addField', 'job',           'job_attempts',      'patch-job_attempts.sql' ),
+			array( 'doEnableProfiling' ),
 		);
 	}
 
@@ -127,6 +128,13 @@ class SqliteUpdater extends DatabaseUpdater {
 			$this->applyPatch( 'searchindex-fts3.sql', false, "Adding FTS3 search capabilities" );
 		} else {
 			$this->output( "...fulltext search table appears to be in order.\n" );
+		}
+	}
+
+	protected function doEnableProfiling() {
+		global $wgProfileToDatabase;
+		if ( $wgProfileToDatabase === true && ! $this->db->tableExists( 'profiling', __METHOD__ ) ) {
+			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
 		}
 	}
 }
