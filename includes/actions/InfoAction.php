@@ -189,6 +189,20 @@ class InfoAction extends FormlessAction {
 			$this->msg( 'pageinfo-display-title' ), $displayTitle
 		);
 
+		// Is it a redirect? If so, where to?
+		if ( $title->isRedirect() ) {
+			$pageInfo['header-basic'][] = array(
+				$this->msg( 'pageinfo-redirectsto' ),
+				Linker::link( $this->page->getRedirectTarget() ) . ' ' .
+				$this->msg( 'parentheses', Linker::link(
+					$this->page->getRedirectTarget(),
+					$this->msg( 'pageinfo-redirectsto-info' ),
+					array(),
+					array( 'action' => 'info' )
+				) )->text()
+			);
+		}
+
 		// Default sort key
 		$sortKey = $title->getCategorySortKey();
 		if ( !empty( $pageProperties['defaultsort'] ) ) {
@@ -243,6 +257,14 @@ class InfoAction extends FormlessAction {
 			$this->msg( 'pageinfo-redirects-value' )
 				->numParams( count( $title->getRedirectsHere() ) )
 		);
+
+		// Is it counted as a content page?
+		if ( $this->page->isCountable() ) {
+			$pageInfo['header-basic'][] = array(
+				$this->msg( 'pageinfo-contentpage' ),
+				$this->msg( 'pageinfo-contentpage-yes' )
+			);
+		}
 
 		// Subpages of this page, if subpages are enabled for the current NS
 		if ( MWNamespace::hasSubpages( $title->getNamespace() ) ) {
