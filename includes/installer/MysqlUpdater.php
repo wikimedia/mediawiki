@@ -218,6 +218,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.21
 			array( 'dropField', 'site_stats',   'ss_admins',        'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title',            'patch-rc_moved.sql' ),
+			array( 'doEnableProfiling' ),
 		);
 	}
 
@@ -761,6 +762,13 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			$task = $this->maintenance->runChild( 'PopulateParentId' );
 			$task->execute();
+		}
+	}
+
+	protected function doEnableProfiling() {
+		global $wgProfileToDatabase;
+		if ( $wgProfileToDatabase === true ) {
+			$this->applyPatch( 'patch-profiling.sql', false, 'Add profiling table' );
 		}
 	}
 
