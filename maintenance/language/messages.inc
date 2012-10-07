@@ -2693,6 +2693,9 @@ $wgMessageStructure = array(
 		'pageinfo-templates',
 		'pageinfo-footer',
 		'pageinfo-toolboxlink',
+		'pageinfo-redirectsto',
+		'pageinfo-contentpage',
+		'pageinfo-contentpage-yes',
 	),
 	'skin' => array(
 		'skinname-standard',
