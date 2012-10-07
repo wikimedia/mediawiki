@@ -151,7 +151,7 @@
 
 			for ( i = 0; i < len; i++ ) {
 				parser = false;
-				sortType = $headers.eq( i ).data( 'sort-type' );
+				sortType = $headers.eq( i ).data( 'sortType' );
 				if ( sortType !== undefined ) {
 					parser = getParserById( sortType );
 				}
