@@ -72,8 +72,7 @@ class InfoAction extends FormlessAction {
 			'.mw-templatesUsedExplanation { display: none; }' );
 
 		// Get page information
-		$title = $this->getTitle();
-		$pageInfo = $this->pageInfo( $title );
+		$pageInfo = $this->pageInfo();
 
 		// Allow extensions to add additional information
 		wfRunHooks( 'InfoAction', array( &$pageInfo ) );
@@ -96,7 +95,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Page credits
-		/*if ( $title->exists() ) {
+		/*if ( $this->page->exists() ) {
 			$content .= Html::rawElement( 'div', array( 'id' => 'mw-credits' ), $this->getContributors() );
 		}*/
 
@@ -146,10 +145,8 @@ class InfoAction extends FormlessAction {
 	 * Returns page information in an easily-manipulated format. Array keys are used so extensions
 	 * may add additional information in arbitrary positions. Array values are arrays with one
 	 * element to be rendered as a header, arrays with two elements to be rendered as a table row.
-	 *
-	 * @param $title Title object
 	 */
-	protected function pageInfo( $title ) {
+	protected function pageInfo() {
 		global $wgContLang, $wgDisableCounters, $wgRCMaxAge;
 
 		$user = $this->getUser();
