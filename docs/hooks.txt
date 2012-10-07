@@ -1223,6 +1223,10 @@ $reader: XMLReader object
 $revisionInfo: Array of information
 Return false to stop further processing of the tag
 
+'InfoAction': When building information to display on the action=info page
+$context: IContextSource object
+&$pageInfo: Array of information
+
 'InitializeArticleMaybeRedirect': MediaWiki check to see if title is a redirect
 $title: Title object ($wgTitle)
 $request: WebRequest
