@@ -43,14 +43,6 @@ class SkinCologneBlue extends SkinTemplate {
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );
 	}
-
-	/**
-	 * Override langlink formatting behavior not to uppercase the language names.
-	 * See otherLanguages() in CologneBlueTemplate.
-	 */
-	function formatLanguageName( $name ) {
-		return $name;
-	}
 }
 
 class CologneBlueTemplate extends BaseTemplate {
@@ -93,8 +85,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			return "";
 		}
 
-		// We override SkinTemplate->formatLanguageName() in SkinCologneBlue
-		// not to capitalize the language names.
 		$language_urls = $this->data['language_urls'];
 		if ( empty( $language_urls ) ) {
 			return "";
