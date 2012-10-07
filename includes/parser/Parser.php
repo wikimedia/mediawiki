@@ -753,6 +753,7 @@ class Parser {
 	 *
 	 * @since 1.19
 	 *
+	 * @throws MWException
 	 * @return Language|null
 	 */
 	public function getTargetLanguage() {
@@ -1531,6 +1532,7 @@ class Parser {
 	 *
 	 * @param $text string
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function replaceExternalLinks( $text ) {
@@ -1734,6 +1736,8 @@ class Parser {
 
 	/**
 	 * Process [[ ]] wikilinks (RIL)
+	 * @param $s
+	 * @throws MWException
 	 * @return LinkHolderArray
 	 *
 	 * @private
@@ -2448,6 +2452,7 @@ class Parser {
 	 * @param $str String the string to split
 	 * @param &$before String set to everything before the ':'
 	 * @param &$after String set to everything after the ':'
+	 * @throws MWException
 	 * @return String the position of the ':', or false if none found
 	 */
 	function findColonNoLinks( $str, &$before, &$after ) {
@@ -2612,8 +2617,9 @@ class Parser {
 	 * @private
 	 *
 	 * @param $index integer
-	 * @param $frame PPFrame
+	 * @param bool|\PPFrame $frame
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function getVariableValue( $index, $frame = false ) {
@@ -3122,6 +3128,7 @@ class Parser {
 	 *  $piece['parts']: the parameter array
 	 *  $piece['lineStart']: whether the brace was at the start of a line
 	 * @param $frame PPFrame The current frame, contains template arguments
+	 * @throws MWException
 	 * @return String: the text of the template
 	 * @private
 	 */
@@ -3792,6 +3799,7 @@ class Parser {
 	 *     noClose    Original text did not have a close tag
 	 * @param $frame PPFrame
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	function extensionSubstitution( $params, $frame ) {
@@ -4689,6 +4697,7 @@ class Parser {
 	 *
 	 * @param $tag Mixed: the tag to use, e.g. 'hook' for "<hook>"
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
+	 * @throws MWException
 	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
 	public function setHook( $tag, $callback ) {
@@ -4719,6 +4728,7 @@ class Parser {
 	 *
 	 * @param $tag Mixed: the tag to use, e.g. 'hook' for "<hook>"
 	 * @param $callback Mixed: the callback function (and object) to use for the tag
+	 * @throws MWException
 	 * @return Mixed|null The old value of the mTagHooks array associated with the hook
 	 */
 	function setTransparentTagHook( $tag, $callback ) {
@@ -4781,6 +4791,7 @@ class Parser {
 	 *     Please read the documentation in includes/parser/Preprocessor.php for more information
 	 *     about the methods available in PPFrame and PPNode.
 	 *
+	 * @throws MWException
 	 * @return string|callback The old callback function for this name, if any
 	 */
 	public function setFunctionHook( $id, $callback, $flags = 0 ) {
@@ -4828,6 +4839,10 @@ class Parser {
 	 * Create a tag function, e.g. "<test>some stuff</test>".
 	 * Unlike tag hooks, tag functions are parsed at preprocessor level.
 	 * Unlike parser functions, their content is not preprocessed.
+	 * @param $tag
+	 * @param $callback
+	 * @param $flags
+	 * @throws MWException
 	 * @return null
 	 */
 	function setFunctionTagHook( $tag, $callback, $flags ) {
@@ -5791,6 +5806,7 @@ class Parser {
 	 * check whether it is still valid, by calling isValidHalfParsedText().
 	 *
 	 * @param $data array Serialized data
+	 * @throws MWException
 	 * @return String
 	 */
 	function unserializeHalfParsedText( $data ) {

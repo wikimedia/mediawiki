@@ -135,14 +135,15 @@ class SvgHandler extends ImageHandler {
 	}
 
 	/**
-	* Transform an SVG file to PNG
-	* This function can be called outside of thumbnail contexts
-	* @param string $srcPath
-	* @param string $dstPath
-	* @param string $width
-	* @param string $height
-	* @return bool|MediaTransformError
-	*/
+	 * Transform an SVG file to PNG
+	 * This function can be called outside of thumbnail contexts
+	 * @param string $srcPath
+	 * @param string $dstPath
+	 * @param string $width
+	 * @param string $height
+	 * @throws MWException
+	 * @return bool|MediaTransformError
+	 */
 	public function rasterize( $srcPath, $dstPath, $width, $height ) {
 		global $wgSVGConverters, $wgSVGConverter, $wgSVGConverterPath;
 		$err = false;

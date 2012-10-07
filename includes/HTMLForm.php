@@ -248,6 +248,7 @@ class HTMLForm extends ContextSource {
 	 * Set format in which to display the form
 	 * @param $format String the name of the format to use, must be one of
 	 *        $this->availableDisplayFormats
+	 * @throws MWException
 	 * @since 1.20
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
@@ -279,6 +280,7 @@ class HTMLForm extends ContextSource {
 	 * Initialise a new Object for the field
 	 * @param $fieldname string
 	 * @param $descriptor string input Descriptor, as described above
+	 * @throws MWException
 	 * @return HTMLFormField subclass
 	 */
 	static function loadInputFromParameters( $fieldname, $descriptor ) {
@@ -312,6 +314,7 @@ class HTMLForm extends ContextSource {
 	 * @attention When doing method chaining, that should be the very last
 	 * method call before displayForm().
 	 *
+	 * @throws MWException
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	function prepareForm() {
@@ -375,9 +378,10 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Validate all the fields, and call the submision callback
 	 * function if everything is kosher.
+	 * @throws MWException
 	 * @return Mixed Bool true == Successful submission, Bool false
-	 *	 == No submission attempted, anything else == Error to
-	 *	 display.
+	 *     == No submission attempted, anything else == Error to
+	 *     display.
 	 */
 	function trySubmit() {
 		# Check for validation
@@ -1177,6 +1181,7 @@ abstract class HTMLFormField {
 	/**
 	 * Initialise the object
 	 * @param $params array Associative Array. See HTMLForm doc for syntax.
+	 * @throws MWException
 	 */
 	function __construct( $params ) {
 		$this->mParams = $params;

@@ -148,6 +148,7 @@ class InfoAction extends FormlessAction {
 	 * element to be rendered as a header, arrays with two elements to be rendered as a table row.
 	 *
 	 * @param $title Title object
+	 * @return array
 	 */
 	protected function pageInfo( $title ) {
 		global $wgContLang, $wgDisableCounters, $wgRCMaxAge;

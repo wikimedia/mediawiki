@@ -159,6 +159,7 @@ class ConfEditor {
 	 * insert
 	 *    Insert a new element at the start of the array.
 	 *
+	 * @throws MWException
 	 * @return string
 	 */
 	public function edit( $ops ) {
@@ -392,6 +393,8 @@ class ConfEditor {
 	 * Finds the source byte region which you would want to delete, if $pathName
 	 * was to be deleted. Includes the leading spaces and tabs, the trailing line
 	 * break, and any comments in between.
+	 * @param $pathName
+	 * @throws MWException
 	 * @return array
 	 */
 	function findDeletionRegion( $pathName ) {
@@ -450,6 +453,8 @@ class ConfEditor {
 	 * or semicolon.
 	 *
 	 * The end position is the past-the-end (end + 1) value as per convention.
+	 * @param $pathName
+	 * @throws MWException
 	 * @return array
 	 */
 	function findValueRegion( $pathName ) {

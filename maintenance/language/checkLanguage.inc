@@ -305,6 +305,7 @@ ENDS;
 	/**
 	 * Check a language.
 	 * @param $code string The language code.
+	 * @throws MWException
 	 * @return array The results.
 	 */
 	protected function checkLanguage( $code ) {
@@ -641,6 +642,7 @@ ENDS;
 	/**
 	 * Check a language and show the results.
 	 * @param $code string The language code.
+	 * @throws MWException
 	 */
 	protected function checkLanguage( $code ) {
 		foreach( $this->extensions as $extension ) {

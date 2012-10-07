@@ -62,6 +62,7 @@ class UserrightsPage extends SpecialPage {
 	 * Depending on the submit button used, call a form or a save function.
 	 *
 	 * @param $par Mixed: string if any subpage provided, else null
+	 * @throws UserBlockedError|PermissionsError
 	 */
 	public function execute( $par ) {
 		// If the visitor doesn't have permissions to assign or remove

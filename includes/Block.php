@@ -231,6 +231,7 @@ class Block {
 	 *     3) An autoblock on the given IP
 	 * @param $vagueTarget User|String also search for blocks affecting this target.  Doesn't
 	 *     make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
+	 * @throws MWException
 	 * @return Bool whether a relevant block was found
 	 */
 	protected function newLoad( $vagueTarget = null ) {
@@ -426,6 +427,7 @@ class Block {
 	/**
 	 * Delete the row from the IP blocks table.
 	 *
+	 * @throws MWException
 	 * @return Boolean
 	 */
 	public function delete() {
@@ -780,6 +782,7 @@ class Block {
 
 	/**
 	 * Get the IP address at the start of the range in Hex form
+	 * @throws MWException
 	 * @return String IP in Hex form
 	 */
 	public function getRangeStart() {
@@ -797,6 +800,7 @@ class Block {
 
 	/**
 	 * Get the IP address at the start of the range in Hex form
+	 * @throws MWException
 	 * @return String IP in Hex form
 	 */
 	public function getRangeEnd() {

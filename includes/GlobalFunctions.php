@@ -169,6 +169,7 @@ function wfArrayLookup( $a, $b ) {
  * @param $value Mixed
  * @param $default Mixed
  * @param $changed Array to alter
+ * @throws MWException
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
 	if ( is_null( $changed ) ) {
@@ -1110,6 +1111,7 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  *
  * @param $text String
  * @param $file String filename
+ * @throws MWException
  */
 function wfErrorLog( $text, $file ) {
 	if ( substr( $file, 0, 4 ) == 'udp:' ) {
@@ -1719,6 +1721,7 @@ function wfEmptyMsg( $key ) {
  * but now throws an exception instead, with similar results.
  *
  * @param $msg String: message shown when dying.
+ * @throws MWException
  */
 function wfDebugDieBacktrace( $msg = '' ) {
 	throw new MWException( $msg );
@@ -2512,6 +2515,7 @@ function wfTempDir() {
  * @param $dir String: full path to directory to create
  * @param $mode Integer: chmod value to use, default is $wgDirectoryMode
  * @param $caller String: optional caller param for debugging.
+ * @throws MWException
  * @return bool
  */
 function wfMkdirParents( $dir, $mode = null, $caller = null ) {
@@ -3022,6 +3026,7 @@ function wfDiff( $before, $after, $params = '-u' ) {
  *
  * @param $req_ver Mixed: the version to check, can be a string, an integer, or
  *                 a float
+ * @throws MWException
  */
 function wfUsePHP( $req_ver ) {
 	$php_ver = PHP_VERSION;
@@ -3043,6 +3048,7 @@ function wfUsePHP( $req_ver ) {
  *
  * @param $req_ver Mixed: the version to check, can be a string, an integer, or
  *                 a float
+ * @throws MWException
  */
 function wfUseMW( $req_ver ) {
 	global $wgVersion;

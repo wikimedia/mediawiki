@@ -43,6 +43,8 @@ class Sqlite {
 	 * Checks given files for correctness of SQL syntax. MySQL DDL will be converted to
 	 * SQLite-compatible during processing.
 	 * Will throw exceptions on SQL errors
+	 * @param $files
+	 * @throws MWException
 	 * @return mixed true if no error or error string in case of errors
 	 */
 	public static function checkSqlSyntax( $files ) {

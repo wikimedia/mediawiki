@@ -84,11 +84,11 @@ class Parser_LinkHooks extends Parser {
 	 * Create a link hook, e.g. [[Namepsace:...|display}}
 	 * The callback function should have the form:
 	 *    function myLinkCallback( $parser, $holders, $markers,
-	 *    	Title $title, $titleText, &$sortText = null, &$leadingColon = false ) { ... }
+	 *      Title $title, $titleText, &$sortText = null, &$leadingColon = false ) { ... }
 	 *
 	 * Or with SLH_PATTERN:
 	 *    function myLinkCallback( $parser, $holders, $markers, )
-	 *    	&$titleText, &$sortText = null, &$leadingColon = false ) { ... }
+	 *      &$titleText, &$sortText = null, &$leadingColon = false ) { ... }
 	 *
 	 * The callback may either return a number of different possible values:
 	 * String) Text result of the link
@@ -100,6 +100,7 @@ class Parser_LinkHooks extends Parser {
 	 * @param $flags Integer: a combination of the following flags:
 	 *     SLH_PATTERN   Use a regex link pattern rather than a namespace
 	 *
+	 * @throws MWException
 	 * @return callback|null The old callback function for this name, if any
 	 */
 	public function setLinkHook( $ns, $callback, $flags = 0 ) {
@@ -120,9 +121,11 @@ class Parser_LinkHooks extends Parser {
 	function getLinkHooks() {
 		return array_keys( $this->mLinkHooks );
 	}
-	
+
 	/**
 	 * Process [[ ]] wikilinks
+	 * @param $s
+	 * @throws MWException
 	 * @return LinkHolderArray
 	 *
 	 * @private

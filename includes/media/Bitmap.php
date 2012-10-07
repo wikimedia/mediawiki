@@ -623,7 +623,8 @@ class BitmapHandler extends ImageHandler {
 	 * to filter down to users.
 	 *
 	 * @param $path string The file path
-	 * @param $scene string The scene specification, or false if there is none
+	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @throws MWException
 	 * @return string
 	 */
 	function escapeMagickInput( $path, $scene = false ) {
@@ -654,7 +655,8 @@ class BitmapHandler extends ImageHandler {
 	 * helper function for escapeMagickInput() and escapeMagickOutput().
 	 *
 	 * @param $path string The file path
-	 * @param $scene string The scene specification, or false if there is none
+	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @throws MWException
 	 * @return string
 	 */
 	protected function escapeMagickPath( $path, $scene = false ) {

@@ -613,6 +613,7 @@ class CategoryViewer extends ContextSource {
 	 *
 	 * @param Title $title: The title (usually $this->title)
 	 * @param String $section: Which section
+	 * @throws MWException
 	 * @return Title
 	 */
 	private function addFragmentToTitle( $title, $section ) {

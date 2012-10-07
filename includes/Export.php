@@ -1325,6 +1325,7 @@ class DumpNamespaceFilter extends DumpFilter {
 	/**
 	 * @param $sink DumpOutput
 	 * @param $param
+	 * @throws MWException
 	 */
 	function __construct( &$sink, $param ) {
 		parent::__construct( $sink );

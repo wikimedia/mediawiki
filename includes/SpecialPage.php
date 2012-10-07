@@ -254,6 +254,7 @@ class SpecialPage {
 	 *
 	 * @param $name String
 	 * @param $subpage String|Bool subpage string, or false to not use a subpage
+	 * @throws MWException
 	 * @return Title object
 	 */
 	public static function getTitleFor( $name, $subpage = false ) {
@@ -350,6 +351,7 @@ class SpecialPage {
 	 *
 	 * @param $fName String Name of called method
 	 * @param $a Array Arguments to the method
+	 * @throws MWException
 	 * @deprecated since 1.17, call parent::__construct()
 	 */
 	public function __call( $fName, $a ) {
@@ -932,8 +934,8 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * Called from execute() to check if the given user can perform this action.
 	 * Failures here must throw subclasses of ErrorPageError.
 	 * @param $user User
+	 * @throws UserBlockedError
 	 * @return Bool true
-	 * @throws ErrorPageError
 	 */
 	protected function checkExecutePermissions( User $user ) {
 		$this->checkPermissions();

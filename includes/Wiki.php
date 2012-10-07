@@ -169,6 +169,7 @@ class MediaWiki {
 	 * - special pages
 	 * - normal pages
 	 *
+	 * @throws MWException|PermissionsError|BadTitleError|HttpError
 	 * @return void
 	 */
 	private function performRequest() {

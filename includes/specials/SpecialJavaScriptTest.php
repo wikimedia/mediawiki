@@ -104,6 +104,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 	 * be thrown.
 	 * @param $html String: The raw HTML.
 	 * @param $state String: State, one of 'noframework', 'unknownframework' or 'frameworkfound'
+	 * @throws MWException
 	 * @return string
 	 */
 	private function wrapSummaryHtml( $html, $state ) {

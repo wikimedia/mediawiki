@@ -48,6 +48,7 @@ class MWNamespace {
 	 * @param $index
 	 * @param $method
 	 *
+	 * @throws MWException
 	 * @return bool
 	 */
 	private static function isMethodValidFor( $index, $method ) {

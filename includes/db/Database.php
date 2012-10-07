@@ -764,6 +764,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * @param $error String: fallback error message, used if none is given by DB
+	 * @throws DBConnectionError
 	 */
 	function reportConnectionError( $error = 'Unknown error' ) {
 		$myError = $this->lastError();
@@ -813,9 +814,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 *     comment (you can use __METHOD__ or add some extra info)
 	 * @param  $tempIgnore Boolean:   Whether to avoid throwing an exception on errors...
 	 *     maybe best to catch the exception instead?
+	 * @throws MWException
 	 * @return boolean|ResultWrapper. true for a successful write query, ResultWrapper object
 	 *     for a successful read query, or false on failure if $tempIgnore set
-	 * @throws DBQueryError Thrown when the database returns an error of any kind
 	 */
 	public function query( $sql, $fname = '', $tempIgnore = false ) {
 		$isMaster = !is_null( $this->getLBInfo( 'master' ) );
@@ -942,6 +943,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $sql String
 	 * @param $fname String
 	 * @param $tempIgnore Boolean
+	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $tempIgnore = false ) {
 		# Ignore errors during error handling to avoid infinite recursion
@@ -1028,6 +1030,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * while we're doing this.
 	 *
 	 * @param $matches Array
+	 * @throws DBUnexpectedError
 	 * @return String
 	 */
 	protected function fillPreparedArg( $matches ) {
@@ -1743,7 +1746,7 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Makes an encoded list of strings from an array
 	 * @param $a Array containing the data
-	 * @param $mode int Constant
+	 * @param int $mode Constant
 	 *      - LIST_COMMA:          comma separated, no field names
 	 *      - LIST_AND:            ANDed WHERE clause (without the WHERE). See
 	 *        the documentation for $conds in DatabaseBase::select().
@@ -1751,6 +1754,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *      - LIST_SET:            comma separated with field names, like a SET clause
 	 *      - LIST_NAMES:          comma separated field names
 	 *
+	 * @throws MWException|DBUnexpectedError
 	 * @return string
 	 */
 	public function makeList( $a, $mode = LIST_COMMA ) {
@@ -2452,6 +2456,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *                    ANDed together in the WHERE clause
 	 * @param $fname      String: Calling function name (use __METHOD__) for
 	 *                    logs/profiling
+	 * @throws DBUnexpectedError
 	 */
 	public function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds,
 		$fname = 'DatabaseBase::deleteJoin' )
@@ -2517,6 +2522,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *               the format. Use $conds == "*" to delete all rows
 	 * @param $fname String name of the calling function
 	 *
+	 * @throws DBUnexpectedError
 	 * @return bool
 	 */
 	public function delete( $table, $conds, $fname = 'DatabaseBase::delete' ) {
@@ -2615,6 +2621,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $limit Integer the SQL limit
 	 * @param $offset Integer|bool the SQL offset (default false)
 	 *
+	 * @throws DBUnexpectedError
 	 * @return string
 	 */
 	public function limitResult( $sql, $limit, $offset = false ) {
@@ -3020,6 +3027,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $newName String: name of table to be created
 	 * @param $temporary Boolean: whether the new table should be temporary
 	 * @param $fname String: calling function name
+	 * @throws MWException
 	 * @return Boolean: true if operation was successful
 	 */
 	public function duplicateTableStructure( $oldName, $newName, $temporary = false,
@@ -3034,6 +3042,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $prefix string Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
+	 * @throws MWException
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseBase::listTables' ) {
 		throw new MWException( 'DatabaseBase::listTables is not implemented in descendant class' );
@@ -3177,10 +3186,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * on object's error ignore settings).
 	 *
 	 * @param $filename String: File name to open
-	 * @param $lineCallback Callback: Optional function called before reading each line
-	 * @param $resultCallback Callback: Optional function called for each MySQL result
-	 * @param $fname String: Calling function name or false if name should be
+	 * @param bool|callable $lineCallback Optional function called before reading each line
+	 * @param bool|callable $resultCallback Optional function called for each MySQL result
+	 * @param bool|string $fname Calling function name or false if name should be
 	 *      generated dynamically using $filename
+	 * @throws MWException
 	 * @return bool|string
 	 */
 	public function sourceFile(

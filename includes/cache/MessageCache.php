@@ -596,7 +596,7 @@ class MessageCache {
 	 * @param $key String: the message cache key
 	 * @param $useDB Boolean: get the message from the DB, false to use only
 	 *               the localisation
-	 * @param $langcode String: code of the language to get the message for, if
+	 * @param bool|string $langcode Code of the language to get the message for, if
 	 *                  it is a valid code create a language for that language,
 	 *                  if it is a string but not a valid code then make a basic
 	 *                  language object, if it is a false boolean then use the
@@ -607,6 +607,7 @@ class MessageCache {
 	 * @param $isFullKey Boolean: specifies whether $key is a two part key
 	 *                   "msg/lang".
 	 *
+	 * @throws MWException
 	 * @return string|bool
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {

@@ -190,6 +190,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	 *                     other similar objects in the new DB.
 	 *    - create-tables: A connection with a role suitable for creating tables.
 	 *
+	 * @throws MWException
 	 * @return Status object. On success, a connection object will be in the
 	 *   value member.
 	 */

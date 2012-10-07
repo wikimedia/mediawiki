@@ -44,6 +44,7 @@ class Category {
 
 	/**
 	 * Set up all member variables using a database query.
+	 * @throws MWException
 	 * @return bool True on success, false on failure.
 	 */
 	protected function initialize() {

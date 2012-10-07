@@ -75,6 +75,8 @@ class ParserOutput extends CacheTime {
 	/**
 	 * callback used by getText to replace editsection tokens
 	 * @private
+	 * @param $m
+	 * @throws MWException
 	 * @return mixed
 	 */
 	function replaceEditSectionLinksCallback( $m ) {

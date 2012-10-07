@@ -1177,6 +1177,7 @@ abstract class FileBackend {
 	 *
 	 * @param $type string One of (attachment, inline)
 	 * @param $filename string Suggested file name (should not contain slashes)
+	 * @throws MWException
 	 * @return string
 	 * @since 1.20
 	 */

@@ -40,14 +40,15 @@ class Cookie {
 
 	/**
 	 * Sets a cookie.  Used before a request to set up any individual
-	 * cookies.	 Used internally after a request to parse the
+	 * cookies. Used internally after a request to parse the
 	 * Set-Cookie headers.
 	 *
 	 * @param $value String: the value of the cookie
 	 * @param $attr Array: possible key/values:
-	 *		expires	 A date string
-	 *		path	 The path this cookie is used on
-	 *		domain	 Domain this cookie is used on
+	 *        expires A date string
+	 *        path    The path this cookie is used on
+	 *        domain  Domain this cookie is used on
+	 * @throws MWException
 	 */
 	public function set( $value, $attr ) {
 		$this->value = $value;

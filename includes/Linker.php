@@ -448,6 +448,7 @@ class Linker {
 	 * @param $context IContextSource context to use to get the messages
 	 * @param $namespace int Namespace number
 	 * @param $title string Text of the title, without the namespace part
+	 * @return string
 	 */
 	public static function getInvalidTitleDescription( IContextSource $context, $namespace, $title ) {
 		global $wgContLang;

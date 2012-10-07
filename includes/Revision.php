@@ -135,6 +135,7 @@ class Revision implements IDBAccessObject {
 	 * @param $row
 	 * @param $overrides array
 	 *
+	 * @throws MWException
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = array() ) {
@@ -436,6 +437,7 @@ class Revision implements IDBAccessObject {
 	 * Constructor
 	 *
 	 * @param $row Mixed: either a database row or an array
+	 * @throws MWException
 	 * @access private
 	 */
 	function __construct( $row ) {
@@ -1004,6 +1006,7 @@ class Revision implements IDBAccessObject {
 	 * number on success and dies horribly on failure.
 	 *
 	 * @param $dbw DatabaseBase: (master connection)
+	 * @throws MWException
 	 * @return Integer
 	 */
 	public function insertOn( $dbw ) {

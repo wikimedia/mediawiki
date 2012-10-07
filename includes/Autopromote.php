@@ -157,6 +157,7 @@ class Autopromote {
 	 *
 	 * @param $cond Array: A condition, which must not contain other conditions
 	 * @param $user User The user to check the condition against
+	 * @throws MWException
 	 * @return bool Whether the condition is true for the user
 	 */
 	private static function checkCondition( $cond, User $user ) {

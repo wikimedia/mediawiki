@@ -83,6 +83,7 @@ class FormOptions implements ArrayAccess {
 	 * which will be assumed as INT if the data is an integer.
 	 *
 	 * @param $data Mixed: value to guess type for
+	 * @throws MWException
 	 * @exception MWException Unsupported datatype
 	 * @return int Type constant
 	 */
@@ -105,6 +106,7 @@ class FormOptions implements ArrayAccess {
 	 *
 	 * @param $name String: option name
 	 * @param $strict Boolean: throw an exception when the option does not exist (default false)
+	 * @throws MWException
 	 * @return Boolean: true if option exist, false otherwise
 	 */
 	public function validateName( $name, $strict = false ) {
@@ -205,11 +207,12 @@ class FormOptions implements ArrayAccess {
 
 	/**
 	 * Validate and set an option integer value
-	 * The value will be altered to fit in the range. 
+	 * The value will be altered to fit in the range.
 	 *
 	 * @param $name String: option name
 	 * @param $min Int: minimum value
 	 * @param $max Int: maximum value
+	 * @throws MWException
 	 * @exception MWException Option is not of type int
 	 * @return null
 	 */

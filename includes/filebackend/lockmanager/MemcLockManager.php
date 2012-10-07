@@ -64,6 +64,7 @@ class MemcLockManager extends QuorumLockManager {
 	 *   - wikiId       : Wiki ID string that all resources are relative to. [optional]
 	 *
 	 * @param Array $config
+	 * @throws MWException
 	 */
 	public function __construct( array $config ) {
 		parent::__construct( $config );

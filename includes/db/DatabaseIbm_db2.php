@@ -496,6 +496,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $user String
 	 * @param $password String
 	 * @param $dbName String: database name
+	 * @throws DBConnectionError
 	 * @return DatabaseBase a fresh connection
 	 */
 	public function open( $server, $user, $password, $dbName ) {
@@ -622,6 +623,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * The DBMS-dependent part of query()
 	 * @param  $sql String: SQL query.
+	 * @throws DBUnexpectedError
 	 * @return object Result object for fetch functions or false on failure
 	 */
 	protected function doQuery( $sql ) {
@@ -854,6 +856,9 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 *   LIST_SET           - comma separated with field names, like a SET clause
 	 *   LIST_NAMES         - comma separated field names
 	 *   LIST_SET_PREPARED  - like LIST_SET, except with ? tokens as values
+	 * @param array $a
+	 * @param int $mode
+	 * @throws DBUnexpectedError
 	 * @return string
 	 */
 	function makeList( $a, $mode = LIST_COMMA ) {
@@ -891,7 +896,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 *
 	 * @param $sql string SQL query we will append the limit too
 	 * @param $limit integer the SQL limit
-	 * @param $offset integer the SQL offset (default false)
+	 * @param bool|int $offset SQL offset (default false)
+	 * @throws DBUnexpectedError
 	 * @return string
 	 */
 	public function limitResult( $sql, $limit, $offset=false ) {
@@ -1173,6 +1179,10 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * DELETE query wrapper
 	 *
 	 * Use $conds == "*" to delete all rows
+	 * @param array $table
+	 * @param array|string $conds
+	 * @param string $fname
+	 * @throws DBUnexpectedError
 	 * @return bool|\ResultWrapper
 	 */
 	public function delete( $table, $conds, $fname = 'DatabaseIbm_db2::delete' ) {
@@ -1247,6 +1257,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	/**
 	 * Frees memory associated with a statement resource
 	 * @param $res Object: statement resource to free
+	 * @throws DBUnexpectedError
 	 * @return Boolean success or failure
 	 */
 	public function freeResult( $res ) {

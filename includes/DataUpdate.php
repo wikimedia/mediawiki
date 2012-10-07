@@ -76,6 +76,7 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 *
 	 * @static
 	 * @param $updates array a list of DataUpdate instances
+	 * @throws Exception|null
 	 */
 	public static function runUpdates( $updates ) {
 		if ( empty( $updates ) ) return; # nothing to do

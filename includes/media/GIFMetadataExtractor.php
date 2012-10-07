@@ -260,6 +260,7 @@ class GIFMetadataExtractor {
 
 	/**
 	 * @param $data
+	 * @throws Exception
 	 * @return int
 	 */
 	static function decodeBPP( $data ) {
@@ -276,7 +277,7 @@ class GIFMetadataExtractor {
 
 	/**
 	 * @param $fh
-	 * @return
+	 * @throws Exception
 	 */
 	static function skipBlock( $fh ) {
 		while ( !feof( $fh ) ) {
@@ -290,6 +291,7 @@ class GIFMetadataExtractor {
 			fread( $fh, $block_len );
 		}
 	}
+
 	/**
 	 * Read a block. In the GIF format, a block is made up of
 	 * several sub-blocks. Each sub block starts with one byte
@@ -301,6 +303,7 @@ class GIFMetadataExtractor {
 	 *  sub-blocks in the returned value. Normally this is false,
 	 *  except XMP is weird and does a hack where you need to keep
 	 *  these length bytes.
+	 * @throws Exception
 	 * @return string The data.
 	 */
 	static function readBlock( $fh, $includeLengths = false ) {
