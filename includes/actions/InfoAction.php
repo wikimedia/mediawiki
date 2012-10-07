@@ -75,7 +75,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo = $this->pageInfo();
 
 		// Allow extensions to add additional information
-		wfRunHooks( 'InfoAction', array( &$pageInfo ) );
+		wfRunHooks( 'InfoAction', array( $this->getContext(), &$pageInfo ) );
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
@@ -148,17 +148,15 @@ class InfoAction extends FormlessAction {
 	 *
 	 * @return array
 	 */
-	protected function pageInfo() {
-		global $wgContLang, $wgDisableCounters, $wgRCMaxAge;
+	protected function pageInfo( $title ) {
+		global $wgContLang, $wgRCMaxAge;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
 		// Get page information that would be too "expensive" to retrieve by normal means
-		$userCanViewUnwatchedPages = $user->isAllowed( 'unwatchedpages' );
-		$pageCounts = self::pageCounts( $title, $userCanViewUnwatchedPages, $wgDisableCounters );
+		$pageCounts = self::pageCounts( $title, $user );
 
 		// Get page properties
 		$dbr = wfGetDB( DB_SLAVE );
@@ -216,14 +214,14 @@ class InfoAction extends FormlessAction {
 			$this->msg( 'pageinfo-robot-policy' ), $this->msg( "pageinfo-robot-${policy['index']}" )
 		);
 
-		if ( !$wgDisableCounters ) {
+		if ( isset( $pageCounts['views'] ) ) {
 			// Number of views
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-views' ), $lang->formatNum( $pageCounts['views'] )
 			);
 		}
 
-		if ( $userCanViewUnwatchedPages ) {
+		if ( isset( $pageCounts['watchers'] ) ) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
@@ -402,12 +400,11 @@ class InfoAction extends FormlessAction {
 	 * Returns page counts that would be too "expensive" to retrieve by normal means.
 	 *
 	 * @param $title Title object
-	 * @param $canViewUnwatched bool
-	 * @param $disableCounter bool
+	 * @param $user User object
 	 * @return array
 	 */
-	protected static function pageCounts( $title, $canViewUnwatched, $disableCounter ) {
-		global $wgRCMaxAge;
+	protected static function pageCounts( $title, $user ) {
+		global $wgRCMaxAge, $wgDisableCounters;
 
 		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
@@ -415,7 +412,7 @@ class InfoAction extends FormlessAction {
 		$dbr = wfGetDB( DB_SLAVE );
 		$result = array();
 
-		if ( !$disableCounter ) {
+		if ( !$wgDisableCounters ) {
 			// Number of views
 			$views = (int) $dbr->selectField(
 				'page',
@@ -426,7 +423,7 @@ class InfoAction extends FormlessAction {
 			$result['views'] = $views;
 		}
 
-		if ( $canViewUnwatched ) {
+		if ( $user->isAllowed( 'unwatchedpages' ) ) {
 			// Number of page watchers
 			$watchers = (int) $dbr->selectField(
 				'watchlist',
