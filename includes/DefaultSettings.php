@@ -4520,7 +4520,9 @@ $wgProfileOnly = false;
  * Log sums from profiling into "profiling" table in db.
  *
  * You have to create a 'profiling' table in your database before using
- * this feature, see maintenance/archives/patch-profiling.sql
+ * this feature.  Run set $wgProfileToDatabase to true in
+ * LocalSettings.php and run maintenance/update.php or otherwise
+ * manually add patch-profiling.sql to your database.
  *
  * To enable profiling, edit StartProfiler.php
  */
