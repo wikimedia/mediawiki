@@ -611,7 +611,7 @@ Ny antony napetraka dia : « ''$2'' ».",
 # Login and logout pages
 'logouttext' => "'''Tafavoaka ianao ankehitriny.'''
 
-Mbola afaka mampiasa ny {{SITENAME}} ianao na dia ef anivoaka aza, na afaka [[Special:UserLogin|miverina mihiditra]] ianao ambanin'ny anaranao na anaram-pikambana hafa.
+Mbola afaka mampiasa ny {{SITENAME}} ianao na dia ef anivoaka aza, na afaka <span class='plainlinks'>[$1 miverina mihiditra]</span> ianao ambanin'ny anaranao na anaram-pikambana hafa.
 Fantaro fa ny endriky ny pejy sasany dia mety mitovy amin'ny endrika nahitanao azy tamin' ianao mbola niditra tato, ho toy izany ny endri-pejy raha tsy nofafanao ny cache.",
 'welcomecreation' => '== Tonga soa, $1! ==
 

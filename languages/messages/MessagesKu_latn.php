@@ -451,7 +451,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Tu niha derketî.'''
 
-Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner [[Special:UserLogin|dîsa têkevî]].
+Tu dikarî {{SITENAME}} niha weke bikarhênerekî nediyarkirî bikarbînî, yan jî tu dikarî dîsa bi vî navê xwe yan navekî din wek bikarhêner <span class='plainlinks'>[$1 dîsa têkevî]</span>.
 Bila di bîra te de be ku gengaz e hin rûpel mîna ku tu hîn bi navê xwe qeyd kiriyî werin nîşandan, heta ku tu nîşanên çavlêgerandina (browser) xwe jênebî.",
 'welcomecreation' => '== Tu bi xêr hatî, $1! ==
 

@@ -626,7 +626,7 @@ Administratori i cili e mbylli atë e dha këtë shpjegim: "$3".',
 # Login and logout pages
 'logouttext' => "'''Ju keni dalë jashtë.''' 
 
- Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të [[Special:UserLogin|identifikoheni përsëri]] si përdoruesi i mëparshëm ose si një përdorues tjetër. 
+ Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të <span class='plainlinks'>[$1 identifikoheni përsëri]</span> si përdoruesi i mëparshëm ose si një përdorues tjetër. 
  Kini parasysh që disa faqe mund të shfaqen sikur të ishit i identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
 'welcomecreation' => '== Mirësevini, $1! == 
  Llogaria juaj është krijuar. 

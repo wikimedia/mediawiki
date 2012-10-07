@@ -701,7 +701,7 @@ Bảo quản viên khóa nó đưa lý do là: “$3”.',
 # Login and logout pages
 'logouttext' => "'''Bạn đã đăng xuất.'''
 
-Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể [[Special:UserLogin|đăng nhập lại]] dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
+Bạn có thể tiếp tục dùng {{SITENAME}} một cách vô danh, hoặc bạn có thể <span class='plainlinks'>[$1 đăng nhập lại]</span> dưới cùng tên người dùng này hoặc một tên người dùng khác. Xin lưu ý rằng một vài trang có thể vẫn hiển thị như khi bạn còn đăng nhập, cho đến khi bạn xóa vùng nhớ đệm (''cache'') của trình duyệt.",
 'welcomecreation' => '== Chào mừng, $1! ==
 Tài khoản của bạn đã mở.
 Đừng quên thay đổi [[Special:Preferences|tùy chọn cá nhân của bạn tại {{SITENAME}}]].',
@@ -3100,7 +3100,6 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'pageinfo-authors' => 'Tổng số tác giả riêng',
 'pageinfo-recent-edits' => 'Số lần sửa đổi gần đây (trong $1 qua)',
 'pageinfo-recent-authors' => 'Số người dùng sửa đổi gần đây',
-'pageinfo-restriction' => 'Mức khóa trang ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Từ thần chú ($1)',
 'pageinfo-hidden-categories' => 'Thể loại ẩn ($1)',
 'pageinfo-templates' => 'Bản mẫu được nhúng ($1)',

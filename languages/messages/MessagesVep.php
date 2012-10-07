@@ -471,7 +471,7 @@ Sü om "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Tö olet lähtnuded sistemaspäi.'''
 
-Sab jatkta rad {{SITENAME}}-saital anonimižikš, vai [[Special:UserLogin|kirjutagatoiš udes]] sil-žo vai toižel kävutajan nimel.
+Sab jatkta rad {{SITENAME}}-saital anonimižikš, vai <span class='plainlinks'>[$1 kirjutagatoiš udes]</span> sil-žo vai toižel kävutajan nimel.
 Otkat sil'mnägubale, miše erasid lehtpolid ozutaškatas mugažo, kut i edel teiden lähtendad sistemaspäi. Miše vajehtada niiden nägu, puhtastagat teiden kaclimen keš.",
 'welcomecreation' => '== Tulgat tervhen, $1! ==
 Teiden registracii om loptud.

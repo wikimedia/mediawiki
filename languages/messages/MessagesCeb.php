@@ -443,7 +443,7 @@ Ang rason nga gihatag mao ang "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Nakabiya ka na.'''
 
-Mahimo kang magpadayon sa paggamit sa {{SITENAME}} bisan wala ka magpaila o puyde usab nga [[Special:UserLogin|mag-log in ka'g usab]] o isip laing gumagamit. Palihog hinumdomi nga may ubang mga panid nga magpakita sama nga ikaw naka-log in pa; kini tungod kay wala pa nimo malimpiyohi ang cache sa imong brawser.",
+Mahimo kang magpadayon sa paggamit sa {{SITENAME}} bisan wala ka magpaila o puyde usab nga <span class='plainlinks'>[$1 mag-log in ka'g usab]</span> o isip laing gumagamit. Palihog hinumdomi nga may ubang mga panid nga magpakita sama nga ikaw naka-log in pa; kini tungod kay wala pa nimo malimpiyohi ang cache sa imong brawser.",
 'welcomecreation' => '== Maayong pag-abot, $1! ==
 Nahimo na ang imong akawnt.
 Ayaw kalimot sa pag-usab sa imong [[Special:Preferences|{{SITENAME}} mga preperensiya]].',

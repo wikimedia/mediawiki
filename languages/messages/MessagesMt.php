@@ -664,7 +664,7 @@ Ir-raġuni li ġiet mogħtija kienet ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Bħalissa tinsab barra mill-kont tiegħek.'''
 
-Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa [[Special:UserLogin|tidħol]] bħala l-istess utent jew wieħed differenti.
+Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa <span class='plainlinks'>[$1 tidħol]</span> bħala l-istess utent jew wieħed differenti.
 Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra mill-kont qatt ma seħħ, sakemm ma tħassarx il-cache tal-browser.",
 'welcomecreation' => "== Merħba, $1! ==
 Il-kont tiegħek ġie maħluq.<br />
@@ -1195,7 +1195,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'mergehistory-reason' => 'Raġuni:',
 
 # Merge log
-'mergelog' => "Reġistru ta' twaħħid",
+'mergelog' => 'Twaħħid',
 'pagemerge-logentry' => "waħħad [[$1]] ma' [[$2]] (reviżjonijiet sa $3)",
 'revertmerge' => 'Infired',
 'mergelogpagetext' => "Hawn taħt hawn lista ta' l-aktar tgħaqqid riċenti ta' paġna waħda ta' storja f'oħra.",
@@ -2654,9 +2654,9 @@ Jekk jogħġbok, waħħad iż-żewġ paġni manwalment.'''",
 'move-talk-subpages' => "Mexxi is-sottopaġni kollha tal-paġna ta' diskussjoni (sa $1)",
 'movepage-page-exists' => 'Il-paġna $1 diġà teżisti u ma tistax tiġi miktuba fuqha awtomatikament.',
 'movepage-page-moved' => 'Il-Paġna $1 ġiet imċaqilqa għal $2.',
-'movepage-page-unmoved' => 'Il-Paġna $1 ma setgħatx tiġi mċaqilqa għal $2.',
+'movepage-page-unmoved' => 'Il-paġna $1 ma setgħetx titmexxa lejn $2.',
 'movepage-max-pages' => "Ġie mċaqlaq in-numru massimu ta' {{PLURAL:$1|paġna u ma jistax jiġi mċaqlaq aktar awtomatikament|$1 paġni u ma jistgħux jiġu mċaqilqa aktar awtomatikament.}}",
-'movelogpage' => "Reġistru tat-tmexxija ta' paġni",
+'movelogpage' => "Tmexxija ta' paġni",
 'movelogpagetext' => "Hawn taħt jinsab lista ta' paġni mċaqilqa.",
 'movesubpage' => '{{PLURAL:$1|Sottopaġna|Sottopaġna}}',
 'movesubpagetext' => 'Din il-paġna għandha $1 {{PLURAL:$1|sottopaġna murija|sottopaġni murija}} hawn taħt:',

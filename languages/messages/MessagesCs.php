@@ -764,7 +764,7 @@ Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3
 # Login and logout pages
 'logouttext' => "'''Nyní jste odhlášeni.'''
 
-Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete [[Special:UserLogin|znovu přihlásit]] jako stejný či jiný uživatel.
+Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete <span class='plainlinks'>[$1 znovu přihlásit]</span> jako stejný či jiný uživatel.
 Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
 'welcomecreation' => '== Vítejte, $1! ==
 Váš účet byl úspěšně vytvořen.
@@ -3133,10 +3133,10 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-authors' => 'Celkový počet různých autorů',
 'pageinfo-recent-edits' => 'Počet nedávných ($1) editací',
 'pageinfo-recent-authors' => 'Nedávný počet různých autorů',
-'pageinfo-restriction' => 'Zámek stránky ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Kouzelné slovo|Kouzelná slova}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá|Skryté}} kategorie ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Použitá šablona|Použité šablony}} ($1)',
+'pageinfo-toolboxlink' => 'Informace o stránce',
 
 # Skin names
 'skinname-standard' => 'Klasický',
@@ -3714,6 +3714,7 @@ Platnost tohoto potvrzovacího kódu vyprší $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Vkládání šablon mezi wiki je vypnuto]',
 'scarytranscludefailed' => '[Nepodařilo se načíst šablonu pro $1]',
+'scarytranscludefailed-httpstatus' => '[Nepodařilo se načíst šablonu pro $1: HTTP $2]',
 'scarytranscludetoolong' => '[Příliš dlouhé URL]',
 
 # Delete conflict

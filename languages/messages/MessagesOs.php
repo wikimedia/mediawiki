@@ -247,7 +247,7 @@ $messages = array(
 'vector-action-protect' => 'Сæхгæнын',
 'vector-action-undelete' => 'Рацаразын',
 'vector-action-unprotect' => 'Ивын хъахъхъæд',
-'vector-simplesearch-preference' => 'Баиу кæнын уæрæхгонд агурыны æххуыстæ (Вектор цармæн æрмæст)',
+'vector-simplesearch-preference' => 'Баиу кæнын æнцонгонд агурыны формæ (Вектор цармæн æрмæст)',
 'vector-view-create' => 'Скæнын',
 'vector-view-edit' => 'Ивын',
 'vector-view-history' => 'Истори',
@@ -502,7 +502,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Ныр дæ æддæмæ хызт.'''
 
-Дæ бон у дарддæр архайай {{grammar:genitive|{{SITENAME}}}} æнæномæй, æви та [[Special:UserLogin|фæстæмæ бахизын]] раздæры номæй кæнæ та æндæр номæй.
+Дæ бон у дарддæр архайай {{grammar:genitive|{{SITENAME}}}} æнæномæй, æви та <span class='plainlinks'>[$1 фæстæмæ бахизын]</span> раздæры номæй кæнæ та æндæр номæй.
 Дæ сæры дар æмæ иуæй иу фæрстæ гæнæн ис æвдыст цæуой афтæ, цымæ нырмæ дæр нæ рахызтæ. Уый тыххæй дæ браузеры кеш сафтид кæн.",
 'welcomecreation' => '== Ӕгас цу, $1! ==
 Дæ аккаунт арæзт æрцыдис.

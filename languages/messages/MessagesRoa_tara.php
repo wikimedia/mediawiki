@@ -446,7 +446,7 @@ L\'amministratore ca l\'ha bloccate dèje sta spiegazione: "$3".',
 # Login and logout pages
 'logouttext' => "'''Tu tè scolleghete.'''
 
-Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè [[Special:UserLogin|collegarte 'n'otra vote]] cumme 'u stesse utende o cumme 'n'otre utende.
+Tu puè condinuà a ausà {{SITENAME}} in mode anonime, o tu puè <span class='plainlinks'>[$1 collegarte 'n'otra vote]</span> cumme 'u stesse utende o cumme 'n'otre utende.
 Note Bbuene ca certe pàggene ponne condinuà a essere viste cumme ce tu ste angore colleghete, fine a quanne a cache d'u browser no se sdeveche.",
 'welcomecreation' => "== Bovegne, $1! ==
 'U cunde tue ha state ccrejete.
@@ -2929,7 +2929,6 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-authors' => 'Numere Totale de autore diverse',
 'pageinfo-recent-edits' => "Numere de le urteme cangiaminde ('mbonde a $1)",
 'pageinfo-recent-authors' => 'Numere de le urteme autore diverse',
-'pageinfo-restriction' => "Protezione d'a pàgene ({{lcfirst:$1}})",
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorije|Categorije}} scunnute ($1)',
 'pageinfo-templates' => 'Esclude {{PLURAL:$1|template|template}} ($1)',

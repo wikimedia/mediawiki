@@ -586,7 +586,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Dir sidd elo ausgeloggt.'''
 
-Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech [[Special:UserLogin|erëm aloggen]].
+Dir kënnt {{SITENAME}} elo anonym benotzen, oder Iech <span class='plainlinks'>[$1 erëm aloggen]</span>.
 
 Opgepasst: Op verschiddene Säite kann et nach esou aus gesinn, wéi wann Dir nach ageloggt wiert, bis Dir Ärem Browser säin Tëschespäicher (cache) eidel maacht.",
 'welcomecreation' => '== Wëllkomm, $1! ==
@@ -835,6 +835,10 @@ Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} an den entspriechende Logbicher nokucken] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën]</span>.',
 'noarticletext-nopermission' => 'Elo ass keen Text op dëser Säit.
 Dir kënnt op anere Säiten [[Special:Search/{{PAGENAME}}|no dësem Sàitentitel sichen]], oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} an de Logbicher sichen]</span>, mä Dir hutt net déi néideg Rechter fir dës Säit unzeleeën.',
+'missing-revision' => 'D\'Versioun #$1 vun der Säit mam Numm "{{PAGENAME}}" gëtt et net.
+
+Dat geschitt normalerweis wann Dir op e vereelste Link vun enger Versioun vun enger Säit klickt déi geläscht ginn ass.
+Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läschen].',
 'userpage-userdoesnotexist' => 'De Benotzerkont "<nowiki>$1</nowiki>" ass net registréiert.
 Iwwerpréift w.e.g. op Dir dës Säit uleeën/ännere wëllt.',
 'userpage-userdoesnotexist-view' => 'De Benotzerkont "$1" ass net registréiert.',
@@ -1758,7 +1762,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 # Special:ListFiles
 'listfiles-summary' => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.
 
-Wann se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
+Wa se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
 'listfiles_search_for' => 'Sicht nom Fichier:',
 'imgfile' => 'Fichier',
 'listfiles' => 'Lëscht vun de Fichieren',
@@ -1873,7 +1877,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'statistics' => 'Statistik',
 'statistics-header-pages' => 'Säitestatistiken',
 'statistics-header-edits' => 'Statistik vun den Ännerungen',
-'statistics-header-views' => "Sttistiken iwwert d'Visiten",
+'statistics-header-views' => "Statistiken iwwert d'Visiten",
 'statistics-header-users' => 'Benotzerstatistik',
 'statistics-header-hooks' => 'Aner Statistiken',
 'statistics-articles' => 'Säite mat Inhalt',
@@ -2768,6 +2772,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'import-error-special' => 'D\'Säit "$1" gouf net importéiert well se zu engem speziellen Nummraum gehéiert an deem et keng Säite gëtt.',
 'import-error-invalid' => 'D\'Säit "$1" gouf net importéiert well hiren Numm net valabel ass.',
 'import-options-wrong' => 'Falsch {{PLURAL:$2|Optioun|Optiounen}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Déi Basis-Säit déi Dir uginn hutt ass kee valabelen Titel.',
 
 # Import log
 'importlogpage' => 'Lëscht vun den Säitenimporten',
@@ -2915,10 +2920,10 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-authors' => 'Gesamtzuel vun de verschiddenen Auteuren',
 'pageinfo-recent-edits' => 'Zuel vun de rezenten Ännerungen (an de leschten $1)',
 'pageinfo-recent-authors' => 'Zuel vun de verschiddenen Auteuren',
-'pageinfo-restriction' => 'Protectioun vun der Säit ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magescht Wuert|Magesch Wierder}} ($1)',
 'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Agebonne {{PLURAL:$1|Schabloun|Schabloune}} ($1)',
+'pageinfo-toolboxlink' => "Informatiounen iwwert d'Säit",
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -3479,6 +3484,7 @@ Dëse Confirmatiouns-Code leeft den $4 of.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Abannung ass ausgeschalt]',
 'scarytranscludefailed' => "[D'Siche no der Schabloun fir $1 huet net funktionéiert]",
+'scarytranscludefailed-httpstatus' => "[D'Oprufe vun der Schabloun $1: HTTP $2 huet net fonctionnéiert]",
 'scarytranscludetoolong' => "[D'URL ass ze laang]",
 
 # Delete conflict

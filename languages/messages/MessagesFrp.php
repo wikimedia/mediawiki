@@ -467,7 +467,7 @@ $messages = array(
 'vector-action-protect' => 'Protègiér',
 'vector-action-undelete' => 'Refâre',
 'vector-action-unprotect' => 'Changiér la protèccion',
-'vector-simplesearch-preference' => 'Activar les idês de rechèrche bônâyes (solament por « Vèctor »)',
+'vector-simplesearch-preference' => 'Activar la bârra de rechèrche simplifiâye (solament por l’habelyâjo « Vèctor »)',
 'vector-view-create' => 'Fâre',
 'vector-view-edit' => 'Changiér',
 'vector-view-history' => 'Fâre vêre l’historico',
@@ -689,10 +689,11 @@ Volyéd tornar èprovar dens un tôrn.',
 'protectedpagetext' => 'Ceta pâge est étâye protègiêye por empachiér son changement.',
 'viewsourcetext' => 'Vos pouede vêre et pués copiyér lo tèxto sôrsa de ceta pâge :',
 'viewyourtext' => "Vos pouede vêre et pués copiyér lo tèxto sôrsa de '''voutros changements''' a ceta pâge :",
-'protectedinterface' => 'Ceta pâge balye de tèxto d’entèrface por la programeria et est vêr protègiêye por èvitar los abus.',
+'protectedinterface' => 'Cela pâge-que balye de tèxto d’entèrface por la programeria sur ceti vouiqui, et est vêr protègiêye por èvitar los abus.
+Por apondre ou ben changiér des traduccions sur tôs los vouiquis, volyéd empleyér [//translatewiki.net/ translatewiki.net], lo projèt de localisacion de MediaWiki.',
 'editinginterface' => "'''Atencion :''' vos éte aprés changiér na pâge empleyêye por fâre lo tèxto d’entèrface de la programeria.
-Los changements sè cognetront sur totes ou ben doux-três pâges visibles per los ôtros utilisators.
-Por les traduccions, nos vos envitens a empleyér [//translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt de localisacion de MediaWiki.",
+Los changements sè cognetront sur l’aparence de l’entèrface utilisator por los ôtros utilisators de ceti vouiqui.
+Por apondre ou ben changiér des traduccions sur tôs los vouiquis, volyéd empleyér [//translatewiki.net/ translatewiki.net], lo projèt de localisacion de MediaWiki.",
 'sqlhidden' => '(Demanda SQL cachiêye)',
 'cascadeprotected' => 'Cela pâge-que est protègiêye perce qu’el est encllua dedens {{PLURAL:$1|ceta pâge, qu’est étâye protègiêye|cetes pâges, que sont étâyes protègiêyes}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
@@ -712,7 +713,7 @@ La rêson balyêye est « ''$2'' ».",
 # Login and logout pages
 'logouttext' => "'''Ora vos éte dèbranchiê{{GENDER:||ye|(ye)}}.'''
 
-Vos pouede continuar a empleyér {{SITENAME}} de façon anonima ou ben [[Special:UserLogin|vos tornar branchiér]] desot lo mémo nom ou un ôtro.
+Vos pouede continuar a empleyér {{SITENAME}} de façon anonima ou ben <span class='plainlinks'>[$1 vos tornar branchiér]</span> desot lo mémo nom ou un ôtro.
 Notâd qu’y at des pâges que pôvont étre oncor fêtes vêre coment se vos érâd adés branchiê{{GENDER:||ye|(ye)}}, tant que vos èfaciéd lo cacho de voutron navigator.",
 'welcomecreation' => '== Benvegnua, $1 ! ==
 Voutron compto est étâ fêt.
@@ -1443,7 +1444,7 @@ Vê-que una valor fêta per hasârd que vos pouede utilisar : $1',
 'timezoneregion-indian' => 'Ocèan endien',
 'timezoneregion-pacific' => 'Ocèan pacefico',
 'allowemail' => 'Ôtorisar l’èxpèdicion de mèssâjos que vegnont d’ôtros usanciérs',
-'prefs-searchoptions' => 'Chouèx de rechèrche',
+'prefs-searchoptions' => 'Rechèrche',
 'prefs-namespaces' => 'Èspâços de noms',
 'defaultns' => 'Ôtrament rechèrchiér dens cetos èspâços de noms :',
 'default' => 'per dèfôt',

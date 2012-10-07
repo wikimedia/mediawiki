@@ -721,7 +721,7 @@ Administrators nærmere begrunnelse: «$3».',
 # Login and logout pages
 'logouttext' => "'''Du er nå logget ut.'''
 
-Du kan fortsette å bruke {{SITENAME}} anonymt, eller [[Special:UserLogin|logge inn igjen]] som samme eller en annen bruker.
+Du kan fortsette å bruke {{SITENAME}} anonymt, eller <span class='plainlinks'>[$1 logge inn igjen]</span> som samme eller en annen bruker.
 Merk at noen sider kan vise at du fortsatt er logget inn fram til du tømmer mellomlageret i nettleseren.",
 'welcomecreation' => '==Velkommen, $1!==
 Brukerkontoen din har blitt opprettet.
@@ -2464,7 +2464,7 @@ Dette er de nåværende innstillingene for siden '''$1''':",
 Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default' => 'Tillat alle brukere',
 'protect-fallback' => 'Må ha «$1»-tillatelse',
-'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukere',
+'protect-level-autoconfirmed' => 'Blokker uregistrerte og nye brukere',
 'protect-level-sysop' => 'Kun administratorer',
 'protect-summary-cascade' => 'dypbeskyttelse',
 'protect-expiring' => 'utløper $1 (UTC)',
@@ -3103,7 +3103,6 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-authors' => 'Totalt antall forskjellige forfattere',
 'pageinfo-recent-edits' => 'Antall nylige redigeringer (innen siste $1)',
 'pageinfo-recent-authors' => 'Antall nylige forfattere',
-'pageinfo-restriction' => 'Sidebeskyttelse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => 'Transkludert {{PLURAL:$1|mal|maler}} ($1)',

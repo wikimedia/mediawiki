@@ -567,7 +567,7 @@ Ang tagapangasiwang nagkandado nito ay nag-alok ng ganitong paliwanag: "$3".',
 # Login and logout pages
 'logouttext' => "'''Nakaalis ka na sa pagkakalagda.'''
 
-Maaari kang tumuloy sa paggamit ng {{SITENAME}} nang hindi nakikilala (anonimo), o maaaring kang [[Special:UserLogin|lumagda/tumala muli]] bilang kapareho o ibang tagagamit.
+Maaari kang tumuloy sa paggamit ng {{SITENAME}} nang hindi nakikilala (anonimo), o maaaring kang <span class='plainlinks'>[$1 lumagda/tumala muli]</span> bilang kapareho o ibang tagagamit.
 Tandaan na may ilang pahinang maaaring magpatuloy na nagpapakitang parang nakalagda ka pa rin, hanggang sa linisin mo ang iyong baunang pambasa-basa (''browser cache'').",
 'welcomecreation' => '== Maligayang pagdating, $1! ==
 Nilikha na ang iyong kuwenta.
@@ -3011,7 +3011,6 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 'pageinfo-authors' => 'Kabuuang bilang ng magkakabukod na mga may-akda',
 'pageinfo-recent-edits' => 'Kamakailang bilang ng mga pamamatnugot (sa loob ng huling $1)',
 'pageinfo-recent-authors' => 'Kamakailang bilang ng magkakabukod na mga may-akda',
-'pageinfo-restriction' => 'Pruteksiyon ng pahina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Salita|Mga salita}}ng mahiwaga ($1)',
 'pageinfo-hidden-categories' => 'Nakatagong {{PLURAL:$1|kategorya|mga kategorya}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Suleras|Mga suleras}} ($1) na nasa transklusyon (kasama sa maraming mga lugar)',

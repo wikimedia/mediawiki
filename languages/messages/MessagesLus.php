@@ -394,7 +394,7 @@ $2',
 
 # Login and logout pages
 'logouttext' => "'''I chhuak fel ta.'''
-Inziaklût kher lovin {{SITENAME}} hi i hmang chhunzawm thei ang, a nih loh vëk pawhin hmangtu hming pangngai emaw, a hming dang emawin [[Special:UserLogin|lût leh]] thei ang.
+Inziaklût kher lovin {{SITENAME}} hi i hmang chhunzawm thei ang, a nih loh vëk pawhin hmangtu hming pangngai emaw, a hming dang emawin <span class='plainlinks'>[$1 lût leh]</span> thei ang.
 I fangtu cache i thenfai hma chu phêk ţhenkhat intar lang a awm reng mai thei, i la  chhuak lo emaw tih mai tùrin.",
 'welcomecreation' => '==Kan lo lawm a che, $1!==
 I siangchan siam a ni ta.

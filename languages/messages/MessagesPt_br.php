@@ -721,7 +721,7 @@ O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora você encontra-se desautenticado.'''
 
-É possível continuar usando {{SITENAME}} anonimamente ou [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de usuário ou com um nome diferente.
+É possível continuar usando {{SITENAME}} anonimamente ou <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
 'welcomecreation' => '== Bem-vindo(a), $1! ==
 A sua conta foi criada.
@@ -3107,7 +3107,6 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edições recentes (nos últimos $1)',
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
-'pageinfo-restriction' => 'Proteção da página ({{lcfirst:$1}})',
 
 # Skin names
 'skinname-standard' => 'Clássico',

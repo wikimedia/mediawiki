@@ -422,7 +422,7 @@ Di grünj faan di administraator as: „$3“.',
 # Login and logout pages
 'logouttext' => "'''Dü bast nü oufmälded.'''
 
-Dü koost {{SITENAME}} nü anonüüm widerbrüke, unti de wider uner diseelew unti en oudern brükernoome [[Special:UserLogin|önjmälde]].
+Dü koost {{SITENAME}} nü anonüüm widerbrüke, unti de wider uner diseelew unti en oudern brükernoome <span class='plainlinks'>[$1 önjmälde]</span>.
 Påås aw, dåt hu side nuch wise koone, dåt dü önjmälded bast, sülung dü ai dan browsercache lääsimååged heest.",
 'welcomecreation' => '== Wäljkiimen, $1! ==
 

@@ -420,7 +420,7 @@ Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota
 # Login and logout pages
 'logouttext' => "'''Adess a sii descuness.'''
 
-A pudé andà inanz a druvà la {{SITENAME}} in manera anònima, o a pudé [[Special:UserLogin|cunètev anmò]] cun l'istess suranomm o cun un suranomm diferent.
+A pudé andà inanz a druvà la {{SITENAME}} in manera anònima, o a pudé <span class='plainlinks'>[$1 cunètev anmò]</span> cun l'istess suranomm o cun un suranomm diferent.
 Tegné cünt che certi paginn pödass che i seguiten a vedess tant 'me se a füdìssuv anmò cuness, fin quand che hii nò vudaa 'l ''cache'' del voster browser.",
 'welcomecreation' => "== Benvegnüü, $1! ==
 'L to cünt l'è staa pruntaa. Desmenteghet mía de mudifegà i to [[Special:Preferences|preferenz de {{SITENAME}}]].",

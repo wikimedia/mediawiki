@@ -382,7 +382,7 @@ $2',
 # Login and logout pages
 'logouttext' => "侬已经登出哉。'''
 
-侬可以继续匿名使用{{SITENAME}} ，也可以再次以相同或者两样个用户名[[Special:UserLogin|登录]]。
+侬可以继续匿名使用{{SITENAME}} ，也可以再次以相同或者两样个用户名<span class='plainlinks'>[$1 登录]</span>。
 注意，有眼页面作兴还是会搭侬登出前头一样显示，一脚到侬清除浏览器缓存。",
 'welcomecreation' => '== 欢迎侬， $1！ ==
 

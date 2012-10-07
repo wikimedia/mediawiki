@@ -764,7 +764,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''יצאתם זה עתה מהחשבון.'''
 
-באפשרותכם להמשיך ולעשות שימוש ב{{grammar:תחילית|{{SITENAME}}}} באופן אנונימי, או [[Special:UserLogin|לשוב ולהיכנס לאתר]] עם שם משתמש זהה או אחר.
+באפשרותכם להמשיך ולעשות שימוש ב{{grammar:תחילית|{{SITENAME}}}} באופן אנונימי, או <span class='plainlinks'>[$1 לשוב ולהיכנס לאתר]</span> עם שם משתמש זהה או אחר.
 שימו לב כי ייתכן שדפים אחדים ימשיכו להיות מוצגים כאילו אתם עדיין מחוברים לחשבון עד שתנקו את המטמון של הדפדפן שלכם.",
 'welcomecreation' => '== ברוך בואך, $1! ==
 חשבונך נוצר.
@@ -3189,10 +3189,10 @@ $1',
 'pageinfo-authors' => 'המספר הכולל של כותבים שונים',
 'pageinfo-recent-edits' => 'מספר העריכות לאחרונה ($1)',
 'pageinfo-recent-authors' => 'מספר הכותבים הייחודיים לאחרונה',
-'pageinfo-restriction' => 'הגנה על הדף ($1)',
 'pageinfo-magic-words' => '{{PLURAL:$1|מילת קסם|מילות קסם}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|תבנית מוכללת|תבניות מוכללות}} ($1)',
+'pageinfo-toolboxlink' => 'מידע על הדף',
 
 # Skin names
 'skinname-standard' => 'קלאסי',
@@ -3768,7 +3768,8 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
-'scarytranscludefailed' => '[הכללת התבנית נכשלה בגלל $1]',
+'scarytranscludefailed' => '[הכללת התבנית נכשלה עבור $1]',
+'scarytranscludefailed-httpstatus' => '[הכללת התבנית נכשלה עבור $1&rlm;: HTTP $2]',
 'scarytranscludetoolong' => '[כתובת ה־URL ארוכה מדי]',
 
 # Delete conflict

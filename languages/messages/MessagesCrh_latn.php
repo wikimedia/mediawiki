@@ -487,7 +487,7 @@ Sebep: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Oturımnı qapattıñız.'''
 
-Şimdi {{SITENAME}} saytını anonim olaraq qullanıp olasıñız, ya da yañıdan [[Special:UserLogin|oturım açıp]] olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.",
+Şimdi {{SITENAME}} saytını anonim olaraq qullanıp olasıñız, ya da yañıdan <span class='plainlinks'>[$1 oturım açıp]</span> olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.",
 'welcomecreation' => '== Hoş keldiñiz, $1! ==
 Esabıñız açıldı.
 Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñiştirmege unutmañız.',

@@ -446,7 +446,7 @@ Ti administrador a nagserra ket nagited iti daytoy a panagilawlawag "\'\'$3\'\'"
 # Login and logout pages
 'logouttext' => "'''Nakaruarkan.'''
 
-Mabalinmo nga ituloy ti agusar iti {{SITENAME}} a di am-ammo, wenno [[Special:UserLogin|sumrek ka manen]] iti sigud wenno sabali nga agar-aramat.
+Mabalinmo nga ituloy ti agusar iti {{SITENAME}} a di am-ammo, wenno <span class='plainlinks'>[\$1 sumrek ka manen]</span> iti sigud wenno sabali nga agar-aramat.
 Laglagipem a sumagmamano a pampanid ti mabalin a nakaparang latta a kasla nakaserrekka pay laeng, aginggana no dalusam ti \"cache\" ti panagbasabasam.",
 'welcomecreation' => '== Kablaaw, $1! ==
 Naaramiden ti pakabilangam.
@@ -2873,7 +2873,6 @@ Daytoy ket mabalin a gapuanan babaen ti panilpo a naiparit ti akin ruar a pagsaa
 'pageinfo-authors' => 'Dagup a bilang dagiti naisangsangayn a mannurat',
 'pageinfo-recent-edits' => 'Itay nabiit a bilang dagiti inurnos (ti uneg ti napalabas ti $1)',
 'pageinfo-recent-authors' => 'Itay nabiit a bilang dagiti naisangsangayan a mannurat',
-'pageinfo-restriction' => 'Panagsalaknib ti panid ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Salamangka  {{PLURAL:$1|a balikas|a balbalikas}} ($1)',
 'pageinfo-hidden-categories' => 'Nailemmeng {{PLURAL:$1|a kategoria|a katkategoria}} ($1)',
 'pageinfo-templates' => 'Nailak-am  {{PLURAL:$1|a plantilia|a planplantilia}} ($1)',

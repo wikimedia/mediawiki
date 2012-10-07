@@ -562,7 +562,7 @@ Administrator, kenž jo jen zastajił, jo toś tu pśicynu pódał: "$3".',
 # Login and logout pages
 'logouttext' => "'''Sy se něnto wótzjawił.'''
 
-Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš [[Special:UserLogin|se znowego pśizjawiś]] ako samski abo hynakšy wužywaŕ.
+Móžoš {{SITENAME}} anomymnje dalej wužywaś abo móžoš <span class='plainlinks'>[$1 se znowego pśizjawiś]</span> ako samski abo hynakšy wužywaŕ.
 Źiwaj na to, až někotare boki se dalej tak zwobraznjuju ako by hyšći pśizjawjeny był, až njewuproznijoš cache swójego wobglědowaka.",
 'welcomecreation' => '== Witaj, $1! ==
 
@@ -2875,10 +2875,10 @@ W zespominanju dajo se pśicyna pódaś.',
 'pageinfo-authors' => 'Cełkowna licba wšakich awtorow',
 'pageinfo-recent-edits' => 'Licba nejnowšych změnow (za zachadnych $1)',
 'pageinfo-recent-authors' => 'Nejnowša licba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Šćit boka ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapśěgnjona pśedłoga|Zapśěgnjonej pśedłoze|Zapśěgnjone pśedłogi|Zapśěgnjone pśedłogi}} ($1)',
+'pageinfo-toolboxlink' => 'Informacije wó boku',
 
 # Skin names
 'skinname-standard' => 'Klasiski',
@@ -3447,6 +3447,7 @@ Toś ten wobkšuśeński kod płaśi až do $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',
 'scarytranscludefailed' => '[Zapśěgnjenje pśedłogi za $1 njejo se raźiło]',
+'scarytranscludefailed-httpstatus' => '[Wótwołanje pśedłogi za $1 jo se njeraźiło: HTTP $2]',
 'scarytranscludetoolong' => '[URL jo pśedłujki]',
 
 # Delete conflict

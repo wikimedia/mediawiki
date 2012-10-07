@@ -447,7 +447,7 @@ Sebebê ho ''$2'' dero.",
 # Login and logout pages
 'logouttext' => "'''Sıma nıka cı ra veciyê.'''
 
-Sıma şikinê dızdêni {{SITENAME}} de dewam kerê, ya jê eyni karberi ya ki jê jüyê de bini [[Special:UserLogin|oncia cıkuyê]].
+Sıma şikinê dızdêni {{SITENAME}} de dewam kerê, ya jê eyni karberi ya ki jê jüyê de bini <span class='plainlinks'>[$1 oncia cıkuyê]</span>.
 Beno ke taê peli sıma hona cıkote asnenê, hata ke sıma ''browser cache''ê ho kerd pak.",
 'welcomecreation' => '== Xêr amê, $1! ==
 Hesabê sıma vıraciya.

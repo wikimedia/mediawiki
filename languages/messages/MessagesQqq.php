@@ -2910,11 +2910,12 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].',
-'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
+'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]].
 
-{{Identical|Invert selection}}
+This message means "Invert selection of namespace".
 
-This message has a tooltip {{msg-mw|tooltip-invert}}',
+This message has a tooltip {{msg-mw|tooltip-invert}}
+{{Identical|Invert selection}}',
 'tooltip-invert' => 'Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}',
 'namespace_association' => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.
 
@@ -3505,7 +3506,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
-'pageinfo-toolboxlink' => 'Information link for the page (like \'What links here\', but to action=info for the current page instead)',
+'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
 
 # Skin names
 'skinname-standard' => '{{optional}}
@@ -3563,7 +3564,7 @@ Parameters:
 Start with a lowercase letter, unless the first word is “SVG”.',
 'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
 * $1 is the width in pixels
-* $2 is the height in pixels, and
+* $2 is the height in pixels, and 
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',
@@ -4351,7 +4352,7 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 # Scary transclusion
 'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
 'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.',
-'scarytranscludefailed-httpstatus' => 'Identical to scarytranscludefailed, but shows the HTTP error which was received.',
+'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|scarytranscludefailed}}, but shows the HTTP error which was received.',
 'scarytranscludetoolong' => 'The URL was too long.',
 
 'unit-pixel' => '{{optional}}',

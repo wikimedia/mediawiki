@@ -429,7 +429,7 @@ Norādītais iemesls bija ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.'''
 
-Vari turpināt to izmantot anonīmi, vari [[Special:UserLogin|atgriezties]] kā cits lietotājs vai varbūt tas pats.
+Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezties]</span> kā cits lietotājs vai varbūt tas pats.
 Ņem vērā, ka arī pēc iziešanas, dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.",
 'welcomecreation' => '== Laipni lūdzam, $1! ==
 

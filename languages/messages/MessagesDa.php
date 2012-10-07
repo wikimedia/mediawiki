@@ -345,7 +345,7 @@ $messages = array(
 'vector-action-protect' => 'Beskyt',
 'vector-action-undelete' => 'Gendan',
 'vector-action-unprotect' => 'Ændr beskyttelse',
-'vector-simplesearch-preference' => 'Aktivér forbedrede søgeforslag (kun Vector-udseendet)',
+'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create' => 'Opret',
 'vector-view-edit' => 'Redigér',
 'vector-view-history' => 'Se historik',
@@ -593,7 +593,7 @@ Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
 # Login and logout pages
 'logouttext' => "'''Du er nu logget af.'''
 
-Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge på igen]] som den samme eller en anden bruger.
+Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge på igen]</span> som den samme eller en anden bruger.
 Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du tømmer din browsers cache.",
 'welcomecreation' => '== Velkommen, $1! ==
 
@@ -2927,10 +2927,10 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-authors' => 'Det samlede antal forskellige forfattere',
 'pageinfo-recent-edits' => 'Antallet af nylige redigeringer (i løbet af de seneste $1)',
 'pageinfo-recent-authors' => 'Antallet af bidragydere, der har redigeret siden for nyligt',
-'pageinfo-restriction' => 'Sidebeskyttelse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Transkluderet skabelon|Transkluderede skabeloner}} ($1)',
+'pageinfo-toolboxlink' => 'Oplysninger om siden',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -3503,6 +3503,7 @@ Denne bekræftelseskode vil udløbe den $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-tilkobling er deaktiveret]',
 'scarytranscludefailed' => '[Hentning af skabelon for $1 mislykkedes]',
+'scarytranscludefailed-httpstatus' => '[Hentning af skabelon for $1 mislykkedes: HTTP $2]',
 'scarytranscludetoolong' => "[URL'en er for lang]",
 
 # Delete conflict
@@ -3775,6 +3776,7 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'feedback-bugnew' => 'Jeg har kontrolleret. Rapporter en ny fejl.',
 
 # Search suggestions
+'searchsuggest-search' => 'Søg',
 'searchsuggest-containing' => 'indeholder...',
 
 # API errors

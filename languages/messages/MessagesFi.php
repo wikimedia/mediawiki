@@ -714,7 +714,7 @@ Lukituksen asettanut ylläpitäjä on antanut seuraavan syyn toimenpiteelle: $3.
 # Login and logout pages
 'logouttext' => "'''Olet nyt kirjautunut ulos.'''
 
-Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai [[Special:UserLogin|kirjautua uudelleen sisään]].
+Voit jatkaa {{GRAMMAR:genitive|{{SITENAME}}}} käyttöä nimettömänä, tai <span class='plainlinks'>[$1 kirjautua uudelleen sisään]</span>.
 Huomaa, että jotkut sivut saattavat näkyä edelleen kuin olisit kirjautunut sisään, kunnes tyhjennät selaimen välimuistin.",
 'welcomecreation' => '== Tervetuloa $1! ==
 Käyttäjätunnuksesi on luotu.
@@ -3026,9 +3026,9 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-lastuser' => 'Viimeisin muokkaaja',
 'pageinfo-edits' => 'Muokkausten kokonaismäärä',
 'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
-'pageinfo-restriction' => 'Sivun suojaus ({{lcfirst:$1}})',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Sisällytetty malline|Sisällytetyt mallineet}} ($1)',
+'pageinfo-toolboxlink' => 'Sivun tiedot',
 
 # Skin names
 'skinname-standard' => 'Perus',

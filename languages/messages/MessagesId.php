@@ -735,7 +735,7 @@ Administrator yang terkunci menawarkan penjelasan ini: " $3 ".',
 # Login and logout pages
 'logouttext' => "'''Anda telah keluar log dari sistem.'''
 
-Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat [[Special:UserLogin|masuk log lagi]] sebagai pengguna yang sama atau pengguna yang lain.
+Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat <span class='plainlinks'>[$1 masuk log lagi]</span> sebagai pengguna yang sama atau pengguna yang lain.
 Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan singgahan penjelajah web Anda",
 'welcomecreation' => '== Selamat datang, $1! ==
 

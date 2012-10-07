@@ -540,7 +540,7 @@ Administrator nang takunci nintu manawarakan panjalasan: "$3".',
 # Login and logout pages
 'logouttext' => "'''Pian parhatan ni sudah kaluar log.'''
 
-Pian kawa manyambung hagan mangguna'akan {{SITENAME}} kada bangaran, atawa Pian kawa [[Special:UserLogin|babuat log pulang]] sawagai pamakai nang sama atawa sawagai pamakai balain.
+Pian kawa manyambung hagan mangguna'akan {{SITENAME}} kada bangaran, atawa Pian kawa <span class='plainlinks'>[$1 babuat log pulang]</span> sawagai pamakai nang sama atawa sawagai pamakai balain.
 Catatan bahwasa babarapa tungkaran pinanya masih ha tarus manampaiakan Pian masih babuat log, sampai Pian mahabisakan timbuluk panjalajah web Pian.",
 'welcomecreation' => '==Salamat datang, $1!==
 Akun Pian sudah diulah.

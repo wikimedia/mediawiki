@@ -763,7 +763,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''U bent nu afgemeld.'''
 
-U kunt {{SITENAME}} nu anoniem gebruiken of weer [[Special:UserLogin|aanmelden]] als dezelfde of een andere gebruiker.
+U kunt {{SITENAME}} nu anoniem gebruiken of weer <span class='plainlinks'>[$1 aanmelden]</span> als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
 'welcomecreation' => '== Welkom, $1! ==
 Uw gebruiker is geregistreerd.
@@ -3245,7 +3245,6 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-authors' => 'Totaal aantal verschillende auteurs',
 'pageinfo-recent-edits' => 'Recent aantal bewerkingen (binnen de afgelopen $1).',
 'pageinfo-recent-authors' => 'Recent aantal verschillende auteurs',
-'pageinfo-restriction' => 'Paginabeveiliging ($1)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisch woord|Magische woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikt sjabloon|Gebruikte sjablonen}} ($1)',

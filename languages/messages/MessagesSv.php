@@ -726,7 +726,7 @@ Den administratören som låste den gav denna anledning: "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''Du är nu utloggad.'''
 
-Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du [[Special:UserLogin|logga in igen]] som samma eller som en annan användare.
+Du kan fortsätta att använda {{SITENAME}} anonymt, eller så kan du <span class='plainlinks'>[$1 logga in igen]</span> som samma eller som en annan användare.
 Observera att det, tills du tömmer din webbläsares cache, på vissa sidor kan se ut som att du fortfarande är inloggad.",
 'welcomecreation' => '== Välkommen, $1! ==
 Ditt konto har skapats.
@@ -3114,7 +3114,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-default-sort' => 'Standardsorteringsnyckel',
 'pageinfo-length' => 'Sidlängd (i byte)',
 'pageinfo-article-id' => 'Sid-ID',
-'pageinfo-robot-policy' => 'Sökmotorns status',
+'pageinfo-robot-policy' => 'Sökmotordirektiv',
 'pageinfo-robot-index' => 'Indexerbar',
 'pageinfo-robot-noindex' => 'Inte indexerbar',
 'pageinfo-views' => 'Antal visningar',
@@ -3130,10 +3130,10 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-authors' => 'Totalt antal olika författare',
 'pageinfo-recent-edits' => 'Antal nyliga redigeringar (inom de senaste $1)',
 'pageinfo-recent-authors' => 'Antal nyliga olika författare',
-'pageinfo-restriction' => 'Sidskydd ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiskt|Magiska}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Dold kategori|Dolda kategorier}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkluderad mall|Inkluderade mallar}} ($1)',
+'pageinfo-toolboxlink' => 'Sidinformation',
 
 # Skin names
 'skinname-standard' => 'Standard',

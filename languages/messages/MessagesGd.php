@@ -431,7 +431,7 @@ Seo am mìneachadh: "\'\'$2\'\'".',
 
 # Login and logout pages
 'logouttext' => "'''Chaidh do logadh a-mach.'''
-'S urrainn dhut leantainn air adhart a' cleachdadh {{SITENAME}} a chleachdadh gun urra no 's urrainn dhut [[Special:UserLogin|logadh a-steach a-rithist]] mar an dearbh-chleachdaiche no mar chleachdaiche eile.
+'S urrainn dhut leantainn air adhart a' cleachdadh {{SITENAME}} a chleachdadh gun urra no 's urrainn dhut <span class='plainlinks'>[$1 logadh a-steach a-rithist]</span> mar an dearbh-chleachdaiche no mar chleachdaiche eile.
 Thoir an aire gum bi coltas air cuide dhe na duilleagan mar gum biodh tu air logadh a-steach gus am falamhaich thu tasgadan a' bhrabhsair agad.",
 'welcomecreation' => '== Fàilte ort, $1! ==
 Chaidh an cunntas agad a chruthachadh.

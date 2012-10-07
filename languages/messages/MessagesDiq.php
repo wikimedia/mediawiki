@@ -14,6 +14,7 @@
  * @author George Animal
  * @author Kaganer
  * @author Mirzali
+ * @author Olvörg
  * @author Reedy
  * @author Sahim
  * @author Xoser
@@ -722,7 +723,7 @@ Xızmetkarê  kılitkerdışi wa bewni ro enay wa çımra ravyarno: "$3".',
 # Login and logout pages
 'logouttext' => "'''Şıma hesab qefelna.'''
 
-Nıka kamiyê xo eşkera mekere u siteyê {{SITENAME}} ra eşkeni devam bıkeri, ya zi [[Special:UserLogin|newe ra hesabê xo akere]] (wazeni pey nameyê xo, wazeni pey yewna name).
+Nıka kamiyê xo eşkera mekere u siteyê {{SITENAME}} ra eşkeni devam bıkeri, ya zi <span class='plainlinks'>[$1 newe ra hesabê xo akere]</span> (wazeni pey nameyê xo, wazeni pey yewna name).
 Wexta ke verhafızayê cıgerayoxê şıma pak beno no benate de taye peli de hesabe şıma akerde aseno.",
 'welcomecreation' => '== Şıma xeyr amey, $1! ==
 
@@ -1368,7 +1369,7 @@ Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mı
 'prefsnologintext' => 'Şıma gani be <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} cikewte]</span> ke tercihanê karberi xo eyar bıkerê.',
 'changepassword' => 'Parola bıvurne',
 'prefs-skin' => 'Çerme',
-'skin-preview' => 'Verqayt',
+'skin-preview' => 'Verasayış',
 'datedefault' => 'Tercih çıniyo',
 'prefs-beta' => 'Xacetê beta',
 'prefs-datetime' => 'Tarix u wext',
@@ -2103,7 +2104,7 @@ gıreyê her satıri de gıreyi; raş motışê yewın u dıyıni esto.
 'lonelypagestext' => 'Ena pelî link nibiyê ya zi pelanê binî {{SITENAME}} de transclude biy.',
 'uncategorizedpages' => 'Pelayanê ke kategorî nibiye',
 'uncategorizedcategories' => 'Kategoriyê ke bê kategorîyê',
-'uncategorizedimages' => 'Dosyayê ke bê kategorîyê',
+'uncategorizedimages' => 'Dosyayê ke bê kategoriyê',
 'uncategorizedtemplates' => 'Şablonê ke bê kategoriyê',
 'unusedcategories' => 'Kategoriyê ke nê xebtênê',
 'unusedimages' => 'Dosyeyê ke nê xebtênê',
@@ -3593,6 +3594,7 @@ mw.loader.using( 'jquery.cookie', function() {
 'pageinfo-views' => 'Amarina mocnayışan',
 'pageinfo-watchers' => 'Amariya pela serykeran',
 'pageinfo-redirects-name' => 'Hetenayışê na pela',
+'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Bınpelê na pela',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|hetenayış|hetenayışi}}; $3 {{PLURAL:$3|raykerdışt|raykerdışi}})',
 'pageinfo-firstuser' => 'Pela vıraşter',
@@ -3603,10 +3605,10 @@ mw.loader.using( 'jquery.cookie', function() {
 'pageinfo-authors' => 'Amarina nuştekaran pêro',
 'pageinfo-recent-edits' => 'Amariya vurnayışan ($1 ra nata)',
 'pageinfo-recent-authors' => 'Amarina nuştekaran pêro',
-'pageinfo-restriction' => 'Xısusiyetê pela ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Çekuya|Çekuyê}} ($1) sihırini',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategoriye|Kategoriyan}} ($1) bınımne',
 'pageinfo-templates' => '{{PLURAL:$1|Şablon|Şabloni}} ($1) açarneyayê',
+'pageinfo-toolboxlink' => 'Malumatê perer',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -4293,6 +4295,7 @@ kodê tesdiqi heta ıney tarixi $4 meqbul o.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Transcludê înterwîkîyî nihebityeno]',
 'scarytranscludefailed' => '[Qe $1 fetch kerdişî nihebitiyeno]',
+'scarytranscludefailed-httpstatus' => '[Qande $1 şablon nêşa bıgêriyo: HTTP $2]',
 'scarytranscludetoolong' => '[Ena URL zaf dergo]',
 
 # Delete conflict

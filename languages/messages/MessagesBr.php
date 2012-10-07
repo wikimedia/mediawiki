@@ -583,7 +583,7 @@ Setu amañ perak ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Digevreet oc'h bremañ.'''
 
-Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe [[Special:UserLogin|kevreañ en-dro]] gant an hevelep anv pe un anv all mar fell deoc'h.
+Gallout a rit kenderc'hel da implijout {{SITENAME}} en un doare dizanv, pe <span class='plainlinks'>[$1 kevreañ en-dro]</span> gant an hevelep anv pe un anv all mar fell deoc'h.
 Notit mat e c'hallo pajennoù zo kenderc'hel da vezañ diskwelet evel pa vefec'h kevreet c'hoazh, betek ma vo riñset krubuilh ho merdeer ganeoc'h.",
 'welcomecreation' => '== Degemer mat, $1! ==
 
@@ -2969,7 +2969,6 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 'pageinfo-authors' => 'Niver a aozerien disheñvel',
 'pageinfo-recent-edits' => 'Niver a gemmoù nevez (er $1 diwezhañ)',
 'pageinfo-recent-authors' => "Niver a aozerien nevez a-ziforc'h",
-'pageinfo-restriction' => 'Gwareziñ ar bajenn ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Ger hud |Gerioù hud}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Rumm kuzh|Rummoù kuzh}} ($1)',
 'pageinfo-templates' => "{{PLURAL:$1|Patrom endalc'het|Patromoù endalc'het}} ($1)",

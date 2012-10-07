@@ -722,7 +722,7 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 # Login and logout pages
 'logouttext' => "'''Vi nun estas elsalutita.'''
 
-Vi rajtas daŭre vikiumi sennome, aŭ vi povas [[Special:UserLogin|reensaluti]] kiel la sama aŭ kiel alia uzanto.
+Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
 Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
 'welcomecreation' => '== Bonvenon, $1! ==
 Via konto estas kreita.

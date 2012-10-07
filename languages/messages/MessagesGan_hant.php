@@ -423,7 +423,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''汝退出正哩。'''
 
-接到汝得匿名使用{{SITENAME}}，或[[Special:UserLogin|登入過]]。除非汝刪吥瀏覽器緩存，隻把子頁面可能會接到話汝係登入狀態。",
+接到汝得匿名使用{{SITENAME}}，或<span class='plainlinks'>[$1 登入過]</span>。除非汝刪吥瀏覽器緩存，隻把子頁面可能會接到話汝係登入狀態。",
 'welcomecreation' => '== 歡迎, $1! ==
 
 建正哩汝嗰帳戶，莫誺記設置 [[Special:Preferences|{{SITENAME}}嗰個人參數]]。',

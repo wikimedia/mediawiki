@@ -506,7 +506,7 @@ An administrador na iyo an nagkandado kaini nagpahayag kaining kapaliwanagan: "$
 # Login and logout pages
 'logouttext' => "'''Ika po sa ngunyan nakaluwas na.'''
 
-Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika [[Special:UserLogin|Maglaog giraray]] bilang pareho o bilang ibang paragamit.
+Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika <span class='plainlinks'>[$1 Maglaog giraray]</span> bilang pareho o bilang ibang paragamit.
 Giromdoma na an ibang mga pahina mapuwedeng padagos na magpapahiling siring baga na kun ika garo yaon man sana sa laog, sagkod na saimong malinigan mo an sarayan sa kilyawan.",
 'welcomecreation' => '== Maogmang Pag-abot, $1! ==
 An saimong panindog (account) naimukna na tabi.

@@ -635,7 +635,7 @@ Dä Wiki_Köbes dovun hät beim Deeschmaache als Jrond aanjejovve: „$3“',
 # Login and logout pages
 'logouttext' => "'''Jetz bes de usjelogg'''
 
-Do künnts heh em Wiki wigger maache, als ene namelose Metmaacher. Do kanns De ävver och [[Special:UserLogin|widder enlogge]], als däselve oder och ene andere Metmaacher.
+Do künnts heh em Wiki wigger maache, als ene namelose Metmaacher. Do kanns De ävver och <span class='plainlinks'>[\$1 widder enlogge]</span>, als däselve oder och ene andere Metmaacher.
 Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe <i lang=\"en\">Cache</i> fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!",
 'welcomecreation' => '== Dach, $1! ==
 Dinge Zojang för heh es do.
@@ -1540,11 +1540,11 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-suppress' => 'Kontrollettis',
 'group-all' => '(jeede)',
 
-'group-user-member' => '{{GENDER:$1|Metmaacher|Metmaacherin}}',
+'group-user-member' => '{{GENDER:$1|Metmaacher|Metmaacherėn}}',
 'group-autoconfirmed-member' => 'automattesch beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherėn}}',
 'group-bot-member' => '{{GENDER:$1|Bot}}',
 'group-sysop-member' => '{{GENDER:$1|Wiki-Köbes}}',
-'group-bureaucrat-member' => '{{GENDER:$1|Bürrokrad|Bürrokraatėn}}',
+'group-bureaucrat-member' => '{{GENDER:$1|Bürrokraad|Bürrokraadefrou}}',
 'group-suppress-member' => '{{GENDER:$1|Kontrolletti}}',
 
 'grouppage-user' => '{{ns:project}}:Metmaacher',
@@ -3228,10 +3228,10 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-authors' => 'De Aanzahl ongerscheidleje Schriever',
 'pageinfo-recent-edits' => 'De Aanzahl Änderonge en dä läzde Zik, ennerhallf vun $1',
 'pageinfo-recent-authors' => 'De Aanzahl ongerscheidleje Schriever en dä läzde Zik',
-'pageinfo-restriction' => 'Siggeschoz ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Ei Zauberwoot|$1 Zauberwööter|Kein Zauberwööter}}',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ein verstoche Saachjropp|$1 verstoche Saachjroppe|Kein verstoche Saachjropp}}',
 'pageinfo-templates' => '{{PLURAL:$1|Ein Schablohn|$1 Schablohne|Kein Schablohn}} opjerohfe',
+'pageinfo-toolboxlink' => 'Övver heh di Sigg',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -3841,7 +3841,8 @@ Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
-'scarytranscludefailed' => '[De Schablon „$1“ enzebinge hät nit jeflupp]',
+'scarytranscludefailed' => '[De Schablon „$1“ enzebenge hät nit jeflupp]',
+'scarytranscludefailed-httpstatus' => '[De Schablon „$1“ enzebenge hät nit jeflupp. Dä HTTP-Fähler es: $2]',
 'scarytranscludetoolong' => '[Schad, de URL es ze lang]',
 
 # Delete conflict

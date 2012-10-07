@@ -603,7 +603,7 @@ Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 # Login and logout pages
 'logouttext' => "'''Anda telah log keluar.'''
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh <span class='plainlinks'>[$1 log masuk sekali lagi]</span> sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
 'welcomecreation' => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutamaan {{SITENAME}}]] anda.',
@@ -2976,7 +2976,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-authors' => 'Jumlah pengarang yang berlainan',
 'pageinfo-recent-edits' => 'Bilangan suntingan terkini (dalam $1 yang lalu)',
 'pageinfo-recent-authors' => 'Bilangan pengarang berbeza yang terkini',
-'pageinfo-restriction' => 'Perlindungan halaman ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Kata sakti ($1)',
 'pageinfo-hidden-categories' => 'Kategori tersembunyi ($1)',
 'pageinfo-templates' => 'Templat tertransklusi ($1)',

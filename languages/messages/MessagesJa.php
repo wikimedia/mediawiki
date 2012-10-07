@@ -494,7 +494,7 @@ $messages = array(
 
 'about' => '解説',
 'article' => '本文',
-'newwindow' => '（新しいウィンドウが開きます）',
+'newwindow' => '(新しいウィンドウで開きます)',
 'cancel' => '中止',
 'moredotdotdot' => '続き...',
 'mypage' => '自分のページ',
@@ -532,7 +532,7 @@ $messages = array(
 'variants' => '変種',
 
 'errorpagetitle' => 'エラー',
-'returnto' => '$1に戻る。',
+'returnto' => '$1 に戻る。',
 'tagline' => '提供：{{SITENAME}}',
 'help' => 'ヘルプ',
 'search' => '検索',
@@ -777,7 +777,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''ログアウトしました。'''
 
-このまま匿名で{{SITENAME}}の使用を続行できます。同じまたは別の利用者として[[Special:UserLogin|もう一度ログイン]]することもできます。
+このまま匿名で{{SITENAME}}の使用を続行できます。同じまたは別の利用者として<span class='plainlinks'>[$1 もう一度ログイン]</span>することもできます。
 なお、ページによっては、ブラウザーのキャッシュをクリアするまで、ログインしているかのように表示され続ける場合があるためご注意ください。",
 'welcomecreation' => '== ようこそ、$1 さん！ ==
 アカウントが作成されました。
@@ -1050,11 +1050,11 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 IP アドレスは複数の利用者で共有されている場合があります。
 もし、あなたが匿名利用者であり、自分に関係のないコメントが寄せられている考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。''",
 'noarticletext' => '現在このページには内容がありません。
-他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
-[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
+他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]、
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]、
+または[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>できます。',
 'noarticletext-nopermission' => '現在このページには内容がありません。
-他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができますが、あなたにはこのページを作成する権限はありません。',
+他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]、または<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]</span>できますが、あなたにはこのページを作成する権限はありません。',
 'missing-revision' => '「{{PAGENAME}}」というページの版番号 $1 の版は存在しません。
 
 通常、削除されたページの版への古い差分表示や固定リンクをたどった際に、このようなことが起きます。 
@@ -2659,7 +2659,7 @@ $2による直前の版へ変更されました。',
 'undeleteviewlink' => '閲覧',
 'undeletereset' => 'リセット',
 'undeleteinvert' => '選択を反転',
-'undeletecomment' => '理由：',
+'undeletecomment' => '理由:',
 'undeletedrevisions' => '{{PLURAL:$1|$1版}}を復元しました',
 'undeletedrevisions-files' => '{{PLURAL:$1|$1版}}と{{PLURAL:$2|$2ファイル}}を復元しました',
 'undeletedfiles' => '{{PLURAL:$1|$1ファイル}}を復元しました',
@@ -2689,10 +2689,10 @@ $1',
 
 # Namespace form on various pages
 'namespace' => '名前空間:',
-'invert' => '選択したものを除く',
-'tooltip-invert' => '選択した名前空間（チェックされている場合は、関連付けられた名前空間も）のページの変更を非表示にするには、このボックスにチェックを入れる',
-'namespace_association' => '関連付けられた名前空間',
-'tooltip-namespace_association' => '選択した名前空間に関連付けられたトークページまたは対象の名前空間も含めるには、このボックスにチェックを入れる',
+'invert' => '名前空間の選択を反転',
+'tooltip-invert' => '選択した名前空間 (チェックを入れている場合は、関連付けられた名前空間も含む) のページの変更を非表示にするには、このボックスにチェックを入れる',
+'namespace_association' => '関連付けられた名前空間も含める',
+'tooltip-namespace_association' => '選択した名前空間に関連付けられたトークページ (逆にトークページの名前空間を選択した場合も同様) の名前空間も含めるには、このボックスにチェックを入れる',
 'blanknamespace' => '(標準)',
 
 # Contributions
@@ -2815,8 +2815,8 @@ $1',
 'expiringblock' => '$1$2に解除',
 'anononlyblock' => '匿名利用者のみ',
 'noautoblockblock' => '自動ブロック無効',
-'createaccountblock' => 'アカウント作成のブロック',
-'emailblock' => 'メール送信のブロック',
+'createaccountblock' => 'アカウント作成の禁止',
+'emailblock' => 'メール送信の禁止',
 'blocklist-nousertalk' => '自分のトークページの編集禁止',
 'ipblocklist-empty' => 'ブロック一覧は空です。',
 'ipblocklist-no-results' => '指定されたIPアドレスまたは利用者名はブロックされていません。',
@@ -3268,10 +3268,10 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'pageinfo-authors' => '総投稿者数',
 'pageinfo-recent-edits' => '最近の編集回数 (過去 $1)',
 'pageinfo-recent-authors' => '最近の投稿者数',
-'pageinfo-restriction' => 'ページ保護 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'マジック {{PLURAL:$1|ワード}} ($1)',
 'pageinfo-hidden-categories' => '隠し{{PLURAL:$1|カテゴリ}} ($1)',
 'pageinfo-templates' => '参照読み込みされた{{PLURAL:$1|テンプレート}} ($1)',
+'pageinfo-toolboxlink' => 'ページ情報',
 
 # Skin names
 'skinname-standard' => 'クラシック',
@@ -3917,6 +3917,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[ウィキ間の参照読み込みは無効になっています]',
 'scarytranscludefailed' => '[$1に対してテンプレートの取得に失敗しました]',
+'scarytranscludefailed-httpstatus' => '[$1に対してテンプレートの取得に失敗しました: HTTP $2]',
 'scarytranscludetoolong' => '[URLが長すぎます]',
 
 # Delete conflict
@@ -4254,7 +4255,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Feedback
 'feedback-bugornote' => '技術的な問題の詳細を説明する準備ができている場合は、[$1 バグ報告]をお願いします。
-準備ができていない場合は、下の簡易フォームを使用してください。あなたのコメントと利用者名が、ページ"[$3 $2]"に追加されます。',
+準備ができていない場合は、下の簡易フォームを使用してください。あなたのコメントと利用者名が、ページ「[$3 $2]」に追加されます。',
 'feedback-subject' => '件名：',
 'feedback-message' => 'メッセージ：',
 'feedback-cancel' => 'キャンセル',

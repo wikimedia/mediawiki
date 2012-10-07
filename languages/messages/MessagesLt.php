@@ -588,7 +588,7 @@ Ją užrakinęs administratorius pateikė šį paaiškinimą: "$3".',
 # Login and logout pages
 'logouttext' => "'''Dabar jūs esate atsijungęs.'''
 
-Galite toliau naudoti {{SITENAME}} anonimiškai arba [[Special:UserLogin|prisijunkite]] iš naujo tuo pačiu ar kitu naudotoju.
+Galite toliau naudoti {{SITENAME}} anonimiškai arba <span class='plainlinks'>[$1 prisijunkite]</span> iš naujo tuo pačiu ar kitu naudotoju.
 Pastaba: kai kuriuose puslapiuose ir toliau gali rodyti, kad esate prisijungęs iki tol, kol išvalysite savo naršyklės podėlį.",
 'welcomecreation' => '== Sveiki, $1! ==
 

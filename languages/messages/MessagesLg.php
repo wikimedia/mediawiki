@@ -400,7 +400,7 @@ Ensonga gy\'awadde eri nti "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Kati ovuddemu.'''
 
-Osobola okusigala nga okozesa {{SITENAME}} nga at'eyanjudde, ate osobola [[Special:UserLogin|n'okuddamu okuyingira]] nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
+Osobola okusigala nga okozesa {{SITENAME}} nga at'eyanjudde, ate osobola <span class='plainlinks'>[$1 n'okuddamu okuyingira]</span> nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
 Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya kalambula-neti yo.",
 'welcomecreation' => "== $1 tukwanirizza! == <br />
 Akawunti yo ekoledwa.<br />

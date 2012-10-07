@@ -674,7 +674,7 @@ L\'amministratore che lo ha bloccato ha fornito questa motivazione: "$3".',
 # Login and logout pages
 'logouttext' => "'''Logout effettuato.'''
 
-Si può continuare ad usare {{SITENAME}} come utente anonimo oppure [[Special:UserLogin|eseguire un nuovo accesso]], con lo stesso nome utente o un nome diverso.
+Si può continuare ad usare {{SITENAME}} come utente anonimo oppure <span class='plainlinks'>[$1 eseguire un nuovo accesso]</span>, con lo stesso nome utente o un nome diverso.
 Nota che alcune pagine potrebbero continuare ad apparire come se il logout non fosse avvenuto finché non viene pulita la cache del proprio browser.",
 'welcomecreation' => "== Benvenuto, $1! ==
 
@@ -3016,10 +3016,10 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-authors' => 'Numero totale di autori diversi',
 'pageinfo-recent-edits' => 'Numero di modifiche recenti (negli ultimi $1)',
 'pageinfo-recent-authors' => 'Numero di autori diversi recenti',
-'pageinfo-restriction' => 'Protezione della pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola magica|Parole magiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}} ($1)',
 'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',
+'pageinfo-toolboxlink' => 'Informazioni sulla pagina',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna la modifica come verificata',
@@ -3598,6 +3598,7 @@ Questo codice di conferma scadrà automaticamente alle $4.',
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusione di pagine tra siti wiki non è attiva]",
 'scarytranscludefailed' => '[Errore: Impossibile ottenere il template $1]',
+'scarytranscludefailed-httpstatus' => '[Errore: impossibile ottenere il template $1: HTTP $2]',
 'scarytranscludetoolong' => '[Errore: URL troppo lunga]',
 
 # Delete conflict

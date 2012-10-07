@@ -439,7 +439,7 @@ Maka ikuwaria na asụsụ nke ozor, biko chetu I ji [//translatewiki.net/wiki/M
 # Login and logout pages
 'logouttext' => "'''I fwuóla ubwá.'''
 
-I nwèríkí jíwá {{SITENAME}} na nke ẹnwéghi áhà, mànà Í nwèríkí [[Special:UserLogin|bátá òzọr]] na áhà Í shị fwüo ma áhà ozọr.
+I nwèríkí jíwá {{SITENAME}} na nke ẹnwéghi áhà, mànà Í nwèríkí <span class='plainlinks'>[$1 bátá òzọr]</span> na áhà Í shị fwüo ma áhà ozọr.
 Màkwá na o dị ihü gi zi kà Í nor kwa ímé, o gi kwüshí mgbe Í sáfùrù cache ihe ishi a gá intanet gi.",
 'welcomecreation' => '== Nnöö, $1! ==
 Okíkè buwa gi a guchala.

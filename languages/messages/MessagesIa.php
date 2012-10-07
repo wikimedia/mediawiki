@@ -552,7 +552,7 @@ Le administrator qui lo blocava offereva iste explication: "$3".',
 # Login and logout pages
 'logouttext' => "'''Tu ha claudite le session.'''
 
-Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote [[Special:UserLogin|aperir un nove session]] con le mesme nomine de usator o con un altere.
+Tu pote continuar a usar {{SITENAME}} anonymemente, o tu pote <span class='plainlinks'>[$1 aperir un nove session]</span> con le mesme nomine de usator o con un altere.
 Nota que alcun paginas pote continuar a apparer como si tu esserea ancora authenticate. Pro remediar isto, tu pote vacuar le cache de tu navigator.",
 'welcomecreation' => '== Benvenite, $1! ==
 Tu conto ha essite create.
@@ -3020,7 +3020,6 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-authors' => 'Numero total de autores distincte',
 'pageinfo-recent-edits' => 'Numero de modificationes recente (intra le ultime $1)',
 'pageinfo-recent-authors' => 'Numero de autores distincte recente',
-'pageinfo-restriction' => 'Protection del pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola|Parolas}} magic ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria|Categorias}} celate ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Patrono|Patronos}} transcludite ($1)',

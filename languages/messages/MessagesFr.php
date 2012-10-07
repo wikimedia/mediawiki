@@ -780,7 +780,7 @@ L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
 # Login and logout pages
 'logouttext' => "'''Vous êtes à présent déconnecté(e).'''
 
-Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, [[Special:UserLogin|vous reconnecter]] sous le même nom ou un autre.
+Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu’à ce que vous effaciez le cache de votre navigateur.",
 'welcomecreation' => '== Bienvenue, $1 ! ==
 
@@ -3181,10 +3181,10 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-authors' => "Nombre total d'auteurs distincts",
 'pageinfo-recent-edits' => 'Nombre de modifications récentes (dans les derniers $1)',
 'pageinfo-recent-authors' => "Nombre d'auteurs distincts récents",
-'pageinfo-restriction' => 'Protection de la page ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Mot magique|Mots magiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
+'pageinfo-toolboxlink' => 'Information sur la page',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3773,6 +3773,7 @@ $5',
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',
 'scarytranscludefailed' => '[La récupération de modèle a échoué pour $1]',
+'scarytranscludefailed-httpstatus' => '[Échec de la récupération du modèle pour  $1 : HTTP  $2 ]',
 'scarytranscludetoolong' => '[L’URL est trop longue]',
 
 # Delete conflict

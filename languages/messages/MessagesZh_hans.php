@@ -681,7 +681,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''您现在已经退出。'''
 
-您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:UserLogin|登录]]。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
+您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份<span class='plainlinks'>[$1 登录]</span>。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
 'welcomecreation' => '== 欢迎，$1！ ==
 你的账户已创建。请别忘记更改你的[[Special:Preferences|{{SITENAME}}系统设置]]。',
 'yourname' => '用户名：',
@@ -2963,7 +2963,6 @@ $1被封禁的理由是：“$2”',
 'pageinfo-authors' => '不同编者总计',
 'pageinfo-recent-edits' => '最近的编辑数 ($1天内)',
 'pageinfo-recent-authors' => '最近的不同编者数',
-'pageinfo-restriction' => '页面保护 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '魔术字 ($1)',
 'pageinfo-hidden-categories' => '隐藏分类 ($1)',
 'pageinfo-templates' => '使用的模板 ($1)',

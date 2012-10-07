@@ -408,7 +408,7 @@ Mini ang ginhatag nga kabangdanan "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Nakagwa ka na.'''
 
-Pwede mo mapadayon usar ang {{SITENAME}}, ukon pwede ka [[Special:UserLogin|lmagsulod liwat]] bilang pareho ukon la-in nga manug-usar.
+Pwede mo mapadayon usar ang {{SITENAME}}, ukon pwede ka <span class='plainlinks'>[$1 lmagsulod liwat]</span> bilang pareho ukon la-in nga manug-usar.
 Tandaan nga ang iban nga pahina magapadayon nga ipakita nga nakasulod ka man gyapon kuno abi, asta panason mo ang cache sang imo browser.",
 'welcomecreation' => '==Malipayon nga pag-abot, $1! ==
 Nahimo na ang imo account.

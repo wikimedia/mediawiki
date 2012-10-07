@@ -291,7 +291,7 @@ $messages = array(
 'vector-action-protect' => 'Schitze',
 'vector-action-undelete' => 'Widerhärstelle',
 'vector-action-unprotect' => 'Syteschutz ändere',
-'vector-simplesearch-preference' => 'Erwytereti Suechvorschleg aktiviere (nume Vector)',
+'vector-simplesearch-preference' => 'Vereifachti Suechvorschleg aktiviere (nume Vector)',
 'vector-view-create' => 'Aalege',
 'vector-view-edit' => 'Bearbeite',
 'vector-view-history' => 'Versionsgschicht',
@@ -536,7 +536,7 @@ Dr Administrator, wu dr Schrybzuegriff gsperrt het, het dää Grund aagee: „$3
 # Login and logout pages
 'logouttext' => "'''Du bisch jetz abgmäldet.'''
 
-Du chasch {{SITENAME}} wyter anonym bruche, oder Du chasch di [[Special:UserLogin|wider aamälde]] mit em glyche oder eme andere Benutzername.
+Du chasch {{SITENAME}} wyter anonym bruche, oder Du chasch di <span class='plainlinks'>[$1 wider aamälde]</span> mit em glyche oder eme andere Benutzername.
 
 Ochat: s cha syy, ass bstimmti Syte eso aazeigt wäre, wie wänn Du allno aagmäldet wärsch, bis Du dr Zwischespycher vu Dyym Browser glescht hesch.",
 'welcomecreation' => '==Willcho, $1!==
@@ -2846,10 +2846,10 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 'pageinfo-authors' => 'Aazahl vu unterschidlige Autore',
 'pageinfo-recent-edits' => 'Aazahl vu dr letschte Bearbeitige (innerhalb vu $1)',
 'pageinfo-recent-authors' => 'Aazahl vu unterschidlige Autore',
-'pageinfo-restriction' => 'Syteschutz ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magischs Wort|Magischi Werter}} ($1)',
 'pageinfo-hidden-categories' => 'Versteckti {{PLURAL:$1|Kategori|Kategorie}} ($1)',
 'pageinfo-templates' => 'Yybundeni {{PLURAL:$1|Vorlag|Vorlage}} ($1)',
+'pageinfo-toolboxlink' => 'Informatione zue dr Syte',
 
 # Patrolling
 'markaspatrolleddiff' => 'Als patrulyrt markyre',
@@ -3419,6 +3419,7 @@ Dää Bstetigungscode isch giltig bis am $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Yybindig isch deaktiviert]',
 'scarytranscludefailed' => '[Vorlage-Yybindig fir $1 isch gescheitert]',
+'scarytranscludefailed-httpstatus' => '[Vorlagenabruef fählgschlaa fir $1: HTTP  $2]',
 'scarytranscludetoolong' => '[URL isch z lang]',
 
 # Delete conflict

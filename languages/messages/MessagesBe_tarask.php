@@ -662,7 +662,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Вы выйшлі з сыстэмы.'''
 
-Вы можаце працягваць працу ў {{GRAMMAR:месны|{{SITENAME}}}} ананімна, альбо можаце [[Special:UserLogin|ўвайсьці ў сыстэму]] як той жа альбо іншы ўдзельнік.
+Вы можаце працягваць працу ў {{GRAMMAR:месны|{{SITENAME}}}} ананімна, альбо можаце <span class='plainlinks'>[$1 ўвайсьці ў сыстэму]</span> як той жа альбо іншы ўдзельнік.
 Некаторыя старонкі могуць паказвацца, быццам Вы ўсё яшчэ ў сыстэме. Каб гэтага пазьбегнуць, трэба ачысьціць кэш браўзэра.",
 'welcomecreation' => '== Вітаем, $1! ==
 Ваш рахунак быў створаны.
@@ -3033,10 +3033,10 @@ $1',
 'pageinfo-authors' => 'Колькасьць аўтараў',
 'pageinfo-recent-edits' => 'Колькасьць апошніх рэдагаваньняў (за $1)',
 'pageinfo-recent-authors' => 'Колькасьць апошніх аўтараў',
-'pageinfo-restriction' => 'Стан аховы ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магічнае слова|Магічныя словы}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблён|Шаблёны}} ($1)',
+'pageinfo-toolboxlink' => 'Зьвесткі пра старонку',
 
 # Skin names
 'skinname-standard' => 'Клясычнае',
@@ -3613,6 +3613,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Улучэньне інтэрвікі было адключанае]',
 'scarytranscludefailed' => '[Памылка атрыманьня шаблёну $1]',
+'scarytranscludefailed-httpstatus' => '[Памылка атрыманьня шаблёну $1: HTTP $2]',
 'scarytranscludetoolong' => '[Занадта даўгі URL-адрас]',
 
 # Delete conflict

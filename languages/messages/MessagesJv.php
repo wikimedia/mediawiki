@@ -448,7 +448,7 @@ Pangurus sing ngopèni kuwi ngawedharaké: "$3".',
 # Login and logout pages
 'logouttext' => "'''Sampéyan wis metu log'''
 
-Sampéyan bisa nganggo {{SITENAME}} sacara anonim, utawa bisa [[Special:UserLogin|mlebu log manèh]] kanthi jeneng panganggo sing padha utawa beda.
+Sampéyan bisa nganggo {{SITENAME}} sacara anonim, utawa bisa <span class='plainlinks'>[$1 mlebu log manèh]</span> kanthi jeneng panganggo sing padha utawa beda.
 
 Cathet yèn sapérangan kaca mungkin isih nampilaké tulisan yèn Sampéyan isih nèng njero log, kuwi bisa ilang yèn Sampéyan ngresiki ''cache'' pramban Sampéyan.",
 'welcomecreation' => '== Sugeng rawuh, $1! ==

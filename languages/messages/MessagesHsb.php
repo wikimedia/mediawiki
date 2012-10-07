@@ -557,7 +557,7 @@ Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
 # Login and logout pages
 'logouttext' => "'''{{GENDER:|Sy|Sy}} nětko {{GENDER:|wotzjewjeny|wotzjewjena}}.'''
 
-Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom [[Special:UserLogin|zaso přizjewić]].
+Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom <span class='plainlinks'>[$1 zaso přizjewić]</span>.
 Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był, doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
 'welcomecreation' => '== Witaj, $1! ==
 
@@ -2870,10 +2870,10 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-authors' => 'Cyłkowna ličba rozdźělnych awtorow',
 'pageinfo-recent-edits' => 'Ličba najnowšich změnow (za zańdźenych $1)',
 'pageinfo-recent-authors' => 'Najnowša ličba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Škit strony ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',
+'pageinfo-toolboxlink' => 'Informacije wo stronje',
 
 # Skin names
 'skinname-standard' => 'Klasiski',
@@ -3442,6 +3442,7 @@ Tutón wobkrućenski kod spadnje $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Zapřijeće mjezyrěčnych wotkazow je znjemóžnjene]',
 'scarytranscludefailed' => '[Zapřijimanje předłohi za $1 je so njeporadźiło]',
+'scarytranscludefailed-httpstatus' => '[Wotwołanje předłohi za $1 je so njeporadźiło: HTTP $2]',
 'scarytranscludetoolong' => '[URL je předołhi]',
 
 # Delete conflict

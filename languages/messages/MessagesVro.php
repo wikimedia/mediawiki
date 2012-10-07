@@ -423,7 +423,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Olõt nime alt vällä lännüq.'''
 
-Võit {{SITENAME}}t ilma nimeldä edesi toimõndaq vai [[Special:UserLogin|vahtsõst sama vai tõõsõ nimega sisse minnäq]].
+Võit {{SITENAME}}t ilma nimeldä edesi toimõndaq vai <span class='plainlinks'>[$1 vahtsõst sama vai tõõsõ nimega sisse minnäq]</span>.
 Tähelepandmisõs: niikavva, ku sa olõ-i tühäs tennüq uma võrgokaeja vaihõmällo, võivaq mõnõq leheküleq iks viil näüdädäq, nigu sa olõsi nimega seen.",
 'welcomecreation' => '<h2>Tereq, $1!</h2><p>Su konto om valmis. Võit taa hindä perrä sisse säädäq.',
 'yourname' => 'Pruukjanimi',

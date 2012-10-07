@@ -548,7 +548,7 @@ L\'aministradore che ło ga blocà ga fornìo sta spiegasion: "$3".',
 # Login and logout pages
 'logouttext' => "'''Te sì 'ndà fora da la to utensa.'''
 
-Te poli 'ndar vanti doparando {{SITENAME}} come utente anonimo o se nò [[Special:UserLogin|entrar da novo]], col stesso nome utente o uno difarente.
+Te poli 'ndar vanti doparando {{SITENAME}} come utente anonimo o se nò <span class='plainlinks'>[$1 entrar da novo]</span>, col stesso nome utente o uno difarente.
 Ocio che serte pagine podarìa èssar che ti 'e vedi come se te fussi 'ncora drento col to nome de prima, fin che no te neti la ''cache'' del to browser.",
 'welcomecreation' => '== Benvegnù, $1! ==
 

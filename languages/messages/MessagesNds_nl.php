@@ -714,7 +714,7 @@ De beheerder gaf hierveur de volgende reden: "$3".',
 # Login and logout pages
 'logouttext' => "'''Je bin noen aofemeld.'''
 
-Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen [[Special:UserLogin|opniej anmelden]] onder disse of n aandere gebrukersnaam.
+Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen <span class='plainlinks'>[$1 opniej anmelden]</span> onder disse of n aandere gebrukersnaam.
 t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin totda'j t tussengeheugen van joew webkieker leegmaken.",
 'welcomecreation' => '== Welkom, $1! ==
 Joew gebrukersnaam is an-emaakt.
@@ -3062,7 +3062,6 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-authors' => 'Totaal antal verschillende auteurs',
 'pageinfo-recent-edits' => 'Antal nieje bewarkingen (in de veurbieje $1).',
 'pageinfo-recent-authors' => 'Leste antal van verschillende auteurs',
-'pageinfo-restriction' => 'Ziedbeveiliging ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magies woord|Magiese woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verbörgen {{PLURAL:$1|kategorie|kategorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruukten mal|Gebruukten mallen}} ($1)',

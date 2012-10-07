@@ -616,7 +616,7 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 # Login and logout pages
 'logouttext' => "'''Sad ste odjavljeni.'''
 
-Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo [[Special:UserLogin|prijaviti]] kao isti ili kao drugi korisnik.
+Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo <span class='plainlinks'>[$1 prijaviti]</span> kao isti ili kao drugi korisnik.
 Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
 'welcomecreation' => '== Dobro došli, $1! ==
 Vaš korisnički račun je napravljen.
@@ -3027,7 +3027,6 @@ Ovo je vjerovatno izazvano vezom ka vanjskoj nepoželjnoj stranici.',
 'pageinfo-authors' => 'Ukupni broj specifičnih autora',
 'pageinfo-recent-edits' => 'Broj nedavnih izmjena (u posljednjih $1)',
 'pageinfo-recent-authors' => 'Broj nedavnih specifičnih autora',
-'pageinfo-restriction' => 'Zaštita stranice ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična riječ|Magične riječi}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Uključeni šablon|Uključeni šabloni}} ($1)',

@@ -632,7 +632,7 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora está fóra do sistema.'''
 
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
+Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode <span class='plainlinks'>[$1 acceder de novo]</span> co mesmo nome de usuario ou con outro.
 Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema.",
 'welcomecreation' => '== Reciba a nosa benvida, $1! ==
 A súa conta foi creada correctamente.
@@ -3072,7 +3072,6 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edicións recentes (durante os últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recentes',
-'pageinfo-restriction' => 'Protección da páxina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra máxica|Palabras máxicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',

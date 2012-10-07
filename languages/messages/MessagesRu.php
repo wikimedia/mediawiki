@@ -28,6 +28,7 @@
  * @author Dim Grits
  * @author Don Alessandro
  * @author Eleferen
+ * @author Erdemaslancan
  * @author EugeneZelenko
  * @author Eugrus
  * @author Express2000
@@ -803,7 +804,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Вы завершили сеанс работы.'''
 
-Вы можете продолжить участие в {{grammar:genitive|{{SITENAME}}}} анонимно или [[Special:UserLogin|представиться заново]] под тем же или другим именем.
+Вы можете продолжить участие в {{grammar:genitive|{{SITENAME}}}} анонимно или <span class='plainlinks'>[$1 представиться заново]</span> под тем же или другим именем.
 Некоторые страницы могут продолжать отображаться в том виде, как будто вы всё ещё представлены системе. Для борьбы с этим явлением обновите кеш браузера.",
 'welcomecreation' => '== Добро пожаловать, $1! ==
 Ваша учётная запись создана.
@@ -972,7 +973,7 @@ $2
 'changeemail-oldemail' => 'Текущий адрес электронной почты:',
 'changeemail-newemail' => 'Новый адрес электронной почты:',
 'changeemail-none' => '(нет)',
-'changeemail-submit' => 'Измененить адрес',
+'changeemail-submit' => 'Изменить адрес',
 'changeemail-cancel' => 'Отмена',
 
 # Edit page toolbar
@@ -3214,6 +3215,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-views' => 'Количество просмотров',
 'pageinfo-watchers' => 'Число наблюдающих',
 'pageinfo-redirects-name' => 'Перенаправления на эту страницу',
+'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Подстраницы данной страницы',
 'pageinfo-subpages-value' => '$1($2 {{PLURAL:$2|перенаправление|перенаправления|перенаправлений}}; $3 {{PLURAL:$3|обычная|обычные|обычных}})',
 'pageinfo-firstuser' => 'Создатель страницы',
@@ -3224,7 +3226,6 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-authors' => 'Общее число различных авторов',
 'pageinfo-recent-edits' => 'Правок за последнее время (в течение $1)',
 'pageinfo-recent-authors' => 'Уникальных авторов за последнее время',
-'pageinfo-restriction' => 'Защита страницы ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магическое слово|Магические слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',

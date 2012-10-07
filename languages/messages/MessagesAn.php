@@ -522,7 +522,7 @@ A razón data ye ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Ha rematato a sesión.'''
 
-Puede continar navegando por {{SITENAME}} anonimament, u puede [[Special:UserLogin|encetar]] una nueva sesión con o mesmo nombre d'usuario u bell atro diferent. Pare cuenta que, entre que se limpia a caché d'o navegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
+Puede continar navegando por {{SITENAME}} anonimament, u puede <span class='plainlinks'>[$1 encetar]</span> una nueva sesión con o mesmo nombre d'usuario u bell atro diferent. Pare cuenta que, entre que se limpia a caché d'o navegador, puet estar que bellas pachinas s'amuestren como si encara continase en a sesión anterior.",
 'welcomecreation' => "== ¡Bienveniu(da), $1! ==
 S'ha creyato a suya cuenta.
 No xublide de presonalizar [[Special:Preferences|as suyas preferencias en {{SITENAME}}]].",

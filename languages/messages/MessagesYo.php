@@ -448,7 +448,7 @@ Láti ṣ'àfikún tàbí ṣ'àyípadà àwọn ìyédèpadà fún gbogbo àw�
 # Login and logout pages
 'logouttext' => "'''Ẹ ti bọ́sọ́de.'''
 
-Ẹ le tẹ̀síwájú sí ní lo {{SITENAME}} láìmorúkọ yín, tàbí kí ẹ [[Special:UserLogin|padà wọlé]] bí ẹnikanan tàbí ẹlòmíràn.
+Ẹ le tẹ̀síwájú sí ní lo {{SITENAME}} láìmorúkọ yín, tàbí kí ẹ <span class='plainlinks'>[$1 padà wọlé]</span> bí ẹnikanan tàbí ẹlòmíràn.
 Àkíyèsí wípé àwọn ojúewé kan le hàn b'ígbà tójẹ́pé ẹ sì wọlé títí tí ẹ ó fi jọ̀wọ́ cache browser yín.",
 'welcomecreation' => "== Ẹ kú àbọ̀, $1! ==
 

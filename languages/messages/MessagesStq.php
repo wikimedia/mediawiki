@@ -443,7 +443,7 @@ Die Administrator, die dän Skrieuwtougriep speerde, roate foulgjenden Gruund an
 # Login and logout pages
 'logouttext' => "'''Du bäst nu oumälded.'''
 
-Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].
+Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier <span class='plainlinks'>[$1 anmäldje]</span>.
 Beoachtje, dät eenige Sieden noch anwiese konnen, dät du oumälded bäst, soloange du nit din Browsercache loosmoaked hääst.",
 'welcomecreation' => '== Wäilkuumen, $1 ==
 

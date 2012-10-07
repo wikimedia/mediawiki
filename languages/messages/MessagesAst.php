@@ -468,7 +468,7 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 # Login and logout pages
 'logouttext' => "'''Agora tas desconeutáu.'''
 
-Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver entrar]] como'l mesmu o como otru usuariu.
+Pues siguir usando {{SITENAME}} de forma anónima, o pues <span class='plainlinks'>[$1 volver entrar]</span> como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
 'welcomecreation' => "== ¡Bienllegáu, $1! ==
 Creóse la to cuenta.
@@ -2915,7 +2915,6 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-authors' => "Númberu total d'autores distintos",
 'pageinfo-recent-edits' => "Númberu d'ediciones recientes (nos caberos $1)",
 'pageinfo-recent-authors' => "Númberu d'autores distintos recientes",
-'pageinfo-restriction' => 'Proteición de la páxina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Pallabra máxica|Pallabres máxiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría anubrida|Categoríes anubríes}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Plantía incluída|Plantíes incluíes}} ($1)',

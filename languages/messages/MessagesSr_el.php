@@ -722,7 +722,7 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 # Login and logout pages
 'logouttext' => "'''Odjavljeni ste.'''
 
-Možete da nastavite s korišćenjem ovog vikija kao gost, ili se [[Special:UserLogin|ponovo prijavite]] kao drugi korisnik.
+Možete da nastavite s korišćenjem ovog vikija kao gost, ili se <span class='plainlinks'>[$1 ponovo prijavite]</span> kao drugi korisnik.
 Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još prijavljeni, sve dok ne očistite privremenu memoriju svog pregledača.",
 'welcomecreation' => '== Dobro došli, $1! ==
 
@@ -3196,7 +3196,6 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-authors' => 'Broj zasebnih autora',
 'pageinfo-recent-edits' => 'Broj skorašnjih izmena (u poslednjih $1)',
 'pageinfo-recent-authors' => 'Broj skorašnjih zasebnih autora',
-'pageinfo-restriction' => 'Zaštita stranice ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična reč|Magične reči}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Uključeni šablon|Uključeni šabloni}} ($1)',

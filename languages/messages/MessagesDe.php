@@ -537,7 +537,7 @@ $messages = array(
 'newwindow' => '(wird in einem neuen Fenster geöffnet)',
 'cancel' => 'Abbrechen',
 'moredotdotdot' => 'Mehr …',
-'mypage' => 'Meine Seite',
+'mypage' => 'Eigene Seite',
 'mytalk' => 'Eigene Diskussion',
 'anontalk' => 'Diskussionsseite dieser IP',
 'navigation' => 'Navigation',
@@ -812,7 +812,7 @@ Der Administrator, der den Schreibzugriff sperrte, gab folgenden Grund an: „$3
 # Login and logout pages
 'logouttext' => "'''Du bist nun abgemeldet.'''
 
-Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen [[Special:UserLogin|anmelden]].
+Du kannst {{SITENAME}} jetzt anonym weiternutzen oder dich erneut unter dem selben oder einem anderen Benutzernamen <span class='plainlinks'>[$1 anmelden]</span>.
 Beachte, dass einige Seiten noch anzeigen können, dass du angemeldet bist, solange du nicht deinen Browsercache geleert hast.",
 'welcomecreation' => '== Willkommen, $1! ==
 
@@ -3190,10 +3190,10 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-authors' => 'Gesamtzahl unterschiedlicher Autoren',
 'pageinfo-recent-edits' => 'Anzahl der kürzlich erfolgten Bearbeitungen (innerhalb von $1)',
 'pageinfo-recent-authors' => 'Anzahl der unterschiedlichen Autoren',
-'pageinfo-restriction' => 'Seitenschutz ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisches Wort|Magische Wörter}} ($1)',
 'pageinfo-hidden-categories' => 'Versteckte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Eingebundene {{PLURAL:$1|Vorlage|Vorlagen}} ($1)',
+'pageinfo-toolboxlink' => 'Informationen zur Seite',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -3775,6 +3775,7 @@ Dieser Bestätigungscode ist gültig bis $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-Einbindung ist deaktiviert]',
 'scarytranscludefailed' => '[Vorlageneinbindung für $1 ist gescheitert]',
+'scarytranscludefailed-httpstatus' => '[Vorlagenabruf fehlgeschlagen für $1: HTTP  $2]',
 'scarytranscludetoolong' => '[URL ist zu lang]',
 
 # Delete conflict

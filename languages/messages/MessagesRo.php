@@ -712,7 +712,7 @@ Administratorul care a efectuat blocarea a furnizat explicația: „$3”.',
 # Login and logout pages
 'logouttext' => "'''Acum sunteți deconectat.'''
 
-Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă [[Special:UserLogin|reautentificați]] ca același sau ca alt utilizator.
+Sesiunea dumneavoastră la {{SITENAME}} a fost închisă. Puteți continua să folosiți {{SITENAME}} ca utilizator anonim, sau puteți să vă <span class='plainlinks'>[$1 reautentificați]</span> ca același sau ca alt utilizator.
 Țineți minte că anumite pagini pot fi în continuare afișate ca și când ați fi autentificat până când curățați memoria cache a navigatorului.",
 'welcomecreation' => '==Bun venit, $1!==
 
@@ -3108,10 +3108,10 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-authors' => 'Număr total de autori distincți',
 'pageinfo-recent-edits' => 'Număr de modificări recente (în ultima perioadă de $1)',
 'pageinfo-recent-authors' => 'Număr de autori distincți recenți',
-'pageinfo-restriction' => 'Protecție pagină ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Cuvânt magic|Cuvinte magice}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Format inclus|Formate incluse}} ($1)',
+'pageinfo-toolboxlink' => 'Informații despre pagină',
 
 # Skin names
 'skinname-standard' => 'Clasic',
@@ -3691,6 +3691,7 @@ Acest cod de confirmare va expira la $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Transcluderea interwiki este dezactivată]',
 'scarytranscludefailed' => '[Șiretlicul formatului a dat greș pentru $1]',
+'scarytranscludefailed-httpstatus' => '[Șiretlicul formatului a dat greș pentru $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL-ul este prea lung]',
 
 # Delete conflict

@@ -717,7 +717,7 @@ O administrador que efetuou o bloqueio deu a seguinte explicação: "$3".',
 # Login and logout pages
 'logouttext' => "'''Já não está autenticado.'''
 
-Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de utilizador ou com um nome de utilizador diferente.
+Pode continuar a utilizar a {{SITENAME}} anonimamente, ou pode <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de utilizador ou com um nome de utilizador diferente.
 Tenha em atenção que algumas páginas poderão continuar a ser apresentadas como se ainda estivesse autenticado até limpar a cache do seu browser.",
 'welcomecreation' => '== Bem-vindo, $1! ==
 A sua conta foi criada.
@@ -3146,7 +3146,6 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edições recentes (nos últimos $1)',
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
-'pageinfo-restriction' => 'Proteção da página ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
 

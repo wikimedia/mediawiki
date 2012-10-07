@@ -436,7 +436,7 @@ Jon administrator iske lock karis hae, koi kaaran nai diis hae: "$3"',
 # Login and logout pages
 'logouttext' => "'''Aap abhi logged out hai.'''
 
-Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se [[Special:UserLogin|log in kare sakta hai]].
+Aap bina naam ke {{SITENAME}} ke kaam me lae sakta hai, nai to aap wahi sadasya ke naam se nai to duusra sadasya ke naam se <span class='plainlinks'>[$1 log in kare sakta hai]</span>.
 Yaad rakhna ki kuch panna wahi rakam se dekhai jaise ki aap log in bhaya hai, jab tak ki browser ke cache safaa nai hoe jaae.",
 'welcomecreation' => '== Swagat, $1! ==
 Aap ke account banae dewa gais hai.

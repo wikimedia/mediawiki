@@ -400,7 +400,7 @@ Alasan nan diberikan adolah ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Sanak alah kalua log dari sistem.'''
 
-Sanak dapek taruih manggunoan {{SITENAME}} sacaro anonim, atau Sanak dapek [[Special:UserLogin|masuak log liak]] sabagai pangguno nan samo atau pangguno nan lain.
+Sanak dapek taruih manggunoan {{SITENAME}} sacaro anonim, atau Sanak dapek <span class='plainlinks'>[$1 masuak log liak]</span> sabagai pangguno nan samo atau pangguno nan lain.
 Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih masuak log sampai Sanak mambarasihan singgahan panjelajah web Sanak.",
 'welcomecreation' => '== Salamaik datang, $1! ==
 

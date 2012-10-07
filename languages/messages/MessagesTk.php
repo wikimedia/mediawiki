@@ -422,7 +422,7 @@ Görkezilen sebäp: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Sessiýany ýapdyňyz.'''
 
-Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz.
+Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen <span class='plainlinks'>[$1 sessiýany ýaňadan]</span> açyp bilersiňiz.
 Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
 'welcomecreation' => '== Hoş geldiňiz, $1! ==
 

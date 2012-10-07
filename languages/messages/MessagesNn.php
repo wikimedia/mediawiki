@@ -471,7 +471,7 @@ $messages = array(
 'vector-action-protect' => 'Vern',
 'vector-action-undelete' => 'Gjenopprett',
 'vector-action-unprotect' => 'Endra vern',
-'vector-simplesearch-preference' => 'Slå på betra søkjeframlegg (einast i Vector-drakta)',
+'vector-simplesearch-preference' => 'Slå på forenkla søkjefelt (berre for Vector-drakta)',
 'vector-view-create' => 'Opprett',
 'vector-view-edit' => 'Endre',
 'vector-view-history' => 'Sjå historikken',
@@ -710,7 +710,7 @@ Administratoren som låste filsamlinga oppgav den fylgjande årsaka: «$3».',
 # Login and logout pages
 'logouttext' => "'''Du er no utlogga.'''
 
-Du kan no halde fram å bruke {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge inn att]]  med same kontoen eller ein annan brukar kan logge inn.
+Du kan no halde fram å bruke {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge inn att]</span>  med same kontoen eller ein annan brukar kan logge inn.
 Ver merksam på at nokre sider framleis kan visast fram som om du er innlogga fram til du slettar mellomlageret til nettlesaren din.",
 'welcomecreation' => '== Hjarteleg velkommen til {{SITENAME}}, $1! ==
 Brukarkontoen din er oppretta.
@@ -2973,7 +2973,6 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'pageinfo-authors' => 'Totalt tal på ulike forfattarar',
 'pageinfo-recent-edits' => 'Tal på nylege endringar (innan dei siste $1)',
 'pageinfo-recent-authors' => 'Tal på nylege forfattarar',
-'pageinfo-restriction' => 'Sidevern ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Trylleord}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Løynd kategori|Løynde kategoriar}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkludert mal|Inkluderte malar}} ($1)',
@@ -3221,6 +3220,7 @@ Andre er gøymde som standard.
 'exif-source' => 'Kjelde',
 'exif-urgency' => 'Prioritet',
 'exif-objectcycle' => 'Tid på dagen mediet er meint for',
+'exif-contact' => 'Kontaktinformasjon',
 'exif-writer' => 'Forfattar',
 'exif-languagecode' => 'Språk',
 'exif-iimversion' => 'IIM-versjon',
@@ -3643,7 +3643,7 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'specialpages' => 'Spesialsider',
 'specialpages-note' => '----
 * Vanlege spesialsider.
-* <strong class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</strong>',
+* <span class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</span>',
 'specialpages-group-maintenance' => 'Vedlikehaldsrapportar',
 'specialpages-group-other' => 'Andre spesialsider',
 'specialpages-group-login' => 'Logga inn / oppretta brukarkonto',
@@ -3767,6 +3767,7 @@ Om ikkje kan du nytta det enkle skjemaet under. Merknaden din vert lagd til på 
 
 # Search suggestions
 'searchsuggest-search' => 'Søk',
+'searchsuggest-containing' => 'som inneheld …',
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikkje løyve til å lasta opp filer til wikien.',

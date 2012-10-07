@@ -437,7 +437,7 @@ Il motiv inditgà è "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Sortì cun success.'''
 
-Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes navigatur.",
+Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos <span class='plainlinks'>[$1 t'annunziar]</span> sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes navigatur.",
 'welcomecreation' => '==Bainvegni, $1! ==
 Tes conto è vegni creà.
 Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].',

@@ -596,7 +596,7 @@ Administrator, ki ga je zaklenil, je podal naslednje pojasnilo: »$3«.',
 # Login and logout pages
 'logouttext' => "'''Odjavili ste se.'''
 
-{{GRAMMAR:tožilnik|{{SITENAME}}}} lahko zdaj uporabljate neprijavljeni ali pa se [[Special:UserLogin|ponovno prijavite]] kot enak ali drug uporabnik.
+{{GRAMMAR:tožilnik|{{SITENAME}}}} lahko zdaj uporabljate neprijavljeni ali pa se <span class='plainlinks'>[$1 ponovno prijavite]</span> kot enak ali drug uporabnik.
 Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni, dokler ne boste izpraznili predpomnilnika brskalnika.",
 'welcomecreation' => '== Dobrodošli, $1! ==
 Ustvarili ste račun.
@@ -3015,10 +3015,10 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'pageinfo-authors' => 'Skupno število različnih avtorjev',
 'pageinfo-recent-edits' => 'Nedavno število urejanj (zadnjih $1)',
 'pageinfo-recent-authors' => 'Nedavno število različnih avtorjev',
-'pageinfo-restriction' => 'Zaščita strani ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Čarobna beseda|Čarobni besedi|Čarobne besede}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrita kategorija|Skriti kategoriji|Skrite kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Vključena predloga|Vključeni predlogi|Vključene predloge}} ($1)',
+'pageinfo-toolboxlink' => 'Podatki o strani',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označite kot nadzorovano',
@@ -3599,6 +3599,7 @@ Potrditvena koda poteče $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Prevključevanje med wikiji je onemogočeno]',
 'scarytranscludefailed' => '[Pridobivanje predloge za $1 ni uspelo]',
+'scarytranscludefailed-httpstatus' => '[Pridobivanje predloge za $1 ni uspelo: HTTP $2]',
 'scarytranscludetoolong' => '[Spletni naslov je predolg]',
 
 # Delete conflict

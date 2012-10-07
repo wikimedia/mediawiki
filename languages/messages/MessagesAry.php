@@ -418,7 +418,7 @@ ossabab lli ĝtah hwwa "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "''' nta daba kharj.'''
 
-ila bghiti tqdr tstamr tstaml {{SITENAME}}  kamjhol , olla ila bghiti [[Special:UserLogin|tdkhl aawtani]] bnafs smiya ola bsmiya khra.
+ila bghiti tqdr tstamr tstaml {{SITENAME}}  kamjhol , olla ila bghiti <span class='plainlinks'>[$1 tdkhl aawtani]</span> bnafs smiya ola bsmiya khra.
 
 tqdr tchof baad sfahi bhal ila msjl hta tfrgh lcache dyalk",
 'welcomecreation' => '== mrhba bik, $1! ==

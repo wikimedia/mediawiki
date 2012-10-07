@@ -392,7 +392,7 @@ Podet èsser stadu burradu dae calicunu àteru.',
 # Login and logout pages
 'logouttext' => "'''As acabadu sa sessione.'''
 
-Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes [[Special:UserLogin|identificare torra]] comente su de prima o comente usuàriu diferente.
+Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes <span class='plainlinks'>[$1 identificare torra]</span> comente su de prima o comente usuàriu diferente.
 Tene contu ca is pàginas ki sunt giai abertas in àteras bentanas podent sighire a pàrrer comente cando fias identificadu, fintzas a cando non ddas renfriscas.",
 'welcomecreation' => "== Benènnidu, $1! ==
 S'account tuo est istadu creadu.

@@ -451,7 +451,7 @@ $messages = array(
 'vector-action-protect' => 'Zabezpiecz',
 'vector-action-undelete' => 'Odtwórz',
 'vector-action-unprotect' => 'Zmień zabezpieczenie',
-'vector-simplesearch-preference' => 'Włącz zaawansowane podpowiedzi wyszukiwania (tylko dla skórki Wektor)',
+'vector-simplesearch-preference' => 'Włącz uproszczony pasek wyszukiwania (tylko dla skórki Wektor)',
 'vector-view-create' => 'Utwórz',
 'vector-view-edit' => 'Edytuj',
 'vector-view-history' => 'Wyświetl historię',
@@ -701,7 +701,7 @@ Administrator blokujący go podał następujący powód "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''Nie jesteś już zalogowany.'''
 
-Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo [[Special:UserLogin|zalogować się ponownie]] jako ten sam lub inny użytkownik.
+Możesz kontynuować pracę w {{GRAMMAR:MS.lp|{{SITENAME}}}} jako niezarejestrowany użytkownik albo <span class='plainlinks'>[$1 zalogować się ponownie]</span> jako ten sam lub inny użytkownik.
 Zauważ, że do momentu wyczyszczenia pamięci podręcznej przeglądarki niektóre strony mogą wyglądać tak, jakbyś wciąż był zalogowany.",
 'welcomecreation' => '== Witaj, $1! ==
 Twoje konto zostało utworzone.
@@ -3120,7 +3120,6 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-authors' => 'Całkowita liczba autorów',
 'pageinfo-recent-edits' => 'Liczba ostatnich edycji (w przeciągu $1)',
 'pageinfo-recent-authors' => 'Liczba ostatnich autorów',
-'pageinfo-restriction' => 'Zabezpieczenie strony – {{lcfirst:$1}}',
 'pageinfo-magic-words' => 'Magiczne {{PLURAL:$1|słowo|słowa|słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukryte kategorie}} ($1)',
 'pageinfo-templates' => 'Wykorzystywan{{PLURAL:$1|y szablon|e szablony}} ($1)',
@@ -4038,6 +4037,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 
 # Search suggestions
 'searchsuggest-search' => 'Szukaj',
+'searchsuggest-containing' => 'zawierające...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nie masz uprawnień aby przesyłać pliki do tej wiki.',

@@ -615,10 +615,10 @@ $2',
 'virus-unknownscanner' => '未知的防病毒:',
 
 # Login and logout pages
-'logouttext' => '您已經登出。
+'logouttext' => "您已經登出。
 
-您可以以匿名方式繼續使用{{SITENAME}}，或以相同或不同用戶身份[[Special:UserLogin|登入]]。
-請注意，如果你再次登入，此頁或會繼續顯示，直到您清除瀏覽器緩存。',
+您可以以匿名方式繼續使用{{SITENAME}}，或以相同或不同用戶身份<span class='plainlinks'>[$1 登入]</span>。
+請注意，如果你再次登入，此頁或會繼續顯示，直到您清除瀏覽器緩存。",
 'welcomecreation' => '== 歡迎，$1！ ==
 您的賬號已經建立。
 不要忘記設置[[Special:Preferences|{{SITENAME}}的個人參數]]。',
@@ -2967,7 +2967,6 @@ $1被封禁的理由是“$2”',
 'pageinfo-authors' => '作者總數',
 'pageinfo-recent-edits' => '最近編輯次數 (過去 $1 內)',
 'pageinfo-recent-authors' => '最近作者數目',
-'pageinfo-restriction' => '保護頁面 （ {{lcfirst:$1}} ）',
 'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}} ( $1 )',
 'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}} ( $1 )',
 'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}} ( $1 )',

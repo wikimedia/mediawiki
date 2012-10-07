@@ -755,7 +755,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''{{SITENAME}}에서 로그아웃했습니다.'''
 
-이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 [[Special:UserLogin|로그인]]해서 이용할 수 있습니다.
+이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 <span class='plainlinks'>[$1 로그인]</span>해서 이용할 수 있습니다.
 웹 브라우저의 캐시를 지우지 않으면 몇몇 문서에서 로그인이 되어 있는 것처럼 보일 수 있다는 점을 유의해 주세요.",
 'welcomecreation' => '== $1 님, 환영합니다! ==
 계정이 만들어졌습니다.
@@ -947,7 +947,7 @@ $2
 'hr_tip' => '가로 줄 (되도록 사용하지 말아 주세요)',
 
 # Edit pages
-'summary' => '편집 요약:',
+'summary' => '요약:',
 'subject' => '주제/제목:',
 'minoredit' => '사소한 편집',
 'watchthis' => '이 문서 주시하기',
@@ -964,7 +964,7 @@ $2
 'missingcommenttext' => '아래에 내용을 채워 넣어 주세요.',
 'missingcommentheader' => "'''알림:''' 글의 제목을 입력하지 않았습니다.
 다시 \"{{int:savearticle}}\" 버튼을 클릭하면 글이 제목 없이 저장됩니다.",
-'summary-preview' => '편집 요약 미리 보기:',
+'summary-preview' => '요약 미리 보기:',
 'subject-preview' => '주제/제목 미리 보기:',
 'blockedtitle' => '차단됨',
 'blockedtext' => "'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''
@@ -3224,10 +3224,10 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-authors' => '총 서로 다른 편집자 수',
 'pageinfo-recent-edits' => '최근 편집 수 (지난 $1일 이내)',
 'pageinfo-recent-authors' => '최근 기여자 수',
-'pageinfo-restriction' => '문서 보호 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '매직 {{PLURAL:$1|워드}} ($1개)',
 'pageinfo-hidden-categories' => '숨은 {{PLURAL:$1|분류}} ($1개)',
 'pageinfo-templates' => '포함한 {{PLURAL:$1|틀}} ($1개)',
+'pageinfo-toolboxlink' => '문서 정보',
 
 # Skin names
 'skinname-standard' => '클래식',
@@ -3828,6 +3828,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',
 'scarytranscludefailed' => '[$1 틀을 불러오는 데에 실패했습니다]',
+'scarytranscludefailed-httpstatus' => '[$1 틀을 가져오는 데 실패했습니다: HTTP $2]',
 'scarytranscludetoolong' => '[URL이 너무 깁니다]',
 
 # Delete conflict

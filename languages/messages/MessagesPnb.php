@@ -411,8 +411,8 @@ $messages = array(
 
 # Login and logout pages
 'logouttext' => "'''تسی لاگ آؤٹ ہوگۓ او.'''
-تسی   {{SITENAME}} نوں گمنامی چ ورت سکدے او یا تسی [[Special:UserLogin|لاگ ان دوبارہ]] ہوجاؤ اوسے ناں توں یا وکھرے ورتن والے توں۔ اے گل چیتے رکھنا جے کج صفیاں تے تسی لاگ ان دسے جاؤگے جدوں تک تسی اپنے براؤزر دے کاشے نوں صاف ناں کرلو۔
-You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
+تسی   {{SITENAME}} نوں گمنامی چ ورت سکدے او یا تسی <span class='plainlinks'>[$1 لاگ ان دوبارہ]</span> ہوجاؤ اوسے ناں توں یا وکھرے ورتن والے توں۔ اے گل چیتے رکھنا جے کج صفیاں تے تسی لاگ ان دسے جاؤگے جدوں تک تسی اپنے براؤزر دے کاشے نوں صاف ناں کرلو۔
+You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation' => '== جی آیاں نوں, $1! ==
 تواڈا کھاتا بن گیا اے۔

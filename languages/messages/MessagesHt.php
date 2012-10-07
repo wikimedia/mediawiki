@@ -525,7 +525,7 @@ Rezon li bay yo se « ''$2'' ».",
 # Login and logout pages
 'logouttext' => "'''Ou dekonekte kounye a.'''
 
-Ou mèt kontinye itilize {{SITENAME}} san ou pa idantifye, oubyen ou ka [[Special:UserLogin|rekonekte]] w ankò ak menm non an oubyen yon lòt.
+Ou mèt kontinye itilize {{SITENAME}} san ou pa idantifye, oubyen ou ka <span class='plainlinks'>[$1 rekonekte]</span> w ankò ak menm non an oubyen yon lòt.
 Note ke kèk paj gendwa afiche tankou ou te toujou konekte tank ou pa efase kach nan navigatè ou.",
 'welcomecreation' => '== Byenvini, $1 ! ==
 

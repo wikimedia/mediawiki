@@ -686,7 +686,7 @@ Správca, ktorý ho zamkol ponúkol toto vysvetlenie: „$3“.',
 # Login and logout pages
 'logouttext' => "'''Práve ste sa odhlásili.'''
 
-Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete opäť [[Special:UserLogin|prihlásiť]] pod rovnakým alebo odlišným používateľským menom.
+Odteraz môžete používať {{GRAMMAR:akuzatív|{{SITENAME}}}} ako anonymný používateľ alebo sa môžete opäť <span class='plainlinks'>[$1 prihlásiť]</span> pod rovnakým alebo odlišným používateľským menom.
 Uvedomte si, že niektoré stránky sa môžu naďalej zobrazovať ako keby ste boli prihlásený, až kým nevymažete vyrovnávaciu pamäť vášho prehliadača.",
 'welcomecreation' => '== Vitaj, $1! ==
 

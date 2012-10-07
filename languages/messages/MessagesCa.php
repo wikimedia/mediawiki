@@ -599,7 +599,7 @@ L\'administrador que l\'ha bloquejat ha donat aquesta explicació: "$3".',
 # Login and logout pages
 'logouttext' => "'''Heu finalitzat la vostra sessió.'''
 
-Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu [[Special:UserLogin|iniciar una sessió una altra vegada]] amb el mateix o un altre usuari.
+Podeu continuar utilitzant {{SITENAME}} de forma anònima, o podeu <span class='plainlinks'>[$1 iniciar una sessió una altra vegada]</span> amb el mateix o un altre usuari.
 Tingueu en compte que algunes pàgines poden continuar mostrant-se com si encara estiguéssiu en una sessió, fins que buideu la memòria cau del vostre navegador.",
 'welcomecreation' => "== Us donem la benvinguda, $1! ==
 
