@@ -419,15 +419,10 @@ class SkinTemplate extends Skin {
 				unset( $tmp );
 				$nt = Title::newFromText( $l );
 				if ( $nt ) {
-					$ilLangName = Language::fetchLanguageName( $nt->getInterwiki() );
-					if ( strval( $ilLangName ) === '' ) {
-						$ilLangName = $l;
-					} else {
-						$ilLangName = $this->formatLanguageName( $ilLangName );
-					}
+					$langName = Language::fetchLanguageName( $nt->getInterwiki() );
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
-						'text' => $ilLangName,
+						'text' => ( $langName !== '' ? $langName : $l ),
 						'title' => $nt->getText(),
 						'class' => $class,
 						'lang' => $nt->getInterwiki(),
@@ -496,17 +491,6 @@ class SkinTemplate extends Skin {
 			$this->setContext( $oldContext );
 		}
 		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Format language name for use in sidebar interlanguage links list.
-	 * By default it is capitalized.
-	 *
-	 * @param $name string Language name, e.g. "English" or "español"
-	 * @private
-	 */
-	function formatLanguageName( $name ) {
-		return $this->getLanguage()->ucfirst( $name );
 	}
 
 	/**

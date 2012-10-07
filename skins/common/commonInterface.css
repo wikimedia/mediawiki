@@ -11,6 +11,12 @@
 	clear: both;
 }
 
+/* Uppercase first letter in language links in standard sidebar. */
+/* Whitespace after :first-letter required for IE6, see http://reference.sitepoint.com/css/pseudoelement-firstletter */
+.portlet#p-lang li:first-letter , .portal#p-lang li:first-letter {
+	text-transform: uppercase;
+}
+
 /* User Message */
 .usermessage {
 	background-color: #ffce7b;
