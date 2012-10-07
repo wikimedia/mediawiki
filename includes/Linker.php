@@ -1153,14 +1153,15 @@ class Linker {
 	 * Generate a user link if the current user is allowed to view it
 	 * @param $rev Revision object.
 	 * @param $isPublic Boolean: show only if all users can see it
+	 * @param $user User object to check for
 	 * @return String: HTML fragment
 	 */
-	public static function revUserLink( $rev, $isPublic = false ) {
+	public static function revUserLink( $rev, $isPublic = false, User $user = null ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
-		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
-			$link = self::userLink( $rev->getUser( Revision::FOR_THIS_USER ),
-				$rev->getUserText( Revision::FOR_THIS_USER ) );
+		} elseif ( $rev->userCan( Revision::DELETED_USER, $user ) ) {
+			$link = self::userLink( $rev->getUser( Revision::FOR_THIS_USER, $user ),
+				$rev->getUserText( Revision::FOR_THIS_USER, $user ) );
 		} else {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
@@ -1174,14 +1175,15 @@ class Linker {
 	 * Generate a user tool link cluster if the current user is allowed to view it
 	 * @param $rev Revision object.
 	 * @param $isPublic Boolean: show only if all users can see it
+	 * @param $user User object to check for
 	 * @return string HTML
 	 */
-	public static function revUserTools( $rev, $isPublic = false ) {
+	public static function revUserTools( $rev, $isPublic = false, User $user = null ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
-		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
-			$userId = $rev->getUser( Revision::FOR_THIS_USER );
-			$userText = $rev->getUserText( Revision::FOR_THIS_USER );
+		} elseif ( $rev->userCan( Revision::DELETED_USER, $user ) ) {
+			$userId = $rev->getUser( Revision::FOR_THIS_USER, $user );
+			$userText = $rev->getUserText( Revision::FOR_THIS_USER, $user );
 			$link = self::userLink( $userId, $userText )
 				. wfMessage( 'word-separator' )->plain()
 				. self::userToolLinks( $userId, $userText );
@@ -1519,16 +1521,17 @@ class Linker {
 	 * @param $rev Revision object
 	 * @param $local Boolean: whether section links should refer to local page
 	 * @param $isPublic Boolean: show only if all users can see it
+	 * @param $user User object to check for
 	 * @return String: HTML fragment
 	 */
-	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
+	public static function revComment( Revision $rev, $local = false, $isPublic = false, User $user = null ) {
 		if ( $rev->getRawComment() == "" ) {
 			return "";
 		}
 		if ( $rev->isDeleted( Revision::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
-		} elseif ( $rev->userCan( Revision::DELETED_COMMENT ) ) {
-			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER ),
+		} elseif ( $rev->userCan( Revision::DELETED_COMMENT, $user ) ) {
+			$block = self::commentBlock( $rev->getComment( Revision::FOR_THIS_USER, $user ),
 				$rev->getTitle(), $local );
 		} else {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";

@@ -327,9 +327,9 @@ class DifferenceEngine extends ContextSource {
 
 			$oldHeader = '<div id="mw-diff-otitle1"><strong>' . $oldRevisionHeader . '</strong></div>' .
 				'<div id="mw-diff-otitle2">' .
-					Linker::revUserTools( $this->mOldRev, !$this->unhide ) . '</div>' .
+					Linker::revUserTools( $this->mOldRev, !$this->unhide, $user ) . '</div>' .
 				'<div id="mw-diff-otitle3">' . $oldminor .
-					Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide ) . $ldel . '</div>' .
+					Linker::revComment( $this->mOldRev, !$diffOnly, !$this->unhide, $user ) . $ldel . '</div>' .
 				'<div id="mw-diff-otitle4">' . $prevlink . '</div>';
 
 			if ( $this->mOldRev->isDeleted( Revision::DELETED_TEXT ) ) {
@@ -369,10 +369,10 @@ class DifferenceEngine extends ContextSource {
 		$newRevisionHeader = $this->getRevisionHeader( $this->mNewRev, 'complete' ) . $undoLink;
 
 		$newHeader = '<div id="mw-diff-ntitle1"><strong>' . $newRevisionHeader . '</strong></div>' .
-			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide ) .
+			'<div id="mw-diff-ntitle2">' . Linker::revUserTools( $this->mNewRev, !$this->unhide, $user ) .
 				" $rollback</div>" .
 			'<div id="mw-diff-ntitle3">' . $newminor .
-				Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide ) . $rdel . '</div>' .
+				Linker::revComment( $this->mNewRev, !$diffOnly, !$this->unhide, $user ) . $rdel . '</div>' .
 			'<div id="mw-diff-ntitle4">' . $nextlink . $this->markPatrolledLink() . '</div>';
 
 		if ( $this->mNewRev->isDeleted( Revision::DELETED_TEXT ) ) {

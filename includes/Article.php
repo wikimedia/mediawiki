@@ -1136,7 +1136,7 @@ class Article extends Page {
 		$tdtime = $language->userTime( $timestamp, $user );
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		$userlinks = Linker::revUserTools( $revision, !$unhide );
+		$userlinks = Linker::revUserTools( $revision, !$unhide, $user );
 
 		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
 			? 'revision-info-current'

@@ -39,6 +39,7 @@ class RollbackAction extends FormlessAction {
 		$details = null;
 
 		$request = $this->getRequest();
+		$user = $this->getUser();
 
 		$result = $this->page->doRollback(
 			$request->getVal( 'from' ),
@@ -46,7 +47,7 @@ class RollbackAction extends FormlessAction {
 			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
 			$details,
-			$this->getUser()
+			$user
 		);
 
 		if ( in_array( array( 'actionthrottledtext' ), $result ) ) {
@@ -96,12 +97,12 @@ class RollbackAction extends FormlessAction {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
-		$old = Linker::revUserTools( $current );
-		$new = Linker::revUserTools( $target );
+		$old = Linker::revUserTools( $current, false, $user );
+		$new = Linker::revUserTools( $target, false, $user );
 		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )->parseAsBlock() );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
-		if ( !$request->getBool( 'hidediff', false ) && !$this->getUser()->getBoolOption( 'norollbackdiff', false ) ) {
+		if ( !$request->getBool( 'hidediff', false ) && !$user->getBoolOption( 'norollbackdiff', false ) ) {
 			$de = new DifferenceEngine( $this->getContext(), $current->getId(), $newId, false, true );
 			$de->showDiff( '', '' );
 		}

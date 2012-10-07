@@ -371,11 +371,12 @@ class RevisionItem extends RevisionItemBase {
 	}
 
 	public function getHTML() {
+		$user = $this->context->getUser();
 		$difflink = $this->context->msg( 'parentheses' )
 			->rawParams( $this->getDiffLink() )->escaped();
 		$revlink = $this->getRevisionLink();
-		$userlink = Linker::revUserLink( $this->revision );
-		$comment = Linker::revComment( $this->revision );
+		$userlink = Linker::revUserLink( $this->revision, false, $user );
+		$comment = Linker::revComment( $this->revision, false, false, $user );
 		if ( $this->isDeleted() ) {
 			$revlink = "<span class=\"history-deleted\">$revlink</span>";
 		}

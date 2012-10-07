@@ -295,6 +295,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 */
 	public function formatRow( $result ) {
 		$title = Title::newFromRow( $result );
+		$user = $this->getUser();
 
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
@@ -312,7 +313,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$dm = $lang->getDirMark();
 
 		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
-			$lang->userTimeAndDate( $result->rc_timestamp, $this->getUser() )
+			$lang->userTimeAndDate( $result->rc_timestamp, $user )
 		);
 		$time = Linker::linkKnown(
 			$title,
@@ -348,8 +349,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->msg( 'brackets' )->params( $this->msg( 'nbytes' )->numParams( $result->length )->text() )
 		);
 
-		$ulink = Linker::revUserTools( $rev );
-		$comment = Linker::revComment( $rev );
+		$ulink = Linker::revUserTools( $rev, false, $user );
+		$comment = Linker::revComment( $rev, false, false, $user );
 
 		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';

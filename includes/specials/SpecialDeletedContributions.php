@@ -182,7 +182,7 @@ class DeletedContribsPager extends IndexPager {
 			$last = $this->messages['diff'];
 		}
 
-		$comment = Linker::revComment( $rev );
+		$comment = Linker::revComment( $rev, false, false, $user );
 		$date = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $user ) );
 
 		if( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {

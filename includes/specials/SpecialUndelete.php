@@ -831,7 +831,7 @@ class SpecialUndelete extends SpecialPage {
 		$time = $lang->userTimeAndDate( $timestamp, $user );
 		$d = $lang->userDate( $timestamp, $user );
 		$t = $lang->userTime( $timestamp, $user );
-		$userLink = Linker::revUserTools( $rev );
+		$userLink = Linker::revUserTools( $rev, false, $user );
 
 		if( $this->mPreview ) {
 			$openDiv = '<div id="mw-undelete-revision" class="mw-warning">';
@@ -967,10 +967,10 @@ class SpecialUndelete extends SpecialPage {
 				) .
 			'</strong></div>' .
 			'<div id="mw-diff-'.$prefix.'title2">' .
-				Linker::revUserTools( $rev ) . '<br />' .
+				Linker::revUserTools( $rev, false, $user ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-'.$prefix.'title3">' .
-				Linker::revComment( $rev ) . $rdel . '<br />' .
+				Linker::revComment( $rev, false, false, $user ) . $rdel . '<br />' .
 			'</div>';
 	}
 
@@ -1225,14 +1225,14 @@ class SpecialUndelete extends SpecialPage {
 			$last = $this->msg( 'diff' )->escaped();
 		}
 		// User links
-		$userLink = Linker::revUserTools( $rev );
+		$userLink = Linker::revUserTools( $rev, false, $user );
 		// Revision text size
 		$size = $row->ar_len;
 		if( !is_null( $size ) ) {
 			$revTextSize = Linker::formatRevisionSize( $size );
 		}
 		// Edit summary
-		$comment = Linker::revComment( $rev );
+		$comment = Linker::revComment( $rev, false, false, $user );
 		// Revision delete links
 		$revdlink = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
 

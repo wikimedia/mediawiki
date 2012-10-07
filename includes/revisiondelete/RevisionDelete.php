@@ -257,11 +257,12 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getHTML() {
+		$user = $this->list->getUser();
 		$difflink = $this->list->msg( 'parentheses' )
 			->rawParams( $this->getDiffLink() )->escaped();
 		$revlink = $this->getRevisionLink();
-		$userlink = Linker::revUserLink( $this->revision );
-		$comment = Linker::revComment( $this->revision );
+		$userlink = Linker::revUserLink( $this->revision, false, $user );
+		$comment = Linker::revComment( $this->revision, false, $user );
 		if ( $this->isDeleted() ) {
 			$revlink = "<span class=\"history-deleted\">$revlink</span>";
 		}

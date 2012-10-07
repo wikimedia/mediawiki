@@ -280,13 +280,13 @@ class SpecialMergeHistory extends SpecialPage {
 			);
 		}
 
-		$userLink = Linker::revUserTools( $rev );
+		$userLink = Linker::revUserTools( $rev, false, $user );
 
 		$size = $row->rev_len;
 		if( !is_null( $size ) ) {
 			$stxt = Linker::formatRevisionSize( $size );
 		}
-		$comment = Linker::revComment( $rev );
+		$comment = Linker::revComment( $rev, false, false, $user );
 
 		return Html::rawElement( 'li', array(),
 			$this->msg( 'mergehistory-revisionrow' )->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
