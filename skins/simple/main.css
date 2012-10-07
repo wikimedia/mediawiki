@@ -366,6 +366,11 @@ li.new {
 	padding: 3px;
 }
 
+/* Uppercase first letter in language links in sidebar. */
+#p-lang li:first-letter
+	text-transform: uppercase;
+}
+
 #mytabs {
 	background-color: inherit;
 }
