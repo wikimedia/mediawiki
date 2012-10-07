@@ -605,6 +605,11 @@ img.thumbborder {
 	margin: 0 0 0 0;
 }
 
+/* Uppercase first letter in language links in sidebar. */
+#p-lang li:first-letter {
+	text-transform: uppercase;
+}
+
 #mw_header h1,
 #p-personal,
 #p-cactions {
