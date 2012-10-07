@@ -143,44 +143,45 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 *     to $wgScriptPath
 	 *
 	 * Below is a description for the $options array:
+	 * @throws MWException
 	 * @par Construction options:
 	 * @code
-	 * 	array(
-	 * 		// Base path to prepend to all local paths in $options. Defaults to $IP
-	 * 		'localBasePath' => [base path],
-	 * 		// Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath
-	 * 		'remoteBasePath' => [base path],
-	 * 		// Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
-	 * 		'remoteExtPath' => [base path],
-	 * 		// Scripts to always include
-	 * 		'scripts' => [file path string or array of file path strings],
-	 * 		// Scripts to include in specific language contexts
-	 * 		'languageScripts' => array(
-	 * 			[language code] => [file path string or array of file path strings],
-	 * 		),
-	 * 		// Scripts to include in specific skin contexts
-	 * 		'skinScripts' => array(
-	 * 			[skin name] => [file path string or array of file path strings],
-	 * 		),
-	 * 		// Scripts to include in debug contexts
-	 * 		'debugScripts' => [file path string or array of file path strings],
-	 * 		// Scripts to include in the startup module
-	 * 		'loaderScripts' => [file path string or array of file path strings],
-	 * 		// Modules which must be loaded before this module
-	 * 		'dependencies' => [modile name string or array of module name strings],
-	 * 		// Styles to always load
-	 * 		'styles' => [file path string or array of file path strings],
-	 * 		// Styles to include in specific skin contexts
-	 * 		'skinStyles' => array(
-	 * 			[skin name] => [file path string or array of file path strings],
-	 * 		),
-	 * 		// Messages to always load
-	 * 		'messages' => [array of message key strings],
-	 * 		// Group which this module should be loaded together with
-	 * 		'group' => [group name string],
-	 * 		// Position on the page to load this module at
-	 * 		'position' => ['bottom' (default) or 'top']
-	 * 	)
+	 *     array(
+	 *         // Base path to prepend to all local paths in $options. Defaults to $IP
+	 *         'localBasePath' => [base path],
+	 *         // Base path to prepend to all remote paths in $options. Defaults to $wgScriptPath
+	 *         'remoteBasePath' => [base path],
+	 *         // Equivalent of remoteBasePath, but relative to $wgExtensionAssetsPath
+	 *         'remoteExtPath' => [base path],
+	 *         // Scripts to always include
+	 *         'scripts' => [file path string or array of file path strings],
+	 *         // Scripts to include in specific language contexts
+	 *         'languageScripts' => array(
+	 *             [language code] => [file path string or array of file path strings],
+	 *         ),
+	 *         // Scripts to include in specific skin contexts
+	 *         'skinScripts' => array(
+	 *             [skin name] => [file path string or array of file path strings],
+	 *         ),
+	 *         // Scripts to include in debug contexts
+	 *         'debugScripts' => [file path string or array of file path strings],
+	 *         // Scripts to include in the startup module
+	 *         'loaderScripts' => [file path string or array of file path strings],
+	 *         // Modules which must be loaded before this module
+	 *         'dependencies' => [modile name string or array of module name strings],
+	 *         // Styles to always load
+	 *         'styles' => [file path string or array of file path strings],
+	 *         // Styles to include in specific skin contexts
+	 *         'skinStyles' => array(
+	 *             [skin name] => [file path string or array of file path strings],
+	 *         ),
+	 *         // Messages to always load
+	 *         'messages' => [array of message key strings],
+	 *         // Group which this module should be loaded together with
+	 *         'group' => [group name string],
+	 *         // Position on the page to load this module at
+	 *         'position' => ['bottom' (default) or 'top']
+	 *     )
 	 * @endcode
 	 */
 	public function __construct( $options = array(), $localBasePath = null,
@@ -550,6 +551,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * Gets the contents of a list of JavaScript files.
 	 *
 	 * @param $scripts Array: List of file paths to scripts to read, remap and concetenate
+	 * @throws MWException
 	 * @return String: Concatenated and remapped JavaScript data from $scripts
 	 */
 	protected function readScriptFiles( array $scripts ) {

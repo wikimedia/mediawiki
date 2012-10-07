@@ -257,6 +257,7 @@ class BitmapMetadataHandler {
 	 *
 	 * The various exceptions this throws are caught later.
 	 * @param $filename String
+	 * @throws MWException
 	 * @return Array The metadata.
 	 */
 	static public function Tiff ( $filename ) {

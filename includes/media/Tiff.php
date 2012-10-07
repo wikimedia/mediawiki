@@ -70,8 +70,9 @@ class TiffHandler extends ExifBitmapHandler {
 	}
 
 	/**
-	 * @param $image
-	 * @param $filename
+	 * @param File $image
+	 * @param string $filename
+	 * @throws MWException
 	 * @return string
 	 */
 	function getMetadata( $image, $filename ) {

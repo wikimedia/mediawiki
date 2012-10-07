@@ -265,6 +265,7 @@ class MWHttpRequest {
 	 * Generate a new request object
 	 * @param $url String: url to use
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
+	 * @throws MWException
 	 * @return CurlHttpRequest|PhpHttpRequest
 	 * @see MWHttpRequest::__construct
 	 */
@@ -393,6 +394,7 @@ class MWHttpRequest {
 	 * will be aborted.
 	 *
 	 * @param $callback Callback
+	 * @throws MWException
 	 */
 	public function setCallback( $callback ) {
 		if ( !is_callable( $callback ) ) {

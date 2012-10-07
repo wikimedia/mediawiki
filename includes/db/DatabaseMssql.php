@@ -61,6 +61,11 @@ class DatabaseMssql extends DatabaseBase {
 
 	/**
 	 * Usually aborts on failure
+	 * @param String $server
+	 * @param String $user
+	 * @param String $password
+	 * @param String $dbName
+	 * @throws DBConnectionError
 	 * @return bool|DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {
@@ -380,6 +385,11 @@ class DatabaseMssql extends DatabaseBase {
 	 *
 	 * Usually aborts on failure
 	 * If errors are explicitly ignored, returns success
+	 * @param String $table
+	 * @param Array $arrToInsert
+	 * @param string $fname
+	 * @param array $options
+	 * @throws DBQueryError
 	 * @return bool
 	 */
 	function insert( $table, $arrToInsert, $fname = 'DatabaseMssql::insert', $options = array() ) {
@@ -510,6 +520,14 @@ class DatabaseMssql extends DatabaseBase {
 	 * Source items may be literals rather than field names, but strings should be quoted with Database::addQuotes()
 	 * $conds may be "*" to copy the whole table
 	 * srcTable may be an array of tables.
+	 * @param string $destTable
+	 * @param array|string $srcTable
+	 * @param array $varMap
+	 * @param array $conds
+	 * @param string $fname
+	 * @param array $insertOptions
+	 * @param array $selectOptions
+	 * @throws DBQueryError
 	 * @return null|\ResultWrapper
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseMssql::insertSelect',
@@ -720,6 +738,8 @@ class DatabaseMssql extends DatabaseBase {
 	 * Escapes a identifier for use inm SQL.
 	 * Throws an exception if it is invalid.
 	 * Reference: http://msdn.microsoft.com/en-us/library/aa224033%28v=SQL.80%29.aspx
+	 * @param $identifier
+	 * @throws MWException
 	 * @return string
 	 */
 	private function escapeIdentifier( $identifier ) {

@@ -70,6 +70,7 @@ class LBFactory_Multi extends LBFactory {
 
 	/**
 	 * @param $conf array
+	 * @throws MWException
 	 */
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
@@ -153,8 +154,9 @@ class LBFactory_Multi extends LBFactory {
 	}
 
 	/**
-	 * @param $cluster
-	 * @param $wiki
+	 * @param String $cluster
+	 * @param bool $wiki
+	 * @throws MWException
 	 * @return LoadBalancer
 	 */
 	function newExternalLB( $cluster, $wiki = false ) {

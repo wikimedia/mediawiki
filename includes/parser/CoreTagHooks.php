@@ -72,6 +72,7 @@ class CoreTagHooks {
 	 * @param $content string
 	 * @param $attributes array
 	 * @param $parser Parser
+	 * @throws MWException
 	 * @return array
 	 */
 	static function html( $content, $attributes, $parser ) {

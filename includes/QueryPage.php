@@ -151,6 +151,7 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * For back-compat, subclasses may return a raw SQL query here, as a string.
 	 * This is stronly deprecated; getQueryInfo() should be overridden instead.
+	 * @throws MWException
 	 * @return string
 	 */
 	function getSQL() {

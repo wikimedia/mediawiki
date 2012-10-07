@@ -33,6 +33,7 @@ class HTMLFileCache extends FileCacheBase {
 	 * Construct an ObjectFileCache from a Title and an action
 	 * @param $title Title|string Title object or prefixed DB key string
 	 * @param $action string
+	 * @throws MWException
 	 * @return HTMLFileCache
 	 */
 	public static function newFromTitle( $title, $action ) {

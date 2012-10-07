@@ -48,6 +48,7 @@ class ParserCache {
 	 * May be a memcached client or a BagOStuff derivative.
 	 *
 	 * @param $memCached Object
+	 * @throws MWException
 	 */
 	protected function __construct( $memCached ) {
 		if ( !$memCached ) {

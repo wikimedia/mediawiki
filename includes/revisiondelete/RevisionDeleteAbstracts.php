@@ -184,6 +184,7 @@ abstract class RevDel_List extends RevisionListBase {
 	 *     comment:         The log comment
 	 *     authorsIds:      The array of the user IDs of the offenders
 	 *     authorsIPs:      The array of the IP/anon user offenders
+	 * @throws MWException
 	 */
 	protected function updateLog( $params ) {
 		// Get the URL param's corresponding DB field

@@ -503,6 +503,7 @@ class SkinTemplate extends Skin {
 	 * By default it is capitalized.
 	 *
 	 * @param $name string Language name, e.g. "English" or "español"
+	 * @return string
 	 * @private
 	 */
 	function formatLanguageName( $name ) {

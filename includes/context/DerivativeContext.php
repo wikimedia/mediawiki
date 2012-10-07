@@ -222,6 +222,7 @@ class DerivativeContext extends ContextSource {
 	 * Set the Language object
 	 *
 	 * @param $l Mixed Language instance or language code
+	 * @throws MWException
 	 * @since 1.19
 	 */
 	public function setLanguage( $l ) {

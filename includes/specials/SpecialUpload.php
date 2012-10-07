@@ -525,6 +525,7 @@ class SpecialUpload extends SpecialPage {
 	 * Provides output to the user for a result of UploadBase::verifyUpload
 	 *
 	 * @param $details Array: result of UploadBase::verifyUpload
+	 * @throws MWException
 	 */
 	protected function processVerificationError( $details ) {
 		global $wgFileExtensions;

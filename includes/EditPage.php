@@ -442,6 +442,7 @@ class EditPage {
 	 * @since 1.19
 	 * @param $permErrors Array of permissions errors, as returned by
 	 *                    Title::getUserPermissionsErrors().
+	 * @throws PermissionsError
 	 */
 	protected function displayPermissionsError( array $permErrors ) {
 		global $wgRequest, $wgOut;
@@ -981,6 +982,7 @@ class EditPage {
 
 	/**
 	 * Attempt submission
+	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return bool false if output is done, true if the rest of the form should be displayed
 	 */
 	function attemptSave() {
@@ -2603,6 +2605,7 @@ HTML
 
 	/**
 	 * Get the rendered text for previewing.
+	 * @throws MWException
 	 * @return string
 	 */
 	function getPreviewText() {

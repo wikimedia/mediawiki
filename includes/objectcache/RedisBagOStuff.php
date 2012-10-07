@@ -321,6 +321,8 @@ class RedisBagOStuff extends BagOStuff {
 	 * Get a connection to the server with the specified name. Connections
 	 * are cached, and failures are persistent to avoid multiple timeouts.
 	 *
+	 * @param $server
+	 * @throws MWException
 	 * @return Redis object, or false on failure
 	 */
 	protected function getConnectionToServer( $server ) {

@@ -130,8 +130,8 @@ class ExternalStore {
 	 *
 	 * @param $data String
 	 * @param $storageParams Array: associative array of parameters for the ExternalStore object.
-	 * @throws DBConnectionError|DBQueryError|MWException
-	 * @return string The URL of the stored data item, or false on error
+	 * @throws MWException|DBConnectionError|DBQueryError
+	 * @return string|bool The URL of the stored data item, or false on error
 	 */
 	public static function insertToDefault( $data, $storageParams = array() ) {
 		global $wgDefaultExternalStore;

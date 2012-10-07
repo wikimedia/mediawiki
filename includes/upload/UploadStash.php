@@ -319,8 +319,8 @@ class UploadStash {
 	/**
 	 * Remove a particular file from the stash.  Also removes it from the repo.
 	 *
-	 * @throws UploadStashNotLoggedInException
-	 * @throws UploadStashWrongOwnerException
+	 * @param $key
+	 * @throws UploadStashNoSuchKeyException|UploadStashNotLoggedInException|UploadStashWrongOwnerException
 	 * @return boolean: success
 	 */
 	public function removeFile( $key ) {
@@ -416,6 +416,8 @@ class UploadStash {
 	 * with an extension.
 	 * XXX this is somewhat redundant with the checks that ApiUpload.php does with incoming
 	 * uploads versus the desired filename. Maybe we can get that passed to us...
+	 * @param $path
+	 * @throws UploadStashFileException
 	 * @return string
 	 */
 	public static function getExtensionForPath( $path ) {

@@ -1536,6 +1536,7 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @param $fname String Name of called method
 	 * @param $args Array Arguments to the method
+	 * @throws MWException
 	 * @return mixed
 	 */
 	function __call( $fname, $args ) {

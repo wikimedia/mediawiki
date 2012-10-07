@@ -332,6 +332,7 @@ class Message {
 	 * turned off.
 	 * @since 1.17
 	 * @param $lang Mixed: language code or Language object.
+	 * @throws MWException
 	 * @return Message: $this
 	 */
 	public function inLanguage( $lang ) {
@@ -627,6 +628,7 @@ class Message {
 	/**
 	 * Wrapper for what ever method we use to get message contents
 	 * @since 1.17
+	 * @throws MWException
 	 * @return string
 	 */
 	protected function fetchMessage() {

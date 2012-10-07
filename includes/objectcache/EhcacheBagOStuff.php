@@ -35,6 +35,7 @@ class EhcacheBagOStuff extends BagOStuff {
 
 	/**
 	 * @param $params array
+	 * @throws MWException
 	 */
 	function __construct( $params ) {
 		if ( !defined( 'CURLOPT_TIMEOUT_MS' ) ) {

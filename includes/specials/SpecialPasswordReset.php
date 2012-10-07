@@ -121,6 +121,8 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * userCanExecute(), and if the data array contains 'Username', etc, then Username
 	 * resets are allowed.
 	 * @param $data array
+	 * @throws MWException
+	 * @throws ThrottledError|PermissionsError
 	 * @return Bool|Array
 	 */
 	public function onSubmit( array $data ) {

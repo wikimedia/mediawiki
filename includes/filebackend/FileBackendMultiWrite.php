@@ -536,6 +536,7 @@ class FileBackendMultiWrite extends FileBackend {
 	/**
 	 * @see FileBackend::fileExists()
 	 * @param $params array
+	 * @return bool|null
 	 */
 	public function fileExists( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );

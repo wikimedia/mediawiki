@@ -81,6 +81,7 @@ class CLDRPluralRuleEvaluator {
 	 * @param $token string The token string
 	 * @param $left The left operand. If it is an object, its state may be destroyed.
 	 * @param $right The right operand
+	 * @throws CLDRPluralRuleError
 	 * @return mixed
 	 */
 	private static function doOperation( $token, $left, $right ) {

@@ -144,6 +144,7 @@ class FileDeleteForm {
 	 * @param $reason String: reason of the deletion
 	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
 	 * @param $user User object performing the request
+	 * @throws MWException
 	 * @return bool|Status
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress, User $user = null ) {

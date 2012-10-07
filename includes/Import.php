@@ -429,6 +429,7 @@ class WikiImporter {
 
 	/**
 	 * Primary entry point
+	 * @throws MWException
 	 * @return bool
 	 */
 	public function doImport() {

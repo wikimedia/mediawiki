@@ -325,6 +325,11 @@ class DatabasePostgres extends DatabaseBase {
 
 	/**
 	 * Usually aborts on failure
+	 * @param string $server
+	 * @param string $user
+	 * @param string $password
+	 * @param string $dbName
+	 * @throws DBConnectionError
 	 * @return DatabaseBase|null
 	 */
 	function open( $server, $user, $password, $dbName ) {

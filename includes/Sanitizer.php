@@ -1183,6 +1183,7 @@ class Sanitizer {
 	 * attribs regex matches.
 	 *
 	 * @param $set Array
+	 * @throws MWException
 	 * @return String
 	 */
 	private static function getTagAttributeCallback( $set ) {

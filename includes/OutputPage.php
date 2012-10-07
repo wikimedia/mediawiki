@@ -1570,9 +1570,10 @@ class OutputPage extends ContextSource {
 	 * @param $interface Boolean: use interface language ($wgLang instead of
 	 *                   $wgContLang) while parsing language sensitive magic
 	 *                   words like GRAMMAR and PLURAL. This also disables
-	 *					 LanguageConverter.
+	 *                   LanguageConverter.
 	 * @param $language  Language object: target language object, will override
 	 *                   $interface
+	 * @throws MWException
 	 * @return String: HTML
 	 */
 	public function parse( $text, $linestart = true, $interface = false, $language = null ) {
@@ -2153,6 +2154,7 @@ class OutputPage extends ContextSource {
 	 * Display an error page noting that a given permission bit is required.
 	 * @deprecated since 1.18, just throw the exception directly
 	 * @param $permission String: key required
+	 * @throws PermissionsError
 	 */
 	public function permissionRequired( $permission ) {
 		throw new PermissionsError( $permission );
@@ -2223,6 +2225,7 @@ class OutputPage extends ContextSource {
 	 * @param $protected Boolean: is this a permissions error?
 	 * @param $reasons   Array: list of reasons for this error, as returned by Title::getUserPermissionsErrors().
 	 * @param $action    String: action that was denied or null if unknown
+	 * @throws ReadOnlyError
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		$this->setRobotPolicy( 'noindex,nofollow' );

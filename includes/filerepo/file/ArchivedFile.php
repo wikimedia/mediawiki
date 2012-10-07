@@ -108,6 +108,7 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
+	 * @throws MWException
 	 * @return bool|null True on success or null
 	 */
 	public function load() {

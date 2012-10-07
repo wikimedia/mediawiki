@@ -52,6 +52,7 @@ class SVGReader {
 	 *
 	 * Creates an SVGReader drawing from the source provided
 	 * @param $source String: URI from which to read
+	 * @throws MWException|Exception
 	 */
 	function __construct( $source ) {
 		global $wgSVGMetadataCutoff;
@@ -113,6 +114,7 @@ class SVGReader {
 
 	/**
 	 * Read the SVG
+	 * @throws MWException
 	 * @return bool
 	 */
 	public function read() {
@@ -196,6 +198,7 @@ class SVGReader {
 	 * Read an XML snippet from an element
 	 *
 	 * @param String $metafield that we will fill with the result
+	 * @throws MWException
 	 */
 	private function readXml( $metafield=null ) {
 		$this->debug ( "Read top level metadata" );

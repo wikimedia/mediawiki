@@ -149,6 +149,7 @@ class SpecialUnblock extends SpecialPage {
 	 *
 	 * @param $data Array
 	 * @param $context IContextSource
+	 * @throws ErrorPageError
 	 * @return Array( Array(message key, parameters) ) on failure, True on success
 	 */
 	public static function processUnblock( array $data, IContextSource $context ){

@@ -104,6 +104,7 @@ class Exif {
 	 *
 	 * @param $file String: filename.
 	 * @param $byteOrder String Type of byte ordering either 'BE' (Big Endian) or 'LE' (Little Endian). Default ''.
+	 * @throws MWException
 	 * @todo FIXME: The following are broke:
 	 * SubjectArea. Need to test the more obscure tags.
 	 *

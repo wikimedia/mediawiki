@@ -35,6 +35,7 @@ class StreamFile {
 	 * @param $fname string Full name and path of the file to stream
 	 * @param $headers array Any additional headers to send
 	 * @param $sendErrors bool Send error messages if errors occur (like 404)
+	 * @throws MWException
 	 * @return bool Success
 	 */
 	public static function stream( $fname, $headers = array(), $sendErrors = true ) {

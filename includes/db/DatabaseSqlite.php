@@ -79,11 +79,12 @@ class DatabaseSqlite extends DatabaseBase {
 	/** Open an SQLite database and return a resource handle to it
 	 *  NOTE: only $dbName is used, the other parameters are irrelevant for SQLite databases
 	 *
-	 * @param $server
-	 * @param $user
-	 * @param $pass
-	 * @param $dbName
+	 * @param string $server
+	 * @param string $user
+	 * @param string $pass
+	 * @param string $dbName
 	 *
+	 * @throws DBConnectionError
 	 * @return PDO
 	 */
 	function open( $server, $user, $pass, $dbName ) {
@@ -103,6 +104,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 *
 	 * @param $fileName string
 	 *
+	 * @throws DBConnectionError
 	 * @return PDO|bool SQL connection or false if failed
 	 */
 	function openFile( $fileName ) {

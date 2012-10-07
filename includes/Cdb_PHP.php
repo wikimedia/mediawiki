@@ -126,6 +126,7 @@ class CdbReader_PHP extends CdbReader {
 
 	/**
 	 * @param $fileName string
+	 * @throws MWException
 	 */
 	function __construct( $fileName ) {
 		$this->fileName = $fileName;
@@ -198,7 +199,8 @@ class CdbReader_PHP extends CdbReader {
 	/**
 	 * Unpack an unsigned integer and throw an exception if it needs more than 31 bits
 	 * @param $s
-	 * @return
+	 * @throws MWException
+	 * @return mixed
 	 */
 	protected function unpack31( $s ) {
 		$data = unpack( 'V', $s );
