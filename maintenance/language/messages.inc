@@ -27,7 +27,6 @@ $wgMessageStructure = array(
 		'sidebar',
 	),
 	'toggles' => array(
-		'tog-underline',
 		'tog-justify',
 		'tog-hideminor',
 		'tog-hidepatrolled',
@@ -72,11 +71,6 @@ $wgMessageStructure = array(
 		'tog-showhiddencats',
 		'tog-noconvertlink',
 		'tog-norollbackdiff',
-	),
-	'underline' => array(
-		'underline-always',
-		'underline-never',
-		'underline-default',
 	),
 	'editfont' => array(
 		'editfont-style',
@@ -3803,7 +3797,6 @@ future releases. Also note that since each list value is wrapped in a unique
 XHTML id it should only appear once and include characters that are legal
 XHTML id names.",
 	'toggles'             => 'User preference toggles',
-	'underline'           => '',
 	'editfont'            => 'Font style option in Special:Preferences',
 	'dates'               => 'Dates',
 	'categorypages'       => 'Categories related messages',

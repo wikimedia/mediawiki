@@ -34,6 +34,7 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.21 ===
+* User preference 'underline' ("Link underlining") was removed.
 
 == Compatibility ==
 

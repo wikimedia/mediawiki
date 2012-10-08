@@ -3577,7 +3577,6 @@ $wgDefaultUserOptions = array(
 	'skin'                    => false,
 	'stubthreshold'           => 0,
 	'thumbsize'               => 2,
-	'underline'               => 2,
 	'uselivepreview'          => 0,
 	'usenewrc'                => 0,
 	'watchcreations'          => 0,

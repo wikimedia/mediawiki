@@ -642,18 +642,6 @@ class Preferences {
 	static function renderingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
 		## Page Rendering ##############################
 		global $wgAllowUserCssPrefs;
-		if ( $wgAllowUserCssPrefs ) {
-			$defaultPreferences['underline'] = array(
-				'type' => 'select',
-				'options' => array(
-					$context->msg( 'underline-never' )->text() => 0,
-					$context->msg( 'underline-always' )->text() => 1,
-					$context->msg( 'underline-default' )->text() => 2,
-				),
-				'label-message' => 'tog-underline',
-				'section' => 'rendering/advancedrendering',
-			);
-		}
 
 		$stubThresholdValues = array( 50, 100, 500, 1000, 2000, 5000, 10000 );
 		$stubThresholdOptions = array( $context->msg( 'stub-threshold-disabled' )->text() => 0 );

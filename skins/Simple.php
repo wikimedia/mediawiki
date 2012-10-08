@@ -46,11 +46,7 @@ class SkinSimple extends SkinTemplate {
 
 		/* Add some userprefs specific CSS styling */
 		$rules = array();
-		$underline = "";
 
-		if ( $this->getUser()->getOption( 'underline' ) < 2 ) {
-			$underline = "text-decoration: " . $this->getUser()->getOption( 'underline' ) ? 'underline !important' : 'none' . ";";
-		}
 		$style = implode( "\n", $rules );
 		$out->addInlineStyle( $style, 'flip' );
 
