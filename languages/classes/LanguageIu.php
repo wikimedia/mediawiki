@@ -233,6 +233,6 @@ class LanguageIu extends Language {
 
 		$flags = array();
 		$this->mConverter = new IuConverter( $this, 'iu', $variants, $variantfallbacks, $flags );
-		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+		$wgHooks['ArticleContentSaveComplete'][] = $this->mConverter;
 	}
 }

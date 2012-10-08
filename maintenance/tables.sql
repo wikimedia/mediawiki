@@ -260,7 +260,10 @@ CREATE TABLE /*_*/page (
   page_latest int unsigned NOT NULL,
 
   -- Uncompressed length in bytes of the page's current source text.
-  page_len int unsigned NOT NULL
+  page_len int unsigned NOT NULL,
+
+  -- content model, see CONTENT_MODEL_XXX constants
+  page_content_model  int unsigned  default NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
@@ -316,7 +319,13 @@ CREATE TABLE /*_*/revision (
   rev_parent_id int unsigned default NULL,
 
   -- SHA-1 text content hash in base-36
-  rev_sha1 varbinary(32) NOT NULL default ''
+  rev_sha1 varbinary(32) NOT NULL default '',
+
+  -- content model, see CONTENT_MODEL_XXX constants
+  rev_content_model  int unsigned  default NULL,
+
+  -- content format, see CONTENT_FORMAT_XXX constants
+  rev_content_format int unsigned  default NULL
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
@@ -427,7 +436,14 @@ CREATE TABLE /*_*/archive (
   ar_parent_id int unsigned default NULL,
 
   -- SHA-1 text content hash in base-36
-  ar_sha1 varbinary(32) NOT NULL default ''
+  ar_sha1 varbinary(32) NOT NULL default '',
+
+  -- content model, see CONTENT_MODEL_XXX constants
+  ar_content_model  int unsigned default NULL,
+
+  -- content format, see CONTENT_FORMAT_XXX constants
+  ar_content_format int unsigned default NULL
+
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);

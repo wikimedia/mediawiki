@@ -10,13 +10,40 @@
  */
 class ApiEditPageTest extends ApiTestCase {
 
-	function setUp() {
-		parent::setUp();
+	public function setup() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		parent::setup();
+
+		$wgExtraNamespaces[12312] = 'Dummy';
+		$wgExtraNamespaces[12313] = 'Dummy_talk';
+
+		$wgNamespaceContentModels[12312] = "testing";
+		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+
 		$this->doLogin();
 	}
 
+	public function teardown() {
+		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		unset( $wgExtraNamespaces[12312] );
+		unset( $wgExtraNamespaces[12313] );
+
+		unset( $wgNamespaceContentModels[12312] );
+		unset( $wgContentHandlers["testing"] );
+
+		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
+		$wgContLang->resetNamespaces(); # reset namespace cache
+
+		parent::teardown();
+	}
+
 	function testEdit( ) {
-		$name = 'ApiEditPageTest_testEdit';
+		$name = 'Help:ApiEditPageTest_testEdit'; // assume Help namespace to default to wikitext
 
 		// -- test new page --------------------------------------------
 		$apiResult = $this->doApiRequestWithToken( array(
@@ -25,7 +52,7 @@ class ApiEditPageTest extends ApiTestCase {
 				'text' => 'some text', ) );
 		$apiResult = $apiResult[0];
 
-		# Validate API result data
+		// Validate API result data
 		$this->assertArrayHasKey( 'edit', $apiResult );
 		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
 		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
@@ -64,6 +91,33 @@ class ApiEditPageTest extends ApiTestCase {
 			$data[0]['edit']['oldrevid'],
 			"revision id should change after edit"
 		);
+	}
+
+	function testNonTextEdit( ) {
+		$name = 'Dummy:ApiEditPageTest_testNonTextEdit';
+		$data = serialize( 'some bla bla text' );
+
+		// -- test new page --------------------------------------------
+		$apiResult = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			'text' => $data, ) );
+		$apiResult = $apiResult[0];
+
+		// Validate API result data
+		$this->assertArrayHasKey( 'edit', $apiResult );
+		$this->assertArrayHasKey( 'result', $apiResult['edit'] );
+		$this->assertEquals( 'Success', $apiResult['edit']['result'] );
+
+		$this->assertArrayHasKey( 'new', $apiResult['edit'] );
+		$this->assertArrayNotHasKey( 'nochange', $apiResult['edit'] );
+
+		$this->assertArrayHasKey( 'pageid', $apiResult['edit'] );
+
+		// validate resulting revision
+		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$this->assertEquals( "testing", $page->getContentModel() );
+		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
 
 	function testEditAppend() {

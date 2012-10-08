@@ -283,6 +283,11 @@ $article: Article object
 $user: the User object that was created. (Parameter added in 1.7)
 $byEmail: true when account was created "by email" (added in 1.12)
 
+'AfterFinalPageOutput': At the end of OutputPage::output() but before
+final ob_end_flush() which will send the buffered output to the client.
+This allows for last-minute modification of the output within the buffer
+by using ob_get_clean().
+
 'AfterImportPage': When a page import is completed
 $title: Title under which the revisions were imported
 $origTitle: Title provided by the XML file
@@ -429,9 +434,14 @@ token types.
 used to retrieve this type of tokens.
 
 'ArticleAfterFetchContent': after fetching content of an article from
+the database. DEPRECATED, use ArticleAfterFetchContentObject instead.
+$article: the article (object) being loaded from the database
+&$content: the content (string) of the article
+
+'ArticleAfterFetchContentObject': after fetching content of an article from
 the database
 $article: the article (object) being loaded from the database
-$content: the content (string) of the article
+&$content: the content of the article, as a Content object
 
 'ArticleConfirmDelete': before writing the confirmation form for article
 	deletion
@@ -458,6 +468,8 @@ $article: the WikiPage that was deleted
 $user: the user that deleted the article
 $reason: the reason the article was deleted
 $id: id of the article that was deleted
+$content: the Content of the deleted page
+$logEntry: the ManualLogEntry used to record the deletion
 
 'ArticleEditUpdateNewTalk': before updating user_newtalk when a user talk page
 was changed
@@ -479,7 +491,7 @@ Wiki::articleFromTitle()
 $title: title (object) used to create the article object
 $article: article (object) that will be returned
 
-'ArticleInsertComplete': After a new article is created
+'ArticleInsertComplete': After a new article is created. DEPRECATED, use ArticleContentInsertComplete
 $article: WikiPage created
 $user: User creating the article
 $text: New content
@@ -487,7 +499,18 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to WikiPage::doEdit()
+$flags: Flags passed to WikiPage::doEditContent()
+$revision: New Revision of the article
+
+'ArticleContentInsertComplete': After a new article is created
+$article: WikiPage created
+$user: User creating the article
+$content: New content as a Content object
+$summary: Edit summary/comment
+$isMinor: Whether or not the edit was marked as minor
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
 'ArticleMergeComplete': after merging to article using Special:Mergehistory
@@ -538,7 +561,7 @@ $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
-'ArticleSave': before an article is saved
+'ArticleSave': before an article is saved. DEPRECATED, use ArticleContentSave instead
 $article: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $text: the new article text
@@ -547,7 +570,16 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
-'ArticleSaveComplete': After an article has been updated
+'ArticleContentSave': before an article is saved.
+$article: the WikiPage (object) being saved
+$user: the user (object) saving the article
+$content: the new article content, as a Content object
+$summary: the article summary (comment)
+$isminor: minor flag
+$iswatch: watch flag
+$section: section #
+
+'ArticleSaveComplete': After an article has been updated. DEPRECATED, use ArticleContentSaveComplete instead.
 $article: WikiPage modified
 $user: User performing the modification
 $text: New content
@@ -555,9 +587,22 @@ $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
 $section: (No longer used)
-$flags: Flags passed to WikiPage::doEdit()
+$flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
-$status: Status object about to be returned by doEdit()
+$status: Status object about to be returned by doEditContent()
+$baseRevId: the rev ID (or false) this edit was based on
+
+'ArticleContentSaveComplete': After an article has been updated
+$article: WikiPage modified
+$user: User performing the modification
+$content: New content, as a Content object
+$summary: Edit summary/comment
+$isMinor: Whether or not the edit was marked as minor
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to WikiPage::doEditContent()
+$revision: New Revision of the article
+$status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 
 'ArticleUndelete': When one or more revisions of an article are restored
@@ -586,8 +631,16 @@ object to both indicate that the output is done and what parser output was used.
 follwed an redirect
 $article: target article (object)
 
-'ArticleViewCustom': allows to output the text of the article in a different format than wikitext
+'ArticleViewCustom': allows to output the text of the article in a different format than wikitext.
+DEPRECATED, use ArticleContentViewCustom instead.
+Note that it is preferrable to implement proper handing for a custom data type using the ContentHandler facility.
 $text: text of the page
+$title: title of the page
+$output: reference to $wgOut
+
+'ArticleContentViewCustom': allows to output the text of the article in a different format than wikitext.
+Note that it is preferrable to implement proper handing for a custom data type using the ContentHandler facility.
+$content: content of the page, as a Content object
 $title: title of the page
 $output: reference to $wgOut
 
@@ -722,6 +775,16 @@ the collation given in $collationName.
 'ConfirmEmailComplete': Called after a user's email has been confirmed successfully
 $user: user (object) whose email is being confirmed
 
+'ContentHandlerDefaultModelFor': Called when the default content model is determiend
+for a given title. May be used to assign a different model for that title.
+$title: the Title in question
+&$model: the model name. Use with CONTENT_MODEL_XXX constants.
+
+'ContentHandlerForModelID': Called when a ContentHandler is requested for a given
+cointent model name, but no entry for that model exists in $wgContentHandlers.
+$modeName: the requested content model name
+&$handler: set this to a ContentHandler object, if desired.
+
 'ContribsPager::getQueryInfo': Before the contributions query is about to run
 &$pager: Pager object for contributions
 &$queryInfo: The query for the contribs Pager
@@ -795,9 +858,16 @@ $section: Section being edited
 &$error: Error message to return
 $summary: Edit summary for page
 
-'EditFilterMerged': Post-section-merge edit filter
+'EditFilterMerged': Post-section-merge edit filter.
+DEPRECATED, use EditFilterMergedContent instead.
 $editor: EditPage instance (object)
 $text: content of the edit box
+&$error: error message to return
+$summary: Edit summary for page
+
+'EditFilterMergedContent': Post-section-merge edit filter
+$editor: EditPage instance (object)
+$content: content of the edit box, as a Content object
 &$error: error message to return
 $summary: Edit summary for page
 
@@ -811,7 +881,7 @@ pages
 $editPage: EditPage	object
 
 'EditPage::attemptSave': called before an article is
-saved, that is before WikiPage::doEdit() is called
+saved, that is before WikiPage::doEditContent() is called
 $editpage_Obj: the current EditPage object
 
 'EditPage::importFormData': allow extensions to read additional data
@@ -863,13 +933,27 @@ $title: title of page being edited
 &$msg: localization message name, overridable. Default is either 'copyrightwarning' or 'copyrightwarning2'
 
 'EditPageGetDiffText': Allow modifying the wikitext that will be used in
-"Show changes"
+"Show changes". DEPRECATED. Use EditPageGetDiffContent instead.
+Note that it is preferrable to implement diff handling for different data types using the ContentHandler facility.
 $editPage: EditPage object
 &$newtext: wikitext that will be used as "your version"
 
-'EditPageGetPreviewText': Allow modifying the wikitext that will be previewed
+'EditPageGetDiffContent': Allow modifying the wikitext that will be used in
+"Show changes".
+Note that it is preferrable to implement diff handling for different data types using the ContentHandler facility.
+$editPage: EditPage object
+&$newtext: wikitext that will be used as "your version"
+
+'EditPageGetPreviewText': Allow modifying the wikitext that will be previewed.
+DEPRECATED. Use EditPageGetPreviewContent instead.
+Note that it is preferrable to implement previews for different data types using the COntentHandler facility.
 $editPage: EditPage object
 &$toparse: wikitext that will be parsed
+
+'EditPageGetPreviewContent': Allow modifying the wikitext that will be previewed.
+Note that it is preferrable to implement previews for different data types using the COntentHandler facility.
+$editPage: EditPage object
+&$content: Content object to be previewed (may be replaced by hook function)
 
 'EditPageNoSuchSection': When a section edit request is given for an non-existent section
 &$editpage: The current EditPage object
@@ -1730,7 +1814,8 @@ $title : Current Title object being displayed in search results.
 'ShowMissingArticle': Called when generating the output for a non-existent page
 $article: The article object corresponding to the page
 
-'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views
+'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views.
+DEPRECATED, use the ContentHandler facility to handle CSS and JavaScript!
 $text: Text being shown
 $title: Title of the custom script/stylesheet page
 $output: Current OutputPage object
@@ -2348,6 +2433,14 @@ One, and only one hook should set this, and return false.
 &$tables: Database tables to use in the SELECT query
 &$opts: Options to use for the query
 &$join: Join conditions
+
+'WikiPageDeletionUpdates': manipulate the list of DataUpdates to be applied when
+	a page is deleted. Called in WikiPage::getDeletionUpdates().
+	Note that updates specific to a content model should be provided by the
+	respective Content's getDeletionUpdates() method.
+$page: the WikiPage
+$content: the Content to generate updates for
+&$updates: the array of DataUpdate objects. Hook function may want to add to it.
 
 'wfShellWikiCmd': Called when generating a shell-escaped command line
 	string to run a MediaWiki cli script.

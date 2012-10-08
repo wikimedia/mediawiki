@@ -34,13 +34,22 @@
 class LinkFilter {
 
 	/**
-	 * Check whether $text contains a link to $filterEntry
+	 * Check whether $content contains a link to $filterEntry
 	 *
-	 * @param $text String: text to check
+	 * @param $content Content: content to check
 	 * @param $filterEntry String: domainparts, see makeRegex() for more details
 	 * @return Integer: 0 if no match or 1 if there's at least one match
 	 */
-	static function matchEntry( $text, $filterEntry ) {
+	static function matchEntry( Content $content, $filterEntry ) {
+		if ( !( $content instanceof TextContent ) ) {
+			//TODO: handle other types of content too.
+			//      Maybe create ContentHandler::matchFilter( LinkFilter ).
+			//      Think about a common base class for LinkFilter and MagicWord.
+			return 0;
+		}
+
+		$text = $content->getNativeData();
+
 		$regex = LinkFilter::makeRegex( $filterEntry );
 		return preg_match( $regex, $text );
 	}

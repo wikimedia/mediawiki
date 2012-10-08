@@ -130,10 +130,22 @@ class ApiFeedContributions extends ApiBase {
 	protected function feedItemDesc( $revision ) {
 		if( $revision ) {
 			$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
+			$content = $revision->getContent();
+
+			if ( $content instanceof TextContent ) {
+				// only textual content has a "source view".
+				$html = nl2br( htmlspecialchars( $content->getNativeData() ) );
+			} else {
+				//XXX: we could get an HTML representation of the content via getParserOutput, but that may
+				//     contain JS magic and generally may not be suitable for inclusion in a feed.
+				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
+				//Compare also FeedUtils::formatDiffRow.
+				$html = '';
+			}
+
 			return '<p>' . htmlspecialchars( $revision->getUserText() ) . $msg .
 				htmlspecialchars( FeedItem::stripComment( $revision->getComment() ) ) .
-				"</p>\n<hr />\n<div>" .
-				nl2br( htmlspecialchars( $revision->getText() ) ) . "</div>";
+				"</p>\n<hr />\n<div>" . $html . "</div>";
 		}
 		return '';
 	}

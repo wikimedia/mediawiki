@@ -119,7 +119,7 @@ class ApiDelete extends ApiBase {
 			// Need to pass a throwaway variable because generateReason expects
 			// a reference
 			$hasHistory = false;
-			$reason = $page->getAutoDeleteReason( $hasHistory );
+			$reason = $page->getAutoDeleteReason( $hasHistory ); 
 			if ( $reason === false ) {
 				return array( array( 'cannotdelete', $title->getPrefixedText() ) );
 			}
