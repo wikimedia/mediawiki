@@ -165,7 +165,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge, $wgMemc;
+		global $wgContLang, $wgRCMaxAge, $wgMemc, $wgUnwatchedPageThreshold;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
@@ -259,7 +259,11 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
-		if ( $user->isAllowed( 'unwatchedpages' ) ) {
+		if (
+			$user->isAllowed( 'unwatchedpages' ) ||
+			( $wgUnwatchedPageThreshold !== false &&
+			  $pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
+		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
