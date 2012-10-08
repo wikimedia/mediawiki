@@ -151,7 +151,9 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	protected function assertLinksUpdate( Title $title, ParserOutput $parserOutput, $table, $fields, $condition, array $expectedRows ) {
 		$update = new LinksUpdate( $title, $parserOutput );
 
+		$update->beginTransaction();
 		$update->doUpdate();
+		$update->commitTransaction();
 
 		$this->assertSelect( $table, $fields, $condition, $expectedRows );
 	}

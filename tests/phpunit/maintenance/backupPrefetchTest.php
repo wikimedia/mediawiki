@@ -199,6 +199,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       <comment>BackupDumperTestP1Summary1</comment>
       <sha1>0bolhl6ol7i6x0e7yq91gxgaan39j87</sha1>
       <text xml:space="preserve">BackupDumperTestP1Text1</text>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
     </revision>
   </page>
 ';
@@ -216,6 +218,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       <comment>BackupDumperTestP2Summary1</comment>
       <sha1>jprywrymfhysqllua29tj3sc7z39dl2</sha1>
       <text xml:space="preserve">BackupDumperTestP2Text1</text>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
     </revision>
     <revision>
       <id>5</id>
@@ -227,6 +231,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       <comment>BackupDumperTestP2Summary4 extra</comment>
       <sha1>6o1ciaxa6pybnqprmungwofc4lv00wv</sha1>
       <text xml:space="preserve">BackupDumperTestP2Text4 some additional Text</text>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
     </revision>
   </page>
 ';
@@ -243,6 +249,8 @@ class BaseDumpTest extends MediaWikiTestCase {
       </contributor>
       <comment>Talk BackupDumperTestP1 Summary1</comment>
       <sha1>nktofwzd0tl192k3zfepmlzxoax1lpe</sha1>
+      <model name="wikitext">1</model>
+      <format mime="text/x-wiki">1</format>
       <text xml:space="preserve">Talk about BackupDumperTestP1 Text1</text>
     </revision>
   </page>

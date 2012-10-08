@@ -35,7 +35,15 @@ class ApiComparePages extends ApiBase {
 		$rev1 = $this->revisionOrTitleOrId( $params['fromrev'], $params['fromtitle'], $params['fromid'] );
 		$rev2 = $this->revisionOrTitleOrId( $params['torev'], $params['totitle'], $params['toid'] );
 
-		$de = new DifferenceEngine( $this->getContext(),
+		$revision = Revision::newFromId( $rev1 );
+
+		if ( !$revision ) {
+			$this->dieUsage( 'The diff cannot be retrieved, ' .
+				'one revision does not exist or you do not have permission to view it.', 'baddiff' );
+		}
+
+		$contentHandler = $revision->getContentHandler();
+		$de = $contentHandler->createDifferenceEngine( $this->getContext(),
 			$rev1,
 			$rev2,
 			null, // rcid

@@ -66,7 +66,7 @@ $uncompressedSize = 0;
 $t = -microtime( true );
 foreach ( $res as $row ) {
 	$revision = new Revision( $row );
-	$text = $revision->getText();
+	$text = $revision->getSerializedData();
 	$uncompressedSize += strlen( $text );
 	$hashes[$row->rev_id] = md5( $text );
 	$keys[$row->rev_id] = $blob->addItem( $text );

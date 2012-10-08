@@ -1206,7 +1206,7 @@ class ParserTest {
 			}
 		}
 
-		$page->doEdit( $text, '', EDIT_NEW );
+		$page->doEditContent( ContentHandler::makeContent( $text, $title ), '', EDIT_NEW );
 
 		$wgCapitalLinks = $oldCapitalLinks;
 	}

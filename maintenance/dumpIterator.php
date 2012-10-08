@@ -168,7 +168,7 @@ class SearchDump extends DumpIterator {
 	 * @param $rev Revision
 	 */
 	public function processRevision( $rev ) {
-		if ( preg_match( $this->getOption( 'regex' ), $rev->getText() ) ) {
+		if ( preg_match( $this->getOption( 'regex' ), $rev->getContent()->getTextForSearchIndex() ) ) {
 			$this->output( $rev->getTitle() . " matches at edit from " . $rev->getTimestamp() . "\n" );
 		}
 	}

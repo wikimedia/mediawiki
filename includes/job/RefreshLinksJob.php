@@ -70,16 +70,16 @@ class RefreshLinksJob extends Job {
 	}
 
 	public static function runForTitleInternal( Title $title, Revision $revision, $fname ) {
-		global $wgParser, $wgContLang;
+		global $wgContLang;
 
 		wfProfileIn( $fname . '-parse' );
 		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
-		$parserOutput = $wgParser->parse(
-			$revision->getText(), $title, $options, true, true, $revision->getId() );
+		$content = $revision->getContent();
+		$parserOutput = $content->getParserOutput( $title, $revision->getId(), $options, false );
 		wfProfileOut( $fname . '-parse' );
 
 		wfProfileIn( $fname . '-update' );
-		$updates = $parserOutput->getSecondaryDataUpdates( $title, false );
+		$updates = $content->getSecondaryDataUpdates( $title, null, false, $parserOutput  );
 		DataUpdate::runUpdates( $updates );
 		wfProfileOut( $fname . '-update' );
 	}

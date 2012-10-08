@@ -40,6 +40,10 @@ class Revision implements IDBAccessObject {
 	protected $mTextRow;
 	protected $mTitle;
 	protected $mCurrent;
+	protected $mContentModel;
+	protected $mContentFormat;
+	protected $mContent;
+	protected $mContentHandler;
 
 	// Revision deletion constants
 	const DELETED_TEXT = 1;
@@ -138,6 +142,8 @@ class Revision implements IDBAccessObject {
 	 * @return Revision
 	 */
 	public static function newFromArchiveRow( $row, $overrides = array() ) {
+		global $wgContentHandlerUseDB;
+
 		$attribs = $overrides + array(
 			'page'       => isset( $row->ar_page_id ) ? $row->ar_page_id : null,
 			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
@@ -150,7 +156,15 @@ class Revision implements IDBAccessObject {
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
+			'content_model' => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
+			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
 		);
+
+		if ( !$wgContentHandlerUseDB ) {
+			unset( $attribs['content_model'] );
+			unset( $attribs['content_format'] );
+		}
+
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
@@ -358,7 +372,9 @@ class Revision implements IDBAccessObject {
 	 * @return array
 	 */
 	public static function selectFields() {
-		return array(
+		global $wgContentHandlerUseDB;
+
+		$fields = array(
 			'rev_id',
 			'rev_page',
 			'rev_text_id',
@@ -370,8 +386,15 @@ class Revision implements IDBAccessObject {
 			'rev_deleted',
 			'rev_len',
 			'rev_parent_id',
-			'rev_sha1'
+			'rev_sha1',
 		);
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'rev_content_format';
+			$fields[] = 'rev_content_model';
+		}
+
+		return $fields;
 	}
 
 	/**
@@ -475,6 +498,18 @@ class Revision implements IDBAccessObject {
 				$this->mTitle = null;
 			}
 
+			if( !isset( $row->rev_content_model ) || is_null( $row->rev_content_model ) ) {
+				$this->mContentModel = null; # determine on demand if needed
+			} else {
+				$this->mContentModel = strval( $row->rev_content_model );
+			}
+
+			if( !isset( $row->rev_content_format ) || is_null( $row->rev_content_format ) ) {
+				$this->mContentFormat = null; # determine on demand if needed
+			} else {
+				$this->mContentFormat = strval( $row->rev_content_format );
+			}
+
 			// Lazy extraction...
 			$this->mText      = null;
 			if( isset( $row->old_text ) ) {
@@ -496,6 +531,21 @@ class Revision implements IDBAccessObject {
 			// Build a new revision to be saved...
 			global $wgUser; // ugh
 
+
+			# if we have a content object, use it to set the model and type
+			if ( !empty( $row['content'] ) ) {
+				//@todo: when is that set? test with external store setup! check out insertOn() [dk]
+				if ( !empty( $row['text_id'] ) ) {
+					throw new MWException( "Text already stored in external store (id {$row['text_id']}), "
+											. "can't serialize content object" );
+				}
+
+				$row['content_model'] = $row['content']->getModel();
+				# note: mContentFormat is initializes later accordingly
+				# note: content is serialized later in this method!
+				# also set text to null?
+			}
+
 			$this->mId        = isset( $row['id']         ) ? intval( $row['id']         ) : null;
 			$this->mPage      = isset( $row['page']       ) ? intval( $row['page']       ) : null;
 			$this->mTextId    = isset( $row['text_id']    ) ? intval( $row['text_id']    ) : null;
@@ -508,21 +558,59 @@ class Revision implements IDBAccessObject {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
+			$this->mContentModel = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
+			$this->mContentFormat    = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
+
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
 			$this->mText      = isset( $row['text']       ) ? rtrim( strval( $row['text']    ) ) : null;
 			$this->mTextRow   = null;
 
-			$this->mTitle     = null; # Load on demand if needed
-			$this->mCurrent   = false;
-			# If we still have no length, see it we have the text to figure it out
-			if ( !$this->mSize ) {
-				$this->mSize = is_null( $this->mText ) ? null : strlen( $this->mText );
+			$this->mTitle     = isset( $row['title']      ) ? $row['title'] : null;
+
+			// if we have a Content object, override mText and mContentModel
+			if ( !empty( $row['content'] ) ) {
+				$handler = $this->getContentHandler();
+				$this->mContent = $row['content'];
+
+				$this->mContentModel = $this->mContent->getModel();
+				$this->mContentHandler = null;
+
+				$this->mText = $handler->serializeContent( $row['content'], $this->getContentFormat() );
+			} elseif ( !is_null( $this->mText ) ) {
+				$handler = $this->getContentHandler();
+				$this->mContent = $handler->unserializeContent( $this->mText );
 			}
-			# Same for sha1
+
+			// if we have a Title object, override mPage. Useful for testing and convenience.
+			if ( isset( $row['title'] ) ) {
+				$this->mTitle     = $row['title'];
+				$this->mPage      = $this->mTitle->getArticleID();
+			} else {
+				$this->mTitle     = null; // Load on demand if needed
+			}
+
+			// @todo: XXX: really? we are about to create a revision. it will usually then be the current one.
+			$this->mCurrent   = false;
+
+			// If we still have no length, see it we have the text to figure it out
+			if ( !$this->mSize ) {
+				if ( !is_null( $this->mContent ) ) {
+					$this->mSize = $this->mContent->getSize();
+				} else {
+					#NOTE: this should never happen if we have either text or content object!
+					$this->mSize = null;
+				}
+			}
+
+			// Same for sha1
 			if ( $this->mSha1 === null ) {
 				$this->mSha1 = is_null( $this->mText ) ? null : self::base36Sha1( $this->mText );
 			}
+
+			// force lazy init
+			$this->getContentModel();
+			$this->getContentFormat();
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
@@ -595,7 +683,7 @@ class Revision implements IDBAccessObject {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL
+		if( !is_null( $this->mId ) ) { //rev_id is defined as NOT NULL, but this revision may not yet have been inserted.
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow(
 				array( 'page', 'revision' ),
@@ -607,6 +695,11 @@ class Revision implements IDBAccessObject {
 				$this->mTitle = Title::newFromRow( $row );
 			}
 		}
+
+		if ( !$this->mTitle && !is_null( $this->mPage ) && $this->mPage > 0 ) {
+			$this->mTitle = Title::newFromID( $this->mPage );
+		}
+
 		return $this->mTitle;
 	}
 
@@ -789,15 +882,39 @@ class Revision implements IDBAccessObject {
 	 *      Revision::RAW              get the text regardless of permissions
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
+	 *
+	 * @deprecated in 1.21, use getContent() instead
+	 * @todo: replace usage in core
 	 * @return String
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.21' );
+
+		$content = $this->getContent( $audience, $user );
+		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
+	}
+
+	/**
+	 * Fetch revision content if it's available to the specified audience.
+	 * If the specified audience does not have the ability to view this
+	 * revision, null will be returned.
+	 *
+	 * @param $audience Integer: one of:
+	 *      Revision::FOR_PUBLIC       to be displayed to all users
+	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::RAW              get the text regardless of permissions
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
+	 * @since 1.21
+	 * @return Content
+	 */
+	public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
 		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
-			return '';
+			return null;
 		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_TEXT, $user ) ) {
-			return '';
+			return null;
 		} else {
-			return $this->getRawText();
+			return $this->getContentInternal();
 		}
 	}
 
@@ -816,13 +933,108 @@ class Revision implements IDBAccessObject {
 	 * Fetch revision text without regard for view restrictions
 	 *
 	 * @return String
+	 *
+	 * @deprecated since 1.21. Instead, use Revision::getContent( Revision::RAW )
+	 *                         or Revision::getSerializedData() as appropriate.
 	 */
 	public function getRawText() {
-		if( is_null( $this->mText ) ) {
-			// Revision text is immutable. Load on demand:
-			$this->mText = $this->loadText();
-		}
+		wfDeprecated( __METHOD__, "1.21" );
+
+		return $this->getText( self::RAW );
+	}
+
+	/**
+	 * Fetch original serialized data without regard for view restrictions
+	 *
+	 * @since 1.21
+	 * @return String
+	 */
+	public function getSerializedData() {
 		return $this->mText;
+	}
+
+	/**
+	 * Gets the content object for the revision
+	 *
+	 * @since 1.21
+	 * @return Content
+	 */
+	protected function getContentInternal() {
+		if( is_null( $this->mContent ) ) {
+			// Revision is immutable. Load on demand:
+
+			$handler = $this->getContentHandler();
+			$format = $this->getContentFormat();
+			$title = $this->getTitle();
+
+			if( is_null( $this->mText ) ) {
+				// Load text on demand:
+				$this->mText = $this->loadText();
+			}
+
+			$this->mContent = is_null( $this->mText ) ? null : $handler->unserializeContent( $this->mText, $format );
+		}
+
+		return $this->mContent->copy(); // NOTE: copy() will return $this for immutable content objects
+	}
+
+	/**
+	 * Returns the content model for this revision.
+	 *
+	 * If no content model was stored in the database, $this->getTitle()->getContentModel() is
+	 * used to determine the content model to use. If no title is know, CONTENT_MODEL_WIKITEXT
+	 * is used as a last resort.
+	 *
+	 * @return String the content model id associated with this revision, see the CONTENT_MODEL_XXX constants.
+	 **/
+	public function getContentModel() {
+		if ( !$this->mContentModel ) {
+			$title = $this->getTitle();
+			$this->mContentModel = ( $title ? $title->getContentModel() : CONTENT_MODEL_WIKITEXT );
+
+			assert( !empty( $this->mContentModel ) );
+		}
+
+		return $this->mContentModel;
+	}
+
+	/**
+	 * Returns the content format for this revision.
+	 *
+	 * If no content format was stored in the database, the default format for this
+	 * revision's content model is returned.
+	 *
+	 * @return String the content format id associated with this revision, see the CONTENT_FORMAT_XXX constants.
+	 **/
+	public function getContentFormat() {
+		if ( !$this->mContentFormat ) {
+			$handler = $this->getContentHandler();
+			$this->mContentFormat = $handler->getDefaultFormat();
+
+			assert( !empty( $this->mContentFormat ) );
+		}
+
+		return $this->mContentFormat;
+	}
+
+	/**
+	 * Returns the content handler appropriate for this revision's content model.
+	 *
+	 * @return ContentHandler
+	 */
+	public function getContentHandler() {
+		if ( !$this->mContentHandler ) {
+			$model = $this->getContentModel();
+			$this->mContentHandler = ContentHandler::getForModelID( $model );
+
+			$format = $this->getContentFormat();
+
+			if ( !$this->mContentHandler->isSupportedFormat( $format ) ) {
+				throw new MWException( "Oops, the content format $format is not supported for this content model, $model" );
+			}
+		}
+
+		return $this->mContentHandler;
 	}
 
 	/**
@@ -1007,9 +1219,11 @@ class Revision implements IDBAccessObject {
 	 * @return Integer
 	 */
 	public function insertOn( $dbw ) {
-		global $wgDefaultExternalStore;
+		global $wgDefaultExternalStore, $wgContentHandlerUseDB;
 
 		wfProfileIn( __METHOD__ );
+
+		$this->checkContentModel();
 
 		$data = $this->mText;
 		$flags = self::compressRevisionText( $data );
@@ -1046,26 +1260,46 @@ class Revision implements IDBAccessObject {
 		$rev_id = isset( $this->mId )
 			? $this->mId
 			: $dbw->nextSequenceValue( 'revision_rev_id_seq' );
-		$dbw->insert( 'revision',
-			array(
-				'rev_id'         => $rev_id,
-				'rev_page'       => $this->mPage,
-				'rev_text_id'    => $this->mTextId,
-				'rev_comment'    => $this->mComment,
-				'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
-				'rev_user'       => $this->mUser,
-				'rev_user_text'  => $this->mUserText,
-				'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
-				'rev_deleted'    => $this->mDeleted,
-				'rev_len'        => $this->mSize,
-				'rev_parent_id'  => is_null( $this->mParentId )
-					? $this->getPreviousRevisionId( $dbw )
-					: $this->mParentId,
-				'rev_sha1'       => is_null( $this->mSha1 )
-					? self::base36Sha1( $this->mText )
-					: $this->mSha1
-			), __METHOD__
+		$row = array(
+			'rev_id'         => $rev_id,
+			'rev_page'       => $this->mPage,
+			'rev_text_id'    => $this->mTextId,
+			'rev_comment'    => $this->mComment,
+			'rev_minor_edit' => $this->mMinorEdit ? 1 : 0,
+			'rev_user'       => $this->mUser,
+			'rev_user_text'  => $this->mUserText,
+			'rev_timestamp'  => $dbw->timestamp( $this->mTimestamp ),
+			'rev_deleted'    => $this->mDeleted,
+			'rev_len'        => $this->mSize,
+			'rev_parent_id'  => is_null( $this->mParentId )
+				? $this->getPreviousRevisionId( $dbw )
+				: $this->mParentId,
+			'rev_sha1'       => is_null( $this->mSha1 )
+				? Revision::base36Sha1( $this->mText )
+				: $this->mSha1,
 		);
+
+		if ( $wgContentHandlerUseDB ) {
+			//NOTE: Store null for the default model and format, to save space.
+			//XXX: Makes the DB sensitive to changed defaults. Make this behaviour optional? Only in miser mode?
+
+			$model = $this->getContentModel();
+			$format = $this->getContentFormat();
+
+			$title = $this->getTitle();
+
+			if ( $title === null ) {
+				throw new MWException( "Insufficient information to determine the title of the revision's page!" );
+			}
+
+			$defaultModel = ContentHandler::getDefaultModelFor( $title );
+			$defaultFormat = ContentHandler::getForModelID( $defaultModel )->getDefaultFormat();
+
+			$row[ 'rev_content_model' ] = ( $model === $defaultModel ) ? null : $model;
+			$row[ 'rev_content_format' ] = ( $format === $defaultFormat ) ? null : $format;
+		}
+
+		$dbw->insert( 'revision', $row, __METHOD__ );
 
 		$this->mId = !is_null( $rev_id ) ? $rev_id : $dbw->insertId();
 
@@ -1073,6 +1307,52 @@ class Revision implements IDBAccessObject {
 
 		wfProfileOut( __METHOD__ );
 		return $this->mId;
+	}
+
+	protected function checkContentModel() {
+		global $wgContentHandlerUseDB;
+
+		$title = $this->getTitle(); //note: may return null for revisions that have not yet been inserted.
+
+		$model = $this->getContentModel();
+		$format = $this->getContentFormat();
+		$handler = $this->getContentHandler();
+
+		if ( !$handler->isSupportedFormat( $format ) ) {
+			$t = $title->getPrefixedDBkey();
+
+			throw new MWException( "Can't use format $format with content model $model on $t" );
+		}
+
+		if ( !$wgContentHandlerUseDB && $title ) {
+			// if $wgContentHandlerUseDB is not set, all revisions must use the default content model and format.
+
+			$defaultModel = ContentHandler::getDefaultModelFor( $title );
+			$defaultHandler = ContentHandler::getForModelID( $defaultModel );
+			$defaultFormat = $defaultHandler->getDefaultFormat();
+
+			if ( $this->getContentModel() != $defaultModel ) {
+				$t = $title->getPrefixedDBkey();
+
+				throw new MWException( "Can't save non-default content model with \$wgContentHandlerUseDB disabled: "
+										. "model is $model , default for $t is $defaultModel" );
+			}
+
+			if ( $this->getContentFormat() != $defaultFormat ) {
+				$t = $title->getPrefixedDBkey();
+
+				throw new MWException( "Can't use non-default content format with \$wgContentHandlerUseDB disabled: "
+										. "format is $format, default for $t is $defaultFormat" );
+			}
+		}
+
+		$content = $this->getContent( Revision::RAW );
+
+		if ( !$content->isValid() ) {
+			$t = $title->getPrefixedDBkey();
+
+			throw new MWException( "Content of $t is not valid! Content model is $model" );
+		}
 	}
 
 	/**
@@ -1159,12 +1439,21 @@ class Revision implements IDBAccessObject {
 	 * @return Revision|null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
+		global $wgContentHandlerUseDB;
+
 		wfProfileIn( __METHOD__ );
+
+		$fields = array( 'page_latest', 'page_namespace', 'page_title',
+						'rev_text_id', 'rev_len', 'rev_sha1' );
+
+		if ( $wgContentHandlerUseDB ) {
+			$fields[] = 'rev_content_model';
+			$fields[] = 'rev_content_format';
+		}
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'page_namespace', 'page_title',
-				'rev_text_id', 'rev_len', 'rev_sha1' ),
+			$fields,
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
@@ -1172,7 +1461,7 @@ class Revision implements IDBAccessObject {
 			__METHOD__ );
 
 		if( $current ) {
-			$revision = new Revision( array(
+			$row = array(
 				'page'       => $pageId,
 				'comment'    => $summary,
 				'minor_edit' => $minor,
@@ -1180,7 +1469,14 @@ class Revision implements IDBAccessObject {
 				'parent_id'  => $current->page_latest,
 				'len'        => $current->rev_len,
 				'sha1'       => $current->rev_sha1
-				) );
+			);
+
+			if ( $wgContentHandlerUseDB ) {
+				$row[ 'content_model' ] = $current->rev_content_model;
+				$row[ 'content_format' ] = $current->rev_content_format;
+			}
+
+			$revision = new Revision( $row );
 			$revision->setTitle( Title::makeTitle( $current->page_namespace, $current->page_title ) );
 		} else {
 			$revision = null;

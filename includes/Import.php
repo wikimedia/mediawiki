@@ -611,7 +611,7 @@ class WikiImporter {
 		$this->debug( "Enter revision handler" );
 		$revisionInfo = array();
 
-		$normalFields = array( 'id', 'timestamp', 'comment', 'minor', 'text' );
+		$normalFields = array( 'id', 'timestamp', 'comment', 'minor', 'model', 'format', 'text' );
 
 		$skip = false;
 
@@ -655,6 +655,12 @@ class WikiImporter {
 		}
 		if ( isset( $revisionInfo['text'] ) ) {
 			$revision->setText( $revisionInfo['text'] );
+		}
+		if ( isset( $revisionInfo['model'] ) ) {
+			$revision->setModel( $revisionInfo['model'] );
+		}
+		if ( isset( $revisionInfo['text'] ) ) {
+			$revision->setFormat( $revisionInfo['format'] );
 		}
 		$revision->setTitle( $pageInfo['_title'] );
 
@@ -1008,7 +1014,10 @@ class WikiRevision {
 	var $timestamp = "20010115000000";
 	var $user = 0;
 	var $user_text = "";
+	var $model = null;
+	var $format = null;
 	var $text = "";
+	var $content = null;
 	var $comment = "";
 	var $minor = false;
 	var $type = "";
@@ -1062,6 +1071,20 @@ class WikiRevision {
 	 */
 	function setUserIP( $ip ) {
 		$this->user_text = $ip;
+	}
+
+	/**
+	 * @param $model
+	 */
+	function setModel( $model ) {
+		$this->model = $model;
+	}
+
+	/**
+	 * @param $format
+	 */
+	function setFormat( $format ) {
+		$this->format = $format;
 	}
 
 	/**
@@ -1187,9 +1210,52 @@ class WikiRevision {
 
 	/**
 	 * @return string
+	 *
+	 * @deprecated Since 1.21, use getContent() instead.
 	 */
 	function getText() {
+		wfDeprecated( "Use getContent() instead." );
+
 		return $this->text;
+	}
+
+	/**
+	 * @return Content
+	 */
+	function getContent() {
+		if ( is_null( $this->content ) ) {
+			$this->content =
+				ContentHandler::makeContent(
+					$this->text,
+					$this->getTitle(),
+					$this->getModel(),
+					$this->getFormat()
+				);
+		}
+
+		return $this->content;
+	}
+
+	/**
+	 * @return String
+	 */
+	function getModel() {
+		if ( is_null( $this->model ) ) {
+			$this->model = $this->getTitle()->getContentModel();
+		}
+
+		return $this->model;
+	}
+
+	/**
+	 * @return String
+	 */
+	function getFormat() {
+		if ( is_null( $this->model ) ) {
+			$this->format = ContentHandler::getForTitle( $this->getTitle() )->getDefaultFormat();
+		}
+
+		return $this->format;
 	}
 
 	/**
@@ -1331,7 +1397,9 @@ class WikiRevision {
 		# Insert the row
 		$revision = new Revision( array(
 			'page'       => $pageId,
-			'text'       => $this->getText(),
+			'content_model'  => $this->getModel(),
+			'content_format' => $this->getFormat(),
+			'text'       => $this->getContent()->serialize( $this->getFormat() ), //XXX: just set 'content' => $this->getContent()?
 			'comment'    => $this->getComment(),
 			'user'       => $userId,
 			'user_text'  => $userText,

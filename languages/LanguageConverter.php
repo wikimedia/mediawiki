@@ -925,7 +925,11 @@ class LanguageConverter {
 			if ( $title && $title->exists() ) {
 				$revision = Revision::newFromTitle( $title );
 				if ( $revision ) {
-					$txt = $revision->getRawText();
+					if ( $revision->getContentModel() == CONTENT_MODEL_WIKITEXT ) {
+						$txt = $revision->getContent( Revision::RAW )->getNativeData();
+					}
+
+					//@todo: in the future, use a specialized content model, perhaps based on json!
 				}
 			}
 		}
@@ -1035,9 +1039,9 @@ class LanguageConverter {
 	 * MediaWiki:Conversiontable* is updated.
 	 * @private
 	 *
-	 * @param $article Article object
+	 * @param $page WikiPage object
 	 * @param $user Object: User object for the current user
-	 * @param $text String: article text (?)
+	 * @param $content Content: new page content
 	 * @param $summary String: edit summary of the edit
 	 * @param $isMinor Boolean: was the edit marked as minor?
 	 * @param $isWatch Boolean: did the user watch this page or not?
@@ -1046,9 +1050,9 @@ class LanguageConverter {
 	 * @param $revision Object: new Revision object or null
 	 * @return Boolean: true
 	 */
-	function OnArticleSaveComplete( $article, $user, $text, $summary, $isMinor,
+	function OnArticleContentSaveComplete( $page, $user, $content, $summary, $isMinor,
 			$isWatch, $section, $flags, $revision ) {
-		$titleobj = $article->getTitle();
+		$titleobj = $page->getTitle();
 		if ( $titleobj->getNamespace() == NS_MEDIAWIKI ) {
 			$title = $titleobj->getDBkey();
 			$t = explode( '/', $title, 3 );
