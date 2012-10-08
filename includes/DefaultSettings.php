@@ -3553,7 +3553,6 @@ $wgDefaultUserOptions = array(
 	'hideminor'               => 0,
 	'hidepatrolled'           => 0,
 	'imagesize'               => 2,
-	'justify'                 => 0,
 	'math'                    => 1,
 	'minordefault'            => 0,
 	'newpageshidepatrolled'   => 0,
