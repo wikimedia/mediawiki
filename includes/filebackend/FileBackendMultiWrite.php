@@ -179,10 +179,11 @@ class FileBackendMultiWrite extends FileBackend {
 		// Actually attempt the operation batch on the master backend...
 		$masterStatus = $mbe->doOperations( $realOps, $opts );
 		$status->merge( $masterStatus );
-		// Propagate the operations to the clone backends if there were no fatal errors.
-		// If $ops only had one operation, this might avoid backend inconsistencies.
-		// This also avoids inconsistency for expected errors (like "file already exists").
-		if ( !count( $masterStatus->getErrorsArray() ) ) {
+		// Propagate the operations to the clone backends if there were no unexpected errors
+		// and if there were either no expected errors or if the 'force' option was used.
+		// However, if nothing succeeded at all, then don't replicate any of the operations.
+		// If $ops only had one operation, this might avoid backend sync inconsistencies.
+		if ( $masterStatus->isOK() && $masterStatus->successCount > 0 ) {
 			foreach ( $this->backends as $index => $backend ) {
 				if ( $index !== $this->masterIndex ) { // not done already
 					$realOps = $this->substOpBatchPaths( $ops, $backend );
@@ -351,7 +352,7 @@ class FileBackendMultiWrite extends FileBackend {
 				$paths[] = $op['dst'];
 			}
 		}
-		return array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) );
+		return array_values( array_unique( array_filter( $paths, 'FileBackend::isStoragePath' ) ) );
 	}
 
 	/**
@@ -572,13 +573,19 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getFileContents()
+	 * @see FileBackend::getFileContentsMulti()
 	 * @param $params array
 	 * @return bool|string
 	 */
-	public function getFileContents( array $params ) {
+	public function getFileContentsMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getFileContents( $realParams );
+		$contentsM = $this->backends[$this->masterIndex]->getFileContentsMulti( $realParams );
+
+		$contents = array(); // (path => FSFile) mapping using the proxy backend's name
+		foreach ( $contentsM as $path => $data ) {
+			$contents[$this->unsubstPaths( $path )] = $data;
+		}
+		return $contents;
 	}
 
 	/**
@@ -612,23 +619,35 @@ class FileBackendMultiWrite extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getLocalReference()
+	 * @see FileBackend::getLocalReferenceMulti()
 	 * @param $params array
 	 * @return FSFile|null
 	 */
-	public function getLocalReference( array $params ) {
+	public function getLocalReferenceMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getLocalReference( $realParams );
+		$fsFilesM = $this->backends[$this->masterIndex]->getLocalReferenceMulti( $realParams );
+
+		$fsFiles = array(); // (path => FSFile) mapping using the proxy backend's name
+		foreach ( $fsFilesM as $path => $fsFile ) {
+			$fsFiles[$this->unsubstPaths( $path )] = $fsFile;
+		}
+		return $fsFiles;
 	}
 
 	/**
-	 * @see FileBackend::getLocalCopy()
+	 * @see FileBackend::getLocalCopyMulti()
 	 * @param $params array
 	 * @return null|TempFSFile
 	 */
-	public function getLocalCopy( array $params ) {
+	public function getLocalCopyMulti( array $params ) {
 		$realParams = $this->substOpPaths( $params, $this->backends[$this->masterIndex] );
-		return $this->backends[$this->masterIndex]->getLocalCopy( $realParams );
+		$tempFilesM = $this->backends[$this->masterIndex]->getLocalCopyMulti( $realParams );
+
+		$tempFiles = array(); // (path => TempFSFile) mapping using the proxy backend's name
+		foreach ( $tempFilesM as $path => $tempFile ) {
+			$tempFiles[$this->unsubstPaths( $path )] = $tempFile;
+		}
+		return $tempFiles;
 	}
 
 	/**

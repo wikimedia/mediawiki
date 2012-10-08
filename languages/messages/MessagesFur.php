@@ -410,7 +410,7 @@ Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
 # Login and logout pages
 'logouttext' => "'''Tu sâs cumò lât fûr.'''
 
-Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis [[Special:UserLogin|jentrâ di gnûf]] cul stes o cuntun altri non utent.
+Tu puedis continuâ a doprâ {{SITENAME}} come anonim, o tu puedis <span class='plainlinks'>[$1 jentrâ di gnûf]</span> cul stes o cuntun altri non utent.
 Considere che cualchi pagjine e pues mostrâti ancjemò come jentrât tal sît fin cuant che no tu netis la memorie cache dal sgarfadôr.",
 'welcomecreation' => '== Mandi e benvignût $1! ==
 La tô identitât e je stade creade. 
@@ -692,8 +692,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'search-interwiki-caption' => 'Progjets fradis',
 'search-interwiki-default' => 'Risultâts di $1:',
 'search-interwiki-more' => '(altri)',
-'search-mwsuggest-enabled' => 'cui sugjeriments',
-'search-mwsuggest-disabled' => 'cence i sugjeriments',
 'mwsuggest-disable' => 'Disative i sugjeriments AJAX',
 'searchrelated' => 'leâts',
 'searchall' => 'ducj',
@@ -1700,6 +1698,10 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 
 # New logging system
 'newuserlog-byemail' => 'peraule clâf mandade par pueste eletroniche',
+
+# Search suggestions
+'searchsuggest-search' => 'Ricercje',
+'searchsuggest-containing' => 'che al à dentri...',
 
 # API errors
 'api-error-unclassified' => 'Al è capitât un erôr no cognossût',

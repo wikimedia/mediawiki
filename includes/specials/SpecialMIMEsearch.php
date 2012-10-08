@@ -34,9 +34,17 @@ class MIMEsearchPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isExpensive() { return true; }
-	function isSyndicated() { return false; }
-	function isCacheable() { return false; }
+	function isExpensive() {
+		return true;
+	}
+
+	function isSyndicated() {
+		return false;
+	}
+
+	function isCacheable() {
+		return false;
+	}
 
 	function linkParameters() {
 		return array( 'mime' => "{$this->major}/{$this->minor}" );

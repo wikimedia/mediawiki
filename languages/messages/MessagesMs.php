@@ -257,7 +257,7 @@ $messages = array(
 'thursday' => 'Khamis',
 'friday' => 'Jumaat',
 'saturday' => 'Sabtu',
-'sun' => 'Aha',
+'sun' => 'Ahd',
 'mon' => 'Isn',
 'tue' => 'Sel',
 'wed' => 'Rab',
@@ -295,7 +295,7 @@ $messages = array(
 'may' => 'Mei',
 'jun' => 'Jun',
 'jul' => 'Jul',
-'aug' => 'Ogo',
+'aug' => 'Ogs',
 'sep' => 'Sep',
 'oct' => 'Okt',
 'nov' => 'Nov',
@@ -351,7 +351,7 @@ $messages = array(
 'vector-action-protect' => 'Lindungi',
 'vector-action-undelete' => 'Batal hapus',
 'vector-action-unprotect' => 'Ubah perlindungan',
-'vector-simplesearch-preference' => 'Bolehkan cadangan carian lanjutan (kulit Vector sahaja)',
+'vector-simplesearch-preference' => 'Bolehkan bar carian ringkas (kulit Vector sahaja)',
 'vector-view-create' => 'Cipta',
 'vector-view-edit' => 'Sunting',
 'vector-view-history' => 'Lihat sejarah',
@@ -603,7 +603,7 @@ Pentadbir yang menguncinya memberikan penjelasan yang berikut: "$3".',
 # Login and logout pages
 'logouttext' => "'''Anda telah log keluar.'''
 
-Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh [[Special:UserLogin|log masuk sekali lagi]] sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
+Anda boleh terus menggunakan {{SITENAME}} sebagai pengguna tanpa nama, atau anda boleh <span class='plainlinks'>[$1 log masuk sekali lagi]</span> sebagai pengguna lain. Anda boleh membersihkan cache pelayar web anda sekiranya terdapat laman yang memaparkan seolah-olah anda masih log masuk.",
 'welcomecreation' => '== Selamat datang, $1! ==
 
 Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutamaan {{SITENAME}}]] anda.',
@@ -1210,8 +1210,6 @@ Butirannya boleh didapati di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGEN
 'search-interwiki-caption' => 'Projek-projek lain',
 'search-interwiki-default' => 'Keputusan daripada $1:',
 'search-interwiki-more' => '(lagi)',
-'search-mwsuggest-enabled' => 'berserta cadangan',
-'search-mwsuggest-disabled' => 'tiada cadangan',
 'search-relatedarticle' => 'Berkaitan',
 'mwsuggest-disable' => 'Matikan ciri cadangan AJAX',
 'searcheverything-enable' => 'Cari dalam semua ruang nama',
@@ -1308,7 +1306,7 @@ Di sini ada nilai yang dihasilkan secara rawak yang boleh anda guna: $1',
 'timezoneregion-indian' => 'Lautan Hindi',
 'timezoneregion-pacific' => 'Lautan Pasifik',
 'allowemail' => 'Benarkan e-mel daripada pengguna lain',
-'prefs-searchoptions' => 'Pilihan carian',
+'prefs-searchoptions' => 'Cari',
 'prefs-namespaces' => 'Ruang nama',
 'defaultns' => 'Jika tidak cari dalam ruang nama ini:',
 'default' => 'asali',
@@ -1475,7 +1473,7 @@ Tindakan ini tidak boleh dibatalkan.',
 
 # User rights log
 'rightslog' => 'Log hak pengguna',
-'rightslogtext' => 'Ini ialah log bagi perubahan hak pengguna.',
+'rightslogtext' => 'Ini ialah log perubahan terhadap hak pengguna.',
 'rightslogentry' => 'menukar keahlian kumpulan bagi $1 daripada $2 kepada $3',
 'rightslogentry-autopromote' => 'dinaik pangkat secara automatik dari $2 ke $3',
 'rightsnone' => '(tiada)',
@@ -2839,7 +2837,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # JavaScriptTest
 'javascripttest' => 'Ujian JavaScript',
-'javascripttest-disabled' => 'Fungsi ini belum dapat dihidupkan di wki ini.',
 'javascripttest-title' => 'Ujian $1 sedang dijalankan',
 'javascripttest-pagetext-noframework' => 'Laman ini ditempah untuk menjalankan ujian JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Kerangka "$1" tidak dikenali.',
@@ -2979,7 +2976,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-authors' => 'Jumlah pengarang yang berlainan',
 'pageinfo-recent-edits' => 'Bilangan suntingan terkini (dalam $1 yang lalu)',
 'pageinfo-recent-authors' => 'Bilangan pengarang berbeza yang terkini',
-'pageinfo-restriction' => 'Perlindungan halaman ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Kata sakti ($1)',
 'pageinfo-hidden-categories' => 'Kategori tersembunyi ($1)',
 'pageinfo-templates' => 'Templat tertransklusi ($1)',
@@ -3846,6 +3842,10 @@ Ataupun, anda boleh menggunakan borang yang mudah di bawah. Ulasan anda akan dic
 'feedback-close' => 'Siap',
 'feedback-bugcheck' => 'Bagus! Cuma pastikan itu bukan salah satu [$1 pepijat] yang sedia diketahui.',
 'feedback-bugnew' => 'Saya dah semak. Laporkan pepijat baru',
+
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'mengandungi...',
 
 # API errors
 'api-error-badaccess-groups' => 'Anda tidak dibenarkan memuat naik fail di wiki ini.',

@@ -359,7 +359,7 @@ Cȳþþuhord edƿende ƿōh "<tt>$3: $4</tt>"',
 # Login and logout pages
 'logouttext' => "'''Þū eart nū ūtmeldod.'''
 
-Þū canst ætfeolan tō brūcenne {{SITENAME}} ungecūðe, oþþe þū canst [[Special:UserLogin|inmeldian eft]] tō ylcan oþþe ōðrum brūcende.
+Þū canst ætfeolan tō brūcenne {{SITENAME}} ungecūðe, oþþe þū canst <span class='plainlinks'>[$1 inmeldian eft]</span> tō ylcan oþþe ōðrum brūcende.
 Cnāw þæt sume sīdan cunnon gelǣstende ēowod wesan swā þū wǣre gīet inmeldod, oþ þæt þū clǣnsie þīnes sēcendtōles gemynd.",
 'welcomecreation' => '== Ƿilcumen, $1! ==
 
@@ -568,8 +568,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'search-interwiki-caption' => 'Sƿeostorƿeorc',
 'search-interwiki-default' => '$1 becymas:',
 'search-interwiki-more' => '(mā)',
-'search-mwsuggest-enabled' => 'mid teohhungum',
-'search-mwsuggest-disabled' => 'nān teohhunga',
 'searchrelated' => 'ȝesibbed',
 'searchall' => 'eall',
 'showingresults' => 'Īewan under oþ <b>$1</b> tōhīgunga onginnenda mid #<b>$2</b>.',

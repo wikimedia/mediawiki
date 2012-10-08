@@ -606,7 +606,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Сез хисап язмагыздан чыктыгыз.'''
 
-Сез {{SITENAME}} проектында аноним рәвештә кала яисә шул ук яки башка исем белән яңадан [[Special:UserLogin|керә]] аласыз.
+Сез {{SITENAME}} проектында аноним рәвештә кала яисә шул ук яки башка исем белән яңадан <span class='plainlinks'>[$1 керә]</span> аласыз.
 Кайбер битләр Сез кергән кебек күрсәтелергә мөмкин. Моны бетерү өчен браузер кэшын чистартыгыз.",
 'welcomecreation' => '== Рәхим итегез, $1! ==
 Сез теркәлдегез.
@@ -1150,8 +1150,6 @@ $1",
 'search-interwiki-caption' => 'Тугандаш проектлар',
 'search-interwiki-default' => '$1 нәтиҗә:',
 'search-interwiki-more' => '(тагын)',
-'search-mwsuggest-enabled' => 'киңәшләр белән',
-'search-mwsuggest-disabled' => 'киңәшсез',
 'search-relatedarticle' => 'Бәйләнгән',
 'mwsuggest-disable' => 'AJAX-ярдәмне ябу',
 'searcheverything-enable' => 'Барлык исемнәр мәйданында эзләү',
@@ -2555,6 +2553,10 @@ $1',
 'feedback-thanks' => 'Рәхмәт! Сезнең фикер "[$2 $1]" сәхифәсенә куелды.',
 'feedback-close' => 'Әзер',
 'feedback-bugnew' => 'Мин тикшердем. Яңа хата турында хәбәр итү',
+
+# Search suggestions
+'searchsuggest-search' => 'Эзләү',
+'searchsuggest-containing' => 'эчтәлек...',
 
 # API errors
 'api-error-badaccess-groups' => 'Сезгә бу викигә файллар өстәү рөхсәт ителмәгән',

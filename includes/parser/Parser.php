@@ -201,6 +201,13 @@ class Parser {
 	var $mUniqPrefix;
 
 	/**
+	 * @var Array with the language name of each language link (i.e. the
+	 * interwiki prefix) in the key, value arbitrary. Used to avoid sending
+	 * duplicate language links to the ParserOutput.
+	 */
+	var $mLangLinkLanguages;
+
+	/**
 	 * Constructor
 	 *
 	 * @param $conf array
@@ -282,6 +289,7 @@ class Parser {
 			$this->mRevisionId = $this->mRevisionUser = null;
 		$this->mVarCache = array();
 		$this->mUser = null;
+		$this->mLangLinkLanguages = array();
 
 		/**
 		 * Prefix for temporary replacement strings for the multipass parser.
@@ -491,6 +499,11 @@ class Parser {
 				$PFreport;
 			wfRunHooks( 'ParserLimitReport', array( $this, &$limitReport ) );
 			$text .= "\n<!-- \n$limitReport-->\n";
+
+			if ( $this->mGeneratedPPNodeCount > $this->mOptions->getMaxGeneratedPPNodeCount() / 10 ) {
+				wfDebugLog( 'generated-pp-node-count', $this->mGeneratedPPNodeCount . ' ' .
+					$this->mTitle->getPrefixedDBkey() );
+			}
 		}
 		$this->mOutput->setText( $text );
 
@@ -1948,8 +1961,16 @@ class Parser {
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
 				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && Language::fetchLanguageName( $iw, null, 'mw' ) ) {
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 					// FIXME: the above check prevents links to sites with identifiers that are not language codes
 					$this->mOutput->addLanguageLink( $nt->getFullText() );
+=======
+					# Bug 24502: filter duplicates
+					if ( !isset( $this->mLangLinkLanguages[$iw] ) ) {
+						$this->mLangLinkLanguages[$iw] = true;
+						$this->mOutput->addLanguageLink( $nt->getFullText() );
+					}
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 					$s = rtrim( $s . $prefix );
 					$s .= trim( $trail, "\n" ) == '' ? '': $prefix . $trail;
 					wfProfileOut( __METHOD__."-interwiki" );
@@ -3702,8 +3723,13 @@ class Parser {
 			return $obj->tc_contents;
 		}
 
-		$text = Http::get( $url );
-		if ( !$text ) {
+		$req = MWHttpRequest::factory( $url );
+		$status = $req->execute(); // Status object
+		if ( $status->isOK() ) {
+			$text = $req->getContent();
+		} elseif ( $req->getStatus() != 200 ) { // Though we failed to fetch the content, this status is useless.
+			return wfMessage( 'scarytranscludefailed-httpstatus', $url, $req->getStatus() /* HTTP status */ )->inContentLanguage()->text();
+		} else {
 			return wfMessage( 'scarytranscludefailed', $url )->inContentLanguage()->text();
 		}
 
@@ -4147,10 +4173,16 @@ class Parser {
 			$safeHeadline = $this->mStripState->unstripBoth( $safeHeadline );
 
 			# Strip out HTML (first regex removes any tag not allowed)
-			# Allowed tags are <sup> and <sub> (bug 8393), <i> (bug 26375) and <b> (r105284)
-			# We strip any parameter from accepted tags (second regex)
+			# Allowed tags are:
+			# * <sup> and <sub> (bug 8393)
+			# * <i> (bug 26375)
+			# * <b> (r105284)
+			# * <span dir="rtl"> and <span dir="ltr"> (bug 35167)
+			#
+			# We strip any parameter from accepted tags (second regex), except dir="rtl|ltr" from <span>,
+			# to allow setting directionality in toc items.
 			$tocline = preg_replace(
-				array( '#<(?!/?(sup|sub|i|b)(?: [^>]*)?>).*?'.'>#', '#<(/?(sup|sub|i|b))(?: .*?)?'.'>#' ),
+				array( '#<(?!/?(span|sup|sub|i|b)(?: [^>]*)?>).*?'.'>#', '#<(/?(?:span(?: dir="(?:rtl|ltr)")?|sup|sub|i|b))(?: .*?)?'.'>#' ),
 				array( '',                          '<$1>' ),
 				$safeHeadline
 			);

@@ -82,6 +82,8 @@
  * @author Nemo bis
  * @author Niels
  * @author Nike
+ * @author Njardarlogar
+ * @author Nnemo
  * @author Node ue
  * @author Octahedron80
  * @author Od1n
@@ -553,9 +555,9 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
-The message takes three parameters; 
-*$1 {{msg-mw|newmessageslinkplural}}, 
-*$2 {{msg-mw|newmessagesdifflinkplural}}, and 
+The message takes three parameters;
+*$1 {{msg-mw|newmessageslinkplural}},
+*$2 {{msg-mw|newmessagesdifflinkplural}}, and
 *$3 the number of authors who have edited the talk page since the owning user last viewed it.',
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to{{msg-mw|youhavenewmessages}}. Parameters:
 * $1 is {{msg-mw|newmessageslinkplural}},
@@ -705,8 +707,12 @@ $1 is a filename, I think.',
 * $1: the protection type, e.g. "protect" for fully protected pages',
 'viewsourcetext' => 'The text shown when displaying the source of a page that the user has no permission to edit',
 'viewyourtext' => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
-'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.',
-'editinginterface' => 'A message shown when editing pages in the namespace MediaWiki:.',
+'protectedinterface' => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.
+
+See also {{msg-mw|editinginterface}}.',
+'editinginterface' => 'A message shown when editing pages in the namespace MediaWiki:.
+
+See also {{msg-mw|protectedinterface}}.',
 'ns-specialprotected' => 'Error message displayed when trying to edit a page in the Special namespace',
 'titleprotected' => 'Use $1 for GENDER.',
 'invalidtitle-knownnamespace' => 'Displayed when an invalid title was encountered (generally in a list), but the namespace number is known to exist.
@@ -720,7 +726,8 @@ $1 is a filename, I think.',
 'exception-nologin-text' => 'Generic reason displayed on error page when a user is not logged in. Message used by the UserNotLoggedIn exception.',
 
 # Login and logout pages
-'logouttext' => 'Log out message',
+'logouttext' => 'Log out message
+* $1 is an URL to [[Special:Userlogin]] containing returnto and returntoquery parameters',
 'welcomecreation' => 'The welcome message users see after registering a user account. $1 is the username of the new user.',
 'yourname' => "In user preferences
 
@@ -793,7 +800,7 @@ $1 is the minimum number of characters in the password.',
 'mailmypassword' => 'Shown at [[Special:UserLogin]]',
 'passwordremindertitle' => 'Title of e-mail which contains temporary password',
 'passwordremindertext' => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
-* $1 is an IP addres. Example: 123.123.123.123
+* $1 is an IP address. Example: 123.123.123.123
 * $2 is a username. Example: Joe
 * $3 is a password. Example: er##@fdas!
 * $4 is a URL. Example: http://wiki.example.com
@@ -1934,7 +1941,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 
 {{Identical|Upload file}}',
 'uploadnologin' => '{{Identical|Not logged in}}',
-'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave it untranslated!}}
+'uploadtext' => "{{doc-important|''thumb'' and ''left'' are magic words. Leave them untranslated!}}
 Text displayed when uploading a file using [[Special:Upload]].",
 'upload-permitted' => 'Used in [[Special:Upload]].',
 'upload-preferred' => 'Used in [[Special:Upload]].',
@@ -2102,7 +2109,7 @@ Used on [[Special:UploadWizard]].',
 'img-auth-accessdenied' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied
 {{Identical|Access denied}}',
 'img-auth-nopathinfo' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description
-* This is plain text. Do not use any wiki syntax.',
+{{Doc-important|This is plain text. Do not use any wiki syntax.}}',
 'img-auth-notindir' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: When the specified path is not in upload directory.',
 'img-auth-badtitle' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Bad title, $1 is the invalid title',
 'img-auth-nologinnWL' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Logged in and file not whitelisted. $1 is the file not in whitelist.',
@@ -2909,11 +2916,12 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].',
-'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
+'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]].
 
-{{Identical|Invert selection}}
+This message means "Invert selection of namespace".
 
-This message has a tooltip {{msg-mw|tooltip-invert}}',
+This message has a tooltip {{msg-mw|tooltip-invert}}
+{{Identical|Invert selection}}',
 'tooltip-invert' => 'Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}',
 'namespace_association' => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.
 
@@ -3291,7 +3299,6 @@ See also:
 
 # JavaScriptTest
 'javascripttest' => 'Title of [[Special:JavaScriptTest|the special page]]',
-'javascripttest-disabled' => 'Message displayed on [[Special:JavaScriptTest]] if this feature is disabled (it is disabled by default).',
 'javascripttest-title' => 'Title of the special page when running a test suite. Parameters:
 * $1 is the name of the framework, for example QUnit.',
 'javascripttest-pagetext-unknownframework' => 'Error message when given framework id is not found. $1 is the id of the framework.',
@@ -3503,14 +3510,13 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-authors' => 'The total number of users who have edited the page.',
 'pageinfo-recent-edits' => 'The number of times the page has been edited recently. $1 is a localised duration (e.g. 9 days).',
 'pageinfo-recent-authors' => 'The number of users who have edited the page recently.',
-'pageinfo-restriction' => 'Parameters:
-* $1 is the type of page protection (message restriction-$type, preferably in lowercase). If your language doesn\'t have small and capital letters, you can simply write <nowiki>$1</nowiki>.',
 'pageinfo-magic-words' => 'The list of magic words on the page. Parameters:
 * $1 is the number of magic words on the page.',
 'pageinfo-hidden-categories' => 'The list of hidden categories on the page. Parameters:
 * $1 is the number of hidden categories on the page.',
 'pageinfo-templates' => 'The list of templates transcluded within the page. Parameters:
 * $1 is the number of templates transcluded within the page.',
+'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
 
 # Skin names
 'skinname-standard' => '{{optional}}
@@ -4353,6 +4359,12 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail' => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
+# Scary transclusion
+'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
+'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.',
+'scarytranscludefailed-httpstatus' => 'Identical to {{msg-mw|scarytranscludefailed}}, but shows the HTTP error which was received.',
+'scarytranscludetoolong' => 'The URL was too long.',
+
 'unit-pixel' => '{{optional}}',
 
 # action=purge
@@ -4624,7 +4636,8 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
 'version-entrypoints' => 'Header on [[Special:Version]] above a table that lists the URLs of various entry points in this MediaWiki installation. Entry points are the "places" where the wiki\'s content and information can be accessed in various ways, for instance the standard index.php which shows normal pages, histories etc.',
-'version-entrypoints-header-entrypoint' => 'ପ୍ରବେଶ ବିନ୍ଦୁ',
+'version-entrypoints-header-entrypoint' => 'Header for the first column in the entry points table on [[Special:Version]].
+See also {{msg-mw|Version-entrypoints}}',
 'version-entrypoints-header-url' => 'Header for the second column in the entry points table on [[Special:Version]].',
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
@@ -4840,6 +4853,12 @@ $4 is the gender of the target user.',
 {{Identical|Done}}',
 'feedback-bugcheck' => 'Message that appears before the user submits a bug, reminding them to check for known bugs.',
 'feedback-bugnew' => 'Button label - asserts that the user has checked for existing bugs. When clicked will launch a bugzilla form to add a new bug in a new tab or window',
+
+# Search suggestions
+'searchsuggest-search' => 'Greyed out default text in the simple search box in the Vector skin. (It disappears and lets the user enter the requested search terms when the search box receives focus.)
+
+{{Identical|Search}}',
+'searchsuggest-containing' => 'Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.',
 
 # API errors
 'api-error-badaccess-groups' => 'API error message that can be used for client side localisation of API errors.',

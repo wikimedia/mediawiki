@@ -468,7 +468,7 @@ L'alministrador que lu bloquió dio esti motivu: «$3».",
 # Login and logout pages
 'logouttext' => "'''Agora tas desconeutáu.'''
 
-Pues siguir usando {{SITENAME}} de forma anónima, o pues [[Special:UserLogin|volver entrar]] como'l mesmu o como otru usuariu.
+Pues siguir usando {{SITENAME}} de forma anónima, o pues <span class='plainlinks'>[$1 volver entrar]</span> como'l mesmu o como otru usuariu.
 Ten en cuenta que dalgunes páxines puen siguir apaeciendo como si tovía tuvieres coneutáu, hasta que llimpies la caché del restolador.",
 'welcomecreation' => "== ¡Bienllegáu, $1! ==
 Creóse la to cuenta.
@@ -1114,8 +1114,6 @@ Se puen alcontrar más detalles nel [{{fullurl:{{#Special:Log}}/delete|page={{FU
 'search-interwiki-caption' => 'Proyeutos hermanos',
 'search-interwiki-default' => '$1 resultaos:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con suxerencies',
-'search-mwsuggest-disabled' => 'ensin suxerencies',
 'search-relatedarticle' => 'Rellacionáu',
 'mwsuggest-disable' => 'Desactivar les suxerencies AJAX',
 'searcheverything-enable' => 'Buscar en tolos espacios de nome',
@@ -2753,7 +2751,6 @@ Guárdalu nel ordenador y xúbilu equí.",
 
 # JavaScriptTest
 'javascripttest' => 'Prueba de JavaScript',
-'javascripttest-disabled' => 'Esta función ta desactivada.',
 'javascripttest-title' => 'Executando pruebes de $1',
 'javascripttest-pagetext-noframework' => 'Esta páxina ta acutada pa executar pruebes de javascript.',
 'javascripttest-pagetext-unknownframework' => "L'entornu de pruebes «$1» ye desconocíu.",
@@ -2918,7 +2915,6 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-authors' => "Númberu total d'autores distintos",
 'pageinfo-recent-edits' => "Númberu d'ediciones recientes (nos caberos $1)",
 'pageinfo-recent-authors' => "Númberu d'autores distintos recientes",
-'pageinfo-restriction' => 'Proteición de la páxina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Pallabra máxica|Pallabres máxiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría anubrida|Categoríes anubríes}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Plantía incluída|Plantíes incluíes}} ($1)',
@@ -3779,6 +3775,10 @@ D\'otra miente, pues usar el formulariu cenciellu d\'abaxo. El to comentariu apa
 'feedback-close' => 'Fecho',
 'feedback-bugcheck' => '¡Perfeuto! Comprueba que nun tea yá ente los [$1 fallos conocíos].',
 'feedback-bugnew' => "Yá lo comprobé. Informar d'esti fallu nuevu",
+
+# Search suggestions
+'searchsuggest-search' => 'Guetar',
+'searchsuggest-containing' => 'que contién...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nun tienes permisu pa xubir ficheros a esta wiki.',

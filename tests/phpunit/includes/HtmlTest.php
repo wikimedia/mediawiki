@@ -9,14 +9,14 @@ class HtmlTest extends MediaWikiTestCase {
 	private static $oldHTML5;
 
 	public function setUp() {
-		global $wgLang, $wgContLang, $wgLanguageCode, $wgHTML5;
+		global $wgLang, $wgContLang, $wgLanguageCode, $wgHtml5;
 
 		// Save globals
 		self::$oldLang = $wgLang;
 		self::$oldContLang = $wgContLang;
 		self::$oldNamespaces = $wgContLang->getNamespaces();
 		self::$oldLanguageCode = $wgLanguageCode;
-		self::$oldHTML5 = $wgHTML5;
+		self::$oldHTML5 = $wgHtml5;
 
 		$wgLanguageCode = 'en';
 		$wgContLang = $wgLang = Language::factory( $wgLanguageCode );
@@ -47,33 +47,33 @@ class HtmlTest extends MediaWikiTestCase {
 	}
 
 	public function tearDown() {
-		global $wgLang, $wgContLang, $wgLanguageCode, $wgHTML5;
+		global $wgLang, $wgContLang, $wgLanguageCode, $wgHtml5;
 
 		// Restore globals
 		$wgContLang->setNamespaces( self::$oldNamespaces );
 		$wgLang = self::$oldLang;
 		$wgContLang = self::$oldContLang;
 		$wgLanguageCode = self::$oldLanguageCode;
-		$wgHTML5 = self::$oldHTML5;
+		$wgHtml5 = self::$oldHTML5;
 	}
 
 	/**
-	 * Wrapper to easily set $wgHTML5 = true.
+	 * Wrapper to easily set $wgHtml5 = true.
 	 * Original value will be restored after test completion.
 	 * @todo Move to MediaWikiTestCase
 	 */
 	public function enableHTML5() {
-		global $wgHTML5;
-		$wgHTML5 = true;
+		global $wgHtml5;
+		$wgHtml5 = true;
 	}
 	/**
-	 * Wrapper to easily set $wgHTML5 = false
+	 * Wrapper to easily set $wgHtml5 = false
 	 * Original value will be restored after test completion.
 	 * @todo Move to MediaWikiTestCase
 	 */
 	public function disableHTML5() {
-		global $wgHTML5;
-		$wgHTML5 = false;
+		global $wgHtml5;
+		$wgHtml5 = false;
 	}
 
 	public function testExpandAttributesSkipsNullAndFalse() {
@@ -239,7 +239,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testNamespaceSelector() {
 		$this->assertEquals(
-			'<select>' . "\n" .
+			'<select id="namespace" name="namespace">' . "\n" .
 '<option value="0">(Main)</option>' . "\n" .
 '<option value="1">Talk</option>' . "\n" .
 '<option value="2">User</option>' . "\n" .
@@ -290,8 +290,8 @@ class HtmlTest extends MediaWikiTestCase {
 		);
 
 		$this->assertEquals(
-			'<label>Select a namespace:</label>&#160;' .
-'<select>' . "\n" .
+			'<label for="namespace">Select a namespace:</label>&#160;' .
+'<select id="namespace" name="namespace">' . "\n" .
 '<option value="0">(Main)</option>' . "\n" .
 '<option value="1">Talk</option>' . "\n" .
 '<option value="2">User</option>' . "\n" .
@@ -318,7 +318,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testCanFilterOutNamespaces() {
 		$this->assertEquals(
-'<select>' . "\n" .
+'<select id="namespace" name="namespace">' . "\n" .
 '<option value="2">User</option>' . "\n" .
 '<option value="4">MyWiki</option>' . "\n" .
 '<option value="5">MyWiki Talk</option>' . "\n" .
@@ -340,7 +340,7 @@ class HtmlTest extends MediaWikiTestCase {
 
 	function testCanDisableANamespaces() {
 		$this->assertEquals(
-'<select>' . "\n" .
+'<select id="namespace" name="namespace">' . "\n" .
 '<option disabled="" value="0">(Main)</option>' . "\n" .
 '<option disabled="" value="1">Talk</option>' . "\n" .
 '<option disabled="" value="2">User</option>' . "\n" .
@@ -372,7 +372,7 @@ class HtmlTest extends MediaWikiTestCase {
 		$this->enableHTML5();
 		$this->assertEquals(
 			'<input type="' . $HTML5InputType . '" />',
-			HTML::element( 'input', array( 'type' => $HTML5InputType ) ),
+			Html::element( 'input', array( 'type' => $HTML5InputType ) ),
 			'In HTML5, HTML::element() should accept type="' . $HTML5InputType . '"'
 		);
 	}

@@ -224,8 +224,9 @@ class ChangeTags {
 	public static function buildTagFilterSelector( $selected='', $fullForm = false, Title $title = null ) {
 		global $wgUseTagFilter;
 
-		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) )
+		if ( !$wgUseTagFilter || !count( self::listDefinedTags() ) ) {
 			return $fullForm ? '' : array();
+		}
 
 		$data = array( Html::rawElement( 'label', array( 'for' => 'tagfilter' ), wfMessage( 'tag-filter' )->parse() ),
 			Xml::input( 'tagfilter', 20, $selected, array( 'class' => 'mw-tagfilter-input' ) ) );

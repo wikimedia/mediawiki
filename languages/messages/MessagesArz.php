@@ -682,7 +682,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''أنت دلوقتى مش مسجل دخولك.'''
 
-تقدر تكمل استعمال {{SITENAME}} على انك مجهول، أو [[Special:UserLogin|الدخول مرة تانيه]] بنفس الاسم أو باسم تاني.
+تقدر تكمل استعمال {{SITENAME}} على انك مجهول، أو <span class='plainlinks'>[$1 الدخول مرة تانيه]</span> بنفس الاسم أو باسم تاني.
 ممكن تشوف بعض الصفحات  كأنك متسجل ، و دا علشان استعمال الصفحات المتخبية فى المتصفح بتاعك.",
 'welcomecreation' => '== اهلاً و سهلا يا $1! ==
 اتفتحلك حساب.
@@ -887,9 +887,10 @@ $2',
 ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى صفح تانيه,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات اللى ليها علاقه],
 او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى]</span>.',
-'noarticletext-nopermission' => 'مفيش اى نص دلوقتى فى الصفحه دى.
-ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى الصفحات التانيه,
-او <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات بتاعتها]</span>.',
+'noarticletext-nopermission' => 'مافيش دلوقتى اى نص فى الصفحه دى.
+ممكن [[Special:Search/{{PAGENAME}}|تدور على عنوان الصفحه دى]] فى صفح تانيه,
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} تدور فى السجلات اللى ليها علاقه],
+او [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعدل الصفحه دى]</span>.',
 'userpage-userdoesnotexist' => 'حساب اليوزر "<nowiki>$1</nowiki>" مش متسجل. لو سمحت تشوف لو عايز تبتدي/تعدل الصفحة دي.',
 'userpage-userdoesnotexist-view' => 'حساب اليوزر "$1" مش متسجل',
 'blocked-notice-logextract' => 'اليوزر ده معمول له بلوك دلوقتى.
@@ -1223,8 +1224,6 @@ $1",
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
 'search-interwiki-more' => '(اأكتر)',
-'search-mwsuggest-enabled' => 'مع اقتراحات',
-'search-mwsuggest-disabled' => 'مافيش اقتراحات',
 'search-relatedarticle' => 'مرتبطه',
 'mwsuggest-disable' => 'تعطيل اقتراحات أجاكس',
 'searcheverything-enable' => 'دور فى النطاقات كلها.',
@@ -3484,5 +3483,9 @@ $5
 'revdelete-restricted' => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted' => 'شيل الضوابط من على السيسوبات',
 'newuserlog-byemail' => 'الباسورد اتبعتت بالايميل',
+
+# Search suggestions
+'searchsuggest-search' => 'تدوير',
+'searchsuggest-containing' => 'جوّاه...',
 
 );

@@ -773,8 +773,6 @@ Gamitan me ing radio button column bang bukud mung detang miyalilan aniang o bay
 'search-interwiki-caption' => 'Kapatad a proyektu',
 'search-interwiki-default' => '$1 linual/resulta:',
 'search-interwiki-more' => '(dakal pa)',
-'search-mwsuggest-enabled' => 'maki munikala',
-'search-mwsuggest-disabled' => 'alang munikala',
 'search-relatedarticle' => 'Kamaganak',
 'mwsuggest-disable' => 'Patdan la reng munikalang AJAX',
 'searchrelated' => 'kaugne',

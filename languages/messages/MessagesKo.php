@@ -18,6 +18,7 @@
  * @author Gapo
  * @author Gjue
  * @author Ha98574
+ * @author Hoo
  * @author IRTC1015
  * @author ITurtle
  * @author Idh0854
@@ -501,7 +502,7 @@ $messages = array(
 'vector-action-protect' => '보호',
 'vector-action-undelete' => '되살리기',
 'vector-action-unprotect' => '보호 설정 바꾸기',
-'vector-simplesearch-preference' => '향상된 검색어 제안 사용하기 (벡터 스킨 전용)',
+'vector-simplesearch-preference' => '단순한 찾기 막대 사용하기 (벡터 스킨 전용)',
 'vector-view-create' => '만들기',
 'vector-view-edit' => '편집',
 'vector-view-history' => '역사',
@@ -653,7 +654,7 @@ $1',
 # Main script and global functions
 'nosuchaction' => '해당하는 동작이 없습니다.',
 'nosuchactiontext' => 'URL로 요청한 동작이 잘못되었습니다.
-당신은 URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니다.
+URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니다.
 이것은 {{SITENAME}}의 버그일 수도 있습니다.',
 'nosuchspecialpage' => '해당하는 특수 문서가 없습니다.',
 'nospecialpagetext' => '<strong>요청한 특수 문서가 존재하지 않습니다.</strong>
@@ -723,7 +724,7 @@ $1',
 제한을 넘었으니 몇 분 뒤에 새로 시도하세요.',
 'protectedpagetext' => '이 문서는 편집할 수 없도록 보호되어 있습니다.',
 'viewsourcetext' => '문서의 원본을 보거나 복사할 수 있습니다:',
-'viewyourtext' => "당신은 이 문서에 남긴 '''당신의 편집''' 내용을 보거나 복사할 수 있습니다:",
+'viewyourtext' => "이 문서에 남긴 '''내 편집''' 내용을 보거나 복사할 수 있습니다:",
 'protectedinterface' => '이 문서는 이 위키의 소프트웨어 인터페이스에 쓰이는 문서로, 부정 행위를 막기 위해 보호되어 있습니다.
 모든 위키에 대한 번역을 추가하거나 바꾸려면 미디어위키 지역화 프로젝트인 [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하시기 바랍니다.',
 'editinginterface' => "'''경고''': 소프트웨어 인터페이스에 쓰이는 문서를 고치고 있습니다.
@@ -733,8 +734,8 @@ $1',
 'cascadeprotected' => '이 문서는 연쇄 보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
 $2',
 'namespaceprotected' => "'''$1''' 이름공간을 편집할 수 있는 권한이 없습니다.",
-'customcssprotected' => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 당신은 이 CSS 문서를 편집할 수 없습니다.',
-'customjsprotected' => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 당신은 이 자바스크립트 문서를 편집할 수 없습니다.',
+'customcssprotected' => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 이 CSS 문서를 편집할 수 없습니다.',
+'customjsprotected' => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 이 자바스크립트 문서를 편집할 수 없습니다.',
 'ns-specialprotected' => '특수 문서는 편집할 수 없습니다.',
 'titleprotected' => '[[User:$1|$1]] 사용자가 문서 만들기를 금지했습니다.
 이유는 다음과 같습니다. "$2"',
@@ -754,7 +755,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''{{SITENAME}}에서 로그아웃했습니다.'''
 
-이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 [[Special:UserLogin|로그인]]해서 이용할 수 있습니다.
+이대로 이름 없이 {{SITENAME}}을(를) 이용하거나, 방금 사용했던 계정이나 다른 계정으로 다시 <span class='plainlinks'>[$1 로그인]</span>해서 이용할 수 있습니다.
 웹 브라우저의 캐시를 지우지 않으면 몇몇 문서에서 로그인이 되어 있는 것처럼 보일 수 있다는 점을 유의해 주세요.",
 'welcomecreation' => '== $1 님, 환영합니다! ==
 계정이 만들어졌습니다.
@@ -793,10 +794,10 @@ $2',
 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다.
 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
 'nocookieslogin' => '{{SITENAME}}에서는 로그인을 위해 쿠키를 사용합니다.
-당신의 웹 브라우저에서 쿠키가 비활성되어 있습니다.
-쿠키 사용을 활성화한 다음 로그인해 주세요.',
+쿠키가 비활성되어 있습니다.
+쿠키 사용을 활성화한 다음 다시 시도하세요.',
 'nocookiesfornew' => '요청의 출처를 확인할 수 없기 때문에 사용자 계정이 만들어지지 않았습니다.
-쿠키를 허용한 것을 확인한 후에 다시 시도해 보십시오.',
+쿠키를 허용한 것을 확인한 후에 이 문서를 새로 고치고 나서 다시 시도하세요.',
 'noname' => '사용자 이름이 올바르지 않습니다.',
 'loginsuccesstitle' => '로그인 성공',
 'loginsuccess' => "'''{{SITENAME}}에 \"\$1\" 계정으로 로그인했습니다.'''",
@@ -946,7 +947,7 @@ $2
 'hr_tip' => '가로 줄 (되도록 사용하지 말아 주세요)',
 
 # Edit pages
-'summary' => '편집 요약:',
+'summary' => '요약:',
 'subject' => '주제/제목:',
 'minoredit' => '사소한 편집',
 'watchthis' => '이 문서 주시하기',
@@ -963,7 +964,7 @@ $2
 'missingcommenttext' => '아래에 내용을 채워 넣어 주세요.',
 'missingcommentheader' => "'''알림:''' 글의 제목을 입력하지 않았습니다.
 다시 \"{{int:savearticle}}\" 버튼을 클릭하면 글이 제목 없이 저장됩니다.",
-'summary-preview' => '편집 요약 미리 보기:',
+'summary-preview' => '요약 미리 보기:',
 'subject-preview' => '주제/제목 미리 보기:',
 'blockedtitle' => '차단됨',
 'blockedtext' => "'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''
@@ -1016,13 +1017,12 @@ $1 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 대
 익명 사용자를 구별하기 위해서는 숫자로 된 IP 주소를 사용해야만 합니다.
 IP 주소는 여러 사용자가 공유할 수 있습니다.
 자신과 관계없는 의견이 자신에게 남겨져 있어 불쾌하다고 생각하는 익명 사용자는 [[Special:UserLogin/signup|계정을 만들고]] [[Special:UserLogin|로그인 하여]] 나중에 다른 익명 사용자에게 줄 혼란을 줄일 수 있습니다.',
-'noarticletext' => '이 문서가 존재하지 않습니다.
+'noarticletext' => '이 문서가 현재 존재하지 않습니다.
 이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인하거나,
 문서를 직접 [{{fullurl:{{FULLPAGENAME}}|action=edit}} 편집]</span>할 수 있습니다.',
-'noarticletext-nopermission' => '이 문서가 존재하지 않습니다.
-이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]],
-이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span>',
+'noarticletext-nopermission' => '이 문서가 현재 존재하지 않습니다.
+이 문서와 제목이 비슷한 문서가 있는지 [[Special:Search/{{PAGENAME}}|찾거나]], 이 문서에 관련된 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 기록]을 확인할 수 있습니다.</span> 그러나 이 문서를 만들 수 있는 권한은 없습니다.',
 'missing-revision' => '"{{PAGENAME}}"이라는 문서의 #$1판이 존재하지 않습니다.
 
 이 문제는 주로 삭제된 문서를 가리키는 오래된 문서 역사 링크로 인해 발생합니다.
@@ -1395,8 +1395,6 @@ $1",
 'search-interwiki-caption' => '자매 프로젝트',
 'search-interwiki-default' => '$1 결과:',
 'search-interwiki-more' => '(더 보기)',
-'search-mwsuggest-enabled' => '검색어 제안 있음',
-'search-mwsuggest-disabled' => '검색어 제안 없음',
 'search-relatedarticle' => '관련',
 'mwsuggest-disable' => 'AJAX 검색어 제안 끄기',
 'searcheverything-enable' => '모든 이름공간에서 찾기',
@@ -1494,7 +1492,7 @@ $1",
 'timezoneregion-indian' => '인도양',
 'timezoneregion-pacific' => '태평양',
 'allowemail' => '다른 사용자가 보낸 이메일을 받음',
-'prefs-searchoptions' => '찾기 설정',
+'prefs-searchoptions' => '찾기',
 'prefs-namespaces' => '이름공간',
 'defaultns' => '다음 이름공간에서 찾기:',
 'default' => '기본값',
@@ -1558,7 +1556,7 @@ HTML 태그를 확인하세요.',
 'userrights-lookup-user' => '사용자 권한 관리',
 'userrights-user-editname' => '사용자 이름 입력:',
 'editusergroup' => '사용자 그룹 편집',
-'editinguser' => "사용자 '''[[User:$1|$1]]''' $2의 권한 바꿈",
+'editinguser' => "'''[[User:$1|$1]]''' $2 사용자의 권한 바꾸기",
 'userrights-editusergroup' => '사용자 그룹 편집',
 'saveusergroups' => '사용자 권한 저장',
 'userrights-groupsmember' => '현재 권한:',
@@ -1822,8 +1820,8 @@ $2 형식만 사용할 수 있습니다.',
 'fileexists' => '같은 이름의 파일이 이미 있습니다. 파일을 바꾸고 싶지 않다면 <strong>[[:$1]]</strong> 파일을 확인해 주세요.
 [[$1|thumb]]',
 'filepageexists' => '이 파일의 설명 문서가 <strong>[[:$1]]</strong>에 존재하지만, 이 이름을 가진 파일이 존재하지 않습니다.
-당신이 입력한 설명은 설명 문서에 반영되지 않을 것입니다.
-당신의 설명을 반영시키려면, 직접 편집하셔야 합니다.
+입력한 설명은 설명 문서에 반영되지 않을 것입니다.
+설명을 반영시키려면, 직접 편집하셔야 합니다.
 [[$1|thumb]]',
 'fileexists-extension' => '비슷한 이름의 파일이 존재합니다: [[$2|thumb]]
 * 올리려는 파일 이름: <strong>[[:$1]]</strong>
@@ -2387,6 +2385,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # User Messenger
 'usermessage-summary' => '시스템 메시지 남기기',
 'usermessage-editor' => '시스템 메신저',
+'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist' => '주시문서 목록',
@@ -2502,8 +2501,8 @@ $UNWATCHURL
 'rollback' => '편집 되돌리기',
 'rollback_short' => '되돌리기',
 'rollbacklink' => '되돌리기',
-'rollbacklinkcount' => '되돌리기 편집 $1회',
-'rollbacklinkcount-morethan' => '되돌리기 편집 $1회 이상',
+'rollbacklinkcount' => '편집 $1회 되돌리기',
+'rollbacklinkcount-morethan' => '편집 $1회 이상 되돌리기',
 'rollbackfailed' => '되돌리기 실패',
 'cantrollback' => '편집을 되돌릴 수 없습니다.
 문서를 편집한 사용자가 한명뿐입니다.',
@@ -2679,6 +2678,7 @@ $1',
 'sp-contributions-username' => 'IP 주소 또는 사용자 이름:',
 'sp-contributions-toponly' => '최신판만 보기',
 'sp-contributions-submit' => '찾기',
+'sp-contributions-explain' => '',
 
 # What links here
 'whatlinkshere' => '여기를 가리키는 문서',
@@ -2759,7 +2759,7 @@ $1',
 'blocklist-tempblocks' => '기한이 정해진 차단을 숨기기',
 'blocklist-addressblocks' => '단일 IP 차단을 숨기기',
 'blocklist-rangeblocks' => '광역 차단을 숨기기',
-'blocklist-timestamp' => '날짜·시각',
+'blocklist-timestamp' => '시간 기록',
 'blocklist-target' => '차단 대상',
 'blocklist-expiry' => '차단 기한',
 'blocklist-by' => '차단한 관리자',
@@ -2872,10 +2872,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 [[Special:DoubleRedirects|이중 넘겨주기]]나 [[Special:BrokenRedirects|끊긴 넘겨주기]]가 있는지 확인해주세요.
 당신은 넘겨주기 링크가 제대로 향하고 있는지 확인하여야 합니다.
 
-참고로 새 제목을 가진 문서가 이미 있다면 다음 경우에 해당하지 않으면 이 문서는 옮겨지지 '''않을''' 것입니다.
-* 비어 있거나,
-* 넘겨주기 문서이며,
-* 과거에 편집 내력이 없는 경우
+참고로 새 제목을 가진 문서가 이미 있다면 비어 있거나 넘겨주기 문서이며, 과거에 편집 내역이 없으면 이 문서는 옮겨지지 '''않을''' 것입니다.
 이는 당신이 실수로 문서를 옮겼을 때 되돌릴 수 있으며 이미 있는 문서를 덮어쓸 수 없음을 의미합니다.
 
 '''경고!'''
@@ -3062,7 +3059,6 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # JavaScriptTest
 'javascripttest' => '자바스크립트 테스트',
-'javascripttest-disabled' => '이 기능은 비활성되어 있습니다.',
 'javascripttest-title' => '$1 테스트 실행',
 'javascripttest-pagetext-noframework' => '이 페이지는 자바스크립트 테스트를 실행하기 위한 용도로 할당되어 있습니다.',
 'javascripttest-pagetext-unknownframework' => '실험용 프레임워크 "$1"를 알 수 없습니다.',
@@ -3228,10 +3224,10 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-authors' => '총 서로 다른 편집자 수',
 'pageinfo-recent-edits' => '최근 편집 수 (지난 $1일 이내)',
 'pageinfo-recent-authors' => '최근 기여자 수',
-'pageinfo-restriction' => '문서 보호 ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '매직 {{PLURAL:$1|워드}} ($1개)',
 'pageinfo-hidden-categories' => '숨은 {{PLURAL:$1|분류}} ($1개)',
 'pageinfo-templates' => '포함한 {{PLURAL:$1|틀}} ($1개)',
+'pageinfo-toolboxlink' => '문서 정보',
 
 # Skin names
 'skinname-standard' => '클래식',
@@ -3832,6 +3828,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',
 'scarytranscludefailed' => '[$1 틀을 불러오는 데에 실패했습니다]',
+'scarytranscludefailed-httpstatus' => '[$1 틀을 가져오는 데 실패했습니다: HTTP $2]',
 'scarytranscludetoolong' => '[URL이 너무 깁니다]',
 
 # Delete conflict
@@ -3942,7 +3939,7 @@ $5
 'version-version' => '(버전 $1)',
 'version-license' => '라이선스',
 'version-poweredby-credits' => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
-'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS 그 외 다른 개발자]',
+'version-poweredby-others' => '그 외 다른 개발자',
 'version-license-info' => "미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
 미디어위키가 유용하게 사용될 수 있기를 바라지만 '''상용으로 사용'''되거나 '''특정 목적에 맞을 것'''이라는 것을 '''보증하지 않습니다'''. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
@@ -4105,6 +4102,10 @@ $5
 'feedback-close' => '완료',
 'feedback-bugcheck' => '감사합니다! 혹시 해당 사항이 [$1 기존의 버그 보고서]에 올라와 있는지 확인해주세요.',
 'feedback-bugnew' => '확인했습니다. 새로운 버그 보고서를 작성합니다.',
+
+# Search suggestions
+'searchsuggest-search' => '찾기',
+'searchsuggest-containing' => '다음의 어구가 들어간 문서 찾기',
 
 # API errors
 'api-error-badaccess-groups' => '당신은 이 위키에 파일을 올릴 권한이 없습니다.',

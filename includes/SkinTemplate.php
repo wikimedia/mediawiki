@@ -423,7 +423,7 @@ class SkinTemplate extends Skin {
 					if ( strval( $ilLangName ) === '' ) {
 						$ilLangName = $l;
 					} else {
-						$ilLangName = $this->getLanguage()->ucfirst( $ilLangName );
+						$ilLangName = $this->formatLanguageName( $ilLangName );
 					}
 					$language_urls[] = array(
 						'href' => $nt->getFullURL(),
@@ -499,6 +499,17 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Format language name for use in sidebar interlanguage links list.
+	 * By default it is capitalized.
+	 *
+	 * @param $name string Language name, e.g. "English" or "español"
+	 * @private
+	 */
+	function formatLanguageName( $name ) {
+		return $this->getLanguage()->ucfirst( $name );
+	}
+
+	/**
 	 * Output the string, or print error message if it's
 	 * an error object of the appropriate type.
 	 * For the base class, assume strings all around.
@@ -529,6 +540,8 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildPersonalUrls() {
+		global $wgSecureLogin;
+
 		$title = $this->getTitle();
 		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
@@ -551,6 +564,11 @@ class SkinTemplate extends Skin {
 				$a['returntoquery'] = $query;
 			}
 		}
+
+		if ( $wgSecureLogin && $request->detectProtocol() === 'https' ) {
+			$a['wpStickHTTPS'] = true;
+		}
+
 		$returnto = wfArrayToCGI( $a );
 		if( $this->loggedin ) {
 			$personal_urls['userpage'] = array(
@@ -1130,6 +1148,7 @@ class SkinTemplate extends Skin {
 
 		$nav_urls['print'] = false;
 		$nav_urls['permalink'] = false;
+		$nav_urls['info'] = false;
 		$nav_urls['whatlinkshere'] = false;
 		$nav_urls['recentchangeslinked'] = false;
 		$nav_urls['contributions'] = false;
@@ -1156,6 +1175,11 @@ class SkinTemplate extends Skin {
 					'href' => $this->getTitle()->getLocalURL( "oldid=$revid" )
 				);
 			}
+
+			$nav_urls['info'] = array(
+				'text' => $this->msg( 'pageinfo-toolboxlink' )->text(),
+				'href' => $out->getTitle()->getLocalURL( "action=info" )
+			);
 
 			// Use the copy of revision ID in case this undocumented, shady hook tries to mess with internals
 			wfRunHooks( 'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
@@ -1225,7 +1249,7 @@ abstract class QuickTemplate {
 	/**
 	 * Constructor
 	 */
-	public function QuickTemplate() {
+	function __construct() {
 		$this->data = array();
 		$this->translator = new MediaWiki_I18N();
 	}
@@ -1417,6 +1441,10 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox['permalink']['id'] = 't-permalink';
 			}
 		}
+		if ( isset( $this->data['nav_urls']['info'] ) && $this->data['nav_urls']['info'] ) {
+			$toolbox['info'] = $this->data['nav_urls']['info'];
+		}
+
 		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
 		wfProfileOut( __METHOD__ );
 		return $toolbox;
@@ -1783,11 +1811,15 @@ abstract class BaseTemplate extends QuickTemplate {
 				);
 				unset( $buttonAttrs['src'] );
 				unset( $buttonAttrs['alt'] );
+				unset( $buttonAttrs['width'] );
+				unset( $buttonAttrs['height'] );
 				$imgAttrs = array(
 					'src' => $attrs['src'],
 					'alt' => isset( $attrs['alt'] )
 						? $attrs['alt']
 						: $this->translator->translate( 'searchbutton' ),
+					'width' => isset( $attrs['width'] ) ? $attrs['width'] : null,
+					'height' => isset( $attrs['height'] ) ? $attrs['height'] : null,
 				);
 				return Html::rawElement( 'button', $buttonAttrs, Html::element( 'img', $imgAttrs ) );
 			default:

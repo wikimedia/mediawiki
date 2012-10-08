@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Latin script) (‪srpski (latinica)‬)
+/** Serbian (Latin script) (srpski (latinica)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -692,10 +692,11 @@ Upit: $2',
 'protectedpagetext' => 'Ova stranica je zaključana za uređivanja.',
 'viewsourcetext' => 'Možete da pogledate i umnožite izvorni tekst ove stranice:',
 'viewyourtext' => "Možete da pogledate i umnožite izvor '''vaših izmena''' na ovoj stranici:",
-'protectedinterface' => 'Ova stranica je zaštićena jer sadrži tekst korisničkog sučelja programa.',
+'protectedinterface' => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom vikiju i zaštićena je radi sprečavanja zloupotrebe.
+Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/ Translejtviki], projekat za lokalizaciju Medijavikija.',
 'editinginterface' => "'''Upozorenje:''' uređujete stranicu koja se koristi za prikazivanje teksta korisničkog okruženja.
-Izmene na ovoj stranici će uticati na sve korisnike.
-Posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat namenjen za prevođenje Medijavikija.",
+Izmene na ovoj stranici će uticati na sve korisnike ovog vikija.
+Da biste dodali ili izmenili prevode svih vikija, posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Translejtviki], projekat za lokalizaciju Medijavikija.",
 'sqlhidden' => '(SQL upit je sakriven)',
 'cascadeprotected' => 'Ova stranica je zaključana jer sadrži {{PLURAL:$1|sledeću stranicu koja je zaštićena|sledeće stranice koje su zaštićene}} „prenosivom“ zaštitom:
 $2',
@@ -721,7 +722,7 @@ Administrator koji ju je zaključao ponudio je sledeće objašnjenje: „$3“.'
 # Login and logout pages
 'logouttext' => "'''Odjavljeni ste.'''
 
-Možete da nastavite s korišćenjem ovog vikija kao gost, ili se [[Special:UserLogin|ponovo prijavite]] kao drugi korisnik.
+Možete da nastavite s korišćenjem ovog vikija kao gost, ili se <span class='plainlinks'>[$1 ponovo prijavite]</span> kao drugi korisnik.
 Imajte na umu da neke stranice mogu nastaviti da se prikazuju kao da ste još prijavljeni, sve dok ne očistite privremenu memoriju svog pregledača.",
 'welcomecreation' => '== Dobro došli, $1! ==
 
@@ -983,7 +984,7 @@ Ako ste anonimni korisnik i mislite da su vam upućene primedbe, [[Special:UserL
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne izveštaje] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti stranicu]</span>.',
 'noarticletext-nopermission' => 'Na ovoj stranici trenutno nema sadržaja.
-Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne izveštaje]</span>.',
+Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti srodne dnevnike]</span>, ali nemate dozvolu da napravite ovu stranicu.',
 'missing-revision' => 'Ne mogu da pronađem izmenu br. $1 na stranici pod nazivom „{{PAGENAME}}“.
 
 Ovo se obično dešava kada pratite zastarelu vezu do stranice koja je obrisana.
@@ -1356,8 +1357,6 @@ Više informacija možete pronaći u [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Bratski projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 'sa predlozima',
-'search-mwsuggest-disabled' => 'bez predloga',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Onemogući predloge AJAX',
 'searcheverything-enable' => 'svi imenski prostori',
@@ -3034,7 +3033,6 @@ Pokušajte ponovo.',
 
 # JavaScriptTest
 'javascripttest' => 'Javaskript test',
-'javascripttest-disabled' => 'Ova funkcija nije omogućena na ovom vikiju.',
 'javascripttest-title' => 'Izvršavanje testova za $1',
 'javascripttest-pagetext-noframework' => 'Ova stranica je rezervisana za izvršavanje javaskript testova.',
 'javascripttest-pagetext-unknownframework' => 'Nepoznati radni okvir „$1“.',
@@ -3198,7 +3196,6 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-authors' => 'Broj zasebnih autora',
 'pageinfo-recent-edits' => 'Broj skorašnjih izmena (u poslednjih $1)',
 'pageinfo-recent-authors' => 'Broj skorašnjih zasebnih autora',
-'pageinfo-restriction' => 'Zaštita stranice ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična reč|Magične reči}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Uključeni šablon|Uključeni šabloni}} ($1)',
@@ -4234,6 +4231,10 @@ U suprotnom, poslužite se jednostavnim obrascem ispod. Vaš komentar će stajat
 'feedback-close' => 'Urađeno',
 'feedback-bugcheck' => 'Odlično! Proverite da li je greška [$1 poznata od pre].',
 'feedback-bugnew' => 'Provereno. Prijavi novu grešku',
+
+# Search suggestions
+'searchsuggest-search' => 'Pretraga',
+'searchsuggest-containing' => 'sadrži...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nije vam dozvoljeno da otpremate datoteke na ovaj viki.',

@@ -1,5 +1,5 @@
 <?php
-/** Bambara (Bamanankan)
+/** Bambara (bamanankan)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -18,70 +18,70 @@ $messages = array(
 'tog-hideminor' => 'Yɛlɛmaliw kura fitini dogo',
 
 # Dates
-'sunday'    => 'karidon',
-'monday'    => 'ntɛnɛdon',
-'tuesday'   => 'taratadon',
+'sunday' => 'karidon',
+'monday' => 'ntɛnɛdon',
+'tuesday' => 'taratadon',
 'wednesday' => 'arabadon',
-'thursday'  => 'alamisadon',
-'friday'    => 'jumadon',
-'saturday'  => 'sibiridon',
-'august'    => 'uti',
-'aug'       => 'uti',
+'thursday' => 'alamisadon',
+'friday' => 'jumadon',
+'saturday' => 'sibiridon',
+'august' => 'uti',
+'aug' => 'uti',
 
 # Categories related messages
 'category_header' => 'Nyɛw cogoya kɔnɔ: "$1"',
 
 'article' => 'Nyɛ',
-'mypage'  => "N'ka nyɛ",
-'mytalk'  => "N'ka baronyɛ",
-'and'     => '&#32;ani',
+'mypage' => "N'ka nyɛ",
+'mytalk' => "N'ka baronyɛ",
+'and' => '&#32;ani',
 
 # Cologne Blue skin
-'qbfind'         => 'Nyini',
-'qbedit'         => 'Yɛlɛma',
+'qbfind' => 'Nyini',
+'qbedit' => 'Yɛlɛma',
 'qbspecialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 
-'help'           => 'Dɛmɛ',
-'search'         => 'Nyini',
-'searchbutton'   => 'Nyini',
-'go'             => 'Taa',
-'searcharticle'  => 'Taa',
-'history'        => 'Nyɛka tariku',
-'history_short'  => 'Tariku',
-'edit'           => 'yɛlɛma',
-'editthispage'   => 'Nyɛ nin yɛlɛma',
-'newpage'        => 'Nyɛ kura',
-'specialpage'    => 'Nyɛ kɛrɛnkɛrɛnnen',
-'talk'           => 'Sɔsɔli',
-'toolbox'        => 'Minanw',
-'userpage'       => 'Utilisateur ka nyɛ',
-'imagepage'      => 'Janin ka nyɛ',
+'help' => 'Dɛmɛ',
+'search' => 'Nyini',
+'searchbutton' => 'Nyini',
+'go' => 'Taa',
+'searcharticle' => 'Taa',
+'history' => 'Nyɛka tariku',
+'history_short' => 'Tariku',
+'edit' => 'yɛlɛma',
+'editthispage' => 'Nyɛ nin yɛlɛma',
+'newpage' => 'Nyɛ kura',
+'specialpage' => 'Nyɛ kɛrɛnkɛrɛnnen',
+'talk' => 'Sɔsɔli',
+'toolbox' => 'Minanw',
+'userpage' => 'Utilisateur ka nyɛ',
+'imagepage' => 'Janin ka nyɛ',
 'otherlanguages' => 'Kanw wɛrɛ',
-'jumptosearch'   => 'Nyini',
+'jumptosearch' => 'Nyini',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'        => 'Kunnafoni',
-'currentevents-url'    => 'Project:Kunnafoni',
-'disclaimers'          => 'Kangari',
-'edithelp'             => 'Dɛmɛ',
-'mainpage'             => 'Nyɛ fɔlɔ',
+'currentevents' => 'Kunnafoni',
+'currentevents-url' => 'Project:Kunnafoni',
+'disclaimers' => 'Kangari',
+'edithelp' => 'Dɛmɛ',
+'mainpage' => 'Nyɛ fɔlɔ',
 'mainpage-description' => 'Nyɛ fɔlɔ',
-'portal'               => 'Jamaje',
+'portal' => 'Jamaje',
 
 'editsection' => 'yɛlɛma',
-'hidetoc'     => 'dogo',
+'hidetoc' => 'dogo',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Nyɛ',
-'nstab-image'    => 'Janin',
-'nstab-help'     => 'Dɛmɛ',
+'nstab-main' => 'Nyɛ',
+'nstab-image' => 'Janin',
+'nstab-help' => 'Dɛmɛ',
 'nstab-category' => 'Cogoya',
 
 # Edit pages
-'minoredit'      => 'Yɛlɛma fitini.',
-'watchthis'      => 'Nyɛ tulomajɔ',
-'newarticle'     => '(Kura)',
-'editing'        => '$1 ka yɛlɛmali',
+'minoredit' => 'Yɛlɛma fitini.',
+'watchthis' => 'Nyɛ tulomajɔ',
+'newarticle' => '(Kura)',
+'editing' => '$1 ka yɛlɛmali',
 'editingsection' => '$1 ka yɛlɛmali (section)',
 'editingcomment' => '$1 ka yɛlɛmali (baro)',
 
@@ -90,7 +90,7 @@ $messages = array(
 
 # Preferences page
 'preferences' => 'Fisayali',
-'prefs-skin'  => 'Apparence',
+'prefs-skin' => 'Apparence',
 
 # Recent changes
 'hide' => 'dogo',
@@ -103,9 +103,9 @@ $messages = array(
 
 # Miscellaneous special pages
 'popularpages' => 'Nyɛw les plus consultées',
-'newpages'     => 'Nyɛw kura',
+'newpages' => 'Nyɛw kura',
 'ancientpages' => 'Nyɛw les plus anciens',
-'move'         => 'telun',
+'move' => 'telun',
 'movethispage' => 'Nyɛ telun',
 
 # Special:AllPages
@@ -118,7 +118,7 @@ $messages = array(
 'linksearch-ok' => 'Nyini',
 
 # Watchlist
-'watch'         => 'Tulomajɔ',
+'watch' => 'Tulomajɔ',
 'watchthispage' => 'Nyɛ tulomajɔ',
 
 # Contributions
@@ -129,8 +129,8 @@ $messages = array(
 
 # Move page
 'move-page-legend' => 'Nyɛ telun',
-'movearticle'      => 'Nyɛ telun',
-'movepagebtn'      => 'Nyɛ telun',
+'movearticle' => 'Nyɛ telun',
+'movepagebtn' => 'Nyɛ telun',
 
 # Attribution
 'others' => 'wɛrɛ',

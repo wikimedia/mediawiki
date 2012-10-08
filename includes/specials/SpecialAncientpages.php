@@ -36,7 +36,9 @@ class AncientPagesPage extends QueryPage {
 		return true;
 	}
 
-	function isSyndicated() { return false; }
+	function isSyndicated() {
+		return false;
+	}
 
 	function getQueryInfo() {
 		return array(

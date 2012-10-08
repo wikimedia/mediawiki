@@ -518,7 +518,7 @@ Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=e
 # Login and logout pages
 'logouttext' => "'''Anjeun ayeuna geus kaluar log.'''
 
-Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa [[Special:UserLogin|asup log deui]] salaku pamaké nu sarua atawa nu séjén deui.
+Anjeun bisa tetep migunakeun {{SITENAME}} bari anonim, atawa bisa <span class='plainlinks'>[$1 asup log deui]</span> salaku pamaké nu sarua atawa nu séjén deui.
 Mangkahadé, sababaraha kaca bakal tetep némbongkeun saolah-olah anjeun asup log kénéh nepi ka anjeun ngosongkeun ''cache'' panyungsi anjeun.",
 'welcomecreation' => '==Wilujeng sumping, $1!==
 Rekening anjeun geus dijieun.
@@ -1073,8 +1073,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'search-interwiki-caption' => 'Proyék sawargi',
 'search-interwiki-default' => '$1 hasil:',
 'search-interwiki-more' => '(saterusna)',
-'search-mwsuggest-enabled' => 'jeung bongbolongan',
-'search-mwsuggest-disabled' => 'euweuh bongbolongan',
 'search-relatedarticle' => 'Patula-patali',
 'mwsuggest-disable' => 'Tumpurkeun usulan AJAX',
 'searcheverything-enable' => 'Pilari di sakabéh rohangaran',
@@ -3061,6 +3059,10 @@ Coba ku sawangan normal.',
 'feedback-subject' => 'Ngeunaan:',
 'feedback-message' => 'Surat:',
 'feedback-cancel' => 'Bolay',
+
+# Search suggestions
+'searchsuggest-search' => 'Sungsi',
+'searchsuggest-containing' => 'ngandung...',
 
 # API errors
 'api-error-file-too-large' => 'Berkas nu dikirim gedé teuing.',

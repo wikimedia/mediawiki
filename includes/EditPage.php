@@ -410,10 +410,14 @@ class EditPage {
 				wfProfileOut( __METHOD__ );
 				return;
 			}
-			if ( !$this->mTitle->getArticleID() )
+
+			if ( !$this->mTitle->getArticleID() ) {
 				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
-			else
+			}
+			else {
 				wfRunHooks( 'EditFormInitialText', array( $this ) );
+			}
+
 		}
 
 		$this->showEditForm();
@@ -605,8 +609,10 @@ class EditPage {
 				// modified by subclasses
 				wfProfileIn( get_class( $this ) . "::importContentFormData" );
 				$textbox1 = $this->importContentFormData( $request );
-				if ( isset( $textbox1 ) )
+				if ( isset( $textbox1 ) ) {
 					$this->textbox1 = $textbox1;
+				}
+
 				wfProfileOut( get_class( $this ) . "::importContentFormData" );
 			}
 
@@ -1047,16 +1053,26 @@ class EditPage {
 
 		$title = Title::newFromText( $preload );
 		# Check for existence to avoid getting MediaWiki:Noarticletext
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 		if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
 			return $handler->makeEmptyContent();
+=======
+		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
+			return '';
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 		}
 
 		$page = WikiPage::factory( $title );
 		if ( $page->isRedirect() ) {
 			$title = $page->getRedirectTarget();
 			# Same as before
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 			if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
 				return $handler->makeEmptyContent();
+=======
+			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
+				return '';
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 			}
 			$page = WikiPage::factory( $title );
 		}
@@ -1332,7 +1348,7 @@ class EditPage {
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create' ) ) {
+			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
@@ -1368,7 +1384,12 @@ class EditPage {
 			if ( $this->section == 'new' ) {
 				if ( $this->sectiontitle !== '' ) {
 					// Insert the section title above the content.
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 					$content = $content->addSectionHeader( $this->sectiontitle );
+=======
+					$text = wfMessage( 'newsectionheaderdefaultlevel' )->rawParams( $this->sectiontitle )
+						->inContentLanguage()->text() . "\n\n" . $text;
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->sectiontitle );
@@ -1378,20 +1399,30 @@ class EditPage {
 					// passed.
 					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 						$this->summary = wfMessage( 'newsectionsummary', $cleanSectionTitle )
 							->inContentLanguage()->text() ;
+=======
+						$this->summary = wfMessage( 'newsectionsummary' )
+							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 					$content = $content->addSectionHeader( $this->summary );
+=======
+					$text = wfMessage( 'newsectionheaderdefaultlevel' )->rawParams( $this->summary )
+						->inContentLanguage()->text() . "\n\n" . $text;
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 
 					// Jump to the new section
 					$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 
 					// Create a link to the new section from the edit summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
-						->inContentLanguage()->text();
+					$this->summary = wfMessage( 'newsectionsummary' )
+						->rawParams( $cleanSummary )->inContentLanguage()->text();
 				}
 			}
 
@@ -1534,16 +1565,16 @@ class EditPage {
 					// passed.
 					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMessage( 'newsectionsummary', $cleanSectionTitle )
-							->inContentLanguage()->text();
+						$this->summary = wfMessage( 'newsectionsummary' )
+							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 					# This is a new section, so create a link to the new section
 					# in the revision summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
-						->inContentLanguage()->text();
+					$this->summary = wfMessage( 'newsectionsummary' )
+						->rawParams( $cleanSummary )->inContentLanguage()->text();
 				}
 			} elseif ( $this->section != '' ) {
 				# Try to get a section anchor from the section source, redirect to edited section if header found
@@ -1587,8 +1618,13 @@ class EditPage {
 															false, null, $this->content_format );
 
 		if ( $doEditStatus->isOK() ) {
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 				$result['redirect'] = $content->isRedirect();
 			$this->commitWatch();
+=======
+			$result['redirect'] = Title::newFromRedirect( $text ) !== null;
+			$this->updateWatchlist();
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 			wfProfileOut( __METHOD__ );
 			return $status;
 		} else {
@@ -1609,19 +1645,27 @@ class EditPage {
 	}
 
 	/**
-	 * Commit the change of watch status
+	 * Register the change of watch status
 	 */
-	protected function commitWatch() {
+	protected function updateWatchlist() {
 		global $wgUser;
+
 		if ( $wgUser->isLoggedIn() && $this->watchthis != $wgUser->isWatched( $this->mTitle ) ) {
+			$fname = __METHOD__;
+			$title = $this->mTitle;
+			$watch = $this->watchthis;
+
+			// Do this in its own transaction to reduce contention...
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin( __METHOD__ );
-			if ( $this->watchthis ) {
-				WatchAction::doWatch( $this->mTitle, $wgUser );
-			} else {
-				WatchAction::doUnwatch( $this->mTitle, $wgUser );
-			}
-			$dbw->commit( __METHOD__ );
+			$dbw->onTransactionIdle( function() use ( $dbw, $title, $watch, $wgUser, $fname ) {
+				$dbw->begin( $fname );
+				if ( $watch ) {
+					WatchAction::doWatch( $title, $wgUser );
+				} else {
+					WatchAction::doUnwatch( $title, $wgUser );
+				}
+				$dbw->commit( $fname );
+			} );
 		}
 	}
 
@@ -1755,7 +1799,7 @@ class EditPage {
 		$wgOut->addModules( 'mediawiki.action.edit' );
 
 		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
-			$wgOut->addModules( 'mediawiki.legacy.preview' );
+			$wgOut->addModules( 'mediawiki.action.edit.preview' );
 		}
 		// Bug #19334: textarea jumps when editing articles in IE8
 		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
@@ -2205,7 +2249,7 @@ class EditPage {
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
 
-					if ( !$revision->userCan( Revision::DELETED_TEXT ) ) {
+					if ( !$revision->userCan( Revision::DELETED_TEXT, $wgUser ) ) {
 						$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
 					} elseif ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
 						$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
@@ -2239,10 +2283,13 @@ class EditPage {
 					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ) );
 				}
 				if ( $this->formtype !== 'preview' ) {
-					if ( $this->isCssSubpage )
+					if ( $this->isCssSubpage ) {
 						$wgOut->wrapWikiMsg( "<div id='mw-usercssyoucanpreview'>\n$1\n</div>", array( 'usercssyoucanpreview' ) );
-					if ( $this->isJsSubpage )
+					}
+
+					if ( $this->isJsSubpage ) {
 						$wgOut->wrapWikiMsg( "<div id='mw-userjsyoucanpreview'>\n$1\n</div>", array( 'userjsyoucanpreview' ) );
+					}
 				}
 			}
 		}
@@ -2373,14 +2420,16 @@ class EditPage {
 	 * @return String
 	 */
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
-		if ( !$summary || ( !$this->preview && !$this->diff ) )
+		if ( !$summary || ( !$this->preview && !$this->diff ) ) {
 			return "";
+		}
 
 		global $wgParser;
 
-		if ( $isSubjectPreview )
+		if ( $isSubjectPreview ) {
 			$summary = wfMessage( 'newsectionsummary', $wgParser->stripSectionName( $summary ) )
 				->inContentLanguage()->text();
+		}
 
 		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
 
@@ -2399,8 +2448,9 @@ class EditPage {
 
 HTML
 		);
-		if ( !$this->checkUnicodeCompliantBrowser() )
+		if ( !$this->checkUnicodeCompliantBrowser() ) {
 			$wgOut->addHTML( Html::hidden( 'safemode', '1' ) );
+		}
 	}
 
 	protected function showFormAfterText() {
@@ -2510,13 +2560,15 @@ HTML
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		global $wgOut;
 		$classes = array();
-		if ( $isOnTop )
+		if ( $isOnTop ) {
 			$classes[] = 'ontop';
+		}
 
 		$attribs = array( 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) );
 
-		if ( $this->formtype != 'preview' )
+		if ( $this->formtype != 'preview' ) {
 			$attribs['style'] = 'display: none;';
+		}
 
 		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
 
@@ -2811,10 +2863,13 @@ HTML
 		);
 		// Quick paranoid permission checks...
 		if ( is_object( $data ) ) {
-			if ( $data->log_deleted & LogPage::DELETED_USER )
+			if ( $data->log_deleted & LogPage::DELETED_USER ) {
 				$data->user_name = wfMessage( 'rev-deleted-user' )->escaped();
-			if ( $data->log_deleted & LogPage::DELETED_COMMENT )
+			}
+
+			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
 				$data->log_comment = wfMessage( 'rev-deleted-comment' )->escaped();
+			}
 		}
 		return $data;
 	}

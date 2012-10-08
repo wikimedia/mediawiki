@@ -38,14 +38,16 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 // ----------------------------------------------------------------------------------
 
 /**
+ * Maintenance script to do various checks on external storage.
+ *
  * @ingroup Maintenance ExternalStorage
  */
 class CheckStorage {
 	const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
-	var $oldIdMap, $errors;
-	var $dbStore = null;
+	public $oldIdMap, $errors;
+	public $dbStore = null;
 
-	var $errorDescriptions = array(
+	public $errorDescriptions = array(
 		'restore text' => 'Damaged text, need to be restored from a backup',
 		'restore revision' => 'Damaged revision row, need to be restored from a backup',
 		'unfixable' => 'Unexpected errors with no automated fixing method',

@@ -422,7 +422,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''अहाँ निष्क्रमण कऽ गेल छी।'''
 
-अहाँ {{अन्तर्जाल}} प्रयोग अनाम भऽ कऽ सकै छी, वा अहाँ [[Special:UserLogin|log in again]] वएह आकि कोनो आन प्रयोक्ताक रूपमे सेहू प्रयोक कऽ सकै छी।
+अहाँ {{अन्तर्जाल}} प्रयोग अनाम भऽ कऽ सकै छी, वा अहाँ <span class='plainlinks'>[$1 log in again]</span> वएह आकि कोनो आन प्रयोक्ताक रूपमे सेहू प्रयोक कऽ सकै छी।
 ई मोन राखू जे किछु पन्ना एना देखा पड़ि सकैए जेना अहाँ अखनो सम्प्रवेशित होइ, जावत अहाँ अपन गवेषकक उपस्मृति मेटा नै दै छी।",
 'welcomecreation' => '== स्वागत अछि, $1! ==
 अहाँक खाता खुजि गेल अछि।
@@ -1018,8 +1018,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 'search-interwiki-caption' => 'सम्बन्धित परियोजना सभ',
 'search-interwiki-default' => '$1 सभटा परिणाम:',
 'search-interwiki-more' => '(आर)',
-'search-mwsuggest-enabled' => 'सलाहक संग',
-'search-mwsuggest-disabled' => 'कोनो सलाह नै',
 'search-relatedarticle' => 'सम्बन्धी',
 'mwsuggest-disable' => 'AJAX सलाह अमान्य करू',
 'searcheverything-enable' => 'सभ नामस्थान सभमे ताकू',

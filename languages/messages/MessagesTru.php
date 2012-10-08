@@ -865,6 +865,9 @@ iFaṭaṭe u3do kitla Qaṫre.',
 'feedback-message' => 'Ṫebo:',
 'feedback-cancel' => 'Mbaṫel',
 
+# Search suggestions
+'searchsuggest-search' => 'Kruxyo',
+
 # API errors
 'api-error-unknownerror' => 'Fawdo nuxroyo: $1',
 

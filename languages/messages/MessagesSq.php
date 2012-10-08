@@ -626,7 +626,7 @@ Administratori i cili e mbylli atë e dha këtë shpjegim: "$3".',
 # Login and logout pages
 'logouttext' => "'''Ju keni dalë jashtë.''' 
 
- Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të [[Special:UserLogin|identifikoheni përsëri]] si përdoruesi i mëparshëm ose si një përdorues tjetër. 
+ Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të <span class='plainlinks'>[$1 identifikoheni përsëri]</span> si përdoruesi i mëparshëm ose si një përdorues tjetër. 
  Kini parasysh që disa faqe mund të shfaqen sikur të ishit i identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
 'welcomecreation' => '== Mirësevini, $1! == 
  Llogaria juaj është krijuar. 
@@ -1229,8 +1229,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-caption' => 'Projekte simotra',
 'search-interwiki-default' => '$1 përfundime:',
 'search-interwiki-more' => '(më shumë)',
-'search-mwsuggest-enabled' => 'me këshilla',
-'search-mwsuggest-disabled' => 'pa këshilla',
 'search-relatedarticle' => 'Të ngjashme',
 'mwsuggest-disable' => 'Çmundësoi sugjerimet AJAX',
 'searcheverything-enable' => 'Kërko në të gjitha hapësirat',
@@ -2853,7 +2851,6 @@ Ju lutemi provoni përsëri.',
 
 # JavaScriptTest
 'javascripttest' => 'Duke testuar JavaScript',
-'javascripttest-disabled' => 'Ky funksion nuk është mundësuar në këtë wiki.',
 'javascripttest-title' => 'Duke kryer testet $1',
 'javascripttest-pagetext-noframework' => 'Kjo faqe është rezervuar për kryerjen e testimeve JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Kornizë pune e panjohur testuese "$1".',
@@ -3802,6 +3799,10 @@ Përndryshe, ju mund të formularin e thjeshtë më poshtë. Komenti juaj do të
 'feedback-close' => 'Përfunduar',
 'feedback-bugcheck' => 'Shumë mirë! Thjesht kontrolloni që nuk është një nga [$1 problemet e njohura].',
 'feedback-bugnew' => 'E kontrollova. Raporto një problem të ri',
+
+# Search suggestions
+'searchsuggest-search' => 'Kërko',
+'searchsuggest-containing' => 'përmban ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Ju nuk lejoheni të ngarkoni skeda në këtë wiki.',

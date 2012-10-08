@@ -511,7 +511,7 @@ Keltirilgen sebep: ''$2''.",
 'logouttext' => "'''Siz endi sayttan shıqtın'ız.'''
 
 Siz {{SITENAME}} saytınan anonim halda paydalanıwın'ız mu'mkin.
-Yamasa siz ja'ne ha'zirgi yaki basqa paydalanıwshı atı menen [[Special:UserLogin|qaytadan sistemag'a kiriwin'izge]] boladı.
+Yamasa siz ja'ne ha'zirgi yaki basqa paydalanıwshı atı menen <span class='plainlinks'>[$1 qaytadan sistemag'a kiriwin'izge]</span> boladı.
 Sonı este saqlan', ayrım betler sizin' brauzerin'izdin' keshi tazalanbag'anlıg'ı sebebli sistemada kirgenin'izdey ko'riniste dawam ettire beriwi mu'mkin.",
 'welcomecreation' => "== Xosh keldin'iz, $1! ==
 
@@ -853,8 +853,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'search-interwiki-caption' => 'Qarındas proektler',
 'search-interwiki-default' => "$1 na'tiyje:",
 'search-interwiki-more' => "(ko'birek)",
-'search-mwsuggest-enabled' => 'usınıslar menen',
-'search-mwsuggest-disabled' => 'usınıslarsız',
 'search-relatedarticle' => 'Baylanıslı',
 'mwsuggest-disable' => "AJAX usınısların o'shir",
 'searchrelated' => 'baylanıslı',

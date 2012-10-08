@@ -411,8 +411,8 @@ $messages = array(
 
 # Login and logout pages
 'logouttext' => "'''تسی لاگ آؤٹ ہوگۓ او.'''
-تسی   {{SITENAME}} نوں گمنامی چ ورت سکدے او یا تسی [[Special:UserLogin|لاگ ان دوبارہ]] ہوجاؤ اوسے ناں توں یا وکھرے ورتن والے توں۔ اے گل چیتے رکھنا جے کج صفیاں تے تسی لاگ ان دسے جاؤگے جدوں تک تسی اپنے براؤزر دے کاشے نوں صاف ناں کرلو۔
-You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
+تسی   {{SITENAME}} نوں گمنامی چ ورت سکدے او یا تسی <span class='plainlinks'>[$1 لاگ ان دوبارہ]</span> ہوجاؤ اوسے ناں توں یا وکھرے ورتن والے توں۔ اے گل چیتے رکھنا جے کج صفیاں تے تسی لاگ ان دسے جاؤگے جدوں تک تسی اپنے براؤزر دے کاشے نوں صاف ناں کرلو۔
+You can continue to use {{SITENAME}} anonymously, or you can <span class='plainlinks'>[$1 log in again]</span> as the same or as a different user.
 Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation' => '== جی آیاں نوں, $1! ==
 تواڈا کھاتا بن گیا اے۔
@@ -1002,8 +1002,6 @@ $1",
 'search-interwiki-caption' => 'رلدے ویونت',
 'search-interwiki-default' => '$1 نتارے:',
 'search-interwiki-more' => '(اور)',
-'search-mwsuggest-enabled' => 'صلاع دے نال',
-'search-mwsuggest-disabled' => 'کوئی صلاع نئیں',
 'search-relatedarticle' => 'جڑیاں',
 'mwsuggest-disable' => 'اجاکس مشورے نکارہ کرو',
 'searcheverything-enable' => 'ہر ناں چ لبو',
@@ -2616,7 +2614,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript ٹیسٹنگ',
-'javascripttest-disabled' => 'ایس وکی تے ایہ کم نئیں چلدا۔',
 'javascripttest-title' => 'ٹیسٹ  $1 چلدا اے۔',
 'javascripttest-pagetext-noframework' => 'ایہ صفہ JavaScript  ٹیسٹاں لئی بچایا گیا اے۔',
 'javascripttest-pagetext-unknownframework' => '"$1" انجانا ٹیسٹنگ فریمورک۔',
@@ -3560,6 +3557,10 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'feedback-close' => 'ہوگیا۔',
 'feedback-bugcheck' => 'بعوت ودیا ! صرف ایہ ویکھو جے کیا ایہ پہلے لبے ہوۓ [$1 known bugs] چو اک تے نئیں۔',
 'feedback-bugnew' => 'میں ویکھیا اے۔ نویں بگ دی رپورٹ کرو۔',
+
+# Search suggestions
+'searchsuggest-search' => 'کھوج',
+'searchsuggest-containing' => 'بند کر ریا اے۔۔۔',
 
 # API errors
 'api-error-badaccess-groups' => 'تھوانوں ایس وکی تے فائلاں چڑھان دی اجازت نئیں۔',

@@ -42,6 +42,7 @@
  * @author Slomox
  * @author Svip
  * @author Søren Løvborg
+ * @author Tjernobyl
  * @author Urhixidur
  */
 
@@ -344,7 +345,7 @@ $messages = array(
 'vector-action-protect' => 'Beskyt',
 'vector-action-undelete' => 'Gendan',
 'vector-action-unprotect' => 'Ændr beskyttelse',
-'vector-simplesearch-preference' => 'Aktivér forbedrede søgeforslag (kun Vector-udseendet)',
+'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create' => 'Opret',
 'vector-view-edit' => 'Redigér',
 'vector-view-history' => 'Se historik',
@@ -564,9 +565,10 @@ Forespørgsel: $2',
 'protectedpagetext' => 'Denne side er skrivebeskyttet.',
 'viewsourcetext' => 'Du kan se og kopiere kildekoden til siden:',
 'viewyourtext' => "Du kan se og kopiere kildekoden for '''dine redigeringer''' til denne side:",
-'protectedinterface' => 'Denne side indeholder tekst til softwarens sprog-interface og er skrivebeskyttet for at forhindre misbrug.',
-'editinginterface' => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere.
-For oversættelser bedes du venligst overveje at bruge [//translatewiki.net/wiki/Main_Page?setlang=da translatewiki.net], projektet for oversættelse af MediaWiki.",
+'protectedinterface' => 'Denne side indeholder teksten i brugergrænsefladen til softwaren på denne wiki, og er beskyttet for at forhindre misbrug.
+Hvis du vil tilføje eller ændre oversættelser til alle wiki-websteder, brug venligst [//translatewiki.net/ translatewiki.net], MediaWiki lokalisering projektet.',
+'editinginterface' => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere af denne wiki.
+For at tilføje eller ændre oversættelser på alle wikier bedes du benytte [//translatewiki.net/ translatewiki.net], projektet for oversættelse af MediaWiki.",
 'sqlhidden' => '(SQL forespørgsel skjult)',
 'cascadeprotected' => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
@@ -591,7 +593,7 @@ Administratoren, som skrivebeskyttede den, gav følgende begrundelse: "$3".',
 # Login and logout pages
 'logouttext' => "'''Du er nu logget af.'''
 
-Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan [[Special:UserLogin|logge på igen]] som den samme eller en anden bruger.
+Du kan fortsætte med at bruge {{SITENAME}} anonymt, eller du kan <span class='plainlinks'>[$1 logge på igen]</span> som den samme eller en anden bruger.
 Bemærk, at nogle sider stadigvæk kan vises som om du var logget på, indtil du tømmer din browsers cache.",
 'welcomecreation' => '== Velkommen, $1! ==
 
@@ -843,9 +845,10 @@ Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer p�
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede logger]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
-'noarticletext-nopermission' => 'Der er i øjeblikket ikke noget tekst på denne side.
-Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
-eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
+'noarticletext-nopermission' => 'Der er i øjeblikket ikke nogen tekst på denne side.
+Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
+eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede loglister]</span>,
+men du har ikke tilladelse til at oprette denne side.',
 'missing-revision' => 'Revision #$1 af siden med navnet "{{PAGENAME}}" eksisterer ikke.
 
 Dette skyldes normalt at et forældet historik-link er fulgt til en side der er slettet.
@@ -1200,8 +1203,6 @@ Detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}
 'search-interwiki-caption' => 'Søsterprojekter',
 'search-interwiki-default' => '{{PLURAL:$1|et resultat|$1 resultater}}:',
 'search-interwiki-more' => '(mere)',
-'search-mwsuggest-enabled' => 'med forslag',
-'search-mwsuggest-disabled' => 'ingen forslag',
 'search-relatedarticle' => 'Relateret',
 'mwsuggest-disable' => 'Slå AJAX-forslag fra',
 'searcheverything-enable' => 'Søg i alle navnerum',
@@ -1298,7 +1299,7 @@ Her er en tilfældig genereret værdi som du kan bruge: $1',
 'timezoneregion-indian' => 'Indiske Ocean',
 'timezoneregion-pacific' => 'Stillehavet',
 'allowemail' => 'Tillad e-mails fra andre brugere',
-'prefs-searchoptions' => 'Søgeindstillinger',
+'prefs-searchoptions' => 'Søg',
 'prefs-namespaces' => 'Navnerum',
 'defaultns' => 'Ellers søg i disse navnerum:',
 'default' => 'standard',
@@ -2788,7 +2789,6 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 
 # JavaScriptTest
 'javascripttest' => 'Test af JavaScript',
-'javascripttest-disabled' => 'Denne funktion er ikke aktiveret på denne wiki.',
 'javascripttest-title' => 'Kører $1 test',
 'javascripttest-pagetext-noframework' => 'Denne side er reserveret til at teste JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Ukendt testmiljø "$1".',
@@ -2927,10 +2927,10 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-authors' => 'Det samlede antal forskellige forfattere',
 'pageinfo-recent-edits' => 'Antallet af nylige redigeringer (i løbet af de seneste $1)',
 'pageinfo-recent-authors' => 'Antallet af bidragydere, der har redigeret siden for nyligt',
-'pageinfo-restriction' => 'Sidebeskyttelse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Transkluderet skabelon|Transkluderede skabeloner}} ($1)',
+'pageinfo-toolboxlink' => 'Oplysninger om siden',
 
 # Skin names
 'skinname-standard' => 'Klassik',
@@ -3503,6 +3503,7 @@ Denne bekræftelseskode vil udløbe den $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-tilkobling er deaktiveret]',
 'scarytranscludefailed' => '[Hentning af skabelon for $1 mislykkedes]',
+'scarytranscludefailed-httpstatus' => '[Hentning af skabelon for $1 mislykkedes: HTTP $2]',
 'scarytranscludetoolong' => "[URL'en er for lang]",
 
 # Delete conflict
@@ -3773,6 +3774,10 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'feedback-close' => 'Færdig',
 'feedback-bugcheck' => 'Skønt! Men tjek venligst, at det ikke er en af de [$1 kendte fejl].',
 'feedback-bugnew' => 'Jeg har kontrolleret. Rapporter en ny fejl.',
+
+# Search suggestions
+'searchsuggest-search' => 'Søg',
+'searchsuggest-containing' => 'indeholder...',
 
 # API errors
 'api-error-badaccess-groups' => 'Du har ikke tilladelse til at overføre filer til denne wiki.',

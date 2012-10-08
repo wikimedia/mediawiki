@@ -29,7 +29,7 @@ require_once( __DIR__ . '/Maintenance.php' );
  * @ingroup Maintenance
  */
 class JSParseHelper extends Maintenance {
-	var $errs = 0;
+	public $errs = 0;
 
 	public function __construct() {
 		parent::__construct();

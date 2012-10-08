@@ -721,7 +721,7 @@ O administrador que bloqueou ofereceu a seguinte explicação: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora você encontra-se desautenticado.'''
 
-É possível continuar usando {{SITENAME}} anonimamente ou [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de usuário ou com um nome diferente.
+É possível continuar usando {{SITENAME}} anonimamente ou <span class='plainlinks'>[$1 autenticar-se novamente]</span> com o mesmo nome de usuário ou com um nome diferente.
 Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado até que você limpe a ''cache'' do seu navegador.",
 'welcomecreation' => '== Bem-vindo(a), $1! ==
 A sua conta foi criada.
@@ -1336,8 +1336,6 @@ Os detalhes podem ser encontrados no [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Projetos irmãos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(mais)',
-'search-mwsuggest-enabled' => 'com sugestões',
-'search-mwsuggest-disabled' => 'sem sugestões',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desativar sugestões AJAX',
 'searcheverything-enable' => 'Procurar em todos os espaços nominais',
@@ -2486,7 +2484,7 @@ Esta é a configuração atual para a página '''$1''':",
 'protect-summary-cascade' => 'p. progressiva',
 'protect-expiring' => 'expira em $1 (UTC)',
 'protect-expiring-local' => 'expira $1',
-'protect-expiry-indefinite' => 'indefinido',
+'protect-expiry-indefinite' => 'tempo indefinido',
 'protect-cascade' => '"Proteção progressiva" - proteja quaisquer páginas que estejam incluídas nesta.',
 'protect-cantedit' => 'Você não pode alterar o nível de proteção desta página uma vez que você não se encontra habilitado a editá-la.',
 'protect-othertime' => 'Outra duração:',
@@ -2964,7 +2962,6 @@ Salve o arquivo no seu computador e importe-o aqui.',
 
 # JavaScriptTest
 'javascripttest' => 'Teste de JavaScript',
-'javascripttest-disabled' => 'Essa função não foi habilitada neste wiki.',
 'javascripttest-title' => 'Executando testes para $1',
 'javascripttest-pagetext-noframework' => 'Esta página é exclusiva para testes de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'A estrutura de testes "$1" é desconhecida.',
@@ -3110,7 +3107,6 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edições recentes (nos últimos $1)',
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
-'pageinfo-restriction' => 'Proteção da página ({{lcfirst:$1}})',
 
 # Skin names
 'skinname-standard' => 'Clássico',
@@ -3963,6 +3959,10 @@ Caso contrário, você poderá usar o formulário simplificado a seguir. Seu com
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfeito! Apenas verifique se não é um dos [$1 bugs já conhecidos].',
 'feedback-bugnew' => 'Eu verifiquei. Relatar um bug novo',
+
+# Search suggestions
+'searchsuggest-search' => 'Pesquisa',
+'searchsuggest-containing' => 'contendo...',
 
 # API errors
 'api-error-badaccess-groups' => 'Você não tem permissão para enviar arquivos para este wiki.',

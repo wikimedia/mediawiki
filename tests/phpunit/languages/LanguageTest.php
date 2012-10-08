@@ -1065,5 +1065,30 @@ class LanguageTest extends MediaWikiTestCase {
 			array( 10000, 'MMMMMMMMMM' ),
 		);
 	}
+
+	/**
+	 * @dataProvider providePluralData
+	 */
+	function testConvertPlural( $expected, $number, $forms ) {
+		$chosen = $this->lang->convertPlural( $number, $forms );
+		$this->assertEquals( $expected, $chosen );
+	}
+
+	function providePluralData() {
+		return array(
+			array( 'explicit zero', 0, array(
+				'0=explicit zero', 'singular', 'plural'
+			) ),
+			array( 'explicit one', 1, array(
+				'singular', 'plural', '1=explicit one',
+			) ),
+			array( 'singular', 1, array(
+				'singular', 'plural', '0=explicit zero',
+			) ),
+			array( 'plural', 3, array(
+				'0=explicit zero', '1=explicit one', 'singular', 'plural'
+			) ),
+		);
+	}
 }
 

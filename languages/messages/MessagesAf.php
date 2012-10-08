@@ -616,7 +616,7 @@ Die rede hiervoor is "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''U is nou uitgeteken'''
 
-U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan weer [[Special:UserLogin|inteken]] as dieselfde of 'n ander gebruiker.
+U kan aanhou om {{SITENAME}} anoniem te gebruik; of u kan weer <span class='plainlinks'>[$1 inteken]</span> as dieselfde of 'n ander gebruiker.
 Dit is moontlik dat sommige bladsye nog sal aandui dat u aangeteken is totdat u u webblaaier se kas skoonmaak.",
 'welcomecreation' => '== Welkom, $1! ==
 U rekening is geskep;
@@ -1229,8 +1229,6 @@ Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} s
 'search-interwiki-caption' => 'Suster projekte',
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'met voorstelle',
-'search-mwsuggest-disabled' => 'geen voorstelle',
 'search-relatedarticle' => 'Verwante',
 'mwsuggest-disable' => 'Deaktiveer AJAX-voorstelle',
 'searcheverything-enable' => 'Soek in alle naamruimtes',
@@ -2866,7 +2864,6 @@ Die lêer is slegs gedeeltelik opgelaai.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript toetsing',
-'javascripttest-disabled' => 'Die funksie is nie op hierdie wiki geaktiveer nie.',
 'javascripttest-title' => 'Voer toetse uit vir $1',
 'javascripttest-pagetext-noframework' => 'Hierdie bladsy is gereserveer vir die uitvoer van JavaScript-toetse.',
 'javascripttest-pagetext-unknownframework' => 'Onbekende toetsraamwerk "$1".',
@@ -3823,6 +3820,10 @@ Anders kan u die eenvoudige vorm hieronder gebruik. U kommentaar sal by die blad
 'feedback-close' => 'Gedoen',
 'feedback-bugcheck' => 'Gaaf! Kontroleer of dit nie dalk een van die [$1 bekende foute] is nie.',
 'feedback-bugnew' => "Ek het gekontroleer. Rapporteer 'n nuwe fout.",
+
+# Search suggestions
+'searchsuggest-search' => 'Soek',
+'searchsuggest-containing' => 'bevat...',
 
 # API errors
 'api-error-badaccess-groups' => 'U word nie toegelaat om lêers te laai op hierdie wiki.',

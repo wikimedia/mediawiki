@@ -89,15 +89,8 @@ class RollbackAction extends FormlessAction {
 		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
-		if ( $current->getUserText() === '' ) {
-			$old = $this->msg( 'rev-deleted-user' )->escaped();
-		} else {
-			$old = Linker::userLink( $current->getUser(), $current->getUserText() )
-				. Linker::userToolLinks( $current->getUser(), $current->getUserText() );
-		}
-
-		$new = Linker::userLink( $target->getUser(), $target->getUserText() )
-			. Linker::userToolLinks( $target->getUser(), $target->getUserText() );
+		$old = Linker::revUserTools( $current );
+		$new = Linker::revUserTools( $target );
 		$this->getOutput()->addHTML( $this->msg( 'rollback-success' )->rawParams( $old, $new )->parseAsBlock() );
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 

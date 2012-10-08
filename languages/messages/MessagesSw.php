@@ -527,7 +527,7 @@ Sababu zilizotolewa ni "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Umetoka kwenye akaunti yako.'''
 
-Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza [[Special:UserLogin|kuingia tena]] kwenye akaunti yako. Kumbuka kwamba kurasa nyingine zitaendelea kuonekana kana kwamba bado hujatoka kwenye akaunti yako, hadi utakaposafisha kache ya kivinjari.",
+Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza <span class='plainlinks'>[$1 kuingia tena]</span> kwenye akaunti yako. Kumbuka kwamba kurasa nyingine zitaendelea kuonekana kana kwamba bado hujatoka kwenye akaunti yako, hadi utakaposafisha kache ya kivinjari.",
 'welcomecreation' => '== Karibu, $1! ==
 Ushafunguliwa akaunti yako tayari.
 Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
@@ -1098,8 +1098,6 @@ Tazama [[Special:BlockList|IP block orodha ya uzuio wa IP]] kuona orodha ya zuio
 'search-interwiki-caption' => 'Miradi ya jumuia',
 'search-interwiki-default' => 'Matokeo toka $1:',
 'search-interwiki-more' => '(zaidi)',
-'search-mwsuggest-enabled' => 'na mapendekezo',
-'search-mwsuggest-disabled' => 'bila makendekezo',
 'search-relatedarticle' => 'Zingine zinazofanana',
 'mwsuggest-disable' => 'Kutoonyesha mapendekezo ya AJAX',
 'searcheverything-enable' => 'Tafuta katika maeneo yote ya wiki',
@@ -2286,7 +2284,7 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'blockipsuccesssub' => 'Kulifaulu kumzuia',
 'ipb-edit-dropdown' => 'Hariri sababu za kuzuia',
 'ipb-unblock-addr' => 'Acha kumzuia $1',
-'ipb-unblock' => 'Acha kumzuia mtumiaji au anwani wa IP',
+'ipb-unblock' => 'Acha kumzuia mtumiaji au anwani ya IP',
 'ipb-blocklist-contribs' => 'Michango ya $1',
 'unblockip' => 'Acha kuzuia mtumiaji',
 'blocklist' => 'Watumiaji waliozuiliwa',
@@ -2297,7 +2295,7 @@ Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizohari
 'blocklist-expiry' => 'Itakwisha',
 'blocklist-reason' => 'Sababu',
 'ipblocklist-submit' => 'Tafuta',
-'ipblocklist-otherblocks' => ' {{PLURAL:$1|Uzuio mwingine|Zuio zingine}}',
+'ipblocklist-otherblocks' => '{{PLURAL:$1|Uzuio mwingine|Zuio zingine}}',
 'infiniteblock' => 'milele',
 'expiringblock' => 'inakwisha tarehe $1 saa $2',
 'emailblock' => 'barua pepe imezuiliwa',
@@ -2480,7 +2478,7 @@ Ulihafadhie katika tarakalishi yako, halafu ulipakie hapa.',
 'importbadinterwiki' => 'Kiungo kibovu kati za wiki',
 'importnotext' => 'Tupu au bila maandishi',
 'importsuccess' => 'Kuleta kumekamilishwa!',
-'import-noarticle' => 'Hakuna kurasa za kuleta!',
+'import-noarticle' => 'Hakuna kurasa ya kuingiza!',
 'import-token-mismatch' => 'Data ya kipindi zilipotelewa.
 Tafadhali jaribu tena.',
 
@@ -3156,6 +3154,10 @@ Tovuti hii inapata matatatizo wakati huu.',
 'feedback-error3' => 'Hitilafu: API ya wiki haiitiki',
 'feedback-thanks' => 'Ahsante! Maoni yako yamewekwa kwenye ukurasa wa "[$2 $1]".',
 'feedback-close' => 'Tayari',
+
+# Search suggestions
+'searchsuggest-search' => 'Kutafuta',
+'searchsuggest-containing' => 'ya maneno...',
 
 # API errors
 'api-error-empty-file' => 'Faili ulilowasilisha ni tupu.',

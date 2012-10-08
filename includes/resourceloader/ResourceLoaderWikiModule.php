@@ -68,12 +68,6 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @return null|string
 	 */
 	protected function getContent( $title ) {
-		if ( $title->getNamespace() === NS_MEDIAWIKI ) {
-			// The first "true" is to use the database, the second is to use the content langue
-			// and the last one is to specify the message key already contains the language in it ("/de", etc.)
-			$text = MessageCache::singleton()->get( $title->getDBkey(), true, true, true );
-			return $text === false ? '' : $text;
-		}
 		if ( !$title->isCssJsSubpage() && !$title->isCssOrJsPage() ) {
 			return null;
 		}
@@ -147,12 +141,12 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			}
 			$style = CSSMin::remap( $style, false, $wgScriptPath, true );
 			if ( !isset( $styles[$media] ) ) {
-				$styles[$media] = '';
+				$styles[$media] = array();
 			}
 			if ( strpos( $titleText, '*/' ) === false ) {
-				$styles[$media] .=  "/* $titleText */\n";
+				$style =  "/* $titleText */\n" . $style;
 			}
-			$styles[$media] .= $style . "\n";
+			$styles[$media][] = $style;
 		}
 		return $styles;
 	}

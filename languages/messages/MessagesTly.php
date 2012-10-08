@@ -502,7 +502,7 @@ $messages = array(
 јаанки '''[{{fullurl:{{FULLPAGENAME}}|action=edit}}де жыго номи сәһифә офәјеј ]'''</span>.",
 'noarticletext-nopermission' => 'Есәт бы сәһифәдә мәтн ни. 
 Шымә бәзынејон [[Special:Search/{{PAGENAME}}|пәјдо кардеј конҹо ым ном һесте]] бә ҹо мәғолонәдә,
-јаанки <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналон ујғунә нывыштәјон пәјдо кардеј].</span>',
+јаанки <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналон ујғунә нывыштәјон пәјдо кардеј].</span>, интаси шымәку изн ни ым сәһифә офәје.',
 'previewnote' => "'''Јодәдә огәтән ки ым һәлә сыфтәнә нишо доје.'''
 Шымә дәгишон һәлә огәтә быәнин!",
 'editing' => 'Редәктә кардеј $1',
@@ -639,6 +639,9 @@ $messages = array(
 
 # User rights
 'userrights-reason' => 'Сәбәб:',
+
+# Groups
+'group-user' => 'Иштирокәкон',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit' => 'Ым сәһифә сәрост кардеј',
@@ -850,7 +853,10 @@ $messages = array(
 # Block/unblock
 'ipbreason' => 'Сәбәб:',
 'ipboptions' => '2 саат:2 hours,1 руж:1 day,3 руж:3 days,1 һафтә:1 week,2 һафтә:2 weeks,1 манг:1 month,3 манг:3 months,6 манг:6 months,1 сор:1 year,бемыһләт:infinite',
+'ipbotheroption' => 'ҹо',
 'ipblocklist' => 'Бастә быә иштирокәкон',
+'blocklist-reason' => 'Сәбәб',
+'ipblocklist-submit' => 'Нәве',
 'blocklink' => 'Бә гырд гәтеј',
 'unblocklink' => 'Ошко кардеј',
 'change-blocklink' => 'Блок быә ҹо дәгиш кардеј',
@@ -869,6 +875,7 @@ $messages = array(
 # Export
 'export' => 'Сәһифон ихроҹ кардеј',
 'export-addcat' => 'Зијод кардеј',
+'export-addns' => 'Зијод кардеј',
 
 # Namespace 8 related
 'allmessagesname' => 'Хәбә',
@@ -939,6 +946,7 @@ $messages = array(
 
 # Info page
 'pageinfo-header-edits' => 'Дәгиш кардә быә чијон тарых',
+'pageinfo-redirects-value' => '$1',
 
 # Browsing diffs
 'previousdiff' => '← Навынәни дәгиши',
@@ -1038,5 +1046,6 @@ $messages = array(
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|нышонон]] филтр:',
+'tags-title' => 'Нышонон',
 
 );

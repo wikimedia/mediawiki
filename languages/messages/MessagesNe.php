@@ -457,7 +457,7 @@ $2',
 
 # Login and logout pages
 'logouttext' => "'''तपाईं अहिले बाहिर निस्कनु भएको छ।'''
-तपाईंले नाम/खाताविनै पनि {{SITENAME}}मा प्रयोग गर्न सक्नुहुन्छ, अथवा अघिकै वा अर्कै कुनै नामको खाताबाट [[Special:UserLogin|फेरि प्रवेश गर्न]] पनि सक्नुहुन्छ।
+तपाईंले नाम/खाताविनै पनि {{SITENAME}}मा प्रयोग गर्न सक्नुहुन्छ, अथवा अघिकै वा अर्कै कुनै नामको खाताबाट <span class='plainlinks'>[$1 फेरि प्रवेश गर्न]</span> पनि सक्नुहुन्छ।
 याद राख्नुहोस् तपाईंले ब्राउजरको स्मरण भण्डार खालि नगर्दासम्म कुनै पृष्ठहरूमा तपाईं अझै प्रवेश गरिराखेको देखाउन सक्छ।",
 'welcomecreation' => '== स्वागतम् , $1! ==
 तपाँईको खाता खोलिएको छ। [[Special:Preferences|{{SITENAME}} preferences]]मा आफ्ना अभिरुचिहरू परिवर्तन गर्न नबिर्सिनुहोला।',
@@ -1041,8 +1041,6 @@ $1",
 'search-interwiki-caption' => 'भगिनी आयोजना',
 'search-interwiki-default' => '$1 नतिजाहरु:',
 'search-interwiki-more' => '(अझै)',
-'search-mwsuggest-enabled' => 'सुझाव सहितको',
-'search-mwsuggest-disabled' => 'सुझाव बाहेकको',
 'search-relatedarticle' => 'सम्बन्धित',
 'mwsuggest-disable' => 'AJAX सुझाव निस्क्रिय पार्नुहोस्',
 'searcheverything-enable' => 'सबै नेमस्पेसेजहरुमा खोज्नुहोस्',

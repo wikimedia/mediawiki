@@ -621,17 +621,27 @@ class WikiPage extends Page implements IDBAccessObject {
 	 *
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 	 * @return String|false The text of the current revision
 	 * @deprecated as of 1.21, getContent() should be used instead.
+=======
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
+	 * @return String|bool The text of the current revision. False on failure
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 	 */
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 	public function getText( $audience = Revision::FOR_PUBLIC ) { #@todo: deprecated, replace usage!
 		wfDeprecated( __METHOD__, '1.21' );
 
+=======
+	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getText( $audience );
+			return $this->mLastRevision->getText( $audience, $user );
 		}
 		return false;
 	}
@@ -672,14 +682,16 @@ class WikiPage extends Page implements IDBAccessObject {
 	/**
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
 	 * @return int user ID for the user that made the last article revision
 	 */
-	public function getUser( $audience = Revision::FOR_PUBLIC ) {
+	public function getUser( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getUser( $audience );
+			return $this->mLastRevision->getUser( $audience, $user );
 		} else {
 			return -1;
 		}
@@ -689,14 +701,16 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * Get the User object of the user who created the page
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
 	 * @return User|null
 	 */
-	public function getCreator( $audience = Revision::FOR_PUBLIC ) {
+	public function getCreator( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$revision = $this->getOldestRevision();
 		if ( $revision ) {
-			$userName = $revision->getUserText( $audience );
+			$userName = $revision->getUserText( $audience, $user );
 			return User::newFromName( $userName, false );
 		} else {
 			return null;
@@ -706,14 +720,16 @@ class WikiPage extends Page implements IDBAccessObject {
 	/**
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
 	 * @return string username of the user that made the last article revision
 	 */
-	public function getUserText( $audience = Revision::FOR_PUBLIC ) {
+	public function getUserText( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getUserText( $audience );
+			return $this->mLastRevision->getUserText( $audience, $user );
 		} else {
 			return '';
 		}
@@ -722,14 +738,16 @@ class WikiPage extends Page implements IDBAccessObject {
 	/**
 	 * @param $audience Integer: one of:
 	 *      Revision::FOR_PUBLIC       to be displayed to all users
-	 *      Revision::FOR_THIS_USER    to be displayed to $wgUser
+	 *      Revision::FOR_THIS_USER    to be displayed to the given user
 	 *      Revision::RAW              get the text regardless of permissions
+	 * @param $user User object to check for, only if FOR_THIS_USER is passed
+	 *              to the $audience parameter
 	 * @return string Comment stored for the last article revision
 	 */
-	public function getComment( $audience = Revision::FOR_PUBLIC ) {
+	public function getComment( $audience = Revision::FOR_PUBLIC, User $user = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getComment( $audience );
+			return $this->mLastRevision->getComment( $audience, $user );
 		} else {
 			return '';
 		}

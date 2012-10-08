@@ -34,9 +34,9 @@ class UpdateLogging {
 	/**
 	 * @var DatabaseBase
 	 */
-	var $dbw;
-	var $batchSize = 1000;
-	var $minTs = false;
+	public $dbw;
+	public $batchSize = 1000;
+	public $minTs = false;
 
 	function execute() {
 		$this->dbw = wfGetDB( DB_MASTER );

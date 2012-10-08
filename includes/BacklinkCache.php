@@ -287,8 +287,9 @@ class BacklinkCache {
 			default:
 				$conds = null;
 				wfRunHooks( 'BacklinkCacheGetConditions', array( $table, $this->title, &$conds ) );
-				if( !$conds )
+				if( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
+				}
 		}
 
 		return $conds;

@@ -35,7 +35,9 @@ class MostlinkedCategoriesPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isSyndicated() { return false; }
+	function isSyndicated() {
+		return false;
+	}
 
 	function getQueryInfo() {
 		return array (
@@ -46,7 +48,9 @@ class MostlinkedCategoriesPage extends QueryPage {
 		);
 	}
 
-	function sortDescending() { return true; }
+	function sortDescending() {
+		return true;
+	}
 
 	/**
 	 * Fetch user page links and cache their existence

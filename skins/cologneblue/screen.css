@@ -2,6 +2,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: black;
+	font-family: serif;
 }
 
 #specialform {
@@ -18,10 +19,6 @@ body {
 	font-family: Verdana, Arial, sans-serif;
 	color: black;
 	font-size: 8pt;
-}
-
-#topbar {
-	padding: 0;
 }
 
 #powersearch {
@@ -61,64 +58,16 @@ textarea {
 }
 
 #footer {
+	margin-right: 2%;
+	margin-top: 1em;
 	padding: 4px;
+	font-family: verdana, arial, sans-serif;
+	font-size: 10pt;
+	text-align: center;
 }
 
 #footer form {
 	display: inline;
-}
-
-#sitetitle {
-	font-family: Times, serif;
-	color: white;
-	font-weight: normal;
-	font-size: 32pt;
-	line-height: 32pt;
-}
-
-td.top {
-	background-color: #6688AA;
-	color: white;
-	margin-top: 4px;
-	margin-bottom: 4px;
-	padding-top: 0;
-	padding-bottom: 0;
-	text-transform: uppercase;
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 8pt;
-}
-
-td.top a {
-	font-family: Verdana, Arial, sans-serif;
-	background-color: #6688AA;
-	color: white;
-	text-decoration: none;
-	font-size: 10pt;
-}
-
-td#top-syslinks {
-	text-align: right;
-	vertical-align: bottom;
-}
-td.top-linkcollection {
-	text-align: right;
-}
-/**
- * Overrides text justification (user preference)
- * See bug 31990
- */
-td.top-linkcollection #catlinks {
-	text-align: right;
-}
-td.top-subheader {
-	vertical-align: top;
-}
-td.bottom {
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 10pt;
-	padding: 0;
-	text-align: center;
-	vertical-align: bottom;
 }
 
 #pagestats {
@@ -127,12 +76,7 @@ td.bottom {
 	font-size: 9pt;
 }
 
-#sitesub {
-	font-family: Verdana, Arial, sans-serif;
-	font-size: 9pt; font-weight: bold;
-	color: black;
-	padding-top: 0;
-}
+
 
 #quickbar {
 	font-family: Verdana, Arial, sans-serif;
@@ -177,12 +121,12 @@ h1 .editsection {
 	font-size: 55.6%;
 }
 
-h1.pagetitle {
+h1#firstHeading {
 	padding-bottom: 0;
 	margin-bottom: 0;
 }
 
-#article p.subtitle {
+#article p.subtitle, #article p.subpages, #article p.tagline {
 	color: #666666;
 	font-size: 11pt;
 	font-weight: bold;
@@ -226,4 +170,83 @@ small {
 
 input.mw-searchInput {
 	width: 106px;
+}
+
+/* Directionality-specific styles */
+#quickbar { position: absolute; left: 4px; }
+#article { margin-left: 148px; margin-right: 4px; }
+#footer { margin-left: 152px; }
+
+
+#sitetitle, #sitesub, #toplinks, #linkcollection {
+	margin-top: 0; 
+	margin-bottom: 0; 
+}
+
+#sitetitle, #toplinks {
+	color: white;
+	text-transform: uppercase;
+	height: 32pt;
+}
+#sitetitle {
+	padding-left: 8px;
+	font-family: Times, serif;
+	font-weight: normal;
+	font-size: 32pt;
+	line-height: 32pt;
+	background-color: #6688AA;
+}
+#sitetitle a, #toplinks a {
+	color: white;
+	text-decoration: none; 
+}
+/* Bring #sitetitle to top. Otherwise #toplinks is overlaid over it, making the link unclickable. */
+#sitetitle a {
+	position: relative;
+	z-index: 10
+}
+
+#toplinks {
+	font-family: Verdana, Arial, sans-serif;
+	position: absolute;
+	top: 0;
+	right: 8px;
+	width: 100%;
+	font-size: 8pt;
+}
+#toplinks a {
+	font-size: 10pt;
+}
+#toplinks p {
+	position: absolute;
+	right: 0;
+	margin: 0;
+	width: 100%;
+	text-align: right;
+}
+#toplinks #syslinks {
+	bottom: 0;
+}
+#toplinks #variantlinks {
+	bottom: 12pt;
+}
+
+#sitesub {
+	float: left;
+	margin-left: 8px;
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 9pt;
+	font-weight: bold;
+	color: black;
+}
+
+#linkcollection {
+	margin-top: 0.5em;
+	font-size: small;
+	margin-right: 8px;
+	text-align: right;
+}
+/* Override text justification (user preference), see bug 31990 */
+#linkcollection * {
+	text-align: right;
 }

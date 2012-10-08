@@ -1,5 +1,5 @@
 <?php
-/** Crimean Turkish (Latin script) (‪qırımtatarca (Latin)‬)
+/** Crimean Turkish (Latin script) (qırımtatarca (Latin)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -487,7 +487,7 @@ Sebep: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Oturımnı qapattıñız.'''
 
-Şimdi {{SITENAME}} saytını anonim olaraq qullanıp olasıñız, ya da yañıdan [[Special:UserLogin|oturım açıp]] olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.",
+Şimdi {{SITENAME}} saytını anonim olaraq qullanıp olasıñız, ya da yañıdan <span class='plainlinks'>[$1 oturım açıp]</span> olasıñız (ister aynı qullanıcı adınen, ister başqa bir qullanıcı adınen). Web brauzeriñiz keşini temizlegence bazı saifeler sanki alâ daa oturımıñız açıq eken kibi körünip olur.",
 'welcomecreation' => '== Hoş keldiñiz, $1! ==
 Esabıñız açıldı.
 Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñiştirmege unutmañız.',
@@ -868,8 +868,6 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'search-interwiki-caption' => 'Qardaş leyhalar',
 'search-interwiki-default' => '$1 netice:',
 'search-interwiki-more' => '(daa çоq)',
-'search-mwsuggest-enabled' => 'tevsiyelernen',
-'search-mwsuggest-disabled' => 'tevsiye yoq',
 'search-relatedarticle' => 'Bağlı',
 'mwsuggest-disable' => 'AJAX tevsiyelerini işletme',
 'searcheverything-enable' => 'Bütün isim fezalarında qıdır',
@@ -2106,5 +2104,8 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 
 # New logging system
 'newuserlog-byemail' => 'parol e-mail vastasınen yiberilgen',
+
+# Search suggestions
+'searchsuggest-containing' => 'içinde bu olğan...',
 
 );

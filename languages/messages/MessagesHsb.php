@@ -310,7 +310,7 @@ $messages = array(
 'vector-action-protect' => 'škitać',
 'vector-action-undelete' => 'Wobnowić',
 'vector-action-unprotect' => 'Škit wotstronić',
-'vector-simplesearch-preference' => 'Polěpšene pytanske namjety zmóžnić (jenož šat Vector)',
+'vector-simplesearch-preference' => 'Zjednorjenu pytansku lajstu zmóžnić (jenož drasta Vector)',
 'vector-view-create' => 'Wutworić',
 'vector-view-edit' => 'Wobdźěłać',
 'vector-view-history' => 'Stawizny',
@@ -557,7 +557,7 @@ Administrator, kiž je jón zawrěł, je tule přičinu podał: "$3".',
 # Login and logout pages
 'logouttext' => "'''{{GENDER:|Sy|Sy}} nětko {{GENDER:|wotzjewjeny|wotzjewjena}}.'''
 
-Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom [[Special:UserLogin|zaso přizjewić]].
+Móžeš {{GRAMMAR:akuzatiw|{{SITENAME}}}} nětko anonymnje dale wužiwać abo so ze samsnym abo druhim wužiwarskim mjenom <span class='plainlinks'>[$1 zaso přizjewić]</span>.
 Wobkedźbuj, zo so někotre strony dale jewja, kaž by hišće přizjewjeny był, doniž pufrowak swojeho wobhladowaka njewuprózdnješ.",
 'welcomecreation' => '== Witaj, $1! ==
 
@@ -791,7 +791,7 @@ Hesło za tute nowe konto da so na stronje ''[[Special:ChangePassword|hesło zm�
 'anontalkpagetext' => "---- ''To je diskusijna strona za anonymneho wužiwarja, kiž hišće konto wutworił njeje abo je njewužiwa. Dyrbimy tohodla numerisku IP-adresu wužiwać, zo bychmy jeho/ju identifikowali. Tajka IP-adresa hodźi so wot wjacorych wužiwarjow zhromadnje wužiwać. Jeli sy anonymny wužiwar a měniš, zo buchu irelewantne komentary k tebi pósłane, [[Special:UserLogin/signup|wutwor prošu konto]] abo [[Special:UserLogin|přizjew so]], zo by přichodnu šmjatańcu z anonymnymi wužiwarjemi wobešoł.''",
 'noarticletext' => 'Tuchwilu tuta strona žadyn tekst njewobsahuje. Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony na druhich stronach pytać]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} wotpowědne protokole pytać] abo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tutu stronu wobdźěłać]</span>.',
 'noarticletext-nopermission' => 'Tuchwilu žadyn tekst na tutej stronje njeje.
-Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>.',
+Móžeš [[Special:Search/{{PAGENAME}}|tutón titul strony]] na druhich stronach pytać abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pytaj wotpowědne protokole]</span>, ale nimaš prawo, strou wutworić.',
 'missing-revision' => 'Wersija #$1 strony z mjenom "{{PAGENAME}}" njeeksistuje.
 
 Přičina je zwjetša zestarjeny wotkaz w stawiznach k stronje, kotraž je so zhašała.
@@ -1148,8 +1148,6 @@ Podrobnosće móžeš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Sotrowske projekty',
 'search-interwiki-default' => '$1 wuslědki:',
 'search-interwiki-more' => '(dalše)',
-'search-mwsuggest-enabled' => 'z namjetami',
-'search-mwsuggest-disabled' => 'žane namjety',
 'search-relatedarticle' => 'Přiwuzne',
 'mwsuggest-disable' => 'Namjety AJAX znjemóžnić',
 'searcheverything-enable' => 'We wšěch mjenowych rumach pytać',
@@ -1246,7 +1244,7 @@ Tu je připadnje wupłodźena hódnota, kotruž móžeš wužiwać: $1',
 'timezoneregion-indian' => 'Indiski ocean',
 'timezoneregion-pacific' => 'Pacifiski ocean',
 'allowemail' => 'Mejlki wot druhich wužiwarjow přijimować',
-'prefs-searchoptions' => 'Pytanske opcije',
+'prefs-searchoptions' => 'Pytać',
 'prefs-namespaces' => 'Mjenowe rumy',
 'defaultns' => 'Hewak w tutych mjenowych rumach pytać:',
 'default' => 'standard',
@@ -2736,7 +2734,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # JavaScriptTest
 'javascripttest' => 'JavaScriptowy test',
-'javascripttest-disabled' => 'Tuta funkcija njeje na tutym wikiju zmóžnjena.',
 'javascripttest-title' => 'Testy $1 so přewjedu',
 'javascripttest-pagetext-noframework' => 'Tuta strona je za přewjedźenje javascriptowych testow přewostajena.',
 'javascripttest-pagetext-unknownframework' => 'Njeznaty wobłuk "$1".',
@@ -2873,10 +2870,10 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-authors' => 'Cyłkowna ličba rozdźělnych awtorow',
 'pageinfo-recent-edits' => 'Ličba najnowšich změnow (za zańdźenych $1)',
 'pageinfo-recent-authors' => 'Najnowša ličba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Škit strony ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',
+'pageinfo-toolboxlink' => 'Informacije wo stronje',
 
 # Skin names
 'skinname-standard' => 'Klasiski',
@@ -3445,6 +3442,7 @@ Tutón wobkrućenski kod spadnje $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Zapřijeće mjezyrěčnych wotkazow je znjemóžnjene]',
 'scarytranscludefailed' => '[Zapřijimanje předłohi za $1 je so njeporadźiło]',
+'scarytranscludefailed-httpstatus' => '[Wotwołanje předłohi za $1 je so njeporadźiło: HTTP $2]',
 'scarytranscludetoolong' => '[URL je předołhi]',
 
 # Delete conflict
@@ -3720,6 +3718,10 @@ Hewak móžeš slědowacy jednory formular wužiwać. Twój komentar přida so s
 'feedback-close' => 'Dokónčeny',
 'feedback-bugcheck' => 'Wulkotnje! Skontroluj jenož, hač to jedyn z [$1 znatych zmylkow] njeje.',
 'feedback-bugnew' => 'Sym to skontrolował. Nowy zmylk zdźělić',
+
+# Search suggestions
+'searchsuggest-search' => 'Pytać',
+'searchsuggest-containing' => 'wobsahuje...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nimaš prawo dataje do tutoho wikija nahrać.',

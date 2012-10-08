@@ -34,20 +34,43 @@ class SyncFileBackend extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Sync one file backend with another using the journal";
 		$this->addOption( 'src', 'Name of backend to sync from', true, true );
-		$this->addOption( 'dst', 'Name of destination backend to sync', true, true );
+		$this->addOption( 'dst', 'Name of destination backend to sync', false, true );
 		$this->addOption( 'start', 'Starting journal ID', false, true );
 		$this->addOption( 'end', 'Ending journal ID', false, true );
 		$this->addOption( 'posdir', 'Directory to read/record journal positions', false, true );
+		$this->addOption( 'posdump', 'Just dump current journal position into the position dir.' );
 		$this->addOption( 'verbose', 'Verbose mode', false, false, 'v' );
 		$this->setBatchSize( 50 );
 	}
 
 	public function execute() {
 		$src = FileBackendGroup::singleton()->get( $this->getOption( 'src' ) );
-		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
 
 		$posDir = $this->getOption( 'posdir' );
 		$posFile = $posDir ? $posDir . '/' . wfWikiID() : false;
+
+		if ( $this->hasOption( 'posdump' ) ) {
+			// Just dump the current position into the specified position dir
+			if ( !$this->hasOption( 'posdir' ) ) {
+				$this->error( "Param posdir required!", 1 );
+			}
+			$id = (int)$src->getJournal()->getCurrentPosition(); // default to 0
+			$this->output( "Current journal position is $id.\n" );
+			if ( file_put_contents( $posFile, $id, LOCK_EX ) !== false ) {
+				$this->output( "Saved journal position file.\n" );
+			} else {
+				$this->output( "Could not save journal position file.\n" );
+			}
+			if ( $this->isQuiet() ) {
+				print $id; // give a single machine-readable number
+			}
+			return;
+		}
+
+		if ( !$this->hasOption( 'dst' ) ) {
+			$this->error( "Param dst required!", 1 );
+		}
+		$dst = FileBackendGroup::singleton()->get( $this->getOption( 'dst' ) );
 
 		$start = $this->getOption( 'start', 0 );
 		if ( !$start && $posFile && is_dir( $posDir ) ) {

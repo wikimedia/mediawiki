@@ -255,7 +255,7 @@ class OutputPage extends ContextSource {
 	function __construct( IContextSource $context = null ) {
 		if ( $context === null ) {
 			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
-			wfDeprecated( __METHOD__ );
+			wfDeprecated( __METHOD__, '1.18' );
 		} else {
 			$this->setContext( $context );
 		}
@@ -851,11 +851,10 @@ class OutputPage extends ContextSource {
 		$this->getContext()->setTitle( $t );
 	}
 
-
 	/**
 	 * Replace the subtile with $str
 	 *
-	 * @param $str String|Message: new value of the subtitle
+	 * @param $str String|Message: new value of the subtitle. String should be safe HTML.
 	 */
 	public function setSubtitle( $str ) {
 		$this->clearSubtitle();
@@ -875,7 +874,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @param $str String|Message to add to the subtitle
+	 * @param $str String|Message to add to the subtitle. String should be safe HTML.
 	 */
 	public function addSubtitle( $str ) {
 		if ( $str instanceof Message ) {
@@ -1903,7 +1902,7 @@ class OutputPage extends ContextSource {
 	 * @deprecated since 1.18 Use HttpStatus::getMessage() instead.
 	 */
 	public static function getStatusMessage( $code ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		return HttpStatus::getMessage( $code );
 	}
 
@@ -2347,11 +2346,20 @@ $templates
 	 * @param $title Title to link
 	 * @param $query Array query string parameters
 	 * @param $text String text of the link (input is not escaped)
+	 * @param $options Options array to pass to Linker
 	 */
-	public function addReturnTo( $title, $query = array(), $text = null ) {
-		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullURL() ) );
+	public function addReturnTo( $title, $query = array(), $text = null, $options = array() ) {
+		if( in_array( 'http', $options ) ) {
+			$proto = PROTO_HTTP;
+		} elseif( in_array( 'https', $options ) ) {
+			$proto = PROTO_HTTPS;
+		} else {
+			$proto = PROTO_RELATIVE;
+		}
+
+		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullURL( '', false, $proto ) ) );
 		$link = $this->msg( 'returnto' )->rawParams(
-			Linker::link( $title, $text, array(), $query ) )->escaped();
+			Linker::link( $title, $text, array(), $query, $options ) )->escaped();
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
 	}
 
@@ -2455,7 +2463,7 @@ $templates
 	 */
 	private function addDefaultModules() {
 		global $wgIncludeLegacyJavaScript, $wgPreloadJavaScriptMwUtil, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableMWSuggest;
+			$wgAjaxWatch;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2483,8 +2491,8 @@ $templates
 				$this->addModules( 'mediawiki.page.watch.ajax' );
 			}
 
-			if ( $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-				$this->addModules( 'mediawiki.legacy.mwsuggest' );
+			if ( !$this->getUser()->getOption( 'disablesuggest', false ) ) {
+				$this->addModules( 'mediawiki.searchSuggest' );
 			}
 		}
 
@@ -2908,7 +2916,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
+		global $wgUseAjax, $wgContLang;
 
 		$latestRevID = 0;
 		$pageID = 0;
@@ -2973,9 +2981,6 @@ $templates
  		}
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
-		}
-		if ( $wgUseAjax && $wgEnableMWSuggest && !$this->getUser()->getOption( 'disablesuggest', false ) ) {
-			$vars['wgSearchNamespaces'] = SearchEngine::userNamespaces( $this->getUser() );
 		}
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;

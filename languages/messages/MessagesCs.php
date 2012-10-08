@@ -516,7 +516,7 @@ $messages = array(
 'vector-action-protect' => 'Zamknout',
 'vector-action-undelete' => 'Obnovit',
 'vector-action-unprotect' => 'Změnit zámek',
-'vector-simplesearch-preference' => 'Zapnout rozšířené návrhy hledání (pouze vzhled Vektor)',
+'vector-simplesearch-preference' => 'Zapnout zjednodušené vyhledávání (pouze vzhled Vektor)',
 'vector-view-create' => 'Založit',
 'vector-view-edit' => 'Editovat',
 'vector-view-history' => 'Zobrazit historii',
@@ -764,7 +764,7 @@ Správce serveru, který úložiště zamkl, poskytl toto zdůvodnění: „''$3
 # Login and logout pages
 'logouttext' => "'''Nyní jste odhlášeni.'''
 
-Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete [[Special:UserLogin|znovu přihlásit]] jako stejný či jiný uživatel.
+Můžete pokračovat v anonymním prohlížení a editaci {{grammar:2sg|{{SITENAME}}}}, nebo se můžete <span class='plainlinks'>[$1 znovu přihlásit]</span> jako stejný či jiný uživatel.
 Uvědomte si, že některé stránky se mohou i nadále zobrazovat, jako byste byli dosud přihlášeni, pokud nevymažete cache prohlížeče.",
 'welcomecreation' => '== Vítejte, $1! ==
 Váš účet byl úspěšně vytvořen.
@@ -1014,7 +1014,7 @@ Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'noarticletext' => 'Tato stránka zatím neobsahuje žádný text.
 Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'noarticletext-nopermission' => 'Tato stránka zatím neobsahuje žádný text.
-Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>.',
+Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách nebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si prohlédnout příslušné protokolovací záznamy]</span>, ale na založení této stránky nemáte oprávnění.',
 'missing-revision' => 'Revize #$1 stránky s názvem „{{PAGENAME}}“ neexistuje.
 
 Toto je obvykle způsobeno tím, že jste následovali zastaralý odkaz historickou verzi stránky, jež byla smazána.
@@ -1374,8 +1374,6 @@ Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-caption' => 'Sesterské projekty',
 'search-interwiki-default' => 'Výsledky z $1:',
 'search-interwiki-more' => '(více)',
-'search-mwsuggest-enabled' => 's návrhy',
-'search-mwsuggest-disabled' => 'bez návrhů',
 'search-relatedarticle' => 'Související',
 'mwsuggest-disable' => 'Vypnout ajaxové napovídání',
 'searcheverything-enable' => 'Hledat ve všech jmenných prostorech',
@@ -1447,7 +1445,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'stub-threshold' => 'Limit pro formátování odkazu jako <a href="#" class="stub">pahýl</a> (v bajtech):',
 'stub-threshold-disabled' => 'Vypnuto',
 'recentchangesdays' => 'Počet dní zobrazených v posledních změnách:',
-'recentchangesdays-max' => '(maximálně $1 {{PLURAL:$1|den|dny|dní}})',
+'recentchangesdays-max' => 'Maximálně $1 {{PLURAL:$1|den|dny|dní}}',
 'recentchangescount' => 'Počet implicitně zobrazovaných záznamů:',
 'prefs-help-recentchangescount' => 'Týká se posledních změn, historie stránek a protokolovacích záznamů.',
 'prefs-help-watchlist-token' => 'Pokud do tohoto pole vyplníte tajný klíč, bude vytvořen RSS kanál vašich sledovaných stránek.
@@ -1472,7 +1470,7 @@ Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
 'timezoneregion-indian' => 'Indický oceán',
 'timezoneregion-pacific' => 'Tichý oceán',
 'allowemail' => 'Povolit e-mail od ostatních uživatelů',
-'prefs-searchoptions' => 'Možnosti vyhledávání',
+'prefs-searchoptions' => 'Vyhledávání',
 'prefs-namespaces' => 'Jmenné prostory',
 'defaultns' => 'Nebo hledat v těchto jmenných prostorech:',
 'default' => 'implicitní',
@@ -2973,7 +2971,6 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # JavaScriptTest
 'javascripttest' => 'Testování JavaScriptu',
-'javascripttest-disabled' => 'Tato funkce nebyla na této wiki povolena.',
 'javascripttest-title' => 'Spouštějí se testy v $1',
 'javascripttest-pagetext-noframework' => 'Tato stránka je vyhrazena pro spouštění testů JavaScriptu.',
 'javascripttest-pagetext-unknownframework' => 'Neznámá testovací knihovna „$1“.',
@@ -3136,10 +3133,10 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-authors' => 'Celkový počet různých autorů',
 'pageinfo-recent-edits' => 'Počet nedávných ($1) editací',
 'pageinfo-recent-authors' => 'Nedávný počet různých autorů',
-'pageinfo-restriction' => 'Zámek stránky ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Kouzelné slovo|Kouzelná slova}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá|Skryté}} kategorie ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Použitá šablona|Použité šablony}} ($1)',
+'pageinfo-toolboxlink' => 'Informace o stránce',
 
 # Skin names
 'skinname-standard' => 'Klasický',
@@ -3717,6 +3714,7 @@ Platnost tohoto potvrzovacího kódu vyprší $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Vkládání šablon mezi wiki je vypnuto]',
 'scarytranscludefailed' => '[Nepodařilo se načíst šablonu pro $1]',
+'scarytranscludefailed-httpstatus' => '[Nepodařilo se načíst šablonu pro $1: HTTP $2]',
 'scarytranscludetoolong' => '[Příliš dlouhé URL]',
 
 # Delete conflict
@@ -4048,6 +4046,10 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'feedback-close' => 'Hotovo',
 'feedback-bugcheck' => 'Skvělé! Jen zkontrolujte, zda se nejedná o jednu z [$1 už známých chyb].',
 'feedback-bugnew' => 'Zkontroloval(a) jsem to. Chci ohlásit novou chybu.',
+
+# Search suggestions
+'searchsuggest-search' => 'Hledat',
+'searchsuggest-containing' => 'obsahující…',
 
 # API errors
 'api-error-badaccess-groups' => 'Nemáte povoleno nahrávat soubory na tuto wiki.',

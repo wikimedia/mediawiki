@@ -474,8 +474,6 @@ IP дарегиңиз бул барактын оңдоо тарыхына жаз
 'search-redirect' => '($1 кайра багыттоо)',
 'search-section' => '($1 бөлүмү)',
 'search-suggest' => 'Ушуну кааладыңызбы: $1',
-'search-mwsuggest-enabled' => 'сунуштар менен',
-'search-mwsuggest-disabled' => 'сунушсуз',
 'searchrelated' => 'байланыштуу',
 'searchall' => 'баары',
 'showingresultsheader' => "'''$4''' үчүн {{PLURAL:$5|'''$3''' жыйынтыктан '''$1'''-и|'''$1 - $2''' -дан '''$3''' жыйынтык}}",

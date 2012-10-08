@@ -188,6 +188,8 @@ class Linker {
 	 *       cons.
 	 *     'forcearticlepath': Use the article path always, even with a querystring.
 	 *       Has compatibility issues on some setups, so avoid wherever possible.
+	 *     'http': Force a full URL with http:// as the scheme.
+	 *     'https': Force a full URL with https:// as the scheme.
 	 * @return string HTML <a> attribute
 	 */
 	public static function link(
@@ -294,7 +296,16 @@ class Linker {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
-		$ret = $target->getLinkURL( $query );
+
+		if ( in_array( 'http', $options ) ) {
+			$proto = PROTO_HTTP;
+		} elseif ( in_array( 'https', $options ) ) {
+			$proto = PROTO_HTTPS;
+		} else {
+			$proto = PROTO_RELATIVE;
+		}
+
+		$ret = $target->getLinkURL( $query, false, $proto );
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}

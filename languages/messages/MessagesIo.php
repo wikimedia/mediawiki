@@ -409,7 +409,7 @@ nekorekta interlinguale od interwikale ligilo.',
 # Login and logout pages
 'logouttext' => "'''Vu nun esas nun ek {{SITENAME}}.'''
 
-Vu povas durar uzante {{SITENAME}} anonimale, o vu povas [[Special:UserLogin|enirar itere]] kom la sama o diferenta uzanto.
+Vu povas durar uzante {{SITENAME}} anonimale, o vu povas <span class='plainlinks'>[$1 enirar itere]</span> kom la sama o diferenta uzanto.
 Atencez ke kelka pagini posible duras montresar semblante ke vu ne ekirus, til vu vakuigas la tempala-magazino di vua navigilo.",
 'welcomecreation' => '== Bonveno, $1! ==
 Vua konto kreesis.
@@ -672,8 +672,6 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'search-interwiki-caption' => 'Altra projekti',
 'search-interwiki-default' => 'Rezultaji di $1:',
 'search-interwiki-more' => '(plusa)',
-'search-mwsuggest-enabled' => 'kun sugestaji',
-'search-mwsuggest-disabled' => 'sen sugestaji',
 'searchall' => 'omna',
 'showingresults' => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'showingresultsnum' => "Montrante infre {{PLURAL:$3|'''1''' rezulto|'''$3''' rezulti}}, qui komencas kun numero #'''$2'''.",
@@ -1555,5 +1553,9 @@ Vu darfos adjuntar kauso en la rezumo.',
 # HTML forms
 'htmlform-reset' => 'Desfacar chanji',
 'htmlform-selectorother-other' => 'Altra',
+
+# Search suggestions
+'searchsuggest-search' => 'Serchez',
+'searchsuggest-containing' => 'quan kontenas...',
 
 );

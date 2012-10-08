@@ -28,6 +28,7 @@
  * @author Dim Grits
  * @author Don Alessandro
  * @author Eleferen
+ * @author Erdemaslancan
  * @author EugeneZelenko
  * @author Eugrus
  * @author Express2000
@@ -773,10 +774,11 @@ $1',
 'protectedpagetext' => 'Эта страница закрыта для редактирования.',
 'viewsourcetext' => 'Вы можете просмотреть и скопировать исходный текст этой страницы:',
 'viewyourtext' => "Вы можете просмотреть и скопировать исходный текст '''ваших правок''' на этой странице:",
-'protectedinterface' => 'Эта страница содержит интерфейсное сообщение программного обеспечения. Во избежание вандализма её изменение запрещено.',
+'protectedinterface' => 'Эта страница содержит интерфейсное сообщение программного обеспечения. Во избежание вандализма её изменение запрещено.
+Чтобы добавить или изменить перевод этого сообщения во всех вики, пожалуйста, используйте сайт локализации MediaWiki [//translatewiki.net/ translatewiki.net]',
 'editinginterface' => "'''Внимание:''' Вы редактируете страницу, содержащую текст интерфейса программного обеспечения.
-Её изменение повлияет на внешний вид интерфейса для других пользователей.
-Для переводов лучше использовать [//translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], проект по локализации MediaWiki.",
+Её изменение повлияет на внешний вид интерфейса для других пользователей этой вики.
+Чтобы добавить или изменить перевод этого сообщения, пожалуйста, используйте сайт локализации MediaWiki [//translatewiki.net/ translatewiki.net].",
 'sqlhidden' => '(SQL запрос скрыт)',
 'cascadeprotected' => 'Страница защищена от изменений, поскольку она включена в {{PLURAL:$1|следующую страницу, для которой|следующие страницы, для которых}} включена каскадная защита:
 $2',
@@ -802,7 +804,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Вы завершили сеанс работы.'''
 
-Вы можете продолжить участие в {{grammar:genitive|{{SITENAME}}}} анонимно или [[Special:UserLogin|представиться заново]] под тем же или другим именем.
+Вы можете продолжить участие в {{grammar:genitive|{{SITENAME}}}} анонимно или <span class='plainlinks'>[$1 представиться заново]</span> под тем же или другим именем.
 Некоторые страницы могут продолжать отображаться в том виде, как будто вы всё ещё представлены системе. Для борьбы с этим явлением обновите кеш браузера.",
 'welcomecreation' => '== Добро пожаловать, $1! ==
 Ваша учётная запись создана.
@@ -971,7 +973,7 @@ $2
 'changeemail-oldemail' => 'Текущий адрес электронной почты:',
 'changeemail-newemail' => 'Новый адрес электронной почты:',
 'changeemail-none' => '(нет)',
-'changeemail-submit' => 'Измененить адрес',
+'changeemail-submit' => 'Изменить адрес',
 'changeemail-cancel' => 'Отмена',
 
 # Edit page toolbar
@@ -1067,8 +1069,8 @@ $2
 <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов],
 или '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} создать страницу с таким названием]'''</span>.",
 'noarticletext-nopermission' => 'В настоящее время на этой странице нет текста.
-Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] в других статьях,
-или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span>',
+Вы можете [[Special:Search/{{PAGENAME}}|найти упоминание данного названия]] на других страницах,
+или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} найти соответствующие записи журналов].</span> У вас нет разрешения создать данную страницу.',
 'missing-revision' => 'Версия $1 страницы «{{PAGENAME}}» не существует.
 
 Это обычно бывает, если последовать по устаревшей ссылке на страницу, которая была удалена.
@@ -1433,8 +1435,6 @@ $1",
 'search-interwiki-caption' => 'Родственные проекты',
 'search-interwiki-default' => '$1 результ.:',
 'search-interwiki-more' => '(ещё)',
-'search-mwsuggest-enabled' => 'с советами',
-'search-mwsuggest-disabled' => 'без советов',
 'search-relatedarticle' => 'Связанный',
 'mwsuggest-disable' => 'Отключить AJAX-подсказки',
 'searcheverything-enable' => 'Поиск по всем пространствам имён',
@@ -1530,7 +1530,7 @@ $1",
 'timezoneregion-indian' => 'Индийский океан',
 'timezoneregion-pacific' => 'Тихий океан',
 'allowemail' => 'Разрешить приём электронной почты от других участников',
-'prefs-searchoptions' => 'Настройки поиска',
+'prefs-searchoptions' => 'Поиск',
 'prefs-namespaces' => 'Пространства имён',
 'defaultns' => 'Иначе искать в следующих пространствах имён:',
 'default' => 'по умолчанию',
@@ -3061,7 +3061,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Проверка JavaScript',
-'javascripttest-disabled' => 'Эта функция отключена в этой вики.',
 'javascripttest-title' => 'Проводится проверка $1',
 'javascripttest-pagetext-noframework' => 'Эта страница зарезервирована для запуска JavaScript-тестов.',
 'javascripttest-pagetext-unknownframework' => 'Неизвестная среда тестирования «$1».',
@@ -3216,6 +3215,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-views' => 'Количество просмотров',
 'pageinfo-watchers' => 'Число наблюдающих',
 'pageinfo-redirects-name' => 'Перенаправления на эту страницу',
+'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Подстраницы данной страницы',
 'pageinfo-subpages-value' => '$1($2 {{PLURAL:$2|перенаправление|перенаправления|перенаправлений}}; $3 {{PLURAL:$3|обычная|обычные|обычных}})',
 'pageinfo-firstuser' => 'Создатель страницы',
@@ -3226,7 +3226,6 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-authors' => 'Общее число различных авторов',
 'pageinfo-recent-edits' => 'Правок за последнее время (в течение $1)',
 'pageinfo-recent-authors' => 'Уникальных авторов за последнее время',
-'pageinfo-restriction' => 'Защита страницы ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магическое слово|Магические слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',
@@ -4171,6 +4170,10 @@ MediaWiki распространяется в надежде, что она бу
 'feedback-close' => 'Готово',
 'feedback-bugcheck' => 'Прекрасно! Только проверьте, что в списке [$1 известных ошибок] её нет подобной записи.',
 'feedback-bugnew' => 'Я проверил. Сообщить о новой ошибке',
+
+# Search suggestions
+'searchsuggest-search' => 'Поиск',
+'searchsuggest-containing' => 'содержащие…',
 
 # API errors
 'api-error-badaccess-groups' => 'Вам не разрешено загружать файлы в эту вики.',

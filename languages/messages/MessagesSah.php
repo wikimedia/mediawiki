@@ -444,7 +444,7 @@ $2',
 'logouttext' => "'''Эн тиһиликтэн таҕыстыҥ.'''
 
 {{SITENAME}} ситим-сиргэ билигин урукку ааккынан буолбакка IP-аадырыһынан эрэ көстөҕүн.
-Салгыы ааккын ааттаабакка үлэлиэххин сөп, эбэтэр саҥаттан урукку ааккынан дуу, атын аатынан дуу [[Special:UserLogin|киириэххин]] сөп.
+Салгыы ааккын ааттаабакка үлэлиэххин сөп, эбэтэр саҥаттан урукку ааккынан дуу, атын аатынан дуу <span class='plainlinks'>[$1 киириэххин]</span> сөп.
 Сорох сирэйдэр өссө даҕаны эйигин урукку ааккынан көрдөрүөхтэрин сөп, ону суох гыныаххын баҕардаххына интэриниэт көрдөрөөччүҥ кээһин ыраастаа.",
 'welcomecreation' => '== Нөрүөн нөргүй, $1! ==
 Эн манна бэлиэтэнниҥ.
@@ -705,8 +705,8 @@ IP-аадырыһа эрэ көстөр.
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} сурунаалларга көрдүөххүн сөп],
 эбэтэр [{{fullurl:{{FULLPAGENAME}}|action=edit}} маннык ааттаах саҥа ыстатыйаны суруйуоххун] сөп</span>.',
 'noarticletext-nopermission' => 'Билигин бу сирэй кураанах.
-Бу [[Special:Search/{{PAGENAME}}|тылы атын сирэйдэргэ көрдөөн көрүөххүн]] сөп,
-эбэтэр <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} сурунаалларга манна сыһыаннаах суруктары булуоххун сөп].</span>',
+Бу [[Special:Search/{{PAGENAME}}|ааты атын сирэйдэргэ көрдөөн көрүөххүн]] сөп,
+эбэтэр <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} сурунаалларга манна сыһыаннаах суруктары булуоххун сөп].</span> Бу сирэйи айар кыаҕыҥ суох.',
 'userpage-userdoesnotexist' => '"<nowiki>$1</nowiki>" аат бэлиэтэммэтэх. Бу сирэйи оҥорор/уларытар баҕалааххын дуо?',
 'userpage-userdoesnotexist-view' => '"$1" кыттааччы аата бэлиэтэниллибэтэх.',
 'blocked-notice-logextract' => 'Бу кыттааччы билигин бобуллубут.
@@ -1059,8 +1059,6 @@ $1",
 'search-interwiki-caption' => 'Уруулуу бырайыактар',
 'search-interwiki-default' => '$1 түмүгэ:',
 'search-interwiki-more' => '(өссө)',
-'search-mwsuggest-enabled' => 'этиилэрдээх',
-'search-mwsuggest-disabled' => 'этиилэрэ суох',
 'search-relatedarticle' => 'Сигэнэр',
 'mwsuggest-disable' => 'AJAX этэн биэриилэрин араар',
 'searcheverything-enable' => 'Туох баар аат далларыгар көрдөөһүн',
@@ -2666,7 +2664,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript тургутуу',
-'javascripttest-disabled' => 'Дьайыы бу биикигэ араарыллыбат эбит.',
 'javascripttest-title' => '$1 тургутуу бара турар',
 'javascripttest-pagetext-noframework' => 'Бу сирэй JavaScript тургутууларга анаммыт.',
 'javascripttest-pagetext-unknownframework' => '"$1" тургутуу биллибэт эйгэтэ.',
@@ -3630,6 +3627,10 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'feedback-close' => 'Сатанна',
 'feedback-bugcheck' => 'Бэрт! Ол гынан баран [$1 биллэр алҕастарын] тиһилигэр майгынныыр сурук суоҕун тургут.',
 'feedback-bugnew' => 'Мин тургуттум. Атын алҕас туһунан',
+
+# Search suggestions
+'searchsuggest-search' => 'Көрдөөһүн',
+'searchsuggest-containing' => 'тыл баар ыстатыйалара...',
 
 # API errors
 'api-error-badaccess-groups' => 'Эн бу биикигэ билэ киллэрэриҥ хааччахтаммыт.',

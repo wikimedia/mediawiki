@@ -498,7 +498,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Тон лисеть.'''
 
-Тондейть ули кода ащемс {{SITENAME}}са апак содак эли [[Special:UserLogin|сувак тага весть]] кода сяка эли иля тиись.
+Тондейть ули кода ащемс {{SITENAME}}са апак содак эли <span class='plainlinks'>[$1 сувак тага весть]</span> кода сяка эли иля тиись.
 Кой-кона лопатне илядсть стамкс кодамкс синь ульсть тонь лисемада инголе мъзярс тонь интернет полатксце изь аруяфтов эсь ванфневи файлхнень эзда.",
 'welcomecreation' => '== Сувак, $1! ==
 
@@ -932,8 +932,6 @@ $3 макссь туфталсь - ''$2''",
 'search-interwiki-caption' => 'Сазоронь проекттне',
 'search-interwiki-default' => '$1 муфкст:',
 'search-interwiki-more' => '(сяда лама)',
-'search-mwsuggest-enabled' => 'мяль максоматнень мархта',
-'search-mwsuggest-disabled' => 'мяль максоматнень ашет',
 'search-relatedarticle' => 'Мала',
 'mwsuggest-disable' => 'Лоткак AJAX мяль максоматне тевс нолдама',
 'searchrelated' => 'мала',

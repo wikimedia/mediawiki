@@ -558,7 +558,7 @@ d\'n Opgegaeve raej vanne sloetendje admin waar "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''De bis noe aafgemeld.'''
 
-De kèns {{SITENAME}} noe anoniem (mit vermeljing van IP-adres) gebroeke, of [[Special:UserLogin|opnuuj aanmelde]] ónger dezelfde of 'ne angere naam.
+De kèns {{SITENAME}} noe anoniem (mit vermeljing van IP-adres) gebroeke, of <span class='plainlinks'>[$1 opnuuj aanmelde]</span> ónger dezelfde of 'ne angere naam.
 Mäögelik waert nog 'n deil pagina's getuind esofs te nog aangemeld bis pès te de cache van diene browser laeg maaks.",
 'welcomecreation' => '== Wèlkóm, $1! ==
 Diene gebroeker is noe vaerdig.
@@ -1147,8 +1147,6 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'search-interwiki-caption' => 'Zösterprojecte',
 'search-interwiki-default' => '$1 resultate:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'mit suggesties',
-'search-mwsuggest-disabled' => 'gein suggesties',
 'search-relatedarticle' => 'Gerelateerd',
 'mwsuggest-disable' => 'Suggesties via AJAX oetsjakele',
 'searcheverything-enable' => 'Zeuke in alle naamruumdes',
@@ -2730,7 +2728,6 @@ Slaon de oetveur op dien eige systeem op, en voeg dae dao nao hiej toe.',
 
 # JavaScriptTest
 'javascripttest' => 'Tes JavaScript',
-'javascripttest-disabled' => 'Dees funksje steit oet op deze wiki.',
 'javascripttest-title' => 'Veur tes oet veur $1',
 'javascripttest-pagetext-noframework' => "Dees pagina is gerizzerveerd veur 't oetveure van JavaScriptteste.",
 'javascripttest-pagetext-unknownframework' => 'Ónbekèndje testframework "$1".',
@@ -3677,6 +3674,10 @@ Anges kin se-n ouch \'t einvawdig formeleer hieónger gebroeke. Dien commentaar 
 'feedback-close' => 'Gedaon',
 'feedback-bugcheck' => "Good! Kónterleer ef of 't neet al ein vanne [$1 bekèndje bugs] is.",
 'feedback-bugnew' => "Gekónterleerdj. Mèlj 'ne nuuj bug.",
+
+# Search suggestions
+'searchsuggest-search' => 'Zeuke',
+'searchsuggest-containing' => 'bevat...',
 
 # API errors
 'api-error-badaccess-groups' => 'Doe moogs gein bestenj uploade óp deze wiki.',

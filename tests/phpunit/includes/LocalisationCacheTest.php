@@ -5,15 +5,15 @@ class LocalisationCacheTest extends MediaWikiTestCase {
 		$cache = Language::getLocalisationCache();
 
 		$this->assertEquals(
-			$cache->getItem( 'ru', 'pluralRules' ),
-			$cache->getItem( 'os', 'pluralRules' ),
-			'os plural rules (undefined) fallback to ru (defined)'
+			$cache->getItem( 'ar', 'pluralRules' ),
+			$cache->getItem( 'arz', 'pluralRules' ),
+			'arz plural rules (undefined) fallback to ar (defined)'
 		);
 
 		$this->assertEquals(
-			$cache->getItem( 'ru', 'compiledPluralRules' ),
-			$cache->getItem( 'os', 'compiledPluralRules' ),
-			'os compiled plural rules (undefined) fallback to ru (defined)'
+			$cache->getItem( 'ar', 'compiledPluralRules' ),
+			$cache->getItem( 'arz', 'compiledPluralRules' ),
+			'arz compiled plural rules (undefined) fallback to ar (defined)'
 		);
 
 		$this->assertNotEquals(

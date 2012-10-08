@@ -692,7 +692,9 @@ class Sanitizer {
 				}
 			}
 
-			if ( $attribute === 'align' && !in_array( $element, $cells ) ) {
+			// Table align is special, it's about block alignment instead of
+			// content align (see also bug 40306)
+			if ( $attribute === 'align' && in_array( $element, $table ) ) {
 				if ( $value === 'center' ) {
 					$style .= ' margin-left: auto;';
 					$property = 'margin-right';
@@ -910,7 +912,7 @@ class Sanitizer {
 		// Reject problematic keywords and control characters
 		if ( preg_match( '/[\000-\010\016-\037\177]/', $value ) ) {
 			return '/* invalid control char */';
-		} elseif ( preg_match( '! expression | filter\s*: | accelerator\s*: | url\s*\( !ix', $value ) ) {
+		} elseif ( preg_match( '! expression | filter\s*: | accelerator\s*: | url\s*\( | image\s*\( !ix', $value ) ) {
 			return '/* insecure input */';
 		}
 		return $value;

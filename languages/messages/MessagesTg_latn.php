@@ -379,7 +379,7 @@ Daleli zikrşuda az in qaror ast ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Aknun az sistem xoriç şudaed.'''
 
-Şumo metavoned gumnom az {{SITENAME}} istifodabariro idoma dihed, jo metavoned bo hamin nomi korbariaton va jo nomi korbariji digare [[Special:UserLogin|boz vurud kuned]].
+Şumo metavoned gumnom az {{SITENAME}} istifodabariro idoma dihed, jo metavoned bo hamin nomi korbariaton va jo nomi korbariji digare <span class='plainlinks'>[$1 boz vurud kuned]</span>.
 Tavvaçūh kuned, ki ba'ze az sahifaho qablan ci tavre namoiş şuda budan hamin tavr namoiş doda meşavand, to dame ki şumo hofizai mururgaratonro pok kuned.",
 'welcomecreation' => '== Xuş omaded, $1! ==
 
@@ -724,8 +724,6 @@ Itminon hosil kuned, ki in taƣjir davomnokiji ta'rixiji sahifaro nigoh dorad.",
 'search-interwiki-caption' => 'Loihahoi xoharī',
 'search-interwiki-default' => '$1 natoiç:',
 'search-interwiki-more' => '(beştar)',
-'search-mwsuggest-enabled' => 'bo tavzehot',
-'search-mwsuggest-disabled' => 'biduni tavzehot',
 'search-relatedarticle' => 'Aloqamand',
 'searchrelated' => 'aloqamand',
 'searchall' => 'hama',

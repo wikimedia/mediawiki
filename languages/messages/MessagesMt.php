@@ -664,7 +664,7 @@ Ir-raġuni li ġiet mogħtija kienet ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Bħalissa tinsab barra mill-kont tiegħek.'''
 
-Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa [[Special:UserLogin|tidħol]] bħala l-istess utent jew wieħed differenti.
+Tista' tkompli tuża' {{SITENAME}} bħala utent anonimu, jew tista' terġa <span class='plainlinks'>[$1 tidħol]</span> bħala l-istess utent jew wieħed differenti.
 Kun af li ċerti paġni jistgħu jkomplu jidhru bħallikieku l-illogjar 'l barra mill-kont qatt ma seħħ, sakemm ma tħassarx il-cache tal-browser.",
 'welcomecreation' => "== Merħba, $1! ==
 Il-kont tiegħek ġie maħluq.<br />
@@ -1195,7 +1195,7 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'mergehistory-reason' => 'Raġuni:',
 
 # Merge log
-'mergelog' => "Reġistru ta' twaħħid",
+'mergelog' => 'Twaħħid',
 'pagemerge-logentry' => "waħħad [[$1]] ma' [[$2]] (reviżjonijiet sa $3)",
 'revertmerge' => 'Infired',
 'mergelogpagetext' => "Hawn taħt hawn lista ta' l-aktar tgħaqqid riċenti ta' paġna waħda ta' storja f'oħra.",
@@ -1253,8 +1253,6 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'search-interwiki-caption' => 'Proġetti kuġini',
 'search-interwiki-default' => "Riżultati ta' $1:",
 'search-interwiki-more' => '(aktar)',
-'search-mwsuggest-enabled' => 'bis-suġġerimenti',
-'search-mwsuggest-disabled' => 'l-ebda suġġeriment',
 'search-relatedarticle' => 'Relatati',
 'mwsuggest-disable' => 'Neħħi suġġeriment tal-AJAX',
 'searcheverything-enable' => 'Fittex fl-ispazji tal-isem kollha',
@@ -2656,9 +2654,9 @@ Jekk jogħġbok, waħħad iż-żewġ paġni manwalment.'''",
 'move-talk-subpages' => "Mexxi is-sottopaġni kollha tal-paġna ta' diskussjoni (sa $1)",
 'movepage-page-exists' => 'Il-paġna $1 diġà teżisti u ma tistax tiġi miktuba fuqha awtomatikament.',
 'movepage-page-moved' => 'Il-Paġna $1 ġiet imċaqilqa għal $2.',
-'movepage-page-unmoved' => 'Il-Paġna $1 ma setgħatx tiġi mċaqilqa għal $2.',
+'movepage-page-unmoved' => 'Il-paġna $1 ma setgħetx titmexxa lejn $2.',
 'movepage-max-pages' => "Ġie mċaqlaq in-numru massimu ta' {{PLURAL:$1|paġna u ma jistax jiġi mċaqlaq aktar awtomatikament|$1 paġni u ma jistgħux jiġu mċaqilqa aktar awtomatikament.}}",
-'movelogpage' => "Reġistru tat-tmexxija ta' paġni",
+'movelogpage' => "Tmexxija ta' paġni",
 'movelogpagetext' => "Hawn taħt jinsab lista ta' paġni mċaqilqa.",
 'movesubpage' => '{{PLURAL:$1|Sottopaġna|Sottopaġna}}',
 'movesubpagetext' => 'Din il-paġna għandha $1 {{PLURAL:$1|sottopaġna murija|sottopaġni murija}} hawn taħt:',
@@ -2793,7 +2791,6 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 
 # JavaScriptTest
 'javascripttest' => 'Testjar tal-JavaScript',
-'javascripttest-disabled' => 'Din il-funzjoni ma ġietx abilitata fuq din il-wiki.',
 'javascripttest-pagetext-noframework' => 'Din il-paġna hi riservata għall-eżekuzzjoni tat-testijiet tal-JavaScript.',
 'javascripttest-pagetext-frameworks' => 'Jekk jogħġbok agħżel wieħed mill-oqsma tal-ittestjar: $1',
 'javascripttest-pagetext-skins' => 'Agħżel aspett grafiku fuq liema tesegwixxi testijiet:',
@@ -3760,6 +3757,10 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'feedback-close' => 'Lest',
 'feedback-bugcheck' => 'Tajjeb ħafna! Ivverifika li mhux diġà fost id-[$1 difetti magħrufa].',
 'feedback-bugnew' => 'Ikkontrollajt. Irrapporta d-difett',
+
+# Search suggestions
+'searchsuggest-search' => 'Fittex',
+'searchsuggest-containing' => 'li tinkludi...',
 
 # API errors
 'api-error-fileexists-forbidden' => 'Fajl bl-isem "$1" diġà jeżisti, u ma jistax jiġi miktub fuqu.',

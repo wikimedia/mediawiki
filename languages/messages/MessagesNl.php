@@ -507,7 +507,7 @@ $messages = array(
 'vector-action-protect' => 'Beveiligen',
 'vector-action-undelete' => 'Terugplaatsen',
 'vector-action-unprotect' => 'Beveiliging wijzigen',
-'vector-simplesearch-preference' => 'Verbeterde zoeksuggesties inschakelen (alleen voor het uiterlijk Vector)',
+'vector-simplesearch-preference' => 'Vereenvoudigd zoeken inschakelen (alleen voor het uiterlijk Vector)',
 'vector-view-create' => 'Aanmaken',
 'vector-view-edit' => 'Bewerken',
 'vector-view-history' => 'Geschiedenis weergeven',
@@ -733,10 +733,11 @@ Probeer het over een aantal minuten opnieuw.',
 Bewerken is niet mogelijk.',
 'viewsourcetext' => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'viewyourtext' => "U kunt '''uw bewerkingen''' aan de brontekst van deze pagina bekijken en kopiëren:",
-'protectedinterface' => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
+'protectedinterface' => "Deze pagina bevat tekst voor berichten van de software op deze wiki en is beveiligd om misbruik te voorkomen.
+Om vertalingen voor alle wiki's toe te voegen of te wijzigen, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
 'editinginterface' => "'''Waarschuwing:''' u bewerkt een pagina die interfacetekst voor de software bevat.
-Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
-Overweeg voor vertalingen om [//translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertaalproject voor MediaWiki.",
+Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen op deze wiki.
+Om vertalingen toe te voegen of te wijzigen voor alle wiki's, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
 'sqlhidden' => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected' => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -762,7 +763,7 @@ De opgegeven reden is "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''U bent nu afgemeld.'''
 
-U kunt {{SITENAME}} nu anoniem gebruiken of weer [[Special:UserLogin|aanmelden]] als dezelfde of een andere gebruiker.
+U kunt {{SITENAME}} nu anoniem gebruiken of weer <span class='plainlinks'>[$1 aanmelden]</span> als dezelfde of een andere gebruiker.
 Mogelijk worden nog een aantal pagina's weergegeven alsof u aangemeld bent totdat u de cache van uw browser leegt.",
 'welcomecreation' => '== Welkom, $1! ==
 Uw gebruiker is geregistreerd.
@@ -1036,7 +1037,7 @@ Als u dat wilt voorkomen, [[Special:UserLogin/signup|registreer u]] of [[Special
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
 'noarticletext-nopermission' => 'Deze pagina bevat geen tekst.
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>, maar u mag de pagina niet aanmaken.',
 'missing-revision' => 'De versie #$1 van de pagina "{{PAGENAME}} bestaat niet.
 
 Dit wordt meestal veroorzaakt door het volgen van een verouderde verwijzing naar een pagina die is verwijderd.
@@ -1411,8 +1412,6 @@ Probeer een andere zoekopdracht.',
 'search-interwiki-caption' => 'Zusterprojecten',
 'search-interwiki-default' => '$1 resultaten:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'met suggesties',
-'search-mwsuggest-disabled' => 'geen suggesties',
 'search-relatedarticle' => 'Gerelateerd',
 'mwsuggest-disable' => 'Suggesties via AJAX uitschakelen',
 'searcheverything-enable' => 'In alle naamruimten zoeken',
@@ -1512,7 +1511,7 @@ Hier volgt een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'timezoneregion-indian' => 'Indische Oceaan',
 'timezoneregion-pacific' => 'Stille Oceaan',
 'allowemail' => 'E-mail van andere gebruikers toestaan',
-'prefs-searchoptions' => 'Zoekinstellingen',
+'prefs-searchoptions' => 'Zoeken',
 'prefs-namespaces' => 'Naamruimten',
 'defaultns' => 'Anders in de volgende naamruimten zoeken:',
 'default' => 'standaard',
@@ -1764,7 +1763,7 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'recentchangeslinked-toolbox' => 'Verwante wijzigingen',
 'recentchangeslinked-title' => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn in de opgegeven periode geen bewerkingen geweest op de pagina's waarheen vanaf hier verwezen wordt.",
-'recentchangeslinked-summary' => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of vanaf pagina's in een aangegeven pagina een categorie.
+'recentchangeslinked-summary' => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina of op pagina's in een aangegeven categorie.
 Pagina's die op [[Special:Watchlist|uw volglijst]] staan worden '''vet''' weergegeven.",
 'recentchangeslinked-page' => 'Paginanaam:',
 'recentchangeslinked-to' => "Wijzigingen aan pagina's met verwijzingen naar deze pagina bekijken",
@@ -3082,7 +3081,6 @@ Een tijdelijke map is niet aanwezig.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript testen',
-'javascripttest-disabled' => 'Deze functie is uitgeschakeld in deze wiki.',
 'javascripttest-title' => 'Tests uitvoeren voor $1',
 'javascripttest-pagetext-noframework' => 'Deze pagina is gereserveerd voor het uitvoeren van JavaScripttesten.',
 'javascripttest-pagetext-unknownframework' => 'Onbekend testframework "$1".',
@@ -3247,7 +3245,6 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-authors' => 'Totaal aantal verschillende auteurs',
 'pageinfo-recent-edits' => 'Recent aantal bewerkingen (binnen de afgelopen $1).',
 'pageinfo-recent-authors' => 'Recent aantal verschillende auteurs',
-'pageinfo-restriction' => 'Paginabeveiliging ($1)',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisch woord|Magische woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikt sjabloon|Gebruikte sjablonen}} ($1)',
@@ -4126,6 +4123,10 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'feedback-close' => 'Afgerond',
 'feedback-bugcheck' => 'Geweldig! Controleer even of het niet al één van de [$1 bekende problemen] is.',
 'feedback-bugnew' => 'Heb ik gecontroleerd; nieuw probleem melden',
+
+# Search suggestions
+'searchsuggest-search' => 'Zoeken',
+'searchsuggest-containing' => 'bevat...',
 
 # API errors
 'api-error-badaccess-groups' => 'U mag geen bestanden uploaden in deze wiki.',

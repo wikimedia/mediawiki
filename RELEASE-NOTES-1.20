@@ -132,11 +132,11 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 22749) Create Special:MostInterwikis.
 * Show change tags when transclude Special:Recentchanges(linked) or Special:Newpages.
 * (bug 23226) Add |class= parameter to image links in order to add class(es) to HTML img tag.
-* (bug 39431) SVG animated status is now shown in long description
+* (bug 39431) SVG animated status is now shown in long description.
 * (bug 39376) jquery.form upgraded to 3.14.
 * SVG files will now show the actual width in the SVG's specified units
   in the metadata box.
-* Added ResourceLoader module "jquery.jStorage".
+* Added ResourceLoader module "jquery.jStorage" (v0.3.0, http://jStorage.info/).
 * (bug 39273) Added AJAX support for "Show changes" (diff) in LivePreview.
 * Added ResourceLoader module "jquery.badge".
 * mw.util.$content now points to the overall content area in the skin rather than just
@@ -145,8 +145,12 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
   with auto-hide, multi-message support, and message replacement tags.
 * jquery.messageBox which appears to be unused by both core and extensions has
   been removed.
-* (bug 34939) Made link parsing insensitive ([HttP://])
+* (bug 34939) Made link parsing insensitive ([HttP://]).
 * (bug 40072) Add CSS classes to items in output of ChangesList pages.
+* Added $wgCopyUploadProxy global to define which proxy to use for copy
+  uploads.
+* (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
+  mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
 
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
@@ -243,9 +247,21 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 39635) PostgreSQL LOCK IN SHARE MODE option is a syntax error.
 * (bug 36329) Accesskey tooltips for Firefox 14 on Mac should use "ctrl-option-" prefix.
 * (bug 32552) Drop unused database field cat_hidden from table category.
+* (bug 24502) Do not allow multiple language links to the same language.
 * (bug 40214) Category pages no longer use deprecated "width" HTML attribute.
 * (bug 39941) Add missing stylesheets to the installer pages
 * In HTML5 mode, allow new input element types values (such as color, range..)
+* (bug 36151) mw.Title: Don't limit extension in title parsing.
+* (bug 38158) jquery.byteLimit sometimes causes an unexpected 0 maxLength being enforced.
+* (bug 38163) jquery.byteLimit incorrectly limits input when using methods other than
+  basic per-char typing.
+* (bug 34495) patrol log now credit the user patrolling (instead of patrolled
+  user).
+* (bug 31676) ResourceLoader should work around IE stylesheet limit.
+* (bug 40498) ResourceLoader should not output an empty "@media print { }" block.
+* (bug 40500) ResourceLoader should not ignore media-type for urls in debug mode.
+* (bug 40660) ResourceLoaderWikiModule should not convert "&nbsp;" to a space
+  for pages from the MediaWiki-namespace.
 
 === API changes in 1.20 ===
 * (bug 34316) Add ability to retrieve maximum upload size from MediaWiki API.
@@ -320,6 +336,14 @@ changes to languages because of Bugzilla reports.
 * Use of __DIR__ instead of dirname( __FILE__ ).
 * OutputPage::wrapWikiMsg() no longer supports the 'options' parameter. It was
   not used and complicated migration to Message class.
+* Live preview functionality has been improved and moved into the
+ 'mediawiki.action.edit.preview' module. The old 'mediawiki.legacy.preview' module
+  has been removed.
+* (bug 40448) Removed mediawiki.legacy.mwsuggest module, and removed the
+  following that has become obsolete:
+  - globals $wgEnableMWSuggest and $wgMWSuggestTemplate.
+  - mw.config.values wgMWSuggestTemplate and wgSearchNamespaces.
+  - method SearchEngine::getMWSuggestTemplate().
 
 == Compatibility ==
 

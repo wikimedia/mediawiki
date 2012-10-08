@@ -40,9 +40,17 @@ class FileDuplicateSearchPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	function isSyndicated() { return false; }
-	function isCacheable() { return false; }
-	function isCached() { return false; }
+	function isSyndicated() {
+		return false;
+	}
+
+	function isCacheable() {
+		return false;
+	}
+
+	function isCached() {
+		return false;
+	}
 
 	function linkParameters() {
 		return array( 'filename' => $this->filename );

@@ -39,7 +39,7 @@ class ShiConverter extends LanguageConverter {
 
 	protected $mDoContentConvert;
 
-	var $mToLatin = array(
+	public $mToLatin = array(
 		'ⴰ' => 'a', 'ⴱ' => 'b', 'ⴳ' => 'g', 'ⴷ' => 'd', 'ⴹ' => 'ḍ', 'ⴻ' => 'e',
 		'ⴼ' => 'f', 'ⴽ' => 'k', 'ⵀ' => 'h', 'ⵃ' => 'ḥ', 'ⵄ' => 'ε', 'ⵅ' => 'x',
 		'ⵇ' => 'q', 'ⵉ' => 'i', 'ⵊ' => 'j',  'ⵍ' => 'l', 'ⵎ' => 'm', 'ⵏ' => 'n',
@@ -48,7 +48,7 @@ class ShiConverter extends LanguageConverter {
 		'ⵥ' => 'ẓ', 'ⵯ' => 'ʷ', 'ⵖ' => 'ɣ', 'ⵠ' => 'v', 'ⵒ' => 'p',
 	);
 
-	var $mUpperToLowerCaseLatin = array(
+	public $mUpperToLowerCaseLatin = array(
 		'A' => 'a',	'B' => 'b',	'C' => 'c',	'D' => 'd',	'E' => 'e',
 		'F' => 'f',	'G' => 'g',	'H' => 'h',	'I' => 'i',	'J' => 'j',
 		'K' => 'k',	'L' => 'l',	'M' => 'm',	'N' => 'n',	'O' => 'o',
@@ -57,7 +57,7 @@ class ShiConverter extends LanguageConverter {
 		'Z' => 'z', 'Ɣ' => 'ɣ',
 	);
 
-	var $mToTifinagh = array(
+	public $mToTifinagh = array(
 		'a' => 'ⴰ', 'b' => 'ⴱ', 'g' => 'ⴳ', 'd' => 'ⴷ', 'ḍ' => 'ⴹ', 'e' => 'ⴻ',
 		'f' => 'ⴼ', 'k' => 'ⴽ', 'h' => 'ⵀ', 'ḥ' => 'ⵃ', 'ε' => 'ⵄ', 'x' => 'ⵅ',
 		'q' => 'ⵇ', 'i' => 'ⵉ', 'j' => 'ⵊ',  'l' => 'ⵍ', 'm' => 'ⵎ', 'n' => 'ⵏ',

@@ -437,7 +437,7 @@ Il motiv inditgà è "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Sortì cun success.'''
 
-Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos [[Special:UserLogin|t'annunziar]] sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes navigatur.",
+Ti pos cuntinuar cun utilisar {{SITENAME}} anonimamain, u che ti pos <span class='plainlinks'>[$1 t'annunziar]</span> sco medem u in'auter utilisader. Resguarda che entginas paginas pon anc vesair or tuttina sco sche ti eras annunzià enfin che ti has stizzà il cache da tes navigatur.",
 'welcomecreation' => '==Bainvegni, $1! ==
 Tes conto è vegni creà.
 Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].',
@@ -987,8 +987,6 @@ Fa stim che navigar cun agid da las coalliziuns reinizialisescha tia tscherna.',
 'search-interwiki-caption' => 'Projects sumegliants',
 'search-interwiki-default' => '$1 resultats:',
 'search-interwiki-more' => '(dapli)',
-'search-mwsuggest-enabled' => 'cun propostas',
-'search-mwsuggest-disabled' => 'naginas propostas',
 'search-relatedarticle' => 'Sumegliant',
 'mwsuggest-disable' => 'Deactivar propostas AJAX',
 'searcheverything-enable' => 'Tschertgar en tut ils tips da pagina',
@@ -2398,7 +2396,6 @@ Emprova danovamain.',
 
 # JavaScriptTest
 'javascripttest' => 'Test da JavaScript',
-'javascripttest-disabled' => 'Questa funcziun è deactivada.',
 'javascripttest-title' => 'Exequir tests da $1',
 'javascripttest-pagetext-noframework' => 'Questa pagina è reservada per exequir tests da JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Framework da test nunenconuschent "$1".',

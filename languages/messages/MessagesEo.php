@@ -722,7 +722,7 @@ La administranto kiu ŝlosis ĝin proponis tiun klarigon: "$3".',
 # Login and logout pages
 'logouttext' => "'''Vi nun estas elsalutita.'''
 
-Vi rajtas daŭre vikiumi sennome, aŭ vi povas [[Special:UserLogin|reensaluti]] kiel la sama aŭ kiel alia uzanto.
+Vi rajtas daŭre vikiumi sennome, aŭ vi povas <span class='plainlinks'>[$1 reensaluti]</span> kiel la sama aŭ kiel alia uzanto.
 Notu ke iuj paĝoj daŭre ŝajnos kvazaŭ vi ankoraŭ estas ensalutita, ĝis vi refreŝigu vian retumilan kaŝmemoron.",
 'welcomecreation' => '== Bonvenon, $1! ==
 Via konto estas kreita.
@@ -1344,8 +1344,6 @@ Detaloj troveblos en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'search-interwiki-caption' => 'Kunprojektoj',
 'search-interwiki-default' => '$1 rezultoj:',
 'search-interwiki-more' => '(plu)',
-'search-mwsuggest-enabled' => 'kun sugestoj',
-'search-mwsuggest-disabled' => 'sen sugestoj',
 'search-relatedarticle' => 'Relataj',
 'mwsuggest-disable' => 'Malŝalti AJAX-sugestojn',
 'searcheverything-enable' => 'Traserĉi ĉiujn nomspacojn',
@@ -2954,7 +2952,6 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 
 # JavaScriptTest
 'javascripttest' => 'Ĝavoskripta testado',
-'javascripttest-disabled' => 'Ĉi tiu funkcio estas malŝaltita en ĉi tiu vikio.',
 'javascripttest-title' => 'Irigante $1 testoj',
 'javascripttest-pagetext-noframework' => 'Ĉi tiu paĝo estas konservita por funkciigi testojn de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Nekonta test-framo "$1".',
@@ -3950,6 +3947,10 @@ Aŭ vi povas uzi la facilan formularon sube. Via komento estos aldonita al la pa
 'feedback-close' => 'Farita',
 'feedback-bugcheck' => 'Bonega! Nur konfirmu ke ĝi ne jam ekzistas inter la [$1 konataj cimoj].',
 'feedback-bugnew' => 'Mi konfirmis. Raportu novan cimon.',
+
+# Search suggestions
+'searchsuggest-search' => 'Serĉi',
+'searchsuggest-containing' => 'enhavas...',
 
 # API errors
 'api-error-badaccess-groups' => 'Vi ne havas permeson alŝuti dosierojn al tiu ĉi vikio.',

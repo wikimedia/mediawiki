@@ -261,6 +261,7 @@ Dudicoxopes oxmaruşi yasaği na ren ar, varna daha dido kʼarakʼtʼeri uğun.'
 'userlogout' => 'Siteşen Kogamaxti',
 'nologin' => "Hesabi va giğuni? '''$1'''",
 'nologinlink' => 'Hesabi dokʼidi.',
+'gotaccountlink' => 'Sitʼeşa amaxti',
 'mailmypassword' => 'Ağne pʼarola-çkimi moncğoni',
 
 # Change password dialog
@@ -344,7 +345,7 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'revertmerge' => 'Artikʼartişen okʼo3ʼkʼi',
 
 # Diffs
-'history-title' => '"$1" butʼkʼaşi tarixi',
+'history-title' => 'Butʼkʼaşi tarixi "$1"',
 'lineno' => '$1. satʼiri:',
 'compareselectedversions' => 'Na goşiğen versiyonepe okʼo3ʼiri',
 'editundo' => 'ukʼuni',
@@ -367,8 +368,6 @@ Oxo3ʼonapape: (a3ʼineri) = a3ʼineri versiyoni kʼala na ren farkʼi,
 'search-interwiki-caption' => 'Cuma projepe',
 'search-interwiki-default' => '$1 sonucepe:',
 'search-interwiki-more' => '(çkva)',
-'search-mwsuggest-enabled' => 'okʼvandupete',
-'search-mwsuggest-disabled' => 'okʼvandu varen',
 'searchall' => 'mteli',
 'nonefound' => "'''Notʼi''': Xvala, namtini svacoxope maartani oqʼopinot igoren.
 Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (oğarğaluşi butʼkʼape, şablonepe, doçkva şeyepeti iqʼvasen) mgori varna pʼrefiksi oqʼopinot na igoren svacoxo ixmarit.",
@@ -619,7 +618,7 @@ Am butʼkʼaşi oçvuşi sinori gaktirinen; ama am oktiroba, kʼademoni oçvalu�
 # Block/unblock
 'blockip' => 'Maxmares bloği qʼvi',
 'ipboptions' => '2 saatʼi:2 hours,1 ndğa:1 day,3 ndğa:3 days,1 doloni:1 week,2 doloni:2 weeks,1 tuta:1 month,3 tuta:3 months,6 tuta:6 months,1 3ʼana:1 year,pʼanda:infinite',
-'ipblocklist' => 'Bloği xveneri na renan IP adresepe do maxmareş coxope',
+'ipblocklist' => 'Bloği do maxmareş',
 'blocklink' => 'bloği qʼvi',
 'unblocklink' => 'bloği kezdi',
 'change-blocklink' => 'bloği doktiri',

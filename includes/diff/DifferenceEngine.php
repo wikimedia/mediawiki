@@ -1150,14 +1150,24 @@ class DifferenceEngine extends ContextSource {
 			return false;
 		}
 		if ( $this->mOldRev ) {
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 			$this->mOldContent = $this->mOldRev->getContent( Revision::FOR_THIS_USER );
 			if ( $this->mOldContent === false ) {
+=======
+			$this->mOldtext = $this->mOldRev->getText( Revision::FOR_THIS_USER, $this->getUser() );
+			if ( $this->mOldtext === false ) {
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER );
 			if ( $this->mNewContent === false ) {
+=======
+			$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER, $this->getUser() );
+			if ( $this->mNewtext === false ) {
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 				return false;
 			}
 		}
@@ -1178,7 +1188,11 @@ class DifferenceEngine extends ContextSource {
 		if ( !$this->loadRevisionData() ) {
 			return false;
 		}
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 		$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER );
+=======
+		$this->mNewtext = $this->mNewRev->getText( Revision::FOR_THIS_USER, $this->getUser() );
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 		return true;
 	}
 }

@@ -55,7 +55,12 @@ class FixDoubleRedirects extends Maintenance {
 
 		$dbr = wfGetDB( DB_SLAVE );
 
-		$tables = array( 'redirect', 'pa' => 'page', 'pb' => 'page' );
+		// See also SpecialDoubleRedirects
+		$tables = array(
+			'redirect',
+			'pa' => 'page',
+			'pb' => 'page',
+		);
 		$fields = array(
 			'pa.page_namespace AS pa_namespace',
 			'pa.page_title AS pa_title',
@@ -66,6 +71,7 @@ class FixDoubleRedirects extends Maintenance {
 			'rd_from = pa.page_id',
 			'rd_namespace = pb.page_namespace',
 			'rd_title = pb.page_title',
+			'(rd_interwiki IS NULL OR rd_interwiki = "")', // bug 40352
 			'pb.page_is_redirect' => 1,
 		);
 
@@ -83,12 +89,18 @@ class FixDoubleRedirects extends Maintenance {
 		}
 
 		$jobs = array();
+		$processedTitles = "\n";
 		$n = 0;
 		foreach ( $res as $row ) {
 			$titleA = Title::makeTitle( $row->pa_namespace, $row->pa_title );
 			$titleB = Title::makeTitle( $row->pb_namespace, $row->pb_title );
 
-			$job = new DoubleRedirectJob( $titleA, array( 'reason' => 'maintenance', 'redirTitle' => $titleB->getPrefixedDBkey() ) );
+			$processedTitles .= "* [[$titleA]]\n";
+
+			$job = new DoubleRedirectJob( $titleA, array(
+				'reason' => 'maintenance',
+				'redirTitle' => $titleB->getPrefixedDBkey()
+			) );
 
 			if ( !$async ) {
 				$success = ( $dryrun ? true : $job->run() );
@@ -112,7 +124,7 @@ class FixDoubleRedirects extends Maintenance {
 		if ( count( $jobs ) ) {
 			$this->queueJobs( $jobs, $dryrun );
 		}
-		$this->output( "$n double redirects processed.\n" );
+		$this->output( "$n double redirects processed" . $processedTitles . "\n" );
 	}
 
 	protected function queueJobs( $jobs, $dryrun = false ) {

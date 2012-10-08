@@ -377,8 +377,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta ) {
+			wfSuppressWarnings();
 			$metadata = unserialize( $file->getMetadata() );
-			if ( $version !== 'latest' ) {
+			wfRestoreWarnings();
+			if ( $metadata && $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}
 			$vals['metadata'] = $metadata ? self::processMetaData( $metadata, $result ) : null;

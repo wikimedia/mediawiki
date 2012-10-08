@@ -214,20 +214,10 @@
 		},
 
 		submit: function () {
-			var fb = this;
+			var subject, message,
+				fb = this;
 
-			// get the values to submit
-			var subject = this.subjectInput.value;
-
-			var message = '<small>User agent: ' + mw.html.escape( navigator.userAgent ) + '</small>\n\n'
-				 + this.messageInput.value;
-			if ( message.indexOf( '~~~' ) === -1 ) {
-				message += ' ~~~~';
-			}
-
-			this.displaySubmitting();
-
-			var ok = function ( result ) {
+			function ok( result ) {
 				if ( result.edit !== undefined ) {
 					if ( result.edit.result === 'Success' ) {
 						fb.displayThanks();
@@ -239,15 +229,27 @@
 					// edit failed
 					fb.displayError( 'feedback-error2' );
 				}
-			};
+			}
 
-			var err = function ( code, info ) {
+			function err( code, info ) {
 				// ajax request failed
 				fb.displayError( 'feedback-error3' );
-			};
+			}
+
+			// Get the values to submit.
+			subject = this.subjectInput.value;
+
+			// We used to include "mw.html.escape( navigator.userAgent )" but there are legal issues
+			// with posting this without their explicit consent
+			message = this.messageInput.value;
+			if ( message.indexOf( '~~~' ) === -1 ) {
+				message += ' ~~~~';
+			}
+
+			this.displaySubmitting();
 
 			this.api.newSection( this.title, subject, message, ok, err );
-		}, // close submit button function
+		},
 
 		/**
 		 * Modify the display form, and then open it, focusing interface on the subject.

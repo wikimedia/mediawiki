@@ -307,9 +307,10 @@ $1',
 
 'ok' => 'Labi',
 'retrievedfrom' => 'Saturs iegūts no "$1"',
-'youhavenewmessages' => 'Tev ir $1 (skat. $2).',
+'youhavenewmessages' => 'Tev ir $1 (skatīt $2).',
 'newmessageslink' => 'jauns vēstījums',
 'newmessagesdifflink' => 'pēdējā izmaiņa',
+'newmessageslinkplural' => '{{PLURAL:$1|jauns vēstījums|jauni vēstījumi}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|pēdējā izmaiņa|pēdējās izmaiņas}}',
 'youhavenewmessagesmulti' => 'Tev ir jauns ziņojums: $1',
 'editsection' => 'labot',
@@ -428,7 +429,7 @@ Norādītais iemesls bija ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Tu esi izgājis no {{grammar:ģenitīvs|{{SITENAME}}}}.'''
 
-Vari turpināt to izmantot anonīmi, vari [[Special:UserLogin|atgriezties]] kā cits lietotājs vai varbūt tas pats.
+Vari turpināt to izmantot anonīmi, vari <span class='plainlinks'>[$1 atgriezties]</span> kā cits lietotājs vai varbūt tas pats.
 Ņem vērā, ka arī pēc iziešanas, dažas lapas var tikt parādītas tā, it kā tu vēl būtu iekšā, līdz tiks iztīrīta pārlūka kešatmiņa.",
 'welcomecreation' => '== Laipni lūdzam, $1! ==
 
@@ -932,8 +933,6 @@ $1",
 'search-interwiki-caption' => 'Citi projekti',
 'search-interwiki-default' => 'Rezultāti no $1:',
 'search-interwiki-more' => '(vairāk)',
-'search-mwsuggest-enabled' => 'ar ieteikumiem',
-'search-mwsuggest-disabled' => 'bez ieteikumiem',
 'search-relatedarticle' => 'Saistītais',
 'mwsuggest-disable' => 'Atslēgt AJAX ieteikumus',
 'searcheverything-enable' => 'Meklēt visās nosaukumvietās',
@@ -3098,6 +3097,10 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'feedback-thanks' => 'Paldies! Jūsu atsauksmes ir ievietotas lapā "[$2  $1]".',
 'feedback-close' => 'Gatavs',
 'feedback-bugnew' => 'Es pārbaudīju. Ziņot par jaunu kļūdu',
+
+# Search suggestions
+'searchsuggest-search' => 'Meklēt',
+'searchsuggest-containing' => 'Meklējamā frāze:',
 
 # API errors
 'api-error-filename-tooshort' => 'Faila nosaukums ir pārāk īss.',

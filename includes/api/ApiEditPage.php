@@ -82,9 +82,17 @@ class ApiEditPage extends ApiBase {
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
 
+<<<<<<< HEAD   (a8f11c Merge "fix merge of Iec98e472" into Wikidata)
 				$titles = Revision::newFromTitle( $oldTitle, false, Revision::READ_LATEST )
 							->getContent( Revision::FOR_THIS_USER )
 							->getRedirectChain();
+=======
+				$titles = Title::newFromRedirectArray(
+					Revision::newFromTitle(
+						$oldTitle, false, Revision::READ_LATEST
+					)->getText( Revision::FOR_THIS_USER, $user )
+				);
+>>>>>>> BRANCH (a71533 Merge "Remove some unused local variables.")
 				// array_shift( $titles );
 
 				$redirValues = array();

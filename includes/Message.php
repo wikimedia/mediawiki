@@ -547,7 +547,7 @@ class Message {
 	/**
 	 * Check whether a message does not exist, is an empty string, or is "-"
 	 * @since 1.18
-	 * @return Bool: true if is is and false if not
+	 * @return Bool: true if it is and false if not
 	 */
 	public function isDisabled() {
 		$message = $this->fetchMessage();

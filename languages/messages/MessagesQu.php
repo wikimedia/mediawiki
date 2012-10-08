@@ -660,7 +660,7 @@ Amachaq kamachiqqa kayrayku amachani nispa nirqanmi: "$3".',
 # Login and logout pages
 'logouttext' => "'''Llamk'apuy tiyayniykiqa puchukasqañam.'''
 
-Sutinnaq kaspaykipas {{SITENAME}}pi wamp'uytam atinki. Mana hinataq munaspaykiqa, [[Special:UserLogin|musuqmanta yaykuy]] ñawpaq icha huk sutiwan. Huk p'anqakunaqa kaqllam rikch'akunqa, ''cache'' nisqa pakasqa hallch'ata mana ch'usaqchaptiykiqa.",
+Sutinnaq kaspaykipas {{SITENAME}}pi wamp'uytam atinki. Mana hinataq munaspaykiqa, <span class='plainlinks'>[$1 musuqmanta yaykuy]</span> ñawpaq icha huk sutiwan. Huk p'anqakunaqa kaqllam rikch'akunqa, ''cache'' nisqa pakasqa hallch'ata mana ch'usaqchaptiykiqa.",
 'welcomecreation' => '== Allinmi hamusqayki $1! ==
 Rakiqunaykiqa kicharisqañam.
 Ama qunqaychu [[Special:Preferences|{{SITENAME}} allinkachinaykikunata]] kikinchayta.',
@@ -1241,8 +1241,6 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'search-interwiki-caption' => 'Ñaña ruraykamaykuna',
 'search-interwiki-default' => '$1 taripasqakuna:',
 'search-interwiki-more' => '(aswan)',
-'search-mwsuggest-enabled' => 'rimapusqakunawan',
-'search-mwsuggest-disabled' => 'mana rimapusqakunawanchu',
 'search-relatedarticle' => 'Apanakuq',
 'mwsuggest-disable' => 'AJAX rimapuykunaman ama niy',
 'searcheverything-enable' => "Tukuy suti k'itikunapi maskay",
@@ -2797,7 +2795,6 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript llanchiy',
-'javascripttest-disabled' => 'Kay ruranaqa kay wikipi manam atichisqachu.',
 'javascripttest-title' => '$1 llanchiykunam richkan',
 'javascripttest-pagetext-noframework' => "Kay p'anqaqa JavaScript llanchina purichinallapaqmi kachun.",
 'javascripttest-pagetext-unknownframework' => 'Mana riqsisqa "$1" nisqa llanchina inchu ruray',
@@ -3750,6 +3747,10 @@ Mana chayqa, kay qatiqpi kaq hunt'ana p'anqatam llamk'achiyta atinki. Willapuyni
 'feedback-close' => 'Rurasqañam',
 'feedback-bugcheck' => 'Allillanmi! Llanchirillay [$1 riqsisqapura huk pantasqañachu] mana kanmanchu.',
 'feedback-bugnew' => 'Llanchisqañam. Musuq pantasqamanta willay',
+
+# Search suggestions
+'searchsuggest-search' => 'Maskay',
+'searchsuggest-containing' => 'kaykunayuq: ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Kay wikipiqa willañiqikunata manam churkuyta atinkichu.',

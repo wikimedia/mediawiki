@@ -751,7 +751,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Έχετε αποσυνδεθεί.'''
 
-Μπορείτε να παραμείνετε στο {{SITENAME}} ανώνυμα, ή μπορείτε [[Special:UserLogin|να συνδεθείτε ξανά]] με το ίδιο ή με διαφορετικό (εάν έχετε) όνομα χρήστη.
+Μπορείτε να παραμείνετε στο {{SITENAME}} ανώνυμα, ή μπορείτε <span class='plainlinks'>[$1 να συνδεθείτε ξανά]</span> με το ίδιο ή με διαφορετικό (εάν έχετε) όνομα χρήστη.
 Έχετε υπόψη σας πως αρκετές σελίδες θα συνεχίσουν να εμφανίζονται κανονικά, σαν να μην έχετε αποσυνδεθεί, μέχρι να καθαρίσετε τη λανθάνουσα μνήμη του φυλλομετρητή σας.",
 'welcomecreation' => '== Καλώς ήλθατε, $1! ==
 Ο λογαριασμός σας έχει δημιουργηθεί.
@@ -1334,8 +1334,6 @@ $1",
 'search-interwiki-caption' => 'Αδελφικά εγχειρήματα',
 'search-interwiki-default' => '$1 αποτελέσματα:',
 'search-interwiki-more' => '(περισσότερα)',
-'search-mwsuggest-enabled' => 'με υποδείξεις',
-'search-mwsuggest-disabled' => 'χωρίς υποδείξεις',
 'search-relatedarticle' => 'Σχετικά',
 'mwsuggest-disable' => 'Απενεργοποίηση των προτάσεων AJAX',
 'searcheverything-enable' => 'Αναζήτηση σε όλες τις περιοχές ονομάτων',
@@ -2924,7 +2922,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Δοκιμή JavaScript',
-'javascripttest-disabled' => 'Αυτή η λειτουργία έχει απενεργοποιηθεί.',
 'javascripttest-title' => 'Εκτελούνται  $1  δοκιμές',
 'javascripttest-pagetext-noframework' => 'Αυτή η σελίδα είναι δεσμευμένη για την εκτέλεση δοκιμών σε JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Άγνωστο πλαίσιο δοκιμών " $1 ".',
@@ -3895,6 +3892,10 @@ $5
 'feedback-close' => 'Ολοκληρώθηκε',
 'feedback-bugcheck' => 'Ωραία! Ελέγξτε μόνο ότι δεν είναι ήδη ένα από τα [ $1  γνωστά σφάλματα].',
 'feedback-bugnew' => 'Έλεγξα. Αναφέρετε ένα νέο σφάλμα',
+
+# Search suggestions
+'searchsuggest-search' => 'Αναζήτηση',
+'searchsuggest-containing' => 'περιέχει...',
 
 # API errors
 'api-error-badaccess-groups' => 'Δεν επιτρέπεται να ανεβάσετε αρχεία σε αυτό το wiki.',

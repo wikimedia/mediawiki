@@ -47,28 +47,28 @@ class LanguageConverter {
 		'zh',
 	);
 
-	var $mMainLanguageCode;
-	var $mVariants, $mVariantFallbacks, $mVariantNames;
-	var $mTablesLoaded = false;
-	var $mTables;
+	public $mMainLanguageCode;
+	public $mVariants, $mVariantFallbacks, $mVariantNames;
+	public $mTablesLoaded = false;
+	public $mTables;
 	// 'bidirectional' 'unidirectional' 'disable' for each variant
-	var $mManualLevel;
+	public $mManualLevel;
 
 	/**
 	 * @var String: memcached key name
 	 */
-	var $mCacheKey;
+	public $mCacheKey;
 
-	var $mLangObj;
-	var $mFlags;
-	var $mDescCodeSep = ':', $mDescVarSep = ';';
-	var $mUcfirst = false;
-	var $mConvRuleTitle = false;
-	var $mURLVariant;
-	var $mUserVariant;
-	var $mHeaderVariant;
-	var $mMaxDepth = 10;
-	var $mVarSeparatorPattern;
+	public $mLangObj;
+	public $mFlags;
+	public $mDescCodeSep = ':', $mDescVarSep = ';';
+	public $mUcfirst = false;
+	public $mConvRuleTitle = false;
+	public $mURLVariant;
+	public $mUserVariant;
+	public $mHeaderVariant;
+	public $mMaxDepth = 10;
+	public $mVarSeparatorPattern;
 
 	const CACHE_VERSION_KEY = 'VERSION 6';
 
@@ -1117,17 +1117,17 @@ class LanguageConverter {
  * @author fdcn <fdcn64@gmail.com>, PhiLiP <philip.npc@gmail.com>
  */
 class ConverterRule {
-	var $mText; // original text in -{text}-
-	var $mConverter; // LanguageConverter object
-	var $mRuleDisplay = '';
-	var $mRuleTitle = false;
-	var $mRules = '';// string : the text of the rules
-	var $mRulesAction = 'none';
-	var $mFlags = array();
-	var $mVariantFlags = array();
-	var $mConvTable = array();
-	var $mBidtable = array();// array of the translation in each variant
-	var $mUnidtable = array();// array of the translation in each variant
+	public $mText; // original text in -{text}-
+	public $mConverter; // LanguageConverter object
+	public $mRuleDisplay = '';
+	public $mRuleTitle = false;
+	public $mRules = '';// string : the text of the rules
+	public $mRulesAction = 'none';
+	public $mFlags = array();
+	public $mVariantFlags = array();
+	public $mConvTable = array();
+	public $mBidtable = array();// array of the translation in each variant
+	public $mUnidtable = array();// array of the translation in each variant
 
 	/**
 	 * Constructor

@@ -86,7 +86,7 @@
 	 * Injects a spinner after the elements in the jQuery collection
 	 * (as siblings, not children). Collection contents remain unchanged.
 	 *
-	 * @param {Object} opts See createSpinner() for description.
+	 * @param {Object|String} opts See createSpinner() for description.
 	 * @return {jQuery}
 	 */
 	$.fn.injectSpinner = function ( opts ) {

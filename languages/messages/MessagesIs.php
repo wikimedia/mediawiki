@@ -637,7 +637,7 @@ Möppudýrið sem læsti skránni gaf þessa ástæðu: "\'\'$3\'\'".',
 # Login and logout pages
 'logouttext' => "'''Þú hefur verið skráð(ur) út.'''
 
-Þú getur haldið áfram að nota {{SITENAME}} óþekkt(ur), eða þú getur [[Special:UserLogin|skráð þig inn aftur]] sem sami eða annar notandi.
+Þú getur haldið áfram að nota {{SITENAME}} óþekkt(ur), eða þú getur <span class='plainlinks'>[$1 skráð þig inn aftur]</span> sem sami eða annar notandi.
 Athugaðu að sumar síður kunna að birtast líkt og þú sért ennþá skráð(ur) inn, þangað til að þú hreinsar skyndiminnið í vafranum þínum.",
 'welcomecreation' => '== Velkomin(n), $1! ==
 Aðgangurinn þinn hefur verið búinn til.
@@ -893,9 +893,8 @@ Ef þú ert óþekktur notandi og finnst að óviðkomandi athugasemdum hafa ver
 'noarticletext' => 'Enginn texti er á þessari síðu enn sem komið er.
 Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám], eða [{{fullurl:{{FULLPAGENAME}}|action=edit}} breytt henni sjálfur]</span>.',
-'noarticletext-nopermission' => 'Enginn texti er á þessari síðu enn sem komið er.
-Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
-eða <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám]</span>.',
+'noarticletext-nopermission' => 'Það er enginn texti á þessari síðu eins og er.
+Þú getur [[Special:Search/{{PAGENAME}}|leitað að þessum titli]] í öðrum síðum, eða <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám]</span>, en þú hefur ekki réttindi til þess að stofna þessa síðu.',
 'missing-revision' => 'Útgáfa #$1 síðunnar „{{PAGENAME}}" er ekki til.
 
 Þetta gerist oftast þegar úreld breytingarskrá tengir á síðu sem hefur verið eytt. Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} eyðingarskránni].',
@@ -1210,8 +1209,6 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'search-interwiki-caption' => 'Systurverkefni',
 'search-interwiki-default' => '$1 útkomur:',
 'search-interwiki-more' => '(fleiri)',
-'search-mwsuggest-enabled' => 'með uppástungum',
-'search-mwsuggest-disabled' => 'engar uppástungur',
 'search-relatedarticle' => 'Tengt',
 'mwsuggest-disable' => 'Gera AJAX-uppástungur óvirkar',
 'searcheverything-enable' => 'Leita í öllum nafnrýmum',
@@ -2117,7 +2114,7 @@ Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitin
 'emailpagetext' => 'Hafi notandi tilgreint netfang í stillingunum sínum er hægt að senda póst til hans hér.
 Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]] birtist í "Frá:" hluta tölvupóstsins, svo að viðtakandi þess geti svarað beint til þín.',
 'usermailererror' => 'Póst hlutur skilaði villu:',
-'defemailsubject' => '{{SITENAME}} netfang notanda "$1"',
+'defemailsubject' => '{{SITENAME}} skilaboð frá notandanum "$1"',
 'usermaildisabled' => 'Netfang notenda er óvirkt',
 'usermaildisabledtext' => 'Þú getur ekki sent tölvupóst til annara notenda á þessum wiki',
 'noemailtitle' => 'Ekkert póstfang',
@@ -2191,10 +2188,10 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
   $1',
 'enotif_lastdiff' => 'Einnig getur þú heimsótt eftirfarandi tengil til að skoða þessa breytingu:
   $1',
-'enotif_anon_editor' => 'ónefndur notandi $1',
+'enotif_anon_editor' => 'ónefndum notanda $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} $PAGETITLE.
+Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} síðunni $PAGETITLE.
 Hún hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
 $PAGEEDITOR. Breytingarágripið var:
 
@@ -2206,7 +2203,7 @@ $PAGEEDITOR. Breytingarágripið var:
 
 $NEWPAGE
 
-Til þess að hafa samband við $PAGEEDITOR, heimsóttu:
+Til þess að hafa samband við $PAGEEDITOR, smelltu á:
 
    $PAGEEDITOR_WIKI
 
@@ -2218,12 +2215,12 @@ Kveðja,
 
 --
 
-Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, heimsóttu:
+Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smelltu á:
 
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Til þess að hætta að fylgjast með $PAGETITLE, heimsóttu:
+Til þess að hætta að fylgjast með $PAGETITLE, smelltu á:
 
 $UNWATCHURL',
 
@@ -2718,7 +2715,7 @@ Ef síðari möguleikinn á við getur þú einnig notað tengil, til dæmis
 'allmessagesdefault' => 'Sjálfgefinn skilaboða texti',
 'allmessagescurrent' => 'Núverandi texti',
 'allmessagestext' => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
-Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [//translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
+Vinsamlegast heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [//translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB' => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessages-filter-legend' => 'Sía',
 'allmessages-filter' => 'Sía með breytingarstöðu:',
@@ -2796,7 +2793,6 @@ Vinsamlegast reyndu aftur.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript prófun',
-'javascripttest-disabled' => 'Þessi möguleiki hefur ekki verið virkjaður á þessum wiki.',
 'javascripttest-pagetext-skins' => 'Veldu þema sem á að keyra prófanirnar á:',
 
 # Tooltip help for the actions
@@ -3671,6 +3667,10 @@ Ef ekki, þá getur þú notað einfalt eyðublað hér fyrir neðan. Athugasemd
 'feedback-close' => 'Búið',
 'feedback-bugcheck' => 'Frábært! Athugaðu hvort þessi villa hafi verið [$1 tilkynnt áður].',
 'feedback-bugnew' => 'Ég athugaði það. Tilkynna nýja villu.',
+
+# Search suggestions
+'searchsuggest-search' => 'Leita',
+'searchsuggest-containing' => 'sem innihalda ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Þú hefur ekki leyfi til að hlaða inn skrám.',

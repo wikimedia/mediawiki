@@ -207,8 +207,10 @@ $messages = array(
 'create-this-page' => 'Kirapim dispela pes',
 'delete' => 'Rausim',
 'deletethispage' => 'Rausim dispela pes',
+'viewdeleted_short' => '{{PLURAL:$1|wanpela senis i raus pinis|$1 senis i raus pinis}}',
 'protect' => 'Tambuim',
 'protect_change' => 'senisim',
+'protectthispage' => 'Tambuim dispela pes',
 'newpage' => 'Nupela pes',
 'talkpage' => 'Toktok bilong dispela pes',
 'talkpagelinktext' => 'Toktok',
@@ -294,6 +296,9 @@ $messages = array(
 # Login and logout pages
 'yourname' => 'Yusanem:',
 'yourpassword' => 'Paswot:',
+'remembermypassword' => 'Holim yusanem bilong mi long dispela komputa (holim pas longpela taim $1 {{PLURAL:$1|de|de}})',
+'login' => 'Log in',
+'userloginnocreate' => 'Log in',
 'logout' => 'Logaut',
 'userlogout' => 'Logaut',
 'gotaccountlink' => 'Log in',
@@ -383,8 +388,6 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'search-suggest' => 'Yu laik tok: $1',
 'search-interwiki-default' => '$1 ol painim:',
 'search-interwiki-more' => '(moa)',
-'search-mwsuggest-enabled' => 'halivim mi',
-'search-mwsuggest-disabled' => 'nogat halivim mi',
 'searchall' => 'olgeta',
 'powersearch' => 'Mobeta Painim',
 'powersearch-legend' => 'Mobeta Painim',
@@ -507,6 +510,7 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'uploaderror' => 'Salim i kranki',
 'uploadlogpage' => 'Ripot long salim',
 'filename' => 'Nem bilong fail',
+'filedesc' => 'Liklik toksave bilong senis',
 'filesource' => 'As:',
 'watchthisupload' => 'Lukautim dispela fail',
 
@@ -880,5 +884,8 @@ Yu inap lukim as tok bilong em',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Narapela',
+
+# Search suggestions
+'searchsuggest-search' => 'Painim',
 
 );

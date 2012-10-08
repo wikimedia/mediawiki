@@ -705,9 +705,6 @@ CREATE TABLE /*_*/site_stats (
   -- Number of users that still edit
   ss_active_users bigint default '-1',
 
-  -- Deprecated, no longer updated as of 1.5
-  ss_admins int default '-1',
-
   -- Number of images, equivalent to SELECT COUNT(*) FROM image
   ss_images int default 0
 ) /*$wgDBTableOptions*/;
@@ -862,7 +859,7 @@ CREATE INDEX /*i*/img_size ON /*_*/image (img_size);
 -- Used by Special:Newimages and Special:ListFiles
 CREATE INDEX /*i*/img_timestamp ON /*_*/image (img_timestamp);
 -- Used in API and duplicate search
-CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1);
+CREATE INDEX /*i*/img_sha1 ON /*_*/image (img_sha1(10));
 
 
 --
@@ -900,7 +897,7 @@ CREATE INDEX /*i*/oi_usertext_timestamp ON /*_*/oldimage (oi_user_text,oi_timest
 CREATE INDEX /*i*/oi_name_timestamp ON /*_*/oldimage (oi_name,oi_timestamp);
 -- oi_archive_name truncated to 14 to avoid key length overflow
 CREATE INDEX /*i*/oi_name_archive_name ON /*_*/oldimage (oi_name,oi_archive_name(14));
-CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1);
+CREATE INDEX /*i*/oi_sha1 ON /*_*/oldimage (oi_sha1(10));
 
 
 --
@@ -1060,10 +1057,6 @@ CREATE TABLE /*_*/recentchanges (
 
   -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG)
   rc_type tinyint unsigned NOT NULL default 0,
-
-  -- These may no longer be used, with the new move log.
-  rc_moved_to_ns tinyint unsigned NOT NULL default 0,
-  rc_moved_to_title varchar(255) binary NOT NULL default '',
 
   -- If the Recent Changes Patrol option is enabled,
   -- users may mark edits as having been reviewed to

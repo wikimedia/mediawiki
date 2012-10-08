@@ -551,8 +551,6 @@ Alhwedh: '''({{int:cur}})''' = dyffrans gans an amendyans diwettha, '''({{int:la
 'search-interwiki-caption' => 'Ragdresow hwor',
 'search-interwiki-default' => '$1 sewyansow:',
 'search-interwiki-more' => '(moy)',
-'search-mwsuggest-enabled' => 'gans profyansow',
-'search-mwsuggest-disabled' => 'heb profyansow',
 'search-relatedarticle' => 'Kelmys',
 'mwsuggest-disable' => 'Dialosegi profyansow AJAX',
 'searcheverything-enable' => 'Hwilas en keniver spas-hanow',
@@ -1108,5 +1106,9 @@ Y hellir gweles hy fednfenten.',
 
 # Special:Tags
 'tags-edit' => 'chanjya',
+
+# Search suggestions
+'searchsuggest-search' => 'Hwilas',
+'searchsuggest-containing' => 'ow senji...',
 
 );

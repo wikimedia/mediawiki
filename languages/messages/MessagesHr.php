@@ -711,7 +711,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Odjavili ste se.'''
 
-Možete nastaviti s korištenjem {{SITENAME}} neprijavljeni, ili se možete ponovo [[Special:UserLogin|prijaviti]] pod istim ili drugim imenom.
+Možete nastaviti s korištenjem {{SITENAME}} neprijavljeni, ili se možete ponovo <span class='plainlinks'>[$1 prijaviti]</span> pod istim ili drugim imenom.
 Neke se stranice mogu prikazivati kao da ste još uvijek prijavljeni, sve dok ne očistite međuspremnik svog preglednika.",
 'welcomecreation' => '== Dobrodošli, $1! ==
 Vaš je suradnički račun otvoren.
@@ -1310,8 +1310,6 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'search-interwiki-caption' => 'Sestrinski projekti',
 'search-interwiki-default' => '$1 rezultati:',
 'search-interwiki-more' => '(više)',
-'search-mwsuggest-enabled' => 's prijedlozima',
-'search-mwsuggest-disabled' => 'nema prijedloga',
 'search-relatedarticle' => 'Povezano',
 'mwsuggest-disable' => 'Isključi AJAX prijedloge',
 'searcheverything-enable' => 'Traži u svim imenskim prostorima',
@@ -2859,7 +2857,6 @@ Snimite je na svoje računalo i postavite je ovdje.',
 
 # JavaScriptTest
 'javascripttest' => 'Testiranje JavaScripta',
-'javascripttest-disabled' => 'Ova funkcija nije omogućena na ovom wikiprojektu.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Moja suradnička stranica',
@@ -3885,6 +3882,10 @@ Inače, možete ispuniti jednostavan obrazac u nastavku. Vaš komentar biti će 
 'feedback-close' => 'Gotovo',
 'feedback-bugcheck' => 'Izvrsno! Molimo provjerite da se ne radi o nekom [$1 poznatom "bugu"].',
 'feedback-bugnew' => 'Provjereno. Prijavi novi "bug"',
+
+# Search suggestions
+'searchsuggest-search' => 'Traži',
+'searchsuggest-containing' => 'sadrži....',
 
 # API errors
 'api-error-badaccess-groups' => 'Nemate ovlasti za postavljanje datoteka na ovu wiki.',

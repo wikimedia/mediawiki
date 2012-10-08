@@ -380,7 +380,7 @@ $messages = array(
 'vector-action-protect' => 'Protexer',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar a protección',
-'vector-simplesearch-preference' => 'Activar as suxestións de procura melloradas (soamente na aparencia Vector)',
+'vector-simplesearch-preference' => 'Activar a barra de procuras simplificada (soamente na aparencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver o historial',
@@ -593,7 +593,7 @@ Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
 'wrong_wfQuery_params' => 'Parámetros incorrectos para wfQuery()<br />
 Función: $1<br />
-Dúbida: $2',
+Pescuda: $2',
 'viewsource' => 'Ver o código fonte',
 'viewsource-title' => 'Ver o código fonte de "$1"',
 'actionthrottled' => 'Acción limitada',
@@ -602,10 +602,11 @@ Inténteo de novo nuns minutos.",
 'protectedpagetext' => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext' => 'Pode ver e copiar o código fonte desta páxina:',
 'viewyourtext' => "Pode ver e copiar o código fonte '''das súas edicións''' nesta páxina:",
-'protectedinterface' => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
+'protectedinterface' => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.
+Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.',
 'editinginterface' => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software.
-Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
-Para realizar traducións, considere usar [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
+Os cambios nesta páxina afectarán á aparencia da interface dos outros usuarios do wiki.
+Para engadir ou modificar as traducións en todos os wikis utilice [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
 'sqlhidden' => '(Procura SQL agochada)',
 'cascadeprotected' => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
@@ -631,7 +632,7 @@ O administrador que bloqueou o repositorio achegou este motivo: "$3".',
 # Login and logout pages
 'logouttext' => "'''Agora está fóra do sistema.'''
 
-Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
+Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode <span class='plainlinks'>[$1 acceder de novo]</span> co mesmo nome de usuario ou con outro.
 Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema.",
 'welcomecreation' => '== Reciba a nosa benvida, $1! ==
 A súa conta foi creada correctamente.
@@ -899,8 +900,7 @@ Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission' => 'Actualmente non hai ningún texto nesta páxina.
-Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
-ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
+Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>, pero non ten os permisos necesarios para crear esta páxina.',
 'missing-revision' => 'A revisión nº$1 da páxina chamada "{{PAGENAME}}" non existe.
 
 A miúdo, isto está provocado por seguir unha ligazón de historial obsoleta cara a unha páxina que foi borrada.
@@ -1268,8 +1268,6 @@ O [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrad
 'search-interwiki-caption' => 'Proxectos irmáns',
 'search-interwiki-default' => 'Resultados en $1:',
 'search-interwiki-more' => '(máis)',
-'search-mwsuggest-enabled' => 'con suxestións',
-'search-mwsuggest-disabled' => 'sen suxestións',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Deshabilitar as suxestións AJAX',
 'searcheverything-enable' => 'Procurar en todos os espazos de nomes',
@@ -1368,7 +1366,7 @@ Velaquí un valor xerado ao chou que pode usar: $1',
 'timezoneregion-indian' => 'Océano Índico',
 'timezoneregion-pacific' => 'Océano Pacífico',
 'allowemail' => 'Admitir mensaxes de correo electrónico doutros usuarios',
-'prefs-searchoptions' => 'Opcións de procura',
+'prefs-searchoptions' => 'Procura',
 'prefs-namespaces' => 'Espazos de nomes',
 'defaultns' => 'Se non, procurar nestes espazos de nomes:',
 'default' => 'predeterminado',
@@ -1386,7 +1384,7 @@ Este cambio non se poderá desfacer.',
 'prefs-memberingroups' => 'Membro {{PLURAL:$1|do grupo|dos grupos}}:',
 'prefs-registration' => 'Data e hora de rexistro:',
 'yourrealname' => 'Nome real:',
-'yourlanguage' => 'Lingua da interface:',
+'yourlanguage' => 'Lingua:',
 'yourvariant' => 'Variante de lingua para os contidos:',
 'prefs-help-variant' => 'A variante ou ortografía preferida na que mostrar o contido das páxinas deste wiki.',
 'yournick' => 'Sinatura:',
@@ -1630,7 +1628,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'uploadnologin' => 'Non accedeu ao sistema',
 'uploadnologintext' => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
 'upload_directory_missing' => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
-'upload_directory_read_only' => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
+'upload_directory_read_only' => 'O servidor web non pode escribir no directorio de carga ($1).',
 'uploaderror' => 'Erro ao cargar',
 'upload-recreate-warning' => "'''Atención: Borrouse ou trasladouse un ficheiro con ese nome.'''
 
@@ -2910,7 +2908,6 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 
 # JavaScriptTest
 'javascripttest' => 'Proba de JavaScript',
-'javascripttest-disabled' => 'Esta función está desactivada neste wiki.',
 'javascripttest-title' => 'Executando probas de $1',
 'javascripttest-pagetext-noframework' => 'Esta páxina está reservada para executar probas do JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Descoñécese a infraestrutura dixital "$1" de probas.',
@@ -3075,7 +3072,6 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edicións recentes (durante os últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recentes',
-'pageinfo-restriction' => 'Protección da páxina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra máxica|Palabras máxicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',
@@ -3940,6 +3936,10 @@ En caso contrario, pode empregar o formulario sinxelo inferior. O seu comentario
 'feedback-close' => 'Feito',
 'feedback-bugcheck' => 'Perfecto! Comprobe que aínda non está entre os [$1 erros coñecidos].',
 'feedback-bugnew' => 'Comprobeino. Informar deste novo erro',
+
+# Search suggestions
+'searchsuggest-search' => 'Procurar',
+'searchsuggest-containing' => 'que conteña...',
 
 # API errors
 'api-error-badaccess-groups' => 'Non ten os permisos necesarios para cargar ficheiros neste wiki.',

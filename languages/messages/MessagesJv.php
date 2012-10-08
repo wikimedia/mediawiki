@@ -9,6 +9,7 @@
  *
  * @author Anggoro
  * @author Helix84
+ * @author Hoo
  * @author Kaganer
  * @author Meursault2004
  * @author NoiX180
@@ -447,7 +448,7 @@ Pangurus sing ngopèni kuwi ngawedharaké: "$3".',
 # Login and logout pages
 'logouttext' => "'''Sampéyan wis metu log'''
 
-Sampéyan bisa nganggo {{SITENAME}} sacara anonim, utawa bisa [[Special:UserLogin|mlebu log manèh]] kanthi jeneng panganggo sing padha utawa beda.
+Sampéyan bisa nganggo {{SITENAME}} sacara anonim, utawa bisa <span class='plainlinks'>[$1 mlebu log manèh]</span> kanthi jeneng panganggo sing padha utawa beda.
 
 Cathet yèn sapérangan kaca mungkin isih nampilaké tulisan yèn Sampéyan isih nèng njero log, kuwi bisa ilang yèn Sampéyan ngresiki ''cache'' pramban Sampéyan.",
 'welcomecreation' => '== Sugeng rawuh, $1! ==
@@ -1022,8 +1023,6 @@ Rinciané bisa ditemokaké nèng [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'search-interwiki-caption' => 'Proyèk-proyèk kagandhèng',
 'search-interwiki-default' => 'Pituwas $1:',
 'search-interwiki-more' => '(luwih akèh)',
-'search-mwsuggest-enabled' => 'mawa sugèsti',
-'search-mwsuggest-disabled' => 'ora ana sugèsti',
 'search-relatedarticle' => 'Kagandhèng',
 'mwsuggest-disable' => 'Patènana sugèsti AJAX',
 'searcheverything-enable' => 'Golèki ing kabèh bilik-jeneng',
@@ -2591,7 +2590,6 @@ Simpen nèng komputer Sampéyan lan unggaha nèng kéné.',
 
 # JavaScriptTest
 'javascripttest' => 'Panjajalan JavaScript',
-'javascripttest-disabled' => 'Fungsi iki durung diurubaké nèng wiki iki.',
 'javascripttest-title' => 'Nglakokaké pangujian $1',
 'javascripttest-pagetext-noframework' => 'Kaca iki disadhiyakaké kanggo nglakokaké panjajalan JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Rangka kerja panjajalan ora dingertèni "$1".',
@@ -3340,7 +3338,7 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'version-version' => '(Vèrsi $1)',
 'version-license' => 'Lisènsi',
 'version-poweredby-credits' => "Wiki iki disengkuyung déning '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
-'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/KRÈDIT liyané]',
+'version-poweredby-others' => 'liyané',
 'version-software' => "''Software'' wis diinstalasi",
 'version-software-product' => 'Prodhuk',
 'version-software-version' => 'Vèrsi',
@@ -3494,6 +3492,10 @@ Utawa, Sampéyan bisa nganggo pormulir gampang ngisor. Tanggepan Sampéyan bakal
 'feedback-close' => 'Rampung',
 'feedback-bugcheck' => 'Apik! Pesthèké kuwi dudu sawijining [$1 bug sing dingertèni].',
 'feedback-bugnew' => 'Aku wis mriksa. Kandakaké bug anyar',
+
+# Search suggestions
+'searchsuggest-search' => 'Golèk',
+'searchsuggest-containing' => 'ngisi...',
 
 # API errors
 'api-error-badaccess-groups' => 'Sampéyan ora dililakaké ngunggah berkas nèng wiki iki.',

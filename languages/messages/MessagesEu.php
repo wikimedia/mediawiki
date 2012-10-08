@@ -514,7 +514,7 @@ Emandako arrazoia ''$2'' izan zen.",
 # Login and logout pages
 'logouttext' => "'''Saioa itxi egin duzu.'''
 
-Erabiltzaile anonimo bezala jarrai dezakezu {{SITENAME}} erabiltzen, edo [[Special:UserLogin|saioa has dezakezu berriz]] erabiltzaile berdinarekin edo ezberdin batekin.
+Erabiltzaile anonimo bezala jarrai dezakezu {{SITENAME}} erabiltzen, edo <span class='plainlinks'>[$1 saioa has dezakezu berriz]</span> erabiltzaile berdinarekin edo ezberdin batekin.
 Kontuan izan orrialde batzuk saioa hasita bazenu bezala ikus ditzakezula nabigatzailearen katxea garbitu arte.",
 'welcomecreation' => '== Ongi etorri, $1! ==
 
@@ -1076,8 +1076,6 @@ Kontura zaitez nabigazio loturek, zutabea ezabatu dezakela.',
 'search-interwiki-caption' => 'Beste proiektuak',
 'search-interwiki-default' => '$1(r)en emaitzak:',
 'search-interwiki-more' => '(gehiago)',
-'search-mwsuggest-enabled' => 'iradokizunekin',
-'search-mwsuggest-disabled' => 'ez dago gomendiorik',
 'search-relatedarticle' => 'Erlazionatua',
 'mwsuggest-disable' => 'AJAX gomendioak ezgaitu',
 'searcheverything-enable' => 'Bilatu izen-tarte guztietan',
@@ -3294,5 +3292,9 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'feedback-message' => 'Mezua:',
 'feedback-cancel' => 'Utzi',
 'feedback-submit' => 'Feedbacka bidali',
+
+# Search suggestions
+'searchsuggest-search' => 'Bilatu',
+'searchsuggest-containing' => 'edukian...',
 
 );

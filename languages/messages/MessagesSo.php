@@ -366,7 +366,7 @@ Sababta neh waxaa waaye "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Hada waad ka baxday.'''
 
-Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama [[Special:UserLogin|gudaha gal]] adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
+Waad sii isticmaali kartaa {{SITENAME}} adoona lagu aqoon, ama <span class='plainlinks'>[$1 gudaha gal]</span> adiga oo isticmaalaya magacaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogyaasha qaarkood in ay yiraahdaan wali gudaha ayaad ku jirtaa, ilaa inta aad ka nadiifineesid browsahaaga Internetka.",
 'welcomecreation' => "== Soo dhawoow, $1! ==
 Akoon kaada  waa la sameeyay.
 Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqyadaada]].",
@@ -737,8 +737,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-suggest' => 'Waxaa ka waday miyaa: $1',
 'search-interwiki-default' => '$1 natiijooyinka:',
 'search-interwiki-more' => '(wax kale)',
-'search-mwsuggest-enabled' => 'soojeedin',
-'search-mwsuggest-disabled' => 'soojeedin malahan',
 'search-relatedarticle' => 'La xiriiro',
 'searchrelated' => 'La xiriiro',
 'searchall' => 'Dhamaan',
@@ -1391,6 +1389,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 # HTML forms
 'htmlform-reset' => 'Ka noqo wax bedelka',
 'htmlform-selectorother-other' => 'kuwa kale',
+
+# Search suggestions
+'searchsuggest-search' => 'Raadi',
 
 # API errors
 'api-error-copyuploaddisabled' => 'Soo gelinta dhinaca URL-ka waa laga damiyay kombiyuutarkaan',

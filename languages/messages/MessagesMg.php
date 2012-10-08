@@ -611,7 +611,7 @@ Ny antony napetraka dia : « ''$2'' ».",
 # Login and logout pages
 'logouttext' => "'''Tafavoaka ianao ankehitriny.'''
 
-Mbola afaka mampiasa ny {{SITENAME}} ianao na dia ef anivoaka aza, na afaka [[Special:UserLogin|miverina mihiditra]] ianao ambanin'ny anaranao na anaram-pikambana hafa.
+Mbola afaka mampiasa ny {{SITENAME}} ianao na dia ef anivoaka aza, na afaka <span class='plainlinks'>[$1 miverina mihiditra]</span> ianao ambanin'ny anaranao na anaram-pikambana hafa.
 Fantaro fa ny endriky ny pejy sasany dia mety mitovy amin'ny endrika nahitanao azy tamin' ianao mbola niditra tato, ho toy izany ny endri-pejy raha tsy nofafanao ny cache.",
 'welcomecreation' => '== Tonga soa, $1! ==
 
@@ -1214,8 +1214,6 @@ $3 santiôna{{PLURAL:}} natsonika tamin'ny [[:$2]]",
 'search-interwiki-caption' => 'zandri-tetikasa',
 'search-interwiki-default' => "Valiny amin'ny $1 :",
 'search-interwiki-more' => '(be kokoa)',
-'search-mwsuggest-enabled' => 'misy hevitra',
-'search-mwsuggest-disabled' => 'tsy misy hevitra',
 'search-relatedarticle' => 'voadinika',
 'mwsuggest-disable' => 'Aza atao ny toro-hevitra AJAX',
 'searcheverything-enable' => "Hitady anatin'ny anaran-tsehatra rehetra:",
@@ -2652,7 +2650,7 @@ Efa misy ao amina petra-drakitra zaraina ny rakitra [[:$1]]. Raha ovaina anarana
 Anarana hafa omena.",
 
 # Export
-'export' => 'Hanondrana pejy',
+'export' => 'Hamoaka pejy',
 'exporttext' => "Afaka manondrana ny lahatsoratra miaraka amin'ny tantaram-panovana ny pejy na vondrom-pejy maromaro ianao.
 Aoriana dia mety hafaran'ny wiki iray mandeha amin'ny rindrankajy MediaWiki izany, na dia mbola tsy afaka
 atao aza izany amin'izao fotoana izao.
