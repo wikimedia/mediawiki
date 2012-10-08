@@ -165,15 +165,21 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		global $wgContLang, $wgRCMaxAge;
+		global $wgContLang, $wgRCMaxAge, $wgMemc;
 
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
-		// Get page information that would be too "expensive" to retrieve by normal means
-		$pageCounts = self::pageCounts( $title, $user );
+		$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $this->page->getRevision()->getId() );
+		$pageCounts = $wgMemc->get( $memcKey );
+		if ( $pageCounts === false ) {
+			// Get page information that would be too "expensive" to retrieve by normal means
+			$pageCounts = self::pageCounts( $title, $user );
+
+			$wgMemc->set( $memcKey, $pageCounts );
+		}
 
 		// Get page properties
 		$dbr = wfGetDB( DB_SLAVE );
@@ -253,7 +259,7 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
-		if ( isset( $pageCounts['watchers'] ) ) {
+		if ( $user->isAllowed( 'unwatchedpages' ) ) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
@@ -491,19 +497,17 @@ class InfoAction extends FormlessAction {
 			$result['views'] = $views;
 		}
 
-		if ( $user->isAllowed( 'unwatchedpages' ) ) {
-			// Number of page watchers
-			$watchers = (int) $dbr->selectField(
-				'watchlist',
-				'COUNT(*)',
-				array(
-					'wl_namespace' => $title->getNamespace(),
-					'wl_title'     => $title->getDBkey(),
-				),
-				__METHOD__
-			);
-			$result['watchers'] = $watchers;
-		}
+		// Number of page watchers
+		$watchers = (int) $dbr->selectField(
+			'watchlist',
+			'COUNT(*)',
+			array(
+				'wl_namespace' => $title->getNamespace(),
+				'wl_title'     => $title->getDBkey(),
+			),
+			__METHOD__
+		);
+		$result['watchers'] = $watchers;
 
 		// Total number of edits
 		$edits = (int) $dbr->selectField(

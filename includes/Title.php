@@ -4469,6 +4469,15 @@ class Title {
 			__METHOD__
 		);
 		HTMLFileCache::clearFileCache( $this );
+
+		// Clear page info.
+		$revision = WikiPage::factory( $this )->getRevision();
+		if( $revision !== null ) {
+			$memcKey = wfMemcKey( 'infoaction', $this->getPrefixedText(), $revision->getId() );
+			global $wgMemc;
+			$success = $success && $wgMemc->delete( $memcKey );
+		}
+
 		return $success;
 	}
 
