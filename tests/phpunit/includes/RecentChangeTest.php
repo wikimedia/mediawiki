@@ -220,7 +220,8 @@ class RecentChangeTest extends MediaWikiTestCase {
 	 * @todo: Emulate these edits somehow and extract
 	 * raw edit summary from RecentChange object
 	 * --
-
+	 */
+/*
 	function testIrcMsgForBlankingAES() {
 		// $this->context->msg( 'autosumm-blank', .. );
 	}
@@ -237,8 +238,7 @@ class RecentChangeTest extends MediaWikiTestCase {
 		// $this->context->msg( 'undo-summary', .. );
 	}
 
-	 * --
-	 */
+*/
 
 	/**
 	 * @param $expected String Expected IRC text without colors codes

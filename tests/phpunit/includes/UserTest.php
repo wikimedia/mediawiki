@@ -7,22 +7,25 @@ define( 'NS_UNITTEST_TALK', 5601 );
  * @group Database
  */
 class UserTest extends MediaWikiTestCase {
-	protected $savedGroupPermissions, $savedRevokedPermissions;
 
 	/**
 	 * @var User
 	 */
 	protected $user;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
-		$this->savedGroupPermissions = $GLOBALS['wgGroupPermissions'];
-		$this->savedRevokedPermissions = $GLOBALS['wgRevokePermissions'];
+		$this->setMwGlobals( array(
+			'wgGroupPermissions' => array(),
+			'wgRevokePermissions' => array(),
+		) );
 
 		$this->setUpPermissionGlobals();
-		$this->setUpUser();
-	}
+
+		$this->user = new User;
+		$this->user->addGroup( 'unittesters' );	}
+
 	private function setUpPermissionGlobals() {
 		global $wgGroupPermissions, $wgRevokePermissions;
 
@@ -38,21 +41,11 @@ class UserTest extends MediaWikiTestCase {
 			'writetest' => true,
 			'modifytest' => true,
 		);
+
 		# Data for regular $wgRevokePermissions test
 		$wgRevokePermissions['formertesters'] = array(
 			'runtest' => true,
 		);
-	}
-	private function setUpUser() {
-		$this->user = new User;
-		$this->user->addGroup( 'unittesters' );
-	}
-
-	public function tearDown() {
-		parent::tearDown();
-
-		$GLOBALS['wgGroupPermissions'] = $this->savedGroupPermissions;
-		$GLOBALS['wgRevokePermissions'] = $this->savedRevokedPermissions;
 	}
 
 	public function testGroupPermissions() {
@@ -95,7 +88,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $result, "Groups with permission $right" );
 	}
 
-	public function provideGetGroupsWithPermission() {
+	public static function provideGetGroupsWithPermission() {
 		return array(
 			array(
 				array( 'unittesters', 'testwriters' ),
@@ -123,7 +116,7 @@ class UserTest extends MediaWikiTestCase {
 		$this->assertEquals( $this->user->isValidUserName( $username ), $result, $message );
 	}
 
-	public function provideUserNames() {
+	public static function provideUserNames() {
 		return array(
 			array( '', false, 'Empty string' ),
 			array( ' ', false, 'Blank space' ),

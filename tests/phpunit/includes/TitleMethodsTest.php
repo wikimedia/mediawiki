@@ -2,7 +2,7 @@
 
 class TitleMethodsTest extends MediaWikiTestCase {
 
-	public function dataEquals() {
+	public static function provideEquals() {
 		return array(
 			array( 'Main Page', 'Main Page', true ),
 			array( 'Main Page', 'Not The Main Page', false ),
@@ -15,7 +15,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataEquals
+	 * @dataProvider provideEquals
 	 */
 	public function testEquals( $titleA, $titleB, $expectedBool ) {
 		$titleA = Title::newFromText( $titleA );
@@ -25,7 +25,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedBool, $titleB->equals( $titleA ) );
 	}
 
-	public function dataInNamespace() {
+	public static function provideInNamespace() {
 		return array(
 			array( 'Main Page', NS_MAIN, true ),
 			array( 'Main Page', NS_TALK, false ),
@@ -39,7 +39,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataInNamespace
+	 * @dataProvider provideInNamespace
 	 */
 	public function testInNamespace( $title, $ns, $expectedBool ) {
 		$title = Title::newFromText( $title );
@@ -54,7 +54,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 		$this->assertFalse( $mainpage->inNamespaces( array( NS_PROJECT, NS_TEMPLATE ) ) );
 	}
 
-	public function dataHasSubjectNamespace() {
+	public static function provideHasSubjectNamespace() {
 		return array(
 			array( 'Main Page', NS_MAIN, true ),
 			array( 'Main Page', NS_TALK, true ),
@@ -68,14 +68,14 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataHasSubjectNamespace
+	 * @dataProvider provideHasSubjectNamespace
 	 */
 	public function testHasSubjectNamespace( $title, $ns, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->hasSubjectNamespace( $ns ) );
 	}
 
-	public function dataIsCssOrJsPage() {
+	public static function provideIsCssOrJsPage() {
 		return array(
 			array( 'Foo', false ),
 			array( 'Foo.js', false ),
@@ -96,7 +96,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsCssOrJsPage
+	 * @dataProvider provideIsCssOrJsPage
 	 */
 	public function testIsCssOrJsPage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
@@ -104,7 +104,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 
-	public function dataIsCssJsSubpage() {
+	public static function provideIsCssJsSubpage() {
 		return array(
 			array( 'Foo', false ),
 			array( 'Foo.js', false ),
@@ -123,14 +123,14 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsCssJsSubpage
+	 * @dataProvider provideIsCssJsSubpage
 	 */
 	public function testIsCssJsSubpage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isCssJsSubpage() );
 	}
 
-	public function dataIsCssSubpage() {
+	public static function provideIsCssSubpage() {
 		return array(
 			array( 'Foo', false ),
 			array( 'Foo.css', false ),
@@ -143,14 +143,14 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsCssSubpage
+	 * @dataProvider provideIsCssSubpage
 	 */
 	public function testIsCssSubpage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isCssSubpage() );
 	}
 
-	public function dataIsJsSubpage() {
+	public static function provideIsJsSubpage() {
 		return array(
 			array( 'Foo', false ),
 			array( 'Foo.css', false ),
@@ -163,14 +163,14 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsJsSubpage
+	 * @dataProvider provideIsJsSubpage
 	 */
 	public function testIsJsSubpage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedBool, $title->isJsSubpage() );
 	}
 
-	public function dataIsWikitextPage() {
+	public static function provideIsWikitextPage() {
 		return array(
 			array( 'Foo', true ),
 			array( 'Foo.js', true ),
@@ -191,7 +191,7 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataIsWikitextPage
+	 * @dataProvider provideIsWikitextPage
 	 */
 	public function testIsWikitextPage( $title, $expectedBool ) {
 		$title = Title::newFromText( $title );

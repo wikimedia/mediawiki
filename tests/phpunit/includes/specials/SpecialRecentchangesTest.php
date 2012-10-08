@@ -14,7 +14,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	 */
 	protected $rc;
 
-	function setUp() {
+	protected function setUp() {
 	}
 
 	/** helper to test SpecialRecentchanges::buildMainQueryConds() */
@@ -120,7 +120,7 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	 * Provides associated namespaces to test recent changes
 	 * namespaces association filtering.
 	 */
-	public function provideNamespacesAssociations() {
+	public static function provideNamespacesAssociations() {
 		return array( # (NS => Associated_NS)
 			array( NS_MAIN, NS_TALK),
 			array( NS_TALK, NS_MAIN),

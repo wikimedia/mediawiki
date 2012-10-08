@@ -5,7 +5,7 @@
  */
 class StoreBatchTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgFileBackends;
 		parent::setUp();
 
@@ -41,6 +41,17 @@ class StoreBatchTest extends MediaWikiTestCase {
 
 		$this->date = gmdate( "YmdHis" );
 		$this->createdFiles = array();
+	}
+
+	protected function tearDown() {
+		$this->repo->cleanupBatch( $this->createdFiles ); // delete files
+		foreach ( $this->createdFiles as $tmp ) { // delete dirs
+			$tmp = $this->repo->resolveVirtualUrl( $tmp );
+			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
+				$this->repo->getBackend()->clean( array( 'dir' => $tmp ) );
+			}
+		}
+		parent::tearDown();
 	}
 
 	/**
@@ -108,16 +119,5 @@ class StoreBatchTest extends MediaWikiTestCase {
 		global $IP;
 		$this->storecohort( "Test1.png", "$IP/skins/monobook/wiki.png", "$IP/skins/monobook/video.png", false );
 		$this->storecohort( "Test2.png", "$IP/skins/monobook/wiki.png", "$IP/skins/monobook/video.png", true );
-	}
-
-	public function tearDown() {
-		$this->repo->cleanupBatch( $this->createdFiles ); // delete files
-		foreach ( $this->createdFiles as $tmp ) { // delete dirs
-			$tmp = $this->repo->resolveVirtualUrl( $tmp );
-			while ( $tmp = FileBackend::parentStoragePath( $tmp ) ) {
-				$this->repo->getBackend()->clean( array( 'dir' => $tmp ) );
-			}
-		}
-		parent::tearDown();
 	}
 }

@@ -1,20 +1,22 @@
 <?php
 class GIFMetadataExtractorTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 	}
 	/**
 	 * Put in a file, and see if the metadata coming out is as expected.
 	 * @param $filename String
 	 * @param $expected Array The extracted metadata.
-	 * @dataProvider dataGetMetadata
+	 * @dataProvider provideGetMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
 		$actual = GIFMetadataExtractor::getMetadata( $this->mediaPath . $filename );
 		$this->assertEquals( $expected, $actual );
 	}
-	public function dataGetMetadata() {
+	public static function provideGetMetadata() {
 
 		$xmpNugget = <<<EOF
 <?xpacket begin='﻿' id='W5M0MpCehiHzreSzNTczkc9d'?>

@@ -34,7 +34,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		                                      'iwlinks' ) );
 	}
 
-	public function setUp() {
+	protected function setUp() {
 		if ( !$this->the_page ) {
 			$this->the_page = $this->createPage( 'RevisionStorageTest_the_page', "just a dummy page" );
 		}
@@ -310,7 +310,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 		$this->assertEquals( 'some testing text', $rev->getText() );
 	}
 
-	public function dataUserWasLastToEdit() {
+	public static function provideUserWasLastToEdit() {
 		return array(
 			array( #0
 				3, true, # actually the last edit
@@ -328,7 +328,7 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataUserWasLastToEdit
+	 * @dataProvider provideUserWasLastToEdit
 	 */
 	public function testUserWasLastToEdit( $sinceIdx, $expectedLast ) {
 		$userA = \User::newFromName( "RevisionStorageTest_userA" );

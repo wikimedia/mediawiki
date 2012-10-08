@@ -9,10 +9,10 @@
 class LanguageTrTest extends MediaWikiTestCase {
 	private $lang;
 
-	function setUp() {
+	protected function setUp() {
 		$this->lang = Language::factory( 'Tr' );
 	}
-	function tearDown() {
+	protected function tearDown() {
 		unset( $this->lang );
 	}
 

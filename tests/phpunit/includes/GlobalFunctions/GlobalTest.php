@@ -1,22 +1,32 @@
 <?php
 
 class GlobalTest extends MediaWikiTestCase {
-	function setUp() {
-		global $wgReadOnlyFile, $wgUrlProtocols;
-		$this->originals['wgReadOnlyFile'] = $wgReadOnlyFile;
-		$this->originals['wgUrlProtocols'] = $wgUrlProtocols;
-		$wgReadOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
-		$wgUrlProtocols[] = 'file://';
-		unlink( $wgReadOnlyFile );
+	protected function setUp() {
+		parent::setUp();
+
+		$readOnlyFile = tempnam( wfTempDir(), "mwtest_readonly" );
+		unlink( $readOnlyFile );
+
+		$this->setMwGlobals( array(
+			'wgReadOnlyFile' => $readOnlyFile,
+			'wgUrlProtocols' => array(
+				'http://',
+				'https://',
+				'mailto:',
+				'//',
+				'file://', # Non-default
+			),
+		) );
 	}
 
-	function tearDown() {
-		global $wgReadOnlyFile, $wgUrlProtocols;
+	protected function tearDown() {
+		global $wgReadOnlyFile;
+
 		if ( file_exists( $wgReadOnlyFile ) ) {
 			unlink( $wgReadOnlyFile );
 		}
-		$wgReadOnlyFile = $this->originals['wgReadOnlyFile'];
-		$wgUrlProtocols = $this->originals['wgUrlProtocols'];
+
+		parent::tearDown();
 	}
 
 	/** @dataProvider provideForWfArrayDiff2 */
@@ -27,7 +37,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	// @todo Provide more tests
-	public function provideForWfArrayDiff2() {
+	public static function provideForWfArrayDiff2() {
 		// $a $b $expected
 		return array(
 			array(
@@ -100,7 +110,7 @@ class GlobalTest extends MediaWikiTestCase {
 		$this->assertTrue( $end > $start, "Time is running backwards!" );
 	}
 
-	function dataArrayToCGI() {
+	public static function provideArrayToCGI() {
 		return array(
 			array( array(), '' ), // empty
 			array( array( 'foo' => 'bar' ), 'foo=bar' ), // string test
@@ -119,7 +129,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataArrayToCGI
+	 * @dataProvider provideArrayToCGI
 	 */
 	function testArrayToCGI( $array, $result ) {
 		$this->assertEquals( $result, wfArrayToCGI( $array ) );
@@ -134,7 +144,7 @@ class GlobalTest extends MediaWikiTestCase {
 				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
 	}
 
-	function dataCgiToArray() {
+	public static function provideCgiToArray() {
 		return array(
 			array( '', array() ), // empty
 			array( 'foo=bar', array( 'foo' => 'bar' ) ), // string
@@ -150,13 +160,13 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataCgiToArray
+	 * @dataProvider provideCgiToArray
 	 */
 	function testCgiToArray( $cgi, $result ) {
 		$this->assertEquals( $result, wfCgiToArray( $cgi ) );
 	}
 
-	function dataCgiRoundTrip() {
+	public static function provideCgiRoundTrip() {
 		return array(
 			array( '' ),
 			array( 'foo=bar' ),
@@ -170,7 +180,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataCgiRoundTrip
+	 * @dataProvider provideCgiRoundTrip
 	 */
 	function testCgiRoundTrip( $cgi ) {
 		$this->assertEquals( $cgi, wfArrayToCGI( wfCgiToArray( $cgi ) ) );
@@ -437,7 +447,7 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/** array( shorthand, expected integer ) */
-	public function provideShorthand() {
+	public static function provideShorthand() {
 		return array(
 			# Null, empty ... 
 			array(     '', -1),

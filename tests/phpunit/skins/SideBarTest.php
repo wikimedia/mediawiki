@@ -33,13 +33,13 @@ class SideBarTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();
 		$this->skin->getContext()->setLanguage( Language::factory( 'en' ) );
 	}
-	function tearDown() {
+	protected function tearDown() {
 		parent::tearDown();
 		$this->skin = null;
 	}

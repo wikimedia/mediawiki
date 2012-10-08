@@ -8,7 +8,7 @@
 class CSSMinTest extends MediaWikiTestCase {
 	protected $oldServer = null, $oldCanServer = null;
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		// Fake $wgServer and $wgCanonicalServer
@@ -18,7 +18,7 @@ class CSSMinTest extends MediaWikiTestCase {
 		$wgServer = $wgCanonicalServer = 'http://wiki.example.org';
 	}
 
-	function tearDown() {
+	protected function tearDown() {
 		// Restore $wgServer and $wgCanonicalServer
 		global $wgServer, $wgCanonicalServer;
 		$wgServer = $this->oldServer;

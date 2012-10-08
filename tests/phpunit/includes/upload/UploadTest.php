@@ -6,7 +6,7 @@ class UploadTest extends MediaWikiTestCase {
 	protected $upload;
 
 
-	function setUp() {
+	protected function setUp() {
 		global $wgHooks;
 		parent::setUp();
 
@@ -17,7 +17,7 @@ class UploadTest extends MediaWikiTestCase {
 		};
 	}
 
-	function tearDown() {
+	protected function tearDown() {
 		global $wgHooks;
 		$wgHooks = $this->hooks;
 	}
@@ -27,7 +27,7 @@ class UploadTest extends MediaWikiTestCase {
 	 * First checks the return code
 	 * of UploadBase::getTitle() and then the actual returned title
 	 * 
-	 * @dataProvider dataTestTitleValidation
+	 * @dataProvider provideTestTitleValidation
 	 */
 	public function testTitleValidation( $srcFilename, $dstFilename, $code, $msg ) {
 		/* Check the result code */
@@ -46,7 +46,7 @@ class UploadTest extends MediaWikiTestCase {
 	/**
 	 * Test various forms of valid and invalid titles that can be supplied.
 	 */
-	public function dataTestTitleValidation() {
+	public static function provideTestTitleValidation() {
 		return array(
 			/* Test a valid title */
 			array( 'ValidTitle.jpg', 'ValidTitle.jpg', UploadBase::OK, 

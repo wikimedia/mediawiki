@@ -9,7 +9,7 @@
  */
 class NewParserTest extends MediaWikiTestCase {
 	static protected $articles = array();	// Array of test articles defined by the tests
-	/* The dataProvider is run on a different instance than the test, so it must be static
+	/* The data provider is run on a different instance than the test, so it must be static
 	 * When running tests from several files, all tests will see all articles.
 	 */
 	static protected $backendToUse;
@@ -31,7 +31,7 @@ class NewParserTest extends MediaWikiTestCase {
 
 	protected $file = false;
 
-	function setUp() {
+	protected function setUp() {
 		global $wgContLang, $wgNamespaceProtection, $wgNamespaceAliases;
 		global $wgHooks, $IP;
 		$wgContLang = Language::factory( 'en' );
@@ -100,7 +100,7 @@ class NewParserTest extends MediaWikiTestCase {
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		foreach ( $this->savedInitialGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}

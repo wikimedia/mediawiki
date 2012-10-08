@@ -1,7 +1,9 @@
 <?php
 class JpegTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->filePath = __DIR__ . '/../../data/media/';
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
@@ -10,9 +12,11 @@ class JpegTest extends MediaWikiTestCase {
 		$this->show = $wgShowEXIF;
 		$wgShowEXIF = true;
 	}
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgShowEXIF;
 		$wgShowEXIF = $this->show;
+
+		parent::tearDown();
 	}
 
 	public function testInvalidFile() {

@@ -1,7 +1,9 @@
 <?php
 class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 

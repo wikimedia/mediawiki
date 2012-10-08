@@ -17,7 +17,7 @@ class HttpTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $ok, $msg );
 	}
 
-	function cookieDomains() {
+	public static function cookieDomains() {
 		return array(
 			array( false, "org"),
 			array( false, ".org"),
@@ -62,7 +62,7 @@ class HttpTest extends MediaWikiTestCase {
 	/**
 	 * Feeds URI to test a long regular expression in Http::isValidURI
 	 */
-	function provideURI() {
+	public static function provideURI() {
 		/** Format: 'boolean expectation', 'URI to test', 'Optional message' */
 		return array(
 			array( false, '¿non sens before!! http://a', 'Allow anything before URI' ),
@@ -131,6 +131,10 @@ class HttpTest extends MediaWikiTestCase {
 	 * handles header reporting on redirect pages, and will need to be
 	 * rewritten when bug 29232 is taken care of (high-level handling of
 	 * HTTP redirects).
+	 * @group Broken
+	 *  MWHttpRequestTester's constructor is private, needs to use
+	 *  MWHttpRequestTester::factory instead. However the objects coming
+	 *  from that won't have MWHttpRequestTester::setRespHeaders...
 	 */
 	function testRelativeRedirections() {
 		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );

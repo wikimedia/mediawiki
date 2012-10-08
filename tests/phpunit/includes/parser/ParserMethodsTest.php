@@ -2,7 +2,7 @@
 
 class ParserMethodsTest extends MediaWikiLangTestCase {
 
-	public function dataPreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
 			       "hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -14,7 +14,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataPreSaveTransform
+	 * @dataProvider providePreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
 		global $wgParser;

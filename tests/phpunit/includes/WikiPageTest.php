@@ -29,12 +29,12 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		                                       'iwlinks' ) );
 	}
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->pages_to_delete = array();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		foreach ( $this->pages_to_delete as $p ) {
 			/* @var $p WikiPage */
 
@@ -220,7 +220,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $page->exists() );
 	}
 
-	public function dataHasViewableContent() {
+	public static function provideHasViewableContent() {
 		return array(
 			array( 'WikiPageTest_testHasViewableContent', false, true ),
 			array( 'Special:WikiPageTest_testHasViewableContent', false ),
@@ -231,7 +231,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataHasViewableContent
+	 * @dataProvider provideHasViewableContent
 	 */
 	public function testHasViewableContent( $title, $viewable, $create = false ) {
 		$page = $this->newPage( $title );
@@ -246,7 +246,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	public function dataGetRedirectTarget() {
+	public static function provideGetRedirectTarget() {
 		return array(
 			array( 'WikiPageTest_testGetRedirectTarget_1', "hello world", null ),
 			array( 'WikiPageTest_testGetRedirectTarget_2', "#REDIRECT [[hello world]]", "Hello world" ),
@@ -254,7 +254,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetRedirectTarget
+	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text, $target ) {
 		$page = $this->createPage( $title, $text );
@@ -265,14 +265,14 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetRedirectTarget
+	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testIsRedirect( $title, $text, $target ) {
 		$page = $this->createPage( $title, $text );
 		$this->assertEquals( !is_null( $target ), $page->isRedirect() );
 	}
 
-	public function dataIsCountable() {
+	public static function provideIsCountable() {
 		return array(
 
 			// any
@@ -366,7 +366,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 
 
 	/**
-	 * @dataProvider dataIsCountable
+	 * @dataProvider provideIsCountable
 	 */
 	public function testIsCountable( $title, $text, $mode, $expected ) {
 		global $wgArticleCountMethod;
@@ -388,7 +388,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		                                    . " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
 	}
 
-	public function dataGetParserOutput() {
+	public static function provideGetParserOutput() {
 		return array(
 			array("hello ''world''\n", "<p>hello <i>world</i></p>"),
 			// @todo: more...?
@@ -396,7 +396,7 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetParserOutput
+	 * @dataProvider provideGetParserOutput
 	 */
 	public function testGetParserOutput( $text, $expectedHtml ) {
 		$page = $this->createPage( 'WikiPageTest_testGetParserOutput', $text );
@@ -427,7 +427,7 @@ more stuff
 ";
 
 
-	public function dataReplaceSection() {
+	public static function provideReplaceSection() {
 		return array(
 			array( 'WikiPageTest_testReplaceSection',
 			       WikiPageTest::$sections,
@@ -468,7 +468,7 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider dataReplaceSection
+	 * @dataProvider provideReplaceSection
 	 */
 	public function testReplaceSection( $title, $text, $section, $with, $sectionTitle, $expected ) {
 		$page = $this->createPage( $title, $text );
@@ -613,7 +613,7 @@ more stuff
 		$this->assertEquals( "one", $page->getText() );
 	}
 
-	public function dataGetAutosummary( ) {
+	public static function provideGetAutosummary( ) {
 		return array(
 			array(
 				'Hello there, world!',
@@ -655,7 +655,7 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider dataGetAutoSummary
+	 * @dataProvider provideGetAutoSummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
 		$page = $this->newPage( "WikiPageTest_testGetAutosummary" );
@@ -665,7 +665,7 @@ more stuff
 		$this->assertTrue( (bool)preg_match( $expected, $summary ), "Autosummary didn't match expected pattern $expected: $summary" );
 	}
 
-	public function dataGetAutoDeleteReason( ) {
+	public static function provideGetAutoDeleteReason( ) {
 		return array(
 			array(
 				array(),
@@ -724,7 +724,7 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider dataGetAutoDeleteReason
+	 * @dataProvider provideGetAutoDeleteReason
 	 */
 	public function testGetAutoDeleteReason( $edits, $expectedResult, $expectedHistory ) {
 		global $wgUser;
@@ -754,7 +754,7 @@ more stuff
 		$page->doDeleteArticle( "done" );
 	}
 
-	public function dataPreSaveTransform() {
+	public static function providePreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
 			       "hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -766,7 +766,7 @@ more stuff
 	}
 
 	/**
-	 * @dataProvider dataPreSaveTransform
+	 * @dataProvider providePreSaveTransform
 	 */
 	public function testPreSaveTransform( $text, $expected ) {
 		$this->hideDeprecated( 'WikiPage::preSaveTransform' );

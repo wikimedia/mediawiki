@@ -1,7 +1,7 @@
 <?php
 
 class DiffHistoryBlobTest extends MediaWikiTestCase {
-	function setUp() {
+	protected function setUp() {
 		if ( !extension_loaded( 'xdiff' ) ) {
 			$this->markTestSkipped( 'The xdiff extension is not available' );
 			return;
@@ -28,7 +28,7 @@ class DiffHistoryBlobTest extends MediaWikiTestCase {
 			"Hash of " . addcslashes( $input, "\0..\37!@\@\177..\377" ) );
 	}
 
-	function provideXdiffAdler32() {
+	public static function provideXdiffAdler32() {
 		return array(
 			array( '', 'Empty string' ),
 			array( "\0", 'Null' ),

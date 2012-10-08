@@ -13,7 +13,7 @@
 		$this->assertEquals( $format, $detector->detectFormatName( $userAgent ) );
 	}
 
-	public function provideTestFormatName() {
+	public static function provideTestFormatName() {
 		return array(
 			array( 'android',   'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17' ),
 			array( 'iphone2',   'Mozilla/5.0 (ipod: U;CPU iPhone OS 2_2 like Mac OS X: es_es) AppleWebKit/525.18.1 (KHTML, like Gecko) Version/3.0 Mobile/3B48b Safari/419.3' ),
