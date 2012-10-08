@@ -973,7 +973,7 @@ abstract class ContentHandler {
 		}
 
 		if ( $warn ) {
-			wfWarn( "Using obsolete hook $event" );
+			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()", 2 );
 		}
 
 		// convert Content objects to text
