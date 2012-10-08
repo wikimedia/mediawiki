@@ -762,16 +762,6 @@ class Preferences {
 				'label-message' => 'tog-editsection',
 			);
 		}
-		$defaultPreferences['editsectiononrightclick'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-editsectiononrightclick',
-		);
-		$defaultPreferences['editondblclick'] = array(
-			'type' => 'toggle',
-			'section' => 'editing/advancedediting',
-			'label-message' => 'tog-editondblclick',
-		);
 		$defaultPreferences['showtoolbar'] = array(
 			'type' => 'toggle',
 			'section' => 'editing/advancedediting',
