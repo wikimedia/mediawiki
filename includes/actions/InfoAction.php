@@ -172,8 +172,14 @@ class InfoAction extends FormlessAction {
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 
-		// Get page information that would be too "expensive" to retrieve by normal means
-		$pageCounts = self::pageCounts( $title, $user );
+		$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $this->page->getRevision()->getId() );
+		$pageCounts = $wgMemc->get( $memcKey );
+		if ( $pageCounts === false ) {
+			// Get page information that would be too "expensive" to retrieve by normal means
+			$pageCounts = self::pageCounts( $title, $user );
+
+			$wgMemc->set( $memcKey, $pageCounts );
+		}
 
 		// Get page properties
 		$dbr = wfGetDB( DB_SLAVE );
@@ -253,7 +259,7 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
-		if ( isset( $pageCounts['watchers'] ) ) {
+		if ( isset( $pageCounts['watchers'] ) && $user->isAllowed( 'unwatchedpages' ) ) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
