@@ -778,14 +778,6 @@ class Preferences {
 			'label-message' => 'tog-showtoolbar',
 		);
 
-		if ( $user->isAllowed( 'minoredit' ) ) {
-			$defaultPreferences['minordefault'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-minordefault',
-			);
-		}
-
 		if ( $wgUseExternalEditor ) {
 			$defaultPreferences['externaleditor'] = array(
 				'type' => 'toggle',
