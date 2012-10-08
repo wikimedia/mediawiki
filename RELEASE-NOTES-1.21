@@ -41,6 +41,8 @@ MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 === Other changes in 1.21 ===
+* User preference 'minordefault' ("Mark all edits minor by default") was
+  removed.
 
 == Compatibility ==
 
