@@ -945,11 +945,14 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( $isText ) {
 			// source view for textual content
-			$sourceView = Xml::element( 'textarea', array(
-				'readonly' => 'readonly',
-				'cols' => intval( $user->getOption( 'cols' ) ),
-				'rows' => intval( $user->getOption( 'rows' ) ) ),
-				$content->getNativeData() . "\n" );
+			$sourceView = Xml::element( 'textarea',
+				array(
+					'readonly' => 'readonly',
+					'cols' => 80,
+					'rows' => 25
+				),
+				$content->getNativeData() . "\n"
+			);
 
 			$previewButton = Xml::element( 'input', array(
 				'type' => 'submit',
