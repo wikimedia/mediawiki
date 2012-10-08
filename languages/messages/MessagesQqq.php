@@ -1861,7 +1861,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
 'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
 'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
-'recentchanges-label-minor' => 'Tooltip for {{msg-mw|newpageletter}}',
+'recentchanges-label-minor' => 'Tooltip for {{msg-mw|minoreditletter}}',
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
 'rcnote' => 'Used on [[Special:RecentChanges]].

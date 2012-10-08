@@ -471,7 +471,7 @@ $messages = array(
 'vector-action-protect' => 'Beskytt',
 'vector-action-undelete' => 'Gjenopprett',
 'vector-action-unprotect' => 'Endre beskyttelse',
-'vector-simplesearch-preference' => 'Aktiver forbedrede søkeforslag (kun for drakten Vector)',
+'vector-simplesearch-preference' => 'Aktiver forenklet søkefelt (kun for drakten Vector)',
 'vector-view-create' => 'Opprett',
 'vector-view-edit' => 'Rediger',
 'vector-view-history' => 'Vis historikk',
@@ -3106,6 +3106,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => 'Transkludert {{PLURAL:$1|mal|maler}} ($1)',
+'pageinfo-toolboxlink' => 'Sideinformasjon',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3680,6 +3681,7 @@ Denne bekreftelseskoden går ut på dato $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-transkludering er slått av]',
 'scarytranscludefailed' => '[Malen kunne ikke hentes for $1]',
+'scarytranscludefailed-httpstatus' => '[Henting av mal for $1 feilet: HTTP $2]',
 'scarytranscludetoolong' => '[URL-en er for lang]',
 
 # Delete conflict

@@ -1297,12 +1297,12 @@ No tiene acceso a él.',
 'revdelete-otherreason' => 'Otra/adicional razón:',
 'revdelete-reasonotherlist' => 'Otra razón',
 'revdelete-edit-reasonlist' => 'Editar razones de borrado',
-'revdelete-offender' => 'Autor de revisión:',
+'revdelete-offender' => 'Autor de la revisión:',
 
 # Suppression log
 'suppressionlog' => 'Registro de supresiones',
 'suppressionlogtext' => 'A continuación hay una lista con los borrados y bloqueos cuyo contenido se encuentra oculto para los administradores.
-Ver la [[Special:BlockList|lista de bloqueos]] que incluye las prohibiciones y bloqueos actualmente operativos.',
+Véase la [[Special:BlockList|lista de bloqueos]] que incluye las prohibiciones y bloqueos actualmente operativos.',
 
 # History merging
 'mergehistory' => 'Fusionar historiales de páginas',
@@ -3179,6 +3179,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',
+'pageinfo-toolboxlink' => 'Información de la página',
 
 # Skin names
 'skinname-standard' => 'Estándar',
@@ -3758,6 +3759,7 @@ Este código de confirmación caducará el $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Transclusión interwiki está deshabilitada]',
 'scarytranscludefailed' => '[Obtención de plantilla falló para $1]',
+'scarytranscludefailed-httpstatus' => '[Error de recuperación de plantilla para $1: HTTP $2]',
 'scarytranscludetoolong' => '[El URL es demasiado largo]',
 
 # Delete conflict
@@ -4039,7 +4041,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 
 # Search suggestions
 'searchsuggest-search' => 'Buscar',
-'searchsuggest-containing' => 'conteniendo...',
+'searchsuggest-containing' => 'que contiene...',
 
 # API errors
 'api-error-badaccess-groups' => 'No puedes cargar archivos en este wiki.',

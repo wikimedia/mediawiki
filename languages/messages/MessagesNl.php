@@ -3248,6 +3248,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisch woord|Magische woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikt sjabloon|Gebruikte sjablonen}} ($1)',
+'pageinfo-toolboxlink' => 'Paginagegevens',
 
 # Skin names
 'skinname-standard' => 'Klassiek',
@@ -3830,6 +3831,7 @@ De bevestigingscode vervalt op $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-invoeging van sjablonen is uitgeschakeld]',
 'scarytranscludefailed' => '[Het sjabloon $1 kon niet opgehaald worden]',
+'scarytranscludefailed-httpstatus' => '[Het sjabloon $1 kon niet opgehaald worden: HTTP $2]',
 'scarytranscludetoolong' => '[De URL is te lang]',
 
 # Delete conflict

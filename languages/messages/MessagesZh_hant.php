@@ -2970,6 +2970,7 @@ $1被封禁的理由是“$2”',
 'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}} ( $1 )',
 'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}} ( $1 )',
 'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}} ( $1 )',
+'pageinfo-toolboxlink' => '頁面資訊',
 
 # Skin names
 'skinname-standard' => '標準',
@@ -3565,6 +3566,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
 'scarytranscludefailed' => '[模板$1讀取失敗]',
+'scarytranscludefailed-httpstatus' => '[模板$1讀取失敗：HTTP$2]',
 'scarytranscludetoolong' => '[URL 地址太長]',
 
 # Delete conflict

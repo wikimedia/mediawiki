@@ -454,7 +454,7 @@ $messages = array(
 'vector-action-protect' => 'Khóa',
 'vector-action-undelete' => 'Phục hồi',
 'vector-action-unprotect' => 'Đổi mức khóa',
-'vector-simplesearch-preference' => 'Gợi ý tìm kiếm nâng cao (cần bề ngoài Vectơ)',
+'vector-simplesearch-preference' => 'Hộp tìm kiếm đơn giản (cần bề ngoài Vectơ)',
 'vector-view-create' => 'Tạo',
 'vector-view-edit' => 'Sửa',
 'vector-view-history' => 'Xem lịch sử',
@@ -3103,6 +3103,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'pageinfo-magic-words' => 'Từ thần chú ($1)',
 'pageinfo-hidden-categories' => 'Thể loại ẩn ($1)',
 'pageinfo-templates' => 'Bản mẫu được nhúng ($1)',
+'pageinfo-toolboxlink' => 'Thông tin trang',
 
 # Skin names
 'skinname-standard' => 'Cổ điển',
@@ -3736,7 +3737,8 @@ Mã xác nhận này sẽ hết hạn vào $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Nhúng giữa các wiki bị tắt]',
-'scarytranscludefailed' => '[Truy xuất bản mẫu cho $1 thất bại]',
+'scarytranscludefailed' => '[Truy xuất bản mẫu $1 bị thất bại]',
+'scarytranscludefailed-httpstatus' => '[Truy xuất bản mẫu $1 bị thất bại: HTTP $2]',
 'scarytranscludetoolong' => '[Địa chỉ URL quá dài]',
 
 # Delete conflict

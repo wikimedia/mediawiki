@@ -470,7 +470,7 @@ $1',
 'restorelink' => '$1 {{PLURAL:$1|izbrisano redakcijo|izbrisani redakciji|izbrisane redakcije|izbrisanih redakcij}}',
 'feedlinks' => 'Podajanje:',
 'feed-invalid' => 'Neveljavna vrsta naročniškega vira.',
-'feed-unavailable' => 'Živi zaznamki niso na voljo',
+'feed-unavailable' => 'Živi zaznamki niso na razpolago.',
 'site-rss-feed' => 'RSS-vir strani »$1«',
 'site-atom-feed' => 'Atom-vir strani »$1«',
 'page-rss-feed' => 'RSS-vir strani »$1«',
@@ -551,8 +551,8 @@ Vrnila ni nobene razlage.',
 'badtitle' => 'Nepravilen naslov',
 'badtitletext' => 'Navedeni naslov strani je neveljaven, prazen, napačno povezan k drugim jezikom oziroma wikiprojektom.
 Morda vsebuje enega ali več nepodprtih znakov.',
-'perfcached' => 'Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na voljo največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
-'perfcachedts' => 'Prikazani podatki so shranjeni v predpomnilniku in so bili nazadnje osveženi $1. V predpomnilniku {{PLURAL:$4|je|sta|so|je}} na voljo največ $4 {{PLURAL:$4|rezultat|rezultata|rezultate|rezultatov}}.',
+'perfcached' => 'Navedeni podatki so shranjeni v predpomnilniku in morda niso popolnoma posodobljeni. V predpomnilniku {{PLURAL:$1|je|sta|so|je}} na razpolago največ $1 {{PLURAL:$1|rezultat|rezultata|rezultate|rezultatov}}.',
+'perfcachedts' => 'Prikazani podatki so shranjeni v predpomnilniku in so bili zadnjič osveženi $1. V predpomnilniku {{PLURAL:$4|je|sta|so|je}} na razpolago največ $4 {{PLURAL:$4|rezultat|rezultata|rezultate|rezultatov}}.',
 'querypage-no-updates' => 'Posodobitve za to stran so trenutno onemogočene. Tukajšnji podatki se v kratkem ne bodo osvežili.',
 'wrong_wfQuery_params' => 'Nepravilni parametri za wfQuery()<br />
 Funkcija: $1<br />
@@ -962,8 +962,8 @@ Lahko se vrnete nazaj in urejate že obstoječe strani, ali pa se [[Special:User
 
 Premislite preden nadaljujete s pisanjem, morda bo stran zaradi istih razlogov ponovno odstranjena.
 Spodaj je prikazan dnevnik brisanja in prestavljanja:",
-'moveddeleted-notice' => 'Ta stran je bila izbrisana.
-Dnevnik brisanja in prestavljanja strani je na voljo spodaj.',
+'moveddeleted-notice' => 'Stran je bila izbrisana.
+Spodaj sta za sklicevanje na razpolago dnevnik brisanja in dnevnik prestavljanja strani.',
 'log-fulllog' => 'Ogled celotnih dnevniških zapiskov',
 'edit-hook-aborted' => 'Urejanje je bilo brez obrazložitve prekinjeno zaradi neznane napake.',
 'edit-gone-missing' => 'Strani ni mogoče posodobiti.
@@ -1716,7 +1716,7 @@ MGP # Pentax
 PICT # mešano
  #</pre> <!-- pustite to vrstico takšno, kot je -->',
 'upload-success-subj' => 'Datoteka je bila uspešno naložena',
-'upload-success-msg' => 'Vaša datoteka iz [$2] je bila uspešno naložena. Na voljo je tukaj: [[:{{ns:file}}:$1]]',
+'upload-success-msg' => 'Datoteka s strani [$2] se je uspešno naložila. Na razpolago je tukaj: [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Težava pri nalaganju',
 'upload-failure-msg' => 'Prišlo je do težave z vašo naloženo datoteko iz [$2]:
 
@@ -1736,7 +1736,7 @@ Prosimo, preverite veljavnost in dostopnost naslova URL ter poskusite ponovno.
 'upload-too-many-redirects' => 'URL vsebuje preveč preusmeritev',
 'upload-unknown-size' => 'neznana velikost',
 'upload-http-error' => 'Prišlo je do napake HTTP: $1',
-'upload-copy-upload-invalid-domain' => 'Nalaganje kopij s te domene ni na voljo.',
+'upload-copy-upload-invalid-domain' => 'Nalaganje kopij s te domene ni možno.',
 
 # File backend
 'backend-fail-stream' => 'Ne morem pretakati datoteke $1.',
@@ -1877,8 +1877,8 @@ Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri kateri
 'imagelinks' => 'Uporaba datoteke',
 'linkstoimage' => 'Datoteka je del {{PLURAL:$1|naslednje $1 strani|naslednjih $1 strani}} {{GRAMMAR:rodilnik|{{SITENAME}}}}:',
 'linkstoimage-more' => 'Na to datoteko se {{PLURAL:$1|povezuje več kot $1 stran|povezujeta več kot $1 strani|povezujejo več kot $1 strani|povezuje več kot $1 strani}}.
-Naslednji seznam obsega samo {{PLURAL:$1|prvo stran, ki se povezuje|prvi $1 strani, ki se povezujeta|prve $1 strani, ki se povezujejo|prvih $1 strani, ki se povezujejo}} na to datoteko.
-Na razpolago je tudi [[Special:WhatLinksHere/$2|celotni seznam]].',
+Naslednji seznam obsega samo {{PLURAL:$1|prvo stran, ki se povezuje|prvi $1 strani, ki se povezujeta|prve $1 strani, ki se povezujejo|prvih $1 strani, ki se povezujejo}} na datoteko.
+Na razpolago je tudi [[Special:WhatLinksHere/$2|popoln seznam]].',
 'nolinkstoimage' => 'Z datoteko se ne povezuje nobena stran.',
 'morelinkstoimage' => 'Preglejte [[Special:WhatLinksHere/$1|več povezav]] na to datoteko.',
 'linkstoimage-redirect' => '$1 (preusmeritev datoteke) $2',
@@ -2162,8 +2162,8 @@ Podprti protokoli: <code>$1</code> (teh ne dodajte v svoje iskanje).',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Pravice uporabniških skupin',
-'listgrouprights-summary' => 'Spodaj se nahaja seznam uporabniških skupin na tem wikiju in njim dodeljene pravice dostopa.
-Na voljo so morda [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o posameznih skupinah.',
+'listgrouprights-summary' => 'Tu je na razpolago seznam uporabniških skupin na tem wikiju z navedbo dodeljenih pravic dostopa.
+Morda so na razpolago tudi [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]] o posameznih skupinah.',
 'listgrouprights-key' => '* <span class="listgrouprights-granted">Dodeljena pravica</span>
 * <span class="listgrouprights-revoked">Odvzeta pravica</span>',
 'listgrouprights-group' => 'Skupina',
@@ -2613,7 +2613,7 @@ Oglejte si [[Special:BlockList|seznam blokad]] za pregled blokad.',
 Razlog za blokado uporabnika $1 je: »$2«',
 'blocklogpage' => 'Dnevnik blokiranja',
 'blocklog-showlog' => 'Ta uporabnik je že bil blokiran.
-Dnevnik blokiranja je na voljo spodaj:',
+Za sklicevanje so tule navedeni vnosi v dnevniku blokiranja:',
 'blocklog-showsuppresslog' => 'Ta uporabnik je že bil blokiran in skrit.
 Dnevnik skrivanja je na voljo spodaj:',
 'blocklogentry' => '[[$1]] blokiran s časom poteka blokade $2 $3',
@@ -2762,10 +2762,10 @@ strani ni mogoče prestaviti samo vaše.',
 'imageinvalidfilename' => 'Ciljno ime datoteke je neveljavno',
 'fix-double-redirects' => 'Posodobi vse preusmeritve, ki kažejo na prvotni naslov',
 'move-leave-redirect' => 'Na prejšnji strani ustvari preusmeritev',
-'protectedpagemovewarning' => "'''Opozorilo:''' Stran je bila zaklenjena, tako da jo lahko prestavljajo samo uporabniki z administratorskimi dovoljenji.
-Najnovejši vnos v dnevniku je na voljo spodaj:",
-'semiprotectedpagemovewarning' => "'''Opomba:''' Stran je bila zaklenjena, tako da jo lahko prestavljajo samo registrirani uporabniki.
-Najnovejši vnos v dnevniku je na voljo spodaj:",
+'protectedpagemovewarning' => "'''Opozorilo:''' Stran je bila zaklenjena in jo lahko prestavljajo samo uporabniki z administratorskimi pravicami.
+Za sklicevanje je naveden zadnji vnos v dnevnik:",
+'semiprotectedpagemovewarning' => "'''Opomba:''' Stran je bila zaklenjena in jo lahko prestavljajo samo registrirani uporabniki.
+Za sklicevanje je naveden zadnji vnos v dnevniku:",
 'move-over-sharedrepo' => '== Datoteka obstaja ==
 [[:$1]] obstaja v deljeni shrambi. Premik datoteke na ta naslov bo prepisalo deljeno datoteko.',
 'file-exists-sharedrepo' => 'Izbrano ime datoteke je že v uporabi v deljeni shrambi.
@@ -3061,7 +3061,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'file-info' => 'Velikost datoteke: $1, MIME-vrsta: <code>$2</code>',
 'file-info-size' => '$1 × $2 točk, velikost datoteke: $3, vrsta MIME: $4',
 'file-info-size-pages' => '$1 × $2 točk, velikost datoteke: $3, vrsta MIME: $4, $5 {{PLURAL:$5|stran|strani}}',
-'file-nohires' => 'Slika višje ločljivosti ni na voljo.',
+'file-nohires' => 'Višja ločljivost slike ni na razpolago.',
 'svg-long-desc' => 'datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'svg-long-desc-animated' => 'animirana datoteka SVG, v izvirniku $1 × $2 slikovnih točk, velikost datoteke: $3',
 'show-big-image' => 'Slika v višji ločljivosti',

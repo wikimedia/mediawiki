@@ -2249,7 +2249,7 @@ Vous pouvez personnaliser l’affichage en sélectionnant le type de journal, le
 'allpagesprev' => 'Précédent',
 'allpagesnext' => 'Suivant',
 'allpagessubmit' => 'Lister',
-'allpagesprefix' => 'Afficher les pages commençant par le préfixe :',
+'allpagesprefix' => 'Afficher les pages commençant par :',
 'allpagesbadtitle' => 'Le titre de page indiqué est incorrect : il contient un préfixe inter-langue ou inter-wiki réservé, ou contient un ou plusieurs caractères inutilisables dans les titres.',
 'allpages-bad-ns' => '{{SITENAME}} n’a pas d’espace de noms « $1 ».',
 'allpages-hide-redirects' => 'Masquer les redirections',

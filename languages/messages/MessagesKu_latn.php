@@ -1599,8 +1599,9 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'whatlinkshere-prev' => '{{PLURAL:$1|yê|$1 yên}} berê',
 'whatlinkshere-next' => '{{PLURAL:$1|yê|$1 yên}} din',
 'whatlinkshere-links' => '← girêdan',
-'whatlinkshere-hideredirs' => '$1 beralîkirin',
-'whatlinkshere-hidelinks' => '$1 lînkan',
+'whatlinkshere-hideredirs' => 'Beralîkirinan $1',
+'whatlinkshere-hidetrans' => 'Naverokan $1',
+'whatlinkshere-hidelinks' => 'Lînkan $1',
 'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
 'whatlinkshere-filters' => 'Parzûn',
 

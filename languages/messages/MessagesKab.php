@@ -894,6 +894,10 @@ Tzemreḍ att ẓṛeḍ ; tilɣa llant deg [{{fullurl:{{#Special:Log}}/delete|p
 'logdelete-selected' => "'''{{PLURAL:$1|Tamirt n uɣmis tettwafren|Isallen n uɣmis ttwafernen}}:'''",
 'revdelete-text' => 'Ileqman d tidyanin yettumḥan ad qqimen deg umezruy n usebter dɣa deg iɣmisen, maca agbur nsen ur i sɛu ara tuffart i uzayez."
 Inedbalen wiyaḍ deg {{SITENAME}} zemren ad ẓṛen imuren i yettwafren u zemren a ten-mḥan, ḥaca ma llan icekkilen.',
+'revdelete-confirm' => 'Sergeg ma tebɣiḍ ad xedmeḍ tigawt agi, fehmeḍ inalkamen, dɣa temtawiḍ s [[{{MediaWiki:Policy-url}}|ilugan]].',
+'revdelete-suppress-text' => "Ilaq tukksa at illi kan deg tijṛa agi :
+* tilɣa n yiwen ur ezgan ara
+*: ''tansa, uṭṭun n tilifun, uṭṭun n taɣellist tamettit, …''",
 'revdelete-legend' => 'Sbebd akref n tamuɣli',
 'revdelete-hide-text' => 'Ffer aḍris n tsiwelt',
 'revdelete-hide-image' => 'Ffer ayen yellan deg ufaylu',
@@ -909,20 +913,42 @@ Inedbalen wiyaḍ deg {{SITENAME}} zemren ad ẓṛen imuren i yettwafren u zemr
 'revdelete-log' => 'Ayɣer',
 'revdelete-submit' => 'Snes {{PLURAL:$1|i tacaggart i tettwafren|i ticggarin i tettwafren}}',
 'revdelete-success' => "''Asekkud n ileqman yemucce war uguren.'''",
+'revdelete-failure' => "'''Iẓṛi n lqem ur yemucceḍ ara :'''
+$1",
 'logdelete-success' => "'''Asekkud n tamirt yettuxdem.'''",
+'logdelete-failure' => "'''Iẓṛi n uɣmis ur yezmer ara ad yesbadu :'''
+$1",
 'revdel-restore' => 'beddel timezrit',
 'revdel-restore-deleted' => 'allas iqḍeεen',
 'revdel-restore-visible' => 'allas i nezmer an ẓeṛ',
 'pagehist' => 'Amezruy n usebter',
 'deletedhist' => 'Amezruy yemḥa',
+'revdelete-hide-current' => 'Yella anezri imi nemḥa aferdis yezemzen ass n $1 af $2 : d lqem aneggaru.
+Ur yezmer ara ad yemḥu.',
+'revdelete-show-no-access' => 'Yella anezri imi n beqqeḍ aferdis yezemzen ass n $1 af $2 : yecreḍ am "ukrif".
+Ur tesɛiḍ ara izerfan n wadduf.',
+'revdelete-modify-no-access' => 'Yella anezri imi nebeddel aferdis yezemzen ass n $1 af $2 : yecreḍ am "ukrif".
+Ur tesɛiḍ ara izerfan n wadduf.',
+'revdelete-modify-missing' => 'Yella anezri imi nebeddel aferdis yesɛan ID $1 : Ulac-it deg taffa n isefka !',
+'revdelete-no-change' => "'''Ɣur-wet :''' Aferdis yezemzen ass n $1 af $2 yesɛa yakan iɣewwaren n iẓṛi i tebɣiḍ.",
+'revdelete-concurrent-change' => 'Yella anezri imi nebeddel aferdis yezemzen ass n $1 af $2 : aẓayeris yetwebeddel sɣur amḍan nniḍen mi tbeddeleḍ
+Ẓeṛ iɣmisen.',
+'revdelete-only-restricted' => 'Yella anezri imi nemḥa asekcem yezemzen ass n $1 af $2 : ur tzemreḍ ara ad mḥuḍ iferdisen agi i inedbalen war ad fruḍ tixtiṛiyin nniḍen n umḥu.',
+'revdelete-reason-dropdown' => 'Tiɣẓinin timiranin n umḥu :
+** Akukel n izerfan umeskar (copyright) ;
+** Iwenniten naɣ tilɣa n yiwen ur yezgan ara ;
+** Tilɣa i zemren ad rgemen.',
 'revdelete-otherreason' => 'Taɣẓint nniḍen / taɣzint tamarnant :',
 'revdelete-reasonotherlist' => 'Taɣẓint nniḍen',
+'revdelete-edit-reasonlist' => 'Beddel tiɣẓinin n umḥu i-d-yettuɣalen',
 'revdelete-offender' => 'Ameskar n tacaggart :',
 
 # Suppression log
 'suppressionlog' => 'Aɣmis n isfaḍen',
 
 # History merging
+'mergehistory' => 'Zdi amezruy n isebtar',
+'mergehistory-box' => 'Zdi lqem n sin isebtar',
 'mergehistory-from' => 'Azar n usebter :',
 'mergehistory-into' => 'Aserken n usebter :',
 'mergehistory-list' => 'Amezruy n ibeddilen i nezmer an zdi',
@@ -1518,8 +1544,15 @@ Tzemreḍ ad textareḍ cwiṭ seg-sen ma tebɣiḍ.',
 'categoriespagetext' => 'Llant taggayin-agi deg wiki-yagi.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
+'categoriesfrom' => 'Ssken taggayin seg :',
+'special-categories-sort-count' => 'Afran s amḍan n iferdisen',
+'special-categories-sort-abc' => 'Afran s ugemmay',
 
 # Special:LinkSearch
+'linksearch' => 'Anadi n izdayen yeffɣen',
+'linksearch-pat' => 'Anadi n tanfalit :',
+'linksearch-ns' => 'Talluntin n isemawen :',
+'linksearch-ok' => 'Nadi',
 'linksearch-line' => '$1 yeqqen seg $2',
 
 # Special:ListUsers
@@ -1531,22 +1564,42 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'newuserlogpage' => 'Aɣmis n isnulfan n  imiḍanen n imseqdacen',
 
 # Special:ListGroupRights
+'listgrouprights-group' => 'Agraw',
+'listgrouprights-rights' => 'Izerfan',
+'listgrouprights-helppage' => 'Help:Izerfan n igrawen',
 'listgrouprights-members' => '(umuɣ n imseqdacen)',
+'listgrouprights-addgroup' => 'Rnu iεeggalen i {{PLURAL:$2|ugraw|igrawen}} : $1',
+'listgrouprights-removegroup' => 'Ekkes iεeggalen i {{PLURAL:$2|ugraw|igrawen}} : $1',
+'listgrouprights-addgroup-all' => 'Rnu iεeggalen i akkw igrawen',
+'listgrouprights-removegroup-all' => 'Ekkes iεeggalen i akkw igrawen',
+'listgrouprights-addgroup-self' => 'Yezmer ad yernu {{PLURAL:$2|agraw|igrawen}} ar umiḍan-is : $1',
+'listgrouprights-removegroup-self' => 'Yezmer ad yekkes {{PLURAL:$2|agraw|igrawen}} ar umiḍan-is : $1',
+'listgrouprights-addgroup-self-all' => 'Yezmer ad yernu akkw igrawen ar umiḍan-is',
+'listgrouprights-removegroup-self-all' => 'Yezmer ad yekkes akkw igrawen ar umiḍan-is',
 
 # E-mail user
 'mailnologin' => 'Ur yufi ḥedd (tansa)',
 'mailnologintext' => 'Yessefk ad [[Special:UserLogin|tkecmeḍ]] u tesɛiḍ tansa e-mail ṭaṣhiḥt deg [[Special:Preferences|isemyifiyen]] inek
 iwakken ad tazneḍ email i imseqdacen wiyaḍ.',
 'emailuser' => 'Azen e-mail i wemseqdac-agi',
-'emailpage' => 'Azen e-mail i wemseqdac',
-'emailpagetext' => 'Lukan amseqdac-agi yefka-d tansa n email ṣaḥiḥ
-deg imsifiyen ines, talɣa deg ukessar a t-tazen izen.
-Tansa n email i tefkiḍ deg imisifyen inek ad tban-d
-deg « Expéditeur» n izen inek iwakken amseqdac-nni yezmer a k-yerr.',
+'emailuser-title-target' => 'Ceggaɛ tirawt i {{GENDER:$1|aseqdac agi|taseqdact agi}}',
+'emailuser-title-notarget' => 'Ceggaɛ tirawt i useqdac',
+'emailpage' => 'Ceggaɛ tirawt i useqdac',
+'emailpagetext' => 'Tzemreḍ ad seqdeceḍ tiferkit ddaw agi iwakken ad ceggɛeḍ tirawt i useqdac agi.
+Tansa e-mail id ekfeḍ deg [[Special:Preferences|iɣewwaren inek/inem]] ad tban deg urti "Amceggaɛ" n izen ; akka, anermas ad yezmer ak/akem yefk tiririt.',
 'usermailererror' => 'Yella ugul deg uzwel n email:',
 'defemailsubject' => '{{SITENAME}} tirawt n useqdac « $1 »',
+'usermaildisabled' => 'Aceggaɛ n tira gar iseqdacen yensa',
+'usermaildisabledtext' => 'Ur tzermeḍ ara ad ceggeɛeḍ tira i iseqdacen nniḍen ɣef wiki agi',
 'noemailtitle' => 'E-mail ulac-it',
 'noemailtext' => 'Aseqdac-agi ur d-yefka ara tansa e-mail iɣbelen.',
+'nowikiemailtitle' => 'Ulac turagt i e-mail',
+'nowikiemailtext' => 'Aseqdac agi ur yebɣa ara ad yeṭṭef tirawt sɣur iseqdacen nniḍen.',
+'emailnotarget' => 'Isem useqdac n unermas ur yella ara naɣ ur yeɣbel ara.',
+'emailtarget' => 'Sekcem isem useqdac n unermas',
+'emailusername' => 'Isem n useqdac',
+'emailusernamesubmit' => 'Sumer',
+'email-legend' => 'Ceggaɛ tirawt i yiwen useqdac nniḍen n {{SITENAME}}',
 'emailfrom' => 'Seg :',
 'emailto' => 'I :',
 'emailsubject' => 'Asentel :',
@@ -1556,6 +1609,11 @@ deg « Expéditeur» n izen inek iwakken amseqdac-nni yezmer a k-yerr.',
 'emailccsubject' => 'Alsaru n izen inek i $1: $2',
 'emailsent' => 'E-mail yettwazen',
 'emailsenttext' => 'Izen n e-mail inek yettwazen.',
+'emailuserfooter' => 'Tirawt agi tetweceggaɛ sɣur « $1 » i « $2 » s tasɣent "Ceggaɛ tirawt i useqdac" n {{SITENAME}}.',
+
+# User Messenger
+'usermessage-summary' => 'Yeǧǧa-d izen anagraw',
+'usermessage-editor' => 'Ameskar n unagraw',
 
 # Watchlist
 'watchlist' => 'Umuɣ n uɛessi inu',
@@ -1565,11 +1623,13 @@ deg « Expéditeur» n izen inek iwakken amseqdac-nni yezmer a k-yerr.',
 'watchlistanontext' => 'G leɛnaya-k $1 iwakken ad twalaḍ neɣ tbeddleḍ iferdas deg wumuɣ n uɛessi inek.',
 'watchnologin' => 'Ur tekcimeḍ ara',
 'watchnologintext' => 'Yessefk ad [[Special:UserLogin|tkecmeḍ]] iwakken ad tbeddleḍ umuɣ n uɛessi inek.',
+'addwatch' => 'Rnu i umuɣ n uɛassi',
 'addedwatchtext' => "Asebter \"[[:\$1]]\" yettwarnu deg [[Special:Watchlist|wumuɣ n uɛessi]] inek.
 Ma llan ibeddlen deg usebter-nni neɣ deg usbtar umyennan ines, ad banen dagi,
 Deg [[Special:RecentChanges|wumuɣ n yibeddlen imaynuten]] ad banen s '''yisekkilen ibberbuzen''' (akken ad teẓriḍ).
 
 Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk aɛessi\".",
+'removewatch' => 'Ekkes seg umuɣ n uɛassi',
 'removedwatchtext' => '!!Asebter "[[:$1]]" yettwakkes seg [[Special:Watchlist|umuɣ n uɛessi]] inek.',
 'watch' => 'Ɛass',
 'watchthispage' => 'Ɛass asebter-agi',
@@ -1689,7 +1749,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 'undelete-no-results' => 'Ur yufi ara ulaḥedd n wawalen i tnadiḍ ɣef isebtar deg iɣbaren.',
 
 # Namespace form on various pages
-'namespace' => 'Isem n taɣult:',
+'namespace' => 'Talluntin n isemawen :',
 'invert' => 'Snegdam ayen textareḍ',
 'blanknamespace' => '(Amenzawi)',
 

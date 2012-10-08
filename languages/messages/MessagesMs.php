@@ -2979,6 +2979,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-magic-words' => 'Kata sakti ($1)',
 'pageinfo-hidden-categories' => 'Kategori tersembunyi ($1)',
 'pageinfo-templates' => 'Templat tertransklusi ($1)',
+'pageinfo-toolboxlink' => 'Maklumat halaman',
 
 # Skin names
 'skinname-standard' => 'Klasik',
@@ -3558,6 +3559,7 @@ Kod pengesahan ini akan luput pada $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Penyertaan pautan interwiki dilumpuhkan]',
 'scarytranscludefailed' => '[Gagal mendapatkan templat $1]',
+'scarytranscludefailed-httpstatus' => '[Ambilan templat gagal untuk $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL terlalu panjang]',
 
 # Delete conflict

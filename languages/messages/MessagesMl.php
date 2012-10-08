@@ -3104,6 +3104,7 @@ $1',
 'pageinfo-magic-words' => 'മാന്ത്രിക{{PLURAL:$1|വാക്ക്|വാക്കുകൾ}} ($1)',
 'pageinfo-hidden-categories' => 'മറഞ്ഞിരിക്കുന്ന {{PLURAL:$1|വർഗ്ഗം|വർഗ്ഗങ്ങൾ}} ($1)',
 'pageinfo-templates' => 'ഉൾപ്പെടുത്തിയിട്ടുള്ള {{PLURAL:$1|ഫലകം|ഫലകങ്ങൾ}} ($1)',
+'pageinfo-toolboxlink' => 'താളിന്റെ വിവരങ്ങൾ',
 
 # Skin names
 'skinname-standard' => 'സാർവത്രികം',
@@ -3672,6 +3673,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[അന്തർവിക്കി ഉൾപ്പെടുത്തൽ സജ്ജമല്ല]',
 'scarytranscludefailed' => '[$1-നു ഫലകം കണ്ടുപിടിക്കാൻ പറ്റിയില്ല]',
+'scarytranscludefailed-httpstatus' => '[$1-നു ഫലകം എടുക്കാൻ കഴിഞ്ഞില്ല: എച്ച്.റ്റി.റ്റി.പി. $2]',
 'scarytranscludetoolong' => '[വളരെ നീളക്കൂടുതലുള്ള യൂ.ആർ.എൽ.]',
 
 # Delete conflict

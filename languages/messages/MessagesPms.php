@@ -445,10 +445,10 @@ L'aministrator ch'a l'ha blocalo a l'ha lassà sta spiegassion: «$3».",
 'virus-unknownscanner' => 'antivìrus nen conossù:',
 
 # Login and logout pages
-'logouttext' => "'''A l'é sortù da 'nt ël sistema.'''
+'logouttext' => "'''A l'é surtì da 'nt ël sistema.'''
 
-A peul tiré anans a dovré {{SITENAME}} coma Utent anonim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
-Ch'a nòta che chèich pàgine a peulo continué a esse visualisà com s'a fussa ancó ant ël sistema, fin ch'a scancela pa la cache ëd sò navigador.",
+A peul tiré anans a dovré {{SITENAME}} coma Utent anònim, ò pura a peul <span class='plainlinks'>[$1 rintré torna ant ël sistema]</span> con l'istess stranòm che a dovrava prima, ò con un diferent.
+Ch'a nòta che chèiche pàgine a peulo continué a esse visualisà com s'a fussa ancor ant ël sistema, fin ch'a scancela nen la memòria local ëd sò navigador.",
 'welcomecreation' => '==Bin ëvnù, $1!==
 Sò cont a l\'é stàit creà.
 Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENAME}}]].',
@@ -2841,6 +2841,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgica|Paròle màgiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
+'pageinfo-toolboxlink' => 'Anformassion an sla pagina',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marché coma verificà',
@@ -3102,8 +3103,8 @@ J'àutri a saran stërmà coma stàndard.
 'exif-copyrighted' => "Stat dël drit d'autor",
 'exif-copyrightowner' => "Titolar dël drit d'autor",
 'exif-usageterms' => "Condission d'utilisassion",
-'exif-webstatement' => "Diciarassion an linia dël drit d'autor",
-'exif-originaldocumentid' => 'ID unìvoch dël document original',
+'exif-webstatement' => "Diciarassion ëd drit d'autor an linia",
+'exif-originaldocumentid' => 'Identificativ ùnich dël papé original',
 'exif-licenseurl' => "Anliura ëd la licensa dij drit d'autor",
 'exif-morepermissionsurl' => 'Anformassion an sle license alternativa',
 'exif-attributionurl' => "Quand as deuvra torna cost travaj, për piasì ch'a-j buta l'anliura a",
@@ -3422,6 +3423,7 @@ Cost còdes ëd conferma a scad ai \$4.",
 # Scary transclusion
 'scarytranscludedisabled' => "[L'inclusion ëd pàgine antra wiki diferente a l'é nen abilità]",
 'scarytranscludefailed' => "[Darmagi, ma lë stamp $1 a l'é pa podusse carié]",
+'scarytranscludefailed-httpstatus' => '[Letura dlë stamp falìa për $1: HTTP $2]',
 'scarytranscludetoolong' => "[L'URL a l'é tròp longa]",
 
 # Delete conflict
@@ -3714,6 +3716,7 @@ Dësnò, a peule dovré ël formlari semplificà sì-sota. Sò coment a sarà gi
 
 # Search suggestions
 'searchsuggest-search' => 'Arserca',
+'searchsuggest-containing' => 'contenent ...',
 
 # API errors
 'api-error-badaccess-groups' => "Chiel a peul pa carié d'archivi su sta wiki.",

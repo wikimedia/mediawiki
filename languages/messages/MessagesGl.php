@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alma
+ * @author Dferg
  * @author Elisardojm
  * @author Gallaecio
  * @author Gustronico
@@ -2645,7 +2646,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage' => 'Rexistro de bloqueos',
 'blocklog-showlog' => 'Este usuario xa foi bloqueado con anterioridade. Velaquí está o rexistro de bloqueos por se quere consultalo:',
 'blocklog-showsuppresslog' => 'Este usuario xa foi bloqueado e agochado con anterioridade. Velaquí está o rexistro de supresións por se quere consultalo:',
-'blocklogentry' => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
+'blocklogentry' => 'bloqueou a [[$1]] $3 cun tempo de duración de $2',
 'reblock-logentry' => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext' => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
@@ -3075,6 +3076,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra máxica|Palabras máxicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',
+'pageinfo-toolboxlink' => 'Información da páxina',
 
 # Skin names
 'skinname-standard' => 'Clásica',
@@ -3660,6 +3662,7 @@ O código de confirmación caduca o $6 ás $7.',
 # Scary transclusion
 'scarytranscludedisabled' => '[A transclusión interwiki está desactivada]',
 'scarytranscludefailed' => '[Fallou a busca do modelo "$1"]',
+'scarytranscludefailed-httpstatus' => '[Fallou a busca do modelo "$1": HTTP $2]',
 'scarytranscludetoolong' => '[O enderezo URL é demasiado longo]',
 
 # Delete conflict

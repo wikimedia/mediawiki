@@ -902,15 +902,15 @@ Parola vêrdiye: $2',
 'hr_tip' => 'Çıxiza dimdayi (hend akar mefiye)',
 
 # Edit pages
-'summary' => 'Xulasa:',
+'summary' => 'Xelese:',
 'subject' => 'Mewzu/serrêze:',
-'minoredit' => 'Eno yew vurnayışo qıckeko',
-'watchthis' => 'Ena perer temase ke',
+'minoredit' => 'Vurnayışo qıcek',
+'watchthis' => 'Ena perer teqib ke',
 'savearticle' => 'Pele qeyd ke',
 'preview' => 'Verqayt',
 'showpreview' => 'Verqayti bımocne',
 'showlivepreview' => 'Verqayto cıwın',
-'showdiff' => 'Vurnayışan bımocne',
+'showdiff' => 'Vurnayışa bıvin',
 'anoneditwarning' => 'Teme!: Şıma bı hesabê xo nıkewtê cı. Hurêndiya namey şıma dı IP-adresa şıma qeyd bena u asena.',
 'anonpreviewwarning' => "''Ti hama nicikewte. Qeyd kerdiş zerre tarixê pele de adresê IP yê tu keyd keno.''",
 'missingsummary' => "'''DİQET:''' Şıma kılmnuşte nıkerd.
@@ -2873,7 +2873,7 @@ ma vaci: qey pelê "[[{{MediaWiki:Mainpage}}]]i " [[{{#Special:Export}}/{{MediaW
 'allmessages' => 'Mesacê sistemi',
 'allmessagesname' => 'Name',
 'allmessagesdefault' => 'Hesıbyaye metnê mesaci',
-'allmessagescurrent' => 'nuşte yo ke Karyayo',
+'allmessagescurrent' => 'Metno ke karyayo',
 'allmessagestext' => 'na liste, listeya mesajê cayê nameyê wikimedya yo.
 eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê [//www.mediawiki.org/wiki/Localisation mahalli kerdışê wikimedyayi] u [//translatewiki.net translatewiki.net] ziyaret bıkerê.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' qefelnaye yo u ey ra '''{{ns:special}}:Allmessages''' karkerdışi re akerde niyo.",
