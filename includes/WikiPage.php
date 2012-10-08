@@ -1067,7 +1067,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @return bool
 	 */
 	public function doPurge() {
-		global $wgUseSquid;
+		global $wgUseSquid, $wgMemc;
 
 		if( !wfRunHooks( 'ArticlePurge', array( &$this ) ) ){
 			return false;
@@ -1076,6 +1076,10 @@ class WikiPage extends Page implements IDBAccessObject {
 		// Invalidate the cache
 		$this->mTitle->invalidateCache();
 		$this->clear();
+
+		// Clear page info.
+		$memcKey = wfMemcKey( 'infoaction', $this->mTitle->getPrefixedText(), $this->getRevision()->getId() );
+		$wgMemc->delete( $memcKey );
 
 		if ( $wgUseSquid ) {
 			// Commit the transaction before the purge is sent

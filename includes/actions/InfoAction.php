@@ -56,6 +56,7 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
+		global $wgMemc;
 		$content = '';
 
 		// Page header
@@ -71,12 +72,21 @@ class InfoAction extends FormlessAction {
 		$content .= Html::element( 'style', array(),
 			'.mw-templatesUsedExplanation { display: none; }' );
 
-		// Get page information
+		// Try to get information from cache. If not, do the queries.
+		// Use revision ID as cache key so cache is invalidated when
+		// page is changed.
 		$title = $this->getTitle();
-		$pageInfo = $this->pageInfo( $title );
+		$memcKey = wfMemcKey( 'infoaction', $title->getPrefixedText(), $this->page->getRevision()->getId() );
+		$pageInfo = $wgMemc->get( $memcKey );
 
-		// Allow extensions to add additional information
-		wfRunHooks( 'InfoAction', array( &$pageInfo ) );
+		if ( $pageInfo === false ) {
+			// Get page information
+			$pageInfo = $this->pageInfo( $title );
+			wfRunHooks( 'InfoAction', array( &$pageInfo ) );
+
+			// Cache the results.
+			$wgMemc->set( $memcKey, $pageInfo );
+		}
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
