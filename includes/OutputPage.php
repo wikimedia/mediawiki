@@ -2491,15 +2491,6 @@ $templates
 				$this->addModules( 'mediawiki.searchSuggest' );
 			}
 		}
-
-		if ( $this->getUser()->getBoolOption( 'editsectiononrightclick' ) ) {
-			$this->addModules( 'mediawiki.action.view.rightClickEdit' );
-		}
-
-		# Crazy edit-on-double-click stuff
-		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
-			$this->addModules( 'mediawiki.action.view.dblClickEdit' );
-		}
 	}
 
 	/**
