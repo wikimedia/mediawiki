@@ -390,6 +390,11 @@ if ( !defined( 'MW_COMPILED' ) ) {
 	wfProfileOut( $fname . '-includes' );
 }
 
+if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
+	$wgSecureLogin = false;
+	wfWarn( 'Secure login was enabled on a server that only supports HTTP or HTTPS. Disabling secure login.' );
+}
+
 # Now that GlobalFunctions is loaded, set defaults that depend
 # on it.
 if ( $wgTmpDirectory === false ) {
