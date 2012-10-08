@@ -472,7 +472,7 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected static function pageCounts( $title, $user ) {
-		global $wgRCMaxAge, $wgDisableCounters;
+		global $wgRCMaxAge, $wgDisableCounters, $wgUnwatchedPageThreshold;
 
 		wfProfileIn( __METHOD__ );
 		$id = $title->getArticleID();
@@ -491,7 +491,8 @@ class InfoAction extends FormlessAction {
 			$result['views'] = $views;
 		}
 
-		if ( $user->isAllowed( 'unwatchedpages' ) ) {
+		$unwatchedAllowed = $user->isAllowed( 'unwatchedpages' );
+		if ( $unwatchedAllowed || $wgUnwatchedPageThreshold !== false ) {
 			// Number of page watchers
 			$watchers = (int) $dbr->selectField(
 				'watchlist',
@@ -502,7 +503,17 @@ class InfoAction extends FormlessAction {
 				),
 				__METHOD__
 			);
-			$result['watchers'] = $watchers;
+
+			// If the number of watches exceeds the threshold, do not
+			// require a permission.
+			if ( $watchers >= $wgUnwatchedPageThreshold ) {
+				$unwatchedAllowed = true;
+			}
+
+			// If allowed, add the statistic.
+			if ( $unwatchedAllowed ) {
+				$result['watchers'] = $watchers;
+			}
 		}
 
 		// Total number of edits
