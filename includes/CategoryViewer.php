@@ -173,7 +173,7 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a subcategory to the internal lists, using a title object
-	 * @deprecated since 1.17 kept for compatibility, please use addSubcategoryObject instead
+	 * @deprecated since 1.17 kept for compatibility, use addSubcategoryObject instead
 	 */
 	function addSubcategory( Title $title, $sortkey, $pageLength ) {
 		wfDeprecated( __METHOD__, '1.17' );
@@ -181,14 +181,14 @@ class CategoryViewer extends ContextSource {
 	}
 
 	/**
-	* Get the character to be used for sorting subcategories.
-	* If there's a link from Category:A to Category:B, the sortkey of the resulting
-	* entry in the categorylinks table is Category:A, not A, which it SHOULD be.
-	* Workaround: If sortkey == "Category:".$title, than use $title for sorting,
-	* else use sortkey...
-	*
-	* @param Title $title
-	* @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
+	 * Get the character to be used for sorting subcategories.
+	 * If there's a link from Category:A to Category:B, the sortkey of the resulting
+	 * entry in the categorylinks table is Category:A, not A, which it SHOULD be.
+	 * Workaround: If sortkey == "Category:".$title, than use $title for sorting,
+	 * else use sortkey...
+	 *
+	 * @param Title $title
+	 * @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
 	 * @return string
 	 */
 	function getSubcategorySortChar( $title, $sortkey ) {
@@ -259,15 +259,15 @@ class CategoryViewer extends ContextSource {
 
 	function finaliseCategoryState() {
 		if ( $this->flip['subcat'] ) {
-			$this->children            = array_reverse( $this->children );
+			$this->children = array_reverse( $this->children );
 			$this->children_start_char = array_reverse( $this->children_start_char );
 		}
 		if ( $this->flip['page'] ) {
-			$this->articles            = array_reverse( $this->articles );
+			$this->articles = array_reverse( $this->articles );
 			$this->articles_start_char = array_reverse( $this->articles_start_char );
 		}
 		if ( !$this->showGallery && $this->flip['file'] ) {
-			$this->imgsNoGallery            = array_reverse( $this->imgsNoGallery );
+			$this->imgsNoGallery = array_reverse( $this->imgsNoGallery );
 			$this->imgsNoGallery_start_char = array_reverse( $this->imgsNoGallery_start_char );
 		}
 	}
@@ -302,7 +302,7 @@ class CategoryViewer extends ContextSource {
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files',
 					'cl_sortkey_prefix', 'cl_collation' ),
-				array_merge( array( 'cl_to' => $this->title->getDBkey() ),  $extraConds ),
+				array_merge( array( 'cl_to' => $this->title->getDBkey() ), $extraConds ),
 				__METHOD__,
 				array(
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
@@ -310,7 +310,7 @@ class CategoryViewer extends ContextSource {
 					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',
 				),
 				array(
-					'categorylinks'  => array( 'INNER JOIN', 'cl_from = page_id' ),
+					'categorylinks' => array( 'INNER JOIN', 'cl_from = page_id' ),
 					'category' => array( 'LEFT JOIN', 'cat_title = page_title AND page_namespace = ' . NS_CATEGORY )
 				)
 			);
@@ -465,20 +465,19 @@ class CategoryViewer extends ContextSource {
 	 * @param $articles_start_char Array
 	 * @param $cutoff Int
 	 * @return String
-	 * @private
 	 */
-	function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
+	private function formatList( $articles, $articles_start_char, $cutoff = 6 ) {
 		$list = '';
-		if ( count ( $articles ) > $cutoff ) {
-			$list = self::columnList( $articles, $articles_start_char );
+		if ( count( $articles ) > $cutoff ) {
+			$list = $this->columnList( $articles, $articles_start_char );
 		} elseif ( count( $articles ) > 0 ) {
 			// for short lists of articles in categories.
-			$list = self::shortList( $articles, $articles_start_char );
+			$list = $this->shortList( $articles, $articles_start_char );
 		}
 
 		$pageLang = $this->title->getPageLanguage();
 		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
-			'class' => 'mw-content-'.$pageLang->getDir() );
+			'class' => 'mw-content-' . $pageLang->getDir() );
 		$list = Html::rawElement( 'div', $attribs, $list );
 
 		return $list;
@@ -497,9 +496,8 @@ class CategoryViewer extends ContextSource {
 	 * @param $articles Array
 	 * @param $articles_start_char Array
 	 * @return String
-	 * @private
 	 */
-	static function columnList( $articles, $articles_start_char ) {
+	private function columnList( $articles, $articles_start_char ) {
 		$columns = array_combine( $articles, $articles_start_char );
 		# Split into three columns
 		$columns = array_chunk( $columns, ceil( count( $columns ) / 3 ), true /* preserve keys */ );
@@ -550,9 +548,8 @@ class CategoryViewer extends ContextSource {
 	 * @param $articles Array
 	 * @param $articles_start_char Array
 	 * @return String
-	 * @private
 	 */
-	static function shortList( $articles, $articles_start_char ) {
+	private function shortList( $articles, $articles_start_char ) {
 		$r = '<h3>' . htmlspecialchars( $articles_start_char[0] ) . "</h3>\n";
 		$r .= '<ul><li>' . $articles[0] . '</li>';
 		for ( $index = 1; $index < count( $articles ); $index++ ) {
@@ -604,7 +601,7 @@ class CategoryViewer extends ContextSource {
 			);
 		}
 
-		return $this->msg('categoryviewer-pagedlinks')->rawParams($prevLink, $nextLink)->escaped();
+		return $this->msg( 'categoryviewer-pagedlinks' )->rawParams( $prevLink, $nextLink )->escaped();
 	}
 
 	/**
@@ -635,6 +632,7 @@ class CategoryViewer extends ContextSource {
 		return Title::makeTitle( $title->getNamespace(),
 			$title->getDBkey(), $fragment );
 	}
+
 	/**
 	 * What to do if the category table conflicts with the number of results
 	 * returned?  This function says what. Each type is considered independently
@@ -676,8 +674,9 @@ class CategoryViewer extends ContextSource {
 			$fromOrUntil = true;
 		}
 
-		if ( $dbcnt == $rescnt || ( ( $rescnt == $this->limit || $fromOrUntil )
-			&& $dbcnt > $rescnt ) ) {
+		if ( $dbcnt == $rescnt ||
+			( ( $rescnt == $this->limit || $fromOrUntil ) && $dbcnt > $rescnt )
+		) {
 			# Case 1: seems sane.
 			$totalcnt = $dbcnt;
 		} elseif ( $rescnt < $this->limit && !$fromOrUntil ) {
