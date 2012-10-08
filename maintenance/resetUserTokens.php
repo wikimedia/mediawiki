@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Reset the user_token for all users on the wiki. Useful if you believe
  * that your user table was acidentally leaked to an external source.
@@ -35,10 +36,10 @@ class ResetUserTokens extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Reset the user_token of all users on the wiki. Note that this may log some of them out.";
 		$this->addOption( 'nowarn', "Hides the 5 seconds warning", false, false );
+		$this->addOption( 'batchsize', "Number of rows to reset at once", false );
 	}
 
 	public function execute() {
-
 		if ( !$this->getOption( 'nowarn' ) ) {
 			$this->output( "The script is about to reset the user_token for ALL USERS in the database.\n" );
 			$this->output( "This may log some of them out and is not necessary unless you believe your\n" );
@@ -48,29 +49,40 @@ class ResetUserTokens extends Maintenance {
 			wfCountDown( 5 );
 		}
 
-		// We list user by user_id from one of the slave database
-		$dbr = wfGetDB( DB_SLAVE );
-		$result = $dbr->select( 'user',
-			array( 'user_id' ),
-			array(),
-			__METHOD__
+		$batchSize = $this->getOption( 'batchsize' );
+		$dbw = wfGetDB( DB_MASTER );
+		if ( $batchSize === null ) {
+			// Not in batch mode. Reset all at once.
+			$this->output( "Resetting all user tokens ... " );
+			$dbw->update(
+				'user',
+				array( 'user_token' => '' ),
+				'*',
+				__METHOD__
 			);
+			$this->output( "done.\n" );
+		} else {
+			// Batch mode. Get the max ID and then loop.
+			$dbr = wfGetDB( DB_SLAVE );
+			$maxid = $dbr->selectField( 'user', 'MAX(user_id)', '*', __METHOD__ );
+			if ( !$maxid ) {
+				$this->error( "Database error. Could not find any users.", true );
+			}
 
-		foreach ( $result as $id ) {
-			$user = User::newFromId( $id->user_id );
-
-			$username = $user->getName();
-
-			$this->output( "Resetting user_token for $username: " );
-
-			// Change value
-			$user->setToken();
-			$user->saveSettings();
-
-			$this->output( " OK\n" );
-
+			$max = $min = 0;
+			do {
+				$max += $batchSize;
+				$this->output( "Reseting tokens for user IDs $min through $max ... " );
+				$dbw->update(
+					'user',
+					array( 'user_token' => '' ),
+					array( "user_id >= $min", "user_id < $max" ),
+					__METHOD__
+				);
+				$this->output( "done.\n" );
+				$min = $max;
+			} while( $min <= $maxid );
 		}
-
 	}
 }
 
