@@ -4389,6 +4389,7 @@ class Title {
 	 * @return Bool true if the update succeded
 	 */
 	public function invalidateCache() {
+		global $wgMemc;
 		if ( wfReadOnly() ) {
 			return false;
 		}
@@ -4400,6 +4401,14 @@ class Title {
 			__METHOD__
 		);
 		HTMLFileCache::clearFileCache( $this );
+
+		// Clear page info.
+		$revision = WikiPage::factory( $this )->getRevision();
+		if( $revision !== null ) {
+			$memcKey = wfMemcKey( 'infoaction', $this->getPrefixedText(), $revision->getId() );
+			$success = $success && $wgMemc->delete( $memcKey );
+		}
+
 		return $success;
 	}
 
