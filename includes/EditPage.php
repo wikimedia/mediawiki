@@ -267,7 +267,7 @@ class EditPage {
 
 	/**
 	 * Get the context title object.
-	 * If not set, $wgTitle will be returned. This behavior might changed in
+	 * If not set, $wgTitle will be returned. This behavior might change in
 	 * the future to return $this->mTitle instead.
 	 *
 	 * @return Title object
