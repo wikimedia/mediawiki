@@ -467,7 +467,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		
 		// Standard footer info
 		$footlinks = $this->getFooterLinks();
-		if ( $footlinks['info'] ) {
+		if ( isset( $footlinks['info'] ) ) {
 			foreach ( $footlinks['info'] as $item ) {
 				echo $this->data[$item] . ' ';
 			}
@@ -507,7 +507,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		$personalUrls = $this->getPersonalTools();
 		foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
-			if ( $personalUrls[$key] ) {
+			if ( isset( $personalUrls[$key] ) && $personalUrls[$key] ) {
 				$s[] = $this->makeListItem( $key, $personalUrls[$key], array( 'tag' => 'span' ) );
 			}
 		}
@@ -570,17 +570,17 @@ class CologneBlueTemplate extends BaseTemplate {
 					$qbpageoptions = array_merge(
 						$content_navigation['namespaces'],
 						array(
-							'history' => $content_navigation['views']['history'],
-							'watch' => $content_navigation['actions']['watch'],
-							'unwatch' => $content_navigation['actions']['unwatch'],
+							'history' => isset( $content_navigation['views']['history'] ) ? $content_navigation['views']['history'] : null,
+							'watch' => isset( $content_navigation['actions']['watch'] ) ? $content_navigation['actions']['watch'] : null,
+							'unwatch' => isset( $content_navigation['actions']['unwatch'] ) ? $content_navigation['actions']['unwatch'] : null,
 						)
 					);
 					$content_navigation['actions']['watch'] = null;
 					$content_navigation['actions']['unwatch'] = null;
 					$qbedit = array_merge(
 						array(
-							'edit' => $content_navigation['views']['edit'],
-							'addsection' => $content_navigation['views']['addsection'],
+							'edit' => isset( $content_navigation['views']['edit'] ) ? $content_navigation['views']['edit'] : null,
+							'addsection' => isset( $content_navigation['views']['addsection'] ) ? $content_navigation['views']['addsection'] : null,
 						),
 						$content_navigation['actions']
 					);
@@ -590,7 +590,7 @@ class CologneBlueTemplate extends BaseTemplate {
 					// Personal tools ("My pages")
 					$bar['qbmyoptions'] = $this->getPersonalTools();
 					foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
-						$bar['qbmyoptions'][$key] = false;
+						$bar['qbmyoptions'][$key] = null;
 					}
 					
 					$additions_done = true;
@@ -615,7 +615,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			} elseif ( $heading == 'LANGUAGES' ) {
 				// discard these; we display languages below page content
 			} else {
-				if ( $links ) {
+				if ( $links && is_array( $links ) ) {
 					// Use the navigation heading from standard sidebar as the "browse" section
 					if ( $heading == 'navigation' ) {
 						$heading = 'qbbrowse';
