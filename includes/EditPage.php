@@ -2503,8 +2503,8 @@ HTML
 		$attribs = $customAttribs + array(
 			'accesskey' => ',',
 			'id'   => $name,
-			'cols' => $wgUser->getIntOption( 'cols' ),
-			'rows' => $wgUser->getIntOption( 'rows' ),
+			'cols' => 80,
+			'rows' => 25,
 			'style' => '' // avoid php notices when appending preferences (appending allows customAttribs['style'] to still work
 		);
 
