@@ -635,7 +635,6 @@ XHTML id names.
 * LANGUAGES', # do not translate or duplicate this message to other languages
 
 # User preference toggles
-'tog-underline'               => 'Link underlining:',
 'tog-justify'                 => 'Justify paragraphs',
 'tog-hideminor'               => 'Hide minor edits in recent changes',
 'tog-hidepatrolled'           => 'Hide patrolled edits in recent changes',
@@ -680,10 +679,6 @@ XHTML id names.
 'tog-showhiddencats'          => 'Show hidden categories',
 'tog-noconvertlink'           => 'Disable link title conversion', # only translate this message to other languages if you have to change it
 'tog-norollbackdiff'          => 'Omit diff after performing a rollback',
-
-'underline-always'  => 'Always',
-'underline-never'   => 'Never',
-'underline-default' => 'Browser default',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Edit area font style:',
