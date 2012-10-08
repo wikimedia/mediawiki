@@ -4400,6 +4400,11 @@ class Title {
 			__METHOD__
 		);
 		HTMLFileCache::clearFileCache( $this );
+
+		// Clear page info.
+		$memcKey = wfMemcKey( 'infoaction', $this->mTitle->getPrefixedText(), $this->getRevision()->getId() );
+		$success = $success && $wgMemc->delete( $memcKey );
+
 		return $success;
 	}
 
