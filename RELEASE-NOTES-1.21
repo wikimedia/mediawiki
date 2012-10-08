@@ -57,7 +57,9 @@ The supported versions are:
 == Upgrading ==
 
 1.21 has several database changes since 1.20, and will not work without schema
-updates.
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
 
 If upgrading from before 1.11, and you are using a wiki as a commons
 repository, make sure that it is updated as well. Otherwise, errors may arise

@@ -830,7 +830,7 @@ class LinksDeletionUpdate extends SqlDataUpdate {
 
 		$this->mPage = $page;
 
-		if ( !$page->getId() ) {
+		if ( !$page->exists() ) {
 			throw new MWException( "Page ID not known, perhaps the page doesn't exist?" );
 		}
 	}

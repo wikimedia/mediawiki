@@ -238,7 +238,7 @@ class Article extends Page {
 	 * This function has side effects! Do not use this function if you
 	 * only want the real revision text if any.
 	 *
-	 * @deprecated in 1.21; use getContentObject() instead
+	 * @deprecated in 1.21; use WikiPage::getContent() instead
 	 *
 	 * @return string Return the text of this revision
 	 */
@@ -262,11 +262,8 @@ class Article extends Page {
 	 * @return Content Return the content of this revision
 	 *
 	 * @since 1.21
-	 *
-	 * @todo: FIXME: this should really be protected, all callers should be changed to use WikiPage::getContent() instead.
 	 */
-	public function getContentObject() {
-		global $wgUser;
+	protected function getContentObject() {
 		wfProfileIn( __METHOD__ );
 
 		if ( $this->mPage->getID() === 0 ) {
@@ -680,14 +677,12 @@ class Article extends Page {
 						$this->showCssOrJsPage();
 						$outputDone = true;
 					} elseif( !wfRunHooks( 'ArticleContentViewCustom',
-											array( $this->fetchContentObject(), $this->getTitle(),
-													$outputPage ) ) ) {
+							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom',
-																array( $this->fetchContentObject(), $this->getTitle(),
-																		$outputPage ) ) ) {
+							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
@@ -699,8 +694,7 @@ class Article extends Page {
 							# Viewing a redirect page (e.g. with parameter redirect=no)
 							$outputPage->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
-							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid,
-																				$parserOptions, false );
+							$this->mParserOutput = $content->getParserOutput( $this->getTitle(), $oldid, $parserOptions, false );
 							$outputPage->addParserOutputNoText( $this->mParserOutput );
 							$outputDone = true;
 						}
@@ -810,7 +804,7 @@ class Article extends Page {
 		$rev = $this->getRevisionFetched();
 
 		if ( !$rev ) {
-			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' )->text() );
+			$this->getContext()->getOutput()->setPageTitle( wfMessage( 'errorpagetitle' ) );
 			$this->getContext()->getOutput()->addWikiMsg( 'difference-missing-revision', $oldid, 1 );
 			return;
 		}
@@ -834,15 +828,16 @@ class Article extends Page {
 	 *
 	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
 	 * page views.
+	 *
+	 * @param bool $showCacheHint whether to show a message telling the user to clear the browser cache (default: true).
 	 */
 	protected function showCssOrJsPage( $showCacheHint = true ) {
-		global $wgOut;
-
 		if ( $showCacheHint ) {
 			$dir = $this->getContext()->getLanguage()->getDir();
 			$lang = $this->getContext()->getLanguage()->getCode();
 
-			$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
+			$outputPage = $this->getContext()->getOutput();
+			$outputPage->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 				'clearyourcache' );
 		}
 
@@ -1476,7 +1471,7 @@ class Article extends Page {
 		if ( !$reason ) {
 			try {
 				$reason = $this->generateReason( $hasHistory );
-			} catch (MWException $e) {
+			} catch ( MWException $e ) {
 				# if a page is horribly broken, we still want to be able to delete it. so be lenient about errors here.
 				wfDebug("Error while building auto delete summary: $e");
 				$reason = '';

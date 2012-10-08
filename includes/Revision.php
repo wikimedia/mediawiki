@@ -156,7 +156,7 @@ class Revision implements IDBAccessObject {
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
 			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
-			'content_model' => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
+			'content_model'   => isset( $row->ar_content_model ) ? $row->ar_content_model : null,
 			'content_format'  => isset( $row->ar_content_format ) ? $row->ar_content_format : null,
 		);
 
@@ -558,8 +558,8 @@ class Revision implements IDBAccessObject {
 			$this->mParentId  = isset( $row['parent_id']  ) ? intval( $row['parent_id']  ) : null;
 			$this->mSha1      = isset( $row['sha1']  )      ? strval( $row['sha1']  )      : null;
 
-			$this->mContentModel = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
-			$this->mContentFormat    = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
+			$this->mContentModel   = isset( $row['content_model']  )  ? strval( $row['content_model'] )  : null;
+			$this->mContentFormat  = isset( $row['content_format']  ) ? strval( $row['content_format'] ) : null;
 
 			// Enforce spacing trimming on supplied text
 			$this->mComment   = isset( $row['comment']    ) ?  trim( strval( $row['comment'] ) ) : null;
@@ -570,6 +570,10 @@ class Revision implements IDBAccessObject {
 
 			// if we have a Content object, override mText and mContentModel
 			if ( !empty( $row['content'] ) ) {
+				if ( !( $row['content'] instanceof Content ) ) {
+					throw new MWException( '`content` field must contain a Content object.' );
+				}
+
 				$handler = $this->getContentHandler();
 				$this->mContent = $row['content'];
 

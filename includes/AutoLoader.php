@@ -291,18 +291,18 @@ $wgAutoloadLocalClasses = array(
 	'ZipDirectoryReaderError' => 'includes/ZipDirectoryReader.php',
 
 	# content handler
-	'Content' => 'includes/content/Content.php',
 	'AbstractContent' => 'includes/content/AbstractContent.php',
 	'ContentHandler' => 'includes/content/ContentHandler.php',
-	'CssContent' => 'includes/content/CssContent.php',
-	'TextContentHandler' => 'includes/content/ContentHandler.php',
+	'Content' => 'includes/content/Content.php',
 	'CssContentHandler' => 'includes/content/ContentHandler.php',
-	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
+	'CssContent' => 'includes/content/CssContent.php',
 	'JavaScriptContentHandler' => 'includes/content/ContentHandler.php',
+	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
 	'MessageContent' => 'includes/content/MessageContent.php',
+	'TextContentHandler' => 'includes/content/ContentHandler.php',
 	'TextContent' => 'includes/content/TextContent.php',
-	'WikitextContent' => 'includes/content/WikitextContent.php',
 	'WikitextContentHandler' => 'includes/ContentHandler.php',
+	'WikitextContent' => 'includes/content/WikitextContent.php',
 
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
@@ -1079,12 +1079,13 @@ $wgAutoloadLocalClasses = array(
 	'TestRecorder' => 'tests/testHelpers.inc',
 
 	# tests/phpunit
+	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
 	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
 	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
 	'WikitextContentTest' => 'tests/phpunit/includes/WikitextContentTest.php',
-	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
-	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
-	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
 

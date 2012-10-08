@@ -54,7 +54,7 @@ interface Content {
 	 *    string, a nested array structure, an object, a binary blob...
 	 *    anything, really.
 	 *
-	 * @NOTE: review all calls carefully, caller must be aware of content model!
+	 * @NOTE: Caller must be aware of content model!
 	 */
 	public function getNativeData( );
 
@@ -171,7 +171,7 @@ interface Content {
 	 *
 	 * - Will return false if $that is null.
 	 * - Will return true if $that === $this.
-	 * - Will return false if $that->getModelName() != $this->getModel().
+	 * - Will return false if $that->getModel() != $this->getModel().
 	 * - Will return false if $that->getNativeData() is not equal to $this->getNativeData(),
 	 *   where the meaning of "equal" depends on the actual data model.
 	 *
@@ -198,7 +198,7 @@ interface Content {
 	 * - $original->equals( $copy )
 	 *
 	 * If and only if the Content object is immutable, the copy() method can and
-	 * should return $this. That is,  $copy === $original may be true, but only
+	 * should return $this. That is, $copy === $original may be true, but only
 	 * for immutable content objects.
 	 *
 	 * @since 1.21
@@ -219,7 +219,7 @@ interface Content {
 	 *    find out.
 	 * @return boolean
 	 */
-	public function isCountable( $hasLinks = null ) ;
+	public function isCountable( $hasLinks = null );
 
 
 	/**
@@ -312,7 +312,7 @@ interface Content {
 	 *
 	 * There is usually no need to override the default behaviour, subclasses that
 	 * want to implement redirects should override getRedirectTarget().
-	 * 
+	 *
 	 * @since 1.21
 	 *
 	 * @return Title
@@ -459,10 +459,8 @@ interface Content {
 	public function matchMagicWord( MagicWord $word );
 
 	# TODO: ImagePage and CategoryPage interfere with per-content action handlers
-	# TODO: make sure WikiSearch extension still works
-	# TODO: make sure ReplaceTemplates extension still works
 	# TODO: nice&sane integration of GeSHi syntax highlighting
-	#   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a 
+	#   [11:59] <vvv> Hooks are ugly; make CodeHighlighter interface and a
 	#   config to set the class which handles syntax highlighting
 	#   [12:00] <vvv> And default it to a DummyHighlighter
 }

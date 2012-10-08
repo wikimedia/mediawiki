@@ -776,12 +776,14 @@ class MessageCache {
 				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title} ($code)" );
 				$message = null; // no negative caching
 			} else {
-				#XXX: Is this the right way to turn a Content object into a message?
+				// XXX: Is this the right way to turn a Content object into a message?
+				// NOTE: $content is typically either WikitextContent, JavaScriptContent or CssContent.
+				//       MessageContent is *not* used for storing messages, it's only used for wrapping them when needed.
 				$message = $content->getWikitextForTransclusion();
 
 				if ( $message === false || $message === null ) {
 					wfDebugLog( 'MessageCache', __METHOD__ . ": message content doesn't provide wikitext "
-								. "(content model: #" . $content->getContentHandler() . ")" );
+								. "(content model: " . $content->getContentHandler() . ")" );
 
 					$message = false; // negative caching
 				} else {

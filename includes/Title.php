@@ -691,7 +691,7 @@ class Title {
 	/**
 	 * Convenience method for checking a title's content model name
 	 *
-	 * @param int $id
+	 * @param String $id The content model ID (use the CONTENT_MODEL_XXX constants).
 	 * @return Boolean true if $this->getContentModel() == $id
 	 */
 	public function hasContentModel( $id ) {

@@ -57,7 +57,7 @@ abstract class TextContent extends AbstractContent {
 			return false;
 		}
 
-		if (  $wgArticleCountMethod === 'any' ) {
+		if ( $wgArticleCountMethod === 'any' ) {
 			return true;
 		}
 

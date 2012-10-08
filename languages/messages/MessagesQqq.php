@@ -1060,7 +1060,8 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
-'invalid-content-data'             => 'Error message indicating that the page\'s content can not be saved because it is invalid. This may occurr for some non-text content types.',
+'content-failed-to-parse' => "Error message indicating that the page\'s content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.",
+'invalid-content-data'             => 'Error message indicating that the page\'s content can not be saved because it is invalid. This may occurr for content types with internal consistency constraints.',
 'content-not-allowed-here'         => 'Error message indicating that the desired content model is not supported in given localtion.
 * $1 is the human readable name of the content model
 * $1 is the title of the page in question.',

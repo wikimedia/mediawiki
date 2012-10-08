@@ -15,11 +15,11 @@ class ApiEditPageTest extends ApiTestCase {
 
 		parent::setup();
 
-		$wgExtraNamespaces[ 12312 ] = 'Dummy';
-		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
+		$wgExtraNamespaces[12312] = 'Dummy';
+		$wgExtraNamespaces[12313] = 'Dummy_talk';
 
-		$wgNamespaceContentModels[ 12312 ] = "testing";
-		$wgContentHandlers[ "testing" ] = 'DummyContentHandlerForTesting';
+		$wgNamespaceContentModels[12312] = "testing";
+		$wgContentHandlers["testing"] = 'DummyContentHandlerForTesting';
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache
@@ -30,11 +30,11 @@ class ApiEditPageTest extends ApiTestCase {
 	public function teardown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
-		unset( $wgExtraNamespaces[ 12312 ] );
-		unset( $wgExtraNamespaces[ 12313 ] );
+		unset( $wgExtraNamespaces[12312] );
+		unset( $wgExtraNamespaces[12313] );
 
-		unset( $wgNamespaceContentModels[ 12312 ] );
-		unset( $wgContentHandlers[ "testing" ] );
+		unset( $wgNamespaceContentModels[12312] );
+		unset( $wgContentHandlers["testing"] );
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache

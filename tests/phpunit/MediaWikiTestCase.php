@@ -135,11 +135,11 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		foreach ( $this->restoreGlobals as $var ) {
 			$v = $GLOBALS[ $var ];
 
-			if ( is_object( $v ) || is_array( $v ) ) {
+			if ( is_object( $v ) ) {
 				$v = clone $v;
 			}
 
-			$this->savedGlobals[ $var ] = $v;
+			$this->savedGlobals[$var] = $v;
 		}
 	}
 

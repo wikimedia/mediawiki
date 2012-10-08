@@ -108,7 +108,7 @@ class GlobalTest extends MediaWikiTestCase {
 			array( array( 'foo' => 1 ), 'foo=1' ), // number test
 			array( array( 'foo' => true ), 'foo=1' ), // true test
 			array( array( 'foo' => false ), '' ), // false test
-			array( array( 'foo' => null ), 'foo' ), // null test
+			array( array( 'foo' => null ), '' ), // null test
 			array( array( 'foo' => 'A&B=5+6@!"\'' ), 'foo=A%26B%3D5%2B6%40%21%22%27' ), // urlencoding test
 			array( array( 'foo' => 'bar', 'baz' => 'is', 'asdf' => 'qwerty' ), 'foo=bar&baz=is&asdf=qwerty' ), // multi-item test
 			array( array( 'foo' => array( 'bar' => 'baz' ) ), 'foo%5Bbar%5D=baz' ),

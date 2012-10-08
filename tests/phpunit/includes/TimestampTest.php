@@ -43,15 +43,8 @@ class TimestampTest extends MediaWikiTestCase {
 	 * Test human readable timestamp format.
 	 */
 	function testHumanOutput() {
-		global $wgLang;
-
-		$wgLang = Language::factory( 'es' );
 		$timestamp = new MWTimestamp( time() - 3600 );
-		$this->assertEquals( "hace una hora", $timestamp->getHumanTimestamp()->toString() );
-
-		$wgLang = Language::factory( 'en' );
-		$timestamp = new MWTimestamp( time() - 3600 );
-		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->toString() );
+		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
 	}
 
 	/**

@@ -12,22 +12,23 @@ class WikiPageTest extends MediaWikiLangTestCase {
 	function  __construct( $name = null, array $data = array(), $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
 
-		$this->tablesUsed = array_merge ( $this->tablesUsed,
-										  array( 'page',
-												'revision',
-												'text',
+		$this->tablesUsed = array_merge (
+			$this->tablesUsed,
+			array( 'page',
+					'revision',
+					'text',
 
-												'recentchanges',
-												'logging',
+					'recentchanges',
+					'logging',
 
-												'page_props',
-												'pagelinks',
-												'categorylinks',
-												'langlinks',
-												'externallinks',
-												'imagelinks',
-												'templatelinks',
-												'iwlinks' ) );
+					'page_props',
+					'pagelinks',
+					'categorylinks',
+					'langlinks',
+					'externallinks',
+					'imagelinks',
+					'templatelinks',
+					'iwlinks' ) );
 	}
 
 	public function setUp() {
@@ -98,8 +99,8 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		$page = $this->newPage( $title );
 
 		$content = ContentHandler::makeContent( "[[Lorem ipsum]] dolor sit amet, consetetur sadipscing elitr, sed diam "
-											  . " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
-											  $title, CONTENT_MODEL_WIKITEXT );
+						. " nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.",
+						$title, CONTENT_MODEL_WIKITEXT );
 
 		$page->doEditContent( $content, "[[testing]] 1" );
 

@@ -321,8 +321,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * @return String a string representing the content in a way useful for building a full text search index.
 	 *         If no useful representation exists, this method returns an empty string.
 	 */
-	public function getTextForSearchIndex()
-	{
+	public function getTextForSearchIndex() {
 		return '';
 	}
 
@@ -330,8 +329,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * @return String the wikitext to include when another page includes this  content, or false if the content is not
 	 *         includable in a wikitext page.
 	 */
-	public function getWikitextForTransclusion()
-	{
+	public function getWikitextForTransclusion() {
 		return false;
 	}
 
@@ -341,8 +339,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * @param int $maxlength maximum length of the summary text
 	 * @return String the summary text
 	 */
-	public function getTextForSummary( $maxlength = 250 )
-	{
+	public function getTextForSummary( $maxlength = 250 ) {
 		return '';
 	}
 
@@ -363,8 +360,7 @@ class DummyContentForTesting extends AbstractContent {
 	 *
 	 * @return int
 	 */
-	public function getSize()
-	{
+	public function getSize() {
 		return strlen( $this->data );
 	}
 
@@ -382,8 +378,7 @@ class DummyContentForTesting extends AbstractContent {
 	 *
 	 * @return Content. A copy of this object
 	 */
-	public function copy()
-	{
+	public function copy() {
 		return $this;
 	}
 
@@ -395,8 +390,7 @@ class DummyContentForTesting extends AbstractContent {
 	 *                        to avoid redundant parsing to find out.
 	 * @return boolean
 	 */
-	public function isCountable( $hasLinks = null )
-	{
+	public function isCountable( $hasLinks = null ) {
 		return false;
 	}
 
@@ -410,8 +404,7 @@ class DummyContentForTesting extends AbstractContent {
 	 *
 	 * @return ParserOutput
 	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true )
-	{
+	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true ) {
 		return new ParserOutput( $this->getNativeData() );
 	}
 }

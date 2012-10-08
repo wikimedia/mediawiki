@@ -713,7 +713,7 @@ class DifferenceEngine extends ContextSource {
 	function generateContentDiffBody( Content $old, Content $new ) {
 		if ( !( $old instanceof TextContent ) ) {
 			throw new MWException( "Diff not implemented for " . get_class( $old ) . "; "
-								. "override generateContentDiffBody to fix this." );
+					. "override generateContentDiffBody to fix this." );
 		}
 
 		if ( !( $new instanceof TextContent ) ) {

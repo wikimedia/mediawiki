@@ -355,8 +355,9 @@ class ApiParse extends ApiBase {
 		$this->content = $page->getContent( Revision::RAW ); //XXX: really raw?
 
 		if ( $this->section !== false ) {
-			$this->content = $this->getSectionContent( $this->content, !is_null( $pageId )
-														? 'page id ' . $pageId : $page->getTitle()->getText() );
+			$this->content = $this->getSectionContent(
+				$this->content,
+				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getText() );
 
 			// Not cached (save or load)
 			return $this->content->getParserOutput( $page->getTitle(), $popts );

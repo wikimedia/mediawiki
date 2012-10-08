@@ -181,7 +181,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @todo Text case required database!
+	 * @todo Text case requires database, should be done by a test class in the Database group
 	 */
 	/*
 	public function testGetAutoDeleteReason( Title $title, &$hasHistory ) {
@@ -189,7 +189,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	*/
 
 	/**
-	 * @todo Text case required database!
+	 * @todo Text case requires database, should be done by a test class in the Database group
 	 */
 	/*
 	public function testGetUndoContent( Revision $current, Revision $undo, Revision $undoafter = null ) {

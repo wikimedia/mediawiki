@@ -277,7 +277,8 @@ define( 'PROTO_INTERNAL', 2 );
  * These IDs will be exposed in the API and XML dumps.
  *
  * Extensions that define their own content model IDs should take
- * care to avoid conflicts. Using the extension name as a prefix is recommended.
+ * care to avoid conflicts. Using the extension name as a prefix is recommended,
+ * for example 'myextension-somecontent'.
  */
 define( 'CONTENT_MODEL_WIKITEXT', 'wikitext' );
 define( 'CONTENT_MODEL_JAVASCRIPT', 'javascript' );

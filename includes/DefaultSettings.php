@@ -740,7 +740,9 @@ $wgMediaHandlers = array(
 
 /**
  * Plugins for page content model handling.
- * Each entry in the array maps a model id to a class name
+ * Each entry in the array maps a model id to a class name.
+ *
+ * @since 1.21
  */
 $wgContentHandlers = array(
 	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
@@ -6237,6 +6239,8 @@ $wgDBtestpassword = '';
  * Associative array mapping namespace IDs to the name of the content model pages in that namespace should have by
  * default (use the CONTENT_MODEL_XXX constants). If no special content type is defined for a given namespace,
  * pages in that namespace will  use the CONTENT_MODEL_WIKITEXT (except for the special case of JS and CS pages).
+ *
+ * @since 1.21
  */
 $wgNamespaceContentModels = array();
 
@@ -6245,16 +6249,24 @@ $wgNamespaceContentModels = array();
  *
  * * 'ignore': return null
  * * 'fail': throw an MWException
- * * 'serializeContent': serializeContent to default format
+ * * 'serialize': serialize to default format
+ *
+ * @since 1.21
  */
 $wgContentHandlerTextFallback = 'ignore';
 
 /**
- * Compatibility switch for running ContentHandler code withoput a schema update.
  * Set to false to disable use of the database fields introduced by the ContentHandler facility.
+ * This way, the ContentHandler facility can be used without any additional information in the database.
+ * A page's content model is then derived solely from the page's title. This however means that changing
+ * a page's default model (e.g. using $wgNamespaceContentModels) will break the page and/or make the content
+ * inaccessible. This also means that pages can not be moved to a title that would default to a different
+ * content model.
  *
- * @deprecated this is only here to allow code deployment without a database schema update on large sites.
- *             get rid of it in the next version.
+ * Overall, with $wgContentHandlerUseDB = false, no database updates are needed, but content handling
+ * is less robust and less flexible.
+ *
+ * @since 1.21
  */
 $wgContentHandlerUseDB = true;
 

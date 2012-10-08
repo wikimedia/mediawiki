@@ -1,9 +1,6 @@
 <?php
 
 /**
- * @group medium
- * ^---- causes phpunit to use a higher timeout threshold
- * 
  * @group FileRepo
  * @group FileBackend
  * @group medium

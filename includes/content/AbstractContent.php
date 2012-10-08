@@ -86,7 +86,7 @@ abstract class AbstractContent implements Content {
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException( "Format $format is not supported for content model " . 
+			throw new MWException( "Format $format is not supported for content model " .
 				$this->getModel() );
 		}
 	}
@@ -102,7 +102,7 @@ abstract class AbstractContent implements Content {
 	 * @see Content::isEmpty()
 	 */
 	public function isEmpty() {
-		return $this->getSize() == 0;
+		return $this->getSize() === 0;
 	}
 
 	/**

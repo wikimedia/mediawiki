@@ -17,7 +17,7 @@ class WikitextContent extends TextContent {
 		$text = $this->getNativeData();
 		$sect = $wgParser->getSection( $text, $section, false );
 
-		return  new WikitextContent( $sect );
+		return new WikitextContent( $sect );
 	}
 
 	/**

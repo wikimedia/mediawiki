@@ -76,13 +76,13 @@ class WikitextContentTest extends MediaWikiTestCase {
 		// make updates accessible by class name
 		foreach ( $updates as $update ) {
 			$class = get_class( $update );
-			$updates[ $class ] = $update;
+			$updates[$class] = $update;
 		}
 
 		foreach ( $expectedStuff as $class => $fieldValues ) {
 			$this->assertArrayHasKey( $class, $updates, "missing an update of type $class" );
 
-			$update = $updates[ $class ];
+			$update = $updates[$class];
 
 			foreach ( $fieldValues as $field => $value ) {
 				$v = $update->$field; #if the field doesn't exist, just crash and burn
@@ -257,8 +257,11 @@ just a test"
 		$content = $this->newContent( $text );
 		$t = $content->getRedirectTarget( );
 
-		if ( is_null( $expected ) ) $this->assertNull( $t, "text should not have generated a redirect target: $text" );
-		else $this->assertEquals( $expected, $t->getPrefixedText() );
+		if ( is_null( $expected ) ) {
+			$this->assertNull( $t, "text should not have generated a redirect target: $text" );
+		} else {
+			$this->assertEquals( $expected, $t->getPrefixedText() );
+		}
 	}
 
 	/**
@@ -272,7 +275,7 @@ just a test"
 
 
 	/**
-	 * @todo: test needs database!
+	 * @todo: test needs database! Should be done by a test class in the Database group.
 	 */
 	/*
 	public function getRedirectChain() {
@@ -282,7 +285,7 @@ just a test"
 	*/
 
 	/**
-	 * @todo: test needs database!
+	 * @todo: test needs database! Should be done by a test class in the Database group.
 	 */
 	/*
 	public function getUltimateRedirectTarget() {

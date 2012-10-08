@@ -391,7 +391,7 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 
 	$cgi = '';
 	foreach ( $array1 as $key => $value ) {
-		if ( $value !== false ) {
+		if ( !is_null($value) && $value !== false ) {
 			if ( $cgi != '' ) {
 				$cgi .= '&';
 			}
@@ -412,11 +412,8 @@ function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 			} else {
 				if ( is_object( $value ) ) {
 					$value = $value->__toString();
-				} elseif( !is_null( $value ) ) {
-					$cgi .= urlencode( $key ) . '=' . urlencode( $value );
-				} else {
-					$cgi .= urlencode( $key );
 				}
+				$cgi .= urlencode( $key ) . '=' . urlencode( $value );
 			}
 		}
 	}
@@ -443,15 +440,14 @@ function wfCgiToArray( $query ) {
 			continue;
 		}
 		if ( strpos( $bit, '=' ) === false ) {
-			// Pieces like &qwerty become 'qwerty' => null
-			$key = urldecode( $bit );
-			$value = null;
+			// Pieces like &qwerty become 'qwerty' => '' (at least this is what php does)
+			$key = $bit;
+			$value = '';
 		} else {
 			list( $key, $value ) = explode( '=', $bit );
-			$key = urldecode( $key );
-			$value = urldecode( $value );
 		}
-
+		$key = urldecode( $key );
+		$value = urldecode( $value );
 		if ( strpos( $key, '[' ) !== false ) {
 			$keys = array_reverse( explode( '[', $key ) );
 			$key = array_pop( $keys );
@@ -476,15 +472,23 @@ function wfCgiToArray( $query ) {
  * Append a query string to an existing URL, which may or may not already
  * have query string parameters already. If so, they will be combined.
  *
- * @deprecated in 1.20. Use Uri class.
  * @param $url String
  * @param $query Mixed: string or associative array
  * @return string
  */
 function wfAppendQuery( $url, $query ) {
-	$obj = new Uri( $url );
-	$obj->extendQuery( $query );
-	return $obj->toString();
+	if ( is_array( $query ) ) {
+		$query = wfArrayToCgi( $query );
+	}
+	if( $query != '' ) {
+		if( false === strpos( $url, '?' ) ) {
+			$url .= '?';
+		} else {
+			$url .= '&';
+		}
+		$url .= $query;
+	}
+	return $url;
 }
 
 /**
@@ -572,13 +576,49 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  * @todo Need to integrate this into wfExpandUrl (bug 32168)
  *
  * @since 1.19
- * @deprecated
  * @param $urlParts Array URL parts, as output from wfParseUrl
  * @return string URL assembled from its component parts
  */
 function wfAssembleUrl( $urlParts ) {
-	$obj = new Uri( $urlParts );
-	return $obj->toString();
+	$result = '';
+
+	if ( isset( $urlParts['delimiter'] ) ) {
+		if ( isset( $urlParts['scheme'] ) ) {
+			$result .= $urlParts['scheme'];
+		}
+
+		$result .= $urlParts['delimiter'];
+	}
+
+	if ( isset( $urlParts['host'] ) ) {
+		if ( isset( $urlParts['user'] ) ) {
+			$result .= $urlParts['user'];
+			if ( isset( $urlParts['pass'] ) ) {
+				$result .= ':' . $urlParts['pass'];
+			}
+			$result .= '@';
+		}
+
+		$result .= $urlParts['host'];
+
+		if ( isset( $urlParts['port'] ) ) {
+			$result .= ':' . $urlParts['port'];
+		}
+	}
+
+	if ( isset( $urlParts['path'] ) ) {
+		$result .= $urlParts['path'];
+	}
+
+	if ( isset( $urlParts['query'] ) ) {
+		$result .= '?' . $urlParts['query'];
+	}
+
+	if ( isset( $urlParts['fragment'] ) ) {
+		$result .= '#' . $urlParts['fragment'];
+	}
+
+	return $result;
 }
 
 /**
@@ -725,7 +765,6 @@ function wfUrlProtocolsWithoutProtRel() {
  * 2) Handles protocols that don't use :// (e.g., mailto: and news: , as well as protocol-relative URLs) correctly
  * 3) Adds a "delimiter" element to the array, either '://', ':' or '//' (see (2))
  *
- * @deprecated
  * @param $url String: a URL to parse
  * @return Array: bits of the URL in an associative array, per PHP docs
  */
@@ -1025,7 +1064,6 @@ function wfLogDBError( $text ) {
 		} else {
 			$d = date_create( "now", $logDBErrorTimeZoneObject );
 		}
-		$date = $d->format( 'D M j G:i:s T Y' );
 
 		$date = $d->format( 'D M j G:i:s T Y' );
 
@@ -2364,7 +2402,6 @@ define( 'TS_ISO_8601_BASIC', 9 );
 /**
  * Get a timestamp string in one of various formats
  *
- * @deprecated
  * @param $outputtype Mixed: A timestamp in one of the supported formats, the
  *                    function will autodetect which format is supplied and act
  *                    accordingly.

@@ -89,7 +89,6 @@ class ApiPurge extends ApiBase {
 					global $wgEnableParserCache;
 
 					$popts = $page->makeParserOptions( 'canonical' );
-					$popts->setTidy( true );
 
 					# Parse content; note that HTML generation is only needed if we want to cache the result.
 					$content = $page->getContent( Revision::RAW );
