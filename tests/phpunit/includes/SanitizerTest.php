@@ -2,7 +2,11 @@
 
 class SanitizerTest extends MediaWikiTestCase {
 
-	function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( 'wgCleanupPresentationalAttributes', true );
+
 		AutoLoader::loadClass( 'Sanitizer' );
 	}
 
@@ -110,20 +114,22 @@ class SanitizerTest extends MediaWikiTestCase {
 		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=&foobar;' ), array( 'foo' => '&foobar;' ), 'Entity-like items are accepted' );
 	}
 
-	function testDeprecatedAttributesDisabled() {
-		$GLOBALS['wgCleanupPresentationalAttributes'] = false;
-		$this->assertEquals( ' clear="left"', Sanitizer::fixTagAttributes( 'clear="left"', 'br' ), 'Deprecated attributes are not converted to styles when enabled.' );
-	}
-
 	/**
 	 * @dataProvider provideDeprecatedAttributes
 	 */
 	function testDeprecatedAttributes( $input, $tag, $expected, $message = null ) {
-		$GLOBALS['wgCleanupPresentationalAttributes'] = true;
 		$this->assertEquals( $expected, Sanitizer::fixTagAttributes( $input, $tag ), $message );
 	}
 
-	function provideDeprecatedAttributes() {
+	function testDeprecatedAttributesDisabled() {
+		global $wgCleanupPresentationalAttributes;
+
+		$wgCleanupPresentationalAttributes = false;
+
+		$this->assertEquals( ' clear="left"', Sanitizer::fixTagAttributes( 'clear="left"', 'br' ), 'Deprecated attributes are not converted to styles when enabled.' );
+	}
+
+	public static function provideDeprecatedAttributes() {
 		return array(
 			array( 'clear="left"', 'br', ' style="clear: left;"', 'Deprecated attributes are converted to styles when enabled.' ),
 			array( 'clear="all"', 'br', ' style="clear: both;"', 'clear=all is converted to clear: both; not clear: all;' ),
@@ -170,7 +176,7 @@ class SanitizerTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideCssCommentsFixtures() {
+	public static function provideCssCommentsFixtures() {
 		/** array( <expected>, <css>, [message] ) */
 		return array(
 			array( ' ', '/**/' ),

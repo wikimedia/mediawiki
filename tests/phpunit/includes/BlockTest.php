@@ -11,17 +11,15 @@ class BlockTest extends MediaWikiLangTestCase {
 	/* variable used to save up the blockID we insert in this test suite */
 	private $blockId;
 
-	function setUp() {
-		global $wgContLang;
+	protected function setUp() {
 		parent::setUp();
-		$wgContLang = Language::factory( 'en' );
+		$this->setMwGlobals( 'wgContLang', Language::factory( 'en' ) );
 	}
 
 	function addDBData() {
-		//$this->dumpBlocks();
 
 		$user = User::newFromName( 'UTBlockee' );
-		if( $user->getID() == 0 ) {
+		if ( $user->getID() == 0 ) {
 			$user->addToDatabase();
 			$user->setPassword( 'UTBlockeePassword' );
 
@@ -45,7 +43,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		// its value might change depending on the order the tests are run.
 		// ApiBlockTest insert its own blocks!
 		$newBlockId = $this->block->getId();
-		if ($newBlockId) {
+		if ( $newBlockId ) {
 			$this->blockId = $newBlockId;
 		} else {
 			throw new MWException( "Failed to insert block for BlockTest; old leftover block remaining?" );
@@ -88,7 +86,7 @@ class BlockTest extends MediaWikiLangTestCase {
 	 *
 	 * This stopped working with r84475 and friends: regression being fixed for bug 29116.
 	 *
-	 * @dataProvider dataBug29116
+	 * @dataProvider provideBug29116Data
 	 */
 	function testBug29116LoadWithEmptyIp( $vagueTarget ) {
 		$this->hideDeprecated( 'Block::load' );
@@ -108,14 +106,14 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * because the new function didn't accept empty strings like Block::load()
 	 * had. Regression bug 29116.
 	 *
-	 * @dataProvider dataBug29116
+	 * @dataProvider provideBug29116Data
 	 */
 	function testBug29116NewFromTargetWithEmptyIp( $vagueTarget ) {
 		$block = Block::newFromTarget('UTBlockee', $vagueTarget);
 		$this->assertTrue( $this->block->equals( $block ), "newFromTarget() returns the same block as the one that was made when given empty vagueTarget param " . var_export( $vagueTarget, true ) );
 	}
 
-	function dataBug29116() {
+	public static function provideBug29116Data() {
 		return array(
 			array( null ),
 			array( '' ),

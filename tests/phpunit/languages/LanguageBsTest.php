@@ -9,10 +9,10 @@
 class LanguageBsTest extends MediaWikiTestCase {
 	private $lang;
 
-	function setUp() {
+	protected function setUp() {
 		$this->lang = Language::factory( 'Bs' );
 	}
-	function tearDown() {
+	protected function tearDown() {
 		unset( $this->lang );
 	}
 

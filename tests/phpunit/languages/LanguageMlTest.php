@@ -9,10 +9,10 @@
 class LanguageMlTest extends MediaWikiTestCase {
 	private $lang;
 
-	function setUp() {
+	protected function setUp() {
 		$this->lang = Language::factory( 'Ml' );
 	}
-	function tearDown() {
+	protected function tearDown() {
 		unset( $this->lang );
 	}
 

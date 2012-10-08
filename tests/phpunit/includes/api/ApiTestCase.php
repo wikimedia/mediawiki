@@ -8,7 +8,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $apiContext;
 
-	function setUp() {
+	protected function setUp() {
 		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser, $wgServer;
 
 		parent::setUp();

@@ -2,14 +2,14 @@
 
 class BitmapScalingTest extends MediaWikiTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		global $wgMaxImageArea, $wgCustomConvertCommand;
 		$this->oldMaxImageArea = $wgMaxImageArea;
 		$this->oldCustomConvertCommand = $wgCustomConvertCommand;
 		$wgMaxImageArea = 1.25e7; // 3500x3500 
 		$wgCustomConvertCommand = 'dummy'; // Set so that we don't get client side rendering
 	}
-	function tearDown() {
+	protected function tearDown() {
 		global $wgMaxImageArea, $wgCustomConvertCommand;
 		$wgMaxImageArea = $this->oldMaxImageArea;
 		$wgCustomConvertCommand = $this->oldCustomConvertCommand;

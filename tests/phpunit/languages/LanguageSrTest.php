@@ -19,10 +19,10 @@ class LanguageSrTest extends MediaWikiTestCase {
 	/* Language object. Initialized before each test */
 	private $lang;
 
-	function setUp() {
+	protected function setUp() {
 		$this->lang = Language::factory( 'sr' );
 	}
-	function tearDown() {
+	protected function tearDown() {
 		unset( $this->lang );
 	}
 

@@ -11,20 +11,21 @@
  *
  */
 class MWNamespaceTest extends MediaWikiTestCase {
-	/**
-	 * Sets up the fixture, for example, opens a network connection.
-	 * This method is called before a test is executed.
-	 */
 	protected function setUp() {
-	}
+		parent::setUp();
 
-	/**
-	 * Tears down the fixture, for example, closes a network connection.
-	 * This method is called after a test is executed.
-	 */
-	protected function tearDown() {
+		$this->setMwGlobals( array(
+			'wgContentNamespaces' => array( NS_MAIN ),
+			'wgNamespacesWithSubpages' => array(
+				NS_TALK           => true,
+				NS_USER           => true,
+				NS_USER_TALK      => true,
+			),
+			'wgCapitalLinks' => true,
+			'wgCapitalLinkOverrides' => array(),
+			'wgNonincludableNamespaces' => array(),
+		) );
 	}
-
 
 #### START OF TESTS #########################################################
 
@@ -268,77 +269,37 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testIsContent() {
 		// NS_MAIN is a content namespace per DefaultSettings.php
 		// and per function definition.
-		$this->assertIsContent( NS_MAIN );
 
-		global $wgContentNamespaces;
-
-		$saved = $wgContentNamespaces;
-
-		$wgContentNamespaces[] = NS_MAIN;
 		$this->assertIsContent( NS_MAIN );
 
 		// Other namespaces which are not expected to be content
-		if ( isset( $wgContentNamespaces[NS_MEDIA] ) ) {
-			unset( $wgContentNamespaces[NS_MEDIA] );
-		}
+
 		$this->assertIsNotContent( NS_MEDIA );
-
-		if ( isset( $wgContentNamespaces[NS_SPECIAL] ) ) {
-			unset( $wgContentNamespaces[NS_SPECIAL] );
-		}
 		$this->assertIsNotContent( NS_SPECIAL );
-
-		if ( isset( $wgContentNamespaces[NS_TALK] ) ) {
-			unset( $wgContentNamespaces[NS_TALK] );
-		}
 		$this->assertIsNotContent( NS_TALK );
-
-		if ( isset( $wgContentNamespaces[NS_USER] ) ) {
-			unset( $wgContentNamespaces[NS_USER] );
-		}
 		$this->assertIsNotContent( NS_USER );
-
-		if ( isset( $wgContentNamespaces[NS_CATEGORY] ) ) {
-			unset( $wgContentNamespaces[NS_CATEGORY] );
-		}
 		$this->assertIsNotContent( NS_CATEGORY );
-
-		if ( isset( $wgContentNamespaces[100] ) ) {
-			unset( $wgContentNamespaces[100] );
-		}
 		$this->assertIsNotContent( 100 );
-
-		$wgContentNamespaces = $saved;
 	}
 
 	/**
 	 * Similar to testIsContent() but alters the $wgContentNamespaces
 	 * global variable.
 	 */
-	public function testIsContentWithAdditionsInWgContentNamespaces() {
-		// NS_MAIN is a content namespace per DefaultSettings.php
-		// and per function definition.
-		$this->assertIsContent( NS_MAIN );
+	public function testIsContentAdvanced() {
+		global $wgContentNamespaces;
 
-		// Tests that user defined namespace #252 is not content:
+		// Test that user defined namespace #252 is not content
 		$this->assertIsNotContent( 252 );
 
-		# @todo FIXME: Is global saving really required for PHPUnit?
 		// Bless namespace # 252 as a content namespace
-		global $wgContentNamespaces;
-		$savedGlobal = $wgContentNamespaces;
 		$wgContentNamespaces[] = 252;
+
 		$this->assertIsContent( 252 );
 
 		// Makes sure NS_MAIN was not impacted
 		$this->assertIsContent( NS_MAIN );
-
-		// Restore global
-		$wgContentNamespaces = $savedGlobal;
-
-		// Verify namespaces after global restauration
-		$this->assertIsContent( NS_MAIN  );
-		$this->assertIsNotContent( 252 );
+		$wgContentNamespaces = 252;
 	}
 
 	public function testIsWatchable() {
@@ -356,30 +317,20 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	public function testHasSubpages() {
+		global $wgNamespacesWithSubpages;
+
 		// Special namespaces:
 		$this->assertHasNotSubpages( NS_MEDIA   );
 		$this->assertHasNotSubpages( NS_SPECIAL );
 
-		// namespaces without subpages
-		# save up global
-		global $wgNamespacesWithSubpages;
-		$saved = null;
-		if( array_key_exists( NS_MAIN, $wgNamespacesWithSubpages ) ) {
-			$saved = $wgNamespacesWithSubpages[NS_MAIN];
-			unset( $wgNamespacesWithSubpages[NS_MAIN] );
-		}
-
+		// Namespaces without subpages
 		$this->assertHasNotSubpages( NS_MAIN );
 
 		$wgNamespacesWithSubpages[NS_MAIN] = true;
 		$this->assertHasSubpages( NS_MAIN );
+
 		$wgNamespacesWithSubpages[NS_MAIN] = false;
 		$this->assertHasNotSubpages( NS_MAIN );
-
-		# restore global
-		if( $saved !== null ) {
-			$wgNamespacesWithSubpages[NS_MAIN] = $saved;
-		}
 
 		// Some namespaces with subpages
 		$this->assertHasSubpages( NS_TALK      );
@@ -390,22 +341,25 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 */
 	public function testGetContentNamespaces() {
+		global $wgContentNamespaces;
+
 		$this->assertEquals(
 			array( NS_MAIN ),
 			MWNamespace::getcontentNamespaces(),
 			'$wgContentNamespaces is an array with only NS_MAIN by default'
 		);
 
-		global $wgContentNamespaces;
 
-		$saved = $wgContentNamespaces;
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';
 		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+
 		$wgContentNamespaces = false;
 		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+
 		$wgContentNamespaces = null;
 		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
+
 		$wgContentNamespaces = 5;
 		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
 
@@ -433,8 +387,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
 			MWNamespace::getcontentNamespaces()
 		);
-
-		$wgContentNamespaces = $saved;
 	}
 
 	/**
@@ -504,24 +456,20 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testIsCapitalizedWithWgCapitalLinks() {
 		global $wgCapitalLinks;
-		// Save the global to easily reset to MediaWiki default settings
-		$savedGlobal = $wgCapitalLinks;
 
-		$wgCapitalLinks = true;
 		$this->assertIsCapitalized( NS_PROJECT      );
 		$this->assertIsCapitalized( NS_PROJECT_TALK );
 
 		$wgCapitalLinks = false;
+
 		// hardcoded namespaces (see above function) are still capitalized:
 		$this->assertIsCapitalized( NS_SPECIAL   );
 		$this->assertIsCapitalized( NS_USER      );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
+
 		// setting is correctly applied
 		$this->assertIsNotCapitalized( NS_PROJECT      );
 		$this->assertIsNotCapitalized( NS_PROJECT_TALK );
-
-		// reset global state:
-		$wgCapitalLinks = $savedGlobal;
 	}
 
 	/**
@@ -532,12 +480,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testIsCapitalizedWithWgCapitalLinkOverrides() {
 		global $wgCapitalLinkOverrides;
-		// Save the global to easily reset to MediaWiki default settings
-		$savedGlobal = $wgCapitalLinkOverrides;
 
 		// Test default settings
 		$this->assertIsCapitalized( NS_PROJECT      );
 		$this->assertIsCapitalized( NS_PROJECT_TALK );
+
 		// hardcoded namespaces (see above function) are capitalized:
 		$this->assertIsCapitalized( NS_SPECIAL   );
 		$this->assertIsCapitalized( NS_USER      );
@@ -547,20 +494,19 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$wgCapitalLinkOverrides[NS_SPECIAL]   = false;
 		$wgCapitalLinkOverrides[NS_USER]      = false;
 		$wgCapitalLinkOverrides[NS_MEDIAWIKI] = false;
+
 		$this->assertIsCapitalized( NS_SPECIAL   );
 		$this->assertIsCapitalized( NS_USER      );
 		$this->assertIsCapitalized( NS_MEDIAWIKI );
 
-		$wgCapitalLinkOverrides = $savedGlobal;
 		$wgCapitalLinkOverrides[NS_PROJECT] = false;
 		$this->assertIsNotCapitalized( NS_PROJECT );
+
 		$wgCapitalLinkOverrides[NS_PROJECT] = true ;
 		$this->assertIsCapitalized( NS_PROJECT );
-		unset(  $wgCapitalLinkOverrides[NS_PROJECT] );
-		$this->assertIsCapitalized( NS_PROJECT );
 
-		// reset global state:
-		$wgCapitalLinkOverrides = $savedGlobal;
+		unset( $wgCapitalLinkOverrides[NS_PROJECT] );
+		$this->assertIsCapitalized( NS_PROJECT );
 	}
 
 	public function testHasGenderDistinction() {
@@ -578,10 +524,10 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 	public function testIsNonincludable() {
 		global $wgNonincludableNamespaces;
+
 		$wgNonincludableNamespaces = array( NS_USER );
 
 		$this->assertTrue( MWNamespace::isNonincludable( NS_USER ) );
-
 		$this->assertFalse( MWNamespace::isNonincludable( NS_TEMPLATE ) );
 	}
 

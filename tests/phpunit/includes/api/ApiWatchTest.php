@@ -7,7 +7,7 @@
  */
 class ApiWatchTest extends ApiTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
 	}

@@ -9,10 +9,10 @@
 class LanguageSgsTest extends MediaWikiTestCase {
 	private $lang;
 
-	function setUp() {
+	protected function setUp() {
 		$this->lang = Language::factory( 'Sgs' );
 	}
-	function tearDown() {
+	protected function tearDown() {
 		unset( $this->lang );
 	}
 

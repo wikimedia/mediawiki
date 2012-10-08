@@ -32,7 +32,7 @@ class wfExpandUrl extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	public function provideExpandableUrls() {
+	public static function provideExpandableUrls() {
 		$modes = array( 'http', 'https' );
 		$servers = array(
 			'http' => 'http://example.com',

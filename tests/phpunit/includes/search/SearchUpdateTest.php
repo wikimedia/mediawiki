@@ -33,14 +33,14 @@ class SearchUpdateTest extends MediaWikiTestCase {
 		return $resultText;
 	}
 
-	function setUp() {
+	protected function setUp() {
 		global $wgSearchType;
 
 		self::$searchType  = $wgSearchType;
 		$wgSearchType = 'MockSearch';
 	}
 
-	function tearDown() {
+	protected function tearDown() {
 		global $wgSearchType;
 
 		$wgSearchType = self::$searchType;

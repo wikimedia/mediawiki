@@ -1,6 +1,9 @@
 <?php
 class FormatMetadataTest extends MediaWikiTestCase {
-	public function setUp() {
+
+	protected function setUp() {
+		parent::setUp();
+
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
@@ -19,9 +22,12 @@ class FormatMetadataTest extends MediaWikiTestCase {
 		$this->show = $wgShowEXIF;
 		$wgShowEXIF = true;
 	}
-	public function tearDown() {
+
+	protected function tearDown() {
 		global $wgShowEXIF;
 		$wgShowEXIF = $this->show;
+
+		parent::tearDown();
 	}
 
 	public function testInvalidDate() {

@@ -1,7 +1,9 @@
 <?php
 class ExifTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 
 		if ( !wfDl( 'exif' ) ) {
@@ -12,9 +14,11 @@ class ExifTest extends MediaWikiTestCase {
 		$wgShowEXIF = true;
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		global $wgShowEXIF;
 		$wgShowEXIF = $this->showExif;
+
+		parent::tearDown();
 	}
 
 	public function testGPSExtraction() {
