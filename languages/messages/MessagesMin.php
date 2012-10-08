@@ -400,7 +400,7 @@ Alasan nan diberikan adolah ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Sanak alah kalua log dari sistem.'''
 
-Sanak dapek taruih manggunoan {{SITENAME}} sacaro anonim, atau Sanak dapek [[Special:UserLogin|masuak log liak]] sabagai pangguno nan samo atau pangguno nan lain.
+Sanak dapek taruih manggunoan {{SITENAME}} sacaro anonim, atau Sanak dapek <span class='plainlinks'>[$1 masuak log liak]</span> sabagai pangguno nan samo atau pangguno nan lain.
 Parhatian bahawa bara laman mungkin masih taruih manunjukkan bahawa Sanak masih masuak log sampai Sanak mambarasihan singgahan panjelajah web Sanak.",
 'welcomecreation' => '== Salamaik datang, $1! ==
 
@@ -810,8 +810,6 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'search-interwiki-caption' => 'Proyek badunsanak',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(selanjutnyo)',
-'search-mwsuggest-enabled' => 'dengan saran',
-'search-mwsuggest-disabled' => 'indak ado saran',
 'searchrelated' => 'bakaitan',
 'searchall' => 'Sadonyo',
 'showingresultsheader' => "{{PLURAL:$5|Hasil '''$1''' dari '''$3'''|Hasil '''$1 - $2''' dari '''$3'''}} untuak '''$4'''",
@@ -1258,5 +1256,9 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Tag]] bateh:',
+
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'Barisi...',
 
 );

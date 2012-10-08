@@ -427,7 +427,7 @@ Ang administrador nga nag-kandado sini naghatag sang paathag nga: "$3".',
 # Login and logout pages
 'logouttext' => "'''Naka-guha ka na.'''
 
-Makapadayon ka sa gihapon sa paggamit sang {{SITENAME}} nga indi makilal-an, ukon mahimo ka man [[Special:UserLogin|magsulod liwat]] bilang amo sa gihapon ukon lain nga nga manug-gamit.
+Makapadayon ka sa gihapon sa paggamit sang {{SITENAME}} nga indi makilal-an, ukon mahimo ka man <span class='plainlinks'>[$1 magsulod liwat]</span> bilang amo sa gihapon ukon lain nga nga manug-gamit.
 Tandaan nga may mga panid nga mahimo ma-display sa gihapon nga daw nakasulod ka sa gihapon, hasta mapanas mo na ang tinago sang imo brawser.",
 'welcomecreation' => '== Pagtamyaw, $1! ==
 Ang imo account nahimo na.
@@ -1074,8 +1074,6 @@ Ang mga detalye mahimo nga makita sa [{{fullurl:{{#Special:Log}}/delete|page={{F
 'search-interwiki-caption' => 'Mga Utod proyekto',
 'search-interwiki-default' => '$1 mga resulta:',
 'search-interwiki-more' => '(damu)',
-'search-mwsuggest-enabled' => 'may suhestiyon',
-'search-mwsuggest-disabled' => 'wala suhestiyon',
 'search-relatedarticle' => 'Konektado',
 'mwsuggest-disable' => 'Untaton ang mga suhestiyon sang AJAX',
 'searcheverything-enable' => 'Pangitaon sa tanan nga espasyo sang pangalan',

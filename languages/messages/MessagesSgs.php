@@ -393,7 +393,7 @@ Ožklausėms: $2',
 # Login and logout pages
 'logouttext' => "'''Daba Tamsta esat atsėjongės.'''
 
-Galat ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba [[Special:UserLogin|prisėjonkat]] ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
+Galat ė tuoliau nauduotė {{SITENAME}} anuonimėškā aba <span class='plainlinks'>[$1 prisėjonkat]</span> ėš naujė šėtuo patiu a kėto nauduotuojė vardu.
 Pastebiejims: katruos nekatruos poslapiuos ė tuoliau gal ruodītė būktā būtomiet prisėjongės lėgė tuol, kumet ėšvalīsėt sava naršīklės dietovė (''cache'').",
 'welcomecreation' => '== Svēkė, $1! ==
 
@@ -751,8 +751,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'search-interwiki-caption' => 'Dokterėnē pruojektā',
 'search-interwiki-default' => '$1 rezoltatā:',
 'search-interwiki-more' => '(daugiau)',
-'search-mwsuggest-enabled' => 'so pasiūlīmās',
-'search-mwsuggest-disabled' => 'nie pasiūlīmu',
 'search-relatedarticle' => 'Sosėjėn',
 'mwsuggest-disable' => 'Kavuotė AJAX pasiūlīmus',
 'searchrelated' => 'sosėjėn',

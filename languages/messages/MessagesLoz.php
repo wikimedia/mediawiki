@@ -41,7 +41,6 @@ $messages = array(
 'tog-uselivepreview' => 'Sebelize live PendiBe (bulukezi JavaScript) (yem nca)',
 'tog-watchlisthideown' => 'Cwankekile zwa afina di zwa mukoloko di kentezi',
 'tog-watchlisthidebots' => 'Cwankekile roboti di zwa mukoloko di kentezi',
-'tog-nolangconversion' => 'Dinyembulisize selti konfesyoni',
 'tog-ccmeonemails' => 'Afi di zwa dubina di melina a afi di xetewi sebelu',
 'tog-diffonly' => 'Ni sa kamukile petulo selt pre petuho',
 

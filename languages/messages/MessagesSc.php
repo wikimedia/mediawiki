@@ -392,7 +392,7 @@ Podet èsser stadu burradu dae calicunu àteru.',
 # Login and logout pages
 'logouttext' => "'''As acabadu sa sessione.'''
 
-Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes [[Special:UserLogin|identificare torra]] comente su de prima o comente usuàriu diferente.
+Immoe podes sighire a impreare {{SITENAME}} in forma anònima, o ti podes <span class='plainlinks'>[$1 identificare torra]</span> comente su de prima o comente usuàriu diferente.
 Tene contu ca is pàginas ki sunt giai abertas in àteras bentanas podent sighire a pàrrer comente cando fias identificadu, fintzas a cando non ddas renfriscas.",
 'welcomecreation' => "== Benènnidu, $1! ==
 S'account tuo est istadu creadu.
@@ -650,8 +650,6 @@ Cosas de ammentare: '''({{int:cur}})''' = diferèntzias cun sa versione currente
 'search-interwiki-caption' => 'Progetos frades',
 'search-interwiki-default' => '$1 resurtados:',
 'search-interwiki-more' => '(àteru)',
-'search-mwsuggest-enabled' => 'cun impostos',
-'search-mwsuggest-disabled' => 'chentza impostos',
 'searcheverything-enable' => 'Chirca in totu is nùmene-logos:',
 'searchall' => 'totu',
 'showingresults' => "Inoghe sighende {{PLURAL:$1|benit ammustradu '''1''' resurtadu|benint ammustrados '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",
@@ -1559,5 +1557,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # New logging system
 'newuserlog-byemail' => 'password imbiada via e-mail',
+
+# Search suggestions
+'searchsuggest-search' => 'Chirca',
 
 );

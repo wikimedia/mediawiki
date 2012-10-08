@@ -26,7 +26,9 @@
  */
 class UnusedCategoriesPage extends QueryPage {
 
-	function isExpensive() { return true; }
+	function isExpensive() {
+		return true;
+	}
 
 	function __construct( $name = 'Unusedcategories' ) {
 		parent::__construct( $name );

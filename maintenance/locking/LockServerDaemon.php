@@ -39,6 +39,8 @@ LockServerDaemon::init(
 
 /**
  * Simple lock server daemon that accepts lock/unlock requests
+ *
+ * @ingroup LockManager Maintenance
  */
 class LockServerDaemon {
 	/** @var resource */

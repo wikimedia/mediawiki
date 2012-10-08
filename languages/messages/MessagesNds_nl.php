@@ -686,8 +686,9 @@ Zeukopdrachte: $2',
 'protectedpagetext' => 'Disse zied is beveiligd um bewarkingen te veurkoemen.',
 'viewsourcetext' => 'Je kunnen de brontekste van disse zied bewarken en bekieken:',
 'viewyourtext' => "Je kunnen '''joew bewarkingen''' an de brontekste van disse zied bekieken en kopiëren:",
-'protectedinterface' => 'Op disse zied steet n tekste die gebruukt wörden veur systeemteksten van de wiki. Allinnig beheerders kunnen disse zied bewarken.',
-'editinginterface' => "'''Waorschuwing:''' je bewarken n zied die gebruukt wörden deur de programmatuur. Wa'j hier wiezigen, is van invleud op de hele wiki. Overweeg veur vertalingen um [//translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net] te gebruken, t vertalingsprojekt veur MediaWiki.",
+'protectedinterface' => "Op disse zied steet tekste die gebruukt wörden veur systeemteksten van disse wiki. Allinnig beheerders kunnen disse zied bewarken.
+Um vertalingen veur alle wiki's derbie te zetten of te wiezigen, gebruuk [//translatewiki.net/ translatewiki.net], t vertaalprojekt veur MediaWiki.",
+'editinginterface' => "'''Waorschuwing:''' je bewarken n zied die gebruukt wörden deur de programmatuur. Wa'j hier wiezigen, is van invleud op de hele wiki. Um vertalingen derbie te zetten of te wiezigen veur alle wiki's, gebruuk [//translatewiki.net/wiki/Main_Page?setlang=nds-nl translatewiki.net], t vertalingsprojekt veur MediaWiki.",
 'sqlhidden' => '(SQL-zeukopdrachte verbörgen)',
 'cascadeprotected' => 'Disse zied is beveiligd umdat t veurkömp in de volgende {{PLURAL:$1|zied|ziejen}}, die beveiligd {{PLURAL:$1|is|bin}} mit de "kaskade"-opsie:
 $2',
@@ -713,7 +714,7 @@ De beheerder gaf hierveur de volgende reden: "$3".',
 # Login and logout pages
 'logouttext' => "'''Je bin noen aofemeld.'''
 
-Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen [[Special:UserLogin|opniej anmelden]] onder disse of n aandere gebrukersnaam.
+Je kunnen {{SITENAME}} noen anoniem gebruken of je eigen <span class='plainlinks'>[$1 opniej anmelden]</span> onder disse of n aandere gebrukersnaam.
 t Kan ween dat der wat ziejen bin die weeregeven wörden asof je an-emeld bin totda'j t tussengeheugen van joew webkieker leegmaken.",
 'welcomecreation' => '== Welkom, $1! ==
 Joew gebrukersnaam is an-emaakt.
@@ -969,7 +970,7 @@ Je kunnen [[Special:Search/{{PAGENAME}}|de titel opzeuken]] in aandere ziejen,
 of [{{fullurl:{{FULLPAGENAME}}|action=edit}} disse zied bewarken]</span>.',
 'noarticletext-nopermission' => 'Op disse zied steet gien tekste.
 Je kunnen [[Special:Search/{{PAGENAME}}|zeuken naor disse term]] in aandere ziejen of
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken deurzeuken]</span>.',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken deurzeuken]</span>, mer je hebben gien rechten um disse zied an te maken.',
 'missing-revision' => 'De versie #$1 van de zied "{{PAGENAME}} besteet niet.
 
 Dit kömp meestentieds deur t volgen van n verouwerde verwiezing naor n zied die vortedaon is.
@@ -1325,8 +1326,6 @@ Waorschienlik ku'j der meer gegevens over vienen in t [{{fullurl:{{#Special:Log}
 'search-interwiki-caption' => 'Zusterprojekten',
 'search-interwiki-default' => '$1 resultaoten:',
 'search-interwiki-more' => '(meer)',
-'search-mwsuggest-enabled' => 'mit anbevelingen',
-'search-mwsuggest-disabled' => 'gien anbevelingen',
 'search-relatedarticle' => 'Verwaant',
 'mwsuggest-disable' => 'Anbevelingen via AJAX uutschakelen',
 'searcheverything-enable' => 'In alle naamruumten zeuken',
@@ -1696,7 +1695,7 @@ Bestaanden en media die nao t vortdoon opniej op-estuurd wörden ku'j in de smie
 
 Um t bestaand in te voegen in n zied ku'j één van de volgende kodes gebruken:
 * '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.jpg]]</nowiki>'''
-* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.png|alternetieve tekste]]</nowiki>'''
+* '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:Bestaand.png|alternatieve tekste]]</nowiki>'''
 * '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Bestaand.ogg]]</nowiki>''' drekte verwiezing naor n bestaand.",
 'upload-permitted' => 'Toe-estaone bestaandstypes: $1.',
 'upload-preferred' => 'An-ewezen bestaandstypes: $1.',
@@ -2934,7 +2933,6 @@ De tiedelike map is niet anwezig.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript testen',
-'javascripttest-disabled' => 'Disse funksie steet niet an op disse wiki.',
 'javascripttest-title' => 'Tests uutvoeren veur $1',
 'javascripttest-pagetext-noframework' => 'Disse zied is ereserveerd veur t uutvoeren van JavaScript-testen.',
 'javascripttest-pagetext-unknownframework' => 'Onbekend testraamwark "$1".',
@@ -3064,7 +3062,6 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-authors' => 'Totaal antal verschillende auteurs',
 'pageinfo-recent-edits' => 'Antal nieje bewarkingen (in de veurbieje $1).',
 'pageinfo-recent-authors' => 'Leste antal van verschillende auteurs',
-'pageinfo-restriction' => 'Ziedbeveiliging ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magies woord|Magiese woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verbörgen {{PLURAL:$1|kategorie|kategorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruukten mal|Gebruukten mallen}} ($1)',
@@ -3915,6 +3912,10 @@ Aanders ku\'j oek t eenvoudige formulier hieronder gebruken. Joew opmarkingen zu
 'feedback-close' => 'Ree',
 'feedback-bugcheck' => 'Mooi! Kiek nao of t niet al één van de [$1 bekende problemen] is.',
 'feedback-bugnew' => 'Ik heb t nao-ekeken. Meld n nieje programmafout',
+
+# Search suggestions
+'searchsuggest-search' => 'Zeuken / zuken / zuiken',
+'searchsuggest-containing' => 'bevat...',
 
 # API errors
 'api-error-badaccess-groups' => 'Je maggen gien bestaanden in disse wiki inlaojen.',

@@ -735,7 +735,7 @@ Administrator yang terkunci menawarkan penjelasan ini: " $3 ".',
 # Login and logout pages
 'logouttext' => "'''Anda telah keluar log dari sistem.'''
 
-Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat [[Special:UserLogin|masuk log lagi]] sebagai pengguna yang sama atau pengguna yang lain.
+Anda dapat terus menggunakan {{SITENAME}} secara anonim, atau Anda dapat <span class='plainlinks'>[$1 masuk log lagi]</span> sebagai pengguna yang sama atau pengguna yang lain.
 Perhatikan bahwa beberapa halaman mungkin masih terus menunjukkan bahwa Anda masih masuk log sampai Anda membersihkan singgahan penjelajah web Anda",
 'welcomecreation' => '== Selamat datang, $1! ==
 
@@ -1340,8 +1340,6 @@ Pastikan bahwa perubahan ini tetap mempertahankan kontinuitas versi terdahulu ha
 'search-interwiki-caption' => 'Proyek lain',
 'search-interwiki-default' => 'Hasil $1:',
 'search-interwiki-more' => '(selanjutnya)',
-'search-mwsuggest-enabled' => 'dengan saran',
-'search-mwsuggest-disabled' => 'tidak ada saran',
 'search-relatedarticle' => 'Berkaitan',
 'mwsuggest-disable' => 'Non-aktifkan saran AJAX',
 'searcheverything-enable' => 'Cari di semua ruang nama',
@@ -2919,7 +2917,6 @@ Simpan ke komputer Anda dan unggah ke sini.',
 
 # JavaScriptTest
 'javascripttest' => 'Pengujian JavaScript',
-'javascripttest-disabled' => 'Fungsi ini belum diaktifkan di wiki ini.',
 'javascripttest-title' => '$1 pengujian sedang berjalan',
 'javascripttest-pagetext-noframework' => 'Halaman ini disediakan untuk pengujian JavaScript yang sedang berjalan.',
 'javascripttest-pagetext-unknownframework' => 'Pengujian kerangka kerja "$1" tidak diketahui',
@@ -3938,6 +3935,10 @@ Jika tidak, Anda dapat menggunakan formulir mudah di bawah ini. Komentar Anda ak
 'feedback-close' => 'Selesai',
 'feedback-bugcheck' => 'Hebat! Hanya periksa bahwa itu bukan satu di antara [$1 bug yang telah dikenal].',
 'feedback-bugnew' => 'Saya telah memeriksa. Laporkan bug baru',
+
+# Search suggestions
+'searchsuggest-search' => 'Cari',
+'searchsuggest-containing' => 'isian ...',
 
 # API errors
 'api-error-badaccess-groups' => 'Anda tidak diizinkan mengunggah berkas ke wiki ini.',

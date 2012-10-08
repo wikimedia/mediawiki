@@ -125,7 +125,15 @@ function wfStreamThumb( array $params ) {
 	$fileName = strtr( $fileName, '\\/', '__' );
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
-	if ( $isOld ) {
+	if ( $isTemp ) {
+		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
+		$img = new UnregisteredLocalFile( null, $repo,
+			# Temp files are hashed based on the name without the timestamp.
+			# The thumbnails will be hashed based on the entire name however.
+			# @TODO: fix this convention to actually be reasonable.
+			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
+		);
+	} elseif ( $isOld ) {
 		// Format is <timestamp>!<name>
 		$bits = explode( '!', $fileName, 2 );
 		if ( count( $bits ) != 2 ) {
@@ -140,20 +148,6 @@ function wfStreamThumb( array $params ) {
 			return;
 		}
 		$img = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $fileName );
-	} elseif ( $isTemp ) {
-		$repo = RepoGroup::singleton()->getLocalRepo()->getTempRepo();
-		// Format is <timestamp>!<name> or just <name>
-		$bits = explode( '!', $fileName, 2 );
-		// Get the name without the timestamp so hash paths are correctly computed
-		$title = Title::makeTitleSafe( NS_FILE, isset( $bits[1] ) ? $bits[1] : $fileName );
-		if ( !$title ) {
-			wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-		$img = new UnregisteredLocalFile( $title, $repo,
-			$repo->getZonePath( 'public' ) . '/' . $repo->getTempHashPath( $fileName ) . $fileName
-		);
 	} else {
 		$img = wfLocalFile( $fileName );
 	}
@@ -236,18 +230,22 @@ function wfStreamThumb( array $params ) {
 				if ( $wgVaryOnXFP ) {
 					$varyHeader[] = 'X-Forwarded-Proto';
 				}
-				$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				if ( count( $varyHeader ) ) {
+					$response->header( 'Vary: ' . implode( ', ', $varyHeader ) );
+				}
 				wfProfileOut( __METHOD__ );
 				return;
 			} else {
-				wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+				wfThumbError( 404, 'The given path of the specified thumbnail is incorrect.' );
 				wfProfileOut( __METHOD__ );
 				return;
 			}
 		}
 		$thumbPath = $img->getThumbPath( $thumbName );
 		if ( $img->getRepo()->fileExists( $thumbPath ) ) {
-			$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+			if ( count( $varyHeader ) ) {
+				$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+			}
 			$img->getRepo()->streamFile( $thumbPath, $headers );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -257,7 +255,10 @@ function wfStreamThumb( array $params ) {
 		wfProfileOut( __METHOD__ );
 		return;
 	}
-	$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+
+	if ( count( $varyHeader ) ) {
+		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );
+	}
 
 	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
@@ -301,51 +302,55 @@ function wfStreamThumb( array $params ) {
 function wfExtractThumbParams( $uriPath ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
+	// Zone URL might be relative ("/images") or protocol-relative ("//lang.site/image")
 	$zoneUriPath = $repo->getZoneHandlerUrl( 'thumb' )
 		? $repo->getZoneHandlerUrl( 'thumb' ) // custom URL
 		: $repo->getZoneUrl( 'thumb' ); // default to main URL
-	// URL might be relative ("/images") or protocol-relative ("//lang.site/image")
 	$bits = wfParseUrl( wfExpandUrl( $zoneUriPath, PROTO_INTERNAL ) );
 	if ( $bits && isset( $bits['path'] ) ) {
 		$zoneUriPath = $bits['path'];
 	} else {
-		return null;
+		return null; // not a valid thumbnail URL
 	}
 
-	$hashDirRegex = $subdirRegex = '';
+	$hashDirReg = $subdirReg = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
-		$subdirRegex .= '[0-9a-f]';
-		$hashDirRegex .= "$subdirRegex/";
+		$subdirReg .= '[0-9a-f]';
+		$hashDirReg .= "$subdirReg/";
+	}
+	$zoneReg = preg_quote( $zoneUriPath ); // regex for thumb zone URI
+
+	// Check if this is a thumbnail of an original in the local file repo
+	if ( preg_match( "!^$zoneReg/((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $uriPath, $m ) ) {
+		list( /*all*/, $rel, $archOrTemp, $filename, $thumbname ) = $m;
+	// Check if this is a thumbnail of an temp file in the local file repo
+	} elseif ( preg_match( "!^$zoneReg/(temp/)($hashDirReg([^/]*)/([^/]*))$!", $uriPath, $m ) ) {
+		list( /*all*/, $archOrTemp, $rel, $filename, $thumbname ) = $m;
+	} else {
+		return null; // not a valid looking thumbnail request
 	}
 
-	$thumbPathRegex = "!^" . preg_quote( $zoneUriPath ) .
-		"/((archive/|temp/)?$hashDirRegex([^/]*)/([^/]*))$!";
+	$filename = urldecode( $filename );
+	$thumbname = urldecode( $thumbname );
 
-	// Check if this is a valid looking thumbnail request...
-	if ( preg_match( $thumbPathRegex, $uriPath, $matches ) ) {
-		list( /* all */, $rel, $archOrTemp, $filename, $thumbname ) = $matches;
-		$filename = urldecode( $filename );
-		$thumbname = urldecode( $thumbname );
+	$params = array( 'f' => $filename, 'rel404' => $rel );
+	if ( $archOrTemp === 'archive/' ) {
+		$params['archived'] = 1;
+	} elseif ( $archOrTemp === 'temp/' ) {
+		$params['temp'] = 1;
+	}
 
-		$params = array( 'f' => $filename, 'rel404' => $rel );
-		if ( $archOrTemp == 'archive/' ) {
-			$params['archived'] = 1;
-		} elseif ( $archOrTemp == 'temp/' ) {
-			$params['temp'] = 1;
+	// Check if the parameters can be extracted from the thumbnail name...
+	if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
+		list( /* all */, $pagefull, $pagenum, $size ) = $matches;
+		$params['width'] = $size;
+		if ( $pagenum ) {
+			$params['page'] = $pagenum;
 		}
-
-		// Check if the parameters can be extracted from the thumbnail name...
-		if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
-			list( /* all */, $pagefull, $pagenum, $size ) = $matches;
-			$params['width'] = $size;
-			if ( $pagenum ) {
-				$params['page'] = $pagenum;
-			}
-			return $params; // valid thumbnail URL
-		// Hooks return false if they manage to *resolve* the parameters
-		} elseif ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
-			return $params; // valid thumbnail URL (via extension or config)
-		}
+		return $params; // valid thumbnail URL
+	// Hooks return false if they manage to *resolve* the parameters
+	} elseif ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+		return $params; // valid thumbnail URL (via extension or config)
 	}
 
 	return null; // not a valid thumbnail URL

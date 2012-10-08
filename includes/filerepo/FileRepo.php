@@ -1321,6 +1321,9 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getDeletedHashPath( $key ) {
+		if ( strlen( $key ) < 31 ) {
+			throw new MWException( "Invalid storage key '$key'." );
+		}
 		$path = '';
 		for ( $i = 0; $i < $this->deletedHashLevels; $i++ ) {
 			$path .= $key[$i] . '/';

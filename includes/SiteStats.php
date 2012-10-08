@@ -48,8 +48,7 @@ class SiteStats {
 			# Update schema
 			$u = new SiteStatsUpdate( 0, 0, 0 );
 			$u->doUpdate();
-			$dbr = wfGetDB( DB_SLAVE );
-			self::$row = $dbr->selectRow( 'site_stats', '*', false, __METHOD__ );
+			self::$row = self::doLoad( wfGetDB( DB_SLAVE ) );
 		}
 
 		self::$loaded = true;
@@ -91,7 +90,16 @@ class SiteStats {
 	 * @return Bool|ResultWrapper
 	 */
 	static function doLoad( $db ) {
-		return $db->selectRow( 'site_stats', '*', false, __METHOD__ );
+		return $db->selectRow( 'site_stats', array(
+				'ss_row_id',
+				'ss_total_views',
+				'ss_total_edits',
+				'ss_good_articles',
+				'ss_total_pages',
+				'ss_users',
+				'ss_active_users',
+				'ss_images',
+			), false, __METHOD__ );
 	}
 
 	/**
@@ -286,6 +294,8 @@ class SiteStatsUpdate implements DeferrableUpdate {
 			$this->doUpdatePendingDeltas();
 		} else {
 			$dbw = wfGetDB( DB_MASTER );
+			// Need a separate transaction because this a global lock
+			$dbw->begin( __METHOD__ );
 
 			$lockKey = wfMemcKey( 'site_stats' ); // prepend wiki ID
 			if ( $rate ) {
@@ -305,9 +315,6 @@ class SiteStatsUpdate implements DeferrableUpdate {
 				$this->users    += ( $pd['ss_users']['+'] - $pd['ss_users']['-'] );
 				$this->images   += ( $pd['ss_images']['+'] - $pd['ss_images']['-'] );
 			}
-
-			// Need a separate transaction because this a global lock
-			$dbw->begin( __METHOD__ );
 
 			// Build up an SQL query of deltas and apply them...
 			$updates = '';

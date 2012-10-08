@@ -36,13 +36,13 @@ Main Page
 blah blah
 !! endarticle
 
-!!article 
+!!article
 Template:Foo
 !!text
 FOO
 !!endarticle
 
-!! article 
+!! article
 Template:Blank
 !! text
 !! endarticle
@@ -63,6 +63,12 @@ MediaWiki:bad image list
 Template:inner list
 !! text
 * item 1
+!! endarticle
+
+!! article
+Template:echo
+!! text
+{{{1}}}
 !! endarticle
 
 ###
@@ -499,18 +505,34 @@ nowiki 3
 ### Comments
 ###
 !! test
-Comment test 1
+Comments and Pre
 !! input
 <!-- comment 1 --> asdf
+
+<!-- comment 1 --> asdf
 <!-- comment 2 -->
+
+<!-- comment 1 --> asdf
+<!-- comment 2 -->xyz
+
+<!-- comment 1 --> asdf
+<!-- comment 2 --> xyz
 !! result
 <pre>asdf
 </pre>
-
+<pre>asdf
+</pre>
+<pre>asdf
+</pre>
+<p>xyz
+</p>
+<pre>asdf
+xyz
+</pre>
 !! end
 
 !! test
-Comment test 2
+Comment test 2a
 !! input
 asdf
 <!-- comment 1 -->
@@ -518,6 +540,19 @@ jkl
 !! result
 <p>asdf
 jkl
+</p>
+!! end
+
+!! test
+Comment test 2b
+!! input
+asdf
+<!-- comment 1 -->
+
+jkl
+!! result
+<p>asdf
+</p><p>jkl
 </p>
 !! end
 
@@ -631,6 +666,74 @@ b
 <p>a
 </p><p>b
 </p>
+!! end
+
+!! test
+Comment on its own line post-expand with non-significant whitespace
+!! input
+a
+ {{blank}} <!----> 
+b
+!! result
+<p>a
+</p><p>b
+</p>
+!! end
+
+###
+### paragraph wraping tests
+###
+!! test
+No block tags
+!! input
+a
+
+b
+!! result
+<p>a
+</p><p>b
+</p>
+!! end
+!! test
+Block tag on one line
+!! input
+a <div>foo</div>
+
+b
+!! result
+a <div>foo</div>
+<p>b
+</p>
+!! end
+
+!! test
+Block tag on both lines
+!! input
+a <div>foo</div>
+
+b <div>foo</div>
+!! result
+a <div>foo</div>
+b <div>foo</div>
+
+!! end
+
+!! test
+Multiple lines without block tags
+!! input
+<div>foo</div> a
+b
+c
+d<!--foo--> e
+x <div>foo</div> z
+!! result
+<div>foo</div> a
+<p>b
+c
+d e
+</p>
+x <div>foo</div> z
+
 !! end
 
 ###
@@ -787,6 +890,127 @@ Bug 6200: Preformatted in <blockquote>
 </p>
 !! end
 
+!!test
+Templates: Pre: 1a. Templates that break a line should suppress <pre>
+!!input
+ {{echo|}}
+!!result
+
+!!end
+
+!!test
+Templates: Pre: 1b. Templates that break a line should suppress <pre>
+!!input
+ {{echo|
+foo}}
+!!result
+<p>foo
+</p>
+!!end
+
+!! test
+Templates: Pre: 1c: Wrapping should be based on expanded content
+!! input
+ {{echo|a
+b}}
+!!result
+<pre>a
+</pre>
+<p>b
+</p>
+!!end
+
+!! test
+Templates: Pre: 1d: Wrapping should be based on expanded content
+!! input
+ {{echo|a
+b
+c
+ d
+e
+}}
+!!result
+<pre>a
+</pre>
+<p>b
+c
+</p>
+<pre>d
+</pre>
+<p>e
+</p>
+!!end
+
+!!test
+Templates: Pre: 1e. Wrapping should be based on expanded content
+!!input
+{{echo| foo}}
+
+{{echo| foo}}
+{{echo| bar}}
+
+{{echo|<!--cmt--> foo}}
+
+<!--cmt-->{{echo| foo}}
+
+{{echo|{{echo| }}bar}}
+!!result
+<pre>foo
+</pre>
+<pre>foo
+bar
+</pre>
+<pre>foo
+</pre>
+<pre>foo
+</pre>
+<pre>bar
+</pre>
+!!end
+
+###
+### Parsoid-centric tests for testing RT edge cases
+### around comments and white-space inside pre blocks
+###
+
+!!test
+1a. Pre and Comments
+!!input
+ a
+<!--a-->
+c
+!!result
+<pre>a
+</pre>
+<p>c
+</p>
+!!end
+
+!!test
+1b. Pre and Comments
+!!input
+ a
+ <!--a-->
+c
+!!result
+<pre>a
+</pre>
+<p>c
+</p>
+!!end
+
+!!test
+1c. Pre and Comments
+!!input
+<!--a-->  a
+
+ <!--a--> a
+!!result
+<pre> a
+</pre>
+<pre> a
+</pre>
+!!end
 
 ###
 ### Definition lists
@@ -1042,7 +1266,7 @@ Definition Lists: Indentation: Multi-level indent
 ##
 ## All Parsoid only definition list tests have this difference.
 ##
-## See also: https://bugzilla.wikimedia.org/show_bug.cgi?id=6569 
+## See also: https://bugzilla.wikimedia.org/show_bug.cgi?id=6569
 ## and http://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
 
 !! test
@@ -1421,6 +1645,15 @@ second]
 !! result
 <p>[<a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a> first
 second]
+</p>
+!!end
+
+!! test
+External links: Pipe char between url and text
+!! input
+[http://example.com | link]
+!! result
+<p><a rel="nofollow" class="external text" href="http://example.com">| link</a>
 </p>
 !!end
 
@@ -1995,7 +2228,7 @@ A table with no data.
 # this as <p>caption</p>
 !! test
 A table with nothing but a caption
-!! input 
+!! input
 {|
 |+ caption
 |}
@@ -2735,6 +2968,16 @@ Blah blah blah
 </p>
 !! end
 
+!! test
+Parsoid-specific test: Wikilinks with &nbsp; should RT properly
+!! options
+language=ln
+!! input
+[[WW&nbsp;II]]
+!!result
+<p><a href="/index.php?title=WW_II&amp;action=edit&amp;redlink=1" class="new" title="WW II (lonkásá  ezalí tɛ̂)">WW&#160;II</a>
+</p>
+!! end
 
 ##
 ## XHTML tidiness
@@ -2758,7 +3001,7 @@ Incorrecly removing closing slashes from correctly formed XHTML
 </p>
 !! end
 
-!! test 
+!! test
 Failing to transform badly formed HTML into correct XHTML
 !! input
 <br style="clear: left;">
@@ -2770,6 +3013,47 @@ Failing to transform badly formed HTML into correct XHTML
 <br style="clear: both;" />
 </p>
 !!end
+
+!! test
+Handling html with a div self-closing tag
+!! input
+<div title />
+<div title/>
+<div title/ >
+<div title=bar />
+<div title=bar/>
+<div title=bar/ >
+!! result
+<p>&lt;div title /&gt;
+&lt;div title/&gt;
+</p>
+<div>
+<p>&lt;div title=bar /&gt;
+&lt;div title=bar/&gt;
+</p>
+<div title="bar/"></div>
+</div>
+
+!! end
+
+!! test
+Handling html with a br self-closing tag
+!! input
+<br title />
+<br title/>
+<br title/ >
+<br title=bar />
+<br title=bar/>
+<br title=bar/ >
+!! result
+<p><br title="title" />
+<br title="title" />
+<br />
+<br title="bar" />
+<br title="bar" />
+<br title="bar/" />
+</p>
+!! end
 
 !! test
 Horizontal ruler (should it add that extra space?)
@@ -4039,6 +4323,396 @@ section=1
 !! end
 
 ###
+### <includeonly> and <noinclude> in attributes
+###
+!!test
+1. includeonly around the entire attribute
+!!input
+<span <includeonly>id="v1"</includeonly><noinclude>id="v2"</noinclude>>bar</span>
+!!result
+<p><span id="v2">bar</span>
+</p>
+!!end
+
+!!test
+2. includeonly in html attr key
+!!input
+<span <noinclude>id</noinclude><includeonly>about</includeonly>="foo">bar</span>
+!!result
+<p><span id="foo">bar</span>
+</p>
+!!end
+
+!!test
+3. includeonly in html attr value
+!!input
+<span id="<noinclude>v1</noinclude><includeonly>v2</includeonly>">bar</span>
+<span id=<noinclude>"v1"</noinclude><includeonly>"v2"</includeonly>>bar</span>
+!!result
+<p><span id="v1">bar</span>
+<span id="v1">bar</span>
+</p>
+!!end
+
+!!test
+4. includeonly in part of an attr value
+!!input
+<span style="color:<noinclude>red</noinclude><includeonly>blue</includeonly>;">bar</span>
+!!result
+<p><span style="color:red;">bar</span>
+</p>
+!!end
+
+###
+### Testing parsing of templates where a template arg
+### has the same name as the template itself.
+###
+
+!! article
+Template:quote
+!! text
+{{{quote|{{{1}}}}}}
+!! endarticle
+
+!!test
+Templates: Template Name/Arg clash: 1. Use of positional param
+!!input
+{{quote|foo}}
+!!result
+<p>foo
+</p>
+!!end
+
+!!test
+Templates: Template Name/Arg clash: 2. Use of named param
+!!input
+{{quote|quote=foo}}
+!!result
+<p>foo
+</p>
+!!end
+
+!!test
+Templates: Template Name/Arg clash: 3. Use of named param with empty input
+!!input
+{{quote|quote}}
+!!result
+<p>quote
+</p>
+!!end
+
+###
+### Parsoid-centric tests to stress Parsoid's ability to RT them unchanged
+###
+
+!!test
+Templates: 1. Simple use
+!!input
+{{echo|Foo}}
+!!result
+<p>Foo
+</p>
+!!end
+
+!!test
+Templates: 2. Inside a block tag
+!!input
+<div>{{echo|Foo}}</div>
+!!result
+<div>Foo</div>
+
+!!end
+
+!!test
+Templates: P-wrapping: 1a. Templates on consecutive lines
+!!input
+{{echo|Foo}}
+{{echo|bar}}
+!!result
+<p>Foo
+bar
+</p>
+!!end
+
+!!test
+Templates: P-wrapping: 1b. Templates on consecutive lines
+!!input
+Foo
+
+{{echo|bar}}
+{{echo|baz}}
+!!result
+<p>Foo
+</p><p>bar
+baz
+</p>
+!!end
+
+!!test
+Templates: P-wrapping: 1c. Templates on consecutive lines
+!!input
+{{echo|Foo}}
+{{echo|bar}} <div>baz</div>
+!!result
+<p>Foo
+</p>
+bar <div>baz</div>
+
+!!end
+
+!!test
+Templates: Inline Text: 1. Multiple tmeplate uses
+!!input
+{{echo|Foo}}bar{{echo|baz}}
+!!result
+<p>Foobarbaz
+</p>
+!!end
+
+!!test
+Templates: Inline Text: 2. Back-to-back template uses
+!!input
+{{echo|Foo}}{{echo|bar}}
+!!result
+<p>Foobar
+</p>
+!!end
+
+!!test
+Templates: Block Tags: 1. Multiple template uses
+!!input
+{{echo|<div>Foo</div>}}<div>bar</div>{{echo|<div>baz</div>}}
+!!result
+<div>Foo</div><div>bar</div><div>baz</div>
+
+!!end
+
+!!test
+Templates: Block Tags: 2. Back-to-back template uses
+!!input
+{{echo|<div>Foo</div>}}{{echo|<div>bar</div>}}
+!!result
+<div>Foo</div><div>bar</div>
+
+!!end
+
+!!test
+Templates: Links: 1. Simple example
+!!input
+{{echo|[[Foo|bar]]}}
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 2. Generation of link href
+!!input
+[[{{echo|Foo}}|bar]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 3. Generation of part of a link href
+!!input
+[[Fo{{echo|o}}|bar]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 4. Multiple templates generating link href
+!!input
+[[{{echo|F}}{{echo|o}}ob{{echo|ar}}]]
+!!result
+<p><a href="/index.php?title=Foobar&amp;action=edit&amp;redlink=1" class="new" title="Foobar (page does not exist)">Foobar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 5. Generation of link text
+!!input
+[[Foo|{{echo|bar}}]]
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: Links: 5. Nested templates (only outermost template should be marked)
+!!input
+{{echo|[[{{echo|Foo}}|bar]]}}
+!!result
+<p><a href="/index.php?title=Foo&amp;action=edit&amp;redlink=1" class="new" title="Foo (page does not exist)">bar</a>
+</p>
+!!end
+
+!!test
+Templates: HTML Tag: 1. Generation of HTML attr. key
+!!input
+<div {{echo|style}}="color:red;">foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 2. Generation of HTML attr. value
+!!input
+<div style={{echo|'color:red;'}}>foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 3. Generation of HTML attr key and value
+!!input
+<div {{echo|style}}={{echo|'color:red;'}}>foo</div>
+!!result
+<div style="color:red;">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 4. Generation of starting piece of HTML attr value
+!!input
+<div title="{{echo|This is a long title}} with just one piece templated">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 5. Generation of middle piece of HTML attr value
+!!input
+<div title="This is a long title with just {{echo|one piece}} templated">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: HTML Tag: 6. Generation of end piece of HTML attr value
+!!input
+<div title="This is a long title with just one piece {{echo|templated}}">foo</div>
+!!result
+<div title="This is a long title with just one piece templated">foo</div>
+
+!!end
+
+!!test
+Templates: Tables: 1. Generating start of a HTML table
+!!input
+{{echo|<table><tr><td>foo</td>}}</tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 2a. Generating middle of a HTML table
+!!input
+<table><tr>{{echo|<td>foo</td>}}</tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 2b. Generating middle of a HTML table
+!!input
+<table>{{echo|<tr><td>foo</td></tr>}}</table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 3. Generating end of a HTML table
+!!input
+<table><tr>{{echo|<td>foo</td></tr></table>}}
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4a. Generating a single tag of a HTML table
+!!input
+{{echo|<table>}}<tr><td>foo</td></tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4b. Generating a single tag of a HTML table
+!!input
+<table>{{echo|<tr>}}<td>foo</td></tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4c. Generating a single tag of a HTML table
+!!input
+<table><tr>{{echo|<td>}}foo</td></tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4d. Generating a single tag of a HTML table
+!!input
+<table><tr><td>foo{{echo|</td>}}</tr></table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4e. Generating a single tag of a HTML table
+!!input
+<table><tr><td>foo</td>{{echo|</tr>}}</table>
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Tables: 4f. Generating a single tag of a HTML table
+!!input
+<table><tr><td>foo</td></tr>{{echo|</table>}}
+!!result
+<table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Parser Functions: 1. Simple example
+!!input
+{{uc:foo}}
+!!result
+<p>FOO
+</p>
+!!end
+
+!!test
+Parser Functions: 2. Nested use (only outermost should be marked up)
+!!input
+{{uc:{{lc:FOO}}}}
+!!result
+<p>FOO
+</p>
+!!end
+
+###
 ### Pre-save transform tests
 ###
 !! test
@@ -5008,7 +5682,7 @@ Custom class
 </p>
 !! end
 
-!! article 
+!! article
 File:Barfoo.jpg
 !! text
 #REDIRECT [[File:Barfoo.jpg]]
@@ -5123,6 +5797,48 @@ PAGESINCATEGORY invalid title fatal (r33546 fix)
 </p>
 !! end
 
+!! test
+Category with different sort key
+!! options
+cat
+!! input
+[[Category:MediaWiki User's Guide|Foo]]
+!! result
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+!! end
+
+!! test
+Category with identical sort key
+!! options
+cat
+!! input
+[[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
+!! result
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+!! end
+
+!! test
+Category with empty sort key
+!! options
+cat
+pst
+!! input
+[[Category:MediaWiki User's Guide|]]
+!! result
+[[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
+!! end
+
+!! test
+Category with empty sort key and parentheses
+!! options
+cat
+pst
+!! input
+[[Category:Foo (bar)|]]
+!! result
+[[Category:Foo (bar)|Foo]]
+!! end
+
 ###
 ### Inter-language links
 ###
@@ -5136,6 +5852,19 @@ ill
 [[zh:&#39135;&#21697;]]
 !! result
 es:Alimento fr:Nourriture zh:食品
+!! end
+
+!! test
+Duplicate interlanguage links (bug 24502)
+!! options
+ill
+!! input
+[[es:1]]
+[[es:2]]
+[[fr:1]]
+[[fr:2]]
+!! result
+es:1 fr:1
 !! end
 
 ###
@@ -5211,7 +5940,7 @@ Some text
 # perl -e 'print "="x$_," Level $_ heading","="x$_,"\n" for 1..10'
 !! test
 Handling of sections up to level 6 and beyond
-!! input 
+!! input
 = Level 1 Heading=
 == Level 2 Heading==
 === Level 3 Heading===
@@ -7420,7 +8149,7 @@ section=2
 !! end
 
 
-# Formerly testing for bug 2587, now resolved by the use of unmarked sections 
+# Formerly testing for bug 2587, now resolved by the use of unmarked sections
 # instead of respecting commented sections
 !! test
 Section extraction prefixed by comment (section 1)
@@ -7445,7 +8174,7 @@ section=2
 !!end
 
 
-# Formerly testing for bug 2607, now resolved by the use of unmarked sections 
+# Formerly testing for bug 2607, now resolved by the use of unmarked sections
 # instead of respecting HTML-style headings
 !! test
 Section extraction, mixed wiki and html (section 1)
@@ -8228,7 +8957,7 @@ HTML Hex character encoding mixed case
 
 !! test
 __FORCETOC__ override
-!! input 
+!! input
 __NEWSECTIONLINK__
 __FORCETOC__
 !! result
@@ -8282,7 +9011,7 @@ RFC RFC 1234
 !! end
 
 !! test
-Double RFC with a wiki link 
+Double RFC with a wiki link
 !! input
 RFC [[RFC 1234]]
 !! result
@@ -9002,7 +9731,7 @@ Fridrih IV je car.
 
 !! test
 Unclosed language converter markup "-{"
-!! options 
+!! options
 language=sr
 !! input
 -{T|hello
@@ -9017,12 +9746,12 @@ Don't convert raw rule "-{R|=&gt;}-" to "=>"
 language=sr
 !! input
 -{R|=&gt;}-
-!! result 
+!! result
 <p>=&gt;
 </p>
 !!end
 
-!!article 
+!!article
 Template:Bullet
 !!text
 * Bar
@@ -9772,7 +10501,7 @@ Screen
 <p>this is not the the title
 </p>
 !! end
- 
+
 !! test
 preload: check <noinclude> and <includeonly>
 !! options
@@ -9782,7 +10511,7 @@ Hello <noinclude>cruel</noinclude><includeonly>kind</includeonly> world.
 !! result
 Hello kind world.
 !! end
- 
+
 !! test
 preload: check <onlyinclude>
 !! options
@@ -9814,7 +10543,7 @@ preload
 !! end
 
 !! test
-Play a bit with r67090 and bug 3158 
+Play a bit with r67090 and bug 3158
 !! options
 disabled
 !! input
@@ -10023,7 +10752,7 @@ __TOC__
 !! end
 
 !! test
-Bug 26375: TOC with bold 
+Bug 26375: TOC with bold
 !! options
 title=[[Main Page]]
 !! input
@@ -10129,6 +10858,37 @@ __TOC__
 </td></tr></table>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Hello">edit</a>]</span> <span class="mw-headline" id="Hello"> <sup class="in-h2">Hello</sup> </span></h2>
 <h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: b&quot;>Evilbye">edit</a>]</span> <span class="mw-headline" id="b.22.3EEvilbye"> <sup> b"&gt;Evilbye</sup> </span></h2>
+
+!! end
+
+!! test
+span tags with directionality in TOC
+!! input
+__TOC__
+== <span dir="ltr">C++</span> ==
+
+== <span dir="rtl">זבנג!</span> ==
+
+== <span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span> ==
+
+== <span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span> ==
+
+== <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> ==
+!! result
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#C.2B.2B"><span class="tocnumber">1</span> <span class="toctext"><span dir="ltr">C++</span></span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#.D7.96.D7.91.D7.A0.D7.92.21"><span class="tocnumber">2</span> <span class="toctext"><span dir="rtl">זבנג!</span></span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">3</span> <span class="toctext"><span>The attributes on these span tags must be deleted from the TOC</span></span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">4</span> <span class="toctext"><span>All attributes on these span tags must be deleted from the TOC</span></span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"><span class="tocnumber">5</span> <span class="toctext"><span dir="ltr">Attributes after dir on these span tags must be deleted from the TOC</span></span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: C++">edit</a>]</span> <span class="mw-headline" id="C.2B.2B"> <span dir="ltr">C++</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: זבנג!">edit</a>]</span> <span class="mw-headline" id=".D7.96.D7.91.D7.A0.D7.92.21"> <span dir="rtl">זבנג!</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: The attributes on these span tags must be deleted from the TOC">edit</a>]</span> <span class="mw-headline" id="The_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"> <span style="font-style: italic">The attributes on these span tags must be deleted from the TOC</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: All attributes on these span tags must be deleted from the TOC">edit</a>]</span> <span class="mw-headline" id="All_attributes_on_these_span_tags_must_be_deleted_from_the_TOC"> <span style="font-style: italic" dir="ltr">All attributes on these span tags must be deleted from the TOC</span> </span></h2>
+<h2><span class="editsection">[<a href="/index.php?title=Parser_test&amp;action=edit&amp;section=5" title="Edit section: Attributes after dir on these span tags must be deleted from the TOC">edit</a>]</span> <span class="mw-headline" id="Attributes_after_dir_on_these_span_tags_must_be_deleted_from_the_TOC"> <span dir="ltr" style="font-style: italic">Attributes after dir on these span tags must be deleted from the TOC</span> </span></h2>
 
 !! end
 

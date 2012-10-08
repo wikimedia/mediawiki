@@ -374,8 +374,9 @@ class FileDeleteForm {
 		$q = array();
 		$q['action'] = 'delete';
 
-		if( $this->oldimage )
+		if( $this->oldimage ) {
 			$q['oldimage'] = $this->oldimage;
+		}
 
 		return $this->title->getLocalUrl( $q );
 	}

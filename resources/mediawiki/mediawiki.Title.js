@@ -132,7 +132,7 @@ var
 	setAll = function ( title, s ) {
 		// In normal browsers the match-array contains null/undefined if there's no match,
 		// IE returns an empty string.
-		var	matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w{1,5}))?$/ ),
+		var matches = s.match( /^(?:([^:]+):)?(.*?)(?:\.(\w+))?$/ ),
 			ns_match = getNsIdByName( matches[1] );
 
 		// Namespace must be valid, and title must be a non-empty string.
@@ -160,7 +160,7 @@ var
 	setNameAndExtension = function ( title, raw ) {
 		// In normal browsers the match-array contains null/undefined if there's no match,
 		// IE returns an empty string.
-		var matches = raw.match( /^(?:)?(.*?)(?:\.(\w{1,5}))?$/ );
+		var matches = raw.match( /^(?:)?(.*?)(?:\.(\w+))?$/ );
 
 		// Title must be a non-empty string.
 		if ( typeof matches[1] === 'string' && matches[1] !== '' ) {

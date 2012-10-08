@@ -48,7 +48,7 @@ class FakeConverter {
 	/**
 	 * @var Language
 	 */
-	var $mLang;
+	public $mLang;
 	function __construct( $langobj ) { $this->mLang = $langobj; }
 	function autoConvertToAllVariants( $text ) { return array( $this->mLang->getCode() => $text ); }
 	function convert( $t ) { return $t; }
@@ -77,21 +77,21 @@ class Language {
 	/**
 	 * @var LanguageConverter
 	 */
-	var $mConverter;
+	public $mConverter;
 
-	var $mVariants, $mCode, $mLoaded = false;
-	var $mMagicExtensions = array(), $mMagicHookDone = false;
+	public $mVariants, $mCode, $mLoaded = false;
+	public $mMagicExtensions = array(), $mMagicHookDone = false;
 	private $mHtmlCode = null;
 
-	var $dateFormatStrings = array();
-	var $mExtendedSpecialPageAliases;
+	public $dateFormatStrings = array();
+	public $mExtendedSpecialPageAliases;
 
 	protected $namespaceNames, $mNamespaceIds, $namespaceAliases;
 
 	/**
 	 * ReplacementArray object caches
 	 */
-	var $transformData = array();
+	public $transformData = array();
 
 	/**
 	 * @var LocalisationCache
@@ -356,7 +356,7 @@ class Language {
 	 * @deprecated in 1.19
 	 */
 	function getFallbackLanguageCode() {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
 		return self::getFallbackFor( $this->mCode );
 	}
 
@@ -3419,6 +3419,18 @@ class Language {
 		if ( !count( $forms ) ) {
 			return '';
 		}
+
+		// Handle explicit 0= and 1= forms
+		foreach ( $forms as $index => $form ) {
+			if ( isset( $form[1] ) && $form[1] === '=' ) {
+				if ( $form[0] === (string) $count ) {
+					return substr( $form, 2 );
+				}
+				unset( $forms[$index] );
+			}
+		}
+		$forms = array_values( $forms );
+
 		$pluralForm = $this->getPluralForm( $count );
 		$pluralForm = min( $pluralForm, count( $forms ) - 1 );
 		return $forms[$pluralForm];

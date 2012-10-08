@@ -268,8 +268,8 @@ $1",
 'mainpage' => 'Hauptseiten',
 'mainpage-description' => 'Hauptseiten',
 'policy-url' => 'Project:Richtlinien',
-'portal' => 'Gmoahschoftsportoi',
-'portal-url' => 'Project:Gmoahschoftsportoi',
+'portal' => 'Autornportal',
+'portal-url' => 'Project:Autornportal',
 'privacy' => 'Daatenschutz',
 'privacypage' => 'Project:Daatenschutz',
 
@@ -413,7 +413,7 @@ $2",
 # Login and logout pages
 'logouttext' => "'''Iatzerd bist obgmödt.'''
 
-Du kåst {{SITENAME}} iatzerd anónym weiderdoah, óder di danaid unterm söwing óder am åndern Benutzernåm [[Special:UserLogin|åmöden]].
+Du kåst {{SITENAME}} iatzerd anónym weiderdoah, óder di danaid unterm söwing óder am åndern Benutzernåm <span class='plainlinks'>[$1 åmöden]</span>.
 Beochtt ower, daas oanige Seiten noh åzoang kennern, daas du ågmödt bist, sólång du néd deih Browsercache glaard host.",
 'welcomecreation' => '== Servas, $1! ==
 
@@ -688,8 +688,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'search-interwiki-caption' => 'Schwesterprojekte',
 'search-interwiki-default' => '$1 Eagebnisse:',
 'search-interwiki-more' => '(mea)',
-'search-mwsuggest-enabled' => 'mid Vurschleg',
-'search-mwsuggest-disabled' => 'koane Vurschleg',
 'searchrelated' => 'vawåndt',
 'searchall' => 'olle',
 'showingresultsheader' => "{{PLURAL:$5|Ergebnis '''$1''' voh '''$3'''|Ergebniss '''$1–$2''' voh '''$3'''}} fyr '''$4'''",
@@ -1721,5 +1719,9 @@ Bittscheh d' noraale Vurschau bnutzen.",
 'htmlform-submit' => 'Speichern',
 'htmlform-reset' => 'Änderrungen ryckgängég mochen',
 'htmlform-selectorother-other' => 'Åndre',
+
+# Search suggestions
+'searchsuggest-search' => 'Suach',
+'searchsuggest-containing' => 'Voitextsuach noch ...',
 
 );

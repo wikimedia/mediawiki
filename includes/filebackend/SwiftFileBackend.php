@@ -81,7 +81,8 @@ class SwiftFileBackend extends FileBackendStore {
 	 *                             - levels : the number of hash levels (and digits)
 	 *                             - repeat : hash subdirectories are prefixed with all the
 	 *                                        parent hash directory names (e.g. "a/ab/abc")
-	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC/XCache.
+	 *   - cacheAuthInfo      : Whether to cache authentication tokens in APC, XCache, ect.
+	 *                          If those are not available, then the main cache will be used.
 	 *                          This is probably insecure in shared hosting environments.
 	 */
 	public function __construct( array $config ) {
@@ -121,9 +122,13 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->connContainerCache = new ProcessCacheLRU( 300 );
 		// Cache auth token information to avoid RTTs
 		if ( !empty( $config['cacheAuthInfo'] ) ) {
-			try { // look for APC, XCache, WinCache, ect...
-				$this->srvCache = ObjectCache::newAccelerator( array() );
-			} catch ( Exception $e ) {}
+			if ( php_sapi_name() === 'cli' ) {
+				$this->srvCache = wfGetMainCache(); // preferrably memcached
+			} else {
+				try { // look for APC, XCache, WinCache, ect...
+					$this->srvCache = ObjectCache::newAccelerator( array() );
+				} catch ( Exception $e ) {}
+			}
 		}
 		$this->srvCache = $this->srvCache ? $this->srvCache : new EmptyBagOStuff();
 	}
@@ -784,8 +789,7 @@ class SwiftFileBackend extends FileBackendStore {
 		$status = Status::newGood();
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
-			# Do not stat the file in getLocalCopy() to avoid infinite loops
-			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1, 'nostat' => 1 ) );
+			$tmpFile = $this->getLocalCopy( array( 'src' => $path, 'latest' => 1 ) );
 			if ( $tmpFile ) {
 				$hash = $tmpFile->getSha1Base36();
 				if ( $hash !== false ) {
@@ -802,30 +806,77 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackend::getFileContents()
-	 * @return bool|null|string
+	 * @see FileBackendStore::doGetFileContentsMulti()
+	 * @return Array
 	 */
-	public function getFileContents( array $params ) {
-		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
-		if ( $srcRel === null ) {
-			return false; // invalid storage path
+	protected function doGetFileContentsMulti( array $params ) {
+		$contents = array();
+
+		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
+		// Blindly create tmp files and stream to them, catching any exception if the file does
+		// not exist. Doing stats here is useless and will loop infinitely in addMissingMetadata().
+		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
+			$cfOps = array(); // (path => CF_Async_Op)
+
+			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
+				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+				if ( $srcRel === null ) {
+					$contents[$path] = false;
+					continue;
+				}
+				$data = false;
+				try {
+					$sContObj = $this->getContainer( $srcCont );
+					$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
+					// Get source file extension
+					$ext = FileBackend::extensionFromPath( $path );
+					// Create a new temporary memory file...
+					$handle = fopen( 'php://temp', 'wb' );
+					if ( $handle ) {
+						$headers = $this->headersFromParams( $params );
+						if ( count( $pathBatch ) > 1 ) {
+							$cfOps[$path] = $obj->stream_async( $handle, $headers );
+							$cfOps[$path]->_file_handle = $handle; // close this later
+						} else {
+							$obj->stream( $handle, $headers );
+							rewind( $handle ); // start from the beginning
+							$data = stream_get_contents( $handle );
+							fclose( $handle );
+						}
+					} else {
+						$data = false;
+					}
+				} catch ( NoSuchContainerException $e ) {
+					$data = false;
+				} catch ( NoSuchObjectException $e ) {
+					$data = false;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$data = false;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				$contents[$path] = $data;
+			}
+
+			$batch = new CF_Async_Op_Batch( $cfOps );
+			$cfOps = $batch->execute();
+			foreach ( $cfOps as $path => $cfOp ) {
+				try {
+					$cfOp->getLastResponse();
+					rewind( $cfOp->_file_handle ); // start from the beginning
+					$contents[$path] = stream_get_contents( $cfOp->_file_handle );
+				} catch ( NoSuchContainerException $e ) {
+					$contents[$path] = false;
+				} catch ( NoSuchObjectException $e ) {
+					$contents[$path] = false;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$contents[$path] = false;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				fclose( $cfOp->_file_handle ); // close open handle
+			}
 		}
 
-		if ( !$this->fileExists( $params ) ) {
-			return null;
-		}
-
-		$data = false;
-		try {
-			$sContObj = $this->getContainer( $srcCont );
-			$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-			$data = $obj->read( $this->headersFromParams( $params ) );
-		} catch ( NoSuchContainerException $e ) {
-		} catch ( CloudFilesException $e ) { // some other exception?
-			$this->handleException( $e, null, __METHOD__, $params );
-		}
-
-		return $data;
+		return $contents;
 	}
 
 	/**
@@ -1033,44 +1084,76 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * @see FileBackendStore::getLocalCopy()
+	 * @see FileBackendStore::doGetLocalCopyMulti()
 	 * @return null|TempFSFile
 	 */
-	public function getLocalCopy( array $params ) {
-		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
-		if ( $srcRel === null ) {
-			return null;
-		}
+	protected function doGetLocalCopyMulti( array $params ) {
+		$tmpFiles = array();
 
-		// Blindly create a tmp file and stream to it, catching any exception if the file does
-		// not exist. Also, doing a stat here will cause infinite loops when filling metadata.
-		$tmpFile = null;
-		try {
-			$sContObj = $this->getContainer( $srcCont );
-			$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
-			// Get source file extension
-			$ext = FileBackend::extensionFromPath( $srcRel );
-			// Create a new temporary file...
-			$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
-			if ( $tmpFile ) {
-				$handle = fopen( $tmpFile->getPath(), 'wb' );
-				if ( $handle ) {
-					$obj->stream( $handle, $this->headersFromParams( $params ) );
-					fclose( $handle );
-				} else {
-					$tmpFile = null; // couldn't open temp file
+		$ep = array_diff_key( $params, array( 'srcs' => 1 ) ); // for error logging
+		// Blindly create tmp files and stream to them, catching any exception if the file does
+		// not exist. Doing a stat here is useless causes infinite loops in addMissingMetadata().
+		foreach ( array_chunk( $params['srcs'], $params['concurrency'] ) as $pathBatch ) {
+			$cfOps = array(); // (path => CF_Async_Op)
+
+			foreach ( $pathBatch as $path ) { // each path in this concurrent batch
+				list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+				if ( $srcRel === null ) {
+					$tmpFiles[$path] = null;
+					continue;
 				}
+				$tmpFile = null;
+				try {
+					$sContObj = $this->getContainer( $srcCont );
+					$obj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
+					// Get source file extension
+					$ext = FileBackend::extensionFromPath( $path );
+					// Create a new temporary file...
+					$tmpFile = TempFSFile::factory( 'localcopy_', $ext );
+					if ( $tmpFile ) {
+						$handle = fopen( $tmpFile->getPath(), 'wb' );
+						if ( $handle ) {
+							$headers = $this->headersFromParams( $params );
+							if ( count( $pathBatch ) > 1 ) {
+								$cfOps[$path] = $obj->stream_async( $handle, $headers );
+								$cfOps[$path]->_file_handle = $handle; // close this later
+							} else {
+								$obj->stream( $handle, $headers );
+								fclose( $handle );
+							}
+						} else {
+							$tmpFile = null;
+						}
+					}
+				} catch ( NoSuchContainerException $e ) {
+					$tmpFile = null;
+				} catch ( NoSuchObjectException $e ) {
+					$tmpFile = null;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$tmpFile = null;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				$tmpFiles[$path] = $tmpFile;
 			}
-		} catch ( NoSuchContainerException $e ) {
-			$tmpFile = null;
-		} catch ( NoSuchObjectException $e ) {
-			$tmpFile = null;
-		} catch ( CloudFilesException $e ) { // some other exception?
-			$tmpFile = null;
-			$this->handleException( $e, null, __METHOD__, $params );
+
+			$batch = new CF_Async_Op_Batch( $cfOps );
+			$cfOps = $batch->execute();
+			foreach ( $cfOps as $path => $cfOp ) {
+				try {
+					$cfOp->getLastResponse();
+				} catch ( NoSuchContainerException $e ) {
+					$tmpFiles[$path] = null;
+				} catch ( NoSuchObjectException $e ) {
+					$tmpFiles[$path] = null;
+				} catch ( CloudFilesException $e ) { // some other exception?
+					$tmpFiles[$path] = null;
+					$this->handleException( $e, null, __METHOD__, array( 'src' => $path ) + $ep );
+				}
+				fclose( $cfOp->_file_handle ); // close open handle
+			}
 		}
 
-		return $tmpFile;
+		return $tmpFiles;
 	}
 
 	/**
@@ -1259,13 +1342,6 @@ class SwiftFileBackend extends FileBackendStore {
 	 */
 	private function getCredsCacheKey( $username ) {
 		return wfMemcKey( 'backend', $this->getName(), 'usercreds', $username );
-	}
-
-	/**
-	 * @see FileBackendStore::doClearCache()
-	 */
-	protected function doClearCache( array $paths = null ) {
-		$this->connContainerCache->clear(); // clear container object cache
 	}
 
 	/**

@@ -11,25 +11,37 @@ MediaWiki 1.21 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.21 ===
+* (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
+* Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname' instead
 
 === New features in 1.21 ===
 * Added ContentHandler facility to allow extensions to support other content than wikitext.
   See docs/contenthandler.txt for details.
 
 === Bug fixes in 1.21 ===
+* (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
+* (bug 40352) fixDoubleRedirects.php should support interwiki redirects.
+* (bug 9237) SpecialBrokenRedirect should not list interwiki redirects.
+* (bug 34960) Drop unused fields rc_moved_to_ns and rc_moved_to_title from recentchanges table.
+* (bug 32951) Do not register internal externals with absolute protocol,
+  when server has relative protocol.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
 * action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
   page content; See docs/contenthandler.txt for details.
+* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 
 === Languages updated in 1.21 ===
 
+MediaWiki supports over 350 languages. Many localisations are updated
+regularly. Below only new and removed languages are listed, as well as
+changes to languages because of Bugzilla reports.
 === Other changes in 1.21 ===
 
 == Compatibility ==
 
-Since version 1.20, MediaWiki requires PHP 5.3.2. PHP 4 is no longer supported.
+MediaWiki 1.21 requires PHP 5.3.2. PHP 4 is no longer supported.
 
 MySQL is the recommended DBMS. PostgreSQL or SQLite can also be used, but
 support for them is somewhat less mature. There is experimental support for IBM

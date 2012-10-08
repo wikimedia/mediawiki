@@ -1058,8 +1058,9 @@ class EnhancedChangesList extends ChangesList {
 						array(),
 						$params
 					);
-				if( $this->isDeleted($rcObj,Revision::DELETED_TEXT) )
+				if( $this->isDeleted( $rcObj, Revision::DELETED_TEXT ) ) {
 					$link = '<span class="history-deleted">'.$link.'</span> ';
+				}
 			}
 			$r .= $link . '</span>';
 

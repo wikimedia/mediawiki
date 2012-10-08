@@ -80,6 +80,7 @@
  * @author Urhixidur
  * @author VegaDark
  * @author Vivaelcelta
+ * @author Waldir
  * @author Wilfredor
  * @author XalD
  * @author XanaG
@@ -515,7 +516,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protección',
-'vector-simplesearch-preference' => 'Activar sugerencias de búsqueda mejoradas (piel Vector solamente)',
+'vector-simplesearch-preference' => 'Activar la barra de búsqueda simplificada (sólo con la apariencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver historial',
@@ -764,7 +765,7 @@ El administrador que lo ha bloqueado ofrece esta explicación: "$3".',
 # Login and logout pages
 'logouttext' => "'''Ha terminado su sesión.'''
 
-Puedes continuar usando {{SITENAME}} de forma anónima, o puedes [[Special:UserLogin|iniciar sesión otra vez]] con el mismo u otro usuario.
+Puedes continuar usando {{SITENAME}} de forma anónima, o puedes <span class='plainlinks'>[$1 iniciar sesión otra vez]</span> con el mismo u otro usuario.
 Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas pueden verse como si siguieras identificado hasta que las refresques.",
 'welcomecreation' => '== ¡Bienvenido(a), $1! ==
 
@@ -1026,8 +1027,7 @@ Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otra
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
 'noarticletext-nopermission' => 'Actualmente no hay texto en esta página.
-Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>.',
+Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas, o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar en los registros relacionados]</span>, pero no tienes permiso para crear esta página.',
 'missing-revision' => 'La revisión #$1 de la página «{{PAGENAME}}» no existe.
 
 Esto suele deberse a seguir un enlace obsoleto hacia el historial de una página que ya ha sido borrada.
@@ -1392,8 +1392,6 @@ Los detalles pueden encontrarse en el [{{fullurl:{{#Special:Log}}/delete|page={{
 'search-interwiki-caption' => 'Proyectos hermanos',
 'search-interwiki-default' => 'Resultados de $1:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'con sugerencias',
-'search-mwsuggest-disabled' => 'sin sugerencias',
 'search-relatedarticle' => 'Relacionado',
 'mwsuggest-disable' => 'Desactivar AJAX al realizar búsquedas',
 'searcheverything-enable' => 'Buscar en todos los espacios de nombres',
@@ -1490,7 +1488,7 @@ Cualquiera que conozca la clave en este campo será capaz de leer tu lista de se
 'timezoneregion-indian' => 'Océano Índico',
 'timezoneregion-pacific' => 'Océano Pacífico',
 'allowemail' => 'Aceptar correo electrónico de otros usuarios',
-'prefs-searchoptions' => 'Opciones de búsqueda',
+'prefs-searchoptions' => 'Buscar',
 'prefs-namespaces' => 'Espacios de nombres',
 'defaultns' => 'Buscar en estos espacios de nombres por defecto:',
 'default' => 'por defecto',
@@ -3012,7 +3010,6 @@ No hay un directorio temporal.',
 
 # JavaScriptTest
 'javascripttest' => 'Pruebas de JavaScript',
-'javascripttest-disabled' => 'Esta función no ha sido activada en este wiki.',
 'javascripttest-title' => 'Pruebas de $1 en ejecución',
 'javascripttest-pagetext-noframework' => 'Esta página está reservada para ejecutar pruebas de JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Marco de pruebas desconocido "$1".',
@@ -3179,7 +3176,6 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de ediciones recientes (en los últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recientes',
-'pageinfo-restriction' => 'Protección de la página ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',
@@ -4040,6 +4036,10 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 'feedback-close' => 'Hecho',
 'feedback-bugcheck' => '¡Perfecto! Únicamente comprueba que no sea un [$1 fallo conocido].',
 'feedback-bugnew' => 'Lo he comprobado. Informar de un nuevo fallo.',
+
+# Search suggestions
+'searchsuggest-search' => 'Buscar',
+'searchsuggest-containing' => 'conteniendo...',
 
 # API errors
 'api-error-badaccess-groups' => 'No puedes cargar archivos en este wiki.',

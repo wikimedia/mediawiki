@@ -687,7 +687,7 @@ Lekérdezés: $2',
 'viewsourcetext' => 'Megtekintheted és másolhatod a lap forrását:',
 'viewyourtext' => "Megtekintheted és kimásolhatod a '''saját szerkesztéseidet''' az alábbi lapra:",
 'protectedinterface' => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
-'editinginterface' => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéhez tartozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
+'editinginterface' => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéhez tartozik. A lap megváltoztatása hatással lesz a kinézetre, ahogy más szerkesztők látják a lapot. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
 'sqlhidden' => '(rejtett SQL lekérdezés)',
 'cascadeprotected' => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
@@ -713,7 +713,7 @@ A lezárást végrehajtó rendszergazda az alábbi indoklást adta meg: "$3".',
 # Login and logout pages
 'logouttext' => "'''Sikeresen kijelentkeztél.'''
 
-Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy [[Special:UserLogin|ismét bejelentkezhetsz]] ugyanezzel, vagy egy másik névvel.
+Folytathatod névtelenül  a(z) {{SITENAME}} használatát, vagy <span class='plainlinks'>[$1 ismét bejelentkezhetsz]</span> ugyanezzel, vagy egy másik névvel.
 Lehetséges, hogy néhány oldalon továbbra is azt látod, be vagy jelentkezve, mindaddig, amíg nem üríted a böngésződ gyorsítótárát.",
 'welcomecreation' => '== Köszöntünk, $1! ==
 A felhasználói fiókodat létrehoztuk.
@@ -1311,8 +1311,6 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'search-interwiki-caption' => 'Társlapok',
 'search-interwiki-default' => '$1 találat',
 'search-interwiki-more' => '(több)',
-'search-mwsuggest-enabled' => 'javaslatokkal',
-'search-mwsuggest-disabled' => 'javaslatok nélkül',
 'search-relatedarticle' => 'Kapcsolódó',
 'mwsuggest-disable' => 'AJAX-alapú keresési javaslatok letiltása',
 'searcheverything-enable' => 'Keresés az összes névtérben',
@@ -2917,7 +2915,6 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript tesztelés',
-'javascripttest-disabled' => 'Ez a funkció nincs engedélyezve ebben a wikiben.',
 'javascripttest-title' => '$1 tesztek futtatása',
 'javascripttest-pagetext-noframework' => 'Ez az oldal JavaStript tesztek futtatására van fenntartva.',
 'javascripttest-pagetext-unknownframework' => 'Ismeretlen teszt keretrendszer: $1.',
@@ -3906,6 +3903,10 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'feedback-close' => 'Kész',
 'feedback-bugcheck' => 'Nagyszerű! Ellenőrizd, hogy ez nem egy [$1 ismert hiba].',
 'feedback-bugnew' => 'Ellenőriztem. Új hiba jelentése',
+
+# Search suggestions
+'searchsuggest-search' => 'Keresés',
+'searchsuggest-containing' => 'tartalmazza…',
 
 # API errors
 'api-error-badaccess-groups' => 'Nincs jogod fájlokat feltölteni erre a wikire.',

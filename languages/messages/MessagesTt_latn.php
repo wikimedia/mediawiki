@@ -477,7 +477,7 @@ Ul kürsätkän säbäp: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Sez xisap yazmağızdan çıqtığız.'''
 
-Sez {{SITENAME}} proyektında anonim räweştä qala yäisä şul uq yäki başqa isem belän yañadan [[Special:UserLogin|kerä]] alasız.
+Sez {{SITENAME}} proyektında anonim räweştä qala yäisä şul uq yäki başqa isem belän yañadan <span class='plainlinks'>[$1 kerä]</span> alasız.
 Qayber bitlär Sez kergän kebek kürsätelergä mömkin. Monı beterü öçen brauzer keşın çistartığız.",
 'welcomecreation' => '== Räxim itegez, $1! ==
 Sez terkäldegez.
@@ -924,8 +924,6 @@ Sez idaräçe bulu säbäple, [$1 yäşerelgän yuramanı qarıy alasız]",
 'search-interwiki-caption' => 'Tuğandaş proyektlar',
 'search-interwiki-default' => '$1 näticä:',
 'search-interwiki-more' => '(tağın)',
-'search-mwsuggest-enabled' => 'kiñäşlär belän',
-'search-mwsuggest-disabled' => 'kiñäşsez',
 'search-relatedarticle' => 'Bäylängän',
 'mwsuggest-disable' => 'AJAX-yärdämne yabu',
 'searcheverything-enable' => 'Barlıq isemnär mäydanında ezläw',

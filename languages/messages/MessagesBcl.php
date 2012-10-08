@@ -9,6 +9,7 @@
  *
  * @author Filipinayzd
  * @author Geopoet
+ * @author Hoo
  * @author Kaganer
  * @author Steven*fung
  * @author Urhixidur
@@ -505,7 +506,7 @@ An administrador na iyo an nagkandado kaini nagpahayag kaining kapaliwanagan: "$
 # Login and logout pages
 'logouttext' => "'''Ika po sa ngunyan nakaluwas na.'''
 
-Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika [[Special:UserLogin|Maglaog giraray]] bilang pareho o bilang ibang paragamit.
+Ika makakadagos pa sa paggamit kan {{SITENAME}} na dai nagpapabisto, o ika <span class='plainlinks'>[$1 Maglaog giraray]</span> bilang pareho o bilang ibang paragamit.
 Giromdoma na an ibang mga pahina mapuwedeng padagos na magpapahiling siring baga na kun ika garo yaon man sana sa laog, sagkod na saimong malinigan mo an sarayan sa kilyawan.",
 'welcomecreation' => '== Maogmang Pag-abot, $1! ==
 An saimong panindog (account) naimukna na tabi.
@@ -1129,8 +1130,6 @@ An mga detalye mapuwedeng matatagboan sa [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Tugang na mga proyekto',
 'search-interwiki-default' => '$1 na mga resulta:',
 'search-interwiki-more' => '(dakol pa)',
-'search-mwsuggest-enabled' => 'igwang mga suhestyon',
-'search-mwsuggest-disabled' => 'mayong suhestyon',
 'search-relatedarticle' => 'Kauyon',
 'mwsuggest-disable' => 'Pundohon an AJAX na mga suhestiyon',
 'searcheverything-enable' => 'Maghanap sa gabos na mga espasyong-ngaran',
@@ -2631,7 +2630,6 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 
 # JavaScriptTest
 'javascripttest' => 'Testing sa JavaScript',
-'javascripttest-disabled' => 'Ining punksyon dae pinagpagana sa wiki na ini.',
 'javascripttest-title' => 'Pinapadalagan na $1 na mga pagtesting',
 'javascripttest-pagetext-noframework' => 'An pahinang ini reserbado para sa pagpapadalagan kan mga pagtesting sa JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Bakong bistadong modelo para sa pagtesting kan "$1".',
@@ -3373,7 +3371,7 @@ Pwede mo man [[Special:EditWatchlist|gamiton an standard editor]].',
 'version-version' => '(Bersyon na $1)',
 'version-license' => 'Lisensiya',
 'version-poweredby-credits' => "An wiking ini pinagpagana kan '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others' => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS mga iba pa]',
+'version-poweredby-others' => 'mga iba pa',
 'version-license-info' => 'An MediaWiki sarong libreng kasungatan; puwede mong ipanao ini asin/o baguhon ini sa irarom kan termino nin HNU (Heneral na Pampublikong Lisensiya) bilang publisado kan Free Software Foundation; maski sa arin na bersyon 2 kan lisensiya, o (saimong pansadireng pagpipilian) arinman na huring bersyon.
 
 An MediaWiki ipinagpanao sa paglaom na ini magigin kapakinabangan, pero MAYO NIN ANUMAN NA WARANTIYA; mayo dawa ngani nin pinaghuhurot na warantiya kan MERKANTIBILIDAD o KAUYUGAN PARA SA SARONG PARTIKULAR NA KATUYUHAN. Hilngon an HNU (Heneral na Pampublikong Lisensiya) para sa kadagdagang mga detalye.

@@ -129,6 +129,17 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Get the wiki identifier used for this backend (possibly empty).
+	 * Note that this might *not* be in the same format as wfWikiID().
+	 *
+	 * @return string
+	 * @since 1.20
+	 */
+	final public function getWikiId() {
+		return $this->wikiId;
+	}
+
+	/**
 	 * Check if this backend is read-only
 	 *
 	 * @return bool
@@ -283,16 +294,6 @@ abstract class FileBackend {
 		if ( empty( $opts['force'] ) ) { // sanity
 			unset( $opts['nonLocking'] );
 			unset( $opts['allowStale'] );
-		}
-		$opts['concurrency'] = 1; // off
-		if ( $this->parallelize === 'implicit' ) {
-			if ( !isset( $opts['parallelize'] ) || $opts['parallelize'] ) {
-				$opts['concurrency'] = $this->concurrency;
-			}
-		} elseif ( $this->parallelize === 'explicit' ) {
-			if ( !empty( $opts['parallelize'] ) ) {
-				$opts['concurrency'] = $this->concurrency;
-			}
 		}
 		return $this->doOperationsInternal( $ops, $opts );
 	}
@@ -583,8 +584,9 @@ abstract class FileBackend {
 	 *
 	 * @param $params Array Operation parameters
 	 * $params include:
-	 *   - srcs : ordered source storage paths (e.g. chunk1, chunk2, ...)
-	 *   - dst  : file system path to 0-byte temp file
+	 *   - srcs        : ordered source storage paths (e.g. chunk1, chunk2, ...)
+	 *   - dst         : file system path to 0-byte temp file
+	 *   - parallelize : try to do operations in parallel when possible
 	 * @return Status
 	 */
 	abstract public function concatenate( array $params );
@@ -730,7 +732,29 @@ abstract class FileBackend {
 	 *   - latest : use the latest available data
 	 * @return string|bool Returns false on failure
 	 */
-	abstract public function getFileContents( array $params );
+	final public function getFileContents( array $params ) {
+		$contents = $this->getFileContentsMulti(
+			array( 'srcs' => array( $params['src'] ) ) + $params );
+
+		return $contents[$params['src']];
+	}
+
+	/**
+	 * Like getFileContents() except it takes an array of storage paths
+	 * and returns a map of storage paths to strings (or null on failure).
+	 * The map keys (paths) are in the same order as the provided list of paths.
+	 *
+	 * @see FileBackend::getFileContents()
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 *   - parallelize : try to do operations in parallel when possible
+	 * @return Array Map of (path name => string or false on failure)
+	 * @since 1.20
+	 */
+	abstract public function getFileContentsMulti( array $params );
 
 	/**
 	 * Get the size (bytes) of a file at a storage path in the backend.
@@ -817,7 +841,29 @@ abstract class FileBackend {
 	 *   - latest : use the latest available data
 	 * @return FSFile|null Returns null on failure
 	 */
-	abstract public function getLocalReference( array $params );
+	final public function getLocalReference( array $params ) {
+		$fsFiles = $this->getLocalReferenceMulti(
+			array( 'srcs' => array( $params['src'] ) ) + $params );
+
+		return $fsFiles[$params['src']];
+	}
+
+	/**
+	 * Like getLocalReference() except it takes an array of storage paths
+	 * and returns a map of storage paths to FSFile objects (or null on failure).
+	 * The map keys (paths) are in the same order as the provided list of paths.
+	 *
+	 * @see FileBackend::getLocalReference()
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 *   - parallelize : try to do operations in parallel when possible
+	 * @return Array Map of (path name => FSFile or null on failure)
+	 * @since 1.20
+	 */
+	abstract public function getLocalReferenceMulti( array $params );
 
 	/**
 	 * Get a local copy on disk of the file at a storage path in the backend.
@@ -830,7 +876,29 @@ abstract class FileBackend {
 	 *   - latest : use the latest available data
 	 * @return TempFSFile|null Returns null on failure
 	 */
-	abstract public function getLocalCopy( array $params );
+	final public function getLocalCopy( array $params ) {
+		$tmpFiles = $this->getLocalCopyMulti(
+			array( 'srcs' => array( $params['src'] ) ) + $params );
+
+		return $tmpFiles[$params['src']];
+	}
+
+	/**
+	 * Like getLocalCopy() except it takes an array of storage paths and
+	 * returns a map of storage paths to TempFSFile objects (or null on failure).
+	 * The map keys (paths) are in the same order as the provided list of paths.
+	 *
+	 * @see FileBackend::getLocalCopy()
+	 *
+	 * @param $params Array
+	 * $params include:
+	 *   - srcs        : list of source storage paths
+	 *   - latest      : use the latest available data
+	 *   - parallelize : try to do operations in parallel when possible
+	 * @return Array Map of (path name => TempFSFile or null on failure)
+	 * @since 1.20
+	 */
+	abstract public function getLocalCopyMulti( array $params );
 
 	/**
 	 * Check if a directory exists at a given storage path.

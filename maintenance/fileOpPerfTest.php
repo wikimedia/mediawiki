@@ -40,7 +40,8 @@ class TestFileOpPerformance extends Maintenance {
 		$this->addOption( 'b2', 'Backend 2', false, true );
 		$this->addOption( 'srcdir', 'File source directory', true, true );
 		$this->addOption( 'maxfiles', 'Max files', false, true );
-		$this->addOption( 'quick', 'Avoid operation pre-checks' );
+		$this->addOption( 'quick', 'Avoid operation pre-checks (use doQuickOperations())' );
+		$this->addOption( 'parallelize', '"parallelize" flag for doOperations()', false, true );
 	}
 
 	public function execute() {
@@ -95,8 +96,13 @@ class TestFileOpPerformance extends Maintenance {
 
 		$method = $this->hasOption( 'quick' ) ? 'doQuickOperations' : 'doOperations';
 
+		$opts = array( 'force' => 1 );
+		if ( $this->hasOption( 'parallelize' ) ) {
+			$opts['parallelize'] = ( $this->getOption( 'parallelize' ) === 'true' );
+		}
+
 		$start = microtime( true );
-		$status = $backend->$method( $ops1, array( 'force' => 1 ) );
+		$status = $backend->$method( $ops1, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -105,7 +111,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Stored " . count( $ops1 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops2, array( 'force' => 1 ) );
+		$backend->$method( $ops2, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -114,7 +120,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Copied " . count( $ops2 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops3, array( 'force' => 1 ) );
+		$backend->$method( $ops3, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -123,7 +129,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Moved " . count( $ops3 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops4, array( 'force' => 1 ) );
+		$backend->$method( $ops4, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );
@@ -132,7 +138,7 @@ class TestFileOpPerformance extends Maintenance {
 		$this->output( $backend->getName() . ": Deleted " . count( $ops4 ) . " files in $e ms.\n" );
 
 		$start = microtime( true );
-		$backend->$method( $ops5, array( 'force' => 1 ) );
+		$backend->$method( $ops5, $opts );
 		$e = ( microtime( true ) - $start ) * 1000;
 		if ( $status->getErrorsArray() ) {
 			print_r( $status->getErrorsArray() );

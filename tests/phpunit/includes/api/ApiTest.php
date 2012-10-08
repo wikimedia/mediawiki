@@ -194,26 +194,6 @@ class ApiTest extends ApiTestCase {
 
 		return $cj;
 	}
-
-	/**
-	 * @todo Finish filling me out...what are we trying to test here?
-	 */
-	function testApiListPages() {
-		global $wgServer;
-		if ( !isset( $wgServer ) ) {
-			$this->markTestIncomplete( 'This test needs $wgServer to be set in LocalSettings.php' );
-		}
-
-		$ret = $this->doApiRequest( array(
-			'action' => 'query',
-			'prop'   => 'revisions',
-			'titles' => 'Main Page',
-			'rvprop' => 'timestamp|user|comment|content',
-		) );
-
-		$result = $ret[0]['query']['pages'];
-		$this->markTestIncomplete( "Somebody needs to finish loving me" );
-	}
 	
 	function testRunLogin() {
 		$sysopUser = self::$users['sysop'];

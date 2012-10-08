@@ -753,7 +753,7 @@ class Html {
 	 * - name: [optional], default: 'namespace'
 	 * @return string HTML code to select a namespace.
 	 */
-	public static function namespaceSelector( Array $params = array(), Array $selectAttribs = array() ) {
+	public static function namespaceSelector( array $params = array(), array $selectAttribs = array() ) {
 		global $wgContLang;
 
 		ksort( $selectAttribs );
@@ -808,6 +808,14 @@ class Html {
 					'selected' => $nsId === $params['selected'],
 				), $nsName
 			);
+		}
+
+		if ( !array_key_exists( 'id', $selectAttribs ) ) {
+			$selectAttribs['id'] = 'namespace';
+		}
+
+		if ( !array_key_exists( 'name', $selectAttribs ) ) {
+			$selectAttribs['name'] = 'namespace';
 		}
 
 		$ret = '';

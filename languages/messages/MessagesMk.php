@@ -504,7 +504,7 @@ $messages = array(
 'vector-action-protect' => 'Заштити',
 'vector-action-undelete' => 'Врати',
 'vector-action-unprotect' => 'Измени заштита',
-'vector-simplesearch-preference' => 'Овозможи збогатени предлози при пребарување (само за рувото „Векторско“)',
+'vector-simplesearch-preference' => 'Овозможи упростено поле за пребарување (само за рувото „Векторско“)',
 'vector-view-create' => 'Создај',
 'vector-view-edit' => 'Уреди',
 'vector-view-history' => 'Историја',
@@ -659,10 +659,10 @@ $1',
 'nstab-category' => 'Категорија',
 
 # Main script and global functions
-'nosuchaction' => 'Не постои таа функција',
-'nosuchactiontext' => 'Дејството наведено во URL-низата е грешно.
-Можеби има грешка во пишувањето на URL или сте следеле погрешна врска.
-Ова може исто така да биде и грешка во програмската опрема на {{SITENAME}}.',
+'nosuchaction' => 'Нема такво дејство',
+'nosuchactiontext' => 'Дејството укажано во URL-адресата е погрешно.
+Можеби имате грешка во пишувањето на адресата, или пак имате проследено погрешна врска.
+Ова може да се должи и на грешка во програмската опрема на {{SITENAME}}.',
 'nosuchspecialpage' => 'Не постои таква специјална страница',
 'nospecialpagetext' => '<strong>Побаравте непостоечка специјална страница.</strong>
 
@@ -731,9 +731,9 @@ $1',
 'protectedpagetext' => 'Оваа страница е заклучена за уредувања.',
 'viewsourcetext' => 'Можете да го погледнете и копирате кодот на оваа страница:',
 'viewyourtext' => "Можете да го погледнете и копирате кодот на '''вашите уредувања''' на оваа страница:",
-'protectedinterface' => 'Оваа страница содржи текст од посредникот на програмот на ова вики и е заштитена поради можна злоупотреба.
+'protectedinterface' => 'Оваа страница содржи текст од посредникот на софтверот на ова вики и е превентивно заштитена поради можна злоупотреба.
 За да додавате или менувате преводи на сите викија, појдете на [//translatewiki.net/wiki/Main_Page?uselang=mk translatewiki.net] - проектот за локализација на МедијаВики.',
-'editinginterface' => "'''Предупредување:''' Уредувате страница која е дел од корисничкиот посредник на програмската опрема на МедијаВики.
+'editinginterface' => "'''Предупредување:''' Уредувате страница која е дел од корисничкиот посредник на МедијаВики софтверот.
 Промените на оваа страница ќе предизвикаат промени во корисничкиот посредник кај другите корисници на ова вики.
 За да додадете или измените превод на сите викија, појдете на [//translatewiki.net/wiki/Main_Page?setlang=mk translatewiki.net] - проектот за локализација на МедијаВики.",
 'sqlhidden' => '(Барањето до SQL е скриено)',
@@ -761,7 +761,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Сега сте одјавени.'''
 
-Можете да продолжите со користење на {{SITENAME}} анонимно или можете [[Special:UserLogin|повторно да се најавите]] под исто или различно корисничко име.
+Можете да продолжите со користење на {{SITENAME}} анонимно или можете <span class='plainlinks'>[$1 повторно да се најавите]</span> под исто или различно корисничко име.
 Да напоменеме дека некои страници може да продолжат да се прикажуваат како да сте најавени, се додека не го исчистите кешот на вашиот прелистувач.",
 'welcomecreation' => '== Добредојдовте, $1! ==
 Вашата корисничка сметка е создадена.
@@ -1028,8 +1028,7 @@ $2
 да ги <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате дневниците],
 или да [{{fullurl:{{FULLPAGENAME}}|action=edit}} ја создадете]</span>.',
 'noarticletext-nopermission' => 'Таква страница сè уште не постои.
-Можете да проверите [[Special:Search/{{PAGENAME}}|дали насловот се споменува]] во други статии,
-или да ги <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате дневниците]</span>.',
+Можете да проверите [[Special:Search/{{PAGENAME}}|дали насловот се споменува]] во други статии или пак да <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пребарате поврзаните дневници]</span>, но немате дозвола да ја создадете страницата.',
 'missing-revision' => 'Не ја пронајдов ревизијата бр. $1 на страницата со наслов „{{PAGENAME}}“.
 
 Ова обично се должи на застарена врска за разлики што води кон избришана страница.
@@ -1396,8 +1395,6 @@ $1",
 'search-interwiki-caption' => 'Збратимени проекти',
 'search-interwiki-default' => 'Најдено на $1:',
 'search-interwiki-more' => '(уште)',
-'search-mwsuggest-enabled' => 'со предлози',
-'search-mwsuggest-disabled' => 'без предлози',
 'search-relatedarticle' => 'Поврзано',
 'mwsuggest-disable' => 'Оневозможи AJAX-предлози',
 'searcheverything-enable' => 'Барај во сите именски простори',
@@ -1496,7 +1493,7 @@ $1",
 'timezoneregion-indian' => 'Индиски Океан',
 'timezoneregion-pacific' => 'Тихи Океан',
 'allowemail' => 'Дозволи е-пошта од други корисници',
-'prefs-searchoptions' => 'Нагодувања на пребарувањето',
+'prefs-searchoptions' => 'Пребарување',
 'prefs-namespaces' => 'Именски простори',
 'defaultns' => 'Инаку пребарувај во овие именски простори:',
 'default' => 'по основно',
@@ -1715,7 +1712,7 @@ $1",
 'recentchanges-label-newpage' => 'Ова уредување создаде нова страница',
 'recentchanges-label-minor' => 'Ова е ситна промена',
 'recentchanges-label-bot' => 'Ова уредување е направено од бот',
-'recentchanges-label-unpatrolled' => 'Ова уредување сè уште не било патролирано',
+'recentchanges-label-unpatrolled' => 'Ова уредување сè уште не е испатролирано',
 'rcnote' => "Подолу {{PLURAL:$1|е прикажана '''1''' промена|се прикажани последните '''$1''' промени}} {{PLURAL:$2|за денес|во последниве '''$2''' дена}}, заклучно со $5, $4.",
 'rcnotefrom' => 'Подолу се промените од <b>$2</b> (се прикажуваат до <b>$1</b>).',
 'rclistfrom' => 'Прикажи нови промени почнувајќи од $1',
@@ -3058,7 +3055,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Проба на JavaScript',
-'javascripttest-disabled' => 'Функцијата не е овозможена на ова вики.',
 'javascripttest-title' => 'Вршам $1 проби',
 'javascripttest-pagetext-noframework' => 'Оваа страница е резервирана за вршење на проби со JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Непозната рамка „$1“.',
@@ -3223,10 +3219,10 @@ $1',
 'pageinfo-authors' => 'Број на засебни автори',
 'pageinfo-recent-edits' => 'Број на скорешни уредувања (во последните $1)',
 'pageinfo-recent-authors' => 'Број на скорешни засебни автори',
-'pageinfo-restriction' => 'Заштита на страницата ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Волшебен збор|Волшебни зборови}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скриена категорија|Скриени категории}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Превметнат шаблон|Превметнати шаблони}} ($1)',
+'pageinfo-toolboxlink' => 'Информации за страницата',
 
 # Skin names
 'skinname-standard' => 'Класично',
@@ -3243,7 +3239,7 @@ $1',
 'markaspatrolleddiff' => 'Означи како проверена верзија',
 'markaspatrolledtext' => 'Означи ја верзијата како проверена',
 'markedaspatrolled' => 'Означено како проверено',
-'markedaspatrolledtext' => 'Избраната ревизија на [[:$1]]  е означена како патролирана.',
+'markedaspatrolledtext' => 'Избраната ревизија на [[:$1]]  е означена како испатролирана.',
 'rcpatroldisabled' => 'Оневозможено проверка на скорешни промени',
 'rcpatroldisabledtext' => 'Патролирањето на Скорешните промени е деактивирано.',
 'markedaspatrollederror' => 'Не можам да означам како проверена',
@@ -3880,6 +3876,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Превметнувањето помеѓу викијата е оневозможено]',
 'scarytranscludefailed' => '[Преземањето на шаблонот за $1 не успеа]',
+'scarytranscludefailed-httpstatus' => '[Преземањето на шаблонот не успеа за $1: HTTP $2]',
 'scarytranscludetoolong' => '[Премногу долго URL]',
 
 # Delete conflict
@@ -4125,7 +4122,7 @@ $5
 'specialpages-group-highuse' => 'Најкористени страници',
 'specialpages-group-pages' => 'Списоци на страници',
 'specialpages-group-pagetools' => 'Алатки за страници',
-'specialpages-group-wiki' => 'Википодатоци и алатки',
+'specialpages-group-wiki' => 'Вики-податоци и алатки',
 'specialpages-group-redirects' => 'Пренасочување на специјални страници',
 'specialpages-group-spam' => 'Алатки против спам',
 
@@ -4239,6 +4236,10 @@ $5
 'feedback-close' => 'Готово',
 'feedback-bugcheck' => 'Одлично! Само проверете да не е една од [$1 веќе познатите грешки].',
 'feedback-bugnew' => 'Проверив. Пријави ја како нова грешка.',
+
+# Search suggestions
+'searchsuggest-search' => 'Пребарување',
+'searchsuggest-containing' => 'содржи...',
 
 # API errors
 'api-error-badaccess-groups' => 'Не ви е дозволено да подигате податотеки на ова вики.',

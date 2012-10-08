@@ -149,6 +149,23 @@ class LoginForm extends SpecialPage {
 		$this->load();
 		$this->setHeaders();
 
+		global $wgSecureLogin;
+		if (
+			$this->mType !== 'signup' &&
+			$wgSecureLogin &&
+			WebRequest::detectProtocol() !== 'https'
+		) {
+			$title = $this->getFullTitle();
+			$query = array(
+				'returnto' => $this->mReturnTo,
+				'returntoquery' => $this->mReturnToQuery,
+				'wpStickHTTPS' => $this->mStickHTTPS
+			);
+			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
+			$this->getOutput()->redirect( $url );
+			return;
+		}
+
 		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
 			$this->mType = 'signup';
 		}
@@ -464,8 +481,7 @@ class LoginForm extends SpecialPage {
 		$u->saveSettings();
 
 		# Update user count
-		$ssUpdate = new SiteStatsUpdate( 0, 0, 0, 0, 1 );
-		$ssUpdate->doUpdate();
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
 		return $u;
 	}
@@ -722,6 +738,7 @@ class LoginForm extends SpecialPage {
 
 		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
+				global $wgSecureLogin;
 				# We've verified now, update the real record
 				$user = $this->getUser();
 				if( (bool)$this->mRemember != (bool)$user->getOption( 'rememberpassword' ) ) {
@@ -730,7 +747,12 @@ class LoginForm extends SpecialPage {
 				} else {
 					$user->invalidateCache();
 				}
-				$user->setCookies();
+
+				if( $wgSecureLogin && !$this->mStickHTTPS ) {
+					$user->setCookies( null, false );
+				} else {
+					$user->setCookies();
+				}
 				self::clearLoginToken();
 
 				// Reset the throttle
@@ -833,7 +855,7 @@ class LoginForm extends SpecialPage {
 		$u->setNewpassword( $np, $throttle );
 		$u->saveSettings();
 		$userLanguage = $u->getOption( 'language' );
-		$m = $this->msg( $emailText, $ip, $u->getName(), $np, $wgServer . $wgScript,
+		$m = $this->msg( $emailText, $ip, $u->getName(), $np, '<' . $wgServer . $wgScript . '>',
 			round( $wgNewPasswordExpiry / 86400 ) )->inLanguage( $userLanguage )->text();
 		$result = $u->sendMail( $this->msg( $emailTitle )->inLanguage( $userLanguage )->text(), $m );
 
@@ -963,14 +985,19 @@ class LoginForm extends SpecialPage {
 			$returnToTitle = Title::newMainPage();
 		}
 
+		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
+			$options = array( 'http' );
+			$proto = PROTO_HTTP;
+		} else {
+			$options = array( 'https' );
+			$proto = PROTO_HTTPS;
+		}
+
 		if ( $type == 'successredirect' ) {
-			$redirectUrl = $returnToTitle->getFullURL( $returnToQuery );
-			if( $wgSecureLogin && !$this->mStickHTTPS ) {
-				$redirectUrl = preg_replace( '/^https:/', 'http:', $redirectUrl );
-			}
+			$redirectUrl = $returnToTitle->getFullURL( $returnToQuery, false, $proto );
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
-			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery );
+			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );
 		}
 	}
 

@@ -443,7 +443,7 @@ Die Administrator, die dän Skrieuwtougriep speerde, roate foulgjenden Gruund an
 # Login and logout pages
 'logouttext' => "'''Du bäst nu oumälded.'''
 
-Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier [[Special:UserLogin|anmäldje]].
+Du koast {{SITENAME}} nu anonym fääre benutsje, of die fonnäien unner dänsälge of n uur Benutsernoome wier <span class='plainlinks'>[$1 anmäldje]</span>.
 Beoachtje, dät eenige Sieden noch anwiese konnen, dät du oumälded bäst, soloange du nit din Browsercache loosmoaked hääst.",
 'welcomecreation' => '== Wäilkuumen, $1 ==
 
@@ -1007,8 +1007,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'search-interwiki-caption' => 'Susterprojekte',
 'search-interwiki-default' => '$1 Resultoate:',
 'search-interwiki-more' => '(wiedere)',
-'search-mwsuggest-enabled' => 'mäd Foarsleeke',
-'search-mwsuggest-disabled' => 'neen Foarsleeke',
 'search-relatedarticle' => 'Früünde',
 'mwsuggest-disable' => 'Foarsleeke truch Ajax deaktivierje',
 'searcheverything-enable' => 'Säik in aal Noomensruume',
@@ -3300,5 +3298,9 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 'revdelete-restricted' => 'Einskränkengen jäilde uk foar Administratore',
 'revdelete-unrestricted' => 'Ienskränkengen foar Administratore wächhoald',
 'newuserlog-byemail' => 'dät Paaswoud wuud uur E-Mail fersoand',
+
+# Search suggestions
+'searchsuggest-search' => 'Säik',
+'searchsuggest-containing' => 'Fultextsäike ätter ...',
 
 );

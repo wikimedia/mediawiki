@@ -437,7 +437,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''ನೀವು ಈಗ ಲಾಗ್ ಔಟ್ ಆಗಿರುವಿರಿ.'''
 
-ನೀವು {{SITENAME}} ಅನ್ನು ಅನಾಮಧೇಯವಾಗಿ ಉಪಯೋಗಿಸಬಹುದು, ಅಥವ ಮತ್ತೆ ಇದೇ ಹೆಸರಿನಲ್ಲಿ ಅಥವ ಬೇರೆ ಹೆಸರಿನಲ್ಲಿ [[Special:UserLogin|ಲಾಗ್ ಇನ್]] ಆಗಬಹುದು.
+ನೀವು {{SITENAME}} ಅನ್ನು ಅನಾಮಧೇಯವಾಗಿ ಉಪಯೋಗಿಸಬಹುದು, ಅಥವ ಮತ್ತೆ ಇದೇ ಹೆಸರಿನಲ್ಲಿ ಅಥವ ಬೇರೆ ಹೆಸರಿನಲ್ಲಿ <span class='plainlinks'>[$1 ಲಾಗ್ ಇನ್]</span> ಆಗಬಹುದು.
 ಗಮನಿಸಿ: ನಿಮ್ಮ ಬ್ರೌಸರ್‍ನ cache ಅನ್ನು ಅಳಿಸುವವರೆಗೂ ಕೆಲವು ಪುಟಗಳು ನೀವಿನ್ನೂ ಲಾಗ್ ಇನ್ ಆಗಿರುವಂತೆ ಪ್ರದರ್ಶಿತವಾಗಬಹುದು.",
 'welcomecreation' => '== ಸುಸ್ವಾಗತ, $1! ==
 ನಿಮ್ಮ ಅಕೌಂಟನ್ನು ಸೃಷ್ಟಿಸಲಾಗಿದೆ.
@@ -845,8 +845,6 @@ $2',
 'search-interwiki-caption' => 'ಬಳಗದ ಇತರ ಯೋಜನೆಗಳು',
 'search-interwiki-default' => '$1 ಫಲಿತಾಂಶಗಳು:',
 'search-interwiki-more' => '(ಹೆಚ್ಚು)',
-'search-mwsuggest-enabled' => 'ಸಲಹೆಗಳೊಂದಿಗೆ',
-'search-mwsuggest-disabled' => 'ಯಾವುದೇ ಸಲಹೆಗಳಿಲ್ಲ',
 'search-relatedarticle' => 'ಸಂಬಂಧಿತ',
 'mwsuggest-disable' => 'AJAX ಸಲಹೆಗಳನ್ನು ತೋರದಿರು',
 'searchrelated' => 'ಸಂಬಂಧಿತ',

@@ -394,7 +394,7 @@ $2',
 
 # Login and logout pages
 'logouttext' => "'''I chhuak fel ta.'''
-Inziaklût kher lovin {{SITENAME}} hi i hmang chhunzawm thei ang, a nih loh vëk pawhin hmangtu hming pangngai emaw, a hming dang emawin [[Special:UserLogin|lût leh]] thei ang.
+Inziaklût kher lovin {{SITENAME}} hi i hmang chhunzawm thei ang, a nih loh vëk pawhin hmangtu hming pangngai emaw, a hming dang emawin <span class='plainlinks'>[$1 lût leh]</span> thei ang.
 I fangtu cache i thenfai hma chu phêk ţhenkhat intar lang a awm reng mai thei, i la  chhuak lo emaw tih mai tùrin.",
 'welcomecreation' => '==Kan lo lawm a che, $1!==
 I siangchan siam a ni ta.
@@ -731,8 +731,6 @@ Lamtawi hmante: '''({{int:cur}})'''= ennawnna thar ber nena danglamna, '''({{int
 'search-interwiki-caption' => 'Hmachhawppuite',
 'search-interwiki-default' => 'Chhuak $1:',
 'search-interwiki-more' => '(tam)',
-'search-mwsuggest-enabled' => 'rawtna telin',
-'search-mwsuggest-disabled' => 'rawtna tel lovin',
 'search-relatedarticle' => 'Laichin',
 'mwsuggest-disable' => 'AJAX rawtna tithi rawh',
 'searcheverything-enable' => 'Hminghmun zawng zawngah zawng rawh',
@@ -1933,5 +1931,9 @@ A bak zawng chu thuhrûk sa vek a ni ang.
 'feedback-subject' => 'Thupui:',
 'feedback-message' => 'Thu',
 'feedback-cancel' => 'Sûtna',
+
+# Search suggestions
+'searchsuggest-search' => 'Zawnna',
+'searchsuggest-containing' => 'hemi thu telna hi...',
 
 );

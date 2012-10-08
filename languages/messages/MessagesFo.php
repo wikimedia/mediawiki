@@ -514,7 +514,7 @@ Givin orsøk er "\'\'$2\'\'".',
 
 # Login and logout pages
 'logouttext' => "'''Tú hevur nú ritað út.'''
-Tú kanst halda fram at brúka {{SITENAME}} sum dulnevndur, ella kanst tú [[Special:UserLogin|logga á aftur]] sum sami ella sum annar brúkari. 
+Tú kanst halda fram at brúka {{SITENAME}} sum dulnevndur, ella kanst tú <span class='plainlinks'>[\$1 logga á aftur]</span> sum sami ella sum annar brúkari. 
 Legg til merkis, at summar síður framvegis vera vístar, sum um tú enn vart loggaður á, til tú hevur reinsa tín brovsara fyri \"cache\".",
 'welcomecreation' => '== Vælkomin, $1! ==
 
@@ -1071,8 +1071,6 @@ Tú hevur ikki atgongd til hann.',
 'search-interwiki-caption' => 'Líknandi verkætlanir',
 'search-interwiki-default' => '$1 úrslit:',
 'search-interwiki-more' => '(meira)',
-'search-mwsuggest-enabled' => 'við uppskotum',
-'search-mwsuggest-disabled' => 'ongi uppskot',
 'search-relatedarticle' => 'Líknandi',
 'mwsuggest-disable' => 'Slá AJAX uppskot frá',
 'searcheverything-enable' => 'Leita í øllum navnaøkjum',
@@ -2252,6 +2250,9 @@ Hendan váttanarkoda fer úr gildi tann $4.',
 # Special:ComparePages
 'compare-page1' => 'Síða 1',
 'compare-page2' => 'Síða 2',
+
+# Search suggestions
+'searchsuggest-search' => 'Leita',
 
 # API errors
 'api-error-empty-file' => 'Fílan sum tú sendi inn var tóm.',

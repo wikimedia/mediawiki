@@ -379,6 +379,11 @@ $messages = array(
 'jumpto' => 'Lansông u:',
 'jumptonavigation' => 'navigasi',
 'jumptosearch' => 'mita',
+'view-pool-error' => "Meu'ah, server teungoh sibuk jinoe
+Le that ureueng nyang meuh'eut jak eu on nyoe
+Neupreh si'at yoh goh neubaci lom
+
+$1",
 'pool-timeout' => 'Liwat watee preh gunci',
 'pool-queuefull' => 'Seunapat neupreh peunoh',
 'pool-errorunknown' => 'Salah hana meukon',
@@ -405,14 +410,20 @@ $messages = array(
 
 'badaccess' => 'Salah khut/hak tamöng',
 'badaccess-group0' => 'Droeneuh hana geupeuidin keu neupeulaku buet nyang neulakee',
+'badaccess-groups' => 'Buet nyang neulakee geupeubatah keu ureueng nguy lam {{PLURAL:$2|kawan|salah saboh nibak kawan}}: $1.',
 
 'versionrequired' => 'Peureulee MediaWiki versi $1',
+'versionrequiredtext' => "MediaWiki versi $1 geupeureulee keu neunguy on nyoe. Neu'eu [[Special:Version|on versi]]",
 
 'ok' => 'Ka göt',
 'retrievedfrom' => 'Geurumpok nibak "$1"',
 'youhavenewmessages' => 'Droëneuh   na $1 ($2).',
 'newmessageslink' => 'peusan barô',
 'newmessagesdifflink' => 'neuubah keuneulheuëh',
+'youhavenewmessagesfromusers' => "Droeneuh na $1 nibak {{PLURAL:$3||}}ureueng nguy la'en ($2).",
+'youhavenewmessagesmanyusers' => "Droeneuh na $1 nibak ureueng nguy la'en ($2)",
+'newmessageslinkplural' => '{{PLURAL:$1|saboh peusan baro|peusan baro}}',
+'newmessagesdifflinkplural' => '{{PLURAL:$1|neuubah|neuubah}} baro',
 'youhavenewmessagesmulti' => 'Droëneuh na padum boh peusan barô bak $1',
 'editsection' => 'andam',
 'editold' => 'andam',
@@ -428,11 +439,16 @@ $messages = array(
 'thisisdeleted' => 'Eu atawa peuriwang $1?',
 'viewdeleted' => 'Eu $1?',
 'restorelink' => '$1 {{PLURAL:$1|neuandam|neuandam}} nyang ka geusampoh',
+'feedlinks' => 'Umpeuen:',
+'feed-invalid' => 'Jeuneh neulakee umpeuen hana paih',
+'feed-unavailable' => 'Umpeuen sindikasi hana',
 'site-rss-feed' => 'Umpeuën RSS $1',
 'site-atom-feed' => 'Umpeuën Atôm $1',
 'page-rss-feed' => 'Umpeuën RSS "$1"',
 'page-atom-feed' => 'Umpeuën Atom "$1"',
 'red-link-title' => '$1 (ôn goh na)',
+'sort-descending' => 'Peuurot tren',
+'sort-ascending' => 'Peuurot ek',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main' => 'Ôn',
@@ -446,9 +462,27 @@ $messages = array(
 'nstab-help' => 'Beunantu',
 'nstab-category' => 'Kawan',
 
+# Main script and global functions
+'nosuchaction' => 'Hana buet nyan',
+'nosuchactiontext' => 'Buet nyang geulakee le URL nyan hana sah. Droeneuh kadang salah neukeutik URL, atawa neuseutot saboh neuhubong nyang hana beutoy. Hay nyoe kadang jeuet keu lageuem saboh bug bak alat leumiek nyang geunguy le {{SITENAME}}.',
+'nosuchspecialpage' => 'Hana on kusuih lagee nyan',
+'nospecialpagetext' => '<strong>Droeneuh neulakee on kusuih nyang hana sah.</strong>',
+
 # General errors
 'error' => 'Seunalah',
 'databaseerror' => 'Kesalahan basis data',
+'dberrortext' => 'Na salah bak syntax neulakee basis data.
+Nyoe kadang tanda na saboh bug lam alat leumiek.
+Neulakee basis data keuneulheueh nakeuh:
+<blockquote><code>$1</code></blockquote>
+nibak function "<code>$2</code>".
+Basis data na salah "<samp>$3: $4</samp>".',
+'dberrortextcl' => 'Na salah sintaks bak neulakee basis data.
+Neulakee basis data nyang keuneulheueh nakeuh:
+"$1"
+nibak fungsi "$2"
+Basis data geupeuhase salah "$3: $4".',
+'laggedslavemode' => 'Peuneugah: On nyoe kadang hana neuubah baro',
 'missing-article' => 'Basis data h’an jeuët jiteumèë naseukah nibak ôn nyang sipatôtjih na, nakeuh "$1" $2.
 
 Nyoë biasajih sabab hubông useuëng u geunantoë away nyang ka teusampôh.
@@ -659,8 +693,6 @@ Alasan-alasan nyan hana geupeureumeuen.",
 'search-interwiki-caption' => 'Buët la’én',
 'search-interwiki-default' => 'Hasé $1:',
 'search-interwiki-more' => '(lom)',
-'search-mwsuggest-enabled' => 'ngon saran',
-'search-mwsuggest-disabled' => 'hana saran',
 'searchrelated' => 'meusambat',
 'searchall' => 'ban dum',
 'showingresultsheader' => "{{PLURAL:$5|Hase '''$1''' nibak '''$3'''|Hase '''$1 - $2''' nibak '''$3'''}} keu '''$4'''",
@@ -1173,5 +1205,8 @@ Data nyang la'én eunteuk teupeusom keudroë.
 
 # Special:Tags
 'tag-filter' => 'Filter [[Special:Tags|tag]]:',
+
+# Search suggestions
+'searchsuggest-search' => 'Mita',
 
 );

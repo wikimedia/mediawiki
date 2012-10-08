@@ -586,8 +586,6 @@ Ogher: '''({{int:cur}})''' = anchaslyssyn rish y lhieggan t'ayn nish,
 'search-interwiki-caption' => 'Shuyr-haleeghyn',
 'search-interwiki-default' => '{{PLURAL:$1|$1 eiyrtys|$1 eiyrtys|$1 eiyrtys|$1 eiyrtyssyn}}:',
 'search-interwiki-more' => '(ny smoo)',
-'search-mwsuggest-enabled' => 'lesh coyrle',
-'search-mwsuggest-disabled' => 'gyn coyrle',
 'search-relatedarticle' => 'Bentyn rish',
 'mwsuggest-disable' => 'Lhiettal coyrle AJAX',
 'searchrelated' => 'bentyn rish',
@@ -1476,5 +1474,9 @@ Bee adsyn elley follit dy seyr-obbragh.<br />
 
 # Special:Tags
 'tags-edit' => 'reaghey',
+
+# Search suggestions
+'searchsuggest-search' => 'Ronsaghey',
+'searchsuggest-containing' => 'goaill stiagh...',
 
 );

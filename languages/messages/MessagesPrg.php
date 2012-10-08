@@ -376,7 +376,7 @@ Drēudisnas pagrintinsna: "$2".',
 # Login and logout pages
 'logouttext' => "'''Tū assei teinū izgūbun.'''
 
-Tū mazzi ēmpirsin sadīntun tērpautun {{SITENAME}} kāigi niengūbuns tērpautajs, anga [[Special:UserLogin|enēitwei etkūmps]] kāigi šis sūbs anga kits tērpautajs.
+Tū mazzi ēmpirsin sadīntun tērpautun {{SITENAME}} kāigi niengūbuns tērpautajs, anga <span class='plainlinks'>[$1 enēitwei etkūmps]</span> kāigi šis sūbs anga kits tērpautajs.
 Endirēis, kāi ainuntai pāusai mazzi būtwei waidīntan ikāigi tū būlai ainatīngi engūbun, ērgi tū wīrst skistinnuns lasātlas rānkas minīsnan.",
 'welcomecreation' => '== Kaīls, $1! ==
 Twājs rekkens pastāi teīktan.
@@ -824,8 +824,6 @@ Nawigaciōnis autengīsenin terpausnā naikinna etrīnksenin en kōlunei.',
 'search-interwiki-caption' => 'Paligwāi prōjaktai',
 'search-interwiki-default' => 'Rezultātai per $1:',
 'search-interwiki-more' => '(tūls)',
-'search-mwsuggest-enabled' => 'sen nadāsnans',
-'search-mwsuggest-disabled' => 'šlāit nadāsnans',
 'search-relatedarticle' => 'Ristan',
 'mwsuggest-disable' => 'Izklaūjais AJAX nadāsnans',
 'searcheverything-enable' => 'Laukīs en wisēimans tītelin plattibins',

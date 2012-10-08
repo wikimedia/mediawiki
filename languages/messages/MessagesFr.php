@@ -55,6 +55,7 @@
  * @author Meithal
  * @author Moyg
  * @author Nicolas Raoul
+ * @author Nnemo
  * @author Od1n
  * @author Omnipaedista
  * @author Peter17
@@ -529,7 +530,7 @@ $messages = array(
 'vector-action-protect' => 'Protéger',
 'vector-action-undelete' => 'Rétablir',
 'vector-action-unprotect' => 'Changer la protection',
-'vector-simplesearch-preference' => 'Activer les suggestions de recherche améliorées (seulement pour Vector)',
+'vector-simplesearch-preference' => "Activer la barre de recherche simplifiée (seulement pour l'habillage Vector)",
 'vector-view-create' => 'Créer',
 'vector-view-edit' => 'Modifier',
 'vector-view-history' => 'Afficher l’historique',
@@ -779,16 +780,16 @@ L’administrateur qui l’a verrouillé a fourni ce motif: « $3 ».',
 # Login and logout pages
 'logouttext' => "'''Vous êtes à présent déconnecté(e).'''
 
-Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, [[Special:UserLogin|vous reconnecter]] sous le même nom ou un autre.
+Vous pouvez continuer à utiliser {{SITENAME}} de façon anonyme, <span class='plainlinks'>[$1 vous reconnecter]</span> sous le même nom ou un autre.
 Notez que certaines pages peuvent être encore affichées comme si vous étiez toujours connecté(e), jusqu’à ce que vous effaciez le cache de votre navigateur.",
 'welcomecreation' => '== Bienvenue, $1 ! ==
 
 Votre compte a été créé.
 N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
-'yourname' => 'Nom d’utilisateur :',
-'yourpassword' => 'Mot de passe :',
+'yourname' => 'Nom d’utilisateur&nbsp;:',
+'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
-'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
+'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https' => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname' => 'Votre domaine :',
 'password-change-forbidden' => 'Vous ne pouvez pas modifier les mots de passe sur ce wiki.',
@@ -820,7 +821,7 @@ Veuillez choisir un nom différent.',
 Vérifiez que vous avez activé les cookies, rechargez la page et réessayez.',
 'noname' => 'Vous n’avez pas saisi un nom d’utilisateur valide.',
 'loginsuccesstitle' => 'Connexion réussie',
-'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
+'loginsuccess' => 'Vous êtes maintenant connecté{{GENDER:$1||e|(e)}} à {{SITENAME}} en tant que « $1 ».',
 'nosuchuser' => 'L’utilisateur « $1 » n’existe pas.
 Les noms d’utilisateurs sont sensibles à la casse.
 Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compte]].',
@@ -1384,8 +1385,6 @@ Vous pouvez trouver des détails dans le [{{fullurl:{{#Special:Log}}/delete|page
 'search-interwiki-caption' => 'Projets frères',
 'search-interwiki-default' => 'Résultats sur $1 :',
 'search-interwiki-more' => '(plus)',
-'search-mwsuggest-enabled' => 'avec suggestions',
-'search-mwsuggest-disabled' => 'sans suggestions',
 'search-relatedarticle' => 'Relaté',
 'mwsuggest-disable' => 'Désactiver les suggestions AJAX',
 'searcheverything-enable' => 'Rechercher dans tous les espaces de noms',
@@ -1751,9 +1750,9 @@ Le journal des suppressions et celui des déplacements de cette page sont affich
 'uploadtext' => "Utilisez ce formulaire pour importer des fichiers sur le serveur.
 Pour voir ou rechercher des images précédemment envoyées, consultez la [[Special:FileList|liste des images]]. L’import est aussi enregistrés dans le [[Special:Log/upload|journal d'import des fichiers]], et les suppressions dans le [[Special:Log/delete|journal des suppressions]].
 
-Pour inclure un fichier dans une page, utilisez un lien de la forme :
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
-* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
+Pour inclure un fichier dans une page, utilisez un lien de la forme :
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.jpg]]</nowiki></code>''', pour afficher le fichier en pleine résolution (dans le cas d’une image) ;
+* '''<code><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fichier.png|200px|thumb|left|texte descriptif]]</nowiki></code>''' pour utiliser une miniature de 200 pixels de large dans une boîte à gauche avec « texte descriptif » comme description ;
 * '''<code><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fichier.ogg]]</nowiki></code>''' pour lier directement vers le fichier sans l’afficher.",
 'upload-permitted' => 'Formats de fichiers autorisés : $1.',
 'upload-preferred' => 'Formats de fichiers préférés : $1.',
@@ -3017,7 +3016,6 @@ Un dossier temporaire est manquant.",
 
 # JavaScriptTest
 'javascripttest' => 'Test de JavaScript',
-'javascripttest-disabled' => "Cette fonction n'a pas été activée sur ce wiki.",
 'javascripttest-title' => 'Exécution des tests $1',
 'javascripttest-pagetext-noframework' => "Cette page est réservée pour l'exécution des tests JavaScript.",
 'javascripttest-pagetext-unknownframework' => 'Structure "$1" inconnue.',
@@ -3183,10 +3181,10 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-authors' => "Nombre total d'auteurs distincts",
 'pageinfo-recent-edits' => 'Nombre de modifications récentes (dans les derniers $1)',
 'pageinfo-recent-authors' => "Nombre d'auteurs distincts récents",
-'pageinfo-restriction' => 'Protection de la page ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Mot magique|Mots magiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
+'pageinfo-toolboxlink' => 'Information sur la page',
 
 # Skin names
 'skinname-standard' => 'Standard',
@@ -3775,6 +3773,7 @@ $5',
 # Scary transclusion
 'scarytranscludedisabled' => '[La transclusion interwiki est désactivée]',
 'scarytranscludefailed' => '[La récupération de modèle a échoué pour $1]',
+'scarytranscludefailed-httpstatus' => '[Échec de la récupération du modèle pour  $1 : HTTP  $2 ]',
 'scarytranscludetoolong' => '[L’URL est trop longue]',
 
 # Delete conflict
@@ -4078,10 +4077,10 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-suppress-revision' => "$1 a secrètement modifié la visibilité {{PLURAL:$5|d'une révision|de $5 révisions}} sur la page $3: $4",
 'logentry-suppress-event-legacy' => '$1 a secrètement modifié la visibilité des événements du journal sur $3',
 'logentry-suppress-revision-legacy' => '$1 a secrètement modifié la visibilité des révisions sur la page $3',
-'revdelete-content-hid' => 'contenu caché',
+'revdelete-content-hid' => 'contenu masqué',
 'revdelete-summary-hid' => 'résumé de modification caché',
 'revdelete-uname-hid' => "nom d'utilisateur caché",
-'revdelete-content-unhid' => 'contenu démasqué',
+'revdelete-content-unhid' => 'contenu révélé',
 'revdelete-summary-unhid' => 'résumé de modification démasqué',
 'revdelete-uname-unhid' => "nom d'utilisateur démasqué",
 'revdelete-restricted' => 'restrictions appliquées aux administrateurs',
@@ -4113,6 +4112,10 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'feedback-close' => 'Fait',
 'feedback-bugcheck' => 'Formidable ! Vérifiez simplement que ce n’est pas un des [$1 bogues déjà connus].',
 'feedback-bugnew' => "J'ai vérifié. Signaler un nouveau bogue",
+
+# Search suggestions
+'searchsuggest-search' => 'Rechercher',
+'searchsuggest-containing' => 'contenant...',
 
 # API errors
 'api-error-badaccess-groups' => 'Vous n’êtes pas autorisé à verser des fichiers sur ce wiki.',

@@ -377,7 +377,7 @@ La razón es la siguienti: ''$2''.",
 
 # Login and logout pages
 'logouttext' => "'''Cuenta afechá corretamenti.'''<br />
-Pueis acontinal gastandu {{SITENAME}} de holma anónima, u [[Special:UserLogin|entral ena tu cuenta]] con el mesmu ussuáriu, u con otru.
+Pueis acontinal gastandu {{SITENAME}} de holma anónima, u <span class='plainlinks'>[$1 entral ena tu cuenta]</span> con el mesmu ussuáriu, u con otru.
 Dati cuenta que hata que nu esborris el caché del tu escrucaol pué paecel que la tu cuenta acontina abierta n'angunas páginas.",
 'welcomecreation' => "== Bienviniu, $1! ==
 
@@ -790,8 +790,6 @@ Asigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 'search-interwiki-caption' => 'Proyeutus helmanus',
 'search-interwiki-default' => '$1 resurtaus:',
 'search-interwiki-more' => '(más)',
-'search-mwsuggest-enabled' => 'muestral sugeréncias',
-'search-mwsuggest-disabled' => 'nu muestral sugeréncias',
 'searchrelated' => 'relacionau',
 'searchall' => 'tó',
 'showingresults' => "Embahu se {{PLURAL:$1|muestra '''1''' resurtau qu'esmiença|muestran hata '''$1''' resurtaus qu'esmiençan}} pol #'''$2'''.",

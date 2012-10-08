@@ -1,5 +1,5 @@
 <?php
-/** Belarusian (Taraškievica orthography) (‪беларуская (тарашкевіца)‬)
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -259,7 +259,7 @@ $messages = array(
 'tog-justify' => 'Выраўноўваць тэкст па шырыні старонкі',
 'tog-hideminor' => 'Хаваць дробныя зьмены ў сьпісе апошніх зьменаў',
 'tog-hidepatrolled' => 'Хаваць патруляваныя зьмены ў сьпісе апошніх зьменаў',
-'tog-newpageshidepatrolled' => 'Хаваць правераныя старонкі ў сьпісе новых старонак',
+'tog-newpageshidepatrolled' => 'Хаваць патруляваныя старонкі ў сьпісе новых старонак',
 'tog-extendwatchlist' => 'Пашырыць сьпіс назіраньня, каб ён паказваў усе зьмены, а ня толькі апошнія',
 'tog-usenewrc' => 'Групаваць зьмены старонкі ў сьпісах апошніх зьменаў і назіраньняў (патрабуе JavaScript)',
 'tog-numberheadings' => 'Аўтаматычная нумарацыя загалоўкаў',
@@ -267,11 +267,11 @@ $messages = array(
 'tog-editondblclick' => 'Рэдагаваць старонкі па падвойным пстрыку (JavaScript)',
 'tog-editsection' => 'Дазволіць рэдагаваньне асобных сэкцыяў па спасылках [рэдагаваць]',
 'tog-editsectiononrightclick' => 'Рэдагаваць сэкцыі па правым пстрыку на загалоўку (патрабуе JavaScript)',
-'tog-showtoc' => 'Паказваць зьмест (для старонак з колькасьцю сэкцый болей за 3)',
+'tog-showtoc' => 'Паказваць зьмест (для старонак з больш як 3 разьдзеламі)',
 'tog-rememberpassword' => 'Запомніць мяне ў гэтым браўзэры (ня больш за $1 {{PLURAL:$1|дзень|дні|дзён}})',
-'tog-watchcreations' => 'Дадаваць у мой сьпіс назіраньня створаныя мной старонкі і загружаныя мной файлы',
-'tog-watchdefault' => 'Дадаваць у мой сьпіс назіраньня старонкі і файлы якія я рэдагаваў',
-'tog-watchmoves' => 'Дадаваць у мой сьпіс назіраньня старонкі і файлы якія я пераносіў',
+'tog-watchcreations' => 'Дадаваць у мой сьпіс назіраньня створаныя мной старонкі і загружаныя файлы',
+'tog-watchdefault' => 'Дадаваць у мой сьпіс назіраньня старонкі і файлы, якія я рэдагаваў',
+'tog-watchmoves' => 'Дадаваць у мой сьпіс назіраньня перанесеныя мною старонкі і файлы',
 'tog-watchdeletion' => 'Дадаваць у мой сьпіс назіраньня старонкі і файлы, якія я выдаляю',
 'tog-minordefault' => 'Па змоўчаньні пазначаць усе зьмены дробнымі',
 'tog-previewontop' => 'Паказваць папярэдні прагляд старонкі над полем рэдагаваньня',
@@ -284,18 +284,18 @@ $messages = array(
 'tog-shownumberswatching' => 'Паказваць колькасьць назіральнікаў',
 'tog-oldsig' => 'Цяперашні подпіс:',
 'tog-fancysig' => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor' => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
-'tog-externaldiff' => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
+'tog-externaleditor' => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрабуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
+'tog-externaldiff' => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрабуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
 'tog-showjumplinks' => 'Актываваць дапаможныя спасылкі «перайсьці да»',
 'tog-uselivepreview' => 'Выкарыстоўваць хуткі папярэдні прагляд (патрабуе JavaScript) (экспэрымэнтальна)',
 'tog-forceeditsummary' => 'Папярэджваць пра адсутнасьць кароткага апісаньня зьменаў',
 'tog-watchlisthideown' => 'Хаваць мае праўкі ў сьпісе назіраньня',
 'tog-watchlisthidebots' => 'Хаваць праўкі робатаў у сьпісе назіраньня',
 'tog-watchlisthideminor' => 'Хаваць дробныя праўкі ў сьпісе назіраньня',
-'tog-watchlisthideliu' => 'Хаваць праўкі зарэгістраваных удзельнікаў і ўдзельніц у сьпісе назіраньня',
+'tog-watchlisthideliu' => 'Хаваць праўкі зарэгістраваных удзельнікаў у сьпісе назіраньня',
 'tog-watchlisthideanons' => 'Хаваць праўкі ананімаў у сьпісе назіраньня',
 'tog-watchlisthidepatrolled' => 'Хаваць патруляваныя праўкі ў сьпісе назіраньня',
-'tog-ccmeonemails' => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам і ўдзельніцам',
+'tog-ccmeonemails' => 'Дасылаць мне копіі лістоў, якія я дасылаю іншым удзельнікам',
 'tog-diffonly' => 'Не паказваць зьмест старонкі пад параўнаньнем зьменаў',
 'tog-showhiddencats' => 'Паказваць схаваныя катэгорыі',
 'tog-noconvertlink' => 'Забараніць канвэртацыю назваў спасылак',
@@ -303,12 +303,12 @@ $messages = array(
 
 'underline-always' => 'Заўсёды',
 'underline-never' => 'Ніколі',
-'underline-default' => 'Як у браўзэры',
+'underline-default' => 'Паводле браўзэра',
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Стыль шрыфту ў полі рэдагаваньня:',
-'editfont-default' => 'Шрыфт браўзэра па змоўчваньні',
-'editfont-monospace' => 'Шрыфт з аднолькавай шырынёй сымбаляў',
+'editfont-default' => 'Паводле браўзэра',
+'editfont-monospace' => 'Роўнашырокі шрыфт',
 'editfont-sansserif' => 'Шрыфт без засечак',
 'editfont-serif' => 'Шрыфт з засечкамі',
 
@@ -351,18 +351,18 @@ $messages = array(
 'october-gen' => 'кастрычніка',
 'november-gen' => 'лістапада',
 'december-gen' => 'сьнежня',
-'jan' => '01',
-'feb' => '02',
-'mar' => '03',
-'apr' => '04',
-'may' => '05',
-'jun' => '06',
-'jul' => '07',
-'aug' => '08',
-'sep' => '09',
-'oct' => '10',
-'nov' => '11',
-'dec' => '12',
+'jan' => 'сту',
+'feb' => 'лют',
+'mar' => 'сак',
+'apr' => 'кра',
+'may' => 'тра',
+'jun' => 'чэр',
+'jul' => 'ліп',
+'aug' => 'жні',
+'sep' => 'вер',
+'oct' => 'кас',
+'nov' => 'ліс',
+'dec' => 'сьн',
 
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Катэгорыя|Катэгорыі|Катэгорыі}}',
@@ -412,7 +412,7 @@ $messages = array(
 'vector-action-protect' => 'Абараніць',
 'vector-action-undelete' => 'Аднавіць',
 'vector-action-unprotect' => 'Зьмяніць абарону',
-'vector-simplesearch-preference' => 'Уключыць палепшаныя пошукавыя падказкі (толькі для афармленьня «Вэктар»)',
+'vector-simplesearch-preference' => 'Уключыць спрошчанае поле пошуку (толькі для афармленьня «Вэктар»)',
 'vector-view-create' => 'Стварыць',
 'vector-view-edit' => 'Рэдагаваць',
 'vector-view-history' => 'Паказаць гісторыю',
@@ -423,7 +423,7 @@ $messages = array(
 'variants' => 'Варыянты',
 
 'errorpagetitle' => 'Памылка',
-'returnto' => 'Вярнуцца да старонкі $1.',
+'returnto' => 'Вярнуцца да старонкі «$1».',
 'tagline' => 'Зьвесткі з {{GRAMMAR:родны|{{SITENAME}}}}',
 'help' => 'Дапамога',
 'search' => 'Пошук',
@@ -511,7 +511,8 @@ $1',
 'badaccess-groups' => 'Запытанае Вамі дзеяньне дазволенае толькі ўдзельнікам {{PLURAL:$2|з групы|адной з групаў:}} $1.',
 
 'versionrequired' => 'Патрабуецца MediaWiki вэрсіі $1',
-'versionrequiredtext' => 'Для карыстаньня гэтай старонкай патрабуецца MediaWiki вэрсіі $1. Глядзіце [[Special:Version|інфармацыю пра вэрсію]].',
+'versionrequiredtext' => 'Для карыстаньня гэтай старонкай патрабуецца MediaWiki вэрсіі $1.
+Глядзіце [[Special:Version|інфармацыю пра вэрсію]].',
 
 'ok' => 'Добра',
 'pagetitle' => '$1 — {{SITENAME}}',
@@ -632,10 +633,10 @@ $1',
 'protectedpagetext' => 'Рэдагаваньне гэтай старонкі забароненае.',
 'viewsourcetext' => 'Вы можаце праглядаць і капіяваць крынічны тэкст гэтай старонкі:',
 'viewyourtext' => "Вы можаце праглядзець і скапіяваць крынічны тэкст '''вашых рэдагаваньняў''' на гэтую старонку:",
-'protectedinterface' => 'Гэтая старонка ўтрымлівае інтэрфэйснае паведамленьне праграмнага забесьпячэньня, і яе зьмена забаронена.',
+'protectedinterface' => 'Гэтая старонка ўтрымлівае інтэрфэйснае паведамленьне праграмнага забесьпячэньня, і яе зьмена забаронена. Каб дадаць ці зьмяніць пераклад ва ўсіх праектах, зьвярніцеся на [//translatewiki.net/ translatewiki.net], праект для перакладу MediaWiki.',
 'editinginterface' => "'''Увага:''' Вы рэдагуеце старонку, якая ўтрымлівае сыстэмнае паведамленьне MediaWiki.
-Яе зьмена паўплывае на вонкавы выгляд інтэрфэйсу іншых удзельнікаў.
-Калі ласка, выкарыстоўвайце [//translatewiki.net/wiki/Main_Page?setlang=be-tarask translatewiki.net] — праект для лякалізацыі MediaWiki.",
+Яе зьмена паўплывае на вонкавы выгляд інтэрфэйсу іншых удзельнікаў у гэтай вікі.
+Каб дадаць ці зьмяніць пераклад ва ўсіх праектах, зьвярніцеся на [//translatewiki.net/wiki/Main_Page?setlang=be-tarask translatewiki.net] — праект для лякалізацыі MediaWiki.",
 'sqlhidden' => '(SQL-запыт схаваны)',
 'cascadeprotected' => 'Гэтая старонка абароненая ад рэдагаваньня, таму што яна ўключаная ў {{PLURAL:$1|наступную старонку, якая была абароненая|наступныя старонкі, якія былі абароненыя}} з актывізаванай опцыяй «каскаднай абароны»:
 $2',
@@ -661,7 +662,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Вы выйшлі з сыстэмы.'''
 
-Вы можаце працягваць працу ў {{GRAMMAR:месны|{{SITENAME}}}} ананімна, альбо можаце [[Special:UserLogin|ўвайсьці ў сыстэму]] як той жа альбо іншы ўдзельнік.
+Вы можаце працягваць працу ў {{GRAMMAR:месны|{{SITENAME}}}} ананімна, альбо можаце <span class='plainlinks'>[$1 ўвайсьці ў сыстэму]</span> як той жа альбо іншы ўдзельнік.
 Некаторыя старонкі могуць паказвацца, быццам Вы ўсё яшчэ ў сыстэме. Каб гэтага пазьбегнуць, трэба ачысьціць кэш браўзэра.",
 'welcomecreation' => '== Вітаем, $1! ==
 Ваш рахунак быў створаны.
@@ -913,7 +914,7 @@ $2
 Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтую назву]] ў іншых старонках, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць у адпаведных журналах падзеяў]
 альбо [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} рэдагаваць гэтую старонку]</span>.',
 'noarticletext-nopermission' => 'Цяпер на гэтай старонцы тэкст адсутнічае.
-Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць назву гэтай старонкі]] на іншых старонках, альбо <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць зьвязаныя запісы ў журналах]</span>.',
+Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць назву гэтай старонкі]] на іншых старонках, альбо <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} пашукаць зьвязаныя запісы ў журналах]</span>, але ў вас няма дазволу ствараць гэтую старонку.',
 'missing-revision' => 'Вэрсія старонкі №$1 з назвай «{{PAGENAME}}» не існуе.
 
 Звычайна гэта здараецца з-за перахода па састарэлай спасылцы на старонку, якая была выдаленая.
@@ -1216,7 +1217,7 @@ $1",
 'mergehistory-reason' => 'Прычына:',
 
 # Merge log
-'mergelog' => "Журнал аб'яднаньняў",
+'mergelog' => 'Журнал аб’яднаньняў',
 'pagemerge-logentry' => 'аб’яднаная [[$1]] ў [[$2]] (гісторыя рэдагаваньняў да $3)',
 'revertmerge' => 'Разьяднаць',
 'mergelogpagetext' => "Ніжэй знаходзіцца сьпіс апошніх аб'яднаньняў гісторыяў старонак.",
@@ -1278,8 +1279,6 @@ $1",
 'search-interwiki-caption' => 'Сумежныя праекты',
 'search-interwiki-default' => 'вынікі з $1:',
 'search-interwiki-more' => '(яшчэ)',
-'search-mwsuggest-enabled' => 'з парадамі',
-'search-mwsuggest-disabled' => 'без парад',
 'search-relatedarticle' => 'Зьвязаны',
 'mwsuggest-disable' => 'Адключыць AJAX-падказкі',
 'searcheverything-enable' => 'Шукаць ва ўсіх прасторах назваў',
@@ -1376,7 +1375,7 @@ $1",
 'timezoneregion-indian' => 'Індыйскі акіян',
 'timezoneregion-pacific' => 'Ціхі акіян',
 'allowemail' => 'Дазволіць атрыманьне лістоў ад іншых удзельнікаў і ўдзельніц',
-'prefs-searchoptions' => 'Магчымасьці пошуку',
+'prefs-searchoptions' => 'Пошук',
 'prefs-namespaces' => 'Прасторы назваў',
 'defaultns' => 'Інакш шукаць у наступных прасторах назваў:',
 'default' => 'па змоўчваньні',
@@ -2904,7 +2903,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Тэставаньне JavaScript',
-'javascripttest-disabled' => 'Гэтая функцыя не была ўключаная ў гэтай вікі.',
 'javascripttest-title' => 'Праводзіцца тэставаньне $1',
 'javascripttest-pagetext-noframework' => 'Гэтая старонка трымаецца для правядзеньня тэстаў JavaScript.',
 'javascripttest-pagetext-unknownframework' => 'Невядомая бібліятэка тэставаньня «$1».',
@@ -3035,10 +3033,10 @@ $1',
 'pageinfo-authors' => 'Колькасьць аўтараў',
 'pageinfo-recent-edits' => 'Колькасьць апошніх рэдагаваньняў (за $1)',
 'pageinfo-recent-authors' => 'Колькасьць апошніх аўтараў',
-'pageinfo-restriction' => 'Стан аховы ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магічнае слова|Магічныя словы}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблён|Шаблёны}} ($1)',
+'pageinfo-toolboxlink' => 'Зьвесткі пра старонку',
 
 # Skin names
 'skinname-standard' => 'Клясычнае',
@@ -3615,6 +3613,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Улучэньне інтэрвікі было адключанае]',
 'scarytranscludefailed' => '[Памылка атрыманьня шаблёну $1]',
+'scarytranscludefailed-httpstatus' => '[Памылка атрыманьня шаблёну $1: HTTP $2]',
 'scarytranscludetoolong' => '[Занадта даўгі URL-адрас]',
 
 # Delete conflict
@@ -3667,6 +3666,11 @@ $5
 'size-kilobytes' => '$1 кб',
 'size-megabytes' => '$1 Мб',
 'size-gigabytes' => '$1 Гб',
+'size-terabytes' => '$1 ТБ',
+'size-petabytes' => '$1 ПБ',
+'size-exabytes' => '$1 ЭБ',
+'size-zetabytes' => '$1 ЗБ',
+'size-yottabytes' => '$1 ЁБ',
 
 # Live preview
 'livepreview-loading' => 'Загрузка…',
@@ -3897,6 +3901,10 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'feedback-close' => 'Выканана',
 'feedback-bugcheck' => 'Выдатна! Толькі праверце, магчыма гэтыя памылкі ўжо [$1 вядомыя].',
 'feedback-bugnew' => 'Я праверыў. Гэта новая памылка',
+
+# Search suggestions
+'searchsuggest-search' => 'Пошук',
+'searchsuggest-containing' => 'утрымлівае...',
 
 # API errors
 'api-error-badaccess-groups' => 'У Вас няма дазволу загружаць файлы ў гэтую вікі.',

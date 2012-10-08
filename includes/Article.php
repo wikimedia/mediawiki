@@ -455,7 +455,7 @@ class Article extends Page {
 
 		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
-		$this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER ); // Loads if user is allowed
+		$this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER, $this->getContext()->getUser() ); // Loads if user is allowed
 		$this->mRevIdFetched = $this->mRevision->getId();
 
 		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
@@ -1884,8 +1884,9 @@ class Article extends Page {
 		wfDeprecated( __METHOD__, '1.18' );
 		if ( $noRedir ) {
 			$query = 'redirect=no';
-			if ( $extraQuery )
+			if ( $extraQuery ) {
 				$query .= "&$extraQuery";
+			}
 		} else {
 			$query = $extraQuery;
 		}

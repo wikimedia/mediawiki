@@ -474,7 +474,7 @@ Kod binon: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Esenunädol oli.'''
 
-Kanol laigebön {{SITENAME}} nennemiko, u kanol [[Special:UserLogin|nunädön oli dönu]] me gebananem ot u gebenanem votik.
+Kanol laigebön {{SITENAME}} nennemiko, u kanol <span class='plainlinks'>[$1 nunädön oli dönu]</span> me gebananem ot u gebenanem votik.
 Küpälolös, das pads anik ba nog pojenons äsva no esenunädol oli, jüs uklinükol memi no laidüpik bevüresodanaföma olik.",
 'welcomecreation' => '== Benokömö, o $1! ==
 Kal olik pejafon.
@@ -931,8 +931,6 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'search-interwiki-caption' => 'Svistaproyegs',
 'search-interwiki-default' => 'Seks se $1:',
 'search-interwiki-more' => '(pluikos)',
-'search-mwsuggest-enabled' => 'sa mobs',
-'search-mwsuggest-disabled' => 'nen mobs',
 'search-relatedarticle' => 'Tefik',
 'mwsuggest-disable' => 'Nemögükön mobis ela AJAX',
 'searcheverything-enable' => 'Sukolöd in nemaspads valik',
@@ -2821,5 +2819,9 @@ Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü
 'revdelete-restricted' => 'miedükams pelonöfükons pro guvans',
 'revdelete-unrestricted' => 'miedükams pro guvans pemoükons',
 'newuserlog-byemail' => 'letavöd pesedon me pot leäktronik',
+
+# Search suggestions
+'searchsuggest-search' => 'Suk',
+'searchsuggest-containing' => 'ninädöl...',
 
 );

@@ -434,7 +434,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''তি খানি আগে তর একাউন্টহাত্ত নিকুরিসত।'''
 
-এ পরিস্থিতিত তি বেনাঙল {{SITENAME}} ব্যবহার করানি পারর, নাইলে আরাক নাঙল [[Special:UserLogin|বারো হমানি]] পারর।
+এ পরিস্থিতিত তি বেনাঙল {{SITENAME}} ব্যবহার করানি পারর, নাইলে আরাক নাঙল <span class='plainlinks'>[$1 বারো হমানি]</span> পারর।
 খিয়াল থ, কোন কোন পাতা তি আগর অংতাত আসত বুলিয়া দেখা দিতে পারে। অসারে ইলে তি ব্রাওজারর ক্যাশ সেঙকরে বেলা (clear browser cache)।",
 'welcomecreation' => '==সম্ভাষা, $1! ==
 তর একাউন্টহান হঙিল। তর [[Special:Preferences|{{SITENAME}} পছনহান]] সিলানি না পাহুরিস।',
@@ -865,8 +865,6 @@ $2',
 'search-interwiki-caption' => 'বনক প্রকল্পহানি',
 'search-interwiki-default' => '$1 ফলাফলহানি:',
 'search-interwiki-more' => '(আরাকউ)',
-'search-mwsuggest-enabled' => 'পরামর্শল',
-'search-mwsuggest-disabled' => 'পরামর্শ নেই',
 'search-relatedarticle' => 'সাকেই আসে',
 'mwsuggest-disable' => 'AJAXরে থা নাদি',
 'searcheverything-enable' => 'হাব্বি নাঙথাকে বিসারা',
@@ -1736,5 +1734,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'revdelete-restricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি ফলা',
 'revdelete-unrestricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
 'newuserlog-byemail' => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
+
+# Search suggestions
+'searchsuggest-search' => 'বিসারা',
+'searchsuggest-containing' => 'আসেতা...',
 
 );

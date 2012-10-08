@@ -708,7 +708,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''तुम्ही आता अदाखल झाला(logout)आहात.'''
 
-तुम्ही अनामिकपणे {{SITENAME}}चा उपयोग करत राहू शकता, किंवा त्याच अथवा वेगळ्या सदस्य नावाने [[Special:UserLogin| पुन्हा दाखल होऊ शकता]].
+तुम्ही अनामिकपणे {{SITENAME}}चा उपयोग करत राहू शकता, किंवा त्याच अथवा वेगळ्या सदस्य नावाने <span class='plainlinks'>[$1  पुन्हा दाखल होऊ शकता]</span>.
 आपण स्वत:च्या न्याहाळकाची सय (cache) रिकामी करत नाही तो पर्यंत काही पाने आपण अजून दाखल आहात, असे नुसतेच दाखवत राहू शकतील.",
 'welcomecreation' => '== सुस्वागतम, $1! ==
 
@@ -1193,7 +1193,7 @@ $1",
 
 # History merging
 'mergehistory' => 'पान ईतिहासांचे एकत्रिकरण करा',
-'mergehistory-header' => 'हे पान एका स्रोत पानाचा इतिहास एखाद्या नविन पानात समाविष्ट करू देते.
+'mergehistory-header' => 'हे पान एका स्रोत पानाचा इतिहास एखाद्या नवीन पानात समाविष्ट करू देते.
 हा बदल पानाचे ऐतिहासिक सातत्य राखेल याची दक्षता घ्या.',
 'mergehistory-box' => 'दोन पानांची आवर्तने संमिलीत करा:',
 'mergehistory-from' => 'स्रोत पान:',
@@ -1273,8 +1273,6 @@ $1",
 'search-interwiki-caption' => 'इतर प्रकल्प',
 'search-interwiki-default' => '$1चे निकाल:',
 'search-interwiki-more' => '(आणखी)',
-'search-mwsuggest-enabled' => 'सजेशन्स सहित',
-'search-mwsuggest-disabled' => 'सजेशन्स नाहीत',
 'search-relatedarticle' => 'जवळील',
 'mwsuggest-disable' => 'AJAX सजेशन्स रद्द करा',
 'searcheverything-enable' => 'सर्वनामविश्वांमध्ये शोधा:',
@@ -1696,7 +1694,7 @@ $1",
 जर तुमच्या कडे पूर्ण रिझोल्यूशनची संचिका असेल तर चढवा अथवा संचिकेचे नाव बदला.',
 'fileexists-forbidden' => 'या नावाची संचिका अगोदरच अस्तित्त्वात आहे; कृपया पुन्हा मागे जाऊन ही संचिका नवीन नावाने चढवा.
 [[File:$1|thumb|center|$1]]',
-'fileexists-shared-forbidden' => 'हे नाव असलेली एक संचिका शेअर्ड संचिका कोशात आधी पासून आहे; कृपया परत फिरा आणि नविन(वेगळ्या) नावाने ही संचिका पुन्हा चढवा.[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => 'हे नाव असलेली एक संचिका शेअर्ड संचिका कोशात आधी पासून आहे; कृपया परत मागे जा आणि नवीन, वेगळ्या नावाने ही संचिका पुन्हा चढवा. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'ही संचिका खालील {{PLURAL:$1|संचिकेची|संचिकांची}} प्रत आहे:',
 'file-deleted-duplicate' => 'या संचिकेसारखीच् संचिका ([[:$1]]) या आधी वगळण्यात आली आहे.
 हि संचिका पुनः चढवण्यापूर्वी आपण त्या संचिकेची वगळण्याची नोंद तपासावी.',
@@ -2829,7 +2827,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'जावा स्क्रिप्ट तपासणी',
-'javascripttest-disabled' => 'हे कार्य अवरूद्ध केले आहे.',
 'javascripttest-title' => '$1 टेस्ट चालू आहेत',
 'javascripttest-pagetext-noframework' => 'हे पान जावा स्क्रिप्ट तपासणी साठी सुरक्षित केले आहे',
 'javascripttest-pagetext-unknownframework' => 'अज्ञात तपासणीचे ठिकाण $1',
@@ -3779,6 +3776,10 @@ $5
 'feedback-close' => 'झाले',
 'feedback-bugcheck' => 'उत्तम! फक्त एकदा खात्री करा की हा [$1 अगोदरच माहिती असलेला बग] तर नाहीये.',
 'feedback-bugnew' => 'मी तपासले आहे. हा एक नवीन बग म्हणून नोंद करावी',
+
+# Search suggestions
+'searchsuggest-search' => 'शोधा',
+'searchsuggest-containing' => '.......हे असलेले',
 
 # API errors
 'api-error-badaccess-groups' => 'आपणास ह्या विकीवर संचिका चढवण्याची परवानगी नाही',

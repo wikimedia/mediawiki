@@ -53,7 +53,7 @@ class FileBackendTest extends MediaWikiTestCase {
 			'parallelize' => 'implicit',
 			'backends'    => array(
 				array(
-					'name'          => 'localmutlitesting1',
+					'name'          => 'localmultitesting1',
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
@@ -62,7 +62,7 @@ class FileBackendTest extends MediaWikiTestCase {
 					'isMultiMaster' => false
 				),
 				array(
-					'name'          => 'localmutlitesting2',
+					'name'          => 'localmultitesting2',
 					'class'         => 'FSFileBackend',
 					'lockManager'   => 'nullLockManager',
 					'containerPaths' => array(
@@ -940,21 +940,30 @@ class FileBackendTest extends MediaWikiTestCase {
 	private function doTestGetFileContents( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$srcs = (array)$source;
+		$content = (array)$content;
+		foreach ( $srcs as $i => $src ) {
+			$this->prepare( array( 'dir' => dirname( $src ) ) );
+			$status = $this->backend->doOperation(
+				array( 'op' => 'create', 'content' => $content[$i], 'dst' => $src ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $src succeeded ($backendName)." );
+		}
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertGoodStatus( $status,
-			"Creation of file at $source succeeded ($backendName)." );
-		$this->assertEquals( true, $status->isOK(),
-			"Creation of file at $source succeeded with OK status ($backendName)." );
-
-		$newContents = $this->backend->getFileContents( array( 'src' => $source, 'latest' => 1 ) );
-		$this->assertNotEquals( false, $newContents,
-			"Read of file at $source succeeded ($backendName)." );
-
-		$this->assertEquals( $content, $newContents,
-			"Contents read match data at $source ($backendName)." );
+		if ( is_array( $source ) ) {
+			$contents = $this->backend->getFileContentsMulti( array( 'srcs' => $source ) );
+			foreach ( $contents as $path => $data ) {
+				$this->assertNotEquals( false, $data, "Contents of $path exists ($backendName)." );
+				$this->assertEquals( current( $content ), $data, "Contents of $path is correct ($backendName)." );
+				next( $content );
+			}
+			$this->assertEquals( $source, array_keys( $contents ), "Contents in right order ($backendName)." );
+			$this->assertEquals( count( $source ), count( $contents ), "Contents array size correct ($backendName)." );
+		} else {
+			$data = $this->backend->getFileContents( array( 'src' => $source ) );
+			$this->assertNotEquals( false, $data, "Contents of $source exists ($backendName)." );
+			$this->assertEquals( $content[0], $data, "Contents of $source is correct ($backendName)." );
+		}
 	}
 
 	function provider_testGetFileContents() {
@@ -963,6 +972,11 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = $this->baseStorePath();
 		$cases[] = array( "$base/unittest-cont1/e/b/z/some_file.txt", "some file contents" );
 		$cases[] = array( "$base/unittest-cont1/e/b/some-other_file.txt", "more file contents" );
+		$cases[] = array(
+			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
+				 "$base/unittest-cont1/e/a/z.txt" ),
+			array( "contents xx", "contents xy", "contents xz" )
+		);
 
 		return $cases;
 	}
@@ -985,19 +999,36 @@ class FileBackendTest extends MediaWikiTestCase {
 	private function doTestGetLocalCopy( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$srcs = (array)$source;
+		$content = (array)$content;
+		foreach ( $srcs as $i => $src ) {
+			$this->prepare( array( 'dir' => dirname( $src ) ) );
+			$status = $this->backend->doOperation(
+				array( 'op' => 'create', 'content' => $content[$i], 'dst' => $src ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $src succeeded ($backendName)." );
+		}
 
-		$status = $this->backend->doOperation(
-			array( 'op' => 'create', 'content' => $content, 'dst' => $source ) );
-		$this->assertGoodStatus( $status,
-			"Creation of file at $source succeeded ($backendName)." );
-
-		$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
-		$this->assertNotNull( $tmpFile,
-			"Creation of local copy of $source succeeded ($backendName)." );
-
-		$contents = file_get_contents( $tmpFile->getPath() );
-		$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
+		if ( is_array( $source ) ) {
+			$tmpFiles = $this->backend->getLocalCopyMulti( array( 'srcs' => $source ) );
+			foreach ( $tmpFiles as $path => $tmpFile ) {
+				$this->assertNotNull( $tmpFile,
+					"Creation of local copy of $path succeeded ($backendName)." );
+				$contents = file_get_contents( $tmpFile->getPath() );
+				$this->assertNotEquals( false, $contents, "Local copy of $path exists ($backendName)." );
+				$this->assertEquals( current( $content ), $contents, "Local copy of $path is correct ($backendName)." );
+				next( $content );
+			}
+			$this->assertEquals( $source, array_keys( $tmpFiles ), "Local copies in right order ($backendName)." );
+			$this->assertEquals( count( $source ), count( $tmpFiles ), "Local copies array size correct ($backendName)." );
+		} else {
+			$tmpFile = $this->backend->getLocalCopy( array( 'src' => $source ) );
+			$this->assertNotNull( $tmpFile,
+				"Creation of local copy of $source succeeded ($backendName)." );
+			$contents = file_get_contents( $tmpFile->getPath() );
+			$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
+			$this->assertEquals( $content[0], $contents, "Local copy of $source is correct ($backendName)." );
+		}
 	}
 
 	function provider_testGetLocalCopy() {
@@ -1006,6 +1037,12 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = $this->baseStorePath();
 		$cases[] = array( "$base/unittest-cont1/e/a/z/some_file.txt", "some file contents" );
 		$cases[] = array( "$base/unittest-cont1/e/a/some-other_file.txt", "more file contents" );
+		$cases[] = array( "$base/unittest-cont1/e/a/\$odd&.txt", "test file contents" );
+		$cases[] = array(
+			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
+				 "$base/unittest-cont1/e/a/z.txt" ),
+			array( "contents xx", "contents xy", "contents xz" )
+		);
 
 		return $cases;
 	}
@@ -1028,18 +1065,36 @@ class FileBackendTest extends MediaWikiTestCase {
 	private function doTestGetLocalReference( $source, $content ) {
 		$backendName = $this->backendClass();
 
-		$this->prepare( array( 'dir' => dirname( $source ) ) );
+		$srcs = (array)$source;
+		$content = (array)$content;
+		foreach ( $srcs as $i => $src ) {
+			$this->prepare( array( 'dir' => dirname( $src ) ) );
+			$status = $this->backend->doOperation(
+				array( 'op' => 'create', 'content' => $content[$i], 'dst' => $src ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $src succeeded ($backendName)." );
+		}
 
-		$status = $this->create( array( 'content' => $content, 'dst' => $source ) );
-		$this->assertGoodStatus( $status,
-			"Creation of file at $source succeeded ($backendName)." );
-
-		$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
-		$this->assertNotNull( $tmpFile,
-			"Creation of local copy of $source succeeded ($backendName)." );
-
-		$contents = file_get_contents( $tmpFile->getPath() );
-		$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
+		if ( is_array( $source ) ) {
+			$tmpFiles = $this->backend->getLocalReferenceMulti( array( 'srcs' => $source ) );
+			foreach ( $tmpFiles as $path => $tmpFile ) {
+				$this->assertNotNull( $tmpFile,
+					"Creation of local copy of $path succeeded ($backendName)." );
+				$contents = file_get_contents( $tmpFile->getPath() );
+				$this->assertNotEquals( false, $contents, "Local ref of $path exists ($backendName)." );
+				$this->assertEquals( current( $content ), $contents, "Local ref of $path is correct ($backendName)." );
+				next( $content );
+			}
+			$this->assertEquals( $source, array_keys( $tmpFiles ), "Local refs in right order ($backendName)." );
+			$this->assertEquals( count( $source ), count( $tmpFiles ), "Local refs array size correct ($backendName)." );
+		} else {
+			$tmpFile = $this->backend->getLocalReference( array( 'src' => $source ) );
+			$this->assertNotNull( $tmpFile,
+				"Creation of local copy of $source succeeded ($backendName)." );
+			$contents = file_get_contents( $tmpFile->getPath() );
+			$this->assertNotEquals( false, $contents, "Local ref of $source exists ($backendName)." );
+			$this->assertEquals( $content[0], $contents, "Local ref of $source is correct ($backendName)." );
+		}
 	}
 
 	function provider_testGetLocalReference() {
@@ -1048,6 +1103,12 @@ class FileBackendTest extends MediaWikiTestCase {
 		$base = $this->baseStorePath();
 		$cases[] = array( "$base/unittest-cont1/e/a/z/some_file.txt", "some file contents" );
 		$cases[] = array( "$base/unittest-cont1/e/a/some-other_file.txt", "more file contents" );
+		$cases[] = array( "$base/unittest-cont1/e/a/\$odd&.txt", "test file contents" );
+		$cases[] = array(
+			array( "$base/unittest-cont1/e/a/x.txt", "$base/unittest-cont1/e/a/y.txt",
+				 "$base/unittest-cont1/e/a/z.txt" ),
+			array( "contents xx", "contents xy", "contents xz" )
+		);
 
 		return $cases;
 	}
@@ -1835,7 +1896,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		foreach ( $this->filesToPrune as $file ) {
 			@unlink( $file );
 		}
-		$containers = array( 'unittest-cont1', 'unittest-cont2', 'unittest-cont3' );
+		$containers = array( 'unittest-cont1', 'unittest-cont2' );
 		foreach ( $containers as $container ) {
 			$this->deleteFiles( $container );
 		}
@@ -1847,8 +1908,7 @@ class FileBackendTest extends MediaWikiTestCase {
 		$iter = $this->backend->getFileList( array( 'dir' => "$base/$container" ) );
 		if ( $iter ) {
 			foreach ( $iter as $file ) {
-				$this->backend->delete( array( 'src' => "$base/$container/$file" ),
-					array( 'force' => 1, 'nonLocking' => 1 ) );
+				$this->backend->quickDelete( array( 'src' => "$base/$container/$file" ) );
 			}
 		}
 		$this->backend->clean( array( 'dir' => "$base/$container", 'recursive' => 1 ) );

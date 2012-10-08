@@ -30,136 +30,465 @@ if( !defined( 'MEDIAWIKI' ) ) {
  * @todo document
  * @ingroup Skins
  */
-class SkinCologneBlue extends SkinLegacy {
+class SkinCologneBlue extends SkinTemplate {
 	var $skinname = 'cologneblue', $stylename = 'cologneblue',
 		$template = 'CologneBlueTemplate';
+	var $useHeadElement = true;
 
 	/**
 	 * @param $out OutputPage
 	 */
 	function setupSkinUserCss( OutputPage $out ){
-		parent::setupSkinUserCss( $out );
+		$out->addModuleStyles( 'mediawiki.legacy.shared' );
+		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );
-
-		$qb = $this->qbSetting();
-		$rules = array();
-
-		if ( 2 == $qb ) { # Right
-			$rules[] = "/* @noflip */#quickbar { position: absolute; right: 4px; }";
-			$rules[] = "/* @noflip */#article { margin-left: 4px; margin-right: 148px; }";
-			$rules[] = "/* @noflip */#footer { margin-right: 152px; }";
-		} elseif ( 1 == $qb ) {
-			$rules[] = "/* @noflip */#quickbar { position: absolute; left: 4px; }";
-			$rules[] = "/* @noflip */#article { margin-left: 148px; margin-right: 4px; }";
-			$rules[] = "/* @noflip */#footer { margin-left: 152px; }";
-		} elseif ( 3 == $qb ) { # Floating left
-			$rules[] = "/* @noflip */#quickbar { position:absolute; left:4px }";
-			$rules[] = "/* @noflip */#topbar { margin-left: 148px }";
-			$rules[] = "/* @noflip */#article { margin-left:148px; margin-right: 4px; }";
-			$rules[] = "/* @noflip */body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto; bottom:4px;}"; # Hides from IE
-			$rules[] = "/* @noflip */#footer { margin-left: 152px; }";
-		} elseif ( 4 == $qb ) { # Floating right
-			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 4px; }";
-			$rules[] = "/* @noflip */#topbar { margin-right: 148px }";
-			$rules[] = "/* @noflip */#article { margin-right: 148px; margin-left: 4px; }";
-			$rules[] = "/* @noflip */body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto; bottom:4px;}"; # Hides from IE
-			$rules[] = "/* @noflip */#footer { margin-right: 152px; }";
-		}
-		$style = implode( "\n", $rules );
-		$out->addInlineStyle( $style, 'flip' );
 	}
-
+	
+	/**
+	 * Override langlink formatting behavior not to uppercase the language names.
+	 * See otherLanguages() in CologneBlueTemplate.
+	 */
+	function formatLanguageName( $name ) {
+		return $name;
+	}
 }
 
-class CologneBlueTemplate extends LegacyTemplate {
+class CologneBlueTemplate extends BaseTemplate {
+	function execute() {
+		$this->html( 'headelement' );
+		echo $this->beforeContent();
+		$this->html( 'bodytext' );
+		echo "\n";
+		echo $this->afterContent();
+		$this->html( 'dataAfterContent' );
+		$this->printTrail();
+		echo "\n</body></html>";
+	}
+	
 
 	/**
+	 * Language/charset variant links for classic-style skins
 	 * @return string
+	 *
+	 * @fixed
 	 */
-	function doBeforeContent() {
-		$mainPageObj = Title::newMainPage();
+	function variantLinks() {
+		$s = array();
 
-		$s = "\n<div id='content'>\n<div id='topbar'>" .
-		  '<table width="100%" cellspacing="0" cellpadding="8"><tr>';
+		$variants = $this->data['content_navigation']['variants'];
 
-		$s .= '<td class="top" nowrap="nowrap">';
-		$s .= '<a href="' . htmlspecialchars( $mainPageObj->getLocalURL() ) . '">';
-		$s .= '<span id="sitetitle">' . wfMessage( 'sitetitle' )->escaped() . '</span></a>';
-
-		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
-		$s .= $this->sysLinks();
-		$s .= '</td></tr><tr><td class="top-subheader">';
-
-		$s .= '<font size="-1"><span id="sitesub">';
-		$s .= wfMessage( 'sitesubtitle' )->escaped() . '</span></font>';
-		$s .= '</td><td class="top-linkcollection">';
-
-		$s .= '<font size="-1"><span id="langlinks">';
-		$s .= str_replace( '<br />', '', $this->otherLanguages() );
-
-		$s .= $this->getSkin()->getCategories();
-
-		$s .= '<br />' . $this->pageTitleLinks();
-		$s .= '</span></font>';
-
-		$s .= "</td></tr></table>\n";
-
-		$s .= "\n</div>\n<div id='article'>";
-
-		$notice = $this->getSkin()->getSiteNotice();
-		if( $notice ) {
-			$s .= "\n<div id='siteNotice'>$notice</div>\n";
+		foreach ( $variants as $key => $link ) {
+			$s[] = $this->makeListItem( $key, $link, array( 'tag' => 'span' ) );
 		}
-		$s .= $this->pageTitle();
-		$s .= $this->pageSubtitle() . "\n";
+
+		return $this->getSkin()->getLanguage()->pipeList( $s );
+	}
+	
+	// @fixed
+	function otherLanguages() {
+		global $wgHideInterlanguageLinks;
+		if ( $wgHideInterlanguageLinks ) {
+			return "";
+		}
+
+		// We override SkinTemplate->formatLanguageName() in SkinCologneBlue
+		// not to capitalize the language names.
+		$language_urls = $this->data['language_urls'];
+		if ( empty( $language_urls ) ) {
+			return "";
+		}
+
+		$s = array();
+		foreach ( $language_urls as $key => $data ) {
+			$s[] = $this->makeListItem( $key, $data, array( 'tag' => 'span' ) );
+		}
+
+		return wfMessage( 'otherlanguages' )->text()
+			. wfMessage( 'colon-separator' )->text()
+			. $this->getSkin()->getLanguage()->pipeList( $s );
+	}
+
+	// @fixed
+	function pageTitleLinks() {
+		$s = array();
+		$footlinks = $this->getFooterLinks();
+		
+		foreach ( $footlinks['places'] as $item ) {
+			$s[] = $this->data[$item];
+		}
+		
+		return $this->getSkin()->getLanguage()->pipeList( $s );
+	}
+
+	function bottomLinks() {
+		$sep = wfMessage( 'pipe-separator' )->escaped() . "\n";
+
+		$s = '';
+		if ( $this->getSkin()->getOutput()->isArticleRelated() ) {
+			$element[] = '<strong>' . $this->editThisPage() . '</strong>';
+
+			if ( $this->getSkin()->getUser()->isLoggedIn() ) {
+				$element[] = $this->watchThisPage();
+			}
+
+			$element[] = $this->talkLink();
+			$element[] = $this->historyLink();
+			$element[] = $this->whatLinksHere();
+			$element[] = $this->watchPageLinksLink();
+
+			$title = $this->getSkin()->getTitle();
+
+			if (
+				$title->getNamespace() == NS_USER ||
+				$title->getNamespace() == NS_USER_TALK
+			) {
+				$id = User::idFromName( $title->getText() );
+				$ip = User::isIP( $title->getText() );
+
+				# Both anons and non-anons have contributions list
+				if ( $id || $ip ) {
+					$element[] = $this->userContribsLink();
+				}
+
+				if ( $this->getSkin()->showEmailUser( $id ) ) {
+					$element[] = $this->emailUserLink();
+				}
+			}
+
+			$s = implode( $element, $sep );
+
+			if ( $title->getArticleID() ) {
+				$s .= "\n<br />";
+
+				// Delete/protect/move links for privileged users
+				if ( $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
+					$s .= $this->deleteThisPage();
+				}
+
+				if ( $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
+					$s .= $sep . $this->protectThisPage();
+				}
+
+				if ( $this->getSkin()->getUser()->isAllowed( 'move' ) ) {
+					$s .= $sep . $this->moveThisPage();
+				}
+			}
+
+			$s .= "<br />\n" . $this->otherLanguages();
+		}
+
+		return $s;
+	}
+
+	function editThisPage() {
+		if ( !$this->getSkin()->getOutput()->isArticleRelated() ) {
+			$s = wfMessage( 'protectedpage' )->text();
+		} else {
+			$title = $this->getSkin()->getTitle();
+			if ( $title->quickUserCan( 'edit' ) && $title->exists() ) {
+				$t = wfMessage( 'editthispage' )->text();
+			} elseif ( $title->quickUserCan( 'create' ) && !$title->exists() ) {
+				$t = wfMessage( 'create-this-page' )->text();
+			} else {
+				$t = wfMessage( 'viewsource' )->text();
+			}
+
+			$s = Linker::linkKnown(
+				$title,
+				$t,
+				array(),
+				$this->getSkin()->editUrlOptions()
+			);
+		}
+
+		return $s;
+	}
+
+	function deleteThisPage() {
+		$diff = $this->getSkin()->getRequest()->getVal( 'diff' );
+		$title = $this->getSkin()->getTitle();
+
+		if ( $title->getArticleID() && ( !$diff ) && $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
+			$t = wfMessage( 'deletethispage' )->text();
+
+			$s = Linker::linkKnown(
+				$title,
+				$t,
+				array(),
+				array( 'action' => 'delete' )
+			);
+		} else {
+			$s = '';
+		}
+
+		return $s;
+	}
+
+	function protectThisPage() {
+		$diff = $this->getSkin()->getRequest()->getVal( 'diff' );
+		$title = $this->getSkin()->getTitle();
+
+		if ( $title->getArticleID() && ( ! $diff ) && $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
+			if ( $title->isProtected() ) {
+				$text = wfMessage( 'unprotectthispage' )->text();
+				$query = array( 'action' => 'unprotect' );
+			} else {
+				$text = wfMessage( 'protectthispage' )->text();
+				$query = array( 'action' => 'protect' );
+			}
+
+			$s = Linker::linkKnown(
+				$title,
+				$text,
+				array(),
+				$query
+			);
+		} else {
+			$s = '';
+		}
+
+		return $s;
+	}
+
+	function watchThisPage() {
+		// Cache
+		$title = $this->getSkin()->getTitle();
+
+		if ( $this->getSkin()->getOutput()->isArticleRelated() ) {
+			if ( $this->getSkin()->getUser()->isWatched( $title ) ) {
+				$text = wfMessage( 'unwatchthispage' )->text();
+				$query = array(
+					'action' => 'unwatch',
+					'token' => UnwatchAction::getUnwatchToken( $title, $this->getSkin()->getUser() ),
+				);
+				$id = 'mw-unwatch-link';
+			} else {
+				$text = wfMessage( 'watchthispage' )->text();
+				$query = array(
+					'action' => 'watch',
+					'token' => WatchAction::getWatchToken( $title, $this->getSkin()->getUser() ),
+				);
+				$id = 'mw-watch-link';
+			}
+
+			$s = Linker::linkKnown(
+				$title,
+				$text,
+				array( 'id' => $id ),
+				$query
+			);
+		} else {
+			$s = wfMessage( 'notanarticle' )->text();
+		}
+
+		return $s;
+	}
+
+	function moveThisPage() {
+		if ( $this->getSkin()->getTitle()->quickUserCan( 'move' ) ) {
+			return Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Movepage' ),
+				wfMessage( 'movethispage' )->text(),
+				array(),
+				array( 'target' => $this->getSkin()->getTitle()->getPrefixedDBkey() )
+			);
+		} else {
+			// no message if page is protected - would be redundant
+			return '';
+		}
+	}
+
+	function historyLink() {
+		return Linker::link(
+			$this->getSkin()->getTitle(),
+			wfMessage( 'history' )->escaped(),
+			array( 'rel' => 'archives' ),
+			array( 'action' => 'history' )
+		);
+	}
+
+	function whatLinksHere() {
+		return Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Whatlinkshere', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
+			wfMessage( 'whatlinkshere' )->escaped()
+		);
+	}
+
+	function userContribsLink() {
+		return Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Contributions', $this->getSkin()->getTitle()->getDBkey() ),
+			wfMessage( 'contributions' )->escaped()
+		);
+	}
+
+	function emailUserLink() {
+		return Linker::linkKnown(
+			SpecialPage::getTitleFor( 'Emailuser', $this->getSkin()->getTitle()->getDBkey() ),
+			wfMessage( 'emailuser' )->escaped()
+		);
+	}
+
+	function watchPageLinksLink() {
+		if ( !$this->getSkin()->getOutput()->isArticleRelated() ) {
+			return wfMessage( 'parentheses', wfMessage( 'notanarticle' )->text() )->escaped();
+		} else {
+			return Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->getSkin()->getTitle()->getPrefixedDBkey() ),
+				wfMessage( 'recentchangeslinked-toolbox' )->escaped()
+			);
+		}
+	}
+
+	function talkLink() {
+		$title = $this->getSkin()->getTitle();
+		if ( NS_SPECIAL == $title->getNamespace() ) {
+			# No discussion links for special pages
+			return '';
+		}
+
+		$linkOptions = array();
+
+		if ( $title->isTalkPage() ) {
+			$link = $title->getSubjectPage();
+			switch( $link->getNamespace() ) {
+				case NS_MAIN:
+					$text = wfMessage( 'articlepage' );
+					break;
+				case NS_USER:
+					$text = wfMessage( 'userpage' );
+					break;
+				case NS_PROJECT:
+					$text = wfMessage( 'projectpage' );
+					break;
+				case NS_FILE:
+					$text = wfMessage( 'imagepage' );
+					# Make link known if image exists, even if the desc. page doesn't.
+					if ( wfFindFile( $link ) )
+						$linkOptions[] = 'known';
+					break;
+				case NS_MEDIAWIKI:
+					$text = wfMessage( 'mediawikipage' );
+					break;
+				case NS_TEMPLATE:
+					$text = wfMessage( 'templatepage' );
+					break;
+				case NS_HELP:
+					$text = wfMessage( 'viewhelppage' );
+					break;
+				case NS_CATEGORY:
+					$text = wfMessage( 'categorypage' );
+					break;
+				default:
+					$text = wfMessage( 'articlepage' );
+			}
+		} else {
+			$link = $title->getTalkPage();
+			$text = wfMessage( 'talkpage' );
+		}
+
+		$s = Linker::link( $link, $text->text(), array(), array(), $linkOptions );
+
+		return $s;
+	}
+	
+	/**
+	 * @return string
+	 * 
+	 * @fixed
+	 */
+	function beforeContent() {
+		ob_start();
+?>
+<div id="content">
+	<div id="topbar">
+		<p id="sitetitle">
+			<a href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>">
+				<?php echo wfMessage( 'sitetitle' )->escaped() ?>
+			</a>
+		</p>
+		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
+		
+		<div id="toplinks">
+			<p id="syslinks"><?php echo $this->sysLinks() ?></p>
+			<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
+		</div>
+		<div id="linkcollection">
+			<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
+			<?php echo $this->getSkin()->getCategories() ?>
+			<div id="titlelinks"><?php echo $this->pageTitleLinks() ?></div>
+			<?php if ( $this->data['newtalk'] ) { ?>
+			<div class="usermessage"><strong><?php echo $this->data['newtalk'] ?></strong></div>
+			<?php } ?>
+		</div>
+	</div>
+	<div id="article">
+		<?php if ( $this->getSkin()->getSiteNotice() ) { ?>
+		<div id="siteNotice"><?php echo $this->getSkin()->getSiteNotice() ?></div>
+		<?php } ?>
+		<h1 id="firstHeading"><span dir="auto"><?php echo $this->data['title'] ?></span></h1>
+		<?php if ( $this->translator->translate( 'tagline' ) ) { ?>
+		<p class="tagline"><?php echo htmlspecialchars( $this->translator->translate( 'tagline' ) ) ?></p>
+		<?php } ?>
+		<?php if ( $this->getSkin()->getOutput()->getSubtitle() ) { ?>
+		<p class="subtitle"><?php echo $this->getSkin()->getOutput()->getSubtitle() ?></p>
+		<?php } ?>
+		<?php if ( $this->getSkin()->subPageSubtitle() ) { ?>
+		<p class="subpages"><?php echo $this->getSkin()->subPageSubtitle() ?></p>
+		<?php } ?>
+<?php
+		$s = ob_get_contents();
+		ob_end_clean();
+		
 		return $s;
 	}
 
 	/**
 	 * @return string
+	 * 
+	 * @fixed
 	 */
-	function doAfterContent(){
-		$s = "\n</div><br clear='all' />\n";
-
-		$s .= "\n<div id='footer'>";
-		$s .= '<table width="98%" cellspacing="0"><tr>';
-
-		$s .= '<td class="bottom">';
-
-		$s .= $this->bottomLinks();
-		$s .= $this->getSkin()->getLanguage()->pipeList( array(
-			"\n<br />" . Linker::linkKnown(
-				Title::newMainPage()
-			),
+	function afterContent() {
+		ob_start();
+?>
+	</div>
+	<div id='footer'>
+<?php
+		// Page-related links
+		echo $this->bottomLinks();
+		echo "\n<br />";
+		
+		// Footer and second searchbox
+		echo $this->getSkin()->getLanguage()->pipeList( array(
+			$this->getSkin()->mainPageLink(),
 			$this->getSkin()->aboutLink(),
-			$this->searchForm( wfMessage( 'qbfind' )->text() )
+			$this->searchForm( 'footer' )
 		) );
-
-		$s .= "\n<br />" . $this->pageStats();
-
-		$s .= '</td>';
-		$s .= "</tr></table>\n</div>\n</div>\n";
-
-		if ( $this->getSkin()->qbSetting() != 0 ) {
-			$s .= $this->quickBar();
+		echo "\n<br />";
+		
+		// Standard footer info
+		$footlinks = $this->getFooterLinks();
+		if ( $footlinks['info'] ) {
+			foreach ( $footlinks['info'] as $item ) {
+				echo $this->data[$item] . ' ';
+			}
 		}
+?>
+	</div>
+</div>
+<?php echo $this->quickBar() ?>
+<?php
+		$s = ob_get_contents();
+		ob_end_clean();
+
 		return $s;
 	}
 
 	/**
 	 * @return string
+	 * 
+	 * @fixed
 	 */
 	function sysLinks() {
-		$li = SpecialPage::getTitleFor( 'Userlogin' );
-		$lo = SpecialPage::getTitleFor( 'Userlogout' );
-
-		$rt = $this->getSkin()->getTitle()->getPrefixedURL();
-		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
-			$q = array();
-		} else {
-			$q = array( 'returnto' => $rt );
-		}
-
 		$s = array(
 			$this->getSkin()->mainPageLink(),
 			Linker::linkKnown(
@@ -174,33 +503,29 @@ class CologneBlueTemplate extends LegacyTemplate {
 				Title::newFromText( wfMessage( 'faqpage' )->inContentLanguage()->text() ),
 				wfMessage( 'faq' )->text()
 			),
-			Linker::specialLink( 'Specialpages' )
 		);
 
-		/* show links to different language variants */
-		if( $this->variantLinks() ) {
-			$s[] = $this->variantLinks();
-		}
-		if( $this->extensionTabLinks() ) {
-			$s[] = $this->extensionTabLinks();
-		}
-		if ( $this->data['loggedin'] ) {
-			$s[] = Linker::linkKnown(
-				$lo,
-				wfMessage( 'logout' )->text(),
-				array(),
-				$q
-			);
-		} else {
-			$s[] = Linker::linkKnown(
-				$li,
-				wfMessage( 'login' )->text(),
-				array(),
-				$q
-			);
+		$personalUrls = $this->getPersonalTools();
+		foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+			if ( $personalUrls[$key] ) {
+				$s[] = $this->makeListItem( $key, $personalUrls[$key], array( 'tag' => 'span' ) );
+			}
 		}
 
 		return $this->getSkin()->getLanguage()->pipeList( $s );
+	}
+
+
+
+	
+	/**
+	 * @param $heading string
+	 * @return string
+	 * 
+	 * @fixed
+	 */
+	function menuHead( $heading ) {
+		return "\n<h6>" . htmlspecialchars( $heading ) . "</h6>";
 	}
 
 	/**
@@ -208,186 +533,148 @@ class CologneBlueTemplate extends LegacyTemplate {
 	 * @access private
 	 *
 	 * @return string
+	 * 
+	 * @fixed
 	 */
 	function quickBar(){
 		$s = "\n<div id='quickbar'>";
 
-		$sep = '<br />';
-		$s .= $this->menuHead( 'qbfind' );
-		$s .= $this->searchForm();
-
-		$s .= $this->menuHead( 'qbbrowse' );
-
-		# Use the first heading from the Monobook sidebar as the "browse" section
-		$bar = $this->getSkin()->buildSidebar();
-		unset( $bar['SEARCH'] );
-		unset( $bar['LANGUAGES'] );
-		unset( $bar['TOOLBOX'] );
-
-		$barnumber = 1;
-		foreach ( $bar as $heading => $browseLinks ) {
-			if ( $barnumber > 1 ) {
-				$headingMsg = wfMessage( $heading );
-				if ( $headingMsg->exists() ) {
-					$h = $headingMsg->text();
-				} else {
-					$h = $heading;
+		$sep = "<br />\n";
+		
+		$plain_bar = $this->data['sidebar'];
+		$bar = array();
+		
+		// Massage the sidebar
+		// We want to place SEARCH at the beginning and a lot of stuff before TOOLBOX (or at the end, if it's missing)
+		$additions_done = false;
+		while ( !$additions_done ) {
+			$bar = array(); // Empty it out
+			
+			// Always display search on top
+			$bar['SEARCH'] = true;
+				
+			foreach ( $plain_bar as $heading => $links ) {
+				if ( $heading == 'TOOLBOX' ) {
+					if( $links !== NULL ) {
+						// If this is not a toolbox prosthetic we inserted outselves, fill it out
+						$plain_bar['TOOLBOX'] = $this->getToolbox();
+					}
+					
+					// And insert the stuff
+					
+					// "This page" and "Edit" menus
+					// We need to do some massaging here... we reuse all of the items, except for $...['views']['view'],
+					// as $...['namespaces']['main'] and $...['namespaces']['talk'] together serve the same purpose.
+					// We also don't use $...['variants'], these are displayed in the top menu.
+					$content_navigation = $this->data['content_navigation'];
+					$qbpageoptions = array_merge(
+						$content_navigation['namespaces'],
+						array(
+							'history' => $content_navigation['views']['history'],
+							'watch' => $content_navigation['actions']['watch'],
+							'unwatch' => $content_navigation['actions']['unwatch'],
+						)
+					);
+					$content_navigation['actions']['watch'] = null;
+					$content_navigation['actions']['unwatch'] = null;
+					$qbedit = array_merge(
+						array(
+							'edit' => $content_navigation['views']['edit'],
+							'addsection' => $content_navigation['views']['addsection'],
+						),
+						$content_navigation['actions']
+					);
+					$bar['qbedit'] = $qbedit;
+					$bar['qbpageoptions'] = $qbpageoptions;
+					
+					// Personal tools ("My pages")
+					$bar['qbmyoptions'] = $this->getPersonalTools();
+					foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+						$bar['qbmyoptions'][$key] = false;
+					}
+					
+					$additions_done = true;
 				}
-				$s .= "\n<h6>" . htmlspecialchars( $h ) . "</h6>";
+				
+				// Re-insert current heading, unless it's SEARCH
+				if ( $heading != 'SEARCH' ) {
+					$bar[$heading] = $plain_bar[$heading];
+				}
 			}
-			if( is_array( $browseLinks ) ) {
-				foreach ( $browseLinks as $link ) {
-					if ( $link['text'] != '-' ) {
-						$s .= "<a href=\"{$link['href']}\">" .
-							htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+			
+			// If TOOLBOX is missing, $additions_done is still false
+			if ( !$additions_done ) {
+				$plain_bar['TOOLBOX'] = false;
+			}
+		}
+		
+		foreach ( $bar as $heading => $links ) {
+			if ( $heading == 'SEARCH' ) {
+				$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
+				$s .= $this->searchForm( 'sidebar' );
+			} elseif ( $heading == 'LANGUAGES' ) {
+				// discard these; we display languages below page content
+			} else {
+				if ( $links ) {
+					// Use the navigation heading from standard sidebar as the "browse" section
+					if ( $heading == 'navigation' ) {
+						$heading = 'qbbrowse';
+					}
+					if ( $heading == 'TOOLBOX' ) {
+						$heading = 'toolbox';
+					}
+					
+					$headingMsg = wfMessage( $heading );
+					$any_link = false;
+					$t = $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : $heading );
+					
+					foreach ( $links as $key => $link ) {
+						// Can be empty due to rampant sidebar massaging we're doing above
+						if ( $link ) {
+							$any_link = true;
+							$t .= $this->makeListItem( $key, $link, array( 'tag' => 'span' ) ) . $sep;
+						}
+					}
+					
+					if ( $any_link ) {
+						$s .= $t;
 					}
 				}
 			}
-			$barnumber++;
 		}
-
-		$user = $this->getSkin()->getUser();
-
-		if ( $this->data['isarticle'] ) {
-			$s .= $this->menuHead( 'qbedit' );
-			$s .= '<strong>' . $this->editThisPage() . '</strong>';
-
-			$s .= $sep . Linker::linkKnown(
-				Title::newFromText( wfMessage( 'edithelppage' )->inContentLanguage()->text() ),
-				wfMessage( 'edithelp' )->text()
-			);
-
-			if( $this->data['loggedin'] ) {
-				$s .= $sep . $this->moveThisPage();
-			}
-			if ( $user->isAllowed( 'delete' ) ) {
-				$dtp = $this->deleteThisPage();
-				if ( $dtp != '' ) {
-					$s .= $sep . $dtp;
-				}
-			}
-			if ( $user->isAllowed( 'protect' ) ) {
-				$ptp = $this->protectThisPage();
-				if ( $ptp != '' ) {
-					$s .= $sep . $ptp;
-				}
-			}
-			$s .= $sep;
-
-			$s .= $this->menuHead( 'qbpageoptions' );
-			$s .= $this->talkLink()
-					. $sep . $this->commentLink()
-					. $sep . $this->printableLink();
-			if ( $this->data['loggedin'] ) {
-				$s .= $sep . $this->watchThisPage();
-			}
-
-			$s .= $sep;
-
-			$s .= $this->menuHead( 'qbpageinfo' )
-					. $this->historyLink()
-					. $sep . $this->whatLinksHere()
-					. $sep . $this->watchPageLinksLink();
-
-			$title = $this->getSkin()->getTitle();
-			$tns = $title->getNamespace();
-			if ( $tns == NS_USER || $tns == NS_USER_TALK ) {
-				$id = User::idFromName( $title->getText() );
-				if( $id != 0 ) {
-					$s .= $sep . $this->userContribsLink();
-					if( $this->getSkin()->showEmailUser( $id ) ) {
-						$s .= $sep . $this->emailUserLink();
-					}
-				}
-			}
-			$s .= $sep;
-		}
-
-		$s .= $this->menuHead( 'qbmyoptions' );
-		if ( $this->data['loggedin'] ) {
-			$tl = Linker::linkKnown(
-				$user->getTalkPage(),
-				wfMessage( 'mytalk' )->escaped()
-			);
-			if ( $user->getNewtalk() ) {
-				$tl .= ' *';
-			}
-
-			$s .= Linker::linkKnown(
-					$user->getUserPage(),
-					wfMessage( 'mypage' )->escaped()
-				) . $sep . $tl . $sep . Linker::specialLink( 'Watchlist' )
-					. $sep .
-				Linker::linkKnown(
-					SpecialPage::getSafeTitleFor( 'Contributions', $user->getName() ),
-					wfMessage( 'mycontris' )->escaped()
-				) . $sep . Linker::specialLink( 'Preferences' )
-				. $sep . Linker::specialLink( 'Userlogout' );
-		} else {
-			$s .= Linker::specialLink( 'Userlogin' );
-		}
-
-		$s .= $this->menuHead( 'qbspecialpages' )
-			. Linker::specialLink( 'Newpages' )
-			. $sep . Linker::specialLink( 'Listfiles' )
-			. $sep . Linker::specialLink( 'Statistics' );
-		if( UploadBase::isEnabled() && UploadBase::isAllowed( $user ) === true ) {
-			$s .= $sep . $this->getUploadLink();
-		}
-
-		global $wgSiteSupportPage;
-
-		if( $wgSiteSupportPage ) {
-			$s .= $sep . '<a href="' . htmlspecialchars( $wgSiteSupportPage ) . '" class="internal">'
-					. wfMessage( 'sitesupport' )->escaped() . '</a>';
-		}
-
-		$s .= $sep . Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Specialpages' ),
-			wfMessage( 'moredotdotdot' )->text()
-		);
 
 		$s .= $sep . "\n</div>\n";
 		return $s;
 	}
 
 	/**
-	 * @param $key string
-	 * @return string
-	 */
-	function menuHead( $key ) {
-		$s = "\n<h6>" . wfMessage( $key )->text() . "</h6>";
-		return $s;
-	}
-
-	/**
 	 * @param $label string
 	 * @return string
+	 * 
+	 * @fixed
 	 */
-	function searchForm( $label = '' ) {
+	function searchForm( $which ) {
 		global $wgUseTwoButtonsSearchForm;
 
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
-		$s = "<form id=\"searchform{$this->searchboxes}\" method=\"get\" class=\"inline\" action=\"$action\">";
-		if( $label != '' ) {
-			$s .= "{$label}: ";
+		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
+		if( $which == 'footer' ) {
+			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
-		$s .= "<input type='text' id=\"searchInput{$this->searchboxes}\" class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
-			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" /><br />"
-			. "<input type='submit' id=\"searchGoButton{$this->searchboxes}\" class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
+		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
+			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
+			. ($which == 'footer' ? " " : "<br />")
+			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
-			$s .= "<input type='submit' id=\"mw-searchButton{$this->searchboxes}\" class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
+			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
 		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
 		}
 
 		$s .= '</form>';
-
-		// Ensure unique id's for search boxes made after the first
-		$this->searchboxes = $this->searchboxes == '' ? 2 : $this->searchboxes + 1;
 
 		return $s;
 	}

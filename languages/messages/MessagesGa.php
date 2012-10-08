@@ -476,7 +476,7 @@ An fáth ná ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Tá tú logáilte amach anois.'''
 
-Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat [[Special:UserLogin|logáil isteach arís]] mar an úsáideoir céanna, nó mar úsáideoir eile.
+Is féidir leat an {{SITENAME}} a úsáid fós gan ainm, nó is féidir leat <span class='plainlinks'>[$1 logáil isteach arís]</span> mar an úsáideoir céanna, nó mar úsáideoir eile.
 Tabhair faoi deara go taispeáinfear roinnt leathanaigh mar atá tú logáilte isteach fós, go dtí go ghlanfá amach do taisce líonleitheora.",
 'welcomecreation' => '== Tá fáilte romhat, $1! ==
 
@@ -802,8 +802,6 @@ Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roim
 'search-interwiki-caption' => 'Comhthionscadail',
 'search-interwiki-default' => '$1 torthaí:',
 'search-interwiki-more' => '(níos mó)',
-'search-mwsuggest-enabled' => 'le moltaí',
-'search-mwsuggest-disabled' => 'gan mholtaí',
 'search-relatedarticle' => 'Gaolmhar',
 'mwsuggest-disable' => 'Díchumasaigh moltaí AJAX',
 'searchrelated' => 'gaolmhara',
@@ -2236,5 +2234,8 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 # Feedback
 'feedback-message' => 'Teachtaireacht:',
 'feedback-cancel' => 'Cealaigh',
+
+# Search suggestions
+'searchsuggest-search' => 'Cuardaigh',
 
 );

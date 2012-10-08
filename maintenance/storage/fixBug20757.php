@@ -23,11 +23,16 @@
 
 require_once( __DIR__ . '/../Maintenance.php' );
 
+/**
+ * Maintenance script to fix bug 20757.
+ *
+ * @ingroup Maintenance ExternalStorage
+ */
 class FixBug20757 extends Maintenance {
-	var $batchSize = 10000;
-	var $mapCache = array();
-	var $mapCacheSize = 0;
-	var $maxMapCacheSize = 1000000;
+	public $batchSize = 10000;
+	public $mapCache = array();
+	public $mapCacheSize = 0;
+	public $maxMapCacheSize = 1000000;
 
 	function __construct() {
 		parent::__construct();

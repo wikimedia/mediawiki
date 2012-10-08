@@ -71,7 +71,7 @@ class WikitextContent extends TextContent {
 	 */
 	public function addSectionHeader( $header ) {
 		$text = wfMessage( 'newsectionheaderdefaultlevel' )
-				->inContentLanguage()->params( $header )->text();
+			->rawParams( $header )->inContentLanguage()->text();
 		$text .= "\n\n";
 		$text .= $this->getNativeData();
 

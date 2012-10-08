@@ -1,5 +1,5 @@
 <?php
-/** Serbian (Cyrillic script) (‪српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (српски (ћирилица)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -783,10 +783,11 @@ $1',
 'protectedpagetext' => 'Ова страница је закључана за уређивања.',
 'viewsourcetext' => 'Можете да погледате и умножите изворни текст ове странице:',
 'viewyourtext' => "Можете да погледате и умножите извор '''ваших измена''' на овој страници:",
-'protectedinterface' => 'Ова страница је заштићена јер садржи текст корисничког сучеља програма.',
+'protectedinterface' => 'Ова страница садржи текст корисничког окружења за софтвер на овом викију и заштићена је ради спречавања злоупотребе.
+Да бисте додали или изменили преводе свих викија, посетите [//translatewiki.net/ Транслејтвики], пројекат за локализацију Медијавикија.',
 'editinginterface' => "'''Упозорење:''' уређујете страницу која се користи за приказивање текста корисничког окружења.
-Измене на овој страници ће утицати на све кориснике.
-Посетите [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Транслејтвики], пројекат намењен за превођење Медијавикија.",
+Измене на овој страници ће утицати на све кориснике овог викија.
+Да бисте додали или изменили преводе свих викија, посетите [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Транслејтвики], пројекат за локализацију Медијавикија.",
 'sqlhidden' => '(SQL упит је сакривен)',
 'cascadeprotected' => 'Ова страница је закључана јер садржи {{PLURAL:$1|следећу страницу која је заштићена|следеће странице које су заштићене}} „преносивом“ заштитом:
 $2',
@@ -812,7 +813,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Одјављени сте.'''
 
-Можете да наставите с коришћењем овог викија као гост, или се [[Special:UserLogin|поново пријавите]] као други корисник.
+Можете да наставите с коришћењем овог викија као гост, или се <span class='plainlinks'>[$1 поново пријавите]</span> као други корисник.
 Имајте на уму да неке странице могу наставити да се приказују као да сте још пријављени, све док не очистите привремену меморију свог прегледача.",
 'welcomecreation' => '== Добро дошли, $1! ==
 
@@ -1074,7 +1075,7 @@ $2
 Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје] или [{{fullurl:{{FULLPAGENAME}}|action=edit}} уредити страницу]</span>.',
 'noarticletext-nopermission' => 'На овој страници тренутно нема садржаја.
-Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне извештаје]</span>.',
+Можете [[Special:Search/{{PAGENAME}}|потражити овај наслов]] на другим страницама или <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} претражити сродне дневнике]</span>, али немате дозволу да направите ову страницу.',
 'missing-revision' => 'Не могу да пронађем измену бр. $1 на страници под називом „{{PAGENAME}}“.
 
 Ово се обично дешава када пратите застарелу везу до странице која је обрисана.
@@ -1447,8 +1448,6 @@ $1",
 'search-interwiki-caption' => 'Братски пројекти',
 'search-interwiki-default' => '$1 резултати:',
 'search-interwiki-more' => '(више)',
-'search-mwsuggest-enabled' => 'са предлозима',
-'search-mwsuggest-disabled' => 'без предлога',
 'search-relatedarticle' => 'Повезано',
 'mwsuggest-disable' => 'Онемогући предлоге AJAX',
 'searcheverything-enable' => 'сви именски простори',
@@ -3125,7 +3124,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'Јаваскрипт тест',
-'javascripttest-disabled' => 'Ова функција није омогућена на овом викију.',
 'javascripttest-title' => 'Извршавање тестова за $1',
 'javascripttest-pagetext-noframework' => 'Ова страница је резервисана за извршавање јаваскрипт тестова.',
 'javascripttest-pagetext-unknownframework' => 'Непознати радни оквир „$1“.',
@@ -3289,7 +3287,6 @@ $1',
 'pageinfo-authors' => 'Број засебних аутора',
 'pageinfo-recent-edits' => 'Број скорашњих измена (у последњих $1)',
 'pageinfo-recent-authors' => 'Број скорашњих засебних аутора',
-'pageinfo-restriction' => 'Заштита странице ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магична реч|Магичне речи}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Сакривена категорија|Сакривене категорије}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Укључени шаблон|Укључени шаблони}} ($1)',
@@ -4325,6 +4322,10 @@ $5
 'feedback-close' => 'Урађено',
 'feedback-bugcheck' => 'Одлично! Проверите да ли је грешка [$1 позната од пре].',
 'feedback-bugnew' => 'Проверено. Пријави нову грешку',
+
+# Search suggestions
+'searchsuggest-search' => 'Претрага',
+'searchsuggest-containing' => 'садржи...',
 
 # API errors
 'api-error-badaccess-groups' => 'Није вам дозвољено да отпремате датотеке на овај вики.',

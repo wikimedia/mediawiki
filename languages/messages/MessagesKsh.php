@@ -369,7 +369,7 @@ $messages = array(
 'vector-action-protect' => 'Schöze!',
 'vector-action-undelete' => 'Zerökholle!',
 'vector-action-unprotect' => 'Schoz ändere!',
-'vector-simplesearch-preference' => 'Donn de verbäßerte Vörschlääsch beim Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
+'vector-simplesearch-preference' => 'Donn et eijfachere Söke aanschallde (bloß mem Ußsinn „Vektor“ zesamme ze hann)',
 'vector-view-create' => 'Neu Schriive!',
 'vector-view-edit' => 'Ändere!',
 'vector-view-history' => 'Versione zeije!',
@@ -635,7 +635,7 @@ Dä Wiki_Köbes dovun hät beim Deeschmaache als Jrond aanjejovve: „$3“',
 # Login and logout pages
 'logouttext' => "'''Jetz bes de usjelogg'''
 
-Do künnts heh em Wiki wigger maache, als ene namelose Metmaacher. Do kanns De ävver och [[Special:UserLogin|widder enlogge]], als däselve oder och ene andere Metmaacher.
+Do künnts heh em Wiki wigger maache, als ene namelose Metmaacher. Do kanns De ävver och <span class='plainlinks'>[\$1 widder enlogge]</span>, als däselve oder och ene andere Metmaacher.
 Künnt sin, dat De de ein oder ander Sigg immer wigger aanjezeich kriss, wie wann de noch enjelogg wörs. Dun Dingem Brauser singe <i lang=\"en\">Cache</i> fottschmieße oder leddich maache, öm us dä Nummer erus ze kumme!",
 'welcomecreation' => '== Dach, $1! ==
 Dinge Zojang för heh es do.
@@ -1322,7 +1322,7 @@ Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'nextn-title' => '{{PLURAL:$1|Et näähßte|De nähßte $1|Kütt nix mieh}}',
 'shown-title' => 'Zeisch {{PLURAL:$1|ein|$1|nix}} pro Sigg',
 'viewprevnext' => 'Bläddere: ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-legend' => 'Enstellunge för et Söhke',
+'searchmenu-legend' => 'Enschtällonge för et Söhke',
 'searchmenu-exists' => "*Sigg '''[[$1]]'''",
 'searchmenu-new' => "'''Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje'''",
 'searchhelp-url' => 'Help:Hölp',
@@ -1346,8 +1346,6 @@ Mieh doh drövver fengk mer em [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'search-interwiki-caption' => 'Schwesterprojekte',
 'search-interwiki-default' => '$1 hät heh di Träffer jefonge:',
 'search-interwiki-more' => '(mieh)',
-'search-mwsuggest-enabled' => 'met Vürschläsh',
-'search-mwsuggest-disabled' => 'ohne Vürschläsh',
 'search-relatedarticle' => 'Ähnlesch',
 'mwsuggest-disable' => 'Kein automatische Hölp-Liss per Ajax beim Tippe em Feld för et Söke',
 'searcheverything-enable' => 'En alle Appachtemangs söhke',
@@ -1455,7 +1453,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'timezoneregion-indian' => 'De indesche Ozejan',
 'timezoneregion-pacific' => 'De shtelle Ozejan',
 'allowemail' => 'E-Mail vun andere Metmaacher zolooße',
-'prefs-searchoptions' => 'Enstellunge för et Sööke',
+'prefs-searchoptions' => 'Enschtällonge för et Söhke',
 'prefs-namespaces' => 'Appachtemangs',
 'defaultns' => 'Söns don en hee dä Appachtemengs söhke:',
 'default' => 'Standaad',
@@ -1542,11 +1540,11 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-suppress' => 'Kontrollettis',
 'group-all' => '(jeede)',
 
-'group-user-member' => '{{GENDER:$1|Metmaacher|Metmaacherin}}',
+'group-user-member' => '{{GENDER:$1|Metmaacher|Metmaacherėn}}',
 'group-autoconfirmed-member' => 'automattesch beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherėn}}',
 'group-bot-member' => '{{GENDER:$1|Bot}}',
 'group-sysop-member' => '{{GENDER:$1|Wiki-Köbes}}',
-'group-bureaucrat-member' => '{{GENDER:$1|Bürrokrad|Bürrokraatėn}}',
+'group-bureaucrat-member' => '{{GENDER:$1|Bürrokraad|Bürrokraadefrou}}',
 'group-suppress-member' => '{{GENDER:$1|Kontrolletti}}',
 
 'grouppage-user' => '{{ns:project}}:Metmaacher',
@@ -2383,7 +2381,7 @@ Alles klor?',
 'email-legend' => 'Scheck en<i lang="en"> e-mail</i> aan ene andere Metmaacher fum Wiki',
 'emailfrom' => 'Vun:',
 'emailto' => 'Aan:',
-'emailsubject' => 'Üvverschreff:',
+'emailsubject' => 'Övverschreff:',
 'emailmessage' => 'Dä Tex fun Dinge Nohreesch:',
 'emailsend' => 'Avschecke',
 'emailccme' => 'Scheck mer en Kopie vun dä E-Mail.',
@@ -3066,7 +3064,6 @@ Bes esu joot, un versök et noch ens.',
 
 # JavaScriptTest
 'javascripttest' => ' JavaSkrepte ußprobeere.',
-'javascripttest-disabled' => 'Di Funxjon es en heh dämm Wiki ußjeschalldt.',
 'javascripttest-title' => 'De Prööfunge „$1“ loufe.',
 'javascripttest-pagetext-noframework' => 'Heh di Sigg es för JavaSkrepte ußzeprobeere.',
 'javascripttest-pagetext-unknownframework' => 'Dä Prööfrahme „$1“ es onbikannt.',
@@ -3231,10 +3228,10 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-authors' => 'De Aanzahl ongerscheidleje Schriever',
 'pageinfo-recent-edits' => 'De Aanzahl Änderonge en dä läzde Zik, ennerhallf vun $1',
 'pageinfo-recent-authors' => 'De Aanzahl ongerscheidleje Schriever en dä läzde Zik',
-'pageinfo-restriction' => 'Siggeschoz ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Ei Zauberwoot|$1 Zauberwööter|Kein Zauberwööter}}',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ein verstoche Saachjropp|$1 verstoche Saachjroppe|Kein verstoche Saachjropp}}',
 'pageinfo-templates' => '{{PLURAL:$1|Ein Schablohn|$1 Schablohne|Kein Schablohn}} opjerohfe',
+'pageinfo-toolboxlink' => 'Övver heh di Sigg',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -3844,7 +3841,8 @@ Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
-'scarytranscludefailed' => '[De Schablon „$1“ enzebinge hät nit jeflupp]',
+'scarytranscludefailed' => '[De Schablon „$1“ enzebenge hät nit jeflupp]',
+'scarytranscludefailed-httpstatus' => '[De Schablon „$1“ enzebenge hät nit jeflupp. Dä HTTP-Fähler es: $2]',
 'scarytranscludetoolong' => '[Schad, de URL es ze lang]',
 
 # Delete conflict
@@ -3936,9 +3934,9 @@ Don de nomaale Vör-Ansich nemme.',
 'watchlistedit-noitems' => 'Ding Oppassliss es leddisch.',
 'watchlistedit-normal-title' => 'Oppassliss beärbeijde',
 'watchlistedit-normal-legend' => 'Titell uß de Oppassliss eruß lohße',
-'watchlistedit-normal-explain' => 'Dat sin de Endräch in Dinge Oppassliss.
-Om einzel Titelle loss ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
-De kanns Ding Oppassliss och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
+'watchlistedit-normal-explain' => 'Dat sin de Endräsch en Dinge Oppaßleß.
+Öm einzel Titelle loßß ze wääde, don Hökche en de Kässjer nevve inne maache, un dann deuß De dä Knopp „{{int:watchlistedit-normal-submit}}“.
+Do kanns Ding Oppassleß och [[Special:EditWatchlist/raw|en rüh beärbeide]].',
 'watchlistedit-normal-submit' => 'Jangk de Titele met Hökche eruß schmieße',
 'watchlistedit-normal-done' => '{{PLURAL:$1|Eine Sigge-Tittel es|<strong>$1</strong> Sigge-Tittele sin|Keine Sigge-Tittel es}} us Dinge Opassliss erus jefloore:',
 'watchlistedit-raw-title' => 'Rüh Oppassliss beärbeide',
@@ -4169,6 +4167,10 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'feedback-close' => 'Jedonn.',
 'feedback-bugcheck' => 'Joot. Donn op jeede Vall nohlooer, dat dat bes jäz noch nit [$1 bikannt wohr].',
 'feedback-bugnew' => 'Hann esch nohjelooert. Esch jävven ene neue Fähler enn.',
+
+# Search suggestions
+'searchsuggest-search' => 'Söhke',
+'searchsuggest-containing' => 'dren änthallde…',
 
 # API errors
 'api-error-badaccess-groups' => 'Do häs nit et Rääsch, Datteije en heh dat Wiki huhzelaade.',

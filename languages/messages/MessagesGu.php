@@ -229,7 +229,7 @@ $messages = array(
 'july' => 'જુલાઇ',
 'august' => 'ઓગસ્ટ',
 'september' => 'સપ્ટેમ્બર',
-'october' => 'ઓકટોબર',
+'october' => 'ઓક્ટોબર',
 'november' => 'નવેમ્બર',
 'december' => 'ડિસેમ્બર',
 'january-gen' => 'જાન્યુઆરી',
@@ -241,7 +241,7 @@ $messages = array(
 'july-gen' => 'જુલાઇ',
 'august-gen' => 'ઓગસ્ટ',
 'september-gen' => 'સપ્ટેમ્બર',
-'october-gen' => 'ઓકટોબર',
+'october-gen' => 'ઓક્ટોબર',
 'november-gen' => 'નવેમ્બર',
 'december-gen' => 'ડિસેમ્બર',
 'jan' => 'જાન્યુ',
@@ -557,7 +557,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''તમે (લોગ આઉટ કરીને) બહાર નિકળી ચુક્યા છો.'''
 
-તમે અનામી તરીકે {{SITENAME}} વાપરવાનું ચાલુ રાખી શકો છો, કે પછી તેના તે જ કે અલગ સભ્ય તરીકે [[Special:UserLogin|ફરી પ્રવેશ]] કરી શકો છો.
+તમે અનામી તરીકે {{SITENAME}} વાપરવાનું ચાલુ રાખી શકો છો, કે પછી તેના તે જ કે અલગ સભ્ય તરીકે <span class='plainlinks'>[$1 ફરી પ્રવેશ]</span> કરી શકો છો.
 ધ્યાન રાખો કે જ્યાં સુધી તમે તમારા બ્રાઉઝરનો  કૅશ સાફ નહીં કરો ત્યાં સુધી કેટલાક પાનાં તમે પ્રવેશી ચુક્યા છો તેમ બતાવશે.",
 'welcomecreation' => '== તમારૂં સ્વાગત છે $1! ==
 તમારૂં ખાતું બની ગયું છે.
@@ -1180,8 +1180,6 @@ $1",
 'search-interwiki-caption' => 'બંધુ પ્રકલ્પ',
 'search-interwiki-default' => '$1 પરીણામો:',
 'search-interwiki-more' => '(વધુ)',
-'search-mwsuggest-enabled' => 'સુઝાવ સહિત',
-'search-mwsuggest-disabled' => 'સુઝાવ વિના',
 'search-relatedarticle' => 'શોધ સંબંધિત',
 'mwsuggest-disable' => 'AJAX સુઝાવો નિષ્ક્રીય કરો',
 'searcheverything-enable' => 'નામસ્થળોમાં શોધો:',
@@ -2813,7 +2811,6 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 
 # JavaScriptTest
 'javascripttest' => 'જાવા સ્ક્રીપ્ટ પરીક્ષણ',
-'javascripttest-disabled' => 'આ સૂત્ર (ફંકશન) આ વિકિ પર કાર્યરત કરાયેલું નથી.',
 'javascripttest-title' => '$1 પરીક્ષણ જારી',
 'javascripttest-pagetext-noframework' => 'આ પાનું જાવા સ્ક્રીપ્ટ ચલાવવા આરક્ષિત છે.',
 'javascripttest-pagetext-unknownframework' => 'અજાણ ચકાસણી ફ્રેમવર્ક "$1".',
@@ -3756,6 +3753,10 @@ $5
 'feedback-close' => 'સંપન્ન',
 'feedback-bugcheck' => 'સરસ! જરા જોઈ લેશો કે આ  પહેલેથી જ હાજર [$1 known bugs] નથીને?',
 'feedback-bugnew' => 'મેં તપાસ્યું.  નવી ત્રુટીની જાણ કરો.',
+
+# Search suggestions
+'searchsuggest-search' => 'શોધો',
+'searchsuggest-containing' => 'ધરાવતી...',
 
 # API errors
 'api-error-badaccess-groups' => 'આ વિકિ પર ફાઈલ ચઢાવવાની પરવાનગી તમને નથી.',

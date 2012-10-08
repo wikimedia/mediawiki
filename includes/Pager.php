@@ -287,8 +287,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			if ( $numRows > $this->mLimit && $numRows > 1 ) {
 				$res->seek( $numRows - 1 );
 				$this->mPastTheEndRow = $res->fetchObject();
-				$indexField = $this->mIndexField;
-				$this->mPastTheEndIndex = $this->mPastTheEndRow->$indexField;
+				$this->mPastTheEndIndex = $this->mPastTheEndRow->$indexColumn;
 				$res->seek( $numRows - 2 );
 				$row = $res->fetchRow();
 				$lastIndex = $row[$indexColumn];

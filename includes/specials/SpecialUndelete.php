@@ -358,8 +358,6 @@ class PageArchive {
 	 * on success, false on failure
 	 */
 	function undelete( $timestamps, $comment = '', $fileVersions = array(), $unsuppress = false, User $user = null ) {
-		global $wgUser;
-
 		// If both the set of text revisions and file revisions are empty,
 		// restore everything. Otherwise, just restore the requested items.
 		$restoreAll = empty( $timestamps ) && empty( $fileVersions );
@@ -410,6 +408,7 @@ class PageArchive {
 		}
 
 		if ( $user === null ) {
+			global $wgUser;
 			$user = $wgUser;
 		}
 
@@ -1008,16 +1007,16 @@ class SpecialUndelete extends SpecialPage {
 		$diffEngine->showDiffStyle();
 		$this->getOutput()->addHTML(
 			"<div>" .
-			"<table width='98%' cellpadding='0' cellspacing='4' class='diff'>" .
+			"<table style='width: 98%;' cellpadding='0' cellspacing='4' class='diff'>" .
 			"<col class='diff-marker' />" .
 			"<col class='diff-content' />" .
 			"<col class='diff-marker' />" .
 			"<col class='diff-content' />" .
 			"<tr>" .
-				"<td colspan='2' width='50%' style='text-align: center' class='diff-otitle'>" .
+				"<td colspan='2' style='width: 50%; text-align: center' class='diff-otitle'>" .
 				$this->diffHeader( $previousRev, 'o' ) .
 				"</td>\n" .
-				"<td colspan='2' width='50%' style='text-align: center' class='diff-ntitle'>" .
+				"<td colspan='2' style='width: 50%;  text-align: center' class='diff-ntitle'>" .
 				$this->diffHeader( $currentRev, 'n' ) .
 				"</td>\n" .
 			"</tr>" .

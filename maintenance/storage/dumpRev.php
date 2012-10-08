@@ -1,5 +1,7 @@
 <?php
 /**
+ * Get the text of a revision, resolving external storage if needed.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -15,11 +17,18 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
+ * @file
  * @ingroup Maintenance ExternalStorage
  */
 
 require_once( __DIR__ . '/../Maintenance.php' );
 
+/**
+ * Maintenance script that gets the text of a revision,
+ * resolving external storage if needed.
+ *
+ * @ingroup Maintenance ExternalStorage
+ */
 class DumpRev extends Maintenance {
 	public function __construct() {
 		parent::__construct();

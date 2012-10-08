@@ -19,12 +19,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Testing
+ * @ingroup Maintenance Testing
  * @todo Fixme: Make this more generic
  */
 
 /**
  * Terminal that supports ANSI escape sequences.
+ *
+ * @ingroup Maintenance Testing
  */
 class AnsiTermColorer {
 	function __construct() {
@@ -56,6 +58,8 @@ class AnsiTermColorer {
 
 /**
  * A colour-less terminal
+ *
+ * @ingroup Maintenance Testing
  */
 class DummyTermColorer {
 	public function color( $color ) {

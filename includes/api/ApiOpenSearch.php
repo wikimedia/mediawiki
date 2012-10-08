@@ -45,7 +45,7 @@ class ApiOpenSearch extends ApiBase {
 		$namespaces = $params['namespace'];
 		$suggest = $params['suggest'];
 
-		// MWSuggest or similar hit
+		// Some script that was loaded regardless of wgEnableOpenSearchSuggest, likely cached.
 		if ( $suggest && !$wgEnableOpenSearchSuggest ) {
 			$searches = array();
 		} else {

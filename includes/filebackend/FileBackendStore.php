@@ -314,31 +314,41 @@ abstract class FileBackendStore extends FileBackend {
 	protected function doConcatenate( array $params ) {
 		$status = Status::newGood();
 		$tmpPath = $params['dst']; // convenience
+		unset( $params['latest'] ); // sanity
 
 		// Check that the specified temp file is valid...
 		wfSuppressWarnings();
-		$ok = ( is_file( $tmpPath ) && !filesize( $tmpPath ) );
+		$ok = ( is_file( $tmpPath ) && filesize( $tmpPath ) == 0 );
 		wfRestoreWarnings();
 		if ( !$ok ) { // not present or not empty
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 			return $status;
 		}
 
-		// Build up the temp file using the source chunks (in order)...
+		// Get local FS versions of the chunks needed for the concatenation...
+		$fsFiles = $this->getLocalReferenceMulti( $params );
+		foreach ( $fsFiles as $path => &$fsFile ) {
+			if ( !$fsFile ) { // chunk failed to download?
+				$fsFile = $this->getLocalReference( array( 'src' => $path ) );
+				if ( !$fsFile ) { // retry failed?
+					$status->fatal( 'backend-fail-read', $path );
+					return $status;
+				}
+			}
+		}
+		unset( $fsFile ); // unset reference so we can reuse $fsFile
+
+		// Get a handle for the destination temp file
 		$tmpHandle = fopen( $tmpPath, 'ab' );
 		if ( $tmpHandle === false ) {
 			$status->fatal( 'backend-fail-opentemp', $tmpPath );
 			return $status;
 		}
-		foreach ( $params['srcs'] as $virtualSource ) {
-			// Get a local FS version of the chunk
-			$tmpFile = $this->getLocalReference( array( 'src' => $virtualSource ) );
-			if ( !$tmpFile ) {
-				$status->fatal( 'backend-fail-read', $virtualSource );
-				return $status;
-			}
+
+		// Build up the temp file using the source chunks (in order)...
+		foreach ( $fsFiles as $virtualSource => $fsFile ) {
 			// Get a handle to the local FS version
-			$sourceHandle = fopen( $tmpFile->getPath(), 'r' );
+			$sourceHandle = fopen( $fsFile->getPath(), 'rb' );
 			if ( $sourceHandle === false ) {
 				fclose( $tmpHandle );
 				$status->fatal( 'backend-fail-read', $virtualSource );
@@ -636,24 +646,33 @@ abstract class FileBackendStore extends FileBackend {
 	abstract protected function doGetFileStat( array $params );
 
 	/**
-	 * @see FileBackend::getFileContents()
-	 * @return bool|string
+	 * @see FileBackend::getFileContentsMulti()
+	 * @return Array
 	 */
-	public function getFileContents( array $params ) {
+	public function getFileContentsMulti( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
-		$tmpFile = $this->getLocalReference( $params );
-		if ( !$tmpFile ) {
-			wfProfileOut( __METHOD__ . '-' . $this->name );
-			wfProfileOut( __METHOD__ );
-			return false;
-		}
-		wfSuppressWarnings();
-		$data = file_get_contents( $tmpFile->getPath() );
-		wfRestoreWarnings();
+
+		$params = $this->setConcurrencyFlags( $params );
+		$contents = $this->doGetFileContentsMulti( $params );
+
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
-		return $data;
+		return $contents;
+	}
+
+	/**
+	 * @see FileBackendStore::getFileContentsMulti()
+	 * @return Array
+	 */
+	protected function doGetFileContentsMulti( array $params ) {
+		$contents = array();
+		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
+			wfSuppressWarnings();
+			$contents[$path] = $fsFile ? file_get_contents( $fsFile->getPath() ) : false;
+			wfRestoreWarnings();
+		}
+		return $contents;
 	}
 
 	/**
@@ -720,36 +739,75 @@ abstract class FileBackendStore extends FileBackend {
 	}
 
 	/**
-	 * @see FileBackend::getLocalReference()
-	 * @return TempFSFile|null
+	 * @see FileBackend::getLocalReferenceMulti()
+	 * @return Array
 	 */
-	public function getLocalReference( array $params ) {
-		$path = self::normalizeStoragePath( $params['src'] );
-		if ( $path === null ) {
-			return null; // invalid storage path
-		}
+	final public function getLocalReferenceMulti( array $params ) {
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-' . $this->name );
+
+		$params = $this->setConcurrencyFlags( $params );
+
+		$fsFiles = array(); // (path => FSFile)
 		$latest = !empty( $params['latest'] ); // use latest data?
-		if ( $this->expensiveCache->has( $path, 'localRef' ) ) {
-			$val = $this->expensiveCache->get( $path, 'localRef' );
-			// If we want the latest data, check that this cached
-			// value was in fact fetched with the latest available data.
-			if ( !$latest || $val['latest'] ) {
-				wfProfileOut( __METHOD__ . '-' . $this->name );
-				wfProfileOut( __METHOD__ );
-				return $val['object'];
+		// Reuse any files already in process cache...
+		foreach ( $params['srcs'] as $src ) {
+			$path = self::normalizeStoragePath( $src );
+			if ( $path === null ) {
+				$fsFiles[$src] = null; // invalid storage path
+			} elseif ( $this->expensiveCache->has( $path, 'localRef' ) ) {
+				$val = $this->expensiveCache->get( $path, 'localRef' );
+				// If we want the latest data, check that this cached
+				// value was in fact fetched with the latest available data.
+				if ( !$latest || $val['latest'] ) {
+					$fsFiles[$src] = $val['object'];
+				}
 			}
 		}
-		$tmpFile = $this->getLocalCopy( $params );
-		if ( $tmpFile ) { // don't cache negatives
-			$this->expensiveCache->set( $path, 'localRef',
-				array( 'object' => $tmpFile, 'latest' => $latest ) );
+		// Fetch local references of any remaning files...
+		$params['srcs'] = array_diff( $params['srcs'], array_keys( $fsFiles ) );
+		foreach ( $this->doGetLocalReferenceMulti( $params ) as $path => $fsFile ) {
+			$fsFiles[$path] = $fsFile;
+			if ( $fsFile ) { // update the process cache...
+				$this->expensiveCache->set( $path, 'localRef',
+					array( 'object' => $fsFile, 'latest' => $latest ) );
+			}
 		}
+
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
-		return $tmpFile;
+		return $fsFiles;
 	}
+
+	/**
+	 * @see FileBackendStore::getLocalReferenceMulti()
+	 * @return Array
+	 */
+	protected function doGetLocalReferenceMulti( array $params ) {
+		return $this->doGetLocalCopyMulti( $params );
+	}
+
+	/**
+	 * @see FileBackend::getLocalCopyMulti()
+	 * @return Array
+	 */
+	final public function getLocalCopyMulti( array $params ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+
+		$params = $this->setConcurrencyFlags( $params );
+		$tmpFiles = $this->doGetLocalCopyMulti( $params );
+
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+		return $tmpFiles;
+	}
+
+	/**
+	 * @see FileBackendStore::getLocalCopyMulti()
+	 * @return Array
+	 */
+	abstract protected function doGetLocalCopyMulti( array $params );
 
 	/**
 	 * @see FileBackend::streamFile()
@@ -1016,6 +1074,7 @@ abstract class FileBackendStore extends FileBackend {
 		$this->primeContainerCache( $performOps );
 
 		// Actually attempt the operation batch...
+		$opts = $this->setConcurrencyFlags( $opts );
 		$subStatus = FileOpBatch::attempt( $performOps, $opts, $this->fileJournal );
 
 		// Merge errors into status fields
@@ -1545,6 +1604,26 @@ abstract class FileBackendStore extends FileBackend {
 
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Set the 'concurrency' option from a list of operation options
+	 *
+	 * @param $opts array Map of operation options
+	 * @return Array
+	 */
+	final protected function setConcurrencyFlags( array $opts ) {
+		$opts['concurrency'] = 1; // off
+		if ( $this->parallelize === 'implicit' ) {
+			if ( !isset( $opts['parallelize'] ) || $opts['parallelize'] ) {
+				$opts['concurrency'] = $this->concurrency;
+			}
+		} elseif ( $this->parallelize === 'explicit' ) {
+			if ( !empty( $opts['parallelize'] ) ) {
+				$opts['concurrency'] = $this->concurrency;
+			}
+		}
+		return $opts;
 	}
 }
 

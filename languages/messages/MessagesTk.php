@@ -422,7 +422,7 @@ Görkezilen sebäp: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Sessiýany ýapdyňyz.'''
 
-Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz.
+Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen <span class='plainlinks'>[$1 sessiýany ýaňadan]</span> açyp bilersiňiz.
 Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
 'welcomecreation' => '== Hoş geldiňiz, $1! ==
 
@@ -975,8 +975,6 @@ Nawigasiýa çykgytlaryny ulanmaklygyň bu sütüni başky ýagdaýyna getirjekd
 'search-interwiki-caption' => 'Dogan taslamalar',
 'search-interwiki-default' => '$1 netijeler:',
 'search-interwiki-more' => '(has-da köp)',
-'search-mwsuggest-enabled' => 'teklipler bilen',
-'search-mwsuggest-disabled' => 'teklip ýok',
 'search-relatedarticle' => 'Baglanyşykly',
 'mwsuggest-disable' => 'AJAX tekliplerini ýap',
 'searcheverything-enable' => 'Ähli at giňişliklerinde gözle',
@@ -3145,5 +3143,9 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'revdelete-restricted' => 'administratorlara goýlan çäklendirmeler',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
 'newuserlog-byemail' => 'parol e-poçta bilen iberildi',
+
+# Search suggestions
+'searchsuggest-search' => 'Gözleg',
+'searchsuggest-containing' => 'öz içine alýar...',
 
 );

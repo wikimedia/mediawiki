@@ -446,6 +446,8 @@ $1',
 'youhavenewmessages' => 'আপোনাৰ কাৰণে $1 আছে। ($2)',
 'newmessageslink' => 'নতুন সংবাদ',
 'newmessagesdifflink' => 'শেহতীয়া সাল-সলনি',
+'newmessageslinkplural' => '{{PLURAL:$1|এটা নতুন বাৰ্তা|নতুন বাৰ্তা}}',
+'newmessagesdifflinkplural' => 'অন্তিম {{PLURAL:$1|সংশোধন}}',
 'youhavenewmessagesmulti' => '$1ত আপোনাৰ কাৰণে নতুন সংবাদ আছে',
 'editsection' => 'সম্পাদনা কৰক',
 'editold' => 'সম্পাদনা',
@@ -582,7 +584,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''আপুনি প্ৰস্থান কৰিলে ।'''
 
-আপুনি বেনামী ভাবেও {{SITENAME}} ব্যৱহাৰ কৰিব পাৰে, অথবা আকৌ সেই একে বা বেলেগ নামেৰে [[Special:UserLogin|প্ৰৱেশ]] কৰিব পাৰে।
+আপুনি বেনামী ভাবেও {{SITENAME}} ব্যৱহাৰ কৰিব পাৰে, অথবা আকৌ সেই একে বা বেলেগ নামেৰে <span class='plainlinks'>[$1 প্ৰৱেশ]</span> কৰিব পাৰে।
 মন কৰিব যে যেতিয়ালৈকে আপোনাৰ ব্ৰাউজাৰৰ অস্থায়ী-স্মৃতি (cache memory) খালী নকৰে, তেতিয়ালৈকে কিছুমান পৃষ্ঠাত আপুনি প্ৰৱেশ কৰা বুলি দেখুৱাই থাকিব পাৰে।",
 'welcomecreation' => '== আদৰিছোঁ, $1! ==
 আপোনাৰ সদস্যভুক্তি হৈ গ’ল ।
@@ -1203,8 +1205,6 @@ $1",
 'search-interwiki-caption' => 'সহপ্ৰকল্পসমূহ',
 'search-interwiki-default' => '$1 ফলাফলসমূহ:',
 'search-interwiki-more' => '(আৰু)',
-'search-mwsuggest-enabled' => 'উপদেশ সহ',
-'search-mwsuggest-disabled' => 'উপদেশ নাই',
 'search-relatedarticle' => 'সম্পৰ্কিত',
 'mwsuggest-disable' => 'AJAX পৰামৰ্শ নিষ্ক্ৰিয় কৰক',
 'searcheverything-enable' => 'সকলো নামস্থানত অনুসন্ধান কৰক',
@@ -1323,7 +1323,7 @@ $1",
 'yourlanguage' => 'ভাষা:',
 'yourvariant' => 'বিষয়-বস্তুৰ ভাষা বিকল্প',
 'prefs-help-variant' => 'এই ৱিকিৰ সমল পৃষ্ঠাসমূহ প্ৰদৰ্শন কৰিবলে আপোনাৰ পছন্দৰ অপৰ অথবা বৰ্ণবিন্যাস।',
-'yournick' => 'নতুন স্বাক্ষ্যৰ:',
+'yournick' => 'নতুন স্বাক্ষৰ:',
 'prefs-help-signature' => 'কথা-বতৰা পৃষ্ঠাত মন্তব্যসমূহৰ তলত "<nowiki>~~~~</nowiki>" লিখিলে ই স্বয়ংক্ৰিয়ভাৱে আপোনাৰ নাম আৰু সময় সংযুক্ত কৰিব ।',
 'badsig' => 'অনুপযোগী স্বাক্ষ্যৰ, HTML টেগ পৰীক্ষা কৰি লওক।',
 'badsiglength' => 'আপোনাৰ স্বাক্ষৰ অত্যাধিক দীঘলীয়া ।
@@ -1998,6 +1998,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'mostlinkedtemplates' => 'সৰ্বোচ্চ সংযোজিত সাঁচসমূহ',
 'mostcategories' => 'সৰ্বোচ্চ শ্ৰেণীসমৃদ্ধ প্ৰবন্ধসমূহ',
 'mostimages' => 'সৰ্বোচ্চ সংযোজিত ফাইলসমূহ',
+'mostinterwikis' => 'সৰ্বোচ্চ আন্তঃৱিকিসমৃদ্ধ পৃষ্ঠাসমূহ',
 'mostrevisions' => 'অধিকবাৰ সম্পাদনা কৰা পৃষ্ঠাসমূহ',
 'prefixindex' => 'উপসৰ্গসহ সকলো পৃষ্ঠা',
 'prefixindex-namespace' => 'উপসৰ্গ ($1 namespace) -ৰ সৈতে সকলো পৃষ্ঠা',
@@ -2143,6 +2144,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'mailnologin' => 'পাওঁতাৰ ঠিকনা নাই',
 'mailnologintext' => 'আন সদস্যক ই-মেইল পঠিয়াবলৈ আপুনি [[Special:UserLogin|লগ্‌ ইন]] কৰিব লাগিব আৰু আপোনাৰ [[Special:Preferences|পছন্দসমূহত]] এটা বৈধ ই-মেইল ঠিকনা থাকিব লাগিব ।',
 'emailuser' => 'এই সদস্যজনলৈ ই-মেইল পঠিয়াওক',
+'emailuser-title-target' => '{{GENDER:$1|সদস্যজনক}} ইমেইল পঠিয়াওক',
+'emailuser-title-notarget' => 'ব্যৱহাৰকাৰী ই-পত্ৰ প্ৰেৰণ কৰক',
 'emailpage' => 'ই-পত্ৰ ব্যৱহাৰকাৰী',
 'emailpagetext' => 'তলৰ প্ৰপত্ৰখন ব্যৱহাৰ কৰি আপুনি এই সদস্যজনলৈ ই-মেইল পঠাব পাৰে ।
 আপুনি [[Special:Preferences|আপোনাৰ সদস্য পছন্দসমূহ]]ত প্ৰৱেশ কৰা ই-মেইল ঠিকনাটো প্ৰেৰকৰ ঠিকনা হিছাপে দেখা যাব, যাতে মেইলৰ প্ৰাপকে আপোনাক উত্তৰ দিব পাৰে ।',
@@ -2289,6 +2292,7 @@ $UNWATCHURL
 'rollback' => 'সম্পাদনা পূৰ্ববৎ কৰক',
 'rollback_short' => 'পূৰ্ববৎ কৰক',
 'rollbacklink' => 'পূৰ্ববৎ কৰক',
+'rollbacklinkcount' => '$1 {{PLURAL:$1|সম্পাদনা|সম্পাদনাসমূহ}} পূৰ্বৱত কৰক',
 'rollbackfailed' => 'পূৰ্ববৎ ব্যৰ্থ',
 'cantrollback' => 'পূৰ্বৰ অৱস্থালৈ ঘূৰাই নিব নোৱাৰি;
 শেষৰ সম্পাদকজন এই পৃষ্ঠাৰ একমাত্ৰ লেখক ।',
@@ -2842,7 +2846,6 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 
 # JavaScriptTest
 'javascripttest' => 'জাভাস্ক্ৰিপ্ট পৰীক্ষা।',
-'javascripttest-disabled' => 'এই ৱিকিত এই কাৰ্যটো সক্ৰিয় কৰা হোৱা নাই।',
 'javascripttest-title' => '$1 পৰীক্ষাসমূহ চলোৱা হৈছে',
 'javascripttest-pagetext-noframework' => 'এই পৃষ্ঠাখন জাভালিপি পৰীক্ষা চলোৱাৰ বাবে সংৰক্ষিত।',
 'javascripttest-pagetext-unknownframework' => 'অজ্ঞাত সম্পৰীক্ষা ফ্ৰেমৱৰ্ক "$1"।',
@@ -2880,9 +2883,9 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'tooltip-p-logo' => 'বেটুপাত খুলিবৰ কাৰণে',
 'tooltip-n-mainpage' => 'বেটুপাত খুলিবৰ কাৰণে',
 'tooltip-n-mainpage-description' => 'প্ৰথম পৃষ্ঠা পৰিদৰ্শন কৰক',
-'tooltip-n-portal' => 'ৱিকিপিডিয়া ব্ৰাওজ কৰিবলৈ',
+'tooltip-n-portal' => 'ৱিকিপিডিয়া সংক্ৰান্তীয় গুৰুত্বপূৰ্ণ আলোচনা কক্ষ',
 'tooltip-n-currentevents' => 'সাম্প্ৰতিক ঘটনাৱলীৰ পটভূমি',
-'tooltip-n-recentchanges' => 'শেহতীয়া সালসলনিসমূহৰ সূচী',
+'tooltip-n-recentchanges' => 'অসমীয়া ৱিকিপিডিয়াত হোৱা শেহতীয়া সালসলনিসমূহ চাওক',
 'tooltip-n-randompage' => 'অ-পূৰ্বনিৰ্ধাৰিতভাবে যিকোনো এটা পৃষ্ঠা দেখুৱাবৰ কাৰণে',
 'tooltip-n-help' => 'সহায়ৰ বাবে ইয়াত ক্লিক কৰক',
 'tooltip-t-whatlinkshere' => 'ইয়ালৈ সংযোজিত সকলো পৃষ্ঠাৰ সুচী',
@@ -3798,6 +3801,10 @@ $5
 'feedback-close' => 'কৰা হ’ল',
 'feedback-bugcheck' => 'অতি উত্তম! কেৱল পৰীক্ষা কৰক যে ই ইতিমধ্যে [$1 জ্ঞাত বাগসমূহ]ৰ এটা নহয়।',
 'feedback-bugnew' => 'মই পৰীক্ষা কৰিলো। এটা নতুন বাগ সংবাদন কৰক',
+
+# Search suggestions
+'searchsuggest-search' => 'সন্ধান কৰক',
+'searchsuggest-containing' => 'যি আছে...',
 
 # API errors
 'api-error-badaccess-groups' => "এই ৱিকিত ফাইল আপল'ড কৰিবলৈ আপোনাৰ অনুমতি নাই।",

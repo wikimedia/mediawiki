@@ -700,7 +700,7 @@ Lütfen birkaç dakika sonra yeniden deneyin.',
 'protectedpagetext' => 'Bu sayfa değişiklik yapılmaması için koruma altına alınmıştır.',
 'viewsourcetext' => 'Bu sayfanın kaynağını görebilir ve kopyalayabilirsiniz:',
 'viewyourtext' => "Bu sayfaya '''yaptığınız değişikliklerin''' kaynağını görünteleyip kopyalayabilirsiniz:",
-'protectedinterface' => 'Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için kilitlenmiştir.',
+'protectedinterface' => "Bu sayfa yazılım için arayüz metni sağlamaktadır ve kötüye kullanımı önlemek için korumaya alınmıştır. Eklemek ya da bütün vikilerdeki çevirileri değiştirmek için lütfen MediaWiki yerelleştirme projesi [//translatewiki.net/ translatewiki.net]'i kullanın.",
 'editinginterface' => "'''UYARI:''' Yazılım için arayüz sağlamakta kullanılan bir sayfayı değiştirmektesiniz. Bu sayfadaki değişiklikler kullanıcı arayüzünü diğer kullanıcılar için de değiştirecektir. Çeviriler için, lütfen [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]'yi kullanarak MediaWiki yerelleştirme projesini dikkate alınız.",
 'sqlhidden' => '(SQL gizli sorgu)',
 'cascadeprotected' => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
@@ -723,7 +723,7 @@ Verilen sebep: ''$2''.",
 # Login and logout pages
 'logouttext' => "'''Oturumu kapattınız.'''
 
-Şimdi anonim olarak {{SITENAME}} sitesini kullanmaya devam edebilirsiniz ya da aynı kullanıcı adıyla ya da ister başka bir kullanıcı adıyla [[Special:UserLogin|yeniden oturum açabilirsiniz]].
+Şimdi anonim olarak {{SITENAME}} sitesini kullanmaya devam edebilirsiniz ya da aynı kullanıcı adıyla ya da ister başka bir kullanıcı adıyla <span class='plainlinks'>[$1 yeniden oturum açabilirsiniz]</span>.
 Tarayıcınızın önbelleğini temizleyene kadar bazı sayfalar sanki hâlâ oturumunuz açıkmış gibi görünebilir.",
 'welcomecreation' => '== Hoş geldin, $1! ==
 
@@ -1319,8 +1319,6 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'search-interwiki-caption' => 'Kardeş projeler',
 'search-interwiki-default' => '$1 sonuçlar:',
 'search-interwiki-more' => '(daha çok)',
-'search-mwsuggest-enabled' => 'önerilerle',
-'search-mwsuggest-disabled' => 'öneri yok',
 'search-relatedarticle' => 'ilgili',
 'mwsuggest-disable' => 'AJAX önerilerini devre dışı bırak',
 'searcheverything-enable' => 'Tüm ad alanlarında ara',
@@ -2872,7 +2870,6 @@ Geçici dosya kayıp.',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript denemesi',
-'javascripttest-disabled' => 'Bu işlev, bu viki üzerinde etkinleştirilmedi.',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage' => 'Kullanıcı sayfanız',
@@ -2978,6 +2975,7 @@ Geçici dosya kayıp.',
 'pageinfo-header-edits' => 'Değişiklikler',
 'pageinfo-views' => 'Görüntülenme sayısı',
 'pageinfo-watchers' => 'İzleyen sayısı',
+'pageinfo-redirects-value' => '$1',
 'pageinfo-edits' => 'Değişiklik sayısı',
 
 # Skin names
@@ -3819,6 +3817,10 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'feedback-close' => 'Tamamlandı',
 'feedback-bugcheck' => 'Harika! Sadece [bilinen $1 hatalarından] olmadığını kontrol et.',
 'feedback-bugnew' => 'Kontrol ettim. Yeni hata bildir',
+
+# Search suggestions
+'searchsuggest-search' => 'Ara',
+'searchsuggest-containing' => 'içeren...',
 
 # API errors
 'api-error-badaccess-groups' => 'Bu wiki için dosya yüklemenize izin verilmiyor.',

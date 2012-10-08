@@ -1173,7 +1173,49 @@ class Title {
 	}
 
 	/**
-	 * Get the base page name, i.e. the leftmost part before any slashes
+	 * Get the root page name text without a namespace, i.e. the leftmost part before any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getRootText();
+	 * # returns: 'Foo'
+	 * @endcode
+	 *
+	 * @return String Root name
+	 * @since 1.20
+	 */
+	public function getRootText() {
+		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+			return $this->getText();
+		}
+
+		return strtok( $this->getText(), '/' );
+	}
+
+	/**
+	 * Get the root page name title, i.e. the leftmost part before any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getRootTitle();
+	 * # returns: Title{User:Foo}
+	 * @endcode
+	 *
+	 * @return Title Root title
+	 * @since 1.20
+	 */
+	public function getRootTitle() {
+		return Title::makeTitle( $this->getNamespace(), $this->getRootText() );
+	}
+
+	/**
+	 * Get the base page name without a namespace, i.e. the part before the subpage name
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getBaseText();
+	 * # returns: 'Foo/Bar'
+	 * @endcode
 	 *
 	 * @return String Base name
 	 */
@@ -1191,7 +1233,29 @@ class Title {
 	}
 
 	/**
+	 * Get the base page name title, i.e. the part before the subpage name
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getBaseTitle();
+	 * # returns: Title{User:Foo/Bar}
+	 * @endcode
+	 *
+	 * @return Title Base title
+	 * @since 1.20
+	 */
+	public function getBaseTitle() {
+		return Title::makeTitle( $this->getNamespace(), $this->getBaseText() );
+	}
+
+	/**
 	 * Get the lowest-level subpage name, i.e. the rightmost part after any slashes
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getSubpageText();
+	 * # returns: "Baz"
+	 * @endcode
 	 *
 	 * @return String Subpage name
 	 */
@@ -1201,6 +1265,23 @@ class Title {
 		}
 		$parts = explode( '/', $this->mTextform );
 		return( $parts[count( $parts ) - 1] );
+	}
+
+	/**
+	 * Get the title for a subpage of the current page
+	 *
+	 * @par Example:
+	 * @code
+	 * Title::newFromText('User:Foo/Bar/Baz')->getSubpage("Asdf");
+	 * # returns: Title{User:Foo/Bar/Baz/Asdf}
+	 * @endcode
+	 *
+	 * @param $text String The subpage name to add to the title
+	 * @return Title Subpage title
+	 * @since 1.20
+	 */
+	public function getSubpage( $text ) {
+		return Title::makeTitleSafe( $this->getNamespace(), $this->getText() . '/' . $text );
 	}
 
 	/**
@@ -1408,13 +1489,14 @@ class Title {
 	 *
 	 * See getLocalURL for the arguments.
 	 *
+	 * @param $proto Protocol to use; setting this will cause a full URL to be used
 	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
-	public function getLinkURL( $query = '', $query2 = false ) {
+	public function getLinkURL( $query = '', $query2 = false, $proto = PROTO_RELATIVE ) {
 		wfProfileIn( __METHOD__ );
-		if ( $this->isExternal() ) {
-			$ret = $this->getFullURL( $query, $query2 );
+		if ( $this->isExternal() || $proto !== PROTO_RELATIVE ) {
+			$ret = $this->getFullURL( $query, $query2, $proto );
 		} elseif ( $this->getPrefixedText() === '' && $this->getFragment() !== '' ) {
 			$ret = $this->getFragmentForURL();
 		} else {

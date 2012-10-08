@@ -363,7 +363,7 @@ De Sperre wurde durch [[User:$1|$1]] miet der Begrindung ''„$2“'' eigerichte
 # Login and logout pages
 'logouttext' => "'''Du best nun obgemeldet.'''
 
-Du koast {{SITENAME}} jitz anonym wetter nutzen, oder diech erneut under damm selba oder a'm andern Nutzernoama [[Special:UserLogin|oamelda]].
+Du koast {{SITENAME}} jitz anonym wetter nutzen, oder diech erneut under damm selba oder a'm andern Nutzernoama <span class='plainlinks'>[$1 oamelda]</span>.
 Beachte, doas einige Seyta noo oazeiga kinna, doas du oagemeldet best, sulange du ne denn Browsercache gelaart host.",
 'welcomecreation' => '== Willkumma, $1! ==
 
@@ -798,8 +798,6 @@ Stelle sicher, doaß de Versionsgeschichte anner Seite historisch korrekt ies.',
 'search-section' => '(Obschnitt $1)',
 'search-suggest' => 'Meitest du „$1“?',
 'search-interwiki-caption' => 'Schwasterprujätte',
-'search-mwsuggest-enabled' => 'miet Vurschläga',
-'search-mwsuggest-disabled' => 'kääne Vurschläge',
 'mwsuggest-disable' => 'Vurschläge per Ajax deaktiviern',
 'searchrelated' => 'verwandt',
 'searchall' => 'olle',

@@ -851,10 +851,11 @@ $1',
 'protectedpagetext' => 'هذه الصفحة تمت حمايتها لمنع التعديل.',
 'viewsourcetext' => 'يمكنك رؤية ونسخ مصدر هذه الصفحة:',
 'viewyourtext' => "يمكنك رؤية ونسخ مصدر ''' تعديلاتك ''' في هذه الصفحة:",
-'protectedinterface' => 'هذه الصفحة توفر نص الواجهة للبرنامج، وهي مقفلة لمنع التخريب.',
+'protectedinterface' => 'توفر هذه الصفحة نص الواجهة للبرنامج على هذا الويكي، وهي محمية لمنع سوء أستخدامها.
+لإضافة أو تغيير الترجمات لجميع مشاريع الويكي، رجاءً أستخدم [//translatewiki.net/ translatewiki.net]، مشروع الترجمة الخاص بميدياويكي.',
 'editinginterface' => "'''تحذير:''' أنت تقوم بتحرير صفحة تستخدم في الواجهة النصية للبرنامج.
-سوف تؤثر التغييرات على هذه الصفحة على مظهر واجهة المستخدم للمستخدمين الآخرين.
-للترجمات، من فضلك استخدم مشروع ترجمة ميدياويكي [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
+سوف تؤثر التغييرات في هذه الصفحة على مظهر واجهة المستخدم للمستخدمين الآخرين على هذا الويكي.
+لإضافة أو تغيير الترجمات في جميع مشاريع الويكي، رجاءً استخدم [//translatewiki.net/ translatewiki.net]، مشروع الترجمة الخاص بميدياويكي.",
 'sqlhidden' => '(استعلام SQL مخفي)',
 'cascadeprotected' => 'تمت حماية هذه الصفحة من التعديل لأنها مدمجة في {{PLURAL:$1||الصفحة التالية، والتي|الصفحتين التاليتين، واللتين|الصفحات التالية، والتي}} تم استعمال خاصية "حماية الصفحات المدمجة" {{PLURAL:$1||بها|بهما|بها}}:
 $2',
@@ -880,7 +881,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''أنت الآن غير مسجل الدخول.'''
 
-تستطيع المتابعة باستعمال {{SITENAME}} كمجهول، أو [[Special:UserLogin|الدخول مرة أخرى]] بنفس الاسم أو باسم آخر.
+تستطيع المتابعة باستعمال {{SITENAME}} كمجهول، أو <span class='plainlinks'>[$1 الدخول مرة أخرى]</span> بنفس الاسم أو باسم آخر.
 من الممكن أن ترى بعض الصفحات كما لو أنك مسجل الدخول، وذلك حتى تقوم بإفراغ الصفحات المختزنة في المتصفح لديك.",
 'welcomecreation' => '== مرحبا، $1! ==
 تم إنشاء حسابك.
@@ -1142,7 +1143,8 @@ $2
 يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى،
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} البحث في السجلات المتعلقة]،
 أو [{{fullurl:{{FULLPAGENAME}}|action=edit}} تعديل هذه الصفحة]</span>.',
-'noarticletext-nopermission' => 'لا يوجد حاليا أي نص في هذه الصفحة.يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى,أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} بحث السجلات المتصلة]</span>.',
+'noarticletext-nopermission' => 'لا يوجد حاليا أي نص في هذه الصفحة.
+يمكنك [[Special:Search/{{PAGENAME}}|البحث عن عنوان هذه الصفحة]] في الصفحات الأخرى، أو <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} البحث في السجلات المتعلقة بها]</span>، لكنك لست مخولاً لإنشاء هذه الصفحة.',
 'missing-revision' => 'المراجعة #$1 من الصفحة المسماة "{{PAGENAME}}" غير موجودة.
 
 هذا يحدث عادة عن طريق اتباع وصلة تاريخ قديمة لصفحة تم حذفها.
@@ -1518,8 +1520,6 @@ $1",
 'search-interwiki-caption' => 'المشاريع الشقيقة',
 'search-interwiki-default' => '$1 نتيجة:',
 'search-interwiki-more' => '(المزيد)',
-'search-mwsuggest-enabled' => 'مع اقتراحات',
-'search-mwsuggest-disabled' => 'لا اقتراحات',
 'search-relatedarticle' => 'مرتبطة',
 'mwsuggest-disable' => 'عطل اقتراحات أجاكس',
 'searcheverything-enable' => 'ابحث في جميع النطاقات',
@@ -1618,7 +1618,7 @@ $1",
 'timezoneregion-indian' => 'المحيط الهندي',
 'timezoneregion-pacific' => 'المحيط الهادي',
 'allowemail' => 'مكن تلقي البريد الإلكتروني من المستخدمين الآخرين',
-'prefs-searchoptions' => 'خيارات البحث',
+'prefs-searchoptions' => 'البحث',
 'prefs-namespaces' => 'أسماء النطاقات',
 'defaultns' => 'أو ابحث في هذه النطاقات:',
 'default' => 'افتراضي',
@@ -3175,7 +3175,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'اختبار جافاسكربت',
-'javascripttest-disabled' => 'هذه الخاصية معطلة.',
 'javascripttest-title' => 'تشغيل أختبارات $1',
 'javascripttest-pagetext-noframework' => 'هذه الصفحة محجوزة لإجراء أختبارات الجافا سكريبت.',
 'javascripttest-pagetext-unknownframework' => 'إطار اختبار غير معروف "$1".',
@@ -3341,7 +3340,6 @@ $1',
 'pageinfo-authors' => 'عدد المؤلفين المختلفين',
 'pageinfo-recent-edits' => 'عدد التعديلات الأخيرة (خلال  $1 يوم/أيام)',
 'pageinfo-recent-authors' => 'عدد المؤلفين المختلفين الأخيرين',
-'pageinfo-restriction' => 'حماية الصفحة ($1)',
 'pageinfo-magic-words' => 'السحرية {{PLURAL:$1|الكلمة|الكلمات}} ($1)',
 'pageinfo-hidden-categories' => 'مخفية {{PLURAL:$1|فئة|فئات}} ($1)',
 'pageinfo-templates' => 'متضمنة {{PLURAL:$1|قالب|قوالب}} ($1)',
@@ -4327,6 +4325,10 @@ $5
 'feedback-close' => 'تم',
 'feedback-bugcheck' => 'رائع! تحقق من أن هذه ليست إحدى [$1 العلل المعروفة].',
 'feedback-bugnew' => 'لقد تحققت. بلّغ عن علة جديدة.',
+
+# Search suggestions
+'searchsuggest-search' => 'بحث',
+'searchsuggest-containing' => 'يحتوي...',
 
 # API errors
 'api-error-badaccess-groups' => 'لا يسمح لك بتحميل الملفات إلى هذه الويكي.',

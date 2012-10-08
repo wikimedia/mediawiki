@@ -228,7 +228,10 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mConn = null;
 	protected $mOpened = false;
 
-	/** @var Array */
+	/**
+	 * @since 1.20
+	 * @var array of callable
+	 */
 	protected $trxIdleCallbacks = array();
 
 	protected $mTablePrefix;
@@ -245,6 +248,23 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $htmlErrors;
 
 	protected $delimiter = ';';
+
+	/**
+	 * Remembers the function name given for starting the most recent transaction via begin().
+	 * Used to provide additional context for error reporting.
+	 *
+	 * @var String
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxFname = null;
+
+	/**
+	 * Record if possible write queries were done in the last transaction started
+	 *
+	 * @var Bool
+	 * @see DatabaseBase::mTrxLevel
+	 */
+	private $mTrxDoneWrites = false;
 
 # ------------------------------------------------------------------------------
 # Accessors
@@ -836,9 +856,10 @@ abstract class DatabaseBase implements DatabaseType {
 		$commentedSql = preg_replace( '/\s/', " /* $fname $userName */ ", $sql, 1 );
 
 		# If DBO_TRX is set, start a transaction
-		if ( ( $this->mFlags & DBO_TRX ) && !$this->trxLevel() &&
-			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' ) {
-			# avoid establishing transactions for SHOW and SET statements too -
+		if ( ( $this->mFlags & DBO_TRX ) && !$this->mTrxLevel &&
+			$sql != 'BEGIN' && $sql != 'COMMIT' && $sql != 'ROLLBACK' )
+		{
+			# Avoid establishing transactions for SHOW and SET statements too -
 			# that would delay transaction initializations to once connection
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
@@ -849,6 +870,11 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 				$this->begin( __METHOD__ . " ($fname)" );
 			}
+		}
+
+		# Keep track of whether the transaction has write queries pending
+		if ( $this->mTrxLevel && !$this->mTrxDoneWrites && $this->isWriteQuery( $sql ) ) {
+			$this->mTrxDoneWrites = true;
 		}
 
 		if ( $this->debug() ) {
@@ -2837,8 +2863,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * This is useful for updates to different systems or separate transactions are needed.
 	 *
+	 * @since 1.20
+	 *
 	 * @param Closure $callback
-	 * @return void
 	 */
 	final public function onTransactionIdle( Closure $callback ) {
 		if ( $this->mTrxLevel ) {
@@ -2849,7 +2876,9 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Actually run the "on transaction idle" callbacks
+	 * Actually run the "on transaction idle" callbacks.
+	 *
+	 * @since 1.20
 	 */
 	protected function runOnTransactionIdleCallbacks() {
 		$e = null; // last exception
@@ -2869,19 +2898,50 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Begin a transaction
+	 * Begin a transaction. If a transaction is already in progress, that transaction will be committed before the
+	 * new transaction is started.
+	 *
+	 * Note that when the DBO_TRX flag is set (which is usually the case for web requests, but not for maintenance scripts),
+	 * any previous database query will have started a transaction automatically.
+	 *
+	 * Nesting of transactions is not supported. Attempts to nest transactions will cause warnings if DBO_TRX is not set
+	 * or the extsting transaction contained write operations.
 	 *
 	 * @param $fname string
 	 */
 	final public function begin( $fname = 'DatabaseBase::begin' ) {
+		global $wgDebugDBTransactions;
+
 		if ( $this->mTrxLevel ) { // implicit commit
+			if ( $this->mTrxDoneWrites || ( $this->mFlags & DBO_TRX ) === 0 ) {
+				// In theory, we should always warn about nesting BEGIN statements.
+				// However, it is sometimes hard to avoid so we only warn if:
+				//
+				// a) the transaction has done writes. This gives warnings about bad transactions
+				// that could cause partial writes but not about read queries seeing more
+				// than one DB snapshot (when in REPEATABLE-READ) due to nested BEGINs.
+				//
+				// b) the DBO_TRX flag is not set. Explicit transactions should always be properly
+				//    started and comitted.
+				/*wfWarn( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+					" performing implicit commit!" );*/
+			} elseif ( $wgDebugDBTransactions ) {
+				wfDebug( "$fname: Transaction already in progress (from {$this->mTrxFname}), " .
+					" performing implicit commit!\n" );
+			}
+
 			$this->doCommit( $fname );
 			$this->runOnTransactionIdleCallbacks();
 		}
+
 		$this->doBegin( $fname );
+		$this->mTrxFname = $fname;
+		$this->mTrxDoneWrites = false;
 	}
 
 	/**
+	 * Issues the BEGIN command to the database server.
+	 *
 	 * @see DatabaseBase::begin()
 	 * @param type $fname
 	 */
@@ -2891,16 +2951,24 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * End a transaction
+	 * Commits a transaction previously started using begin().
+	 * If no transaction is in progress, a warning is issued.
+	 *
+	 * Nesting of transactions is not supported.
 	 *
 	 * @param $fname string
 	 */
 	final public function commit( $fname = 'DatabaseBase::commit' ) {
+		if ( !$this->mTrxLevel ) {
+			wfWarn( "$fname: No transaction to commit, something got out of sync!" );
+		}
 		$this->doCommit( $fname );
 		$this->runOnTransactionIdleCallbacks();
 	}
 
 	/**
+	 * Issues the COMMIT command to the database server.
+	 *
 	 * @see DatabaseBase::commit()
 	 * @param type $fname
 	 */
@@ -2912,17 +2980,24 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Rollback a transaction.
+	 * Rollback a transaction previously started using begin().
+	 * If no transaction is in progress, a warning is issued.
+	 *
 	 * No-op on non-transactional databases.
 	 *
 	 * @param $fname string
 	 */
 	final public function rollback( $fname = 'DatabaseBase::rollback' ) {
+		if ( !$this->mTrxLevel ) {
+			wfWarn( "$fname: No transaction to rollback, something got out of sync!" );
+		}
 		$this->doRollback( $fname );
 		$this->trxIdleCallbacks = array(); // cancel
 	}
 
 	/**
+	 * Issues the ROLLBACK command to the database server.
+	 *
 	 * @see DatabaseBase::rollback()
 	 * @param type $fname
 	 */

@@ -481,7 +481,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Вы выйшлі з сістэмы.'''
 
-Можна працягваць працу на {{SITENAME}} ананімна, або можна [[Special:UserLogin|ўвайсці ў сістэму ізноў]], пад тым самым або пад іншым удзельніцкім імем. Заўважце, што некаторыя старонкі могуць паказвацца так, быццам вы яшчэ не выйшлі; у такім разе трэба ачысціць кэш вашага браўзера.",
+Можна працягваць працу на {{SITENAME}} ананімна, або можна <span class='plainlinks'>[$1 ўвайсці ў сістэму ізноў]</span>, пад тым самым або пад іншым удзельніцкім імем. Заўважце, што некаторыя старонкі могуць паказвацца так, быццам вы яшчэ не выйшлі; у такім разе трэба ачысціць кэш вашага браўзера.",
 'welcomecreation' => '== Вітаем, $1! == Ваш  рахунак быў створаны. Не забудзьцеся дапасаваць свае [[Special:Preferences|{{SITENAME}} настáўленні]].',
 'yourname' => 'Імя ўдзельніка',
 'yourpassword' => 'Пароль',
@@ -1052,8 +1052,6 @@ $1",
 'search-interwiki-caption' => 'Сумежныя праекты',
 'search-interwiki-default' => 'вынікі з $1:',
 'search-interwiki-more' => '(яшчэ)',
-'search-mwsuggest-enabled' => 'з прапановамі',
-'search-mwsuggest-disabled' => 'без прапановаў',
 'search-relatedarticle' => 'Дачыняюцца*',
 'mwsuggest-disable' => 'Не паказваць прапановаў AJAX',
 'searcheverything-enable' => 'Пошук ва ўсіх прасторах назваў',
@@ -2605,7 +2603,6 @@ $1',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript-тэсты',
-'javascripttest-disabled' => 'Гэта функцыя выключаная.',
 'javascripttest-title' => 'Праводзіцца тэставанне $1',
 'javascripttest-pagetext-noframework' => 'Гэта старонка зарэзервавана для запуску тэстаў JavaScript',
 'javascripttest-pagetext-unknownframework' => 'Невядомая бібліятэка тэставання «$1».',
@@ -3550,6 +3547,10 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'feedback-close' => 'Зроблена.',
 'feedback-bugcheck' => 'Выдатна! Толькі праверце, што ў спісе [$1 вядомых памылак] яе няма падобнага запісу.',
 'feedback-bugnew' => 'Я праверыў. Паведаміць пра новую памылку',
+
+# Search suggestions
+'searchsuggest-search' => 'Знайсці',
+'searchsuggest-containing' => 'змяшчае...',
 
 # API errors
 'api-error-badaccess-groups' => 'У Вас няма дазволу загружаць файлы ў гэтую вікі.',

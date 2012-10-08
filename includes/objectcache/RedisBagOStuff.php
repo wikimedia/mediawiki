@@ -289,6 +289,12 @@ class RedisBagOStuff extends BagOStuff {
 			$candidates = $this->servers;
 		} else {
 			// Use consistent hashing
+			//
+			// Note: Benchmarking on PHP 5.3 and 5.4 indicates that for small
+			// strings, md5() is only 10% slower than hash('joaat',...) etc.,
+			// since the function call overhead dominates. So there's not much
+			// justification for breaking compatibility with installations
+			// compiled with ./configure --disable-hash.
 			$hashes = array();
 			foreach ( $this->servers as $server ) {
 				$hashes[$server] = md5( $server . '/' . $key );

@@ -468,7 +468,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''ھازىر تىزىمدىن چىقتىڭىز.'''
 
-سىز نامسىز ھالەتتە {{SITENAME}} نى ئىشلىتەلەيسىز ياكى ئوخشاش ۋە ياكى ئوخشاش بولمىغان ئىشلەتكۈچى سالاھىيىتىدە [[Special:UserLogin|تىزىمغا كىر]]ەلەيسىز.
+سىز نامسىز ھالەتتە {{SITENAME}} نى ئىشلىتەلەيسىز ياكى ئوخشاش ۋە ياكى ئوخشاش بولمىغان ئىشلەتكۈچى سالاھىيىتىدە <span class='plainlinks'>[$1 تىزىمغا كىر]</span>ەلەيسىز.
 دىققەت، بەزى بەتلەر توركۆرگۈنىڭ غەملىكى تازىلانمىغۇچە يەنىلا سىزنى تىزىمغا كىرگەن ھالەتتە كۆرسىتىشى مۇمكىن.",
 'welcomecreation' => '==  $1! خۇش كەپسىز ==
 
@@ -1113,8 +1113,6 @@ $1",
 'search-interwiki-caption' => 'ھەمشىرە قۇرۇلۇشلار',
 'search-interwiki-default' => '$1 نەتىجە:',
 'search-interwiki-more' => '(تېخىمۇ كۆپ)',
-'search-mwsuggest-enabled' => 'تەكلىپ بار',
-'search-mwsuggest-disabled' => 'تەكلىپ يوق',
 'search-relatedarticle' => 'ئالاقىدار',
 'mwsuggest-disable' => 'AJAX تەكلىپىنى چەكلە',
 'searcheverything-enable' => 'ھەممە ئات بوشلۇقىدىن ئىزدە',

@@ -155,7 +155,6 @@ class SpecialPageFactory {
 		'Blankpage'                 => 'SpecialBlankpage',
 		'Blockme'                   => 'SpecialBlockme',
 		'Emailuser'                 => 'SpecialEmailUser',
-		'JavaScriptTest'            => 'SpecialJavaScriptTest',
 		'Movepage'                  => 'MovePageForm',
 		'Mycontributions'           => 'SpecialMycontributions',
 		'Mypage'                    => 'SpecialMypage',
@@ -178,7 +177,7 @@ class SpecialPageFactory {
 	static function getList() {
 		global $wgSpecialPages;
 		global $wgDisableCounters, $wgDisableInternalSearch, $wgEmailAuthentication;
-		global $wgEnableEmail;
+		global $wgEnableEmail, $wgEnableJavaScriptTest;
 
 		if ( !is_object( self::$mList ) ) {
 			wfProfileIn( __METHOD__ );
@@ -198,6 +197,10 @@ class SpecialPageFactory {
 
 			if ( $wgEnableEmail ) {
 				self::$mList['ChangeEmail'] = 'SpecialChangeEmail';
+			}
+
+			if( $wgEnableJavaScriptTest ) {
+				self::$mList['JavaScriptTest'] = 'SpecialJavaScriptTest';
 			}
 
 			// Add extension special pages

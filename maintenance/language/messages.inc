@@ -910,8 +910,6 @@ $wgMessageStructure = array(
 		'search-interwiki-default',
 		'search-interwiki-custom',
 		'search-interwiki-more',
-		'search-mwsuggest-enabled',
-		'search-mwsuggest-disabled',
 		'search-relatedarticle',
 		'mwsuggest-disable',
 		'searcheverything-enable',
@@ -2453,7 +2451,6 @@ $wgMessageStructure = array(
 	'javaccripttest' => array(
 		'javascripttest',
 		'javascripttest-backlink',
-		'javascripttest-disabled',
 		'javascripttest-title',
 		'javascripttest-pagetext-noframework',
 		'javascripttest-pagetext-unknownframework',
@@ -2691,11 +2688,11 @@ $wgMessageStructure = array(
 		'pageinfo-authors',
 		'pageinfo-recent-edits',
 		'pageinfo-recent-authors',
-		'pageinfo-restriction',
 		'pageinfo-magic-words',
 		'pageinfo-hidden-categories',
 		'pageinfo-templates',
 		'pageinfo-footer',
+		'pageinfo-toolboxlink',
 	),
 	'skin' => array(
 		'skinname-standard',
@@ -3345,6 +3342,7 @@ $wgMessageStructure = array(
 	'scarytransclusion' => array(
 		'scarytranscludedisabled',
 		'scarytranscludefailed',
+		'scarytranscludefailed-httpstatus',
 		'scarytranscludetoolong',
 	),
 	'deleteconflict' => array(
@@ -3738,6 +3736,10 @@ $wgMessageStructure = array(
 		'feedback-bugcheck',
 		'feedback-bugnew',
 	),
+	'searchsuggestions' => array(
+		'searchsuggest-search',
+		'searchsuggest-containing',
+	),
 	'apierrors' => array(
 		'api-error-badaccess-groups',
 		'api-error-badtoken',
@@ -4027,6 +4029,7 @@ Variants for Chinese language",
 	'logging'               => 'New logging system',
 	'logging-irc'           => 'For IRC, see bug 34508. Do not change',
 	'feedback'              => 'Feedback',
+	'searchsuggestions'     => 'Search suggestions',
 	'apierrors'             => 'API errors',
 	'duration'              => 'Durations',
 	'cachedspecial'         => 'SpecialCachedPage',

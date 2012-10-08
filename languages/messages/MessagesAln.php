@@ -451,7 +451,7 @@ Arsyeja e dhânë âsht "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Jeni çlajmërue.'''
 
-Mundeni me vazhdue me shfrytëzue {{SITENAME}} në mënyrë anonime, apo mundeni [[Special:UserLogin|me u kyçë]] si përdoruesi i njêjtë apo si nji tjetër.
+Mundeni me vazhdue me shfrytëzue {{SITENAME}} në mënyrë anonime, apo mundeni <span class='plainlinks'>[$1 me u kyçë]</span> si përdoruesi i njêjtë apo si nji tjetër.
 Disa faqe mujnë me u paraqitë prap si t'kishit qenë t'kyçun, derisa ta pastroni memorizimin e shfletuesit.",
 'welcomecreation' => '== Mirësevini, $1! ==
 
@@ -929,8 +929,6 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'search-interwiki-caption' => 'Projektet simotra',
 'search-interwiki-default' => '$1 rezultate:',
 'search-interwiki-more' => '(mâ shumë)',
-'search-mwsuggest-enabled' => 'me parahedhje',
-'search-mwsuggest-disabled' => "s'ka parahedhje",
 'search-relatedarticle' => 'Të ngjajshme',
 'mwsuggest-disable' => 'Deaktivizo sygjerimet me AJAX',
 'searcheverything-enable' => 'Kërko në tâna hapësinat',
@@ -1620,5 +1618,9 @@ Tjerat kanë me mbetë të mshefuna.
 # New logging system
 'revdelete-restricted' => 'u vendosën kufizime për administruesit',
 'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
+
+# Search suggestions
+'searchsuggest-search' => 'Kërkim',
+'searchsuggest-containing' => 'përmban ...',
 
 );

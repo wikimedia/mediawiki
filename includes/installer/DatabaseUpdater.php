@@ -177,7 +177,7 @@ abstract class DatabaseUpdater {
 	 *                Note that callback functions will receive this object as
 	 *                first parameter.
 	 */
-	public function addExtensionUpdate( Array $update ) {
+	public function addExtensionUpdate( array $update ) {
 		$this->extensionUpdates[] = $update;
 	}
 

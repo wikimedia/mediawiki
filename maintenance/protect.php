@@ -58,6 +58,7 @@ class Protect extends Maintenance {
 			$this->error( "Invalid username", true );
 		}
 
+		// @todo FIXME: This is reset 7 lines down.
 		$restrictions = array( 'edit' => $protection, 'move' => $protection );
 
 		$t = Title::newFromText( $this->getArg() );

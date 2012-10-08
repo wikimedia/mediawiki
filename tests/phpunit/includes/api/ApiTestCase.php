@@ -18,6 +18,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$wgAuth = new StubObject( 'wgAuth', 'AuthPlugin' );
 		$wgRequest = new FauxRequest( array() );
 
+		ApiQueryInfo::resetTokenCache(); // tokens are invalid because we cleared the session
+
 		self::$users = array(
 			'sysop' => new TestUser(
 				'Apitestsysop',
@@ -39,7 +41,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	}
 
-	protected function doApiRequest( Array $params, Array $session = null, $appendModule = false, User $user = null ) {
+	protected function doApiRequest( array $params, array $session = null, $appendModule = false, User $user = null ) {
 		global $wgRequest, $wgUser;
 
 		if ( is_null( $session ) ) {
@@ -84,7 +86,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param $session Array|null: session array
 	 * @param $user User|null A User object for the context
 	 */
-	protected function doApiRequestWithToken( Array $params, Array $session = null, User $user = null ) {
+	protected function doApiRequestWithToken( array $params, array $session = null, User $user = null ) {
 		global $wgRequest;
 
 		if ( $session === null ) {

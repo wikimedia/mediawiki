@@ -1,7 +1,6 @@
 <?php
 
 /**
- * This class is not directly tested. Instead it is extended by SearchDbTest.
  * @group Search
  * @group Database
  */

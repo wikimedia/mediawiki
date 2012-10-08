@@ -397,7 +397,7 @@ $1',
 # Login and logout pages
 'logouttext' => "'''Та һарад бәәнәт.'''
 
-Та {{SITENAME}} гидг ормиг нертә уга олзлҗ чаднат, аль та [[Special:UserLogin|дәкәд орҗ]] цацу аль талдан нертә чаднат.
+Та {{SITENAME}} гидг ормиг нертә уга олзлҗ чаднат, аль та <span class='plainlinks'>[$1 дәкәд орҗ]</span> цацу аль талдан нертә чаднат.
 Зәрм халхс цааранднь та ода чигн орсн мет үзүлҗ чаддг тускар темдглтн (та хәләчин санлиг цеврлтл).",
 'welcomecreation' => '== Ирхитн эрҗәнәвидн, $1! ==
 Таднар шин бичгдлһн бүтв.
@@ -596,8 +596,6 @@ $1',
 'search-interwiki-caption' => 'Садта проектмуд',
 'search-interwiki-default' => '$1 ашуд:',
 'search-interwiki-more' => '(дәкәд)',
-'search-mwsuggest-enabled' => 'селвгтә',
-'search-mwsuggest-disabled' => 'селвг уга',
 'mwsuggest-disable' => 'AJAX селвг унтрах',
 'searcheverything-enable' => 'Цуг нернә ууд хәәх',
 'searchall' => 'цуг',

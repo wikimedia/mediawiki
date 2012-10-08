@@ -490,6 +490,23 @@ class MediaWiki {
 
 		$request = $this->context->getRequest();
 
+		if ( $request->getCookie( 'forceHTTPS' )
+			&& $request->detectProtocol() == 'http'
+			&& $request->getMethod() == 'GET'
+		) {
+			$redirUrl = $request->getFullRequestURL();
+			$redirUrl = str_replace( 'http://' , 'https://' , $redirUrl );
+
+			// Setup dummy Title, otherwise OutputPage::redirect will fail
+			$title = Title::newFromText( NS_MAIN, 'REDIR' );
+			$this->context->setTitle( $title );
+			$output = $this->context->getOutput();
+			$output->redirect( $redirUrl );
+			$output->output();
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
 		// Send Ajax requests to the Ajax dispatcher.
 		if ( $wgUseAjax && $request->getVal( 'action', 'view' ) == 'ajax' ) {
 

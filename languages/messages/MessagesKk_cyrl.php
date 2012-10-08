@@ -1,5 +1,5 @@
 <?php
-/** Kazakh (Cyrillic script) (‪қазақша (кирил)‬)
+/** Kazakh (Cyrillic script) (қазақша (кирил)‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -756,7 +756,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''Жүйеден шықтыңыз.'''
 
-Жүйеге кірместен де {{SITENAME}} жобасын пайдалана аласыз, немесе баяғы не өзге қатысушы ретінде жүйеге [[Special:UserLogin|қайта кіруіңізге]] болады.
+Жүйеге кірместен де {{SITENAME}} жобасын пайдалана аласыз, немесе баяғы не өзге қатысушы ретінде жүйеге <span class='plainlinks'>[$1 қайта кіруіңізге]</span> болады.
 Аңғартпа: Кейбір беттер шолғышыңыздың кэшін тазартқанша әлі де жүйеге кіріп отырғаныңыздай көрінуі мүмкін.",
 'welcomecreation' => '== Қош келдіңіз, $1! ==
 Жаңа тіркелгіңіз жасалды.
@@ -1274,8 +1274,6 @@ $3 келтірілген себебі: ''$2''",
 'search-interwiki-caption' => 'Бауырлас жобалар',
 'search-interwiki-default' => '$1 нәтиже:',
 'search-interwiki-more' => '(көбірек)',
-'search-mwsuggest-enabled' => 'ұсынымдармен',
-'search-mwsuggest-disabled' => 'ұсынымдарсыз',
 'search-relatedarticle' => 'Қатысты',
 'mwsuggest-disable' => 'AJAX ұсынымдарын өшір',
 'searcheverything-enable' => 'Белгіленген есім кеңістігінен іздеу',
@@ -3192,5 +3190,8 @@ $5
 'logentry-newusers-create2' => '$1 $3 деген аккаунт тіркеді',
 'logentry-newusers-autocreate' => '$1 аккаунты автоматты түрде тіркелді',
 'newuserlog-byemail' => 'Құпия сөз e-mail арқылы жіберілді',
+
+# Search suggestions
+'searchsuggest-search' => 'Іздеу',
 
 );

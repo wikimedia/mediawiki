@@ -375,8 +375,8 @@ Yalvarêrız benneyiniz URL - i hem raport ediniz bunu bir [[Special:ListUsers/s
 'viewsourcetext' => 'Var nicä görmää hem kopiya etmää bu yapraa gelinirini:',
 
 # Login and logout pages
-'logouttext' => 'Sessiyayı kapattınız.
-Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki [[Special:UserLogin|enidän sessiya açmaa]] (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.',
+'logouttext' => "Sessiyayı kapattınız.
+Şindi var nicä devam etmää kullanmaa {{SITENAME}} saytını kimlik göstermedän yaki <span class='plainlinks'>[$1 enidän sessiya açmaa]</span> (ister hep o kullanıcı adıylan, ister başka bir kullanıcı adıylan). O zamana kadar ani web brauzerinizin keşi temizlenecek bir takım sayfalar var nicä görünsün sansın sessiya hep açık.",
 'welcomecreation' => '== Hoş geldiniz $1! ==
 
 Esapınız açıldı. Unutmayın [[Special:Preferences|{{SITENAME}} preferences]] seçimnerin diiştirmää.',
@@ -588,8 +588,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'search-interwiki-caption' => 'Kardaş proyektlär',
 'search-interwiki-default' => '$1 rezultatlar:',
 'search-interwiki-more' => '(taa çok)',
-'search-mwsuggest-enabled' => 'tekliflerlän',
-'search-mwsuggest-disabled' => 'tekliflersiz',
 'nonefound' => "'''Bennemäk''': Sadä kimi ad erleri sessizcä aaranêr.
 Aaramaanızın önünä ''all:'' prefiksini koyun da deneyin hepsi içlii aaramaa deyni (sözleşmäk sayfaları, şablonlar h.b.pay alarak), yaki kullanınız beenilän prefiksi sansın er adı.",
 'powersearch' => 'Gelişmiş arama',

@@ -442,6 +442,10 @@ $1',
 'youhavenewmessages' => 'आपके लिए $1 है। ($2)',
 'newmessageslink' => 'नए सन्देश',
 'newmessagesdifflink' => 'पिछला बदलाव',
+'youhavenewmessagesfromusers' => 'आपके लिये {{PLURAL:$3|एक अन्य सदस्य का सन्देश है|$3 अन्य सदस्यों के सन्देश हैं}}। ($2)',
+'youhavenewmessagesmanyusers' => 'आपके लिये $1 हैं। ($2)',
+'newmessageslinkplural' => '{{PLURAL:$1|एक नया सन्देश|नये सन्देश}}',
+'newmessagesdifflinkplural' => 'अंतिम {{PLURAL:$1|परिवर्तन}}',
 'youhavenewmessagesmulti' => '$1 पर आपके लिए नया संदेश है',
 'editsection' => 'सम्पादन',
 'editold' => 'सम्पादन',
@@ -567,6 +571,7 @@ $2',
 इसके लिये निम्न कारण दिया गया है: "\'\'$2\'\'"',
 'invalidtitle-knownnamespace' => '"$2" नामस्थान और "$3" नाम वाला गलत शीर्षक',
 'invalidtitle-unknownnamespace' => 'अज्ञात नामस्थान संख्या $1 और नाम "$2" वाला गलत शीर्षक',
+'exception-nologin' => 'लॉग इन नहीं किया है',
 
 # Virus scanner
 'virus-badscanner' => "गलत जमाव: अज्ञात वायरस जाँचक: ''$1''",
@@ -576,7 +581,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''अब आपका सत्रांत हो चुका है।'''
 
-आप बेनामी हो के {{SITENAME}} का प्रयोग जारी रख सकते हैं, या उसी या किसी और सदस्य के तौर पर [[Special:UserLogin|फिर से सत्रारंभ]] कर सकते हैं।
+आप बेनामी हो के {{SITENAME}} का प्रयोग जारी रख सकते हैं, या उसी या किसी और सदस्य के तौर पर <span class='plainlinks'>[$1 फिर से सत्रारंभ]</span> कर सकते हैं।
 ध्यान दें कि जब तक आप अपनी ब्राउज़र कैशे खाली नहीं करते हैं, कुछ पृष्ठ अब भी ऐसे दिख सकते हैं जैसे कि आपका सत्र अभी भी चल रहा हो।",
 'welcomecreation' => '== आपका स्वागत है, $1 ! ==
 आपका खाता बनाया जा चुका है। अपनी [[Special:Preferences|{{SITENAME}} वरीयताएँ]] परिवर्तित करना न भूलिएगा।',
@@ -586,6 +591,7 @@ $2',
 'remembermypassword' => 'इस ब्राउज़र पर मेरा लॉगिन याद रखें (अधिकतम $1 {{PLURAL:$1|दिन|दिनों}} के लिए)',
 'securelogin-stick-https' => 'प्रवेश के बाद HTTPS से जुड़े रहें',
 'yourdomainname' => 'आपका डोमेन:',
+'password-change-forbidden' => 'आप इस विकि पर कूटशब्द नहीं बदल सकते हैं।',
 'externaldberror' => 'या तो प्रमाणिकरण डाटाबेस में त्रुटि हुई है या फिर आपको अपना बाह्य खाता अपडेट करने की अनुमति नहीं है।',
 'login' => 'लॉग इन',
 'nav-login-createaccount' => 'सत्रारंभ / खाता खोलें',
@@ -1191,8 +1197,6 @@ $1",
 'search-interwiki-caption' => 'अन्य प्रकल्प',
 'search-interwiki-default' => '$1 के परिणाम:',
 'search-interwiki-more' => '(और)',
-'search-mwsuggest-enabled' => 'सुझाव सहित',
-'search-mwsuggest-disabled' => 'सुझाव नहीं',
 'search-relatedarticle' => 'सम्बंधित',
 'mwsuggest-disable' => 'AJAX सुझाव बंद करें',
 'searcheverything-enable' => 'सभी नामस्थानों में खोजें',
@@ -3802,6 +3806,9 @@ $5
 'feedback-close' => 'हो गया',
 'feedback-bugcheck' => 'शानदार! जांच ले कहीं ये [ $1 known bugs] पहले से ही न हो ।',
 'feedback-bugnew' => 'मैं जाँच कीया। एक नया बग रिपोर्ट करें',
+
+# Search suggestions
+'searchsuggest-search' => 'खोज',
 
 # API errors
 'api-error-badaccess-groups' => 'आपको इस विकि के लिए फ़ाइलें अपलोड करने की अनुमति नहीं है.',

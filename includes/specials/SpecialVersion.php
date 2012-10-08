@@ -83,7 +83,7 @@ class SpecialVersion extends SpecialPage {
 		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMessage( 'version-license' )->text() );
 
 		// This text is always left-to-right.
-		$ret .= '<div>';
+		$ret .= '<div class="plainlinks">';
 		$ret .= "__NOTOC__
 		" . self::getCopyrightAndAuthorList() . "\n
 		" . wfMessage( 'version-license-info' )->text();
@@ -109,7 +109,9 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof',
-			wfMessage( 'version-poweredby-others' )->text()
+			'[{{SERVER}}{{SCRIPTPATH}}/CREDITS ' .
+			wfMessage( 'version-poweredby-others' )->text() .
+			']'
 		);
 
 		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
@@ -136,7 +138,7 @@ class SpecialVersion extends SpecialPage {
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMessage( 'version-software' )->text() ) .
-			   Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-software' ) ) .
+			   Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
 				"<tr>
 					<th>" . wfMessage( 'version-software-product' )->text() . "</th>
 					<th>" . wfMessage( 'version-software-version' )->text() . "</th>
@@ -327,7 +329,7 @@ class SpecialVersion extends SpecialPage {
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), $this->msg( 'version-extensions' )->text() ) .
-			Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-ext' ) );
+			Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ) );
 
 		// Make sure the 'other' type is set to an array.
 		if ( !array_key_exists( 'other', $wgExtensionCredits ) ) {
@@ -760,7 +762,7 @@ class SpecialVersion extends SpecialPage {
 		);
 
 		$out = Html::element( 'h2', array( 'id' => 'mw-version-entrypoints' ), $this->msg( 'version-entrypoints' )->text() ) .
-			Html::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'mw-version-entrypoints-table' ) ) .
+			Html::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'mw-version-entrypoints-table' ) ) .
 			Html::openElement( 'tr' ) .
 			Html::element( 'th', array(), $this->msg( 'version-entrypoints-header-entrypoint' )->text() ) .
 			Html::element( 'th', array(), $this->msg( 'version-entrypoints-header-url' )->text() ) .

@@ -400,7 +400,7 @@ Ensonga gy\'awadde eri nti "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Kati ovuddemu.'''
 
-Osobola okusigala nga okozesa {{SITENAME}} nga at'eyanjudde, ate osobola [[Special:UserLogin|n'okuddamu okuyingira]] nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
+Osobola okusigala nga okozesa {{SITENAME}} nga at'eyanjudde, ate osobola <span class='plainlinks'>[$1 n'okuddamu okuyingira]</span> nga bw'obadde oba nga okozesezza ery'obwa memba eddala.
 Wekkaanye, empapula ezimu ziyinza okukweyolekera nga bwe zibadde nga oyingidde - okutuusa lw'okunkumula eggwanika ezzibizi erya kalambula-neti yo.",
 'welcomecreation' => "== $1 tukwanirizza! == <br />
 Akawunti yo ekoledwa.<br />
@@ -844,8 +844,6 @@ oba ku gano agali ku lupapula luno.<br />
 'search-interwiki-caption' => "Pulojekiti ezikolagana n'eno",
 'search-interwiki-default' => 'ebizuulidwa ku $1:',
 'search-interwiki-more' => '(ebikyaliyo)',
-'search-mwsuggest-enabled' => 'mpeeraako amagezi',
-'search-mwsuggest-disabled' => "sisitemu ereme okuteebereza ky'onoonya",
 'searchall' => '',
 'nonefound' => "'''Wekkaanye''': Okunoonya kuno kukoma mu makuŋaanyizo amalondemu okugyako nga okulagidde okweyonera awalala.
 W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipediya yonna. Bw'obanga olina ekkuŋaanyizo limu lyokka lyoyagala okunoonyezamu, soosawo erinnya lyalyo w'owandikira by'onoonya.",

@@ -399,6 +399,12 @@ div#simpleSearch input.placeholder {
 div#simpleSearch input::-webkit-input-placeholder {
 	color: #999;
 }
+div#simpleSearch input:-moz-placeholder {
+	color: #999;
+}
+div#simpleSearch input:-ms-input-placeholder {
+	color: #999;
+}
 div#simpleSearch input#searchInput {
 	position: absolute;
 	top: 0;

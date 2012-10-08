@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文（简体）‬)
+/** Simplified Chinese (中文（简体）‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -436,7 +436,7 @@ $messages = array(
 'vector-action-protect' => '保护',
 'vector-action-undelete' => '恢复',
 'vector-action-unprotect' => '更改保护',
-'vector-simplesearch-preference' => '启用增强搜索建议（仅限Vector皮肤）',
+'vector-simplesearch-preference' => '启用简化搜索栏（仅适用Vector皮肤）',
 'vector-view-create' => '创建',
 'vector-view-edit' => '编辑',
 'vector-view-history' => '查看历史',
@@ -596,9 +596,12 @@ $1',
 # General errors
 'error' => '错误',
 'databaseerror' => '数据库错误',
-'dberrortext' => '发生了数据库查询语法错误，可能是由于软件自身的错误所引起。最后一次数据库查询指令是：
-<blockquote><tt>$1</tt></blockquote>
-来自函数“<tt>$2</tt>”内。数据库返回错误“<tt>$3: $4</tt>”。',
+'dberrortext' => '发生资料库查询语法错误。
+可能是由于软体自身的错误所引起。
+最后一次资料库查询指令是:
+<blockquote><code>$1</code></blockquote>
+来自于函数 "<code>$2</code>"。
+数据库返回错误 "<samp>$3: $4</samp>"。',
 'dberrortextcl' => '发生了数据库查询语法错误。最后一次数据库查询指令是：
 “$1”
 来自函数“$2”内。数据库返回错误“$3: $4”。',
@@ -649,8 +652,11 @@ $1',
 'protectedpagetext' => '该页面已被保护以防止编辑。',
 'viewsourcetext' => '您可以查看并复制此页面的源代码：',
 'viewyourtext' => "您可以查看并复制'''您对此页面作出编辑后'''的源代码：",
-'protectedinterface' => '该页提供了软件的界面文本，它已被保护以防止随意的修改。',
-'editinginterface' => "'''警告：''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
+'protectedinterface' => '该页提供此wiki软件的界面文字，它已被保护以防止恶意修改。
+如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。',
+'editinginterface' => "'''警告：'''您正在编辑的页面是用于提供软件的界面文字。
+改变此页将影响其他在此wiki上的用户界面外观。
+如欲修改所有wiki的翻译，请到[//translatewiki.net/ translatewiki.net]上的MediaWiki本地化计划。",
 'sqlhidden' => '（SQL查询已隐藏）',
 'cascadeprotected' => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
@@ -675,7 +681,7 @@ $2',
 # Login and logout pages
 'logouttext' => "'''您现在已经退出。'''
 
-您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份[[Special:UserLogin|登录]]。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
+您可以继续以匿名方式使用{{SITENAME}}，或再次以相同或不同用户身份<span class='plainlinks'>[$1 登录]</span>。请注意一些页面可能仍然显示您为登录状态，直到您清空您的浏览器缓存为止。",
 'welcomecreation' => '== 欢迎，$1！ ==
 你的账户已创建。请别忘记更改你的[[Special:Preferences|{{SITENAME}}系统设置]]。',
 'yourname' => '用户名：',
@@ -893,8 +899,8 @@ $2
 如果您误入此页，请点击浏览器中的“返回”按钮。',
 'anontalkpagetext' => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext' => '本页面目前没有内容。你可以在其他页面中[[Special:Search/{{PAGENAME}}|搜索该页标题]]、<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索相关日志]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 编辑本页面]。</span>',
-'noarticletext-nopermission' => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
-或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
+'noarticletext-nopermission' => '此页目前没有内容。
+您可以在其它页[[Special:Search/{{PAGENAME}}|搜寻此页标题]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜寻有关日志]</span>，但您没有权限建立此页。',
 'missing-revision' => '“{{PAGENAME}}”的修订#$1不存在。
 
 这通常是因为进入了一个已被删除的页面的历史链接。
@@ -1233,8 +1239,6 @@ $1",
 'search-interwiki-caption' => '姊妹项目',
 'search-interwiki-default' => '$1项结果：',
 'search-interwiki-more' => '（更多）',
-'search-mwsuggest-enabled' => '有建议',
-'search-mwsuggest-disabled' => '无建议',
 'search-relatedarticle' => '相关',
 'mwsuggest-disable' => '禁用AJAX建议',
 'searcheverything-enable' => '在所有名字空间中搜索',
@@ -2800,7 +2804,6 @@ $1被封禁的理由是：“$2”',
 
 # JavaScriptTest
 'javascripttest' => 'JavaScript测试',
-'javascripttest-disabled' => '该wiki站点上尚未启用此功能。',
 'javascripttest-title' => '运行$1测试',
 'javascripttest-pagetext-noframework' => '此页面被保留用于运行JavaScript测试。',
 'javascripttest-pagetext-unknownframework' => '未知的框架“$1”。',
@@ -2956,12 +2959,11 @@ $1被封禁的理由是：“$2”',
 'pageinfo-firsttime' => '页面创建日期',
 'pageinfo-lastuser' => '最近的编者',
 'pageinfo-lasttime' => '最后编辑的日期',
-'pageinfo-edits' => '编辑总计',
-'pageinfo-authors' => '不同作者总计',
-'pageinfo-recent-edits' => '最近的编辑数 ($1天内 )',
-'pageinfo-recent-authors' => '最近的不同作者数',
-'pageinfo-restriction' => '页面保护 ({{lcfirst:$1}})',
-'pageinfo-magic-words' => '魔术字($1)',
+'pageinfo-edits' => '总编辑次数',
+'pageinfo-authors' => '不同编者总计',
+'pageinfo-recent-edits' => '最近的编辑数 ($1天内)',
+'pageinfo-recent-authors' => '最近的不同编者数',
+'pageinfo-magic-words' => '魔术字 ($1)',
 'pageinfo-hidden-categories' => '隐藏分类 ($1)',
 'pageinfo-templates' => '使用的模板 ($1)',
 
@@ -3834,6 +3836,10 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'feedback-close' => '完成',
 'feedback-bugcheck' => '请检查本bug是否为[$1 已知bug]。',
 'feedback-bugnew' => '我检查了。报告新bug',
+
+# Search suggestions
+'searchsuggest-search' => '搜索',
+'searchsuggest-containing' => '含有...',
 
 # API errors
 'api-error-badaccess-groups' => '你没有将文件上传到此wiki的权限。',

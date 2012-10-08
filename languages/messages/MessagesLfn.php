@@ -443,8 +443,6 @@ La arcivo de sutraes per esta paje es asi per conveni:",
 'search-section' => '(sesion $1)',
 'search-interwiki-default' => 'Resultas de $1:',
 'search-interwiki-more' => '(plu)',
-'search-mwsuggest-enabled' => 'con sujestes',
-'search-mwsuggest-disabled' => 'zero sujestes',
 'searchall' => 'tota',
 'powersearch' => 'Xerca avansada',
 

@@ -473,7 +473,7 @@ Göstərilən səbəb: "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext' => "'''Sistemdən çıxdınız.'''
 
-Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər və ya eyni, yaxud başqa istifadəçi adı ilə [[Special:UserLogin|yenidən daxil ola]] bilərsiniz. Veb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
+Siz {{SITENAME}} saytını anonim olaraq istifadə etməyə davam edə bilər və ya eyni, yaxud başqa istifadəçi adı ilə <span class='plainlinks'>[$1 yenidən daxil ola]</span> bilərsiniz. Veb-brauzerin keş yaddaşını təmizləyənədək bəzi səhifələr hələ də sistemdə imişsiniz kimi görünə bilər.",
 'welcomecreation' => '== $1, xoş gəlmişsiniz! ==
 Hesabınız yaradıldı.
 [[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
@@ -923,8 +923,6 @@ $1",
 'search-interwiki-caption' => 'Qardaş layihələr',
 'search-interwiki-default' => '$1 nəticə:',
 'search-interwiki-more' => '(yenə)',
-'search-mwsuggest-enabled' => 'təkliflərlə',
-'search-mwsuggest-disabled' => 'təklif yoxdur',
 'search-relatedarticle' => 'əlaqədar',
 'mwsuggest-disable' => 'AJAX təkliflərini rədd et',
 'searcheverything-enable' => 'Ad aralığında axtar:',
@@ -2991,6 +2989,9 @@ Bu saytda texniki problemlər var.',
 'feedback-error2' => 'Xəta: Redaktə qeydə alınmadı',
 'feedback-close' => 'Oldu',
 'feedback-bugnew' => 'Mən yoxladım. Yeni xəta barədə xəbər ver',
+
+# Search suggestions
+'searchsuggest-search' => 'Axtar',
 
 # API errors
 'api-error-filename-tooshort' => 'Fayl adı qısadır.',
