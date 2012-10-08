@@ -106,8 +106,7 @@ class ApiEditPage extends ApiBase {
 		$articleObj = Article::newFromTitle( $titleObj, $this->getContext() );
 
 		$toMD5 = $params['text'];
-		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) )
-		{
+		if ( !is_null( $params['appendtext'] ) || !is_null( $params['prependtext'] ) ) {
 			// For non-existent pages, Article::getContent()
 			// returns an interface message rather than ''
 			// We do want getContent()'s behavior for non-existent
@@ -202,10 +201,10 @@ class ApiEditPage extends ApiBase {
 		if ( !is_null( $params['starttimestamp'] ) && $params['starttimestamp'] != '' ) {
 			$requestArray['wpStarttime'] = wfTimestamp( TS_MW, $params['starttimestamp'] );
 		} else {
-			$requestArray['wpStarttime'] = wfTimestampNow();	// Fake wpStartime
+			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
 		}
 
-		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) )	{
+		if ( $params['minor'] ) {
 			$requestArray['wpMinoredit'] = '';
 		}
 
