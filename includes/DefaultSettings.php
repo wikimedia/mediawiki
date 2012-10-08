@@ -3541,8 +3541,8 @@ $wgReservedUsernames = array(
 /**
  * Settings added to this array will override the default globals for the user
  * preferences used by anonymous visitors and newly created accounts.
- * For instance, to disable section editing links:
- * $wgDefaultUserOptions ['editsection'] = 0;
+ * For instance, to disable e-mail:
+ * $wgDefaultUserOptions ['disablemail'] = 0;
  *
  */
 $wgDefaultUserOptions = array(
@@ -3554,7 +3554,6 @@ $wgDefaultUserOptions = array(
 	'disablesuggest'          => 0,
 	'editfont'                => 'default',
 	'editondblclick'          => 0,
-	'editsection'             => 1,
 	'editsectiononrightclick' => 0,
 	'enotifminoredits'        => 0,
 	'enotifrevealaddr'        => 0,

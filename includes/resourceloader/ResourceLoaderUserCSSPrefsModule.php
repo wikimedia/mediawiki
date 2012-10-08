@@ -77,9 +77,6 @@ class ResourceLoaderUserCSSPrefsModule extends ResourceLoaderModule {
 			if ( !$options['showtoc'] ) {
 				$rules[] = "#toc { display: none; }\n";
 			}
-			if ( !$options['editsection'] ) {
-				$rules[] = ".editsection { display: none; }\n";
-			}
 			if ( $options['editfont'] !== 'default' ) {
 				$rules[] = "textarea { font-family: {$options['editfont']}; }\n";
 			}
