@@ -627,12 +627,9 @@ class OutputPage extends ContextSource {
 			wfDebug( __METHOD__ . ": CACHE DISABLED, NO TIMESTAMP\n" );
 			return false;
 		}
+
 		if( !$wgCachePages ) {
 			wfDebug( __METHOD__ . ": CACHE DISABLED\n", false );
-			return false;
-		}
-		if( $this->getUser()->getOption( 'nocache' ) ) {
-			wfDebug( __METHOD__ . ": USER DISABLED CACHE\n", false );
 			return false;
 		}
 

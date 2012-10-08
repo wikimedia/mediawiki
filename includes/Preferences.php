@@ -676,11 +676,6 @@ class Preferences {
 				'label-message' => 'tog-showtoc',
 			);
 		}
-		$defaultPreferences['nocache'] = array(
-			'type' => 'toggle',
-			'label-message' => 'tog-nocache',
-			'section' => 'rendering/advancedrendering',
-		);
 		$defaultPreferences['showhiddencats'] = array(
 			'type' => 'toggle',
 			'section' => 'rendering/advancedrendering',
