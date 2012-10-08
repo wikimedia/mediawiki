@@ -3008,7 +3008,29 @@ class User {
 	}
 
 	/**
-	 * Add this existing user object to the database
+	 * Add this existing user object to the database. If the user already 
+	 * exists, a fatal status object is returned, and the user object is 
+	 * initialised with the data from the database.
+	 *
+	 * Previously, this function generated a DB error due to a key conflict
+	 * if the user already existed. Many extension callers use this function
+	 * in code along the lines of:
+	 *
+	 *   $user = User::newFromName( $name );
+	 *   if ( !$user->isLoggedIn() ) {
+	 *       $user->addToDatabase();
+	 *   }
+	 *   // do something with $user...
+	 *
+	 * However, this was vulnerable to a race condition (bug 16020). By 
+	 * initialising the user object if the user exists, we aim to support this
+	 * calling sequence as far as possible.
+	 *
+	 * Note that if the user exists, this function will acquire a write lock,
+	 * so it is still advisable to make the call conditional on isLoggedIn(), 
+	 * and to commit the transaction after calling.
+	 *
+	 * @return Status
 	 */
 	public function addToDatabase() {
 		$this->load();
@@ -3031,14 +3053,31 @@ class User {
 				'user_registration' => $dbw->timestamp( $this->mRegistration ),
 				'user_editcount' => 0,
 				'user_touched' => $dbw->timestamp( $this->mTouched ),
-			), __METHOD__
+			), __METHOD__,
+			array( 'IGNORE' )
 		);
+		if ( !$dbw->affectedRows() ) {
+			$this->mId = $dbw->selectField( 'user', 'user_id', 
+				array( 'user_name' => $this->mName ), __METHOD__ );
+			$loaded = false;
+			if ( $this->mId ) {
+				if ( $this->loadFromDatabase() ) {
+					$loaded = true;
+				}
+			}
+			if ( !$loaded ) {
+				throw new MWException( __METHOD__. ": hit a key conflict attempting " .
+					"to insert a user row, but then it doesn't exist when we select it!" );
+			}
+			return Status::newFatal( 'userexists' );
+		}
 		$this->mId = $dbw->insertId();
 
 		// Clear instance cache other than user table data, which is already accurate
 		$this->clearInstanceCache();
 
 		$this->saveOptions();
+		return Status::newGood();
 	}
 
 	/**
