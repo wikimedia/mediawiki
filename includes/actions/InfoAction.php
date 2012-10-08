@@ -259,7 +259,12 @@ class InfoAction extends FormlessAction {
 			);
 		}
 
-		if ( $user->isAllowed( 'unwatchedpages' ) ) {
+		global $wgUnwatchedPageThreshold;
+		if (
+			$user->isAllowed( 'unwatchedpages' ) ||
+			( $wgUnwatchedPageThreshold !== false &&
+			  $pageCounts['watchers'] >= $wgUnwatchedPageThreshold )
+		) {
 			// Number of page watchers
 			$pageInfo['header-basic'][] = array(
 				$this->msg( 'pageinfo-watchers' ), $lang->formatNum( $pageCounts['watchers'] )
