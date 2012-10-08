@@ -31,6 +31,15 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 
 	/**
+	 * Holds original values of MediaWiki configuration settings
+	 * to be restored in tearDown().
+	 * See also setMwGlobal().
+	 * @var array
+	 */
+	private $mwGlobals = array();
+
+
+	/**
 	 * Table name prefixes. Oracle likes it shorter.
 	 */
 	const DB_PREFIX = 'unittest_';
@@ -119,6 +128,30 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $fname;
 	}
 
+	/**
+	 * setUp and tearDown should (where significant)
+	 * happen in reverse order.
+	 */
+	protected function setUp() {
+		parent::setUp();
+
+		// Cleaning up temporary files
+		foreach ( $this->tmpfiles as $fname ) {
+			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
+				unlink( $fname );
+			} elseif ( is_dir( $fname ) ) {
+				wfRecursiveRemoveDir( $fname );
+			}
+		}
+
+		// Clean up open transactions
+		if ( $this->needsDB() && $this->db ) {
+			while( $this->db->trxLevel() > 0 ) {
+				$this->db->rollback();
+			}
+		}
+	}
+
 	protected function tearDown() {
 		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
@@ -129,14 +162,43 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// clean up open transactions
-		if( $this->needsDB() && $this->db ) {
+		// Clean up open transactions
+		if ( $this->needsDB() && $this->db ) {
 			while( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
 		}
 
+		// Restore mw globals
+		foreach ( $this->mwGlobals as $key => $value ) {
+			$GLOBALS[$key] = $value;
+		}
+		$this->mwGlobals = array();
+
 		parent::tearDown();
+	}
+
+	/**
+	 * @param array|string Key to the global variable, or an array
+	 *  of key/value pairs.
+	 * @param mixed $value Value to set the global to (ignored
+	 *  if an array is given as first argument).
+	 *
+	 * Individual tests can set the globals directly as long as their
+	 * initial value was set in setUp with this method because setUp/tearDown
+	 * is re-ran before/after each testXX function.
+	 */
+	protected function setMwGlobals( $pairs, $value = null ) {
+		if ( !is_array( $pairs ) ) {
+			$key = $pairs;
+			$this->mwGlobals[$key] = $GLOBALS[$key];
+			$GLOBALS[$key] = $value;
+		} else {
+			foreach ( $pairs as $key => $value ) {
+				$this->mwGlobals[$key] = $GLOBALS[$key];
+				$GLOBALS[$key] = $value;
+			}
+		}
 	}
 
 	function dbPrefix() {
