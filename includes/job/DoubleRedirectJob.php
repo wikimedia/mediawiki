@@ -93,8 +93,8 @@ class DoubleRedirectJob extends Job {
 			wfDebug( __METHOD__.": target redirect already deleted, ignoring\n" );
 			return true;
 		}
-		$text = $targetRev->getText();
-		$currentDest = Title::newFromRedirect( $text );
+		$content = $targetRev->getContent();
+		$currentDest = $content->getRedirectTarget();
 		if ( !$currentDest || !$currentDest->equals( $this->redirTitle ) ) {
 			wfDebug( __METHOD__.": Redirect has changed since the job was queued\n" );
 			return true;
@@ -102,7 +102,7 @@ class DoubleRedirectJob extends Job {
 
 		# Check for a suppression tag (used e.g. in periodically archived discussions)
 		$mw = MagicWord::get( 'staticredirect' );
-		if ( $mw->match( $text ) ) {
+		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__.": skipping: suppressed with __STATICREDIRECT__\n" );
 			return true;
 		}
@@ -124,14 +124,10 @@ class DoubleRedirectJob extends Job {
 			$currentDest->getFragment(), $newTitle->getInterwiki() );
 
 		# Fix the text
-		# Remember that redirect pages can have categories, templates, etc.,
-		# so the regex has to be fairly general
-		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x',
-			'[[' . $newTitle->getFullText() . ']]',
-			$text, 1 );
+		$newContent = $content->updateRedirect( $newTitle );
 
-		if ( $newText === $text ) {
-			$this->setLastError( 'Text unchanged???' );
+		if ( $newContent->equals( $content ) ) {
+			$this->setLastError( 'Content unchanged???' );
 			return false;
 		}
 
@@ -143,7 +139,7 @@ class DoubleRedirectJob extends Job {
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
-		$article->doEdit( $newText, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $this->getUser() );
+		$article->doEditContent( $newContent, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $this->getUser() );
 		$wgUser = $oldUser;
 
 		return true;

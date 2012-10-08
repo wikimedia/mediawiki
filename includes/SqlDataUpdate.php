@@ -95,7 +95,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * Abort the database transaction started via beginTransaction (if any).
 	 */
 	public function abortTransaction() {
-		if ( $this->mHasTransaction ) {
+		if ( $this->mHasTransaction ) { //XXX: actually... maybe always?
 			$this->mDb->rollback( get_class( $this ) . '::abortTransaction' );
 			$this->mHasTransaction = false;
 		}

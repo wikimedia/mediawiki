@@ -93,7 +93,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 		LinkCache::singleton()->clear();
 
 		$page = WikiPage::factory( $title );
-		$page->doEdit( $text, $comment, 0, false, $user );
+		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
 
 		$this->pageList[] = array( $title, $page->getId() );
 
