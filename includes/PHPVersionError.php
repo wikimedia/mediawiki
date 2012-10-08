@@ -38,7 +38,7 @@
  * version are hardcoded here
  */
 function wfPHPVersionError( $type ){
-	$mwVersion = '1.20';
+	$mwVersion = '1.21';
 	$phpVersion = PHP_VERSION;
 	$message = "MediaWiki $mwVersion requires at least PHP version 5.3.2, you are using PHP $phpVersion.";
 	if( $type == 'index.php' ) {
