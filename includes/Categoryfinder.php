@@ -28,17 +28,17 @@
  *
  * Example use :
  * <code>
- * 	# Determines whether the article with the page_id 12345 is in both
- * 	# "Category 1" and "Category 2" or their subcategories, respectively
+ *     # Determines whether the article with the page_id 12345 is in both
+ *     # "Category 1" and "Category 2" or their subcategories, respectively
  *
- * 	$cf = new Categoryfinder;
- * 	$cf->seed(
- * 		array( 12345 ),
- * 		array( 'Category 1', 'Category 2' ),
- * 		'AND'
- * 	);
- * 	$a = $cf->run();
- * 	print implode( ',' , $a );
+ *     $cf = new Categoryfinder;
+ *     $cf->seed(
+ *         array( 12345 ),
+ *         array( 'Category 1', 'Category 2' ),
+ *         'AND'
+ *     );
+ *     $a = $cf->run();
+ *     print implode( ',' , $a );
  * </code>
  *
  */
@@ -135,7 +135,7 @@ class Categoryfinder {
 
 		# iterate through the parents
 		foreach ( $this->parents[$id] as $p ) {
-			$pname = $p->cl_to ;
+			$pname = $p->cl_to;
 
 			# Is this a condition?
 			if ( isset( $conds[$pname] ) ) {
@@ -172,6 +172,8 @@ class Categoryfinder {
 	 * Scans a "parent layer" of the articles/categories in $this->next
 	 */
 	function scan_next_layer() {
+		wfProfileIn( __METHOD__ );
+
 		# Find all parents of the article currently in $this->next
 		$layer = array();
 		$res = $this->dbr->select(
@@ -225,6 +227,7 @@ class Categoryfinder {
 		foreach ( $layer as $v ) {
 			$this->deadend[$v] = $v;
 		}
-	}
 
+		wfProfileOut( __METHOD__ );
+	}
 }
