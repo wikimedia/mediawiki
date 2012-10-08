@@ -75,7 +75,16 @@ abstract class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		if ( !$revision ) {
 			return null;
 		}
-		return $revision->getRawText();
+
+		$content = $revision->getContent( Revision::RAW );
+		$model = $content->getModel();
+
+		if ( $model !== CONTENT_MODEL_CSS && $model !== CONTENT_MODEL_JAVASCRIPT ) {
+			wfDebug( __METHOD__ . "bad content model #$model for JS/CSS page!\n" );
+			return null;
+		}
+
+		return $content->getNativeData(); //NOTE: this is safe, we know it's JS or CSS
 	}
 
 	/* Methods */

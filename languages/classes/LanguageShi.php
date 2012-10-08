@@ -212,6 +212,6 @@ class LanguageShi extends Language {
 
 		$flags = array();
 		$this->mConverter = new ShiConverter( $this, 'shi', $variants, $variantfallbacks, $flags );
-		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+		$wgHooks['ArticleContentSaveComplete'][] = $this->mConverter;
 	}
 }

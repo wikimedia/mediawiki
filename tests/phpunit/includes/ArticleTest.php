@@ -54,6 +54,9 @@ class ArticleTest extends MediaWikiTestCase {
 	 * Checks for the existence of the backwards compatibility static functions (forwarders to WikiPage class)
 	 */
 	function testStaticFunctions() {
+		$this->hideDeprecated( 'Article::getAutosummary' );
+		$this->hideDeprecated( 'WikiPage::getAutosummary' );
+
 		$this->assertEquals( WikiPage::selectFields(), Article::selectFields(),
 			"Article static functions" );
 		$this->assertEquals( true, is_callable( "Article::onArticleCreate" ),

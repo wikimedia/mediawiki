@@ -157,7 +157,9 @@ class ImagePage extends Article {
 			$out->addHTML( Xml::openElement( 'div', array( 'id' => 'mw-imagepage-content',
 				'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() ) ) );
+
 			parent::view();
+
 			$out->addHTML( Xml::closeElement( 'div' ) );
 		} else {
 			# Just need to set the right headers
@@ -272,18 +274,18 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Overloading Article's getContent method.
+	 * Overloading Article's getContentObject method.
 	 *
 	 * Omit noarticletext if sharedupload; text will be fetched from the
 	 * shared upload server if possible.
 	 * @return string
 	 */
-	public function getContent() {
+	public function getContentObject() {
 		$this->loadFile();
 		if ( $this->mPage->getFile() && !$this->mPage->getFile()->isLocal() && 0 == $this->getID() ) {
-			return '';
+			return null;
 		}
-		return parent::getContent();
+		return parent::getContentObject();
 	}
 
 	protected function openShowImage() {

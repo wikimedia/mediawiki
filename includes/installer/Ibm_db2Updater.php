@@ -89,6 +89,11 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'addTable', 'config',                            'patch-config.sql' ),
 
 			// 1.21
+			array( 'addField',	'revision',	'rev_content_format',		'patch-revision-rev_content_format.sql' ),
+			array( 'addField',	'revision',	'rev_content_model',		'patch-revision-rev_content_model.sql' ),
+			array( 'addField',	'archive',	'ar_content_format',		'patch-archive-ar_content_format.sql' ),
+			array( 'addField',	'archive',	'ar_content_model',		    'patch-archive-ar_content_model.sql' ),
+			array( 'addField',	'page',     'page_content_model',		'patch-page-page_content_model.sql' ),
 		);
 	}
 }
