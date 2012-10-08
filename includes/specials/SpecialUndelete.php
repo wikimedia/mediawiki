@@ -861,11 +861,15 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$out->addHTML(
-			Xml::element( 'textarea', array(
+			Xml::element(
+				'textarea',
+				array(
 					'readonly' => 'readonly',
-					'cols' => intval( $user->getOption( 'cols' ) ),
-					'rows' => intval( $user->getOption( 'rows' ) ) ),
-				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) .
+					'cols' => 80,
+					'rows' => 25
+				),
+				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n"
+			) .
 			Xml::openElement( 'div' ) .
 			Xml::openElement( 'form', array(
 				'method' => 'post',
