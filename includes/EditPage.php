@@ -752,7 +752,7 @@ class EditPage {
 	 */
 	function initialiseForm() {
 		global $wgUser;
-		$this->edittime = $this->mArticle->getTimestamp();
+		$this->edittime = $this->getArticle()->getTimestamp();
 		$this->textbox1 = $this->getContent( false );
 		// activate checkboxes if user wants them to be always active
 		# Sort out the "watch" checkbox
@@ -831,7 +831,7 @@ class EditPage {
 						!$undorev->isDeleted( Revision::DELETED_TEXT ) &&
 						!$oldrev->isDeleted( Revision::DELETED_TEXT ) ) {
 
-						$text = $this->mArticle->getUndoText( $undorev, $oldrev );
+						$text = $this->getArticle()->getUndoText( $undorev, $oldrev );
 						if ( $text === false ) {
 							# Warn the user that something went wrong
 							$undoMsg = 'failure';
@@ -893,11 +893,11 @@ class EditPage {
 		if ( $this->section == 'new' ) {
 			return $this->getCurrentText();
 		}
-		$revision = $this->mArticle->getRevisionFetched();
+		$revision = $this->getArticle()->getRevisionFetched();
 		if ( $revision === null ) {
 			return '';
 		}
-		return $this->mArticle->getContent();
+		return $this->getArticle()->getContent();
 	}
 
 	/**
@@ -909,7 +909,7 @@ class EditPage {
 	 * @return string
 	 */
 	private function getCurrentText() {
-		$text = $this->mArticle->getRawText();
+		$text = $this->getArticle()->getRawText();
 		if ( $text === false ) {
 			return '';
 		} else {
@@ -1020,7 +1020,7 @@ class EditPage {
 				$sectionanchor = $resultDetails['sectionanchor'];
 
 				// Give extensions a chance to modify URL query on update
-				wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this->mArticle, &$sectionanchor, &$extraQuery ) );
+				wfRunHooks( 'ArticleUpdateBeforeRedirect', array( $this->getArticle(), &$sectionanchor, &$extraQuery ) );
 
 				if ( $resultDetails['redirect'] ) {
 					if ( $extraQuery == '' ) {
@@ -1210,8 +1210,8 @@ class EditPage {
 
 		# Load the page data from the master. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
-		$this->mArticle->loadPageData( 'fromdbmaster' );
-		$new = !$this->mArticle->exists();
+		$this->getArticle()->loadPageData( 'fromdbmaster' );
+		$new = !$this->getArticle()->exists();
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
@@ -1284,14 +1284,14 @@ class EditPage {
 		} else {
 
 			# Article exists. Check for edit conflict.
-			$timestamp = $this->mArticle->getTimestamp();
+			$timestamp = $this->getArticle()->getTimestamp();
 			wfDebug( "timestamp: {$timestamp}, edittime: {$this->edittime}\n" );
 
 			if ( $timestamp != $this->edittime ) {
 				$this->isConflict = true;
 				if ( $this->section == 'new' ) {
-					if ( $this->mArticle->getUserText() == $wgUser->getName() &&
-						$this->mArticle->getComment() == $this->summary ) {
+					if ( $this->getArticle()->getUserText() == $wgUser->getName() &&
+						$this->getArticle()->getComment() == $this->summary ) {
 						// Probably a duplicate submission of a new comment.
 						// This can happen when squid resends a request after
 						// a timeout but the first one actually went through.
@@ -1318,10 +1318,10 @@ class EditPage {
 
 			if ( $this->isConflict ) {
 				wfDebug( __METHOD__ . ": conflict! getting section '$this->section' for time '$this->edittime' (article time '{$timestamp}')\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
+				$text = $this->getArticle()->replaceSection( $this->section, $this->textbox1, $sectionTitle, $this->edittime );
 			} else {
 				wfDebug( __METHOD__ . ": getting section '$this->section'\n" );
-				$text = $this->mArticle->replaceSection( $this->section, $this->textbox1, $sectionTitle );
+				$text = $this->getArticle()->replaceSection( $this->section, $this->textbox1, $sectionTitle );
 			}
 			if ( is_null( $text ) ) {
 				wfDebug( __METHOD__ . ": activating conflict; section replace failed.\n" );
@@ -1454,7 +1454,7 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$doEditStatus = $this->mArticle->doEdit( $text, $this->summary, $flags );
+		$doEditStatus = $this->getArticle()->doEdit( $text, $this->summary, $flags );
 
 		if ( $doEditStatus->isOK() ) {
 			$result['redirect'] = Title::newFromRedirect( $text ) !== null;
@@ -1885,7 +1885,7 @@ class EditPage {
 			Linker::formatTemplates( $this->getTemplates(), $this->preview, $this->section != '' ) ) );
 
 		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'hiddencats' ),
-			Linker::formatHiddenCategories( $this->mArticle->getHiddenCategories() ) ) );
+			Linker::formatHiddenCategories( $this->getArticle()->getHiddenCategories() ) ) );
 
 		if ( $this->isConflict ) {
 			$this->showConflict();
@@ -1950,7 +1950,7 @@ class EditPage {
 
 		if ( $this->isConflict ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-explainconflict'>\n$1\n</div>", 'explainconflict' );
-			$this->edittime = $this->mArticle->getTimestamp();
+			$this->edittime = $this->getArticle()->getTimestamp();
 		} else {
 			if ( $this->section != '' && !$this->isSectionEditSupported() ) {
 				// We use $this->section to much before this and getVal('wgSection') directly in other places
@@ -1990,7 +1990,7 @@ class EditPage {
 			}
 
 			if ( $this->section != 'new' ) {
-				$revision = $this->mArticle->getRevisionFetched();
+				$revision = $this->getArticle()->getRevisionFetched();
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
 
@@ -2001,7 +2001,7 @@ class EditPage {
 					}
 
 					if ( !$revision->isCurrent() ) {
-						$this->mArticle->setOldSubtitle( $revision->getId() );
+						$this->getArticle()->setOldSubtitle( $revision->getId() );
 						$wgOut->addWikiMsg( 'editingold' );
 					}
 				} elseif ( $this->mTitle->exists() ) {
@@ -2303,8 +2303,8 @@ HTML
 	}
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
-		global $wgOut;
 		$classes = array();
+
 		if ( $isOnTop ) {
 			$classes[] = 'ontop';
 		}
@@ -2315,13 +2315,14 @@ HTML
 			$attribs['style'] = 'display: none;';
 		}
 
-		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
+		$out = $this->getArticle()->getContext()->getOutput();
+		$out->addHTML( Xml::openElement( 'div', $attribs ) );
 
 		if ( $this->formtype == 'preview' ) {
 			$this->showPreview( $previewOutput );
 		}
 
-		$wgOut->addHTML( '</div>' );
+		$out->addHTML( '</div>' );
 
 		if ( $this->formtype == 'diff' ) {
 			$this->showDiff();
@@ -2335,16 +2336,18 @@ HTML
 	 * @param $text String: the HTML to be output for the preview.
 	 */
 	protected function showPreview( $text ) {
-		global $wgOut;
-		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
-			$this->mArticle->openShowCategory();
+		if ( $this->getTitle()->getNamespace() == NS_CATEGORY ) {
+			$this->getArticle()->openShowCategory();
 		}
 		# This hook seems slightly odd here, but makes things more
 		# consistent for extensions.
-		wfRunHooks( 'OutputPageBeforeHTML', array( &$wgOut, &$text ) );
-		$wgOut->addHTML( $text );
-		if ( $this->mTitle->getNamespace() == NS_CATEGORY ) {
-			$this->mArticle->closeShowCategory();
+		$out = $this->getArticle()->getContext()->getOutput();
+		wfRunHooks( 'OutputPageBeforeHTML', array( &$out, &$text ) );
+
+		$out->addHTML( $text );
+
+		if ( $this->getTitle()->getNamespace() == NS_CATEGORY ) {
+			$this->getArticle()->closeShowCategory();
 		}
 	}
 
@@ -2356,31 +2359,35 @@ HTML
 	 * save and then make a comparison.
 	 */
 	function showDiff() {
-		global $wgUser, $wgContLang, $wgParser, $wgOut;
+		global $wgContLang, $wgParser;
 
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
-		if( $this->mTitle->getNamespace() == NS_MEDIAWIKI && !$this->mTitle->exists() ) {
-			$oldtext = $this->mTitle->getDefaultMessageText();
+		$title = $this->getTitle();
+		if( $title->getNamespace() == NS_MEDIAWIKI && !$title->exists() ) {
+			$oldtext = $title->getDefaultMessageText();
 			if( $oldtext !== false ) {
 				$oldtitlemsg = 'defaultmessagetext';
 			}
 		} else {
-			$oldtext = $this->mArticle->getRawText();
+			$oldtext = $this->getArticle()->getRawText();
 		}
-		$newtext = $this->mArticle->replaceSection(
+		$newtext = $this->getArticle()->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 
 		wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
 
-		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-		$newtext = $wgParser->preSaveTransform( $newtext, $this->mTitle, $wgUser, $popts );
+		$context = $this->getArticle()->getContext();
+		$user = $context->getUser();
+
+		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
+		$newtext = $wgParser->preSaveTransform( $newtext, $this->getTitle(), $user, $popts );
 
 		if ( $oldtext !== false  || $newtext != '' ) {
-			$oldtitle = wfMessage( $oldtitlemsg )->parse();
-			$newtitle = wfMessage( 'yourtext' )->parse();
+			$oldtitle = $context->msg( $oldtitlemsg )->parse();
+			$newtitle = $context->msg( 'yourtext' )->parse();
 
-			$de = new DifferenceEngine( $this->mArticle->getContext() );
+			$de = new DifferenceEngine( $context );
 			$de->setText( $oldtext, $newtext );
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
 			$de->showDiffStyle();
@@ -2388,7 +2395,7 @@ HTML
 			$difftext = '';
 		}
 
-		$wgOut->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
+		$context->getOutput()->addHTML( '<div id="wikiDiff">' . $difftext . '</div>' );
 	}
 
 	/**
@@ -2396,10 +2403,13 @@ HTML
 	 */
 	protected function showHeaderCopyrightWarning() {
 		$msg = 'editpage-head-copy-warn';
-		if ( !wfMessage( $msg )->isDisabled() ) {
-			global $wgOut;
-			$wgOut->wrapWikiMsg( "<div class='editpage-head-copywarn'>\n$1\n</div>",
-				'editpage-head-copy-warn' );
+		$context = $this->getArticle()->getContext();
+
+		if ( !$context->msg( $msg )->isDisabled() ) {
+			$context->getOutput()->wrapWikiMsg(
+				"<div class='editpage-head-copywarn'>\n$1\n</div>",
+				'editpage-head-copy-warn'
+			);
 		}
 	}
 
@@ -2413,19 +2423,22 @@ HTML
 	 */
 	protected function showTosSummary() {
 		$msg = 'editpage-tos-summary';
-		wfRunHooks( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
-		if ( !wfMessage( $msg )->isDisabled() ) {
-			global $wgOut;
-			$wgOut->addHTML( '<div class="mw-tos-summary">' );
-			$wgOut->addWikiMsg( $msg );
-			$wgOut->addHTML( '</div>' );
+		wfRunHooks( 'EditPageTosSummary', array( $this->getTitle(), &$msg ) );
+
+		$context = $this->getArticle()->getContext();
+		if ( !$context->msg( $msg )->isDisabled() ) {
+			$out = $context->getOutput();
+
+			$out->addHTML( '<div class="mw-tos-summary">' );
+			$out->addWikiMsg( $msg );
+			$out->addHTML( '</div>' );
 		}
 	}
 
 	protected function showEditTools() {
-		global $wgOut;
-		$wgOut->addHTML( '<div class="mw-editTools">' .
-			wfMessage( 'edittools' )->inContentLanguage()->parse() .
+		$context = $this->getArticle()->getContext();
+		$context->getOutput()->addHTML( '<div class="mw-editTools">' .
+			$context->msg( 'edittools' )->inContentLanguage()->parse() .
 			'</div>' );
 	}
 
@@ -2456,36 +2469,40 @@ HTML
 	}
 
 	protected function showStandardInputs( &$tabindex = 2 ) {
-		global $wgOut;
-		$wgOut->addHTML( "<div class='editOptions'>\n" );
+		$context = $this->getArticle()->getContext();
+		$out = $context->getOutput();
+
+		$out->addHTML( "<div class='editOptions'>\n" );
 
 		if ( $this->section != 'new' ) {
 			$this->showSummaryInput( false, $this->summary );
-			$wgOut->addHTML( $this->getSummaryPreview( false, $this->summary ) );
+			$out->addHTML( $this->getSummaryPreview( false, $this->summary ) );
 		}
 
 		$checkboxes = $this->getCheckboxes( $tabindex,
 			array( 'minor' => $this->minoredit, 'watch' => $this->watchthis ) );
-		$wgOut->addHTML( "<div class='editCheckboxes'>" . implode( $checkboxes, "\n" ) . "</div>\n" );
+		$out->addHTML( "<div class='editCheckboxes'>" . implode( $checkboxes, "\n" ) . "</div>\n" );
 
 		// Show copyright warning.
-		$wgOut->addWikiText( $this->getCopywarn() );
-		$wgOut->addHTML( $this->editFormTextAfterWarn );
+		$out->addWikiText( $this->getCopywarn() );
+		$out->addHTML( $this->editFormTextAfterWarn );
 
-		$wgOut->addHTML( "<div class='editButtons'>\n" );
-		$wgOut->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
+		$out->addHTML( "<div class='editButtons'>\n" );
+		$out->addHTML( implode( $this->getEditButtons( $tabindex ), "\n" ) . "\n" );
 
 		$cancel = $this->getCancelLink();
 		if ( $cancel !== '' ) {
-			$cancel .= wfMessage( 'pipe-separator' )->text();
+			$cancel .= $context->msg( 'pipe-separator' )->text();
 		}
-		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMessage( 'edithelppage' )->inContentLanguage()->text() );
+		$edithelpurl = Skin::makeInternalOrExternalUrl(
+			$context->msg( 'edithelppage' )->inContentLanguage()->text()
+		);
 		$edithelp = '<a target="helpwindow" href="' . $edithelpurl . '">' .
-			wfMessage( 'edithelp' )->escaped() . '</a> ' .
-			wfMessage( 'newwindow' )->parse();
-		$wgOut->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
-		$wgOut->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
-		$wgOut->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
+			$context->msg( 'edithelp' )->escaped() . '</a> ' .
+			$context->msg( 'newwindow' )->parse();
+		$out->addHTML( "	<span class='cancelLink'>{$cancel}</span>\n" );
+		$out->addHTML( "	<span class='editHelp'>{$edithelp}</span>\n" );
+		$out->addHTML( "</div><!-- editButtons -->\n</div><!-- editOptions -->\n" );
 	}
 
 	/**
@@ -2493,19 +2510,20 @@ HTML
 	 * If you want to use another entry point to this function, be careful.
 	 */
 	protected function showConflict() {
-		global $wgOut;
+		$context = $this->getArticle()->getContext();
+		$out = $context->getOutput();
 
-		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
-			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
+		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$out ) ) ) {
+			$out->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
-			$de = new DifferenceEngine( $this->mArticle->getContext() );
+			$de = new DifferenceEngine( $context );
 			$de->setText( $this->textbox2, $this->textbox1 );
 			$de->showDiff(
-				wfMessage( 'yourtext' )->parse(),
-				wfMessage( 'storedversion' )->text()
+				$context->msg( 'yourtext' )->parse(),
+				$context->msg( 'storedversion' )->text()
 			);
 
-			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
+			$out->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 			$this->showTextbox2();
 		}
 	}
@@ -2638,7 +2656,7 @@ HTML
 				' [[#' . self::EDITFORM_ID . '|' . $wgLang->getArrow() . ' ' . wfMessage( 'continue-editing' )->text() . ']]';
 		}
 
-		$parserOptions = $this->mArticle->makeParserOptions( $this->mArticle->getContext() );
+		$parserOptions = $this->getArticle()->makeParserOptions( $this->getArticle()->getContext() );
 
 		$parserOptions->setEditSection( false );
 		$parserOptions->setIsPreview( true );
@@ -2690,7 +2708,7 @@ HTML
 
 			$rt = Title::newFromRedirectArray( $this->textbox1 );
 			if ( $rt ) {
-				$previewHTML = $this->mArticle->viewRedirect( $rt, false );
+				$previewHTML = $this->getArticle()->viewRedirect( $rt, false );
 			} else {
 				$previewHTML = $parserOutput->getText();
 			}
