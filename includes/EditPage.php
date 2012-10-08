@@ -766,9 +766,6 @@ class EditPage {
 			# Already watched
 			$this->watchthis = true;
 		}
-		if ( $wgUser->getOption( 'minordefault' ) && !$this->isNew ) {
-			$this->minoredit = true;
-		}
 		if ( $this->textbox1 === false ) {
 			return false;
 		}
