@@ -438,7 +438,7 @@ class TextPassDumperTest extends DumpTestCase {
   <siteinfo>
     <sitename>wikisvn</sitename>
     <base>http://localhost/wiki-svn/index.php/Main_Page</base>
-    <generator>MediaWiki 1.20alpha</generator>
+    <generator>MediaWiki 1.21alpha</generator>
     <case>first-letter</case>
     <namespaces>
       <namespace key="-2" case="first-letter">Media</namespace>
