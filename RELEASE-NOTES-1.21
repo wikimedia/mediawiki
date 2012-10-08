@@ -37,6 +37,9 @@ regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
 === Other changes in 1.21 ===
+* User preference 'editsection' ("Enable section editing via [edit] links") was
+  removed. Pages will have [edit] links for sections, unless __NOEDITSECTION__
+  is used in the content.
 
 == Compatibility ==
 

@@ -482,7 +482,7 @@ class ParserOptions {
 	 */
 	public static function legacyOptions() {
 		global $wgUseDynamicDates;
-		$legacyOpts = array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'editsection', 'printable' );
+		$legacyOpts = array( 'math', 'stubthreshold', 'numberheadings', 'userlang', 'thumbsize', 'printable' );
 		if ( $wgUseDynamicDates ) {
 			$legacyOpts[] = 'dateformat';
 		}
@@ -561,9 +561,7 @@ class ParserOptions {
 
 		$confstr .= $wgRenderHashAppend;
 
-		if ( !in_array( 'editsection', $forOptions ) ) {
-			$confstr .= '!*';
-		} elseif ( !$this->mEditSection ) {
+		if ( !$this->mEditSection ) {
 			$confstr .= '!edit=0';
 		}
 

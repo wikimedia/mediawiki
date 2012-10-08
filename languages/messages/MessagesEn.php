@@ -645,7 +645,6 @@ XHTML id names.
 'tog-numberheadings'          => 'Auto-number headings',
 'tog-showtoolbar'             => 'Show edit toolbar (requires JavaScript)',
 'tog-editondblclick'          => 'Edit pages on double click (requires JavaScript)',
-'tog-editsection'             => 'Enable section editing via [edit] links',
 'tog-editsectiononrightclick' => 'Enable section editing by right clicking on section titles (requires JavaScript)',
 'tog-showtoc'                 => 'Show table of contents (for pages with more than 3 headings)',
 'tog-rememberpassword'        => 'Remember my login on this browser (for a maximum of $1 {{PLURAL:$1|day|days}})',
