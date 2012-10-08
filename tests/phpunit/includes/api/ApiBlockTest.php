@@ -6,7 +6,7 @@
  */
 class ApiBlockTest extends ApiTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		$this->doLogin();
 	}

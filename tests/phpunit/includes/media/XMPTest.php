@@ -1,7 +1,7 @@
 <?php
 class XMPTest extends MediaWikiTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		if ( !wfDl( 'xml' ) ) {
 			$this->markTestSkipped( 'Requires libxml to do XMP parsing' );
 		}
@@ -14,7 +14,7 @@ class XMPTest extends MediaWikiTestCase {
 	 * @param $expected Array expected result of parsing the xmp.
 	 * @param $info String Short sentence on what's being tested.
 	 *
-	 * @dataProvider dataXMPParse
+	 * @dataProvider provideXMPParse
 	 */
 	public function testXMPParse( $xmp, $expected, $info ) {
 		if ( !is_string( $xmp ) || !is_array( $expected ) ) {
@@ -25,7 +25,7 @@ class XMPTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $reader->getResults(), $info, 0.0000000001 );
 	}
 
-	public function dataXMPParse() {
+	public static function provideXMPParse() {
 		$xmpPath = __DIR__ . '/../../data/xmp/' ;
 		$data = array();
 

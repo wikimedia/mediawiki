@@ -405,7 +405,7 @@ class IPTest extends MediaWikiTestCase {
 	}
 
 	/** Provider for testIPIsInRange() */
-	function provideIPsAndRanges() {
+	public static function provideIPsAndRanges() {
 			# Format: (expected boolean, address, range, optional message)
 		return array(
 			# IPv4
@@ -443,7 +443,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::splitHostAndPort()
 	 */
-	function provideSplitHostAndPort() {
+	public static function provideSplitHostAndPort() {
 		return array(
 			array( false, '[', 'Unclosed square bracket' ),
 			array( false, '[::', 'Unclosed square bracket 2' ),
@@ -474,7 +474,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::combineHostAndPort()
 	 */
-	function provideCombineHostAndPort() {
+	public static function provideCombineHostAndPort() {
 		return array(
 			array( '[::1]', array( '::1', 2, 2 ), 'IPv6 default port' ),
 			array( '[::1]:2', array( '::1', 2, 3 ), 'IPv6 non-default port' ),
@@ -494,7 +494,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::testSanitizeRange()
 	 */
-	function provideIPCIDRs() {
+	public static function provideIPCIDRs() {
 		return array(
 			array( '35.56.31.252/16', '35.56.0.0/16', 'IPv4 range' ),
 			array( '135.16.21.252/24', '135.16.21.0/24', 'IPv4 range' ),
@@ -518,7 +518,7 @@ class IPTest extends MediaWikiTestCase {
 	/**
 	 * Provider for IP::testPrettifyIP()
 	 */
-	function provideIPsToPrettify() {
+	public static function provideIPsToPrettify() {
 		return array(
 			array( '0:0:0:0:0:0:0:0', '::' ),
 			array( '0:0:0::0:0:0', '::' ),

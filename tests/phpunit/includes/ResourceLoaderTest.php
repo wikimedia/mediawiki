@@ -15,7 +15,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 	}
 
 	/* Provider Methods */
-	public function provideValidModules() {
+	public static function provideValidModules() {
 		return array(
 			array( 'TEST.validModule1', new ResourceLoaderTestModule() ),
 		);
@@ -61,7 +61,7 @@ class ResourceLoaderTest extends MediaWikiTestCase {
 		$this->assertEquals( $modules, ResourceLoaderContext::expandModuleNames( $packed ), $desc );
 	}
 
-	public function providePackedModules() {
+	public static function providePackedModules() {
 		return array(
 			array(
 				'Example from makePackedModulesString doc comment',

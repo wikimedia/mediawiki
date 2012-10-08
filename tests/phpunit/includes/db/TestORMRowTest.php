@@ -58,7 +58,7 @@ class TestORMRowTest extends ORMRowTest {
 		return TestORMTable::singleton();
 	}
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		$dbw = wfGetDB( DB_MASTER );

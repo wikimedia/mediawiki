@@ -6,25 +6,16 @@
  */
 
 class CSSMinTest extends MediaWikiTestCase {
-	protected $oldServer = null, $oldCanServer = null;
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
-		// Fake $wgServer and $wgCanonicalServer
-		global $wgServer, $wgCanonicalServer;
-		$this->oldServer = $wgServer;
-		$this->oldCanServer = $wgCanonicalServer;
-		$wgServer = $wgCanonicalServer = 'http://wiki.example.org';
-	}
+		$server = 'http://doc.example.org';
 
-	function tearDown() {
-		// Restore $wgServer and $wgCanonicalServer
-		global $wgServer, $wgCanonicalServer;
-		$wgServer = $this->oldServer;
-		$wgCanonicalServer = $this->oldCanServer;
-
-		parent::tearDown();
+		$this->setMwGlobals( array(
+			'wgServer' => $server,
+			'wgCanonicalServer' => $server,
+		) );
 	}
 
 	/**
@@ -113,7 +104,7 @@ class CSSMinTest extends MediaWikiTestCase {
 			array(
 				'Expand absolute paths',
 				array( 'foo { prop: url(/w/skin/images/bar.png); }', false, 'http://example.org/quux', false ),
-				'foo { prop: url(http://wiki.example.org/w/skin/images/bar.png); }',
+				'foo { prop: url(http://doc.example.org/w/skin/images/bar.png); }',
 			),
 		);
 	}

@@ -8,7 +8,9 @@
  */
 class JpegMetadataExtractorTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 
@@ -18,13 +20,13 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 	 *
 	 * @param $file filename
 	 *
-	 * @dataProvider dataUtf8Comment
+	 * @dataProvider provideUtf8Comment
 	 */
 	public function testUtf8Comment( $file ) {
 		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . $file );
 		$this->assertEquals( array( 'UTF-8 JPEG Comment — ¼' ), $res['COM'] );
 	}
-	public function dataUtf8Comment() {
+	public static function provideUtf8Comment() {
 		return array(
 			array( 'jpeg-comment-utf.jpg' ),
 			array( 'jpeg-padding-even.jpg' ),

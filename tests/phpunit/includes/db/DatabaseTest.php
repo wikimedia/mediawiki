@@ -7,11 +7,11 @@
 class DatabaseTest extends MediaWikiTestCase {
 	var $db, $functionTest = false;
 
-	function setUp() {
+	protected function setUp() {
 		$this->db = wfGetDB( DB_MASTER );
 	}
 
-	function tearDown() {
+	protected function tearDown() {
 		if ( $this->functionTest ) {
 			$this->dropFunctions();
 			$this->functionTest = false;

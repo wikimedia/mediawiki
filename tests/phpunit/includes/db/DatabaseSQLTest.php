@@ -8,15 +8,15 @@
  */
 class DatabaseSQLTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		// TODO support other DBMS or find another way to do it
-		if( $this->db->getType() !== 'mysql' ) {
+		if ( $this->db->getType() !== 'mysql' ) {
 			$this->markTestSkipped( 'No mysql database' );
 		}
 	}
 
 	/**
-	 * @dataProvider dataSelectSQLText
+	 * @dataProvider provideSelectSQLText
 	 */
 	function testSelectSQLText( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->db->selectSQLText(
@@ -29,7 +29,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 		) ), $sqlText );
 	}
 
-	function dataSelectSQLText() {
+	public static function provideSelectSQLText() {
 		return array(
 			array(
 				array(
@@ -106,7 +106,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataConditional
+	 * @dataProvider provideConditional
 	 */
 	function testConditional( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->db->conditional(
@@ -116,7 +116,7 @@ class DatabaseSQLTest extends MediaWikiTestCase {
 		) ), $sqlText );
 	}
 
-	function dataConditional() {
+	public static function provideConditional() {
 		return array(
 			array(
 				array(

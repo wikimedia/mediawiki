@@ -25,7 +25,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 		);
 	}
 
-	function setUp() {
+	protected function setUp() {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(
 			'interwiki',

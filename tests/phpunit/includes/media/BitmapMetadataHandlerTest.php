@@ -1,7 +1,11 @@
 <?php
 class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( 'wgShowEXIF', false );
+
 		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 
@@ -14,14 +18,15 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 * translation (to en) where XMP should win.
 	 */
 	public function testMultilingualCascade() {
+		global $wgShowEXIF;
+
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
 		if ( !wfDl( 'xml' ) ) {
 			$this->markTestSkipped( "This test needs the xml extension." );
 		}
-		global $wgShowEXIF;
-		$oldExif = $wgShowEXIF;
+
 		$wgShowEXIF = true;
 
 		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
@@ -37,8 +42,6 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			'Did not extract any ImageDescription info?!' );
 
 		$this->assertEquals( $expected, $meta['ImageDescription'] );
-
-		$wgShowEXIF = $oldExif;
 	}
 
 	/**
@@ -73,6 +76,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( '2020:07:14 01:36:05', $meta['DateTimeDigitized'] );
 		$this->assertEquals( '1997:03:02 00:01:02', $meta['DateTimeOriginal'] );
 	}
+
 	/**
 	 * File has an invalid time (+ one valid but really weird time)
 	 * that shouldn't be included
@@ -131,12 +135,14 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 		);
 		$this->assertEquals( $expected, $result ); 
 	}
+
 	public function testPNGNative() {
 		$handler = new BitmapMetadataHandler();
 		$result = $handler->png( $this->filePath . 'Png-native-test.png' );
 		$expected = 'http://example.com/url';
 		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] ); 
 	}
+
 	public function testTiffByteOrder() {
 		$handler = new BitmapMetadataHandler();
 		$res = $handler->getTiffByteOrder( $this->filePath . 'test.tiff' );

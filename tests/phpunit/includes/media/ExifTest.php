@@ -1,20 +1,16 @@
 <?php
 class ExifTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->mediaPath = __DIR__ . '/../../data/media/';
 
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
-		global $wgShowEXIF;
-		$this->showExif = $wgShowEXIF;
-		$wgShowEXIF = true;
-	}
 
-	public function tearDown() {
-		global $wgShowEXIF;
-		$wgShowEXIF = $this->showExif;
+		$this->setMwGlobals( 'wgShowEXIF', true );
 	}
 
 	public function testGPSExtraction() {

@@ -2,19 +2,25 @@
 
 class ArticleTest extends MediaWikiTestCase {
 
-	private $title; // holds a Title object
-	private $article; // holds an article
+	/**
+	 * @var Title
+	 */
+	private $title;
+	/**
+	 * @var Article
+	 */
+	private $article;
 
 	/** creates a title object and its article object */
-	function setUp() {
-		$this->title   = Title::makeTitle( NS_MAIN, 'SomePage' );
+	protected function setUp() {
+		$this->title = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$this->article = new Article( $this->title );
 
 	}
 
 	/** cleanup title object and its article object */
-	function tearDown() {
-		$this->title   = null;
+	protected function tearDown() {
+		$this->title = null;
 		$this->article = null;
 
 	}

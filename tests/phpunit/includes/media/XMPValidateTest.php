@@ -2,7 +2,7 @@
 class XMPValidateTest extends MediaWikiTestCase {
 
 	/**
-	 * @dataProvider providerDate
+	 * @dataProvider provideDates
 	 */
 	function testValidateDate( $value, $expected ) {
 		// The method should modify $value.
@@ -10,7 +10,7 @@ class XMPValidateTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $value );
 	}
 
-	function providerDate() {
+	public static function provideDates() {
 		/* For reference valid date formats are:
 		 * YYYY
 		 * YYYY-MM

@@ -5,18 +5,18 @@
  */
 class ExtraParserTest extends MediaWikiTestCase {
 
-	function setUp() {
-		global $wgMemc;
-		global $wgContLang;
-		global $wgShowDBErrorBacktrace;
-		global $wgLanguageCode;
-		global $wgAlwaysUseTidy;
+	protected function setUp() {
+		parent::setUp();
 
-		$wgShowDBErrorBacktrace = true;
-		$wgLanguageCode = 'en';
-		$wgContLang = new Language( 'en' );
-		$wgMemc = new EmptyBagOStuff;
-		$wgAlwaysUseTidy = false;
+		$this->setMwGlobals( array(
+			'wgShowDBErrorBacktrace' => true,
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+			'wgLang' => Language::factory( 'en' ),
+			'wgMemc' => new EmptyBagOStuff,
+			'wgAlwaysUseTidy' => false,
+			'wgCleanSignatures' => true,
+		) );
 		
 		$this->options = new ParserOptions;
 		$this->options->setTemplateCallback( array( __CLASS__, 'statelessFetchTemplate' ) );
@@ -27,11 +27,8 @@ class ExtraParserTest extends MediaWikiTestCase {
 
 	// Bug 8689 - Long numeric lines kill the parser
 	function testBug8689() {
-		global $wgLang;
 		global $wgUser;
 		$longLine = '1.' . str_repeat( '1234567890', 100000 ) . "\n";
-
-		if ( $wgLang === null ) $wgLang = new Language;
 		
 		$t = Title::newFromText( 'Unit test' );
 		$options = ParserOptions::newFromUser( $wgUser );
@@ -65,14 +62,8 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 * cleanSig() makes all templates substs and removes tildes
 	 */
 	function testCleanSig() {
-		global $wgCleanSignatures;
-		$oldCleanSignature = $wgCleanSignatures;
-		$wgCleanSignatures = true;
-
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
-
-		$wgCleanSignatures = $oldCleanSignature;
 		
 		$this->assertEquals( "{{SUBST:Foo}} ", $outputText );
 	}
@@ -82,13 +73,10 @@ class ExtraParserTest extends MediaWikiTestCase {
 	 */
 	function testCleanSigDisabled() {
 		global $wgCleanSignatures;
-		$oldCleanSignature = $wgCleanSignatures;
 		$wgCleanSignatures = false;
 
 		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
-
-		$wgCleanSignatures = $oldCleanSignature;
 		
 		$this->assertEquals( "{{Foo}} ~~~~", $outputText );
 	}
@@ -101,7 +89,7 @@ class ExtraParserTest extends MediaWikiTestCase {
 		$this->assertEquals( Parser::cleanSigInSig( $in), $out );
 	}
 	
-	function provideStringsForCleanSigInSig() {
+	public static function provideStringsForCleanSigInSig() {
 		return array(
 			array( "{{Foo}} ~~~~", "{{Foo}} " ),
 			array( "~~~", "" ),

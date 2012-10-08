@@ -4,7 +4,7 @@ class XmlTest extends MediaWikiTestCase {
 	private static $oldLang;
 	private static $oldNamespaces;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		$langObj = Language::factory( 'en' );

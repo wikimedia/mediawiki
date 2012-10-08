@@ -6,14 +6,14 @@
 class EditPageTest extends MediaWikiTestCase {
 
 	/**
-	 * @dataProvider dataExtractSectionTitle
+	 * @dataProvider provideExtractSectionTitle
 	 */
 	function testExtractSectionTitle( $section, $title ) {
 		$extracted = EditPage::extractSectionTitle( $section );
 		$this->assertEquals( $title, $extracted );
 	}
 
-	function dataExtractSectionTitle() {
+	public static function provideExtractSectionTitle() {
 		return array(
 			array(
 				"== Test ==\n\nJust a test section.",

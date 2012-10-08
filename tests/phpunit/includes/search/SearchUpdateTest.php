@@ -19,7 +19,11 @@ class MockSearch extends SearchEngine {
  * @group Search
  */
 class SearchUpdateTest extends MediaWikiTestCase {
-	static $searchType;
+
+	protected function setUp() {
+		parent::setUp();
+		$this->setMwGlobals( 'wgSearchType', 'MockSearch' );
+	}
 
 	function update( $text, $title = 'Test', $id = 1 ) {
 		$u = new SearchUpdate( $id, $title, $text );
@@ -31,19 +35,6 @@ class SearchUpdateTest extends MediaWikiTestCase {
 		list( , $resultText ) = $this->update( $text );
 		$resultText = trim( $resultText ); // abstract from some implementation details
 		return $resultText;
-	}
-
-	function setUp() {
-		global $wgSearchType;
-
-		self::$searchType  = $wgSearchType;
-		$wgSearchType = 'MockSearch';
-	}
-
-	function tearDown() {
-		global $wgSearchType;
-
-		$wgSearchType = self::$searchType;
 	}
 
 	function testUpdateText() {

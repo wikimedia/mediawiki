@@ -4,24 +4,28 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	protected $lang = null;
 	protected $lc = null;
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
-		global $wgMemc, $wgRequest, $wgUser, $wgContLang;
 
-		$wgUser = new User;
-		$wgRequest = new FauxRequest( array() );
-		$wgMemc = new EmptyBagOStuff;
-		$wgContLang = Language::factory( 'tg' );
+		$this->setMwGlobals( array(
+			'wgContLang' => Language::factory( 'tg' ),
+			'wgDefaultLanguageVariant' => false,
+			'wgMemc' => new EmptyBagOStuff,
+			'wgRequest' => new FauxRequest( array() ),
+			'wgUser' => new User,
+		) );
+
 		$this->lang = new LanguageToTest();
-		$this->lc = new TestConverter( $this->lang, 'tg',
-									   array( 'tg', 'tg-latn' ) );
+		$this->lc = new TestConverter(
+			$this->lang, 'tg',
+			array( 'tg', 'tg-latn' )
+		);
 	}
 
-	function tearDown() {
-		global $wgMemc;
-		unset( $wgMemc );
+	protected function tearDown() {
 		unset( $this->lc );
 		unset( $this->lang );
+
 		parent::tearDown();
 	}
 
@@ -71,7 +75,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	function testGetPreferredVariantHeaderUserVsUrl() {
-		global $wgRequest, $wgUser, $wgContLang;
+		global $wgContLang, $wgRequest, $wgUser;
 
 		$wgContLang = Language::factory( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );

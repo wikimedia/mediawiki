@@ -99,7 +99,8 @@ testBrowser 		= "firefox"
 	private $testSuites1 = null;
 
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
 		if ( !defined( 'SELENIUMTEST' ) ) {
 			define( 'SELENIUMTEST', true );
 		}
@@ -108,7 +109,7 @@ testBrowser 		= "firefox"
 	/**
 	 * Clean up the temporary file used to store the selenium settings.
 	 */
-	public function tearDown() {
+	protected function tearDown() {
 		if ( strlen( $this->tempFileName ) > 0 ) {
 			unlink( $this->tempFileName );
 			unset( $this->tempFileName );

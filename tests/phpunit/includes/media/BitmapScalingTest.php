@@ -2,18 +2,15 @@
 
 class BitmapScalingTest extends MediaWikiTestCase {
 
-	function setUp() {
-		global $wgMaxImageArea, $wgCustomConvertCommand;
-		$this->oldMaxImageArea = $wgMaxImageArea;
-		$this->oldCustomConvertCommand = $wgCustomConvertCommand;
-		$wgMaxImageArea = 1.25e7; // 3500x3500 
-		$wgCustomConvertCommand = 'dummy'; // Set so that we don't get client side rendering
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgMaxImageArea' => 1.25e7, // 3500x3500
+			'wgCustomConvertCommand' => 'dummy', // Set so that we don't get client side rendering
+		) );
 	}
-	function tearDown() {
-		global $wgMaxImageArea, $wgCustomConvertCommand;
-		$wgMaxImageArea = $this->oldMaxImageArea;
-		$wgCustomConvertCommand = $this->oldCustomConvertCommand;
-	}
+
 	/**
 	 * @dataProvider provideNormaliseParams
 	 */
@@ -103,7 +100,8 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				'Bigger than max image size but doesn\'t need scaling',
 			),
 		);
-	} 
+	}
+
 	function testTooBigImage() {
 		$file = new FakeDimensionFile( array( 4000, 4000 ) );
 		$handler = new BitmapHandler;
@@ -111,6 +109,7 @@ class BitmapScalingTest extends MediaWikiTestCase {
 		$this->assertEquals( 'TransformParameterError', 
 			get_class( $handler->doTransform( $file, 'dummy path', '', $params ) ) );
 	}
+
 	function testTooBigMustRenderImage() {
 		$file = new FakeDimensionFile( array( 4000, 4000 ) );
 		$file->mustRender = true;

@@ -7,15 +7,11 @@
 class SearchEngineTest extends MediaWikiTestCase {
 	protected $search, $pageList;
 
-	function tearDown() {
-		unset( $this->search );
-	}
-
 	/**
 	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 		// Search tests require MySQL or SQLite with FTS
 		# Get database type and version
@@ -30,6 +26,10 @@ class SearchEngineTest extends MediaWikiTestCase {
 
 		$searchType = $this->db->getSearchEngine();
 		$this->search = new $searchType( $this->db );
+	}
+
+	protected function tearDown() {
+		unset( $this->search );
 	}
 
 	function pageExists( $title ) {

@@ -8,7 +8,7 @@ class UploadStashTest extends MediaWikiTestCase {
 	 */
 	public static $users;
 
-	public function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		// Setup a file for bug 29408
@@ -29,6 +29,18 @@ class UploadStashTest extends MediaWikiTestCase {
 				array()
 			)
 		);
+	}
+
+	protected function tearDown() {
+		if ( file_exists( $this->bug29408File . "." ) ) {
+			unlink( $this->bug29408File . "." );
+		}
+
+		if ( file_exists( $this->bug29408File ) ) {
+			unlink( $this->bug29408File );
+		}
+
+		parent::tearDown();
 	}
 
 	public function testBug29408() {
@@ -61,17 +73,5 @@ class UploadStashTest extends MediaWikiTestCase {
 
 		$request = new FauxRequest( array( 'wpFileKey' => 'testkey-test.test', 'wpSessionKey' => 'foo') );
 		$this->assertTrue( UploadFromStash::isValidRequest($request), 'Check key precedence' );
-	}
-
-	public function tearDown() {
-		parent::tearDown();
-
-		if( file_exists( $this->bug29408File . "." ) ) {
-			unlink( $this->bug29408File . "." );
-		}
-
-		if( file_exists( $this->bug29408File ) ) {
-			unlink( $this->bug29408File );
-		}
 	}
 }

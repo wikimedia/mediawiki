@@ -100,8 +100,8 @@ class ExternalStoreDB {
 	 */
 	function fetchFromURL( $url ) {
 		$path = explode( '/', $url );
-		$cluster  = $path[2];
-		$id	  = $path[3];
+		$cluster = $path[2];
+		$id = $path[3];
 		if ( isset( $path[4] ) ) {
 			$itemID = $path[4];
 		} else {

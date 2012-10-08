@@ -1,7 +1,7 @@
 <?php
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 	/**
@@ -60,6 +60,8 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	/**
 	 * Test extraction of pHYs tags, which can tell what the
 	 * actual resolution of the image is (aka in dots per meter).
+	 */
+/*
 	function testPngPhysTag () {
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );
@@ -71,6 +73,7 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 		$this->assertEquals( '2835/100', $meta['YResolution'] );
 		$this->assertEquals( 3, $meta['ResolutionUnit'] ); // 3 = cm
 	}
+*/
 
 	/**
 	 * Given a normal static PNG, check the animation metadata returned.

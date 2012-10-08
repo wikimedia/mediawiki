@@ -5,7 +5,7 @@
 
 class PathRouterTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		$router = new PathRouter;
 		$router->add("/wiki/$1");
 		$this->basicRouter = $router;
@@ -182,7 +182,7 @@ class PathRouterTest extends MediaWikiTestCase {
 		$this->assertEquals( $matches, array( 'title' => "Title_With Space" ) );
 	}
 
-	public function dataRegexpChars() {
+	public static function provideRegexpChars() {
 		return array(
 			array( "$" ),
 			array( "$1" ),
@@ -193,7 +193,7 @@ class PathRouterTest extends MediaWikiTestCase {
 
 	/**
 	 * Make sure the router doesn't break on special characters like $ used in regexp replacements
-	 * @dataProvider dataRegexpChars
+	 * @dataProvider provideRegexpChars
 	 */
 	public function testRegexpChars( $char ) {
 		$matches = $this->basicRouter->parse( "/wiki/$char" );

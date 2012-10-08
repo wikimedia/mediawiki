@@ -6,7 +6,7 @@
  */
 class UploadFromUrlTest extends ApiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
 		global $wgEnableUploads, $wgAllowCopyUploads, $wgAllowAsyncCopyUploads;
 		parent::setUp();
 

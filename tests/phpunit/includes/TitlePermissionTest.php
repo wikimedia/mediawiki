@@ -4,6 +4,15 @@
  * @group Database
  */
 class TitlePermissionTest extends MediaWikiLangTestCase {
+
+	/**
+	 * @var string
+	 */
+	protected $userName, $altUserName;
+
+	/**
+	 * @var Title
+	 */
 	protected $title;
 
 	/**
@@ -11,24 +20,28 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	 */
 	protected $user, $anonUser, $userUser, $altUser;
 
-	/**
-	 * @var string
-	 */
-	protected $userName, $altUserName;
-
-	function setUp() {
-		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang;
+	protected function setUp() {
 		parent::setUp();
 
-		if(!$wgMemc) {
-			$wgMemc = new EmptyBagOStuff;
-		}
-		$wgContLang = $wgLang = Language::factory( 'en' );
+		$langObj = Language::factory( 'en' );
+		$localZone = 'UTC';
+		$localOffset = date( 'Z' ) / 60;
 
-		$this->userName = "Useruser";
-		$this->altUserName = "Altuseruser";
-		date_default_timezone_set( $wgLocaltimezone );
-		$wgLocalTZoffset = date( "Z" ) / 60;
+		$this->setMwGlobals( array(
+			'wgMemc' => new EmptyBagOStuff,
+			'wgContLang' => $langObj,
+			'wgLang' => $langObj,
+			'wgLocaltimezone' => $localZone,
+			'wgLocalTZoffset' => $localOffset,
+			'wgNamespaceProtection' => array(
+				NS_MEDIAWIKI => 'editinterface',
+			),
+			'wgUser' => null,
+		) );
+
+		$this->userName = 'Useruser';
+		$this->altUserName = 'Altuseruser';
+		date_default_timezone_set( $localZone );
 
 		$this->title = Title::makeTitle( NS_MAIN, "Main Page" );
 		if ( !isset( $this->userUser ) || !( $this->userUser instanceOf User ) ) {
@@ -53,10 +66,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 			$this->user = $this->userUser;
 		}
-	}
 
-	function tearDown() {
-		parent::tearDown();
 	}
 
 	function setUserPerm( $perm ) {
@@ -74,6 +84,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	function setUser( $userName = null ) {
+		global $wgUser;
+
 		if ( $userName === 'anon' ) {
 			$this->user = $this->anonUser;
 		} elseif ( $userName === null || $userName === $this->userName ) {
@@ -82,7 +94,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			$this->user = $this->altUser;
 		}
 
-		global $wgUser;
 		$wgUser = $this->user;
 	}
 
@@ -338,9 +349,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 	}
 
 	function testSpecialsAndNSPermissions() {
+		global $wgNamespaceProtection;
 		$this->setUser( $this->userName );
-		global $wgUser;
-		$wgUser = $this->user;
 
 		$this->setTitle( NS_SPECIAL );
 
@@ -359,8 +369,8 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( array( array( 'badaccess-group0' ) ),
 							 $this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
-		global $wgNamespaceProtection;
-		$wgNamespaceProtection[NS_USER] = array ( 'bogus' );
+		$wgNamespaceProtection[NS_USER] = array( 'bogus' );
+
 		$this->setTitle( NS_USER );
 		$this->setUserPerm( '' );
 		$this->assertEquals( array( array( 'badaccess-group0' ), array( 'namespaceprotected', 'User' ) ),
@@ -377,6 +387,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 							 $this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
 
 		$wgNamespaceProtection = null;
+
 		$this->setUserPerm( 'bogus' );
 		$this->assertEquals( array( ),
 							 $this->title->getUserPermissionsErrors( 'bogus', $this->user ) );
@@ -392,8 +403,6 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 
 	function testCssAndJavascriptPermissions() {
 		$this->setUser( $this->userName );
-		global $wgUser;
-		$wgUser = $this->user;
 
 		$this->setTitle( NS_USER, $this->altUserName . '/test.js' );
 		$this->runCSSandJSPermissions(

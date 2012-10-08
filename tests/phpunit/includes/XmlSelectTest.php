@@ -35,7 +35,7 @@ class XmlSelectTest extends MediaWikiTestCase {
 	 * Provides a fourth parameters representing the expected HTML output
 	 *
 	 */
-	public function provideConstructionParameters() {
+	public static function provideConstructionParameters() {
 		return array(
 			/**
 			 * Values are set following a 3-bit Gray code where two successive
