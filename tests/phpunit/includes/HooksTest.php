@@ -2,81 +2,59 @@
 
 class HooksTest extends MediaWikiTestCase {
 
-	public function testOldStyleHooks() {
-		$foo = 'Foo';
-		$bar = 'Bar';
-
-		$i = new NothingClass();
-
+	function setUp() {
 		global $wgHooks;
-
-		$wgHooks['MediaWikiHooksTest001'][] = array( $i, 'someNonStatic' );
-
-		wfRunHooks( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'fOO', $foo, 'Standard method' );
-		$foo = 'Foo';
-
-		$wgHooks['MediaWikiHooksTest001'][] = $i;
-
-		wfRunHooks( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'foo', $foo, 'onEventName style' );
-		$foo = 'Foo';
-
-		$wgHooks['MediaWikiHooksTest001'][] = array( $i, 'someNonStaticWithData', 'baz' );
-
-		wfRunHooks( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'baz', $foo, 'Data included' );
-		$foo = 'Foo';
-
-		$wgHooks['MediaWikiHooksTest001'][] = array( $i, 'someStatic' );
-
-		wfRunHooks( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'bah', $foo, 'Standard static method' );
-		//$foo = 'Foo';
-
+		parent::setUp();
+		Hooks::clear( 'MediaWikiHooksTest001' );
 		unset( $wgHooks['MediaWikiHooksTest001'] );
-
 	}
 
-	public function testNewStyleHooks() {
-		$foo = 'Foo';
-		$bar = 'Bar';
-
+	public static function provideHooks() {
 		$i = new NothingClass();
+		return array(
+			array( 'Object and method', array( $i, 'someNonStatic' ), 'changed-nonstatic', 'changed-nonstatic' ),
+			array( 'Object and no method', array( $i ), 'changed-onevent', 'original' ),
+			array( 'Object and method with data', array( $i, 'someNonStaticWithData', 'data' ), 'data', 'original' ),
+			array( 'Object and static method', array( $i, 'someStatic' ), 'changed-static', 'original' ),
+			array( 'Class::method static call', array( 'NothingClass::someStatic' ), 'changed-static', 'original' ),
+			array( 'Global function', array( 'NothingFunction' ), 'changed-func', 'original' ),
+			array( 'Global function with data', array( 'NothingFunctionData', 'data' ), 'data', 'original' ),
+			array( 'Closure', array( function( &$foo, $bar ) {
+					$foo = 'changed-closure';
+					return true;
+				} ), 'changed-closure', 'original' ),
+			array( 'Closure with data', array( function( $data, &$foo, $bar ) {
+					$foo = $data;
+					return true;
+				}, 'data' ), 'data', 'original' )
+		);
+	}
 
-		Hooks::register( 'MediaWikiHooksTest001', array( $i, 'someNonStatic' ) );
+	/**
+	 * @dataProvider provideHooks
+	 */
+	public function testOldStyleHooks( $msg, array $hook, $expectedFoo, $expectedBar ) {
+		global $wgHooks;
+		$foo = $bar = 'original';
 
+		$wgHooks['MediaWikiHooksTest001'][] = $hook;
+		wfRunHooks( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
+
+		$this->assertSame( $expectedFoo, $foo, $msg );
+		$this->assertSame( $expectedBar, $bar, $msg );
+	}
+
+	/**
+	 * @dataProvider provideHooks
+	 */
+	public function testNewStyleHooks( $msg, $hook, $expectedFoo, $expectedBar ) {
+		$foo = $bar = 'original';
+
+		Hooks::register( 'MediaWikiHooksTest001', $hook );
 		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
 
-		$this->assertEquals( 'fOO', $foo, 'Standard method' );
-		$foo = 'Foo';
-
-		Hooks::register( 'MediaWikiHooksTest001', $i );
-
-		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'foo', $foo, 'onEventName style' );
-		$foo = 'Foo';
-
-		Hooks::register( 'MediaWikiHooksTest001', array( $i, 'someNonStaticWithData', 'baz' ) );
-
-		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'baz', $foo, 'Data included' );
-		$foo = 'Foo';
-
-		Hooks::register( 'MediaWikiHooksTest001', array( $i, 'someStatic' ) );
-
-		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
-
-		$this->assertEquals( 'bah', $foo, 'Standard static method' );
-		$foo = 'Foo';
-
-		Hooks::clear( 'MediaWikiHooksTest001' );
+		$this->assertSame( $expectedFoo, $foo, $msg );
+		$this->assertSame( $expectedBar, $bar, $msg );
 	}
 
 	public function testNewStyleHookInteraction() {
@@ -84,10 +62,6 @@ class HooksTest extends MediaWikiTestCase {
 
 		$a = new NothingClass();
 		$b = new NothingClass();
-
-		// make sure to start with a clean slate
-		Hooks::clear( 'MediaWikiHooksTest001' );
-		unset( $wgHooks['MediaWikiHooksTest001'] );
 
 		$wgHooks['MediaWikiHooksTest001'][] = $a;
 		$this->assertTrue( Hooks::isRegistered( 'MediaWikiHooksTest001' ), 'Hook registered via $wgHooks should be noticed by Hooks::isRegistered' );
@@ -101,37 +75,67 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::run( 'MediaWikiHooksTest001', array( &$foo, &$bar ) );
 		$this->assertEquals( 1, $a->calls, 'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register' );
 		$this->assertEquals( 1, $b->calls, 'Hooks::run() should run hooks registered via wgHooks as well as Hooks::register' );
-
-		// clean up
-		Hooks::clear( 'MediaWikiHooksTest001' );
-		unset( $wgHooks['MediaWikiHooksTest001'] );
 	}
+
+	/**
+	 * @expectedException MWException
+	 */
+	public function testUncallableFunction() {
+		Hooks::register( 'MediaWikiHooksTest001', 'ThisFunctionDoesntExist' );
+		Hooks::run( 'MediaWikiHooksTest001', array() );
+	}
+
+	public function testFalseReturn() {
+		Hooks::register( 'MediaWikiHooksTest001', function( &$foo ) { return false; } );
+		Hooks::register( 'MediaWikiHooksTest001', function( &$foo ) { $foo = 'test'; return true; } );
+		$foo = 'original';
+		Hooks::run( 'MediaWikiHooksTest001', array( &$foo ) );
+		$this->assertSame( 'original', $foo, 'Hooks continued processing after a false return.' );
+	}
+
+	/**
+	 * @expectedException FatalError
+	 */
+	public function testFatalError() {
+		Hooks::register( 'MediaWikiHooksTest001', function() { return 'test'; } );
+		Hooks::run( 'MediaWikiHooksTest001', array() );
+	}
+}
+
+function NothingFunction( &$foo, &$bar ) {
+	$foo = 'changed-func';
+	return true;
+}
+
+function NothingFunctionData( $data, &$foo, &$bar ) {
+	$foo = $data;
+	return true;
 }
 
 class NothingClass {
 	public $calls = 0;
 
 	public static function someStatic( &$foo, &$bar ) {
-		$foo = 'bah';
+		$foo = 'changed-static';
 		return true;
 	}
 
 	public function someNonStatic( &$foo, &$bar ) {
 		$this->calls++;
-		$foo = 'fOO';
-		$bar = 'bAR';
+		$foo = 'changed-nonstatic';
+		$bar = 'changed-nonstatic';
 		return true;
 	}
 
 	public function onMediaWikiHooksTest001( &$foo, &$bar ) {
 		$this->calls++;
-		$foo = 'foo';
+		$foo = 'changed-onevent';
 		return true;
 	}
 
-	public function someNonStaticWithData( $foo, &$bar ) {
+	public function someNonStaticWithData( $data, &$foo, &$bar ) {
 		$this->calls++;
-		$bar = $foo;
+		$foo = $data;
 		return true;
 	}
 }
