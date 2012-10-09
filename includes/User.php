@@ -893,7 +893,7 @@ class User {
 		if( $loggedOut !== null ) {
 			$this->mTouched = wfTimestamp( TS_MW, $loggedOut );
 		} else {
-			$this->mTouched = '0'; # Allow any pages to be cached
+			$this->mTouched = '1'; # Allow any pages to be cached
 		}
 
 		$this->mToken = null; // Don't run cryptographic functions till we need a token
