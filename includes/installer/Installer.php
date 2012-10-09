@@ -1594,13 +1594,16 @@ abstract class Installer {
 		$status = Status::newGood();
 		try {
 			$page = WikiPage::factory( Title::newMainPage() );
-			$page->doEdit( wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
-					wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text(),
+			$content = new WikitextContent (
+				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
+				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
+			);
+
+			$page->doEditContent( $content,
 					'',
 					EDIT_NEW,
 					false,
-					User::newFromName( 'MediaWiki default' )
-			);
+					User::newFromName( 'MediaWiki default' ) );
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );

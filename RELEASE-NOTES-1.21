@@ -17,6 +17,8 @@ production.
 
 === New features in 1.21 ===
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
+* Added ContentHandler facility to allow extensions to support other content than wikitext.
+  See docs/contenthandler.txt for details.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -28,15 +30,16 @@ production.
   when server has relative protocol.
 
 === API changes in 1.21 ===
-* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing
-  metadata.
+* prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
+* action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
+  page content; See docs/contenthandler.txt for details.
+* (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 
 === Languages updated in 1.21 ===
 
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
-
 === Other changes in 1.21 ===
 
 == Compatibility ==
@@ -57,7 +60,9 @@ The supported versions are:
 == Upgrading ==
 
 1.21 has several database changes since 1.20, and will not work without schema
-updates.
+updates. Note that due to changes to some very large tables like the revision
+table, the schema update may take quite long (minutes on a medium sized site,
+many hours on a large site).
 
 If upgrading from before 1.11, and you are using a wiki as a commons
 repository, make sure that it is updated as well. Otherwise, errors may arise

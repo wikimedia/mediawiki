@@ -133,6 +133,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		/*
+		//@todo: global variables to restore for *every* test
+		array(
+			'wgLang',
+			'wgContLang',
+			'wgLanguageCode',
+			'wgUser',
+			'wgTitle',
+		);
+		*/
+
 		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
 			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
@@ -221,6 +232,34 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Merges the given values into a MW global array variable.
+	 * Useful for setting some entries in a configuration array, instead of
+	 * setting the entire array.
+	 *
+	 * @param String $name The name of the global, as in wgFooBar
+	 * @param Array $values The array containing the entries to set in that global
+	 *
+	 * @throws MWException if the designated global is not an array.
+	 */
+	protected function mergeMwGlobalArrayValue( $name, $values ) {
+		if ( !isset( $GLOBALS[$name] ) ) {
+			$merged = $values;
+		} else {
+			if ( !is_array( $GLOBALS[$name] ) ) {
+				throw new MWException( "MW global $name is not an array." );
+			}
+
+			//NOTE: do not use array_merge, it screws up for numeric keys.
+			$merged = $GLOBALS[$name];
+			foreach ( $values as $k => $v ) {
+				$merged[$k] = $v;
+			}
+		}
+
+		$this->setMwGlobals( $name, $merged );
+	}
+
 	function dbPrefix() {
 		return $this->db->getType() == 'oracle' ? self::ORA_DB_PREFIX : self::DB_PREFIX;
 	}
@@ -294,11 +333,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		//Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		if ( !$page->getId() == 0 ) {
-			$page->doEdit( 'UTContent',
-							'UTPageSummary',
-							EDIT_NEW,
-							false,
-							User::newFromName( 'UTSysop' ) );
+			$page->doEditContent(
+				new WikitextContent( 'UTContent' ),
+				'UTPageSummary',
+				EDIT_NEW,
+				false,
+				User::newFromName( 'UTSysop' ) );
 		}
 	}
 

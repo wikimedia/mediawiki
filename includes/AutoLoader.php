@@ -254,6 +254,7 @@ $wgAutoloadLocalClasses = array(
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
 	'UploadSourceAdapter' => 'includes/Import.php',
 	'UppercaseCollation' => 'includes/Collation.php',
+	'Uri' => 'includes/Uri.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
@@ -288,6 +289,20 @@ $wgAutoloadLocalClasses = array(
 	'ZhClient' => 'includes/ZhClient.php',
 	'ZipDirectoryReader' => 'includes/ZipDirectoryReader.php',
 	'ZipDirectoryReaderError' => 'includes/ZipDirectoryReader.php',
+
+	# content handler
+	'AbstractContent' => 'includes/content/AbstractContent.php',
+	'ContentHandler' => 'includes/content/ContentHandler.php',
+	'Content' => 'includes/content/Content.php',
+	'CssContentHandler' => 'includes/content/ContentHandler.php',
+	'CssContent' => 'includes/content/CssContent.php',
+	'JavaScriptContentHandler' => 'includes/content/ContentHandler.php',
+	'JavaScriptContent' => 'includes/content/JavaScriptContent.php',
+	'MessageContent' => 'includes/content/MessageContent.php',
+	'TextContentHandler' => 'includes/content/ContentHandler.php',
+	'TextContent' => 'includes/content/TextContent.php',
+	'WikitextContentHandler' => 'includes/ContentHandler.php',
+	'WikitextContent' => 'includes/content/WikitextContent.php',
 
 	# includes/actions
 	'CachedAction' => 'includes/actions/CachedAction.php',
@@ -331,6 +346,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiFormatDump' => 'includes/api/ApiFormatDump.php',
 	'ApiFormatFeedWrapper' => 'includes/api/ApiFormatBase.php',
 	'ApiFormatJson' => 'includes/api/ApiFormatJson.php',
+	'ApiFormatNone' => 'includes/api/ApiFormatNone.php',
 	'ApiFormatPhp' => 'includes/api/ApiFormatPhp.php',
 	'ApiFormatRaw' => 'includes/api/ApiFormatRaw.php',
 	'ApiFormatTxt' => 'includes/api/ApiFormatTxt.php',
@@ -1061,6 +1077,14 @@ $wgAutoloadLocalClasses = array(
 	'DelayedParserTest' => 'tests/testHelpers.inc',
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
+
+	# tests/phpunit
+	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
+	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
+	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
+	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
+	'WikitextContentTest' => 'tests/phpunit/includes/WikitextContentTest.php',
 
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',

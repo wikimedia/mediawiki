@@ -114,15 +114,24 @@ class CompareParsers extends DumpIterator {
 		$parser1 = new $parser1Name();
 		$parser2 = new $parser2Name();
 
-		$output1 = $parser1->parse( $rev->getText(), $title, $this->options );
-		$output2 = $parser2->parse( $rev->getText(), $title, $this->options );
+		$content = $rev->getContent();
+
+		if ( $content->getModel() !== CONTENT_MODEL_WIKITEXT ) {
+			$this->error( "Page {$title->getPrefixedText()} does not contain wikitext but {$content->getModel()}\n" );
+			return;
+		}
+
+		$text = strval( $content->getNativeData() );
+
+		$output1 = $parser1->parse( $text, $title, $this->options );
+		$output2 = $parser2->parse( $text, $title, $this->options );
 
 		if ( $output1->getText() != $output2->getText() ) {
 			$this->failed++;
 			$this->error( "Parsing for {$title->getPrefixedText()} differs\n" );
 
 			if ( $this->saveFailed ) {
-				file_put_contents( $this->saveFailed . '/' . rawurlencode( $title->getPrefixedText() ) . ".txt", $rev->getText());
+				file_put_contents( $this->saveFailed . '/' . rawurlencode( $title->getPrefixedText() ) . ".txt", $text );
 			}
 			if ( $this->showDiff ) {
 				$this->output( wfDiff( $this->stripParameters( $output1->getText() ), $this->stripParameters( $output2->getText() ), '' ) );

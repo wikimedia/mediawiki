@@ -146,7 +146,7 @@ class LanguageZh extends LanguageZh_hans {
 								array(),
 								$ml );
 
-		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+		$wgHooks['ArticleContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**

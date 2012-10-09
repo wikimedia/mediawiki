@@ -148,11 +148,20 @@ class RawAction extends FormlessAction {
 				$request->response()->header( "Last-modified: $lastmod" );
 
 				// Public-only due to cache headers
-				$text = $rev->getText();
+				$content = $rev->getContent();
+
+				if ( !$content instanceof TextContent ) {
+					wfHttpError( 406, "Not Acceptable", "The requested page uses the content model `"
+														. $content->getModel() . "` which is not supported via this interface." );
+					die();
+				}
+
 				$section = $request->getIntOrNull( 'section' );
 				if ( $section !== null ) {
-					$text = $wgParser->getSection( $text, $section );
+					$content = $content->getSection( $section );
 				}
+
+				$text = $content->getNativeData();
 			}
 		}
 

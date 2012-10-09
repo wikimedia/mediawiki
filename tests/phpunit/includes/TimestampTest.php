@@ -54,7 +54,7 @@ class TimestampTest extends MediaWikiTestCase {
 	 */
 	function testHumanOutput() {
 		$timestamp = new MWTimestamp( time() - 3600 );
-		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->toString() );
+		$this->assertEquals( "1 hour ago", $timestamp->getHumanTimestamp()->inLanguage( 'en' )->text() );
 	}
 
 	/**

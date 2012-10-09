@@ -440,7 +440,7 @@ class LanguageKk extends LanguageKk_cyrl {
 
 		$this->mConverter = new KkConverter( $this, 'kk', $variants, $variantfallbacks );
 
-		$wgHooks['ArticleSaveComplete'][] = $this->mConverter;
+		$wgHooks['ArticleContentSaveComplete'][] = $this->mConverter;
 	}
 
 	/**
