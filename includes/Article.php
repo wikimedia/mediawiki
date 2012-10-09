@@ -832,19 +832,20 @@ class Article extends Page {
 	 * @param bool $showCacheHint whether to show a message telling the user to clear the browser cache (default: true).
 	 */
 	protected function showCssOrJsPage( $showCacheHint = true ) {
+		$outputPage = $this->getContext()->getOutput();
+
 		if ( $showCacheHint ) {
 			$dir = $this->getContext()->getLanguage()->getDir();
 			$lang = $this->getContext()->getLanguage()->getCode();
 
-			$outputPage = $this->getContext()->getOutput();
 			$outputPage->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 				'clearyourcache' );
 		}
 
 		// Give hooks a chance to customise the output
-		if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->fetchContentObject(), $this->getTitle(), $wgOut ) ) ) {
+		if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
 			$po = $this->mContentObject->getParserOutput( $this->getTitle() );
-			$wgOut->addHTML( $po->getText() );
+			$outputPage->addHTML( $po->getText() );
 		}
 	}
 
