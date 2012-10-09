@@ -19,8 +19,11 @@ production.
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
 * Added ContentHandler facility to allow extensions to support other content than wikitext.
   See docs/contenthandler.txt for details.
-* $wgResponsiveImages is added to support images on high-DPI mobile and desktop displays.
-* Added new backend to represent and store information about sites and site specific configuration.
+* New feature was developed for showing high-DPI thumbnails for high-DPI mobile
+  and desktop displays (configurable with $wgResponsiveImages).
+* Added new backend to represent and store information about sites and site
+  specific configuration.
+* jQuery UI upgraded from 1.8.23 to 1.8.24.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
