@@ -198,7 +198,7 @@ Revision text:
 	expriry: $wgRevisionCacheExpiry
 
 Sessions:
-	controlled by: $wgSessionsInMemcached
+	controlled by: $wgSessionsInObjectCache
 	key: $wgBDname:session:$id
 	ex: wikidb:session:38d7c5b8d3bfc51egf40c69bc40f8be3
 	stores: $SESSION, useful when using a multi-sever wiki
