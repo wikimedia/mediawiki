@@ -211,6 +211,10 @@ class UserrightsPage extends SpecialPage {
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 
+		if( !wfRunHooks( 'UserRightsAbort', array( $user, &$add, &$remove ), $this->getContext() ) ) {
+			return array( array(), array() );
+		}
+
 		// remove then add groups
 		if( $remove ) {
 			$newGroups = array_diff( $newGroups, $remove );
