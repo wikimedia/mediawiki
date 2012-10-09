@@ -151,8 +151,8 @@ class RawAction extends FormlessAction {
 				$content = $rev->getContent();
 
 				if ( !$content instanceof TextContent ) {
-					wfHttpError( 406, "Not Acceptable", "The requested page uses the content model `"
-														. $content->getModel() . "` which is not supported via this interface." );
+					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
+										. $content->getModel() . "` which is not supported via this interface." );
 					die();
 				}
 
