@@ -3768,7 +3768,7 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
-'scarytranscludefailed' => '[הכללת התבנית נכשלה עבור $1]',
+'scarytranscludefailed' => '[אחזור התבנית נכשל עבור $1]',
 'scarytranscludefailed-httpstatus' => '[הכללת התבנית נכשלה עבור $1&rlm;: HTTP $2]',
 'scarytranscludetoolong' => '[כתובת ה־URL ארוכה מדי]',
 

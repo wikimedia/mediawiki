@@ -1166,6 +1166,15 @@ Sie wurde anscheinend gelöscht.',
 'edit-no-change' => 'Deine Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenommen wurde.',
 'edit-already-exists' => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
 'defaultmessagetext' => 'Standardtext',
+'content-failed-to-parse' => 'Parsen des Inhalts $2 für Modell $1 fehlgeschlagen: $3',
+'invalid-content-data' => 'Ungültige Inhaltsdaten',
+'content-not-allowed-here' => 'Der Inhalt „$1“ ist auf der Seite [[$2]] nicht erlaubt',
+
+# Content models
+'content-model-wikitext' => 'Wikitext',
+'content-model-text' => 'Klartext',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Achtung''': Diese Seite enthält zu viele Aufrufe aufwändiger Parserfunktionen.
@@ -4123,4 +4132,6 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
+# Unknown messages
+'bad-target-model' => 'Die gewünschte Zielseite verwendet ein abweichendes Inhaltsmodell. Das Inhaltsmodell $1 kann nicht in das Inhaltsmodell $2 umgewandelt werden.',
 );

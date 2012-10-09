@@ -1078,6 +1078,9 @@ Silinmiş görünüyor.',
 Sayfa zaten mevcut.',
 'defaultmessagetext' => 'Varsayılan mesaj metni',
 
+# Content models
+'content-model-javascript' => 'JavaScript',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Uyarı: Bu sayfa çok fazla zengin derleyici fonksiyonu çağrısı içeriyor.
 

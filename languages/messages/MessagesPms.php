@@ -2841,7 +2841,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-magic-words' => '{{PLURAL:$1|Paròla màgica|Paròle màgiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
-'pageinfo-toolboxlink' => 'Anformassion an sla pagina',
+'pageinfo-toolboxlink' => 'Anformassion an sla pàgina',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marché coma verificà',
@@ -3106,8 +3106,8 @@ J'àutri a saran stërmà coma stàndard.
 'exif-webstatement' => "Diciarassion ëd drit d'autor an linia",
 'exif-originaldocumentid' => 'Identificativ ùnich dël papé original',
 'exif-licenseurl' => "Anliura ëd la licensa dij drit d'autor",
-'exif-morepermissionsurl' => 'Anformassion an sle license alternativa',
-'exif-attributionurl' => "Quand as deuvra torna cost travaj, për piasì ch'a-j buta l'anliura a",
+'exif-morepermissionsurl' => 'Anformassion an sle license alternative',
+'exif-attributionurl' => "An dovrand n'àutra vira cost travaj, për piasì ch'a-j buta l'anliura a",
 'exif-preferredattributionname' => "Quand as deuvra torna cost travaj, për piasì dé l'arconossiment a",
 'exif-pngfilecomment' => "Coment ëd l'archivi PNG",
 'exif-disclaimer' => 'Avis',

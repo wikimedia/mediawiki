@@ -2245,7 +2245,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'unwatching' => 'Fjernar frå overvakinglista...',
 
 'enotif_mailer' => '{{SITENAME}}-endringsmeldingssendar',
-'enotif_reset' => 'Merk alle sider som vitja',
+'enotif_reset' => 'Merk alle sidene som vitja',
 'enotif_newpagetext' => 'Dette er ei ny side.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
 'changed' => 'endra',
@@ -2325,7 +2325,7 @@ Den siste endringa vart gjord av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'editcomment' => "Samandraget for endringa var: «''$1''».",
 'revertpage' => 'Attenderulla endring gjord av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjonen av [[User:$1|$1]]',
 'revertpage-nouser' => 'Tilbakestilte endringar av (brukarnamn fjerna) til den siste versjonen av [[User:$1|$1]]',
-'rollback-success' => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
+'rollback-success' => 'Rulla attende endringane av $1, attende til siste versjonen av $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Feil med omgangen.',

@@ -3713,6 +3713,7 @@ Denna bekräftelsekod kommer att sluta fungera efter $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',
 'scarytranscludefailed' => '[Hämtning av mall för $1 misslyckades]',
+'scarytranscludefailed-httpstatus' => '[Hämtning av mall för $1 misslyckades: HTTP $2]',
 'scarytranscludetoolong' => '[För lång URL]',
 
 # Delete conflict
