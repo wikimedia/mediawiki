@@ -227,6 +227,12 @@ class ParserCache {
 		$expire = $parserOutput->getCacheExpiry();
 
 		if( $expire > 0 ) {
+			# Hack for bug 38273
+			if ( strpos( $parserOutput->getText(), 'NewPP limit report' ) === false ) {
+				wfDebugLog( 'bug-38273', $article->getTitle()->getPrefixedDBkey() . ' ' .
+					wfGetAllCallers( false ) );
+			}
+			# End hack
 			$now = wfTimestampNow();
 
 			$optionsKey = new CacheTime;
