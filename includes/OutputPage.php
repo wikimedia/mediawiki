@@ -2912,7 +2912,7 @@ $templates
 	 * @return array
 	 */
 	public function getJSVars() {
-		global $wgUseAjax, $wgContLang;
+		global $wgContLang;
 
 		$latestRevID = 0;
 		$pageID = 0;
@@ -3565,7 +3565,6 @@ $templates
 		$msgSpecs = array_values( $msgSpecs );
 		$s = $wrap;
 		foreach ( $msgSpecs as $n => $spec ) {
-			$options = array();
 			if ( is_array( $spec ) ) {
 				$args = $spec;
 				$name = array_shift( $args );
