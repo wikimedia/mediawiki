@@ -689,6 +689,15 @@ $wgMessageStructure = array(
 		'addsection-preload',
 		'addsection-editintro',
 		'defaultmessagetext',
+		'content-failed-to-parse',
+		'invalid-content-data',
+		'content-not-allowed-here',
+	),
+	'contentmodel' => array(
+		'content-model-wikitext',
+		'content-model-text',
+		'content-model-javascript',
+		'content-model-css',
 	),
 	'parserwarnings' => array(
 		'expensive-parserfunction-warning',

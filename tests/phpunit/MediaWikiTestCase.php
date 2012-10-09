@@ -19,6 +19,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $reuseDB = false;
 	protected $tablesUsed = array(); // tables with data
 
+	protected $restoreGlobals = array( // global variables to restore for each test
+		'wgLang',
+		'wgContLang',
+		'wgLanguageCode',
+		'wgUser',
+		'wgTitle',
+	);
+
+	private $savedGlobals = array();
+
 	private static $dbSetup = false;
 
 	/**
@@ -126,6 +136,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $fname;
 	}
 
+<<<<<<< HEAD   (22dd67 Avoid direct access to $wgGroupPermissions)
 	/**
 	 * setUp and tearDown should (where significant)
 	 * happen in reverse order.
@@ -151,6 +162,23 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	}
 
 	protected function tearDown() {
+=======
+	protected function setup() {
+		parent::setup();
+
+		foreach ( $this->restoreGlobals as $var ) {
+			$v = $GLOBALS[ $var ];
+
+			if ( is_object( $v ) ) {
+				$v = clone $v;
+			}
+
+			$this->savedGlobals[$var] = $v;
+		}
+	}
+
+	protected function teardown() {
+>>>>>>> BRANCH (bb51a5 Cleanup of Wikidata branch.)
 		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
 			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
@@ -167,6 +195,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
+<<<<<<< HEAD   (22dd67 Avoid direct access to $wgGroupPermissions)
 		// Restore mw globals
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
@@ -174,6 +203,14 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		$this->mwGlobals = array();
 
 		parent::tearDown();
+=======
+		// restore saved globals
+		foreach ( $this->savedGlobals as $k => $v ) {
+			$GLOBALS[ $k ] = $v;
+		}
+
+		parent::teardown();
+>>>>>>> BRANCH (bb51a5 Cleanup of Wikidata branch.)
 	}
 
 	/**
@@ -294,11 +331,12 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		//Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		if ( !$page->getId() == 0 ) {
-			$page->doEdit( 'UTContent',
-							'UTPageSummary',
-							EDIT_NEW,
-							false,
-							User::newFromName( 'UTSysop' ) );
+			$page->doEditContent(
+				new WikitextContent( 'UTContent' ),
+				'UTPageSummary',
+				EDIT_NEW,
+				false,
+				User::newFromName( 'UTSysop' ) );
 		}
 	}
 

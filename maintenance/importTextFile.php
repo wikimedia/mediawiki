@@ -56,7 +56,8 @@ if ( count( $args ) < 1 || isset( $options['help'] ) ) {
 
 					echo( "\nPerforming edit..." );
 					$page = WikiPage::factory( $title );
-					$page->doEdit( $text, $comment, $flags, false, $user );
+					$content = ContentHandler::makeContent( $text, $title );
+					$page->doEditContent( $content, $comment, $flags, false, $user );
 					echo( "done.\n" );
 
 				} else {

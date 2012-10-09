@@ -35,7 +35,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @throws MWExcepion
 	 */
 	protected function addRevision( Page $page, $text, $summary ) {
-		$status = $page->doEdit( $text, $summary );
+		$status = $page->doEditContent( ContentHandler::makeContent( $text, $page->getTitle() ), $summary );
 		if ( $status->isGood() ) {
 			$value = $status->getValue();
 			$revision = $value['revision'];
@@ -295,9 +295,12 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 	 * @param $text_sha1 string: the base36 SHA-1 of the revision's text
 	 * @param $text string|false: (optional) The revision's string, or false to check for a
 	 *            revision stub
+	 * @param $model String: the expected content model id (default: CONTENT_MODEL_WIKITEXT)
+	 * @param $format String: the expected format model id (default: CONTENT_FORMAT_WIKITEXT)
 	 * @param $parentid int|false: (optional) id of the parent revision
 	 */
-	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false ) {
+	protected function assertRevision( $id, $summary, $text_id, $text_bytes, $text_sha1, $text = false, $parentid = false,
+						$model = CONTENT_MODEL_WIKITEXT, $format = CONTENT_FORMAT_WIKITEXT ) {
 
 		$this->assertNodeStart( "revision" );
 		$this->skipWhitespace();
@@ -315,9 +318,33 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->skipWhitespace();
 
 		$this->assertTextNode( "comment", $summary );
+		$this->skipWhitespace();
+
+		if ( $this->xml->name == "text" ) {
+			// note: <text> tag may occur here or at the very end.
+			$text_found = true;
+			$this->assertText( $id, $text_id, $text_bytes, $text );
+		} else {
+			$text_found = false;
+		}
 
 		$this->assertTextNode( "sha1", $text_sha1 );
 
+		$this->assertTextNode( "model", $model );
+		$this->skipWhitespace();
+
+		$this->assertTextNode( "format", $format );
+		$this->skipWhitespace();
+
+		if ( !$text_found ) {
+			$this->assertText( $id, $text_id, $text_bytes, $text );
+		}
+
+		$this->assertNodeEnd( "revision" );
+		$this->skipWhitespace();
+	}
+
+	protected function assertText( $id, $text_id, $text_bytes, $text ) {
 		$this->assertNodeStart( "text", false );
 		if ( $text_bytes !== false ) {
 			$this->assertEquals( $this->xml->getAttribute( "bytes" ), $text_bytes,
@@ -344,9 +371,5 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 			$this->assertNodeEnd( "text" );
 			$this->skipWhitespace();
 		}
-
-		$this->assertNodeEnd( "revision" );
-		$this->skipWhitespace();
 	}
-
 }

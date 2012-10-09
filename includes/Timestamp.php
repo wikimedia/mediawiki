@@ -196,7 +196,7 @@ class MWTimestamp {
 	 *
 	 * @since 1.20
 	 *
-	 * @return string Formatted timestamp
+	 * @return Message Formatted timestamp
 	 */
 	public function getHumanTimestamp() {
 		$then = $this->getTimestamp( TS_UNIX );
