@@ -137,7 +137,7 @@ class UsersPager extends AlphabeticPager {
 			'conds' => $conds
 		);
 
-		wfRunHooks( 'SpecialListusersQueryInfo', array( $this, &$query ) );
+		wfRunHooks( 'SpecialListusersQueryInfo', array( $this, &$query ), $this->getContext() );
 		return $query;
 	}
 
@@ -188,7 +188,7 @@ class UsersPager extends AlphabeticPager {
 		}
 		$blocked = !is_null( $row->ipb_deleted ) ? ' ' . $this->msg( 'listusers-blocked', $userName )->escaped() : '';
 
-		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ) );
+		wfRunHooks( 'SpecialListusersFormatRow', array( &$item, $row ), $this->getContext() );
 		return Html::rawElement( 'li', array(), "{$item}{$edits}{$created}{$blocked}" );
 	}
 
@@ -232,12 +232,12 @@ class UsersPager extends AlphabeticPager {
 		$out .= Xml::checkLabel( $this->msg( 'listusers-creationsort' )->text(), 'creationSort', 'creationSort', $this->creationSort );
 		$out .= '<br />';
 
-		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
+		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ), $this->getContext() );
 
 		# Submit button and form bottom
 		$out .= Html::hidden( 'limit', $this->mLimit );
 		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
-		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
+		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ), $this->getContext() );
 		$out .= Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' );
 
@@ -269,7 +269,7 @@ class UsersPager extends AlphabeticPager {
 		if( $this->requestedUser != '' ) {
 			$query['username'] = $this->requestedUser;
 		}
-		wfRunHooks( 'SpecialListusersDefaultQuery', array( $this, &$query ) );
+		wfRunHooks( 'SpecialListusersDefaultQuery', array( $this, &$query ), $this->getContext() );
 		return $query;
 	}
 

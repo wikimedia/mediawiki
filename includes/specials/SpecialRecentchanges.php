@@ -96,7 +96,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	protected function getCustomFilters() {
 		if ( $this->customFilters === null ) {
 			$this->customFilters = array();
-			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ) );
+			wfRunHooks( 'SpecialRecentChangesFilters', array( $this, &$this->customFilters ), $this->getContext() );
 		}
 		return $this->customFilters;
 	}
@@ -407,7 +407,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 		);
 
 		if ( !wfRunHooks( 'SpecialRecentChangesQuery',
-			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ) ) )
+			array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$fields ), $this->getContext() ) )
 		{
 			return false;
 		}
@@ -623,7 +623,7 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
 
-		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ) );
+		wfRunHooks( 'SpecialRecentChangesPanel', array( &$extraOpts, $opts ), $this->getContext() );
 		return $extraOpts;
 	}
 

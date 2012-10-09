@@ -174,7 +174,7 @@ class SpecialUpload extends SpecialPage {
 			$this->processUpload();
 		} else {
 			# Backwards compatibility hook
-			if( !wfRunHooks( 'UploadForm:initial', array( &$this ) ) ) {
+			if( !wfRunHooks( 'UploadForm:initial', array( &$this ), $this->getContext() ) ) {
 				wfDebug( "Hook 'UploadForm:initial' broke output of the upload form" );
 				return;
 			}
@@ -394,7 +394,7 @@ class SpecialUpload extends SpecialPage {
 			return;
 		}
 
-		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ) ) ) {
+		if( !wfRunHooks( 'UploadForm:BeforeProcessing', array( &$this ), $this->getContext() ) ) {
 			wfDebug( "Hook 'UploadForm:BeforeProcessing' broke processing the file.\n" );
 			// This code path is deprecated. If you want to break upload processing
 			// do so by hooking into the appropriate hooks in UploadBase::verifyUpload
@@ -444,7 +444,7 @@ class SpecialUpload extends SpecialPage {
 
 		// Success, redirect to description page
 		$this->mUploadSuccessful = true;
-		wfRunHooks( 'SpecialUploadComplete', array( &$this ) );
+		wfRunHooks( 'SpecialUploadComplete', array( &$this ), $this->getContext() );
 		$this->getOutput()->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 	}
 
@@ -766,7 +766,7 @@ class UploadForm extends HTMLForm {
 			+ $this->getDescriptionSection()
 			+ $this->getOptionsSection();
 
-		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ) );
+		wfRunHooks( 'UploadFormInitDescriptor', array( &$descriptor ), $this->getContext() );
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Set some form properties
@@ -862,7 +862,7 @@ class UploadForm extends HTMLForm {
 				'checked' => $selectedSourceType == 'url',
 			);
 		}
-		wfRunHooks( 'UploadFormSourceDescriptors', array( &$descriptor, &$radio, $selectedSourceType ) );
+		wfRunHooks( 'UploadFormSourceDescriptors', array( &$descriptor, &$radio, $selectedSourceType ), $this->getContext() );
 
 		$descriptor['Extensions'] = array(
 			'type' => 'info',

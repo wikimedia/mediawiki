@@ -158,7 +158,7 @@ class Article extends Page {
 		}
 
 		$page = null;
-		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page ) );
+		wfRunHooks( 'ArticleFromTitle', array( &$title, &$page ), $context );
 		if ( !$page ) {
 			switch( $title->getNamespace() ) {
 				case NS_FILE:
@@ -455,7 +455,7 @@ class Article extends Page {
 		$this->mContentObject = $this->mRevision->getContent( Revision::FOR_THIS_USER, $this->getContext()->getUser() ); // Loads if user is allowed
 		$this->mRevIdFetched = $this->mRevision->getId();
 
-		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ) );
+		wfRunHooks( 'ArticleAfterFetchContentObject', array( &$this, &$this->mContentObject ), $this->getContext() );
 
 		wfProfileOut( __METHOD__ );
 
@@ -614,7 +614,7 @@ class Article extends Page {
 		while ( !$outputDone && ++$pass ) {
 			switch( $pass ) {
 				case 1:
-					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
+					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ), $this->getContext() );
 					break;
 				case 2:
 					# Early abort if the page doesn't exist
@@ -677,7 +677,7 @@ class Article extends Page {
 						$this->showCssOrJsPage();
 						$outputDone = true;
 					} elseif( !wfRunHooks( 'ArticleContentViewCustom',
-							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ) ) ) {
+							array( $this->fetchContentObject(), $this->getTitle(), $outputPage ), $this->getContext() ) ) {
 
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
@@ -971,7 +971,7 @@ class Article extends Page {
 		if ( isset( $this->mRedirectedFrom ) ) {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
-			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
+			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ), $this->getContext() ) ) {
 				$redir = Linker::linkKnown(
 					$this->mRedirectedFrom,
 					null,
@@ -1036,7 +1036,7 @@ class Article extends Page {
 		# chance to mark this new article as patrolled.
 		$this->showPatrolFooter();
 
-		wfRunHooks( 'ArticleViewFooter', array( $this ) );
+		wfRunHooks( 'ArticleViewFooter', array( $this ), $this->getContext() );
 
 	}
 
@@ -1116,7 +1116,7 @@ class Article extends Page {
 			}
 		}
 
-		wfRunHooks( 'ShowMissingArticle', array( $this ) );
+		wfRunHooks( 'ShowMissingArticle', array( $this ), $this->getContext() );
 
 		# Show delete and move logs
 		LogEventsList::showLogExtract( $outputPage, array( 'delete', 'move' ), $this->getTitle(), '',
@@ -1132,7 +1132,7 @@ class Article extends Page {
 			$this->getContext()->getRequest()->response()->header( "HTTP/1.1 404 Not Found" );
 		}
 
-		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ) );
+		$hookResult = wfRunHooks( 'BeforeDisplayNoArticleText', array( $this ), $this->getContext() );
 
 		if ( ! $hookResult ) {
 			return;
@@ -1207,7 +1207,7 @@ class Article extends Page {
 	 * @param $oldid int: revision ID of this article revision
 	 */
 	public function setOldSubtitle( $oldid = 0 ) {
-		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
+		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ), $this->getContext() ) ) {
 			return;
 		}
 
@@ -1523,7 +1523,7 @@ class Article extends Page {
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->addWikiMsg( 'confirmdeletetext' );
 
-		wfRunHooks( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ) );
+		wfRunHooks( 'ArticleConfirmDelete', array( $this, $outputPage, &$reason ), $this->getContext() );
 
 		$user = $this->getContext()->getUser();
 
@@ -1702,7 +1702,7 @@ class Article extends Page {
 				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
-				$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );
+				$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ), $this->getContext() );
 			}
 		}
 

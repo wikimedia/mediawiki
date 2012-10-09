@@ -419,7 +419,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->getOutput()->addWikiMsg( 'mergehistory-success',
 			$targetTitle->getPrefixedText(), $destTitle->getPrefixedText(), $count );
 
-		wfRunHooks( 'ArticleMergeComplete', array( $targetTitle, $destTitle ) );
+		wfRunHooks( 'ArticleMergeComplete', array( $targetTitle, $destTitle ), $this->getContext() );
 
 		return true;
 	}

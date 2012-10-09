@@ -74,7 +74,8 @@ class ApiUndelete extends ApiBase {
 
 		if ( $retval[1] ) {
 			wfRunHooks( 'FileUndeleteComplete',
-				array( $titleObj, array(), $this->getUser(), $params['reason'] ) );
+				array( $titleObj, array(), $this->getUser(), $params['reason'] ),
+				$this->getContext() );
 		}
 
 		$this->setWatch( $params['watchlist'], $titleObj );

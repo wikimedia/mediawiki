@@ -140,7 +140,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
 		$extraFields = array();
-		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ) );
+		wfRunHooks( 'ChangePasswordForm', array( &$extraFields ), $this->getContext() );
 		$prettyFields = array(
 					array( 'wpName', 'username', 'text', $this->mUserName ),
 					array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
@@ -222,7 +222,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 
 		if( $newpass !== $retype ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ) );
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'badretype' ), $this->getContext() );
 			throw new PasswordError( $this->msg( 'badretype' )->text() );
 		}
 
@@ -232,7 +232,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 		}
 
 		if( !$user->checkTemporaryPassword($this->mOldpass) && !$user->checkPassword($this->mOldpass) ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ) );
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'wrongpassword' ), $this->getContext() );
 			throw new PasswordError( $this->msg( 'resetpass-wrong-oldpass' )->text() );
 		}
 
@@ -243,10 +243,10 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 
 		try {
 			$user->setPassword( $this->mNewpass );
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ) );
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'success' ), $this->getContext() );
 			$this->mNewpass = $this->mOldpass = $this->mRetype = '';
 		} catch( PasswordError $e ) {
-			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ) );
+			wfRunHooks( 'PrefsPasswordAudit', array( $user, $newpass, 'error' ), $this->getContext() );
 			throw new PasswordError( $e->getMessage() );
 		}
 

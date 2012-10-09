@@ -63,7 +63,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->tokenFunctions = array(
 			'patrol' => array( 'ApiQueryRecentChanges', 'getPatrolToken' )
 		);
-		wfRunHooks( 'APIQueryRecentChangesTokens', array( &$this->tokenFunctions ) );
+		wfRunHooks( 'APIQueryRecentChangesTokens', array( &$this->tokenFunctions ), $this->getContext() );
 		return $this->tokenFunctions;
 	}
 
