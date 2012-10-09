@@ -143,14 +143,14 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$rev = ( $table === 'archive' )
 				? Revision::newFromArchiveRow( $row )
 				: new Revision( $row );
-			$text = $rev->getRawText();
+			$text = $rev->getSerializedData();
 		} catch ( MWException $e ) {
-			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 			return false; // bug 22624?
 		}
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Text of revision with {$idCol}={$row->$idCol} unavailable!\n" );
+			$this->output( "Data of revision with {$idCol}={$row->$idCol} unavailable!\n" );
 			return false;
 		} else {
 			$db->update( $table,
@@ -174,10 +174,10 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 			return false; // bug 22624?
 		}
-		$text = $rev->getRawText();
+		$text = $rev->getSerializedData();
 		if ( !is_string( $text ) ) {
 			# This should not happen, but sometimes does (bug 20757)
-			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
+			$this->output( "Data of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
 			return false;
 		} else {
 			# Archive table as no PK, but (NS,title,time) should be near unique.

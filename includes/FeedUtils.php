@@ -138,13 +138,23 @@ class FeedUtils {
 			$diffText = '';
 			// Don't bother generating the diff if we won't be able to show it
 			if ( $wgFeedDiffCutoff > 0 ) {
-				$de = new DifferenceEngine( $title, $oldid, $newid );
-				$diffText = $de->getDiff(
-					wfMessage( 'previousrevision' )->text(), // hack
-					wfMessage( 'revisionasof',
-					$wgLang->timeanddate( $timestamp ),
-					$wgLang->date( $timestamp ),
-					$wgLang->time( $timestamp ) )->text() );
+				$rev = Revision::newFromId( $oldid );
+
+				if ( !$rev ) {
+					$diffText = false;
+				} else {
+					$context = clone RequestContext::getMain();
+					$context->setTitle( $title );
+
+					$contentHandler = $rev->getContentHandler();
+					$de = $contentHandler->createDifferenceEngine( $context, $oldid, $newid );
+					$diffText = $de->getDiff(
+						wfMessage( 'previousrevision' )->text(), // hack
+						wfMessage( 'revisionasof',
+							$wgLang->timeanddate( $timestamp ),
+							$wgLang->date( $timestamp ),
+							$wgLang->time( $timestamp ) )->text() );
+				}
 			}
 
 			if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
@@ -162,16 +172,36 @@ class FeedUtils {
 		} else {
 			$rev = Revision::newFromId( $newid );
 			if( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
-				$newtext = '';
+				$newContent = ContentHandler::getForTitle( $title )->makeEmptyContent();
 			} else {
-				$newtext = $rev->getText();
+				$newContent = $rev->getContent();
 			}
-			if ( $wgFeedDiffCutoff <= 0 || strlen( $newtext ) > $wgFeedDiffCutoff ) {
+
+			if ( $newContent instanceof TextContent ) {
+				// only textual content has a "source view".
+				$text = $newContent->getNativeData();
+
+				if ( $wgFeedDiffCutoff <= 0 || strlen( $text ) > $wgFeedDiffCutoff ) {
+					$html = null;
+				} else {
+					$html = nl2br( htmlspecialchars( $text ) );
+				}
+			} else {
+				//XXX: we could get an HTML representation of the content via getParserOutput, but that may
+				//     contain JS magic and generally may not be suitable for inclusion in a feed.
+				//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
+				//Compare also ApiFeedContributions::feedItemDesc
+				$html = null;
+			}
+
+			if ( $html === null ) {
+
 				// Omit large new page diffs, bug 29110
+				// Also use diff link for non-textual content
 				$diffText = self::getDiffLink( $title, $newid );
 			} else {
 				$diffText = '<p><b>' . wfMessage( 'newpage' )->text() . '</b></p>' .
-					'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
+					'<div>' . $html . '</div>';
 			}
 		}
 		$completeText .= $diffText;

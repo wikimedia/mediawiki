@@ -739,6 +739,18 @@ $wgMediaHandlers = array(
 );
 
 /**
+ * Plugins for page content model handling.
+ * Each entry in the array maps a model id to a class name.
+ *
+ * @since 1.21
+ */
+$wgContentHandlers = array(
+	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
+	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
+	CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
+);
+
+/**
  * Resizing can be done using PHP's internal image libraries or using
  * ImageMagick or another third-party converter, e.g. GraphicMagick.
  * These support more file formats than PHP, which only supports PNG,
@@ -6228,6 +6240,41 @@ $wgSeleniumTestConfigs = array();
 $wgSeleniumConfigFile = null;
 $wgDBtestuser = ''; //db user that has permission to create and drop the test databases only
 $wgDBtestpassword = '';
+
+/**
+ * Associative array mapping namespace IDs to the name of the content model pages in that namespace should have by
+ * default (use the CONTENT_MODEL_XXX constants). If no special content type is defined for a given namespace,
+ * pages in that namespace will  use the CONTENT_MODEL_WIKITEXT (except for the special case of JS and CS pages).
+ *
+ * @since 1.21
+ */
+$wgNamespaceContentModels = array();
+
+/**
+ * How to react if a plain text version of a non-text Content object is requested using ContentHandler::getContentText():
+ *
+ * * 'ignore': return null
+ * * 'fail': throw an MWException
+ * * 'serialize': serialize to default format
+ *
+ * @since 1.21
+ */
+$wgContentHandlerTextFallback = 'ignore';
+
+/**
+ * Set to false to disable use of the database fields introduced by the ContentHandler facility.
+ * This way, the ContentHandler facility can be used without any additional information in the database.
+ * A page's content model is then derived solely from the page's title. This however means that changing
+ * a page's default model (e.g. using $wgNamespaceContentModels) will break the page and/or make the content
+ * inaccessible. This also means that pages can not be moved to a title that would default to a different
+ * content model.
+ *
+ * Overall, with $wgContentHandlerUseDB = false, no database updates are needed, but content handling
+ * is less robust and less flexible.
+ *
+ * @since 1.21
+ */
+$wgContentHandlerUseDB = true;
 
 /**
  * Whether the user must enter their password to change their e-mail address
