@@ -989,9 +989,12 @@ class LoginForm extends SpecialPage {
 		if ( $wgSecureLogin && !$this->mStickHTTPS ) {
 			$options = array( 'http' );
 			$proto = PROTO_HTTP;
-		} else {
+		} elseif( $wgSecureLogin ) {
 			$options = array( 'https' );
 			$proto = PROTO_HTTPS;
+		} else {
+			$options = array();
+			$proto = PROTO_RELATIVE;
 		}
 
 		if ( $type == 'successredirect' ) {
