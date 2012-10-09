@@ -118,15 +118,13 @@ class Revision implements IDBAccessObject {
 	 * @param $flags Integer Bitfield (optional)
 	 * @return Revision or null
 	 */
-	public static function newFromPageId( $pageId, $revId = 0, $flags = null ) {
+	public static function newFromPageId( $pageId, $revId = 0, $flags = 0 ) {
 		$conds = array( 'page_id' => $pageId );
 		if ( $revId ) {
 			$conds['rev_id'] = $revId;
 		} else {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id = page_latest';
-			// Callers assume this will be up-to-date
-			$flags = is_int( $flags ) ? $flags : self::READ_LATEST; // b/c
 		}
 		return self::newFromConds( $conds, (int)$flags );
 	}
