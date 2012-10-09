@@ -1326,7 +1326,6 @@ abstract class HTMLFormField {
 	public function getRaw( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = get_class( $this );
 		$helptext = $this->getHelpTextHtmlRaw( $this->getHelpText() );
 		$cellAttributes = array();
 		$label = $this->getLabelHtml( $cellAttributes );

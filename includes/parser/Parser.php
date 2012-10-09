@@ -1547,6 +1547,7 @@ class Parser {
 		$i = 0;
 		while ( $i<count( $bits ) ) {
 			$url = $bits[$i++];
+			// @todo FIXME: Unused variable.
 			$protocol = $bits[$i++];
 			$text = $bits[$i++];
 			$trail = $bits[$i++];
