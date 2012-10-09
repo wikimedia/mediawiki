@@ -1142,6 +1142,15 @@ $2
 'edit-already-exists' => 'Не може да се создаде нова страница.
 Истата веќе постои.',
 'defaultmessagetext' => 'Текст на пораката по основно',
+'content-failed-to-parse' => 'Не успеав да ја предадам содржината од типот $2 за моделот $1: $3',
+'invalid-content-data' => 'Неважечки податоци од содржината',
+'content-not-allowed-here' => 'Содржините од моделот „$1“ не се допуштени на страницата [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'викитекст',
+'content-model-text' => 'прост текст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Предупредување: Оваа страница користи премногу повикувања на parser функции.
@@ -4293,4 +4302,6 @@ $5
 'duration-centuries' => '$1 {{PLURAL:$1|век|века}}',
 'duration-millennia' => '$1 {{PLURAL:$1|милениум|милениуми}}',
 
+# Unknown messages
+'bad-target-model' => 'Саканата одредница користи друг содржински модел. Не можам да претворам од $1 во $2.',
 );

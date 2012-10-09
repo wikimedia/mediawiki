@@ -1075,6 +1075,15 @@ Hewna kerde aseno.',
 'edit-already-exists' => 'Pelo newe nêvıraziyeno.
 Pel ca ra esto.',
 'defaultmessagetext' => 'Hesıbyaye metne mesaci',
+'content-failed-to-parse' => 'Qandê madela $3 zereyê $1, $2 sero nêagozyayo',
+'invalid-content-data' => 'Zerrey malumati nêravêrdeyo',
+'content-not-allowed-here' => '"$1" sero per da [[$2]] rê mısade nêdeyêno',
+
+# Content models
+'content-model-wikitext' => 'wikimetin',
+'content-model-text' => 'duz metin',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Hişyari: No pel de fonksiyoni zaf esti.
@@ -4720,4 +4729,6 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
+# Unknown messages
+'bad-target-model' => 'Hedefo ke waştiyayo zerreke cı babetna model karneno. Ke nêşeno $1 ra açarno $2.',
 );

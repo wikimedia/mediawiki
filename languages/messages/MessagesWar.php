@@ -1020,7 +1020,7 @@ An paglaladawan han iya [$2 fayl han paglaladawan nga pakli] didto in ginpapakit
 'statistics-header-hooks' => 'Lain nga mga estadistika',
 'statistics-articles' => 'Unod nga mga pakli',
 'statistics-pages' => 'Mga pakli',
-'statistics-pages-desc' => 'Ngatanan nga mga pakli ha sulod hini nga wiki, lakip an<br />hiruhimangraw nga mga pakli, mga redirect, ngan iba pa',
+'statistics-pages-desc' => 'Ngatanan nga mga pakli ha sulod hini nga wiki, lakip an hiruhimangraw nga mga pakli, mga redirect, ngan iba pa',
 'statistics-files' => 'Mga paypay nga iginkarga pasaka',
 'statistics-edits' => 'Mga pagliwat hit pakli tikang gintukod hini nga {{SITENAME}}',
 'statistics-edits-average' => 'Average nga mga pagliwat kada pakli',
