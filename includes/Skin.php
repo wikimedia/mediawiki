@@ -544,7 +544,7 @@ abstract class Skin extends ContextSource {
 	protected function afterContentHook() {
 		$data = '';
 
-		if ( wfRunHooks( 'SkinAfterContent', array( &$data, $this ) ) ) {
+		if ( wfRunHooks( 'SkinAfterContent', array( &$data, $this ), $this->getContext() ) ) {
 			// adding just some spaces shouldn't toggle the output
 			// of the whole <div/>, so we use trim() here
 			if ( trim( $data ) != '' ) {
@@ -581,7 +581,7 @@ abstract class Skin extends ContextSource {
 		// OutputPage::getBottomScripts() which takes a Skin param. This should be cleaned
 		// up at some point
 		$bottomScriptText = $this->getOutput()->getBottomScripts();
-		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
+		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ), $this->getContext() );
 
 		return $bottomScriptText;
 	}
@@ -640,7 +640,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$subpages = '';
 
-		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this, $out ) ) ) {
+		if ( !wfRunHooks( 'SkinSubPageSubtitle', array( &$subpages, $this, $out ), $this->getContext() ) ) {
 			return $subpages;
 		}
 
@@ -745,7 +745,7 @@ abstract class Skin extends ContextSource {
 		// Allow for site and per-namespace customization of copyright notice.
 		$forContent = true;
 
-		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ) );
+		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ), $this->getContext() );
 
 		$msgObj = $this->msg( $msg )->rawParams( $link );
 		if ( $forContent ) {
@@ -797,7 +797,7 @@ abstract class Skin extends ContextSource {
 
 		$url = htmlspecialchars( "$wgStylePath/common/images/poweredby_mediawiki_88x31.png" );
 		$text = '<a href="//www.mediawiki.org/"><img src="' . $url . '" height="31" width="88" alt="Powered by MediaWiki" /></a>';
-		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ) );
+		wfRunHooks( 'SkinGetPoweredBy', array( &$text, $this ), $this->getContext() );
 		return $text;
 	}
 
@@ -1153,7 +1153,7 @@ abstract class Skin extends ContextSource {
 		$bar = array();
 		$this->addToSidebar( $bar, 'sidebar' );
 
-		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ) );
+		wfRunHooks( 'SkinBuildSidebar', array( $this, &$bar ), $this->getContext() );
 		if ( $wgEnableSidebarCache ) {
 			$wgMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		}
@@ -1447,7 +1447,7 @@ abstract class Skin extends ContextSource {
 		wfProfileIn( __METHOD__ );
 		$siteNotice = '';
 
-		if ( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice, $this ) ) ) {
+		if ( wfRunHooks( 'SiteNoticeBefore', array( &$siteNotice, $this ), $this->getContext() ) ) {
 			if ( is_object( $this->getUser() ) && $this->getUser()->isLoggedIn() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
@@ -1463,7 +1463,7 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice, $this ) );
+		wfRunHooks( 'SiteNoticeAfter', array( &$siteNotice, $this ), $this->getContext() );
 		wfProfileOut( __METHOD__ );
 		return $siteNotice;
 	}
@@ -1509,7 +1509,7 @@ abstract class Skin extends ContextSource {
 			$attribs = " title=\"$attribs\"";
 		}
 		$result = null;
-		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result, $lang ) );
+		wfRunHooks( 'EditSectionLink', array( &$this, $nt, $section, $attribs, $link, &$result, $lang ), $this->getContext() );
 		if ( !is_null( $result ) ) {
 			# For reverse compatibility, add the brackets *after* the hook is
 			# run, and even add them to hook-provided text.  (This is the main
@@ -1526,7 +1526,7 @@ abstract class Skin extends ContextSource {
 			->inLanguage( $lang )->escaped();
 		$result = "<span class=\"editsection\">$result</span>";
 
-		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ) );
+		wfRunHooks( 'DoEditSectionLink', array( $this, $nt, $section, $tooltip, &$result, $lang ), $this->getContext() );
 		return $result;
 	}
 

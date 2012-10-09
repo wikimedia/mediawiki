@@ -268,7 +268,7 @@ class DifferenceEngine extends ContextSource {
 			$samePage = true;
 			$oldHeader = '';
 		} else {
-			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
+			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ), $this->getContext() );
 
 			$sk = $this->getSkin();
 			if ( method_exists( $sk, 'suppressQuickbar' ) ) {
@@ -504,7 +504,7 @@ class DifferenceEngine extends ContextSource {
 		$out->addHTML( "<hr class='diff-hr' />
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
-		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $out ) ) ) {
+		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $out ), $this->getContext() ) ) {
 			$this->loadNewText();
 			$out->setRevisionId( $this->mNewid );
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
@@ -514,7 +514,7 @@ class DifferenceEngine extends ContextSource {
 				// Stolen from Article::view --AG 2007-10-11
 				// Give hooks a chance to customise the output
 				// @TODO: standardize this crap into one function
-				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
+				if ( wfRunHooks( 'ShowRawCssJs', array( $this->mNewtext, $this->mNewPage, $out ), $this->getContext() ) ) {
 					// Wrap the whole lot in a <pre> and don't parse
 					$m = array();
 					preg_match( '!\.(css|js)$!u', $this->mNewPage->getText(), $m );
@@ -522,7 +522,7 @@ class DifferenceEngine extends ContextSource {
 					$out->addHTML( htmlspecialchars( $this->mNewtext ) );
 					$out->addHTML( "\n</pre>\n" );
 				}
-			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
+			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ), $this->getContext() ) ) {
 				// Handled by extension
 			} else {
 				// Normal page
@@ -655,7 +655,7 @@ class DifferenceEngine extends ContextSource {
 		$difftext = $this->generateDiffBody( $this->mOldtext, $this->mNewtext );
 
 		// Save to cache for 7 days
-		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ) ) ) {
+		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ), $this->getContext() ) ) {
 			wfIncrStats( 'diff_uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
@@ -999,7 +999,7 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$this->mOldid = intval( $old );
 			$this->mNewid = intval( $new );
-			wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ) );
+			wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ), $this->getContext() );
 		}
 	}
 

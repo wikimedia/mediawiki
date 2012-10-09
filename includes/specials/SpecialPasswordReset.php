@@ -174,7 +174,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		// Check for hooks (captcha etc), and allow them to modify the users list
 		$error = array();
-		if ( !wfRunHooks( 'SpecialPasswordResetOnSubmit', array( &$users, $data, &$error ) ) ) {
+		if ( !wfRunHooks( 'SpecialPasswordResetOnSubmit', array( &$users, $data, &$error ), $this->getContext() ) ) {
 			return array( $error );
 		}
 
@@ -223,7 +223,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			return array( 'badipaddress' );
 		}
 		$caller = $this->getUser();
-		wfRunHooks( 'User::mailPasswordInternal', array( &$caller, &$ip, &$firstUser ) );
+		wfRunHooks( 'User::mailPasswordInternal', array( &$caller, &$ip, &$firstUser ), $this->getContext() );
 		$username = $caller->getName();
 		$msg = IP::isValid( $username )
 			? 'passwordreset-emailtext-ip'

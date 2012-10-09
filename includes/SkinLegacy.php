@@ -282,7 +282,7 @@ class LegacyTemplate extends BaseTemplate {
 		$tabs = array();
 		$out = '';
 		$s = array();
-		wfRunHooks( 'SkinTemplateTabs', array( $this->getSkin(), &$tabs ) );
+		wfRunHooks( 'SkinTemplateTabs', array( $this->getSkin(), &$tabs ), $this->getContext() );
 		foreach ( $tabs as $tab ) {
 			$s[] = Xml::element( 'a',
 				array( 'href' => $tab['href'] ),

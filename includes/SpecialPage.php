@@ -592,7 +592,7 @@ class SpecialPage {
 		 * @param $special SpecialPage
 		 * @param $subPage string|null
 		 */
-		wfRunHooks( 'SpecialPageBeforeExecute', array( $this, $subPage ) );
+		wfRunHooks( 'SpecialPageBeforeExecute', array( $this, $subPage ), $this->getContext() );
 
 		$this->beforeExecute( $subPage );
 		$this->execute( $subPage );
@@ -606,7 +606,7 @@ class SpecialPage {
 		 * @param $special SpecialPage
 		 * @param $subPage string|null
 		 */
-		wfRunHooks( 'SpecialPageAfterExecute', array( $this, $subPage ) );
+		wfRunHooks( 'SpecialPageAfterExecute', array( $this, $subPage ), $this->getContext() );
 	}
 
 	/**
@@ -886,7 +886,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		$this->alterForm( $form );
 
 		// Give hooks a chance to alter the form, adding extra fields or text etc
-		wfRunHooks( "Special{$this->getName()}BeforeFormDisplay", array( &$form ) );
+		wfRunHooks( "Special{$this->getName()}BeforeFormDisplay", array( &$form ), $this->getContext() );
 
 		return $form;
 	}
@@ -1208,7 +1208,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'ctype', 'maxage', 'smaxage',
 		);
 
-		wfRunHooks( "RedirectSpecialArticleRedirectParams", array(&$redirectParams) );
+		wfRunHooks( "RedirectSpecialArticleRedirectParams", array( &$redirectParams ), $this->getContext() );
 		$this->mAllowedRedirectParams = $redirectParams;
 	}
 }
