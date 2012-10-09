@@ -3712,7 +3712,8 @@ class Title {
 		if ( !is_object( $nullRevision ) ) {
 			throw new MWException( 'No valid null revision produced in ' . __METHOD__ );
 		}
-		$nullRevId = $nullRevision->insertOn( $dbw );
+
+		$nullRevision->insertOn( $dbw );
 
 		# Change the name of the target page:
 		$dbw->update( 'page',
