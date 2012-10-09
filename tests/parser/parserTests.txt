@@ -4326,16 +4326,7 @@ section=1
 ### <includeonly> and <noinclude> in attributes
 ###
 !!test
-1. includeonly around the entire attribute
-!!input
-<span <includeonly>id="v1"</includeonly><noinclude>id="v2"</noinclude>>bar</span>
-!!result
-<p><span id="v2">bar</span>
-</p>
-!!end
-
-!!test
-2. includeonly in html attr key
+1. includeonly in html attr key
 !!input
 <span <noinclude>id</noinclude><includeonly>about</includeonly>="foo">bar</span>
 !!result
@@ -4344,7 +4335,7 @@ section=1
 !!end
 
 !!test
-3. includeonly in html attr value
+2. includeonly in html attr value
 !!input
 <span id="<noinclude>v1</noinclude><includeonly>v2</includeonly>">bar</span>
 <span id=<noinclude>"v1"</noinclude><includeonly>"v2"</includeonly>>bar</span>
@@ -4355,7 +4346,7 @@ section=1
 !!end
 
 !!test
-4. includeonly in part of an attr value
+3. includeonly in part of an attr value
 !!input
 <span style="color:<noinclude>red</noinclude><includeonly>blue</includeonly>;">bar</span>
 !!result
@@ -11130,6 +11121,47 @@ HttP://MediaWiki.Org/
 </p>
 !! end
 
+###
+### Parsoids-specific tests
+### Parsoid-PHP parser incompatibilities
+###
+
+!!test
+1. includeonly around the entire attribute
+!!options
+disabled
+!!input
+<span <includeonly>id="v1"</includeonly><noinclude>id="v2"</noinclude>>bar</span>
+!!result
+<p><span>bar</span>
+</p>
+!!end
+
+!!test
+2. template around the entire attribute
+!!options
+disabled
+!!input
+<span {{echo|id="v1"}}>bar</span>
+!!result
+<p><span>bar</span>
+</p>
+!!end
+
+!!test
+3. SOL-sensitive wikitext tokens as template-args
+!!options
+disabled
+!!input
+{{echo|*a}}
+{{echo|#a}}
+{{echo|:a}}
+!!result
+<p>*a
+#a
+:a
+</p>
+!!end
 
 TODO:
 more images
