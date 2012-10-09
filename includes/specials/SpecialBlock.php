@@ -314,7 +314,7 @@ class SpecialBlock extends FormSpecialPage {
 		$otherBlockMessages = array();
 		if ( $this->target !== null ) {
 			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
-			wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockMessages, $this->target ) );
+			wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockMessages, $this->target ), $this->getContext() );
 
 			if ( count( $otherBlockMessages ) ) {
 				$s = Html::rawElement(

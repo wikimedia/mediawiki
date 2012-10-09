@@ -176,6 +176,12 @@ different purposes. For example:
 This code would result in ircNotify being run twice when an article is saved:
 once for 'TimStarling', and once for 'brion'.
 
+If a callback for a hook is an object method (e.g., array( $object, 'method' ))
+and the class of the object is a child of ContextSource, Hooks will set the
+context of the object to the context the event occurred in. In addition, if any
+preset data passed to the hook (as shown in the paragraph above) is an object
+that is a child of ContextSource, Hooks will set the context on that as well.
+
 Hooks can return three possible values:
 
   * true: the hook has operated successfully

@@ -187,7 +187,7 @@ class MediaWiki {
 		}
 
 		$unused = null; // To pass it by reference
-		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ) );
+		wfRunHooks( 'BeforeInitialize', array( &$title, &$unused, &$output, &$user, $request, $this ), $this->context );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' ) ||
@@ -249,7 +249,7 @@ class MediaWiki {
 			&& ( $request->getVal( 'title' ) === null ||
 				$title->getPrefixedDBkey() != $request->getVal( 'title' ) )
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
-			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
+			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ), $this->context ) )
 		{
 			if ( $title->isSpecialPage() ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
@@ -367,7 +367,7 @@ class MediaWiki {
 			$ignoreRedirect = $target = false;
 
 			wfRunHooks( 'InitializeArticleMaybeRedirect',
-				array( &$title, &$request, &$ignoreRedirect, &$target, &$article ) );
+				array( &$title, &$request, &$ignoreRedirect, &$target, &$article ), $this->context );
 
 			// Follow redirects only for... redirects.
 			// If $target is set, then a hook wanted to redirect.
@@ -419,7 +419,7 @@ class MediaWiki {
 		$user = $this->context->getUser();
 
 		if ( !wfRunHooks( 'MediaWikiPerformAction',
-			array( $output, $page, $title, $user, $request, $this ) ) )
+			array( $output, $page, $title, $user, $request, $this ), $this->context ) )
 		{
 			wfProfileOut( __METHOD__ );
 			return;
@@ -441,7 +441,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ) ) ) {
+		if ( wfRunHooks( 'UnknownAction', array( $request->getVal( 'action', 'view' ), $page ), $this->context ) ) {
 			$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 		}
 

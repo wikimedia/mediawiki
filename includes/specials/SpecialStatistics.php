@@ -90,7 +90,7 @@ class SpecialStatistics extends SpecialPage {
 
 		# Statistic - other
 		$extraStats = array();
-		if( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
+		if( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ), $this->getContext() ) ) {
 			$text .= $this->getOtherStats( $extraStats );
 		}
 

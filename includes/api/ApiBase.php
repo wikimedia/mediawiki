@@ -555,7 +555,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalParams( $flags = 0 ) {
 		$params = $this->getAllowedParams( $flags );
-		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ) );
+		wfRunHooks( 'APIGetAllowedParams', array( &$this, &$params, $flags ), $this->getContext() );
 		return $params;
 	}
 
@@ -567,7 +567,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
-		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
+		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ), $this->getContext() );
 		return $desc;
 	}
 
@@ -599,7 +599,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalResultProperties() {
 		$properties = $this->getResultProperties();
-		wfRunHooks( 'APIGetResultProperties', array( $this, &$properties ) );
+		wfRunHooks( 'APIGetResultProperties', array( $this, &$properties ), $this->getContext() );
 		return $properties;
 	}
 
@@ -624,7 +624,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
-		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ) );
+		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ), $this->getContext() );
 		return $desc;
 	}
 

@@ -80,7 +80,7 @@ class Preferences {
 		self::searchPreferences( $user, $context, $defaultPreferences );
 		self::miscPreferences( $user, $context, $defaultPreferences );
 
-		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
+		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ), $context );
 
 		## Remove preferences that wikis don't want to use
 		global $wgHiddenPrefs;

@@ -3833,12 +3833,13 @@ function wfGetLangConverterCacheStorage() {
 /**
  * Call hook functions defined in $wgHooks
  *
- * @param string $event event name
- * @param array $args parameters passed to hook functions
+ * @param string $event Event name
+ * @param array $args Parameters passed to hook functions
+ * @param IContextSource $ctx Context to pass
  * @return Boolean True if no handler aborted the hook
  */
-function wfRunHooks( $event, $args = array() ) {
-	return Hooks::run( $event, $args );
+function wfRunHooks( $event, $args = array(), $ctx = null ) {
+	return Hooks::run( $event, $args, $ctx );
 }
 
 /**

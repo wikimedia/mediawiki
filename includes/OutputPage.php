@@ -708,7 +708,7 @@ class OutputPage extends ContextSource {
 			'user' => $this->getUser()->getTouched(),
 			'epoch' => $wgCacheEpoch
 		);
-		wfRunHooks( 'OutputPageCheckLastModified', array( &$modifiedTimes ) );
+		wfRunHooks( 'OutputPageCheckLastModified', array( &$modifiedTimes ), $this->getContext() );
 
 		$maxModified = max( $modifiedTimes );
 		$this->mLastModified = wfTimestamp( TS_RFC2822, $maxModified );
@@ -1228,7 +1228,7 @@ class OutputPage extends ContextSource {
 		}
 
 		# Add the remaining categories to the skin
-		if ( wfRunHooks( 'OutputPageMakeCategoryLinks', array( &$this, $categories, &$this->mCategoryLinks ) ) ) {
+		if ( wfRunHooks( 'OutputPageMakeCategoryLinks', array( &$this, $categories, &$this->mCategoryLinks ), $this->getContext() ) ) {
 			foreach ( $categories as $category => $type ) {
 				$origcategory = $category;
 				$title = Title::makeTitleSafe( NS_CATEGORY, $category );
@@ -1604,7 +1604,7 @@ class OutputPage extends ContextSource {
 			}
 		}
 
-		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ) );
+		wfRunHooks( 'OutputPageParserOutput', array( &$this, $parserOutput ), $this->getContext() );
 	}
 
 	/**
@@ -1615,7 +1615,7 @@ class OutputPage extends ContextSource {
 	function addParserOutput( &$parserOutput ) {
 		$this->addParserOutputNoText( $parserOutput );
 		$text = $parserOutput->getText();
-		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ) );
+		wfRunHooks( 'OutputPageBeforeHTML', array( &$this, &$text ), $this->getContext() );
 		$this->addHTML( $text );
 	}
 
@@ -1733,7 +1733,7 @@ class OutputPage extends ContextSource {
 				),
 				$wgCacheVaryCookies
 			);
-			wfRunHooks( 'GetCacheVaryCookies', array( $this, &$cookies ) );
+			wfRunHooks( 'GetCacheVaryCookies', array( $this, &$cookies ), $this->getContext() );
 		}
 		return $cookies;
 	}
@@ -1996,7 +1996,7 @@ class OutputPage extends ContextSource {
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
 
-			if( wfRunHooks( "BeforePageRedirect", array( $this, &$redirect, &$code ) ) ) {
+			if( wfRunHooks( "BeforePageRedirect", array( $this, &$redirect, &$code ), $this->getContext() ) ) {
 				if( $code == '301' || $code == '303' ) {
 					if( !$wgDebugRedirects ) {
 						$message = HttpStatus::getMessage( $code );
@@ -2050,7 +2050,7 @@ class OutputPage extends ContextSource {
 
 			// Hook that allows last minute changes to the output page, e.g.
 			// adding of CSS or Javascript by extensions.
-			wfRunHooks( 'BeforePageDisplay', array( &$this, &$sk ) );
+			wfRunHooks( 'BeforePageDisplay', array( &$this, &$sk ), $this->getContext() );
 
 			wfProfileIn( 'Output-skin' );
 			$sk->outputPage();
@@ -2058,7 +2058,7 @@ class OutputPage extends ContextSource {
 		}
 
 		// This hook allows last minute changes to final overall output by modifying output buffer
-		wfRunHooks( 'AfterFinalPageOutput', array( $this ) );
+		wfRunHooks( 'AfterFinalPageOutput', array( $this ), $this->getContext() );
 
 		$this->sendCacheControl();
 
@@ -2516,7 +2516,7 @@ $templates
 		$bodyAttrs['class'] .= ' action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
 
 		$sk->addToBodyAttributes( $this, $bodyAttrs ); // Allow skins to add body attributes they need
-		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ) );
+		wfRunHooks( 'OutputPageBodyAttributes', array( $this, $sk, &$bodyAttrs ), $this->getContext() );
 
 		$ret .= Html::openElement( 'body', $bodyAttrs ) . "\n";
 
@@ -2550,7 +2550,7 @@ $templates
 		if ( $wgUseAjax ) {
 			$this->addModules( 'mediawiki.legacy.ajax' );
 
-			wfRunHooks( 'AjaxAddScript', array( &$this ) );
+			wfRunHooks( 'AjaxAddScript', array( &$this ), $this->getContext() );
 
 			if( $wgAjaxWatch && $this->getUser()->isLoggedIn() ) {
 				$this->addModules( 'mediawiki.page.watch.ajax' );
@@ -3074,7 +3074,7 @@ $templates
 		// Use the 'ResourceLoaderGetConfigVars' hook if the variable is not
 		// page-dependant but site-wide (without state).
 		// Alternatively, you may want to use OutputPage->addJsConfigVars() instead.
-		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars, $this ) );
+		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars, $this ), $this->getContext() );
 
 		// Merge in variables from addJsConfigVars last
 		return array_merge( $vars, $this->mJsConfigVars );
