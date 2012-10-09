@@ -753,15 +753,12 @@ abstract class DatabaseBase implements DatabaseType {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
 			if ( $this->trxLevel() ) {
-				if ( $this->mTrxAutomatic ) {
-					// clear flag, so commit() doesn't complain about an explicit commit of an implicit transaction.
-					$this->mTrxAutomatic = false;
-				} else {
+				if ( !$this->mTrxAutomatic ) {
 					wfWarn( "Transaction still in progress (from {$this->mTrxFname}), " .
 						" performing implicit commit before closing connection!" );
 				}
 
-				$this->commit( __METHOD__ );
+				$this->commit( __METHOD__, true );
 			}
 
 			$ret = $this->closeConnection();
@@ -2983,12 +2980,16 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Nesting of transactions is not supported.
 	 *
 	 * @param $fname string
+	 * @param $suppressWarnings bool Suppress any warnings about open transactions (default_ false).
+	 *        Only set this if you are absolutely sure that it is safe to ignore these warnings in your context.
 	 */
-	final public function commit( $fname = 'DatabaseBase::commit' ) {
-		if ( !$this->mTrxLevel ) {
-			wfWarn( "$fname: No transaction to commit, something got out of sync!" );
-		} elseif( $this->mTrxAutomatic ) {
-			wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
+	final public function commit( $fname = 'DatabaseBase::commit', $suppressWarnings = false ) {
+		if ( !$suppressWarnings ) {
+			if ( !$this->mTrxLevel ) {
+				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
+			} elseif( $this->mTrxAutomatic ) {
+				wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
+			}
 		}
 
 		$this->doCommit( $fname );
