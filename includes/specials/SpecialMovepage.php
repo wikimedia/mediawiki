@@ -464,7 +464,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			DoubleRedirectJob::fixRedirects( 'move', $ot, $nt );
 		}
 
-		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ) );
+		wfRunHooks( 'SpecialMovepageAfterMove', array( &$this, &$ot, &$nt ), $this->getContext() );
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'pagemovedsub' ) );

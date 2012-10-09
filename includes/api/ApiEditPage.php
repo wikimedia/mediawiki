@@ -308,7 +308,7 @@ class ApiEditPage extends ApiBase {
 		// Run hooks
 		// Handle APIEditBeforeSave parameters
 		$r = array();
-		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ) ) ) {
+		if ( !wfRunHooks( 'APIEditBeforeSave', array( $ep, $ep->textbox1, &$r ), $this->getContext() ) ) {
 			if ( count( $r ) ) {
 				$r['result'] = 'Failure';
 				$apiResult->addValue( null, $this->getModuleName(), $r );

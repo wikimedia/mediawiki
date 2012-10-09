@@ -57,7 +57,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$this->tokenFunctions = array(
 			'userrights' => array( 'ApiQueryUsers', 'getUserrightsToken' ),
 		);
-		wfRunHooks( 'APIQueryUsersTokens', array( &$this->tokenFunctions ) );
+		wfRunHooks( 'APIQueryUsersTokens', array( &$this->tokenFunctions ), $this->getContext() );
 		return $this->tokenFunctions;
 	}
 

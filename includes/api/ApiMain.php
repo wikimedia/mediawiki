@@ -372,7 +372,7 @@ class ApiMain extends ApiBase {
 			$this->executeAction();
 		} catch ( Exception $e ) {
 			// Allow extra cleanup and logging
-			wfRunHooks( 'ApiMain::onException', array( $this, $e ) );
+			wfRunHooks( 'ApiMain::onException', array( $this, $e ), $this->getContext() );
 
 			// Log it
 			if ( !( $e instanceof UsageException ) ) {
@@ -770,7 +770,7 @@ class ApiMain extends ApiBase {
 
 		// Allow extensions to stop execution for arbitrary reasons.
 		$message = false;
-		if( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ) ) ) {
+		if( !wfRunHooks( 'ApiCheckCanExecute', array( $module, $user, &$message ), $this->getContext() ) ) {
 			$this->dieUsageMsg( $message );
 		}
 	}
@@ -818,7 +818,7 @@ class ApiMain extends ApiBase {
 		// Execute
 		$module->profileIn();
 		$module->execute();
-		wfRunHooks( 'APIAfterExecute', array( &$module ) );
+		wfRunHooks( 'APIAfterExecute', array( &$module ), $this->getContext() );
 		$module->profileOut();
 
 		if ( !$this->mInternalMode ) {

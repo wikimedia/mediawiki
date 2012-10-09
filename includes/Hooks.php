@@ -138,7 +138,11 @@ class Hooks {
 	 * @throw MWException if $wgHooks is not an array or if a hook has a bug
 	 * @throw FatalError if a hook returns a string as an error
 	 */
-	public static function run( $event, array $args = array() ) {
+	public static function run( $event, array $args = array(), $ctx = null ) {
+		if ( $ctx === null ) {
+			$ctx = RequestContext::getMain();
+		}
+
 		foreach ( self::getHandlers( $event ) as $hook ) {
 			// Turn non-array values into an array.
 			if ( !is_array( $hook ) ) {
@@ -159,6 +163,11 @@ class Hooks {
 				$object = array_shift( $hook );
 				$method = array_shift( $hook );
 
+				// Set proper context on object.
+				if ( $object instanceof ContextSource ) {
+					$object->setContext( $ctx );
+				}
+
 				// If no method was specified, default to on$event.
 				if ( $method === null ) {
 					$method = "on$event";
@@ -173,6 +182,11 @@ class Hooks {
 			}
 
 			// Put any hook data before the actual arguments.
+			foreach ( $hook as &$arg ) {
+				if ( $arg instanceof ContextSource ) {
+					$arg->setContext( $ctx );
+				}
+			}
 			$hook_args = array_merge( $hook, $args );
 
 			// Run autoloader (workaround for call_user_func_array bug)

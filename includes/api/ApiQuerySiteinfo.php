@@ -196,7 +196,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data['maxuploadsize'] = UploadBase::getMaxUploadSize();
 
-		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ) );
+		wfRunHooks( 'APIQuerySiteInfoGeneralInfo', array( $this, &$data ), $this->getContext() );
 
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}

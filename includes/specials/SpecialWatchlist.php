@@ -111,7 +111,7 @@ class SpecialWatchlist extends SpecialPage {
 		/* bool  */ 'associated' => false,
 		);
 		$this->customFilters = array();
-		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ) );
+		wfRunHooks( 'SpecialWatchlistFilters', array( $this, &$this->customFilters ), $this->getContext() );
 		foreach( $this->customFilters as $key => $params ) {
 			$defaults[$key] = $params['msg'];
 		}
@@ -301,7 +301,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		ChangeTags::modifyDisplayQuery( $tables, $fields, $conds, $join_conds, $options, '' );
-		wfRunHooks('SpecialWatchlistQuery', array(&$conds,&$tables,&$join_conds,&$fields) );
+		wfRunHooks( 'SpecialWatchlistQuery', array( &$conds,&$tables,&$join_conds,&$fields ), $this->getContext() );
 
 		$res = $dbr->select( $tables, $fields, $conds, __METHOD__, $options, $join_conds );
 		$numRows = $res->numRows();

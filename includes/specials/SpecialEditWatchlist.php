@@ -442,7 +442,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 					__METHOD__
 				);
 				$page = WikiPage::factory( $title );
-				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$page ) );
+				wfRunHooks( 'UnwatchArticleComplete', array( $this->getUser(), &$page ), $this->getContext() );
 			}
 		}
 	}
@@ -554,7 +554,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
-		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ) );
+		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ), $this->getContext() );
 
 		return $link . " (" . $this->getLanguage()->pipeList( $tools ) . ")";
 	}
