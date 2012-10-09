@@ -1416,6 +1416,7 @@ class Preferences {
 		//  code, etc.
 		$user->resetOptions();
 
+		wfRunHooks( 'SavePreferences', array( $user, &$formData ), $form->getContext() );
 		foreach ( $formData as $key => $value ) {
 			$user->setOption( $key, $value );
 		}
