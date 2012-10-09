@@ -39,7 +39,7 @@ class ApiLogout extends ApiBase {
 
 		// Give extensions to do something after user logout
 		$injected_html = '';
-		wfRunHooks( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ) );
+		wfRunHooks( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ), $this->getContext() );
 	}
 
 	public function isReadMode() {

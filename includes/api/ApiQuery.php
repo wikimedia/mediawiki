@@ -271,7 +271,7 @@ class ApiQuery extends ApiBase {
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->profileIn();
 			$module->execute();
-			wfRunHooks( 'APIQueryAfterExecute', array( &$module ) );
+			wfRunHooks( 'APIQueryAfterExecute', array( &$module ), $this->getContext() );
 			$module->profileOut();
 		}
 

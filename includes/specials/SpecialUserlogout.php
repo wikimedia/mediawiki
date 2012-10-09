@@ -57,7 +57,7 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 
 		// Hook.
 		$injected_html = '';
-		wfRunHooks( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ) );
+		wfRunHooks( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ), $this->getContext() );
 		$out->addHTML( $injected_html );
 
 		$out->returnToMain();

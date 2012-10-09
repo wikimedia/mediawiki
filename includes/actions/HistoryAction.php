@@ -185,7 +185,7 @@ class HistoryAction extends FormlessAction {
 			'</fieldset></form>'
 		);
 
-		wfRunHooks( 'PageHistoryBeforeList', array( &$this->page, $this->getContext() ) );
+		wfRunHooks( 'PageHistoryBeforeList', array( &$this->page, $this->getContext() ), $this->getContext() );
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
@@ -385,7 +385,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$queryInfo['options'],
 			$this->tagFilter
 		);
-		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ) );
+		wfRunHooks( 'PageHistoryPager::getQueryInfo', array( &$this, &$queryInfo ), $this->getContext() );
 		return $queryInfo;
 	}
 
@@ -676,7 +676,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' <span class="mw-changeslist-separator">. .</span> ' . $s2;
 		}
 
-		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row, &$s, &$classes ) );
+		wfRunHooks( 'PageHistoryLineEnding', array( $this, &$row, &$s, &$classes ), $this->getContext() );
 
 		$attribs = array();
 		if ( $classes ) {

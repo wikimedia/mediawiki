@@ -85,7 +85,7 @@ class ApiLogin extends ApiBase {
 				// @todo FIXME: Split back and frontend from this hook.
 				// @todo FIXME: This hook should be placed in the backend
 				$injected_html = '';
-				wfRunHooks( 'UserLoginComplete', array( &$user, &$injected_html ) );
+				wfRunHooks( 'UserLoginComplete', array( &$user, &$injected_html ), $this->getContext() );
 
 				$result['result'] = 'Success';
 				$result['lguserid'] = intval( $user->getId() );

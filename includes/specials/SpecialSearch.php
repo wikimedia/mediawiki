@@ -180,7 +180,7 @@ class SpecialSearch extends SpecialPage {
 		# If there's an exact or very near match, jump right there.
 		$t = SearchEngine::getNearMatch( $term );
 
-		if ( !wfRunHooks( 'SpecialSearchGo', array( &$t, &$term ) ) ) {
+		if ( !wfRunHooks( 'SpecialSearchGo', array( &$t, &$term ), $this->getContext() ) ) {
 			# Hook requested termination
 			return;
 		}
@@ -193,7 +193,7 @@ class SpecialSearch extends SpecialPage {
 		$t = Title::newFromText( $term );
 		if( !is_null( $t ) ) {
 			global $wgGoToEdit;
-			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ) );
+			wfRunHooks( 'SpecialSearchNogomatch', array( &$t ), $this->getContext() );
 			wfDebugLog( 'nogomatch', $t->getText(), false );
 
 			# If the feature is enabled, go straight to the edit page
@@ -220,7 +220,7 @@ class SpecialSearch extends SpecialPage {
 		$search->prefix = $this->mPrefix;
 		$term = $search->transformSearchTerm( $term );
 
-		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ) );
+		wfRunHooks( 'SpecialSearchSetupEngine', array( $this, $this->profile, $search ), $this->getContext() );
 
 		$this->setupPage( $term );
 
@@ -368,9 +368,9 @@ class SpecialSearch extends SpecialPage {
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 			);
 			//$out->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
-			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ) );
+			wfRunHooks( 'SpecialSearchResults', array( $term, &$titleMatches, &$textMatches ), $this->getContext() );
 		} else {
-			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
+			wfRunHooks( 'SpecialSearchNoResults', array( $term ), $this->getContext() );
 		}
 
 		$out->parserOptions()->setEditSection( false );
@@ -436,7 +436,7 @@ class SpecialSearch extends SpecialPage {
 			$messageName = 'searchmenu-new-nocreate';
 		}
 		$params = array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) );
-		wfRunHooks( 'SpecialSearchCreateLink', array( $t, &$params ) );
+		wfRunHooks( 'SpecialSearchCreateLink', array( $t, &$params ), $this->getContext() );
 
 		// Extensions using the hook might still return an empty $messageName
 		if( $messageName ) {
@@ -558,7 +558,7 @@ class SpecialSearch extends SpecialPage {
 		$link_t = clone $t;
 
 		wfRunHooks( 'ShowSearchHitTitle',
-					array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
+					array( &$link_t, &$titleSnippet, $result, $terms, $this ), $this->getContext() );
 
 		$link = Linker::linkKnown(
 			$link_t,
@@ -843,7 +843,7 @@ class SpecialSearch extends SpecialPage {
 			return $this->powerSearchBox( $term, $opts );
 		} else {
 			$form = '';
-			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $profile, $term, $opts ) );
+			wfRunHooks( 'SpecialSearchProfileForm', array( $this, &$form, $profile, $term, $opts ), $this->getContext() );
 			return $form;
 		}
 	}
@@ -904,7 +904,7 @@ class SpecialSearch extends SpecialPage {
 				Xml::checkLabel( $this->msg( 'powersearch-redir' )->text(), 'redirs', 'redirs', $this->searchRedirects );
 		}
 
-		wfRunHooks( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
+		wfRunHooks( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ), $this->getContext() );
 
 		$hidden = '';
 		unset( $opts['redirs'] );
@@ -966,7 +966,7 @@ class SpecialSearch extends SpecialPage {
 			)
 		);
 
-		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ) );
+		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ), $this->getContext() );
 
 		foreach( $profiles as &$data ) {
 			if ( !is_array( $data['namespaces'] ) ) continue;

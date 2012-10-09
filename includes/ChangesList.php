@@ -99,7 +99,7 @@ class ChangesList extends ContextSource {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;
-		if( wfRunHooks( 'FetchChangesList', array( $user, &$sk, &$list ) ) ) {
+		if( wfRunHooks( 'FetchChangesList', array( $user, &$sk, &$list ), $this->getContext() ) ) {
 			$new = $context->getRequest()->getBool( 'enhanced', $user->getOption( 'usenewrc' ) );
 			return $new ? new EnhancedChangesList( $context ) : new OldChangesList( $context );
 		} else {
@@ -387,7 +387,8 @@ class ChangesList extends ContextSource {
 		$articlelink .= $this->getLanguage()->getDirMark();
 
 		wfRunHooks( 'ChangesListInsertArticleLink',
-			array( &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ) );
+			array( &$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched ),
+			$this->getContext() );
 
 		$s .= " $articlelink";
 	}
@@ -681,10 +682,14 @@ class OldChangesList extends ChangesList {
 			$classes[] = Sanitizer::escapeClass( 'watchlist-' . $rc->mAttribs['rc_namespace'] . '-' . $rc->mAttribs['rc_title'] );
 		}
 
+<<<<<<< HEAD
 		if ( !wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc, &$classes ) ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
+=======
+		wfRunHooks( 'OldChangesListRecentChangesLine', array( &$this, &$s, $rc ), $this->getContext() );
+>>>>>>> 9ba1036... Added contexts to Hooks.
 
 		wfProfileOut( __METHOD__ );
 		return "$dateheader<li class=\"" . implode( ' ', $classes ) . "\">" . $s . "</li>\n";
