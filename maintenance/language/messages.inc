@@ -2344,6 +2344,7 @@ $wgMessageStructure = array(
 		'immobile-target-namespace-iw',
 		'immobile-source-page',
 		'immobile-target-page',
+		'bad-target-model',
 		'immobile_namespace',
 		'imagenocrossnamespace',
 		'nonfile-cannot-move-to-file',
