@@ -86,6 +86,10 @@ class TempFSFile extends FSFile {
 	 */
 	public function bind( $object ) {
 		if ( is_object( $object ) ) {
+			if ( !isset( $object->tempFSFileReferences ) ) {
+				// Init first since $object might use __get() and return only a copy variable
+				$object->tempFSFileReferences = array();
+			}
 			$object->tempFSFileReferences[] = $this;
 		}
 	}

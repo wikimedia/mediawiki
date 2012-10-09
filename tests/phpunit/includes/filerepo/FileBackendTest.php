@@ -1026,6 +1026,9 @@ class FileBackendTest extends MediaWikiTestCase {
 			$this->assertNotEquals( false, $contents, "Local copy of $source exists ($backendName)." );
 			$this->assertEquals( $content[0], $contents, "Local copy of $source is correct ($backendName)." );
 		}
+
+		$obj = new stdClass();
+		$tmpFile->bind( $obj );
 	}
 
 	function provider_testGetLocalCopy() {
