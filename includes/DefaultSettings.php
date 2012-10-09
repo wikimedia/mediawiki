@@ -1377,10 +1377,14 @@ $wgAllDBsAreLocalhost = false;
  * $wgSharedTables may be customized with a list of tables to share in the shared
  * datbase. However it is advised to limit what tables you do share as many of
  * MediaWiki's tables may have side effects if you try to share them.
- * EXPERIMENTAL
  *
  * $wgSharedPrefix is the table prefix for the shared database. It defaults to
  * $wgDBprefix.
+ *
+ * @deprecated In new code, use the $wiki parameter to wfGetLB() to access 
+ *   remote databases. Using wfGetLB() allows the shared database to reside on 
+ *   separate servers to the wiki's own database, with suitable configuration 
+ *   of $wgLBFactoryConf.
  */
 $wgSharedDB = null;
 
