@@ -272,7 +272,7 @@ class DifferenceEngine extends ContextSource {
 			$samePage = true;
 			$oldHeader = '';
 		} else {
-			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
+			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ), $this->getContext() );
 
 			$sk = $this->getSkin();
 			if ( method_exists( $sk, 'suppressQuickbar' ) ) {
@@ -508,7 +508,7 @@ class DifferenceEngine extends ContextSource {
 		$out->addHTML( "<hr class='diff-hr' />
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
-		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $out ) ) ) {
+		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $out ), $this->getContext() ) ) {
 			$this->loadNewText();
 			$out->setRevisionId( $this->mNewid );
 			$out->setRevisionTimestamp( $this->mNewRev->getTimestamp() );
@@ -525,7 +525,7 @@ class DifferenceEngine extends ContextSource {
 					$po = $this->mNewRev->getContent()->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() );
 					$out->addHTML( $po->getText() );
 				}
-			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
+			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ), $this->getContext() ) ) {
 				// Handled by extension
 			} elseif( !ContentHandler::runLegacyHooks( 'ArticleViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// NOTE: deprecated hook, B/C only
@@ -677,7 +677,7 @@ class DifferenceEngine extends ContextSource {
 		$difftext = $this->generateContentDiffBody( $this->mOldContent, $this->mNewContent );
 
 		// Save to cache for 7 days
-		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ) ) ) {
+		if ( !wfRunHooks( 'AbortDiffCache', array( &$this ), $this->getContext() ) ) {
 			wfIncrStats( 'diff_uncacheable' );
 		} elseif ( $key !== false && $difftext !== false ) {
 			wfIncrStats( 'diff_cache_miss' );
@@ -1085,7 +1085,7 @@ class DifferenceEngine extends ContextSource {
 		} else {
 			$this->mOldid = intval( $old );
 			$this->mNewid = intval( $new );
-			wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ) );
+			wfRunHooks( 'NewDifferenceEngine', array( $this->getTitle(), &$this->mOldid, &$this->mNewid, $old, $new ), $this->getContext() );
 		}
 	}
 

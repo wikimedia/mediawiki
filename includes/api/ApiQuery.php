@@ -325,7 +325,7 @@ class ApiQuery extends ApiBase {
 				$cacheMode, $module->getCacheMode( $params ) );
 			$module->profileIn();
 			$module->execute();
-			wfRunHooks( 'APIQueryAfterExecute', array( &$module ) );
+			wfRunHooks( 'APIQueryAfterExecute', array( &$module ), $this->getContext() );
 			$module->profileOut();
 		}
 
@@ -628,7 +628,7 @@ class ApiQuery extends ApiBase {
 		// populate resultPageSet with the generator output
 		$generator->profileIn();
 		$generator->executeGenerator( $resultPageSet );
-		wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$resultPageSet ) );
+		wfRunHooks( 'APIQueryGeneratorAfterExecute', array( &$generator, &$resultPageSet ), $this->getContext() );
 		$resultPageSet->finishPageSetGeneration();
 		$generator->profileOut();
 

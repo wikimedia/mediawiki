@@ -244,7 +244,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			return false;
 		}
 
-		wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ) );
+		wfRunHooks( 'PrefsEmailAudit', array( $user, $oldaddr, $newaddr ), $this->getContext() );
 
 		$user->saveSettings();
 

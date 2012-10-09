@@ -98,7 +98,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'import' => array( 'ApiQueryInfo', 'getImportToken' ),
 			'watch' => array( 'ApiQueryInfo', 'getWatchToken'),
 		);
-		wfRunHooks( 'APIQueryInfoTokens', array( &$this->tokenFunctions ) );
+		wfRunHooks( 'APIQueryInfoTokens', array( &$this->tokenFunctions ), $this->getContext() );
 		return $this->tokenFunctions;
 	}
 
@@ -415,7 +415,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
-				wfRunHooks( 'EditFormPreloadText', array( &$text, &$title ) );
+				wfRunHooks( 'EditFormPreloadText', array( &$text, &$title ), $this->getContext() );
 
 				$pageInfo['preload'] = $text;
 			}
