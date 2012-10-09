@@ -3026,6 +3026,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-lastuser' => 'Viimeisin muokkaaja',
 'pageinfo-edits' => 'Muokkausten kokonaismäärä',
 'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
+'pageinfo-magic-words' => '{{PLURAL:$1|Taikasana|Taikasanat}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Sisällytetty malline|Sisällytetyt mallineet}} ($1)',
 'pageinfo-toolboxlink' => 'Sivun tiedot',
@@ -3595,6 +3596,7 @@ Varmennuskoodi vanhenee $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Wikienvälinen sisällytys ei ole käytössä]',
 'scarytranscludefailed' => '[Mallineen hakeminen epäonnistui: $1]',
+'scarytranscludefailed-httpstatus' => '[Mallineen hakeminen epäonnistui: $1 HTTP $2]',
 'scarytranscludetoolong' => '[Verkko-osoite on liian pitkä]',
 
 # Delete conflict

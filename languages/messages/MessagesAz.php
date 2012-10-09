@@ -10,6 +10,7 @@
  * @author Cekli829
  * @author Don Alessandro
  * @author Emperyan
+ * @author Erdemaslancan
  * @author Gulmammad
  * @author Kaganer
  * @author PPerviz
@@ -729,6 +730,9 @@ Məlumat üçün aşağıda bu səhifənin tarixçəsindən müvafiq silmə qeyd
 'edit-no-change' => 'Sizin redaktələr qeydə alınmamışdır. Belə ki, mətndə heç bir düzəliş edilməmişdir.',
 'edit-already-exists' => 'Yeni səhifəni yaratmaq mümkün deyil.
 Belə ki, bu adda səhifə artıq mövcuddur.',
+
+# Content models
+'content-model-javascript' => 'JavaScript',
 
 # Parser/template warnings
 'expensive-parserfunction-category' => 'Kifayət qədər böyük sayda genişresurslu funksiyaların müraciət olunduğu səhifələr',

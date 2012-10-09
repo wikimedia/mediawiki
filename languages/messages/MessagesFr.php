@@ -4155,18 +4155,18 @@ Sinon, vous pouvez utiliser le formulaire simplifié ci-dessous. Votre commentai
 'api-error-unknown-error' => 'Erreur interne : Quelque chose a mal tourné lors du versement de votre fichier.',
 'api-error-unknown-warning' => 'Avertissement inconnu : $1',
 'api-error-unknownerror' => 'Erreur inconnue : « $1 ».',
-'api-error-uploaddisabled' => 'Le versement est désactivé sur ce wiki.',
+'api-error-uploaddisabled' => 'Le téléversement est désactivé sur ce wiki.',
 'api-error-verification-error' => 'Ce fichier peut être corrompu, ou son extension est incorrecte.',
 
 # Durations
-'duration-seconds' => '$1 {{PLURAL:$1|seconde|secondes}}',
-'duration-minutes' => '$1 {{PLURAL:$1|minute|minutes}}',
-'duration-hours' => '$1 {{PLURAL:$1|heure|heures}}',
-'duration-days' => '$1 {{PLURAL:$1|jour|jours}}',
-'duration-weeks' => '$1 {{PLURAL:$1|semaine|semaines}}',
-'duration-years' => '$1 {{PLURAL:$1|année|années}}',
-'duration-decades' => '$1 {{PLURAL:$1|décennie|décennies}}',
-'duration-centuries' => '$1 {{PLURAL:$1|siècle|siècles}}',
-'duration-millennia' => '$1 {{PLURAL:$1|millénaire|millénaires}}',
+'duration-seconds' => '$1 seconde{{PLURAL:$1||s}}',
+'duration-minutes' => '$1 minute{{PLURAL:$1||s}}',
+'duration-hours' => '$1 heure{{PLURAL:$1||s}}',
+'duration-days' => '$1 jour{{PLURAL:$1||s}}',
+'duration-weeks' => '$1 semaine{{PLURAL:$1||s}}',
+'duration-years' => '$1 année{{PLURAL:$1||s}}',
+'duration-decades' => '$1 décennie{{PLURAL:$1||s}}',
+'duration-centuries' => '$1 siècle{{PLURAL:$1||s}}',
+'duration-millennia' => '$1 millénaire{{PLURAL:$1||s}}',
 
 );
