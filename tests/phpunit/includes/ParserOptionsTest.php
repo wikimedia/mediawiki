@@ -5,15 +5,19 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	private $popts;
 	private $pcache;
 
-	function setUp() {
-		global $wgContLang, $wgUser, $wgLanguageCode;
-		$wgContLang = Language::factory( $wgLanguageCode );
-		$this->popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-		$this->pcache = ParserCache::singleton();
-	}
+	protected function setUp() {
+		global $wgLanguageCode, $wgUser;
+		parent::setUp();
 
-	function tearDown() {
-		parent::tearDown();
+		$langObj = Language::factory( $wgLanguageCode );
+
+		$this->setMwGlobals( array(
+			'wgContLang' => $langObj,
+			'wgUseDynamicDates' => true,
+		) );
+
+		$this->popts = ParserOptions::newFromUserAndLang( $wgUser, $langObj );
+		$this->pcache = ParserCache::singleton();
 	}
 
 	/**
@@ -21,14 +25,12 @@ class ParserOptionsTest extends MediaWikiTestCase {
 	 * @group Database
 	 */
 	function testGetParserCacheKeyWithDynamicDates() {
-		global $wgUseDynamicDates;
-		$wgUseDynamicDates = true;
-
 		$title = Title::newFromText( "Some test article" );
 		$page = WikiPage::factory( $title );
 
 		$pcacheKeyBefore = $this->pcache->getKey( $page, $this->popts );
 		$this->assertNotNull( $this->popts->getDateFormat() );
+
 		$pcacheKeyAfter = $this->pcache->getKey( $page, $this->popts );
 		$this->assertEquals( $pcacheKeyBefore, $pcacheKeyAfter );
 	}

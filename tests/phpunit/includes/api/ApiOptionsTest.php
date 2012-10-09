@@ -9,7 +9,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	private static $Success = array( 'options' => 'success' );
 
-	function setUp() {
+	protected function setUp() {
 		parent::setUp();
 
 		$this->mUserMock = $this->getMockBuilder( 'User' )

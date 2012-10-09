@@ -25,7 +25,7 @@
 class FauxResponseTest extends MediaWikiTestCase {
 	var $response;
 
-	function setUp() {
+	protected function setUp() {
 		$this->response = new FauxResponse;
 	}
 

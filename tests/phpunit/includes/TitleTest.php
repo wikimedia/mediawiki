@@ -2,6 +2,19 @@
 
 class TitleTest extends MediaWikiTestCase {
 
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' ),
+			// User language
+			'wgLang' => Language::factory( 'en' ),
+			'wgAllowUserJs' => false,
+			'wgDefaultLanguageVariant' => false,
+		) );
+	}
+
 	function testLegalChars() {
 		$titlechars = Title::legalChars();
 
@@ -16,7 +29,7 @@ class TitleTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataBug31100
+	 * @dataProvider provideBug31100
 	 */
 	function testBug31100FixSpecialName( $text, $expectedParam ) {
 		$title = Title::newFromText( $text );
@@ -30,7 +43,7 @@ class TitleTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedParam, $par, "Bug 31100 regression check: Title->fixSpecialName() should preserve parameter" );
 	}
 
-	function dataBug31100() {
+	public static function provideBug31100() {
 		return array(
 			array( 'Special:Version', null ),
 			array( 'Special:Version/', '' ),
@@ -45,7 +58,7 @@ class TitleTest extends MediaWikiTestCase {
 	 * @param string $source
 	 * @param string $target
 	 * @param array|string|true $expected Required error
-	 * @dataProvider dataTestIsValidMoveOperation
+	 * @dataProvider provideTestIsValidMoveOperation
 	 */
 	function testIsValidMoveOperation( $source, $target, $expected ) {
 		$title = Title::newFromText( $source );
@@ -69,7 +82,7 @@ class TitleTest extends MediaWikiTestCase {
 		return $result;
 	}
 	
-	function dataTestIsValidMoveOperation() {
+	public static function provideTestIsValidMoveOperation() {
 		return array( 
 			array( 'Test', 'Test', 'selfmove' ),
 			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
@@ -79,22 +92,15 @@ class TitleTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideCasesForGetpageviewlanguage
 	 */
-	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $variant, $msg='' ) {
-		// Save globals
-		global $wgContLang, $wgLang, $wgAllowUserJs, $wgLanguageCode, $wgDefaultLanguageVariant;
-		$save['wgContLang']               = $wgContLang;
-		$save['wgLang']                   = $wgLang;
-		$save['wgAllowUserJs']            = $wgAllowUserJs;
-		$save['wgLanguageCode']           = $wgLanguageCode;
-		$save['wgDefaultLanguageVariant'] = $wgDefaultLanguageVariant;
+	function testGetpageviewlanguage( $expected, $titleText, $contLang, $lang, $variant, $msg = '' ) {
+		global $wgLanguageCode, $wgContLang, $wgLang, $wgDefaultLanguageVariant, $wgAllowUserJs;
 
-		// Setup test environnement:
-		$wgContLang = Language::factory( $contLang );
-		$wgLang     = Language::factory( $lang );
-		# To test out .js titles:
-		$wgAllowUserJs = true;
+		// Setup environnement for this test
 		$wgLanguageCode = $contLang;
+		$wgContLang = Language::factory( $contLang );
+		$wgLang = Language::factory( $lang );
 		$wgDefaultLanguageVariant = $variant;
+		$wgAllowUserJs = true;
 
 		$title = Title::newFromText( $titleText );
 		$this->assertInstanceOf( 'Title', $title,
@@ -104,13 +110,6 @@ class TitleTest extends MediaWikiTestCase {
 			$title->getPageViewLanguage()->getCode(),
 			$msg
 		);
-
-		// Restore globals
-		$wgContLang               = $save['wgContLang'];
-		$wgLang                   = $save['wgLang'];
-		$wgAllowUserJs            = $save['wgAllowUserJs'];
-		$wgLanguageCode           = $save['wgLanguageCode'];
-		$wgDefaultLanguageVariant = $save['wgDefaultLanguageVariant'];
 	}
 
 	function provideCasesForGetpageviewlanguage() {
@@ -182,7 +181,7 @@ class TitleTest extends MediaWikiTestCase {
 		);
 	}
 
-	function provideRootTitleCases() {
+	public static function provideRootTitleCases() {
 		return array(
 			# Title, expected base, optional message
 			array('User:John_Doe/subOne/subTwo', 'John Doe' ),

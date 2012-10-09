@@ -85,7 +85,7 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 	 * If you want to add other HTTP server name, you will have to add a new
 	 * testing method much like the testEncodingUrlWith() method above. 
 	 */
-	public function provideURLS() {
+	public static function provideURLS() {
 		return array(
 		### RFC 1738 chars	
 			// + is not safe

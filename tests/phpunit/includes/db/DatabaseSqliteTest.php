@@ -24,7 +24,9 @@ class MockDatabaseSqlite extends DatabaseSqliteStandalone {
 class DatabaseSqliteTest extends MediaWikiTestCase {
 	var $db;
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		if ( !Sqlite::isPresent() ) {
 			$this->markTestSkipped( 'No SQLite support detected' );
 		}

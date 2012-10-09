@@ -2,43 +2,44 @@
 
 class ExifBitmapTest extends MediaWikiTestCase {
 
-	public function setUp() {
-		global $wgShowEXIF;
-		$this->showExif = $wgShowEXIF;
-		$wgShowEXIF = true;
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( 'wgShowEXIF', true );
+
 		$this->handler = new ExifBitmapHandler;
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
 	}
 
-	public function tearDown() {
-		global $wgShowEXIF;
-		$wgShowEXIF = $this->showExif;
-	}
-
 	public function testIsOldBroken() {
 		$res = $this->handler->isMetadataValid( null, ExifBitmapHandler::OLD_BROKEN_FILE );
 		$this->assertEquals( ExifBitmapHandler::METADATA_COMPATIBLE, $res );
 	}
+
 	public function testIsBrokenFile() {
 		$res = $this->handler->isMetadataValid( null, ExifBitmapHandler::BROKEN_FILE );
 		$this->assertEquals( ExifBitmapHandler::METADATA_GOOD, $res );
 	}
+
 	public function testIsInvalid() {
 		$res = $this->handler->isMetadataValid( null, 'Something Invalid Here.' );
 		$this->assertEquals( ExifBitmapHandler::METADATA_BAD, $res );
 	}
+
 	public function testGoodMetadata() {
 		$meta = 'a:16:{s:10:"ImageWidth";i:20;s:11:"ImageLength";i:20;s:13:"BitsPerSample";a:3:{i:0;i:8;i:1;i:8;i:2;i:8;}s:11:"Compression";i:5;s:25:"PhotometricInterpretation";i:2;s:16:"ImageDescription";s:17:"Created with GIMP";s:12:"StripOffsets";i:8;s:11:"Orientation";i:1;s:15:"SamplesPerPixel";i:3;s:12:"RowsPerStrip";i:64;s:15:"StripByteCounts";i:238;s:11:"XResolution";s:19:"1207959552/16777216";s:11:"YResolution";s:19:"1207959552/16777216";s:19:"PlanarConfiguration";i:1;s:14:"ResolutionUnit";i:2;s:22:"MEDIAWIKI_EXIF_VERSION";i:2;}';
 		$res = $this->handler->isMetadataValid( null, $meta );
 		$this->assertEquals( ExifBitmapHandler::METADATA_GOOD, $res );
 	}
+
 	public function testIsOldGood() {
 		$meta = 'a:16:{s:10:"ImageWidth";i:20;s:11:"ImageLength";i:20;s:13:"BitsPerSample";a:3:{i:0;i:8;i:1;i:8;i:2;i:8;}s:11:"Compression";i:5;s:25:"PhotometricInterpretation";i:2;s:16:"ImageDescription";s:17:"Created with GIMP";s:12:"StripOffsets";i:8;s:11:"Orientation";i:1;s:15:"SamplesPerPixel";i:3;s:12:"RowsPerStrip";i:64;s:15:"StripByteCounts";i:238;s:11:"XResolution";s:19:"1207959552/16777216";s:11:"YResolution";s:19:"1207959552/16777216";s:19:"PlanarConfiguration";i:1;s:14:"ResolutionUnit";i:2;s:22:"MEDIAWIKI_EXIF_VERSION";i:1;}';
 		$res = $this->handler->isMetadataValid( null, $meta );
 		$this->assertEquals( ExifBitmapHandler::METADATA_COMPATIBLE, $res );
 	}
+
 	// Handle metadata from paged tiff handler (gotten via instant commons)
 	// gracefully.
 	public function testPagedTiffHandledGracefully() {
@@ -55,6 +56,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$res = $this->handler->convertMetadataVersion( $metadata, 2 );
 		$this->assertEquals( $metadata, $res );
 	}
+
 	function testConvertMetadataToOld() {
 		$metadata = array(
 			'foo' => array( 'First', 'Second', '_type' => 'ol' ),
@@ -73,6 +75,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$res = $this->handler->convertMetadataVersion( $metadata, 1 );
 		$this->assertEquals( $expected, $res );
 	}
+
 	function testConvertMetadataSoftware() {
 		$metadata = array(
 			'Software' => array( array('GIMP', '1.1' ) ),
@@ -85,6 +88,7 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		$res = $this->handler->convertMetadataVersion( $metadata, 1 );
 		$this->assertEquals( $expected, $res );
 	}
+
 	function testConvertMetadataSoftwareNormal() {
 		$metadata = array(
 			'Software' => array( "GIMP 1.2", "vim" ),

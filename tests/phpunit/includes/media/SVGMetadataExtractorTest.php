@@ -2,19 +2,19 @@
 
 class SVGMetadataExtractorTest extends MediaWikiTestCase {
 
-	function setUp() {
+	protected function setUp() {
 		AutoLoader::loadClass( 'SVGMetadataExtractorTest' );
 	}
 
 	/**
-	 * @dataProvider providerSvgFiles
+	 * @dataProvider provideSvgFiles
 	 */
 	function testGetMetadata( $infile, $expected ) {
 		$this->assertMetadata( $infile, $expected );
 	}
 	
 	/**
-	 * @dataProvider providerSvgFilesWithXMLMetadata
+	 * @dataProvider provideSvgFilesWithXMLMetadata
 	 */
 	function testGetXMLMetadata( $infile, $expected ) {
 		$r = new XMLReader();
@@ -38,7 +38,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 		}
 	}
 
-	function providerSvgFiles() {
+	public static function provideSvgFiles() {
 		$base = __DIR__ . '/../../data/media';
 		return array(
 			array(
@@ -81,7 +81,7 @@ class SVGMetadataExtractorTest extends MediaWikiTestCase {
 		);
 	}
 
-	function providerSvgFilesWithXMLMetadata() {
+	public static function provideSvgFilesWithXMLMetadata() {
 		$base = __DIR__ . '/../../data/media';
 		$metadata = 
     '<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">

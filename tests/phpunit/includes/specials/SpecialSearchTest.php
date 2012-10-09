@@ -10,9 +10,6 @@
 class SpecialSearchTest extends MediaWikiTestCase {
 	private $search;
 
-	function setUp() { }
-	function tearDown() { }
-
 	/**
 	 * @covers SpecialSearch::load
 	 * @dataProvider provideSearchOptionsTests

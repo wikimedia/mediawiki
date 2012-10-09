@@ -6,10 +6,11 @@
  */
 
 class LocalFileTest extends MediaWikiTestCase {
-	function setUp() {
-		global $wgCapitalLinks;
 
-		$wgCapitalLinks = true;
+	protected function setUp() {
+		parent::setUp();
+
+		$this->setMwGlobals( 'wgCapitalLinks', true );
 
 		$info = array(
 			'name'            => 'test',

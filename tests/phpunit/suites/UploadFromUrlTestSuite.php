@@ -15,7 +15,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		return true;
 	}
 
-	function setUp() {
+	protected function setUp() {
 		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			  $wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			  $wgNamespaceAliases, $wgNamespaceProtection, $parserMemc;
@@ -79,7 +79,7 @@ class UploadFromUrlTestSuite extends PHPUnit_Framework_TestSuite {
 		FileBackendGroup::destroySingleton();
 	}
 
-	public function tearDown() {
+	protected function tearDown() {
 		foreach ( $this->savedGlobals as $var => $val ) {
 			$GLOBALS[$var] = $val;
 		}

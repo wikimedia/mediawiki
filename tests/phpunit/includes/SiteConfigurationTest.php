@@ -25,7 +25,7 @@ function getSiteParams( $conf, $wiki ) {
 class SiteConfigurationTest extends MediaWikiTestCase {
 	var $mConf;
 
-	function setUp() {
+	protected function setUp() {
 		$this->mConf = new SiteConfiguration;
 
 		$this->mConf->suffixes = array( 'wiki' );

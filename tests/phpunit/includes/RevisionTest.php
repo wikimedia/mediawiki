@@ -1,25 +1,14 @@
 <?php
 
 class RevisionTest extends MediaWikiTestCase {
-	var $saveGlobals = array();
+	protected function setUp() {
+		parent::setUp();
 
-	function setUp() {
-		global $wgContLang;
-		$wgContLang = Language::factory( 'en' );
-		$globalSet = array(
+		$this->setMwGlobals( array(
+			'wgContLang' => Language::factory( 'en' ),
 			'wgLegacyEncoding' => false,
 			'wgCompressRevisions' => false,
-		);
-		foreach ( $globalSet as $var => $data ) {
-			$this->saveGlobals[$var] = $GLOBALS[$var];
-			$GLOBALS[$var] = $data;
-		}
-	}
-
-	function tearDown() {
-		foreach ( $this->saveGlobals as $var => $data ) {
-			$GLOBALS[$var] = $data;
-		}
+		) );
 	}
 
 	function testGetRevisionText() {
@@ -107,7 +96,10 @@ class RevisionTest extends MediaWikiTestCase {
 	}
 
 	function testCompressRevisionTextUtf8Gzip() {
-		$GLOBALS['wgCompressRevisions'] = true;
+		global $wgCompressRevisions;
+
+		$wgCompressRevisions = true;
+
 		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );

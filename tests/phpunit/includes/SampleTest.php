@@ -5,18 +5,23 @@ class TestSample extends MediaWikiLangTestCase {
 	/**
 	 * Anything that needs to happen before your tests should go here.
 	 */
-	function setUp() {
-		global $wgContLang;
+	protected function setUp() {
+		// Be sure to do call the parent setup and teardown functions.
+		// This makes sure that all the various cleanup and restorations
+		// happen as they should (including the restoration for setMwGlobals).
 		parent::setUp();
 
-		/* For example, we need to set $wgContLang for creating a new Title */
-		$wgContLang = Language::factory( 'en' );
+		// This sets the globals and will restore them automatically
+		// after each test.
+		$this->setMwGlobals( array(
+			'wgContLang' => Language::factory( 'en' ),
+		) );
 	}
 
 	/**
 	 * Anything cleanup you need to do should go here.
 	 */
-	function tearDown() {
+	protected function tearDown() {
 		parent::tearDown();
 	}
 
@@ -40,8 +45,10 @@ class TestSample extends MediaWikiLangTestCase {
 	/**
 	 * If you want to run a the same test with a variety of data. use a data provider.
 	 * see: http://www.phpunit.de/manual/3.4/en/writing-tests-for-phpunit.html
+	 *
+	 * Note: Data providers are always called statically and outside setUp/tearDown!
 	 */
-	public function provideTitles() {
+	public static function provideTitles() {
 		return array(
 			array( 'Text', NS_MEDIA, 'Media:Text' ),
 			array( 'Text', null, 'Text' ),
@@ -78,6 +85,7 @@ class TestSample extends MediaWikiLangTestCase {
 	 * example) as arguments to the next method (e.g. $title in
 	 * testTitleDepends is whatever testInitialCreatiion returned.)
 	 */
+
 	/**
 	 * @depends testSetUpMainPageTitleForNextTest
 	 * See http://www.phpunit.de/manual/3.4/en/appendixes.annotations.html#appendixes.annotations.depends

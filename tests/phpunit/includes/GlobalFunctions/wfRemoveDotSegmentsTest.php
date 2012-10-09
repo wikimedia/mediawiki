@@ -18,7 +18,7 @@ class wfRemoveDotSegments extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	public function providePaths() {
+	public static function providePaths() {
 		return array(
 			array( '/a/b/c/./../../g', '/a/g' ),
 			array( 'mid/content=5/../6', 'mid/6' ),

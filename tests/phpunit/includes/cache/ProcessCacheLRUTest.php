@@ -76,7 +76,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	/**
 	 * Value which are forbidden by the constructor
 	 */
-	function provideInvalidConstructorArg() {
+	public static function provideInvalidConstructorArg() {
 		return array(
 			array( null ),
 			array( array() ),
@@ -131,7 +131,7 @@ class ProcessCacheLRUTest extends MediaWikiTestCase {
 	/**
 	 * Provider for testFillingCache
 	 */
-	function provideCacheFilling() {
+	public static function provideCacheFilling() {
 		// ($cacheMaxEntries, $entryToFill, $msg='')
 		return array(
 			array( 1,  0 ),

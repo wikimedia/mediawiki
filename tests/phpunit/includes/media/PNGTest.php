@@ -1,7 +1,9 @@
 <?php
 class PNGHandlerTest extends MediaWikiTestCase {
 
-	public function setUp() {
+	protected function setUp() {
+		parent::setUp();
+
 		$this->filePath = __DIR__ .  '/../../data/media';
 		$this->backend = new FSFileBackend( array(
 			'name'           => 'localtesting',
@@ -23,14 +25,14 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @param $filename String basename of the file to check
 	 * @param $expected boolean Expected result.
-	 * @dataProvider dataIsAnimated
+	 * @dataProvider provideIsAnimated
 	 */
 	public function testIsAnimanted( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
 		$actual = $this->handler->isAnimatedImage( $file );
 		$this->assertEquals( $expected, $actual );
 	}
-	public function dataIsAnimated() {
+	public static function provideIsAnimated() {
 		return array(
 			array( 'Animated_PNG_example_bouncing_beach_ball.png', true ),
 			array( '1bit-png.png', false ),
@@ -40,14 +42,14 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @param $filename String
 	 * @param $expected Integer Total image area
-	 * @dataProvider dataGetImageArea
+	 * @dataProvider provideGetImageArea
 	 */
 	public function testGetImageArea( $filename, $expected ) {
 		$file = $this->dataFile($filename, 'image/png' );
 		$actual = $this->handler->getImageArea( $file, $file->getWidth(), $file->getHeight() );
 		$this->assertEquals( $expected, $actual );
 	}
-	public function dataGetImageArea() {
+	public static function provideGetImageArea() {
 		return array(
 			array( '1bit-png.png', 2500 ),
 			array( 'greyscale-png.png', 2500 ),
@@ -59,13 +61,13 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @param $metadata String Serialized metadata
 	 * @param $expected Integer One of the class constants of PNGHandler
-	 * @dataProvider dataIsMetadataValid
+	 * @dataProvider provideIsMetadataValid
 	 */
 	public function testIsMetadataValid( $metadata, $expected ) {
 		$actual = $this->handler->isMetadataValid( null, $metadata );
 		$this->assertEquals( $expected, $actual );
 	}
-	public function dataIsMetadataValid() {
+	public static function provideIsMetadataValid() {
 		return array(
 			array( PNGHandler::BROKEN_FILE, PNGHandler::METADATA_GOOD ),
 			array( '', PNGHandler::METADATA_BAD ),
@@ -78,7 +80,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 	/**
 	 * @param $filename String
 	 * @param $expected String Serialized array
-	 * @dataProvider dataGetMetadata
+	 * @dataProvider provideGetMetadata
 	 */
 	public function testGetMetadata( $filename, $expected ) {
 		$file = $this->dataFile( $filename, 'image/png' );
@@ -86,7 +88,7 @@ class PNGHandlerTest extends MediaWikiTestCase {
 //		$this->assertEquals( unserialize( $expected ), unserialize( $actual ) );
 		$this->assertEquals( ( $expected ), ( $actual ) );
 	}
-	public function dataGetMetadata() {
+	public static function provideGetMetadata() {
 		return array(
 			array( 'rgb-na-png.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:8;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:1;}}' ),
 			array( 'xmp.png', 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:1;s:9:"colorType";s:14:"index-coloured";s:8:"metadata";a:2:{s:12:"SerialNumber";s:9:"123456789";s:15:"_MW_PNG_VERSION";i:1;}}' ), 

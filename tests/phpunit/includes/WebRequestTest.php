@@ -1,14 +1,18 @@
 <?php
 
 class WebRequestTest extends MediaWikiTestCase {
-	static $oldServer;
+	protected $oldServer;
 
-	function setUp() {
-		self::$oldServer = $_SERVER;
+	protected function setUp() {
+		parent::setUp();
+
+		$this->oldServer = $_SERVER;
 	}
 
-	function tearDown() {
-		$_SERVER = self::$oldServer;
+	protected function tearDown() {
+		$_SERVER = $this->oldServer;
+
+		parent::tearDown();
 	}
 
 	/**
@@ -20,7 +24,7 @@ class WebRequestTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $result, $description );
 	}
 
-	function provideDetectServer() {
+	public static function provideDetectServer() {
 		return array(
 			array(
 				'http://x',
@@ -107,7 +111,7 @@ class WebRequestTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $result, $description );
 	}
 
-	function provideGetIP() {
+	public static function provideGetIP() {
 		return array(
 			array(
 				'127.0.0.1',
@@ -189,7 +193,7 @@ class WebRequestTest extends MediaWikiTestCase {
 		$request->getIP();
 	}
 
-	function languageProvider() {
+	public static function provideLanguageData() {
 		return array(
 			array( '', array(), 'Empty Accept-Language header' ),
 			array( 'en', array( 'en' => 1 ), 'One language' ),
@@ -206,7 +210,7 @@ class WebRequestTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider languageProvider
+	 * @dataProvider provideLanguageData
 	 */
 	function testAcceptLang($acceptLanguageHeader, $expectedLanguages, $description) {
 		$_SERVER = array( 'HTTP_ACCEPT_LANGUAGE' => $acceptLanguageHeader );

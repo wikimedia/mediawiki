@@ -29,6 +29,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	private $tmpfiles = array();
 
+	/**
+	 * Holds original values of MediaWiki configuration settings
+	 * to be restored in tearDown().
+	 * See also setMwGlobal().
+	 * @var array
+	 */
+	private $mwGlobals = array();
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -119,6 +126,30 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		return $fname;
 	}
 
+	/**
+	 * setUp and tearDown should (where significant)
+	 * happen in reverse order.
+	 */
+	protected function setUp() {
+		parent::setUp();
+
+		// Cleaning up temporary files
+		foreach ( $this->tmpfiles as $fname ) {
+			if ( is_file( $fname ) || ( is_link( $fname ) ) ) {
+				unlink( $fname );
+			} elseif ( is_dir( $fname ) ) {
+				wfRecursiveRemoveDir( $fname );
+			}
+		}
+
+		// Clean up open transactions
+		if ( $this->needsDB() && $this->db ) {
+			while( $this->db->trxLevel() > 0 ) {
+				$this->db->rollback();
+			}
+		}
+	}
+
 	protected function tearDown() {
 		// Cleaning up temporary files
 		foreach ( $this->tmpfiles as $fname ) {
@@ -129,14 +160,65 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			}
 		}
 
-		// clean up open transactions
-		if( $this->needsDB() && $this->db ) {
+		// Clean up open transactions
+		if ( $this->needsDB() && $this->db ) {
 			while( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback();
 			}
 		}
 
+		// Restore mw globals
+		foreach ( $this->mwGlobals as $key => $value ) {
+			$GLOBALS[$key] = $value;
+		}
+		$this->mwGlobals = array();
+
 		parent::tearDown();
+	}
+
+	/**
+	 * Individual test functions may override globals (either directly or through this
+	 * setMwGlobals() function), however one must call this method at least once for
+	 * each key within the setUp().
+	 * That way the key is added to the array of globals that will be reset afterwards
+	 * in the tearDown(). And, equally important, that way all other tests are executed
+	 * with the same settings (instead of using the unreliable local settings for most
+	 * tests and fix it only for some tests).
+	 *
+	 * @example
+	 * <code>
+	 *     protected function setUp() {
+	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
+	 *     }
+	 *
+	 *     function testFoo() {}
+	 *
+	 *     function testBar() {}
+	 *         $this->assertTrue( self::getX()->doStuff() );
+	 *
+	 *         $this->setMwGlobals( 'wgRestrictStuff', false );
+	 *         $this->assertTrue( self::getX()->doStuff() );
+	 *     }
+	 *
+	 *     function testQuux() {}
+	 * </code>
+	 *
+	 * @param array|string $pairs Key to the global variable, or an array
+	 *  of key/value pairs.
+	 * @param mixed $value Value to set the global to (ignored
+	 *  if an array is given as first argument).
+	 */
+	protected function setMwGlobals( $pairs, $value = null ) {
+		if ( !is_array( $pairs ) ) {
+			$key = $pairs;
+			$this->mwGlobals[$key] = $GLOBALS[$key];
+			$GLOBALS[$key] = $value;
+		} else {
+			foreach ( $pairs as $key => $value ) {
+				$this->mwGlobals[$key] = $GLOBALS[$key];
+				$GLOBALS[$key] = $value;
+			}
+		}
 	}
 
 	function dbPrefix() {

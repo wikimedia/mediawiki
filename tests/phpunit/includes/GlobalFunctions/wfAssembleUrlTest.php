@@ -19,7 +19,7 @@ class wfAssembleUrl extends MediaWikiTestCase {
 	 *
 	 * @return array
 	 */
-	public function provideURLParts() {
+	public static function provideURLParts() {
 		$schemes = array(
 			'' => array(),
 			'//' => array(
