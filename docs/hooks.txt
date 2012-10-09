@@ -1777,6 +1777,10 @@ $data: the data stored in old_text.  The meaning depends on $flags: if external
 $flags: a comma-delimited list of strings representing the options used.  May
   include: utf8 (this will always be set for new revisions); gzip; external.
 
+'SavePreferences': Change user preferences right before they are saved.
+$user      : User whose preferences are being changed.
+&$formData : Array of preferences
+
 'SearchUpdate': Prior to search update completion
 $id : Page id
 $namespace : Page namespace
@@ -2371,6 +2375,12 @@ $user: the user object that is to have a group removed
 $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
+
+'UserRightsAbort': Before a user's group memberships are changed on
+Special:Userrights. Allows aborting and adjustment of changes.
+$user   : User object that will be changed
+&$add    : Groups to be added
+&$remove : Groups to be removed
 
 'UserRetrieveNewTalks': called when retrieving "You have new messages!"
 message(s)

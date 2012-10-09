@@ -57,21 +57,25 @@ class ApiOptions extends ApiBase {
 			$user->resetOptions();
 			$changes++;
 		}
+
+		$preferences = array();
 		if ( count( $params['change'] ) ) {
 			foreach ( $params['change'] as $entry ) {
 				$array = explode( '=', $entry, 2 );
-				$user->setOption( $array[0], isset( $array[1] ) ? $array[1] : null );
+				$preferences[$array[0]] = isset( $array[1] ) ? $array[1] : null;
 				$changes++;
 			}
 		}
 		if ( isset( $params['optionname'] ) ) {
 			$newValue = isset( $params['optionvalue'] ) ? $params['optionvalue'] : null;
-			$user->setOption( $params['optionname'], $newValue );
+			$preferences[$params['optionname']] = $newValue;
 			$changes++;
 		}
 
 		if ( $changes ) {
 			// Commit changes
+			wfRunHooks( 'SavePreferences', array( $user, &$preferences ), $this->getContext() );
+			array_map( array( $user, 'setOption' ), array_keys( $preferences ), array_values( $preferences ) );
 			$user->saveSettings();
 		} else {
 			$this->dieUsage( 'No changes were requested', 'nochanges' );
