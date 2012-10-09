@@ -92,7 +92,7 @@ class DeferredUpdates {
 				$update->doUpdate();
 
 				if ( $doCommit && $dbw->trxLevel() ) {
-					$dbw->commit( __METHOD__ );
+					$dbw->commit( __METHOD__, 'flush' );
 				}
 			} catch ( MWException $e ) {
 				// We don't want exceptions thrown during deferred updates to

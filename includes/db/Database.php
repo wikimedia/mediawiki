@@ -758,7 +758,7 @@ abstract class DatabaseBase implements DatabaseType {
 						" performing implicit commit before closing connection!" );
 				}
 
-				$this->commit( __METHOD__, true );
+				$this->commit( __METHOD__, 'flush' );
 			}
 
 			$ret = $this->closeConnection();
@@ -2980,11 +2980,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Nesting of transactions is not supported.
 	 *
 	 * @param $fname string
-	 * @param $suppressWarnings bool Suppress any warnings about open transactions (default_ false).
-	 *        Only set this if you are absolutely sure that it is safe to ignore these warnings in your context.
+	 * @param $flush String Flush flag, set to 'flush' to disable warnings about explicitly committing implicit
+	 *        transactions, or calling commit when no transaction is in progress.
+	 *        This will silently break any ongoing explicit transaction. Only set the flush flag if you are sure
+	 *        that it is safe to ignore these warnings in your context.
 	 */
-	final public function commit( $fname = 'DatabaseBase::commit', $suppressWarnings = false ) {
-		if ( !$suppressWarnings ) {
+	final public function commit( $fname = 'DatabaseBase::commit', $flush = '' ) {
+		if ( $flush != 'flush' ) {
 			if ( !$this->mTrxLevel ) {
 				wfWarn( "$fname: No transaction to commit, something got out of sync!" );
 			} elseif( $this->mTrxAutomatic ) {
