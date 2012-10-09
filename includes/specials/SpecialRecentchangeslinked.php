@@ -119,7 +119,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			$opts['tagfilter']
 		);
 
-		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ) ) ) {
+		if ( !wfRunHooks( 'SpecialRecentChangesQuery', array( &$conds, &$tables, &$join_conds, $opts, &$query_options, &$select ), $this->getContext() ) ) {
 			return false;
 		}
 

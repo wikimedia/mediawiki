@@ -208,7 +208,7 @@ class LoginForm extends SpecialPage {
 		$u->saveSettings();
 		$result = $this->mailPasswordInternal( $u, false, 'createaccount-title', 'createaccount-text' );
 
-		wfRunHooks( 'AddNewAccount', array( $u, true ) );
+		wfRunHooks( 'AddNewAccount', array( $u, true ), $this->getContext() );
 		$u->addNewUserLogEntry( true, $this->mReason );
 
 		$out = $this->getOutput();
@@ -266,7 +266,7 @@ class LoginForm extends SpecialPage {
 			// which is needed or the personal links will be
 			// wrong.
 			$this->getContext()->setUser( $u );
-			wfRunHooks( 'AddNewAccount', array( $u, false ) );
+			wfRunHooks( 'AddNewAccount', array( $u, false ), $this->getContext() );
 			$u->addNewUserLogEntry();
 			if( $this->hasSessionCookie() ) {
 				$this->successfulCreation();
@@ -278,7 +278,7 @@ class LoginForm extends SpecialPage {
 			$out->setPageTitle( $this->msg( 'accountcreated' ) );
 			$out->addWikiMsg( 'accountcreatedtext', $u->getName() );
 			$out->addReturnTo( $this->getTitle() );
-			wfRunHooks( 'AddNewAccount', array( $u, false ) );
+			wfRunHooks( 'AddNewAccount', array( $u, false ), $this->getContext() );
 			$u->addNewUserLogEntry( false, $this->mReason );
 		}
 		return true;
@@ -412,7 +412,7 @@ class LoginForm extends SpecialPage {
 		$u->setRealName( $this->mRealName );
 
 		$abortError = '';
-		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ) ) ) {
+		if( !wfRunHooks( 'AbortNewAccount', array( $u, &$abortError ), $this->getContext() ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::addNewAccountInternal: a hook blocked creation\n" );
 			$this->mainLoginForm( $abortError );
@@ -420,7 +420,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		// Hook point to check for exempt from account creation throttle
-		if ( !wfRunHooks( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
+		if ( !wfRunHooks( 'ExemptFromAccountCreationThrottle', array( $ip ), $this->getContext() ) ) {
 			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook allowed account creation w/o throttle\n" );
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
@@ -572,7 +572,7 @@ class LoginForm extends SpecialPage {
 
 		// Give general extensions, such as a captcha, a chance to abort logins
 		$abort = self::ABORTED;
-		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$this->mAbortLoginErrorMsg ) ) ) {
+		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$this->mAbortLoginErrorMsg ), $this->getContext() ) ) {
 			return $abort;
 		}
 
@@ -625,12 +625,12 @@ class LoginForm extends SpecialPage {
 
 			if ( $isAutoCreated ) {
 				// Must be run after $wgUser is set, for correct new user log
-				wfRunHooks( 'AuthPluginAutoCreate', array( $u ) );
+				wfRunHooks( 'AuthPluginAutoCreate', array( $u ), $this->getContext() );
 			}
 
 			$retval = self::SUCCESS;
 		}
-		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ) );
+		wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $retval ), $this->getContext() );
 		return $retval;
 	}
 
@@ -722,7 +722,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$abortError = '';
-		if( !wfRunHooks( 'AbortAutoAccount', array( $user, &$abortError ) ) ) {
+		if( !wfRunHooks( 'AbortAutoAccount', array( $user, &$abortError ), $this->getContext() ) ) {
 			// Hook point to add extra creation throttles and blocks
 			wfDebug( "LoginForm::attemptAutoCreate: a hook blocked creation: $abortError\n" );
 			$this->mAbortLoginErrorMsg = $abortError;
@@ -850,7 +850,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$currentUser = $this->getUser();
-		wfRunHooks( 'User::mailPasswordInternal', array( &$currentUser, &$ip, &$u ) );
+		wfRunHooks( 'User::mailPasswordInternal', array( &$currentUser, &$ip, &$u ), $this->getContext() );
 
 		$np = $u->randomPassword();
 		$u->setNewpassword( $np, $throttle );
@@ -878,7 +878,7 @@ class LoginForm extends SpecialPage {
 		# Run any hooks; display injected HTML if any, else redirect
 		$currentUser = $this->getUser();
 		$injected_html = '';
-		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
+		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ), $this->getContext() );
 
 		if( $injected_html !== '' ) {
 			$this->displaySuccessfulLogin( 'loginsuccess', $injected_html );
@@ -899,14 +899,14 @@ class LoginForm extends SpecialPage {
 		$injected_html = '';
 		$welcome_creation_msg = 'welcomecreation';
 
-		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
+		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ), $this->getContext() );
 
 		/**
 		 * Let any extensions change what message is shown.
 		 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforeWelcomeCreation
 		 * @since 1.18
 		 */
-		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
+		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ), $this->getContext() );
 
 		$this->displaySuccessfulLogin( $welcome_creation_msg, $injected_html );
 	}
@@ -1144,9 +1144,9 @@ class LoginForm extends SpecialPage {
 		// Give authentication and captcha plugins a chance to modify the form
 		$wgAuth->modifyUITemplate( $template, $this->mType );
 		if ( $this->mType == 'signup' ) {
-			wfRunHooks( 'UserCreateForm', array( &$template ) );
+			wfRunHooks( 'UserCreateForm', array( &$template ), $this->getContext() );
 		} else {
-			wfRunHooks( 'UserLoginForm', array( &$template ) );
+			wfRunHooks( 'UserLoginForm', array( &$template ), $this->getContext() );
 		}
 
 		$out = $this->getOutput();

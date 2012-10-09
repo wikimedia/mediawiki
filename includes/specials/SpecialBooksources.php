@@ -137,7 +137,7 @@ class SpecialBookSources extends SpecialPage {
 
 		# Hook to allow extensions to insert additional HTML,
 		# e.g. for API-interacting plugins and so on
-		wfRunHooks( 'BookInformation', array( $this->isbn, $this->getOutput() ) );
+		wfRunHooks( 'BookInformation', array( $this->isbn, $this->getOutput() ), $this->getContext() );
 
 		# Check for a local page such as Project:Book_sources and use that if available
 		$page = $this->msg( 'booksources' )->inContentLanguage()->text();
