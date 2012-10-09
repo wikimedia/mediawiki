@@ -75,7 +75,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo = $this->pageInfo();
 
 		// Allow extensions to add additional information
-		wfRunHooks( 'InfoAction', array( &$pageInfo ) );
+		wfRunHooks( 'InfoAction', array( &$pageInfo ), $this->getContext() );
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {

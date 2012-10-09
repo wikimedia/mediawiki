@@ -161,7 +161,7 @@ class SpecialContributions extends SpecialPage {
 		// Add RSS/atom links
 		$this->addFeedLinks( array( 'action' => 'feedcontributions', 'user' => $target ) );
 
-		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ) ) ) {
+		if ( wfRunHooks( 'SpecialContributionsBeforeMainOutput', array( $id ), $this->getContext() ) ) {
 
 			$out->addHTML( $this->getForm() );
 
@@ -345,7 +345,7 @@ class SpecialContributions extends SpecialPage {
 			);
 		}
 
-		wfRunHooks( 'ContributionsToolLinks', array( $id, $userpage, &$tools ) );
+		wfRunHooks( 'ContributionsToolLinks', array( $id, $userpage, &$tools ), $this->getContext() );
 		return $tools;
 	}
 
@@ -626,7 +626,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		 * $descending: see phpdoc above
 		 */
 		$data = array( $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds ) );
-		wfRunHooks( 'ContribsPager::reallyDoQuery', array( &$data, $pager, $offset, $limit, $descending ) );
+		wfRunHooks( 'ContribsPager::reallyDoQuery', array( &$data, $pager, $offset, $limit, $descending ), $this->getContext() );
 
 		$result = array();
 
@@ -695,7 +695,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$this->tagFilter
 		);
 
-		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ) );
+		wfRunHooks( 'ContribsPager::getQueryInfo', array( &$this, &$queryInfo ), $this->getContext() );
 		return $queryInfo;
 	}
 
@@ -948,7 +948,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		// Let extensions add data
-		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ) );
+		wfRunHooks( 'ContributionsLineEnding', array( $this, &$ret, $row, &$classes ), $this->getContext() );
 
 		$classes = implode( ' ', $classes );
 		$ret = "<li class=\"$classes\">$ret</li>\n";

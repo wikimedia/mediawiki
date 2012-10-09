@@ -135,7 +135,7 @@ class SpecialVersion extends SpecialPage {
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
 		// Allow a hook to add/remove items.
-		wfRunHooks( 'SoftwareInfo', array( &$software ) );
+		wfRunHooks( 'SoftwareInfo', array( &$software ), $this->getContext() );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMessage( 'version-software' )->text() ) .
 			   Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ) ) .
@@ -289,7 +289,7 @@ class SpecialVersion extends SpecialPage {
 				'other' => wfMessage( 'version-other' )->text(),
 			);
 
-			wfRunHooks( 'ExtensionTypes', array( &self::$extensionTypes ) );
+			wfRunHooks( 'ExtensionTypes', array( &self::$extensionTypes ), $this->getContext() );
 		}
 
 		return self::$extensionTypes;
@@ -326,7 +326,7 @@ class SpecialVersion extends SpecialPage {
 		/**
 		 * @deprecated as of 1.17, use hook ExtensionTypes instead.
 		 */
-		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
+		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ), $this->getContext() );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), $this->msg( 'version-extensions' )->text() ) .
 			Xml::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'sv-ext' ) );
