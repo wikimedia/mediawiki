@@ -973,7 +973,40 @@ abstract class ContentHandler {
 		}
 
 		if ( $warn ) {
-			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()", 2 );
+			// Log information about which handlers are registered for the legacy hook,
+			// so we can find and fix them.
+
+			$handlers = Hooks::getHandlers( $event );
+			$handlerInfo = array();
+
+			wfSuppressWarnings();
+
+			foreach ( $handlers as $handler ) {
+				$info = '';
+
+				if ( is_array( $handler ) ) {
+					if ( is_object( $handler[0] ) ) {
+						$info = get_class( $handler[0] );
+					} else {
+						$info = $handler[0];
+					}
+
+					if ( isset( $handler[1] ) ) {
+						$info .= '::' . $handler[1];
+					}
+				} else if ( is_object( $handler ) ) {
+					$info = get_class( $handler[0] );
+					$info .= '::on' . $event;
+				} else {
+					$info = $handler;
+				}
+
+				$handlerInfo[] = $info;
+			}
+
+			wfRestoreWarnings();
+
+			wfWarn( "Using obsolete hook $event via ContentHandler::runLegacyHooks()! Handlers: " . implode(', ', $handlerInfo), 2 );
 		}
 
 		// convert Content objects to text
