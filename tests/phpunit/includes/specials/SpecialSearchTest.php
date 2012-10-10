@@ -129,16 +129,13 @@ class SpecialSearchTest extends MediaWikiTestCase {
 			->getOutput()
 			->getHTMLTitle();
 
-		# Craft the expected, plain, text:
-		$aPlainSearchTerm =
-			wfMessage( 'searchresults-title', $term )
-			->plain();
-
 		# Compare :-]
-		$this->assertStringStartsWith( $aPlainSearchTerm,
+		$this->assertRegExp(
+			'/' . preg_quote( $term ) . '/',
 			$pageTitle,
-			"Search term should not be expanded in Special:Search <title>"
+			"Search term '{$term}' should not be expanded in Special:Search <title>"
 		);
+
 	}
 }
 
