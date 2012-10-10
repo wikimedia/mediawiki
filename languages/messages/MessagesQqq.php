@@ -843,9 +843,8 @@ Parameters:
 
 {{Identical|Change password}}',
 'resetpass_text' => '{{optional}}',
-'resetpass_header' => 'Header on box on special page [[Special:ChangePassword]].
-
-{{Identical|Reset password}}',
+'changepassword-legend' => 'Header on box on special page [[Special:ChangePassword]].',
+'changepassword-text' => '{{optional}}',
 'oldpassword' => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
 'newpassword' => '{{Identical|New password}}',
 'retypenew' => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
@@ -888,7 +887,7 @@ Parameters:
 * $4 - base URL of the wiki',
 'passwordreset-emailelement' => "This is a body of a reminder email to allow them into the system with a new password. Parameters:
 * $1 will be the user's login name. This parameter can be used for GENDER.
-* $2 will be the temporary password given by the system.",
+* $2 will be a reset link for the user.",
 'passwordreset-emailerror-capture' => 'Error message displayed when sending an e-mail fails. Parameters:
 * $1 is the name of a user who was supposed to get the e-mail.',
 
