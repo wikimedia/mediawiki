@@ -1208,7 +1208,7 @@ $wgPasswordReminderResendTime = 24;
 /**
  * The time, in seconds, when an emailed temporary password expires.
  */
-$wgNewPasswordExpiry = 3600 * 24 * 7;
+$wgNewPasswordExpiry = 3600 * 24;
 
 /**
  * The time, in seconds, when an email confirmation email expires
