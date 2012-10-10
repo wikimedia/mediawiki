@@ -32,7 +32,7 @@ abstract class MediaTransformOutput {
 	 */
 	var $file;
 
-	var $width, $height, $url, $page, $path;
+	var $width, $height, $url, $page, $path, $lang;
 	protected $storagePath = false;
 
 	/**
@@ -189,10 +189,23 @@ abstract class MediaTransformOutput {
 	 * @return array
 	 */
 	public function getDescLinkAttribs( $title = null, $params = '' ) {
-		$query = $this->page ? ( 'page=' . urlencode( $this->page ) ) : '';
-		if( $params ) {
-			$query .= $query ? '&'.$params : $params;
+		$query = '';
+		if( $this->page ) {
+			$query = 'page=' . urlencode( $this->page );
 		}
+		if( $this->lang ) {
+			if( strlen( $query ) > 0 ) {
+				$query .= '&';
+			}
+			$query = 'lang=' . urlencode( $this->lang );
+		}
+		if( strlen( $params ) > 0 ) {
+			if( strlen( $query ) > 0 ) {
+				$query .= '&';
+			}
+			$query .= $params;
+		}
+
 		$attribs = array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
@@ -227,10 +240,11 @@ class ThumbnailImage extends MediaTransformOutput {
 		# Previous parameters:
 		#   $file, $url, $width, $height, $path = false, $page = false
 
+		$defaults = array(
+			'page' => false,
+			'lang' => false
+		);
 		if( is_array( $parameters ) ){
-			$defaults = array(
-				'page' => false
-			);
 			$actualParams = $parameters + $defaults;
 		} else {
 			# Using old format, should convert. Later a warning could be added here.
@@ -239,7 +253,7 @@ class ThumbnailImage extends MediaTransformOutput {
 				'width' => $path,
 				'height' => $parameters,
 				'page' => ( $numArgs > 5 ) ? func_get_arg( 5 ) : false
-			);
+			) + $defaults;
 			$path = ( $numArgs > 4 ) ? func_get_arg( 4 ) : false;
 		}
 
@@ -254,6 +268,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		$this->height = round( $actualParams['height'] );
 
 		$this->page = $actualParams['page'];
+		$this->lang = $actualParams['lang'];
 	}
 
 	/**
