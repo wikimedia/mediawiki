@@ -9620,6 +9620,20 @@ language=zh variant=zh-tw
 
 
 !! test
+Conversion around HTML tags
+!! options
+language=sr variant=sr-ec
+!! input
+-{H|span=>sr-ec:script;title=>sr-ec:src;}-
+<span alt="Latin" title="La-{sr-el:L;sr-ec:C;}-tin">ski</span>
+!! result
+<p>
+<span title="ЛаCтин">ски</span>
+</p>
+!! end
+
+
+!! test
 Explicit session-wise language variant mapping (A flag and - flag)
 !! options
 language=zh variant=zh-tw
