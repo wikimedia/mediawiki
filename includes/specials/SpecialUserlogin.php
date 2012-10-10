@@ -443,7 +443,13 @@ class LoginForm extends SpecialPage {
 		}
 
 		self::clearCreateaccountToken();
-		return $this->initUser( $u, false );
+
+		$status = $this->initUser( $u, false );
+		if ( !$status->isOK() ) {
+			$this->mainLoginForm( $status->getHTML() );
+			return false;
+		}
+		return $status->value;
 	}
 
 	/**
@@ -452,13 +458,16 @@ class LoginForm extends SpecialPage {
 	 *
 	 * @param $u User object.
 	 * @param $autocreate boolean -- true if this is an autocreation via auth plugin
-	 * @return User object.
+	 * @return Status object, with the User object in the value member on success
 	 * @private
 	 */
 	function initUser( $u, $autocreate ) {
 		global $wgAuth;
 
-		$u->addToDatabase();
+		$status = $u->addToDatabase();
+		if ( !$status->isOK() ) {
+			return $status;
+		}
 
 		if ( $wgAuth->allowPasswordChange() ) {
 			$u->setPassword( $this->mPassword );
@@ -484,7 +493,7 @@ class LoginForm extends SpecialPage {
 		# Update user count
 		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 0, 0, 0, 1 ) );
 
-		return $u;
+		return Status::newGood( $u );
 	}
 
 	/**
@@ -730,7 +739,14 @@ class LoginForm extends SpecialPage {
 		}
 
 		wfDebug( __METHOD__ . ": creating account\n" );
-		$this->initUser( $user, true );
+		$status = $this->initUser( $user, true );
+
+		if ( !$status->isOK() ) {
+			$errors = $status->getErrorsByType( 'error' );
+			$this->mAbortLoginErrorMsg = $errors[0]['message'];
+			return self::ABORTED;
+		}
+
 		return self::SUCCESS;
 	}
 

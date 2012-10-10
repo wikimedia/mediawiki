@@ -226,6 +226,15 @@ class Status {
 	}
 
 	/**
+	 * Get the error message as HTML. This is done by parsing the wikitext error 
+	 * message.
+	 */
+	public function getHTML( $shortContext = false, $longContext = false ) {
+		$text = $this->getWikiText( $shortContext, $longContext );
+		return MessageCache::singleton()->transform( $text, true );
+	}
+
+	/**
 	 * Return an array with the wikitext for each item in the array.
 	 * @param $errors Array
 	 * @return Array
