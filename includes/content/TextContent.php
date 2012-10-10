@@ -7,9 +7,9 @@
  *
  * @since 1.21
  */
-abstract class TextContent extends AbstractContent {
+class TextContent extends AbstractContent {
 
-	public function __construct( $text, $model_id = null ) {
+	public function __construct( $text, $model_id = CONTENT_MODEL_TEXT ) {
 		parent::__construct( $model_id );
 
 		$this->mText = $text;

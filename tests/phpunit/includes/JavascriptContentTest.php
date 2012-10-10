@@ -6,7 +6,7 @@
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
  */
-class JavascriptContentTest extends WikitextContentTest {
+class JavascriptContentTest extends TextContentTest {
 
 	public function newContent( $text ) {
 		return new JavascriptContent( $text );
@@ -16,7 +16,7 @@ class JavascriptContentTest extends WikitextContentTest {
 	public function dataGetParserOutput() {
 		return array(
 			array("MediaWiki:Test.js", null, "hello <world>\n",
-					"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>\n"),
+					"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"),
 			// @todo: more...?
 		);
 	}
@@ -81,18 +81,16 @@ class JavascriptContentTest extends WikitextContentTest {
 	}
 
 	// XXX: currently, preSaveTransform is applied to scripts. this may change or become optional.
-	/*
 	public function dataPreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
-			       "hello this is ~~~",
+				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
 			),
 			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
-			       'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+				'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 			),
 		);
 	}
-	*/
 
 	public function dataPreloadTransform() {
 		return array(
