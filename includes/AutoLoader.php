@@ -454,6 +454,12 @@ $wgAutoloadLocalClasses = array(
 	# includes/dao
 	'IDBAccessObject' => 'includes/dao/IDBAccessObject.php',
 	'DBAccessBase' => 'includes/dao/DBAccessBase.php',
+	'DataModel' => 'includes/dao/DataModel.php',
+	'DataModelList' => 'includes/dao/DataModelList.php',
+	'DataModelBackend' => 'includes/dao/DataModelBackend.php',
+	'DataModelBackendRDBStore' => 'includes/dao/DataModelBackend.RDBStore.php',
+	'DataModelBackendLBFactory' => 'includes/dao/DataModelBackend.LBFactory.php',
+	'DataModelSample' => 'includes/dao/DataModelSample.php',
 
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',
