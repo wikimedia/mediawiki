@@ -6,7 +6,6 @@ QUnit.module( 'mediawiki.jqueryMsg', QUnit.newMwEnvironment( {
 		mw.language = $.extend( true, {}, this.orgMwLangauge );
 	},
 	teardown: function () {
-		// Restore
 		mw.language = this.orgMwLangauge;
 	}
 }) );
@@ -25,7 +24,10 @@ function getMwLanguage( langCode, cb ) {
 			skin: mw.config.get( 'skin' ),
 			lang: langCode,
 			debug: mw.config.get( 'debug' ),
-			modules: 'mediawiki.language',
+			modules: [
+				'mediawiki.language.data',
+				'mediawiki.language'
+			].join( '|' ),
 			only: 'scripts'
 		},
 		dataType: 'script'
@@ -141,6 +143,7 @@ QUnit.test( 'Output matches PHP parser', mw.libs.phpParserData.tests.length, fun
 				assert.ok( false, 'Language "' + test.lang + '" failed to load' );
 				return;
 			}
+			mw.config.set( 'wgUserLanguage', test.lang ) ;
 			var parser = new mw.jqueryMsg.parser( { language: langClass } );
 			assert.equal(
 				parser.parse( test.key, test.args ).html(),
