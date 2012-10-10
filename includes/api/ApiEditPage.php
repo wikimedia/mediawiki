@@ -128,17 +128,10 @@ class ApiEditPage extends ApiBase {
 		{
 			$content = $pageObj->getContent();
 
-			// @todo: Add support for appending/prepending to the Content interface
-
-			if ( !( $content instanceof TextContent ) ) {
-				$mode = $contentHandler->getModelID();
-				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
-			}
-
 			if ( !$content ) {
-				# If this is a MediaWiki:x message, then load the messages
-				# and return the message value for x.
 				if ( $titleObj->getNamespace() == NS_MEDIAWIKI ) {
+					# If this is a MediaWiki:x message, then load the messages
+					# and return the message value for x.
 					$text = $titleObj->getDefaultMessageText();
 					if ( $text === false ) {
 						$text = '';
@@ -150,7 +143,17 @@ class ApiEditPage extends ApiBase {
 						$this->dieUsage( $ex->getMessage(), 'parseerror' );
 						return;
 					}
+				} else {
+					# Otherwise, make a new empty content.
+					$content = $contentHandler->makeEmptyContent();
 				}
+			}
+
+			// @todo: Add support for appending/prepending to the Content interface
+
+			if ( !( $content instanceof TextContent ) ) {
+				$mode = $contentHandler->getModelID();
+				$this->dieUsage( "Can't append to pages using content model $mode", 'appendnotsupported' );
 			}
 
 			if ( !is_null( $params['section'] ) ) {
