@@ -23,6 +23,8 @@ production.
   It is still set to true for extension compatibility but doing so in extensions is deprecated.
 * $wgXhtmlDefaultNamespace is no longer used by core. Setting it will no longer change the
   xmlns used by MediaWiki. Reliance on this variable by extensions is deprecated.
+* Changed expiry of temporary passwords from one week to one day because of
+  the new token-based password reset system.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -79,6 +81,9 @@ production.
   which can be cascading (previously 'sysop' was hard-coded as the only one).
 * XHTML5 support has been improved. If you set $wgMimeType = 'application/xhtml+xml'
   MediaWiki will try outputting markup acording to XHTML5 rules.
+* The temporary password-based password reset system has been replaced with
+  a token system, i.e., instead of using a temporary password, the user clicks
+  a link in the email.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
