@@ -399,7 +399,7 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['topOnly'] = false;
 		}
 
-		$form = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
+		$form = Html::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
 
 		# Add hidden params for tracking except for parameters in $skipParameters
 		$skipParameters = array( 'namespace', 'nsInvert', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly', 'associated' );
@@ -414,13 +414,13 @@ class SpecialContributions extends SpecialPage {
 
 		if ( $tagFilter ) {
 			$filterSelection =
-				Xml::tags( 'td', array( 'class' => 'mw-label' ), array_shift( $tagFilter ) ) .
-				Xml::tags( 'td', array( 'class' => 'mw-input' ), implode( '&#160', $tagFilter ) );
+				Html::rawElement( 'td', array( 'class' => 'mw-label' ), array_shift( $tagFilter ) ) .
+				Html::rawElement( 'td', array( 'class' => 'mw-input' ), implode( '&#160', $tagFilter ) );
 		} else {
-			$filterSelection = Xml::tags( 'td', array( 'colspan' => 2 ), '' );
+			$filterSelection = Html::rawElement( 'td', array( 'colspan' => 2 ), '' );
 		}
 
-		$targetSelection = Xml::tags( 'td', array( 'colspan' => 2 ),
+		$targetSelection = Html::rawElement( 'td', array( 'colspan' => 2 ),
 			Xml::radioLabel(
 				$this->msg( 'sp-contributions-newbies' )->text(),
 				'contribs',
@@ -455,7 +455,7 @@ class SpecialContributions extends SpecialPage {
 					''
 				)
 			) .
-			Xml::tags( 'td', null,
+			Html::rawElement( 'td', null,
 				Html::namespaceSelector( array(
 					'selected' => $this->opts['namespace'],
 					'all'      => '',
@@ -499,7 +499,7 @@ class SpecialContributions extends SpecialPage {
 			$deletedOnlyCheck = '';
 		}
 
-		$extraOptions = Xml::tags( 'td', array( 'colspan' => 2 ),
+		$extraOptions = Html::rawElement( 'td', array( 'colspan' => 2 ),
 			$deletedOnlyCheck .
 			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 				Xml::checkLabel(
@@ -510,7 +510,7 @@ class SpecialContributions extends SpecialPage {
 					array( 'class' => 'mw-input' )
 				)
 			)
-		) ;
+		);
 
 		$dateSelectionAndSubmit = Xml::tags( 'td', array( 'colspan' => 2 ),
 			Xml::dateMenu(
@@ -525,23 +525,13 @@ class SpecialContributions extends SpecialPage {
 
 		$form .=
 			Xml::fieldset( $this->msg( 'sp-contributions-search' )->text() ) .
-			Xml::openElement( 'table', array( 'class' => 'mw-contributions-table' ) ) .
-				Xml::openElement( 'tr' ) .
-					$targetSelection .
-				Xml::closeElement( 'tr' ) .
-				Xml::openElement( 'tr' ) .
-					$namespaceSelection .
-				Xml::closeElement( 'tr' ) .
-				Xml::openElement( 'tr' ) .
-					$filterSelection .
-				Xml::closeElement( 'tr' ) .
-				Xml::openElement( 'tr' ) .
-					$extraOptions .
-				Xml::closeElement( 'tr' ) .
-				Xml::openElement( 'tr' ) .
-					$dateSelectionAndSubmit .
-				Xml::closeElement( 'tr' ) .
-			Xml::closeElement( 'table' );
+			Html::rawElement( 'table', array( 'class' => 'mw-contributions-table' ), "\n" .
+				Html::rawElement( 'tr', array(), $targetSelection ) . "\n" .
+				Html::rawElement( 'tr', array(), $namespaceSelection ) . "\n" .
+				Html::rawElement( 'tr', array(), $filterSelection ) . "\n" .
+				Html::rawElement( 'tr', array(), $extraOptions ) . "\n" .
+				Html::rawElement( 'tr', array(), $dateSelectionAndSubmit ) . "\n"
+			);
 
 		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( $explain->exists() ) {
