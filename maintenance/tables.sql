@@ -263,7 +263,7 @@ CREATE TABLE /*_*/page (
   page_len int unsigned NOT NULL,
 
   -- content model, see CONTENT_MODEL_XXX constants
-  page_content_model  int unsigned  default NULL
+  page_content_model varbinary(32) DEFAULT NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
@@ -322,10 +322,10 @@ CREATE TABLE /*_*/revision (
   rev_sha1 varbinary(32) NOT NULL default '',
 
   -- content model, see CONTENT_MODEL_XXX constants
-  rev_content_model  int unsigned  default NULL,
+  rev_content_model varbinary(32) DEFAULT NULL,
 
   -- content format, see CONTENT_FORMAT_XXX constants
-  rev_content_format int unsigned  default NULL
+  rev_content_format varbinary(64) DEFAULT NULL
 
 ) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
 -- In case tables are created as MyISAM, use row hints for MySQL <5.0 to avoid 4GB limit
@@ -439,10 +439,10 @@ CREATE TABLE /*_*/archive (
   ar_sha1 varbinary(32) NOT NULL default '',
 
   -- content model, see CONTENT_MODEL_XXX constants
-  ar_content_model  int unsigned default NULL,
+  ar_content_model content_model varbinary(32) DEFAULT NULL,
 
   -- content format, see CONTENT_FORMAT_XXX constants
-  ar_content_format int unsigned default NULL
+  ar_content_format varbinary(64) DEFAULT NULL
 
 ) /*$wgDBTableOptions*/;
 
