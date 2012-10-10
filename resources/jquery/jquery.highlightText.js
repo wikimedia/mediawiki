@@ -58,7 +58,7 @@
 	};
 
 	$.fn.highlightText = function ( matchString ) {
-		return $( this ).each( function () {
+		return this.each( function () {
 			var $el = $( this );
 			$el.data( 'highlightText', { originalText: $el.text() } );
 			$.highlightText.splitAndHighlight( this, matchString );

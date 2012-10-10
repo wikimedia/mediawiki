@@ -85,7 +85,7 @@
 					var jqXhr = $(this).data( 'request' );
 					// If the delay setting has caused the fetch to have not even happened
 					// yet, the jqXHR object will have never been set.
-					if ( jqXhr && $.isFunction ( jqXhr.abort ) ) {
+					if ( jqXhr && $.isFunction( jqXhr.abort ) ) {
 						jqXhr.abort();
 						$(this).removeData( 'request' );
 					}
@@ -119,9 +119,7 @@
 							.append(
 								$( '<div>' )
 									.addClass( 'special-label' )
-									.text( mw.msg( 'searchsuggest-containing' ) )
-							)
-							.append(
+									.text( mw.msg( 'searchsuggest-containing' ) ),
 								$( '<div>' )
 									.addClass( 'special-query' )
 									.text( query )
@@ -130,7 +128,6 @@
 							.show();
 					} else {
 						$el.find( '.special-query' )
-							.empty()
 							.text( query )
 							.autoEllipsis();
 					}
