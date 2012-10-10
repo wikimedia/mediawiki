@@ -410,7 +410,7 @@ class LanguageConverter {
 					$attr = $attrs[$attrName];
 					// Don't convert URLs
 					if ( !strpos( $attr, '://' ) ) {
-						$attr = $this->translate( $attr, $toVariant );
+						$attr = $this->convertTo( $attr, $toVariant );
 					}
 
 					// Remove HTML tags to avoid disrupting the layout
