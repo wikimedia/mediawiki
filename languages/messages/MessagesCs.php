@@ -1119,6 +1119,14 @@ Zřejmě byla smazána.',
 'edit-no-change' => 'Vaše editace byla ignorována, protože nedošlo k žádné změně textu.',
 'edit-already-exists' => 'Nepodařilo se vytvořit novou stránku, protože již existuje.',
 'defaultmessagetext' => 'Výchozí text hlášení',
+'invalid-content-data' => 'Obsažená data jsou chybná',
+'content-not-allowed-here' => 'Obsah typu $1 není na stránce [[$2]] dovolen.',
+
+# Content models
+'content-model-wikitext' => 'wikitext',
+'content-model-text' => 'čistý text',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varování: Tato stránka obsahuje příliš mnoho volání výkonnostně náročných funkcí parseru.
@@ -2554,7 +2562,8 @@ Pro částečné obnovení zaškrtněte čtverečky u obnovovaných revizí a kl
 'undeletedrevisions' => '{{PLURAL:$1|Obnovena $1 verze|Obnoveny $1 verze|Obnoveno $1 verzí}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|Obnovena jedna verze|Obnoveny $1 verze|Obnoveno $1 verzí}} a $2 {{PLURAL:$2|soubor|soubory|souborů}}.',
 'undeletedfiles' => '{{PLURAL:$1|obnoven $1 soubor|obnoveny $1 soubory|obnoveno $1 souborů}}',
-'cannotundelete' => 'Obnovení se nepovedlo; stránku již pravděpodobně obnovil někdo jiný.',
+'cannotundelete' => 'Obnovení se nezdařilo:
+$1',
 'undeletedpage' => "'''$1 byla obnovena'''
 
 Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
@@ -2848,6 +2857,7 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 'immobile-target-namespace-iw' => 'Mezijazykový odkaz není validní cíl při přesouvání stránky.',
 'immobile-source-page' => 'Tuto stránku nelze přesouvat.',
 'immobile-target-page' => 'Stránku nelze přesunout na zadaný název.',
+'bad-target-model' => 'Požadovaný cíl používá jiný model obsahu. Nelze převést $1 na $2.',
 'imagenocrossnamespace' => 'Nelze přesunout mimo jmenný prostor Soubor:',
 'nonfile-cannot-move-to-file' => 'Do jmenného prostoru {{ns:file}} nelze přesouvat stránky nepřináležející k souboru',
 'imagetypemismatch' => 'Nová přípona souboru neodpovídá jeho typu',

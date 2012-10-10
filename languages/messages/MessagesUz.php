@@ -1037,7 +1037,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listgrouprights-members' => '(a’zolar ro‘yxati)',
 
 # E-mail user
-'emailuser' => 'Bu foydalanuvchiga e-maktub',
+'emailuser' => 'Foydalanuvchiga maktub',
+'defemailsubject' => '{{SITENAME}} — $1 tomonidan maktub',
 'noemailtitle' => 'Elektron pochta manzili mavjud emas',
 'noemailtext' => "Bu foydalanuvchi e-mail manzil ko'rsatgani yo'q.",
 'emailtarget' => 'Oluvchi ishtirokchining ismini kiriting',
@@ -1049,7 +1050,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'emailsubject' => 'Sarlavha:',
 'emailmessage' => 'Xabar',
 'emailsend' => 'Joʻnatish',
+'emailccsubject' => '$1ga maktubingizning nusxasi: $2',
 'emailsent' => "Xat jo'natildi",
+'emailsenttext' => "Sizning elektron maktubingiz jo'natildi.",
 
 # User Messenger
 'usermessage-summary' => 'Tizimli xabar qoldirish.',
@@ -1496,6 +1499,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 
 # New logging system
 'logentry-move-move' => '$1 $3 sahifasini $4ga koʻchirdi',
+'logentry-patrol-patrol-auto' => '$1 $3 sahifasining $4 versiyasini avtomatik patrulladi',
 'logentry-newusers-newusers' => '$1 ishtirokchisining hisob yozuvi yaratildi',
 'logentry-newusers-create' => '$1 ishtirokchisining hisob yozuvi yaratildi',
 

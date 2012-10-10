@@ -2536,7 +2536,8 @@ Revizyoni ya hewn a biyê ya arşiw ra veciyayê ya zi cıresayişê şımayi ş
 'undeletedrevisions' => 'pêro piya{{PLURAL:$1|1 qeyd|$1 qeyd}} tepiya anciya.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revizyon|$1 revizyon}} u {{PLURAL:$2|1 dosya|$2 dosya}} ameyê halê xo yê verıni',
 'undeletedfiles' => '{{PLURAL:$1|1 dosya|$1 dosya}} tepiya anciyayi.',
-'cannotundelete' => 'şıma ya ver yewna ten pel u medya tepiya ard u ê ra tepiya ardışê şıma meqbul niyo.',
+'cannotundelete' => 'Besternayışo nêbeno:
+$1',
 'undeletedpage' => "'''$1 pel tepiya anciya'''
 
 qey karê tepiya ardışi u qey karê hewn a kerdışê verıni bıewnê [[Special:Log/delete|qeydê hewn a kerdışi]].",
@@ -2842,6 +2843,7 @@ Yewna name bınus.',
 'immobile-target-namespace-iw' => 'xetê benatê wikiyan, hedefê pelkırıştış niyo',
 'immobile-source-page' => 'nameyê no peli nêvuriyeno',
 'immobile-target-page' => 'sernameyê no hedefi re nêkırışiyeno',
+'bad-target-model' => 'Hedefo ke waştiyayo zerreke cı babetna model karneno. Ke nêşeno $1 ra açarno $2.',
 'imagenocrossnamespace' => 'Dosya, ca yo ke qey nameyê dosyayan nêbıbo nêkırışiyeno',
 'nonfile-cannot-move-to-file' => 'Ekê dosya niyê, cade namande dosyaya nêahulneyênê',
 'imagetypemismatch' => 'tipa dosyaya neweyi re pênêgıneno/nêgıneno pê',
@@ -4729,6 +4731,4 @@ Ena sita dı newke xırabiya teknik esta.',
 'duration-centuries' => '$1 {{PLURAL:$1|seserre|seserri}}',
 'duration-millennia' => '$1 {{PLURAL:$1|milenyum|milenyumi}}',
 
-# Unknown messages
-'bad-target-model' => 'Hedefo ke waştiyayo zerreke cı babetna model karneno. Ke nêşeno $1 ra açarno $2.',
 );

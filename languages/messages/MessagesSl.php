@@ -973,6 +973,12 @@ Izgleda, da je bila izbrisana.',
 'edit-already-exists' => 'Ni bilo mogoče ustvariti nove strani, ker že obstaja.',
 'defaultmessagetext' => 'Prednastavljeno besedilo',
 
+# Content models
+'content-model-wikitext' => 'wikibesedilo',
+'content-model-text' => 'golo besedilo',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Opozorilo:''' Ta stran vsebuje preveč klicev funkcije razčlenjevalnika kode.
 
@@ -2447,8 +2453,8 @@ Morda imate napačno povezavo ali pa je bila redakcija obnovljena ali odstranjen
 'undeletedrevisions' => '{{PLURAL:$1|obnovljena $1 redakcija|obnovljeni $1 redakciji|obnovljene $1 redakcije|obnovljenih $1 redakcij}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|redakcija|redakciji|redakcije|redakcij}} in $2 {{PLURAL:$2|datoteka|datoteki|datoteke|datotek}} {{PLURAL:$1+$2|obnovljena|obnovljeni|obnovljene|obnovljenih}}',
 'undeletedfiles' => '{{PLURAL:$1|obnovljena je $1 datoteka|obnovljeni sta $1 datoteki|obnovljene so $1 datoteke|obnovljenih je $1 datotek}}',
-'cannotundelete' => 'Obnova ni uspela;
-morda je stran obnovil že kdo drug.',
+'cannotundelete' => 'Obnova je spodletela:
+$1',
 'undeletedpage' => "'''Obnovili ste stran $1.'''
 
 Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]].",

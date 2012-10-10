@@ -1021,6 +1021,15 @@ Sembra che sia stata cancellata.',
 'edit-already-exists' => 'Impossibile creare una nuova pagina.
 Esiste già.',
 'defaultmessagetext' => 'Testo predefinito',
+'content-failed-to-parse' => 'Impossibile analizzare $2 per il modello $1: $3',
+'invalid-content-data' => 'Dati contenuti non validi',
+'content-not-allowed-here' => 'Contenuto in "$1" non consentito nella pagine [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitesto',
+'content-model-text' => 'testo normale',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Attenzione:''' Questa pagina contiene troppe chiamate alle parser functions.
@@ -2442,7 +2451,8 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 'undeletedrevisions' => '{{PLURAL:$1|Una revisione recuperata|$1 revisioni recuperate}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|Una revisione|$1 revisioni}} e $2 file recuperati',
 'undeletedfiles' => '{{PLURAL:$1|Un file recuperato|$1 file recuperati}}',
-'cannotundelete' => 'Ripristino non riuscito; è possibile che la pagina sia già stata recuperata da un altro utente.',
+'cannotundelete' => 'Ripristino non riuscito:
+$1',
 'undeletedpage' => "'''La pagina $1 è stata recuperata'''
 
 Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
@@ -2730,6 +2740,7 @@ La pagina specificata come destinazione "[[:$1]]" esiste già. Vuoi cancellarla 
 'immobile-target-namespace-iw' => 'Un collegamento interwiki non è una destinazione valida per spostare la pagina.',
 'immobile-source-page' => 'Questa pagina non può essere spostata.',
 'immobile-target-page' => 'Non è possibile spostare sul titolo indicato.',
+'bad-target-model' => 'La destinazione desiderata utilizza un modello di contenuti diverso. Non è possibile convertire da $1 a $2.',
 'imagenocrossnamespace' => 'Non è possibile spostare un file fuori dal relativo namespace.',
 'nonfile-cannot-move-to-file' => 'Non è possibile spostare un file fuori dal relativo namespace.',
 'imagetypemismatch' => 'La nuova estensione del file non corrisponde al tipo dello stesso',

@@ -1135,6 +1135,15 @@ Il semble qu’elle ait été supprimée.',
 'edit-already-exists' => 'La nouvelle page n’a pas pu être créée.
 Elle existe déjà.',
 'defaultmessagetext' => 'Message par défaut',
+'content-failed-to-parse' => "Échec de l'analyse du contenu de $2 pour le modèle $1: $3",
+'invalid-content-data' => 'Données du contenu non valides',
+'content-not-allowed-here' => 'Le contenu "$1" n\'est pas autorisé sur la page [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitexte',
+'content-model-text' => 'texte brut',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Attention : cette page contient de trop nombreux appels à des fonctions coûteuses de l’analyseur syntaxique.
@@ -2589,8 +2598,8 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeletedrevisions' => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
 'undeletedrevisions-files' => '$1 version{{PLURAL:$1||s}} et $2 fichier{{PLURAL:$2||s}} restauré{{PLURAL:$2||s}}',
 'undeletedfiles' => '$1 {{PLURAL:$1|fichier restauré|fichiers restaurés}}',
-'cannotundelete' => 'La restauration a échoué ;
-un autre utilisateur a probablement déjà restauré la page.',
+'cannotundelete' => 'Échec de la restauration:
+$1',
 'undeletedpage' => "'''La page $1 a été restaurée.'''
 
 Consultez le [[Special:Log/delete|journal des suppressions]] pour obtenir la liste des récentes suppressions et restaurations.",
@@ -2889,6 +2898,7 @@ impossible de renommer une page sur elle-même.',
 'immobile-target-namespace-iw' => 'Les destinations interwikis ne sont pas une cible valide pour les déplacements.',
 'immobile-source-page' => 'Cette page n’est pas renommable.',
 'immobile-target-page' => 'Il n’est pas possible de renommer la page vers ce titre.',
+'bad-target-model' => 'La destination souhaitée utilise un autre modèle de contenu. Impossible de convertir de $1 vers $2.',
 'imagenocrossnamespace' => 'Impossible de renommer un fichier vers un espace de noms autre que fichier.',
 'nonfile-cannot-move-to-file' => "Impossible de renommer quelque chose d’autre qu'un fichier vers l’espace de noms fichier.",
 'imagetypemismatch' => 'La nouvelle extension de ce fichier ne correspond pas à son type.',

@@ -953,6 +953,15 @@ Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'edit-no-change' => 'Suntingan anda diabaikan kerana tiada perubahan dibuat pada teks tersebut.',
 'edit-already-exists' => 'Tidak dapat mencipta laman baru kerana ia telah wujud.',
 'defaultmessagetext' => 'Teks mesej asal',
+'content-failed-to-parse' => 'Kandungan $2 tidak dapat dihuraikan untuk model $1: $3',
+'invalid-content-data' => 'Data kandungan tidak sah',
+'content-not-allowed-here' => 'Kandungan "$1" tidak dibenarkan di halaman [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikiteks',
+'content-model-text' => 'teks biasa',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Amaran: Laman ini mengandungi terlalu banyak panggilan fungsi penghurai yang intensif.
@@ -2408,7 +2417,7 @@ atau semakan tersebut telah dipulihkan atau dibuang daripada arkib.',
 'undeletedrevisions' => '$1 semakan dipulihkan',
 'undeletedrevisions-files' => '$1 semakan dan $2 fail dipulihkan',
 'undeletedfiles' => '$1 fail dipulihkan',
-'cannotundelete' => 'Penyahhapusan gagal; mungkin orang lain telah pun mengnyahhapuskannya.',
+'cannotundelete' => 'Penyahhapusan gagal: $1',
 'undeletedpage' => "'''$1 telah dipulihkan'''
 
 Sila rujuk [[Special:Log/delete|log penghapusan]] untuk rekod penghapusan terkini.",
@@ -2712,6 +2721,7 @@ Laman destinasi "[[:$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supa
 'immobile-target-namespace-iw' => 'Pautan interwiki tidak boleh dijadikan sasaran untuk pemindahan laman.',
 'immobile-source-page' => 'Anda tidak boleh memindahkan laman ini.',
 'immobile-target-page' => 'Anda tidak boleh memindahkan laman ke tajuk itu.',
+'bad-target-model' => 'Destinasi yang dikehendaki menggunakan model kandungan yang berlainan. $1 tidak dapat ditukar kepada $2.',
 'imagenocrossnamespace' => 'Anda tidak boleh memindahkan fail ke ruang nama bukan fail',
 'nonfile-cannot-move-to-file' => 'Laman bukan fail tidak boleh dipindahkan ke ruang nama fail',
 'imagetypemismatch' => 'Sambungan baru fail tersebut tidak sepadan dengan jenisnya',

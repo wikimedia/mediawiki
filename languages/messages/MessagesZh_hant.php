@@ -965,6 +965,14 @@ $2
 'edit-already-exists' => '不可以建立一個新頁面。
 它已經存在。',
 'defaultmessagetext' => '預設訊息文字',
+'content-failed-to-parse' => '未能轉換$2 內容成為$1：$3',
+'invalid-content-data' => '內容資料無效',
+'content-not-allowed-here' => '[[$2]]不允許"$1"頁上的內容',
+
+# Content models
+'content-model-text' => '純文字',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => '警告: 這個頁面有太多耗費的語法功能呼叫。
@@ -2380,7 +2388,7 @@ $UNWATCHURL
 'undeletedrevisions' => '$1個修訂版本已經恢復',
 'undeletedrevisions-files' => '$1 個版本和 $2 個檔案被恢復',
 'undeletedfiles' => '$1 個檔案被恢復',
-'cannotundelete' => '恢復失敗；可能之前已經被其他人恢復。',
+'cannotundelete' => '恢復失敗：$1',
 'undeletedpage' => "'''$1已經被恢復''' 請參考[[Special:Log/delete|刪除日誌]]來查詢刪除及恢復記錄。",
 'undelete-header' => '如要查詢最近的記錄請參閱[[Special:Log/delete|刪除日誌]]。',
 'undelete-search-title' => '搜索已刪除頁面',
@@ -2683,6 +2691,7 @@ $1被封禁的理由是“$2”',
 'immobile-target-namespace-iw' => '垮維基連結在移動頁面中是無效的目標。',
 'immobile-source-page' => '這個頁面不能移動。',
 'immobile-target-page' => '無法移動至目標標題中。',
+'bad-target-model' => '所需的目的地使用不同的內容模式。不可以從$1轉換到 $2 。',
 'imagenocrossnamespace' => '不可以移動檔案到非檔案名字空間',
 'nonfile-cannot-move-to-file' => '不可以移動非檔案到檔案名字空間',
 'imagetypemismatch' => '該新副檔名不匹配它的類型',

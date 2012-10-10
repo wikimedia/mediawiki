@@ -1135,6 +1135,15 @@ $2
 'edit-already-exists' => 'לא ניתן ליצור דף חדש.
 הוא כבר קיים.',
 'defaultmessagetext' => 'טקסט ההודעה המקורי',
+'content-failed-to-parse' => 'פענוח $2 כתוכן מסוג $1 נכשל: $3',
+'invalid-content-data' => 'מידע שגוי על התוכן',
+'content-not-allowed-here' => 'תוכן מסוג "$1" אינו מותר בדף [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'טקסט ויקי',
+'content-model-text' => 'טקסט פשוט',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''אזהרה:''' דף זה כולל יותר מדי קריאות לפונקציות מפענח שגוזלות משאבים.
@@ -2594,7 +2603,8 @@ $UNWATCHURL
 'undeletedrevisions' => '{{PLURAL:$1|שוחזרה גרסה אחת|שוחזרו $1 גרסאות}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|גרסה אחת|$1 גרסאות}} ו{{PLURAL:$2|קובץ אחד|־$2 קבצים}} שוחזרו',
 'undeletedfiles' => '{{PLURAL:$1|שוחזר קובץ אחד|שוחזרו $1 קבצים}}',
-'cannotundelete' => 'השחזור נכשל; ייתכן שמישהו אחר כבר שחזר את הדף.',
+'cannotundelete' => 'השחזור נכשל:
+$1',
 'undeletedpage' => "'''הדף $1 שוחזר בהצלחה.'''
 
 ראו את [[Special:Log/delete|יומן המחיקות]] לרשימה של מחיקות ושחזורים אחרונים.",
@@ -2897,6 +2907,7 @@ $1',
 'immobile-target-namespace-iw' => 'קישור בינוויקי אינו יעד תקין להעברת דף.',
 'immobile-source-page' => 'דף זה אינו ניתן להעברה.',
 'immobile-target-page' => 'לא ניתן להעביר אל כותרת יעד זו.',
+'bad-target-model' => 'היעד המבוקש משתמש בסוג תוכן שונה. לא ניתן להמיר $1 ל{{grammar:תחילית|$2}}.',
 'imagenocrossnamespace' => 'לא ניתן להעביר קובץ למרחב שם אחר',
 'nonfile-cannot-move-to-file' => 'לא ניתן להעביר דף שאינו קובץ למרחב קובץ',
 'imagetypemismatch' => 'סיומת הקובץ החדשה אינה מתאימה לסוג הקובץ',
@@ -3769,7 +3780,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
 'scarytranscludefailed' => '[אחזור התבנית נכשל עבור $1]',
-'scarytranscludefailed-httpstatus' => '[הכללת התבנית נכשלה עבור $1&rlm;: HTTP $2]',
+'scarytranscludefailed-httpstatus' => '[אחזור התבנית נכשל עבור $1&rlm;: HTTP $2]',
 'scarytranscludetoolong' => '[כתובת ה־URL ארוכה מדי]',
 
 # Delete conflict

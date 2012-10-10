@@ -1085,6 +1085,14 @@ Det verkar som att den har raderats.',
 'edit-already-exists' => 'Sidan kunde inte skapas.
 Den finns redan.',
 'defaultmessagetext' => 'Standardtext för meddelande',
+'invalid-content-data' => 'Ogiltig innehållsdata',
+'content-not-allowed-here' => 'innehåll av "$1" är inte tillåtet på sidan [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitext',
+'content-model-text' => 'oformaterad text',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Varning: Denna sida innehåller för många anrop av resurskrävande parserfunktioner.
@@ -2536,7 +2544,8 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 'undeletedrevisions' => '{{PLURAL:$1|en version återställd|$1 versioner återställda}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|version|versioner}} och $2 {{PLURAL:$2|fil|filer}} återställda',
 'undeletedfiles' => '{{PLURAL:$1|en fil återställd|$1 filer återställda}}',
-'cannotundelete' => 'Återställning misslyckades; kanske någon redan har återställt sidan.',
+'cannotundelete' => 'Återställning misslyckades:
+$1',
 'undeletedpage' => "'''$1 har återställts'''
 
 Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste raderingarna och återställningarna.",

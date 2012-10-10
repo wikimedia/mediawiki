@@ -439,7 +439,7 @@ $messages = array(
 'vector-action-protect' => 'Zamknúť',
 'vector-action-undelete' => 'Obnoviť',
 'vector-action-unprotect' => 'Zmeniť stav ochrany',
-'vector-simplesearch-preference' => 'Povoliť rozšírené návrhy hľadania (iba pre tému Vector)',
+'vector-simplesearch-preference' => 'Povoliť zjednodušené pole hľadania (iba pre tému Vector)',
 'vector-view-create' => 'Vytvoriť',
 'vector-view-edit' => 'Upraviť',
 'vector-view-history' => 'Zobraziť históriu',
@@ -659,8 +659,11 @@ Požiadavka: $2',
 'protectedpagetext' => 'Táto stránka bola zamknutá aby sa zamedzilo úpravám.',
 'viewsourcetext' => 'Môžete si zobraziť a kopírovať zdroj tejto stránky:',
 'viewyourtext' => "Môžete si prehliadnuť a skopírovať zdrojový kód '''vašich zmien''' tejto stránky:",
-'protectedinterface' => 'Táto stránka poskytuje text používateľského rozhrania a je zamknutá, aby sa predišlo jej zneužitiu.',
-'editinginterface' => "'''Upozornenie:''' Upravujete stránku, ktorá poskytuje text používateľského rozhrania. Zmeny tejto stránky ovplyvnia vzhľad používateľského rozhrania ostatných používateľov. Zmeny prosím vykonávajte prostredníctvom [//translatewiki.net/wiki/Main_Page?setlang=sk translatewiki.net], projektu pre lokalizáciu MediaWiki.",
+'protectedinterface' => 'Táto stránka poskytuje text používateľského rozhrania tejto wiki a je zamknutá, aby sa predišlo jej zneužitiu.
+Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/wiki/Main_Page?setlang=sk translatewiki.net], projekt lokalizácie MediaWiki.',
+'editinginterface' => "'''Upozornenie:''' Upravujete stránku, ktorá poskytuje text používateľského rozhrania.
+Zmeny tejto stránky ovplyvnia vzhľad používateľského rozhrania ostatným používateľom.
+Ak chcete pridať alebo zmeniť preklady pre všetky wiki, prosím, použite [//translatewiki.net/wiki/Main_Page?setlang=sk translatewiki.net], projekt lokalizácie MediaWiki.",
 'sqlhidden' => '(SQL príkaz je skrytý)',
 'cascadeprotected' => 'Táto stránka bola zamknutá proti úpravám, pretože je použitá na {{PLURAL:$1|nasledovnej stránke, ktorá je zamknutá|nasledovných stránkach, ktoré sú zamknuté}} voľbou „kaskádového zamknutia“:
 $2',
@@ -950,7 +953,7 @@ Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v o
 alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku]</span>.',
 'noarticletext-nopermission' => 'Táto stránka momentálne neobsahuje žiadny text.
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
-alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} si pozrieť súvisiace záznamy]</span>.',
+alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} hľadať v súvisiacich záznamoch]</span>, ale nemáte oprávnenie túto stránku vytvoriť.',
 'missing-revision' => 'Revízia #$1 stránky s názvom „{{PAGENAME}}“ neexistuje.
 
 Pravdepodobne ste nasledovali zastaraný odkaz na historickú verziu stránky, ktorá bola medzičasom odstránená.
@@ -1057,6 +1060,15 @@ Zdá sa, že bola zmazaná.',
 'edit-already-exists' => 'Nebolo možné vytvoriť novú stránku.
 Už existuje.',
 'defaultmessagetext' => 'Predvolený text správy',
+'content-failed-to-parse' => 'Nepodarilo sa spracovať obsah $2 pre model $1: $3',
+'invalid-content-data' => 'Neplatné dáta obsahu',
+'content-not-allowed-here' => 'Obsah „$1“ nie je povolený na stránke [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitext',
+'content-model-text' => 'čistý text',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Upozornenie: Táto stránka obsahuje príliš mnoho volaní funkcií syntaktického analyzátora, ktoré nadmerne zaťažujú server.
@@ -1078,6 +1090,7 @@ Tieto argumenty boli vynechané.',
 'expansion-depth-exceeded-warning' => 'Stránka prekročila povolenú hĺbku expanzie',
 'parser-unstrip-loop-warning' => 'Zistené zacyklenie volania rozširovacej značky',
 'parser-unstrip-recursion-limit' => 'Prektočený limit rekurzie volania rozširovacej značky ($1)',
+'converter-manual-rule-error' => 'Bola zistená chyba v pravidle manuálnej konverzie jazyka',
 
 # "Undo" feature
 'undo-success' => 'Úpravu je možné vrátiť. Prosím skontrolujte tento rozdiel, čím overíte, že táto úprava je tá, ktorú chcete, a následne uložte zmeny, čím ukončíte vrátenie.',
@@ -1405,7 +1418,7 @@ Tu je náhodne vytvorená hodnota, ktorú môžete použiť: $1',
 'timezoneregion-indian' => 'Indický oceán',
 'timezoneregion-pacific' => 'Tichý oceán',
 'allowemail' => 'Povoliť prijímanie e-mailov od iných používateľov',
-'prefs-searchoptions' => 'Voľby hľadania',
+'prefs-searchoptions' => 'Hľadanie',
 'prefs-namespaces' => 'Menné priestory',
 'defaultns' => 'Inak vyhľadávať v týchto menných priestoroch:',
 'default' => 'predvolený',
@@ -2495,7 +2508,8 @@ Ak bola od zmazania vytvorená nová stránka s rovnakým názvom, obnovené rev
 'undeletedrevisions' => '{{PLURAL:$1|jedna verzia bola obnovená|$1 verzie boli obnovené|$1 verzií bolo obnovených}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|Jedna revízia|$1 revízie|$1 revízií}} a {{PLURAL:$2|jeden súbor bol obnovený|$2 súbory boli obnovené|$2 súborov bolo obnovených}}',
 'undeletedfiles' => '{{PLURAL:$1|Jeden súbor bol obnovený|$1 súbory boli obnovené|$1 súborov bolo obnovených}}',
-'cannotundelete' => 'Obnovenie sa nepodarilo; pravdepodobne niekto iný obnovil stránku skôr ako vy.',
+'cannotundelete' => 'Obnovenie sa nepodarilo:
+$1',
 'undeletedpage' => "'''$1 bol obnovený'''
 
 Zoznam posledných mazaní a obnovení nájdete v [[Special:Log/delete|Zázname mazaní]].",
@@ -2809,6 +2823,7 @@ Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť ta
 'immobile-target-namespace-iw' => 'Interwiki odkaz nie je platným cieľom na presun stránky.',
 'immobile-source-page' => 'Túto stránku nemožno presunúť.',
 'immobile-target-page' => 'Nie je možné presunúť na cieľovú stránku z daným názvom.',
+'bad-target-model' => 'Požadovaný cieľ používa iný model obsahu. Nie je možné konvertovať z $1 na $2.',
 'imagenocrossnamespace' => 'Obrázok nemožno presunúť mimo menného priestoru obrázkov',
 'nonfile-cannot-move-to-file' => 'Nie je možné presunúť objekt, ktorý nie je súbor do menného priestoru Súbor',
 'imagetypemismatch' => 'Nová prípona súboru nezodpovedá jeho typu',
@@ -2887,6 +2902,7 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'import-interwiki-templates' => 'Vložiť všetky šablóny',
 'import-interwiki-submit' => 'Importovať',
 'import-interwiki-namespace' => 'Cieľový menný priestor:',
+'import-interwiki-rootpage' => 'Koreňová stránka cieľa (nepovinné):',
 'import-upload-filename' => 'Názov súboru:',
 'import-comment' => 'komentár:',
 'importtext' => 'Prosím, exportujte súbor zo zdrojovej wiki použitím [[Special:Export|nástroja na export]].
@@ -2919,6 +2935,9 @@ Uložte ho na svoj disk a nahrajte sem.',
 'import-error-interwiki' => 'Stránka „$1“ nie je importovaná, pretože jej názov je vyhradený pre externé odkazy (interwiki).',
 'import-error-special' => 'Stránka „$1“ nie je importovaná, pretože patrí do špeciálneho menného priestoru, ktorý nepovoľuje stránky.',
 'import-error-invalid' => 'Stránka „$1“ nie je importovaná, pretože jej názov je neplatný.',
+'import-options-wrong' => '{{PLURAL:$2|Nesprávna voľba|Nesprávne voľby}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Uvedená koreňová stránka nie je platný názov stránky.',
+'import-rootpage-nosubpage' => 'Menný priestor „$1“ koreňovej stránky nepodporuje podstránky.',
 
 # Import log
 'importlogpage' => 'Záznam importov',
@@ -3072,12 +3091,32 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'pageinfo-title' => 'Informácie o „$1“',
 'pageinfo-header-basic' => 'Základné údaje',
 'pageinfo-header-edits' => 'História úprav',
+'pageinfo-header-restrictions' => 'Ochrana stránky',
+'pageinfo-header-properties' => 'Vlastnosti stránky',
+'pageinfo-display-title' => 'Zobraziť názov',
+'pageinfo-default-sort' => 'Predvolený kľúč zoraďovania:',
+'pageinfo-length' => 'Dĺžka stránky (v bajtoch)',
 'pageinfo-article-id' => 'ID stránky',
+'pageinfo-robot-policy' => 'Stav vyhľadávača',
+'pageinfo-robot-index' => 'Indexovať stránku',
+'pageinfo-robot-noindex' => 'Neindexovať stránku',
 'pageinfo-views' => 'Počet zobrazení',
-'pageinfo-watchers' => 'Počet sledovateľov',
+'pageinfo-watchers' => 'Počet používateľov sledujúcich stránku',
+'pageinfo-redirects-name' => 'Presmerovania na túto stránku',
+'pageinfo-subpages-name' => 'Podstránky tejto stránky',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|presmerovanie|presmerovania|presmerovaní}}; $3 {{PLURAL:$3|nie je presmerovanie|nie sú presmerovania}})',
+'pageinfo-firstuser' => 'Tvorca stránky',
+'pageinfo-firsttime' => 'Dátum vytvorenia stránky',
+'pageinfo-lastuser' => 'Naposledy upravil',
 'pageinfo-lasttime' => 'Dátum poslednej úpravy',
 'pageinfo-edits' => 'Celkový počet úprav',
 'pageinfo-authors' => 'Celkový počet autorov',
+'pageinfo-recent-edits' => 'Počet nedávnych úprav (za posledných $1)',
+'pageinfo-recent-authors' => 'Počet nedávnych jedinečných autorov',
+'pageinfo-magic-words' => 'Magické {{PLURAL:$1|slovo|slová}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá kategória|Skryté kategórie}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Vložená šablóna|Vložené šablóny}} ($1)',
+'pageinfo-toolboxlink' => 'Informácie o stránke',
 
 # Skin names
 'skinname-standard' => 'Klasický',
@@ -3132,6 +3171,7 @@ Jeho spustením môžete kompromitovať svoj systém.",
 'file-info-size-pages' => '$1 × $2 pixlov, veľkosť súboru: $3, typ MIME: $4, $5 {{PLURAL:$5|stránka|stránky|stránok}}',
 'file-nohires' => 'Nie je dostupné vyššie rozlíšenie.',
 'svg-long-desc' => 'SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3',
+'svg-long-desc-animated' => 'Animovaný súbor SVG, nominálne $1 × $2 pixlov, veľkosť súboru: $3',
 'show-big-image' => 'Obrázok vo vyššom rozlíšení',
 'show-big-image-preview' => 'Veľkosť tohto náhľadu: $1.',
 'show-big-image-other' => 'Iné {{PLURAL:$2|rozlíšenie|rozlíšenia}}: $1 .',
@@ -3141,6 +3181,8 @@ Jeho spustením môžete kompromitovať svoj systém.",
 'file-info-png-looped' => 'opakované',
 'file-info-png-repeat' => 'prehrané $1-krát{{PLURAL:$1|||}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|rámec|rámce|rámcov}}',
+'file-no-thumb-animation' => "'''Pozn.: Z dôvodu technických obmedzení nebudú náhľady tohto súboru animované.'''",
+'file-no-thumb-animation-gif' => "'''Pozn.: Z dôvodu technických obmedzení nebudú náhľady súborov GIF vo vysokom rozlíšení (ako je tento súbor) animované.'''",
 
 # Special:NewFiles
 'newimages' => 'Galéria nových obrázkov',
@@ -3661,6 +3703,7 @@ Platnosť tohto potvrdzovacieho kódu vyprší $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklúzia interwiki je vypnutá]',
 'scarytranscludefailed' => '[Nepodarilo sa priniesť šablónu pre $1]',
+'scarytranscludefailed-httpstatus' => '[Stiahnutie šablóny zlyhalo pre $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL je príliš dlhé]',
 
 # Delete conflict

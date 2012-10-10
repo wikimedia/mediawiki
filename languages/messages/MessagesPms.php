@@ -3119,8 +3119,8 @@ J'àutri a saran stërmà coma stàndard.
 'exif-event' => 'Event fotografà',
 'exif-organisationinimage' => 'Organisassion fotografà',
 'exif-personinimage' => 'Përson-a fotografà',
-'exif-originalimageheight' => "Autëssa dla figura prima ch'a sia ritajà",
-'exif-originalimagewidth' => "Larghëssa dla figura prima ch'a sia ritajà",
+'exif-originalimageheight' => "Autëssa dla figura prima ch'a fussa ritajà",
+'exif-originalimagewidth' => "Larghëssa dla figura prima ch'a fussa ritajà",
 
 # EXIF attributes
 'exif-compression-1' => 'Pa compress',

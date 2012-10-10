@@ -1137,6 +1137,14 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
 그 문서는 이미 존재합니다.',
 'defaultmessagetext' => '기본 메세지 내용',
+'invalid-content-data' => '잘못된 내용 데이터입니다',
+'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
+
+# Content models
+'content-model-wikitext' => '위키텍스트',
+'content-model-text' => '일반 텍스트',
+'content-model-javascript' => '자바스크립트',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''경고:''' 이 문서는 너무 많은 파서 함수를 포함하고 있습니다.
@@ -2619,8 +2627,8 @@ $UNWATCHURL
 'undeletedrevisions' => '판 $1개를 복구했습니다',
 'undeletedrevisions-files' => '판 $1개와 파일 $2개를 복구했습니다.',
 'undeletedfiles' => '파일 $1개를 복구했습니다',
-'cannotundelete' => '복구에 실패했습니다.
-다른 사용자가 이미 복구했을 수도 있습니다.',
+'cannotundelete' => '복구에 실패했습니다:
+$1',
 'undeletedpage' => "'''$1 문서를 복구했습니다.'''
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제와 복구 기록을 볼 수 있습니다.",

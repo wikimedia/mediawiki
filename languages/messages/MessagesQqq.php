@@ -1035,7 +1035,9 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Perm
 'explainconflict' => 'Appears at the top of a page when there is an edit conflict.',
 'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
 'yourdiff' => '',
-'copyrightwarning' => 'Copyright warning displayed under the edit box in editor',
+'copyrightwarning' => 'Copyright warning displayed under the edit box in editor
+*$1 - ...
+*$2 - ...',
 'longpageerror' => 'Warning displayed when trying to save a text larger than the maximum size allowed',
 'protectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
 'semiprotectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
@@ -1060,11 +1062,35 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'moveddeleted-notice' => 'Shown on top of a deleted page in normal view modus ([http://translatewiki.net/wiki/Test example]).',
 'edit-conflict' => "An 'Edit conflict' happens when more than one edit is being made to a page at the same time. This would usually be caused by separate individuals working on the same page. However, if the system is slow, several edits from one individual could back up and attempt to apply simultaneously - causing the conflict.",
 'defaultmessagetext' => 'Caption above the default message text shown on the left-hand side of a diff displayed after clicking “Show changes” when creating a new page in the MediaWiki: namespace',
-'content-failed-to-parse' => "Error message indicating that the page\'s content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.",
-'invalid-content-data'             => 'Error message indicating that the page\'s content can not be saved because it is invalid. This may occurr for content types with internal consistency constraints.',
-'content-not-allowed-here'         => 'Error message indicating that the desired content model is not supported in given localtion.
-* $1 is the human readable name of the content model
-* $1 is the title of the page in question.',
+'content-failed-to-parse' => "Error message indicating that the page's content can not be saved because it is syntactically invalid. This may occurr for content types using serialization or a strict markup syntax.
+*$1 - localized name of content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
+*$2 - ...",
+'invalid-content-data' => "Error message indicating that the page's content can not be saved because it is invalid. This may occurr for content types with internal consistency constraints.",
+'content-not-allowed-here' => 'Error message indicating that the desired content model is not supported in given localtion.
+* $1 is the human readable name of the content model: {{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
+* $2 is the title of the page in question.',
+
+# Content models
+'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.
+
+This message is substituted in:
+*{{msg-mw|Bad-target-model}}
+*{{msg-mw|Content-not-allowed-here}}',
+'content-model-text' => 'Name for the plain text content model, used when decribing what type of content a page contains.
+
+This message is substituted in:
+*{{msg-mw|Bad-target-model}}
+*{{msg-mw|Content-not-allowed-here}}',
+'content-model-javascript' => 'Name for the JavaScript content model, used when decribing what type of content a page contains.
+
+This message is substituted in:
+*{{msg-mw|Bad-target-model}}
+*{{msg-mw|Content-not-allowed-here}}',
+'content-model-css' => 'Name for the CSS content model, used when decribing what type of content a page contains.
+
+This message is substituted in:
+*{{msg-mw|Bad-target-model}}
+*{{msg-mw|Content-not-allowed-here}}',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'On some (expensive) [[MetaWikipedia:Help:ParserFunctions|parser functions]] (e.g. <code><nowiki>{{#ifexist:}}</nowiki></code>) there is a limit of how many times it may be used. This is an error message shown when the limit is exceeded.
@@ -3200,10 +3226,12 @@ Parameters:
 'immobile-target-namespace-iw' => "This message appears when attempting to move a page, if a person has typed an interwiki link as a namespace prefix in the input box labelled 'To new title'.  The special page 'Movepage' cannot be used to move a page to another wiki.
 
 'Destination' can be used instead of 'target' in this message.",
-'bad-target-model'             => "This message is shown when attempting to move a page, but the move would change the page's content model.
-This may be the case when \$wgContentHandlerUseDB is set to false, because then a page's content model is derived from the page's title.
-* $1: The localized name of the original page's content model.
-* $2: The localized name of the content model used by the destination title.",
+'bad-target-model' => 'This message is shown when attempting to move a page, but the move would change the page\'s content model.
+This may be the case when [[mw:Manual:$wgContentHandlerUseDB|$wgContentHandlerUseDB]] is set to false, because then a page\'s content model is derived from the page\'s title.
+* $1: The localized name of the original page\'s content model:
+**{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}
+* $2: The localized name of the content model used by the destination title:
+**{{msg-mw|Content-model-wikitext}}, {{msg-mw|Content-model-javascript}}, {{msg-mw|Content-model-css}} or {{msg-mw|Content-model-text}}',
 'fix-double-redirects' => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
 'protectedpagemovewarning' => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]
 {{Related|Semiprotectedpagewarning}}',
@@ -4912,11 +4940,5 @@ $4 is the gender of the target user.',
 * $1 is an unknown warning.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
-
-# Content model IDs for the ContentHandler facility; used by ContentHandler::getContentModel()
-'content-model-wikitext' => 'Name for the wikitext content model, used when decribing what type of content a page contains.',
-'content-model-javascript' => 'Name for the JavaScript content model, used when decribing what type of content a page contains.',
-'content-model-css' => 'Name for the CSS content model, used when decribing what type of content a page contains.',
-'content-model-text' => 'Name for the plain text content model, used when decribing what type of content a page contains.',
 
 );

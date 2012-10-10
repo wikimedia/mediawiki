@@ -2611,7 +2611,7 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 'undeletedrevisions' => '{{PLURAL:$1|1 Version wurde|$1 Versionen wurden}} wiederhergestellt',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 Version|$1 Versionen}} und {{PLURAL:$2|1 Datei|$2 Dateien}} wurden wiederhergestellt',
 'undeletedfiles' => '{{PLURAL:$1|1 Datei wurde|$1 Dateien wurden}} wiederhergestellt',
-'cannotundelete' => 'Wiederherstellung fehlgeschlagen:
+'cannotundelete' => 'Die Wiederherstellung ist fehlgeschlagen:
 $1',
 'undeletedpage' => "'''„$1“''' wurde wiederhergestellt.
 
@@ -2910,6 +2910,7 @@ Eine Seite kann nicht auf sich selbst verschoben werden.',
 'immobile-target-namespace-iw' => 'Interwiki-Link ist kein gültiges Ziel für Seitenverschiebungen.',
 'immobile-source-page' => 'Diese Seite ist nicht verschiebbar.',
 'immobile-target-page' => 'Es kann nicht auf diese Zielseite verschoben werden.',
+'bad-target-model' => 'Die gewünschte Zielseite verwendet ein abweichendes Inhaltsmodell. Das Inhaltsmodell $1 kann nicht in das Inhaltsmodell $2 umgewandelt werden.',
 'imagenocrossnamespace' => 'Dateien können nicht aus dem {{ns:file}}-Namensraum heraus verschoben werden',
 'nonfile-cannot-move-to-file' => 'Nichtdateien können nicht in den {{ns:file}}-Namensraum hinein verschoben werden',
 'imagetypemismatch' => 'Die neue Dateierweiterung ist nicht mit der alten identisch',
@@ -4133,6 +4134,4 @@ Anderenfalls kannst du auch das untenstehende einfache Formular nutzen. Dein Kom
 'duration-centuries' => '$1 {{PLURAL:$1|Jahrhundert|Jahrhunderte}}',
 'duration-millennia' => '$1 {{PLURAL:$1|Jahrtausend|Jahrtausende}}',
 
-# Unknown messages
-'bad-target-model' => 'Die gewünschte Zielseite verwendet ein abweichendes Inhaltsmodell. Das Inhaltsmodell $1 kann nicht in das Inhaltsmodell $2 umgewandelt werden.',
 );

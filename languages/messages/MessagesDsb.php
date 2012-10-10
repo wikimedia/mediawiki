@@ -898,6 +898,15 @@ Zda sem až jo wulašowany.',
 'edit-already-exists' => 'Njejo móžno było nowy bok napóraś.
 Eksistěrujo južo.',
 'defaultmessagetext' => 'Standardny tekst powěźeńki',
+'content-failed-to-parse' => 'Parsowanje wopśimjeśa $2 za model $1 jo se njeraźiło: $3',
+'invalid-content-data' => 'Njepłaśiwe wopśimjeśowe daty',
+'content-not-allowed-here' => 'Wopśimjeśe "$1" njejo na boku [[$2]] dowólone',
+
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-text' => 'lutny tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Warnowanje: Toś ten bok wopśimujo pśewjele wołanjow parserowych funkcijow wupominajucych wusoke wugbaśe.
@@ -2324,7 +2333,8 @@ W takich padach dejš nejnowše wulašowane wersije markěroanje abo schowanje w
 'undeletedrevisions' => '{{PLURAL:$1|1 wersija jo se nawrośiła|$1 wersiji stej se nawrośiłej|$1 wersije su se nawrośili}}.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 wersija|$1 wersiji|$1 wersije}} a {{PLURAL:$2|1 dataja|$2 dataji|$2 dataje}} {{PLURAL:$2|jo se nawrośiła|stej se nawrośiłej|su se nawrośili}}.',
 'undeletedfiles' => '{{PLURAL:$1|1 dataja jo se nawrośiła|$1 dataji stej se nawrośiłej|$1 dataje su se nawrośili}}.',
-'cannotundelete' => 'Nawrośenje njejo se zglucyło; něchten drugi jo bok južo nawrośił.',
+'cannotundelete' => 'Wótnowjenje jo se njeraźiło:
+$1',
 'undeletedpage' => "Bok '''$1''' jo se nawrośił.
 
 W [[Special:Log/delete|log-lisćinje wulašowanjow]] namakajoš pśeglěd wulašowanych a nawrośonych bokow.",
@@ -2614,6 +2624,7 @@ Bok „[[:$1]]“ južo eksistěrujo. Coš jen wulašowaś, aby mógał toś ten
 'immobile-target-namespace-iw' => 'Interwiki-wótkaz njejo płaśiwy cel za pśesunjenja bokow.',
 'immobile-source-page' => 'Toś ten bok njedajo se pśesunuś.',
 'immobile-target-page' => 'Njejo móžno na toś ten celowy bok pśesunuś.',
+'bad-target-model' => 'Póžedany cel wužywa drugi wopśimjeśowy model. $1 njedajo se do $2 konwertěrowaś.',
 'imagenocrossnamespace' => 'Dataja njedajo se pśesunuś do mjenjowego ruma, kótarež njejo za dataje.',
 'nonfile-cannot-move-to-file' => 'Njedataje njedaje se do datajowego mjenjowego ruma pśesunuś',
 'imagetypemismatch' => 'Nowy datajowy sufiks swójomu typoju njewótpowědujo',

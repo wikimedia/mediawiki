@@ -897,6 +897,15 @@ Zda so, zo je hîžo wušmórnjena.',
 'edit-already-exists' => 'Njebě móžno nowu stronu wutworić.
 Eksistuje hižo.',
 'defaultmessagetext' => 'Standardny tekst zdźělenki',
+'content-failed-to-parse' => 'Parsowanje wobsaha $2 za model $1 je so njeporadźiło: $3',
+'invalid-content-data' => 'Njepłaćiwe wobsahowe daty',
+'content-not-allowed-here' => 'Wobsah "$1" njeje na stronje [[$2]] dowoleny',
+
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-text' => 'luty tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Warnowanje: Tuta strona wobsahuje přewjele parserowych wołanjow.
@@ -2327,7 +2336,8 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 'undeletedrevisions' => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} a $2 {{PLURAL:$2|dataja|dataji|dataje|datajow}} {{PLURAL:$2|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedfiles' => '$1 {{PLURAL:$1|dataja|dataji|dataje|datajow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}.',
-'cannotundelete' => 'Wobnowjenje zwrěšćiło; něchtó druhi je stronu prjedy wobnowił.',
+'cannotundelete' => 'Wobnowjenje zwrěšćiło:
+$1',
 'undeletedpage' => "'''Strona $1 bu z wuspěchom wobnowjena.'''
 
 Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wobnowjenjow.",
@@ -2613,6 +2623,7 @@ Cilowa strona „[[:$1]]” hižo eksistuje. Chceš ju wušmórnyć, zo by so p�
 'immobile-target-namespace-iw' => 'Interwiki-wotkaz njeje płaćiwy cil za přesunjenja stronow.',
 'immobile-source-page' => 'Strona njeda so přesunyć.',
 'immobile-target-page' => 'Njemóžno do teje ciloweje strony přesunyć.',
+'bad-target-model' => 'Požadany cil wužiwa druhi wobsahowy model. $1 njeda so do $2 konwertować.',
 'imagenocrossnamespace' => 'Wobraz njeda so do druheho mjenoweho ruma hač wobraz přesunyć',
 'nonfile-cannot-move-to-file' => 'Njedataje njedadźa so do datajoweho mjenoweho ruma přesunyć',
 'imagetypemismatch' => 'Nowa dataja swojemu typej njewotpowěduje',

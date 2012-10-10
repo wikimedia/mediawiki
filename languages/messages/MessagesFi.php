@@ -1051,6 +1051,10 @@ Se on ilmeisesti poistettu.',
 Se on jo olemassa.',
 'defaultmessagetext' => 'Viestin oletusteksti',
 
+# Content models
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
 Kutsuja pitäisi olla alle $2 {{PLURAL:$2|kappale|kappaletta}}, mutta nyt niitä on $1 {{PLURAL:$1|kappale|kappaletta}}.',
@@ -2465,7 +2469,8 @@ Tiedostoversioita, joihin sinulla ei ole katseluoikeutta (''häivytetyt versiot'
 'undeletedrevisions' => '{{PLURAL:$1|Yksi versio|$1 versiota}} palautettiin',
 'undeletedrevisions-files' => '{{PLURAL:$1|Yksi versio|$1 versiota}} ja {{PLURAL:$2|yksi tiedosto|$2 tiedostoa}} palautettiin',
 'undeletedfiles' => '{{PLURAL:$1|1 tiedosto|$1 tiedostoa}} palautettiin',
-'cannotundelete' => 'Palauttaminen epäonnistui; joku muu on voinut jo palauttaa sivun.',
+'cannotundelete' => 'Palauttaminen epäonnistui:
+$1',
 'undeletedpage' => "'''$1 on palautettu.'''
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.",
