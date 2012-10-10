@@ -600,35 +600,7 @@ class LoginForm extends SpecialPage {
 
 		global $wgBlockDisablesLogin;
 		if ( !$u->checkPassword( $this->mPassword ) ) {
-			if ( $u->checkTemporaryPassword( $this->mPassword ) ) {
-				// The e-mailed temporary password should not be used for actu-
-				// al logins; that's a very sloppy habit, and insecure if an
-				// attacker has a few seconds to click "search" on someone's o-
-				// pen mail reader.
-				//
-				// Allow it to be used only to reset the password a single time
-				// to a new value, which won't be in the user's e-mail ar-
-				// chives.
-				//
-				// For backwards compatibility, we'll still recognize it at the
-				// login form to minimize surprises for people who have been
-				// logging in with a temporary password for some time.
-				//
-				// As a side-effect, we can authenticate the user's e-mail ad-
-				// dress if it's not already done, since the temporary password
-				// was sent via e-mail.
-				if ( !$u->isEmailConfirmed() ) {
-					$u->confirmEmail();
-					$u->saveSettings();
-				}
-
-				// At this point we just return an appropriate code/ indicating
-				// that the UI should show a password reset form; bot inter-
-				// faces etc will probably just fail cleanly here.
-				$retval = self::RESET_PASS;
-			} else {
-				$retval = ( $this->mPassword == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
-			}
+			$retval = ( $this->mPassword  == '' ) ? self::EMPTY_PASS : self::WRONG_PASS;
 		} elseif ( $wgBlockDisablesLogin && $u->isBlocked() ) {
 			// If we've enabled it, make it so that a blocked user cannot login
 			$retval = self::USER_BLOCKED;
@@ -810,13 +782,11 @@ class LoginForm extends SpecialPage {
 				}
 				break;
 			case self::WRONG_PASS:
+			case self::RESET_PASS:
 				$this->mainLoginForm( $this->msg( 'wrongpassword' )->text() );
 				break;
 			case self::EMPTY_PASS:
 				$this->mainLoginForm( $this->msg( 'wrongpasswordempty' )->text() );
-				break;
-			case self::RESET_PASS:
-				$this->resetLoginForm( $this->msg( 'resetpass_announce' )->text() );
 				break;
 			case self::CREATE_BLOCKED:
 				$this->userBlockedMessage( $this->getUser()->isBlockedFromCreateAccount() );

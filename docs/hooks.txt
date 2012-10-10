@@ -769,9 +769,13 @@ $wikiPage: WikiPage that was removed
 $catpage: CategoryPage instance
 
 'ChangePasswordForm': For extensions that need to add a field to the
-ChangePassword form via the Preferences form.
+ChangePassword form via the Preferences form (deprecated).
 &$extraFields: An array of arrays that hold fields like would be passed to the
   pretty function.
+
+'ChangePasswordFields': For extensions that need to add a field to the ChangePassword form
+via the Preferences form
+&$a: An array of HTMLForm-style fields.
 
 'ChangesListInsertArticleLink': Override or augment link to article in RC list.
 &$changesList: ChangesList instance.
