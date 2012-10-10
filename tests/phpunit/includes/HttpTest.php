@@ -137,7 +137,7 @@ class HttpTest extends MediaWikiTestCase {
 	 *  from that won't have MWHttpRequestTester::setRespHeaders...
 	 */
 	function testRelativeRedirections() {
-		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );
+		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext' );
 		# Forge a Location header
 		$h->setRespHeaders( 'location', array(
 			'http://newsite/file.ext',
@@ -175,7 +175,7 @@ class HttpTest extends MediaWikiTestCase {
 }
 
 /**
- * Class to let us overwrite MWHttpREquest respHeaders variable
+ * Class to let us overwrite MWHttpRequest respHeaders variable
  */
 class MWHttpRequestTester extends MWHttpRequest {
 	function setRespHeaders( $name, $value ) {
