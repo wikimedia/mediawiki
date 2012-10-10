@@ -343,16 +343,6 @@ class SpecialUserlogin extends FormSpecialPage {
 					$this->getOutput()->redirect( $url );
 				}
 			}
-		} elseif ( $user->checkTemporaryPassword( $data['Password'] ) ) {
-			// Temporary password. Force password reset.
-			if ( !$user->isEmailConfirmed() ) {
-				$user->confirmEmail();
-				$user->saveSettings();
-			}
-			$reset = new SpecialChangePassword();
-			$reset->setContext( $this->getContext() );
-			$reset->execute( null );
-			$status->fatal( 'resetpass_announce' );
 		} else {
 			// Wrong password.
 			$status->fatal( 'wrongpassword' );

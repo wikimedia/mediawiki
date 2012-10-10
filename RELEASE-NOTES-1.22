@@ -27,6 +27,8 @@ production.
 * $wgJsMimeType is no longer used by core. Most usage has been removed since
   HTML output is now exclusively HTML5.
 * $wgDBOracleDRCP added. True enables persistent connection with DRCP on Oracle.
+* Changed expiry of temporary passwords from one week to one day because of
+  the new token-based password reset system.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -95,6 +97,9 @@ production.
   http://www.oracle-base.com/articles/11g/database-resident-connection-pool-11gr1.php
 * Add a new parameter $patrolFooterShown to hook ArticleViewFooter so the hook
   handlers can take further action based on the status of the patrol footer
+* The temporary password-based password reset system has been replaced with
+  a token system, i.e., instead of using a temporary password, the user clicks
+  a link in the email.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
