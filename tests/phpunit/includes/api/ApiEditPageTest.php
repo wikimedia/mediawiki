@@ -120,8 +120,73 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertEquals( $data, $page->getContent()->serialize() );
 	}
 
-	function testEditAppend() {
-		$this->markTestIncomplete( "not yet implemented" );
+	static function provideEditAppend() {
+		return array(
+			array( #0: append
+				'foo', 'append', 'bar', "foobar"
+			),
+			array( #1: prepend
+				'foo', 'prepend', 'bar', "barfoo"
+			),
+			array( #2: append to empty page
+				'', 'append', 'foo', "foo"
+			),
+			array( #3: prepend to empty page
+				'', 'prepend', 'foo', "foo"
+			),
+			array( #4: append to non-existing page
+				null, 'append', 'foo', "foo"
+			),
+			array( #5: prepend to non-existing page
+				null, 'prepend', 'foo', "foo"
+			),
+		);
+	}
+
+	/**
+	 * @dataProvider provideEditAppend
+	 */
+	function testEditAppend( $text, $op, $append, $expected ) {
+		static $count = 0;
+		$count++;
+
+		// assume NS_HELP defaults to wikitext
+		$name = "Help:ApiEditPageTest_testEditAppend_$count";
+
+		// -- create page (or not) -----------------------------------------
+		if ( $text !== null ) {
+			if ( $text === '' ) {
+				// can't create an empty page, so create it with some content
+				list( $re,, ) = $this->doApiRequestWithToken( array(
+					'action' => 'edit',
+					'title' => $name,
+					'text' => '(dummy)', ) );
+			}
+
+			list( $re,, ) = $this->doApiRequestWithToken( array(
+				'action' => 'edit',
+				'title' => $name,
+				'text' => $text, ) );
+
+			$this->assertEquals( 'Success', $re['edit']['result'] ); // sanity
+		}
+
+		// -- try append/prepend --------------------------------------------
+		list( $re,, ) = $this->doApiRequestWithToken( array(
+			'action' => 'edit',
+			'title' => $name,
+			$op . 'text' => $append, ) );
+
+		$this->assertEquals( 'Success', $re['edit']['result'] );
+
+		// -- validate -----------------------------------------------------
+		$page = new WikiPage( Title::newFromText( $name ) );
+		$content = $page->getContent();
+		$this->assertNotNull( $content, 'Page should have been created' );
+
+		$text = $content->getNativeData();
+
+		$this->assertEquals( $expected, $text );
 	}
 
 	function testEditSection() {
@@ -129,10 +194,6 @@ class ApiEditPageTest extends ApiTestCase {
 	}
 
 	function testUndo() {
-		$this->markTestIncomplete( "not yet implemented" );
-	}
-
-	function testEditNonText() {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
 }
