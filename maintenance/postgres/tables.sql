@@ -79,7 +79,8 @@ CREATE TABLE page (
   page_random        NUMERIC(15,14) NOT NULL  DEFAULT RANDOM(),
   page_touched       TIMESTAMPTZ,
   page_latest        INTEGER        NOT NULL, -- FK?
-  page_len           INTEGER        NOT NULL
+  page_len           INTEGER        NOT NULL,
+  page_content_model TEXT
 );
 CREATE UNIQUE INDEX page_unique_name ON page (page_namespace, page_title);
 CREATE INDEX page_main_title         ON page (page_title text_pattern_ops) WHERE page_namespace = 0;
@@ -104,18 +105,20 @@ CREATE TRIGGER page_deleted AFTER DELETE ON page
 
 CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
-  rev_id          INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
-  rev_page        INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rev_text_id     INTEGER          NULL, -- FK
-  rev_comment     TEXT,
-  rev_user        INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
-  rev_user_text   TEXT         NOT NULL,
-  rev_timestamp   TIMESTAMPTZ  NOT NULL,
-  rev_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
-  rev_deleted     SMALLINT     NOT NULL  DEFAULT 0,
-  rev_len         INTEGER          NULL,
-  rev_parent_id   INTEGER          NULL,
-  rev_sha1        TEXT         NOT NULL DEFAULT ''
+  rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
+  rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
+  rev_text_id        INTEGER          NULL, -- FK
+  rev_comment        TEXT,
+  rev_user           INTEGER      NOT NULL  REFERENCES mwuser(user_id) ON DELETE RESTRICT DEFERRABLE INITIALLY DEFERRED,
+  rev_user_text      TEXT         NOT NULL,
+  rev_timestamp      TIMESTAMPTZ  NOT NULL,
+  rev_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
+  rev_deleted        SMALLINT     NOT NULL  DEFAULT 0,
+  rev_len            INTEGER          NULL,
+  rev_parent_id      INTEGER          NULL,
+  rev_sha1           TEXT         NOT NULL DEFAULT '',
+  rev_content_model  TEXT,
+  rev_content_format TEXT
 );
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
 CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
@@ -153,22 +156,24 @@ ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_prop
 CREATE INDEX page_props_propname ON page_props (pp_propname);
 
 CREATE TABLE archive (
-  ar_namespace   SMALLINT     NOT NULL,
-  ar_title       TEXT         NOT NULL,
-  ar_text        TEXT, -- technically should be bytea, but not used anymore
-  ar_page_id     INTEGER          NULL,
-  ar_parent_id   INTEGER          NULL,
-  ar_sha1        TEXT         NOT NULL DEFAULT '',
-  ar_comment     TEXT,
-  ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
-  ar_user_text   TEXT         NOT NULL,
-  ar_timestamp   TIMESTAMPTZ  NOT NULL,
-  ar_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
-  ar_flags       TEXT,
-  ar_rev_id      INTEGER,
-  ar_text_id     INTEGER,
-  ar_deleted     SMALLINT     NOT NULL  DEFAULT 0,
-  ar_len         INTEGER          NULL
+  ar_namespace      SMALLINT     NOT NULL,
+  ar_title          TEXT         NOT NULL,
+  ar_text           TEXT, -- technically should be bytea, but not used anymore
+  ar_page_id        INTEGER          NULL,
+  ar_parent_id      INTEGER          NULL,
+  ar_sha1           TEXT         NOT NULL DEFAULT '',
+  ar_comment        TEXT,
+  ar_user           INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ar_user_text      TEXT         NOT NULL,
+  ar_timestamp      TIMESTAMPTZ  NOT NULL,
+  ar_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
+  ar_flags          TEXT,
+  ar_rev_id         INTEGER,
+  ar_text_id        INTEGER,
+  ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
+  ar_len            INTEGER          NULL,
+  ar_content_model  TEXT,
+  ar_content_format TEXT
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
