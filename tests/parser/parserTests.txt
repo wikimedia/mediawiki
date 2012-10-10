@@ -5830,6 +5830,39 @@ pst
 [[Category:Foo (bar)|Foo]]
 !! end
 
+!! test
+Category with template
+!! options
+cat
+pst
+!! input
+[[Category:{{echo|Foo}}]]
+!! result
+[[Category:{{echo|Foo}}]]
+!! end
+
+!! test
+Category with template in sort key
+!! options
+cat
+pst
+!! input
+[[Category:Foo|{{echo|Bar}}]]
+!! result
+[[Category:Foo|{{echo|Bar}}]]
+!! end
+
+!! test
+Category with template in sort key and title
+!! options
+cat
+pst
+!! input
+[[Category:{{echo|Foo}}|{{echo|Bar}}]]
+!! result
+[[Category:{{echo|Foo}}|{{echo|Bar}}]]
+!! end
+
 ###
 ### Inter-language links
 ###
