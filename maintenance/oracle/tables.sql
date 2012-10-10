@@ -73,7 +73,8 @@ CREATE TABLE &mw_prefix.page (
   page_random        NUMBER(15,14) NOT NULL,
   page_touched       TIMESTAMP(6) WITH TIME ZONE,
   page_latest        NUMBER        DEFAULT 0 NOT NULL, -- FK?
-  page_len           NUMBER        DEFAULT 0 NOT NULL
+  page_len           NUMBER        DEFAULT 0 NOT NULL,
+  page_content_model VARCHAR2(32)
 );
 ALTER TABLE &mw_prefix.page ADD CONSTRAINT &mw_prefix.page_pk PRIMARY KEY (page_id);
 CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_title);
@@ -83,7 +84,7 @@ CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_name
 
 -- Create a dummy page to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.page
-  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0);
+  VALUES (0, 0, ' ', NULL, 0, 0, 0, 0, current_timestamp, 0, 0, NULL);
 
 /*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
@@ -106,7 +107,9 @@ CREATE TABLE &mw_prefix.revision (
   rev_deleted     CHAR(1)         DEFAULT '0' NOT NULL,
   rev_len         NUMBER          NULL,
   rev_parent_id   NUMBER      	   DEFAULT NULL,
-  rev_sha1		  VARCHAR2(32)    NULL
+  rev_sha1		  VARCHAR2(32)    NULL,
+  rev_content_model VARCHAR2(32),
+  rev_content_format VARCHAR2(64)
 );
 ALTER TABLE &mw_prefix.revision ADD CONSTRAINT &mw_prefix.revision_pk PRIMARY KEY (rev_id);
 ALTER TABLE &mw_prefix.revision ADD CONSTRAINT &mw_prefix.revision_fk1 FOREIGN KEY (rev_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
@@ -142,7 +145,9 @@ CREATE TABLE &mw_prefix.archive (
   ar_len         NUMBER,
   ar_page_id     NUMBER,
   ar_parent_id   NUMBER,
-  ar_sha1		  VARCHAR2(32)    NULL
+  ar_sha1		  VARCHAR2(32),
+  ar_content_model VARCHAR2(32),
+  ar_content_format VARCHAR2(64)
 );
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk1 FOREIGN KEY (ar_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
@@ -197,8 +202,7 @@ CREATE TABLE &mw_prefix.category (
   cat_title VARCHAR2(255) NOT NULL,
   cat_pages NUMBER DEFAULT 0 NOT NULL,
   cat_subcats NUMBER DEFAULT 0 NOT NULL,
-  cat_files NUMBER DEFAULT 0 NOT NULL,
-  cat_hidden NUMBER DEFAULT 0 NOT NULL
+  cat_files NUMBER DEFAULT 0 NOT NULL
 );
 ALTER TABLE &mw_prefix.category ADD CONSTRAINT &mw_prefix.category_pk PRIMARY KEY (cat_id);
 CREATE UNIQUE INDEX &mw_prefix.category_u01 ON &mw_prefix.category (cat_title);
@@ -246,7 +250,6 @@ CREATE TABLE &mw_prefix.site_stats (
   ss_total_pages    NUMBER            DEFAULT -1,
   ss_users          NUMBER            DEFAULT -1,
   ss_active_users   NUMBER            DEFAULT -1,
-  ss_admins         NUMBER            DEFAULT -1,
   ss_images         NUMBER            DEFAULT 0
 );
 CREATE UNIQUE INDEX &mw_prefix.site_stats_u01 ON &mw_prefix.site_stats (ss_row_id);
