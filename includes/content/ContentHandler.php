@@ -302,7 +302,7 @@ abstract class ContentHandler {
 			wfRunHooks( 'ContentHandlerForModelID', array( $modelId, &$handler ) );
 
 			if ( $handler === null ) {
-				throw new MWException( "No handler for model #$modelId registered in \$wgContentHandlers" );
+				throw new MWException( "No handler for model '$modelId'' registered in \$wgContentHandlers" );
 			}
 
 			if ( !( $handler instanceof ContentHandler ) ) {
@@ -1084,9 +1084,9 @@ abstract class ContentHandler {
 /**
  * @since 1.21
  */
-abstract class TextContentHandler extends ContentHandler {
+class TextContentHandler extends ContentHandler {
 
-	public function __construct( $modelId, $formats ) {
+	public function __construct( $modelId = CONTENT_MODEL_TEXT, $formats = array( CONTENT_FORMAT_TEXT ) ) {
 		parent::__construct( $modelId, $formats );
 	}
 
@@ -1142,6 +1142,32 @@ abstract class TextContentHandler extends ContentHandler {
 		return $mergedContent;
 	}
 
+	/**
+	 * Unserializes a Content object of the type supported by this ContentHandler.
+	 *
+	 * @since 1.21
+	 *
+	 * @param $text   string serialized form of the content
+	 * @param $format null|String the format used for serialization
+	 *
+	 * @return Content the TextContent object wrapping $text
+	 */
+	public function unserializeContent( $text, $format = null ) {
+		$this->checkFormat( $format );
+
+		return new TextContent( $text );
+	}
+
+	/**
+	 * Creates an empty TextContent object.
+	 *
+	 * @since 1.21
+	 *
+	 * @return Content
+	 */
+	public function makeEmptyContent() {
+		return new TextContent( '' );
+	}
 }
 
 /**
