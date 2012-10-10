@@ -16,6 +16,10 @@ production.
 * (bug 39957) Added $wgUnwatchedPageThreshold, specifying minimum count
   of page watchers required for the number to be accessible to users
   without the unwatchedpages permission.
+* $wgPageInfoTransclusionLimit limits the list size of transcluded articles
+  on the info action. Default is 50.
+* Changed expiry of temporary passwords from one week to one day because of
+  the new token-based password reset system.
 
 === New features in 1.21 ===
 * (bug 38110) Schema changes (adding or dropping tables, indicies and
@@ -77,6 +81,9 @@ production.
 * $wgPageInfoTransclusionLimit limits the list size of transcluded articles
   on the info action. Default is 50.
 * Added action=createaccount to allow user account creation.
+* The temporary password-based password reset system has been replaced with
+  a token system, i.e., instead of using a temporary password, the user clicks
+  a link in the email.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
