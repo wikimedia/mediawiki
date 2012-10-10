@@ -210,7 +210,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			}
 		}
 
-		global $wgNewPasswordExpiry;
+		global $wgNewPasswordExpiry, $wgSecureLogin;
 
 		// All the users will have the same email address
 		if ( $firstUser->getEmail() == '' ) {
@@ -236,11 +236,22 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$passwords = array();
 		foreach ( $users as $user ) {
-			$password = $user->randomPassword();
+			$password = wfBaseConvert( MWCryptRand::generateHex( 64 ), 16, 32 );
 			$user->setNewpassword( $password );
 			$user->saveSettings();
-			$passwords[] = $this->msg( 'passwordreset-emailelement', $user->getName(), $password
-				)->inLanguage( $userLanguage )->text(); // We'll escape the whole thing later
+			$link = Linker::link(
+				SpecialPage::getTitleFor( 'ChangePassword', $user->getName() ),
+				null,
+				array(),
+				array( 'token' => $password ),
+				array( 'known', 'noclasses', $wgSecureLogin ? 'https' : 'http' )
+			);
+
+			$passwords[] = $this->msg(
+				'passwordreset-emailelement',
+				$user->getName(),
+				$link
+			)->inLanguage( $userLanguage )->text();
 		}
 		$passwordBlock = implode( "\n\n", $passwords );
 
