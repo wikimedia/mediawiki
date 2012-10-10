@@ -34,6 +34,8 @@ production.
 * New rights 'editmyusercss' and 'editmyuserjs' restrict actions that were
   formerly allowed by default. They have been added to the default for
   $wgGroupPermissions['*'].
+* Changed expiry of temporary passwords from one week to one day because of
+  the new token-based password reset system.
 
 === New features in 1.22 ===
 * (bug 44525) mediawiki.jqueryMsg can now parse (whitelisted) HTML elements and attributes.
@@ -111,6 +113,9 @@ production.
 ** editmyuserjs controls whether a user may edit their own JS subpages.
 * Add new hook AbortTalkPageEmailNotification, this will be used to determine
   whether to send the regular talk page email notification
+* The temporary password-based password reset system has been replaced with
+  a token system, i.e., instead of using a temporary password, the user clicks
+  a link in the email.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
