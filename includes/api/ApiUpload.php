@@ -89,7 +89,7 @@ class ApiUpload extends ApiBase {
 		} else {
 			$this->verifyUpload();
 		}
- 
+
 		// Check if the user has the rights to modify or overwrite the requested title
 		// (This check is irrelevant if stashing is already requested, since the errors
 		//  can always be fixed by changing the title)
@@ -99,7 +99,7 @@ class ApiUpload extends ApiBase {
 				$this->dieRecoverableError( $permErrors[0], 'filename' );
 			}
 		}
-		// Get the result based on the current upload context: 
+		// Get the result based on the current upload context:
 		$result = $this->getContextResult();
 
 		if ( $result['result'] === 'Success' ) {
@@ -196,7 +196,7 @@ class ApiUpload extends ApiBase {
 				return array();
 			}
 
-			// Check we added the last chunk: 
+			// Check we added the last chunk:
 			if( $this->mParams['offset'] + $chunkSize == $this->mParams['filesize'] ) {
 				$status = $this->mUpload->concatenateChunks();
 
@@ -222,7 +222,7 @@ class ApiUpload extends ApiBase {
 		$result['offset'] = $this->mParams['offset'] + $chunkSize;
 		return $result;
 	}
-	
+
 	/**
 	 * Stash the file and return the file key
 	 * Also re-raises exceptions with slightly more informative message strings (useful for API)

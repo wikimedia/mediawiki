@@ -840,7 +840,7 @@ class ApiMain extends ApiBase {
 	protected function logRequest( $time ) {
 		$request = $this->getRequest();
 		$milliseconds = $time === null ? '?' : round( $time * 1000 );
-		$s = 'API' . 
+		$s = 'API' .
 			' ' . $request->getMethod() .
 			' ' . wfUrlencode( str_replace( ' ', '_', $this->getUser()->getName() ) ) .
 			' ' . $request->getIP() .
@@ -897,7 +897,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function getCheck( $name ) {
 		$this->mParamsUsed[$name] = true;
-		return $this->getRequest()->getCheck( $name );		
+		return $this->getRequest()->getCheck( $name );
 	}
 
 	/**

@@ -124,7 +124,7 @@ class RevertFileAction extends FormAction {
 		$lang = $this->getLanguage();
 		$userDate = $lang->userDate( $timestamp, $user );
 		$userTime = $lang->userTime( $timestamp, $user );
-	
+
 		$this->getOutput()->addWikiMsg( 'filerevert-success', $this->getTitle()->getText(),
 			$userDate, $userTime,
 			wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
@@ -136,7 +136,7 @@ class RevertFileAction extends FormAction {
 	protected function getPageTitle() {
 		return $this->msg( 'filerevert', $this->getTitle()->getText() );
 	}
-	
+
 	protected function getDescription() {
 		$this->getOutput()->addBacklinkSubtitle( $this->getTitle() );
 		return '';

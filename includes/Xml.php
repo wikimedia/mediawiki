@@ -208,7 +208,7 @@ class Xml {
 
 	/**
 	 * Construct a language selector appropriate for use in a form or preferences
-	 * 
+	 *
 	 * @param string $selected The language code of the selected language
 	 * @param boolean $customisedOnly If true only languages which have some content are listed
 	 * @param string $inLanguage The ISO code of the language to display the select list in (optional)

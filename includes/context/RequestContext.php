@@ -307,7 +307,7 @@ class RequestContext implements IContextSource {
 	public function getSkin() {
 		if ( $this->skin === null ) {
 			wfProfileIn( __METHOD__ . '-createskin' );
-			
+
 			$skin = null;
 			wfRunHooks( 'RequestContextCreateSkin', array( $this, &$skin ) );
 
@@ -397,4 +397,3 @@ class RequestContext implements IContextSource {
 	}
 
 }
-

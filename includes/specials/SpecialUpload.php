@@ -646,7 +646,7 @@ class SpecialUpload extends SpecialPage {
 				$exists['normalizedFile']->getTitle()->getPrefixedText() )->parse();
 		} elseif ( $exists['warning'] == 'thumb' ) {
 			// Swapped argument order compared with other messages for backwards compatibility
-			$warning = wfMessage( 'fileexists-thumbnail-yes', 
+			$warning = wfMessage( 'fileexists-thumbnail-yes',
 				$exists['thumbFile']->getTitle()->getPrefixedText(), $filename )->parse();
 		} elseif ( $exists['warning'] == 'thumb-name' ) {
 			// Image w/o '180px-' does not exists, but we do not like these filenames

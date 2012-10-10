@@ -42,7 +42,7 @@ class WantedFilesPage extends WantedQueryPage {
 		$catMessage = $this->msg( 'broken-file-category' )
 			->title( Title::newFromText( "Wanted Files", NS_MAIN ) )
 			->inContentLanguage();
-		
+
 		if ( !$catMessage->isDisabled() ) {
 			$category = Title::makeTitleSafe( NS_CATEGORY, $catMessage->text() );
 		} else {

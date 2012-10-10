@@ -220,7 +220,7 @@ class LogPage {
 	}
 
 	/**
-	 * Generate text for a log entry. 
+	 * Generate text for a log entry.
 	 * Only LogFormatter should call this function.
 	 *
 	 * @param $type String: log type

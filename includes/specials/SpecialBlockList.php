@@ -441,7 +441,7 @@ class BlockListPager extends TablePager {
 			$name = str_replace( ' ', '_', $user->getName() );
 			$lb->add( NS_USER, $name );
 			$lb->add( NS_USER_TALK, $name );
-		} 
+		}
 
 		$lb->execute();
 		wfProfileOut( __METHOD__ );

@@ -77,7 +77,7 @@ class Ibm_db2Updater extends DatabaseUpdater {
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
-			array( 'doRebuildLocalisationCache' ), 
+			array( 'doRebuildLocalisationCache' ),
 
 			// 1.19
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),

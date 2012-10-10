@@ -158,7 +158,7 @@ class ApiParse extends ApiBase {
 				$popts->enableLimitReport( !$params['disablepp'] );
 
 				// Potentially cached
-				$p_result = $this->getParsedContent( $pageObj, $popts, $pageid, 
+				$p_result = $this->getParsedContent( $pageObj, $popts, $pageid,
 					isset( $prop['wikitext'] ) ) ;
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text

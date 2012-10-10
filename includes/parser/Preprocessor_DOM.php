@@ -165,7 +165,7 @@ class Preprocessor_DOM implements Preprocessor {
 		}
 
 		// Fail if the number of elements exceeds acceptable limits
-		// Do not attempt to generate the DOM 
+		// Do not attempt to generate the DOM
 		$this->parser->mGeneratedPPNodeCount += substr_count( $xml, '<' );
 		$max = $this->parser->mOptions->getMaxGeneratedPPNodeCount();
 		if ( $this->parser->mGeneratedPPNodeCount > $max ) {

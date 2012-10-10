@@ -288,7 +288,7 @@ abstract class ExternalUser {
 				   'eu_external_id' => $this->getId() ),
 			__METHOD__ );
 	}
-	
+
 	/**
 	 * Check whether this external user id is already linked with
 	 * a local user.
@@ -305,5 +305,5 @@ abstract class ExternalUser {
 			? User::newFromId( $row->eu_local_id )
 			: null;
 	}
-	
+
 }

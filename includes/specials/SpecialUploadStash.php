@@ -192,7 +192,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 
 		// now we should construct a File, so we can get mime and other such info in a standard way
 		// n.b. mimetype may be different from original (ogx original -> jpeg thumb)
-		$thumbFile = new UnregisteredLocalFile( false, 
+		$thumbFile = new UnregisteredLocalFile( false,
 			$this->stash->repo, $thumbnailImage->getStoragePath(), false );
 		if ( !$thumbFile ) {
 			throw new UploadStashFileNotFoundException( "couldn't create local file object for thumbnail" );

@@ -87,7 +87,7 @@ class FeedUtils {
 			($row->rc_deleted & Revision::DELETED_COMMENT)
 				? wfMessage('rev-deleted-comment')->escaped()
 				: $row->rc_comment,
-			$actiontext 
+			$actiontext
 		);
 	}
 

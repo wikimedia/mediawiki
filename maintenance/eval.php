@@ -43,7 +43,7 @@ if ( isset( $options['d'] ) ) {
 	}
 	if ( $d > 1 ) {
 		$lb = wfGetLB();
-		$serverCount = $lb->getServerCount(); 
+		$serverCount = $lb->getServerCount();
 		for ( $i = 0; $i < $serverCount; $i++ ) {
 			$server = $lb->getServerInfo( $i );
 			$server['flags'] |= DBO_DEBUG;

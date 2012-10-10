@@ -333,7 +333,7 @@ abstract class ORMTable implements IORMTable {
 			$functionName
 		) !== false; // DatabaseBase::delete does not always return true for success as documented...
 	}
-	
+
 	/**
 	 * Get API parameters for the fields supported by this object.
 	 *
