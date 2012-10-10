@@ -10,8 +10,13 @@ production.
 
 === Configuration changes in 1.22 ===
 * $wgRedirectScript was removed. It was unused.
+* Changed expiry of temporary passwords from one week to one day because of
+  the new token-based password reset system.
 
 === New features in 1.22 ===
+* The temporary password-based password reset system has been replaced with
+  a token system, i.e., instead of using a temporary password, the user clicks
+  a link in the email.
 
 === Bug fixes in 1.22 ===
 
