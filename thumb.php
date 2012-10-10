@@ -153,6 +153,13 @@ function wfStreamThumb( array $params ) {
 		$img = wfLocalFile( $fileName );
 	}
 
+	// Check the source file title
+	if ( !$img ) {
+		wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
+		wfProfileOut( __METHOD__ );
+		return;
+	}
+
 	// Check permissions if there are read restrictions
 	$varyHeader = array();
 	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
@@ -167,11 +174,6 @@ function wfStreamThumb( array $params ) {
 	}
 
 	// Check the source file storage path
-	if ( !$img ) {
-		wfThumbError( 404, wfMessage( 'badtitletext' )->text() );
-		wfProfileOut( __METHOD__ );
-		return;
-	}
 	if ( !$img->exists() ) {
 		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
 		wfProfileOut( __METHOD__ );
