@@ -107,6 +107,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
 			array( 'addField', 'job',           'job_attempts',      'patch-job_attempts.sql' ),
 			array( 'doEnableProfiling' ),
+			array( 'addTable', 'datamodel_lists', 'patch-datamodel_lists.sql' ),
 		);
 	}
 
