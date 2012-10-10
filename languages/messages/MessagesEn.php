@@ -1207,7 +1207,8 @@ Please wait before trying again.',
 'resetpass_announce'        => 'You logged in with a temporary emailed code.
 To finish logging in, you must set a new password here:',
 'resetpass_text'            => '<!-- Add text here -->', # only translate this message to other languages if you have to change it
-'resetpass_header'          => 'Change account password',
+'changepassword-legend'     => 'Change account password',
+'changepassword-text'       => '<!-- Add text here -->',
 'oldpassword'               => 'Old password:',
 'newpassword'               => 'New password:',
 'retypenew'                 => 'Retype new password:',
@@ -1256,10 +1257,10 @@ request, or if you have remembered your original password, and you no longer
 wish to change it, you may ignore this message and continue using your old
 password.',
 'passwordreset-emailelement'       => 'Username: $1
-Temporary password: $2',
-'passwordreset-emailsent'          => 'A reminder email has been sent.',
-'passwordreset-emailsent-capture'  => 'A reminder email has been sent, which is shown below.',
-'passwordreset-emailerror-capture' => 'A reminder email was generated, which is shown below, but sending it to the user failed: $1',
+Reset link: $2',
+'passwordreset-emailsent'          => 'A reminder e-mail has been sent.',
+'passwordreset-emailsent-capture'  => 'A reminder e-mail has been sent, which is shown below.',
+'passwordreset-emailerror-capture' => 'A reminder e-mail was generated, which is shown below, but sending it to the user failed: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Change email address',
