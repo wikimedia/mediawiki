@@ -257,6 +257,7 @@ $wgIgnoredMessages = array(
 	'createacct-benefit-icon3',
 	'today-at',
 	'redirect-text',
+	'changepassword-test',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
