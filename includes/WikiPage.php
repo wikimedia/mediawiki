@@ -1647,7 +1647,7 @@ class WikiPage extends Page implements IDBAccessObject {
 		$hook_args = array( &$this, &$user, &$content, &$summary,
 							$flags & EDIT_MINOR, null, null, &$flags, &$status );
 
-		if ( !wfRunHooks( 'ArticleContentSave', $hook_args )
+		if ( !wfRunHooks( 'PageContentSave', $hook_args )
 			|| !ContentHandler::runLegacyHooks( 'ArticleSave', $hook_args ) ) {
 
 			wfDebug( __METHOD__ . ": ArticleSave or ArticleSaveContent hook aborted save!\n" );
@@ -1878,7 +1878,7 @@ class WikiPage extends Page implements IDBAccessObject {
 								$flags & EDIT_MINOR, null, null, &$flags, $revision );
 
 			ContentHandler::runLegacyHooks( 'ArticleInsertComplete', $hook_args );
-			wfRunHooks( 'ArticleContentInsertComplete', $hook_args );
+			wfRunHooks( 'PageContentInsertComplete', $hook_args );
 		}
 
 		# Do updates right now unless deferral was requested
@@ -1893,7 +1893,7 @@ class WikiPage extends Page implements IDBAccessObject {
 							$flags & EDIT_MINOR, null, null, &$flags, $revision, &$status, $baseRevId );
 
 		ContentHandler::runLegacyHooks( 'ArticleSaveComplete', $hook_args );
-		wfRunHooks( 'ArticleContentSaveComplete', $hook_args );
+		wfRunHooks( 'PageContentSaveComplete', $hook_args );
 
 		# Promote user to any groups they meet the criteria for
 		$user->addAutopromoteOnceGroups( 'onEdit' );

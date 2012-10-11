@@ -115,9 +115,9 @@ Besides some functions, some hooks have also been replaced by new versions (see 
 These hooks will now trigger a warning when used:
 
 * ArticleAfterFetchContent was replaced by ArticleAfterFetchContentObject
-* ArticleInsertComplete was replaced by ArticleContentInsertComplete
-* ArticleSave was replaced by ArticleContentSave
-* ArticleSaveComplete was replaced by ArticleContentSaveComplete
+* ArticleInsertComplete was replaced by PageContentInsertComplete
+* ArticleSave was replaced by PageContentSave
+* ArticleSaveComplete was replaced by PageContentSaveComplete
 * ArticleViewCustom was replaced by ArticleContentViewCustom (also consider a custom implementation of the view action)
 * EditFilterMerged was replaced by EditFilterMergedContent
 * EditPageGetDiffText was replaced by EditPageGetDiffContent

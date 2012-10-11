@@ -491,7 +491,7 @@ Wiki::articleFromTitle()
 $title: title (object) used to create the article object
 $article: article (object) that will be returned
 
-'ArticleInsertComplete': After a new article is created. DEPRECATED, use ArticleContentInsertComplete
+'ArticleInsertComplete': After a new article is created. DEPRECATED, use PageContentInsertComplete
 $article: WikiPage created
 $user: User creating the article
 $text: New content
@@ -502,7 +502,7 @@ $section: (No longer used)
 $flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
-'ArticleContentInsertComplete': After a new article is created
+'PageContentInsertComplete': After a new article is created
 $article: WikiPage created
 $user: User creating the article
 $content: New content as a Content object
@@ -561,7 +561,7 @@ $user: the user who did the rollback
 $revision: the revision the page was reverted back to
 $current: the reverted revision
 
-'ArticleSave': before an article is saved. DEPRECATED, use ArticleContentSave instead
+'ArticleSave': before an article is saved. DEPRECATED, use PageContentSave instead
 $article: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $text: the new article text
@@ -570,7 +570,7 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
-'ArticleContentSave': before an article is saved.
+'PageContentSave': before an article is saved.
 $article: the WikiPage (object) being saved
 $user: the user (object) saving the article
 $content: the new article content, as a Content object
@@ -579,7 +579,7 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
-'ArticleSaveComplete': After an article has been updated. DEPRECATED, use ArticleContentSaveComplete instead.
+'ArticleSaveComplete': After an article has been updated. DEPRECATED, use PageContentSaveComplete instead.
 $article: WikiPage modified
 $user: User performing the modification
 $text: New content
@@ -592,7 +592,7 @@ $revision: New Revision of the article
 $status: Status object about to be returned by doEditContent()
 $baseRevId: the rev ID (or false) this edit was based on
 
-'ArticleContentSaveComplete': After an article has been updated
+'PageContentSaveComplete': After an article has been updated
 $article: WikiPage modified
 $user: User performing the modification
 $content: New content, as a Content object
