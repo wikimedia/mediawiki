@@ -3123,7 +3123,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-originalimagewidth' => "Larghëssa dla figura prima ch'a fussa ritajà",
 
 # EXIF attributes
-'exif-compression-1' => 'Pa compress',
+'exif-compression-1' => 'Nen comprimù',
 'exif-compression-2' => "CCITT Partìa 3 longheur dla codìfica d'esecussion dla codìfica Huffman modificà ëd dimension 1",
 'exif-compression-3' => 'CCITT Partìa 3 codìfica dël fax',
 'exif-compression-4' => 'CCITT Partìa 4 codìfica dël fax',
@@ -3134,7 +3134,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-unknowndate' => 'Data nen conossùa',
 
 'exif-orientation-1' => 'Normal',
-'exif-orientation-2' => 'Specolar',
+'exif-orientation-2' => 'A specc',
 'exif-orientation-3' => 'Arvirà ëd 180°',
 'exif-orientation-4' => 'Arvirà dzorsuta',
 'exif-orientation-5' => 'Arvirà dzorsota e ëd 90° contramostra',

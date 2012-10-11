@@ -2628,7 +2628,7 @@ $2による直前の版へ変更されました。',
 'restriction-level' => '制限レベル：',
 'minimum-size' => '最小サイズ',
 'maximum-size' => '最大サイズ：',
-'pagesize' => '（バイト）',
+'pagesize' => '(バイト)',
 
 # Restrictions (nouns)
 'restriction-edit' => '編集',

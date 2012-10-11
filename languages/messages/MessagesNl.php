@@ -1154,6 +1154,12 @@ Deze lijkt verwijderd te zijn.',
 Deze bestaat al.',
 'defaultmessagetext' => 'Standaardinhoud',
 
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-text' => 'platte tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Waarschuwing:''' deze pagina gebruikt te veel kostbare parserfuncties.
 

@@ -1137,6 +1137,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'edit-already-exists' => '새 문서를 만들 수 없습니다.
 그 문서는 이미 존재합니다.',
 'defaultmessagetext' => '기본 메세지 내용',
+'content-failed-to-parse' => '$1 모델에 대한 $2 내용을 구문 분석하는 데 실패했습니다: $3',
 'invalid-content-data' => '잘못된 내용 데이터입니다',
 'content-not-allowed-here' => '"$1" 내용은 [[$2]] 문서예 허용하지 않습니다',
 
@@ -2627,7 +2628,7 @@ $UNWATCHURL
 'undeletedrevisions' => '판 $1개를 복구했습니다',
 'undeletedrevisions-files' => '판 $1개와 파일 $2개를 복구했습니다.',
 'undeletedfiles' => '파일 $1개를 복구했습니다',
-'cannotundelete' => '복구에 실패했습니다:
+'cannotundelete' => '복구하는 데 실패했습니다:
 $1',
 'undeletedpage' => "'''$1 문서를 복구했습니다.'''
 
@@ -2645,7 +2646,7 @@ $1',
 이미 복구되었을 수 있습니다.',
 'undelete-error' => '문서 복구 중 오류',
 'undelete-error-short' => '파일 복구 오류: $1',
-'undelete-error-long' => '파일을 복구하는 중 오류가 발생했습니다:
+'undelete-error-long' => '파일을 복구하는 동안 오류가 발생했습니다:
 
 $1',
 'undelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
@@ -2938,6 +2939,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'immobile-target-namespace-iw' => '인터위키 링크를 넘어 문서를 이동할 수 없습니다.',
 'immobile-source-page' => '이 문서는 이동할 수 없습니다.',
 'immobile-target-page' => '새 이름으로 옮길 수 없습니다.',
+'bad-target-model' => '원하는 대상은 다른 내용 모델을 사용합니다. $1에서 $2로 변환할 수 없습니다.',
 'imagenocrossnamespace' => '파일을 파일이 아닌 이름공간으로 옮길 수 없습니다.',
 'nonfile-cannot-move-to-file' => '파일이 아닌 문서를 파일 이름공간으로 옮길 수 없습니다.',
 'imagetypemismatch' => '새 파일의 확장자가 원래의 확장자와 일치하지 않습니다.',

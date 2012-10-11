@@ -1050,6 +1050,7 @@ Se on ilmeisesti poistettu.',
 'edit-already-exists' => 'Uuden sivun luominen ei onnistunut.
 Se on jo olemassa.',
 'defaultmessagetext' => 'Viestin oletusteksti',
+'content-not-allowed-here' => '$1 ei ole sallittua sisältöä sivulla [[$2]]',
 
 # Content models
 'content-model-javascript' => 'JavaScript',
