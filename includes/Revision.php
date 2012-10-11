@@ -892,7 +892,7 @@ class Revision implements IDBAccessObject {
 	 * @return String
 	 */
 	public function getText( $audience = self::FOR_PUBLIC, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		$content = $this->getContent( $audience, $user );
 		return ContentHandler::getContentText( $content ); # returns the raw content text, if applicable
@@ -942,7 +942,7 @@ class Revision implements IDBAccessObject {
 	 *                         or Revision::getSerializedData() as appropriate.
 	 */
 	public function getRawText() {
-		wfDeprecated( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		return $this->getText( self::RAW );
 	}

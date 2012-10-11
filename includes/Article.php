@@ -243,7 +243,7 @@ class Article extends Page {
 	 * @return string Return the text of this revision
 	 */
 	public function getContent() {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 		$content = $this->getContentObject();
 		return ContentHandler::getContentText( $content );
 	}
@@ -377,7 +377,7 @@ class Article extends Page {
 	 * @deprecated in 1.21, use WikiPage::getContent() instead
 	 */
 	function fetchContent() { #BC cruft!
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		if ( $this->mContentLoaded && $this->mContent ) {
 			return $this->mContent;
