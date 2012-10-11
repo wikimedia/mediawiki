@@ -101,6 +101,10 @@ abstract class Collation {
 				return new IdentityCollation;
 			case 'uca-default':
 				return new IcuCollation( 'root' );
+			case 'zh-pinyin':
+				return new IcuCollation( 'zh@collation=pinyin' );
+			case 'zh-stroke':
+				return new IcuCollation( 'zh@collation=stroke' );
 			default:
 				# Provide a mechanism for extensions to hook in.
 
@@ -271,8 +275,13 @@ class IcuCollation extends Collation {
 		}
 
 		// Check for CJK
+		// Always sort Chinese if this is using a Chinese locale.
+		// self::isCjk() checks Chinese only though it's called 'CJK'.
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
-		if ( ord( $firstChar ) > 0x7f 
+		$localePieces = explode( '@', $this->locale );
+		$localePieces = explode( '-', $localePieces[0] );
+		if ( ord( $firstChar ) > 0x7f
+			&& $localePieces[0] !== 'zh'
 			&& self::isCjk( utf8ToCodepoint( $firstChar ) ) ) 
 		{
 			return $firstChar;
@@ -326,11 +335,16 @@ class IcuCollation extends Collation {
 		// We also take this opportunity to remove primary collisions.
 		$letterMap = array();
 		foreach ( $letters as $letter ) {
-			$key = $this->getPrimarySortKey( $letter );
+			// Chinese collations don't display real first letters.
+			if ( !is_array( $letter ) ) {
+				// array( $letterSort, $letterDisplay )
+				$letter = array( $letter, $letter );
+			}
+			$key = $this->getPrimarySortKey( $letter[0] );
 			if ( isset( $letterMap[$key] ) ) {
 				// Primary collision
 				// Keep whichever one sorts first in the main collator
-				if ( $this->mainCollator->compare( $letter, $letterMap[$key] ) < 0 ) {
+				if ( $this->mainCollator->compare( $letter[0], $letterMap[$key][0] ) < 0 ) {
 					$letterMap[$key] = $letter;
 				}
 			} else {
@@ -339,7 +353,9 @@ class IcuCollation extends Collation {
 		}
 		ksort( $letterMap, SORT_STRING );
 		$data = array(
-			'chars' => array_values( $letterMap ),
+			'chars' => array_map( function( $letter ) {
+				return $letter[1];
+			}, array_values( $letterMap ) ),
 			'keys' => array_keys( $letterMap )
 		);
 
