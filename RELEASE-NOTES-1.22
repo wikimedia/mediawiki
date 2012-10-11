@@ -213,6 +213,7 @@ production.
   against allowed proxy lists.
 * Add deferrable update support for callback/closure
 * Add TitleMove hook before page renames
+* New category collations: zh-pinyin and zh-stroke (require ICU above 4.8rc1).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one

@@ -318,8 +318,13 @@ class IcuCollation extends Collation {
 		}
 
 		// Check for CJK
+		// Always sort Chinese if this is using a Chinese locale.
+		// self::isCjk() checks Chinese only though it's called 'CJK'.
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
+		$localePieces = explode( '@', $this->locale );
+		$localePieces = explode( '-', $localePieces[0] );
 		if ( ord( $firstChar ) > 0x7f
+			&& $localePieces[0] !== 'zh'
 			&& self::isCjk( utf8ToCodepoint( $firstChar ) ) )
 		{
 			return $firstChar;
@@ -385,11 +390,16 @@ class IcuCollation extends Collation {
 		// We also take this opportunity to remove primary collisions.
 		$letterMap = array();
 		foreach ( $letters as $letter ) {
-			$key = $this->getPrimarySortKey( $letter );
+			// Chinese collations don't display real first letters.
+			if ( !is_array( $letter ) ) {
+				// array( $letterSort, $letterDisplay )
+				$letter = array( $letter, $letter );
+			}
+			$key = $this->getPrimarySortKey( $letter[0] );
 			if ( isset( $letterMap[$key] ) ) {
 				// Primary collision
 				// Keep whichever one sorts first in the main collator
-				if ( $this->mainCollator->compare( $letter, $letterMap[$key] ) < 0 ) {
+				if ( $this->mainCollator->compare( $letter[0], $letterMap[$key][0] ) < 0 ) {
 					$letterMap[$key] = $letter;
 				}
 			} else {
@@ -464,7 +474,9 @@ class IcuCollation extends Collation {
 			// This code assumes that unsetting does not change sort order.
 		}
 		$data = array(
-			'chars' => array_values( $letterMap ),
+			'chars' => array_map( function( $letter ) {
+				return $letter[1];
+			}, array_values( $letterMap ) ),
 			'keys' => array_keys( $letterMap ),
 			'version' => self::FIRST_LETTER_VERSION,
 		);
