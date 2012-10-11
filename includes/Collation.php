@@ -411,8 +411,12 @@ class IcuCollation extends Collation {
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
+		if ( $valueCount === 0 ) {
+			return false;
+		}
+
 		$min = 0;
-		$max = $valueCount - 1;
+		$max = $valueCount;
 		do {
 			$mid = $min + ( ( $max - $min ) >> 1 );
 			$item = call_user_func( $valueCallback, $mid );
@@ -427,12 +431,15 @@ class IcuCollation extends Collation {
 			}
 		} while ( $min < $max - 1 );
 
-		if ( $min == 0 && $max == 0 && $comparison > 0 ) {
-			// Before the first item
-			return false;
-		} else {
-			return $min;
+		if ( $min == 0 ) {
+			$item = call_user_func( $valueCallback, $min );
+			$comparison = call_user_func( $comparisonCallback, $target, $item );
+			if ( $comparison < 0 ) {
+				// Before the first item
+				return false;
+			}
 		}
+		return $min;
 	}
 
 	static function isCjk( $codepoint ) {
