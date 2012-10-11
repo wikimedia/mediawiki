@@ -1921,13 +1921,18 @@ class EditPage {
 	 * an exception will be raised. Set $this->allowNonTextContent to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @param String $text Text to unserialize
-	 * @return Content the content object created from $text
+	 * @param String|null|false $text Text to unserialize
+	 * @return Content The content object created from $text. If $text was false or null, false resp. null will be
+	 *                 returned instead.
 	 *
 	 * @throws MWException if unserializing the text results in a Content object that is not an instance of TextContent
 	 *          and $this->allowNonTextContent is not true.
 	 */
 	protected function toEditContent( $text ) {
+		if ( $text === false || $text === null ) {
+			return $text;
+		}
+
 		$content = ContentHandler::makeContent( $text, $this->getTitle(),
 			$this->contentModel, $this->contentFormat );
 
