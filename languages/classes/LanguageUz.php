@@ -132,6 +132,6 @@ class LanguageUz extends Language {
 		);
 
 		$this->mConverter = new UzConverter( $this, 'uz', $variants, $variantfallbacks );
-		$wgHooks['ArticleContentSaveComplete'][] = $this->mConverter;
+		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }

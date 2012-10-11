@@ -1071,7 +1071,7 @@ class LanguageConverter {
 	 * @param $revision Object: new Revision object or null
 	 * @return Boolean: true
 	 */
-	function OnArticleContentSaveComplete( $page, $user, $content, $summary, $isMinor,
+	function OnPageContentSaveComplete( $page, $user, $content, $summary, $isMinor,
 			$isWatch, $section, $flags, $revision ) {
 		$titleobj = $page->getTitle();
 		if ( $titleobj->getNamespace() == NS_MEDIAWIKI ) {

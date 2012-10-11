@@ -273,6 +273,6 @@ class LanguageKu extends LanguageKu_ku {
 		);
 
 		$this->mConverter = new KuConverter( $this, 'ku', $variants, $variantfallbacks );
-		$wgHooks['ArticleContentSaveComplete'][] = $this->mConverter;
+		$wgHooks['PageContentSaveComplete'][] = $this->mConverter;
 	}
 }
