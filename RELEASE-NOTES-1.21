@@ -22,6 +22,7 @@ production.
 * (bug 35378) Support multiple collations at the same time.
 * (bug 28397) New magic word "{{DEFAULTCOLLATION:}}" to specify the default
   collation to use for a category.
+* New category collations for Chinese: zh-pinyin and zh-stroke (require ICU above 4.8rc1).
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
