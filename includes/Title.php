@@ -387,6 +387,8 @@ class Title {
 	 * @deprecated since 1.21, use Content::getRedirectTarget instead.
 	 */
 	public static function newFromRedirect( $text ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
 		return $content->getRedirectTarget();
 	}
@@ -402,6 +404,8 @@ class Title {
 	 * @deprecated since 1.21, use Content::getUltimateRedirectTarget instead.
 	 */
 	public static function newFromRedirectRecurse( $text ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
 		return $content->getUltimateRedirectTarget();
 	}
@@ -417,6 +421,8 @@ class Title {
 	 * @deprecated since 1.21, use Content::getRedirectChain instead.
 	 */
 	public static function newFromRedirectArray( $text ) {
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+
 		$content = ContentHandler::makeContent( $text, null, CONTENT_MODEL_WIKITEXT );
 		return $content->getRedirectChain();
 	}

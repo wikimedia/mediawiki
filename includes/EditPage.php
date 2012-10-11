@@ -806,10 +806,10 @@ class EditPage {
 	 * @param $def_text string
 	 * @return mixed string on success, $def_text for invalid sections
 	 * @private
-	 * @deprecated since 1.21
+	 * @deprecated since 1.21, get WikiPage::getContent() instead.
 	 */
 	function getContent( $def_text = false ) {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		if ( $def_text !== null && $def_text !== false && $def_text !== '' ) {
 			$def_content = $this->toEditContent( $def_text );
@@ -989,10 +989,10 @@ class EditPage {
 	 * Use this method before edit() to preload some text into the edit box
 	 *
 	 * @param $text string
-	 * @deprecated since 1.21
+	 * @deprecated since 1.21, use setPreloadedContent() instead.
 	 */
 	public function setPreloadedText( $text ) {
-		wfDeprecated( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$content = $this->toEditContent( $text );
 
@@ -1021,7 +1021,7 @@ class EditPage {
 	 * @deprecated since 1.21, use getPreloadedContent() instead
 	 */
 	protected function getPreloadedText( $preload ) {
-		wfDeprecated( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$content = $this->getPreloadedContent( $preload );
 		$text = $this->toEditText( $content );
@@ -1643,7 +1643,7 @@ class EditPage {
 	 * @deprecated since 1.21, use mergeChangesIntoContent() instead
 	 */
 	function mergeChangesInto( &$editText ){
-		wfDebug( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$editContent = $this->toEditContent( $editText );
 

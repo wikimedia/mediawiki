@@ -29,6 +29,15 @@ class MWContentSerializationException extends MWException {
 abstract class ContentHandler {
 
 	/**
+	 * Switch for enabling deprecation warnings. Used by ContentHandler::deprecated()
+	 * and ContentHandler::runLegacyHooks().
+	 *
+	 * Once the ContentHandler code has settled in a bit, this should be set to true to
+	 * make extensions etc. show warnings when using deprecated functions and hooks.
+	 */
+	protected static $enableDeprecationWarnings = false;
+
+	/**
 	 * Convenience function for getting flat text from a Content object. This
 	 * should only be used in the context of backwards compatibility with code
 	 * that is not yet able to handle Content objects!
@@ -50,7 +59,6 @@ abstract class ContentHandler {
 	 * - otherwise, the behaviour is undefined.
 	 *
 	 * @since 1.21
-	 * @deprecated since 1.21. Always try to use the content object.
 	 *
 	 * @static
 	 * @param $content Content|null
@@ -952,6 +960,24 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * Logs a deprecation warning, visible if $wgDevelopmentWarnings, but only if
+	 * self::$enableDeprecationWarnings is set to true.
+	 *
+	 * @param String      $func The name of the deprecated function
+	 * @param string      $version: Default is 1.21
+	 * @param String|bool $component: Component to which the function belongs.
+	 *                                If false, it is assumed the function is in MediaWiki core.
+	 *
+	 * @see ContentHandler::$enableDeprecationWarnings
+	 * @see wfDeprecated
+	 */
+	public static function deprecated( $func, $version = '1.21', $component = false ) {
+		if ( self::$enableDeprecationWarnings ) {
+			wfDeprecated( $func, $version, $component, 3 );
+		}
+	}
+
+	/**
 	 * Call a legacy hook that uses text instead of Content objects.
 	 * Will log a warning when a matching hook function is registered.
 	 * If the textual representation of the content is changed by the
@@ -960,15 +986,22 @@ abstract class ContentHandler {
 	 *
 	 * @param $event String: event name
 	 * @param $args Array: parameters passed to hook functions
-	 * @param $warn bool: whether to log a warning (default: true). Should generally be true,
-	 *                    may be set to false for testing.
+	 * @param $warn bool: whether to log a warning.
+	 *                    Default to self::$enableDeprecationWarnings.
+	 *                    May be set to false for testing.
 	 *
 	 * @return Boolean True if no handler aborted the hook
+	 *
+	 * @see ContentHandler::$enableDeprecationWarnings
 	 */
-	public static function runLegacyHooks( $event, $args = array(), $warn = true ) {
-		global $wgHooks; //@todo: once I39bd5de2 is merged, direct access to $wgHooks is no longer needed.
+	public static function runLegacyHooks( $event, $args = array(),
+			$warn = null ) {
 
-		if ( !Hooks::isRegistered( $event ) && empty( $wgHooks[$event] ) ) {
+		if ( $warn === null ) {
+			$warn = self::$enableDeprecationWarnings;
+		}
+
+		if ( !Hooks::isRegistered( $event ) ) {
 			return true; // nothing to do here
 		}
 
