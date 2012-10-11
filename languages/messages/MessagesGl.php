@@ -489,7 +489,7 @@ $1',
 'newmessagesdifflink' => 'diferenzas coa revisión anterior',
 'youhavenewmessagesfromusers' => 'Ten $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).',
 'youhavenewmessagesmanyusers' => 'Ten $1 de moitos usuarios ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|$1 mensaxes novas}}',
+'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|mensaxes novas}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|últimas modificacións}}',
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
 'editsection' => 'editar',
@@ -587,8 +587,8 @@ Se cadra, xa a borrou alguén.',
 'delete-hook-aborted' => 'O borrado foi abortado polo asociador.
 Este non deu ningunha explicación.',
 'badtitle' => 'Título incorrecto',
-'badtitletext' => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
-Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
+'badtitletext' => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingüística ou interwiki incorrecta.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfcached' => 'Esta información é da memoria caché e pode ser que non estea completamente actualizada. Hai un máximo de {{PLURAL:$1|$1 resultado dispoñible|$1 resultados dispoñibles}} na caché.',
 'perfcachedts' => 'Esta información é da memoria caché. Última actualización: $2 ás $3. Hai un máximo de {{PLURAL:$4|$4 resultado dispoñible|$4 resultados dispoñibles}} na caché.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
@@ -1013,6 +1013,15 @@ Semella que foi borrada.',
 'edit-already-exists' => 'Non se pode crear a nova páxina.
 Esta xa existe.',
 'defaultmessagetext' => 'Texto predeterminado',
+'content-failed-to-parse' => 'Erro ao analizar o contido de "$2" para o modelo de $1: $3',
+'invalid-content-data' => 'Datos de contido inválidos',
+'content-not-allowed-here' => 'O contido "$1" non está permitido na páxina "[[$2]]"',
+
+# Content models
+'content-model-wikitext' => 'texto wiki',
+'content-model-text' => 'texto simple',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Aviso:''' Esta páxina contén demasiados analizadores de funcións de chamadas.
@@ -2141,7 +2150,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesnext' => 'Seguinte',
 'allpagessubmit' => 'Mostrar',
 'allpagesprefix' => 'Mostrar as páxinas que comezan co prefixo:',
-'allpagesbadtitle' => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
+'allpagesbadtitle' => 'O título dado á páxina non era válido ou tiña un prefixo interlingüístico ou interwiki.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'allpages-bad-ns' => '{{SITENAME}} carece do espazo de nomes "$1".',
 'allpages-hide-redirects' => 'Agochar as redireccións',
 
@@ -2481,7 +2491,8 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 'undeletedrevisions' => '$1 {{PLURAL:$1|revisión restaurada|revisións restauradas}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|revisión|revisións}} e $2 {{PLURAL:$2|ficheiro restaurado|ficheiros restaurados}}',
 'undeletedfiles' => '$1 {{PLURAL:$1|ficheiro restaurado|ficheiros restaurados}}',
-'cannotundelete' => 'Non se restaurou a páxina porque alguén xa o fixo antes.',
+'cannotundelete' => 'Houbo un erro durante a restauración:
+$1',
 'undeletedpage' => "'''A páxina \"\$1\" foi restaurada'''
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
@@ -2784,6 +2795,7 @@ Quérea borrar para deixar sitio para facer o traslado?',
 'immobile-target-namespace-iw' => 'A ligazón interwiki non é válida para o movemento da páxina.',
 'immobile-source-page' => 'Esta páxina non se pode mover.',
 'immobile-target-page' => 'Non se pode mover a ese título.',
+'bad-target-model' => 'O destino desexado utiliza un modelo de contido diferente. Non se pode facer a conversión entre $1 e $2.',
 'imagenocrossnamespace' => 'Non se pode mover o ficheiro a un espazo de nomes que non o admite',
 'nonfile-cannot-move-to-file' => 'Non se pode mover algo que non é un ficheiro ao espazo de nomes reservado aos ficheiros',
 'imagetypemismatch' => 'A nova extensión do fiheiro non coincide co seu tipo',

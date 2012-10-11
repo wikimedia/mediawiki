@@ -192,7 +192,7 @@ $messages = array(
 'category-subcat-count-limited' => 'ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ {{PLURAL:$1|ܣܕܪܐ ܦܪܥܝܐ ܗܢܐ|$1 ܣܕܪ̈ܐ ܦܪ̈ܥܝܐ ܗܠܝܢ}}.',
 'category-article-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܦܐܬܐ ܗܕܐ ܒܠܚܘܕ.|ܐܝܬ {{PLURAL:$1|ܦܐܬܐ|$1 ܦܐܬܬ̈ܐ}} ܒܣܕܪܐ ܗܢܐ، ܡܢ ܣܘܝܟܐ ܕ$2.}}',
 'category-article-count-limited' => '{{PLURAL:$1|ܦܐܬܐ ܗܕܐ|$1 ܦܐܬܬ̈ܐ ܗܠܝܢ}} ܒܣܕܪܐ ܗܢܐ.',
-'category-file-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܠܦܦܐ ܗܢܐ ܒܠܚܘܕ.|{{PLURAL:$1|ܠܦܦܐ ܕܐܬܐ ܐܝܬܘܗܝ|$1 ܠܦܦ̈ܐ ܕܐܬܝܢ ܐܝܬܝܗܘܢ}} ܒܣܕܪܐ ܗܢܐ، ܡܢ ܣܘܝܟܐ ܕ$2.}}',
+'category-file-count' => '{{PLURAL:$2|ܣܕܪܐ ܗܢܐ ܐܝܬ ܒܗ ܠܦܦܐ ܗܢܐ ܒܠܚܘܕ.|{{PLURAL:$1|ܠܦܦܐ ܕܐܬܐ ܐܝܬܘܗܝ|$1 ܠܦܦ̈ܐ ܕܐܬܝܢ ܐܝܬܝܗܘܢ}} ܒܣܕܪܐ ܗܢܐ، ܡܢ ܣܘܝܟܐ ܕ$2 ܟܠܢܐܝܬ.}}',
 'category-file-count-limited' => 'ܐܝܬ {{PLURAL:$1|ܠܦܦܐ ܕܐܬܐ|$1 ܠܦܦ̈ܐ ܕܐܬܝܢ}} ܒܣܕܪܐ ܗܫܝܐ.',
 'listingcontinuesabbrev' => '(ܫܘܠܡܐ)',
 
@@ -862,7 +862,7 @@ $1',
 'minlength1' => 'ܫܡܗ̈ܐ ܕܠܦܦܐ ܘܠܐ ܕܢܗܘܐ ܒܪܝܐ ܡܢ ܐܬܘܬܐ ܚܕܐ ܟܕ ܙܥܘܪ',
 'uploadwarning' => 'ܐܣܩ ܙܘܗܪܐ',
 'savefile' => 'ܠܒܘܟ ܠܦܦܐ',
-'uploadedimage' => '',
+'uploadedimage' => 'ܐܣܩ "[[$1]]"',
 'uploadvirus' => 'ܠܦܦܐ ܐܝܬ ܒܗ ܒܝܪܘܣ!
 ܐܪ̈ܝܟܬܐ: $1',
 'upload-source' => 'ܡܒܘܥܐ ܕܠܦܦܐ',

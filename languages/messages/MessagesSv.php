@@ -40,6 +40,7 @@
  * @author Rotsee
  * @author S.Örvarr.S
  * @author Sannab
+ * @author Sendelbach
  * @author Sertion
  * @author Skalman
  * @author Stefan2
@@ -1085,6 +1086,7 @@ Det verkar som att den har raderats.',
 'edit-already-exists' => 'Sidan kunde inte skapas.
 Den finns redan.',
 'defaultmessagetext' => 'Standardtext för meddelande',
+'content-failed-to-parse' => 'Det gick inte att parsa $2 innehåll för $1 modell: $3',
 'invalid-content-data' => 'Ogiltig innehållsdata',
 'content-not-allowed-here' => 'innehåll av "$1" är inte tillåtet på sidan [[$2]]',
 
@@ -2847,6 +2849,7 @@ Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den 
 'immobile-target-namespace-iw' => 'Interwikilänk är inte ett giltigt mål för sidflyttar.',
 'immobile-source-page' => 'Denna sida är inte flyttbar.',
 'immobile-target-page' => 'Kan inte flytta till det målnamnet.',
+'bad-target-model' => 'Den önskade destinationen använder en annan innehållsmodell. Kan inte konvertera från $1 till $2.',
 'imagenocrossnamespace' => 'Kan inte flytta filer till andra namnrymder än filnamnrymden',
 'nonfile-cannot-move-to-file' => 'Kan inte flytta icke-fil till filnamnrymden',
 'imagetypemismatch' => 'Den nya filändelsen motsvarar inte filtypen',
