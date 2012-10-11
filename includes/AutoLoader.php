@@ -33,6 +33,7 @@ $wgAutoloadLocalClasses = array(
 	'AjaxDispatcher' => 'includes/AjaxDispatcher.php',
 	'AjaxResponse' => 'includes/AjaxResponse.php',
 	'AlphabeticPager' => 'includes/Pager.php',
+	'ArrayUtils' => 'includes/ArrayUtils.php',
 	'Article' => 'includes/Article.php',
 	'AtomFeed' => 'includes/Feed.php',
 	'AuthPlugin' => 'includes/AuthPlugin.php',
