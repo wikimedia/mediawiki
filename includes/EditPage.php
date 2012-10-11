@@ -1007,7 +1007,7 @@ class EditPage {
 	 * @since 1.21
 	 */
 	public function setPreloadedContent( Content $content ) {
-		$this->mPreloadedContent = $content;
+		$this->mPreloadContent = $content;
 	}
 
 	/**
