@@ -108,6 +108,7 @@ return array(
 	'jquery' => array(
 		'scripts' => 'resources/jquery/jquery.js',
 		'debugRaw' => false,
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 
 	/* jQuery Plugins */
@@ -180,6 +181,7 @@ return array(
 	),
 	'jquery.hidpi' => array(
 		'scripts' => 'resources/jquery/jquery.hidpi.js',
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'jquery.highlightText' => array(
 		'scripts' => 'resources/jquery/jquery.highlightText.js',
@@ -549,6 +551,7 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.js',
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false,
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.api' => array(
 		'scripts' => 'resources/mediawiki.api/mediawiki.api.js',
@@ -629,6 +632,7 @@ return array(
 		'dependencies' => array(
 			'jquery.hidpi',
 		),
+		'targets' => array( 'desktop', 'mobile' ),
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',

@@ -113,6 +113,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected $debugRaw = true;
 	/** Boolean: Whether mw.loader.state() call should be omitted */
 	protected $raw = false;
+	protected $targets = array( 'desktop' );
+
 	/**
 	 * Array: Cache for mtime
 	 * @par Usage:
@@ -232,6 +234,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 				// Lists of strings
 				case 'dependencies':
 				case 'messages':
+				case 'targets':
 					$this->{$member} = (array) $option;
 					break;
 				// Single strings
@@ -670,4 +673,14 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	public function getFlip( $context ) {
 		return $context->getDirection() === 'rtl';
 	}
+
+	/**
+	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
+	 *
+	 * @return array of strings
+	 */
+	public function getTargets() {
+		return $this->targets;
+	}
+
 }
