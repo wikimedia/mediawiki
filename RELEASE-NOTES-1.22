@@ -234,6 +234,8 @@ production.
    referenced in LESS '@import' statements are looked up here first.
 * Added meta=filerepoinfo API module for getting information about foreign
   image repositories, and related ForeignAPIRepo methods getInfo and getApiUrl.
+* Category collations zh@collations=pinyin and zh@collations=stroke are now
+  usable (require ICU above 4.8rc1).
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
