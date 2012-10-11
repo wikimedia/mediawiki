@@ -450,4 +450,13 @@ abstract class ResourceLoaderModule {
 		return self::$jsParser;
 	}
 
+	/**
+	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
+	 * Default implementation hardcodes 'desktop'.
+	 *
+	 * @return array of strings
+	 */
+	public function getTargets() {
+		return array( 'desktop' );
+	}
 }
