@@ -298,6 +298,72 @@ interface IORMTable {
 	 */
 	public function setReadDb( $db );
 
+
+	/**
+	 * Get the ID of the any foreign wiki to use as a target for database operations
+	 *
+	 * @since 1.20
+	 *
+	 * @return String|bool The target wiki, in a form that  LBFactory understands (or false if the local wiki is used)
+	 */
+	public function getTargetWiki();
+
+	/**
+	 * Set the ID of the any foreign wiki to use as a target for database operations
+	 *
+	 * @param String|bool $wiki The target wiki, in a form that  LBFactory understands (or false if the local wiki shall be used)
+	 *
+	 * @since 1.20
+	 */
+	public function setTargetWiki( $wiki );
+
+	/**
+	 * Get the database type used for read operations.
+	 * This is to be used instead of wfGetDB.
+	 *
+	 * @see LoadBalancer::getConnection
+	 *
+	 * @since 1.20
+	 *
+	 * @return DatabaseBase The database object
+	 */
+	public function getReadDbConnection();
+
+	/**
+	 * Get the database type used for read operations.
+	 * This is to be used instead of wfGetDB.
+	 *
+	 * @see LoadBalancer::getConnection
+	 *
+	 * @since 1.20
+	 *
+	 * @return DatabaseBase The database object
+	 */
+	public function getWriteDbConnection();
+
+	/**
+	 * Get the database type used for read operations.
+	 *
+	 * @see wfGetLB
+	 *
+	 * @since 1.20
+	 *
+	 * @return LoadBalancer The database load balancer object
+	 */
+	public function getLoadBalancer();
+
+	/**
+	 * Releases the lease on the given database connection. This is useful mainly
+	 * for connections to a foreign wiki. It does nothing for connections to the local wiki.
+	 *
+	 * @see LoadBalancer::reuseConnection
+	 *
+	 * @param DatabaseBase $db the database
+	 *
+	 * @since 1.20
+	 */
+	public function releaseConnection( DatabaseBase $db );
+
 	/**
 	 * Update the records matching the provided conditions by
 	 * setting the fields that are keys in the $values param to
