@@ -71,6 +71,12 @@ Template:echo
 {{{1}}}
 !! endarticle
 
+!! article
+Template:attr_str
+!! text
+{{{1}}}="{{{2}}}"
+!! endarticle
+
 ###
 ### Basic tests
 ###
@@ -4046,6 +4052,14 @@ Template parameter as link source
 </p>
 !! end
 
+!!test
+Template-generated attribute string (k='v')
+!!input
+<span {{attr_str|id|v1}}>bar</span>
+!!result
+<p><span id="v1">bar</span>
+</p>
+!!end
 
 !!article
 Template:paramtest2
@@ -4325,6 +4339,15 @@ section=1
 ###
 ### <includeonly> and <noinclude> in attributes
 ###
+!!test
+0. includeonly around the entire attribute
+!!input
+<span <includeonly>id="v1"</includeonly><noinclude>id="v2"</noinclude>>bar</span>
+!!result
+<p><span id="v2">bar</span>
+</p>
+!!end
+
 !!test
 1. includeonly in html attr key
 !!input
@@ -5358,6 +5381,15 @@ Simple image (using File: namespace, now canonical)
 Image with caption
 !! input
 [[Image:foobar.jpg|right|Caption text]]
+!! result
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
+Image with empty attribute
+!! input
+[[Image:foobar.jpg|right||Caption text]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
@@ -11158,31 +11190,8 @@ HttP://MediaWiki.Org/
 ### Parsoids-specific tests
 ### Parsoid-PHP parser incompatibilities
 ###
-
 !!test
-1. includeonly around the entire attribute
-!!options
-disabled
-!!input
-<span <includeonly>id="v1"</includeonly><noinclude>id="v2"</noinclude>>bar</span>
-!!result
-<p><span>bar</span>
-</p>
-!!end
-
-!!test
-2. template around the entire attribute
-!!options
-disabled
-!!input
-<span {{echo|id="v1"}}>bar</span>
-!!result
-<p><span>bar</span>
-</p>
-!!end
-
-!!test
-3. SOL-sensitive wikitext tokens as template-args
+1. SOL-sensitive wikitext tokens as template-args
 !!options
 disabled
 !!input
