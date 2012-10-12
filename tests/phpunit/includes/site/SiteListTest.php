@@ -19,7 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.20
+ * @since 1.21
  *
  * @ingroup Site
  * @ingroup Test

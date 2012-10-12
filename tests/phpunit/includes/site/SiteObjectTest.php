@@ -19,7 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @since 1.20
+ * @since 1.21
  *
  * @ingroup Site
  * @ingroup Test
@@ -33,7 +33,7 @@ class SiteObjectTest extends ORMRowTest {
 
 	/**
 	 * @see ORMRowTest::getRowClass
-	 * @since 1.20
+	 * @since 1.21
 	 * @return string
 	 */
 	protected function getRowClass() {
@@ -42,7 +42,7 @@ class SiteObjectTest extends ORMRowTest {
 
 	/**
 	 * @see ORMRowTest::getTableInstance
-	 * @since 1.20
+	 * @since 1.21
 	 * @return IORMTable
 	 */
 	protected function getTableInstance() {
@@ -51,7 +51,7 @@ class SiteObjectTest extends ORMRowTest {
 
 	/**
 	 * @see ORMRowTest::constructorTestProvider
-	 * @since 1.20
+	 * @since 1.21
 	 * @return array
 	 */
 	public function constructorTestProvider() {

@@ -21,7 +21,7 @@
  *Both
  * Bith
  * @file
- * @since 1.20
+ * @since 1.21
  *
  * @ingroup Site
  * @ingroup Test
@@ -36,7 +36,7 @@ class SiteArrayTest extends GenericArrayObjectTest {
 	/**
 	 * @see GenericArrayObjectTest::elementInstancesProvider
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array
 	 */
@@ -57,7 +57,7 @@ class SiteArrayTest extends GenericArrayObjectTest {
 	/**
 	 * @see GenericArrayObjectTest::getInstanceClass
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array
 	 */

@@ -3,7 +3,7 @@
 /**
  * Class representing a MediaWiki site.
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -19,7 +19,7 @@ class MediaWikiSite extends SiteObject {
 	const PATH_PAGE = 'page_path';
 
 	/**
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param integer $globalId
 	 *
@@ -35,7 +35,7 @@ class MediaWikiSite extends SiteObject {
 	/**
 	 * Returns the database form of the given title.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param String $title the target page's title, in normalized form.
 	 *
@@ -58,7 +58,7 @@ class MediaWikiSite extends SiteObject {
 	 *
 	 * @see Site::normalizePageName
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pageName
 	 *
@@ -140,7 +140,7 @@ class MediaWikiSite extends SiteObject {
 	/**
 	 * Get normalization record for a given page title from an API response.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $externalData A reply from the API on a external server.
 	 * @param string $pageTitle Identifies the page at the external site, needing normalization.
@@ -215,7 +215,7 @@ class MediaWikiSite extends SiteObject {
 	 * @see Site::getLinkPathType
 	 * Returns Site::PATH_PAGE
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -226,7 +226,7 @@ class MediaWikiSite extends SiteObject {
 	/**
 	 * Returns the relative page path.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -237,7 +237,7 @@ class MediaWikiSite extends SiteObject {
 	/**
 	 * Returns the relative file path.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -248,7 +248,7 @@ class MediaWikiSite extends SiteObject {
 	/**
 	 * Sets the relative page path.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $path
 	 */
@@ -259,7 +259,7 @@ class MediaWikiSite extends SiteObject {
 	/**
 	 * Sets the relative file path.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $path
 	 */
@@ -275,7 +275,7 @@ class MediaWikiSite extends SiteObject {
 	 * method converts the $pageName to DBKey-format by replacing spaces with underscores
 	 * before using it in the URL.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string|false
 	 *
@@ -301,7 +301,7 @@ class MediaWikiSite extends SiteObject {
 	 * The path should go at the $1 marker. If the $path
 	 * argument is provided, the marker will be replaced by it's value.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string|false $path
 	 *

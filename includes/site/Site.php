@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -41,7 +41,7 @@ interface Site {
 	/**
 	 * Returns the global site identifier (ie enwiktionary).
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -50,7 +50,7 @@ interface Site {
 	/**
 	 * Sets the global site identifier (ie enwiktionary).
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalId
 	 */
@@ -59,7 +59,7 @@ interface Site {
 	/**
 	 * Returns the type of the site (ie mediawiki).
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -69,7 +69,7 @@ interface Site {
 	 * Sets the type of the site (ie mediawiki).
 	 * TODO: remove, we cannot change this after instantiation
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $type
 	 */
@@ -78,7 +78,7 @@ interface Site {
 	/**
 	 * Gets the type of the site (ie wikipedia).
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -87,7 +87,7 @@ interface Site {
 	/**
 	 * Sets the type of the site (ie wikipedia).
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $group
 	 */
@@ -96,7 +96,7 @@ interface Site {
 	/**
 	 * Returns the source of the site data (ie 'local', 'wikidata', 'my-magical-repo').
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -105,7 +105,7 @@ interface Site {
 	/**
 	 * Sets the source of the site data (ie 'local', 'wikidata', 'my-magical-repo').
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $source
 	 */
@@ -115,7 +115,7 @@ interface Site {
 	 * Returns the protocol of the site, ie 'http://', 'irc://', '//'
 	 * Or false if it's not known.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -125,7 +125,7 @@ interface Site {
 	 * Returns the domain of the site, ie en.wikipedia.org
 	 * Or false if it's not known.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -138,7 +138,7 @@ interface Site {
 	 * This generated URL is usually based upon the path returned by getLinkPath(),
 	 * but this is not a requirement.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 * @see Site::getLinkPath()
 	 *
 	 * @param bool|String $page
@@ -151,7 +151,7 @@ interface Site {
 	 * Returns language code of the sites primary language.
 	 * Or false if it's not known.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -160,7 +160,7 @@ interface Site {
 	/**
 	 * Sets language code of the sites primary language.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $languageCode
 	 */
@@ -175,7 +175,7 @@ interface Site {
 	 * Note that this method may call out to the target site to perform the normalization, so it may be slow
 	 * and fail due to IO errors.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pageName
 	 *
@@ -186,7 +186,7 @@ interface Site {
 	/**
 	 * Returns the interwiki link identifiers that can be used for this site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array of string
 	 */
@@ -196,7 +196,7 @@ interface Site {
 	 * Returns the equivalent link identifiers that can be used to make
 	 * the site show up in interfaces such as the "language links" section.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array of string
 	 */
@@ -205,7 +205,7 @@ interface Site {
 	/**
 	 * Adds an local identifier to the site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $type The type of the identifier, element of the Site::ID_ enum
 	 * @param string $identifier
@@ -215,7 +215,7 @@ interface Site {
 	/**
 	 * Adds an interwiki id to the site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $identifier
 	 */
@@ -224,7 +224,7 @@ interface Site {
 	/**
 	 * Adds a navigation id to the site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $identifier
 	 */
@@ -233,7 +233,7 @@ interface Site {
 	/**
 	 * Saves the site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string|null $functionName
 	 */
@@ -242,7 +242,7 @@ interface Site {
 	/**
 	 * Returns the internal ID of the site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return integer
 	 */
@@ -251,7 +251,7 @@ interface Site {
 	/**
 	 * Sets the provided url as path of the specified type.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pathType
 	 * @param string $fullUrl
@@ -261,7 +261,7 @@ interface Site {
 	/**
 	 * Returns the path of the provided type or false if there is no such path.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pathType
 	 *
@@ -275,7 +275,7 @@ interface Site {
 	 *
 	 * @param string $fullUrl
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 */
 	public function setLinkPath( $fullUrl );
 
@@ -298,7 +298,7 @@ interface Site {
 	 * Returns the paths as associative array.
 	 * The keys are path types, the values are the path urls.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array of string
 	 */
@@ -307,7 +307,7 @@ interface Site {
 	/**
 	 * Removes the path of the provided type if it's set.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pathType
 	 */

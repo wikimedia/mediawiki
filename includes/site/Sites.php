@@ -20,7 +20,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -31,7 +31,7 @@
 class Sites {
 
 	/**
-	 * @since 1.20
+	 * @since 1.21
 	 * @var SiteList|false
 	 */
 	protected $sites = false;
@@ -39,14 +39,14 @@ class Sites {
 	/**
 	 * Constructor.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 */
 	protected function __construct() {}
 
 	/**
 	 * Returns an instance of Sites.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return Sites
 	 */
@@ -63,7 +63,7 @@ class Sites {
 	/**
 	 * Factory for creating new site objects.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string|false $globalId
 	 *
@@ -87,7 +87,7 @@ class Sites {
 	 * fetched from the cache, which can be changed to loading
 	 * the list from the database using the $useCache parameter.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $source either 'cache' or 'recache'
 	 *
@@ -118,7 +118,7 @@ class Sites {
 	 * Returns a list of sites in the given group. Calling getGroup() on any of
 	 * the sites in the resulting SiteList shall return $group.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $group th group to get.
 	 *
@@ -142,7 +142,7 @@ class Sites {
 	/**
 	 * Fetches the site from the database and loads them into the sites field.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 */
 	protected function loadSites() {
 		$this->sites = new SiteArray( SitesTable::singleton()->select() );
@@ -176,7 +176,7 @@ class Sites {
 	/**
 	 * Returns the site with provided global id, or false if there is no such site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalId
 	 * @param string $source

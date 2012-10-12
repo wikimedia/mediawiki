@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -31,7 +31,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * Internal site identifiers pointing to their sites offset value.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @var array of integer
 	 */
@@ -40,7 +40,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * Global site identifiers pointing to their sites offset value.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @var array of string
 	 */
@@ -49,7 +49,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see GenericArrayObject::getObjectType
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -60,7 +60,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see GenericArrayObject::preSetElement
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param int|string $index
 	 * @param Site $site
@@ -81,7 +81,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see ArrayObject::offsetUnset()
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param mixed $index
 	 */
@@ -102,7 +102,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::getGlobalIdentifiers
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array
 	 */
@@ -124,7 +124,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::getSite
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalSiteId
 	 *
@@ -137,7 +137,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::removeSite
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalSiteId
 	 */
@@ -148,7 +148,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::isEmpty
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return boolean
 	 */
@@ -170,7 +170,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::getSiteByInternalId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param integer $id
 	 *
@@ -183,7 +183,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::removeSiteByInternalId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param integer $id
 	 */
@@ -194,7 +194,7 @@ class SiteArray extends GenericArrayObject implements SiteList {
 	/**
 	 * @see SiteList::setSite
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param Site $site
 	 */
