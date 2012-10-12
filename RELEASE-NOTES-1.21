@@ -19,6 +19,8 @@ production.
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
 * Added ContentHandler facility to allow extensions to support other content than wikitext.
   See docs/contenthandler.txt for details.
+* Added separate fa_sha1 field to filearchive table. This allows sha1
+  searches with the api in miser mode.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
