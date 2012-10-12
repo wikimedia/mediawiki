@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class TiffTest extends MediaWikiTestCase {
 
 	protected function setUp() {
