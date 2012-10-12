@@ -105,6 +105,10 @@ abstract class Collation {
 				return new IcuCollation( 'zh-cn' );
 			case 'zh-stroke':
 				return new IcuCollation( 'zh-tw' );
+			case 'zh-stroke-hans':
+				return new ConvertedIcuCollation( 'zh-tw', 'zh', 'zh-hans' );
+			case 'zh-stroke-hant':
+				return new ConvertedIcuCollation( 'zh-tw', 'zh', 'zh-hant' );
 			default:
 				# Provide a mechanism for extensions to hook in.
 
@@ -438,3 +442,23 @@ class IcuCollation extends Collation {
 	}
 }
 
+class ConvertedIcuCollation extends IcuCollation {
+	function __construct( $locale, $language, $variant ) {
+		parent::__construct( $locale );
+
+		$this->converter = Language::factory( $language )->getConverter();
+		$this->variant = $variant;
+	}
+
+	function convert( $string ) {
+		return $this->converter->translate( $string, $this->variant );
+	}
+
+	function getSortKey( $string ) {
+		return parent::getSortKey( $this->convert( $string ) );
+	}
+
+	function getFirstLetter( $string ) {
+		return parent::getFirstLetter( $this->convert( $string ) );
+	}
+}
