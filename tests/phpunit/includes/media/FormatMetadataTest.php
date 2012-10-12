@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class FormatMetadataTest extends MediaWikiTestCase {
 
 	protected function setUp() {

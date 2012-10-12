@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class PNGHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {

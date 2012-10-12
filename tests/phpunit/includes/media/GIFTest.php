@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class GIFHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
