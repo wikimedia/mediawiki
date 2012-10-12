@@ -502,17 +502,6 @@ $section: (No longer used)
 $flags: Flags passed to WikiPage::doEditContent()
 $revision: New Revision of the article
 
-'PageContentInsertComplete': After a new article is created
-$article: WikiPage created
-$user: User creating the article
-$content: New content as a Content object
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-
 'ArticleMergeComplete': after merging to article using Special:Mergehistory
 $targetTitle: target title (object)
 $destTitle: destination title (object)
@@ -570,32 +559,10 @@ $isminor: minor flag
 $iswatch: watch flag
 $section: section #
 
-'PageContentSave': before an article is saved.
-$article: the WikiPage (object) being saved
-$user: the user (object) saving the article
-$content: the new article content, as a Content object
-$summary: the article summary (comment)
-$isminor: minor flag
-$iswatch: watch flag
-$section: section #
-
 'ArticleSaveComplete': After an article has been updated. DEPRECATED, use PageContentSaveComplete instead.
 $article: WikiPage modified
 $user: User performing the modification
 $text: New content
-$summary: Edit summary/comment
-$isMinor: Whether or not the edit was marked as minor
-$isWatch: (No longer used)
-$section: (No longer used)
-$flags: Flags passed to WikiPage::doEditContent()
-$revision: New Revision of the article
-$status: Status object about to be returned by doEditContent()
-$baseRevId: the rev ID (or false) this edit was based on
-
-'PageContentSaveComplete': After an article has been updated
-$article: WikiPage modified
-$user: User performing the modification
-$content: New content, as a Content object
 $summary: Edit summary/comment
 $isMinor: Whether or not the edit was marked as minor
 $isWatch: (No longer used)
@@ -1565,11 +1532,44 @@ $categories: associative array, keys are category names, values are category
 $links: array, intended to hold the result. Must be an associative array with
 	category types as keys and arrays of HTML links as values.
 
+'PageContentInsertComplete': After a new article is created
+$article: WikiPage created
+$user: User creating the article
+$content: New content as a Content object
+$summary: Edit summary/comment
+$isMinor: Whether or not the edit was marked as minor
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to WikiPage::doEditContent()
+$revision: New Revision of the article
+
 'PageContentLanguage': allows changing the language in which the content of
 a page is written. Defaults to the wiki content language ($wgContLang).
 $title: Title object
 &$pageLang: the page content language (either an object or a language code)
 $wgLang: the user language
+
+'PageContentSave': before an article is saved.
+$article: the WikiPage (object) being saved
+$user: the user (object) saving the article
+$content: the new article content, as a Content object
+$summary: the article summary (comment)
+$isminor: minor flag
+$iswatch: watch flag
+$section: section #
+
+'PageContentSaveComplete': After an article has been updated
+$article: WikiPage modified
+$user: User performing the modification
+$content: New content, as a Content object
+$summary: Edit summary/comment
+$isMinor: Whether or not the edit was marked as minor
+$isWatch: (No longer used)
+$section: (No longer used)
+$flags: Flags passed to WikiPage::doEditContent()
+$revision: New Revision of the article
+$status: Status object about to be returned by doEditContent()
+$baseRevId: the rev ID (or false) this edit was based on
 
 'PageHistoryBeforeList': When a history page list is about to be constructed.
 $article: the article that the history is loading for
