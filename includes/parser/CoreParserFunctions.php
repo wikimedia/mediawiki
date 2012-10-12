@@ -759,34 +759,62 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param $text String The sortkey to use
-	 * @param $uarg String Either "noreplace" or "noerror" (in en)
-	 *   both suppress errors, and noreplace does nothing if
-	 *   a default sortkey already exists.
 	 * @return string
 	 */
-	public static function defaultsort( $parser, $text, $uarg = '' ) {
+	public static function defaultsort( $parser ) {
 		static $magicWords = null;
 		if ( is_null( $magicWords ) ) {
 			$magicWords = new MagicWordArray( array( 'defaultsort_noerror', 'defaultsort_noreplace' ) );
 		}
-		$arg = $magicWords->matchStartToEnd( $uarg );
 
-		$text = trim( $text );
-		if( strlen( $text ) == 0 )
-			return '';
-		$old = $parser->getCustomDefaultSort();
-		if ( $old === false || $arg !== 'defaultsort_noreplace' ) {
-			$parser->setDefaultSort( $text );
+		$args = func_get_args();
+		array_shift( $args );
+		$sortKeys = array();
+		$flag = '';
+		foreach ( $args as $arg ) {
+			$mwarg = $magicWords->matchStartToEnd( $arg );
+			if ( $mwarg == 'defaultsort_noreplace' ) {
+				$flag = 'noreplace';
+			} else if ( $mwarg == 'defaultsort_noerror' && $flag != 'noreplace' ) {
+				$flag = 'noerror';
+			} else if ( strlen( $arg ) != 0 ) {
+				$sortKeys[] = trim( $arg );
+			}
 		}
 
-		if( $old === false || $old == $text || $arg ) {
+		if ( count( $sortKeys ) == 0 ) {
+			return '';
+		}
+
+		$sortKeys = Parser::parseCategorySortKey( $sortKeys );
+		$old = $parser->getCustomDefaultSort();
+		if ( $old === false || $flag !== 'noreplace' ) {
+			$parser->setDefaultSort( $sortKeys );
+		}
+
+		if( $old === false || $old == $sortKeys || $flag ) {
 			return '';
 		} else {
 			return( '<span class="error">' .
-				wfMessage( 'duplicate-defaultsort', $old, $text )->inContentLanguage()->escaped() .
+				wfMessage( 'duplicate-defaultsort',
+					self::defaultsortDescribeSortKey( $old ),
+					self::defaultsortDescribeSortKey( $sortKeys )
+				)->inContentLanguage()->escaped() .
 				'</span>' );
 		}
+	}
+
+	private static function defaultsortDescribeSortKey( $sortKeys ) {
+		global $wgContLang;
+
+		$items = array();
+		foreach ( $sortKeys as $collationName => $sortKey ) {
+			$items[] = wfMessage( "collation-$collationName" )->inContentLanguage()->text()
+				. wfMessage( 'colon-separator' )->inContentLanguage()->text()
+				. $sortKey;
+		}
+
+		return $wgContLang->commaList( $items );
 	}
 
 	/**
