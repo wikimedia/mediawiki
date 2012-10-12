@@ -1583,6 +1583,8 @@ Used in [[Special:Preferences]]. Parameters are:
 'collation-uca-default' => 'Name of the a collation.',
 'collation-zh-pinyin' => 'Name of the a collation.',
 'collation-zh-stroke' => 'Name of the a collation.',
+'collation-zh-stroke-hans' => 'Name of the a collation.',
+'collation-zh-stroke-hant' => 'Name of the a collation.',
 'yournick' => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',
