@@ -43,8 +43,7 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 	/**
 	 * @covers Revision::selectFields
 	 */
-	public function testSelectFields()
-	{
+	public function testSelectFields() {
 		$fields = Revision::selectFields();
 
 		$this->assertTrue( in_array( 'rev_id', $fields ), 'missing rev_id in list of fields');
@@ -59,26 +58,38 @@ class RevisionTest_ContentHandlerUseDB extends RevisionStorageTest {
 	/**
 	 * @covers Revision::getContentModel
 	 */
-	public function testGetContentModel()
-	{
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
-		$rev = Revision::newFromId( $orig->getId() );
+	public function testGetContentModel() {
+		try {
+			$this->makeRevision( array( 'text' => 'hello hello.',
+			                            'content_model' => CONTENT_MODEL_JAVASCRIPT ) );
 
-		//NOTE: database fields for the content_model are disabled, so the model name is not retained.
-		//      We expect to get the default here instead of what was suppleid when creating the revision.
-		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $rev->getContentModel() );
+			$this->fail( "Creating JavaScript content on a wikitext page should fail with "
+				. "\$wgContentHandlerUseDB disabled" );
+		} catch ( MWException $ex ) {
+			$this->assertTrue( true ); // ok
+		}
 	}
 
 
 	/**
 	 * @covers Revision::getContentFormat
 	 */
-	public function testGetContentFormat()
-	{
-		$orig = $this->makeRevision( array( 'text' => 'hello hello.', 'content_model' => CONTENT_MODEL_JAVASCRIPT, 'content_format' => 'text/javascript' ) );
-		$rev = Revision::newFromId( $orig->getId() );
+	public function testGetContentFormat() {
+		try {
+			//@todo: change this to test failure on using a non-standard (but supported) format
+			//       for a content model supported in the given location. As of 1.21, there are
+			//       no alternative formats for any of the standard content models that could be
+			//       used for this though.
 
-		$this->assertEquals( CONTENT_FORMAT_WIKITEXT, $rev->getContentFormat() );
+			$this->makeRevision( array( 'text' => 'hello hello.',
+			                            'content_model' => CONTENT_MODEL_JAVASCRIPT,
+			                            'content_format' => 'text/javascript' ) );
+
+			$this->fail( "Creating JavaScript content on a wikitext page should fail with "
+				. "\$wgContentHandlerUseDB disabled" );
+		} catch ( MWException $ex ) {
+			$this->assertTrue( true ); // ok
+		}
 	}
 
 }
