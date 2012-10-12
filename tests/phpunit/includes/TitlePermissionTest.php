@@ -236,30 +236,35 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->runGroupPermissions( 'move', array( array( 'movenotallowedfile' ), array( 'movenotallowed' ) ),
 			array( array( 'movenotallowedfile' ), array( 'movenologintext' ) ) );
 
-		$this->setTitle( NS_MAIN );
-		$this->setUser( 'anon' );
-		$this->setUserPerm( "move" );
-		$this->runGroupPermissions( 'move', array(  ) );
+		if ( $this->isWikitextNS( NS_MAIN ) ) {
+			//NOTE: some content models don't allow moving
+			//@todo: find a Wikitext namespace for testing
 
-		$this->setUserPerm( "" );
-		$this->runGroupPermissions( 'move', array( array( 'movenotallowed' ) ),
-			array( array( 'movenologintext' ) ) );
+			$this->setTitle( NS_MAIN );
+			$this->setUser( 'anon' );
+			$this->setUserPerm( "move" );
+			$this->runGroupPermissions( 'move', array(  ) );
 
-		$this->setUser( $this->userName );
-		$this->setUserPerm( "" );
-		$this->runGroupPermissions( 'move', array( array( 'movenotallowed' ) ) );
+			$this->setUserPerm( "" );
+			$this->runGroupPermissions( 'move', array( array( 'movenotallowed' ) ),
+				array( array( 'movenologintext' ) ) );
 
-		$this->setUserPerm( "move" );
-		$this->runGroupPermissions( 'move', array( ) );
+			$this->setUser( $this->userName );
+			$this->setUserPerm( "" );
+			$this->runGroupPermissions( 'move', array( array( 'movenotallowed' ) ) );
 
-		$this->setUser( 'anon' );
-		$this->setUserPerm( 'move' );
-		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array( ), $res );
+			$this->setUserPerm( "move" );
+			$this->runGroupPermissions( 'move', array( ) );
 
-		$this->setUserPerm( '' );
-		$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
-		$this->assertEquals( array( array( 'movenotallowed' ) ), $res );
+			$this->setUser( 'anon' );
+			$this->setUserPerm( 'move' );
+			$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
+			$this->assertEquals( array( ), $res );
+
+			$this->setUserPerm( '' );
+			$res = $this->title->getUserPermissionsErrors( 'move-target', $this->user );
+			$this->assertEquals( array( array( 'movenotallowed' ) ), $res );
+		}
 
 		$this->setTitle( NS_USER );
 		$this->setUser( $this->userName );
@@ -582,7 +587,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( array( array( 'immobile-source-namespace', 'Media' ) ),
 							 $this->title->getUserPermissionsErrors( 'move', $this->user ) );
 
-		$this->setTitle( NS_MAIN, "test page" );
+		$this->setTitle( NS_HELP, "test page" );
 		$this->assertEquals( array( ),
 							 $this->title->getUserPermissionsErrors( 'move', $this->user ) );
 		$this->assertEquals( true,
@@ -600,7 +605,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->assertEquals( array( array( 'immobile-target-namespace', 'Media' ) ),
 							 $this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 
-		$this->setTitle( NS_MAIN, "test page" );
+		$this->setTitle( NS_HELP, "test page" );
 		$this->assertEquals( array( ),
 							 $this->title->getUserPermissionsErrors( 'move-target', $this->user ) );
 		$this->assertEquals( true,
@@ -621,7 +626,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$wgUser = $this->user;
 
 		$this->setUserPerm( array( "createpage", "move" ) );
-		$this->setTitle( NS_MAIN, "test page" );
+		$this->setTitle( NS_HELP, "test page" );
 
 		# $short
 		$this->assertEquals( array( array( 'confirmedittext' ) ),

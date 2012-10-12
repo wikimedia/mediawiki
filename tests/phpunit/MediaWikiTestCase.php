@@ -666,4 +666,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		}
 	}
 
+	/**
+	 * Returns true iff the given namespace defaults to Wikitext
+	 * according to $wgNamespaceContentModels
+	 *
+	 * @param int $ns The namespace ID to check
+	 *
+	 * @return bool
+	 * @since 1.21
+	 */
+	protected function isWikitextNS( $ns ) {
+		global $wgNamespaceContentModels;
+
+		if ( isset( $wgNamespaceContentModels[$ns] ) ) {
+			return $wgNamespaceContentModels[$ns] === CONTENT_MODEL_WIKITEXT;
+		}
+
+		return true;
+	}
 }

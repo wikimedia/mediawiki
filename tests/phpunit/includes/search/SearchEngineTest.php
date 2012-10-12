@@ -40,6 +40,12 @@ class SearchEngineTest extends MediaWikiTestCase {
 		if ( $this->pageExists( 'Not_Main_Page' ) ) {
 			return;
 		}
+
+		if ( !$this->isWikitextNS( NS_MAIN ) ) {
+			//@todo: cover the case of non-wikitext content in the main namespace
+			return;
+		}
+
 		$this->insertPage( "Not_Main_Page",	"This is not a main page", 0 );
 		$this->insertPage( 'Talk:Not_Main_Page',	'This is not a talk page to the main page, see [[smithee]]', 1 );
 		$this->insertPage( 'Smithee',	'A smithee is one who smiths. See also [[Alan Smithee]]', 0 );
@@ -60,6 +66,11 @@ class SearchEngineTest extends MediaWikiTestCase {
 	}
 
 	function fetchIds( $results ) {
+		if ( !$this->isWikitextNS( NS_MAIN ) ) {
+			$this->markTestIncomplete( __CLASS__ . " does no yet support non-wikitext content "
+				. "in the main namespace");
+		}
+
 		$this->assertTrue( is_object( $results ) );
 
 		$matches = array();
@@ -84,7 +95,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 	 * @param $n Integer: unused
 	 */
 	function insertPage( $pageName, $text, $ns ) {
-		$title = Title::newFromText( $pageName );
+		$title = Title::newFromText( $pageName, $ns );
 
 		$user = User::newFromName( 'WikiSysop' );
 		$comment = 'Search Test';
