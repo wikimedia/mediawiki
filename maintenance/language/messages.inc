@@ -1049,6 +1049,8 @@ $wgMessageStructure = array(
 		'collation-uca-default',
 		'collation-zh-pinyin',
 		'collation-zh-stroke',
+		'collation-zh-stroke-hans',
+		'collation-zh-stroke-hant',
 		'yournick',
 		'prefs-help-signature',
 		'badsig',
