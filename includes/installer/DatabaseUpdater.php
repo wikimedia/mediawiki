@@ -54,6 +54,10 @@ abstract class DatabaseUpdater {
 
 	protected $shared = false;
 
+	/**
+	 * Scripts to run after database update
+	 * Should be a subclass of LoggedUpdateMaintenance
+	 */
 	protected $postDatabaseUpdateMaintenance = array(
 		'DeleteDefaultMessages',
 		'PopulateRevisionLength',
@@ -253,6 +257,8 @@ abstract class DatabaseUpdater {
 
 	/**
 	 * Add a maintenance script to be run after the database updates are complete.
+	 *
+	 * Script should subclass LoggedUpdateMaintenance
 	 *
 	 * @since 1.19
 	 *
