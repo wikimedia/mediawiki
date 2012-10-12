@@ -82,9 +82,12 @@ class CoreLinkFunctions {
 			return false;
 		}
 		if( !isset($sortText) ) $sortText = $parser->getDefaultSort();
-		$sortText = Sanitizer::decodeCharReferences( $sortText );
-		$sortText = str_replace( "\n", '', $sortText );
-		$sortText = $wgContLang->convertCategoryKey( $sortText );
+		else $sortText = Parser::parseCategorySortKey( $sortText );
+		$sortText = array_map( 'Sanitizer::decodeCharReferences', $sortText );
+		$sortText = array_map( function( $str ) {
+			return str_replace( "\n", '', $str );
+		}, $sortText );
+		$sortText = array_map( array( $wgContLang, 'convertCategoryKey' ), $sortText );
 		$parser->mOutput->addCategory( $title->getDBkey(), $sortText );
 		return '';
 	}
