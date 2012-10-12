@@ -24,6 +24,8 @@ production.
   collation to use for a category.
 * New category collations for Chinese: zh-pinyin, zh-stroke, zh-stroke-hans
   and zh-stroke-hant (all require ICU above 4.8rc1).
+* New category sort key syntax: [[Category:Foo|Bar|uppercase=Baz]]. {{DEFAULTSORT: }} also
+  accepts similar things like {{DEFAULTSORT:Bar|uppercase=Baz|noerror}} now.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -39,6 +41,7 @@ production.
 * action=edit and action=parse now support contentmodel and contentformat parameters to control the interpretation of
   page content; See docs/contenthandler.txt for details.
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
+* action=parse&prop=categories now outputs sort keys for every collation in use.
 
 === Languages updated in 1.21 ===
 

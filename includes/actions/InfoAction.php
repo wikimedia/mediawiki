@@ -190,7 +190,9 @@ class InfoAction extends FormlessAction {
 		// Default sort key
 		$sortKey = $title->getCategorySortKey();
 		if ( !empty( $pageProperties['defaultsort'] ) ) {
-			$sortKey = $pageProperties['defaultsort'];
+			$sortKey = CoreParserFunctions::defaultsortDescribeSortKey(
+				Parser::parseCategorySortKey( $pageProperties['defaultsort'] )
+			);
 		}
 
 		$pageInfo['header-basic'][] = array( $this->msg( 'pageinfo-default-sort' ), $sortKey );
