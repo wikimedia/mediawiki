@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class XMPTest extends MediaWikiTestCase {
 
 	protected function setUp() {

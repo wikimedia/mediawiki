@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class IPTCTest extends MediaWikiTestCase {
 	public function testRecognizeUtf8() {
 		// utf-8 is the only one used in practise.

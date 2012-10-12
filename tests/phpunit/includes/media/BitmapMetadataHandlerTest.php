@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
@@ -37,7 +40,7 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			'en'        => 'right translation',
 			'_type'     => 'lang'
 		);
-		
+
 		$this->assertArrayHasKey( 'ImageDescription', $meta,
 			'Did not extract any ImageDescription info?!' );
 
@@ -133,14 +136,14 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 				'_MW_PNG_VERSION' => 1,
 			),
 		);
-		$this->assertEquals( $expected, $result ); 
+		$this->assertEquals( $expected, $result );
 	}
 
 	public function testPNGNative() {
 		$handler = new BitmapMetadataHandler();
 		$result = $handler->png( $this->filePath . 'Png-native-test.png' );
 		$expected = 'http://example.com/url';
-		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] ); 
+		$this->assertEquals( $expected, $result['metadata']['Identifier']['x-default'] );
 	}
 
 	public function testTiffByteOrder() {
