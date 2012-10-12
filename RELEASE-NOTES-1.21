@@ -20,6 +20,8 @@ production.
 * Added ContentHandler facility to allow extensions to support other content than wikitext.
   See docs/contenthandler.txt for details.
 * $wgResponsiveImages is added to support images on high-DPI mobile and desktop displays.
+* Added separate fa_sha1 field to filearchive table. This allows sha1
+  searches with the api in miser mode.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.

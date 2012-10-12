@@ -60,6 +60,7 @@ abstract class DatabaseUpdater {
 		'PopulateRevisionSha1',
 		'PopulateImageSha1',
 		'FixExtLinksProtocolRelative',
+		'PopulateFilearchiveSha1',
 	);
 
 	/**
