@@ -1904,6 +1904,8 @@ This cannot be undone.',
 'collation-uca-default'         => 'UCA (Default)',
 'collation-zh-pinyin'           => 'Chinese (Pinyin)',
 'collation-zh-stroke'           => 'Chinese (Stroke)',
+'collation-zh-stroke-hans'      => 'Chinese (Stroke, Simplified)',
+'collation-zh-stroke-hant'      => 'Chinese (Stroke, Traditional)',
 'yournick'                      => 'New signature:',
 'prefs-help-signature'          => 'Comments on talk pages should be signed with "<nowiki>~~~~</nowiki>" which will be converted into your signature and a timestamp.',
 'badsig'                        => 'Invalid raw signature.
