@@ -86,10 +86,10 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	public function testUpdate_categorylinks() {
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", 111 );
 
-		$po->addCategory( "Foo", "FOO" );
+		$po->addCategory( "Foo", array( 'uppercase' => "FOO" ) );
 
-		$this->assertLinksUpdate( $t, $po, 'categorylinks', 'cl_to, cl_sortkey', 'cl_from = 111', array(
-			array( 'Foo', "FOO\nTESTING" ),
+		$this->assertLinksUpdate( $t, $po, 'categorylinks', 'cl_to, cl_collation, cl_sortkey', 'cl_from = 111', array(
+			array( 'Foo', 'uppercase', "FOO\nTESTING" ),
 		) );
 	}
 

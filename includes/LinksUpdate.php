@@ -92,14 +92,16 @@ class LinksUpdate extends SqlDataUpdate {
 			$this->mInterlangs[$key] = $title;
 		}
 
-		foreach ( $this->mCategories as &$sortkey ) {
+		foreach ( $this->mCategories as &$sortkeys ) {
 			# If the sortkey is longer then 255 bytes,
 			# it truncated by DB, and then doesn't get
 			# matched when comparing existing vs current
 			# categories, causing bug 25254.
 			# Also. substr behaves weird when given "".
-			if ( $sortkey !== '' ) {
-				$sortkey = substr( $sortkey, 0, 255 );
+			foreach ( $sortkeys as $collationName => &$sortkey ) {
+				if ( $sortkey !== '' ) {
+					$sortkey = substr( $sortkey, 0, 255 );
+				}
 			}
 		}
 
@@ -171,7 +173,7 @@ class LinksUpdate extends SqlDataUpdate {
 			$this->getCategoryInsertions( $existing ) );
 
 		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
-		$categoryInserts = array_diff_assoc( $this->mCategories, $existing );
+		$categoryInserts = self::arrayDiffAssocRecursive( $this->mCategories, $existing );
 		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
@@ -317,13 +319,18 @@ class LinksUpdate extends SqlDataUpdate {
 			$fromField = "{$prefix}_from";
 		}
 		$where = array( $fromField => $this->mId );
-		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' ) {
+		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' || $table == 'categorylinks' ) {
 			if ( $table == 'iwlinks' ) {
 				$baseKey = 'iwl_prefix';
+				$subKey = 'iwl_title';
+			} else if ( $table == 'categorylinks' ) {
+				$baseKey = 'cl_to';
+				$subKey = 'cl_collation';
 			} else {
 				$baseKey = "{$prefix}_namespace";
+				$subKey = "{$prefix}_title";
 			}
-			$clause = $this->mDb->makeWhereFrom2d( $deletions, $baseKey, "{$prefix}_title" );
+			$clause = $this->mDb->makeWhereFrom2d( $deletions, $baseKey, $subKey );
 			if ( $clause ) {
 				$where[] = $clause;
 			} else {
@@ -442,9 +449,9 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getCategoryInsertions( $existing = array() ) {
 		global $wgContLang;
-		$diffs = array_diff_assoc( $this->mCategories, $existing );
+		$diffs = self::arrayDiffAssocRecursive( $this->mCategories, $existing );
 		$arr = array();
-		foreach ( $diffs as $name => $prefix ) {
+		foreach ( $diffs as $name => $prefixes ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
 			$wgContLang->findVariantLink( $name, $nt, true );
 
@@ -456,7 +463,9 @@ class LinksUpdate extends SqlDataUpdate {
 				$type = 'page';
 			}
 
-			foreach ( Collation::getInstances() as $collationName => $collation ) {
+			foreach ( $prefixes as $collationName => $prefix ) {
+				$collation = Collation::getInstance( $collationName );
+
 				# Treat custom sortkeys as a prefix, so that if multiple
 				# things are forced to sort as '*' or something, they'll
 				# sort properly in the category rather than in page_id
@@ -600,7 +609,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getCategoryDeletions( $existing ) {
-		return array_diff_assoc( $existing, $this->mCategories );
+		return self::arrayDiffAssocRecursive( $existing, $this->mCategories );
 	}
 
 	/**
@@ -712,11 +721,11 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getExistingCategories() {
-		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey_prefix' ),
+		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_collation', 'cl_sortkey_prefix' ),
 			array( 'cl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
 		foreach ( $res as $row ) {
-			$arr[$row->cl_to] = $row->cl_sortkey_prefix;
+			$arr[$row->cl_to][$row->cl_collation] = $row->cl_sortkey_prefix;
 		}
 		return $arr;
 	}
@@ -813,6 +822,49 @@ class LinksUpdate extends SqlDataUpdate {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Do array_diff_assoc() on multi-dimensional arrays.
+	 *
+	 * Note: empty arrays are removed.
+	 *
+	 * @TODO: Move this to ArrayUtils once it's there, and add some test cases.
+	 *
+	 * @param $array1 array The array to compare from
+	 * @param $array2 array An array to compare against
+	 * @param ... array More arrays to compare against
+	 * @return array An array containing all the values from array1
+	 *               that are not present in any of the other arrays.
+	 */
+	static function arrayDiffAssocRecursive( $array1 ) {
+		$arrays = func_get_args();
+		array_shift( $arrays );
+		$ret = array();
+
+		foreach ( $array1 as $key => $value ) {
+			if ( is_array( $value ) ) {
+				$args = array( $value );
+				foreach ( $arrays as $array ) {
+					if ( isset( $array[$key] ) ) {
+						$args[] = $array[$key];
+					}
+				}
+				$valueret = call_user_func_array( __METHOD__, $args );
+				if ( count( $valueret ) ) {
+					$ret[$key] = $valueret;
+				}
+			} else {
+				foreach ( $arrays as $array ) {
+					if ( isset( $array[$key] ) && $array[$key] === $value ) {
+						continue 2;
+					}
+				}
+				$ret[$key] = $value;
+			}
+		}
+
+		return $ret;
 	}
 }
 
