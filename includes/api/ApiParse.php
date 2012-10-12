@@ -407,9 +407,13 @@ class ApiParse extends ApiBase {
 
 	private function formatCategoryLinks( $links ) {
 		$result = array();
-		foreach ( $links as $link => $sortkey ) {
+		foreach ( $links as $link => $sortkeys ) {
 			$entry = array();
-			$entry['sortkey'] = $sortkey;
+			foreach ( $sortkeys as $collationName => $sortkey ) {
+				$entry["sortkey-$collationName"] = $sortkey;
+				// Always add a sortkey field whatever it is to keep B/C.
+				$entry['sortkey'] = $sortkey;
+			}
 			$this->getResult()->setContent( $entry, $link );
 			$result[] = $entry;
 		}
