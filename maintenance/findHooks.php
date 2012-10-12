@@ -64,6 +64,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/actions/',
 			$IP . '/includes/api/',
 			$IP . '/includes/cache/',
+			$IP . '/includes/content/',
 			$IP . '/includes/context/',
 			$IP . '/includes/db/',
 			$IP . '/includes/diff/',
@@ -170,7 +171,7 @@ class FindHooks extends Maintenance {
 	private function getHooksFromFile( $file ) {
 		$content = file_get_contents( $file );
 		$m = array();
-		preg_match_all( '/(?:wfRunHooks|Hooks\:\:run)\(\s*([\'"])(.*?)\1/', $content, $m );
+		preg_match_all( '/(?:wfRunHooks|Hooks\:\:run|ContentHandler\:\:runLegacyHooks)\(\s*([\'"])(.*?)\1/', $content, $m );
 		return $m[2];
 	}
 
