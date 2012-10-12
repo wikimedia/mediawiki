@@ -18,6 +18,7 @@
  * @author Guttorm Flatabø
  * @author H92
  * @author Harald Khan
+ * @author Jeblad
  * @author Jon Harald Søby
  * @author Jorunn
  * @author Kaganer
@@ -1051,6 +1052,15 @@ Det ser ut til at ho er sletta.',
 'edit-no-change' => 'Redigeringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
 'edit-already-exists' => 'Kunne ikkje opprette ny side fordi ho alt eksisterer.',
 'defaultmessagetext' => 'Standard meldingstekst',
+'content-failed-to-parse' => 'Klarte ikkje å tolke innhaldet «$2» som innholdsmodellen «$1»: $3',
+'invalid-content-data' => 'Ugyldig innhald',
+'content-not-allowed-here' => 'Innhaldsmodellen «$1» er ikkje tillaten på sida [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'WikiTekst',
+'content-model-text' => 'Rein tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Åtvaring: Denne sida inneheld for mange prosesskrevande parserfunksjonar.

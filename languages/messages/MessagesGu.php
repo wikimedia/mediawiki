@@ -820,8 +820,7 @@ $2
 તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો],
 અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરી શકો છો</span>.',
 'noarticletext-nopermission' => 'આ પાનામાં હાલમાં કોઇ માહિતિ નથી.
-તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો],
-અથવા  [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનામાં ફેરફાર કરી] માહિતિ ઉમેરવાનું શરૂ કરી શકો છો</span>.',
+તમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો], પરંતુ તમને આ પાનું બનાવવાની મંજૂરી નથી.',
 'userpage-userdoesnotexist' => 'સભ્ય ખાતું "<nowiki>$1</nowiki>"ની નોંધણીનથી થઈ.
 શું તમે ખરેખર આ પાનાની રચના કે ફેરફાર કરવા માંગો છો',
 'userpage-userdoesnotexist-view' => 'સભ્યના ખાતા $1 ની નોંધણી નથી થઈ',
@@ -2053,8 +2052,8 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'sp-deletedcontributions-contribs' => 'યોગદાન',
 
 # Special:LinkSearch
-'linksearch' => 'બાહ્ય કડીઓ શોધ',
-'linksearch-pat' => 'શોધા આલેખ',
+'linksearch' => 'બાહ્ય કડીઓ શોધો',
+'linksearch-pat' => 'શોધ આલેખ',
 'linksearch-ns' => 'નામાવકાશ:',
 'linksearch-ok' => 'શોધ',
 'linksearch-text' => '"*.wikipedia.org" જેવા વાઈલ્ડાકાર્ડ અહીં વાપર્યા હોઈ શકે છે.

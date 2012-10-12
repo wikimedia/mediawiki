@@ -42,6 +42,7 @@
  * @author Trijnstel
  * @author Troefkaart
  * @author Tvdm
+ * @author Wiki13
  * @author לערי ריינהארט
  */
 
@@ -2647,8 +2648,8 @@ Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd 
 'undeletedrevisions' => '$1 {{PLURAL:$1|versie|versies}} teruggeplaatst',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 versie|$1 versies}} en {{PLURAL:$2|1 bestand|$2 bestanden}} teruggeplaatst',
 'undeletedfiles' => '{{PLURAL:$1|1 bestand|$1 bestanden}} teruggeplaatst',
-'cannotundelete' => 'Het terugplaatsen is mislukt.
-Misschien heeft een andere gebruiker de pagina al teruggeplaatst.',
+'cannotundelete' => 'Het terugplaatsen is mislukt:
+$1',
 'undeletedpage' => "'''$1 is teruggeplaatst'''
 
 In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen en herstelhandelingen.",

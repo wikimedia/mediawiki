@@ -806,6 +806,15 @@ A smija che a sia stàita scancelà.',
 'edit-already-exists' => 'As peul nen creesse la pàgina.
 A esist già.',
 'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
+'content-failed-to-parse' => "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",
+'invalid-content-data' => 'Dat dël contnù pa bon',
+'content-not-allowed-here' => 'Contnù ëd "$1" pa përmëttù an sla pagina [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'test wiki',
+'content-model-text' => 'mach test',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Atension:''' Costa pàgina a l'ha tròpe ciamà costose a le fonsions ëd parser.
@@ -2266,7 +2275,8 @@ l'avìa travajaje ansima anans che a la scancelèisso.
 'undeletedrevisions' => '{{PLURAL:$1|Na revision pijàita|$1 revision pijàite}} andré',
 'undeletedrevisions-files' => "{{PLURAL:$1|Na|$1}} revision e {{PLURAL:$2|n'|$2&nbsp;}}archivi pijàit andré",
 'undeletedfiles' => "{{PLURAL:$1|N'|$1&nbsp;}}archivi pijàit andaré",
-'cannotundelete' => "Riprìstin falì; a peul esse che i fusse antra doi a felo ant l'istess temp e l'àutr a sia riva prima.",
+'cannotundelete' => 'Riprìstin falì:
+$1',
 'undeletedpage' => "'''$1 a l'é stàit pijait andaré'''
 
 Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciairé j'ùltim scancelament e arcuperassion.",
@@ -2570,6 +2580,7 @@ L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për av�
 'immobile-target-namespace-iw' => "Na liura interwiki a l'é pa na destinassion vàlida për tramudé na pàgina.",
 'immobile-source-page' => 'Sta pàgina-sì as peul pa tramudesse.',
 'immobile-target-page' => 'As peul pa tramudesse vers cost tìtol ëd destinassion.',
+'bad-target-model' => 'La destinassion vorsùa a dòvra un model ëd contnù diferent. As peul pa convertisse da $1 a $2.',
 'imagenocrossnamespace' => "As peul pa tramudesse n'archivi a në spassi nominal diferent",
 'nonfile-cannot-move-to-file' => "As peul nen tramudesse lòn ch'a l'é pa n'archivi a lë spassi nominal dj'archivi",
 'imagetypemismatch' => "La neuva estension ëd l'archivi a corispond pa a sò tipo",
@@ -3136,8 +3147,8 @@ J'àutri a saran stërmà coma stàndard.
 'exif-orientation-1' => 'Normal',
 'exif-orientation-2' => 'A specc',
 'exif-orientation-3' => 'Arvirà ëd 180°',
-'exif-orientation-4' => 'Arvirà dzorsuta',
-'exif-orientation-5' => 'Arvirà dzorsota e ëd 90° contramostra',
+'exif-orientation-4' => 'Arvirà dzor-sota',
+'exif-orientation-5' => 'Arvirà dzor-sota e ëd 90° contramostra',
 'exif-orientation-6' => 'Arvirà ëd 90° contramostra',
 'exif-orientation-7' => 'Arvirà dzorsota e ëd 90° ant ël sens dla mostra',
 'exif-orientation-8' => 'Arvirà ëd 90° ant ël sens dla mostra',

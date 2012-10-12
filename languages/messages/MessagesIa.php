@@ -300,7 +300,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protection',
-'vector-simplesearch-preference' => 'Activar le suggestiones de recerca meliorate (solmente in apparentia Vector)',
+'vector-simplesearch-preference' => 'Activar le barra de recerca simplificate (solmente in apparentia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Modificar',
 'vector-view-history' => 'Vider historia',
@@ -941,6 +941,7 @@ Pare que illo ha essite delite.',
 'edit-already-exists' => 'Non poteva crear un nove pagina.
 Illo existe ja.',
 'defaultmessagetext' => 'Texto predefinite del message',
+'content-failed-to-parse' => 'Impossibile processar le contento $2 pro le modello $1: $3',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.

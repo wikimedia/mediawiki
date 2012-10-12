@@ -1088,6 +1088,15 @@ Slette- og flytteloggen vises nedenfor.',
 'edit-no-change' => 'Redigeringen din ble ignorert fordi det ikke var noen endringer.',
 'edit-already-exists' => 'Kunne ikke opprette ny side fordi den finnes fra før.',
 'defaultmessagetext' => 'Standard meldingstekst',
+'content-failed-to-parse' => 'Klarte ikke å tolke innholdet $2 for innholdsmodellen $1: $3',
+'invalid-content-data' => 'Ugyldig innhold',
+'content-not-allowed-here' => 'Innholdsmodellen «$1» er ikke tillatt på siden [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'WikiTekst',
+'content-model-text' => 'Ren tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Advarsel: Denne siden inneholder for mange prosesskrevende parserfunksjoner.
@@ -2527,7 +2536,8 @@ Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gje
 'undeletedrevisions' => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} gjenopprettet',
 'undeletedrevisions-files' => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} og {{PLURAL:$2|én fil|$2 filer}} gjenopprettet',
 'undeletedfiles' => '{{PLURAL:$1|Én fil|$1 filer}} gjenopprettet',
-'cannotundelete' => 'Kunne ikke gjenopprette siden (den kan være gjenopprettet av noen andre).',
+'cannotundelete' => 'Gjennoppretting feilet:
+$1',
 'undeletedpage' => "'''$1 ble gjenopprettet'''
 
 Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger og gjenopprettelser.",
@@ -2828,6 +2838,7 @@ Målsiden «[[:$1]]» finnes allerede. Vil du slette den så denne siden kan fly
 'immobile-target-namespace-iw' => 'Du kan ikke flytte en side til et navn som er en interwikilenke.',
 'immobile-source-page' => 'Denne siden kan ikke flyttes.',
 'immobile-target-page' => 'Kan ikke flytte til det navnet.',
+'bad-target-model' => 'Det ønskede målet bruker en annen innholdsmodell. Kan ikke konvertere fra $1 til $2.',
 'imagenocrossnamespace' => 'Kan ikke flytte filer til andre navnerom enn filnavnerommet',
 'nonfile-cannot-move-to-file' => 'Kan ikke flytte ikke-filer til filnavnerom',
 'imagetypemismatch' => 'Den nye filendelsen tilsvarer ikke filtypen',

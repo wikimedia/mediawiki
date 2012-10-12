@@ -952,6 +952,15 @@ Den ser du til at være slettet.',
 'edit-no-change' => 'Din ændring ignoreredes, fordi der ikke var ændring af teksten.',
 'edit-already-exists' => 'En ny side kunne ikke oprettes, fordi den allerede findes.',
 'defaultmessagetext' => 'Standardtekst',
+'content-failed-to-parse' => 'Kunne ikke parse $2 indhold for $1 model: $3',
+'invalid-content-data' => 'Ugyldig indholdsdata',
+'content-not-allowed-here' => '"$1" indhold er ikke tilladt på siden [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-text' => 'almindelig tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Advarsel: Der er for mange beregningstunge oversætter-funktionskald på denne side.
@@ -2378,7 +2387,8 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 'undeletedrevisions' => '$1 {{PLURAL:$1|version|versioner}} gendannet',
 'undeletedrevisions-files' => '$1 {{plural:$1|version|versioner}} og $2 {{plural:$2|fil|filer}} gendannet',
 'undeletedfiles' => '$1 {{plural:$1|fil|filer}} gendannet',
-'cannotundelete' => 'Gendannelse mislykkedes; en anden har allerede gendannet siden.',
+'cannotundelete' => 'Gendannelse mislykkedes:
+$1',
 'undeletedpage' => "'''$1''' blev gendannet.
 
 I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt slettede og gendannede sider.",
@@ -2665,6 +2675,7 @@ Artiklen "[[:$1]]" eksisterer allerede. Vil du slette den for at gøre plads til
 'immobile-target-namespace-iw' => 'En side kan ikke flyttes til en interwiki-henvisning.',
 'immobile-source-page' => 'Denne side kan ikke flyttes.',
 'immobile-target-page' => 'Kan ikke flytte til det navn.',
+'bad-target-model' => 'Den ønskede destination bruger en anden indholdsmodel. Kan ikke konvertere fra $1 til $2.',
 'imagenocrossnamespace' => 'Filer kan ikke flyttes til et navnerum der ikke indeholder filer',
 'nonfile-cannot-move-to-file' => 'Kan ikke flytte ikke-filer til fil-navnerummet',
 'imagetypemismatch' => 'Den nye filendelse passer ikke til filtypen',

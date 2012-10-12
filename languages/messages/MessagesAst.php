@@ -216,7 +216,7 @@ $messages = array(
 'vector-action-protect' => 'Protexer',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Camudar la proteición',
-'vector-simplesearch-preference' => 'Activar suxerencies meyoraes de gueta (namái apariencia Vector)',
+'vector-simplesearch-preference' => 'Activar la barra de gueta simplificada (namái apariencia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver historial',
@@ -439,10 +439,11 @@ Por favor vuelvi intentalo nunos minutos.',
 'protectedpagetext' => 'Esta páxina ta candada pa torgar la so edición.',
 'viewsourcetext' => "Pues ver y copiar la fonte d'esta páxina:",
 'viewyourtext' => "Pues ver y copiar la fonte de '''les tos ediciones''' d'esta páxina:",
-'protectedinterface' => "Esta páxina proporciona testu d'interfaz de l'aplicación, y ta candada pa torgar abusos.",
-'editinginterface' => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz de l'aplicación.
-Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios.
-Si quies facer traducciones, por favor usa [//translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
+'protectedinterface' => "Esta páxina proporciona'l testu de la interfaz del software d'esta wiki, y ta candada pa torgar abusos.
+P'amestar o cambiar les traducciones de toles wikis, por favor usa [//translatewiki.net/translatewiki.net], el proyeutu de llocalización de MediaWiki.",
+'editinginterface' => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz del programa.
+Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios d'esta wiki.
+P'amestar o camudar traducciones pa toles wikis, por favor, usa [//translatewiki.net/ translatewiki.net], el proyeutu de traducción de MediaWiki.",
 'sqlhidden' => '(consulta SQL anubrida)',
 'cascadeprotected' => "Esta páxina ta protexida d'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción «en cascada» activada:
 $2",
@@ -747,8 +748,7 @@ Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres pá
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta páxina equí]</span>.',
 'noarticletext-nopermission' => 'Nestos momentos nun hai testu nesta páxina.
-Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos]</span>.',
+Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos]</span>, pero nun tienes permisu pa crear esta páxina.',
 'missing-revision' => 'La revisión #$1 de la páxina llamada "{{PAGENAME}}" nun esiste.
 
 De vezu la causa d\'esto ye siguir un enllaz antiguu del historial a una páxina que se desanició.
@@ -858,6 +858,15 @@ Paez que se desanició.',
 'edit-already-exists' => 'Nun se pudo crear una páxina nueva.
 Yá esiste.',
 'defaultmessagetext' => 'Testu predetermináu',
+'content-failed-to-parse' => 'Fallu al analizar el conteníu $2 pal modelu $1: $3',
+'invalid-content-data' => 'Datos del conteníu inválidos',
+'content-not-allowed-here' => 'El conteníu «$1» nun se permite na páxina [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'testu wiki',
+'content-model-text' => 'testu simple',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Avisu:''' Esta páxina contién demasiaes llamaes costoses a funciones d'análisis sintáuticu.
@@ -1209,7 +1218,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'timezoneregion-indian' => 'Océanu Índicu',
 'timezoneregion-pacific' => 'Océanu Pacíficu',
 'allowemail' => 'Dexar a los otros usuarios mandate correos',
-'prefs-searchoptions' => 'Opciones de busca',
+'prefs-searchoptions' => 'Guetar',
 'prefs-namespaces' => 'Espacios de nome',
 'defaultns' => "D'otra miente, guetar nestos espacios de nome:",
 'default' => 'predetermináu',
@@ -1644,7 +1653,7 @@ Si'l problema persiste, contauta con un [[Special:ListUsers/sysop|alministrador]
 'backend-fail-internal' => 'Hebo un fallu desconocíu nel motor d\'almacenamientu "$1".',
 'backend-fail-contenttype' => 'Non se pudo determinar la triba de conteníu de ficheru a guardar en "$1".',
 'backend-fail-batchsize' => "El motor d'almacenamientu dio un llote de $1 {{PLURAL:$1|operación|operaciones}} en ficheros; el llímite ye de $2 {{PLURAL:$2|operación|operaciones}}.",
-'backend-fail-usable' => 'Nun se pudo escribir el ficheru $1 porque nun hai permisos bastantes o falten los direutorios/contenedores.',
+'backend-fail-usable' => 'Nun se pudo llee o escribir el ficheru «$1» porque nun hai permisos bastantes o falten los direutorios/contenedores.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Nun se pudo coneutar cola base de datos del diariu pal sofitu d\'almacenamientu "$1".',
@@ -2324,7 +2333,8 @@ revisión fuera restaurada o eliminada del archivu.",
 'undeletedrevisions' => '{{PLURAL:$1|1 revisión restaurada|$1 revisiones restauraes}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 revisión|$1 revisiones}} y {{PLURAL:$2|1 archivu|$2 archivos}} restauraos',
 'undeletedfiles' => '{{PLURAL:$1|1 archivu restauráu|$1 archivos restauraos}}',
-'cannotundelete' => 'Falló la restauración; seique daquién yá restaurara la páxina enantes.',
+'cannotundelete' => 'Falló la restauración:
+$1',
 'undeletedpage' => "'''Restauróse $1'''
 
 Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y restauraciones de recién.",
@@ -2622,6 +2632,7 @@ La páxina de destín "[[:$1]]" yá esiste. ¿Quies esborrala pa dexar sitiu pal
 'immobile-target-namespace-iw' => "Nun puedes mover una páxina a un enllaz d'Interwiki.",
 'immobile-source-page' => 'Esta páxina nun ye treslladable.',
 'immobile-target-page' => 'Nun se pue treslladar a esi títulu de destín.',
+'bad-target-model' => 'El destín deseáu utiliza un modelu de conteníu diferente. Nun se pue convertir de $1 a $2.',
 'imagenocrossnamespace' => "Nun se pue treslladar una imaxe a nun espaciu de nomes que nun ye d'imáxenes",
 'nonfile-cannot-move-to-file' => 'Nun se pue treslladar más que ficheros al espaciu de nomes de ficheros',
 'imagetypemismatch' => 'La estensión nueva del archivu nun concueya cola so mena',
@@ -2918,6 +2929,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-magic-words' => '{{PLURAL:$1|Pallabra máxica|Pallabres máxiques}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría anubrida|Categoríes anubríes}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Plantía incluída|Plantíes incluíes}} ($1)',
+'pageinfo-toolboxlink' => 'Información de la páxina',
 
 # Skin names
 'skinname-standard' => 'Clásicu',
@@ -3503,7 +3515,8 @@ Esti códigu de confirmación caduca\'l $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',
-'scarytranscludefailed' => '[La obtención de la plantía falló pa $1]',
+'scarytranscludefailed' => '[Falló la recuperación de la plantía pa $1]',
+'scarytranscludefailed-httpstatus' => '[Falló la recuperación de la plantía pa $1: HTTP $2]',
 'scarytranscludetoolong' => '[La URL ye demasiao llarga]',
 
 # Delete conflict

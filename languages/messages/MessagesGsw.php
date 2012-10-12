@@ -896,6 +896,15 @@ Si isch schyns glescht wore.',
 'edit-no-change' => 'Dyyni Bearbeitig isch ignoriert wore, wel kei Änderig am Täxt gmacht woren isch.',
 'edit-already-exists' => 'Di nej Syte het nid chenne aaglait wäre, wel s si scho git.',
 'defaultmessagetext' => 'Standardtext',
+'content-failed-to-parse' => 'Parse vum Inhalt $2 fir Modell $1 fählgschlaa: $3',
+'invalid-content-data' => 'Uugiltigi Inhaltsdate',
+'content-not-allowed-here' => 'Dr Inhalt „$1“ isch uf dr Syte [[$2]] nit erlaubt',
+
+# Content models
+'content-model-wikitext' => 'Wikitext',
+'content-model-text' => 'Klartext',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Achtig: In däre Syte het s z vyyl Ufruef vu ufwändige Parserfunktione.
@@ -2314,7 +2323,9 @@ In däm Fall darf di neijscht Version nit markiert wäre oder ihre Status muess 
 'undeletedrevisions' => '{{PLURAL:$1|ei Revision|$1 Revisione}} wider zruckgholt.',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Datei|$2 Dateie}} sin widerhärgstellt wore',
 'undeletedfiles' => '{{PLURAL:$1|1 Datei isch|$1 Dateie sin}} widerhärgstellt wore',
-'cannotundelete' => 'Widerhärstellig isch nit gange; eber ander het villicht d Syte scho widerhärgstellt.',
+'cannotundelete' => 'D Widerhärstellig isch nit gange:
+
+$1',
 'undeletedpage' => "'''„$1“''' isch widerhärgstellt wore.
 
 Im [[Special:Log/delete|Lesch-Logbuech]] findsch e Ibersicht vu dr gleschte un widerhärgstellte Syte.",
@@ -2597,6 +2608,7 @@ D Syte „[[:$1]]“ gits scho. Wottsch du si lösche, zume Platz zum verschiebe
 'immobile-target-namespace-iw' => 'E Interwiki-Link isch kei gültigs Ziil für e Syteverschiebig.',
 'immobile-source-page' => 'Die Syte cha nüt verschobe werde.',
 'immobile-target-page' => 'Uf die Ziilsyte cha nüt verschobe werde.',
+'bad-target-model' => 'Di gwinsche Ziilsyte brucht e ander Inhaltsmodell. S Inhaltsmodell $1 cha nit in s Inhaltsmodell $2 umgwandlet wäre.',
 'imagenocrossnamespace' => 'Dateie chönne nüt ussem {{ns:file}}-Namensruum use verschobe werde',
 'nonfile-cannot-move-to-file' => 'Nit-Dateie chenne nit in dr Datei-Namensruum verschobe wäre',
 'imagetypemismatch' => 'D nöii Dateierwiiterig passt nüt zu sym Typ',

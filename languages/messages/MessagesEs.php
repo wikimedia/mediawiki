@@ -1135,6 +1135,15 @@ Parece que ha sido borrada.',
 'edit-already-exists' => 'No se pudo crear una página nueva.
 Ya existe.',
 'defaultmessagetext' => 'Texto de mensaje predeterminado',
+'content-failed-to-parse' => 'No se pudo analizar el contenido $2 del modelo $1: $3',
+'invalid-content-data' => 'Datos de contenido inválidos',
+'content-not-allowed-here' => 'El contenido "$1" no está permitido en la página [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'texto wiki',
+'content-model-text' => 'Texto sin formato',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Aviso: Esta página contiene demasiadas llamadas a funciones sintácticas costosas (#ifexist: y similares)
@@ -2582,8 +2591,8 @@ o a que la revisión haya sido restaurada o eliminada del archivo.',
 'undeletedrevisions' => '{{PLURAL:$1|Una edición restaurada|$1 ediciones restauradas}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|ediciones restauradas y $2 archivo restaurado|ediciones y $2 archivos restaurados}}',
 'undeletedfiles' => '$1 {{PLURAL:$1|archivo restaurado|archivos restaurados}}',
-'cannotundelete' => 'Ha fallado el deshacer el borrado;
-alguien más puede haber deshecho el borrado antes.',
+'cannotundelete' => 'Hubo un error durante la restauración:
+$1',
 'undeletedpage' => "'''Se ha restaurado $1'''
 
 Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de los últimos borrados y restauraciones.",
@@ -2883,6 +2892,7 @@ no se puede trasladar una página sobre sí misma.',
 'immobile-target-namespace-iw' => 'Un enlace interwiki no es un destino válido para trasladar una página.',
 'immobile-source-page' => 'Esta página no se puede renombrar.',
 'immobile-target-page' => 'No se puede trasladar a tal título.',
+'bad-target-model' => 'El destino deseado utiliza un modelo diferente de contenido. No se puede realizar la conversión de $1 a $2.',
 'imagenocrossnamespace' => 'No se puede trasladar el fichero a otro espacio de nombres',
 'nonfile-cannot-move-to-file' => 'No es posible mover un no-archivo al espacio de nombres de archivo',
 'imagetypemismatch' => 'La nueva extensión de archivo no corresponde con su tipo',
