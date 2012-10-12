@@ -684,4 +684,59 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		return true;
 	}
+
+	/**
+	 * Returns the ID of a namespace that defaults to Wikitext.
+	 * Throws an MWException if there is none.
+	 *
+	 * @return int the ID of the wikitext Namespace
+	 * @since 1.21
+	 */
+	protected function getDefaultWikitextNS() {
+		global $wgNamespaceContentModels;
+
+		static $wikitextNS = null; // this is not going to change
+		if ( $wikitextNS !== null ) {
+			return $wikitextNS;
+		}
+
+		// quickly short out on most common case:
+		if ( !isset( $wgNamespaceContentModels[NS_MAIN] ) ) {
+			return NS_MAIN;
+		}
+
+		// NOTE: prefer content namespaces
+		$namespaces = array_unique( array_merge(
+			MWNamespace::getContentNamespaces(),
+			array( NS_MAIN, NS_HELP, NS_PROJECT ), // prefer these
+			MWNamespace::getValidNamespaces()
+		) );
+
+		$namespaces = array_diff( $namespaces, array(
+			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
+		));
+
+		$talk = array_filter( $namespaces, function ( $ns ) {
+			return MWNamespace::isTalk( $ns );
+		} );
+
+		// prefer non-talk pages
+		$namespaces = array_diff( $namespaces, $talk );
+		$namespaces = array_merge( $namespaces, $talk );
+
+		// check default content model of each namespace
+		foreach ( $namespaces as $ns ) {
+			if ( !isset( $wgNamespaceContentModels[$ns] ) ||
+				$wgNamespaceContentModels[$ns] === CONTENT_MODEL_WIKITEXT ) {
+
+				$wikitextNS = $ns;
+				return $wikitextNS;
+			}
+		}
+
+		// give up
+		// @todo: Inside a test, we could skip the test as incomplete.
+		//        But frequently, this is used in fixture setup.
+		throw new MWException( "No namespace defaults to wikitext!" );
+	}
 }

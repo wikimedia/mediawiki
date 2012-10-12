@@ -129,12 +129,14 @@ class FetchTextTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';
 
+		$wikitextNamespace = $this->getDefaultWikitextNS();
+
 		try {
-			$title = Title::newFromText( 'FetchTextTestPage1' );
+			$title = Title::newFromText( 'FetchTextTestPage1', $wikitextNamespace );
 			$page = WikiPage::factory( $title );
 			$this->textId1 = $this->addRevision( $page, "FetchTextTestPage1Text1", "FetchTextTestPage1Summary1" );
 
-			$title = Title::newFromText( 'FetchTextTestPage2' );
+			$title = Title::newFromText( 'FetchTextTestPage2', $wikitextNamespace );
 			$page = WikiPage::factory( $title );
 			$this->textId2 = $this->addRevision( $page, "FetchTextTestPage2Text1", "FetchTextTestPage2Summary1" );
 			$this->textId3 = $this->addRevision( $page, "FetchTextTestPage2Text2", "FetchTextTestPage2Summary2" );

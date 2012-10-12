@@ -10,11 +10,13 @@ class BackupDumperPageTest extends DumpTestCase {
 	// We'll add several pages, revision and texts. The following variables hold the
 	// corresponding ids.
 	private $pageId1, $pageId2, $pageId3, $pageId4, $pageId5;
+	private $pageTitle1, $pageTitle2, $pageTitle3, $pageTitle4, $pageTitle5;
 	private $revId1_1, $textId1_1;
 	private $revId2_1, $textId2_1, $revId2_2, $textId2_2;
 	private $revId2_3, $textId2_3, $revId2_4, $textId2_4;
 	private $revId3_1, $textId3_1, $revId3_2, $textId3_2;
 	private $revId4_1, $textId4_1;
+	private $namespace, $talk_namespace;
 
 	function addDBData() {
 		$this->tablesUsed[] = 'page';
@@ -22,14 +24,23 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->tablesUsed[] = 'text';
 
 		try {
-			$title = Title::newFromText( 'BackupDumperTestP1' );
-			$page = WikiPage::factory( $title );
+			$this->namespace = $this->getDefaultWikitextNS();
+			$this->talk_namespace = NS_TALK;
+
+			if ( $this->namespace === $this->talk_namespace ) {
+				//@todo: work around this.
+				throw new MWException( "The default wikitext namespace is the talk namespace. "
+					. " We can't currently deal with that.");
+			}
+
+			$this->pageTitle1 = Title::newFromText( 'BackupDumperTestP1', $this->namespace );
+			$page = WikiPage::factory( $this->pageTitle1 );
 			list( $this->revId1_1, $this->textId1_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP1Text1", "BackupDumperTestP1Summary1" );
 			$this->pageId1 = $page->getId();
 
-			$title = Title::newFromText( 'BackupDumperTestP2' );
-			$page = WikiPage::factory( $title );
+			$this->pageTitle2 = Title::newFromText( 'BackupDumperTestP2', $this->namespace );
+			$page = WikiPage::factory( $this->pageTitle2 );
 			list( $this->revId2_1, $this->textId2_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP2Text1", "BackupDumperTestP2Summary1" );
 			list( $this->revId2_2, $this->textId2_2 ) = $this->addRevision( $page,
@@ -41,8 +52,8 @@ class BackupDumperPageTest extends DumpTestCase {
 				"BackupDumperTestP2Summary4 extra " );
 			$this->pageId2 = $page->getId();
 
-			$title = Title::newFromText( 'BackupDumperTestP3' );
-			$page = WikiPage::factory( $title );
+			$this->pageTitle3 = Title::newFromText( 'BackupDumperTestP3', $this->namespace );
+			$page = WikiPage::factory( $this->pageTitle3 );
 			list( $this->revId3_1, $this->textId3_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP3Text1", "BackupDumperTestP2Summary1" );
 			list( $this->revId3_2, $this->textId3_2 ) = $this->addRevision( $page,
@@ -50,8 +61,8 @@ class BackupDumperPageTest extends DumpTestCase {
 			$this->pageId3 = $page->getId();
 			$page->doDeleteArticle( "Testing ;)" );
 
-			$title = Title::newFromText( 'BackupDumperTestP1', NS_TALK );
-			$page = WikiPage::factory( $title );
+			$this->pageTitle4 = Title::newFromText( 'BackupDumperTestP1', $this->talk_namespace );
+			$page = WikiPage::factory( $this->pageTitle4 );
 			list( $this->revId4_1, $this->textId4_1 ) = $this->addRevision( $page,
 				"Talk about BackupDumperTestP1 Text1",
 				"Talk BackupDumperTestP1 Summary1" );
@@ -95,14 +106,14 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fname );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87",
 			"BackupDumperTestP1Text1" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, 23, "jprywrymfhysqllua29tj3sc7z39dl2",
 			"BackupDumperTestP2Text1" );
@@ -121,7 +132,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe",
 			"Talk about BackupDumperTestP1 Text1" );
@@ -146,13 +157,13 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fname );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, 23, "jprywrymfhysqllua29tj3sc7z39dl2" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
@@ -167,7 +178,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -191,13 +202,13 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fname );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
@@ -206,7 +217,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -231,13 +242,13 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fname );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
@@ -246,7 +257,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -300,13 +311,13 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fnameMetaHistory );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_1, "BackupDumperTestP2Summary1",
 			$this->textId2_1, 23, "jprywrymfhysqllua29tj3sc7z39dl2" );
 		$this->assertRevision( $this->revId2_2, "BackupDumperTestP2Summary2",
@@ -321,7 +332,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -334,13 +345,13 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fnameMetaCurrent );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
@@ -349,7 +360,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		$this->assertPageStart( $this->pageId4, NS_TALK, "Talk:BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId4, $this->talk_namespace, $this->pageTitle4->getPrefixedText() );
 		$this->assertRevision( $this->revId4_1, "Talk BackupDumperTestP1 Summary1",
 			$this->textId4_1, 35, "nktofwzd0tl192k3zfepmlzxoax1lpe" );
 		$this->assertPageEnd();
@@ -362,13 +373,13 @@ class BackupDumperPageTest extends DumpTestCase {
 		$this->assertDumpStart( $fnameArticles );
 
 		// Page 1
-		$this->assertPageStart( $this->pageId1, NS_MAIN, "BackupDumperTestP1" );
+		$this->assertPageStart( $this->pageId1, $this->namespace, $this->pageTitle1->getPrefixedText() );
 		$this->assertRevision( $this->revId1_1, "BackupDumperTestP1Summary1",
 			$this->textId1_1, 23, "0bolhl6ol7i6x0e7yq91gxgaan39j87" );
 		$this->assertPageEnd();
 
 		// Page 2
-		$this->assertPageStart( $this->pageId2, NS_MAIN, "BackupDumperTestP2" );
+		$this->assertPageStart( $this->pageId2, $this->namespace, $this->pageTitle2->getPrefixedText() );
 		$this->assertRevision( $this->revId2_4, "BackupDumperTestP2Summary4 extra",
 			$this->textId2_4, 44, "6o1ciaxa6pybnqprmungwofc4lv00wv", false, $this->revId2_3 );
 		$this->assertPageEnd();
@@ -377,7 +388,7 @@ class BackupDumperPageTest extends DumpTestCase {
 		// -> Page is marked deleted. Hence not visible
 
 		// Page 4
-		// -> Page is not in NS_MAIN. Hence not visible
+		// -> Page is not in $this->namespace. Hence not visible
 
 		$this->assertDumpEnd();
 
