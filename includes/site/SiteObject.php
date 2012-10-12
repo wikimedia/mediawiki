@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -35,7 +35,7 @@ class SiteObject extends ORMRow implements Site {
 	 * Holds the local ids for this site.
 	 * You can obtain them via @see getLocalIds
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @var array|false
 	 */
@@ -44,7 +44,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getGlobalId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -55,7 +55,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::setGlobalId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalId
 	 */
@@ -66,7 +66,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getType
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -77,7 +77,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::setType
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $type
 	 */
@@ -88,7 +88,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getGroup
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -99,7 +99,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::setGroup
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $group
 	 */
@@ -110,7 +110,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getSource
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -121,7 +121,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::setSource
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $source
 	 */
@@ -132,7 +132,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getDomain
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -149,7 +149,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getProtocol
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -169,7 +169,7 @@ class SiteObject extends ORMRow implements Site {
 	 *
 	 * @param string $fullUrl
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @throws MWException
 	 */
@@ -204,7 +204,7 @@ class SiteObject extends ORMRow implements Site {
 	 * This default implementation returns SiteObject::PATH_LINK as the default path type. Subclasses can override this
 	 * to define a different default path type, or return false to disable site links.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -217,7 +217,7 @@ class SiteObject extends ORMRow implements Site {
 	 *
 	 * This implementation returns a URL constructed using the path returned by getLinkPath().
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param bool|String $pageName
 	 *
@@ -243,7 +243,7 @@ class SiteObject extends ORMRow implements Site {
 	 *
 	 * @see Site::normalizePageName
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pageName
 	 *
@@ -257,7 +257,7 @@ class SiteObject extends ORMRow implements Site {
 	 * Returns the value of a type specific field, or the value
 	 * of the $default parameter in case it's not set.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $fieldName
 	 * @param mixed $default
@@ -271,7 +271,7 @@ class SiteObject extends ORMRow implements Site {
 
 	/**
 	 * Sets the value of a type specific field.
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $fieldName
 	 * @param mixed $value
@@ -285,7 +285,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getLanguageCode
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string|false
 	 */
@@ -296,7 +296,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::setLanguageCode
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $languageCode
 	 */
@@ -307,7 +307,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * Returns the local identifiers of this site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $type
 	 *
@@ -324,7 +324,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * Loads the local ids for the site.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 */
 	protected function loadLocalIds() {
 		$dbr = wfGetDB( $this->getTable()->getReadDb() );
@@ -351,7 +351,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * Adds a local identifier.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $type
 	 * @param string $identifier
@@ -373,7 +373,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::addInterwikiId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $identifier
 	 */
@@ -384,7 +384,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::addNavigationId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $identifier
 	 */
@@ -395,7 +395,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getInterwikiIds
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array of string
 	 */
@@ -406,7 +406,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getNavigationIds
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array of string
 	 */
@@ -417,7 +417,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::getInternalId
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return integer
 	 */
@@ -429,7 +429,7 @@ class SiteObject extends ORMRow implements Site {
 	 * @see ORMRow::save
 	 * @see Site::save
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string|null $functionName
 	 *
@@ -485,7 +485,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Site::setPath
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pathType
 	 * @param string $fullUrl
@@ -499,7 +499,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Sitres::getPath
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pathType
 	 *
@@ -513,7 +513,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Sitres::getAll
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array of string
 	 */
@@ -524,7 +524,7 @@ class SiteObject extends ORMRow implements Site {
 	/**
 	 * @see Sitres::removePath
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $pathType
 	 */

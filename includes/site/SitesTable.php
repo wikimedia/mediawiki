@@ -19,7 +19,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -31,7 +31,7 @@ class SitesTable extends ORMTable {
 
 	/**
 	 * @see IORMTable::getName()
-	 * @since 1.20
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getName() {
@@ -40,7 +40,7 @@ class SitesTable extends ORMTable {
 
 	/**
 	 * @see IORMTable::getFieldPrefix()
-	 * @since 1.20
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getFieldPrefix() {
@@ -49,7 +49,7 @@ class SitesTable extends ORMTable {
 
 	/**
 	 * @see IORMTable::getRowClass()
-	 * @since 1.20
+	 * @since 1.21
 	 * @return string
 	 */
 	public function getRowClass() {
@@ -58,7 +58,7 @@ class SitesTable extends ORMTable {
 
 	/**
 	 * @see IORMTable::getFields()
-	 * @since 1.20
+	 * @since 1.21
 	 * @return array
 	 */
 	public function getFields() {
@@ -83,7 +83,7 @@ class SitesTable extends ORMTable {
 
 	/**
 	 * @see IORMTable::getDefaults()
-	 * @since 1.20
+	 * @since 1.21
 	 * @return array
 	 */
 	public function getDefaults() {
@@ -101,7 +101,7 @@ class SitesTable extends ORMTable {
 	/**
 	 * Returns the class name for the provided site type.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param integer $siteType
 	 *
@@ -115,7 +115,7 @@ class SitesTable extends ORMTable {
 	/**
 	 * Factory method to construct a new Site instance.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $data
 	 * @param boolean $loadDefaults

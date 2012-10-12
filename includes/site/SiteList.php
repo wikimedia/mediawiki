@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup Site
@@ -32,7 +32,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 * Returns all the global site identifiers.
 	 * Optionally only those belonging to the specified group.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array
 	 */
@@ -51,7 +51,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 * Returns the Site with the provided global site identifier.
 	 * The site needs to exist, so if not sure, call hasGlobalId first.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalSiteId
 	 *
@@ -63,7 +63,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 * Removes the site with the specified global site identifier.
 	 * The site needs to exist, so if not sure, call hasGlobalId first.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param string $globalSiteId
 	 */
@@ -82,7 +82,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 * Returns the Site with the provided site id.
 	 * The site needs to exist, so if not sure, call has first.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param integer $id
 	 *
@@ -94,7 +94,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 * Removes the site with the specified site id.
 	 * The site needs to exist, so if not sure, call has first.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param integer $id
 	 */
@@ -104,7 +104,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	 * Sets a site in the list. If the site was not there,
 	 * it will be added. If it was, it will be updated.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param Site $site
 	 */
@@ -113,7 +113,7 @@ interface SiteList extends Countable, Traversable, Serializable, ArrayAccess {
 	/**
 	 * Returns if the site list contains no sites.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return boolean
 	 */
