@@ -24,7 +24,7 @@
 class ParserOutput extends CacheTime {
 	var $mText,                       # The output text
 		$mLanguageLinks,              # List of the full text of language links, in the order they appear
-		$mCategories,                 # Map of category names to sort keys
+		$mCategories,                 # Map of category names to arrays, where keys are collation names and values are sort keys
 		$mTitleText,                  # title text of the chosen language variant
 		$mLinks = array(),            # 2-D map of NS/DBK to ID for the links in the document. ID=zero for broken.
 		$mTemplates = array(),        # 2-D map of NS/DBK to ID for the template references. ID=zero for broken.
