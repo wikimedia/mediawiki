@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class ExifTest extends MediaWikiTestCase {
 
 	protected function setUp() {

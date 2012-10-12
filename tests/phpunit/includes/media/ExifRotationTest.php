@@ -2,6 +2,8 @@
 
 /**
  * Tests related to auto rotation
+ *
+ * @group Media
  */
 class ExifRotationTest extends MediaWikiTestCase {
 

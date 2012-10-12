@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
 	protected function setUp() {

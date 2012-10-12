@@ -1,4 +1,7 @@
 <?php
+/**
+ * @group Media
+ */
 class JpegTest extends MediaWikiTestCase {
 
 	protected function setUp() {

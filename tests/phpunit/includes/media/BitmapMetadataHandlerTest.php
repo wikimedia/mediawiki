@@ -1,5 +1,8 @@
 <?php
-class BitmapMetadataHandlerTest extends MediaWikiTestCase {
+/**
+ * @group Media
+ */
+ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		parent::setUp();

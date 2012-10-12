@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @group Media
+ */
 class ExifBitmapTest extends MediaWikiTestCase {
 
 	protected function setUp() {
