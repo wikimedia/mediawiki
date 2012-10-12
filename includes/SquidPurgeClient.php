@@ -21,9 +21,9 @@
  */
 
 /**
- * An HTTP 1.0 client built for the purposes of purging Squid and Varnish. 
- * Uses asynchronous I/O, allowing purges to be done in a highly parallel 
- * manner. 
+ * An HTTP 1.0 client built for the purposes of purging Squid and Varnish.
+ * Uses asynchronous I/O, allowing purges to be done in a highly parallel
+ * manner.
  *
  * Could be replaced by curl_multi_exec() or some such.
  */
@@ -123,7 +123,7 @@ class SquidPurgeClient {
 		return array( $socket );
 	}
 
-	/** 
+	/**
 	 * Get the host's IP address.
 	 * Does not support IPv6 at present due to the lack of a convenient interface in PHP.
 	 */
@@ -408,7 +408,7 @@ class SquidPurgeClientPool {
 			$numReady = socket_select( $readSockets, $writeSockets, $exceptSockets, $timeout );
 			wfRestoreWarnings();
 			if ( $numReady === false ) {
-				wfDebugLog( 'squid', __METHOD__.': Error in stream_select: ' . 
+				wfDebugLog( 'squid', __METHOD__.': Error in stream_select: ' .
 					socket_strerror( socket_last_error() ) . "\n" );
 				break;
 			}

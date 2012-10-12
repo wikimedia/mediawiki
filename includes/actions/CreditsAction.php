@@ -122,7 +122,7 @@ class CreditsAction extends FormlessAction {
 
 		# Sift for real versus user names
 		foreach ( $contributors as $user ) {
-			$cnt--; 
+			$cnt--;
 			if ( $user->isLoggedIn() ) {
 				$link = $this->link( $user );
 				if ( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() ) {

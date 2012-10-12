@@ -22,9 +22,9 @@
 
 /**
  * Standard output handler for use with ob_start
- * 
+ *
  * @param $s string
- * 
+ *
  * @return string
  */
 function wfOutputHandler( $s ) {
@@ -85,7 +85,7 @@ function wfRequestExtension() {
 /**
  * Handler that compresses data with gzip if allowed by the Accept header.
  * Unlike ob_gzhandler, it works for HEAD requests too.
- * 
+ *
  * @param $s string
  *
  * @return string

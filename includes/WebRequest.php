@@ -380,7 +380,6 @@ class WebRequest {
 		return $ret;
 	}
 
-	
 	/**
 	 * Unset an arbitrary value from our get/post data.
  	 *

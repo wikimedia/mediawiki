@@ -22,7 +22,7 @@
  *
  * @file
  * @author Niklas Laxström
- * @author Antoine Musso 
+ * @author Antoine Musso
  */
 
 /**

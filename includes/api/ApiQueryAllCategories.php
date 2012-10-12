@@ -81,7 +81,6 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		} else {
 			$this->addWhereRange( 'cat_pages', 'older', $max, $min);
 		}
-    
 
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhere( 'cat_title' . $db->buildLike( $this->titlePartToKey( $params['prefix'] ), $db->anyString() ) );

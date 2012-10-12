@@ -229,7 +229,7 @@ abstract class FileCacheBase {
 	public function incrMissesRecent( WebRequest $request ) {
 		global $wgMemc;
 		if ( mt_rand( 0, self::MISS_FACTOR - 1 ) == 0 ) {
-			# Get a large IP range that should include the user  even if that 
+			# Get a large IP range that should include the user  even if that
 			# person's IP address changes
 			$ip = $request->getIP();
 			if ( !IP::isValid( $ip ) ) {

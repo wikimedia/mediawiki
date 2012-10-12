@@ -152,10 +152,10 @@ class IcuCollation extends Collation {
 	/**
 	 * Unified CJK blocks.
 	 *
-	 * The same definition of a CJK block must be used for both Collation and 
-	 * generateCollationData.php. These blocks are omitted from the first 
-	 * letter data, as an optimisation measure and because the default UCA table 
-	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean 
+	 * The same definition of a CJK block must be used for both Collation and
+	 * generateCollationData.php. These blocks are omitted from the first
+	 * letter data, as an optimisation measure and because the default UCA table
+	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
 	 * blocks are not included here, because they are smaller and more useful.
 	 */
 	static $cjkBlocks = array(
@@ -180,7 +180,7 @@ class IcuCollation extends Collation {
 
 	function __construct( $locale ) {
 		if ( !extension_loaded( 'intl' ) ) {
-			throw new MWException( 'An ICU collation was requested, ' . 
+			throw new MWException( 'An ICU collation was requested, ' .
 				'but the intl extension is not available.' );
 		}
 		$this->locale = $locale;
@@ -218,8 +218,8 @@ class IcuCollation extends Collation {
 
 		// Check for CJK
 		$firstChar = mb_substr( $string, 0, 1, 'UTF-8' );
-		if ( ord( $firstChar ) > 0x7f 
-			&& self::isCjk( utf8ToCodepoint( $firstChar ) ) ) 
+		if ( ord( $firstChar ) > 0x7f
+			&& self::isCjk( utf8ToCodepoint( $firstChar ) ) )
 		{
 			return $firstChar;
 		}
@@ -265,9 +265,9 @@ class IcuCollation extends Collation {
 		// Sort the letters.
 		//
 		// It's impossible to have the precompiled data file properly sorted,
-		// because the sort order changes depending on ICU version. If the 
-		// array is not properly sorted, the binary search will return random 
-		// results. 
+		// because the sort order changes depending on ICU version. If the
+		// array is not properly sorted, the binary search will return random
+		// results.
 		//
 		// We also take this opportunity to remove primary collisions.
 		$letterMap = array();
@@ -320,7 +320,7 @@ class IcuCollation extends Collation {
 	}
 
 	/**
-	 * Do a binary search, and return the index of the largest item that sorts 
+	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
 	 * @param $valueCallback array A function to call to get the value with

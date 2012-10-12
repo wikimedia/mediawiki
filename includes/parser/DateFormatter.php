@@ -200,7 +200,7 @@ class DateFormatter {
 		$linked = true;
 		if ( isset( $this->mLinked ) )
 			$linked = $this->mLinked;
-		
+
 		$bits = array();
 		$key = $this->keys[$this->mSource];
 		for ( $p=0; $p < strlen($key); $p++ ) {
@@ -219,7 +219,7 @@ class DateFormatter {
 	 */
 	function formatDate( $bits, $link = true ) {
 		$format = $this->targets[$this->mTarget];
-		
+
 		if (!$link) {
 			// strip piped links
 			$format = preg_replace( '/\[\[[^|]+\|([^\]]+)\]\]/', '$1', $format );

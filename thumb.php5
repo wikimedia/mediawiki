@@ -22,4 +22,4 @@
  * @ingroup Media
  */
 
-require './thumb.php'; 
+require './thumb.php';

@@ -354,7 +354,7 @@ abstract class ORMTable implements IORMTable {
 		$this->releaseConnection( $dbw );
 		return $result;
 	}
-	
+
 	/**
 	 * Get API parameters for the fields supported by this object.
 	 *

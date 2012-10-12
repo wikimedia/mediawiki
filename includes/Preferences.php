@@ -879,7 +879,7 @@ class Preferences {
 		global $wgUseRCPatrol, $wgEnableAPI, $wgRCMaxAge;
 
 		$watchlistdaysMax = ceil( $wgRCMaxAge / ( 3600 * 24 ) );
-		
+
 		## Watchlist #####################################
 		$defaultPreferences['watchlistdays'] = array(
 			'type' => 'float',

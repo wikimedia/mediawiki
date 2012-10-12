@@ -21,4 +21,4 @@
  * @file
  */
 
-require './opensearch_desc.php'; 
+require './opensearch_desc.php';

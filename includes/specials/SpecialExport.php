@@ -286,7 +286,7 @@ class SpecialExport extends SpecialPage {
 		} else {
 
 			$pageSet = array(); // Inverted index of all pages to look up
-		
+
 			// Split up and normalize input
 			foreach( explode( "\n", $page ) as $pageName ) {
 				$pageName = trim( $pageName );

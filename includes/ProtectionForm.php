@@ -63,7 +63,7 @@ class ProtectionForm {
 		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();
 		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
-		
+
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
 		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors( 'protect', $wgUser );

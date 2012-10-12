@@ -39,7 +39,7 @@ class DatabaseConf extends Conf {
 	 *
 	 * @param $name
 	 * @param $value
-	 * 
+	 *
 	 * @return bool
 	 */
 	protected function writeSetting( $name, $value ) {

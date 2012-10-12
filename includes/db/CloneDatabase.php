@@ -87,18 +87,17 @@ class CloneDatabase {
 	 * Clone the table structure
 	 */
 	public function cloneTableStructure() {
-		
 		foreach( $this->tablesToClone as $tbl ) {
 			# Clean up from previous aborted run.  So that table escaping
 			# works correctly across DB engines, we need to change the pre-
 			# fix back and forth so tableName() works right.
-			
+
 			self::changePrefix( $this->oldTablePrefix );
 			$oldTableName = $this->db->tableName( $tbl, 'raw' );
-			
+
 			self::changePrefix( $this->newTablePrefix );
 			$newTableName = $this->db->tableName( $tbl, 'raw' );
-			
+
 			if( $this->dropCurrentTables && !in_array( $this->db->getType(), array( 'postgres', 'oracle' ) ) ) {
 				$this->db->dropTable( $tbl, __METHOD__ );
 				wfDebug( __METHOD__." dropping {$newTableName}\n", true);
@@ -108,9 +107,7 @@ class CloneDatabase {
 			# Create new table
 			wfDebug( __METHOD__." duplicating $oldTableName to $newTableName\n", true );
 			$this->db->duplicateTableStructure( $oldTableName, $newTableName, $this->useTemporaryTables );
-			
 		}
-		
 	}
 
 	/**

@@ -391,7 +391,7 @@ class MWCryptRand {
 		// We hash the random state with more salt to avoid the state from leaking
 		// out and being used to predict the /randomness/ that follows.
 		if ( strlen( $buffer ) < $bytes ) {
-			wfDebug( __METHOD__ . ": Falling back to using a pseudo random state to generate randomness.\n" ); 
+			wfDebug( __METHOD__ . ": Falling back to using a pseudo random state to generate randomness.\n" );
 		}
 		while ( strlen( $buffer ) < $bytes ) {
 			wfProfileIn( __METHOD__ . '-fallback' );

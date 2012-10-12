@@ -45,7 +45,7 @@ class LinkHolderArray {
 
  	/**
 	 * Don't serialize the parent object, it is big, and not needed when it is
-	 * a parameter to mergeForeign(), which is the only application of 
+	 * a parameter to mergeForeign(), which is the only application of
 	 * serializing at present.
 	 *
 	 * Compact the titles, only serialize the text form.
@@ -103,9 +103,9 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * Merge a LinkHolderArray from another parser instance into this one. The 
-	 * keys will not be preserved. Any text which went with the old 
-	 * LinkHolderArray and needs to work with the new one should be passed in 
+	 * Merge a LinkHolderArray from another parser instance into this one. The
+	 * keys will not be preserved. Any text which went with the old
+	 * LinkHolderArray and needs to work with the new one should be passed in
 	 * the $texts array. The strings in this array will have their link holders
 	 * converted for use in the destination link holder. The resulting array of
 	 * strings will be returned.
@@ -126,7 +126,7 @@ class LinkHolderArray {
 				$maxId = $newKey > $maxId ? $newKey : $maxId;
 			}
 		}
-		$texts = preg_replace_callback( '/(<!--LINK \d+:)(\d+)(-->)/', 
+		$texts = preg_replace_callback( '/(<!--LINK \d+:)(\d+)(-->)/',
 			array( $this, 'mergeForeignCallback' ), $texts );
 
 		# Renumber interwiki links
@@ -135,7 +135,7 @@ class LinkHolderArray {
 			$this->interwikis[$newKey] = $entry;
 			$maxId = $newKey > $maxId ? $newKey : $maxId;
 		}
-		$texts = preg_replace_callback( '/(<!--IWLINK )(\d+)(-->)/', 
+		$texts = preg_replace_callback( '/(<!--IWLINK )(\d+)(-->)/',
 			array( $this, 'mergeForeignCallback' ), $texts );
 
 		# Set the parent link ID to be beyond the highest used ID
@@ -159,8 +159,8 @@ class LinkHolderArray {
 		# Internal links
 		$pos = 0;
 		while ( $pos < strlen( $text ) ) {
-			if ( !preg_match( '/<!--LINK (\d+):(\d+)-->/', 
-				$text, $m, PREG_OFFSET_CAPTURE, $pos ) ) 
+			if ( !preg_match( '/<!--LINK (\d+):(\d+)-->/',
+				$text, $m, PREG_OFFSET_CAPTURE, $pos ) )
 			{
 				break;
 			}

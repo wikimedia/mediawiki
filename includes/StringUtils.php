@@ -424,7 +424,7 @@ class ReplacementArray {
 
 /**
  * An iterator which works exactly like:
- * 
+ *
  * foreach ( explode( $delim, $s ) as $element ) {
  *    ...
  * }
