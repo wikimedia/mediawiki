@@ -325,12 +325,13 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$query['rcid'] = $result->rc_id;
 		}
 
-		$plink = Linker::linkKnown(
+		// Linker::linkKnown() uses 'known' and 'noclasses' options. This breaks the colouration for stubs.
+		$plink = Linker::link(
 			$title,
 			null,
 			array( 'class' => 'mw-newpages-pagename' ),
 			$query,
-			array( 'known' ) // Set explicitly to avoid the default of 'known','noclasses'. This breaks the colouration for stubs
+			array( 'known' )
 		);
 		$histLink = Linker::linkKnown(
 			$title,
