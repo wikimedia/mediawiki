@@ -1107,7 +1107,7 @@ class UploadSourceField extends HTMLTextField {
 	 * @return string
 	 */
 	function getLabelHtml( $cellAttributes = array() ) {
-		$id = "wpSourceType{$this->mParams['upload-type']}";
+		$id = $this->mParams['id'];
 		$label = Html::rawElement( 'label', array( 'for' => $id ), $this->mLabel );
 
 		if ( !empty( $this->mParams['radio'] ) ) {
