@@ -746,7 +746,7 @@ class DifferenceEngine extends ContextSource {
 	 * @deprecated since 1.21, use generateContentDiffBody() instead!
 	 */
 	function generateDiffBody( $otext, $ntext ) {
-		wfDeprecated( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		return $this->generateTextDiffBody( $otext, $ntext );
 	}
@@ -1018,7 +1018,7 @@ class DifferenceEngine extends ContextSource {
 	 * @deprecated since 1.21, use setContent() instead.
 	 */
 	function setText( $oldText, $newText ) {
-		wfDeprecated( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$oldContent = ContentHandler::makeContent( $oldText, $this->getTitle() );
 		$newContent = ContentHandler::makeContent( $newText, $this->getTitle() );

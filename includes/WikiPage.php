@@ -631,7 +631,8 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated as of 1.21, getContent() should be used instead.
 	 */
 	public function getText( $audience = Revision::FOR_PUBLIC, User $user = null ) { #@todo: deprecated, replace usage!
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
+
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
 			return $this->mLastRevision->getText( $audience, $user );
@@ -646,7 +647,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated as of 1.21, getContent() should be used instead.
 	 */
 	public function getRawText() {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		return $this->getText( Revision::RAW );
 	}
@@ -1381,7 +1382,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated since 1.21: use ContentHandler::getUndoContent() instead.
 	 */
 	public function getUndoText( Revision $undo, Revision $undoafter = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		$this->loadLastEdit();
 
@@ -1413,7 +1414,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated since 1.21, use replaceSectionContent() instead
 	 */
 	public function replaceSection( $section, $text, $sectionTitle = '', $edittime = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		if ( strval( $section ) == '' ) { //NOTE: keep condition in sync with condition in replaceSectionContent!
 			// Whole-page edit; let the whole text through
@@ -1561,7 +1562,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated since 1.21: use doEditContent() instead.
 	 */
 	public function doEdit( $text, $summary, $flags = 0, $baseRevId = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 
@@ -1934,7 +1935,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated in 1.21: use prepareContentForEdit instead.
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		return $this->prepareContentForEdit( $content, $revid , $user );
 	}
@@ -2136,7 +2137,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @deprecated since 1.21, use doEditContent() instead.
 	 */
 	public function doQuickEdit( $text, User $user, $comment = '', $minor = 0 ) {
-		wfDeprecated( __METHOD__, "1.21" );
+		ContentHandler::deprecated( __METHOD__, "1.21" );
 
 		$content = ContentHandler::makeContent( $text, $this->getTitle() );
 		return $this->doQuickEditContent( $content, $user, $comment , $minor );
@@ -2937,7 +2938,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		# NOTE: stub for backwards-compatibility. assumes the given text is wikitext. will break horribly if it isn't.
 
-		wfDeprecated( __METHOD__, '1.21' );
+		ContentHandler::deprecated( __METHOD__, '1.21' );
 
 		$handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 		$oldContent = is_null( $oldtext ) ? null : $handler->unserializeContent( $oldtext );
