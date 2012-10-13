@@ -305,10 +305,11 @@ function wfStreamThumb( array $params ) {
 function wfExtractThumbParams( $uriPath ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
 
+	$ext = FileBackend::extensionFromPath( $uriPath );
 	// Zone URL might be relative ("/images") or protocol-relative ("//lang.site/image")
 	$zoneUriPath = $repo->getZoneHandlerUrl( 'thumb' )
 		? $repo->getZoneHandlerUrl( 'thumb' ) // custom URL
-		: $repo->getZoneUrl( 'thumb' ); // default to main URL
+		: $repo->getZoneUrl( 'thumb', $ext ); // default to main URL
 	$bits = wfParseUrl( wfExpandUrl( $zoneUriPath, PROTO_INTERNAL ) );
 	if ( $bits && isset( $bits['path'] ) ) {
 		$zoneUriPath = $bits['path'];
