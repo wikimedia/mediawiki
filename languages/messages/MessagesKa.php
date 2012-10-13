@@ -957,6 +957,12 @@ $2
 ის უკვე არსებობს.',
 'defaultmessagetext' => 'შეტყობინების სტანდარტული ტექსტი',
 
+# Content models
+'content-model-wikitext' => 'ვიკიტექსტი',
+'content-model-text' => 'უბრალო ტექსტი',
+'content-model-javascript' => 'ჯავასკრიპტი',
+'content-model-css' => 'CSS',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'ყურადღება. მოცემული გვერდი შეიცავს ძალიან ბევრ მძიმე ფუნქციას.
 
@@ -2402,7 +2408,8 @@ $UNWATCHURL
 'undeletedrevisions' => '$1 ვერსია აღდგენილია',
 'undeletedrevisions-files' => '$1 ვერსია და $2 ფაილი აღდგენილია',
 'undeletedfiles' => '$1 ფაილი აღდგენილია',
-'cannotundelete' => 'წაშლის გაუქმება ვერ განხორციელდა; შესაძლოა თქვენამდე სხვამ უკვე გააუქმა წაშლა.',
+'cannotundelete' => 'წაშლის გაუქმება ვერ განხორციელდა: 
+$1',
 'undeletedpage' => "'''$1 აღდგენილია'''
 
 უკანასკნელი წაშლილთა და აღდგენის სია შეგიძლიათ ნახოთ [[Special:Log/delete|წაშლილთა სიაში]].",
@@ -2971,6 +2978,7 @@ $1',
 'pageinfo-magic-words' => 'ჯადოსნური {{PLURAL:$1|სიტყვა|სიტყვა}} ($1)',
 'pageinfo-hidden-categories' => 'დამალული {{PLURAL:$1|კატეგორია|კატეგორია}} ($1)',
 'pageinfo-templates' => 'ინტეგრირებულია {{PLURAL:$1|თარგი|თარგი}} ($1)',
+'pageinfo-toolboxlink' => 'გვერდის ინფორმაცია',
 
 # Skin names
 'skinname-standard' => 'კლასიკური',

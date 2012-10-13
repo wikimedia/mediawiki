@@ -2654,7 +2654,7 @@ $1',
 La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
 'sp-contributions-search' => 'Rechercher les contributions',
 'sp-contributions-username' => 'Adresse IP ou nom d’utilisateur :',
-'sp-contributions-toponly' => 'Ne montrer que les articles dont je suis le dernier contributeur',
+'sp-contributions-toponly' => 'Ne montrer que les contributions qui sont les dernières des articles',
 'sp-contributions-submit' => 'Rechercher',
 
 # What links here

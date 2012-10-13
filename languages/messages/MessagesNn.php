@@ -1052,7 +1052,7 @@ Det ser ut til at ho er sletta.',
 'edit-no-change' => 'Redigeringa di vart ignorert fordi det ikkje vart gjort endringar i teksten.',
 'edit-already-exists' => 'Kunne ikkje opprette ny side fordi ho alt eksisterer.',
 'defaultmessagetext' => 'Standard meldingstekst',
-'content-failed-to-parse' => 'Klarte ikkje å tolke innhaldet «$2» som innholdsmodellen «$1»: $3',
+'content-failed-to-parse' => 'Klarte ikkje å tolke innhaldet «$2» for innhaldsmodellen «$1»: $3',
 'invalid-content-data' => 'Ugyldig innhald',
 'content-not-allowed-here' => 'Innhaldsmodellen «$1» er ikkje tillaten på sida [[$2]]',
 
@@ -3428,6 +3428,7 @@ Andre er gøymde som standard.
 'exif-gpsdop-excellent' => 'Utmerkt ($1)',
 'exif-gpsdop-good' => 'God ($1)',
 'exif-gpsdop-moderate' => 'Moderat ($1)',
+'exif-gpsdop-fair' => 'Medels ($1)',
 'exif-gpsdop-poor' => 'Dårleg ($1)',
 
 'exif-objectcycle-a' => 'Berre morgon',

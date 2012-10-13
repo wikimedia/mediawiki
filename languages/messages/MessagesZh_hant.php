@@ -2951,7 +2951,7 @@ $1被封禁的理由是“$2”',
 'spam_deleting' => '所有包含連結至$1的修訂，刪除中',
 
 # Info page
-'pageinfo-title' => '" $1 "的信息',
+'pageinfo-title' => '“$1”的信息',
 'pageinfo-header-basic' => '基本資料',
 'pageinfo-header-edits' => '編輯歷史',
 'pageinfo-header-restrictions' => '保護頁面',

@@ -510,7 +510,7 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Añadir tema',
+'vector-action-addsection' => 'Nueva sección',
 'vector-action-delete' => 'Borrar',
 'vector-action-move' => 'Mover',
 'vector-action-protect' => 'Proteger',

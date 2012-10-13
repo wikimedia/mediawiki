@@ -1058,6 +1058,15 @@ Dường như trang này đã bị xóa.',
 'edit-already-exists' => 'Không thể tạo trang mới.
 Nó đã tồn tại.',
 'defaultmessagetext' => 'Nội dung mặc định',
+'content-failed-to-parse' => 'Thất bại phân tích nội dung $2 cho mô hình $1: $3',
+'invalid-content-data' => 'Dữ liệu nội dung không hợp lệ',
+'content-not-allowed-here' => 'Không cho phép đưa nội dung “$1” vào trang [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'mã wiki',
+'content-model-text' => 'văn bản thuần',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
@@ -2509,8 +2518,8 @@ Chỉ có bảo quản viên mới xem được văn bản đầy đủ của nh
 'undeletedrevisions' => '$1 {{PLURAL:$1|bản|bản}} được phục hồi',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|bản|bản}} và $2 {{PLURAL:$2|tập tin|tập tin}} đã được phục hồi',
 'undeletedfiles' => '$1 {{PLURAL:$1|tập tin|tập tin}} đã được phục hồi',
-'cannotundelete' => 'Phục hồi thất bại;
-một người nào khác đã phục hồi trang này rồi.',
+'cannotundelete' => 'Phục hồi thất bại:
+$1',
 'undeletedpage' => "'''$1 đã được khôi phục'''
 
 Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:Log/delete|nhật trình xóa]].",
@@ -2810,6 +2819,7 @@ Trang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để
 'immobile-target-namespace-iw' => 'Không cho phép di chuyển trang đến một liên kết liên wiki.',
 'immobile-source-page' => 'Bạn không thể di chuyển trang này.',
 'immobile-target-page' => 'Không thể di chuyển đến tựa đề đích.',
+'bad-target-model' => 'Trang đích sử dụng mô hình nội dung khác. Không thể chuyển đổi nội dung từ $1 đến $2.',
 'imagenocrossnamespace' => 'Không thể di chuyển tập tin ra khỏi không gian tên Tập tin',
 'nonfile-cannot-move-to-file' => 'Không thể di chuyển những gì không phải là tập tin vào không gian tên Tập tin',
 'imagetypemismatch' => 'Phần mở rộng trong tên tập tin mới không hợp dạng của tập tin',
