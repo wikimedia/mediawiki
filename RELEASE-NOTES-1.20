@@ -152,6 +152,24 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 * (bug 40448) mediawiki.legacy.mwsuggest has been replaced with a new module,
   mediawiki.searchSuggest, based on SimpleSeach from Extension:Vector.
 
+=== Known issues in 1.20.0 ===
+These are issues that we're targeting to be fixed in a later release
+in the 1.20 series.  Issues may be added or removed from this list as
+we see fit.  For now, it is comprised of those bugs on the 1.20.0
+milestone
+
+* (bug 27202): API: Add timestamp sort to list=allimages
+* (bug 35894): Reports of secret key generation "hanging" on windows
+* (bug 37209): LinkCache doesn't currently know about this title
+* (bug 37714): [Regression] Incomplete log entries
+* (bug 38334): PHP Notice:  Undefined index: href in /www/w/skins/Vector.php on line 416
+* (bug 39268): [Regression] Toolbar inserts in main textarea only (instead of the focussed textarea)
+* (bug 40598): [Regression] jquery.localize tests are failing in IE6-8
+* (bug 40632): Kill $wgCleanupPresentationalAttributes from MediaWiki core
+* (bug 40641): Clicking "others" in Special:Version asks to download a file
+* (bug 40780): searchsuggest-containing line ("containing...") doesn't include the entered text
+* (bug 40939): [Regression] InfoAction: Call to a member function getUserText() on a non-object
+
 === Bug fixes in 1.20 ===
 * (bug 30245) Use the correct way to construct a log page title.
 * (bug 34237) Regenerate an empty user_token and save to the database
