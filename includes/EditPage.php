@@ -477,6 +477,7 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
+		$this->setHeaderNoRobots();
 		$wgOut->setPageTitle( wfMessage( 'viewsource-title', $this->getContextTitle()->getPrefixedText() ) );
 		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
 		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
@@ -1757,6 +1758,11 @@ class EditPage {
 		return false;
 	}
 
+	function setHeaderNoRobots() {
+		global $wgOut;
+		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+	}
+
 	function setHeaders() {
 		global $wgOut, $wgUser;
 
@@ -1768,7 +1774,7 @@ class EditPage {
 		// Bug #19334: textarea jumps when editing articles in IE8
 		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
 
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		$this->setHeaderNoRobots();
 
 		# Enabled article-related sidebar, toplinks, etc.
 		$wgOut->setArticleRelated( true );
