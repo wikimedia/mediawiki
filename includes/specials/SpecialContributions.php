@@ -485,8 +485,8 @@ class SpecialContributions extends SpecialPage {
 				)
 			) ;
 
-		$extraOptions = Xml::tags( 'td', array( 'colspan' => 2 ),
-			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+			$deletedOnlyCheck = Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 				Xml::checkLabel(
 					$this->msg( 'history-show-deleted' )->text(),
 					'deletedOnly',
@@ -494,7 +494,13 @@ class SpecialContributions extends SpecialPage {
 					$this->opts['deletedOnly'],
 					array( 'class' => 'mw-input' )
 				)
-			) .
+			);
+		} else {
+			$deletedOnlyCheck = '';
+		}
+
+		$extraOptions = Xml::tags( 'td', array( 'colspan' => 2 ),
+			$deletedOnlyCheck .
 			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
 				Xml::checkLabel(
 					$this->msg( 'sp-contributions-toponly' )->text(),
