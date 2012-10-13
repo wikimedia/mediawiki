@@ -126,12 +126,18 @@ class UpdateMediaWiki extends Maintenance {
 		$updater->doUpdates( $updates );
 
 		foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
-			if ( $updater->updateRowExists( $maint ) ) {
+			$child = $this->runChild( $maint );
+
+			// LoggedUpdateMaintenance is checking the updatelog itself
+			$isLoggedUpdate = ( $child instanceof LoggedUpdateMaintenance );
+
+			if ( !$isLoggedUpdate && $updater->updateRowExists( $maint ) ) {
 				continue;
 			}
-			$child = $this->runChild( $maint );
 			$child->execute();
-			$updater->insertUpdateRow( $maint );
+			if ( !$isLoggedUpdate ) {
+				$updater->insertUpdateRow( $maint );
+			}
 		}
 
 		$this->output( "\nDone.\n" );
