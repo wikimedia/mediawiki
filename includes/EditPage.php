@@ -587,7 +587,7 @@ class EditPage {
 	 * @param $request WebRequest
 	 */
 	function importFormData( &$request ) {
-		global $wgLang, $wgUser;
+		global $wgContLang, $wgUser;
 
 		wfProfileIn( __METHOD__ );
 
@@ -612,7 +612,7 @@ class EditPage {
 			}
 
 			# Truncate for whole multibyte characters
-			$this->summary = $wgLang->truncate( $request->getText( 'wpSummary' ), 255 );
+			$this->summary = $wgContLang->truncate( $request->getText( 'wpSummary' ), 255 );
 
 			# If the summary consists of a heading, e.g. '==Foobar==', extract the title from the
 			# header syntax, e.g. 'Foobar'. This is mainly an issue when we are using wpSummary for
@@ -624,7 +624,7 @@ class EditPage {
 			# currently doing double duty as both edit summary and section title. Right now this
 			# is just to allow API edits to work around this limitation, but this should be
 			# incorporated into the actual edit form when EditPage is rewritten (Bugs 18654, 26312).
-			$this->sectiontitle = $wgLang->truncate( $request->getText( 'wpSectionTitle' ), 255 );
+			$this->sectiontitle = $wgContLang->truncate( $request->getText( 'wpSectionTitle' ), 255 );
 			$this->sectiontitle = preg_replace( '/^\s*=+\s*(.*?)\s*=+\s*$/', '$1', $this->sectiontitle );
 
 			$this->edittime = $request->getVal( 'wpEdittime' );
