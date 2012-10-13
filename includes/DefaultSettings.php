@@ -361,7 +361,9 @@ $wgImgAuthPublicTest = true;
  *                          container  : backend container name the zone is in
  *                          directory  : root path within container for the zone
  *                          url        : base URL to the root of the zone
- *                          handlerUrl : base script handled URL to the root of the zone
+ *                          urlsByExt  : map of file extension types to base URLs
+ *                                       (useful for using a different cache for videos)
+ *                          handlerUrl : base script-handled URL to the root of the zone
  *                                       (see FileRepo::getZoneHandlerUrl() function)
  *                      Zones default to using "<repo name>-<zone name>" as the container name
  *                      and default to using the container root as the zone's root directory.

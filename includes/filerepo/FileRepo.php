@@ -127,6 +127,9 @@ class FileRepo {
 			if ( !isset( $this->zones[$zone]['directory'] ) ) {
 				$this->zones[$zone]['directory'] = '';
 			}
+			if ( !isset( $this->zones[$zone]['urlsByExt'] ) ) {
+				$this->zones[$zone]['urlsByExt'] = array();
+			}
 		}
 	}
 
@@ -196,14 +199,17 @@ class FileRepo {
 	/**
 	 * Get the URL corresponding to one of the four basic zones
 	 *
-	 * @param $zone String: one of: public, deleted, temp, thumb
+	 * @param $zone String One of: public, deleted, temp, thumb
+	 * @param $ext String|null Optional file extension
 	 * @return String or false
 	 */
-	public function getZoneUrl( $zone ) {
-		if ( isset( $this->zones[$zone]['url'] )
-			&& in_array( $zone, array( 'public', 'temp', 'thumb' ) ) )
-		{
-			return $this->zones[$zone]['url']; // custom URL
+	public function getZoneUrl( $zone, $ext = null ) {
+		if ( in_array( $zone, array( 'public', 'temp', 'thumb' ) ) ) { // standard public zones
+			if ( $ext !== null && isset( $this->zones[$zone]['urlsByExt'][$ext] ) ) {
+				return $this->zones[$zone]['urlsByExt'][$ext]; // custom URL for extension/zone
+			} elseif ( isset( $this->zones[$zone]['url'] ) ) {
+				return $this->zones[$zone]['url']; // custom URL for zone
+			}
 		}
 		switch ( $zone ) {
 			case 'public':
