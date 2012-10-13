@@ -630,7 +630,7 @@ class ApiParse extends ApiBase {
 			'uselang' => 'Which language to parse the request in',
 			'section' => 'Only retrieve the content of this section number',
 			'disablepp' => 'Disable the PP Report from the parser output',
-			'generatexml' => 'Generate XML parse tree',
+			'generatexml' => 'Generate XML parse tree (requires prop=wikitext)',
 			'contentformat' => 'Content serialization format used for the input text',
 			'contentmodel' => 'Content model of the new content',
 		);
