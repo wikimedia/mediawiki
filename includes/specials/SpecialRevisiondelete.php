@@ -147,6 +147,26 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		} else {
 			$this->typeName = $request->getVal( 'type' );
 			$this->targetObj = Title::newFromText( $request->getText( 'target' ) );
+			if ( $this->targetObj->isSpecialPage() && $this->targetObj->getText() == 'Log' ) {
+				$result = wfGetDB( DB_MASTER )->select( 'logging',
+					'log_type',
+					array( 'log_id IN (' . implode( ',', $this->ids ) . ')' ),
+					__METHOD__
+				);
+
+				$logTypes = array();
+				foreach ( $result as $row ) {
+					if ( in_array( $row->log_type, $logTypes ) ) {
+						continue;
+					} else {
+						$logTypes[] = $row->log_type;
+					}
+				}
+
+				if ( count ( $logTypes ) == 1 ) { // If there's only one type, the target can be set to 
+					$this->targetObj = Title::newFromText( 'Special:Log/' . $logTypes[0] );
+				}
+			}
 		}
 
 		# For reviewing deleted files...
