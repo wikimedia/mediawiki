@@ -17,6 +17,7 @@ cache
 images/[0-9a-f]
 images/archive
 images/deleted
+images/lockdir
 images/temp
 images/thumb
 ## Extension:EasyTimeline
