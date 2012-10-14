@@ -301,7 +301,7 @@ $wgAutoloadLocalClasses = array(
 	'MessageContent' => 'includes/content/MessageContent.php',
 	'TextContentHandler' => 'includes/content/ContentHandler.php',
 	'TextContent' => 'includes/content/TextContent.php',
-	'WikitextContentHandler' => 'includes/ContentHandler.php',
+	'WikitextContentHandler' => 'includes/content/ContentHandler.php',
 	'WikitextContent' => 'includes/content/WikitextContent.php',
 
 	# includes/actions
