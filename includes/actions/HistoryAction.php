@@ -158,8 +158,12 @@ class HistoryAction extends FormlessAction {
 		} else {
 			$conds = array();
 		}
-		$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
+		if ( $this->getUser()->isAllowed( 'deletedhistory' ) ) {
+			$checkDeleted = Xml::checkLabel( $this->msg( 'history-show-deleted' )->text(),
 			'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
+		} else {
+			$checkDeleted = '';
+		}
 
 		// Add the general form
 		$action = htmlspecialchars( $wgScript );
