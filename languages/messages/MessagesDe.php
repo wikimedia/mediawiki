@@ -3176,6 +3176,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',
+'pageinfo-not-current' => 'Die Information könnte nur für die aktuelle Version angezeigt werden.',
 'pageinfo-header-basic' => 'Basisinformationen',
 'pageinfo-header-edits' => 'Bearbeitungsgeschichte',
 'pageinfo-header-restrictions' => 'Seitenschutz',

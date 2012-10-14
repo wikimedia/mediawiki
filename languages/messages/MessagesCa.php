@@ -353,7 +353,7 @@ $messages = array(
 'vector-action-protect' => 'Protegeix',
 'vector-action-undelete' => 'Restaura',
 'vector-action-unprotect' => 'Desprotegeix',
-'vector-simplesearch-preference' => 'Habilitar suggeriments de recerca millorats (només aparença Vector)',
+'vector-simplesearch-preference' => 'Activar la barra de cerca simplificada (només aparença Vector)',
 'vector-view-create' => 'Inicia',
 'vector-view-edit' => 'Modifica',
 'vector-view-history' => "Mostra l'historial",
@@ -573,7 +573,8 @@ Consulta: $2',
 'protectedpagetext' => 'Aquesta pàgina està protegida per evitar modificacions.',
 'viewsourcetext' => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
 'viewyourtext' => "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
-'protectedinterface' => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
+'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
+Per agregar o canviar les traduccions per a tots els wikis, si us plau fes servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
 'editinginterface' => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [//translatewiki.net/wiki/Main_Page?setlang=ca translatewiki.net], el projecte de traducció de MediaWiki.",
 'sqlhidden' => '(consulta SQL oculta)',
 'cascadeprotected' => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
@@ -853,12 +854,11 @@ Detalls es poden trobar en el [{{fullurl: {{# especial: registre}} / delete|page
 'userpage-userdoesnotexist-view' => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract' => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache' => "'''Nota:''' Després de desar, podeu haver d'ometre la memòria cau del vostre navegador per a veure'n els canvis.
-* '''Firefox / Safari:''' Premeu ''Maj'' mentre cliqueu a ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en un Mac)
-* '''Google Chrome:''' Premeu ''Ctrl+Maj+R'' (''⌘+Maj+R'' en un Mac)
-* '''Internet Explorer:''' Premeu ''Ctrl'' mentre cliqueu a ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
-* '''Konqueror:''' Cliqueu al botó ''Recarrega'' (Reload), o premeu ''F5''
-* '''Opera:''' Netegeu la vostra memòria cau a ''Tools → Preferences''",
+'clearyourcache' => "'''Nota:''' després de guardar possiblement necessites refrescar el teu cache per poder veure els canvis.
+* '''Firefox / Safari:''' pressiona ''Shift'' mentre cliques el botó ''Actualitzar'', o pressiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' a Mac)
+* '''Google Chrome:''' pressiona ''Ctrl+Shift+R'' (''⌘+Shift+R'' a Mac)
+* '''Internet Explorer:''' pressiona la tecla ''Ctrl'' mentre cliques a ''Actualitzar'' o pressiona ''Ctrl+F5''
+* '''Opera:''' buida la memòria cau (cache) ''Eines → Preferències''",
 'usercssyoucanpreview' => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview' => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview' => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
@@ -1110,7 +1110,8 @@ Si us plau, verifica els registres.",
 'revdelete-only-restricted' => 'Error amagant els ítems $2, $1: no pots suprimir elements a la vista dels administradors sense seleccionar alhora una de les altres opcions de supressió.',
 'revdelete-reason-dropdown' => "*Raons d'esborrament comunes
 ** Violació del copyright
-** Informació personal inapropiada
+** Comentari o informació personal inapropiada
+** Nom d'usuari inapropiat
 ** Informació potencialment calumniosa",
 'revdelete-otherreason' => 'Altre motiu / motiu suplementari:',
 'revdelete-reasonotherlist' => 'Altres raons',
@@ -2120,6 +2121,8 @@ Pot ser que hi hagi més informació sobre drets individuals [[{{MediaWiki:Listg
 i tenir una direcció electrònica vàlida en les vostres [[Special:Preferences|preferències]]
 per enviar un correu electrònic a altres usuaris.",
 'emailuser' => 'Envia un missatge de correu electrònic a aquest usuari',
+'emailuser-title-target' => 'Enviar un correu electrònic a {{GENDER:$1|aquest usuari|aquesta usuària}}',
+'emailuser-title-notarget' => "Enviar un correu electrònic a l'usuari",
 'emailpage' => 'Correu electrònic a usuari',
 'emailpagetext' => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a aquest usuari.
 L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà com a remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
@@ -2377,7 +2380,8 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletedrevisions' => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un fitxer|$2 fitxers}} restaurats',
 'undeletedfiles' => '$1 {{PLURAL:$1|fitxer restaurat|fitxers restaurats}}',
-'cannotundelete' => "No s'ha pogut restaurar; algú altre pot estar restaurant la mateixa pàgina.",
+'cannotundelete' => 'Hi ha hagut un error en el procés de restauració:
+$1',
 'undeletedpage' => "'''S'ha restaurat «$1»'''
 
 Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
@@ -2920,11 +2924,17 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 
 # Info page
 'pageinfo-title' => 'Informació de «$1»',
-'pageinfo-header-edits' => 'Modificacions',
+'pageinfo-header-basic' => 'Informació bàsica',
+'pageinfo-header-edits' => "Historial d'edicions",
+'pageinfo-header-restrictions' => 'Protecció de pàgina',
 'pageinfo-views' => 'Número de visites',
-'pageinfo-watchers' => "Número d'usuaris que l'estan vigilant",
-'pageinfo-edits' => "Número d'edicions",
-'pageinfo-authors' => "Número d'autors diferents",
+'pageinfo-watchers' => "Número d'usuaris que vigilen la pàgina",
+'pageinfo-firstuser' => 'Creador de la pàgina',
+'pageinfo-firsttime' => 'Data de la creació de la pàgina',
+'pageinfo-lastuser' => 'Últim editor',
+'pageinfo-lasttime' => "Data de l'última edició",
+'pageinfo-edits' => "Número total d'edicions",
+'pageinfo-authors' => "Número total d'autors diferents",
 
 # Skin names
 'skinname-standard' => 'Clàssic',
