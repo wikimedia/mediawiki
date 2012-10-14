@@ -32,10 +32,11 @@ class MagicVariableTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgContLang', Language::factory( 'en' ) );
+		$contLang = Language::factory( 'en' );
+		$this->setMwGlobals( 'wgContLang', $contLang );
 
 		$this->testParser = new Parser();
-		$this->testParser->Options( new ParserOptions() );
+		$this->testParser->Options( ParserOptions::newFromUserAndLang( new User, $contLang ) );
 
 		# initialize parser output
 		$this->testParser->clearState();

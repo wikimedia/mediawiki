@@ -8,17 +8,18 @@ class ExtraParserTest extends MediaWikiTestCase {
 	protected function setUp() {
 		parent::setUp();
 
+		$contLang = Language::factory( 'en' );
 		$this->setMwGlobals( array(
 			'wgShowDBErrorBacktrace' => true,
 			'wgLanguageCode' => 'en',
-			'wgContLang' => Language::factory( 'en' ),
+			'wgContLang' => $contLang,
 			'wgLang' => Language::factory( 'en' ),
 			'wgMemc' => new EmptyBagOStuff,
 			'wgAlwaysUseTidy' => false,
 			'wgCleanSignatures' => true,
 		) );
 		
-		$this->options = new ParserOptions;
+		$this->options = ParserOptions::newFromUserAndLang( new User, $contLang );
 		$this->options->setTemplateCallback( array( __CLASS__, 'statelessFetchTemplate' ) );
 		$this->parser = new Parser;
 
