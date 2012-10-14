@@ -893,7 +893,6 @@ $1',
 'portal-url'           => 'Project:Community portal',
 'privacy'              => 'Privacy policy',
 'privacypage'          => 'Project:Privacy policy',
-'content-failed-to-parse' => "Failed to parse $2 content for $1 model: $3",
 
 'badaccess'        => 'Permission error',
 'badaccess-group0' => 'You are not allowed to execute the action you have requested.',
@@ -1485,8 +1484,15 @@ It already exists.',
 'addsection-preload'               => '', # do not translate or duplicate this message to other languages
 'addsection-editintro'             => '', # do not translate or duplicate this message to other languages
 'defaultmessagetext'               => 'Default message text',
+'content-failed-to-parse'          => 'Failed to parse $2 content for $1 model: $3',
 'invalid-content-data'             => 'Invalid content data',
 'content-not-allowed-here'         => '"$1" content is not allowed on page [[$2]]',
+
+# Content models
+'content-model-wikitext'   => 'wikitext',
+'content-model-text'       => 'plain text',
+'content-model-javascript' => 'JavaScript',
+'content-model-css'        => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Warning:''' This page contains too many expensive parser function calls.
@@ -4947,11 +4953,5 @@ Otherwise, you can use the easy form below. Your comment will be added to the pa
 'duration-decades'   => '$1 {{PLURAL:$1|decade|decades}}',
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
-
-# Content model IDs for the ContentHandler facility; used by ContentHandler::getContentModel()
-'content-model-wikitext' => 'wikitext',
-'content-model-javascript' => 'JavaScript',
-'content-model-css' => 'CSS',
-'content-model-text' => 'plain text',
 
 );
