@@ -488,6 +488,8 @@ Ayaw paghingalimot hin pagbalyo han imo [[Special:Preferences|{{SITENAME}} mga g
 Alayon pagpili hin lain nga ngaran.',
 'loginerror' => 'Sayop hin pagsakob',
 'createaccounterror' => 'Diri makakahimo hin akawnt: $1',
+'nocookieslogin' => '{{SITENAME}} in nagkikinahanglan hin mga kuki para makapagpalog-in hin mga gumaramit.  An im mga kuki in diri nagana.
+Alayon paganaha hira ngan utro liwat.',
 'loginsuccesstitle' => 'Malinamposon an pagsulod',
 'loginsuccess' => "'''Ikaw in nakalog-in ha {{SITENAME}} komo \"\$1\".'''",
 'nosuchuser' => 'Waray gumaramit an may-ada ngaran nga "$1".
@@ -987,16 +989,35 @@ An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para ha
 'illegal-filename' => 'An ngaran han fayl in diri gintutugutan.',
 'unknown-error' => 'Nahitabo an waray kasasabti nga sayop.',
 'uploadwarning' => 'Pahimatngon han pagkarga paigbaw',
+'savefile' => 'Igtipig an paypay',
 'uploadedimage' => 'ginkarga-paigbaw "[[$1]]"',
+'overwroteimage' => 'Ginkaraga an bag-o nga bersyon han "[[$1]]"',
+'uploaddisabled' => 'Waray ginpagana an pagkarga paigbaw',
+'copyuploaddisabled' => 'An pagkarga paigbaw pinaagi hin URL in waray ginpagana',
+'uploadfromurl-queued' => 'An imo ginkarga-paigbaw hin nakapila.',
+'uploaddisabledtext' => 'An mga pagkarga-paigbaw in diri ginpapagana.',
+'php-uploaddisabledtext' => 'An mga pagkarga-paigbaw han paypay in diri ginpapagana ha PHP.
+Alayon panginanoi an kahimtang han file_uploads.',
+'uploadscripted' => 'Ini nga paypay in nagsusulod hin HTML o script code nga puydi masayopan paghubad an web browser.',
 'uploadvirus' => 'Ini nga fayl may-ada sulod nga bayrus!
 Mga detalye: $1',
 'upload-source' => 'Tinikangan nga fayl',
 'sourcefilename' => 'Tinikangan nga ngaran han fayl:',
+'sourceurl' => 'Tinikangan nga URL:',
+'destfilename' => 'Kakadtoan nga ngaran-hin-paypay:',
+'upload-maxfilesize' => 'Pinakadamo nga kadako han paypay: $1',
 'upload-description' => 'Pangilal-an han paypay',
 'upload-options' => 'Mga pirilion han pagkarga paigbaw',
 'watchthisupload' => 'Bantayi ini nga paypay',
+'upload-success-subj' => 'Malinamposan an imo pagkarga-paigbaw.',
+'upload-success-msg' => 'An imo pagkarga-paigbaw tikang ha [$2] in malinamposon.  Ini in aada dinhi: [[:{{ns:file}}:$1]]',
+'upload-failure-subj' => 'May-ada problema an pagkarga-paigbaw',
+'upload-failure-msg' => 'May-ada problema an imo pagkarga-paigbaw tikang ha [$2]:
+
+$1',
 'upload-warning-subj' => 'Pahimatngon han pagkarga paigbaw',
 
+'upload-proto-error' => 'Sayop nga protocol',
 'upload-file-error' => 'Sayop ha sulod',
 'upload-unknown-size' => 'Waray kasabti an kadako',
 
@@ -1368,6 +1389,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'blocklogpage' => 'Talaan han pagpugong',
 'blocklogentry' => 'ginpugngan hi [[$1]] nga natatapos ha takna hin $2 $3',
 'block-log-flags-nocreate' => 'diri gintutugutan an paghimo hin akawnt',
+'blockme' => 'Pugngi ako',
 'proxyblocksuccess' => 'Human na.',
 
 # Developer tools
@@ -1555,21 +1577,34 @@ An iba in daan nakatago.
 'exif-sharpness' => 'Pagkatarom',
 'exif-gpstimestamp' => 'GPS nga oras (atomiko nga relo)',
 'exif-gpsspeedref' => 'Sukol han kalaksi',
+'exif-countrydest' => 'Ginpapakita an nasod',
+'exif-countrycodedest' => 'Ginpapakita an kodigo han nasod',
+'exif-provinceorstatedest' => 'Ginpapakita an lalawigan o estado',
+'exif-citydest' => 'Ginpapakita an syudad',
+'exif-sublocationdest' => 'Ginpapakita an bahin-lokasyon han syudad',
+'exif-objectname' => 'Halipot nga titulo',
 'exif-headline' => 'Katukiban',
 'exif-source' => 'Tinikangan',
 'exif-writer' => 'Manunurat',
 'exif-languagecode' => 'Yinaknan',
 'exif-iimcategory' => 'Kaarangay',
+'exif-datetimeexpires' => 'Ayaw gamita kahuman han',
+'exif-datetimereleased' => 'Ginpagawas han',
+'exif-cameraownername' => 'Tag-iya han kamera',
 
 'exif-exposureprogram-1' => 'Mano-mano',
 
 'exif-subjectdistance-value' => '$1 ka mga metro',
+
+'exif-meteringmode-0' => 'Waray kasabti',
 
 'exif-lightsource-0' => 'Waray kasabti',
 'exif-lightsource-9' => 'Maupay nga panahon',
 'exif-lightsource-10' => 'Madampog nga panahon',
 
 'exif-focalplaneresolutionunit-2' => 'pulgadas',
+
+'exif-gaincontrol-0' => 'Waray',
 
 'exif-contrast-1' => 'Mahumok',
 'exif-contrast-2' => 'Matig-a',
@@ -1679,6 +1714,7 @@ An iba in daan nakatago.
 
 # Special:Version
 'version' => 'Bersyon',
+'version-skins' => 'Mga panit',
 'version-version' => '(Bersion $1)',
 'version-license' => 'Lisensya',
 'version-software-product' => 'Produkto',
@@ -1691,11 +1727,18 @@ An iba in daan nakatago.
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-submit' => 'Pamilnga',
-'fileduplicatesearch-noresults' => 'Waray nabilngan nga paypay nga an ngaran "$".',
+'fileduplicatesearch-noresults' => 'Waray nabilngan nga paypay nga an ngaran in "$".',
 
 # Special:SpecialPages
 'specialpages' => 'Mga pinaurog nga pakli',
+'specialpages-group-login' => 'Magpalista nga masakob / paghimo hin bag-o nga akawnt',
+'specialpages-group-users' => 'Mga gumaramit ngan mga katungod',
+'specialpages-group-highuse' => 'Mga pakli nga damo nagamit',
+'specialpages-group-pages' => 'Talaan hin mga pakli',
 'specialpages-group-pagetools' => 'Mga higamit han pakli',
+'specialpages-group-wiki' => 'Datos ngan mga higamit han Wiki',
+'specialpages-group-redirects' => 'Ginreredirek an mga pakli nga pinaurog',
+'specialpages-group-spam' => 'Mga higamit han spam',
 
 # Special:BlankPage
 'blankpage' => 'Blanko nga pakli',

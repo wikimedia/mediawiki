@@ -25,6 +25,13 @@ $messages = array(
 'underline-default' => 'Des nemme, was em Broweser gsaacht hoscht.',
 
 # Dates
+'sunday' => 'Sundaach',
+'monday' => 'Mondaach',
+'tuesday' => 'Dienschdaach',
+'wednesday' => 'Midwoch',
+'thursday' => 'Dunnaschdaach',
+'friday' => 'Fraidaach',
+'saturday' => 'Somschdaach',
 'january' => 'Jänner',
 'february' => 'Fewwer',
 'march' => 'März',
@@ -84,8 +91,12 @@ $messages = array(
 'qbmyoptions' => 'Mai Saide',
 
 # Vector skin
+'vector-action-delete' => 'Lesche',
 'vector-action-move' => 'Verschiewe',
+'vector-action-protect' => 'Schitze',
 'vector-view-edit' => 'Bearwaide',
+'vector-view-view' => 'Lese',
+'actions' => 'Agzione',
 
 'errorpagetitle' => 'Fehler',
 'returnto' => 'Zrick zu $1.',
@@ -253,7 +264,7 @@ du gebbscht do au zu, dass Du des selwerscht gschriwwe hoscht orrer vun ere effe
 De Leschaidrach fa die Said isch do unne als Kwell aagewwe.',
 
 # History pages
-'viewpagelogs' => 'D Lochbiecher fer die Said aagucke',
+'viewpagelogs' => 'Lochbicher fer die Said aagucke',
 'currentrev-asof' => 'Aktuelle Version vun $1',
 'revisionasof' => 'Version vun $1',
 'previousrevision' => '← Ältere Versione',
@@ -359,8 +370,8 @@ Erklärung: '''({{int:cur}})''' = Unnerschied zu jetzert,
 'rclinks' => 'Zeich die letschte $1 Ännerunge in de letschte $2 Dache<br />$3',
 'diff' => 'Unnerschied',
 'hist' => 'Gschicht',
-'hide' => 'versteggeln',
-'show' => 'zaiche',
+'hide' => 'vaschdeggle',
+'show' => 'zaische',
 'minoreditletter' => 'k',
 'newpageletter' => 'N',
 'boteditletter' => 'B',
@@ -396,6 +407,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'file-anchor-link' => 'Datei',
 'filehist' => 'Dateigschicht',
 'filehist-help' => 'Drick uff e Zaidpunkt zum aazääche, wie s dort ausgsähne hot.',
+'filehist-revert' => 'zuriggsedze',
 'filehist-current' => 'aktuell',
 'filehist-datetime' => 'Zaidpunkt',
 'filehist-thumb' => 'Vorschaubild',
@@ -403,7 +415,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'filehist-user' => 'Benutzer',
 'filehist-dimensions' => 'Moß',
 'filehist-comment' => 'Kommentar',
-'imagelinks' => 'Dateilinks',
+'imagelinks' => 'Dadaivawendung',
 'linkstoimage' => 'Die {{PLURAL:$1|Said verwaist|$1 Saire verwaise}} uff die Datei:',
 'sharedupload' => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd.',
 'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlade',
@@ -431,12 +443,12 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'pager-older-n' => '{{PLURAL:$1|vorich 1|voriche $1}}',
 
 # Book sources
-'booksources' => 'Buchquelle',
+'booksources' => 'Buchqwelle',
 'booksources-search-legend' => 'No Buchquelle suche',
 'booksources-go' => 'Geh',
 
 # Special:Log
-'log' => 'Logbiecher',
+'log' => 'Logbicher',
 
 # Special:AllPages
 'allpages' => 'Alle Saide',
@@ -561,7 +573,7 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'linkshere' => "Die Saide verlinke zu '''[[:$1]]''':",
 'isredirect' => 'Wairerlaitungsaid',
 'istemplate' => 'Vorlacheaibindung',
-'isimage' => 'Bildlink',
+'isimage' => "Dadailing'g",
 'whatlinkshere-prev' => '{{PLURAL:$1|vorich|voriche $1}}',
 'whatlinkshere-next' => '{{PLURAL:$1|negscht|negschte $1}}',
 'whatlinkshere-links' => '← Links',
@@ -575,9 +587,9 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'ipbsubmit' => 'Benutzer bloggiere',
 'ipboptions' => '2 Stunne:2 hours,1 Dach:1 day,3 Dache:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Monet:1 month,3 Monet:3 months,6 Monet:6 months,1 Johr:1 year,Fer immer:infinite',
 'ipusubmit' => 'Die Adreß freigewwe',
-'ipblocklist' => 'Gsperrte IP-Adresse un Benutzername',
+'ipblocklist' => 'Gschberrdi IP-Adress un Benudzernome',
 'blocklink' => 'sperre',
-'unblocklink' => 'Sperr uffhewwe',
+'unblocklink' => 'Sperr uffhewe',
 'change-blocklink' => 'Sperr ännere',
 'contribslink' => 'Baidräch',
 'blocklogpage' => 'Sperrlogbuch',
@@ -663,18 +675,18 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-p-logo' => 'Haubdsaid',
 'tooltip-n-mainpage' => 'Uff d Hääptsaid geh',
 'tooltip-n-mainpage-description' => 'Haubdsaid aagucke',
-'tooltip-n-portal' => 'Iwwer s Projekt, was de duu kannscht, wo de ebbes finnscht',
+'tooltip-n-portal' => 'Iwwers Brojegd, wude duu kannschd, wu ebbes finne duschd',
 'tooltip-n-currentevents' => 'hinnergundsinformatione finne iwwer naie Eraichnis',
 'tooltip-n-recentchanges' => 'D Lischt vun de letschte Ännerunge in dem Wiki',
 'tooltip-n-randompage' => 'E zufälliche Said lade',
 'tooltip-n-help' => 'De Ort zum rausfinne',
-'tooltip-t-whatlinkshere' => 'Lischt vun alle Wikisaide, wo do her verlinkt sin',
+'tooltip-t-whatlinkshere' => 'Lischt vun alle Wikisaide, wu do her verlinkt sinn',
 'tooltip-t-recentchangeslinked' => 'Letschte Ännerunge in Saide, wu vun do verlinkt sin',
 'tooltip-feed-rss' => 'RSS feed fer die Said',
 'tooltip-feed-atom' => 'Atom feed fer die Said',
 'tooltip-t-contributions' => 'Die letschte Baidräch vun däm Benutzer aagucke',
 'tooltip-t-emailuser' => 'Dem Benutzer e E-Mail schicke',
-'tooltip-t-upload' => 'Dateie nuflade',
+'tooltip-t-upload' => 'Dateije nufflade',
 'tooltip-t-specialpages' => 'Lischt vun alle Spezialsaide',
 'tooltip-t-print' => 'Druckversion vun derre Said',
 'tooltip-t-permalink' => 'E dauerhafte Link zu derre Version vun de Said',
@@ -691,7 +703,7 @@ Du kannscht awwer de Quelltext aagucke',
 'tooltip-diff' => 'Guck, welle Ännerunge Du im Text gmacht hoscht',
 'tooltip-compareselectedversions' => 'D Unnerschied zwische denne zwai ausgwehlte Versione aagucke',
 'tooltip-watch' => 'Die Said zu Dainer Beowachdunglischd zufieche',
-'tooltip-rollback' => '„Zericksetze“ maxcht alle Bearwaidunge vum letschte Bearwaider rickgängich',
+'tooltip-rollback' => '„Zericksetze“ machd alle Bearwaidunge vum letschte Bearwaider rickgängich',
 'tooltip-undo' => '„Zerick“ macht numme die Ännerung rickgängich un zaicht d Vorschau aa.
 Du kannscht e Grund in dr Zammfassung aagewwe',
 
@@ -722,8 +734,8 @@ Annere Links in der glaiche Zail werre als Ausnahme behannelt, d. h. Saide, wu d
 Wenn die Datei verännert worre isch, dann kann s sai, dass die zusätzlich Information fer die verännert Datei nimmi richtich isch.',
 'metadata-expand' => 'Erwaiterte Details aazaiche',
 'metadata-collapse' => 'Erwaiterte Details versteckeln',
-'metadata-fields' => 'Die EXIF-Metadate werre in de Bild-Bschraiwung ach aagezeicht, wenn d Metadate-Tabelle versteckelt isch.
-Annere Metadate sinn standardmäßig versteckelt.
+'metadata-fields' => 'Die EXIF-Medadaade werren inde Bild-Bschraiwung a ogzaischd, wonn die Medadaade-Tabelle verschdegld isch.
+Annere Medadaade sinn noamalawais verschdegld.
 * make
 * model
 * datetimeoriginal

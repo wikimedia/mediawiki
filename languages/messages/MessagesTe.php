@@ -885,6 +885,11 @@ $2
 అది ఇప్పటికే ఉంది.',
 'defaultmessagetext' => 'అప్రమేయ సందేశపు పాఠ్యం',
 
+# Content models
+'content-model-wikitext' => 'వికీపాఠ్యం',
+'content-model-text' => 'సాదా పాఠ్యం',
+'content-model-javascript' => 'జావాస్క్రిప్ట్',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'హెచ్చరిక: ఈ పేజీలో ఖరీదైన పార్సరు పిలుపులు చాలా ఉన్నాయి.
 
@@ -1984,6 +1989,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'mailnologin' => 'పంపించవలసిన చిరునామా లేదు',
 'mailnologintext' => 'ఇతరులకు ఈ-మెయిలు పంపించాలంటే, మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి, మరియు మీ [[Special:Preferences|అభిరుచుల]]లో సరైన ఈ-మెయిలు చిరునామా ఇచ్చి ఉండాలి.',
 'emailuser' => 'ఈ వాడుకరికి ఈ-మెయిలుని పంపించండి',
+'emailuser-title-target' => 'ఈ {{GENDER:$1|వాడుకరికి}} ఈమెయిలు పంపించండి',
 'emailpage' => 'వాడుకరికి ఈ-మెయిలుని పంపించు',
 'emailpagetext' => 'వాడుకరికి ఈమెయిలు సందేశము పంపించుటకు క్రింది ఫారంను ఉపయోగించవచ్చు. [[Special:Preferences|మీ వాడుకరి అభిరుచుల]]లో మీరిచ్చిన ఈ-మెయిలు చిరునామా "నుండి" ఆ సందేశం వచ్చినట్లుగా ఉంటుంది, కనుక వేగుని అందుకునేవారు నేరుగా మీకు జవాబివ్వగలుగుతారు.',
 'usermailererror' => 'మెయిలు ఆబ్జెక్టు ఈ లోపాన్ని చూపింది:',
@@ -2737,6 +2743,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-views' => 'వీక్షణల సంఖ్య',
 'pageinfo-watchers' => 'పేజీ వీక్షకుల సంఖ్య',
 'pageinfo-edits' => 'మొత్తం మార్పుల సంఖ్య',
+'pageinfo-toolboxlink' => 'పేజీ సమాచారం',
 
 # Skin names
 'skinname-standard' => 'సంప్రదాయ',

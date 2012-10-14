@@ -1150,6 +1150,7 @@ Wagi ur yezmer ara ad yetwekkes.',
 'yourrealname' => 'Isem n ṣṣeḥ *:',
 'yourlanguage' => 'Tutlayt:',
 'yourvariant' => 'Lqem nniḍen n tutlayt n ugbur :',
+'prefs-help-variant' => 'Lqem naɣ inun inek/inem iwakken an beqqeḍ agbur n wiki agi.',
 'yournick' => 'Azmul amaynut :',
 'prefs-help-signature' => 'Iwenniten ɣef isebtar n umeslay ilaq ad illin zmelen s « <nowiki>~~~~</nowiki> », sakin ad i sɛu aselkat ɣer azmul inek/inem dɣa azmez d usrag.',
 'badsig' => 'Azmul mačči d ṣaḥiḥ; Ssenqed tags n HTML.',
@@ -1194,7 +1195,12 @@ Ur ilaq ara ad i sɛu ugar n $1 {{PLURAL:$1|asekkil|isekkilen}}.',
 'saveusergroups' => 'Smekti iderman n yimseqdacen',
 'userrights-groupsmember' => 'Amaslad deg:',
 'userrights-groupsmember-auto' => 'Aεeggal udrig n :',
+'userrights-groups-help' => 'Tzemreḍ ad beddeleḍ igrawen anda yella aseqdac agi :
+* Taxxamt i tekkin : aseqdac yella deg ugraw agi.
+* Taxxamt ur tekkin ara : aseqdac ur yella ara deg ugraw agi
+* Titrit (*) : ur tzemreḍ ara ad ekkeseḍ agraw agi sakin i tid ernuḍ, naɣ bis-bersa.',
 'userrights-reason' => 'Ayɣer',
+'userrights-no-interwiki' => 'Ur tesɛiḍ ara turagt iwakken ad beddeleḍ izerfan n iseqdacen ɣef wiki nniḍen.',
 'userrights-nodatabase' => 'Taffa n isefka « $1 » ulac itt naɣ mačči d tadigant.',
 'userrights-nologin' => 'Ilaq ad [[Special:UserLogin|qqeneḍ]] s yiwen umiḍan anedbal iwakken ad beddeleḍ izerfan n useqdac.',
 'userrights-notallowed' => 'Amiḍan inek/inem ur yesɛa ara turagt iwakken ad beddeleḍ izerfan n useqdac.',
@@ -1240,13 +1246,18 @@ Ur ilaq ara ad i sɛu ugar n $1 {{PLURAL:$1|asekkil|isekkilen}}.',
 'right-upload' => 'Azen ifuyla',
 'right-reupload' => 'Sefxes afaylu yellan',
 'right-reupload-own' => 'Sefxes afaylu id n-azen.',
+'right-reupload-shared' => 'Ɛefes deg udigan afaylu yellan ɣef azadur azduklan',
 'right-upload_by_url' => 'Kter afaylu seg tansa URL',
 'right-purge' => 'Senger tazarkatut n isebtar war asuter n uragag',
 'right-autoconfirmed' => 'Beddel isebtar azinsegdelen',
+'right-nominornewtalk' => 'Ur ndeḥ ara tazmilt n inzan imaynuten ma neseqdac abeddel amectuḥ ɣef usebtar n umeslay n yiwen useqdac',
 'right-apihighlimits' => 'Seqdec tilisa tid ɛlayen deg tuttriwin API',
 'right-writeapi' => 'Seqdec API n ubeddel',
 'right-delete' => 'Mḥu isebtar',
 'right-bigdelete' => 'Mḥu isebtar yesɛan amezruy affuyan',
+'right-deletelogentry' => 'Ekkes ḍɣa erred yiwen asekcem n uɣmis',
+'right-deleterevision' => 'Ekkes dɣa erred yiwen lqem n usebter',
+'right-deletedhistory' => 'Ẓeṛ isekcam n imezruyen yekksen, maca war aḍris nsen',
 'right-deletedtext' => 'Ẓeṛ aḍris yemḥan d timeẓliwin gar ileqman yemḥan',
 'right-browsearchive' => 'Nadi ɣef isebtar yettumḥan',
 'right-undelete' => 'Erred asebter yemḥan',
@@ -2506,6 +2517,37 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 'exif-originaltransmissionref' => 'Tangalt n usideg n tuzzna tamezwarut',
 'exif-identifier' => 'Asulay',
 
+'exif-copyrighted-true' => 'Ddaw azref n umeskar',
+'exif-copyrighted-false' => 'Taɣuly tazayezt',
+
+'exif-unknowndate' => 'Azmez warisem',
+
+'exif-orientation-1' => 'Amagnu',
+'exif-orientation-2' => 'Tetti s udem aglawan',
+'exif-orientation-3' => 'Tezzi s 180°',
+'exif-orientation-4' => 'Tetti s udem aratak',
+'exif-orientation-5' => 'Tezzi s 90° deg unamek imitti n usrag dɣa tetti s udem aratak',
+'exif-orientation-6' => 'Tezzi s 90° deg unamek imitti n usrag',
+'exif-orientation-7' => 'Tezzi s 90° deg unamek n usrag dɣa tetti s udem aratak',
+'exif-orientation-8' => 'Tezzi s 90° deg unamek n usrag',
+
+'exif-planarconfiguration-1' => 'Isefka iqriben',
+'exif-planarconfiguration-2' => 'Isefka ibrarazen',
+
+'exif-colorspace-65535' => 'Ur yezize ara',
+
+'exif-componentsconfiguration-0' => 'Ulac it',
+
+'exif-exposureprogram-0' => 'Ur yersen ara',
+'exif-exposureprogram-1' => 'Awfus',
+'exif-exposureprogram-2' => 'Ahil alugan',
+'exif-exposureprogram-3' => 'Tazwart i ulday',
+'exif-exposureprogram-4' => 'Tazwart i uqfel',
+'exif-exposureprogram-5' => 'Ahil n usnulfu (azullen i tadrut n urti)',
+'exif-exposureprogram-6' => 'Ahil n tigawt (azullen i urured n yqfel)',
+'exif-exposureprogram-7' => 'Askar tafrist (i tugniwin s tama dɣa s ugilal iluɣen)',
+'exif-exposureprogram-8' => 'Askar agama (i tugniwin n igmaten i llulcen)',
+
 'exif-subjectdistance-value' => '$1 lmitra',
 
 'exif-meteringmode-0' => 'Warisem',
@@ -2604,8 +2646,11 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 'exif-gpsdestdistance-m' => 'igimen',
 'exif-gpsdestdistance-n' => 'Miles iwlalen',
 
+'exif-gpsdop-excellent' => 'Yufrar ($1)',
 'exif-gpsdop-good' => 'Tamellayt ($1)',
 'exif-gpsdop-moderate' => 'Tallalt ($1)',
+'exif-gpsdop-fair' => 'Attwadag ($1)',
+'exif-gpsdop-poor' => 'Yecmet ($1)',
 
 'exif-objectcycle-a' => 'Tanzayt kan',
 'exif-objectcycle-p' => 'Tameddit kan',
@@ -2640,6 +2685,18 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 'exif-iimcategory-hth' => 'Tadawsa',
 'exif-iimcategory-hum' => 'Aramsu alsi',
 'exif-iimcategory-lab' => 'Amahil',
+'exif-iimcategory-lif' => 'Askar n tudert dɣa n imezlan',
+'exif-iimcategory-pol' => 'Tasertit',
+'exif-iimcategory-rel' => 'Ddin d tifelsin',
+'exif-iimcategory-sci' => 'Tussna d tatiknulujit',
+'exif-iimcategory-soi' => 'Tuttriwin timettiyin',
+'exif-iimcategory-spo' => 'Addalen',
+'exif-iimcategory-war' => 'Ṭrad, taẓit d tasmessit',
+'exif-iimcategory-wea' => 'Tasnignewt',
+
+'exif-urgency-normal' => 'Alugen ($1)',
+'exif-urgency-low' => 'Anammum ($1)',
+'exif-urgency-high' => 'Afella ($1)',
 
 # External editor support
 'edit-externally' => 'Beddel afaylu-yagi s usnas aberrani.',
@@ -2649,6 +2706,7 @@ Izdayen nniḍen ɣef yiwen ajerriḍ llan d tisuraf, am isebtar ɣef anta tugna
 'watchlistall2' => 'akk',
 'namespacesall' => 'akk',
 'monthsall' => 'akk',
+'limitall' => 'Akkw',
 
 # E-mail address confirmation
 'confirmemail' => 'Sentem tansa n e-mail',
@@ -2792,6 +2850,13 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 
 # Special:Tags
 'tag-filter' => 'Astay n [[Special:Tags|ticraḍ]] :',
+
+# Feedback
+'feedback-subject' => 'Asentel :',
+'feedback-message' => 'Izen :',
+'feedback-cancel' => 'Semmewet',
+'feedback-submit' => 'Ceggaɛ iwenniten',
+'feedback-adding' => 'Rnud iwenniten inek/inem ar usebter...',
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|tasint|tisinin}}',

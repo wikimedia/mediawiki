@@ -1198,7 +1198,7 @@ El motivo dado por $3 es ''$2''",
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
-'history-show-deleted' => 'Solamente borrado',
+'history-show-deleted' => 'Solo ediciones ocultadas',
 'histfirst' => 'Primeras',
 'histlast' => 'Últimas',
 'historysize' => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -2245,7 +2245,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario o la página afectada. Se distinguen mayúsculas de minúsculas.',
 'logempty' => 'No hay elementos en el registro con esas condiciones.',
 'log-title-wildcard' => 'Buscar títulos que empiecen con este texto',
-'showhideselectedlogentries' => 'Mostrar u ocultar las entradas del registro seleccionado',
+'showhideselectedlogentries' => 'Mostrar u ocultar las entradas seleccionadas del registro',
 
 # Special:AllPages
 'allpages' => 'Todas las páginas',
@@ -2647,7 +2647,7 @@ $1',
 A continuación se muestra la última entrada del registro de bloqueos para mayor referencia.',
 'sp-contributions-search' => 'Buscar contribuciones',
 'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
-'sp-contributions-toponly' => 'Mostrar solamente revisiones top',
+'sp-contributions-toponly' => 'Solo mostrar últimas ediciones de página',
 'sp-contributions-submit' => 'Buscar',
 
 # What links here
@@ -4001,8 +4001,8 @@ Este sitio está experimentando dificultades técnicas.',
 'sqlite-no-fts' => '$1 sin soporte para búsqueda de texto completo',
 
 # New logging system
-'logentry-delete-delete' => '$1 borró la página $3',
-'logentry-delete-restore' => '$1 restauró la página $3',
+'logentry-delete-delete' => '$1 borró la página «$3»',
+'logentry-delete-restore' => '$1 restauró la página «$3»',
 'logentry-delete-event' => '$1 modificó la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
 'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',

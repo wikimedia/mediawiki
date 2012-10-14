@@ -299,7 +299,7 @@ $messages = array(
 'projectpage' => 'Проекты фарс фен',
 'imagepage' => 'Файлы фарс фен',
 'mediawikipage' => 'Фыстæджы фарс фен',
-'templatepage' => 'Шаблоны фарс фен',
+'templatepage' => 'Хуызæджы фарс фенын',
 'viewhelppage' => 'Æххуысы фарс фен',
 'categorypage' => 'Категорийы фарс фен',
 'viewtalkpage' => 'Тæрхон фен',
@@ -393,7 +393,7 @@ $1',
 'nstab-project' => 'Проекты тыххæй',
 'nstab-image' => 'Файл',
 'nstab-mediawiki' => 'Фыстæг',
-'nstab-template' => 'Шаблон',
+'nstab-template' => 'Хуызæг',
 'nstab-help' => 'Æххуысы фарс',
 'nstab-category' => 'Категори',
 
@@ -770,7 +770,7 @@ $2
 'editconflict' => 'Ивыны конфликт: $1',
 'yourtext' => 'Дæ текст',
 'yourdiff' => 'Хицæндзинæдтæ',
-'templatesused' => 'Ацы фарсы ис {{PLURAL:$1|шаблон|шаблоны}}:',
+'templatesused' => 'Ацы фарсы ис {{PLURAL:$1|хуызæг|хуызæджы}}:',
 'template-protected' => '(æхгæд)',
 'template-semiprotected' => '(æрдæг-æхгæд)',
 'hiddencategories' => 'Ацы фарс у {{PLURAL:$1|1 æмбæхст категорийы|$1 æмбæхст категориты}} уæнг:',
@@ -786,12 +786,12 @@ $2
 'edit-already-exists' => 'Ног фарс скæнæн нæй. Ахæм фарс ис.',
 
 # Parser/template warnings
-'post-expand-template-inclusion-warning' => "'''Сындæг: ''' Шаблоны бавæрд бæрц æгæр стыр у.
-Кæцыдæр шаблонтæ нæ бавæд уыдзысты.",
-'post-expand-template-inclusion-category' => 'Фæрстæ, кæм шаблоны бавæрд бæрц æгæр бирæ у',
-'post-expand-template-argument-warning' => "'''Сындæг:''' Ацы фарсы ис уæддæр иу шаблоны аргумент, кæй райтынг у æгæр стыр.
+'post-expand-template-inclusion-warning' => "'''Сындæг: ''' Хуызæджы бавæрд бæрц æгæр стыр у.
+Кæцыдæр хуызæгтæ нæ бавæд уыдзысты.",
+'post-expand-template-inclusion-category' => 'Фæрстæ, кæм хуызæджы бавæрд бæрц æгæр бирæ у',
+'post-expand-template-argument-warning' => "'''Сындæг:''' Ацы фарсы ис уæддæр иу хуызæджы аргумент, кæй райтынг у æгæр стыр.
 Уыцы аргументтæ уагъд æрцыдысты.",
-'post-expand-template-argument-category' => 'Фæрстæ, кæдоны ис шаблоны уагъд аргумент',
+'post-expand-template-argument-category' => 'Фæрстæ, кæдоны ис хуызæджы уагъд аргумент',
 
 # History pages
 'viewpagelogs' => 'Ацы фарсæн йæ логтæ равдисын',
@@ -1106,7 +1106,7 @@ $3',
 'download' => 'æрбавгæн',
 
 # Unused templates
-'unusedtemplates' => 'Пайда кæмæй нæ чындæуы, ахæм шаблонтæ',
+'unusedtemplates' => 'Пайда кæмæй нæ чындæуы, ахæм хуызæгтæ',
 
 # Random page
 'randompage' => 'Халæй ист фарс',
@@ -1134,7 +1134,7 @@ $3',
 'lonelypages' => 'Сидзæр фæрстæ',
 'uncategorizedpages' => 'Æнæкатегори фæрстæ',
 'uncategorizedimages' => 'Æнæкатегори файлтæ',
-'uncategorizedtemplates' => 'Æнæкатегори шаблонтæ',
+'uncategorizedtemplates' => 'Æнæкатегори хуызæгтæ',
 'popularpages' => 'Популярон фæрстæ',
 'wantedcategories' => 'Хъæугæ категоритæ',
 'wantedpages' => 'Хъæугæ фæрстæ',
@@ -1408,7 +1408,7 @@ $3',
 'tooltip-ca-nstab-special' => 'Ай сæрмагонд фарс у, дæ бон æй нæу ивын',
 'tooltip-ca-nstab-project' => 'Фенын проекты фарс',
 'tooltip-ca-nstab-image' => 'Нывы фарс',
-'tooltip-ca-nstab-template' => 'Фенын шаблон',
+'tooltip-ca-nstab-template' => 'Хуызæг фенын',
 'tooltip-ca-nstab-category' => 'Категорийы фарс',
 'tooltip-minoredit' => 'Чысыл ивдæй йæ банысан кæнын',
 'tooltip-save' => 'Бавæр дæ ивдтытæ',
