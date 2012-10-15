@@ -660,7 +660,7 @@ class WikiImporter {
 		if ( isset( $revisionInfo['model'] ) ) {
 			$revision->setModel( $revisionInfo['model'] );
 		}
-		if ( isset( $revisionInfo['text'] ) ) {
+		if ( isset( $revisionInfo['format'] ) ) {
 			$revision->setFormat( $revisionInfo['format'] );
 		}
 		$revision->setTitle( $pageInfo['_title'] );
