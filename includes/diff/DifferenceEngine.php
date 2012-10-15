@@ -714,12 +714,19 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a diff, no caching.
 	 *
-	 * Subclasses may override this to provide a
+	 * This implementation uses generateTextDiffBody() to generate a diff based on the default
+	 * serialization of the given Content objects. This will fail if $old or $new are not
+	 * instances of TextContent.
+	 *
+	 * Subclasses may override this to provide a different rendering for the diff,
+	 * perhaps taking advantage of the content's native form. This is required for all content
+	 * models that are not text based.
 	 *
 	 * @param $old Content: old content
 	 * @param $new Content: new content
 	 *
 	 * @since 1.21
+	 * @throws MWException if $old or $new are not instances of TextContent.
 	 */
 	function generateContentDiffBody( Content $old, Content $new ) {
 		if ( !( $old instanceof TextContent ) ) {
