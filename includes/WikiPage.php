@@ -3334,6 +3334,10 @@ class PoolWorkArticleView extends PoolCounterWork {
 		} elseif ( $isCurrent ) {
 			#XXX: why use RAW audience here, and PUBLIC (default) below?
 			$content = $this->page->getContent( Revision::RAW );
+			if ( $content === null ) {
+				return false;
+			}
+
 		} else {
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
 			if ( $rev === null ) {
