@@ -317,29 +317,28 @@ class GlobalTest extends MediaWikiTestCase {
 		}
 		
 	}
-	
-	
+
+
 	function testDebugFunctionTest() {
-	
+
 		global $wgDebugLogFile, $wgDebugTimestamps;
-		
+
 		$old_log_file = $wgDebugLogFile;
 		$wgDebugLogFile = tempnam( wfTempDir(), 'mw-' );
-		# @todo FIXME: This setting should be tested
+		# @todo FIXME: $wgDebugTimestamps should be tested
+		$old_wgDebugTimestamps = $wgDebugTimestamps;
 		$wgDebugTimestamps = false;
-		
-		
-		
+
+
 		wfDebug( "This is a normal string" );
 		$this->assertEquals( "This is a normal string", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
-		
-		
+
 		wfDebug( "This is nöt an ASCII string" );
 		$this->assertEquals( "This is nöt an ASCII string", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
-		
-		
+
+
 		wfDebug( "\00305This has böth UTF and control chars\003" );
 		$this->assertEquals( " 05This has böth UTF and control chars ", file_get_contents( $wgDebugLogFile ) );
 		unlink( $wgDebugLogFile );
@@ -347,17 +346,16 @@ class GlobalTest extends MediaWikiTestCase {
 		wfDebugMem();
 		$this->assertGreaterThan( 5000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
-		
+
 		wfDebugMem(true);
 		$this->assertGreaterThan( 5000000, preg_replace( '/\D/', '', file_get_contents( $wgDebugLogFile ) ) );
 		unlink( $wgDebugLogFile );
-		
-		
-		
+
+
 		$wgDebugLogFile = $old_log_file;
-		
+		$wgDebugTimestamps = $old_wgDebugTimestamps;
 	}
-	
+
 	function testClientAcceptsGzipTest() {
 		
 		$settings = array(
