@@ -1787,17 +1787,19 @@ abstract class BaseTemplate extends QuickTemplate {
 
 	function makeSearchButton( $mode, $attrs = array() ) {
 		switch( $mode ) {
+			case 'search':
 			case 'go':
 			case 'fulltext':
+				$name = $mode === 'fulltext' ? 'fulltext' : 'go';
 				$realAttrs = array(
 					'type' => 'submit',
-					'name' => $mode,
+					'name' => $name,
 					'value' => $this->translator->translate(
 						$mode == 'go' ? 'searcharticle' : 'searchbutton' ),
 				);
 				$realAttrs = array_merge(
 					$realAttrs,
-					Linker::tooltipAndAccesskeyAttribs( "search-$mode" ),
+					Linker::tooltipAndAccesskeyAttribs( "search-$name" ),
 					$attrs
 				);
 				return Html::element( 'input', $realAttrs );

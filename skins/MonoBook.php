@@ -207,10 +207,11 @@ echo $footerEnd;
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
 				<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
 
-				<?php echo $this->makeSearchButton("go", array( "id" => "searchGoButton", "class" => "searchButton" ));
-				if ($wgUseTwoButtonsSearchForm): ?>&#160;
+				<?php if ($wgUseTwoButtonsSearchForm): ?>&#160;
+				<?php echo $this->makeSearchButton("go", array( "id" => "searchGoButton", "class" => "searchButton" )); ?>
 				<?php echo $this->makeSearchButton("fulltext", array( "id" => "mw-searchButton", "class" => "searchButton" ));
 				else: ?>
+				<?php echo $this->makeSearchButton("search", array( "id" => "searchGoButton", "class" => "searchButton" )); ?>
 
 				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php
 				endif; ?>
