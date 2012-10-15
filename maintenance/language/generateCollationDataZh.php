@@ -31,10 +31,6 @@ require_once( __DIR__ .'/../Maintenance.php' );
  */
 class GenerateCollationDataZh extends Maintenance {
 
-	public function __construct() {
-		parent::__construct();
-	}
-
 	public function execute() {
 		# Manually extracted array from ICU collation data:
 		# http://source.icu-project.org/repos/icu/icu/trunk/source/data/coll/zh.txt

@@ -5639,7 +5639,7 @@ class Parser {
 	 *
 	 * @param $sort array New value
 	 */
-	public function setDefaultSort( $sort ) {
+	public function setDefaultSort( array $sort ) {
 		$this->mDefaultSort = $sort;
 		$sortKeys = array();
 		foreach ( $sort as $collationName => $sortKey ) {

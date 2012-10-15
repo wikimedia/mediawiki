@@ -294,12 +294,16 @@ class CategoryViewer extends ContextSource {
 			# Get the sortkeys for start/end, if applicable.  Note that if
 			# the collation in the database differs from the one
 			# set in $wgCategoryCollations, pagination might go totally haywire.
-			$extraConds = array( 'cl_type' => $type );
+			$conds = array(
+				'cl_type' => $type,
+				'cl_to' => $this->title->getDBkey(),
+				'cl_collation' => array( '', $this->collationName ),
+			);
 			if ( $this->from[$type] !== null ) {
-				$extraConds[] = 'cl_sortkey >= '
+				$conds[] = 'cl_sortkey >= '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->from[$type] ) );
 			} elseif ( $this->until[$type] !== null ) {
-				$extraConds[] = 'cl_sortkey < '
+				$conds[] = 'cl_sortkey < '
 					. $dbr->addQuotes( $this->collation->getSortKey( $this->until[$type] ) );
 				$this->flip[$type] = true;
 			}
@@ -310,11 +314,7 @@ class CategoryViewer extends ContextSource {
 					'page_is_redirect', 'cl_sortkey', 'cat_id', 'cat_title',
 					'cat_subcats', 'cat_pages', 'cat_files',
 					'cl_sortkey_prefix', 'cl_collation' ),
-				array_merge(
-					array( 'cl_to' => $this->title->getDBkey() ),
-					array( 'cl_collation IN (' . $dbr->makeList( array( '', $this->collationName ) ) . ')' ),
-					$extraConds
-				),
+				$conds,
 				__METHOD__,
 				array(
 					'USE INDEX' => array( 'categorylinks' => 'cl_sortkey' ),
@@ -387,11 +387,11 @@ class CategoryViewer extends ContextSource {
 				$this->getContext()->msg( "collation-$collation" )->text(), $collation );
 		}
 		$html = Html::rawElement( 'label', array( 'for' => 'mw-collation-select' ),
-			$this->getContext()->msg( 'category-collation' ) );
-		$html .= '&nbsp;';
+			$this->getContext()->msg( 'category-collation' )->parse() );
+		$html .= ' ';
 		$html .= Html::hidden( 'title', $this->title->getPrefixedText() );
 		$html .= $select->getHTML();
-		$html .= '&nbsp;';
+		$html .= ' ';
 		$html .= Html::input( 'go', $this->getContext()->msg( 'go' )->text(), 'submit', array(
 			'id' => 'mw-collation-go',
 		) );
