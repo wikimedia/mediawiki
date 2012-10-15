@@ -2466,7 +2466,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'shared-repo'                       => 'a shared repository',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons', # only translate this message to other languages if you have to change it
 'filepage.css'                      => '/* CSS placed here is included on the file description page, also included on foreign client wikis */', # only translate this message to other languages if you have to change it
-'upload-disallowed-here'            => 'Unfortunately you cannot overwrite this image.',
+'upload-disallowed-here'            => 'You cannot overwrite this file.',
 
 # File reversion
 'filerevert'                => 'Revert $1',
