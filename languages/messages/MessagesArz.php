@@ -445,7 +445,6 @@ $messages = array(
 'qbbrowse' => 'تصفح',
 'qbedit' => 'عدل',
 'qbpageoptions' => ' الصفحه دى',
-'qbpageinfo' => 'السياق',
 'qbmyoptions' => 'صفحاتى',
 'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'اسئله بتتسئل كتير',

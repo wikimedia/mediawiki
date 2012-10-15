@@ -178,7 +178,6 @@ $messages = array(
 'qbbrowse' => "Ko'rish",
 'qbedit' => 'Tahrirlash',
 'qbpageoptions' => 'Ushbu sahifa',
-'qbpageinfo' => "Sahifa haqida ma'lumot",
 'qbmyoptions' => 'Mening sahifalarim',
 'qbspecialpages' => 'Maxsus sahifalar',
 'faq' => 'TSS',

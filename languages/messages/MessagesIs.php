@@ -377,7 +377,6 @@ $messages = array(
 'qbbrowse' => 'Flakka',
 'qbedit' => 'Breyta',
 'qbpageoptions' => 'Þessi síða',
-'qbpageinfo' => 'Samhengi',
 'qbmyoptions' => 'Mínar síður',
 'qbspecialpages' => 'Kerfissíður',
 'faq' => 'Algengar spurningar',

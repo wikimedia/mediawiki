@@ -314,7 +314,6 @@ $messages = array(
 'qbbrowse' => 'გადახედე',
 'qbedit' => 'რედაქტირება',
 'qbpageoptions' => 'ეს გვერდი',
-'qbpageinfo' => 'კონტექსტი',
 'qbmyoptions' => 'ჩემი გვერდები',
 'qbspecialpages' => 'სპეციალური გვერდები',
 'faq' => 'ხშირი შეკითხვები',

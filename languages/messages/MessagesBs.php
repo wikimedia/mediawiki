@@ -425,7 +425,6 @@ $messages = array(
 'qbbrowse' => 'Prelistajte',
 'qbedit' => 'Uredi',
 'qbpageoptions' => 'Opcije stranice',
-'qbpageinfo' => 'Informacije o stranici',
 'qbmyoptions' => 'Moje opcije',
 'qbspecialpages' => 'Posebne stranice',
 'faq' => 'ČPP',

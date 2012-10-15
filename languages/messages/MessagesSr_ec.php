@@ -541,7 +541,6 @@ $messages = array(
 'qbbrowse' => 'Потражи',
 'qbedit' => 'Уреди',
 'qbpageoptions' => 'Поставке странице',
-'qbpageinfo' => 'Садржај странице',
 'qbmyoptions' => 'Моје странице',
 'qbspecialpages' => 'Посебне странице',
 'faq' => 'НПП',

@@ -498,7 +498,6 @@ $messages = array(
 'qbbrowse' => 'דפדוף',
 'qbedit' => 'עריכה',
 'qbpageoptions' => 'אפשרויות דף',
-'qbpageinfo' => 'מידע על הדף',
 'qbmyoptions' => 'האפשרויות שלי',
 'qbspecialpages' => 'דפים מיוחדים',
 'faq' => 'שאלות ותשובות',
@@ -2061,7 +2060,7 @@ $1',
 'shared-repo' => 'מקום איחסון משותף',
 'shared-repo-name-wikimediacommons' => 'ויקישיתוף',
 'filepage.css' => '/* הסגנונות הנכתבים כאן יוכללו בדף תיאור הקובץ, כולל באתרי ויקי זרים */',
-'upload-disallowed-here' => 'למרבה הצער, אין לך הרשאה להעלות גרסה אחרת של התמונה הזאת.',
+'upload-disallowed-here' => 'אין באפשרותכם לדרוס את הקובץ הזה.',
 
 # File reversion
 'filerevert' => 'שחזור $1',
@@ -3176,6 +3175,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'מידע על "$1"',
+'pageinfo-not-current' => 'המידע יכול להיות מוצג רק עבור הגרסה הנוכחית.',
 'pageinfo-header-basic' => 'מידע בסיסי',
 'pageinfo-header-edits' => 'היסטוריית עריכות',
 'pageinfo-header-restrictions' => 'הגנה על הדף',

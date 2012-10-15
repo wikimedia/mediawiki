@@ -220,7 +220,6 @@ $messages = array(
 'qbbrowse' => 'Foyter',
 'qbedit' => 'Candjî',
 'qbpageoptions' => 'Cisse pådje ci',
-'qbpageinfo' => 'Contecse',
 'qbmyoptions' => 'Mes pådjes',
 'qbspecialpages' => 'Pådjes sipeciåles',
 

@@ -287,7 +287,6 @@ $messages = array(
 'qbbrowse' => 'Ванондома',
 'qbedit' => 'Петнема',
 'qbpageoptions' => 'Тя лопась',
-'qbpageinfo' => 'Контекстсь',
 'qbmyoptions' => 'Монь лопане',
 'qbspecialpages' => 'Башка тевонь лопат',
 'faq' => 'Сидеста Кеподеви Кизефксне',

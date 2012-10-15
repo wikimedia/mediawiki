@@ -355,7 +355,6 @@ $messages = array(
 'qbbrowse' => '瀏覽',
 'qbedit' => '編輯',
 'qbpageoptions' => '頁面選項',
-'qbpageinfo' => '頁面訊息',
 'qbmyoptions' => '我的選項',
 'qbspecialpages' => '特殊頁面',
 'faq' => '常見問題解答',
@@ -2952,6 +2951,7 @@ $1被封禁的理由是“$2”',
 
 # Info page
 'pageinfo-title' => '“$1”的信息',
+'pageinfo-not-current' => '資訊可能只顯示在當前的修訂版本。',
 'pageinfo-header-basic' => '基本資料',
 'pageinfo-header-edits' => '編輯歷史',
 'pageinfo-header-restrictions' => '保護頁面',

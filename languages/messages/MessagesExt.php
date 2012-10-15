@@ -153,7 +153,6 @@ $messages = array(
 'qbbrowse' => 'Escrucal',
 'qbedit' => 'Eital',
 'qbpageoptions' => 'Esta páhina',
-'qbpageinfo' => 'Contestu',
 'qbmyoptions' => 'Las mis páhinas',
 'qbspecialpages' => 'Páhinas especialis',
 'faq' => 'FAQ',

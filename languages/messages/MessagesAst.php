@@ -203,7 +203,6 @@ $messages = array(
 'qbbrowse' => 'Restolar',
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta páxina',
-'qbpageinfo' => 'Contestu',
 'qbmyoptions' => 'Les mios páxines',
 'qbspecialpages' => 'Páxines especiales',
 'faq' => 'EMF (entrugues más frecuentes)',

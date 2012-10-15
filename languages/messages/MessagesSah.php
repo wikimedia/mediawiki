@@ -187,7 +187,6 @@ $messages = array(
 'qbbrowse' => 'Көр',
 'qbedit' => 'Уларыт',
 'qbpageoptions' => 'Бу сирэй',
-'qbpageinfo' => 'Ис хоһооно',
 'qbmyoptions' => 'Мин сирэйдэрим',
 'qbspecialpages' => 'Аналлаах сирэйдэр',
 'faq' => 'FAQ',

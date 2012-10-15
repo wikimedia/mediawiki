@@ -332,7 +332,6 @@ $messages = array(
 'qbbrowse' => 'Gennemse',
 'qbedit' => 'Redigér',
 'qbpageoptions' => 'Indstillinger for side',
-'qbpageinfo' => 'Information om side',
 'qbmyoptions' => 'Mine indstillinger',
 'qbspecialpages' => 'Specielle sider',
 'faq' => 'OSS',
@@ -2914,6 +2913,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
+'pageinfo-not-current' => 'Oplysninger vises kun for den aktuelle version.',
 'pageinfo-header-basic' => 'Grundlæggende oplysninger',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',

@@ -187,7 +187,6 @@ $messages = array(
 'qbbrowse' => 'Blaeren',
 'qbedit' => 'Bewerk',
 'qbpageoptions' => 'Paginaopties',
-'qbpageinfo' => 'Pagina-informaotie',
 'qbmyoptions' => 'Mien opties',
 'qbspecialpages' => 'Speciaole pahina’s',
 'faq' => 'FAQ (veehestelde vraehen)',

@@ -359,7 +359,6 @@ $messages = array(
 'qbbrowse' => 'Blädern',
 'qbedit' => 'Ännern',
 'qbpageoptions' => 'Disse Sied',
-'qbpageinfo' => 'Sietendaten',
 'qbmyoptions' => 'Instellen',
 'qbspecialpages' => 'Spezialsieten',
 'faq' => 'Faken stellte Fragen',

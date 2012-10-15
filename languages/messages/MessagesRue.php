@@ -262,7 +262,6 @@ $messages = array(
 'qbbrowse' => 'Переглядати',
 'qbedit' => 'Едітовати',
 'qbpageoptions' => 'Тота сторінка',
-'qbpageinfo' => 'Контекст',
 'qbmyoptions' => 'Мої сторінкы',
 'qbspecialpages' => 'Шпеціалны сторінкы',
 'faq' => 'Часты звідованя',

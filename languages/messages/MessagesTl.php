@@ -295,7 +295,6 @@ $messages = array(
 'qbbrowse' => 'Basa-basahin',
 'qbedit' => 'Baguhin',
 'qbpageoptions' => 'Itong pahina',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Mga pahina ko',
 'qbspecialpages' => 'Mga natatanging pahina',
 'faq' => "Mga karaniwang itinatanong (''FAQ'')",

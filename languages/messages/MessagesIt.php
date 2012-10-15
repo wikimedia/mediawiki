@@ -412,7 +412,6 @@ $messages = array(
 'qbbrowse' => 'Sfoglia',
 'qbedit' => 'Modifica',
 'qbpageoptions' => 'Opzioni pagina',
-'qbpageinfo' => 'Informazioni sulla pagina',
 'qbmyoptions' => 'Le mie pagine',
 'qbspecialpages' => 'Pagine speciali',
 'faq' => 'Domande frequenti',
@@ -1917,7 +1916,7 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 'shared-repo-from' => 'da $1',
 'shared-repo' => 'un archivio condiviso',
 'filepage.css' => '/* Il CSS messo qui viene incluso nella pagina di descrizione del file, inclusa anche su wiki client esterni */',
-'upload-disallowed-here' => 'Impossibile sovrascrivere questa immagine.',
+'upload-disallowed-here' => 'Impossibile sovrascrivere questo file.',
 
 # File reversion
 'filerevert' => 'Ripristina $1',
@@ -3003,6 +3002,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Info page
 'pageinfo-title' => 'Informazioni per "$1"',
+'pageinfo-not-current' => 'Le informazioni possono essere visualizzate solo per la versione corrente.',
 'pageinfo-header-basic' => 'Informazioni di base',
 'pageinfo-header-edits' => 'Cronologia delle modifiche',
 'pageinfo-header-restrictions' => 'Protezione della pagina',

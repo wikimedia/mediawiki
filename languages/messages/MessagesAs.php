@@ -327,7 +327,6 @@ $messages = array(
 'qbbrowse' => 'ব্ৰাওজ',
 'qbedit' => 'সম্পাদনা',
 'qbpageoptions' => 'এই পৃষ্ঠা',
-'qbpageinfo' => 'প্ৰসংগ',
 'qbmyoptions' => 'মোৰ পৃষ্ঠাসমূহ',
 'qbspecialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
 'faq' => 'সততে উদিত প্ৰশ্নসমূহ (FAQ)',

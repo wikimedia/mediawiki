@@ -221,7 +221,6 @@ $messages = array(
 'qbbrowse' => 'Lemmi',
 'qbedit' => 'Soppi',
 'qbpageoptions' => 'Xëtuw tànneef',
-'qbpageinfo' => 'Xëtuw xibaar',
 'qbmyoptions' => 'Samay tànneef',
 'qbspecialpages' => 'Xëti jagleel',
 'faq' => 'Laaj yi ëpp',

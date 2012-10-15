@@ -223,7 +223,6 @@ $messages = array(
 'qbbrowse' => 'Gözdən keçir',
 'qbedit' => 'Redaktə',
 'qbpageoptions' => 'Bu səhifə',
-'qbpageinfo' => 'Məzmun',
 'qbmyoptions' => 'Mənim səhifələrim',
 'qbspecialpages' => 'Xüsusi səhifələr',
 'faq' => 'TSS',

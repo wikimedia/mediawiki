@@ -179,7 +179,6 @@ $messages = array(
 'qbbrowse' => 'Agbasabasa',
 'qbedit' => 'Urnosen',
 'qbpageoptions' => 'Daytoy a panid',
-'qbpageinfo' => 'Linaon',
 'qbmyoptions' => 'Pampanidko',
 'qbspecialpages' => 'Espesial a pampanid',
 'faq' => 'FAQ',

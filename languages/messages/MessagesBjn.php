@@ -288,7 +288,6 @@ $messages = array(
 'qbbrowse' => 'Tangadahi',
 'qbedit' => 'Babak',
 'qbpageoptions' => 'Tungkaran ini',
-'qbpageinfo' => 'Naskah aluran',
 'qbmyoptions' => 'Tungkaran ulun',
 'qbspecialpages' => 'Tungkaran istimiwa',
 'faq' => 'FAQ',

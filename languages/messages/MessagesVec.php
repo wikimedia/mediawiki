@@ -294,7 +294,6 @@ $messages = array(
 'qbbrowse' => 'Sfoja',
 'qbedit' => 'Canbia',
 'qbpageoptions' => 'Opsion pajina',
-'qbpageinfo' => 'Informasion so ła pajina',
 'qbmyoptions' => 'Łe me pajine',
 'qbspecialpages' => 'Pagine speciali',
 'faq' => 'Domande frequenti',

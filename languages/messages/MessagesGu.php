@@ -294,7 +294,6 @@ $messages = array(
 'qbbrowse' => 'બ્રાઉઝ',
 'qbedit' => 'ફેરફાર કરો',
 'qbpageoptions' => 'આ પાનું',
-'qbpageinfo' => 'સંદર્ભ',
 'qbmyoptions' => 'મારાં પાનાં',
 'qbspecialpages' => 'ખાસ પાનાં',
 'faq' => 'FAQ

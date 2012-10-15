@@ -426,7 +426,6 @@ $messages = array(
 'qbbrowse' => 'Prehliadať',
 'qbedit' => 'Upraviť',
 'qbpageoptions' => 'Táto stránka',
-'qbpageinfo' => 'Kontext',
 'qbmyoptions' => 'Moje stránky',
 'qbspecialpages' => 'Špeciálne stránky',
 'faq' => 'Často kladené otázky',

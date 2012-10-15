@@ -231,7 +231,6 @@ $messages = array(
 'qbbrowse' => 'Выбраць',
 'qbedit' => 'Правіць',
 'qbpageoptions' => 'Гэтая старонка',
-'qbpageinfo' => 'Кантэкст',
 'qbmyoptions' => 'Свае старонкі',
 'qbspecialpages' => 'Адмысловыя старонкі',
 'faq' => 'ЧАПЫ',

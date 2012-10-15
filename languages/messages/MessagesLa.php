@@ -290,7 +290,6 @@ $messages = array(
 'qbbrowse' => 'Perspicere',
 'qbedit' => 'Recensere',
 'qbpageoptions' => 'Optiones paginae',
-'qbpageinfo' => 'Contextus',
 'qbmyoptions' => 'Paginae meae',
 'qbspecialpages' => 'Paginae speciales',
 'faq' => 'Quaestiones frequentes',

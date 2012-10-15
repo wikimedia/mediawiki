@@ -154,7 +154,6 @@ $messages = array(
 'qbbrowse' => 'Ka soo raadi',
 'qbedit' => 'Wax ka bedel',
 'qbpageoptions' => 'Boggaan',
-'qbpageinfo' => 'isku xiran',
 'qbmyoptions' => 'Boggageyga',
 'qbspecialpages' => 'Bogaga qaaska ah',
 'faq' => 'SIL',

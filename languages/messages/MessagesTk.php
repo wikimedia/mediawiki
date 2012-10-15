@@ -182,7 +182,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'qbbrowse' => 'Göz aýla',
 'qbedit' => 'Redaktirle',
 'qbpageoptions' => 'Bu sahypa',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Meniň sahypalarym',
 'qbspecialpages' => 'Ýörite sahypalar',
 'faq' => 'KSS',

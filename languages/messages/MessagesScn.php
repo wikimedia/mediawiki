@@ -280,7 +280,6 @@ $messages = array(
 'qbbrowse' => 'Sfogghia',
 'qbedit' => 'Cancia',
 'qbpageoptions' => 'Opzioni pàggina',
-'qbpageinfo' => 'Nfurmazzioni supra la pàggina',
 'qbmyoptions' => 'Li mè pàggini',
 'qbspecialpages' => 'Pàggini spiciali',
 'faq' => 'Dumanni cumuni',

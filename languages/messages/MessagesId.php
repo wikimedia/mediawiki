@@ -481,7 +481,6 @@ $messages = array(
 'qbbrowse' => 'Navigasi',
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Halaman ini',
-'qbpageinfo' => 'Konteks halaman',
 'qbmyoptions' => 'Halaman saya',
 'qbspecialpages' => 'Halaman istimewa',
 'faq' => 'FAQ',

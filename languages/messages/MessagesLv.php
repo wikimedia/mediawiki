@@ -193,7 +193,6 @@ $messages = array(
 'qbbrowse' => 'Navigācija',
 'qbedit' => 'Izmainīšana',
 'qbpageoptions' => 'Šī lapa',
-'qbpageinfo' => 'Konteksts',
 'qbmyoptions' => 'Manas lapas',
 'qbspecialpages' => 'Īpašās lapas',
 'faq' => 'BUJ',

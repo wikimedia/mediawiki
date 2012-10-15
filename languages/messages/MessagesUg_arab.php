@@ -184,7 +184,6 @@ $messages = array(
 'qbbrowse' => 'كۆز يۈگۈرت',
 'qbedit' => 'تەھرىر',
 'qbpageoptions' => 'بۇ بەت',
-'qbpageinfo' => 'كونتېكست',
 'qbmyoptions' => 'بەتلەرىم',
 'qbspecialpages' => 'ئالاھىدە بەتلەر',
 'faq' => 'كۆپ كۆرۈلىدىغان مەسىلىلەر',

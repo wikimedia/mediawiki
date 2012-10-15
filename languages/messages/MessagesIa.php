@@ -287,7 +287,6 @@ $messages = array(
 'qbbrowse' => 'Foliar',
 'qbedit' => 'Modificar',
 'qbpageoptions' => 'Iste pagina',
-'qbpageinfo' => 'Contexto',
 'qbmyoptions' => 'Mi paginas',
 'qbspecialpages' => 'Paginas special',
 'faq' => 'FAQ',

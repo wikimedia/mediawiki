@@ -340,7 +340,6 @@ $messages = array(
 'qbbrowse' => 'Navega',
 'qbedit' => 'Modifica',
 'qbpageoptions' => 'Opcions de pàgina',
-'qbpageinfo' => 'Informació de pàgina',
 'qbmyoptions' => 'Pàgines pròpies',
 'qbspecialpages' => 'Pàgines especials',
 'faq' => 'PMF',

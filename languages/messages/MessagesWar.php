@@ -209,7 +209,6 @@ $messages = array(
 'qbbrowse' => 'Igdalikyat',
 'qbedit' => 'Igliwat',
 'qbpageoptions' => 'Ini nga pakli',
-'qbpageinfo' => 'Kontexto',
 'qbmyoptions' => 'Akon mga pakli',
 'qbspecialpages' => 'Mga pinaurog nga pakli',
 'faq' => 'AGG',

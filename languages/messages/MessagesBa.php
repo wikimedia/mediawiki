@@ -208,7 +208,6 @@ $messages = array(
 'qbbrowse' => 'Байҡарға',
 'qbedit' => 'Үҙгәртергә',
 'qbpageoptions' => 'Был бит',
-'qbpageinfo' => 'Бит тураһында мәғлүмәттәр',
 'qbmyoptions' => 'Биттәрем',
 'qbspecialpages' => 'Махсус биттәр',
 'faq' => 'ЙБҺ',

@@ -503,7 +503,6 @@ $messages = array(
 'qbbrowse' => 'Listování',
 'qbedit' => 'Editování',
 'qbpageoptions' => 'Tato stránka',
-'qbpageinfo' => 'Kontext',
 'qbmyoptions' => 'Moje volby',
 'qbspecialpages' => 'Speciální stránky',
 'faq' => 'Často kladené otázky',
@@ -3120,6 +3119,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 
 # Info page
 'pageinfo-title' => 'Informace o stránce „$1“',
+'pageinfo-not-current' => 'Informace lze zobrazit jen pro aktuální verzi.',
 'pageinfo-header-basic' => 'Základní údaje',
 'pageinfo-header-edits' => 'Historie editací',
 'pageinfo-header-restrictions' => 'Zámek stránky',

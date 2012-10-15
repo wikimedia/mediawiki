@@ -453,7 +453,6 @@ $messages = array(
 'qbbrowse' => 'Blaojen',
 'qbedit' => 'Bewark',
 'qbpageoptions' => 'Disse zied',
-'qbpageinfo' => 'Ziedinformasie',
 'qbmyoptions' => 'Veurkeuren',
 'qbspecialpages' => 'Spesiale ziejen',
 'faq' => 'Vragen die vake esteld wörden',

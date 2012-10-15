@@ -499,7 +499,6 @@ $messages = array(
 'qbbrowse' => 'Переглянути',
 'qbedit' => 'Редагувати',
 'qbpageoptions' => 'Налаштування сторінки',
-'qbpageinfo' => 'Інформація про сторінку',
 'qbmyoptions' => 'Мої налаштування',
 'qbspecialpages' => 'Спеціальні сторінки',
 'faq' => 'Часті питання',

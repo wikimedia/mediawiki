@@ -163,7 +163,6 @@ $messages = array(
 'qbbrowse' => 'Bleese',
 'qbedit' => 'Änre',
 'qbpageoptions' => 'Jüdeer sid',
-'qbpageinfo' => 'Sidedoote',
 'qbmyoptions' => 'Min side',
 'qbspecialpages' => 'Spetsjåålside',
 'faq' => 'FAQ',

@@ -185,7 +185,6 @@ $messages = array(
 'qbbrowse' => 'Kaeq',
 'qbedit' => 'Toimõndaq',
 'qbpageoptions' => 'Leheküle säädmine',
-'qbpageinfo' => 'Leheküle teedüs',
 'qbmyoptions' => 'Mu säädmiseq',
 'qbspecialpages' => 'Tallitusleheküleq',
 'faq' => 'Sagõhõhe küsüdüq küsümiseq',

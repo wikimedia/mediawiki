@@ -446,7 +446,6 @@ pe titlul secțiunii (JavaScript)',
 'qbbrowse' => 'Răsfoiește',
 'qbedit' => 'Modificare',
 'qbpageoptions' => 'Opțiuni ale paginii',
-'qbpageinfo' => 'Informații ale paginii',
 'qbmyoptions' => 'Paginile mele',
 'qbspecialpages' => 'Pagini speciale',
 'faq' => 'Întrebări frecvente',
@@ -1986,7 +1985,7 @@ Poate doriți să-i modificați descrierea pe [$2 pagina sa descriptivă] de aco
 'uploadnewversion-linktext' => 'Încarcă o versiune nouă a acestui fișier',
 'shared-repo-from' => 'de la $1',
 'shared-repo' => 'un depozit partajat',
-'upload-disallowed-here' => 'Din păcate, nu puteți suprascrie această imagine.',
+'upload-disallowed-here' => 'Nu puteți suprascrie acest fișier.',
 
 # File reversion
 'filerevert' => 'Revenire $1',
@@ -3095,6 +3094,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 
 # Info page
 'pageinfo-title' => 'Informații pentru „$1”',
+'pageinfo-not-current' => 'Informațiile se pot afișa doar pentru versiunea curentă.',
 'pageinfo-header-basic' => 'Informații de bază',
 'pageinfo-header-edits' => 'Istoric modificări',
 'pageinfo-header-restrictions' => 'Protecție pagină',

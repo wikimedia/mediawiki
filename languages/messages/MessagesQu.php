@@ -411,7 +411,6 @@ $messages = array(
 'qbbrowse' => 'Maskapuy',
 'qbedit' => "Llamk'apuy",
 'qbpageoptions' => "P'anqap akllanankuna",
-'qbpageinfo' => "P'anqamanta willay",
 'qbmyoptions' => 'Akllanaykuna',
 'qbspecialpages' => "Sapaq p'anqakuna",
 'faq' => 'Pasaq tapuykuna',

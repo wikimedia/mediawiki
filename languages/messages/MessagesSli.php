@@ -160,7 +160,6 @@ $messages = array(
 'qbfind' => 'Fenda',
 'qbedit' => 'Ändern',
 'qbpageoptions' => 'Seytaoptiona',
-'qbpageinfo' => 'Seytadata',
 'qbmyoptions' => 'Menne Seyta',
 'qbspecialpages' => 'Spezialseyta',
 'faq' => 'FAQ',

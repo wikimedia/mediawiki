@@ -213,7 +213,6 @@ $messages = array(
 'qbbrowse' => 'Мурур',
 'qbedit' => 'Вироиш',
 'qbpageoptions' => 'Ин саҳифа',
-'qbpageinfo' => 'Бофт',
 'qbmyoptions' => 'Саҳифаҳои ман',
 'qbspecialpages' => 'Саҳифаҳои вижа',
 'faq' => 'Саволҳои тез-тез пурсидашуда',

@@ -230,7 +230,6 @@ $messages = array(
 'qbbrowse' => 'Iffuglia',
 'qbedit' => 'Mudifigga',
 'qbpageoptions' => 'Prifirenzi pàgina',
-'qbpageinfo' => "Infuimmazioni i' la pàgina",
 'qbmyoptions' => "Li me' pàgini",
 'qbspecialpages' => 'Pàgini ippiziari',
 'faq' => 'FAQ (infuimmazioni e aggiuddu)',

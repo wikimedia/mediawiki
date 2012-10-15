@@ -465,7 +465,6 @@ $messages = array(
 'qbbrowse' => 'Bläddra igenom',
 'qbedit' => 'Redigera',
 'qbpageoptions' => 'Denna sida',
-'qbpageinfo' => 'Sidinformation',
 'qbmyoptions' => 'Mina inställningar',
 'qbspecialpages' => 'Specialsidor',
 'faq' => 'FAQ',

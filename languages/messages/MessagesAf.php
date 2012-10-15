@@ -352,7 +352,6 @@ $messages = array(
 'qbbrowse' => 'Snuffel',
 'qbedit' => 'Wysig',
 'qbpageoptions' => 'Bladsyopsies',
-'qbpageinfo' => 'Bladsyinligting',
 'qbmyoptions' => 'My bladsye',
 'qbspecialpages' => 'Spesiale bladsye',
 'faq' => 'Gewilde vrae',

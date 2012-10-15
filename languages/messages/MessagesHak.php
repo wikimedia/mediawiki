@@ -133,7 +133,6 @@ $messages = array(
 'qbbrowse' => 'Chhà-khon',
 'qbedit' => 'Phiên-siá',
 'qbpageoptions' => 'Vùn-chông sién-hong',
-'qbpageinfo' => 'Vùn-chông chṳ̂-liau',
 'qbmyoptions' => 'Ngô-ke sién-hong',
 'qbspecialpages' => 'Thi̍t-sû hong-mien',
 'faq' => 'Sòng-kien mun-thì kié-tap',

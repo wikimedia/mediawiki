@@ -406,7 +406,6 @@ $messages = array(
 'qbbrowse' => 'រាវរក',
 'qbedit' => 'កែប្រែ',
 'qbpageoptions' => 'ទំព័រនេះ',
-'qbpageinfo' => 'ព័ត៌មានទំព័រ',
 'qbmyoptions' => 'ទំព័ររបស់ខ្ញុំ',
 'qbspecialpages' => 'ទំព័រពិសេសៗ',
 'faq' => 'សំណួរដែលសួរញឹកញាប់',

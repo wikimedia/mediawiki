@@ -503,7 +503,6 @@ $messages = array(
 'qbbrowse' => 'Шолу',
 'qbedit' => 'Өңдеу',
 'qbpageoptions' => 'Бұл бет',
-'qbpageinfo' => 'Айнала',
 'qbmyoptions' => 'Беттерім',
 'qbspecialpages' => 'Арнайы беттер',
 'faq' => 'Жиі қойылған сауалдар',

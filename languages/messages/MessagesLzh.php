@@ -291,7 +291,6 @@ $messages = array(
 'qbbrowse' => '覽',
 'qbedit' => '纂',
 'qbpageoptions' => '此頁',
-'qbpageinfo' => '內文',
 'qbmyoptions' => '吾好',
 'qbspecialpages' => '非凡',
 'faq' => '頻答問',

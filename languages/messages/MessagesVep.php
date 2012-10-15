@@ -231,7 +231,6 @@ $messages = array(
 'qbbrowse' => 'Kacelta',
 'qbedit' => 'Redaktiruida',
 'qbpageoptions' => 'Necen lehtpolen järgendused',
-'qbpageinfo' => 'Andmused lehtpoles',
 'qbmyoptions' => 'Minun järgendused',
 'qbspecialpages' => 'Specialižed lehtpoled',
 'faq' => 'PPK',

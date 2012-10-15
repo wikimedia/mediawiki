@@ -497,7 +497,6 @@ $messages = array(
 'qbbrowse' => 'Περιήγηση',
 'qbedit' => 'Επεξεργασία',
 'qbpageoptions' => 'Αυτή η σελίδα',
-'qbpageinfo' => 'Συμφραζόμενα',
 'qbmyoptions' => 'Οι σελίδες μου',
 'qbspecialpages' => 'Σελίδες λειτουργιών',
 'faq' => 'Συχνές ερωτήσεις (FAQ)',

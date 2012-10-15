@@ -456,7 +456,6 @@ $messages = array(
 'qbbrowse' => 'Foliumi',
 'qbedit' => 'Redakti',
 'qbpageoptions' => 'Paĝagado',
-'qbpageinfo' => 'Paĝinformoj',
 'qbmyoptions' => 'Personaĵoj',
 'qbspecialpages' => 'Specialaj paĝoj',
 'faq' => 'Oftaj demandoj',

@@ -232,7 +232,6 @@ $messages = array(
 'qbfind' => 'Attrêuva',
 'qbedit' => 'Cangia',
 'qbpageoptions' => "Opsioîn de 'sta paggina",
-'qbpageinfo' => 'Informassion inscia paggina',
 'qbmyoptions' => 'E mæ paggine',
 'qbspecialpages' => 'Pagine speçiä',
 'faq' => 'Domande frequenti',

@@ -155,7 +155,6 @@ $messages = array(
 'qbbrowse' => 'Murur',
 'qbedit' => 'Viroiş',
 'qbpageoptions' => 'In sahifa',
-'qbpageinfo' => 'Boft',
 'qbmyoptions' => 'Sahifahoi man',
 'qbspecialpages' => 'Sahifahoi viƶa',
 'faq' => 'Savolhoi tez-tez pursidaşuda',

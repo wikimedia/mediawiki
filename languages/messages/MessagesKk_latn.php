@@ -483,7 +483,6 @@ $messages = array(
 'qbbrowse' => 'Şolw',
 'qbedit' => 'Öñdew',
 'qbpageoptions' => 'Bul bet',
-'qbpageinfo' => 'Aýnala',
 'qbmyoptions' => 'Betterim',
 'qbspecialpages' => 'Arnaýı better',
 'faq' => 'Jïi qoýılğan sawaldar',
