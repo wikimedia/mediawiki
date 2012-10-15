@@ -277,6 +277,7 @@ abstract class DatabaseInstaller {
 			echo $e->getText();
 			$ret = false;
 		}
+		$up->purgeCache();
 		ob_end_flush();
 		return $ret;
 	}

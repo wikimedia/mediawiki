@@ -292,8 +292,8 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param $what Array: what updates to perform
 	 */
-	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
-		global $wgLocalisationCacheConf, $wgVersion;
+	public function doUpdates( $what = array( 'core', 'extensions', 'stats' ) ) {
+		global $wgVersion;
 
 		$this->db->begin( __METHOD__ );
 		$what = array_flip( $what );
@@ -309,14 +309,6 @@ abstract class DatabaseUpdater {
 
 		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
-		}
-
-		if ( isset( $what['purge'] ) ) {
-			$this->purgeCache();
-
-			if ( $wgLocalisationCacheConf['manualRecache'] ) {
-				$this->rebuildLocalisationCache();
-			}
 		}
 		$this->db->commit( __METHOD__ );
 	}
@@ -617,11 +609,15 @@ abstract class DatabaseUpdater {
 	/**
 	 * Purge the objectcache table
 	 */
-	protected function purgeCache() {
+	public function purgeCache() {
+		global $wgLocalisationCacheConf;
 		# We can't guarantee that the user will be able to use TRUNCATE,
 		# but we know that DELETE is available to us
 		$this->output( "Purging caches..." );
 		$this->db->delete( 'objectcache', '*', __METHOD__ );
+		if ( $wgLocalisationCacheConf['manualRecache'] ) {
+			$this->rebuildLocalisationCache();
+		}
 		$this->output( "done.\n" );
 	}
 
