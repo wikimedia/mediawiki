@@ -714,7 +714,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Generate a diff, no caching.
 	 *
-	 * Subclasses may override this to provide a
+	 * Subclasses may override this to provide a cake for everyone.
 	 *
 	 * @param $old Content: old content
 	 * @param $new Content: new content
