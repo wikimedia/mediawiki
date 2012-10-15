@@ -118,9 +118,6 @@ class UpdateMediaWiki extends Maintenance {
 		$shared = $this->hasOption( 'doshared' );
 
 		$updates = array( 'core', 'extensions', 'stats' );
-		if( !$this->hasOption('nopurge') ) {
-			$updates[] = 'purge';
-		}
 
 		$updater = DatabaseUpdater::newForDb( $db, $shared, $this );
 		$updater->doUpdates( $updates );
@@ -138,6 +135,10 @@ class UpdateMediaWiki extends Maintenance {
 			if ( !$isLoggedUpdate ) {
 				$updater->insertUpdateRow( $maint );
 			}
+		}
+
+		if( !$this->hasOption('nopurge') ) {
+			$updater->purgeCache();
 		}
 
 		$this->output( "\nDone.\n" );
