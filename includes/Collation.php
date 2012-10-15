@@ -58,13 +58,13 @@ abstract class Collation {
 		global $wgCategoryCollations;
 
 		if ( in_array( $name, $wgCategoryCollations ) ) {
-		} else if ( ( $defaultcollation = wfGetDB( DB_SLAVE )->selectField(
+		} elseif ( ( $defaultcollation = wfGetDB( DB_SLAVE )->selectField(
 			'page_props', 'pp_value',
 			array( 'pp_page' => $title->getArticleId(), 'pp_propname' => 'defaultcollation' ),
 			__METHOD__
 		) ) !== false && in_array( $defaultcollation, $wgCategoryCollations ) ) {
 			$name = $defaultcollation;
-		} else if ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollations ) ) {
+		} elseif ( in_array( $context->getUser()->getOption( 'collation' ), $wgCategoryCollations ) ) {
 			$name = $context->getUser()->getOption( 'collation' );
 		} else {
 			$name = $wgCategoryCollations[0];

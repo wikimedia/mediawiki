@@ -773,11 +773,11 @@ class CoreParserFunctions {
 		$flag = '';
 		foreach ( $args as $arg ) {
 			$mwarg = $magicWords->matchStartToEnd( $arg );
-			if ( $mwarg == 'defaultsort_noreplace' ) {
+			if ( $mwarg === 'defaultsort_noreplace' ) {
 				$flag = 'noreplace';
-			} else if ( $mwarg == 'defaultsort_noerror' && $flag != 'noreplace' ) {
+			} elseif ( $mwarg === 'defaultsort_noerror' && $flag !== 'noreplace' ) {
 				$flag = 'noerror';
-			} else if ( strlen( $arg ) != 0 ) {
+			} elseif ( strlen( $arg ) != 0 ) {
 				$sortKeys[] = trim( $arg );
 			}
 		}
