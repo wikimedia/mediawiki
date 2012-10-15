@@ -3112,27 +3112,29 @@ class Parser {
 	static function parseCategorySortKey( $sortKeys ) {
 		global $wgCategoryCollations;
 
-		if ( !is_array( $sortKeys ) ) {
-			$sortKeys = explode( '|', $sortKeys );
+		static $mwArray = null;
+		static $collationMap = array();
+		if ( !$mwArray ) {
+			foreach ( $wgCategoryCollations as $collationName ) {
+				// Unluckily magic word names can't contain hyphens.
+				$magicName = 'collation_' . str_replace( '-', '_', $collationName );
+				$collationMap[$magicName] = $collationName;
+			}
+			$mwArray = new MagicWordArray( array_keys( $collationMap ) );
 		}
+
+		if ( !is_array( $sortKeys ) ) {
+			$sortKeys = StringUtils::explode( '|', $sortKeys );
+		}
+
 		$assocSortKeys = array();
 		$defaultSortKey = '';
 		foreach ( $sortKeys as $sortKey ) {
-			$eqpos = strpos( $sortKey, '=' );
-			if ( $eqpos === false ) {
+			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $sortKey );
+			if ( $magicName === false ) {
 				$defaultSortKey = $sortKey;
 			} else {
-				$name = trim( substr( $sortKey, 0, $eqpos ) );
-				$value = trim( substr( $sortKey, $eqpos+1 ) );
-				if ( $value === false ) {
-					$value = '';
-				}
-				if ( in_array( $name, $wgCategoryCollations ) ) {
-					$assocSortKeys[$name] = $value;
-				} else {
-					// Keep existing sort keys with an equal sign working.
-					$defaultSortKey = $sortKey;
-				}
+				$assocSortKeys[$collationMap[$magicName]] = $value;
 			}
 		}
 
