@@ -105,6 +105,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
 			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
+			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
 		);
 	}
 
