@@ -776,6 +776,9 @@ class EditPage {
 		$this->edittime = $this->mArticle->getTimestamp();
 
 		$content = $this->getContentObject( false ); #TODO: track content object?!
+		if ( $content === false ) {
+			return false;
+		}
 		$this->textbox1 = $this->toEditText( $content );
 
 		// activate checkboxes if user wants them to be always active
