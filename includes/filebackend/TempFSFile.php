@@ -97,19 +97,21 @@ class TempFSFile extends FSFile {
 	/**
 	 * Set flag to not clean up after the temporary file
 	 *
-	 * @return void
+	 * @return TempFSFile This object
 	 */
 	public function preserve() {
 		$this->canDelete = false;
+		return $this;
 	}
 
 	/**
 	 * Set flag clean up after the temporary file
 	 *
-	 * @return void
+	 * @return TempFSFile This object
 	 */
 	public function autocollect() {
 		$this->canDelete = true;
+		return $this;
 	}
 
 	/**
