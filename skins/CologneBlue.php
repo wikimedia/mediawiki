@@ -663,10 +663,13 @@ class CologneBlueTemplate extends BaseTemplate {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}
 
+		$goText = $wgUseTwoButtonsSearchForm ?
+			wfMessage( 'searcharticle' )->escaped() :
+			wfMessage( 'searchbutton' )->escaped();
 		$s .= "<input type='text' class=\"mw-searchInput\" name=\"search\" size=\"14\" value=\""
 			. htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />"
 			. ($which == 'footer' ? " " : "<br />")
-			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
+			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . $goText . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
 			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";

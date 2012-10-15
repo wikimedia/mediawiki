@@ -178,11 +178,14 @@ class LegacyTemplate extends BaseTemplate {
 
 		$search = $wgRequest->getText( 'search' );
 
+		$goText = $wgUseTwoButtonsSearchForm ?
+			wfMessage( 'searcharticle' )->text() :
+			wfMessage( 'searchbutton' )->text();
 		$s = '<form id="searchform' . $this->searchboxes . '" name="search" class="inline" method="post" action="'
 		  . $this->getSkin()->escapeSearchLink() . "\">\n"
 		  . '<input type="text" id="searchInput' . $this->searchboxes . '" name="search" size="19" value="'
 		  . htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />\n"
-		  . '<input type="submit" name="go" value="' . wfMessage( 'searcharticle' )->text() . '" />';
+		  . '<input type="submit" name="go" value="' . $goText . '" />';
 
 		if ( $wgUseTwoButtonsSearchForm ) {
 			$s .= '&#160;<input type="submit" name="fulltext" value="' . wfMessage( 'searchbutton' )->text() . "\" />\n";

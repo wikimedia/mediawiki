@@ -325,6 +325,13 @@ input.searchButton {
 	margin: 0;
 	font-size: 95%;
 }
+#p-search h5 {
+	/* Visually hide the visually unimportant extra "Search" in the header.
+	   But don't hide it from accessibility tools that make use of it. */
+	position: absolute;
+	clip: rect(1px 1px 1px 1px); /* IE6 - 7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
 #p-search .pBody {
 	padding: .5em .4em .4em .4em;
 	text-align: center;
