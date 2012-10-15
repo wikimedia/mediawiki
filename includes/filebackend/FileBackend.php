@@ -1074,6 +1074,17 @@ abstract class FileBackend {
 	}
 
 	/**
+	 * Get the storage path for the given container for this backend
+	 *
+	 * @param $container string Container name
+	 * @return string Storage path
+	 * @since 1.21
+	 */
+	final public function getContainerStoragePath( $container ) {
+		return $this->getRootStoragePath() . "/{$container}";
+	}
+
+	/**
 	 * Get the file journal object for this backend
 	 *
 	 * @return FileJournal
