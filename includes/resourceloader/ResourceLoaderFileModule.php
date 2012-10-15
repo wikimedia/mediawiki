@@ -618,7 +618,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	protected function readStyleFile( $path, $flip ) {
 		$localPath = $this->getLocalPath( $path );
 		if ( !file_exists( $localPath ) ) {
-			throw new MWException( __METHOD__.": style file not found: \"$localPath\"" );
+			$msg = __METHOD__.": style file not found: \"$localPath\"";
+			wfErrorLog( $msg, 'resourceloader' );
+			throw new MWException( $msg );
 		}
 		$style = file_get_contents( $localPath );
 		if ( $flip ) {
