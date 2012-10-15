@@ -303,7 +303,6 @@ $messages = array(
 'qbbrowse' => 'Pśeběraś',
 'qbedit' => 'Pśeměniś',
 'qbpageoptions' => 'Toś ten bok',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Móje boki',
 'qbspecialpages' => 'Specialne boki',
 'faq' => 'FAQ (pšašanja a wótegrona)',

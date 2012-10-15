@@ -170,7 +170,6 @@ $messages = array(
 'qbbrowse' => 'गवेषण करू',
 'qbedit' => 'सम्पादन करू',
 'qbpageoptions' => 'ई पन्ना',
-'qbpageinfo' => 'विषय',
 'qbmyoptions' => 'हमर पन्ना सभ',
 'qbspecialpages' => 'विशेष पन्ना सभ',
 'faq' => 'त्वरित प्रश्नोत्तरी',

@@ -242,7 +242,6 @@ $messages = array(
 'qbbrowse' => 'Halungkáta',
 'qbedit' => 'Liwata',
 'qbpageoptions' => 'Ining pahina',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Sakong mga pahina',
 'qbspecialpages' => 'Espesyal na mga pahina',
 'faq' => 'PPK (Pirmihang Pighahapot na mga kahaputan)',

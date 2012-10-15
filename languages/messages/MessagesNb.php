@@ -458,7 +458,6 @@ $messages = array(
 'qbbrowse' => 'Bla gjennom',
 'qbedit' => 'Rediger',
 'qbpageoptions' => 'Sideinnstillinger',
-'qbpageinfo' => 'Sideinformasjon',
 'qbmyoptions' => 'Egne innstillinger',
 'qbspecialpages' => 'Spesialsider',
 'faq' => 'Ofte stilte spørsmål',

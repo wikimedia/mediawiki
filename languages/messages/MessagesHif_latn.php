@@ -179,7 +179,6 @@ $messages = array(
 'qbbrowse' => 'Browse karo',
 'qbedit' => 'Badlo',
 'qbpageoptions' => 'Ii panna',
-'qbpageinfo' => 'Vishay',
 'qbmyoptions' => 'Hamar panna',
 'qbspecialpages' => 'Khaas panna',
 'faq' => 'Sab time puchhe waala sawal',

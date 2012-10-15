@@ -613,7 +613,6 @@ $messages = array(
 'qbbrowse' => 'تصفح',
 'qbedit' => 'تعديل',
 'qbpageoptions' => 'هذه الصفحة',
-'qbpageinfo' => 'سياق النص',
 'qbmyoptions' => 'صفحاتي',
 'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'الأسئلة المتكررة',

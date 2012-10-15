@@ -3511,7 +3511,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 # Info page
 'pageinfo-title' => 'Page title for action=info. Parameters:
 * $1 is the page name',
-'pageinfo-not-current' => 'Error message displayed when information for an old revision is requested.',
+'pageinfo-not-current' => 'Error message displayed when information for an old revision is requested. Example: [{{fullurl:Project:News|oldid=4266597&action=info}}]',
 'pageinfo-header-basic' => 'Table section header in action=info.',
 'pageinfo-header-edits' => 'Table section header in action=info.',
 'pageinfo-header-restrictions' => 'Table section header in action=info.',

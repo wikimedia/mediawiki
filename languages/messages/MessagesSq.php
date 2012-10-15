@@ -360,7 +360,6 @@ $messages = array(
 'qbbrowse' => 'Shfletoni',
 'qbedit' => 'Redaktoni',
 'qbpageoptions' => 'Kjo faqe',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Faqet e mia',
 'qbspecialpages' => 'Faqet speciale',
 'faq' => 'Pyetje që bëhen shpesh',

@@ -297,7 +297,6 @@ $messages = array(
 'qbbrowse' => 'Přepytować',
 'qbedit' => 'Wobdźěłać',
 'qbpageoptions' => 'Tuta strona',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Moje strony',
 'qbspecialpages' => 'Specialne strony',
 'faq' => 'Husto stajene prašenja (FAQ)',

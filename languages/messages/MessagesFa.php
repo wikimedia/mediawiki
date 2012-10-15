@@ -576,7 +576,6 @@ $messages = array(
 'qbbrowse' => 'مرور',
 'qbedit' => 'ویرایش',
 'qbpageoptions' => 'این صفحه',
-'qbpageinfo' => 'محتوا',
 'qbmyoptions' => 'صفحه‌های من',
 'qbspecialpages' => 'صفحه‌های ویژه',
 'faq' => 'پرسش‌های متداول',

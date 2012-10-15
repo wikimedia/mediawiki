@@ -230,7 +230,6 @@ $messages = array(
 'qbbrowse' => 'Farura',
 'qbedit' => 'Betara',
 'qbpageoptions' => 'Ikatcuksbu',
-'qbpageinfo' => 'Givabu',
 'qbmyoptions' => 'Jinaf ikatcukseem',
 'qbspecialpages' => 'Aptaf bueem',
 'faq' => 'NEB',

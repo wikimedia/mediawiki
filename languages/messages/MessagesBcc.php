@@ -274,7 +274,6 @@ $messages = array(
 'qbbrowse' => 'بروز',
 'qbedit' => 'اصلاح',
 'qbpageoptions' => 'صفحه',
-'qbpageinfo' => 'متن',
 'qbmyoptions' => 'منی صفحات',
 'qbspecialpages' => 'حاصین صفحات',
 'faq' => 'ب.ج.س',

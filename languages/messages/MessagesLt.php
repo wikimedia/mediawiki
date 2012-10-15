@@ -326,7 +326,6 @@ $messages = array(
 'qbbrowse' => 'Naršymas',
 'qbedit' => 'Taisyti',
 'qbpageoptions' => 'Šis puslapis',
-'qbpageinfo' => 'Kontekstas',
 'qbmyoptions' => 'Mano puslapiai',
 'qbspecialpages' => 'Specialieji puslapiai',
 'faq' => 'DUK',

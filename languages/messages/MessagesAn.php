@@ -276,7 +276,6 @@ $messages = array(
 'qbbrowse' => 'Navegar',
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Ista pachina',
-'qbpageinfo' => 'Contexto',
 'qbmyoptions' => 'Pachinas propias',
 'qbspecialpages' => 'Pachinas especials',
 'faq' => 'Preguntas freqüents (FAQ)',

@@ -287,7 +287,6 @@ $messages = array(
 'qbbrowse' => 'విహరించు',
 'qbedit' => 'సవరించు',
 'qbpageoptions' => 'ఈ పేజీ',
-'qbpageinfo' => 'సందర్భం',
 'qbmyoptions' => 'నా పేజీలు',
 'qbspecialpages' => 'ప్రత్యేక పేజీలు',
 'faq' => 'తరచూ అడిగే ప్రశ్నలు',

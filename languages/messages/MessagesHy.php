@@ -416,7 +416,6 @@ $messages = array(
 'qbbrowse' => 'Թերթել',
 'qbedit' => 'Խմբագրել',
 'qbpageoptions' => 'Այս էջը',
-'qbpageinfo' => 'Հոդվածի մասին',
 'qbmyoptions' => 'Իմ էջերը',
 'qbspecialpages' => 'Սպասարկող էջեր',
 'faq' => 'ՀՏՀ',

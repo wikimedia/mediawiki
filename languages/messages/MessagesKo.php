@@ -489,7 +489,6 @@ $messages = array(
 'qbbrowse' => '탐색',
 'qbedit' => '편집',
 'qbpageoptions' => '문서 기능',
-'qbpageinfo' => '문서 정보',
 'qbmyoptions' => '내 사용자 문서',
 'qbspecialpages' => '특수 문서',
 'faq' => '자주 묻는 질문',
@@ -3209,6 +3208,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 
 # Info page
 'pageinfo-title' => '"$1" 문서에 대한 정보',
+'pageinfo-not-current' => '정보는 현재 판만을 보여줄 수 있습니다.',
 'pageinfo-header-basic' => '기본 정보',
 'pageinfo-header-edits' => '편집 역사',
 'pageinfo-header-restrictions' => '문서 보호',

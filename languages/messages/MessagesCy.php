@@ -261,7 +261,6 @@ $messages = array(
 'qbbrowse' => 'Pori',
 'qbedit' => 'Golygu',
 'qbpageoptions' => 'Y dudalen hon',
-'qbpageinfo' => 'Cyd-destun',
 'qbmyoptions' => 'Fy nhudalennau',
 'qbspecialpages' => 'Tudalennau arbennig',
 'faq' => 'Cwestiynau cyffredin',

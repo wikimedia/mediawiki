@@ -234,7 +234,6 @@ $messages = array(
 'qbbrowse' => 'Фен',
 'qbedit' => 'Ивын',
 'qbpageoptions' => 'Ацы фарс',
-'qbpageinfo' => 'Фарсы контекст',
 'qbmyoptions' => 'Мæ фæрстæ',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 'faq' => 'FAQ',

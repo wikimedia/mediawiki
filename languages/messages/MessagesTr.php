@@ -468,7 +468,6 @@ $messages = array(
 'qbbrowse' => 'Tara',
 'qbedit' => 'Değiştir',
 'qbpageoptions' => 'Bu sayfa',
-'qbpageinfo' => 'Bağlam',
 'qbmyoptions' => 'Sayfalarım',
 'qbspecialpages' => 'Özel sayfalar',
 'faq' => 'SSS',

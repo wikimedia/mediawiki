@@ -200,7 +200,6 @@ $messages = array(
 'qbbrowse' => 'ब्राउज गर्ने',
 'qbedit' => 'सम्पादन गर्ने',
 'qbpageoptions' => 'यो पेज',
-'qbpageinfo' => 'सन्दर्भ',
 'qbmyoptions' => 'मेरो पेज',
 'qbspecialpages' => 'विशेष पृष्ठहरु',
 'faq' => 'धैरै सोधिएका प्रश्नहरु',

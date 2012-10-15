@@ -434,7 +434,6 @@ $messages = array(
 'qbbrowse' => 'Sirvi',
 'qbedit' => 'Redigeeri',
 'qbpageoptions' => 'Lehekülje suvandid',
-'qbpageinfo' => 'Lehekülje andmed',
 'qbmyoptions' => 'Minu suvandid',
 'qbspecialpages' => 'Erileheküljed',
 'faq' => 'KKK',

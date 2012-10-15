@@ -383,7 +383,6 @@ $messages = array(
 'qbbrowse' => 'Избор',
 'qbedit' => 'Редактиране',
 'qbpageoptions' => 'Тази страница',
-'qbpageinfo' => 'Информация за страницата',
 'qbmyoptions' => 'Моите страници',
 'qbspecialpages' => 'Специални страници',
 'faq' => 'ЧЗВ',

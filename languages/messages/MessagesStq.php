@@ -189,7 +189,6 @@ $messages = array(
 'qbbrowse' => 'Bleederje',
 'qbedit' => 'Annerje',
 'qbpageoptions' => 'Disse Siede',
-'qbpageinfo' => 'Siedendoatäie',
 'qbmyoptions' => 'Mien Sieden',
 'qbspecialpages' => 'Spezialsieden',
 'faq' => 'Oafte stoalde Froagen',

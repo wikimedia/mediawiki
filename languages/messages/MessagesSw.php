@@ -269,7 +269,6 @@ $messages = array(
 'qbbrowse' => 'Vinjari',
 'qbedit' => 'Hariri',
 'qbpageoptions' => 'Ukurasa huu',
-'qbpageinfo' => 'Muktadha',
 'qbmyoptions' => 'Kurasa zangu',
 'qbspecialpages' => 'Kurasa za pekee',
 'faq' => 'Maswali ya kawaida',

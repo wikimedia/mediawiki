@@ -540,7 +540,6 @@ $messages = array(
 'qbbrowse' => 'Просмотреть',
 'qbedit' => 'Править',
 'qbpageoptions' => 'Настройки страницы',
-'qbpageinfo' => 'Сведения о странице',
 'qbmyoptions' => 'Ваши настройки',
 'qbspecialpages' => 'Специальные страницы',
 'faq' => 'ЧаВО',

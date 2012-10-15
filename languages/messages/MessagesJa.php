@@ -508,7 +508,6 @@ $messages = array(
 'qbbrowse' => '閲覧',
 'qbedit' => '編集',
 'qbpageoptions' => 'このページについて',
-'qbpageinfo' => '関連情報',
 'qbmyoptions' => '自分のページ',
 'qbspecialpages' => '特別ページ',
 'faq' => 'よくある質問と回答',
@@ -1037,7 +1036,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'loginreqtitle' => 'ログインが必要',
 'loginreqlink' => 'ログイン',
 'loginreqpagetext' => '他のページを閲覧するには$1する必要があります。',
-'accmailtitle' => 'パスワードを送信しました。',
+'accmailtitle' => 'パスワードをお送りしました。',
 'accmailtext' => "[[User talk:$1|$1]]のために無作為に生成したパスワードを、$2に送信しました。
 
 この新アカウントのパスワードは、ログインした際に''[[Special:ChangePassword|パスワード変更]]''ページで変更できます。",
@@ -1170,7 +1169,7 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'edit-already-exists' => '新しいページを作成できませんでした。
 そのページは既に存在しています。',
 'defaultmessagetext' => '既定のメッセージ文',
-'content-failed-to-parse' => '$2 の本文を$1モデルとして構文解析できませんでした。',
+'content-failed-to-parse' => '$2 の本文を$1モデルとして構文解析できませんでした: $3',
 'invalid-content-data' => '本文データが無効です',
 'content-not-allowed-here' => 'ページ [[$2]] では、「$1」コンテンツは許可されていません',
 
@@ -1305,7 +1304,7 @@ $3が示した理由：''$2''",
 'revdelete-hide-comment' => '編集の要約を隠す',
 'revdelete-hide-user' => '投稿者の利用者名またはIPを隠す',
 'revdelete-hide-restricted' => '他の利用者と同様に管理者からもデータを隠す',
-'revdelete-radio-same' => '（変更しない）',
+'revdelete-radio-same' => '(変更しない)',
 'revdelete-radio-set' => 'はい',
 'revdelete-radio-unset' => 'いいえ',
 'revdelete-suppress' => '他の利用者と同様に管理者からもデータを隠す',
@@ -1436,7 +1435,7 @@ $1",
 'search-suggest' => 'もしかして：$1',
 'search-interwiki-caption' => '姉妹プロジェクト',
 'search-interwiki-default' => '$1の結果：',
-'search-interwiki-more' => '（続き）',
+'search-interwiki-more' => '(続き)',
 'search-relatedarticle' => '関連',
 'mwsuggest-disable' => 'Ajaxによる検索候補の提示を無効にする',
 'searcheverything-enable' => 'すべての名前空間を検索',
@@ -2117,7 +2116,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 'shared-repo' => '共有リポジトリ',
 'shared-repo-name-wikimediacommons' => 'ウィキメディア・コモンズ',
 'filepage.css' => '/* ここに記述したCSSはファイル解説ページにて読み込まれます。また外部のクライアントウィキにも影響します */',
-'upload-disallowed-here' => '残念ながらこの画像には上書きできません。',
+'upload-disallowed-here' => 'このファイルには上書きできません。',
 
 # File reversion
 'filerevert' => '$1を差し戻す',
@@ -2300,7 +2299,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'booksources-isbn' => 'ISBN:',
 'booksources-go' => '検索',
 'booksources-text' => 'お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:',
-'booksources-invalid-isbn' => '指定したISBN番号は有効ではないようです。情報源から写し間違えていないか確認してください。',
+'booksources-invalid-isbn' => '指定した ISBN は有効ではないようです。情報源から写し間違えていないか確認してください。',
 
 # Special:Log
 'specialloguserlabel' => '実行者:',
@@ -2698,7 +2697,7 @@ $1',
 
 # Namespace form on various pages
 'namespace' => '名前空間:',
-'invert' => '名前空間の選択を反転',
+'invert' => '選択したものを除く',
 'tooltip-invert' => '選択した名前空間 (チェックを入れている場合は、関連付けられた名前空間も含む) のページの変更を非表示にするには、このボックスにチェックを入れる',
 'namespace_association' => '関連付けられた名前空間も含める',
 'tooltip-namespace_association' => '選択した名前空間に関連付けられたトークページ (逆にトークページの名前空間を選択した場合も同様) の名前空間も含めるには、このボックスにチェックを入れる',
@@ -2799,7 +2798,7 @@ $1',
 'ipb-blocklist' => '現在有効なブロックを表示',
 'ipb-blocklist-contribs' => '$1の投稿の一覧',
 'unblockip' => 'ブロックを解除',
-'unblockiptext' => '以下のフォームを使用して、以前ブロックしたIPアドレスまたは利用者からの書き込みアクセスをブロック解除できます。',
+'unblockiptext' => '以下のフォームで利用者またはIPアドレスのブロックを解除できます。',
 'ipusubmit' => 'このブロックを解除',
 'unblocked' => '[[User:$1|$1]]のブロックを解除しました',
 'unblocked-range' => '$1のブロックは解除されています',
@@ -3253,6 +3252,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 
 # Info page
 'pageinfo-title' => '「$1」の情報',
+'pageinfo-not-current' => '現在のバージョンの情報のみが表示される可能性があります。',
 'pageinfo-header-basic' => '基本情報',
 'pageinfo-header-edits' => '編集履歴',
 'pageinfo-header-restrictions' => 'ページの保護',

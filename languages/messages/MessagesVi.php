@@ -441,7 +441,6 @@ $messages = array(
 'qbbrowse' => 'Duyệt',
 'qbedit' => 'Sửa đổi',
 'qbpageoptions' => 'Trang này',
-'qbpageinfo' => 'Ngữ cảnh',
 'qbmyoptions' => 'Trang cá nhân',
 'qbspecialpages' => 'Trang đặc biệt',
 'faq' => 'Câu hỏi thường gặp',
@@ -3085,6 +3084,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 
 # Info page
 'pageinfo-title' => 'Thông tin về “$1”',
+'pageinfo-not-current' => 'Thông tin được hiển thị có thể chỉ có liên quan đến phiên bản hiện hành.',
 'pageinfo-header-basic' => 'Thông tin cơ bản',
 'pageinfo-header-edits' => 'Lịch sử sửa đổi',
 'pageinfo-header-restrictions' => 'Mức khóa trang',

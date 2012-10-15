@@ -356,7 +356,6 @@ $messages = array(
 'qbbrowse' => 'Aanluure',
 'qbedit' => 'Ändere',
 'qbpageoptions' => 'Sigge Enstellunge',
-'qbpageinfo' => 'Üvver de Sigg',
 'qbmyoptions' => 'Ming Sigge',
 'qbspecialpages' => 'Spezial Sigge',
 'faq' => 'FAQ',

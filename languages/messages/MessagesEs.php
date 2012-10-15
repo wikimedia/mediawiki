@@ -56,6 +56,7 @@
  * @author Locos epraix
  * @author Mahadeva
  * @author Manuelt15
+ * @author Maor X
  * @author McDutchie
  * @author Muro de Aguas
  * @author Omnipaedista
@@ -503,7 +504,6 @@ $messages = array(
 'qbbrowse' => 'Navegar',
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Opciones de página',
-'qbpageinfo' => 'Información de página',
 'qbmyoptions' => 'Mis páginas',
 'qbspecialpages' => 'Páginas especiales',
 'faq' => 'Preguntas más frecuentes',

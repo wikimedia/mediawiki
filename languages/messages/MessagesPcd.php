@@ -139,7 +139,6 @@ $messages = array(
 'qbbrowse' => 'Trifouille',
 'qbedit' => 'Editer',
 'qbpageoptions' => 'Chol pache-lo',
-'qbpageinfo' => 'Conteske',
 'qbmyoptions' => 'Mes paches',
 'qbspecialpages' => 'Espéciales paches',
 'faq' => 'FAQ',

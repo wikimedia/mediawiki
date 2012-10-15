@@ -325,7 +325,6 @@ $messages = array(
 'qbbrowse' => 'Duerchsichen',
 'qbedit' => 'Änneren',
 'qbpageoptions' => 'Säitenoptiounen',
-'qbpageinfo' => 'Kontext',
 'qbmyoptions' => 'Meng Säiten',
 'qbspecialpages' => 'Spezialsäiten',
 'faq' => 'FAQ',
@@ -938,6 +937,7 @@ Si gouf anscheinend geläscht.",
 'edit-no-change' => 'Är ännerung gouf ignoréiert, well Dir näischt um Text geännert hutt.',
 'edit-already-exists' => 'Déi nei Säit konnt net ugeluecht ginn, well et se scho gëtt.',
 'defaultmessagetext' => 'Standardtext',
+'content-not-allowed-here' => '"$1"-Inhalt ass op der Säit [[$2]] net erlaabt',
 
 # Content models
 'content-model-wikitext' => 'Wikitext',

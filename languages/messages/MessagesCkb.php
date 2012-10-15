@@ -292,7 +292,6 @@ $messages = array(
 'qbbrowse' => 'بگه‌ڕێ',
 'qbedit' => 'دەستکاری',
 'qbpageoptions' => 'ئەم پەڕەیە',
-'qbpageinfo' => 'زانیاریی په‌ڕه‌',
 'qbmyoptions' => 'پەڕەکانم',
 'qbspecialpages' => 'پەڕە تایبەتەکان',
 'faq' => 'پرسیار و وەڵام (FAQ)',

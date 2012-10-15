@@ -438,7 +438,6 @@ $messages = array(
 'qbbrowse' => 'Przeglądanie',
 'qbedit' => 'Edycja',
 'qbpageoptions' => 'Ta strona',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Moje strony',
 'qbspecialpages' => 'strony specjalne',
 'faq' => 'FAQ',

@@ -206,7 +206,6 @@ $messages = array(
 'qbbrowse' => 'Bláđe',
 'qbedit' => 'Rievdat',
 'qbpageoptions' => 'Siidoásahusat',
-'qbpageinfo' => 'Siiddu dieđut',
 'qbmyoptions' => 'Ásahusat',
 'qbspecialpages' => 'Doaibmasiiddut',
 

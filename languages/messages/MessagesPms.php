@@ -186,7 +186,6 @@ $messages = array(
 'qbbrowse' => 'Sfeuja',
 'qbedit' => 'Modìfica',
 'qbpageoptions' => 'Opsion dla pàgina',
-'qbpageinfo' => 'Anformassion rësguard a la pàgina',
 'qbmyoptions' => 'Mie opsion',
 'qbspecialpages' => 'Pàgine speciaj',
 'faq' => 'Chestion frequente',
@@ -808,7 +807,7 @@ A esist già.',
 'defaultmessagetext' => "Test che a-i sarìa se a-i fusso pa 'd modìfiche",
 'content-failed-to-parse' => "Faliment ëd l'anàlisi dël contnù ëd $2 për ël model $1: $3",
 'invalid-content-data' => 'Dat dël contnù pa bon',
-'content-not-allowed-here' => 'Contnù ëd "$1" pa përmëttù an sla pagina [[$2]]',
+'content-not-allowed-here' => "Ël contnù «$1» a l'é nen autorisà an sla pàgina [[$2]]",
 
 # Content models
 'content-model-wikitext' => 'test wiki',
@@ -2580,7 +2579,7 @@ L'artìcol ëd destinassion «[[:$1]]» a-i é già. Veul-lo scancelelo për av�
 'immobile-target-namespace-iw' => "Na liura interwiki a l'é pa na destinassion vàlida për tramudé na pàgina.",
 'immobile-source-page' => 'Sta pàgina-sì as peul pa tramudesse.',
 'immobile-target-page' => 'As peul pa tramudesse vers cost tìtol ëd destinassion.',
-'bad-target-model' => 'La destinassion vorsùa a dòvra un model ëd contnù diferent. As peul pa convertisse da $1 a $2.',
+'bad-target-model' => 'La destinassion vorsùa a deuvra un model ëd contnù diferent. As peul pa convertisse da $1 a $2.',
 'imagenocrossnamespace' => "As peul pa tramudesse n'archivi a në spassi nominal diferent",
 'nonfile-cannot-move-to-file' => "As peul nen tramudesse lòn ch'a l'é pa n'archivi a lë spassi nominal dj'archivi",
 'imagetypemismatch' => "La neuva estension ëd l'archivi a corispond pa a sò tipo",
@@ -3150,10 +3149,10 @@ J'àutri a saran stërmà coma stàndard.
 'exif-orientation-4' => 'Arvirà dzor-sota',
 'exif-orientation-5' => 'Arvirà dzor-sota e ëd 90° contramostra',
 'exif-orientation-6' => 'Arvirà ëd 90° contramostra',
-'exif-orientation-7' => 'Arvirà dzorsota e ëd 90° ant ël sens dla mostra',
+'exif-orientation-7' => 'Arvirà dzor-sota e ëd 90° ant ël sens dla mostra',
 'exif-orientation-8' => 'Arvirà ëd 90° ant ël sens dla mostra',
 
-'exif-planarconfiguration-1' => 'për blòch (chunky)',
+'exif-planarconfiguration-1' => 'dàit a blòch',
 'exif-planarconfiguration-2' => 'an planar',
 
 'exif-xyresolution-i' => '$1 pont për pòles (dpi)',

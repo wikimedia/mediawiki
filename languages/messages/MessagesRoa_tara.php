@@ -173,7 +173,6 @@ $messages = array(
 'qbbrowse' => 'Sfoglie',
 'qbedit' => 'Cange',
 'qbpageoptions' => 'Pàgene currende',
-'qbpageinfo' => 'Condeste',
 'qbmyoptions' => 'Pàggene mije',
 'qbspecialpages' => 'Pàggene speciale',
 'faq' => 'FAQ',

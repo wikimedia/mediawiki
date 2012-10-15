@@ -184,7 +184,6 @@ $messages = array(
 'qbbrowse' => 'Къарау',
 'qbedit' => 'Тюрлендир',
 'qbpageoptions' => 'Бу бет',
-'qbpageinfo' => 'Бетни юсюнден',
 'qbmyoptions' => 'Бетлерим',
 'qbspecialpages' => 'Къуллукъчу бетле',
 'faq' => 'FAQ',

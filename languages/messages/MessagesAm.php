@@ -182,7 +182,6 @@ $messages = array(
 'qbbrowse' => 'ቃኝ',
 'qbedit' => 'አርም',
 'qbpageoptions' => 'ይህ ገጽ',
-'qbpageinfo' => 'አግባብ',
 'qbmyoptions' => 'የኔ ገጾች',
 'qbspecialpages' => 'ልዩ ገጾች',
 'faq' => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',

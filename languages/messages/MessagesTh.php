@@ -328,7 +328,6 @@ $messages = array(
 'qbbrowse' => 'สืบค้น',
 'qbedit' => 'แก้ไข',
 'qbpageoptions' => 'หน้านี้',
-'qbpageinfo' => 'บริบท',
 'qbmyoptions' => 'หน้าของฉัน',
 'qbspecialpages' => 'หน้าพิเศษ',
 'faq' => 'คำถามถามบ่อย',

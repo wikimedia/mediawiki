@@ -176,7 +176,6 @@ $messages = array(
 'qbbrowse' => '查看',
 'qbedit' => '编写',
 'qbpageoptions' => '个页',
-'qbpageinfo' => '个页信息',
 'qbmyoptions' => '偶𠮶选项',
 'qbspecialpages' => '特殊页',
 'faq' => 'FAQ',

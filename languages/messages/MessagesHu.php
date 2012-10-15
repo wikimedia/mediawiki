@@ -456,7 +456,6 @@ $messages = array(
 'qbbrowse' => 'Böngészés',
 'qbedit' => 'Szerkesztés',
 'qbpageoptions' => 'Lapbeállítások',
-'qbpageinfo' => 'Lapinformáció',
 'qbmyoptions' => 'Lapjaim',
 'qbspecialpages' => 'Speciális lapok',
 'faq' => 'GyIK',

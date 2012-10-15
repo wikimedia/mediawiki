@@ -180,7 +180,6 @@ $messages = array(
 'qbbrowse' => 'Ἀλάου',
 'qbedit' => 'Μεταγράφειν',
 'qbpageoptions' => 'Ἥδε ἡ δέλτος',
-'qbpageinfo' => 'Συγκείμενον',
 'qbmyoptions' => 'Οἱ δέλτοι μου',
 'qbspecialpages' => 'Εἰδικαὶ δέλτοι',
 'faq' => 'Τὰ πολλάκις αἰτηθέντα',

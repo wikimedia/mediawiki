@@ -520,7 +520,6 @@ $messages = array(
 'qbbrowse' => 'شولۋ',
 'qbedit' => 'وڭدەۋ',
 'qbpageoptions' => 'بۇل بەت',
-'qbpageinfo' => 'اينالا',
 'qbmyoptions' => 'بەتتەرىم',
 'qbspecialpages' => 'ارنايى بەتتەر',
 'faq' => 'ٴجىيى قويىلعان ساۋالدار',

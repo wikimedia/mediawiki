@@ -472,7 +472,6 @@ $messages = array(
 'qbbrowse' => 'ബ്രൗസ്',
 'qbedit' => 'തിരുത്തുക',
 'qbpageoptions' => 'ഈ താൾ',
-'qbpageinfo' => 'സന്ദർഭം',
 'qbmyoptions' => 'എന്റെ താളുകൾ',
 'qbspecialpages' => 'പ്രത്യേക താളുകൾ',
 'faq' => 'പതിവുചോദ്യങ്ങൾ',

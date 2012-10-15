@@ -436,7 +436,6 @@ $messages = array(
 'qbbrowse' => 'Far desfilar',
 'qbedit' => 'Modificar',
 'qbpageoptions' => 'Opcions de la pagina',
-'qbpageinfo' => 'Pagina d’entresenhas',
 'qbmyoptions' => 'Mas opcions',
 'qbspecialpages' => 'Paginas especialas',
 'faq' => 'FAQ',

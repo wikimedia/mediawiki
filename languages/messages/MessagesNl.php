@@ -495,7 +495,6 @@ $messages = array(
 'qbbrowse' => 'Bladeren',
 'qbedit' => 'Bewerken',
 'qbpageoptions' => 'Deze pagina',
-'qbpageinfo' => 'Pagina-informatie',
 'qbmyoptions' => "Mijn pagina's",
 'qbspecialpages' => 'Speciale pagina’s',
 'faq' => 'Veel gestelde vragen',
@@ -1154,6 +1153,9 @@ Deze lijkt verwijderd te zijn.',
 'edit-already-exists' => 'De pagina is niet aangemaakt.
 Deze bestaat al.',
 'defaultmessagetext' => 'Standaardinhoud',
+'content-failed-to-parse' => 'Het was niet mogelijk de inhoud van het MIME-type $2 voor het model $1 te verwerken: $3.',
+'invalid-content-data' => 'Ongeldige inhoudsgegevens',
+'content-not-allowed-here' => 'De inhoud "$1" is niet toegestaan op pagina [[$2]].',
 
 # Content models
 'content-model-wikitext' => 'wikitekst',
@@ -2095,7 +2097,7 @@ U kunt de beschrijving bewerken op de [$2 pagina met de bestandsbeschrijving].',
 'shared-repo' => 'een gedeelde mediadatabank',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => "/ * De CSS die hier geplaatst wordt, wordt opgenomen in de bestandsbeschrijvingspagina en wordt ook opgenomen op externe wiki's (via externe repositories) * /",
-'upload-disallowed-here' => 'U kunt deze afbeelding helaas niet overschrijven.',
+'upload-disallowed-here' => 'U kunt dit bestand niet overschrijven.',
 
 # File reversion
 'filerevert' => '$1 terugdraaien',
@@ -2958,6 +2960,7 @@ Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
 'immobile-target-namespace-iw' => 'Een interwikiverwijzing is geen geldige bestemming voor het hernoemen van een pagina.',
 'immobile-source-page' => 'Deze pagina kan niet hernoemd worden.',
 'immobile-target-page' => 'Het is niet mogelijk te hernoemen naar die paginanaam.',
+'bad-target-model' => 'De gewenste bestemming gebruikt een ander inhoudsmodel. Het is niet mogelijk om te zetten van $1 naar $2.',
 'imagenocrossnamespace' => 'Een mediabestand kan niet naar een andere naamruimte verplaatst worden',
 'nonfile-cannot-move-to-file' => 'Het is niet mogelijk te hernoemen van en naar de bestandsnaamruimte',
 'imagetypemismatch' => 'De nieuwe bestandsextensie is niet gelijk aan het bestandstype',
@@ -3228,6 +3231,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',
+'pageinfo-not-current' => 'Gegegevens worden mogelijk alleen weergegeven voor de huidige versie.',
 'pageinfo-header-basic' => 'Basisgegevens',
 'pageinfo-header-edits' => 'Bewerkingsgeschiedenis',
 'pageinfo-header-restrictions' => 'Paginabeveiliging',

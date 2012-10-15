@@ -195,7 +195,6 @@ $messages = array(
 'qbbrowse' => 'Navigasi',
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Kaca iki',
-'qbpageinfo' => 'Kontèks kaca',
 'qbmyoptions' => 'Opsiku',
 'qbspecialpages' => 'Kaca-kaca astaméwa',
 'faq' => 'FAQ (Pitakonan sing kerep diajokaké)',

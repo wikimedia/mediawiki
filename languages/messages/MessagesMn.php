@@ -186,7 +186,6 @@ $messages = array(
 'qbbrowse' => 'Дэлгэх',
 'qbedit' => 'Засварлах',
 'qbpageoptions' => 'Энэ хуудас',
-'qbpageinfo' => 'Агуулга',
 'qbmyoptions' => 'Миний хуудсууд',
 'qbspecialpages' => 'Тусгай хуудсууд',
 'faq' => 'Тогтмол тавигддаг асуултууд',

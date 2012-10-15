@@ -166,7 +166,6 @@ $messages = array(
 'qbbrowse' => 'لبو',
 'qbedit' => 'لکھو',
 'qbpageoptions' => 'اے صفہ',
-'qbpageinfo' => 'محول',
 'qbmyoptions' => 'میرے صفے',
 'qbspecialpages' => 'خاص صفے',
 'faq' => 'FAQ',

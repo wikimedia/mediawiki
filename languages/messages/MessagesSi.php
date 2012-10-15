@@ -339,7 +339,6 @@ $messages = array(
 'qbbrowse' => 'පිරික්සන්න',
 'qbedit' => 'සංස්කරණය',
 'qbpageoptions' => 'මෙම පිටුව',
-'qbpageinfo' => 'සන්දර්භය',
 'qbmyoptions' => 'මගේ පිටු',
 'qbspecialpages' => 'විශේෂ පිටු',
 'faq' => 'නිවිප්‍ර',

@@ -208,7 +208,6 @@ $messages = array(
 'qbbrowse' => 'Uoglůndańy',
 'qbedit' => 'Sprowjej',
 'qbpageoptions' => 'Ta zajta',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Moje zajty',
 'qbspecialpages' => 'Szpecyjalne zajty',
 'faq' => 'FAQ',

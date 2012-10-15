@@ -418,7 +418,6 @@ $messages = array(
 'qbbrowse' => 'Qalleb',
 'qbedit' => 'Immodifika',
 'qbpageoptions' => 'Din il-paġna',
-'qbpageinfo' => 'Kuntest',
 'qbmyoptions' => 'Il-paġni tiegħi',
 'qbspecialpages' => 'Paġni speċjali',
 'faq' => 'Mistoqsijiet komuni',

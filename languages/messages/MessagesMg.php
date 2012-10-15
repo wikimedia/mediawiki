@@ -361,7 +361,6 @@ $messages = array(
 'qbbrowse' => 'Tadiavina',
 'qbedit' => 'Hanova',
 'qbpageoptions' => 'Ity pejy ity',
-'qbpageinfo' => 'Pejy fanoroana',
 'qbmyoptions' => 'Ny pejiko',
 'qbspecialpages' => 'Pejy manokana',
 'faq' => 'FMM',

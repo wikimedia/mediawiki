@@ -548,7 +548,6 @@ $messages = array(
 'qbbrowse' => 'Durchsuchen',
 'qbedit' => 'Bearbeiten',
 'qbpageoptions' => 'Seitenoptionen',
-'qbpageinfo' => 'Kontext',
 'qbmyoptions' => 'Meine Seiten',
 'qbspecialpages' => 'Spezialseiten',
 'faq' => 'Häufig gestellte Fragen',
@@ -2079,7 +2078,7 @@ Vielleicht möchtest du die Beschreibung auf der dortigen [$2 Dateibeschreibungs
 'shared-repo-from' => 'aus $1',
 'shared-repo' => 'einem gemeinsam genutzten Medienarchiv',
 'filepage.css' => '/* Das folgende CSS wird auf Dateibeschreibungsseiten, auch auf fremden Client-Wikis, geladen. */',
-'upload-disallowed-here' => 'Leider kannst du dieses Bild nicht überschreiben.',
+'upload-disallowed-here' => 'Du kannst diese Datei nicht überschreiben.',
 
 # File reversion
 'filerevert' => 'Zurücksetzen von „$1“',
@@ -3176,7 +3175,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 
 # Info page
 'pageinfo-title' => 'Informationen zu „$1“',
-'pageinfo-not-current' => 'Die Information könnte nur für die aktuelle Version angezeigt werden.',
+'pageinfo-not-current' => 'Diese Informationen können nur für die aktuelle Version angezeigt werden.',
 'pageinfo-header-basic' => 'Basisinformationen',
 'pageinfo-header-edits' => 'Bearbeitungsgeschichte',
 'pageinfo-header-restrictions' => 'Seitenschutz',

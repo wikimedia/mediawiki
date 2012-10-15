@@ -278,7 +278,6 @@ $messages = array(
 'qbbrowse' => 'Blättre',
 'qbedit' => 'Ändere',
 'qbpageoptions' => 'Sytenoptione',
-'qbpageinfo' => 'Sytedate',
 'qbmyoptions' => 'Ystellige',
 'qbspecialpages' => 'Spezialsytene',
 'faq' => 'Froge, wo vilmol gstellt wäre',

@@ -274,7 +274,6 @@ $messages = array(
 'qbbrowse' => 'Sungsi',
 'qbedit' => 'Édit',
 'qbpageoptions' => 'Kaca ieu',
-'qbpageinfo' => 'Kontéks',
 'qbmyoptions' => 'Kaca kuring',
 'qbspecialpages' => 'Kaca husus',
 'faq' => 'NLD',

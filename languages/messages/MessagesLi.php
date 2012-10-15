@@ -301,7 +301,6 @@ $messages = array(
 'qbbrowse' => 'Bladere',
 'qbedit' => 'Bewirke',
 'qbpageoptions' => 'Pagina-opties',
-'qbpageinfo' => 'Pagina-informatie',
 'qbmyoptions' => 'mien opties',
 'qbspecialpages' => "Speciaal pagina's",
 'faq' => 'FAQ (väölgesjtèlde vraoge)',

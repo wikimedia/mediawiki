@@ -269,7 +269,6 @@ $messages = array(
 'qbbrowse' => 'Arakatu',
 'qbedit' => 'Aldatu',
 'qbpageoptions' => 'Orrialde hau',
-'qbpageinfo' => 'Testuingurua',
 'qbmyoptions' => 'Nire orrialdeak',
 'qbspecialpages' => 'Aparteko orrialdeak',
 'faq' => 'Maiz egindako galderak',

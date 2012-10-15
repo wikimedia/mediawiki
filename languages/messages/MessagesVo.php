@@ -248,7 +248,6 @@ $messages = array(
 'qbbrowse' => 'Padön',
 'qbedit' => 'Redakön',
 'qbpageoptions' => 'Pad at',
-'qbpageinfo' => 'Yumed',
 'qbmyoptions' => 'Pads obik',
 'qbspecialpages' => 'Pads patik',
 'faq' => 'Säks suvo pasäköls',

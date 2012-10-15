@@ -369,7 +369,6 @@ $messages = array(
 'qbbrowse' => 'Navegar',
 'qbedit' => 'Editar',
 'qbpageoptions' => 'Esta páxina',
-'qbpageinfo' => 'Contexto',
 'qbmyoptions' => 'As miñas páxinas',
 'qbspecialpages' => 'Páxinas especiais',
 'faq' => 'Preguntas máis frecuentes',
@@ -3062,6 +3061,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 
 # Info page
 'pageinfo-title' => 'Información sobre "$1"',
+'pageinfo-not-current' => 'Unicamente se pode mostrar a información sobre a revisión actual.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de edicións',
 'pageinfo-header-restrictions' => 'Protección da páxina',

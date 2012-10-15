@@ -454,7 +454,6 @@ $messages = array(
 'qbbrowse' => 'Fâre dèfelar',
 'qbedit' => 'Changiér',
 'qbpageoptions' => 'Ceta pâge',
-'qbpageinfo' => 'Contèxto',
 'qbmyoptions' => 'Mes pâges',
 'qbspecialpages' => 'Pâges spèciâles',
 'faq' => 'Quèstions sovent posâyes',

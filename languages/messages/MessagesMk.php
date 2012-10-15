@@ -491,7 +491,6 @@ $messages = array(
 'qbbrowse' => 'Прелистај',
 'qbedit' => 'Уреди',
 'qbpageoptions' => 'Оваа страница',
-'qbpageinfo' => 'Содржина на страница',
 'qbmyoptions' => 'Мои страници',
 'qbspecialpages' => 'Специјални страници',
 'faq' => 'ЧПП',
@@ -3205,6 +3204,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Информации за „$1“',
+'pageinfo-not-current' => 'Информациите може да се прикажат само за тековната ревизија.',
 'pageinfo-header-basic' => 'Основни информации',
 'pageinfo-header-edits' => 'Историја на уредувања',
 'pageinfo-header-restrictions' => 'Заштита на страницата',

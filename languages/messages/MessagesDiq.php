@@ -359,10 +359,10 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style' => 'Cayê vurnayışi de tipê nuştışi:',
-'editfont-default' => 'Hesıbyayiya rovıteri',
-'editfont-monospace' => 'Tipê nustey sabıtcagırewtoği',
-'editfont-sansserif' => 'Tipê nustey Sans-serifi',
-'editfont-serif' => 'Tipê nustey Serifi',
+'editfont-default' => 'Qerar cıgeyraoği dest dero',
+'editfont-monospace' => 'Tipê nusteyê sabıtcagırewtoği',
+'editfont-sansserif' => 'Babetê Sans-serifi',
+'editfont-serif' => 'Tipê nusteyê serifi',
 
 # Dates
 'sunday' => 'Bazar',
@@ -372,18 +372,18 @@ $messages = array(
 'thursday' => 'Pancşeme',
 'friday' => 'Êne',
 'saturday' => 'Bahdê êni',
-'sun' => 'Baz',
-'mon' => 'Ber',
+'sun' => 'Bzr',
+'mon' => 'Brr',
 'tue' => 'Tlt',
 'wed' => 'Çrş',
-'thu' => 'Pnş',
+'thu' => 'Pşm',
 'fri' => 'Êne',
 'sat' => 'Bah',
 'january' => 'Çele',
 'february' => 'Zemherı',
 'march' => 'Mert',
-'april' => 'Lisane',
-'may_long' => 'Gulan',
+'april' => 'Lizan',
+'may_long' => 'Vılıkan',
 'june' => 'Heziran',
 'july' => 'Paliyan',
 'august' => 'Tebaxe',
@@ -394,8 +394,8 @@ $messages = array(
 'january-gen' => 'Çele',
 'february-gen' => 'Zemherı',
 'march-gen' => 'Mert',
-'april-gen' => 'Lisan',
-'may-gen' => 'Gulan',
+'april-gen' => 'Lizan',
+'may-gen' => 'Vılıkan',
 'june-gen' => 'Heziran',
 'july-gen' => 'Paliyan',
 'august-gen' => 'Tebaxe',
@@ -441,11 +441,11 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '(zerreyê teqeyê newey de beno a)',
+'newwindow' => '(teqa da newi de abena)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşêri...',
 'mypage' => 'Pela mı',
-'mytalk' => 'Verênayışê mı',
+'mytalk' => 'Behsê mı',
 'anontalk' => 'Pela werênayışê nê IPy',
 'navigation' => 'Geyrayış',
 'and' => '&#32;u',
@@ -455,7 +455,6 @@ $messages = array(
 'qbbrowse' => 'Rovete',
 'qbedit' => 'Bıvurne',
 'qbpageoptions' => 'Ena pele',
-'qbpageinfo' => 'Gıre',
 'qbmyoptions' => 'Pelê mı',
 'qbspecialpages' => 'Peley xısusi',
 'faq' => 'PZP (Persê ke zehf persiyenê)',
@@ -904,13 +903,13 @@ Parola vêrdiye: $2',
 # Edit pages
 'summary' => 'Xelese:',
 'subject' => 'Mewzu/serrêze:',
-'minoredit' => 'Vurnayışo qıcek',
+'minoredit' => 'Eno vurnayışo de qıckeko',
 'watchthis' => 'Ena perer teqib ke',
 'savearticle' => 'Pele qeyd ke',
 'preview' => 'Verqayt',
 'showpreview' => 'Verqayti bımocne',
 'showlivepreview' => 'Verqayto cıwın',
-'showdiff' => 'Vurnayışa bıvin',
+'showdiff' => 'Vurnayışan bımocne',
 'anoneditwarning' => 'Teme!: Şıma bı hesabê xo nıkewtê cı. Hurêndiya namey şıma dı IP-adresa şıma qeyd bena u asena.',
 'anonpreviewwarning' => "''Ti hama nicikewte. Qeyd kerdiş zerre tarixê pele de adresê IP yê tu keyd keno.''",
 'missingsummary' => "'''DİQET:''' Şıma kılmnuşte nıkerd.
@@ -1996,7 +1995,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'shared-repo' => 'yew embarê repositoryî',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => '/* CSS placed here is included on the file description page, also included on foreign client wikis */',
-'upload-disallowed-here' => 'Nê asengi sero theba nênusneyêno.',
+'upload-disallowed-here' => 'Şıma na dosya de teba nênusnayo.',
 
 # File reversion
 'filerevert' => '$1 reyna biyere',
@@ -2313,8 +2312,8 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
-'watchlist' => 'lista mına seyr-kerdışi',
-'mywatchlist' => 'Listey taqiban',
+'watchlist' => 'Listey teqiban',
+'mywatchlist' => 'Listey teqiban',
 'watchlistfor2' => 'Qandê $1 ($2)',
 'nowatchlist' => 'listeya temaşa kerdıişê şıma de yew madde zi çina.',
 'watchlistanontext' => 'qey vurnayişê maddeya listeya temaşakerdişi $1.',
@@ -2572,7 +2571,7 @@ $1',
 # Contributions
 'contributions' => 'İştiraqê karberi',
 'contributions-title' => 'Dekerdenê karber de $1',
-'mycontris' => 'Dekerdeni',
+'mycontris' => 'Dekerdenê mı',
 'contribsub2' => 'Qandê $1 ($2)',
 'nocontribs' => 'Ena kriteriya de vurnayîş çini yo.',
 'uctop' => '(top)',
@@ -3591,6 +3590,7 @@ mw.loader.using( 'jquery.cookie', function() {
 
 # Info page
 'pageinfo-title' => 'Heq tê "$1"\'i',
+'pageinfo-not-current' => 'Malumat tenya qande rocane rewizyoni mocneyêno.',
 'pageinfo-header-basic' => 'Seron zanayış',
 'pageinfo-header-edits' => 'Vurnayışi verêni',
 'pageinfo-header-restrictions' => 'Xısusiyetê pela',
@@ -4421,7 +4421,7 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'vurnayışanê eleqadari bıvin',
-'watchlisttools-edit' => 'listey taqiban bıvinê u bıvurnê',
+'watchlisttools-edit' => 'Lista seyrkerdışi bıvênên u bıvurnên',
 'watchlisttools-raw' => 'Listeyê seyr-kerdışi bıvin',
 
 # Iranian month names

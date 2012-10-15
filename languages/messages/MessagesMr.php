@@ -464,7 +464,6 @@ $messages = array(
 'qbbrowse' => 'न्याहाळा',
 'qbedit' => 'संपादन',
 'qbpageoptions' => 'हे पान',
-'qbpageinfo' => 'सामग्री',
 'qbmyoptions' => 'माझी पाने',
 'qbspecialpages' => 'विशेष पाने',
 'faq' => 'नेहमीची प्रश्नावली',

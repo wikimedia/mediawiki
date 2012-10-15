@@ -197,7 +197,6 @@ $messages = array(
 'qbbrowse' => 'Ìṣíwò',
 'qbedit' => 'Àtúnṣe',
 'qbpageoptions' => 'Ojúewé yi',
-'qbpageinfo' => 'Àjọwípọ̀',
 'qbmyoptions' => 'Àwọn ojúewé mi',
 'qbspecialpages' => 'Àwọn ojúewé pàtàkì',
 'faq' => 'FAQ',

@@ -323,7 +323,6 @@ $messages = array(
 'qbbrowse' => 'Furchal',
 'qbedit' => 'Kemmañ',
 'qbpageoptions' => 'Pajenn an dibaboù',
-'qbpageinfo' => 'Pajenn gelaouiñ',
 'qbmyoptions' => 'Ma dibaboù',
 'qbspecialpages' => 'Pajennoù dibar',
 'faq' => 'FAG',

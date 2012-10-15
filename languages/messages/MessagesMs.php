@@ -338,7 +338,6 @@ $messages = array(
 'qbbrowse' => 'Semak imbas',
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Laman ini',
-'qbpageinfo' => 'Konteks',
 'qbmyoptions' => 'Laman-laman saya',
 'qbspecialpages' => 'Laman khas',
 'faq' => 'Soalan Lazim',

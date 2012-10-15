@@ -457,7 +457,6 @@ $messages = array(
 'qbbrowse' => 'Selaa',
 'qbedit' => 'Muokkaa',
 'qbpageoptions' => 'Sivuasetukset',
-'qbpageinfo' => 'Sivun tiedot',
 'qbmyoptions' => 'Asetukset',
 'qbspecialpages' => 'Toimintosivut',
 'faq' => 'Usein kysytyt kysymykset',
