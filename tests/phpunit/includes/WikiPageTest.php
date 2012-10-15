@@ -590,6 +590,21 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		return $po;
 	}
 
+	/**
+	 * @dataProvider provideGetParserOutput
+	 */
+	public function testGetParserOutput_nonexisting( ) {
+		static $count = 0;
+		$count ++;
+
+		$page = new WikiPage( new Title( "testGetParserOutput_nonexisting_$count" ) );
+
+		$opt = new ParserOptions();
+		$po = $page->getParserOutput( $opt );
+
+		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing pages." );
+	}
+
 	static $sections =
 
 		"Intro
