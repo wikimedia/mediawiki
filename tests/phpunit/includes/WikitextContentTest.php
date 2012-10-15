@@ -105,8 +105,13 @@ just a test"
 		$content = $this->newContent( $text );
 
 		$sectionContent = $content->getSection( $sectionId );
+		if ( is_object( $sectionContent ) ) {
+			$sectionText = $sectionContent->getNativeData();
+		} else {
+			$sectionText = $sectionContent;
+		}
 
-		$this->assertEquals( $expectedText, is_null( $sectionContent ) ? null : $sectionContent->getNativeData() );
+		$this->assertEquals( $expectedText, $sectionText );
 	}
 
 	public function dataReplaceSection() {
