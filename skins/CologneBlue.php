@@ -669,7 +669,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			. "<input type='submit' class=\"searchButton\" name=\"go\" value=\"" . wfMessage( 'searcharticle' )->escaped() . "\" />";
 
 		if( $wgUseTwoButtonsSearchForm ) {
-			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'search' )->escaped() . "\" />\n";
+			$s .= " <input type='submit' class=\"searchButton\" name=\"fulltext\" value=\"" . wfMessage( 'searchbutton' )->escaped() . "\" />\n";
 		} else {
 			$s .= '<div><a href="' . $action . '" rel="search">' . wfMessage( 'powersearch-legend' )->escaped() . "</a></div>\n";
 		}
