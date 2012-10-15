@@ -619,7 +619,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$localPath = $this->getLocalPath( $path );
 		if ( !file_exists( $localPath ) ) {
 			$msg = __METHOD__.": style file not found: \"$localPath\"";
-			wfErrorLog( $msg, 'resourceloader' );
+			wfDebugLog( 'resourceloader', $msg );
 			throw new MWException( $msg );
 		}
 		$style = file_get_contents( $localPath );
