@@ -178,7 +178,7 @@ class LegacyTemplate extends BaseTemplate {
 
 		$search = $wgRequest->getText( 'search' );
 
-		$s = '<form id="searchform' . $this->searchboxes . '" name="search" class="inline" method="post" action="'
+		$s = '<form id="searchform' . $this->searchboxes . '" name="search" class="inline mw-search" method="post" action="'
 		  . $this->getSkin()->escapeSearchLink() . "\">\n"
 		  . '<input type="text" id="searchInput' . $this->searchboxes . '" name="search" size="19" value="'
 		  . htmlspecialchars( substr( $search, 0, 256 ) ) . "\" />\n"

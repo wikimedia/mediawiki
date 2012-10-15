@@ -658,7 +658,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		$search = $this->getSkin()->getRequest()->getText( 'search' );
 		$action = $this->data['searchaction'];
-		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline\" action=\"$action\">";
+		$s = "<form id=\"searchform-" . htmlspecialchars($which) . "\" method=\"get\" class=\"inline mw-search\" action=\"$action\">";
 		if( $which == 'footer' ) {
 			$s .= wfMessage( 'qbfind' )->text() . ": ";
 		}

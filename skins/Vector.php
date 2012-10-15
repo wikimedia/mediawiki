@@ -456,7 +456,7 @@ class VectorTemplate extends BaseTemplate {
 ?>
 <div id="p-search">
 	<h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
-	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
+	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform" class="mw-search">
 		<?php if ( $wgVectorUseSimpleSearch && $this->getSkin()->getUser()->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
 			<?php if ( $this->data['rtl'] ): ?>

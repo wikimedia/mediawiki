@@ -203,7 +203,7 @@ echo $footerEnd;
 	<div id="p-search" class="portlet">
 		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div id="searchBody" class="pBody">
-			<form action="<?php $this->text('wgScript') ?>" id="searchform">
+			<form action="<?php $this->text('wgScript') ?>" id="searchform" class="mw-search">
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
 				<?php echo $this->makeSearchInput(array( "id" => "searchInput" )); ?>
 
