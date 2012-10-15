@@ -176,10 +176,10 @@ class SquidPurgeClient {
 	 * @param $url string
 	 */
 	public function queuePurge( $url ) {
-		global $wgPurgeHttp11;
+		global $wgSquidPurgeUseHostHeader;
 		$url = SquidUpdate::expand( str_replace( "\n", '', $url ) );
 		$request = array();
-		if ( $wgPurgeHttp11 ) {
+		if ( $wgSquidPurgeUseHostHeader ) {
 			$url = wfParseUrl( $url );
 			$host = $url['host'];
 			if ( isset( $url['port'] ) && strlen( $url['port'] ) > 0 ) {

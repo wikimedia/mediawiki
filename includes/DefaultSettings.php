@@ -2059,12 +2059,25 @@ $wgSquidServersNoPurge = array();
 $wgMaxSquidPurgeTitles = 400;
 
 /**
- * Whether to use HTTP/1.1 for squid purge requests
- * false - Use HTTP/1.0 with a full url in the PURGE request.
- * true - Use HTTP/1.1 with a Host header and PURGE path.
- * @since 1.20
+ * Whether to use a Host header in purge requests sent to the proxy servers
+ * configured in $wgSquidServers. Set this to false to support Squid 
+ * configured in forward-proxy mode.
+ *
+ * If this is set to true, a Host header will be sent, and only the path
+ * component of the URL will appear on the request line, as if the request
+ * were a non-proxy HTTP 1.1 request. Varnish only supports this style of 
+ * request. Squid supports this style of request only if reverse-proxy mode
+ * (http_port ... accel) is enabled.
+ *
+ * If this is set to false, no Host header will be sent, and the absolute URL
+ * will be sent in the request line, as is the standard for an HTTP proxy
+ * request in both HTTP 1.0 and 1.1. This style of request is not supported
+ * by Varnish, but is supported by Squid in either configuration (forward or
+ * reverse). 
+ *
+ * @since 1.21
  */
-$wgPurgeHttp11 = false;
+$wgSquidPurgeUseHostHeader = true;
 
 /**
  * Routing configuration for HTCP multicast purging. Add elements here to

@@ -14,9 +14,6 @@ production.
 * (bug 29374) $wgVectorUseSimpleSearch is now enabled by default.
 * Deprecated $wgAllowRealName is removed. Use $wgHiddenPrefs[] = 'realname'
   instead.
-* Added a $wgPurgeHttp11 setting to allow SquidPurgeClient to send PURGE requests
-  using HTTP/1.1 and a Host header instead of sending HTTP/1.0 requests with the
-  whole url inside the PURGE <...> HTTP/1.0 line.
 
 === New features in 1.21 ===
 * (bug 34876) jquery.makeCollapsible has been improved in performance.
@@ -38,6 +35,11 @@ production.
   recentchanges table.
 * (bug 32951) Do not register internal externals with absolute protocol,
   when server has relative protocol.
+* (bug 39005) When purging proxies listed in $wgSquidServers using HTTP PURGE 
+  method requests, we now send a Host header by default, for Varnish 
+  compatibility. This also works with Squid in reverse-proxy mode. If you wish 
+  to support Squid configured in forward-proxy mode, set 
+  $wgSquidPurgeUseHostHeader to false.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
