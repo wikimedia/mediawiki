@@ -114,7 +114,7 @@ class SiteListTest extends MediaWikiTestCase {
 	 */
 	public function testHasGlobalId( $sites ) {
 		$this->assertFalse( $sites->hasSite( 'non-existing-global-id' ) );
-		$this->assertFalse( $sites->hasInternalId( 72010101010 ) );
+		$this->assertFalse( $sites->hasInternalId( 720101010 ) );
 
 		if ( !$sites->isEmpty() ) {
 			/**
