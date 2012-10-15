@@ -77,6 +77,8 @@ abstract class ContentHandler {
 			return $content->getNativeData();
 		}
 
+		wfDebugLog( 'ContentHandler', 'Accessing ' . $content->getModel() . ' content as text!' );
+
 		if ( $wgContentHandlerTextFallback == 'fail' ) {
 			throw new MWException(
 				"Attempt to get text from Content with model " .
@@ -316,6 +318,9 @@ abstract class ContentHandler {
 				throw new MWException( "$class from \$wgContentHandlers is not compatible with ContentHandler" );
 			}
 		}
+
+		wfDebugLog( 'ContentHandler', 'Created handler for ' . $modelId
+					. ': ' . get_class( $handler ) );
 
 		ContentHandler::$handlers[$modelId] = $handler;
 		return ContentHandler::$handlers[$modelId];
