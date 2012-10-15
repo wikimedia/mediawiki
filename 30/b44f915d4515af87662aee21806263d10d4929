@@ -1,0 +1,8 @@
+Change-Id: I30b44f915d4515af87662aee21806263d10d4929
+Code-Review+2: Reedy <reedy@wikimedia.org>
+Verified+1: Reedy <reedy@wikimedia.org>
+Submitted-by: Reedy <reedy@wikimedia.org>
+Submitted-at: Mon, 15 Oct 2012 18:05:37 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/28062
+Project: mediawiki/core
+Branch: refs/heads/wmf/1.21wmf1
