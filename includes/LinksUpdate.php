@@ -320,10 +320,10 @@ class LinksUpdate extends SqlDataUpdate {
 		}
 		$where = array( $fromField => $this->mId );
 		if ( $table == 'pagelinks' || $table == 'templatelinks' || $table == 'iwlinks' || $table == 'categorylinks' ) {
-			if ( $table == 'iwlinks' ) {
+			if ( $table === 'iwlinks' ) {
 				$baseKey = 'iwl_prefix';
 				$subKey = 'iwl_title';
-			} else if ( $table == 'categorylinks' ) {
+			} elseif ( $table === 'categorylinks' ) {
 				$baseKey = 'cl_to';
 				$subKey = 'cl_collation';
 			} else {
