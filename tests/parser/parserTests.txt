@@ -72,6 +72,18 @@ Template:echo
 !! endarticle
 
 !! article
+Template:echo_with_span
+!! text
+<span>{{{1}}}</span>
+!! endarticle
+
+!! article
+Template:echo_with_div
+!! text
+<div>{{{1}}}</div>
+!! endarticle
+
+!! article
 Template:attr_str
 !! text
 {{{1}}}="{{{2}}}"
@@ -4705,6 +4717,48 @@ Templates: Tables: 4f. Generating a single tag of a HTML table
 <table><tr><td>foo</td></tr>{{echo|</table>}}
 !!result
 <table><tr><td>foo</td></tr></table>
+
+!!end
+
+!!test
+Templates: Ugly nesting: 1. Quotes opened/closed across templates (echo)
+!!input
+{{echo|''a}}{{echo|b''c''d}}{{echo|''e}}
+!!result
+<p><i>ab</i>c<i>d</i>e
+</p>
+!!end
+
+!!test
+Templates: Ugly nesting: 2. Quotes opened/closed across templates (echo_with_span)
+(PHP parser generates misnested html)
+!! options
+disabled
+!!input
+{{echo_with_span|''a}}{{echo_with_span|b''c''d}}{{echo_with_span|''e}}
+!!result
+<p><span><i>a</i></span><i><span>b</span></i><span>c</span><i>d</i><span>e</span></p>
+!!end
+
+!!test
+Templates: Ugly nesting: 3. Quotes opened/closed across templates (echo_with_div)
+(PHP parser generates misnested html)
+!! options
+disabled
+!!input
+{{echo_with_div|''a}}{{echo_with_div|b''c''d}}{{echo_with_div|''e}}
+!!result
+<div><i>a</i></div>
+<div><i>b</i>c<i>d</i></div>
+<div>e</div>
+!!end
+
+!!test
+Templates: Ugly nesting: 4. Divs opened/closed across templates
+!!input
+a<div>b{{echo|c</div>d}}e
+!!result
+a<div>bc</div>de
 
 !!end
 
