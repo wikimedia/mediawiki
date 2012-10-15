@@ -783,7 +783,6 @@ XHTML id names.
 'qbbrowse'       => 'Browse',
 'qbedit'         => 'Edit',
 'qbpageoptions'  => 'This page',
-'qbpageinfo'     => 'Context',
 'qbmyoptions'    => 'My pages',
 'qbspecialpages' => 'Special pages',
 'faq'            => 'FAQ',

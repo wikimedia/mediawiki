@@ -178,7 +178,6 @@ $wgMessageStructure = array(
 		'qbbrowse',
 		'qbedit',
 		'qbpageoptions',
-		'qbpageinfo',
 		'qbmyoptions',
 		'qbspecialpages',
 		'faq',
