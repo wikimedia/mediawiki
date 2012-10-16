@@ -113,10 +113,7 @@ class JobQueueDB extends JobQueue {
 		$uuid = wfRandomString( 32 ); // pop attempt
 
 		$dbw = $this->getMasterDB();
-		if ( $dbw->trxLevel() ) {
-			wfWarn( "Attempted to pop a job in a transaction; committing first." );
-			$dbw->commit(); // push existing transaction
-		}
+		$dbw->commit( __METHOD__, 'flush' ); // flush existing transaction
 
 		$job = false; // job popped off
 		$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
