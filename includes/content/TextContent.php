@@ -68,9 +68,9 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * returns the text's size in bytes.
+	 * Returns the text's size in bytes.
 	 *
-	 * @return int The size
+	 * @return int
 	 */
 	public function getSize() {
 		$text = $this->getNativeData();
@@ -189,32 +189,30 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns a generic ParserOutput object, wrapping the HTML returned by
-	 * getHtml().
+	 * Fills the provided ParserOutput object with information derived from the content.
+	 * Unless  $generateHtml was false, this includes an HTML representation of the content
+	 * provided by getHtml().
+	 *
+	 * For content models listed in $wgTextModelsToParse, this method will call the MediaWiki
+	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.
+	 *
+	 * Subclasses may override this to provide custom content processing.
+	 * For custom HTML generation alone, it is sufficient to override getHtml().
 	 *
 	 * @param $title Title Context title for parsing
 	 * @param int|null $revId Revision ID (for {{REVISIONID}})
 	 * @param $options ParserOptions|null Parser options
 	 * @param bool $generateHtml Whether or not to generate HTML
-	 *
-	 * @return ParserOutput representing the HTML form of the text
+	 * @param $output ParserOutput The output object to fill (reference).
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
+	protected function fillParserOutput( Title $title, $revId,
+		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		global $wgParser, $wgTextModelsToParse;
 
-		if ( !$options ) {
-			//NOTE: use canonical options per default to produce cacheable output
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
-		}
-
 		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
-			// parse just to get links etc into the database
-			$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
-		} else {
-			$po = new ParserOutput();
+			// parse just to get links etc into the database, HTML is replaced below.
+			$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
 		}
 
 		if ( $generateHtml ) {
@@ -223,18 +221,19 @@ class TextContent extends AbstractContent {
 			$html = '';
 		}
 
-		$po->setText( $html );
-		return $po;
+		$output->setText( $html );
 	}
 
 	/**
 	 * Generates an HTML version of the content, for display. Used by
-	 * getParserOutput() to construct a ParserOutput object.
+	 * fillParserOutput() to provide HTML for the ParserOutput object.
 	 *
-	 * This default implementation just calls getHighlightHtml(). Content
-	 * models that have another mapping to HTML (as is the case for markup
-	 * languages like wikitext) should override this method to generate the
-	 * appropriate HTML.
+	 * Subclasses may override this to provide a custom HTML rendering.
+	 * If further information is to be derived from the content (such as
+	 * categories), the fillParserOutput() method can be overridden instead.
+	 *
+	 * For backward compatibility, this default implementation just calls
+	 * getHighlightHtml().
 	 *
 	 * @return string An HTML representation of the content
 	 */
@@ -243,13 +242,23 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Generates a syntax-highlighted version of the content, as HTML.
-	 * Used by the default implementation of getHtml().
+	 * Generates an HTML version of the content, for display.
 	 *
-	 * @return string an HTML representation of the content's markup
+	 * This default implementation returns an HTML-escaped version
+	 * of the raw text content.
+	 *
+	 * @note: the functionality of this method should really be implemented
+	 * in getHtml(), and subclasses should override getHtml() if needed.
+	 * getHighlightHtml() is kept around for backward compatibility with
+	 * extensions that already override it.
+	 *
+	 * @deprecated since 1.22. Use getHtml() instead. In particular,
+	 * subclasses overriding getHighlightHtml() should override getHtml()
+	 * instead.
+	 *
+	 * @return string an HTML representation of the content
 	 */
 	protected function getHighlightHtml() {
-		# TODO: make Highlighter interface, use highlighter here, if available
 		return htmlspecialchars( $this->getNativeData() );
 	}
 
