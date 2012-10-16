@@ -277,28 +277,21 @@ class WikitextContent extends TextContent {
 	 * using $wgParser.
 	 *
 	 * @since    1.21
+	 * @see AbstractContent::fillParserOutput().
 	 *
 	 * @param $title Title
 	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param $options ParserOptions (default: null)
 	 * @param bool $generateHtml (default: false)
-	 *
-	 * @internal param \IContextSource|null $context
-	 * @return ParserOutput representing the HTML form of the text
+	 * @param &$output ParserOutput representing the HTML form of the text,
+	 *           may be manipulated or replaced.
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		global $wgParser;
 
-		if ( !$options ) {
-			//NOTE: use canonical options per default to produce cacheable output
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
-		}
-
-		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
-		return $po;
+		$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
 	}
 
 	protected function getHtml() {
