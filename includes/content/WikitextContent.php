@@ -252,23 +252,13 @@ class WikitextContent extends TextContent {
 	 * @param $revId null
 	 * @param $options null|ParserOptions
 	 * @param $generateHtml bool
-	 *
-	 * @internal param \IContextSource|null $context
-	 * @return ParserOutput representing the HTML form of the text
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		global $wgParser;
 
-		if ( !$options ) {
-			//NOTE: use canonical options per default to produce cacheable output
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
-		}
-
-		$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
-		return $po;
+		$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
 	}
 
 	protected function getHtml() {

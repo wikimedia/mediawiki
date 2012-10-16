@@ -128,57 +128,55 @@ class TextContent extends AbstractContent {
 		return $diff;
 	}
 
-
 	/**
-	 * Returns a generic ParserOutput object, wrapping the HTML returned by
-	 * getHtml().
+	 * Fills the provided ParserOutput object with the HTML returned by getHtml().
+	 *
+	 * Subclasses may override this to provide custom rendering.
 	 *
 	 * @param $title Title Context title for parsing
 	 * @param $revId int|null Revision ID (for {{REVISIONID}})
 	 * @param $options ParserOptions|null Parser options
 	 * @param $generateHtml bool Whether or not to generate HTML
-	 *
-	 * @return ParserOutput representing the HTML form of the text
+	 * @param $output ParserOutput The output object to fill (reference).
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
+	protected function fillParserOutput( Title $title, $revId,
+		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
-		# Generic implementation, relying on $this->getHtml()
-
 		if ( $generateHtml ) {
 			$html = $this->getHtml();
 		} else {
 			$html = '';
 		}
 
-		$po = new ParserOutput( $html );
-		return $po;
+		$output->setText( $html );
 	}
 
 	/**
 	 * Generates an HTML version of the content, for display. Used by
 	 * getParserOutput() to construct a ParserOutput object.
 	 *
-	 * This default implementation just calls getHighlightHtml(). Content
-	 * models that have another mapping to HTML (as is the case for markup
-	 * languages like wikitext) should override this method to generate the
-	 * appropriate HTML.
+	 * This default implementation runs the text returned by $this->getNativeData()
+	 * through convertWhiteSpaceToHTML().
 	 *
 	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
-		return $this->getHighlightHtml();
+		return self::convertWhiteSpaceToHTML( $this->getNativeData() );
 	}
 
 	/**
-	 * Generates a syntax-highlighted version of the content, as HTML.
-	 * Used by the default implementation of getHtml().
+	 * Converts plain text to HTML, preserving line breaks and other whitespace.
 	 *
-	 * @return string an HTML representation of the content's markup
+	 * @param $msg
+	 *
+	 * @return mixed|string
 	 */
-	protected function getHighlightHtml( ) {
-		# TODO: make Highlighter interface, use highlighter here, if available
-		return htmlspecialchars( $this->getNativeData() );
+	public static function convertWhiteSpaceToHTML( $text ) {
+		$html = htmlspecialchars( $text );
+		$html = preg_replace( '/^ | $/m', '&#160;', $html );
+		$html = preg_replace( '/ /', '&#160; ', $html );
+		$html = preg_replace( '/\r\n|\r|\n/', '<br/>', $html );
+
+		return $html;
 	}
 }

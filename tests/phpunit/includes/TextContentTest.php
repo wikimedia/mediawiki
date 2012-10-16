@@ -8,8 +8,12 @@
  */
 class TextContentTest extends MediaWikiTestCase {
 
+	protected $savedContentGetParserOutput = null;
+
 	public function setup() {
-		global $wgUser;
+		global $wgUser, $wgHooks;
+
+		parent::setup();
 
 		// anon user
 		$wgUser = new User();
@@ -18,17 +22,60 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->context = new RequestContext( new FauxRequest() );
 		$this->context->setTitle( Title::newFromText( "Test" ) );
 		$this->context->setUser( $wgUser );
+
+		// bypass hooks that force custom rendering
+		if ( isset( $wgHooks['ContentGetParserOutput'] )  ) {
+			$this->savedContentGetParserOutput = $wgHooks['ContentGetParserOutput'];
+			unset( $wgHooks['ContentGetParserOutput'] );
+		}
+	}
+
+	public function teardown() {
+		// restore hooks that force custom rendering
+		if ( $this->savedContentGetParserOutput !== null ) {
+			$wgHooks['ContentGetParserOutput'] = $this->savedContentGetParserOutput;
+		}
+
+		parent::teardown();
 	}
 
 	public function newContent( $text ) {
 		return new TextContent( $text );
 	}
 
+	public function dataConvertWhiteSpaceToHTML() {
+		return array(
+			array( #0: wikitext is not processed, html escaping applies
+				"hello ''world'' & stuff",
+				"hello&#160; ''world''&#160; &amp;&#160; stuff" ),
+
+			array( #1: line breaks and indent is preserved
+				"one \n\n  two  ?\rthree\r\n four",
+				"one&#160;<br/><br/>&#160;&#160; two&#160; &#160; ?<br/>three<br/>&#160;four" ),
+		);
+	}
+
+	/**
+	 * @dataProvider dataConvertWhiteSpaceToHTML
+	 */
+	public function testConvertWhiteSpaceToHTML( $text, $expectedHtml ) {
+		$html = TextContent::convertWhiteSpaceToHTML( $text );
+		$this->assertEquals( $expectedHtml, $html );
+	}
 
 	public function dataGetParserOutput() {
 		return array(
-			array("TextContentTest_testGetParserOutput", CONTENT_MODEL_TEXT, "hello ''world'' & stuff\n", "hello ''world'' &amp; stuff"),
-			// @todo: more...?
+			array( #0: wikitext is not processed, html escaping applies
+				"TextContentTest_testGetParserOutput",
+				CONTENT_MODEL_TEXT,
+				"hello ''world'' & stuff",
+				"hello&#160; ''world''&#160; &amp;&#160; stuff" ),
+
+			array( #1: line breaks and indent is preserved
+				"TextContentTest_testGetParserOutput",
+				CONTENT_MODEL_TEXT,
+				"one \n\n  two  ?\rthree\r\n four",
+				"one&#160;<br/><br/>&#160;&#160; two&#160; &#160; ?<br/>three<br/>&#160;four" ),
 		);
 	}
 
