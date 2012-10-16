@@ -491,4 +491,18 @@ class DummyContentForTesting extends AbstractContent {
 	) {
 		return new ParserOutput( $this->getNativeData() );
 	}
+
+	/**
+	 * @see AbstractContent::fillParserOutput()
+	 *
+	 * @param $title        Title Context title for parsing
+	 * @param $revId        int|null Revision ID (for {{REVISIONID}})
+	 * @param $options      ParserOptions|null Parser options
+	 * @param $generateHtml bool Whether or not to generate HTML
+	 * @param $output       ParserOutput The output object to fill (reference).
+	 */
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output ) {
+		$output = new ParserOutput( $this->getNativeData() );
+	}
 }
