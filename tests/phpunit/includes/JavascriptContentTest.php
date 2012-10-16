@@ -15,9 +15,14 @@ class JavascriptContentTest extends TextContentTest {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("MediaWiki:Test.js", null, "hello <world>\n",
-					"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"),
-			// @todo: more...?
+			array( #0
+				"MediaWiki:Test.js", null, "function foo() { return '<hi>'; }\n",
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nfunction foo() { return '&lt;hi&gt;'; }\n\n</pre>"
+			),
+			array( #1
+				"MediaWiki:Test.js", null, "/* Foo Bar */\n",
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\n/* Foo Bar */\n\n</pre>"
+			),
 		);
 	}
 

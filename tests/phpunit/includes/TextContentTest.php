@@ -8,8 +8,12 @@
  */
 class TextContentTest extends MediaWikiTestCase {
 
+	protected $savedContentGetParserOutput = null;
+
 	public function setup() {
-		global $wgUser;
+		global $wgUser, $wgHooks;
+
+		parent::setup();
 
 		// anon user
 		$wgUser = new User();
@@ -18,6 +22,21 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->context = new RequestContext( new FauxRequest() );
 		$this->context->setTitle( Title::newFromText( "Test" ) );
 		$this->context->setUser( $wgUser );
+
+		// bypass hooks that force custom rendering
+		if ( isset( $wgHooks['ContentGetParserOutput'] )  ) {
+			$this->savedContentGetParserOutput = $wgHooks['ContentGetParserOutput'];
+			unset( $wgHooks['ContentGetParserOutput'] );
+		}
+	}
+
+	public function teardown() {
+		// restore hooks that force custom rendering
+		if ( $this->savedContentGetParserOutput !== null ) {
+			$wgHooks['ContentGetParserOutput'] = $this->savedContentGetParserOutput;
+		}
+
+		parent::teardown();
 	}
 
 	public function newContent( $text ) {
@@ -27,8 +46,17 @@ class TextContentTest extends MediaWikiTestCase {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("TextContentTest_testGetParserOutput", CONTENT_MODEL_TEXT, "hello ''world'' & stuff\n", "hello ''world'' &amp; stuff"),
-			// @todo: more...?
+			array( #0: wikitext is not processed, html escaping applies
+				"TextContentTest_testGetParserOutput",
+				CONTENT_MODEL_TEXT,
+				"hello ''world'' & stuff",
+				"hello ''world'' &amp; stuff"),
+
+			array( #1: line breaks and indent is preserved
+				"TextContentTest_testGetParserOutput",
+				CONTENT_MODEL_TEXT,
+				"one\n\n    two    ?\r\tthree\r\nfour",
+				"one<br/><br/>&nbsp; &nbsp; two&nbsp; &nbsp; ?<br/>&nbsp;&nbsp;&nbsp;&nbsp;three<br/>four"),
 		);
 	}
 

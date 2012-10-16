@@ -940,6 +940,8 @@ abstract class ContentHandler {
 	 * Returns true for content models that support caching using the
 	 * ParserCache mechanism. See WikiPage::isParserCacheUsed().
 	 *
+	 * Returns false per default.
+	 *
 	 * @since 1.21
 	 *
 	 * @return bool
@@ -1080,4 +1082,3 @@ abstract class ContentHandler {
 		return $ok;
 	}
 }
-

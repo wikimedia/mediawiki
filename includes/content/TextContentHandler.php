@@ -87,4 +87,16 @@ class TextContentHandler extends ContentHandler {
 	public function makeEmptyContent() {
 		return new TextContent( '' );
 	}
+
+	/**
+	 * @see ContentHandler::isParserCacheSupported
+	 *
+	 * Returns true for TextContent.
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function isParserCacheSupported() {
+		return true;
+	}
 }

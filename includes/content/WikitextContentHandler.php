@@ -54,6 +54,8 @@ class WikitextContentHandler extends TextContentHandler {
 	 * Returns true, because wikitext supports caching using the
 	 * ParserCache mechanism.
 	 *
+	 * @see ContentHandler::isParserCacheSupported
+	 *
 	 * @since 1.21
 	 * @return bool
 	 */

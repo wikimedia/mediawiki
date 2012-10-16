@@ -391,4 +391,50 @@ abstract class AbstractContent implements Content {
 	public function matchMagicWord( MagicWord $word ) {
 		return false;
 	}
+
+	/**
+	 * Returns a ParserOutput object, filled by a call to fillParserOutput().
+	 * Subclasses should not override this, they should override fillParserOutput() instead.
+	 *
+	 * @param $title Title Context title for parsing
+	 * @param $revId int|null Revision ID (for {{REVISIONID}})
+	 * @param $options ParserOptions|null Parser options
+	 * @param $generateHtml bool Whether or not to generate HTML
+	 *
+	 * @return ParserOutput representing the HTML form of the text
+	 */
+	public function getParserOutput( Title $title, $revId = null,
+		ParserOptions $options = null, $generateHtml = true
+	) {
+		# Generic implementation, relying on $this->getHtml()
+
+		if ( $options === null ) {
+			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+		}
+
+		$po = new ParserOutput();
+		if ( wfRunHooks( 'ContentGetParserOutput',
+			array( $this, $title, $options, $generateHtml, &$po ) ) ) {
+
+			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
+		}
+
+		return $po;
+	}
+
+	/**
+	 * Fills the provided ParserOutput object with the HTML returned by getHtml().
+	 *
+	 * @param $title Title Context title for parsing
+	 * @param $revId int|null Revision ID (for {{REVISIONID}})
+	 * @param $options ParserOptions|null Parser options
+	 * @param $generateHtml bool Whether or not to generate HTML
+	 * @param $output ParserOutput The output object to fill (reference).
+	 */
+	protected function fillParserOutput( Title $title, $revId,
+				ParserOptions $options, $generateHtml, ParserOutput &$output ) {
+
+		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
+		throw new MWException( "Subclasses of AbstractContent must override fillParserOutput!" );
+	}
 }

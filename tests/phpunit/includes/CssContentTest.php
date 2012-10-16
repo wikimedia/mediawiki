@@ -15,12 +15,16 @@ class CssContentTest extends JavascriptContentTest {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("MediaWiki:Test.css", null, "hello <world>\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"),
-			// @todo: more...?
+			array( #0
+				"MediaWiki:Test.css", null, "p > a { color:green; }\n",
+				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\np &gt; a { color:green; }\n\n</pre>"
+			),
+			array( #1
+				"MediaWiki:Test.css", null, "/* Foo Bar */\n",
+				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* Foo Bar */\n\n</pre>"
+			),
 		);
 	}
-
 
 	# =================================================================================================================
 

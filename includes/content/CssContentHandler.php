@@ -40,4 +40,17 @@ class CssContentHandler extends TextContentHandler {
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
 	}
+
+	/**
+	 * @see ContentHandler::isParserCacheSupported
+	 *
+	 * Currently returns false, so the ShowRawCssJs hook has a chance to intercept rendering.
+	 * Can be set to true once extensions use ContentGetParserOutput instead of ShowRawCssJs.
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function isParserCacheSupported() {
+		return false;
+	}
 }
