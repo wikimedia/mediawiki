@@ -11,19 +11,25 @@ abstract class AbstractContent implements Content {
 	 * Name of the content model this Content object represents.
 	 * Use with CONTENT_MODEL_XXX constants
 	 *
+	 * @since 1.21
+	 *
 	 * @var string $model_id
 	 */
 	protected $model_id;
 
 	/**
-	 * @param String $model_id
+	 * @param string|null $modelId
+	 *
+	 * @since 1.21
 	 */
-	public function __construct( $model_id = null ) {
-		$this->model_id = $model_id;
+	public function __construct( $modelId = null ) {
+		$this->model_id = $modelId;
 	}
 
 	/**
-	 * @see Content::getModel()
+	 * @see Content::getModel
+	 *
+	 * @since 1.21
 	 */
 	public function getModel() {
 		return $this->model_id;
@@ -33,41 +39,57 @@ abstract class AbstractContent implements Content {
 	 * Throws an MWException if $model_id is not the id of the content model
 	 * supported by this Content object.
 	 *
-	 * @param $model_id int the model to check
+	 * @since 1.21
+	 *
+	 * @param string $modelId The model to check
 	 *
 	 * @throws MWException
 	 */
-	protected function checkModelID( $model_id ) {
-		if ( $model_id !== $this->model_id ) {
-			throw new MWException( "Bad content model: " .
+	protected function checkModelID( $modelId ) {
+		if ( $modelId !== $this->model_id ) {
+			throw new MWException(
+				"Bad content model: " .
 				"expected {$this->model_id}  " .
-				"but got $model_id." );
+				"but got $modelId."
+			);
 		}
 	}
 
 	/**
-	 * @see Content::getContentHandler()
+	 * @see Content::getContentHandler
+	 *
+	 * @since 1.21
 	 */
 	public function getContentHandler() {
 		return ContentHandler::getForContent( $this );
 	}
 
 	/**
-	 * @see Content::getDefaultFormat()
+	 * @see Content::getDefaultFormat
+	 *
+	 * @since 1.21
 	 */
 	public function getDefaultFormat() {
 		return $this->getContentHandler()->getDefaultFormat();
 	}
 
 	/**
-	 * @see Content::getSupportedFormats()
+	 * @see Content::getSupportedFormats
+	 *
+	 * @since 1.21
 	 */
 	public function getSupportedFormats() {
 		return $this->getContentHandler()->getSupportedFormats();
 	}
 
 	/**
-	 * @see Content::isSupportedFormat()
+	 * @see Content::isSupportedFormat
+	 *
+	 * @param string $format
+	 *
+	 * @since 1.21
+	 *
+	 * @return boolean
 	 */
 	public function isSupportedFormat( $format ) {
 		if ( !$format ) {
@@ -78,42 +100,66 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * Throws an MWException if $this->isSupportedFormat( $format ) doesn't
+	 * Throws an MWException if $this->isSupportedFormat( $format ) does not
 	 * return true.
 	 *
-	 * @param $format
+	 * @since 1.21
+	 *
+	 * @param string $format
 	 * @throws MWException
 	 */
 	protected function checkFormat( $format ) {
 		if ( !$this->isSupportedFormat( $format ) ) {
-			throw new MWException( "Format $format is not supported for content model " .
-				$this->getModel() );
+			throw new MWException(
+				"Format $format is not supported for content model " .
+				$this->getModel()
+			);
 		}
 	}
 
 	/**
 	 * @see Content::serialize
+	 *
+	 * @param string|null $format
+	 *
+	 * @since 1.21
+	 *
+	 * @return string
 	 */
 	public function serialize( $format = null ) {
 		return $this->getContentHandler()->serializeContent( $this, $format );
 	}
 
 	/**
-	 * @see Content::isEmpty()
+	 * @see Content::isEmpty
+	 *
+	 * @since 1.21
+	 *
+	 * @return boolean
 	 */
 	public function isEmpty() {
 		return $this->getSize() === 0;
 	}
 
 	/**
-	 * @see Content::isValid()
+	 * @see Content::isValid
+	 *
+	 * @since 1.21
+	 *
+	 * @return boolean
 	 */
 	public function isValid() {
 		return true;
 	}
 
 	/**
-	 * @see Content::equals()
+	 * @see Content::equals
+	 *
+	 * @since 1.21
+	 *
+	 * @param Content|null $that
+	 *
+	 * @return boolean
 	 */
 	public function equals( Content $that = null ) {
 		if ( is_null( $that ) ) {
@@ -173,7 +219,9 @@ abstract class AbstractContent implements Content {
 
 
 	/**
-	 * @see Content::getRedirectChain()
+	 * @see Content::getRedirectChain
+	 *
+	 * @since 1.21
 	 */
 	public function getRedirectChain() {
 		global $wgMaxRedirects;
@@ -205,15 +253,19 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @see Content::getRedirectTarget()
+	 * @see Content::getRedirectTarget
+	 *
+	 * @since 1.21
 	 */
 	public function getRedirectTarget() {
 		return null;
 	}
 
 	/**
-	 * @see Content::getUltimateRedirectTarget()
+	 * @see Content::getUltimateRedirectTarget
 	 * @note: migrated here from Title::newFromRedirectRecurse
+	 *
+	 * @since 1.21
 	 */
 	public function getUltimateRedirectTarget() {
 		$titles = $this->getRedirectChain();
@@ -221,7 +273,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @see Content::isRedirect()
+	 * @see Content::isRedirect
 	 *
 	 * @since 1.21
 	 *
@@ -232,9 +284,11 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @see Content::updateRedirect()
+	 * @see Content::updateRedirect
 	 *
 	 * This default implementation always returns $this.
+	 *
+	 * @param Title $target
 	 *
 	 * @since 1.21
 	 *
@@ -245,42 +299,54 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @see Content::getSection()
+	 * @see Content::getSection
+	 *
+	 * @since 1.21
 	 */
 	public function getSection( $sectionId ) {
 		return null;
 	}
 
 	/**
-	 * @see Content::replaceSection()
+	 * @see Content::replaceSection
+	 *
+	 * @since 1.21
 	 */
 	public function replaceSection( $section, Content $with, $sectionTitle = ''  ) {
 		return null;
 	}
 
 	/**
-	 * @see Content::preSaveTransform()
+	 * @see Content::preSaveTransform
+	 *
+	 * @since 1.21
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		return $this;
 	}
 
 	/**
-	 * @see Content::addSectionHeader()
+	 * @see Content::addSectionHeader
+	 *
+	 * @since 1.21
 	 */
 	public function addSectionHeader( $header ) {
 		return $this;
 	}
 
 	/**
-	 * @see Content::preloadTransform()
+	 * @see Content::preloadTransform
+	 *
+	 * @since 1.21
 	 */
 	public function preloadTransform( Title $title, ParserOptions $popts ) {
 		return $this;
 	}
 
 	/**
-	 * @see  Content::prepareSave()
+	 * @see Content::prepareSave
+	 *
+	 * @since 1.21
 	 */
 	public function prepareSave( WikiPage $page, $flags, $baseRevId, User $user ) {
 		if ( $this->isValid() ) {
@@ -291,7 +357,7 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @see  Content::getDeletionUpdates()
+	 * @see Content::getDeletionUpdates
 	 *
 	 * @since 1.21
 	 *
@@ -312,9 +378,11 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @see  Content::matchMagicWord()
-	 *
 	 * This default implementation always returns false. Subclasses may override this to supply matching logic.
+	 *
+	 * @see Content::matchMagicWord
+	 *
+	 * @since 1.21
 	 *
 	 * @param MagicWord $word
 	 *
