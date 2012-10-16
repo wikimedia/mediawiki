@@ -940,6 +940,8 @@ abstract class ContentHandler {
 	 * Returns true for content models that support caching using the
 	 * ParserCache mechanism. See WikiPage::isParserCacheUsed().
 	 *
+	 * Returns false per default.
+	 *
 	 * @since 1.21
 	 *
 	 * @return bool
@@ -1168,6 +1170,18 @@ class TextContentHandler extends ContentHandler {
 	public function makeEmptyContent() {
 		return new TextContent( '' );
 	}
+
+	/**
+	 * @see ContentHandler::isParserCacheSupported
+	 *
+	 * Returns true for TextContent.
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function isParserCacheSupported() {
+		return true;
+	}
 }
 
 /**
@@ -1221,8 +1235,9 @@ class WikitextContentHandler extends TextContentHandler {
 	}
 
 	/**
-	 * Returns true, because wikitext supports caching using the
-	 * ParserCache mechanism.
+	 * @see ContentHandler::isParserCacheSupported
+	 *
+	 * Returns true for WikitextContent.
 	 *
 	 * @since 1.21
 	 * @return bool
@@ -1231,8 +1246,6 @@ class WikitextContentHandler extends TextContentHandler {
 		return true;
 	}
 }
-
-# XXX: make ScriptContentHandler base class, do highlighting stuff there?
 
 /**
  * @since 1.21
@@ -1273,6 +1286,19 @@ class JavaScriptContentHandler extends TextContentHandler {
 	 */
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
+	}
+
+	/**
+	 * @see ContentHandler::isParserCacheSupported
+	 *
+	 * Currently returns false, so the ShowRawCssJs hook has a chance to intercept rendering.
+	 * Can be set to true once extensions use ContentGetParserOutput instead of ShowRawCssJs.
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function isParserCacheSupported() {
+		return false;
 	}
 }
 
@@ -1315,5 +1341,18 @@ class CssContentHandler extends TextContentHandler {
 	 */
 	public function getPageViewLanguage( Title $title, Content $content = null ) {
 		return wfGetLangObj( 'en' );
+	}
+
+	/**
+	 * @see ContentHandler::isParserCacheSupported
+	 *
+	 * Currently returns false, so the ShowRawCssJs hook has a chance to intercept rendering.
+	 * Can be set to true once extensions use ContentGetParserOutput instead of ShowRawCssJs.
+	 *
+	 * @since 1.21
+	 * @return bool
+	 */
+	public function isParserCacheSupported() {
+		return false;
 	}
 }

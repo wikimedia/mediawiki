@@ -395,16 +395,16 @@ class DummyContentForTesting extends AbstractContent {
 	}
 
 	/**
-	 * @param Title $title
-	 * @param null $revId
-	 * @param null|ParserOptions $options
-	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
+	 * Fills the provided ParserOutput object with the HTML returned by getHtml().
 	 *
-	 * @return ParserOutput
+	 * @param $title        Title Context title for parsing
+	 * @param $revId        int|null Revision ID (for {{REVISIONID}})
+	 * @param $options      ParserOptions|null Parser options
+	 * @param $generateHtml bool Whether or not to generate HTML
+	 * @param $output       ParserOutput The output object to fill (reference).
 	 */
-	public function getParserOutput( Title $title, $revId = null, ParserOptions $options = NULL, $generateHtml = true ) {
-		return new ParserOutput( $this->getNativeData() );
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output ) {
+		$output = new ParserOutput( $this->getNativeData() );
 	}
 }

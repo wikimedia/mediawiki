@@ -32,7 +32,7 @@ class JavaScriptContent extends TextContent {
 	protected function getHtml( ) {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
-		$html .= $this->getHighlightHtml( );
+		$html .= htmlspecialchars( $this->getNativeData() );
 		$html .= "\n</pre>\n";
 
 		return $html;
