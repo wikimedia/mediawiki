@@ -29,7 +29,7 @@
  */
 class JobQueueDB extends JobQueue {
 	const CACHE_TTL      = 30; // integer; seconds
-	const MAX_JOB_RANDOM = 2147483647; // [0, 2^31 - 1]
+	const MAX_JOB_RANDOM = 2147483647; // 2^31 - 1; used for job_random
 
 	/**
 	 * @see JobQueue::doIsEmpty()
