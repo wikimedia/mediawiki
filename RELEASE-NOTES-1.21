@@ -31,6 +31,8 @@ production.
 * The Job system was refactored to allow for different backing stores for queues
   as well as cross-wiki access to queues, among other things. The schema for the
   DB queue was changed to support better concurrency and reduce deadlock errors.
+* Added ApiQueryORM class to facilitate creation of query API modules based on
+  tables that have a corresponding ORMTable class.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
