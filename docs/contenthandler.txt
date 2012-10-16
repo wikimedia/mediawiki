@@ -131,7 +131,7 @@ Page content is stored in the database using the same mechanism as before. Non-t
 appropriate serialization and deserialization is handled by the Revision class.
 
 Each revision's content model and serialization format is stored in the revision table (resp. in the archive table, if
-the revision was deleted). The page's (current) content model (that is, the conent model of the latest revision) is also
+the revision was deleted). The page's (current) content model (that is, the content model of the latest revision) is also
 stored in the page table.
 
 Note however that the content model and format is only stored if it differs from the page's default, as determined by
