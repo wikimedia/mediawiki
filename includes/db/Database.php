@@ -2992,6 +2992,12 @@ abstract class DatabaseBase implements DatabaseType {
 			} elseif( $this->mTrxAutomatic ) {
 				wfWarn( "$fname: Explicit commit of implicit transaction. Something may be out of sync!" );
 			}
+		} else {
+			if ( !$this->mTrxLevel ) {
+				return false; // nothing to do
+			} elseif( !$this->mTrxAutomatic ) {
+				wfWarn( "$fname: Flushing an explicit transaction, getting out of sync!" );
+			}
 		}
 
 		$this->doCommit( $fname );
