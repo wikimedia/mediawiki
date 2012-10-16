@@ -7,13 +7,20 @@
  */
 class TextContentTest extends MediaWikiLangTestCase {
 	protected $context;
+	protected $savedContentGetParserOutput;
 
 	protected function setUp() {
+		global $wgHooks;
+
 		parent::setUp();
 
 		// Anon user
 		$user = new User();
 		$user->setName( '127.0.0.1' );
+
+		$this->context = new RequestContext( new FauxRequest() );
+		$this->context->setTitle( Title::newFromText( 'Test' ) );
+		$this->context->setUser( $user );
 
 		$this->setMwGlobals( array(
 			'wgUser' => $user,
@@ -26,9 +33,22 @@ class TextContentTest extends MediaWikiLangTestCase {
 			'wgAlwaysUseTidy' => false,
 		) );
 
-		$this->context = new RequestContext( new FauxRequest() );
-		$this->context->setTitle( Title::newFromText( 'Test' ) );
-		$this->context->setUser( $user );
+		// bypass hooks that force custom rendering
+		if ( isset( $wgHooks['ContentGetParserOutput'] )  ) {
+			$this->savedContentGetParserOutput = $wgHooks['ContentGetParserOutput'];
+			unset( $wgHooks['ContentGetParserOutput'] );
+		}
+	}
+
+	public function teardown() {
+		global $wgHooks;
+
+		// restore hooks that force custom rendering
+		if ( $this->savedContentGetParserOutput !== null ) {
+			$wgHooks['ContentGetParserOutput'] = $this->savedContentGetParserOutput;
+		}
+
+		parent::teardown();
 	}
 
 	public function newContent( $text ) {

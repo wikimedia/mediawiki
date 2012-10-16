@@ -887,6 +887,19 @@ $title: the Title in question.
 Handler functions that modify $ok should generally return false to prevent further
 hooks from further modifying $ok.
 
+'ContentGetParserOutput': Customize parser output for a given content object,
+called by AbstractContent::getParserOutput. May be used to override the normal
+model-specific rendering of page content.
+$content: The Content to render
+$title: Title of the page, as context
+$revId: The revision ID, as context
+$options: ParserOptions for rendering. To avoid confusing the parser cache,
+the output can only depend on parameters provided to this hook function, not on global state.
+$generateHtml: boolean, indicating whether full HTML should be generated. If false,
+generation of HTML may be skipped, but other information should still be present in the
+ParserOutput object.
+&$output: ParserOutput, to manipulate or replace
+
 'ConvertContent': Called by AbstractContent::convert when a conversion to another
 content model is requested.
 $content: The Content object to be converted.
@@ -2171,7 +2184,7 @@ $title : Current Title object being displayed in search results.
 $article: The article object corresponding to the page
 
 'ShowRawCssJs': Customise the output of raw CSS and JavaScript in page views.
-DEPRECATED, use the ContentHandler facility to handle CSS and JavaScript!
+DEPRECATED, use the ContentGetParserOutput hook instead!
 $text: Text being shown
 $title: Title of the custom script/stylesheet page
 $output: Current OutputPage object

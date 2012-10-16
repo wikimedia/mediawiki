@@ -311,41 +311,19 @@ class WikitextContent extends TextContent {
 	 * Returns a ParserOutput object resulting from parsing the content's text
 	 * using $wgParser.
 	 *
-	 * @since 1.21
-	 *
 	 * @param Title $title
 	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param ParserOptions $options (default: null)
 	 * @param bool $generateHtml (default: true)
-	 *
-	 * @return ParserOutput Representing the HTML form of the text
+	 * @param &$output ParserOutput representing the HTML form of the text,
+	 *           may be manipulated or replaced.
 	 */
-	public function getParserOutput( Title $title, $revId = null,
-		ParserOptions $options = null, $generateHtml = true ) {
+	protected function fillParserOutput( Title $title, $revId,
+			ParserOptions $options, $generateHtml, ParserOutput &$output
+	) {
 		global $wgParser;
 
-		if ( !$options ) {
-			//NOTE: use canonical options per default to produce cacheable output
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
-		}
-
-		list( $redir, $text ) = $this->getRedirectTargetAndText();
-		$po = $wgParser->parse( $text, $title, $options, true, true, $revId );
-
-		// Add redirect indicator at the top
-		if ( $redir ) {
-			// Make sure to include the redirect link in pagelinks
-			$po->addLink( $redir );
-			if ( $generateHtml ) {
-				$chain = $this->getRedirectChain();
-				$po->setText(
-					Article::getRedirectHeaderHtml( $title->getPageLanguage(), $chain, false ) .
-					$po->getText()
-				);
-			}
-		}
-
-		return $po;
+		$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
 	}
 
 	/**
