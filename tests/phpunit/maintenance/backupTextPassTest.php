@@ -26,16 +26,18 @@ class TextPassDumperTest extends DumpTestCase {
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'text';
 
+		$ns = $this->getDefaultWikitextNS();
+
 		try {
 			// Simple page
-			$title = Title::newFromText( 'BackupDumperTestP1' );
+			$title = Title::newFromText( 'BackupDumperTestP1', $ns );
 			$page = WikiPage::factory( $title );
 			list( $this->revId1_1, $this->textId1_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP1Text1", "BackupDumperTestP1Summary1" );
 			$this->pageId1 = $page->getId();
 
 			// Page with more than one revision
-			$title = Title::newFromText( 'BackupDumperTestP2' );
+			$title = Title::newFromText( 'BackupDumperTestP2', $ns );
 			$page = WikiPage::factory( $title );
 			list( $this->revId2_1, $this->textId2_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP2Text1", "BackupDumperTestP2Summary1" );
@@ -49,7 +51,7 @@ class TextPassDumperTest extends DumpTestCase {
 			$this->pageId2 = $page->getId();
 
 			// Deleted page.
-			$title = Title::newFromText( 'BackupDumperTestP3' );
+			$title = Title::newFromText( 'BackupDumperTestP3', $ns );
 			$page = WikiPage::factory( $title );
 			list( $this->revId3_1, $this->textId3_1 ) = $this->addRevision( $page,
 				"BackupDumperTestP3Text1", "BackupDumperTestP2Summary1" );
@@ -59,6 +61,13 @@ class TextPassDumperTest extends DumpTestCase {
 			$page->doDeleteArticle( "Testing ;)" );
 
 			// Page from non-default namespace
+
+			if ( $ns === NS_TALK ) {
+				//@todo: work around this.
+				throw new MWException( "The default wikitext namespace is the talk namespace. "
+					. " We can't currently deal with that.");
+			}
+
 			$title = Title::newFromText( 'BackupDumperTestP1', NS_TALK );
 			$page = WikiPage::factory( $title );
 			list( $this->revId4_1, $this->textId4_1 ) = $this->addRevision( $page,
