@@ -5,7 +5,7 @@
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
  */
-class CssContentTest extends MediaWikiTestCase {
+class CssContentTest extends JavaScriptContentTest {
 
 	protected function setUp() {
 		parent::setUp();

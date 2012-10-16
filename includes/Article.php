@@ -832,8 +832,9 @@ class Article implements Page {
 	 * Show a page view for a page formatted as CSS or JavaScript. To be called by
 	 * Article::view() only.
 	 *
-	 * This is hooked by SyntaxHighlight_GeSHi to do syntax highlighting of these
-	 * page views.
+	 * This exists mostly to serve the deprecated ShowRawCssJs hook (used to customize these views).
+	 * It has been replaced by the ContentGetParserOutput hook, which lets you do the same but with
+	 * more flexibility.
 	 *
 	 * @param bool $showCacheHint Whether to show a message telling the user
 	 *   to clear the browser cache (default: true).
