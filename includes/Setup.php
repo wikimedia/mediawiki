@@ -351,8 +351,8 @@ if ( $wgAjaxUploadDestCheck ) {
 	$wgAjaxExportList[] = 'SpecialUpload::ajaxGetExistsWarning';
 }
 
-if ( !in_array( $wgCategoryCollation, $wgCategoryCollations ) ) {
-	$wgCategoryCollations = array_merge( array( $wgCategoryCollation ), $wgCategoryCollations );
+if ( !$wgCategoryCollations ) {
+	$wgCategoryCollations = array( $wgCategoryCollation );
 }
 
 if ( !isset( $wgDefaultUserOptions['collation'] ) ) {
