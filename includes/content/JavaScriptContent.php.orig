@@ -58,7 +58,11 @@ class JavaScriptContent extends TextContent {
 	protected function getHtml() {
 		$html = "";
 		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
+<<<<<<< HEAD
+		$html .= $this->getHighlightHtml();
+=======
 		$html .= htmlspecialchars( $this->getNativeData() );
+>>>>>>> Introducing ContentGetParserOutput hook.
 		$html .= "\n</pre>\n";
 
 		return $html;

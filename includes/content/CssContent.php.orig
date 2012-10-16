@@ -1,6 +1,6 @@
 <?php
 /**
- * Content for JavaScript pages.
+ * Content object for CSS pages.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,39 +26,42 @@
  */
 
 /**
- * Content for JavaScript pages.
+ * Content object for CSS pages.
  *
  * @ingroup Content
  */
-class JavaScriptContent extends TextContent {
+class CssContent extends TextContent {
 	public function __construct( $text ) {
-		parent::__construct( $text, CONTENT_MODEL_JAVASCRIPT );
+		parent::__construct( $text, CONTENT_MODEL_CSS );
 	}
 
 	/**
 	 * Returns a Content object with pre-save transformations applied using
 	 * Parser::preSaveTransform().
 	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
+	 * @param $title Title
+	 * @param $user User
+	 * @param $popts ParserOptions
 	 * @return Content
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
 		global $wgParser;
 		// @todo Make pre-save transformation optional for script pages
-		// See bug #32858
 
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
 
-		return new JavaScriptContent( $pst );
+		return new CssContent( $pst );
 	}
 
 	protected function getHtml() {
 		$html = "";
-		$html .= "<pre class=\"mw-code mw-js\" dir=\"ltr\">\n";
+		$html .= "<pre class=\"mw-code mw-css\" dir=\"ltr\">\n";
+<<<<<<< HEAD
+		$html .= $this->getHighlightHtml();
+=======
 		$html .= htmlspecialchars( $this->getNativeData() );
+>>>>>>> Introducing ContentGetParserOutput hook.
 		$html .= "\n</pre>\n";
 
 		return $html;

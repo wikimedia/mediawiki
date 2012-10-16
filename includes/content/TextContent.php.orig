@@ -68,9 +68,9 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns the text's size in bytes.
+	 * returns the text's size in bytes.
 	 *
-	 * @return int
+	 * @return int The size
 	 */
 	public function getSize() {
 		$text = $this->getNativeData();
@@ -189,21 +189,24 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Fills the provided ParserOutput object with information derived from the content.
-	 * Unless  $generateHtml was false, this includes an HTML representation of the content
-	 * provided by getHtml().
+	 * Fills the provided ParserOutput object with the HTML returned by getHtml().
 	 *
-	 * For content models listed in $wgTextModelsToParse, this method will call the MediaWiki
-	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.
+	 * Content models in $wgTextModelsToParse will be parsed as wikitext to process links,
+	 * magic words, etc.
 	 *
-	 * Subclasses may override this to provide custom content processing.
-	 * For custom HTML generation alone, it is sufficient to override getHtml().
+	 * Subclasses may override this to provide custom rendering.
 	 *
 	 * @param $title Title Context title for parsing
 	 * @param int|null $revId Revision ID (for {{REVISIONID}})
 	 * @param $options ParserOptions|null Parser options
+<<<<<<< HEAD
 	 * @param bool $generateHtml Whether or not to generate HTML
+	 *
+	 * @return ParserOutput representing the HTML form of the text
+=======
+	 * @param $generateHtml bool Whether or not to generate HTML
 	 * @param $output ParserOutput The output object to fill (reference).
+>>>>>>> Introducing ContentGetParserOutput hook.
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 		ParserOptions $options, $generateHtml, ParserOutput &$output
@@ -226,40 +229,36 @@ class TextContent extends AbstractContent {
 
 	/**
 	 * Generates an HTML version of the content, for display. Used by
-	 * fillParserOutput() to provide HTML for the ParserOutput object.
+	 * getParserOutput() to construct a ParserOutput object.
 	 *
-	 * Subclasses may override this to provide a custom HTML rendering.
-	 * If further information is to be derived from the content (such as
-	 * categories), the fillParserOutput() method can be overridden instead.
-	 *
-	 * For backward compatibility, this default implementation just calls
-	 * getHighlightHtml().
+	 * This default implementation runs the text returned by $this->getNativeData()
+	 * through htmlspecialchars and tried to convert line breaks and indentation to HTML..
 	 *
 	 * @return string An HTML representation of the content
 	 */
+<<<<<<< HEAD
 	protected function getHtml() {
 		return $this->getHighlightHtml();
 	}
 
 	/**
-	 * Generates an HTML version of the content, for display.
+	 * Generates a syntax-highlighted version of the content, as HTML.
+	 * Used by the default implementation of getHtml().
 	 *
-	 * This default implementation returns an HTML-escaped version
-	 * of the raw text content.
-	 *
-	 * @note: the functionality of this method should really be implemented
-	 * in getHtml(), and subclasses should override getHtml() if needed.
-	 * getHighlightHtml() is kept around for backward compatibility with
-	 * extensions that already override it.
-	 *
-	 * @deprecated since 1.22. Use getHtml() instead. In particular,
-	 * subclasses overriding getHighlightHtml() should override getHtml()
-	 * instead.
-	 *
-	 * @return string an HTML representation of the content
+	 * @return string an HTML representation of the content's markup
 	 */
 	protected function getHighlightHtml() {
+		# TODO: make Highlighter interface, use highlighter here, if available
 		return htmlspecialchars( $this->getNativeData() );
+=======
+	public static function convertWhiteSpaceToHTML( $msg ) {
+		$msg = htmlspecialchars( $msg );
+		$msg = preg_replace( '/^ /m', '&#160;', $msg );
+		$msg = preg_replace( '/ $/m', '&#160;', $msg );
+		$msg = preg_replace( '/  /', '&#160; ', $msg );
+		$msg = str_replace( "\n", '<br />', $msg );
+		return $msg;
+>>>>>>> Introducing ContentGetParserOutput hook.
 	}
 
 	/**

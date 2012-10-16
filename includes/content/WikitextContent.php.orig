@@ -282,9 +282,16 @@ class WikitextContent extends TextContent {
 	 * @param $title Title
 	 * @param int $revId Revision to pass to the parser (default: null)
 	 * @param $options ParserOptions (default: null)
+<<<<<<< HEAD
 	 * @param bool $generateHtml (default: false)
+	 *
+	 * @internal param \IContextSource|null $context
+	 * @return ParserOutput representing the HTML form of the text
+=======
+	 * @param $generateHtml bool (default: false)
 	 * @param &$output ParserOutput representing the HTML form of the text,
 	 *           may be manipulated or replaced.
+>>>>>>> Introducing ContentGetParserOutput hook.
 	 */
 	protected function fillParserOutput( Title $title, $revId,
 			ParserOptions $options, $generateHtml, ParserOutput &$output
