@@ -124,7 +124,12 @@ class MediaWikiSite extends SiteObject {
 		$page = static::extractPageRecord( $data, $pageName );
 
 		if ( isset( $page['missing'] ) ) {
-			wfDebugLog( "MediaWikiSite", "call to <$url> returned a missing page title! " . $ret );
+			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for a missing page title! " . $ret );
+			return false;
+		}
+
+		if ( isset( $page['invalid'] ) ) {
+			wfDebugLog( "MediaWikiSite", "call to <$url> returned a marker for an invalid page title! " . $ret );
 			return false;
 		}
 
