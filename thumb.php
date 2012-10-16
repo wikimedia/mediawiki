@@ -38,6 +38,7 @@ if ( defined( 'THUMB_HANDLER' ) ) {
 	// Called directly, use $_REQUEST params
 	wfThumbHandleRequest();
 }
+
 wfLogProfilingData();
 
 //--------------------------------------------------------------------------
@@ -61,28 +62,21 @@ function wfThumbHandleRequest() {
  * @return void
  */
 function wfThumbHandle404() {
-	# lighttpd puts the original request in REQUEST_URI, while sjs sets
-	# that to the 404 handler, and puts the original request in REDIRECT_URL.
-	if ( isset( $_SERVER['REDIRECT_URL'] ) ) {
-		# The URL is un-encoded, so put it back how it was
-		$uriPath = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
-	} else {
-		$uriPath = $_SERVER['REQUEST_URI'];
-	}
-	# Just get the URI path (REDIRECT_URL/REQUEST_URI is either a full URL or a path)
-	if ( substr( $uriPath, 0, 1 ) !== '/' ) {
-		$bits = wfParseUrl( $uriPath );
-		if ( $bits && isset( $bits['path'] ) ) {
-			$uriPath = $bits['path'];
-		} else {
-			wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
-			return;
-		}
+	global $wgArticlePath;
+
+	# Set action base paths so that WebRequest::getPathInfo()
+	# recognizes the "X" as the 'title' in ../thumb_handler.php/X urls.
+	$wgArticlePath = false; # Don't let a "/*" article path clober our action path
+
+	$matches = WebRequest::getPathInfo();
+	if ( !isset( $matches['title'] ) ) {
+		wfThumbError( 404, 'Could not determine the name of the requested thumbnail.' );
+		return;
 	}
 
-	$params = wfExtractThumbParams( $uriPath ); // basic wiki URL param extracting
+	$params = wfExtractThumbParams( $matches['title'] ); // basic wiki URL param extracting
 	if ( $params == null ) {
-		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+		wfThumbError( 400, 'The specified thumbnail parameters are not recognized.' );
 		return;
 	}
 
@@ -299,42 +293,27 @@ function wfStreamThumb( array $params ) {
  * Extract the required params for thumb.php from the thumbnail request URI.
  * At least 'width' and 'f' should be set if the result is an array.
  *
- * @param $uriPath String Thumbnail request URI path
+ * @param $thumbRel String Thumbnail path relative to the thumb zone
  * @return Array|null associative params array or null
  */
-function wfExtractThumbParams( $uriPath ) {
+function wfExtractThumbParams( $thumbRel ) {
 	$repo = RepoGroup::singleton()->getLocalRepo();
-
-	// Zone URL might be relative ("/images") or protocol-relative ("//lang.site/image")
-	$zoneUriPath = $repo->getZoneHandlerUrl( 'thumb' )
-		? $repo->getZoneHandlerUrl( 'thumb' ) // custom URL
-		: $repo->getZoneUrl( 'thumb' ); // default to main URL
-	$bits = wfParseUrl( wfExpandUrl( $zoneUriPath, PROTO_INTERNAL ) );
-	if ( $bits && isset( $bits['path'] ) ) {
-		$zoneUriPath = $bits['path'];
-	} else {
-		return null; // not a valid thumbnail URL
-	}
 
 	$hashDirReg = $subdirReg = '';
 	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
 		$subdirReg .= '[0-9a-f]';
 		$hashDirReg .= "$subdirReg/";
 	}
-	$zoneReg = preg_quote( $zoneUriPath ); // regex for thumb zone URI
 
 	// Check if this is a thumbnail of an original in the local file repo
-	if ( preg_match( "!^$zoneReg/((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $uriPath, $m ) ) {
+	if ( preg_match( "!^((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
 		list( /*all*/, $rel, $archOrTemp, $filename, $thumbname ) = $m;
 	// Check if this is a thumbnail of an temp file in the local file repo
-	} elseif ( preg_match( "!^$zoneReg/(temp/)($hashDirReg([^/]*)/([^/]*))$!", $uriPath, $m ) ) {
+	} elseif ( preg_match( "!^(temp/)($hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
 		list( /*all*/, $archOrTemp, $rel, $filename, $thumbname ) = $m;
 	} else {
 		return null; // not a valid looking thumbnail request
 	}
-
-	$filename = urldecode( $filename );
-	$thumbname = urldecode( $thumbname );
 
 	$params = array( 'f' => $filename, 'rel404' => $rel );
 	if ( $archOrTemp === 'archive/' ) {
