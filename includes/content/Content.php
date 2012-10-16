@@ -17,7 +17,7 @@ interface Content {
 	 * @todo: test that this actually works
 	 * @todo: make sure this also works with LuceneSearch / WikiSearch
 	 */
-	public function getTextForSearchIndex( );
+	public function getTextForSearchIndex();
 
 	/**
 	 * @since 1.21
@@ -31,7 +31,7 @@ interface Content {
 	 * @TODO: used in WikiPage and MessageCache to get message text. Not so
 	 *    nice. What should we use instead?!
 	 */
-	public function getWikitextForTransclusion( );
+	public function getWikitextForTransclusion();
 
 	/**
 	 * Returns a textual representation of the content suitable for use in edit
@@ -39,10 +39,10 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $maxlength int Maximum length of the summary text
-	 * @return   The summary text
+	 * @param $maxLength int Maximum length of the summary text
+	 * @return string The summary text
 	 */
-	public function getTextForSummary( $maxlength = 250 );
+	public function getTextForSummary( $maxLength = 250 );
 
 	/**
 	 * Returns native representation of the data. Interpretation depends on
@@ -56,14 +56,14 @@ interface Content {
 	 *
 	 * @NOTE: Caller must be aware of content model!
 	 */
-	public function getNativeData( );
+	public function getNativeData();
 
 	/**
 	 * Returns the content's nominal size in bogo-bytes.
 	 *
 	 * @return int
 	 */
-	public function getSize( );
+	public function getSize();
 
 	/**
 	 * Returns the ID of the content model used by this Content object.
@@ -418,6 +418,8 @@ interface Content {
 	 * Note that this method is called before any update to the page table is performed. This means that
 	 * $page may not yet know a page ID.
 	 *
+	 * @since 1.21
+	 *
 	 * @param WikiPage $page The page to be saved.
 	 * @param int      $flags bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
 	 * @param int      $baseRevId the ID of the current revision
@@ -451,6 +453,8 @@ interface Content {
 
 	/**
 	 * Returns true if this Content object matches the given magic word.
+	 *
+	 * @since 1.21
 	 *
 	 * @param MagicWord $word the magic word to match
 	 *
