@@ -527,6 +527,7 @@ Alayon pagutro pagbutang.',
 'newpassword' => 'Bag-o nga tigaman-pagsulod:',
 'retypenew' => 'Utroha pagbutang an bag-o nga tigaman-pagsulod:',
 'resetpass_forbidden' => 'Diri mababalyoan an mga tigaman-pagsulod',
+'resetpass-no-info' => 'Kinahanglan mo paglog-in para direkta ka makasakob dinhi nga pakli.',
 'resetpass-submit-loggedin' => 'Igbal-iw an tigaman-pagsulod',
 'resetpass-submit-cancel' => 'Pasagdi',
 'resetpass-temp-password' => 'Temporaryo nga tigaman-pagsakob:',
@@ -534,6 +535,7 @@ Alayon pagutro pagbutang.',
 # Special:PasswordReset
 'passwordreset-username' => 'Agnay hiton gumaramit:',
 'passwordreset-domain' => 'Dominyo:',
+'passwordreset-capture' => 'Kikitaon mo an resulta nga e-mail?',
 'passwordreset-email' => 'E-mail adres:',
 'passwordreset-emailtitle' => 'Mga detalye han akawnt ha {{SITENAME}}',
 'passwordreset-emailelement' => 'Agnay han gumaramit: $1
@@ -608,6 +610,7 @@ o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 
 'note' => "'''Pahibaro:'''",
 'previewnote' => "'''Hinumdumi nga pahiuna-nga-paggawas pa la ini.'''
 ¡Waray pa katipig an imo mga ginbag-o!",
+'continue-editing' => 'Padayon pagliwat',
 'editing' => 'Ginliliwat an $1',
 'creating' => 'Ginhihimo an $1',
 'editingsection' => 'Ginliliwat an $1 (bahin)',
@@ -825,6 +828,7 @@ Ginpapasabot nga an sulod han mga panudlok han {{SITENAME}} in bangin daan an.',
 'timezoneregion-pacific' => 'Kalawdan Pasipiko',
 'prefs-searchoptions' => 'Pamilnga',
 'prefs-namespaces' => "Ngaran-lat'ang",
+'default' => 'aada-nga-daan',
 'prefs-files' => 'Mga paypay',
 'youremail' => 'E-mail:',
 'username' => 'Agnay hiton gumaramit:',
@@ -864,6 +868,8 @@ An imo e-mail address in diri makikit-an kun an iba nga mga gumaramit in makonta
 'userrights-user-editname' => 'Igbutang an agnay han gumaramit:',
 'editusergroup' => 'Igliwat han mga hugpo han gumaramit',
 'editinguser' => "Igliliwat an mga katungod han gumaramit han gumaramit '''[[Gumaramit:$1|$1]]''' $2",
+'userrights-editusergroup' => 'Igliwat an mga hugpo hin gumaramit',
+'saveusergroups' => 'Igtipig an mga hugpo han gumaramit',
 'userrights-groupsmember' => 'Api han:',
 'userrights-reason' => 'Katadungan:',
 'userrights-no-interwiki' => '
@@ -926,6 +932,9 @@ Diri ka gintutugotan pagliwat han mga katungod han gumaramit ha iba nga mga wiki
 'action-createpage' => 'pahimo hin mga pakli',
 'action-minoredit' => 'butanga hin tigaman hinin nga pagliwat komo gutiay',
 'action-move' => 'balhina ini nga pakli',
+'action-movefile' => 'igbalhin ini nga paypay',
+'action-upload' => 'igkarga-pasaka ini nga paypay',
+'action-reupload' => 'igsapaw ini nga aanhi nga paypay',
 'action-delete' => 'paraa ini nga pakli',
 'action-deleterevision' => 'igpara ini nga pagbag-o',
 
@@ -974,6 +983,7 @@ Mga pakli ha [[Special:Watchlist|imo angay timan-an]] in naka-'''bold'''.",
 # Upload
 'upload' => 'Pagkarga hin file',
 'uploadbtn' => 'Igkarga an file',
+'uploadnologin' => 'Diri nakalog-in',
 'upload-recreate-warning' => "'''Pahimatngon:  An fayl nga may-ada hiton nga ngaran in ginpara o ginbalhin.'''
 
 An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para han imo kamurayaw:",

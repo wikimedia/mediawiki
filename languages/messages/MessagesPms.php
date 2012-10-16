@@ -3167,8 +3167,8 @@ J'àutri a saran stërmà coma stàndard.
 'exif-exposureprogram-2' => 'Programa normal',
 'exif-exposureprogram-3' => 'Priorità ëd temp',
 'exif-exposureprogram-4' => 'Priorità ëd diaframa',
-'exif-exposureprogram-5' => "Programa creativ (coregiù për avej pì ëd profondità 'd camp)",
-'exif-exposureprogram-6' => "Programa d'assion (coregiù për avej ël temp pì curt che as peul)",
+'exif-exposureprogram-5' => "Programa creativ (coregiù për avèj pì ëd profondità 'd camp)",
+'exif-exposureprogram-6' => "Programa d'assion (coregiù për avèj ël temp pì curt che as peul)",
 'exif-exposureprogram-7' => 'Programa ritrat (për fotografìe pijaite da davsin, con lë sfond fòra feu)',
 'exif-exposureprogram-8' => 'Panorama (sogèt lontan e con lë sfond a feu)',
 

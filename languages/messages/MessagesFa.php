@@ -2143,7 +2143,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'shared-repo-from' => 'از $1',
 'shared-repo' => 'یک مخزن مشترک',
 'shared-repo-name-wikimediacommons' => 'ویکی‌انبار',
-'upload-disallowed-here' => 'متاسفانه شما نمی توانید این نگاره را بازنویس کنید.',
+'upload-disallowed-here' => 'متاسفانه شما نمی توانید این پرونده را بازنویس کنید.',
 
 # File reversion
 'filerevert' => 'واگردانی $1',
@@ -2693,7 +2693,7 @@ $NEWPAGE
 'undeletedrevisions-files' => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles' => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'cannotundelete' => 'احیا ناموفق بود؛
-ممکن است کس دیگری پیشتر این صفحه را احیا کرده باشد.',
+$1',
 'undeletedpage' => "'''$1 احیا شد'''
 
 برای دیدن سیاههٔ حذف‌ها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",

@@ -1942,7 +1942,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'repositorio compartido',
 'filepage.css' => '/** O CSS que se coloque aquí será incluído na páxina de descrición do ficheiro, así como nos wikis de clientes estranxeiros */',
-'upload-disallowed-here' => 'Por desgraza, non pode sobrescribir esta imaxe.',
+'upload-disallowed-here' => 'Non pode sobrescribir este ficheiro.',
 
 # File reversion
 'filerevert' => 'Reverter $1',

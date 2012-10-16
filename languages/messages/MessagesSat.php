@@ -163,7 +163,6 @@ $messages = array(
 'qbbrowse' => 'Sendra',
 'qbedit' => 'Tońge',
 'qbpageoptions' => 'Noa sakam',
-'qbpageinfo' => 'Sakam reaḱ thuti',
 'qbmyoptions' => 'In̕anḱ sakamko',
 'qbspecialpages' => 'Asokay teaḱ sakamko',
 'faq' => 'Baḍae kupuliko',
@@ -650,7 +649,7 @@ Onate noa ạrgumenṭkodo bạgi giḍi hoena.",
 'last' => 'Laha renaḱ',
 'page_first' => 'Pahilaḱ',
 'page_last' => 'Mucạt́aḱ',
-'histlegend' => "Farak bachao: oka nãwã aroeko tulạoem menet́kan, onako cinhạ em kate boloḱ se latar baṭon linmẽ.<br/>
+'histlegend' => "Farak bachao: oka nãwã aroeko tulạoem menet́kan, onako cinhạ em kate boloḱ se latar baṭon linmẽ.<br />
 Unuduḱ: '''({{int:cur}})''' = nahaḱ nãwã aroeko saõte tulạo, '''({{int:last}})''' = laha reaḱ nãwã aroe sãote tulạo, '''{{int:minoreditletter}}''' = huḍiń sompadon.",
 'history-fieldset-title' => 'Sendray jaṛ',
 'history-show-deleted' => 'khạli get giḍiyaḱ koge',

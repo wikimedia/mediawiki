@@ -2054,7 +2054,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'un repositorio compartido',
 'filepage.css' => '/* Los estilos CSS colocados aquí se incluirán en las páginas de descripción de archivos, incluso en los wikis externos que incluyan estas páginas */',
-'upload-disallowed-here' => 'Lamentablemente no puedes sobrescribir esta imagen.',
+'upload-disallowed-here' => 'No puedes sobrescribir este archivo.',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -3161,6 +3161,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',
+'pageinfo-not-current' => 'Únicamente se puede mostrar la información para la revisión actual.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de ediciones',
 'pageinfo-header-restrictions' => 'Protección de página',

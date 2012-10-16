@@ -62,6 +62,7 @@
  * @author Sagan
  * @author Shirayuki
  * @author Sk
+ * @author Spider
  * @author TarzanASG
  * @author Temuri rajavi
  * @author Vago
@@ -552,7 +553,7 @@ $messages = array(
 'vector-action-protect' => 'Защитить',
 'vector-action-undelete' => 'Восстановить',
 'vector-action-unprotect' => 'Изменить защиту',
-'vector-simplesearch-preference' => 'Включить расширенные поисковые подсказки (только для оформления «Векторное»)',
+'vector-simplesearch-preference' => 'Включить упрощённую строку поиска (только для оформления «Векторное»)',
 'vector-view-create' => 'Создание',
 'vector-view-edit' => 'Правка',
 'vector-view-history' => 'История',
@@ -1180,6 +1181,15 @@ $2
 'edit-already-exists' => 'Невозможно создать новую страницу.
 Она уже существует.',
 'defaultmessagetext' => 'Текст по умолчанию',
+'content-failed-to-parse' => 'Содержимое $2 не соответствует типу $1: $3.',
+'invalid-content-data' => 'Недопустимые данные',
+'content-not-allowed-here' => 'Содержимое "$1" недопустимо на странице [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'викитекст',
+'content-model-text' => 'обычный текст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Внимание. Эта страница содержит слишком много вызовов ресурсоёмких функций.
@@ -2088,7 +2098,7 @@ $1',
 'shared-repo-from' => 'из $1',
 'shared-repo' => 'общего хранилища',
 'shared-repo-name-wikimediacommons' => 'Викисклада',
-'upload-disallowed-here' => 'К сожалению, вы не можете перезаписать это изображение.',
+'upload-disallowed-here' => 'Вы не можете перезаписать этот файл.',
 
 # File reversion
 'filerevert' => 'Возврат к старой версии $1',
@@ -2632,7 +2642,8 @@ $UNWATCHURL
 'undeletedrevisions' => '$1 {{PLURAL:$1|изменение|изменения|изменений}} восстановлено',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|версия|версии|версий}} и $2 {{PLURAL:$2|файл|файла|файлов}} восстановлено',
 'undeletedfiles' => '$1 {{PLURAL:$1|файл восстановлен|файла восстановлено|файлов восстановлено}}',
-'cannotundelete' => 'Ошибка восстановления. Возможно, кто-то другой уже восстановил страницу.',
+'cannotundelete' => 'Ошибка восстановления:
+$1',
 'undeletedpage' => "'''Страница «$1» была восстановлена.'''
 
 Для просмотра списка последних удалений и восстановлений см. [[Special:Log/delete|журнал удалений]].",
@@ -2936,6 +2947,7 @@ $1',
 'immobile-target-namespace-iw' => 'Ссылка интервики не может быть использована для переименования.',
 'immobile-source-page' => 'Эту страницу нельзя переименовать.',
 'immobile-target-page' => 'Нельзя присвоить странице это имя.',
+'bad-target-model' => 'Невозможно преобразовать $1 в $2: несовместимые модели данных.',
 'imagenocrossnamespace' => 'Невозможно дать файлу имя из другого пространства имён',
 'nonfile-cannot-move-to-file' => 'Невозможно переименовывать страницы в файлы',
 'imagetypemismatch' => 'Новое расширение файла не соответствует его типу',
@@ -3200,6 +3212,7 @@ The wiki server can't provide data in a format your client can read.",
 
 # Info page
 'pageinfo-title' => 'Сведения по «$1»',
+'pageinfo-not-current' => 'Данные предоставляются только для текущей правки.',
 'pageinfo-header-basic' => 'Основные сведения',
 'pageinfo-header-edits' => 'История изменений',
 'pageinfo-header-restrictions' => 'Защита страницы',
@@ -3228,6 +3241,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-magic-words' => '{{PLURAL:$1|Магическое слово|Магические слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',
+'pageinfo-toolboxlink' => 'Сведения о странице',
 
 # Skin names
 'skinname-standard' => 'Классическое',
@@ -3822,6 +3836,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Интервики-включение отключено]',
 'scarytranscludefailed' => '[Ошибка обращения к шаблону $1]',
+'scarytranscludefailed-httpstatus' => '[Не удалось загрузить шаблон для $1: HTTP $2]',
 'scarytranscludetoolong' => '[Слишком длинный URL]',
 
 # Delete conflict

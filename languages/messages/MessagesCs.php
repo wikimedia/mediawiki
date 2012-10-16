@@ -2028,7 +2028,7 @@ Možná spíše chcete upravit [$2 tamější stránku s popisem souboru].',
 'shared-repo-from' => 'z {{grammar:2sg|$1}}',
 'shared-repo' => 'sdíleného úložiště',
 'filepage.css' => '/* Zde uvedené CSS se vkládá na stránky s popisem souboru, včetně cizích klientských wiki */',
-'upload-disallowed-here' => 'Tento soubor bohužel nemůžete přepsat.',
+'upload-disallowed-here' => 'Tento soubor nemůžete přepsat.',
 
 # File reversion
 'filerevert' => 'Vrátit zpět $1',

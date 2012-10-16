@@ -1984,7 +1984,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'shared-repo' => 'ഒരു പങ്കുവെക്കപ്പെട്ട സംഭരണി',
 'shared-repo-name-wikimediacommons' => 'വിക്കിമീഡിയ കോമൺസ്',
 'filepage.css' => '/* ഇവിടെ നൽകുന്ന സി.എസ്.എസ്. പ്രമാണ വിവരണ താളുകളിൽ ഉൾപ്പെടുത്തപ്പെടുന്നതായിരിക്കും, ബാഹ്യ ക്ലൈന്റ് വിക്കികളിലും അത് ലഭ്യമായിരിക്കും */',
-'upload-disallowed-here' => 'നിർഭാഗ്യവശാൽ ഈ ചിത്രത്തിനു മുകളിൽ മറ്റൊരു ചിത്രം ചേർക്കാൻ താങ്കൾക്ക് കഴിയില്ല.',
+'upload-disallowed-here' => 'ഈ പ്രമാണത്തിനു മുകളിൽ മറ്റൊരു പ്രമാണം ചേർക്കാൻ താങ്കൾക്ക് കഴിയില്ല.',
 
 # File reversion
 'filerevert' => '$1 തിരസ്ക്കരിക്കുക',
@@ -3087,6 +3087,7 @@ $1',
 
 # Info page
 'pageinfo-title' => '"$1" എന്ന താളിന്റെ വിവരങ്ങൾ',
+'pageinfo-not-current' => 'ഇപ്പോഴത്തെ നാൾപ്പതിപ്പിൽ മാത്രമേ വിവരങ്ങൾ പ്രദർശിപ്പിക്കപ്പെടാനിടയുള്ളു.',
 'pageinfo-header-basic' => 'അടിസ്ഥാനവിവരങ്ങൾ',
 'pageinfo-header-edits' => 'തിരുത്തൽചരിത്രം',
 'pageinfo-header-restrictions' => 'സംരക്ഷണം',

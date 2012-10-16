@@ -1394,6 +1394,8 @@ iwakken ad tazneḍ afaylu.',
 'upload_directory_missing' => 'Akaram n taktert n ufaylu ($1) ulac-it dɣa ur d-yesnulfa ara sɣur aqeddac web.',
 'upload_directory_read_only' => 'Weserver/serveur Web ur yezmir ara ad yaru deg ($1).',
 'uploaderror' => 'Agul deg usekcam',
+'upload-recreate-warning' => "'''Ɣur-wet : Afaylu s isem agi yetwekkes naɣ yetembiwel.'''
+Aɣmis n tukksiwin d win n ittembiwilen n usebter agi beqqeḍen d-agi i tilɣa :",
 'uploadtext' => "Sseqdec tiferkit agi iwakken ad ktereḍ ifuyla ɣef uqeddac.
 Iwakken ad ẓṛeḍ naɣ ad nadiḍ tugniwin i ktren uqbel, ẓeṛ [[Special:FileList|umuɣ n tugniwin]]. Taktert tella daɣen deg [[Special:Log/upload|aɣmis n taktert n ifuyla]], dɣa inuzal deg [[Special:Log/delete|aɣmis n inuzal]].
 
@@ -1424,6 +1426,10 @@ Akken ad tessekcmeḍ afaylu deg usebter, seqdec azay am wagi
 'filetype-mime-mismatch' => 'Asiɣzef n ufaylu « .$1 » ur yesɛa ara tuqqna s tawsit MIME id n-ufa deg ufaylu ($2).',
 'filetype-badmime' => 'Ur tettalaseḍ ara ad tazneḍ ufayluwen n anaw n MIME "$1".',
 'filetype-bad-ie-mime' => 'Afaylu ur yezmer ara ad yetwekter acku yetwaf am « $1 » sɣur Internet Explorer. Tawsit agi d tazanbagt acku d tamihawt.',
+'filetype-unwanted-type' => "'''« .$1 »''' d amasal n ufaylu azanbag.
+Ilaq ad seqdeceḍ {{PLURAL:$3|amasal|imusal}} $2.",
+'filetype-banned-type' => "''' « .$1 » '''mačči d {{PLURAL:$4|amasal yesɛan turagt|imusal yesɛan turagt}}. 
+{{PLURAL:$3|Amasal yesɛan turagt d-wagi :|Imusal yesɛan turagt d-wigi :}} $2.",
 'filetype-missing' => 'Afaylu ur yesɛi ara taseggiwit (am ".jpg").',
 'empty-file' => 'Afaylu id cegɛeḍ d-ilem.',
 'file-too-large' => 'Afaylu id cegɛed d-ameqqṛan aṭas.',
@@ -1442,6 +1448,9 @@ Akken ad tessekcmeḍ afaylu deg usebter, seqdec azay am wagi
 'windows-nonascii-filename' => 'Wiki agi ur yebra ara isemawen n ifuyla s isekkilen usligen.',
 'fileexists' => 'Afaylu s yisem-agi yewǧed yagi, ssenqed <strong>[[:$1]]</strong> ma telliḍ mačči meḍmun akken a t-tbeddleḍ.
 [[$1|thumb]]',
+'filepageexists' => 'Asebter n uglam i ufaylu agi yesnulfad yakan d-agi <strong>[[:$1]]</strong>, maca ulac asebter s isem agi.
+Agzul ad efkeḍ tura ur d yettban ara ɣef asebter n uglam.
+Ma tebɣiḍ ad yeban, ilaq ad beddeleḍ s awfus asebter. [[$1|thumb]]',
 'fileexists-extension' => 'Afaylu s yisem yecban wagi yella : [[$2|thumb]]
 * Isem n ufaylu i tezneḍ: <strong>[[:$1]]</strong>
 * Isem n ufaylu i yellan: <strong>[[:$2]]</strong>
@@ -1459,6 +1468,7 @@ Ma tebɣiḍ ad azeneḍ afaylu inek/inem, ilaq ad uɣaleḍ ar deffir dɣa ad a
 Ma tebɣiḍ ad azeneḍ afaylu inek/inem, ilaq ad uɣaleḍ ar deffir dɣa ad as efkeḍ isem amaynut.
 [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate' => 'Afaylu agi d-asleg n {{PLURAL:$1|ufaylu agi|ifuyla agi}} :',
+'file-deleted-duplicate' => 'Afaylu am wagi ([[:$1]]) yetwekkes yakan. Ilaq ad selkeneḍ aɣmis n tukksiwin n ufaylu agi uqbel atid ktereḍ tikkelt nniḍen.',
 'uploadwarning' => 'Aɣtal deg wazan n ufayluwen',
 'uploadwarning-text' => 'Beddel aglam n ufaylu dɣa ɛreḍ tikkelt nniḍen',
 'savefile' => 'Smekti afaylu',
@@ -1482,6 +1492,8 @@ Azdam n ifuyla Java ur yesɛa ara turagt, acku zemren ad zizdewen ikyafen n taɣ
 'upload-options' => 'Tixtiṛiyin n taktert ifuyla',
 'watchthisupload' => 'Ɛass asebter agi',
 'filewasdeleted' => 'Afaylu s yisem-agi yettwazen umbeɛd yettumḥa. Ssenqed $1 qbel ad tazniḍ tikelt nniḍen.',
+'filename-bad-prefix' => "Isem n ufaylu yezwer s '''« $1 »''', wagi d isem i sedgeren s uwurman sɣur timsakenwin tumḍinin.
+Xteṛ isem n ufaylu agelmaw.",
 'upload-success-subj' => 'Azen yekfa',
 'upload-success-msg' => 'Taktert inek/inem seg [$2] yesmures. Af-it d-agi : [[:{{ns:file}}:$1]]',
 'upload-failure-subj' => 'Ugur n taktert',
@@ -1547,18 +1559,29 @@ Ma yella daɣen anezri, ilaq ad meslaye ḍ s  [[Special:ListUsers/sysop|unedbal
 'lockmanager-fail-svr-release' => 'Ulamek an bru izekṛunen ɣef uqeddac $1.',
 
 # ZipDirectoryReader
+'zip-file-open-error' => 'Yella agul mi d neldi afaylu i senqeden ifuyla zip.',
 'zip-wrong-format' => 'Afaylu agi mačči d afaylu n weɣbaṛ ZIP.',
+'zip-bad' => 'Afaylu agi d afaylu n weɣbaṛ ameggafsu naɣ ur nezmer ara an ɣaṛ deg-es.
+Ur nezmer ara aten selken i taɣellist.',
+'zip-unsupported' => 'Afaylu agi d afaylu n weɣbaṛ i seqdacen tiɣariwin ur yeḥemmel ara MediaWiki.
+Taɣellist ines ur tezmer ara at illi teseklen.',
 
 # Special:UploadStash
 'uploadstash' => 'Tazarkatut n taktert',
+'uploadstash-summary' => 'Asebter agi yetefk addaf i ifuyla yekteren (naɣ yesɛan taktert tanazzalt), maca mazal i beqqeḍen deg wiki. Ifuyla agi mazal id banen, ḥaca i useqdac i tni kteren.',
 'uploadstash-clear' => 'Sfeḍ ifuyla deg tazarkatut',
 'uploadstash-nofiles' => 'Ur tesɛiḍ ara ifuyla deg tazarkatut n taktert',
+'uploadstash-badtoken' => 'Aselkem n tigawt agi yexseṛ, ahat acku tilɣa inek/inem n usulu gweḍent ar tasewti nsent. Ɛreḍ tikkelt nniḍen.',
 'uploadstash-errclear' => 'Asfeḍ n ifuyla yefkad taruẓi',
 'uploadstash-refresh' => 'Mucceḍ umuɣ n ifuyla',
 'invalid-chunk-offset' => 'Tiggit n iɣil ur teɣbel ara',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Addaf yugwi',
+'img-auth-nopathinfo' => 'Yexus BATH_INFU.
+Aqeddac inek/inem ur yeseɣwer ara iwakken ad i ɛeddi talɣut agi.
+Ahat i lḥu  s CGI dɣa ur s-yezmer ara i img_auth.
+Ẓeṛ https://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir' => 'Abrid yesuteren mačči d akaram n taktert yellan deg tawila.',
 'img-auth-badtitle' => 'Ulamek an ssali azwel i ɣbelen seg « $1 ».',
 'img-auth-nologinnWL' => 'Ur teqqneḍ ara dɣa « $1 » ur yella ara deg umuɣ amellal.',
@@ -1566,6 +1589,9 @@ Ma yella daɣen anezri, ilaq ad meslaye ḍ s  [[Special:ListUsers/sysop|unedbal
 'img-auth-isdir' => 'Tɛerdeḍ ad ldiḍ akaram « $1 ».
 Tzemreḍ kan ad ldiḍ ifuyla.',
 'img-auth-streaming' => 'Taɣuri tamaɣlalt n « $1 ».',
+'img-auth-public' => 'Tasɣent n img_auth.php tella i ubeqqeḍ n ifuyla n yiwen wiki uslig.
+Wiki agi yesɣwer am wiki azayez.
+I taɣellist tameqqṛant, img_auth.php yensa.',
 'img-auth-noread' => 'Aseqdac ur yesɛa ara azref deg taɣuri ɣef « $1 ».',
 'img-auth-bad-query-string' => 'URL tesɛa azrar n tuttra ur i ɣbelen ara.',
 
@@ -1593,6 +1619,8 @@ Tzemreḍ kan ad ldiḍ ifuyla.',
 'upload_source_file' => ' (afaylu deg uselkim inek)',
 
 # Special:ListFiles
+'listfiles-summary' => 'Asebter agi uslig i εemmed ad yefk umu n akkw ifuyla i kteren.
+Ma aseqdac as yernu tastayt, ala ifuyla s lqem taneggarut id yekter aseqdac nni ad beqqeḍen.',
 'listfiles_search_for' => 'Nadi ɣef yisem n tugna:',
 'imgfile' => 'afaylu',
 'listfiles' => 'Umuɣ n tugniwin',
@@ -1644,7 +1672,7 @@ Ahat tebɣiḍ ad beddeleḍ aglam is ɣef [$2 asebter is n uglam].',
 'uploadnewversion-linktext' => 'tazneḍ tasiwelt tamaynut n ufaylu-yagi',
 'shared-repo-from' => 'seg : $1',
 'shared-repo' => 'azadur azduklan',
-'upload-disallowed-here' => 'Ur tzemreḍ ara ad semselsiḍ tugna agi.',
+'upload-disallowed-here' => 'Ur tzemreḍ ara ad semselsiḍ afaylu agi.',
 
 # File reversion
 'filerevert' => 'Erred $1',
@@ -1700,6 +1728,7 @@ Ur tettuḍ ara ad selkeneḍ ma ur llan ara izdayen nniḍen ɣer tilɣatin uqb
 
 # Random redirect
 'randomredirect' => 'Asemmimeḍ menwala',
+'randomredirect-nopages' => 'Ulac asebter n alsanamad deg tallunt n isemawen « $1 ».',
 
 # Statistics
 'statistics' => 'Tisnaddanin',

@@ -970,7 +970,7 @@ Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] 
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
 'noarticletext-nopermission' => 'No momento, não há conteúdo nesta página
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas,
-ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar por registros relacionados] </span>.',
+ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar por registros relacionados] </span>. Note que, no entanto, você não tem permissão para criar esta página.',
 'missing-revision' => 'A revisão #$1 da página denominada "{{PAGENAME}}" não existe.
 
 Isto é geralmente causado por seguir um link de histórico desatualizado para uma página que foi eliminada.

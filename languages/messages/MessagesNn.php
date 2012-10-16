@@ -1791,11 +1791,13 @@ $1',
 'upload-too-many-redirects' => 'URL-en inneheldt for mange omdirigeringar',
 'upload-unknown-size' => 'Ukjend storleik',
 'upload-http-error' => 'Ein HTTP-feil oppstod: $1',
+'upload-copy-upload-invalid-domain' => 'Kopiopplastingar er ikkje tilgjengelege frå dette domenet.',
 
 # File backend
 'backend-fail-stream' => 'Kunne ikkje strøyma fila «$1».',
 'backend-fail-backup' => 'Kunne ikkje tryggingskopiera fila «$1».',
 'backend-fail-notexists' => 'Fila $1 finst ikkje.',
+'backend-fail-hashes' => 'Kunne ikkje henta filnummer for samanlikning.',
 'backend-fail-notsame' => 'Ein ikkje-identisk fil finst alt på «$1».',
 'backend-fail-invalidpath' => '$1 er ikkje ein gyldig lagringsstig.',
 'backend-fail-delete' => 'Kunne ikkje sletta fila «$1».',
@@ -1809,6 +1811,14 @@ $1',
 'backend-fail-read' => 'Kunne ikkje lesa fila «$1».',
 'backend-fail-create' => 'Kunne ikkje oppretta fila «$1».',
 'backend-fail-maxsize' => 'Kunne ikkje skriva fila «$1» av di ho er større enn {{PLURAL:$2|éin byte|$2 byte}}.',
+'backend-fail-readonly' => "Largingsbaksystemet «$1» er for tida skriveverna. Oppgjeven grunn er: «''$2''»",
+'backend-fail-synced' => 'Fila «$1» er i ei inkonsistent stode i dei interne lagringsbaksystema',
+'backend-fail-connect' => 'Kunne ikkje kopla til filbaksystemet «$1».',
+'backend-fail-internal' => 'Ein ukjend feil oppstod i lagringsbaksystemet «$1».',
+
+# File journal errors
+'filejournal-fail-dbconnect' => 'Kunne ikkje kopla til journaldatabasen for lagringsbaksystemet «$1».',
+'filejournal-fail-dbquery' => 'Kunne ikkje oppdatera journaldatabasen for lagringsbaksystemet «$1».',
 
 # Lock manager
 'lockmanager-notlocked' => 'Kunne ikkje låsa opp «$1» av di han ikkje er låst',
@@ -2442,7 +2452,8 @@ Innhaldet i dei sletta versjonane er berre tilgjengeleg for administratorar.',
 'undeletedrevisions' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} attoppretta.',
 'undeletedrevisions-files' => '{{PLURAL:$1|Éin versjon|$1 versjonar}} og {{PLURAL:$2|éi fil|$2 filer}} er attoppretta',
 'undeletedfiles' => '{{PLURAL:$1|Éi fil|$1 filer}} er attoppretta',
-'cannotundelete' => 'Feil ved attoppretting, andre kan allereie ha attoppretta sida.',
+'cannotundelete' => 'Attopprettinga gjekk ikkje:
+$1',
 'undeletedpage' => "'''$1 er attoppretta'''
 
 Sjå [[Special:Log/delete|sletteloggen]] for eit oversyn over sider som nyleg er sletta eller attoppretta.",
@@ -3532,6 +3543,30 @@ funksjonar tilknytt e-post på {{SITENAME}} må du opne denne lenkja i nettlesar
 $3
 
 Dersom dette *ikkje* er deg, følg denne lenkja for avbryte stadfestinga av e-postadressa:
+
+$5
+
+Denne stadfestingskoden vert forelda $4.',
+'confirmemail_body_changed' => 'Nokon, truleg deg, frå IP-adressa $1, har endra e-postadressa til kontoen «$2» på {{SITENAME}} til denne e-postadressa.
+
+For å stadfesta at denne kontoen faktisk høyrer til deg, og for å slå på
+funksjonar knytte til e-post på {{SITENAME}}, opna denne lenkja i nettlesaren din:
+
+$3
+
+Om brukarkontoen *ikkje* høyrer til deg, fylg denne lenkja for å bryta av stadfestinga av e-postadressa:
+
+$5
+
+Denne stadfestingskoden vert forelda $4.',
+'confirmemail_body_set' => 'Nokon, truleg deg, frå IP-adressa $1, har sett e-postadressa til kontoen «$2» på {{SITENAME}} til denne e-postadressa.
+
+For å stadfesta at denne kontoen faktisk høyrer til deg, og for å slå på
+funksjonar knytte til e-post på {{SITENAME}}, opna denne lenkja i nettlesaren din:
+
+$3
+
+Om brukarkontoen *ikkje* høyrer til deg, fylg denne lenkja for å bryta av stadfestinga av e-postadressa:
 
 $5
 

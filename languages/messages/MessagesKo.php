@@ -521,7 +521,7 @@ $messages = array(
 'searcharticle' => '가기',
 'history' => '문서 역사',
 'history_short' => '역사',
-'updatedmarker' => '마지막으로 읽은 뒤 바뀌었음',
+'updatedmarker' => '마지막으로 방문한 뒤 바뀜',
 'printableversion' => '인쇄용 문서',
 'permalink' => '고유링크',
 'print' => '인쇄',
@@ -2075,7 +2075,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'shared-repo' => '공용 저장소',
 'shared-repo-name-wikimediacommons' => '위키미디어 공용',
 'filepage.css' => '/* 이 CSS 설정은 파일 설명 문서에 포함되며, 또한 해외 클라이언트 위키에 포함됩니다 */',
-'upload-disallowed-here' => '죄송하지만 이 그림을 덮어 쓸 수 없습니다.',
+'upload-disallowed-here' => '이 파일을 덮어쓸 수 없습니다.',
 
 # File reversion
 'filerevert' => '$1 되돌리기',

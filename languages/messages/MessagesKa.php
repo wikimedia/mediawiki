@@ -326,7 +326,7 @@ $messages = array(
 'vector-action-protect' => 'დაცვა',
 'vector-action-undelete' => 'აღდგენა',
 'vector-action-unprotect' => 'დაცვის დონის შეცვლა',
-'vector-simplesearch-preference' => 'ძებნის გაფართოებული მინიშნებების ჩართვა (მხოლოდ ვექტორული იერსახისთვის)',
+'vector-simplesearch-preference' => 'ძებნის გაფართოებული ველის ჩართვა (მხოლოდ ვექტორული იერსახისთვის)',
 'vector-view-create' => 'შექმნა',
 'vector-view-edit' => 'რედაქტირება',
 'vector-view-history' => 'ისტორია',
@@ -955,6 +955,9 @@ $2
 'edit-already-exists' => 'ახალი გვერდის შექმნა არ მოხერხდა.
 ის უკვე არსებობს.',
 'defaultmessagetext' => 'შეტყობინების სტანდარტული ტექსტი',
+'content-failed-to-parse' => '$2-ის შინაარსი არ შეესაბამება $1-ის ტიპს: $3.',
+'invalid-content-data' => 'დაუშვებელი მონაცემები',
+'content-not-allowed-here' => '„$1“-ის შინაარსი დაუშვებელია [[$2]] გვერდზე',
 
 # Content models
 'content-model-wikitext' => 'ვიკიტექსტი',
@@ -1858,7 +1861,7 @@ $1',
 'shared-repo-from' => ' $1-დან',
 'shared-repo' => 'საერთო საცავიდან',
 'shared-repo-name-wikimediacommons' => 'ვიკისაწყობი',
-'upload-disallowed-here' => 'სამწუხაროდ, თქვენ არ შეგიძლიათ ამ სურათზე გადაწერა.',
+'upload-disallowed-here' => 'თქვენ არ შეგიძლიათ ამ ფაილზე გადაწერა.',
 
 # File reversion
 'filerevert' => 'დააბრუნე $1',
@@ -2702,6 +2705,7 @@ $1',
 'immobile-target-namespace-iw' => 'ინტერვიკის ბმული შეუძლებელია გამოყენებული იქნას გადარქმევისთვის.',
 'immobile-source-page' => 'ამ გვეერდის გადატანა შეუძლებელია.',
 'immobile-target-page' => 'შეუძლებელია მოცემულ სახელზე გადატანა.',
+'bad-target-model' => 'შეუძლებელია $1-ის გარდაქმნა $2-ზე: მონაცემების შეუსაბამო მოდელი.',
 'imagenocrossnamespace' => 'შეუძლებელია ფაილს მიეცეს სახელი სახელთა სხვა სივრციდან',
 'nonfile-cannot-move-to-file' => 'შეუძლებელია არაფაილების გადატანა ფაილის სახელთა სივრცეში',
 'imagetypemismatch' => 'ფაილს ახალი გაფართოება არ შეესაბამება მის ტიპს',
@@ -2949,6 +2953,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'ინფორმაცია „$1“-თვის',
+'pageinfo-not-current' => 'მონაცემები წარმოდგენილია მხოლოდ მიმდინარე რედაქტირებისათვის.',
 'pageinfo-header-basic' => 'საბაზისო ინფორმაცია',
 'pageinfo-header-edits' => 'რედაქტირების ისტორია',
 'pageinfo-header-restrictions' => 'გვერდის დაცვა',
@@ -3604,6 +3609,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding» გათიშულია]',
 'scarytranscludefailed' => '[$1-თან დაკავშირების შეცდომა]',
+'scarytranscludefailed-httpstatus' => '[ვერ მოხერხდა თარგის ჩატვირთვა $1-თვის: HTTP $2]',
 'scarytranscludetoolong' => '[URL ძალიან გრძელია]',
 
 # Delete conflict

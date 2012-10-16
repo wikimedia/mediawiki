@@ -1903,7 +1903,7 @@ Morda želite urediti njeno opisno stran na tamkajšnji [$2 opisni strani datote
 'shared-repo-from' => 'iz $1',
 'shared-repo' => 'skupno skladišče',
 'shared-repo-name-wikimediacommons' => 'Wikimedijina Zbirka',
-'upload-disallowed-here' => 'Slike žal ne morete prepisati.',
+'upload-disallowed-here' => 'Datoteke žal ne morete prepisati.',
 
 # File reversion
 'filerevert' => 'Vrni $1',

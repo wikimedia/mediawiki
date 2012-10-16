@@ -785,7 +785,7 @@ Notez que certaines pages peuvent être encore affichées comme si vous étiez t
 
 Votre compte a été créé.
 N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{SITENAME}}]].',
-'yourname' => 'Nom d’utilisateur&nbsp;:',
+'yourname' => 'Nom d’utilisateur :',
 'yourpassword' => 'Mot de passe&nbsp;:',
 'yourpasswordagain' => 'Confirmez le mot de passe :',
 'remembermypassword' => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1&nbsp;{{PLURAL:$1|jour|jours}})',
@@ -2049,7 +2049,7 @@ Vous voulez peut-être modifier la description sur sa [$2 page de description].'
 'shared-repo' => 'un dépôt partagé',
 'shared-repo-name-wikimediacommons' => 'Wikimédia Commons',
 'filepage.css' => '/* Les styles CSS placés ici sont inclus dans la page de description du fichier, également incluse sur les clients wikis étrangers */',
-'upload-disallowed-here' => 'Malheureusement, vous ne peut pas remplacer cette image.',
+'upload-disallowed-here' => 'Vous ne pouvez pas remplacer ce fichier.',
 
 # File reversion
 'filerevert' => 'Rétablir $1',
@@ -2349,7 +2349,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'nowikiemailtext' => 'Cet utilisateur a choisi de ne pas recevoir de courriel de la part d’autres utilisateurs.',
 'emailnotarget' => "Nom d'utilisateur du destinataire inexistant ou invalide.",
 'emailtarget' => "Entrez le nom d'utilisateur du destinataire",
-'emailusername' => "Nom de l'utilisateur :",
+'emailusername' => 'Nom d’utilisateur :',
 'emailusernamesubmit' => 'Soumettre',
 'email-legend' => 'Envoyer un courriel à un autre utilisateur de {{SITENAME}}',
 'emailfrom' => 'De :',
