@@ -121,7 +121,7 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	function listRevisions() {
-		global $wgContentHandlerNoDB;
+		global $wgContentHandlerUseDB;
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -130,7 +130,7 @@ class PageArchive {
 			'ar_comment', 'ar_len', 'ar_deleted', 'ar_rev_id', 'ar_sha1',
 		);
 
-		if ( !$wgContentHandlerNoDB ) {
+		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
@@ -194,7 +194,7 @@ class PageArchive {
 	 * @return Revision
 	 */
 	function getRevision( $timestamp ) {
-		global $wgContentHandlerNoDB;
+		global $wgContentHandlerUseDB;
 
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -213,7 +213,7 @@ class PageArchive {
 			'ar_sha1',
 		);
 
-		if ( !$wgContentHandlerNoDB ) {
+		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
@@ -435,7 +435,7 @@ class PageArchive {
 	 * @return Status, containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
-		global $wgContentHandlerNoDB;
+		global $wgContentHandlerUseDB;
 
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError();
@@ -510,7 +510,7 @@ class PageArchive {
 			'ar_len',
 			'ar_sha1');
 
-		if ( !$wgContentHandlerNoDB ) {
+		if ( $wgContentHandlerUseDB ) {
 			$fields[] = 'ar_content_format';
 			$fields[] = 'ar_content_model';
 		}
