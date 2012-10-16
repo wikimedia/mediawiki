@@ -169,34 +169,28 @@ class TextContent extends AbstractContent {
 		return $diff;
 	}
 
-
 	/**
-	 * Returns a generic ParserOutput object, wrapping the HTML returned by
-	 * getHtml().
+	 * Fills the provided ParserOutput object with the HTML returned by getHtml().
+	 *
+	 * Content models in $wgTextModelsToParse will be parsed as wikitext to process links,
+	 * magic words, etc.
+	 *
+	 * Subclasses may override this to provide custom rendering.
 	 *
 	 * @param $title Title Context title for parsing
 	 * @param $revId int|null Revision ID (for {{REVISIONID}})
 	 * @param $options ParserOptions|null Parser options
 	 * @param $generateHtml bool Whether or not to generate HTML
-	 *
-	 * @return ParserOutput representing the HTML form of the text
+	 * @param $output ParserOutput The output object to fill (reference).
 	 */
-	public function getParserOutput( Title $title,
-		$revId = null,
-		ParserOptions $options = null, $generateHtml = true
+	protected function fillParserOutput( Title $title, $revId,
+		ParserOptions $options, $generateHtml, ParserOutput &$output
 	) {
 		global $wgParser, $wgTextModelsToParse;
 
-		if ( !$options ) {
-			//NOTE: use canonical options per default to produce cacheable output
-			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
-		}
-
 		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
-			// parse just to get links etc into the database
-			$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
-		} else {
-			$po = new ParserOutput();
+			// parse just to get links etc into the database, HTML is replaced below.
+			$output = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
 		}
 
 		if ( $generateHtml ) {
@@ -205,33 +199,24 @@ class TextContent extends AbstractContent {
 			$html = '';
 		}
 
-		$po->setText( $html );
-		return $po;
+		$output->setText( $html );
 	}
 
 	/**
 	 * Generates an HTML version of the content, for display. Used by
 	 * getParserOutput() to construct a ParserOutput object.
 	 *
-	 * This default implementation just calls getHighlightHtml(). Content
-	 * models that have another mapping to HTML (as is the case for markup
-	 * languages like wikitext) should override this method to generate the
-	 * appropriate HTML.
+	 * This default implementation runs the text returned by $this->getNativeData()
+	 * through htmlspecialchars and tried to convert line breaks and indentation to HTML..
 	 *
 	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
-		return $this->getHighlightHtml();
-	}
+		$html = htmlspecialchars( $this->getNativeData() );
+		$html = preg_replace( '/(\r\n|\r|\n)/', '<br/>', $html );
+		$html = preg_replace( '/\t/', '&nbsp;&nbsp;&nbsp;&nbsp;', $html );
+		$html = preg_replace( '/  /', '&nbsp; ', $html );
 
-	/**
-	 * Generates a syntax-highlighted version of the content, as HTML.
-	 * Used by the default implementation of getHtml().
-	 *
-	 * @return string an HTML representation of the content's markup
-	 */
-	protected function getHighlightHtml( ) {
-		# TODO: make Highlighter interface, use highlighter here, if available
-		return htmlspecialchars( $this->getNativeData() );
+		return $html;
 	}
 }
