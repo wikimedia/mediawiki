@@ -450,4 +450,69 @@ abstract class AbstractContent implements Content {
 
 		return $result;
 	}
+
+	/**
+	 * Returns a ParserOutput object containing information derived from this content.
+	 * Most importantly, unless $generateHtml was false, the return value contains an
+	 * HTML representation of the content.
+	 *
+	 * Subclasses that want to control the parser output may override this, but it is
+	 * preferred to override fillParserOutput() instead.
+	 *
+	 * Subclasses that override getParserOutput() itself should take care to call the
+	 * ContentGetParserOutput hook.
+	 *
+	 * @since 1.24
+	 *
+	 * @param Title $title Context title for parsing
+	 * @param int|null $revId Revision ID (for {{REVISIONID}})
+	 * @param ParserOptions|null $options Parser options
+	 * @param bool $generateHtml Whether or not to generate HTML
+	 *
+	 * @return ParserOutput Containing information derived from this content.
+	 */
+	public function getParserOutput( Title $title, $revId = null,
+		ParserOptions $options = null, $generateHtml = true
+	) {
+		if ( $options === null ) {
+			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+		}
+
+		$po = new ParserOutput();
+
+		if ( wfRunHooks( 'ContentGetParserOutput',
+			array( $this, $title, $revId, $options, $generateHtml, &$po ) ) ) {
+
+			$this->fillParserOutput( $title, $revId, $options, $generateHtml, $po );
+		}
+
+		return $po;
+	}
+
+	/**
+	 * Fills the provided ParserOutput with information derived from the content.
+	 * Unless $generateHtml was false, this includes an HTML representation of the content.
+	 *
+	 * This is called by getParserOutput() after consulting the ContentGetParserOutput hook.
+	 * Subclasses are expected to override this method (or getParserOutput(), if need be).
+	 * Subclasses of TextContent should generally override getHtml() instead.
+	 *
+	 * This placeholder implementation always throws an exception.
+	 *
+	 * @since 1.24
+	 *
+	 * @param Title $title Context title for parsing
+	 * @param int|null $revId Revision ID (for {{REVISIONID}})
+	 * @param ParserOptions|null $options Parser options
+	 * @param bool $generateHtml Whether or not to generate HTML
+	 * @param ParserOutput &$output The output object to fill (reference).
+	 *
+	 * @throws MWException
+	 */
+	protected function fillParserOutput( Title $title, $revId,
+		ParserOptions $options, $generateHtml, ParserOutput &$output
+	) {
+		// Don't make abstract, so subclasses that override getParserOutput() directly don't fail.
+		throw new MWException( 'Subclasses of AbstractContent must override fillParserOutput!' );
+	}
 }
