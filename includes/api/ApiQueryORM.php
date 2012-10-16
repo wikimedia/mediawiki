@@ -18,7 +18,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.20
+ * @since 1.21
  *
  * @file
  * @ingroup API
@@ -31,7 +31,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Returns an instance of the IORMTable table being queried.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return IORMTable
 	 */
@@ -43,7 +43,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 * This is used to appropriately name elements in XML.
 	 * Deriving classes typically override this method.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -57,7 +57,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 * This is used to appropriately name nodes in the output.
 	 * Deriving classes typically override this method.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return string
 	 */
@@ -68,7 +68,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Returns the path to where the items results should be added in the result.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return null|string|array
 	 */
@@ -80,7 +80,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 * Get the parameters, find out what the conditions for the query are,
 	 * run it, and add the results.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 */
 	public function execute() {
 		$params = $this->getParams();
@@ -97,7 +97,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 * Get the request parameters, handle the * value for the props param
 	 * and remove all params set to null (ie those that are not actually provided).
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @return array
 	 */
@@ -115,7 +115,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	 * regular parameters, together with limit, props, continue,
 	 * and possibly others which we need to get rid off.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $params
 	 *
@@ -137,7 +137,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Get the actual results.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $params
 	 * @param array $conditions
@@ -159,7 +159,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Serialize the results and add them to the result object.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $params
 	 * @param ORMResult $results
@@ -186,7 +186,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Formats a row to it's desired output format.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param IORMRow $result
 	 * @param array $params
@@ -200,7 +200,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Set the tag names for formats such as XML.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $serializedResults
 	 */
@@ -211,7 +211,7 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	/**
 	 * Add the serialized results to the result object.
 	 *
-	 * @since 1.20
+	 * @since 1.21
 	 *
 	 * @param array $serializedResults
 	 */
