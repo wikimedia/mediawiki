@@ -28,7 +28,8 @@
  * @since 1.20
  */
 class JobQueueDB extends JobQueue {
-	const CACHE_TTL = 30; // integer; seconds
+	const CACHE_TTL      = 30; // integer; seconds
+	const MAX_JOB_RANDOM = 2147483647; // [0, 2^31 - 1]
 
 	/**
 	 * @see JobQueue::doIsEmpty()
@@ -121,7 +122,7 @@ class JobQueueDB extends JobQueue {
 		try {
 			do { // retry when our row is invalid or deleted as a duplicate
 				$row = false; // row claimed
-				$rand = mt_rand( 0, 2147483648 ); // encourage concurrent UPDATEs
+				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
 				$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
 				// Try to reserve a DB row...
 				if ( $this->claim( $uuid, $rand, $gte ) || $this->claim( $uuid, $rand, !$gte ) ) {
@@ -278,7 +279,7 @@ class JobQueueDB extends JobQueue {
 			'job_id'        => $dbw->nextSequenceValue( 'job_job_id_seq' ),
 			'job_timestamp' => $dbw->timestamp(),
 			'job_sha1'      => wfBaseConvert( sha1( serialize( $descFields ) ), 16, 36, 32 ),
-			'job_random'    => mt_rand( 0, 2147483647 ) // [0, 2^31 - 1]
+			'job_random'    => mt_rand( 0, self::MAX_JOB_RANDOM )
 		);
 		return ( $descFields + $metaFields );
 	}
