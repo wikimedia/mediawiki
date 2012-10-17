@@ -109,7 +109,7 @@ abstract class SqlDataUpdate extends DataUpdate {
 	 * @param $dbkeys Array
 	 */
 	protected function invalidatePages( $namespace, array $dbkeys ) {
-		if ( !count( $dbkeys ) ) {
+		if ( $dbkeys === array() ) {
 			return;
 		}
 
@@ -127,10 +127,12 @@ abstract class SqlDataUpdate extends DataUpdate {
 				'page_touched < ' . $this->mDb->addQuotes( $now )
 			), __METHOD__
 		);
+
 		foreach ( $res as $row ) {
 			$ids[] = $row->page_id;
 		}
-		if ( !count( $ids ) ) {
+
+		if ( $ids === array() ) {
 			return;
 		}
 
