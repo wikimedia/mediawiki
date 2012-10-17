@@ -83,7 +83,7 @@ class JobQueueGroup {
 	 * @return bool
 	 */
 	public function push( $jobs ) {
-		$jobs = (array)$jobs;
+		$jobs = is_array( $jobs ) ? $jobs : array( $jobs );
 
 		$jobsByType = array(); // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
