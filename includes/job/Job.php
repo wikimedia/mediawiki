@@ -23,7 +23,7 @@
 
 /**
  * Class to both describe a background job and handle jobs.
- * This queue aspects of this class are now deprecated.
+ * The queue aspects of this class are now deprecated.
  *
  * @ingroup JobQueue
  */
@@ -80,7 +80,7 @@ abstract class Job {
 	 * removed later on, when the first one is popped.
 	 *
 	 * @param $jobs array of Job objects
-	 * @deprecated 1.20
+	 * @deprecated 1.21
 	 */
 	public static function batchInsert( $jobs ) {
 		return JobQueueGroup::singleton()->push( $jobs );
@@ -94,10 +94,34 @@ abstract class Job {
 	 * large batches of jobs can cause slave lag.
 	 *
 	 * @param $jobs array of Job objects
-	 * @deprecated 1.20
+	 * @deprecated 1.21
 	 */
 	public static function safeBatchInsert( $jobs ) {
 		return JobQueueGroup::singleton()->push( $jobs, JobQueue::QoS_Atomic );
+	}
+
+	/**
+	 * Pop a job of a certain type.  This tries less hard than pop() to
+	 * actually find a job; it may be adversely affected by concurrent job
+	 * runners.
+	 *
+	 * @param $type string
+	 * @return Job
+	 * @deprecated 1.21
+	 */
+	public static function pop_type( $type ) {
+		return JobQueueGroup::singleton()->get( $type )->pop();
+	}
+
+	/**
+	 * Pop a job off the front of the queue.
+	 * This is subject to $wgJobTypesExcludedFromDefaultQueue.
+	 *
+	 * @return Job or false if there's no jobs
+	 * @deprecated 1.21
+	 */
+	public static function pop() {
+		return JobQueueGroup::singleton()->pop();
 	}
 
 	/*-------------------------------------------------------------------------
@@ -157,7 +181,7 @@ abstract class Job {
 	/**
 	 * Insert a single job into the queue.
 	 * @return bool true on success
-	 * @deprecated 1.20
+	 * @deprecated 1.21
 	 */
 	public function insert() {
 		return JobQueueGroup::singleton()->push( $this );
