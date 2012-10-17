@@ -178,7 +178,7 @@ class MediaWiki {
 		wfProfileIn( __METHOD__ );
 
 		$request = $this->context->getRequest();
-		$title = $this->context->getTitle();
+		$requestTitle = $title = $this->context->getTitle();
 		$output = $this->context->getOutput();
 		$user = $this->context->getUser();
 
@@ -302,7 +302,7 @@ class MediaWiki {
 				global $wgArticle;
 				$wgArticle = new DeprecatedGlobal( 'wgArticle', $article, '1.18' );
 
-				$this->performAction( $article );
+				$this->performAction( $article, $requestTitle );
 			} elseif ( is_string( $article ) ) {
 				$output->redirect( $article );
 			} else {
@@ -396,8 +396,9 @@ class MediaWiki {
 	 * Perform one of the "standard" actions
 	 *
 	 * @param $page Page
+	 * @param $requestTitle The original title, before any redirects were applied
 	 */
-	private function performAction( Page $page ) {
+	private function performAction( Page $page, Title $requestTitle ) {
 		global $wgUseSquid, $wgSquidMaxage;
 
 		wfProfileIn( __METHOD__ );
@@ -420,7 +421,7 @@ class MediaWiki {
 		if ( $action instanceof Action ) {
 			# Let Squid cache things if we can purge them.
 			if ( $wgUseSquid &&
-				in_array( $request->getFullRequestURL(), $title->getSquidURLs() )
+				in_array( $request->getFullRequestURL(), $requestTitle->getSquidURLs() )
 			) {
 				$output->setSquidMaxage( $wgSquidMaxage );
 			}

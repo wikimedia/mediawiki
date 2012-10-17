@@ -129,6 +129,8 @@ class SquidUpdate {
 			return;
 		}
 
+		wfDebug( "Squid purge: " . implode( ' ', $urlArr ) . "\n" );
+
 		if ( $wgHTCPMulticastRouting ) {
 			SquidUpdate::HTCPPurge( $urlArr );
 		}
