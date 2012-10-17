@@ -196,7 +196,10 @@ abstract class MediaTransformOutput {
 	 * @return array
 	 */
 	public function getDescLinkAttribs( $title = null, $params = '' ) {
-		$query = $this->page ? ( 'page=' . urlencode( $this->page ) ) : '';
+		$query = '';
+		if ( $this->page && $this->page !== 1 ) {
+			  $query = 'page=' . urlencode( $this->page );
+		}
 		if( $params ) {
 			$query .= $query ? '&'.$params : $params;
 		}
