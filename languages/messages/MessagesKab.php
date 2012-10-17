@@ -1744,6 +1744,11 @@ Ur tettuḍ ara ad selkeneḍ ma ur llan ara izdayen nniḍen ɣer tilɣatin uqb
 'statistics-edits' => 'Ibeddilen n isebtar seg aserkeb n {{SITENAME}}',
 'statistics-edits-average' => 'Amḍan allal n ibeddilen sɣur asebter',
 'statistics-views-total' => 'Iskanen',
+'statistics-views-total-desc' => 'Timuɣliwin n isebtar ur llan ara dɣa d isebtar usligen ur sseddant ara',
+'statistics-views-peredit' => 'Tizra s ubeddel',
+'statistics-users' => '[[Special:ListUsers|Iseqdacen]] i siggezen',
+'statistics-users-active' => 'Iseqdacen urmiden',
+'statistics-users-active-desc' => 'Iseqdacen yesɛan xersum yiwet tigawt seg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}',
 'statistics-mostpopular' => 'isebtar mmeẓren aṭṭas',
 
 'disambiguations' => 'Isebtar yesɛan izdayen ɣer isebtar n tiynisemt',
@@ -1754,6 +1759,9 @@ Asebter yella d asebter n tiynisemt lukan yetseqdac talɣa i qqenen ar [[MediaWi
 
 'doubleredirects' => 'Asemmimeḍ yeḍra snat tikwal',
 'doubleredirectstext' => 'Mkull ajerriḍ yesɛa azday ɣer asmimeḍ amezwaru akk d wis sin, ajerriḍ amezwaru n uḍris n usebter wis sin daɣen, iwumi yefkan asmimeḍ ṣaḥiḥ i yessefk ad sɛan isebtar azday ɣur-s.',
+'double-redirect-fixed-move' => 'Alsanamud agi, ɣef ayed asaḍas [[$1]] yetwebeddel isem, yetawi tura ɣer [[$2]].',
+'double-redirect-fixed-maintenance' => 'Yetseɣtu alsanamud aslag seg [[$1]] ɣer [[$2]].',
+'double-redirect-fixer' => 'Aseɣtay n aslanamud',
 
 'brokenredirects' => 'Isemmimḍen imerẓa',
 'brokenredirectstext' => 'Isemmimḍen-agi sɛan izdayen ar isebtar ulac-iten :',
@@ -1770,10 +1778,13 @@ Asebter yella d asebter n tiynisemt lukan yetseqdac talɣa i qqenen ar [[MediaWi
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|byte/octet|bytes/octets}}',
 'ncategories' => '$1 {{PLURAL:$1|Taggayt|Taggayin}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interwiki|interwikis}}',
 'nlinks' => '$1 {{PLURAL:$1|azday|izdayen}}',
 'nmembers' => '$1 {{PLURAL:$1|amaslad|imasladen}}',
 'nrevisions' => '$1 {{PLURAL:$1|tasiwelt|tisiwal}}',
 'nviews' => '$1 {{PLURAL:$1|timeẓriwt|tuẓrin}}',
+'nimagelinks' => 'Yetseqdec ɣef $1 {{PLURAL:$1|asebter|isebtar}}',
+'ntransclusions' => 'yetseqdec ɣef $1 {{PLURAL:$1|asebter|isebtar}}',
 'specialpage-empty' => 'Asebter-agi d ilem.',
 'lonelypages' => 'isebtar igujilen',
 'lonelypagestext' => 'Isebtar agi ur sweṛen, ur llan deg isebtar nniḍen n {{SITENAME}}.',
@@ -1786,7 +1797,10 @@ Asebter yella d asebter n tiynisemt lukan yetseqdac talɣa i qqenen ar [[MediaWi
 'popularpages' => 'Isebtar iɣerfanen',
 'wantedcategories' => 'Taggayin mmebɣant',
 'wantedpages' => 'Isebtar mmebɣan',
+'wantedpages-badtitle' => 'Azwel ur yeɣbel ara deg igmad : $1',
 'wantedfiles' => 'Ifuyla yettwasutren s waṭas.',
+'wantedfiletext-cat' => 'Ifuyla agi tseqdacen, maca ulac iten. Ifuyla n izudar agwemmad zemren ad illin deg umuɣ xas llan. Akkw ufrir imkerku ad <del>yetjerreḍ</del>. Isebtar yesɛan ifuyla ur llan ara, ur d-tebanen ara deg [[:$1]].',
+'wantedfiletext-nocat' => 'Ifuyla agi tseqdacen, maca ulac iten. Ifuyla n izudar agwemmad zemren ad illin deg umuɣ xas llan. Akkw ufrir imkerku ad <del>yetjerreḍ</del>.',
 'wantedtemplates' => 'Talɣiwin yetsuteren',
 'mostlinked' => 'Isebtar myezdin aṭas',
 'mostlinkedcategories' => 'Taggayin myezdint aṭas',
@@ -1868,6 +1882,8 @@ Tzemreḍ ad sageneḍ abeqqeḍ s tixtiṛit n tawsit n uɣmis, isem n useqdac 
 'allpages-hide-redirects' => 'Ffer isemmimḍen',
 
 # SpecialCachedPage
+'cachedspecial-viewing-cached-ttl' => 'Tetwaliḍ lqem n usebter agi yellan deg tazarkatut, lqem agi yezmer ad i sɛu alama d $1.',
+'cachedspecial-viewing-cached-ts' => 'Tetwaliḍ lqem n usebter agi yellan deg tazarkatut, ahat ur yemucceḍ ara.',
 'cachedspecial-refresh-now' => 'Ẓeṛ aneggaru.',
 
 # Special:Categories
@@ -1895,15 +1911,23 @@ Tzemreḍ ad sageneḍ abeqqeḍ s tixtiṛit n tawsit n uɣmis, isem n useqdac 
 'listusersfrom' => 'Ssken imseqdacen seg:',
 'listusers-submit' => 'Ssken',
 'listusers-noresult' => 'Ur yufi ḥedd (amseqdac).',
+'listusers-blocked' => '(yekyef)',
 
 # Special:ActiveUsers
+'activeusers' => 'Umuɣ n iseqdacen urmiden',
+'activeusers-intro' => 'Wagi d umuɣ n iseqdacen yexedmen armud deg {{PLURAL:$1|ass agi aneggaru|$1 ussan agi ineggura}}.',
+'activeusers-count' => '$1 {{PLURAL:$1|abeddel n ussan agi ineggura|ibeddilen n ussan agi ineggura}} deg {{PLURAL:$3|ass aneggaru|$3 ussan ineggura}}',
 'activeusers-from' => 'Ssken iseqdacen seg :',
+'activeusers-hidebots' => 'Ffer iṛubuten',
+'activeusers-hidesysops' => 'Ffer inedbalen',
 'activeusers-noresult' => 'Ur yufi aseqdac.',
 
 # Special:Log/newusers
 'newuserlogpage' => 'Aɣmis n isnulfan n  imiḍanen n imseqdacen',
+'newuserlogpagetext' => 'Asebter agi yebeqqeḍ amezruy n usnulfu n imiḍanen n iseqdacen.',
 
 # Special:ListGroupRights
+'listgrouprights' => 'Izerfan n igrawen n iseqdacen',
 'listgrouprights-group' => 'Agraw',
 'listgrouprights-rights' => 'Izerfan',
 'listgrouprights-helppage' => 'Help:Izerfan n igrawen',

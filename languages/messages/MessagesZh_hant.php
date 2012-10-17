@@ -1842,7 +1842,7 @@ $1',
 'shared-repo-from' => '出自$1',
 'shared-repo' => '一個共用檔案庫',
 'shared-repo-name-wikimediacommons' => '維基共享資源',
-'upload-disallowed-here' => '您不可以覆蓋此圖像。',
+'upload-disallowed-here' => '您不可以覆蓋此檔案。',
 
 # File reversion
 'filerevert' => '恢復$1',

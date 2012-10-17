@@ -1821,7 +1821,7 @@ Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'shared-repo-from' => 'vu(n) $1',
 'shared-repo' => 'e gemeinsam genotzte Medienarchiv',
 'shared-repo-name-wikimediacommons' => 'Wikimedia-Commons',
-'upload-disallowed-here' => 'Leider kënnt Dir dëst Bild net iwwerschreiwen.',
+'upload-disallowed-here' => 'Dir kënnt Dir dëse Fichier net iwwerschreiwen.',
 
 # File reversion
 'filerevert' => '"$1" zrécksetzen',
@@ -2780,6 +2780,7 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'import-error-invalid' => 'D\'Säit "$1" gouf net importéiert well hiren Numm net valabel ass.',
 'import-options-wrong' => 'Falsch {{PLURAL:$2|Optioun|Optiounen}}: <nowiki>$1</nowiki>',
 'import-rootpage-invalid' => 'Déi Basis-Säit déi Dir uginn hutt ass kee valabelen Titel.',
+'import-rootpage-nosubpage' => 'Am Nummraum "$1" vun der Basis-Säit si keng Ënnersäiten erlaabt.',
 
 # Import log
 'importlogpage' => 'Lëscht vun den Säitenimporten',
@@ -2907,6 +2908,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
+'pageinfo-not-current' => 'Dës Informatioune kënnen nëmme fir dës Versioun gewise ginn.',
 'pageinfo-header-basic' => 'Basisinformatiounen',
 'pageinfo-header-edits' => 'Historique vun den Ännerungen',
 'pageinfo-header-restrictions' => 'Spär vun der Säit',

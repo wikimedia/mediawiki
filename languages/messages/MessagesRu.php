@@ -41,6 +41,7 @@
  * @author HalanTul
  * @author Huuchin
  * @author Illusion
+ * @author Incnis Mrsi
  * @author Iniquity
  * @author Innv
  * @author Jackie
@@ -4138,7 +4139,7 @@ MediaWiki распространяется в надежде, что она бу
 'sqlite-no-fts' => '$1 без поддержки полнотекстового поиска',
 
 # New logging system
-'logentry-delete-delete' => '$1 удалил страницу $3',
+'logentry-delete-delete' => '$1 {{GENDER:$1|удалил|удалила}} страницу $3',
 'logentry-delete-restore' => '$1 восстановил страницу $3',
 'logentry-delete-event' => '$1 изменил видимость {{PLURAL:$5|$5 записи журнала|$5 записей журнала|$5 записей журнала}} на $3: $4',
 'logentry-delete-revision' => '$1 изменил видимость {{PLURAL:$5|$5 версии|$5 версий|$5 версий}} на странице $3: $4',

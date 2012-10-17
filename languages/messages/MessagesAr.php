@@ -625,7 +625,7 @@ $messages = array(
 'vector-action-protect' => 'احم',
 'vector-action-undelete' => 'استرجع الحذف',
 'vector-action-unprotect' => 'غير الحماية',
-'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
+'vector-simplesearch-preference' => 'مكّن شريط البحث المبسط (لواجهة فكتور فقط)',
 'vector-view-create' => 'أنشئ',
 'vector-view-edit' => 'تعديل',
 'vector-view-history' => 'اعرض التاريخ',
@@ -2186,7 +2186,7 @@ $1',
 'shared-repo' => 'مستودع مشترك',
 'shared-repo-name-wikimediacommons' => 'ويكيميديا كومنز',
 'filepage.css' => '/* CSS المعروض هنا سيضمن في صفحات وصف الملفات، أيضا على الويكيات الأجنبية */',
-'upload-disallowed-here' => 'لأسف لا يمكنك تعديل هذه الصورة.',
+'upload-disallowed-here' => 'للأسف لا يمكنك تعديل هذه الصورة.',
 
 # File reversion
 'filerevert' => 'استرجع $1',
@@ -2735,8 +2735,8 @@ $UNWATCHURL
 'undeletedrevisions' => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'undeletedrevisions-files' => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
 'undeletedfiles' => 'أسترجع {{PLURAL:$1||ملف واحد|ملفان|$1 ملفات|$1 ملفًا|$1 ملف}}',
-'cannotundelete' => 'فشل الاسترجاع؛
-ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
+'cannotundelete' => 'فشل إلغاء الحذف؛
+ربما قام شخص آخر بإلغاء حذف الصفحة قبلك.',
 'undeletedpage' => "'''تم استرجاع $1'''
 
 راجع [[Special:Log/delete|سجل الحدف]] لمعاينة عمليات الحذف والاسترجاعات الحديثة.",

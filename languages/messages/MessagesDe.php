@@ -786,7 +786,7 @@ Nutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt 
 'editinginterface' => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
 Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche dieses Wikis aus.
 Nutze bitte [//translatewiki.net/ translatewiki.net], das Lokalisierungsprojekt von MediaWiki, um Übersetzungen für alle Wikis hinzuzufügen oder zu ändern.",
-'sqlhidden' => "''Die SQL-Datenbankabfrage ist verborgen.''",
+'sqlhidden' => '(Die SQL-Datenbankabfrage ist verborgen)',
 'cascadeprotected' => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
 'namespaceprotected' => "Du hast nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
@@ -2876,7 +2876,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'movepagebtn' => 'Seite verschieben',
 'pagemovedsub' => 'Verschiebung erfolgreich',
 'movepage-moved' => "'''Die Seite „$1“ wurde nach „$2“ verschoben.'''",
-'movepage-moved-redirect' => 'Es wurde eine Weiterleitung erstellt.',
+'movepage-moved-redirect' => 'Eine Weiterleitung wurde erstellt.',
 'movepage-moved-noredirect' => 'Die Erstellung einer Weiterleitung wurde unterdrückt.',
 'articleexists' => 'Unter diesem Namen existiert bereits eine Seite. Bitte wähle einen anderen Namen.',
 'cantmove-titleprotected' => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
@@ -3834,7 +3834,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 # Auto-summaries
 'autosumm-blank' => 'Die Seite wurde geleert.',
 'autosumm-replace' => 'Der Seiteninhalt wurde durch einen anderen Text ersetzt: „$1“',
-'autoredircomment' => 'Weiterleitung auf [[$1]] erstellt',
+'autoredircomment' => 'Weiterleitung nach [[$1]] erstellt',
 'autosumm-new' => 'Die Seite wurde neu angelegt: „$1“',
 
 # Size units
