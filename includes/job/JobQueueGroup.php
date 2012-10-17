@@ -87,7 +87,11 @@ class JobQueueGroup {
 
 		$jobsByType = array(); // (job type => list of jobs)
 		foreach ( $jobs as $job ) {
-			$jobsByType[$job->getType()][] = $job;
+			if ( $job instanceof Job ) {
+				$jobsByType[$job->getType()][] = $job;
+			} else {
+				throw new MWException( "Attempted to push a non-Job object into a queue." );
+			}
 		}
 
 		$ok = true;
