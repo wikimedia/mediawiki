@@ -8,6 +8,7 @@
  * @file
  *
  * @author Boivie
+ * @author Cocu
  * @author Dittaeva
  * @author Diupwijk
  * @author Eirik
@@ -1838,6 +1839,7 @@ $1',
 Ho kan ikkje tryggingskontrollerast.',
 
 # Special:UploadStash
+'uploadstash-errclear' => 'Fjerning av filene var mislykka.',
 'uploadstash-refresh' => 'Oppdater fillista',
 
 # img_auth script messages

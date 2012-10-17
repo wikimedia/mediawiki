@@ -1022,6 +1022,15 @@ $2
 'edit-already-exists' => 'Немагчыма стварыць новую старонку.
 Яна ўжо існуе.',
 'defaultmessagetext' => 'Перадвызначаны тэкст паведамленьня',
+'content-failed-to-parse' => 'Зьмест «$2» не адпавядае тыпу $1: $3.',
+'invalid-content-data' => 'Няслушныя зьвесткі',
+'content-not-allowed-here' => 'Зьмест тыпу «$1» на старонцы [[$2]] не дазволены',
+
+# Content models
+'content-model-wikitext' => 'вікі-тэкст',
+'content-model-text' => 'просты тэкст',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Папярэджаньне: гэтая старонка ўтрымлівае зашмат працаёмістых зваротаў да функцыяў парсэра.
@@ -1924,7 +1933,7 @@ $1',
 'shared-repo-from' => '$1',
 'shared-repo' => 'агульнага сховішча',
 'shared-repo-name-wikimediacommons' => 'Вікісховішча',
-'upload-disallowed-here' => 'На жаль Вы ня можаце перазапісаць гэтую выяву.',
+'upload-disallowed-here' => 'Вы ня можаце перазапісаць гэты файл.',
 
 # File reversion
 'filerevert' => 'Вярнуць $1',
@@ -2472,7 +2481,8 @@ $UNWATCHURL
 'undeletedrevisions' => '{{PLURAL:$1|адноўленая $1 вэрсія|адноўленыя $1 вэрсіі|адноўленыя $1 вэрсіяў}}',
 'undeletedrevisions-files' => 'адноўленыя $1 {{PLURAL:$1|вэрсія|вэрсіі|вэрсіяў}} і $2 {{PLURAL:$2|файл|файлы|файлаў}}',
 'undeletedfiles' => '{{PLURAL:$1|адноўлены $1 файл|адноўленыя $1 файлы|адноўленыя $1 файлаў}}',
-'cannotundelete' => 'Аднаўленьне не адбылося; нехта іншы мог пасьпець аднавіць старонку раней.',
+'cannotundelete' => 'Памылка аднаўленьня:
+$1',
 'undeletedpage' => "'''Старонка $1 была адноўленая'''
 
 Глядзіце [[Special:Log/delete|журнал выдаленьняў]] для прагляду апошніх выдаленьняў і аднаўненьняў.",
@@ -2772,6 +2782,7 @@ $1',
 'immobile-target-namespace-iw' => 'Інтэрвікі-спасылка — няслушная назва для пераносу старонкі.',
 'immobile-source-page' => 'Гэтую старонку нельга пераносіць.',
 'immobile-target-page' => 'Немагчыма перанесьці старонку пад гэтую назву.',
+'bad-target-model' => 'Выніковая старонка выкарыстоўвае іншы тып зьместу. Немагчыма пераўтварыць $1 у $2.',
 'imagenocrossnamespace' => 'Нельга перанесьці файл у ня-файлавую прастору назваў',
 'nonfile-cannot-move-to-file' => 'Нельга перанесьці ня файл у прастору назваў файлаў',
 'imagetypemismatch' => 'Новае пашырэньне файла не адпавядае яго тыпу',
@@ -3008,6 +3019,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Інфармацыя пра «$1»',
+'pageinfo-not-current' => 'Інфармацыя паказываецца толькі для бягучай вэрсіі.',
 'pageinfo-header-basic' => 'Асноўныя зьвесткі',
 'pageinfo-header-edits' => 'Рэдагаваньні',
 'pageinfo-header-restrictions' => 'Абарона старонкі',
@@ -3751,6 +3763,8 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'version-entrypoints' => 'Уваходныя адрасы',
 'version-entrypoints-header-entrypoint' => 'Пункт уваходу',
 'version-entrypoints-header-url' => 'URL',
+'version-entrypoints-articlepath' => '[https://www.mediawiki.org/wiki/Manual:$wgArticlePath Шлях да артыкула]',
+'version-entrypoints-scriptpath' => '[https://www.mediawiki.org/wiki/Manual:$wgScriptPath Пуць да скрыпту]',
 
 # Special:FilePath
 'filepath' => 'Шлях да файла',

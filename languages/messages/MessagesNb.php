@@ -11,6 +11,7 @@
  * @author Boivie
  * @author Brik
  * @author Byrial
+ * @author Cocu
  * @author Danmichaelo
  * @author Dittaeva
  * @author Eirik
@@ -3089,6 +3090,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
+'pageinfo-not-current' => 'Informasjonen vises kanskje bare for den gjeldende revisjonen.',
 'pageinfo-header-basic' => 'Grunnleggende informasjon',
 'pageinfo-header-edits' => 'Redigeringshistorikk',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',
