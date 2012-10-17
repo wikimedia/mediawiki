@@ -83,8 +83,20 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	}
 
 	protected function createPage( $page, $text, $model = null ) {
-		if ( is_string( $page ) ) $page = Title::newFromText( $page );
-		if ( $page instanceof Title ) $page = new WikiPage( $page );
+		if ( is_string( $page ) ) {
+			if ( !preg_match( '/:/', $page ) &&
+				( $model === null || $model === CONTENT_MODEL_WIKITEXT ) ) {
+
+				$ns = $this->getDefaultWikitextNS();
+				$page = MWNamespace::getCanonicalName( $ns ) . ':' . $page;
+			}
+
+			$page = Title::newFromText( $page );
+		}
+
+		if ( $page instanceof Title ) {
+			$page = new WikiPage( $page );
+		}
 
 		if ( $page->exists() ) {
 			$page->doDeleteArticle( "done" );
@@ -223,8 +235,6 @@ class RevisionStorageTest extends MediaWikiTestCase {
 								'missing rev_content_model in list of fields');
 			$this->assertTrue( in_array( 'rev_content_format', $fields ),
 								'missing rev_content_format in list of fields');
-		} else {
-			$this->markTestSkipped( '$wgContentHandlerUseDB is disabled' );
 		}
 	}
 
@@ -440,11 +450,14 @@ class RevisionStorageTest extends MediaWikiTestCase {
 			$userB = \User::createNew( $userB->getName() );
 		}
 
+		$ns = $this->getDefaultWikitextNS();
+
 		$dbw = wfGetDB( DB_MASTER );
 		$revisions = array();
 
 		// create revisions -----------------------------
-		$page = WikiPage::factory( Title::newFromText( 'RevisionStorageTest_testUserWasLastToEdit' ) );
+		$page = WikiPage::factory( Title::newFromText(
+			'RevisionStorageTest_testUserWasLastToEdit', $ns ) );
 
 		# zero
 		$revisions[0] = new Revision( array(
