@@ -3863,10 +3863,10 @@ By executing it, your system may be compromised.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3', # only translate this message to other languages if you have to change it
-'seconds-abbrev' => '$1s', # only translate this message to other languages if you have to change it
-'minutes-abbrev' => '$1m', # only translate this message to other languages if you have to change it
-'hours-abbrev'   => '$1h', # only translate this message to other languages if you have to change it
-'days-abbrev'    => '$1d', # only translate this message to other languages if you have to change it
+'seconds-abbrev' => '$1 s', # only translate this message to other languages if you have to change it
+'minutes-abbrev' => '$1 min', # only translate this message to other languages if you have to change it
+'hours-abbrev'   => '$1 h', # only translate this message to other languages if you have to change it
+'days-abbrev'    => '$1 d', # only translate this message to other languages if you have to change it
 'seconds'        => '{{PLURAL:$1|$1 second|$1 seconds}}',
 'minutes'        => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours'          => '{{PLURAL:$1|$1 hour|$1 hours}}',
