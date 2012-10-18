@@ -2342,7 +2342,7 @@ $UNWATCHURL
 'actioncomplete' => 'Дзеяньне выкананае',
 'actionfailed' => 'Дзеяньне ня выкананае',
 'deletedtext' => '«$1» была выдаленая.
-Глядзіце журнал выдаленьняў у $2.',
+Запісы пра выдаленыя старонкі зьмяшчаюцца ў $2.',
 'dellogpage' => 'Журнал выдаленьняў',
 'dellogpagetext' => 'Сьпіс апошніх выдаленьняў.',
 'deletionlog' => 'журнал выдаленьняў',
@@ -3048,6 +3048,13 @@ $1',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Схаваная катэгорыя|Схаваныя катэгорыі}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблён|Шаблёны}} ($1)',
 'pageinfo-toolboxlink' => 'Зьвесткі пра старонку',
+'pageinfo-redirectsto' => 'Перанакіроўвае на',
+'pageinfo-redirectsto-info' => 'інфармацыя',
+'pageinfo-contentpage' => 'Лічыцца артыкулам',
+'pageinfo-contentpage-yes' => 'Так',
+'pageinfo-protect-cascading' => 'Адсюль пачынаецца каскадная абарона',
+'pageinfo-protect-cascading-yes' => 'Так',
+'pageinfo-protect-cascading-from' => 'Каскадная абароная пачынаецца з',
 
 # Skin names
 'skinname-standard' => 'Клясычнае',

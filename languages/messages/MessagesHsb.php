@@ -1805,7 +1805,7 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zhromadny repozitorij',
-'upload-disallowed-here' => 'Bohužel njemóžeš tutón wobraz přepisać.',
+'upload-disallowed-here' => 'Njemóžeš tutu dataju přepisać.',
 
 # File reversion
 'filerevert' => 'Wersiju $1 cofnyć',
@@ -2855,6 +2855,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # Info page
 'pageinfo-title' => 'Informacije za stronu "$1"',
+'pageinfo-not-current' => 'Informacije hodźa so jenož za aktualnu wersiju zwobraznić.',
 'pageinfo-header-basic' => 'Zakładne informacije',
 'pageinfo-header-edits' => 'Stawizny wobdźěłać',
 'pageinfo-header-restrictions' => 'Škit strony',
@@ -2884,6 +2885,13 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',
 'pageinfo-toolboxlink' => 'Informacije wo stronje',
+'pageinfo-redirectsto' => 'Sposrědkuje k',
+'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-contentpage' => 'Liči so jako wobsahowa strona',
+'pageinfo-contentpage-yes' => 'Haj',
+'pageinfo-protect-cascading' => 'Kaskadowy škit wottud',
+'pageinfo-protect-cascading-yes' => 'Haj',
+'pageinfo-protect-cascading-from' => 'Kaskadowy škit wot',
 
 # Skin names
 'skinname-standard' => 'Klasiski',

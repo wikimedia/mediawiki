@@ -13,6 +13,7 @@
  * @author Crt
  * @author ElmA
  * @author Harriv
+ * @author Hyperborean
  * @author Jaakonam
  * @author Jack Phoenix
  * @author Jafeluv
@@ -1941,6 +1942,7 @@ Voit tarvittaessa muokata [$2 tiedoston kuvaussivua] kohteessa.',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
 'shared-repo-from' => 'kohteesta $1',
 'shared-repo' => 'jaettu mediavarasto',
+'upload-disallowed-here' => 'Et voi korvata tätä tiedostoa.',
 
 # File reversion
 'filerevert' => 'Tiedoston $1 palautus',
@@ -3020,21 +3022,29 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-header-edits' => 'Muutoshistoria',
 'pageinfo-header-restrictions' => 'Sivun suojaus',
 'pageinfo-header-properties' => 'Sivun ominaisuudet',
+'pageinfo-display-title' => 'Näytä otsikko',
 'pageinfo-default-sort' => 'Oletuslajitteluavain',
 'pageinfo-length' => 'Sivun pituus (tavuina)',
 'pageinfo-article-id' => 'Sivun tunniste',
+'pageinfo-robot-index' => 'Indeksoitava',
+'pageinfo-robot-noindex' => 'Ei indeksoitava',
 'pageinfo-views' => 'Katselukertojen määrä',
 'pageinfo-watchers' => 'Sivun tarkkailijoiden lukumäärä',
 'pageinfo-redirects-name' => 'Sivulle johtavat ohjaukset',
 'pageinfo-subpages-name' => 'Sivun alasivut',
 'pageinfo-firstuser' => 'Sivun luonut',
+'pageinfo-firsttime' => 'Sivun luontipäivämäärä',
 'pageinfo-lastuser' => 'Viimeisin muokkaaja',
+'pageinfo-lasttime' => 'Viimeisimmän muokkausksen päivämäärä',
 'pageinfo-edits' => 'Muokkausten kokonaismäärä',
 'pageinfo-authors' => 'Sivun eri muokkaajien kokonaismäärä',
 'pageinfo-magic-words' => '{{PLURAL:$1|Taikasana|Taikasanat}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Piilotettu luokka|Piilotetut luokat}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Sisällytetty malline|Sisällytetyt mallineet}} ($1)',
 'pageinfo-toolboxlink' => 'Sivun tiedot',
+'pageinfo-redirectsto-info' => 'tiedot',
+'pageinfo-contentpage-yes' => 'Kyllä',
+'pageinfo-protect-cascading-yes' => 'Kyllä',
 
 # Skin names
 'skinname-standard' => 'Perus',
@@ -3097,6 +3107,8 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'file-info-png-looped' => 'toistuva',
 'file-info-png-repeat' => 'toistettu $1 {{PLURAL:$1|kertaa|kertaa}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
+'file-no-thumb-animation' => "'''Huomautus: Teknisten rajoitusten vuoksi tämän tiedoston pienoiskuvat eivät ole animoituja.'''",
+'file-no-thumb-animation-gif' => "'''Huomautus: Teknisten rajoitusten vuoksi korkearesoluutioisten GIF-kuvien pienoiskuvat eivät ole animoituja.'''",
 
 # Special:NewFiles
 'newimages' => 'Uudet tiedostot',

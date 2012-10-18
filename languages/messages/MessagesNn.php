@@ -1933,7 +1933,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
 'shared-repo-from' => 'frå $1',
 'shared-repo' => 'eit sams fillager',
-'upload-disallowed-here' => 'Diverre kan du ikkje overskriva dette biletet.',
+'upload-disallowed-here' => 'Du kan ikkje overskriva denne fila.',
 
 # File reversion
 'filerevert' => 'Rulla attende $1',
@@ -3015,6 +3015,11 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'pageinfo-magic-words' => '{{PLURAL:$1|Trylleord}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Løynd kategori|Løynde kategoriar}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkludert mal|Inkluderte malar}} ($1)',
+'pageinfo-contentpage' => 'Tald som ei innhaldsside',
+'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading' => 'Djupvern byrjar her',
+'pageinfo-protect-cascading-yes' => 'Ja',
+'pageinfo-protect-cascading-from' => 'Djupvern byrjar i',
 
 # Skin names
 'skinname-standard' => 'Klassisk',
@@ -3260,6 +3265,7 @@ Andre er gøymde som standard.
 'exif-headline' => 'Overskrift',
 'exif-credit' => 'Opphavrettseigar/filgjevar',
 'exif-source' => 'Kjelde',
+'exif-editstatus' => 'Den redaksjonelle stoda til biletet',
 'exif-urgency' => 'Prioritet',
 'exif-objectcycle' => 'Tid på dagen mediet er meint for',
 'exif-contact' => 'Kontaktinformasjon',
@@ -3278,6 +3284,7 @@ Andre er gøymde som standard.
 'exif-copyrighted' => 'Opphavsrettsstode',
 'exif-copyrightowner' => 'Opphavsrettseigar',
 'exif-usageterms' => 'Bruksvilkår',
+'exif-originaldocumentid' => 'Unik ID til originaldokumentet',
 'exif-licenseurl' => 'URL for opphavsrettsløyve',
 'exif-morepermissionsurl' => 'Alternativ løyveinformasjon',
 'exif-attributionurl' => 'Når dette verket vert nytta, lenkja til',

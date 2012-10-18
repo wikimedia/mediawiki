@@ -2840,7 +2840,12 @@ This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
-'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page.',
+'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
+
+Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
+See also:
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}',
 'protect-expiring' => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
 * $1 is a date and time
 * $2 is a date (optional)
@@ -2888,9 +2893,21 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 {{Identical|Create}}',
 
 # Restriction levels
-'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
-'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
-'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
+'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}
+*{{msg-mw|Restriction-level-all}}",
+'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}
+*{{msg-mw|Restriction-level-all}}",
+'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}
+*{{msg-mw|Restriction-level-all}}",
 
 # Undelete
 'undelete' => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
@@ -3550,10 +3567,14 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-toolboxlink' => "Information link for the page (like 'What links here', but to action=info for the current page instead)",
 'pageinfo-redirectsto' => 'Key for the row shown if this page is a redirect.',
 'pageinfo-redirectsto-info' => 'Text to put in parentheses for the link to the action=info of the redirect target.',
-'pageinfo-contentpage' => 'Key for the row shown if this page is counted as a content page',
+'pageinfo-contentpage' => 'Key for the row shown on [{{fullurl:News|action=info}} action=info] if this page is [[mw:Manual:Article count|counted as a content page]]',
 'pageinfo-contentpage-yes' => 'Yes, this page is a content page',
-'pageinfo-protect-cascading'      => 'Key for the row which shows whether this page has cascading protection enabled',
-'pageinfo-protect-cascading-yes'  => 'Yes, protections are cascading from here',
+'pageinfo-protect-cascading' => 'Key for the row which shows whether this page has cascading protection enabled
+*{{msg-mw|Pageinfo-protect-cascading}}
+*{{msg-mw|Pageinfo-protect-cascading-yes}}',
+'pageinfo-protect-cascading-yes' => 'Yes, protections are cascading from here
+*{{msg-mw|Pageinfo-protect-cascading}}
+*{{msg-mw|Pageinfo-protect-cascading-yes}}',
 'pageinfo-protect-cascading-from' => 'Key for a list of pages where protections are cascading from',
 
 # Skin names

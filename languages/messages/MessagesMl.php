@@ -3116,6 +3116,10 @@ $1',
 'pageinfo-hidden-categories' => 'മറഞ്ഞിരിക്കുന്ന {{PLURAL:$1|വർഗ്ഗം|വർഗ്ഗങ്ങൾ}} ($1)',
 'pageinfo-templates' => 'ഉൾപ്പെടുത്തിയിട്ടുള്ള {{PLURAL:$1|ഫലകം|ഫലകങ്ങൾ}} ($1)',
 'pageinfo-toolboxlink' => 'താളിന്റെ വിവരങ്ങൾ',
+'pageinfo-redirectsto' => 'തിരിച്ചുവിടുന്നു',
+'pageinfo-redirectsto-info' => 'വിവരം',
+'pageinfo-contentpage' => 'ഉള്ളടക്ക താളായി എണ്ണുന്നവ',
+'pageinfo-contentpage-yes' => 'അതെ',
 
 # Skin names
 'skinname-standard' => 'സാർവത്രികം',

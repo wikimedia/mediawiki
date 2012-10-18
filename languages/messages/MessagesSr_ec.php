@@ -553,7 +553,7 @@ $messages = array(
 'vector-action-protect' => 'Заштити',
 'vector-action-undelete' => 'Врати',
 'vector-action-unprotect' => 'Промени заштиту',
-'vector-simplesearch-preference' => 'Побољшани предлози претраге (само за тему „Векторско“)',
+'vector-simplesearch-preference' => 'Упрошћено поље за претрагу (само за тему „Векторско“)',
 'vector-view-create' => 'Направи',
 'vector-view-edit' => 'Уреди',
 'vector-view-history' => 'Историја',
@@ -1189,6 +1189,15 @@ $2
 'edit-already-exists' => 'Не могу да направим страницу.
 Изгледа да она већ постоји.',
 'defaultmessagetext' => 'Подразумевани текст поруке',
+'content-failed-to-parse' => 'Не могу да рашчланим садржај типа $2 за модел $1: $3',
+'invalid-content-data' => 'Неисправни подаци садржаја',
+'content-not-allowed-here' => 'Садржај модела „$1“ није дозвољен на страници [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'викитекст',
+'content-model-text' => 'чист текст',
+'content-model-javascript' => 'јаваскрипт',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Упозорење:''' ова страница садржи превише позива за рашчлањивање.
@@ -2125,7 +2134,7 @@ $1',
 'shared-repo' => 'заједничко складиште',
 'shared-repo-name-wikimediacommons' => 'Викимедијина остава',
 'filepage.css' => '/* CSS који је постављен овде се налази на страницама за опис датотека, као и на страним викијима */',
-'upload-disallowed-here' => 'Нажалост, не можете да замените ову слику.',
+'upload-disallowed-here' => 'Не можете да замените ову датотеку.',
 
 # File reversion
 'filerevert' => 'Врати $1',
@@ -2682,7 +2691,8 @@ $UNWATCHURL
 'undeletedrevisions' => '{{PLURAL:$1|Измена је враћена|$1 измене су враћене|$1 измена је враћено}}',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|измена|измене|измена}} и $2 {{PLURAL:$2|датотека|датотеке|датотека}} је враћено',
 'undeletedfiles' => '{{PLURAL:$1|Датотека је враћена|$1 датотеке су враћене|$1 датотека је враћено}}',
-'cannotundelete' => 'Неуспешно враћање. Неко други је то урадио пре вас.',
+'cannotundelete' => 'Враћање није успело:
+$1',
 'undeletedpage' => "'''Страница $1 је враћена'''
 
 Погледајте [[Special:Log/delete|историју брисања]] за записе о скорашњим брисањима и враћањима.",
@@ -2993,6 +3003,7 @@ $1',
 'immobile-target-namespace-iw' => 'Међувики веза није исправно одредиште за премештање странице.',
 'immobile-source-page' => 'Ова страница се не може преместити.',
 'immobile-target-page' => 'Не могу да преместим на жељени наслов.',
+'bad-target-model' => 'Жељено одредиште користи другачији модел садржаја. Не могу да претворим из $1 у $2.',
 'imagenocrossnamespace' => 'Датотека се не може преместити у именски простор који не припада датотекама.',
 'nonfile-cannot-move-to-file' => 'Не-датотеке не можете преместити у именски простор за датотеке',
 'imagetypemismatch' => 'Екстензија нове датотеке се не поклапа с њеном врстом',
@@ -3262,6 +3273,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Подаци о „$1“',
+'pageinfo-not-current' => 'Подаци могу бити приказани само за текућу измену.',
 'pageinfo-header-basic' => 'Основни подаци',
 'pageinfo-header-edits' => 'Историја измена',
 'pageinfo-header-restrictions' => 'Заштита странице',
@@ -3289,6 +3301,11 @@ $1',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магична реч|Магичне речи}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Сакривена категорија|Сакривене категорије}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Укључени шаблон|Укључени шаблони}} ($1)',
+'pageinfo-toolboxlink' => 'Подаци о страници',
+'pageinfo-redirectsto' => 'Преусмерава на',
+'pageinfo-redirectsto-info' => 'подаци',
+'pageinfo-contentpage' => 'Рачуна се као страница са садржајем',
+'pageinfo-contentpage-yes' => 'Да',
 
 # Skin names
 'skinname-standard' => 'Класично',
@@ -3970,6 +3987,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Међувики укључивање шаблона је онемогућено]',
 'scarytranscludefailed' => '[Добављање шаблона за $1 није успело]',
+'scarytranscludefailed-httpstatus' => '[Не могу да преузмем шаблон $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL адреса је предугачка]',
 
 # Delete conflict
