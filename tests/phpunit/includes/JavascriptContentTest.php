@@ -89,6 +89,9 @@ class JavascriptContentTest extends TextContentTest {
 			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 				'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 			),
+			array( " Foo \n ",
+				" Foo",
+			),
 		);
 	}
 

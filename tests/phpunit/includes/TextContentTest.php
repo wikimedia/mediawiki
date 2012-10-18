@@ -50,8 +50,13 @@ class TextContentTest extends MediaWikiTestCase {
 
 	public function dataPreSaveTransform() {
 		return array(
-			array( 'hello this is ~~~',
-			       "hello this is ~~~",
+			array( #0: no signature resolution
+				"hello this is ~~~",
+				"hello this is ~~~",
+			),
+			array( #1: rtrim
+				" Foo \n ",
+				" Foo",
 			),
 		);
 	}
