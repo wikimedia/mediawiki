@@ -1113,6 +1113,32 @@ class FileBackendTest extends MediaWikiTestCase {
 		return $cases;
 	}
 
+	public function testGetLocalCopyAndReference404() {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestGetLocalCopyAndReference404();
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestGetLocalCopyAndReference404();
+		$this->tearDownFiles();
+	}
+
+	public function doTestGetLocalCopyAndReference404() {
+		$backendName = $this->backendClass();
+
+		$base = self::baseStorePath();
+
+		$tmpFile = $this->backend->getLocalCopy( array(
+			'src' => "$base/unittest-cont1/not-there" ) );
+		$this->assertEquals( null, $tmpFile, "Local copy of not existing file is null ($backendName)." );
+
+		$tmpFile = $this->backend->getLocalReference( array(
+			'src' => "$base/unittest-cont1/not-there" ) );
+		$this->assertEquals( null, $tmpFile, "Local ref of not existing file is null ($backendName)." );
+	}
+
 	/**
 	 * @dataProvider provider_testPrepareAndClean
 	 */

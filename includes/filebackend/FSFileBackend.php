@@ -670,8 +670,8 @@ class FSFileBackend extends FileBackendStore {
 
 		foreach ( $params['srcs'] as $src ) {
 			$source = $this->resolveToFSPath( $src );
-			if ( $source === null ) {
-				$fsFiles[$src] = null; // invalid path
+			if ( $source === null || !is_file( $source ) ) {
+				$fsFiles[$src] = null; // invalid path or file does not exist
 			} else {
 				$fsFiles[$src] = new FSFile( $source );
 			}
@@ -700,7 +700,9 @@ class FSFileBackend extends FileBackendStore {
 				} else {
 					$tmpPath = $tmpFile->getPath();
 					// Copy the source file over the temp file
+					wfSuppressWarnings();
 					$ok = copy( $source, $tmpPath );
+					wfRestoreWarnings();
 					if ( !$ok ) {
 						$tmpFiles[$src] = null;
 					} else {
