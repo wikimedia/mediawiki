@@ -15,8 +15,20 @@ class JavascriptContentTest extends TextContentTest {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("MediaWiki:Test.js", null, "hello <world>\n",
-					"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"),
+			array(
+				"MediaWiki:Test.js",
+				null,
+				"hello <world>\n",
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>" ),
+
+			array(
+				"MediaWiki:Test.js",
+				null,
+				"hello(); // [[world]]\n",
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello(); // [[world]]\n\n</pre>",
+				array( 'Links' => array( // NOTE: assumes default settings for $wgTextModelsToParse
+							array( 'World' => 0 ) ) ) ),
+
 			// @todo: more...?
 		);
 	}

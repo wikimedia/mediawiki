@@ -164,7 +164,19 @@ class TextContent extends AbstractContent {
 		$revId = null,
 		ParserOptions $options = null, $generateHtml = true
 	) {
-		# Generic implementation, relying on $this->getHtml()
+		global $wgParser, $wgTextModelsToParse;
+
+		if ( !$options ) {
+			//NOTE: use canonical options per default to produce cacheable output
+			$options = $this->getContentHandler()->makeParserOptions( 'canonical' );
+		}
+
+		if ( in_array( $this->getModel(), $wgTextModelsToParse ) ) {
+			// parse just to get links etc into the database
+			$po = $wgParser->parse( $this->getNativeData(), $title, $options, true, true, $revId );
+		} else {
+			$po = new ParserOutput();
+		}
 
 		if ( $generateHtml ) {
 			$html = $this->getHtml();
@@ -172,7 +184,7 @@ class TextContent extends AbstractContent {
 			$html = '';
 		}
 
-		$po = new ParserOutput( $html );
+		$po->setText( $html );
 		return $po;
 	}
 
