@@ -147,8 +147,25 @@ div.mw_clear {
 }
 
 textarea {
+	display: block;
 	width: 100%;
 	padding: .1em;
+}
+
+#editBox textarea {
+	padding: 0;
+	margin: 0;
+	border: none;
+	resize: vertical;
+}
+
+#editBox {
+	border: solid 1px #aaaaaa;
+	padding: .2em;
+}
+
+#editBox textarea:focus {
+	outline: none;
 }
 
 #searchBody {

@@ -2536,7 +2536,14 @@ HTML
 		$attribs['lang'] = $pageLang->getCode();
 		$attribs['dir'] = $pageLang->getDir();
 
-		$wgOut->addHTML( Html::textarea( $name, $wikitext, $attribs ) );
+		// Wrap textarea in a div to keep it the same width as the rest of the content.
+		$textarea = Html::textarea( $name, $wikitext, $attribs );
+		
+		$textContainer = Html::openElement( 'div', array( 'id' => 'editBox' ) );
+		$textContainer .= $textarea;
+		$textContainer .= Html::closeElement( 'div' );
+		
+		$wgOut->addHTML( $textContainer );
 	}
 
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
