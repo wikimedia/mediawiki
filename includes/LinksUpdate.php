@@ -173,7 +173,7 @@ class LinksUpdate extends SqlDataUpdate {
 			$this->getCategoryInsertions( $existing ) );
 
 		# Invalidate all categories which were added, deleted or changed (set symmetric difference)
-		$categoryInserts = self::arrayDiffAssocRecursive( $this->mCategories, $existing );
+		$categoryInserts = ArrayUtils::arrayDiffAssocRecursive( $this->mCategories, $existing );
 		$categoryUpdates = $categoryInserts + $categoryDeletes;
 		$this->invalidateCategories( $categoryUpdates );
 		$this->updateCategoryCounts( $categoryInserts, $categoryDeletes );
@@ -449,7 +449,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 */
 	private function getCategoryInsertions( $existing = array() ) {
 		global $wgContLang;
-		$diffs = self::arrayDiffAssocRecursive( $this->mCategories, $existing );
+		$diffs = ArrayUtils::arrayDiffAssocRecursive( $this->mCategories, $existing );
 		$arr = array();
 		foreach ( $diffs as $name => $prefixes ) {
 			$nt = Title::makeTitleSafe( NS_CATEGORY, $name );
@@ -609,7 +609,7 @@ class LinksUpdate extends SqlDataUpdate {
 	 * @return array
 	 */
 	private function getCategoryDeletions( $existing ) {
-		return self::arrayDiffAssocRecursive( $existing, $this->mCategories );
+		return ArrayUtils::arrayDiffAssocRecursive( $existing, $this->mCategories );
 	}
 
 	/**
@@ -822,49 +822,6 @@ class LinksUpdate extends SqlDataUpdate {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Do array_diff_assoc() on multi-dimensional arrays.
-	 *
-	 * Note: empty arrays are removed.
-	 *
-	 * @TODO: Move this to ArrayUtils once it's there, and add some test cases.
-	 *
-	 * @param $array1 array The array to compare from
-	 * @param $array2 array An array to compare against
-	 * @param ... array More arrays to compare against
-	 * @return array An array containing all the values from array1
-	 *               that are not present in any of the other arrays.
-	 */
-	static function arrayDiffAssocRecursive( $array1 ) {
-		$arrays = func_get_args();
-		array_shift( $arrays );
-		$ret = array();
-
-		foreach ( $array1 as $key => $value ) {
-			if ( is_array( $value ) ) {
-				$args = array( $value );
-				foreach ( $arrays as $array ) {
-					if ( isset( $array[$key] ) ) {
-						$args[] = $array[$key];
-					}
-				}
-				$valueret = call_user_func_array( __METHOD__, $args );
-				if ( count( $valueret ) ) {
-					$ret[$key] = $valueret;
-				}
-			} else {
-				foreach ( $arrays as $array ) {
-					if ( isset( $array[$key] ) && $array[$key] === $value ) {
-						continue 2;
-					}
-				}
-				$ret[$key] = $value;
-			}
-		}
-
-		return $ret;
 	}
 }
 
