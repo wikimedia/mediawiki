@@ -23,7 +23,7 @@ class UserTest extends MediaWikiTestCase {
 
 		$this->setUpPermissionGlobals();
 
-		$this->user = new User;
+		$this->user = User::newFromName( 'UnitTestUser' );
 		$this->user->addGroup( 'unittesters' );
 	}
 
@@ -161,5 +161,30 @@ class UserTest extends MediaWikiTestCase {
 			$rightsWithMessage,
 			'Each user rights (core/extensions) has a corresponding right- message.'
 		);
+	}
+
+	/**
+	 * Test User::editCount
+	 */
+	public function testEditCount() {
+		$this->user->loadDefaults();
+		$this->user->addToDatabase();
+
+		// let the user have a few (10) edits
+		$page = WikiPage::factory( Title::newFromText( 'UserTest_EditCount' ) );
+		for( $i = 0; $i < 10; $i++ ) {
+			$page->doEdit( (string) $i, 'test', 0, false, $this->user );
+		}
+
+		$this->user->clearInstanceCache();
+		$this->assertEquals( $this->user->getEditCount(), 10, 'editCount after 10 edits' );
+
+		// increase the edit count (6 times) and clear the cache
+		for( $i = 0; $i < 6; $i++ ) {
+				$this->user->incEditCount();
+		}
+
+		$this->user->clearInstanceCache();
+		$this->assertEquals( $this->user->getEditCount(), 16, 'editCount after running incEditCount 6 times and cleared cache' );
 	}
 }
