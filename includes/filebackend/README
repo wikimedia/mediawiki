@@ -1,0 +1,85 @@
+Some notes on the FileBackend architecture.
+
+Nearly all file storage in MediaWiki should be done though a FileBackend object.
+The interface is designed to abstract away the differences among different types of
+storage media. Backing stores can include anything from the local filesystem to
+distributed object stores, NFS and other network mounted file systems included.
+
+A list of file backends can be registered by name via $wgFileBackends, allowing for callers
+to use FileBackendStore::get( <name> ) to access a backend object handle. Such handles are
+reused for any subsequent get() all. These objects cache things like file stat and sha1 requests
+in addition to things like TCP connection handles. Configuration documentation for each type of
+backend can be found in the __construct() function of those backend types. The types include:
+* FSFileBackend (used for mounted filesystems)
+* SwiftFileBackend (used for Swift or Ceph Rados+RGW object stores)
+* FileBackendMultiWrite (useful for transitioning from one backend to another)
+
+Some backends may require that certain PHP extensions be enabled or even that certain MediaWiki
+extensions be enabled. This might be due to the fact that the FileBackend subclass makes use of
+some client binding API for communicating with the backing store.
+
+
+The following operations are supported for writing or changing files in the backend:
+  * store (copying a mounted filesystem file into storage)
+  * create (creating a file within storage from a string)
+  * copy (within storage)
+  * move (within storage)
+  * delete (within storage)
+  * lock/unlock (lock or unlock a file in storage)
+The following operations are supported for writing directories in the backend:
+  * prepare (create parent container and directories for a path)
+  * secure (try to lock-down access to a container)
+  * publish (try to reverse the effects of secure)
+  * clean (remove empty containers or directories)
+The following operations are supported for reading files from the backend:
+  * stating a file for basic information (timestamp,size)
+  * reading a file into a string or  several files into a map of path names to strings
+  * downloading a file or set of files to a temporary file (on a mounted FS)
+  * getting the SHA1 hash of a file
+  * getting various properties of a file (stat information, content time, mime information, etc...)
+The following operations are supported for reading directories in the backend:
+  * get a list of files directly under a directory
+  * get a recursive list of files under a directory
+  * get a list of directories directly under a directory
+  * get a recursive list of directories under a directory
+
+Note that locking is only affective if a proper lock manager is registered (see $wgLockManagers) and
+used by the backend. For object stores, locking is not generally useful for avoiding of partially
+written or read objects, since most stores use MVCC to avoid this. However, locking can be important
+for MediaWiki when multiple operations must be done without objects changing in the meantime.
+MVCC is also a useful pattern to use even on top of the backend interface, because operations are
+not atomic, so doing complex batch file changes or changing files and updating a database row can
+result in partially written "transactions". One should avoid changing files once they stored, except
+perhaps for ephemeral data that is tolerant of some inconsistency.
+
+In generally, callers should use doOperations() or doQuickOperations() when doing batches of
+changes, rather than making a string of single operation calls. This makes the system tolerate high
+latency much better by pipelining operations when possible. The former should be used for working on
+important original data, and the later for ephemeral things or items that can be easily regenerated
+from original data. The later will always pipeline without checking for dependencies within the
+operation batch; the former will only pipeline operations that do not depend on each other. It's
+best if the operations that do not depend on each other occur in consecutive groups.
+
+
+Support for object stores (like S3/Swift) drive much of the API and design decisions of this class,
+but using NTFS or POSIX filesystems works perfectly fine. The system essentially stores "files" in
+"containers". For a mounted file system as a backing store, these will just be "files" under
+"directories". For an object store as a backing store, the "files" will be "objects" stored in
+"containers".
+
+An advantage of objects stores is reduced RTTs by avoiding the need to create each parent directory
+before placing a file somewhere. This gets worse the deeper the directory hierarchy is. Both with
+object stores and file systems, using "/" in filenames will allow for the intuitive use of directory
+functions. For example, creating a file in Swift called "container/a/b/file1" will mean that a
+"directory listing" of "container/a" will contain "b", and a "file listing" of "b" will container
+"file1". This means that switching from an object store to a file system and vise versa using the
+FileBackend interface will generally be harmless, but one should be aware that:
+  * In a filesystem, you cannot have a file and a directory with the same path. You *can* do this
+	with object stores.
+  * Some systems have file name length restrictions or overall path length restrictions that others
+	do not. The same goes for maximum object length or files within a container or volumn, ect...
+  * Some systems have higher latency that others, so certain access patterns may not be tolerable
+	for certain backends but may hold up for others. Some backend subclasses use MediaWiki's object
+	caching for serving stat requests, which can greatly reduce latency. Making sure that the
+	backend has pipelining (see the "parallelize" and "concurrency" settings) enabled can also
+	combat latency in batch operation scenarios.
