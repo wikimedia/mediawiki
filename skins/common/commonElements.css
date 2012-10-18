@@ -225,9 +225,24 @@ form {
 	margin: 0;
 }
 textarea {
+	display: block;
 	width: 100%;
 	padding: .1em;
 }
+#editBox textarea {
+	padding: 0;
+	margin: 0;
+	border: none;
+	resize: vertical;
+}
+#editBox {
+	border: 1px solid #aaaaaa;
+	padding: .2em;
+}
+#editBox textarea:focus {
+	outline: none;
+}
+
 select {
 	vertical-align: top;
 }
