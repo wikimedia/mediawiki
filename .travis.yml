@@ -12,13 +12,29 @@ php:
   - hhvm-nightly
   - 5.3
 
+env:
+  - dbtype=mysql
+  - dbtype=postgres
+
+# TODO: Travis CI's hhvm does not support PostgreSQL at the moment.
+matrix:
+  exclude:
+    - php: hhvm-nightly
+      env: dbtype=postgres
+
 services:
   - mysql
 
 branches:
-  # Test changes in master and in Wikimedia's production branches.
+  # Test changes in master, in Wikimedia's production and in arbitrary
+  # Travis CI branches.  The latter allows developers to enable Travis
+  # CI in their GitHub fork of wikimedia/mediawiki and then push
+  # changes they like to test to branches like
+  # "travis-ci/test-this-awesome-change" without having to mess up the
+  # master and wmf/* branches and their defined meaning.
   only:
     - master
+    - /^travis-ci\/.*$/
     - /^wmf\/.*$/
 
 before_install:
@@ -27,9 +43,11 @@ before_install:
 
 before_script:
   - composer install --prefer-source --quiet --no-interaction
+  - if [ "$dbtype" = postgres ]; then psql -c "CREATE DATABASE traviswiki WITH OWNER travis;" -U postgres; fi
   - >
       php maintenance/install.php traviswiki admin
       --pass travis
+      --dbtype "$dbtype"
       --dbname traviswiki
       --dbuser travis
       --dbpass ""
