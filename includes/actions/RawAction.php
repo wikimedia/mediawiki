@@ -150,18 +150,28 @@ class RawAction extends FormlessAction {
 				// Public-only due to cache headers
 				$content = $rev->getContent();
 
-				if ( !$content instanceof TextContent ) {
+				if ( $content === null ) {
+					// revision not found (or suppressed)
+					$text = false;
+				} elseif ( !$content instanceof TextContent ) {
+					// non-text content
 					wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"
 										. $content->getModel() . "` which is not supported via this interface." );
 					die();
-				}
+				} else {
+					// want a section?
+					$section = $request->getIntOrNull( 'section' );
+					if ( $section !== null ) {
+						$content = $content->getSection( $section );
+					}
 
-				$section = $request->getIntOrNull( 'section' );
-				if ( $section !== null ) {
-					$content = $content->getSection( $section );
+					if ( $content === null || $content === false ) {
+						// section not found (or section not supported, e.g. for JS and CSS)
+						$text = false;
+					} else {
+						$text = $content->getNativeData();
+					}
 				}
-
-				$text = $content->getNativeData();
 			}
 		}
 
