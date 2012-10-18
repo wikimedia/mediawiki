@@ -333,7 +333,7 @@ class IcuCollation extends Collation {
 		$sortKey = $this->getPrimarySortKey( $string );
 
 		// Do a binary search to find the correct letter to sort under
-		$min = $this->findLowerBound(
+		$min = ArrayUtils::findLowerBound(
 			array( $this, 'getSortKeyByLetterIndex' ),
 			$this->getFirstLetterCount(),
 			'strcmp',
@@ -514,6 +514,8 @@ class IcuCollation extends Collation {
 	 * Do a binary search, and return the index of the largest item that sorts
 	 * less than or equal to the target value.
 	 *
+	 * @deprecated in 1.22; use ArrayUtils::findLowerBound() instead
+	 *
 	 * @param array $valueCallback A function to call to get the value with
 	 *     a given array index.
 	 * @param int $valueCount The number of items accessible via $valueCallback,
@@ -526,35 +528,8 @@ class IcuCollation extends Collation {
 	 *     sorts before all items.
 	 */
 	function findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target ) {
-		if ( $valueCount === 0 ) {
-			return false;
-		}
-
-		$min = 0;
-		$max = $valueCount;
-		do {
-			$mid = $min + ( ( $max - $min ) >> 1 );
-			$item = call_user_func( $valueCallback, $mid );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison > 0 ) {
-				$min = $mid;
-			} elseif ( $comparison == 0 ) {
-				$min = $mid;
-				break;
-			} else {
-				$max = $mid;
-			}
-		} while ( $min < $max - 1 );
-
-		if ( $min == 0 ) {
-			$item = call_user_func( $valueCallback, $min );
-			$comparison = call_user_func( $comparisonCallback, $target, $item );
-			if ( $comparison < 0 ) {
-				// Before the first item
-				return false;
-			}
-		}
-		return $min;
+		wfDeprecated( __METHOD__, '1.22' );
+		return ArrayUtils::findLowerBound( $valueCallback, $valueCount, $comparisonCallback, $target );
 	}
 
 	static function isCjk( $codepoint ) {
