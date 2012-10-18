@@ -6325,6 +6325,22 @@ $wgContentHandlerTextFallback = 'ignore';
 $wgContentHandlerUseDB = false;
 
 /**
+ * Determines which types of text are parsed as wikitext. This does not imply that these kinds
+ * of texts are also rendered as wikitext, it only means that links, magic words, etc will have
+ * the effect on the database they would have on a wikitext page.
+ *
+ * @todo: On the long run, it would be nice to put categories etc into a separate structure,
+ * or at least parse only the contents of comments in the scripts.
+ *
+ * @since 1.21
+ */
+$wgTextModelsToParse = array(
+	CONTENT_MODEL_WIKITEXT,    // Just for completeness, wikitext will always be parsed.
+	CONTENT_MODEL_JAVASCRIPT,  // Make categories etc work, people put them into comments.
+	CONTENT_MODEL_CSS,         // Make categories etc work, people put them into comments.
+);
+
+/**
  * Whether the user must enter their password to change their e-mail address
  *
  * @since 1.20
