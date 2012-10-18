@@ -540,7 +540,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 				}
 			}
 			if ( $this->parseContent ) {
-				$po = $content->getParserOutput( $title, ParserOptions::newFromContext( $this->getContext() ) );
+				$po = $content->getParserOutput( $title, $revision->getId(), ParserOptions::newFromContext( $this->getContext() ) );
 				$text = $po->getText();
 			}
 
