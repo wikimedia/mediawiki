@@ -531,6 +531,13 @@ $wgAllowAsyncCopyUploads = false;
 $wgCopyUploadsDomains = array();
 
 /**
+ * Enable copy uploads from Special:Upload. $wgAllowCopyUploads must also be
+ * true. If $wgAllowCopyUploads is true, but this is false, you will only be
+ * able to perform copy uploads from the API or extensions (e.g. UploadWizard).
+ */
+$wgCopyUploadsFromSpecialUpload = false;
+
+/**
  * Proxy to use for copy upload requests.
  * @since 1.20
  */
