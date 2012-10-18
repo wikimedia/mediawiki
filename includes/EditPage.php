@@ -2612,15 +2612,25 @@ HTML
 							$this->section, $textboxContent,
 							$this->summary, $this->edittime );
 
-		ContentHandler::runLegacyHooks( 'EditPageGetDiffText', array( $this, &$newContent ) );
-		wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
+		if ( $newContent ) {
+			ContentHandler::runLegacyHooks( 'EditPageGetDiffText', array( $this, &$newContent ) );
+			wfRunHooks( 'EditPageGetDiffContent', array( $this, &$newContent ) );
 
-		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
-		$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
+			$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+			$newContent = $newContent->preSaveTransform( $this->mTitle, $wgUser, $popts );
+		}
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
 			$oldtitle = wfMessage( $oldtitlemsg )->parse();
 			$newtitle = wfMessage( 'yourtext' )->parse();
+
+			if ( !$oldContent ) {
+				$oldContent = $newContent->getContentHandler()->makeEmptyContent();
+			}
+
+			if ( !$newContent ) {
+				$newContent = $oldContent->getContentHandler()->makeEmptyContent();
+			}
 
 			$de = $oldContent->getContentHandler()->createDifferenceEngine( $this->mArticle->getContext() );
 			$de->setContent( $oldContent, $newContent );
