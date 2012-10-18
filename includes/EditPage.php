@@ -806,7 +806,7 @@ class EditPage {
 	/**
 	 * Fetch initial editing page content.
 	 *
-	 * @param $def_text string
+	 * @param $def_text string|bool
 	 * @return mixed string on success, $def_text for invalid sections
 	 * @private
 	 * @deprecated since 1.21, get WikiPage::getContent() instead.
@@ -827,7 +827,7 @@ class EditPage {
 	}
 
 	/**
-	 * @param Content|false $def_content The default value to return
+	 * @param Content|null $def_content The default value to return
 	 *
 	 * @return mixed Content on success, $def_content for invalid sections
 	 *
@@ -1655,17 +1655,15 @@ class EditPage {
 		if ( $ok ) {
 			$editText = $this->toEditText( $editContent );
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
 	 * @private
 	 * @todo document
 	 *
-	 * @parma $editText string
-	 *
+	 * @param $editContent
 	 * @return bool
 	 * @since since 1.WD
 	 */
@@ -1865,10 +1863,13 @@ class EditPage {
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
 			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), $this->mTitle,
-				'', array( 'lim' => 10,
-					   'conds' => array( "log_action != 'revision'" ),
-					   'showIfEmpty' => false,
-					   'msgKey' => array( 'recreate-moveddeleted-warn' ) )
+				'',
+				array(
+					'lim' => 10,
+					'conds' => array( "log_action != 'revision'" ),
+					'showIfEmpty' => false,
+					'msgKey' => array( 'recreate-moveddeleted-warn' )
+				)
 			);
 		}
 	}
@@ -1886,12 +1887,9 @@ class EditPage {
 				// Added using template syntax, to take <noinclude>'s into account.
 				$wgOut->addWikiTextTitleTidy( '{{:' . $title->getFullText() . '}}', $this->mTitle );
 				return true;
-			} else {
-				return false;
 			}
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -1924,7 +1922,7 @@ class EditPage {
 	 * an exception will be raised. Set $this->allowNonTextContent to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @param String|null|false $text Text to unserialize
+	 * @param String|null|bool $text Text to unserialize
 	 * @return Content The content object created from $text. If $text was false or null, false resp. null will be
 	 *                 returned instead.
 	 *
@@ -1949,7 +1947,7 @@ class EditPage {
 
 	/**
 	 * Send the edit form and related headers to $wgOut
-	 * @param $formCallback Callback that takes an OutputPage parameter; will be called
+	 * @param $formCallback Callback|null that takes an OutputPage parameter; will be called
 	 *     during form output near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback = null ) {
@@ -2526,8 +2524,9 @@ HTML
 	protected function displayPreviewArea( $previewOutput, $isOnTop = false ) {
 		global $wgOut;
 		$classes = array();
-		if ( $isOnTop )
+		if ( $isOnTop ) {
 			$classes[] = 'ontop';
+		}
 
 		$attribs = array( 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) );
 
@@ -2580,7 +2579,7 @@ HTML
 	 * save and then make a comparison.
 	 */
 	function showDiff() {
-		global $wgUser, $wgContLang, $wgParser, $wgOut;
+		global $wgUser, $wgContLang, $wgOut;
 
 		$oldtitlemsg = 'currentrev';
 		# if message does not exist, show diff against the preloaded default
@@ -2841,7 +2840,7 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgParser, $wgRawHtml, $wgLang;
+		global $wgOut, $wgUser, $wgRawHtml, $wgLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -3339,7 +3338,7 @@ HTML
 	/**
 	 * Produce the stock "your edit contains spam" page
 	 *
-	 * @param $match string Text which triggered one or more filters
+	 * @param $match string|bool Text which triggered one or more filters
 	 * @deprecated since 1.17 Use method spamPageWithContent() instead
 	 */
 	static function spamPage( $match = false ) {
