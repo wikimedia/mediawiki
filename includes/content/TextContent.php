@@ -117,6 +117,24 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
+	 * Returns a Content object with pre-save transformations applied.
+	 * This implementation just trims trailing whitespace.
+	 *
+	 * @param $title Title
+	 * @param $user User
+	 * @param $popts ParserOptions
+	 * @return Content
+	 */
+	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
+		global $wgParser;
+
+		$text = $this->getNativeData();
+		$pst = rtrim( $text );
+
+		return ( $text === $pst ) ? $this : new WikitextContent( $pst );
+	}
+
+	/**
 	 * Diff this content object with another content object..
 	 *
 	 * @since 1.21diff
