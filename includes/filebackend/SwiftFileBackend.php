@@ -782,6 +782,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @throws Exception cloudfiles exceptions
 	 */
 	protected function addMissingMetadata( CF_Object $obj, $path ) {
+		var_dump( $obj->metadata );
 		if ( isset( $obj->metadata['Sha1base36'] ) ) {
 			return true; // nothing to do
 		}
