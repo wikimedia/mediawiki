@@ -162,4 +162,30 @@ class UserTest extends MediaWikiTestCase {
 			'Each user rights (core/extensions) has a corresponding right- message.'
 		);
 	}
+
+	/**
+	 * Test User::editCount
+	 */
+	public function testEditCount() {
+		$user = User::newFromName( 'UnitTestUser' );
+		$user->loadDefaults();
+		$user->addToDatabase();
+
+		// let the user have a few (10) edits
+		$page = WikiPage::factory( Title::newFromText( 'UserTest_EditCount' ) );
+		for( $i = 0; $i < 10; $i++ ) {
+			$page->doEdit( (string) $i, 'test', 0, false, $user );
+		}
+
+		$user->clearInstanceCache();
+		$this->assertEquals( $user->getEditCount(), 10, 'editCount after 10 edits' );
+
+		// increase the edit count (6 times) and clear the cache
+		for( $i = 0; $i < 6; $i++ ) {
+				$user->incEditCount();
+		}
+
+		$user->clearInstanceCache();
+		$this->assertEquals( $user->getEditCount(), 16, 'editCount after running incEditCount 6 times and cleared cache' );
+	}
 }
