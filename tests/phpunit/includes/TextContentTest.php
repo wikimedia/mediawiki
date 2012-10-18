@@ -27,7 +27,11 @@ class TextContentTest extends MediaWikiTestCase {
 
 	public function dataGetParserOutput() {
 		return array(
-			array("TextContentTest_testGetParserOutput", CONTENT_MODEL_TEXT, "hello ''world'' & stuff\n", "hello ''world'' &amp; stuff"),
+			array(
+				"TextContentTest_testGetParserOutput",
+				CONTENT_MODEL_TEXT,
+				"hello ''world'' & [[stuff]]\n", "hello ''world'' &amp; [[stuff]]",
+				array( 'Links' => array() ) ),
 			// @todo: more...?
 		);
 	}
@@ -35,7 +39,7 @@ class TextContentTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider dataGetParserOutput
 	 */
-	public function testGetParserOutput( $title, $model, $text, $expectedHtml ) {
+	public function testGetParserOutput( $title, $model, $text, $expectedHtml, $expectedFields = null ) {
 		$title = Title::newFromText( $title );
 		$content = ContentHandler::makeContent( $text, $title, $model );
 
@@ -45,6 +49,20 @@ class TextContentTest extends MediaWikiTestCase {
 		$html = preg_replace( '#<!--.*?-->#sm', '', $html ); // strip comments
 
 		$this->assertEquals( $expectedHtml, trim( $html ) );
+
+		if ( $expectedFields ) {
+			foreach ( $expectedFields as $field => $exp ) {
+				$f = 'get' . ucfirst( $field );
+				$v = call_user_func( array( $po, $f ) );
+
+				if ( is_array( $exp ) ) {
+					$this->assertArrayEquals( $exp, $v );
+				} else {
+					$this->assertEquals( $exp, $v );
+				}
+			}
+		}
+
 		// @todo: assert more properties
 	}
 
