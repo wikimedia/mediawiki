@@ -25,6 +25,10 @@
  */
 class Revision implements IDBAccessObject {
 	protected $mId;
+
+	/**
+	 * @var int|null
+	 */
 	protected $mPage;
 	protected $mUserText;
 	protected $mOrigUserText;
@@ -38,11 +42,23 @@ class Revision implements IDBAccessObject {
 	protected $mComment;
 	protected $mText;
 	protected $mTextRow;
+
+	/**
+	 * @var null|Title
+	 */
 	protected $mTitle;
 	protected $mCurrent;
 	protected $mContentModel;
 	protected $mContentFormat;
+
+	/**
+	 * @var Content
+	 */
 	protected $mContent;
+
+	/**
+	 * @var null|ContentHandler
+	 */
 	protected $mContentHandler;
 
 	// Revision deletion constants
@@ -908,7 +924,7 @@ class Revision implements IDBAccessObject {
 	 * @param $user User object to check for, only if FOR_THIS_USER is passed
 	 *              to the $audience parameter
 	 * @since 1.21
-	 * @return Content
+	 * @return Content|null
 	 */
 	public function getContent( $audience = self::FOR_PUBLIC, User $user = null ) {
 		if( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_TEXT ) ) {
@@ -941,7 +957,6 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getRawText() {
 		ContentHandler::deprecated( __METHOD__, "1.21" );
-
 		return $this->getText( self::RAW );
 	}
 
@@ -967,7 +982,6 @@ class Revision implements IDBAccessObject {
 
 			$handler = $this->getContentHandler();
 			$format = $this->getContentFormat();
-			$title = $this->getTitle();
 
 			if( is_null( $this->mText ) ) {
 				// Load text on demand:
@@ -1022,6 +1036,7 @@ class Revision implements IDBAccessObject {
 	/**
 	 * Returns the content handler appropriate for this revision's content model.
 	 *
+	 * @throws MWException
 	 * @return ContentHandler
 	 */
 	public function getContentHandler() {
