@@ -21,12 +21,12 @@ class WikitextContentTest extends TextContentTest {
 
 	public function dataGetSecondaryDataUpdates() {
 		return array(
-			array("WikitextContentTest_testGetSecondaryDataUpdates_1",
+			array( "WikitextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
 				array( 'LinksUpdate' => array(  'mRecursive' => true,
 				                                'mLinks' => array() ) )
 			),
-			array("WikitextContentTest_testGetSecondaryDataUpdates_2",
+			array( "WikitextContentTest_testGetSecondaryDataUpdates_2",
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
 				array( 'LinksUpdate' => array(  'mRecursive' => true,
 				                                'mLinks' => array( array( 'World_test_21344' => 0 ) ) ) )
@@ -173,6 +173,10 @@ just a test"
 			),
 			array( 'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
 			       'hello \'\'this\'\' is <nowiki>~~~</nowiki>',
+			),
+			array( // rtrim
+				" Foo \n ",
+				" Foo",
 			),
 		);
 	}

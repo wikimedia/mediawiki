@@ -96,8 +96,9 @@ class WikitextContent extends TextContent {
 
 		$text = $this->getNativeData();
 		$pst = $wgParser->preSaveTransform( $text, $title, $user, $popts );
+		rtrim( $pst );
 
-		return new WikitextContent( $pst );
+		return ( $text === $pst ) ? $this : new WikitextContent( $pst );
 	}
 
 	/**
