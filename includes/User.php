@@ -4127,19 +4127,20 @@ class User {
 			return;
 		}
 
-		$this->mOptions = self::getDefaultOptions();
-
 		if ( !$this->getId() ) {
 			// For unlogged-in users, load language/variant options from request.
 			// There's no need to do it for logged-in users: they can set preferences,
 			// and handling of page content is done by $pageLang->getPreferredVariant() and such,
 			// so don't override user's choice (especially when the user chooses site default).
 			$variant = $wgContLang->getDefaultVariant();
+			$this->mOptions = array();
 			$this->mOptions['variant'] = $variant;
 			$this->mOptions['language'] = $variant;
 			$this->mOptionsLoaded = true;
 			return;
 		}
+
+		$this->mOptions = self::getDefaultOptions();
 
 		// Maybe load from the object
 		if ( !is_null( $this->mOptionOverrides ) ) {
