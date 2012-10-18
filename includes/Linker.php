@@ -1113,8 +1113,11 @@ class Linker {
 			// check if the user has an edit
 			$attribs = array();
 			if ( $redContribsWhenNoEdits ) {
-				$count = !is_null( $edits ) ? $edits : User::edits( $userId );
-				if ( $count == 0 ) {
+				if ( intval( $edits ) === 0 && $edits !== 0 ) {
+					$user = User::newFromId( $userId );
+					$edits = $user->getEditCount();
+				}
+				if ( $edits === 0 ) {
 					$attribs['class'] = 'new';
 				}
 			}
