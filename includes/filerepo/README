@@ -39,22 +39,3 @@ LocalRepo.php. LocalRepo provides only file access, and LocalFile provides
 database access and higher-level functions such as cache management.
 
 Tim Starling, June 2007
-
-Structure:
-
-File defines an abstract class File.
-    ForeignAPIFile extends File.
-    LocalFile extends File.
-        ForeignDBFile extends LocalFile
-        Image extends LocalFile
-    UnregisteredLocalFile extends File.
-        UploadStashFile extends UnregisteredLocalFile.
-FileRepo defines an abstract class FileRepo.
-    ForeignAPIRepo extends FileRepo
-    FSRepo extends FileRepo
-        LocalRepo extends FSRepo
-            ForeignDBRepo extends LocalRepo
-            ForeignDBViaLBRepo extends LocalRepo
-    NullRepo extends FileRepo
-
-Russ Nelson, March 2011
