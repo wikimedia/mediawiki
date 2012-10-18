@@ -2002,7 +2002,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 'uploadnewversion-linktext' => 'Last opp en ny versjon av denne filen',
 'shared-repo-from' => 'fra $1',
 'shared-repo' => 'et delt fillager',
-'upload-disallowed-here' => 'Beklageligvis kan du ikke overskrive dette bildet.',
+'upload-disallowed-here' => 'Du kan ikke overskrive denne filen.',
 
 # File reversion
 'filerevert' => 'Tilbakestill $1',
@@ -3119,6 +3119,13 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => 'Transkludert {{PLURAL:$1|mal|maler}} ($1)',
 'pageinfo-toolboxlink' => 'Sideinformasjon',
+'pageinfo-redirectsto' => 'Omdirigerer til',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Talt som innholdsside',
+'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading' => 'Dypbeskyttelse starter herfra',
+'pageinfo-protect-cascading-yes' => 'Ja',
+'pageinfo-protect-cascading-from' => 'Dypbeskyttelse fra',
 
 # Skin names
 'skinname-standard' => 'Standard',

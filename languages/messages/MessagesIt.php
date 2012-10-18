@@ -3031,6 +3031,13 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}} ($1)',
 'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',
 'pageinfo-toolboxlink' => 'Informazioni sulla pagina',
+'pageinfo-redirectsto' => 'Reindirizza a',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Conteggiata come una pagina di contenuto',
+'pageinfo-contentpage-yes' => 'Sì',
+'pageinfo-protect-cascading' => 'Protezione ricorsiva da qui',
+'pageinfo-protect-cascading-yes' => 'Sì',
+'pageinfo-protect-cascading-from' => 'Protezione ricorsiva ereditata da',
 
 # Patrolling
 'markaspatrolleddiff' => 'Segna la modifica come verificata',

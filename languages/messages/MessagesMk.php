@@ -3234,6 +3234,10 @@ $1',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скриена категорија|Скриени категории}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Превметнат шаблон|Превметнати шаблони}} ($1)',
 'pageinfo-toolboxlink' => 'Информации за страницата',
+'pageinfo-redirectsto' => 'Пренасочува кон',
+'pageinfo-redirectsto-info' => 'инфо',
+'pageinfo-contentpage' => 'Се вбројува во содржински страници',
+'pageinfo-contentpage-yes' => 'Да',
 
 # Skin names
 'skinname-standard' => 'Класично',

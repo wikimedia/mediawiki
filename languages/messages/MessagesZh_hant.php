@@ -2980,6 +2980,10 @@ $1被封禁的理由是“$2”',
 'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}} ( $1 )',
 'pageinfo-templates' => '被引用的{{PLURAL:$1|模版|模版}} ( $1 )',
 'pageinfo-toolboxlink' => '頁面資訊',
+'pageinfo-redirectsto' => '重定向到',
+'pageinfo-redirectsto-info' => '資訊',
+'pageinfo-contentpage' => '計算為內容頁',
+'pageinfo-contentpage-yes' => '是',
 
 # Skin names
 'skinname-standard' => '標準',

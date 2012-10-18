@@ -237,7 +237,6 @@ $messages = array(
 'qbbrowse' => 'Bigere',
 'qbedit' => 'Biguherîne',
 'qbpageoptions' => 'Ev rûpel',
-'qbpageinfo' => 'Naverok',
 'qbmyoptions' => 'Rûpelên min',
 'qbspecialpages' => 'Rûpelên taybet',
 'faq' => 'PGP',
@@ -305,7 +304,7 @@ $messages = array(
 'categorypage' => 'Li rûpela kategoriyê binêre',
 'viewtalkpage' => 'Li gotûbêjê binêre',
 'otherlanguages' => 'Zimanên din',
-'redirectedfrom' => '(ji $1 hate beralîkirin)',
+'redirectedfrom' => '(Ji $1 hate beralîkirin)',
 'redirectpagesub' => 'Rûpelê beralî bike',
 'lastmodifiedat' => 'Ev rûpel cara dawî di $2, $1 de hate guherandin.',
 'viewcount' => 'Ev rûpel {{PLURAL:$1|carekê|caran}} tê xwestin.',
@@ -2048,7 +2047,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 # Auto-summaries
 'autosumm-blank' => 'Rûpel hate vala kirin',
 'autosumm-replace' => "'$1' ket şûna rûpelê.",
-'autoredircomment' => 'ji bo [[$1]] hate beralîkirin',
+'autoredircomment' => 'Ji bo [[$1]] hate beralîkirin',
 'autosumm-new' => 'Rûpela nû: "$1"',
 
 # Live preview

@@ -2933,6 +2933,9 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Agebonne {{PLURAL:$1|Schabloun|Schabloune}} ($1)',
 'pageinfo-toolboxlink' => "Informatiounen iwwert d'Säit",
+'pageinfo-redirectsto' => 'Viruleedung op',
+'pageinfo-redirectsto-info' => 'Informatioun',
+'pageinfo-contentpage-yes' => 'Jo',
 
 # Skin names
 'skinname-standard' => 'Klassesch',

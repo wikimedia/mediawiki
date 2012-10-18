@@ -3148,6 +3148,13 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrytá|Skryté}} kategorie ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Použitá šablona|Použité šablony}} ($1)',
 'pageinfo-toolboxlink' => 'Informace o stránce',
+'pageinfo-redirectsto' => 'Přesměrovává na',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Stránka se počítá do obsahu',
+'pageinfo-contentpage-yes' => 'Ano',
+'pageinfo-protect-cascading' => 'Kaskádový zámek',
+'pageinfo-protect-cascading-yes' => 'Ano',
+'pageinfo-protect-cascading-from' => 'Zámky pocházejí z kaskádových zámků na',
 
 # Skin names
 'skinname-standard' => 'Klasický',

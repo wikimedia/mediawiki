@@ -844,7 +844,8 @@ $2',
 'acct_creation_throttle_hit' => 'מבקרים באתר זה דרך כתובת ה־IP שלכם כבר יצרו {{PLURAL:$1|חשבון אחד|$1 חשבונות}} ביום האחרון. זהו המקסימום המותר בתקופה זו.
 לפיכך, מבקרים דרך כתובת ה־IP הזו לא יכולים ליצור חשבונות נוספים ברגע זה.',
 'emailauthenticated' => 'כתובת הדוא"ל שלך אומתה ב־$3, $2.',
-'emailnotauthenticated' => 'כתובת הדוא"ל שלכם <strong>עדיין לא אושרה</strong> - שירותי הדוא"ל הבאים אינם פעילים.',
+'emailnotauthenticated' => 'כתובת הדוא"ל שלכם עדיין לא אושרה.
+לא יישלח אליכם דוא"ל עבור אף אחת מהאפשרויות הבאות.',
 'noemailprefs' => 'אנא ציינו כתובת דוא"ל בהעדפות שלכם כדי שתכונות אלה יעבדו.',
 'emailconfirmlink' => 'אישור כתובת הדוא"ל שלך',
 'invalidemailaddress' => 'כתובת הדוא"ל אינה מתקבלת כיוון שנראה שהיא בפורמט לא נכון.
@@ -2349,7 +2350,7 @@ $1',
 'emailuser-title-notarget' => 'שליחת דוא"ל למשתמש',
 'emailpage' => 'שליחת דואר למשתמש',
 'emailpagetext' => 'ניתן להשתמש בטופס כדי לשלוח הודעת דואר אלקטרוני למשתמש זה.
-כתובת הדואר האלקטרוני שכתבתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת ממנה נשלחה ההודעה, כדי לאפשר תגובה ישירה למכתב.',
+כתובת הדואר האלקטרוני שכתבתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת שההודעה נשלחה ממנה, כדי לאפשר תגובה ישירה.',
 'usermailererror' => 'אובייקט הדואר החזיר שגיאה:',
 'defemailsubject' => 'דוא"ל מ{{grammar:תחילית|{{SITENAME}}}} מהמשתמש "$1"',
 'usermaildisabled' => 'שליחת דוא"ל למשתמשים מבוטלת',
@@ -3204,6 +3205,13 @@ $1',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|תבנית מוכללת|תבניות מוכללות}} ($1)',
 'pageinfo-toolboxlink' => 'מידע על הדף',
+'pageinfo-redirectsto' => 'מפנה אל',
+'pageinfo-redirectsto-info' => 'מידע',
+'pageinfo-contentpage' => 'נספר כדף תוכן',
+'pageinfo-contentpage-yes' => 'כן',
+'pageinfo-protect-cascading' => 'מופעלת הגנה מדורגת מכאן',
+'pageinfo-protect-cascading-yes' => 'כן',
+'pageinfo-protect-cascading-from' => 'דף זה מוגן בגלל הגנה מדורגת על',
 
 # Skin names
 'skinname-standard' => 'קלאסי',

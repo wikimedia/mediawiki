@@ -1803,7 +1803,7 @@ Snaź coš wopisanje na jeje [$2 boku datajowego wopisanja] wobźěłaś.',
 'uploadnewversion-linktext' => 'Nowu wersiju toś teje dataje nagraś',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zgromadny repozitorium',
-'upload-disallowed-here' => 'Bóžko njamóžoš toś ten wobraz pśepisaś.',
+'upload-disallowed-here' => 'Njamóžoš toś tu dataju pśepisaś.',
 
 # File reversion
 'filerevert' => 'Slědk wześ $1',
@@ -2860,6 +2860,7 @@ W zespominanju dajo se pśicyna pódaś.',
 
 # Info page
 'pageinfo-title' => 'Informacije za bok "$1"',
+'pageinfo-not-current' => 'Informacije daju se jano za aktualnu wersiju zwobrazniś.',
 'pageinfo-header-basic' => 'Zakładne informacije',
 'pageinfo-header-edits' => 'Historiju wobźěłaś',
 'pageinfo-header-restrictions' => 'Šćit boka',
@@ -2889,6 +2890,13 @@ W zespominanju dajo se pśicyna pódaś.',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapśěgnjona pśedłoga|Zapśěgnjonej pśedłoze|Zapśěgnjone pśedłogi|Zapśěgnjone pśedłogi}} ($1)',
 'pageinfo-toolboxlink' => 'Informacije wó boku',
+'pageinfo-redirectsto' => 'Pósrědnja dalej k',
+'pageinfo-redirectsto-info' => 'Info',
+'pageinfo-contentpage' => 'Licy se ako wopśimjeśowy bok',
+'pageinfo-contentpage-yes' => 'Jo',
+'pageinfo-protect-cascading' => 'Kaskadowy šćit wót how',
+'pageinfo-protect-cascading-yes' => 'Jo',
+'pageinfo-protect-cascading-from' => 'Kaskadowy šćit wót',
 
 # Skin names
 'skinname-standard' => 'Klasiski',

@@ -3123,6 +3123,13 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Format inclus|Formate incluse}} ($1)',
 'pageinfo-toolboxlink' => 'Informații despre pagină',
+'pageinfo-redirectsto' => 'Redirecționează către',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Numărată ca pagină cu conținut',
+'pageinfo-contentpage-yes' => 'Da',
+'pageinfo-protect-cascading' => 'Protecțiile provin în cascadă de aici',
+'pageinfo-protect-cascading-yes' => 'Da',
+'pageinfo-protect-cascading-from' => 'Protecțiile provin în cascadă de la',
 
 # Skin names
 'skinname-standard' => 'Clasic',
