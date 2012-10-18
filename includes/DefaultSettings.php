@@ -6322,7 +6322,7 @@ $wgContentHandlerTextFallback = 'ignore';
  *
  * @since 1.21
  */
-$wgContentHandlerUseDB = true;
+$wgContentHandlerUseDB = false;
 
 /**
  * Whether the user must enter their password to change their e-mail address
