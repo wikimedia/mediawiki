@@ -940,11 +940,11 @@ class EditPage {
 	 * to the original text of the edit.
 	 *
 	 * This difers from Article::getContent() that when a missing revision is
-	 * encountered the result will be an empty string and not the
+	 * encountered the result will be null and not the
 	 * 'missing-revision' message.
 	 *
 	 * @since 1.19
-	 * @return string
+	 * @return Content|null
 	 */
 	private function getOriginalContent() {
 		if ( $this->section == 'new' ) {
@@ -1073,6 +1073,10 @@ class EditPage {
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
 		$content = $page->getContent( Revision::RAW );
+
+		if ( !$content ) {
+			return $handler->makeEmptyContent();
+		}
 
 		return $content->preloadTransform( $title, $parserOptions );
 	}
@@ -1676,19 +1680,21 @@ class EditPage {
 
 		// This is the revision the editor started from
 		$baseRevision = $this->getBaseRevision();
-		if ( is_null( $baseRevision ) ) {
+		$baseContent = $baseRevision ? $baseRevision->getContent() : null;
+
+		if ( is_null( $baseContent ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$baseContent = $baseRevision->getContent();
 
 		// The current state, we want to merge updates into it
 		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
-		if ( is_null( $currentRevision ) ) {
+		$currentContent = $currentRevision ? $currentRevision->getContent() : null;
+
+		if ( is_null( $currentContent ) ) {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
-		$currentContent = $currentRevision->getContent();
 
 		$handler = ContentHandler::getForModelID( $baseContent->getModel() );
 
