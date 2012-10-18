@@ -42,7 +42,7 @@ $forms_whitelist = array();
 $form_dirs = array(
 	'default' => $wgDonationInterfaceHtmlFormDir,
 	'gc' => $wgGlobalCollectGatewayHtmlFormDir,
-	'pfp' => $wgPayflowProGatewayHtmlFormDir,
+//	'pfp' => $wgPayflowProGatewayHtmlFormDir,
 );
 
 
