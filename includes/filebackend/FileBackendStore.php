@@ -1007,6 +1007,7 @@ abstract class FileBackendStore extends FileBackend {
 	 * Get a list of storage paths to lock for a list of operations
 	 * Returns an array with 'sh' (shared) and 'ex' (exclusive) keys,
 	 * each corresponding to a list of storage paths to be locked.
+	 * All returned paths are normalized.
 	 *
 	 * @param $performOps Array List of FileOp objects
 	 * @return Array ('sh' => list of paths, 'ex' => list of paths)
@@ -1475,6 +1476,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Do a batch lookup from cache for container stats for all containers
 	 * used in a list of container names, storage paths, or FileOp objects.
+	 * This loads the persistent cache values into the process cache.
 	 *
 	 * @param $items Array
 	 * @return void
@@ -1531,7 +1533,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Get the cache key for a file path
 	 *
-	 * @param $path string Storage path
+	 * @param $path string Normalized storage path
 	 * @return string
 	 */
 	private function fileCacheKey( $path ) {
@@ -1547,6 +1549,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $val mixed Information to cache
 	 */
 	final protected function setFileCache( $path, $val ) {
+		$path = FileBackend::normalizeStoragePath( $path );
+		if ( $path === null ) {
+			return; // invalid storage path
+		}
 		$this->memCache->add( $this->fileCacheKey( $path ), $val, 7*86400 );
 	}
 
@@ -1557,6 +1563,10 @@ abstract class FileBackendStore extends FileBackend {
 	 * @param $path string Storage path
 	 */
 	final protected function deleteFileCache( $path ) {
+		$path = FileBackend::normalizeStoragePath( $path );
+		if ( $path === null ) {
+			return; // invalid storage path
+		}
 		if ( !$this->memCache->set( $this->fileCacheKey( $path ), 'PURGED', 300 ) ) {
 			trigger_error( "Unable to delete stat cache for file $path." );
 		}
@@ -1565,6 +1575,7 @@ abstract class FileBackendStore extends FileBackend {
 	/**
 	 * Do a batch lookup from cache for file stats for all paths
 	 * used in a list of storage paths or FileOp objects.
+	 * This loads the persistent cache values into the process cache.
 	 *
 	 * @param $items Array List of storage paths or FileOps
 	 * @return void
@@ -1581,9 +1592,11 @@ abstract class FileBackendStore extends FileBackend {
 				$paths = array_merge( $paths, $item->storagePathsRead() );
 				$paths = array_merge( $paths, $item->storagePathsChanged() );
 			} elseif ( self::isStoragePath( $item ) ) {
-				$paths[] = $item;
+				$paths[] = FileBackend::normalizeStoragePath( $item );
 			}
 		}
+		// Get rid of any paths that failed normalization...
+		$paths = array_filter( $paths, 'strlen' ); // remove nulls
 		// Get all the corresponding cache keys for paths...
 		foreach ( $paths as $path ) {
 			list( $cont, $rel, $s ) = $this->resolveStoragePath( $path );
