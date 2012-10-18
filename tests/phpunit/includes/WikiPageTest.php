@@ -590,19 +590,27 @@ class WikiPageTest extends MediaWikiLangTestCase {
 		return $po;
 	}
 
-	/**
-	 * @dataProvider provideGetParserOutput
-	 */
 	public function testGetParserOutput_nonexisting( ) {
 		static $count = 0;
 		$count ++;
 
-		$page = new WikiPage( new Title( "testGetParserOutput_nonexisting_$count" ) );
+		$page = new WikiPage( new Title( "WikiPageTest_testGetParserOutput_nonexisting_$count" ) );
 
 		$opt = new ParserOptions();
 		$po = $page->getParserOutput( $opt );
 
 		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing pages." );
+	}
+
+	public function testGetParserOutput_badrev( ) {
+		$page = $this->createPage( 'WikiPageTest_testGetParserOutput', "dummy", CONTENT_MODEL_WIKITEXT );
+
+		$opt = new ParserOptions();
+		$po = $page->getParserOutput( $opt, $page->getLatest() + 1234 );
+
+		//@todo: would be neat to also test deleted revision
+
+		$this->assertFalse( $po, "getParserOutput() shall return false for non-existing revisions." );
 	}
 
 	static $sections =
