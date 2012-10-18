@@ -3334,18 +3334,19 @@ class PoolWorkArticleView extends PoolCounterWork {
 		} elseif ( $isCurrent ) {
 			#XXX: why use RAW audience here, and PUBLIC (default) below?
 			$content = $this->page->getContent( Revision::RAW );
-			if ( $content === null ) {
-				return false;
-			}
-
 		} else {
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
-			if ( $rev === null ) {
-				return false;
-			}
 
-			#XXX: why use PUBLIC audience here (default), and RAW above?
-			$content = $rev->getContent();
+			if ( $rev === null ) {
+				$content = null;
+			} else {
+				#XXX: why use PUBLIC audience here (default), and RAW above?
+				$content = $rev->getContent();
+			}
+		}
+
+		if ( $content === null ) {
+			return false;
 		}
 
 		$time = - microtime( true );
