@@ -834,6 +834,13 @@ abstract class FileBackendStore extends FileBackend {
 			$status = $this->doStreamFile( $params );
 			wfProfileOut( __METHOD__ . '-send-' . $this->name );
 			wfProfileOut( __METHOD__ . '-send' );
+			if ( !$status->isOK() ) {
+				// Per bug 41113, nasty things can happen if bad cache entries get
+				// stuck in cache. It's also possible that this error can come up
+				// with simple race conditions. Clear out the stat cache to be safe.
+				$this->clearCache( array( $params['src'] ) );
+				$this->deleteFileCache( $params['src'] );
+			}
 		} else {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
 		}
