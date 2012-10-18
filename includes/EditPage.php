@@ -471,7 +471,7 @@ class EditPage {
 		$content = $this->getContentObject();
 
 		# Use the normal message if there's nothing to display
-		if ( $this->firsttime && $content->isEmpty() ) {
+		if ( $this->firsttime && ( $content === false || $content->isEmpty() ) ) {
 			$action = $this->mTitle->exists() ? 'edit' :
 				( $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
 			throw new PermissionsError( $action, $permErrors );
@@ -1895,20 +1895,30 @@ class EditPage {
 	}
 
 	/**
-	 * Gets an editable textual representation of the given Content object.
+	 * Gets an editable textual representation of $content.
 	 * The textual representation can be turned by into a Content object by the
 	 * toEditContent() method.
+	 *
+	 * If $content is null or false or a string, $content is returned unchanged.
 	 *
 	 * If the given Content object is not of a type that can be edited using the text base EditPage,
 	 * an exception will be raised. Set $this->allowNonTextContent to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @param Content $content
+	 * @param Content|null|false|string $content
 	 * @return String the editable text form of the content.
 	 *
 	 * @throws MWException if $content is not an instance of TextContent and $this->allowNonTextContent is not true.
 	 */
-	protected function toEditText( Content $content ) {
+	protected function toEditText( $content ) {
+		if ( $content === null || $content === false ) {
+			return $content;
+		}
+
+		if ( is_string( $content ) ) {
+			return $content;
+		}
+
 		if ( !$this->allowNonTextContent && !( $content instanceof TextContent ) ) {
 			throw new MWException( "This content model can not be edited as text: "
 								. ContentHandler::getLocalizedName( $content->getModel() ) );
