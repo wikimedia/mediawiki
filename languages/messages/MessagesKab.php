@@ -785,6 +785,7 @@ Yella yakan.',
 'defaultmessagetext' => 'Izen s lexṣas',
 'content-failed-to-parse' => 'Tasleṭ n ugbur n $2 i talɣa $1 texseṛ : $3',
 'invalid-content-data' => 'Isefka n ugbur ur ɣbelen ara',
+'content-not-allowed-here' => 'Agbur "$1" ur yesɛa ara turagt ɣef usebter [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'wikiaḍris',
@@ -1913,6 +1914,9 @@ Tzemreḍ ad sageneḍ abeqqeḍ s tixtiṛit n tawsit n uɣmis, isem n useqdac 
 'linksearch-pat' => 'Anadi n tanfalit :',
 'linksearch-ns' => 'Talluntin n isemawen :',
 'linksearch-ok' => 'Nadi',
+'linksearch-text' => 'Tzemreḍ ad seqdeceḍ isekkilen imeẓliyen am « *.wikipedia.org ».
+Ilaq-asen deg udday taɣult n uswir imineg, am amedya « *.org ».<br />
+Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'linksearch-line' => '$1 yeqqen seg $2',
 
 # Special:ListUsers

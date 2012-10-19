@@ -730,7 +730,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 이 문서에 있는 내용을 바꾸면 이 위키에 있는 모든 사용자에게 영향을 끼칩니다.
 모든 위키에 대한 번역을 추가하거나 바꾸려면 미디어위키 지역화 프로젝트인 [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하시기 바랍니다.",
 'sqlhidden' => '(SQL 쿼리 숨겨짐)',
-'cascadeprotected' => '이 문서는 연쇄 보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
+'cascadeprotected' => '이 문서는 다음 "연쇄적" 보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다:
 $2',
 'namespaceprotected' => "'''$1''' 이름공간을 편집할 수 있는 권한이 없습니다.",
 'customcssprotected' => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 이 CSS 문서를 편집할 수 없습니다.',
@@ -3242,9 +3242,9 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'pageinfo-redirectsto-info' => '정보',
 'pageinfo-contentpage' => '내용 문서로 집계',
 'pageinfo-contentpage-yes' => '예',
-'pageinfo-protect-cascading' => '여기에서 연쇄 보호',
+'pageinfo-protect-cascading' => '여기서의 연쇄적 보호',
 'pageinfo-protect-cascading-yes' => '예',
-'pageinfo-protect-cascading-from' => '연쇄 보호 기점',
+'pageinfo-protect-cascading-from' => '연쇄적 보호한 기점',
 
 # Skin names
 'skinname-standard' => '클래식',

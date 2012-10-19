@@ -3090,6 +3090,13 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',
 'pageinfo-toolboxlink' => 'Información da páxina',
+'pageinfo-redirectsto' => 'Redirixe cara a',
+'pageinfo-redirectsto-info' => 'información',
+'pageinfo-contentpage' => 'Cóntase como páxina de contido',
+'pageinfo-contentpage-yes' => 'Si',
+'pageinfo-protect-cascading' => 'Protección en serie activada',
+'pageinfo-protect-cascading-yes' => 'Si',
+'pageinfo-protect-cascading-from' => 'Protección en serie activada',
 
 # Skin names
 'skinname-standard' => 'Clásica',

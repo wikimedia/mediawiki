@@ -3177,9 +3177,9 @@ J'àutri a saran stërmà coma stàndard.
 'exif-meteringmode-0' => 'Dësconossù',
 'exif-meteringmode-1' => 'Media',
 'exif-meteringmode-2' => 'Media centrà',
-'exif-meteringmode-3' => 'Quadrèt (Spot)',
-'exif-meteringmode-4' => 'Vàire quadrèt (MultiSpot)',
-'exif-meteringmode-5' => 'Schema (Pattern)',
+'exif-meteringmode-3' => 'Quadrèt',
+'exif-meteringmode-4' => 'Vàire quadrèt',
+'exif-meteringmode-5' => 'Schema',
 'exif-meteringmode-6' => 'Parsial',
 'exif-meteringmode-255' => "n'àutr",
 

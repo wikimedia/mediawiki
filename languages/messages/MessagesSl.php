@@ -2243,7 +2243,7 @@ Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tuk
 'watchnochange' => 'V prikazanem časovnem obdobju ni nihče spremenil nadzorovanih strani.',
 'watchlist-details' => 'Spremljate $1 {{PLURAL:$1|stran|strani|strani|strani|strani}} (pogovorne strani niso vštete).',
 'wlheader-enotif' => '* Obveščanje po elektronski pošti je omogočeno.',
-'wlheader-showupdated' => "* Od vašega zadnjega ogleda spremenjene strani so prikazanje '''krepko'''.",
+'wlheader-showupdated' => "* Od vašega zadnjega ogleda spremenjene strani so prikazane '''krepko'''.",
 'watchmethod-recent' => 'med nedavnimi urejanji iščem spremljane strani',
 'watchmethod-list' => 'med spremljanimi stranmi iščem nedavna urejanja',
 'watchlistcontains' => 'Spremljate $1 {{PLURAL:$1|stran|strani}}.',

@@ -1586,7 +1586,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-rollback' => 'Revocarea rapidă a modificărilor ultimului utilizator care a modificat o pagină particulară',
 'right-markbotedits' => 'Marchează revenirea ca modificare efectuată de robot',
 'right-noratelimit' => 'Neafectat de limitele raportului',
-'right-import' => 'Importă pagini de la alte wiki',
+'right-import' => 'Importă pagini de la alte wikiuri',
 'right-importupload' => 'Importă pagini dintr-o încărcare de fișier',
 'right-patrol' => 'Marchează modificările altora ca patrulate',
 'right-autopatrol' => 'Modificările proprii marcate ca patrulate',

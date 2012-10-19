@@ -2935,7 +2935,9 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-toolboxlink' => "Informatiounen iwwert d'Säit",
 'pageinfo-redirectsto' => 'Viruleedung op',
 'pageinfo-redirectsto-info' => 'Informatioun',
+'pageinfo-contentpage' => 'Als Säit mat Inhalt gezielt',
 'pageinfo-contentpage-yes' => 'Jo',
+'pageinfo-protect-cascading-yes' => 'Jo',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
