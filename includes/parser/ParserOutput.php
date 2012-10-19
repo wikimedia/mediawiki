@@ -52,6 +52,16 @@ class ParserOutput extends CacheTime {
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
 
+	/**
+	 * An array holding additional data that can be set via @see setAdditionalData
+	 * and obtained via @see getAdditionalData.
+	 *
+	 * @since 1.21
+	 *
+	 * @var array
+	 */
+	protected $mAdditionalData = array();
+
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
@@ -427,5 +437,31 @@ class ParserOutput extends CacheTime {
 
 		return $updates;
 	 }
+
+	/**
+	 * Allows for adding additional information obtained during the parsing process.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $name
+	 * @param mixed $data
+	 */
+	public function setAdditionalData( $name, $data ) {
+		$this->mAdditionalData[$name] = $data;
+	}
+
+	/**
+	 * Allows for retrieving additional information obtained during the parsing process.
+	 *
+	 * @since 1.21
+	 *
+	 * @param string $name
+	 * @param mixed $default
+	 *
+	 * @return mixed
+	 */
+	public function getAdditionalData( $name, $default = null ) {
+		return array_key_exists( $name, $this->mAdditionalData ) ? $this->mAdditionalData[$name] : $default;
+	}
 
 }
