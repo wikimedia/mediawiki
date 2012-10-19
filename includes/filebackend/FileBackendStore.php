@@ -840,6 +840,7 @@ abstract class FileBackendStore extends FileBackend {
 				// with simple race conditions. Clear out the stat cache to be safe.
 				$this->clearCache( array( $params['src'] ) );
 				$this->deleteFileCache( $params['src'] );
+				trigger_error( "Bad stat cache or race condition for file {$params['src']}." );
 			}
 		} else {
 			$status->fatal( 'backend-fail-stream', $params['src'] );
