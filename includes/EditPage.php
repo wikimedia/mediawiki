@@ -471,7 +471,7 @@ class EditPage {
 		$content = $this->getContentObject();
 
 		# Use the normal message if there's nothing to display
-		if ( $this->firsttime && ( $content === false || $content->isEmpty() ) ) {
+		if ( $this->firsttime && ( !$content || $content->isEmpty() ) ) {
 			$action = $this->mTitle->exists() ? 'edit' :
 				( $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
 			throw new PermissionsError( $action, $permErrors );
