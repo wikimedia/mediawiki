@@ -52,6 +52,23 @@ class ParserOutput extends CacheTime {
 		private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 		private $mSecondaryDataUpdates = array(); # List of DataUpdate, used to save info from the page somewhere else.
 
+	/**
+	 * An array holding name/value pairs that will not be cached in the DB.
+	 *
+	 * @since 1.21
+	 *
+	 * @var array
+	 */
+	protected $mUnindexedProperties = array();
+
+	/**
+	 * Constants to specify if a property is indexed (stored in the DB) or not.
+	 *
+	 * @since 1.21
+	 */
+	const PROP_INDEX = true;
+	const PROP_NOINDEX = false;
+
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
 
 	function __construct( $text = '', $languageLinks = array(), $categoryLinks = array(),
@@ -346,21 +363,54 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Set a property to be cached in the DB
+	 * Set a property to be cached in the DB.
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 * @param boolean $indexed Added in 1.21
 	 */
-	public function setProperty( $name, $value ) {
-		$this->mProperties[$name] = $value;
+	public function setProperty( $name, $value, $indexed = self::PROP_INDEX ) {
+		if ( $indexed ) {
+			$targetProps =& $this->mProperties;
+			$otherProps =& $this->mUnindexedProperties;
+		}
+		else {
+			$targetProps =& $this->mUnindexedProperties;
+			$otherProps =& $this->mProperties;
+		}
+
+		$targetProps[$name] = $value;
+		unset( $otherProps[$value] );
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return mixed
+	 */
 	public function getProperty( $name ){
 		return isset( $this->mProperties[$name] ) ? $this->mProperties[$name] : false;
 	}
 
-	public function getProperties() {
-		if ( !isset( $this->mProperties ) ) {
-			$this->mProperties = array();
+	/**
+	 * @param null|boolean $indexed
+	 * Allows retrieving only properties that are indexed or not indexed. Added in 1.21
+	 * - Null for no filter
+	 * - ParserOutput::PROP_INDEX for indexed properties
+	 * - ParserOutput::PROP_NOINDEX for not indexed properties
+	 *
+	 * @return array
+	 */
+	public function getProperties( $indexed = null ) {
+		if ( $indexed === null ) {
+			return array_merge( $this->mProperties, $this->mUnindexedProperties );
 		}
-		return $this->mProperties;
+		elseif ( $indexed === self::PROP_INDEX ) {
+			return $this->mProperties;
+		}
+		else {
+			return $this->mUnindexedProperties;
+		}
 	}
 
 

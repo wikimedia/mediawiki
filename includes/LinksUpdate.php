@@ -78,7 +78,7 @@ class LinksUpdate extends SqlDataUpdate {
 		$this->mTemplates = $parserOutput->getTemplates();
 		$this->mExternals = $parserOutput->getExternalLinks();
 		$this->mCategories = $parserOutput->getCategories();
-		$this->mProperties = $parserOutput->getProperties();
+		$this->mProperties = $parserOutput->getProperties( ParserOutput::PROP_INDEX );
 		$this->mInterwikis = $parserOutput->getInterwikiLinks();
 
 		# Convert the format of the interlanguage links
