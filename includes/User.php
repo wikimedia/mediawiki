@@ -1191,7 +1191,9 @@ class User {
 	}
 
 	/**
-	 * Clear various cached data stored in this object.
+	 * Clear various cached data stored in this object. The cache of the user table
+	 * data (i.e. self::$mCacheVars) is not cleared unless $reloadFrom is given.
+	 *
 	 * @param $reloadFrom bool|String Reload user and user_groups table data from a
 	 *   given source. May be "name", "id", "defaults", "session", or false for
 	 *   no reload.
@@ -1205,6 +1207,7 @@ class User {
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mOptions = null;
+		$this->mOptionsLoaded = false;
 		$this->mEditCount = null;
 
 		if ( $reloadFrom ) {
