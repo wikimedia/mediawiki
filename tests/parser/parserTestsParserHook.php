@@ -34,14 +34,10 @@ class ParserTestParserHook {
 	}
 
 	static function dumpHook( $in, $argv ) {
-		ob_start();
-		var_dump(
-			$in,
-			$argv
-		);
-		$ret = ob_get_clean();
-
-		return "<pre>\n$ret</pre>";
+		return "<pre>\n" .
+			   var_export( $in, true ) . "\n" .
+			   var_export( $argv, true ) . "\n" .
+			   "</pre>";
 	}
 
 	static function staticTagHook( $in, $argv, $parser ) {
