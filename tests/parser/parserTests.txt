@@ -3315,6 +3315,31 @@ Nested lists 8 (multiple nesting transitions)
 
 !! end
 
+!! test
+1. Lists with start-of-line-transparent tokens before bullets: Comments
+!! input
+*foo
+*<!--cmt-->bar
+<!--cmt-->*baz
+!! result
+<ul><li>foo
+</li><li>bar
+</li><li>baz
+</li></ul>
+
+!! end
+
+!! test
+2. Lists with start-of-line-transparent tokens before bullets: Template close
+!! input
+*foo {{echo|bar
+}}*baz
+!! result
+<ul><li>foo bar
+</li><li>baz
+</li></ul>
+
+!! end
 
 !! test
 List items are not parsed correctly following a <pre> block (bug 785)
@@ -4763,6 +4788,70 @@ a<div>bc</div>de
 !!end
 
 !!test
+Templates: Ugly templates: 1. Navbox template parses badly leading to table misnesting
+(Parsoid-centric)
+!! options
+disabled
+!!input
+{|
+|{{echo|foo</table>}}
+|bar
+|}
+!!result
+<table data-parsoid="{&quot;src&quot;:&quot;{|\n|{{echo|foo&lt;/table&gt;}}\n|bar\n|}&quot;}" about="#mwt1" typeof="mw:Object/Template ">
+<tbody><tr><td>foo</td></tr></tbody></table><span about="#mwt1">
+bar</span><span about="#mwt1">
+</span>
+!!end
+
+!!test
+Templates: Ugly templates: 2. Navbox template parses badly leading to table misnesting
+(Parsoid-centric)
+!! options
+disabled
+!!input
+<table>
+  <tr>
+    <td>
+    <table>
+      <tr>
+        <td>1. {{echo|foo </table>}}</td>
+        <td> bar </td>
+        <td>2. {{echo|baz </table>}}</td>
+      </tr>
+      <tr>
+        <td>abc</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td>xyz</td>
+  </tr>
+</table>
+!!result
+<table data-parsoid="{&quot;src&quot;:&quot;&lt;table&gt;\n  &lt;tr&gt;\n    &lt;td&gt;\n    &lt;table&gt;\n      &lt;tr&gt;\n        &lt;td&gt;1. {{echo|foo &lt;/table&gt;}}&lt;/td&gt;\n        &lt;td&gt; bar &lt;/td&gt;\n        &lt;td&gt;2. {{echo|baz &lt;/table&gt;}}&lt;/td&gt;\n      &lt;/tr&gt;\n      &lt;tr&gt;\n        &lt;td&gt;abc&lt;/td&gt;\n      &lt;/tr&gt;\n    &lt;/table&gt;\n    &lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;td&gt;xyz&lt;/td&gt;\n  &lt;/tr&gt;\n&lt;/table&gt;&quot;}" about="#mwt1" typeof="mw:Object/Template">
+  <tbody><tr data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+    <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+    <table data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+      <tbody><tr data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">1. foo </td></tr></tbody></table></td>
+        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}"> bar </td>
+        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">2. baz </td></tr></tbody></table><span about="#mwt1">
+      </span><span about="#mwt1">
+      
+        abc</span><span about="#mwt1">
+      </span><span about="#mwt1">
+    </span><span about="#mwt1">
+    </span><span about="#mwt1">
+  </span><span about="#mwt1">
+  
+    xyz</span><span about="#mwt1">
+  </span><span about="#mwt1">
+</span>
+!!end
+
+!!test
 Parser Functions: 1. Simple example
 !!input
 {{uc:foo}}
@@ -5446,6 +5535,15 @@ Image with empty attribute
 [[Image:foobar.jpg|right||Caption text]]
 !! result
 <div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption text"><img alt="Caption text" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
+Image with multiple captions -- only last one is accepted
+!! input
+[[Image:foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
+!! result
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption3 - accepted"><img alt="Caption3 - accepted" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
 
 !! end
 
