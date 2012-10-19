@@ -113,6 +113,16 @@ img.thumbborder {
 }
 
 /**
+ * Edit forms
+ */
+#editform textarea {
+	display: block;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/**
  * Basic styles for the user login and create account forms
  */
 #userlogin, #userloginForm {
