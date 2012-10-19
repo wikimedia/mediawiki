@@ -787,6 +787,16 @@ class Sanitizer {
 				$value = Sanitizer::escapeId( $value, 'noninitial' );
 			}
 
+			# WAI-ARIA
+			# http://www.w3.org/TR/wai-aria/
+			# http://www.whatwg.org/specs/web-apps/current-work/multipage/elements.html#wai-aria
+			# For now we only support role="presentation" until we work out what roles should be
+			# usable by content and we ensure that our code explicitly rejects patterns that
+			# violate HTML5's ARIA restrictions.
+			if ( $attribute === 'role' && $value !== 'presentation' ) {
+				continue;
+			}
+
 			//RDFa and microdata properties allow URLs, URIs and/or CURIs. check them for sanity
 			if ( $attribute === 'rel' || $attribute === 'rev' ||
 				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' || #RDFa
@@ -1464,7 +1474,18 @@ class Sanitizer {
 	static function setupAttributeWhitelist() {
 		global $wgAllowRdfaAttributes, $wgHtml5, $wgAllowMicrodataAttributes;
 
-		$common = array( 'id', 'class', 'lang', 'dir', 'title', 'style' );
+		$common = array(
+			# HTML
+			'id',
+			'class',
+			'style',
+			'lang',
+			'dir',
+			'title',
+
+			# WAI-ARIA
+			'role',
+		);
 
 		if ( $wgAllowRdfaAttributes ) {
 			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
