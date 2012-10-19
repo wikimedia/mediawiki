@@ -150,6 +150,11 @@ textarea {
 	width: 100%;
 	padding: .1em;
 }
+#wpTextbox1 {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
 
 #searchBody {
 	text-align: center;
