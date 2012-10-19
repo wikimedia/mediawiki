@@ -1,0 +1,9 @@
+Change-Id: I6fbe51292cb398af0f9c732b51d5987b3a2804bc
+Code-Review+2: Reedy <reedy@wikimedia.org>
+Verified+1: Reedy <reedy@wikimedia.org>
+Verified+1: jenkins-bot
+Submitted-by: Reedy <reedy@wikimedia.org>
+Submitted-at: Fri, 19 Oct 2012 22:11:58 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/28689
+Project: mediawiki/core
+Branch: refs/heads/master
