@@ -258,7 +258,9 @@
 		 * @return mixed Parameter value or null.
 		 */
 		getParamValue: function ( param, url ) {
-			url = url || document.location.href;
+			if ( typeof url === "undefined" ) {
+				url = document.location.href;
+			}
 			// Get last match, stop at hash
 			var	re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' ),
 				m = re.exec( url );
