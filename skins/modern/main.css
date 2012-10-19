@@ -149,6 +149,7 @@ div.mw_clear {
 textarea {
 	width: 100%;
 	padding: .1em;
+	box-sizing: border-box;
 }
 
 #searchBody {
