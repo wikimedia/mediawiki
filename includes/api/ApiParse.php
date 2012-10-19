@@ -114,7 +114,7 @@ class ApiParse extends ApiBase {
 					}
 
 					// Should we save old revision parses to the parser cache?
-					$p_result = $this->content->getParserOutput( $titleObj, $popts );
+					$p_result = $this->content->getParserOutput( $titleObj, $rev->getId(), $popts );
 				}
 			} else { // Not $oldid, but $pageid or $page
 				if ( $params['redirects'] ) {
