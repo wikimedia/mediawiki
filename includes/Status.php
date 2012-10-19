@@ -226,7 +226,7 @@ class Status {
 	}
 
 	/**
-	 * Get the error message as HTML. This is done by parsing the wikitext error 
+	 * Get the error message as HTML. This is done by parsing the wikitext error
 	 * message.
 	 */
 	public function getHTML( $shortContext = false, $longContext = false ) {

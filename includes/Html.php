@@ -480,7 +480,7 @@ class Html {
 				'class', // html4, html5
 				'accesskey', // as of html5, multiple space-separated values allowed
 				// html4-spec doesn't document rel= as space-separated
-				// but has been used like that and is now documented as such 
+				// but has been used like that and is now documented as such
 				// in the html5-spec.
 				'rel',
 			);
@@ -493,7 +493,6 @@ class Html {
 				// values. Implode/explode to get those into the main array as well.
 				if ( is_array( $value ) ) {
 					// If input wasn't an array, we can skip this step
-					
 					$newValue = array();
 					foreach ( $value as $k => $v ) {
 						if ( is_string( $v ) ) {
@@ -576,7 +575,6 @@ class Html {
 					# @todo FIXME: Is this really true?
 					$map['<'] = '&lt;';
 				}
-				
 				$ret .= " $key=$quote" . strtr( $value, $map ) . $quote;
 			}
 		}

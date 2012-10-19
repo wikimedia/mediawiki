@@ -45,7 +45,7 @@ class ResourceLoaderNoscriptModule extends ResourceLoaderWikiModule {
 
 	/**
 	 * Gets group name
-	 * 
+	 *
 	 * @return String: Name of group
 	 */
 	public function getGroup() {

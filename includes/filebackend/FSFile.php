@@ -86,8 +86,8 @@ class FSFile {
 
 	/**
 	 * Guess the MIME type from the file contents alone
-	 * 
-	 * @return string 
+	 *
+	 * @return string
 	 */
 	public function getMimeType() {
 		return MimeMagic::singleton()->guessMimeType( $this->path, false );
@@ -211,7 +211,7 @@ class FSFile {
 
 	/**
 	 * Get the final file extension from a file system path
-	 * 
+	 *
 	 * @param $path string
 	 * @return string
 	 */

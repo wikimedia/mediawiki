@@ -47,8 +47,8 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 			'MediaWiki:Print.css' => array( 'type' => 'style', 'media' => 'print' ),
 		);
 		if ( $wgHandheldStyle ) {
-			$pages['MediaWiki:Handheld.css'] = array( 
-				'type' => 'style', 
+			$pages['MediaWiki:Handheld.css'] = array(
+				'type' => 'style',
 				'media' => 'handheld' );
 		}
 		return $pages;
@@ -58,7 +58,7 @@ class ResourceLoaderSiteModule extends ResourceLoaderWikiModule {
 
 	/**
 	 * Gets group name
-	 * 
+	 *
 	 * @return String: Name of group
 	 */
 	public function getGroup() {

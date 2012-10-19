@@ -24,9 +24,9 @@
 /**
  * A repository for files accessible via the local filesystem.
  * Does not support database access or registration.
- * 
+ *
  * This is a mostly a legacy class. New uses should not be added.
- * 
+ *
  * @ingroup FileRepo
  * @deprecated since 1.19
  */
