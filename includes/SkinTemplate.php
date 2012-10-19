@@ -1444,6 +1444,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		if ( isset( $this->data['nav_urls']['info'] ) && $this->data['nav_urls']['info'] ) {
 			$toolbox['info'] = $this->data['nav_urls']['info'];
+			$toolbox['info']['id'] = 't-info';
 		}
 
 		wfRunHooks( 'BaseTemplateToolbox', array( &$this, &$toolbox ) );
