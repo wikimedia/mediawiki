@@ -75,9 +75,9 @@ class SVGReader {
 			$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		}
 
-		// Expand entities, since Adobe Illustrator uses them for xmlns 
-		// attributes (bug 31719). Note that libxml2 has some protection 
-		// against large recursive entity expansions so this is not as 
+		// Expand entities, since Adobe Illustrator uses them for xmlns
+		// attributes (bug 31719). Note that libxml2 has some protection
+		// against large recursive entity expansions so this is not as
 		// insecure as it might appear to be.
 		$this->reader->setParserProperty( XMLReader::SUBST_ENTITIES, true );
 

@@ -240,7 +240,7 @@ class BitmapMetadataHandler {
 
 		unset( $baseArray['comment'] );
 		unset( $baseArray['xmp'] );
-	
+
 		$baseArray['metadata'] = $meta->getMetadataArray();
 		$baseArray['metadata']['_MW_GIF_VERSION'] = GIFMetadataExtractor::VERSION;
 		return $baseArray;

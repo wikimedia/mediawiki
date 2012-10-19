@@ -88,11 +88,11 @@ class PNGHandler extends BitmapHandler {
 	function canAnimateThumbnail( $image ) {
 		return false;
 	}
-	
+
 	function getMetadataType( $image ) {
 		return 'parsed-png';
 	}
-	
+
 	function isMetadataValid( $image, $metadata ) {
 
 		if ( $metadata === self::BROKEN_FILE ) {
@@ -134,21 +134,21 @@ class PNGHandler extends BitmapHandler {
 
 		$info = array();
 		$info[] = $original;
-		
+
 		if ( $metadata['loopCount'] == 0 ) {
 			$info[] = wfMessage( 'file-info-png-looped' )->parse();
 		} elseif ( $metadata['loopCount'] > 1 ) {
 			$info[] = wfMessage( 'file-info-png-repeat' )->numParams( $metadata['loopCount'] )->parse();
 		}
-		
+
 		if ( $metadata['frameCount'] > 0 ) {
 			$info[] = wfMessage( 'file-info-png-frames' )->numParams( $metadata['frameCount'] )->parse();
 		}
-		
+
 		if ( $metadata['duration'] ) {
 			$info[] = $wgLang->formatTimePeriod( $metadata['duration'] );
 		}
-		
+
 		return $wgLang->commaList( $info );
 	}
 

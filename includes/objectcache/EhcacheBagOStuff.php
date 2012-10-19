@@ -28,9 +28,9 @@
  * @ingroup Cache
  */
 class EhcacheBagOStuff extends BagOStuff {
-	var $servers, $cacheName, $connectTimeout, $timeout, $curlOptions, 
+	var $servers, $cacheName, $connectTimeout, $timeout, $curlOptions,
 		$requestData, $requestDataPos;
-	
+
 	var $curls = array();
 
 	/**
@@ -49,7 +49,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		}
 		$this->servers = $params['servers'];
 		$this->cacheName = isset( $params['cache'] ) ? $params['cache'] : 'mw';
-		$this->connectTimeout = isset( $params['connectTimeout'] ) 
+		$this->connectTimeout = isset( $params['connectTimeout'] )
 			? $params['connectTimeout'] : 1;
 		$this->timeout = isset( $params['timeout'] ) ? $params['timeout'] : 1;
 		$this->curlOptions = array(
@@ -77,7 +77,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		if ( $response['http_code'] >= 300 ) {
 			wfDebug( __METHOD__.": GET failure, got HTTP {$response['http_code']}\n" );
 			wfProfileOut( __METHOD__ );
-			return false;			
+			return false;
 		}
 		$body = $response['body'];
 		$type = $response['content_type'];
@@ -203,9 +203,9 @@ class EhcacheBagOStuff extends BagOStuff {
 	 * @return int
 	 */
 	protected function attemptPut( $key, $data, $type, $ttl ) {
-		// In initial benchmarking, it was 30 times faster to use CURLOPT_POST 
+		// In initial benchmarking, it was 30 times faster to use CURLOPT_POST
 		// than CURLOPT_UPLOAD with CURLOPT_READFUNCTION. This was because
-		// CURLOPT_UPLOAD was pushing the request headers first, then waiting 
+		// CURLOPT_UPLOAD was pushing the request headers first, then waiting
 		// for an ACK packet, then sending the data, whereas CURLOPT_POST just
 		// sends the headers and the data in a single send().
 		$response = $this->doItemRequest( $key,
@@ -232,7 +232,7 @@ class EhcacheBagOStuff extends BagOStuff {
 	 */
 	protected function createCache( $key ) {
 		wfDebug( __METHOD__.": creating cache for $key\n" );
-		$response = $this->doCacheRequest( $key, 
+		$response = $this->doCacheRequest( $key,
 			array(
 				CURLOPT_POST => 1,
 				CURLOPT_CUSTOMREQUEST => 'PUT',
@@ -280,7 +280,7 @@ class EhcacheBagOStuff extends BagOStuff {
 		if ( array_diff_key( $curlOptions, $this->curlOptions ) ) {
 			// var_dump( array_diff_key( $curlOptions, $this->curlOptions ) );
 			throw new MWException( __METHOD__.": to prevent options set in one doRequest() " .
-				"call from affecting subsequent doRequest() calls, only options listed " . 
+				"call from affecting subsequent doRequest() calls, only options listed " .
 				"in \$this->curlOptions may be specified in the \$curlOptions parameter." );
 		}
 		$curlOptions += $this->curlOptions;

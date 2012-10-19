@@ -29,32 +29,32 @@
  * @ingroup Search
  */
 class SearchOracle extends SearchEngine {
-	
-	private $reservedWords = array ('ABOUT' => 1, 
-									'ACCUM' => 1, 
-									'AND' => 1, 
-									'BT' => 1, 
-									'BTG' => 1, 
-									'BTI' => 1, 
+
+	private $reservedWords = array ('ABOUT' => 1,
+									'ACCUM' => 1,
+									'AND' => 1,
+									'BT' => 1,
+									'BTG' => 1,
+									'BTI' => 1,
 									'BTP' => 1,
-									'FUZZY' => 1, 
-									'HASPATH' => 1, 
-									'INPATH' => 1, 
-									'MINUS' => 1, 
-									'NEAR' => 1, 
+									'FUZZY' => 1,
+									'HASPATH' => 1,
+									'INPATH' => 1,
+									'MINUS' => 1,
+									'NEAR' => 1,
 									'NOT' => 1,
-									'NT' => 1, 
-									'NTG' => 1, 
-									'NTI' => 1, 
-									'NTP' => 1, 
-									'OR' => 1, 
-									'PT' => 1, 
-									'RT' => 1, 
+									'NT' => 1,
+									'NTG' => 1,
+									'NTI' => 1,
+									'NTP' => 1,
+									'OR' => 1,
+									'PT' => 1,
+									'RT' => 1,
 									'SQE' => 1,
-									'SYN' => 1, 
-									'TR' => 1, 
-									'TRSYN' => 1, 
-									'TT' => 1, 
+									'SYN' => 1,
+									'TR' => 1,
+									'TRSYN' => 1,
+									'TT' => 1,
 									'WITHIN' => 1);
 
 	/**
@@ -254,13 +254,13 @@ class SearchOracle extends SearchEngine {
 			), 'SearchOracle::update' );
 
 		// Sync the index
-		// We need to specify the DB name (i.e. user/schema) here so that 
+		// We need to specify the DB name (i.e. user/schema) here so that
 		// it can work from the installer, where
 		//     ALTER SESSION SET CURRENT_SCHEMA = ...
 		// was used.
-		$dbw->query( "CALL ctx_ddl.sync_index(" . 
+		$dbw->query( "CALL ctx_ddl.sync_index(" .
 			$dbw->addQuotes( $dbw->getDBname() . '.' . $dbw->tableName( 'si_text_idx', 'raw' ) ) . ")" );
-		$dbw->query( "CALL ctx_ddl.sync_index(" . 
+		$dbw->query( "CALL ctx_ddl.sync_index(" .
 			$dbw->addQuotes( $dbw->getDBname() . '.' . $dbw->tableName( 'si_title_idx', 'raw' ) ) . ")" );
 	}
 

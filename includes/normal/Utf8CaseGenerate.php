@@ -49,7 +49,7 @@ while( false !== ($line = fgets( $in ) ) ) {
 	$name = $columns[1];
 	$simpleUpper = $columns[12];
 	$simpleLower = $columns[13];
-	
+
 	$source = codepointToUtf8( hexdec( $codepoint ) );
 	if( $simpleUpper ) {
 		$wikiUpperChars[$source] = codepointToUtf8( hexdec( $simpleUpper ) );

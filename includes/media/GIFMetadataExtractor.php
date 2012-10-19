@@ -58,7 +58,7 @@ class GIFMetadataExtractor {
 		$isLooped = false;
 		$xmp = "";
 		$comment = array();
-		
+
 		if ( !$filename ) {
 			throw new Exception( "No file name specified" );
 		} elseif ( !file_exists( $filename ) || is_dir( $filename ) ) {
@@ -107,7 +107,7 @@ class GIFMetadataExtractor {
 				## Read GCT
 				self::readGCT( $fh, $bpp );
 				fread( $fh, 1 );
-				self::skipBlock( $fh );	
+				self::skipBlock( $fh );
 			} elseif ( $buf == self::$gif_extension_sep ) {
 				$buf = fread( $fh, 1 );
 				if ( strlen( $buf ) < 1 ) throw new Exception( "Ran out of input" );
@@ -182,23 +182,22 @@ class GIFMetadataExtractor {
 
 					// NETSCAPE2.0 (application name for animated gif)
 					if ( $data == 'NETSCAPE2.0' ) {
-					
 						$data = fread( $fh, 2 ); // Block length and introduction, should be 03 01
 
 						if ($data != "\x03\x01") {
 							throw new Exception( "Expected \x03\x01, got $data" );
 						}
-						
+
 						// Unsigned little-endian integer, loop count or zero for "forever"
 						$loopData = fread( $fh, 2 );
 						if ( strlen( $loopData ) < 2 ) throw new Exception( "Ran out of input" );
 						$loopData = unpack( 'v', $loopData );
 						$loopCount = $loopData[1];
-						
+
 						if ($loopCount != 1) {
 							$isLooped = true;
 						}
-						
+
 						// Read out terminator byte
 						fread( $fh, 1 );
 					} elseif ( $data == 'XMP DataXMP' ) {

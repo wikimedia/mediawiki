@@ -186,10 +186,10 @@ class SearchIBM_DB2 extends SearchEngine {
 
 		$searchon = $this->db->strencode(join(',', $q));
 		$field = $this->getIndexField($fulltext);
-		
+
 		// requires Net Search Extender or equivalent
 		//return " CONTAINS($field, '$searchon') > 0 ";
-		
+
 		return " lcase($field) LIKE lcase('%$searchon%')";
 	}
 

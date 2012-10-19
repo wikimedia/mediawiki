@@ -897,7 +897,7 @@ class MWMemcached {
 					return false;
 				}
 				if ( substr( $data, -2 ) !== "\r\n" ) {
-					$this->_handle_error( $sock, 
+					$this->_handle_error( $sock,
 						'line ending missing from data block from $1' );
 					return false;
 				}
@@ -1096,7 +1096,7 @@ class MWMemcached {
 	}
 
 	/**
-	 * Read the specified number of bytes from a stream. If there is an error, 
+	 * Read the specified number of bytes from a stream. If there is an error,
 	 * mark the socket dead.
 	 *
 	 * @param $sock The socket
@@ -1137,7 +1137,7 @@ class MWMemcached {
 	function _fgets( $sock ) {
 		$result = fgets( $sock );
 		// fgets() may return a partial line if there is a select timeout after
-		// a successful recv(), so we have to check for a timeout even if we 
+		// a successful recv(), so we have to check for a timeout even if we
 		// got a string response.
 		$data = stream_get_meta_data( $sock );
 		if ( $data['timed_out'] ) {

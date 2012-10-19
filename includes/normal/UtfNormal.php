@@ -765,7 +765,7 @@ class UtfNormal {
 	 * @param $string String The string
 	 * @return String String with the character codes replaced.
 	 */
-	private static function replaceForNativeNormalize( $string ) { 
+	private static function replaceForNativeNormalize( $string ) {
 		$string = preg_replace(
 			'/[\x00-\x08\x0b\x0c\x0e-\x1f]/',
 			UTF8_REPLACEMENT,
