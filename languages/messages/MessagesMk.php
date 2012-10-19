@@ -3238,6 +3238,9 @@ $1',
 'pageinfo-redirectsto-info' => 'инфо',
 'pageinfo-contentpage' => 'Се вбројува во содржински страници',
 'pageinfo-contentpage-yes' => 'Да',
+'pageinfo-protect-cascading' => 'Каскадната заштита на страниците важи од тука',
+'pageinfo-protect-cascading-yes' => 'Да',
+'pageinfo-protect-cascading-from' => 'Страници со каскадна заштита од',
 
 # Skin names
 'skinname-standard' => 'Класично',

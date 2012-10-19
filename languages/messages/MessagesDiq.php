@@ -488,8 +488,8 @@ $messages = array(
 'history' => 'Verora perer',
 'history_short' => 'Vurnayışê verêni',
 'updatedmarker' => 'cıkewtena mına peyêne ra dıme biyo rocane',
-'printableversion' => 'Asayışo çapkerden',
-'permalink' => 'Gıreyo daimi',
+'printableversion' => 'Bınusnayen versiyon',
+'permalink' => 'Gıreyo manayen',
 'print' => 'Çap ke',
 'view' => 'Bıvin',
 'edit' => 'Bıvurnên',
@@ -902,7 +902,7 @@ Parola vêrdiye: $2',
 
 # Edit pages
 'summary' => 'Xulasa:',
-'subject' => 'Mewzu/serrêze:',
+'subject' => 'Mersel/Sernuşte:',
 'minoredit' => 'Eno vurnayışo de qıckeko',
 'watchthis' => 'Ena pele seyr ke',
 'savearticle' => 'Pele qeyd ke',
@@ -1686,9 +1686,9 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rc-old-title' => '"$1"i orcinalê cı vıraşt',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ney sero vurnayışi',
-'recentchangeslinked-feed' => 'Ney sero vurnayışi',
-'recentchangeslinked-toolbox' => 'Ney sero vurnayışi',
+'recentchangeslinked' => 'Elekeyın vurnayışi',
+'recentchangeslinked-feed' => 'Elekeyın vurnayışi',
+'recentchangeslinked-toolbox' => 'Elekeyın vurnayışi',
 'recentchangeslinked-title' => 'vurnayışan ser "$1"',
 'recentchangeslinked-noresult' => 'Pelanê ke link biye ey vurnayîşî çino.',
 'recentchangeslinked-summary' => "Lista cêrêne, pela bêlikerdiye rê (ya zi karberanê kategoriya bêlikerdiye rê) pelanê gırêdaoğan de lista de vurnayışê peyênana.
@@ -2597,7 +2597,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'sp-contributions-submit' => 'Cı geyre',
 
 # What links here
-'whatlinkshere' => 'Çı tiyay rê gırê beno',
+'whatlinkshere' => 'Gıreyê perer',
 'whatlinkshere-title' => 'Per da "$1" rê perê ke gre danê',
 'whatlinkshere-page' => 'Per:',
 'linkshere' => "Ena peleyan grey biya '''[[:$1]]''':",
@@ -3620,13 +3620,13 @@ mw.loader.using( 'jquery.cookie', function() {
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategoriye|Kategoriyan}} ($1) bınımne',
 'pageinfo-templates' => '{{PLURAL:$1|Şablon|Şabloni}} ($1) açarneyayê',
 'pageinfo-toolboxlink' => 'Malumatê perer',
-'pageinfo-redirectsto' => 'Hetanayışê cı',
-'pageinfo-redirectsto-info' => 'Zanışe',
-'pageinfo-contentpage' => 'Perra zerreki hesbêna',
+'pageinfo-redirectsto' => 'Beno hetê',
+'pageinfo-redirectsto-info' => 'melumat',
+'pageinfo-contentpage' => 'Zey jû pela zerreki hesebiyena',
 'pageinfo-contentpage-yes' => 'E',
-'pageinfo-protect-cascading' => 'Starın merwanan ra tiya',
+'pageinfo-protect-cascading' => 'Sıtarkerdey tiya cı ra yenê war',
 'pageinfo-protect-cascading-yes' => 'E',
-'pageinfo-protect-cascading-from' => 'Starın merwanan ra',
+'pageinfo-protect-cascading-from' => 'Sıtarkerdey cı ra yenê war',
 
 # Skin names
 'skinname-standard' => 'Klasik',

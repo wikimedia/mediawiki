@@ -2984,6 +2984,9 @@ $1被封禁的理由是“$2”',
 'pageinfo-redirectsto-info' => '資訊',
 'pageinfo-contentpage' => '計算為內容頁',
 'pageinfo-contentpage-yes' => '是',
+'pageinfo-protect-cascading' => '從此開始連鎖保護',
+'pageinfo-protect-cascading-yes' => '是',
+'pageinfo-protect-cascading-from' => '從此連鎖保護',
 
 # Skin names
 'skinname-standard' => '標準',

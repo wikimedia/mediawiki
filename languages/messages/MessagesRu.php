@@ -3243,6 +3243,8 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',
 'pageinfo-toolboxlink' => 'Сведения о странице',
+'pageinfo-contentpage-yes' => 'Да',
+'pageinfo-protect-cascading-yes' => 'Да',
 
 # Skin names
 'skinname-standard' => 'Классическое',

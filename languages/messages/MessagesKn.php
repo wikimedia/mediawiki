@@ -206,7 +206,6 @@ $messages = array(
 'qbbrowse' => 'ವಿಹರಿಸು',
 'qbedit' => 'ಸಂಪಾದಿಸು',
 'qbpageoptions' => 'ಈ ಪುಟ',
-'qbpageinfo' => 'ಸನ್ನಿವೇಶ',
 'qbmyoptions' => 'ನನ್ನ ಪುಟಗಳು',
 'qbspecialpages' => 'ವಿಶೇಷ ಪುಟಗಳು',
 'faq' => 'ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
@@ -459,6 +458,7 @@ $2',
 'createaccount' => 'ಹೊಸ ಖಾತೆ ತೆರೆಯಿರಿ',
 'gotaccount' => "ಈಗಾಗಲೇ ಖಾತೆಯಿದೆಯೇ? '''$1'''.",
 'gotaccountlink' => 'ಲಾಗ್ ಇನ್',
+'userlogin-resetlink' => 'ನಿಮ್ಮ ಲಾಗಿನ್ ವಿವರಗಳನ್ನು ಮರೆತಿದ್ದೀರಾ?',
 'createaccountmail' => 'ಇ-ಅಂಚೆಯ ಮೂಲಕ',
 'createaccountreason' => 'ಕಾರಣ:',
 'badretype' => 'ನೀವು ಕೊಟ್ಟ ಪ್ರವೇಶಪದಗಳು ಬೇರೆಬೇರೆಯಾಗಿವೆ.',
@@ -825,6 +825,7 @@ $2',
 'nextn-title' => 'ಮುಂದಿನ $1 {{PLURAL:$1|ಫಲಿತಾಂಶ|ಫಲಿತಾಂಶಗಳು}}',
 'shown-title' => 'ಪ್ರತಿ ಪುಟದಲ್ಲಿಯೂ $1 {{PLURAL:$1|result|results}} ತೋರಿಸು',
 'viewprevnext' => 'ವೀಕ್ಷಿಸು ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-exists' => "'''\"[[:\$1]]\" ಹೆಸರಿನ ಪುಟ ಈ ವಿಕಿಯಲ್ಲಿದೆ.'''",
 'searchmenu-new' => "'''''[[:$1]]'' ಪುಟವನ್ನು ಈ ವಿಕಿಯಲ್ಲಿ ಸೃಷ್ಟಿಸಿ!'''",
 'searchhelp-url' => 'Help:ಪರಿವಿಡಿ',
 'searchprofile-articles' => 'ಲೇಖನ ಪುಟ',
@@ -1029,7 +1030,10 @@ $2',
 'recentchanges-legend' => 'ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳ ಆಯ್ಕೆಗಳು',
 'recentchanges-summary' => 'ವಿಕಿಗೆ ಮಾಡಲ್ಪಟ್ಟ ಇತ್ತೀಚಿನ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಪುಟದಲ್ಲಿ ನೀವು ಕಾಣಬಹುದು.',
 'recentchanges-feed-description' => 'ವಿಕಿಯಲ್ಲಿ ಆಗುವ ಹೊಸ ಬದಲಾವಣೆಗಳ ಮೇಲೆ ನಿಗ ಇಡಲು ಉಪಯೋಗವಾಗುವ ಫೀಡು.',
+'recentchanges-label-newpage' => 'ಈ ಸಂಪಾದನೆ ಹೊಸ ಪುಟವನ್ನು ಸೃಷ್ಟಿಸಿದೆ',
 'recentchanges-label-minor' => 'ಇದು ಚುಟುಕಾದ ಬದಲಾವಣೆ',
+'recentchanges-label-bot' => 'ಈ ಸಂಪಾದನೆಯನ್ನು ಒಂದು ಬಾಟ್ ಮಾಡಿದೆ',
+'recentchanges-label-unpatrolled' => 'ಈ ಸಂಪಾದನೆಯನ್ನು ಇನ್ನೂ ಪರೀಕ್ಷೆಗೆ ಒಳಪಡಿಸಿಲ್ಲ',
 'rcnote' => "$5, $4 ವರೆಗೆ ಹಿಂದಿನ {{PLURAL:$2|ದಿನದಲ್ಲಿ|'''$2''' ದಿನಗಳಲ್ಲಿ}} ಮಾಡಲಾಗಿರುವ {{PLURAL:$1|'''೧''' ಬದಲಾವಣೆ|'''$1''' ಬದಲಾವಣೆಗಳು}} ಕೆಳಗಿವೆ.",
 'rcnotefrom' => "'''$2''' ಇಂದ ಆಗಿರುವ ಬದಲಾವಣೆಗಳು ಕೆಳಗಿವೆ (ಕೊನೆಯ '''$1'''ರವರೆಗೆ ತೋರಿಸಲಾಗಿದೆ).",
 'rclistfrom' => '$1 ಇಂದ ಪ್ರಾರಂಭಿಸಿ ಮಾಡಲಾದ ಬದಲಾವಣೆಗಳನ್ನು ನೋಡಿ',
@@ -1152,6 +1156,7 @@ $2',
 ಈ URL ಸರಿಯಿದೆ ಮತ್ತು ಆ ತಾಣ ಕಾರ್ಯ ಮಾಡುತ್ತಿದೆ ಎಂದು ಮತ್ತೊಮ್ಮೆ ಪರೀಕ್ಷಿಸಿ.',
 'upload-curl-error28' => 'ಅಪ್ಲೋಡ್ ಕಾಲಾವಧಿ ಮೀರಿದೆ',
 
+'license' => 'ಪರವಾನಗಿ:',
 'license-header' => 'ಪರವಾನಗಿ',
 'upload_source_url' => ' (ಒಂದು ಮನ್ನಿತ, ಸಾರ್ವಜನಿಕವಾಗಿ ಎಟಕುವ URL)',
 'upload_source_file' => ' (ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿರುವ ಒಂದು ಫೈಲು)',
@@ -1357,6 +1362,7 @@ $2',
 'linksearch' => 'ಹೊರಗಿನ ಸಂಪರ್ಕಗಳು',
 'linksearch-ns' => 'ನಾಮವರ್ಗ:',
 'linksearch-ok' => 'ಹುಡುಕು',
+'linksearch-line' => '$1 ನ್ನು $2 ರಿಂದ ಜೋಡಿಸಲಾಗಿದೆ',
 
 # Special:ListUsers
 'listusersfrom' => 'ಇದರಿಂದ ಪ್ರಾರಂಭವಾಗುವ ಬಳಕೆದಾರರನ್ನು ತೋರಿಸು:',
@@ -1399,6 +1405,7 @@ $2',
 # Watchlist
 'watchlist' => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿ',
 'mywatchlist' => 'ನನ್ನ ವೀಕ್ಷಣಾಪಟ್ಟಿ',
+'watchlistfor2' => '$1 ($2) ಗೆ',
 'nowatchlist' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಯಾವುದೇ ಪುಟಗಳಿಲ್ಲ',
 'watchlistanontext' => 'ನಿಮ್ಮ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ನೋಡಲು ಅಥವ ಸಂಪಾದಿಸಲು ದಯವಿಟ್ಟು $1 ಮಾಡಿ.',
 'watchnologin' => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
@@ -1442,6 +1449,7 @@ $2',
 'confirmdeletetext' => 'ಒಂದು ಪುಟವನ್ನು ಮತ್ತು ಅದರ ಸಂಪೂರ್ಣ ಇತಿಹಾಸವನ್ನು ನೀವು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಿಹಾಕುತ್ತಿರುವಿರಿ.
 ಇದನ್ನು ನೀವು ಮಾಡಬಯಸುವಿರಿ, ಇದರ ಪರಿಣಾಮಗಳನ್ನು ಬಲ್ಲಿರಿ, ಮತ್ತು [[{{MediaWiki:Policy-url}}|ಕಾರ್ಯನೀತಿಗಳ]] ಅನುಸಾರ ಇದನ್ನು ಮಾಡುತ್ತಿದ್ದೀರಿ ಎಂದು ದೃಢಪಡಿಸಿ.',
 'actioncomplete' => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
+'actionfailed' => 'ಕ್ರಿಯೆ ವಿಫಲವಾಗಿದೆ',
 'deletedtext' => '"$1" ಅನ್ನು ಅಳಿಸಲಾಯಿತು.
 ಇತ್ತೀಚೆಗಿನ ಅಳಿಸುವಿಕೆಗಳ ಪಟ್ಟಿಗಾಗಿ $2 ಅನ್ನು ನೋಡಿ.',
 'dellogpage' => 'ಅಳಿಸುವಿಕೆ ದಾಖಲೆ',
@@ -1542,11 +1550,13 @@ $2',
 'sp-contributions-newbies' => 'ಹೊಸ ಖಾತೆಗಳ ಕಾಣಿಕೆಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸು',
 'sp-contributions-newbies-sub' => 'ಹೊಸ ಖಾತೆಗಳಿಗೆ',
 'sp-contributions-blocklog' => 'ತಡೆಹಿಡಿಯುವಿಕೆ ದಾಖಲೆ',
+'sp-contributions-uploads' => 'ಅಪ್ಲೋಡುಗಳು',
 'sp-contributions-logs' => 'ದಾಖಲೆಗಳು',
 'sp-contributions-talk' => 'ಚರ್ಚೆ',
 'sp-contributions-userrights' => 'ಬಳಕೆದಾರ ಹಕ್ಕುಗಳ ನಿರ್ವಹಣೆ',
 'sp-contributions-search' => 'ಸಂಪಾದನೆಗಳನ್ನು ಹುಡುಕು',
 'sp-contributions-username' => 'IP ವಿಳಾಸ ಅಥವ ಬಳಕೆಯ ಹೆಸರು:',
+'sp-contributions-toponly' => 'ಕೇವಲ ಇತ್ತೀಚಿನ ಪರಿಷ್ಕರಣೆಗೆ ಸಂಬಂಧಿಸಿದ ಸಂಪಾದನೆಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸು',
 'sp-contributions-submit' => 'ಹುಡುಕು',
 
 # What links here
@@ -1565,6 +1575,7 @@ $2',
 'whatlinkshere-hideredirs' => '$1 ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 'whatlinkshere-hidetrans' => '$1 ಸೇರಿಸುವಿಕೆಗಳು',
 'whatlinkshere-hidelinks' => '$1 ಕೊಂಡಿಗಳು',
+'whatlinkshere-hideimages' => '$1 ಚಿತ್ರ ಕೊಂಡಿಗಳು',
 'whatlinkshere-filters' => 'ಶೋಧಕಗಳು',
 
 # Block/unblock
@@ -1847,15 +1858,15 @@ $1',
 'metadata-collapse' => 'ವಿಸ್ತಾರವಾದ ವಿವರಗಳನ್ನು ಅಡಗಿಸು',
 'metadata-fields' => 'ಈ ಸಂದೇಶದಲ್ಲಿ ಪಟ್ಟಿ ಮಾಡಲಾಗಿರುವ EXIF ಮೇಲ್ದರ್ಜೆ ಮಾಹಿತಿ ಚಿತ್ರ ಪುಟದಲ್ಲಿ ಸೇರಿಸಲಾಗುತ್ತದೆ. ಪುಟದಲ್ಲಿ ಮೇಲ್ದರ್ಜೆ ಮಾಹಿತಿ ಪಟ್ಟಿಯನ್ನು ತೆರೆದಾಗ ಇವು ಕಾಣುತ್ತದೆ.
 ಉಳಿದವುಗಳು ಮೂಲಸ್ಥಿತಿಯಲ್ಲಿ ಅಗೋಚರವಾಗಿರುತ್ತವೆ.
-* ಸೃಷ್ಟಿ
-* ಮಾದರಿ
-* ಮೂಲಸಮಯದಿನಾಂಕ
-* ಅನಾವರಣಸಮಯ
+* make
+* model
+* datetimeoriginal
+* exposuretime
 * fnumber
 * isospeedratings
 * focallength
-* ಕಲಾವಿದ
-* ಕೃತಿಸ್ವಾಮ್ಯ
+* artist
+* copyright
 * imagedescription
 * gpslatitude
 * gpslongitude
