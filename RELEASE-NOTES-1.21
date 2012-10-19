@@ -28,6 +28,9 @@ production.
   searches with the api in miser mode for deleted files.
 * Add initial and programmatic sorting for tablesorter.
 * Add the event "sortEnd.tablesorter", triggered after sorting has completed.
+* The Job system was refactored to allow for different backing stores for queues
+  as well as cross-wiki access to queues, among other things. The schema for the
+  DB queue was changed to support better concurrency and reduce deadlock errors.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
