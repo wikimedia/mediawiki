@@ -7022,9 +7022,9 @@ Parser hook: empty input
 <tag></tag>
 !! result
 <pre>
-string(0) ""
-array(0) {
-}
+''
+array (
+)
 </pre>
 
 !! end
@@ -7036,8 +7036,8 @@ Parser hook: empty input using terminated empty elements
 !! result
 <pre>
 NULL
-array(0) {
-}
+array (
+)
 </pre>
 
 !! end
@@ -7049,8 +7049,8 @@ Parser hook: empty input using terminated empty elements (space before)
 !! result
 <pre>
 NULL
-array(0) {
-}
+array (
+)
 </pre>
 
 !! end
@@ -7061,9 +7061,9 @@ Parser hook: basic input
 <tag>input</tag>
 !! result
 <pre>
-string(5) "input"
-array(0) {
-}
+'input'
+array (
+)
 </pre>
 
 !! end
@@ -7075,9 +7075,9 @@ Parser hook: case insensitive
 <TAG>input</TAG>
 !! result
 <pre>
-string(5) "input"
-array(0) {
-}
+'input'
+array (
+)
 </pre>
 
 !! end
@@ -7089,9 +7089,9 @@ Parser hook: case insensitive, redux
 <TaG>input</TAg>
 !! result
 <pre>
-string(5) "input"
-array(0) {
-}
+'input'
+array (
+)
 </pre>
 
 !! end
@@ -7104,9 +7104,9 @@ noxml
 <tag><tag></tag></tag>
 !! result
 <pre>
-string(5) "<tag>"
-array(0) {
-}
+'<tag>'
+array (
+)
 </pre>&lt;/tag&gt;
 
 !! end
@@ -7117,17 +7117,13 @@ Parser hook: basic arguments
 <tag width=200 height = "100" depth = '50' square></tag>
 !! result
 <pre>
-string(0) ""
-array(4) {
-  ["width"]=>
-  string(3) "200"
-  ["height"]=>
-  string(3) "100"
-  ["depth"]=>
-  string(2) "50"
-  ["square"]=>
-  string(6) "square"
-}
+''
+array (
+  'width' => '200',
+  'height' => '100',
+  'depth' => '50',
+  'square' => 'square',
+)
 </pre>
 
 !! end
@@ -7138,11 +7134,10 @@ Parser hook: argument containing a forward slash (bug 5344)
 <tag filename='/tmp/bla'></tag>
 !! result
 <pre>
-string(0) ""
-array(1) {
-  ["filename"]=>
-  string(8) "/tmp/bla"
-}
+''
+array (
+  'filename' => '/tmp/bla',
+)
 </pre>
 
 !! end
@@ -7154,10 +7149,9 @@ Parser hook: empty input using terminated empty elements (bug 2374)
 !! result
 <pre>
 NULL
-array(1) {
-  ["foo"]=>
-  string(3) "bar"
-}
+array (
+  'foo' => 'bar',
+)
 </pre>text
 
 !! end
@@ -7172,16 +7166,12 @@ other stuff
 !! result
 <pre>
 NULL
-array(4) {
-  ["width"]=>
-  string(3) "200"
-  ["height"]=>
-  string(3) "100"
-  ["depth"]=>
-  string(2) "50"
-  ["square"]=>
-  string(6) "square"
-}
+array (
+  'width' => '200',
+  'height' => '100',
+  'depth' => '50',
+  'square' => 'square',
+)
 </pre>
 <p>other stuff
 &lt;/tag&gt;
