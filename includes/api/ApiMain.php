@@ -596,8 +596,9 @@ class ApiMain extends ApiBase {
 
 		$result = $this->getResult();
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
-		if ( !isset ( $this->mPrinter ) ) {
-			// The printer has not been created yet. Try to manually get formatter value.
+		if ( !isset ( $this->mPrinter ) || $this->mPrinter->useDefaultFormatterOnError() ) {
+			// The printer has not been created yet or the printer should be overwritten on error.
+			// Try to manually get formatter value.
 			$value = $this->getRequest()->getVal( 'format', self::API_DEFAULT_FORMAT );
 			if ( !in_array( $value, $this->mFormatNames ) ) {
 				$value = self::API_DEFAULT_FORMAT;

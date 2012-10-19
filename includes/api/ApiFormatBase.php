@@ -90,6 +90,14 @@ abstract class ApiFormatBase extends ApiBase {
 	}
 
 	/**
+	 * Whether use default formatter on error
+	 * @return bool
+	 */
+	public function useDefaultFormatterOnError() {
+		return false;
+	}
+
+	/**
 	 * Returns true when the HTML pretty-printer should be used.
 	 * The default implementation assumes that formats ending with 'fm'
 	 * should be formatted in HTML.
@@ -357,6 +365,14 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	 * @return bool
 	 */
 	public function getNeedsRawData() {
+		return true;
+	}
+
+	/**
+	 * _feed and _feeditems may not be set if execute() fails on exception
+	 * @return bool
+	 */
+	public function useDefaultFormatterOnError() {
 		return true;
 	}
 
