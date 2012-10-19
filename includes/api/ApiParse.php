@@ -153,7 +153,6 @@ class ApiParse extends ApiBase {
 					$oldid = $pageObj->getLatest();
 				}
 
-
 				$popts = $pageObj->makeParserOptions( $this->getContext() );
 				$popts->enableLimitReport( !$params['disablepp'] );
 
@@ -204,9 +203,9 @@ class ApiParse extends ApiBase {
 
 			// Not cached (save or load)
 			if ( $params['pst'] ) {
-				$p_result = $this->pstContent->getParserOutput( $titleObj, $popts );
+				$p_result = $this->pstContent->getParserOutput( $titleObj, null, $popts );
 			} else {
-				$p_result = $this->content->getParserOutput( $titleObj, $popts );
+				$p_result = $this->content->getParserOutput( $titleObj, null, $popts );
 			}
 		}
 
@@ -360,7 +359,7 @@ class ApiParse extends ApiBase {
 				!is_null( $pageId ) ? 'page id ' . $pageId : $page->getTitle()->getText() );
 
 			// Not cached (save or load)
-			return $this->content->getParserOutput( $page->getTitle(), $popts );
+			return $this->content->getParserOutput( $page->getTitle(), null, $popts );
 		} else {
 			// Try the parser cache first
 			// getParserOutput will save to Parser cache if able
