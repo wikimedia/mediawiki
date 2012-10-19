@@ -225,4 +225,26 @@ class SanitizerTest extends MediaWikiTestCase {
 			array( '/* insecure input */', 'background-image: -moz-image-set("asdf.png" 1x, "asdf.png" 2x);'),
 		);
 	}
+
+	/**
+	 * Test for support or lack of support for specific attributes in the attribute whitelist.
+	 */
+	function provideAttributeSupport() {
+		/** array( <attributes>, <expected>, <message> ) */
+		return array(
+			array( 'div', ' role="presentation"', ' role="presentation"', 'Support for WAI-ARIA\'s role="presentation".' ),
+			array( 'div', ' role="main"', '', "Other WAI-ARIA roles are currently not supported." ),
+		);
+	}
+
+	/**
+	 * @dataProvider provideAttributeSupport
+	 */
+	function testAttributeSupport( $tag, $attributes, $expected, $message ) {
+		$this->assertEquals( $expected,
+			Sanitizer::fixTagAttributes( $attributes, $tag ),
+			$message
+		);
+	}
+
 }

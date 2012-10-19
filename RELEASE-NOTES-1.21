@@ -96,6 +96,9 @@ production.
 * (bug 43915) New maintenance script deleteEqualMessages.php.
 * New collation uppercase-sv, which is like uppercase, but adapted
   to Swedish sort order.
+* WikiText now permits the use of WAI-ARIA's role="presentation" inside of
+  html elements and tables. This allows presentational markup, especially
+  tables. To be marked up as such.
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
