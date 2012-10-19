@@ -2279,6 +2279,24 @@ Simple table
 !! end
 
 !! test
+Simple table but with multiple dashes for row wikitext
+!! input
+{| 
+| foo
+|-----
+| bar
+|}
+!! result
+<table>
+<tr>
+<td> foo
+</td></tr>
+<tr>
+<td> bar
+</td></tr></table>
+
+!! end
+!! test
 Multiplication table
 !! input
 {| border="1" cellpadding="2"
@@ -3315,6 +3333,31 @@ Nested lists 8 (multiple nesting transitions)
 
 !! end
 
+!! test
+1. Lists with start-of-line-transparent tokens before bullets: Comments
+!! input
+*foo
+*<!--cmt-->bar
+<!--cmt-->*baz
+!! result
+<ul><li>foo
+</li><li>bar
+</li><li>baz
+</li></ul>
+
+!! end
+
+!! test
+2. Lists with start-of-line-transparent tokens before bullets: Template close
+!! input
+*foo {{echo|bar
+}}*baz
+!! result
+<ul><li>foo bar
+</li><li>baz
+</li></ul>
+
+!! end
 
 !! test
 List items are not parsed correctly following a <pre> block (bug 785)
@@ -4763,6 +4806,70 @@ a<div>bc</div>de
 !!end
 
 !!test
+Templates: Ugly templates: 1. Navbox template parses badly leading to table misnesting
+(Parsoid-centric)
+!! options
+disabled
+!!input
+{|
+|{{echo|foo</table>}}
+|bar
+|}
+!!result
+<table data-parsoid="{&quot;src&quot;:&quot;{|\n|{{echo|foo&lt;/table&gt;}}\n|bar\n|}&quot;}" about="#mwt1" typeof="mw:Object/Template ">
+<tbody><tr><td>foo</td></tr></tbody></table><span about="#mwt1">
+bar</span><span about="#mwt1">
+</span>
+!!end
+
+!!test
+Templates: Ugly templates: 2. Navbox template parses badly leading to table misnesting
+(Parsoid-centric)
+!! options
+disabled
+!!input
+<table>
+  <tr>
+    <td>
+    <table>
+      <tr>
+        <td>1. {{echo|foo </table>}}</td>
+        <td> bar </td>
+        <td>2. {{echo|baz </table>}}</td>
+      </tr>
+      <tr>
+        <td>abc</td>
+      </tr>
+    </table>
+    </td>
+  </tr>
+  <tr>
+    <td>xyz</td>
+  </tr>
+</table>
+!!result
+<table data-parsoid="{&quot;src&quot;:&quot;&lt;table&gt;\n  &lt;tr&gt;\n    &lt;td&gt;\n    &lt;table&gt;\n      &lt;tr&gt;\n        &lt;td&gt;1. {{echo|foo &lt;/table&gt;}}&lt;/td&gt;\n        &lt;td&gt; bar &lt;/td&gt;\n        &lt;td&gt;2. {{echo|baz &lt;/table&gt;}}&lt;/td&gt;\n      &lt;/tr&gt;\n      &lt;tr&gt;\n        &lt;td&gt;abc&lt;/td&gt;\n      &lt;/tr&gt;\n    &lt;/table&gt;\n    &lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;td&gt;xyz&lt;/td&gt;\n  &lt;/tr&gt;\n&lt;/table&gt;&quot;}" about="#mwt1" typeof="mw:Object/Template">
+  <tbody><tr data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+    <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+    <table data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+      <tbody><tr data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">
+        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">1. foo </td></tr></tbody></table></td>
+        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}"> bar </td>
+        <td data-parsoid="{&quot;stx&quot;:&quot;html&quot;}">2. baz </td></tr></tbody></table><span about="#mwt1">
+      </span><span about="#mwt1">
+      
+        abc</span><span about="#mwt1">
+      </span><span about="#mwt1">
+    </span><span about="#mwt1">
+    </span><span about="#mwt1">
+  </span><span about="#mwt1">
+  
+    xyz</span><span about="#mwt1">
+  </span><span about="#mwt1">
+</span>
+!!end
+
+!!test
 Parser Functions: 1. Simple example
 !!input
 {{uc:foo}}
@@ -5450,6 +5557,29 @@ Image with empty attribute
 !! end
 
 !! test
+Image with link tails
+!! input
+123[[Image:foobar.jpg]]456
+123[[Image:foobar.jpg|right]]456
+123[[Image:foobar.jpg|thumb]]456
+!! result
+<p>123<a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a>456
+</p>
+123<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>456
+123<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div></div></div></div>456
+
+!! end
+
+!! test
+Image with multiple captions -- only last one is accepted
+!! input
+[[Image:foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
+!! result
+<div class="floatright"><a href="/wiki/File:Foobar.jpg" class="image" title="Caption3 - accepted"><img alt="Caption3 - accepted" src="http://example.com/images/3/3a/Foobar.jpg" width="1941" height="220" /></a></div>
+
+!! end
+
+!! test
 Image with link parameter, wiki target
 !! input
 [[Image:foobar.jpg|link=Target page]]
@@ -5914,6 +6044,17 @@ pst
 [[Category:Foo (bar)|]]
 !! result
 [[Category:Foo (bar)|Foo]]
+!! end
+
+!! test
+Category with link tail
+!! options
+cat
+pst
+!! input
+123[[Category:Foo]]456
+!! result
+123[[Category:Foo]]456
 !! end
 
 !! test
