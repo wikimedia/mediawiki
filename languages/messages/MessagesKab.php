@@ -1902,7 +1902,7 @@ Tzemreḍ ad sageneḍ abeqqeḍ s tixtiṛit n tawsit n uɣmis, isem n useqdac 
 Ẓeṛ daɣen [[Special:WantedCategories|taggayin yetwesuteren]].',
 'categoriesfrom' => 'Ssken taggayin seg :',
 'special-categories-sort-count' => 'Afran s amḍan n iferdisen',
-'special-categories-sort-abc' => 'Afran s ugemmay',
+'special-categories-sort-abc' => 'afran s ugemmay',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Isekcam yemḥan',

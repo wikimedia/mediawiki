@@ -3260,6 +3260,13 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-hidden-categories' => 'Verborgen {{PLURAL:$1|categorie|categorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruikt sjabloon|Gebruikte sjablonen}} ($1)',
 'pageinfo-toolboxlink' => 'Paginagegevens',
+'pageinfo-redirectsto' => 'Verwijst door naar',
+'pageinfo-redirectsto-info' => 'informatie',
+'pageinfo-contentpage' => 'Geteld als pagina met inhoud',
+'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading' => 'Beveiligingen werken vanaf hier door',
+'pageinfo-protect-cascading-yes' => 'Ja',
+'pageinfo-protect-cascading-from' => 'Pagina is beveiligd vanuit een andere pagina',
 
 # Skin names
 'skinname-standard' => 'Klassiek',

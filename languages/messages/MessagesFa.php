@@ -2699,7 +2699,7 @@ $NEWPAGE
 'undeletedrevisions' => '$1 نسخه احیا {{PLURAL:$1|شد|شدند}}',
 'undeletedrevisions-files' => '$1 نسخه و $2 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
 'undeletedfiles' => '$1 پرونده احیا {{PLURAL:$1|شد|شدند}}.',
-'cannotundelete' => 'احیا ناموفق بود؛
+'cannotundelete' => 'احیا ناموفق بود:
 $1',
 'undeletedpage' => "'''$1 احیا شد'''
 
@@ -3277,6 +3277,13 @@ $1',
 'pageinfo-hidden-categories' => '{{PLURAL:$1| ردهٔ|ردهٔ}} پنهان ( $1 )',
 'pageinfo-templates' => '{{PLURAL:$1|الگو|الگو}} استفاده‌شده ($1)',
 'pageinfo-toolboxlink' => 'اطلاعات صفحه',
+'pageinfo-redirectsto' => 'تغییرمسیر به',
+'pageinfo-redirectsto-info' => 'اطلاعات',
+'pageinfo-contentpage' => 'شمرده شده به عنوان صفحهٔ محتویی',
+'pageinfo-contentpage-yes' => 'بله',
+'pageinfo-protect-cascading' => 'محافظت آبشاری از اینجا',
+'pageinfo-protect-cascading-yes' => 'بله',
+'pageinfo-protect-cascading-from' => 'محافظت آبشاری از',
 
 # Skin names
 'skinname-standard' => 'کلاسیک',

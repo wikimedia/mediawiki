@@ -951,7 +951,7 @@ Den ser du til at være slettet.',
 'edit-no-change' => 'Din ændring ignoreredes, fordi der ikke var ændring af teksten.',
 'edit-already-exists' => 'En ny side kunne ikke oprettes, fordi den allerede findes.',
 'defaultmessagetext' => 'Standardtekst',
-'content-failed-to-parse' => 'Kunne ikke parse $2 indhold for $1 model: $3',
+'content-failed-to-parse' => 'Kunne ikke fortolke $2-indholdet af $1-modellen: $3',
 'invalid-content-data' => 'Ugyldig indholdsdata',
 'content-not-allowed-here' => '"$1" indhold er ikke tilladt på siden [[$2]]',
 

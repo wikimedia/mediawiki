@@ -417,6 +417,8 @@ $1',
 'youhavenewmessages' => 'તમારા માટે $1 ($2).',
 'newmessageslink' => 'નવીન સંદેશ',
 'newmessagesdifflink' => 'છેલ્લો ફેરફાર',
+'youhavenewmessagesfromusers' => 'આપને માટે {{PLURAL:$3|અન્ય સભ્યના|$3 અન્ય સભ્યોના}} $1 છે. ($2).',
+'youhavenewmessagesmanyusers' => 'આપને માટે $1 છે. ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|નવો સંદેશ|નવાં સંદેશાઓ}}',
 'newmessagesdifflinkplural' => 'છેલ્લા {{PLURAL:$1|ફેરફાર|ફેરફારો}}',
 'youhavenewmessagesmulti' => '$1 ઉપર તમારા માટે નવો સંદેશ છે.',
@@ -530,10 +532,11 @@ Query: $2',
 'protectedpagetext' => 'ફેરફારો થતાં રોકવા માટે આ પાનું સુરક્ષિત કરવામાં આવ્યું છે.',
 'viewsourcetext' => 'આપ આ પાનાનો મૂળ સ્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:',
 'viewyourtext' => "આપ આ પાનાનાં '''આપનાં સંપાદનો'''નો મૂળ સ્રોત નિહાળી શકો છો અને તેની નકલ (copy) પણ કરી શકો છો:",
-'protectedinterface' => 'આ પાનું સોફ્ટવેર માટે ઇન્ટરફેઇસ ટેક્સટ આપે છે, અને તેને દુરુપયોગ રોકવા માટે સ્થગિત કર્યું છે.',
+'protectedinterface' => 'આ પાનું સોફ્ટવેર માટે ઇન્ટરફેઇસ ટેક્સટ આપે છે, અને તેને દુરુપયોગ રોકવા માટે સ્થગિત કર્યું છે.
+બધાંજ વિકિ માટે ભાષાંતર ઉમેરવા કે બદલવા માટે, કૃપા કરી [//translatewiki.net/ translatewiki.net], મિડિયાવિકિ સ્થાનિયકરણ પ્રકલ્પ, વાપરો.',
 'editinginterface' => "'''ચેતવણી:''' તમે જે પાનામાં ફેરફાર કરી રહ્યા છો તે પાનું સોફ્ટવેર માટે ઇન્ટરફેસ ટેક્સટ પુરી પાડે છે.
-અહીંનો બદલાવ બીજા સભ્યોના ઇન્ટરફેસનાં દેખાવ ઉપર અસરકર્તા બનશે.
-ભાષાંતર કરવા માટે કૃપા કરી [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] -- મિડિયાવિકી લોકલાઇઝેશન પ્રકલ્પ વાપરો.",
+અહીંનો બદલાવ આ વિકિ પર ઉપસ્થિત અન્ય સભ્યોના ઇન્ટરફેસનાં દેખાવ ઉપર અસરકર્તા બનશે.
+બધાંજ વિકિ માટે ભાષાંતર ઉમેરવા કે બદલવા માટે કૃપા કરી [//translatewiki.net/ translatewiki.net], મિડિયાવિકી સ્થાનિયકરણ પ્રકલ્પ, વાપરો.",
 'sqlhidden' => '(છુપી SQL ક્વેરી)',
 'cascadeprotected' => 'આ પાના પર ફેરફાર પ્રતિબંધિત છે કેમ કે આ પાનું  {{PLURAL:$1|એવું પાનું|એવા પાના}} માં શામિલ છે જેમાં અનુવર્તી (પગથિયામય)સંરક્ષણ સક્રીય છે :
 $2',
@@ -931,6 +934,11 @@ $2
 તે પહેલેથી હાજર છે.',
 'defaultmessagetext' => 'મૂળભૂત સંદેશ લખાણ',
 
+# Content models
+'content-model-wikitext' => 'વિકિલખાણ',
+'content-model-text' => 'સાદું લખાણ',
+'content-model-javascript' => 'જાવાસ્ક્રિપ્ટ',
+
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''ચેતવણી:''' આ પાનું ખૂબ ખર્ચાળ પદચ્છેદ સૂત્ર ધરાવે છે.
 
@@ -1276,7 +1284,7 @@ $1",
 'timezoneregion-indian' => 'હિંદ મહાસાગર',
 'timezoneregion-pacific' => 'પ્રશાંત મહાસાગર',
 'allowemail' => 'અન્ય સભ્યો તરફથી આવતા ઇ-મેલને પરવાનગી આપો',
-'prefs-searchoptions' => 'શોધ વિકલ્પો',
+'prefs-searchoptions' => 'શોધો',
 'prefs-namespaces' => 'નામ અવકાશો',
 'defaultns' => 'અન્યથા આ નામ અવકાશ માં શોધો',
 'default' => 'મૂળ વિકલ્પ',
@@ -2372,8 +2380,8 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 'undeletedrevisions' => '{{PLURAL:$1|૧ સંપાદન|$1 સંપાદનો}} પુન સ્થાપિત કરાયા',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 ફેરફાર|$1 ફેરફારો}} અને {{PLURAL:$2|1 ફાઈલા|$2 ફાઈલો}} પુનઃસ્થાપિત',
 'undeletedfiles' => '{{PLURAL:$1|1 ફાઇલ|$1 ફાઇલો}} પુનઃસ્થાપિત',
-'cannotundelete' => 'પુનર્જીવિત કરવાનું કાર્ય અસફળ; 
-કોઇકે આ પાનાને પહેલેથી પુનર્જીવિત કર્યું હોઈ શકે.',
+'cannotundelete' => 'પુનર્જીવિત કરવાનું કાર્ય અસફળ:
+$1',
 'undeletedpage' => "'''$1 પુનઃસ્થાપિત કરાયા'''
 
 તાજેતરમાં હટાવેલા કે પુનઃસ્થાપિત થયેલા ફેરફારની નોંધ નો સંદર્ભ અહીં ઉપ્લબ્ધ [[Special:Log/delete|deletion log]].",

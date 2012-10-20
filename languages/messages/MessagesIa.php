@@ -824,9 +824,9 @@ Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite 
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
-'noarticletext-nopermission' => 'Al momento il non ha texto in iste pagina.
+'noarticletext-nopermission' => 'In iste momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente], ma tu non ha le permission de crear iste pagina.</span>',
 'missing-revision' => 'Le version №$1 del pagina nominate "{{PAGENAME}}" non existe.
 
 Isto es generalmente causate per sequer un ligamine de historia obsolete a un pagina que ha essite delite.
@@ -941,6 +941,14 @@ Pare que illo ha essite delite.',
 Illo existe ja.',
 'defaultmessagetext' => 'Texto predefinite del message',
 'content-failed-to-parse' => 'Impossibile processar le contento $2 pro le modello $1: $3',
+'invalid-content-data' => 'Datos de contento invalide',
+'content-not-allowed-here' => 'Le contento "$1" non es permittite in le pagina [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitexto',
+'content-model-text' => 'texto simple',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
@@ -1100,7 +1108,9 @@ Per favor verifica le registros.',
 'revdelete-only-restricted' => 'Error de celar le entrata del $1 a $2: tu non pote render entratas invisibile a administratores sin seliger tamben un del altere optiones de visibilitate.',
 'revdelete-reason-dropdown' => '*Motivos commun pro deletion
 ** Violation de copyright
-** Information personal inappropriate',
+** Information personal o commento inappropriate
+** Nomine de usator inappropriate
+** Information que pote esser diffamatori',
 'revdelete-otherreason' => 'Altere/additional motivo:',
 'revdelete-reasonotherlist' => 'Altere motivo',
 'revdelete-edit-reasonlist' => 'Modificar motivos pro deletion',
@@ -1297,7 +1307,7 @@ Ecce un valor aleatorimente generate que tu pote usar: $1',
 'timezoneregion-indian' => 'Oceano Indian',
 'timezoneregion-pacific' => 'Oceano Pacific',
 'allowemail' => 'Activar reception de e-mail de altere usatores',
-'prefs-searchoptions' => 'Optiones de recerca',
+'prefs-searchoptions' => 'Recerca',
 'prefs-namespaces' => 'Spatios de nomines',
 'defaultns' => 'Alteremente cercar in iste spatios de nomines:',
 'default' => 'predefinite',
@@ -1729,7 +1739,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-internal' => 'Un error incognite occurreva in le systema de immagazinage "$1".',
 'backend-fail-contenttype' => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
 'backend-fail-batchsize' => 'Le systema de immagazinage ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
-'backend-fail-usable' => 'Non poteva scriber le file $1 a causa de permissiones insufficiente o directorios/contentores mancante.',
+'backend-fail-usable' => 'Non poteva leger o scriber le file "$1" a causa de permissiones insufficiente o directorios/contentores mancante.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non poteva connecter al base de datos de jornal pro le systema de immagazinage "$1".',
@@ -1864,7 +1874,7 @@ Tu vole forsan modificar le description in le [$2 pagina de description del file
 'uploadnewversion-linktext' => 'Incargar un nove version de iste file',
 'shared-repo-from' => 'ab $1',
 'shared-repo' => 'un repositorio partite',
-'upload-disallowed-here' => 'Infortunatemente tu non pote superscriber iste imagine.',
+'upload-disallowed-here' => 'Tu non pote superscriber iste file.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -2424,8 +2434,8 @@ Es possibile que le adresse URL es invalide, o que le version ha essite restaura
 'undeletedrevisions' => '{{PLURAL:$1|1 version|$1 versiones}} restaurate',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 version|$1 versiones}} e {{PLURAL:$2|1 file|$2 files}} restaurate',
 'undeletedfiles' => '$1 {{PLURAL:$1|archivo|archivos}} restaurate',
-'cannotundelete' => 'Le restauration ha fallite;
-es possibile que un altere persona ha ja restaurate le pagina.',
+'cannotundelete' => 'Le restauration ha fallite:
+$1',
 'undeletedpage' => "'''$1 ha essite restaurate'''
 
 Consulta le [[Special:Log/delete|registro de deletiones]] pro un lista de deletiones e restaurationes recente.",
@@ -2740,6 +2750,7 @@ non pote renominar un pagina al mesme titulo.',
 'immobile-target-namespace-iw' => 'Un ligamine interwiki non es un destination valide pro le renomination de un pagina.',
 'immobile-source-page' => 'Iste pagina non es renominabile.',
 'immobile-target-page' => 'Non pote renominar a iste titulo de destination.',
+'bad-target-model' => 'Le destination desirate usa un altere modello de contento. Non es possibile converter de $1 a $2.',
 'imagenocrossnamespace' => 'Impossibile renominar un file verso un spatio de nomines non-file',
 'nonfile-cannot-move-to-file' => 'Impossibile renominar un non-file verso le spatio de nomines file',
 'imagetypemismatch' => 'Le nove extension del nomine del file non corresponde al typo del file',
@@ -2996,6 +3007,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 
 # Info page
 'pageinfo-title' => 'Informationes pro "$1"',
+'pageinfo-not-current' => 'Information pote esser monstrate solmente pro le version actual.',
 'pageinfo-header-basic' => 'Information de base',
 'pageinfo-header-edits' => 'Historia de modificationes',
 'pageinfo-header-restrictions' => 'Protection del pagina',
@@ -3023,6 +3035,14 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola|Parolas}} magic ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria|Categorias}} celate ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Patrono|Patronos}} transcludite ($1)',
+'pageinfo-toolboxlink' => 'Information sur le pagina',
+'pageinfo-redirectsto' => 'Redirige a',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Contate como pagina de contento',
+'pageinfo-contentpage-yes' => 'Si',
+'pageinfo-protect-cascading' => 'Protection in cascada a partir de hic',
+'pageinfo-protect-cascading-yes' => 'Si',
+'pageinfo-protect-cascading-from' => 'Protection in cascada a partir de',
 
 # Skin names
 'skinname-standard' => 'Classic',
@@ -3609,6 +3629,7 @@ Iste codice de confirmation expirara a $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Le transclusion interwiki es disactivate]',
 'scarytranscludefailed' => '[Falleva de obtener le patrono pro $1]',
+'scarytranscludefailed-httpstatus' => '[Obtention de patrono fallite pro $1: HTTP $2]',
 'scarytranscludetoolong' => '[URL es troppo longe]',
 
 # Delete conflict

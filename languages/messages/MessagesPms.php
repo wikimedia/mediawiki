@@ -1730,7 +1730,7 @@ Peul desse ch'a veula modifiché la descrission dzora soa [pàgina ëd descrissi
 'shared-repo-from' => 'da $1',
 'shared-repo' => "n'archivi condivis",
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
-'upload-disallowed-here' => 'Për maleur a peul pa rampiassé sta figura.',
+'upload-disallowed-here' => 'A peul pa rampiassé sto archivi.',
 
 # File reversion
 'filerevert' => "Buté torna $1 tanme ch'a l'era",
@@ -2824,6 +2824,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 
 # Info page
 'pageinfo-title' => 'Anformassion për «$1»',
+'pageinfo-not-current' => "L'anformassion a peul mach esse mostà për la revision corenta.",
 'pageinfo-header-basic' => 'Anformassion ëd base',
 'pageinfo-header-edits' => 'Modìfiche',
 'pageinfo-header-restrictions' => 'Protession ëd la pàgina',
@@ -2852,6 +2853,13 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorìa|Categorìe}} stërmà ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|stamp contnù|stamp contnù}} ($1)',
 'pageinfo-toolboxlink' => 'Anformassion an sla pàgina',
+'pageinfo-redirectsto' => 'Ridiression-a a',
+'pageinfo-redirectsto-info' => 'anformassion',
+'pageinfo-contentpage' => 'Contà com na pagina ëd contnù',
+'pageinfo-contentpage-yes' => 'É!',
+'pageinfo-protect-cascading' => 'Le protession a son a cascada da sì',
+'pageinfo-protect-cascading-yes' => 'É!',
+'pageinfo-protect-cascading-from' => 'Le protession a son a cascada da',
 
 # Patrolling
 'markaspatrolleddiff' => 'Marché coma verificà',

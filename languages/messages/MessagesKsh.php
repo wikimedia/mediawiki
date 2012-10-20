@@ -1091,6 +1091,15 @@ Ene Jrond weße mer nit.',
 'edit-no-change' => 'Do häs ja nix aan dä Sigg jeändert, do dom_mer och nix domet.',
 'edit-already-exists' => 'Kunnt kei neu Sigg aanlääje. Di Sigg jidd_et ald.',
 'defaultmessagetext' => 'Dä standaadmäßije Tex',
+'content-failed-to-parse' => 'Et wohr nit müjjelesch, dä Enhalld met däm <i lang="en">MIME-Typ</i> $2 för en Dattei met $1 dren ze verwooschte: $3.',
+'invalid-content-data' => 'Di Daate en dä Sigg sen onjöltesch.',
+'content-not-allowed-here' => 'Ene Enhalld vun dä Zoot „$1“ es op dä Sigg „[[$2]]“ nit zohjelohße.',
+
+# Content models
+'content-model-wikitext' => 'Wikitäx',
+'content-model-text' => 'Eijnfache Tex',
+'content-model-javascript' => 'JavaSkrepp',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''Opjepaß:''' Die Sigg heh määt zovill Opwand met Paaser-Funkßjohne.
@@ -1901,7 +1910,7 @@ Als Jrond es aanjejovve: „$2“',
 'backend-fail-internal' => 'Ene onklohre Fähler es opjetrodde met däm Schpeischersysteem „$1“.',
 'backend-fail-contenttype' => 'Mer kunnte de Zoot Enhalt nit eruß krijje, di en dä Dattei „$1“ faßjehallde wääde sull.',
 'backend-fail-batchsize' => 'Dat Schpeischersysteem hät ene Pöngel met {{PLURAL:$1|einem Befähl|$1 Befähle|keinem Befähl}} krääje, ävver et kann bloß {{PLURAL:$2|eine Befähl|$2 Befähle|keine Befähl}} op eijmohl.',
-'backend-fail-usable' => 'Mer kunnte di Dattei $1 nit schrieve, weil e Verzeischnes udder ene container fählt, udder et Rääsch, dren ze schrieve.',
+'backend-fail-usable' => 'Mer kunnte di Dattei $1 nit lässe udder schrieve, weil e Verzeischnes udder ene container fählt, udder et Rääsch, dren ze lässe udder ze schrieve.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Mer kunnte kein Verbendong opnämme met dä Daatebangk för et Logbooch vum Schpeischersysteem „$1“.',
@@ -2037,7 +2046,7 @@ Velleisch sullts De dä [$2 Täx övver se doh]  aanpasse.',
 'shared-repo-from' => 'uß $1',
 'shared-repo' => 'ene jemeinsame Beshtand',
 'filepage.css' => '/* Heh dat CSS küdd op Sigge övver Dateije, och di vun ander Wikis jehollt woode sin. */',
-'upload-disallowed-here' => 'Onjlöklescherwies kanns De heh dat Beld nit övverschriive.',
+'upload-disallowed-here' => 'Do kanns heh di Dattei nit övverschriive.',
 
 # File reversion
 'filerevert' => '„$1“ zerök holle',
@@ -2620,7 +2629,7 @@ Versione för die neu Sigg enjerich. Die neu Sigg weed nit ersetz.',
 'undeletedrevisions' => '{{PLURAL:$1|ein Version|$1 Versione}} zeröckjehollt',
 'undeletedrevisions-files' => 'Zesammejenomme {{PLURAL:$1|Ein Version|<strong>$1</strong> Versione|<strong>Kein</strong> Version}} vun {{PLURAL:$2|eine Datei|<strong>$2</strong> Dateie|<strong>nix</strong>}} zeröckjehollt',
 'undeletedfiles' => '{{PLURAL:$1|Ein Datei|<strong>$1</strong> Dateie|<strong>Kein</strong> Dateie}} zeröckjehollt',
-'cannotundelete' => '<strong>Dä.</strong> Dat Zeröckholle jing donevve. Mach sinn, dat ene andere Metmaacher flöcker wor, un et ald et eets jedon hät, un jetz es die Sigg ald widder do jewäse.',
+'cannotundelete' => '<strong>Dä.</strong> Et Zeröckholle jing donevve. Maach sinn, dat ene andere Metmaacher flöcker wor, un et et eets jedon hät, un jetz es die Sigg ald widder do jewäse.',
 'undeletedpage' => '<strong>De Sigg „$1“ es jetz widder do</strong>
 Luur Der et [[Special:Log/delete|Logboch met de fottjeschmesse Sigge]] aan, do häs De de Neuste fottjeschmesse
 un widder herjehollte Sigge.',
@@ -2933,6 +2942,7 @@ Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm heh di Sigg �
 'immobile-target-namespace-iw' => 'Ene Ingerwikilink es nix, woh mer en Sigg hen ömnenne künnt!',
 'immobile-source-page' => 'Di Sigg kann nit ömjenannt wääde.',
 'immobile-target-page' => 'Op dä Tittel kann kei Sigg ömjenannt wääde.',
+'bad-target-model' => 'De Zielsigg moß uß en ander Zoot Daate beschtonn, un vun „$1“ noh „$2“ künne mer nit ömwandele.',
 'imagenocrossnamespace' => 'Dateije kam_mer nor in et Appachtemang „{{ns:file}}“ donn, noh woanders hen kam_mer se och nit ömnemme!',
 'nonfile-cannot-move-to-file' => 'Mer kann nix uußer Datteije esu ömnänne, dat et em Appachtemang „{{ns:file}}“ landt',
 'imagetypemismatch' => 'De neu Datei-Endong moß met däm Datei-Tüp zesamme passe',
@@ -3203,6 +3213,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 
 # Info page
 'pageinfo-title' => 'Övver di Sigg: „$1“',
+'pageinfo-not-current' => 'Esu en Aanjaabe künne mer bloß övver de Neuste Version vun dä Sigg maache.',
 'pageinfo-header-basic' => 'Jrundlääje Aanjabe',
 'pageinfo-header-edits' => 'De Änderonge',
 'pageinfo-header-restrictions' => 'Siggeschoz',
@@ -3231,6 +3242,13 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ein verstoche Saachjropp|$1 verstoche Saachjroppe|Kein verstoche Saachjropp}}',
 'pageinfo-templates' => '{{PLURAL:$1|Ein Schablohn|$1 Schablohne|Kein Schablohn}} opjerohfe',
 'pageinfo-toolboxlink' => 'Övver heh di Sigg',
+'pageinfo-redirectsto' => 'Leidt öm op',
+'pageinfo-redirectsto-info' => 'Aanjaabe övver di Sigg',
+'pageinfo-contentpage' => 'Zällt als en Sigg vom Enhalld vum Wiki',
+'pageinfo-contentpage-yes' => 'Joh',
+'pageinfo-protect-cascading' => 'Ene Siggeschoz weed vun heh verärf',
+'pageinfo-protect-cascading-yes' => 'Joh',
+'pageinfo-protect-cascading-from' => 'Ene Siggeschoz weed jeärf vun',
 
 # Skin names
 'skinname-standard' => 'Klassesch',
@@ -4217,7 +4235,7 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-minutes' => '{{PLURAL:$1|ein Menutt|$1 Menutte|kein Menutt}}',
 'duration-hours' => '{{PLURAL:$1|en Stund|$1 Stunde|kein Shtund}}',
 'duration-days' => '{{PLURAL:$1|ene Daach|$1 Dääsch|keine Daach}}',
-'duration-weeks' => '{{PLURAL: $1|en Woch|§1 Woche|kein Woch}}',
+'duration-weeks' => '{{PLURAL: $1|en Woch|$1 Woche|kein Woch}}',
 'duration-years' => '{{PLURAL:$1|e Johr|$1 Johre|kei Johr}}',
 'duration-decades' => '{{PLURAL:$1|zehn Johre|$1 Johrzehnte|kei Johrzehnt}}',
 'duration-centuries' => '{{PLURAL:$1|e Johrhondert|$1 Johrhonderte|kei Johrhondert}}',

@@ -1303,7 +1303,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'timezoneregion-indian' => 'Oceà Índic',
 'timezoneregion-pacific' => 'Oceà Pacífic',
 'allowemail' => 'Permet que altres usuaris puguin enviar-me correus electrònics',
-'prefs-searchoptions' => 'Preferències de la cerca',
+'prefs-searchoptions' => 'Cerca',
 'prefs-namespaces' => 'Espais de noms',
 'defaultns' => 'Cerca per defecte en els següents espais de noms:',
 'default' => 'per defecte',
