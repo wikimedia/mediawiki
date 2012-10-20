@@ -2,7 +2,6 @@
 
 /**
  * @group ContentHandler
- *
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
  */
@@ -12,74 +11,79 @@ class JavascriptContentTest extends TextContentTest {
 		return new JavascriptContent( $text );
 	}
 
-
-	public function dataGetParserOutput() {
+	public static function dataGetParserOutput() {
 		return array(
 			array(
-				"MediaWiki:Test.js",
+				'MediaWiki:Test.js',
 				null,
 				"hello <world>\n",
-				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>" ),
-
+				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello &lt;world&gt;\n\n</pre>"
+			),
 			array(
-				"MediaWiki:Test.js",
+				'MediaWiki:Test.js',
 				null,
 				"hello(); // [[world]]\n",
 				"<pre class=\"mw-code mw-js\" dir=\"ltr\">\nhello(); // [[world]]\n\n</pre>",
-				array( 'Links' => array( // NOTE: assumes default settings for $wgTextModelsToParse
-							array( 'World' => 0 ) ) ) ),
+				array(
+					'Links' => array(
+						array( 'World' => 0 )
+					)
+				)
+			),
 
-			// @todo: more...?
+			// TODO: more...?
 		);
 	}
 
-	public function dataGetSection() {
+	// XXX: Unused function
+	public static function dataGetSection() {
 		return array(
 			array( WikitextContentTest::$sections,
-			       "0",
+			       '0',
 			       null
 			),
 			array( WikitextContentTest::$sections,
-			       "2",
+			       '2',
 			       null
 			),
 			array( WikitextContentTest::$sections,
-			       "8",
+			       '8',
 			       null
 			),
 		);
 	}
 
-	public function dataReplaceSection() {
+	// XXX: Unused function
+	public static function dataReplaceSection() {
 		return array(
 			array( WikitextContentTest::$sections,
-			       "0",
-			       "No more",
+			       '0',
+			       'No more',
 			       null,
 			       null
 			),
 			array( WikitextContentTest::$sections,
-			       "",
-			       "No more",
+			       '',
+			       'No more',
 			       null,
 			       null
 			),
 			array( WikitextContentTest::$sections,
-			       "2",
+			       '2',
 			       "== TEST ==\nmore fun",
 			       null,
 			       null
 			),
 			array( WikitextContentTest::$sections,
-			       "8",
-			       "No more",
+			       '8',
+			       'No more',
 			       null,
 			       null
 			),
 			array( WikitextContentTest::$sections,
-			       "new",
-			       "No more",
-			       "New",
+			       'new',
+			       'No more',
+			       'New',
 			       null
 			),
 		);
@@ -93,7 +97,7 @@ class JavascriptContentTest extends TextContentTest {
 	}
 
 	// XXX: currently, preSaveTransform is applied to scripts. this may change or become optional.
-	public function dataPreSaveTransform() {
+	public static function dataPreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
 				"hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -107,10 +111,10 @@ class JavascriptContentTest extends TextContentTest {
 		);
 	}
 
-	public function dataPreloadTransform() {
+	public static function dataPreloadTransform() {
 		return array(
 			array( 'hello this is ~~~',
-			       "hello this is ~~~",
+			       'hello this is ~~~',
 			),
 			array( 'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
 			       'hello \'\'this\'\' is <noinclude>foo</noinclude><includeonly>bar</includeonly>',
@@ -118,7 +122,7 @@ class JavascriptContentTest extends TextContentTest {
 		);
 	}
 
-	public function dataGetRedirectTarget() {
+	public static function dataGetRedirectTarget() {
 		return array(
 			array( '#REDIRECT [[Test]]',
 			       null,
@@ -152,8 +156,7 @@ class JavascriptContentTest extends TextContentTest {
 	}
 	*/
 
-
-	public function dataIsCountable() {
+	public static function dataIsCountable() {
 		return array(
 			array( '',
 			       null,
@@ -213,7 +216,7 @@ class JavascriptContentTest extends TextContentTest {
 		);
 	}
 
-	public function dataGetTextForSummary() {
+	public static function dataGetTextForSummary() {
 		return array(
 			array( "hello\nworld.",
 			       16,
@@ -246,8 +249,6 @@ class JavascriptContentTest extends TextContentTest {
 		$this->assertTrue( $content->equals( $newContent ), "content should be unchanged since it's not wikitext" );
 	}
 
-	# =================================================================================================================
-
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
 
@@ -260,7 +261,7 @@ class JavascriptContentTest extends TextContentTest {
 		$this->assertEquals( CONTENT_MODEL_JAVASCRIPT, $content->getContentHandler()->getModelID() );
 	}
 
-	public function dataEquals( ) {
+	public static function dataEquals( ) {
 		return array(
 			array( new JavascriptContent( "hallo" ), null, false ),
 			array( new JavascriptContent( "hallo" ), new JavascriptContent( "hallo" ), true ),

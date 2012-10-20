@@ -250,7 +250,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 				throw new MWException( "MW global $name is not an array." );
 			}
 
-			//NOTE: do not use array_merge, it screws up for numeric keys.
+			// NOTE: do not use array_merge, it screws up for numeric keys.
 			$merged = $GLOBALS[$name];
 			foreach ( $values as $k => $v ) {
 				$merged[$k] = $v;

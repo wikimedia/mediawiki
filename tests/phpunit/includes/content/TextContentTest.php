@@ -2,39 +2,48 @@
 
 /**
  * @group ContentHandler
- *
  * @group Database
  *        ^--- needed, because we do need the database to test link updates
  */
 class TextContentTest extends MediaWikiTestCase {
+	protected $context;
 
-	public function setup() {
-		global $wgUser;
-
+	protected function setUp() {
 		parent::setUp();
 
-		// anon user
-		$wgUser = new User();
-		$wgUser->setName( '127.0.0.1' );
+		// Anon user
+		$user = new User();
+		$user->setName( '127.0.0.1' );
+
+		$this->setMwGlobals( array(
+			'wgUser' => $user,
+			'wgTextModelsToParse' => array(
+				CONTENT_MODEL_WIKITEXT,
+				CONTENT_MODEL_CSS,
+				CONTENT_MODEL_JAVASCRIPT,
+			)
+		) );
 
 		$this->context = new RequestContext( new FauxRequest() );
-		$this->context->setTitle( Title::newFromText( "Test" ) );
-		$this->context->setUser( $wgUser );
+		$this->context->setTitle( Title::newFromText( 'Test' ) );
+		$this->context->setUser( $user );
 	}
 
 	public function newContent( $text ) {
 		return new TextContent( $text );
 	}
 
-
-	public function dataGetParserOutput() {
+	public static function dataGetParserOutput() {
 		return array(
 			array(
-				"TextContentTest_testGetParserOutput",
+				'TextContentTest_testGetParserOutput',
 				CONTENT_MODEL_TEXT,
 				"hello ''world'' & [[stuff]]\n", "hello ''world'' &amp; [[stuff]]",
-				array( 'Links' => array() ) ),
-			// @todo: more...?
+				array(
+					'Links' => array()
+				)
+			),
+			// TODO: more...?
 		);
 	}
 
@@ -65,18 +74,20 @@ class TextContentTest extends MediaWikiTestCase {
 			}
 		}
 
-		// @todo: assert more properties
+		// TODO: assert more properties
 	}
 
-	public function dataPreSaveTransform() {
+	public static function dataPreSaveTransform() {
 		return array(
-			array( #0: no signature resolution
-				"hello this is ~~~",
-				"hello this is ~~~",
+			array(
+				#0: no signature resolution
+				'hello this is ~~~',
+				'hello this is ~~~',
 			),
-			array( #1: rtrim
+			array(
+				#1: rtrim
 				" Foo \n ",
-				" Foo",
+				' Foo',
 			),
 		);
 	}
@@ -95,10 +106,11 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $content->getNativeData() );
 	}
 
-	public function dataPreloadTransform() {
+	public static function dataPreloadTransform() {
 		return array(
-			array( 'hello this is ~~~',
-			       "hello this is ~~~",
+			array(
+				'hello this is ~~~',
+				'hello this is ~~~',
 			),
 		);
 	}
@@ -116,7 +128,7 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $content->getNativeData() );
 	}
 
-	public function dataGetRedirectTarget() {
+	public static function dataGetRedirectTarget() {
 		return array(
 			array( '#REDIRECT [[Test]]',
 				null,
@@ -141,12 +153,11 @@ class TextContentTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider dataGetRedirectTarget
 	 */
-	public function isRedirect( $text, $expected ) {
+	public function testIsRedirect( $text, $expected ) {
 		$content = $this->newContent( $text );
 
 		$this->assertEquals( !is_null($expected), $content->isRedirect() );
 	}
-
 
 	/**
 	 * @todo: test needs database! Should be done by a test class in the Database group.
@@ -168,8 +179,7 @@ class TextContentTest extends MediaWikiTestCase {
 	}
 	*/
 
-
-	public function dataIsCountable() {
+	public static function dataIsCountable() {
 		return array(
 			array( '',
 			       null,
@@ -210,11 +220,11 @@ class TextContentTest extends MediaWikiTestCase {
 		$v = $content->isCountable( $hasLinks, $this->context->getTitle() );
 		$wgArticleCountMethod = $old;
 
-		$this->assertEquals( $expected, $v, "isCountable() returned unexpected value " . var_export( $v, true )
-		                                    . " instead of " . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
+		$this->assertEquals( $expected, $v, 'isCountable() returned unexpected value ' . var_export( $v, true )
+		                                    . ' instead of ' . var_export( $expected, true ) . " in mode `$mode` for text \"$text\"" );
 	}
 
-	public function dataGetTextForSummary() {
+	public static function dataGetTextForSummary() {
 		return array(
 			array( "hello\nworld.",
 			       16,
@@ -242,38 +252,36 @@ class TextContentTest extends MediaWikiTestCase {
 
 
 	public function testGetTextForSearchIndex( ) {
-		$content = $this->newContent( "hello world." );
+		$content = $this->newContent( 'hello world.' );
 
-		$this->assertEquals( "hello world.", $content->getTextForSearchIndex() );
+		$this->assertEquals( 'hello world.', $content->getTextForSearchIndex() );
 	}
 
 	public function testCopy() {
-		$content = $this->newContent( "hello world." );
+		$content = $this->newContent( 'hello world.' );
 		$copy = $content->copy();
 
-		$this->assertTrue( $content->equals( $copy ), "copy must be equal to original" );
-		$this->assertEquals( "hello world.", $copy->getNativeData() );
+		$this->assertTrue( $content->equals( $copy ), 'copy must be equal to original' );
+		$this->assertEquals( 'hello world.', $copy->getNativeData() );
 	}
 
 	public function testGetSize( ) {
-		$content = $this->newContent( "hello world." );
+		$content = $this->newContent( 'hello world.' );
 
 		$this->assertEquals( 12, $content->getSize() );
 	}
 
 	public function testGetNativeData( ) {
-		$content = $this->newContent( "hello world." );
+		$content = $this->newContent( 'hello world.' );
 
-		$this->assertEquals( "hello world.", $content->getNativeData() );
+		$this->assertEquals( 'hello world.', $content->getNativeData() );
 	}
 
 	public function testGetWikitextForTransclusion( ) {
-		$content = $this->newContent( "hello world." );
+		$content = $this->newContent( 'hello world.' );
 
-		$this->assertEquals( "hello world.", $content->getWikitextForTransclusion() );
+		$this->assertEquals( 'hello world.', $content->getWikitextForTransclusion() );
 	}
-
-	# =================================================================================================================
 
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
@@ -287,7 +295,7 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->assertEquals( CONTENT_MODEL_TEXT, $content->getContentHandler()->getModelID() );
 	}
 
-	public function dataIsEmpty( ) {
+	public static function dataIsEmpty( ) {
 		return array(
 			array( '', true ),
 			array( '  ', false ),
@@ -305,7 +313,7 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->assertEquals( $empty, $content->isEmpty() );
 	}
 
-	public function dataEquals( ) {
+	public static function dataEquals( ) {
 		return array(
 			array( new TextContent( "hallo" ), null, false ),
 			array( new TextContent( "hallo" ), new TextContent( "hallo" ), true ),
@@ -322,7 +330,7 @@ class TextContentTest extends MediaWikiTestCase {
 		$this->assertEquals( $equal, $a->equals( $b ) );
 	}
 
-	public function dataGetDeletionUpdates() {
+	public static function dataGetDeletionUpdates() {
 		return array(
 			array("TextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_TEXT, "hello ''world''\n",
@@ -332,7 +340,7 @@ class TextContentTest extends MediaWikiTestCase {
 				CONTENT_MODEL_TEXT, "hello [[world test 21344]]\n",
 				array( )
 			),
-			// @todo: more...?
+			// TODO: more...?
 		);
 	}
 

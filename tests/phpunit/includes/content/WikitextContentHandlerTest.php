@@ -10,8 +10,9 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	 */
 	var $handler;
 
-	public function setup() {
+	public function setUp() {
 		parent::setUp();
+
 		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
 	}
 
@@ -51,7 +52,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( '', $content->getNativeData() );
 	}
 
-	public function dataIsSupportedFormat( ) {
+	public static function dataIsSupportedFormat( ) {
 		return array(
 			array( null, true ),
 			array( CONTENT_FORMAT_WIKITEXT, true ),
@@ -66,7 +67,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $supported, $this->handler->isSupportedFormat( $format ) );
 	}
 
-	public function dataMerge3( ) {
+	public static function dataMerge3( ) {
 		return array(
 			array( "first paragraph
 
@@ -123,7 +124,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $merged ? $merged->getNativeData() : $merged );
 	}
 
-	public function dataGetAutosummary( ) {
+	public static function dataGetAutosummary( ) {
 		return array(
 			array(
 				'Hello there, world!',
@@ -165,7 +166,7 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider dataGetAutoSummary
+	 * @dataProvider dataGetAutosummary
 	 */
 	public function testGetAutosummary( $old, $new, $flags, $expected ) {
 		global $wgLanguageCode, $wgContLang;
@@ -182,16 +183,14 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	 * @todo Text case requires database, should be done by a test class in the Database group
 	 */
 	/*
-	public function testGetAutoDeleteReason( Title $title, &$hasHistory ) {
-	}
+	public function testGetAutoDeleteReason( Title $title, &$hasHistory ) {}
 	*/
 
 	/**
 	 * @todo Text case requires database, should be done by a test class in the Database group
 	 */
 	/*
-	public function testGetUndoContent( Revision $current, Revision $undo, Revision $undoafter = null ) {
-	}
+	public function testGetUndoContent( Revision $current, Revision $undo, Revision $undoafter = null ) {}
 	*/
 
 }
