@@ -2,46 +2,53 @@
 
 /**
  * @group ContentHandler
+ * @group Database
  *
- * @note: Declare that we are using the database, because otherwise we'll fail in the "databaseless" test run.
+ * @note Declare that we are using the database, because otherwise we'll fail in the "databaseless" test run.
  * This is because the LinkHolderArray used by the parser needs database access.
  *
- * @group Database
  */
 class ContentHandlerTest extends MediaWikiTestCase {
 
 	public function setup() {
+		global $wgContLang;
 		parent::setup();
 
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+		$this->setMwGlobals( array(
+			'wgExtraNamespaces' => array(
+				12312 => 'Dummy',
+				12313 => 'Dummy_talk',
+			),
+			// The below tests assume that namespaces not mentioned here (Help, User, MediaWiki, ..)
+			// default to CONTENT_MODEL_WIKITEXT.
+			'wgNamespaceContentModels' => array(
+				12312 => 'testing',
+			),
+			'wgContentHandlers' => array(
+				CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
+				CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
+				CONTENT_MODEL_CSS => 'CssContentHandler',
+				CONTENT_MODEL_TEXT => 'TextContentHandler',
+				'testing' => 'DummyContentHandlerForTesting',
+			),
+		) );
 
-		$wgExtraNamespaces[ 12312 ] = 'Dummy';
-		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
-
-		$wgNamespaceContentModels[ 12312 ] = "testing";
-		$wgContentHandlers[ "testing" ] = 'DummyContentHandlerForTesting';
-
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
+		// Reset namespace cache
+		MWNamespace::getCanonicalNamespaces( true );
+		$wgContLang->resetNamespaces();
 	}
 
-	public function teardown() {
-		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+	public function tearDown() {
+		global $wgContLang;
 
-		unset( $wgExtraNamespaces[ 12312 ] );
-		unset( $wgExtraNamespaces[ 12313 ] );
+		// Reset namespace cache
+		MWNamespace::getCanonicalNamespaces( true );
+		$wgContLang->resetNamespaces();
 
-		unset( $wgNamespaceContentModels[ 12312 ] );
-		unset( $wgContentHandlers[ "testing" ] );
-
-		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
-		$wgContLang->resetNamespaces(); # reset namespace cache
-
-		parent::teardown();
+		parent::tearDown();
 	}
 
-	public function dataGetDefaultModelFor() {
-		//NOTE: assume that the Help namespace default to wikitext content
+	public static function dataGetDefaultModelFor() {
 		return array(
 			array( 'Help:Foo', CONTENT_MODEL_WIKITEXT ),
 			array( 'Help:Foo.js', CONTENT_MODEL_WIKITEXT ),
@@ -68,6 +75,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$title = Title::newFromText( $title );
 		$this->assertEquals( $expectedModelId, ContentHandler::getDefaultModelFor( $title ) );
 	}
+
 	/**
 	 * @dataProvider dataGetDefaultModelFor
 	 */
@@ -77,12 +85,13 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertEquals( $expectedContentModel, $handler->getModelID() );
 	}
 
-	public function dataGetLocalizedName() {
+	public static function dataGetLocalizedName() {
 		return array(
 			array( null, null ),
 			array( "xyzzy", null ),
 
-			array( CONTENT_MODEL_JAVASCRIPT, '/javascript/i' ), //XXX: depends on content language
+			// XXX: depends on content language
+			array( CONTENT_MODEL_JAVASCRIPT, '/javascript/i' ),
 		);
 	}
 
@@ -95,14 +104,16 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		if ( $expected ) {
 			$this->assertNotNull( $name, "no name found for content model $id" );
 			$this->assertTrue( preg_match( $expected, $name ) > 0 ,
-								"content model name for #$id did not match pattern $expected" );
+				"content model name for #$id did not match pattern $expected"
+			);
 		} else {
 			$this->assertEquals( $id, $name, "localization of unknown model $id should have "
-											. "fallen back to use the model id directly." );
+				. "fallen back to use the model id directly."
+			);
 		}
 	}
 
-	public function dataGetPageLanguage() {
+	public static function dataGetPageLanguage() {
 		global $wgLanguageCode;
 
 		return array(
@@ -181,7 +192,7 @@ class ContentHandlerTest extends MediaWikiTestCase {
 			$text = ContentHandler::getContentText( $content );
 
 			$this->fail( "ContentHandler::getContentText should have thrown an exception for non-text Content object" );
-		} catch (MWException $ex) {
+		} catch ( MWException $ex ) {
 			// as expected
 		}
 
@@ -194,10 +205,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		$this->assertNull( $text );
 	}
 
-	#public static function makeContent( $text, Title $title, $modelId = null, $format = null )
+	/*
+	public static function makeContent( $text, Title $title, $modelId = null, $format = null ) {}
+	*/
 
-	public function dataMakeContent() {
-		//NOTE: assume the Help namespace defaults to wikitext content
+	public static function dataMakeContent() {
 		return array(
 			array( 'hallo', 'Help:Test', null, null, CONTENT_MODEL_WIKITEXT, 'hallo', false ),
 			array( 'hallo', 'MediaWiki:Test.js', null, null, CONTENT_MODEL_JAVASCRIPT, 'hallo', false ),
@@ -228,7 +240,9 @@ class ContentHandlerTest extends MediaWikiTestCase {
 		try {
 			$content = ContentHandler::makeContent( $data, $title, $modelId, $format );
 
-			if ( $shouldFail ) $this->fail( "ContentHandler::makeContent should have failed!" );
+			if ( $shouldFail ) {
+				$this->fail( "ContentHandler::makeContent should have failed!" );
+			}
 
 			$this->assertEquals( $expectedModelId, $content->getModel(), 'bad model id' );
 			$this->assertEquals( $expectedNativeData, $content->getNativeData(), 'bads native data' );
@@ -239,9 +253,11 @@ class ContentHandlerTest extends MediaWikiTestCase {
 
 	}
 
+	/*
 	public function testSupportsSections() {
 		$this->markTestIncomplete( "not yet implemented" );
 	}
+	*/
 
 	public function testRunLegacyHooks() {
 		Hooks::register( 'testRunLegacyHooks', __CLASS__ . '::dummyHookHandler' );
@@ -277,8 +293,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * @param null $format the desired serialization format
 	 * @return String serialized form of the content
 	 */
-	public function serializeContent( Content $content, $format = null )
-	{
+	public function serializeContent( Content $content, $format = null ) {
 	   return $content->serialize();
 	}
 
@@ -289,8 +304,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * @param null $format the format used for serialization
 	 * @return Content the Content object created by deserializing $blob
 	 */
-	public function unserializeContent( $blob, $format = null )
-	{
+	public function unserializeContent( $blob, $format = null ) {
 		$d = unserialize( $blob );
 		return new DummyContentForTesting( $d );
 	}
@@ -299,8 +313,7 @@ class DummyContentHandlerForTesting extends ContentHandler {
 	 * Creates an empty Content object of the type supported by this ContentHandler.
 	 *
 	 */
-	public function makeEmptyContent()
-	{
+	public function makeEmptyContent() {
 		return new DummyContentForTesting( '' );
 	}
 }
@@ -327,7 +340,7 @@ class DummyContentForTesting extends AbstractContent {
 
 	/**
 	 * @return String the wikitext to include when another page includes this  content, or false if the content is not
-	 *         includable in a wikitext page.
+	 *  includable in a wikitext page.
 	 */
 	public function getWikitextForTransclusion() {
 		return false;
@@ -336,8 +349,8 @@ class DummyContentForTesting extends AbstractContent {
 	/**
 	 * Returns a textual representation of the content suitable for use in edit summaries and log messages.
 	 *
-	 * @param int $maxlength maximum length of the summary text
-	 * @return String the summary text
+	 * @param int $maxlength Maximum length of the summary text.
+	 * @return string The summary text.
 	 */
 	public function getTextForSummary( $maxlength = 250 ) {
 		return '';
@@ -348,7 +361,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * as given by getDataModel().
 	 *
 	 * @return mixed the native representation of the content. Could be a string, a nested array
-	 *         structure, an object, a binary blob... anything, really.
+	 *  structure, an object, a binary blob... anything, really.
 	 */
 	public function getNativeData()
 	{
@@ -376,7 +389,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * return $this. That is,  $copy === $original may be true, but only for imutable content
 	 * objects.
 	 *
-	 * @return Content. A copy of this object
+	 * @return Content. A copy of this object.
 	 */
 	public function copy() {
 		return $this;
@@ -386,8 +399,8 @@ class DummyContentForTesting extends AbstractContent {
 	 * Returns true if this content is countable as a "real" wiki page, provided
 	 * that it's also in a countable location (e.g. a current revision in the main namespace).
 	 *
-	 * @param $hasLinks Bool: if it is known whether this content contains links, provide this information here,
-	 *                        to avoid redundant parsing to find out.
+	 * @param boolean $hasLinks if it is known whether this content contains links, provide this information here,
+	 *  to avoid redundant parsing to find out.
 	 * @return boolean
 	 */
 	public function isCountable( $hasLinks = null ) {
@@ -398,9 +411,9 @@ class DummyContentForTesting extends AbstractContent {
 	 * @param Title $title
 	 * @param null $revId
 	 * @param null|ParserOptions $options
-	 * @param Boolean $generateHtml whether to generate Html (default: true). If false,
-	 *        the result of calling getText() on the ParserOutput object returned by
-	 *        this method is undefined.
+	 * @param boolean $generateHtml whether to generate Html (default: true). If false,
+	 *  the result of calling getText() on the ParserOutput object returned by
+	 *   this method is undefined.
 	 *
 	 * @return ParserOutput
 	 */
