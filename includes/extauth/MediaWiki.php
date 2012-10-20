@@ -36,15 +36,15 @@
  *       'DBprefix' => '',
  *   );
  *
- * All fields must be present.  These mean the same things as $wgDBtype, 
- * $wgDBserver, etc.  This implementation is quite crude; it could easily 
- * support multiple database servers, for instance, and memcached, and it 
- * probably has bugs.  Kind of hard to reuse code when things might rely on who 
+ * All fields must be present.  These mean the same things as $wgDBtype,
+ * $wgDBserver, etc.  This implementation is quite crude; it could easily
+ * support multiple database servers, for instance, and memcached, and it
+ * probably has bugs.  Kind of hard to reuse code when things might rely on who
  * knows what configuration globals.
  *
- * If either wiki uses the UserComparePasswords hook, password authentication 
- * might fail unexpectedly unless they both do the exact same validation.  
- * There may be other corner cases like this where this will fail, but it 
+ * If either wiki uses the UserComparePasswords hook, password authentication
+ * might fail unexpectedly unless they both do the exact same validation.
+ * There may be other corner cases like this where this will fail, but it
  * should be unlikely.
  *
  * @ingroup ExternalUser
@@ -62,8 +62,8 @@ class ExternalUser_MediaWiki extends ExternalUser {
 	 * @return bool
 	 */
 	protected function initFromName( $name ) {
-		# We might not need the 'usable' bit, but let's be safe.  Theoretically 
-		# this might return wrong results for old versions, but it's probably 
+		# We might not need the 'usable' bit, but let's be safe.  Theoretically
+		# this might return wrong results for old versions, but it's probably
 		# good enough.
 		$name = User::getCanonicalName( $name, 'usable' );
 
@@ -130,14 +130,14 @@ class ExternalUser_MediaWiki extends ExternalUser {
 	}
 
 	public function authenticate( $password ) {
-		# This might be wrong if anyone actually uses the UserComparePasswords hook 
+		# This might be wrong if anyone actually uses the UserComparePasswords hook
 		# (on either end), so don't use this if you those are incompatible.
 		return User::comparePasswords( $this->mRow->user_password, $password,
-			$this->mRow->user_id );	
+			$this->mRow->user_id );
 	}
 
 	public function getPref( $pref ) {
-		# @todo FIXME: Return other prefs too.  Lots of global-riddled code that does 
+		# @todo FIXME: Return other prefs too.  Lots of global-riddled code that does
 		# this normally.
 		if ( $pref === 'emailaddress'
 		&& $this->row->user_email_authenticated !== null ) {

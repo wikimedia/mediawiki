@@ -1411,9 +1411,9 @@ $wgAllDBsAreLocalhost = false;
  * $wgSharedPrefix is the table prefix for the shared database. It defaults to
  * $wgDBprefix.
  *
- * @deprecated In new code, use the $wiki parameter to wfGetLB() to access 
- *   remote databases. Using wfGetLB() allows the shared database to reside on 
- *   separate servers to the wiki's own database, with suitable configuration 
+ * @deprecated In new code, use the $wiki parameter to wfGetLB() to access
+ *   remote databases. Using wfGetLB() allows the shared database to reside on
+ *   separate servers to the wiki's own database, with suitable configuration
  *   of $wgLBFactoryConf.
  */
 $wgSharedDB = null;
@@ -2067,12 +2067,12 @@ $wgMaxSquidPurgeTitles = 400;
 
 /**
  * Whether to use a Host header in purge requests sent to the proxy servers
- * configured in $wgSquidServers. Set this to false to support Squid 
+ * configured in $wgSquidServers. Set this to false to support Squid
  * configured in forward-proxy mode.
  *
  * If this is set to true, a Host header will be sent, and only the path
  * component of the URL will appear on the request line, as if the request
- * were a non-proxy HTTP 1.1 request. Varnish only supports this style of 
+ * were a non-proxy HTTP 1.1 request. Varnish only supports this style of
  * request. Squid supports this style of request only if reverse-proxy mode
  * (http_port ... accel) is enabled.
  *
@@ -2080,7 +2080,7 @@ $wgMaxSquidPurgeTitles = 400;
  * will be sent in the request line, as is the standard for an HTTP proxy
  * request in both HTTP 1.0 and 1.1. This style of request is not supported
  * by Varnish, but is supported by Squid in either configuration (forward or
- * reverse). 
+ * reverse).
  *
  * @since 1.21
  */

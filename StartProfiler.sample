@@ -12,7 +12,7 @@
  *   } else {
  *       $wgProfiler['class'] = 'ProfilerStub';
  *   }
- * 
+ *
  * Configuration of the profiler output can be done in LocalSettings.php
  */
 

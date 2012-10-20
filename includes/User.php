@@ -3013,8 +3013,8 @@ class User {
 	}
 
 	/**
-	 * Add this existing user object to the database. If the user already 
-	 * exists, a fatal status object is returned, and the user object is 
+	 * Add this existing user object to the database. If the user already
+	 * exists, a fatal status object is returned, and the user object is
 	 * initialised with the data from the database.
 	 *
 	 * Previously, this function generated a DB error due to a key conflict
@@ -3027,12 +3027,12 @@ class User {
 	 *   }
 	 *   // do something with $user...
 	 *
-	 * However, this was vulnerable to a race condition (bug 16020). By 
+	 * However, this was vulnerable to a race condition (bug 16020). By
 	 * initialising the user object if the user exists, we aim to support this
 	 * calling sequence as far as possible.
 	 *
 	 * Note that if the user exists, this function will acquire a write lock,
-	 * so it is still advisable to make the call conditional on isLoggedIn(), 
+	 * so it is still advisable to make the call conditional on isLoggedIn(),
 	 * and to commit the transaction after calling.
 	 *
 	 * @return Status
@@ -3062,7 +3062,7 @@ class User {
 			array( 'IGNORE' )
 		);
 		if ( !$dbw->affectedRows() ) {
-			$this->mId = $dbw->selectField( 'user', 'user_id', 
+			$this->mId = $dbw->selectField( 'user', 'user_id',
 				array( 'user_name' => $this->mName ), __METHOD__ );
 			$loaded = false;
 			if ( $this->mId ) {

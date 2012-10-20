@@ -238,7 +238,7 @@ class LocalRepo extends FileRepo {
 			__METHOD__,
 			array( 'ORDER BY' => 'img_name' )
 		);
-		
+
 		$result = array();
 		foreach ( $res as $row ) {
 			$result[] = $this->newFileFromRow( $row );
@@ -299,7 +299,7 @@ class LocalRepo extends FileRepo {
 
 	/**
 	 * Get a key on the primary cache for this repository.
-	 * Returns false if the repository's cache is not accessible at this site. 
+	 * Returns false if the repository's cache is not accessible at this site.
 	 * The parameters are the parts of the key, as for wfMemcKey().
 	 *
 	 * @return string

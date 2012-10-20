@@ -2922,7 +2922,7 @@ class Title {
 
 		$linkCache = LinkCache::singleton();
 		$cached = $linkCache->getGoodLinkFieldObj( $this, 'redirect' );
-		if ( $cached === null ) { 
+		if ( $cached === null ) {
 			// TODO: check the assumption that the cache actually knows about this title
 			// and handle this, such as get the title from the database.
 			// See https://bugzilla.wikimedia.org/show_bug.cgi?id=37209

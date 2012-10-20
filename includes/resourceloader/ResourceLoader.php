@@ -39,7 +39,7 @@ class ResourceLoader {
 
 	/** Associative array mapping module name to info associative array */
 	protected $moduleInfos = array();
- 
+
 	/** Associative array mapping framework ids to a list of names of test suite modules */
 	/** like array( 'qunit' => array( 'mediawiki.tests.qunit.suites', 'ext.foo.tests', .. ), .. ) */
 	protected $testModuleNames = array();
@@ -346,7 +346,7 @@ class ResourceLoader {
 	public function getModuleNames() {
 		return array_keys( $this->moduleInfos );
 	}
- 
+
  	/**
 	 * Get a list of test module names for one (or all) frameworks.
 	 * If the given framework id is unknkown, or if the in-object variable is not an array,
