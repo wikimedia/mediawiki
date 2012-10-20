@@ -585,7 +585,7 @@ class CologneBlueTemplate extends BaseTemplate {
 					// Personal tools ("My pages")
 					$bar['qbmyoptions'] = $this->getPersonalTools();
 					foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
-						$bar['qbmyoptions'][$key] = false;
+						$bar['qbmyoptions'][$key] = null;
 					}
 
 					$additions_done = true;
@@ -609,8 +609,8 @@ class CologneBlueTemplate extends BaseTemplate {
 				$s .= $this->searchForm( 'sidebar' );
 			} elseif ( $heading == 'LANGUAGES' ) {
 				// discard these; we display languages below page content
-			} else {
-				if ( $links ) {
+			} elseif ( $links ) {
+				if ( is_array( $links ) ) {
 					// Use the navigation heading from standard sidebar as the "browse" section
 					if ( $heading == 'navigation' ) {
 						$heading = 'qbbrowse';
@@ -634,6 +634,9 @@ class CologneBlueTemplate extends BaseTemplate {
 					if ( $any_link ) {
 						$s .= $t;
 					}
+				} else {
+					// $links can be a HTML string
+					$s .= $links;
 				}
 			}
 		}
