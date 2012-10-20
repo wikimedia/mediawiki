@@ -1,6 +1,9 @@
-/*
-** MediaWiki style sheet for general styles on complex content
-*/
+/**
+ * MediaWiki style sheet for general styles on complex content
+ *
+ * Styles for complex things which are a standard part of page content
+ * (ie: the CSS classing built into the system), like the TOC.
+ */
 
 /* Table of Contents */
 #toc,
