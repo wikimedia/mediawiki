@@ -1,4 +1,4 @@
--- Stores the groups the user has once belonged to. 
+-- Stores the groups the user has once belonged to.
 -- The user may still belong these groups. Check user_groups.
 CREATE TABLE /*_*/user_former_groups (
   -- Key to user_id

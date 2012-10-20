@@ -1,10 +1,10 @@
--- 
+--
 -- Track inline interwiki links
 --
 CREATE TABLE /*_*/iwlinks (
   -- page_id of the referring page
   iwl_from int unsigned NOT NULL default 0,
-  
+
   -- Interwiki prefix code of the target
   iwl_prefix varbinary(20) NOT NULL default '',
 

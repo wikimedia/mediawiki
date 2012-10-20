@@ -2,7 +2,7 @@
 CREATE TABLE /*_*/msg_resource (
   -- Resource name
   mr_resource varbinary(255) NOT NULL,
-  -- Language code 
+  -- Language code
   mr_lang varbinary(32) NOT NULL,
   -- JSON blob. This is an incomplete JSON object, i.e. without the wrapping {}
   mr_blob mediumblob NOT NULL,
