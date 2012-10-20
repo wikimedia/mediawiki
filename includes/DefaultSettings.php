@@ -752,10 +752,14 @@ $wgMediaHandlers = array(
  * @since 1.21
  */
 $wgContentHandlers = array(
-	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler', // the usual case
-	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler', // dumb version, no syntax highlighting
-	CONTENT_MODEL_CSS => 'CssContentHandler', // dumb version, no syntax highlighting
-	CONTENT_MODEL_TEXT => 'TextContentHandler', // plain text, for use by extensions etc
+	// the usual case
+	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
+	// dumb version, no syntax highlighting
+	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
+	// dumb version, no syntax highlighting
+	CONTENT_MODEL_CSS => 'CssContentHandler',
+	// plain text, for use by extensions etc
+	CONTENT_MODEL_TEXT => 'TextContentHandler',
 );
 
 /**
