@@ -1092,13 +1092,15 @@ $wgAutoloadLocalClasses = array(
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
 
-	# tests/phpunit
-	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
-	'DummyContentForTesting' => 'tests/phpunit/includes/ContentHandlerTest.php',
-	'JavascriptContentTest' => 'tests/phpunit/includes/JavascriptContentTest.php',
+	# tests/phpunit/content
 	'RevisionStorageTest' => 'tests/phpunit/includes/RevisionStorageTest.php',
-	'TextContentTest' => 'tests/phpunit/includes/TextContentTest.php',
 	'WikiPageTest' => 'tests/phpunit/includes/WikiPageTest.php',
+
+	# tests/phpunit/content
+	'DummyContentHandlerForTesting' => 'tests/phpunit/includes/content/ContentHandlerTest.php',
+	'DummyContentForTesting' => 'tests/phpunit/includes/content/ContentHandlerTest.php',
+	'JavascriptContentTest' => 'tests/phpunit/includes/content/JavascriptContentTest.php',
+	'TextContentTest' => 'tests/phpunit/includes/content/TextContentTest.php',
 
 	# tests/phpunit/includes
 	'GenericArrayObjectTest' => 'tests/phpunit/includes/libs/GenericArrayObjectTest.php',
