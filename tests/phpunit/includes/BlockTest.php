@@ -13,7 +13,10 @@ class BlockTest extends MediaWikiLangTestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->setMwGlobals( 'wgContLang', Language::factory( 'en' ) );
+		$this->setMwGlobals( array(
+			'wgLanguageCode' => 'en',
+			'wgContLang' => Language::factory( 'en' )
+		) );
 	}
 
 	function addDBData() {
