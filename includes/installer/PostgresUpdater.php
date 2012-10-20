@@ -228,6 +228,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'logging',       'logging_page_id_time',   '(log_page,log_timestamp)' ),
 			array( 'addPgIndex', 'iwlinks',       'iwl_prefix_title_from',  '(iwl_prefix, iwl_title, iwl_from)' ),
 			array( 'addPgIndex', 'job',           'job_timestamp_idx',      '(job_timestamp)' ),
+			array( 'addPgIndex', 'filearchive',   'fa_notime',              '(fa_deleted_timestamp)' ),
 			array( 'addPgIndex', 'filearchive',   'fa_sha1',                '(fa_sha1)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(
