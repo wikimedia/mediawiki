@@ -2457,18 +2457,7 @@ class User {
 
 				if( $count === null ) {
 					// it has not been initialized. do so.
-					$dbw = wfGetDB( DB_MASTER );
-					$count = $dbr->selectField(
-						'revision', 'count(*)',
-						array( 'rev_user' => $this->mId ),
-						__METHOD__
-					);
-					$dbw->update(
-						'user',
-						array( 'user_editcount' => $count ),
-						array( 'user_id' => $this->mId ),
-						__METHOD__
-					);
+					$count = $this->initEditCount();
 				}
 				wfProfileOut( __METHOD__ );
 				$this->mEditCount = $count;
@@ -3943,41 +3932,61 @@ class User {
 	public function incEditCount() {
 		if( !$this->isAnon() ) {
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->update( 'user',
+			$dbw->update(
+				'user',
 				array( 'user_editcount=user_editcount+1' ),
 				array( 'user_id' => $this->getId() ),
-				__METHOD__ );
+				__METHOD__
+			);
 
 			// Lazy initialization check...
 			if( $dbw->affectedRows() == 0 ) {
-				// Pull from a slave to be less cruel to servers
-				// Accuracy isn't the point anyway here
-				$dbr = wfGetDB( DB_SLAVE );
-				$count = $dbr->selectField( 'revision',
-					'COUNT(rev_user)',
-					array( 'rev_user' => $this->getId() ),
-					__METHOD__ );
-
 				// Now here's a goddamn hack...
+				$dbr = wfGetDB( DB_SLAVE );
 				if( $dbr !== $dbw ) {
 					// If we actually have a slave server, the count is
 					// at least one behind because the current transaction
 					// has not been committed and replicated.
-					$count++;
+					$this->initEditCount( 1 );
 				} else {
 					// But if DB_SLAVE is selecting the master, then the
 					// count we just read includes the revision that was
 					// just added in the working transaction.
+					$this->initEditCount();
 				}
-
-				$dbw->update( 'user',
-					array( 'user_editcount' => $count ),
-					array( 'user_id' => $this->getId() ),
-					__METHOD__ );
 			}
 		}
 		// edit count in user cache too
 		$this->invalidateCache();
+	}
+
+	/**
+	 * Initialize user_editcount from data out of the revision table
+	 *
+	 * @param $add Integer Edits to add to the count from the revision table
+	 * @return Integer Number of edits
+	 */
+	protected function initEditCount( $add = 0 ) {
+		// Pull from a slave to be less cruel to servers
+		// Accuracy isn't the point anyway here
+		$dbr = wfGetDB( DB_SLAVE );
+		$count = $dbr->selectField(
+			'revision',
+			'COUNT(rev_user)',
+			array( 'rev_user' => $this->getId() ),
+			__METHOD__
+		);
+		$count = $count + $add;
+
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->update(
+			'user',
+			array( 'user_editcount' => $count ),
+			array( 'user_id' => $this->getId() ),
+			__METHOD__
+		);
+
+		return $count;
 	}
 
 	/**
