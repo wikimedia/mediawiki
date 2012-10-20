@@ -33,10 +33,10 @@ class RunHipHopServer extends Maintenance {
 			$sourceBase = realpath( "$IP/.." );
 		}
 
-		passthru( 
+		passthru(
 			'cd ' . wfEscapeShellArg( $sourceBase ) . " && " .
 			'MW_INSTALL_PATH=' . wfEscapeShellArg( $IP ) . ' ' .
-			wfEscapeShellArg( 
+			wfEscapeShellArg(
 				"$buildDir/persistent/mediawiki-hphp",
 				'-c', "$thisDir/server.conf",
 				'-v', "Server.SourceRoot=$sourceBase",

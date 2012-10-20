@@ -26,5 +26,5 @@ CREATE TABLE testitem (
   ti_run      INTEGER   NOT NULL REFERENCES testrun(tr_id) ON DELETE CASCADE,
   ti_name     TEXT      NOT NULL,
   ti_success  SMALLINT  NOT NULL
-);  
+);
 CREATE UNIQUE INDEX testitem_uniq ON testitem(ti_run, ti_name);

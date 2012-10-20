@@ -43,7 +43,7 @@ class SkinCologneBlue extends SkinTemplate {
 		$out->addModuleStyles( 'mediawiki.legacy.oldshared' );
 		$out->addModuleStyles( 'skins.cologneblue' );
 	}
-	
+
 	/**
 	 * Override langlink formatting behavior not to uppercase the language names.
 	 * See otherLanguages() in CologneBlueTemplate.
@@ -64,7 +64,6 @@ class CologneBlueTemplate extends BaseTemplate {
 		$this->printTrail();
 		echo "\n</body></html>";
 	}
-	
 
 	/**
 	 * Language/charset variant links for classic-style skins
@@ -83,7 +82,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
-	
+
 	// @fixed
 	function otherLanguages() {
 		global $wgHideInterlanguageLinks;
@@ -112,11 +111,11 @@ class CologneBlueTemplate extends BaseTemplate {
 	function pageTitleLinks() {
 		$s = array();
 		$footlinks = $this->getFooterLinks();
-		
+
 		foreach ( $footlinks['places'] as $item ) {
 			$s[] = $this->data[$item];
 		}
-		
+
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
@@ -390,10 +389,10 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		return $s;
 	}
-	
+
 	/**
 	 * @return string
-	 * 
+	 *
 	 * @fixed
 	 */
 	function beforeContent() {
@@ -407,7 +406,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			</a>
 		</p>
 		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
-		
 		<div id="toplinks">
 			<p id="syslinks"><?php echo $this->sysLinks() ?></p>
 			<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
@@ -438,13 +436,13 @@ class CologneBlueTemplate extends BaseTemplate {
 <?php
 		$s = ob_get_contents();
 		ob_end_clean();
-		
+
 		return $s;
 	}
 
 	/**
 	 * @return string
-	 * 
+	 *
 	 * @fixed
 	 */
 	function afterContent() {
@@ -456,7 +454,7 @@ class CologneBlueTemplate extends BaseTemplate {
 		// Page-related links
 		echo $this->bottomLinks();
 		echo "\n<br />";
-		
+
 		// Footer and second searchbox
 		echo $this->getSkin()->getLanguage()->pipeList( array(
 			$this->getSkin()->mainPageLink(),
@@ -464,7 +462,7 @@ class CologneBlueTemplate extends BaseTemplate {
 			$this->searchForm( 'footer' )
 		) );
 		echo "\n<br />";
-		
+
 		// Standard footer info
 		$footlinks = $this->getFooterLinks();
 		if ( $footlinks['info'] ) {
@@ -485,7 +483,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 	/**
 	 * @return string
-	 * 
+	 *
 	 * @fixed
 	 */
 	function sysLinks() {
@@ -515,13 +513,10 @@ class CologneBlueTemplate extends BaseTemplate {
 		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
-
-
-	
 	/**
 	 * @param $heading string
 	 * @return string
-	 * 
+	 *
 	 * @fixed
 	 */
 	function menuHead( $heading ) {
@@ -533,35 +528,35 @@ class CologneBlueTemplate extends BaseTemplate {
 	 * @access private
 	 *
 	 * @return string
-	 * 
+	 *
 	 * @fixed
 	 */
 	function quickBar(){
 		$s = "\n<div id='quickbar'>";
 
 		$sep = "<br />\n";
-		
+
 		$plain_bar = $this->data['sidebar'];
 		$bar = array();
-		
+
 		// Massage the sidebar
 		// We want to place SEARCH at the beginning and a lot of stuff before TOOLBOX (or at the end, if it's missing)
 		$additions_done = false;
 		while ( !$additions_done ) {
 			$bar = array(); // Empty it out
-			
+
 			// Always display search on top
 			$bar['SEARCH'] = true;
-				
+
 			foreach ( $plain_bar as $heading => $links ) {
 				if ( $heading == 'TOOLBOX' ) {
 					if( $links !== NULL ) {
 						// If this is not a toolbox prosthetic we inserted outselves, fill it out
 						$plain_bar['TOOLBOX'] = $this->getToolbox();
 					}
-					
+
 					// And insert the stuff
-					
+
 					// "This page" and "Edit" menus
 					// We need to do some massaging here... we reuse all of the items, except for $...['views']['view'],
 					// as $...['namespaces']['main'] and $...['namespaces']['talk'] together serve the same purpose.
@@ -586,28 +581,28 @@ class CologneBlueTemplate extends BaseTemplate {
 					);
 					$bar['qbedit'] = $qbedit;
 					$bar['qbpageoptions'] = $qbpageoptions;
-					
+
 					// Personal tools ("My pages")
 					$bar['qbmyoptions'] = $this->getPersonalTools();
 					foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
 						$bar['qbmyoptions'][$key] = false;
 					}
-					
+
 					$additions_done = true;
 				}
-				
+
 				// Re-insert current heading, unless it's SEARCH
 				if ( $heading != 'SEARCH' ) {
 					$bar[$heading] = $plain_bar[$heading];
 				}
 			}
-			
+
 			// If TOOLBOX is missing, $additions_done is still false
 			if ( !$additions_done ) {
 				$plain_bar['TOOLBOX'] = false;
 			}
 		}
-		
+
 		foreach ( $bar as $heading => $links ) {
 			if ( $heading == 'SEARCH' ) {
 				$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
@@ -623,11 +618,11 @@ class CologneBlueTemplate extends BaseTemplate {
 					if ( $heading == 'TOOLBOX' ) {
 						$heading = 'toolbox';
 					}
-					
+
 					$headingMsg = wfMessage( $heading );
 					$any_link = false;
 					$t = $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : $heading );
-					
+
 					foreach ( $links as $key => $link ) {
 						// Can be empty due to rampant sidebar massaging we're doing above
 						if ( $link ) {
@@ -635,7 +630,7 @@ class CologneBlueTemplate extends BaseTemplate {
 							$t .= $this->makeListItem( $key, $link, array( 'tag' => 'span' ) ) . $sep;
 						}
 					}
-					
+
 					if ( $any_link ) {
 						$s .= $t;
 					}
@@ -650,7 +645,7 @@ class CologneBlueTemplate extends BaseTemplate {
 	/**
 	 * @param $label string
 	 * @return string
-	 * 
+	 *
 	 * @fixed
 	 */
 	function searchForm( $which ) {

@@ -1,4 +1,4 @@
-#!/usr/bin/hphpi -f 
+#!/usr/bin/hphpi -f
 <?php
 
 define( 'MW_CONFIG_CALLBACK', 'MakeHipHop::noConfigNeeded' );
@@ -41,7 +41,7 @@ class MakeHipHop extends Maintenance {
 			unlink( "$buildDir/source" );
 		}
 
-		# With the CentOS RPMs, you just get g++44, no g++, so we have to 
+		# With the CentOS RPMs, you just get g++44, no g++, so we have to
 		# use the environment
 		if ( isset( $_ENV['CXX'] ) ) {
 			$cxx = $_ENV['CXX'];
@@ -49,7 +49,7 @@ class MakeHipHop extends Maintenance {
 			$cxx = 'g++';
 		}
 
-		# Create a function that provides the HipHop compiler version, and 
+		# Create a function that provides the HipHop compiler version, and
 		# doesn't exist when MediaWiki is invoked in interpreter mode.
 		$version = str_replace( PHP_EOL, ' ', trim( `hphp --version` ) );
 		file_put_contents(
@@ -94,7 +94,7 @@ class MakeHipHop extends Maintenance {
 		$this->checkVolatileClasses( $outDir );
 
 		# Copy the generated C++ files into the source directory for cmake
-		$iter = new RecursiveIteratorIterator( 
+		$iter = new RecursiveIteratorIterator(
 			new RecursiveDirectoryIterator( $outDir ),
 			RecursiveIteratorIterator::SELF_FIRST );
 		$sourceFiles = array();
@@ -148,14 +148,14 @@ class MakeHipHop extends Maintenance {
 		}
 
 		# Do our own version of $HPHP_HOME/bin/run.sh, which isn't so broken.
-		# HipHop's RELEASE mode seems to be stuck always on, so symbols get 
-		# stripped. Also we will try keeping the generated .o files instead of 
+		# HipHop's RELEASE mode seems to be stuck always on, so symbols get
+		# stripped. Also we will try keeping the generated .o files instead of
 		# throwing away hours of CPU time every time you make a typo.
 
 		chdir( $persistentDir );
 
 		if ( $regenerateMakefile ) {
-			copy( $_ENV['HPHP_HOME'] . '/bin/CMakeLists.base.txt', 
+			copy( $_ENV['HPHP_HOME'] . '/bin/CMakeLists.base.txt',
 				"$persistentDir/CMakeLists.txt" );
 
 			if ( file_exists( "$persistentDir/CMakeCache.txt" ) ) {
@@ -165,7 +165,7 @@ class MakeHipHop extends Maintenance {
 			$cmd = 'cmake' .
 				" -D CMAKE_BUILD_TYPE:string=" . wfEscapeShellArg( $GLOBALS['wgHipHopBuildType'] ) .
 				' -D PROGRAM_NAME:string=mediawiki-hphp';
-			
+
 			if ( file_exists( '/usr/bin/ccache' ) ) {
 				$cmd .= ' -D CMAKE_CXX_COMPILER:string=ccache' .
 					' -D CMAKE_CXX_COMPILER_ARG1:string=' . wfEscapeShellArg( $cxx );
@@ -179,7 +179,7 @@ class MakeHipHop extends Maintenance {
 		# Determine appropriate make concurrency
 		# Compilation can take a lot of memory, let's assume that that is limiting.
 		$procs = $this->getNumProcs();
-		
+
 		# Run make. This is the slow step.
 		passthru( 'make -j' . wfEscapeShellArg( $procs ) );
 

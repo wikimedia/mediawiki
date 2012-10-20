@@ -4,7 +4,7 @@
 -- This is read and executed by the install script; you should
 -- not have to run it by itself unless doing a manual install.
 
--- Notes: 
+-- Notes:
 --  * DB2 will convert all table and column names to all caps internally.
 --  * DB2 has a 32k limit on SQL filesize, so it may be necessary
 --     to split this into two files soon.
@@ -182,7 +182,7 @@ CREATE TABLE page_props (
   -- REFERENCES page (page_id) ON DELETE CASCADE,
   pp_propname  VARCHAR(255) NOT NULL,
   pp_value     CLOB(64K) INLINE LENGTH 4096 NOT NULL,
-  PRIMARY KEY (pp_page, pp_propname) 
+  PRIMARY KEY (pp_page, pp_propname)
 );
 CREATE INDEX page_props_propname
   ON page_props (pp_propname);
@@ -235,7 +235,7 @@ CREATE TABLE pagelinks (
   pl_namespace  SMALLINT NOT NULL,
   pl_title      VARCHAR(255) NOT NULL
 );
-CREATE UNIQUE INDEX pagelink_unique 
+CREATE UNIQUE INDEX pagelink_unique
   ON pagelinks (pl_from, pl_namespace, pl_title);
 
 
@@ -269,7 +269,7 @@ CREATE TABLE categorylinks (
   cl_from           BIGINT NOT NULL DEFAULT 0,
   -- REFERENCES page(page_id) ON DELETE CASCADE,
   cl_to             VARCHAR(255) NOT NULL,
-  -- cl_sortkey has to be at least 86 wide 
+  -- cl_sortkey has to be at least 86 wide
   -- in order to be compatible with the old MySQL schema from MW 1.10
   --cl_sortkey    VARCHAR(86),
   cl_sortkey        VARCHAR(230) FOR BIT DATA NOT NULL,
@@ -378,7 +378,7 @@ CREATE TABLE ipblocks (
 );
 CREATE INDEX ipb_address
   ON ipblocks (ipb_address);
-CREATE INDEX ipb_user 
+CREATE INDEX ipb_user
   ON ipblocks (ipb_user);
 CREATE INDEX ipb_range
   ON ipblocks (ipb_range_start, ipb_range_end);
@@ -507,7 +507,6 @@ CREATE TABLE recentchanges (
   rc_log_type        VARCHAR(255),
   rc_log_action      VARCHAR(255),
   rc_params          CLOB(64K) INLINE LENGTH 4096
-  
 );
 CREATE INDEX rc_timestamp
   ON recentchanges (rc_timestamp);
@@ -868,7 +867,7 @@ CREATE TABLE iwlinks
 
 
 --
--- Store information about newly uploaded files before they're 
+-- Store information about newly uploaded files before they're
 -- moved into the actual filestore
 --
 CREATE TABLE uploadstash (
@@ -920,7 +919,7 @@ CREATE INDEX us_timestamp
 
 
 
--- Stores the groups the user has once belonged to. 
+-- Stores the groups the user has once belonged to.
 -- The user may still belong these groups. Check user_groups.
 CREATE TABLE user_former_groups (
   ufg_user   BIGINT NOT NULL DEFAULT 0,
