@@ -101,7 +101,7 @@ class MemcachedBagOStuff extends BagOStuff {
 	 * @return Mixed
 	 */
 	public function replace( $key, $value, $exptime = 0 ) {
-		return $this->client->replace( $this->encodeKey( $key ), $value, 
+		return $this->client->replace( $this->encodeKey( $key ), $value,
 			$this->fixExpiry( $exptime ) );
 	}
 

@@ -177,7 +177,7 @@ if( $out ) {
  *
  * @file
  */
- 
+
 UtfNormal::\$utfCombiningClass = unserialize( '$serCombining' );
 UtfNormal::\$utfCanonicalComp = unserialize( '$serComp' );
 UtfNormal::\$utfCanonicalDecomp = unserialize( '$serCanon' );

@@ -669,7 +669,7 @@ class XMPInfo {
 			 *	'validate'  => 'validateClosed',
 			 *	'choices'   => array( '1' => true, '2' => true ),
 			 * ),
-			 */ 
+			 */
 		),
 		'http://ns.adobe.com/exif/1.0/aux/' => array(
 			'Lens'              => array(

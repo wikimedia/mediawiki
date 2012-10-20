@@ -153,7 +153,7 @@ class XMPValidate {
 
 		//check if its in a numeric range
 		$inRange = false;
-		if ( isset( $info['rangeLow'] ) 
+		if ( isset( $info['rangeLow'] )
 			&& isset( $info['rangeHigh'] )
 			&& is_numeric( $val )
 			&& ( intval( $val ) <= $info['rangeHigh'] )
@@ -342,7 +342,7 @@ class XMPValidate {
 		}
 
 		$m = array();
-		if ( preg_match( 
+		if ( preg_match(
 			'/(\d{1,3}),(\d{1,2}),(\d{1,2})([NWSE])/D',
 			$val, $m )
 		) {
@@ -354,7 +354,7 @@ class XMPValidate {
 			}
 			$val = $coord;
 			return;
-		} elseif ( preg_match( 
+		} elseif ( preg_match(
 			'/(\d{1,3}),(\d{1,2}(?:.\d*)?)([NWSE])/D',
 			$val, $m )
 		) {
@@ -367,7 +367,7 @@ class XMPValidate {
 			return;
 
 		} else {
-			wfDebugLog( 'XMP', __METHOD__ 
+			wfDebugLog( 'XMP', __METHOD__
 				. " Expected GPSCoordinate, but got $val." );
 			$val = null;
 			return;

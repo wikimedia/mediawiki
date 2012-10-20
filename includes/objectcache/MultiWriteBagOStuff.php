@@ -22,8 +22,8 @@
  */
 
 /**
- * A cache class that replicates all writes to multiple child caches. Reads 
- * are implemented by reading from the caches in the order they are given in 
+ * A cache class that replicates all writes to multiple child caches. Reads
+ * are implemented by reading from the caches in the order they are given in
  * the configuration until a cache gives a positive result.
  *
  * @ingroup Cache

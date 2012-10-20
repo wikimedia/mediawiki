@@ -129,7 +129,7 @@ class JpegMetadataExtractor {
 					// whatever...
 					$segments["XMP"] = substr( $temp, 29 );
 					wfDebug( __METHOD__ . ' Found XMP section with wrong app identifier '
-						. "Using anyways.\n" ); 
+						. "Using anyways.\n" );
 				} elseif ( substr( $temp, 0, 6 ) === "Exif\0\0" ) {
 					// Just need to find out what the byte order is.
 					// because php's exif plugin sucks...

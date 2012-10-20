@@ -124,7 +124,7 @@ class PNGMetadataExtractor {
 					case 0:
 						$colorType = 'greyscale';
 						break;
-					case 2: 
+					case 2:
 						$colorType = 'truecolour';
 						break;
 					case 3:
