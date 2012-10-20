@@ -72,7 +72,7 @@ class SkinVector extends SkinTemplate {
 
 	/**
 	 * Adds classes to the body element.
-	 * 
+	 *
 	 * @param $out OutputPage object
 	 * @param &$bodyAttrs Array of attributes that will be set on the body element
 	 */

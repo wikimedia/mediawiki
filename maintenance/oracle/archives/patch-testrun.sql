@@ -25,7 +25,7 @@ BEFORE UPDATE FOR EACH ROW
 ON &mw_prefix.testrun
 BEGIN
   SELECT testrun_tr_id_seq.NEXTVAL into :NEW.tr_id FROM dual;
-END; 
+END;
 
 CREATE TABLE /*$wgDBprefix*/testitem (
   ti_run NUMBER NOT NULL REFERENCES &mw_prefix.testrun (tr_id) ON DELETE CASCADE,

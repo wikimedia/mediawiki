@@ -40,7 +40,7 @@ class UsercreateTemplate extends QuickTemplate {
 			'helptext' => $helptext,
 		);
 	}
-	
+
 	function execute() {
 		if( $this->data['message'] ) {
 ?>
@@ -187,9 +187,9 @@ class UsercreateTemplate extends QuickTemplate {
 		if ( isset( $this->data['extraInput'] ) && is_array( $this->data['extraInput'] ) ) {
 			foreach ( $this->data['extraInput'] as $inputItem ) { ?>
 		<tr>
-			<?php 
+			<?php
 				if ( !empty( $inputItem['msg'] ) && $inputItem['type'] != 'checkbox' ) {
-					?><td class="mw-label"><label for="<?php 
+					?><td class="mw-label"><label for="<?php
 					echo htmlspecialchars( $inputItem['name'] ); ?>"><?php
 					$this->msgWiki( $inputItem['msg'] ) ?></label><?php
 				} else {
@@ -200,17 +200,17 @@ class UsercreateTemplate extends QuickTemplate {
 				<input type="<?php echo htmlspecialchars( $inputItem['type'] ) ?>" name="<?php
 				echo htmlspecialchars( $inputItem['name'] ); ?>"
 					tabindex="<?php echo $tabIndex++; ?>"
-					value="<?php 
+					value="<?php
 				if ( $inputItem['type'] != 'checkbox' ) {
 					echo htmlspecialchars( $inputItem['value'] );
 				} else {
 					echo '1';
-				}					
+				}
 					?>" id="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"
-					<?php 
+					<?php
 				if ( $inputItem['type'] == 'checkbox' && !empty( $inputItem['value'] ) )
-					echo 'checked="checked"'; 
-					?> /> <?php 
+					echo 'checked="checked"';
+					?> /> <?php
 					if ( $inputItem['type'] == 'checkbox' && !empty( $inputItem['msg'] ) ) {
 						?>
 				<label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"><?php
@@ -224,8 +224,7 @@ class UsercreateTemplate extends QuickTemplate {
 				<?php } ?>
 			</td>
 		</tr>
-<?php				
-				
+<?php
 			}
 		}
 ?>

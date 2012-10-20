@@ -6,11 +6,9 @@ if [ -z $2 ];then
 fi
 if [ -z $3 ]; then
 	table=blobs
-else 
+else
 	table=$3
 fi
 
 echo "CREATE DATABASE $2" | mysql -u wikiadmin -p`wikiadmin_pass` -h $1 && \
 sed "s/blobs\>/$table/" blobs.sql | mysql -u wikiadmin -p`wikiadmin_pass` -h $1 $2
-	
-	

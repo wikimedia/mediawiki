@@ -1,4 +1,4 @@
--- 
+--
 -- Recreates the iwl_prefix for the iwlinks table
 --
 DROP INDEX IF EXISTS /*i*/iwl_prefix;
