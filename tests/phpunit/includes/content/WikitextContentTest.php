@@ -8,30 +8,59 @@
  */
 class WikitextContentTest extends TextContentTest {
 
+	static $sections =
+
+"Intro
+
+== stuff ==
+hello world
+
+== test ==
+just a test
+
+== foo ==
+more stuff
+";
+
 	public function newContent( $text ) {
 		return new WikitextContent( $text );
 	}
 
-	public function dataGetParserOutput() {
+	public static function dataGetParserOutput() {
 		return array(
-			array("WikitextContentTest_testGetParserOutput", CONTENT_MODEL_WIKITEXT, "hello ''world''\n", "<p>hello <i>world</i>\n</p>"),
-			// @todo: more...?
+			array(
+				"WikitextContentTest_testGetParserOutput",
+				CONTENT_MODEL_WIKITEXT,
+				"hello ''world''\n",
+				"<p>hello <i>world</i>\n</p>"
+			),
+			// TODO: more...?
 		);
 	}
 
-	public function dataGetSecondaryDataUpdates() {
+	public static function dataGetSecondaryDataUpdates() {
 		return array(
 			array( "WikitextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
-				array( 'LinksUpdate' => array(  'mRecursive' => true,
-				                                'mLinks' => array() ) )
+				array(
+					'LinksUpdate' => array(
+						'mRecursive' => true,
+						'mLinks' => array()
+					)
+				)
 			),
 			array( "WikitextContentTest_testGetSecondaryDataUpdates_2",
 				CONTENT_MODEL_WIKITEXT, "hello [[world test 21344]]\n",
-				array( 'LinksUpdate' => array(  'mRecursive' => true,
-				                                'mLinks' => array( array( 'World_test_21344' => 0 ) ) ) )
+				array(
+					'LinksUpdate' => array(
+						'mRecursive' => true,
+						'mLinks' => array(
+							array( 'World_test_21344' => 0 )
+						)
+					)
+				)
 			),
-			// @todo: more...?
+			// TODO: more...?
 		);
 	}
 
@@ -65,22 +94,7 @@ class WikitextContentTest extends TextContentTest {
 		}
 	}
 
-
-	static $sections =
-
-"Intro
-
-== stuff ==
-hello world
-
-== test ==
-just a test
-
-== foo ==
-more stuff
-";
-
-	public function dataGetSection() {
+	public static function dataGetSection() {
 		return array(
 			array( WikitextContentTest::$sections,
 					"0",
@@ -114,7 +128,7 @@ just a test"
 		$this->assertEquals( $expectedText, $sectionText );
 	}
 
-	public function dataReplaceSection() {
+	public static function dataReplaceSection() {
 		return array(
 			array( WikitextContentTest::$sections,
 			       "0",
@@ -166,7 +180,7 @@ just a test"
 		$this->assertEquals( "== test ==\n\nhello world", $content->getNativeData() );
 	}
 
-	public function dataPreSaveTransform() {
+	public static function dataPreSaveTransform() {
 		return array(
 			array( 'hello this is ~~~',
 			       "hello this is [[Special:Contributions/127.0.0.1|127.0.0.1]]",
@@ -181,7 +195,7 @@ just a test"
 		);
 	}
 
-	public function dataPreloadTransform() {
+	public static function dataPreloadTransform() {
 		return array(
 			array( 'hello this is ~~~',
 			       "hello this is ~~~",
@@ -192,7 +206,7 @@ just a test"
 		);
 	}
 
-	public function dataGetRedirectTarget() {
+	public static function dataGetRedirectTarget() {
 		return array(
 			array( '#REDIRECT [[Test]]',
 			       'Test',
@@ -206,7 +220,7 @@ just a test"
 		);
 	}
 
-	public function dataGetTextForSummary() {
+	public static function dataGetTextForSummary() {
 		return array(
 			array( "hello\nworld.",
 				16,
@@ -243,8 +257,7 @@ just a test"
 	}
 	*/
 
-
-	public function dataIsCountable() {
+	public static function dataIsCountable() {
 		return array(
 			array( '',
 			       null,
@@ -333,8 +346,6 @@ just a test"
 		$this->assertEquals( $target->getFullText(), $newContent->getRedirectTarget()->getFullText() );
 	}
 
-	# =================================================================================================================
-
 	public function testGetModel() {
 		$content = $this->newContent( "hello world." );
 
@@ -347,7 +358,7 @@ just a test"
 		$this->assertEquals( CONTENT_MODEL_WIKITEXT, $content->getContentHandler()->getModelID() );
 	}
 
-	public function dataEquals( ) {
+	public static function dataEquals( ) {
 		return array(
 			array( new WikitextContent( "hallo" ), null, false ),
 			array( new WikitextContent( "hallo" ), new WikitextContent( "hallo" ), true ),
@@ -357,7 +368,7 @@ just a test"
 		);
 	}
 
-	public function dataGetDeletionUpdates() {
+	public static function dataGetDeletionUpdates() {
 		return array(
 			array("WikitextContentTest_testGetSecondaryDataUpdates_1",
 				CONTENT_MODEL_WIKITEXT, "hello ''world''\n",
