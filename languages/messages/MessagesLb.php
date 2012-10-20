@@ -957,6 +957,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'parser-template-loop-warning' => 'Endlos Schleef an der Schabloun: [[$1]] entdeckt',
 'parser-template-recursion-depth-warning' => "D'Limit vun der Zuel vun de Verschachtelunge vu Schabloune gouf iwwerschratt ($1)",
 'language-converter-depth-warning' => "D'Limite vun der déift vun der Sproochëmwandlung gouf iwwerschratt ($1)",
+'parser-unstrip-loop-warning' => 'Endlos Schleef entdeckt',
 'converter-manual-rule-error' => 'An der Regel iwwer déi manuell Ëmwandlung vun der Sprooch gouf e Feeler fonnt',
 
 # "Undo" feature

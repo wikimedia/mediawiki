@@ -47,6 +47,7 @@
  * @author Riadismet
  * @author Samer
  * @author Sami Lab
+ * @author TTMTT
  * @author Tarawneh
  * @author TheEgyptian
  * @author Uwe a
@@ -1260,6 +1261,9 @@ $2
 'edit-already-exists' => 'لم يمكن إنشاء صفحة جديدة.
 هي موجودة بالفعل.',
 'defaultmessagetext' => 'نص الرسالة الافتراضي',
+'content-failed-to-parse' => 'فشل في تحليل $2 محتوى لـ $1 نموذج: $3',
+'invalid-content-data' => 'بيانات المحتوى غير صالحة',
+'content-not-allowed-here' => '"$1" المحتوى غير مسموح على صفحة [[$2]]',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "'''تحذير:''' هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.
@@ -2735,8 +2739,8 @@ $UNWATCHURL
 'undeletedrevisions' => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'undeletedrevisions-files' => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
 'undeletedfiles' => 'أسترجع {{PLURAL:$1||ملف واحد|ملفان|$1 ملفات|$1 ملفًا|$1 ملف}}',
-'cannotundelete' => 'فشل إلغاء الحذف؛
-ربما قام شخص آخر بإلغاء حذف الصفحة قبلك.',
+'cannotundelete' => 'فشل الاسترجاع؛
+ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
 'undeletedpage' => "'''تم استرجاع $1'''
 
 راجع [[Special:Log/delete|سجل الحدف]] لمعاينة عمليات الحذف والاسترجاعات الحديثة.",
@@ -3046,6 +3050,7 @@ $1',
 'immobile-target-namespace-iw' => 'وصلة الإنترويكي ليست هدفاً صالحاً لنقل صفحة.',
 'immobile-source-page' => 'هذه الصفحة غير قابلة للنقل.',
 'immobile-target-page' => 'غير قادر على النقل إلى العنوان الوجهة هذا.',
+'bad-target-model' => 'الوجهة المطلوبة تستخدم نموذج محتوى مختلف. لا يمكن تحويل من $1 إلى $2.',
 'imagenocrossnamespace' => 'لا يمكن نقل الملف إلى نطاق غير نطاق الملفات',
 'nonfile-cannot-move-to-file' => 'لا يمكن نقل غير الملفات إلى نطاق الملفات',
 'imagetypemismatch' => 'امتداد الملف الجديد لا يطابق نوعه',
@@ -3331,7 +3336,7 @@ $1',
 'pageinfo-watchers' => 'عدد المراقبين',
 'pageinfo-redirects-name' => 'التحويلات إلى هذه الصفحة',
 'pageinfo-subpages-name' => 'الصفحات الفرعية لهذه الصفحة',
-'pageinfo-subpages-value' => '$1 ({{PLURAL:$2|لا تحويلات|تحويلة واحدة|تحويلتان|$2 تحويلات|$2 تحويلة|$2 تحويلة}}؛ {{PLURAL:$2|لا يوجد غير التحويلات|صفحة واحدة غير التحويلات|صفحتان من غير التحويلات|$2 صفحات  من غير التحويلات|$2 صفحة  من غير التحويلات|$2 صفحة  من غير التحويلات}})',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|إعادة توجيه|إعادة توجيهات}}; $3 {{PLURAL:$3|غير إعادة توجه|غير إعادة توجيهات}})',
 'pageinfo-firstuser' => 'منشئ الصفحة',
 'pageinfo-firsttime' => 'تاريخ إنشاء الصفحة',
 'pageinfo-lastuser' => 'آخر محرر',
@@ -3341,8 +3346,8 @@ $1',
 'pageinfo-recent-edits' => 'عدد التعديلات الأخيرة (خلال {{PLURAL:$1||يوم واحد|يومين|$1 أيام|$1 يوماً|$1 يوم}})',
 'pageinfo-recent-authors' => 'عدد المؤلفين المختلفين الأخيرين',
 'pageinfo-magic-words' => '{{PLURAL:$1|لا كلمات سحرية|الكلمة|الكلمات}} السحرية ($1)',
-'pageinfo-hidden-categories' => '{{PLURAL:$1|لا تصنيفات مخفية|التصنيف المخفي|التصنيفان المخفيان|التصانيف المخفية}} ($1)',
-'pageinfo-templates' => '{{PLURAL:$1|لا قوالب مضمنة|القالب المضمنن|القالبان المضمنان|القوالب المضمنة}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|لا تصنيفات مخفية|التصنيف المخفي|التصنيفان المخفيان|التصانيف المخفية ($1)}}',
+'pageinfo-templates' => '{{PLURAL:$1|لا قوالب مضمنة|القالب المضمنن|القالبان المضمنان|القوالب المضمنة ($1)}}',
 'pageinfo-toolboxlink' => 'معلومات عن هذه الصفحة',
 'pageinfo-redirectsto' => 'تحويلة إلى',
 'pageinfo-redirectsto-info' => 'معلومات',
@@ -3972,6 +3977,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[التضمين بالإنترويكي معطل]',
 'scarytranscludefailed' => '[البحث عن القالب فشل ل$1]',
+'scarytranscludefailed-httpstatus' => '[فشل جلب القالب لـ $1: HTTP $2]',
 'scarytranscludetoolong' => '[المسار طويل للغاية]',
 
 # Delete conflict

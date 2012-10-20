@@ -290,6 +290,7 @@ Damo nga nagamit in gusto sinmulod hini nga pakli.
 Alayon paghulat makadali san-o ka inmutro pagsulod hin nga pakli utro.
 
 $1',
+'pool-timeout' => 'An pagpaundang-hin-oras in naghuhulat hin trangka',
 'pool-queuefull' => 'Puno an katitirok nga pila',
 'pool-errorunknown' => 'Waray kasabti nga kasaypanan',
 
@@ -439,6 +440,8 @@ Alayon pagutro kahuman hin pipira ka mga minuto.',
 'protectedpagetext' => 'Ini nga pakli in pinasaliporan para mapugngan an mga pagliwat.',
 'viewsourcetext' => 'Puydi ka kinmita ngan kinmopya han gintikangan han pakli:',
 'viewyourtext' => "Puydi nim makit-an ngan makopya an tinikangan han '''imo mga pagliwat''' ha dinhi nga pakli:",
+'protectedinterface' => 'Ini nga pakli in nahatag hin teksto hit interface para han software han hin nga wiki, ngan in pinasasaliporan para makalikay hit pag-abuso.
+Para makadugang o makaliwat hin mga paghubad para han tanan nga mga wiki, alayon paggamit han [//translatewiki.net/ translatewiki.net], an kanan MediaWiki proyekto hin lokalisasyon.',
 'sqlhidden' => '(nakatago an SQL query)',
 'namespaceprotected' => "Diri ka gintutugutan pagliwat han mga pakli ha ngaran-lat'ang nga '''$1'''.",
 'customcssprotected' => 'Diri ka gintutugotan pagliwat hini nga CSS nga pakli, tungod nga nagsusulod ini hin kanan iba nga tawo personal nga karuyagon.',
@@ -533,6 +536,8 @@ Alayon pagutro pagbutang.',
 'resetpass-temp-password' => 'Temporaryo nga tigaman-pagsakob:',
 
 # Special:PasswordReset
+'passwordreset' => 'igreset an tigaman-hit-pagsulod',
+'passwordreset-text' => 'Kompletoha ini nga porma para makakarawat hin email hin pahinumdom han detalye han akawnt.',
 'passwordreset-username' => 'Agnay hiton gumaramit:',
 'passwordreset-domain' => 'Dominyo:',
 'passwordreset-capture' => 'Kikitaon mo an resulta nga e-mail?',
@@ -662,6 +667,7 @@ Ini nga mga argumento in ginlaktawan.",
 
 # History pages
 'viewpagelogs' => 'Kitaa an mga log para hini nga pakli',
+'nohistory' => 'Waray kaagi hin pagliwat hin nga pakli.',
 'currentrev' => 'Giurhii nga pagliwat',
 'currentrev-asof' => 'Giuurhii nga pagliwat han $1',
 'revisionasof' => 'Pagbabag-o han $1',
@@ -680,6 +686,7 @@ Leyenda: '''({{int:cur}})''' = kaibhan ha giuurhii nga pag-bag-o, '''({{int:last
 'history-show-deleted' => 'Ginpara la',
 'histfirst' => 'Giunhani',
 'histlast' => 'Giurhii',
+'historysize' => '({{PLURAL:$1|1 nga byte|$1 ka mga byte}})',
 'historyempty' => '(waray sulod)',
 
 # Revision feed
@@ -987,6 +994,7 @@ Mga pakli ha [[Special:Watchlist|imo angay timan-an]] in naka-'''bold'''.",
 'upload-recreate-warning' => "'''Pahimatngon:  An fayl nga may-ada hiton nga ngaran in ginpara o ginbalhin.'''
 
 An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para han imo kamurayaw:",
+'uploadlog' => 'Talaan hin ginkarga-pasaka',
 'uploadlogpage' => 'Talaan han mga ginkarga-paigbaw',
 'filename' => 'Ngaran han fayl',
 'filedesc' => 'Dalikyat nga pulong',
@@ -994,9 +1002,15 @@ An taramdan han pagpara ngan pagbalhin para hini nga pakli in ginhahatag para ha
 'filereuploadsummary' => 'Mga pagbal-iw ha fayl:',
 'filesource' => 'Tinikangan:',
 'ignorewarning' => 'Pabay-i an pahimatngon ngan igtipig la ngahaw',
+'filename-toolong' => 'Iton ngaran hin paypay in diri puyde na mas lapos pa ha 240 ka mga byte.',
+'badfilename' => 'An ngaran-han-paypay in ginliwat ngada ha "$1".',
 'filename-tooshort' => 'An ngaran han fayl in halipot hin duro.',
+'filetype-banned' => 'Ini nga klase nga paypay in gindidire.',
 'illegal-filename' => 'An ngaran han fayl in diri gintutugutan.',
 'unknown-error' => 'Nahitabo an waray kasasabti nga sayop.',
+'tmp-create-error' => 'Diri makakahimo hin temporaryo nga paypay.',
+'tmp-write-error' => 'Sayop ha pagsurat hin temporaryo nga paypay.',
+'largefileserver' => 'Ini nga paypay in durudako kaysa ha ginpapakarawat han serbidor.',
 'uploadwarning' => 'Pahimatngon han pagkarga paigbaw',
 'savefile' => 'Igtipig an paypay',
 'uploadedimage' => 'ginkarga-paigbaw "[[$1]]"',
