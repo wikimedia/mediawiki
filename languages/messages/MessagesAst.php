@@ -1785,7 +1785,7 @@ Seique quieras camudar la descripción de la so [páxina de descripción de fich
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'un repositoriu compartíu',
 'filepage.css' => "/* El CSS allugáu equí s'incluye na páxina de descripción del ficheru, que tamién s'incluye nes wikis clientes foriates */",
-'upload-disallowed-here' => 'Por desgracia nun pues sobrescribir esta imaxe.',
+'upload-disallowed-here' => 'Nun pues sobrescribir esti ficheru.',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -2901,6 +2901,7 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 
 # Info page
 'pageinfo-title' => 'Información sobro "$1"',
+'pageinfo-not-current' => 'Namái se pue amosar la información pa la revisión actual.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => "Historial d'ediciones",
 'pageinfo-header-restrictions' => 'Proteición de páxina',
@@ -2929,6 +2930,13 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría anubrida|Categoríes anubríes}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Plantía incluída|Plantíes incluíes}} ($1)',
 'pageinfo-toolboxlink' => 'Información de la páxina',
+'pageinfo-redirectsto' => 'Redirixe a',
+'pageinfo-redirectsto-info' => 'información',
+'pageinfo-contentpage' => 'Contada como páxina de conteníu',
+'pageinfo-contentpage-yes' => 'Sí',
+'pageinfo-protect-cascading' => "Les proteiciones s'activen en serie dende equí",
+'pageinfo-protect-cascading-yes' => 'Sí',
+'pageinfo-protect-cascading-from' => "Les proteiciones s'activen en serie dende",
 
 # Skin names
 'skinname-standard' => 'Clásicu',

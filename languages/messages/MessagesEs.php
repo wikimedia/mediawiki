@@ -2344,7 +2344,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
 La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
 'usermailererror' => 'El sistema de correo devolvió un error:',
-'defemailsubject' => 'Correo de {{SITENAME}} para el usuario $1',
+'defemailsubject' => 'Correo electrónico enviado por el usuario «$1» desde {{SITENAME}}',
 'usermaildisabled' => 'Correo electrónico del usuario deshabilitado',
 'usermaildisabledtext' => 'No puedes enviar correos electrónicos a otros usuarios en esta wiki',
 'noemailtitle' => 'No hay dirección de correo electrónico',

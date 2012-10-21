@@ -2190,13 +2190,12 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'enotif_anon_editor' => 'ónefndum notanda $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} síðunni $PAGETITLE.
-Hún hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
+Síðan „$PAGETITLE” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
 $PAGEEDITOR. Breytingarágripið var:
 
    $PAGESUMMARY
 
-Þetta er tengill á spjallsíðuna þína:
+Þetta er tengill á síðuna:
 
    $PAGETITLE_URL
 
@@ -2219,7 +2218,7 @@ Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smel
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Til þess að hætta að fylgjast með $PAGETITLE, smelltu á:
+Til þess að hætta að fylgjast með „$PAGETITLE”, smelltu á:
 
 $UNWATCHURL',
 

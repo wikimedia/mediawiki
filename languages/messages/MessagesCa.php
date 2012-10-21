@@ -574,7 +574,7 @@ Consulta: $2',
 'viewyourtext' => "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
 'protectedinterface' => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
 Per agregar o canviar les traduccions per a tots els wikis, si us plau fes servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
-'editinginterface' => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [//translatewiki.net/wiki/Main_Page?setlang=ca translatewiki.net], el projecte de traducció de MediaWiki.",
+'editinginterface' => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Per afegir o modificar traduccions a totes les wikis, plantegeu-vos utilitzar la [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
 'sqlhidden' => '(consulta SQL oculta)',
 'cascadeprotected' => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
@@ -953,6 +953,14 @@ Sembla haver estat esborrada.",
 'edit-already-exists' => "No s'ha pogut crear una pàgina.
 Ja existeix.",
 'defaultmessagetext' => 'Missatge per defecte',
+'content-failed-to-parse' => "Ha fallat l'anàlisi del contingut de $2 per al model $1: $3",
+'invalid-content-data' => 'Dades de contingut no vàlides',
+'content-not-allowed-here' => 'No és permés el contingut "$1" a la pàgina [[$2]]',
+
+# Content models
+'content-model-text' => 'text net',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => "Atenció: Aquesta pàgina conté massa crides a funcions parserfunction complexes.
@@ -1839,6 +1847,7 @@ Potser voleu modificar-ne la descripció en la seva [$2 pàgina de descripció].
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
 'shared-repo-from' => 'des de $1',
 'shared-repo' => 'un repositori compartit',
+'upload-disallowed-here' => 'No pot sobreescriure aquest fitxer.',
 
 # File reversion
 'filerevert' => 'Reverteix $1',
@@ -1973,6 +1982,7 @@ Les entrades <del>ratllades</del> s\'han resolt.',
 'mostlinkedtemplates' => 'Plantilles més usades',
 'mostcategories' => 'Pàgines amb més categories',
 'mostimages' => 'Fitxers més enllaçats',
+'mostinterwikis' => 'Pàgines amb més interwikis',
 'mostrevisions' => 'Pàgines més modificades',
 'prefixindex' => 'Totes les pàgines per prefix',
 'prefixindex-namespace' => 'Totes les pàgines amb prefix (espai de noms $1)',
@@ -2923,9 +2933,16 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 
 # Info page
 'pageinfo-title' => 'Informació de «$1»',
+'pageinfo-not-current' => 'Només es pot visualitzar la informació per a la revisió actual.',
 'pageinfo-header-basic' => 'Informació bàsica',
 'pageinfo-header-edits' => "Historial d'edicions",
 'pageinfo-header-restrictions' => 'Protecció de pàgina',
+'pageinfo-header-properties' => 'Propietats de la pàgina',
+'pageinfo-display-title' => 'Títol mostrat',
+'pageinfo-default-sort' => "Clau d'ordenació predeterminada",
+'pageinfo-length' => 'Mida de la pàgina (en bytes)',
+'pageinfo-article-id' => 'ID de la pàgina',
+'pageinfo-robot-policy' => 'Estat del motor de cerca',
 'pageinfo-views' => 'Número de visites',
 'pageinfo-watchers' => "Número d'usuaris que vigilen la pàgina",
 'pageinfo-firstuser' => 'Creador de la pàgina',
@@ -2934,6 +2951,9 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'pageinfo-lasttime' => "Data de l'última edició",
 'pageinfo-edits' => "Número total d'edicions",
 'pageinfo-authors' => "Número total d'autors diferents",
+'pageinfo-toolboxlink' => 'Informació de la pàgina',
+'pageinfo-contentpage-yes' => 'Sí',
+'pageinfo-protect-cascading-yes' => 'Sí',
 
 # Skin names
 'skinname-standard' => 'Clàssic',

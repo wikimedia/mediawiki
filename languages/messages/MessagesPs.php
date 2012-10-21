@@ -213,9 +213,9 @@ $messages = array(
 'editfont-serif' => 'سېرېف ليکبڼه',
 
 # Dates
-'sunday' => 'اتوار',
-'monday' => 'ګل',
-'tuesday' => 'نهي',
+'sunday' => 'يونۍ',
+'monday' => 'دونۍ',
+'tuesday' => 'درې نۍ',
 'wednesday' => 'شورو',
 'thursday' => 'زيارت',
 'friday' => 'جمعه',
