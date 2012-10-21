@@ -102,6 +102,7 @@ class UploadStashCleanup extends Maintenance {
 		foreach ( $iterator as $file ) {
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$tempRepo->quickPurge( "$dir/$file" );
+				$i++;
 			}
 			if ( $i % 100 == 0 ) {
 				$this->output( "$i\n" );
