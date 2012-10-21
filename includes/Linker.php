@@ -1269,12 +1269,6 @@ class Linker {
 	}
 
 	/**
-	 * @var Title
-	 */
-	static $autocommentTitle;
-	static $autocommentLocal;
-
-	/**
 	 * The pattern for autogen comments is / * foo * /, which makes for
 	 * some nasty regex.
 	 * We look for all comments, match any text before and after the comment,
@@ -1287,77 +1281,58 @@ class Linker {
 	 * @return String: formatted comment
 	 */
 	private static function formatAutocomments( $comment, $title = null, $local = false ) {
-		// Bah!
-		self::$autocommentTitle = $title;
-		self::$autocommentLocal = $local;
-		$comment = preg_replace_callback(
+		return preg_replace_callback(
 			'!(.*)/\*\s*(.*?)\s*\*/(.*)!',
-			array( 'Linker', 'formatAutocommentsCallback' ),
-			$comment );
-		self::$autocommentTitle = null;
-		self::$autocommentLocal = null;
-		return $comment;
-	}
+			function( $match ) use ( $title, $local ) {
+				global $wgLang;
 
-	/**
-	 * @param $match
-	 * @return string
-	 */
-	private static function formatAutocommentsCallback( $match ) {
-		global $wgLang;
-		$title = self::$autocommentTitle;
-		$local = self::$autocommentLocal;
-
-		$pre = $match[1];
-		$auto = $match[2];
-		$post = $match[3];
-		$comment = null;
-		wfRunHooks( 'FormatAutocomments', array( &$comment, $pre, $auto, $post, $title, $local ) );
-		if ( $comment === null ) {
-			$link = '';
-			if ( $title ) {
-				$section = $auto;
-
-				# Remove links that a user may have manually put in the autosummary
-				# This could be improved by copying as much of Parser::stripSectionName as desired.
-				$section = str_replace( '[[:', '', $section );
-				$section = str_replace( '[[', '', $section );
-				$section = str_replace( ']]', '', $section );
-
-				$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
-				if ( $local ) {
-					$sectionTitle = Title::newFromText( '#' . $section );
-				} else {
-					$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
-						$title->getDBkey(), $section );
-				}
-				if ( $sectionTitle ) {
-					$link = self::link( $sectionTitle,
-						$wgLang->getArrow(), array(), array(),
-						'noclasses' );
-				} else {
+				$pre = $match[1];
+				$auto = $match[2];
+				$post = $match[3];
+				$comment = null;
+				wfRunHooks( 'FormatAutocomments', array( &$comment, $pre, $auto, $post, $title, $local ) );
+				if ( $comment === null ) {
 					$link = '';
-				}
-			}
-			if ( $pre ) {
-				# written summary $presep autocomment (summary /* section */)
-				$pre .= wfMessage( 'autocomment-prefix' )->inContentLanguage()->escaped();
-			}
-			if ( $post ) {
-				# autocomment $postsep written summary (/* section */ summary)
-				$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
-			}
-			$auto = '<span class="autocomment">' . $auto . '</span>';
-			$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
-		}
-		return $comment;
-	}
+					if ( $title ) {
+						$section = $auto;
 
-	/**
-	 * @var Title
-	 */
-	static $commentContextTitle;
-	static $commentLocal;
+						# Remove links that a user may have manually put in the autosummary
+						# This could be improved by copying as much of Parser::stripSectionName as desired.
+						$section = str_replace( '[[:', '', $section );
+						$section = str_replace( '[[', '', $section );
+						$section = str_replace( ']]', '', $section );
+
+						$section = Sanitizer::normalizeSectionNameWhitespace( $section ); # bug 22784
+						if ( $local ) {
+							$sectionTitle = Title::newFromText( '#' . $section );
+						} else {
+							$sectionTitle = Title::makeTitleSafe( $title->getNamespace(),
+								$title->getDBkey(), $section );
+						}
+						if ( $sectionTitle ) {
+							$link = Linker::link( $sectionTitle,
+								$wgLang->getArrow(), array(), array(),
+								'noclasses' );
+						} else {
+							$link = '';
+						}
+					}
+					if ( $pre ) {
+						# written summary $presep autocomment (summary /* section */)
+						$pre .= wfMessage( 'autocomment-prefix' )->inContentLanguage()->escaped();
+					}
+					if ( $post ) {
+						# autocomment $postsep written summary (/* section */ summary)
+						$auto .= wfMessage( 'colon-separator' )->inContentLanguage()->escaped();
+					}
+					$auto = '<span class="autocomment">' . $auto . '</span>';
+					$comment = $pre . $link . $wgLang->getDirMark() . '<span dir="auto">' . $auto . $post . '</span>';
+				}
+				return $comment;
+			},
+			$comment
+		);
+	}
 
 	/**
 	 * Formats wiki links and media links in text; all other wiki formatting
@@ -1370,86 +1345,74 @@ class Linker {
 	 * @return String
 	 */
 	public static function formatLinksInComment( $comment, $title = null, $local = false ) {
-		self::$commentContextTitle = $title;
-		self::$commentLocal = $local;
-		$html = preg_replace_callback(
+		return preg_replace_callback(
 			'/\[\[:?(.*?)(\|(.*?))*\]\]([^[]*)/',
-			array( 'Linker', 'formatLinksInCommentCallback' ),
-			$comment );
-		self::$commentContextTitle = null;
-		self::$commentLocal = null;
-		return $html;
-	}
+			function( $match ) use ( $title, $local ) {
+				global $wgContLang;
 
-	/**
-	 * @param $match
-	 * @return mixed
-	 */
-	protected static function formatLinksInCommentCallback( $match ) {
-		global $wgContLang;
+				$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
+				$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
 
-		$medians = '(?:' . preg_quote( MWNamespace::getCanonicalName( NS_MEDIA ), '/' ) . '|';
-		$medians .= preg_quote( $wgContLang->getNsText( NS_MEDIA ), '/' ) . '):';
+				$comment = $match[0];
 
-		$comment = $match[0];
-
-		# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
-		if ( strpos( $match[1], '%' ) !== false ) {
-			$match[1] = str_replace( array( '<', '>' ), array( '&lt;', '&gt;' ), rawurldecode( $match[1] ) );
-		}
-
-		# Handle link renaming [[foo|text]] will show link as "text"
-		if ( $match[3] != "" ) {
-			$text = $match[3];
-		} else {
-			$text = $match[1];
-		}
-		$submatch = array();
-		$thelink = null;
-		if ( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
-			# Media link; trail not supported.
-			$linkRegexp = '/\[\[(.*?)\]\]/';
-			$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
-			if ( $title ) {
-				$thelink = self::makeMediaLinkObj( $title, $text );
-			}
-		} else {
-			# Other kind of link
-			if ( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
-				$trail = $submatch[1];
-			} else {
-				$trail = "";
-			}
-			$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
-			if ( isset( $match[1][0] ) && $match[1][0] == ':' )
-				$match[1] = substr( $match[1], 1 );
-			list( $inside, $trail ) = self::splitTrail( $trail );
-
-			$linkText = $text;
-			$linkTarget = self::normalizeSubpageLink( self::$commentContextTitle,
-				$match[1], $linkText );
-
-			$target = Title::newFromText( $linkTarget );
-			if ( $target ) {
-				if ( $target->getText() == '' && $target->getInterwiki() === ''
-					&& !self::$commentLocal && self::$commentContextTitle )
-				{
-					$newTarget = clone ( self::$commentContextTitle );
-					$newTarget->setFragment( '#' . $target->getFragment() );
-					$target = $newTarget;
+				# fix up urlencoded title texts (copied from Parser::replaceInternalLinks)
+				if ( strpos( $match[1], '%' ) !== false ) {
+					$match[1] = str_replace( array( '<', '>' ), array( '&lt;', '&gt;' ), rawurldecode( $match[1] ) );
 				}
-				$thelink = self::link(
-					$target,
-					$linkText . $inside
-				) . $trail;
-			}
-		}
-		if ( $thelink ) {
-			// If the link is still valid, go ahead and replace it in!
-			$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
-		}
 
-		return $comment;
+				# Handle link renaming [[foo|text]] will show link as "text"
+				if ( $match[3] != "" ) {
+					$text = $match[3];
+				} else {
+					$text = $match[1];
+				}
+				$submatch = array();
+				$thelink = null;
+				if ( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
+					# Media link; trail not supported.
+					$linkRegexp = '/\[\[(.*?)\]\]/';
+					$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
+					if ( $title ) {
+						$thelink = Linker::makeMediaLinkObj( $title, $text );
+					}
+				} else {
+					# Other kind of link
+					if ( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
+						$trail = $submatch[1];
+					} else {
+						$trail = "";
+					}
+					$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+					if ( isset( $match[1][0] ) && $match[1][0] == ':' )
+						$match[1] = substr( $match[1], 1 );
+					list( $inside, $trail ) = Linker::splitTrail( $trail );
+
+					$linkText = $text;
+					$linkTarget = Linker::normalizeSubpageLink( $title,
+						$match[1], $linkText );
+
+					$target = Title::newFromText( $linkTarget );
+					if ( $target ) {
+						if ( $target->getText() == '' && $target->getInterwiki() === '' && !$local && $title ) {
+							$newTarget = clone ( $title );
+							$newTarget->setFragment( '#' . $target->getFragment() );
+							$target = $newTarget;
+						}
+						$thelink = Linker::link(
+							$target,
+							$linkText . $inside
+						) . $trail;
+					}
+				}
+				if ( $thelink ) {
+					// If the link is still valid, go ahead and replace it in!
+					$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
+				}
+
+				return $comment;
+			},
+			$comment
+		);
 	}
 
 	/**
