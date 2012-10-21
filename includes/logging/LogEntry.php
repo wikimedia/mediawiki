@@ -175,6 +175,7 @@ class DatabaseLogEntry extends LogEntryBase {
 
 	/// Database result row.
 	protected $row;
+	protected $performer;
 
 	protected function __construct( $row ) {
 		$this->row = $row;
@@ -232,17 +233,20 @@ class DatabaseLogEntry extends LogEntryBase {
 	}
 
 	public function getPerformer() {
-		$userId = (int) $this->row->log_user;
-		if ( $userId !== 0 ) { // logged-in users
-			if ( isset( $this->row->user_name ) ) {
-				return User::newFromRow( $this->row );
-			} else {
-				return User::newFromId( $userId );
+		if( !$this->performer ) {
+			$userId = (int) $this->row->log_user;
+			if ( $userId !== 0 ) { // logged-in users
+				if ( isset( $this->row->user_name ) ) {
+					$this->performer = User::newFromRow( $this->row );
+				} else {
+					$this->performer = User::newFromId( $userId );
+				}
+			} else { // IP users
+				$userText = $this->row->log_user_text;
+				$this->performer = User::newFromName( $userText, false );
 			}
-		} else { // IP users
-			$userText = $this->row->log_user_text;
-			return User::newFromName( $userText, false );
 		}
+		return $this->performer;
 	}
 
 	public function getTarget() {
@@ -287,14 +291,17 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 	}
 
 	public function getPerformer() {
-		$userId = (int) $this->row->rc_user;
-		if ( $userId !== 0 ) {
-			return User::newFromId( $userId );
-		} else {
-			$userText = $this->row->rc_user_text;
-			// Might be an IP, don't validate the username
-			return User::newFromName( $userText, false );
+		if( !$this->performer ) {
+			$userId = (int) $this->row->rc_user;
+			if ( $userId !== 0 ) {
+				$this->performer = User::newFromId( $userId );
+			} else {
+				$userText = $this->row->rc_user_text;
+				// Might be an IP, don't validate the username
+				$this->performer = User::newFromName( $userText, false );
+			}
 		}
+		return $this->performer;
 	}
 
 	public function getTarget() {
