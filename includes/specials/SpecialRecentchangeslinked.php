@@ -37,7 +37,6 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$opts = parent::getDefaultOptions();
 		$opts->add( 'target', '' );
 		$opts->add( 'showlinkedto', false );
-		$opts->add( 'tagfilter', '' );
 		return $opts;
 	}
 
