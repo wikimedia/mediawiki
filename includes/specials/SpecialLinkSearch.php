@@ -62,25 +62,19 @@ class LinkSearchPage extends QueryPage {
 		}
 
 		$target2 = $target;
-		$protocol = '';
-		$pr_sl = strpos( $target2, '//' );
-		$pr_cl = strpos( $target2, ':' );
-		if ( $pr_sl ) {
-			// For protocols with '//'
-			$protocol = substr( $target2, 0, $pr_sl + 2 );
-			$target2 = substr( $target2, $pr_sl + 2 );
-		} elseif ( !$pr_sl && $pr_cl ) {
-			// For protocols without '//' like 'mailto:'
-			$protocol = substr( $target2, 0, $pr_cl + 1 );
-			$target2 = substr( $target2, $pr_cl + 1 );
-		} elseif ( $protocol == '' && $target2 != '' ) {
-			// default
-			$protocol = 'http://';
-		}
-		if ( $protocol != '' && !in_array( $protocol, $protocols_list ) ) {
-			// unsupported protocol, show original search request
-			$target2 = $target;
-			$protocol = '';
+		// Get protocol, default is http://
+		$protocol = 'http://';
+		$bits = wfParseUrl( $target );
+		if ( isset( $bits['scheme'] ) && isset( $bits['delimiter'] ) ) {
+			$protocol = $bits['scheme'] . $bits['delimiter'];
+			// Make sure wfParseUrl() didn't make some well-intended correction in the
+			// protocol
+			if ( strcasecmp( $protocol, substr( $target, 0, strlen( $protocol ) ) ) === 0 ) {
+				$target2 = substr( $target, strlen( $protocol ) );
+			} else {
+				// If it did, let LinkFilter::makeLikeArray() handle this
+				$protocol = '';
+			}
 		}
 
 		$out->addWikiMsg(
@@ -145,18 +139,26 @@ class LinkSearchPage extends QueryPage {
 	/**
 	 * Return an appropriately formatted LIKE query and the clause
 	 *
-	 * @param string $query
-	 * @param string $prot
+	 * @param String $query Search pattern to search for
+	 * @param String $prot Protocol, e.g. 'http://'
+	 *
 	 * @return array
 	 */
 	static function mungeQuery( $query, $prot ) {
 		$field = 'el_index';
-		$rv = LinkFilter::makeLikeArray( $query, $prot );
+		$dbr = wfGetDB( DB_SLAVE );
+
+		if ( $query === '*' && $prot !== '' ) {
+			// Allow queries like 'ftp://*' to find all ftp links
+			$rv = array( $prot, $dbr->anyString() );
+		} else {
+			$rv = LinkFilter::makeLikeArray( $query, $prot );
+		}
+
 		if ( $rv === false ) {
 			// LinkFilter doesn't handle wildcard in IP, so we'll have to munge here.
 			$pattern = '/^(:?[0-9]{1,3}\.)+\*\s*$|^(:?[0-9]{1,3}\.){3}[0-9]{1,3}:[0-9]*\*\s*$/';
 			if ( preg_match( $pattern, $query ) ) {
-				$dbr = wfGetDB( DB_SLAVE );
 				$rv = array( $prot . rtrim( $query, " \t*" ), $dbr->anyString() );
 				$field = 'el_to';
 			}
@@ -227,6 +229,9 @@ class LinkSearchPage extends QueryPage {
 
 	/**
 	 * Override to check query validity.
+	 *
+	 * @param mixed $offset Numerical offset or false for no offset
+	 * @param mixed $limit Numerical limit or false for no limit
 	 */
 	function doQuery( $offset = false, $limit = false ) {
 		list( $this->mMungedQuery, ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
