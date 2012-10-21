@@ -273,9 +273,10 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 	 * Return an array of conditions depending of options set in $opts
 	 *
 	 * @param $opts FormOptions
+	 * @param $fieldPrefix string A prefix, which is added to each field, override with 'r.' in subclass to add a field alias
 	 * @return array
 	 */
-	public function buildMainQueryConds( FormOptions $opts ) {
+	public function buildMainQueryConds( FormOptions $opts, $fieldPrefix = '' ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 
@@ -304,36 +305,37 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			$opts->reset( 'from' );
 		}
 
-		$conds[] = 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
+		$conds[] = $fieldPrefix . 'rc_timestamp >= ' . $dbr->addQuotes( $cutoff );
 
 		$hidePatrol = $this->getUser()->useRCPatrol() && $opts['hidepatrolled'];
 		$hideLoggedInUsers = $opts['hideliu'] && !$forcebot;
 		$hideAnonymousUsers = $opts['hideanons'] && !$forcebot;
 
 		if( $opts['hideminor'] ) {
-			$conds['rc_minor'] = 0;
+			$conds[$fieldPrefix . 'rc_minor'] = 0;
 		}
 		if( $opts['hidebots'] ) {
-			$conds['rc_bot'] = 0;
+			$conds[$fieldPrefix . 'rc_bot'] = 0;
 		}
 		if( $hidePatrol ) {
-			$conds['rc_patrolled'] = 0;
+			$conds[$fieldPrefix . 'rc_patrolled'] = 0;
 		}
 		if( $forcebot ) {
-			$conds['rc_bot'] = 1;
+			$conds[$fieldPrefix . 'rc_bot'] = 1;
 		}
 		if( $hideLoggedInUsers ) {
-			$conds[] = 'rc_user = 0';
+			$conds[$fieldPrefix . 'rc_user'] = 0;
 		}
 		if( $hideAnonymousUsers ) {
-			$conds[] = 'rc_user != 0';
+			$conds[] = $fieldPrefix . 'rc_user != 0';
 		}
 
 		if( $opts['hidemyself'] ) {
-			if( $this->getUser()->getId() ) {
-				$conds[] = 'rc_user != ' . $dbr->addQuotes( $this->getUser()->getId() );
+			$user = $this->getUser();
+			if( !$user->isAnon() ) {
+				$conds[] = $fieldPrefix . 'rc_user != ' . $dbr->addQuotes( $user->getId() );
 			} else {
-				$conds[] = 'rc_user_text != ' . $dbr->addQuotes( $this->getUser()->getName() );
+				$conds[] = $fieldPrefix . 'rc_user_text != ' . $dbr->addQuotes( $user->getName() );
 			}
 		}
 
@@ -345,15 +347,15 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 			# namespace association (bug 2429)
 			if( !$opts['associated'] ) {
-				$condition = "rc_namespace $operator $selectedNS";
+				$condition = $fieldPrefix . "rc_namespace $operator $selectedNS";
 			} else {
 				# Also add the associated namespace
 				$associatedNS = $dbr->addQuotes(
 					MWNamespace::getAssociated( $opts['namespace'] )
 				);
-				$condition = "(rc_namespace $operator $selectedNS "
+				$condition = '(' . $fieldPrefix . "rc_namespace $operator $selectedNS "
 						   . $boolean
-						   . " rc_namespace $operator $associatedNS)";
+						   . ' ' . $fieldPrefix . "rc_namespace $operator $associatedNS)";
 			}
 
 			$conds[] = $condition;
