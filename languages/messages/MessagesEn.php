@@ -2458,7 +2458,7 @@ Maybe you want to edit the description on its [$2 file description page] there.'
 'shared-repo'                       => 'a shared repository',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons', # only translate this message to other languages if you have to change it
 'filepage.css'                      => '/* CSS placed here is included on the file description page, also included on foreign client wikis */', # only translate this message to other languages if you have to change it
-'upload-disallowed-here'            => 'Unfortunately you cannot overwrite this image.',
+'upload-disallowed-here'            => 'You cannot overwrite this file.',
 
 # File reversion
 'filerevert'                => 'Revert $1',
@@ -3848,10 +3848,10 @@ By executing it, your system may be compromised.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3', # only translate this message to other languages if you have to change it
-'seconds-abbrev' => '$1s', # only translate this message to other languages if you have to change it
-'minutes-abbrev' => '$1m', # only translate this message to other languages if you have to change it
-'hours-abbrev'   => '$1h', # only translate this message to other languages if you have to change it
-'days-abbrev'    => '$1d', # only translate this message to other languages if you have to change it
+'seconds-abbrev' => '$1 s', # only translate this message to other languages if you have to change it
+'minutes-abbrev' => '$1 min', # only translate this message to other languages if you have to change it
+'hours-abbrev'   => '$1 h', # only translate this message to other languages if you have to change it
+'days-abbrev'    => '$1 d', # only translate this message to other languages if you have to change it
 'seconds'        => '{{PLURAL:$1|$1 second|$1 seconds}}',
 'minutes'        => '{{PLURAL:$1|$1 minute|$1 minutes}}',
 'hours'          => '{{PLURAL:$1|$1 hour|$1 hours}}',
