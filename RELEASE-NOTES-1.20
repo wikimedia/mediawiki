@@ -156,21 +156,28 @@ upgrade PHP if you have not done so prior to upgrading MediaWiki.
 These are issues that we're targeting to be fixed in a later release
 in the 1.20 series.  Issues may be added or removed from this list as
 we see fit.  For now, it is comprised of those bugs on the 1.20.0
-milestone
+milestone in Bugzilla.
 
-* (bug 27202): API: Add timestamp sort to list=allimages
 * (bug 35894): Reports of secret key generation "hanging" on windows
-* (bug 37209): LinkCache doesn't currently know about this title
-* (bug 37714): [Regression] Incomplete log entries
+    This is probably a bug that has been fixed in PHP.  If you run
+    into this, try upgrading your PHP.
 * (bug 38334): PHP Notice:  Undefined index: href in /www/w/skins/Vector.php on line 416
+    We think this is a problem in some extension.  If you see this,
+    try disabling your extensions and check out the logging patch on
+    this bug.  Or try this patch:
+    <https://gerrit.wikimedia.org/r/#/c/27937/1/skins/Vector.php>
 * (bug 39268): [Regression] Toolbar inserts in main textarea only (instead of the focussed textarea)
-* (bug 40598): [Regression] jquery.localize tests are failing in IE6-8
-* (bug 40632): Kill $wgCleanupPresentationalAttributes from MediaWiki core
+    This should only be an issue if you are using the ProofreadPage
+    extension.
 * (bug 40641): Clicking "others" in Special:Version asks to download a file
-* (bug 40780): searchsuggest-containing line ("containing...") doesn't include the entered text
-* (bug 40939): [Regression] InfoAction: Call to a member function getUserText() on a non-object
+    If you encounter this, you can tell your webserver to serve the
+    CREDITS file with text/plain MIME type to fix it.
 
 === Bug fixes in 1.20 ===
+* (bug 40939): [Regression] InfoAction: Call to a member function getUserText() on a non-object
+* (bug 40780): searchsuggest-containing line ("containing...") doesn't include the entered text
+* (bug 37714): [Regression] Incomplete log entries
+* (bug 27202): API: Add timestamp sort to list=allimages
 * (bug 30245) Use the correct way to construct a log page title.
 * (bug 34237) Regenerate an empty user_token and save to the database
   when we try to set the user's cookies for login.
