@@ -183,7 +183,7 @@ $bookstoreList = array(
 	'AddALL' => 'http://www.addall.com/New/Partner.cgi?query=$1&type=ISBN',
 	'PriceSCAN' => 'http://www.pricescan.com/books/bookDetail.asp?isbn=$1',
 	'Barnes & Noble' => 'http://search.barnesandnoble.com/bookSearch/isbnInquiry.asp?isbn=$1',
-	'Amazon.com' => 'http://www.amazon.com/exec/obidos/ISBN=$1'
+	'Amazon.com' => 'http://www.amazon.com/gp/search/?field-isbn=$1'
 );
 
 /**
@@ -191,6 +191,7 @@ $bookstoreList = array(
  * Customisable syntax for wikitext and elsewhere.
  *
  * IDs must be valid identifiers, they cannot contain hyphens.
+ * CASE is 0 to match all case variants, 1 for case-sensitive
  *
  * Note to translators:
  *   Please include the English words as synonyms.  This allows people
@@ -3652,7 +3653,7 @@ By executing it, your system may be compromised.",
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3', # only translate this message to other languages if you have to change it
 'seconds-abbrev' => 's', # only translate this message to other languages if you have to change it
-'minutes-abbrev' => 'm', # only translate this message to other languages if you have to change it
+'minutes-abbrev' => 'min', # only translate this message to other languages if you have to change it
 'hours-abbrev'   => 'h', # only translate this message to other languages if you have to change it
 'days-abbrev'    => 'd', # only translate this message to other languages if you have to change it
 
