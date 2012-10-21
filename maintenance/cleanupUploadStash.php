@@ -70,7 +70,7 @@ class UploadStashCleanup extends Maintenance {
 			array_push( $keys, $row->us_key );
 		}
 
-		$this->output( 'Removing ' . count($keys) . " file(s)...\n" );
+		$this->output( 'Removing ' . count( $keys ) . " file(s)...\n" );
 		// this could be done some other, more direct/efficient way, but using
 		// UploadStash's own methods means it's less likely to fall accidentally
 		// out-of-date someday
@@ -100,6 +100,7 @@ class UploadStashCleanup extends Maintenance {
 		$this->output( "Deleting old thumbnails...\n" );
 		$i = 0;
 		foreach ( $iterator as $file ) {
+			$i++;
 			if ( wfTimestamp( TS_UNIX, $tempRepo->getFileTimestamp( "$dir/$file" ) ) < $cutoff ) {
 				$tempRepo->quickPurge( "$dir/$file" );
 			}
