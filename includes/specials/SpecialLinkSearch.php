@@ -63,25 +63,12 @@ class LinkSearchPage extends QueryPage {
 		}
 
 		$target2 = $target;
-		$protocol = '';
-		$pr_sl = strpos($target2, '//' );
-		$pr_cl = strpos($target2, ':' );
-		if ( $pr_sl ) {
-			// For protocols with '//'
-			$protocol = substr( $target2, 0 , $pr_sl+2 );
-			$target2 = substr( $target2, $pr_sl+2 );
-		} elseif ( !$pr_sl && $pr_cl ) {
-			// For protocols without '//' like 'mailto:'
-			$protocol = substr( $target2, 0 , $pr_cl+1 );
-			$target2 = substr( $target2, $pr_cl+1 );
-		} elseif ( $protocol == '' && $target2 != '' ) {
-			// default
-			$protocol = 'http://';
-		}
-		if ( $protocol != '' && !in_array( $protocol, $protocols_list ) ) {
-			// unsupported protocol, show original search request
-			$target2 = $target;
-			$protocol = '';
+		// Get protocol, default is http;//
+		$protocol = 'http://';
+		$bits = wfParseUrl( $target );
+		if ( isset( $bits['scheme'] ) && isset( $bits['delimiter'] ) ) {
+			$protocol = $bits['scheme'] . $bits['delimiter'];
+			$target2 = substr( $target, strlen( $protocol ) );
 		}
 
 		$out->addWikiMsg( 'linksearch-text', '<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>' );
