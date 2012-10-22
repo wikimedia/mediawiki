@@ -35,6 +35,7 @@ production.
   tables that have a corresponding ORMTable class.
 * (bug 40876) Icon for PSD (Adobe Photoshop) file types.
 * (bug 40641) Implemented Special:Version/Credits with a list of contributors.
+* (bug 24620) Add types to LogFormatter
 
 === Bug fixes in 1.21 ===
 * (bug 40353) SpecialDoubleRedirect should support interwiki redirects.
@@ -44,10 +45,10 @@ production.
   recentchanges table.
 * (bug 32951) Do not register internal externals with absolute protocol,
   when server has relative protocol.
-* (bug 39005) When purging proxies listed in $wgSquidServers using HTTP PURGE 
-  method requests, we now send a Host header by default, for Varnish 
-  compatibility. This also works with Squid in reverse-proxy mode. If you wish 
-  to support Squid configured in forward-proxy mode, set 
+* (bug 39005) When purging proxies listed in $wgSquidServers using HTTP PURGE
+  method requests, we now send a Host header by default, for Varnish
+  compatibility. This also works with Squid in reverse-proxy mode. If you wish
+  to support Squid configured in forward-proxy mode, set
   $wgSquidPurgeUseHostHeader to false.
 * (bug 37020) sql.php with readline eats semicolon
 * (bug 11748) Properly handle optionally-closed HTML tags when Tidy is
