@@ -63,7 +63,7 @@ class SpecialBookSources extends SpecialPage {
 
 	/**
 	 * Returns whether a given ISBN (10 or 13) is valid.  True indicates validity.
-	 * @param isbn string ISBN passed for check
+	 * @param $isbn string ISBN passed for check
 	 * @return bool
 	 */
 	public static function isValidISBN( $isbn ) {

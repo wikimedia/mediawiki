@@ -62,7 +62,8 @@ ALIASES =	"type{1}=<b> \1 </b>:" \
 		"protected=\access protected" \
 		"public=\access public" \
 		"copyright=\note" \
-		"license=\note"
+		"license=\note" \
+		"codeCoverageIgnore="
 OPTIMIZE_OUTPUT_FOR_C  = NO
 OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_FOR_FORTRAN   = NO

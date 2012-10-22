@@ -27,7 +27,7 @@
  * @file
  * @ingroup ORM
  *
- * @licence GNU GPL v2 or later
+ * @license GNU GPL v2 or later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 

@@ -163,7 +163,7 @@ class SearchEngine {
 
 	/**
 	 * Really find the title match.
-	 * @return null|\Title
+	 * @return null|Title
 	 */
 	private static function getNearMatchInternal( $searchterm ) {
 		global $wgContLang, $wgEnableSearchContributorsByIP;

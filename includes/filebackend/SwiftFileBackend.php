@@ -1216,10 +1216,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 * $readGrps is a list of the possible criteria for a request to have
 	 * access to read a container. Each item is one of the following formats:
 	 *   - account:user       : Grants access if the request is by the given user
-	 *   - .r:<regex>         : Grants access if the request is from a referrer host that
+	 *   - ".r:<regex>"       : Grants access if the request is from a referrer host that
 	 *                          matches the expression and the request is not for a listing.
 	 *                          Setting this to '*' effectively makes a container public.
-	 *   - .rlistings:<regex> : Grants access if the request is from a referrer host that
+	 *   -".rlistings:<regex>": Grants access if the request is from a referrer host that
 	 *                          matches the expression and the request for a listing.
 	 *
 	 * $writeGrps is a list of the possible criteria for a request to have

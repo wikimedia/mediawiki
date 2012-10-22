@@ -74,7 +74,7 @@ class DependencyWrapper {
 
 	/**
 	 * Get the user-defined value
-	 * @return bool|\Mixed
+	 * @return bool|Mixed
 	 */
 	function getValue() {
 		return $this->value;

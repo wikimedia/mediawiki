@@ -873,7 +873,7 @@ class ResourceLoader {
 	 * Combines an associative array mapping media type to CSS into a
 	 * single stylesheet with "@media" blocks.
 	 *
-	 * @param $styles Array: Array keyed by media type containing (arrays of) CSS strings.
+	 * @param $stylePairs Array: Array keyed by media type containing (arrays of) CSS strings.
 	 *
 	 * @return Array
 	 */

@@ -212,8 +212,8 @@ class WikitextContent extends TextContent {
 	 *
 	 * @param $hasLinks Bool  if it is known whether this content contains
 	 *    links, provide this information here, to avoid redundant parsing to
-	 *    find out.
-	 * @param $title null|\Title
+	 *    find out (default: null).
+	 * @param $title Title: (default: null)
 	 *
 	 * @internal param \IContextSource $context context for parsing if necessary
 	 *
@@ -268,11 +268,10 @@ class WikitextContent extends TextContent {
 	 *
 	 * @since    1.21
 	 *
-	 * @param $content Content the content to render
-	 * @param $title \Title
-	 * @param $revId null
-	 * @param $options null|ParserOptions
-	 * @param $generateHtml bool
+	 * @param $title Title
+	 * @param $revId int Revision to pass to the parser (default: null)
+	 * @param $options ParserOptions (default: null)
+	 * @param $generateHtml bool (default: false)
 	 *
 	 * @internal param \IContextSource|null $context
 	 * @return ParserOutput representing the HTML form of the text

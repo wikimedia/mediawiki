@@ -582,7 +582,7 @@ class InfoAction extends FormlessAction {
 	}
 
 	/**
-	 * Returns the name that goes in the <h1> page title.
+	 * Returns the name that goes in the "<h1>" page title.
 	 *
 	 * @return string
 	 */
@@ -653,7 +653,7 @@ class InfoAction extends FormlessAction {
 	}
 
 	/**
-	 * Returns the description that goes below the <h1> tag.
+	 * Returns the description that goes below the "<h1>" tag.
 	 *
 	 * @return string
 	 */

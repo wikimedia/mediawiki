@@ -44,7 +44,7 @@ class WebResponse {
 	 * @param $value String: value to give cookie
 	 * @param $expire Int: number of seconds til cookie expires
 	 * @param $prefix String: Prefix to use, if not $wgCookiePrefix (use '' for no prefix)
-	 * @param @domain String: Cookie domain to use, if not $wgCookieDomain
+	 * @param $domain String: Cookie domain to use, if not $wgCookieDomain
 	 * @param $forceSecure Bool:
 	 *   true: force the cookie to be set with the secure attribute
 	 *   false: force the cookie to be set without the secure attribute
@@ -149,7 +149,7 @@ class FauxResponse extends WebResponse {
 	 * @param $expire Int: number of seconds til cookie expires (Default: 0)
 	 * @param $prefix TODO DOCUMENT (Default: null)
 	 * @param $domain TODO DOCUMENT (Default: null)
-	 *
+	 * @param $forceSecure TODO DOCUMENT (Default: null)
 	 */
 	public function setcookie( $name, $value, $expire = 0, $prefix = null, $domain = null, $forceSecure = null ) {
 		$this->cookies[$name] = $value;

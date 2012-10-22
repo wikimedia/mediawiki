@@ -8,7 +8,7 @@
  * @file
  * @ingroup Site
  *
- * @licence GNU GPL v2+
+ * @license GNU GPL v2+
  * @author John Erling Blad < jeblad@gmail.com >
  * @author Daniel Kinzler
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
@@ -282,7 +282,7 @@ class MediaWikiSite extends SiteObject {
 	 *
 	 * @since 1.21
 	 *
-	 * @param string|false
+	 * @param $pagename string: Page name (default: false)
 	 *
 	 * @return string
 	 */

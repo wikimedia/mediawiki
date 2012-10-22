@@ -30,9 +30,9 @@ class TextContentHandler extends ContentHandler {
 	 *
 	 * This text-based implementation uses wfMerge().
 	 *
-	 * @param $oldContent \Content|string  String
-	 * @param $myContent \Content|string   String
-	 * @param $yourContent \Content|string String
+	 * @param $oldContent Content|string  String
+	 * @param $myContent Content|string   String
+	 * @param $yourContent Content|string String
 	 *
 	 * @return Content|Bool
 	 */

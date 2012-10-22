@@ -91,7 +91,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @param   the raw text
+	 * @return string: the raw text
 	 */
 	public function getNativeData( ) {
 		$text = $this->mText;
@@ -101,7 +101,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @param   the raw text
+	 * @return string: the raw text
 	 */
 	public function getTextForSearchIndex( ) {
 		return $this->getNativeData();
@@ -110,7 +110,7 @@ class TextContent extends AbstractContent {
 	/**
 	 * Returns the text represented by this Content object, as a string.
 	 *
-	 * @param   the raw text
+	 * @return string: the raw text
 	 */
 	public function getWikitextForTransclusion( ) {
 		return $this->getNativeData();
@@ -133,15 +133,16 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Diff this content object with another content object..
+	 * Diff this content object with another content object.
 	 *
 	 * @since 1.21diff
 	 *
-	 * @param $that Content the other content object to compare this content object to
-	 * @param $lang Language the language object to use for text segmentation.
+	 * @param $that Content: The other content object to compare this content
+	 * object to.
+	 * @param $lang Language: The language object to use for text segmentation.
 	 *    If not given, $wgContentLang is used.
 	 *
-	 * @return DiffResult a diff representing the changes that would have to be
+	 * @return DiffResult: A diff representing the changes that would have to be
 	 *    made to this content object to make it equal to $that.
 	 */
 	public function diff( Content $that, Language $lang = null ) {

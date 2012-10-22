@@ -135,6 +135,7 @@ class MWDebug {
 	 * @since 1.19
 	 * @param $msg string
 	 * @param $callerOffset int
+	 * @param $level int A PHP error level. See sendWarning()
 	 * @return mixed
 	 */
 	public static function warning( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {

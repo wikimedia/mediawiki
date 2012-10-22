@@ -192,7 +192,7 @@ class SearchMssql extends SearchEngine {
 	 * @param $id Integer
 	 * @param $title String
 	 * @param $text String
-	 * @return bool|\ResultWrapper
+	 * @return bool|ResultWrapper
 	 */
 	function update( $id, $title, $text ) {
 		// We store the column data as UTF-8 byte order marked binary stream
@@ -215,7 +215,7 @@ class SearchMssql extends SearchEngine {
 	 *
 	 * @param $id Integer
 	 * @param $title String
-	 * @return bool|\ResultWrapper
+	 * @return bool|ResultWrapper
 	 */
 	function updateTitle( $id, $title ) {
 		$table = $this->db->tableName( 'searchindex' );

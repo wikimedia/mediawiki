@@ -1369,6 +1369,8 @@ class Title {
 	 *
 	 * @see self::getLocalURL
 	 * @see wfExpandUrl
+	 * @param $query
+	 * @param $query2 bool
 	 * @param $proto Protocol type to use in URL
 	 * @return String the URL
 	 */
@@ -1495,6 +1497,8 @@ class Title {
 	 *
 	 * See getLocalURL for the arguments.
 	 *
+	 * @param $query
+	 * @param $query2 bool
 	 * @param $proto Protocol to use; setting this will cause a full URL to be used
 	 * @see self::getLocalURL
 	 * @return String the URL

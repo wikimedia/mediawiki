@@ -74,7 +74,6 @@ abstract class DataUpdate implements DeferrableUpdate {
 	 * This allows for limited transactional logic across multiple backends for storing
 	 * secondary data.
 	 *
-	 * @static
 	 * @param $updates array a list of DataUpdate instances
 	 * @throws Exception|null
 	 */

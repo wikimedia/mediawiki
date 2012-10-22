@@ -1183,7 +1183,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param array|string $conds
 	 * @param string $fname
 	 * @throws DBUnexpectedError
-	 * @return bool|\ResultWrapper
+	 * @return bool|ResultWrapper
 	 */
 	public function delete( $table, $conds, $fname = 'DatabaseIbm_db2::delete' ) {
 		if ( !$conds ) {

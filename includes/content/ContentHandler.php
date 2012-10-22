@@ -80,7 +80,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @static
 	 * @param $content Content|null
 	 * @return null|string the textual form of $content, if available
 	 * @throws MWException if $content is not an instance of TextContent and
@@ -122,8 +121,6 @@ abstract class ContentHandler {
 	 * the given format.
 	 *
 	 * @since 1.21
-	 *
-	 * @static
 	 *
 	 * @param $text string the textual representation, will be
 	 *    unserialized to create the Content object
@@ -184,7 +181,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @static
 	 * @param $title Title
 	 * @return null|string default model name for the page given by $title
 	 */
@@ -256,7 +252,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @static
 	 * @param $title Title
 	 * @return ContentHandler
 	 */
@@ -271,7 +266,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @static
 	 * @param $content Content
 	 * @return ContentHandler
 	 */
@@ -304,7 +298,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @static
 	 * @param $modelId String The ID of the content model for which to get a
 	 *    handler. Use CONTENT_MODEL_XXX constants.
 	 * @return ContentHandler The ContentHandler singleton for handling the
@@ -352,7 +345,6 @@ abstract class ContentHandler {
 	 * Model names are localized using system messages. Message keys
 	 * have the form content-model-$name, where $name is getContentModelName( $id ).
 	 *
-	 * @static
 	 * @param $name String The content model ID, as given by a CONTENT_MODEL_XXX
 	 *    constant or returned by Revision::getContentModel().
 	 *
@@ -415,7 +407,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @abstract
 	 * @param $content Content The Content object to serialize
 	 * @param $format null|String The desired serialization format
 	 * @return string Serialized form of the content
@@ -427,7 +418,6 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
-	 * @abstract
 	 * @param $blob string serialized form of the content
 	 * @param $format null|String the format used for serialization
 	 * @return Content the Content object created by deserializing $blob

@@ -528,7 +528,7 @@ class DatabaseMssql extends DatabaseBase {
 	 * @param array $insertOptions
 	 * @param array $selectOptions
 	 * @throws DBQueryError
-	 * @return null|\ResultWrapper
+	 * @return null|ResultWrapper
 	 */
 	function insertSelect( $destTable, $srcTable, $varMap, $conds, $fname = 'DatabaseMssql::insertSelect',
 		$insertOptions = array(), $selectOptions = array() ) {

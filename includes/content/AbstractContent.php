@@ -381,8 +381,8 @@ abstract class AbstractContent implements Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $page \WikiPage the deleted page
-	 * @param $parserOutput null|\ParserOutput optional parser output object
+	 * @param $page WikiPage the deleted page
+	 * @param $parserOutput null|ParserOutput optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
 	 *

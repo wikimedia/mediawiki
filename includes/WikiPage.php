@@ -1447,7 +1447,7 @@ class WikiPage extends Page implements IDBAccessObject {
 
 	/**
 	 * @param $section null|bool|int or a section number (0, 1, 2, T1, T2...)
-	 * @param $content Content: new content of the section
+	 * @param $sectionContent Content: new content of the section
 	 * @param $sectionTitle String: new section's subject, only if $section is 'new'
 	 * @param $edittime String: revision timestamp or null to use the current revision
 	 *
@@ -2450,6 +2450,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	 * @param $reason string delete reason for deletion log
 	 * @param $suppress boolean suppress all revisions and log the deletion in
 	 *        the suppression log instead of the deletion log
+	 * @param $id int article ID
 	 * @param $commit boolean defaults to true, triggers transaction end
 	 * @param &$error Array of errors to append to
 	 * @param $user User The deleting user

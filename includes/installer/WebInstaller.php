@@ -56,10 +56,11 @@ class WebInstaller extends Installer {
 
 	/**
 	 * The main sequence of page names. These will be displayed in turn.
-	 * To add one:
-	 *    * Add it here
-	 *    * Add a config-page-<name> message
-	 *    * Add a WebInstaller_<name> class
+	 *
+	 * To add a new installer page:
+	 *    * Add it to this WebInstaller::$pageSequence property
+	 *    * Add a "config-page-<name>" message
+	 *    * Add a "WebInstaller_<name>" class
 	 * @var array
 	 */
 	public $pageSequence = array(

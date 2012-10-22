@@ -45,10 +45,10 @@ interface Content {
 	 * @return string The wikitext to include when another page includes this
 	 * content, or false if the content is not includable in a wikitext page.
 	 *
-	 * @TODO: allow native handling, bypassing wikitext representation, like
+	 * @todo allow native handling, bypassing wikitext representation, like
 	 *    for includable special pages.
-	 * @TODO: allow transclusion into other content models than Wikitext!
-	 * @TODO: used in WikiPage and MessageCache to get message text. Not so
+	 * @todo allow transclusion into other content models than Wikitext!
+	 * @todo used in WikiPage and MessageCache to get message text. Not so
 	 *    nice. What should we use instead?!
 	 */
 	public function getWikitextForTransclusion();
@@ -74,7 +74,7 @@ interface Content {
 	 *    string, a nested array structure, an object, a binary blob...
 	 *    anything, really.
 	 *
-	 * @NOTE: Caller must be aware of content model!
+	 * @note Caller must be aware of content model!
 	 */
 	public function getNativeData();
 
@@ -460,8 +460,8 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param $page \WikiPage the deleted page
-	 * @param $parserOutput null|\ParserOutput optional parser output object
+	 * @param $page WikiPage the deleted page
+	 * @param $parserOutput null|ParserOutput optional parser output object
 	 *    for efficient access to meta-information about the content object.
 	 *    Provide if you have one handy.
 	 *
