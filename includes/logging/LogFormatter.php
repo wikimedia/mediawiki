@@ -403,7 +403,7 @@ class LogFormatter {
 		foreach ( $entry->getParameters() as $key => $value ) {
 			if ( strpos( $key, ':' ) === false ) continue;
 			list( $index, $type, $name ) = explode( ':', $key, 3 );
-			$params[$index - 1] = $value;
+			$params[$index - 1] = $this->formatParameterValue( $type, $value );
 		}
 
 		/* Message class doesn't like non consecutive numbering.
@@ -444,6 +444,114 @@ class LogFormatter {
 		// Bad things happens if the numbers are not in correct order
 		ksort( $params );
 		return $this->parsedParameters = $params;
+	}
+
+	/**
+	 * Formats parameters values dependent to their type
+	 * @param $type string The type of the value.
+	 *   Valid are currently:
+	 *     * - (empty) or plain: The value is returned as-is
+	 *     * raw: The value will be added to the log message
+	 *            as raw parameter (e.g. no escaping)
+	 *            Use this only if there is no other working
+	 *            type like user-link or title-link
+	 *     * msg: The value is a message-key, the output is
+	 *            the message in user language
+	 *     * msg-content: The value is a message-key, the output
+	 *                    is the message in content language
+	 *     * user: The value is a user name, e.g. for GENDER
+	 *     * user-link: The value is a user name, returns a
+	 *                  link for the user
+	 *     * user-link-tools: The value is a user name, returns
+	 *                        a link for the user with tools
+	 *     * title: The value is a page title,
+	 *              returns name of page
+	 *     * title-link: The value is a page title,
+	 *                   returns link to this page
+	 *     * title-link-params: The value is a page title,
+	 *                          returns link to this page with
+	 *                          the parameters (name=value)
+	 *                          seperated by "|" from title
+	 *                          and the other params
+	 *     * number: Format value as number
+	 * @param $value string The parameter value that should
+	 *                      be formated
+	 * @return string or Message::numParam or Message::rawParam
+	 *         Formated value
+	 * @since 1.21
+	 */
+	protected function formatParameterValue( $type, $value ) {
+		$saveLinkFlood = $this->linkFlood;
+
+		switch( strtolower( trim( $type ) ) ) {
+			case 'raw':
+				$value = Message::rawParam( $value );
+				break;
+			case 'msg':
+				$value = $this->msg( $value )->text();
+				break;
+			case 'msg-content':
+				$value = $this->msg( $value )->inContentLanguage()->text();
+				break;
+			case 'number':
+				$value = Message::numParam( $value );
+				break;
+			case 'user':
+				$user = User::newFromName( $value );
+				$value = $user->getName();
+				break;
+			case 'user-link':
+				$this->setShowUserToolLinks( false );
+
+				$user = User::newFromName( $value );
+				$value = Message::rawParam( $this->makeUserLink( $user ) );
+
+				$this->setShowUserToolLinks( $saveLinkFlood );
+				break;
+			case 'user-link-tools':
+				$this->setShowUserToolLinks( true );
+
+				$user = User::newFromName( $value );
+				$value = Message::rawParam( $this->makeUserLink( $user ) );
+
+				$this->setShowUserToolLinks( $saveLinkFlood );
+				break;
+ 			case 'title':
+				$title = Title::newFromText( $value );
+				$value = $title->getPrefixedText();
+				break;
+			case 'title-link':
+				$title = Title::newFromText( $value );
+				$value = Message::rawParam( $this->makePageLink( $title ) );
+				break;
+			case 'title-link-params':
+				$args = explode( '|', $value );
+
+				if ( !count( $args ) ) break;
+
+				$title = Title::newFromText( array_shift( $args ) );
+
+				if ( !count( $args ) ) {
+					$value = Message::rawParam( $this->makePageLink( $title ) );
+					break;
+				}
+
+				$params = array();
+				foreach( $args as $param ) {
+					$param = explode( '=', $param, 2 );
+					$key = trim( $param[0] );
+					$params[$key] = trim( $param[1] );
+				}
+
+				$value = Message::rawParam( $this->makePageLink( $title, $params ) );
+				break;
+			case 'plain':
+				// Plain text, nothing to do
+			default:
+				// Catch other types and use the old behavior (return as-is)
+		}
+
+		return $value;
 	}
 
 	/**
