@@ -223,8 +223,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// Create a fresh CF_Object with no fields preloaded.
 			// We don't want to preserve headers, metadata, and such.
 			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
-			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
-			$obj->metadata = array( 'Sha1base36' => $sha1Hash );
+			$obj->setMetadataValues( array( 'Sha1base36' => $sha1Hash ) );
 			// Manually set the ETag (https://github.com/rackspace/php-cloudfiles/issues/59).
 			// The MD5 here will be checked within Swift against its own MD5.
 			$obj->set_etag( md5( $params['content'] ) );
@@ -314,8 +313,7 @@ class SwiftFileBackend extends FileBackendStore {
 			// Create a fresh CF_Object with no fields preloaded.
 			// We don't want to preserve headers, metadata, and such.
 			$obj = new CF_Object( $dContObj, $dstRel, false, false ); // skip HEAD
-			// Note: metadata keys stored as [Upper case char][[Lower case char]...]
-			$obj->metadata = array( 'Sha1base36' => $sha1Hash );
+			$obj->setMetadataValues( array( 'Sha1base36' => $sha1Hash ) );
 			// The MD5 here will be checked within Swift against its own MD5.
 			$obj->set_etag( md5_file( $params['src'] ) );
 			// Use the same content type as StreamFile for security
@@ -761,7 +759,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Convert dates like "Tue, 03 Jan 2012 22:01:04 GMT" to TS_MW
 				'mtime' => wfTimestamp( TS_MW, $srcObj->last_modified ),
 				'size'  => (int)$srcObj->content_length,
-				'sha1'  => $srcObj->metadata['Sha1base36']
+				'sha1'  => $srcObj->getMetadataValue( 'Sha1base36' )
 			);
 		} catch ( NoSuchContainerException $e ) {
 		} catch ( NoSuchObjectException $e ) {
@@ -782,7 +780,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @throws Exception cloudfiles exceptions
 	 */
 	protected function addMissingMetadata( CF_Object $obj, $path ) {
-		if ( isset( $obj->metadata['Sha1base36'] ) ) {
+		if ( $obj->getMetadataValue( 'Sha1base36' ) !== null ) {
 			return true; // nothing to do
 		}
 		wfProfileIn( __METHOD__ );
@@ -794,14 +792,14 @@ class SwiftFileBackend extends FileBackendStore {
 			if ( $tmpFile ) {
 				$hash = $tmpFile->getSha1Base36();
 				if ( $hash !== false ) {
-					$obj->metadata['Sha1base36'] = $hash;
+					$obj->setMetadataValues( array( 'Sha1base36' => $hash ) );
 					$obj->sync_metadata(); // save to Swift
 					wfProfileOut( __METHOD__ );
 					return true; // success
 				}
 			}
 		}
-		$obj->metadata['Sha1base36'] = false;
+		$obj->setMetadataValues( array( 'Sha1base36' => false ) );
 		wfProfileOut( __METHOD__ );
 		return false; // failed
 	}
