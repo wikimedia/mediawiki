@@ -94,8 +94,8 @@ abstract class ApiQueryORM extends ApiQueryBase {
 	}
 
 	/**
-	 * Get the request parameters, handle the * value for the props param
-	 * and remove all params set to null (ie those that are not actually provided).
+	 * Get the request parameters and remove all params set
+	 * to null (ie those that are not actually provided).
 	 *
 	 * @since 1.21
 	 *
