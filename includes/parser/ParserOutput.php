@@ -346,7 +346,29 @@ class ParserOutput extends CacheTime {
 	}
 
 	/**
-	 * Set a property to be cached in the DB
+	 * Set a property to be stored in the DB in the page_props table.
+	 *
+	 * page_props allows the parser to set a property on a page which can
+	 * then be quickly retrieved with a DB join, or given the title or ID.
+	 * This is used to propagate properties from the parser to request contexts
+	 * other than a page view of the currently parsed article. Some applications
+	 * applications:
+	 *
+	 *   * To implement hidden categories, hiding pages from category listings
+	 *     by storing a property.
+	 *
+	 *   * To implement image tagging, for example displaying an icon on an 
+	 *     image thumbnail to indicate that it is listed for deletion on 
+	 *     Wikimedia Commons. This is not actually implemented, yet but would be 
+	 *     pretty cool.
+	 *
+	 * Do not use setProperty() to set a property which is only used in a context
+	 * where the ParserOutput object itself is already available, for example a
+	 * normal page view. If you are writing an extension where you want to set
+	 * a property in the parser which is used by an OutputPageParserOutput hook,
+	 * just use a custom variable within the ParserOutput object:
+	 *
+	 *    $parser->getOutput()->my_ext_foo = '...';
 	 */
 	public function setProperty( $name, $value ) {
 		$this->mProperties[$name] = $value;
