@@ -1132,7 +1132,16 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Build an array that represents the sidebar(s), the navigation bar among them
+	 * Build an array that represents the sidebar(s), the navigation bar among them.
+	 *
+	 * The format of the returned array is array( heading => data, ... ), where:
+	 * - heading is the heading of a navigation portlet. It is either:
+	 *   - a message name (e.g. 'navigation')
+	 *   - magic string to be handled by the skins ('SEARCH' / 'LANGUAGES' / 'TOOLBOX' / ...)
+	 *   - plain text, which should be HTML-safe
+	 * - data is the contents of the portlet. It is either:
+	 *   - HTML text (<ul><li>...</li>...</ul>)
+	 *   - array of link data in a format accepted by BaseTemplate::makeListItem()
 	 *
 	 * @return array
 	 */
