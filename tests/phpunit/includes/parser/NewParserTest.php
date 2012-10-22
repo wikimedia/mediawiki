@@ -34,6 +34,9 @@ class NewParserTest extends MediaWikiTestCase {
 	protected function setUp() {
 		global $wgContLang, $wgNamespaceProtection, $wgNamespaceAliases;
 		global $wgHooks, $IP;
+
+		parent::setUp();
+
 		$wgContLang = Language::factory( 'en' );
 
 		//Setup CLI arguments
@@ -114,6 +117,8 @@ class NewParserTest extends MediaWikiTestCase {
 		// Restore backends
 		RepoGroup::destroySingleton();
 		FileBackendGroup::destroySingleton();
+
+		parent::tearDown();
 	}
 
 	function addDBData() {
