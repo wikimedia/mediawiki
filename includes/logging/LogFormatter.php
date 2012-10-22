@@ -381,7 +381,7 @@ class LogFormatter {
 		foreach ( $entry->getParameters() as $key => $value ) {
 			if ( strpos( $key, ':' ) === false ) continue;
 			list( $index, $type, $name ) = explode( ':', $key, 3 );
-			$params[$index - 1] = $value;
+			$params[$index - 1] = $this->formatParameterValue( $type, $value );
 		}
 
 		/* Message class doesn't like non consecutive numbering.
@@ -422,6 +422,64 @@ class LogFormatter {
 		// Bad things happens if the numbers are not in correct order
 		ksort( $params );
 		return $this->parsedParameters = $params;
+	}
+
+	/**
+	 * Formats parameters values dependent to their type
+	 * @param $type string The type of the value.
+	 *   Valid are currently:
+	 *     * - (empty) or plain: The value is returned as is
+	 *     * msg: The value is a message-key, the output is
+	 *            the message in user language
+	 *     * msg-content: The value is a message-key, the output
+	 *                    is the message in content language
+	 * @param $value string The parameter value that should
+	 *                      be formated
+	 * @return string Formated value
+	 * @since 1.21
+	 */
+	protected function formatParameterValue( $type, $value ) {
+		switch( trim( $type ) ) {
+			case 'msg':
+				$value = $this->formatParameterValueAsMsg( $value, 'user' );
+				break;
+			case 'msg-content':
+				$value = $this->formatParameterValueAsMsg( $value, 'content' );
+				break;
+			case '':
+			case 'plain':
+			// Catch other types and use the old behavior
+			default:
+				// Do nothing, outputs the value as is
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Formats parameters values as message
+	 * @param $key string The message key (parameter value)
+	 * @param $lang string The message language
+	 *                     Can be: 'user' for user language or
+	 *                       'content' for content language
+	 * @return string The message
+	 * @since 1.21
+	 */
+	protected function formatParameterValueAsMsg( $key, $lang = 'user' ) {
+		$msg = $this->msg( $key );
+
+		if ( !$msg->exists() ) {
+			wfDebug( __METHOD__ . ': The message key "' . $key . '" does not exists. Fall back to old behavior.' );
+			return $key;
+		}
+
+		if ( $lang == 'user' ) {
+			return $msg->text();
+		} elseif ( $lang == 'content' ) {
+			return $msg->inContentLanguage()->text();
+		} else {
+			throw new MWException( __METHOD__ . ': Invalid value for language: "' . $lang . '"' );
+		}
 	}
 
 	/**
