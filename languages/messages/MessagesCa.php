@@ -346,7 +346,7 @@ $messages = array(
 'vector-action-protect'          => 'Protegeix',
 'vector-action-undelete'         => 'Restaura',
 'vector-action-unprotect'        => 'Desprotegeix',
-'vector-simplesearch-preference' => 'Habilitar suggeriments de recerca millorats (només aparença Vector)',
+'vector-simplesearch-preference' => 'Activar la barra de cerca simplificada (només aparença Vector)',
 'vector-view-create'             => 'Inicia',
 'vector-view-edit'               => 'Modifica',
 'vector-view-history'            => "Mostra l'historial",
@@ -423,7 +423,7 @@ $1",
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Quant al projecte {{SITENAME}}',
 'aboutpage'            => 'Project:Quant a',
-'copyright'            => "El contingut és disponible sota els termes d'una llicència $1",
+'copyright'            => 'El contingut està disponible sota els termes de la $1.',
 'copyrightpage'        => "{{ns:project}}:Drets d'autor",
 'currentevents'        => 'Actualitat',
 'currentevents-url'    => 'Project:Actualitat',
@@ -558,8 +558,9 @@ Consulta: $2',
 'actionthrottledtext'  => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
 'protectedpagetext'    => 'Aquesta pàgina està protegida per evitar modificacions.',
 'viewsourcetext'       => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
-'protectedinterface'   => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
-'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [//translatewiki.net/wiki/Main_Page?setlang=ca translatewiki.net], el projecte de traducció de MediaWiki.",
+'protectedinterface'   => "Aquesta pàgina proporciona el text de la interfície del software d'aquest wiki i està protegida per evitar els abusos.
+Per agregar o canviar les traduccions per a tots els wikis, si us plau fes servir [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
+'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Per afegir o modificar traduccions a totes les wikis, plantegeu-vos utilitzar la [//translatewiki.net/ translatewiki.net], el projecte de localització de MediaWiki.",
 'sqlhidden'            => '(consulta SQL oculta)',
 'cascadeprotected'     => "Aquesta pàgina està protegida i no es pot modificar perquè està inclosa en {{PLURAL:$1|la següent pàgina, que té|les següents pàgines, que tenen}} activada l'opció de «protecció en cascada»:
 $2",
@@ -812,12 +813,11 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o 
 'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache'                   => "'''Nota:''' Després de desar, podeu haver d'ometre la memòria cau del vostre navegador per a veure'n els canvis.
-* '''Firefox / Safari:''' Premeu ''Maj'' mentre cliqueu a ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' en un Mac)
-* '''Google Chrome:''' Premeu ''Ctrl+Maj+R'' (''⌘+Maj+R'' en un Mac)
-* '''Internet Explorer:''' Premeu ''Ctrl'' mentre cliqueu a ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
-* '''Konqueror:''' Cliqueu al botó ''Recarrega'' (Reload), o premeu ''F5''
-* '''Opera:''' Netegeu la vostra memòria cau a ''Tools → Preferences''",
+'clearyourcache'                   => "'''Nota:''' després de guardar possiblement necessites refrescar el teu cache per poder veure els canvis.
+* '''Firefox / Safari:''' pressiona ''Shift'' mentre cliques el botó ''Actualitzar'', o pressiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' a Mac)
+* '''Google Chrome:''' pressiona ''Ctrl+Shift+R'' (''⌘+Shift+R'' a Mac)
+* '''Internet Explorer:''' pressiona la tecla ''Ctrl'' mentre cliques a ''Actualitzar'' o pressiona ''Ctrl+F5''
+* '''Opera:''' buida la memòria cau (cache) ''Eines → Preferències''",
 'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
@@ -956,8 +956,8 @@ El motiu donat per $3 és ''$2''",
 (prev) = diferència amb la versió anterior, m = modificació menor',
 'history-fieldset-title' => "Cerca a l'historial",
 'history-show-deleted'   => 'Només esborrats',
-'histfirst'              => 'El primer',
-'histlast'               => 'El darrer',
+'histfirst'              => 'Primeres',
+'histlast'               => 'Últimes',
 'historysize'            => '({{PLURAL:$1|1 octet|$1 octets}})',
 'historyempty'           => '(buit)',
 
@@ -1070,7 +1070,8 @@ Si us plau, verifica els registres.",
 'revdelete-only-restricted'   => 'Error amagant els ítems $2, $1: no pots suprimir elements a la vista dels administradors sense seleccionar alhora una de les altres opcions de supressió.',
 'revdelete-reason-dropdown'   => "*Raons d'esborrament comunes
 ** Violació del copyright
-** Informació personal inapropiada
+** Comentari o informació personal inapropiada
+** Nom d'usuari inapropiat
 ** Informació potencialment calumniosa",
 'revdelete-otherreason'       => 'Altre motiu / motiu suplementari:',
 'revdelete-reasonotherlist'   => 'Altres raons',
@@ -1257,7 +1258,7 @@ A continuació es mostra un valor generat de forma aleatòria que podeu fer serv
 'timezoneregion-indian'         => 'Oceà Índic',
 'timezoneregion-pacific'        => 'Oceà Pacífic',
 'allowemail'                    => 'Permet que altres usuaris puguin enviar-me correus electrònics',
-'prefs-searchoptions'           => 'Preferències de la cerca',
+'prefs-searchoptions'           => 'Cerca',
 'prefs-namespaces'              => 'Espais de noms',
 'defaultns'                     => 'Cerca per defecte en els següents espais de noms:',
 'default'                       => 'per defecte',
@@ -2705,7 +2706,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'tooltip-ca-move'                 => 'Reanomena aquesta pàgina',
 'tooltip-ca-watch'                => 'Afegiu aquesta pàgina a la vostra llista de seguiment.',
 'tooltip-ca-unwatch'              => 'Suprimiu aquesta pàgina de la vostra llista de seguiment',
-'tooltip-search'                  => 'Cerca en el projecte {{SITENAME}}',
+'tooltip-search'                  => 'Cerca a {{SITENAME}}',
 'tooltip-search-go'               => 'Vés a una pàgina amb aquest nom exacte si existeix',
 'tooltip-search-fulltext'         => 'Cerca a les pàgines aquest text',
 'tooltip-p-logo'                  => 'Pàgina principal',
@@ -2744,7 +2745,7 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'tooltip-watch'                   => 'Afegiu aquesta pàgina a la vostra llista de seguiment',
 'tooltip-recreate'                => 'Recrea la pàgina malgrat hagi estat suprimida',
 'tooltip-upload'                  => 'Inicia la càrrega',
-'tooltip-rollback'                => "«Rollback» reverteix les edicions del darrer contribuïdor d'aquesta pàgina en un clic.",
+'tooltip-rollback'                => "«Revertir» reverteix totes les edicions de l'últim usuari en un clic.",
 'tooltip-undo'                    => '«Desfés» reverteix aquesta modificació i obre un formulari de previsualització.
 Permet afegir un motiu al resum.',
 'tooltip-preferences-save'        => 'Desa preferències',
@@ -2783,14 +2784,14 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 
 # Info page
 'pageinfo-title'            => 'Informació de «$1»',
-'pageinfo-header-edits'     => 'Modificacions',
+'pageinfo-header-edits'     => "Historial d'edicions",
 'pageinfo-header-watchlist' => 'Llista de seguiment',
 'pageinfo-header-views'     => 'Visites',
 'pageinfo-subjectpage'      => 'Pàgina',
 'pageinfo-talkpage'         => 'Pàgina de discussió',
-'pageinfo-watchers'         => "Número d'usuaris que l'estan vigilant",
+'pageinfo-watchers'         => "Número d'usuaris que vigilen la pàgina",
 'pageinfo-edits'            => "Número d'edicions",
-'pageinfo-authors'          => "Número d'autors diferents",
+'pageinfo-authors'          => "Número total d'autors diferents",
 'pageinfo-views'            => 'Número de visites',
 'pageinfo-viewsperedit'     => 'Visites per edició',
 

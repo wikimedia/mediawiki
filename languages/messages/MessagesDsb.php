@@ -1293,12 +1293,12 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'group-suppress'      => 'Doglědowanja',
 'group-all'           => '(wše)',
 
-'group-user-member'          => '{{GENDER:$1|wužywaŕ|wužywarka}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|awtomatiski wobkšuśony wužywaŕ|awtomatiski wobkšuśona wužywarka}}',
-'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|běrokrat|běrokratka}}',
-'group-suppress-member'      => '{{GENDER:$1|doglědowaŕ|doglědowarka}}',
+'group-user-member'          => 'wužywaŕ',
+'group-autoconfirmed-member' => 'awtomatiski wobkšuśony wužywaŕ',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'běrokrat',
+'group-suppress-member'      => 'doglědowaŕ',
 
 'grouppage-user'          => '{{ns:project}}:Wužywarje',
 'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatiski wobkšuśone wužywarje',

@@ -21,6 +21,7 @@
  * @author Guaca
  * @author H92
  * @author Haakon K
+ * @author Jsoby
  * @author Jóna Þórunn
  * @author Kph
  * @author Laaknor
@@ -196,7 +197,7 @@ $messages = array(
 'vector-action-protect'          => 'Beskytt',
 'vector-action-undelete'         => 'Gjenopprett',
 'vector-action-unprotect'        => 'Endre beskyttelse',
-'vector-simplesearch-preference' => 'Aktiver forbedrede søkeforslag (kun for drakten Vector)',
+'vector-simplesearch-preference' => 'Aktiver forenklet søkefelt (kun for drakten Vector)',
 'vector-view-create'             => 'Opprett',
 'vector-view-edit'               => 'Rediger',
 'vector-view-history'            => 'Vis historikk',
@@ -2079,7 +2080,7 @@ Dette er de nåværende innstillingene for siden '''$1''':",
 Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default'             => 'Tillat alle brukere',
 'protect-fallback'            => 'Må ha «$1»-tillatelse',
-'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukere',
+'protect-level-autoconfirmed' => 'Blokker uregistrerte og nye brukere',
 'protect-level-sysop'         => 'Kun administratorer',
 'protect-summary-cascade'     => 'dypbeskyttelse',
 'protect-expiring'            => 'utløper $1 (UTC)',

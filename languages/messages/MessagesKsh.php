@@ -1493,11 +1493,11 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-suppress'      => 'Kontrollettis',
 'group-all'           => '(jeede)',
 
-'group-user-member'          => '{{GENDER:$1|Metmaacher|Metmaacherin}}',
-'group-autoconfirmed-member' => 'automattesch beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherėn}}',
+'group-user-member'          => 'Metmaacher',
+'group-autoconfirmed-member' => 'automattesch beshtääteshte Metmaacher',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Wiki-Köbes',
-'group-bureaucrat-member'    => '{{GENDER:$1|Bürrokrad|Bürrokraatėn}}',
+'group-bureaucrat-member'    => 'Bürrokrad',
 'group-suppress-member'      => 'Kontrolletti',
 
 'grouppage-user'          => '{{ns:project}}:Metmaacher',
@@ -3676,7 +3676,7 @@ Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
-'scarytranscludefailed'   => '[De Schablon „$1“ enzebinge hät nit jeflupp]',
+'scarytranscludefailed'   => '[De Schablon „$1“ enzebenge hät nit jeflupp]',
 'scarytranscludetoolong'  => '[Schad, de URL es ze lang]',
 
 # Trackbacks

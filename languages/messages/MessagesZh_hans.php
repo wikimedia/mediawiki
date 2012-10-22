@@ -2781,7 +2781,7 @@ $1被封禁的理由是：“$2”',
 'spam_blanking'       => '消隐所有包含链接至$1的修订',
 
 # Info page
-'pageinfo-title'            => '"$1" 的信息',
+'pageinfo-title'            => '“$1”的信息',
 'pageinfo-header-edits'     => '编辑历史',
 'pageinfo-header-watchlist' => '监视列表',
 'pageinfo-header-views'     => '视图',
@@ -2790,7 +2790,7 @@ $1被封禁的理由是：“$2”',
 'pageinfo-watchers'         => '页面监视者人数',
 'pageinfo-edits'            => '编辑数量',
 'pageinfo-authors'          => '不同编者总计',
-'pageinfo-views'            => '视图的数量',
+'pageinfo-views'            => '查看次数',
 'pageinfo-viewsperedit'     => '每个编辑视图',
 
 # Skin names

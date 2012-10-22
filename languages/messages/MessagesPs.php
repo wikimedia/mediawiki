@@ -214,9 +214,9 @@ $messages = array(
 'editfont-serif'     => 'سېرېف ليکبڼه',
 
 # Dates
-'sunday'        => 'اتوار',
-'monday'        => 'ګل',
-'tuesday'       => 'نهي',
+'sunday'        => 'يونۍ',
+'monday'        => 'دونۍ',
+'tuesday'       => 'درې نۍ',
 'wednesday'     => 'شورو',
 'thursday'      => 'زيارت',
 'friday'        => 'جمعه',
@@ -509,7 +509,7 @@ $1',
 په ټولو ويکي ګانو کې د ژباړې د ورګډولو او يا هم د ژباړې د سمون او بدلون لپاره د مېډياويکي د ځايتابه پروژه [//translatewiki.net/ translatewiki.net] وکاروۍ.',
 'editinginterface'     => "'''ګواښنه:''' تاسو په يوه داسې مخ کې بدلون راولی کوم چې د يوې پوستکالی د ليدنمخ متن په توګه کارېږي.
 په همدې مخ کې بدلون راوستل به د نورو کارنانو د ليدنمخ بڼه اغېزمنه کړي.
-د ژباړې لپاره، مهرباني وکړی د [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، وېبځي ته ولاړ شی. دا وېبځی د ميډياويکي د ځايتابه پروژه ده او د همدې پر کارولو غور وکړی.",
+د ژباړې د ورګډولو او بدلون لپاره، مهرباني وکړی د [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، وېبځي ته ولاړ شی. دا وېبځی د ميډياويکي د ځايتابه پروژه ده.",
 'sqlhidden'            => '(د SQL پوښتن پټ دی)',
 'namespaceprotected'   => "تاسې د '''$1''' په نوم-تشيال کې د مخونو د سمولو اجازه نه لرۍ.",
 'customcssprotected'   => 'تاسې د دې CSS مخ د سمولو اجازه نه لرۍ، دا ځکه چې دا مخ د بل کارن شخصي امستنې لري.',
@@ -729,7 +729,7 @@ $1',
 او يا [{{fullurl:{{FULLPAGENAME}}|action=edit}} همدا مخ سم کړی]</span>.',
 'noarticletext-nopermission'       => 'دم مهال په دې مخ کې څه نشته.
 تاسې کولای شی چې [[Special:Search/{{PAGENAME}}|همدا سرليک په نورو مخونو کې وپلټۍ]],
-يا هم <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} اړونده يادښتونه وپلټۍ]</span>.',
+يا هم <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} اړونده يادښتونه وپلټۍ]</span>، خو تاسې يې د جوړولو اجازه نه لرۍ.',
 'userpage-userdoesnotexist'        => 'د "<nowiki>$1</nowiki>" ګڼون نه دی ثبت شوی.
 لطفاً ځان ډاډه کړۍ چې آيا تاسې په رښتيا همدا مخ جوړول که سمول غواړۍ.',
 'userpage-userdoesnotexist-view'   => 'د "$1" ګڼون نه دی ثبت شوی.',
@@ -1220,7 +1220,7 @@ $1',
 'upload'                => 'دوتنه پورته کول',
 'uploadbtn'             => 'دوتنه پورته کول',
 'uploadnologin'         => 'غونډال کې نه ياست ننوتي',
-'uploadnologintext'     => 'د دوتنو د پورته کولو لپاره بايد غونډال کې [[Special:Userlogin|ننوځۍ]].',
+'uploadnologintext'     => 'ددې لپاره چې دوتنې پورته کړای شۍ، نو لومړی غونډال کې [[Special:UserLogin|ورننوځۍ]].',
 'uploaderror'           => 'د پورته کولو ستونزه',
 'uploadtext'            => "د دوتنې د پورته کېدو لپاره لاندينی چوکاټ وکاروۍ.
 که چېرته د پخونيو پورته شويو دوتنو کتل او پلټل غواړۍ نو [[Special:FileList|د پورته شويو دوتنو لړليک]] ته ورشۍ، [[Special:Log/upload|د (بيا) پورته شويو دوتنو يادښتونه]] او [[Special:Log/delete|د ړنګېدو يادښتونه]] هم کتلای شی.

@@ -26,6 +26,7 @@
  * @author Lokal Profil
  * @author M.M.S.
  * @author MagnusA
+ * @author Martinwiss
  * @author Micke
  * @author NH
  * @author Najami
@@ -1481,12 +1482,12 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'group-suppress'      => 'Censorer',
 'group-all'           => '(alla)',
 
-'group-user-member'          => '{{GENDER:$1|användare}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|bekräftad användare}}',
-'group-bot-member'           => '{{GENDER:$1|robot}}',
-'group-sysop-member'         => '{{GENDER:$1|administratör}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|byråkrat}}',
-'group-suppress-member'      => '{{GENDER:$1|censor}}',
+'group-user-member'          => 'användare',
+'group-autoconfirmed-member' => 'bekräftad användare',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administratör',
+'group-bureaucrat-member'    => 'byråkrat',
+'group-suppress-member'      => 'censor',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',

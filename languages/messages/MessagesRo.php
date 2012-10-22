@@ -1478,10 +1478,10 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'group-all'           => '(toți)',
 
 'group-user-member'          => '{{GENDER:$1|utilizator|utilizatoare|utilizator}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|utilizator autoconfirmat|utilizatoare autoconfirmată|utilizator autoconfirmat}}',
-'group-bot-member'           => '{{GENDER:$1|robot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|birocrat}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utilizator autoconfirmat|utilizatoare autoconfirmată}}',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'birocrat',
 'group-suppress-member'      => '{{GENDER:$1|supraveghetor}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilizatori',
@@ -1538,7 +1538,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-rollback'              => 'Revocarea rapidă a modificărilor ultimului utilizator care a modificat o pagină particulară',
 'right-markbotedits'          => 'Marchează revenirea ca modificare efectuată de robot',
 'right-noratelimit'           => 'Neafectat de limitele raportului',
-'right-import'                => 'Importă pagini de la alte wiki',
+'right-import'                => 'Importă pagini de la alte wikiuri',
 'right-importupload'          => 'Importă pagini dintr-o încărcare de fișier',
 'right-patrol'                => 'Marchează modificările altora ca patrulate',
 'right-autopatrol'            => 'Modificările proprii marcate ca patrulate',

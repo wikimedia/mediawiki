@@ -14,6 +14,7 @@
  * @author Lameiro
  * @author Prevert
  * @author Toliño
+ * @author Vivaelcelta
  * @author Xosé
  * @author לערי ריינהארט
  */
@@ -372,7 +373,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'       => 'Engadir un comentario',
+'vector-action-addsection'       => 'Nova sección',
 'vector-action-delete'           => 'Borrar',
 'vector-action-move'             => 'Mover',
 'vector-action-protect'          => 'Protexer',
@@ -577,8 +578,8 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'cannotdelete'         => 'Non se puido borrar a páxina ou imaxe "$1".
 Se cadra, xa a borrou alguén.',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
-Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
+'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingüística ou interwiki incorrecta.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfcached'           => 'A información seguinte é da memoria caché e pode ser que non estea completamente actualizada.',
 'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $1.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
@@ -837,7 +838,7 @@ A razón que deu foi a seguinte:
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
-Teña en conta que non pode empregar "enviarlle un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.
+Teña en conta que non pode empregar a característica "Enviar un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.
 
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
@@ -867,8 +868,7 @@ Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 'noarticletext-nopermission'       => 'Actualmente non hai ningún texto nesta páxina.
-Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
-ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>.',
+Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ollar os rexistros relacionados]</span>, pero non ten os permisos necesarios para crear esta páxina.',
 'userpage-userdoesnotexist'        => 'A conta do usuario "<nowiki>$1</nowiki>" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
 'blocked-notice-logextract'        => 'Este usuario está bloqueado.
@@ -1411,12 +1411,12 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
-'group-user-member'          => '{{GENDER:$1|usuario|usuaria}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|usuario autoconfirmado|usuaria autoconfirmada}}',
-'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|burócrata}}',
-'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
+'group-user-member'          => 'usuario',
+'group-autoconfirmed-member' => 'usuario autoconfirmado',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrador',
+'group-bureaucrat-member'    => 'burócrata',
+'group-suppress-member'      => 'supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
@@ -2037,7 +2037,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesnext'      => 'Seguinte',
 'allpagessubmit'    => 'Mostrar',
 'allpagesprefix'    => 'Mostrar as páxinas que comezan co prefixo:',
-'allpagesbadtitle'  => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
+'allpagesbadtitle'  => 'O título dado á páxina non era válido ou tiña un prefixo interlingüístico ou interwiki.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} carece do espazo de nomes "$1".',
 
 # Special:Categories
@@ -2531,7 +2532,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage'                    => 'Rexistro de bloqueos',
 'blocklog-showlog'                => 'Este usuario xa foi bloqueado con anterioridade. Velaquí está o rexistro de bloqueos por se quere consultalo:',
 'blocklog-showsuppresslog'        => 'Este usuario xa foi bloqueado e agochado con anterioridade. Velaquí está o rexistro de supresións por se quere consultalo:',
-'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
+'blocklogentry'                   => 'bloqueou a [[$1]] cun tempo de duración de $2 $3',
 'reblock-logentry'                => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.

@@ -1278,12 +1278,12 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'group-suppress'      => 'dohladowarjo',
 'group-all'           => '(wšě)',
 
-'group-user-member'          => '{{GENDER:$1|wužiwar|wužiwarka}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|awtomatisce potwjerdźeny wužiwar|awtomatisce potwjerdźena wužiwarka}}',
-'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|běrokrat|běrokratka}}',
-'group-suppress-member'      => '{{GENDER:$1|dohladowar|dohladowarka}}',
+'group-user-member'          => 'wužiwar',
+'group-autoconfirmed-member' => 'awtomatisce potwjerdźeny wužiwar',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'běrokrat',
+'group-suppress-member'      => 'dohladowar',
 
 'grouppage-user'          => '{{ns:project}}:Wužiwarjo',
 'grouppage-autoconfirmed' => '{{ns:project}}:Awtomatisce potwjerdźeni wužiwarjo',

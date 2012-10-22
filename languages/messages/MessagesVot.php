@@ -418,7 +418,7 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 # Groups
 'group-user'  => 'Сäüttijäd',
 'group-sysop' => 'Praviťeľad',
-'group-all'   => '{kõik)',
+'group-all'   => '(kõik)',
 
 'grouppage-user'  => '{{ns:project}}:Сäüttijäd',
 'grouppage-sysop' => '{{ns:project}}:Praviťeľad',

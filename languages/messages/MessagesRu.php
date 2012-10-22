@@ -52,6 +52,7 @@
  * @author Rave
  * @author Rubin
  * @author Sk
+ * @author Spider
  * @author TarzanASG
  * @author Temuri rajavi
  * @author Vago
@@ -453,7 +454,7 @@ $messages = array(
 'vector-action-protect'          => 'Защитить',
 'vector-action-undelete'         => 'Восстановить',
 'vector-action-unprotect'        => 'Изменить защиту',
-'vector-simplesearch-preference' => 'Включить расширенные поисковые подсказки (только для оформления «Векторное»)',
+'vector-simplesearch-preference' => 'Включить упрощённую строку поиска (только для оформления «Векторное»)',
 'vector-view-create'             => 'Создание',
 'vector-view-edit'               => 'Правка',
 'vector-view-history'            => 'История',

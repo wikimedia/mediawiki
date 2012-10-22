@@ -291,7 +291,7 @@ $messages = array(
 'categorypage'      => 'Li rûpela kategoriyê binêre',
 'viewtalkpage'      => 'Li gotûbêjê binêre',
 'otherlanguages'    => 'Zimanên din',
-'redirectedfrom'    => '(ji $1 hate beralîkirin)',
+'redirectedfrom'    => '(Ji $1 hate beralîkirin)',
 'redirectpagesub'   => 'Rûpelê beralî bike',
 'lastmodifiedat'    => 'Ev rûpel cara dawî di $2, $1 de hate guherandin.',
 'viewcount'         => 'Ev rûpel {{PLURAL:$1|carekê|caran}} tê xwestin.',
@@ -1580,8 +1580,9 @@ Ji bo jêbirinan û çêkirinên nû, ji kerema xwe li [[{{ns:special}}:Log/dele
 'whatlinkshere-prev'       => '{{PLURAL:$1|yê|$1 yên}} berê',
 'whatlinkshere-next'       => '{{PLURAL:$1|yê|$1 yên}} din',
 'whatlinkshere-links'      => '← girêdan',
-'whatlinkshere-hideredirs' => '$1 beralîkirin',
-'whatlinkshere-hidelinks'  => '$1 lînkan',
+'whatlinkshere-hideredirs' => 'Beralîkirinan $1',
+'whatlinkshere-hidetrans'  => 'Naverokan $1',
+'whatlinkshere-hidelinks'  => 'Lînkan $1',
 'whatlinkshere-hideimages' => '$1 lînkên wêneyan',
 'whatlinkshere-filters'    => 'Parzûn',
 
@@ -2038,7 +2039,7 @@ Ji kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 # Auto-summaries
 'autosumm-blank'   => 'Rûpel hate vala kirin',
 'autosumm-replace' => "'$1' ket şûna rûpelê.",
-'autoredircomment' => 'ji bo [[$1]] hate beralîkirin',
+'autoredircomment' => 'Ji bo [[$1]] hate beralîkirin',
 'autosumm-new'     => 'Rûpela nû: "$1"',
 
 # Live preview

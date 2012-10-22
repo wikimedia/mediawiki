@@ -346,7 +346,7 @@ $messages = array(
 'vector-action-protect'          => 'Beskyt',
 'vector-action-undelete'         => 'Gendan',
 'vector-action-unprotect'        => 'Ændr beskyttelse',
-'vector-simplesearch-preference' => 'Aktivér forbedrede søgeforslag (kun Vector-udseendet)',
+'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create'             => 'Opret',
 'vector-view-edit'               => 'Redigér',
 'vector-view-history'            => 'Se historik',
@@ -815,9 +815,8 @@ Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer p�
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede logger]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
-'noarticletext-nopermission'       => 'Der er i øjeblikket ikke noget tekst på denne side.
-Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
-eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
+'noarticletext-nopermission'       => 'Der er i øjeblikket ingen tekst på denne side.
+Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider, eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>, men du har ikke rettigheder til at oprette denne side.',
 'userpage-userdoesnotexist'        => 'Brugerkontoen "<nowiki>$1</nowiki>" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'userpage-userdoesnotexist-view'   => 'Brugerkontoen "$1" er ikke oprettet.',
 'blocked-notice-logextract'        => 'Denne bruger er i øjeblikket blokeret.
@@ -1344,12 +1343,12 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'group-suppress'      => 'Logskjulere',
 'group-all'           => '(alle)',
 
-'group-user-member'          => '{{GENDER:$1|bruger}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|registreret bruger}}',
-'group-bot-member'           => '{{GENDER:$1|robot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|bureaukrat}}',
-'group-suppress-member'      => '{{GENDER:$1|logskjuler}}',
+'group-user-member'          => 'bruger',
+'group-autoconfirmed-member' => 'registreret bruger',
+'group-bot-member'           => 'robot',
+'group-sysop-member'         => 'administrator',
+'group-bureaucrat-member'    => 'bureaukrat',
+'group-suppress-member'      => 'logskjuler',
 
 'grouppage-user'          => '{{ns:project}}:Brugere',
 'grouppage-autoconfirmed' => '{{ns:project}}:Registrerede brugere',
@@ -2705,7 +2704,7 @@ Du kan se på kildeteksten.',
 'tooltip-t-contributions'         => 'Se denne brugers bidrag',
 'tooltip-t-emailuser'             => 'Send en e-mail til denne bruger',
 'tooltip-t-upload'                => 'Upload et billede eller anden mediafil',
-'tooltip-t-specialpages'          => 'Liste med alle specielle sider',
+'tooltip-t-specialpages'          => 'Liste over alle specialsider',
 'tooltip-t-print'                 => 'Printervenlig udgave af denne side',
 'tooltip-t-permalink'             => 'Permanent henvisning til denne version af denne side',
 'tooltip-ca-nstab-main'           => 'Se indholdet',

@@ -307,7 +307,7 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Sublinhar ligação:',
+'tog-underline'               => 'Sublinhar links:',
 'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Ocultar edições menores nas mudanças recentes',
@@ -318,7 +318,7 @@ $messages = array(
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
-'tog-editsection'             => 'Habilitar edição de seção via ligações [editar]',
+'tog-editsection'             => 'Ativar a edição de seções com links [editar]',
 'tog-editsectiononrightclick' => 'Habilitar edição de seção por clique com o botão direito no título da seção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Recordar os meus dados neste navegador (por no máximo $1 {{PLURAL:$1|dia|dias}})',
@@ -336,10 +336,10 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários que estão vigiando',
 'tog-oldsig'                  => 'Assinatura existente:',
-'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
+'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem link automático)',
 'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff'            => 'Utilizar comparador de versões externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
-'tog-showjumplinks'           => 'Ativar ligações de acessibilidade "ir para"',
+'tog-showjumplinks'           => 'Ativar links de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
 'tog-watchlisthideown'        => 'Ocultar as minhas edições da lista de páginas vigiadas',
@@ -435,7 +435,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Páginas indexadas',
 'noindex-category'               => 'Páginas não indexadas',
-'broken-file-category'           => 'Páginas com ligações quebradas para arquivos',
+'broken-file-category'           => 'Páginas com links inválidos para arquivos',
 
 'about'         => 'Sobre',
 'article'       => 'Página de conteúdo',
@@ -466,7 +466,7 @@ $messages = array(
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
 'vector-action-unprotect'        => 'Alterar a proteção',
-'vector-simplesearch-preference' => 'Ativar sugestões de busca melhoradas (apenas no tema Vector)',
+'vector-simplesearch-preference' => 'Ativar barra simplificada de buscas (apenas no skin Vector)',
 'vector-view-create'             => 'Criar',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver histórico',
@@ -488,7 +488,7 @@ $messages = array(
 'history_short'     => 'Histórico',
 'updatedmarker'     => 'atualizado desde a minha última visita',
 'printableversion'  => 'Versão para impressão',
-'permalink'         => 'Ligação permanente',
+'permalink'         => 'Link permanente',
 'print'             => 'Imprimir',
 'view'              => 'Ver',
 'edit'              => 'Editar',
@@ -614,7 +614,7 @@ Veja a [[Special:Version|página sobre a versão do sistema]].',
 # Main script and global functions
 'nosuchaction'      => 'Ação inexistente',
 'nosuchactiontext'  => 'A ação especificada pela URL é inválida.
-Você deve ter se enganado ao digitar a URL, ou seguiu uma ligação incorreta.
+Você deve ter se enganado ao digitar a URL, ou acessou um link incorreto.
 Isso também pode indicar um erro no software usado no sítio {{SITENAME}}.',
 'nosuchspecialpage' => 'Esta página especial não existe',
 'nospecialpagetext' => '<strong>Você requisitou uma página especial inválida.</strong>
@@ -624,12 +624,12 @@ Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Spe
 # General errors
 'error'                => 'Erro',
 'databaseerror'        => 'Erro no banco de dados',
-'dberrortext'          => 'Ocorreu um erro de sintaxe de busca no banco de dados.
-Isto pode indicar um problema com o \'\'software\'\'.
+'dberrortext'          => 'Ocorreu um erro de sintaxe na busca no banco de dados.
+Isto pode indicar um bug no software.
 A última tentativa de busca no banco de dados foi:
-<blockquote><tt>$1</tt></blockquote>
-na função "<tt>$2</tt>".
-O banco de dados retornou o erro "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+na função "<code>$2</code>".
+O banco de dados retornou o erro "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'Ocorreu um erro de sintaxe de busca no banco de dados.
 A última tentativa de busca no banco de dados foi:
 "$1"
@@ -643,10 +643,10 @@ O banco de dados retornou o erro "$3: $4".',
 Quem fez o bloqueio oferece a seguinte explicação: $1',
 'missing-article'      => 'O banco de dados não encontrou o texto de uma página que deveria ter encontrado, com o nome "$1" $2.
 
-Isso normalmente é causado ao acessar uma ligação de diferença (diff) desatualizada ou para o histórico de uma página que foi apagada.
+Isso normalmente é causado ao acessar um link de diferença (dif) desatualizado ou para o histórico de uma página que foi apagada.
 
-Se não for este o caso, você pode ter encontrado um defeito (bug) no software.
-Anote o URL e reporte o ocorrido a um [[Special:ListUsers/sysop|administrador]].',
+Se este não for o caso, você pode ter encontrado um defeito (bug) no software.
+Anote a URL e reporte o ocorrido a um [[Special:ListUsers/sysop|administrador]].',
 'missingarticle-rev'   => '(revisão#: $1)',
 'missingarticle-diff'  => '(Dif.: $1, $2)',
 'readonly_lag'         => 'O banco de dados foi automaticamente bloqueado enquanto os servidores secundários se sincronizam com o principal',
@@ -824,12 +824,17 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'passwordreset-domain'         => 'Domínio:',
 'passwordreset-email'          => 'Endereço de e-mail:',
 'passwordreset-emailtitle'     => 'Detalhes da conta em {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
+'passwordreset-emailtext-ip'   => 'Alguém (provavelmente você, a partir do endereço IP $1)
+solicitou um lembrete dos seus detalhes de conta para {{SITENAME}} ($4).
+{{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
 
 $2
 
-{{PLURAL:$3|Esta senha temporária |Essas senhas temporárias}} vão expirar em {{PLURAL:$5|um dia|$5 dias}}.
-Você deve efetuar login e escolher uma nova senha agora. Se você conseguir lembrar da senha, ignore este e-mail e continue usando sua senha anterior, do contrário, prossiga com as instruções clicando na ligação.',
+{{PLURAL:$3|Esta senha temporária vai|Essas senhas temporárias vão}} expirar em {{PLURAL:$5|um dia|$5 dias}}.
+Você deve efetuar login e escolher uma nova senha agora.
+Se você conseguir lembrar da senha, ignore este e-mail e continue
+usando sua senha anterior. Caso contrário, prossiga com as instruções
+disponíveis no link.',
 'passwordreset-emailtext-user' => 'O usuário $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
 
 $2
@@ -844,10 +849,10 @@ Senha temporária: $2',
 'bold_tip'        => 'Texto em negrito',
 'italic_sample'   => 'Texto em itálico',
 'italic_tip'      => 'Texto em itálico',
-'link_sample'     => 'Título da ligação',
-'link_tip'        => 'Ligação interna',
-'extlink_sample'  => 'http://www.example.com título da ligação',
-'extlink_tip'     => 'Ligação externa (lembre-se do prefixo http://)',
+'link_sample'     => 'Título do link',
+'link_tip'        => 'Link interno',
+'extlink_sample'  => 'http://www.example.com título do link',
+'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
 'headline_sample' => 'Conteúdo do cabeçalho',
 'headline_tip'    => 'Seção de nível 2',
 'nowiki_sample'   => 'Inserir texto não-formatado aqui',
@@ -855,7 +860,7 @@ Senha temporária: $2',
 'image_sample'    => 'Exemplo.jpg',
 'image_tip'       => 'Arquivo embutido',
 'media_sample'    => 'Exemplo.ogg',
-'media_tip'       => 'Ligação para o arquivo',
+'media_tip'       => 'Link para o arquivo',
 'sig_tip'         => 'Sua assinatura, com hora e data',
 'hr_tip'          => 'Linha horizontal (use de forma moderada)',
 
@@ -926,7 +931,7 @@ Ela pode ter sido movida ou removido enquanto você estava vendo a página.',
 
 A senha para esta nova conta pode ser alterada na página ''[[Special:ChangePassword|de troca de senha]]'', após a autenticação.",
 'newarticle'                       => '(Nova)',
-'newarticletext'                   => "Você seguiu uma ligação para uma página que ainda não existe.
+'newarticletext'                   => "Você seguiu um link para uma página que ainda não existe.
 Para criá-la, comece escrevendo na caixa abaixo (veja [[{{MediaWiki:Helppage}}|a página de ajuda]] para mais informações).
 Se você chegou aqui por engano, clique no botão '''voltar''' do seu navegador.",
 'anontalkpagetext'                 => "---- ''Esta é a página de discussão para um usuário anônimo que ainda não criou uma conta ou que não a usa, de forma que temos de utilizar o endereço de IP para identificá-lo(a). Tal endereço de IP pode ser compartilhado por vários usuários. Se você é um usuário anônimo e acha que comentários irrelevantes foram direcionados a você, por gentileza, [[Special:UserLogin/signup|crie uma conta]] ou [[Special:UserLogin|autentique-se]], a fim de evitar futuras confusões com outros usuários anônimos.''",
@@ -1388,7 +1393,7 @@ Eis um valor gerado aleatoriamente que você pode usar: $1",
 'timezoneregion-indian'         => 'Oceano Índico',
 'timezoneregion-pacific'        => 'Oceano Pacífico',
 'allowemail'                    => 'Permitir que outros usuários me enviem e-mails',
-'prefs-searchoptions'           => 'Opções de busca',
+'prefs-searchoptions'           => 'Busca',
 'prefs-namespaces'              => 'Espaços nominais',
 'defaultns'                     => 'Caso contrário pesquisar nestes espaços nominais:',
 'default'                       => 'padrão',

@@ -714,7 +714,7 @@ Probeer het over een aantal minuten opnieuw.',
 Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'protectedinterface'   => "Deze pagina bevat tekst voor berichten van de software op deze wiki en is beveiligd om misbruik te voorkomen.
-Om vertalingen voor alle wiki's toe te voegen of te wijzigen, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
+Gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki, om vertalingen voor alle wiki's toe te voegen of te wijzigen.",
 'editinginterface'     => "'''Waarschuwing:''' u bewerkt een pagina die interfacetekst voor de software bevat.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen op deze wiki.
 Om vertalingen toe te voegen of te wijzigen voor alle wiki's, gebruik [//translatewiki.net/ translatewiki.net], het vertaalproject voor MediaWiki.",
@@ -1548,12 +1548,12 @@ Als u deze opgeeft, kan deze naam gebruikt worden om u erkenning te geven voor u
 'group-suppress'      => 'toezichthouders',
 'group-all'           => '(iedereen)',
 
-'group-user-member'          => '{{GENDER:$1|gebruiker}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|autobevestigde gebruiker}}',
-'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|beheerder}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|bureaucraat}}',
-'group-suppress-member'      => '{{GENDER:$1|toezichthouder}}',
+'group-user-member'          => 'gebruiker',
+'group-autoconfirmed-member' => 'autobevestigde gebruiker',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'beheerder',
+'group-bureaucrat-member'    => 'bureaucraat',
+'group-suppress-member'      => 'toezichthouder',
 
 'grouppage-user'          => '{{ns:project}}:Gebruikers',
 'grouppage-autoconfirmed' => '{{ns:project}}:Geregistreerde gebruikers',

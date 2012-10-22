@@ -667,7 +667,7 @@ $messages = array(
 'filehist-dimensions'       => 'Кугытшо',
 'filehist-filesize'         => 'Файлын кугытшо',
 'filehist-comment'          => 'Файл нерген:',
-'imagelinks'                => 'Файл деке кылвер-влак',
+'imagelinks'                => 'Файлым кучылтмаш',
 'linkstoimage'              => 'Тиде {{PLURAL:$1|$1 лаштык саде файл дене кылдалтын|$1 лаштык-влак саде файл дене кылдалтыныт}}:',
 'nolinkstoimage'            => 'Тиде файл дене кылдалтше ик лаштыкат уке.',
 'sharedupload'              => 'Тиде файлын верже: $1, туге гынат, тудым моло веренат кучылташ лиеш.',
@@ -885,6 +885,7 @@ $messages = array(
 'whatlinkshere-hideredirs' => 'вес вере колтымаш-влакым $1',
 'whatlinkshere-hidetrans'  => 'пуртымашым $1',
 'whatlinkshere-hidelinks'  => 'кылвер-влакым $1',
+'whatlinkshere-hideimages' => 'сӱрет деке кылвер-влакым $1',
 'whatlinkshere-filters'    => 'Фильтр-влак',
 
 # Block/unblock
@@ -946,6 +947,7 @@ $messages = array(
 'export' => 'Лаштык-влакым келыштараш',
 
 # Namespace 8 related
+'allmessagesname'        => 'Лӱм',
 'allmessages-filter-all' => 'Чыла',
 
 # Thumbnails

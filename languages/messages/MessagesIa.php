@@ -295,7 +295,7 @@ $messages = array(
 'vector-action-protect'          => 'Proteger',
 'vector-action-undelete'         => 'Restaurar',
 'vector-action-unprotect'        => 'Cambiar protection',
-'vector-simplesearch-preference' => 'Activar le suggestiones de recerca meliorate (solmente in apparentia Vector)',
+'vector-simplesearch-preference' => 'Activar le barra de recerca simplificate (solmente in apparentia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Modificar',
 'vector-view-history'            => 'Vider historia',
@@ -1061,7 +1061,9 @@ Per favor verifica le registros.',
 'revdelete-only-restricted'   => 'Error de celar le entrata del $1 a $2: tu non pote render entratas invisibile a administratores sin seliger tamben un del altere optiones de visibilitate.',
 'revdelete-reason-dropdown'   => '*Motivos commun pro deletion
 ** Violation de copyright
-** Information personal inappropriate',
+** Information personal o commento inappropriate
+** Nomine de usator inappropriate
+** Information que pote esser diffamatori',
 'revdelete-otherreason'       => 'Altere/additional motivo:',
 'revdelete-reasonotherlist'   => 'Altere motivo',
 'revdelete-edit-reasonlist'   => 'Modificar motivos pro deletion',
@@ -1252,7 +1254,7 @@ Ecce un valor aleatorimente generate que tu pote usar: $1',
 'timezoneregion-indian'         => 'Oceano Indian',
 'timezoneregion-pacific'        => 'Oceano Pacific',
 'allowemail'                    => 'Activar reception de e-mail de altere usatores',
-'prefs-searchoptions'           => 'Optiones de recerca',
+'prefs-searchoptions'           => 'Recerca',
 'prefs-namespaces'              => 'Spatios de nomines',
 'defaultns'                     => 'Alteremente cercar in iste spatios de nomines:',
 'default'                       => 'predefinite',

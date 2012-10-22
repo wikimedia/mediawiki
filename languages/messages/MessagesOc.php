@@ -13,6 +13,7 @@
  * @author Fryed-peach
  * @author Jfblanc
  * @author Kaganer
+ * @author McDutchie
  * @author Spacebirdy
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -1321,7 +1322,7 @@ Vaquí una valor generada aleatòriament que podètz utilizar : $1',
 'timezoneregion-indian'         => 'Ocean Indian',
 'timezoneregion-pacific'        => 'Ocean Pacific',
 'allowemail'                    => 'Autorizar lo mandadís de corrièr electronic venent d’autres utilizaires',
-'prefs-searchoptions'           => 'Opcions de recèrca',
+'prefs-searchoptions'           => 'Recèrca',
 'prefs-namespaces'              => 'Noms d’espacis',
 'defaultns'                     => 'Autrament recercar dins aquestes espacis de noms :',
 'default'                       => 'defaut',

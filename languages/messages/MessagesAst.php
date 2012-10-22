@@ -218,7 +218,7 @@ $messages = array(
 'vector-action-protect'          => 'Protexer',
 'vector-action-undelete'         => 'Restaurar',
 'vector-action-unprotect'        => 'Camudar la proteición',
-'vector-simplesearch-preference' => 'Activar suxerencies meyoraes de gueta (namái apariencia Vector)',
+'vector-simplesearch-preference' => 'Activar la barra de gueta simplificada (namái apariencia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver historial',
@@ -433,10 +433,11 @@ Consulta: $2',
 Por favor vuelvi intentalo nunos minutos.',
 'protectedpagetext'    => 'Esta páxina ta candada pa torgar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar la fonte d'esta páxina:",
-'protectedinterface'   => "Esta páxina proporciona testu d'interfaz de l'aplicación, y ta candada pa torgar abusos.",
-'editinginterface'     => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz de l'aplicación.
-Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios.
-Si quies facer traducciones, por favor usa [//translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
+'protectedinterface'   => "Esta páxina proporciona'l testu de la interfaz del software d'esta wiki, y ta candada pa torgar abusos.
+P'amestar o cambiar les traducciones de toles wikis, por favor usa [//translatewiki.net/translatewiki.net], el proyeutu de llocalización de MediaWiki.",
+'editinginterface'     => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz del programa.
+Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios d'esta wiki.
+P'amestar o camudar traducciones pa toles wikis, por favor, usa [//translatewiki.net/ translatewiki.net], el proyeutu de traducción de MediaWiki.",
 'sqlhidden'            => '(consulta SQL anubrida)',
 'cascadeprotected'     => "Esta páxina ta protexida d'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción «en cascada» activada:
 $2",
@@ -717,9 +718,8 @@ Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa
 Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta páxina equí]</span>.',
-'noarticletext-nopermission'       => 'Anguaño nun hai testu nesta páxina.
-Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} buscar los rexistros rellacionaos]</span>.',
+'noarticletext-nopermission'       => 'Nestos momentos nun hai testu nesta páxina.
+Pues [[Special:Search/{{PAGENAME}}|guetar esti títulu de páxina]] n\'otres páxines o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} guetar los rexistros rellacionaos]</span>, pero nun tienes permisu pa crear esta páxina.',
 'userpage-userdoesnotexist'        => "La cuenta d'usuariu «$1» nun ta rexistrada.
 Por favor comprueba si quies crear/editar esta páxina.",
 'userpage-userdoesnotexist-view'   => "La cuenta d'usuariu «$1» nun ta rexistrada.",
@@ -1171,7 +1171,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'timezoneregion-indian'         => 'Océanu Índicu',
 'timezoneregion-pacific'        => 'Océanu Pacíficu',
 'allowemail'                    => 'Dexar a los otros usuarios mandate correos',
-'prefs-searchoptions'           => 'Opciones de busca',
+'prefs-searchoptions'           => 'Guetar',
 'prefs-namespaces'              => 'Espacios de nome',
 'defaultns'                     => "D'otra miente, guetar nestos espacios de nome:",
 'default'                       => 'predetermináu',
@@ -1258,12 +1258,12 @@ Esta información sedrá pública.",
 'group-suppress'      => 'Güeyadores',
 'group-all'           => '(toos)',
 
-'group-user-member'          => '{{GENDER:$1|usuariu|usuaria}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|usuariu auto-confirmáu|usuaria auto-confirmada}}',
-'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|alministrador|alministradora}}',
-'group-bureaucrat-member'    => '{{GENDER:$1|burócrata}}',
-'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
+'group-user-member'          => 'usuariu',
+'group-autoconfirmed-member' => 'usuariu autoconfirmáu',
+'group-bot-member'           => 'bot',
+'group-sysop-member'         => 'alministrador',
+'group-bureaucrat-member'    => 'burócrata',
+'group-suppress-member'      => 'supervisor',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmaos',
@@ -3345,7 +3345,7 @@ Esti códigu de confirmación caduca\'l $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',
-'scarytranscludefailed'   => '[La obtención de la plantía falló pa $1]',
+'scarytranscludefailed'   => '[Falló la recuperación de la plantía pa $1]',
 'scarytranscludetoolong'  => '[La URL ye demasiao llarga]',
 
 # Trackbacks

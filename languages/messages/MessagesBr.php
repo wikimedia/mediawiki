@@ -1336,7 +1336,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'group-suppress'      => 'Dindan evezh',
 'group-all'           => '(pep tra)',
 
-'group-user-member'          => '{{GENDER:$1|implijer}}',
+'group-user-member'          => 'implijer',
 'group-autoconfirmed-member' => '{{GENDER:$1|Implijer bet kadarnaet ent emgefre}}',
 'group-bot-member'           => '{{GENDER:$1|robot}}',
 'group-sysop-member'         => '{{GENDER:$1|merour}}',
