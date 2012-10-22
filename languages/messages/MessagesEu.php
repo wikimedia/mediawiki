@@ -2370,7 +2370,7 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'move-subpages' => 'Azpiorrialde guztiak ($1-tik gora) mugitu',
 'move-talk-subpages' => 'Azpiorrialdeen eztabaida orrialde guztiak ($1-tik gora) mugitu',
 'movepage-page-exists' => '$1 orrialdea jada badago eta ezin da automatikoki gainetik idatzi.',
-'movepage-page-moved' => '$1 orrialdea $2(e)ra mugitu da.',
+'movepage-page-moved' => '$1 orria $2 izenera aldatu da.',
 'movepage-page-unmoved' => '$1 orrialdea ezin da $2(e)ra mugitu.',
 'movepage-max-pages' => '$1 {{PLURAL:$1|orrialderen|orrialdeen}} maximoa mugitu da eta jada ez dira gehiago mugituko modu automatikoan.',
 'movelogpage' => 'Mugimendu erregistroa',
@@ -3285,6 +3285,8 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 # New logging system
 'revdelete-restricted' => 'administratzaileentzako mugak ezarri dira',
 'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
+'logentry-move-move' => '$1 wikilariak «$3» orria «$4» izenera aldatu du',
+'logentry-move-move_redir-noredirect' => '$1 wikilariak «$3» orria «$4» izenera aldatu du, birzuzenketa bat gainidatzita, birzuzenketarik utzi gabe',
 'newuserlog-byemail' => 'pasahitza e-postaz bidali da',
 
 # Feedback

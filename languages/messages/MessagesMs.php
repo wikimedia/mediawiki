@@ -1860,7 +1860,7 @@ Mungkin anda ingin menyunting keterangan pada [$2 laman penerangan failnya] di s
 'shared-repo' => 'sebuah gedung kongsi',
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
 'filepage.css' => '/* CSS yang ditempatkan di sini disertakan pada laman keterangan fail, dan juga pada klien wiki asing */',
-'upload-disallowed-here' => 'Maaf, anda tidak boleh menggantikan imej ini.',
+'upload-disallowed-here' => 'Anda tidak boleh menggantikan fail ini.',
 
 # File reversion
 'filerevert' => 'Balikkan $1',
@@ -2953,6 +2953,7 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 
 # Info page
 'pageinfo-title' => 'Maklumat untuk "$1"',
+'pageinfo-not-current' => 'Maklumat mungkin hanya dipaparkan untuk versi semasa.',
 'pageinfo-header-basic' => 'Maklumat asas',
 'pageinfo-header-edits' => 'Sunting sejarah',
 'pageinfo-header-restrictions' => 'Perlindungan halaman',
@@ -2977,7 +2978,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'pageinfo-authors' => 'Jumlah pengarang yang berlainan',
 'pageinfo-recent-edits' => 'Bilangan suntingan terkini (dalam $1 yang lalu)',
 'pageinfo-recent-authors' => 'Bilangan pengarang berbeza yang terkini',
-'pageinfo-restriction' => 'Perlindungan halaman ({{lcfirst:$1}})',
 'pageinfo-magic-words' => 'Kata sakti ($1)',
 'pageinfo-hidden-categories' => 'Kategori tersembunyi ($1)',
 'pageinfo-templates' => 'Templat tertransklusi ($1)',

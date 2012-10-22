@@ -566,7 +566,7 @@ $messages = array(
 'lastmodifiedat' => 'Оваа страница последен пат е изменета на $1 во $2 ч.',
 'viewcount' => 'Оваа страница била посетена {{PLURAL:$1|еднаш|$1 пати}}.',
 'protectedpage' => 'Заштитена страница',
-'jumpto' => 'Скокни на:',
+'jumpto' => 'Прејди на:',
 'jumptonavigation' => 'содржини',
 'jumptosearch' => 'барај',
 'view-pool-error' => 'За жал во моментов опслужувачите се преоптоварени.
@@ -2064,7 +2064,7 @@ $1',
 'shared-repo' => 'заедничко складиште',
 'shared-repo-name-wikimediacommons' => 'Заедничката Ризница',
 'filepage.css' => '/* Тука поставените каскадни стилски страници (CSS) се вклучени во страницата за опис на податотеката, како и на клиентските викија */',
-'upload-disallowed-here' => 'Нажалост, не можете да ја замените сликава со нова.',
+'upload-disallowed-here' => 'Нажалост, не можете да презапишете врз сликава.',
 
 # File reversion
 'filerevert' => 'Врати $1',
@@ -3195,6 +3195,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'Информации за „$1“',
+'pageinfo-not-current' => 'Информациите може да се прикажат само за тековната ревизија.',
 'pageinfo-header-basic' => 'Основни информации',
 'pageinfo-header-edits' => 'Историја на уредувања',
 'pageinfo-header-restrictions' => 'Заштита на страницата',
@@ -3220,7 +3221,6 @@ $1',
 'pageinfo-authors' => 'Број на засебни автори',
 'pageinfo-recent-edits' => 'Број на скорешни уредувања (во последните $1)',
 'pageinfo-recent-authors' => 'Број на скорешни засебни автори',
-'pageinfo-restriction' => 'Заштита на страницата ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Волшебен збор|Волшебни зборови}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скриена категорија|Скриени категории}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Превметнат шаблон|Превметнати шаблони}} ($1)',
@@ -4174,8 +4174,8 @@ $5
 'dberr-cachederror' => 'Следнава содржина е кеширана копија на бараната страница, која може да е застарена.',
 
 # HTML forms
-'htmlform-invalid-input' => 'Има проблеми со дел од вашиот внес',
-'htmlform-select-badoption' => 'Вредноста која ја наведовте не е важечка.',
+'htmlform-invalid-input' => 'Има проблеми со дел од вашиот внос',
+'htmlform-select-badoption' => 'Укажаната вредност е неважечка како можност.',
 'htmlform-int-invalid' => 'Вредноста која ја наведовте не е цел број.',
 'htmlform-float-invalid' => 'Вредноста која ја наведовте не е број.',
 'htmlform-int-toolow' => 'Вредноста која ја наведовте е под минимумот од $1',

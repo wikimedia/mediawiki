@@ -467,7 +467,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Alterar protecção',
-'vector-simplesearch-preference' => 'Activar sugestões de busca melhoradas (apenas no tema Vector)',
+'vector-simplesearch-preference' => 'Activar barra de buscas simplificada (apenas no tema Vector)',
 'vector-view-create' => 'Criar',
 'vector-view-edit' => 'Editar',
 'vector-view-history' => 'Ver histórico',
@@ -3147,7 +3147,6 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edições recentes (nos últimos $1)',
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
-'pageinfo-restriction' => 'Proteção da página ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
 

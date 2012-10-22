@@ -30,6 +30,7 @@
  * @author Clerc
  * @author Crazymadlover
  * @author Cvmontuy
+ * @author Dalton2
  * @author Danke7
  * @author David0811
  * @author Dferg
@@ -56,6 +57,7 @@
  * @author Locos epraix
  * @author Mahadeva
  * @author Manuelt15
+ * @author Maor X
  * @author McDutchie
  * @author Muro de Aguas
  * @author Omnipaedista
@@ -360,23 +362,23 @@ $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline' => 'Subrayar enlaces:',
-'tog-justify' => 'Justificar párrafos',
-'tog-hideminor' => 'Ocultar ediciones menores en cambios recientes',
-'tog-hidepatrolled' => 'Ocultar ediciones patrulladas en los cambios recientes',
-'tog-newpageshidepatrolled' => 'Ocultar páginas patrulladas de la lista de páginas nuevas',
-'tog-extendwatchlist' => 'Expandir la lista de seguimiento a todos los cambios, no sólo a los más recientes.',
-'tog-usenewrc' => 'Agrupar los cambios por página en los cambios recientes y en la lista de vigilancia (requiere JavaScript)',
+'tog-justify' => 'Justificar los párrafos',
+'tog-hideminor' => 'Ocultar las ediciones menores en los cambios recientes',
+'tog-hidepatrolled' => 'Ocultar las ediciones patrulladas en los cambios recientes',
+'tog-newpageshidepatrolled' => 'Ocultar las páginas patrulladas de la lista de páginas nuevas',
+'tog-extendwatchlist' => 'Expandir la lista de seguimiento a todos los cambios, no sólo a los más recientes',
+'tog-usenewrc' => 'Agrupar los cambios por página en los cambios recientes y en la lista de seguimiento (requiere JavaScript)',
 'tog-numberheadings' => 'Numerar automáticamente los encabezados',
 'tog-showtoolbar' => 'Mostrar la barra de edición (requiere JavaScript)',
-'tog-editondblclick' => 'Editar páginas con doble clic (requiere JavaScript)',
-'tog-editsection' => 'Habilitar la edición de secciones usando el enlace [editar]',
-'tog-editsectiononrightclick' => 'Habilitar la edición de secciones presionando el botón de la derecha en los títulos de secciones (requiere JavaScript)',
+'tog-editondblclick' => 'Editar las páginas con doble clic (requiere JavaScript)',
+'tog-editsection' => 'Habilitar la edición de secciones mediante el enlace [editar]',
+'tog-editsectiononrightclick' => 'Habilitar la edición de secciones pulsando el botón derecho en los títulos de secciones (requiere JavaScript)',
 'tog-showtoc' => 'Mostrar el índice (para páginas con más de 3 encabezados)',
 'tog-rememberpassword' => 'Recordar mi nombre de usuario y contraseña entre sesiones en este navegador (por un máximo de $1 {{PLURAL:$1|día|días}})',
-'tog-watchcreations' => 'Añadir las páginas que cree y los archivos que cargue a mi lista de vigilancia',
-'tog-watchdefault' => 'Añadir la páginas y archivos que edite a mi lista de vigilancia',
-'tog-watchmoves' => 'Añadir las páginas y archivos que mueva a mi lista de vigilancia',
-'tog-watchdeletion' => 'Añadir la páginas y archivos que borre a mi lista de vigilancia',
+'tog-watchcreations' => 'Añadir las páginas que cree y los archivos que suba a mi lista de seguimento',
+'tog-watchdefault' => 'Añadir las páginas y archivos que edite a mi lista de seguimiento',
+'tog-watchmoves' => 'Añadir las páginas y archivos que mueva a mi lista de seguimiento',
+'tog-watchdeletion' => 'Añadir las páginas y archivos que borre a mi lista de seguimiento',
 'tog-minordefault' => 'Marcar todas las ediciones como menores de manera predeterminada',
 'tog-previewontop' => 'Mostrar previsualización antes del cuadro de edición',
 'tog-previewonfirst' => 'Mostrar previsualización en la primera edición',
@@ -387,23 +389,23 @@ $messages = array(
 'tog-enotifrevealaddr' => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching' => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig' => 'Firma actual:',
-'tog-fancysig' => 'Tratar firma como wikitexto (sin un enlace automático)',
-'tog-externaleditor' => 'Utilizar editor externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
-'tog-externaldiff' => 'Utilizar diff externo por defecto (sólo para expertos, pues necesitas ajustes especiales en tu ordenador; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
-'tog-showjumplinks' => 'Habilitar enlaces de accesibilidad «saltar a»',
-'tog-uselivepreview' => 'Usar live preview (JavaScript) (Experimental)',
-'tog-forceeditsummary' => 'Avisar cuando grabe la página sin introducir un resumen de edición',
+'tog-fancysig' => 'Tratar la firma como wikitexto (sin un enlace automático)',
+'tog-externaleditor' => 'Utilizar editor externo por defecto (sólo para expertos: son necesarios ajustes especiales en la computadora; [//www.mediawiki.org/wiki/Manual:External_editors más información])',
+'tog-externaldiff' => "Utilizar ''diferencia'' externa por defecto (sólo para expertos: son necesarios ajustes especiales en la computadora; [//www.mediawiki.org/wiki/Manual:External_editors más información])",
+'tog-showjumplinks' => 'Habilitar los enlaces de accesibilidad «saltar a»',
+'tog-uselivepreview' => 'Usar previsualización en vivo (requiere JavaScript) (experimental)',
+'tog-forceeditsummary' => 'Avisarme cuando grabe la página sin introducir un resumen de edición',
 'tog-watchlisthideown' => 'Ocultar mis ediciones en la lista de seguimiento',
-'tog-watchlisthidebots' => 'Ocultar ediciones de bots en la lista de seguimiento',
-'tog-watchlisthideminor' => 'Ocultar ediciones menores en la lista de seguimiento',
-'tog-watchlisthideliu' => 'Ocultar ediciones de usuarios registrados en la lista de seguimiento',
-'tog-watchlisthideanons' => 'Ocultar ediciones de usuarios anónimos en la lista de seguimiento',
+'tog-watchlisthidebots' => 'Ocultar las ediciones de bots en la lista de seguimiento',
+'tog-watchlisthideminor' => 'Ocultar las ediciones menores en la lista de seguimiento',
+'tog-watchlisthideliu' => 'Ocultar las ediciones de los usuarios registrados en la lista de seguimiento',
+'tog-watchlisthideanons' => 'Ocultar las ediciones de los usuarios anónimos en la lista de seguimiento',
 'tog-watchlisthidepatrolled' => 'Ocultar las ediciones patrulladas en la lista de seguimiento',
 'tog-ccmeonemails' => 'Recibir copias de los correos que envío a otros usuarios',
-'tog-diffonly' => 'No mostrar el contenido de la página bajo las diferencias',
-'tog-showhiddencats' => 'Mostrar categorías escondidas',
+'tog-diffonly' => "No mostrar bajo las ''diferencias'' el contenido de la página",
+'tog-showhiddencats' => 'Mostrar las categorías escondidas',
 'tog-noconvertlink' => 'Desactivar la conversión de título de enlace',
-'tog-norollbackdiff' => "Omitir el ''diff'' después de revertir",
+'tog-norollbackdiff' => "Omitir la ''diferencia'' después de revertir",
 
 'underline-always' => 'Siempre',
 'underline-never' => 'Nunca',
@@ -510,7 +512,7 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Añadir tema',
+'vector-action-addsection' => 'Nueva sección',
 'vector-action-delete' => 'Borrar',
 'vector-action-move' => 'Mover',
 'vector-action-protect' => 'Proteger',
@@ -1189,7 +1191,7 @@ El motivo dado por $3 es ''$2''",
 Leyenda: (act) = diferencias con la versión actual,
 (prev) = diferencias con la versión previa, M = edición menor",
 'history-fieldset-title' => 'Buscar en el historial',
-'history-show-deleted' => 'Solamente borrado',
+'history-show-deleted' => 'Solo ediciones ocultadas',
 'histfirst' => 'Primeras',
 'histlast' => 'Últimas',
 'historysize' => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -1297,12 +1299,12 @@ No tiene acceso a él.',
 'revdelete-otherreason' => 'Otra/adicional razón:',
 'revdelete-reasonotherlist' => 'Otra razón',
 'revdelete-edit-reasonlist' => 'Editar razones de borrado',
-'revdelete-offender' => 'Autor de revisión:',
+'revdelete-offender' => 'Autor de la revisión:',
 
 # Suppression log
 'suppressionlog' => 'Registro de supresiones',
 'suppressionlogtext' => 'A continuación hay una lista con los borrados y bloqueos cuyo contenido se encuentra oculto para los administradores.
-Ver la [[Special:BlockList|lista de bloqueos]] que incluye las prohibiciones y bloqueos actualmente operativos.',
+Véase la [[Special:BlockList|lista de bloqueos]] que incluye las prohibiciones y bloqueos actualmente operativos.',
 
 # History merging
 'mergehistory' => 'Fusionar historiales de páginas',
@@ -2045,7 +2047,7 @@ Tal vez desee editar la descripción de su [$2 página de descripción del archi
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'un repositorio compartido',
 'filepage.css' => '/* Los estilos CSS colocados aquí se incluirán en las páginas de descripción de archivos, incluso en los wikis externos que incluyan estas páginas */',
-'upload-disallowed-here' => 'Lamentablemente no puedes sobrescribir esta imagen.',
+'upload-disallowed-here' => 'No puedes sobrescribir este archivo.',
 
 # File reversion
 'filerevert' => 'Revertir $1',
@@ -2236,7 +2238,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario o la página afectada. Se distinguen mayúsculas de minúsculas.',
 'logempty' => 'No hay elementos en el registro con esas condiciones.',
 'log-title-wildcard' => 'Buscar títulos que empiecen con este texto',
-'showhideselectedlogentries' => 'Mostrar u ocultar las entradas del registro seleccionado',
+'showhideselectedlogentries' => 'Mostrar u ocultar las entradas seleccionadas del registro',
 
 # Special:AllPages
 'allpages' => 'Todas las páginas',
@@ -2334,7 +2336,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'emailpagetext' => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
 La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
 'usermailererror' => 'El sistema de correo devolvió un error:',
-'defemailsubject' => 'Correo de {{SITENAME}} para el usuario $1',
+'defemailsubject' => 'Correo electrónico enviado por el usuario «$1» desde {{SITENAME}}',
 'usermaildisabled' => 'Correo electrónico del usuario deshabilitado',
 'usermaildisabledtext' => 'No puedes enviar correos electrónicos a otros usuarios en esta wiki',
 'noemailtitle' => 'No hay dirección de correo electrónico',
@@ -2638,7 +2640,7 @@ $1',
 A continuación se muestra la última entrada del registro de bloqueos para mayor referencia.',
 'sp-contributions-search' => 'Buscar contribuciones',
 'sp-contributions-username' => 'Dirección IP o nombre de usuario:',
-'sp-contributions-toponly' => 'Mostrar solamente revisiones top',
+'sp-contributions-toponly' => 'Solo mostrar últimas ediciones de página',
 'sp-contributions-submit' => 'Buscar',
 
 # What links here
@@ -3152,6 +3154,7 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 
 # Info page
 'pageinfo-title' => 'Información para «$1»',
+'pageinfo-not-current' => 'Únicamente se puede mostrar la información para la revisión actual.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de ediciones',
 'pageinfo-header-restrictions' => 'Protección de página',
@@ -3177,7 +3180,6 @@ Esto podría estar causado por un enlace a un sitio externo incluido en la lista
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de ediciones recientes (en los últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recientes',
-'pageinfo-restriction' => 'Protección de la página ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra mágica|Palabras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría oculta|Categorías ocultas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|plantilla incluida|plantillas incluidas}} ($1)',
@@ -3991,8 +3993,8 @@ Este sitio está experimentando dificultades técnicas.',
 'sqlite-no-fts' => '$1 sin soporte para búsqueda de texto completo',
 
 # New logging system
-'logentry-delete-delete' => '$1 borró la página $3',
-'logentry-delete-restore' => '$1 restauró la página $3',
+'logentry-delete-delete' => '$1 borró la página «$3»',
+'logentry-delete-restore' => '$1 restauró la página «$3»',
 'logentry-delete-event' => '$1 modificó la visibilidad de {{PLURAL:$5|un evento del registro|$5 eventos del registro}} en $3: $4',
 'logentry-delete-revision' => '$1 modificó la visibilidad de {{PLURAL:$5|una edición|$5 ediciones}} en la página $3: $4',
 'logentry-delete-event-legacy' => '$1 modificó la visibilidad de los eventos del registro en $3',
@@ -4041,7 +4043,7 @@ En otro caso, puedes usar el siguiente formulario. Tu comentario será añadido 
 
 # Search suggestions
 'searchsuggest-search' => 'Buscar',
-'searchsuggest-containing' => 'conteniendo...',
+'searchsuggest-containing' => 'que contiene...',
 
 # API errors
 'api-error-badaccess-groups' => 'No puedes cargar archivos en este wiki.',

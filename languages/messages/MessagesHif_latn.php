@@ -192,7 +192,7 @@ $messages = array(
 'vector-action-protect' => 'Bachao',
 'vector-action-undelete' => 'Pahile jaise karo',
 'vector-action-unprotect' => 'Surakchha ke badlo',
-'vector-simplesearch-preference' => 'Aur achchhaa se khoje salah do (Khaali vector skin)',
+'vector-simplesearch-preference' => 'Aur achchhaa se khoje ke salah do (Khaali vector skin)',
 'vector-view-create' => 'Banao',
 'vector-view-edit' => 'Badlo',
 'vector-view-history' => 'Itihaas dekho',
@@ -298,6 +298,10 @@ $1',
 'youhavenewmessages' => 'Aapke pass hai $1 ($2).',
 'newmessageslink' => 'nawaa khabar',
 'newmessagesdifflink' => 'pahile waala badlao',
+'youhavenewmessagesfromusers' => 'Aap ke lage {{PLURAL:$3|duusra sadasya|$3 sadasya}} ke lage se $1 hae ($2).',
+'youhavenewmessagesmanyusers' => 'Aap ke lage dher sadasya se $1 hae ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|ek nawaa sandes|nawaa sandes}}',
+'newmessagesdifflinkplural' => 'pichhla {{PLURAL:$1|badlao}}',
 'youhavenewmessagesmulti' => 'Aap ke khatir $1 pe sandes hai',
 'editsection' => 'badlo',
 'editold' => 'badlao',
@@ -350,11 +354,11 @@ Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili.'
 'error' => 'Galti',
 'databaseerror' => 'Database me galti hai',
 'dberrortext' => 'Database ke khoj me syntax error hoe gais hae.
-Saait software me bug hoi.
+Iske matlab ii hoe sake hae ki saait software me bug hoi.
 Pahile waala database ke khoj ke kosis rahaa:
-<blockquote><tt>$1</tt></blockquote>
-"<tt>$2</tt>" function ke bhitar se.
-Database ke galti sandes rahaa "<tt>$3: $4</tt>".',
+<blockquote><code>$1</code></blockquote>
+"<code>$2</code>" function ke bhitar se.
+Database ke galti sandes rahaa "<samp>$3: $4</samp>".',
 'dberrortextcl' => 'Database ke khoj me syntax error hoe gais hae.
 Pahile waala database ke khoj ke kosis rahaa:
 "$1"
@@ -408,10 +412,11 @@ Kuch deri be baad fir se kosis karna.',
 'protectedpagetext' => 'Ii panna ke badlao ke roke ke khatir band kar dewa gais hai.',
 'viewsourcetext' => 'Aap ii panna ke source ke dekhe aur nakal utare kare sakta hai:',
 'viewyourtext' => "Aap '''aapan badlao''' ke source ke dekhe aur copy kare saktaa hae",
-'protectedinterface' => 'Ii panna software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.',
+'protectedinterface' => 'Ii panna, ii wiki ke khatir, software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.
+Sab wiki me anuwaad ke jorre nai to badle ke khatir, meharbaani kar ke [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project ke kaam me laao.',
 'editinginterface' => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hae.
-Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi.
-Translation khatir [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
+Ii panna me badlao ke asar duusra sadasya ke interface pe bhi hoi.
+Translation khatir [//translatewiki.net/ translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
 'sqlhidden' => '(SQL query lukawal hai)',
 'cascadeprotected' => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
@@ -447,6 +452,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'remembermypassword' => 'Ii computer pe hamaar login yaad rakho (jaada se jaada $1 {{PLURAL:$1|din|din}} talak)',
 'securelogin-stick-https' => 'Login kare ke baad HTTPS se connected raho',
 'yourdomainname' => 'Aap ke domain:',
+'password-change-forbidden' => 'Aap ii wiki me password nai badle saktaa hae.',
 'externaldberror' => 'Koi bahaari database authentication error hai, nai to aap ke bahaari account badle ke adhikar nai hai.',
 'login' => 'Log in karo',
 'nav-login-createaccount' => 'Log in karo/ nawaa account banao',
@@ -692,20 +698,21 @@ Agar aap ek anonymous user hai aur ii sochta hai ki bekar baat aap ke baare me k
 Aap saktaa hai [[Special:Search/{{PAGENAME}}|ii panna ke title khoje]] duusra panna me,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs],
 nai to [{{fullurl:{{FULLPAGENAME}}|action=edit}} ii panna ke badlo]</span>.',
-'noarticletext-nopermission' => 'Abhi ii panna pe koi chij likha nai hae.
+'noarticletext-nopermission' => 'Abhi ii panna me koi chij likha nai hae.
 Aap sakta hae [[Special:Search/{{PAGENAME}}|ii panna ke title ke khoje]] duusra panna me,
-nai to <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>.',
+nai to <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, lekin aap ke ii panna ke banae ke ijaaja tnai hae.',
+'missing-revision' => 'Panna "{{PAGENAME}}" me #$1 badlao nai hae.
+Iske kaaran ii hoe sake hae ki ek mitawa gais panna se link karaa jaawe hae.
+Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me paawa jaae sake hae.',
 'userpage-userdoesnotexist' => 'User account "<nowiki>$1</nowiki>" abi registered nai hai.
 Check karo ki Ii panna ke aap banae/badle mangta hai.',
 'userpage-userdoesnotexist-view' => 'User account "$1" abhi register nai karaa gais hae',
 'blocked-notice-logextract' => 'Ii sadasya ke abhi rok dewa gais hae.
 Sab se nawaa block log entry, aap ke reference ke khatir,  niche dewa gais hae:',
 'clearyourcache' => "'''Note:''' - Save kare ke baad, aap ke sait browser ke cache ke bypass kare ke parri badlao ke dekhe khatir.
-* '''Mozilla / Firefox / Safari:'''  ''Shift'' ke dabae ke ''Reload,'' pe click karo, nai to chaahe ''Ctrl-F5'' nai to ''Ctrl-R'' (''Command-R''  Mac pe)
-* '''Google Chrome:'''  ''Ctrl-Shift-R'' dabao (''Command-Shift-R'' Mac pe)
-*  '''Internet Explorer:'''  ''Ctrl'' dabae ke  ''Refresh'' pe click karo, nai to  ''Ctrl-F5'' dabao
-*  '''Konqueror: ''' ''Reload''  click karo nai to  ''F5 dabao;'' 
-* '''Opera:'''  ''Tools → Preferences''  me se cache ke safaa karo",
+* '''Firefox / Safari:''' me ''Shift'' ke dabae ke ''Reload,'' pe click karo, nai to chaahe ''Ctrl-F5'' nai to ''Ctrl-R'' (''⌘-R''  Mac pe)
+* '''Google Chrome:''' me ''Ctrl-Shift-R'' dabao (''⌘-Shift-R'' Mac pe)
+*  '''Internet Explorer:''' me ''Ctrl'' dabae ke  ''Refresh'' pe click karo, nai to  ''Ctrl-F5'' dabao",
 'usercssyoucanpreview' => "'''Salah:''' Bachae se pahile \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa CSS ke test karo.",
 'userjsyoucanpreview' => "'''Salah:''' Bachae se pahile  \"{{int:showpreview}}\"  button ke kaam me laae ke aapan nawaa JavaScript ke test karo.",
 'usercsspreview' => "'''Yaad rakhna ki aap khali aapan CSS ke jhalak dekhta hai.
@@ -826,6 +833,7 @@ Ii sab arguments ke omit kar dewa gais hai.',
 'expansion-depth-exceeded-warning' => 'Panna expansion depth ke exceed karis hae',
 'parser-unstrip-loop-warning' => 'Unstrip loop ke pawa gai shae',
 'parser-unstrip-recursion-limit' => 'Unstrip recursion limit ke exceed karaa gais hae ($1)',
+'converter-manual-rule-error' => 'Bhasa ke anuwaad kare waala niyam me galti hae',
 
 # "Undo" feature
 'undo-success' => 'Ii badlao ke pahile jaise karaa jaae sake hai.
@@ -959,8 +967,9 @@ Aap ke ispe adhikar nai hai.',
 Meharbani ka ke logs ke check karo.',
 'revdelete-only-restricted' => 'Jon chij aap $2, $1 ke lukae mangta rahaa me galti hoe gais hae: aap administrator log se koi chij lukae nai saktaa hae bina duursa dekhe waala option ke chune.',
 'revdelete-reason-dropdown' => '*Mitae ke jaada kar ke kaaran
-** Bina chhape ke adikar se
+** Bina chhape ke adikar nai
 ** Aapan baare me fajuul jankari
+** Kharaab sadasya ke naam
 ** Ninda kare waala jankari',
 'revdelete-otherreason' => 'Duusra/aur kaaran:',
 'revdelete-reasonotherlist' => 'Duusra kaaran',
@@ -1154,7 +1163,7 @@ Hian pe ek, apne se banaa sabd hae, jiske aap kaam me laae saktaa hae: $1',
 'timezoneregion-indian' => 'Indian Ocean',
 'timezoneregion-pacific' => 'Pacific Ocean',
 'allowemail' => 'Aur sadasya se e-mail enable karo',
-'prefs-searchoptions' => 'Khoje ke option',
+'prefs-searchoptions' => 'Khojo',
 'prefs-namespaces' => 'Naam:',
 'defaultns' => 'Default se ii namespaces me khojo:',
 'default' => 'baaki',
@@ -1280,6 +1289,7 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-writeapi' => 'Likhe waala API ke kaam me lawa jaawe hae',
 'right-delete' => 'Panna ke mitao',
 'right-bigdelete' => 'Barraa itihaas waala panna ke mitao',
+'right-deletelogentry' => 'Mitawa aur khola gais panna ke baare me log entires',
 'right-deleterevision' => 'Panna ke khaas badlao ke mitao nai to bachao',
 'right-deletedhistory' => 'Mitawa gais itihass ke entry ke binaa saathe waala text ke dekho',
 'right-deletedtext' => 'Mitawa gais text aur mitawa gais badlao ke biich waala badlao ke dekho',
@@ -1568,7 +1578,7 @@ Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]]
 'backend-fail-internal' => 'Storage backend "$1" me ek unknown error hoe gais hae.',
 'backend-fail-contenttype' => 'Ii nai pataa lagae sakaa hae ki "$1" me bachae ke khaatir file kon rakam ke hae.',
 'backend-fail-batchsize' => 'Storage backend ke  $1 file {{PLURAL:$1|operation|operations}} ke ek batch ke dewa gais hae ; limit  $2 {{PLURAL:$2|operation|operation}} hae.',
-'backend-fail-usable' => 'File $1 ke nai likhe sakaa hae kaahe ki iske khatir jaruri ijajat nai hae, nai to directories/containers nai hae.',
+'backend-fail-usable' => 'File $1 me nai likhe, nai to nai parrhe, sakaa hae kaahe ki iske khatir jaruri ijajat nai hae, nai to directories/containers nai hae.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Storage backend "$1" ke khatir journal database se nai jorre sakaa hae.',
@@ -1764,8 +1774,8 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'disambiguations' => 'Garrbarri ke sudhare waala panna',
 'disambiguationspage' => 'Template:disambig',
 'disambiguations-text' => "Niche ke panna '''disambiguation panna''' se link hoe hai.
-They should link to the appropriate topic instead.<br />
-A page is treated as disambiguation page if it uses a template which is linked from [[MediaWiki:Disambiguationspage]]",
+Saait isse aur achchha panna se link hoi. <br />
+Ek panna ke disambiguation panna maana jaae hae jab ki ii ek template ke kaam me laae hae jon ki [[MediaWiki:Disambiguationspage]] se link hoe hae.",
 
 'doubleredirects' => 'Dugna redirects',
 'doubleredirectstext' => 'Ii panna uu panna ke suchi de hai jon ki duusra redirect panna pe redirect kare hai.

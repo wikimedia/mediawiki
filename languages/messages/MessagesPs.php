@@ -213,9 +213,9 @@ $messages = array(
 'editfont-serif' => 'سېرېف ليکبڼه',
 
 # Dates
-'sunday' => 'اتوار',
-'monday' => 'ګل',
-'tuesday' => 'نهي',
+'sunday' => 'يونۍ',
+'monday' => 'دونۍ',
+'tuesday' => 'درې نۍ',
 'wednesday' => 'شورو',
 'thursday' => 'زيارت',
 'friday' => 'جمعه',
@@ -513,7 +513,7 @@ $1',
 په ټولو ويکي ګانو کې د ژباړې د ورګډولو او يا هم د ژباړې د سمون او بدلون لپاره د مېډياويکي د ځايتابه پروژه [//translatewiki.net/ translatewiki.net] وکاروۍ.',
 'editinginterface' => "'''ګواښنه:''' تاسو په يوه داسې مخ کې بدلون راولی کوم چې د يوې پوستکالی د ليدنمخ متن په توګه کارېږي.
 په همدې مخ کې بدلون راوستل به د نورو کارنانو د ليدنمخ بڼه اغېزمنه کړي.
-د ژباړې لپاره، مهرباني وکړی د [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، وېبځي ته ولاړ شی. دا وېبځی د ميډياويکي د ځايتابه پروژه ده او د همدې پر کارولو غور وکړی.",
+د ژباړې د ورګډولو او بدلون لپاره، مهرباني وکړی د [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، وېبځي ته ولاړ شی. دا وېبځی د ميډياويکي د ځايتابه پروژه ده.",
 'sqlhidden' => '(د SQL پوښتن پټ دی)',
 'namespaceprotected' => "تاسې د '''$1''' په نوم-تشيال کې د مخونو د سمولو اجازه نه لرۍ.",
 'customcssprotected' => 'تاسې د دې CSS مخ د سمولو اجازه نه لرۍ، دا ځکه چې دا مخ د بل کارن شخصي امستنې لري.',
@@ -1237,7 +1237,7 @@ $1',
 'upload' => 'دوتنه پورته کول',
 'uploadbtn' => 'دوتنه پورته کول',
 'uploadnologin' => 'غونډال کې نه ياست ننوتي',
-'uploadnologintext' => 'د دوتنو د پورته کولو لپاره بايد غونډال کې [[Special:Userlogin|ننوځۍ]].',
+'uploadnologintext' => 'ددې لپاره چې دوتنې پورته کړای شۍ، نو لومړی غونډال کې [[Special:UserLogin|ورننوځۍ]].',
 'uploaderror' => 'د پورته کولو ستونزه',
 'uploadtext' => "د دوتنې د پورته کېدو لپاره لاندينی چوکاټ وکاروۍ.
 که چېرته د پخونيو پورته شويو دوتنو کتل او پلټل غواړۍ نو [[Special:FileList|د پورته شويو دوتنو لړليک]] ته ورشۍ، [[Special:Log/upload|د (بيا) پورته شويو دوتنو يادښتونه]] او [[Special:Log/delete|د ړنګېدو يادښتونه]] هم کتلای شی.
@@ -1647,7 +1647,7 @@ $1',
 'wlheader-showupdated' => "* هغه مخونه چې وروستی ځل ستاسو د کتلو نه وروسته بدلون موندلی په '''روڼ''' ليک نښه شوي.",
 'watchlistcontains' => 'ستاسې کتنلړ $1 {{PLURAL:$1|مخ|مخونه}} لري.',
 'iteminvalidname' => "د '$1' توکي سره ستونزه، ناسم نوم ...",
-'wlnote' => "دلته لاندې {{PLURAL:$1|وروستی بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په {{PLURAL:$2|تېر يوه ساعت|تېرو '''$2''' ساعتونو}} کې تر $4 نېټې او $5 بجو پېښ شوي.",
+'wlnote' => "دلته لاندې {{PLURAL:$1|وروستی بدلون دی|وروستي '''$1''' بدلونونه دي}} چې په {{PLURAL:$2|تېر ساعت|تېرو '''$2''' ساعتونو}} کې تر $3 نېټې او $4 بجو پېښ شوي.",
 'wlshowlast' => 'وروستي $1 ساعتونه $2 ورځې $3 ښکاره کړه',
 'watchlist-options' => 'د کتنلړ خوښنې',
 
@@ -2118,9 +2118,19 @@ $UNWATCHURL  نه ليدنه وکړۍ
 
 # Info page
 'pageinfo-title' => 'د "$1" مالومات',
+'pageinfo-header-basic' => 'بنسټيز مالومات',
 'pageinfo-header-edits' => 'د سمون پېښليک',
+'pageinfo-header-restrictions' => 'مخ ژغورنه',
+'pageinfo-header-properties' => 'د مخ ځانتياوې',
+'pageinfo-display-title' => 'ښکارېدونکی سرليک',
+'pageinfo-article-id' => 'د مخ پېژند',
+'pageinfo-robot-index' => 'ليکلړوړ',
+'pageinfo-robot-noindex' => 'ليکلړوړ نه',
 'pageinfo-views' => 'د کتنو شمېر',
 'pageinfo-watchers' => 'د مخ د کتونکو شمېر',
+'pageinfo-redirects-name' => 'دې مخ ته ورګرځونې',
+'pageinfo-subpages-name' => 'دې مخ ته څېرمه مخونه',
+'pageinfo-firstuser' => 'مخ جوړونکی',
 'pageinfo-edits' => 'د ټولو سمونونو شمېر',
 
 # Skin names

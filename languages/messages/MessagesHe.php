@@ -845,7 +845,8 @@ $2',
 'acct_creation_throttle_hit' => 'מבקרים באתר זה דרך כתובת ה־IP שלכם כבר יצרו {{PLURAL:$1|חשבון אחד|$1 חשבונות}} ביום האחרון. זהו המקסימום המותר בתקופה זו.
 לפיכך, מבקרים דרך כתובת ה־IP הזו לא יכולים ליצור חשבונות נוספים ברגע זה.',
 'emailauthenticated' => 'כתובת הדוא"ל שלך אומתה ב־$3, $2.',
-'emailnotauthenticated' => 'כתובת הדוא"ל שלכם <strong>עדיין לא אושרה</strong> - שירותי הדוא"ל הבאים אינם פעילים.',
+'emailnotauthenticated' => 'כתובת הדוא"ל שלכם עדיין לא אושרה.
+לא יישלח אליכם דוא"ל עבור אף אחת מהאפשרויות הבאות.',
 'noemailprefs' => 'אנא ציינו כתובת דוא"ל בהעדפות שלכם כדי שתכונות אלה יעבדו.',
 'emailconfirmlink' => 'אישור כתובת הדוא"ל שלך',
 'invalidemailaddress' => 'כתובת הדוא"ל אינה מתקבלת כיוון שנראה שהיא בפורמט לא נכון.
@@ -2052,7 +2053,7 @@ $1',
 'shared-repo' => 'מקום איחסון משותף',
 'shared-repo-name-wikimediacommons' => 'ויקישיתוף',
 'filepage.css' => '/* הסגנונות הנכתבים כאן יוכללו בדף תיאור הקובץ, כולל באתרי ויקי זרים */',
-'upload-disallowed-here' => 'למרבה הצער, אין לך הרשאה להעלות גרסה אחרת של התמונה הזאת.',
+'upload-disallowed-here' => 'אין באפשרותכם לדרוס את הקובץ הזה.',
 
 # File reversion
 'filerevert' => 'שחזור $1',
@@ -2341,7 +2342,7 @@ $1',
 'emailuser-title-notarget' => 'שליחת דוא"ל למשתמש',
 'emailpage' => 'שליחת דואר למשתמש',
 'emailpagetext' => 'ניתן להשתמש בטופס כדי לשלוח הודעת דואר אלקטרוני למשתמש זה.
-כתובת הדואר האלקטרוני שכתבתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת ממנה נשלחה ההודעה, כדי לאפשר תגובה ישירה למכתב.',
+כתובת הדואר האלקטרוני שכתבתם ב[[Special:Preferences|העדפות המשתמש שלכם]] תופיע ככתובת שההודעה נשלחה ממנה, כדי לאפשר תגובה ישירה.',
 'usermailererror' => 'אובייקט הדואר החזיר שגיאה:',
 'defemailsubject' => 'דוא"ל מ{{grammar:תחילית|{{SITENAME}}}} מהמשתמש "$1"',
 'usermaildisabled' => 'שליחת דוא"ל למשתמשים מבוטלת',
@@ -3166,6 +3167,7 @@ $1',
 
 # Info page
 'pageinfo-title' => 'מידע על "$1"',
+'pageinfo-not-current' => 'המידע יכול להיות מוצג רק עבור הגרסה הנוכחית.',
 'pageinfo-header-basic' => 'מידע בסיסי',
 'pageinfo-header-edits' => 'היסטוריית עריכות',
 'pageinfo-header-restrictions' => 'הגנה על הדף',
@@ -3190,7 +3192,6 @@ $1',
 'pageinfo-authors' => 'המספר הכולל של כותבים שונים',
 'pageinfo-recent-edits' => 'מספר העריכות לאחרונה ($1)',
 'pageinfo-recent-authors' => 'מספר הכותבים הייחודיים לאחרונה',
-'pageinfo-restriction' => 'הגנה על הדף ($1)',
 'pageinfo-magic-words' => '{{PLURAL:$1|מילת קסם|מילות קסם}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|קטגוריה מוסתרת|קטגוריות מוסתרות}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|תבנית מוכללת|תבניות מוכללות}} ($1)',
@@ -3769,7 +3770,7 @@ $5
 
 # Scary transclusion
 'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
-'scarytranscludefailed' => '[הכללת התבנית נכשלה בגלל $1]',
+'scarytranscludefailed' => '[אחזור התבנית נכשל עבור $1]',
 'scarytranscludetoolong' => '[כתובת ה־URL ארוכה מדי]',
 
 # Delete conflict

@@ -601,6 +601,7 @@ $2',
 'ns-specialprotected' => "Tsy afaka ovaina ny pejy anatin'ny toeran'anarana « {{ns:special}} » .",
 'titleprotected' => "Voaaron'i [[User:$1|$1]] ity lohateny ity mba tsy hamorona pejy mitondra ity anarana ity.
 Ny antony napetraka dia : « ''$2'' ».",
+'invalidtitle-knownnamespace' => 'Lohateny tsy miady amin\'ny fepetra miaraka amin\'ny anaram-balam-pejy "$2" ary soratra "$3"',
 'exception-nologin' => 'Tsy tafiditra',
 
 # Virus scanner
@@ -697,6 +698,7 @@ mba hanaporofoana fa anao io kaonty io.",
 'invalidemailaddress' => 'Tsy mety io imailaka nalefanao io satria tsy manaraka ny firafitra tokony ho izy.
 Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 'cannotchangeemail' => "Tsy afaka ovaina eto amin'ity wiki ity ny adiresy imailaky ny kaonty.",
+'emaildisabled' => 'Tsy afaka mandefa imailaka ity tranonkala ity.',
 'accountcreated' => 'Kaonty voaforona',
 'accountcreatedtext' => "Voasokatra ilay kaonty hoan'i $1.",
 'createaccount-title' => "Fanokafana kaonty ho an'ny/i {{SITENAME}}",
@@ -862,7 +864,7 @@ Azonao atao ny [[Special:Search/{{PAGENAME}}||Tadiavo ny momba ny {{PAGENAME}}]]
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Na forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.",
 'noarticletext-nopermission' => "Mbola tsy misy lahatsoratra ao amin'io pejy io.
 
-Azonao atao ny [[Special:Search/{{PAGENAME}}|Mikaroka momba ny lohatenin'io pejy io]] ao amin'ny pejy hafa, mitady <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} anatin'ny laogy mikasika azy]</span>",
+Azonao atao ny [[Special:Search/{{PAGENAME}}|mikaroka ity lohateny ity]] eny amin'ny pejy hafa na <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} mitady ao amin'ny laogy misy fifandraisana]</span>, fa tsy azonao atao ny mamorona ity pejy ity.",
 'userpage-userdoesnotexist' => 'Mbola tsy nisoratra anarana ato i « <nowiki>$1</nowiki> ». Marino raha tena hamorona ity pejy ity ianao.',
 'userpage-userdoesnotexist-view' => 'Tsy nisoratra anarana ato i « $1 ».',
 'blocked-notice-logextract' => "Ankehitriny ity mpikambana ity dia voasakana.
@@ -1693,10 +1695,12 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 'upload-too-many-redirects' => "Be loatra ny fihodinan'ny URL.",
 'upload-unknown-size' => 'tsy fantatra ny habe',
 'upload-http-error' => 'Nisy tsy fetezana HTTP nitranga : $1',
+'upload-copy-upload-invalid-domain' => "Tsy misy eto amin'ity dômenina ity ny tahaky ny upload.",
 
 # File backend
 'backend-fail-stream' => 'Tsy afaka mamaky ilay rakitra $1.',
 'backend-fail-backup' => 'Tsy afaka mitahiry ilay rakitra $1.',
+'backend-fail-notexists' => 'Tsy misy ilay rakitra $1.',
 'backend-fail-hashes' => "Tsy azo ilay hash an-drakitra ho an'ny fampitahana.",
 'backend-fail-notsame' => "Efa misy rakitra samihafa ho an'i $1",
 'backend-fail-invalidpath' => '$1 dia lalam-pitahirizana tsy azo raisina.',
@@ -1957,6 +1961,7 @@ Aza manadino manamarina raha tsy misy rohy makany amin'ny endrika hafa alohan'ny
 'mostlinkedtemplates' => "Misy firohizana betsaka amin'ny endrika",
 'mostcategories' => 'Lahatsoratra misy sokajy betsaka indrindra',
 'mostimages' => "Misy firohizana betsaka amin'ny sary",
+'mostinterwikis' => 'Pejy be interwiki indrindra',
 'mostrevisions' => 'Lahatsoratra niova im-betsaka indrindra',
 'prefixindex' => "Pejy manomboka amin'ny...",
 'prefixindex-namespace' => 'Ny pejy rehetra mitondra ny tovona (anaran-tsehatra $1)',
@@ -2010,6 +2015,7 @@ wiki ity aza izy.</p>",
 Azonao ferana ny fahitana ny tao amin'ny fisafidianana karazana laogy iray, anaram-pikambana iray na pejy iray (samihafa ny sorabaventy sy soramadinika).",
 'logempty' => 'Tsy nahitana.',
 'log-title-wildcard' => "Hitady amin'ny lohateny manomboka amin'io soratra io",
+'showhideselectedlogentries' => 'Haneho/Hanafina ny iditry ny laogy nofidiana',
 
 # Special:AllPages
 'allpages' => 'Pejy rehetra',
@@ -2027,6 +2033,10 @@ Azonao ferana ny fahitana ny tao amin'ny fisafidianana karazana laogy iray, anar
 'allpagesprefix' => "Asehoy ny pejy miantomboka amin'ny:",
 'allpagesbadtitle' => 'Tsy mety ny anaram-pejy : misy tovona iraisam-piteny na interwiki natokana, na misy soratra iray na maro tsy azo ampiasaina anaty anaram-pejy.',
 'allpages-bad-ns' => '{{SITENAME}} dia tsy manana anaran-tsehatra mitondra anarana « $1 ».',
+'allpages-hide-redirects' => 'Haneho ny fihodinana',
+
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Hijery ny farany indrindra',
 
 # Special:Categories
 'categories' => 'Sokajy',
@@ -2089,6 +2099,7 @@ Protokoly zaka <code>$1</code> aza ampiana ao amin'ny karokao izy ireo.",
 'mailnologin' => 'Tsy misy adiresy handefasana ny tenimiafina',
 'mailnologintext' => "Mila [[Special:UserLogin|miditra]] ianao sady manana imailaka mandeha sy voamarina ao amin'ny [[Special:Preferences|mombamomba anao]] vao afaka mandefa imailaka amin'ny mpikambana hafa.",
 'emailuser' => 'Andefaso imailaka io mpikambana io',
+'emailuser-title-notarget' => "Handefa imailaka an'ilay mpikambana",
 'emailpage' => 'Andefaso imailaka io mpikambana io',
 'emailpagetext' => "Raha nametraka adiresy tena miasa tao amin'ny [[Special:Preferences|mombamomba azy io mpikambana io]],
 dia ahafahana mandefa hafatra tokana ho any aminy ity fisy eto ambany ity.

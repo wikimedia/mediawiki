@@ -412,7 +412,7 @@ $messages = array(
 'qbbrowse' => 'Sfoglia',
 'qbedit' => 'Modifica',
 'qbpageoptions' => 'Opzioni pagina',
-'qbpageinfo' => 'Informazioni sulla pagina',
+'qbpageinfo' => 'Informazioni pagina',
 'qbmyoptions' => 'Le mie pagine',
 'qbspecialpages' => 'Pagine speciali',
 'faq' => 'Domande frequenti',
@@ -1908,7 +1908,7 @@ Probabilmente vuoi modificare la descrizione presente nella [$2 pagina di descri
 'shared-repo-from' => 'da $1',
 'shared-repo' => 'un archivio condiviso',
 'filepage.css' => '/* Il CSS messo qui viene incluso nella pagina di descrizione del file, inclusa anche su wiki client esterni */',
-'upload-disallowed-here' => 'Impossibile sovrascrivere questa immagine.',
+'upload-disallowed-here' => 'Impossibile sovrascrivere questo file.',
 
 # File reversion
 'filerevert' => 'Ripristina $1',
@@ -2993,6 +2993,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 
 # Info page
 'pageinfo-title' => 'Informazioni per "$1"',
+'pageinfo-not-current' => 'Le informazioni possono essere visualizzate solo per la versione corrente.',
 'pageinfo-header-basic' => 'Informazioni di base',
 'pageinfo-header-edits' => 'Cronologia delle modifiche',
 'pageinfo-header-restrictions' => 'Protezione della pagina',
@@ -3017,7 +3018,6 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'pageinfo-authors' => 'Numero totale di autori diversi',
 'pageinfo-recent-edits' => 'Numero di modifiche recenti (negli ultimi $1)',
 'pageinfo-recent-authors' => 'Numero di autori diversi recenti',
-'pageinfo-restriction' => 'Protezione della pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola magica|Parole magiche}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria nascosta|Categorie nascoste}} ($1)',
 'pageinfo-templates' => 'Template {{PLURAL:$1|incluso|inclusi}}  ($1)',

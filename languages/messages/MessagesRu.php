@@ -28,6 +28,7 @@
  * @author Dim Grits
  * @author Don Alessandro
  * @author Eleferen
+ * @author Erdemaslancan
  * @author EugeneZelenko
  * @author Eugrus
  * @author Express2000
@@ -40,6 +41,7 @@
  * @author HalanTul
  * @author Huuchin
  * @author Illusion
+ * @author Incnis Mrsi
  * @author Iniquity
  * @author Innv
  * @author Jackie
@@ -61,6 +63,7 @@
  * @author Sagan
  * @author Shirayuki
  * @author Sk
+ * @author Spider
  * @author TarzanASG
  * @author Temuri rajavi
  * @author Vago
@@ -552,7 +555,7 @@ $messages = array(
 'vector-action-protect' => 'Защитить',
 'vector-action-undelete' => 'Восстановить',
 'vector-action-unprotect' => 'Изменить защиту',
-'vector-simplesearch-preference' => 'Включить расширенные поисковые подсказки (только для оформления «Векторное»)',
+'vector-simplesearch-preference' => 'Включить упрощённую строку поиска (только для оформления «Векторное»)',
 'vector-view-create' => 'Создание',
 'vector-view-edit' => 'Правка',
 'vector-view-history' => 'История',
@@ -972,7 +975,7 @@ $2
 'changeemail-oldemail' => 'Текущий адрес электронной почты:',
 'changeemail-newemail' => 'Новый адрес электронной почты:',
 'changeemail-none' => '(нет)',
-'changeemail-submit' => 'Измененить адрес',
+'changeemail-submit' => 'Изменить адрес',
 'changeemail-cancel' => 'Отмена',
 
 # Edit page toolbar
@@ -2088,7 +2091,7 @@ $1',
 'shared-repo-from' => 'из $1',
 'shared-repo' => 'общего хранилища',
 'shared-repo-name-wikimediacommons' => 'Викисклада',
-'upload-disallowed-here' => 'К сожалению, вы не можете перезаписать это изображение.',
+'upload-disallowed-here' => 'Вы не можете перезаписать этот файл.',
 
 # File reversion
 'filerevert' => 'Возврат к старой версии $1',
@@ -3201,6 +3204,7 @@ The wiki server can't provide data in a format your client can read.",
 
 # Info page
 'pageinfo-title' => 'Сведения по «$1»',
+'pageinfo-not-current' => 'Данные предоставляются только для текущей правки.',
 'pageinfo-header-basic' => 'Основные сведения',
 'pageinfo-header-edits' => 'История изменений',
 'pageinfo-header-restrictions' => 'Защита страницы',
@@ -3215,6 +3219,7 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-views' => 'Количество просмотров',
 'pageinfo-watchers' => 'Число наблюдающих',
 'pageinfo-redirects-name' => 'Перенаправления на эту страницу',
+'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'Подстраницы данной страницы',
 'pageinfo-subpages-value' => '$1($2 {{PLURAL:$2|перенаправление|перенаправления|перенаправлений}}; $3 {{PLURAL:$3|обычная|обычные|обычных}})',
 'pageinfo-firstuser' => 'Создатель страницы',
@@ -3225,7 +3230,6 @@ The wiki server can't provide data in a format your client can read.",
 'pageinfo-authors' => 'Общее число различных авторов',
 'pageinfo-recent-edits' => 'Правок за последнее время (в течение $1)',
 'pageinfo-recent-authors' => 'Уникальных авторов за последнее время',
-'pageinfo-restriction' => 'Защита страницы ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Магическое слово|Магические слова}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Скрытая категория|Скрытых категорий}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Шаблон|Шаблонов}} ($1)',
@@ -4124,7 +4128,7 @@ MediaWiki распространяется в надежде, что она бу
 'sqlite-no-fts' => '$1 без поддержки полнотекстового поиска',
 
 # New logging system
-'logentry-delete-delete' => '$1 удалил страницу $3',
+'logentry-delete-delete' => '$1 {{GENDER:$1|удалил|удалила}} страницу $3',
 'logentry-delete-restore' => '$1 восстановил страницу $3',
 'logentry-delete-event' => '$1 изменил видимость {{PLURAL:$5|$5 записи журнала|$5 записей журнала|$5 записей журнала}} на $3: $4',
 'logentry-delete-revision' => '$1 изменил видимость {{PLURAL:$5|$5 версии|$5 версий|$5 версий}} на странице $3: $4',

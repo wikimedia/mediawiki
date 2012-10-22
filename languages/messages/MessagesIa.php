@@ -300,7 +300,7 @@ $messages = array(
 'vector-action-protect' => 'Proteger',
 'vector-action-undelete' => 'Restaurar',
 'vector-action-unprotect' => 'Cambiar protection',
-'vector-simplesearch-preference' => 'Activar le suggestiones de recerca meliorate (solmente in apparentia Vector)',
+'vector-simplesearch-preference' => 'Activar le barra de recerca simplificate (solmente in apparentia Vector)',
 'vector-view-create' => 'Crear',
 'vector-view-edit' => 'Modificar',
 'vector-view-history' => 'Vider historia',
@@ -825,9 +825,9 @@ Si tu es un usator anonyme e pensa que commentos irrelevante ha essite dirigite 
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina]</span>.',
-'noarticletext-nopermission' => 'Al momento il non ha texto in iste pagina.
+'noarticletext-nopermission' => 'In iste momento il non ha texto in iste pagina.
 Tu pote [[Special:Search/{{PAGENAME}}|cercar le titulo de iste pagina]] in altere paginas,
-o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente].</span>',
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} cercar in le registros pertinente], ma tu non ha le permission de crear iste pagina.</span>',
 'missing-revision' => 'Le version №$1 del pagina nominate "{{PAGENAME}}" non existe.
 
 Isto es generalmente causate per sequer un ligamine de historia obsolete a un pagina que ha essite delite.
@@ -1100,7 +1100,9 @@ Per favor verifica le registros.',
 'revdelete-only-restricted' => 'Error de celar le entrata del $1 a $2: tu non pote render entratas invisibile a administratores sin seliger tamben un del altere optiones de visibilitate.',
 'revdelete-reason-dropdown' => '*Motivos commun pro deletion
 ** Violation de copyright
-** Information personal inappropriate',
+** Information personal o commento inappropriate
+** Nomine de usator inappropriate
+** Information que pote esser diffamatori',
 'revdelete-otherreason' => 'Altere/additional motivo:',
 'revdelete-reasonotherlist' => 'Altere motivo',
 'revdelete-edit-reasonlist' => 'Modificar motivos pro deletion',
@@ -1297,7 +1299,7 @@ Ecce un valor aleatorimente generate que tu pote usar: $1',
 'timezoneregion-indian' => 'Oceano Indian',
 'timezoneregion-pacific' => 'Oceano Pacific',
 'allowemail' => 'Activar reception de e-mail de altere usatores',
-'prefs-searchoptions' => 'Optiones de recerca',
+'prefs-searchoptions' => 'Recerca',
 'prefs-namespaces' => 'Spatios de nomines',
 'defaultns' => 'Alteremente cercar in iste spatios de nomines:',
 'default' => 'predefinite',
@@ -1729,7 +1731,7 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'backend-fail-internal' => 'Un error incognite occurreva in le systema de immagazinage "$1".',
 'backend-fail-contenttype' => 'Non poteva determinar le typo de contento del file a immagazinar in "$1".',
 'backend-fail-batchsize' => 'Le systema de immagazinage ha recipite un lot de $1 {{PLURAL:$1|operation|operationes}} de file; le limite es $2 {{PLURAL:$2|operation|operationes}}.',
-'backend-fail-usable' => 'Non poteva scriber le file $1 a causa de permissiones insufficiente o directorios/contentores mancante.',
+'backend-fail-usable' => 'Non poteva leger o scriber le file "$1" a causa de permissiones insufficiente o directorios/contentores mancante.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Non poteva connecter al base de datos de jornal pro le systema de immagazinage "$1".',
@@ -1864,7 +1866,7 @@ Tu vole forsan modificar le description in le [$2 pagina de description del file
 'uploadnewversion-linktext' => 'Incargar un nove version de iste file',
 'shared-repo-from' => 'ab $1',
 'shared-repo' => 'un repositorio partite',
-'upload-disallowed-here' => 'Infortunatemente tu non pote superscriber iste imagine.',
+'upload-disallowed-here' => 'Tu non pote superscriber iste file.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -2997,6 +2999,7 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 
 # Info page
 'pageinfo-title' => 'Informationes pro "$1"',
+'pageinfo-not-current' => 'Information pote esser monstrate solmente pro le version actual.',
 'pageinfo-header-basic' => 'Information de base',
 'pageinfo-header-edits' => 'Historia de modificationes',
 'pageinfo-header-restrictions' => 'Protection del pagina',
@@ -3021,7 +3024,6 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 'pageinfo-authors' => 'Numero total de autores distincte',
 'pageinfo-recent-edits' => 'Numero de modificationes recente (intra le ultime $1)',
 'pageinfo-recent-authors' => 'Numero de autores distincte recente',
-'pageinfo-restriction' => 'Protection del pagina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Parola|Parolas}} magic ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria|Categorias}} celate ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Patrono|Patronos}} transcludite ($1)',

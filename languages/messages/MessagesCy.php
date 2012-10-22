@@ -274,7 +274,7 @@ $messages = array(
 'vector-action-protect' => 'Diogelu',
 'vector-action-undelete' => 'Adfer',
 'vector-action-unprotect' => 'Newid y diogelwch',
-'vector-simplesearch-preference' => 'Galluogi awgrymiadau chwilio uwch (gwedd Vector yn unig)',
+'vector-simplesearch-preference' => 'Galluogi bar chwilio syml (gwedd Vector yn unig)',
 'vector-view-create' => 'Dechrau',
 'vector-view-edit' => 'Golygu',
 'vector-view-history' => 'Gweld yr hanes',
@@ -761,8 +761,8 @@ Os daethoch yma ar ddamwain, cliciwch botwm '''n&ocirc;l''' y porwr.",
 'anontalkpagetext' => "----''Dyma dudalen sgwrs ar gyfer defnyddiwr anhysbys sydd heb greu cyfrif eto, neu nad yw'n ei ddefnyddio. Felly mae'n rhaid inni ddefnyddio'r cyfeiriad IP i'w (h)adnabod. Mae cyfeiriadau IP yn gallu cael eu rhannu rhwng nifer o ddefnyddwyr. Os ydych chi'n ddefnyddiwr anhysbys ac yn teimlo'ch bod wedi derbyn sylwadau amherthnasol, [[Special:UserLogin/signup|crëwch gyfrif]] neu [[Special:UserLogin|mewngofnodwch]] i osgoi cael eich drysu gyda defnyddwyr anhysbys eraill o hyn ymlaen.''",
 'noarticletext' => "Mae'r dudalen hon yn wag ar hyn o bryd.
 Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy'r logiau perthnasol], neu [{{fullurl:{{FULLPAGENAME}}|action=edit}} golygu'r dudalen]</span>.",
-'noarticletext-nopermission' => 'Mae\'r dudalen hon yn wag ar hyn o bryd.
-Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, neu gallwch <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy\'r logiau perthnasol]</span>.',
+'noarticletext-nopermission' => "Mae'r dudalen hon yn wag ar hyn o bryd.
+Gallwch [[Special:Search/{{PAGENAME}}|chwilio am y teitl hwn]] ar dudalennau eraill, neu gallwch <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chwilio drwy'r logiau perthnasol]</span>, ond nid yw'r gallu gennych i ddechrau'r dudalen o'r dechrau cyntaf.",
 'missing-revision' => 'Nid yw\'r diwygiad #$1 o\'r dudalen "{{PAGENAME}}" ar gael.
 
 Fel arfer, fe ddigwydd hyn wrth ddilyn hen gyswllt i dudalen sydd wedi ei dileu.

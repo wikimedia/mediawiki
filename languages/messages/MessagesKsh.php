@@ -1540,11 +1540,11 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-suppress' => 'Kontrollettis',
 'group-all' => '(jeede)',
 
-'group-user-member' => '{{GENDER:$1|Metmaacher|Metmaacherin}}',
+'group-user-member' => '{{GENDER:$1|Metmaacher|Metmaacherėn}}',
 'group-autoconfirmed-member' => 'automattesch beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherėn}}',
 'group-bot-member' => '{{GENDER:$1|Bot}}',
 'group-sysop-member' => '{{GENDER:$1|Wiki-Köbes}}',
-'group-bureaucrat-member' => '{{GENDER:$1|Bürrokrad|Bürrokraatėn}}',
+'group-bureaucrat-member' => '{{GENDER:$1|Bürrokraad|Bürrokraadefrou}}',
 'group-suppress-member' => '{{GENDER:$1|Kontrolletti}}',
 
 'grouppage-user' => '{{ns:project}}:Metmaacher',
@@ -1902,7 +1902,7 @@ Als Jrond es aanjejovve: „$2“',
 'backend-fail-internal' => 'Ene onklohre Fähler es opjetrodde met däm Schpeischersysteem „$1“.',
 'backend-fail-contenttype' => 'Mer kunnte de Zoot Enhalt nit eruß krijje, di en dä Dattei „$1“ faßjehallde wääde sull.',
 'backend-fail-batchsize' => 'Dat Schpeischersysteem hät ene Pöngel met {{PLURAL:$1|einem Befähl|$1 Befähle|keinem Befähl}} krääje, ävver et kann bloß {{PLURAL:$2|eine Befähl|$2 Befähle|keine Befähl}} op eijmohl.',
-'backend-fail-usable' => 'Mer kunnte di Dattei $1 nit schrieve, weil e Verzeischnes udder ene container fählt, udder et Rääsch, dren ze schrieve.',
+'backend-fail-usable' => 'Mer kunnte di Dattei $1 nit lässe udder schrieve, weil e Verzeischnes udder ene container fählt, udder et Rääsch, dren ze lässe udder ze schrieve.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Mer kunnte kein Verbendong opnämme met dä Daatebangk för et Logbooch vum Schpeischersysteem „$1“.',
@@ -2038,7 +2038,7 @@ Velleisch sullts De dä [$2 Täx övver se doh]  aanpasse.',
 'shared-repo-from' => 'uß $1',
 'shared-repo' => 'ene jemeinsame Beshtand',
 'filepage.css' => '/* Heh dat CSS küdd op Sigge övver Dateije, och di vun ander Wikis jehollt woode sin. */',
-'upload-disallowed-here' => 'Onjlöklescherwies kanns De heh dat Beld nit övverschriive.',
+'upload-disallowed-here' => 'Do kanns heh di Dattei nit övverschriive.',
 
 # File reversion
 'filerevert' => '„$1“ zerök holle',
@@ -3205,6 +3205,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 
 # Info page
 'pageinfo-title' => 'Övver di Sigg: „$1“',
+'pageinfo-not-current' => 'Esu en Aanjaabe künne mer bloß övver de Neuste Version vun dä Sigg maache.',
 'pageinfo-header-basic' => 'Jrundlääje Aanjabe',
 'pageinfo-header-edits' => 'De Änderonge',
 'pageinfo-header-restrictions' => 'Siggeschoz',
@@ -3229,7 +3230,6 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'pageinfo-authors' => 'De Aanzahl ongerscheidleje Schriever',
 'pageinfo-recent-edits' => 'De Aanzahl Änderonge en dä läzde Zik, ennerhallf vun $1',
 'pageinfo-recent-authors' => 'De Aanzahl ongerscheidleje Schriever en dä läzde Zik',
-'pageinfo-restriction' => 'Siggeschoz ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Ei Zauberwoot|$1 Zauberwööter|Kein Zauberwööter}}',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ein verstoche Saachjropp|$1 verstoche Saachjroppe|Kein verstoche Saachjropp}}',
 'pageinfo-templates' => '{{PLURAL:$1|Ein Schablohn|$1 Schablohne|Kein Schablohn}} opjerohfe',
@@ -3842,7 +3842,7 @@ Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
-'scarytranscludefailed' => '[De Schablon „$1“ enzebinge hät nit jeflupp]',
+'scarytranscludefailed' => '[De Schablon „$1“ enzebenge hät nit jeflupp]',
 'scarytranscludetoolong' => '[Schad, de URL es ze lang]',
 
 # Delete conflict
@@ -4218,7 +4218,7 @@ Wat De doh enjiß, kütt met Dingem Metmaachername un Dingem Brauser op die Sigg
 'duration-minutes' => '{{PLURAL:$1|ein Menutt|$1 Menutte|kein Menutt}}',
 'duration-hours' => '{{PLURAL:$1|en Stund|$1 Stunde|kein Shtund}}',
 'duration-days' => '{{PLURAL:$1|ene Daach|$1 Dääsch|keine Daach}}',
-'duration-weeks' => '{{PLURAL: $1|en Woch|§1 Woche|kein Woch}}',
+'duration-weeks' => '{{PLURAL: $1|en Woch|$1 Woche|kein Woch}}',
 'duration-years' => '{{PLURAL:$1|e Johr|$1 Johre|kei Johr}}',
 'duration-decades' => '{{PLURAL:$1|zehn Johre|$1 Johrzehnte|kei Johrzehnt}}',
 'duration-centuries' => '{{PLURAL:$1|e Johrhondert|$1 Johrhonderte|kei Johrhondert}}',

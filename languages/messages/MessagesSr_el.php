@@ -463,7 +463,7 @@ $messages = array(
 'vector-action-protect' => 'Zaštiti',
 'vector-action-undelete' => 'Vrati',
 'vector-action-unprotect' => 'Promeni zaštitu',
-'vector-simplesearch-preference' => 'Poboljšani predlozi pretrage (samo za temu „Vektorsko“)',
+'vector-simplesearch-preference' => 'Uprošćeno polje za pretragu (samo za temu „Vektorsko“)',
 'vector-view-create' => 'Napravi',
 'vector-view-edit' => 'Uredi',
 'vector-view-history' => 'Istorija',
@@ -2035,7 +2035,7 @@ Njen opis možete da izmenite na [$2 odgovarajućoj stranici].',
 'shared-repo' => 'zajedničko skladište',
 'shared-repo-name-wikimediacommons' => 'Vikimedijina ostava',
 'filepage.css' => '/* CSS koji je postavljen ovde se nalazi na stranicama za opis datoteka, kao i na stranim vikijima */',
-'upload-disallowed-here' => 'Nažalost, ne možete da zamenite ovu sliku.',
+'upload-disallowed-here' => 'Ne možete da zamenite ovu datoteku.',
 
 # File reversion
 'filerevert' => 'Vrati $1',
@@ -3173,6 +3173,7 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 
 # Info page
 'pageinfo-title' => 'Podaci o „$1“',
+'pageinfo-not-current' => 'Podaci mogu biti prikazani samo za tekuću izmenu.',
 'pageinfo-header-basic' => 'Osnovni podaci',
 'pageinfo-header-edits' => 'Istorija izmena',
 'pageinfo-header-restrictions' => 'Zaštita stranice',
@@ -3197,7 +3198,6 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-authors' => 'Broj zasebnih autora',
 'pageinfo-recent-edits' => 'Broj skorašnjih izmena (u poslednjih $1)',
 'pageinfo-recent-authors' => 'Broj skorašnjih zasebnih autora',
-'pageinfo-restriction' => 'Zaštita stranice ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magična reč|Magične reči}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Uključeni šablon|Uključeni šabloni}} ($1)',

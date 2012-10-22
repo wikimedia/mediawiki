@@ -423,7 +423,7 @@ Proovvi lizät etsün alkuu ''all:'', nii ettsü etsib kõikkõõ sisältoo (taa
 # Groups
 'group-user' => 'Сäüttijäd',
 'group-sysop' => 'Praviťeľad',
-'group-all' => '{kõik)',
+'group-all' => '(kõik)',
 
 'group-user-member' => 'cäüttijä',
 

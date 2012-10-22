@@ -1797,7 +1797,7 @@ Snano chceš wopisanje na jeje [$2 stronje datajoweho wopisanja] wobdźěłać.'
 'uploadnewversion-linktext' => 'nowu wersiju tuteje dataje nahrać',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'zhromadny repozitorij',
-'upload-disallowed-here' => 'Bohužel njemóžeš tutón wobraz přepisać.',
+'upload-disallowed-here' => 'Njemóžeš tutu dataju přepisać.',
 
 # File reversion
 'filerevert' => 'Wersiju $1 cofnyć',
@@ -2846,6 +2846,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 
 # Info page
 'pageinfo-title' => 'Informacije za stronu "$1"',
+'pageinfo-not-current' => 'Informacije hodźa so jenož za aktualnu wersiju zwobraznić.',
 'pageinfo-header-basic' => 'Zakładne informacije',
 'pageinfo-header-edits' => 'Stawizny wobdźěłać',
 'pageinfo-header-restrictions' => 'Škit strony',
@@ -2871,7 +2872,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-authors' => 'Cyłkowna ličba rozdźělnych awtorow',
 'pageinfo-recent-edits' => 'Ličba najnowšich změnow (za zańdźenych $1)',
 'pageinfo-recent-authors' => 'Najnowša ličba rozdźělnych awtorow',
-'pageinfo-restriction' => 'Škit strony ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magiske słowo|Magiskej słowje|Magiske słowa|Magiske słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Schowana kategorija|Schowanej kategoriji|Schowane kategorije|Schowane kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Zapřijata předłoha|Zapřijatej předłoze|Zapřijate předłohi|Zapřijate předłohi}} ($1)',

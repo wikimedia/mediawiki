@@ -3063,7 +3063,6 @@ Meestentieds kömp dit deur n uutgaonde verwiezing die op de zwarte lieste steet
 'pageinfo-authors' => 'Totaal antal verschillende auteurs',
 'pageinfo-recent-edits' => 'Antal nieje bewarkingen (in de veurbieje $1).',
 'pageinfo-recent-authors' => 'Leste antal van verschillende auteurs',
-'pageinfo-restriction' => 'Ziedbeveiliging ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magies woord|Magiese woorden}} ($1)',
 'pageinfo-hidden-categories' => 'Verbörgen {{PLURAL:$1|kategorie|kategorieën}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Gebruukten mal|Gebruukten mallen}} ($1)',
