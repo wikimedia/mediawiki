@@ -45,6 +45,7 @@
  * @author Guglani
  * @author Gustronico
  * @author Hamilton Abreu
+ * @author Harsh4101991
  * @author Helix84
  * @author Holek
  * @author Huji
@@ -1638,15 +1639,17 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'userrights-editusergroup' => '{{Identical|Edit user groups}}. Parameter:
 * $1 is a username - optional, can be used for GENDER',
 'saveusergroups' => 'Button text when editing user groups',
-'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
+'userrights-groupsmember' => 'Used when editing user groups in [[Special:Userrights]]. The message is followed by a list of group names.
 
 Parameters:
-* $1 - optional, for PLURAL use, the number of items in the list following the message. Avoid PLURAL, if your language can do without.',
+* $1 - the number of items in the list following the message, for PLURAL.
+* $2 - the user name, for GENDER.',
 'userrights-groupsmember-auto' => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
 "Implicit" is for groups that the user was automatically added to (such as "autoconfirmed"); cf. {{msg-mw|userrights-groupsmember}}
 
-Parameters:
-* $1 - optional, for PLURAL use, the number of items in the list following the message. Please avoid PLURAL, if your language can do without.',
+Parameters
+* $1 - the number of items in the list following the message, for PLURAL.
+* $2 - the user name, for GENDER.',
 'userrights-groups-help' => 'Instructions displayed on [[Special:UserRights]]. Parameters:
 * $1 is a username - optional, can be used for GENDER',
 'userrights-reason' => 'Text beside log field when editing user groups
@@ -3535,7 +3538,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-header-properties' => 'Table section header in action=info.',
 'pageinfo-display-title' => 'The title that is displayed when the page is viewed.',
 'pageinfo-default-sort' => 'The key by which the page is sorted in categories by default.',
-'pageinfo-length' => 'The length of the page, in bytes.',
+'pageinfo-length' => 'પૃષ્ઠની લંબાઇ બાઇટમાં',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
 'pageinfo-robot-policy' => 'The search engine status of the page, e.g. "marked as index".',
 'pageinfo-robot-index' => 'An indication that the page is indexable.',

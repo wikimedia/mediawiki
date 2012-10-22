@@ -761,8 +761,8 @@ Kun ika sarong dae pa bistadong paragamit asin mati mo na igwang irelebanteng sa
 Ika mapuwedeng [[Special:Search/{{PAGENAME}}|maghanap para sa titulo kan pahinang ini]] sa iba pang mga pahina,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa magkasurundong mga talaan],
 o [{{fullurl:{{FULLPAGENAME}}|action=edit}} liwaton ining pahina]</span>.',
-'noarticletext-nopermission' => 'Mayo tabi sa presente nin teksto sa pahinang ini.
-Ika mapuwedeng [[Special:Search/{{PAGENAME}}|maghanap para sa titulo kan pahinang ini]] sa iba pang mga pahina,
+'noarticletext-nopermission' => 'Mayo tabing teksto sa presente an pahinang ini.
+Ika mapuwedeng [[Special:Search/{{PAGENAME}}|hanapa para kaining titulo kan pahina]] sa iba pang mga pahina,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa magkasurundong mga talaan]</span>.',
 'missing-revision' => 'An rebisyon #$1 kan pahina pinagngaranan na "{{PAGENAME}}" bakong eksistido.
 

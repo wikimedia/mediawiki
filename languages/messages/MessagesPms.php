@@ -1730,7 +1730,7 @@ Peul desse ch'a veula modifiché la descrission dzora soa [pàgina ëd descrissi
 'shared-repo-from' => 'da $1',
 'shared-repo' => "n'archivi condivis",
 'shared-repo-name-wikimediacommons' => 'Wikimedia Commons',
-'upload-disallowed-here' => 'A peul pa rampiassé sto archivi.',
+'upload-disallowed-here' => 'A peul pa rampiassé cost archivi.',
 
 # File reversion
 'filerevert' => "Buté torna $1 tanme ch'a l'era",
@@ -2824,7 +2824,7 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 
 # Info page
 'pageinfo-title' => 'Anformassion për «$1»',
-'pageinfo-not-current' => "L'anformassion a peul mach esse mostà për la revision corenta.",
+'pageinfo-not-current' => "J'anformassion a peulo mach esse smonùe për la revision an cors.",
 'pageinfo-header-basic' => 'Anformassion ëd base',
 'pageinfo-header-edits' => 'Modìfiche',
 'pageinfo-header-restrictions' => 'Protession ëd la pàgina',
@@ -3191,11 +3191,11 @@ J'àutri a saran stërmà coma stàndard.
 'exif-meteringmode-6' => 'Parsial',
 'exif-meteringmode-255' => "n'àutr",
 
-'exif-lightsource-0' => 'Pa conossù',
+'exif-lightsource-0' => 'Dësconossùa',
 'exif-lightsource-1' => 'Lus dël dì',
 'exif-lightsource-2' => 'Fluoressenta',
 'exif-lightsource-3' => 'Lus al tungsten (a incandessensa)',
-'exif-lightsource-4' => 'Flash',
+'exif-lightsource-4' => 'Lòsna',
 'exif-lightsource-9' => 'Temp bel',
 'exif-lightsource-10' => 'Temp an-nivolà',
 'exif-lightsource-11' => 'Ombra',

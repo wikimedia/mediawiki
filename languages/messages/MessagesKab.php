@@ -1918,6 +1918,7 @@ Tzemreḍ ad sageneḍ abeqqeḍ s tixtiṛit n tawsit n uɣmis, isem n useqdac 
 Ilaq-asen deg udday taɣult n uswir imineg, am amedya « *.org ».<br />
 Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'linksearch-line' => '$1 yeqqen seg $2',
+'linksearch-error' => 'Tzemreḍ ad seqdeceḍ isekkilen usligen ala deg tazzwara n taɣult uselkim.',
 
 # Special:ListUsers
 'listusersfrom' => 'Ssken imseqdacen seg:',
@@ -1940,6 +1941,8 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 
 # Special:ListGroupRights
 'listgrouprights' => 'Izerfan n igrawen n iseqdacen',
+'listgrouprights-summary' => 'Asebter agi yesɛa yiwen umuɣ n igrawen i sengelen deg wiki agi dɣa izerfan n wadduf i qqenen.
+Zemrent ad ilint [[{{MediaWiki:Listgrouprights-helppage}}|tilɣa nniḍen]] ɣef izerfan n yiwen.',
 'listgrouprights-group' => 'Agraw',
 'listgrouprights-rights' => 'Izerfan',
 'listgrouprights-helppage' => 'Help:Izerfan n igrawen',
