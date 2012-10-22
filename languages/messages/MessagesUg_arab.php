@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alfredie
+ * @author Arlin
  * @author Kaganer
  * @author Reedy
  * @author Sahran
@@ -109,45 +110,45 @@ $messages = array(
 'thu'           => 'پ',
 'fri'           => 'ج',
 'sat'           => 'ش',
-'january'       => 'قەھرىتان',
-'february'      => 'ھۇت',
-'march'         => 'نەۋرۇز',
-'april'         => 'ئۇمۇت',
-'may_long'      => 'باھار',
-'june'          => 'سەپەر',
-'july'          => 'چىللە',
-'august'        => 'تومۇز',
-'september'     => 'مىزان',
-'october'       => 'ئوغۇز',
-'november'      => 'ئوغلاق',
-'december'      => 'كۆنەك',
-'january-gen'   => 'قەھرىتان',
-'february-gen'  => 'ھۇت',
-'march-gen'     => 'نەۋرۇز',
-'april-gen'     => 'ئۇمۇت',
-'may-gen'       => 'باھار',
-'june-gen'      => 'سەپەر',
-'july-gen'      => 'چىللە',
-'august-gen'    => 'تومۇز',
-'september-gen' => 'مىزان',
-'october-gen'   => 'ئوغۇز',
-'november-gen'  => 'ئوغلاق',
-'december-gen'  => 'كۆنەك',
-'jan'           => 'قەھرىتان',
-'feb'           => 'ھۇت',
-'mar'           => 'نەۋرۇز',
-'apr'           => 'ئۇمۇت',
-'may'           => 'باھار',
-'jun'           => 'سەپەر',
-'jul'           => 'چىللە',
-'aug'           => 'تومۇز',
-'sep'           => 'مىزان',
-'oct'           => 'ئوغۇز',
-'nov'           => 'ئوغلاق',
-'dec'           => 'كۆنەك',
+'january'       => 'يانۋار',
+'february'      => 'فېۋرال',
+'march'         => 'مارت',
+'april'         => 'ئاپرېل',
+'may_long'      => 'ماي',
+'june'          => 'ئىيۇن',
+'july'          => 'ئىيۇل',
+'august'        => 'ئاۋغۇست',
+'september'     => 'سىنتەبىر',
+'october'       => 'ئۆكتەبىر',
+'november'      => 'نويابىر',
+'december'      => 'دېكابىر',
+'january-gen'   => 'يانۋار',
+'february-gen'  => 'فېۋرال',
+'march-gen'     => 'مارت',
+'april-gen'     => 'ئاپرېل',
+'may-gen'       => 'ماي',
+'june-gen'      => 'ئىيۇن',
+'july-gen'      => 'ئىيۇل',
+'august-gen'    => 'ئاۋغۇست',
+'september-gen' => 'سىنتەبىر',
+'october-gen'   => 'ئۆكتەبىر',
+'november-gen'  => 'نويابىر',
+'december-gen'  => 'دېكابىر',
+'jan'           => 'يانۋار',
+'feb'           => 'فېۋرال',
+'mar'           => 'مارت',
+'apr'           => 'ئاپرېل',
+'may'           => 'ماي',
+'jun'           => 'ئىيۇن',
+'jul'           => 'ئىيۇل',
+'aug'           => 'ئاۋغۇست',
+'sep'           => 'سىنتەبىر',
+'oct'           => 'ئۆكتەبىر',
+'nov'           => 'نويابىر',
+'dec'           => 'دېكابىر',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|تۈر|تۈر}}',
+'pagecategories'                 => '{{PLURAL:$1|تۈر|تۈرلەر}}',
 'category_header'                => '"$1" تۈردىكى بەتلەر',
 'subcategories'                  => 'تارماق تۈر',
 'category-media-header'          => '"$1" تۈردىكى ۋاسىتە',
@@ -168,7 +169,7 @@ $messages = array(
 'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
 
 'about'         => 'ھەققىدە',
-'article'       => 'مەزمۇن بېتى',
+'article'       => 'مۇندەرىجە',
 'newwindow'     => '(يېڭى كۆزنەكتە ئاچ)',
 'cancel'        => 'ۋاز كەچ',
 'moredotdotdot' => 'تەپسىلىي…',
@@ -196,7 +197,7 @@ $messages = array(
 'vector-action-protect'          => 'قوغدا',
 'vector-action-undelete'         => 'ئەسلىگە قايتۇر',
 'vector-action-unprotect'        => 'قوغداش ئۆزگەرت',
-'vector-simplesearch-preference' => 'ئالىي ئىزدەش تەكلىپىنى ئاچ (Vector تېرىدىلا)',
+'vector-simplesearch-preference' => 'ئاددىي ئىزدەش ئىستون ئاچ (پەقەت ۋېكتور قېلىپ)',
 'vector-view-create'             => 'قۇر',
 'vector-view-edit'               => 'تەھرىر',
 'vector-view-history'            => 'تارىخ كۆرسەت',
@@ -300,6 +301,7 @@ $1',
 [[Special:Version|نەشر بېتى]] نى كۆرۈڭ.',
 
 'ok'                      => 'ماقۇل',
+'pagetitle'               => '$1 - {{SITENAME}}',
 'pagetitle-view-mainpage' => '{{SITENAME}}',
 'backlinksubtitle'        => '← $1',
 'retrievedfrom'           => '"$1" دىن ئېرىشكەن',
@@ -329,7 +331,7 @@ $1',
 'site-atom-feed'          => '$1 نىڭ Atom قانالى',
 'page-rss-feed'           => '"$1" نىڭ RSS قانىلى',
 'page-atom-feed'          => '"$1" نىڭ Atom قانىلى',
-'feed-atom'               => 'ئاتوم',
+'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (بەت مەۋجۇد ئەمەس)',
 'sort-descending'         => 'كېمەيگۈچى تەرتىپ',
@@ -366,9 +368,9 @@ URL نى خاتا كىرگۈزۈپ قالدىڭىز ياكى خاتا ئۇلان
 'dberrortext'          => 'ساندان سۈرۈشتۈرۈشتە گرامماتىكىلىق خاتالىق يۈز بەردى.
 يۇمشاق دېتالنىڭ ئۆزىدىكى خاتالىقتىن كېلىپ چىققان بولۇشى مۇمكىن.
 ئاخىرقى قېتىملىق ساندان سۈرۈشتۈرۈش بۇيرۇقى:
-<blockquote><tt>$1</tt></blockquote>
- \\"<tt>$2</tt>\\"فۇنكسىيىدىن كەلگەن.
-MySQL قايتۇرغان خاتالىق \\"<tt>$3: $4</tt>\\".',
+<blockquote><code>$1</code></blockquote>
+ "<code>$2</code>"فۇنكسىيىدىن كەلگەن.
+ساندان قايتۇرغان خاتالىق "<samp>$3: $4</samp>".',
 'dberrortextcl'        => 'ساندان سۈرۈشتۈرۈشتە گرامماتىكىلىق خاتالىق يۈز بەردى.
 ئاخىرقى قېتىملىق ساندان سۈرۈشتۈرۈش بۇيرۇقى:
 "$1"
@@ -429,7 +431,8 @@ MySQL قايتۇرغان خاتالىقى"$3: $4"',
 'protectedpagetext'    => 'بۇ بەت تەھرىرلەشنىڭ ئالدىنى ئېلىش ئۈچۈن قۇلۇپلانغان.',
 'viewsourcetext'       => 'سىز بۇ بەتنى ئەسلى كودىنى كۆرەلەيسىز ۋە كۆچۈرەلەيسىز:',
 'viewyourtext'         => "بۇ بەتتىكى '''تەھرىرلىگەنلىرىڭىز'''نىڭ ئەسلى كودىنى كۆرۈپ كۆچۈرەلەيسىز.",
-'protectedinterface'   => 'بۇ بەت يۇمشاق دېتالنىڭ كۆرۈنۈش تېكستىنى تەمىنلىگەن، خالىغانچە تەھرىرلەشتىن ساقلىنىش ئۈچۈن قۇلۇپلانغان.',
+'protectedinterface'   => 'بۇ بەت يۇمشاق دېتالنىڭ كۆرۈنۈش تېكستىنى تەمىنلىگەن، خالىغانچە تەھرىرلەشتىن ساقلىنىش ئۈچۈن قۇلۇپلانغان.
+مەسىلەن ئەگەر تەرجىمە قىلسىڭىز [//translatewiki.net/wiki/Main_Page?setlang=ug translatewiki.net] ئۇنداقتا MediaWiki يەرلىكلەشتۈرۈش پىلانىنى ئىشلىتىشنى ئويلىشىڭ.',
 'editinginterface'     => "'''ئاگاھلاندۇرۇش:''' سىز تەھرىرلەۋاتقان بەت يۇمشاق دېتالنىڭ كۆرۈنۈش تېكستىگە ئىشلىتىلىدۇ.
 
 بۇ بەت ئۆزگەرتىلسە باشقا ئىشلەتكۈچىلەرنىڭ كۆرۈنۈش ئۇسلۇبىغا تەسىر كۆرسىتىدۇ.
@@ -740,7 +743,6 @@ $2
 * '''Mozilla / Firefox / Safari:''' دا ''Shift'' كۇنۇپكىسىنى بېسىپ تۇرۇپ ''قايتا يۈكلە''نى ياكى ''Ctrl-F5'' ياكى ''Ctrl-R'' (''Mac تا Command-R'')؛
 * '''Google Chrome:''' دا ''Ctrl-Shift-R'' (''Command-Shift-R''  Mac)
 *'''Internet Explorer:''' دا ''Ctrl'' نى بېسىپ تۇرۇپ ''يېڭىلا,'' ياكى ''Ctrl-F5''؛
-* '''Konqueror: دا ''' ''قايتا يۈكلە'' ياكى ''F5''؛
 * '''Opera:''' دا ''قورال → مايىللىق''؛ نى بېسىپ غەملەكنى تازىلاڭ.",
 'usercssyoucanpreview'             => "ئەسكەرتىش:''' ساقلاشتىن ئىلگىرى  \"{{int:showpreview}}\" توپچىنى ئىشلىتىپ يېڭى CSS نى سىناڭ.",
 'userjsyoucanpreview'              => "ئەسكەرتىش:''' ساقلاشتىن ئىلگىرى  \"{{int:showpreview}}\" توپچىنى ئىشلىتىپ يېڭى JS نى سىناڭ.",
@@ -1196,7 +1198,9 @@ $1",
 'username'                      => 'ئىشلەتكۇچى ئىسمى:',
 'uid'                           => 'ئىشلەتكۈچى كىملىك:',
 'prefs-memberingroups'          => '{{PLURAL:$1|بىر|كۆپ}} گۇرۇپپا ئەزاسى:',
+'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'خەتلەتكەن ۋاقىت:',
+'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'ﺗﻮﻟﯘﻕ ئىسىم:',
 'yourlanguage'                  => 'تىل:',
 'yourvariant'                   => 'مەزمۇن تىل شالغۇتى:',
@@ -1242,26 +1246,27 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'email-address-validity-invalid' => 'ئىناۋەتلىك ئېلخەت ئادرېسىدىن بىرنى كىرگۈزۈڭ',
 
 # User rights
-'userrights'                   => 'ئىشلەتكۈچى ھوقۇقى باشقۇرۇش',
-'userrights-lookup-user'       => 'ئىشلەتكۈچى گۇرۇپپىسى باشقۇرۇش',
-'userrights-user-editname'     => 'ئىشلەتكۈچى ئاتى كىرگۈزۈڭ:',
-'editusergroup'                => 'ئىشلەتكۈچى گۇرۇپپىسى تەھرىر',
-'editinguser'                  => "ئىشلەتكۈچى '''[[User:$1|$1]]''' $2 نىڭ ھوقۇقىنى ئۆزگەرتىۋاتىدۇ",
-'userrights-editusergroup'     => 'ئىشلەتكۈچى گۇرۇپپىسى تەھرىر',
-'saveusergroups'               => 'ئىشلەتكۈچى گۇرۇپپىسى ساقلا',
-'userrights-groupsmember'      => 'ئەزاسى:',
-'userrights-groupsmember-auto' => 'مۇقىم ئەزاسى:',
-'userrights-groups-help'       => 'سىز بۇ ئىشلەتكۈچى تەۋە گۇرۇپپىنى ئۆزگەرتەلەيسىز:\\n
+'userrights'                     => 'ئىشلەتكۈچى ھوقۇقى باشقۇرۇش',
+'userrights-lookup-user'         => 'ئىشلەتكۈچى گۇرۇپپىسى باشقۇرۇش',
+'userrights-user-editname'       => 'ئىشلەتكۈچى ئاتى كىرگۈزۈڭ:',
+'editusergroup'                  => 'ئىشلەتكۈچى گۇرۇپپىسى تەھرىر',
+'editinguser'                    => "ئىشلەتكۈچى '''[[User:$1|$1]]''' $2 نىڭ ھوقۇقىنى ئۆزگەرتىۋاتىدۇ",
+'userrights-editusergroup'       => 'ئىشلەتكۈچى گۇرۇپپىسى تەھرىر',
+'saveusergroups'                 => 'ئىشلەتكۈچى گۇرۇپپىسى ساقلا',
+'userrights-groupsmember'        => 'ئەزاسى:',
+'userrights-groupsmember-auto'   => 'مۇقىم ئەزاسى:',
+'userrights-groups-help'         => 'سىز بۇ ئىشلەتكۈچى تەۋە گۇرۇپپىنى ئۆزگەرتەلەيسىز:\\n
 * تاللاش رامكىسى تاللاغلىق بولسا ئىشلەتكۈچى شۇ  گۇرۇپپىغا تەۋە:
 * تاللاش رامكىسى تاللاغلىق بولمىسا ئىشلەتكۈچى شۇ  گۇرۇپپىغا تەۋە ئەمەس.
 * يۇلتۇز * بەلگىسى قويۇلغان گۇرۇپپىغا ئەزە بولغاندىن كېيىن چىقىرىۋەتكىلى بولمايدۇ، ئەكسىچە بولسا بولىدۇ.',
-'userrights-reason'            => 'سەۋەب:',
-'userrights-no-interwiki'      => 'باشقا wiki دىكى ئىشلەتكۈچىلەرنىڭ ھوقۇقىنى ئۆزگەرتىش ھوقۇقىڭىز يوق.',
-'userrights-nodatabase'        => '$1 ساندان مەۋجۇد ئەمەس ياكى يەرلىك ئوروندا ئەمەس.',
-'userrights-nologin'           => 'سىز چوقۇم باشقۇرغۇچى سۈپىتىدە [[Special:UserLogin|تىزىمغا كىر]]ىپ ئاندىن ئىشلەتكۈچى ھوقۇقىنى بەلگىلىيەلەيسىز.',
-'userrights-notallowed'        => 'ھېساباتىڭىزنىڭ ئىشلەتكۈچى ھوقۇقىنى قوشۇش ياكى ئۆزگەرتىش ھوقۇقى يوق.',
-'userrights-changeable-col'    => 'سىز ئۆزگەرتەلەيدىغان گۇرۇپپا',
-'userrights-unchangeable-col'  => 'سىز ئۆزگەرتەلمەيدىغان گۇرۇپپا',
+'userrights-reason'              => 'سەۋەب:',
+'userrights-no-interwiki'        => 'باشقا wiki دىكى ئىشلەتكۈچىلەرنىڭ ھوقۇقىنى ئۆزگەرتىش ھوقۇقىڭىز يوق.',
+'userrights-nodatabase'          => '$1 ساندان مەۋجۇد ئەمەس ياكى يەرلىك ئوروندا ئەمەس.',
+'userrights-nologin'             => 'سىز چوقۇم باشقۇرغۇچى سۈپىتىدە [[Special:UserLogin|تىزىمغا كىر]]ىپ ئاندىن ئىشلەتكۈچى ھوقۇقىنى بەلگىلىيەلەيسىز.',
+'userrights-notallowed'          => 'ھېساباتىڭىزنىڭ ئىشلەتكۈچى ھوقۇقىنى قوشۇش ياكى ئۆزگەرتىش ھوقۇقى يوق.',
+'userrights-changeable-col'      => 'سىز ئۆزگەرتەلەيدىغان گۇرۇپپا',
+'userrights-unchangeable-col'    => 'سىز ئۆزگەرتەلمەيدىغان گۇرۇپپا',
+'userrights-irreversible-marker' => '$1*',
 
 # Groups
 'group'               => 'گۇرۇپپا:',
@@ -1416,9 +1421,11 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'minoreditletter'                   => 'ئازراقلا',
 'newpageletter'                     => 'يېڭى',
 'boteditletter'                     => 'ماشىنا ئادەم',
+'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1  {{PLURAL:$1|ئىشلەتكۈچى|ئىشلەتكۈچى}}كۆزىتىۋاتىدۇ]',
 'rc_categories'                     => 'تۈر چېگرىسى ("|" بىلەن ئايرىلىدۇ )',
 'rc_categories_any'                 => 'خالىغان',
+'rc-change-size'                    => '$1',
 'newsectionsummary'                 => '* $1 * يېڭى ئابزاس',
 'rc-enhanced-expand'                => 'تەپسىلاتىنى كۆرسەت (JavaScript قوللىشى زۆرۈر)',
 'rc-enhanced-hide'                  => 'تەپسىلاتىنى يوشۇر',
@@ -1856,6 +1863,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 # Book sources
 'booksources'               => 'كىتاب مەنبەسى',
 'booksources-search-legend' => 'كىتاب مەنبەسى ئىزدە',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'يۆتكەل',
 'booksources-text'          => 'تۆۋەندىكىسى بىر قىسىم تور كىتابخانىلىرىنىڭ تىزىملىكى، ئىچىدە سىز ئىزدىمەكچى بولغان كىتابلارنىڭ تېخىمۇ كۆپ ئۇچۇرى بولۇشى مۇمكىن:',
 'booksources-invalid-isbn'  => 'تەمىنلىگەن ISBN نومۇرى توغرا ئەمەس. ئەسلى كۆچۈرگەن مەنبەدىكى نومۇردا خاتالىق بار يوقلۇقىنى تەكشۈرۈڭ.',
@@ -1941,6 +1949,7 @@ URL نىڭ توغرىلىقى ۋە تور بېكەتنى زىيارەت قىلى
 'listgrouprights-rights'               => 'ھوقۇق',
 'listgrouprights-helppage'             => 'Help: گۇرۇپپا ھوقۇقى',
 'listgrouprights-members'              => '(ئەزالار تىزىملىكى)',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <code>($2)</code></span>',
 'listgrouprights-addgroup'             => ' {{PLURAL:$2|بىر|بىر قانچە}} گۇرۇپپىغا قوشالايدۇ: $1',
 'listgrouprights-removegroup'          => ' {{PLURAL:$2|بىر|بىر قانچە}} گۇرۇپپىدىن چىقىرىۋېتەلەيدۇ: $1',
 'listgrouprights-addgroup-all'         => 'ھەممە گۇرۇپپىغا قوش',
@@ -2217,6 +2226,7 @@ $2 نىڭ ئاخىرقى تۈزىتىلگەن نەشرىگە ئۆزگەرتىل�
 
  [[Special:Log/delete|ئۆچۈرۈش خاتىرىسى]]دىن پايدىلىنىپ ئۆچۈر ۋە ئەسلىگە كەلتۈر خاتىرىسىنى كۆرۈڭ.",
 'undelete-header'              => 'يېقىنقى خاتىرىنى سۈرۈشتۈرمەكچى بولسىڭىز [[Special:Log/delete|ئۆچۈرۈش خاتىرىسى]]دىن پايدىلىنىڭ.',
+'undelete-search-title'        => 'ئۆچۈرۈئتلگەن بەتنى ئزدەش',
 'undelete-search-box'          => 'ئۆچۈرۈلگەن بەتنى ئىزدە',
 'undelete-search-prefix'       => 'باشلانغان بەتنى كۆرسەت:',
 'undelete-search-submit'       => 'ئىزدەش',
@@ -2412,6 +2422,7 @@ $1',
 'proxyblockreason'                => 'IP ئادرېسىڭىز ئوچۇق ۋاكالەتچى، ئۇ ئاللىبۇرۇن چەكلەنگەن.
 ئىنتېرنېت مۇلازىمىتى تەمىنلىگۈچى سودىگەر ياكى تېخنىكىلىق قوللىغۇچى بىلەن ئالاقىلىشىڭ ھەمدە ئۇلارغا بۇ ئېغىر بىخەتەرلىك مەسىلىسىنى ئۇقتۇرۇڭ.',
 'proxyblocksuccess'               => 'تامام',
+'sorbs'                           => 'DNSBL',
 'sorbsreason'                     => 'IP ئادرېسىڭىز {{SITENAME}} دا DNSBL تەرىپىدىن ئوچۇق ۋاكالەتچى تىزىملىكىگە قوشۇلغان.',
 'sorbs_create_account_reason'     => 'IP ئادرېسىڭىز {{SITENAME}} دا DNSBL تەرىپىدىن ئوچۇق ۋاكالەتچى تىزىملىكىگە قوشۇلغان.
 شۇڭا سىز يېڭى ھېسابات قۇرالمايسىز.',
@@ -2547,6 +2558,7 @@ $1',
 بەت چىقىرىشتا، تۆۋەندىكى تېكست رامكىسىغا بەت ماۋزۇسىنى  كىرگۈزۈپ، ھەر بىر قۇردا بىر ماۋزۇ، ھەمدە بەت تارىخ بار  ئىلگىرىكى تۈزىتىلگەن نەشرىنى تاللامسىز يوق، ياكى پەقەت  ئاخىرقى قېتىملىق تەھرىر ئۇچۇرى بار نۆۋەتتىكى تۈزىتىلگەن  نەشرىنى چىقىرىشنى تاللاڭ.
 
 ئۇنىڭدىن باشقا ئۇلانمىدىن پايدىلىنىپ ھۆججەت چىقىرالايسىز،  مەسىلەن سىز [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] دىن پايدىلىنىپ  "[[{{MediaWiki:Mainpage}}]]"بەت چىقىرالايسىز.',
+'exportall'         => 'بارلىق بەتنى چىقىرىش',
 'exportcuronly'     => 'ھەممە تارىخنى ئەمەس بەلكى نۆۋەتتىكى تۈزىتىلگەن نەشرىنىلا ئۆز ئىچىگە ئالىدۇ.',
 'exportnohistory'   => "----
 '''دىققەت:''' ئىقتىدار سەۋەبلىك بۇ جەدۋەلدىن ھەممە تارىخنى چىقىرىش چەكلەنگەن.",
@@ -2582,6 +2594,7 @@ $1',
 'thumbnail_error'          => 'كىچىك رەسىم قۇرۇش خاتالىقى: $1',
 'djvu_page_error'          => 'DjVu بېتى دائىرىدىن ھالقىپ كەتتى',
 'djvu_no_xml'              => 'DjVu ھۆججىتىدىن XML گە ئېرىشەلمىدى',
+'thumbnail-dest-create'    => 'قارار ھۈجەتتە ۋاقتلىق كىچىك ھۈجەت ساقلىغل بولمدى',
 'thumbnail_invalid_params' => 'ئىناۋەتسىز كىچىك رەسىم پارامېتىرى',
 'thumbnail_dest_directory' => 'نىشان مۇندەرىجە قۇرالمىدى',
 'thumbnail_image-type'     => 'سۈرەت فورماتىنى قوللىمايدۇ',
@@ -2711,6 +2724,40 @@ $1',
 'tooltip-preferences-save'        => 'مايىللىق ساقلا',
 'tooltip-summary'                 => 'قىسقىچە ئۈزۈندە كىرگۈزۈڭ',
 
+# Stylesheets
+'common.css'              => '/* CSS placed here will be applied to all skins */',
+'standard.css'            => '/* CSS placed here will affect users of the Standard skin */',
+'nostalgia.css'           => '/* CSS placed here will affect users of the Nostalgia skin */',
+'cologneblue.css'         => '/* CSS placed here will affect users of the Cologne Blue skin */',
+'monobook.css'            => '/* CSS placed here will affect users of the Monobook skin */',
+'myskin.css'              => '/* CSS placed here will affect users of the MySkin skin */',
+'chick.css'               => '/* CSS placed here will affect users of the Chick skin */',
+'simple.css'              => '/* CSS placed here will affect users of the Simple skin */',
+'modern.css'              => '/* CSS placed here will affect users of the Modern skin */',
+'vector.css'              => '/* CSS placed here will affect users of the Vector skin */',
+'print.css'               => '/* CSS placed here will affect the print output */',
+'noscript.css'            => '/* CSS placed here will affect users with JavaScript disabled */',
+'group-autoconfirmed.css' => '/* CSS placed here will affect autoconfirmed users only */',
+'group-bot.css'           => '/* CSS placed here will affect bots only */',
+'group-sysop.css'         => '/* CSS placed here will affect sysops only */',
+'group-bureaucrat.css'    => '/* CSS placed here will affect bureaucrats only */',
+
+# Scripts
+'common.js'              => '/* Any JavaScript here will be loaded for all users on every page load. */',
+'standard.js'            => '/* Any JavaScript here will be loaded for users using the Standard skin */',
+'nostalgia.js'           => '/* Any JavaScript here will be loaded for users using the Nostalgia skin */',
+'cologneblue.js'         => '/* Any JavaScript here will be loaded for users using the Cologne Blue skin */',
+'monobook.js'            => '/* Any JavaScript here will be loaded for users using the MonoBook skin */',
+'myskin.js'              => '/* Any JavaScript here will be loaded for users using the MySkin skin */',
+'chick.js'               => '/* Any JavaScript here will be loaded for users using the Chick skin */',
+'simple.js'              => '/* Any JavaScript here will be loaded for users using the Simple skin */',
+'modern.js'              => '/* Any JavaScript here will be loaded for users using the Modern skin */',
+'vector.js'              => '/* Any JavaScript here will be loaded for users using the Vector skin */',
+'group-autoconfirmed.js' => '/* Any JavaScript here will be loaded for autoconfirmed users only */',
+'group-bot.js'           => '/* Any JavaScript here will be loaded for bots only */',
+'group-sysop.js'         => '/* Any JavaScript here will be loaded for sysops only */',
+'group-bureaucrat.js'    => '/* Any JavaScript here will be loaded for bureaucrats only */',
+
 # Metadata
 'notacceptable' => 'wiki مۇلازىمىتىرى سىزنىڭ خېرىدار تەرىپىڭىز ئوقۇيالايدىغان سانلىق مەلۇمات فورماتى بىلەن تەمىنلىيەلمەيدۇ.',
 
@@ -2737,16 +2784,27 @@ $1',
 
 # Info page
 'pageinfo-title'            => '"$1" نىڭ ئۇچۇرى',
-'pageinfo-header-edits'     => 'تەھرىر',
+'pageinfo-header-edits'     => 'تەھرىر خاتىرىسى',
 'pageinfo-header-watchlist' => 'كۆزەت تىزىمى',
 'pageinfo-header-views'     => 'كۆرۈنۈش',
 'pageinfo-subjectpage'      => 'بەت',
 'pageinfo-talkpage'         => 'مۇنازىرە بېتى',
-'pageinfo-watchers'         => 'كۆزەتكۈچىلەر سانى',
+'pageinfo-watchers'         => 'بەت كۆزەتكۈچىلەر سانى',
 'pageinfo-edits'            => 'تەھرىر سانى',
 'pageinfo-authors'          => 'يازغۇچىلار سانى',
 'pageinfo-views'            => 'كۆرۈنۈش سانى',
 'pageinfo-viewsperedit'     => 'ھەر بىر تەھرىر كۆرۈنۈشى',
+
+# Skin names
+'skinname-standard'    => 'Classic',
+'skinname-nostalgia'   => 'Nostalgia',
+'skinname-cologneblue' => 'Cologne Blue',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'MySkin',
+'skinname-chick'       => 'Chick',
+'skinname-simple'      => 'Simple',
+'skinname-modern'      => 'Modern',
+'skinname-vector'      => 'Vector',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'چارلاش بەلگىسى قوي',
@@ -2783,6 +2841,7 @@ $1',
 'mediawarning'           => "'''ئاگاھلاندۇرۇش''': بۇ ھۆججەتتە زەھەرخەندە كود بولۇشى مۇمكىن، ئۇنى ئىجرا قىلسىڭىز سىستېمىڭىزغا خەۋپ ئېلىپ كېلىشى مۇمكىن.",
 'imagemaxsize'           => "سۈرەت چوڭلۇق چەكلىمىسى: <br />''(ھۆججەت چۈشەندۈرۈش بېتى ئۈچۈن)''",
 'thumbsize'              => 'كىچىك سۈرەت چوڭلۇقى:',
+'widthheight'            => '$1 × $2',
 'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|بەت|بەت}}',
 'file-info'              => 'ھۆججەت چوڭلۇقى: $1, MIME تىپى: $2',
 'file-info-size'         => '$1 × $2 پىكسېل، ھۆججەت چوڭلۇقى: $3، MIME تىپى: $4',
@@ -2811,6 +2870,13 @@ $1',
 'bydate'                => 'چېسلا بويىچە',
 'sp-newimages-showfrom' => '$2 دىن $1 باشلاپ يېڭى ھۆججەت كۆرسىتىۋاتىدۇ',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2 × $3',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1h',
+'days-abbrev'    => '$1d',
+
 # Bad image list
 'bad_image_list' => 'تۆۋەندىكى فورماتتا يېزىڭ:
 
@@ -2818,6 +2884,40 @@ $1',
 ھەر بىر قۇرنىڭ بىرىنچى ئۇلانمىسى چوقۇم بۇزۇلغان ھۆججەتكە ئۇلىنىشى لازىم.
  بۇ ھۆججەت قايسى بەتلەردە كۆرسىتىلىشىدىن قەتئىي نەزەر،
  ئوخشاش بىر قۇرنىڭ ئاخىرىدىكى ئۇلانما مۇستەسنا دەپ قارىلىدۇ،',
+
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'hans',
+'variantname-zh-hant' => 'hant',
+'variantname-zh-cn'   => 'cn',
+'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-mo'   => 'mo',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh-my'   => 'my',
+'variantname-zh'      => 'zh',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'hans',
+'variantname-gan-hant' => 'hant',
+'variantname-gan'      => 'gan',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-arab' => 'kk-arab',
+'variantname-kk'      => 'kk',
 
 # Metadata
 'metadata'          => 'مېتا سانلىق مەلۇماتى',

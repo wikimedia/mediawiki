@@ -347,7 +347,7 @@ $messages = array(
 'vector-action-protect'          => 'Beskyt',
 'vector-action-undelete'         => 'Gendan',
 'vector-action-unprotect'        => 'Ændr beskyttelse',
-'vector-simplesearch-preference' => 'Aktivér forbedrede søgeforslag (kun Vector-udseendet)',
+'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create'             => 'Opret',
 'vector-view-edit'               => 'Redigér',
 'vector-view-history'            => 'Se historik',
@@ -832,8 +832,8 @@ Hvis du er en anonym bruger og synes, at du har fået irrelevante kommentarer p�
 Du kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede logger]
 eller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette siden]</span>.',
-'noarticletext-nopermission'       => 'Der er i øjeblikket ikke noget tekst på denne side.
-Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider,
+'noarticletext-nopermission'       => 'Der er i øjeblikket ingen tekst på denne side.
+Du kan [[Special:Search/{{PAGENAME}}|søge efter denne sides titel]] på andre sider, 
 eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} se de relaterede loglister]</span>.',
 'userpage-userdoesnotexist'        => 'Brugerkontoen "<nowiki>$1</nowiki>" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.',
 'userpage-userdoesnotexist-view'   => 'Brugerkontoen "$1" er ikke oprettet.',
@@ -2777,7 +2777,7 @@ Du kan se på kildeteksten.',
 'tooltip-t-contributions'             => 'Se denne brugers bidrag',
 'tooltip-t-emailuser'                 => 'Send en e-mail til denne bruger',
 'tooltip-t-upload'                    => 'Upload et billede eller anden mediafil',
-'tooltip-t-specialpages'              => 'Liste med alle specielle sider',
+'tooltip-t-specialpages'              => 'Liste over alle specialsider',
 'tooltip-t-print'                     => 'Printervenlig udgave af denne side',
 'tooltip-t-permalink'                 => 'Permanent henvisning til denne version af denne side',
 'tooltip-ca-nstab-main'               => 'Se indholdet',
@@ -3529,7 +3529,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Licens',
 'version-poweredby-credits'     => "Denne wiki er drevet af '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
-'version-poweredby-others'      => 'andre',
+'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS andre]',
 'version-license-info'          => 'MediaWiki er fri software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 
 MediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. 

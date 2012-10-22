@@ -451,7 +451,7 @@ $messages = array(
 'vector-action-protect'          => 'Khóa',
 'vector-action-undelete'         => 'Phục hồi',
 'vector-action-unprotect'        => 'Đổi mức khóa',
-'vector-simplesearch-preference' => 'Gợi ý tìm kiếm nâng cao (cần bề ngoài Vectơ)',
+'vector-simplesearch-preference' => 'Hộp tìm kiếm đơn giản (cần bề ngoài Vectơ)',
 'vector-view-create'             => 'Tạo',
 'vector-view-edit'               => 'Sửa',
 'vector-view-history'            => 'Xem lịch sử',
@@ -728,7 +728,7 @@ Hãy chắc chắn bạn đã bật lên cookie, làm mới trang này, và th�
 Tên người dùng có phân biệt chữ hoa chữ thường.
 Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài khoản mới]].',
 'nosuchusershort'            => 'Không có thành viên nào có tên “$1”. Xin hãy kiểm tra lại chính tả.',
-'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
+'nouserspecified'            => 'Bạn phải chỉ định một tên người dùng.',
 'login-userblocked'          => 'Thành viên này đã bị cấm. Không cho phép đăng nhập.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
 'wrongpasswordempty'         => 'Bạn chưa gõ vào mật khẩu. Xin thử lần nữa.',
@@ -740,7 +740,7 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài k
 'passwordremindertext'       => 'Ai đó (có thể là bạn, có địa chỉ IP $1) đã yêu cầu chúng tôi gửi mật khẩu mới của {{SITENAME}} ($4). Chúng tôi đã tạo một mật khẩu tạm “$3” cho thành viên “$2”. Nếu bạn chính là người đã yêu cầu mật khẩu, bạn cần phải đăng nhập và thay đổi mật khẩu ngay bây giờ. Mật khẩu tạm sẽ hết hạn trong vòng {{PLURAL:$5|một ngày|$5 ngày}}.
 
 Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ ra mật khẩu cũ của mình và không còn muốn đổi nó nữa, bạn có thể bỏ qua bức thư này và tiếp tục sử dụng mật khẩu cũ của bạn.',
-'noemail'                    => 'Thành viên “$1” không đăng ký thư điện tử.',
+'noemail'                    => 'Thành viên “$1” không ghi thư điện tử.',
 'noemailcreate'              => 'Bạn cần cung cấp một địa chỉ thư điện tử hợp lệ',
 'passwordsent'               => 'Mật khẩu mới đã được gửi tới thư điện tử của thành viên “$1”. Xin đăng nhập lại sau khi nhận thư.',
 'blocked-mailpassword'       => 'Địa chỉ IP của bạn bị cấm không được sửa đổi, do đó cũng không được phép dùng chức năng phục hồi mật khẩu để tránh lạm dụng.',
@@ -891,7 +891,7 @@ Lý do được cung cấp là ''$2''.
 * Mục tiêu cấm: $7
 
 Bạn có thể liên hệ với $1 hoặc một [[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về việc cấm.
-Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn tài khoản]] và bạn không bị khóa chức năng đó.
+Bạn không thể sử dụng tính năng “gửi thư cho người này” trừ khi bạn đã ghi một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn tài khoản]] và bạn không bị khóa chức năng đó.
 Địa chỉ IP hiện tại của bạn là $3, và mã số cấm là #$5.
 Xin hãy ghi kèm tất cả các thông tin trên vào thư yêu cầu của bạn.",
 'autoblockedtext'                  => "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, $1 là thành viên đã thực hiện cấm.
@@ -906,7 +906,7 @@ Lý do được cung cấp là:
 Bạn có thể liên hệ với $1 hoặc một trong số các
 [[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về việc cấm.
 
-Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã đăng ký một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn]] và bạn không bị cấm dùng chức năng đó.
+Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho người này” trừ khi bạn đã ghi một địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn]] và bạn không bị cấm dùng chức năng đó.
 
 Địa chỉ IP hiện tại của bạn là $3, mã số cấm là $5.
 Xin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của bạn.",
@@ -935,14 +935,14 @@ hoặc [{{fullurl:{{FULLPAGENAME}}|action=edit}} sửa đổi trang này]</span>
 'noarticletext-nopermission'       => 'Trang này hiện đang trống.
 Bạn có thể [[Special:Search/{{PAGENAME}}|tìm kiếm tựa trang này]] tại các trang khác,
 hoặc <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tìm kiếm các nhật trình liên quan]</span>.',
-'userpage-userdoesnotexist'        => 'Tài khoản mang tên “<nowiki>$1</nowiki>” chưa được đăng ký. Xin hãy kiểm tra lại nếu bạn muốn tạo/sửa trang này.',
-'userpage-userdoesnotexist-view'   => 'Tài khoản “$1” chưa được đăng ký.',
+'userpage-userdoesnotexist'        => 'Đây chưa có tài khoản với tên “<nowiki>$1</nowiki>”. Xin hãy kiểm tra lại nếu bạn muốn tạo hay sửa trang này.',
+'userpage-userdoesnotexist-view'   => 'Chưa có tài khoản với tên “$1”.',
 'blocked-notice-logextract'        => 'Người dùng này hiện đang bị cấm sửa đổi. Nhật trình cấm gần nhất được ghi ở dưới để tiện theo dõi:',
 'clearyourcache'                   => "'''Chú ý:''' Sau khi lưu trang, có thể bạn sẽ phải xóa bộ nhớ đệm của trình duyệt để xem các thay đổi.
-* '''Firefox / Safari:''' Giữ phím ''Shift'' trong khi nhấn ''Reload'' (''Tải lại''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (⌘R trên Mac)
+* '''Firefox / Safari:''' Giữ phím ''Shift'' trong khi nhấn ''Tải lại'' (''Reload''), hoặc nhấn tổ hợp ''Ctrl-F5'' hay ''Ctrl-R'' (⌘R trên Mac)
 * '''Google Chrome:''' Nhấn tổ hợp ''Ctrl-Shift-R'' (⇧⌘R trên Mac)
-* '''Internet Explorer:''' Giữ phím ''Ctrl'' trong khi nhấn ''Refresh'', hoặc nhấn tổ hợp ''Ctrl-F5''
-* '''Opera:''' Xóa bộ nhớ đệm trong ''Tools → Preferences''",
+* '''Internet Explorer:''' Giữ phím ''Ctrl'' trong khi nhấn ''Làm tươi'' (''Refresh''), hoặc nhấn tổ hợp ''Ctrl-F5''
+* '''Opera:''' Xóa bộ nhớ đệm trong ''Công cụ → Sở thích'' (''Tools → Preferences'')",
 'usercssyoucanpreview'             => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản CSS của bạn trước khi lưu trang.",
 'userjsyoucanpreview'              => "'''Mẹo:''' Sử dụng nút “{{int:showpreview}}” để kiểm thử bản JS của bạn trước khi lưu trang.",
 'usercsspreview'                   => "'''Hãy nhớ rằng bạn chỉ đang xem thử trang CSS cá nhân của bạn.
@@ -998,7 +998,7 @@ Không thể lưu trang.",
 Bảo quản viên khi khóa dữ liệu đã đưa ra lý do: $1",
 'protectedpagewarning'             => "'''Cảnh báo: Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể sửa được.'''
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
-'semiprotectedpagewarning'         => "'''Lưu ý:''' Trang này đã bị khóa và chỉ có các thành viên đã đăng ký mới có thể sửa đổi được.
+'semiprotectedpagewarning'         => "'''Lưu ý:''' Trang này đã bị khóa nên chỉ có các thành viên có tài khoản mới có thể sửa đổi được.
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
 'titleprotectedwarning'            => "'''Cảnh báo:  Trang này đã bị khóa và bạn phải có một số [[Special:ListGroupRights|quyền nhất định]] mới có thể tạo trang.'''
@@ -1390,7 +1390,7 @@ Không có thể lùi lại tác động này.',
 'username'                      => 'Tên người dùng:',
 'uid'                           => 'Số thứ tự thành viên:',
 'prefs-memberingroups'          => 'Thành viên của {{PLURAL:$1|nhóm|nhóm}}:',
-'prefs-registration'            => 'Thời điểm đăng ký:',
+'prefs-registration'            => 'Lúc mở tài khoản:',
 'yourrealname'                  => 'Tên thật:',
 'yourlanguage'                  => 'Ngôn ngữ:',
 'yourvariant'                   => 'Dạng chữ của nội dung:',
@@ -1995,7 +1995,7 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'statistics-views-total'       => 'Số lần xem tổng cộng',
 'statistics-views-total-desc'  => 'Không bao gồm số lần xem các trang không tồn tại và các trang đặc biệt',
 'statistics-views-peredit'     => 'Số lần xem trên một sửa đổi',
-'statistics-users'             => 'Số [[Special:ListUsers|thành viên]] đã đăng ký',
+'statistics-users'             => 'Số [[Special:ListUsers|thành viên]] có tài khoản',
 'statistics-users-active'      => 'Số thành viên tích cực',
 'statistics-users-active-desc' => 'Những thành viên đã hoạt động trong {{PLURAL:$1|ngày|$1 ngày}} qua',
 'statistics-mostpopular'       => 'Các trang được xem nhiều nhất',
@@ -2380,7 +2380,7 @@ hiện tại của trang '''$1''':",
 'protect-cascadeon'           => 'Trang này hiện bị khóa vì nó được nhúng vào {{PLURAL:$1|những trang|trang}} dưới đây bị khóa với tùy chọn “khóa theo tầng” được kích hoạt. Bạn có thể đổi mức độ khóa của trang này, nhưng nó sẽ không ảnh hưởng đến việc khóa theo tầng.',
 'protect-default'             => 'Cho phép mọi thành viên',
 'protect-fallback'            => 'Cần quyền “$1”',
-'protect-level-autoconfirmed' => 'Cấm thành viên mới và thành viên chưa đăng ký',
+'protect-level-autoconfirmed' => 'Cấm thành viên mới và người dùng chưa mở tài khoản',
 'protect-level-sysop'         => 'Cấm mọi thành viên (trừ bảo quản viên)',
 'protect-summary-cascade'     => 'khóa theo tầng',
 'protect-expiring'            => 'hết hạn $1 (UTC)',
@@ -2705,7 +2705,7 @@ Trong những trường hợp đó, bạn phải di chuyển hoặc hợp nhất
 'movearticle'                  => 'Di chuyển trang:',
 'moveuserpage-warning'         => "'''Cảnh báo:''' Bạn sắp di chuyển trang cá nhân của người dùng. Xin lưu ý rằng chỉ có trang này sẽ được di chuyển, còn người dùng sẽ ''không'' đổi tên.",
 'movenologin'                  => 'Chưa đăng nhập',
-'movenologintext'              => 'Bạn phải là thành viên đã đăng ký và [[Special:UserLogin|đăng nhập]] mới di chuyển trang được.',
+'movenologintext'              => 'Bạn phải là thành viên đã mở tài khoản và [[Special:UserLogin|đăng nhập]] mới di chuyển trang được.',
 'movenotallowed'               => 'Bạn không có quyền di chuyển trang.',
 'movenotallowedfile'           => 'Bạn không có đủ quyền để di chuyển tập tin.',
 'cant-move-user-page'          => 'Bạn không có quyền di chuyển trang cá nhân (ngoại trừ trang con).',
@@ -2754,9 +2754,9 @@ Trang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để
 'imageinvalidfilename'         => 'Tên tập tin đích không hợp lệ',
 'fix-double-redirects'         => 'Cập nhật tất cả các trang đổi hướng chỉ đến tựa đề cũ',
 'move-leave-redirect'          => 'Để lại trang đổi hướng',
-'protectedpagemovewarning'     => "'''Cảnh báo:''' Trang này đã bị khóa và chỉ có các thành viên có quyền quản lý mới có thể di chuyển được.
+'protectedpagemovewarning'     => "'''Cảnh báo:''' Trang này đã bị khóa nên chỉ có các thành viên có quyền quản lý mới có thể di chuyển được.
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
-'semiprotectedpagemovewarning' => "'''Lưu ý:''' Trang này đã bị khóa và chỉ có các thành viên đã đăng ký mới có thể di chuyển được.
+'semiprotectedpagemovewarning' => "'''Lưu ý:''' Trang này đã bị khóa nên chỉ có các thành viên có tài khoản mới có thể di chuyển được.
 Thông tin mới nhất trong nhật trình được ghi dưới đây để tiện theo dõi:",
 'move-over-sharedrepo'         => '== Tập tin đã tồn tại ==
 [[:$1]] đã tồn tại trong kho dùng chung. Nếu đổi tên tập tin thành tên này thì sẽ ghi đè lên tập tin dùng chung.',
@@ -3604,19 +3604,19 @@ Chương trình thư báo rằng: $1',
 'confirmemail_error'        => 'Có trục trặc khi lưu xác nhận của bạn.',
 'confirmemail_subject'      => 'Xác nhận thư điện tử tại {{SITENAME}}',
 'confirmemail_body'         => 'Ai đó, có thể là bạn, từ địa chỉ IP $1,
-đã đăng ký tài khoản có tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
+đã mở tài khoản có tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
 
 Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt tính năng thư điện tử tại {{SITENAME}}, xin mở liên kết này trong trình duyệt:
 
 $3
 
-Nếu bạn *không* đăng ký tài khoản, hãy nhấn vào liên kết này
+Nếu bạn *không* mở tài khoản, hãy nhấn vào liên kết này
 để hủy thủ tục xác nhận địa chỉ thư điện tử:
 
 $5
 
 Mã xác nhận này sẽ hết hạn vào $4.',
-'confirmemail_body_changed' => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã đăng ký tài khoản có
+'confirmemail_body_changed' => 'Ai đó, có thể là bạn, từ địa chỉ IP $1, đã mở tài khoản có
 tên "$2" với địa chỉ thư điện tử này tại {{SITENAME}}.
 
 Để xác nhận rằng tài khoản này thực sự là của bạn và để kích hoạt tính năng
@@ -3649,7 +3649,7 @@ Mã xác nhận này sẽ hết hạn vào $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Nhúng giữa các wiki bị tắt]',
-'scarytranscludefailed'   => '[Truy xuất bản mẫu cho $1 thất bại]',
+'scarytranscludefailed'   => '[Truy xuất bản mẫu $1 bị thất bại]',
 'scarytranscludetoolong'  => '[Địa chỉ URL quá dài]',
 
 # Delete conflict

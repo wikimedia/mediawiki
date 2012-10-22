@@ -218,7 +218,7 @@ $messages = array(
 'vector-action-protect'          => 'Protexer',
 'vector-action-undelete'         => 'Restaurar',
 'vector-action-unprotect'        => 'Camudar la proteición',
-'vector-simplesearch-preference' => 'Activar suxerencies meyoraes de gueta (namái apariencia Vector)',
+'vector-simplesearch-preference' => 'Activar la barra de gueta simplificada (namái apariencia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver historial',
@@ -435,10 +435,11 @@ Por favor vuelvi intentalo nunos minutos.',
 'protectedpagetext'    => 'Esta páxina ta candada pa torgar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar la fonte d'esta páxina:",
 'viewyourtext'         => "Pues ver y copiar la fonte de '''les tos ediciones''' d'esta páxina:",
-'protectedinterface'   => "Esta páxina proporciona testu d'interfaz de l'aplicación, y ta candada pa torgar abusos.",
-'editinginterface'     => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz de l'aplicación.
-Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios.
-Si quies facer traducciones, por favor usa [//translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
+'protectedinterface'   => "Esta páxina proporciona'l testu de la interfaz del software d'esta wiki, y ta candada pa torgar abusos.
+P'amestar o cambiar les traducciones de toles wikis, por favor usa [//translatewiki.net/translatewiki.net], el proyeutu de llocalización de MediaWiki.",
+'editinginterface'     => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu d'interfaz del programa.
+Los cambeos nesta páxina van afeutar l'apariencia de la interfaz pa otros usuarios d'esta wiki.
+P'amestar o camudar traducciones pa toles wikis, por favor, usa [//translatewiki.net/ translatewiki.net], el proyeutu de traducción de MediaWiki.",
 'sqlhidden'            => '(consulta SQL anubrida)',
 'cascadeprotected'     => "Esta páxina ta protexida d'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción «en cascada» activada:
 $2",
@@ -1178,7 +1179,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'timezoneregion-indian'         => 'Océanu Índicu',
 'timezoneregion-pacific'        => 'Océanu Pacíficu',
 'allowemail'                    => 'Dexar a los otros usuarios mandate correos',
-'prefs-searchoptions'           => 'Opciones de busca',
+'prefs-searchoptions'           => 'Guetar',
 'prefs-namespaces'              => 'Espacios de nome',
 'defaultns'                     => "D'otra miente, guetar nestos espacios de nome:",
 'default'                       => 'predetermináu',
@@ -3421,7 +3422,7 @@ Esti códigu de confirmación caduca\'l $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La tresclusión interwiki ta desactivada]',
-'scarytranscludefailed'   => '[La obtención de la plantía falló pa $1]',
+'scarytranscludefailed'   => '[Falló la recuperación de la plantía pa $1]',
 'scarytranscludetoolong'  => '[La URL ye demasiao llarga]',
 
 # Delete conflict
@@ -3532,7 +3533,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Llicencia',
 'version-poweredby-credits'     => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
-'version-poweredby-others'      => 'otros',
+'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS otros]',
 'version-license-info'          => "MediaWiki ye software llibre; pues redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
 
 MediaWiki se distribúi col envís de que seya afayadiza, pero ENSIN GARANTÍA DALA; ensin siquiera garantía implícita de COMERCIALIDÁ o ADAUTACIÓN A UN DETERMINÁU PROPÓSITU. Llee la Llicencia Pública Xeneral GNU pa más detalles.

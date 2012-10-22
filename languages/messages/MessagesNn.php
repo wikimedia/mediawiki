@@ -8,6 +8,7 @@
  * @file
  *
  * @author Boivie
+ * @author Cocu
  * @author Dittaeva
  * @author Diupwijk
  * @author Eirik
@@ -450,7 +451,7 @@ $messages = array(
 'vector-action-protect'          => 'Vern',
 'vector-action-undelete'         => 'Gjenopprett',
 'vector-action-unprotect'        => 'Endra vern',
-'vector-simplesearch-preference' => 'Slå på betra søkjeframlegg (einast i Vector-drakta)',
+'vector-simplesearch-preference' => 'Slå på forenkla søkjefelt (berre for Vector-drakta)',
 'vector-view-create'             => 'Opprett',
 'vector-view-edit'               => 'Endre',
 'vector-view-history'            => 'Sjå historikken',
@@ -982,7 +983,7 @@ Det siste loggelementet er oppgjeve under som referanse:",
 Det siste loggelementet er oppgjeve under som referanse:",
 'templatesused'                    => '{{PLURAL:$1|Mal|Malar}} som er brukte på denne sida:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mal som er brukt|Malar som er brukte}} i førehandsvisinga:',
-'templatesusedsection'             => '{{PLURAL:$1|Mal|Malar}} som er brukte i denne bolken:',
+'templatesusedsection'             => '{{PLURAL:$1|Mal som er brukt|Malar som er brukte}} i denne bolken:',
 'template-protected'               => '(verna)',
 'template-semiprotected'           => '(delvis verna)',
 'hiddencategories'                 => 'Denne sida er med i {{PLURAL:$1|éin gøymd kategori|$1 gøymde kategoriar}}:',
@@ -1000,7 +1001,7 @@ Du kan gå attende og endre ei eksisterande side, [[Special:UserLogin|logge inn 
 
 Du bør tenkje over om det er høveleg å halde fram med å endre denne sida.
 Sletteloggen for sida finn du her:",
-'moveddeleted-notice'              => 'Denne sida er vorten sletta. Sletteloggen og flytteloggen er vist nedanfor for referanse.',
+'moveddeleted-notice'              => 'Sida er vorten sletta. Sletteloggen og flytteloggen er viste nedanfor for referanse.',
 'log-fulllog'                      => 'Sjå full loggføring',
 'edit-hook-aborted'                => 'Endring avbroten av ein funksjon, utan forklaring.',
 'edit-gone-missing'                => 'Kunne ikkje oppdatere sida.
@@ -1555,10 +1556,10 @@ Dette kan ikkje tilbakestillast.',
 'recentchanges-legend'              => 'Alternativ for siste endringar',
 'recentchangestext'                 => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
-'recentchanges-label-newpage'       => 'Denne endringa oppretta ei ny side',
+'recentchanges-label-newpage'       => 'Endringa oppretta ei ny side',
 'recentchanges-label-minor'         => 'Dette er ei mindre endring',
 'recentchanges-label-bot'           => 'Denne endringa vart gjort av ein bot',
-'recentchanges-label-unpatrolled'   => 'Denne endringa er ikkje patruljert enno',
+'recentchanges-label-unpatrolled'   => 'Endringa er ikkje patruljert enno',
 'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa gjord|dei siste '''$1''' endringane gjorde}} {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
 'rcnotefrom'                        => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom'                        => 'Vis nye endringar sidan $1',
@@ -1628,7 +1629,7 @@ For å bruke ei fil på ei side, bruk ei lenkje på eit liknande format:
 'filestatus'                  => 'Opphavsrettsstatus:',
 'filesource'                  => 'Kjelde:',
 'uploadedfiles'               => 'Filer som er opplasta',
-'ignorewarning'               => 'Oversjå åtvaringa og lagre fila',
+'ignorewarning'               => 'Sjå bort frå åtvaringa og lagre fila likevel',
 'ignorewarnings'              => 'Oversjå åtvaringar',
 'minlength1'                  => 'Filnamn må ha minst eitt teikn.',
 'illegalfilename'             => 'Filnamnet «$1» inneheld teikn som ikkje er tillatne i sidetitlar. Skift namn på fila og prøv på nytt.',
@@ -1736,6 +1737,7 @@ $1',
 'backend-fail-stream'        => 'Kunne ikkje strøyma fila «$1».',
 'backend-fail-backup'        => 'Kunne ikkje tryggingskopiera fila «$1».',
 'backend-fail-notexists'     => 'Fila $1 finst ikkje.',
+'backend-fail-hashes'        => 'Kunne ikkje henta filnummer for samanlikning.',
 'backend-fail-notsame'       => 'Ein ikkje-identisk fil finst alt på «$1».',
 'backend-fail-invalidpath'   => '$1 er ikkje ein gyldig lagringsstig.',
 'backend-fail-delete'        => 'Kunne ikkje sletta fila «$1».',
@@ -1748,9 +1750,21 @@ $1',
 'backend-fail-closetemp'     => 'Kunne ikkje lata att mellombels fil.',
 'backend-fail-read'          => 'Kunne ikkje lesa fila «$1».',
 'backend-fail-create'        => 'Kunne ikkje oppretta fila «$1».',
+'backend-fail-readonly'      => "Largingsbaksystemet «$1» er for tida skriveverna. Oppgjeven grunn er: «''$2''»",
+'backend-fail-synced'        => 'Fila «$1» er i ei inkonsistent stode i dei interne lagringsbaksystema',
+'backend-fail-connect'       => 'Kunne ikkje kopla til filbaksystemet «$1».',
+'backend-fail-internal'      => 'Ein ukjend feil oppstod i lagringsbaksystemet «$1».',
 
 # Lock manager
+'lockmanager-notlocked'        => 'Kunne ikkje låsa opp «$1» av di han ikkje er låst',
+'lockmanager-fail-closelock'   => 'Kunne ikkje lata att låsefila for «$1».',
+'lockmanager-fail-deletelock'  => 'Kunne ikkje sletta låsefila for «$1».',
+'lockmanager-fail-acquirelock' => 'Kunne ikkje henta lås for «$1».',
+'lockmanager-fail-openlock'    => 'Kunne ikkje opna låsefila for «$1».',
 'lockmanager-fail-releaselock' => 'Kunne ikkje løysa låsen for «$1».',
+'lockmanager-fail-db-bucket'   => 'Kunne ikkje kontakta nok låsedatabasar i bytta $1.',
+'lockmanager-fail-db-release'  => 'Kunne ikkje løysa låsane på databasen $1.',
+'lockmanager-fail-svr-release' => 'Kunne ikkje løysa låsane på tenaren $1.',
 
 # ZipDirectoryReader
 'zip-wrong-format' => 'Den oppgjevne fila var ikkje ei ZIP-fil',
@@ -1758,7 +1772,8 @@ $1',
 Ho kan ikkje tryggingskontrollerast.',
 
 # Special:UploadStash
-'uploadstash-refresh' => 'Oppdater fillista',
+'uploadstash-errclear' => 'Fjerning av filene var mislykka.',
+'uploadstash-refresh'  => 'Oppdater fillista',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Tilgjenge avslått',
@@ -2030,7 +2045,7 @@ Merk at andre internettsider kan ha direkte lenkjer til filer, og difor kan file
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alle offentlege loggar',
 'alllogstext'          => 'Kombinert vising av alle loggane på {{SITENAME}}. Du kan avgrense resultatet ved å velje loggtype, brukarnamn eller den sida som er påverka (hugs å skilje mellom store og små bokstavar)',
-'logempty'             => 'Ingen treff i loggane.',
+'logempty'             => 'Ingen element i loggen passar.',
 'log-title-wildcard'   => 'Søk i titlar som byrjar med denne teksten',
 
 # Special:AllPages
@@ -2168,21 +2183,22 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'watchnochange'        => 'Ingen av sidene i overvakingslista er endra i den valde perioden.',
 'watchlist-details'    => '{{PLURAL:$1|Éi side|$1 sider}} er overvaka, utanom diskusjonssider.',
 'wlheader-enotif'      => '* Funksjonen for endringsmeldingar per e-post er på.',
-'wlheader-showupdated' => "* Sider som har blitt endra sidan du sist såg på dei er '''utheva'''",
+'wlheader-showupdated' => "* Sider som har vorte endra sidan du sist såg på dei er '''utheva'''",
 'watchmethod-recent'   => 'sjekkar siste endringar for dei overvaka sidene',
 'watchmethod-list'     => 'sjekkar om dei overvaka sidene har blitt endra i det siste',
 'watchlistcontains'    => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}}.',
 'iteminvalidname'      => 'Problem med «$1», ugyldig namn...',
 'wlnote'               => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} {{PLURAL:$2|den siste timen|dei siste '''$2''' timane}}, for $3, kl. $4.",
-'wlshowlast'           => 'Vis siste $1 timar $2 dagar $3',
+'wlshowlast'           => 'Vis siste $1 timane $2 dagane $3',
 'watchlist-options'    => 'Alternativ for overvakingslista',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Overvakar...',
-'unwatching' => 'Fjernar frå overvakinglista...',
+'watching'       => 'Overvakar...',
+'unwatching'     => 'Fjernar frå overvakinglista...',
+'watcherrortext' => 'Det oppstod ein feil under endringa av overvakingsinnstillingane dine for «$1».',
 
 'enotif_mailer'                => '{{SITENAME}}-endringsmeldingssendar',
-'enotif_reset'                 => 'Merk alle sider som vitja',
+'enotif_reset'                 => 'Merk alle sidene som vitja',
 'enotif_newpagetext'           => 'Dette er ei ny side.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
 'changed'                      => 'endra',
@@ -2260,7 +2276,7 @@ Den siste endringa vart gjord av [[User:$3|$3]] ([[User talk:$3|brukardiskusjon]
 'editcomment'       => "Samandraget for endringa var: «''$1''».",
 'revertpage'        => 'Attenderulla endring gjord av [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusjon]]) til siste versjonen av [[User:$1|$1]]',
 'revertpage-nouser' => 'Tilbakestilte endringar av (brukarnamn fjerna) til den siste versjonen av [[User:$1|$1]]',
-'rollback-success'  => 'Rulla attende endringane av $1, tilbake til siste versjon av $2.',
+'rollback-success'  => 'Rulla attende endringane av $1, attende til siste versjonen av $2.',
 
 # Edit tokens
 'sessionfailure-title' => 'Feil med omgangen.',
@@ -2278,6 +2294,7 @@ Sjå [[Special:ProtectedPages|lista over verna sider]] for lista over vern som n
 'protect-title-notallowed'    => 'Sjå vernenivået til «$1»',
 'prot_1movedto2'              => '«[[$1]]» flytt til «[[$2]]»',
 'protect-badnamespace-title'  => 'Namnerommet kan ikkje vernast',
+'protect-badnamespace-text'   => 'Sider i dette namnerommet kan ikkje vernast.',
 'protect-legend'              => 'Stadfest vern',
 'protectcomment'              => 'Grunngjeving:',
 'protectexpiry'               => 'Endar:',
@@ -3137,19 +3154,30 @@ Andre er gøymde som standard.
 'exif-headline'                    => 'Overskrift',
 'exif-credit'                      => 'Opphavrettseigar/filgjevar',
 'exif-source'                      => 'Kjelde',
+'exif-editstatus'                  => 'Den redaksjonelle stoda til biletet',
 'exif-urgency'                     => 'Prioritet',
 'exif-objectcycle'                 => 'Tid på dagen mediet er meint for',
+'exif-contact'                     => 'Kontaktinformasjon',
 'exif-writer'                      => 'Forfattar',
 'exif-languagecode'                => 'Språk',
 'exif-iimversion'                  => 'IIM-versjon',
 'exif-iimcategory'                 => 'Kategori',
+'exif-datetimeexpires'             => 'Skal ikkje nyttast etter',
+'exif-datetimereleased'            => 'Frigjeve',
 'exif-lens'                        => 'Objektiv',
+'exif-serialnumber'                => 'Serienummeret på kameraet',
 'exif-cameraownername'             => 'Eigar av kameraet',
 'exif-label'                       => 'Merkelapp',
+'exif-nickname'                    => 'Det uformelle namnet på biletet',
 'exif-rating'                      => 'Vurdering (av 5)',
 'exif-copyrighted'                 => 'Opphavsrettsstode',
 'exif-copyrightowner'              => 'Opphavsrettseigar',
 'exif-usageterms'                  => 'Bruksvilkår',
+'exif-originaldocumentid'          => 'Unik ID til originaldokumentet',
+'exif-licenseurl'                  => 'URL for opphavsrettsløyve',
+'exif-morepermissionsurl'          => 'Alternativ løyveinformasjon',
+'exif-attributionurl'              => 'Når dette verket vert nytta, lenkja til',
+'exif-preferredattributionname'    => 'Når dette verket vert nytta, godskriv',
 'exif-pngfilecomment'              => 'PNG-filkommentar',
 'exif-disclaimer'                  => 'Atterhald',
 'exif-contentwarning'              => 'Innholdsåtvaring',
@@ -3324,6 +3352,7 @@ Andre er gøymde som standard.
 'exif-gpsdop-excellent' => 'Utmerkt ($1)',
 'exif-gpsdop-good'      => 'God ($1)',
 'exif-gpsdop-moderate'  => 'Moderat ($1)',
+'exif-gpsdop-fair'      => 'Medels ($1)',
 'exif-gpsdop-poor'      => 'Dårleg ($1)',
 
 'exif-objectcycle-a' => 'Berre morgon',
@@ -3382,29 +3411,29 @@ Andre er gøymde som standard.
 'limitall'      => 'alle',
 
 # E-mail address confirmation
-'confirmemail'             => 'Stadfest e-postadresse',
-'confirmemail_noemail'     => 'Du har ikkje gjeve ei gyldig e-postadresse i [[Special:Preferences|innstillingane dine]].',
-'confirmemail_text'        => '{{SITENAME}} krev at du stadfester e-postadressa di
+'confirmemail'              => 'Stadfest e-postadresse',
+'confirmemail_noemail'      => 'Du har ikkje gjeve ei gyldig e-postadresse i [[Special:Preferences|innstillingane dine]].',
+'confirmemail_text'         => '{{SITENAME}} krev at du stadfester e-postadressa di
 før du får brukt funksjonar knytt til e-post. Klikk på knappen under for å sende ei stadfestingsmelding
 til adressa di. E-posten kjem med ei lenkje som har ein kode; opne
 lenkja i nettlesaren din for å stadfeste at e-postadressa di er gyldig.',
-'confirmemail_pending'     => 'Ein stadfestingskode har alt vorte send til deg på e-post;
+'confirmemail_pending'      => 'Ein stadfestingskode har alt vorte send til deg på e-post;
 gjer vel å vente nokre minutt før du ber om ny kode om du nett har oppretta kontoen din.',
-'confirmemail_send'        => 'Send stadfestingsmelding',
-'confirmemail_sent'        => 'Stadfestingsmelding er sendt.',
-'confirmemail_oncreate'    => 'Ein stadfestingskode er no send til e-postadressa di.
+'confirmemail_send'         => 'Send stadfestingsmelding',
+'confirmemail_sent'         => 'Stadfestingsmelding er sendt.',
+'confirmemail_oncreate'     => 'Ein stadfestingskode er no send til e-postadressa di.
 Koden trengst ikkje for å få logga seg inn, men er naudsynd om ein skal aktivere e-postbaserte tenester på denne wikien.',
-'confirmemail_sendfailed'  => '{{SITENAME}} klarte ikkje å sende stadfestingsmelding.
+'confirmemail_sendfailed'   => '{{SITENAME}} klarte ikkje å sende stadfestingsmelding.
 Sjekk e-postadressa for ugyldige teikn.
 
 E-postsendaren gav denne meldinga: $1',
-'confirmemail_invalid'     => 'Feil stadfestingskode. Koden er kanskje for forelda.',
-'confirmemail_needlogin'   => 'Du må $1 for å stadfeste e-postadressa di.',
-'confirmemail_success'     => 'E-postadressa di er stadfest. Du kan no logge inn og kose deg med {{SITENAME}}.',
-'confirmemail_loggedin'    => 'E-postadressa di er stadfest.',
-'confirmemail_error'       => 'Noko gjekk gale når stadfestinga di skulle lagrast.',
-'confirmemail_subject'     => 'Stadfesting av e-postadresse frå {{SITENAME}}',
-'confirmemail_body'        => 'Nokon, truleg du, frå IP-adressa $1, har registrert kontoen «$2» med di e-postadresse på {{SITENAME}}.
+'confirmemail_invalid'      => 'Feil stadfestingskode. Koden er kanskje for forelda.',
+'confirmemail_needlogin'    => 'Du må $1 for å stadfeste e-postadressa di.',
+'confirmemail_success'      => 'E-postadressa di er stadfest. Du kan no logge inn og kose deg med {{SITENAME}}.',
+'confirmemail_loggedin'     => 'E-postadressa di er stadfest.',
+'confirmemail_error'        => 'Noko gjekk gale når stadfestinga di skulle lagrast.',
+'confirmemail_subject'      => 'Stadfesting av e-postadresse frå {{SITENAME}}',
+'confirmemail_body'         => 'Nokon, truleg du, frå IP-adressa $1, har registrert kontoen «$2» med di e-postadresse på {{SITENAME}}.
 
 For å stadfeste at denne kontoen faktisk høyrer til deg og for å slå på
 funksjonar tilknytt e-post på {{SITENAME}} må du opne denne lenkja i nettlesaren din:
@@ -3416,8 +3445,32 @@ Dersom dette *ikkje* er deg, følg denne lenkja for avbryte stadfestinga av e-po
 $5
 
 Denne stadfestingskoden vert forelda $4.',
-'confirmemail_invalidated' => 'Stadfestinga av e-postadresse er avbrote',
-'invalidateemail'          => 'Avbryt stadfestinga av e-postadressa',
+'confirmemail_body_changed' => 'Nokon, truleg deg, frå IP-adressa $1, har endra e-postadressa til kontoen «$2» på {{SITENAME}} til denne e-postadressa.
+
+For å stadfesta at denne kontoen faktisk høyrer til deg, og for å slå på
+funksjonar knytte til e-post på {{SITENAME}}, opna denne lenkja i nettlesaren din:
+
+$3
+
+Om brukarkontoen *ikkje* høyrer til deg, fylg denne lenkja for å bryta av stadfestinga av e-postadressa:
+
+$5
+
+Denne stadfestingskoden vert forelda $4.',
+'confirmemail_body_set'     => 'Nokon, truleg deg, frå IP-adressa $1, har sett e-postadressa til kontoen «$2» på {{SITENAME}} til denne e-postadressa.
+
+For å stadfesta at denne kontoen faktisk høyrer til deg, og for å slå på
+funksjonar knytte til e-post på {{SITENAME}}, opna denne lenkja i nettlesaren din:
+
+$3
+
+Om brukarkontoen *ikkje* høyrer til deg, fylg denne lenkja for å bryta av stadfestinga av e-postadressa:
+
+$5
+
+Denne stadfestingskoden vert forelda $4.',
+'confirmemail_invalidated'  => 'Stadfestinga av e-postadresse er avbrote',
+'invalidateemail'           => 'Avbryt stadfestinga av e-postadressa',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Interwiki-tilkopling er slått av]',
@@ -3558,7 +3611,7 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'specialpages'                   => 'Spesialsider',
 'specialpages-note'              => '----
 * Vanlege spesialsider.
-* <strong class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</strong>',
+* <span class="mw-specialpagerestricted">Spesialsider med avgrensa tilgang.</span>',
 'specialpages-group-maintenance' => 'Vedlikehaldsrapportar',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Logga inn / oppretta brukarkonto',

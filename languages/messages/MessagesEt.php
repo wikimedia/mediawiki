@@ -442,7 +442,7 @@ $messages = array(
 'vector-action-protect'          => 'Kaitse',
 'vector-action-undelete'         => 'Taasta',
 'vector-action-unprotect'        => 'Muuda kaitset',
-'vector-simplesearch-preference' => 'Luba täiustatud otsinguvihjed (ainult Vektori-kujunduses)',
+'vector-simplesearch-preference' => 'Kasuta lihtsustatud otsiriba (ainult Vektori-kujunduses)',
 'vector-view-create'             => 'Loo',
 'vector-view-edit'               => 'Redigeeri',
 'vector-view-history'            => 'Näita ajalugu',
@@ -3340,8 +3340,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 
 'exif-filesource-3' => 'Digitaalne fotokaamera',
 
-'exif-customrendered-0' => 'Normaalne protsess',
-'exif-customrendered-1' => 'Kohandatud protsess',
+'exif-customrendered-0' => 'Tavatöötlus',
+'exif-customrendered-1' => 'Kohandatud töötlus',
 
 'exif-exposuremode-0' => 'Automaatne säritus',
 'exif-exposuremode-1' => 'Manuaalne säritus',
@@ -3362,16 +3362,16 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gaincontrol-4' => 'Vähene',
 
 'exif-contrast-0' => 'Normaalne',
-'exif-contrast-1' => 'Pehme',
-'exif-contrast-2' => 'Kõva',
+'exif-contrast-1' => 'Nõrk',
+'exif-contrast-2' => 'Tugev',
 
 'exif-saturation-0' => 'Normaalne',
 'exif-saturation-1' => 'Madal värviküllastus',
 'exif-saturation-2' => 'Kõrge värviküllastus',
 
 'exif-sharpness-0' => 'Normaalne',
-'exif-sharpness-1' => 'Pehme',
-'exif-sharpness-2' => 'Kõva',
+'exif-sharpness-1' => 'Nõrk',
+'exif-sharpness-2' => 'Tugev',
 
 'exif-subjectdistancerange-0' => 'Teadmata',
 'exif-subjectdistancerange-1' => 'Makro',

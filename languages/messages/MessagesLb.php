@@ -1730,7 +1730,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 # Special:ListFiles
 'listfiles-summary'     => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.
 
-Wann se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
+Wa se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
 'listfiles_search_for'  => 'Sicht nom Fichier:',
 'imgfile'               => 'Fichier',
 'listfiles'             => 'Lëscht vun de Fichieren',
@@ -1840,7 +1840,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'statistics'                   => 'Statistik',
 'statistics-header-pages'      => 'Säitestatistiken',
 'statistics-header-edits'      => 'Statistik vun den Ännerungen',
-'statistics-header-views'      => "Sttistiken iwwert d'Visiten",
+'statistics-header-views'      => "Statistiken iwwert d'Visiten",
 'statistics-header-users'      => 'Benotzerstatistik',
 'statistics-header-hooks'      => 'Aner Statistiken',
 'statistics-articles'          => 'Säite mat Inhalt',
@@ -3522,7 +3522,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-version'               => '(Versioun $1)',
 'version-license'               => 'Lizenz',
 'version-poweredby-credits'     => "Dës Wiki fonctionnéiert mat '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
-'version-poweredby-others'      => 'anerer',
+'version-poweredby-others'      => '[{{SERVER}}{{SCRIPTPATH}}/CREDITS anerer]',
 'version-license-info'          => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënnert de Bedingungen vun der GNU-General Public License esou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
 
 MediaWiki gëtt verdeelt an der Hoffnung datt se nëtzlech ass, awer OUNI IERGENDENG GARANTIE; ouni eng implizit Garantie vu Commercialisatioun oder Eegnung fir e bestëmmte Gebrauch. Kuckt d'GPU Geral Public License fir méi Informatiounen.

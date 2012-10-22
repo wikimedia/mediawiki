@@ -304,7 +304,7 @@ $messages = array(
 'tog-nocache'                 => 'Onemogući keširanje stranica u pregledniku',
 'tog-enotifwatchlistpages'    => 'Pošalji mi e-poštu kad se promijene stranice',
 'tog-enotifusertalkpages'     => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
-'tog-enotifminoredits'        => 'Pošalji mi e-poštu takođe za male izmjene stranica',
+'tog-enotifminoredits'        => 'Pošalji mi e-poštu također za male izmjene u stranicama i datotekama',
 'tog-enotifrevealaddr'        => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji prate',
 'tog-oldsig'                  => 'Postojeći potpis:',
@@ -653,7 +653,8 @@ Pretraga: $2',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječile izmjene.',
 'viewsourcetext'       => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
 'viewyourtext'         => "Možete da pogledate i kopirate izvor '''vaših izmjena''' na ovoj stranici:",
-'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
+'protectedinterface'   => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom wikiju i zaštićena je radi sprečavanja zloupotrebe.
+Da biste dodali ili izmjenili prijevode svih wikija, posjetite [//translatewiki.net/  translatewiki.net], projekat za lokalizaciju Mediawikija.',
 'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
 Promjene na ovoj stranici dovode i do promjena za druge korisnike.
 Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
@@ -946,7 +947,6 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 *'''Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''⌘-R'' na Macu)
 *'''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Macu)
 *'''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''
-*'''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5''
 *'''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi CSS prije nego što sačuvate.",
 'userjsyoucanpreview'              => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi JavaScript prije nego što sačuvate.",
@@ -1385,7 +1385,7 @@ Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $
 'timezoneregion-indian'         => 'Indijski okean',
 'timezoneregion-pacific'        => 'Tihi okean',
 'allowemail'                    => 'Dozvoli e-poštu od ostalih korisnika',
-'prefs-searchoptions'           => 'Opcije pretrage',
+'prefs-searchoptions'           => 'Traži',
 'prefs-namespaces'              => 'Imenski prostori',
 'defaultns'                     => 'Inače tražite u ovim imenskim prostorima:',
 'default'                       => 'standardno',

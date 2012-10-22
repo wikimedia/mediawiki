@@ -1688,6 +1688,7 @@ Raha mbola misy foana ilay  olana, manorata any amin'ny [[Special:ListUsers/syso
 # File backend
 'backend-fail-stream'        => 'Tsy afaka mamaky ilay rakitra $1.',
 'backend-fail-backup'        => 'Tsy afaka mitahiry ilay rakitra $1.',
+'backend-fail-notexists'     => 'Tsy misy ilay rakitra $1.',
 'backend-fail-hashes'        => "Tsy azo ilay hash an-drakitra ho an'ny fampitahana.",
 'backend-fail-notsame'       => "Efa misy rakitra samihafa ho an'i $1",
 'backend-fail-invalidpath'   => '$1 dia lalam-pitahirizana tsy azo raisina.',

@@ -493,7 +493,7 @@ $messages = array(
 
 'about'         => '解説',
 'article'       => '本文',
-'newwindow'     => '（新しいウィンドウが開きます）',
+'newwindow'     => '(新しいウィンドウで開きます)',
 'cancel'        => '中止',
 'moredotdotdot' => '続き...',
 'mypage'        => '自分のページ',
@@ -531,7 +531,7 @@ $messages = array(
 'variants'                       => '変種',
 
 'errorpagetitle'    => 'エラー',
-'returnto'          => '$1に戻る。',
+'returnto'          => '$1 に戻る。',
 'tagline'           => '提供：{{SITENAME}}',
 'help'              => 'ヘルプ',
 'search'            => '検索',
@@ -742,7 +742,7 @@ URL を間違って入力したか、正しくないリンクをたどった可�
 'viewyourtext'         => "このページへの'''あなたの編集'''のソースの閲覧やコピーができます：",
 'protectedinterface'   => 'このページにはこのウィキのソフトウェアのインターフェイスに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。
 すべてのウィキに対して翻訳を追加/変更する場合は、MediaWiki の地域化プロジェクト [//translatewiki.net/ translatewiki.net] を使用してください。',
-'editinginterface'     => "'''警告:''' ソフトウェアのインターフェイスに使用されるのテキストのページを編集しています。
+'editinginterface'     => "'''警告:''' ソフトウェアのインターフェイスに使用されるテキストのページを編集しています。
 このページを変更すると、このウィキの他の利用者のユーザーインターフェイスの外観に影響します。
 すべてのウィキに対して翻訳を追加/変更する場合は、MediaWiki の地域化プロジェクト [//translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net] を使用してください。",
 'sqlhidden'            => '(SQL クエリ非表示)',
@@ -786,7 +786,7 @@ $2',
 'nologin'                    => '登録がまだの場合、$1。',
 'nologinlink'                => 'アカウントを作成してください',
 'createaccount'              => 'アカウント作成',
-'gotaccount'                 => '既にアカウントを持っている場合、$1。',
+'gotaccount'                 => 'アカウントを既に持っている場合、$1。',
 'gotaccountlink'             => 'ログインしてください',
 'userlogin-resetlink'        => 'ログイン情報をお忘れですか？',
 'createaccountmail'          => 'メールで送信',
@@ -1021,7 +1021,7 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 'loginreqtitle'                    => 'ログインが必要',
 'loginreqlink'                     => 'ログイン',
 'loginreqpagetext'                 => '他のページを閲覧するには$1する必要があります。',
-'accmailtitle'                     => 'パスワードを送信しました。',
+'accmailtitle'                     => 'パスワードをお送りしました。',
 'accmailtext'                      => "[[User talk:$1|$1]]のために無作為に生成したパスワードを、$2に送信しました。
 
 この新アカウントのパスワードは、ログインした際に''[[Special:ChangePassword|パスワード変更]]''ページで変更できます。",
@@ -1034,10 +1034,10 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこのブロッ�
 IP アドレスは複数の利用者で共有されている場合があります。
 もし、あなたが匿名利用者であり、自分に関係のないコメントが寄せられている考えられる場合は、[[Special:UserLogin/signup|アカウントを作成する]]か[[Special:UserLogin|ログインして]]他の匿名利用者と間違えられないようにしてください。''",
 'noarticletext'                    => '現在このページには内容がありません。
-他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]するか、
-[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>することができます。',
-'noarticletext-nopermission'       => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索]]するか、もしくは<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連記録を検索]</span>することができます。',
+他のページ内で[[Special:Search/{{PAGENAME}}|このページ名を検索]]、
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]、
+または[{{fullurl:{{FULLPAGENAME}}|action=edit}} このページを編集]</span>できます。',
+'noarticletext-nopermission'       => '現在このページには内容がありません。他のページに含まれる[[Special:Search/{{PAGENAME}}|このページ名を検索]]、または<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 関連する記録を検索]</span>できます。',
 'userpage-userdoesnotexist'        => '「$1」という利用者アカウントは登録されていません。
 このページの作成/編集が適切かご確認ください。',
 'userpage-userdoesnotexist-view'   => '利用者アカウント「$1」は登録されていません。',
@@ -1094,10 +1094,10 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'editingold'                       => "'''警告：このページの古い版を編集しています。'''
 保存すると、この版以降に追加されていた変更がすべて失われます。",
 'yourdiff'                         => '差分',
-'copyrightwarning'                 => "{{SITENAME}}への投稿は、すべて$2（詳細は$1を参照）のもとで公開したと見なされることにご注意ください。
+'copyrightwarning'                 => "{{SITENAME}}への投稿は、すべて$2 (詳細は$1を参照) のもとで公開したと見なされることにご注意ください。
 あなたが投稿したものを、他人がよって遠慮なく編集し、それを自由に配布するのを望まない場合は、ここには投稿しないでください。<br />
 また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください。
-'''著作権保護されている作品を、許諾なしに投稿しないでください！'''",
+'''著作権保護されている作品を、許諾なしに投稿しないでください!'''",
 'copyrightwarning2'                => "{{SITENAME}}へのすべての投稿は、他の利用者が編集、変更、除去する可能性があります。
 あなたの投稿を、他人が遠慮なく編集するのを望まない場合は、ここには投稿しないでください。<br />
 また、投稿するのは、あなたが書いたものか、パブリック ドメインまたはそれに類するフリーな資料からの複製であることを約束してください（詳細は$1を参照）。
@@ -1265,7 +1265,7 @@ $3が示した理由：''$2''",
 'revdelete-hide-comment'      => '編集の要約を隠す',
 'revdelete-hide-user'         => '投稿者の利用者名またはIPを隠す',
 'revdelete-hide-restricted'   => '他の利用者と同様に管理者からもデータを隠す',
-'revdelete-radio-same'        => '（変更しない）',
+'revdelete-radio-same'        => '(変更しない)',
 'revdelete-radio-set'         => 'はい',
 'revdelete-radio-unset'       => 'いいえ',
 'revdelete-suppress'          => '他の利用者と同様に管理者からもデータを隠す',
@@ -1391,7 +1391,7 @@ $1",
 'search-suggest'                   => 'もしかして：$1',
 'search-interwiki-caption'         => '姉妹プロジェクト',
 'search-interwiki-default'         => '$1の結果：',
-'search-interwiki-more'            => '（続き）',
+'search-interwiki-more'            => '(続き)',
 'search-mwsuggest-enabled'         => '検索候補を表示',
 'search-mwsuggest-disabled'        => '検索候補を表示しない',
 'search-relatedarticle'            => '関連',
@@ -1449,7 +1449,7 @@ $1",
 'prefs-watchlist-edits-max'     => '最大数：1000',
 'prefs-watchlist-token'         => 'ウォッチリストのトークン:',
 'prefs-misc'                    => 'その他',
-'prefs-resetpass'               => 'パスワードの変更',
+'prefs-resetpass'               => 'パスワードを変更',
 'prefs-changeemail'             => 'メールアドレスを変更',
 'prefs-setemail'                => 'メールアドレスを設定',
 'prefs-email'                   => 'メールの設定',
@@ -1613,7 +1613,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-suppressredirect'      => '転送ページを作成せずにページを移動',
 'right-upload'                => 'ファイルをアップロード',
 'right-reupload'              => '既存のファイルに上書き',
-'right-reupload-own'          => '自分自身がアップロードした既存のファイルに上書き',
+'right-reupload-own'          => '自身がアップロードした既存のファイルに上書き',
 'right-reupload-shared'       => '共有メディアリポジトリ上のファイルにローカルで上書き',
 'right-upload_by_url'         => 'URL からファイルをアップロード',
 'right-purge'                 => '確認なしでサイトのキャッシュを破棄',
@@ -1636,7 +1636,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-hideuser'              => '利用者名をブロックして公開記録から隠す',
 'right-ipblock-exempt'        => 'IPブロック、自動ブロック、広域ブロックを回避',
 'right-proxyunbannable'       => 'プロキシの自動ブロックを回避',
-'right-unblockself'           => '自分自身に対するブロックを解除',
+'right-unblockself'           => '自身に対するブロックを解除',
 'right-protect'               => '保護レベルを変更し、保護されたページを編集',
 'right-editprotected'         => '保護ページ（カスケード保護を除く）を編集',
 'right-editinterface'         => 'ユーザーインターフェイスを編集',
@@ -1649,7 +1649,7 @@ $1 {{PLURAL:$1|文字}}以下である必要があります。',
 'right-import'                => '他のウィキからページを取り込み',
 'right-importupload'          => 'ファイルアップロードでページを取り込み',
 'right-patrol'                => '他人の編集を巡回済みにする',
-'right-autopatrol'            => '自分の編集を自動的に巡回済みにする',
+'right-autopatrol'            => '自身の編集を自動で巡回済みにする',
 'right-patrolmarks'           => '最近の更新で巡回済み印を閲覧',
 'right-unwatchedpages'        => 'ウォッチされていないページ一覧を閲覧',
 'right-mergehistory'          => 'ページの履歴を統合',
@@ -2206,7 +2206,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'deadendpagestext'        => '以下のページは、{{SITENAME}}の他のページにリンクしていません。',
 'protectedpages'          => '保護されているページ',
 'protectedpages-indef'    => '無期限保護のみ',
-'protectedpages-cascade'  => '連続保護のみ',
+'protectedpages-cascade'  => 'カスケード保護のみ',
 'protectedpagestext'      => '以下のページは移動や編集が禁止されています',
 'protectedpagesempty'     => '指定した条件で保護中のページは現在ありません。',
 'protectedtitles'         => '作成保護されているページ名',
@@ -2240,7 +2240,7 @@ contenttype/subtypeの形式で入力してください（例：<code>image/jpeg
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => '検索',
 'booksources-text'          => 'お探しの書籍の新品/中古品を販売している外部サイトへのリンクを以下に列挙します。この書籍についてさらに詳しい情報があるかもしれません:',
-'booksources-invalid-isbn'  => '指定したISBN番号は有効ではないようです。情報源から写し間違えていないか確認してください。',
+'booksources-invalid-isbn'  => '指定した ISBN は有効ではないようです。情報源から写し間違えていないか確認してください。',
 
 # Special:Log
 'specialloguserlabel'  => '実行者:',
@@ -2535,7 +2535,7 @@ $2による直前の版へ変更されました。',
 'protect-fallback'            => '「$1」権限が必要',
 'protect-level-autoconfirmed' => '新規利用者と匿名利用者を禁止',
 'protect-level-sysop'         => '管理者のみ',
-'protect-summary-cascade'     => '連続',
+'protect-summary-cascade'     => 'カスケード',
 'protect-expiring'            => '$1(UTC)で自動的に解除',
 'protect-expiring-local'      => '期限 $1',
 'protect-expiry-indefinite'   => '無期限',
@@ -2557,7 +2557,7 @@ $2による直前の版へ変更されました。',
 'restriction-level'           => '制限レベル：',
 'minimum-size'                => '最小サイズ',
 'maximum-size'                => '最大サイズ：',
-'pagesize'                    => '（バイト）',
+'pagesize'                    => '(バイト)',
 
 # Restrictions (nouns)
 'restriction-edit'   => '編集',
@@ -2597,7 +2597,7 @@ $2による直前の版へ変更されました。',
 'undeleteviewlink'             => '閲覧',
 'undeletereset'                => 'リセット',
 'undeleteinvert'               => '選択を反転',
-'undeletecomment'              => '理由：',
+'undeletecomment'              => '理由:',
 'undeletedrevisions'           => '{{PLURAL:$1|$1版}}を復元しました',
 'undeletedrevisions-files'     => '{{PLURAL:$1|$1版}}と{{PLURAL:$2|$2ファイル}}を復元しました',
 'undeletedfiles'               => '{{PLURAL:$1|$1ファイル}}を復元しました',
@@ -2628,9 +2628,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => '名前空間:',
 'invert'                        => '選択したものを除く',
-'tooltip-invert'                => '選択した名前空間（チェックされている場合は、関連付けられた名前空間も）のページの変更を非表示にするには、このボックスにチェックを入れる',
-'namespace_association'         => '関連付けられた名前空間',
-'tooltip-namespace_association' => '選択した名前空間に関連付けられたトークページまたは対象の名前空間も含めるには、このボックスにチェックを入れる',
+'tooltip-invert'                => '選択した名前空間 (チェックを入れている場合は、関連付けられた名前空間も含む) のページの変更を非表示にするには、このボックスにチェックを入れる',
+'namespace_association'         => '関連付けられた名前空間も含める',
+'tooltip-namespace_association' => '選択した名前空間に関連付けられたトークページ (逆にトークページの名前空間を選択した場合も同様) の名前空間も含めるには、このボックスにチェックを入れる',
 'blanknamespace'                => '(標準)',
 
 # Contributions
@@ -2728,7 +2728,7 @@ $1',
 'ipb-blocklist'                   => '現在有効なブロックを表示',
 'ipb-blocklist-contribs'          => '$1の投稿の一覧',
 'unblockip'                       => 'ブロックを解除',
-'unblockiptext'                   => '以下のフォームを使用して、以前ブロックしたIPアドレスまたは利用者からの書き込みアクセスをブロック解除できます。',
+'unblockiptext'                   => '以下のフォームで利用者またはIPアドレスのブロックを解除できます。',
 'ipusubmit'                       => 'このブロックを解除',
 'unblocked'                       => '[[User:$1|$1]]のブロックを解除しました',
 'unblocked-range'                 => '$1のブロックは解除されています',
@@ -2753,8 +2753,8 @@ $1',
 'expiringblock'                   => '$1$2に解除',
 'anononlyblock'                   => '匿名利用者のみ',
 'noautoblockblock'                => '自動ブロック無効',
-'createaccountblock'              => 'アカウント作成のブロック',
-'emailblock'                      => 'メール送信のブロック',
+'createaccountblock'              => 'アカウント作成の禁止',
+'emailblock'                      => 'メール送信の禁止',
 'blocklist-nousertalk'            => '自分のトークページの編集禁止',
 'ipblocklist-empty'               => 'ブロック一覧は空です。',
 'ipblocklist-no-results'          => '指定されたIPアドレスまたは利用者名はブロックされていません。',
@@ -3265,12 +3265,15 @@ $1',
 'sp-newimages-showfrom' => '$1の$2以降の新しいファイルを表示',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims' => '$1、 $2 × $3',
-'seconds'    => '{{PLURAL:$1|$1 秒}}',
-'minutes'    => '{{PLURAL:$1|$1 分}}',
-'hours'      => '{{PLURAL:$1|$1 時間}}',
-'days'       => '{{PLURAL:$1|$1 日}}',
-'ago'        => '$1前',
+'video-dims'     => '$1、 $2 × $3',
+'seconds-abbrev' => '$1 s',
+'hours-abbrev'   => '$1 h',
+'days-abbrev'    => '$1 d',
+'seconds'        => '{{PLURAL:$1|$1 秒}}',
+'minutes'        => '{{PLURAL:$1|$1 分}}',
+'hours'          => '{{PLURAL:$1|$1 時間}}',
+'days'           => '{{PLURAL:$1|$1 日}}',
+'ago'            => '$1前',
 
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：
@@ -3610,7 +3613,7 @@ Variants for Chinese language
 'exif-flash-mode-1'     => '強制発光モード',
 'exif-flash-mode-2'     => '強制非発光モード',
 'exif-flash-mode-3'     => '自動発光モード',
-'exif-flash-function-1' => 'ストロボ機能無し',
+'exif-flash-function-1' => 'ストロボ機能なし',
 'exif-flash-redeye-1'   => '赤目軽減有り',
 
 'exif-focalplaneresolutionunit-2' => 'インチ',
@@ -4160,8 +4163,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'newuserlog-byemail'                  => 'パスワードをメールでお送りしました',
 
 # Feedback
-'feedback-bugornote' => '技術的な問題の詳細を説明なさる準備ができている場合は[$1 バグを報告]してください。
-そうではない場合は、下の簡易フォームを使用してください。あなたのコメントがあなたの利用者名とご使用中のブラウザー名と共に、ページ"[$3 $2]"に追加されます。',
+'feedback-bugornote' => '技術的な問題の詳細を説明する準備ができている場合は、[$1 バグ報告]をお願いします。
+準備ができていない場合は、下の簡易フォームを使用してください。あなたのコメントが、あなたの利用者名とご使用中のブラウザー名と共に、ページ「[$3 $2]」に追加されます。',
 'feedback-subject'   => '件名：',
 'feedback-message'   => 'メッセージ：',
 'feedback-cancel'    => 'キャンセル',

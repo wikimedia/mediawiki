@@ -486,7 +486,7 @@ $messages = array(
 'searcharticle'     => '가기',
 'history'           => '문서 역사',
 'history_short'     => '역사',
-'updatedmarker'     => '마지막으로 읽은 뒤 바뀌었음',
+'updatedmarker'     => '마지막으로 방문한 뒤 바뀜',
 'printableversion'  => '인쇄용 문서',
 'permalink'         => '고유링크',
 'print'             => '인쇄',
@@ -689,7 +689,7 @@ URL을 잘못 입력하였거나, 잘못된 링크를 따라갔을 수 있습니
 이 문서에 있는 내용을 바꾸면 이 위키에 있는 모든 사용자에게 영향을 끼칩니다.
 모든 위키에 대한 번역을 추가하거나 바꾸려면 미디어위키 지역화 프로젝트인 [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하시기 바랍니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
-'cascadeprotected'     => '이 문서는 연쇄 보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
+'cascadeprotected'     => '이 문서는 다음 "연쇄적" 보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다:
 $2',
 'namespaceprotected'   => "'''$1''' 이름공간을 편집할 수 있는 권한이 없습니다.",
 'customcssprotected'   => '여기에는 다른 사용자의 개인 설정이 포함되어 있기 때문에 이 CSS 문서를 편집할 수 없습니다.',
@@ -896,7 +896,7 @@ $2
 'hr_tip'          => '가로 줄 (되도록 사용하지 말아 주세요)',
 
 # Edit pages
-'summary'                          => '편집 요약:',
+'summary'                          => '요약:',
 'subject'                          => '주제/제목:',
 'minoredit'                        => '사소한 편집',
 'watchthis'                        => '이 문서 주시하기',
@@ -913,7 +913,7 @@ $2
 'missingcommenttext'               => '아래에 내용을 채워 넣어 주세요.',
 'missingcommentheader'             => "'''알림:''' 글의 제목을 입력하지 않았습니다.
 다시 \"{{int:savearticle}}\" 버튼을 클릭하면 글이 제목 없이 저장됩니다.",
-'summary-preview'                  => '편집 요약 미리 보기:',
+'summary-preview'                  => '요약 미리 보기:',
 'subject-preview'                  => '주제/제목 미리 보기:',
 'blockedtitle'                     => '차단됨',
 'blockedtext'                      => "'''당신의 계정 혹은 IP 주소가 차단되었습니다.'''
@@ -2542,7 +2542,7 @@ $UNWATCHURL
 이미 복구되었을 수 있습니다.',
 'undelete-error'               => '문서 복구 중 오류',
 'undelete-error-short'         => '파일 복구 오류: $1',
-'undelete-error-long'          => '파일을 복구하는 중 오류가 발생했습니다:
+'undelete-error-long'          => '파일을 복구하는 동안 오류가 발생했습니다:
 
 $1',
 'undelete-show-file-confirm'   => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',

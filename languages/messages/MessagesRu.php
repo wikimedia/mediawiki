@@ -38,6 +38,7 @@
  * @author HalanTul
  * @author Huuchin
  * @author Illusion
+ * @author Incnis Mrsi
  * @author Iniquity
  * @author Innv
  * @author JenVan
@@ -54,6 +55,7 @@
  * @author Rave
  * @author Rubin
  * @author Sk
+ * @author Spider
  * @author TarzanASG
  * @author Temuri rajavi
  * @author Vago
@@ -458,7 +460,7 @@ $messages = array(
 'vector-action-protect'          => 'Защитить',
 'vector-action-undelete'         => 'Восстановить',
 'vector-action-unprotect'        => 'Изменить защиту',
-'vector-simplesearch-preference' => 'Включить расширенные поисковые подсказки (только для оформления «Векторное»)',
+'vector-simplesearch-preference' => 'Включить упрощённую строку поиска (только для оформления «Векторное»)',
 'vector-view-create'             => 'Создание',
 'vector-view-edit'               => 'Правка',
 'vector-view-history'            => 'История',
@@ -863,7 +865,7 @@ $2
 'changeemail-oldemail' => 'Текущий адрес электронной почты:',
 'changeemail-newemail' => 'Новый адрес электронной почты:',
 'changeemail-none'     => '(нет)',
-'changeemail-submit'   => 'Измененить адрес',
+'changeemail-submit'   => 'Изменить адрес',
 'changeemail-cancel'   => 'Отмена',
 
 # Edit page toolbar
@@ -3939,7 +3941,7 @@ MediaWiki распространяется в надежде, что она бу
 'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
 
 # New logging system
-'logentry-delete-delete'              => '$1 удалил страницу $3',
+'logentry-delete-delete'              => '$1 {{GENDER:$1|удалил|удалила}} страницу $3',
 'logentry-delete-restore'             => '$1 восстановил страницу $3',
 'logentry-delete-event'               => '$1 изменил видимость {{PLURAL:$5|$5 записи журнала|$5 записей журнала|$5 записей журнала}} на $3: $4',
 'logentry-delete-revision'            => '$1 изменил видимость {{PLURAL:$5|$5 версии|$5 версий|$5 версий}} на странице $3: $4',

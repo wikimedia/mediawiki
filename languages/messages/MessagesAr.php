@@ -618,7 +618,7 @@ $messages = array(
 'vector-action-protect'          => 'احم',
 'vector-action-undelete'         => 'استرجع الحذف',
 'vector-action-unprotect'        => 'غير الحماية',
-'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
+'vector-simplesearch-preference' => 'مكّن شريط البحث المبسط (لواجهة فكتور فقط)',
 'vector-view-create'             => 'أنشئ',
 'vector-view-edit'               => 'تعديل',
 'vector-view-history'            => 'اعرض التاريخ',
@@ -3242,7 +3242,7 @@ $1',
 'spam_blanking'       => 'كل النسخ احتوت على وصلات ل $1، إفراغ',
 
 # Info page
-'pageinfo-title'            => 'المعلومات ل"$1"',
+'pageinfo-title'            => 'المعلومات عن «$1»',
 'pageinfo-header-edits'     => 'التعديلات',
 'pageinfo-header-watchlist' => 'قائمة المراقبة',
 'pageinfo-header-views'     => 'مشاهدات',

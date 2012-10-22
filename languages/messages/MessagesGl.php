@@ -15,6 +15,7 @@
  * @author Lameiro
  * @author Prevert
  * @author Toliño
+ * @author Vivaelcelta
  * @author Xosé
  * @author לערי ריינהארט
  */
@@ -375,7 +376,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'       => 'Engadir un comentario',
+'vector-action-addsection'       => 'Nova sección',
 'vector-action-delete'           => 'Borrar',
 'vector-action-move'             => 'Mover',
 'vector-action-protect'          => 'Protexer',
@@ -581,8 +582,8 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 Se cadra, xa a borrou alguén.',
 'cannotdelete-title'   => 'Non se pode borrar a páxina "$1"',
 'badtitle'             => 'Título incorrecto',
-'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
-Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
+'badtitletext'         => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingüística ou interwiki incorrecta.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfcached'           => 'Esta información é da memoria caché e pode ser que non estea completamente actualizada. Hai un máximo de {{PLURAL:$1|$1 resultado dispoñible|$1 resultados dispoñibles}} na caché.',
 'perfcachedts'         => 'Esta información é da memoria caché. Última actualización: $2 ás $3. Hai un máximo de {{PLURAL:$4|$4 resultado dispoñible|$4 resultados dispoñibles}} na caché.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
@@ -859,7 +860,7 @@ A razón que deu foi a seguinte:
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
-Teña en conta que non pode empregar "enviarlle un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.
+Teña en conta que non pode empregar a característica "Enviar un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.
 
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
@@ -2092,7 +2093,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesnext'      => 'Seguinte',
 'allpagessubmit'    => 'Mostrar',
 'allpagesprefix'    => 'Mostrar as páxinas que comezan co prefixo:',
-'allpagesbadtitle'  => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
+'allpagesbadtitle'  => 'O título dado á páxina non era válido ou tiña un prefixo interlingüístico ou interwiki.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'allpages-bad-ns'   => '{{SITENAME}} carece do espazo de nomes "$1".',
 
 # Special:Categories
@@ -2587,7 +2589,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage'                    => 'Rexistro de bloqueos',
 'blocklog-showlog'                => 'Este usuario xa foi bloqueado con anterioridade. Velaquí está o rexistro de bloqueos por se quere consultalo:',
 'blocklog-showsuppresslog'        => 'Este usuario xa foi bloqueado e agochado con anterioridade. Velaquí está o rexistro de supresións por se quere consultalo:',
-'blocklogentry'                   => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
+'blocklogentry'                   => 'bloqueou a [[$1]] cun tempo de duración de $2 $3',
 'reblock-logentry'                => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext'                    => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
