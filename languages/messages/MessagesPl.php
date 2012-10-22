@@ -451,7 +451,7 @@ $messages = array(
 'vector-action-protect' => 'Zabezpiecz',
 'vector-action-undelete' => 'Odtwórz',
 'vector-action-unprotect' => 'Zmień zabezpieczenie',
-'vector-simplesearch-preference' => 'Włącz zaawansowane podpowiedzi wyszukiwania (tylko dla skórki Wektor)',
+'vector-simplesearch-preference' => 'Włącz uproszczony pasek wyszukiwania (tylko dla skórki Wektor)',
 'vector-view-create' => 'Utwórz',
 'vector-view-edit' => 'Edytuj',
 'vector-view-history' => 'Wyświetl historię',
@@ -3121,7 +3121,6 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-authors' => 'Całkowita liczba autorów',
 'pageinfo-recent-edits' => 'Liczba ostatnich edycji (w przeciągu $1)',
 'pageinfo-recent-authors' => 'Liczba ostatnich autorów',
-'pageinfo-restriction' => 'Zabezpieczenie strony – {{lcfirst:$1}}',
 'pageinfo-magic-words' => 'Magiczne {{PLURAL:$1|słowo|słowa|słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukryte kategorie}} ($1)',
 'pageinfo-templates' => 'Wykorzystywan{{PLURAL:$1|y szablon|e szablony}} ($1)',
@@ -4039,6 +4038,7 @@ W przeciwnym wypadku można użyć prostego formularza poniżej. Komentarz zosta
 
 # Search suggestions
 'searchsuggest-search' => 'Szukaj',
+'searchsuggest-containing' => 'zawierające...',
 
 # API errors
 'api-error-badaccess-groups' => 'Nie masz uprawnień aby przesyłać pliki do tej wiki.',

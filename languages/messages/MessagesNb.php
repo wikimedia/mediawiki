@@ -11,6 +11,7 @@
  * @author Boivie
  * @author Brik
  * @author Byrial
+ * @author Cocu
  * @author Danmichaelo
  * @author Dittaeva
  * @author Eirik
@@ -471,7 +472,7 @@ $messages = array(
 'vector-action-protect' => 'Beskytt',
 'vector-action-undelete' => 'Gjenopprett',
 'vector-action-unprotect' => 'Endre beskyttelse',
-'vector-simplesearch-preference' => 'Aktiver forbedrede søkeforslag (kun for drakten Vector)',
+'vector-simplesearch-preference' => 'Aktiver forenklet søkefelt (kun for drakten Vector)',
 'vector-view-create' => 'Opprett',
 'vector-view-edit' => 'Rediger',
 'vector-view-history' => 'Vis historikk',
@@ -1993,7 +1994,7 @@ Kanskje du vil redigere beskrivelsen på dens [$2 filbeskrivelsesside].',
 'uploadnewversion-linktext' => 'Last opp en ny versjon av denne filen',
 'shared-repo-from' => 'fra $1',
 'shared-repo' => 'et delt fillager',
-'upload-disallowed-here' => 'Beklageligvis kan du ikke overskrive dette bildet.',
+'upload-disallowed-here' => 'Du kan ikke overskrive denne filen.',
 
 # File reversion
 'filerevert' => 'Tilbakestill $1',
@@ -2464,7 +2465,7 @@ Dette er de nåværende innstillingene for siden '''$1''':",
 Du kan endre sidens beskyttelsesnivå, men det vil ikke påvirke dypbeskyttelsen.',
 'protect-default' => 'Tillat alle brukere',
 'protect-fallback' => 'Må ha «$1»-tillatelse',
-'protect-level-autoconfirmed' => 'Blokker nye og uregistrerte brukere',
+'protect-level-autoconfirmed' => 'Blokker uregistrerte og nye brukere',
 'protect-level-sysop' => 'Kun administratorer',
 'protect-summary-cascade' => 'dypbeskyttelse',
 'protect-expiring' => 'utløper $1 (UTC)',
@@ -3080,6 +3081,7 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
+'pageinfo-not-current' => 'Informasjonen vises kanskje bare for den gjeldende revisjonen.',
 'pageinfo-header-basic' => 'Grunnleggende informasjon',
 'pageinfo-header-edits' => 'Redigeringshistorikk',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',
@@ -3104,7 +3106,6 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 'pageinfo-authors' => 'Totalt antall forskjellige forfattere',
 'pageinfo-recent-edits' => 'Antall nylige redigeringer (innen siste $1)',
 'pageinfo-recent-authors' => 'Antall nylige forfattere',
-'pageinfo-restriction' => 'Sidebeskyttelse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => 'Transkludert {{PLURAL:$1|mal|maler}} ($1)',

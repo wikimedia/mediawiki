@@ -494,7 +494,7 @@ Vinarliga royn aftur um fáir minuttir.',
 'editinginterface' => "↓ '''Ávaring:''' Tú rættar eina síðu sum verður brúkt til at geva markamóts tekst til ritbúnaðin (software).
 Broytingar á hesi síðu fara at ávirka útsjóndina á brúkara markamótinum (interface) fyri aðrir brúkarar.
 Fyri at gera týðingar verður tú vinarliga biðin um at umhugsa at brúka [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], sum er verkætlan fyri týðingum av MediaWiki.",
-'sqlhidden' => '↓ (SQL fyrispurningur fjaldur)',
+'sqlhidden' => '(SQL fyrispurningur fjaldur)',
 'cascadeprotected' => 'Henda síðan er vard fyri rættingum, tí hon er í fylgjandi {{PLURAL:$1|síðu, sum er|síðum, sum eru}}
 vardar við "arvaðari síðuverjing"
 $2',

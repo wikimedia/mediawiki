@@ -946,6 +946,7 @@ $messages = array(
 
 # Info page
 'pageinfo-header-edits' => 'Дәгиш кардә быә чијон тарых',
+'pageinfo-redirects-value' => '$1',
 
 # Browsing diffs
 'previousdiff' => '← Навынәни дәгиши',

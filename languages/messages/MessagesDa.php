@@ -345,7 +345,7 @@ $messages = array(
 'vector-action-protect' => 'Beskyt',
 'vector-action-undelete' => 'Gendan',
 'vector-action-unprotect' => 'Ændr beskyttelse',
-'vector-simplesearch-preference' => 'Aktivér forbedrede søgeforslag (kun Vector-udseendet)',
+'vector-simplesearch-preference' => 'Aktivér forenklet søgefelt (kun Vector-udseendet)',
 'vector-view-create' => 'Opret',
 'vector-view-edit' => 'Redigér',
 'vector-view-history' => 'Se historik',
@@ -1838,7 +1838,7 @@ Måske vil du redigere beskrivelsen på dens [$2 filbeskrivelsesside] der.',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
 'shared-repo-from' => 'fra $1',
 'shared-repo' => 'et delt filarkiv',
-'upload-disallowed-here' => 'Desværre kan du ikke overskrive dette billede.',
+'upload-disallowed-here' => 'Du kan ikke overskrive denne fil.',
 
 # File reversion
 'filerevert' => 'Gendan $1',
@@ -2840,7 +2840,7 @@ Du kan se på kildeteksten.',
 'tooltip-t-contributions' => 'Se denne brugers bidrag',
 'tooltip-t-emailuser' => 'Send en e-mail til denne bruger',
 'tooltip-t-upload' => 'Upload et billede eller anden mediafil',
-'tooltip-t-specialpages' => 'Liste med alle specielle sider',
+'tooltip-t-specialpages' => 'Liste over alle specialsider',
 'tooltip-t-print' => 'Printervenlig udgave af denne side',
 'tooltip-t-permalink' => 'Permanent henvisning til denne version af denne side',
 'tooltip-ca-nstab-main' => 'Se indholdet',
@@ -2904,6 +2904,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
+'pageinfo-not-current' => 'Oplysninger vises kun for den aktuelle version.',
 'pageinfo-header-basic' => 'Grundlæggende oplysninger',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidebeskyttelse',
@@ -2928,7 +2929,6 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-authors' => 'Det samlede antal forskellige forfattere',
 'pageinfo-recent-edits' => 'Antallet af nylige redigeringer (i løbet af de seneste $1)',
 'pageinfo-recent-authors' => 'Antallet af bidragydere, der har redigeret siden for nyligt',
-'pageinfo-restriction' => 'Sidebeskyttelse ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magisk|Magiske}} ord ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skjult kategori|Skjulte kategorier}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Transkluderet skabelon|Transkluderede skabeloner}} ($1)',
@@ -3776,6 +3776,7 @@ Ellers kan du bruge den enkle formular nedenfor. Din kommentar vil blive tilføj
 'feedback-bugnew' => 'Jeg har kontrolleret. Rapporter en ny fejl.',
 
 # Search suggestions
+'searchsuggest-search' => 'Søg',
 'searchsuggest-containing' => 'indeholder...',
 
 # API errors

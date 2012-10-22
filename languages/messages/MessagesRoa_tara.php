@@ -2930,7 +2930,6 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 'pageinfo-authors' => 'Numere Totale de autore diverse',
 'pageinfo-recent-edits' => "Numere de le urteme cangiaminde ('mbonde a $1)",
 'pageinfo-recent-authors' => 'Numere de le urteme autore diverse',
-'pageinfo-restriction' => "Protezione d'a pàgene ({{lcfirst:$1}})",
 'pageinfo-magic-words' => '{{PLURAL:$1|Parole|Parole}} maggiche ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorije|Categorije}} scunnute ($1)',
 'pageinfo-templates' => 'Esclude {{PLURAL:$1|template|template}} ($1)',

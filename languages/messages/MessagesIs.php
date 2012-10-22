@@ -2114,7 +2114,7 @@ Studdar samskiptareglur: <code>$1</code> (ekki bæta neinum af þessum í leitin
 'emailpagetext' => 'Hafi notandi tilgreint netfang í stillingunum sínum er hægt að senda póst til hans hér.
 Póstfangið sem þú tilgreindir í [[Special:Preferences|stillingunum þínum]] birtist í "Frá:" hluta tölvupóstsins, svo að viðtakandi þess geti svarað beint til þín.',
 'usermailererror' => 'Póst hlutur skilaði villu:',
-'defemailsubject' => '{{SITENAME}} netfang notanda "$1"',
+'defemailsubject' => '{{SITENAME}} skilaboð frá notandanum "$1"',
 'usermaildisabled' => 'Netfang notenda er óvirkt',
 'usermaildisabledtext' => 'Þú getur ekki sent tölvupóst til annara notenda á þessum wiki',
 'noemailtitle' => 'Ekkert póstfang',
@@ -2188,16 +2188,15 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
   $1',
 'enotif_lastdiff' => 'Einnig getur þú heimsótt eftirfarandi tengil til að skoða þessa breytingu:
   $1',
-'enotif_anon_editor' => 'ónefndur notandi $1',
+'enotif_anon_editor' => 'ónefndum notanda $1',
 'enotif_body' => 'Kæri $WATCHINGUSERNAME,
 
-Það lítur út fyrir að þú hafir ný skilaboð á {{SITENAME}} síðunni $PAGETITLE.
-Hún hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
+Síðan „$PAGETITLE” sem þú hefur beðið um að fylgjast með á {{SITENAME}} hefur verið $CHANGEDORCREATED $PAGEEDITDATE af 
 $PAGEEDITOR. Breytingarágripið var:
 
    $PAGESUMMARY
 
-Þetta er tengill á spjallsíðuna þína:
+Þetta er tengill á síðuna:
 
    $PAGETITLE_URL
 
@@ -2220,7 +2219,7 @@ Til þess að breyta stillingum um hvenær þú færð sendar tilkynningar, smel
 {{canonicalurl:{{#special:Preferences}}}}
 
 
-Til þess að hætta að fylgjast með $PAGETITLE, smelltu á:
+Til þess að hætta að fylgjast með „$PAGETITLE”, smelltu á:
 
 $UNWATCHURL',
 
@@ -2715,7 +2714,7 @@ Ef síðari möguleikinn á við getur þú einnig notað tengil, til dæmis
 'allmessagesdefault' => 'Sjálfgefinn skilaboða texti',
 'allmessagescurrent' => 'Núverandi texti',
 'allmessagestext' => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
-Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [//translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
+Vinsamlegast heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [//translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB' => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessages-filter-legend' => 'Sía',
 'allmessages-filter' => 'Sía með breytingarstöðu:',

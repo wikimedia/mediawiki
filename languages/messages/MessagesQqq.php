@@ -555,9 +555,9 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 {{Identical|New messages}}',
 'newmessagesdifflink' => 'This is the second link displayed in an orange rectangle when a user gets a message on his talk page. Used in message {{msg-mw|youhavenewmessages}} (as parameter $2).',
 'youhavenewmessagesfromusers' => 'New talk indicator message: the message appearing when someone edited your user talk page.
-The message takes three parameters; 
-*$1 {{msg-mw|newmessageslinkplural}}, 
-*$2 {{msg-mw|newmessagesdifflinkplural}}, and 
+The message takes three parameters;
+*$1 {{msg-mw|newmessageslinkplural}},
+*$2 {{msg-mw|newmessagesdifflinkplural}}, and
 *$3 the number of authors who have edited the talk page since the owning user last viewed it.',
 'youhavenewmessagesmanyusers' => 'New talk indicator message: the message appearing when someone edited your user talk page. Used when more than 10 users edited the user talk page since the owning user last viewed it, similar to{{msg-mw|youhavenewmessages}}. Parameters:
 * $1 is {{msg-mw|newmessageslinkplural}},
@@ -1034,7 +1034,9 @@ Example: [http://translatewiki.net/w/i.php?title=Project:News&oldid=9999999 Perm
 'explainconflict' => 'Appears at the top of a page when there is an edit conflict.',
 'storedversion' => 'This is used in an edit conflict as the label for the top revision that has been stored, as opposed to your version that has not been stored which is shown at the bottom of the page.',
 'yourdiff' => '',
-'copyrightwarning' => 'Copyright warning displayed under the edit box in editor',
+'copyrightwarning' => 'Copyright warning displayed under the edit box in editor
+*$1 - ...
+*$2 - ...',
 'longpageerror' => 'Warning displayed when trying to save a text larger than the maximum size allowed',
 'protectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
 'semiprotectedpagewarning' => '{{Related|Semiprotectedpagewarning}}',
@@ -1860,7 +1862,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'recentchanges-legend' => 'Legend of the fieldset of [[Special:RecentChanges]]',
 'recentchanges-summary' => 'Summary of [[Special:RecentChanges]].',
 'recentchanges-label-newpage' => 'Tooltip for {{msg-mw|newpageletter}}',
-'recentchanges-label-minor' => 'Tooltip for {{msg-mw|newpageletter}}',
+'recentchanges-label-minor' => 'Tooltip for {{msg-mw|minoreditletter}}',
 'recentchanges-label-bot' => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
 'rcnote' => 'Used on [[Special:RecentChanges]].
@@ -2807,7 +2809,12 @@ This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
-'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page.',
+'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
+
+Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
+See also:
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}',
 'protect-expiring' => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
 * $1 is a date and time
 * $2 is a date (optional)
@@ -2855,9 +2862,21 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 {{Identical|Create}}',
 
 # Restriction levels
-'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
-'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
-'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.",
+'restriction-level-sysop' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level' and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}
+*{{msg-mw|Restriction-level-all}}",
+'restriction-level-autoconfirmed' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level', and in brackets after each page name entry. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}
+*{{msg-mw|Restriction-level-all}}",
+'restriction-level-all' => "Used on [[Special:ProtectedPages]] and [[Special:ProtectedTitles]]. An option in the drop-down box 'Restriction level'. See the [//www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] and on [http://meta.wikimedia.org/wiki/Protect Meta] for more information.
+
+*{{msg-mw|Restriction-level-sysop}}
+*{{msg-mw|Restriction-level-autoconfirmed}}
+*{{msg-mw|Restriction-level-all}}",
 
 # Undelete
 'undelete' => 'Name of special page for admins as displayed in [[Special:SpecialPages]].
@@ -2909,11 +2928,12 @@ Options for the duration of the page protection. Example: See e.g. [[MediaWiki:P
 
 # Namespace form on various pages
 'namespace' => 'This message is located at [[Special:Contributions]].',
-'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
+'invert' => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]].
 
-{{Identical|Invert selection}}
+This message means "Invert selection of namespace".
 
-This message has a tooltip {{msg-mw|tooltip-invert}}',
+This message has a tooltip {{msg-mw|tooltip-invert}}
+{{Identical|Invert selection}}',
 'tooltip-invert' => 'Used in [[Special:Recentchanges]] as a tooltip for the invert checkbox. See also the message {{msg-mw|invert}}',
 'namespace_association' => 'Used in [[Special:Recentchanges]] with a checkbox which selects the associated namespace to be added to the selected namespace, so that both are searched (or excluded depending on another checkbox selection). The association is between a namespace and its talk namespace.
 
@@ -3470,7 +3490,7 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 # Info page
 'pageinfo-title' => 'Page title for action=info. Parameters:
 * $1 is the page name',
-'pageinfo-not-current' => 'Error message displayed when information for an old revision is requested.',
+'pageinfo-not-current' => 'Error message displayed when information for an old revision is requested. Example: [{{fullurl:Project:News|oldid=4266597&action=info}}]',
 'pageinfo-header-basic' => 'Table section header in action=info.',
 'pageinfo-header-edits' => 'Table section header in action=info.',
 'pageinfo-header-restrictions' => 'Table section header in action=info.',
@@ -4347,6 +4367,11 @@ See also [[MediaWiki:Confirmemail_body_changed]].
 *$7 is a time',
 'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in {{msg-mw|Invalidateemail}}) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail' => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
+
+# Scary transclusion
+'scarytranscludedisabled' => 'Shown when scary transclusion is disabled.',
+'scarytranscludefailed' => 'Shown when the HTTP request for the template failed.',
+'scarytranscludetoolong' => 'The URL was too long.',
 
 'unit-pixel' => '{{optional}}',
 

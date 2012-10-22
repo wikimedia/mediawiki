@@ -1578,7 +1578,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-rollback' => 'Revocarea rapidă a modificărilor ultimului utilizator care a modificat o pagină particulară',
 'right-markbotedits' => 'Marchează revenirea ca modificare efectuată de robot',
 'right-noratelimit' => 'Neafectat de limitele raportului',
-'right-import' => 'Importă pagini de la alte wiki',
+'right-import' => 'Importă pagini de la alte wikiuri',
 'right-importupload' => 'Importă pagini dintr-o încărcare de fișier',
 'right-patrol' => 'Marchează modificările altora ca patrulate',
 'right-autopatrol' => 'Modificările proprii marcate ca patrulate',
@@ -1977,7 +1977,7 @@ Poate doriți să-i modificați descrierea pe [$2 pagina sa descriptivă] de aco
 'uploadnewversion-linktext' => 'Încarcă o versiune nouă a acestui fișier',
 'shared-repo-from' => 'de la $1',
 'shared-repo' => 'un depozit partajat',
-'upload-disallowed-here' => 'Din păcate, nu puteți suprascrie această imagine.',
+'upload-disallowed-here' => 'Nu puteți suprascrie acest fișier.',
 
 # File reversion
 'filerevert' => 'Revenire $1',
@@ -3085,6 +3085,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 
 # Info page
 'pageinfo-title' => 'Informații pentru „$1”',
+'pageinfo-not-current' => 'Informațiile se pot afișa doar pentru versiunea curentă.',
 'pageinfo-header-basic' => 'Informații de bază',
 'pageinfo-header-edits' => 'Istoric modificări',
 'pageinfo-header-restrictions' => 'Protecție pagină',
@@ -3109,7 +3110,6 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 'pageinfo-authors' => 'Număr total de autori distincți',
 'pageinfo-recent-edits' => 'Număr de modificări recente (în ultima perioadă de $1)',
 'pageinfo-recent-authors' => 'Număr de autori distincți recenți',
-'pageinfo-restriction' => 'Protecție pagină ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Cuvânt magic|Cuvinte magice}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categorie ascunsă|Categorii ascunse}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Format inclus|Formate incluse}} ($1)',

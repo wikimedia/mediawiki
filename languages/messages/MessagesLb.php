@@ -835,6 +835,10 @@ Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} an den entspriechende Logbicher nokucken] oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} esou eng Säit uleeën]</span>.',
 'noarticletext-nopermission' => 'Elo ass keen Text op dëser Säit.
 Dir kënnt op anere Säiten [[Special:Search/{{PAGENAME}}|no dësem Sàitentitel sichen]], oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} an de Logbicher sichen]</span>, mä Dir hutt net déi néideg Rechter fir dës Säit unzeleeën.',
+'missing-revision' => 'D\'Versioun #$1 vun der Säit mam Numm "{{PAGENAME}}" gëtt et net.
+
+Dat geschitt normalerweis wann Dir op e vereelste Link vun enger Versioun vun enger Säit klickt déi geläscht ginn ass.
+Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läschen].',
 'userpage-userdoesnotexist' => 'De Benotzerkont "<nowiki>$1</nowiki>" ass net registréiert.
 Iwwerpréift w.e.g. op Dir dës Säit uleeën/ännere wëllt.',
 'userpage-userdoesnotexist-view' => 'De Benotzerkont "$1" ass net registréiert.',
@@ -947,6 +951,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'parser-template-loop-warning' => 'Endlos Schleef an der Schabloun: [[$1]] entdeckt',
 'parser-template-recursion-depth-warning' => "D'Limit vun der Zuel vun de Verschachtelunge vu Schabloune gouf iwwerschratt ($1)",
 'language-converter-depth-warning' => "D'Limite vun der déift vun der Sproochëmwandlung gouf iwwerschratt ($1)",
+'parser-unstrip-loop-warning' => 'Endlos Schleef entdeckt',
 'converter-manual-rule-error' => 'An der Regel iwwer déi manuell Ëmwandlung vun der Sprooch gouf e Feeler fonnt',
 
 # "Undo" feature
@@ -1758,7 +1763,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 # Special:ListFiles
 'listfiles-summary' => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.
 
-Wann se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
+Wa se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
 'listfiles_search_for' => 'Sicht nom Fichier:',
 'imgfile' => 'Fichier',
 'listfiles' => 'Lëscht vun de Fichieren',
@@ -1811,7 +1816,7 @@ Dir kënnt seng Beschreiwung op senger [$2 Beschreiwungssäit] änneren.',
 'shared-repo-from' => 'vu(n) $1',
 'shared-repo' => 'e gemeinsam genotzte Medienarchiv',
 'shared-repo-name-wikimediacommons' => 'Wikimedia-Commons',
-'upload-disallowed-here' => 'Leider kënnt Dir dëst Bild net iwwerschreiwen.',
+'upload-disallowed-here' => 'Dir kënnt Dir dëse Fichier net iwwerschreiwen.',
 
 # File reversion
 'filerevert' => '"$1" zrécksetzen',
@@ -1873,7 +1878,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <code>image/jpeg</code>.",
 'statistics' => 'Statistik',
 'statistics-header-pages' => 'Säitestatistiken',
 'statistics-header-edits' => 'Statistik vun den Ännerungen',
-'statistics-header-views' => "Sttistiken iwwert d'Visiten",
+'statistics-header-views' => "Statistiken iwwert d'Visiten",
 'statistics-header-users' => 'Benotzerstatistik',
 'statistics-header-hooks' => 'Aner Statistiken',
 'statistics-articles' => 'Säite mat Inhalt',
@@ -2768,6 +2773,8 @@ Späichert en op Ärem Computer of a luet en hei nees erop.',
 'import-error-special' => 'D\'Säit "$1" gouf net importéiert well se zu engem speziellen Nummraum gehéiert an deem et keng Säite gëtt.',
 'import-error-invalid' => 'D\'Säit "$1" gouf net importéiert well hiren Numm net valabel ass.',
 'import-options-wrong' => 'Falsch {{PLURAL:$2|Optioun|Optiounen}}: <nowiki>$1</nowiki>',
+'import-rootpage-invalid' => 'Déi Basis-Säit déi Dir uginn hutt ass kee valabelen Titel.',
+'import-rootpage-nosubpage' => 'Am Nummraum "$1" vun der Basis-Säit si keng Ënnersäiten erlaabt.',
 
 # Import log
 'importlogpage' => 'Lëscht vun den Säitenimporten',
@@ -2896,6 +2903,7 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 
 # Info page
 'pageinfo-title' => 'Informatioun iwwer "$1"',
+'pageinfo-not-current' => 'Dës Informatioune kënnen nëmme fir dës Versioun gewise ginn.',
 'pageinfo-header-basic' => 'Basisinformatiounen',
 'pageinfo-header-edits' => 'Historique vun den Ännerungen',
 'pageinfo-header-restrictions' => 'Spär vun der Säit',
@@ -2916,7 +2924,6 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 'pageinfo-authors' => 'Gesamtzuel vun de verschiddenen Auteuren',
 'pageinfo-recent-edits' => 'Zuel vun de rezenten Ännerungen (an de leschten $1)',
 'pageinfo-recent-authors' => 'Zuel vun de verschiddenen Auteuren',
-'pageinfo-restriction' => 'Protectioun vun der Säit ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Magescht Wuert|Magesch Wierder}} ($1)',
 'pageinfo-hidden-categories' => 'Verstoppte {{PLURAL:$1|Kategorie|Kategorien}} ($1)',
 'pageinfo-templates' => 'Agebonne {{PLURAL:$1|Schabloun|Schabloune}} ($1)',

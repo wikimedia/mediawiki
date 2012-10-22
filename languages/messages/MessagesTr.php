@@ -2976,6 +2976,7 @@ Geçici dosya kayıp.',
 'pageinfo-header-edits' => 'Değişiklikler',
 'pageinfo-views' => 'Görüntülenme sayısı',
 'pageinfo-watchers' => 'İzleyen sayısı',
+'pageinfo-redirects-value' => '$1',
 'pageinfo-edits' => 'Değişiklik sayısı',
 
 # Skin names

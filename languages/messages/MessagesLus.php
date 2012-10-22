@@ -1151,7 +1151,7 @@ Hmangtu azira i thliarhran erawh chuan a hmangtuina a hlankai hnuhnüng ber taks
 Ahnuaih hian {{PLURAL:$1|zawmtu hmasa ber|zawmtu hmasa $1-te}} kan rawn tlar chhuak e.
 Zawmtu zawng zawng [[Special:WhatLinksHere/$2|tlarchhuahna hetah hian a awm]] e.',
 'nolinkstoimage' => 'He taksa zawmtu/hmanna phêk pakhat mah a awm lo.',
-'morelinkstoimage' => 'Hemi taksa zawmpui dang [[Special:WhatLinksHere/$1|enna}}.',
+'morelinkstoimage' => 'Hemi taksa zawmpui dang [[Special:WhatLinksHere/$1|enna]].',
 'linkstoimage-redirect' => '$1 (taksa hruailuhna) $2',
 'duplicatesoffile' => 'A hnuaia taksa{{PLURAL:$1||te}} khu hë taksa nihpui{{PLURAL:$1||te}} a{{PLURAL:$1||n}} ni ([[Special:FileDuplicateSearch/$2|chanchin kimchang]]):',
 'sharedupload' => 'Hë taksa hi $1-a mi a ni a, hna-hmachhawp dangin a hmang vè mai thei.',

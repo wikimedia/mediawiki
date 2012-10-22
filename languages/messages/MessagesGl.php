@@ -15,6 +15,7 @@
  * @author Lameiro
  * @author Prevert
  * @author Toliño
+ * @author Vivaelcelta
  * @author Xosé
  * @author לערי ריינהארט
  */
@@ -374,7 +375,7 @@ $messages = array(
 'faqpage' => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection' => 'Engadir un comentario',
+'vector-action-addsection' => 'Nova sección',
 'vector-action-delete' => 'Borrar',
 'vector-action-move' => 'Mover',
 'vector-action-protect' => 'Protexer',
@@ -488,7 +489,7 @@ $1',
 'newmessagesdifflink' => 'diferenzas coa revisión anterior',
 'youhavenewmessagesfromusers' => 'Ten $1 {{PLURAL:$3|doutro usuario|de $3 usuarios}} ($2).',
 'youhavenewmessagesmanyusers' => 'Ten $1 de moitos usuarios ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|$1 mensaxes novas}}',
+'newmessageslinkplural' => '{{PLURAL:$1|unha mensaxe nova|mensaxes novas}}',
 'newmessagesdifflinkplural' => '{{PLURAL:$1|última modificación|últimas modificacións}}',
 'youhavenewmessagesmulti' => 'Ten mensaxes novas en $1',
 'editsection' => 'editar',
@@ -586,8 +587,8 @@ Se cadra, xa a borrou alguén.',
 'delete-hook-aborted' => 'O borrado foi abortado polo asociador.
 Este non deu ningunha explicación.',
 'badtitle' => 'Título incorrecto',
-'badtitletext' => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingua ou interwiki incorrecta.
-Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
+'badtitletext' => 'O título da páxina pedida non era válido, estaba baleiro ou proviña dunha ligazón interlingüística ou interwiki incorrecta.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'perfcached' => 'Esta información é da memoria caché e pode ser que non estea completamente actualizada. Hai un máximo de {{PLURAL:$1|$1 resultado dispoñible|$1 resultados dispoñibles}} na caché.',
 'perfcachedts' => 'Esta información é da memoria caché. Última actualización: $2 ás $3. Hai un máximo de {{PLURAL:$4|$4 resultado dispoñible|$4 resultados dispoñibles}} na caché.',
 'querypage-no-updates' => 'Neste momento están desactivadas as actualizacións nesta páxina. O seu contido non se modificará.',
@@ -873,7 +874,7 @@ A razón que deu foi a seguinte:
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
 
-Teña en conta que non pode empregar "enviarlle un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.
+Teña en conta que non pode empregar a característica "Enviar un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e e que o seu uso non fose bloqueado.
 
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
@@ -1932,7 +1933,7 @@ Poida que queira editar a descrición da [$2 páxina de descrición do ficheiro]
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'repositorio compartido',
 'filepage.css' => '/** O CSS que se coloque aquí será incluído na páxina de descrición do ficheiro, así como nos wikis de clientes estranxeiros */',
-'upload-disallowed-here' => 'Por desgraza, non pode sobrescribir esta imaxe.',
+'upload-disallowed-here' => 'Non pode sobrescribir este ficheiro.',
 
 # File reversion
 'filerevert' => 'Reverter $1',
@@ -2140,7 +2141,8 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'allpagesnext' => 'Seguinte',
 'allpagessubmit' => 'Mostrar',
 'allpagesprefix' => 'Mostrar as páxinas que comezan co prefixo:',
-'allpagesbadtitle' => 'O título dado á páxina non era válido ou contiña un prefixo inter-linguas ou inter-wikis. Pode que conteña un ou máis caracteres que non se poden empregar nos títulos.',
+'allpagesbadtitle' => 'O título dado á páxina non era válido ou tiña un prefixo interlingüístico ou interwiki.
+Poida que conteña un ou máis caracteres dos que non se poden empregar nos títulos.',
 'allpages-bad-ns' => '{{SITENAME}} carece do espazo de nomes "$1".',
 'allpages-hide-redirects' => 'Agochar as redireccións',
 
@@ -2645,7 +2647,7 @@ O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage' => 'Rexistro de bloqueos',
 'blocklog-showlog' => 'Este usuario xa foi bloqueado con anterioridade. Velaquí está o rexistro de bloqueos por se quere consultalo:',
 'blocklog-showsuppresslog' => 'Este usuario xa foi bloqueado e agochado con anterioridade. Velaquí está o rexistro de supresións por se quere consultalo:',
-'blocklogentry' => 'bloqueou a "[[$1]]" cun tempo de duración de $2 $3',
+'blocklogentry' => 'bloqueou a [[$1]] cun tempo de duración de $2 $3',
 'reblock-logentry' => 'cambiou as configuracións do bloqueo de "[[$1]]" cunha caducidade de $2 $3',
 'blocklogtext' => 'Este é o rexistro das accións de bloqueo e desbloqueo de usuarios.
 Non se listan os enderezos IP bloqueados automaticamente.
@@ -3049,6 +3051,7 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 
 # Info page
 'pageinfo-title' => 'Información sobre "$1"',
+'pageinfo-not-current' => 'Unicamente se pode mostrar a información sobre a revisión actual.',
 'pageinfo-header-basic' => 'Información básica',
 'pageinfo-header-edits' => 'Historial de edicións',
 'pageinfo-header-restrictions' => 'Protección da páxina',
@@ -3073,7 +3076,6 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edicións recentes (durante os últimos $1)',
 'pageinfo-recent-authors' => 'Número de autores distintos recentes',
-'pageinfo-restriction' => 'Protección da páxina ({{lcfirst:$1}})',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palabra máxica|Palabras máxicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoría agochada|Categorías agochadas}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modelo incluído|Modelos incluídos}} ($1)',

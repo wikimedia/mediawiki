@@ -305,7 +305,7 @@ $messages = array(
 'tog-nocache' => 'Onemogući keširanje stranica u pregledniku',
 'tog-enotifwatchlistpages' => 'Pošalji mi e-poštu kad se promijene stranice',
 'tog-enotifusertalkpages' => 'Pošalji mi e-poštu kad se promijeni moja korisnička stranica za razgovor',
-'tog-enotifminoredits' => 'Pošalji mi e-poštu takođe za male izmjene stranica',
+'tog-enotifminoredits' => 'Pošalji mi e-poštu također za male izmjene u stranicama i datotekama',
 'tog-enotifrevealaddr' => 'Otkrij adresu moje e-pošte u porukama obaviještenja',
 'tog-shownumberswatching' => 'Prikaži broj korisnika koji prate',
 'tog-oldsig' => 'Postojeći potpis:',
@@ -544,6 +544,8 @@ $1',
 'youhavenewmessages' => 'Imate $1 ($2).',
 'newmessageslink' => 'novih poruka',
 'newmessagesdifflink' => 'posljednja promjena',
+'youhavenewmessagesfromusers' => 'Imate $1 od {{PLURAL:$3|drugog korisnika|$3 korisnika}} ($2).',
+'newmessageslinkplural' => '{{PLURAL:$1|novu poruku|nove poruke}}',
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection' => 'uredi',
 'editsection-brackets' => '[$1]',
@@ -653,7 +655,8 @@ Pretraga: $2',
 'protectedpagetext' => 'Ova stranica je zaključana da bi se spriječile izmjene.',
 'viewsourcetext' => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
 'viewyourtext' => "Možete da pogledate i kopirate izvor '''vaših izmjena''' na ovoj stranici:",
-'protectedinterface' => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
+'protectedinterface' => 'Ova stranica sadrži tekst korisničkog okruženja za softver na ovom wikiju i zaštićena je radi sprečavanja zloupotrebe.
+Da biste dodali ili izmjenili prijevode svih wikija, posjetite [//translatewiki.net/  translatewiki.net], projekat za lokalizaciju Mediawikija.',
 'editinginterface' => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
 Promjene na ovoj stranici dovode i do promjena za druge korisnike.
 Za prijevode, molimo Vas koristite [//translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
@@ -667,6 +670,7 @@ $2',
 'titleprotected' => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
 Iz razloga "\'\'$2\'\'".',
 'exception-nologin' => 'Niste prijavljeni',
+'exception-nologin-text' => 'Ova stranica ili aktivnost zahtijeva da budete prijavljeni na ovom wikiju.',
 
 # Virus scanner
 'virus-badscanner' => "Loša konfiguracija: nepoznati anti-virus program: ''$1''",
@@ -687,6 +691,7 @@ Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} pode�
 'remembermypassword' => 'Zapamti moju šifru na ovom računaru (najviše $1 {{PLURAL:$1|dan|dana|dana}})',
 'securelogin-stick-https' => 'Ostani povezan na HTTPS nakon prijave',
 'yourdomainname' => 'Vaš domen:',
+'password-change-forbidden' => 'Ne možete da promjenite lozinku na ovom wikiju.',
 'externaldberror' => 'Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.',
 'login' => 'Prijavi se',
 'nav-login-createaccount' => 'Prijavi se / Registruj se',
@@ -938,7 +943,7 @@ Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo
 Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim stranicama.
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'noarticletext-nopermission' => 'Trenutno nema teksta na ovoj stranici.
-Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane zapisnike]</span>.',
+Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} pretražiti povezane zapisnike]</span>, ali nemate dozvolu da napravite ovu stranicu.',
 'userpage-userdoesnotexist' => 'Korisnički račun "<nowiki>$1</nowiki>" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view' => 'Korisnički račun "$1" nije registrovan.',
@@ -948,7 +953,6 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 *'''Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''⌘-R'' na Macu)
 *'''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''⌘-Shift-R'' na Macu)
 *'''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''
-*'''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5''
 *'''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences''",
 'usercssyoucanpreview' => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi CSS prije nego što sačuvate.",
 'userjsyoucanpreview' => "'''Pažnja:''' Koristite dugme \"{{int:showpreview}}\" da testirate svoj novi JavaScript prije nego što sačuvate.",
@@ -1396,7 +1400,7 @@ Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $
 'timezoneregion-indian' => 'Indijski okean',
 'timezoneregion-pacific' => 'Tihi okean',
 'allowemail' => 'Dozvoli e-poštu od ostalih korisnika',
-'prefs-searchoptions' => 'Opcije pretrage',
+'prefs-searchoptions' => 'Traži',
 'prefs-namespaces' => 'Imenski prostori',
 'defaultns' => 'Inače tražite u ovim imenskim prostorima:',
 'default' => 'standardno',
@@ -2135,6 +2139,9 @@ Možda sadrži jedan ili više znakova koji se ne mogu koristiti u naslovima.',
 'allpages-bad-ns' => '{{SITENAME}} nema imenski prostor "$1".',
 'allpages-hide-redirects' => 'Sakrij preusmjerenja',
 
+# SpecialCachedPage
+'cachedspecial-refresh-now' => 'Pogledaj najnoviju.',
+
 # Special:Categories
 'categories' => 'Kategorije',
 'categoriespagetext' => '{{PLURAL:$1|Slijedeća kategorija sadrži|Slijedeće kategorije sadrže}} stranice ili multimedijalne datoteke.
@@ -2204,6 +2211,7 @@ O svakoj od njih postoje i [[{{MediaWiki:Listgrouprights-helppage}}|dodatne info
 i imati ispravnu adresu e-pošte u vašim [[Special:Preferences|podešavanjima]]
 da biste slali e-poštu drugim korisnicima.',
 'emailuser' => 'Pošalji e-poštu ovom korisniku',
+'emailuser-title-notarget' => 'Pošalji e-mail korisniku',
 'emailpage' => 'Pošalji e-mail korisniku',
 'emailpagetext' => 'Možete korisiti formu ispod za slanje e-mail poruka ovom korisniku.
 E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim postavkama]] će biti prikazana kao adresa pošiljaoca, tako da će primaoc poruke moći da Vam odgovori.',
@@ -3968,6 +3976,12 @@ Inače, možete ispuniti jednostavan obrazac ispod. Vaš komentar biti će dodan
 
 # Durations
 'duration-seconds' => '$1 {{PLURAL:$1|sekunda|sekunde}}',
+'duration-minutes' => '$1 {{PLURAL:$1|minut|minuta|minuta}}',
+'duration-hours' => '$1 {{PLURAL:$1|sat|sata|sati}}',
 'duration-days' => '$1 {{PLURAL:$1|dan|dana}}',
+'duration-weeks' => '$1 {{PLURAL:$1|sedmica|sedmice|sedmica}}',
+'duration-years' => '$1 {{PLURAL:$1|godina|godine|godina}}',
+'duration-decades' => '$1 {{PLURAL:$1|decenija|decenije|decenija}}',
+'duration-centuries' => '$1 {{PLURAL:$1|vijek|vijeka|vijekova}}',
 
 );
