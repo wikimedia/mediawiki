@@ -172,7 +172,9 @@ FILE_PATTERNS          = *.c \
                          *.PHP5 \
                          *.M \
                          *.MM \
-                         *.PY
+                         *.PY \
+                         *.txt \
+                         README
 RECURSIVE              = YES
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = LocalSettings.php AdminSettings.php StartProfiler.php .svn */.git/* {{EXCLUDE_PATTERNS}}
