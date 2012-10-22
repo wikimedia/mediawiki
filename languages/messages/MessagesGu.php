@@ -14,6 +14,7 @@
  * @author Dineshjk
  * @author Dsvyas
  * @author Haritosh
+ * @author Harsh4101991
  * @author Jay
  * @author Kaganer
  * @author KartikMistry
@@ -2107,6 +2108,7 @@ https://www.mediawiki.org/wiki/Manual:Image_Authorization. જુઓ',
 'mailnologin' => 'મેળવનારનું સરનામું નથી',
 'mailnologintext' => 'અન્ય સભ્યને ઇ-મેલ મોકલવા માટે તમે [[Special:UserLogin|logged in]] પ્રવેશ કરેલ હોવો જોઈએ અને તમારા[[Special:Preferences|preferences]] વિકલ્પોમાં તમારા ઈ-મેલ સરનામાની પુષ્ટિ થયેલી હોવી જોઈએ',
 'emailuser' => 'સભ્યને ઇ-મેલ કરો',
+'emailuser-title-notarget' => 'ઇ-મેલ વપરાશકર્તા',
 'emailpage' => 'ઈ-મેલ સભ્ય',
 'emailpagetext' => 'તમે નીચે દર્શાવેલ ફોર્મ વાપરી ઇ-મેલ મોકલી શકો છો.
 તમે તમારી માહિતીમાં [[Special:Preferences|your user preferences]] જે ઇ-મેલ લખ્યો હશે  તે દ્વારા ના નામ હેઠળ દેખાશે, જેથી ઇ-મેલ મેળવનાર તમને સંદેશાનો જવાબ આપી શકશે.',
@@ -2920,6 +2922,7 @@ To perform a selective restoration, check the boxes corresponding to the revisio
 # Info page
 'pageinfo-title' => ' $1 પાના ની માહિતી નૂ મથાડૂ',
 'pageinfo-header-edits' => 'ઇતિહાસ સંપાદન',
+'pageinfo-length' => 'પૃષ્ઠની લંબાઇ (બાઇટમાં)',
 'pageinfo-views' => 'જોનારાની સંખ્યા',
 'pageinfo-watchers' => 'પાના નીરીક્ષકોની સંખ્યા',
 'pageinfo-edits' => 'કુલ સંપાદનોની સંખ્યા',

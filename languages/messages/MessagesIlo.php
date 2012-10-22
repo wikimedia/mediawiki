@@ -152,7 +152,7 @@ $messages = array(
 'category-empty' => "''Daytoy a kategoria ket agdama a saan nga aglaon kadagiti panid wenno midia.''",
 'hidden-categories' => '{{PLURAL:$1|Nailemmeng a kategoria|Nailemmeng a katkategoria}}',
 'hidden-category-category' => 'Nailemmeng a katkategoria',
-'category-subcat-count' => '{{PLURAL:$2|Daytoy a kategoria ket adda laeng ti sumaganad nga apo ti kategoria.|Daytoy a kategoria ket adda kadagiti sumaganad  {{PLURAL:$1|nga apo ti kategoria|$1 nga apo dagiti kategoria}}, manipud ti dagup nga $2.}}',
+'category-subcat-count' => '{{PLURAL:$2|Daytoy a kategoria ket adda laeng ti sumaganad nga apo ti kategoria.|Daytoy a kategoria ket adda kadagiti sumaganad nga {{PLURAL:$1|nga apo ti kategoria|$1 nga apo dagiti kategoria}}, manipud ti dagup nga $2.}}',
 'category-subcat-count-limited' => 'Daytoy a kategoria ket adda ti sumaganad  {{PLURAL:$1|nga apo ti kategoria|$1 nga apo dagiti kategoria}}.',
 'category-article-count' => '{{PLURAL:$2|Daytoy a kategoria ket aglaon laeng ti sumaganad a panid.|Ti sumaganad  {{PLURAL:$1|a panid|$1 a pampanid}} ket adda iti daytoy a kategoria, manipud ti dagup nga $2.}}',
 'category-article-count-limited' => 'Ti sumaganad {{PLURAL:$1|a panid |$1 a pampanid}} ket adda iti agdama a kategoria.',
@@ -281,7 +281,7 @@ $1',
 'mainpage' => 'Umuna a Panid',
 'mainpage-description' => 'Umuna a Panid',
 'policy-url' => 'Project:Annuroten',
-'portal' => 'Pagdadanonan',
+'portal' => 'Portal ti komunidad',
 'portal-url' => 'Project:Portal ti komunidad',
 'privacy' => 'Annuroten iti kinapribado',
 'privacypage' => 'Project:Annuroten iti kinapribado',
@@ -1752,7 +1752,7 @@ Baka kayatmo nga urnosen ti bukodna a deskripsionna idiay [$2 deskripsion ti pap
 'uploadnewversion-linktext' => 'Mangipan ti kabarbaro a bersion iti daytoy a papeles',
 'shared-repo-from' => 'Naggapo iti $1',
 'shared-repo' => 'iti pagbingbingayan a nagikabilan',
-'upload-disallowed-here' => 'Daksanggasat a saanmo a mabalin a suratan manen daytoy nga imahen.',
+'upload-disallowed-here' => 'Saanmo a masuratan manen daytoy nga imahen.',
 
 # File reversion
 'filerevert' => 'Isubli ti $1',
@@ -2850,6 +2850,7 @@ Daytoy ket mabalin a gapuanan babaen ti panilpo a naiparit ti akin ruar a pagsaa
 
 # Info page
 'pageinfo-title' => 'Pakaammo para iti "$1"',
+'pageinfo-not-current' => 'Ti pakaammo ket mabalin laeng a maiparang para iti agdama a panagbalbaliw.',
 'pageinfo-header-basic' => 'Kangrunaan a pakaammuan',
 'pageinfo-header-edits' => 'Pakasaritaan ti inurnos',
 'pageinfo-header-restrictions' => 'Panagsalaknib ti panid',

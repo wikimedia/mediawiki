@@ -1794,7 +1794,7 @@ $1",
 'shared-repo-from' => 'פֿון $1',
 'shared-repo' => 'א געמיינזאַמער זאַפאַס',
 'shared-repo-name-wikimediacommons' => 'וויקימעדיע קאמאנס',
-'upload-disallowed-here' => 'ליידער קענט איר נישט איבערשרייבן דאס בילד.',
+'upload-disallowed-here' => 'איר קענט נישט איבערשרייבן די טעקע.',
 
 # File reversion
 'filerevert' => 'צוריקדרייען $1',
@@ -1816,6 +1816,7 @@ $1",
 'filedelete-success' => "'''$1''' איז געווען אויסגעמעקט.",
 'filedelete-success-old' => "די ווערסיע פֿון '''[[Media:$1|$1]]''' פֿון $3, $2 איז געווארן אויסגעמעקט.",
 'filedelete-nofile' => "'''$1''' עקזיסטירט נישט.",
+'filedelete-nofile-old' => "נישט פאראן קיין ארכיווירטע ווערסיע פון '''$1''' מיט די ספעציפירטע אייגנקייטן.",
 'filedelete-otherreason' => 'אנדער/נאך א סיבה:',
 'filedelete-reason-otherlist' => 'אַנדער אורזאַך',
 'filedelete-reason-dropdown' => '*אַלגעמיינע אויסמעקן סיבות

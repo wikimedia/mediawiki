@@ -2378,7 +2378,7 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 'undeletedrevisions' => '$1 {{PLURAL:$1|version|versioner}} gendannet',
 'undeletedrevisions-files' => '$1 {{plural:$1|version|versioner}} og $2 {{plural:$2|fil|filer}} gendannet',
 'undeletedfiles' => '$1 {{plural:$1|fil|filer}} gendannet',
-'cannotundelete' => 'Gendannelse mislykkedes; en anden har allerede gendannet siden.',
+'cannotundelete' => 'Gendannelse mislykkedes; en anden har måske allerede gendannet siden.',
 'undeletedpage' => "'''$1''' blev gendannet.
 
 I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt slettede og gendannede sider.",

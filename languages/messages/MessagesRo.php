@@ -2529,7 +2529,8 @@ S-ar putea ca legătura să fie greșită, ori versiunea să fi fost restaurată
 'undeletedrevisions' => '{{PLURAL:$1|o versiune restaurată|$1 versiuni restaurate|$1 de versiuni restaurate}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|O versiune|$1 versiuni|$1 de versiuni}} și {{PLURAL:$2|un fișier|$2 fișiere|$2 de fișiere}} recuperate',
 'undeletedfiles' => '{{PLURAL:$1|O versiune recuperată|$1 versiuni recuperate|$1 de versiuni recuperate}}',
-'cannotundelete' => 'Recuperarea a eșuat; este posibil ca altcineva să fi recuperat pagina deja.',
+'cannotundelete' => 'Recuperarea a eșuat;
+este posibil ca altcineva să fi recuperat pagina deja.',
 'undeletedpage' => "'''$1 a fost recuperat'''
 
 Consultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ștergerile și recuperările recente.",

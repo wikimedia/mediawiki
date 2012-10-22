@@ -3222,7 +3222,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 
 # Info page
 'pageinfo-title' => 'Informatie over "$1"',
-'pageinfo-not-current' => 'Gegegevens worden mogelijk alleen weergegeven voor de huidige versie.',
+'pageinfo-not-current' => 'Gegevens worden mogelijk alleen weergegeven voor de huidige versie.',
 'pageinfo-header-basic' => 'Basisgegevens',
 'pageinfo-header-edits' => 'Bewerkingsgeschiedenis',
 'pageinfo-header-restrictions' => 'Paginabeveiliging',

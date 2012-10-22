@@ -1554,8 +1554,8 @@ $1",
 'editinguser' => "שינוי הרשאות המשתמש של '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup' => 'עריכת קבוצות משתמש',
 'saveusergroups' => 'שמירת קבוצות משתמש',
-'userrights-groupsmember' => 'חבר בקבוצות:',
-'userrights-groupsmember-auto' => 'חבר אוטומטית בקבוצות:',
+'userrights-groupsmember' => '{{GENDER:$2|חבר|חברה}} {{PLURAL:$1|בקבוצה|בקבוצות}}:',
+'userrights-groupsmember-auto' => '{{GENDER:$2|חבר|חברה}} אוטומטית {{PLURAL:$1|בקבוצה|בקבוצות}}:',
 'userrights-groups-help' => 'באפשרותכם לשנות את הקבוצות שמשתמש זה חבר בהן:
 * תיבה מסומנת פירושה שהמשתמש חבר בקבוצה.
 * תיבה בלתי מסומנת פירושה שהמשתמש אינו חבר בקבוצה.
