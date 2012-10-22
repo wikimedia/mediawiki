@@ -928,13 +928,3 @@ CREATE TABLE user_former_groups (
 );
 CREATE UNIQUE INDEX ufg_user_group
   ON user_former_groups (ufg_user, ufg_group);
-
-
-
--- Table for holding configuration changes
-CREATE TABLE config (
-  cf_name   VARCHAR(255) NOT NULL
-    PRIMARY KEY,
-  cf_value  CLOB(64K) INLINE LENGTH 4096 NOT NULL
-);
-
