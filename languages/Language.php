@@ -691,16 +691,82 @@ class Language {
 	 * @param $code String Language code.
 	 * @return Array language code => language name
 	 * @since 1.18.0
+	 * @deprecated in 1.19, use fetchLanguageNames()
 	 */
 	public static function getTranslatedLanguageNames( $code ) {
-		$names = array();
-		wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $code ) );
+		return self::fetchLanguageNames( $code, 'all' );
+	}
 
-		foreach ( self::getLanguageNames() as $code => $name ) {
-			if ( !isset( $names[$code] ) ) $names[$code] = $name;
+	/**
+	 * Get an array of language names, indexed by code.
+	 * @param $inLanguage null|string: Code of language in which to return the names
+	 *		Use null for autonyms (native names)
+	 * @param $include string:
+	 *		'all' all available languages
+	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
+	 *		'mwfile' only if the language is in 'mw' *and* has a message file
+	 * @return array: language code => language name
+	 * @since 1.19
+	 */
+	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
+		global $wgExtraLanguageNames;
+		static $coreLanguageNames;
+
+		if ( $coreLanguageNames === null ) {
+			include( MWInit::compiledPath( 'languages/Names.php' ) );
 		}
 
-		return $names;
+		$names = array();
+
+		if ( $inLanguage ) {
+			# TODO: also include when $inLanguage is null, when this code is more efficient
+			wfRunHooks( 'LanguageGetTranslatedLanguageNames', array( &$names, $inLanguage ) );
+		}
+
+		$mwNames = $wgExtraLanguageNames + $coreLanguageNames;
+		foreach ( $mwNames as $mwCode => $mwName ) {
+			# - Prefer own MediaWiki native name when not using the hook
+			# - For other names just add if not added through the hook
+			if ( $mwCode === $inLanguage || !isset( $names[$mwCode] ) ) {
+				$names[$mwCode] = $mwName;
+			}
+		}
+
+		if ( $include === 'all' ) {
+			return $names;
+		}
+
+		$returnMw = array();
+		$coreCodes = array_keys( $mwNames );
+		foreach ( $coreCodes as $coreCode ) {
+			$returnMw[$coreCode] = $names[$coreCode];
+		}
+
+		if ( $include === 'mwfile' ) {
+			$namesMwFile = array();
+			# We do this using a foreach over the codes instead of a directory
+			# loop so that messages files in extensions will work correctly.
+			foreach ( $returnMw as $code => $value ) {
+				if ( is_readable( self::getMessagesFileName( $code ) ) ) {
+					$namesMwFile[$code] = $names[$code];
+				}
+			}
+			return $namesMwFile;
+		}
+		# 'mw' option; default if it's not one of the other two options (all/mwfile)
+		return $returnMw;
+	}
+
+	/**
+	 * @param $code string: The code of the language for which to get the name
+	 * @param $inLanguage null|string: Code of language in which to return the name (null for autonyms)
+	 * @param $include string: 'all', 'mw' or 'mwfile'; see fetchLanguageNames()
+	 * @return string: Language name or empty
+	 * @since 1.20
+	 */
+	public static function fetchLanguageName( $code, $inLanguage = null, $include = 'all' ) {
+		$array = self::fetchLanguageNames( $inLanguage, $include );
+		return !array_key_exists( $code, $array ) ? '' : $array[$code];
 	}
 
 	/**
