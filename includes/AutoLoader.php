@@ -447,11 +447,6 @@ $wgAutoloadLocalClasses = array(
 	'TitleDependency' => 'includes/cache/CacheDependency.php',
 	'TitleListDependency' => 'includes/cache/CacheDependency.php',
 
-	# includes/conf
-	'Conf' => 'includes/conf/Conf.php',
-	'DatabaseConf' => 'includes/conf/DatabaseConf.php',
-	'DefaultSettings' => 'includes/conf/DefaultSettings.php',
-
 	# includes/context
 	'ContextSource' => 'includes/context/ContextSource.php',
 	'DerivativeContext' => 'includes/context/DerivativeContext.php',

@@ -670,13 +670,6 @@ CREATE TABLE &mw_prefix.module_deps (
 );
 CREATE UNIQUE INDEX &mw_prefix.module_deps_u01 ON &mw_prefix.module_deps (md_module, md_skin);
 
-CREATE TABLE &mw_prefix.config (
-  cf_name VARCHAR2(255) NOT NULL,
-  cf_value blob NOT NULL
-);
-ALTER TABLE &mw_prefix.config ADD CONSTRAINT &mw_prefix.config_pk PRIMARY KEY (cf_name);
--- leaving index out for now ...
-
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (
 table_name VARCHAR2(35) NOT NULL,

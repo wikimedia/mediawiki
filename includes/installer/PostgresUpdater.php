@@ -89,7 +89,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'module_deps',       'patch-module_deps.sql' ),
 			array( 'addTable', 'uploadstash',       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
-			array( 'addTable', 'config',            'patch-config.sql' ),
 			array( 'addTable', 'external_user',     'patch-external_user.sql' ),
 
 			# Needed before new field
