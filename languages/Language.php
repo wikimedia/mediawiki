@@ -706,7 +706,7 @@ class Language {
 	 *		'mw' only if the language is defined in MediaWiki or wgExtraLanguageNames (default)
 	 *		'mwfile' only if the language is in 'mw' *and* has a message file
 	 * @return array: language code => language name
-	 * @since 1.20
+	 * @since 1.19
 	 */
 	public static function fetchLanguageNames( $inLanguage = null, $include = 'mw' ) {
 		global $wgExtraLanguageNames;
