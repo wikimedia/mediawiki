@@ -6,6 +6,20 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	public $runDisabled = false;
 
 	/**
+	 * $called tracks whether the setUp and tearDown method has been called.
+	 * class extending MediaWikiTestCase usually override setUp and tearDown
+	 * but forget to call the parent.
+	 *
+	 * The array format takes a method name as key and anything as a value.
+	 * By asserting the key exist, we know the child class has called the
+	 * parent.
+	 *
+	 * This property must be private, we do not want child to override it,
+	 * they should call the appropriate parent method instead.
+	 */
+	private $called = array();
+
+	/**
 	 * @var Array of TestUser
 	 */
 	public static $users;
@@ -150,6 +164,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		wfProfileIn( __METHOD__ );
 		parent::setUp();
+		$this->called['setUp'] = 1;
 
 		/*
 		//@todo: global variables to restore for *every* test
@@ -208,6 +223,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		parent::tearDown();
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Make sure MediaWikiTestCase extending classes have called their
+	 * parent setUp method
+	 */
+	final public function testMediaWikiTestCaseParentSetupCalled() {
+		$this->assertArrayHasKey( 'setUp', $this->called,
+			get_called_class() . "::setUp() must call parent::setUp()"
+		);
 	}
 
 	/**
