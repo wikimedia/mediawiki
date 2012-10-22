@@ -786,6 +786,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return true; // nothing to do
 		}
 		wfProfileIn( __METHOD__ );
+		trigger_error( "$path was not stored with SHA-1 metadata.", E_USER_WARNING );
 		$status = Status::newGood();
 		$scopeLockS = $this->getScopedFileLocks( array( $path ), LockManager::LOCK_UW, $status );
 		if ( $status->isOK() ) {
