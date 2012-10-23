@@ -170,6 +170,7 @@ class UserloginTemplate extends QuickTemplate {
 <?php if( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 </div>
+<div id="loginend"></div>
 <?php
 
 	}
