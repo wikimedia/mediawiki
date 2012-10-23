@@ -2,6 +2,7 @@
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
 
 	protected function setUp() {
+		parent::setUp();
 		$this->filePath = __DIR__ . '/../../data/media/';
 	}
 	/**

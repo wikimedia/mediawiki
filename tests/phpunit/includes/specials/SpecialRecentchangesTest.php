@@ -14,9 +14,6 @@ class SpecialRecentchangesTest extends MediaWikiTestCase {
 	 */
 	protected $rc;
 
-	protected function setUp() {
-	}
-
 	/** helper to test SpecialRecentchanges::buildMainQueryConds() */
 	private function assertConditions( $expected, $requestOptions = null, $message = '' ) {
 		$context = new RequestContext;

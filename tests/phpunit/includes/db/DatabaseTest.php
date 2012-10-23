@@ -8,10 +8,12 @@ class DatabaseTest extends MediaWikiTestCase {
 	var $db, $functionTest = false;
 
 	protected function setUp() {
+		parent::setUp();
 		$this->db = wfGetDB( DB_MASTER );
 	}
 
 	protected function tearDown() {
+		parent::tearDown();
 		if ( $this->functionTest ) {
 			$this->dropFunctions();
 			$this->functionTest = false;

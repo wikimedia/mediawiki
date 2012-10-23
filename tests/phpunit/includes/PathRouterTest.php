@@ -6,6 +6,7 @@
 class PathRouterTest extends MediaWikiTestCase {
 
 	protected function setUp() {
+		parent::setUp();
 		$router = new PathRouter;
 		$router->add("/wiki/$1");
 		$this->basicRouter = $router;

@@ -7,6 +7,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 
 	protected function setUp() {
 		global $wgParserConf;
+		parent::setUp();
 		$this->mOptions = new ParserOptions();
 		$name = isset( $wgParserConf['preprocessorClass'] ) ? $wgParserConf['preprocessorClass'] : 'Preprocessor_DOM';
 

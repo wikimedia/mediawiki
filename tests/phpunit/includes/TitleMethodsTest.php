@@ -12,6 +12,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 	public function setup() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContLang;
 
+		parent::setUp();
+
 		$this->mergeMwGlobalArrayValue(
 			'wgExtraNamespaces',
 			array(
@@ -33,6 +35,8 @@ class TitleMethodsTest extends MediaWikiTestCase {
 
 	public function teardown() {
 		global $wgContLang;
+
+		parent::tearDown();
 
 		MWNamespace::getCanonicalNamespaces( true ); # reset namespace cache
 		$wgContLang->resetNamespaces(); # reset namespace cache

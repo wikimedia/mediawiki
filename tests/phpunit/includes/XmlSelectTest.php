@@ -5,9 +5,11 @@ class XmlSelectTest extends MediaWikiTestCase {
 	protected $select;
 
 	protected function setUp() {
+		parent::setUp();
 		$this->select = new XmlSelect();
 	}
 	protected function tearDown() {
+		parent::tearDown();
 		$this->select = null;
 	}
 

@@ -7,6 +7,7 @@
 class CdbTest extends MediaWikiTestCase {
 
 	protected function setUp() {
+		parent::setUp();
 		if ( !CdbReader::haveExtension() ) {
 			$this->markTestSkipped( 'Native CDB support is not available' );
 		}

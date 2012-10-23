@@ -26,6 +26,7 @@ class LinksUpdateTest extends MediaWikiTestCase {
 	}
 
 	protected function setUp() {
+		parent::setUp();
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(
 			'interwiki',

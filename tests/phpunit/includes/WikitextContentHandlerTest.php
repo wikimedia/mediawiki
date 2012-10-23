@@ -11,10 +11,8 @@ class WikitextContentHandlerTest extends MediaWikiTestCase {
 	var $handler;
 
 	public function setup() {
+		parent::setUp();
 		$this->handler = ContentHandler::getForModelID( CONTENT_MODEL_WIKITEXT );
-	}
-
-	public function teardown() {
 	}
 
 	public function testSerializeContent( ) {
