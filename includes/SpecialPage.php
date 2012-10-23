@@ -522,7 +522,7 @@ class SpecialPage {
 	 */
 	public function isRestricted() {
 		// DWIM: If all anons can do something, then it is not restricted
-		return $this->mRestriction != '' && User::groupHasPermission( '*', $this->mRestriction );
+		return $this->mRestriction != '' && !User::groupHasPermission( '*', $this->mRestriction );
 	}
 
 	/**
