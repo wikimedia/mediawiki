@@ -1476,7 +1476,7 @@ class EditPage {
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
-					#$this->textbox1 = $text; #redundant, nothing to do here?
+					$this->textbox1 = ContentHandler::getContentText( $content );
 					wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge.\n" );
 				}
 			}
