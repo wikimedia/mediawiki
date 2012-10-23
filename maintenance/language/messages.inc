@@ -484,8 +484,6 @@ $wgMessageStructure = array(
 		'eauthentsent',
 		'throttled-mailpassword',
 		'loginstart',
-		'loginend',
-		'loginend-https',
 		'signupstart',
 		'signupend',
 		'signupend-https',

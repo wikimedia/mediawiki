@@ -658,7 +658,7 @@ div#userloginForm .captcha {
 	background-color: white;
 }
 
-#loginend, #signupend {
+#signupend {
 	clear: both;
 }
 
