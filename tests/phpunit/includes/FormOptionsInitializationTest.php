@@ -41,8 +41,8 @@ class FormOptionsInitializationTest extends MediaWikiTestCase {
 	 * with.
 	 */
 	protected function setUp() {
+		parent::setUp();
 		$this->object = new FormOptionsExposed();
-		
 	}
 
 	public function testAddStringOption() {

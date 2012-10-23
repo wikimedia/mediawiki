@@ -2,6 +2,7 @@
 class XMPTest extends MediaWikiTestCase {
 
 	protected function setUp() {
+		parent::setUp();
 		if ( !wfDl( 'xml' ) ) {
 			$this->markTestSkipped( 'Requires libxml to do XMP parsing' );
 		}

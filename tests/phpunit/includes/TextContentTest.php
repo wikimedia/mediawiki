@@ -11,6 +11,8 @@ class TextContentTest extends MediaWikiTestCase {
 	public function setup() {
 		global $wgUser;
 
+		parent::setUp();
+
 		// anon user
 		$wgUser = new User();
 		$wgUser->setName( '127.0.0.1' );

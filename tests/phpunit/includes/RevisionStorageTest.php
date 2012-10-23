@@ -41,6 +41,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	public function setUp() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
 
+		parent::setUp();
+
 		$wgExtraNamespaces[ 12312 ] = 'Dummy';
 		$wgExtraNamespaces[ 12313 ] = 'Dummy_talk';
 
@@ -56,6 +58,8 @@ class RevisionStorageTest extends MediaWikiTestCase {
 
 	public function tearDown() {
 		global $wgExtraNamespaces, $wgNamespaceContentModels, $wgContentHandlers, $wgContLang;
+
+		parent::tearDown();
 
 		unset( $wgExtraNamespaces[ 12312 ] );
 		unset( $wgExtraNamespaces[ 12313 ] );

@@ -4,6 +4,7 @@ class MWDebugTest extends MediaWikiTestCase {
 
 
 	protected function setUp() {
+		parent::setUp();
 		// Make sure MWDebug class is enabled
 		static $MWDebugEnabled = false;
 		if( !$MWDebugEnabled ) {
@@ -17,6 +18,7 @@ class MWDebugTest extends MediaWikiTestCase {
 
 	protected function tearDown() {
 		wfRestoreWarnings();
+		parent::tearDown();
 	}
 
 	function testAddLog() {

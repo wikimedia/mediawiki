@@ -9,6 +9,8 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	private $title;
 
 	protected function setUp() {
+		parent::setUp();
+
 		$this->testParserOptions = new ParserOptions();
 
 		$this->testParser = new Parser();
@@ -19,6 +21,8 @@ class ParserPreloadTest extends MediaWikiTestCase {
 	}
 
 	protected function tearDown() {
+		parent::tearDown();
+
 		unset( $this->testParser );
 		unset( $this->title );
 	}

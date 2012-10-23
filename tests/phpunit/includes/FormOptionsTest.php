@@ -23,12 +23,13 @@ class FormOptionsTest extends MediaWikiTestCase {
 	protected $object;
 
 	/**
-	 * Instanciates a FormOptions object to play with.	 
+	 * Instanciates a FormOptions object to play with.
 	 * FormOptions::add() is tested by the class FormOptionsInitializationTest
 	 * so we assume the function is well tested already an use it to create
 	 * the fixture.
 	 */
 	protected function setUp() {
+		parent::setUp();
 		$this->object = new FormOptions;
 		$this->object->add( 'string1', 'string one' );
 		$this->object->add( 'string2', 'string two' );
