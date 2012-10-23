@@ -1899,7 +1899,11 @@ class Linker {
 						array( 'action' => 'edit' )
 					);
 				}
-				$outText .= '<li>' . self::link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
+				$outText .= '<li>' . self::link( $titleObj )
+					. wfMessage( 'word-separator' )->text()
+					. wfMessage( 'parentheses' )->params( $editLink )->text()
+					. wfMessage( 'word-separator' )->text()
+					. $protected . '</li>';
 			}
 			$outText .= '</ul>';
 		}
