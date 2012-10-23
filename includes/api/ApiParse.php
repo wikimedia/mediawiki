@@ -147,9 +147,6 @@ class ApiParse extends ApiBase {
 
 				$pageObj = $this->getTitleOrPageId( $pageParams, 'fromdb' );
 				$titleObj = $pageObj->getTitle();
-				if ( $titleObj->isSpecialPage() ) {
-					$this->dieUsage( 'Special pages cannot be parsed through action=parse', 'targetisspecial' );
-				}
 				$wgTitle = $titleObj;
 
 				if ( isset( $prop['revid'] ) ) {
