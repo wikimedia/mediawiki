@@ -1,0 +1,154 @@
+.createaccount-join h2 {
+	border: 0;
+	margin-left: 20px;
+	font-weight: bold;
+}
+
+/* This is the div for the form, not the form itself. */
+#userloginForm {
+    border: 0 !important;
+    font-size: 16px !important;
+    padding: 0 !important;
+}
+
+/* Style elements in a mw-ui-formlist. */
+.mw-ui-formlist {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 1.0em;
+    border: 0;
+}
+
+ul.mw-ui-formlist {
+    list-style: none;
+    list-style-image: none; /* IE7 */
+}
+
+ul.mw-ui-formlist li {
+    display: block;
+    width: 20em;
+    margin-bottom: 1em;
+    padding: 0;
+}
+
+.mw-ui-formlist input, button {
+    display: block;
+}
+
+.mw-ui-formlist li input[type="checkbox"] {
+    display: inline;
+}
+
+/* Note MediaWiki HTML::input drops default type="text" if $wgHtml5 */
+.mw-ui-formlist .loginText,
+.mw-ui-formlist input[type="text"],
+.mw-ui-formlist input[type="password"]
+{
+    min-width: 100%;
+    max-width: 100%;
+    height: 2em;
+    margin: 0;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 0.9em;
+    border: 1px solid #c9c9c9;
+    padding-left: 5px;
+}
+
+.mw-ui-formlist label, .mw-ui-formlist .mw-userlogin-help {
+    font-size: 0.75em;
+    color: #454545;
+}
+
+/*
+ * These settings are specifically for the unordered list, not just the
+ * "mw-ui-formlist" style.
+ */
+ul.mw-ui-formlist a {
+    margin-right: -7px;
+}
+
+ul.mw-ui-formlist label.pos-above {
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+ul.mw-ui-formlist label.pos-right {
+    display: inline;
+    margin-left: 0.25em;
+}
+
+/* Similar to .acux-errorbox */
+/* In theory besides errorbox there could be warningbox, msgbox, ?? */
+.mw-ui-formlist .errorbox {
+	min-width: 97%;
+	max-width: 97%;
+	margin: 0 0 1em 0;
+	padding: 0.5em;
+	color: #cc0000;
+	border: 1px solid #fac5c5;
+	background-color: #fae3e3;
+	font-size: 0.8em;
+	text-shadow: 0 1px #fae3e3;
+}
+
+/* FIXME (spage 2013-02-11) Use a better technique, I have to nbsp; the text to make room. */
+.mw-ui-formlist .mw-secure {
+	background: url(images/icon-lock.png) no-repeat scroll left center transparent;
+	margin: 0 0 0 1px;
+	padding: 0 0 0 11px;
+}
+/*
+ * Apply Agora button style to certain hyperlinks, input type submit, and button elements.
+ * Most of this replaced by the CSS from Extension:Agora's 'ext.agora.base' module.
+ */
+
+a.mw-ui-button.login-button, input[type="submit"].mw-ui-button.login-button, button.mw-ui-button.login-button {
+    width: 15.7em;
+    padding: 0.3em 0 0.3em 0;
+    font-size: 1.3em;
+}
+
+
+
+
+.mw-ui-formlist *.center-text {
+    text-align: center;
+}
+
+ul.mw-ui-formlist *.pull-up {
+    margin-top: -10px;
+}
+
+ul.mw-ui-formlist *.pull-right {
+    float: right;
+}
+
+ul.mw-ui-formlist *.pull-left {
+    float: left;
+}
+
+#createaccount-cta {
+    width: 20em;
+    height: 10em;
+    text-align: center;
+    background: url(images/glyph-people-large.png) no-repeat 50%;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+#createaccount-cta h3 {
+    width: 100%;
+    font-size: 0.9em;
+    font-weight: normal;
+    text-align: center;
+    padding-top: 4em;
+}
+
+#mw-joinproject {
+    display: inline-block;
+    font-size: 1em;
+    margin-left: 0.75em;
+
+    -webkit-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+}
+

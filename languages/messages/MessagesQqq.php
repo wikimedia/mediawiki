@@ -1001,13 +1001,22 @@ See also {{msg-mw|protectedinterface}}.',
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.
 
 {{Identical|Username}}",
+'userlogin-yourname' => "In Agora user login & create account forms, label for username field",
+'userlogin-yourname-help' => "Placeholder in form field.",
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
+'userlogin-yourpassword' => "In Agora user login & create account forms, label for password field",
+'userlogin-yourpassword-help' => "Placeholder text in Agora userlogin form for password field.",
+'usercreate-yourpassword-help' => "Placeholder text in Agora create account form for password field.",
 'yourpasswordagain' => 'In user preferences',
+'usercreate-yourpasswordagain' => 'In Agora create account form, label for field to re-enter password',
+'usercreate-yourpasswordagain-help' => 'Placeholder text in Agora create account form for re-enter password field.',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
+'userlogin-remembermypassword' => 'The text for a check box in the Agora-style [[Special:UserLogin]]',
+'userlogin-signwithsecure'   => 'Text of link to HTTPS login form',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
@@ -1024,6 +1033,9 @@ See also:
 'loginprompt' => 'A small notice in the log in form.',
 'userlogin' => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.
 {{Identical|Log in / create account}}',
+'userlogin-heading' => 'Name of special page [[Special:UserLogin]] where a user can log in.
+
+{{Identical|Log in}}',
 'userloginnocreate' => 'A variant of {{msg-mw|Userlogin}} when the user is not allowed to create a new account.
 
 {{Identical|Log in}}',
@@ -1039,6 +1051,8 @@ See also:
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
+'donthaveaccount' => 'In the Agora-style [[Special:Userlogin]] form, this is the text prior to button inviting user to join project',
+'userlogin-joinproject' => 'Text of button inviting user to create an account',
 'nologin' => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
 {{Identical|Create an account}}',
@@ -1046,14 +1060,24 @@ See also:
 
 It is also used on the top of the page for logged out users, where it appears next to {{msg-mw|login}}, so consider making them similar.
 {{Identical|Create account}}',
+'createaccount-heading' => 'Name of special page [[Special:CreateAccount]] where useres can register a new account.
+
+{{Identical|Create account}}',
 'gotaccount' => 'A message shown in the account creation form.
 * $1 - a link to the log in form, and the text of it is {{msg-mw|Gotaccountlink}}',
 'gotaccountlink' => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
+'helplogin-url' => 'Description: The URL the provides information on logging in to the wiki.',
+'userlogin-helplink' => 'Wiki text linking to login help',
+'createaccount-join' => 'Subheading of create account form encouraging user to join the wiki.',
+'usercreate-email' => 'In Agora create account form, label for field to enter email.',
+'usercreate-email-help'  => 'Placeholder in Agora create account form for email field when it is optional.',
+'usercreate-email-help'  => 'Placeholder in Agora create account form for email field when it is required.',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
+'usercreate-reason' => 'In Agora create account form, label for field to enter reason to create an account when already logged-in.',
 'badretype' => 'Used as error message when the new password and its retype do not match.',
 'userexists' => 'Used as error message in creating a user account.',
 'loginerror' => 'Used as title of error message.',
@@ -2403,7 +2427,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'prefs-reset-intro' => 'Used in [[Special:Preferences/reset]].',
 'prefs-emailconfirm-label' => 'Sub-heading in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-textboxsize' => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
-'youremail' => 'Label of the e-mail text box of the "E-mail options" section of "Special:Preferences".
+'youremail' => 'Label of the e-mail text box of the "E-mail options" section of "Special:Preferences", and of the create account form.
 
 {{Identical|E-mail}}',
 'username' => 'Username field in [[Special:Preferences]]. $1 is the current user name for GENDER distinction (depends on sex setting).
