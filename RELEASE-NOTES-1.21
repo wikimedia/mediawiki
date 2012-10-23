@@ -77,6 +77,8 @@ production.
 * (bug 2865)  User interface HTML elements don't use lang attribute
   (completed the fix by adding the lang attribute to firstHeading)
 * (bug 42173) Removed namespace prefixes on Special:UncategorizedCategories.
+* (bug 36053) Log in "returnto" feature forgets query parameters if no
+  title parameter was specified.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
