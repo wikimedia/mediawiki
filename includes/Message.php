@@ -618,7 +618,7 @@ class Message {
 		} elseif ( !is_array( $param ) ) {
 			return array( 'before', $param );
 		} else {
-			throw new MWException( "Invalid message parameter" );
+			throw new MWException( "Invalid message parameter: " . serialize( $param ) );
 		}
 	}
 
