@@ -134,10 +134,7 @@
 				},
 				select: function ( $input ) {
 					$input.closest( 'form' ).append(
-						$( '<input type="hidden"/>', {
-							name: 'fulltext',
-							val: '1'
-						})
+						$( '<input type="hidden" name="fulltext" value="1"/>' )
 					);
 					$input.closest( 'form' ).submit();
 				}
