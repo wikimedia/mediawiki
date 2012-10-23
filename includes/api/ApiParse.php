@@ -165,8 +165,8 @@ class ApiParse extends ApiBase {
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
-			if ( $titleObj->isSpecialPage() ) {
-				$this->dieUsage( 'Special pages cannot be parsed through action=parse', 'targetisspecial' );
+			if ( $titleObj->canExist() ) {
+				$this->dieUsage( "Namespace doesn't allow actual pages", 'pagecannotexist' );
 			}
 			$wgTitle = $titleObj;
 			$pageObj = WikiPage::factory( $titleObj );
@@ -655,7 +655,7 @@ class ApiParse extends ApiBase {
 			array( 'invalidtitle', 'title' ),
 			array( 'code' => 'parseerror', 'info' => 'Failed to parse the given text.' ),
 			array( 'code' => 'notwikitext', 'info' => 'The requested operation is only supported on wikitext content.' ),
-			array( 'code' => 'targetisspecial', 'info' => 'Special pages cannot be parsed through action=parse' ),
+			array( 'code' => 'pagecannotexist', 'info' => "Namespace doesn't allow actual pages" ),
 		) );
 	}
 
