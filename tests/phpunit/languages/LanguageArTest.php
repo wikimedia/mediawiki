@@ -5,19 +5,11 @@
  */
 
 /** Tests for MediaWiki languages/LanguageAr.php */
-class LanguageArTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'Ar' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageArTest extends LanguageClassesTestCase {
 
 	function testFormatNum() {
-		$this->assertEquals( '١٬٢٣٤٬٥٦٧', $this->lang->formatNum( '1234567' ) );
-		$this->assertEquals( '-١٢٫٨٩', $this->lang->formatNum( -12.89 ) );
+		$this->assertEquals( '١٬٢٣٤٬٥٦٧', self::getLang()->formatNum( '1234567' ) );
+		$this->assertEquals( '-١٢٫٨٩', self::getLang()->formatNum( -12.89 ) );
 	}
 
 	/**
@@ -25,7 +17,7 @@ class LanguageArTest extends MediaWikiTestCase {
 	 * @dataProvider providerSprintfDate
 	 */
 	function testSprintfDate( $format, $date, $expected ) {
-		$this->assertEquals( $expected, $this->lang->sprintfDate( $format, $date ) );
+		$this->assertEquals( $expected, self::getLang()->sprintfDate( $format, $date ) );
 	}
 
 	function providerSprintfDate() {
@@ -55,7 +47,7 @@ class LanguageArTest extends MediaWikiTestCase {
 	/** @dataProvider providePlural */
 	function testPlural( $result, $value ) {
 		$forms =  array( 'zero', 'one', 'two', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, self::getLang()->convertPlural( $value, $forms ) );
 	}
 	function providePlural() {
 		return array (
