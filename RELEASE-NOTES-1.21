@@ -58,6 +58,8 @@ production.
   caught during API execution.
 * (bug 37963) Fixed loading process for user options
 * (bug 26995) Update filename field on Upload page after having sanitized it.
+* (bug 36053) Log in "returnto" feature forgets query parameters if no
+  title parameter was specified.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
