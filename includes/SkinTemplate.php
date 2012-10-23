@@ -555,7 +555,11 @@ class SkinTemplate extends Skin {
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
-		$page = Title::newFromURL( $request->getVal( 'title', '' ) );
+		if ( $this->getUser()->isAllowed( 'read' ) ) {
+			$page = $this->getTitle();
+		} else {
+			$page = Title::newFromText( $request->getVal( 'title', '' ) );
+		}
 		$page = $request->getVal( 'returnto', $page );
 		$a = array();
 		if ( strval( $page ) !== '' ) {
