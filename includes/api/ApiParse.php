@@ -165,7 +165,7 @@ class ApiParse extends ApiBase {
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $title ) );
 			}
-			if ( $titleObj->canExist() ) {
+			if ( !$titleObj->canExist() ) {
 				$this->dieUsage( "Namespace doesn't allow actual pages", 'pagecannotexist' );
 			}
 			$wgTitle = $titleObj;

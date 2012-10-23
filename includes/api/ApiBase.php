@@ -775,7 +775,7 @@ abstract class ApiBase extends ContextSource {
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			}
-			if ( $titleObj->canExist() ) {
+			if ( !$titleObj->canExist() ) {
 				$this->dieUsage( "Namespace doesn't allow actual pages", 'pagecannotexist' );
 			}
 			$pageObj = WikiPage::factory( $titleObj );
