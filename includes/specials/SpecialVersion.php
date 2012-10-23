@@ -109,9 +109,9 @@ class SpecialVersion extends SpecialPage {
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
 			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			'Timo Tijhof',
-			'[{{SERVER}}{{SCRIPTPATH}}/CREDITS ' .
+			'[[Special:Credits|' .
 			wfMessage( 'version-poweredby-others' )->text() .
-			']'
+			']]'
 		);
 
 		return wfMessage( 'version-poweredby-credits', date( 'Y' ),
