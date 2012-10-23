@@ -15,16 +15,7 @@
 require_once dirname( __DIR__ ) . '/bootstrap.php';
 
 /** Tests for MediaWiki languages/LanguageUz.php */
-class LanguageUzTest extends MediaWikiTestCase {
-	/* Language object. Initialized before each test */
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'uz' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageUzTest extends LanguageClassesTestCase {
 
 	/**
 	 * @author Nikola Smolenski
@@ -109,7 +100,7 @@ class LanguageUzTest extends MediaWikiTestCase {
 
 	/** Wrapper for converter::convertTo() method*/
 	function convertTo( $text, $variant ) {
-		return $this->lang->mConverter->convertTo( $text, $variant );
+		return $this->getLang()->mConverter->convertTo( $text, $variant );
 	}
 	function convertToCyrillic( $text ) {
 		return $this->convertTo( $text, 'uz-cyrl' );

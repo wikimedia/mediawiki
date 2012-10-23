@@ -6,20 +6,12 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageHe.php */
-class LanguageHeTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'he' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageHeTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPluralDual */
 	function testPluralDual( $result, $value ) {
 		$forms = array( 'one', 'two', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPluralDual() {
@@ -34,7 +26,7 @@ class LanguageHeTest extends MediaWikiTestCase {
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {
