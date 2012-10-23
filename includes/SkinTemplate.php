@@ -556,7 +556,13 @@ class SkinTemplate extends Skin {
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
 		$page = Title::newFromURL( $request->getVal( 'title', '' ) );
+
 		$page = $request->getVal( 'returnto', $page );
+
+		// If title or returnto isn't given and the user is allowed to read pages, we try $this->getTitle()
+		if ( $page === '' && $this->getUser()->isAllowed( 'read' ) ) {
+			$page = $this->getTitle();
+		}
 		$a = array();
 		if ( strval( $page ) !== '' ) {
 			$a['returnto'] = $page;
