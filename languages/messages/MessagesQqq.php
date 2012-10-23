@@ -4704,6 +4704,10 @@ See also {{msg-mw|Version-entrypoints}}',
 'version-entrypoints-articlepath' => 'A short description of the article path entry point. Links to the mediawiki.org documentation page for $wgArticlePath.',
 'version-entrypoints-scriptpath' => 'A short description of the script path entry point. Links to the mediawiki.org documentation page for $wgScriptPath.',
 
+# Special:Credits
+'credits'          => 'Name of special page [[Special:Credits]].',
+'credits-summary'  => 'Summary of what [[Special:Credits]] does (list the contributors to MediaWiki), shown at the top of the page.',
+
 # Special:FilePath
 'filepath' => 'Legend of fieldset around input box in [[Special:FilePath]].',
 'filepath-page' => 'Shown next to input box in [[Special:FilePath]]

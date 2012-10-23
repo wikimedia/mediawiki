@@ -123,6 +123,7 @@ class SpecialPageFactory {
 		'Statistics'                => 'SpecialStatistics',
 		'Allmessages'               => 'SpecialAllmessages',
 		'Version'                   => 'SpecialVersion',
+		'Credits'                   => 'SpecialCredits',
 		'Lockdb'                    => 'SpecialLockdb',
 		'Unlockdb'                  => 'SpecialUnlockdb',
 

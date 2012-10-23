@@ -4729,6 +4729,11 @@ You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU Gen
 'version-entrypoints-api-php'           => '[https://www.mediawiki.org/wiki/Manual:api.php api.php]', # do not translate or duplicate this message to other languages
 'version-entrypoints-load-php'          => '[https://www.mediawiki.org/wiki/Manual:load.php load.php]', # do not translate or duplicate this message to other languages
 
+# Special:Credits
+'credits'          => 'Credits',
+'credits-summary'  => '[[Special:Version|MediaWiki {{CURRENTVERSION}}]] is a collaborative project released under the GNU General Public License v2.
+We would like to recognize the following names for their contribution to the product.',
+
 # Special:FilePath
 'filepath'         => 'File path',
 'filepath-page'    => 'File:',

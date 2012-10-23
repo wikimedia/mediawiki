@@ -949,6 +949,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialChangePassword' => 'includes/specials/SpecialChangePassword.php',
 	'SpecialComparePages' => 'includes/specials/SpecialComparePages.php',
 	'SpecialContributions' => 'includes/specials/SpecialContributions.php',
+	'SpecialCredits' => 'includes/specials/SpecialCredits.php',
 	'SpecialEditWatchlist' => 'includes/specials/SpecialEditWatchlist.php',
 	'SpecialEmailUser' => 'includes/specials/SpecialEmailuser.php',
 	'SpecialExport' => 'includes/specials/SpecialExport.php',

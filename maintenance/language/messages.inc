@@ -3582,6 +3582,10 @@ $wgMessageStructure = array(
 		'version-entrypoints-api-php',
 		'version-entrypoints-load-php',
 	),
+	'credits' => array(
+		'credits',
+		'credits-summary',
+	),
 	'filepath' => array(
 		'filepath',
 		'filepath-page',
