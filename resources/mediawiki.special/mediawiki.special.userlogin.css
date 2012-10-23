@@ -1,0 +1,214 @@
+/* Style elements in a mw-form-list. */
+.mw-form-list {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 1.0em;
+    border: 0;
+}
+
+ul.mw-form-list {
+    list-style: none;
+    list-style-image: none; /* IE7 */
+}
+
+ul.mw-form-list li {
+    display: block;
+    width: 20em;
+    margin-bottom: 1em;
+    padding: 0;
+}
+
+.mw-form-list input, button {
+    display: block;
+    
+}
+
+.mw-form-list li input[type="checkbox"] {
+    display: inline;
+}
+
+/* Note MediaWiki HTML::input drops default type="text" if $wgHtml5 */
+.mw-form-list .loginText,
+.mw-form-list input[type="text"],
+.mw-form-list input[type="password"]
+{
+    min-width: 100%;
+    max-width: 100%;
+    height: 2em;
+    margin: 0;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 0.9em;
+    border: 1px solid #c9c9c9;
+    padding-left: 5px;
+}
+
+.mw-form-list label {
+    font-size: 0.75em;
+    color: #454545;
+}
+
+/*
+ * These settings are specifically for the unordered list, not just the
+ * "mw-form-list" style.
+ */
+ul.mw-form-list a {
+    margin-right: -7px;
+}
+
+ul.mw-form-list label.pos-above {
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+ul.mw-form-list label.pos-right {
+    display: inline;
+    margin-left: 0.25em;
+}
+
+/* Similar to .acux-errorbox */
+/* In theory besides errorbox there could be warningbox, msgbox, ?? */
+.mw-form-list .errorbox {
+	width: 100%;
+	margin: 0 0 15px 16px;
+	padding: 8px;
+	color: #CC0000;
+	border: 1px solid #FAC5C5;
+	background-color: #FAE3E3;
+	font-size: 13px;
+	text-shadow: 0 1px #FAE3E3;
+}
+
+
+/*
+ * Apply Agora button style to certain hyperlinks, input type submit, and button elements.
+ */
+.mw-form-list a.mw-btn, .mw-form-list input[type="submit"].mw-btn, .mw-form-list button.mw-btn {
+    display: inline-block;
+    padding: 0.4em 0.8em 0.5em 0.8em;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+a.mw-btn.login-button, input[type="submit"].mw-btn.login-button, button.mw-btn.login-button {
+    width: 15.7em;
+    padding: 0.3em 0 0.3em 0;
+    font-size: 1.3em;
+}
+
+a.mw-btn.green, input[type="submit"].mw-btn.green, button.mw-btn.green {
+    background-color: #27aa65;
+    background-image: -moz-linear-gradient(top, #36BA75, #27aa65);
+    background-image: -ms-linear-gradient(top, #36BA75, #27aa65);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #36BA75), color-stop(100%, #27aa65));
+    background-image: -webkit-linear-gradient(top, #36BA75, #27aa65);
+    background-image: linear-gradient(#36BA75, #27aa65);
+    border: 1px #269E5E solid;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#36BA75', endColorstr='#27aa65', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#36BA75', endColorstr='#27aa65', GradientType=0);
+}
+
+a.mw-btn.green:hover, input[type="submit"].mw-btn.green:hover, button.mw-btn.green:hover {
+    background-color: #30BF73;
+    background-image: -moz-linear-gradient(top, #34BF76, #30BF73);
+    background-image: -ms-linear-gradient(top, #34BF76, #30BF73);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #34BF76), color-stop(100%, #30BF73));
+    background-image: -webkit-linear-gradient(top, #34BF76, #30BF73);
+    background-image: linear-gradient(#34BF76, #30BF73);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#34BF76', endColorstr='#30BF73', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#34BF76', endColorstr='#30BF73', GradientType=0);
+}
+
+a.mw-btn.green:active, input[type="submit"].mw-btn.green:active, button.mw-btn.green:active {
+    background-color: #209959;
+    background-image: -moz-linear-gradient(top, #22A15E, #209959);
+    background-image: -ms-linear-gradient(top, #22A15E, #209959);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #22A15E), color-stop(100%, #209959));
+    background-image: -webkit-linear-gradient(top, #22A15E, #209959);
+    background-image: linear-gradient(#22A15E, #209959);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#22A15E', endColorstr='#209959', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#22A15E', endColorstr='#209959', GradientType=0);
+}
+
+a.mw-btn.blue, input[type="submit"].mw-btn.blue, button.mw-btn.blue {
+    background-color: #3366bb;
+    background-image: -moz-linear-gradient(top, #3670c8, #3366bb);
+    background-image: -ms-linear-gradient(top, #3670c8, #3366bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3670c8), color-stop(100%, #3366bb));
+    background-image: -webkit-linear-gradient(top, #3670c8, #3366bb);
+    background-image: linear-gradient(#3670c8, #3366bb);
+    border: 1px #33589f solid;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3670c8', endColorstr='#3366bb', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#3670c8', endColorstr='#3366bb', GradientType=0);
+}
+
+a.mw-btn.blue:hover, input[type="submit"].mw-btn.blue:hover, button.mw-btn.blue:hover {
+    background-color: #3f77d7;
+    background-image: -moz-linear-gradient(top, #4c84da, #3f77d7);
+    background-image: -ms-linear-gradient(top, #4c84da, #3f77d7);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c84da), color-stop(100%, #3f77d7));
+    background-image: -webkit-linear-gradient(top, #4c84da, #3f77d7);
+    background-image: linear-gradient(#4c84da, #3f77d7);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c84da', endColorstr='#3f77d7', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4c84da', endColorstr='#3f77d7', GradientType=0);
+}
+
+a.mw-btn.blue:active, input[type="submit"].mw-btn.blue:active, button.mw-btn.blue:active {
+    background-color: #2a549c;
+    background-image: -moz-linear-gradient(top, #2d5ea9, #2a549c);
+    background-image: -ms-linear-gradient(top, #2d5ea9, #2a549c);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2d5ea9), color-stop(100%, #2a549c));
+    background-image: -webkit-linear-gradient(top, #2d5ea9, #2a549c);
+    background-image: linear-gradient(#2d5ea9, #2a549c);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d5ea9', endColorstr='#2a549c', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#2d5ea9', endColorstr='#2a549c', GradientType=0);
+}
+
+.mw-form-list *.center-text {
+    text-align: center;
+}
+
+ul.mw-form-list *.pull-up {
+    margin-top: -10px;
+}
+
+ul.mw-form-list *.pull-right {
+    float: right;
+}
+
+ul.mw-form-list *.pull-left {
+    float: left;
+}
+
+#createaccount-cta {
+    width: 20em;
+    height: 10em;
+    text-align: center;
+    background: url(resources/mediawiki.special/images/glyph-people-large.png) no-repeat 50%;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+#createaccount-cta h3 {
+    width: 100%;
+    font-size: 0.9em;
+    text-align: center;
+    padding-top: 4em;
+}
+
+#createaccount-cta a#joinwikipedia {
+    display: inline-block;
+    font-size: 1em;
+    margin-left: 0.75em;
+    
+    -webkit-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+}
+
