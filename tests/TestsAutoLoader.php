@@ -50,6 +50,9 @@ $wgAutoloadClasses += array(
 	'DumpTestCase' => "$testFolder/phpunit/maintenance/DumpTestCase.php",
 	'BackupDumper' => "$testFolder/../maintenance/backup.inc",
 
+	//language
+	'LanguageClassesTestCase' => "$testFolder/phpunit/languages/LanguageClassesTestCase.php",
+
 	//Generic providers
 	'MediaWikiProvide' => "$testFolder/phpunit/includes/Providers.php",
 );
