@@ -48,6 +48,8 @@ production.
   compatibility. This also works with Squid in reverse-proxy mode. If you wish 
   to support Squid configured in forward-proxy mode, set 
   $wgSquidPurgeUseHostHeader to false.
+* (bug 36053) Log in "returnto" feature forgets query parameters if no
+  title parameter was specified.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
