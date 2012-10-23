@@ -435,7 +435,6 @@ $wgAutoloadLocalClasses = array(
 	'GenderCache' => 'includes/cache/GenderCache.php',
 	'GlobalDependency' => 'includes/cache/CacheDependency.php',
 	'HTMLCacheUpdate' => 'includes/cache/HTMLCacheUpdate.php',
-	'HTMLCacheUpdateJob' => 'includes/cache/HTMLCacheUpdate.php',
 	'HTMLFileCache' => 'includes/cache/HTMLFileCache.php',
 	'LinkBatch' => 'includes/cache/LinkBatch.php',
 	'LinkCache' => 'includes/cache/LinkCache.php',
@@ -652,16 +651,19 @@ $wgAutoloadLocalClasses = array(
 	'WebInstallerPage' => 'includes/installer/WebInstallerPage.php',
 
 	# includes/job
-	'DoubleRedirectJob' => 'includes/job/DoubleRedirectJob.php',
-	'EmaillingJob' => 'includes/job/EmaillingJob.php',
-	'EnotifNotifyJob' => 'includes/job/EnotifNotifyJob.php',
 	'Job' => 'includes/job/Job.php',
 	'JobQueue' => 'includes/job/JobQueue.php',
 	'JobQueueDB' => 'includes/job/JobQueueDB.php',
 	'JobQueueGroup' => 'includes/job/JobQueueGroup.php',
-	'RefreshLinksJob' => 'includes/job/RefreshLinksJob.php',
-	'RefreshLinksJob2' => 'includes/job/RefreshLinksJob.php',
-	'UploadFromUrlJob' => 'includes/job/UploadFromUrlJob.php',
+
+	# includes/job/jobs
+	'DoubleRedirectJob' => 'includes/job/jobs/DoubleRedirectJob.php',
+	'EmaillingJob' => 'includes/job/jobs/EmaillingJob.php',
+	'EnotifNotifyJob' => 'includes/job/jobs/EnotifNotifyJob.php',
+	'HTMLCacheUpdateJob' => 'includes/job/jobs/HTMLCacheUpdateJob.php',
+	'RefreshLinksJob' => 'includes/job/jobs/RefreshLinksJob.php',
+	'RefreshLinksJob2' => 'includes/job/jobs/RefreshLinksJob.php',
+	'UploadFromUrlJob' => 'includes/job/jobs/UploadFromUrlJob.php',
 
 	# includes/json
 	'FormatJson' => 'includes/json/FormatJson.php',

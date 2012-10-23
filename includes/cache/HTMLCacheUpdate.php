@@ -228,33 +228,3 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		}
 	}
 }
-
-
-/**
- * Job wrapper for HTMLCacheUpdate. Gets run whenever a related
- * job gets called from the queue.
- *
- * @ingroup JobQueue
- */
-class HTMLCacheUpdateJob extends Job {
-	var $table, $start, $end;
-
-	/**
-	 * Construct a job
-	 * @param $title Title: the title linked to
-	 * @param $params Array: job parameters (table, start and end page_ids)
-	 * @param $id Integer: job id
-	 */
-	function __construct( $title, $params, $id = 0 ) {
-		parent::__construct( 'htmlCacheUpdate', $title, $params, $id );
-		$this->table = $params['table'];
-		$this->start = $params['start'];
-		$this->end = $params['end'];
-	}
-
-	public function run() {
-		$update = new HTMLCacheUpdate( $this->title, $this->table, $this->start, $this->end );
-		$update->doUpdate();
-		return true;
-	}
-}
