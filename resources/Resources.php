@@ -940,6 +940,10 @@ return array(
 		'dependencies' => array( 'jquery.qunit' ),
 		'position' => 'top',
 	),
+	'mediawiki.special.userlogin' => array(
+		'styles' => 'resources/mediawiki.special/mediawiki.special.userlogin.css',
+		'position' => 'top',
+	),
 
 	/* MediaWiki Tests */
 
