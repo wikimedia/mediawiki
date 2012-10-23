@@ -1488,7 +1488,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'prefs-displayrc' => 'Tercihan bımocne',
 'prefs-displaysearchoptions' => 'Weçinayışê mocnayışi',
 'prefs-displaywatchlist' => 'Weçinayışê mocnayışi',
-'prefs-diffs' => 'Diffs',
+'prefs-diffs' => 'Ferqi',
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid' => 'e-posta adresi raştayo',
@@ -1502,7 +1502,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'editinguser' => "'''[[User:$1|$1]]''' keno weziyetê $2'i bıvurno",
 'userrights-editusergroup' => 'Grubanê karberi/karbere sero bıgureye (bıxebetiye)',
 'saveusergroups' => 'Grubanê karberi qeyd bıke',
-'userrights-groupsmember' => 'Ezaê / Ezaya:',
+'userrights-groupsmember' => 'Ezayê:',
 'userrights-groupsmember-auto' => 'Ezao daxıl/ezaa daxıle ê:',
 'userrights-groups-help' => 'şıma şenê grubanê nê karberi/na karbere, oyo/aya ke tede, bıvurnê:
 * qutiya ke nışankerdiya, mocnena ke karber/e na grube dero/dera.
@@ -1518,7 +1518,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'userrights-irreversible-marker' => '$1*',
 
 # Groups
-'group' => 'Grup:',
+'group' => 'Grube:',
 'group-user' => 'Karberi',
 'group-autoconfirmed' => 'Karberê ke xob xo biyê araşt',
 'group-bot' => 'Boti',
@@ -1539,7 +1539,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'grouppage-bot' => '{{ns:project}}:Boti',
 'grouppage-sysop' => '{{ns:project}}:İdarekeri',
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
-'grouppage-suppress' => '{{ns:project}}:Kontrol',
+'grouppage-suppress' => '{{ns:project}}:Qontrol',
 
 # Rights
 'right-read' => 'Pelan bıwanê',
@@ -1570,7 +1570,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-deleterevision' => 'Vurnayışê xısusiyê ke ê pelanê, inan bestere ya zi peyser bia',
 'right-deletedhistory' => 'Qeydanê tarixanê esterıteyan de qayt ke, bê nuştey inan',
 'right-deletedtext' => 'Mabênê newede vurnayışanê esterıtiyan de qaytê nuştey esterıtey u vurnayışan ke',
-'right-browsearchive' => 'Bıgeyre pelanê eserıtiyan',
+'right-browsearchive' => 'Pelanê esterıteyan bıgeyre',
 'right-undelete' => 'Jû pela esterıtiye peyser bia',
 'right-suppressrevision' => 'İdarekeran ra dızdeni/miyanki, newede vurnayışan de qayt ke u newede vıraze',
 'right-suppressionlog' => 'Rocekanê xasan bıvêne',
@@ -1579,7 +1579,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-hideuser' => 'Yew namey karberi  şari ra dızdeni/miyanki bloke bıke',
 'right-ipblock-exempt' => 'Blokanê IPi, oto-blokan u blokanê menzıli ra ravêre',
 'right-proxyunbannable' => 'Blokanê otomatikiê proksiyan ra ravêre',
-'right-unblockself' => 'Inan a bike',
+'right-unblockself' => 'İnan ake',
 'right-protect' => 'Sewiyanê pawıtışi (mıhafezey) bıvurne u pelanê kılitbiyaiyan sero bıgureye.',
 'right-editprotected' => 'Pelanê pawıtiyan sero bıgureye (bê pawıtena kaskadi (game be game))',
 'right-editinterface' => 'Interfaceê karberi sero bıgureye',
@@ -1595,7 +1595,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-autopatrol' => 'Vurnayîşanê xo otomatik nîşan bike ke patrol biyê',
 'right-patrolmarks' => 'Vurnayîşanê peniyî nîşan patrol biyê bivîne',
 'right-unwatchedpages' => 'Yew listeyê pelanê seyrnibiye bivîne',
-'right-mergehistory' => 'Tarixê pelanê yew bike',
+'right-mergehistory' => 'Tarixê pelan yew ke',
 'right-userrights' => 'Heqanê karberi pêro bıvurne',
 'right-userrights-interwiki' => 'Heqqa karberanê ke ho wîkîyo binî de ey bivurne',
 'right-siteadmin' => 'Database kilit bike u a bike',
@@ -1621,7 +1621,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'action-move-subpages' => 'ena pele, u pelanê daê bınênan bere',
 'action-move-rootuserpages' => 'pelanê karberiyê bıngeyan bere',
 'action-movefile' => 'ena dosya bere',
-'action-upload' => 'ena dosya bar bike',
+'action-upload' => 'ena dosya bar ke',
 'action-reupload' => 'dosyayê ke database de esto ser ey binuse',
 'action-reupload-shared' => 'dosyayê ki ho embarê medyayî de esto ser ay binusne',
 'action-upload_by_url' => 'Ena dosya yew URL ra bar bike',
@@ -1726,7 +1726,7 @@ wexta şima qayîl e yew peli re dosya bierzî, formanê cêrinan ra yewi bişux
 'filedesc' => 'Xulasa',
 'fileuploadsummary' => 'Xulasa:',
 'filereuploadsummary' => 'Vurnayîşê dosyayî:',
-'filestatus' => 'Weziyetê heqê telifiye:',
+'filestatus' => 'Weziyetê heqa telifi:',
 'filesource' => 'Çıme:',
 'uploadedfiles' => 'Dosyayê ke bar biye',
 'ignorewarning' => 'Îkazi kebul meke u dosya reyna bar bike',
@@ -1826,7 +1826,7 @@ PICT # misc.
 
 'upload-proto-error' => 'Porotokol raşt ni yo.',
 'upload-proto-error-text' => 'Bar kerdişê durî gani  URLî estbiye ke pe <code>http://</code> ya zi <code>ftp://</code> başli beno.',
-'upload-file-error' => 'Ğeletê dahilî',
+'upload-file-error' => 'Xeta daxılkiye',
 'upload-file-error-text' => 'Peşkeşwan de wexta yew dosya vıraziyayene xeta bı.
 kerem kerê [[Special:ListUsers/sysop|serkari]]de irtibat kewe.',
 'upload-misc-error' => 'Ğeletê bar kerdişî nizanyeno',

@@ -148,7 +148,6 @@ $messages = array(
 'qbbrowse' => 'Килигун',
 'qbedit' => 'Дегишарун',
 'qbpageoptions' => 'Ччинин низамарунар',
-'qbpageinfo' => 'Ччиникай малумат',
 'qbmyoptions' => 'Зи ччинар',
 'qbspecialpages' => 'Кьетlен хъувун',
 'faq' => 'Фад-фад гузвай жузунар (ФГЖ)',
@@ -523,7 +522,7 @@ $messages = array(
 'revertmerge' => 'Ччара авун',
 
 # Diffs
-'history-title' => '$1  -  масакIавилерин тарих',
+'history-title' => 'Masak\'avilerin q\'isa "$1"',
 'lineno' => 'ЦIар $1:',
 'compareselectedversions' => 'Хкягъай жуьреяр гекъигун',
 'editundo' => 'гьич авун',

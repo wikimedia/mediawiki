@@ -2962,9 +2962,10 @@ $1被封禁的理由是：“$2”',
 'pageinfo-authors' => '不同编者总计',
 'pageinfo-recent-edits' => '最近的编辑数（$1内）',
 'pageinfo-recent-authors' => '最近的不同编者数',
-'pageinfo-magic-words' => '魔术字 ($1)',
-'pageinfo-hidden-categories' => '隐藏分类 ($1)',
-'pageinfo-templates' => '使用的模板 ($1)',
+'pageinfo-magic-words' => '魔术字（$1）',
+'pageinfo-hidden-categories' => '隐藏分类（$1）',
+'pageinfo-templates' => '使用的模板（$1）',
+'pageinfo-toolboxlink' => '页面信息',
 
 # Skin names
 'skinname-standard' => '标准',

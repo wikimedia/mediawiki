@@ -853,11 +853,11 @@ Detalls es poden trobar en el [{{fullurl: {{# especial: registre}} / delete|page
 'userpage-userdoesnotexist-view' => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract' => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache' => "'''Nota:''' després de guardar possiblement necessites refrescar el teu cache per poder veure els canvis.
-* '''Firefox / Safari:''' pressiona ''Shift'' mentre cliques el botó ''Actualitzar'', o pressiona ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' a Mac)
-* '''Google Chrome:''' pressiona ''Ctrl+Shift+R'' (''⌘+Shift+R'' a Mac)
-* '''Internet Explorer:''' pressiona la tecla ''Ctrl'' mentre cliques a ''Actualitzar'' o pressiona ''Ctrl+F5''
-* '''Opera:''' buida la memòria cau (cache) ''Eines → Preferències''",
+'clearyourcache' => "'''Nota:''' Després de desar, possiblement necessiteu refrescar la memòria cau del vostre navegador per a veure'n els canvis.
+* '''Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu el botó ''Actualitzar'', o pressioneu ''Ctrl+F5'' o ''Ctrl+R'' (''⌘+R'' a Mac)
+* '''Google Chrome:''' Premeu ''Ctrl+Shift+R'' (''⌘+Shift+R'' a Mac)
+* '''Internet Explorer:''' Premeu la tecla ''Ctrl'' mentre cliqueu a ''Actualitzar'' o pressioneu ''Ctrl+F5''
+* '''Opera:''' Netegeu la memòria cau ''Eines → Preferències''",
 'usercssyoucanpreview' => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview' => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview' => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''

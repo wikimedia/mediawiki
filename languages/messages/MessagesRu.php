@@ -55,6 +55,7 @@
  * @author Lockal
  * @author MaxBioHazard
  * @author MaxSem
+ * @author NBS
  * @author Ola
  * @author Ole Yves
  * @author Putnik
@@ -3010,7 +3011,7 @@ $1',
 'djvu_no_xml' => 'Невозможно получить XML для DjVu',
 'thumbnail-temp-create' => 'Не удаётся создать временный файл эскиза',
 'thumbnail-dest-create' => 'Не удаётся сохранить эскиз по месту назначения',
-'thumbnail_invalid_params' => 'Ошибочный параметр миниатюры или файл содержит более 12,5 млн. пикселей',
+'thumbnail_invalid_params' => 'Ошибочный параметр миниатюры или PNG-файл содержит более 12,5 млн. пикселей',
 'thumbnail_dest_directory' => 'Невозможно создать целевую директорию',
 'thumbnail_image-type' => 'Данный тип изображения не поддерживается',
 'thumbnail_gd-library' => 'Неполная конфигурация библиотеки GD, отсутствует функция $1',

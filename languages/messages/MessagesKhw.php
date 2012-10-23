@@ -158,7 +158,6 @@ $messages = array(
 'qbbrowse' => 'Browse/تصفّح',
 'qbedit' => 'ترمیم',
 'qbpageoptions' => 'ھیہ صفحہ',
-'qbpageinfo' => 'مفہوم',
 'qbmyoptions' => 'مہ صفحات',
 'qbspecialpages' => 'خاص صفحات',
 'faq' => 'عام معلومات',

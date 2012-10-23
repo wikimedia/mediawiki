@@ -2975,9 +2975,18 @@ Geçici dosya kayıp.',
 # Info page
 'pageinfo-title' => 'Bilgi için "$1"',
 'pageinfo-header-edits' => 'Değişiklikler',
+'pageinfo-header-restrictions' => 'Sayfa koruması',
+'pageinfo-header-properties' => 'Sayfa özellikleri',
+'pageinfo-display-title' => 'Görüntülenen başlık',
+'pageinfo-default-sort' => 'Varsayılan sıralama anahtarı',
+'pageinfo-article-id' => 'Sayfa ID',
+'pageinfo-robot-policy' => 'Arama motoru durumu',
+'pageinfo-robot-index' => 'İndekslenebilir',
+'pageinfo-robot-noindex' => 'İndekslenemez',
 'pageinfo-views' => 'Görüntülenme sayısı',
 'pageinfo-watchers' => 'İzleyen sayısı',
 'pageinfo-redirects-value' => '$1',
+'pageinfo-firstuser' => 'Sayfa oluşturucu',
 'pageinfo-edits' => 'Değişiklik sayısı',
 
 # Skin names

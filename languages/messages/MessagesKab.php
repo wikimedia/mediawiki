@@ -1943,6 +1943,8 @@ Ineggafen imazdayen : <code>$1</code> (ur d-renu acemma deg unadi inek/inem)',
 'listgrouprights' => 'Izerfan n igrawen n iseqdacen',
 'listgrouprights-summary' => 'Asebter agi yesɛa yiwen umuɣ n igrawen i sengelen deg wiki agi dɣa izerfan n wadduf i qqenen.
 Zemrent ad ilint [[{{MediaWiki:Listgrouprights-helppage}}|tilɣa nniḍen]] ɣef izerfan n yiwen.',
+'listgrouprights-key' => '*<span class="listgrouprights-granted">Izerfan sefkan</span>
+*<span class="listgrouprights-revoked">Izerfan ekkesen</span>',
 'listgrouprights-group' => 'Agraw',
 'listgrouprights-rights' => 'Izerfan',
 'listgrouprights-helppage' => 'Help:Izerfan n igrawen',
@@ -2083,6 +2085,7 @@ Tuɣalin d tadhelt :
 'delete-confirm' => 'Kkes "$1"',
 'delete-legend' => 'Ekkes',
 'historywarning' => 'Ɣur-wet : Asebter i ara temḥuḍ yesɛa amezruy s azal alemmas n $1 {{PLURAL:$1|lqem|ileqman}} :',
+'confirmdeletetext' => 'Aqlak ad mḥuḍ asebter naɣ afaylu, dɣa akkw ileqman-is iqdimen. Ilaq ad segegeḍ tigawt agi dɣa tfehemeḍ [[{{MediaWiki:Policy-url}}|ilugan n wiki]].',
 'actioncomplete' => 'Axdam yekfa',
 'actionfailed' => 'Tigawt agi texser',
 'deletedtext' => '"$1" yettumḥa.

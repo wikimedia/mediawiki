@@ -1212,9 +1212,10 @@ Du har ikkje tilgang til henne.',
 Sjekk gjerne loggføringa.',
 'revdelete-only-restricted' => 'Feil under gøyming av objektet datert $2 $1: du kan ikkje gøyma objekt for administratorar utan å i tillegg velja eit av dei andre visingsvala.',
 'revdelete-reason-dropdown' => '*Vanlege grunnar til sletting
-** Brot på opphavsrettar
-** Ikkje høveleg personleg informasjon
-** Mogleg falskt sladder',
+** Brot på opphavsrett
+** Kommentar eller personleg informasjon som ikkje høver seg
+** Brukarnamn som ikkje høver seg
+** Mogeleg falskt sladder',
 'revdelete-otherreason' => 'Anna årsak, eller tilleggsårsak:',
 'revdelete-reasonotherlist' => 'Annan grunn',
 'revdelete-edit-reasonlist' => 'Endre grunnar til sletting',
@@ -1256,7 +1257,7 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 
 # Diffs
 'history-title' => '$1: Versjonshistorikk',
-'difference-title' => '$1: Skilnad mellom versjonar',
+'difference-title' => 'Skilnad mellom versjonar av «$1»',
 'difference-title-multipage' => '$1 og $2: Skilnad mellom sidene',
 'difference-multipage' => '(Skilnad mellom sider)',
 'lineno' => 'Line $1:',
@@ -1265,6 +1266,10 @@ Pass på at den nye sida også har innhald frå den innfletta sida.',
 'editundo' => 'angre',
 'diff-multi' => '({{PLURAL:$1|Éin mellomversjon|$1 mellomversjonar}} frå {{PLURAL:$2|éin brukar|$2 brukarar}} er ikkje {{PLURAL:$1|vist|viste}})',
 'diff-multi-manyusers' => '({{PLURAL:$1|Ein mellomversjon|$1 mellomversjonar}} av meir enn $2 {{PLURAL:$2|brukar|brukarar}}  er ikkje {{PLURAL:$1|vist|viste}})',
+'difference-missing-revision' => '{{PLURAL:$2|Éin versjon|$2 versjonar}} av skilnaden ($1) vart ikkje funne.
+
+Dette skriv seg som oftast frå at ein har fylgd ei forelda versjonslenkje til ei side som er sletta.
+Detaljar kan ein finna i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].',
 
 # Search results
 'searchresults' => 'Søkjeresultat',
@@ -1425,6 +1430,7 @@ Dette kan ikkje tilbakestillast.',
 'yourrealname' => 'Verkeleg namn:',
 'yourlanguage' => 'Språk:',
 'yourvariant' => 'Språkvariant for innhald:',
+'prefs-help-variant' => 'Varianten eller ortografien som du føretrekkjer at innhaldet i wikien vert vist på.',
 'yournick' => 'Signatur:',
 'prefs-help-signature' => 'Kommentarar på diskusjonssider bør alltid signerast med «<nowiki>~~~~</nowiki>», som vil konverterast til signaturen din med tidspunkt.',
 'badsig' => 'Ugyldig råsignatur, sjekk HTML-kodinga.',
@@ -1816,6 +1822,7 @@ $1',
 'backend-fail-synced' => 'Fila «$1» er i ei inkonsistent stode i dei interne lagringsbaksystema',
 'backend-fail-connect' => 'Kunne ikkje kopla til filbaksystemet «$1».',
 'backend-fail-internal' => 'Ein ukjend feil oppstod i lagringsbaksystemet «$1».',
+'backend-fail-batchsize' => 'Baksystemet vart gjeve ei gruppe med $1 {{PLURAL:$1|filoperasjon|filoperasjonar}}; grensa er $2 {{PLURAL:$2|operasjon|operasjonar}}.',
 
 # File journal errors
 'filejournal-fail-dbconnect' => 'Kunne ikkje kopla til journaldatabasen for lagringsbaksystemet «$1».',
@@ -1839,6 +1846,11 @@ $1',
 Ho kan ikkje tryggingskontrollerast.',
 
 # Special:UploadStash
+'uploadstash' => 'Lasta opp løynd samling',
+'uploadstash-summary' => 'Denne sida gjev tilgang til filer som er opplasta (eller i ferd med å verta det), men som ikkje er publiserte til wikien. Desse filene er ikkje synlege for andre enn opplastaren.',
+'uploadstash-clear' => 'Fjerna filer i den løynde samlinga',
+'uploadstash-nofiles' => 'Du har ingen filer i den løynde samlinga.',
+'uploadstash-badtoken' => 'Utføringa av handlinga lukkast ikkje; kan henda av di endringsrettane dine har gått ut. Freista om att.',
 'uploadstash-errclear' => 'Fjerning av filene var mislykka.',
 'uploadstash-refresh' => 'Oppdater fillista',
 
@@ -1859,6 +1871,7 @@ Berre tilgjenge til filer er tillete.',
 Denne wikien er sett opp som ein ålmennt tilgjengeleg wiki.
 For best tryggleik, er img_auth.php sett ut av funksjon.',
 'img-auth-noread' => 'Brukaren har ikkje rettar til å lesa «$1».',
+'img-auth-bad-query-string' => 'URL-en har ein ugild spørjestreng.',
 
 # HTTP errors
 'http-invalid-url' => 'Ugyldig URL: $1',
@@ -1928,6 +1941,10 @@ Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 Sjå [$2 filskildringssida] for meir informasjon.',
 'sharedupload-desc-here' => 'Denne fila er frå $1 og kan verta nytta av andre prosjekt.
 Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
+'sharedupload-desc-edit' => 'Fila er frå $1 og kan vera nytta på andre prosjekt.
+Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
+'sharedupload-desc-create' => 'Fila er frå $1 og kan vera nytta på andre prosjekt.
+Du vil kan henda endra skildringa på [$2 filskildringssida] hennar der.',
 'filepage-nofile' => 'Det finst ikkje noka fil med dette namnet.',
 'filepage-nofile-link' => 'Inga fil med dette namnet finst, men du kan [$1 lasta ho opp].',
 'uploadnewversion-linktext' => 'Last opp ny versjon av denne fila',
@@ -2004,6 +2021,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'statistics-edits' => 'Endringar sidan {{SITENAME}} vart oppretta',
 'statistics-edits-average' => 'Gjennomsnittleg tal på endringar per side',
 'statistics-views-total' => 'Totalt visningstal',
+'statistics-views-total-desc' => 'Visingar av sider som ikkje finst og spesialsider er ikkje tekne med',
 'statistics-views-peredit' => 'Visingar per endring',
 'statistics-users' => 'Registrerte [[Special:ListUsers|brukarar]]',
 'statistics-users-active' => 'Aktive brukarar',
@@ -2058,6 +2076,8 @@ Ei side vert handsama som ei fleirtydingsside om ho nyttar ein mal som er lenkja
 'wantedpages' => 'Etterspurde sider',
 'wantedpages-badtitle' => 'Ugyldig tittel mellom resultata: $1',
 'wantedfiles' => 'Etterspurde filer',
+'wantedfiletext-cat' => 'Desse filene er nytta men finst ikkje. Filer frå utannettstadlege samlingar kan vera lista opp sjølv om dei finst. Slike falske positivar vert <del>strokne ut</del>. Sider som nyttar filer som ikkje finst vert lista opp i [[:$1]].',
+'wantedfiletext-nocat' => 'Desse filene er nytta men finst ikkje. Filer frå utannettstadlege samlingar kan vera lista opp sjølv om dei finst. Slike falske positivar vert <del>strokne ut</del>.',
 'wantedtemplates' => 'Etterspurde malar',
 'mostlinked' => 'Sidene med flest lenkjer til seg',
 'mostlinkedcategories' => 'Mest brukte kategoriar',
@@ -2988,6 +3008,7 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 
 # Info page
 'pageinfo-title' => 'Informasjon om «$1»',
+'pageinfo-not-current' => 'Informasjon vert berre vist for den gjeldande versjonen.',
 'pageinfo-header-basic' => 'Grunnleggjande informasjon',
 'pageinfo-header-edits' => 'Endringshistorikk',
 'pageinfo-header-restrictions' => 'Sidevern',
@@ -3015,6 +3036,9 @@ Vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//trans
 'pageinfo-magic-words' => '{{PLURAL:$1|Trylleord}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Løynd kategori|Løynde kategoriar}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkludert mal|Inkluderte malar}} ($1)',
+'pageinfo-toolboxlink' => 'Sideinformasjon',
+'pageinfo-redirectsto' => 'Omdirigerer til',
+'pageinfo-redirectsto-info' => 'info',
 'pageinfo-contentpage' => 'Tald som ei innhaldsside',
 'pageinfo-contentpage-yes' => 'Ja',
 'pageinfo-protect-cascading' => 'Djupvern byrjar her',

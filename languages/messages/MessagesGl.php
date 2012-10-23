@@ -2378,7 +2378,7 @@ proceda con coidado.',
 'rollbacklink' => 'reverter',
 'rollbacklinkcount' => 'reverter $1 {{PLURAL:$1|edición|edicións}}',
 'rollbacklinkcount-morethan' => 'reverter máis de $1 {{PLURAL:$1|edición|edicións}}',
-'rollbackfailed' => 'Houbo un fallo ao reverter as edicións',
+'rollbackfailed' => 'Houbo un erro ao reverter as edicións',
 'cantrollback' => 'Non se pode desfacer a edición; o último colaborador é o único autor desta páxina.',
 'alreadyrolled' => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
