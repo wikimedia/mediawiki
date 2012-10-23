@@ -1001,13 +1001,19 @@ See also {{msg-mw|protectedinterface}}.',
 <nowiki>{{</nowiki>[[Gender|GENDER]]<nowiki>}}</nowiki> is '''NOT''' supported.
 
 {{Identical|Username}}",
+'userlogin-yourname' => "Same as yourname but no trailing colon",
+'userlogin-yournamehelp' => "Placeholder in form field.",
 'yourpassword' => 'In user preferences
 
 {{Identical|Password}}',
+'userlogin-yourpassword' => "Same as yourpassword but no trailing colon",
+'userlogin-yournamehelp' => "Placeholder in form field.",
 'yourpasswordagain' => 'In user preferences',
 'remembermypassword' => 'A check box in [[Special:UserLogin]]
 
 {{Identical|Remember my login on this computer}}',
+'userlogin-remembermypassword' => 'A check box in (new) [[Special:UserLogin]]',
+'userlogin-signwithsecure'   => 'Text of link to https login form',
 'securelogin-stick-https' => 'Used as label for checkbox.',
 'yourdomainname' => 'Used as label for listbox.',
 'password-change-forbidden' => 'Error message shown when an external authentication source does not allow the password to be changed.',
@@ -1039,6 +1045,8 @@ See also:
 'notloggedin' => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
 
 {{Identical|Not logged in}}',
+'donthaveaccount' => 'In new [[Special:Userlogin]], text prior to button inviting user to join project',
+'userlogin-joinproject' => 'Text of button inviting user to create an account',
 'nologin' => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink' => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.
 {{Identical|Create an account}}',
@@ -1052,6 +1060,7 @@ It is also used on the top of the page for logged out users, where it appears ne
 
 {{Identical|Log in}}',
 'userlogin-resetlink' => 'Used on the login page.',
+'userlogin-helplink' => 'Wiki text linking to login help',
 'createaccountmail' => 'Button text for creating a new account and sending the new password to the specified e-mail address directly, as used on [[Special:UserLogin/signup]] if creating accounts by e-mail is allowed.',
 'createaccountreason' => '{{Identical|Reason}}',
 'badretype' => 'Used as error message when the new password and its retype do not match.',

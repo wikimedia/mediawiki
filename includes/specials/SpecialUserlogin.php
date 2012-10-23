@@ -134,6 +134,8 @@ class LoginForm extends SpecialPage {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
+
+		$this->mShowAgora = $this->shouldShowAgora();
 	}
 
 	function getDescription() {
@@ -1007,6 +1009,24 @@ class LoginForm extends SpecialPage {
 	}
 
 	/**
+	 * Whether to show new "Agora"-style forms.
+	 * ?useAgora=1 forces Agora style, ?useAgora=0 forced old-style,
+	 * otherwise consult a global variable.
+	 */
+	private function shouldShowAgora() {
+		global $wgRequest, $wgUseAgoraUserLogin; $wgUseAgoraCreateAccount;
+		$override = $wgRequest->getBool( 'useAgora' );
+		if ( $override !== null ) {
+			return $override;
+		}
+		if ( $this->mType == 'signup' ) {
+			return $wgUseAgoraCreateAccount;
+		} else {
+			return $wgUseAgoraUserLogin;
+		}
+	}
+
+	/**
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
@@ -1048,7 +1068,11 @@ class LoginForm extends SpecialPage {
 			$linkmsg = 'gotaccount';
 			$this->getOutput()->addModules( 'mediawiki.special.userlogin.signup' );
 		} else {
-			$template = new UserloginTemplate();
+			if ( $this->mShowAgora ) {
+				$template = new UserloginTemplateAgora();
+			} else {
+				$template = new UserloginTemplate();
+			}
 			$q = 'action=submitlogin&type=login';
 			$linkq = 'type=signup';
 			$linkmsg = 'nologin';
@@ -1070,10 +1094,19 @@ class LoginForm extends SpecialPage {
 			if( $wgLoginLanguageSelector && $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
 			}
-			$link = Html::element( 'a', array( 'href' => $titleObj->getLocalURL( $linkq ) ),
-				$this->msg( $linkmsg . 'link' )->text() ); # Calling either 'gotaccountlink' or 'nologinlink'
+			if ( !$this->mShowAgora ) {
+				# Obsolete in Agora design. New ACUX form doesn't present "Already
+				# have an account? _Log in_", and new login form makes its own
+				# button.
+				$link = Html::element( 'a', array( 'href' => $titleObj->getLocalURL( $linkq ) ),
+					$this->msg( $linkmsg . 'link' )->text() ); # Calling either 'gotaccountlink' or 'nologinlink'
 
-			$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
+					$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
+
+			} else {
+				# Supply hyperlink, login template creates the button.
+				$template->set( 'createOrLoginHref' , $titleObj->getLocalURL( $linkq ) );
+			}
 		} else {
 			$template->set( 'link', '' );
 		}
@@ -1158,6 +1191,9 @@ class LoginForm extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
+		if ( $this->mShowAgora ) {
+			$out->addModules( 'mediawiki.special.userlogin' );
+		}
 		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
 	}
