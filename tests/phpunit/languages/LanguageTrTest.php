@@ -6,15 +6,7 @@
  */
 
 /** Tests for MediaWiki languages/LanguageTr.php */
-class LanguageTrTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'Tr' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageTrTest extends LanguageClassesTestCase {
 
 	/**
 	 * See @bug 28040
@@ -27,9 +19,9 @@ class LanguageTrTest extends MediaWikiTestCase {
 	 */
 	function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
 		if( $func == 'ucfirst' ) {
-			$res = $this->lang->ucfirst( $input );
+			$res = self::getLang()->ucfirst( $input );
 		} elseif( $func == 'lcfirst' ) {
-			$res = $this->lang->lcfirst( $input );
+			$res = self::getLang()->lcfirst( $input );
 		} else {
 			throw new MWException( __METHOD__ . " given an invalid function name '$func'" );
 		}

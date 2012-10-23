@@ -1,23 +1,11 @@
 <?php
 
-class LanguageTest extends MediaWikiTestCase {
-
-	/**
-	 * @var Language
-	 */
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'en' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageTest extends LanguageClassesTestCase {
 
 	function testLanguageConvertDoubleWidthToSingleWidth() {
 		$this->assertEquals(
 			"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-			$this->lang->normalizeForSearch(
+			self::getLang()->normalizeForSearch(
 				"０１２３４５６７８９ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ"
 			),
 			'convertDoubleWidth() with the full alphabet and digits'
@@ -28,7 +16,7 @@ class LanguageTest extends MediaWikiTestCase {
 	 * @dataProvider provideFormattableTimes
 	 */
 	function testFormatTimePeriod( $seconds, $format, $expected, $desc ) {
-		$this->assertEquals( $expected, $this->lang->formatTimePeriod( $seconds, $format ), $desc );
+		$this->assertEquals( $expected, self::getLang()->formatTimePeriod( $seconds, $format ), $desc );
 	}
 
 	function provideFormattableTimes() {
@@ -220,31 +208,31 @@ class LanguageTest extends MediaWikiTestCase {
 	function testTruncate() {
 		$this->assertEquals(
 			"XXX",
-			$this->lang->truncate( "1234567890", 0, 'XXX' ),
+			self::getLang()->truncate( "1234567890", 0, 'XXX' ),
 			'truncate prefix, len 0, small ellipsis'
 		);
 
 		$this->assertEquals(
 			"12345XXX",
-			$this->lang->truncate( "1234567890", 8, 'XXX' ),
+			self::getLang()->truncate( "1234567890", 8, 'XXX' ),
 			'truncate prefix, small ellipsis'
 		);
 
 		$this->assertEquals(
 			"123456789",
-			$this->lang->truncate( "123456789", 5, 'XXXXXXXXXXXXXXX' ),
+			self::getLang()->truncate( "123456789", 5, 'XXXXXXXXXXXXXXX' ),
 			'truncate prefix, large ellipsis'
 		);
 
 		$this->assertEquals(
 			"XXX67890",
-			$this->lang->truncate( "1234567890", -8, 'XXX' ),
+			self::getLang()->truncate( "1234567890", -8, 'XXX' ),
 			'truncate suffix, small ellipsis'
 		);
 
 		$this->assertEquals(
 			"123456789",
-			$this->lang->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
+			self::getLang()->truncate( "123456789", -5, 'XXXXXXXXXXXXXXX' ),
 			'truncate suffix, large ellipsis'
 		);
 	}
@@ -256,7 +244,7 @@ class LanguageTest extends MediaWikiTestCase {
 		// Actual HTML...
 		$this->assertEquals(
 			$expected,
-			$this->lang->truncateHTML( $input, $len, $ellipsis )
+			self::getLang()->truncateHTML( $input, $len, $ellipsis )
 		);
 	}
 
@@ -355,7 +343,7 @@ class LanguageTest extends MediaWikiTestCase {
 	function testSprintfDate( $format, $ts, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->sprintfDate( $format, $ts ),
+			self::getLang()->sprintfDate( $format, $ts ),
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 	}
@@ -372,7 +360,7 @@ class LanguageTest extends MediaWikiTestCase {
 
 		$this->assertEquals(
 			$expected,
-			$this->lang->sprintfDate( $format, $ts ),
+			self::getLang()->sprintfDate( $format, $ts ),
 			"sprintfDate('$format', '$ts'): $msg"
 		);
 
@@ -680,7 +668,7 @@ class LanguageTest extends MediaWikiTestCase {
 	function testFormatSize( $size, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatSize( $size ),
+			self::getLang()->formatSize( $size ),
 			"formatSize('$size'): $msg"
 		);
 	}
@@ -742,7 +730,7 @@ class LanguageTest extends MediaWikiTestCase {
 	function testFormatBitrate( $bps, $expected, $msg ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatBitrate( $bps ),
+			self::getLang()->formatBitrate( $bps ),
 			"formatBitrate('$bps'): $msg"
 		);
 	}
@@ -815,7 +803,7 @@ class LanguageTest extends MediaWikiTestCase {
 	function testFormatDuration( $duration, $expected, $intervals = array() ) {
 		$this->assertEquals(
 			$expected,
-			$this->lang->formatDuration( $duration, $intervals ),
+			self::getLang()->formatDuration( $duration, $intervals ),
 			"formatDuration('$duration'): $expected"
 		);
 	}
@@ -950,7 +938,7 @@ class LanguageTest extends MediaWikiTestCase {
 	function testCheckTitleEncoding( $s ) {
 		$this->assertEquals(
 			$s,
-			$this->lang->checkTitleEncoding($s),
+			self::getLang()->checkTitleEncoding($s),
 			"checkTitleEncoding('$s')"
 		);
 	}
@@ -1070,7 +1058,7 @@ class LanguageTest extends MediaWikiTestCase {
 	 * @dataProvider providePluralData
 	 */
 	function testConvertPlural( $expected, $number, $forms ) {
-		$chosen = $this->lang->convertPlural( $number, $forms );
+		$chosen = self::getLang()->convertPlural( $number, $forms );
 		$this->assertEquals( $expected, $chosen );
 	}
 

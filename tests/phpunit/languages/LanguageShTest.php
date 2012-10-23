@@ -6,20 +6,12 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSh.php */
-class LanguageShTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'sh' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageShTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'many' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, self::getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {
