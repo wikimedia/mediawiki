@@ -737,11 +737,8 @@ class EditPage {
 		$this->nosummary = $request->getBool( 'nosummary' );
 
 		$content_handler = ContentHandler::getForTitle( $this->mTitle );
-		$this->contentModel = $request->getText( 'model', $content_handler->getModelID() ); #may be overridden by revision
-		$this->contentFormat = $request->getText( 'format', $content_handler->getDefaultFormat() ); #may be overridden by revision
-
-		#TODO: check if the desired model is allowed in this namespace, and if a transition from the page's current model to the new model is allowed
-		#TODO: check if the desired content model supports the given content format!
+		$this->contentModel = $content_handler->getModelID();
+		$this->contentFormat = $content_handler->getDefaultFormat();
 
 		$this->live = $request->getCheck( 'live' );
 		$this->editintro = $request->getText( 'editintro',
