@@ -3554,6 +3554,7 @@ $wgMessageStructure = array(
 		'version-parserhooks',
 		'version-variables',
 		'version-antispam',
+		'version-auth',
 		'version-skins',
 		'version-api',
 		'version-other',

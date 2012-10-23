@@ -4674,6 +4674,8 @@ Use your language default parentheses ({{msg-mw|parentheses}}), but not use the 
 {{Identical|Special pages}}',
 'version-parserhooks' => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
 'version-variables' => '{{Identical|Variable}}',
+'version-antispam' => 'Used in [[Special:Version]]. It is the title of a section for anti spam extensions',
+'version-auth' => 'Used in [[Special:Version]]. It is the title of a section for extensions realated to user identity, authentication, rights, etc...',
 'version-skins' => '{{Identical|Skin}}',
 'version-api' => '{{optional}}',
 'version-other' => '{{Identical|Other}}',

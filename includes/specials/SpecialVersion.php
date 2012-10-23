@@ -282,6 +282,7 @@ class SpecialVersion extends SpecialPage {
 				'specialpage' => wfMessage( 'version-specialpages' )->text(),
 				'parserhook' => wfMessage( 'version-parserhooks' )->text(),
 				'variable' => wfMessage( 'version-variables' )->text(),
+				'auth' => wfMessage( 'version-auth' )->text(),
 				'media' => wfMessage( 'version-mediahandlers' )->text(),
 				'antispam' => wfMessage( 'version-antispam' )->text(),
 				'skin' => wfMessage( 'version-skins' )->text(),

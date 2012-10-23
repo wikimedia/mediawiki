@@ -4697,6 +4697,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-parserhooks'                   => 'Parser hooks',
 'version-variables'                     => 'Variables',
 'version-antispam'                      => 'Spam prevention',
+'version-auth'                          => 'User auth',
 'version-skins'                         => 'Skins',
 'version-api'                           => 'API', # only translate this message to other languages if you have to change it
 'version-other'                         => 'Other',
