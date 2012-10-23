@@ -1084,10 +1084,15 @@ class LoginForm extends SpecialPage {
 			if( $wgLoginLanguageSelector && $this->mLanguage ) {
 				$linkq .= '&uselang=' . $this->mLanguage;
 			}
+			# TODO Obsolete.  New ACUX form doesn't present "Already have an
+			# account? _Log in_", and new login form makes its own button.
 			$link = Html::element( 'a', array( 'href' => $titleObj->getLocalURL( $linkq ) ),
 				$this->msg( $linkmsg . 'link' )->text() ); # Calling either 'gotaccountlink' or 'nologinlink'
 
 			$template->set( 'link', $this->msg( $linkmsg )->rawParams( $link )->parse() );
+
+			# Supply hyperlink, login template creates the button.
+			$template->set( 'createOrLoginHref' , $titleObj->getLocalURL( $linkq ) );
 		} else {
 			$template->set( 'link', '' );
 		}
@@ -1166,6 +1171,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special.userlogin' );
 		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
 	}

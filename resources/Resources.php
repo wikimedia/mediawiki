@@ -904,6 +904,10 @@ return array(
 		'dependencies' => array( 'jquery.qunit' ),
 		'position' => 'top',
 	),
+	'mediawiki.special.userlogin' => array(
+		'scripts' => 'resources/mediawiki.special/mediawiki.special.userlogin.js',
+		'styles' => 'resources/mediawiki.special/mediawiki.special.userlogin.css',
+	),
 
 	/* MediaWiki Tests */
 
