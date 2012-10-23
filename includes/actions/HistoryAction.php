@@ -179,7 +179,9 @@ class HistoryAction extends FormlessAction {
 			Xml::dateMenu( $year, $month ) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
 			$checkDeleted .
-			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n" .
+			Xml::submitButton(
+				$this->msg( 'allpagessubmit' )->text(), array( 'class' => 'mw-ui-button' )
+			) . "\n" .
 			'</fieldset></form>'
 		);
 
@@ -446,7 +448,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		// Button container stored in $this->buttons for re-use in getEndBody()
 		$this->buttons = '<div>';
 		$this->buttons .= $this->submitButton( $this->msg( 'compareselectedversions' )->text(),
-			array( 'class' => 'historysubmit mw-history-compareselectedversions-button' )
+			array( 'class' => 'historysubmit mw-history-compareselectedversions-button' .
+				' mw-ui-button mw-ui-button-primary' )
 				+ Linker::tooltipAndAccesskeyAttribs( 'compareselectedversions' )
 		) . "\n";
 
@@ -468,7 +471,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				'type' => 'submit',
 				'name' => $name,
 				'value' => '1',
-				'class' => "historysubmit mw-history-$name-button",
+				'class' => "historysubmit mw-history-$name-button mw-ui-button"
 			),
 			$this->msg( $msg )->text()
 		) . "\n";

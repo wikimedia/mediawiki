@@ -135,7 +135,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Submit button
-		$html .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() );
+		$html .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text(), array( 'class' => 'mw-ui-button' ) );
 
 		// Fieldset
 		$html = Xml::fieldset( $this->msg( 'log' )->text(), $html );

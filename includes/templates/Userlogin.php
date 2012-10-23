@@ -141,7 +141,8 @@ class UserloginTemplate extends QuickTemplate {
 				<?php
 		echo Html::input( 'wpLoginAttempt', wfMessage( 'login' )->text(), 'submit', array(
 			'id' => 'wpLoginAttempt',
-			'tabindex' => '9'
+			'tabindex' => '9',
+			'class' => 'mw-ui-button mw-ui-button-primary'
 		) );
 		if ( $this->data['useemail'] && $this->data['canreset'] ) {
 			if( $this->data['resetlink'] === true ){

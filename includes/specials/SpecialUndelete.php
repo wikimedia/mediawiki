@@ -796,7 +796,10 @@ class SpecialUndelete extends SpecialPage {
 			Xml::inputLabel( $this->msg( 'undelete-search-prefix' )->text(),
 				'prefix', 'prefix', 20,
 				$this->mSearchPrefix ) . ' ' .
-			Xml::submitButton( $this->msg( 'undelete-search-submit' )->text() ) .
+			Xml::submitButton(
+				$this->msg( 'undelete-search-submit' )->text(),
+				array( 'class' => 'mw-ui-button mw-ui-button-primary' )
+			) .
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' )
 		);
@@ -955,6 +958,7 @@ class SpecialUndelete extends SpecialPage {
 			$previewButton = Xml::element( 'input', array(
 				'type' => 'submit',
 				'name' => 'preview',
+				'class' => 'mw-ui-button',
 				'value' => $this->msg( 'showpreview' )->text() ) );
 		} else {
 			$sourceView = '';
@@ -1228,8 +1232,22 @@ class SpecialUndelete extends SpecialPage {
 					<tr>
 						<td>&#160;</td>
 						<td class='mw-submit'>" .
-							Xml::submitButton( $this->msg( 'undeletebtn' )->text(), array( 'name' => 'restore', 'id' => 'mw-undelete-submit' ) ) . ' ' .
-							Xml::submitButton( $this->msg( 'undeleteinvert' )->text(), array( 'name' => 'invert', 'id' => 'mw-undelete-invert' ) ) .
+							Xml::submitButton(
+								$this->msg( 'undeletebtn' )->text(),
+								array(
+									'name' => 'restore',
+									'id' => 'mw-undelete-submit',
+									'class' => 'mw-ui-button mw-ui-button-primary mw-ui-button-constructive'
+								)
+							) . ' ' .
+							Xml::submitButton(
+								$this->msg( 'undeleteinvert' )->text(),
+								array(
+									'name' => 'invert',
+									'id' => 'mw-undelete-invert',
+									'class' => 'mw-ui-button'
+								)
+							) .
 						"</td>
 					</tr>" .
 					$unsuppressBox .
