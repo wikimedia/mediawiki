@@ -1,0 +1,191 @@
+#userloginForm {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 1.0em;
+}
+
+ul.mw-form-list {
+    list-style: none;
+    list-style-image: none; /* IE7 */
+}
+
+ul.mw-form-list li {
+    display: block;
+    width: 20em;
+    margin-bottom: 1em;
+    padding: 0;
+}
+
+ul.mw-form-list input, button {
+    display: block;
+    
+}
+
+ul.mw-form-list li input[type="checkbox"] {
+    display: inline;
+}
+
+ul.mw-form-list input[type="text"], input[type="password"] {
+    min-width: 100%;
+    max-width: 100%;
+    height: 2em;
+    margin: 0;
+}
+
+ul.mw-form-list label {
+    font-size: 0.75em;
+    color: #454545;
+}
+
+ul.mw-form-list a {
+    margin-right: -7px;
+}
+
+ul.mw-form-list label.pos-above {
+    display: block;
+    margin-bottom: 0.25em;
+}
+
+ul.mw-form-list label.pos-right {
+    display: inline;
+    margin-left: 0.25em;
+}
+
+ul.mw-form-list input[type="text"], input[type="password"] {
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 0.9em;
+    border: 1px solid #c9c9c9;
+    padding-left: 5px;
+}
+
+*.mw-btn {
+    display: block;
+    min-width: 8em;
+    height: 2.25em;
+    padding: 0 1em 0 1em;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+}
+
+*.mw-btn.xl {
+    width: 15.7em;
+    height: 2em;
+    padding: 0 1em 0 1em;
+    font-size: 1.3em;
+}
+
+*.mw-btn.green {
+    background-color: #27aa65;
+    background-image: -moz-linear-gradient(top, #36BA75, #27aa65);
+    background-image: -ms-linear-gradient(top, #36BA75, #27aa65);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #36BA75), color-stop(100%, #27aa65));
+    background-image: -webkit-linear-gradient(top, #36BA75, #27aa65);
+    background-image: linear-gradient(#36BA75, #27aa65);
+    border: 1px #269E5E solid;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#36BA75', endColorstr='#27aa65', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#36BA75', endColorstr='#27aa65', GradientType=0);
+}
+*.mw-btn.green:hover {
+    background-color: #30BF73;
+    background-image: -moz-linear-gradient(top, #34BF76, #30BF73);
+    background-image: -ms-linear-gradient(top, #34BF76, #30BF73);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #34BF76), color-stop(100%, #30BF73));
+    background-image: -webkit-linear-gradient(top, #34BF76, #30BF73);
+    background-image: linear-gradient(#34BF76, #30BF73);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#34BF76', endColorstr='#30BF73', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#34BF76', endColorstr='#30BF73', GradientType=0);
+}
+*.mw-btn.green:active {
+    background-color: #209959;
+    background-image: -moz-linear-gradient(top, #22A15E, #209959);
+    background-image: -ms-linear-gradient(top, #22A15E, #209959);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #22A15E), color-stop(100%, #209959));
+    background-image: -webkit-linear-gradient(top, #22A15E, #209959);
+    background-image: linear-gradient(#22A15E, #209959);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#22A15E', endColorstr='#209959', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#22A15E', endColorstr='#209959', GradientType=0);
+}
+
+*.mw-btn.blue {
+    background-color: #3366bb;
+    background-image: -moz-linear-gradient(top, #3670c8, #3366bb);
+    background-image: -ms-linear-gradient(top, #3670c8, #3366bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3670c8), color-stop(100%, #3366bb));
+    background-image: -webkit-linear-gradient(top, #3670c8, #3366bb);
+    background-image: linear-gradient(#3670c8, #3366bb);
+    border: 1px #33589f solid;
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#3670c8', endColorstr='#3366bb', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#3670c8', endColorstr='#3366bb', GradientType=0);
+}
+
+*.mw-btn.blue:hover {
+    background-color: #3f77d7;
+    background-image: -moz-linear-gradient(top, #4c84da, #3f77d7);
+    background-image: -ms-linear-gradient(top, #4c84da, #3f77d7);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c84da), color-stop(100%, #3f77d7));
+    background-image: -webkit-linear-gradient(top, #4c84da, #3f77d7);
+    background-image: linear-gradient(#4c84da, #3f77d7);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#4c84da', endColorstr='#3f77d7', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#4c84da', endColorstr='#3f77d7', GradientType=0);
+}
+
+*.mw-btn.blue:active {
+    background-color: #2a549c;
+    background-image: -moz-linear-gradient(top, #2d5ea9, #2a549c);
+    background-image: -ms-linear-gradient(top, #2d5ea9, #2a549c);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2d5ea9), color-stop(100%, #2a549c));
+    background-image: -webkit-linear-gradient(top, #2d5ea9, #2a549c);
+    background-image: linear-gradient(#2d5ea9, #2a549c);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#2d5ea9', endColorstr='#2a549c', GradientType=0)";
+      filter: progid:dximagetransform.microsoft.gradient(startColorstr='#2d5ea9', endColorstr='#2a549c', GradientType=0);
+}
+
+*.center-text {
+    text-align: center;
+}
+
+*.pull-up {
+    margin-top: -10px;
+}
+
+*.pull-right {
+    float: right;
+}
+
+*.pull-left {
+    float: left;
+}
+
+#createaccount-cta {
+    width: 20em;
+    height: 10em;
+    text-align: center;
+    background: url(resources/mediawiki.special/images/glyph-people-large.png) no-repeat 50%;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+#createaccount-cta h3 {
+    width: 100%;
+    font-size: 0.9em;
+    text-align: center;
+    padding-top: 4em;
+}
+
+#createaccount-cta button {
+    display: inline-block;
+    font-size: 1em;
+    margin-left: 0.75em;
+    
+    -webkit-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+    box-shadow: 4px 4px 4px 4px rgba(255, 255, 255, 1);
+}
+​
