@@ -987,8 +987,7 @@ bar
 !!end
 
 ###
-### Parsoid-centric tests for testing RT edge cases
-### around comments and white-space inside pre blocks
+### Parsoid-centric tests for testing RT edge cases for pre
 ###
 
 !!test
@@ -1028,6 +1027,75 @@ c
 </pre>
 <pre> a
 </pre>
+!!end
+
+!!test
+2a. Pre and tables
+!!input
+ {|
+ |-
+ !h1!!h2
+ |foo||bar
+ |}
+!!result
+<table>
+
+<tr>
+<th>h1</th>
+<th>h2
+</th>
+<td>foo</td>
+<td>bar
+</td></tr></table>
+
+!!end
+
+!!test
+2b. Pre and tables
+!!input
+  {|
+ |-
+|foo
+|}
+!!result
+<table>
+
+<tr>
+<td>foo
+</td></tr></table>
+
+!!end
+
+!!test
+3. Pre and block tags
+!!input
+ <p> foo </p>
+ <div> foo </div>
+ <span> foo </span>
+!!result
+ <p> foo </p>
+ <div> foo </div>
+<pre><span> foo </span>
+</pre>
+!!end
+
+!!test
+4. Multiple spaces at start-of-line
+!!input
+    <p> foo </p>
+    foo
+	{|
+|foo
+|}
+!!result
+    <p> foo </p>
+<pre>   foo
+</pre>
+<table>
+<tr>
+<td>foo
+</td></tr></table>
+
 !!end
 
 ###
@@ -1252,6 +1320,26 @@ Definition Lists: Indentation: Multi-level indent
 
 !! end
 
+!! test
+Definition Lists: Hacky use to indent tables
+!! input
+::{|
+|foo
+|bar
+|}
+this text
+should be left alone
+!! result
+<dl><dd><dl><dd><table>
+<tr>
+<td>foo
+</td>
+<td>bar
+</td></tr></table></dd></dl></dd></dl>
+<p>this text
+should be left alone
+</p>
+!! end
 ## The PHP parser treats : items (dd) without a corresponding ; item (dt)
 ## as an empty dt item.  It also ignores all but the last ";" when followed
 ## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
@@ -2366,6 +2454,29 @@ Multiplication table
 </td></tr></table>
 
 !! end
+
+!!test
+Allow +/- in 2nd and later cells in a row
+!!input
+{|
+| 1 || 2 || 3
+|-
+| 1 || +2 || -3
+|}
+!!result
+<table>
+<tr>
+<td> 1 </td>
+<td> 2 </td>
+<td> 3
+</td></tr>
+<tr>
+<td> 1 </td>
+<td> +2 </td>
+<td> -3
+</td></tr></table>
+
+!!end
 
 !! test
 Table rowspan
