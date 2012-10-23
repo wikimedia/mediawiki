@@ -532,7 +532,8 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( $context->getDebug() ) {
 			$files = array_merge( $files, $this->debugScripts );
 		}
-		return $files;
+
+		return array_unique( $files );
 	}
 
 	/**
