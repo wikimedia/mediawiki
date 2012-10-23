@@ -2931,11 +2931,7 @@ HTML
 				# Messages: usercsspreview, userjspreview, sitecsspreview, sitejspreview
 				if( $level && $format ) {
 					$note = "<div id='mw-{$level}{$format}preview'>" . wfMessage( "{$level}{$format}preview" )->text()  . "</div>";
-				} else {
-					$note = wfMessage( 'previewnote' )->text() ;
 				}
-			} else {
-				$note = wfMessage( 'previewnote' )->text() ;
 			}
 
 			$rt = $content->getRedirectChain();
