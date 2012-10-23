@@ -775,6 +775,9 @@ abstract class ApiBase extends ContextSource {
 			if ( !$titleObj ) {
 				$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 			}
+			if ( $titleObj->isSpecialPage() ) {
+				$this->dieUsage( 'Special pages cannot be parsed through action=parse', 'targetisspecial' );
+			}
 			$pageObj = WikiPage::factory( $titleObj );
 			if ( $load !== false ) {
 				$pageObj->loadPageData( $load );
