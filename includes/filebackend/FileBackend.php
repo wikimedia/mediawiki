@@ -172,6 +172,7 @@ abstract class FileBackend {
 	 *  - copy
 	 *  - move
 	 *  - delete
+	 *  - describe (since 1.21)
 	 *  - null
 	 *
 	 * a) Create a new file in storage with the contents of a string
@@ -235,7 +236,17 @@ abstract class FileBackend {
 	 *     )
 	 * @endcode
 	 *
-	 * f) Do nothing (no-op)
+	 * f) Update metadata for a file within storage
+	 * @code
+	 *     array(
+	 *         'op'                  => 'describe',
+	 *         'src'                 => <storage path>,
+	 *         'disposition'         => <Content-Disposition header value>,
+	 *         'headers'             => <HTTP header name/value map>
+	 *     )
+	 * @endcode
+	 *
+	 * g) Do nothing (no-op)
 	 * @code
 	 *     array(
 	 *         'op'                  => 'null',
@@ -409,6 +420,7 @@ abstract class FileBackend {
 	 *  - copy
 	 *  - move
 	 *  - delete
+	 *  - describe (since 1.21)
 	 *  - null
 	 *
 	 * a) Create a new file in storage with the contents of a string
@@ -421,6 +433,7 @@ abstract class FileBackend {
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
+	 *
 	 * b) Copy a file system file into storage
 	 * @code
 	 *     array(
@@ -431,6 +444,7 @@ abstract class FileBackend {
 	 *         'headers'             => <HTTP header name/value map> # since 1.21
 	 *     )
 	 * @endcode
+	 *
 	 * c) Copy a file within storage
 	 * @code
 	 *     array(
@@ -441,6 +455,7 @@ abstract class FileBackend {
 	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
+	 *
 	 * d) Move a file within storage
 	 * @code
 	 *     array(
@@ -451,6 +466,7 @@ abstract class FileBackend {
 	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
+	 *
 	 * e) Delete a file within storage
 	 * @code
 	 *     array(
@@ -459,7 +475,18 @@ abstract class FileBackend {
 	 *         'ignoreMissingSource' => <boolean>
 	 *     )
 	 * @endcode
-	 * f) Do nothing (no-op)
+	 *
+	 * f) Update metadata for a file within storage
+	 * @code
+	 *     array(
+	 *         'op'                  => 'describe',
+	 *         'src'                 => <storage path>,
+	 *         'disposition'         => <Content-Disposition header value>,
+	 *         'headers'             => <HTTP header name/value map>
+	 *     )
+	 * @endcode
+	 *
+	 * g) Do nothing (no-op)
 	 * @code
 	 *     array(
 	 *         'op'                  => 'null',

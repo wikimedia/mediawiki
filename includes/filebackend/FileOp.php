@@ -810,6 +810,58 @@ class DeleteFileOp extends FileOp {
 }
 
 /**
+ * Change metadata for a file at the given storage path in the backend.
+ * Parameters for this operation are outlined in FileBackend::doOperations().
+ */
+class DescribeFileOp extends FileOp {
+	/**
+	 * @return array
+	 */
+	protected function allowedParams() {
+		return array( array( 'src' ), array( 'disposition', 'headers' ) );
+	}
+
+	/**
+	 * @param $predicates array
+	 * @return Status
+	 */
+	protected function doPrecheck( array &$predicates ) {
+		$status = Status::newGood();
+		// Check if the source file exists
+		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
+			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+			return $status;
+		// Check if a file can be placed/changed at the source
+		} elseif ( !$this->backend->isPathUsableInternal( $this->params['src'] ) ) {
+			$status->fatal( 'backend-fail-usable', $this->params['src'] );
+			$status->fatal( 'backend-fail-describe', $this->params['src'] );
+			return $status;
+		}
+		// Update file existence predicates
+		$predicates['exists'][$this->params['src']] =
+			$this->fileExists( $this->params['src'], $predicates );
+		$predicates['sha1'][$this->params['src']] =
+			$this->fileSha1( $this->params['src'], $predicates );
+		return $status; // safe to call attempt()
+	}
+
+	/**
+	 * @return Status
+	 */
+	protected function doAttempt() {
+		// Update the source file's metadata
+		return $this->backend->describeInternal( $this->setFlags( $this->params ) );
+	}
+
+	/**
+	 * @return array
+	 */
+	public function storagePathsChanged() {
+		return array( $this->params['src'] );
+	}
+}
+
+/**
  * Placeholder operation that has no params and does nothing
  */
 class NullFileOp extends FileOp {}

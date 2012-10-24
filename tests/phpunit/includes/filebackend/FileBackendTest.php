@@ -586,6 +586,73 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testDescribe
+	 */
+	public function testDescribe( $op, $withSource, $okStatus ) {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestDescribe( $op, $withSource, $okStatus );
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestDescribe( $op, $withSource, $okStatus );
+		$this->tearDownFiles();
+	}
+
+	private function doTestDescribe( $op, $withSource, $okStatus ) {
+		$backendName = $this->backendClass();
+
+		$source = $op['src'];
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
+
+		if ( $withSource ) {
+			$status = $this->backend->doOperation(
+				array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $source succeeded ($backendName)." );
+		}
+
+		$status = $this->backend->doOperation( $op );
+		if ( $okStatus ) {
+			$this->assertGoodStatus( $status,
+				"Describe of file at $source succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Describe of file at $source succeeded ($backendName)." );
+			$this->assertEquals( array( 0 => true ), $status->success,
+				"Describe of file at $source has proper 'success' field in Status ($backendName)." );
+		} else {
+			$this->assertEquals( false, $status->isOK(),
+				"Describe of file at $source failed ($backendName)." );
+		}
+
+		$this->assertBackendPathsConsistent( array( $source ) );
+	}
+
+	public static function provider_testDescribe() {
+		$cases = array();
+
+		$source = self::baseStorePath() . '/unittest-cont1/e/myfacefile.txt';
+
+		$op = array( 'op' => 'describe', 'src' => $source,
+			'headers' => array( 'X-Content-Length' => '91.3' ),
+			'disposition' => 'inline' );
+		$cases[] = array(
+			$op, // operation
+			true, // with source
+			true // succeeds
+		);
+
+		$cases[] = array(
+			$op, // operation
+			false, // without source
+			false // fails
+		);
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testCreate
 	 */
 	public function testCreate( $op, $alreadyExists, $okStatus, $newSize ) {
@@ -1362,6 +1429,8 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->prepare( array( 'dir' => dirname( $fileD ) ) );
 
 		$status = $this->backend->doOperations( array(
+			array( 'op' => 'describe', 'src' => $fileA,
+				'headers' => array( 'X-Content-Length' => '91.3' ), 'disposition' => 'inline' ),
 			array( 'op' => 'copy', 'src' => $fileA, 'dst' => $fileC, 'overwrite' => 1 ),
 			// Now: A:<A>, B:<B>, C:<A>, D:<empty> (file:<orginal contents>)
 			array( 'op' => 'copy', 'src' => $fileC, 'dst' => $fileA, 'overwriteSame' => 1 ),
@@ -1392,7 +1461,7 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$this->assertGoodStatus( $status, "Operation batch succeeded" );
 		$this->assertEquals( true, $status->isOK(), "Operation batch succeeded" );
-		$this->assertEquals( 13, count( $status->success ),
+		$this->assertEquals( 14, count( $status->success ),
 			"Operation batch has correct success array" );
 
 		$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $fileA ) ),

@@ -563,6 +563,45 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doDescribeInternal()
+	 * @return Status
+	 */
+	protected function doDescribeInternal( array $params ) {
+		$status = Status::newGood();
+
+		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
+		if ( $srcRel === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+			return $status;
+		}
+
+		$hdrs = isset( $params['headers'] ) ? $params['headers'] : array();
+		// Set the Content-Disposition header if requested
+		if ( isset( $params['disposition'] ) ) {
+			$hdrs['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
+		}
+
+		try {
+			$sContObj = $this->getContainer( $srcCont );
+			$srcObj = new CF_Object( $sContObj, $srcRel, false, false ); // skip HEAD
+			// Merge in the new metadata and header values...
+			$srcObj->headers = $hdrs;
+			$srcObj->sync_metadata(); // save to Swift
+			$this->purgeCDNCache( array( $srcObj ) );
+		} catch ( CDNNotEnabledException $e ) {
+			// CDN not enabled; nothing to see here
+		} catch ( NoSuchContainerException $e ) {
+			$status->fatal( 'backend-fail-describe', $params['src'] );
+		} catch ( NoSuchObjectException $e ) {
+			$status->fatal( 'backend-fail-describe', $params['src'] );
+		} catch ( CloudFilesException $e ) { // some other exception?
+			$this->handleException( $e, $status, __METHOD__, $params );
+		}
+
+		return $status;
+	}
+
+	/**
 	 * @see FileBackendStore::doPrepareInternal()
 	 * @return Status
 	 */

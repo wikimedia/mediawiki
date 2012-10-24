@@ -90,13 +90,13 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
-	 *   - content       : the raw file contents
-	 *   - dst           : destination storage path
-	 *   - disposition   : Content-Disposition header value for the destination
-	 *   - headers       : HTTP header name/value map
-	 *   - async         : Status will be returned immediately if supported.
-	 *                     If the status is OK, then its value field will be
-	 *                     set to a FileBackendStoreOpHandle object.
+	 *   - content     : the raw file contents
+	 *   - dst         : destination storage path
+	 *   - disposition : Content-Disposition header value for the destination
+	 *   - headers     : HTTP header name/value map
+	 *   - async       : Status will be returned immediately if supported.
+	 *                   If the status is OK, then its value field will be
+	 *                   set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -119,6 +119,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::createInternal()
+	 * @return Status
 	 */
 	abstract protected function doCreateInternal( array $params );
 
@@ -128,13 +129,13 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
-	 *   - src           : source path on disk
-	 *   - dst           : destination storage path
-	 *   - disposition   : Content-Disposition header value for the destination
-	 *   - headers       : HTTP header name/value map
-	 *   - async         : Status will be returned immediately if supported.
-	 *                     If the status is OK, then its value field will be
-	 *                     set to a FileBackendStoreOpHandle object.
+	 *   - src         : source path on disk
+	 *   - dst         : destination storage path
+	 *   - disposition : Content-Disposition header value for the destination
+	 *   - headers     : HTTP header name/value map
+	 *   - async       : Status will be returned immediately if supported.
+	 *                   If the status is OK, then its value field will be
+	 *                   set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -157,6 +158,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::storeInternal()
+	 * @return Status
 	 */
 	abstract protected function doStoreInternal( array $params );
 
@@ -190,6 +192,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::copyInternal()
+	 * @return Status
 	 */
 	abstract protected function doCopyInternal( array $params );
 
@@ -220,6 +223,7 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * @see FileBackendStore::deleteInternal()
+	 * @return Status
 	 */
 	abstract protected function doDeleteInternal( array $params );
 
@@ -266,6 +270,40 @@ abstract class FileBackendStore extends FileBackend {
 			$status->setResult( true, $status->value ); // ignore delete() errors
 		}
 		return $status;
+	}
+
+	/**
+	 * Alter metadata for a file at the storage path.
+	 * Do not call this function from places outside FileBackend and FileOp.
+	 *
+	 * $params include:
+	 *   - src           : source storage path
+	 *   - disposition   : Content-Disposition header value for the destination
+	 *   - headers       : HTTP header name/value map
+	 *   - async         : Status will be returned immediately if supported.
+	 *                     If the status is OK, then its value field will be
+	 *                     set to a FileBackendStoreOpHandle object.
+	 *
+	 * @param $params Array
+	 * @return Status
+	 */
+	final public function describeInternal( array $params ) {
+		wfProfileIn( __METHOD__ );
+		wfProfileIn( __METHOD__ . '-' . $this->name );
+		$status = $this->doDescribeInternal( $params );
+		$this->clearCache( array( $params['src'] ) );
+		$this->deleteFileCache( $params['src'] ); // persistent cache
+		wfProfileOut( __METHOD__ . '-' . $this->name );
+		wfProfileOut( __METHOD__ );
+		return $status;
+	}
+
+	/**
+	 * @see FileBackendStore::describeInternal()
+	 * @return Status
+	 */
+	protected function doDescribeInternal( array $params ) {
+		return Status::newGood();
 	}
 
 	/**
@@ -997,12 +1035,13 @@ abstract class FileBackendStore extends FileBackend {
 	 */
 	final public function getOperationsInternal( array $ops ) {
 		$supportedOps = array(
-			'store'       => 'StoreFileOp',
-			'copy'        => 'CopyFileOp',
-			'move'        => 'MoveFileOp',
-			'delete'      => 'DeleteFileOp',
-			'create'      => 'CreateFileOp',
-			'null'        => 'NullFileOp'
+			'store'    => 'StoreFileOp',
+			'copy'     => 'CopyFileOp',
+			'move'     => 'MoveFileOp',
+			'delete'   => 'DeleteFileOp',
+			'create'   => 'CreateFileOp',
+			'describe' => 'DescribeFileOp',
+			'null'     => 'NullFileOp'
 		);
 
 		$performOps = array(); // array of FileOp objects
@@ -1229,6 +1268,9 @@ abstract class FileBackendStore extends FileBackend {
 				if ( strlen( $name ) > 255 || strlen( $value ) > 255 ) {
 					trigger_error( "Header '$name: $value' is too long." );
 					unset( $op['headers'][$name] );
+				} elseif ( !strlen( $value ) ) {
+					trigger_error( "Header value for '$name' is empty." );
+					unset( $op['headers'][$name] ); // ignore
 				}
 			}
 		}
