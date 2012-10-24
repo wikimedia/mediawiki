@@ -409,10 +409,14 @@ class EditPage {
 				wfProfileOut( __METHOD__ );
 				return;
 			}
-			if ( !$this->mTitle->getArticleID() )
+
+			if ( !$this->mTitle->getArticleID() ) {
 				wfRunHooks( 'EditFormPreloadText', array( &$this->textbox1, &$this->mTitle ) );
-			else
+			}
+			else {
 				wfRunHooks( 'EditFormInitialText', array( $this ) );
+			}
+
 		}
 
 		$this->showEditForm();
@@ -606,8 +610,10 @@ class EditPage {
 				// modified by subclasses
 				wfProfileIn( get_class( $this ) . "::importContentFormData" );
 				$textbox1 = $this->importContentFormData( $request );
-				if ( isset( $textbox1 ) )
+				if ( isset( $textbox1 ) ) {
 					$this->textbox1 = $textbox1;
+				}
+
 				wfProfileOut( get_class( $this ) . "::importContentFormData" );
 			}
 
@@ -2269,10 +2275,13 @@ class EditPage {
 					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ) );
 				}
 				if ( $this->formtype !== 'preview' ) {
-					if ( $this->isCssSubpage )
+					if ( $this->isCssSubpage ) {
 						$wgOut->wrapWikiMsg( "<div id='mw-usercssyoucanpreview'>\n$1\n</div>", array( 'usercssyoucanpreview' ) );
-					if ( $this->isJsSubpage )
+					}
+
+					if ( $this->isJsSubpage ) {
 						$wgOut->wrapWikiMsg( "<div id='mw-userjsyoucanpreview'>\n$1\n</div>", array( 'userjsyoucanpreview' ) );
+					}
 				}
 			}
 		}
@@ -2403,14 +2412,16 @@ class EditPage {
 	 * @return String
 	 */
 	protected function getSummaryPreview( $isSubjectPreview, $summary = "" ) {
-		if ( !$summary || ( !$this->preview && !$this->diff ) )
+		if ( !$summary || ( !$this->preview && !$this->diff ) ) {
 			return "";
+		}
 
 		global $wgParser;
 
-		if ( $isSubjectPreview )
+		if ( $isSubjectPreview ) {
 			$summary = wfMessage( 'newsectionsummary', $wgParser->stripSectionName( $summary ) )
 				->inContentLanguage()->text();
+		}
 
 		$message = $isSubjectPreview ? 'subject-preview' : 'summary-preview';
 
@@ -2429,8 +2440,9 @@ class EditPage {
 
 HTML
 		);
-		if ( !$this->checkUnicodeCompliantBrowser() )
+		if ( !$this->checkUnicodeCompliantBrowser() ) {
 			$wgOut->addHTML( Html::hidden( 'safemode', '1' ) );
+		}
 	}
 
 	protected function showFormAfterText() {
@@ -2546,8 +2558,9 @@ HTML
 
 		$attribs = array( 'id' => 'wikiPreview', 'class' => implode( ' ', $classes ) );
 
-		if ( $this->formtype != 'preview' )
+		if ( $this->formtype != 'preview' ) {
 			$attribs['style'] = 'display: none;';
+		}
 
 		$wgOut->addHTML( Xml::openElement( 'div', $attribs ) );
 
@@ -2852,10 +2865,13 @@ HTML
 		);
 		// Quick paranoid permission checks...
 		if ( is_object( $data ) ) {
-			if ( $data->log_deleted & LogPage::DELETED_USER )
+			if ( $data->log_deleted & LogPage::DELETED_USER ) {
 				$data->user_name = wfMessage( 'rev-deleted-user' )->escaped();
-			if ( $data->log_deleted & LogPage::DELETED_COMMENT )
+			}
+
+			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
 				$data->log_comment = wfMessage( 'rev-deleted-comment' )->escaped();
+			}
 		}
 		return $data;
 	}
