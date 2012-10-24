@@ -32,6 +32,7 @@ abstract class JobQueue {
 	protected $wiki; // string; wiki ID
 	protected $type; // string; job type
 	protected $order; // string; job priority for pop()
+	protected $claimTTL; // integer; seconds
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
@@ -39,23 +40,26 @@ abstract class JobQueue {
 	 * @param $params array
 	 */
 	protected function __construct( array $params ) {
-		$this->wiki  = $params['wiki'];
-		$this->type  = $params['type'];
-		$this->order = isset( $params['order'] ) ? $params['order'] : 'random';
+		$this->wiki     = $params['wiki'];
+		$this->type     = $params['type'];
+		$this->order    = isset( $params['order'] ) ? $params['order'] : 'random';
+		$this->claimTTL = isset( $params['claimTTL'] ) ? $params['claimTTL'] : 0;
 	}
 
 	/**
 	 * Get a job queue object of the specified type.
 	 * $params includes:
-	 *     class : What job class to use (determines job type)
-	 *     wiki  : wiki ID of the wiki the jobs are for (defaults to current wiki)
-	 *     type  : The name of the job types this queue handles
-	 *     order : Order that pop() selects jobs, either "timestamp" or "random".
-	 *             If "timestamp" is used, the queue will effectively be FIFO. Note that
-	 *             pop() will not be exactly FIFO, and even if it was, job completion would
-	 *             not appear to be exactly FIFO since jobs can take different times to finish.
-	 *             If "random" is used, pop() will pick jobs in random order. This might be
-	 *             useful for improving concurrency depending on the queue storage medium.
+	 *   class    : What job class to use (determines job type)
+	 *   wiki     : wiki ID of the wiki the jobs are for (defaults to current wiki)
+	 *   type     : The name of the job types this queue handles
+	 *   order    : Order that pop() selects jobs, either "timestamp" or "random".
+	 *              If "timestamp" is used, the queue will effectively be FIFO. Note that
+	 *              job completion will not appear to be exactly FIFO if there are multiple
+	 *              job runners since jobs can take different times to finish once popped.
+	 *              If "random" is used, pop() will pick jobs in random order. This might be
+	 *              useful for improving concurrency depending on the queue storage medium.
+	 *   claimTTL : If supported, the queue will recycle jobs that have been popped
+	 *              but not acknowledged as completed after this many seconds.
 	 *
 	 * @param $params array
 	 * @return JobQueue
