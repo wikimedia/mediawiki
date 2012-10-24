@@ -410,27 +410,41 @@ class UserrightsPage extends SpecialPage {
 	 */
 	protected function showEditUserGroupsForm( $user, $groups ) {
 		$list = array();
+		$membersList = array();
 		foreach( $groups as $group ) {
 			$list[] = self::buildGroupLink( $group );
+			$membersList[] = self::buildGroupMemberLink( $group );
 		}
 
-		$autolist = array();
+		$autoList = array();
+		$autoMembersList = array();
 		if ( $user instanceof User ) {
 			foreach( Autopromote::getAutopromoteGroups( $user ) as $group ) {
-				$autolist[] = self::buildGroupLink( $group );
+				$autoList[] = self::buildGroupLink( $group );
+				$autoMembersList[] = self::buildGroupMemberLink( $group );
 			}
 		}
 
+		$language = $this->getLanguage();
+		$displayedList = $this->msg( 'userrights-groupsmember-type',
+			$language->listToText( $list ),
+			$language->listToText( $membersList )
+		)->plain();
+		$displayedAutolist = $this->msg( 'userrights-groupsmember-type',
+			$language->listToText( $autoList ),
+			$language->listToText( $autoMembersList )
+		)->plain();
+
 		$grouplist = '';
 		$count = count( $list );
-		if( $count > 0 ) {
+		if ( $count > 0 ) {
 			$grouplist = $this->msg( 'userrights-groupsmember', $count, $user->getName() )->parse();
-			$grouplist = '<p>' . $grouplist  . ' ' . $this->getLanguage()->listToText( $list ) . "</p>\n";
+			$grouplist = '<p>' . $grouplist  . ' ' . $displayedList . "</p>\n";
 		}
-		$count = count( $autolist );
-		if( $count > 0 ) {
+		$count = count( $autoList );
+		if ( $count > 0 ) {
 			$autogrouplistintro = $this->msg( 'userrights-groupsmember-auto', $count, $user->getName() )->parse();
-			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $this->getLanguage()->listToText( $autolist ) . "</p>\n";
+			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $displayedAutolist . "</p>\n";
 		}
 
 		$userToolLinks = Linker::userToolLinks(
@@ -480,10 +494,17 @@ class UserrightsPage extends SpecialPage {
 	 * @return string
 	 */
 	private static function buildGroupLink( $group ) {
-		static $cache = array();
-		if( !isset( $cache[$group] ) )
-			$cache[$group] = User::makeGroupLinkHtml( $group, htmlspecialchars( User::getGroupName( $group ) ) );
-		return $cache[$group];
+		return User::makeGroupLinkHtml( $group, User::getGroupName( $group ) );
+	}
+
+	/**
+	 * Format a link to a group member description page
+	 *
+	 * @param $group string
+	 * @return string
+	 */
+	private static function buildGroupMemberLink( $group ) {
+		return User::makeGroupLinkHtml( $group, User::getGroupMember( $group ) );
 	}
 
 	/**

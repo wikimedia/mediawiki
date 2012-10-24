@@ -467,6 +467,7 @@ $wgOptionalMessages = array(
 	'backlinksubtitle',
 	'prefs-registration-date-time',
 	'prefs-memberingroups-type',
+	'userrights-groupsmember-type',
 	'shared-repo-name-wikimediacommons',
 	'usermessage-template',
 	'filepage.css',
