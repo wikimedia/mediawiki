@@ -574,9 +574,6 @@ class MediaWiki {
 		// Execute a job from the queue
 		$this->doJobs();
 
-		// Log message usage, if $wgAdaptiveMessageCache is set to true
-		MessageCache::logMessages();
-
 		// Log profiling data, e.g. in the database or UDP
 		wfLogProfilingData();
 

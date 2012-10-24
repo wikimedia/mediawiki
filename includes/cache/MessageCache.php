@@ -60,26 +60,6 @@ class MessageCache {
 	protected $mLoadedLanguages = array();
 
 	/**
-	 * Used for automatic detection of most used messages.
-	 */
-	protected $mRequestedMessages = array();
-
-	/**
-	 * How long the message request counts are stored. Longer period gives
-	 * better sample, but also takes longer to adapt changes. The counts
-	 * are aggregrated per day, regardless of the value of this variable.
-	 */
-	protected static $mAdaptiveDataAge = 604800; // Is 7*24*3600
-
-	/**
-	 * Filter the tail of less used messages that are requested more seldom
-	 * than this factor times the number of request of most requested message.
-	 * These messages are not loaded in the default set, but are still cached
-	 * individually on demand with the normal cache expiry time.
-	 */
-	protected static $mAdaptiveInclusionThreshold = 0.05;
-
-	/**
 	 * Singleton instance
 	 *
 	 * @var MessageCache
@@ -404,19 +384,20 @@ class MessageCache {
 		);
 
 		$mostused = array();
-		if ( $wgAdaptiveMessageCache ) {
-			$mostused = $this->getMostUsedMessages();
-			if ( $code !== $wgLanguageCode ) {
-				foreach ( $mostused as $key => $value ) {
-					$mostused[$key] = "$value/$code";
-				}
+		if ( $wgAdaptiveMessageCache && $code !== $wgLanguageCode ) {
+			if ( !isset( $this->mCache[$wgLanguageCode] ) ) {
+				$this->load( $wgLanguageCode );
+			}
+			$mostused = array_keys( $this->mCache[$wgLanguageCode] );
+			foreach ( $mostused as $key => $value ) {
+				$mostused[$key] = "$value/$code";
 			}
 		}
 
 		if ( count( $mostused ) ) {
 			$conds['page_title'] = $mostused;
 		} elseif ( $code !== $wgLanguageCode ) {
-			$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), "/$code" );
+			$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), '/', $code );
 		} else {
 			# Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
 			# other than language code.
@@ -457,12 +438,6 @@ class MessageCache {
 				$entry = ' ' . $text;
 			}
 			$cache[$row->page_title] = $entry;
-		}
-
-		foreach ( $mostused as $key ) {
-			if ( !isset( $cache[$key] ) ) {
-				$cache[$key] = '!NONEXISTENT';
-			}
 		}
 
 		$cache['VERSION'] = MSG_CACHE_VERSION;
@@ -646,13 +621,6 @@ class MessageCache {
 			$uckey = $wgContLang->ucfirst( $lckey );
 		}
 
-		/**
-		 * Record each message request, but only once per request.
-		 * This information is not used unless $wgAdaptiveMessageCache
-		 * is enabled.
-		 */
-		$this->mRequestedMessages[$uckey] = true;
-
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
 			$title = $uckey;
@@ -719,8 +687,6 @@ class MessageCache {
 	 * @return string|bool False on failure
 	 */
 	function getMsgFromNamespace( $title, $code ) {
-		global $wgAdaptiveMessageCache;
-
 		$this->load( $code );
 		if ( isset( $this->mCache[$code][$title] ) ) {
 			$entry = $this->mCache[$code][$title];
@@ -739,15 +705,7 @@ class MessageCache {
 				return $message;
 			}
 
-			/**
-			 * If message cache is in normal mode, it is guaranteed
-			 * (except bugs) that there is always entry (or placeholder)
-			 * in the cache if message exists. Thus we can do minor
-			 * performance improvement and return false early.
-			 */
-			if ( !$wgAdaptiveMessageCache ) {
-				return false;
-			}
+			return false;
 		}
 
 		# Try the individual message cache
@@ -907,7 +865,7 @@ class MessageCache {
 	 */
 	function clear() {
 		$langs = Language::fetchLanguageNames( null, 'mw' );
-		foreach ( array_keys($langs) as $code ) {
+		foreach ( array_keys( $langs ) as $code ) {
 			# Global cache
 			$this->mMemc->delete( wfMemcKey( 'messages', $code ) );
 			# Invalidate all local caches
@@ -934,82 +892,6 @@ class MessageCache {
 
 		$message = implode( '/', $pieces );
 		return array( $message, $lang );
-	}
-
-	public static function logMessages() {
-		wfProfileIn( __METHOD__ );
-		global $wgAdaptiveMessageCache;
-		if ( !$wgAdaptiveMessageCache || !self::$instance instanceof MessageCache ) {
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		$cachekey = wfMemckey( 'message-profiling' );
-		$cache = wfGetCache( CACHE_DB );
-		$data = $cache->get( $cachekey );
-
-		if ( !$data ) {
-			$data = array();
-		}
-
-		$age = self::$mAdaptiveDataAge;
-		$filterDate = substr( wfTimestamp( TS_MW, time() - $age ), 0, 8 );
-		foreach ( array_keys( $data ) as $key ) {
-			if ( $key < $filterDate ) {
-				unset( $data[$key] );
-			}
-		}
-
-		$index = substr( wfTimestampNow(), 0, 8 );
-		if ( !isset( $data[$index] ) ) {
-			$data[$index] = array();
-		}
-
-		foreach ( self::$instance->mRequestedMessages as $message => $_ ) {
-			if ( !isset( $data[$index][$message] ) ) {
-				$data[$index][$message] = 0;
-			}
-			$data[$index][$message]++;
-		}
-
-		$cache->set( $cachekey, $data );
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getMostUsedMessages() {
-		wfProfileIn( __METHOD__ );
-		$cachekey = wfMemcKey( 'message-profiling' );
-		$cache = wfGetCache( CACHE_DB );
-		$data = $cache->get( $cachekey );
-		if ( !$data ) {
-			wfProfileOut( __METHOD__ );
-			return array();
-		}
-
-		$list = array();
-
-		foreach( $data as $messages ) {
-			foreach( $messages as $message => $count ) {
-				$key = $message;
-				if ( !isset( $list[$key] ) ) {
-					$list[$key] = 0;
-				}
-				$list[$key] += $count;
-			}
-		}
-
-		$max = max( $list );
-		foreach ( $list as $message => $count ) {
-			if ( $count < intval( $max * self::$mAdaptiveInclusionThreshold ) ) {
-				unset( $list[$message] );
-			}
-		}
-
-		wfProfileOut( __METHOD__ );
-		return array_keys( $list );
 	}
 
 	/**
