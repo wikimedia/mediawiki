@@ -1603,7 +1603,7 @@ class EditPage {
 
 		if ( $doEditStatus->isOK() ) {
 				$result['redirect'] = $content->isRedirect();
-			$this->commitWatch();
+			$this->updateWatchlist();
 			wfProfileOut( __METHOD__ );
 			return $status;
 		} else {
@@ -1624,19 +1624,27 @@ class EditPage {
 	}
 
 	/**
-	 * Commit the change of watch status
+	 * Register the change of watch status
 	 */
-	protected function commitWatch() {
+	protected function updateWatchlist() {
 		global $wgUser;
+
 		if ( $wgUser->isLoggedIn() && $this->watchthis != $wgUser->isWatched( $this->mTitle ) ) {
+			$fname = __METHOD__;
+			$title = $this->mTitle;
+			$watch = $this->watchthis;
+
+			// Do this in its own transaction to reduce contention...
 			$dbw = wfGetDB( DB_MASTER );
-			$dbw->begin( __METHOD__ );
-			if ( $this->watchthis ) {
-				WatchAction::doWatch( $this->mTitle, $wgUser );
-			} else {
-				WatchAction::doUnwatch( $this->mTitle, $wgUser );
-			}
-			$dbw->commit( __METHOD__ );
+			$dbw->onTransactionIdle( function() use ( $dbw, $title, $watch, $wgUser, $fname ) {
+				$dbw->begin( $fname );
+				if ( $watch ) {
+					WatchAction::doWatch( $title, $wgUser );
+				} else {
+					WatchAction::doUnwatch( $title, $wgUser );
+				}
+				$dbw->commit( $fname );
+			} );
 		}
 	}
 
