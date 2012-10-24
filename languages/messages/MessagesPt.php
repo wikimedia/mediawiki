@@ -75,12 +75,23 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Usuário'           => NS_USER,
-	'Usuário_Discussão' => NS_USER_TALK,
-	'Imagem'            => NS_FILE,
-	'Imagem_Discussão'  => NS_FILE_TALK,
-	'Arquivo'           => NS_FILE,
-	'Arquivo_Discussão' => NS_FILE_TALK,
+	'Usuário'                 => NS_USER,
+	'Usuário_Discussão'       => NS_USER_TALK,
+	'Imagem'                  => NS_FILE,
+	'Imagem_Discussão'        => NS_FILE_TALK,
+	'Arquivo'                 => NS_FILE,
+	'Arquivo_Discussão'       => NS_FILE_TALK,
+	// bug 31986
+	// All masculine and feminine aliases from both
+	// European and Brazilian Portuguese
+	'Utilizador(a)'           => NS_USER,
+	'Utilizador_Discussão'    => NS_USER_TALK,
+	'Utilizadora_Discussão'   => NS_USER_TALK,
+	'Utilizador(a)_Discussão' => NS_USER_TALK,
+	'Usuária'                 => NS_USER,
+	'Usuária_Discussão'       => NS_USER_TALK,
+	'Usuário(a)'              => NS_USER,
+	'Usuário(a)_Discussão'    => NS_USER_TALK,
 );
 
 $namespaceGenderAliases = array(
