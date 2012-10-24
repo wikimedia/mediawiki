@@ -62,18 +62,14 @@ class JobQueueGroup {
 	public function get( $type ) {
 		global $wgJobTypeConf;
 
-		$conf = false;
+		$conf = array( 'wiki' => $this->wiki, 'type' => $type );
 		if ( isset( $wgJobTypeConf[$type] ) ) {
-			$conf = $wgJobTypeConf[$type];
+			$conf = $conf + $wgJobTypeConf[$type];
 		} else {
-			$conf = $wgJobTypeConf['default'];
+			$conf = $conf + $wgJobTypeConf['default'];
 		}
 
-		return JobQueue::factory( array(
-			'class' => $conf['class'],
-			'wiki'  => $this->wiki,
-			'type'  => $type,
-		) );
+		return JobQueue::factory( $conf );
 	}
 
 	/**
