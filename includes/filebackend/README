@@ -171,28 +171,29 @@ an object store as a backing store, the "files" will be "objects" stored in
 
 An advantage of objects stores is the reduced Round-Trip Times. This is
 achieved by avoiding the need to create each parent directory before placing a
-file somewhere. It gets worse the deeper the directory hierarchy is. Both with
-object stores and file systems  using "/" in filenames will allow for the
+file somewhere. It gets worse the deeper the directory hierarchy is. For both
+object stores and file systems, using "/" in filenames will allow for the
 intuitive use of directory functions. For example, creating a file in Swift
 called "container/a/b/file1" will mean that:
 - a "directory listing" of "container/a" will contain "b",
 - and a "file listing" of "b" will contain "file1"
 
 This means that switching from an object store to a file system and vise versa
-using the FileBackend interface will generally be harmless. You must aware of
-some reserves though:
+using the FileBackend interface will generally be harmless. However, one must be
+aware of some important differences:
 
 * In a filesystem, you cannot have a file and a directory within the same path
-  whereas it is possible in an object stores.
+  whereas it is possible in an object stores. Calling code should avoid any layouts
+  which allow files and directories at the same path.
 * Some file systems have file name length restrictions or overall path length
-  restrictions that others do not. The same goes with object stores wich might
-  have maximum object length or a limitation regarding the number of files
+  restrictions that others do not. The same goes with object stores which might
+  have a maximum object length or a limitation regarding the number of files
   under a container or volume.
-* Latency vary among systems, certain access patterns may not be tolerable for
+* Latency varies among systems, certain access patterns may not be tolerable for
   certain backends but may hold up for others. Some backend subclasses use
   MediaWiki's object caching for serving stat requests, which can greatly
   reduce latency. Making sure that the backend has pipelining (see the
-  "parallelize" and "concurrency" settings) enabled can also combat latency in
+  "parallelize" and "concurrency" settings) enabled can also mask latency in
   batch operation scenarios.
 
 */
