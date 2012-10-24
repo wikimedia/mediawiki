@@ -999,7 +999,8 @@ class Revision implements IDBAccessObject {
 				$this->mText = $this->loadText();
 			}
 
-			$this->mContent = is_null( $this->mText ) ? null : $handler->unserializeContent( $this->mText, $format );
+			$this->mContent = ( $this->mText === null || $this->mText === false ) ? null
+				: $handler->unserializeContent( $this->mText, $format );
 		}
 
 		return $this->mContent->copy(); // NOTE: copy() will return $this for immutable content objects
@@ -1377,7 +1378,7 @@ class Revision implements IDBAccessObject {
 
 		$content = $this->getContent( Revision::RAW );
 
-		if ( !$content->isValid() ) {
+		if ( !$content || !$content->isValid() ) {
 			$t = $title->getPrefixedDBkey();
 
 			throw new MWException( "Content of $t is not valid! Content model is $model" );
@@ -1397,7 +1398,7 @@ class Revision implements IDBAccessObject {
 	 * Lazy-load the revision's text.
 	 * Currently hardcoded to the 'text' table storage engine.
 	 *
-	 * @return String
+	 * @return String|boolean the revision text, or false on failure
 	 */
 	protected function loadText() {
 		wfProfileIn( __METHOD__ );

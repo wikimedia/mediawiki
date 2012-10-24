@@ -522,8 +522,10 @@ class DifferenceEngine extends ContextSource {
 				if ( ContentHandler::runLegacyHooks( 'ShowRawCssJs', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 					// NOTE: deprecated hook, B/C only
 					// use the content object's own rendering
-					$po = $this->mNewRev->getContent()->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() );
-					$out->addHTML( $po->getText() );
+					$cnt = $this->mNewRev->getContent();
+					$po = $cnt ? $cnt->getParserOutput( $this->mNewRev->getTitle(), $this->mNewRev->getId() ) : null;
+					$txt = $po ? $po->getText() : '';
+					$out->addHTML( $txt );
 				}
 			} elseif( !wfRunHooks( 'ArticleContentViewCustom', array( $this->mNewContent, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
@@ -545,7 +547,7 @@ class DifferenceEngine extends ContextSource {
 				$parserOutput = $this->getParserOutput( $wikiPage, $this->mNewRev );
 
 				# Also try to load it as a redirect
-				$rt = $this->mNewContent->getRedirectTarget();
+				$rt = $this->mNewContent ? $this->mNewContent->getRedirectTarget() : null;
 
 				if ( $rt ) {
 					$article = Article::newFromTitle( $this->mNewPage, $this->getContext() );
@@ -1169,13 +1171,13 @@ class DifferenceEngine extends ContextSource {
 		}
 		if ( $this->mOldRev ) {
 			$this->mOldContent = $this->mOldRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-			if ( $this->mOldContent === false ) {
+			if ( $this->mOldContent === null ) {
 				return false;
 			}
 		}
 		if ( $this->mNewRev ) {
 			$this->mNewContent = $this->mNewRev->getContent( Revision::FOR_THIS_USER, $this->getUser() );
-			if ( $this->mNewContent === false ) {
+			if ( $this->mNewContent === null ) {
 				return false;
 			}
 		}
