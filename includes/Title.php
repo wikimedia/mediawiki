@@ -2926,6 +2926,8 @@ class Title {
 			// TODO: check the assumption that the cache actually knows about this title
 			// and handle this, such as get the title from the database.
 			// See https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
+			wfDebug( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+			wfDebug( wfBacktrace() );
 		}
 
 		$this->mRedirect = (bool)$cached;
@@ -2953,7 +2955,8 @@ class Title {
 		if ( $cached === null ) { # check the assumption that the cache actually knows about this title
 			# XXX: this does apparently happen, see https://bugzilla.wikimedia.org/show_bug.cgi?id=37209
 			#      as a stop gap, perhaps log this, but don't throw an exception?
-			throw new MWException( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+			wfDebug( "LinkCache doesn't currently know about this title: " . $this->getPrefixedDBkey() );
+			wfDebug( wfBacktrace() );
 		}
 
 		$this->mLength = intval( $cached );
