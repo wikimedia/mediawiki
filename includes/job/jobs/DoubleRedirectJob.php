@@ -94,7 +94,7 @@ class DoubleRedirectJob extends Job {
 			return true;
 		}
 		$content = $targetRev->getContent();
-		$currentDest = $content->getRedirectTarget();
+		$currentDest = $content ? $content->getRedirectTarget() : null;
 		if ( !$currentDest || !$currentDest->equals( $this->redirTitle ) ) {
 			wfDebug( __METHOD__.": Redirect has changed since the job was queued\n" );
 			return true;

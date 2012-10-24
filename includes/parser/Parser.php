@@ -3617,7 +3617,7 @@ class Parser {
 
 			if ( $rev ) {
 				$content = $rev->getContent();
-				$text = $content->getWikitextForTransclusion();
+				$text = $content ? $content->getWikitextForTransclusion() : null;
 
 				if ( $text === false || $text === null ) {
 					$text = false;

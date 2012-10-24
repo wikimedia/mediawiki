@@ -795,7 +795,7 @@ class SearchResult {
 				//TODO: if we could plug in some code that knows about special content models *and* about
 				//      special features of the search engine, the search could benefit.
 				$content = $this->mRevision->getContent();
-				$this->mText = $content->getTextForSearchIndex();
+				$this->mText = $content ? $content->getTextForSearchIndex() : '';
 			} else { // TODO: can we fetch raw wikitext for commons images?
 				$this->mText = '';
 			}
