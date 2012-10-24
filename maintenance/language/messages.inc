@@ -1399,6 +1399,7 @@ $wgMessageStructure = array(
 		'backend-fail-notsame',
 		'backend-fail-invalidpath',
 		'backend-fail-delete',
+		'backend-fail-describe',
 		'backend-fail-alreadyexists',
 		'backend-fail-store',
 		'backend-fail-copy',

@@ -2106,6 +2106,8 @@ Extensions making use of it:
 * $1 is a storage path.',
 'backend-fail-delete' => 'Parameters:
 * $1 is a file path.',
+'backend-fail-describe' => 'Parameters:
+* $1 is a file path.',
 'backend-fail-alreadyexists' => 'Parameters:
 * $1 is a filename.',
 'backend-fail-store' => 'Parameters:
@@ -3694,7 +3696,7 @@ Parameters:
 Start with a lowercase letter, unless the first word is “SVG”.',
 'svg-long-desc-animated' => 'Displayed under an SVG image at the image description page if the image is animated. Non-animated images use {{msg-mw|svg-long-desc}}.
 * $1 is the width in pixels
-* $2 is the height in pixels, and 
+* $2 is the height in pixels, and
 * $3 is the file size including a unit (for example "10 KB").
 
 Start with a lowercase letter, unless the first word is “SVG”.',

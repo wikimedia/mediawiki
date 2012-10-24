@@ -586,6 +586,73 @@ class FileBackendTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @dataProvider provider_testDescribe
+	 */
+	public function testDescribe( $op, $withSource, $okStatus ) {
+		$this->backend = $this->singleBackend;
+		$this->tearDownFiles();
+		$this->doTestDescribe( $op, $withSource, $okStatus );
+		$this->tearDownFiles();
+
+		$this->backend = $this->multiBackend;
+		$this->tearDownFiles();
+		$this->doTestDescribe( $op, $withSource, $okStatus );
+		$this->tearDownFiles();
+	}
+
+	private function doTestDescribe( $op, $withSource, $okStatus ) {
+		$backendName = $this->backendClass();
+
+		$source = $op['src'];
+		$this->prepare( array( 'dir' => dirname( $source ) ) );
+
+		if ( $withSource ) {
+			$status = $this->backend->doOperation(
+				array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
+			$this->assertGoodStatus( $status,
+				"Creation of file at $source succeeded ($backendName)." );
+		}
+
+		$status = $this->backend->doOperation( $op );
+		if ( $okStatus ) {
+			$this->assertGoodStatus( $status,
+				"Describe of file at $source succeeded without warnings ($backendName)." );
+			$this->assertEquals( true, $status->isOK(),
+				"Describe of file at $source succeeded ($backendName)." );
+			$this->assertEquals( array( 0 => true ), $status->success,
+				"Describe of file at $source has proper 'success' field in Status ($backendName)." );
+		} else {
+			$this->assertEquals( false, $status->isOK(),
+				"Describe of file at $source failed ($backendName)." );
+		}
+
+		$this->assertBackendPathsConsistent( array( $source ) );
+	}
+
+	public static function provider_testDescribe() {
+		$cases = array();
+
+		$source = self::baseStorePath() . '/unittest-cont1/e/myfacefile.txt';
+
+		$op = array( 'op' => 'describe', 'src' => $source,
+			'headers' => array( 'X-Content-Length' => '91.3' ),
+			'disposition' => 'inline' );
+		$cases[] = array(
+			$op, // operation
+			true, // with source
+			true // succeeds
+		);
+
+		$cases[] = array(
+			$op, // operation
+			false, // without source
+			false // fails
+		);
+
+		return $cases;
+	}
+
+	/**
 	 * @dataProvider provider_testCreate
 	 */
 	public function testCreate( $op, $alreadyExists, $okStatus, $newSize ) {

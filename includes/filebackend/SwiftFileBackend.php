@@ -563,6 +563,56 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * @see FileBackendStore::doDescribeInternal()
+	 * @return Status
+	 */
+	protected function doDescribeInternal( array $params ) {
+		$status = Status::newGood();
+
+		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $params['src'] );
+		if ( $srcRel === null ) {
+			$status->fatal( 'backend-fail-invalidpath', $params['src'] );
+			return $status;
+		}
+
+		$hdrChanges = isset( $params['headers'] ) ? $params['headers'] : array();
+		// Set the Content-Disposition header if requested
+		if ( isset( $params['disposition'] ) ) {
+			$hdrChanges['Content-Disposition'] = $this->truncDisp( $params['disposition'] );
+		}
+
+		try {
+			$sContObj = $this->getContainer( $srcCont );
+			$srcObj = $sContObj->get_object( $srcRel,
+				$this->headersFromParams( array( 'latest' => true ) ) );
+			// Merge the desired header changes...
+			$newHeaders = $srcObj->headers;
+			foreach ( $hdrChanges as $header => $value ) {
+				if ( $value === null ) { // remove this header
+					unset( $newHeaders[$header] );
+				} else { // set this header
+					$newHeaders[$header] = $value;
+				}
+			}
+			if ( $newHeaders != $srcObj->headers ) {
+				$srcObj->headers = $newHeaders;
+				$srcObj->sync_metadata(); // save to Swift
+				$this->purgeCDNCache( array( $srcObj ) );
+			}
+		} catch ( CDNNotEnabledException $e ) {
+			// CDN not enabled; nothing to see here
+		} catch ( NoSuchContainerException $e ) {
+			$status->fatal( 'backend-fail-describe', $params['src'] );
+		} catch ( NoSuchObjectException $e ) {
+			$status->fatal( 'backend-fail-describe', $params['src'] );
+		} catch ( CloudFilesException $e ) { // some other exception?
+			$this->handleException( $e, $status, __METHOD__, $params );
+		}
+
+		return $status;
+	}
+
+	/**
 	 * @see FileBackendStore::doPrepareInternal()
 	 * @return Status
 	 */
