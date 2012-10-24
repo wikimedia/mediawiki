@@ -122,8 +122,14 @@ class JobQueueDB extends JobQueue {
 		try {
 			do { // retry when our row is invalid or deleted as a duplicate
 				$row = false; // row claimed
-				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
-				$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+				// Get query parameters based on job priority
+				if ( $this->order === 'timestamp' ) { // oldest first
+					$rand = 0;
+					$gte  = true;
+				} else { // random first
+					$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
+					$gte  = (bool)mt_rand( 0, 1 ); // find rows with rand before/after $rand
+				}
 				// Try to reserve a DB row...
 				if ( $this->claim( $uuid, $rand, $gte ) || $this->claim( $uuid, $rand, !$gte ) ) {
 					// Fetch any row that we just reserved...
@@ -274,6 +280,11 @@ class JobQueueDB extends JobQueue {
 			'job_params'    => self::makeBlob( $job->getParams() ),
 		);
 		// Additional job metadata
+		if ( $this->order === 'timestamp' ) { // oldest first
+			$random = time() - 1325376000; // seconds since "January 1, 2012"
+		} else { // random first
+			$random = mt_rand( 0, self::MAX_JOB_RANDOM );
+		}
 		$dbw = $this->getMasterDB();
 		$metaFields = array(
 			'job_id'        => $dbw->nextSequenceValue( 'job_job_id_seq' ),
