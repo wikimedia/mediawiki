@@ -93,6 +93,8 @@ class RequestContext implements IContextSource {
 	 */
 	public function setTitle( Title $t ) {
 		$this->title = $t;
+		// Erase the WikiPage so a new one with the new title gets created.
+		$this->wikipage = null;
 	}
 
 	/**
@@ -139,6 +141,11 @@ class RequestContext implements IContextSource {
 	 */
 	public function setWikiPage( WikiPage $p ) {
 		$this->wikipage = $p;
+		$contextTitle = $this->getTitle();
+		$pageTitle = $p->getTitle();
+		if ( !$contextTitle || !$pageTitle->equals( $contextTitle ) ) {
+			$this->setTitle( $pageTitle );
+		}
 	}
 
 	/**
