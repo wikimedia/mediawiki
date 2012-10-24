@@ -580,6 +580,7 @@ $wgAutoloadLocalClasses = array(
 	'MoveFileOp' => 'includes/filebackend/FileOp.php',
 	'DeleteFileOp' => 'includes/filebackend/FileOp.php',
 	'CreateFileOp' => 'includes/filebackend/FileOp.php',
+	'DescribeFileOp' => 'includes/filebackend/FileOp.php',
 	'NullFileOp' => 'includes/filebackend/FileOp.php',
 
 	# includes/filerepo
