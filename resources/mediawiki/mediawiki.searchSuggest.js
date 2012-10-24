@@ -3,7 +3,7 @@
  */
 ( function ( mw, $ ) {
 	$( document ).ready( function ( $ ) {
-		var map,
+		var map, searchboxesSelectors,
 			// Region where the suggestions box will appear directly below
 			// (using the same width). Can be a container element or the input
 			// itself, depending on what suits best in the environment.
@@ -13,14 +13,6 @@
 			// vertically between the input and the suggestions).
 			$searchRegion = $( '#simpleSearch, #searchInput' ).first(),
 			$searchInput = $( '#searchInput' );
-
-		// Ensure that the thing is actually present!
-		if ( $searchRegion.length === 0 ) {
-			// Don't try to set anything up if simpleSearch is disabled sitewide.
-			// The loader code loads us if the option is present, even if we're
-			// not actually enabled (anymore).
-			return;
-		}
 
 		// Compatibility map
 		map = {
@@ -49,13 +41,14 @@
 			return;
 		}
 
-		// Placeholder text for search box
-		$searchInput
-			.attr( 'placeholder', mw.msg( 'searchsuggest-search' ) )
-			.placeholder();
-
 		// General suggestions functionality for all search boxes
-		$( '#searchInput, #searchInput2, #powerSearchText, #searchText' )
+		searchboxesSelectors = [
+			'.mw-searchInput', // generic selector, for skins with multiple searchboxes
+			'#searchInput', // the primary searchbox on every page
+			'#searchInput2', // secondary searchbox for legacy skins, comes from LegacyTemplate::searchForm
+			'#powerSearchText', '#searchText' // on Special:Search
+		];
+		$( searchboxesSelectors.join(', ') )
 			.suggestions( {
 				fetch: function ( query ) {
 					var $el, jqXhr;
@@ -103,6 +96,19 @@
 				// trigger the keypress handler and cause the suggestions to update
 				$( this ).trigger( 'keypress' );
 			} );
+
+		// Ensure that the thing is actually present!
+		if ( $searchRegion.length === 0 ) {
+			// Don't try to set anything up if simpleSearch is disabled sitewide.
+			// The loader code loads us if the option is present, even if we're
+			// not actually enabled (anymore).
+			return;
+		}
+
+		// Placeholder text for search box
+		$searchInput
+			.attr( 'placeholder', mw.msg( 'searchsuggest-search' ) )
+			.placeholder();
 
 		// Special suggestions functionality for skin-provided search box
 		$searchInput.suggestions( {
