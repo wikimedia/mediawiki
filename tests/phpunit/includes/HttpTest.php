@@ -131,13 +131,10 @@ class HttpTest extends MediaWikiTestCase {
 	 * handles header reporting on redirect pages, and will need to be
 	 * rewritten when bug 29232 is taken care of (high-level handling of
 	 * HTTP redirects).
-	 * @group Broken
-	 *  MWHttpRequestTester's constructor is private, needs to use
-	 *  MWHttpRequestTester::factory instead. However the objects coming
-	 *  from that won't have MWHttpRequestTester::setRespHeaders...
 	 */
 	function testRelativeRedirections() {
-		$h = new MWHttpRequestTester( 'http://oldsite/file.ext' );
+		$h = MWHttpRequestTester::factory( 'http://oldsite/file.ext' );
+
 		# Forge a Location header
 		$h->setRespHeaders( 'location', array(
 			'http://newsite/file.ext',
@@ -175,10 +172,42 @@ class HttpTest extends MediaWikiTestCase {
 }
 
 /**
- * Class to let us overwrite MWHttpREquest respHeaders variable
+ * Class to let us overwrite MWHttpRequest respHeaders variable
  */
 class MWHttpRequestTester extends MWHttpRequest {
+
+	// function derived from the MWHttpRequest factory function but 
+	// returns appropriate tester class here
+	public static function factory( $url, $options = null ) {
+		if ( !Http::$httpEngine ) {
+			Http::$httpEngine = function_exists( 'curl_init' ) ? 'curl' : 'php';
+		} elseif ( Http::$httpEngine == 'curl' && !function_exists( 'curl_init' ) ) {
+			throw new MWException( __METHOD__ . ': curl (http://php.net/curl) is not installed, but' .
+					'Http::$httpEngine is set to "curl"' );
+		}
+
+		switch( Http::$httpEngine ) {
+			case 'curl':
+				return new CurlHttpRequestTester( $url, $options );
+			case 'php':
+				if ( !wfIniGetBool( 'allow_url_fopen' ) ) {
+					throw new MWException( __METHOD__ . ': allow_url_fopen needs to be enabled for pure PHP' .
+						' http requests to work. If possible, curl should be used instead. See http://php.net/curl.' );
+				}
+				return new PhpHttpRequestTester( $url, $options );
+			default:
+		}
+	}
+}
+
+class CurlHttpRequestTester extends CurlHttpRequest {
 	function setRespHeaders( $name, $value ) {
-		$this->respHeaders[$name] = $value ;
+		$this->respHeaders[$name] = $value;
+	}
+}
+
+class PhpHttpRequestTester extends PhpHttpRequest {
+	function setRespHeaders( $name, $value ) {
+		$this->respHeaders[$name] = $value;
 	}
 }
