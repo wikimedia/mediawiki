@@ -1469,10 +1469,10 @@ class EditPage {
 				$content = $textbox_content; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
 				# Attempt merge
-				if ( $this->mergeChangesIntoContent( $textbox_content ) ) {
+				if ( $this->mergeChangesInto( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
 					$this->isConflict = false;
-					$content = $textbox_content;
+					$content = $this->toEditContent( $content );
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
@@ -1652,14 +1652,35 @@ class EditPage {
 	function mergeChangesInto( &$editText ){
 		ContentHandler::deprecated( __METHOD__, "1.21" );
 
-		$editContent = $this->toEditContent( $editText );
+		wfProfileIn( __METHOD__ );
 
-		$ok = $this->mergeChangesIntoContent( $editContent );
+		$db = wfGetDB( DB_MASTER );
 
-		if ( $ok ) {
-			$editText = $this->toEditText( $editContent );
+		// This is the revision the editor started from
+		$baseRevision = $this->getBaseRevision();
+		if ( is_null( $baseRevision ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+		$baseText = $baseRevision->getText();
+
+		// The current state, we want to merge updates into it
+		$currentRevision = Revision::loadFromTitle( $db, $this->mTitle );
+		if ( is_null( $currentRevision ) ) {
+			wfProfileOut( __METHOD__ );
+			return false;
+		}
+		$currentText = $currentRevision->getText();
+
+		$result = '';
+		$editText = $this->toEditText( $editText );
+
+		if ( wfMerge( $baseText, $editText, $currentText, $result ) ) {
+			$editText = $result;
+			wfProfileOut( __METHOD__ );
 			return true;
 		} else {
+			wfProfileOut( __METHOD__ );
 			return false;
 		}
 	}
