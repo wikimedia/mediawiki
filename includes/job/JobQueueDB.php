@@ -120,6 +120,10 @@ class JobQueueDB extends JobQueue {
 		$autoTrx = $dbw->getFlag( DBO_TRX ); // automatic begin() enabled?
 		$dbw->clearFlag( DBO_TRX ); // make each query its own transaction
 		try {
+			// Occasionally recycle jobs back into the queue that have been claimed too long
+			if ( mt_rand( 0, 99 ) == 0 ) {
+				$this->recycleStaleJobs();
+			}
 			do { // retry when our row is invalid or deleted as a duplicate
 				$row = false; // row claimed
 				$rand = mt_rand( 0, self::MAX_JOB_RANDOM ); // encourage concurrent UPDATEs
@@ -146,7 +150,8 @@ class JobQueueDB extends JobQueue {
 					// Delete any *other* duplicate jobs in the queue...
 					if ( $job->ignoreDuplicates() && strlen( $row->job_sha1 ) ) {
 						$dbw->delete( 'job',
-							array( 'job_sha1' => $row->job_sha1,
+							array( 'job_cmd' => $this->type, // sanity
+								'job_sha1' => $row->job_sha1,
 								"job_id != {$dbw->addQuotes( $row->job_id )}" ),
 							__METHOD__
 						);
@@ -211,6 +216,39 @@ class JobQueueDB extends JobQueue {
 				__METHOD__
 			);
 		}
+		return $dbw->affectedRows();
+	}
+
+	/**
+	 * Recycle or destroy any jobs that have been claimed for too long
+	 *
+	 * @return integer Number of jobs recycled/deleted
+	 */
+	protected function recycleStaleJobs() {
+		$now    = time();
+		$dbw    = $this->getMasterDB();
+		$cutoff = $dbw->timestamp( $now - $this->claimTTL );
+
+		if ( $this->claimTTL > 0 ) { // re-try stale jobs...
+			// Reset job_token for these jobs so that other runners will pick them up.
+			// Set the timestamp to the current time, as it is useful to now that the job
+			// was already tried before.
+			$dbw->update( 'job',
+				array( 'job_token' => '', 'job_token_timestamp' => $dbw->timestamp( $now ) ),
+				array( 'job_cmd' => $this->type,
+					"job_token != {$dbw->addQuotes( '' )}", // was acquired
+					"job_token_timestamp < {$dbw->addQuotes( $cutoff )}" ), // stale
+				__METHOD__
+			);
+		} else { // just destroy stale jobs...
+			$dbw->delete( 'job',
+				array( 'job_cmd' => $this->type,
+					"job_token != {$dbw->addQuotes( '' )}", // was acquired
+					"job_token_timestamp < {$dbw->addQuotes( $cutoff )}" ), // stale
+				__METHOD__
+			);
+		}
+
 		return $dbw->affectedRows();
 	}
 

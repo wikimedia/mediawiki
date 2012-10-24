@@ -31,6 +31,7 @@
 abstract class JobQueue {
 	protected $wiki; // string; wiki ID
 	protected $type; // string; job type
+	protected $claimTTL; // integer; seconds
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
@@ -38,16 +39,19 @@ abstract class JobQueue {
 	 * @param $params array
 	 */
 	protected function __construct( array $params ) {
-		$this->wiki = $params['wiki'];
-		$this->type = $params['type'];
+		$this->wiki     = $params['wiki'];
+		$this->type     = $params['type'];
+		$this->claimTTL = isset( $params['claimTTL'] ) ? $params['claimTTL'] : 0;
 	}
 
 	/**
 	 * Get a job queue object of the specified type.
 	 * $params includes:
-	 *     class : what job class to use (determines job type)
-	 *     wiki  : wiki ID of the wiki the jobs are for (defaults to current wiki)
-	 *     type  : The name of the job types this queue handles
+	 *     class    : what job class to use (determines job type)
+	 *     wiki     : wiki ID of the wiki the jobs are for (defaults to current wiki)
+	 *     type     : The name of the job types this queue handles
+	 *     claimTTL : If supported, the queue will recycle jobs that have been popped
+	 *                but not acknowledged as completed after this many seconds.
 	 *
 	 * @param $params array
 	 * @return JobQueue
