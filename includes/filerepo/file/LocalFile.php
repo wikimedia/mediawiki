@@ -987,6 +987,10 @@ class LocalFile extends File {
 			}
 		}
 
+		// Pass content length to backend, so it can serve media with X-Content-Duration
+		$this->getRepo()->getBackend()->storeOptionalHeaders( $this->getPath(),
+			$this->getOptionalHeaders() );
+
 		$this->unlock(); // done
 
 		return $status;
@@ -1531,6 +1535,18 @@ class LocalFile extends File {
 		}
 
 		return $this->sha1;
+	}
+
+	/**
+	 * @return array
+	 */
+	function getOptionalHeaders() {
+		$headers = array();
+		$length = $this->getLength();
+		if ( $length > 0 ) {
+			$headers[ "X-Content-Duration" ] = $length;
+		}
+		return $headers;
 	}
 
 	/**

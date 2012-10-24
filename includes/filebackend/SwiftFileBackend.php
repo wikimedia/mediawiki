@@ -734,6 +734,37 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * Store optional http headers for file
+	 * can be used to i.e. set X-Content-Duration
+	 *
+	 * @param $path string Storage path to object
+	 * @param $headers array
+	 * @return bool Success
+	 */
+	public function storeOptionalHeaders ( $path, $headers ) {
+		$updated = false;
+		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+		$contObj = $this->getContainer( $srcCont );
+		$obj = $contObj->get_object( $srcRel,
+			$this->headersFromParams( array( 'latest' => true ) ) );
+		foreach ( $headers as $header => $value ) {
+			if ( $value === null ) {
+				if ( isset ( $obj->headers[ $header ] ) ) {
+					unset ( $obj->headers[ $header ] );
+					$updated = true;
+				}
+			} else {
+				$obj->headers[ $header ] = $value;
+				$updated = true;
+			}
+		}
+		if ( $updated ) {
+			$obj->sync_metadata(); // save to Swift
+		}
+		return true; // success
+	}
+
+	/**
 	 * Fill in any missing object metadata and save it to Swift
 	 *
 	 * @param $obj CF_Object

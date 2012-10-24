@@ -1240,4 +1240,16 @@ abstract class FileBackend {
 		}
 		return $path;
 	}
+
+	/**
+	 * Store optional http headers for file
+	 * can be used to i.e. set X-Content-Duration
+	 *
+	 * @param $path string Storage path to object
+	 * @param $headers array
+	 * @return bool Success
+	 */
+	public function storeOptionalHeaders ( $path, $headers ) {
+		return true;
+	}
 }
