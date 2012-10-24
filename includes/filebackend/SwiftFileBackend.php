@@ -774,6 +774,27 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
+	 * Sets X-Content-Duration header on swift object
+	 *
+	 * @param $path string Storage path to object
+	 * @param $duration float duration in seconds float
+	 * @return bool Success
+	 * @throws Exception cloudfiles exceptions
+	 */
+	public function setLength ( $path, $length ) {
+		list( $srcCont, $srcRel ) = $this->resolveStoragePathReal( $path );
+		$contObj = $this->getContainer( $srcCont );
+		$obj = $contObj->get_object( $srcRel, $this->headersFromParams( array( 'latest' => true ) ) );
+		if ( $length > 0 ) {
+			$obj->headers['X-Content-Duration'] = $length;
+		} else if ( isset ( $obj->headers['X-Content-Duration'] ) ) {
+			unset ( $obj->headers['X-Content-Duration'] );
+		}
+		$obj->sync_metadata(); // save to Swift
+		return true; // success
+	}
+
+	/**
 	 * Fill in any missing object metadata and save it to Swift
 	 *
 	 * @param $obj CF_Object

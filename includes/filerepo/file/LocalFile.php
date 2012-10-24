@@ -985,6 +985,9 @@ class LocalFile extends File {
 			}
 		}
 
+		// Pass content length to backend, so it can serve media with X-Content-Duration
+		$this->getRepo()->getBackend()->setLength ( $this->getPath(), $this->getLength() );
+
 		$this->unlock(); // done
 
 		return $status;

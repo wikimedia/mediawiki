@@ -1240,4 +1240,15 @@ abstract class FileBackend {
 		}
 		return $path;
 	}
+
+	/**
+	 * Set duration of file, can be used to set X-Content-Duration
+	 *
+	 * @param $path string Storage path to object
+	 * @param $duration float duration in seconds float
+	 * @return bool Success
+	 */
+	public function setLength ( $path, $length ) {
+		return true;
+	}
 }
