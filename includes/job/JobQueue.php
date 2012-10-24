@@ -31,6 +31,7 @@
 abstract class JobQueue {
 	protected $wiki; // string; wiki ID
 	protected $type; // string; job type
+	protected $order; // string; job priority for pop()
 
 	const QoS_Atomic = 1; // integer; "all-or-nothing" job insertions
 
@@ -38,8 +39,9 @@ abstract class JobQueue {
 	 * @param $params array
 	 */
 	protected function __construct( array $params ) {
-		$this->wiki = $params['wiki'];
-		$this->type = $params['type'];
+		$this->wiki  = $params['wiki'];
+		$this->type  = $params['type'];
+		$this->order = isset( $params['order'] ) ? $params['order'] : 'random';
 	}
 
 	/**
