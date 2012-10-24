@@ -3211,10 +3211,10 @@ J'àutri a saran stërmà coma stàndard.
 'exif-lightsource-22' => 'Anluminant D75',
 'exif-lightsource-23' => 'Anluminant D50',
 'exif-lightsource-24' => 'Làmpada da studi ISO al tungsten',
-'exif-lightsource-255' => "Aùtra sorgiss d'anluminassion",
+'exif-lightsource-255' => "Àutra sorgiss d'anluminassion",
 
 # Flash modes
-'exif-flash-fired-0' => "Ël flash a l'é pa scatà",
+'exif-flash-fired-0' => "La lòsna a l'é nen ëscatà",
 'exif-flash-fired-1' => 'Flash scatà',
 'exif-flash-return-0' => "Gnun-e fonsion ëd rilevassion dl'artorn ëd lë stroboscòpi",
 'exif-flash-return-2' => "lus stoboscòpica d'artorn pa arlevà",

@@ -377,7 +377,7 @@ $messages = array(
 'tog-editsection' => '[編集]リンクから節を編集できるようにする',
 'tog-editsectiononrightclick' => '節見出しの右クリックで節を編集できるようにする（JavaScriptが必要）',
 'tog-showtoc' => '目次を表示（ページに見出しが4つ以上ある場合）',
-'tog-rememberpassword' => 'このブラウザーにログイン情報を記憶（最大 $1 {{PLURAL:$1|日間}}）',
+'tog-rememberpassword' => 'このブラウザーにログイン情報を保存 (最長 $1 {{PLURAL:$1|日|日間}})',
 'tog-watchcreations' => '自分が作成したページやアップロードしたファイルをウォッチリストに追加',
 'tog-watchdefault' => '自分が編集したページやファイルをウォッチリストに追加',
 'tog-watchmoves' => '自分が移動したページやファイルをウォッチリストに追加',
@@ -393,10 +393,10 @@ $messages = array(
 'tog-shownumberswatching' => 'ページをウォッチしている利用者数を表示',
 'tog-oldsig' => '既存の署名:',
 'tog-fancysig' => '署名をウィキ文として扱う (自動リンクなし)',
-'tog-externaleditor' => '既定で編集に外部アプリケーションを使用（上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
-'tog-externaldiff' => '差分表示に外部アプリケーションを使用（上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
+'tog-externaleditor' => '既定で編集に外部アプリケーションを使用 (上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細])',
+'tog-externaldiff' => '差分表示に外部アプリケーションを使用 (上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細])',
 'tog-showjumplinks' => '利用しやすさ向上のための「{{int:jumpto}}」リンクを有効にする',
-'tog-uselivepreview' => 'ライブプレビューを使用（JavaScriptが必要）（開発中）',
+'tog-uselivepreview' => 'ライブプレビューを使用 (JavaScriptが必要) (開発中)',
 'tog-forceeditsummary' => '要約欄が空欄の場合に確認を促す',
 'tog-watchlisthideown' => 'ウォッチリストに自分の編集を表示しない',
 'tog-watchlisthidebots' => 'ウォッチリストにボットによる編集を表示しない',
@@ -2116,7 +2116,7 @@ $1での[$2 ファイル解説ページ]にある説明を編集したほうが�
 'shared-repo' => '共有リポジトリ',
 'shared-repo-name-wikimediacommons' => 'ウィキメディア・コモンズ',
 'filepage.css' => '/* ここに記述したCSSはファイル解説ページにて読み込まれます。また外部のクライアントウィキにも影響します */',
-'upload-disallowed-here' => 'このファイルには上書きできません。',
+'upload-disallowed-here' => 'あなたはこのファイルを上書きできません。',
 
 # File reversion
 'filerevert' => '$1を差し戻す',
@@ -3965,7 +3965,7 @@ $5
 'colon-separator' => ':&#32;',
 'pipe-separator' => '&#32;|&#32;',
 'word-separator' => '&#32;',
-'parentheses' => '（$1）',
+'parentheses' => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr;前ページ',

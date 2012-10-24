@@ -2007,7 +2007,7 @@ Kanske vill du redigera beskrivningen på dess [$2 filbeskrivningssida] där.',
 'shared-repo-from' => 'från $1',
 'shared-repo' => 'en gemensam filförvaring',
 'filepage.css' => '/* CSS som skrivs här inkluderas på filbeskrivningssidan, även på utländska klientwikis */',
-'upload-disallowed-here' => 'Du kan inte skriva över denna bild.',
+'upload-disallowed-here' => 'Du kan inte skriva över denna fil.',
 
 # File reversion
 'filerevert' => 'Återställ $1',
@@ -3117,6 +3117,7 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 
 # Info page
 'pageinfo-title' => 'Information om "$1"',
+'pageinfo-not-current' => 'Information kan endast visas för den aktuella versionen.',
 'pageinfo-header-basic' => 'Grundläggande information',
 'pageinfo-header-edits' => 'Redigeringshistorik',
 'pageinfo-header-restrictions' => 'Sidskydd',
@@ -3145,6 +3146,11 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Dold kategori|Dolda kategorier}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Inkluderad mall|Inkluderade mallar}} ($1)',
 'pageinfo-toolboxlink' => 'Sidinformation',
+'pageinfo-redirectsto' => 'Omdirigerar till',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Räknas som en innehållssida',
+'pageinfo-contentpage-yes' => 'Ja',
+'pageinfo-protect-cascading-yes' => 'Ja',
 
 # Skin names
 'skinname-standard' => 'Standard',

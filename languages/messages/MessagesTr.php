@@ -2988,6 +2988,7 @@ Geçici dosya kayıp.',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-firstuser' => 'Sayfa oluşturucu',
 'pageinfo-edits' => 'Değişiklik sayısı',
+'pageinfo-toolboxlink' => 'Sayfa bilgisi',
 
 # Skin names
 'skinname-standard' => 'Klasik',
