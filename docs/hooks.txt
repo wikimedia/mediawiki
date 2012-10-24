@@ -819,7 +819,7 @@ $tooltip: The default tooltip.  Escape before using.
 $lang: The language code to use for the link in the wfMessage function
 
 'EditFilter': Perform checks on an edit
-$editor: Edit form (see includes/EditPage.php)
+$editor: EditPage instance (object). The edit form (see includes/EditPage.php)
 $text: Contents of the edit box
 $section: Section being edited
 &$error: Error message to return
