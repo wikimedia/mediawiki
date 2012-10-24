@@ -1057,7 +1057,7 @@ class EditPage {
 
 		$title = Title::newFromText( $preload );
 		# Check for existence to avoid getting MediaWiki:Noarticletext
-		if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
+		if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
 			return $handler->makeEmptyContent();
 		}
 
@@ -1065,7 +1065,7 @@ class EditPage {
 		if ( $page->isRedirect() ) {
 			$title = $page->getRedirectTarget();
 			# Same as before
-			if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
+			if ( $title === null || !$title->exists() || !$title->userCan( 'read', $wgUser ) ) {
 				return $handler->makeEmptyContent();
 			}
 			$page = WikiPage::factory( $title );
@@ -1347,7 +1347,7 @@ class EditPage {
 
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
-			if ( !$this->mTitle->userCan( 'create' ) ) {
+			if ( !$this->mTitle->userCan( 'create', $wgUser ) ) {
 				$status->fatal( 'nocreatetext' );
 				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
@@ -2235,7 +2235,7 @@ class EditPage {
 				if ( $revision ) {
 					// Let sysop know that this will make private content public if saved
 
-					if ( !$revision->userCan( Revision::DELETED_TEXT ) ) {
+					if ( !$revision->userCan( Revision::DELETED_TEXT, $wgUser ) ) {
 						$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
 					} elseif ( $revision->isDeleted( Revision::DELETED_TEXT ) ) {
 						$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-view' );
