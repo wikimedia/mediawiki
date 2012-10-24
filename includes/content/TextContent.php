@@ -32,10 +32,6 @@ class TextContent extends AbstractContent {
 	public function __construct( $text, $model_id = CONTENT_MODEL_TEXT ) {
 		parent::__construct( $model_id );
 
-		if ( $text === null || $text === false ) {
-			$text = '';
-		}
-
 		if ( !is_string( $text ) ) {
 			throw new MWException( "TextContent expects a string in the constructor." );
 		}
