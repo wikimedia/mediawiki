@@ -1468,6 +1468,7 @@ class EditPage {
 				$this->isConflict = true;
 				$content = $textbox_content; // do not try to merge here!
 			} elseif ( $this->isConflict ) {
+				$contentObj = $content;
 				# Attempt merge
 				if ( $this->mergeChangesInto( $content ) ) {
 					// Successful merge! Maybe we should tell the user the good news?
@@ -1476,7 +1477,7 @@ class EditPage {
 					wfDebug( __METHOD__ . ": Suppressing edit conflict, successful merge.\n" );
 				} else {
 					$this->section = '';
-					$this->textbox1 = ContentHandler::getContentText( $content );
+					$this->textbox1 = ContentHandler::getContentText( $contentObj );
 					wfDebug( __METHOD__ . ": Keeping edit conflict, failed merge.\n" );
 				}
 			}
