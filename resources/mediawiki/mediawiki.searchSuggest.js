@@ -55,7 +55,12 @@
 			.placeholder();
 
 		// General suggestions functionality for all search boxes
-		$( '#searchInput, #searchInput2, #powerSearchText, #searchText' )
+		searchboxesSelectors = [
+			'.mw-searchInput', // generic selector, for skins with multiple searchboxes
+			'#searchInput', // the primary searchbox on every page
+			'#powerSearchText', '#searchText' // on Special:Search
+		];
+		$( searchboxesSelectors.join(', ') )
 			.suggestions( {
 				fetch: function ( query ) {
 					var $el, jqXhr;
