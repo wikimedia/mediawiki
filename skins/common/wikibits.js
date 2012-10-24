@@ -91,10 +91,9 @@ window.importStylesheet = function( page ) {
 
 window.importStylesheetURI = function( url, media ) {
 	var l = document.createElement( 'link' );
-	l.type = 'text/css';
 	l.rel = 'stylesheet';
 	l.href = url;
-	if( media ) {
+	if ( media ) {
 		l.media = media;
 	}
 	document.getElementsByTagName('head')[0].appendChild( l );
