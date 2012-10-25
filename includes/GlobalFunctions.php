@@ -2895,11 +2895,15 @@ function wfMerge( $old, $mine, $yours, &$result ) {
 	$mytextFile = fopen( $mytextName = tempnam( $td, 'merge-mine-' ), 'w' );
 	$yourtextFile = fopen( $yourtextName = tempnam( $td, 'merge-your-' ), 'w' );
 
-	fwrite( $oldtextFile, $old );
+	# NOTE: diff3 issues a warning to stderr if any of the files does not end with
+	#       a newline character. To avoid this, we normalize the trailing whitespace before
+	#       creating the diff.
+
+	fwrite( $oldtextFile, rtrim( $old ) . "\n" );
 	fclose( $oldtextFile );
-	fwrite( $mytextFile, $mine );
+	fwrite( $mytextFile, rtrim( $mine ) . "\n" );
 	fclose( $mytextFile );
-	fwrite( $yourtextFile, $yours );
+	fwrite( $yourtextFile, rtrim( $yours ) . "\n" );
 	fclose( $yourtextFile );
 
 	# Check for a conflict
