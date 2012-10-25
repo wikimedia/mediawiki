@@ -48,6 +48,8 @@ production.
   compatibility. This also works with Squid in reverse-proxy mode. If you wish 
   to support Squid configured in forward-proxy mode, set 
   $wgSquidPurgeUseHostHeader to false.
+* (bug 37020) sql.php with readline eats semicolon
+
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt

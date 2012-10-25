@@ -72,7 +72,9 @@ class MwSql extends Maintenance {
 				continue;
 			}
 			if ( $useReadline ) {
-				readline_add_history( $wholeLine );
+				# Delimiter is eated by streamStatementEnd, we add it
+				# up in the history (bug 37020)
+				readline_add_history( $wholeLine . $dbw->getDelimiter() );
 				readline_write_history( $historyFile );
 			}
 			try{
