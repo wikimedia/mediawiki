@@ -234,6 +234,12 @@ class InfoAction extends FormlessAction {
 		// Page ID (number not localised, as it's a database ID)
 		$pageInfo['header-basic'][] = array( $this->msg( 'pageinfo-article-id' ), $id );
 
+		// Language in which the page content is (supposed to be) written
+		$pageLang = $title->getPageLanguage()->getCode();
+		$pageInfo['header-basic'][] = array( $this->msg( 'pageinfo-language' ),
+			Language::fetchLanguageName( $pageLang, $lang->getCode() )
+			. $this->msg( 'word-separator' ) . $this->msg( 'parentheses', $pageLang ) );
+
 		// Search engine status
 		$pOutput = new ParserOutput();
 		if ( isset( $pageProperties['noindex'] ) ) {
