@@ -45,7 +45,9 @@ class Http {
 	 *                          Otherwise it will use $wgHTTPProxy (if set)
 	 *                          Otherwise it will use the environment variable "http_proxy" (if set)
 	 *    - noProxy             Don't use any proxy at all. Takes precedence over proxy value(s).
-	 *    - sslVerifyHost       (curl only) Verify hostname against certificate
+	 *    - sslVerifyHost       (curl only) Set to 2 to verify hostname against certificate
+	 *		                    Setting to 1 (or true) will NOT verify the host name. It will
+	 *		                    only check its existence. Setting to 0 (or false) disables entirely.
 	 *    - sslVerifyCert       (curl only) Verify SSL certificate
 	 *    - caInfo              (curl only) Provide CA information
 	 *    - maxRedirects        Maximum number of redirects to follow (defaults to 5)
@@ -185,7 +187,15 @@ class MWHttpRequest {
 	protected $postData = null;
 	protected $proxy = null;
 	protected $noProxy = false;
-	protected $sslVerifyHost = true;
+	/**
+	 * Parameter passed to Curl that specifies whether
+	 * to validate SSL certificates.
+	 *
+	 * Setting to 0 disables entirely. Setting to 1 checks
+	 * the existence of a CN, but doesn't verify it. Setting
+	 * to 2 (the default) actually verifies the host.
+	 */
+	protected $sslVerifyHost = 2;
 	protected $sslVerifyCert = true;
 	protected $caInfo = null;
 	protected $method = "GET";
