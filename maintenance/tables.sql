@@ -1479,14 +1479,4 @@ CREATE TABLE /*_*/module_deps (
 ) /*$wgDBTableOptions*/;
 CREATE UNIQUE INDEX /*i*/md_module_skin ON /*_*/module_deps (md_module, md_skin);
 
--- Table for holding configuration changes
-CREATE TABLE /*_*/config (
-  -- Config var name
-  cf_name varbinary(255) NOT NULL PRIMARY KEY,
-  -- Config var value
-  cf_value blob NOT NULL
-) /*$wgDBTableOptions*/;
--- Should cover *most* configuration - strings, ints, bools, etc.
-CREATE INDEX /*i*/cf_name_value ON /*_*/config (cf_name,cf_value(255));
-
 -- vim: sw=2 sts=2 et
