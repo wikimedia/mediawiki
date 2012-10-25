@@ -1291,7 +1291,8 @@ CREATE TABLE /*_*/job (
   -- Stored as a PHP serialized array, or an empty string if there are no parameters
   job_params blob NOT NULL,
 
-  -- Random, non-unique, number used for concurrent job acquisition
+  -- Random, non-unique, number used for job acquisition
+  -- Either a simple timestamp or a totally random number (for lock concurrency)
   job_random integer unsigned NOT NULL default 0,
 
   -- Field that conveys process locks on rows via process UUIDs

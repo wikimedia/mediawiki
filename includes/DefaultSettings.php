@@ -5440,7 +5440,7 @@ $wgJobTypesExcludedFromDefaultQueue = array();
  * These settings should be global to all wikis.
  */
 $wgJobTypeConf = array(
-	'default' => array( 'class' => 'JobQueueDB' ),
+	'default' => array( 'class' => 'JobQueueDB', 'order' => 'random' ),
 );
 
 /**
