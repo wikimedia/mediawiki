@@ -282,6 +282,35 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
+	 * Return an array of files where the name starts with $prefix.
+	 *
+	 * @param string $prefix The prefix to search for
+	 * @param int $limit The maximum amount of files to return
+	 * @return array
+	 */
+	public function findFilesByPrefix( $prefix, $limit ) {
+		$selectOptions = array( 'ORDER BY' => 'img_name',
+								'LIMIT' => intval( $limit ) );
+
+		// Query database
+		$dbr = $this->getSlaveDB();
+		$res = $dbr->select(
+				'image',
+				LocalFile::selectFields(),
+				'img_name ' . $dbr->buildLike( $prefix, $dbr->anyString() ),
+				__METHOD__,
+				$selectOptions
+				);
+
+		// Build file objects
+		$files = array();
+		foreach ( $res as $row ) {
+			$files[] = $this->newFileFromRow( $row );
+		}
+		return $files;
+	}
+
+	/**
 	 * Get a connection to the slave DB
 	 * @return DatabaseBase
 	 */
