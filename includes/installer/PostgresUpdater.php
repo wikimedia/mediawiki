@@ -155,6 +155,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'archive',       'ar_sha1',              "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'uploadstash',   'us_chunk_inx',         "INTEGER NULL" ),
 			array( 'addPgField', 'job',           'job_timestamp',        "TIMESTAMPTZ" ),
+			array( 'addPgField', 'job',           'job_random',           "INTEGER NOT NULL DEFAULT 0" ),
+			array( 'addPgField', 'job',           'job_token',            "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'job',           'job_token_timestamp',  "TIMESTAMPTZ" ),
+			array( 'addPgField', 'job',           'job_sha1',             "TEXT NOT NULL DEFAULT ''" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),
@@ -228,6 +232,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgIndex', 'logging',       'logging_page_id_time',   '(log_page,log_timestamp)' ),
 			array( 'addPgIndex', 'iwlinks',       'iwl_prefix_title_from',  '(iwl_prefix, iwl_title, iwl_from)' ),
 			array( 'addPgIndex', 'job',           'job_timestamp_idx',      '(job_timestamp)' ),
+			array( 'addPgIndex', 'job',           'job_sha1',               '(job_sha1)' ),
+			array( 'addPgIndex', 'job',           'job_cmd_token',          '(job_cmd, job_token, job_random)' ),
 			array( 'addPgIndex', 'filearchive',   'fa_sha1',                '(fa_sha1)' ),
 
 			array( 'checkIndex', 'pagelink_unique', array(
