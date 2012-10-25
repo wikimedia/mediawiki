@@ -65,6 +65,10 @@ class PopulateFilearchiveSha1 extends LoggedUpdateMaintenance {
 
 			$i = 0;
 			foreach ( $res as $row ) {
+				if ( $row->fa_storage_key == '' ) {
+					// Revision was missing pre-deletion
+					continue;
+				}
 				$sha1 = LocalRepo::getHashFromKey( $row->fa_storage_key );
 				$dbw->update( $table,
 					array( 'fa_sha1' => $sha1 ),
