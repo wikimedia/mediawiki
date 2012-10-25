@@ -63,12 +63,20 @@ class MwSql extends Maintenance {
 		}
 
 		$wholeLine = '';
-		while ( ( $line = Maintenance::readconsole() ) !== false ) {
+		$newPrompt = '> ';
+		$prompt    = $newPrompt;
+		while ( ( $line = Maintenance::readconsole( $prompt ) ) !== false ) {
+			if( !$line ) {
+				# User simply pressed return key
+				continue;
+			}
 			$done = $dbw->streamStatementEnd( $wholeLine, $line );
 
 			$wholeLine .= $line;
 
 			if ( !$done ) {
+				$wholeLine .= ' ';
+				$prompt = '    -> ';
 				continue;
 			}
 			if ( $useReadline ) {
@@ -78,6 +86,7 @@ class MwSql extends Maintenance {
 			try{
 				$res = $dbw->query( $wholeLine );
 				$this->sqlPrintResult( $res, $dbw );
+				$prompt    = $newPrompt;
 				$wholeLine = '';
 			} catch (DBQueryError $e) {
 				$this->error( $e, true );
