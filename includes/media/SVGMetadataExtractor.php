@@ -46,6 +46,7 @@ class SVGReader {
 	private $reader = null;
 	private $mDebug = false;
 	private $metadata = Array();
+	private $rootIsSVG = false;
 
 	/**
 	 * Constructor
@@ -125,10 +126,15 @@ class SVGReader {
 			$keepReading = $this->reader->read();
 		}
 
-		if ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
+		if ( $this->reader->localName == 'svg' && !$this->reader->namespaceURI ) {
+			$this->rootIsSVG = true;
+		} elseif ( $this->reader->localName != 'svg' || $this->reader->namespaceURI != self::NS_SVG ) {
 			throw new MWException( "Expected <svg> tag, got ".
 				$this->reader->localName . " in NS " . $this->reader->namespaceURI );
+		} else {
+			$this->rootIsSVG = true;
 		}
+
 		$this->debug( "<svg> tag is correct." );
 		$this->handleSVGAttribs();
 
@@ -137,7 +143,7 @@ class SVGReader {
 		while ( $keepReading ) {
 			$tag = $this->reader->localName;
 			$type = $this->reader->nodeType;
-			$isSVG = ($this->reader->namespaceURI == self::NS_SVG);
+			$isSVG = $this->elementIsSVG();
 
 			$this->debug( "$tag" );
 
@@ -173,6 +179,19 @@ class SVGReader {
 	}
 
 	/**
+	 * Check if the current element that we are parsing is in the SVG namespace
+	 * If the element has no specific namespace, check if the root element was 'svg'
+	 */
+	private function elementIsSVG() {
+		if( $this->reader->namespaceURI == self::NS_SVG ||
+			(!$this->reader->namespaceURI && $this->rootIsSVG) ) {
+			return true;
+		}
+		return false;
+	}
+
+
+	/**
 	 * Read a textelement from an element
 	 *
 	 * @param String $name of the element that we are reading from
@@ -185,7 +204,7 @@ class SVGReader {
 		}
 		$keepReading = $this->reader->read();
 		while( $keepReading ) {
-			if( $this->reader->localName == $name && $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
+			if( $this->reader->localName == $name && $this->elementIsSVG() && $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
 			} elseif( $this->reader->nodeType == XmlReader::TEXT ){
 				$this->metadata[$metafield] = trim( $this->reader->value );
@@ -233,7 +252,7 @@ class SVGReader {
 			if( $this->reader->localName == $name && $this->reader->depth <= $exitDepth
 				&& $this->reader->nodeType == XmlReader::END_ELEMENT ) {
 				break;
-			} elseif ( $this->reader->namespaceURI == self::NS_SVG && $this->reader->nodeType == XmlReader::ELEMENT ) {
+			} elseif ( $this->elementIsSVG() && $this->reader->nodeType == XmlReader::ELEMENT ) {
 				switch( $this->reader->localName ) {
 					case 'script':
 						// Normally we disallow files with
