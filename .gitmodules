@@ -382,3 +382,6 @@
 [submodule "extensions/PostEdit"]
 	path = extensions/PostEdit
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PostEdit.git
+[submodule "extensions/UniversalLanguageSelector"]
+	path = extensions/UniversalLanguageSelector
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/UniversalLanguageSelector.git
