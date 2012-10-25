@@ -787,19 +787,20 @@ abstract class ContentHandler {
 		$content = $rev->getContent();
 		$blank = false;
 
-		$this->checkModelID( $content->getModel() );
-
 		// If the page is blank, use the text from the previous revision,
 		// which can only be blank if there's a move/import/protect dummy
 		// revision involved
-		if ( $content->getSize() == 0 ) {
+		if ( !$content || $content->isEmpty() ) {
 			$prev = $rev->getPrevious();
 
-			if ( $prev )	{
-				$content = $prev->getContent();
+			if ( $prev ) {
+				$rev = $prev;
+				$content = $rev->getContent();
 				$blank = true;
 			}
 		}
+
+		$this->checkModelID( $rev->getContentModel() );
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
@@ -856,7 +857,7 @@ abstract class ContentHandler {
 		}
 
 		// Max content length = max comment length - length of the comment (excl. $1)
-		$text = $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) );
+		$text = $content ? $content->getTextForSummary( 255 - ( strlen( $reason ) - 2 ) ) : '';
 
 		// Now replace the '$1' placeholder
 		$reason = str_replace( '$1', $text, $reason );
