@@ -1321,7 +1321,7 @@ class Linker {
 		self::$commentContextTitle = $title;
 		self::$commentLocal = $local;
 		$html = preg_replace_callback(
-			'/\[\[:?(.*?)(\|(.*?))*\]\]([^[]*)/',
+			'/\[\[:?([^\]|]+)(?:\|((?:]?[^\]|])*+))*\]\]([^[]*)/',
 			array( 'Linker', 'formatLinksInCommentCallback' ),
 			$comment );
 		self::$commentContextTitle = null;
@@ -1347,8 +1347,8 @@ class Linker {
 		}
 
 		# Handle link renaming [[foo|text]] will show link as "text"
-		if ( $match[3] != "" ) {
-			$text = $match[3];
+		if ( $match[2] != "" ) {
+			$text = $match[2];
 		} else {
 			$text = $match[1];
 		}
@@ -1363,7 +1363,7 @@ class Linker {
 			}
 		} else {
 			# Other kind of link
-			if ( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
+			if ( preg_match( $wgContLang->linkTrail(), $match[3], $submatch ) ) {
 				$trail = $submatch[1];
 			} else {
 				$trail = "";
