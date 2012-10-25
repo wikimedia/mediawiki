@@ -364,6 +364,17 @@ $messages = array(
 'nov' => 'ліс',
 'dec' => 'сьн',
 
+'monday-at' => 'Панядзелак, $1',
+'tuesday-at' => 'Аўторак, $1',
+'wednesday-at' => 'Серада, $1',
+'thursday-at' => 'Чацьвер, $1',
+'friday-at' => 'Пятніца, $1',
+'saturday-at' => 'Субота, $1',
+'sunday-at' => 'Нядзеля, $1',
+'today-at' => '$1',
+'yesterday-at' => 'Учора, $1',
+'just-now' => 'Толькі што',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Катэгорыя|Катэгорыі|Катэгорыі}}',
 'category_header' => 'Старонкі ў катэгорыі «$1»',
@@ -3978,4 +3989,8 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'duration-centuries' => '$1 {{PLURAL:$1|стагодзьдзе|стагодзьдзі|стагодзьдзяў}}',
 'duration-millennia' => '$1 {{PLURAL:$1|тысячагодзьдзе|тысячагодзьдзі|тысячагодзьдзяў}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|гадзіну|гадзіны|гадзінаў}} таму',
+'minutes-ago' => '$1 {{PLURAL:$1|хвіліну|хвіліны|хвілінаў}} таму',
+'seconds-ago' => '$1 {{PLURAL:$1|сэкунду|сэкунды|сэкундаў}} таму',
 );

@@ -1245,8 +1245,9 @@ Bonvolu kontroli la protokolojn.',
 'revdelete-only-restricted' => 'Eraro kaŝante la aĵon de $2, $1: Vi ne povas subpremi aĵojn de vido de administrantoj sen ankaŭ selektante unu el la aliaj subpremo-opcioj.',
 'revdelete-reason-dropdown' => '*Oftaj kialoj por forigado
 ** Aŭtorrajta neglekto
-** Maltaŭga persona informo
-** Eventualaj malhonorigaj informoj',
+** Maltaŭga komento aŭ persona informo
+** Nekonvena uzantnomo
+** Eventuale kalumnaj informoj',
 'revdelete-otherreason' => 'Alia/aldona kialo:',
 'revdelete-reasonotherlist' => 'Alia kialo',
 'revdelete-edit-reasonlist' => 'Redakti kialojn por forigo',

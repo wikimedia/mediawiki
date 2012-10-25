@@ -152,6 +152,17 @@ $messages = array(
 'nov' => 'Wam',
 'dec' => 'Duj',
 
+'monday-at' => 'Arim af $1',
+'tuesday-at' => 'Aram af $1',
+'wednesday-at' => 'Ahad af $1',
+'thursday-at' => 'Amhad af $1',
+'friday-at' => 'Sem af $1',
+'saturday-at' => 'Sed af $1',
+'sunday-at' => 'Acer af $1',
+'today-at' => '$1',
+'yesterday-at' => 'Iḍelli af $1',
+'just-now' => 'Tura kan',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Taggayt|Taggayin}}',
 'category_header' => 'Imagraden deg taggayt "$1"',
@@ -2097,7 +2108,13 @@ Tuɣalin d tadhelt :
 'deletecomment' => 'Ayɣer',
 'deleteotherreason' => 'Taɣẓint nniḍen / taɣzint tamarnant :',
 'deletereasonotherlist' => 'Taɣẓint nniḍen',
+'deletereason-dropdown' => '* Tiɣẓinin n umḥu id t-uɣalen aṭas tikkwal
+** Asuter n useqdac
+** Akukel n izerfan umeskar
+** Asfata',
 'delete-edit-reasonlist' => 'Beddel tiɣẓinin n umḥu n usebter',
+'delete-toobig' => 'Asebter agi yesɛa amezruy ameqqṛan aṭas n ibeddilen, yugar $1 {{PLURAL:$1|lqem|ileqman}}.
+Amḥu n isebtar am wagi yesɛa akref iwakken {{SITENAME}} ur yesɛu ara arway.',
 
 # Rollback
 'rollback' => 'Semmet ibeddilen',
@@ -2491,6 +2508,8 @@ Anda tebɣiḍ tesmimeḍ "[[:$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken 
 'pageinfo-views' => 'Amḍan n timuɣliwin',
 'pageinfo-watchers' => 'Amḍan n imttekkiyen yesɛan asebter agi deg umuɣ nsen n uɛassi',
 'pageinfo-subpages-name' => 'Adu-isebtar n usebter agi',
+'pageinfo-contentpage-yes' => 'Ih',
+'pageinfo-protect-cascading-yes' => 'Ih',
 
 # Patrolling
 'markaspatrolleddiff' => 'Rcem "yettwassenqden"',
@@ -2976,6 +2995,17 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 # Special:Version
 'version' => 'Lqem',
 'version-specialpages' => 'isebtar usligen',
+'version-software' => 'Iseɣẓanen i serkeben',
+'version-software-product' => 'Afaris',
+'version-software-version' => 'Lqem',
+'version-entrypoints' => 'Tansa URL n irden n wekcam',
+'version-entrypoints-header-entrypoint' => 'Ired n wekcam',
+'version-entrypoints-header-url' => 'Tansa URL',
+
+# Special:FilePath
+'filepath' => 'Abrid n wadduf ufaylu',
+'filepath-page' => 'Afaylu :',
+'filepath-submit' => 'Ruḥ',
 
 # Special:SpecialPages
 'specialpages' => 'isebtar usligen',
@@ -3011,4 +3041,8 @@ G leɛnaya-k sentem belli ṣaḥḥ tebɣiḍ ad tɛiwedeḍ axlaq n usebter-ag
 'duration-centuries' => '$1 {{PLURAL:$1|timiḍi|timiḍa}}',
 'duration-millennia' => '$1 {{PLURAL:$1|agimseggwas|agimseggwasen}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|asrag|isragen}} aya',
+'minutes-ago' => '$1 {{PLURAL:$1|tamrect|timercin}} aya',
+'seconds-ago' => '$1 {{PLURAL:$1|tasint|tisinin}} aya',
 );

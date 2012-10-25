@@ -3215,8 +3215,8 @@ J'àutri a saran stërmà coma stàndard.
 
 # Flash modes
 'exif-flash-fired-0' => "La lòsna a l'é nen ëscatà",
-'exif-flash-fired-1' => 'Flash scatà',
-'exif-flash-return-0' => "Gnun-e fonsion ëd rilevassion dl'artorn ëd lë stroboscòpi",
+'exif-flash-fired-1' => "La lòsna a l'ha scatà",
+'exif-flash-return-0' => "gnun ëstroboscòpi a dà andaré na fonsion d'artrovament",
 'exif-flash-return-2' => "lus stoboscòpica d'artorn pa arlevà",
 'exif-flash-return-3' => "lus stroboscòpica d'artorn arlevà",
 'exif-flash-mode-1' => 'scat dël flash sforsà',

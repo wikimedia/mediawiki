@@ -789,7 +789,7 @@ $2
 'noarticletext' => 'ھەنووکە ھیچ دەقێک لەم پەڕەدا نییە.
 دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تردا بگەڕێی]]، <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگەکاندا بگەڕێی]، یان [{{fullurl:{{FULLPAGENAME}}|action=edit}} ئەم پەڕە دەستکاری بکەیت]</span>.',
 'noarticletext-nopermission' => 'ھەنووکە ھیچ دەقێک لەم پەڕەیەدا نییە.
-دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تردا بگەڕێی]] یان <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگە پەیوەندیدارەکاندا بگەڕێی]</span>.',
+دەتوانی لە پەڕەکانی تردا [[Special:Search/{{PAGENAME}}|بۆ ئەم ناوە بگەڕێی]]، یان <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگە پەیوەندیدارەکاندا بگەڕێی]</span>، بەڵام ناتوانی ئەم پەڕەیە دروست بکەی.',
 'userpage-userdoesnotexist' => 'هەژماری بەکارهێنەری "<nowiki>$1</nowiki>" تۆمار نەکراوە.<br />
 گەر دەتەوێ ئەم لاپەڕە درووست‌کەی یان دەستکاری بکەی تکایە تاقی‌بکەوە .',
 'userpage-userdoesnotexist-view' => 'ھەژماری بەکارھێنەریی «$1» تۆمار نەکراوە.',

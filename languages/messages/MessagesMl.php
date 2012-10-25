@@ -437,6 +437,17 @@ $messages = array(
 'nov' => 'നവം.',
 'dec' => 'ഡിസം.',
 
+'monday-at' => 'തിങ്കളാഴ്ച്ച $1-നു്',
+'tuesday-at' => 'ചൊവ്വാഴ്ച്ച $1-നു്',
+'wednesday-at' => 'ബുധനാഴ്ച്ച $1-നു്',
+'thursday-at' => 'വ്യാഴാഴ്ച്ച $1-നു്',
+'friday-at' => 'വെള്ളിയാഴ്ച്ച $1-നു്',
+'saturday-at' => 'ശനിയാഴ്ച്ച $1-നു്',
+'sunday-at' => 'ഞായറാഴ്ച്ച $1-നു്',
+'today-at' => 'ഇന്ന് $1-നു്',
+'yesterday-at' => 'ഇന്നലെ $1-നു്',
+'just-now' => 'ഇപ്പോൾ',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|വർഗ്ഗം|വർഗ്ഗങ്ങൾ}}',
 'category_header' => '"$1" എന്ന വർഗ്ഗത്തിലെ താളുകൾ',
@@ -3120,6 +3131,9 @@ $1',
 'pageinfo-redirectsto-info' => 'വിവരം',
 'pageinfo-contentpage' => 'ഉള്ളടക്ക താളായി എണ്ണുന്നവ',
 'pageinfo-contentpage-yes' => 'അതെ',
+'pageinfo-protect-cascading' => 'സംരക്ഷണങ്ങൾ ഇവിടെ നിന്ന് നിർഝരിതപ്പെടുത്തുന്നു',
+'pageinfo-protect-cascading-yes' => 'അതെ',
+'pageinfo-protect-cascading-from' => 'സംരക്ഷണങ്ങൾ നിർഝരിതപ്പെടുത്തുന്നത്',
 
 # Skin names
 'skinname-standard' => 'സാർവത്രികം',
@@ -4031,4 +4045,8 @@ $5
 'duration-centuries' => '{{PLURAL:$1|ഒരു നൂറ്റാണ്ട്|$1 നൂറ്റാണ്ട്}}',
 'duration-millennia' => '{{PLURAL:$1|ഒരു സഹസ്രാബ്ദം|$1 സഹസ്രാബ്ദം}}',
 
+# Unknown messages
+'hours-ago' => '{{PLURAL:$1|ഒരു മണിക്കൂർ|$1 മണിക്കൂർ}} മുൻപ്',
+'minutes-ago' => '{{PLURAL:$1|ഒരു മിനിറ്റ്|$1 മിനിറ്റ്}} മുൻപ്',
+'seconds-ago' => '{{PLURAL:$1|ഒരു സെക്കന്റ്|$1 സെക്കന്റ്}} മുൻപ്',
 );
