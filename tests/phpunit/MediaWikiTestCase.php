@@ -222,12 +222,16 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected function setMwGlobals( $pairs, $value = null ) {
 		if ( !is_array( $pairs ) ) {
 			$key = $pairs;
-			$this->mwGlobals[$key] = $GLOBALS[$key];
+
+			if ( !array_key_exists( $key, $this->mwGlobals ) ) {
+				//NOTE: only set once, so the same test can modify the same global multiple times.
+				$this->mwGlobals[$key] = $GLOBALS[$key];
+			}
+
 			$GLOBALS[$key] = $value;
 		} else {
 			foreach ( $pairs as $key => $value ) {
-				$this->mwGlobals[$key] = $GLOBALS[$key];
-				$GLOBALS[$key] = $value;
+				$this->setMwGlobals( $key, $value );
 			}
 		}
 	}
