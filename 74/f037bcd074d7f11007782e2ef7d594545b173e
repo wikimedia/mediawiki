@@ -1,0 +1,10 @@
+Change-Id: I74f037bcd074d7f11007782e2ef7d594545b173e
+Code-Review+1: Jeroen De Dauw <jeroendedauw@gmail.com>
+Verified+1: jenkins-bot
+Code-Review+2: Tychay <tchay@wikimedia.org>
+Code-Review+1: Parent5446 <tylerromeo@gmail.com>
+Submitted-by: Tychay <tchay@wikimedia.org>
+Submitted-at: Thu, 25 Oct 2012 22:36:32 +0000
+Reviewed-on: https://gerrit.wikimedia.org/r/29947
+Project: mediawiki/core
+Branch: refs/heads/master
