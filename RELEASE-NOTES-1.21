@@ -49,7 +49,7 @@ production.
   to support Squid configured in forward-proxy mode, set 
   $wgSquidPurgeUseHostHeader to false.
 * (bug 37020) sql.php with readline eats semicolon
-
+* (bug 40326) Check if files exist with a different extension during uploading
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
