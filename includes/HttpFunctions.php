@@ -185,7 +185,7 @@ class MWHttpRequest {
 	protected $postData = null;
 	protected $proxy = null;
 	protected $noProxy = false;
-	protected $sslVerifyHost = true;
+	protected $sslVerifyHost = 2;
 	protected $sslVerifyCert = true;
 	protected $caInfo = null;
 	protected $method = "GET";
