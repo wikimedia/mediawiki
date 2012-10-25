@@ -454,6 +454,17 @@ $messages = array(
 'nov' => '11',
 'dec' => '12',
 
+'monday-at' => '월요일 $1',
+'tuesday-at' => '화요일 $1',
+'wednesday-at' => '수요일 $1',
+'thursday-at' => '목요일 $1',
+'friday-at' => '금요일 $1',
+'saturday-at' => '토요일 $1',
+'sunday-at' => '일요일 $1',
+'today-at' => '$1',
+'yesterday-at' => '어제 $1',
+'just-now' => '방금',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|분류}}',
 'category_header' => '"$1" 분류에 속하는 문서',
@@ -2255,6 +2266,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 # Book sources
 'booksources' => '책 찾기',
 'booksources-search-legend' => '책 찾기',
+'booksources-isbn' => 'ISBN:',
 'booksources-go' => '찾기',
 'booksources-text' => '아래의 목록은 새 책이나 중고 책을 판매하는 바깥 사이트로, 원하는 책의 정보를 얻을 수 있습니다:',
 'booksources-invalid-isbn' => '입력한 ISBN이 잘못된 것으로 보입니다. 원본과 대조해 보세요.',
@@ -4176,4 +4188,8 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
+# Unknown messages
+'hours-ago' => '$1{{PLURAL:$1|시간}} 전',
+'minutes-ago' => '$1{{PLURAL:$1|분}} 전',
+'seconds-ago' => '$1{{PLURAL:$1|초}} 전',
 );

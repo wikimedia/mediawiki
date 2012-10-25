@@ -290,6 +290,17 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'nov' => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec' => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
 
+'monday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
+'tuesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
+'wednesday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
+'thursday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
+'friday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
+'saturday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
+'sunday-at' => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
+'today-at' => 'Phrase for indicating that something occurred at a particular time today. $1 is the time.',
+'yesterday-at' => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
+'just-now' => 'Phrase for indicating that something occurred very recently (for example, less than 30 seconds ago)',
+
 # Categories related messages
 'pagecategories' => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'category_header' => 'In category description page',
@@ -3641,6 +3652,7 @@ Start with a lowercase letter, unless the first word is “SVG”.',
 
 Start with a lowercase letter, unless the first word is “SVG”.',
 'show-big-image' => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
+'show-big-image-other' => 'Message shown under the image description page thumbnail, next to {{msg-mw|show-big-image-preview}}, if the image is in high resolution.',
 'show-big-image-size' => '
 Parameters:
 * $1 is the width of the image(s) in pixels.
@@ -3719,21 +3731,6 @@ Part of variable $1 in {{msg-mw|Ago}}
 *{{msg-mw|Minutes}}
 *{{msg-mw|Hours}}
 *{{msg-mw|Days}}',
-
-'hours-ago'      => 'Phrase for indicating that something occurred a certain number of hours ago',
-'minutes-ago'    => 'Phrase for indicating that something occurred a certain number of minutes ago',
-'seconds-ago'    => 'Phrase for indicating that something occurred a certain number of seconds ago',
-
-'monday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Monday. $1 is the time.',
-'tuesday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Tuesday. $1 is the time.',
-'wednesday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Wednesday. $1 is the time.',
-'thursday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Thursday. $1 is the time.',
-'friday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Friday. $1 is the time.',
-'saturday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Saturday. $1 is the time.',
-'sunday-at'   => 'Phrase for indicating that something occurred at a particular time on the most recent Sunday. $1 is the time.',
-'today-at'       => 'Phrase for indicating that something occurred at a particular time today. $1 is the time.',
-'yesterday-at'   => 'Phrase for indicating that something occurred at a particular time yesterday. $1 is the time.',
-'just-now'       => 'Phrase for indicating that something occurred very recently (for example, less than 30 seconds ago)',
 
 # Bad image list
 'bad_image_list' => 'This message only appears to guide administrators to add links with the right format. This will not appear anywhere else in MediaWiki.',
@@ -4989,4 +4986,8 @@ $4 is the gender of the target user.',
 'api-error-uploaddisabled' => 'API error message that can be used for client side localisation of API errors.',
 'api-error-verification-error' => 'The word "extension" refers to the part behind the last dot in a file name, that by convention gives a hint about the kind of data format which a files contents are in.',
 
+# Unknown messages
+'hours-ago' => 'Phrase for indicating that something occurred a certain number of hours ago',
+'minutes-ago' => 'Phrase for indicating that something occurred a certain number of minutes ago',
+'seconds-ago' => 'Phrase for indicating that something occurred a certain number of seconds ago',
 );

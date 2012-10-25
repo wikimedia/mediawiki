@@ -198,7 +198,6 @@ $messages = array(
 'qbbrowse' => 'Çım ra viarne',
 'qbedit' => 'Bıvurne',
 'qbpageoptions' => 'Na pele',
-'qbpageinfo' => 'Gire',
 'qbmyoptions' => 'Pelê mı',
 'qbspecialpages' => 'Pelê xısusiy',
 'faq' => 'PZP (Persê ke zaf perşinê)',
@@ -1316,7 +1315,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'blocklink' => 'kilıt ke',
 'unblocklink' => 'ra ke',
 'change-blocklink' => 'mani bıvurne',
-'contribslink' => 'iştıraki',
+'contribslink' => 'iştıraqi',
 'emaillink' => 'e-poste bırusne',
 'autoblocker' => 'Sıma otomatikmen kılit biy, çıke adresa sımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gurenina.
 Sebebê kılit-biyaena $1\'i: "$2"o',

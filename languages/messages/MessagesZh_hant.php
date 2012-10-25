@@ -320,6 +320,17 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
+'monday-at' => '於星期一$1',
+'tuesday-at' => '於星期二$1',
+'wednesday-at' => '於星期三$1',
+'thursday-at' => '於星期四$1',
+'friday-at' => '於星期五$1',
+'saturday-at' => '於星期六$1',
+'sunday-at' => '於星期日$1',
+'today-at' => '$1',
+'yesterday-at' => '昨天$1',
+'just-now' => '剛才',
+
 # Categories related messages
 'pagecategories' => '$1個分類',
 'category_header' => '「$1」分類中的頁面',
@@ -3914,4 +3925,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
+# Unknown messages
+'hours-ago' => '$1小時前',
+'minutes-ago' => '$1分鐘前',
+'seconds-ago' => '$1秒前',
 );

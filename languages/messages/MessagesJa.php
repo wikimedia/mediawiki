@@ -473,6 +473,16 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
+'monday-at' => '月曜日 $1',
+'tuesday-at' => '火曜日 $1',
+'wednesday-at' => '水曜日 $1',
+'thursday-at' => '木曜日 $1',
+'friday-at' => '金曜日 $1',
+'saturday-at' => '土曜日 $1',
+'sunday-at' => '日曜日 $1',
+'today-at' => '$1',
+'yesterday-at' => '昨日 $1',
+
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|カテゴリ}}',
 'category_header' => 'カテゴリ「$1」にあるページ',
@@ -1946,7 +1956,7 @@ $1',
 'upload-file-error' => '内部エラー',
 'upload-file-error-text' => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。
 [[Special:ListUsers/sysop|管理者]]に連絡してください。',
-'upload-misc-error' => '不明なアップロードのエラー',
+'upload-misc-error' => '不明なアップロードエラー',
 'upload-misc-error-text' => 'アップロード中に不明なエラーが発生しました。
 指定した URL が正しいこととアクセスできることを確認して、もう一度試してください。
 それでもこのエラーが発生する場合は、[[Special:ListUsers/sysop|管理者]]に連絡してください。',
@@ -4033,8 +4043,8 @@ $5
 'watchlistedit-raw-titles' => 'ページ名：',
 'watchlistedit-raw-submit' => 'ウォッチリストを更新',
 'watchlistedit-raw-done' => 'ウォッチリストを更新しました。',
-'watchlistedit-raw-added' => '{{PLURAL:$1|$1 件のページ}}を追加しました：',
-'watchlistedit-raw-removed' => '{{PLURAL:$1|$1 件のページ}}を除去しました：',
+'watchlistedit-raw-added' => '{{PLURAL:$1|$1 ページ}}を追加しました：',
+'watchlistedit-raw-removed' => '{{PLURAL:$1|$1 ページ}}を除去しました：',
 
 # Watchlist editing tools
 'watchlisttools-view' => '関連する変更を閲覧',
@@ -4345,4 +4355,8 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|時間}}前',
+'minutes-ago' => '$1 {{PLURAL:$1|分}}前',
+'seconds-ago' => '$1 {{PLURAL:$1|秒}}前',
 );

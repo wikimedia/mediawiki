@@ -3016,6 +3016,8 @@ MediaWiki ବ୍ୟବହାର କରି [[Special:Import|ପୃଷ୍ଠା �
 'pageinfo-watchers' => 'ଦେଖଣାହାରି ସଂଖ୍ୟା',
 'pageinfo-edits' => 'ସମ୍ପାଦନା ସଂଖ୍ୟା',
 'pageinfo-authors' => 'ନିଆରା ଲେଖକଙ୍କ ସଂଖ୍ୟା',
+'pageinfo-contentpage-yes' => 'ହଁ',
+'pageinfo-protect-cascading-yes' => 'ହଁ',
 
 # Patrolling
 'markaspatrolleddiff' => 'ଜଗାଯାଇଅଛି ବୋଲି ଚିହ୍ନିତ କରାଗଲା',
@@ -3908,4 +3910,8 @@ MediaWiki ଉପଯୋଗୀ ହେବା ଲକ୍ଷରେ ବଣ୍ଟାଯ�
 'duration-centuries' => '$1 {{PLURAL:$1|century|centuries}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
+# Unknown messages
+'hours-ago' => '$1 {{PLURAL:$1|ଘଣ୍ଟା}} ଆଗରୁ',
+'minutes-ago' => '$1 {{PLURAL:$1|ମିନିଟ|ମିନିଟ}} ଆଗରୁ',
+'seconds-ago' => '$1 {{PLURAL:$1|ସେକେଣ୍ଡ|ସେକେଣ୍ଡ}} ଆଗରୁ',
 );
