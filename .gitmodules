@@ -382,3 +382,9 @@
 [submodule "extensions/PostEdit"]
 	path = extensions/PostEdit
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PostEdit.git
+[submodule "extensions/Diff"]
+	path = extensions/Diff
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Diff.git
+[submodule "extensions/Wikibase"]
+	path = extensions/Wikibase
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikibase.git
