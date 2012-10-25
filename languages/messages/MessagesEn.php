@@ -1396,7 +1396,7 @@ Custom .css and .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.css
 'note'                             => "'''Note:'''",
 'previewnote'                      => "'''Remember that this is only a preview.'''
 Your changes have not yet been saved!",
-'continue-editing'                 => 'Continue editing',
+'continue-editing'                 => 'Go to editing area',
 'previewconflict'                  => 'This preview reflects the text in the upper text editing area as it will appear if you choose to save.',
 'session_fail_preview'             => "'''Sorry! We could not process your edit due to a loss of session data.'''
 Please try again.
