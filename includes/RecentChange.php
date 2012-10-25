@@ -770,8 +770,9 @@ class RecentChange {
 			}
 		} else {
 			$ip = $wgRequest->getIP();
-			if ( !$ip )
+			if ( !$ip ) {
 				$ip = '';
+			}
 		}
 		return $ip;
 	}
