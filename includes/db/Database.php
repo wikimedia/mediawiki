@@ -291,6 +291,13 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * @return string: command delimiter used by this database engine
+	 */
+	public function getDelimiter() {
+		return $this->delimiter;
+	}
+
+	/**
 	 * Boolean, controls output of large amounts of debug information.
 	 * @param $debug bool|null
 	 *   - true to enable debugging
