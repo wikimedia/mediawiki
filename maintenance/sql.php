@@ -80,7 +80,8 @@ class MwSql extends Maintenance {
 				$this->sqlPrintResult( $res, $dbw );
 				$wholeLine = '';
 			} catch (DBQueryError $e) {
-				$this->error( $e, true );
+				$doDie = ! Maintenance::posix_isatty( 0 );
+				$this->error( $e, $doDie );
 			}
 		}
 	}
