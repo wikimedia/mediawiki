@@ -606,7 +606,7 @@ abstract class UploadBase {
 		}
 
 		// Check dupes against archives
-		$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
+		$archivedImage = ArchivedFile::newFromKey( $hash );
 		if ( $archivedImage->getID() > 0 ) {
 			$warnings['duplicate-archive'] = $archivedImage->getName();
 		}

@@ -68,7 +68,7 @@ class ArchivedFile {
 	 * @param int $id
 	 * @param string $key
 	 */
-	function __construct( $title, $id=0, $key='' ) {
+	function __construct( $title, $id=0, $key='', $internal = false ) {
 		$this->id = -1;
 		$this->title = false;
 		$this->name = false;
@@ -103,7 +103,7 @@ class ArchivedFile {
 			$this->key = $key;
 		}
 
-		if ( !$id && !$key && !( $title instanceof Title ) ) {
+		if ( !$internal && !$id && !$key && !( $title instanceof Title ) ) {
 			throw new MWException( "No specifications provided to ArchivedFile constructor." );
 		}
 	}
@@ -188,6 +188,21 @@ class ArchivedFile {
 	public static function newFromRow( $row ) {
 		$file = new ArchivedFile( Title::makeTitle( NS_FILE, $row->fa_name ) );
 		$file->loadFromRow( $row );
+		return $file;
+	}
+
+	/**
+	 * Loads a file object from a SHA-1 key
+	 *
+	 * @param $sha1
+	 *
+	 * @return ArchivedFile
+	 * @since 1.21
+	 */
+	public static function newFromKey( $sha1 ) {
+		$file = new ArchivedFile( null, 0, null, true );
+		$file->sha1 = $sha1;
+		$file->load();
 		return $file;
 	}
 
