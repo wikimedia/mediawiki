@@ -272,7 +272,7 @@ class SpecialWatchlist extends SpecialPage {
 		$form .= '<hr />';
 
 		$tables = array( 'recentchanges', 'watchlist' );
-		$fields = array( $dbr->tableName( 'recentchanges' ) . '.*' );
+		$fields = RecentChange::selectFields();
 		$join_conds = array(
 			'watchlist' => array(
 				'INNER JOIN',

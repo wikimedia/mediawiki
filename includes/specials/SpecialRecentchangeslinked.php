@@ -93,7 +93,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 		$dbkey = $title->getDBkey();
 
 		$tables = array( 'recentchanges' );
-		$select = array( $dbr->tableName( 'recentchanges' ) . '.*' );
+		$select = RecentChange::selectFields();
 		$join_conds = array();
 		$query_options = array();
 
