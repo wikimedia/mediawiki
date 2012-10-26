@@ -320,17 +320,6 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
-'monday-at' => '於星期一$1',
-'tuesday-at' => '於星期二$1',
-'wednesday-at' => '於星期三$1',
-'thursday-at' => '於星期四$1',
-'friday-at' => '於星期五$1',
-'saturday-at' => '於星期六$1',
-'sunday-at' => '於星期日$1',
-'today-at' => '$1',
-'yesterday-at' => '昨天$1',
-'just-now' => '剛才',
-
 # Categories related messages
 'pagecategories' => '$1個分類',
 'category_header' => '「$1」分類中的頁面',
@@ -894,7 +883,7 @@ $2
 'updated' => '（已更新）',
 'note' => "'''注意:'''",
 'previewnote' => "'''請記住這只是預覽，內容尚未儲存！'''",
-'continue-editing' => '繼續編輯',
+'continue-editing' => '往編輯框',
 'previewconflict' => '這個預覽顯示了上面文字編輯區中的內容。它將在{{GENDER:|你|妳|你}}選擇保存後出現。',
 'session_fail_preview' => "'''很抱歉！由於部份資料遺失，我們無法處理您的編輯。'''
 請再試一次。
@@ -2985,7 +2974,7 @@ $1被封禁的理由是“$2”',
 'pageinfo-lasttime' => '最新編輯日期',
 'pageinfo-edits' => '編輯總次數',
 'pageinfo-authors' => '作者總數',
-'pageinfo-recent-edits' => '最近編輯次數 (過去 $1 內)',
+'pageinfo-recent-edits' => '最近編輯次數 (過去$1內)',
 'pageinfo-recent-authors' => '最近作者數目',
 'pageinfo-magic-words' => '魔術{{PLURAL:$1|字|字}}（$1）',
 'pageinfo-hidden-categories' => '隱藏{{PLURAL:$1|分類|分類}}（$1）',
@@ -3925,8 +3914,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'duration-centuries' => '$1世紀',
 'duration-millennia' => '$1千年',
 
-# Unknown messages
-'hours-ago' => '$1小時前',
-'minutes-ago' => '$1分鐘前',
-'seconds-ago' => '$1秒前',
 );

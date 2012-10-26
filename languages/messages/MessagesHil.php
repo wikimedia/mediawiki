@@ -161,7 +161,6 @@ $messages = array(
 'qbbrowse' => 'Magbasa-basa',
 'qbedit' => 'Ilisan',
 'qbpageoptions' => 'Ining panid',
-'qbpageinfo' => 'Kahulugan/Konteksto',
 'qbmyoptions' => 'Akon mga panid',
 'qbspecialpages' => 'Pinasahi nga mga panid',
 'faq' => 'Mga masami pamangkoton',

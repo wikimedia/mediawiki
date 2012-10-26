@@ -161,7 +161,6 @@ $messages = array(
 'qbbrowse' => 'Хэплъэн',
 'qbedit' => 'Гъэтэрэзын',
 'qbpageoptions' => 'НапэкӀуэцӀым и зэгъэзэхуэгъуэр',
-'qbpageinfo' => 'НапэкIуэцIым теухуауэ',
 'qbmyoptions' => 'Уи зэгъэзэхуэгъуэхэр',
 'qbspecialpages' => 'Специал напэкӀуэцӀхэр',
 'faq' => 'FAQ',

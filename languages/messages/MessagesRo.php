@@ -409,17 +409,6 @@ pe titlul secțiunii (JavaScript)',
 'nov' => 'nov',
 'dec' => 'dec',
 
-'monday-at' => 'Luni, la $1',
-'tuesday-at' => 'Marți, la $1',
-'wednesday-at' => 'Miercuri, la $1',
-'thursday-at' => 'Joi,la $1',
-'friday-at' => 'Vineri, la $1',
-'saturday-at' => 'Sâmbătă, la $1',
-'sunday-at' => 'Duminică, la $1',
-'today-at' => '$1',
-'yesterday-at' => 'Ieri, la $1',
-'just-now' => 'Chiar acum',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorii}}',
 'category_header' => 'Pagini din categoria „$1”',
@@ -1003,7 +992,7 @@ Paginile .css și .js specifice utilizatorilor au titluri care încep cu literă
 'note' => "'''Notă:'''",
 'previewnote' => "'''Țineți cont că aceasta este doar o previzualizare.'''
 Modificările dumneavoastră nu au fost încă salvate!",
-'continue-editing' => 'Continuare editare',
+'continue-editing' => 'Mergi la zona de editare',
 'previewconflict' => 'Această pre-vizualizare reflectă textul din caseta de sus, respectiv felul în care va arăta articolul dacă alegeți să-l salvați acum.',
 'session_fail_preview' => "'''Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.
 Vă rugăm să încercați din nou.
@@ -4047,8 +4036,4 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'duration-centuries' => '$1 {{PLURAL:$1|secol|secole|de secole}}',
 'duration-millennia' => '$1 {{PLURAL:$1|mileniu|milenii|de milenii}}',
 
-# Unknown messages
-'hours-ago' => 'acum $1 {{PLURAL:$1|oră|ore|de ore}}',
-'minutes-ago' => 'acum $1 {{PLURAL:$1|minut|minute|de minute}}',
-'seconds-ago' => 'acum {{PLURAL:$1|o secundă|$1 secunde|$1 de secunde}}',
 );

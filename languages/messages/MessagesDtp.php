@@ -158,7 +158,6 @@ $messages = array(
 'qbbrowse' => 'Pogihum',
 'qbedit' => 'Idito',
 'qbpageoptions' => 'Bolikon diti',
-'qbpageinfo' => 'Pogiromutan',
 'qbmyoptions' => 'Bobolikonku ngawi',
 'qbspecialpages' => 'Bobolikon suaikowokon',
 'faq' => 'Ponguhatan Koinsoruan om Poninimbar',

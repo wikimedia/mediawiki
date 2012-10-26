@@ -377,15 +377,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dic',
 
-'monday-at' => 'Lunedì alle $1',
-'tuesday-at' => 'Martedì alle $1',
-'wednesday-at' => 'Mercoledì alle $1',
-'thursday-at' => 'Giovedì alle $1',
-'friday-at' => 'Venerdì alle $1',
-'saturday-at' => 'Sabato alle $1',
-'sunday-at' => 'Domenica alle $1',
-'yesterday-at' => 'Ieri alle $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categoria|Categorie}}',
 'category_header' => 'Pagine nella categoria "$1"',
@@ -950,7 +941,7 @@ L'ultimo elemento del registro dei blocchi è riportato di seguito per informazi
 'note' => "'''Nota:'''",
 'previewnote' => "'''Ricorda che questa è solo un'anteprima.'''
 Le tue modifiche NON sono ancora state salvate!",
-'continue-editing' => 'Continua a modificare',
+'continue-editing' => "Vai all'area di modifica",
 'previewconflict' => 'L\'anteprima corrisponde al testo presente nella casella di modifica superiore e rappresenta la pagina come apparirà se si sceglie di premere "Salva la pagina" in questo momento.',
 'session_fail_preview' => "'''Non è stato possibile elaborare la modifica perché sono andati persi i dati relativi alla sessione.
 Riprovare.
@@ -3961,8 +3952,4 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'duration-centuries' => '$1 {{PLURAL:$1|secolo|secoli}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennio|millenni}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|ora|ore}} fa',
-'minutes-ago' => '$1 {{PLURAL:$1|minuto|minuti}} fa',
-'seconds-ago' => '$1 {{PLURAL:$1|secondo|secondi}} fa',
 );

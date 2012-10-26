@@ -473,16 +473,6 @@ $messages = array(
 'nov' => '11月',
 'dec' => '12月',
 
-'monday-at' => '月曜日 $1',
-'tuesday-at' => '火曜日 $1',
-'wednesday-at' => '水曜日 $1',
-'thursday-at' => '木曜日 $1',
-'friday-at' => '金曜日 $1',
-'saturday-at' => '土曜日 $1',
-'sunday-at' => '日曜日 $1',
-'today-at' => '$1',
-'yesterday-at' => '昨日 $1',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|カテゴリ}}',
 'category_header' => 'カテゴリ「$1」にあるページ',
@@ -1093,8 +1083,8 @@ IP アドレスは複数の利用者で共有されている場合がありま�
 'updated' => '（更新）',
 'note' => "'''お知らせ：'''",
 'previewnote' => "'''これはプレビューです。'''
-変更箇所はまだ保存されていません！",
-'continue-editing' => '編集を続行',
+変更内容はまだ保存されていません!",
+'continue-editing' => '編集エリアに移動',
 'previewconflict' => 'これは、上の編集エリアの文章を保存した場合にどう表示されるかを示すプレビューです。',
 'session_fail_preview' => "'''申し訳ありません！セッションデータが消失したため編集を処理できませんでした。'''
 もう一度やり直してください。
@@ -4355,8 +4345,4 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'duration-centuries' => '$1 {{PLURAL:$1|世紀}}',
 'duration-millennia' => '$1{{PLURAL:$1|,000 年}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|時間}}前',
-'minutes-ago' => '$1 {{PLURAL:$1|分}}前',
-'seconds-ago' => '$1 {{PLURAL:$1|秒}}前',
 );

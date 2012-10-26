@@ -156,7 +156,6 @@ $messages = array(
 'qbbrowse' => 'ara',
 'qbedit' => 'modifi el page (baddelha)',
 'qbpageoptions' => 'هذه الصفحة',
-'qbpageinfo' => 'سياق النص',
 'qbmyoptions' => 'صفحاتي',
 'qbspecialpages' => 'الصفحات الخاصة',
 'faq' => 'الأسئلة الأكثر تكرارا',

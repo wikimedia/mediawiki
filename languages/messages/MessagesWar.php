@@ -457,7 +457,7 @@ An magdudurmara nga nagtrangka hini in naghatag hini nga eksplenasyon: "$3".',
 'exception-nologin-text' => 'Ini nga pakli o pagbuhat in nagkikinahanglan nga ikaw in mag-log-in ha dinhi nga wiki.',
 
 # Virus scanner
-'virus-scanfailed' => 'Nagpalya an pag-scan (kodigo $1)',
+'virus-scanfailed' => 'Pakyas an pag-scan (kodigo $1)',
 'virus-unknownscanner' => 'diri-nasasabtan nga antivirus:',
 
 # Login and logout pages
@@ -555,7 +555,7 @@ Ikaw in naglalog-in yana...',
 Temporaryo nga tigaman han pagsakob: $2',
 'passwordreset-emailsent' => 'Ginpadara hin usa ka pahinumdom nga e-mail.',
 'passwordreset-emailsent-capture' => 'Mayda pahinumdom nga ginpadangat ha im e-mail, kun diin ini in ginpapakita ha ubos.',
-'passwordreset-emailerror-capture' => 'Mayda pahinumdom nga e-mail han nahimo, kun diin ini in ginpapakita ha ubos, pero an pagpadangat ngada ha gumaramit in nagpalya: $1',
+'passwordreset-emailerror-capture' => 'Mayda pahinumdom nga e-mail han nahimo, kun diin ini in ginpapakita ha ubos, pero pakyas an pagpadangat ngada ha gumaramit: $1',
 
 # Special:ChangeEmail
 'changeemail' => 'Igliwan an e-mail address',
@@ -1469,7 +1469,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'undeletelink' => 'igpakita/igbalik',
 'undeleteviewlink' => 'kitaa',
 'undeletecomment' => 'Katadungan:',
-'cannotundelete' => 'Nagpalya an pabalik han pinara:
+'cannotundelete' => 'Pakyas an pagpabalik han pinara:
 $1',
 'undelete-search-title' => 'Pamiling hin mga ginpara nga mga pakli',
 'undelete-search-box' => 'Pamiling hin mga ginpara nga mga pakli',
@@ -2212,7 +2212,7 @@ An iba in daan nakatago.
 'feedback-subject' => 'Himangrawon:',
 'feedback-message' => 'Mensahe:',
 'feedback-cancel' => 'Pasagdi',
-'feedback-error2' => 'Sayop: Nagpalya an pagliwat',
+'feedback-error2' => 'Sayop: Pakyas an pagliwat',
 'feedback-close' => 'Human na.',
 
 # Search suggestions

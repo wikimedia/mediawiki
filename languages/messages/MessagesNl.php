@@ -460,17 +460,6 @@ $messages = array(
 'nov' => 'nov',
 'dec' => 'dec',
 
-'monday-at' => 'Maandag om $1',
-'tuesday-at' => 'Dinsdag om $1',
-'wednesday-at' => 'Woensdag om $1',
-'thursday-at' => 'Donderdag om $1',
-'friday-at' => 'Vrijdag om $1',
-'saturday-at' => 'Zaterdag om $1',
-'sunday-at' => 'Zondag om $1',
-'today-at' => '$1',
-'yesterday-at' => 'Gisteren om $1',
-'just-now' => 'Daarnet',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Categorie|Categorieën}}',
 'category_header' => 'Pagina’s in categorie "$1"',
@@ -1079,7 +1068,7 @@ Uw eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns
 'note' => "'''Opmerking:'''",
 'previewnote' => "'''Let op: dit is een controlepagina.'''
 Uw tekst is niet opgeslagen!",
-'continue-editing' => 'Doorgaan met bewerken',
+'continue-editing' => 'Naar het bewerkingsvenster gaan',
 'previewconflict' => 'Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als u deze opslaat.',
 'session_fail_preview' => "'''Uw bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.
 Probeer het opnieuw.
@@ -4211,8 +4200,4 @@ Anders kunt u ook het eenvoudige formulier hieronder gebruiken. Uw reactie wordt
 'duration-centuries' => '$1 {{PLURAL:$1|eeuw|eeuwen}}',
 'duration-millennia' => '$1 {{PLURAL:$1|millennium|millennia}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|uur}} geleden',
-'minutes-ago' => '$1 {{PLURAL:$1|minuut|minuten}} geleden',
-'seconds-ago' => '$1 {{PLURAL:$1|seconde|seconden}} geleden',
 );

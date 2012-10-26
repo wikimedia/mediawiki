@@ -541,17 +541,6 @@ $messages = array(
 'nov' => 'نوامبر',
 'dec' => 'دسامبر',
 
-'monday-at' => 'دوشنبهٔ $1',
-'tuesday-at' => 'سه‌شنبهٔ $1',
-'wednesday-at' => 'چهارشنبهٔ $1',
-'thursday-at' => 'پنج‌شنبهٔ $1',
-'friday-at' => 'جمعهٔ $1',
-'saturday-at' => 'شنبهٔ $1',
-'sunday-at' => 'یک‌شنبهٔ $1',
-'today-at' => '$1',
-'yesterday-at' => 'دیروز $1',
-'just-now' => 'هم‌اکنون',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|رده|رده‌ها}}',
 'category_header' => 'صفحه‌های ردهٔ «$1»',
@@ -4269,8 +4258,4 @@ $5
 'duration-centuries' => '$1 قرن',
 'duration-millennia' => '{{PLURAL:$1|هزار سال |$1 هزار سال}}',
 
-# Unknown messages
-'hours-ago' => '$1 {{PLURAL:$1|ساعت|ساعت}} قبل',
-'minutes-ago' => '$1 {{PLURAL:$1|دقیقه|دقیقه}} قبل',
-'seconds-ago' => '$1 {{PLURAL:$1|ثانیه|ثانیه}} قبل',
 );

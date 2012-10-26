@@ -990,7 +990,7 @@ Strony użytkownika zawierające CSS i JavaScript powinny zaczynać się małą 
 'note' => "'''Uwaga:'''",
 'previewnote' => "'''To jest tylko podgląd'''
 Zmiany nie zostały jeszcze zapisane!",
-'continue-editing' => 'Kontynuuj edycję',
+'continue-editing' => 'Przejdź do pola edycji',
 'previewconflict' => 'Podgląd odnosi się do tekstu z górnego pola edycji. Tak będzie wyglądać strona, jeśli zdecydujesz się ją zapisać.',
 'session_fail_preview' => "'''Uwaga! Serwer nie może przetworzyć tej edycji z powodu utraty danych sesji.
 Spróbuj jeszcze raz.
@@ -1072,6 +1072,15 @@ Zdaje się, że została skasowana.',
 'edit-already-exists' => 'Nie udało się stworzyć nowej strony.
 Strona już istnieje.',
 'defaultmessagetext' => 'Domyślny tekst komunikatu',
+'content-failed-to-parse' => 'Format zawartości typu $2 (dla modelu: $1) nieprawidłowy: $3',
+'invalid-content-data' => 'Zawartość strony zawiera nieprawidłowe dane',
+'content-not-allowed-here' => 'Zawartość tego typu ($1) nie jest dozwolona na stronie [[$2]]',
+
+# Content models
+'content-model-wikitext' => 'wikitekst',
+'content-model-text' => 'zwykły tekst',
+'content-model-javascript' => 'JavaScript',
+'content-model-css' => 'CSS',
 
 # Parser/template warnings
 'expensive-parserfunction-warning' => 'Uwaga! Ta strona zawiera zbyt wiele wywołań złożonych obliczeniowo funkcji parsera.
@@ -1987,7 +1996,7 @@ Być może zechcesz zmienić opis na tej [$2 stronie opisu pliku].',
 'uploadnewversion-linktext' => 'Załaduj nowszą wersję tego pliku',
 'shared-repo-from' => 'z $1',
 'shared-repo' => 'współdzielone zasoby',
-'upload-disallowed-here' => 'Niestety, nie możesz nadpisać tego pliku.',
+'upload-disallowed-here' => 'Nie możesz nadpisać tego pliku.',
 
 # File reversion
 'filerevert' => 'Przywracanie $1',
@@ -2529,8 +2538,8 @@ Możesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z arc
 'undeletedrevisions' => 'odtworzono {{PLURAL:$1|1 wersję|$1 wersje|$1 wersji}}',
 'undeletedrevisions-files' => 'odtworzono $1 {{PLURAL:$1|wersję|wersje|wersji}} i $2 {{PLURAL:$2|plik|pliki|plików}}',
 'undeletedfiles' => 'odtworzył $1 {{PLURAL:$1|plik|pliki|plików}}',
-'cannotundelete' => 'Odtworzenie nie powiodło się.
-Ktoś inny prawdopodobnie odtworzył już tę stronę.',
+'cannotundelete' => 'Odtworzenie nie powiodło się:
+$1',
 'undeletedpage' => "'''Odtworzono stronę $1.'''
 
 Zobacz [[Special:Log/delete|rejestr usunięć]], jeśli chcesz przejrzeć ostatnie operacje usuwania i odtwarzania stron.",
@@ -2836,6 +2845,7 @@ Strony nie można przenieść na nią samą.',
 'immobile-target-namespace-iw' => 'Link interwiki jest nieprawidłowym tytułem, pod który miałaby być przeniesiona strona.',
 'immobile-source-page' => 'Tej strony nie można przenieść.',
 'immobile-target-page' => 'Nie można przenieść pod wskazany tytuł.',
+'bad-target-model' => 'Strona docelowa używa innego modelu zawartości. Konwersja $1 → $2 nie jest możliwa.',
 'imagenocrossnamespace' => 'Nie można przenieść grafiki do przestrzeni nazw nie przeznaczonej dla grafik',
 'nonfile-cannot-move-to-file' => 'Nie można przenieść obiektu nie będącego plikiem do przestrzeni nazw „{{ns:file}}“',
 'imagetypemismatch' => 'Nowe rozszerzenie nazwy pliku jest innego typu niż zawartość',
@@ -3095,6 +3105,7 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 
 # Info page
 'pageinfo-title' => 'Informacje o „$1“',
+'pageinfo-not-current' => 'Informacje mogą być wyświetlane tylko dla najnowszej wersji strony.',
 'pageinfo-header-basic' => 'Podstawowe informacje',
 'pageinfo-header-edits' => 'Historia edycji',
 'pageinfo-header-restrictions' => 'Zmień zabezpieczenie',
@@ -3122,6 +3133,14 @@ Najprawdopodobniej zostało to spowodowane przez link do zewnętrznej strony int
 'pageinfo-magic-words' => 'Magiczne {{PLURAL:$1|słowo|słowa|słowa}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie|Ukryte kategorie}} ($1)',
 'pageinfo-templates' => 'Wykorzystywan{{PLURAL:$1|y szablon|e szablony}} ($1)',
+'pageinfo-toolboxlink' => 'Informacje o tej stronie',
+'pageinfo-redirectsto' => 'Przekierowuje na',
+'pageinfo-redirectsto-info' => 'informacje',
+'pageinfo-contentpage' => 'Liczona jako artykuł',
+'pageinfo-contentpage-yes' => 'Tak',
+'pageinfo-protect-cascading' => 'Zabezpieczona z włączoną opcją dziedziczenia',
+'pageinfo-protect-cascading-yes' => 'Tak',
+'pageinfo-protect-cascading-from' => 'Zabezpieczenie dziedziczone z',
 
 # Skin names
 'skinname-standard' => 'Standardowa',
@@ -3717,6 +3736,7 @@ Kod zawarty w linku straci ważność $4.',
 # Scary transclusion
 'scarytranscludedisabled' => '[Transkluzja przez interwiki jest wyłączona]',
 'scarytranscludefailed' => '[Pobranie szablonu dla $1 nie powiodło się]',
+'scarytranscludefailed-httpstatus' => '[Pobranie szablonu dla $1 nie powiodło się: HTTP $2]',
 'scarytranscludetoolong' => '[zbyt długi adres URL]',
 
 # Delete conflict

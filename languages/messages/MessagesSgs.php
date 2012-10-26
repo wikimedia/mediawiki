@@ -198,7 +198,6 @@ $messages = array(
 'qbbrowse' => 'Naršītė',
 'qbedit' => 'Taisītė',
 'qbpageoptions' => 'Tas poslapis',
-'qbpageinfo' => 'Konteksts',
 'qbmyoptions' => 'Mona poslapē',
 'qbspecialpages' => 'Specēlė̅jė poslapē',
 'faq' => 'DOK',

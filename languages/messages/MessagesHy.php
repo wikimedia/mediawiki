@@ -2274,6 +2274,7 @@ Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and 
 'pageinfo-watchers' => 'Դիտողների քանակ',
 'pageinfo-edits' => 'Խմբագրումների քանակ',
 'pageinfo-authors' => 'Տարբեր հեղինակների քանակ',
+'pageinfo-toolboxlink' => 'Էջի մասին տեղեկություն',
 
 # Skin names
 'skinname-standard' => 'Դասական',

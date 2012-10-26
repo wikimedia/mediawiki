@@ -454,17 +454,6 @@ $messages = array(
 'nov' => '11',
 'dec' => '12',
 
-'monday-at' => '월요일 $1',
-'tuesday-at' => '화요일 $1',
-'wednesday-at' => '수요일 $1',
-'thursday-at' => '목요일 $1',
-'friday-at' => '금요일 $1',
-'saturday-at' => '토요일 $1',
-'sunday-at' => '일요일 $1',
-'today-at' => '$1',
-'yesterday-at' => '어제 $1',
-'just-now' => '방금',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|분류}}',
 'category_header' => '"$1" 분류에 속하는 문서',
@@ -1063,7 +1052,7 @@ IP 주소는 여러 사용자가 공유할 수 있습니다.
 'note' => "'''참고:'''",
 'previewnote' => "'''이 화면은 미리 보기입니다.'''
 편집한 내용은 아직 저장되지 않았습니다!",
-'continue-editing' => '계속 편집하기',
+'continue-editing' => '편집 영역으로 가기',
 'previewconflict' => '이 미리 보기는 저장할 때의 모습으로 위쪽 편집창의 문서를 반영합니다.',
 'session_fail_preview' => "'''세션 데이터가 없어져 편집을 저장하지 못했습니다.'''
 다시 시도하세요.
@@ -4188,8 +4177,4 @@ $5
 'duration-centuries' => '$1{{PLURAL:$1|세기}}',
 'duration-millennia' => '$1{{PLURAL:$1|천년}}',
 
-# Unknown messages
-'hours-ago' => '$1{{PLURAL:$1|시간}} 전',
-'minutes-ago' => '$1{{PLURAL:$1|분}} 전',
-'seconds-ago' => '$1{{PLURAL:$1|초}} 전',
 );

@@ -940,12 +940,12 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'rcnotefrom' => "Cêr de vurnayîşê esto ke '''$2''' ra raver  (heta '''$1''' mucnayiyo).",
 'rclistfrom' => '$1 ra hata nıka vurnaisunê newu bıasne',
 'rcshowhideminor' => '$1 vurnaisê qızkeki',
-'rcshowhidebots' => 'botê $1i',
-'rcshowhideliu' => '$1 karberê qeydbiyaey',
+'rcshowhidebots' => 'Botu $1',
+'rcshowhideliu' => 'Karberunê qeydbiyayu $1',
 'rcshowhideanons' => '$1 karberê anonimi',
 'rcshowhidepatr' => 'Vurnayışê cıyê vênıtey $1',
-'rcshowhidemine' => '$1 vurnaisê mı',
-'rclinks' => '$1 vurnaisunê peyênunê $2 rozunê<br />$3 peyênun bıasne',
+'rcshowhidemine' => 'Vurnayisanê mı $1',
+'rclinks' => 'Peyniya $2 rozu de $1 vurnayisu bıasne <br />$3',
 'diff' => 'ferq',
 'hist' => 'ver',
 'hide' => 'Bınımne',
@@ -1253,7 +1253,7 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 
 # Namespace form on various pages
 'namespace' => 'Caê namey:',
-'invert' => 'Weçinıtu ra qêri bıasne',
+'invert' => 'Weçinıtiso peyserki',
 'blanknamespace' => '(Ser)',
 
 # Contributions

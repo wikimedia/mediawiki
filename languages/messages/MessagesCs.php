@@ -468,17 +468,6 @@ $messages = array(
 'nov' => '11.',
 'dec' => '12.',
 
-'monday-at' => 'v pondělí v $1',
-'tuesday-at' => 'v úterý v $1',
-'wednesday-at' => 've středu v $1',
-'thursday-at' => 've čtvrtek v $1',
-'friday-at' => 'v pátek v $1',
-'saturday-at' => 'v sobotu v $1',
-'sunday-at' => 'v neděli v $1',
-'today-at' => '$1',
-'yesterday-at' => 'včera v $1',
-'just-now' => 'Právě teď',
-
 # Categories related messages
 'pagecategories' => '{{PLURAL:$1|Kategorie|Kategorie|Kategorie}}',
 'category_header' => 'Stránky v kategorii „$1“',
@@ -1052,7 +1041,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'note' => "'''Poznámka:'''&nbsp;",
 'previewnote' => "'''Pamatujte, že toto je pouze náhled.'''
 Změny zatím nebyly uloženy!",
-'continue-editing' => 'Pokračovat v editaci',
+'continue-editing' => 'Přejít k editačnímu poli',
 'previewconflict' => 'Tento náhled ukazuje text tak, jak bude vypadat po uložení stránky.',
 'session_fail_preview' => "'''Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.
 Zkuste to prosím znovu.
@@ -4134,8 +4123,4 @@ Jinak můžete využít jednoduchý formulář níže. Váš komentář bude př
 'duration-centuries' => '$1 {{PLURAL:$1|století}}',
 'duration-millennia' => '$1 {{PLURAL:$1|tisíciletí}}',
 
-# Unknown messages
-'hours-ago' => 'před $1 {{PLURAL:$1|hodinou|hodinami}}',
-'minutes-ago' => 'před $1 {{PLURAL:$1|minutou|minutami}}',
-'seconds-ago' => 'před $1 {{PLURAL:$1|sekundou|sekundami}}',
 );

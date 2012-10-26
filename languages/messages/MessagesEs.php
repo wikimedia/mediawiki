@@ -1057,7 +1057,7 @@ La última entrada del registro de bloqueos se proporciona debajo para mayor ref
 'note' => "'''Nota:'''",
 'previewnote' => "'''¡Recuerda que esto es solo una previsualización.'''
 ¡Tus cambios aún no se ha guardado!",
-'continue-editing' => 'Continuar editando',
+'continue-editing' => 'Ir al área de edición',
 'previewconflict' => 'Esta previsualización refleja el texto en el área de edición superior como aparecerá una vez guardados los cambios.',
 'session_fail_preview' => "'''Lo sentimos, no pudimos procesar la edición debido a una pérdida de los datos de sesión.'''
 Por favor, inténtalo de nuevo.

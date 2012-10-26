@@ -3111,6 +3111,16 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'pageinfo-authors' => 'Número total de autores distintos',
 'pageinfo-recent-edits' => 'Número de edições recentes (nos últimos $1)',
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
+'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|predefinição transcluída|predefinições transcluídas}}',
+'pageinfo-toolboxlink' => 'Informações da página',
+'pageinfo-redirectsto' => 'Redirecionar para',
+'pageinfo-redirectsto-info' => 'informações',
+'pageinfo-contentpage' => 'Contado como uma página de conteúdo',
+'pageinfo-contentpage-yes' => 'Sim',
+'pageinfo-protect-cascading' => 'Proteção em cascata ativada',
+'pageinfo-protect-cascading-yes' => 'Sim',
 
 # Skin names
 'skinname-standard' => 'Clássico',
@@ -3124,7 +3134,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 
 # Patrolling
 'markaspatrolleddiff' => 'Marcar como patrulhada',
-'markaspatrolledtext' => 'Marcar esta página como verificada',
+'markaspatrolledtext' => 'Marcar esta página como patrulhada',
 'markedaspatrolled' => 'Marcado como verificado',
 'markedaspatrolledtext' => 'A revisão selecionada de [[:$1]] foi marcada como patrulhada.',
 'rcpatroldisabled' => 'Edições verificadas nas Mudanças Recentes desativadas',

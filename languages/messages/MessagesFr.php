@@ -378,7 +378,7 @@ $messages = array(
 'tog-hideminor' => 'Masquer les modifications mineures dans les modifications récentes',
 'tog-hidepatrolled' => 'Masquer les modifications surveillées dans les modifications récentes',
 'tog-newpageshidepatrolled' => 'Masquer les pages surveillées parmi les nouvelles pages',
-'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et non seulement les plus récentes',
+'tog-extendwatchlist' => 'Étendre la liste de suivi pour afficher toutes les modifications et pas uniquement les plus récentes',
 'tog-usenewrc' => 'Grouper les changements dans les modifications récentes et la liste de suivi (nécessite JavaScript)',
 'tog-numberheadings' => 'Numéroter automatiquement les titres de section',
 'tog-showtoolbar' => "Montrer la barre d'outils de modification (nécessite JavaScript)",
@@ -1056,7 +1056,7 @@ La dernière entrée du registre des blocages est indiquée ci-dessous à titre 
 'note' => "'''Note :'''",
 'previewnote' => "'''Rappelez-vous que ce n’est qu’une prévisualisation.'''
 Vos modifications n’ont pas encore été enregistrées !",
-'continue-editing' => 'Continuer la modification',
+'continue-editing' => 'Aller à modification de la zone',
 'previewconflict' => 'Cette prévisualisation montre le texte de la boîte supérieure de modification tel qu’il apparaîtra si vous choisissez de le publier.',
 'session_fail_preview' => "'''Nous ne pouvons enregistrer votre modification à cause d’une perte d’informations concernant votre session.'''
 Veuillez réessayer.
@@ -3195,6 +3195,13 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Modèle inclu|Modèles inclus}} ($1)',
 'pageinfo-toolboxlink' => 'Information sur la page',
+'pageinfo-redirectsto' => 'Rediriger vers',
+'pageinfo-redirectsto-info' => 'info',
+'pageinfo-contentpage' => 'Compté comme page de contenu',
+'pageinfo-contentpage-yes' => 'Oui',
+'pageinfo-protect-cascading' => "Les protections sont déduites d'ici",
+'pageinfo-protect-cascading-yes' => 'Oui',
+'pageinfo-protect-cascading-from' => 'Les protections sont déduites depuis',
 
 # Skin names
 'skinname-standard' => 'Standard',

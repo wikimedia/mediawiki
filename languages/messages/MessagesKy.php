@@ -135,7 +135,6 @@ $messages = array(
 'qbbrowse' => 'Сереп сал',
 'qbedit' => 'Оңдоо',
 'qbpageoptions' => 'Бул барак',
-'qbpageinfo' => 'Контекст',
 'qbmyoptions' => 'Барактарым',
 'qbspecialpages' => 'Атайын барактар',
 'faq' => 'КБС',

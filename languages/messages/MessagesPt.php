@@ -3147,6 +3147,7 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 'pageinfo-recent-authors' => 'Número recente de autores distintos',
 'pageinfo-magic-words' => '{{PLURAL:$1|Palavra mágica|Palavras mágicas}} ($1)',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Categoria oculta|Categorias ocultas}} ($1)',
+'pageinfo-toolboxlink' => 'Informações da página',
 
 # Skin names
 'skinname-standard' => 'Clássico',
