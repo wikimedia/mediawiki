@@ -1827,12 +1827,13 @@ class Language {
 		# will normalize out-of-range values so we don't have to split $minDiff
 		# into hours and minutes.
 		$t = mktime( (
-		  (int)substr( $ts, 8, 2 ) ), # Hours
-		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
-		  (int)substr( $ts, 12, 2 ), # Seconds
-		  (int)substr( $ts, 4, 2 ), # Month
-		  (int)substr( $ts, 6, 2 ), # Day
-		  (int)substr( $ts, 0, 4 ) ); # Year
+			(int)substr( $ts, 8, 2 ) ), # Hours
+			(int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
+			(int)substr( $ts, 12, 2 ), # Seconds
+			(int)substr( $ts, 4, 2 ), # Month
+			(int)substr( $ts, 6, 2 ), # Day
+			(int)substr( $ts, 0, 4 ) # Year
+		);
 
 		$date = date( 'YmdHis', $t );
 		wfRestoreWarnings();
@@ -2866,30 +2867,30 @@ class Language {
 		return "<em>$text</em>";
 	}
 
-	 /**
-	  * Normally we output all numbers in plain en_US style, that is
-	  * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
-	  * point twohundredthirtyfive. However this is not suitable for all
-	  * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
-	  * Icelandic just want to use commas instead of dots, and dots instead
-	  * of commas like "293.291,235".
-	  *
-	  * An example of this function being called:
-	  * <code>
-	  * wfMessage( 'message' )->numParams( $num )->text()
-	  * </code>
-	  *
-	  * See LanguageGu.php for the Gujarati implementation and
-	  * $separatorTransformTable on MessageIs.php for
-	  * the , => . and . => , implementation.
-	  *
-	  * @todo check if it's viable to use localeconv() for the decimal
-	  *       separator thing.
-	  * @param $number Mixed: the string to be formatted, should be an integer
-	  *        or a floating point number.
-	  * @param $nocommafy Bool: set to true for special numbers like dates
-	  * @return string
-	  */
+	/**
+	 * Normally we output all numbers in plain en_US style, that is
+	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
+	 * point twohundredthirtyfive. However this is not suitable for all
+	 * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
+	 * Icelandic just want to use commas instead of dots, and dots instead
+	 * of commas like "293.291,235".
+	 *
+	 * An example of this function being called:
+	 * <code>
+	 * wfMessage( 'message' )->numParams( $num )->text()
+	 * </code>
+	 *
+	 * See LanguageGu.php for the Gujarati implementation and
+	 * $separatorTransformTable on MessageIs.php for
+	 * the , => . and . => , implementation.
+	 *
+	 * @todo check if it's viable to use localeconv() for the decimal
+	 *       separator thing.
+	 * @param $number Mixed: the string to be formatted, should be an integer
+	 *        or a floating point number.
+	 * @param $nocommafy Bool: set to true for special numbers like dates
+	 * @return string
+	 */
 	public function formatNum( $number, $nocommafy = false ) {
 		global $wgTranslateNumerals;
 		if ( !$nocommafy ) {
@@ -3364,7 +3365,7 @@ class Language {
 	function getGrammarForms() {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms[$this->getCode()] ) && is_array( $wgGrammarForms[$this->getCode()] ) ) {
-			 return $wgGrammarForms[$this->getCode()];
+			return $wgGrammarForms[$this->getCode()];
 		}
 		return array();
 	}

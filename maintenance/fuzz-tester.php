@@ -145,8 +145,8 @@ Wiki configuration for testing:
   error_reporting (E_ALL | E_STRICT);
   set_error_handler( 'error_handler' );
   function error_handler ($type, $message, $file=__FILE__, $line=__LINE__) {
-	 if ($message == "var: Deprecated. Please use the public/private/protected modifiers") return;
-	 print "<br />\n<b>Strict Standards:</b> Type: <b>$type</b>:  $message in <b>$file</b> on line <b>$line</b><br />\n";
+	if ($message == "var: Deprecated. Please use the public/private/protected modifiers") return;
+	print "<br />\n<b>Strict Standards:</b> Type: <b>$type</b>:  $message in <b>$file</b> on line <b>$line</b><br />\n";
   }
   // --------- End ---------
 
@@ -1947,7 +1947,7 @@ class specialChemicalsourcesTest extends pageTest {
 							'DrugBank',
 							'Formula',
 							'Name'
-						 )
+						)
 					);
 
 		// values for different formats usually start with either letters or numbers.
@@ -2005,19 +2005,19 @@ class api extends pageTest {
 		// @todo FIXME: Add "wikiFuzz::makeFuzz(2)" as possible params for the elements below?
 		//        Suspect this will stuff up the tests more, but need to check.
 		$params = array (
-					 // @todo FIXME: More titles.
-					 "titles"        => wikiFuzz::chooseInput( array( "Main Page" ) ),
-					 // @todo FIXME: More pageids.
-					 "pageids"       => 1,
-					 "prop"          => wikiFuzz::chooseInput( array( "info", "revisions", "watchlist" ) ),
-					 "list"          => wikiFuzz::chooseInput( array( "allpages", "logevents", "watchlist", "usercontribs", "recentchanges", "backlinks", "embeddedin", "imagelinks" ) ),
-					 "meta"          => wikiFuzz::chooseInput( array( "siteinfo" ) ),
-					 "generator"     => wikiFuzz::chooseInput( array( "allpages", "logevents", "watchlist", "info", "revisions" ) ),
-					 "siprop"        => wikiFuzz::chooseInput( array( "general", "namespaces", "general|namespaces" ) ),
-				   );
+					// @todo FIXME: More titles.
+					"titles"        => wikiFuzz::chooseInput( array( "Main Page" ) ),
+					// @todo FIXME: More pageids.
+					"pageids"       => 1,
+					"prop"          => wikiFuzz::chooseInput( array( "info", "revisions", "watchlist" ) ),
+					"list"          => wikiFuzz::chooseInput( array( "allpages", "logevents", "watchlist", "usercontribs", "recentchanges", "backlinks", "embeddedin", "imagelinks" ) ),
+					"meta"          => wikiFuzz::chooseInput( array( "siteinfo" ) ),
+					"generator"     => wikiFuzz::chooseInput( array( "allpages", "logevents", "watchlist", "info", "revisions" ) ),
+					"siprop"        => wikiFuzz::chooseInput( array( "general", "namespaces", "general|namespaces" ) ),
+				);
 
-		 // Add extra parameters based on what list choice we got.
-		 switch ( $params["list"] ) {
+		// Add extra parameters based on what list choice we got.
+		switch ( $params["list"] ) {
 			case "usercontribs" : self::addListParams ( $params, "uc", array( "limit", "start", "end", "user", "dir" ) ); break;
 			case "allpages"     : self::addListParams ( $params, "ap", array( "from", "prefix", "namespace", "filterredir", "limit" ) ); break;
 			case "watchlist"    : self::addListParams ( $params, "wl", array( "allrev", "start", "end", "namespace", "dir", "limit", "prop" ) ); break;
@@ -2026,18 +2026,18 @@ class api extends pageTest {
 			case "backlinks"    : self::addListParams ( $params, "bl", array( "continue", "namespace", "redirect", "limit" ) ); break;
 			case "embeddedin"   : self::addListParams ( $params, "ei", array( "continue", "namespace", "redirect", "limit" ) ); break;
 			case "imagelinks"   : self::addListParams ( $params, "il", array( "continue", "namespace", "redirect", "limit" ) ); break;
-		 }
+		}
 
-		 if ( $params["prop"] == "revisions" ) {
+		if ( $params["prop"] == "revisions" ) {
 			self::addListParams ( $params, "rv", array( "prop", "limit", "startid", "endid", "end", "dir" ) );
-		 }
+		}
 
-		 // Sometimes we want redirects, sometimes we don't.
-		 if ( wikiFuzz::randnum( 3 ) == 0 ) {
+		// Sometimes we want redirects, sometimes we don't.
+		if ( wikiFuzz::randnum( 3 ) == 0 ) {
 			$params["redirects"] = wikiFuzz::chooseInput( array( "1", 0, "", wikiFuzz::makeFuzz( 2 ) ) );
-		 }
+		}
 
-		 return $params;
+		return $params;
 	}
 
 	// Adds all the elements to the array, using the specified prefix.

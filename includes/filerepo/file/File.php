@@ -1490,9 +1490,9 @@ abstract class File {
 	 * @param $target Title New file name
 	 * @return FileRepoStatus object.
 	 */
-	 function move( $target ) {
+	function move( $target ) {
 		$this->readOnlyError();
-	 }
+	}
 
 	/**
 	 * Delete all versions of the file.

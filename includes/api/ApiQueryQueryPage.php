@@ -211,7 +211,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 
 	public function getPossibleErrors() {
 		return array_merge( parent::getPossibleErrors(), array(
-			 array( 'specialpage-cantexecute' )
+			array( 'specialpage-cantexecute' )
 		) );
 	}
 

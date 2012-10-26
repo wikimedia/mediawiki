@@ -119,36 +119,36 @@ abstract class MediaHandler {
 	function getMetadata( $image, $path ) { return ''; }
 
 	/**
-	* Get metadata version.
-	*
-	* This is not used for validating metadata, this is used for the api when returning
-	* metadata, since api content formats should stay the same over time, and so things
-	* using ForiegnApiRepo can keep backwards compatibility
-	*
-	* All core media handlers share a common version number, and extensions can
-	* use the GetMetadataVersion hook to append to the array (they should append a unique
-	* string so not to get confusing). If there was a media handler named 'foo' with metadata
-	* version 3 it might add to the end of the array the element 'foo=3'. if the core metadata
-	* version is 2, the end version string would look like '2;foo=3'.
-	*
-	* @return string version string
-	*/
+	 * Get metadata version.
+	 *
+	 * This is not used for validating metadata, this is used for the api when returning
+	 * metadata, since api content formats should stay the same over time, and so things
+	 * using ForiegnApiRepo can keep backwards compatibility
+	 *
+	 * All core media handlers share a common version number, and extensions can
+	 * use the GetMetadataVersion hook to append to the array (they should append a unique
+	 * string so not to get confusing). If there was a media handler named 'foo' with metadata
+	 * version 3 it might add to the end of the array the element 'foo=3'. if the core metadata
+	 * version is 2, the end version string would look like '2;foo=3'.
+	 *
+	 * @return string version string
+	 */
 	static function getMetadataVersion () {
 		$version = Array( '2' ); // core metadata version
 		wfRunHooks('GetMetadataVersion', Array(&$version));
 		return implode( ';', $version);
-	 }
+	}
 
 	/**
-	* Convert metadata version.
-	*
-	* By default just returns $metadata, but can be used to allow
-	* media handlers to convert between metadata versions.
-	*
-	* @param $metadata Mixed String or Array metadata array (serialized if string)
-	* @param $version Integer target version
-	* @return Array serialized metadata in specified version, or $metadata on fail.
-	*/
+	 * Convert metadata version.
+	 *
+	 * By default just returns $metadata, but can be used to allow
+	 * media handlers to convert between metadata versions.
+	 *
+	 * @param $metadata Mixed String or Array metadata array (serialized if string)
+	 * @param $version Integer target version
+	 * @return Array serialized metadata in specified version, or $metadata on fail.
+	 */
 	function convertMetadataVersion( $metadata, $version = 1 ) {
 		if ( !is_array( $metadata ) ) {
 
@@ -356,7 +356,7 @@ abstract class MediaHandler {
 	 * @return array for use displaying metadata.
 	 */
 	function formatMetadataHelper( $metadataArray ) {
-		 $result = array(
+		$result = array(
 			'visible' => array(),
 			'collapsed' => array()
 		);

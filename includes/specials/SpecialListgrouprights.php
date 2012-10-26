@@ -147,7 +147,7 @@ class SpecialListGroupRights extends SpecialPage {
 	 * @param $removeSelf Array of group this group is allowed to remove from self or true
 	 * @return string List of all granted permissions, separated by comma separator
 	 */
-	 private function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
+	private function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
 			//show as granted only if it isn't revoked to prevent duplicate display of permissions

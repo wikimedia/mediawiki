@@ -62,7 +62,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @throws ErrorPageError
 	 */
 	protected function checkExecutePermissions( User $user ) {
-		 parent::checkExecutePermissions( $user );
+		parent::checkExecutePermissions( $user );
 
 		# bug 15810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target, $user );

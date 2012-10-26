@@ -122,7 +122,7 @@ class LanguageKk_cyrl extends Language {
 						$word = $word . "ға";
 					}
 				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
-				  if ( in_array( $wordLastVowel, $frontVowels ) ) {
+					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "не";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "на";
@@ -347,7 +347,7 @@ class LanguageKk_cyrl extends Language {
 						$word = $word . "ğa";
 					}
 				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
-				  if ( in_array( $wordLastVowel, $frontVowels ) ) {
+					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "ne";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "na";
@@ -572,7 +572,7 @@ class LanguageKk_cyrl extends Language {
 						$word = $word . "عا";
 					}
 				} elseif ( in_array( $wordEnding, $thirdPerson  ) ) {
-				  if ( in_array( $wordLastVowel, $frontVowels ) ) {
+					if ( in_array( $wordLastVowel, $frontVowels ) ) {
 						$word = $word . "نە";
 					} elseif ( in_array( $wordLastVowel, $backVowels ) ) {
 						$word = $word . "نا";

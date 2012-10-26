@@ -167,7 +167,7 @@ class Parser_LinkHooks extends Parser {
 			# Determine if the bracket is a starting or ending bracket
 			# When we find both, use the first one
 			elseif( $startBracketOffset !== false && $endBracketOffset !== false )
-			     $isStart = $startBracketOffset <= $endBracketOffset;
+					$isStart = $startBracketOffset <= $endBracketOffset;
 			# When we only found one, check which it is
 			else $isStart = $startBracketOffset !== false;
 			$bracketOffset = $isStart ? $startBracketOffset : $endBracketOffset;

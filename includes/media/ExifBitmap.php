@@ -56,7 +56,7 @@ class ExifBitmapHandler extends BitmapHandler {
 			&& is_array( $metadata['Software'][0])
 			&& isset( $metadata['Software'][0][0] )
 			&& isset( $metadata['Software'][0][1])
-		 ) {
+		) {
 			$metadata['Software'] = $metadata['Software'][0][0] . ' (Version '
 				. $metadata['Software'][0][1] . ')';
 		}

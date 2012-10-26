@@ -369,20 +369,20 @@ class ParserOutput extends CacheTime {
 	 * into account to produce this output or false if not available.
 	 * @return mixed Array
 	 */
-	 public function getUsedOptions() {
+	public function getUsedOptions() {
 		if ( !isset( $this->mAccessedOptions ) ) {
 			return array();
 		}
 		return array_keys( $this->mAccessedOptions );
-	 }
+	}
 
-	 /**
-	  * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
-	  * @access private
-	  */
-	 function recordOption( $option ) {
-		 $this->mAccessedOptions[$option] = true;
-	 }
+	/**
+	 * Callback passed by the Parser to the ParserOptions to keep track of which options are used.
+	 * @access private
+	 */
+	function recordOption( $option ) {
+		$this->mAccessedOptions[$option] = true;
+	}
 
 	/**
 	 * Adds an update job to the output. Any update jobs added to the output will eventually bexecuted in order to
@@ -426,6 +426,6 @@ class ParserOutput extends CacheTime {
 		}
 
 		return $updates;
-	 }
+	}
 
 }

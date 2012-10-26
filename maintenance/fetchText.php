@@ -45,7 +45,7 @@ class FetchText extends Maintenance {
 	 *
 	 * note that that the text string itself is *not* followed by newline
 	 */
-	 public function execute() {
+	public function execute() {
 		$db = wfGetDB( DB_SLAVE );
 		$stdin = $this->getStdin();
 		while ( !feof( $stdin ) ) {

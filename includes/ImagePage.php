@@ -639,7 +639,7 @@ EOT
 		return $uploadTitle->getFullURL( array(
 			'wpDestFile' => $this->mPage->getFile()->getName(),
 			'wpForReUpload' => 1
-		 ) );
+		) );
 	}
 
 	/**

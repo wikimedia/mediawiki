@@ -41,7 +41,7 @@ class LanguageKaa extends Language {
 	function convertGrammar( $word, $case ) {
 		global $wgGrammarForms;
 		if ( isset( $wgGrammarForms['kaa'][$case][$word] ) ) {
-		     return $wgGrammarForms['kaa'][$case][$word];
+			return $wgGrammarForms['kaa'][$case][$word];
 		}
 		/* Full code of function convertGrammar() is in development. Updates coming soon. */
 		return $word;

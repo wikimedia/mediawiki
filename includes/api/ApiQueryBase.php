@@ -351,7 +351,7 @@ abstract class ApiQueryBase extends ApiBase {
 		}
 		$result = $this->getResult();
 		$fit = $result->addValue( array( 'query', 'pages', $pageId,
-					 $this->getModuleName() ), null, $item );
+					$this->getModuleName() ), null, $item );
 		if ( !$fit ) {
 			return false;
 		}

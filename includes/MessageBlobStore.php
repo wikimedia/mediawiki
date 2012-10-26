@@ -179,7 +179,7 @@ class MessageBlobStore {
 
 		if ( $newLinksRows ) {
 			$dbw->insert( 'msg_resource_links', $newLinksRows, __METHOD__,
-				 array( 'IGNORE' ) // just in case
+				array( 'IGNORE' ) // just in case
 			);
 		}
 

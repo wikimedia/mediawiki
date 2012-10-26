@@ -247,7 +247,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 		if ( is_null( $resultPageSet ) ) {
 			$result->setIndexedTagName_internal(
-					 array( 'query', $this->getModuleName() ), 'cm' );
+					array( 'query', $this->getModuleName() ), 'cm' );
 		}
 	}
 

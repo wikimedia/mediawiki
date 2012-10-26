@@ -558,9 +558,9 @@ class WebRequest {
 	 *
 	 * @return Array
 	 */
-	 public function getQueryValues() {
+	public function getQueryValues() {
 		return $_GET;
-	 }
+	}
 
 	/**
 	 * Get the HTTP method used for this request.

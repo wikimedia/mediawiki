@@ -245,10 +245,12 @@ class SpecialUpload extends SpecialPage {
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
 			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ),
 				$desiredTitleObj,
-				'', array( 'lim' => 10,
-					   'conds' => array( "log_action != 'revision'" ),
-					   'showIfEmpty' => false,
-					   'msgKey' => array( 'upload-recreate-warning' ) )
+				'', array(
+					'lim' => 10,
+					'conds' => array( "log_action != 'revision'" ),
+					'showIfEmpty' => false,
+					'msgKey' => array( 'upload-recreate-warning' )
+				)
 			);
 		}
 		$form->addPreText( $delNotice );

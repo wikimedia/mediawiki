@@ -173,8 +173,8 @@ class SpecialUnblock extends SpecialPage {
 		# unblock the whole range.
 		list( $target, $type ) = SpecialBlock::getTargetAndType( $target );
 		if( $block->getType() == Block::TYPE_RANGE && $type == Block::TYPE_IP ) {
-			 $range = $block->getTarget();
-			 return array( array( 'ipb_blocked_as_range', $target, $range ) );
+			$range = $block->getTarget();
+			return array( array( 'ipb_blocked_as_range', $target, $range ) );
 		}
 
 		# If the name was hidden and the blocking user cannot hide

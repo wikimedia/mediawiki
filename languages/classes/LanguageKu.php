@@ -188,7 +188,7 @@ class KuConverter extends LanguageConverter {
 	 */
 	function markNoConversion( $text, $noParse = false ) {
 		if ( $noParse || preg_match( "/^https?:\/\/|ftp:\/\/|irc:\/\//", $text ) )
-		    return parent::markNoConversion( $text );
+			return parent::markNoConversion( $text );
 		return $text;
 	}
 

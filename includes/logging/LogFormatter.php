@@ -850,7 +850,7 @@ class DeleteLogFormatter extends LogFormatter {
 				$this->msg( $message )->escaped(),
 				array(),
 				array( 'target' => $this->entry->getTarget()->getPrefixedDBkey() )
-			 );
+			);
 			return $this->msg( 'parentheses' )->rawParams( $revert )->escaped();
 
 		case 'revision': // If an edit was hidden from a page give a review link to the history

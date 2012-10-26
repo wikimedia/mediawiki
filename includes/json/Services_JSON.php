@@ -325,10 +325,10 @@ class Services_JSON
 				$ascii = '';
 				$strlen_var = strlen($var);
 
-			   /*
-				* Iterate over every character in the string,
-				* escaping with a slash or encoding to UTF-8 where necessary
-				*/
+				/*
+				 * Iterate over every character in the string,
+				 * escaping with a slash or encoding to UTF-8 where necessary
+				 */
 				for ($c = 0; $c < $strlen_var; ++$c) {
 
 					$ord_var_c = ord($var[$c]);
@@ -405,23 +405,23 @@ class Services_JSON
 				return '"'.$ascii.'"';
 
 			case 'array':
-			   /*
-				* As per JSON spec if any array key is not an integer
-				* we must treat the the whole array as an object. We
-				* also try to catch a sparsely populated associative
-				* array with numeric keys here because some JS engines
-				* will create an array with empty indexes up to
-				* max_index which can cause memory issues and because
-				* the keys, which may be relevant, will be remapped
-				* otherwise.
-				*
-				* As per the ECMA and JSON specification an object may
-				* have any string as a property. Unfortunately due to
-				* a hole in the ECMA specification if the key is a
-				* ECMA reserved word or starts with a digit the
-				* parameter is only accessible using ECMAScript's
-				* bracket notation.
-				*/
+				/*
+				 * As per JSON spec if any array key is not an integer
+				 * we must treat the the whole array as an object. We
+				 * also try to catch a sparsely populated associative
+				 * array with numeric keys here because some JS engines
+				 * will create an array with empty indexes up to
+				 * max_index which can cause memory issues and because
+				 * the keys, which may be relevant, will be remapped
+				 * otherwise.
+				 *
+				 * As per the ECMA and JSON specification an object may
+				 * have any string as a property. Unfortunately due to
+				 * a hole in the ECMA specification if the key is a
+				 * ECMA reserved word or starts with a digit the
+				 * parameter is only accessible using ECMAScript's
+				 * bracket notation.
+				 */
 
 				// treat as a JSON object
 				if (is_array($var) && count($var) && (array_keys($var) !== range(0, sizeof($var) - 1))) {

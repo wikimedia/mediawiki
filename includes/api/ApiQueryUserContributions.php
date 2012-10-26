@@ -223,7 +223,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		) );
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
-				 $this->fld_patrolled ) {
+				$this->fld_patrolled ) {
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}

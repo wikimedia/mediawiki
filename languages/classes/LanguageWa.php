@@ -67,14 +67,14 @@ class LanguageWa extends Language {
 		#
 		# we also output this format for YMD (eg: 2001 January 15)
 		if ( $datePreference == 'ISO 8601' ) {
-		       $d = substr( $ts, 0, 4 ) . '-' . substr( $ts, 4, 2 ) . '-' . substr( $ts, 6, 2 );
-		       return $d;
+			$d = substr( $ts, 0, 4 ) . '-' . substr( $ts, 4, 2 ) . '-' . substr( $ts, 6, 2 );
+			return $d;
 		}
 
 		# dd/mm/YYYY format
 		if ( $datePreference == 'walloon short' ) {
-		       $d = substr( $ts, 6, 2 ) . '/' . substr( $ts, 4, 2 ) . '/' . substr( $ts, 0, 4 );
-		       return $d;
+			$d = substr( $ts, 6, 2 ) . '/' . substr( $ts, 4, 2 ) . '/' . substr( $ts, 0, 4 );
+			return $d;
 		}
 
 		# Walloon format
@@ -83,16 +83,16 @@ class LanguageWa extends Language {
 		$m = substr( $ts, 4, 2 );
 		$n = substr( $ts, 6, 2 );
 		if ( $n == 1 ) {
-		    $d = "1î d' " . $this->getMonthName( $m ) .
+			$d = "1î d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} elseif ( $n == 2 || $n == 3 || $n == 20 || $n == 22 || $n == 23 ) {
-		    $d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
+			$d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} elseif ( $m == 4 || $m == 8 || $m == 10 ) {
-		    $d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
+			$d = ( 0 + $n ) . " d' " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		} else {
-		    $d = ( 0 + $n ) . " di " . $this->getMonthName( $m ) .
+			$d = ( 0 + $n ) . " di " . $this->getMonthName( $m ) .
 			" " .  substr( $ts, 0, 4 );
 		}
 		return $d;

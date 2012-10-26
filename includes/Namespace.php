@@ -290,9 +290,9 @@ class MWNamespace {
 	 * @param $index Int: namespace index
 	 * @return bool
 	 */
-	 public static function canTalk( $index ) {
+	public static function canTalk( $index ) {
 		return $index >= NS_MAIN;
-	 }
+	}
 
 	/**
 	 * Does this namespace contain content, for the purposes of calculating

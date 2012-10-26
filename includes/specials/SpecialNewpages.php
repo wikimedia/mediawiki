@@ -295,11 +295,11 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
-					  'comment' => $result->rc_comment,
-					  'deleted' => $result->rc_deleted,
-					  'user_text' => $result->rc_user_text,
-					  'user' => $result->rc_user,
-					);
+			'comment' => $result->rc_comment,
+			'deleted' => $result->rc_deleted,
+			'user_text' => $result->rc_user_text,
+			'user' => $result->rc_user,
+		);
 		$rev = new Revision( $row );
 		$rev->setTitle( $title );
 

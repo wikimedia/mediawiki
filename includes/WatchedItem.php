@@ -143,22 +143,24 @@ class WatchedItem {
 		// if there's already an entry for this page
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->insert( 'watchlist',
-		  array(
-			'wl_user' => $this->id,
-			'wl_namespace' => MWNamespace::getSubject($this->ns),
-			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => null
-		  ), __METHOD__, 'IGNORE' );
+			array(
+				'wl_user' => $this->id,
+				'wl_namespace' => MWNamespace::getSubject($this->ns),
+				'wl_title' => $this->ti,
+				'wl_notificationtimestamp' => null
+			), __METHOD__, 'IGNORE'
+		);
 
 		// Every single watched page needs now to be listed in watchlist;
 		// namespace:page and namespace_talk:page need separate entries:
 		$dbw->insert( 'watchlist',
-		  array(
-			'wl_user' => $this->id,
-			'wl_namespace' => MWNamespace::getTalk($this->ns),
-			'wl_title' => $this->ti,
-			'wl_notificationtimestamp' => null
-		  ), __METHOD__, 'IGNORE' );
+			array(
+				'wl_user' => $this->id,
+				'wl_namespace' => MWNamespace::getTalk($this->ns),
+				'wl_title' => $this->ti,
+				'wl_notificationtimestamp' => null
+			), __METHOD__, 'IGNORE'
+		);
 
 		$this->watched = true;
 

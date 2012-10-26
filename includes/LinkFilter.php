@@ -89,7 +89,7 @@ class LinkFilter {
 	 * @param $prot        String: protocol
 	 * @return Array to be passed to DatabaseBase::buildLike() or false on error
 	 */
-	 public static function makeLikeArray( $filterEntry , $prot = 'http://' ) {
+	public static function makeLikeArray( $filterEntry , $prot = 'http://' ) {
 		$db = wfGetDB( DB_MASTER );
 		if ( substr( $filterEntry, 0, 2 ) == '*.' ) {
 			$subdomains = true;
