@@ -135,8 +135,9 @@ class ArchivedFile {
 		}
 
 		if( !$this->title || $this->title->getNamespace() == NS_FILE ) {
+			$this->dataLoaded = true; // set it here, to have also true on miss
 			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select( 'filearchive',
+			$row = $dbr->selectRow( 'filearchive',
 				array(
 					'fa_id',
 					'fa_name',
@@ -159,20 +160,18 @@ class ArchivedFile {
 					'fa_sha1' ),
 				$conds,
 				__METHOD__,
-				array( 'ORDER BY' => 'fa_timestamp DESC' ) );
-			if ( $res == false || $dbr->numRows( $res ) == 0 ) {
-			// this revision does not exist?
+				array( 'ORDER BY' => 'fa_timestamp DESC')
+			);
+			if ( !$row ) {
+				// this revision does not exist?
 				return null;
 			}
-			$ret = $dbr->resultObject( $res );
-			$row = $ret->fetchObject();
 
 			// initialize fields for filestore image object
 			$this->loadFromRow( $row );
 		} else {
 			throw new MWException( 'This title does not correspond to an image page.' );
 		}
-		$this->dataLoaded = true;
 		$this->exists = true;
 
 		return true;
