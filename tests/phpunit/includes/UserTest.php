@@ -165,25 +165,26 @@ class UserTest extends MediaWikiTestCase {
 
 	/**
 	 * Test User::editCount
+	 * @group medium
 	 */
 	public function testEditCount() {
 		$user = User::newFromName( 'UnitTestUser' );
 		$user->loadDefaults();
 		$user->addToDatabase();
 
-		// let the user have a few (10) edits
+		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::newFromText( 'UserTest_EditCount' ) );
-		for( $i = 0; $i < 10; $i++ ) {
+		for( $i = 0; $i < 3; $i++ ) {
 			$page->doEdit( (string) $i, 'test', 0, false, $user );
 		}
 
 		$user->clearInstanceCache();
-		$this->assertEquals( 10, $user->getEditCount(), 'After ten edits, the user edit count should be 10' );
+		$this->assertEquals( 3, $user->getEditCount(), 'After three edits, the user edit count should be 3' );
 
 		// increase the edit count and clear the cache
 		$user->incEditCount();
 
 		$user->clearInstanceCache();
-		$this->assertEquals( 11, $user->getEditCount(), 'After increasing the edit count manually, the user edit count should be 11' );
+		$this->assertEquals( 4, $user->getEditCount(), 'After increasing the edit count manually, the user edit count should be 4' );
 	}
 }
