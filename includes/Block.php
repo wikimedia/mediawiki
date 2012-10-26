@@ -164,7 +164,7 @@ class Block {
 
 	/**
 	 * Check if two blocks are effectively equal.  Doesn't check irrelevant things like
-	 * the blocking user or the block timestamp, only things which affect the blocked user	 *
+	 * the blocking user or the block timestamp, only things which affect the blocked user
 	 *
 	 * @param $block Block
 	 *
@@ -536,10 +536,10 @@ class Block {
 			'ipb_expiry'           => $expiry,
 			'ipb_range_start'      => $this->getRangeStart(),
 			'ipb_range_end'        => $this->getRangeEnd(),
-			'ipb_deleted'	       => intval( $this->mHideName ), // typecast required for SQLite
+			'ipb_deleted'          => intval( $this->mHideName ), // typecast required for SQLite
 			'ipb_block_email'      => $this->prevents( 'sendemail' ),
 			'ipb_allow_usertalk'   => !$this->prevents( 'editownusertalk' ),
-			'ipb_parent_block_id'            => $this->mParentBlockId
+			'ipb_parent_block_id'  => $this->mParentBlockId
 		);
 
 		return $a;

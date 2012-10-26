@@ -797,8 +797,8 @@ class PPDStack {
  * @ingroup Parser
  */
 class PPDStackElement {
-	var $open,		        // Opening character (\n for heading)
-		$close,     	    // Matching closing character
+	var	$open,              // Opening character (\n for heading)
+		$close,             // Matching closing character
 		$count,             // Number of opening characters found (number of "=" for heading)
 		$parts,             // Array of PPDPart objects describing pipe-separated parts.
 		$lineStart;         // True if the open char appeared at the start of the input line. Not set for headings.

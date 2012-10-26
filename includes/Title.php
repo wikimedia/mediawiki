@@ -1398,7 +1398,7 @@ class Title {
 	 *
 
 	 * @param $query string|array an optional query string,
-	 *   not used for interwiki	links. Can be specified as an associative array as well,
+	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
 	 * @param $query2 Mixed: An optional secondary query array. This one MUST
@@ -4474,7 +4474,7 @@ class Title {
 
 	/**
 	 * Update page_touched timestamps and send squid purge messages for
-	 * pages linking to this title.	May be sent to the job queue depending
+	 * pages linking to this title. May be sent to the job queue depending
 	 * on the number of links. Typically called on create and delete.
 	 */
 	public function touchLinks() {

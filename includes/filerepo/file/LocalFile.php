@@ -1759,7 +1759,7 @@ class LocalFileDeleteBatch {
 					'fa_deleted_user'      => $encUserId,
 					'fa_deleted_timestamp' => $encTimestamp,
 					'fa_deleted_reason'    => $encReason,
-					'fa_deleted'		   => $this->suppress ? $bitfield : 0,
+					'fa_deleted'           => $this->suppress ? $bitfield : 0,
 
 					'fa_name'         => 'img_name',
 					'fa_archive_name' => 'NULL',

@@ -103,7 +103,7 @@ class LinkSearchPage extends QueryPage {
 				)
 			);
 		}
-		$s .=	Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) .
+		$s .= Xml::submitButton( $this->msg( 'linksearch-ok' )->text() ) .
 			'</fieldset>' .
 			Xml::closeElement( 'form' );
 		$out->addHTML( $s );

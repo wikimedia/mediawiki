@@ -301,7 +301,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'dir' => $this->getDirectionDescription( $p ),
 			'ids' => 'List of block IDs to list (optional)',
 			'users' => 'List of users to search for (optional)',
-			'ip' => array(	'Get all blocks applying to this IP or CIDR range, including range blocks.',
+			'ip' => array( 'Get all blocks applying to this IP or CIDR range, including range blocks.',
 					'Cannot be used together with bkusers. CIDR ranges broader than /16 are not accepted' ),
 			'limit' => 'The maximum amount of blocks to list',
 			'prop' => array(

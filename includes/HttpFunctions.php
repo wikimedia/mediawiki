@@ -581,8 +581,8 @@ class MWHttpRequest {
 	}
 
 	/**
-	 * Sets a cookie.  Used before a request to set up any individual
-	 * cookies.	 Used internally after a request to parse the
+	 * Sets a cookie. Used before a request to set up any individual
+	 * cookies. Used internally after a request to parse the
 	 * Set-Cookie headers.
 	 * @see Cookie::set
 	 * @param $name

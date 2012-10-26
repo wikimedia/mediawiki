@@ -326,7 +326,7 @@ USAGE: php importImages.php [options] <dir>
 <dir> : Path to the directory containing images to be imported
 
 Options:
---extensions=<exts>	Comma-separated list of allowable extensions, defaults to \$wgFileExtensions
+--extensions=<exts>     Comma-separated list of allowable extensions, defaults to \$wgFileExtensions
 --overwrite             Overwrite existing images with the same name (default is to skip them)
 --limit=<num>           Limit the number of images to process. Ignored or skipped images are not counted.
 --from=<name>           Ignore all files until the one with the given name. Useful for resuming
