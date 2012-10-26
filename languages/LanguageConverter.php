@@ -824,9 +824,9 @@ class LanguageConverter {
 	/**
 	 * Guess if a text is written in a variant. This should be implemented in subclasses.
 	 *
-	 * @param string	$text the text to be checked
-	 * @param string	$variant language code of the variant to be checked for
-	 * @return bool	true if $text appears to be written in $variant, false if not
+	 * @param string $text the text to be checked
+	 * @param string $variant language code of the variant to be checked for
+	 * @return bool true if $text appears to be written in $variant, false if not
 	 *
 	 * @author Nikola Smolenski <smolensk@eunet.rs>
 	 * @since 1.19
@@ -1270,7 +1270,7 @@ class ConverterRule {
 				$bidtable[$v] = $to;
 			} elseif ( count( $u ) == 2 ) {
 				$from = trim( $u[0] );
-				$v	= trim( $u[1] );
+				$v = trim( $u[1] );
 				if ( array_key_exists( $v, $unidtable )
 					 && !is_array( $unidtable[$v] )
 					 && $to

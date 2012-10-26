@@ -273,7 +273,7 @@ class UserMailer {
 			}
 			wfRestoreWarnings();
 			return Status::newGood();
-		} else	{
+		} else {
 			#
 			# PHP mail()
 			#

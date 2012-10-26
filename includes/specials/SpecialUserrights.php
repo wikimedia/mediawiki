@@ -535,7 +535,7 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		# Build the HTML table
-		$ret .=	Xml::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
+		$ret .= Xml::openElement( 'table', array( 'class' => 'mw-userrights-groups' ) ) .
 			"<tr>\n";
 		foreach( $columns as $name => $column ) {
 			if( $column === array() )

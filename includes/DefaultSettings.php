@@ -2591,12 +2591,12 @@ $wgSiteNotice = '';
 /**
  * A subtitle to add to the tagline, for skins that have it/
  */
-$wgExtraSubtitle	= '';
+$wgExtraSubtitle = '';
 
 /**
  * If this is set, a "donate" link will appear in the sidebar. Set it to a URL.
  */
-$wgSiteSupportPage	= '';
+$wgSiteSupportPage = '';
 
 /**
  * Validate the overall output using tidy and refuse

@@ -194,7 +194,7 @@ class CookieJar {
 	private $cookie = array();
 
 	/**
-	 * Set a cookie in the cookie jar.	Make sure only one cookie per-name exists.
+	 * Set a cookie in the cookie jar. Make sure only one cookie per-name exists.
 	 * @see Cookie::set()
 	 */
 	public function setCookie ( $name, $value, $attr ) {

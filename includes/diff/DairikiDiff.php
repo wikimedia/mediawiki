@@ -311,7 +311,7 @@ class _DiffEngine {
 	 * [XOFF, XLIM) and [YOFF, YLIM) into NCHUNKS approximately equally
 	 * sized segments.
 	 *
-	 * Returns (LCS, PTS).	LCS is the length of the LCS. PTS is an
+	 * Returns (LCS, PTS). LCS is the length of the LCS. PTS is an
 	 * array of NCHUNKS+1 (X, Y) indexes giving the diving points between
 	 * sub sequences.  The first sub-sequence is contained in [X0, X1),
 	 * [Y0, Y1), the second in [X1, X2), [Y1, Y2) and so on.  Note

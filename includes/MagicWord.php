@@ -534,7 +534,7 @@ class MagicWord {
 	 *
 	 * @return string
 	 */
-	function getVariableRegex()	{
+	function getVariableRegex() {
 		if ( $this->mVariableRegex == '' ) {
 			$this->initRegex();
 		}
