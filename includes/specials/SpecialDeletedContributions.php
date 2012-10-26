@@ -260,7 +260,7 @@ class DeletedContributionsPage extends SpecialPage {
 	 * Special page "deleted user contributions".
 	 * Shows a list of the deleted contributions of a user.
 	 *
-	 * @param	$par	String: (optional) user name of the user for which to show the contributions
+	 * @param $par String: (optional) user name of the user for which to show the contributions
 	 */
 	function execute( $par ) {
 		global $wgQueryPageDefaultLimit;

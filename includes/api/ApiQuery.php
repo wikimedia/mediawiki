@@ -545,7 +545,7 @@ class ApiQuery extends ApiBase {
 	 * @param  $pageSet ApiPageSet Pages to be exported
 	 * @param  $result ApiResult Result to output to
 	 */
-	private function doExport( $pageSet, $result )	{
+	private function doExport( $pageSet, $result ) {
 		$exportTitles = array();
 		$titles = $pageSet->getGoodTitles();
 		if ( count( $titles ) ) {

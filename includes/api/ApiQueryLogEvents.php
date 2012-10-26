@@ -70,7 +70,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'user' => array( 'JOIN',
 				'user_id=log_user' ),
 			'page' => array( 'LEFT JOIN',
-				array(	'log_namespace=page_namespace',
+				array( 'log_namespace=page_namespace',
 					'log_title=page_title' ) ) ) );
 		$index = array( 'logging' => 'times' ); // default, may change
 

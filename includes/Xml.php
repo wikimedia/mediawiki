@@ -576,7 +576,8 @@ class Xml {
 	 */
 	public static function textarea( $name, $content, $cols = 40, $rows = 5, $attribs = array() ) {
 		return self::element( 'textarea',
-					array(	'name' => $name,
+					array(
+						'name' => $name,
 						'id' => $name,
 						'cols' => $cols,
 						'rows' => $rows

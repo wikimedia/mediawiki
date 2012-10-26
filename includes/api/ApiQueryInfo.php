@@ -394,7 +394,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		if ( $this->fld_talkid && isset( $this->talkids[$ns][$dbkey] ) )	{
+		if ( $this->fld_talkid && isset( $this->talkids[$ns][$dbkey] ) ) {
 			$pageInfo['talkid'] = $this->talkids[$ns][$dbkey];
 		}
 
