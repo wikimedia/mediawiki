@@ -647,7 +647,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 					$headingMsg = wfMessage( $heading );
 					$any_link = false;
-					$t = $this->menuHead( $headingMsg->exists() ? $headingMsg->text() : htmlspecialchars( $heading ) );
+					$t = $this->menuHead( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) );
 
 					foreach ( $links as $key => $link ) {
 						// Can be empty due to rampant sidebar massaging we're doing above
