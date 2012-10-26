@@ -1231,7 +1231,7 @@ class EditPage {
 		try {
 			# Construct Content object
 			$textbox_content = $this->toEditContent( $this->textbox1 );
-		} catch (MWContentSerializationException $ex) {
+		} catch ( MWContentSerializationException $ex ) {
 			$status->fatal( 'content-failed-to-parse', $this->contentModel, $this->contentFormat, $ex->getMessage() );
 			$status->value = self::AS_PARSE_ERROR;
 			wfProfileOut( __METHOD__ );
@@ -1655,13 +1655,13 @@ class EditPage {
 	}
 
 	/**
-	 * @private
-	 * @todo document
+	 * Attempts to merge text content with base and current revisions
 	 *
-	 * @param $editText string
+	 * @param &$editText string
 	 *
 	 * @return bool
 	 * @deprecated since 1.21, use mergeChangesIntoContent() instead
+	 * @private
 	 */
 	function mergeChangesInto( &$editText ){
 		ContentHandler::deprecated( __METHOD__, "1.21" );
@@ -1700,12 +1700,16 @@ class EditPage {
 	}
 
 	/**
-	 * @private
-	 * @todo document
+	 * Attempts to do 3-way merge of edit content with a base revision
+	 * and current content, in case of edit conflict, in whichever way appropriate
+	 * for the content type.
 	 *
-	 * @param $editContent
+	 * @since 1.21
+	 *
+	 * @param &$editContent
+	 *
 	 * @return bool
-	 * @since since 1.WD
+	 * @private
 	 */
 	private function mergeChangesIntoContent( &$editContent ){
 		wfProfileIn( __METHOD__ );
