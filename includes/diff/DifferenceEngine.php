@@ -220,33 +220,6 @@ class DifferenceEngine extends ContextSource {
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
-		# If external diffs are enabled both globally and for the user,
-		# we'll use the application/x-external-editor interface to call
-		# an external diff tool like kompare, kdiff3, etc.
-		if ( ExternalEdit::useExternalEngine( $this->getContext(), 'diff' ) ) {
-			//TODO: come up with a good solution for non-text content here.
-			//      at least, the content format needs to be passed to the client somehow.
-			//      Currently, action=raw will just fail for non-text content.
-
-			$urls = array(
-				'File' => array( 'Extension' => 'wiki', 'URL' =>
-					# This should be mOldPage, but it may not be set, see below.
-					$this->mNewPage->getCanonicalURL( array(
-						'action' => 'raw', 'oldid' => $this->mOldid ) )
-				),
-				'File2' => array( 'Extension' => 'wiki', 'URL' =>
-					$this->mNewPage->getCanonicalURL( array(
-						'action' => 'raw', 'oldid' => $this->mNewid ) )
-				),
-			);
-
-			$externalEditor = new ExternalEdit( $this->getContext(), $urls );
-			$externalEditor->execute();
-
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
 		$rollback = '';
 		$undoLink = '';
 
