@@ -3605,8 +3605,6 @@ $wgDefaultUserOptions = array(
 	'enotifusertalkpages'     => 1,
 	'enotifwatchlistpages'    => 0,
 	'extendwatchlist'         => 0,
-	'externaldiff'            => 0,
-	'externaleditor'          => 0,
 	'fancysig'                => 0,
 	'forceeditsummary'        => 0,
 	'gender'                  => 'unknown',
@@ -4897,12 +4895,6 @@ $wgDiff = '/usr/bin/diff';
 $wgPreviewOnOpenNamespaces = array(
 	NS_CATEGORY => true
 );
-
-/**
- * Activate external editor interface for files and pages
- * See http://www.mediawiki.org/wiki/Manual:External_editors
- */
-$wgUseExternalEditor = true;
 
 /** Go button goes straight to the edit screen if the article doesn't exist. */
 $wgGoToEdit = false;

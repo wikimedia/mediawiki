@@ -713,7 +713,7 @@ class Preferences {
 	 * @param $defaultPreferences Array
 	 */
 	static function editingPreferences( $user, IContextSource $context, &$defaultPreferences ) {
-		global $wgUseExternalEditor, $wgAllowUserCssPrefs;
+		global $wgAllowUserCssPrefs;
 
 		## Editing #####################################
 		$defaultPreferences['cols'] = array(
@@ -783,19 +783,6 @@ class Preferences {
 				'type' => 'toggle',
 				'section' => 'editing/advancedediting',
 				'label-message' => 'tog-minordefault',
-			);
-		}
-
-		if ( $wgUseExternalEditor ) {
-			$defaultPreferences['externaleditor'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-externaleditor',
-			);
-			$defaultPreferences['externaldiff'] = array(
-				'type' => 'toggle',
-				'section' => 'editing/advancedediting',
-				'label-message' => 'tog-externaldiff',
 			);
 		}
 

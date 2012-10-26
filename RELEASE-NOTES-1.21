@@ -68,7 +68,10 @@ production.
 MediaWiki supports over 350 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
+
 === Other changes in 1.21 ===
+* Externaledit/externaldiff preference was removed. Very few users used this
+  feature, and improper configuration can actually prevent a user from editing
 
 == Compatibility ==
 
