@@ -606,7 +606,7 @@ class RecentChange {
 			'rc_cur_id' => $row->page_id,
 			'rc_this_oldid'	=> $row->rev_id,
 			'rc_last_oldid'	=> isset( $row->rc_last_oldid ) ? $row->rc_last_oldid : 0,
-			'rc_bot'	=> 0,
+			'rc_bot' => 0,
 			'rc_ip' => '',
 			'rc_id' => $row->rc_id,
 			'rc_patrolled' => $row->rc_patrolled,
@@ -616,7 +616,7 @@ class RecentChange {
 			'rc_params' => isset( $row->rc_params ) ? $row->rc_params : '',
 			'rc_log_type' => isset( $row->rc_log_type ) ? $row->rc_log_type : null,
 			'rc_log_action' => isset( $row->rc_log_action ) ? $row->rc_log_action : null,
-			'rc_log_id' => isset( $row->rc_log_id ) ? $row->rc_log_id: 0,
+			'rc_logid' => isset( $row->rc_logid ) ? $row->rc_logid : 0,
 			'rc_deleted' => $row->rc_deleted // MUST be set
 		);
 	}
