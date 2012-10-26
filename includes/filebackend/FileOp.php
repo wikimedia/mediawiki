@@ -179,7 +179,7 @@ abstract class FileOp {
 		$updateEntries = array();
 		$deleteEntries = array();
 		$pathsUsed = array_merge( $this->storagePathsRead(), $this->storagePathsChanged() );
-		foreach ( $pathsUsed as $path ) {
+		foreach ( array_unique( $pathsUsed ) as $path ) {
 			$nullEntries[] = array( // assertion for recovery
 				'op'      => 'null',
 				'path'    => $path,
