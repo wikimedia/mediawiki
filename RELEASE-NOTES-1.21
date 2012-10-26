@@ -51,6 +51,8 @@ production.
 * (bug 37020) sql.php with readline eats semicolon
 * (bug 11748) Properly handle optionally-closed HTML tags when Tidy is
   disabled, and don't wrap HTML-syntax definition lists in paragraphs.
+* (bug 41409) Diffs while editing an old revision should again diff against the
+  current revision.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt
