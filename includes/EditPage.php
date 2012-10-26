@@ -2651,7 +2651,7 @@ HTML
 				$oldContent = null;
 			}
 		} else {
-			$oldContent = $this->getOriginalContent();
+			$oldContent = $this->getCurrentContent();
 		}
 
 		$textboxContent = $this->toEditContent( $this->textbox1 );
