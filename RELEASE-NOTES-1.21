@@ -138,6 +138,8 @@ changes to languages because of Bugzilla reports.
   as separators for thousands and decimals respectively.
 
 === Other changes in 1.21 ===
+* Externaledit/externaldiff preference was removed. Very few users used this
+  feature, and improper configuration can actually prevent a user from editing
 
 == Compatibility ==
 

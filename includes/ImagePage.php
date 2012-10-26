@@ -643,11 +643,10 @@ EOT
 	}
 
 	/**
-	 * Print out the various links at the bottom of the image page, e.g. reupload,
-	 * external editing (and instructions link) etc.
+	 * Print out the various links at the bottom of the image page, e.g. reupload, etc.
 	 */
 	protected function uploadLinksBox() {
-		global $wgEnableUploads, $wgUseExternalEditor;
+		global $wgEnableUploads;
 
 		if ( !$wgEnableUploads ) {
 			return;
@@ -668,25 +667,6 @@ EOT
 			$out->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		} else {
 			$out->addHTML( "<li id=\"mw-imagepage-upload-disallowed\">" . $this->getContext()->msg( 'upload-disallowed-here' )->escaped() . "</li>\n" );
-		}
-
-		# External editing link
-		if ( $wgUseExternalEditor ) {
-			$elink = Linker::linkKnown(
-				$this->getTitle(),
-				wfMessage( 'edit-externally' )->escaped(),
-				array(),
-				array(
-					'action' => 'edit',
-					'externaledit' => 'true',
-					'mode' => 'file'
-				)
-			);
-			$out->addHTML(
-				'<li id="mw-imagepage-edit-external">' . $elink . ' <small>' .
-					wfMessage( 'edit-externally-help' )->parse() .
-					"</small></li>\n"
-			);
 		}
 
 		$out->addHTML( "</ul>\n" );
