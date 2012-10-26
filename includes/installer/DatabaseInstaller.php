@@ -269,14 +269,15 @@ abstract class DatabaseInstaller {
 
 		$ret = true;
 		ob_start( array( $this, 'outputHandler' ) );
+		$up = DatabaseUpdater::newForDB( $this->db );
 		try {
-			$up = DatabaseUpdater::newForDB( $this->db );
 			$up->doUpdates();
 		} catch ( MWException $e ) {
 			echo "\nAn error occurred:\n";
 			echo $e->getText();
 			$ret = false;
 		}
+		$up->purgeCache();
 		ob_end_flush();
 		return $ret;
 	}
