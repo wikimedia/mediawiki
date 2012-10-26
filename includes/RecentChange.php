@@ -616,7 +616,7 @@ class RecentChange {
 			'rc_params' => isset( $row->rc_params ) ? $row->rc_params : '',
 			'rc_log_type' => isset( $row->rc_log_type ) ? $row->rc_log_type : null,
 			'rc_log_action' => isset( $row->rc_log_action ) ? $row->rc_log_action : null,
-			'rc_log_id' => isset( $row->rc_log_id ) ? $row->rc_log_id: 0,
+			'rc_logid' => isset( $row->rc_logid ) ? $row->rc_logid : 0,
 			'rc_deleted' => $row->rc_deleted // MUST be set
 		);
 	}
