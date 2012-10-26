@@ -11,9 +11,9 @@ MediaWiki is providing an interface known as FileBackend. Any MediaWiki
 interaction with stored files should thus use a FileBackend object.
 
 Different types of backing storage media are supported (ranging from local
-filesystem to distributed object stores). The types include:
+file system to distributed object stores). The types include:
 
-* FSFileBackend (used for mounted filesystems)
+* FSFileBackend (used for mounted file systems)
 * SwiftFileBackend (used for Swift or Ceph Rados+RGW object stores)
 * FileBackendMultiWrite (useful for transitioning from one backend to another)
 
@@ -24,10 +24,10 @@ __construct() inline documentation.
 \section setup Setup
 
 File backends are registered in LocalSettings.php via the global variable
-$wgFileBackends. To access one of those defined backend, one would use
+$wgFileBackends. To access one of those defined backends, one would use
 FileBackendStore::get( <name> ) which will bring back a FileBackend object
-handle. Such handles are reused for any subsequent get() call (singleton
-paradigm). The FileBackends objects are caching request calls such as file stats,
+handle. Such handles are reused for any subsequent get() call (via singleton).
+The FileBackends objects are caching request calls such as file stats,
 SHA1 requests or TCP connection handles.
 
 \par Note:
@@ -44,7 +44,7 @@ directories. See FileBackend.php for full documentation for each function.
 
 \subsection reading Reading
 
-The following operations are supported for reading from a backend:
+The following basic operations are supported for reading from a backend:
 
 On files:
 * state a file for basic information (timestamp, size)
@@ -61,18 +61,19 @@ On directories:
 
 \par Note:
 Backend handles should return directory listings as iterators, all though in some cases
-they may just be simple arrays (which can still be iterated over). Iterators allow for callers to
-traverse a large number of file listings without consuming excessive RAM in the process. Either the
-memory consumed is flatly bounded (if the iterator does paging) or it is proportional to the depth
-of the portion of the directory tree being traversed (if the iterator works via recursion).
+they may just be simple arrays (which can still be iterated over). Iterators allow for
+callers to traverse a large number of file listings without consuming excessive RAM in
+the process. Either the memory consumed is flatly bounded (if the iterator does paging)
+or it is proportional to the depth of the portion of the directory tree being traversed
+(if the iterator works via recursion).
 
 
 \subsection writing Writing
 
-The following operations are supported for writing or changing in the backend:
+The following basic operations are supported for writing or changing in the backend:
 
 On files:
-* store (copying a mounted filesystem file into storage)
+* store (copying a mounted file system file into storage)
 * create (creating a file within storage from a string)
 * copy (within storage)
 * move (within storage)
@@ -108,17 +109,17 @@ creating and purging generated thumbnails of original files for example.
 
 \section consistency Consistency
 
-Not all backing stores are sequentially consistent by default. Various FileBackend functions
-offer a "latest" option that can be passed in to assure (or try to assure) that the latest
-version of the file is read. Some backing stores are consistent by default, but callers should
-always assume that without this option, stale data may be read. This is actually true for stores
-that have eventual consistency.
+Not all backing stores are sequentially consistent by default. Various FileBackend
+functions offer a "latest" option that can be passed in to assure (or try to assure)
+that the latest version of the file is read. Some backing stores are consistent by
+default, but callers should always assume that without this option, stale data may
+be read. This is actually true for stores that have eventual consistency.
 
-Note that file listing functions have no "latest" flag, and thus some systems may return stale
-data. Thus callers should avoid assuming that listings contain changes made my the current client
-or any other client from a very short time ago. For example, creating a file under a directory
-and then immediately doing a file listing operation on that directory may result in a listing
-that does not include that file.
+Note that file listing functions have no "latest" flag, and thus some systems may
+return stale data. Thus callers should avoid assuming that listings contain changes
+made my the current client or any other client from a very short time ago. For example,
+creating a file under a directory and then immediately doing a file listing operation
+on that directory may result in a listing that does not include that file.
 
 
 \section locking Locking
@@ -133,13 +134,15 @@ Control (MVCC) to avoid this. However, locking can be important when:
 * One or more operations must be done without objects changing in the meantime.
 * It can also be useful when a file read is used to determine a file write or DB change.
   For example, doOperations() first checks that there will be no "file already exists"
-  or "file does not exist" type errors before attempted a given operation batch. This works
+  or "file does not exist" type errors before attempting an operation batch. This works
   by stating the files first, and is only safe if the files are locked in the meantime.
 
-When locking, callers also should use the latest available file data for reads.
-Also, one should always lock the file *before* reading it, not after. If stale data is used
-to determine a write, there will be some data corruption, even when reads of the original file
-finally start returning the updated data without using the "latest" option (eventual consistency).
+When locking, callers should use the latest available file data for reads.
+Also, one should always lock the file *before* reading it, not after. If stale data is
+used to determine a write, there will be some data corruption, even when reads of the
+original file finally start returning the updated data without needing the "latest"
+option (eventual consistency). The "scoped" lock functions are preferable since
+there is not the problem of forgetting to unlock due to early returns or exceptions.
 
 Since acquiring locks can fail, and lock managers can be non-blocking, callers should:
 * Acquire all required locks up font
@@ -147,32 +150,34 @@ Since acquiring locks can fail, and lock managers can be non-blocking, callers s
 * Possible retry acquiring certain locks
 
 MVCC is also a useful pattern to use on top of the backend interface, because operations
-are not atomic, even with doOperations(), so doing complex batch file changes or changing files
-and updating a database row can result in partially written "transactions". One should avoid
-changing files once they have been stored, except perhaps with ephemeral data that are tolerant
-of some inconsistency.
+are not atomic, even with doOperations(), so doing complex batch file changes or changing
+files and updating a database row can result in partially written "transactions". Thus one
+should avoid changing files once they have been stored, except perhaps with ephemeral data
+that are tolerant of some degree of inconsistency.
 
-Callers can use their own locking (e.g. SELECT FOR UPDATE) if it is more convenient, but note
-that all callers that change any of the files should then go through functions that acquire these
-locks. For example, if a caller just directly uses the file backend store() function, it will
-ignore any custom "FOR UPDATE" locks, which can cause problems.
+Callers can use their own locking (e.g. SELECT FOR UPDATE) if it is more convenient, but
+note that all callers that change any of the files should then go through functions that
+acquire these locks. For example, if a caller just directly uses the file backend store()
+function, it will ignore any custom "FOR UPDATE" locks, which can cause problems.
 
 \section objectstore Object stores
 
 Support for object stores (like Amazon S3/Swift) drive much of the API and design
 decisions of FileBackend, but using any POSIX compliant file systems works fine.
-The system essentially stores "files" in "containers". For a mounted file
-system as a backing store, these will just be "files" under "directories". For
-an object store as a backing store, the "files" will be "objects" stored in
-"containers".
+The system essentially stores "files" in "containers". For a mounted file system
+as a backing store, "files" will just be files under directories. For an object store
+as a backing store, the "files" will be objects stored in actual containers.
 
 
-\section file_obj_diffs File and Object store differences
+\section file_obj_diffs File system and Object store differences
 
-An advantage of objects stores is the reduced Round-Trip Times. This is
+An advantage of object stores is the reduced Round-Trip Times. This is
 achieved by avoiding the need to create each parent directory before placing a
-file somewhere. It gets worse the deeper the directory hierarchy is. For both
-object stores and file systems, using "/" in filenames will allow for the
+file somewhere. It gets worse the deeper the directory hierarchy is. Another
+advantage of object stores is that object listings tend to use databases, which
+scale better than the linked list directories that file sytems sometimes use.
+File systems like btrfs and xfs use tree structures, which scale better.
+For both object stores and file systems, using "/" in filenames will allow for the
 intuitive use of directory functions. For example, creating a file in Swift
 called "container/a/b/file1" will mean that:
 - a "directory listing" of "container/a" will contain "b",
@@ -182,7 +187,7 @@ This means that switching from an object store to a file system and vise versa
 using the FileBackend interface will generally be harmless. However, one must be
 aware of some important differences:
 
-* In a filesystem, you cannot have a file and a directory within the same path
+* In a file system, you cannot have a file and a directory within the same path
   whereas it is possible in an object stores. Calling code should avoid any layouts
   which allow files and directories at the same path.
 * Some file systems have file name length restrictions or overall path length
@@ -195,5 +200,9 @@ aware of some important differences:
   reduce latency. Making sure that the backend has pipelining (see the
   "parallelize" and "concurrency" settings) enabled can also mask latency in
   batch operation scenarios.
+* File systems may implement directories as linked-lists or other structures
+  with poor scalability, so calling code should use layouts that shard the data.
+  Instead of storing files like "container/file.txt", one can store files like
+  "container/<x>/<y>/file.txt". It is best if "sharding" optional or configurable.
 
 */
