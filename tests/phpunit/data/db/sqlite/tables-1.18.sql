@@ -296,7 +296,7 @@ CREATE TABLE /*_*/uploadstash (
 	us_size int unsigned NOT NULL,
 	us_sha1 varchar(31) NOT NULL,
 	us_mime varchar(255),
-  	us_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+	us_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
 	us_image_width int unsigned,
 	us_image_height int unsigned,
 	us_image_bits smallint unsigned

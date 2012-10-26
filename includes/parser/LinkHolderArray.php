@@ -43,7 +43,7 @@ class LinkHolderArray {
 		}
 	}
 
- 	/**
+	/**
 	 * Don't serialize the parent object, it is big, and not needed when it is
 	 * a parameter to mergeForeign(), which is the only application of
 	 * serializing at present.

@@ -73,7 +73,7 @@ abstract class Skin extends ContextSource {
 		return $wgValidSkinNames;
 	}
 
- 	/**
+	/**
 	 * Fetch the skinname messages for available skins.
 	 * @return array of strings
 	 */

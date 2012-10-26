@@ -433,7 +433,7 @@ class MimeMagic {
 		$ext = explode( ' ', $ext );
 
 		$extension = strtolower( $extension );
- 		return  in_array( $extension, $ext );
+		return  in_array( $extension, $ext );
 	}
 
 	/**

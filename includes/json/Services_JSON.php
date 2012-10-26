@@ -283,7 +283,7 @@ class Services_JSON
 		return $this->encode2($var);
 	}
 
-   	/**
+	/**
 	 * encodes an arbitrary variable into JSON format
 	 *
 	 * @param $var Mixed: any number, boolean, string, array, or object to be encoded.

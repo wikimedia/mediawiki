@@ -252,7 +252,7 @@ class SvgHandler extends ImageHandler {
 		try {
 			$metadata = SVGMetadataExtractor::getMetadata( $filename );
 		} catch( Exception $e ) {
- 			// Broken file?
+			// Broken file?
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
 			return '0';
 		}

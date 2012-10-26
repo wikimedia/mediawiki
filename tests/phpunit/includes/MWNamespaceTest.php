@@ -449,7 +449,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 *   $wgCapitalLinkOverrides = array(); by default
 	 *   $wgCapitalLinks = true; by default
 	 * This function test $wgCapitalLinks
- 	 *
+	 *
 	 * Global setting correctness is tested against the NS_PROJECT and
 	 * NS_PROJECT_TALK namespaces since they are not hardcoded nor specials
 	 */

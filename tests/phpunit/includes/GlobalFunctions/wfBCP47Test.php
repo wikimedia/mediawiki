@@ -7,7 +7,7 @@ class wfBCP47 extends MediaWikiTestCase {
 	 * test @see wfBCP47().
 	 * Please note the BCP explicitly state that language codes are case
 	 * insensitive, there are some exceptions to the rule :)
-   	 * This test is used to verify our formatting against all lower and
+	 * This test is used to verify our formatting against all lower and
 	 * all upper cases language code.
 	 *
 	 * @see http://tools.ietf.org/html/bcp47

@@ -347,7 +347,7 @@ class ResourceLoader {
 		return array_keys( $this->moduleInfos );
 	}
 
- 	/**
+	/**
 	 * Get a list of test module names for one (or all) frameworks.
 	 * If the given framework id is unknkown, or if the in-object variable is not an array,
 	 * then it will return an empty array.

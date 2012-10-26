@@ -382,7 +382,7 @@ class WebRequest {
 
 	/**
 	 * Unset an arbitrary value from our get/post data.
- 	 *
+	 *
 	 * @param $key String: key name to use
 	 * @return Mixed: old value if one was present, null otherwise
 	 */

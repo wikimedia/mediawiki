@@ -33,7 +33,7 @@ CREATE TABLE /*_*/uploadstash (
 	us_sha1 varchar(31) NOT NULL,
 	us_mime varchar(255),
 	-- Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table
-  	us_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
+	us_media_type ENUM("UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE") default NULL,
 	-- image-specific properties
 	us_image_width int unsigned,
 	us_image_height int unsigned,
