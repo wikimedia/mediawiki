@@ -85,7 +85,7 @@ abstract class FileJournal {
 	/**
 	 * Log changes made by a batch file operation.
 	 * $entries is an array of log entries, each of which contains:
-	 *     op      : Basic operation name (create, store, copy, delete)
+	 *     op      : Basic operation name (create, update, delete)
 	 *     path    : The storage path of the file
 	 *     newSha1 : The final base 36 SHA-1 of the file
 	 * Note that 'false' should be used as the SHA-1 for non-existing files.
