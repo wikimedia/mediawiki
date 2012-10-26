@@ -136,46 +136,10 @@ class FileOpBatch {
 		}
 
 		// Attempt each operation (in parallel if allowed and possible)...
-		if ( count( $pPerformOps ) < count( $performOps ) ) {
-			self::runBatchParallel( $pPerformOps, $status );
-		} else {
-			self::runBatchSeries( $performOps, $status );
-		}
+		self::runParallelBatches( $pPerformOps, $status );
 
 		wfProfileOut( __METHOD__ );
 		return $status;
-	}
-
-	/**
-	 * Attempt a list of file operations in series.
-	 * This will abort remaining ops on failure.
-	 *
-	 * @param $performOps Array
-	 * @param $status Status
-	 * @return bool Success
-	 */
-	protected static function runBatchSeries( array $performOps, Status $status ) {
-		foreach ( $performOps as $index => $fileOp ) {
-			if ( $fileOp->failed() ) {
-				continue; // nothing to do
-			}
-			$subStatus = $fileOp->attempt();
-			$status->merge( $subStatus );
-			if ( $subStatus->isOK() ) {
-				$status->success[$index] = true;
-				++$status->successCount;
-			} else {
-				$status->success[$index] = false;
-				++$status->failCount;
-				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
-				// Log the remaining ops as failed for recovery...
-				for ( $i = ($index + 1); $i < count( $performOps ); $i++ ) {
-					$performOps[$i]->logFailure( 'attempt_aborted' );
-				}
-				return false; // bail out
-			}
-		}
-		return true;
 	}
 
 	/**
@@ -190,8 +154,8 @@ class FileOpBatch {
 	 * @param $status Status
 	 * @return bool Success
 	 */
-	protected static function runBatchParallel( array $pPerformOps, Status $status ) {
-		$aborted = false;
+	protected static function runParallelBatches( array $pPerformOps, Status $status ) {
+		$aborted = false; // set to true on unexpected errors
 		foreach ( $pPerformOps as $performOpsBatch ) {
 			if ( $aborted ) { // check batch op abort flag...
 				// We can't continue (even with $ignoreErrors) as $predicates is wrong.
@@ -205,11 +169,16 @@ class FileOpBatch {
 			$opHandles = array();
 			// Get the backend; all sub-batch ops belong to a single backend
 			$backend = reset( $performOpsBatch )->getBackend();
-			// If attemptAsync() returns synchronously, it was either an
-			// error Status or the backend just doesn't support async ops.
+			// Get the operation handles or actually do it if there is just one.
+			// If attemptAsync() returns a Status, it was either due to an error
+			// or the backend does not support async ops and did it synchronously.
 			foreach ( $performOpsBatch as $i => $fileOp ) {
 				if ( !$fileOp->failed() ) { // failed => already has Status
-					$subStatus = $fileOp->attemptAsync();
+					// If the batch is just one operation, it's faster to avoid
+					// pipelining as that can involve creating new TCP connections.
+					$subStatus = ( count( $performOpsBatch ) > 1 )
+						? $fileOp->attemptAsync()
+						: $fileOp->attempt();
 					if ( $subStatus->value instanceof FileBackendStoreOpHandle ) {
 						$opHandles[$i] = $subStatus->value; // deferred
 					} else {
