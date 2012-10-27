@@ -4861,8 +4861,8 @@ This site is experiencing technical difficulties.',
 'logentry-patrol-patrol-auto'         => '$1 automatically marked revision $4 of page $3 patrolled',
 'logentry-newusers-newusers'          => '$1 created a user account',
 'logentry-newusers-create'            => '$1 created a user account',
-'logentry-newusers-create2'           => '$1 created a user account $3',
-'logentry-newusers-autocreate'        => 'Account $1 was created automatically',
+'logentry-newusers-create2'           => '$1 created a user account named $3',
+'logentry-newusers-autocreate'        => '$1 was created automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
 # For IRC, see bug 34508. Do not change
