@@ -432,10 +432,6 @@ class CologneBlueTemplate extends BaseTemplate {
 			</a>
 		</p>
 		<p id="sitesub"><?php echo wfMessage( 'sitesubtitle' )->escaped() ?></p>
-		<div id="toplinks">
-			<p id="syslinks"><?php echo $this->sysLinks() ?></p>
-			<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
-		</div>
 		<div id="linkcollection">
 			<div id="langlinks"><?php echo str_replace( '<br />', '', $this->otherLanguages() ) ?></div>
 			<?php echo $this->getSkin()->getCategories() ?>
@@ -499,7 +495,14 @@ class CologneBlueTemplate extends BaseTemplate {
 ?>
 	</div>
 </div>
-<?php echo $this->quickBar() ?>
+<div id="mw-navigation">
+	<h2><?php echo wfMessage( 'navigation-heading' )->escaped() ?></h2>
+	<div id="toplinks">
+		<p id="syslinks"><?php echo $this->sysLinks() ?></p>
+		<p id="variantlinks"><?php echo $this->variantLinks() ?></p>
+	</div>
+	<?php echo $this->quickBar() ?>
+</div>
 <?php
 		$s = ob_get_contents();
 		ob_end_clean();
@@ -643,7 +646,7 @@ class CologneBlueTemplate extends BaseTemplate {
 
 		foreach ( $bar as $heading => $data ) {
 			$headingMsg = wfMessage( $heading );
-			$headingHTML = "<h6>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h6>";
+			$headingHTML = "<h3>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h3>";
 			$portletId = Sanitizer::escapeId( "p-$heading" );
 			$listHTML = "";
 

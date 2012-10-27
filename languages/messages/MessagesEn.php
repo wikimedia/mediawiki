@@ -569,6 +569,7 @@ $preloadedMessages = array(
 	'searcharticle',
 	'searchbutton',
 	'sidebar',
+	'navigation-heading',
 	'site-atom-feed',
 	'sitenotice',
 	'specialpages',
@@ -807,6 +808,7 @@ XHTML id names.
 'namespaces'                     => 'Namespaces',
 'variants'                       => 'Variants',
 
+'navigation-heading'=> 'Navigation menu',
 'errorpagetitle'    => 'Error',
 'returnto'          => 'Return to $1.',
 'tagline'           => 'From {{SITENAME}}',
