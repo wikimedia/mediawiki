@@ -110,6 +110,14 @@ textarea {
 	margin-top: 0;
 }
 
+#quickbar .portlet ul,
+#quickbar .portlet li {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	line-height: inherit;
+}
+
 h1 {
 	color: #666666;
 	font-family: Verdana, Arial, sans-serif;
