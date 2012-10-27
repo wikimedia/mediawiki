@@ -4894,7 +4894,13 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-patrol-patrol-auto' => '{{Logentry}}
 * $4 is a formatted revision number, maybe linked to the diff.
 "Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
+'logentry-newusers-create' => '{{Logentry}}
+
+$4 is user\'s ID.',
 'logentry-newusers-create2' => '{{Logentry}}
+
+$4 is the name of the target user.',
+'logentry-newusers-autocreate' => '{{Logentry}}
 
 $4 is the gender of the target user.',
 
