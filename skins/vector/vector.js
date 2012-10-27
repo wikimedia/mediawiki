@@ -4,7 +4,7 @@
 jQuery( function ( $ ) {
 	$( 'div.vectorMenu' ).each( function () {
 		var $el = $( this );
-		$el.find( 'h5:first a:first' )
+		$el.find( 'h3:first a:first' )
 			// For accessibility, show the menu when the hidden link in the menu is clicked (bug 24298)
 			.click( function ( e ) {
 				$el.find( '.menu:first' ).toggleClass( 'menuForceShow' );

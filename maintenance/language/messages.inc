@@ -203,6 +203,7 @@ $wgMessageStructure = array(
 		'variants',
 	),
 	'miscellaneous2' => array(
+		'navigation-heading',
 		'errorpagetitle',
 		'returnto',
 		'tagline',

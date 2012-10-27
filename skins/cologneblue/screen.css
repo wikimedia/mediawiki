@@ -97,7 +97,13 @@ textarea {
 	color: #446688;
 }
 
-#quickbar h6 {
+/* Hide, but keep accessible for screen-readers */
+#mw-navigation h2 {
+	position: absolute;
+	top: -9999px;
+}
+
+#quickbar h3 {
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 10pt;
 	font-weight: bold;
