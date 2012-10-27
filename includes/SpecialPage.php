@@ -1017,14 +1017,12 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 		if ( $redirect instanceof Title ) {
 			$url = $redirect->getFullUrl( $query );
 			$this->getOutput()->redirect( $url );
-			wfProfileOut( __METHOD__ );
 			return $redirect;
 		// Redirect to index.php with query parameters
 		} elseif ( $redirect === true ) {
 			global $wgScript;
 			$url = $wgScript . '?' . wfArrayToCGI( $query );
 			$this->getOutput()->redirect( $url );
-			wfProfileOut( __METHOD__ );
 			return $redirect;
 		} else {
 			$class = __CLASS__;
@@ -1209,7 +1207,7 @@ abstract class RedirectSpecialArticle extends RedirectSpecialPage {
 			'ctype', 'maxage', 'smaxage',
 		);
 
-		wfRunHooks( "RedirectSpecialArticleRedirectParams", array(&$redirectParams) );
+		wfRunHooks( "RedirectSpecialArticleRedirectParams", array( &$redirectParams ) );
 		$this->mAllowedRedirectParams = $redirectParams;
 	}
 }
