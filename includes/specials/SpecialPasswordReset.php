@@ -248,9 +248,11 @@ class SpecialPasswordReset extends FormSpecialPage {
 		$this->email->params(
 			$username,
 			$passwordBlock,
-			count( $passwords ),
-			'<' . Title::newMainPage()->getCanonicalUrl() . '>',
-			round( $wgNewPasswordExpiry / 86400 )
+			count( $passwords )
+			)->rawParams(
+				'<' . Title::newMainPage()->getCanonicalUrl() . '>'
+			)->numParams(
+				round( $wgNewPasswordExpiry / 86400 )
 		);
 
 		$title = $this->msg( 'passwordreset-emailtitle' );
