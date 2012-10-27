@@ -388,6 +388,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'namespaces' => '{{Identical|Namespace}}',
 'variants' => 'Used by the Vector skin.',
 
+'navigation-heading' => 'Heading shown above the navigation menu (sidebar) for screen-readers (or in non-standard skins).',
+
 'errorpagetitle' => 'Message shown in browser title bar when encountering error operation.
 
 {{Identical|Error}}',
