@@ -923,23 +923,25 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-				$out->wrapWikiMsg(
-					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$rev->isDeleted( Revision::DELETED_RESTRICTED ) ?
-					'rev-suppressed-text-permission' : 'rev-deleted-text-permission'
-				);
-
+			$out->addHTML( "<div class='mw-warning plainlinks'>\n" );
+			if ( $rev->isDeleted( Revision::DELETED_RESTRICTED ) && $rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
+				$out->addWikiMsg( 'rev-suppressed-text-view', wfEscapeUrl( $this->getRequest()->getVal( 'target' ) ) );
+			} elseif ( $rev->isDeleted( Revision::DELETED_RESTRICTED ) && $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+				// No point trying to hide it - they know they can view most deleted revisions but not this one, therefore it is suppressed
+				$out->addWikiMsg( 'rev-suppressed-text-permission' );
+				if ( $user->isAllowed( 'suppressionlog' ) ) {
+					$out->addWikiMsg( 'rev-suppressed-text-permission-log', wfEscapeUrl( $this->getRequest()->getVal( 'target' ) ) );
+				}
+				$out->addHTML( "\n</div>\n<br />" );
+				return;
+			} elseif ( !$rev->isDeleted( Revision::DELETED_RESTRICTED ) && $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+				$out->addWikiMsg( 'rev-deleted-text-view' );
+			} else {
+				$out->addWikiMsg( 'rev-deleted-text-permission' );
+				$out->addHTML( "\n</div>\n<br />" );
 				return;
 			}
-
-			$out->wrapWikiMsg(
-				"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				$rev->isDeleted( Revision::DELETED_RESTRICTED ) ?
-					'rev-suppressed-text-view' : 'rev-deleted-text-view'
-			);
-			$out->addHTML( '<br />' );
-			// and we are allowed to see...
+			$out->addHTML( "\n</div>\n<br />" );
 		}
 
 		if ( $this->mDiff ) {

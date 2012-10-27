@@ -1286,8 +1286,17 @@ class Article implements Page {
 		$user = $this->getContext()->getUser();
 		// If the user is not allowed to see it...
 		if ( !$this->mRevision->userCan( Revision::DELETED_TEXT, $user ) ) {
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				'rev-deleted-text-permission' );
+			$outputPage->addHTML( "<div class='mw-warning plainlinks'>\n" );
+			if ( $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+				$outputPage->addWikiMsg( 'rev-suppressed-text-permission' );
+
+				if ( $user->isAllowed( 'suppressionlog' ) ) {
+					$outputPage->addWikiMsg( 'rev-suppressed-text-permission-log', $this->getTitle()->getPrefixedText() );
+				}
+			} else {
+				$outputPage->addWikiMsg( 'rev-deleted-text-permission' );
+			}
+			$outputPage->addHTML( "\n</div>\n" );
 
 			return false;
 		// If the user needs to confirm that they want to see it...
@@ -1303,9 +1312,13 @@ class Article implements Page {
 			return false;
 		// We are allowed to see...
 		} else {
-			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
-				'rev-suppressed-text-view' : 'rev-deleted-text-view';
-			$outputPage->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", $msg );
+			$outputPage->addHTML( "<div class='mw-warning plainlinks'>\n" );
+			if ( $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+				$outputPage->addWikiMsg( 'rev-suppressed-text-view', $this->getTitle()->getPrefixedText() );
+			} else {
+				$outputPage->addWikiMsg( 'rev-deleted-text-view' );
+			}
+			$outputPage->addHTML( "\n</div>\n<br />" );
 
 			return true;
 		}

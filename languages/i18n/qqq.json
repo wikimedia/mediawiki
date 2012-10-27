@@ -933,6 +933,8 @@
 	"rev-deleted-text-unhide": "Parameters:\n* $1 - a HTML link to the revision\n{{Related|Rev-deleted-text}}",
 	"rev-suppressed-text-unhide": "Parameters:\n* $1 - a HTML link to the revision\n{{Related|Rev-deleted-text}}",
 	"rev-deleted-text-view": "This message appears in case a user tries to view a past deleted revision of a page, although later revisions of the page still exist.\n{{Related|Rev-deleted-text}}",
+	"rev-suppressed-text-permission": "Identical to {{msg-mw|rev-deleted-text-permission}}, except for suppression instead of deletion.",
+	"rev-suppressed-text-permission-log": "Shown when the user is able to view the suppression log.",
 	"rev-suppressed-text-view": "This message appears in case a user tries to view a past suppressed revision of a page, although later revisions of the page still exist.\n{{Related|Rev-deleted-text}}",
 	"rev-deleted-no-diff": "See also:\n* {{msg-mw|Rev-suppressed-no-diff}}",
 	"rev-suppressed-no-diff": "See also:\n* {{msg-mw|Rev-deleted-no-diff}}",
