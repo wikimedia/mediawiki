@@ -639,33 +639,37 @@ class CologneBlueTemplate extends BaseTemplate {
 
 
 		// Output the sidebar
-		$s = "\n<div id='quickbar'>";
-		$sep = "<br />\n";
+		$s = "<div id='quickbar'>\n";
+		$s .= "<h2>" . wfMessage( 'sidebar-heading' )->escaped() . "</h2>\n";
+
 		foreach ( $bar as $heading => $data ) {
 			$headingMsg = wfMessage( $heading );
-			$headingHTML = "\n<h6>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h6>";
+			$headingHTML = "<h3>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h3>";
+			$portletId = Sanitizer::escapeId( "p-$heading" );
+			$listHTML = "";
 
 			if ( is_array( $data ) ) {
 				// $data is an array of links
-				$any_link = false;
-				$listHTML = "";
 				foreach ( $data as $key => $link ) {
 					// Can be empty due to how the sidebar additions are done
 					if ( $link ) {
-						$any_link = true;
-						$listHTML .= $this->makeListItem( $key, $link, array( 'tag' => 'span' ) ) . $sep;
+						$listHTML .= $this->makeListItem( $key, $link );
 					}
 				}
-				if ( $any_link ) {
-					$s .= $headingHTML . $listHTML;
+				if ( $listHTML ) {
+					$listHTML = "<ul>" . $listHTML . "</ul>";
 				}
 			} else {
-				// $data is a HTML string
-				$s .= $headingHTML . $data;
+				// $data is a HTML <ul>-list string
+				$listHTML = $data;
+			}
+
+			if ( $listHTML ) {
+				$s .= "<div class='portlet' id='$portletId'>\n$headingHTML\n$listHTML\n</div>\n";
 			}
 		}
 
-		$s .= $sep . "\n</div>\n";
+		$s .= "</div>\n";
 		return $s;
 	}
 
