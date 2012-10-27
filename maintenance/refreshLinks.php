@@ -206,8 +206,6 @@ class RefreshLinks extends Maintenance {
 	 * @param $id int The page_id
 	 */
 	public static function fixLinksFromArticle( $id ) {
-		global $wgParser, $wgContLang;
-
 		$page = WikiPage::newFromID( $id );
 
 		LinkCache::singleton()->clear();
@@ -216,7 +214,7 @@ class RefreshLinks extends Maintenance {
 			return;
 		}
 
-		$content = $page->getContent( REVISION::RAW );
+		$content = $page->getContent( Revision::RAW );
 		if ( null === false ) {
 			return;
 		}
