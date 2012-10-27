@@ -1052,8 +1052,14 @@ class Article extends Page {
 		$outputPage = $this->getContext()->getOutput();
 		$user = $this->getContext()->getUser();
 		$rcid = $request->getVal( 'rcid' );
+		$oldid = $request->getVal( 'oldid' );
 
 		if ( !$rcid || !$this->getTitle()->quickUserCan( 'patrol', $user ) ) {
+			return;
+		}
+
+		if ( $oldid != null && Revision::newFromId( $oldid ) == null ) {
+			// If oldid is set to a revision that doesn't exist, return. (bug 36641)
 			return;
 		}
 
