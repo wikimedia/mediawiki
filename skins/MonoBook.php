@@ -104,9 +104,10 @@ class MonoBookTemplate extends BaseTemplate {
 	</div>
 </div></div>
 <div id="column-one"<?php $this->html('userlangattributes')  ?>>
+	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 <?php $this->cactions(); ?>
 	<div class="portlet" id="p-personal">
-		<h5><?php $this->msg('personaltools') ?></h5>
+		<h3><?php $this->msg('personaltools') ?></h3>
 		<div class="pBody">
 			<ul<?php $this->html('userlangattributes') ?>>
 <?php		foreach($this->getPersonalTools() as $key => $item) { ?>
@@ -201,7 +202,7 @@ echo $footerEnd;
 		global $wgUseTwoButtonsSearchForm;
 ?>
 	<div id="p-search" class="portlet">
-		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
+		<h3><label for="searchInput"><?php $this->msg('search') ?></label></h3>
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('wgScript') ?>" id="searchform">
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
@@ -228,7 +229,7 @@ echo $footerEnd;
 	function cactions() {
 ?>
 	<div id="p-cactions" class="portlet">
-		<h5><?php $this->msg('views') ?></h5>
+		<h3><?php $this->msg('views') ?></h3>
 		<div class="pBody">
 			<ul><?php
 				foreach($this->data['content_actions'] as $key => $tab) {
@@ -245,7 +246,7 @@ echo $footerEnd;
 	function toolbox() {
 ?>
 	<div class="portlet" id="p-tb">
-		<h5><?php $this->msg('toolbox') ?></h5>
+		<h3><?php $this->msg('toolbox') ?></h3>
 		<div class="pBody">
 			<ul>
 <?php
@@ -268,7 +269,7 @@ echo $footerEnd;
 		if( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet">
-		<h5<?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h5>
+		<h3<?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h3>
 		<div class="pBody">
 			<ul>
 <?php		foreach($this->data['language_urls'] as $key => $langlink) { ?>
@@ -296,7 +297,7 @@ echo $footerEnd;
 		echo '	' . Html::openElement( 'div', $portletAttribs );
 ?>
 
-		<h5><?php $msg = wfMessage( $bar ); echo htmlspecialchars( $msg->exists() ? $msg->text() : $bar ); ?></h5>
+		<h3><?php $msg = wfMessage( $bar ); echo htmlspecialchars( $msg->exists() ? $msg->text() : $bar ); ?></h3>
 		<div class='pBody'>
 <?php   if ( is_array( $cont ) ) { ?>
 			<ul>
