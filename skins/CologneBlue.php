@@ -540,13 +540,48 @@ class CologneBlueTemplate extends BaseTemplate {
 	}
 
 	/**
-	 * @param $heading string
-	 * @return string
+	 * Adds CologneBlue-specific items to the sidebar: qbedit, qbpageoptions and qbmyoptions menus.
+	 *
+	 * @param $bar sidebar data
+	 * @return array modified sidebar data
 	 *
 	 * @fixed
 	 */
-	function menuHead( $heading ) {
-		return "\n<h6>" . htmlspecialchars( $heading ) . "</h6>";
+	function sidebarAdditions( $bar ) {
+		// "This page" and "Edit" menus
+		// We need to do some massaging here... we reuse all of the items, except for $...['views']['view'],
+		// as $...['namespaces']['main'] and $...['namespaces']['talk'] together serve the same purpose.
+		// We also don't use $...['variants'], these are displayed in the top menu.
+		$content_navigation = $this->data['content_navigation'];
+		$qbpageoptions = array_merge(
+			$content_navigation['namespaces'],
+			array(
+				'history' => $content_navigation['views']['history'],
+				'watch' => $content_navigation['actions']['watch'],
+				'unwatch' => $content_navigation['actions']['unwatch'],
+			)
+		);
+		$content_navigation['actions']['watch'] = null;
+		$content_navigation['actions']['unwatch'] = null;
+		$qbedit = array_merge(
+			array(
+				'edit' => $content_navigation['views']['edit'],
+				'addsection' => $content_navigation['views']['addsection'],
+			),
+			$content_navigation['actions']
+		);
+
+		// Personal tools ("My pages")
+		$qbmyoptions = $this->getPersonalTools();
+		foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
+			$qbmyoptions[$key] = null;
+		}
+
+		$bar['qbedit'] = $qbedit;
+		$bar['qbpageoptions'] = $qbpageoptions;
+		$bar['qbmyoptions'] = $qbmyoptions;
+
+		return $bar;
 	}
 
 	/**
@@ -557,113 +592,76 @@ class CologneBlueTemplate extends BaseTemplate {
 	 *
 	 * @fixed
 	 */
-	function quickBar(){
-		$s = "\n<div id='quickbar'>";
-
-		$sep = "<br />\n";
-
-		$plain_bar = $this->data['sidebar'];
+	function quickBar() {
+		// Massage the sidebar. We want to:
+		// * place SEARCH at the beginning
+		// * add new portlets before TOOLBOX (or at the end, if it's missing)
+		// * remove LANGUAGES (langlinks are displayed elsewhere)
+		$orig_bar = $this->data['sidebar'];
 		$bar = array();
+		$hasToolbox = false;
 
-		// Massage the sidebar
-		// We want to place SEARCH at the beginning and a lot of stuff before TOOLBOX (or at the end, if it's missing)
-		$additions_done = false;
-		while ( !$additions_done ) {
-			$bar = array(); // Empty it out
-
-			// Always display search on top
-			$bar['SEARCH'] = true;
-
-			foreach ( $plain_bar as $heading => $links ) {
-				if ( $heading == 'TOOLBOX' ) {
-					if( $links !== NULL ) {
-						// If this is not a toolbox prosthetic we inserted outselves, fill it out
-						$plain_bar['TOOLBOX'] = $this->getToolbox();
-					}
-
-					// And insert the stuff
-
-					// "This page" and "Edit" menus
-					// We need to do some massaging here... we reuse all of the items, except for $...['views']['view'],
-					// as $...['namespaces']['main'] and $...['namespaces']['talk'] together serve the same purpose.
-					// We also don't use $...['variants'], these are displayed in the top menu.
-					$content_navigation = $this->data['content_navigation'];
-					$qbpageoptions = array_merge(
-						$content_navigation['namespaces'],
-						array(
-							'history' => $content_navigation['views']['history'],
-							'watch' => $content_navigation['actions']['watch'],
-							'unwatch' => $content_navigation['actions']['unwatch'],
-						)
-					);
-					$content_navigation['actions']['watch'] = null;
-					$content_navigation['actions']['unwatch'] = null;
-					$qbedit = array_merge(
-						array(
-							'edit' => $content_navigation['views']['edit'],
-							'addsection' => $content_navigation['views']['addsection'],
-						),
-						$content_navigation['actions']
-					);
-					$bar['qbedit'] = $qbedit;
-					$bar['qbpageoptions'] = $qbpageoptions;
-
-					// Personal tools ("My pages")
-					$bar['qbmyoptions'] = $this->getPersonalTools();
-					foreach ( array ( 'logout', 'createaccount', 'login', 'anonlogin' ) as $key ) {
-						$bar['qbmyoptions'][$key] = null;
-					}
-
-					$additions_done = true;
-				}
-
-				// Re-insert current heading, unless it's SEARCH
-				if ( $heading != 'SEARCH' ) {
-					$bar[$heading] = $plain_bar[$heading];
-				}
+		// Always display search first
+		$bar['SEARCH'] = true;
+		// Copy everything except for langlinks, inserting new items before toolbox
+		foreach ( $orig_bar as $heading => $data ) {
+			if ( $heading == 'TOOLBOX' ) {
+				// Insert the stuff
+				$bar = $this->sidebarAdditions( $bar );
+				$hasToolbox = true;
 			}
 
-			// If TOOLBOX is missing, $additions_done is still false
-			if ( !$additions_done ) {
-				$plain_bar['TOOLBOX'] = false;
+			if ( $heading != 'LANGUAGES' ) {
+				$bar[$heading] = $data;
+			}
+		}
+		// If toolbox is missing, add our items at the end
+		if ( !$hasToolbox ) {
+			$bar = $this->sidebarAdditions( $bar );
+		}
+
+
+		// Fill out special sidebar items with content
+		$orig_bar = $bar;
+		$bar = array();
+		foreach ( $orig_bar as $heading => $data ) {
+			if ( $heading == 'SEARCH' ) {
+				$bar['qbfind'] = $this->searchForm( 'sidebar' );
+			} elseif ( $heading == 'TOOLBOX' ) {
+				$bar['toolbox'] = $this->getToolbox();
+			} elseif ( $heading == 'navigation' ) {
+				// Use the navigation heading from standard sidebar as the "browse" section
+				$bar['qbbrowse'] = $data;
+			} else {
+				$bar[$heading] = $data;
 			}
 		}
 
-		foreach ( $bar as $heading => $links ) {
-			if ( $heading == 'SEARCH' ) {
-				$s .= $this->menuHead( wfMessage( 'qbfind' )->text() );
-				$s .= $this->searchForm( 'sidebar' );
-			} elseif ( $heading == 'LANGUAGES' ) {
-				// discard these; we display languages below page content
-			} elseif ( $links ) {
-				if ( is_array( $links ) ) {
-					// Use the navigation heading from standard sidebar as the "browse" section
-					if ( $heading == 'navigation' ) {
-						$heading = 'qbbrowse';
-					}
-					if ( $heading == 'TOOLBOX' ) {
-						$heading = 'toolbox';
-					}
 
-					$headingMsg = wfMessage( $heading );
-					$any_link = false;
-					$t = $this->menuHead( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) );
+		// Output the sidebar
+		$s = "\n<div id='quickbar'>";
+		$sep = "<br />\n";
+		foreach ( $bar as $heading => $data ) {
+			$headingMsg = wfMessage( $heading );
+			$headingHTML = "\n<h6>" . ( $headingMsg->exists() ? $headingMsg->escaped() : htmlspecialchars( $heading ) ) . "</h6>";
 
-					foreach ( $links as $key => $link ) {
-						// Can be empty due to rampant sidebar massaging we're doing above
-						if ( $link ) {
-							$any_link = true;
-							$t .= $this->makeListItem( $key, $link, array( 'tag' => 'span' ) ) . $sep;
-						}
+			if ( is_array( $data ) ) {
+				// $data is an array of links
+				$any_link = false;
+				$listHTML = "";
+				foreach ( $data as $key => $link ) {
+					// Can be empty due to how the sidebar additions are done
+					if ( $link ) {
+						$any_link = true;
+						$listHTML .= $this->makeListItem( $key, $link, array( 'tag' => 'span' ) ) . $sep;
 					}
-
-					if ( $any_link ) {
-						$s .= $t;
-					}
-				} else {
-					// $links can be a HTML string
-					$s .= $links;
 				}
+				if ( $any_link ) {
+					$s .= $headingHTML . $listHTML;
+				}
+			} else {
+				// $data is a HTML string
+				$s .= $headingHTML . $data;
 			}
 		}
 
