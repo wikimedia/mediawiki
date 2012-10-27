@@ -91,10 +91,10 @@ class RunJobs extends Maintenance {
 				}
 				// Break out if we hit the job count or wall time limits...
 				if ( $maxJobs && ++$n >= $maxJobs ) {
-					break 2;
+					break;
 				}
 				if ( $maxTime && ( time() - $startTime ) > $maxTime ) {
-					break 2;
+					break;
 				}
 				// Don't let any slaves/backups fall behind...
 				$group->get( $type )->waitForBackups();
