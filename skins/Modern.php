@@ -103,6 +103,7 @@ class ModernTemplate extends MonoBookTemplate {
 	</div><!-- mw_contentwrapper -->
 
 	<div id="mw_portlets"<?php $this->html("userlangattributes") ?>>
+	<h2><?php $this->msg( 'navigation-heading' ) ?></h2>
 
 	<!-- portlets -->
 	<?php $this->renderPortals( $this->data['sidebar'] ); ?>
@@ -116,7 +117,7 @@ class ModernTemplate extends MonoBookTemplate {
 
 	<!-- personal portlet -->
 	<div class="portlet" id="p-personal">
-		<h5><?php $this->msg('personaltools') ?></h5>
+		<h3><?php $this->msg('personaltools') ?></h3>
 		<div class="pBody">
 			<ul>
 <?php		foreach($this->getPersonalTools() as $key => $item) { ?>

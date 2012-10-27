@@ -37,6 +37,11 @@ div#content {
 	color: black;
 	direction: ltr;
 }
+/* Hide, but keep accessible for screen-readers */
+#mw-navigation h2 {
+	position: absolute;
+	top: -9999px;
+}
 /* Head */
 #mw-page-base {
 	height: 5em;
@@ -61,7 +66,7 @@ div#mw-head {
 	right: 0;
 	width: 100%;
 }
-div#mw-head h5 {
+div#mw-head h3 {
 	margin: 0;
 	padding: 0;
 }
@@ -75,7 +80,7 @@ div.emptyPortlet {
 	top: 0.33em;
 	right: 0.75em;
 }
-#p-personal h5 {
+#p-personal h3 {
 	display: none;
 }
 #p-personal ul {
@@ -106,8 +111,8 @@ div.emptyPortlet {
 	margin-top: 2.5em;
 }
 /* Navigation Labels */
-div.vectorTabs h5,
-div.vectorMenu h5 span {
+div.vectorTabs h3,
+div.vectorMenu h3 span {
 	display: none;
 }
 /* Namespaces and Views */
@@ -226,22 +231,22 @@ body.rtl div.vectorMenu {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div#mw-head div.vectorMenu h5 {
+div#mw-head div.vectorMenu h3 {
 	float: left;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div#mw-head div.vectorMenu h5 {
+div#mw-head div.vectorMenu h3 {
 	background-position: bottom left;
 	margin-left: -1px;
 }
 /* IGNORED BY IE6 */
-div#mw-head div.vectorMenu > h5 {
+div#mw-head div.vectorMenu > h3 {
 	background-image: none;
 }
-div#mw-head div.vectorMenu h4 {
+div.vectorMenu#p-variants #mw-vector-current-variant {
 	display: inline-block;
 	float: left;
 	font-size: 0.8em;
@@ -252,21 +257,21 @@ div#mw-head div.vectorMenu h4 {
 }
 /* OVERRIDDEN BY COMPLIANT BROWSERS */
 /* @noflip */
-div.vectorMenu h5 a {
+div.vectorMenu h3 a {
 	display: inline-block;
 	width: 24px;
-	height: 2.5em;
+	height: 1.9em;
 	text-decoration: none;
 	/* @embed */
 	background-image: url(images/tab-break.png);
 	background-repeat: no-repeat;
 }
 /* This will be flipped - unlike the one above it */
-div.vectorMenu h5 a {
+div.vectorMenu h3 a {
 	background-position: bottom right;
 }
 /* IGNORED BY IE6 */
-div.vectorMenu h5 > a {
+div.vectorMenu h3 > a {
 	display: block;
 }
 div.vectorMenu div.menu {
@@ -346,7 +351,7 @@ div.vectorMenu li.selected a:visited {
 	text-decoration: none;
 }
 /* Search */
-#p-search h5 {
+#p-search h3 {
 	display: none;
 }
 /* @noflip */
@@ -463,7 +468,7 @@ div#mw-panel div.portal {
 	padding-bottom: 1.5em;
 	direction: ltr;
 }
-div#mw-panel div.portal h5 {
+div#mw-panel div.portal h3 {
 	font-weight: normal;
 	color: #444;
 	padding: 0.25em;

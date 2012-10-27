@@ -84,6 +84,12 @@ a:hover {
 	left: 0;
 }
 
+/* Hide, but keep accessible for screen-readers */
+#column-one h2 {
+	position: absolute;
+	top: -9999px;
+}
+
 body {
 	margin: 0;
 	padding: 0;
