@@ -1219,6 +1219,8 @@ Used in History and [[Special:Contributions]].',
 'rev-deleted-comment' => 'Apparently this can also be about the reason of a log action, not only an edit summary. See also:
 *{{msg-mw|revdelete-hide-comment}}',
 'rev-deleted-user-contribs' => 'Part of revision deletion.',
+'rev-suppressed-text-permission' => "Identical to {{msg-mw|rev-deleted-text-permission}}, except for suppression instead of deletion.",
+'rev-suppressed-text-permission-log' => "Shown when the user is able to view the suppression log.",
 'rev-deleted-text-unhide' => 'This message is very similar to {{msg-mw|rev-suppressed-unhide-diff}}. Parameters:
 * $1 is a HTML link to the diff',
 'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',

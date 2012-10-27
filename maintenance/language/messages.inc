@@ -765,6 +765,8 @@ $wgMessageStructure = array(
 		'rev-deleted-user',
 		'rev-deleted-event',
 		'rev-deleted-user-contribs',
+		'rev-suppressed-text-permission',
+		'rev-suppressed-text-permission-log',
 		'rev-deleted-text-permission',
 		'rev-deleted-text-unhide',
 		'rev-suppressed-text-unhide',

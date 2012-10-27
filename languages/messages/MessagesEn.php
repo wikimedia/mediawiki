@@ -1572,6 +1572,8 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'rev-deleted-user-contribs'   => '[username or IP address removed - edit hidden from contributions]',
 'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+'rev-suppressed-text-permission' => "This page revision has been '''suppressed'''.",
+'rev-suppressed-text-permission-log' => "Details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page=$1}} suppression log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
 You can still [$1 view this revision] if you wish to proceed.",
@@ -1581,10 +1583,10 @@ You can still [$1 view this revision] if you wish to proceed.",
 'rev-deleted-text-view'       => "This page revision has been '''deleted'''.
 You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-text-view'    => "This page revision has been '''suppressed'''.
-You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page=$1}} suppression log].",
 'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-'rev-suppressed-no-diff'      => "You cannot view this diff because one of the revisions has been '''deleted'''.",
+'rev-suppressed-no-diff'      => "You cannot view this diff because one of the revisions has been '''suppressed'''.",
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
 You can still [$1 view this diff] if you wish to proceed.",
