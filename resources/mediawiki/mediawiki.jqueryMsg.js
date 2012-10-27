@@ -645,19 +645,25 @@
 		},
 
 		/**
-		 * Transform parsed structure into gender
-		 * Usage {{gender:[gender| mw.user object ] | masculine|feminine|neutral}}.
-		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String} , {String} ]
+		 * Transform parsed structure according to gender.
+		 * Usage {{gender:[ gender | mw.user object ] | masculine form|feminine form|neutral form}}.
+		 * The first node is either a string, which can be "male" or "female",
+		 * or a User object (not a username).
+		 *
+		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String}, {String} ]
 		 * @return {String} selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
-			var gender;
-			if  ( nodes[0] && nodes[0].options instanceof mw.Map ){
+			var gender, forms;
+
+			if  ( nodes[0] && nodes[0].options instanceof mw.Map ) {
 				gender = nodes[0].options.get( 'gender' );
 			} else {
 				gender = nodes[0];
 			}
-			var forms = nodes.slice(1);
+
+			forms = nodes.slice( 1 );
+
 			return this.language.gender( gender, forms );
 		},
 
