@@ -901,20 +901,26 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		if ( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			if ( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
-				$out->wrapWikiMsg(
-					"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-					'rev-deleted-text-permission'
-				);
-				return;
-			}
+			$out->addHTML( "<div class='mw-warning plainlinks'>\n" );
+			if ( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
+				if ( $rev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+					$out->addWikiMsg( 'rev-suppressed-text-view', $this->getRequest()->getVal( 'target' ) );
+				} else {
+					$out->addWikiMsg( 'rev-deleted-text-view' );
+				}
+			} else {
+				if ( $rev->isDeleted( Revision::DELETED_RESTRICTED ) ) {
+					$out->addWikiMsg( 'rev-suppressed-text-permission' );
 
-			$out->wrapWikiMsg(
-				"<div class='mw-warning plainlinks'>\n$1\n</div>\n",
-				'rev-deleted-text-view'
-			);
-			$out->addHTML( '<br />' );
-			// and we are allowed to see...
+					if ( $user->isAllowed( 'suppressionlog' ) ) {
+						$out->addWikiMsg( 'rev-suppressed-text-permission-log', $this->getRequest()->getVal( 'target' ) );
+					}
+				} else {
+					$out->addWikiMsg( 'rev-deleted-text-permission' );
+				}
+			}
+			$out->addHTML( "\n</div>\n<br />" );
+			return;
 		}
 
 		if ( $this->mDiff ) {
