@@ -838,6 +838,9 @@ Quests arguments vegnan ignorads.",
 'node-count-exceeded-warning' => 'Questa pagina ha surpassà il dumber da nufs',
 'expansion-depth-exceeded-category' => "Paginas, nua che la porfunditad d'extensiun è surpassada",
 'expansion-depth-exceeded-warning' => "Questa pagina ha surpassà la profunditad d'expansiun",
+'parser-unstrip-loop-warning' => "Chattà circul d'unstrip",
+'parser-unstrip-recursion-limit' => 'Limita da recursiun ($1) per unstrip è surpassà',
+'converter-manual-rule-error' => 'Ina errur è cumparida en la regla manuala da convertir la lingua',
 
 # "Undo" feature
 'undo-success' => 'Questa modificaziun na po betg vegnir revocada.
@@ -930,6 +933,8 @@ Ti pos vesair quest diff; detagls pon vegnir chattads en il [{{fullurl:{{#Specia
 'revdelete-show-file-submit' => 'Gea',
 'revdelete-selected' => "'''{{PLURAL:$2|Versiun tschernida|Versiuns tschernidas}} da [[:$1]]:'''",
 'logdelete-selected' => "'''{{PLURAL:$1|Elements dal log tschernì|Elements dal log tschernids}}:'''",
+'revdelete-text' => "'''Versiuns ed ocurrenzas stizzadas cumparan era vinavant en la cronologia ed en ils protocols, dentant èn parts dal cuntegn betg accessibels al public.'''
+Auters administraturs sin {{SITENAME}} vegnan tuttina ad avair access al cuntegn zuppentà e pon restaurar puspè la pagina, sch'i na vegnan betg definidas restricziuns supplementaras.",
 'revdelete-radio-set' => 'Gea',
 'revdelete-radio-unset' => 'Na',
 'revdelete-log' => 'Motiv:',

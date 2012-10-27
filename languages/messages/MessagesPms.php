@@ -725,7 +725,7 @@ Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na 
 'note' => "'''NÒTA:'''",
 'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
 Ij sò cambi a son anco' pa stàit salvà!",
-'continue-editing' => 'Continua a modifiché',
+'continue-editing' => "Và a l'area ëd modìfica",
 'previewconflict' => "Costa preuva a-j mostra ël test dl'artìcol ambelessì dzora. Se a sërn dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
 'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
 Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",

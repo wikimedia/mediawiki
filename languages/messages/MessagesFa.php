@@ -696,10 +696,10 @@ $1',
 'youhavenewmessages' => '$1 دارید ($2).',
 'newmessageslink' => 'پیام‌های جدید',
 'newmessagesdifflink' => 'آخرین تغییر',
-'youhavenewmessagesfromusers' => 'شما از {{PLURAL:$3| کاربر دیگر| $3  کاربر}} $1 دارید ($2).',
+'youhavenewmessagesfromusers' => 'شما از {{PLURAL:$3|یک کاربر دیگر|$3  کاربر}} $1 دارید ($2).',
 'youhavenewmessagesmanyusers' => 'شما از تعدادی کاربر $1 دارید ($2).',
-'newmessageslinkplural' => '{{PLURAL:$1|پیام جدید|پیام جدید}}',
-'newmessagesdifflinkplural' => '{{formatnum:$1}} {{PLURAL:$1|تغییر|تغییرات}} اخیر',
+'newmessageslinkplural' => '{{PLURAL:$1|پیام جدید}}',
+'newmessagesdifflinkplural' => '{{formatnum:$1}} {{PLURAL:$1|تغییر|تغییر}} اخیر',
 'youhavenewmessagesmulti' => 'پیام‌های جدیدی در $1 دارید.',
 'editsection' => 'ویرایش',
 'editold' => 'ویرایش',
@@ -1141,7 +1141,7 @@ $2
 'note' => "'''نکته:'''",
 'previewnote' => "'''به یاد داشته باشید که این فقط پیش‌نمایش است.'''
 تغییرات شما هنوز ذخیره نشده‌است!",
-'continue-editing' => 'ادامهٔ ویرایش',
+'continue-editing' => 'رفتن به قسمت ویرایش',
 'previewconflict' => 'این پیش‌نمایش منعکس‌کنندهٔ متن ناحیهٔ ویرایش متن بالایی است، به شکلی که اگر متن را ذخیره کنید نمایش خواهد یافت.',
 'session_fail_preview' => "'''شرمنده! به علت از دست رفتن اطلاعات نشست کاربری نمی‌توانیم ویرایش شما را پردازش کنیم.'''
 لطفاً دوباره سعی کنید.

@@ -1105,7 +1105,7 @@ $2
 'note' => "'''Напомена:'''",
 'previewnote' => "'''Имајте у виду да је ово само преглед.'''
 Ваше измене још нису сачуване!",
-'continue-editing' => 'Настави уређивање',
+'continue-editing' => 'Иди на уређивачки оквир',
 'previewconflict' => 'Овај преглед осликава како ће текст у текстуалном оквиру изгледати.',
 'session_fail_preview' => "'''Нисмо могли да обрадимо вашу измену због губитка података сесије.'''
 Покушајте поново.
@@ -3306,6 +3306,9 @@ $1',
 'pageinfo-redirectsto-info' => 'подаци',
 'pageinfo-contentpage' => 'Рачуна се као страница са садржајем',
 'pageinfo-contentpage-yes' => 'Да',
+'pageinfo-protect-cascading' => 'Преносива заштита страница важи одавде',
+'pageinfo-protect-cascading-yes' => 'Да',
+'pageinfo-protect-cascading-from' => 'Странице са преносивом заштитом од',
 
 # Skin names
 'skinname-standard' => 'Класично',

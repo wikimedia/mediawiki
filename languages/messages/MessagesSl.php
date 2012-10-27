@@ -891,7 +891,7 @@ Vedite, da .css in .js strani po meri uporabljajo naslov z malo začetnico, npr.
 'note' => "'''Opomba:'''",
 'previewnote' => "'''Pomnite, da stran le predogledujete.'''
 Vaših sprememb še nismo shranili!",
-'continue-editing' => 'Nadaljujte z urejanjem',
+'continue-editing' => 'Pojdi na urejevalno območje',
 'previewconflict' => 'V prikazanem predogledu je v zgornjem predelu urejanja navedeno besedilo, kakor se bo prikazalo, če ga boste shranili.',
 'session_fail_preview' => "'''Oprostite! Zaradi izgube podatkov o seji nam vašega urejanja žal ni uspelo obdelati.'''
 Prosimo, poskusite znova.
@@ -971,6 +971,9 @@ Izgleda, da je bila izbrisana.',
 'edit-no-change' => 'Vaše urejanje je bilo prezrto, saj ni vsebovalo sprememb.',
 'edit-already-exists' => 'Ni bilo mogoče ustvariti nove strani, ker že obstaja.',
 'defaultmessagetext' => 'Prednastavljeno besedilo',
+'content-failed-to-parse' => 'Nisem mogel razčleniti vsebine $2 za obliko $1: $3',
+'invalid-content-data' => 'Neveljavni podatki vsebine',
+'content-not-allowed-here' => 'Vsebina »$1« ni dovoljena na strani [[$2]]',
 
 # Content models
 'content-model-wikitext' => 'wikibesedilo',
@@ -2761,6 +2764,7 @@ strani ni mogoče prestaviti samo vaše.',
 'immobile-target-namespace-iw' => 'Povezava interwiki ni veljaven cilj za premik strani.',
 'immobile-source-page' => 'Te strani ni mogoče prestaviti.',
 'immobile-target-page' => 'Ne morem premakniti na ta ciljni naslov.',
+'bad-target-model' => 'Želen cilj uporablja drugačno obliko vsebine. Ne morem pretvoriti iz $1 v $2.',
 'imagenocrossnamespace' => 'Ne morem premakniti datoteke izven imenskega prostora datotek',
 'nonfile-cannot-move-to-file' => 'Ne morem premakniti nedatoteko v imenski prostor datotek',
 'imagetypemismatch' => 'Nova končnica datoteke se ne ujema z njeno vrsto',
@@ -2996,6 +3000,7 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 
 # Info page
 'pageinfo-title' => 'Informacije o »$1«',
+'pageinfo-not-current' => 'Prikažemo lahko samo podatke trenutne redakcije.',
 'pageinfo-header-basic' => 'Osnovni podatki',
 'pageinfo-header-edits' => 'Zgodovina urejanja',
 'pageinfo-header-restrictions' => 'Zaščita strani',
@@ -3024,6 +3029,13 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Skrita kategorija|Skriti kategoriji|Skrite kategorije}} ($1)',
 'pageinfo-templates' => '{{PLURAL:$1|Vključena predloga|Vključeni predlogi|Vključene predloge}} ($1)',
 'pageinfo-toolboxlink' => 'Podatki o strani',
+'pageinfo-redirectsto' => 'Preusmerja na',
+'pageinfo-redirectsto-info' => 'informacije',
+'pageinfo-contentpage' => 'Šteje kot stran s vsebino',
+'pageinfo-contentpage-yes' => 'Da',
+'pageinfo-protect-cascading' => 'Zaščite se dedujejo od tukaj',
+'pageinfo-protect-cascading-yes' => 'Da',
+'pageinfo-protect-cascading-from' => 'Zaščite se dedujejo od',
 
 # Patrolling
 'markaspatrolleddiff' => 'Označite kot nadzorovano',

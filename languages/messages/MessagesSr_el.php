@@ -1014,7 +1014,7 @@ Prilagođene stranice CSS i javaskript počinju malim slovom, npr. {{ns:user}}:F
 'note' => "'''Napomena:'''",
 'previewnote' => "'''Imajte u vidu da je ovo samo pregled.'''
 Vaše izmene još nisu sačuvane!",
-'continue-editing' => 'Nastavi uređivanje',
+'continue-editing' => 'Idi na uređivački okvir',
 'previewconflict' => 'Ovaj pregled oslikava kako će tekst u tekstualnom okviru izgledati.',
 'session_fail_preview' => "'''Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.'''
 Pokušajte ponovo.
@@ -3215,6 +3215,9 @@ Ovo je verovatno izazvano vezom do spoljašnjeg sajta koji se nalazi na crnoj li
 'pageinfo-redirectsto-info' => 'podaci',
 'pageinfo-contentpage' => 'Računa se kao stranica sa sadržajem',
 'pageinfo-contentpage-yes' => 'Da',
+'pageinfo-protect-cascading' => 'Prenosiva zaštita stranica važi odavde',
+'pageinfo-protect-cascading-yes' => 'Da',
+'pageinfo-protect-cascading-from' => 'Stranice sa prenosivom zaštitom od',
 
 # Skin names
 'skinname-standard' => 'Klasično',
