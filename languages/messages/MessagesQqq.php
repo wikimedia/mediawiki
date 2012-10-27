@@ -1799,6 +1799,8 @@ See [{{canonicalurl:x|feed=atom&action=history}} example].',
 'rev-suppressed-text-unhide' => 'Parameters:
 * $1 - a HTML link to the revision
 {{Related|Rev-deleted-text}}',
+'rev-suppressed-text-permission' => "Identical to {{msg-mw|rev-deleted-text-permission}}, except for suppression instead of deletion.",
+'rev-suppressed-text-permission-log' => "Shown when the user is able to view the suppression log.",
 'rev-deleted-text-view' => 'I believe this is an error message which appears if a user tries to view a past revision of a page, where the revision has been hidden from view, although later revisions of the page still exist.',
 'rev-suppressed-text-view' => '{{Related|Rev-deleted-text}}',
 'rev-deleted-no-diff' => 'See also:
