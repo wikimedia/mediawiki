@@ -380,6 +380,8 @@ CREATE TABLE /*_*/text (
 -- fields, with several caveats.
 --
 CREATE TABLE /*_*/archive (
+  -- Primary key
+  ar_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
   ar_namespace int NOT NULL default 0,
   ar_title varchar(255) binary NOT NULL default '',
 
@@ -445,7 +447,6 @@ CREATE TABLE /*_*/archive (
 
   -- content format, see CONTENT_FORMAT_XXX constants
   ar_content_format varbinary(64) DEFAULT NULL
-
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/name_title_timestamp ON /*_*/archive (ar_namespace,ar_title,ar_timestamp);
@@ -602,6 +603,9 @@ CREATE INDEX /*i*/cat_pages ON /*_*/category (cat_pages);
 -- Track links to external URLs
 --
 CREATE TABLE /*_*/externallinks (
+  -- Primary key
+  el_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+
   -- page_id of the referring page
   el_from int unsigned NOT NULL default 0,
 
@@ -625,6 +629,19 @@ CREATE TABLE /*_*/externallinks (
 CREATE INDEX /*i*/el_from ON /*_*/externallinks (el_from, el_to(40));
 CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
+
+--
+-- Track external user accounts, if ExternalAuth is used
+--
+CREATE TABLE /*_*/external_user (
+  -- Foreign key to user_id
+  eu_local_id int unsigned NOT NULL PRIMARY KEY,
+
+  -- Some opaque identifier provided by the external database
+  eu_external_id varchar(255) binary NOT NULL
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/eu_external_id ON /*_*/external_user (eu_external_id);
 
 --
 -- Track interlanguage links
@@ -1073,7 +1090,7 @@ CREATE TABLE /*_*/recentchanges (
   -- Visibility of recent changes items, bitfield
   rc_deleted tinyint unsigned NOT NULL default 0,
 
-  -- Value corresonding to log_id, specific log entries
+  -- Value corresponding to log_id, specific log entries
   rc_logid int unsigned NOT NULL default 0,
   -- Store log type info here, or null
   rc_log_type varbinary(255) NULL default NULL,
