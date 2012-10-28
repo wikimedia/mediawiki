@@ -18,6 +18,8 @@ DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS archive_ar_id_seq CASCADE;
+DROP SEQUENCE IF EXISTS externallinks_el_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_title() CASCADE;
 DROP FUNCTION IF EXISTS ts2_page_text() CASCADE;
@@ -155,7 +157,9 @@ CREATE TABLE page_props (
 ALTER TABLE page_props ADD CONSTRAINT page_props_pk PRIMARY KEY (pp_page,pp_propname);
 CREATE INDEX page_props_propname ON page_props (pp_propname);
 
+CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE archive (
+  ar_id             INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('archive_ar_id_seq'),
   ar_namespace      SMALLINT     NOT NULL,
   ar_title          TEXT         NOT NULL,
   ar_text           TEXT, -- technically should be bytea, but not used anymore
@@ -173,7 +177,12 @@ CREATE TABLE archive (
   ar_deleted        SMALLINT     NOT NULL  DEFAULT 0,
   ar_len            INTEGER          NULL,
   ar_content_model  TEXT,
-  ar_content_format TEXT
+  ar_content_format TEXT,
+  ar_log_id         INTEGER,
+  ar_log_timestamp  TIMESTAMPTZ  NOT NULL,
+  ar_log_user       INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
+  ar_log_user_text  TEXT         NOT NULL,
+  ar_log_comment    TEXT
 );
 CREATE INDEX archive_name_title_timestamp ON archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX archive_user_text            ON archive (ar_user_text);
@@ -223,7 +232,9 @@ CREATE TABLE categorylinks (
 CREATE UNIQUE INDEX cl_from ON categorylinks (cl_from, cl_to);
 CREATE INDEX cl_sortkey     ON categorylinks (cl_to, cl_sortkey, cl_from);
 
+CREATE SEQUENCE externallinks_id_seq;
 CREATE TABLE externallinks (
+  el_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('externallinks_id_seq'),
   el_from   INTEGER  NOT NULL  REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
   el_to     TEXT     NOT NULL,
   el_index  TEXT     NOT NULL
