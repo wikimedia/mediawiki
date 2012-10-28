@@ -242,6 +242,8 @@ production.
 * Added $wgExtensionEntryPointListFiles for use in mergeMessageFileList.php.
 * Added a hook, APIQuerySiteInfoStatisticsInfo, to allow extensions to modify
   the output of the API query meta=siteinfo&siprop=statistics
+* Primary keys have been added to both the archive table and the externallinks
+  tables.
 
 === Bug fixes in 1.22 ===
 * Disable Special:PasswordReset when $wgEnableEmail is false. Previously one
