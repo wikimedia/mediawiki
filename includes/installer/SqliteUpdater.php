@@ -97,7 +97,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive',  'ar_content_format',  'patch-archive-ar_content_format.sql' ),
 			array( 'addField', 'archive',  'ar_content_model',   'patch-archive-ar_content_model.sql' ),
 			array( 'addField', 'page',     'page_content_model', 'patch-page-page_content_model.sql' ),
-
 			array( 'dropField', 'site_stats',    'ss_admins',         'patch-drop-ss_admins.sql' ),
 			array( 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ),
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
@@ -109,6 +108,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ),
 			array( 'modifyField', 'user_former_groups', 'ufg_group', 'patch-ufg_group-length-increase-255.sql' ),
 			array( 'addIndex', 'page_props', 'pp_propname_page',  'patch-page_props-propname-page-index.sql' ),
+			array( 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ),
+			array( 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ),
 		);
 	}
 
