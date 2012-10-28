@@ -28,6 +28,8 @@ DROP TABLE IF EXISTS /*_*/interwiki_tmp;
 DROP TABLE IF EXISTS /*_*/page_restrictions_tmp;
 DROP TABLE IF EXISTS /*_*/protected_titles_tmp;
 DROP TABLE IF EXISTS /*_*/page_props_tmp;
+DROP TABLE IF EXISTS /*_*/archive_tmp;
+DROP TABLE IF EXISTS /*_*/externallinks_tmp;
 
 --------------------------------------------------------------------------------
 -- Create new tables
@@ -268,6 +270,47 @@ CREATE TABLE /*_*/page_props_tmp (
 );
 CREATE UNIQUE INDEX /*i*/pp_page_propname ON /*_*/page_props_tmp (pp_page,pp_propname);
 
+--
+-- Holding area for deleted articles, which may be viewed
+-- or restored by admins through the Special:Undelete interface.
+-- The fields generally correspond to the page, revision, and text
+-- fields, with several caveats.
+-- Cannot reasonably create views on this table, due to the presence of TEXT
+-- columns.
+CREATE TABLE /*$wgDBprefix*/archive_tmp (
+   ar_id NOT NULL PRIMARY KEY clustered IDENTITY,
+   ar_namespace SMALLINT NOT NULL DEFAULT 0,
+   ar_title NVARCHAR(255) NOT NULL DEFAULT '',
+   ar_text NVARCHAR(MAX) NOT NULL,
+   ar_comment NVARCHAR(255) NOT NULL,
+   ar_user INT NULL REFERENCES /*$wgDBprefix*/[user](user_id) ON DELETE SET NULL,
+   ar_user_text NVARCHAR(255) NOT NULL,
+   ar_timestamp DATETIME NOT NULL DEFAULT GETDATE(),
+   ar_minor_edit BIT NOT NULL DEFAULT 0,
+   ar_flags NVARCHAR(255) NOT NULL,
+   ar_rev_id INT,
+   ar_text_id INT,
+   ar_deleted BIT NOT NULL DEFAULT 0,
+   ar_len INT DEFAULT NULL,
+   ar_page_id INT NULL,
+   ar_parent_id INT NULL
+);
+CREATE INDEX /*$wgDBprefix*/ar_name_title_timestamp ON /*$wgDBprefix*/archive_tmp(ar_namespace,ar_title,ar_timestamp);
+CREATE INDEX /*$wgDBprefix*/ar_usertext_timestamp ON /*$wgDBprefix*/archive_tmp(ar_user_text,ar_timestamp);
+CREATE INDEX /*$wgDBprefix*/ar_user_text    ON /*$wgDBprefix*/archive_tmp(ar_user_text);
+
+--
+-- Track links to external URLs
+-- IE >= 4 supports no more than 2083 characters in a URL
+CREATE TABLE /*$wgDBprefix*/externallinks_tmp (
+   el_id INT NOT NULL PRIMARY KEY clustered IDENTITY,
+   el_from INT NOT NULL DEFAULT '0',
+   el_to VARCHAR(2083) NOT NULL,
+   el_index VARCHAR(896) NOT NULL,
+);
+-- Maximum key length ON SQL Server is 900 bytes
+CREATE INDEX /*$wgDBprefix*/externallinks_index   ON /*$wgDBprefix*/externallinks_tmp(el_index);
+
 --------------------------------------------------------------------------------
 -- Populate the new tables using INSERT SELECT
 --------------------------------------------------------------------------------
@@ -290,6 +333,8 @@ INSERT OR IGNORE INTO /*_*/interwiki_tmp SELECT * FROM /*_*/interwiki;
 INSERT OR IGNORE INTO /*_*/page_restrictions_tmp SELECT * FROM /*_*/page_restrictions;
 INSERT OR IGNORE INTO /*_*/protected_titles_tmp SELECT * FROM /*_*/protected_titles;
 INSERT OR IGNORE INTO /*_*/page_props_tmp SELECT * FROM /*_*/page_props;
+INSERT OR IGNORE INTO /*_*/archive_tmp SELECT * FROM /*_*/archive;
+INSERT OR IGNORE INTO /*_*/externallinks_tmp SELECT * FROM /*_*/externallinks;
 
 --------------------------------------------------------------------------------
 -- Do the table renames
@@ -331,6 +376,10 @@ DROP TABLE /*_*/protected_titles;
 ALTER TABLE /*_*/protected_titles_tmp RENAME TO /*_*/protected_titles;
 DROP TABLE /*_*/page_props;
 ALTER TABLE /*_*/page_props_tmp RENAME TO /*_*/page_props;
+DROP TABLE /*_*/archive;
+ALTER TABLE /*_*/archive_tmp RENAME TO /*_*/archive;
+DROP TABLE /*_*/externalllinks;
+ALTER TABLE /*_*/externallinks_tmp RENAME TO /*_*/externallinks;
 
 --------------------------------------------------------------------------------
 -- Drop and create tables with unique indexes but no valuable data
