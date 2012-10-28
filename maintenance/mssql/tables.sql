@@ -159,6 +159,7 @@ CREATE TABLE /*$wgDBprefix*/text (
 -- Cannot reasonably create views on this table, due to the presence of TEXT
 -- columns.
 CREATE TABLE /*$wgDBprefix*/archive (
+   ar_id NOT NULL PRIMARY KEY clustered IDENTITY,
    ar_namespace SMALLINT NOT NULL DEFAULT 0,
    ar_title NVARCHAR(255) NOT NULL DEFAULT '',
    ar_text NVARCHAR(MAX) NOT NULL,
@@ -174,6 +175,11 @@ CREATE TABLE /*$wgDBprefix*/archive (
    ar_len INT DEFAULT NULL,
    ar_page_id INT NULL,
    ar_parent_id INT NULL,
+   ar_log_id INT,
+   ar_log_timestamp DATETIME NOT NULL DEFAULT GETDATE(),
+   ar_log_user INT NULL REFERENCES /*$wgDBprefix*/[user](user_id) ON DELETE SET NULL,
+   ar_log_user_text NVARCHAR(255) NOT NULL,
+   ar_log_comment NVARCHAR(255) NOT NULL,
 );
 CREATE INDEX /*$wgDBprefix*/ar_name_title_timestamp ON /*$wgDBprefix*/archive(ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX /*$wgDBprefix*/ar_usertext_timestamp ON /*$wgDBprefix*/archive(ar_user_text,ar_timestamp);
@@ -298,6 +304,7 @@ CREATE INDEX /*$wgDBprefix*/lc_lang_key ON /*$wgDBprefix*/l10n_cache (lc_lang, l
 -- Track links to external URLs
 -- IE >= 4 supports no more than 2083 characters in a URL
 CREATE TABLE /*$wgDBprefix*/externallinks (
+   el_id INT NOT NULL PRIMARY KEY clustered IDENTITY,
    el_from INT NOT NULL DEFAULT '0',
    el_to VARCHAR(2083) NOT NULL,
    el_index VARCHAR(896) NOT NULL,
