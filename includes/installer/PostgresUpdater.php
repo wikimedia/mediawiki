@@ -103,9 +103,16 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'archive',       'ar_parent_id',         'INTEGER' ),
 			array( 'addPgField', 'archive',       'ar_content_model',     'TEXT' ),
 			array( 'addPgField', 'archive',       'ar_content_format',    'TEXT' ),
-			array( 'addPgField', 'categorylinks', 'cl_sortkey_prefix',    "TEXT NOT NULL DEFAULT ''"),
-			array( 'addPgField', 'categorylinks', 'cl_collation',         "TEXT NOT NULL DEFAULT 0"),
-			array( 'addPgField', 'categorylinks', 'cl_type',              "TEXT NOT NULL DEFAULT 'page'"),
+			array( 'addPgField', 'archive',       'ar_id',                "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('archive_ar_id_seq')" ),
+			array( 'addPgField', 'archive',       'ar_log_id',            'INTEGER' ),
+			array( 'addPgField', 'archive',       'ar_log_timestamp',     "TIMESTAMPTZ" ),
+			array( 'addPgField', 'archive',       'ar_log_user',	      'INTEGER' ),
+			array( 'addPgField', 'archive',       'ar_log_user_text',     "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'archive',       'ar_log_comment',	      "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'categorylinks', 'cl_sortkey_prefix',    "TEXT NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'categorylinks', 'cl_collation',         "TEXT NOT NULL DEFAULT 0" ),
+			array( 'addPgField', 'categorylinks', 'cl_type',              "TEXT NOT NULL DEFAULT 'page'" ),
+			array( 'addPgField', 'externallinks', 'el_id',                "INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('archive_el_id_seq')" ),
 			array( 'addPgField', 'image',         'img_sha1',             "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'ipblocks',      'ipb_allow_usertalk',   'SMALLINT NOT NULL DEFAULT 0' ),
 			array( 'addPgField', 'ipblocks',      'ipb_anon_only',        'SMALLINT NOT NULL DEFAULT 0' ),
@@ -159,6 +166,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'job',           'job_token',            "TEXT NOT NULL DEFAULT ''" ),
 			array( 'addPgField', 'job',           'job_token_timestamp',  "TIMESTAMPTZ" ),
 			array( 'addPgField', 'job',           'job_sha1',             "TEXT NOT NULL DEFAULT ''" ),
+
+
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),
