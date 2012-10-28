@@ -106,6 +106,15 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addTable', 'sites',                            'patch-sites.sql' ),
 			array( 'addField', 'filearchive',   'fa_sha1',          'patch-fa_sha1.sql' ),
 			array( 'addField', 'job',           'job_token',         'patch-job_token.sql' ),
+			
+			array( 'addField', 'archive',  'ar_id',			'patch-archive-ar_id.sql' ),
+			array( 'addField', 'archive',  'ar_log_id',		'patch-archive-ar_log_id.sql' ),
+			array( 'addField', 'archive',  'ar_log_timestamp',	'patch-archive-ar_log_timestamp.sql' ),
+			array( 'addField', 'archive',  'ar_log_user',		'patch-archive-ar_log_user.sql' ),
+			array( 'addField', 'archive',  'ar_log_user_text',	'patch-archive-ar_log_user_text.sql' ),
+			array( 'addField', 'archive',  'ar_log_comment',	'patch-archive-ar_log_comment.sql' ),
+			
+			array( 'addField', 'externallinks',  'el_id',		'patch-externallinks-el_id.sql' ),
 		);
 	}
 
