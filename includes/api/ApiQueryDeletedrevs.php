@@ -36,6 +36,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
+		global $wgArchiveIdLogFields;
 		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
 		if ( !$user->isAllowed( 'deletedhistory' ) ) {
@@ -56,6 +57,15 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_content = isset( $prop['content'] );
 		$fld_token = isset( $prop['token'] );
+		if ( $wgArchiveIdLogFields ) {
+			$fld_id = isset ( $prop['id'] );
+			$fld_logid = isset ( $prop['logid'] );
+			$fld_logtimestamp = isset ( $prop['logtimestamp'] );
+			$fld_loguser = isset ( $prop['loguser'] );
+			$fld_loguserid = isset ( $prop['loguserid'] );
+			$fld_logcomment = isset ( $prop['logcomment'] );
+			$fld_parsedlogcomment = isset ( $prop['parsedlogcomment'] );
+		}
 
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
@@ -103,6 +113,14 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$this->addFieldsIf( 'ar_minor_edit', $fld_minor );
 		$this->addFieldsIf( 'ar_len', $fld_len );
 		$this->addFieldsIf( 'ar_sha1', $fld_sha1 );
+		if ( $wgArchiveIdLogFields ) {
+			$this->addFieldsIf( 'ar_id', $fld_id );
+			$this->addFieldsIf( 'ar_log_id', $fld_logid );
+			$this->addFieldsIf( 'ar_log_timestamp', $fld_logtimestamp );
+			$this->addFieldsIf( 'ar_log_user_text', $fld_loguser );
+			$this->addFieldsIf( 'ar_log_user', $fld_loguserid );
+			$this->addFieldsIf( 'ar_log_comment', $fld_logcomment || $fld_parsedlogcomment );
+		}
 
 		if ( $fld_content ) {
 			$this->addTables( 'text' );
@@ -249,7 +267,31 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			if ( $fld_content ) {
 				ApiResult::setContent( $rev, Revision::getRevisionText( $row ) );
 			}
-
+			if ( $wgArchiveIdLogFields ) {
+				if ( $fld_id ) {
+					$rev['id'] = intval ( $row->ar_id );
+				}
+				if ( $fld_logid ) {
+					$rev['logid'] = intval ( $row->ar_log_id );
+				}
+				if ( $fld_logtimestamp ) {
+					$rev['logtimestamp'] =  wfTimestamp
+						( TS_ISO_8601, $row->ar_log_timestamp );
+				}
+				if ( $fld_loguser ) {
+					$rev['loguser'] = $row->ar_log_user_text;
+				}
+				if ( $fld_loguserid ) {
+					$rev['loguserid'] = $row->ar_log_user;
+				}
+				if ( $fld_logcomment ) {
+					$rev['logcomment'] = $row->ar_log_comment;
+				}
+				if ( $fld_parsedlogcomment ) {
+					$rev['parsedlogcomment'] = Linker::formatComment
+						( $row->ar_log_comment, $title );
+				}
+			}
 			if ( !isset( $pageMap[$row->ar_namespace][$row->ar_title] ) ) {
 				$pageID = $newPageID++;
 				$pageMap[$row->ar_namespace][$row->ar_title] = $pageID;
@@ -280,7 +322,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		global $wgArchiveIdLogFields;
+		$array = array (
 			'start' => array(
 				ApiBase::PARAM_TYPE => 'timestamp'
 			),
@@ -329,15 +372,28 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					'len',
 					'sha1',
 					'content',
-					'token'
 				),
 				ApiBase::PARAM_ISMULTI => true
 			),
 		);
+		if ( $wgArchiveIdLogFields ) {
+			array_push ( $array[ 'prop' ][ApiBase::PARAM_TYPE],
+				'id',
+				'logid',
+				'logtimestamp',
+				'loguser',
+				'loguserid',
+				'logcomment',
+				'parsedlogcomment'
+			);
+		}
+		array_push ( $array[ 'prop' ][ApiBase::PARAM_TYPE], 'token' );
+		return $array;
 	}
 
 	public function getParamDescription() {
-		return array(
+		global $wgArchiveIdLogFields;
+		$array = array (
 			'start' => 'The timestamp to start enumerating from (1, 2)',
 			'end' => 'The timestamp to stop enumerating at (1, 2)',
 			'dir' => $this->getDirectionDescription( $this->getModulePrefix(), ' (1, 3)' ),
@@ -347,17 +403,16 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'limit' => 'The maximum amount of revisions to list',
 			'prop' => array(
 				'Which properties to get',
-				' revid          - Adds the revision ID of the deleted revision',
-				' parentid       - Adds the revision ID of the previous revision to the page',
-				' user           - Adds the user who made the revision',
-				' userid         - Adds the user ID whom made the revision',
-				' comment        - Adds the comment of the revision',
-				' parsedcomment  - Adds the parsed comment of the revision',
-				' minor          - Tags if the revision is minor',
-				' len            - Adds the length (bytes) of the revision',
-				' sha1           - Adds the SHA-1 (base 16) of the revision',
-				' content        - Adds the content of the revision',
-				' token          - Gives the edit token',
+				' revid            - Adds the revision ID of the deleted revision',
+				' parentid         - Adds the revision ID of the previous revision to the page',
+				' user             - Adds the user who made the revision',
+				' userid           - Adds the user ID who made the revision',
+				' comment          - Adds the comment of the revision',
+				' parsedcomment    - Adds the parsed comment of the revision',
+				' minor            - Tags if the revision is minor',
+				' len              - Adds the length (bytes) of the revision',
+				' sha1             - Adds the SHA-1 (base 16) of the revision',
+				' content          - Adds the content of the revision',
 			),
 			'namespace' => 'Only list pages in this namespace (3)',
 			'user' => 'Only list revisions by this user',
@@ -365,6 +420,19 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue (3)',
 			'unique' => 'List only one revision for each page (3)',
 		);
+		if ( $wgArchiveIdLogFields ) {
+			array_push( $array[ 'prop'],
+				' id               - Adds the archive ID of the revision',
+				' logid            - Adds the log ID of the deletion',
+				' logtimestamp     - Adds the timestamp of the deletion',
+				' loguser          - Adds the user who deleted the article',
+				' loguserid        - Adds the user ID who deleted the article',
+				' logcomment       - Adds the log comment of the deletion',
+				' parsedlogcomment - Adds the parsed log comment of the deletion'
+			);
+		}
+		array_push( $array[ 'prop'], ' token            - Gives the edit token' );
+		return $array;
 	}
 
 	public function getResultProperties() {

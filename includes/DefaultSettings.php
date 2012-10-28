@@ -752,14 +752,14 @@ $wgMediaHandlers = array(
  * @since 1.21
  */
 $wgContentHandlers = array(
-	// the usual case
-	CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
-	// dumb version, no syntax highlighting
-	CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
-	// dumb version, no syntax highlighting
-	CONTENT_MODEL_CSS => 'CssContentHandler',
-	// plain text, for use by extensions etc
-	CONTENT_MODEL_TEXT => 'TextContentHandler',
+       // the usual case
+       CONTENT_MODEL_WIKITEXT => 'WikitextContentHandler',
+       // dumb version, no syntax highlighting
+       CONTENT_MODEL_JAVASCRIPT => 'JavaScriptContentHandler',
+       // dumb version, no syntax highlighting
+       CONTENT_MODEL_CSS => 'CssContentHandler',
+       // plain text, for use by extensions etc
+       CONTENT_MODEL_TEXT => 'TextContentHandler',
 );
 
 /**
@@ -6340,9 +6340,9 @@ $wgContentHandlerUseDB = false;
  * @since 1.21
  */
 $wgTextModelsToParse = array(
-	CONTENT_MODEL_WIKITEXT,    // Just for completeness, wikitext will always be parsed.
-	CONTENT_MODEL_JAVASCRIPT,  // Make categories etc work, people put them into comments.
-	CONTENT_MODEL_CSS,         // Make categories etc work, people put them into comments.
+       CONTENT_MODEL_WIKITEXT,    // Just for completeness, wikitext will always be parsed.
+       CONTENT_MODEL_JAVASCRIPT,  // Make categories etc work, people put them into comments.
+       CONTENT_MODEL_CSS,         // Make categories etc work, people put them into comments.
 );
 
 /**

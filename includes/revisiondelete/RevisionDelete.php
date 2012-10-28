@@ -339,8 +339,32 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	public function getAuthorNameField() {
 		return 'ar_user_text';
 	}
+	
+	public function getLogIdField() {
+		return 'ar_log_id';
+	}
+	
+	public function getLogTimestampField() {
+		return 'ar_log_timestamp';
+	}
+	
+	public function getLogUserField() {
+		return 'ar_log_user';
+	}
+	
+	public function getLogUserTextField() {
+		return 'ar_log_user_text';
+	}
+	
+	public function getLogCommentField() {
+		return 'ar_log_comment';
+	}
 
 	public function getId() {
+		global $wgArchiveIdLogFields;
+		if ( $wgArchiveIdLogFields ) {
+			
+		}
 		# Convert DB timestamp to MW timestamp
 		return $this->revision->getTimestamp();
 	}
@@ -355,7 +379,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 				// use timestamp for index
 				'ar_timestamp' 	=> $this->row->ar_timestamp,
 				'ar_rev_id'    	=> $this->row->ar_rev_id,
-				'ar_deleted' 	=> $this->getBits()
+				'ar_deleted' 	=> $this->getBits(),
 			),
 			__METHOD__ );
 		return (bool)$dbw->affectedRows();
