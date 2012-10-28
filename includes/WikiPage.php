@@ -2461,7 +2461,7 @@ class WikiPage extends Page implements IDBAccessObject {
 	public function doDeleteArticleReal(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgUser, $wgContentHandlerUseDB;
+		global $wgUser, $wgContentHandlerUseDB, $wgArchiveIdLogFields, $wgContLang;
 
 		wfDebug( __METHOD__ . "\n" );
 
@@ -2507,6 +2507,17 @@ class WikiPage extends Page implements IDBAccessObject {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->begin( __METHOD__ );
+
+		# Log the deletion, if the page was suppressed, log it at Oversight instead
+		$logtype = $suppress ? 'suppress' : 'delete';
+
+		$logEntry = new ManualLogEntry( $logtype, 'delete' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setComment( $reason );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
+
 		// For now, shunt the revision data into the archive table.
 		// Text is *not* removed from the text table; bulk storage
 		// is left intact to avoid breaking block-compression or
@@ -2542,11 +2553,20 @@ class WikiPage extends Page implements IDBAccessObject {
 			$row[ 'ar_content_format' ] = 'rev_content_format';
 		}
 
-		$dbw->insertSelect( 'archive', array( 'page', 'revision' ),
+		if ( $wgArchiveIdLogFields ) {
+			$row[ 'ar_log_id' ] = 'log_id';
+			$row[ 'ar_log_timestamp' ] = 'log_timestamp';
+			$row[ 'ar_log_user' ] = 'log_user';
+			$row[ 'ar_log_user_text' ] = 'log_user_text';
+			$row[ 'ar_log_comment' ] = 'log_comment';
+		}
+
+		$dbw->insertSelect( 'archive', array( 'page', 'revision', 'logging' ),
 			$row,
 			array(
 				'page_id' => $id,
-				'page_id = rev_page'
+				'page_id = rev_page',
+				'log_id' => $logid,
 			), __METHOD__
 		);
 
@@ -2561,16 +2581,6 @@ class WikiPage extends Page implements IDBAccessObject {
 		}
 
 		$this->doDeleteUpdates( $id, $content );
-
-		# Log the deletion, if the page was suppressed, log it at Oversight instead
-		$logtype = $suppress ? 'suppress' : 'delete';
-
-		$logEntry = new ManualLogEntry( $logtype, 'delete' );
-		$logEntry->setPerformer( $user );
-		$logEntry->setTarget( $this->mTitle );
-		$logEntry->setComment( $reason );
-		$logid = $logEntry->insert();
-		$logEntry->publish( $logid );
 
 		if ( $commit ) {
 			$dbw->commit( __METHOD__ );
@@ -3335,19 +3345,18 @@ class PoolWorkArticleView extends PoolCounterWork {
 		} elseif ( $isCurrent ) {
 			#XXX: why use RAW audience here, and PUBLIC (default) below?
 			$content = $this->page->getContent( Revision::RAW );
+			if ( $content === null ) {
+				return false;
+			}
+
 		} else {
 			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
-
 			if ( $rev === null ) {
-				$content = null;
-			} else {
-				#XXX: why use PUBLIC audience here (default), and RAW above?
-				$content = $rev->getContent();
+				return false;
 			}
-		}
 
-		if ( $content === null ) {
-			return false;
+			#XXX: why use PUBLIC audience here (default), and RAW above?
+			$content = $rev->getContent();
 		}
 
 		$time = - microtime( true );
