@@ -129,7 +129,9 @@ CREATE TABLE &mw_prefix.pagecontent ( -- replaces reserved word 'text'
 );
 ALTER TABLE &mw_prefix.pagecontent ADD CONSTRAINT &mw_prefix.pagecontent_pk PRIMARY KEY (old_id);
 
+CREATE SEQUENCE archive_ar_id_seq;
 CREATE TABLE &mw_prefix.archive (
+  ar_id          NUMBER NOT NULL, 
   ar_namespace   NUMBER    DEFAULT 0 NOT NULL,
   ar_title       VARCHAR2(255)         NOT NULL,
   ar_text        CLOB,
@@ -147,8 +149,14 @@ CREATE TABLE &mw_prefix.archive (
   ar_parent_id   NUMBER,
   ar_sha1		  VARCHAR2(32),
   ar_content_model VARCHAR2(32),
-  ar_content_format VARCHAR2(64)
+  ar_content_format VARCHAR2(64),
+  ar_log_id NUMBER,
+  ar_log_timestamp TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
+  ar_log_user NUMBER DEFAULT 0 NOT NULL,
+  ar_log_user_text VARCHAR2(255) NOT NULL,
+  ar_log_comment VARCHAR2(255)
 );
+ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_pk PRIMARY KEY (ar_id);
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk1 FOREIGN KEY (ar_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_timestamp);
@@ -208,11 +216,14 @@ ALTER TABLE &mw_prefix.category ADD CONSTRAINT &mw_prefix.category_pk PRIMARY KE
 CREATE UNIQUE INDEX &mw_prefix.category_u01 ON &mw_prefix.category (cat_title);
 CREATE INDEX &mw_prefix.category_i01 ON &mw_prefix.category (cat_pages);
 
+CREATE SEQUENCE externallinks_el_id_seq;
 CREATE TABLE &mw_prefix.externallinks (
+  el_id     NUMBER  NOT NULL,
   el_from   NUMBER  NOT NULL,
   el_to     VARCHAR2(2048) NOT NULL,
   el_index  VARCHAR2(2048) NOT NULL
 );
+ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_pk PRIMARY KEY (el_id);
 ALTER TABLE &mw_prefix.externallinks ADD CONSTRAINT &mw_prefix.externallinks_fk1 FOREIGN KEY (el_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.externallinks_i01 ON &mw_prefix.externallinks (el_from, el_to);
 CREATE INDEX &mw_prefix.externallinks_i02 ON &mw_prefix.externallinks (el_to, el_from);
