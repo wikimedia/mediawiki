@@ -246,6 +246,10 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpSectionTitle'] = $params['sectiontitle'];
 		}
 
+		if ( $params['undo'] > 0 ) {
+			$requestArray['wpUndidRevision'] = $params['undo'];
+		}
+
 		// Watch out for basetimestamp == ''
 		// wfTimestamp() treats it as NOW, almost certainly causing an edit conflict
 		if ( !is_null( $params['basetimestamp'] ) && $params['basetimestamp'] != '' ) {
