@@ -6494,6 +6494,14 @@ $wgContentHandlerTextFallback = 'ignore';
 $wgContentHandlerUseDB = false;
 
 /**
+ * Set to false to disable use of the ar_id, ar_log_id, ar_log_timestamp, ar_log_comment, ar_log_user,
+ * ar_log_user_text, and ar_log_comment fields.
+ *
+ * Transitional feature flag for WMF usage to delay database updates
+ */
+$wgUseArchiveIdLogFields = true;
+
+/**
  * Determines which types of text are parsed as wikitext. This does not imply that these kinds
  * of texts are also rendered as wikitext, it only means that links, magic words, etc will have
  * the effect on the database they would have on a wikitext page.
