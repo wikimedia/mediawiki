@@ -255,7 +255,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$title = $this->msg( 'passwordreset-emailtitle' );
 
-		$this->result = $firstUser->sendMail( $title->escaped(), $this->email->escaped() );
+		$this->result = $firstUser->sendMail( $title->escaped(), $this->email->text() );
 
 		// Blank the email if the user is not supposed to see it
 		if( !isset( $data['Capture'] ) || !$data['Capture'] ) {
