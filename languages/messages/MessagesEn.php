@@ -2806,7 +2806,8 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'emailuser-title-notarget' => 'E-mail user',
 'emailuser-summary'        => '', # do not translate or duplicate this message to other languages
 'emailpage'                => 'E-mail user',
-'emailpagetext'            => 'You can use the form below to send an e-mail message to this user.
+// Dummy GENDER to prevent warnings at translatewiki
+'emailpagetext'            => 'You can use the form below to send an e-mail message to this {{GENDER:$1|user}}.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
 'usermailererror'          => 'Mail object returned error:',
 'defemailsubject'          => '{{SITENAME}} e-mail from user "$1"',
