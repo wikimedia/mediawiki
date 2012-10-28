@@ -152,7 +152,6 @@ $messages = array(
 'qbbrowse' => 'Surfa',
 'qbedit' => 'Edita',
 'qbpageoptions' => 'Esta paje',
-'qbpageinfo' => 'Situa',
 'qbmyoptions' => 'Me pajes',
 'qbspecialpages' => 'Pajes spesial',
 

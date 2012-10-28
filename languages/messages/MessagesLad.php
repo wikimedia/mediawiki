@@ -9,6 +9,7 @@
  *
  * @author ILVI
  * @author Jewbask
+ * @author Maor X
  * @author Remember the dot
  * @author Runningfridgesrule
  * @author Taichi
@@ -325,7 +326,6 @@ $messages = array(
 'qbbrowse' => 'Navigar',
 'qbedit' => 'Trocar',
 'qbpageoptions' => 'Esta hoja',
-'qbpageinfo' => 'Enformasyón de hoja',
 'qbmyoptions' => 'Mis hojas',
 'qbspecialpages' => 'Hojas especiales',
 'faq' => 'DAD',

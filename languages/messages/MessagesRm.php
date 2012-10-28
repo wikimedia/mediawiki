@@ -935,13 +935,36 @@ Ti pos vesair quest diff; detagls pon vegnir chattads en il [{{fullurl:{{#Specia
 'logdelete-selected' => "'''{{PLURAL:$1|Elements dal log tschernì|Elements dal log tschernids}}:'''",
 'revdelete-text' => "'''Versiuns ed ocurrenzas stizzadas cumparan era vinavant en la cronologia ed en ils protocols, dentant èn parts dal cuntegn betg accessibels al public.'''
 Auters administraturs sin {{SITENAME}} vegnan tuttina ad avair access al cuntegn zuppentà e pon restaurar puspè la pagina, sch'i na vegnan betg definidas restricziuns supplementaras.",
+'revdelete-confirm' => 'Confermescha che ti vuls far quai, che ti chapeschas las consequenzas e che ti fas quai en accordanza cun [[{{MediaWiki:Policy-url}}|las directivas]].',
+'revdelete-suppress-text' => "Ti duessas '''be''' supprimer en quests cas: 
+* Infurmaziuns offendentas
+* Infurmaziuns persunalas deplazzadas
+*: ''Adressas e numers da telefon, numers d'AVS, etc.''",
+'revdelete-legend' => 'Definir restricziuns da la visibilitad',
+'revdelete-hide-text' => 'Zuppetar il text da la versiun',
+'revdelete-hide-image' => 'Zuppentar il cuntegn da la datoteca',
+'revdelete-hide-name' => "Zuppentar l'acziun ed la destinaziun",
+'revdelete-hide-comment' => 'Zuppentar la resumaziun da la midada',
+'revdelete-hide-user' => "Zuppentar il num d'utilisader/l'adressa IP da l'autur",
+'revdelete-hide-restricted' => 'Supprimer las datas per administraturs sco per auters',
+'revdelete-radio-same' => '(na betg midar)',
 'revdelete-radio-set' => 'Gea',
 'revdelete-radio-unset' => 'Na',
+'revdelete-suppress' => 'Supprimer il motiv per administraturs sco per auters',
+'revdelete-unsuppress' => 'Allontanar las restricziuns per versiuns restauradas',
 'revdelete-log' => 'Motiv:',
+'revdelete-submit' => 'Applitar a {{PLURAL:$1|la versiun tschernida|las versiuns tschernidas}}',
+'revdelete-success' => "'''Actualià cun success la visibilitad da la versiun.'''",
+'revdelete-failure' => "'''Betg pussaivel da midar la visibilitad da la versiun:'''
+$1",
+'logdelete-success' => "'''Definì cun success la visibilitad dal protocol.'''",
+'logdelete-failure' => "'''Betg pussaivel da midar la visibilitad dal protocol:'''
+$1",
 'revdel-restore' => 'midar la visibilitad',
 'revdel-restore-deleted' => 'versiuns stizzadas',
 'revdel-restore-visible' => 'versiuns visiblas',
 'pagehist' => 'Istorgia da las versiuns',
+'deletedhist' => 'Cronologia da stizzar',
 'revdelete-otherreason' => 'Auter/ulteriur motiv:',
 'revdelete-reasonotherlist' => 'Auter motiv',
 'revdelete-edit-reasonlist' => 'Modifitgar ils motivs per stizzar',
@@ -2548,9 +2571,10 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 
 # Info page
 'pageinfo-title' => 'Infurmaziuns per "$1"',
-'pageinfo-header-edits' => 'Midadas',
+'pageinfo-header-basic' => 'Infurmaziuns da basa',
+'pageinfo-header-edits' => 'Cronologia da las midadas',
 'pageinfo-views' => 'Dumber da visitas',
-'pageinfo-watchers' => 'Dumber dad observaturs',
+'pageinfo-watchers' => 'Dumber dad observaturs da la pagina',
 'pageinfo-firstuser' => 'Creatur da la pagina',
 'pageinfo-firsttime' => 'Data da la creaziun da la pagina',
 'pageinfo-lastuser' => 'Ultima midada da',

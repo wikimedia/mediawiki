@@ -157,7 +157,6 @@ $messages = array(
 'qbbrowse' => 'Cabba',
 'qbedit' => 'Sbadl',
 'qbpageoptions' => 'Tasnat ad',
-'qbpageinfo' => 'Context',
 'qbmyoptions' => 'Tisnatin inu',
 'qbspecialpages' => 'Tisnatin timzlay',
 'faq' => 'Isqsitn li bdda tsutulnin',

@@ -124,7 +124,6 @@ $messages = array(
 'qbbrowse' => 'Nepile',
 'qbedit' => "Hloli ye ng'i",
 'qbpageoptions' => 'Bye petulo',
-'qbpageinfo' => 'Petulo tuto',
 'qbmyoptions' => 'Zwa petulona',
 'qbspecialpages' => 'Petulo zwenti',
 'faq' => 'Alabile',

@@ -192,7 +192,6 @@ $messages = array(
 'qbfind' => 'Loa‘a',
 'qbedit' => 'E ho‘ololi',
 'qbpageoptions' => 'Kēia ‘ao‘ao',
-'qbpageinfo' => 'Pō‘aiapili',
 'qbmyoptions' => 'Ka‘u mau ‘ao‘ao',
 'qbspecialpages' => 'Nā ‘ao‘ao kūikawā',
 

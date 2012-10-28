@@ -177,7 +177,6 @@ $messages = array(
 'qbbrowse' => 'Przezeranié',
 'qbedit' => 'Edicëjô',
 'qbpageoptions' => 'Òptacëje starnë',
-'qbpageinfo' => 'Ò starnie',
 'qbmyoptions' => 'Mòje òptacëje',
 'qbspecialpages' => 'Specjalné starnë',
 'faq' => 'FAQ',

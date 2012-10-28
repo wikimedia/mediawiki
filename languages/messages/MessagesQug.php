@@ -163,7 +163,6 @@ $messages = array(
 'qbbrowse' => 'Maskana',
 'qbedit' => 'Killkana',
 'qbpageoptions' => 'Pankapak akllanakuna',
-'qbpageinfo' => 'Pankamanta willaykuna',
 'qbmyoptions' => 'Ñukapak pankakuna',
 'qbspecialpages' => 'mans shukkunashina pankakuna',
 'faq' => 'Ashtawan tapushkaka tapunakuna',

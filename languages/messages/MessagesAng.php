@@ -173,7 +173,6 @@ $messages = array(
 'qbbrowse' => 'Onbirȝe',
 'qbedit' => 'Ādihte',
 'qbpageoptions' => 'Þēos sīde',
-'qbpageinfo' => 'Ȝeƿef',
 'qbmyoptions' => 'Mīna sīdan',
 'qbspecialpages' => 'Syndriȝa sīdan',
 'faq' => 'Oftost ascoda ascunȝa',

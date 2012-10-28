@@ -164,7 +164,6 @@ $messages = array(
 'qbbrowse' => 'Ronsee',
 'qbedit' => 'Reagh',
 'qbpageoptions' => 'Yn duillag shoh',
-'qbpageinfo' => 'Co-hecks',
 'qbmyoptions' => 'My ghuillagyn',
 'qbspecialpages' => 'Duillagyn er lheh',
 'faq' => 'FC',

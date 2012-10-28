@@ -279,7 +279,6 @@ $messages = array(
 'qbbrowse' => 'Browse',
 'qbedit' => 'Kenki',
 'qbpageoptions' => 'A papira disi',
-'qbpageinfo' => 'Abra a papira',
 'qbmyoptions' => 'Mi papira',
 'qbspecialpages' => 'Spesrutu papira',
 'faq' => 'FAQ (Sani di ben aksi furu)',

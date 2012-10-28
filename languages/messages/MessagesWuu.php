@@ -159,7 +159,6 @@ $messages = array(
 'qbbrowse' => '浏览',
 'qbedit' => '编辑',
 'qbpageoptions' => '迭只页面',
-'qbpageinfo' => '上下文',
 'qbmyoptions' => '我个选项',
 'qbspecialpages' => '特殊页面',
 'faq' => 'FAQs',

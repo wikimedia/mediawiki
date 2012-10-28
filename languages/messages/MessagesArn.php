@@ -110,7 +110,6 @@ $messages = array(
 'qbbrowse' => 'Kintun',
 'qbedit' => 'Pepikape',
 'qbpageoptions' => 'Tüfachi wülngiñ',
-'qbpageinfo' => 'Trokiñdungu',
 'qbmyoptions' => 'tañi nütramkawe',
 'qbspecialpages' => 'Kangelu',
 'faq' => 'Rumelfemkelu ramtun',

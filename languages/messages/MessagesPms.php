@@ -725,7 +725,7 @@ Sòn a l'é normalment causà da l'andèje dapress a na vej liura stòrica a na 
 'note' => "'''NÒTA:'''",
 'previewnote' => "'''Che a ten-a present che costa-sì a l'é mach na preuva.'''
 Ij sò cambi a son anco' pa stàit salvà!",
-'continue-editing' => "Và a l'area ëd modìfica",
+'continue-editing' => 'Andé a la zòna ëd modìfica',
 'previewconflict' => "Costa preuva a-j mostra ël test dl'artìcol ambelessì dzora. Se a sërn dë salvelo, a l'é parèj che a lo s-ciairëran ëdcò tuti j'àutri Utent.",
 'session_fail_preview' => "'''Darmagi! I l'oma pa podù processé soa modìfica per via che a son përdusse për la stra ij dat ëd session.
 Për piasì che a preuva n'àutra vira. Se a dovèissa mai torna riveje sossì, che a preuva a seurte dal sistema e peuj torna a rintré.'''",
@@ -3219,7 +3219,7 @@ J'àutri a saran stërmà coma stàndard.
 'exif-flash-return-0' => "gnun ëstroboscòpi a dà andaré na fonsion d'artrovament",
 'exif-flash-return-2' => "lë stoboscòpi a arleva gnun-a lus d'artorn",
 'exif-flash-return-3' => "lë stroboscòpi a l'ha arlevà n'artorn ëd lus",
-'exif-flash-mode-1' => 'scat dël flash sforsà',
+'exif-flash-mode-1' => 'lus dla lòsna obligatòria',
 'exif-flash-mode-2' => 'eliminassion dël flash sforsà',
 'exif-flash-mode-3' => 'manera automàtica',
 'exif-flash-function-1' => 'Gnente fonsion flash',

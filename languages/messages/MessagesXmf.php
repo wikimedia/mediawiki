@@ -126,7 +126,6 @@ $messages = array(
 'qbfind' => 'დოგორი',
 'qbedit' => 'რედაქტირება',
 'qbpageoptions' => 'თე ხასჷლა',
-'qbpageinfo' => 'კონტექსტი',
 'qbmyoptions' => 'ჩქიმი ხასჷლეფი',
 'qbspecialpages' => 'გჷშაკერძაფილი ხასჷლეფი',
 'faq' => 'ბხშირი კითხვეფი',

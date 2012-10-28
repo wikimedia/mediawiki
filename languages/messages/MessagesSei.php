@@ -133,7 +133,6 @@ $messages = array(
 'qbbrowse' => 'Quetzexal',
 'qbedit' => 'Ticpatlöx',
 'qbpageoptions' => 'Jan páhina',
-'qbpageinfo' => 'Contextua',
 'qbmyoptions' => 'Hepáhinám',
 'qbspecialpages' => 'Páhinám extravám',
 'faq' => 'Cocmíiit cmaa',

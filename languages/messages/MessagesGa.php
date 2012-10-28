@@ -237,7 +237,6 @@ $messages = array(
 'qbbrowse' => 'Brabhsáil',
 'qbedit' => 'Cuir in eagar',
 'qbpageoptions' => 'An leathanach seo',
-'qbpageinfo' => 'Comhthéacs',
 'qbmyoptions' => 'Mo chuid leathanaigh',
 'qbspecialpages' => 'Leathanaigh speisialta',
 'faq' => 'Ceisteanna Coiteanta',

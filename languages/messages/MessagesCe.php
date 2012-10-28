@@ -355,7 +355,6 @@ $messages = array(
 'qbbrowse' => 'Хьажар',
 'qbedit' => 'Нисйé',
 'qbpageoptions' => 'Агlо нисйар',
-'qbpageinfo' => 'Агlонах болу бовзам',
 'qbmyoptions' => 'Хьан нисдарш',
 'qbspecialpages' => 'Леррина агlонаш',
 'faq' => 'СиХХ',

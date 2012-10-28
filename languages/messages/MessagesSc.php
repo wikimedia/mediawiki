@@ -195,7 +195,6 @@ $messages = array(
 'qbbrowse' => 'Nàviga',
 'qbedit' => 'Acontza',
 'qbpageoptions' => 'Possibilidades de sa pàgina',
-'qbpageinfo' => 'Cuntestu de sa pàgina',
 'qbmyoptions' => 'Is preferèntzias meas',
 'qbspecialpages' => 'Pàginas spetziales',
 'faq' => 'Pregontas/Respostas (FAQ)',

@@ -247,7 +247,6 @@ $messages = array(
 'qbbrowse' => 'Baqıp çıq',
 'qbedit' => 'Deñiştir',
 'qbpageoptions' => 'Bu saife',
-'qbpageinfo' => 'Saife aqqında malümat',
 'qbmyoptions' => 'Saifelerim',
 'qbspecialpages' => 'Mahsus saifeler',
 'faq' => 'Sıq berilgen sualler',

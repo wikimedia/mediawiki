@@ -157,7 +157,6 @@ $messages = array(
 'qbbrowse' => 'Sföja',
 'qbedit' => 'Mudèfica',
 'qbpageoptions' => 'Upziòn dla pàgina',
-'qbpageinfo' => 'Infurmaziòn sora la pàgina',
 'qbmyoptions' => 'Al mi pàgin',
 'qbspecialpages' => 'Pàgin particulèri',
 'faq' => 'Question frequenti',

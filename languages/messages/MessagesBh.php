@@ -91,7 +91,6 @@ $messages = array(
 'qbbrowse' => 'ब्राउज',
 'qbedit' => 'सम्पादन',
 'qbpageoptions' => 'ई पन्ना',
-'qbpageinfo' => 'प्रसंग',
 'qbmyoptions' => 'हमार पन्ना',
 'qbspecialpages' => 'विशेष पन्ना',
 'faq' => 'साधारण सवाल',

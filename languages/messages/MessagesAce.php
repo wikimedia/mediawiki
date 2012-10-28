@@ -301,7 +301,6 @@ $messages = array(
 'qbbrowse' => 'Lop',
 'qbedit' => 'Andam',
 'qbpageoptions' => 'Ôn nyoe',
-'qbpageinfo' => 'Asoe ôn',
 'qbmyoptions' => 'Ôn lôn',
 'qbspecialpages' => 'Ôn kusuih',
 'faq' => 'FAQ',

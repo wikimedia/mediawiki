@@ -172,7 +172,6 @@ $messages = array(
 'qbbrowse' => 'Курăм',
 'qbedit' => 'Тӳрлет',
 'qbpageoptions' => 'Страница ĕнерлевĕсем',
-'qbpageinfo' => 'Страница çинчен',
 'qbmyoptions' => 'Сирĕн ĕнĕрлевсем',
 'qbspecialpages' => 'Ятарлӑ страницӑсем',
 'faq' => 'ЫйХу',

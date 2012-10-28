@@ -163,7 +163,6 @@ $messages = array(
 'qbbrowse' => 'ṫsffeh',
 'qbedit' => 'Ĝedel',
 'qbpageoptions' => "Had 'ṣ-ṣefḫa",
-'qbpageinfo' => 'L-Meḍmon',
 'qbmyoptions' => "'Ṣ-Ṣefḫaṫ dyawli",
 'qbspecialpages' => 'Ṣefḫaṫ ĥaṣṣin',
 'faq' => 'asaila kaytaawdo bzaf',

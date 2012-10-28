@@ -147,7 +147,6 @@ $messages = array(
 'qbfind' => 'Finne',
 'qbedit' => 'Ennere',
 'qbpageoptions' => 'Des Blatt',
-'qbpageinfo' => 'Daade vun dem Blatt',
 'qbmyoptions' => 'Mei Bledder',
 'qbspecialpages' => 'Besunnere Bledder',
 'faq' => 'FAQ',

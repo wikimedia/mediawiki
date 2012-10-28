@@ -285,7 +285,6 @@ $messages = array(
 'qbbrowse' => 'Bouske',
 'qbedit' => 'Modifye',
 'qbpageoptions' => 'Paj sa a',
-'qbpageinfo' => 'Kontèks',
 'qbmyoptions' => 'Paj mwen yo',
 'qbspecialpages' => 'Paj espesyal',
 'faq' => 'FAQ',

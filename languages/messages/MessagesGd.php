@@ -179,7 +179,6 @@ $messages = array(
 'qbbrowse' => 'Brabhsaich',
 'qbedit' => 'Deasaich',
 'qbpageoptions' => 'An duilleag seo',
-'qbpageinfo' => 'Co-theacs',
 'qbmyoptions' => 'Na duilleagan agam',
 'qbspecialpages' => 'Duilleagan sònraichte',
 'faq' => 'CÀBHA',

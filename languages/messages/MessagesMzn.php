@@ -271,7 +271,6 @@ $messages = array(
 'qbbrowse' => 'چأرخه‌سه‌ن',
 'qbedit' => 'دچی‌ین',
 'qbpageoptions' => 'این صفحه',
-'qbpageinfo' => 'بافت',
 'qbmyoptions' => 'مه صفحه‌ئون',
 'qbspecialpages' => 'شا صفحه‌ئون',
 'faq' => 'معمولی سوالا',

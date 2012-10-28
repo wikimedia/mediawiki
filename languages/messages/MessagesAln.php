@@ -211,7 +211,6 @@ $messages = array(
 'qbbrowse' => 'Shfleto',
 'qbedit' => 'Redakto',
 'qbpageoptions' => 'Kjo faqe',
-'qbpageinfo' => 'Konteksti',
 'qbmyoptions' => 'Faqet e mija',
 'qbspecialpages' => 'Faqet speciale',
 'faq' => 'Pyetjet e shpeshta',

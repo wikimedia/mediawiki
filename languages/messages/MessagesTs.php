@@ -138,7 +138,6 @@ $messages = array(
 'qbfind' => 'Kuma',
 'qbedit' => 'Lulamisa',
 'qbpageoptions' => 'Tluka leri',
-'qbpageinfo' => 'mongo',
 'qbmyoptions' => 'Matluka ya mina',
 'qbspecialpages' => 'Matluka yohlawuleka',
 'faq' => 'FAQ',

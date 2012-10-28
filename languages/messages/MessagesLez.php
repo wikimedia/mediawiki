@@ -303,6 +303,7 @@ $messages = array(
 'missingarticle-rev' => '(жуьре#: $1)',
 'internalerror' => 'КЪенепатан гъалатI',
 'internalerror_info' => 'КЪенепатан гъалатI $1',
+'filecopyerror' => 'Kopi aqudiz jezach fail "$1"  "$2" - diz.',
 'filerenameerror' => '«$1» файл  «$2» -з тIвар эхцигиз жезвач..',
 'badarticleerror' => 'И ччина и кар кьилиз акъудиз мумкин ттуш.',
 'cannotdelete-title' => ' "$1" ччин алудиз жезвач',
@@ -419,9 +420,9 @@ $messages = array(
 Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз,
 <span class="plainlinks"> [{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз],
 ва я [{{fullurl:{{FULLPAGENAME}}|action=edit}} и тlвар алай ччин туькIуьриз жеда] </span>.',
-'noarticletext-nopermission' => 'Исятда и  ччина са текстни авач.
-Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз ва я
-<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз] жеда.',
+'noarticletext-nopermission' => 'Iseatda china kxhin avach.
+Kwevay [[Special:Search/{{PAGENAME}}| i twar alay chin алай]] mukiu chinra jaghuriz ak\'ni
+<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} jurnalrin taluq\' tir kxhey zathar jaghuriz] jeda.',
 'blocked-notice-logextract' => 'И уртах алайчIава блокарнава.
 Агъадихъ блокарунин журналдикай эхиримжи кхьинар къалурнава:',
 'previewnote' => "'''Рикlел хуьх хьи, им анжах сифтедин килигун я.'''  

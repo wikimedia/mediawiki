@@ -158,7 +158,6 @@ $messages = array(
 'qbbrowse' => 'Pangita-on',
 'qbedit' => 'Ilisan',
 'qbpageoptions' => 'Mini nga pahina',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Akon mga pahina',
 'qbspecialpages' => 'Pinasahi nga mga pahina',
 'faq' => 'Mga perme napamangkot ("FAQ")',

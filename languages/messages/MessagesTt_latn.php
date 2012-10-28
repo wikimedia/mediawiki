@@ -237,7 +237,6 @@ $messages = array(
 'qbbrowse' => 'Qaraw',
 'qbedit' => 'Üzgärtü',
 'qbpageoptions' => 'Bu bit',
-'qbpageinfo' => 'Bit turında mäğlümatlar',
 'qbmyoptions' => 'Bitlärem',
 'qbspecialpages' => 'Maxsus bitlär',
 'faq' => 'YBS',

@@ -167,7 +167,6 @@ $messages = array(
 'qbbrowse' => 'Liū-lám',
 'qbedit' => 'Siu-kái',
 'qbpageoptions' => 'Chit ia̍h',
-'qbpageinfo' => 'Bo̍k-lo̍k',
 'qbmyoptions' => 'Goá ê ia̍h',
 'qbspecialpages' => 'Te̍k-sû-ia̍h',
 'faq' => 'Būn-tah',

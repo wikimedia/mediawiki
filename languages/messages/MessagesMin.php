@@ -161,7 +161,6 @@ $messages = array(
 'qbbrowse' => 'Browse',
 'qbedit' => 'Suntiang',
 'qbpageoptions' => 'Laman ko',
-'qbpageinfo' => 'Konteks',
 'qbmyoptions' => 'Laman denai',
 'qbspecialpages' => 'Halaman istimewa',
 'faq' => 'FAQ',

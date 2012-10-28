@@ -252,7 +252,6 @@ $messages = array(
 'qbbrowse' => 'Бакъып чыкъ',
 'qbedit' => 'Денъиштир',
 'qbpageoptions' => 'Бу саифе',
-'qbpageinfo' => 'Саифе акъкъында малюмат',
 'qbmyoptions' => 'Саифелерим',
 'qbspecialpages' => 'Махсус саифелер',
 'faq' => 'Сыкъ берильген суаллер',

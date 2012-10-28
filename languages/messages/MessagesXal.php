@@ -199,7 +199,6 @@ $messages = array(
 'qbbrowse' => 'Гүүһәд хәләх',
 'qbedit' => 'Чиклх',
 'qbpageoptions' => 'Тер халх',
-'qbpageinfo' => 'Халхин туск',
 'qbmyoptions' => 'Тана халхс',
 'qbspecialpages' => 'Көдлхнә халхс',
 'faq' => 'Юм би',

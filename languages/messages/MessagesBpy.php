@@ -190,7 +190,6 @@ $messages = array(
 'qbbrowse' => 'বুলিয়া চা',
 'qbedit' => 'পতানি',
 'qbpageoptions' => 'পাতা এহানর সারুক',
-'qbpageinfo' => 'পাতা এহানর পৌ',
 'qbmyoptions' => 'মর পছন',
 'qbspecialpages' => 'বিশেষ পাতাহানি',
 'faq' => 'আঙলাক',

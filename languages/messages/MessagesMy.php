@@ -191,7 +191,6 @@ $messages = array(
 'qbbrowse' => 'ရှာဖွေလှန်လှောရန်',
 'qbedit' => 'ပြင်​ဆင်​ရန်​',
 'qbpageoptions' => 'ဤစာမျက်နှာ',
-'qbpageinfo' => 'မာတိကာ',
 'qbmyoptions' => 'ကျွန်ုပ် စာမျက်နှာများ',
 'qbspecialpages' => 'အ​ထူး​စာ​မျက်​နှာ​',
 'faq' => 'မေးလေ့ရှိကြသည်များ',

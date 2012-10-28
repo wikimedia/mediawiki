@@ -211,7 +211,6 @@ $messages = array(
 'qbbrowse' => 'Nabegar',
 'qbedit' => 'Eiditar',
 'qbpageoptions' => 'Esta páigina',
-'qbpageinfo' => 'Cuntesto',
 'qbmyoptions' => 'Mies páiginas',
 'qbspecialpages' => 'Páiginas speciales',
 'faq' => 'FAQ',

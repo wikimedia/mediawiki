@@ -159,7 +159,6 @@ $messages = array(
 'qbbrowse' => 'Jelajahi',
 'qbedit' => 'Sunting',
 'qbpageoptions' => 'Kaca kiye',
-'qbpageinfo' => 'Konteks kaca',
 'qbmyoptions' => 'Kaca-ne inyong',
 'qbspecialpages' => 'Kaca-kaca astamiwa',
 'faq' => 'FAQ (Pitakonan sing sering ditakokna)',

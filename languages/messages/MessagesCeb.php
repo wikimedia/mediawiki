@@ -208,7 +208,6 @@ $messages = array(
 'qbbrowse' => 'Browse',
 'qbedit' => 'Usba',
 'qbpageoptions' => 'Kini nga panid',
-'qbpageinfo' => 'Konteksto',
 'qbmyoptions' => 'Akong mga panid',
 'qbspecialpages' => 'Mga espesyal nga panid',
 'faq' => 'FAQ',

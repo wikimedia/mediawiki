@@ -1984,7 +1984,7 @@ Eble vi volas redakti la priskribon ĉe ties [$2 dosier-priskriba paĝo].',
 'uploadnewversion-linktext' => 'Alŝuti novan version de ĉi tiu dosiero',
 'shared-repo-from' => 'de $1',
 'shared-repo' => 'komuna dosierujo',
-'upload-disallowed-here' => 'Bedaŭrinde, vi ne povas superskribi ĉi tiun bildon.',
+'upload-disallowed-here' => 'Vi ne povas superskribi ĉi tiun bildon.',
 
 # File reversion
 'filerevert' => 'Restarigi $1',
@@ -2092,6 +2092,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 # Miscellaneous special pages
 'nbytes' => '$1 {{PLURAL:$1|bitoko|bitokoj}}',
 'ncategories' => '{{PLURAL:$1|unu kategorio|$1 kategorioj}}',
+'ninterwikis' => '$1 {{PLURAL:$1|interlingva ligilo|interlingvaj ligiloj}}',
 'nlinks' => '$1 {{PLURAL:$1|ligilo|ligiloj}}',
 'nmembers' => '{{PLURAL:$1|unu membro|$1 membroj}}',
 'nrevisions' => '$1 {{PLURAL:$1|versio|versioj}}',
@@ -2120,6 +2121,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'mostlinkedtemplates' => 'Plej ligitaj ŝablonoj',
 'mostcategories' => 'Artikoloj kun la plej multaj kategorioj',
 'mostimages' => 'Plej ligitaj bildoj',
+'mostinterwikis' => 'Artikoloj kun la plej multaj interlingvaj ligiloj',
 'mostrevisions' => 'Artikoloj kun la plej multaj versioj',
 'prefixindex' => 'Ĉiuj paĝoj kun prefikso',
 'prefixindex-namespace' => 'Ĉiuj paĝoj kun prefikso ($1 nomspaco)',
@@ -2521,7 +2523,8 @@ Vi verŝajne havas malbonan ligilon, aŭ la revizio eble estis restarigita aŭ f
 'undeletedrevisions' => '{{PLURAL:$1|1 versio restarigita|$1 versioj restarigitaj}}',
 'undeletedrevisions-files' => '{{PLURAL:$1|1 versio|$1 versioj}} kaj {{PLURAL:$2|1 dosiero|$2 dosieroj}} restarigitaj',
 'undeletedfiles' => '{{PLURAL:$1|1 dosiero restarigita|$1 dosieroj restarigitaj}}',
-'cannotundelete' => 'Restarigo malsukcesis; iu eble restarigis la paĝon antaŭe.',
+'cannotundelete' => 'Restarigo malsukcesis: 
+$1',
 'undeletedpage' => "'''$1 estis restarigita'''
 
 Konsultu la [[Special:Log/delete|deletion log]] por protokolo pri la lastatempaj forigoj kaj restarigoj.",
@@ -3093,16 +3096,39 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'pageinfo-title' => 'Informoj por "$1"',
 'pageinfo-header-basic' => 'Baza informo',
 'pageinfo-header-edits' => 'Historio de redaktoj',
+'pageinfo-header-restrictions' => 'Protektado de la paĝo',
+'pageinfo-header-properties' => 'Ecoj de la paĝo',
+'pageinfo-display-title' => 'Montrita titolo',
+'pageinfo-default-sort' => 'Pravaloro de ordiga ŝlosilo',
+'pageinfo-length' => 'Paĝgrandeco (en bajtoj)',
 'pageinfo-article-id' => 'Paĝa identigo',
+'pageinfo-robot-policy' => 'Statuso de la serĉilo',
 'pageinfo-robot-index' => 'Indeksebla',
 'pageinfo-robot-noindex' => 'Ne indeksebla',
 'pageinfo-views' => 'Nombro de rigardoj',
 'pageinfo-watchers' => 'Nombro de paĝatentantoj',
-'pageinfo-lastuser' => 'Lasta redaktoro',
+'pageinfo-redirects-name' => 'Alidirektoj al ĉi tiu paĝo',
+'pageinfo-subpages-name' => 'Subpaĝoj de ĉi tiu paĝo',
+'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|alidirektilo|alidirektiloj}}; $3 {{PLURAL:$3|ne-alidirektilo|ne-alidirektiloj}})',
+'pageinfo-firstuser' => 'Kreinto de la paĝo',
+'pageinfo-firsttime' => 'Dato de paĝkreado',
+'pageinfo-lastuser' => 'Lasta redaktinto',
 'pageinfo-lasttime' => 'Dato de lasta redakto',
-'pageinfo-edits' => 'Tuta nombro de redaktoj',
-'pageinfo-authors' => 'Tuta nombro de malsamaj aŭtoroj',
+'pageinfo-edits' => 'Suma nombro de redaktoj',
+'pageinfo-authors' => 'Suma nombro de malsamaj aŭtoroj',
+'pageinfo-recent-edits' => 'Nombro da lastaj redaktoj (ene de lastaj $1)',
 'pageinfo-recent-authors' => 'Lasta nombro de malsamaj aŭtoroj',
+'pageinfo-magic-words' => '{{PLURAL:$1|Magia vorto|Magiaj vortoj}} ($1)',
+'pageinfo-hidden-categories' => '{{PLURAL:$1|Kaŝita kategorio|Kaŝitaj kategorioj}} ($1)',
+'pageinfo-templates' => '{{PLURAL:$1|Inkluzivita ŝablono|Inkluzivitaj ŝablonoj}} ($1)',
+'pageinfo-toolboxlink' => 'Informoj pri la paĝo',
+'pageinfo-redirectsto' => 'Alidirektas al',
+'pageinfo-redirectsto-info' => 'Informo',
+'pageinfo-contentpage' => 'Kalkulita kiel entenopaĝo',
+'pageinfo-contentpage-yes' => 'Jes',
+'pageinfo-protect-cascading' => 'Protektado kaskade fontas el ĉi tie',
+'pageinfo-protect-cascading-yes' => 'Jes',
+'pageinfo-protect-cascading-from' => 'Protektado kaskade fontas el',
 
 # Skin names
 'skinname-standard' => 'Klasiko',
@@ -3156,6 +3182,7 @@ $1',
 'file-info-size-pages' => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4, $5 {{PLURAL:$5|paĝo|paĝoj}}',
 'file-nohires' => 'Nenia pli granda distingivo havebla.',
 'svg-long-desc' => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
+'svg-long-desc-animated' => 'Animata SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'show-big-image' => 'Plena distingivo',
 'show-big-image-preview' => 'Grandeco de ĉi antaŭvido: $1.',
 'show-big-image-other' => '{{PLURAL:$2|Alia distingivo|Aliaj distingivoj}}: $1.',
@@ -3165,6 +3192,8 @@ $1',
 'file-info-png-looped' => 'ripetita',
 'file-info-png-repeat' => 'Ludis $1 fojo{{PLURAL:$1||j}}n',
 'file-info-png-frames' => '$1 kadro{{PLURAL:$1||j}}',
+'file-no-thumb-animation' => "'''Noto: Pro teĥnikaj limigoj antaŭvido de ĉi tiu dosiero ne estas animita.'''",
+'file-no-thumb-animation-gif' => "'''Noto: Pro teĥnikaj limigoj antaŭvido de altrezolucia GIF-dosiero kia ĉi tiu ne estas animita.'''",
 
 # Special:NewFiles
 'newimages' => 'Galerio de novaj dosieroj',
@@ -3197,7 +3226,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'metadata-help' => 'Ĉi tiu dosiero enhavas plian informon, verŝajne aldonitan de la cifereca fotilo aŭ skanilo uzita por krei aŭ skani ĝin. Se la dosiero estis modifita de sia originala stato, iuj detaloj eble ne konformos al efektiva stato de la modifita bildo.',
 'metadata-expand' => 'Montri etendajn detalojn',
 'metadata-collapse' => 'Kaŝi etendajn detalojn',
-'metadata-fields' => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivita en la paĝoj de bidloj kiam la metadatuma tabelo estas disfaldigita. 
+'metadata-fields' => 'Metadatumaj kampoj de ĉi tiu mesaĝo estos inkluzivitaj en la paĝoj de bildoj kiam la metadatuma tabelo estas disfaldita. 
 Aliaj estos kaŝitaj defaŭlte.
 * make
 * model
@@ -3679,6 +3708,7 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[Intervikia transinkluzivado estas malebligita.]',
 'scarytranscludefailed' => '[Akiro de ŝablono $1 malsukcesis.]',
+'scarytranscludefailed-httpstatus' => '[Malsukcesis akiri la ŝablonon $1 : HTTP  $2 ]',
 'scarytranscludetoolong' => '[URL-o estas tro longa]',
 
 # Delete conflict

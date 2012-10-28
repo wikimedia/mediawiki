@@ -329,7 +329,6 @@ $messages = array(
 'qbbrowse' => 'Ваномо-тееме',
 'qbedit' => 'Витнеме-петнеме',
 'qbpageoptions' => 'Те лопась',
-'qbpageinfo' => 'Косо-зярдо',
 'qbmyoptions' => 'Монь лопан',
 'qbspecialpages' => 'Башка тевень лопат',
 'faq' => 'Сеедьстэ кепедень кевкстемат',

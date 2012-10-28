@@ -136,7 +136,6 @@ $messages = array(
 'qbbrowse' => 'Gennemse',
 'qbedit' => 'Redigær',
 'qbpageoptions' => 'Endstellenger før side',
-'qbpageinfo' => "Informåsje side'm",
 'qbmyoptions' => 'Miine endstellenger',
 'qbspecialpages' => 'Sonst sider',
 'faq' => 'VSF',

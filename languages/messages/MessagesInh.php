@@ -155,7 +155,6 @@ $messages = array(
 'qbbrowse' => 'БӀаргтасса',
 'qbedit' => 'Хувца',
 'qbpageoptions' => 'ОагӀува оттамаш',
-'qbpageinfo' => 'ОагӀува тохкам',
 'qbmyoptions' => 'Са оттамаш',
 'qbspecialpages' => 'ГӀулакхий оагӀувнаш',
 'faq' => 'Каст-каста хаттараш',

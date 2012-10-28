@@ -234,7 +234,6 @@ $messages = array(
 'qbfind' => 'Trovez',
 'qbedit' => 'Redaktar',
 'qbpageoptions' => 'Ica pagino',
-'qbpageinfo' => 'Kuntexto',
 'qbmyoptions' => 'Mea pagini',
 'qbspecialpages' => 'Specala pagini',
 

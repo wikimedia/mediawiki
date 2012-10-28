@@ -160,7 +160,6 @@ $messages = array(
 'qbbrowse' => 'Πλοήγησην',
 'qbedit' => 'Άλλαξον',
 'qbpageoptions' => 'Ατή η σελίδαν',
-'qbpageinfo' => 'Συμφραζόμενα',
 'qbmyoptions' => "Τ' εμά τα σελίδας",
 'qbspecialpages' => 'Ειδικά σελίδας',
 'faq' => 'Πολλά ερωτήσεις (FAQ)',

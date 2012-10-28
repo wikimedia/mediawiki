@@ -355,7 +355,6 @@ $messages = array(
 'qbbrowse' => 'Карау',
 'qbedit' => 'Үзгәртү',
 'qbpageoptions' => 'Бу бит',
-'qbpageinfo' => 'Бит турында мәгълүматлар',
 'qbmyoptions' => 'Битләрем',
 'qbspecialpages' => 'Махсус битләр',
 'faq' => 'ЕБС',

@@ -285,7 +285,6 @@ $messages = array(
 'qbbrowse' => "Ko'riw",
 'qbedit' => "O'zgertiw",
 'qbpageoptions' => 'Usı bet',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => "Menin' betlerim",
 'qbspecialpages' => 'Arnawlı betler',
 'faq' => 'KBS',

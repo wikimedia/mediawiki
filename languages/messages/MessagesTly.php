@@ -264,7 +264,6 @@ $messages = array(
 'qbbrowse' => 'Дијә кардеј',
 'qbedit' => 'Сәрост кардеј',
 'qbpageoptions' => 'Ым сәһифә',
-'qbpageinfo' => 'Мәзмун.',
 'qbmyoptions' => 'Чымы сәһифон',
 'qbspecialpages' => 'Хысусијә сәһифон',
 'faq' => 'РАП',

@@ -218,7 +218,6 @@ $messages = array(
 'qbbrowse' => 'Taramaa',
 'qbedit' => 'Diiştir',
 'qbpageoptions' => 'Bu sayfa',
-'qbpageinfo' => 'Kontekst',
 'qbmyoptions' => 'Sayfalarım',
 'qbspecialpages' => 'Maasus sayfalar',
 'faq' => 'SSS',

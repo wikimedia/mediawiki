@@ -166,7 +166,6 @@ $messages = array(
 'qbbrowse' => 'Blaadeln',
 'qbedit' => 'werkeln',
 'qbpageoptions' => 'Seitenopzionen',
-'qbpageinfo' => 'Seitendaaten',
 'qbmyoptions' => 'Meine Seiten',
 'qbspecialpages' => 'Speziaalseiten',
 'faq' => 'Heiffige Frong',

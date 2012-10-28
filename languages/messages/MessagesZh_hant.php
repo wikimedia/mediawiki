@@ -531,10 +531,10 @@ $1',
 'databaseerror' => '資料庫錯誤',
 'dberrortext' => '發生資料庫查詢語法錯誤。
 可能是由於軟體自身的錯誤所引起。
-最後一次資料庫查詢指令是:
+最後一次資料庫查詢指令是：
 <blockquote><code>$1</code></blockquote>
-來自於函數 "<code>$2</code>"。
-數據庫返回錯誤 "<samp>$3: $4</samp>"。',
+來自於函數“<code>$2</code>”。
+資料庫返回錯誤“<samp>$3: $4</samp>”。',
 'dberrortextcl' => '發生資料庫查詢語法錯誤。
 最後一次的資料庫查詢是:
 「$1」

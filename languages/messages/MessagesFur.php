@@ -239,7 +239,6 @@ $messages = array(
 'qbbrowse' => 'Sgarfe',
 'qbedit' => 'Cambie',
 'qbpageoptions' => 'Cheste pagjine',
-'qbpageinfo' => 'Contest',
 'qbmyoptions' => 'Mês pagjinis',
 'qbspecialpages' => 'Pagjinis speciâls',
 'faq' => 'Domandis plui frecuentis',

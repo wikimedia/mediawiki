@@ -218,7 +218,6 @@ $messages = array(
 'qbbrowse' => 'Garia',
 'qbedit' => 'Mèzi',
 'qbpageoptions' => 'Ihü nka',
-'qbpageinfo' => 'Abwátà nka',
 'qbmyoptions' => 'Ihüm',
 'qbspecialpages' => 'Ihü mkpà',
 'faq' => 'FAQ',

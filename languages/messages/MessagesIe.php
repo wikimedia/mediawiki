@@ -263,7 +263,6 @@ $messages = array(
 'qbfind' => 'Constatar',
 'qbedit' => 'Redacter',
 'qbpageoptions' => 'Págine de optiones',
-'qbpageinfo' => 'Págine de information',
 'qbmyoptions' => 'Mi optiones',
 'qbspecialpages' => 'Págines special',
 'faq' => 'FAQ',

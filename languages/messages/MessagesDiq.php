@@ -328,17 +328,17 @@ $messages = array(
 'tog-minordefault' => "Vurnayışanê xo pêrune ''vurnayışo qıckek'' nışan bıde",
 'tog-previewontop' => 'Verqayti pela nuştışi ser de bımocne',
 'tog-previewonfirst' => 'Vurnayışo verên de verqayti tım bımocne',
-'tog-nocache' => 'Pelanê cıgeyrayoği bia xo viri',
+'tog-nocache' => 'Pelanê cıgeyrayoği mia xo viri',
 'tog-enotifwatchlistpages' => 'Jû pele ya zi dosyaya ke lista mına seyrkerdışi de vurnayê mı rê e-poste bırışe',
 'tog-enotifusertalkpages' => 'Pela mına werênayışi ke vurnayê mı rê e-poste bırışe',
 'tog-enotifminoredits' => 'Vurnayışanê qıckekanê pelan u dosyeyan de zi mı rê e-poste bırışe',
 'tog-enotifrevealaddr' => 'Adresa e-posteyê mı posteyê xeberan de bımocne',
 'tog-shownumberswatching' => 'Amarê karberanê seyrkerdoğan bımocne',
 'tog-oldsig' => 'İmzaya mewcude:',
-'tog-fancysig' => 'İmza rê muameleyê wikimetina bıke (bê gıreyo otomatik)',
+'tog-fancysig' => 'İmza rê mameleyê wikimeqaley bıke (bê gıreyo otomatik)',
 'tog-externaleditor' => 'Editorê teberi standard bıxebetne (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
 'tog-externaldiff' => 'Têverşanayışan pê programê teberi vıraze (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
-'tog-showjumplinks' => 'Gıreyê "şo"y aktiv ke',
+'tog-showjumplinks' => 'Gıreyê "şo"y aktif ke',
 'tog-uselivepreview' => 'Verqayto cınde bıxebetne (JavaScript lazımo) (hewna cerrebnayış dero)',
 'tog-forceeditsummary' => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
 'tog-watchlisthideown' => 'Vurnayışanê mı lista mına seyrkerdışi de bınımne',
@@ -441,11 +441,11 @@ $messages = array(
 
 'about' => 'Heqa',
 'article' => 'Wesiqe',
-'newwindow' => '(teqa da newi de abeno)',
+'newwindow' => '(zerreyê pençereyê newey de beno a)',
 'cancel' => 'Bıtexelne',
 'moredotdotdot' => 'Vêşi...',
 'mypage' => 'Pela mı',
-'mytalk' => 'Behsê mı',
+'mytalk' => 'Werênayışê mı',
 'anontalk' => 'Pela werênayışê nê IPy',
 'navigation' => 'Geyrayış',
 'and' => '&#32;u',
@@ -456,7 +456,7 @@ $messages = array(
 'qbedit' => 'Bıvurne',
 'qbpageoptions' => 'Ena pele',
 'qbmyoptions' => 'Pelê mı',
-'qbspecialpages' => 'Peley xısusi',
+'qbspecialpages' => 'Pelê xısusiy',
 'faq' => 'PZP (Persê ke zehf persiyenê)',
 'faqpage' => 'Project: PZP',
 
@@ -556,8 +556,8 @@ $1',
 'mainpage' => 'Pera Seri',
 'mainpage-description' => 'Pela Seri',
 'policy-url' => 'Project:Terzê hereketi',
-'portal' => 'Portalê şêlıgi',
-'portal-url' => 'Project:Portalê şêlıgi',
+'portal' => 'Portalê cemaeti',
+'portal-url' => 'Project:Portalê cemaeti',
 'privacy' => 'Madeyê dızdiye',
 'privacypage' => 'Project:Xısusiyetê nımtışi',
 
@@ -703,7 +703,7 @@ $2',
 'namespaceprotected' => "No '''$1''' ca de icazetê şıma çino şıma pel rêz keri.",
 'customcssprotected' => 'Mısadeyê şıma çıniyo ke na pela CSSi bıvurnên, çıke na pela xısusiye eyaranê karberan muhtewa kena.',
 'customjsprotected' => 'Mısadeyê şıma çıniyo ke na pela Java Scripti bıvurnên, çıke na pela xısusiye eyaranê karberan muhtewa kena.',
-'ns-specialprotected' => 'Peley xısusi nênê vurnayış.',
+'ns-specialprotected' => 'Pelê xısusiy nênê vurnayış.',
 'titleprotected' => 'Eno [[User:$1|$1]] zerreyê ena peli nişeno vuriye.
 Sebeb: "\'\'$2\'\'".',
 'filereadonlyerror' => 'Dosyay vurnayışê "$1" nê abê no lakin depoy dosya da "$2" mod dê  salt wendi deyo.
@@ -736,7 +736,7 @@ Hesabê şıma biyo a.
 'yourdomainname' => 'Nameyê şıma yo meydani',
 'password-change-forbidden' => 'Şıma na wiki de nêşenê parola bıvurnê.',
 'externaldberror' => 'Ya database de xeta esta ya zi heqê şıma çino şıma no hesab bıvurni.',
-'login' => 'Ronıştış akerê',
+'login' => 'Cı kewe',
 'nav-login-createaccount' => 'Dekew de / hesab vıraze',
 'loginprompt' => "{{SITENAME}} dı ronıştış akerdışi rê ''çerezan'' aktiv kerdış icab keno.",
 'userlogin' => 'Cı kewe / hesab vıraze',
@@ -748,7 +748,7 @@ Hesabê şıma biyo a.
 'nologinlink' => 'Yew hesab ake',
 'createaccount' => 'Hesab vıraze',
 'gotaccount' => "Hesabê şıma esto? '''$1'''.",
-'gotaccountlink' => 'Ronıştış akerê',
+'gotaccountlink' => 'Cı kewe',
 'userlogin-resetlink' => 'Melumatê cıkewtışi xo vira kerdê?',
 'createaccountmail' => 'mı rê e-mail sera parola bırışe',
 'createaccountreason' => 'Sebeb:',
@@ -2045,7 +2045,7 @@ listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocn
 'unusedtemplateswlh' => 'linkanê binî',
 
 # Random page
-'randompage' => 'Peleya ke raştamê',
+'randompage' => 'Pela raştameyiye',
 'randompage-nopages' => 'Ena {{PLURAL:$2|cayêname|cayênameyî}} de enê pelan çin o: $1.',
 
 # Random redirect
@@ -2571,7 +2571,7 @@ $1',
 # Contributions
 'contributions' => 'İştiraqê karberi',
 'contributions-title' => 'Dekerdenê karber de $1',
-'mycontris' => 'Dekerdışê mı',
+'mycontris' => 'Cıkerdışê mı',
 'contribsub2' => 'Qandê $1 ($2)',
 'nocontribs' => 'Ena kriteriya de vurnayîş çini yo.',
 'uctop' => '(top)',
@@ -3619,13 +3619,13 @@ mw.loader.using( 'jquery.cookie', function() {
 'pageinfo-magic-words' => '{{PLURAL:$1|Çekuya|Çekuyê}} ($1) sihırini',
 'pageinfo-hidden-categories' => '{{PLURAL:$1|Kategoriye|Kategoriyan}} ($1) bınımne',
 'pageinfo-templates' => '{{PLURAL:$1|Şablon|Şabloni}} ($1) açarneyayê',
-'pageinfo-toolboxlink' => 'Malumatê perer',
+'pageinfo-toolboxlink' => 'Melumatê pele',
 'pageinfo-redirectsto' => 'Beno hetê',
 'pageinfo-redirectsto-info' => 'melumat',
 'pageinfo-contentpage' => 'Zey jû pela zerreki hesebiyena',
-'pageinfo-contentpage-yes' => 'E',
+'pageinfo-contentpage-yes' => 'Heya',
 'pageinfo-protect-cascading' => 'Sıtarkerdey tiya cı ra yenê war',
-'pageinfo-protect-cascading-yes' => 'E',
+'pageinfo-protect-cascading-yes' => 'Heya',
 'pageinfo-protect-cascading-from' => 'Sıtarkerdey cı ra yenê war',
 
 # Skin names
@@ -4552,7 +4552,7 @@ Resımi be tam asayış mocniyayê, tipê dosyaê bini be programê cıyo elaqed
 'fileduplicatesearch-noresults' => 'Ebe namey "$1" ra dosya nêdiyayê.',
 
 # Special:SpecialPages
-'specialpages' => 'Peley xısusi',
+'specialpages' => 'Pelê xısusiy',
 'specialpages-note' => '----
 * Xısusi pelaya normal
 * <span class="mw-specialpagerestricted">Xısusi peleyê keı rê ray nê deyaya.</span>

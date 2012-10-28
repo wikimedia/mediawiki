@@ -154,7 +154,6 @@ $messages = array(
 'qbbrowse' => 'ಬ್ರೌಸ್',
 'qbedit' => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
 'qbpageoptions' => 'ಈ ಪುಟ',
-'qbpageinfo' => 'ಸನ್ನಿವೇಶ',
 'qbmyoptions' => 'ಎನ್ನ ಪುಟೊಲು',
 'qbspecialpages' => 'ವಿಶೇಷ ಪುಟೊಲು',
 'faq' => 'ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',

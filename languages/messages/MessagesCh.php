@@ -146,7 +146,6 @@ $messages = array(
 'qbbrowse' => 'Atan',
 'qbedit' => 'Tulaika',
 'qbpageoptions' => 'Este na pahina',
-'qbpageinfo' => 'Kontekstu',
 'qbmyoptions' => 'Påhina-hu siha',
 'qbspecialpages' => 'Manespesiat na påhina',
 
