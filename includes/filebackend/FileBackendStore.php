@@ -161,12 +161,13 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
-	 *   - src           : source storage path
-	 *   - dst           : destination storage path
-	 *   - disposition   : Content-Disposition header value for the destination
-	 *   - async         : Status will be returned immediately if supported.
-	 *                     If the status is OK, then its value field will be
-	 *                     set to a FileBackendStoreOpHandle object.
+	 *   - src                 : source storage path
+	 *   - dst                 : destination storage path
+	 *   - ignoreMissingSource : do nothing if the source file does not exist
+	 *   - disposition         : Content-Disposition header value for the destination
+	 *   - async               : Status will be returned immediately if supported.
+	 *                           If the status is OK, then its value field will be
+	 *                           set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status
@@ -223,12 +224,13 @@ abstract class FileBackendStore extends FileBackend {
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
-	 *   - src           : source storage path
-	 *   - dst           : destination storage path
-	 *   - disposition   : Content-Disposition header value for the destination
-	 *   - async         : Status will be returned immediately if supported.
-	 *                     If the status is OK, then its value field will be
-	 *                     set to a FileBackendStoreOpHandle object.
+	 *   - src                 : source storage path
+	 *   - dst                 : destination storage path
+	 *   - ignoreMissingSource : do nothing if the source file does not exist
+	 *   - disposition         : Content-Disposition header value for the destination
+	 *   - async               : Status will be returned immediately if supported.
+	 *                           If the status is OK, then its value field will be
+	 *                           set to a FileBackendStoreOpHandle object.
 	 *
 	 * @param $params Array
 	 * @return Status

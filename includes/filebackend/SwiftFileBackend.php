@@ -402,7 +402,9 @@ class SwiftFileBackend extends FileBackendStore {
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
-			$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+			if ( empty( $params['ignoreMissingSource'] ) ) {
+				$status->fatal( 'backend-fail-copy', $params['src'], $params['dst'] );
+			}
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
 		}
@@ -473,7 +475,9 @@ class SwiftFileBackend extends FileBackendStore {
 		} catch ( CDNNotEnabledException $e ) {
 			// CDN not enabled; nothing to see here
 		} catch ( NoSuchObjectException $e ) { // source object does not exist
-			$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+			if ( empty( $params['ignoreMissingSource'] ) ) {
+				$status->fatal( 'backend-fail-move', $params['src'], $params['dst'] );
+			}
 		} catch ( CloudFilesException $e ) { // some other exception?
 			$this->handleException( $e, $status, __METHOD__, $params );
 		}
