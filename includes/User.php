@@ -1216,6 +1216,16 @@ class User {
 	public static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
 
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			// Disabling this for the unit tests, as they rely on being able to change $wgContLang
+			// mid-request and see that change reflected in the return value of this function.
+			// Which is insane and would never happen during normal MW operation
+			static $defOpt = null;
+			if ( $defOpt !== null ) {
+				return $defOpt;
+			}
+		}
+
 		$defOpt = $wgDefaultUserOptions;
 		# default language setting
 		$defOpt['variant'] = $wgContLang->getCode();
@@ -1225,12 +1235,6 @@ class User {
 		}
 		$defOpt['skin'] = $wgDefaultSkin;
 
-		// FIXME: Ideally we'd cache the results of this function so the hook is only run once,
-		// but that breaks the parser tests because they rely on being able to change $wgContLang
-		// mid-request and see that change reflected in the return value of this function.
-		// Which is insane and would never happen during normal MW operation, but is also not
-		// likely to get fixed unless and until we context-ify everything.
-		// See also https://www.mediawiki.org/wiki/Special:Code/MediaWiki/101488#c25275
 		wfRunHooks( 'UserGetDefaultOptions', array( &$defOpt ) );
 
 		return $defOpt;
