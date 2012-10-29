@@ -3044,7 +3044,7 @@ HTML
 					$context->msg( 'continue-editing' )->text() . ']]';
 			}
 
-			$parserOptions = $this->getAticle()->makeParserOptions( $context );
+			$parserOptions = $this->getArticle()->makeParserOptions( $context );
 			$parserOptions->setEditSection( false );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
