@@ -83,12 +83,12 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Create a file in the backend with the given contents.
+	 * This will overwrite any file that exists at the destination.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
 	 *   - content       : the raw file contents
 	 *   - dst           : destination storage path
-	 *   - overwrite     : overwrite any file that exists at the destination
 	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
@@ -106,9 +106,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doCreateInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
-			if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
-				$this->deleteFileCache( $params['dst'] ); // persistent cache
-			}
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -122,12 +120,12 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Store a file into the backend from a file on disk.
+	 * This will overwrite any file that exists at the destination.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
 	 *   - src           : source path on disk
 	 *   - dst           : destination storage path
-	 *   - overwrite     : overwrite any file that exists at the destination
 	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
@@ -145,9 +143,7 @@ abstract class FileBackendStore extends FileBackend {
 		} else {
 			$status = $this->doStoreInternal( $params );
 			$this->clearCache( array( $params['dst'] ) );
-			if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
-				$this->deleteFileCache( $params['dst'] ); // persistent cache
-			}
+			$this->deleteFileCache( $params['dst'] ); // persistent cache
 		}
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
@@ -161,12 +157,12 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Copy a file from one storage path to another in the backend.
+	 * This will overwrite any file that exists at the destination.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
 	 *   - src           : source storage path
 	 *   - dst           : destination storage path
-	 *   - overwrite     : overwrite any file that exists at the destination
 	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
@@ -180,9 +176,7 @@ abstract class FileBackendStore extends FileBackend {
 		wfProfileIn( __METHOD__ . '-' . $this->name );
 		$status = $this->doCopyInternal( $params );
 		$this->clearCache( array( $params['dst'] ) );
-		if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
-		}
+		$this->deleteFileCache( $params['dst'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
@@ -225,12 +219,12 @@ abstract class FileBackendStore extends FileBackend {
 
 	/**
 	 * Move a file from one storage path to another in the backend.
+	 * This will overwrite any file that exists at the destination.
 	 * Do not call this function from places outside FileBackend and FileOp.
 	 *
 	 * $params include:
 	 *   - src           : source storage path
 	 *   - dst           : destination storage path
-	 *   - overwrite     : overwrite any file that exists at the destination
 	 *   - disposition   : Content-Disposition header value for the destination
 	 *   - async         : Status will be returned immediately if supported.
 	 *                     If the status is OK, then its value field will be
@@ -245,9 +239,7 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->doMoveInternal( $params );
 		$this->clearCache( array( $params['src'], $params['dst'] ) );
 		$this->deleteFileCache( $params['src'] ); // persistent cache
-		if ( !empty( $params['overwrite'] ) ) { // file possibly mutated
-			$this->deleteFileCache( $params['dst'] ); // persistent cache
-		}
+		$this->deleteFileCache( $params['dst'] ); // persistent cache
 		wfProfileOut( __METHOD__ . '-' . $this->name );
 		wfProfileOut( __METHOD__ );
 		return $status;
