@@ -376,7 +376,12 @@ class ApiMain extends ApiBase {
 
 			// Log it
 			if ( !( $e instanceof UsageException ) ) {
-				wfDebugLog( 'exception', $e->getLogMessage() );
+				global $wgLogExceptionBacktrace;
+				if ( $wgLogExceptionBacktrace ) {
+					wfDebugLog( 'exception', $e->getLogMessage() . "\n" . $e->getTraceAsString() . "\n" );
+				} else {
+					wfDebugLog( 'exception', $e->getLogMessage() );
+				}
 			}
 
 			// Handle any kind of exception by outputing properly formatted error message.
