@@ -705,11 +705,30 @@ abstract class DatabaseUpdater {
 	protected function doCollationUpdate() {
 		global $wgCategoryCollations;
 		if ( $this->db->selectField(
-			'categorylinks',
-			'COUNT(*)',
-			'cl_collation NOT IN (' . $this->db->makeList( $wgCategoryCollations ) . ')',
-			__METHOD__
-		) == 0 ) {
+			array( 'ocl' => 'categorylinks' ),
+			array(
+				'count_all' => 'COUNT(*)',
+				'count_cur' => '(' . $this->db->selectSQLText(
+					array( 'icl' => 'categorylinks' ),
+					'COUNT(*)',
+					array(
+						'icl.cl_from = ocl.cl_from',
+						'icl.cl_to = ocl.cl_to',
+						'icl.cl_collation' => $wgCategoryCollations,
+					),
+					__METHOD__
+				) . ')',
+			),
+			array(),
+			__METHOD__,
+			array(
+				'GROUP BY' => array( 'cl_from', 'cl_to' ),
+				'HAVING' => $this->db->makeList( array(
+					'count_all <> count_cur',
+					'count_cur <> ' . count( $wgCategoryCollations ),
+				), LIST_OR ),
+			)
+		) === false ) {
 			$this->output( "...collations up-to-date.\n" );
 			return;
 		}
