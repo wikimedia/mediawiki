@@ -1650,6 +1650,10 @@ Parameters:
 Parameters
 * $1 - the number of items in the list following the message, for PLURAL.
 * $2 - the user name, for GENDER.',
+'userrights-groupsmember-type' => '{{optional}}
+Parameters:
+* $1 is list of group names.
+* $2 is list of group member names. Used with labels {{msg-mw|userrights-groupsmember}} and {{msg-mw|userrights-groupsmember-auto}}',
 'userrights-groups-help' => 'Instructions displayed on [[Special:UserRights]]. Parameters:
 * $1 is a username - optional, can be used for GENDER',
 'userrights-reason' => 'Text beside log field when editing user groups

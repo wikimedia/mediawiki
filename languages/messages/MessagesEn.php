@@ -1947,6 +1947,7 @@ Your e-mail address is not revealed when other users contact you.',
 'saveusergroups'                 => 'Save user groups',
 'userrights-groupsmember'        => 'Member of:',
 'userrights-groupsmember-auto'   => 'Implicit member of:',
+'userrights-groupsmember-type'   => '$1', # only translate this message to other languages if you have to change it
 'userrights-groups-help'         => 'You may alter the groups this user is in:
 * A checked box means the user is in that group.
 * An unchecked box means the user is not in that group.
