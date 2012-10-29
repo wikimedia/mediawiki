@@ -7,103 +7,11 @@
  */
 
 /* Thanks to A List Apart (http://alistapart.com/) for useful extras */
-a.stub,
-a.new {
-	color: #ba0000;
-	text-decoration: none;
-}
 
-#toc {
-	border: 1px solid #aaaaaa;
-	background-color: #f9f9f9;
-	padding: 5px;
-}
 
-/* images */
-div.floatright {
-	float: right;
-	clear: right;
-	position: relative;
-	margin: 0.5em 0 0.8em 1.4em;
-}
-div.floatright p {
-	font-style: italic;
-}
-div.floatleft {
-	float: left;
-	clear: left;
-	position: relative;
-	margin: 0.5em 1.4em 0.8em 0;
-}
-div.floatleft p {
-	font-style: italic;
-}
-div.center {
-	text-align: center;
-}
-
-/* thumbnails */
-div.thumb {
-	border: none;
-	width: auto;
-	margin-top: 0.5em;
-	margin-bottom: 0.8em;
-	background-color: transparent;
-}
-div.thumbinner {
-	border:1px solid #cccccc;
-	padding: 3px !important;
-	background-color: White;
-	font-size: 94%;
-	text-align: center;
-	overflow: hidden;
-}
-html .thumbimage {
-	border: 1px solid #cccccc;
-}
-html .thumbcaption {
-	border: none;
-	text-align: left;
-	line-height: 1.4em;
-	padding: 3px !important;
-	font-size: 94%;
-}
-
-div.magnify {
-	display: none;
-}
-/* @noflip */
-div.tright {
-	float: right;
-	clear: right;
-	margin: 0.5em 0 0.8em 1.4em;
-}
-/* @noflip */
-div.tleft {
-	float: left;
-	clear: left;
-	margin: 0.5em 1.4em 0.8em 0;
-}
-img.thumbborder {
-	border: 1px solid #dddddd;
-}
-
-/* table standards */
-table.rimage {
-	float: right;
-	width: 1pt;
-	position: relative;
-	margin-left: 1em;
-	margin-bottom: 1em;
-	text-align: center;
-}
-
-body {
-	background: white;
-	color: black;
-	margin: 0;
-	padding: 0;
-}
+/**********************************************************************
+ * Hide all the elements irrelevant for printing
+ */
 
 .noprint,
 div#jump-to-nav,
@@ -127,28 +35,24 @@ tr.mw-metadata-show-hide-extended,
 span.mw-filepage-other-resolutions,
 #filetoc,
 .usermessage,
-#mw-navigation {
-	/* Hides all the elements irrelevant for printing */
+#mw-navigation,
+#siteNotice {
 	display: none;
+}
+
+/**********************************************************************
+ * Generic HTML elements
+ */
+
+body {
+	background: white;
+	color: black;
+	margin: 0;
+	padding: 0;
 }
 
 ul {
 	list-style-type: square;
-}
-
-#content {
-	background: none;
-	border: none !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	direction: ltr;
-}
-#footer {
-	background : white;
-	color : black;
-	margin-top: 1em;
-	border-top: 1px solid #AAA;
-	direction: ltr;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -170,10 +74,55 @@ pre, .mw-code {
 	color: black;
 }
 
-table.listing,
-table.listing td {
-	border: 1pt solid black;
-	border-collapse: collapse;
+/**********************************************************************
+ * MediaWiki-specific elements
+ */
+
+#globalWrapper {
+	width: 100% !important;
+	min-width: 0 !important;
+}
+
+#content {
+	background: none;
+	border: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	direction: ltr;
+	color: black;
+}
+
+#column-content {
+	margin: 0 !important;
+}
+
+#column-content #content {
+	padding: 1em;
+	margin: 0 !important;
+}
+
+#toc {
+	border: 1px solid #aaaaaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+}
+
+#footer {
+	background : white;
+	color : black;
+	margin-top: 1em;
+	border-top: 1px solid #AAA;
+	direction: ltr;
+}
+
+/**********************************************************************
+ * Links
+ */
+
+a.stub,
+a.new {
+	color: #ba0000;
+	text-decoration: none;
 }
 
 a {
@@ -188,29 +137,10 @@ a:link, a:visited {
 	text-decoration: underline;
 }
 
+/* Expand URLs for printing */
 #content a.external.text:after,
-#content a.external.autonumber:after {
-	/* Expand URLs for printing */
+#content a.external.autonumber:after {	
 	content: " (" attr(href) ") ";
-}
-
-#globalWrapper {
-	width: 100% !important;
-	min-width: 0 !important;
-}
-
-#content {
-	background: white;
-	color: black;
-}
-
-#column-content {
-	margin: 0 !important;
-}
-
-#column-content #content {
-	padding: 1em;
-	margin: 0 !important;
 }
 
 /* MSIE/Win doesn't understand 'inherit' */
@@ -231,24 +161,123 @@ a.stub {
 	text-decoration: inherit !important;
 }
 
+/**********************************************************************
+ * Math
+ */
+
+span.texhtml {
+	font-family: serif;
+}
+
+/**********************************************************************
+ * Pagination
+ */
+
+.wikitable, .thumb, img {
+	page-break-inside: avoid;
+}
+
+h2, h3, h4, h5, h6, h7 {
+	page-break-after: avoid;
+}
+
+p {
+	widows: 3;
+	orphans: 3;
+}
+
+/**********************************************************************
+ * Images
+ */
+
 img {
 	border: none;
 	vertical-align: middle;
 }
 
-/* math */
-span.texhtml {
-	font-family: serif;
+div.floatright {
+	float: right;
+	clear: right;
+	position: relative;
+	margin: 0.5em 0 0.8em 1.4em;
 }
 
-#siteNotice {
+div.floatright p {
+	font-style: italic;
+}
+
+div.floatleft {
+	float: left;
+	clear: left;
+	position: relative;
+	margin: 0.5em 1.4em 0.8em 0;
+}
+
+div.floatleft p {
+	font-style: italic;
+}
+
+div.center {
+	text-align: center;
+}
+
+/* Images: thumbnails */
+
+div.thumb {
+	border: none;
+	width: auto;
+	margin-top: 0.5em;
+	margin-bottom: 0.8em;
+	background-color: transparent;
+}
+
+div.thumbinner {
+	border:1px solid #cccccc;
+	padding: 3px !important;
+	background-color: White;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+
+html .thumbimage {
+	border: 1px solid #cccccc;
+}
+
+html .thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: 3px !important;
+	font-size: 94%;
+}
+
+div.magnify {
 	display: none;
 }
 
-/* Galleries (see shared.css for more info) */
+/* @noflip */
+div.tright {
+	float: right;
+	clear: right;
+	margin: 0.5em 0 0.8em 1.4em;
+}
+
+/* @noflip */
+div.tleft {
+	float: left;
+	clear: left;
+	margin: 0.5em 1.4em 0.8em 0;
+}
+
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+
+/* Images: galleries (see shared.css for more info) */
+
 li.gallerybox {
 	vertical-align: top;
-	display: -moz-inline-box;
 	display: inline-block;
 }
 
@@ -283,42 +312,50 @@ div.gallerytext {
 	word-wrap: break-word;
 }
 
-/**
- * Diff rendering
+/**********************************************************************
+ * Diffs
  */
+
 table.diff {
 	background: white;
 }
+
 td.diff-otitle {
 	background: #ffffff;
 }
+
 td.diff-ntitle {
 	background: #ffffff;
 }
+
 td.diff-addedline {
 	background: #ccffcc;
 	font-size: smaller;
 	border: solid 2px black;
 }
+
 td.diff-deletedline {
 	background: #ffffaa;
 	font-size: smaller;
 	border: dotted 2px black;
 }
+
 td.diff-context {
 	background: #eeeeee;
 	font-size: smaller;
 }
+
 .diffchange {
 	color: silver;
 	font-weight: bold;
 	text-decoration: underline;
 }
 
-/**
- * Table rendering
+/**********************************************************************
+ * Tables
  * As on shared.css but with white background.
  */
+
 table.wikitable,
 table.mw_metadata {
 	margin: 1em 0;
@@ -326,12 +363,14 @@ table.mw_metadata {
 	background: white;
 	border-collapse: collapse;
 }
+
 table.wikitable > tr > th, table.wikitable > tr > td,
 table.wikitable > * > tr > th, table.wikitable > * > tr > td,
 .mw_metadata th, .mw_metadata td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
+
 table.wikitable > tr > th,
 table.wikitable > * > tr > th,
 .mw_metadata th {
@@ -339,6 +378,7 @@ table.wikitable > * > tr > th,
 	background: white;
 	font-weight: bold;
 }
+
 table.wikitable > caption,
 .mw_metadata caption {
 	font-weight: bold;
@@ -348,21 +388,10 @@ a.sortheader {
 	margin: 0 0.3em;
 }
 
-/* Some pagination options */
-.wikitable, .thumb, img {
-	page-break-inside: avoid;
-}
-h2, h3, h4, h5, h6, h7 {
-	page-break-after: avoid;
-}
-p {
-	widows: 3;
-	orphans: 3;
-}
-
-/**
+/**********************************************************************
  * Categories
  */
+
 .catlinks ul {
 	display: inline;
 	margin: 0;
