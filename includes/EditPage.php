@@ -1255,8 +1255,8 @@ class EditPage {
 					// passed.
 					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMessage( 'newsectionsummary', $cleanSectionTitle )
-							->inContentLanguage()->text();
+						$this->summary = wfMessage( 'newsectionsummary' )
+							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
 					// Insert the section title above the content.
@@ -1268,8 +1268,8 @@ class EditPage {
 
 					// Create a link to the new section from the edit summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
-						->inContentLanguage()->text();
+					$this->summary = wfMessage( 'newsectionsummary' )
+						->rawParams( $cleanSummary )->inContentLanguage()->text();
 				}
 			}
 
@@ -1399,16 +1399,16 @@ class EditPage {
 					// passed.
 					if ( $this->summary === '' ) {
 						$cleanSectionTitle = $wgParser->stripSectionName( $this->sectiontitle );
-						$this->summary = wfMessage( 'newsectionsummary', $cleanSectionTitle )
-							->inContentLanguage()->text();
+						$this->summary = wfMessage( 'newsectionsummary' )
+							->rawParams( $cleanSectionTitle )->inContentLanguage()->text();
 					}
 				} elseif ( $this->summary !== '' ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
 					# This is a new section, so create a link to the new section
 					# in the revision summary.
 					$cleanSummary = $wgParser->stripSectionName( $this->summary );
-					$this->summary = wfMessage( 'newsectionsummary', $cleanSummary )
-						->inContentLanguage()->text();
+					$this->summary = wfMessage( 'newsectionsummary' )
+						->rawParams( $cleanSummary )->inContentLanguage()->text();
 				}
 			} elseif ( $this->section != '' ) {
 				# Try to get a section anchor from the section source, redirect to edited section if header found
