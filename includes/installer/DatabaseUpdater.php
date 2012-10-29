@@ -704,14 +704,19 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doCollationUpdate() {
 		global $wgCategoryCollations;
-		if ( $this->db->selectField(
-			'categorylinks',
-			'COUNT(*)',
-			'cl_collation NOT IN (' . $this->db->makeList( $wgCategoryCollations ) . ')',
-			__METHOD__
-		) == 0 ) {
-			$this->output( "...collations up-to-date.\n" );
-			return;
+
+		$collations = $this->db->selectField( 'updatelog', 'ul_value', array( 'ul_key' => 'collations' ), __METHOD__ );
+		if ( $collations !== false ) {
+			$collations = unserialize( $collations );
+			if ( $collations !== false ) {
+				$collations_cur = $wgCategoryCollations;
+				sort( $collations_cur );
+				sort( $collations );
+				if ( $collations == $collations_cur ) {
+					$this->output( "...collations up-to-date.\n" );
+					return;
+				}
+			}
 		}
 
 		$this->output( "Updating category collations..." );
