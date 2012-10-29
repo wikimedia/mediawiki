@@ -766,7 +766,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	public function getEntryPointInfo() {
-		global $wgArticlePath, $wgScriptPath;
+		global $wgArticlePath, $wgScriptPath, $wgLang;
 		$entryPoints = array(
 			'version-entrypoints-articlepath' => $wgArticlePath,
 			'version-entrypoints-scriptpath' => $wgScriptPath,
@@ -775,11 +775,22 @@ class SpecialVersion extends SpecialPage {
 			'version-entrypoints-load-php' => wfScript( 'load' ),
 		);
 
+		$thAttribures = array(
+			'dir' => $wgLang->getDir(),
+			'lang' => $wgLang->getCode()
+		);
 		$out = Html::element( 'h2', array( 'id' => 'mw-version-entrypoints' ), $this->msg( 'version-entrypoints' )->text() ) .
-			Html::openElement( 'table', array( 'class' => 'wikitable plainlinks', 'id' => 'mw-version-entrypoints-table' ) ) .
+			Html::openElement( 'table',
+				array(
+					'class' => 'wikitable plainlinks',
+					'id' => 'mw-version-entrypoints-table',
+					'dir' => 'ltr',
+					'lang' => 'en'
+				)
+			) .
 			Html::openElement( 'tr' ) .
-			Html::element( 'th', array(), $this->msg( 'version-entrypoints-header-entrypoint' )->text() ) .
-			Html::element( 'th', array(), $this->msg( 'version-entrypoints-header-url' )->text() ) .
+			Html::element( 'th', $thAttribures, $this->msg( 'version-entrypoints-header-entrypoint' )->text() ) .
+			Html::element( 'th', $thAttribures, $this->msg( 'version-entrypoints-header-url' )->text() ) .
 			Html::closeElement( 'tr' );
 
 		foreach ( $entryPoints as $message => $value ) {
