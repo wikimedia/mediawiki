@@ -7,20 +7,12 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSl.php */
-class LanguageSlTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'sl' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageSlTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		$forms = array( 'one', 'two', 'few', 'other', 'zero' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {

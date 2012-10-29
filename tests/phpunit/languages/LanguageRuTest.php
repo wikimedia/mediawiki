@@ -7,20 +7,12 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageRu.php */
-class LanguageRuTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'ru' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageRuTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providePluralFourForms */
 	function testPluralFourForms( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralFourForms() {
@@ -41,7 +33,7 @@ class LanguageRuTest extends MediaWikiTestCase {
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
 		$forms =  array( 'one', 'several' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 	function providePluralTwoForms() {
 		return array (

@@ -1,36 +1,39 @@
 <?php
 
-class LanguageBeTaraskTest extends MediaWikiTestCase {
-	private $lang;
+class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
-	protected function setUp() {
-		$this->lang = Language::factory( 'Be-tarask' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
+	/**
+	 * Make sure the language code we are given is indeed
+	 * be-tarask. This is to ensure LanguageClassesTestCase
+	 * does not give us the wrong language.
+	 */
+	function testBeTaraskTestsUsesBeTaraskCode() {
+		$this->assertEquals( 'be-tarask',
+			$this->getLang()->getCode()
+		);
 	}
 
 	/** see bug 23156 & r64981 */
 	function testSearchRightSingleQuotationMarkAsApostroph() {
 		$this->assertEquals(
 			"'",
-			$this->lang->normalizeForSearch( '’' ),
+			$this->getLang()->normalizeForSearch( '’' ),
 			'bug 23156: U+2019 conversion to U+0027'
 		);
 	}
 	/** see bug 23156 & r64981 */
 	function testCommafy() {
-		$this->assertEquals( '1,234,567', $this->lang->commafy( '1234567' ) );
-		$this->assertEquals(    '12,345', $this->lang->commafy(   '12345' ) );
+		$this->assertEquals( '1,234,567', $this->getLang()->commafy( '1234567' ) );
+		$this->assertEquals(    '12,345', $this->getLang()->commafy(   '12345' ) );
 	}
 	/** see bug 23156 & r64981 */
 	function testDoesNotCommafyFourDigitsNumber() {
-		$this->assertEquals(      '1234', $this->lang->commafy(    '1234' ) );
+		$this->assertEquals(      '1234', $this->getLang()->commafy(    '1234' ) );
 	}
 	/** @dataProvider providePluralFourForms */
 	function testPluralFourForms( $result, $value ) {
 		$forms =  array( 'one', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralFourForms() {
@@ -51,7 +54,7 @@ class LanguageBeTaraskTest extends MediaWikiTestCase {
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
 		$forms =  array( 'one', 'several' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 	function providePluralTwoForms() {
 		return array (

@@ -6,21 +6,13 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageGd.php */
-class LanguageGdTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'gd' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageGdTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		// The CLDR ticket for this plural forms is not same as mw plural forms. See http://unicode.org/cldr/trac/ticket/2883
 		$forms =  array( 'Form 1', 'Form 2', 'Form 3', 'Form 4', 'Form 5', 'Form 6' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 	function providerPlural() {
 		return array (

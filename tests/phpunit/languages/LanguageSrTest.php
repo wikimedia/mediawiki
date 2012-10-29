@@ -15,16 +15,7 @@
 require_once dirname( __DIR__ ) . '/bootstrap.php';
 
 /** Tests for MediaWiki languages/LanguageSr.php */
-class LanguageSrTest extends MediaWikiTestCase {
-	/* Language object. Initialized before each test */
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'sr' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageSrTest extends LanguageClassesTestCase {
 
 	##### TESTS #######################################################
 
@@ -125,7 +116,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 	/** @dataProvider providePluralFourForms */
 	function testPluralFourForms( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralFourForms() {
@@ -146,7 +137,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
 		$forms = array( 'one', 'several' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 	function providePluralTwoForms() {
 		return array (
@@ -207,8 +198,7 @@ class LanguageSrTest extends MediaWikiTestCase {
 
 	/** Wrapper for converter::convertTo() method*/
 	function convertTo( $text, $variant ) {
-		return $this
-			->lang
+		return $this->getLang()
 			->mConverter
 			->convertTo(
 				$text, $variant

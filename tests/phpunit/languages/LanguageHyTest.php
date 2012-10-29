@@ -6,20 +6,12 @@
  */
 
 /** Tests for MediaWiki languages/LanguageHy.php */
-class LanguageHyTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'hy' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageHyTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		$forms =  array( 'one', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {

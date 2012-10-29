@@ -6,26 +6,18 @@
  */
 
 /** Tests for MediaWiki languages/LanguageLt.php */
-class LanguageLtTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'Lt' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageLtTest extends LanguageClassesTestCase {
 
 	/** @dataProvider provideOneFewOtherCases */
 	function testOneFewOtherPlural( $result, $value ) {
 		$forms =  array( 'one', 'few', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 	
 	/** @dataProvider provideOneFewCases */
 	function testOneFewPlural( $result, $value ) {
 		$forms =  array( 'one', 'few' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function provideOneFewOtherCases() {

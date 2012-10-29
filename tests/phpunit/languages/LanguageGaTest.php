@@ -6,20 +6,12 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageGa.php */
-class LanguageGaTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'ga' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageGaTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providerPlural */
 	function testPlural( $result, $value ) {
 		$forms =  array( 'one', 'two', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providerPlural() {

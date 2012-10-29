@@ -6,20 +6,12 @@
  */
 
 /** Tests for MediaWiki languages/classes/LanguageSgs.php */
-class LanguageSgsTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'Sgs' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageSgsTest extends LanguageClassesTestCase {
 
 	/** @dataProvider providePluralAllForms */
 	function testPluralAllForms( $result, $value ) {
 		$forms = array( 'one', 'few', 'many', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralAllForms() {
@@ -43,7 +35,7 @@ class LanguageSgsTest extends MediaWikiTestCase {
 	/** @dataProvider providePluralTwoForms */
 	function testPluralTwoForms( $result, $value ) {
 		$forms =  array( 'one', 'other' );
-		$this->assertEquals( $result, $this->lang->convertPlural( $value, $forms ) );
+		$this->assertEquals( $result, $this->getLang()->convertPlural( $value, $forms ) );
 	}
 
 	function providePluralTwoForms() {

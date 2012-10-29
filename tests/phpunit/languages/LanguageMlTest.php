@@ -6,20 +6,12 @@
  */
 
 /** Tests for MediaWiki languages/LanguageMl.php */
-class LanguageMlTest extends MediaWikiTestCase {
-	private $lang;
-
-	protected function setUp() {
-		$this->lang = Language::factory( 'Ml' );
-	}
-	protected function tearDown() {
-		unset( $this->lang );
-	}
+class LanguageMlTest extends LanguageClassesTestCase {
 
 	/** see bug 29495 */
 	/** @dataProvider providerFormatNum*/
 	function testFormatNum( $result, $value ) {
-		$this->assertEquals( $result,  $this->lang->formatNum( $value ) );
+		$this->assertEquals( $result,  $this->getLang()->formatNum( $value ) );
 	}
 
 	function providerFormatNum() {
