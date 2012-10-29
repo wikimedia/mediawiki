@@ -1965,7 +1965,7 @@ class EditPage {
 			if ( $title instanceof Title && $title->exists() && $title->userCan( 'read' ) ) {
 				// Added using template syntax, to take <noinclude>'s into account.
 				$this->getArticle()->getContext()->getOutput()
-					->addWikiTextTitleTidy( '{{:' . $title->getFullText() . '}}', $this->getTitle() );
+					->addWikiTextTitleTidy( '{{:' . $title->getFullText() . '}}', $this->mTitle );
 
 				return true;
 			}
