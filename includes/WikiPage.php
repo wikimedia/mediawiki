@@ -1708,6 +1708,7 @@ class WikiPage extends Page implements IDBAccessObject {
 
 			$revision = new Revision( array(
 				'page'       => $this->getId(),
+				'title'      => $this->getTitle(), // for determining the default content model
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
 				'text'       => $serialized,
@@ -1835,6 +1836,7 @@ class WikiPage extends Page implements IDBAccessObject {
 			# Save the revision text...
 			$revision = new Revision( array(
 				'page'       => $newid,
+				'title'      => $this->getTitle(), // for determining the default content model
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
 				'text'       => $serialized,

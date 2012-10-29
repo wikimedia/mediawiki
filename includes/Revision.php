@@ -600,15 +600,18 @@ class Revision implements IDBAccessObject {
 				$this->mContent = $handler->unserializeContent( $this->mText );
 			}
 
-			// if we have a Title object, override mPage. Useful for testing and convenience.
-			if ( isset( $row['title'] ) ) {
-				$this->mTitle     = $row['title'];
-				$this->mPage      = $this->mTitle->getArticleID();
-			} else {
-				$this->mTitle     = null; // Load on demand if needed
+			// If we have a Title object, make sure it is consistent with mPage.
+			if ( $this->mTitle && $this->mTitle->exists() ) {
+				if ( $this->mPage === null ) {
+					// if the page ID wasn't known, set it now
+					$this->mPage = $this->mTitle->getArticleID();
+				} elseif ( $this->mTitle->getArticleID() !== $this->mPage ) {
+					// got different page IDs, something is wrong.
+					throw new MWException( "Page ID " . $this->mPage . " mismatches the ID "
+							. $this->mTitle->getArticleID() . " provided by the Title object." );
+				}
 			}
 
-			// @todo: XXX: really? we are about to create a revision. it will usually then be the current one.
 			$this->mCurrent   = false;
 
 			// If we still have no length, see it we have the text to figure it out
