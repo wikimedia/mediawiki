@@ -220,15 +220,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 *  if an array is given as first argument).
 	 */
 	protected function setMwGlobals( $pairs, $value = null ) {
-		if ( !is_array( $pairs ) ) {
-			$key = $pairs;
-			$this->mwGlobals[$key] = $GLOBALS[$key];
-			$GLOBALS[$key] = $value;
-		} else {
-			foreach ( $pairs as $key => $value ) {
+
+		// Normalize (string, value) to an array
+		if( is_string( $pairs ) ) {
+			$pairs = array( $pairs => $value );
+		}
+
+		foreach ( $pairs as $key => $value ) {
+			// NOTE: make sure we only save the global once or a second call to
+			// setMwGlobals() on the same global would override the original
+			// value.
+			if ( !array_key_exists( $key, $this->mwGlobals ) ) {
 				$this->mwGlobals[$key] = $GLOBALS[$key];
-				$GLOBALS[$key] = $value;
 			}
+
+			// Override the global
+			$GLOBALS[$key] = $value;
 		}
 	}
 
