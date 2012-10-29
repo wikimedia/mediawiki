@@ -636,29 +636,29 @@ class XmlDumpWriter {
 
 		$out  = "    <revision>\n";
 		$out .= "      " . Xml::element( 'id', null, strval( $row->rev_id ) ) . "\n";
-		if( $row->rev_parent_id ) {
+		if( isset( $row->rev_parent_id ) && $row->rev_parent_id ) {
 			$out .= "      " . Xml::element( 'parentid', null, strval( $row->rev_parent_id ) ) . "\n";
 		}
 
 		$out .= $this->writeTimestamp( $row->rev_timestamp );
 
-		if ( $row->rev_deleted & Revision::DELETED_USER ) {
+		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_USER ) ) {
 			$out .= "      " . Xml::element( 'contributor', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$out .= $this->writeContributor( $row->rev_user, $row->rev_user_text );
 		}
 
-		if ( $row->rev_minor_edit ) {
+		if ( isset( $row->rev_minor_edit ) && $row->rev_minor_edit ) {
 			$out .=  "      <minor/>\n";
 		}
-		if ( $row->rev_deleted & Revision::DELETED_COMMENT ) {
+		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_COMMENT ) ) {
 			$out .= "      " . Xml::element( 'comment', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif ( $row->rev_comment != '' ) {
 			$out .= "      " . Xml::elementClean( 'comment', array(), strval( $row->rev_comment ) ) . "\n";
 		}
 
 		$text = '';
-		if ( $row->rev_deleted & Revision::DELETED_TEXT ) {
+		if ( isset( $row->rev_deleted ) && ( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} elseif ( isset( $row->old_text ) ) {
 			// Raw text from the database may have invalid chars
@@ -673,7 +673,7 @@ class XmlDumpWriter {
 				"" ) . "\n";
 		}
 
-		if ( $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
+		if ( isset( $row->rev_sha1 ) && $row->rev_sha1 && !( $row->rev_deleted & Revision::DELETED_TEXT ) ) {
 			$out .= "      " . Xml::element('sha1', null, strval( $row->rev_sha1 ) ) . "\n";
 		} else {
 			$out .= "      <sha1/>\n";
