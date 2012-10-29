@@ -1166,6 +1166,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special.userlogin' );
 		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
 	}
