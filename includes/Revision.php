@@ -52,7 +52,7 @@ class Revision implements IDBAccessObject {
 	protected $mContentFormat;
 
 	/**
-	 * @var Content
+	 * @var Content|null|bool
 	 */
 	protected $mContent;
 
@@ -971,27 +971,34 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Gets the content object for the revision
+	 * Gets the content object for the revision (or null on failure).
+	 *
+	 * Note that for mutable Content objects, each call to this method will return a
+	 * fresh clone.
 	 *
 	 * @since 1.21
-	 * @return Content
+	 * @return Content|null the Revision's content, or null on failure.
 	 */
 	protected function getContentInternal() {
 		if( is_null( $this->mContent ) ) {
 			// Revision is immutable. Load on demand:
-
-			$handler = $this->getContentHandler();
-			$format = $this->getContentFormat();
-
 			if( is_null( $this->mText ) ) {
-				// Load text on demand:
 				$this->mText = $this->loadText();
 			}
 
-			$this->mContent = is_null( $this->mText ) ? null : $handler->unserializeContent( $this->mText, $format );
+			if ( $this->mText !== false ) {
+				// Unserialize content
+				$handler = $this->getContentHandler();
+				$format = $this->getContentFormat();
+
+				$this->mContent = $handler->unserializeContent( $this->mText, $format );
+			} else {
+				$this->mContent = false; // negative caching!
+			}
 		}
 
-		return $this->mContent->copy(); // NOTE: copy() will return $this for immutable content objects
+		// NOTE: copy() will return $this for immutable content objects
+		return $this->mContent ? $this->mContent->copy() : null;
 	}
 
 	/**
@@ -1386,7 +1393,7 @@ class Revision implements IDBAccessObject {
 	 * Lazy-load the revision's text.
 	 * Currently hardcoded to the 'text' table storage engine.
 	 *
-	 * @return String
+	 * @return String|bool the revision's text, or false on failure
 	 */
 	protected function loadText() {
 		wfProfileIn( __METHOD__ );
