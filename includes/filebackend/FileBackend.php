@@ -206,6 +206,7 @@ abstract class FileBackend {
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
+	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
@@ -218,6 +219,7 @@ abstract class FileBackend {
 	 *         'dst'                 => <storage path>,
 	 *         'overwrite'           => <boolean>,
 	 *         'overwriteSame'       => <boolean>,
+	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
@@ -427,6 +429,7 @@ abstract class FileBackend {
 	 *         'op'                  => 'copy',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
+	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
@@ -436,6 +439,7 @@ abstract class FileBackend {
 	 *         'op'                  => 'move',
 	 *         'src'                 => <storage path>,
 	 *         'dst'                 => <storage path>,
+	 *         'ignoreMissingSource' => <boolean>, # since 1.21
 	 *         'disposition'         => <Content-Disposition header value>
 	 *     )
 	 * @endcode
