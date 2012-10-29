@@ -147,6 +147,9 @@ class ApiParse extends ApiBase {
 
 				$pageObj = $this->getTitleOrPageId( $pageParams, 'fromdb' );
 				$titleObj = $pageObj->getTitle();
+				if ( !$titleObj || !$titleObj->exists() ) {
+					$this->dieUsage( "The page you specified doesn't exist", 'missingtitle' );
+				}
 				$wgTitle = $titleObj;
 
 				if ( isset( $prop['revid'] ) ) {

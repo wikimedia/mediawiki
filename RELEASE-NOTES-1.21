@@ -61,6 +61,7 @@ production.
   page content; See docs/contenthandler.txt for details.
 * (bug 35693) ApiQueryImageInfo now suppresses errors when unserializing metadata.
 * (bug 40111) Disable minor edit for page/section creation by API
+* (bug 41042) Revert change to action=parse&page=... behavior when the page does not exist.
 
 === Languages updated in 1.21 ===
 
