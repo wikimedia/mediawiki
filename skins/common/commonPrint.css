@@ -7,10 +7,116 @@
  */
 
 /* Thanks to A List Apart (http://alistapart.com/) for useful extras */
-a.stub,
-a.new {
-	color: #ba0000;
-	text-decoration: none;
+
+/**
+ * Hide all the elements irrelevant for printing
+ */
+.noprint,
+div#jump-to-nav,
+.mw-jump,
+div.top,
+div#column-one,
+#colophon,
+.mw-editsection,
+.mw-editsection-like,
+.toctoggle,
+.tochidden,
+div#f-poweredbyico,
+div#f-copyrightico,
+li#viewcount,
+li#about,
+li#disclaimer,
+li#mobileview,
+li#privacy,
+#footer-places,
+.mw-hidden-catlinks,
+tr.mw-metadata-show-hide-extended,
+span.mw-filepage-other-resolutions,
+#filetoc,
+.usermessage,
+.patrollink,
+#mw-navigation,
+#siteNotice {
+	display: none;
+}
+
+/**
+ * Pagination
+ */
+.wikitable, .thumb, img {
+	page-break-inside: avoid;
+}
+
+h2, h3, h4, h5, h6 {
+	page-break-after: avoid;
+}
+
+p {
+	widows: 3;
+	orphans: 3;
+}
+
+/**
+ * Generic HTML elements
+ */
+body {
+	background: white;
+	color: black;
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style-type: square;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: bold;
+}
+
+dt {
+	font-weight: bold;
+}
+
+p {
+	margin: 1em 0;
+	line-height: 1.2em;
+}
+
+pre, .mw-code {
+	border: 1pt dashed black;
+	white-space: pre;
+	font-size: 8pt;
+	overflow: auto;
+	padding: 1em 0;
+	background: white;
+	color: black;
+}
+
+/**
+ * MediaWiki-specific elements
+ */
+#globalWrapper {
+	width: 100% !important;
+	min-width: 0 !important;
+}
+
+#content {
+	background: white;
+	border: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	direction: ltr;
+	color: black;
+}
+
+#column-content {
+	margin: 0 !important;
+}
+
+#column-content #content {
+	padding: 1em;
+	margin: 0 !important;
 }
 
 #toc {
@@ -25,7 +131,78 @@ a.new {
 	*display: inline;
 }
 
-/* images */
+#footer {
+	background: white;
+	color: black;
+	margin-top: 1em;
+	border-top: 1px solid #AAA;
+	direction: ltr;
+}
+
+img {
+	border: none;
+	vertical-align: middle;
+}
+
+/* math */
+span.texhtml {
+	font-family: serif;
+}
+
+/**
+ * Links
+ */
+a.stub,
+a.new {
+	color: #ba0000;
+	text-decoration: none;
+}
+
+a {
+	color: black !important;
+	background: none !important;
+	padding: 0 !important;
+}
+
+a:link, a:visited {
+	color: #520;
+	background: transparent;
+	text-decoration: underline;
+}
+
+/* Expand URLs for printing */
+#content a.external.text:after,
+#content a.external.autonumber:after {
+	content: " (" attr(href) ")";
+}
+
+/* Expand protocol-relative URLs for printing */
+#content a.external.text[href^='//']:after,
+#content a.external.autonumber[href^='//']:after {
+	content: " (https:" attr(href) ")";
+}
+
+/* MSIE/Win doesn't understand 'inherit' */
+a,
+a.external,
+a.new,
+a.stub {
+	color: black !important;
+	text-decoration: none !important;
+}
+
+/* Continue ... */
+a,
+a.external,
+a.new,
+a.stub {
+	color: inherit !important;
+	text-decoration: inherit !important;
+}
+
+/**
+ * Floating divs
+ */
 div.floatright {
 	float: right;
 	clear: right;
@@ -52,7 +229,9 @@ div.center {
 	text-align: center;
 }
 
-/* thumbnails */
+/**
+ * Thumbnails
+ */
 div.thumb {
 	border: none;
 	width: auto;
@@ -104,167 +283,9 @@ img.thumbborder {
 	border: 1px solid #dddddd;
 }
 
-body {
-	background: white;
-	color: black;
-	margin: 0;
-	padding: 0;
-}
-
-.noprint,
-div#jump-to-nav,
-.mw-jump,
-div.top,
-div#column-one,
-#colophon,
-.mw-editsection,
-.mw-editsection-like,
-.toctoggle,
-.tochidden,
-div#f-poweredbyico,
-div#f-copyrightico,
-li#viewcount,
-li#about,
-li#disclaimer,
-li#mobileview,
-li#privacy,
-#footer-places,
-.mw-hidden-catlinks,
-tr.mw-metadata-show-hide-extended,
-span.mw-filepage-other-resolutions,
-#filetoc,
-.usermessage,
-.patrollink,
-#mw-navigation {
-	/* Hides all the elements irrelevant for printing */
-	display: none;
-}
-
-ul {
-	list-style-type: square;
-}
-
-#content {
-	background: none;
-	border: none !important;
-	padding: 0 !important;
-	margin: 0 !important;
-	direction: ltr;
-}
-
-#footer {
-	background: white;
-	color: black;
-	margin-top: 1em;
-	border-top: 1px solid #AAA;
-	direction: ltr;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-weight: bold;
-}
-
-dt {
-	font-weight: bold;
-}
-
-p {
-	margin: 1em 0;
-	line-height: 1.2em;
-}
-
-pre, .mw-code {
-	border: 1pt dashed black;
-	white-space: pre;
-	font-size: 8pt;
-	overflow: auto;
-	padding: 1em 0;
-	background: white;
-	color: black;
-}
-
-table.listing,
-table.listing td {
-	border: 1pt solid black;
-	border-collapse: collapse;
-}
-
-a {
-	color: black !important;
-	background: none !important;
-	padding: 0 !important;
-}
-
-a:link, a:visited {
-	color: #520;
-	background: transparent;
-	text-decoration: underline;
-}
-
-#content a.external.text:after,
-#content a.external.autonumber:after {
-	/* Expand URLs for printing */
-	content: " (" attr(href) ")";
-}
-
-#content a.external.text[href^='//']:after,
-#content a.external.autonumber[href^='//']:after {
-	/* Expand protocol-relative URLs for printing */
-	content: " (https:" attr(href) ")";
-}
-
-#globalWrapper {
-	width: 100% !important;
-	min-width: 0 !important;
-}
-
-#content {
-	background: white;
-	color: black;
-}
-
-#column-content {
-	margin: 0 !important;
-}
-
-#column-content #content {
-	padding: 1em;
-	margin: 0 !important;
-}
-
-/* MSIE/Win doesn't understand 'inherit' */
-a,
-a.external,
-a.new,
-a.stub {
-	color: black !important;
-	text-decoration: none !important;
-}
-
-/* Continue ... */
-a,
-a.external,
-a.new,
-a.stub {
-	color: inherit !important;
-	text-decoration: inherit !important;
-}
-
-img {
-	border: none;
-	vertical-align: middle;
-}
-
-/* math */
-span.texhtml {
-	font-family: serif;
-}
-
-#siteNotice {
-	display: none;
-}
-
-/* Galleries (see shared.css for more info) */
+/**
+ * Galleries (see shared.css for more info)
+ */
 li.gallerybox {
 	vertical-align: top;
 	display: inline-block;
@@ -371,22 +392,14 @@ table.wikitable > caption,
 	font-weight: bold;
 }
 
+table.listing,
+table.listing td {
+	border: 1pt solid black;
+	border-collapse: collapse;
+}
+
 a.sortheader {
 	margin: 0 0.3em;
-}
-
-/* Some pagination options */
-.wikitable, .thumb, img {
-	page-break-inside: avoid;
-}
-
-h2, h3, h4, h5, h6 {
-	page-break-after: avoid;
-}
-
-p {
-	widows: 3;
-	orphans: 3;
 }
 
 /**
