@@ -302,6 +302,19 @@ class FileBackendTest extends MediaWikiTestCase {
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
 		$this->prepare( array( 'dir' => dirname( $dest ) ) );
 
+		if ( isset( $op['ignoreMissingSource'] ) ) {
+			$status = $this->backend->doOperation( $op );
+			$this->assertGoodStatus( $status,
+				"Move from $source to $dest succeeded without warnings ($backendName)." );
+			$this->assertEquals( array( 0 => true ), $status->success,
+				"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
+			$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $source ) ),
+				"Source file $source does not exist ($backendName)." );
+			$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $dest ) ),
+				"Destination file $dest does not exist ($backendName)." );
+			return; // done
+		}
+
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
 		$this->assertGoodStatus( $status,
@@ -366,6 +379,14 @@ class FileBackendTest extends MediaWikiTestCase {
 			$dest, // dest
 		);
 
+		$op2 = $op;
+		$op2['ignoreMissingSource'] = true;
+		$cases[] = array(
+			$op2, // operation
+			$source, // source
+			$dest, // dest
+		);
+
 		return $cases;
 	}
 
@@ -391,6 +412,19 @@ class FileBackendTest extends MediaWikiTestCase {
 		$dest = $op['dst'];
 		$this->prepare( array( 'dir' => dirname( $source ) ) );
 		$this->prepare( array( 'dir' => dirname( $dest ) ) );
+
+		if ( isset( $op['ignoreMissingSource'] ) ) {
+			$status = $this->backend->doOperation( $op );
+			$this->assertGoodStatus( $status,
+				"Move from $source to $dest succeeded without warnings ($backendName)." );
+			$this->assertEquals( array( 0 => true ), $status->success,
+				"Move from $source to $dest has proper 'success' field in Status ($backendName)." );
+			$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $source ) ),
+				"Source file $source does not exist ($backendName)." );
+			$this->assertEquals( false, $this->backend->fileExists( array( 'src' => $dest ) ),
+				"Destination file $dest does not exist ($backendName)." );
+			return; // done
+		}
 
 		$status = $this->backend->doOperation(
 			array( 'op' => 'create', 'content' => 'blahblah', 'dst' => $source ) );
@@ -451,6 +485,14 @@ class FileBackendTest extends MediaWikiTestCase {
 
 		$op2 = $op;
 		$op2['overwriteSame'] = true;
+		$cases[] = array(
+			$op2, // operation
+			$source, // source
+			$dest, // dest
+		);
+
+		$op2 = $op;
+		$op2['ignoreMissingSource'] = true;
 		$cases[] = array(
 			$op2, // operation
 			$source, // source

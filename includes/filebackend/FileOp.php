@@ -45,6 +45,7 @@ abstract class FileOp {
 	protected $useLatest = true; // boolean
 	protected $batchId; // string
 
+	protected $doOperation = true; // boolean; operation is not a no-op
 	protected $sourceSha1; // string
 	protected $destSameAsSource; // boolean
 
@@ -209,6 +210,9 @@ abstract class FileOp {
 	 * @return Array
 	 */
 	final public function getJournalEntries( array $oPredicates, array $nPredicates ) {
+		if ( !$this->doOperation ) {
+			return array(); // this is a no-op
+		}
 		$nullEntries = array();
 		$updateEntries = array();
 		$deleteEntries = array();
@@ -239,7 +243,9 @@ abstract class FileOp {
 	}
 
 	/**
-	 * Check preconditions of the operation without writing anything
+	 * Check preconditions of the operation without writing anything.
+	 * This must update $predicates for each path that the op can change
+	 * except when a failing status object is returned.
 	 *
 	 * @param $predicates Array
 	 * @return Status
@@ -275,10 +281,14 @@ abstract class FileOp {
 			return Status::newFatal( 'fileop-fail-attempt-precheck' );
 		}
 		$this->state = self::STATE_ATTEMPTED;
-		$status = $this->doAttempt();
-		if ( !$status->isOK() ) {
-			$this->failed = true;
-			$this->logFailure( 'attempt' );
+		if ( $this->doOperation ) {
+			$status = $this->doAttempt();
+			if ( !$status->isOK() ) {
+				$this->failed = true;
+				$this->logFailure( 'attempt' );
+			}
+		} else { // no-op
+			$status = Status::newGood();
 		}
 		return $status;
 	}
@@ -414,6 +424,8 @@ abstract class FileOp {
 	final protected function fileSha1( $source, array $predicates ) {
 		if ( isset( $predicates['sha1'][$source] ) ) {
 			return $predicates['sha1'][$source]; // previous op assures this
+		} elseif ( isset( $predicates['exists'][$source] ) && !$predicates['exists'][$source] ) {
+			return false; // previous op assures this
 		} else {
 			$params = array( 'src' => $source, 'latest' => $this->useLatest );
 			return $this->backend->getFileSha1Base36( $params );
@@ -591,7 +603,7 @@ class CopyFileOp extends FileOp {
 	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition' ) );
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'disposition' ) );
 	}
 
 	/**
@@ -602,8 +614,16 @@ class CopyFileOp extends FileOp {
 		$status = Status::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
-			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
-			return $status;
+			if ( $this->getParam( 'ignoreMissingSource' ) ) {
+				$this->doOperation = false; // no-op
+				// Update file existence predicates (cache 404s)
+				$predicates['exists'][$this->params['src']] = false;
+				$predicates['sha1'][$this->params['src']] = false;
+				return $status; // nothing to do
+			} else {
+				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+				return $status;
+			}
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
@@ -659,7 +679,7 @@ class MoveFileOp extends FileOp {
 	 */
 	protected function allowedParams() {
 		return array( array( 'src', 'dst' ),
-			array( 'overwrite', 'overwriteSame', 'disposition' ) );
+			array( 'overwrite', 'overwriteSame', 'ignoreMissingSource', 'disposition' ) );
 	}
 
 	/**
@@ -670,8 +690,16 @@ class MoveFileOp extends FileOp {
 		$status = Status::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
-			$status->fatal( 'backend-fail-notexists', $this->params['src'] );
-			return $status;
+			if ( $this->getParam( 'ignoreMissingSource' ) ) {
+				$this->doOperation = false; // no-op
+				// Update file existence predicates (cache 404s)
+				$predicates['exists'][$this->params['src']] = false;
+				$predicates['sha1'][$this->params['src']] = false;
+				return $status; // nothing to do
+			} else {
+				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
+				return $status;
+			}
 		// Check if a file can be placed at the destination
 		} elseif ( !$this->backend->isPathUsableInternal( $this->params['dst'] ) ) {
 			$status->fatal( 'backend-fail-usable', $this->params['dst'] );
@@ -735,21 +763,24 @@ class DeleteFileOp extends FileOp {
 		return array( array( 'src' ), array( 'ignoreMissingSource' ) );
 	}
 
-	protected $needsDelete = true;
-
 	/**
-	 * @param array $predicates
+	 * @param $predicates array
 	 * @return Status
 	 */
 	protected function doPrecheck( array &$predicates ) {
 		$status = Status::newGood();
 		// Check if the source file exists
 		if ( !$this->fileExists( $this->params['src'], $predicates ) ) {
-			if ( !$this->getParam( 'ignoreMissingSource' ) ) {
+			if ( $this->getParam( 'ignoreMissingSource' ) ) {
+				$this->doOperation = false; // no-op
+				// Update file existence predicates (cache 404s)
+				$predicates['exists'][$this->params['src']] = false;
+				$predicates['sha1'][$this->params['src']] = false;
+				return $status; // nothing to do
+			} else {
 				$status->fatal( 'backend-fail-notexists', $this->params['src'] );
 				return $status;
 			}
-			$this->needsDelete = false;
 		}
 		// Update file existence predicates
 		$predicates['exists'][$this->params['src']] = false;
@@ -761,11 +792,8 @@ class DeleteFileOp extends FileOp {
 	 * @return Status
 	 */
 	protected function doAttempt() {
-		if ( $this->needsDelete ) {
-			// Delete the source file
-			return $this->backend->deleteInternal( $this->setFlags( $this->params ) );
-		}
-		return Status::newGood();
+		// Delete the source file
+		return $this->backend->deleteInternal( $this->setFlags( $this->params ) );
 	}
 
 	/**
