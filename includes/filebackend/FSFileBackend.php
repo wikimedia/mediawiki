@@ -191,14 +191,9 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( file_exists( $dest ) ) {
-			if ( !empty( $params['overwrite'] ) ) {
-				$ok = unlink( $dest );
-				if ( !$ok ) {
-					$status->fatal( 'backend-fail-delete', $params['dst'] );
-					return $status;
-				}
-			} else {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+			$ok = unlink( $dest );
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-delete', $params['dst'] );
 				return $status;
 			}
 		}
@@ -256,14 +251,9 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( file_exists( $dest ) ) {
-			if ( !empty( $params['overwrite'] ) ) {
-				$ok = unlink( $dest );
-				if ( !$ok ) {
-					$status->fatal( 'backend-fail-delete', $params['dst'] );
-					return $status;
-				}
-			} else {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+			$ok = unlink( $dest );
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-delete', $params['dst'] );
 				return $status;
 			}
 		}
@@ -321,18 +311,13 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( file_exists( $dest ) ) {
-			if ( !empty( $params['overwrite'] ) ) {
-				// Windows does not support moving over existing files
-				if ( wfIsWindows() ) {
-					$ok = unlink( $dest );
-					if ( !$ok ) {
-						$status->fatal( 'backend-fail-delete', $params['dst'] );
-						return $status;
-					}
+			// Windows does not support moving over existing files
+			if ( wfIsWindows() ) {
+				$ok = unlink( $dest );
+				if ( !$ok ) {
+					$status->fatal( 'backend-fail-delete', $params['dst'] );
+					return $status;
 				}
-			} else {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
-				return $status;
 			}
 		}
 
@@ -424,14 +409,9 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( file_exists( $dest ) ) {
-			if ( !empty( $params['overwrite'] ) ) {
-				$ok = unlink( $dest );
-				if ( !$ok ) {
-					$status->fatal( 'backend-fail-delete', $params['dst'] );
-					return $status;
-				}
-			} else {
-				$status->fatal( 'backend-fail-alreadyexists', $params['dst'] );
+			$ok = unlink( $dest );
+			if ( !$ok ) {
+				$status->fatal( 'backend-fail-delete', $params['dst'] );
 				return $status;
 			}
 		}
