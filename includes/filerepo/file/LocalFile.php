@@ -814,7 +814,9 @@ class LocalFile extends File {
 		foreach ( $files as $file ) {
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
-			if ( strpos( $file, $this->getName() ) !== false ) {
+			if ( strpos( $file, $this->getName() ) !== false
+				|| strpos( $file, "-thumbnail" ) !== false // "short" thumb name
+			) {
 				$purgeList[] = "{$dir}/{$file}";
 			}
 		}
