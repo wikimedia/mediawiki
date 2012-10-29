@@ -250,6 +250,13 @@ class FSFileBackend extends FileBackendStore {
 			return $status;
 		}
 
+		if ( !is_file( $source ) ) {
+			if ( empty( $params['ignoreMissingSource'] ) ) {
+				$status->fatal( 'backend-fail-copy', $params['src'] );
+			}
+			return $status; // do nothing; either OK or bad status
+		}
+
 		if ( file_exists( $dest ) ) {
 			$ok = unlink( $dest );
 			if ( !$ok ) {
@@ -308,6 +315,13 @@ class FSFileBackend extends FileBackendStore {
 		if ( $dest === null ) {
 			$status->fatal( 'backend-fail-invalidpath', $params['dst'] );
 			return $status;
+		}
+
+		if ( !is_file( $source ) ) {
+			if ( empty( $params['ignoreMissingSource'] ) ) {
+				$status->fatal( 'backend-fail-move', $params['src'] );
+			}
+			return $status; // do nothing; either OK or bad status
 		}
 
 		if ( file_exists( $dest ) ) {
