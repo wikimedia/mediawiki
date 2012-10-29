@@ -388,3 +388,9 @@
 [submodule "extensions/Wikibase"]
 	path = extensions/Wikibase
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/Wikibase.git
+[submodule "extensions/EventLogging"]
+	path = extensions/EventLogging
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/EventLogging.git
+[submodule "extensions/PostEdit"]
+	path = extensions/PostEdit
+	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/PostEdit.git
