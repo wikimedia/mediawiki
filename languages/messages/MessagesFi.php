@@ -2232,7 +2232,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailuser-title-target' => 'Lähetä sähköpostia tälle {{GENDER:$1|käyttäjälle}}',
 'emailuser-title-notarget' => 'Lähetä sähköpostia käyttäjälle',
 'emailpage' => 'Lähetä sähköpostia käyttäjälle',
-'emailpagetext' => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
+'emailpagetext' => 'Jos tämä {{GENDER:$1|käyttäjä}} on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror' => 'Postitus palautti virheen:',
 'defemailsubject' => 'Sähköpostia käyttäjältä $1 sivustolta {{SITENAME}}',
 'usermaildisabled' => 'Käyttäjien sähköposti poistettu käytöstä',

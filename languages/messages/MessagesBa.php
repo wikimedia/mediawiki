@@ -241,7 +241,7 @@ $messages = array(
 'history' => 'Тарих',
 'history_short' => 'Тарих',
 'updatedmarker' => 'һуңғы кереүемдән һуң яңыртылған',
-'printableversion' => 'Ҡағыҙға баҫыу өлгөһө',
+'printableversion' => 'Баҫтырыу өлгөһө',
 'permalink' => 'Даими һылтанма',
 'print' => 'Баҫыу',
 'view' => 'Ҡарау',
@@ -2816,6 +2816,7 @@ The wiki server cannot provide data in a format your client can read.',
 'pageinfo-watchers' => 'Күҙәтеүселәр һаны',
 'pageinfo-edits' => 'Төҙәтеү һаны',
 'pageinfo-authors' => 'Төрлө авторҙар һаны',
+'pageinfo-toolboxlink' => 'Бит мәғлүмәттәре',
 
 # Skin names
 'skinname-standard' => 'Классик',

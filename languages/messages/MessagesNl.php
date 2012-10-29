@@ -2389,7 +2389,7 @@ Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individu
 'emailuser-title-target' => 'Deze {{GENDER:$1|gebruiker}} e-mailen',
 'emailuser-title-notarget' => 'Gebruiker e-mailen',
 'emailpage' => 'Gebruiker e-mailen',
-'emailpagetext' => 'Via dit formulier kunt u een e-mail aan deze gebruiker verzenden.
+'emailpagetext' => 'Via dit formulier kunt u een e-mail aan {{GENDER:$1|deze gebruiker}} verzenden.
 Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] wordt als afzender gebruikt.
 De ontvanger kan dus direct naar u reageren.',
 'usermailererror' => 'Foutmelding bij het verzenden:',
@@ -3240,6 +3240,7 @@ Meestal wordt dit door een externe verwijzing op een zwarte lijst veroorzaakt.',
 'pageinfo-default-sort' => 'Standaard sorteerwijze',
 'pageinfo-length' => 'Paginalengte (in bytes)',
 'pageinfo-article-id' => 'Paginanummer',
+'pageinfo-language' => 'Pagina-inhoudstaal',
 'pageinfo-robot-policy' => 'Status voor de zoekmachine',
 'pageinfo-robot-index' => 'Indexeerbaar',
 'pageinfo-robot-noindex' => 'Niet indexeerbaar',
@@ -3980,6 +3981,7 @@ U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'version-license' => 'Licentie',
 'version-poweredby-credits' => "Deze wiki wordt aangedreven door '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'anderen',
+'version-credits-summary' => 'We zouden graag de volgende personen erkennen voor hun bijdrage aan [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki is vrije software; u kunt MediaWiki verspreiden en/of aanpassen onder de voorwaarden van de GNU General Public License zoals gepubliceerd door de Free Software Foundation; ofwel versie 2 van de Licentie, of - naar uw wens - enige latere versie.
 
 MediaWiki wordt verspreid in de hoop dat het nuttig is, maar ZONDER ENIGE GARANTIE; zonder zelfs de impliciete garantie van VERKOOPBAARHEID of GESCHIKTHEID VOOR ENIG DOEL IN HET BIJZONDER. Zie de GNU General Public License voor meer informatie.

@@ -1333,11 +1333,11 @@ $1",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました：あなたが変更しようとしている間に、他の誰かが変更したようです。
 記録を確認してください。',
 'revdelete-only-restricted' => '$1$2の項目の版指定削除に失敗しました：他の閲覧レベルの選択肢のうちどれかをさらに選択しなければ、管理者から項目を秘匿できません。',
-'revdelete-reason-dropdown' => '
-*よくある削除理由
+'revdelete-reason-dropdown' => '*よくある削除理由
 ** 著作権侵害
-** 名誉毀損のおそれ
-** 非公開個人情報',
+** 不適切なコメントや個人情報の開示
+** 不適切な利用者名
+** 名誉毀損のおそれ',
 'revdelete-otherreason' => '他の、または追加の理由：',
 'revdelete-reasonotherlist' => 'その他の理由',
 'revdelete-edit-reasonlist' => '削除理由を編集',
@@ -3262,15 +3262,15 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'pageinfo-length' => 'ページの長さ (バイト単位)',
 'pageinfo-article-id' => 'ページ ID',
 'pageinfo-robot-policy' => '検索エンジンの状態',
-'pageinfo-robot-index' => 'インデックス可能',
-'pageinfo-robot-noindex' => 'インデックス不可',
+'pageinfo-robot-index' => '検索エンジンに収集される',
+'pageinfo-robot-noindex' => '検索エンジンに収集されない',
 'pageinfo-views' => '閲覧回数',
 'pageinfo-watchers' => 'ページをウォッチリストに入れている人数',
-'pageinfo-redirects-name' => 'このページへのリダイレクト',
+'pageinfo-redirects-name' => 'このページへのリダイレクト数',
 'pageinfo-redirects-value' => '$1',
 'pageinfo-subpages-name' => 'このページの下位ページ数',
 'pageinfo-subpages-value' => '$1 ($2 {{PLURAL:$2|リダイレクト}}、$3 {{PLURAL:$3|非リダイレクト}})',
-'pageinfo-firstuser' => 'ページ作成者',
+'pageinfo-firstuser' => 'ページの作成者',
 'pageinfo-firsttime' => 'ページの作成日時',
 'pageinfo-lastuser' => '最終編集者',
 'pageinfo-lasttime' => '最終編集日時',
@@ -3280,7 +3280,7 @@ MediaWiki 全般のローカライズ（地域化）に貢献したい場合は�
 'pageinfo-recent-authors' => '最近の投稿者数',
 'pageinfo-magic-words' => 'マジック {{PLURAL:$1|ワード}} ($1)',
 'pageinfo-hidden-categories' => '隠し{{PLURAL:$1|カテゴリ}} ($1)',
-'pageinfo-templates' => '参照読み込みされた{{PLURAL:$1|テンプレート}} ($1)',
+'pageinfo-templates' => '参照読み込みされている{{PLURAL:$1|テンプレート}} ($1)',
 'pageinfo-toolboxlink' => 'ページ情報',
 'pageinfo-redirectsto' => '転送先',
 'pageinfo-redirectsto-info' => '情報',
@@ -3335,13 +3335,13 @@ $1',
 # Media information
 'mediawarning' => "'''警告：'''この種類のファイルは悪意のあるコードを含んでいる可能性があります。
 実行するとシステムが危険にさらされる可能性があります。",
-'imagemaxsize' => "画像のサイズ制限：<br />''（ファイルページに対する）''",
-'thumbsize' => 'サムネイルの大きさ：',
+'imagemaxsize' => "画像のサイズ制限: <br />''(ファイルページに対する)''",
+'thumbsize' => 'サムネイルの大きさ:',
 'widthheight' => '$1 × $2',
 'widthheightpage' => '$1 × $2、$3 {{PLURAL:$3|ページ}}',
-'file-info' => 'ファイルサイズ：$1、MIMEタイプ：$2',
-'file-info-size' => '$1 × $2 ピクセル、ファイルサイズ：$3、MIMEタイプ：$4',
-'file-info-size-pages' => '$1 × $2 ピクセル、ファイルサイズ：$3、MIMEタイプ：$4、$5 {{PLURAL:$5|ページ}}',
+'file-info' => 'ファイルサイズ: $1、MIMEタイプ: $2',
+'file-info-size' => '$1 × $2 ピクセル、ファイルサイズ: $3、MIME タイプ: $4',
+'file-info-size-pages' => '$1 × $2 ピクセル、ファイルサイズ: $3、MIMEタイプ: $4、$5 {{PLURAL:$5|ページ}}',
 'file-nohires' => '高解像度版はありません。',
 'svg-long-desc' => 'SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
 'svg-long-desc-animated' => 'アニメーション SVG ファイル、$1 × $2 ピクセル、ファイルサイズ: $3',
@@ -4122,10 +4122,11 @@ $5
 'version-parser-function-hooks' => 'パーサー関数フック',
 'version-hook-name' => 'フック名',
 'version-hook-subscribedby' => '使用個所',
-'version-version' => '（バージョン$1）',
+'version-version' => '(バージョン $1)',
 'version-license' => 'ライセンス',
 'version-poweredby-credits' => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
 'version-poweredby-others' => 'その他',
+'version-credits-summary' => '[[Special:Version|MediaWiki]] に貢献した以下の人たちに感謝します。',
 'version-license-info' => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約に基づき、このライブラリを再配布および改変できます。
 
 MediaWikiは、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。詳しくは、GNU一般公衆利用許諾書をご覧ください。
@@ -4142,7 +4143,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Special:FilePath
 'filepath' => 'ファイルパス',
-'filepath-page' => 'ファイル：',
+'filepath-page' => 'ファイル:',
 'filepath-submit' => '取得',
 'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。
 画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
@@ -4151,9 +4152,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'fileduplicatesearch' => '重複ファイルの検索',
 'fileduplicatesearch-summary' => '重複ファイルをハッシュ値に基づいて検索します。',
 'fileduplicatesearch-legend' => '重複の検索',
-'fileduplicatesearch-filename' => 'ファイル名：',
+'fileduplicatesearch-filename' => 'ファイル名:',
 'fileduplicatesearch-submit' => '検索',
-'fileduplicatesearch-info' => '$1 × $2 ピクセル<br />ファイルサイズ：$3<br />MIMEタイプ：$4',
+'fileduplicatesearch-info' => '$1 × $2 ピクセル<br />ファイルサイズ: $3<br />MIME タイプ: $4',
 'fileduplicatesearch-result-1' => 'ファイル「$1」と重複するファイルはありません。',
 'fileduplicatesearch-result-n' => 'ファイル「$1」には {{PLURAL:$2|$2 件の重複ファイル}}があります。',
 'fileduplicatesearch-noresults' => '「$1」という名前のファイルはありません。',

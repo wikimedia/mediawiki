@@ -34,6 +34,7 @@
  * @author Grondin
  * @author Guillom
  * @author Hashar
+ * @author Hello71
  * @author Hercule
  * @author Houcinee1
  * @author Hégésippe Cormier
@@ -3175,6 +3176,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'pageinfo-default-sort' => 'Clé de tri par défaut',
 'pageinfo-length' => 'Taille de la page (en octets)',
 'pageinfo-article-id' => 'Numéro de la page',
+'pageinfo-language' => 'Langue du contenu de la page',
 'pageinfo-robot-policy' => 'Statut de moteur de recherche',
 'pageinfo-robot-index' => 'Indexable',
 'pageinfo-robot-noindex' => 'Non indexable',
@@ -3967,6 +3969,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].',
 'version-license' => 'Licence',
 'version-poweredby-credits' => "Ce wiki fonctionne grâce à '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'autres',
+'version-credits-summary' => 'Nous tenons à remercier les personnes suivantes pour leur contribution à  [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki est un logiciel libre, vous pouvez le redistribuer et / ou le modifier selon les termes de la Licence Publique Générale GNU telle que publiée par la Free Software Foundation ; soit la version 2 de la Licence, ou (à votre choix) toute version ultérieure.
 
 MediaWiki est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE, sans même la garantie implicite de COMMERCIALISATION ou D'ADAPTATION A UN USAGE PARTICULIER. Voir la Licence Publique Générale GNU pour plus de détails.

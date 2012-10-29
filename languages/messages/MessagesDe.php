@@ -1056,8 +1056,8 @@ Sofern du fälschlicherweise hier bist, klicke auf die Schaltfläche '''Zurück'
 Du kannst sie <span class="plainlinks">[{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>,
 ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten]</span>.',
-'noarticletext-nopermission' => 'Diese Seite enthält momentan noch keinen Text.
-Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]] oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span> Du bist allerdings nicht berechtigt diese Seite zu erstellen.',
+'noarticletext-nopermission' => 'Diese Seite enthält momentan noch keinen Text, du bist auch nicht berechtigt diese Seite zu erstellen.
+Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]] oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
 'missing-revision' => 'Die Version $1 der Seite namens „{{PAGENAME}}“ ist nicht vorhanden.
 
 Dieser Fehler wird normalerweise von einem veralteten Link zur Versionsgeschichte einer Seite verursacht, die zwischenzeitlich gelöscht wurde.
@@ -1587,6 +1587,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'saveusergroups' => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember' => 'Mitglied von:',
 'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
+'userrights-groupsmember-type' => '$1',
 'userrights-groups-help' => 'Du kannst die Gruppenzugehörigkeit {{GENDER:$1|dieses Benutzers|dieser Benutzerin}} ändern:
 * Ein markiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} Mitglied dieser Gruppe ist.
 * Ein nichtmarkiertes Kästchen bedeutet, dass {{GENDER:$1|der Benutzer|die Benutzerin}} nicht Mitglied dieser Gruppe ist.
@@ -2362,8 +2363,8 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'emailuser-title-target' => 'E-Mail an {{GENDER:$1|diesen Benutzer|diese Benutzerin}} senden',
 'emailuser-title-notarget' => 'E-Mail an Benutzer',
 'emailpage' => 'E-Mail an Benutzer',
-'emailpagetext' => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
-Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
+'emailpagetext' => 'Du kannst {{GENDER:$1|dem Benutzer|der Benutzerin}} mit dem unten stehenden Formular eine E-Mail senden.
+Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit {{GENDER:$1|der Benutzer|die Benutzerin}} dir antworten kann.',
 'usermailererror' => 'Das E-Mail-Objekt gab einen Fehler zurück:',
 'defemailsubject' => '{{SITENAME}} – E-Mail von Benutzer „$1“',
 'usermaildisabled' => 'E-Mail-Empfang deaktiviert',
@@ -3184,6 +3185,7 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 'pageinfo-default-sort' => 'Standardsortierkriterium',
 'pageinfo-length' => 'Seitenlänge (in Byte)',
 'pageinfo-article-id' => 'Seitenkennnummer',
+'pageinfo-language' => 'Seiteninhaltssprache',
 'pageinfo-robot-policy' => 'Suchmaschinenstatus',
 'pageinfo-robot-index' => 'Indizierbar',
 'pageinfo-robot-noindex' => 'Nicht indizierbar',
@@ -3923,6 +3925,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 'version-license' => 'Lizenz',
 'version-poweredby-credits' => "Diese Website nutzt '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'andere',
+'version-credits-summary' => 'Wir danken folgenden Personen für ihre Beiträge zu [[Special:Version|MediaWiki]].',
 'version-license-info' => "MediaWiki ist eine Freie Software, d. h. sie kann, gemäß den Bedingungen der von der Free Software Foundation veröffentlichten ''GNU General Public License'', weiterverteilt und/oder modifiziert werden. Dabei kann die Version 2, oder nach eigenem Ermessen, jede neuere Version der Lizenz verwendet werden.
 
 Die Software MediaWiki wird in der Hoffnung verteilt, dass sie nützlich sein wird, allerdings OHNE JEGLICHE GARANTIE und sogar ohne die implizierte Garantie einer MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Hierzu sind weitere Hinweise in der ''GNU General Public License'' enthalten.

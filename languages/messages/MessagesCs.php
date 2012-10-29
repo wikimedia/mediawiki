@@ -2315,7 +2315,7 @@ Podporované protokoly: <code>$1</code> (nepřidávejte je do hledání).',
 'emailuser-title-target' => 'Poslat e-mail {{GENDER:$1|tomuto uživateli|této uživatelce}}',
 'emailuser-title-notarget' => 'Poslat e-mail uživateli',
 'emailpage' => 'Poslat e-mail',
-'emailpagetext' => 'Pomocí níže zobrazeného formuláře můžete tomuto uživateli poslat zprávu e-mailem.
+'emailpagetext' => 'Pomocí níže zobrazeného formuláře můžete {{GENDER:$1|tomuto uživateli|této uživatelce}} poslat zprávu e-mailem.
 E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se objeví jako adresa odesílatele pošty, aby vám adresát mohl odpovědět přímo.',
 'usermailererror' => 'Chyba poštovního programu:',
 'defemailsubject' => 'E-mail z {{grammar:2sg|{{SITENAME}}}} od {{gender:$1|uživatele|uživatelky|uživatele}} „$1“',
@@ -3128,6 +3128,7 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'pageinfo-default-sort' => 'Výchozí klíč řazení',
 'pageinfo-length' => 'Velikost stránky (v bajtech)',
 'pageinfo-article-id' => 'ID stránky',
+'pageinfo-language' => 'Jazyk obsahu stránky',
 'pageinfo-robot-policy' => 'Nastavení pro vyhledávače',
 'pageinfo-robot-index' => 'Indexovatelná',
 'pageinfo-robot-noindex' => 'Neindexovatelná',
@@ -3904,6 +3905,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'version-license' => 'Licence',
 'version-poweredby-credits' => "Tato wiki běží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others' => 'další',
+'version-credits-summary' => 'Následujícím lidem bychom rádi poděkovali za jejich příspěvky [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki je svobodný software; můžete jej šířit nebo modifikovat podle podmínek GNU General Public License, vydávané Free Software Foundation; buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější verze.
 
 MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO URČITÝ ÚČEL. Podrobnosti se dočtete v textu GNU General Public License.

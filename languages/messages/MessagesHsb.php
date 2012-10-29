@@ -2085,7 +2085,7 @@ Podpěrowane protokole: <code>$1</code> (prošu njepodaj je w swojim pytanje).',
 'emailuser-title-target' => 'E-mejl na {{GENDER:$1|tutomu wužiwarjej|tutej wužiwarce}} pósłać',
 'emailuser-title-notarget' => 'Wužiwarjej mejlku pósłać',
 'emailpage' => 'Wužiwarjej mejlku pósłać',
-'emailpagetext' => 'Móžeš slědowacy formular wužiwać, zo by tutomu wužiwarjej e-mejlku pósłał.
+'emailpagetext' => 'Móžeš slědowacy formular wužiwać, zo by tutomu {{GENDER:$1|wužiwarjej}} e-mejlku pósłał.
 E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nastajenjach]] zapodał, zjewi so jako adresa "Wot" e-mejlki, tak zo přijimowar móže ći direktnje wotmołwić.',
 'usermailererror' => 'E-mejlowy objekt je zmylk wróćił:',
 'defemailsubject' => '{{SITENAME}} - e-mejlka wot wužiwarja "$1"',
@@ -2864,6 +2864,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-default-sort' => 'Standardny sortěrowanski kluč',
 'pageinfo-length' => 'Dołhosć strony (w bajtach)',
 'pageinfo-article-id' => 'ID strony',
+'pageinfo-language' => 'Rěč wobsaha strony',
 'pageinfo-robot-policy' => 'Status pytawy',
 'pageinfo-robot-index' => 'Indeksujomny',
 'pageinfo-robot-noindex' => 'Njeindeksujomny',
@@ -3576,6 +3577,7 @@ Móžeš tež [[Special:EditWatchlist|standardnu wobdźěłowansku stronu]] wuž
 'version-license' => 'Licenca',
 'version-poweredby-credits' => "Tutón wiki so wot  '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2 podpěruje.",
 'version-poweredby-others' => 'druzy',
+'version-credits-summary' => 'Dźakujemy so slědowacym wosobam za jich přinoški k [[Special:Version|MediaWiki]]',
 'version-license-info' => 'MediaWiki je swobodna softwara: móžeš ju pod wuměnjenjemi licency GNU General Public License, wozjewjeneje wot załožby Free Software Foundation, rozdźělić a/abo změnić: pak pod wersiju 2 licency pak pod někajkej pozdźišej wersiju.
 
 MediaWiki so w nadźiji rozdźěla, zo budźe wužitny, ale BJEZ GARANTIJU: samo bjez wobsahowaneje garantije PŘEDAWAJOMNOSĆE abo PŘIHÓDNOSĆE ZA WĚSTY ZAMĚR. Hlej GNU general Public License za dalše podrobnosće.

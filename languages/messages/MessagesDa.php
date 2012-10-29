@@ -875,7 +875,7 @@ Loggen over den seneste blokering ses nedenfor:',
 'note' => "'''Bemærk:'''",
 'previewnote' => "'''Husk at dette er kun en forhåndsvisning.'''
 Dine ændringer er endnu ikke blevet gemt!",
-'continue-editing' => 'Fortsæt med at redigere',
+'continue-editing' => 'Gå til redigeringsfeltet',
 'previewconflict' => 'Denne forhåndsvisning er resultatet af den redigérbare tekst ovenfor, sådan vil det komme til at se ud hvis du vælger at gemme teksten.',
 'session_fail_preview' => "'''Din ændring kunne ikke gemmes, da dine sessionsdata er gået tabt.
 Prøv venligst igen. Hvis problemet fortsætter, log af og log på igen.'''",
@@ -2134,8 +2134,8 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'emailuser-title-target' => 'Send email til denne {{GENDER:$1|bruger}}',
 'emailuser-title-notarget' => 'Send email til en bruger',
 'emailpage' => 'E-mail bruger',
-'emailpagetext' => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne bruger.
-Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
+'emailpagetext' => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne {{GENDER:$1|bruger}}.
+Den e-mail-adresse, du har angivet i [[Special:Preferences|dine indstillinger]], vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
 'usermailererror' => 'E-mail-modulet returnerede en fejl:',
 'defemailsubject' => '{{SITENAME}}-email fra brugeren "$1"',
 'usermaildisabled' => 'Bruger-e-mail deaktiveret',
@@ -2922,6 +2922,7 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 'pageinfo-default-sort' => 'Standardsorteringsnøgle',
 'pageinfo-length' => 'Sidelængde (i bytes)',
 'pageinfo-article-id' => 'Side-ID',
+'pageinfo-language' => 'Sprog for sideindholdet',
 'pageinfo-robot-policy' => 'Søgemaskinestatus',
 'pageinfo-robot-index' => 'Indekserbar',
 'pageinfo-robot-noindex' => 'Ikke indekserbar',
@@ -3633,6 +3634,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-license' => 'Licens',
 'version-poweredby-credits' => "Denne wiki er drevet af '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
 'version-poweredby-others' => 'andre',
+'version-credits-summary' => 'Vi vil gerne anerkende de følgende personer for deres bidrag til [[Special:Version|MediaWiki]].',
 'version-license-info' => 'MediaWiki er fri software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 
 MediaWiki distribueres i håb om at det vil være nyttigt, men UDEN NOGEN GARANTI; uden selv de underforståede garantier SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Se GNU General Public License for yderligere detaljer. 

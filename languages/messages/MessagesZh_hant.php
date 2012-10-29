@@ -969,6 +969,7 @@ $2
 'content-not-allowed-here' => '[[$2]]不允許"$1"頁上的內容',
 
 # Content models
+'content-model-wikitext' => 'wiki語法',
 'content-model-text' => '純文字',
 'content-model-javascript' => 'JavaScript',
 'content-model-css' => 'CSS',
@@ -2132,7 +2133,7 @@ Template:消除歧義',
 'emailuser-title-target' => '電郵這位{{GENDER:$1|用戶}}',
 'emailuser-title-notarget' => 'E-mail用戶',
 'emailpage' => 'E-mail用戶',
-'emailpagetext' => '您可以用下面的表格去寄一封電郵給這位用戶。
+'emailpagetext' => '您可以用下面的表格去寄一封電郵給這位{{Gender:$1|用戶}}。
 您在[[Special:Preferences|您的參數設置]]中所輸入的電子郵件地址將出現在郵件「發件人」一欄中，這樣該用戶就可以回覆您。',
 'usermailererror' => '目標郵件地址返回錯誤：',
 'defemailsubject' => '{{SITENAME}}來自用戶“$1”的電子郵件',
@@ -2960,6 +2961,7 @@ $1被封禁的理由是“$2”',
 'pageinfo-default-sort' => '預設排序字：',
 'pageinfo-length' => '頁面長度 （以位元組為單位）',
 'pageinfo-article-id' => '頁面編號',
+'pageinfo-language' => '頁面內容語言',
 'pageinfo-robot-policy' => '搜尋引擎狀態',
 'pageinfo-robot-index' => '可索引',
 'pageinfo-robot-noindex' => '不可索引',
@@ -3698,6 +3700,7 @@ $5
 'version-license' => '授權',
 'version-poweredby-credits' => "這個 Wiki 由 '''[//www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
 'version-poweredby-others' => '其他',
+'version-credits-summary' => '我們感謝以下人士為[[Special:Version|MediaWiki]]作出的貢獻。',
 'version-license-info' => 'MediaWiki為自由軟件；您可依據自由軟件基金會所發表的GNU通用公共授權條款規定，就本程式再為發佈與／或修改；無論您依據的是本授權的第二版或（您自行選擇的）任一日後發行的版本。
 
 MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任；亦無對適售性或特定目的適用性所為的默示性擔保。詳情請參照GNU通用公共授權。

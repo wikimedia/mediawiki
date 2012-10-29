@@ -9,6 +9,7 @@
  *
  * @author 82-145
  * @author Bekiroflaz
+ * @author BetelgeuSeginus
  * @author Bilalokms
  * @author Bombola
  * @author Cekli829
@@ -492,7 +493,7 @@ $messages = array(
 'variants' => 'Türevler',
 
 'errorpagetitle' => 'Hata',
-'returnto' => '$1 sayfasına dön.',
+'returnto' => '$1 sayfasına geri dön.',
 'tagline' => '{{SITENAME}} sitesinden',
 'help' => 'Yardım',
 'search' => 'Ara',
@@ -588,7 +589,7 @@ $1',
 'youhavenewmessages' => 'Yeni $1 var ($2).',
 'newmessageslink' => 'mesajınız',
 'newmessagesdifflink' => 'son değişiklik',
-'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başka bir kullanıcıdan|$3 kullanıcılardan}} $1 var. ($2)',
+'youhavenewmessagesfromusers' => '{{PLURAL:$3|Başka bir kullanıcıdan|$3 kullanıcıdan}} $1 var. ($2)',
 'youhavenewmessagesmanyusers' => 'Birçok kullanıcıdan $1 var. ($2)',
 'newmessageslinkplural' => '{{PLURAL:$1|yeni mesajınız|yeni mesajlarınız}}',
 'newmessagesdifflinkplural' => 'son {{PLURAL:$1|değişiklik|değişiklikler}}',
@@ -987,7 +988,6 @@ Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
 * '''Firefox / Safari:''' ''Shift'' tuşuna basılıyken \"Yeniden yükle\"'ye tıklayın ya da \"Ctrl-F5\" ya da ''Ctrl-R'' yapın (Mac için '⌘-R'').
 * '''Google Chrome:''' ''Ctrl-Shift-R'''ye basın. (Mac için ''⌘-Shift-R'')
 * '''Internet Explorer:''' ''Ctrl'' basılıyken ''Yenile'''ye tıklayın ya da ''Ctrl-F5'' yapın.
-* '''Konqueror:''' 'Yeniden yükle'''ye ya da ''F5'''e basın.
 * '''Opera:''' ''Araçlar → Tercihler'''den önbelliği temizleyin.",
 'usercssyoucanpreview' => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni CSSinizi deneyin.",
 'userjsyoucanpreview' => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",

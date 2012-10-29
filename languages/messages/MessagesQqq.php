@@ -69,6 +69,7 @@
  * @author MF-Warburg
  * @author Malafaya
  * @author MarkvA
+ * @author Matma Rex
  * @author MaxSem
  * @author McDutchie
  * @author Meno25
@@ -2654,8 +2655,7 @@ See also {{msg-mw|listgrouprights-addgroup-all}}.',
 'emailpage' => "Title of special page [[Special:EmailUser]], when it is the destination of the sidebar link {{msg-mw|Emailuser}} on a user's page.",
 'emailpagetext' => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
-Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser. Parameters:
-* $1 can be used for GENDER.',
+Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
 'defemailsubject' => 'The default subject of EmailUser emails. Parameters:
 * $1 is the username of the user sending the email and can be used for GENDER.',
 'usermaildisabled' => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
@@ -2848,6 +2848,12 @@ This message was something like "unlock move protection" in the past.',
 'protect-text' => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
 'protect-default' => '{{Identical|Default}}',
 'protect-fallback' => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
+'protect-level-autoconfirmed' => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
+'protect-level-sysop' => 'Used as protect level.
+
+See example: [http://translatewiki.net/w/i.php?title=Main_Page&action=info]',
 'protect-summary-cascade' => 'Used in edit summary when cascade protecting a page. Appears in protection log. See [[Special:Log]] and [[m:Special:Log]].
 
 Also used in [[Special:ProtectedPages]] when a page is cascade protected. See example: [[m:Special:ProtectedPages]].<br />
@@ -3546,15 +3552,21 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 'pageinfo-length' => 'પૃષ્ઠની લંબાઇ બાઇટમાં',
 'pageinfo-article-id' => 'The numeric identifier of the page.',
 'pageinfo-language' => 'Language in which the page content is written.',
-'pageinfo-robot-policy' => 'The search engine status of the page, e.g. "marked as index".',
+'pageinfo-robot-policy' => 'The search engine status of the page.
+*{{msg-mw|Pageinfo-robot-index}}
+*{{msg-mw|Pageinfo-robot-noindex}}',
 'pageinfo-robot-index' => 'An indication that the page is indexable.',
 'pageinfo-robot-noindex' => 'An indication that the page is not indexable.',
 'pageinfo-views' => 'The number of times the page has been viewed.',
 'pageinfo-watchers' => 'The number of users watching the page.',
-'pageinfo-redirects-name' => 'The number of redirects to the page.',
+'pageinfo-redirects-name' => "The number of redirects to the page.
+
+Used as link text, linked to '{{int:Whatlinkshere-title}}' page ([[Special:WhatLinksHere]]).",
 'pageinfo-redirects-value' => 'Parameters:
 * $1 is the number of redirects to the page.',
-'pageinfo-subpages-name' => 'The number of subpages of the page.',
+'pageinfo-subpages-name' => "The number of subpages of the page.
+
+Used as link text, linked to '{{int:Prefixindex}}' page ([[Special:PrefixIndex]]).",
 'pageinfo-subpages-value' => 'Parameters:
 * $1 is the number of subpages of the page.
 * $2 is the number of subpages of the page that are redirects.
@@ -4701,7 +4713,7 @@ This is being used in [[Special:Version]], preceeding the subversion revision nu
 *$1: the current year
 *$2: a list of selected MediaWiki authors',
 'version-poweredby-others' => 'Used at the very end of {{msg-mw|version-poweredby-credits}} on [[Special:Version]]. First, there\'s a long list of selected MediaWiki authors, then the word "and" (from {{msg-mw|and}}) follows and then this translation, which is supposed to credit the many other people than developer helping with MediaWiki.',
-'version-credits-summary'               => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
+'version-credits-summary' => 'Summary of the [[Special:Version/Credits]] sub page, which lists all developers etc. who contributed to MediaWiki. Shown at the top.',
 'version-license-info' => '[[wikipedia:GNU GPL|GNU GPL]] notice shown at [[Special:Version]]. See //www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html for available translations.',
 'version-software-product' => 'Shown in [[Special:Version]]',
 'version-software-version' => '{{Identical|Version}}',
@@ -4901,6 +4913,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-patrol-patrol-auto' => '{{Logentry}}
 * $4 is a formatted revision number, maybe linked to the diff.
 "Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
+'logentry-newusers-create' => '{{Logentry}}
+
+$4 is the gender of the target user.',
 'logentry-newusers-create2' => '{{Logentry}}
 
 $4 is the gender of the target user.',

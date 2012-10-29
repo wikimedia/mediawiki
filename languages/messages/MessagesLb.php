@@ -2107,7 +2107,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'emailuser-title-target' => '{{GENDER:$1|Dëser Benotzerin|Dësem Benotzer}} eng Mail schécken',
 'emailuser-title-notarget' => 'Dem Benotzer eng E-Mail schécken',
 'emailpage' => 'Dem Benotzer eng E-Mail schécken',
-'emailpagetext' => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
+'emailpagetext' => 'Dir kënnt mat dësem Formulaire {{GENDER:$1|dësem Benotzer}} en E-Mail-Message schécken.
 D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech direkt äntwerte kann.',
 'usermailererror' => 'E-Mail-Objet mellt deen heite Feeler:',
 'defemailsubject' => '{{SITENAME}} E-Mail vum Benotzer "$1"',

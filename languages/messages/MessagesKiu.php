@@ -900,7 +900,7 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'grouppage-bureaucrat' => '{{ns:project}}:Burokrati',
 
 # Rights
-'right-read' => 'Pelan bıwanê',
+'right-read' => 'Pelan bıwane',
 'right-edit' => 'Pelu bıvurne',
 'right-move' => 'Pelu bere',
 'right-movefile' => 'Dosyu bere',

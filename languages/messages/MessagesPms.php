@@ -3220,12 +3220,12 @@ J'àutri a saran stërmà coma stàndard.
 'exif-flash-return-2' => "lë stoboscòpi a arleva gnun-a lus d'artorn",
 'exif-flash-return-3' => "lë stroboscòpi a l'ha arlevà n'artorn ëd lus",
 'exif-flash-mode-1' => 'lus dla lòsna obligatòria',
-'exif-flash-mode-2' => 'eliminassion dël flash sforsà',
+'exif-flash-mode-2' => 'eliminassion dla lòsna obligatòria',
 'exif-flash-mode-3' => 'manera automàtica',
-'exif-flash-function-1' => 'Gnente fonsion flash',
+'exif-flash-function-1' => 'Gnun-a fonsion ëd lòsna',
 'exif-flash-redeye-1' => "Manera ëd ridussion ëd j'euj ross",
 
-'exif-focalplaneresolutionunit-2' => 'pòles anglèis (inches)',
+'exif-focalplaneresolutionunit-2' => 'pòles anglèis',
 
 'exif-sensingmethod-1' => 'Nen definì',
 'exif-sensingmethod-2' => 'Sensor dlë spassi color a 1 processor',

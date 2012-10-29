@@ -826,7 +826,7 @@ Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:'
 'note' => "'''Pokazka:'''",
 'previewnote' => "'''Wobmysli, až to jo jano pśeglěd.'''
 Twóje změny hyšći njejsu składowane!",
-'continue-editing' => 'Dalej wobźěłaś',
+'continue-editing' => 'K wobźěłowańskemu póloju',
 'previewconflict' => 'Toś ten pśeglěd wótbłyšćujo tekst górjejcnego póla. Bok buźo tak wuglědaś, jolic jen něnto składujoš.',
 'session_fail_preview' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili. Pšosym wopytaj hyšći raz. Jolic až to pón pśecej hyšći njejźo, wopytaj se wótzjawiś a zasej pśizjawiś.'''",
 'session_fail_preview_html' => "'''Wódaj! Twójo wobźěłanje njejo se mógało składowaś, dokulaž su daty twójogo pósejźenja se zgubili.'''
@@ -2085,7 +2085,7 @@ Pódpěrane protokole: <code>$1</code> (pšosym njepódaj je w swójom pytanju).
 'emailuser-title-target' => 'E-mail na {{GENDER:$1|toś tomu wužywarjeju|toś tej wužywarce}} pósłaś',
 'emailuser-title-notarget' => 'E-mail wužywarjeju',
 'emailpage' => 'E-mail wužywarjeju',
-'emailpagetext' => 'Móžoš slědujucy formular wužywaś, aby toś tomu wužywarjeju e-mail pósłał.
+'emailpagetext' => 'Móžoš slědujucy formular wužywaś, aby toś tomu {{GENDER:$1|wužywarjeju}} e-mail pósłał.
 E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužywarskich nastajenjach]], zjawi se ako adresa w pólu "Wót" e-maile, aby dostawaŕ móžo śi direktnje wótegroniś.',
 'usermailererror' => 'E-mailowy objekt jo zmólku wrośił.',
 'defemailsubject' => '{{SITENAME}} - e-mail wót wužywarja "$1"',
@@ -2869,6 +2869,7 @@ W zespominanju dajo se pśicyna pódaś.',
 'pageinfo-default-sort' => 'Standardny sortěrowański kluc',
 'pageinfo-length' => 'Dłujkosć boka (w bajtach)',
 'pageinfo-article-id' => 'ID boka',
+'pageinfo-language' => 'Rěc bokowego wopśimjeśa',
 'pageinfo-robot-policy' => 'Status pytawy',
 'pageinfo-robot-index' => 'Indeksěrujobny',
 'pageinfo-robot-noindex' => 'Njeindeksěrujobny',
