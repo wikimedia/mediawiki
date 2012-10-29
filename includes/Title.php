@@ -4701,8 +4701,6 @@ class Title {
 		$contentHandler = ContentHandler::getForTitle( $this );
 		$pageLang = $contentHandler->getPageLanguage( $this );
 
-		// Hook at the end because we don't want to override the above stuff
-		wfRunHooks( 'PageContentLanguage', array( $this, &$pageLang, $wgLang ) );
 		return wfGetLangObj( $pageLang );
 	}
 
