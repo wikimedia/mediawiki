@@ -271,6 +271,25 @@ class RevisionStorageTest extends MediaWikiTestCase {
 	/**
 	 * @covers Revision::getContent
 	 */
+	public function testGetContent_failure()
+	{
+		$rev = new Revision( array(
+			'page'       =>  $this->the_page->getId(),
+			'content_model' => $this->the_page->getContentModel(),
+			'text_id' => 123456789, // not in the test DB
+		) );
+
+		$this->assertNull( $rev->getContent(),
+			"getContent() should return null if the revision's text blob could not be loaded." );
+
+		//NOTE: check this twice, once for lazy initialization, and once with the cached value.
+		$this->assertNull( $rev->getContent(),
+			"getContent() should return null if the revision's text blob could not be loaded." );
+	}
+
+	/**
+	 * @covers Revision::getContent
+	 */
 	public function testGetContent()
 	{
 		$orig = $this->makeRevision( array( 'text' => 'hello hello.' ) );
