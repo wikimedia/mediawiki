@@ -190,16 +190,9 @@ class FSFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		if ( file_exists( $dest ) ) {
-			$ok = unlink( $dest );
-			if ( !$ok ) {
-				$status->fatal( 'backend-fail-delete', $params['dst'] );
-				return $status;
-			}
-		}
-
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array( wfIsWindows() ? 'COPY' : 'cp',
+			$cmd = implode( ' ', array(
+				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $params['src'] ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
@@ -257,16 +250,9 @@ class FSFileBackend extends FileBackendStore {
 			return $status; // do nothing; either OK or bad status
 		}
 
-		if ( file_exists( $dest ) ) {
-			$ok = unlink( $dest );
-			if ( !$ok ) {
-				$status->fatal( 'backend-fail-delete', $params['dst'] );
-				return $status;
-			}
-		}
-
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array( wfIsWindows() ? 'COPY' : 'cp',
+			$cmd = implode( ' ', array(
+				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
@@ -324,19 +310,9 @@ class FSFileBackend extends FileBackendStore {
 			return $status; // do nothing; either OK or bad status
 		}
 
-		if ( file_exists( $dest ) ) {
-			// Windows does not support moving over existing files
-			if ( wfIsWindows() ) {
-				$ok = unlink( $dest );
-				if ( !$ok ) {
-					$status->fatal( 'backend-fail-delete', $params['dst'] );
-					return $status;
-				}
-			}
-		}
-
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array( wfIsWindows() ? 'MOVE' : 'mv',
+			$cmd = implode( ' ', array(
+				wfIsWindows() ? 'MOVE /Y' : 'mv', // (overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
@@ -384,7 +360,8 @@ class FSFileBackend extends FileBackendStore {
 		}
 
 		if ( !empty( $params['async'] ) ) { // deferred
-			$cmd = implode( ' ', array( wfIsWindows() ? 'DEL' : 'unlink',
+			$cmd = implode( ' ', array(
+				wfIsWindows() ? 'DEL' : 'unlink',
 				wfEscapeShellArg( $this->cleanPathSlashes( $source ) )
 			) );
 			$status->value = new FSFileOpHandle( $this, $params, 'Copy', $cmd );
@@ -422,14 +399,6 @@ class FSFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		if ( file_exists( $dest ) ) {
-			$ok = unlink( $dest );
-			if ( !$ok ) {
-				$status->fatal( 'backend-fail-delete', $params['dst'] );
-				return $status;
-			}
-		}
-
 		if ( !empty( $params['async'] ) ) { // deferred
 			$tempFile = TempFSFile::factory( 'create_', 'tmp' );
 			if ( !$tempFile ) {
@@ -441,7 +410,8 @@ class FSFileBackend extends FileBackendStore {
 				$status->fatal( 'backend-fail-create', $params['dst'] );
 				return $status;
 			}
-			$cmd = implode( ' ', array( wfIsWindows() ? 'COPY' : 'cp',
+			$cmd = implode( ' ', array(
+				wfIsWindows() ? 'COPY /B /Y' : 'cp', // (binary, overwrite)
 				wfEscapeShellArg( $this->cleanPathSlashes( $tempFile->getPath() ) ),
 				wfEscapeShellArg( $this->cleanPathSlashes( $dest ) )
 			) );
