@@ -301,7 +301,6 @@ class Html {
 			'button' => array(
 				'formaction' => 'GET',
 				'formenctype' => 'application/x-www-form-urlencoded',
-				'type' => 'submit',
 			),
 			'canvas' => array(
 				'height' => '150',
