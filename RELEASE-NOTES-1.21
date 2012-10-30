@@ -54,6 +54,7 @@ production.
   disabled, and don't wrap HTML-syntax definition lists in paragraphs.
 * (bug 41409) Diffs while editing an old revision should again diff against the
   current revision.
+* (bug 41545) <kbd> / <samp> / <var> cannot be nested like allowed in html.
 
 === API changes in 1.21 ===
 * prop=revisions can now report the contentmodel and contentformat, see docs/contenthandler.txt

@@ -64,15 +64,44 @@ class SanitizerTest extends MediaWikiTestCase {
 		$this->assertEquals( UTF8_REPLACEMENT, Sanitizer::decodeCharReferences( "&#88888888888888;" ), 'Invalid numbered entity' );
 	}
 
-	function testSelfClosingTag() {
-		$GLOBALS['wgUseTidy'] = false;
-		$this->assertEquals(
-			'<div>Hello world</div>',
-			Sanitizer::removeHTMLtags( '<div>Hello world</div />' ),
-			'Self-closing closing div'
+	function dataRemoveHTMLtags() {
+		return array(
+			// former testSelfClosingTag
+			array(
+				'<div>Hello world</div />',
+				'<div>Hello world</div>',
+				'Self-closing closing div'
+			),
+			// Make sure special nested HTML5 semantics are not broken
+			// http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-kbd-element
+			array(
+				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
+				'<kbd><kbd>Shift</kbd>+<kbd>F3</kbd></kbd>',
+				'Nested <kbd>.'
+			),
+			// http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-sub-and-sup-elements
+			array(
+				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
+				'<var>x<sub><var>i</var></sub></var>, <var>y<sub><var>i</var></sub></var>',
+				'Nested <var>.'
+			),
+			// http://www.whatwg.org/specs/web-apps/current-work/multipage/text-level-semantics.html#the-dfn-element 
+			array(
+				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
+				'<dfn><abbr title="Garage Door Opener">GDO</abbr></dfn>',
+				'<abbr> inside <dfn>',
+			),
 		);
 	}
-	
+
+	/**
+	 * @dataProvider dataRemoveHTMLtags
+	 */
+	function testRemoveHTMLtags( $input, $output, $msg = null ) {
+		$GLOBALS['wgUseTidy'] = false;
+		$this->assertEquals( $output, Sanitizer::removeHTMLtags( $input ), $msg );
+	}
+
 	function testDecodeTagAttributes() {
 		$this->assertEquals( Sanitizer::decodeTagAttributes( 'foo=bar' ), array( 'foo' => 'bar' ), 'Unquoted attribute' );
 		$this->assertEquals( Sanitizer::decodeTagAttributes( '    foo   =   bar    ' ), array( 'foo' => 'bar' ), 'Spaced attribute' );
