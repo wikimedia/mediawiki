@@ -1584,13 +1584,25 @@ Used in [[Special:Preferences]]. Parameters are:
 'prefs-help-signature' => 'Used in [[Special:Preferences]], tab User profile.',
 'badsig' => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength' => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
-'yourgender' => 'Used in [[Special:Preferences]], first tab.
-{{Identical|Gender}}',
-'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.',
-'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
-{{Identical|Male}}',
-'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
-{{Identical|Female}}',
+'yourgender' => 'Used in [[Special:Preferences]], first tab, in the Internationalisation section.
+This may be customized for other languages. This should sound like a question, the answer to which can be selected in one of these:
+* {{msg-mw|gender-unknown}}
+* {{msg-mw|gender-male}}
+* {{msg-mw|gender-female}}
+The idea is that this preference is used for speaking to the user and about the user, and the label and the preference are supposed to demonstrate it.',
+'gender-unknown' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.
+This may appropriately cusomized for your language. It should sound like a reply to {{msg-mw|yourgender}}.',
+'gender-male' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt.
+Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
+you may customize this for your language.
+The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|yourgender}}.
+For example, if the verb "I edit" in your language is different in masculine and feminine, translate "I edit" in masculine here.',
+'gender-female' => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt.
+Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
+you may customize this for your language.
+The wording must demonstrate the actual usage of the option. It should sound like a reply to {{msg-mw|yourgender}}.
+For example, if the verb "I edit" in your language is different in masculine and feminine, translate "I edit" in feminine here.',
+'prefs-help-gender' => 'Help text for the gender option.',
 'email' => '{{Identical|E-mail}}',
 'prefs-help-realname' => 'In user preferences.
 {{Identical|Real name attribution}}',
