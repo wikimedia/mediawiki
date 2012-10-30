@@ -3,6 +3,15 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
+== MediaWiki 1.19.3 ==
+
+This is a security release of the MediaWiki 1.19 branch
+
+=== Changes since 1.19.2 ===
+* Increase permitted runtime for testParserTest (only used for continuous
+  integration).
+* Updated messages translations from http://translatewiki.net/
+
 == MediaWiki 1.19.2 ==
 
 This is a security release of the MediaWiki 1.19 branch
