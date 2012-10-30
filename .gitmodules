@@ -7,3 +7,6 @@
 [submodule "extensions/ParserFunctions"]
 	path = extensions/ParserFunctions
 	url = https://gerrit.wikimedia.org/r/p/mediawiki/extensions/ParserFunctions.git
+[submodule "extensions/DonationEmailUnsubscribe"]
+	path = extensions/DonationEmailUnsubscribe
+	url = https://gerrit.wikimedia.org/r/p/wikimedia/fundraising/DonationEmailUnsubscribe.git
