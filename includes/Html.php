@@ -234,6 +234,13 @@ class Html {
 			unset( $attribs['maxlength'] );
 		}
 
+		// According to standard the default type for <button> elements is "submit".
+		// Depending on compatibility mode IE might use "button", instead.
+		// We enforce the standard "submit".
+		if ( $element == 'button' && !isset( $attribs['type'] ) ) {
+			$attribs['type'] = 'submit';
+		}
+
 		return "<$element" . self::expandAttributes(
 			self::dropDefaults( $element, $attribs ) ) . '>';
 	}
@@ -301,7 +308,6 @@ class Html {
 			'button' => array(
 				'formaction' => 'GET',
 				'formenctype' => 'application/x-www-form-urlencoded',
-				'type' => 'submit',
 			),
 			'canvas' => array(
 				'height' => '150',
