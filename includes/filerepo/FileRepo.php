@@ -1094,47 +1094,42 @@ class FileRepo {
 				return $this->newFatal( 'directorycreateerror', $archiveDir );
 			}
 
-			// Archive destination file if it exists
-			if ( $backend->fileExists( array( 'src' => $dstPath ) ) ) {
-				// Check if the archive file exists
-				// This is a sanity check to avoid data loss. In UNIX, the rename primitive
-				// unlinks the destination file if it exists. DB-based synchronisation in
-				// publishBatch's caller should prevent races. In Windows there's no
-				// problem because the rename primitive fails if the destination exists.
-				if ( $backend->fileExists( array( 'src' => $archivePath ) ) ) {
-					$operations[] = array( 'op' => 'null' );
-					continue;
-				} else {
-					$operations[] = array(
-						'op'           => 'move',
-						'src'          => $dstPath,
-						'dst'          => $archivePath
-					);
-				}
-				$status->value[$i] = 'archived';
-			} else {
-				$status->value[$i] = 'new';
-			}
+			// Archive destination file if it exists.
+			// This will check if the archive file also exists and fail if does.
+			// This is a sanity check to avoid data loss. On Windows and Linux,
+			// copy() will overwrite, so the existence check is vulnerable to
+			// race conditions unless an functioning LockManager is used.
+			// LocalFile also uses SELECT FOR UPDATE for synchronization.
+			$operations[] = array(
+				'op'                  => 'copy',
+				'src'                 => $dstPath,
+				'dst'                 => $archivePath,
+				'ignoreMissingSource' => true
+			);
+
 			// Copy (or move) the source file to the destination
 			if ( FileBackend::isStoragePath( $srcPath ) ) {
 				if ( $flags & self::DELETE_SOURCE ) {
 					$operations[] = array(
 						'op'           => 'move',
 						'src'          => $srcPath,
-						'dst'          => $dstPath
+						'dst'          => $dstPath,
+						'overwrite'    => true // replace current
 					);
 				} else {
 					$operations[] = array(
 						'op'           => 'copy',
 						'src'          => $srcPath,
-						'dst'          => $dstPath
+						'dst'          => $dstPath,
+						'overwrite'    => true // replace current
 					);
 				}
 			} else { // FS source path
 				$operations[] = array(
 					'op'           => 'store',
 					'src'          => $srcPath,
-					'dst'          => $dstPath
+					'dst'          => $dstPath,
+					'overwrite'    => true // replace current
 				);
 				if ( $flags & self::DELETE_SOURCE ) {
 					$sourceFSFilesToDelete[] = $srcPath;
@@ -1143,8 +1138,19 @@ class FileRepo {
 		}
 
 		// Execute the operations for each triplet
-		$opts = array( 'force' => true );
-		$status->merge( $backend->doOperations( $operations, $opts ) );
+		$status->merge( $backend->doOperations( $operations ) );
+		// Find out which files were archived.
+		// This is done after the operations to avoid extra stat calls
+		// since the stat cache is cleared at the start of doOperations().
+		foreach ( $triplets as $i => $triplet ) {
+			list( $srcPath, $dstRel, $archiveRel ) = $triplet;
+			$archivePath = $this->getZonePath( 'public' ) . "/$archiveRel";
+			if ( $this->fileExists( $archivePath ) ) {
+				$status->value[$i] = 'archived';
+			} else {
+				$status->value[$i] = 'new';
+			}
+		}
 		// Cleanup for disk source files...
 		foreach ( $sourceFSFilesToDelete as $file ) {
 			wfSuppressWarnings();
