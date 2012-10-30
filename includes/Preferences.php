@@ -281,18 +281,6 @@ class Preferences {
 			'help-message' => 'prefs-help-realname',
 		);
 
-		$defaultPreferences['gender'] = array(
-			'type' => 'select',
-			'section' => 'personal/info',
-			'options' => array(
-				$context->msg( 'gender-male' )->text() => 'male',
-				$context->msg( 'gender-female' )->text() => 'female',
-				$context->msg( 'gender-unknown' )->text() => 'unknown',
-			),
-			'label-message' => 'yourgender',
-			'help-message' => 'prefs-help-gender',
-		);
-
 		if ( $canEditPrivateInfo && $wgAuth->allowPasswordChange() ) {
 			$link = Linker::link( SpecialPage::getTitleFor( 'ChangePassword' ),
 				$context->msg( 'prefs-resetpass' )->escaped(), array(),
@@ -341,6 +329,18 @@ class Preferences {
 			'section' => 'personal/i18n',
 			'options' => $options,
 			'label-message' => 'yourlanguage',
+		);
+
+		$defaultPreferences['gender'] = array(
+			'type' => 'radio',
+			'section' => 'personal/i18n',
+			'options' => array(
+				$context->msg( 'gender-male' )->text() => 'male',
+				$context->msg( 'gender-female' )->text() => 'female',
+				$context->msg( 'gender-unknown' )->text() => 'unknown',
+			),
+			'label-message' => 'yourgender',
+			'help-message' => 'prefs-help-gender',
 		);
 
 		// see if there are multiple language variants to choose from
