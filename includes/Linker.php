@@ -1376,7 +1376,18 @@ class Linker {
 		self::$commentContextTitle = $title;
 		self::$commentLocal = $local;
 		$html = preg_replace_callback(
-			'/\[\[:?([^\]|]+)(?:\|((?:]?[^\]|])*+))*\]\]([^[]*)/',
+			'/
+				\[\[
+				:? # ignore optional leading colon
+				([^\]|]+) # 1. link target; page names cannot include ] or |
+				(?:\|
+					# 2. a pipe-separated substring; only the last is captured
+					# Stop matching at | and ]] without relying on backtracking.
+					((?:]?[^\]|])*+)
+				)*
+				\]\]
+				([^[]*) # 3. link trail (the text up until the next link)
+			/x',
 			array( 'Linker', 'formatLinksInCommentCallback' ),
 			$comment );
 		self::$commentContextTitle = null;
